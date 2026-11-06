@@ -32,7 +32,7 @@ CATEGORIES = [
     ("heizen", "Heizen",
      "Effizient heizen: Klimaanlagen mit Heizfunktion, stromsparende Heizlüfter und Infrarotheizung."),
     ("luftqualitaet", "Luftqualität",
-     "Luftentfeuchter gegen Schimmel, Luftreiniger gegen Pollen und Staub sowie die richtige Gerätepflege."),
+     "Feuchte und Luftqualität einordnen: Lüften, Wäschekosten und Gerätepflege prüfen. Entfeuchter und Luftreiniger mit nachvollziehbaren Kriterien auswählen."),
     ("energie-sparen", "Energie sparen",
      "Stromkosten senken: Verbrauch messen, Börsenpreise und Tarife verstehen, Hitzeschutz am Fenster und clevere Energiespar-Maßnahmen für den Haushalt."),
 ]
@@ -359,10 +359,9 @@ CAT_SHOP = {
    ("heater", "Schnell warm", "Heizlüfter", "Sofort warm für Bad & Übergang — stromsparende Modelle.", "ab 25 €", "heizl%C3%BCfter+stromsparend", "#fff4e8,#ffe6cc"),
    ("ac", "2-in-1", "Klima mit Heizfunktion", "Kühlt im Sommer, heizt im Winter — ganzjährig nutzbar.", "ab 300 €", "klimaanlage+mit+heizfunktion", "#eaf6ff,#cfe6f7"),
  ],
- "luftqualitaet": [
-   ("dehum", "Gegen Schimmel", "Luftentfeuchter", "Stoppt Feuchte & Schimmel in Wohnung, Keller, Bad.", "ab 120 €", "luftentfeuchter", "#eaf6ff,#cfe6f7"),
-   ("purifier", "Gegen Pollen", "Luftreiniger", "Filtert Pollen, Staub & Gerüche — HEPA-Modelle.", "ab 80 €", "luftreiniger+hepa", "#eefaf3,#cdeede"),
- ],
+ # Air-quality readers first establish the task and suitable specifications.
+ # Their existing decision guides own the qualified merchant destinations.
+ "luftqualitaet": [],
  "energie-sparen": [
    # The first card was "Balkonkraftwerk-Speicher" until 2026-09-27 (storage
    # shelf taken down). The meter replaces it: it is on four energy pages'
@@ -412,7 +411,8 @@ def collect_articles():
     arts = {k: [] for k, _, _ in CATEGORIES}
     for path in sorted(glob.glob(os.path.join(GUIDE, "*.html"))):
         slug = os.path.basename(path)[:-5]
-        html = open(path, encoding="utf-8").read()
+        with open(path, encoding="utf-8") as source:
+            html = source.read()
         cat = (CAT_OF.get(slug)
                or ("heizen" if slug.startswith(("heizung-", "heizluefter-", "infrarotheizung-", "heizkosten-")) else None)
             or ("energie-sparen" if slug.startswith(("balkonkraftwerk-", "balkonspeicher-", "growatt-", "zendure-", "strompreis-", "stromvergleich-")) else None)
@@ -825,6 +825,24 @@ def shop_card(entry):
 
 
 def shop_section(cat_key):
+    if cat_key == "luftqualitaet":
+        entries = [
+            ("Entfeuchter: Bedarf und Modelldaten prüfen",
+             "Erst Feuchte und Ursache einordnen, dann zwei vorhandene Modellkandidaten mit ihren Datenlücken vergleichen. Ein Gerät beseitigt keine bauliche Ursache.",
+             "/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice", "Entscheidungshilfe öffnen"),
+            ("Luftreiniger: Filter und Raumleistung prüfen",
+             "Partikel filtern ist eine andere Aufgabe als Luft entfeuchten. Prüfe Filtertyp, Luftleistung und Folgekosten für deinen Einsatzzweck.",
+             "/guide/luftreiniger-ratgeber.html", "Auswahlkriterien lesen"),
+        ]
+        cards = ''.join(
+            '<div class="eb-shop-card"><div class="bd">'
+            f'<h3>{title}</h3><p class="ds">{desc}</p>'
+            f'<a class="go" style="min-height:44px" href="{url}">{label}</a></div></div>'
+            for title, desc, url, label in entries)
+        return ('<section class="eb-shop" id="eb-air-decisions"><h2>Vor dem Gerätekauf klären</h2>'
+                '<p class="eb-shop-sub">Kostenlose Orientierung ohne Konto. Die passende Hilfe hängt davon ab, '
+                'ob du Feuchte senken oder Partikel aus der Luft filtern möchtest.</p>'
+                f'<div class="eb-shop-grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))">{cards}</div></section>\n')
     cards = "".join(shop_card(e) for e in CAT_SHOP[cat_key])
     return ('<section class="eb-shop"><h2>Nach Gerätetyp shoppen</h2>'
             '<p class="eb-shop-sub">Direkt zum passenden Gerät auf Amazon.de — '

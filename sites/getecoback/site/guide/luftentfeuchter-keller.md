@@ -60,8 +60,8 @@ Rechne deinen Tarif im [Stromkosten-Rechner](https://getecoback.com/guide/stromk
 ## 5. Kaufen in Deutschland, Österreich und der Schweiz
 
 - **Deutschland:** Die gekennzeichnete Produktsuche unten führt zu Amazon.de. Lies dort das Datenblatt der genauen Modellvariante.
-- **Österreich:** Lieferadresse, Gesamtkosten, Rückgabe und angebotene Variante beim Händler prüfen. Die Energieberatung Niederösterreich erklärt richtiges Lüften; diese lokale Orientierung ersetzt keine Gebäudeprüfung.
-- **Schweiz:** Die Topten-Liste für Luftentfeuchter auf dem Schweizer Markt hilft bei der Datenrecherche. Angebot in CHF, lokale Ausführung, Anschluss und Lieferbedingungen separat prüfen.
+- **Österreich:** Lieferadresse, Gesamtkosten, Rückgabe und angebotene Variante beim Händler prüfen. Die [Energieberatung Niederösterreich erklärt richtiges Lüften](https://www.energie-noe.at/richtig-lueften); diese lokale Orientierung ersetzt keine Gebäudeprüfung.
+- **Schweiz:** Die [Topten-Liste für Luftentfeuchter auf dem Schweizer Markt](https://www.topten.ch/de/products/dehumidifiers) hilft bei der Datenrecherche. Angebot in CHF, lokale Ausführung, Anschluss und Lieferbedingungen separat prüfen.
 
 Die deutschen Kauflinks sind keine Zusage für Lieferung nach Österreich oder in die Schweiz. Die beiden lokalen Quellenlinks sind keine EcoBack-Affiliate-Links. Wir vergeben keinen eigenen Testsieger.
 
@@ -99,21 +99,25 @@ Nur nach der Anleitung des konkreten Modells. Ein Schwerkraftablauf braucht ein 
 ## Quellen und Grenzen
 Redaktionell geprüft am 30. Oktober 2026. Technische Einordnung anhand öffentlicher Quellen; keine eigenen Produkttests, keine Preis- oder Liefergarantie. Kostenbeispiele sind eigene Rechnungen mit ausdrücklich angenommenen Werten.
 
-- Verbraucherzentrale: Heizen und Lüften — Feuchte und Lüftung.
+- [Verbraucherzentrale: Heizen und Lüften](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426) — Feuchte und Lüftung.
 - Stiftung Warentest: Luftentfeuchter, was sie leisten — Verfahren und Einsatzbedingungen; keine Übernahme einer Modellrangliste.
-- Topten Schweiz: Luftentfeuchter — Datenfelder für Temperatur, Entzug und Leistungsaufnahme.
-- Energieberatung NÖ: Richtig lüften — lokale Orientierung für Österreich.
+- [Topten Schweiz: Luftentfeuchter](https://www.topten.ch/de/products/dehumidifiers) — Datenfelder für Temperatur, Entzug und Leistungsaufnahme.
+- [Energieberatung NÖ: Richtig lüften](https://www.energie-noe.at/richtig-lueften) — lokale Orientierung für Österreich.
 
 **Der nächste Schritt**[Luftentfeuchter auswählen: Einsatzort und Gerätetyp →](https://getecoback.com/guide/luftentfeuchter-ratgeber.html)[Vorhandenes Gerät zieht kein Wasser: erst prüfen →](https://getecoback.com/guide/luftentfeuchter-zieht-kein-wasser.html)[Wäsche trocknen: Feuchte und Kosten vergleichen →](https://getecoback.com/guide/waesche-trocknen-wohnung.html)[Wohnen im Herbst und Winter: alle Einstiege →](https://getecoback.com/wohnen.html)
 
 ## Herstellerdaten vor dem Kauf prüfen
-Warum „20 Liter“ nicht immer 20 Liter sindBeispiel MeacoDry Arete One 20L. Herstellerdaten, kein EcoBack-Test. Verschiedene Raumbedingungen dürfen nicht als direkter Effizienzvergleich gelesen werden.
-Bedingung | Wasser pro Tag | Leistung |
-10 °C / 60 % RH | 3.4 L | 180 W |
-20 °C / 60 % RH | 8.5 L | 216 W |
+**So vergleichst du die Herstellerdaten**
+Zwei Beispiele aus vorhandenen Ratgebern, kein vollständiger Marktvergleich und kein EcoBack-Produkttest. Verglichen werden Wasserentzug und Betriebsleistung bei derselben Temperatur und relativen Feuchte (RH). Fehlende Angaben bleiben offen; daraus folgt keine Rangfolge.
+Herstellerangaben zu Wasserentzug und Leistung; geprüft am 06.11.2026
+Bedingung | Comfee MDDF-20DEN7 | MeacoDry Arete One 20L |
+20 °C / 60 % RH | Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert. | 8.5 L/Tag · 216 W |
+10 °C / 60 % RH | Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert. | 3.4 L/Tag · 180 W |
 
+Die genannten 20 L/Tag beziehen sich in den Modellunterlagen auf 30 °C / 80 % RH. Das ist keine Zusage für den Keller oder eine Wäscheladung. Für Comfee wurden in den verlinkten Unterlagen keine Werte für die beiden Tabellenbedingungen verifiziert. Anschlusswert oder Nennleistung dürfen diese Datenlücke nicht ersetzen.
+Modellgrenzen: Comfee MDDF-20DEN7 ist hier die Variante ohne WF. MeacoDry Arete One 20L ist weder Arete Two noch One 25L. Die UK-Modellseite bestätigt keine deutsche Händlerausstattung, Stecker, Lieferbarkeit oder Rückgabe. Netzspannung, Typenschild und Anleitung immer mit dem konkreten Angebot abgleichen. Beide Kandidaten ersetzen weder Ursachenklärung noch eine passende Lüftung.
 Rechenbeispiel: 216 W × 6 h ÷ 1.000 × 0,35 €/kWh = 0,45 €. Das ist weder eine gemessene Wäscheladung noch eine Einsparzusage.
-Quellen geprüft am 01.10.2026: Meaco · Comfee Handbuch · Verbraucherzentrale. Keine eigenen Produkttests. Angaben sind Orientierung, keine Ferndiagnose.
+Quellen geprüft am 06.11.2026: [Meaco One 20L](https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-air-purifier) · [Comfee MDDF-20DEN7](https://www.feelcomfee.com/de/produkte/klimatisieren-heizen/mddf-20den7) · [Comfee-Datenblatt, Seite 2](https://www.feelcomfee.com/content/dam/comfee-aem/de/produkte/klimatisieren-heizen/mddf-20den7/comfee-MDDF-20DEN7-Datenblatt.pdf#page=2) · [Comfee-Bedienhinweise](https://www.feelcomfee.com/content/dam/comfee-aem/global/products/heating-cooling/dehumidifier-mddf-20den7/DF-Owners-Manual.pdf) · [Verbraucherzentrale](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426). Herstellerangaben, keine eigenen Messungen. Orientierung, keine Ferndiagnose.
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json

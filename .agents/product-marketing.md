@@ -1,12 +1,20 @@
 # Product marketing context
 
-**Document version: v18** — **Last updated: 2026-10-31**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
+**Document version: v19** — **Last updated: 2026-11-06**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
 
 ## Business goal and proof
 
 Owner's latest staged goals are USD 1,000, USD 5,000 and USD 10,000 in monthly revenue (2026-10-03 conversation). These supersede the historical euro milestones; deadlines and gross/net accounting treatment remain unspecified. Record gross customer payments, refunds, settled receipts and delivery/acquisition costs separately; revenue is not profit or MRR. Manual selling/delivery and automation are both acceptable to the owner. Eco has historical owner-reported affiliate commissions; do not re-label them as a new service sale or assume they have settled. New experiments have no verified customers, paid retention, CAC or revenue. Prices displayed on discovery experiments are hypotheses. The original four probes remain closed; BPJ has separate live wallet checkout for placements and membership, whose readiness and sales need independent checks.
 
 ## Current revenue directions — owner steering 2026-10-04
+
+### ECO German buying decisions — owner steering 2026-11-06
+
+The owner requested a deep comparison of two mature German affiliate publishers and implementation on ECO. The current product is an existing household decision guide, not a new marketplace or a laboratory test. Prioritize readers comparing dehumidifiers after measuring room conditions, while retaining the measurement, no-purchase, damage-first, cold-room and laundry-cost outcomes. The six existing German/English guides use the same sourced comparison; other country assets and the US replacement-filter product remain in place.
+
+Free value: clarify whether a purchase is justified, inspect the exact model and compare what official evidence actually establishes. The two existing candidates have uniform evidence fields, explicit missing same-condition data and a three-part pre-purchase checklist. Monetization remains qualifying transactions through the established disclosed merchant links. A product-page link and a model-search link must be named accurately; no live-price, stock, best-value or own-testing claim is introduced.
+
+Acquisition uses existing topic/category and task entry points, useful sourced explanations and shareable guide URLs. Research on home&smart and CHIP supports these information patterns, not a forecast of traffic or conversion uplift. Avoid copying their full catalogs, experimental rankings, paid traffic costs or unverified merchant mappings. Meaningful results, evidence inspection, merchant clicks and verified commission are separate. Newly respected opt-out states change event coverage; annotate this intervention in the existing observation window. Product forms must remain non-submitting when their JavaScript is unavailable.
 
 ### Automated niche sites — current task, owner steering 2026-10-31
 
@@ -108,6 +116,7 @@ Distribution uses the relevant bilingual tools directory, shared navigation's To
 The owner explicitly authorized expansion and deployment after selecting broader household tasks, including pools, garden robots and 3D-printed household repair. First release: free German/English constraint checks, downloadable local checklists and a bounded original drawer-divider STL generator. Existing confirmed DE/US Amazon category links are shown only after relevant comparison outcomes, with disclosure; no model certification, paid files, new subscription or checkout. All household inputs stay local. Family fit and repeat-task value remain hypotheses; downloads, shopping intent and merchant revenue are measured separately. This supersedes the earlier 3D-printer-accessory rejection only for the newly requested household repair/template direction. See `sites/getecoback/docs/family-workshop-release-2026-10-29.md`.
 
 ## Changelog
+- v19 (2026-11-06): Added the owner-authorized German affiliate comparison upgrade: existing decision paths, uniform model evidence, accurate merchant destinations and privacy-aware measurement; preserves other fleet directions.
 - v18 (2026-10-31): Applied the owner’s automated-site requirement to the current niche-site task and selected ECO’s source-backed US replacement-filter affiliate product. Preserves concurrent fleet product updates.
 - v15 (2026-10-29): Added the owner-authorized Eco household expansion, bounded free deliverables and commercialization/measurement limits.
 

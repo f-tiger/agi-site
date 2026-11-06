@@ -33,10 +33,10 @@ class LlmsFull(unittest.TestCase):
                   '<!--EB_USTOP--><section hidden>HIDDEN_US_SHOP</section><!--/EB_USTOP-->'
                   '<!--EB_USSHELF--><section hidden>HIDDEN_US_GRID</section><!--/EB_USSHELF-->'
                   '<a href="https://www.amazon.de/s?k=fixture&amp;tag=getecoback-21" rel="sponsored">Shop</a>'
-                  '</article><!--EB_BUYER--><section><details><summary>Herstellerdaten</summary>'
-                  '<table><tr><td>10 °C / 60 % RH</td><td>3.4 L</td><td>180 W</td></tr></table></details>'
+                  '</article><!--EB_BUYER--><section><details data-choice-method><summary>Herstellerdaten</summary>'
+                  '<table><tr><td>10 °C / 60 % RH</td><td>3.4 L</td><td>180 W</td></tr></table>'
                   '<small>Quellen geprüft am 2026-11-06: <a href="' + MEACO + '">Meaco</a></small>'
-                  '</section><!--/EB_BUYER--></body></html>')
+                  '</details></section><!--/EB_BUYER--></body></html>')
         result = self.extract(source)
         self.assertEqual(result, AGENT.to_markdown(source, '/guide/example.html', 'de'))
         for text in ['Redaktion: EcoBack', '2026-11-06', 'Kein eigener Produkttest', '10 °C / 60 % RH', '180 W', '](' + MEACO + ')', '[Keller](https://getecoback.com/guide/luftentfeuchter-keller.html)']:

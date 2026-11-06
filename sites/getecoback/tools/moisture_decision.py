@@ -1,7 +1,7 @@
 """Replace the link-only picker on six existing purchase-intent guides.
 
 No new URLs, inferred product tests, live prices or automatic market routing.
-Manufacturer figures were checked on 2026-10-01; the dated evidence is visible.
+Manufacturer figures were checked on 2026-11-06; the dated evidence is visible.
 """
 import re
 import hashlib
@@ -16,6 +16,8 @@ PATHS = {
 }
 MEACO = 'https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-air-purifier'
 COMFEE = 'https://www.feelcomfee.com/content/dam/comfee-aem/global/products/heating-cooling/dehumidifier-mddf-20den7/DF-Owners-Manual.pdf'
+COMFEE_PRODUCT = 'https://www.feelcomfee.com/de/produkte/klimatisieren-heizen/mddf-20den7'
+COMFEE_DATA = 'https://www.feelcomfee.com/content/dam/comfee-aem/de/produkte/klimatisieren-heizen/mddf-20den7/comfee-MDDF-20DEN7-Datenblatt.pdf#page=2'
 AIR = 'https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426'
 
 def block(en=False):
@@ -29,7 +31,6 @@ def block(en=False):
     cost = '/en/guide/dehumidifier-drying-clothes-cost.html' if en else '/waeschetrockner-oder-luftentfeuchter.html'
     cold = '/en/guide/desiccant-vs-compressor-dehumidifier.html' if en else '/guide/luftentfeuchter-keller.html'
     care = '/en/guide/rising-damp-penetrating-damp-or-condensation.html' if en else '/guide/luftentfeuchter-gegen-schimmel.html'
-    read = '/en/guide/dehumidifier-20-sqm.html' if en else '/guide/meacodry-arete-one-test.html'
     fields = select('purpose',t('Wobei brauchst du Hilfe?','What are you trying to do?'),[
         ('room',t('Feuchte Raumluft senken','Reduce room humidity')),
         ('laundry',t('Wäsche drinnen trocknen','Dry laundry indoors')),
@@ -45,11 +46,59 @@ def block(en=False):
     fields += select('market',t('Wo möchtest du einkaufen?','Where will you shop?'),[
         ('de',t('Deutschland / Amazon.de','Germany / Amazon.de')),
         ('other',t('Anderer Markt / nur informieren','Another market / advice only'))], 'other' if en else 'de')
-    products = '<div data-market-de hidden><div class="choice-products"><div><h3>Comfee MDDF-20DEN7</h3><p>'+t(
-        'Vergleichskandidat mit Hygrostat und Dauerablauf. Prüfe am angebotenen Modell Einsatztemperatur, Anschluss und Raumempfehlung. MDDF-20DEN7 und die WF-Variante nicht verwechseln.',
-        'A candidate with a humidistat and continuous drainage. Check operating temperature, connection and room guidance for the exact listing. Do not confuse MDDF-20DEN7 with the WF variant.')+'</p>'+shop('https://www.amazon.de/dp/B07KJX6RDK?tag=getecoback-21',t('Modell bei Amazon.de prüfen*','Check model at Amazon.de*'))+'</div><div><h3>MeacoDry Arete One 20L</h3><p>'+t(
-        'Vergleichskandidat mit Wäschemodus. Der Hersteller nennt 8,5 l/Tag bei 20 °C und 60 % relativer Feuchte; bei 10 °C und 60 % nur 3,4 l/Tag. Die 20L im Namen sind keine Alltagsgarantie.',
-        'A candidate with laundry mode. The maker lists 8.5 L/day at 20°C and 60% RH, versus 3.4 L/day at 10°C and 60% RH. The 20L name is not an everyday output guarantee.')+'</p>'+shop('https://www.amazon.de/s?k=MeacoDry+Arete+One+20L&tag=getecoback-21',t('Exaktes Modell bei Amazon.de suchen*','Find exact model at Amazon.de*'))+'</div></div><small>'+t(
+    unknown = t('Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert.',
+                'Extraction and running power at these conditions are not verified here.')
+
+    def source(url, label):
+        return f'<a href="{escape(url, quote=True)}">{label}</a>'
+
+    def candidate(name, identity, data20, data10, features, limit, sources, destination, url, label):
+        rows = [(t('Genaues Modell', 'Exact model'), identity),
+                ('20 °C / 60 % RH', data20), ('10 °C / 60 % RH', data10),
+                (t('Funktionen und Aufbau', 'Features and setup'), features),
+                (t('Was offenbleibt', 'What remains uncertain'), limit)]
+        facts = '<dl class="choice-facts">' + ''.join(
+            f'<div><dt>{heading}</dt><dd>{value}</dd></div>' for heading, value in rows) + '</dl>'
+        checks = '<details data-choice-evidence><summary>' + t(
+            'Quellen und Kaufprüfung öffnen', 'Open sources and purchase checks') + '</summary><p>' + sources + '</p><ol><li>' + t(
+            '<strong>Modell:</strong> Name, Generation und Modellzusatz auf Angebot, Typenschild und Anleitung abgleichen.',
+            '<strong>Model:</strong> match the name, generation and suffix across the listing, rating plate and manual.') + '</li><li>' + t(
+            '<strong>Strom und Aufstellung:</strong> Netzspannung, Stecker, Einsatztemperatur, Schlauch und Gefälle für dein Zuhause prüfen.',
+            '<strong>Power and setup:</strong> check voltage, plug, operating temperature, hose and drainage slope for your home.') + '</li><li>' + t(
+            '<strong>Verkäufer und Rückgabe:</strong> Gesamtpreis, Liefergebiet, Lieferumfang, Garantie und Rückgabebedingungen beim konkreten Händler prüfen.',
+            '<strong>Seller and returns:</strong> check the delivered price, delivery area, included items, warranty and return terms with the actual retailer.') + '</li></ol></details>'
+        return '<div class="choice-candidate"><h4>' + name + '</h4><p class="choice-evidence-label">' + t(
+            'Herstellerangaben · kein eigener Test · geprüft 06.11.2026',
+            'Manufacturer data · not hands-on tested · checked 6 November 2026') + '</p>' + facts + checks + '<div class="choice-offer"><p>' + destination + '</p>' + shop(url, label) + '</div></div>'
+
+    comfee = candidate('Comfee MDDF-20DEN7', t('Ohne WF-Zusatz; nicht mit MDDF-20DEN7-WF gleichsetzen.',
+        'Without the WF suffix; do not treat MDDF-20DEN7-WF as the same model.'), unknown, unknown,
+        t('Feuchteregelung und 3-Liter-Tank. Dauerablauf nur nach passender Anleitung und mit Gefälle einrichten.',
+          'Humidity control and a 3-litre tank. Set up continuous drainage using the applicable manual and a downward slope.'),
+        t('Keine belegte Effizienzrangfolge aus den vorhandenen Angaben. Ein spezieller Wäschemodus ist für diese Variante hier nicht bestätigt.',
+          'The available figures do not establish an efficiency ranking. A dedicated laundry mode is not confirmed here for this variant.'),
+        source(COMFEE_PRODUCT, t('Offizielle Modellseite', 'Official model page')) + ' · ' +
+        source(COMFEE_DATA, t('Datenblatt, Seite 2', 'Data sheet, page 2')) + ' · ' +
+        source(COMFEE, t('Bedienhinweise zum Ablauf', 'Drainage instructions')),
+        t('Feste Amazon.de-Produktseite. Modell und aktuelle Angebotsdetails dort nochmals prüfen.',
+          'A fixed Amazon.de product page. Recheck the model and current offer details there.'),
+        'https://www.amazon.de/dp/B07KJX6RDK?tag=getecoback-21',
+        t('Modell bei Amazon.de prüfen*', 'Check model at Amazon.de*'))
+    meaco = candidate('MeacoDry Arete One 20L', t('Arete One, 20L; weder Arete Two noch die 25L-Variante.',
+        'Arete One, 20L; neither Arete Two nor the 25L variant.'),
+        t('8.5 L/Tag · 216 W', '8.5 L/day · 216 W'), t('3.4 L/Tag · 180 W', '3.4 L/day · 180 W'),
+        t('Feuchteregelung, Wäschemodus und Dauerablauf laut Modellseite. Ablaufschlauch dort nicht enthalten.',
+          'The model page lists humidity control, laundry mode and continuous drainage. Its drain hose is not included.'),
+        t('UK-Herstellerdaten belegen weder die Ausstattung eines deutschen Angebots noch dessen Lieferbarkeit. „20L“ ist keine Alltagsgarantie.',
+          'UK manufacturer data does not verify a German offer’s equipment or availability. “20L” is not an everyday output guarantee.'),
+        source(MEACO, t('Offizielle One-20L-Daten mit Messbedingungen', 'Official One 20L figures and test conditions')),
+        t('Amazon.de-Modellsuche. Treffer können andere Generationen oder Größen enthalten.',
+          'An Amazon.de model search. Results may include other generations or sizes.'),
+        'https://www.amazon.de/s?k=MeacoDry+Arete+One+20L&tag=getecoback-21',
+        t('Exaktes Modell bei Amazon.de suchen*', 'Find exact model at Amazon.de*'))
+    products = '<div data-market-de hidden><p class="choice-comparison-note">' + t(
+        'Zwei vorhandene Kandidaten mit denselben Prüfpunkten. Fehlende Werte sind keine Null und kein Nachteil im Ranking: Ohne vergleichbare Daten gibt es hier keinen Effizienz-Sieger.',
+        'Two existing candidates with the same checks. Missing figures are not zero or a ranking penalty: without comparable data, this guide names no efficiency winner.') + '</p><div class="choice-products">' + comfee + meaco + '</div><small>'+t(
         'Werbung · Affiliate-Links: Als Amazon-Partner verdienen wir an qualifizierten Verkäufen. Preis, Verkäufer, Lieferbarkeit, Stecker und Rückgabebedingungen bei Amazon prüfen. Zwei Beispiele aus unserem Bestand, kein vollständiger Marktvergleich und kein eigener Produkttest.',
         'Ad · Affiliate links: As an Amazon Associate we earn from qualifying purchases. Check price, seller, availability, plug and return terms at Amazon. Two examples from our existing coverage, not a whole-market comparison or hands-on test.')+'</small></div><p data-market-other hidden>'+t(
         'Hier werden keine deutschen Kauflinks eingeblendet. Vergleiche beim Händler in deinem Markt das genaue Modell, Netzspannung, Stecker, Garantie und Liefergebiet.',
@@ -72,15 +121,24 @@ def block(en=False):
         'If you already own a heat-pump dryer, using it may cost less than buying another appliance. Compare measured kWh to the same dryness, purchase price, space and time. A dehumidifier may be useful when room moisture also needs to be removed.')+'</p>'+link(cost,t('Wäschekosten vergleichen','Compare laundry running costs'),'cost')+products)
     answers += answer('compare',t('Zwei Kandidaten gezielt prüfen','Compare two candidates for the job'),'<p>'+t(
         'Wenn erhöhte Feuchte trotz passender Lüftung wiederkehrt und keine bauliche Ursache vorliegt, kannst du ein Gerät mit Hygrostat prüfen. Raumvolumen, Feuchtelast, Geräusch und gemessene Temperatur bleiben entscheidend; die folgenden Beispiele sind keine automatische Größenfreigabe.',
-        'If high humidity returns despite suitable ventilation and no structural cause is present, consider a unit with a humidistat. Room volume, moisture load, noise and measured temperature still matter; these examples do not automatically establish the right size.')+'</p>'+products+link(read,t('Auslegung und Quellen nachlesen','Read sizing guidance and sources')))
-    evidence = '<details><summary>'+t('Warum „20 Liter“ nicht immer 20 Liter sind','Why “20 litres” does not always mean 20 litres')+'</summary><p>'+t(
-        'Beispiel MeacoDry Arete One 20L. Herstellerdaten, kein EcoBack-Test. Verschiedene Raumbedingungen dürfen nicht als direkter Effizienzvergleich gelesen werden.',
-        'Example: MeacoDry Arete One 20L. Manufacturer figures, not an EcoBack test. Different room conditions are not a controlled efficiency comparison.')+'</p><div class="choice-table"><table><thead><tr><th>'+t('Bedingung','Condition')+'</th><th>'+t('Wasser pro Tag','Water per day')+'</th><th>'+t('Leistung','Power')+'</th></tr></thead><tbody><tr><td>10 °C / 60 % RH</td><td>3.4 L</td><td>180 W</td></tr><tr><td>20 °C / 60 % RH</td><td>8.5 L</td><td>216 W</td></tr></tbody></table></div><p>'+t(
+        'If high humidity returns despite suitable ventilation and no structural cause is present, consider a unit with a humidistat. Room volume, moisture load, noise and measured temperature still matter; these examples do not automatically establish the right size.')+'</p>'+products)
+    evidence = '<details data-choice-method><summary>'+t('So vergleichst du die Herstellerdaten','How to compare the manufacturer data')+'</summary><p>'+t(
+        'Zwei Beispiele aus vorhandenen Ratgebern, kein vollständiger Marktvergleich und kein EcoBack-Produkttest. Verglichen werden Wasserentzug und Betriebsleistung bei derselben Temperatur und relativen Feuchte (RH). Fehlende Angaben bleiben offen; daraus folgt keine Rangfolge.',
+        'Two examples from existing guides, not a whole-market comparison or an EcoBack product test. Compare extraction and running power at the same temperature and relative humidity (RH). Missing figures remain unknown; they do not establish a ranking.')+'</p><div class="choice-table"><table><caption>'+t(
+        'Herstellerangaben zu Wasserentzug und Leistung; geprüft am 06.11.2026',
+        'Manufacturer extraction and power figures; checked on 6 November 2026')+'</caption><thead><tr><th scope="col">'+t('Bedingung','Condition')+'</th><th scope="col">Comfee MDDF-20DEN7</th><th scope="col">MeacoDry Arete One 20L</th></tr></thead><tbody><tr><th scope="row">20 °C / 60 % RH</th><td>'+unknown+'</td><td>'+t('8.5 L/Tag · 216 W','8.5 L/day · 216 W')+'</td></tr><tr><th scope="row">10 °C / 60 % RH</th><td>'+unknown+'</td><td>'+t('3.4 L/Tag · 180 W','3.4 L/day · 180 W')+'</td></tr></tbody></table></div><p>'+t(
+        'Die genannten 20 L/Tag beziehen sich in den Modellunterlagen auf 30 °C / 80 % RH. Das ist keine Zusage für den Keller oder eine Wäscheladung. Für Comfee wurden in den verlinkten Unterlagen keine Werte für die beiden Tabellenbedingungen verifiziert. Anschlusswert oder Nennleistung dürfen diese Datenlücke nicht ersetzen.',
+        'The model documents associate 20 L/day with 30°C / 80% RH. That is not a promise for a basement or a laundry load. The linked Comfee documents do not verify figures at the two conditions in this table. Connection ratings or rated input must not be substituted for this missing data.')+'</p><p>'+t(
+        'Modellgrenzen: Comfee MDDF-20DEN7 ist hier die Variante ohne WF. MeacoDry Arete One 20L ist weder Arete Two noch One 25L. Die UK-Modellseite bestätigt keine deutsche Händlerausstattung, Stecker, Lieferbarkeit oder Rückgabe. Netzspannung, Typenschild und Anleitung immer mit dem konkreten Angebot abgleichen. Beide Kandidaten ersetzen weder Ursachenklärung noch eine passende Lüftung.',
+        'Model boundaries: Comfee MDDF-20DEN7 here is the variant without WF. MeacoDry Arete One 20L is neither Arete Two nor One 25L. The UK model page does not verify a German retailer’s equipment, plug, availability or returns. Match voltage, rating plate and manual to the actual offer. Neither candidate replaces investigating moisture sources or suitable ventilation.')+'</p><p>'+t(
         'Rechenbeispiel: 216 W × 6 h ÷ 1.000 × 0,35 €/kWh = 0,45 €. Das ist weder eine gemessene Wäscheladung noch eine Einsparzusage.',
-        'Example calculation: 216 W × 6 h ÷ 1,000 × €0.35/kWh = €0.45. This is not a measured laundry load or a savings promise.')+'</p></details>'
+        'Example calculation: 216 W × 6 h ÷ 1,000 × €0.35/kWh = €0.45. This is not a measured laundry load or a savings promise.')+'</p><small>'+t('Quellen geprüft am 06.11.2026: ','Sources checked on 6 November 2026: ')+source(MEACO, 'Meaco One 20L')+' · '+source(COMFEE_PRODUCT, 'Comfee MDDF-20DEN7')+' · '+source(COMFEE_DATA,t('Comfee-Datenblatt, Seite 2','Comfee data sheet, page 2'))+' · '+source(COMFEE,t('Comfee-Bedienhinweise','Comfee operating instructions'))+' · '+source(AIR,'Verbraucherzentrale')+'. '+t('Herstellerangaben, keine eigenen Messungen. Orientierung, keine Ferndiagnose.','Manufacturer figures, not our own measurements. Guidance, not a remote diagnosis.')+'</small></details>'
+    fallback = '<div data-choice-fallback><p>'+t(
+        'Dein nächster Schritt: Feuchte und Temperatur zunächst messen, bei nassen Wänden die Ursache klären. Die Herstellerdaten unten helfen dir, Bedingungen und Modellvarianten zu unterscheiden.',
+        'Your next step: measure humidity and temperature first, and investigate the cause of wet walls. The manufacturer data below helps distinguish conditions and model variants.')+'</p><p>'+link(cost,t('Wäschekosten vergleichen','Compare laundry costs'))+' · '+link(cold,t('Kalte Räume prüfen','Check cold-room conditions'))+' · '+link(care,t('Feuchteursachen klären','Investigate moisture sources'))+'</p></div>'
     return '<!--EB_BUYER--><link rel="stylesheet" href="/assets/moisture-decision.css"><section id="eb-moisture-choice" data-lang="'+('en' if en else 'de')+'" aria-labelledby="eb-choice-title"><h2 id="eb-choice-title">'+t('Brauchst du einen Entfeuchter – und welchen Typ?','Do you need a dehumidifier — and which type?')+'</h2><p>'+t(
-        'Beantworte drei kurze Fragen. Du erhältst einen nächsten Schritt – vom Weiterbeobachten bis zum gezielten Modellvergleich. Ohne Anmeldung.',
-        'Answer three short questions for a next step, from monitoring the room to comparing models. No account needed.')+'</p><form>'+fields+'<button type="submit">'+t('Meinen nächsten Schritt zeigen','Show my next step')+'</button></form><div data-results tabindex="-1" aria-live="polite" hidden>'+answers+'</div>'+evidence+'<small>'+t('Quellen geprüft am 01.10.2026: ','Sources checked on 1 October 2026: ')+f'<a href="{MEACO}">Meaco</a> · <a href="{COMFEE}">Comfee '+t('Handbuch','manual')+f'</a> · <a href="{AIR}">Verbraucherzentrale</a>. '+t('Keine eigenen Produkttests. Angaben sind Orientierung, keine Ferndiagnose.','No hands-on tests. Guidance, not a remote diagnosis.')+'</small><button type="button" data-copy>'+t('Diese Entscheidungshilfe teilen','Share this decision guide')+'</button><input data-share aria-label="'+t('Link zum Kopieren','Link to copy')+'" readonly hidden><p data-status role="status"></p><noscript><p>'+t('Ohne JavaScript: ','Without JavaScript: ')+link(cost,t('Kosten vergleichen','Compare costs'))+' · '+link(cold,t('Kalte Räume prüfen','Read cold-room guidance'))+'</p></noscript></section><script type="module" src="/assets/moisture-decision.mjs?v='+ASSET_VERSION+'"></script><!--/EB_BUYER-->\n'
+        'Finde deinen nächsten Schritt – vom Weiterbeobachten bis zum gezielten Modellvergleich. Entscheidend sind Feuchte, Temperatur und die Ursache. Ohne Anmeldung.',
+        'Find your next step, from monitoring the room to comparing models. Humidity, temperature and the moisture source matter. No account needed.')+'</p>'+fallback+'<form hidden inert><fieldset data-choice-fields disabled><legend>'+t('Deine Situation und dein Einkaufsmarkt','Your situation and shopping market')+'</legend>'+fields+'<button type="submit">'+t('Meinen nächsten Schritt zeigen','Show my next step')+'</button></fieldset></form><div data-results tabindex="-1" aria-live="polite" hidden>'+answers+'</div>'+evidence+'<button type="button" data-copy hidden>'+t('Diese Entscheidungshilfe teilen','Share this decision guide')+'</button><input data-share aria-label="'+t('Link zum Kopieren','Link to copy')+'" readonly hidden><p data-status role="status"></p></section><script type="module" src="/assets/moisture-decision.mjs?v='+ASSET_VERSION+'"></script><!--/EB_BUYER-->\n'
 
 def inject(html, slug, en=False):
     if slug not in PATHS[en]: return None

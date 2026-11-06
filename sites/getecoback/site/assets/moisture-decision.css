@@ -3,7 +3,9 @@
 #eb-moisture-choice h2{font-size:1.45rem;line-height:1.25;margin:0 0 10px}
 #eb-moisture-choice h3{font-size:1.16rem;line-height:1.35;margin:0 0 10px}
 #eb-moisture-choice p{line-height:1.6;margin:10px 0;max-width:72ch}
-#eb-moisture-choice form{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
+#eb-moisture-choice form{margin:20px 0}
+#eb-moisture-choice fieldset{display:grid;grid-template-columns:1fr 1fr;gap:16px;min-width:0;margin:0;padding:0;border:0}
+#eb-moisture-choice legend{font-weight:700;padding:0;margin-bottom:12px}
 #eb-moisture-choice label{display:grid;gap:7px;font-size:15px;font-weight:700;min-width:0}
 #eb-moisture-choice select,#eb-moisture-choice input{font:inherit;width:100%;min-width:0;background:#fff;border:1px solid #7895a4;color:#16394c;border-radius:6px;padding:11px}
 #eb-moisture-choice button{font:inherit;font-weight:700;background:#0a4d7a;color:#fff;border:0;border-radius:6px;padding:12px 16px;cursor:pointer;min-height:44px;justify-self:start}
@@ -15,9 +17,26 @@
 #eb-moisture-choice :focus-visible{outline:3px solid #0a4d7a;outline-offset:3px}
 #eb-moisture-choice [hidden]{display:none!important}
 #eb-moisture-choice .choice-products{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:18px 0}
-#eb-moisture-choice .choice-products>div{padding-top:12px;border-top:2px solid #cadbe5;min-width:0}
+#eb-moisture-choice .choice-products>div{display:flex;flex-direction:column;padding:16px;background:#fff;border:1px solid var(--choice-line);border-top:3px solid var(--choice-blue);border-radius:6px;min-width:0;overflow-wrap:anywhere}
+#eb-moisture-choice h4{font-size:1.15rem;line-height:1.3;margin:0 0 8px;color:var(--choice-ink)}
+#eb-moisture-choice .choice-evidence-label{font-size:12.5px;color:#466172;line-height:1.5;margin:0 0 12px}
+#eb-moisture-choice .choice-facts{margin:0 0 14px;font-size:14px;line-height:1.5}
+#eb-moisture-choice .choice-facts>div{padding:10px 0;border-top:1px solid var(--choice-line)}
+#eb-moisture-choice dt{font-weight:700;margin-bottom:4px}
+#eb-moisture-choice dd{margin:0;color:#34515f}
+#eb-moisture-choice details{border-top:1px solid var(--choice-line);padding-top:12px}
+#eb-moisture-choice summary{cursor:pointer;font-weight:700;line-height:1.5;min-height:44px;padding:6px 0}
+#eb-moisture-choice [data-choice-evidence]{font-size:14px}
+#eb-moisture-choice [data-choice-evidence] ol{padding-left:20px;line-height:1.6}
+#eb-moisture-choice [data-choice-evidence] li{margin-bottom:9px}
+#eb-moisture-choice .choice-offer{margin-top:auto;padding-top:12px}
+#eb-moisture-choice .choice-offer p{font-size:13px;line-height:1.5;color:#466172}
+#eb-moisture-choice .choice-offer a{width:100%;text-align:center;line-height:1.5}
+#eb-moisture-choice .choice-comparison-note,#eb-moisture-choice [data-choice-fallback]{padding:12px 14px;background:#f3f8fa;border-left:3px solid #7895a4}
 #eb-moisture-choice .choice-table{overflow:auto;margin:16px 0}
 #eb-moisture-choice table{width:100%;border-collapse:collapse;background:#fff;font-size:15px}
 #eb-moisture-choice th,#eb-moisture-choice td{text-align:left;padding:10px;border-bottom:1px solid var(--choice-line)}
+#eb-moisture-choice caption{text-align:left;font-weight:700;padding:0 0 10px;line-height:1.5}
+#eb-moisture-choice [data-choice-method]{margin-top:18px}
 #eb-moisture-choice small{display:block;font-size:13px;line-height:1.5;margin-top:12px;color:#466172}
-@media(max-width:600px){#eb-moisture-choice{margin:20px 10px;padding:17px}#eb-moisture-choice form,#eb-moisture-choice .choice-products{grid-template-columns:1fr}#eb-moisture-choice h2{font-size:1.35rem}#eb-moisture-choice [data-results]{padding:15px}}
+@media(max-width:600px){#eb-moisture-choice{margin:20px 10px;padding:17px}#eb-moisture-choice fieldset,#eb-moisture-choice .choice-products{grid-template-columns:1fr}#eb-moisture-choice h2{font-size:1.35rem}#eb-moisture-choice [data-results]{padding:15px}#eb-moisture-choice .choice-products>div{padding:12px}#eb-moisture-choice th,#eb-moisture-choice td{padding:8px;font-size:13px}}

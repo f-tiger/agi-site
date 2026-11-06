@@ -107,13 +107,17 @@ Luftentfeuchter auf Amazon.de ansehen →
 [Klimaanlage & Luftkühler reinigen →](https://getecoback.com/guide/klimaanlage-reinigen.html)
 
 ## Herstellerdaten vor dem Kauf prüfen
-Warum „20 Liter“ nicht immer 20 Liter sindBeispiel MeacoDry Arete One 20L. Herstellerdaten, kein EcoBack-Test. Verschiedene Raumbedingungen dürfen nicht als direkter Effizienzvergleich gelesen werden.
-Bedingung | Wasser pro Tag | Leistung |
-10 °C / 60 % RH | 3.4 L | 180 W |
-20 °C / 60 % RH | 8.5 L | 216 W |
+**So vergleichst du die Herstellerdaten**
+Zwei Beispiele aus vorhandenen Ratgebern, kein vollständiger Marktvergleich und kein EcoBack-Produkttest. Verglichen werden Wasserentzug und Betriebsleistung bei derselben Temperatur und relativen Feuchte (RH). Fehlende Angaben bleiben offen; daraus folgt keine Rangfolge.
+Herstellerangaben zu Wasserentzug und Leistung; geprüft am 06.11.2026
+Bedingung | Comfee MDDF-20DEN7 | MeacoDry Arete One 20L |
+20 °C / 60 % RH | Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert. | 8.5 L/Tag · 216 W |
+10 °C / 60 % RH | Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert. | 3.4 L/Tag · 180 W |
 
+Die genannten 20 L/Tag beziehen sich in den Modellunterlagen auf 30 °C / 80 % RH. Das ist keine Zusage für den Keller oder eine Wäscheladung. Für Comfee wurden in den verlinkten Unterlagen keine Werte für die beiden Tabellenbedingungen verifiziert. Anschlusswert oder Nennleistung dürfen diese Datenlücke nicht ersetzen.
+Modellgrenzen: Comfee MDDF-20DEN7 ist hier die Variante ohne WF. MeacoDry Arete One 20L ist weder Arete Two noch One 25L. Die UK-Modellseite bestätigt keine deutsche Händlerausstattung, Stecker, Lieferbarkeit oder Rückgabe. Netzspannung, Typenschild und Anleitung immer mit dem konkreten Angebot abgleichen. Beide Kandidaten ersetzen weder Ursachenklärung noch eine passende Lüftung.
 Rechenbeispiel: 216 W × 6 h ÷ 1.000 × 0,35 €/kWh = 0,45 €. Das ist weder eine gemessene Wäscheladung noch eine Einsparzusage.
-Quellen geprüft am 01.10.2026: [Meaco](https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-air-purifier) · [Comfee Handbuch](https://www.feelcomfee.com/content/dam/comfee-aem/global/products/heating-cooling/dehumidifier-mddf-20den7/DF-Owners-Manual.pdf) · [Verbraucherzentrale](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426). Keine eigenen Produkttests. Angaben sind Orientierung, keine Ferndiagnose.
+Quellen geprüft am 06.11.2026: [Meaco One 20L](https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-air-purifier) · [Comfee MDDF-20DEN7](https://www.feelcomfee.com/de/produkte/klimatisieren-heizen/mddf-20den7) · [Comfee-Datenblatt, Seite 2](https://www.feelcomfee.com/content/dam/comfee-aem/de/produkte/klimatisieren-heizen/mddf-20den7/comfee-MDDF-20DEN7-Datenblatt.pdf#page=2) · [Comfee-Bedienhinweise](https://www.feelcomfee.com/content/dam/comfee-aem/global/products/heating-cooling/dehumidifier-mddf-20den7/DF-Owners-Manual.pdf) · [Verbraucherzentrale](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426). Herstellerangaben, keine eigenen Messungen. Orientierung, keine Ferndiagnose.
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json

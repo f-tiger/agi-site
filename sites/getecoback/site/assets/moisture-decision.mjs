@@ -13,7 +13,13 @@ if(root){
  const form=root.querySelector('form'),results=root.querySelector('[data-results]'),sent=new Set();
  const lang=root.dataset.lang;
  let state=null;
- const allowed=()=>!navigator.globalPrivacyControl&&navigator.doNotTrack!=='1'&&!navigator.webdriver&&!/[?&]__probe(?:=|&|$)/.test(location.search);
+ const allowed=()=>{
+  if(navigator.globalPrivacyControl||navigator.doNotTrack==='1'||navigator.webdriver||/[?&](?:__probe|__qa|__ci|qa|ci|verify)(?:=|&|$)/i.test(location.search)||new URLSearchParams(location.search).get('utm_source')==='verify')return false;
+  // The shared footer stores this exact string. Read on each action so a
+  // withdrawal in this tab or another tab takes effect without a reload.
+  try{if(localStorage.getItem('fleet_ga4_choice_v1')==='denied')return false;}catch{}
+  return true;
+ };
  function event(name,choice='none',action='none'){
   const key=[name,choice,action].join(':');if(!allowed()||sent.has(key))return;sent.add(key);
   // Fixed completion only; the shared channel owns consent and never receives
@@ -22,7 +28,10 @@ if(root){
   const body=JSON.stringify({n:name,p:location.pathname,r:document.referrer,m:{lang,choice,action}});
   try{if(navigator.sendBeacon)navigator.sendBeacon('/api/ev',new Blob([body],{type:'text/plain'}));else fetch('/api/ev',{method:'POST',headers:{'Content-Type':'text/plain'},body,keepalive:true}).catch(()=>{});}catch{}
  }
- function reset(){state=null;results.hidden=true;root.querySelector('[data-status]').textContent='';}
+ function reset(){
+  state=null;results.hidden=true;root.querySelector('[data-status]').textContent='';
+  root.querySelectorAll('[data-choice-evidence]').forEach(details=>details.open=false);
+ }
  form.addEventListener('change',reset);
  form.addEventListener('submit',e=>{
   e.preventDefault();const fields=new FormData(form);state=decide(Object.fromEntries(fields));
@@ -36,6 +45,13 @@ if(root){
   // Existing page tracker coalesces affiliate clicks. This supplies the surface.
   if(a.dataset.choiceAction==='shop'&&allowed()&&window.gtag)window.gtag('event','affiliate_click',{source:'moisture-choice',link_url:a.href});
  }));
+ root.querySelectorAll('[data-choice-evidence]').forEach(details=>details.addEventListener('toggle',()=>{
+  if(details.open&&['compare','laundry'].includes(state)&&!results.hidden&&!details.closest('[hidden]')){
+   // Both candidates share one evidence action per result type. No model or
+   // reader answers are added to the existing categorical event contract.
+   event('buyer_next',state,'evidence');
+  }
+ }));
  root.querySelector('[data-copy]').addEventListener('click',async()=>{
   const url=new URL(location.pathname,'https://getecoback.com');url.hash='eb-moisture-choice';
   const box=root.querySelector('[data-share]');box.hidden=false;box.value=url.href;
@@ -44,4 +60,11 @@ if(root){
   event('buyer_next',state||'none','share');
  });
  if('IntersectionObserver' in window){const observer=new IntersectionObserver(rows=>{if(rows.some(r=>r.isIntersecting)){event('buyer_view');observer.disconnect();}},{threshold:.25});observer.observe(form);}
+ // A failed or unavailable module leaves useful reading links, never a native
+ // GET form that would put answers in the URL. Enable only after all handlers.
+ root.querySelector('[data-choice-fallback]').hidden=true;
+ root.querySelector('[data-copy]').hidden=false;
+ form.querySelector('[data-choice-fields]').disabled=false;
+ form.removeAttribute('inert');
+ form.hidden=false;
 }
