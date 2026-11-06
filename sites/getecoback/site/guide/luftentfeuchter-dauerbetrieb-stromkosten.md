@@ -1,20 +1,20 @@
 # Luftentfeuchter im Dauerbetrieb: Stromkosten 2026
 
-> Luftentfeuchter im Dauerbetrieb: Stromkosten von 0,09–0,21 €/h, bis über 100 €/Monat bei 24 h — und warum der Hygrostat-Modus meist günstiger ist.
+> Luftentfeuchter: Stromkosten mit Watt, Laufzeit und Tarif berechnen. 500-W-Beispiel, tatsächlicher Verbrauch und Grenzen des Dauerbetriebs erklärt.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftentfeuchter-dauerbetrieb-stromkosten.html
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
 
-Der Keller riecht muffig, das Hygrometer zeigt 70 % — also Luftentfeuchter rein und einfach durchlaufen lassen? Bevor du das tust, lohnt ein Blick auf den Stromzähler: Im echten 24-Stunden-Dauerbetrieb gehört ein Kompressor-Entfeuchter zu den teureren Dauerverbrauchern im Haushalt. Hier rechnen wir ehrlich vor, was der Betrieb kostet, warum Dauerbetrieb in den meisten Fällen der falsche Ansatz ist — und in welchen zwei Situationen er trotzdem die richtige Wahl ist. Wir fassen dabei öffentlich verfügbare Informationen und Herstellerangaben zusammen.
+Der Keller riecht muffig, das Hygrometer zeigt 70 %: Soll der Luftentfeuchter jetzt durchlaufen? Die Antwort hängt von Raumtemperatur, Feuchtequelle, Gerät und Trocknungsziel ab. Diese Seite zeigt eine nachvollziehbare Kostenrechnung und die nächsten Prüfschritte. Sie ersetzt weder eine Schadensdiagnose noch die Bedienungsanleitung; wir haben die Geräte nicht selbst getestet.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
 
-**Kurz gesagt:** Typische Kompressor-Entfeuchter ziehen **300–700 W** — bei 0,30 €/kWh sind das **0,09–0,21 € pro Stunde**. Im 24-h-Dauerbetrieb summiert sich das auf **65 bis über 150 € im Monat**. Fast immer besser: **Automatikmodus mit Hygrostat** auf 45–60 % rF — das Gerät schaltet selbst ab und spart den Großteil der Kosten. Echter Dauerbetrieb lohnt sich nur bei **Wasserschaden-Trocknung** und in **sehr feuchten Kellern** (dann mit Kondensatschlauch für den Dauerablauf).
+**Kurz gesagt:** Stromkosten = Leistung in kW × Laufzeit in Stunden × Strompreis in €/kWh. Bei konstant 500 W und 0,30 €/kWh kosten 24 Stunden **3,60 €**, 30 solche Tage **108 €**. Das ist ein Rechenbeispiel, kein gemessener Geräteverbrauch. Ein Hygrostat kann die Laufzeit begrenzen; Zielfeuchte und Dauerbetrieb müssen zur Situation passen. Bei nassen Bauteilen oder wiederkehrendem Schimmel zuerst die Ursache klären.
 
 ## Die Rechnung: Was kostet ein Luftentfeuchter pro Stunde?
 
-Kompressor-Luftentfeuchter für den Hausgebrauch nehmen laut Herstellerangaben typischerweise **300 bis 700 Watt** auf — kleine Wohnraumgeräte liegen am unteren, kräftige Kellergeräte am oberen Ende. Die Grundformel ist simpel: Leistung (kW) × Stunden × Strompreis. Bei einem Strompreis von **0,30 €/kWh** (wie überall auf dieser Seite) ergibt das:
+**Stromkosten = Leistung (W) ÷ 1.000 × Laufzeit (h) × Strompreis (€/kWh).** Die folgenden 300, 500 und 700 W sind frei gewählte Rechenbeispiele, keine typische Leistungsspanne aller Haushaltsgeräte. Wir rechnen mit konstantem Verbrauch und einem Beispielpreis von **0,30 €/kWh**; setze deinen eigenen Tarif ein.
 
 - **300 W:** 0,3 kWh pro Stunde → **0,09 €/h**
 
@@ -22,61 +22,76 @@ Kompressor-Luftentfeuchter für den Hausgebrauch nehmen laut Herstellerangaben t
 
 - **700 W:** 0,7 kWh pro Stunde → **0,21 €/h**
 
-Pro Stunde wirkt das harmlos. Entscheidend ist die Laufzeit — hier die Tabelle für ein mittleres 500-W-Gerät:
+Für das **500-W-Rechenbeispiel** ergibt sich diese Tabelle. Ein Monat bedeutet hier genau **30 Tage** mit derselben täglichen Laufzeit.
 
-Betriebsstunden (500 W) | Verbrauch | Kosten (0,30 €/kWh) |
+Rechenbeispiel: konstante 500 W, 0,30 €/kWh, 30 Tage pro Monat
+Laufzeit pro Tag | Verbrauch pro Tag | Kosten pro Tag | Kosten in 30 Tagen |
 
-1 h | 0,5 kWh | 0,15 € |
+1 h | 0,5 kWh | 0,15 € | 4,50 € |
 
-4 h/Tag | 2 kWh/Tag | 0,60 €/Tag ≈ 18 €/Monat |
+4 h | 2 kWh | 0,60 € | 18,00 € |
 
-8 h/Tag | 4 kWh/Tag | 1,20 €/Tag ≈ 36 €/Monat |
+8 h | 4 kWh | 1,20 € | 36,00 € |
 
-24 h Dauerbetrieb | 12 kWh/Tag | 3,60 €/Tag ≈ 108 €/Monat |
+24 h | 12 kWh | 3,60 € | 108,00 € |
 
-Beim sparsamen 300-W-Gerät kostet der 24-h-Dauerbetrieb rund **2,16 € pro Tag (≈ 65 €/Monat)**, beim 700-W-Gerät **5,04 € pro Tag (≈ 151 €/Monat)**. Der Unterschied zwischen "4 Stunden gezielt" und "24 Stunden durchgehend" ist also der Unterschied zwischen 18 und 108 € im Monat — beim selben Gerät. Deinen eigenen Fall kannst du in unserem [Stromkosten-Rechner](https://getecoback.com/guide/stromkosten-rechner.html) in 30 Sekunden durchspielen: [rechne deine Kosten selbst →](https://getecoback.com/guide/stromkosten-rechner.html)
+Bei konstant 300 W wären 24 Stunden 2,16 € pro Tag und 64,80 € in 30 Tagen; bei konstant 700 W 5,04 € und 151,20 €. Vier statt 24 Stunden sind rechnerisch günstiger, leisten aber nicht automatisch dieselbe Trocknung. Daraus folgt kein pauschales Sparversprechen. Mit eigenen Werten kannst du im [Stromkosten-Rechner](https://getecoback.com/guide/stromkosten-rechner.html) die Kosten berechnen: [deine Leistung, Laufzeit und deinen Tarif einsetzen →](https://getecoback.com/guide/stromkosten-rechner.html)
 
-## Warum Dauerbetrieb meist der falsche Ansatz ist
+**Nennleistung ist nicht Tagesverbrauch:** Die Leistungsaufnahme auf dem Typenschild gilt für die dort genannten Bedingungen. Kompressor, Lüfter, Regelpausen und Abtauphasen verändern die tatsächliche Aufnahme. Ein eingeschaltetes Gerät muss nicht 24 Stunden mit Nennleistung entfeuchten. Aussagekräftiger ist ein für das Gerät geeignetes Energiekostenmessgerät: Anfangs- und Endstand in kWh, Zeitraum, Temperatur, Luftfeuchte und Betriebsart notieren. Gemessene kWh × eigener Strompreis ergeben die Kosten dieses Messzeitraums; sie sind keine Prognose für jeden weiteren Tag.
 
-Der eigentliche Punkt: **Dauerbetrieb ist in den meisten Wohnsituationen gar nicht nötig.** Ein Raum hat eine begrenzte Menge Feuchte — ist die Zielfeuchte einmal erreicht, muss das Gerät nur noch nachregeln, wenn neue Feuchte dazukommt (Duschen, Kochen, Wäsche, Mauerwerk). Genau dafür gibt es den **Hygrostat bzw. Automatikmodus**: Du stellst eine Zielfeuchte von **45–60 % relativer Luftfeuchte** ein, das Gerät entfeuchtet bis zu diesem Wert und schaltet den Kompressor dann selbstständig ab. Erst wenn die Feuchte wieder steigt, springt es erneut an.
+## Hygrostat statt fester Laufzeit: Was muss geprüft werden?
 
-In der Praxis läuft der Kompressor so oft nur wenige Stunden am Tag statt 24 — und du sparst den Großteil der Stromkosten, ohne auf trockene Luft zu verzichten. Werte unter 45 % rF bringen übrigens keinen Zusatznutzen: Schimmel wird bereits ab dauerhaft unter etwa 60 % rF stark gebremst, und zu trockene Luft reizt Schleimhäute. Wer das Gerät ohne Hygrostat einfach durchlaufen lässt, bezahlt also dafür, die Luft unnötig weit zu trocknen.
+Ein Hygrostat regelt nach einem eingestellten Feuchtewert. Ob er den Kompressor abschaltet und ob der Lüfter weiterläuft, steht in der jeweiligen Anleitung. Das kann unnötige Laufzeit vermeiden; wie viel Strom es spart, lässt sich ohne Messung und vergleichbare Bedingungen nicht sagen.
 
-## Wann Dauerbetrieb wirklich gerechtfertigt ist
+**Ein Messwert in der Raummitte ist keine Schimmelgarantie.** Die [Verbraucherzentrale erklärt](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426), dass selbst bei 50 % relativer Luftfeuchte in der Raummitte kalte Oberflächen zu feucht sein können. Beurteile deshalb Temperatur, kalte Ecken, Wärmebrücken und den Feuchteverlauf gemeinsam. Weder „unter 60 % ist sicher“ noch „unter 45 % bringt nichts“ ist eine allgemeine Regel. Ein passender Sollwert hängt vom Raum und seinem Zustand ab.
 
-Es gibt zwei ehrliche Ausnahmen, in denen das Gerät tatsächlich rund um die Uhr laufen sollte:
+Nach Duschen, Kochen oder Wäschetrocknen zuerst die Feuchtequelle begrenzen und passend lüften. Bei einem kühlen Keller kann warme, feuchte Außenluft die Lage verschlechtern. Bleiben Wände nass oder kehrt Schimmel zurück, genügt es nicht, nur die Luft trockener zu machen.
 
-- **Wasserschaden-Trocknung:** Nach einem Rohrbruch oder Hochwasser steckt die Feuchte in Wänden, Estrich und Möbeln — hier muss über Tage bis Wochen durchgetrocknet werden, und die Stromkosten sind gegen Schimmel- und Bauschäden das kleinere Übel. (Bei versicherten Schäden übernimmt oft die Versicherung auch die Trocknungskosten — nachfragen lohnt sich.)
+## Wann längerer Betrieb infrage kommt
 
-- **Sehr feuchter Keller:** Wenn Feuchte permanent durch Mauerwerk oder Bodenplatte nachströmt, erreicht der Raum die Zielfeuchte nie dauerhaft von selbst. Dann läuft das Gerät faktisch im Dauereinsatz — umso wichtiger sind ein **Hygrostat** (damit es wenigstens in trockeneren Phasen pausiert) und ein **Anschluss für einen Kondensatschlauch**: Das Kondensat läuft direkt in einen Bodenabfluss, statt dass du mehrmals täglich den Tank leerst — sonst stoppt das Gerät bei vollem Tank und die Trocknung setzt aus. Mehr zur Kellersituation in unserem Ratgeber [Luftentfeuchter für den Keller](https://getecoback.com/guide/luftentfeuchter-keller.html).
+Längere Laufzeiten können Teil einer Trocknung sein. Ob 24 Stunden sinnvoll und zulässig sind, ergibt sich aus Schaden, Gerät, Aufstellung und überprüftem Trocknungsfortschritt. Der [Hinweis des Umweltbundesamts zu Schimmel](https://www.umweltbundesamt.de/service/uba-fragen/was-tun-bei-schimmel-in-meiner-wohnung) stellt die Klärung und Beseitigung der Feuchteursache in den Mittelpunkt.
 
-**Unsere Empfehlung für Keller & Dauereinsatz: Comfee MDDF-20DEN7**20 l/Tag Entfeuchtungsleistung, einstellbarer Hygrostat und Anschluss für den Dauerablauf per Kondensatschlauch — genau die Ausstattung, die den Dauerbetrieb bezahlbar und wartungsarm macht.
+- **Nach einem Wasserschaden:** Leck oder Wassereintritt zuerst beheben lassen. Bei durchnässtem Estrich, Wänden oder unklarem Schaden braucht es eine fachliche Beurteilung und gegebenenfalls ein Trocknungskonzept. Ein Haushaltsentfeuchter und ein trockener Luftmesswert beweisen nicht, dass der Baukörper trocken ist.
+
+- **Bei dauerhaft feuchtem Keller:** Messwerte und mögliche Ursachen prüfen, statt aus hoher relativer Feuchte allein 24 Stunden Betrieb abzuleiten. Ein Dauerablauf entlastet beim Entleeren, behebt aber keine undichte Wand. Temperaturbereich, Aufstellung und Schlauchführung müssen zur Anleitung passen. Mehr dazu: [Luftentfeuchter für den Keller](https://getecoback.com/guide/luftentfeuchter-keller.html).
+
+**Erst Bedarf prüfen, dann Ausstattung vergleichen**Wenn nach Ursachenprüfung ein Entfeuchter nötig ist, prüfe beim Comfee MDDF-20DEN7 die Anleitung für deinen Temperaturbereich, die Regelung und den Ablauf. Eine Liter-pro-Tag-Angabe allein belegt keine Eignung für deinen Keller.
 
 Comfee MDDF-20DEN7 bei Amazon →
-  Passenden Kondensatschlauch ansehen →
-Basierend auf öffentlich verfügbaren Tests — wir haben das Gerät nicht selbst getestet.
+  Passenden Kondensatschlauch prüfen →
+Kein eigener Produkttest. Anschlussmaß, Gefälle und zulässige Betriebsbedingungen vor einem Kauf anhand der konkreten Anleitung prüfen.
 
-## So senkst du die Kosten konkret
+## So prüfst du Bedarf und Kosten Schritt für Schritt
 
-- **Zielfeuchte nicht unter 45 % einstellen:** 45–60 % rF reichen gegen Schimmel und für gutes Raumklima. Jedes Prozent darunter kostet unnötig Kompressor-Laufzeit.
+- **Ausgangslage notieren:** Temperatur und relative Luftfeuchte an mehreren Tagen erfassen; Feuchtequellen, Lüften und Nutzung dazuschreiben. Bei nassen Bauteilen oder Schimmel die Ursache klären lassen.
 
-- **Türen und Fenster geschlossen halten:** Sonst entfeuchtest du das Treppenhaus oder — im Sommer — die nachströmende warme Außenluft gleich mit. Stoßlüften ja, aber Gerät währenddessen aus.
+- **Vorhandene Möglichkeiten nutzen:** Feuchteeintrag verringern, passend heizen und lüften. Ein Entfeuchter ersetzt den nötigen Luftaustausch nicht. Während des Entfeuchtens Türen und Fenster nach Anleitung handhaben.
 
-- **Gerät passend dimensionieren:** Ein zu kleines Gerät läuft ewig und erreicht die Zielfeuchte nie, ein deutlich zu großes taktet häufig. Für den feuchten Keller lieber ein Gerät mit 16–20 l/Tag Nennleistung, das schneller fertig ist und wieder abschaltet.
+- **Gerät nach Betriebsbedingungen beurteilen:** Raumvolumen, Temperatur, Feuchtelast und Ziel entscheiden mit. Keine pauschale 16–20-Liter-Empfehlung für jeden Keller: Die Entfeuchtungsleistung in l/Tag hängt von den Prüfbedingungen ab. Die [Comfee-Anleitung für MDDF-20DEN7](https://www.feelcomfee.com/content/dam/comfee-aem/global/products/heating-cooling/dehumidifier-mddf-20den7/DF-Owners-Manual.pdf#page=12) nennt beispielsweise eine Temperaturgrenze von 5 °C und beschreibt Abtauphasen mit laufendem Lüfter. Das ist eine Modellangabe, keine allgemeine Grenze für jede Bauart.
 
-- **Hygrostat-Modus statt Dauerstufe nutzen:** Der wichtigste Einzelhebel — siehe oben. Wer ein Gerät mit Hygrostat hat, sollte ihn auch aktivieren.
+- **Vorhandene Regelung verwenden und Verlauf prüfen:** Anleitung zum Hygrostat lesen, Sollwert zur Situation wählen und beobachten, ob Feuchte und Verbrauch sich stabilisieren. Ein Gerät mit Hygrostat ist erst dann eine Kaufoption, wenn die vorhandene Lösung nicht ausreicht.
 
-- **Granulat-Entfeuchter für kleine ungeheizte Räume:** In Abstellkammer, Gartenhaus oder Wohnwagen arbeitet ein stromloser Granulat-Entfeuchter oft wirtschaftlicher als ein Kompressorgerät — zumal Kompressoren unter etwa 10–15 °C deutlich an Leistung verlieren. Wann was sinnvoll ist, klärt unser Vergleich [Granulat oder elektrisch?](https://getecoback.com/guide/luftentfeuchter-granulat-oder-elektrisch.html)
+- **Verbrauch vergleichen:** Gemessene kWh und Trocknungsfortschritt gemeinsam bewerten; Wetter und Nutzung mitnotieren. Granulat ist kein pauschal günstiger Ersatz bei fortlaufender Gebäudefeuchte. Die Grenzen beider Lösungen erklärt [Granulat oder elektrischer Luftentfeuchter?](https://getecoback.com/guide/luftentfeuchter-granulat-oder-elektrisch.html)
+
+## Quellen und Rechenannahmen
+
+**Redaktion: EcoBack · inhaltlich geprüft am 6. November 2026.** Die Kosten sind berechnete Beispiele, keine Messreihe und kein Produkttest. Die verlinkten Stellen stützen die Hinweise zu Feuchteursachen, kalten Oberflächen und gerätespezifischem Betrieb:
+
+- [Umweltbundesamt: Was tun bei Schimmel in meiner Wohnung?](https://www.umweltbundesamt.de/service/uba-fragen/was-tun-bei-schimmel-in-meiner-wohnung) — Ursachen klären und abstellen, bei Unklarheiten Fachleute hinzuziehen.
+
+- [Verbraucherzentrale: Heizen und Lüften](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426) — relative Luftfeuchte, Temperatur und kalte Oberflächen zusammen beurteilen.
+
+- [Comfee MDDF-20DEN7: offizielle Bedienungsanleitung (PDF, Englisch)](https://www.feelcomfee.com/content/dam/comfee-aem/global/products/heating-cooling/dehumidifier-mddf-20den7/DF-Owners-Manual.pdf) — Aufstellung auf S. 12, Abtauautomatik auf S. 15, Wasserablauf ab S. 16. Ausstattungsvarianten in der Anleitung beachten.
 
 ## Häufige Fragen
 
-**Was kostet ein Luftentfeuchter im Dauerbetrieb pro Tag?**Typische Kompressor-Geräte ziehen 300–700 W. Bei 0,30 €/kWh sind das 0,09–0,21 € pro Stunde — im 24-h-Dauerbetrieb also etwa 2,16 bis 5,04 € pro Tag bzw. rund 65 bis über 150 € im Monat. Ein mittleres 500-W-Gerät liegt bei ca. 3,60 € pro Tag und rund 108 € im Monat.
+**Was kostet ein Luftentfeuchter im Dauerbetrieb pro Tag?**Bei konstant 500 W, 24 Stunden Laufzeit und 0,30 €/kWh sind es rechnerisch 3,60 € pro Tag und 108 € für 30 Tage. Das ist ein Beispiel, kein gemessener Verbrauch. Tatsächliche Kosten ergeben sich aus den verbrauchten kWh und deinem Strompreis.
 
-**Sollte ein Luftentfeuchter 24 Stunden am Tag laufen?**In den meisten Fällen nein. Sinnvoller ist der Automatikmodus mit Hygrostat: Du stellst eine Zielfeuchte von 45–60 % relativer Luftfeuchte ein, das Gerät entfeuchtet nur bis zu diesem Wert und schaltet dann automatisch ab. So läuft der Kompressor oft nur wenige Stunden am Tag statt 24 — und der Großteil der Stromkosten entfällt. Echter Dauerbetrieb lohnt sich nur bei einer Wasserschaden-Trocknung oder in sehr feuchten Kellern.
+**Sollte ein Luftentfeuchter 24 Stunden am Tag laufen?**Nicht pauschal. Prüfe Feuchtequelle, Temperatur, Gerät und Trocknungsziel. Ein Hygrostat kann die Laufzeit begrenzen, garantiert aber keine bestimmte Ersparnis. Ein Messwert in der Raummitte schließt feuchte kalte Oberflächen nicht aus; ein fester Sollwert ist daher keine Schimmelgarantie.
 
-**Wann lohnt sich der Dauerbetrieb eines Luftentfeuchters?**In zwei Fällen: bei der Trocknung nach einem Wasserschaden, wo das Gerät über Tage oder Wochen durchlaufen muss, und in sehr feuchten Kellern, in denen die Feuchte ständig nachströmt. Dann brauchst du ein Gerät mit Hygrostat und Anschluss für einen Kondensatschlauch (Dauerablauf), damit du nicht mehrmals täglich den Wassertank leeren musst — das Kondensat läuft direkt in einen Abfluss.
+**Wann lohnt sich der Dauerbetrieb eines Luftentfeuchters?**Längerer Betrieb kann zu einer geplanten Trocknung gehören, wenn Gerät und Aufstellung dafür geeignet sind und der Fortschritt kontrolliert wird. Wasserschäden und dauerhaft feuchte Keller sind zuerst auf ihre Ursache zu prüfen. Ein Dauerablauf erleichtert das Entleeren, ersetzt aber weder Reparatur noch fachliche Schadensbeurteilung.
 
-**Wie viel Strom verbraucht ein Luftentfeuchter?**Kompressor-Luftentfeuchter für Wohnräume ziehen je nach Größe 300 bis 700 Watt — das entspricht 0,3 bis 0,7 kWh pro Betriebsstunde. Bei 0,30 €/kWh kostet eine Stunde also 0,09 bis 0,21 €. Der reale Tagesverbrauch hängt davon ab, wie viele Stunden der Kompressor tatsächlich läuft — mit Hygrostat meist deutlich weniger als im Dauerbetrieb.
+**Wie viel Strom verbraucht ein Luftentfeuchter?**Für eine Schätzung gilt: Leistung in kW mal Laufzeit in Stunden ergibt kWh. Nennleistung und Liter-pro-Tag-Angaben gelten für bestimmte Bedingungen. Kompressorregelung, Lüfter und Abtauphasen beeinflussen den tatsächlichen Verbrauch. Miss die kWh über einen dokumentierten Zeitraum mit einem geeigneten Energiekostenmessgerät.
 
 **Weitere Ratgeber**
 [Stromkosten-Rechner — rechne deine Kosten selbst →](https://getecoback.com/guide/stromkosten-rechner.html)

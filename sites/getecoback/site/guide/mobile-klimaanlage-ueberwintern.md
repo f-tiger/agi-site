@@ -1,70 +1,74 @@
 # Mobile Klimaanlage überwintern: 6 Schritte richtig lagern 2026
 
-> Wohin mit der mobilen Klimaanlage im Winter? 6 Schritte zum Einlagern: Wasser ablassen, 1–2 h trocknen lassen, atmungsaktiv abdecken, frostfrei lagern.
+> Mobile Klimaanlage überwintern: 6 Schritte zum Entleeren, Reinigen, Trocknen und Lagern. Mit Herstellerquelle und Modellvorgaben statt pauschaler Zeiten.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/mobile-klimaanlage-ueberwintern.html
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
 
-Die Hitzewelle ist vorbei, das Monoblock-Gerät steht nutzlos im Weg — und jetzt? Wer die mobile Klimaanlage einfach in den Keller schiebt oder in Folie wickelt, riskiert Schimmel im Gehäuse und im schlimmsten Fall einen Kompressorschaden. Dabei dauert das richtige Einlagern keine 30 Minuten aktive Arbeit (plus 1–2 Stunden Trockenlauf) und entscheidet darüber, ob das Gerät im nächsten Sommer frisch oder muffig startet.
+Die Kühlsaison ist vorbei: Bevor die mobile Klimaanlage in den Abstellraum kommt, suche die Modellbezeichnung und die zugehörige Bedienungsanleitung. Dort stehen Ablauf, Filterpflege, Trocknung, Lagerbedingungen und Regeln nach einem Transport. Die folgende Checkliste hilft beim Vorbereiten; sie ersetzt diese Vorgaben nicht. Meist lässt sich vorhandenes Zubehör weiterverwenden.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
 
-**Auf einen Blick:** Kondenswasser über den Ablassstopfen komplett ablassen · Filter reinigen und trocknen · Gerät 1–2 h im Ventilator-Modus trockenlaufen lassen (verhindert Schimmel) · Schlauch abnehmen und separat lagern · atmungsaktive Haube statt Plastikfolie · frostfrei, trocken und aufrecht lagern · nach Transport 24 h stehen lassen.
+**Auf einen Blick:** Modellanleitung prüfen · Kondenswasser nach Vorgabe ablassen · zugängliche Filter korrekt reinigen und trocknen · vorgesehenen Trocknungsmodus nutzen · Zubehör trocken verstauen · geeigneten Innenraum wählen. **Es gibt keine einheitliche Trocknungs- oder Ruhezeit für alle mobilen Klimaanlagen.** Ein neuer Filter, Reinigungsschaum oder eine Haube ist nicht automatisch nötig.
 
 ## Schritt für Schritt: so machst du das Gerät winterfest
 
-- **1. Kondenswasser komplett ablassen:** Fast jeder Monoblock hat unten am Gehäuse einen **Ablassstopfen** (oft hinter einer Gummikappe). Gerät leicht ankippen, Wasser in eine flache Schale oder über einen Lappen ablaufen lassen. Restwasser in der Wanne ist die häufigste Ursache für Gerüche und Frostschäden.
+- **Anleitung und Lagerplatz prüfen:** Modell und gegebenenfalls Gerätevariante am Typenschild ablesen. Die Kapitel Wartung, längere Nichtbenutzung, Transport und Lagerung durchgehen. Die dort genannte Reihenfolge hat Vorrang vor dieser allgemeinen Checkliste.
 
-- **2. Filter reinigen und vollständig trocknen:** Staubfilter herausnehmen, absaugen oder lauwarm abspülen — und erst wieder einsetzen, wenn er komplett trocken ist. Ein feuchter Filter schimmelt in der Abdeckhaube garantiert. Die ausführliche Anleitung steht im Ratgeber [Klimaanlage reinigen](https://getecoback.com/guide/klimaanlage-reinigen.html).
+- **Kondenswasser ablassen:** Gerät ausschalten und vor dem Entleeren oder Reinigen den Netzstecker ziehen. Nur die vorgesehenen Ablässe nach Anleitung öffnen, Wasser auffangen und Verschlüsse anschließend korrekt einsetzen. Nicht eigenmächtig kippen, Gehäuseteile öffnen oder am Kältekreis arbeiten.
 
-- **3. 1–2 Stunden im Ventilator-Modus trockenlaufen lassen:** Der wichtigste und am häufigsten übersprungene Schritt. Im reinen Lüfter-Modus (ohne Kühlung) trocknet der Luftstrom Verdampfer, Wanne und Luftkanäle von innen. Das kostet bei 40–60 Watt Lüfterleistung nur 2–4 Cent Strom — und verhindert, dass sich über den Winter Schimmel im Gerät festsetzt.
+- **Filter und zugängliche Teile reinigen:** Erst vorhandene Filter prüfen. Nur ausdrücklich waschbare Filter nass reinigen; andere Filter nach ihrer Anleitung behandeln. Alles vollständig trocknen lassen. Ein universeller Ersatzfilter oder Reinigungsschaum ist ohne Freigabe für Gerät und Material keine Standardlösung. Weitere Schritte: [Klimaanlage reinigen](https://getecoback.com/guide/klimaanlage-reinigen.html).
 
-- **4. Abluftschlauch abnehmen und reinigen:** Schlauch abschrauben, mit einem trockenen Tuch auswischen, auf Risse prüfen und separat (nicht geknickt) verstauen. Fensteradapter und Dichtungen dazulegen — im Juni sucht man sonst alles zusammen.
+- **Nach Modellvorgabe trocknen:** Falls vorgesehen, den Trocknungs- oder Ventilatormodus mit korrekt eingesetzten Teilen verwenden. **Eine pauschale Dauer von 1–2 Stunden ist nicht belegt.** Als konkretes Gegenbeispiel nennt die [offizielle Anleitung zum Comfee MPPH-09CRN7](https://www.feelcomfee.com/content/dam/comfee-aem/global/products/heating-cooling/mobile-air-conditioner-mpph-09crn7/PH-Owners-Manual.pdf#page=20) auf S. 20 zwölf Stunden im FAN-Modus in einem warmen Raum. Diese Vorgabe gilt nicht automatisch für andere Modelle. Nach dem Vorgang ausschalten und den Stecker ziehen.
 
-- **5. Atmungsaktiv abdecken:** Eine Stoffhaube oder ein altes Bettlaken hält Staub ab, lässt aber Restfeuchte entweichen (mehr dazu unten).
+- **Zubehör aufbewahren:** Abnehmbare Schläuche, Adapter und Dichtungen nach Anleitung lösen, trocken und ohne Beschädigung verstauen. Kleinteile zusammen mit der Anleitung aufbewahren, damit sie zur nächsten Saison vollständig sind.
 
-- **6. Frostfrei und aufrecht einlagern:** Beheizter Keller, Abstellraum oder Schrank — Details im nächsten Abschnitt.
+- **Gerät trocken einlagern:** Lagerposition und Raumvorgaben aus der Anleitung einhalten. Falls eine Staubabdeckung gewünscht und zulässig ist, genügt gegebenenfalls ein vorhandenes sauberes, trockenes Tuch. Ein noch feuchtes Gerät nicht verpacken; eine Haube ersetzt die Trocknung nicht.
 
-## Warum atmungsaktive Haube statt Plastikfolie?
+## Staubschutz: Brauchst du überhaupt eine neue Haube?
 
-Der Reflex, das Gerät „schön dicht" in Folie oder einen Müllsack zu packen, ist genau falsch. In luftdichter Verpackung kondensiert die Restfeuchte aus dem Geräteinneren bei jedem Temperaturwechsel an der Folieninnenseite — das Gerät steht monatelang in seinem eigenen Kondenswasser. Ergebnis: Schimmel, korrodierte Kontakte, muffiger Geruch. Eine atmungsaktive Abdeckhaube für Klimageräte (ab ca. 10–15 €) hält Staub fern und lässt Feuchtigkeit gleichzeitig entweichen. Ein sauberes Baumwolltuch oder Bettlaken erfüllt denselben Zweck kostenlos — nur eben ohne Zugband und passgenauen Sitz.
+Zuerst die vorhandene, vom Hersteller vorgesehene Verpackung oder Abdeckung prüfen. Falls die Anleitung eine lose Stoffabdeckung zulässt, kann ein sauberes, trockenes Baumwolltuch oder Bettlaken reichen. Feuchtigkeit sollte vor dem Verpacken beseitigt sein; luftdichtes Einwickeln eines noch feuchten Geräts kann sie einschließen. Auch eine als „atmungsaktiv“ beworbene Haube garantiert keinen Schimmelschutz.
 
-Hinweis: Wir haben diese Geräte nicht selbst getestet, sondern fassen öffentliche Testergebnisse und Nutzererfahrungen zusammen.
+Nur wenn ein passender Staubschutz fehlt, kannst du eine Abdeckhaube für Klimageräte nach Maß, Material und Herstellervorgaben auswählen. Wir haben diese Zubehörangebote nicht selbst getestet und nennen keinen ungeprüften aktuellen Preis.
 
-## Der richtige Lagerort: frostfrei, trocken, aufrecht
+## Der richtige Lagerort: trocken und nach Modellvorgabe
 
-Mobile Klimaanlagen enthalten einen Kompressor mit Ölfüllung und Kältemittelkreislauf. Daraus folgen zwei Regeln:
+Wähle einen trockenen, geschützten Innenraum innerhalb der vom Hersteller erlaubten Lagerbedingungen. Ein feuchter Keller ist kein guter Platz, nur weil dort noch Raum frei ist. Die Raumtemperatur und ihre Schwankungen mitprüfen; eine allgemeine Idealspanne von 5–25 °C lässt sich nicht auf alle Geräte übertragen.
 
-- **Frostfrei lagern (ideal 5–25 °C):** Frost lässt Restwasser im Gerät gefrieren und macht Dichtungen und Kunststoff spröde. Beheizter Keller, Abstellkammer, Schlafzimmerschrank oder unterm Bett sind gut; ungedämmte Garage und Gartenhaus sind riskant.
+Die Comfee-Anleitung nennt für das Beispielgerät einen kühlen, dunklen Lagerort. Weitere Vorgaben können Mindestfläche, Belüftung und den Abstand zu Zündquellen betreffen, besonders bei brennbarem Kältemittel. Deshalb nicht pauschal einen engen Schrank oder den Platz unter dem Bett empfehlen. Maßgeblich sind Anleitung und Kennzeichnung des eigenen Geräts.
 
-- **Aufrecht lagern und transportieren:** Liegt das Gerät auf der Seite, läuft das Kompressor-Öl aus dem Kompressor in die Kältemittelleitungen. Startet man das Gerät danach zu früh, läuft der Kompressor ohne ausreichende Schmierung — das kann ihn dauerhaft beschädigen.
+**Position und Ruhezeit sind modellabhängig:** Gerät so lagern und transportieren, wie es der Hersteller vorsieht. Wurde es abweichend gekippt oder hingelegt, vor dem nächsten Start die Transporthinweise prüfen oder beim Hersteller nachfragen. Eine pauschale Wartezeit von 24 Stunden ist keine für jedes Modell belegte Vorgabe.
 
-Musste das Gerät beim Umräumen doch gekippt oder gelegt werden: **mindestens 24 Stunden aufrecht stehen lassen**, bevor es wieder ans Netz geht. In dieser Zeit fließt das Öl zurück in den Kompressor. Das gilt übrigens auch für neu gelieferte Geräte.
+## Drei Fehler beim Einlagern vermeiden
 
-## Was nicht funktioniert: die drei häufigsten Fehler
+- **Einen Innenraum-Monoblock ungeprüft draußen lagern:** Ein überdachter Balkon ist kein Ersatz für zulässige Lagerbedingungen. Feuchte, Frost und Wetter können außerhalb der Gerätespezifikation liegen.
 
-- **Draußen oder auf dem Balkon „überwintern":** Auch überdacht und in Folie verpackt — Frost, Temperaturschwankungen und Luftfeuchtigkeit schädigen Kompressor, Elektronik und Dichtungen. Ein Monoblock ist ein Innengerät, keine Split-Außeneinheit.
+- **Restfeuchte einfach abdecken:** Erst entleeren und nach Vorgabe trocknen. Weder Stoff noch Folie machen ein feuchtes Gerät lagerfertig.
 
-- **Luftdichte Folie oder Müllsäcke:** Kondenswasser-Falle, siehe oben. Lieber ganz ohne Abdeckung als luftdicht verpackt.
-
-- **Liegend lagern, weil es unters Regal passt:** Kompressor-Öl verteilt sich in den Leitungen. Wer das Gerät im Frühjahr direkt aus der Liegeposition einschaltet, riskiert den Totalschaden — und genau daran erinnert sich nach acht Monaten niemand mehr.
+- **Lagerposition oder Wartezeit erraten:** Transport und Wiederinbetriebnahme anhand der konkreten Anleitung planen; nicht aus einer allgemeinen Internetempfehlung ableiten.
 
 ## Im Frühjahr wieder in Betrieb nehmen
 
-Vor dem ersten Kühleinsatz: Haube ab, Sichtprüfung auf Schimmel oder Korrosion, Filter einsetzen, Schlauch auf Risse prüfen und montieren. Nach jedem Transport 24 Stunden aufrecht stehen lassen, dann zuerst 10–15 Minuten im Ventilator-Modus laufen lassen und auf ungewöhnliche Geräusche oder Gerüche achten. Riecht es trotz korrekter Einlagerung muffig, hilft der Ratgeber [Mobile Klimaanlage stinkt](https://getecoback.com/guide/mobile-klimaanlage-stinkt-schimmel.html) weiter. Wer feststellt, dass das alte Gerät den Winter nicht überlebt hat, findet im [Vergleich mobiler Klimaanlagen](https://getecoback.com/guide/mobile-klimaanlage-vergleich.html) die aktuell empfohlenen Modelle — etwa die leise AEG ChillFlex Pro oder die Midea PortaSplit.
+Abdeckung entfernen und die zugänglichen Teile auf Feuchte, Verschmutzung oder Beschädigung prüfen. Filter, Ablässe, Schlauch und Adapter nach Anleitung einsetzen beziehungsweise sichern. Aufstellung, eine gegebenenfalls vorgeschriebene Ruhezeit nach Transport und den ersten Start nach den Modellvorgaben durchführen.
+
+Bei sichtbarem Schimmel, beschädigten elektrischen Teilen oder anhaltendem ungewöhnlichem Geruch nicht einfach weiterkühlen. Der Ratgeber [Mobile Klimaanlage stinkt](https://getecoback.com/guide/mobile-klimaanlage-stinkt-schimmel.html) hilft bei den ersten Prüfschritten; bei unklaren oder nicht zugänglichen Schäden Hersteller oder Fachbetrieb einbeziehen. Reinigung und eine mögliche Reparatur zuerst klären. Falls danach tatsächlich Ersatz nötig ist, dient der [Vergleich mobiler Klimaanlagen](https://getecoback.com/guide/mobile-klimaanlage-vergleich.html) zur Auswahl. Auch Angebote für AEG ChillFlex Pro und Midea PortaSplit ersetzen keine Prüfung von Bedarf, Aufstellung und Modellunterlagen.
+
+## Quelle und Modellgrenzen
+
+**Redaktion: EcoBack · inhaltlich geprüft am 6. November 2026.** Kein eigener Geräte- oder Zubehörtest. Das konkrete Zeitbeispiel stammt aus der [offiziellen Comfee-Anleitung für MPPH-09CRN7 (PDF, Englisch)](https://www.feelcomfee.com/content/dam/comfee-aem/global/products/heating-cooling/mobile-air-conditioner-mpph-09crn7/PH-Owners-Manual.pdf), S. 20, Abschnitt „Store the unit when not in use“. Sicherheits- und Raumvorgaben stehen ab S. 2. Die Anleitung wird als Modellbeispiel genannt; für dein Gerät gilt dessen eigene aktuelle Anleitung.
 
 ## Häufige Fragen
 
-**Kann eine mobile Klimaanlage im Winter draußen bleiben?**Nein. Frost schädigt Kompressor, Dichtungen und Kunststoffteile, und Restwasser im Gerät kann gefrieren und Leitungen sprengen. Auch ein überdachter Balkon ist keine Lösung: Temperaturschwankungen und Luftfeuchtigkeit führen zu Kondenswasser im Gehäuse. Mobile Klimaanlagen gehören über den Winter in einen frostfreien, trockenen Innenraum.
+**Kann eine mobile Klimaanlage im Winter draußen bleiben?**Bei einem für Innenräume vorgesehenen Monoblock solltest du einen geeigneten Innenraum wählen. Ein überdachter Balkon schützt nicht zuverlässig vor Feuchte und Frost. Welche Temperatur, Raumgröße und Lagerposition zulässig sind, steht in der Anleitung des konkreten Modells.
 
-**Wie lagere ich eine mobile Klimaanlage richtig?**Kondenswasser über den Ablassstopfen komplett ablassen, Filter reinigen und vollständig trocknen lassen, das Gerät 1–2 Stunden im Ventilator-Modus trockenlaufen lassen, den Abluftschlauch abnehmen und separat verstauen. Dann mit einer atmungsaktiven Haube abdecken und aufrecht an einem frostfreien, trockenen Ort lagern — nicht in luftdichte Plastikfolie wickeln und nicht hinlegen.
+**Wie lagere ich eine mobile Klimaanlage richtig?**Prüfe zuerst die Modellanleitung. Kondenswasser nach Vorgabe ablassen, geeignete Filter und zugängliche Teile reinigen und trocknen, einen vorgesehenen Trocknungsmodus nutzen und Zubehör trocken verstauen. Lagerort, Position und Ruhezeit vor dem nächsten Start richten sich nach dem Modell. Neues Zubehör ist nicht automatisch nötig.
 
-**Warum muss das Gerät vor dem Einlagern trocknen?**Im Inneren einer mobilen Klimaanlage bleibt nach dem Kühlbetrieb immer Restfeuchte am Verdampfer und in der Kondenswasserwanne zurück. Wird das Gerät feucht eingelagert, bilden sich über Monate Schimmel und Bakterien — beim ersten Einschalten im Sommer riecht es dann muffig und die Sporen werden in die Raumluft geblasen. 1–2 Stunden Ventilator-Modus trocknen das Gerät zuverlässig aus.
+**Warum muss das Gerät vor dem Einlagern trocknen?**Verbleibende Feuchtigkeit kann während der Lagerung Gerüche und mikrobielles Wachstum begünstigen. Entleeren, Reinigen und Trocknen nach Anleitung verringern dieses Risiko, garantieren aber keine Schimmelfreiheit. Die erforderliche Trocknungsdauer hängt vom Gerät und den Bedingungen ab; eine einheitliche Zeit für alle Modelle ist nicht belegt.
 
-**Staubfrei durch den Winter — ohne Kondenswasser-Falle:**
+**Nur wenn ein geeigneter Staubschutz fehlt:**Erst Anleitung und vorhandenes Tuch prüfen; eine Haube ist optional.
 
-Atmungsaktive Abdeckhauben ansehen →
+Passende Abdeckhauben prüfen →
 
 **Weitere Ratgeber**
 [Klimaanlage reinigen: Filter, Wanne & Gehäuse →](https://getecoback.com/guide/klimaanlage-reinigen.html)

@@ -15,7 +15,14 @@ def citation_url(href, rel=''):
         url = urlsplit(href)
         if url.scheme != 'https' or url.username or url.password or url.port or url.query:
             return None
-        if not any(url.path.startswith(prefix) for prefix in POLICY['hosts'].get(url.hostname, [])) and href not in POLICY['reference_urls']:
+        exact = href in POLICY['reference_urls']
+        # A PDF page fragment identifies a page in the same reviewed document,
+        # not a new destination. Preserve only this bounded fragment syntax;
+        # other anchors/queries do not inherit the exact-URL allowlist entry.
+        pdf_page = (url.path.lower().endswith('.pdf')
+                    and re.fullmatch(r'page=[1-9][0-9]{0,3}', url.fragment)
+                    and href.split('#', 1)[0] in POLICY['reference_urls'])
+        if not any(url.path.startswith(prefix) for prefix in POLICY['hosts'].get(url.hostname, [])) and not (exact or pdf_page):
             return None
         if re.search(r'%(?:00|0a|0d|2f|3a|40|5c)', url.path, re.I):
             return None

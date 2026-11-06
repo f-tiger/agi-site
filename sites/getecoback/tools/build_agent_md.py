@@ -57,10 +57,15 @@ def to_markdown(src_html, path_url, lang):
     desc = H.unescape(m.group(1)).strip() if m else ""
     m = re.search(r"<article[^>]*>(.*?)</article>", src_html, re.S)
     body = m.group(1) if m else ""
-    if not m and path_url == '/waeschetrockner-oder-luftentfeuchter.html':
+    if not m:
+        # Some authored guides use <main> rather than <article>. Keep their
+        # editorial body; never fall back to the whole page's navigation/UI.
+        # The article branch above remains authoritative when both are present.
         main = re.search(r'<main\b[^>]*>(.*?)</main>', src_html, re.S)
         if main:
-            body = re.sub(r'<header\b.*?</header>', '', main.group(1), flags=re.S)
+            body = main.group(1)
+            if path_url == '/waeschetrockner-oder-luftentfeuchter.html':
+                body = re.sub(r'<header\b.*?</header>', '', body, flags=re.S)
     if path_url == '/guide/smarte-heizkoerperthermostate-lohnen-sich.html':
         # The sourced no-JS table carries the evidence. Interactive selectors
         # would otherwise become a concatenated list of unrelated valve names.

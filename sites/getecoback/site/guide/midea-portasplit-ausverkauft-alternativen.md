@@ -48,7 +48,7 @@ Wenn du aktuell keine Kühlung brauchst oder die Aufstellung ungeklärt ist, ist
 
 ## Quellen und Prüfstand
 
-Technische Angaben zuletzt am 02.10.2026 geprüft: Midea Produktdaten, Midea Aufstellung, Fischer CB-3500 und REMKO RKL DC. Herstellerwerte sind keine vergleichende Messung unter gleichen Bedingungen.
+Technische Angaben zuletzt am 02.10.2026 geprüft: [Midea Produktdaten](https://www.midea.com/de/klimatisieren-heizen/portasplit/produktinfos.portasplit), Midea Aufstellung, Fischer CB-3500 und REMKO RKL DC. Herstellerwerte sind keine vergleichende Messung unter gleichen Bedingungen.
 
 ## Häufige Fragen
 
