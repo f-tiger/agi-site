@@ -3,61 +3,67 @@
   "inventory_reviewed_on": "2026-10-11",
   "source_catalog_reviewed_on": "2026-10-11",
   "scope": "Union of repository routes, analytics registry, account allowlist, reviewed external source catalogue and observed GA4 hostname identities. Not a DNS/account asset inventory.",
+  "ga4_reader": {
+    "provider": "google_official_admin_and_data_api",
+    "entrypoint": "tools/fleet-reporting/report.py",
+    "scope": "https://www.googleapis.com/auth/analytics.readonly",
+    "third_party_subscription_required": false
+  },
   "ga4_properties": [
     {
       "name": "AGI",
       "property_id": "541489054",
       "measurement_id": "G-FZXLMBB5QB",
-      "connection_status": "historically_connected_recheck_each_run",
+      "connection_status": "google_readonly_access_must_verify_each_run",
       "timezone": null
     },
     {
       "name": "ECO",
       "property_id": "544688614",
       "measurement_id": "G-E2V0Q9SJ9V",
-      "connection_status": "historically_connected_recheck_each_run",
+      "connection_status": "google_readonly_access_must_verify_each_run",
       "timezone": null
     },
     {
       "name": "BPJ",
       "property_id": "547077892",
       "measurement_id": "G-H79D948F4Z",
-      "connection_status": "historically_connected_recheck_each_run",
+      "connection_status": "google_readonly_access_must_verify_each_run",
       "timezone": null
     },
     {
       "name": "TDS",
       "property_id": "547130808",
       "measurement_id": "G-2SEHFY33H8",
-      "connection_status": "historically_connected_recheck_each_run",
+      "connection_status": "google_readonly_access_must_verify_each_run",
       "timezone": null
     },
     {
       "name": "BestBlindToys",
       "property_id": "491625986",
       "measurement_id": null,
-      "connection_status": "historically_connected_recheck_each_run",
+      "connection_status": "google_readonly_access_must_verify_each_run",
       "timezone": null
     },
     {
       "name": "AIChain",
       "property_id": "541485670",
       "measurement_id": null,
-      "connection_status": "historically_connected_recheck_each_run",
+      "connection_status": "google_readonly_access_must_verify_each_run",
       "timezone": null
     },
     {
       "name": "Zaoqi",
       "property_id": "541626444",
       "measurement_id": null,
-      "connection_status": "historically_connected_recheck_each_run",
+      "connection_status": "google_readonly_access_must_verify_each_run",
       "timezone": null
     },
     {
       "name": "ListingLift",
       "property_id": "545196738",
       "measurement_id": "G-HT123LQLP7",
-      "connection_status": "historically_connected_recheck_each_run",
+      "connection_status": "google_readonly_access_must_verify_each_run",
       "timezone": null
     }
   ],
@@ -456,10 +462,12 @@
         "tools/fleet-account/config.mjs"
       ],
       "ga4": {
-        "property_id": null,
-        "measurement_id": null,
-        "mapping_status": "unverified",
-        "source_paths": [],
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "live_tag_not_backend_verified",
+        "source_paths": [
+          "https://agents.agiscorecard.com/ (static HTML checked 2026-11-06)"
+        ],
         "backend_receipt": "must_verify_each_report"
       },
       "aggregate_source_ids": [],
@@ -734,7 +742,8 @@
       "reason": "No verified public aggregate endpoint in the reporting manifest.",
       "notes": [
         "Filter by hostname AND /smarterFuture/launch/ai-realtor/ page path; github.io hostname alone is not this site."
-      ]
+      ],
+      "path_prefix": "/smarterFuture/launch/ai-realtor/"
     },
     {
       "id": "fanzha",
@@ -967,10 +976,12 @@
         "tools/fleet-account/config.mjs"
       ],
       "ga4": {
-        "property_id": null,
-        "measurement_id": null,
-        "mapping_status": "unverified",
-        "source_paths": [],
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "live_tag_not_backend_verified",
+        "source_paths": [
+          "https://index.agiscorecard.com/ (static HTML checked 2026-11-06)"
+        ],
         "backend_receipt": "must_verify_each_report"
       },
       "aggregate_source_ids": [],
@@ -1147,10 +1158,12 @@
         "tools/fleet-account/config.mjs"
       ],
       "ga4": {
-        "property_id": null,
-        "measurement_id": null,
-        "mapping_status": "unverified",
-        "source_paths": [],
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "live_tag_not_backend_verified",
+        "source_paths": [
+          "https://pay.agiscorecard.com/ (static HTML checked 2026-11-06)"
+        ],
         "backend_receipt": "must_verify_each_report"
       },
       "aggregate_source_ids": [],
@@ -1536,10 +1549,12 @@
         "tools/fleet-account/config.mjs"
       ],
       "ga4": {
-        "property_id": null,
-        "measurement_id": null,
-        "mapping_status": "unverified",
-        "source_paths": [],
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "live_tag_not_backend_verified",
+        "source_paths": [
+          "https://wallets.agiscorecard.com/ (static HTML checked 2026-11-06)"
+        ],
         "backend_receipt": "must_verify_each_report"
       },
       "aggregate_source_ids": [],
@@ -1727,7 +1742,7 @@
     }
   ],
   "unmapped_sources_notes": [
-    "Read Windsor get_connectors and get_fields before each report; the current connection list overrides the historical property catalogue.",
+    "Use Google official Admin/Data APIs or Google's official read-only Analytics MCP. Discover accessible properties and verify each fleet property's timezone; missing access is not zero traffic. Windsor is not a required dependency.",
     "Always preserve returned GA4 hostnames not in this manifest as observed-unmapped rows; never discard them or distribute property totals to sub-sites.",
     "Missing dates, property mappings, database bindings or aggregate endpoints are unknown, not zero.",
     "Aliases/previews are not extra canonical sites; GA4 users must not be added across hosts, dates or hours to claim unique people.",

@@ -1,0 +1,2 @@
+# Google official authentication; uses the environment's proxy and CA trust.
+google-auth[requests]>=2.40,<3

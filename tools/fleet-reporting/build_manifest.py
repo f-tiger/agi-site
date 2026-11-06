@@ -35,7 +35,7 @@ SELL_BRANCH = "claude/sales-website-research-plan-7i7rc2"
 LOCAL_ALIASES = {"www.getecoback.com": "eco"}
 MAPPING_STATUSES = {"unverified", "registry_configured_not_backend_verified",
     "source_configured_not_backend_verified", "historical_property_not_backend_verified",
-    "observed_hostname_not_deployment_verified"}
+    "observed_hostname_not_deployment_verified", "live_tag_not_backend_verified"}
 
 
 def github(repo, path, revision="main"):
@@ -144,6 +144,14 @@ def build(root=ROOT):
                     evidence=["owner report: Windsor hostname/property pair observed 2026-10-11"]),
         note="GA4 hostname is observed; source repository does not establish the canonical-versus-alias relationship.")
 
+    # Static public HTML verified 2026-11-06 with an analysis-probe UA. This
+    # establishes deployed tag configuration, never receipt or account access.
+    for host in ('agents.agiscorecard.com', 'index.agiscorecard.com',
+                 'pay.agiscorecard.com', 'wallets.agiscorecard.com'):
+        sites[host]['ga4'] = ga4('G-FZXLMBB5QB', status='live_tag_not_backend_verified',
+            evidence=[f'https://{host}/ (static HTML checked 2026-11-06)'])
+    sites['f-tiger.github.io']['path_prefix'] = '/smarterFuture/launch/ai-realtor/'
+
     sources = []
 
     def source(source_id, url, hosts, contract="legacy-approved", kind="d1-aggregate", paths=(), grouping=None):
@@ -199,10 +207,11 @@ def build(root=ROOT):
     ]
     return {"version": 1, "inventory_reviewed_on": "2026-10-11", "source_catalog_reviewed_on": "2026-10-11",
         "scope": "Union of repository routes, analytics registry, account allowlist, reviewed external source catalogue and observed GA4 hostname identities. Not a DNS/account asset inventory.",
-        "ga4_properties": [{"name": n, "property_id": p, "measurement_id": m, "connection_status": "historically_connected_recheck_each_run", "timezone": None} for n, p, m in PROPERTIES],
+        "ga4_reader": {"provider": "google_official_admin_and_data_api", "entrypoint": "tools/fleet-reporting/report.py", "scope": "https://www.googleapis.com/auth/analytics.readonly", "third_party_subscription_required": False},
+        "ga4_properties": [{"name": n, "property_id": p, "measurement_id": m, "connection_status": "google_readonly_access_must_verify_each_run", "timezone": None} for n, p, m in PROPERTIES],
         "sources": sorted(sources, key=lambda x: x["id"]), "sites": sorted(sites.values(), key=lambda x: x["hostname"]),
         "aliases": aliases,
-        "unmapped_sources_notes": ["Read Windsor get_connectors and get_fields before each report; the current connection list overrides the historical property catalogue.",
+        "unmapped_sources_notes": ["Use Google official Admin/Data APIs or Google's official read-only Analytics MCP. Discover accessible properties and verify each fleet property's timezone; missing access is not zero traffic. Windsor is not a required dependency.",
             "Always preserve returned GA4 hostnames not in this manifest as observed-unmapped rows; never discard them or distribute property totals to sub-sites.",
             "Missing dates, property mappings, database bindings or aggregate endpoints are unknown, not zero.",
             "Aliases/previews are not extra canonical sites; GA4 users must not be added across hosts, dates or hours to claim unique people.",
