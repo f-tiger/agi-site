@@ -1,0 +1,39 @@
+name: Check release and payment health isolation
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/check-release-health.yml'
+      - '.github/workflows/deploy-baipiaoji.yml'
+      - '.github/workflows/deploy-thedollscout.yml'
+      - '.github/workflows/bpj-ad-watch.yml'
+      - 'sites/baipiaoji/scripts/*release*'
+      - 'sites/baipiaoji/scripts/*payment*'
+      - 'sites/baipiaoji/scripts/*recovery*'
+      - 'sites/baipiaoji/scripts/ad-watch*'
+      - 'sites/baipiaoji/scripts/verify-studio-live.mjs'
+      - 'tools/member-studio/**'
+
+permissions:
+  contents: read
+
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify release, maintenance and payment boundaries without production access
+        run: |
+          node sites/baipiaoji/scripts/test-release-inputs.mjs
+          node sites/baipiaoji/scripts/test-release-isolation.mjs
+          node sites/baipiaoji/scripts/test-member-recovery-workflow.mjs
+          node sites/baipiaoji/scripts/test-ad-watch-readiness.mjs
+          node sites/baipiaoji/scripts/test-member-recovery-runner.mjs
+          node tools/member-studio/test-release-health.mjs
+          node tools/member-studio/test-watch-request.mjs
+          node tools/member-studio/test-receipts-runner.mjs
+          node tools/member-studio/test-receipts.mjs
+          node tools/member-studio/test-failure.mjs

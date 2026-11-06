@@ -21,6 +21,14 @@ const AUDITED_RECORDS=new Set([
   // AGI-only browser test: BPJ uses explicit test lists, never imports this
   // file and does not perform whole-repository test discovery.
   'sites/agiscorecard/tools/tianya/browser-test.mjs',
+  // ECO-only release/test entrypoints: BPJ neither runs these workflows nor
+  // imports these tests. Audited after the 2026-11-06 concurrent ECO release.
+  // Keep exact paths: shared tools, runtime code and unknown workflows still
+  // require a new BPJ build; do not exempt the whole ECO tools directory.
+  '.github/workflows/check-eco-energy.yml',
+  '.github/workflows/deploy-getecoback.yml',
+  'sites/getecoback/tools/test_country_exports.mjs',
+  'sites/getecoback/tools/test_energy_tariffs.mjs',
 ]);
 const CONTENT_PREFIXES=[
   'sites/thedollscout/docs/',
