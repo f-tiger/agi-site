@@ -1,8 +1,8 @@
 {
- "generated": "2026-11-05",
+ "generated": "2026-11-06",
  "source": "https://www.federalregister.gov/developers/documentation/api/v1 (official Federal Register API, keyless)",
  "window_days": 120,
- "since": "2026-07-08",
+ "since": "2026-07-09",
  "queries": [
   "section 301",
   "section 232",
@@ -21,6 +21,23 @@
  "note": "Documents whose full text matches an import-duty query in the window, newest first. Titles and abstracts are the Federal Register's own words, trimmed but never rewritten. A match means the phrase appears in the document, not that the document affects any particular shipment. matched_in says whether the phrase surfaced in the title/abstract or only deeper in the full text — the latter often means the document is about something else.",
  "count": 19,
  "changes": [
+  {
+   "document_number": "2026-22735",
+   "date": "2026-11-06",
+   "type": "Rule",
+   "title": "Heightened Requirements for Foreign Importers of Record",
+   "abstract": "This document amends the U.S. Customs and Border Protection (CBP) regulations, consistent with Section 2 of Executive Order 14411, \"Strengthening Customs Enforcement,\" by establishing new requirements for foreign importers of record (IORs) when making entry, and corresponding responsibilities for licensed customs br…",
+   "agencies": [
+    "Homeland Security Department",
+    "U.S. Customs and Border Protection"
+   ],
+   "url": "https://www.federalregister.gov/documents/2026/11/06/2026-22735/heightened-requirements-for-foreign-importers-of-record",
+   "matched": [
+    "de minimis exemption",
+    "harmonized tariff schedule"
+   ],
+   "matched_in": "full_text_only"
+  },
   {
    "document_number": "2026-22386",
    "date": "2026-11-02",
@@ -166,22 +183,6 @@
    "matched": [
     "section 232",
     "section 301"
-   ],
-   "matched_in": "full_text_only"
-  },
-  {
-   "document_number": "2026-20884",
-   "date": "2026-10-13",
-   "type": "Proposed Rule",
-   "title": "Advance Traveler Information for Rail",
-   "abstract": "U.S. Customs and Border Protection (CBP) is proposing to require rail carriers to transmit advance electronic traveler information to CBP for any individual (crew and passengers) who is arriving in or departing from the United States on board a train. The rail carrier also would be required to transmit an advance no…",
-   "agencies": [
-    "Homeland Security Department",
-    "U.S. Customs and Border Protection"
-   ],
-   "url": "https://www.federalregister.gov/documents/2026/10/13/2026-20884/advance-traveler-information-for-rail",
-   "matched": [
-    "harmonized tariff schedule"
    ],
    "matched_in": "full_text_only"
   },

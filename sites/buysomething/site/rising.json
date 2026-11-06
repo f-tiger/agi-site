@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-05",
+ "fetched": "2026-11-06",
  "seeds": {
   "electric spin scrubber": {
    "rising": [
@@ -319,41 +319,61 @@
    ],
    "rising": [],
    "source": "autocomplete-diff",
-   "fetched": "2026-11-05"
+   "fetched": "2026-11-06"
   },
   "makeup organizer": {
+   "auto": [
+    "makeup organizer",
+    "makeup organizer drawers",
+    "makeup organizer countertop",
+    "makeup organizer for vanity",
+    "makeup organizer bag",
+    "makeup organizer box",
+    "makeup organizer near me",
+    "makeup organizer for bathroom",
+    "makeup organizer target",
+    "makeup organizer nearby"
+   ],
    "rising": [
     {
-     "q": "stackers makeup organizer",
-     "v": 600
-    },
-    {
-     "q": "marshalls",
-     "v": 550
-    },
-    {
-     "q": "caboodle",
-     "v": 400
-    },
-    {
-     "q": "target makeup organizer",
-     "v": 250
-    },
-    {
-     "q": "caboodle makeup organizer",
-     "v": 180
-    },
-    {
-     "q": "makeup organizer walmart",
-     "v": 140
-    },
-    {
      "q": "makeup organizer drawers",
-     "v": 40
+     "v": "new"
+    },
+    {
+     "q": "makeup organizer countertop",
+     "v": "new"
+    },
+    {
+     "q": "makeup organizer for vanity",
+     "v": "new"
+    },
+    {
+     "q": "makeup organizer bag",
+     "v": "new"
+    },
+    {
+     "q": "makeup organizer box",
+     "v": "new"
+    },
+    {
+     "q": "makeup organizer near me",
+     "v": "new"
+    },
+    {
+     "q": "makeup organizer for bathroom",
+     "v": "new"
+    },
+    {
+     "q": "makeup organizer target",
+     "v": "new"
+    },
+    {
+     "q": "makeup organizer nearby",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-10-07"
+   "source": "autocomplete-diff",
+   "fetched": "2026-11-06"
   },
   "mamian skirt": {
    "auto": [
