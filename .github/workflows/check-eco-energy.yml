@@ -26,15 +26,24 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
+    # Match the npm Playwright version below; browsers and system libraries are
+    # already installed, avoiding repeated slow Ubuntu mirror downloads.
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.2-noble
+      options: --ipc=host
     timeout-minutes: 10
     defaults:
       run:
+        shell: bash
         working-directory: sites/getecoback
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
       - name: Verify calculations, generated pages and discoverability
         run: |
           # Check committed buyer modules before generators can repair missing markup.
@@ -146,11 +155,9 @@ jobs:
           node tools/install-public-engagement.mjs --write
           node tools/install-public-engagement.mjs
 
-      - name: Install browser test runtime
+      - name: Install matching browser test bindings
         run: |
           npm install --prefix "$RUNNER_TEMP/eco-playwright" --no-audit --no-fund playwright@1.58.2
-          node "$RUNNER_TEMP/eco-playwright/node_modules/playwright/cli.js" install --with-deps --only-shell chromium
-          node "$RUNNER_TEMP/eco-playwright/node_modules/playwright/cli.js" install --with-deps webkit
       - name: Fetch fixed pre-shelf-change baseline for the affiliate audit
         run: |
           git fetch --depth=1 origin 902485034ee0598aed3dd8b21e718c9fca5569f7
