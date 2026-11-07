@@ -1,8 +1,8 @@
 {
-  "generated": "2026-11-06",
+  "generated": "2026-11-07",
   "note": "由 scripts/trend-radar.mjs 每日聚合五路站内信号生成。只排队不写事实；核实动作按硬规则执行。分数是领先指标的相对排序，不是预测。",
   "counts": {
-    "candidate": 38,
+    "candidate": 37,
     "category_hot": 1,
     "stale": 5,
     "demand": 0
@@ -26,26 +26,26 @@
   },
   "items": [
     {
-      "id": "drift:dify",
+      "id": "drift:bailian",
       "type": "source_drift",
-      "title": "来源页变动：Dify（2026-11-06 确认）",
-      "why": "官方来源页的数字令牌变了——新增 148k；消失 160k。本站条目仍是 2026-08-04 的版本",
-      "action": "打开 https://dify.ai 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "title": "来源页变动：阿里云百炼（2026-11-07 确认）",
+      "why": "官方来源页的数字令牌变了——新增 60mins；消失 10k / 1mo / 70m。本站条目仍是 2026-08-03 的版本",
+      "action": "打开 https://aliyun.com 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
       "refs": [
-        "dify",
-        "https://dify.ai"
+        "bailian",
+        "https://aliyun.com"
       ],
       "score": 75
     },
     {
-      "id": "drift:immersive-translate",
+      "id": "drift:google-flow",
       "type": "source_drift",
-      "title": "来源页变动：沉浸式翻译（2026-11-06 确认）",
-      "why": "官方来源页的数字令牌变了——新增 79222b / 8655b；消失 349b。本站条目仍是 2026-08-03 的版本",
-      "action": "打开 https://immersivetranslate.com 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "title": "来源页变动：Google Flow（2026-11-07 确认）",
+      "why": "官方来源页的数字令牌变了——新增 0b / 0credits / 1.2credit / 10credits；消失 无。本站条目仍是 2026-08-06 的版本",
+      "action": "打开 https://support.google.com/flow/answer/16526234 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
       "refs": [
-        "immersive-translate",
-        "https://immersivetranslate.com"
+        "google-flow",
+        "https://support.google.com/flow/answer/16526234"
       ],
       "score": 75
     },
@@ -63,6 +63,30 @@
         "/mcp"
       ],
       "score": 70
+    },
+    {
+      "id": "drift:v0",
+      "type": "source_drift",
+      "title": "来源页变动：v0（Vercel）（2026-11-07 确认）",
+      "why": "官方来源页的数字令牌变了——新增 10.2k / 14.8k；消失 1.2k / 1.3k / 1.4k / 1.9k。本站条目仍是 2026-08-03 的版本",
+      "action": "打开 https://v0.app 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "v0",
+        "https://v0.app"
+      ],
+      "score": 65
+    },
+    {
+      "id": "drift:continue",
+      "type": "source_drift",
+      "title": "来源页变动：Continue（2026-11-07 确认）",
+      "why": "官方来源页的数字令牌变了——新增 5.6k；消失 5.5k。本站条目仍是 2026-08-04 的版本",
+      "action": "打开 https://github.com/continuedev/continue 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "continue",
+        "https://github.com/continuedev/continue"
+      ],
+      "score": 65
     },
     {
       "id": "drift:kiro",
@@ -85,30 +109,6 @@
       "refs": [
         "exa",
         "https://exa.ai/pricing"
-      ],
-      "score": 65
-    },
-    {
-      "id": "drift:gaoding",
-      "type": "source_drift",
-      "title": "来源页变动：稿定 AI（2026-11-06 确认）",
-      "why": "官方来源页的数字令牌变了——新增 无；消失 0026video / 100% / 10m / 10mb。本站条目仍是 2026-08-04 的版本",
-      "action": "打开 https://gaoding.com 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "gaoding",
-        "https://gaoding.com"
-      ],
-      "score": 65
-    },
-    {
-      "id": "drift:lovable",
-      "type": "source_drift",
-      "title": "来源页变动：Lovable（2026-11-06 确认）",
-      "why": "官方来源页的数字令牌变了——新增 无；消失 0026s / 1b / 64b / 89b。本站条目仍是 2026-08-03 的版本",
-      "action": "打开 https://docs.lovable.dev 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "lovable",
-        "https://docs.lovable.dev"
       ],
       "score": 65
     },
@@ -151,7 +151,7 @@
     {
       "id": "paidgap:kimi",
       "type": "paid_gap",
-      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 121 次，无付费档）",
+      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 115 次，无付费档）",
       "why": "有需求、无判定页：is-kimi-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
       "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
       "refs": [
