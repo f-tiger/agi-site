@@ -1,36 +1,39 @@
-# Fleet evolution report — 2026-11-06
+# Fleet evolution report — 2026-11-07
 
 Deterministic, aggregate-only report. Missing data remains unknown; no editorial text, payments or membership rights are changed by this job.
 
 ## Fleet counters
 
 - Sites: 14 (healthy probes: 31)
-- Membership ready: 4 · paid members: 0 · active members: 0
-- Opportunity candidates: 7 · stale inputs: 0
+- Membership ready: 0 · paid members: 0 · active members: 0
+- Opportunity candidates: 5 · stale inputs: 0
 
 ## Priority actions
 
 | Priority | Site | Action | Mode | Evidence |
 |---:|---|---|---|---|
-| 64 | baipiaoji | membership_conversion | queue | referred_humans_28d=594; paid_members=0 |
+| 92 | agiscorecard | membership_health | alert | public_ok=True; ready=False |
+| 92 | baipiaoji | membership_health | alert | public_ok=True; ready=False |
+| 92 | getecoback | membership_health | alert | public_ok=True; ready=False |
+| 92 | thedollscout | membership_health | alert | public_ok=True; ready=False |
 | 55 | agiscorecard | content_gap | queue | count=4; query=ai stocks down; value=1 |
 | 55 | buysomething | content_gap | queue | count=1; query=costco; value=250 |
-| 55 | getecoback | content_gap | queue | count=20; query=infrarotheizung wandmontage; value=88250 |
-| 55 | thedollscout | content_gap | queue | count=21; query=cat mode labubu; value=61150 |
-| 52 | agiscorecard | improve_hot_page | queue | page=/ai-futures; n7=91; p7=0 |
-| 52 | getecoback | improve_hot_page | queue | page=/; n7=8; p7=4 |
-| 48 | goldrush | ai_discovery | queue | human_pv_28d=617; ai_ref_28d=0 |
-| 48 | thedollscout | ai_discovery | queue | human_pv_28d=293; ai_ref_28d=0 |
+| 55 | getecoback | content_gap | queue | count=24; query=infrarotheizung wandmontage; value=88250 |
+| 55 | thedollscout | content_gap | queue | count=20; query=cat mode labubu; value=61150 |
+| 52 | agiscorecard | improve_hot_page | queue | page=/ai-futures; n7=93; p7=11 |
+| 52 | getecoback | improve_hot_page | queue | page=/; n7=9; p7=5 |
+| 48 | goldrush | ai_discovery | queue | human_pv_28d=635; ai_ref_28d=0 |
+| 48 | thedollscout | ai_discovery | queue | human_pv_28d=295; ai_ref_28d=0 |
 
 ## Input freshness
 
 | Input | Date | Age (days) |
 |---|---|---:|
-| membership | 2026-11-06T09:49:03.472Z | 0 |
-| health | 2026-11-05T15:58:12Z | 1 |
-| ai_referrals | 2026-11-05T15:58:48Z | 1 |
-| opportunities | 2026-11-05 | 1 |
-| autopilot_receipt | 2026-11-06 | 0 |
+| membership | 2026-11-07T09:11:57.387Z | 0 |
+| health | 2026-11-06T15:30:07Z | 1 |
+| ai_referrals | 2026-11-06T15:30:36Z | 1 |
+| opportunities | 2026-11-06 | 1 |
+| autopilot_receipt | 2026-11-07 | 0 |
 
 ## Autonomous boundary
 

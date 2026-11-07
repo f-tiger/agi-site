@@ -1,22 +1,22 @@
 {
   "schema_version": 1,
-  "as_of": "2026-11-06",
+  "as_of": "2026-11-07",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
     "healthy": 31,
-    "membership_ready": 4,
+    "membership_ready": 0,
     "paid_members": 0,
     "active_members": 0,
-    "opportunities": 7,
+    "opportunities": 5,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-11-06T09:49:03.472Z",
-    "health": "2026-11-05T15:58:12Z",
-    "ai_referrals": "2026-11-05T15:58:48Z",
-    "opportunities": "2026-11-05",
-    "autopilot_receipt": "2026-11-06"
+    "membership": "2026-11-07T09:11:57.387Z",
+    "health": "2026-11-06T15:30:07Z",
+    "ai_referrals": "2026-11-06T15:30:36Z",
+    "opportunities": "2026-11-06",
+    "autopilot_receipt": "2026-11-07"
   },
   "input_ages_days": {
     "membership": 0,
@@ -28,10 +28,10 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-11-06T09:49:03.472Z",
+    "generated": "2026-11-07T09:11:57.387Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
-    "ok": true,
+    "ok": false,
     "counters_complete": true,
     "sites": [
       {
@@ -39,7 +39,7 @@
         "origin": "https://baipiaoji.com",
         "public": {
           "ok": true,
-          "ready": true,
+          "ready": false,
           "site": "bpj",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -60,7 +60,7 @@
         "origin": "https://agiscorecard.com",
         "public": {
           "ok": true,
-          "ready": true,
+          "ready": false,
           "site": "agi",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -81,7 +81,7 @@
         "origin": "https://getecoback.com",
         "public": {
           "ok": true,
-          "ready": true,
+          "ready": false,
           "site": "eco",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -102,7 +102,7 @@
         "origin": "https://thedollscout.com",
         "public": {
           "ok": true,
-          "ready": true,
+          "ready": false,
           "site": "tds",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -128,28 +128,10 @@
   },
   "opportunities": [
     {
-      "theme": "looking for a tool for browsing contents of unmounted cold storage",
+      "theme": "are you building an ai company brain",
       "site": null,
       "state": "scout",
-      "score": 4.19,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
-      "theme": "are knuth s stanford pages down",
-      "site": null,
-      "state": "scout",
-      "score": 2.45,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
-      "theme": "everything i post doesn t go through",
-      "site": null,
-      "state": "scout",
-      "score": 2.24,
+      "score": 2.27,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -176,7 +158,7 @@
       "theme": "what do you call holy grail mania risk",
       "site": null,
       "state": "scout",
-      "score": 2.09,
+      "score": 2.14,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -308,15 +290,48 @@
   ],
   "actions": [
     {
-      "site": "baipiaoji",
-      "kind": "membership_conversion",
-      "priority": 64,
-      "reason": "ready membership has qualified referred traffic but no paid members",
+      "site": "agiscorecard",
+      "kind": "membership_health",
+      "priority": 92,
+      "reason": "membership API is not ready",
       "evidence": {
-        "referred_humans_28d": 594,
-        "paid_members": 0
+        "public_ok": true,
+        "ready": false
       },
-      "mode": "queue"
+      "mode": "alert"
+    },
+    {
+      "site": "baipiaoji",
+      "kind": "membership_health",
+      "priority": 92,
+      "reason": "membership API is not ready",
+      "evidence": {
+        "public_ok": true,
+        "ready": false
+      },
+      "mode": "alert"
+    },
+    {
+      "site": "getecoback",
+      "kind": "membership_health",
+      "priority": 92,
+      "reason": "membership API is not ready",
+      "evidence": {
+        "public_ok": true,
+        "ready": false
+      },
+      "mode": "alert"
+    },
+    {
+      "site": "thedollscout",
+      "kind": "membership_health",
+      "priority": 92,
+      "reason": "membership API is not ready",
+      "evidence": {
+        "public_ok": true,
+        "ready": false
+      },
+      "mode": "alert"
     },
     {
       "site": "agiscorecard",
@@ -348,7 +363,7 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 20,
+        "count": 24,
         "query": "infrarotheizung wandmontage",
         "value": 88250
       },
@@ -360,7 +375,7 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 21,
+        "count": 20,
         "query": "cat mode labubu",
         "value": 61150
       },
@@ -373,8 +388,8 @@
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/ai-futures",
-        "n7": 91,
-        "p7": 0
+        "n7": 93,
+        "p7": 11
       },
       "mode": "queue"
     },
@@ -385,8 +400,8 @@
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/",
-        "n7": 8,
-        "p7": 4
+        "n7": 9,
+        "p7": 5
       },
       "mode": "queue"
     },
@@ -396,7 +411,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 617,
+        "human_pv_28d": 635,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -407,7 +422,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 293,
+        "human_pv_28d": 295,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -416,7 +431,7 @@
   "site_manifests": {
     "agiscorecard": {
       "path": "sites/agiscorecard/data/fleet-evolution.json",
-      "action_count": 2
+      "action_count": 3
     },
     "baipiaoji": {
       "path": "sites/baipiaoji/data/fleet-evolution.json",
@@ -424,11 +439,11 @@
     },
     "getecoback": {
       "path": "sites/getecoback/data/fleet-evolution.json",
-      "action_count": 2
+      "action_count": 3
     },
     "thedollscout": {
       "path": "sites/thedollscout/data/fleet-evolution.json",
-      "action_count": 2
+      "action_count": 3
     },
     "buysomething": {
       "path": "sites/buysomething/data/fleet-evolution.json",

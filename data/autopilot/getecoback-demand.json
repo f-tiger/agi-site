@@ -3,6 +3,28 @@
   {
    "heat": null,
    "kind": "value",
+   "match": 0.775,
+   "page": "tools.html",
+   "q": "akku heizung",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-11-06",
+   "v": 65900
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.917,
+   "page": "guide/heizung-10-qm.html",
+   "q": "heizlüfter fürs bad",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-11-06",
+   "v": 43400
+  },
+  {
+   "heat": null,
+   "kind": "value",
    "match": 1.0,
    "page": "guide/infrarotheizung-garage.html",
    "q": "infrarotheizung garage",
@@ -25,6 +47,17 @@
   {
    "heat": null,
    "kind": "value",
+   "match": 0.875,
+   "page": "guide/heizung-15-qm.html",
+   "q": "infrarot heizung",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-11-06",
+   "v": 32750
+  },
+  {
+   "heat": null,
+   "kind": "value",
    "match": 0.75,
    "page": "guide/heizung-tauschen-oder-warten-gmodg.html",
    "q": "stand infrarotheizung",
@@ -32,6 +65,53 @@
    "source": "related-queries",
    "stand": "2026-11-01",
    "v": 32400
+  },
+  {
+   "heat": {
+    "n7": 2,
+    "p7": 0
+   },
+   "kind": "value",
+   "match": 0.667,
+   "page": "guide/akku-heizluefter.html",
+   "q": "akku heizlüfter makita",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-11-06",
+   "v": 28450
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.875,
+   "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
+   "q": "luftentfeuchter keller ohne strom",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-11-06",
+   "v": 20500
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.65,
+   "page": "guide/luftentfeuchter-10-qm.html",
+   "q": "comfee mddf-16den7 wf luftentfeuchter",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-11-06",
+   "v": 13550
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.633,
+   "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
+   "q": "luftentfeuchter kissen auto",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-11-06",
+   "v": 8250
   },
   {
    "heat": null,
@@ -47,6 +127,17 @@
   {
    "heat": null,
    "kind": "value",
+   "match": 0.95,
+   "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
+   "q": "auto luftentfeuchter",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-11-06",
+   "v": 200
+  },
+  {
+   "heat": null,
+   "kind": "value",
    "match": 1.0,
    "page": "guide/klimaanlage-mit-heizfunktion.html",
    "q": "klimaanlage mit heizfunktion",
@@ -54,6 +145,28 @@
    "source": "related-queries",
    "stand": "2026-10-30",
    "v": 180
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.775,
+   "page": "guide/schimmel-kleiderschrank.html",
+   "q": "luftentfeuchter nachfüllpack",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-11-06",
+   "v": 80
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.95,
+   "page": "guide/pro-breeze-luftentfeuchter-test.html",
+   "q": "mini luftentfeuchter",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-11-06",
+   "v": 80
   }
  ],
  "first_party_demand": {
@@ -69,6 +182,16 @@
    "source": "related-queries",
    "stand": "2026-11-01",
    "v": 88250
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/akku-heizluefter.html",
+   "q": "leiser heizlüfter",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-11-06",
+   "v": 42050
   },
   {
    "kind": "value",
@@ -119,6 +242,36 @@
    "source": "related-queries",
    "stand": "2026-11-01",
    "v": 32300
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/akku-heizluefter.html",
+   "q": "heizlüfter 3kw",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-11-06",
+   "v": 32000
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/akku-heizluefter.html",
+   "q": "ewt heizlüfter",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-11-06",
+   "v": 31400
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/luftentfeuchter-10-qm.html",
+   "q": "vivosun luftentfeuchter",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-11-06",
+   "v": 28600
   },
   {
    "kind": "value",
@@ -261,34 +414,39 @@
    "v": 140
   }
  ],
- "generated": "2026-11-06",
+ "generated": "2026-11-07",
  "geo": "DE",
- "heat_source": "measured 2026-11-06 (16 pages); no notes",
+ "heat_source": "measured 2026-11-07 (18 pages); no notes",
  "hot_pages": [
   {
-   "n7": 8,
-   "p7": 4,
+   "n7": 9,
+   "p7": 5,
    "page": "/"
   },
   {
    "n7": 5,
-   "p7": 1,
+   "p7": 3,
+   "page": "/guide/luftentfeuchter-ratgeber.html"
+  },
+  {
+   "n7": 5,
+   "p7": 2,
    "page": "/guide/mobile-klimaanlage-ueberwintern.html"
   },
   {
+   "n7": 4,
+   "p7": 3,
+   "page": "/guide/klimaanlage-dachfenster.html"
+  },
+  {
    "n7": 3,
    "p7": 1,
-   "page": "/en/guide/portable-ac-leaking-water.html"
+   "page": "/guide/heizluefter-schaltet-sich-aus.html"
   },
   {
    "n7": 3,
-   "p7": 2,
+   "p7": 1,
    "page": "/guide/heizluefter-stromverbrauch.html"
-  },
-  {
-   "n7": 3,
-   "p7": 2,
-   "page": "/guide/klimaanlage-dachfenster.html"
   },
   {
    "n7": 3,
@@ -297,13 +455,13 @@
   },
   {
    "n7": 3,
-   "p7": 2,
-   "page": "/guide/was-bedeutet-btu.html"
-  },
-  {
-   "n7": 3,
    "p7": 0,
    "page": "/guide/wohnmobil-feuchtigkeit-winter.html"
+  },
+  {
+   "n7": 2,
+   "p7": 2,
+   "page": "/en/guide/portable-ac-leaking-water.html"
   },
   {
    "n7": 2,
@@ -312,8 +470,8 @@
   },
   {
    "n7": 2,
-   "p7": 1,
-   "page": "/guide/heizluefter-schaltet-sich-aus.html"
+   "p7": 0,
+   "page": "/guide/fensterabdichtung-selber-bauen.html"
   },
   {
    "n7": 2,
@@ -322,8 +480,8 @@
   },
   {
    "n7": 2,
-   "p7": 3,
-   "page": "/guide/luftentfeuchter-ratgeber.html"
+   "p7": 0,
+   "page": "/guide/midea-portasplit-ausverkauft-alternativen.html"
   },
   {
    "n7": 2,
@@ -332,19 +490,20 @@
   },
   {
    "n7": 2,
-   "p7": 0,
-   "page": "/hitze-radar.html"
-  },
-  {
-   "n7": 2,
-   "p7": 0,
-   "page": "/wohnen.html"
+   "p7": 3,
+   "page": "/guide/was-bedeutet-btu.html"
   }
  ],
  "how_to_read": "Research candidates only; token matching is not an editorial or market decision. Relative growth is not search volume, and autocomplete is vocabulary evidence only. Underserved requires an observed zero in the matching measurement window; missing page measurements are unknown, and zero arrivals do not establish a title or internal-link cause. First-party evidence contains only aggregate zero-hit record counts, never raw search terms. Freshness, country, independent evidence and the reviewed page catalog must pass tools/eco_evolution.py before prioritising an existing page. This research queue does not publish. The separate getecoback scheduled deployment runs tools/auto_content.py to discover official product specifications, validate evidence and publish at most one substantive guide change per UTC day.",
  "note": "选题输入,不是选题依据。任何由它引出的页面仍要过本站三门与硬内容规则。本文件由 tools/autopilot 每日确定性生成,零 AI、零编造。",
  "offtopic_dropped": [
   "ölradiator",
+  "frostwächter",
+  "dreo atom 316",
+  "avreno",
+  "heizgebläse",
+  "meacodry arete two 25l",
+  "meacodry arete two 12l",
   "constantin schreiber axel springer",
   "unfall italien bus wohnmobil",
   "daikin perfera",

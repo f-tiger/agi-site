@@ -2,7 +2,17 @@
  "covered": [
   {
    "kind": "value",
-   "match": 0.687,
+   "match": 0.6,
+   "page": "zh/shop.html",
+   "q": "sonny angel advent calendar 2026",
+   "seed": "sonny angel",
+   "source": "related-queries",
+   "stand": "2026-11-01",
+   "v": 1450
+  },
+  {
+   "kind": "value",
+   "match": 0.675,
    "page": "brands/jellycat.html",
    "q": "jellycat halloween collection 2026",
    "seed": "jellycat",
@@ -13,7 +23,7 @@
   {
    "kind": "value",
    "match": 0.667,
-   "page": "index.html",
+   "page": "zh/index.html",
    "q": "halloween sonny angel",
    "seed": "sonny angel",
    "source": "related-queries",
@@ -23,7 +33,7 @@
   {
    "kind": "value",
    "match": 0.75,
-   "page": "index.html",
+   "page": "brands/sonny-angel.html",
    "q": "sonny angel halloween series",
    "seed": "sonny angel",
    "source": "related-queries",
@@ -33,7 +43,7 @@
   {
    "kind": "value",
    "match": 0.667,
-   "page": "index.html",
+   "page": "zh/index.html",
    "q": "sonny angel pumpkin",
    "seed": "sonny angel",
    "source": "related-queries",
@@ -43,7 +53,7 @@
   {
    "kind": "value",
    "match": 0.667,
-   "page": "index.html",
+   "page": "zh/index.html",
    "q": "sonny angel costume",
    "seed": "sonny angel",
    "source": "related-queries",
@@ -66,7 +76,7 @@
   {
    "kind": "value",
    "match": 0.5,
-   "page": "index.html",
+   "page": "zh/index.html",
    "q": "shu uemura sonny angel",
    "seed": "sonny angel",
    "source": "related-queries",
@@ -135,8 +145,8 @@
   },
   {
    "kind": "value",
-   "match": 0.475,
-   "page": "time-zone-planner.html",
+   "match": 0.487,
+   "page": "zh/shop.html",
    "q": "jellycat advent calendar 2026",
    "seed": "jellycat",
    "source": "related-queries",
@@ -185,16 +195,6 @@
   },
   {
    "kind": "value",
-   "match": 0.59,
-   "page": "collecting/trading-meetup-checklist.html",
-   "q": "sonny angel advent calendar 2026",
-   "seed": "sonny angel",
-   "source": "related-queries",
-   "stand": "2026-11-01",
-   "v": 1450
-  },
-  {
-   "kind": "value",
    "match": 0.2,
    "page": "rarity.html",
    "q": "crumbl labubu ube dot cake",
@@ -206,7 +206,7 @@
   {
    "kind": "value",
    "match": 0.5,
-   "page": "index.html",
+   "page": "zh/index.html",
    "q": "sonny angel advent calendar",
    "seed": "sonny angel",
    "source": "related-queries",
@@ -246,7 +246,7 @@
   {
    "kind": "value",
    "match": 0.5,
-   "page": "index.html",
+   "page": "zh/index.html",
    "q": "sonny angel monster high",
    "seed": "sonny angel",
    "source": "related-queries",
@@ -256,7 +256,7 @@
   {
    "kind": "value",
    "match": 0.5,
-   "page": "index.html",
+   "page": "zh/index.html",
    "q": "pumpkin patch sonny angel",
    "seed": "sonny angel",
    "source": "related-queries",
@@ -264,7 +264,7 @@
    "v": 140
   }
  ],
- "generated": "2026-11-06",
+ "generated": "2026-11-07",
  "geo": "US",
  "heat_source": "no public aggregate endpoint on this site — heat needs either a Worker /api/* aggregate route or the D1 read permission on the deploy token",
  "hot_pages": [],

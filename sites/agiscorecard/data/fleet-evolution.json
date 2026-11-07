@@ -3,7 +3,7 @@
   "site": "agiscorecard",
   "signals": {
     "membership": {
-      "ready": true,
+      "ready": false,
       "has_paid_members": false,
       "has_active_members": false
     },
@@ -26,6 +26,13 @@
   },
   "actions": [
     {
+      "kind": "membership_health",
+      "priority": 92,
+      "reason": "membership API is not ready",
+      "evidence": {},
+      "mode": "alert"
+    },
+    {
       "kind": "content_gap",
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
@@ -43,7 +50,7 @@
       "evidence": {
         "page": "/ai-futures",
         "n7_band": "10-99",
-        "p7_band": "0"
+        "p7_band": "10-99"
       },
       "mode": "queue"
     }
