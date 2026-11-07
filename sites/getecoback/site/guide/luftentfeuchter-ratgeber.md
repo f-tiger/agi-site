@@ -66,7 +66,7 @@ Fürs Schlafzimmer lohnt sich ein leises, elektrisches Modell mit niedrigem Nach
 
 ## Was kostet der Betrieb?
 
-Ein typischer Kompressor-Luftentfeuchter für Wohnräume hat eine Leistungsaufnahme von rund 300 Watt. Bei einem Strompreis von 0,30 €/kWh kostet eine Stunde Betrieb also etwa **0,09 €**. Entscheidend ist, wie lange das Gerät wirklich läuft: Mit einem Hygrostat, der bei Erreichen der Zielfeuchte abschaltet, kommt man in einem normal feuchten Raum oft mit wenigen Euro im Monat aus; im Dauerbetrieb zur Neubautrocknung summiert es sich entsprechend. Wie du den Verbrauch von Kühl- und Entfeuchtungsgeräten generell einordnest, erklärt unser [Ratgeber zu den Stromkosten](https://getecoback.com/guide/klimaanlage-stromkosten.html).
+Ein Rechenbeispiel: Bei angenommenen 300 Watt über eine Stunde werden 0,3 kWh verbraucht. Mit einem angenommenen Strompreis von 0,30 €/kWh sind das **0,09 €**. Das ist keine Verbrauchsmessung oder Monatskosten-Zusage. Regelung, Abtauen, Lüfter und tatsächliche Laufzeit können den Verbrauch ändern. Wie du den ganzen Betrieb mit eigenen kWh-Werten oder einer gekennzeichneten Schätzung einordnest, zeigt der [Ratgeber zu Stromkosten und Laufzeit eines Luftentfeuchters](https://getecoback.com/guide/luftentfeuchter-dauerbetrieb-stromkosten.html).
 
 ## Ehrlich: Ein Entfeuchter kühlt die Luft nicht
 
@@ -103,7 +103,7 @@ Luftentfeuchter auf Amazon.de ansehen →
 
 **Weitere Ratgeber**
 [Klimaanlage vs. Luftkühler — was kühlt wirklich? →](https://getecoback.com/guide/klimaanlage-vs-luftkuehler.html)
-[Was kostet eine Klimaanlage an Strom? →](https://getecoback.com/guide/klimaanlage-stromkosten.html)
+[Stromkosten und Laufzeit des Luftentfeuchters prüfen →](https://getecoback.com/guide/luftentfeuchter-dauerbetrieb-stromkosten.html)
 [Klimaanlage & Luftkühler reinigen →](https://getecoback.com/guide/klimaanlage-reinigen.html)
 
 ## Herstellerdaten vor dem Kauf prüfen

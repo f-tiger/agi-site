@@ -3,6 +3,8 @@ on:
   pull_request:
     paths:
       - 'sites/getecoback/**'
+      - 'tools/eco-reporting/**'
+      - '.github/workflows/eco-readonly-report.yml'
       - 'tools/eco_evolution.py'
       - 'tools/eco_demand_model.py'
       - 'tools/test_eco_demand_model.py'
@@ -50,6 +52,7 @@ jobs:
         run: |
           # Check committed buyer modules before generators can repair missing markup.
           node --test tools/test_buyer_decision.mjs
+          node --test ../../tools/eco-reporting/report.test.mjs
           node --test tools/test_mcp_moisture.mjs
           node ../../tools/member-studio/test-isolation.mjs
           node ../../tools/member-studio/test-failure.mjs
@@ -135,6 +138,8 @@ jobs:
           python3 tools/check_expansion_queue.py
           python3 tools/build_search.py
           python3 tools/check_related.py
+          python3 tools/test_social_previews.py
+          python3 tools/build_social_previews.py
           python3 tools/build_sitemap.py
           python3 tools/build_llmstxt.py
           python3 tools/build_agent_md.py
@@ -164,6 +169,8 @@ jobs:
           python3 tools/build_mcp_guides.py
           node --test tools/test_mcp_guides.mjs
           python3 tools/build_home_order.py
+          python3 tools/build_social_previews.py
+          python3 tools/build_social_previews.py --check
           python3 tools/check_adlabel.py
           python3 tools/test_conversion_routes.py
           node --test tools/test_demand_search.mjs

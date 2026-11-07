@@ -45,7 +45,7 @@ Luftentfeuchter auf Amazon.de ansehen →
 
 Heizen allein entfernt kein Wasser aus dem Raum. Für einen Kostenvergleich zählen die tatsächlich eingesetzte Heizenergie, der Energietarif, notwendige Lüftung und der Stromverbrauch des Entfeuchters. Die Wattzahl allein entscheidet nicht, welche Lösung günstiger ist.
 
-Vergleiche denselben abgeschlossenen Trocknungsvorgang unter passenden Bedingungen. Ohne gemessenen Verbrauch und vergleichbaren Trocknungsgrad lässt sich keine allgemeine Ersparnis gegenüber Heizen oder einem Trockner zusagen. Wie sich Watt-Angaben in Euro übersetzen, rechnet dir unser [Ratgeber zu den Stromkosten](https://getecoback.com/guide/klimaanlage-stromkosten.html) vor.
+Vergleiche denselben abgeschlossenen Trocknungsvorgang unter passenden Bedingungen. Ohne gemessenen Verbrauch und vergleichbaren Trocknungsgrad lässt sich keine allgemeine Ersparnis gegenüber Heizen oder einem Trockner zusagen. Im [Rechner für die Stromkosten je gleich trockener Wäscheladung](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#laundry-check) kannst du eigene kWh-Werte oder eine gekennzeichnete Schätzung vergleichen. Zusätzliche Raumheizung und Lüftungswärme sind darin nicht enthalten.
 
 ## Was kostet eine Ladung Wäsche mit dem Luftentfeuchter?
 
@@ -98,7 +98,7 @@ Beachte die Aufstellhinweise des Hygrometers und miss an vergleichbaren Stellen.
 [Luftentfeuchter gegen Schimmel: Was er wirklich kann →](https://getecoback.com/guide/luftentfeuchter-gegen-schimmel.html)
 [Luftentfeuchter-Ratgeber: welches Gerät passt? →](https://getecoback.com/guide/luftentfeuchter-ratgeber.html)
 [Luftentfeuchter für 15 qm →](https://getecoback.com/guide/luftentfeuchter-15-qm.html)
-[Was kostet der Betrieb an Strom? →](https://getecoback.com/guide/klimaanlage-stromkosten.html)
+[Direkte Stromkosten je gleich trockener Wäscheladung vergleichen →](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#laundry-check)
 
 ## Herstellerdaten vor dem Kauf prüfen
 **So vergleichst du die Herstellerdaten**
