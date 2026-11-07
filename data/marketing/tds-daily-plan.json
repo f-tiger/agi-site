@@ -390,7 +390,7 @@
     "id": "tds-country-buying-20261107",
     "updated": "2026-11-07",
     "owner_direction": "每月全站总收入 $100",
-    "status": "country_baseline_live_comparison_upgrade_pending_release",
+    "status": "comparison_upgrade_live_verified_revenue_unverified",
     "goal": {
       "usd": 100,
       "period": "calendar_month",
@@ -430,18 +430,20 @@
       "end_inclusive": "2026-11-21",
       "review_on": "2026-11-22",
       "note": "Preserve the existing 14-day operational window. Log the comparison release actual first complete day separately if later; no backfill. Calendar-month merchant/payment evidence determines total revenue. Pending, missing or failed coverage remains null/unknown.",
-      "comparison_first_complete_utc_day": null
+      "comparison_first_complete_utc_day": "2026-11-08"
     },
     "delivered_flow": [
       "Three country entries within existing localized hub routes",
       "Four guides with dated primary-source examples",
       "Original three-panel TikTok carousel and exact caption staged for review",
       "Complete-date shopping aggregate by country/path/merchant",
-      "Calendar-month evidence ledger validation and explicit scenario calculator"
+      "Calendar-month evidence ledger validation and explicit scenario calculator",
+      "Six source-backed localized options, task filters and browser-local three-item comparison",
+      "Bounded shortlist sharing and separate official/affiliate/item/placement measurements"
     ],
     "commercial_readiness": {
-      "affiliate": "Existing US/DE mechanism; one verified US exact-model identity B07KN5G9CQ joins configured links pending release. IKEA and official Japan references are noncommissionable. Shared tags still prevent verified TDS-exclusive earnings.",
-      "membership": "NOT READY",
+      "affiliate": "Existing US/DE mechanism; one verified US exact-model identity B07KN5G9CQ is live with configured links. IKEA and official Japan references are noncommissionable. Shared tags still prevent verified TDS-exclusive earnings.",
+      "membership": "No verified paid purchase or fulfillment. Read-only payment configuration health reports ready; commercial validation remains incomplete.",
       "direct_sale": "No live paid offer",
       "sponsorship": "No evidenced buyer or contract"
     },
@@ -496,8 +498,8 @@
     "actions": [
       {
         "date": "2026-11-07",
-        "task": "Country paths and named source examples are deployed; integrate six-option comparison as a distinct follow-up with separate receipts",
-        "state": "country_baseline_verified_comparison_upgrade_pending",
+        "task": "Country baseline and six-option comparison are deployed with separate source, browser and production receipts",
+        "state": "country_and_comparison_releases_verified",
         "owner": "product_release_owner",
         "cadence": "once on recorded date; continue only with new evidence or pending dependency",
         "evidence_rule": "Record only actual completed work; unavailable metrics and unresolved dependencies remain unknown."
@@ -505,7 +507,7 @@
       {
         "date": "2026-11-08",
         "task": "Verify live comparison and bounded measurements if released; inspect the already approved/submitted TikTok item without duplicating it",
-        "state": "comparison_live_verification_pending_tiktok_confirmation_pending",
+        "state": "comparison_live_verified_tiktok_confirmation_pending",
         "owner": "growth_operator",
         "cadence": "once on recorded date; continue only with new evidence or pending dependency",
         "evidence_rule": "Record only actual completed work; unavailable metrics and unresolved dependencies remain unknown."
@@ -596,20 +598,30 @@
     },
     "upgrade_release": {
       "scope": "six-option source-backed comparison and bounded item/placement measurement",
-      "status": "pending_integration_and_production_verification",
-      "commit": null,
-      "pull_request": null,
-      "workflow_run": null,
-      "verified_at": null,
-      "live_checks": [],
+      "status": "verified",
+      "commit": "60989ffb5ae107cced346eb09eef820d909dc49b",
+      "pull_request": "https://github.com/f-tiger/agi-site/pull/273",
+      "workflow_run": "https://github.com/f-tiger/agi-site/actions/runs/42335131365",
+      "verified_at": "2026-11-07T03:44:00Z",
+      "live_checks": [
+        "Production build stamp matches merged commit",
+        "Three-language production browser: nine functional scenarios and five exact asset hashes",
+        "No product API event, non-GET request or merchant visit during production QA; optional telemetry/auth reads blocked",
+        "314 public-page GA4 build coverage and 74 live sampled routes; backend receipt not tested",
+        "Shopping schema v2 indexed production query verified; pending first complete UTC day, counts unknown",
+        "Canonical/hreflang, text mirrors, final routing, structured data and retired URLs verified"
+      ],
       "indexnow": {
-        "status": null,
-        "accepted": null,
+        "status": 200,
+        "accepted": true,
+        "changed_urls": 173,
+        "workbench_urls": 8,
         "indexing": "unknown"
       },
-      "ga4_backend_receipt": "not_established",
+      "ga4_backend_receipt": "not-tested",
       "owner": "product_release_owner",
-      "report": "docs/tds-affiliate-benchmarks-2026-11-07.md"
+      "report": "docs/tds-affiliate-benchmarks-2026-11-07.md",
+      "external_distribution": "Existing approved TikTok submission remains awaiting platform confirmation at last bounded check; no new post."
     },
     "benchmark_upgrade": {
       "decision_date": "2026-11-07",
