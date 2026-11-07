@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 7,
   "site": "tds",
   "start_date": "2026-10-12",
   "days": 30,
@@ -1141,5 +1141,61 @@
         }
       }
     }
-  ]
+  ],
+  "traffic_goal": {
+    "id": "tds-daily-users-1000-20261107",
+    "owner_goal": "Continue improving TDS until traffic reaches 1000 people per day",
+    "operating_acceptance_assumption": "Mean of seven consecutive complete GA4 daily totalUsers >=1000; a measured-user proxy, not verified natural people or each-day minimum",
+    "owner_confirmed_metric_definition": false,
+    "hostname": "thedollscout.com",
+    "date_window": "10daysAgo through 4daysAgo in property timezone; three complete reporting-date processing buffer",
+    "metric": "date dimension / totalUsers metric",
+    "status": "blocked_missing_read_access",
+    "actual_daily_users": null,
+    "qualified_visitors": null,
+    "revenue_goal_preserved": "USD100 total TDS-attributable revenue per calendar month, after refunds/reversals before costs",
+    "private_reporting": "Raw Google reports, counts, property identifiers, tokens and API errors are not published; fixed health/result only",
+    "evidence_rules": [
+      "No Cloudflare uniques, anonymous actions, PV or QA as user evidence",
+      "Seven explicit unique contiguous days; missing data is unknown",
+      "Reject thresholding, sampling and other-row data loss",
+      "Frontend collection does not prove GA4 backend receipt"
+    ],
+    "cadence": "Existing 06:00 UTC report and existing growth reviews only; no new scheduler or spending",
+    "next_dependency": "Existing GA4_PROPERTY_ID_TDS and GA4_SERVICE_ACCOUNT_JSON repository secrets plus TDS property Viewer access; no secrets in chat",
+    "report": "docs/tds-traffic-1000-2026-11-07.md"
+  },
+  "growth_iteration": {
+    "id": "tds-task-entry-20261107",
+    "status": "implementation_verified_release_pending",
+    "benchmark_reference": "docs/tds-affiliate-benchmarks-2026-11-07.md",
+    "observed_gap": "84 localized series links still used old collector guide;24 brand tool handoffs did not choose task-specific new shopping destinations",
+    "delivered": [
+      "84 series pages link own-language display comparison",
+      "24 brand pages link plush or rigid-display buying task",
+      "HTML/text source parity, real template modification date without fabricated source refresh",
+      "Private health-only GA4/GSC reporting using existing cadence"
+    ],
+    "local_validation": {
+      "mobile_navigation_paths": 18,
+      "locales": [
+        "en",
+        "de",
+        "zh"
+      ],
+      "width_px": 390,
+      "javascript_and_no_javascript": true,
+      "original_tools": "passed",
+      "external_or_production_requests": 0,
+      "live_receipt": "pending"
+    },
+    "not_proven": [
+      "incremental acquisition",
+      "higher CTR/CVR",
+      "1000 daily users",
+      "attributable revenue"
+    ],
+    "next_action": "Release and verify; restore readonly evidence; select subsequent growth change from matched-date channel/country/task evidence",
+    "release": null
+  }
 }

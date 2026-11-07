@@ -1,7 +1,19 @@
-# TDS product and commercial context — version 8.0 (2026-11-07)
+# TDS product and commercial context — version 9.0 (2026-11-07)
 
-**Document version:** v8
+**Document version:** v9
 **Last updated:** 2026-11-07
+
+## Daily traffic objective — current steering 2026-11-07
+
+The owner asks for continuing improvement toward 1,000 people per day. The disclosed operating assumption is a seven-complete-reporting-day mean of GA4 daily totalUsers >=1,000 on the canonical TDS hostname; it remains a measured-user proxy, not independently verified natural people, seven-day distinct users divided by seven, or a claim that every day meets the threshold. The owner has not separately confirmed this metric definition. Keep the existing USD100 total-site monthly revenue goal below. Both actual daily users and attributable revenue are currently unknown.
+
+First evidenced gap: 84 localized series CTAs still pointed to the old collector guide (ZH also lost its language), and 24 brand tool handoffs did not select the new task-specific buying guide. Route rigid figures to same-language display comparison and Jellycat to plush display, preserving tools and no-JavaScript navigation. Source dates are not rewritten as new verification. This is a path repair, not demonstrated acquisition or conversion lift.
+
+Restore existing GA4 read access before claiming progress. The existing 06:00 UTC job now checks seven explicit daily totalUsers rows with hostname, property-timezone, maturity and quality guards; missing, sampled or incomplete data stays unknown. Public logs expose fixed health/result only. Raw GA4 data stays in memory; the old GSC reader runs in a disposable private directory with captured logs. Remove their raw report files from public commit paths. Do not substitute Cloudflare unique IP or anonymous first-party events for users, publish private account data, create credentials, increase account permissions or buy connector access.
+
+Use existing review cadence and the actual new release date; retain the shopping observation window and historical experiments. Next work follows available channel/country/landing evidence and task feedback: US display, DE local display/storage, UK official Jellycat guidance. The already approved TikTok item must be reconciled without a duplicate; this objective does not add external sending or spending authority. Detailed prompt passes, two self-challenges, actions and evidence contract: repository-root `docs/tds-traffic-1000-2026-11-07.md`. New release is pending its own receipt; the six-option release below is already verified in PR #273, whose final receipt supersedes its historical implementation wording.
+
+## Six-option comparison positioning — v8 snapshot
 
 **Decision and release boundary:** TDS is an independent collector buying guide with free fit and collection tools. The country-buying release is already verified (PR #270); the new six-option comparison is being integrated and must not be called live until its own build, browser, production and measurement receipts are recorded. This version implements the owner's latest TDS benchmark decision, not an ECO change. See repository-root `docs/tds-affiliate-benchmarks-2026-11-07.md` and its 17-source evidence JSON. The report distinguishes publisher claims, indexed pages, access limits and unverified conversion metrics.
 
@@ -58,6 +70,8 @@ New conversion measurement is pending release validation: `shopping_compare` is 
 Keep the existing **2026-11-08–2026-11-21 UTC** observation window and **2026-11-22** review; log the comparison release's actual first complete day separately if it lands later. The older organizer/MCP/search experiments retain their own dates and unverified outcomes; a new priority does not complete them. Read the normal cached aggregate once per existing review iteration; do not turn sparse or unavailable data into zeros. Fewer than 30 qualified cohort visits means acquisition evidence is insufficient; at least 30 without a merchant exit calls for a task/offer review; 100 mature merchant-reported clicks without commission calls for eligibility, destination, tracking and lag checks. If only action counts are available, the visit-based gate remains unknown. These are exploratory operating lines, not statistical proof. Keep comparison, search CTR, site exits, merchant orders and recognized revenue on matching but separate denominators.
 
 ## Changelog
+
+- v9 (2026-11-07) — Added the owner’s daily traffic objective and explicit proxy limits; repaired localized series/brand handoffs and isolated private Google reporting. Preserved the USD100 goal, older experiment windows and verified comparison release. New growth release requires its own receipt.
 
 - v8 (2026-11-07) — Repositioned the active buying path around six source-backed options and local comparison, added TIWIB/Wirecutter evidence limits, country/category owners and stop rules, retained the $100 site-total goal and experiment dates, and corrected the already approved/submitted TikTok state without claiming publication, release or revenue success.
 

@@ -47,34 +47,26 @@ jobs:
           cat traffic-report.md >> "$GITHUB_STEP_SUMMARY"
           rm -f traffic-report.md
 
-      # GA4 and Search Console ride the same daily job. Both scripts exit 0
-      # when their credentials are absent, printing what is missing — so this
-      # is safe to ship before the owner finishes the console setup, and the
-      # job summary itself becomes the reminder of what remains.
-      - name: Pull GA4 via the Data API
+      # Reuse the existing cadence. Only fixed health/goal status may enter
+      # public logs; raw Google reports must not be committed or uploaded.
+      - name: Test private traffic reporting and goal contract
+        run: node --test scripts/traffic-goal-tests.mjs scripts/private-gsc-health-tests.mjs
+
+      - name: Check GA4 daily-user goal without publishing private reports
         env:
           GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID_TDS }}
           GA4_SERVICE_ACCOUNT_JSON: ${{ secrets.GA4_SERVICE_ACCOUNT_JSON }}
         run: |
-          node scripts/ga4-report.mjs | tee ga4-report.md
-          cat ga4-report.md >> "$GITHUB_STEP_SUMMARY"
-          rm -f ga4-report.md
+          set -o pipefail
+          node scripts/traffic-goal.mjs | tee -a "$GITHUB_STEP_SUMMARY"
 
-      - name: Pull Search Console via the API
+      - name: Check Search Console access without publishing private reports
         env:
           GSC_SITE: sc-domain:thedollscout.com
           GA4_SERVICE_ACCOUNT_JSON: ${{ secrets.GA4_SERVICE_ACCOUNT_JSON }}
         run: |
-          node scripts/gsc-report.mjs | tee gsc-report.md
-          cat gsc-report.md >> "$GITHUB_STEP_SUMMARY"
-          rm -f gsc-report.md
-
-      # content/ga4.json and content/gsc.json only exist once the Google
-      # credentials are configured, which they are not. Listing them in a bare
-      # `git add` aborted the whole call, so content/traffic.json was staged
-      # too — this job ran green every night from 2026-08-01 and committed
-      # nothing, discarding eleven days of edge traffic. commit-generated.sh
-      # filters to what exists and warns about what does not.
+          set -o pipefail
+          node scripts/private-gsc-health.mjs | tee -a "$GITHUB_STEP_SUMMARY"
 
       # First-party D1 snapshot (2026-08-19): aggregates from dollscout-events
       # written back to the repo. This file is the ONLY path the growth loop has
@@ -164,8 +156,8 @@ jobs:
       - name: Commit the day's numbers
         run: |
           bash scripts/commit-generated.sh traffic-bot \
-            "chore: record daily metrics (edge / GA4 / GSC)" \
-            content/traffic.json content/ga4.json content/gsc.json content/d1-snapshot.json content/document-metrics.json
+            "chore: record daily edge and first-party metrics" \
+            content/traffic.json content/d1-snapshot.json content/document-metrics.json
 
       # Reuse one cached, indexed aggregate read. Public summary omits counts and inputs.
       # Existing 06:00 UTC cadence is unchanged; no new schedule or model call.
