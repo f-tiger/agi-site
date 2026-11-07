@@ -21,7 +21,7 @@ Never paste a private key into chat, a workflow input, a commit or a log.
 
 `Read ECO official analytics privately` → `preflight` only checks credential
 presence and JSON/key validity. It sends no request to Google. Missing credentials
-produce `blocked` and a failed step, not zero traffic. `credentials_present` is
+produce `blocked` and an explicit setup warning during preflight, with no report or traffic claim. A requested `report` still fails until access is configured. Invalid credentials and runtime/API failures remain errors. `credentials_present` is
 not evidence that the service account can access either property.
 
 The equivalent single read-only preflight dispatch, after this workflow exists

@@ -1,0 +1,28 @@
+name: Check source health and reporting setup
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/check-workflow-health.yml'
+      - '.github/workflows/deploy-agiscorecard.yml'
+      - '.github/workflows/eco-readonly-report.yml'
+      - 'tools/eco-reporting/**'
+      - 'sites/agiscorecard/tools/foresight/source_health.py'
+      - 'sites/agiscorecard/tools/foresight/test_source_health.py'
+      - 'sites/thedollscout/lib/collection-cloud.js'
+      - 'sites/thedollscout/scripts/collection-cloud.test.mjs'
+permissions:
+  contents: read
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: |
+          python3 sites/agiscorecard/tools/foresight/test_source_health.py
+          python3 sites/agiscorecard/tools/foresight/test_refresh.py
+          python3 sites/agiscorecard/tools/futures/test_refresh.py
+          node --test tools/eco-reporting/report.test.mjs
+          node --test sites/thedollscout/scripts/collection-cloud.test.mjs

@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   verify:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # Pinned Playwright browser runtime; ubuntu-latest may be unsupported
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -24,5 +24,10 @@ jobs:
       - run: node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps chromium --only-shell
       - run: node --test sites/agiscorecard/tools/test_invest_research.mjs
       - run: node sites/agiscorecard/tools/browser_invest_research.cjs
+      # Match production: the checked-in sitemap includes generated routes.
+      - name: Generate membership and workbench routes before full-site validation
+        run: |
+          node tools/revenue-studio/build.mjs --site agi --out sites/agiscorecard
+          (cd sites/agiscorecard && python3 tools/add_breadcrumbs.py --apply)
       - run: python3 sites/agiscorecard/tools/validate.py
       - run: python3 sites/agiscorecard/tools/check_hreflang.py

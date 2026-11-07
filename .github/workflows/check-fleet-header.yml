@@ -11,7 +11,7 @@ on:
       - '.github/workflows/check-fleet-header.yml'
 jobs:
   header:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # Pinned Playwright browser runtime; ubuntu-latest may be unsupported
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

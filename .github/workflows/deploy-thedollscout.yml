@@ -51,7 +51,7 @@ jobs:
     permissions:
       contents: write
     timeout-minutes: 25
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # Pinned Playwright browser runtime; ubuntu-latest may be unsupported
     defaults:
       run:
         working-directory: sites/thedollscout
@@ -482,7 +482,7 @@ jobs:
   publish-mcp:
     needs: deploy
     if: github.event_name == 'push' && contains(github.event.head_commit.message, '[mcp-publish]') && !contains(github.event.head_commit.message, '[outcome-readonly-release]')
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # Pinned Playwright browser runtime; ubuntu-latest may be unsupported
     permissions:
       contents: read
       id-token: write
