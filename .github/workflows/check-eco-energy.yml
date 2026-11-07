@@ -189,7 +189,7 @@ jobs:
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_revenue.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_buyer_decision.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_moisture_analytics.cjs
-          NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-journey-qa" node tools/browser_moisture_journeys.cjs
+          NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa/moisture-journeys" node tools/browser_moisture_journeys.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/test-public-engagement-browser.mjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_winter.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_au_cooling.cjs
@@ -209,7 +209,5 @@ jobs:
         if: always()
         with:
           name: eco-energy-browser-evidence
-          path: |
-            ${{ runner.temp }}/eco-energy-qa
-            ${{ runner.temp }}/eco-journey-qa
+          path: ${{ runner.temp }}/eco-energy-qa
           retention-days: 7
