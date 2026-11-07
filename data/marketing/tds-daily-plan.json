@@ -325,7 +325,7 @@
       "date": "2026-11-07",
       "phase": "country-growth",
       "action": "Source-backed shopping countries, calendar-month total revenue model, marketing assets and complete-date measurement",
-      "status": "implemented_pending_release_verification",
+      "status": "deployed_and_live_verified_social_draft_pending_approval",
       "receipt": "docs/tds-country-growth-2026-11-07.md",
       "external_posts": 0
     },
@@ -352,7 +352,7 @@
     "updated": "2026-11-07",
     "owner_direction": "Research user pain points; execute toward USD100 monthly total site revenue with proactive marketing and country-specific categories.",
     "primary": "US display decisions and DE authorized sourcing/accessories, with useful UK Jellycat regional guidance.",
-    "status": "implemented_pending_release_verification",
+    "status": "deployed_and_live_verified",
     "receipt": "docs/tds-country-growth-2026-11-07.md",
     "preserve": [
       "Existing free tools, organizer/MCP experiment history and published-post windows",
@@ -364,7 +364,7 @@
     "id": "tds-country-buying-20261107",
     "updated": "2026-11-07",
     "owner_direction": "每月全站总收入 $100",
-    "status": "implemented_pending_release_verification",
+    "status": "deployed_and_live_verified",
     "goal": {
       "usd": 100,
       "period": "calendar_month",
@@ -435,12 +435,12 @@
       {
         "date": "2026-11-07",
         "task": "Research questions and primary sources; implement country paths and useful named examples",
-        "state": "implemented_pending_release"
+        "state": "deployed_and_live_verified"
       },
       {
         "date": "2026-11-08",
         "task": "Verify live shopping report pending/complete-date behavior and source links; review exact carousel for bounded publication",
-        "state": "prepared"
+        "state": "live_measurement_and_assets_verified_publication_approval_pending"
       },
       {
         "date": "2026-11-09",
@@ -482,9 +482,26 @@
     "operations": "tools/affiliate-growth/tds-operations.json",
     "research": "docs/tds-country-growth-2026-11-07.md",
     "release": {
-      "status": "pending",
+      "status": "verified",
+      "commit": "a53c1d1ee2735dc8a8880eccdc3c48957643d6e1",
+      "pull_request": "https://github.com/f-tiger/agi-site/pull/270",
+      "workflow_run": "https://github.com/f-tiger/agi-site/actions/runs/42331084780",
+      "verified_at": "2026-11-07T02:51:15Z",
+      "checks": [
+        "Production build stamp matches merged commit",
+        "Country buying pages and three original marketing images return 200; image bytes match reviewed assets",
+        "Indexed shopping aggregate is healthy and pending/null before first complete day",
+        "Existing daily health-only reporter succeeds against production",
+        "314 public GA4 routes configured, 74 sampled live routes verified; backend receipt not tested"
+      ],
+      "indexnow": {
+        "changed_urls": 172,
+        "status": 200,
+        "accepted": true,
+        "indexing": "unknown"
+      },
       "external_posts": 0,
-      "scheduler": "Existing cadence retained; no added scheduler or paid model."
+      "scheduler": "Existing cadence retained; shopping health read added without new schedule or model calls."
     }
   },
   "previous_experiments": [
