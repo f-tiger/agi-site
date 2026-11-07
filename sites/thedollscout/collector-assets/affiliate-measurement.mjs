@@ -1,10 +1,11 @@
-// First-party merchant clicks only. Shared fleet analytics owns the GA4 event.
-// Never send search terms, product names, full links or user-provided values.
-const SHOP_PATH = /^\/(?:de\/|zh\/)?(?:shop(?:\/(?:display-cases|storage-transport|plush-display|collector-gifts))?)?$/;
+// First-party shopping actions only. Shared fleet analytics owns GA4 events.
+// Never send search terms, arbitrary product labels, full links or user inputs.
+import {shoppingMarket, shoppingItemAllowed, shoppingLinkPayload} from './shopping-contract.mjs';
 const QA_KEYS = ['ci', '__ci', '__probe', 'qa', '__qa'];
 const installed = new WeakSet();
+const compared = new WeakSet();
 
-export function affiliatePayload(event, runtime = globalThis) {
+function shoppingPath(event, runtime) {
   try {
     const {location, navigator, localStorage, document, window} = runtime;
     const current = new URL(location.href);
@@ -14,17 +15,44 @@ export function affiliatePayload(event, runtime = globalThis) {
         navigator.globalPrivacyControl || navigator.doNotTrack === '1' ||
         localStorage.getItem('tds_analytics_choice_v1') === 'denied' || !event.isTrusted) return null;
     const canonical = new URL(document.querySelector('link[rel="canonical"]').href);
-    if (canonical.origin !== current.origin || !SHOP_PATH.test(canonical.pathname) ||
+    if (canonical.origin !== current.origin || !shoppingMarket(canonical.pathname) ||
         current.pathname.replace(/\.html$/, '') !== canonical.pathname || canonical.search || canonical.hash) return null;
-    const anchor = event.target?.closest?.('a[rel~="sponsored"]');
-    if (!anchor) return null;
-    const merchant = new URL(anchor.href);
-    const host = merchant.hostname.replace(/^www\./, '');
-    const tag = host === 'amazon.com' ? 'ecoback0d-20' : host === 'amazon.de' ? 'getecoback-21' : null;
-    if (!tag || merchant.protocol !== 'https:' || merchant.username || merchant.password || merchant.port ||
-        merchant.searchParams.getAll('tag').length !== 1 || merchant.searchParams.get('tag') !== tag) return null;
-    return {p: canonical.pathname, e: 'affiliate_click', r: 'https://' + host};
+    return canonical.pathname;
   } catch { return null; }
+}
+
+export function affiliatePayload(event, runtime = globalThis) {
+  const p = shoppingPath(event, runtime);
+  if (!p) return null;
+  try {
+    const anchor = event.target?.closest?.('a[rel~="sponsored"],a[data-shopping-official]');
+    if (!anchor) return null;
+    const item = anchor.getAttribute('data-shopping-item'), placement = anchor.getAttribute('data-shopping-placement');
+    return shoppingLinkPayload({p, href: anchor.href, item: item === null ? undefined : item,
+      placement: placement === null ? undefined : placement, affiliate: anchor.relList.contains('sponsored'),
+      official: anchor.hasAttribute('data-shopping-official')});
+  } catch {return null;}
+}
+
+function send(payload, runtime) {
+  // The shared fleet handler owns GA4 delivery. Affiliate clicks already have
+  // its delegated listener; only the two new fixed actions use this bridge.
+  if (['shopping_official_click', 'shopping_compare'].includes(payload.e)) {
+    try {runtime.window.dispatchEvent(new runtime.CustomEvent('fleet:business', {detail: {name: payload.e}}));} catch {}
+  }
+  try {Promise.resolve(runtime.fetch('/api/ev', {method: 'POST', body: JSON.stringify(payload), keepalive: true})).catch(() => {});}
+  catch { /* Measurement never interrupts navigation or comparison. */ }
+}
+
+// Call only after the UI has rendered a comparison from at least two selections.
+// The selected IDs stay in the browser; the event contains no selection list.
+export function recordShoppingCompare(event, selectedIds, runtime = globalThis) {
+  const p = shoppingPath(event, runtime);
+  if (!p || compared.has(event) || !Array.isArray(selectedIds) || selectedIds.length < 2 || selectedIds.length > 3 ||
+      new Set(selectedIds).size !== selectedIds.length || !selectedIds.every(item => shoppingItemAllowed(item, shoppingMarket(p)))) return false;
+  compared.add(event);
+  send({p, e: 'shopping_compare', r: ''}, runtime);
+  return true;
 }
 
 export function installAffiliateMeasurement(runtime = globalThis) {
@@ -33,8 +61,6 @@ export function installAffiliateMeasurement(runtime = globalThis) {
   runtime.document.addEventListener('click', event => {
     const payload = affiliatePayload(event, runtime);
     if (!payload) return;
-    try {
-      Promise.resolve(runtime.fetch('/api/ev', {method: 'POST', body: JSON.stringify(payload), keepalive: true})).catch(() => {});
-    } catch { /* Measurement never interrupts navigation. */ }
+    send(payload, runtime);
   }, true);
 }

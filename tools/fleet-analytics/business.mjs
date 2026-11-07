@@ -142,6 +142,7 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
     if (action) return {name:'tool_' + (action[1] || '') + action[2], tool_id:match[1]};
   }
   if (host === 'thedollscout.com') {
+    if(['/','/de/','/zh/'].some(prefix=>['','shop','shop/display-cases','shop/storage-transport','shop/plush-display','shop/collector-gifts'].some(slug=>pathname===prefix+slug))&&['shopping_compare','shopping_official_click'].includes(name))return {name,tool_id:'shopping-shortlist',repeat:true};
     if(route==='/collecting/event-kit'&&['collector_event_prepare','collector_event_card','collector_event_share','collector_event_text','collector_event_recipient','collector_event_reuse','collector_event_print'].includes(name))return {name,tool_id:'event-kit'};
     if(route==='/collecting/wish-card'&&['collector_wish_generate','collector_wish_export','collector_wish_response_reported','collector_wish_fulfilled_reported'].includes(name))return {name,tool_id:'wish-card'};
     if(route==='/collecting/trading-meetup-checklist'&&['collector_swap_print_request','collector_swap_link_copy'].includes(name))return {name,tool_id:'trading-meetup-checklist'};

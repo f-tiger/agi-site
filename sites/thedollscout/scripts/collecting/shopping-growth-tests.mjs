@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
-import {onRequestGet as growth, SHOPPING_PATHS, SHOPPING_QUERY, CACHE_SECONDS, shoppingWindow, shoppingQueryWithPlan, aggregateShopping} from '../../functions/api/shopping-growth.js';
+import {onRequestGet as growth, SHOPPING_PATHS, SHOPPING_QUERY, CACHE_SECONDS, SCHEMA_VERSION, shoppingWindow, shoppingQueryWithPlan, aggregateShopping} from '../../functions/api/shopping-growth.js';
+import {SHOPPING_TUPLES, shoppingTupleAllowed} from '../../collector-assets/shopping-contract.mjs';
 import {usesDateRangeIndex} from '../../functions/api/collector-growth.js';
 import {onRequestPost as beacon} from '../../functions/api/ev.js';
 import {shoppingSlugs} from './shopping.mjs';
@@ -26,7 +27,7 @@ async function atDate(value, callback) {
   try {return await callback();} finally {globalThis.Date = Original;}
 }
 const firstWindow = shoppingWindow(new Date('2026-11-09T12:00:00Z'));
-const validRow = () => ({d: '2026-11-08', path: '/shop/display-cases', country_code: 'US', ev: 'affiliate_click', merchant: 'amazon.com', n: 1});
+const validRow = () => ({d: '2026-11-08', path: '/shop/display-cases', country_code: 'US', ev: 'affiliate_click', merchant: 'amazon.com', item: 'unknown', placement: 'unknown', n: 1});
 
 test('Shopping scope matches the deployed home and five guide routes in all three languages', () => {
   assert.deepEqual(SHOPPING_PATHS, ['/', '/de/', '/zh/'].flatMap(prefix => ['', ...shoppingSlugs].map(path => prefix + path)));
@@ -73,13 +74,56 @@ test('Real indexed SQL groups country/path/day/action and exposes only fixed mer
   assert.equal(usesDateRangeIndex(db.prepare('EXPLAIN QUERY PLAN ' + SHOPPING_QUERY).all(...bounds)), true);
   const rows = db.prepare(SHOPPING_QUERY).all(...bounds), report = aggregateShopping(rows, firstWindow);
   assert.doesNotMatch(JSON.stringify(rows), /PRIVATE|__ci|collection_save|members/);
-  assert.deepEqual(report.counts, {pageviews: 4, affiliate_clicks: 6});
+  assert.deepEqual(report.counts, {pageviews: 4, affiliate_clicks: 6, official_clicks: 0, compare_actions: 0});
   assert.equal(report.daily.find(row => row.country === 'GB').n, 2);
   assert.equal(report.daily.find(row => row.country === 'unknown' && row.merchant === 'unknown').n, 2);
   assert.equal(report.daily.find(row => row.country === 'unknown' && row.merchant === 'amazon.de').n, 1);
-  assert.ok(report.daily.filter(row => row.event === 'pageview').every(row => row.merchant === null));
+  assert.ok(report.daily.filter(row => row.event === 'pageview').every(row => row.merchant === null && row.item === null && row.placement === null));
+  assert.ok(report.daily.filter(row => row.event === 'affiliate_click').every(row => row.item === 'unknown' && row.placement === 'unknown'));
   assert.ok(report.daily.every(row => row.date === '2026-11-08'));
   db.close();
+});
+
+test('SQLite retains existing affiliate totals while grouping known items, placement and separate official/compare actions', () => {
+  const db = database(), insert = db.prepare('INSERT INTO hits(d,path,country,ev,ref) VALUES (?,?,?,?,?)');
+  for (const path of SHOPPING_PATHS) {
+    insert.run('2026-11-08', path, 'US', '', 'PRIVATE referrer');
+    insert.run('2026-11-08', path, 'US', 'shopping_compare', '');
+    insert.run('2026-11-08', path, 'US', 'affiliate_click', path.startsWith('/de/') ? 'amazon.de' : 'amazon.com');
+    for (const tuple of SHOPPING_TUPLES) if (shoppingTupleAllowed({path, ...tuple}))
+      insert.run('2026-11-08', path, 'US', tuple.event, tuple.ref);
+  }
+  const rows = db.prepare(SHOPPING_QUERY).all('2026-11-08', '2026-11-09'), report = aggregateShopping(rows, firstWindow);
+  assert.deepEqual(report.counts, {pageviews: 18, affiliate_clicks: 54, official_clicks: 270, compare_actions: 18});
+  assert.equal(db.prepare("SELECT COUNT(*) AS n FROM hits WHERE ev='affiliate_click'").get().n, report.counts.affiliate_clicks);
+  assert.ok(report.daily.filter(row => row.event === 'shopping_compare').every(row => row.merchant === null && row.item === null && row.placement === null));
+  for (const placement of ['card', 'compare', 'guide']) assert.equal(report.daily.filter(row => row.item === 'niubee-risers' && row.placement === placement).length, 12);
+  assert.equal(report.daily.filter(row => row.item === 'my-bestie').length, 54);
+  assert.doesNotMatch(JSON.stringify(report), /PRIVATE|s1\||selected/);
+  db.close();
+});
+
+test('Malformed stored metadata and wrong market/event tuples make the report unavailable without exposing raw labels', async () => {
+  for (const [path, event, ref] of [
+    ['/shop', 'affiliate_click', 's1|amazon.com|PRIVATE|card'],
+    ['/de/shop', 'affiliate_click', 's1|amazon.com|niubee-risers|card'],
+    ['/shop', 'affiliate_click', 's1|ikea.com|blaliden|card'],
+    ['/shop', 'shopping_official_click', 's1|amazon.com|niubee-risers|card'],
+    ['/shop', 'shopping_official_click', 's1|ikea.com|blaliden|PRIVATE'],
+    ['/shop', 'shopping_official_click', 'PRIVATE'],
+    ['/shop', 'shopping_compare', 'PRIVATE selected items']
+  ]) {
+    const db = database(); db.prepare('INSERT INTO hits(d,path,country,ev,ref) VALUES (?,?,?,?,?)').run('2026-11-08', path, 'US', event, ref);
+    const rows = db.prepare(SHOPPING_QUERY).all('2026-11-08', '2026-11-09');
+    assert.doesNotMatch(JSON.stringify(rows), /PRIVATE/);
+    assert.throws(() => aggregateShopping(rows, firstWindow), /Invalid/);
+    await atDate('2026-11-09T12:00:00Z', async () => {
+      const response = await growth(contextForDB(db)), report = await response.json();
+      assert.equal(response.status, 503); assert.equal(report.counts, null); assert.equal(report.error, 'query_failed');
+      assert.doesNotMatch(JSON.stringify(report), /PRIVATE/);
+    });
+    db.close();
+  }
 });
 
 test('Malformed dates, counts, dimensions and duplicate groups fail instead of becoming zeros or leaking data', () => {
@@ -107,7 +151,8 @@ test('Endpoint distinguishes pending coverage, measured zero and unavailable dat
   });
   await atDate('2026-11-09T12:00:00Z', async () => {
     const report = await (await growth(ctx)).json();
-    assert.deepEqual(report.counts, {pageviews: 0, affiliate_clicks: 0}); assert.equal(report.coveredDays, 1);
+    assert.deepEqual(report.counts, {pageviews: 0, affiliate_clicks: 0, official_clicks: 0, compare_actions: 0}); assert.equal(report.coveredDays, 1);
+    assert.equal(report.schema_version, SCHEMA_VERSION);
     assert.equal(report.unit, 'anonymous_events_not_users'); assert.equal(report.cache_seconds, 300);
     assert.equal(ctx.calls.filter(sql => sql.startsWith('SELECT')).length, 1);
     assert.deepEqual(ctx.params.at(-1), ['2026-11-08', '2026-11-09']);
@@ -158,8 +203,11 @@ test('The ordinary five-minute aggregate cache ignores arbitrary URL input and n
   globalThis.caches = {default: {async match(key) {return stored.get(key.url)?.clone();}, async put(key, response) {stored.set(key.url, response);}}};
   try {await atDate('2026-11-09T12:00:00Z', async () => {
     const db = database(), ctx = contextForDB(db); ctx.request = new Request('https://thedollscout.com/api/shopping-growth');
+    stored.set(ctx.request.url, Response.json({ok: true, schema_version: 1, counts: {pageviews: 99999}}));
     const first = await growth(ctx); assert.equal(first.headers.get('x-tds-aggregate-cache'), 'miss');
     assert.equal(first.headers.get('cache-control'), 'public, max-age=' + CACHE_SECONDS);
+    assert.equal((await first.json()).schema_version, 2);
+    assert.ok(stored.has('https://thedollscout.com/api/shopping-growth/schema-2'));
     ctx.request = new Request('https://thedollscout.com/api/shopping-growth?start=2000-01-01&path=PRIVATE');
     const second = await growth(ctx); assert.equal(second.headers.get('x-tds-aggregate-cache'), 'hit');
     assert.equal(ctx.calls.filter(sql => sql.startsWith('SELECT')).length, 1);

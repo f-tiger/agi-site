@@ -12,7 +12,7 @@ test('shopping publishes every route in all languages with useful comparison and
 });
 test('merchant markets and tags remain explicit, exact and separate',()=>{
  for(const l of Object.keys(locales)){const u=new URL(merchantURL(l,'case & riser'));assert.equal(u.hostname,l==='de'?'www.amazon.de':'www.amazon.com');assert.equal(u.searchParams.get('tag'),l==='de'?'getecoback-21':'ecoback0d-20');assert.equal(u.searchParams.get('k'),'case & riser');
-  for(const p of pages().filter(p=>p[0]===l)){const html=p[4];for(const m of html.matchAll(/href="(https:\/\/www\.amazon\.[^"]+)"/g)){const a=new URL(m[1].replaceAll('&amp;','&'));assert.equal(a.hostname,u.hostname);assert.equal(a.searchParams.get('tag'),u.searchParams.get('tag'));assert.equal(a.pathname,'/s');assert.ok(html.includes(shoppingCopy[l].market));}}
+  for(const p of pages().filter(p=>p[0]===l)){const html=p[4];for(const m of html.matchAll(/href="(https:\/\/www\.amazon\.[^"]+)"/g)){const a=new URL(m[1].replaceAll('&amp;','&'));assert.equal(a.hostname,u.hostname);assert.equal(a.searchParams.get('tag'),u.searchParams.get('tag'));assert.ok(a.pathname==='/s'||(l!=='de'&&a.pathname==='/dp/B07KN5G9CQ'));if(a.pathname==='/s')assert.ok(html.includes(shoppingCopy[l].market));}}
  }
 });
 test('agent text has canonical guides and official sources but never merchant links',()=>{
@@ -20,7 +20,7 @@ test('agent text has canonical guides and official sources but never merchant li
  for(const lang of Object.keys(locales)){const text=shoppingHomeText(lang,route,origin).join('\n');assert.ok(!/amazon\.|[?&]tag=/.test(text));assert.ok(text.includes(origin+route(lang,'shop/display-cases')));}
 });
 test('homepage provides direct functional buying paths without a script or form gate',()=>{
- for(const lang of Object.keys(locales)){const html=shoppingHomeHTML({lang,route,esc});assert.equal((html.match(/<h1>/g)||[]).length,1);for(const slug of shoppingSlugs)assert.ok(html.includes('href="'+route(lang,slug)+'"'));assert.ok(html.includes(shoppingCopy[lang].market));assert.ok(html.includes(shoppingCopy[lang].disclosure));assert.ok(!html.includes('<script'));}
+ for(const lang of Object.keys(locales)){const html=shoppingHomeHTML({lang,route,esc});assert.equal((html.match(/<h1>/g)||[]).length,1);for(const slug of shoppingSlugs)assert.ok(html.includes('href="'+route(lang,slug)+'"'));assert.ok(html.includes(shoppingCopy[lang].market));assert.ok(html.includes(shoppingCopy[lang].disclosure));for(const script of html.matchAll(/<script\b([^>]*)>/g))assert.match(script[1],/^ type="application\/json"/);}
 });
 
 test('country paths are differentiated and UK destinations never borrow a foreign affiliate tag',()=>{
