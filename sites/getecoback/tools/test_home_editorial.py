@@ -5,7 +5,8 @@ from pathlib import Path
 import re
 import unittest
 
-from build_home_order import COLD_DETAILS, DISCOVERY, FOOTER, WARM_DETAILS, compose
+from build_home_order import COLD_DETAILS, DISCOVERY, FOOTER, WARM_DETAILS, compose, find_close_section
+from check_adlabel import LABEL_RE
 
 
 class HomeDOM(HTMLParser):
@@ -139,6 +140,20 @@ class HomeEditorialTest(unittest.TestCase):
         duplicate = self.source.replace(FOOTER, block + FOOTER)
         with self.assertRaisesRegex(ValueError, "duplicate homepage discovery"):
             compose(duplicate, "winter")
+
+    def test_static_commerce_is_labelled_before_links_in_both_seasons(self):
+        for season in ("winter", "sommer"):
+            result = compose(self.source, season)
+            for section_id in ("deals", "guide"):
+                with self.subTest(season=season, section=section_id):
+                    start = re.search(r'<section\b[^>]*\bid="' + section_id + '"', result).start()
+                    section = result[start:find_close_section(result, start)]
+                    label = re.search(r'<p\b[^>]*data-home-commerce-label="' + section_id + r'"[^>]*>.*?</p>', section, re.S)
+                    self.assertIsNotNone(label)
+                    self.assertRegex(label.group(), LABEL_RE)
+                    self.assertNotRegex(label.group(), r'hidden|display\s*:\s*none')
+                    first_merchant = re.search(r'<a\b[^>]*href="https://www\.amazon\.', section)
+                    self.assertLess(label.end(), first_merchant.start())
 
 
 if __name__ == "__main__":

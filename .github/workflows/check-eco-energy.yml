@@ -160,6 +160,7 @@ jobs:
           python3 tools/build_demand_discovery.py
           python3 tools/test_demand_discovery.py
           python3 tools/build_home_order.py
+          python3 tools/check_adlabel.py
           node --test tools/test_demand_search.mjs
           python3 ../../tools/fleet-analytics/coverage.py --site eco --out site --write
           node --test tools/test-public-engagement.mjs
