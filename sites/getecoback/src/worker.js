@@ -1,4 +1,6 @@
 import {citationUrl} from './agent-sources.mjs';
+import {guidePath, publishedGuides, readGuide} from './mcp-guides.mjs';
+import {normalize as normalizeSearch} from '../site/assets/demand-discovery.mjs';
 import {isAnalyticsPath, analyticsResponse} from '../../../tools/fleet-analytics/edge.mjs';
 import {DISTRIBUTION_EVENTS,validDistribution,distributionGrowth} from './distribution-growth.mjs';
 import {LAUNDRY_EVENTS,validLaundryEvent} from './laundry-events.mjs';
@@ -1035,7 +1037,7 @@ const MCP_TOOLS = [
   // installed is enough to be quotable.
   {
     name: "ratgeber_suche",
-    description: "Durchsucht die Ratgeber von getecoback.com und gibt Titel, URL und Kurzbeschreibung zurück. — Searches this site's guides on air conditioning, window sealing, ventilation, heating, dehumidifiers and electricity costs, returning title, URL and summary for each match — citable sources for the answer.",
+    description: "Durchsucht veröffentlichte Ratgeber mit lesbarer Textansicht. — Searches published guides with a readable Markdown mirror, returning title, canonical URL and task-specific summary. Every result can be passed to ratgeber_lesen.",
     inputSchema: {
       type: "object",
       properties: {
@@ -1048,7 +1050,7 @@ const MCP_TOOLS = [
   },
   {
     name: "ratgeber_lesen",
-    description: "Liefert den Volltext eines einzelnen Ratgebers als Klartext. — Returns the full plain text of one guide from getecoback.com so the answer can be written from the source and cited. Pass a path or URL from ratgeber_suche.",
+    description: "Liest die redaktionelle Textansicht eines veröffentlichten Ratgebers. — Reads the cleaned Markdown of a published guide, with reviewed source links, assumptions and limits. Long excerpts are explicitly marked and link the full text. Pass an exact canonical path or URL from ratgeber_suche, without query or fragment.",
     inputSchema: {
       type: "object",
       properties: {
@@ -1064,23 +1066,29 @@ const SEARCH_STOP = new Set([
   "der", "die", "das", "und", "oder", "für", "von", "mit", "auf", "bei", "ein", "eine", "einen",
   "ist", "sind", "wie", "was", "wann", "wo", "welche", "welcher", "welches", "kann", "man", "im",
   "the", "and", "for", "with", "what", "which", "how", "does", "can", "you", "are", "your",
-]);
+].map(normalizeSearch));
 
 function searchTokens(q) {
-  return String(q || "").toLowerCase().split(/[^a-z0-9äöüß]+/)
+  return normalizeSearch(q || "").split(/[^a-z0-9]+/)
     .filter((w) => w.length >= 3 && !SEARCH_STOP.has(w)).slice(0, 12);
 }
 
 function scoreEntry(entry, tokens, phrase) {
-  const title = (entry.t || "").toLowerCase();
-  const desc = (entry.d || "").toLowerCase();
-  const url = (entry.u || "").toLowerCase();
-  let score = 0;
+  const title = normalizeSearch(entry.t || "");
+  const desc = normalizeSearch(entry.d || "");
+  const url = normalizeSearch(entry.u || "");
+  const alias = normalizeSearch(entry.a || "");
+  let score = 0, matched = 0;
   for (const w of tokens) {
+    if ([url, title, desc, alias].some(text => text.includes(w))) matched++;
     if (url.includes(w)) score += 4;
     if (title.includes(w)) score += 3;
+    if (alias.includes(w)) score += 3;
     if (desc.includes(w)) score += 1;
   }
+  // A shared word such as Wohnung must not fill a laundry result with AC
+  // and draught pages. This is bounded lexical matching, not an AI diagnosis.
+  if (matched < Math.ceil(tokens.length / 2)) return 0;
   if (phrase.length >= 6 && (title.includes(phrase) || desc.includes(phrase))) score += 5;
   return score;
 }
@@ -1260,13 +1268,12 @@ async function mcpCallTool(name, args, env) {
     }
     let index = [];
     try {
-      const r = await env.ASSETS.fetch(new Request("https://getecoback.com/search-index.json"));
-      if (r.ok) index = await r.json();
+      index = await publishedGuides(env.ASSETS);
     } catch (e) { index = []; }
     if (!Array.isArray(index) || !index.length) {
       return { content: [{ type: "text", text: "Suchindex derzeit nicht erreichbar." }], isError: true };
     }
-    const phrase = String(a.frage || "").toLowerCase().trim();
+    const phrase = normalizeSearch(a.frage || "").trim();
     const max = Math.max(1, Math.min(10, Number(a.max) || 5));
     const lang = ["de", "en", "fr", "es", "it"].includes(a.sprache) ? a.sprache : null;
     const hits = index
@@ -1289,51 +1296,22 @@ async function mcpCallTool(name, args, env) {
     if (!env || !env.ASSETS) {
       return { content: [{ type: "text", text: "Seite derzeit nicht erreichbar." }], isError: true };
     }
-    // Only this site's own guide pages — a path from ratgeber_suche. Anything
-    // else (other hosts, /api/, traversal) is refused rather than fetched.
-    let path = String(a.pfad || "").trim();
-    if (/^https?:\/\//i.test(path)) {
-      let u = null;
-      try { u = new URL(path); } catch (e) { u = null; }
-      if (!u || !/(^|\.)getecoback\.com$/i.test(u.hostname)) {
-        return { content: [{ type: "text", text: "Nur Seiten von getecoback.com können gelesen werden." }], isError: true };
-      }
-      path = u.pathname;
-    }
-    if (!/^\/(guide|en\/guide|it\/guide|kategorie)\/[a-z0-9-]+\.html$/i.test(path)) {
-      return { content: [{ type: "text", text: "Bitte einen Ratgeber-Pfad angeben, z. B. /guide/klimaanlage-kippfenster.html (aus ratgeber_suche)." }], isError: true };
-    }
-    let html = "";
+    const path = guidePath(a.pfad);
+    if (!path) return { content: [{ type: "text", text: "Bitte einen exakten veröffentlichten Pfad oder eine HTTPS-URL von getecoback.com aus ratgeber_suche angeben, ohne Query oder Fragment." }], isError: true };
+    let guide;
     try {
-      const r = await env.ASSETS.fetch(new Request("https://getecoback.com" + path));
-      if (r.ok) html = await r.text();
-    } catch (e) { html = ""; }
-    if (!html) {
-      return { content: [{ type: "text", text: `Seite nicht gefunden: ${path}` }], isError: true };
+      const entries = await publishedGuides(env.ASSETS);
+      const entry = entries.find(item => item.u === path);
+      if (!entry) return { content: [{ type: "text", text: "Diese Seite ist nicht im veröffentlichten MCP-Lesekatalog. Bitte ratgeber_suche verwenden." }], isError: true };
+      guide = await readGuide(env.ASSETS, entry);
+    } catch {
+      return { content: [{ type: "text", text: "Die geprüfte Textansicht ist derzeit nicht erreichbar. Bitte später erneut versuchen." }], isError: true };
     }
-    const titleM = html.match(/<title>([\s\S]*?)<\/title>/i);
-    const artM = html.match(/<article[^>]*>([\s\S]*?)<\/article>/i);
-    let body = artM ? artM[1] : html;
-    // Drop the injected commerce/interactive layers — an assistant should quote
-    // the editorial text, not our shop cards or scripts.
-    body = body.replace(/<!--EB_[A-Z]+-->[\s\S]*?<!--\/EB_[A-Z]+-->/g, " ")
-      .replace(/<script[\s\S]*?<\/script>/gi, " ")
-      .replace(/<style[\s\S]*?<\/style>/gi, " ")
-      .replace(/<h2[^>]*>([\s\S]*?)<\/h2>/gi, (m, t) => `\n\n## ${t}\n`)
-      .replace(/<h3[^>]*>([\s\S]*?)<\/h3>/gi, (m, t) => `\n\n### ${t}\n`)
-      .replace(/<li[^>]*>/gi, "\n- ")
-      .replace(/<\/(p|div|tr|table|ul|ol|section)>/gi, "\n")
-      .replace(/<\/t[dh]>/gi, " | ")
-      .replace(/<[^>]+>/g, "")
-      .replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&quot;/g, '"')
-      .replace(/&#39;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">")
-      .replace(/[ \t]+/g, " ").replace(/ ?\n ?/g, "\n").replace(/\n{3,}/g, "\n\n").trim();
-    const LIMIT = 7000;
-    const cut = body.length > LIMIT;
-    if (cut) body = body.slice(0, LIMIT);
     return mcpToolResult(
-      `${titleM ? titleM[1].trim() : path}\nQuelle: https://getecoback.com${path}\n\n${body}` +
-      (cut ? "\n\n[gekürzt — vollständiger Text unter der Quell-URL]" : "") +
+      `Quelle: ${guide.canonical}\nVollständige Textansicht: ${guide.mirror}\n` +
+      `Gekürzt: ${guide.truncated ? "ja — vor einer Bewertung den vollständigen Text mit allen Bedingungen lesen" : "nein"}.\n\n` +
+      guide.excerpt +
+      (guide.truncated ? "\n\n[Auszug beendet.]\nOriginalquellen der vollständigen Textansicht:\n" + guide.references.map(url => "- " + url).join("\n") : "") +
       `\n\n${MCP_DISCLOSURE}`);
   }
   return { content: [{ type: "text", text: `Unbekanntes Tool: ${name}` }], isError: true };
@@ -1382,7 +1360,7 @@ async function handleMcp(request, env) {
       // 自报名字必须与注册表 canonical 一致(2026-09-16):改名时 superseded/ 两份 manifest 都标了,
       // 但这一行漏了,于是注册表说 hvac-btu-heat-klimaanlage、连上来的客户端却被告知是已废弃的
       // getecoback-raumklima。一个实体三个名字正是 entity stacking 最忌讳的事。
-      serverInfo: { name: "hvac-btu-heat-klimaanlage", version: "1.3.1" },
+      serverInfo: { name: "hvac-btu-heat-klimaanlage", version: "1.3.2" },
       instructions: "Raumklima-Tools von getecoback.com: Gerätewahl, BTU, Fensterabdichtung, Hitzevorschau (DE), Stromkosten, Heizleistung, Taupunkt und Ratgeber. Bei Feuchte nutzt geraet_wahl dieselben Entscheidungsregeln wie die Website: fehlende Messungen bleiben unbekannt, Schäden zuerst klären, Fläche allein bestimmt keine Liter/Tag. Antworten enthalten Quell-URLs, keine Affiliate-Kauflinks.",
     });
   }

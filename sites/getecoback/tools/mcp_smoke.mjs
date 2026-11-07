@@ -57,6 +57,9 @@ const CASES = [
   ["taupunkt_lueften", { aussen_temp_c: 18, aussen_luftfeuchte_prozent: 60, innen_temp_c: 16 }, ["Taupunkt", "10,1"]],
   ["ratgeber_suche", { frage: "Klimaanlage Kippfenster abdichten", max: 3 }, ["getecoback.com", "kippfenster"]],
   ["ratgeber_lesen", { pfad: "/guide/luftentfeuchter-ratgeber.html" }, ["Luftentfeuchter", "Quelle: https://getecoback.com"]],
+  ["ratgeber_suche", { frage: "Wäsche trocknen Wohnung Stromkosten", sprache: "de", max: 3 }, ["waeschetrockner-oder-luftentfeuchter.html"]],
+  ["ratgeber_lesen", { pfad: "/waeschetrockner-oder-luftentfeuchter.html" }, ["gleichen gewünschten Trocknungsgrad", "keine Produktmessungen", "https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/beim-kauf-eines-waeschetrockners-an-den-stromverbrauch-denken-37984", "Gekürzt: nein"]],
+  ["ratgeber_lesen", { pfad: "/fr/calculateur.html" }, ["Canonical: https://getecoback.com/fr/calculateur.html"]],
 ];
 
 const fails = [];
@@ -100,6 +103,11 @@ for (const [tool, args, expects] of CASES) {
     fails.push(`${tool}: threw — ${e.message}`);
   }
 }
+
+const refused = await rpc('tools/call', {name: 'ratgeber_lesen', arguments: {
+  pfad: 'https://getecoback.com.evil.test/waeschetrockner-oder-luftentfeuchter.html',
+}});
+if (!refused.isError) fails.push('ratgeber_lesen accepted a noncanonical origin');
 
 if (fails.length) {
   console.error("\nFAILURES:");
