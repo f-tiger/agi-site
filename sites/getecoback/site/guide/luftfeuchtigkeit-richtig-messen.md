@@ -40,18 +40,19 @@ Fester Messort gewählt und Geräteanleitung gelesen.Temperatur und Feuchte geme
 Die Suche unten ist ein Ausgangspunkt für deinen Vergleich. EcoBack hat die dort angezeigten Modelle nicht selbst getestet. Wenn dein vorhandenes Gerät die Aufgabe erfüllt, ist kein Neukauf nötig.
 Anzeige · Affiliate-Link zu einer Produktsuche, keine geprüfte Modell-Empfehlung.
 Hygrometer auf Amazon.de vergleichen ↗
-
-## Der nächste Schritt
-
-- [Alle Wohn-Themen für Deutschland](https://getecoback.com/wohnen.html)
-- [Luftfeuchtigkeit senken: Maßnahmen einordnen](https://getecoback.com/guide/luftfeuchtigkeit-senken.html)
-- [Wäsche in der Wohnung trocknen](https://getecoback.com/guide/waesche-trocknen-wohnung.html)
+[Alle Wohn-Themen für Deutschland](https://getecoback.com/wohnen.html)
 
 ## Quellen & Arbeitsweise
 Redaktionelle Orientierung auf Grundlage der verlinkten Quellen. Keine eigenen Gerätetests, keine Bauwerksdiagnose. Die Checklisten sind unsere Arbeitshilfe für deinen Vergleich.
 
-- Umweltbundesamt: Schimmel vermeiden und Feuchte abführen
+- [Umweltbundesamt: Schimmel vermeiden und Feuchte abführen](https://www.umweltbundesamt.de/en/node/3086)
 - Stadler Form: Platzierung eines Hygrometers
+
+## Dein nächster Schritt
+
+- [Mit Messwerten das Lüften prüfen](https://getecoback.com/guide/luftfeuchtigkeit-senken.html#moisture-check) Wenn du Innen- und Außenwerte hast, kannst du den Feuchteunterschied einordnen.
+
+- [Beschlagene Fenster einordnen](https://getecoback.com/guide/fenster-beschlagen-innen.html) Wenn das Problem nur an einer kalten Scheibe sichtbar wird, prüfe diesen Fall gesondert.
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json

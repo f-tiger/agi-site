@@ -1,30 +1,15 @@
 #!/usr/bin/env python3
-"""Order the homepage's sections by season (2026-09-27).
+"""Compose the homepage around a task, then its seasonal buying guidance.
 
-The homepage is assembled by about a dozen injectors from different rounds
-(season teaser, BTU tool, sizing table, device tiles, rising rail, autumn
-block, video rail, household and workbench links, EU evidence checks, popular
-and newest lists) around hand-written summer sections. Each injector picks its
-own anchor, so the page order was never decided by anyone. On 2026-09-27 the
-page said "Feuchte Wohnung im Herbst?" in its H1 and then spent roughly 60 % of
-its height on cooling: the BTU tool, "Die besten Kühlgeräte diese Woche", the
-cooling buying guide and a 34-link list of summer guides.
+Independent injectors own all content. This final pass only moves their whole
+blocks and folds secondary directories into native, keyboard-operable details.
+The household tasks and existing-device upkeep precede merchant shelves;
+summer keeps cooling prominent. No links or unknown future modules are removed.
 
-That matters because of who reads it. D1, 28 days to 2026-09-27: four human
-page views from Germany, but chatgpt-user fetched "/" 430 times (83 % of all
-its fetches on this site), duckduckbot 78, yandex 69, perplexity 47, claudebot
-40, bingbot 34. The homepage is what an assistant reads when someone asks
-about this site, and in autumn it was answering with summer.
-
-This step runs after every homepage injector and before the sitemap. It splits
-the region between the hero and the footer into top-level units, keys each
-unit, and emits them in the order configured for the current season. Units it
-does not recognise keep their relative position, attached to the unit before
-them, so a new injector cannot be silently dropped. Nothing is removed and no
-text is changed: the same content, in an order that matches the season.
-
-The household entry is a primary seasonal decision path. Other-topic tools
-(electricity workbench and EU evidence checks) remain in a band near the footer.
+Some injectors originally appended discovery blocks after the footer. Extract
+only those named blocks, leaving account, consent and analytics scripts in place.
+Every wrapper is reversible before the next composition, including a season
+change, so generators can continue replacing their original markers in place.
 
 Idempotent: a second run is byte-identical. Run: python3 tools/build_home_order.py
 [--month N] [--check]
@@ -49,21 +34,50 @@ EVIDENCE_OPEN, EVIDENCE_CLOSE = "<!--eco-evidence:start-->", "<!--eco-evidence:e
 # first-heading keys assigned in key_of(). Anything not listed keeps its place
 # relative to the unit before it.
 WARM = [
-    "EB_SEASON", "EB_HOMETOOL", "EB_HOUSEHOLD_LINK", "EB_HOMETABLE", "EB_DEVICE_TILES", "shop-categories",
-    "deals", "disclosure", "EB_RISING_RAIL", "EB_HERBST", "EB_SEASON_VIDEO", "situationen",
-    "guide", "how", "faq", "EB_POPULAR", "EB_POPLIVE", "EB_NEWEST", "TOOLS_BAND",
+    "EB_HOMETOOL", "EB_HOUSEHOLD_LINK", "EB_HOME_UPKEEP", "EB_SEASON",
+    "EB_TOPPICK", "EB_DEVICE_TILES", "deals", "disclosure", "EB_HOME_COOLING_GUIDES",
+    "EB_HOME_DECISIONS", "EB_HOME_REFERENCE", "EB_HOME_COLD",
+    "EB_HOME_READING", "how", "faq", "EB_HOME_COUNTRIES", "EB_TOOLS_BAND",
 ]
 COLD = [
-    "EB_SEASON", "EB_WINTER_LINK", "EB_HOUSEHOLD_LINK", "EB_HERBST", "EB_HOMETABLE", "EB_DEVICE_TILES", "shop-categories",
-    "EB_NEWEST", "EB_POPULAR", "EB_POPLIVE", "EB_SEASON_VIDEO", "EB_RISING_RAIL",
-    "EB_HOMETOOL", "deals", "disclosure", "situationen", "guide", "how", "faq",
-    "EB_COUNTRIES", "EB_UK_PATH", "EB_AU_COOLING", "TOOLS_BAND",
+    "EB_HOUSEHOLD_LINK", "EB_HOME_UPKEEP", "EB_SEASON", "EB_WINTER_LINK",
+    "EB_TOPPICK", "EB_HERBST", "EB_DEVICE_TILES", "EB_HOME_DECISIONS", "EB_HOME_REFERENCE",
+    "EB_HOME_COOLING", "EB_HOME_READING", "how", "faq", "EB_HOME_COUNTRIES", "EB_TOOLS_BAND",
 ]
 # season_of emits ASCII; preserve the spelling used by existing callers too.
 ORDER = {"sommer": WARM, "fruehjahr": WARM, "frühjahr": WARM, "herbst": COLD, "winter": COLD}
 # Units that belong to other topics' tools; they go into one band above the footer.
 TOOLS = ("EB_ENERGY_WORKBENCH", "eu-evidence", "task-workbench")
 WB_OPEN, WB_CLOSE = "<!-- task-workbench:start -->", "<!-- task-workbench:end -->"
+
+# These are whole modules, never page scripts or the footer. Only these known
+# late-injected markers may be recovered from the footer's tail.
+DISCOVERY = ("EB_PRODUCT_DISCOVERY", "EB_FIT_DISCOVERY", "EB_UPKEEP_DISCOVERY",
+             "EB_AUTO_DISCOVERY", "EB_FAMILY_DISCOVERY")
+COMMON_DETAILS = (
+    ("EB_HOME_UPKEEP", "home-upkeep", "Vorhandenes Gerät pflegen oder reparieren",
+     ("EB_UPKEEP_DISCOVERY",)),
+    ("EB_HOME_DECISIONS", "home-decisions", "Weitere Entscheidungen: Gerätewahl, Folgekosten und Werkstatt",
+     ("EB_FIT_DISCOVERY", "EB_PRODUCT_DISCOVERY", "EB_AUTO_DISCOVERY", "EB_FAMILY_QUICK", "EB_FAMILY_DISCOVERY")),
+    ("EB_HOME_REFERENCE", "home-reference", "Raumgröße und Gerätearten nachschlagen",
+     ("EB_HOMETABLE", "shop-categories")),
+    ("EB_HOME_READING", "home-reading", "Ratgeber entdecken: neue Beiträge, häufig gelesen und Videos",
+     ("EB_NEWEST", "EB_POPULAR", "EB_POPLIVE", "EB_RISING_RAIL", "EB_SEASON_VIDEO")),
+    ("EB_HOME_COUNTRIES", "home-countries", "Wohnen in anderen Ländern: lokale Ratgeber",
+     ("EB_COUNTRIES", "EB_UK_PATH", "EB_AU_COOLING")),
+    ("EB_TOOLS_BAND", "eb-tools-band", "Weitere Rechner und Werkzeuge", TOOLS),
+)
+COLD_DETAILS = (
+    ("EB_HOME_COOLING", "home-cooling", "Kühlung für warme Tage planen: Rechner und Gerätevergleich",
+     ("EB_HOMETOOL", "deals", "disclosure", "situationen", "guide")),
+)
+WARM_DETAILS = (
+    ("EB_HOME_COOLING_GUIDES", "home-cooling-guides", "Kühlung vertiefen: Wohnsituationen und Ratgeber",
+     ("situationen", "guide")),
+    ("EB_HOME_COLD", "home-cold", "Feuchtigkeit und Heizkosten prüfen",
+     ("EB_WINTER_LINK", "EB_HERBST")),
+)
+DETAIL_MARKERS = tuple(g[0] for g in COMMON_DETAILS + COLD_DETAILS + WARM_DETAILS)
 
 
 def find_close_section(html, i):
@@ -138,23 +152,38 @@ def key_of(text):
 
 def order_units(units, season):
     want = ORDER[season]
-    # Group each unknown unit with the known unit before it.
+    detail_specs = COMMON_DETAILS + (WARM_DETAILS if want is WARM else COLD_DETAILS)
+    known = set(want) | {k for spec in detail_specs for k in spec[3]}
+    # Keep an unrecognised future module with its predecessor, including modules
+    # with their own ids. A new injector must not disappear into a catch-all.
     groups, cur = [], None
-    for key, text in units:
-        if key.startswith("unknown:") and cur is not None:
-            cur[1] += text
+    for key, content in units:
+        if key not in known and cur is not None:
+            cur[1] += "\n" + content.strip()
             cur[2].append(key)
         else:
-            cur = [key, text, [key]]
+            cur = [key, content.strip(), [key]]
             groups.append(cur)
-    tools = [g for g in groups if g[0] in TOOLS]
-    rest = [g for g in groups if g[0] not in TOOLS]
+
+    # Fold existing modules instead of adding another competing task board.
+    # The original marker/content pairs remain intact for their own injectors.
+    for marker, section_id, label, members in detail_specs:
+        selected = [g for key in members for g in groups if g[0] == key]
+        if not selected:
+            continue
+        groups = [g for g in groups if g[0] not in members]
+        content = "\n".join(g[1] for g in selected)
+        wrapper = (f'<!--{marker}--><details id="{section_id}" class="home-editorial-details" '
+                   'style="max-width:1000px;box-sizing:border-box;margin:18px auto;'
+                   'padding:16px 20px;border:1px solid #dbe6ef;border-radius:12px;background:#f7fafc;">'
+                   '<summary style="cursor:pointer;color:#174b75;font-weight:700;line-height:1.5;">'
+                   f'{label}</summary>\n{content}\n</details><!--/{marker}-->')
+        groups.append([marker, wrapper, [k for g in selected for k in g[2]]])
+
     rank = {k: i for i, k in enumerate(want)}
-    base = len(want)
-    # Stable: listed keys by rank; unlisted keys after the listed key that
-    # preceded them in the current order.
+    # Stable ordering also preserves a leading unknown module, if one exists.
     placed, last_rank = [], -1
-    for i, g in enumerate(rest):
+    for i, g in enumerate(groups):
         r = rank.get(g[0])
         if r is None:
             r = last_rank + 0.5
@@ -162,21 +191,16 @@ def order_units(units, season):
             last_rank = r
         placed.append((r, i, g))
     placed.sort(key=lambda t: (t[0], t[1]))
-    out = [g[1] for _, _, g in placed]
-    if tools:
-        band = ('\n<!--EB_TOOLS_BAND--><section id="eb-tools-band" style="background:#f7fafc;'
-                'border-top:1px solid #e4ebf0;padding:10px 0 18px;"><div style="max-width:1000px;margin:0 auto;padding:0 20px;">'
-                '<h2 style="font-size:18px;margin:18px 0 4px;">Weitere Rechner und Werkzeuge</h2>'
-                + "\n".join(g[1].strip() for g in tools) + '</div></section><!--/EB_TOOLS_BAND-->')
-        tpos = rank.get("TOOLS_BAND", base)
-        # insert band at its rank among the placed units
-        idx = sum(1 for r, _, _ in placed if r < tpos)
-        out.insert(idx, band)
+    out = ["\n" + g[1] + "\n" for _, _, g in placed]
     return out, [g[2] for _, _, g in placed]
 
 
 def unwrap_band(region):
-    """Take a previous run's tools band apart again so its units are re-keyed."""
+    """Undo our wrappers before re-keying, including the previous tools band."""
+    for marker in DETAIL_MARKERS:
+        region = re.sub(
+            r'<!--' + marker + r'--><details\b[^>]*><summary\b[^>]*>.*?</summary>\s*(.*?)\s*</details><!--/' + marker + r'-->',
+            lambda m: "\n" + m.group(1) + "\n", region, flags=re.S)
     m = re.search(r"\n?<!--EB_TOOLS_BAND--><section[^>]*><div[^>]*>\s*<h2[^>]*>.*?</h2>(.*)</div></section><!--/EB_TOOLS_BAND-->",
                   region, re.S)
     if not m:
@@ -184,16 +208,16 @@ def unwrap_band(region):
     return region[:m.start()] + m.group(1) + region[m.end():]
 
 
-# Tool links that other injectors nest inside other blocks: the household link
-# sits inside the sizing-table block (before its first <h2>), the electricity
-# workbench inside the hero. Both injectors replace in place once their marker
-# exists, so after one move they stay in the band.
-NESTED_TOOLS = ("EB_HOUSEHOLD_LINK", "EB_ENERGY_WORKBENCH")
+# Existing injectors nest the household link in the sizing table and the energy
+# workbench in the hero. The hero's family-workshop shortcuts and merchant chips
+# also need their proper editorial position, after the household task entry.
+# Extract complete marker pairs; no hand-written or future hero text is changed.
+NESTED_BLOCKS = ("EB_HOUSEHOLD_LINK", "EB_ENERGY_WORKBENCH", "EB_FAMILY_QUICK", "EB_TOPPICK")
 
 
 def pull_nested(html):
     found = []
-    for name in NESTED_TOOLS:
+    for name in NESTED_BLOCKS:
         # Newlines on both sides go with the block: the household injector
         # writes its block with a trailing "\n", and leaving that behind would
         # add one blank line above the footer on every build.
@@ -205,16 +229,33 @@ def pull_nested(html):
 
 
 def compose(html, season):
+    for name in DISCOVERY:
+        if html.count("<!--" + name + "-->") > 1:
+            raise ValueError(f"duplicate homepage discovery marker: {name}")
     html, nested = pull_nested(html)
     body = html.index("<body")
     hero_end = html.index("</header>", body) + len("</header>")
     foot = html.index(FOOTER, hero_end)
+    # Do not parse the tail as page units: that would attach consent stylesheet
+    # and account/analytics scripts to the following discovery block.
+    tail, recovered = html[foot:], []
+    for name in DISCOVERY:
+        pattern = r'\n*<!--' + name + r'-->.*?<!--/' + name + r'-->\n*'
+        matches = list(re.finditer(pattern, tail, re.S))
+        if len(matches) > 1:
+            raise ValueError(f"duplicate homepage discovery marker: {name}")
+        if matches:
+            recovered.append([name, matches[0].group(0).strip()])
+            tail = tail[:matches[0].start()] + "\n" + tail[matches[0].end():]
     region = unwrap_band(html[hero_end:foot])
     units, rest = split_units(region)
-    out, _ = order_units(units + nested, season)
+    present = {key for key, _ in units}
+    if any(key in present for key, _ in recovered):
+        raise ValueError("homepage discovery marker exists before and after footer")
+    out, _ = order_units(units + nested + recovered, season)
     if not rest.strip():
         rest = "\n\n"
-    result = html[:hero_end] + "".join(out) + rest + html[foot:]
+    result = html[:hero_end] + "".join(out) + rest + tail
     # The promoted block is extracted on every build. Normalize its boundary
     # so adjacent units cannot donate a newline only on the first ordering.
     return re.sub(r'\n*(<!--EB_HOUSEHOLD_LINK-->.*?<!--/EB_HOUSEHOLD_LINK-->)\n*',

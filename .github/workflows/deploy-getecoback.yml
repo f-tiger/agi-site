@@ -180,6 +180,10 @@ jobs:
           python3 -m unittest discover -s tools -p test_heatpump_intent.py
           python3 -m unittest discover -s tools -p test_toppick_anchor.py
           python3 -m unittest discover -s tools -p test_buyer_comparison.py
+          python3 -m unittest discover -s tools -p test_buyer_entry.py
+          python3 -m unittest discover -s tools -p test_moisture_journeys.py
+          python3 -m unittest discover -s tools -p test_journey_geo.py
+          python3 -m unittest discover -s tools -p test_home_editorial.py
           python3 -m unittest discover -s tools -p test_buyer_geo.py
           python3 -m unittest discover -s tools -p test_air_category_entry.py
           python3 -m unittest discover -s tools -p test_humidity_evidence.py
@@ -491,7 +495,7 @@ jobs:
         run: |
           set -euo pipefail
           # Match the installed npm dependency to the image's bundled browsers.
-          # Avoid host apt downloads; retain the exact five browser checks.
+          # Avoid host apt downloads; retain the existing browser checks and add the intent journeys.
           playwright_version='1.58.2'
           node - "$playwright_version" <<'NODE'
           const lock = require('./tools/revenue-studio/package-lock.json');
@@ -514,6 +518,7 @@ jobs:
               node sites/getecoback/tools/browser_heater_examples.cjs
               node sites/getecoback/tools/browser_personal_warmth.cjs
               node sites/getecoback/tools/browser_thermostat_fit.cjs
+              node sites/getecoback/tools/browser_moisture_journeys.cjs
             '
 
       - name: Verify automatic content, source references and discovery after all generators

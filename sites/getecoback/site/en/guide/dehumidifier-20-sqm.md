@@ -41,6 +41,12 @@ Model boundaries: Comfee MDDF-20DEN7 here is the variant without WF. MeacoDry Ar
 Example calculation: 216 W × 6 h ÷ 1,000 × €0.35/kWh = €0.45. This is not a measured laundry load or a savings promise.
 Sources checked on 6 November 2026: [Meaco One 20L](https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-air-purifier) · [Comfee MDDF-20DEN7](https://www.feelcomfee.com/de/produkte/klimatisieren-heizen/mddf-20den7) · [Comfee data sheet, page 2](https://www.feelcomfee.com/content/dam/comfee-aem/de/produkte/klimatisieren-heizen/mddf-20den7/comfee-MDDF-20DEN7-Datenblatt.pdf#page=2) · [Comfee operating instructions](https://www.feelcomfee.com/content/dam/comfee-aem/global/products/heating-cooling/dehumidifier-mddf-20den7/DF-Owners-Manual.pdf) · [Verbraucherzentrale](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426). Manufacturer figures, not our own measurements. Guidance, not a remote diagnosis.
 
+## Next step
+
+- [Using a cold room?](https://getecoback.com/en/guide/desiccant-vs-compressor-dehumidifier.html) Compare operating conditions before interpreting the rated extraction.
+
+- [Buying mainly for laundry?](https://getecoback.com/en/guide/dehumidifier-drying-clothes-cost.html) Compare energy for an equally dry load, not wattage alone.
+
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp

@@ -20,7 +20,7 @@ COMFEE_PRODUCT = 'https://www.feelcomfee.com/de/produkte/klimatisieren-heizen/md
 COMFEE_DATA = 'https://www.feelcomfee.com/content/dam/comfee-aem/de/produkte/klimatisieren-heizen/mddf-20den7/comfee-MDDF-20DEN7-Datenblatt.pdf#page=2'
 AIR = 'https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426'
 
-def block(en=False):
+def block(en=False, slug=None):
     def t(de, english): return english if en else de
     def link(url, label, action='guide'):
         return f'<a href="{escape(url, quote=True)}" data-choice-action="{action}">{label}</a>'
@@ -29,7 +29,10 @@ def block(en=False):
     def select(name, title, options, default=None):
         return f'<label>{title}<select name="{name}">'+''.join(f'<option value="{v}"'+(' selected' if v==default else '')+f'>{s}</option>' for v,s in options)+'</select></label>'
     cost = '/en/guide/dehumidifier-drying-clothes-cost.html' if en else '/waeschetrockner-oder-luftentfeuchter.html'
-    cold = '/en/guide/desiccant-vs-compressor-dehumidifier.html' if en else '/guide/luftentfeuchter-keller.html'
+    cold = ('/en/guide/desiccant-vs-compressor-dehumidifier.html' if en else
+            '#kalter-keller' if slug == 'luftentfeuchter-keller' else '/guide/luftentfeuchter-keller.html#kalter-keller')
+    monitoring = ('/en/guide/uk-damp-and-heating-decisions.html#damp-in-a-rented-home-keep-a-useful-record' if en
+                  else '/guide/luftfeuchtigkeit-richtig-messen.html')
     care = '/en/guide/rising-damp-penetrating-damp-or-condensation.html' if en else '/guide/luftentfeuchter-gegen-schimmel.html'
     fields = select('purpose',t('Wobei brauchst du Hilfe?','What are you trying to do?'),[
         ('room',t('Feuchte Raumluft senken','Reduce room humidity')),
@@ -52,7 +55,7 @@ def block(en=False):
     def source(url, label):
         return f'<a href="{escape(url, quote=True)}">{label}</a>'
 
-    def candidate(name, identity, data20, data10, features, limit, sources, destination, url, label):
+    def candidate(name, identity, data20, data10, features, limit, fit, tradeoff, sources, destination, url, label):
         rows = [(t('Genaues Modell', 'Exact model'), identity),
                 ('20 °C / 60 % RH', data20), ('10 °C / 60 % RH', data10),
                 (t('Funktionen und Aufbau', 'Features and setup'), features),
@@ -67,9 +70,10 @@ def block(en=False):
             '<strong>Power and setup:</strong> check voltage, plug, operating temperature, hose and drainage slope for your home.') + '</li><li>' + t(
             '<strong>Verkäufer und Rückgabe:</strong> Gesamtpreis, Liefergebiet, Lieferumfang, Garantie und Rückgabebedingungen beim konkreten Händler prüfen.',
             '<strong>Seller and returns:</strong> check the delivered price, delivery area, included items, warranty and return terms with the actual retailer.') + '</li></ol></details>'
+        use = '<div class="choice-tradeoff"><p><strong>' + t('Weiter prüfen, wenn:', 'Worth checking when:') + '</strong> ' + fit + '</p><p><strong>' + t('Vor dem Kauf klären:', 'Before buying, verify:') + '</strong> ' + tradeoff + '</p></div>'
         return '<div class="choice-candidate"><h4>' + name + '</h4><p class="choice-evidence-label">' + t(
             'Herstellerangaben · kein eigener Test · geprüft 06.11.2026',
-            'Manufacturer data · not hands-on tested · checked 6 November 2026') + '</p>' + facts + checks + '<div class="choice-offer"><p>' + destination + '</p>' + shop(url, label) + '</div></div>'
+            'Manufacturer data · not hands-on tested · checked 6 November 2026') + '</p>' + use + facts + checks + '<div class="choice-offer"><p>' + destination + '</p>' + shop(url, label) + '</div></div>'
 
     comfee = candidate('Comfee MDDF-20DEN7', t('Ohne WF-Zusatz; nicht mit MDDF-20DEN7-WF gleichsetzen.',
         'Without the WF suffix; do not treat MDDF-20DEN7-WF as the same model.'), unknown, unknown,
@@ -77,6 +81,10 @@ def block(en=False):
           'Humidity control and a 3-litre tank. Set up continuous drainage using the applicable manual and a downward slope.'),
         t('Keine belegte Effizienzrangfolge aus den vorhandenen Angaben. Ein spezieller Wäschemodus ist für diese Variante hier nicht bestätigt.',
           'The available figures do not establish an efficiency ranking. A dedicated laundry mode is not confirmed here for this variant.'),
+        t('du Feuchteregelung und einen 3-Liter-Tank suchst; prüfe, ob Entleeren oder ein Ablauf mit Gefälle in deinen Alltag passt.',
+          'you need humidity control and a 3-litre tank; check whether emptying it or setting up downward drainage suits your routine.'),
+        t('Entzug und Strombedarf bei deiner Temperatur und Feuchte fehlen hier. Für kalte Räume und Wäsche keine Leistung aus „20 L“ ableiten.',
+          'extraction and power at your room conditions are missing here. Do not infer cold-room or laundry performance from “20 L”.'),
         source(COMFEE_PRODUCT, t('Offizielle Modellseite', 'Official model page')) + ' · ' +
         source(COMFEE_DATA, t('Datenblatt, Seite 2', 'Data sheet, page 2')) + ' · ' +
         source(COMFEE, t('Bedienhinweise zum Ablauf', 'Drainage instructions')),
@@ -91,6 +99,10 @@ def block(en=False):
           'The model page lists humidity control, laundry mode and continuous drainage. Its drain hose is not included.'),
         t('UK-Herstellerdaten belegen weder die Ausstattung eines deutschen Angebots noch dessen Lieferbarkeit. „20L“ ist keine Alltagsgarantie.',
           'UK manufacturer data does not verify a German offer’s equipment or availability. “20L” is not an everyday output guarantee.'),
+        t('du dokumentierte Werte für 10 °C und 20 °C bei 60 % RH sowie einen ausgewiesenen Wäschemodus vergleichen möchtest.',
+          'you want documented figures at 10°C and 20°C / 60% RH and a listed laundry mode to assess against your task.'),
+        t('die UK-Daten gelten für One 20L. Deutsches Angebot, Stecker und Schlauch separat prüfen; Herstellerwerte belegen keine Laufzeit deiner Wäsche.',
+          'the UK figures apply to One 20L. Check the German offer, plug and hose separately; manufacturer figures do not establish your laundry drying time.'),
         source(MEACO, t('Offizielle One-20L-Daten mit Messbedingungen', 'Official One 20L figures and test conditions')),
         t('Amazon.de-Modellsuche. Treffer können andere Generationen oder Größen enthalten.',
           'An Amazon.de model search. Results may include other generations or sizes.'),
@@ -101,15 +113,15 @@ def block(en=False):
         'Two existing candidates with the same checks. Missing figures are not zero or a ranking penalty: without comparable data, this guide names no efficiency winner.') + '</p><div class="choice-products">' + comfee + meaco + '</div><small>'+t(
         'Werbung · Affiliate-Links: Als Amazon-Partner verdienen wir an qualifizierten Verkäufen. Preis, Verkäufer, Lieferbarkeit, Stecker und Rückgabebedingungen bei Amazon prüfen. Zwei Beispiele aus unserem Bestand, kein vollständiger Marktvergleich und kein eigener Produkttest.',
         'Ad · Affiliate links: As an Amazon Associate we earn from qualifying purchases. Check price, seller, availability, plug and return terms at Amazon. Two examples from our existing coverage, not a whole-market comparison or hands-on test.')+'</small></div><p data-market-other hidden>'+t(
-        'Hier werden keine deutschen Kauflinks eingeblendet. Vergleiche beim Händler in deinem Markt das genaue Modell, Netzspannung, Stecker, Garantie und Liefergebiet.',
-        'German shopping links are hidden. At a retailer serving your market, check the exact model, voltage, plug, warranty and delivery area.')+'</p>'
+        'Hier werden keine deutschen Kauflinks eingeblendet. Die Herstellerdaten beider Modelle findest du in der Vergleichstabelle darunter. Vergleiche beim Händler in deinem Markt das genaue Modell, Netzspannung, Stecker, Garantie und Liefergebiet.',
+        'German shopping links are hidden. Both models’ manufacturer figures are in the comparison table below. At a retailer serving your market, check the exact model, voltage, plug, warranty and delivery area.')+'</p>'
     answer = lambda key,title,body: f'<div data-answer="{key}" hidden><h3>{title}</h3>{body}</div>'
     answers = answer('measure',t('Erst messen, dann entscheiden','Measure before deciding'),'<p>'+t(
         'Notiere an mehreren typischen Tagen Temperatur und relative Feuchte, auch vor und nach dem Lüften oder Wäschetrocknen. Wenn du schon ein Hygrometer hast, nutze es. Ein neuer Entfeuchter ist aus diesen Angaben noch nicht begründet.',
-        'Record temperature and relative humidity on several typical days, including before and after airing or drying laundry. Use your existing hygrometer if you have one. These answers do not yet justify buying a dehumidifier.')+'</p>')
+        'Record temperature and relative humidity on several typical days, including before and after airing or drying laundry. Use your existing hygrometer if you have one. These answers do not yet justify buying a dehumidifier.')+'</p>'+link(monitoring,t('Messort und Feuchteprotokoll vorbereiten','Record humidity and room observations')))
     answers += answer('wait',t('Vorerst keinen Entfeuchter ableiten','No dehumidifier purchase indicated yet'),'<p>'+t(
         '40–60 % sind ein allgemeiner Wohnraum-Orientierungsbereich, keine Schimmelfrei-Garantie. Beobachte kalte Oberflächen und den Verlauf. Bei sehr trockener Luft nicht zusätzlich entfeuchten. Prüfe Lüftung und Feuchtequellen, bevor du ein Gerät kaufst.',
-        '40–60% is a general comfort range, not a guarantee against mould. Check cold surfaces and changes over time. Do not dehumidify air that is already too dry. Review ventilation and moisture sources before buying.')+'</p>')
+        '40–60% is a general comfort range, not a guarantee against mould. Check cold surfaces and changes over time. Do not dehumidify air that is already too dry. Review ventilation and moisture sources before buying.')+'</p>'+link(monitoring,t('Feuchteverlauf und kalte Stellen beobachten','Keep a record of changes and damp patches')))
     answers += answer('cause',t('Die Feuchtequelle zuerst klären','Investigate the moisture source first'),'<p>'+t(
         'Ein Entfeuchter beseitigt weder ein Leck noch eine bauliche Feuchteursache oder vorhandenen Schimmel. Ursache dokumentieren und fachlich prüfen lassen; bei Mietwohnungen den Vermieter informieren. Ein Gerätekauf ersetzt diese Klärung nicht.',
         'A dehumidifier does not fix a leak, structural damp or existing mould. Document the problem and arrange an appropriate assessment; renters should notify the landlord. A device purchase does not replace that investigation.')+'</p>'+link(care,t('Ursachen und Grenzen lesen','Read about causes and limits')))
@@ -122,7 +134,7 @@ def block(en=False):
     answers += answer('compare',t('Zwei Kandidaten gezielt prüfen','Compare two candidates for the job'),'<p>'+t(
         'Wenn erhöhte Feuchte trotz passender Lüftung wiederkehrt und keine bauliche Ursache vorliegt, kannst du ein Gerät mit Hygrostat prüfen. Raumvolumen, Feuchtelast, Geräusch und gemessene Temperatur bleiben entscheidend; die folgenden Beispiele sind keine automatische Größenfreigabe.',
         'If high humidity returns despite suitable ventilation and no structural cause is present, consider a unit with a humidistat. Room volume, moisture load, noise and measured temperature still matter; these examples do not automatically establish the right size.')+'</p>'+products)
-    evidence = '<details data-choice-method><summary>'+t('So vergleichst du die Herstellerdaten','How to compare the manufacturer data')+'</summary><p>'+t(
+    evidence = '<details data-choice-method id="eb-choice-method" open><summary>'+t('So vergleichst du die Herstellerdaten','How to compare the manufacturer data')+'</summary><p>'+t(
         'Zwei Beispiele aus vorhandenen Ratgebern, kein vollständiger Marktvergleich und kein EcoBack-Produkttest. Verglichen werden Wasserentzug und Betriebsleistung bei derselben Temperatur und relativen Feuchte (RH). Fehlende Angaben bleiben offen; daraus folgt keine Rangfolge.',
         'Two examples from existing guides, not a whole-market comparison or an EcoBack product test. Compare extraction and running power at the same temperature and relative humidity (RH). Missing figures remain unknown; they do not establish a ranking.')+'</p><div class="choice-table"><table><caption>'+t(
         'Herstellerangaben zu Wasserentzug und Leistung; geprüft am 06.11.2026',
@@ -136,26 +148,52 @@ def block(en=False):
     fallback = '<div data-choice-fallback><p>'+t(
         'Dein nächster Schritt: Feuchte und Temperatur zunächst messen, bei nassen Wänden die Ursache klären. Die Herstellerdaten unten helfen dir, Bedingungen und Modellvarianten zu unterscheiden.',
         'Your next step: measure humidity and temperature first, and investigate the cause of wet walls. The manufacturer data below helps distinguish conditions and model variants.')+'</p><p>'+link(cost,t('Wäschekosten vergleichen','Compare laundry costs'))+' · '+link(cold,t('Kalte Räume prüfen','Check cold-room conditions'))+' · '+link(care,t('Feuchteursachen klären','Investigate moisture sources'))+'</p></div>'
+    entry = '<div class="choice-entry"><div><h3>'+t('Noch unsicher, ob du ein Gerät brauchst?','Unsure whether you need a device?')+'</h3><p>'+t('Vier Angaben helfen, Messen, Ursachenklärung oder einen Vergleich als nächsten Schritt zu wählen.','Four answers help you choose between measuring, investigating the cause or comparing models.')+'</p><a href="#eb-choice-context" data-choice-needs>'+t('Bedarf zuerst prüfen','Check your need first')+'</a></div><div><h3>'+t('Du möchtest bereits Modelle vergleichen?','Ready to compare models?')+'</h3><p>'+t('Zwei vorhandene Kandidaten, gleiche Prüfpunkte und offene Datenlücken. Ohne Fragebogen.','Two existing candidates, the same checks and visible data gaps. No questionnaire required.')+'</p><a href="#eb-choice-method" data-choice-direct>'+t('Modelle direkt vergleichen','Compare model data directly')+'</a></div></div>'
+    direct_note = '<div class="choice-direct-note" data-choice-direct-note hidden><p><strong>'+t('Nur Modellvergleich — Kaufbedarf noch nicht geprüft.','Model comparison only — purchase need has not been assessed.')+'</strong> '+t('Bei Leck, nassen Bauteilen oder Schimmel zuerst die Ursache klären. Dieser Einstieg bewertet weder deinen Raum noch deine Antworten.','Investigate leaks, wet building materials or mould first. This route does not assess your room or your answers.')+'</p><a href="#eb-choice-context" data-choice-needs>'+t('Bedarf und Einkaufsmarkt prüfen','Check need and shopping market')+'</a></div>'
     return '<!--EB_BUYER--><link rel="stylesheet" href="/assets/moisture-decision.css"><section id="eb-moisture-choice" data-lang="'+('en' if en else 'de')+'" aria-labelledby="eb-choice-title"><h2 id="eb-choice-title">'+t('Brauchst du einen Entfeuchter – und welchen Typ?','Do you need a dehumidifier — and which type?')+'</h2><p>'+t(
         'Finde deinen nächsten Schritt – vom Weiterbeobachten bis zum gezielten Modellvergleich. Entscheidend sind Feuchte, Temperatur und die Ursache. Ohne Anmeldung.',
-        'Find your next step, from monitoring the room to comparing models. Humidity, temperature and the moisture source matter. No account needed.')+'</p>'+fallback+'<form hidden inert><fieldset data-choice-fields disabled><legend>'+t('Deine Situation und dein Einkaufsmarkt','Your situation and shopping market')+'</legend>'+fields+'<button type="submit">'+t('Meinen nächsten Schritt zeigen','Show my next step')+'</button></fieldset></form><div data-results tabindex="-1" aria-live="polite" hidden>'+answers+'</div>'+evidence+'<button type="button" data-copy hidden>'+t('Diese Entscheidungshilfe teilen','Share this decision guide')+'</button><input data-share aria-label="'+t('Link zum Kopieren','Link to copy')+'" readonly hidden><p data-status role="status"></p></section><script type="module" src="/assets/moisture-decision.mjs?v='+ASSET_VERSION+'"></script><!--/EB_BUYER-->\n'
+        'Find your next step, from monitoring the room to comparing models. Humidity, temperature and the moisture source matter. No account needed.')+'</p>'+entry+'<div id="eb-choice-context">'+fallback+'<form hidden inert><fieldset data-choice-fields disabled><legend>'+t('Deine Situation und dein Einkaufsmarkt','Your situation and shopping market')+'</legend>'+fields+'<button type="submit">'+t('Meinen nächsten Schritt zeigen','Show my next step')+'</button></fieldset></form></div><div data-results tabindex="-1" aria-live="polite" hidden>'+direct_note+answers+'</div>'+evidence+'<button type="button" data-copy hidden>'+t('Diese Entscheidungshilfe teilen','Share this decision guide')+'</button><input data-share aria-label="'+t('Link zum Kopieren','Link to copy')+'" readonly hidden><p data-status role="status"></p></section><script type="module" src="/assets/moisture-decision.mjs?v='+ASSET_VERSION+'"></script><!--/EB_BUYER-->\n'
 
 def inject(html, slug, en=False):
     if slug not in PATHS[en]: return None
     html = re.sub(r'<!--EB_BUYER-->.*?<!--/EB_BUYER-->\n?', '', html, flags=re.S)
     html = re.sub(r'<!--EB_QUICKPICK-->.*?<!--/EB_QUICKPICK-->\n?', '', html, flags=re.S)
-    marker = '<!--EB_MODELS-->'
-    if marker in html: return html.replace(marker, block(en)+marker, 1)
-    # An explicit article anchor avoids headings belonging to the navigation.
+    # Keep the opening context/disclosure, then offer both reading speeds before
+    # a long contents list or model shelf. Rebuilds relocate older, buried blocks.
+    # Bound the search to the article so navigation headings cannot win.
     article = re.search(r'<article\b[^>]*>',html)
     start = article.end() if article else 0
-    match = re.search(r'<h2\b', html[start:])
-    if not match: raise ValueError('No content heading for '+slug)
-    pos=start+match.start()
-    # Keep independent calculators as siblings, never wrap another tool's form.
-    laundry = html.find('<!--EB_LAUNDRY-->', start)
-    if start <= laundry < pos: pos = laundry
-    return html[:pos]+block(en)+html[pos:]
+    closing = re.search(r'</article\s*>', html[start:])
+    end = start + closing.start() if closing else len(html)
+    content = html[start:end]
+    # A generated profile can contain literal heading markup inside JavaScript.
+    # Neither those strings nor headings inside an independent form are anchors.
+    excluded = [m.span() for m in re.finditer(r'<(form|script|style)\b[^>]*>.*?</\1\s*>', content, flags=re.S | re.I)]
+    anchors = re.finditer(r'<!--EB_(?:TOC|MODELS|LAUNDRY)-->|<h2\b', content)
+    offsets = [m.start() for m in anchors
+               if not any(begin <= m.start() < finish for begin, finish in excluded)]
+    if not offsets: raise ValueError('No content heading for '+slug)
+    # The laundry marker precedes its heading and form: keep tools as siblings.
+    pos = start + min(offsets)
+    # Some legacy pages put their TOC inside EB_DEMAND_MARKET. Later generators
+    # replace that entire region; inserting there silently deletes this tool.
+    # Escape every enclosing generated block, including nested/parameterized
+    # markers, instead of keeping a fragile list of blocks replaced downstream.
+    stack, regions = [], []
+    for marker in re.finditer(r'<!--(/?)(EB_[A-Z0-9_]+)(?::[^>]*?)?-->', html):
+        closing, name = marker.group(1), marker.group(2)
+        if not closing:
+            stack.append((name, marker.start()))
+            continue
+        for index in range(len(stack) - 1, -1, -1):
+            if stack[index][0] == name:
+                regions.append((stack[index][1], marker.end()))
+                del stack[index:]
+                break
+    # Unpaired comments such as EB_CRUMB are standalone insertion sentinels,
+    # not enclosing regions. Only a matched closing marker establishes a span.
+    pos = min([pos] + [begin for begin, finish in regions if begin < pos < finish])
+    return html[:pos]+block(en, slug)+html[pos:]
 
 def creator_entry(html, en=False):
     path = '/en/guide/dehumidifier-drying-clothes-cost.html' if en else '/guide/waesche-trocknen-wohnung.html'

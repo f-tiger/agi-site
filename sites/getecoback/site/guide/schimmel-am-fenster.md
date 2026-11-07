@@ -103,6 +103,12 @@ Wenn der Fleck nach dem Erneuern der Fuge wiederkommt, wenn er sich von der Laib
 [Schimmel in Badfugen entfernen: Mörtel oder Silikon?](https://getecoback.com/guide/schimmel-bad-fugen.html)
 [Luftentfeuchter gegen Schimmel: Hilft das wirklich?](https://getecoback.com/guide/luftentfeuchter-gegen-schimmel.html)
 
+## Dein nächster Schritt
+
+- [Wiederkehrenden Beschlag einordnen](https://getecoback.com/guide/fenster-beschlagen-innen.html) Die Bedingungen am Fenster sind ein eigener Prüfschritt.
+
+- [Beobachtungen und Raumwerte festhalten](https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html) Ein Protokoll hilft, den Verlauf nachvollziehbar zu beschreiben.
+
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp

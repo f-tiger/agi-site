@@ -43,6 +43,12 @@ Modellgrenzen: Comfee MDDF-20DEN7 ist hier die Variante ohne WF. MeacoDry Arete 
 Rechenbeispiel: 216 W × 6 h ÷ 1.000 × 0,35 €/kWh = 0,45 €. Das ist weder eine gemessene Wäscheladung noch eine Einsparzusage.
 Quellen geprüft am 06.11.2026: [Meaco One 20L](https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-air-purifier) · [Comfee MDDF-20DEN7](https://www.feelcomfee.com/de/produkte/klimatisieren-heizen/mddf-20den7) · [Comfee-Datenblatt, Seite 2](https://www.feelcomfee.com/content/dam/comfee-aem/de/produkte/klimatisieren-heizen/mddf-20den7/comfee-MDDF-20DEN7-Datenblatt.pdf#page=2) · [Comfee-Bedienhinweise](https://www.feelcomfee.com/content/dam/comfee-aem/global/products/heating-cooling/dehumidifier-mddf-20den7/DF-Owners-Manual.pdf) · [Verbraucherzentrale](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426). Herstellerangaben, keine eigenen Messungen. Orientierung, keine Ferndiagnose.
 
+## Dein nächster Schritt
+
+- [Bedarf und Modelldaten vergleichen](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice) 20 m² allein bestimmen weder Bauart noch benötigte Literleistung.
+
+- [Der Raum ist kühl?](https://getecoback.com/guide/luftentfeuchter-keller.html#kalter-keller) Prüfe die Temperaturbedingungen, bevor du Geräteangaben vergleichst.
+
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp

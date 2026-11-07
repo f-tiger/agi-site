@@ -31,7 +31,10 @@ def build():
   if target:clean=clean[:target.end()]+block+clean[target.end():]
   else:clean=re.sub(r'(<body\b[^>]*>)',lambda m:m[1]+block,clean,count=1)
   clean=clean.replace('</head>',f'<link rel="stylesheet" href="/assets/demand-discovery.css?v={version}"><script type="module" src="/assets/demand-discovery.mjs?v={version}"></script></head>',1)
-  hubs={'/kategorie/heizen.html':[2,3],'/kategorie/luftqualitaet.html':[0,1],'/kategorie/klimaanlagen.html':[5],'/kategorie/energie-sparen.html':[4,1]}
+  # The air-quality hub owns its task order in moisture_journeys. Injecting a
+  # second task board inside its blue hero duplicates those choices and inherits
+  # white anchor text on white cards.
+  hubs={'/kategorie/heizen.html':[2,3],'/kategorie/klimaanlagen.html':[5],'/kategorie/energie-sparen.html':[4,1]}
   if route in hubs:
    chosen=[TASKS['de']['tasks'][i] for i in hubs[route]]
    hub='<section class="eco-demand-hub" aria-labelledby="eco-demand-title"><h2 id="eco-demand-title">Was möchtest du lösen?</h2><p>Starte mit deiner Aufgabe. Die Hilfen sind kostenlos und ohne Konto nutzbar.</p>'+''.join(f'<a data-eco-task href="{escape(x["url"])}">{escape(x["label"])}</a>' for x in chosen)+'</section>'

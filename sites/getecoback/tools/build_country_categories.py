@@ -11,6 +11,7 @@ import json
 import re
 from pathlib import Path
 from urllib.parse import urlencode
+from moisture_journeys import render_next_steps
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = ROOT / 'site'
@@ -138,8 +139,15 @@ def guide_body(c):
     body += f'<button type="button" data-country-print hidden>{esc(c["print_label"])}</button></section>'
     body += f'<section class="guide-section"><h2>{esc(g["buy_title"])}</h2><p>{esc(g["buy_text"])}</p><p class="disclosure">{esc(c["shop_disclosure"])}</p>'
     body += merchant(c, g['query'], g['shop_label']) + '</section>'
-    body += f'<section class="guide-section"><h2>{esc(c["next_label"])}</h2><ul class="reading">'
-    body += ''.join('<li>' + internal(p, label) + '</li>' for label, p in g['related']) + '</ul></section>'
+    if g['path'] == '/guide/luftfeuchtigkeit-richtig-messen.html':
+        # This late generator rewrites the full guide after build_related.
+        # Replace its old three-link next-step section with the same routing
+        # policy, preserving the local guide action and a separate hub return.
+        body += render_next_steps(g['path'], country_actions=True)
+        body += '<p>' + internal(c['path'], 'Alle Wohn-Themen für Deutschland') + '</p>'
+    else:
+        body += f'<section class="guide-section"><h2>{esc(c["next_label"])}</h2><ul class="reading">'
+        body += ''.join('<li>' + internal(p, label) + '</li>' for label, p in g['related']) + '</ul></section>'
     return body
 
 

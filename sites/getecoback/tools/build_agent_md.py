@@ -154,6 +154,12 @@ def to_markdown(src_html, path_url, lang):
     for pat in (r"<!--EB_[A-Z_]+-->.*?<!--/EB_[A-Z_]+-->", r"<script\b.*?</script>",
                 r"<style\b.*?</style>", r"<nav\b.*?</nav>", r"<form\b.*?</form>"):
         body = re.sub(pat, " ", body, flags=re.S)
+    # The reviewed task handoff is useful answer context, unlike generic nav.
+    # Include only what this HTML actually exposes; normal source/commerce
+    # filtering still runs below. Never synthesize invisible next-step links.
+    journey = re.search(r'<!--EB_RELATED-->\s*<nav\b[^>]*id="eb-journey-next"[^>]*>(.*?)</nav>\s*<!--/EB_RELATED-->', src_html, re.S)
+    if journey:
+        body += journey.group(1).replace('</a><p', '</a> <p')
 
     def link(mm):
         href, text = mm.group(1), re.sub(r"<[^>]+>", "", mm.group(2)).strip()

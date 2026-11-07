@@ -65,6 +65,12 @@ Es gibt eine harte Grenze, ab der Kondensat entsteht: Sinkt die Oberflächentemp
 [Wäsche in der Wohnung trocknen ohne Schimmel →](https://getecoback.com/guide/waesche-trocknen-wohnung.html)
 [Luftentfeuchter kaufen: Größe, Hygrostat, Stromkosten →](https://getecoback.com/guide/luftentfeuchter-ratgeber.html)
 
+## Dein nächster Schritt
+
+- [Raumwert und Fensteroberfläche unterscheiden](https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html) Ein Wert an der kalten Scheibe beschreibt einen anderen Ort als die Raummitte.
+
+- [Lüften mit Innen- und Außenwerten prüfen](https://getecoback.com/guide/luftfeuchtigkeit-senken.html#moisture-check) Nutze vorhandene Messwerte, bevor du über ein zusätzliches Gerät nachdenkst.
+
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp

@@ -43,6 +43,8 @@ import os
 import re
 import sys
 from collections import Counter, defaultdict
+from urllib.parse import urlsplit
+from moisture_journeys import GUIDE_NEXT, render_next_steps
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
@@ -145,7 +147,7 @@ def main():
                 continue
             path = os.path.join(root, fn)
             rel = "/" + os.path.relpath(path, SITE).replace(os.sep, "/")
-            if "/guide/" not in rel:
+            if "/guide/" not in rel and rel not in GUIDE_NEXT:
                 continue
             html = open(path, encoding="utf-8").read()
             if 'name="robots"' in html and "noindex" in html:
@@ -184,6 +186,11 @@ def main():
     chosen = {}
     inbound = Counter()
     for src in pages:
+        if src in GUIDE_NEXT:
+            picks = [urlsplit(item['href']).path for item in GUIDE_NEXT[src]]
+            chosen[src] = picks
+            inbound.update(picks)
+            continue
         cands = sorted(((score(src, d), d) for d in pages), reverse=True)
         picks = [d for s, d in cands if s > 0][:MAX_LINKS]
         chosen[src] = picks
@@ -212,7 +219,7 @@ def main():
                 ((len(pages[s]["tokens"] & pages[dst]["tokens"])
                   + (0.5 if pages[s]["topic"] and pages[s]["topic"] == pages[dst]["topic"] else 0.0), s)
                  for s in pages
-                 if s != dst and pages[s]["locale"] == pages[dst]["locale"]
+                 if s != dst and s not in GUIDE_NEXT and pages[s]["locale"] == pages[dst]["locale"]
                  and dst not in chosen[s] and dst not in pages[s]["existing"]
                  and len(chosen[s]) < HARD_MAX),
                 reverse=True)
@@ -227,7 +234,9 @@ def main():
     written = 0
     for src, picks in chosen.items():
         p = pages[src]
-        if not picks:
+        if src in GUIDE_NEXT:
+            block = render_next_steps(src)
+        elif not picks:
             block = OPEN + CLOSE
         else:
             items = "".join(
@@ -239,13 +248,20 @@ def main():
                      f'{heading[p["locale"]]}</strong>'
                      f'<ul style="margin:0 0 0 18px;font-size:14.5px;">{items}</ul></nav>{CLOSE}')
         html = p["html"]
+        if src in GUIDE_NEXT:
+            # Consolidate the old generic next-step list and household promo in
+            # this one owned handoff, rather than append another link module.
+            html = re.sub(r'<h2>Dein nächster Schritt</h2><nav class="work-links"[^>]*>.*?</nav>', '', html, flags=re.S)
+            html = re.sub(r'<!--EB_HOUSEHOLD_LINK-->.*?<!--/EB_HOUSEHOLD_LINK-->\n?', '', html, flags=re.S)
         if OPEN in html:
             out = re.sub(re.escape(OPEN) + r".*?" + re.escape(CLOSE), lambda m: block, html, flags=re.S)
         elif "</article>" in html:
             out = html.replace("</article>", block + "\n</article>", 1)
+        elif src in GUIDE_NEXT and "</main>" in html:
+            out = html.replace("</main>", block + "\n</main>", 1)
         else:
             continue
-        if out != html:
+        if out != p['html']:
             open(p["path"], "w", encoding="utf-8").write(out)
             written += 1
 

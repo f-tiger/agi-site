@@ -6,10 +6,6 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftentfeuchter-zie
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
 
-Hygrometer schon über 70 %? Dann nicht auf den Rabatt warten: ab da geht es um die Wand, nicht um ein paar Euro.
-Echter Rabatt? Zu jeder Preisermäßigung gehört der niedrigste Preis der letzten 30 Tage (§ 11 PAngV): vergleiche mit dem, nicht mit dem durchgestrichenen.
-Kein Prime? Prime gratis testen →Anzeige · Amazon zahlt uns eine Prämie für den Gratiszeitraum. Ab wann Prime kostet und wie du kündigst, steht auf der Amazon-Seite.
-
 ## Was sich aus Raumluft berechnen lässt
 In 40 m³ Luft bei 18 °C liegen zwischen 60 % und 50 % relativer Feuchte rund 61 g Wasser. Das beschreibt nur die Luft zu diesem Zeitpunkt. Feuchte aus Wänden, Möbeln, Wäsche und Luftaustausch kann laufend nachkommen. Die Zahl ist deshalb keine Obergrenze für den Tankinhalt pro Tag.
 
@@ -51,7 +47,13 @@ Nein. Prüfe den Betriebsbereich und das Abtauverhalten des konkreten Modells so
 
 ## Rechenweg und Grenzen
 Die Rechnung nutzt die absolute Feuchte nach Magnus und das eingegebene Luftvolumen. 50 % ist ein Vergleichsziel dieser Rechnung, keine allgemeine Vorgabe für jeden Raum.
-Keine eigenen Gerätetests, keine Ferndiagnose. Überarbeitet am 4. Oktober 2026. Hintergrund zu Feuchtequellen und Lüftung: Verbraucherzentrale: Heizen und Lüften.
+Keine eigenen Gerätetests, keine Ferndiagnose. Überarbeitet am 4. Oktober 2026. Hintergrund zu Feuchtequellen und Lüftung: [Verbraucherzentrale: Heizen und Lüften](https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizen-und-lueften-so-gehts-richtig-10426).
+
+## Dein nächster Schritt
+
+- [Läuft das Gerät in einem kalten Raum?](https://getecoback.com/guide/luftentfeuchter-keller.html#kalter-keller) Prüfe die Temperaturbedingungen; ein leerer Tank allein beweist keinen Defekt.
+
+- [Zusätzlich Geruch oder Pflegeprobleme?](https://getecoback.com/guide/luftentfeuchter-stinkt.html) Nutze die Hinweise für Tank, Filter und den vorgesehenen Betrieb.
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json

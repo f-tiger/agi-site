@@ -106,6 +106,12 @@ MeacoDry Arete One 20L auf Amazon →
 [Luftentfeuchter im Dauerbetrieb: die Stromkosten →](https://getecoback.com/guide/luftentfeuchter-dauerbetrieb-stromkosten.html)
 [Wäsche in der Wohnung trocknen: Kosten und Feuchte →](https://getecoback.com/guide/waesche-trocknen-wohnung.html)
 
+## Dein nächster Schritt
+
+- [Mit einheitlichen Prüfpunkten vergleichen](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice) Prüfe das genaue Modell und ausdrücklich fehlende Vergleichswerte.
+
+- [Betriebskosten zur eigenen Nutzung prüfen](https://getecoback.com/guide/luftentfeuchter-dauerbetrieb-stromkosten.html) Herstellerleistung ist keine Zusage für deinen gemessenen Verbrauch.
+
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp

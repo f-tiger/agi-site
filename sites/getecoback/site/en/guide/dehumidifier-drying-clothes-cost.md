@@ -108,6 +108,12 @@ Formula: 52 × sessions/week × (manual − machine use − cleanup) ÷ 60.
 - Midea — PortaSplit installatie
 - Tineco — Switch S6 care FAQ
 
+## Next step
+
+- [Still deciding whether a device fits?](https://getecoback.com/en/guide/dehumidifier-20-sqm.html) Check room conditions and model evidence before shopping.
+
+- [Drying in a cold room?](https://getecoback.com/en/guide/desiccant-vs-compressor-dehumidifier.html) Temperature affects the device comparison and expected operation.
+
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp

@@ -22,9 +22,7 @@ Ein Entfeuchter kann auch Feuchte aus dem Raum aufnehmen. Wie viel davon aus der
 Wenn du bereits einen Trockner besitzt, ist dessen Kaufpreis für diese einzelne Nutzung nicht erneut fällig. Wenn du erst kaufen müsstest, nutze zusätzlich den [Kaufpreisvergleich](https://getecoback.com/geraete-austausch-rechner.html). Für die Praxis: [Wäsche in der Wohnung](https://getecoback.com/guide/waesche-trocknen-wohnung.html) und [Entfeuchter-Auswahlkriterien](https://getecoback.com/guide/luftentfeuchter-ratgeber.html).
 
 ## Quellen und Grenzen
-Die Verbraucherzentrale erklärt das Trockner-Energielabel, einschließlich kWh je 100 Trocknungen. Unsere Szenariorechnung ist keine Prüfung eines bestimmten Geräts. Hinweise zu Heizen und Lüften helfen, Raumfeuchte getrennt von den Stromkosten zu betrachten.
-
-## Dein nächster Schritt
+Die [Verbraucherzentrale erklärt das Trockner-Energielabel](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/beim-kauf-eines-waeschetrockners-an-den-stromverbrauch-denken-37984), einschließlich kWh je 100 Trocknungen. Unsere Szenariorechnung ist keine Prüfung eines bestimmten Geräts. [Hinweise zu Heizen und Lüften](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426) helfen, Raumfeuchte getrennt von den Stromkosten zu betrachten.
 [Zur Haushaltswerkstatt](https://getecoback.com/wohnkosten-werkstatt.html) · [Wie wir empfehlen](https://getecoback.com/wie-wir-empfehlen.html)
 
 ### Welche Situation passt zu dir?
@@ -44,6 +42,12 @@ kWh für den ganzen Durchgang × Arbeitspreis. Vorbelegte Zahlen sind Rechenbeis
 - Notiere Start- und Endstand eines passenden Strommessgeräts sowie die Laufzeit. Beachte Anleitung und elektrische Belastbarkeit.
 - Nutze die kWh-Differenz des ganzen Durchgangs. Typenschild-Watt ist keine gemessene mittlere Leistung.
 - Bei einem Label je 100 Zyklen: durch 100 teilen. Das Labelprogramm kann von deiner eigenen Nutzung abweichen.
+
+## Dein nächster Schritt
+
+- [Eigene Verbrauchswerte ermitteln](https://getecoback.com/strommess-protokoll.html) Eine vollständige Nutzung messen, wenn bisher nur Leistungsangaben vorliegen.
+
+- [Den passenden Trockenablauf prüfen](https://getecoback.com/guide/waesche-trocknen-wohnung.html) Kosten allein sagen nichts über Platz, Dauer und Raumfeuchte aus.
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json

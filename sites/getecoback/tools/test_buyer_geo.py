@@ -101,7 +101,7 @@ class BuyerGeo(unittest.TestCase):
                     route = ('/en' if en else '') + '/guide/' + slug + '.html'
                     source = (site / route.lstrip('/')).read_text()
                     updated = DECISION.inject(source, slug, en)
-                    self.assertEqual(updated.count('<details data-choice-method>'), 1)
+                    self.assertEqual(updated.count('data-choice-method'), 1)
                     self.assertGreater(updated.count('<details data-choice-evidence>'), 1)
                     markdown = to_markdown(updated, route, 'en' if en else 'de')
                     for reference in [MEACO, COMFEE, DATASHEET, DECISION.COMFEE, DECISION.AIR]:
