@@ -621,7 +621,18 @@
       "ga4_backend_receipt": "not-tested",
       "owner": "product_release_owner",
       "report": "docs/tds-affiliate-benchmarks-2026-11-07.md",
-      "external_distribution": "Existing approved TikTok submission remains awaiting platform confirmation at last bounded check; no new post."
+      "external_distribution": "Existing approved TikTok submission remains awaiting platform confirmation at last bounded check; no new post.",
+      "shared_release_exception": {
+        "site": "web3",
+        "workflow_run": "https://github.com/f-tiger/agi-site/actions/runs/42335131334",
+        "status": "failed_after_asset_upload_during_custom_domain_configuration",
+        "provider_error": 10013,
+        "independent_public_gets": 44,
+        "existing_hosts_verified": 11,
+        "public_build_matches_release": true,
+        "retry": "blocked_by_automatic_approval_review_separate_authorization_required",
+        "tds_release_affected": false
+      }
     },
     "benchmark_upgrade": {
       "decision_date": "2026-11-07",
