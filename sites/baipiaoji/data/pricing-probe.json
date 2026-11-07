@@ -1,19 +1,19 @@
 {
- "generated": "2026-11-06",
+ "generated": "2026-11-07",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "mistral",
-  "motiff",
-  "n8n",
-  "napkin",
-  "notebooklm",
-  "notion-ai",
-  "nvidia-nim",
-  "ollama"
+  "opusclip",
+  "perplexity",
+  "phind",
+  "pika",
+  "pixlr",
+  "poe",
+  "qoder",
+  "quark-ai"
  ],
- "cursor": "ollama",
+ "cursor": "quark-ai",
  "summary": {
   "ready": 42,
   "empty": 36,
@@ -2235,14 +2235,14 @@
    "name": "OpusClip",
    "cat": "video",
    "reach": 0,
-   "probed": "2026-10-25",
+   "probed": "2026-11-07",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://help.opus.pro/docs/article/plans-and-credits",
      "status": 200,
-     "bytes": 221056,
+     "bytes": 223876,
      "tokens": 8
     }
    ],
@@ -2257,7 +2257,7 @@
    "name": "Perplexity",
    "cat": "search",
    "reach": 0,
-   "probed": "2026-10-25",
+   "probed": "2026-11-07",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -2287,7 +2287,7 @@
    "name": "Phind",
    "cat": "search",
    "reach": 0,
-   "probed": "2026-10-25",
+   "probed": "2026-11-07",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -2317,21 +2317,21 @@
    "name": "Pika",
    "cat": "video",
    "reach": 0,
-   "probed": "2026-10-25",
+   "probed": "2026-11-07",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://pika.art/pricing",
      "status": 200,
-     "bytes": 277273,
-     "tokens": 46
+     "bytes": 347535,
+     "tokens": 75
     }
    ],
    "best": {
     "url": "https://pika.art/pricing",
-    "tokens": 46,
-    "excerpt": "u? Commercial use For clients, brands, and paid work. Priority generation Shorter waits when the queue is long. Creator $ 35 /mo 2,030 of 3,150 credits a month See plan Your match Recommended for you See why Creator Social content fits here, with room left over. $35 $ 3 0 1 2 3 4 5 6 7 8 9 5 0 1 2 3 4 5 6 7 8 9 /mo Billed monthly 3,150 credits / month Your monthly estimate 2,030 credits Videos 1,464 credits Images 160 credits Takes 406 credits Spare 1,120 credits Included: All models Included: No watermark Included: Commercial license Not included: Priority queue Subscribe to Creator Compare plans For enterprise Need more credits? Talk to our team to create a custom solution at scale with de"
+    "tokens": 75,
+    "excerpt": "e on pika.art and MCP on pika.art/mcp. They can’t be used with the API, iOS app, or old.pika.art. 1,500 credits Buy for $25 12 clips Seedance 2.5 214 images Nano Banana 2 3,000 credits Buy for $50 24 clips Seedance 2.5 428 images Nano Banana 2 6,000 credits Popular Buy for $100 49 clips Seedance 2.5 857 images Nano Banana 2 12,000 credits Buy for $200 98 clips Seedance 2.5 1.7k images Nano Banana 2 30,000 credits Buy for $500 245 clips Seedance 2.5 4.3k images Nano Banana 2 66,000 credits +10% Buy for $1,000 540 clips Seedance 2.5 9.4k images Nano Banana 2 One-time top up 60 credits per $1 on every plan. Buy once, create whenever. Credit pack amount 0 100 25 50 100 200 500 1,000 $ USD 6,000 "
    }
   },
   "pixlr": {
@@ -2339,14 +2339,14 @@
    "name": "Pixlr",
    "cat": "image",
    "reach": 0,
-   "probed": "2026-10-25",
+   "probed": "2026-11-07",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://pixlr.com/pricing",
      "status": 200,
-     "bytes": 374234,
+     "bytes": 380812,
      "tokens": 18
     }
    ],
@@ -2383,14 +2383,14 @@
    "name": "Poe",
    "cat": "chat",
    "reach": 0,
-   "probed": "2026-10-26",
+   "probed": "2026-11-07",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://poe.com/subscription_plans",
      "status": 200,
-     "bytes": 120334,
+     "bytes": 121064,
      "tokens": 10
     }
    ],
@@ -2435,14 +2435,14 @@
    "name": "Qoder（阿里）",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-10-26",
+   "probed": "2026-11-07",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://qoder.com/pricing",
      "status": 200,
-     "bytes": 8578,
+     "bytes": 8629,
      "tokens": 0
     },
     {
@@ -2469,7 +2469,7 @@
    "name": "夸克 AI",
    "cat": "search",
    "reach": 0,
-   "probed": "2026-10-26",
+   "probed": "2026-11-07",
    "env": "runner",
    "state": "blocked",
    "tried": [

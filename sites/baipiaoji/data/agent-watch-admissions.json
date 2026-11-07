@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-06",
+ "checked": "2026-11-07",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -3726,259 +3726,45 @@
    "source_http": 404,
    "repo_http": null,
    "reason": "source HTTP 404"
+  },
+  "biodnd-agent-press": {
+   "attempts": 1,
+   "first_attempt": "2026-11-07",
+   "last_attempt": "2026-11-07",
+   "attemptedAt": "2026-11-07T06:32:56.624Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "bridgetoagent-ai-readiness": {
+   "attempts": 1,
+   "first_attempt": "2026-11-07",
+   "last_attempt": "2026-11-07",
+   "attemptedAt": "2026-11-07T06:32:56.624Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
+  },
+  "builtwithjon-builtwithjon": {
+   "attempts": 1,
+   "first_attempt": "2026-11-07",
+   "last_attempt": "2026-11-07",
+   "attemptedAt": "2026-11-07T06:32:56.624Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "bullpenstrategygroup-rotunda-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-11-07",
+   "last_attempt": "2026-11-07",
+   "attemptedAt": "2026-11-07T06:32:56.624Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
   }
  },
  "admitted": [
-  {
-   "slug": "vercel-ai-sdk",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "llamaindex",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "langchain",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "haystack",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "metagpt",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "autogpt",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "superagi",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "griptape",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "dspy",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "instructor",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "guidance",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "outlines",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "agency-swarm",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "atomic-agents",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "julep",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "rivet",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "taskweaver",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "langroid",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "promptflow",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "bedrock-agentcore",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "spring-ai",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "strands-agents",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "langchain4j",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "koog",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "genkit",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "rig",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "eino",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "qwen-agent",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "xagent",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "modelscope-agent",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "agentscope",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "chatdev",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "lagent",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "deepagents",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "microsoft-agent-framework",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "a2a-protocol",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "agent-protocol",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "ag-ui",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "assistant-ui",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "copilotkit",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "chainlit",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "openai-agents-js",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "burr",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "nemo-agent-toolkit",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "marvin",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "mirascope",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "magentic",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "agentverse",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "baml",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "swarms",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
   {
    "slug": "agentgpt",
    "date": "2026-09-22",
@@ -20446,6 +20232,342 @@
   {
    "slug": "brainiall-documents",
    "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "brainiall-image",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "brainiall-memory",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "brainiall-nlp",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "brainiall-pronunciation",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "brainiall-tts",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "brainiall-web",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "brainonbnb-bobai",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bravos-ai-bravos",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "braxos-maestro",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "breakerdesk-site",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "breckenwander-travel-connector",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "brelsfordsoftware-agent-bounty-jobs",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "brewmypdf-pdf",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "brick-byte-footnote",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "brightmoot-brightmoot",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "brightsec-mcp",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "brixastudio-studio",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "brofindai-brofindai",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "brokervsadvisor-site",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bronjoy-marketplace",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "brontir-research",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "browserforest-browser-forest",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "browserssh-browser-ssh",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "btcdcaengine-btc-dca-engine",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "budgetpixel-mcp",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "budgeyapp-budgey",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "buffrota-site",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "buildworkpro-buildworkpro",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "built2winweb-built2winweb",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bunny-bunny",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bunstation-bunstation",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "burdenrateledger-site",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "burnesatelier-operations-reconciliation",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "burnlore-mcp",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "busabase-busabase",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "bushdrum-events",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "businessvaluenow-site",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bustup-monitor-mcp",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "butterflydelta-preflight",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "buyerawareapp-buyeraware",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "buyingmesh-procurement",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "buylater-buylater",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "buyukesim-mcp",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "buzzradr-mcp",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "byimprint-public-guidance",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bynn-bynn",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cabal-hunter-api-cabal-hunter",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cache-boost-cacheboost",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cadencercs-cadence",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "cadencz-cadencz",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cafmlane-site",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cajusticewatch-cajusticewatch",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "calcfleet-calculators",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "calcourtdeadlines-deadlines",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "calibvo-site",
+   "date": "2026-11-07",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "californiacarquotes-quote-exchange",
+   "date": "2026-11-07",
    "source_http": 200,
    "repo_http": null
   }

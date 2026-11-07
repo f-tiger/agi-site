@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-11-06T07:22:27.980Z",
+  "lastRun": "2026-11-07T06:34:03.868Z",
   "status": "degraded",
   "checkedSources": 8,
   "queue": [
@@ -211,43 +211,43 @@
       "caseId": "olive-ai",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.fiercehealthcare.com/health-tech/once-high-flying-unicorn-olive-ai-sells-two-key-businesses-winds-down-operations",
-      "lastChecked": "2026-10-24T05:00:35.193Z"
+      "lastChecked": "2026-11-07T06:34:03.868Z"
     },
     {
       "caseId": "builder-ai",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.computerworld.com/article/3991362/microsoft-backed-no-code-ai-startup-files-for-bankruptcy.html",
-      "lastChecked": "2026-10-24T05:00:35.193Z"
+      "lastChecked": "2026-11-07T06:34:03.868Z"
     },
     {
       "caseId": "embodied",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.axios.com/2024/12/10/moxie-kids-robot-shuts-down",
-      "lastChecked": "2026-10-25T05:13:31.074Z"
+      "lastChecked": "2026-11-07T06:34:03.868Z"
     },
     {
       "caseId": "embodied",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.businessinsider.com/moxie-robot-toy-shutting-down-kids-embodied-goodbye-2024-12",
-      "lastChecked": "2026-10-25T05:13:31.074Z"
+      "lastChecked": "2026-11-07T06:34:03.868Z"
     },
     {
       "caseId": "ghost-autonomy",
       "reason": "source-unreachable",
       "sourceUrl": "https://autotechinsight.ihsmarkit.com/main/news/view/printer-friendly?id=5275319",
-      "lastChecked": "2026-10-25T05:13:31.074Z"
+      "lastChecked": "2026-11-07T06:34:03.868Z"
     },
     {
       "caseId": "argo-ai",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.euronews.com/next/2022/11/01/ford-motor-autonomous-argo",
-      "lastChecked": "2026-10-25T05:13:31.074Z"
+      "lastChecked": "2026-11-07T06:34:03.868Z"
     },
     {
       "caseId": "argo-ai",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.investing.com/news/stock-market-news/ford-withdraws-petition-seeking-us-approval-to-deploy-selfdriving-vehicles-3045478",
-      "lastChecked": "2026-10-25T05:13:31.074Z"
+      "lastChecked": "2026-11-07T06:34:03.868Z"
     },
     {
       "caseId": "cruise-robotaxi",
@@ -763,7 +763,7 @@
     "olive-ai|https://www.fiercehealthcare.com/health-tech/once-high-flying-unicorn-olive-ai-sells-two-key-businesses-winds-down-operations": {
       "caseId": "olive-ai",
       "sourceUrl": "https://www.fiercehealthcare.com/health-tech/once-high-flying-unicorn-olive-ai-sells-two-key-businesses-winds-down-operations",
-      "lastAttempt": "2026-10-24T05:00:35.193Z",
+      "lastAttempt": "2026-11-07T06:34:03.868Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -771,11 +771,11 @@
     "builder-ai|https://www.linkedin.com/posts/builderai_today-engineerai-corporation-known-as-activity-7330581919031521280-w7hu": {
       "caseId": "builder-ai",
       "sourceUrl": "https://www.linkedin.com/posts/builderai_today-engineerai-corporation-known-as-activity-7330581919031521280-w7hu",
-      "lastAttempt": "2026-10-24T05:00:35.193Z",
+      "lastAttempt": "2026-11-07T06:34:03.868Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-10-24T05:00:35.193Z",
-      "lastHash": "9a1c7c48ab99229bc3b8178d9e96d9c2c5c564e571e86ef08185f4436d2d8feb",
+      "lastSuccess": "2026-11-07T06:34:03.868Z",
+      "lastHash": "16aa6d889ab8f782fcbd589b5306d7340881ddd3541b7485aea38b7f9fdf5025",
       "hash": "b06ae8125922ad5ab2818846c35f563a05cf1ce3bbdfb271d5cc327c995ec26f",
       "simhash": "6c1135c105eaa258",
       "words": 239,
@@ -784,7 +784,7 @@
     "builder-ai|https://www.computerworld.com/article/3991362/microsoft-backed-no-code-ai-startup-files-for-bankruptcy.html": {
       "caseId": "builder-ai",
       "sourceUrl": "https://www.computerworld.com/article/3991362/microsoft-backed-no-code-ai-startup-files-for-bankruptcy.html",
-      "lastAttempt": "2026-10-24T05:00:35.193Z",
+      "lastAttempt": "2026-11-07T06:34:03.868Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -792,7 +792,7 @@
     "embodied|https://www.axios.com/2024/12/10/moxie-kids-robot-shuts-down": {
       "caseId": "embodied",
       "sourceUrl": "https://www.axios.com/2024/12/10/moxie-kids-robot-shuts-down",
-      "lastAttempt": "2026-10-25T05:13:31.074Z",
+      "lastAttempt": "2026-11-07T06:34:03.868Z",
       "status": "unreachable",
       "http": 403,
       "consecutiveChange": 0
@@ -800,7 +800,7 @@
     "embodied|https://www.businessinsider.com/moxie-robot-toy-shutting-down-kids-embodied-goodbye-2024-12": {
       "caseId": "embodied",
       "sourceUrl": "https://www.businessinsider.com/moxie-robot-toy-shutting-down-kids-embodied-goodbye-2024-12",
-      "lastAttempt": "2026-10-25T05:13:31.074Z",
+      "lastAttempt": "2026-11-07T06:34:03.868Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -808,7 +808,7 @@
     "ghost-autonomy|https://autotechinsight.ihsmarkit.com/main/news/view/printer-friendly?id=5275319": {
       "caseId": "ghost-autonomy",
       "sourceUrl": "https://autotechinsight.ihsmarkit.com/main/news/view/printer-friendly?id=5275319",
-      "lastAttempt": "2026-10-25T05:13:31.074Z",
+      "lastAttempt": "2026-11-07T06:34:03.868Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -816,7 +816,7 @@
     "argo-ai|https://www.euronews.com/next/2022/11/01/ford-motor-autonomous-argo": {
       "caseId": "argo-ai",
       "sourceUrl": "https://www.euronews.com/next/2022/11/01/ford-motor-autonomous-argo",
-      "lastAttempt": "2026-10-25T05:13:31.074Z",
+      "lastAttempt": "2026-11-07T06:34:03.868Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -824,7 +824,7 @@
     "argo-ai|https://www.investing.com/news/stock-market-news/ford-withdraws-petition-seeking-us-approval-to-deploy-selfdriving-vehicles-3045478": {
       "caseId": "argo-ai",
       "sourceUrl": "https://www.investing.com/news/stock-market-news/ford-withdraws-petition-seeking-us-approval-to-deploy-selfdriving-vehicles-3045478",
-      "lastAttempt": "2026-10-25T05:13:31.074Z",
+      "lastAttempt": "2026-11-07T06:34:03.868Z",
       "status": "unreachable",
       "http": 403,
       "consecutiveChange": 0
@@ -1159,26 +1159,31 @@
       "consecutiveChange": 0
     }
   },
-  "cursor": 36,
+  "cursor": 41,
   "errors": [
     {
-      "caseId": "coqui",
-      "sourceUrl": "https://www.linkedin.com/pulse/coqui-shutting-down-josh-meyer-fpsve",
+      "caseId": "olive-ai",
+      "sourceUrl": "https://www.fiercehealthcare.com/health-tech/once-high-flying-unicorn-olive-ai-sells-two-key-businesses-winds-down-operations",
       "reason": "body-limit"
     },
     {
-      "caseId": "humane-ai-pin",
-      "sourceUrl": "https://support.humane.com/hc/en-us/articles/34243204841997-Ai-Pin-Consumers-FAQ",
-      "reason": "network-error"
+      "caseId": "builder-ai",
+      "sourceUrl": "https://www.computerworld.com/article/3991362/microsoft-backed-no-code-ai-startup-files-for-bankruptcy.html",
+      "reason": "unsafe-source"
     },
     {
-      "caseId": "humane-ai-pin",
-      "sourceUrl": "https://www.theverge.com/news/614883/humane-ai-hp-acquisition-pin-shutdown",
+      "caseId": "embodied",
+      "sourceUrl": "https://www.businessinsider.com/moxie-robot-toy-shutting-down-kids-embodied-goodbye-2024-12",
       "reason": "body-limit"
     },
     {
-      "caseId": "neeva-consumer-search",
-      "sourceUrl": "https://www.searchenginejournal.com/neeva-the-ad-free-search-engine-announces-closure/487414/",
+      "caseId": "ghost-autonomy",
+      "sourceUrl": "https://autotechinsight.ihsmarkit.com/main/news/view/printer-friendly?id=5275319",
+      "reason": "unsafe-source"
+    },
+    {
+      "caseId": "argo-ai",
+      "sourceUrl": "https://www.euronews.com/next/2022/11/01/ford-motor-autonomous-argo",
       "reason": "body-limit"
     }
   ]

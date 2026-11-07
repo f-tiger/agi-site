@@ -1,10 +1,83 @@
 {
-  "generated": "2026-11-06",
+  "generated": "2026-11-07",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 106,
-  "fetched_fail": 21,
-  "pending": 15,
+  "fetched_ok": 105,
+  "fetched_fail": 22,
+  "pending": 10,
   "items": [
+    {
+      "slug": "bailian",
+      "url": "https://aliyun.com",
+      "confirmed": "2026-11-07",
+      "first_seen": "2026-11-06",
+      "added": [
+        "60mins"
+      ],
+      "removed": [
+        "10k",
+        "1mo",
+        "70m"
+      ],
+      "checked_then": "2026-08-03"
+    },
+    {
+      "slug": "v0",
+      "url": "https://v0.app",
+      "confirmed": "2026-11-07",
+      "first_seen": "2026-11-06",
+      "added": [
+        "10.2k",
+        "14.8k"
+      ],
+      "removed": [
+        "1.2k",
+        "1.3k",
+        "1.4k",
+        "1.9k",
+        "10.8k",
+        "10k",
+        "11.1k",
+        "14.7k",
+        "2.4k",
+        "20.8k",
+        "3.1k",
+        "4.4k"
+      ],
+      "checked_then": "2026-08-03"
+    },
+    {
+      "slug": "continue",
+      "url": "https://github.com/continuedev/continue",
+      "confirmed": "2026-11-07",
+      "first_seen": "2026-11-06",
+      "added": [
+        "5.6k"
+      ],
+      "removed": [
+        "5.5k"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "google-flow",
+      "url": "https://support.google.com/flow/answer/16526234",
+      "confirmed": "2026-11-07",
+      "first_seen": "2026-11-06",
+      "added": [
+        "0b",
+        "0credits",
+        "1.2credit",
+        "10credits",
+        "1credit",
+        "2credits",
+        "3credits",
+        "50credits",
+        "5credits",
+        "6credits"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-06"
+    },
     {
       "slug": "kiro",
       "url": "https://kiro.dev/pricing/",
@@ -318,19 +391,6 @@
       "checked_then": "2026-08-13"
     },
     {
-      "slug": "continue",
-      "url": "https://github.com/continuedev/continue",
-      "confirmed": "2026-10-30",
-      "first_seen": "2026-10-29",
-      "added": [
-        "36.4k"
-      ],
-      "removed": [
-        "36.3k"
-      ],
-      "checked_then": "2026-08-04"
-    },
-    {
       "slug": "zhipu-glm",
       "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
       "confirmed": "2026-10-30",
@@ -340,19 +400,6 @@
       ],
       "removed": [],
       "checked_then": "2026-08-01"
-    },
-    {
-      "slug": "bailian",
-      "url": "https://aliyun.com",
-      "confirmed": "2026-10-29",
-      "first_seen": "2026-10-28",
-      "added": [
-        "10k",
-        "1mo",
-        "70m"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-03"
     },
     {
       "slug": "notebooklm",
@@ -377,26 +424,6 @@
         "2min"
       ],
       "checked_then": "2026-08-06"
-    },
-    {
-      "slug": "v0",
-      "url": "https://v0.app",
-      "confirmed": "2026-10-27",
-      "first_seen": "2026-10-26",
-      "added": [
-        "100%",
-        "10k",
-        "6.8k",
-        "8.8k",
-        "9%"
-      ],
-      "removed": [
-        "1.5k",
-        "6.7k",
-        "8.7k",
-        "9.8k"
-      ],
-      "checked_then": "2026-08-03"
     },
     {
       "slug": "vidu",
