@@ -2,7 +2,7 @@
 // Every request is intercepted: no merchant visit or production analytics write.
 // ECO_SITE_DIR also accepts a downloaded production mirror; this is not a claim
 // that the fixture proves server-side analytics receipt or real conversion lift.
-const {chromium}=require('playwright');
+const {chromium}=require(process.env.NODE_PATH?'playwright':'../../../tools/revenue-studio/node_modules/playwright');
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const origin='https://getecoback.com';
 const site=path.resolve(process.env.ECO_SITE_DIR||path.join(__dirname,'../site'));
