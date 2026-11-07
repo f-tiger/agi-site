@@ -1,3 +1,9 @@
+## 2026-11-07 用户痛点、国家与收入目标
+
+Owner 已明确目标为**每个自然月全站总收入 USD100**，包含可归属 TDS 的真实收入，扣退款／冲回、未扣运营成本；不能改写为仅联盟佣金、利润或订阅 MRR。现有共享联盟 tag 不能单独证明 TDS 收入，未读账单保持未知。主攻美国展示决策与德国正规渠道／配件，英国先提供 Jellycat 地区购买信息；语言不等于收货国家，UK 未确认联盟前只使用官方非联盟链接。会员结账仍 NOT READY。
+
+上下文见 `.agents/product-marketing.md` v7、根目录 `docs/tds-country-growth-2026-11-07.md`、`tools/affiliate-growth/tds-operations.json`。原 07:20 UTC 原生来源任务和既有报告节奏保留。新 `/api/shopping-growth` 仅统计固定首页／导购路径，自 2026-11-08 完整 UTC 日开始，首份完整日结果最早 11 月 9 日；事件不是人、订单或收入。TikTok `tds-buy-01` 素材已准备，是否发布以真实平台回执为准。不得把准备完成写成获客成功。
+
 ## 2026-11-07 联盟导购升级（owner：升级为 eco 类似的联盟站）
 
 首页现在优先提供收藏展示、收纳运输、毛绒展示和送礼选购路径；收藏工作台收进可展开区域，系列页、账本、账户备份、MCP 与文档工具继续可用。`scripts/collecting/shopping.mjs` 是三语导购与首页内容源，统一由 collecting/build.mjs 生成。不得手改产物后遗漏生成器。

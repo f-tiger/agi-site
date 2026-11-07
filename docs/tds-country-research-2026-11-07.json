@@ -1,0 +1,394 @@
+{
+  "retrieved_at": "2026-11-07",
+  "method": "Public web search followed by page opens; official policy/product evidence separated from self-reported community pain. No messages, account data, purchases or new automation.",
+  "date_caveat": "Reddit rendered relative timestamps were inconsistent with search-index dates. Dates labeled search_index_date are index-reported, not independently verified UTC publication timestamps. Do not claim live stock from any historical post.",
+  "sources": [
+    {
+      "id": "display-community",
+      "countries": [
+        "unknown"
+      ],
+      "type": "community_anecdote",
+      "url": "https://www.reddit.com/r/smiskis/comments/1xfbbdi/my_smiski_display_case/",
+      "search_index_date": "2026-10-25",
+      "evidence": "Collector shows an illuminated cabinet; comments ask where the case was purchased. Author reports replacing a shelf, having two cats, and needing two people for assembly.",
+      "short_quote": "Where did you get this display case?",
+      "supports": "Visitors want specific purchase identification and assembly/household suitability, not just a general display category.",
+      "does_not_support": "US residency, market size, verified product quality, product compatibility or sales volume."
+    },
+    {
+      "id": "lustigt-community",
+      "countries": [
+        "unknown"
+      ],
+      "type": "community_anecdote",
+      "url": "https://www.reddit.com/r/smiskis/comments/1vfp5j7/psa_ikea_lustigt_is_perfect_for_smiski_display/",
+      "search_index_date": "2026-08-04",
+      "evidence": "Author reports searching for a display option and using IKEA LUSTIGT; several replies report using the same shelf.",
+      "short_quote": "I was searching for a display option for a little while",
+      "supports": "Named shelf fit/how-it-looks is a concrete collector task.",
+      "does_not_support": "Current local LUSTIGT availability, universal fit or a country-specific demand rate."
+    },
+    {
+      "id": "baggebo-us",
+      "countries": [
+        "US"
+      ],
+      "type": "official_product_with_customer_reviews",
+      "url": "https://www.ikea.com/us/en/p/baggebo-glass-door-cabinet-metal-white-80502998/",
+      "publication_date": null,
+      "evidence": "BAGGEBO 805.029.98 is described as a glass-and-mesh cabinet, two glass shelves, external 13 3/8 × 11 3/4 × 45 5/8 inches, max 11 lb per shelf, anchoring required. A customer review says they expected glass sides but found mesh, allowing air and dust through. Availability requires a location check.",
+      "short_quote": "Air and dust will go through this cabinet easily.",
+      "supports": "Concrete comparison: open/mesh vs enclosed construction, external versus usable internal measurements, assembly and anchoring. Useful counterexample to calling any glass-door cabinet dustproof.",
+      "does_not_support": "An internal capacity calculation, guaranteed stock, our own testing, or affiliate relationship."
+    },
+    {
+      "id": "baggebo-de",
+      "countries": [
+        "DE"
+      ],
+      "type": "official_product",
+      "url": "https://www.ikea.com/de/de/p/baggebo-vitrine-metall-weiss-80502998/",
+      "publication_date": null,
+      "evidence": "Same article 805.029.98 has a Germany page listing 34 × 30 × 116 cm and metal/mesh and glass construction; local availability and delivery need checking.",
+      "short_quote": "Warenverfügbarkeit, Sortiment und Preise können in den Einrichtungshäusern variieren.",
+      "supports": "Country-specific product reference and metric measurements; compare with acrylic tabletop cases rather than vague universal cabinet recommendations.",
+      "does_not_support": "Live stock, IKEA affiliate eligibility, internal shelf fit."
+    },
+    {
+      "id": "de-sonny-sourcing",
+      "countries": [
+        "DE"
+      ],
+      "type": "community_anecdote",
+      "url": "https://www.reddit.com/r/SonnyAngel/comments/1iq12m1/where_can_i_find_a_sonny_angel/",
+      "search_index_date": "2025-02",
+      "date_precision": "month approximation from search age, not exact verified timestamp",
+      "evidence": "A Germany-based collector cannot find Sonny Angel locally or online. Another EU commenter reports using the Japan official store and paying tax plus shipping.",
+      "short_quote": "i can’t find any in my area or even online to buy",
+      "supports": "Authorized local buying and full delivered cost are real tasks, though this older report is not proof of current shortage.",
+      "does_not_support": "Current local stock or a recommendation of any named third-party shop in replies."
+    },
+    {
+      "id": "sonny-directory",
+      "countries": [
+        "US",
+        "DE",
+        "UK",
+        "JP"
+      ],
+      "type": "official_directory",
+      "url": "https://www.sonnyangel.com/en/store/",
+      "publication_date": null,
+      "evidence": "Official online store list names sonnyangelusa.com for USA and sonnyangelstore.com for Japan. Official distributor section assigns Germany/Austria to sonnyangel-benelux.com and UK with France/Italy/Spain/Portugal to sonnyangel-france.com. Cross-border availability remains limited and must be checked.",
+      "short_quote": "Germany/Austria",
+      "supports": "A genuine country router for Sonny Angel and a source of retailer identity, not an Amazon search masquerading as an authorized seller.",
+      "does_not_support": "Any current SKU stock, shipping quote, affiliate agreement, or reseller endorsement."
+    },
+    {
+      "id": "sonny-counterfeit",
+      "countries": [
+        "global"
+      ],
+      "type": "official_notice",
+      "url": "https://www.sonnyangel.com/en/2026/02/04/fakewebsite/",
+      "publication_date": "2026-02-04",
+      "evidence": "Dreams says exact-replica counterfeits circulate, recommends authorized retailers and explicitly states it does not offer authentication services.",
+      "short_quote": "We also do not provide authentication services to determine whether a product is genuine.",
+      "supports": "Seller provenance is valuable and photo-based authenticity guarantees should not be offered.",
+      "does_not_support": "A claim that every nonlisted seller is counterfeit."
+    },
+    {
+      "id": "sonny-us-shipping",
+      "countries": [
+        "US",
+        "CA"
+      ],
+      "type": "official_policy",
+      "url": "https://sonnyangelusa.com/pages/shipping-policy",
+      "publication_date": null,
+      "evidence": "Current policy states normal processing 3–7 business days, up to 10 during releases/restocks; restricts freight forwarders and resellers. US shipping threshold and excluded Japanese snack items have separate rules. Delivery country list says US/Canada. Recheck checkout before publishing a numeric cost.",
+      "short_quote": "Most orders are shipped within 3-7 business days.",
+      "supports": "Separate order processing from transit; do not propose forwarding as the default cross-country workaround.",
+      "does_not_support": "Guaranteed arrival or current inventory."
+    },
+    {
+      "id": "eu-fee-fear",
+      "countries": [
+        "NL",
+        "DE"
+      ],
+      "type": "community_anecdote",
+      "url": "https://www.reddit.com/r/Jellycatplush/comments/1vzlv4g/import_fees_for_eu_orders/",
+      "search_index_date": "2026-08_or_09",
+      "date_precision": "relative only",
+      "evidence": "NL author says uncertainty about import fees prevents ordering an exclusive Halloween donut. Germany-based replies describe their own previous UK/German-site orders without extra fees, but speculate about thresholds.",
+      "short_quote": "It's what's been holding me back from ordering on the official site",
+      "supports": "Checkout jurisdiction and landed-cost clarity can unblock a real buying decision.",
+      "does_not_support": "Replies' tax assumptions or universal no-fee promise; use official destination policy instead."
+    },
+    {
+      "id": "jellycat-delivery",
+      "countries": [
+        "UK",
+        "DE",
+        "EU"
+      ],
+      "type": "official_policy",
+      "url": "https://jellycatecommerce.zendesk.com/hc/en-gb/articles/18387576943261-How-much-will-delivery-or-shipping-cost",
+      "updated_at": "2026-11-02T14:48",
+      "evidence": "Page states UK, rest-of-world, France and Germany orders ship from Cambridge, UK. UK and listed EU services include taxes/duties; other destinations may not. Table rendering is ambiguous for exact thresholds, so no shipping-price table is copied into recommendations.",
+      "short_quote": "will ship from Cambridge, United Kingdom.",
+      "supports": "Country-aware source, dispatch origin and tax inclusion; official checkout remains authoritative for fees and dates.",
+      "does_not_support": "A promise that every website can deliver every SKU globally."
+    },
+    {
+      "id": "uk-restock-pain",
+      "countries": [
+        "UK"
+      ],
+      "type": "community_anecdote",
+      "url": "https://www.reddit.com/r/Jellycatplush/comments/1wott6e/restock_rant/",
+      "search_index_date": "2026-09-24",
+      "evidence": "UK-focused collector names dragons, smudges, Sacha and bag charms as difficult to find; another reply reports an order later canceled as out of stock.",
+      "short_quote": "I’m mainly talking about UK site, I don’t follow the US stock as I can’t order from there.",
+      "supports": "Exact model and country stock availability matter more than generic plush baskets.",
+      "does_not_support": "Merchant intent inferred in comments, overall demand, future restock schedule or a fresh in-stock claim."
+    },
+    {
+      "id": "de-restock-fast",
+      "countries": [
+        "DE"
+      ],
+      "type": "community_anecdote",
+      "url": "https://www.reddit.com/r/Jellycatplush/comments/1xcqsgk/snow_dragon_restocked_on_ger_website/",
+      "search_index_date": "2026-10-22",
+      "evidence": "A Snow Dragon Germany-site restock post is followed by a sold-out report minutes later. Other readers ask which country website.",
+      "short_quote": "Sold out already",
+      "supports": "Country identification and honest timestamp/staleness are necessary for restock guidance.",
+      "does_not_support": "Current availability, exact sell-through time or verified inventory counts."
+    },
+    {
+      "id": "us-jellycat-crossborder",
+      "countries": [
+        "US",
+        "UK"
+      ],
+      "type": "community_anecdote",
+      "url": "https://www.reddit.com/r/Jellycatplush/comments/1r77p4o/update_on_uk_order_from_us/",
+      "search_index_date": "2026-02-17",
+      "evidence": "Self-described US collector recounts ordering Romantic Timmy Turtle from UK because it was initially not released in US; questions cover shipping, import cost, separate regional accounts and points. Replies also suggest an incorrect destination-country workaround, which must not be repeated.",
+      "short_quote": "he was not released in the United States at first",
+      "supports": "Regional edition availability, delivered total and account/benefit differences create confusion.",
+      "does_not_support": "Current cross-border eligibility; never follow the commenter advice to misstate country or reuse passwords."
+    },
+    {
+      "id": "bestie-launch",
+      "countries": [
+        "JP",
+        "global"
+      ],
+      "type": "official_product_announcement",
+      "url": "https://www.sonnyangel.com/en/2026/05/11/sa_mybestiecase_vol2/",
+      "publication_date": "2026-05-11",
+      "release_date": "2026-05-21",
+      "evidence": "Official My Bestie Case Sweet Candy Series is a minifigure carry pouch. Brand describes it as responding to fans wanting to bring figures into daily life. Includes HIPPERS attachment sheet with warning removal may be impossible. Country release dates can differ.",
+      "short_quote": "created from fans’ desire to bring their beloved Sonny Angel into their daily lives",
+      "supports": "A real named product/category for transport, with a meaningful compatibility/attachment limitation.",
+      "does_not_support": "Independent demand volume, drop protection, universal figure fit or stock in US/DE."
+    },
+    {
+      "id": "bestie-product",
+      "countries": [
+        "JP"
+      ],
+      "type": "official_product",
+      "url": "https://www.sonnyangelstore.com/en/products/mybestiecase2",
+      "publication_date": null,
+      "evidence": "Official product listing names five colors, approx 26 g, PVC/PET/polyester/nylon/zinc alloy/iron construction, approx W103 × H148 × D1.2 mm, figure not included. Those are pouch product dimensions, not usable volumetric interior fit dimensions. HIPPERS sheet may not be removable.",
+      "short_quote": "Sonny Angel figures shown are not included and must be purchased separately.",
+      "supports": "Separate pouch and figure purchase, correct material and compatibility caveat; link to official specification.",
+      "does_not_support": "Automatic fit for all Sonny Angel figures, protective-drop testing or every country stocking it."
+    },
+    {
+      "id": "jellycat-returns",
+      "countries": [
+        "UK"
+      ],
+      "type": "official_policy",
+      "url": "https://jellycatecommerce.zendesk.com/hc/en-gb/articles/12754253009693-How-do-I-return-my-order",
+      "publication_date": null,
+      "evidence": "Full page opened. It states personalized items are excluded unless faulty, no exchanges, shipping costs non-refundable; UK return shipping is free and other-location return shipping is customer-paid. A seasonal extension is visible but not copied into evergreen product guidance.",
+      "short_quote": "Personalised items are excluded unless faulty",
+      "supports": "Gift timing and personalization/return constraints are purchase-relevant.",
+      "does_not_support": "An evergreen seasonal return-period promise or applicability to third-party retailers.",
+      "updated_at": "2026-11-03T15:47"
+    },
+    {
+      "id": "jellycat-regions",
+      "countries": [
+        "UK",
+        "EU"
+      ],
+      "type": "official_policy",
+      "url": "https://jellycatecommerce.zendesk.com/hc/en-gb/articles/12755134287389-What-countries-and-regions-can-I-ship-to",
+      "updated_at": "2026-10-22T08:32",
+      "evidence": "Official country page directs EU deliveries to eu.jellycat.com. Destination list and checkout remain authoritative; UK and other-site stock are not interchangeable.",
+      "short_quote": "For orders being delivered within the EU please visit our dedicated website: eu.jellycat.com",
+      "supports": "Destination-specific store handoff rather than locale equals market.",
+      "does_not_support": "Current SKU stock or misdeclaring destination as a workaround."
+    }
+  ],
+  "critique_current_categories": {
+    "display_cases": "Best evidenced of the four. Narrow to SMISKI/Sonny Angel tabletop shelves and enclosed-vs-mesh cabinets; add named primary-source examples, exact constraints and a fit workflow. General Amazon search alone leaves the purchase decision unresolved.",
+    "storage_transport": "Supported, but current generic padded-box search misses official figure-carry pouches and HIPPERS compatibility. Compare original packaging, divided transport and named official My Bestie Case with source limitations.",
+    "plush_display": "Weak independent evidence for buying baskets in this research. Better observed pain is exact Jellycat character/size, country store, restock, delivered cost and return terms. Keep storage article as support, not leading revenue bet.",
+    "collector_gifts": "Too broad as written. Reframe around exact wanted Jellycat/figure plus destination and gift deadline. No evidence that a generic riser is the default desirable gift. Ask for wish/series details rather than promoting random add-ons."
+  },
+  "country_priorities": [
+    {
+      "country": "US",
+      "priority": 1,
+      "product_types": [
+        "SMISKI/Sonny Angel tabletop risers and compact display cases",
+        "glass-and-mesh cabinet vs enclosed acrylic case",
+        "official figure carrying pouches"
+      ],
+      "concrete_examples": [
+        "IKEA BAGGEBO article 805.029.98 as non-affiliate reference",
+        "IKEA LUSTIGT as community-mentioned candidate; current US availability not verified",
+        "Sonny Angel My Bestie Case Sweet Candy; local stock not verified"
+      ],
+      "commercial_path": "Use approved Amazon.com tag only for genuinely matched accessory search/product links. Preserve IKEA and brand links without affiliate claims. Need direct verified Amazon models to graduate from category advice.",
+      "entry_questions": [
+        "Does BAGGEBO keep dust out?",
+        "What inside dimensions does my SMISKI display need?",
+        "Will a Sonny Angel carry pouch fit this figure?"
+      ]
+    },
+    {
+      "country": "DE",
+      "priority": 1,
+      "product_types": [
+        "compact metric-dimension figure displays",
+        "authorized Sonny Angel buying routes",
+        "Jellycat exact model / regional store / delivered-total decisions"
+      ],
+      "concrete_examples": [
+        "IKEA BAGGEBO 805.029.98 Germany source",
+        "Sonny Angel official Benelux/Germany/Austria distributor route",
+        "Jellycat Snow Dragon and specific regional stock as historical demand examples only"
+      ],
+      "commercial_path": "Existing approved Amazon.de affiliate mechanism for relevant accessories; official Sonny Angel/Jellycat routing may be non-affiliate unless an actual program is joined. Do not trade reliable seller guidance for counterfeit-risk broad toy search.",
+      "entry_questions": [
+        "Sonny Angel in Deutschland: welcher Händler und welche Versandkosten?",
+        "Jellycat Deutschland oder UK: Versand, Einfuhr und Rückgabe?",
+        "BAGGEBO oder Acrylvitrine für kleine Figuren?"
+      ]
+    },
+    {
+      "country": "UK",
+      "priority": 2,
+      "product_types": [
+        "Jellycat dragons/smudges/Sacha/bag charms by exact product and size",
+        "gift delivery and returns",
+        "regional authorized Sonny Angel stores"
+      ],
+      "concrete_examples": [
+        "Jellycat official UK delivery/return policies",
+        "Sonny Angel France distributor listed for UK"
+      ],
+      "commercial_path": "Useful organic entry with official local destinations; no UK affiliate ID is authorized in current TDS configuration. Never send UK traffic automatically to US/DE just to monetize. Obtain local affiliate evidence before counting this toward near-term commission targets.",
+      "entry_questions": [
+        "Which Jellycat regional site ships this exact item to me?",
+        "What does a gift order's delivery estimate include?",
+        "Can a personalized Jellycat be returned?"
+      ]
+    },
+    {
+      "country": "JP",
+      "priority": 3,
+      "product_types": [
+        "official My Bestie Case/HIPPERS carry accessories",
+        "Sonny Angel regional release and shipping rules"
+      ],
+      "concrete_examples": [
+        "My Bestie Case Sweet Candy Series"
+      ],
+      "commercial_path": "Evidence/reference first; no Japan affiliate tag confirmed. Do not launch another full locale or pretend US tag monetizes Japan without demand and program verification."
+    }
+  ],
+  "scope": "Public TDS country/task evidence for an owner-confirmed USD100 total site revenue goal per complete calendar month. Research and prepared marketing are not acquisition or income.",
+  "revenue_goal": {
+    "amount_usd": 100,
+    "period": "complete_calendar_month",
+    "owner_confirmed": true,
+    "measure": "Total TDS-attributable revenue across affiliate commissions, direct sales, membership and sponsorship after refunds/reversals, before operating costs. Cash received is separate.",
+    "not": "Not affiliate-only, not profit, not a rolling 30-day primary target, and not a guarantee.",
+    "channels": [
+      "affiliate",
+      "direct_sale",
+      "membership",
+      "sponsorship"
+    ],
+    "current_verified_total_usd": null,
+    "membership_status": "Checkout not ready; no sale, promotion as purchasable, or revenue assumed.",
+    "attribution_gap": "Existing affiliate tags are shared with other sites. Obtain a genuinely issued TDS-only tracking ID or supported site-specific merchant report. Other channels require TDS-specific payment and fulfillment evidence. Missing amounts stay unknown.",
+    "calculator": "tools/affiliate-growth/tds-goal.mjs",
+    "operations": "tools/affiliate-growth/tds-operations.json",
+    "affiliate_only_scenario": {
+      "assumptions": "Entire USD100 funded by affiliate commission; USD50 commissionable basket; US3% rate for correctly classified eligible products; all counted orders retained and qualifying.",
+      "calculation": "ceil(100 / (50 * 0.03)) = 67 retained qualifying orders",
+      "not_forecast": true
+    },
+    "checkpoints_usd": [
+      1,
+      10,
+      100
+    ],
+    "repeatability": "Two complete calendar months meeting the site-total target is an operating gate, not proof of subscription MRR."
+  },
+  "alternatives": [
+    {
+      "name": "Official Sonny Angel regional directory and shops",
+      "url": "https://www.sonnyangel.com/en/store/",
+      "strength": "Authoritative regional distributor and official store routing, backed by brand counterfeit notices.",
+      "gap_for_tds": "Does not compare the collector's own display footprint, carrying setup or full cross-store decision.",
+      "implication": "Use the official directory as the seller-identity anchor; TDS adds setup/measurement and destination checks. Do not compete by promising better authentication or rerouting to unverified sellers."
+    },
+    {
+      "name": "IKEA country product pages and manual shelf comparison",
+      "url": "https://www.ikea.com/us/en/p/baggebo-glass-door-cabinet-metal-white-80502998/",
+      "country_url": "https://www.ikea.com/de/de/p/baggebo-vitrine-metall-weiss-80502998/",
+      "strength": "Exact article identity, local product dimensions, construction, assembly documents and customer reviews.",
+      "gap_for_tds": "General furniture information does not calculate a collection-specific layout or establish usable internal space for every figure.",
+      "implication": "Link primary specifications and explain mesh vs enclosed tradeoffs. Add fit-oriented comparisons without asserting tested capacity or dustproof performance."
+    },
+    {
+      "name": "Official Jellycat regional store and help centre",
+      "url": "https://jellycat.com/",
+      "policy_url": "https://jellycatecommerce.zendesk.com/hc/en-gb/articles/18387576943261-How-much-will-delivery-or-shipping-cost",
+      "strength": "Authoritative product identity, destination-specific checkout, delivery and returns.",
+      "gap_for_tds": "Collectors still ask which region applies, whether import costs are included and whether a reported restock is purchasable where they live.",
+      "implication": "Provide a concise exact-item/destination/dispatch/return decision route, then send users to the official source. Do not promise a live stock monitor without one."
+    }
+  ],
+  "execution_window": {
+    "start": "2026-11-08",
+    "end_inclusive": "2026-11-21",
+    "review_on": "2026-11-22",
+    "timezone": "UTC",
+    "status": "planned observation/action window, not a newly enabled schedule",
+    "late_release_rule": "Annotate actual production and publication time; use only complete available days. Do not fabricate a 14-day exposure window if release or distribution is delayed."
+  },
+  "marketing_status": {
+    "organic_assets": "Prepared or being finalized for owned-channel distribution; not published by this research.",
+    "external_publication": "Pending bounded owner approval identifying account/channel, exact assets and landing URL. Native tool checks also apply.",
+    "no_claims": [
+      "No external publication receipt",
+      "No referred visits established",
+      "No verified commission or direct revenue established"
+    ],
+    "community_boundary": "Community posts are research evidence, not permission to post. Do not send AI drafts where prohibited, unsolicited outreach, or buy advertising."
+  }
+}
