@@ -1,3 +1,11 @@
+## 2026-11-07 联盟导购升级（owner：升级为 eco 类似的联盟站）
+
+首页现在优先提供收藏展示、收纳运输、毛绒展示和送礼选购路径；收藏工作台收进可展开区域，系列页、账本、账户备份、MCP 与文档工具继续可用。`scripts/collecting/shopping.mjs` 是三语导购与首页内容源，统一由 collecting/build.mjs 生成。不得手改产物后遗漏生成器。
+
+- `/shop` 与四个指南三语同步，品牌页链接导购。美／德沿用已确认的联盟账号；中文仍只挂美国市场，德国用户切换德文页。类型搜索必须明确标注，不能包装成已实测、已验证正品、现货或最低价。
+- `affiliate-measurement.mjs` 仅在已列出的首页和导购 canonical 路径记录第一方 merchant click；共享 fleet 模块独立负责 GA4，不能重复派发。真实点击不是购买、用户数或佣金。保留 QA、退出、GPC、DNT 排除，不记录搜索词或用户输入。
+- 网站可见联盟出口不进入 AI 文本镜像或 MCP。新页沿用 sitemap/hreflang/IndexNow/GA4/account 发布链，不增加定时任务。详见根仓 `docs/tds-affiliate-upgrade-2026-11-07.md`；历史只做工具的首页方向由本次用户要求更新。
+
 ## 2026-10-31 活动工具落地（MCP 2.6.0 已上线并验收）
 
 - Owner 要求“不光是调研，要最终落地”。新增三语 `/collecting/event-kit`：组织者规则模板、明确 wanted/offered 个人卡、先只读再创建自己卡的接收流程；网页与 `prepare_swap_event_card` 共用纯核心。

@@ -1,4 +1,6 @@
 // Interaction never sends filter choices, clipboard data or user inputs.
+import {installAffiliateMeasurement} from './affiliate-measurement.mjs?v=2026-11-07.1';
+installAffiliateMeasurement();
 const filters=document.querySelector('.filters');
 if(filters){filters.hidden=false;filters.addEventListener('click',event=>{const button=event.target.closest('[data-filter]');if(!button)return;const filter=button.dataset.filter;if(!['all','blind','plush'].includes(filter))return;for(const b of filters.querySelectorAll('button'))b.setAttribute('aria-pressed',String(b===button));let count=0;for(const card of document.querySelectorAll('[data-kind]')){card.hidden=filter!=='all'&&!card.dataset.kind.split(' ').includes(filter);if(!card.hidden)count++;}const status=document.querySelector('#filter-status');status.textContent=count+' '+status.dataset.suffix;});}
 const share=document.querySelector('[data-share]');
