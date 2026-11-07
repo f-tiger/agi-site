@@ -323,6 +323,15 @@
   "preparation_iterations": [
     {
       "date": "2026-11-07",
+      "phase": "approved-organic-publication",
+      "action": "Submit the one owner-approved TDS display-guide TikTok carousel and inspect its provider/public state",
+      "status": "submitted_awaiting_platform_confirmation",
+      "receipt": "docs/tds-buy-01-publication-2026-11-07.md",
+      "external_posts": 0,
+      "note": "Accepted one schedule; provider supplied an ID but final publication is not yet confirmed. No duplicate, spend or unsolicited outreach."
+    },
+    {
+      "date": "2026-11-07",
       "phase": "country-growth",
       "action": "Source-backed shopping countries, calendar-month total revenue model, marketing assets and complete-date measurement",
       "status": "deployed_and_live_verified_social_draft_pending_approval",
@@ -419,12 +428,32 @@
     },
     "external_distribution": {
       "campaign": "tds-buy-01",
-      "state": "assets_prepared_not_published",
+      "state": "submitted_awaiting_platform_confirmation",
       "channel": "TikTok",
       "format": "three original screenshot/text photo panels",
       "landing": "https://thedollscout.com/shop/display-cases",
-      "receipts": [],
-      "note": "No publishing, delivered reach or visit is claimed. Explicit typed URL, no unverified link-in-bio claim."
+      "receipts": [
+        {
+          "type": "accepted_schedule",
+          "id": "419625455",
+          "uuid": "4315626267923661438",
+          "status": "PENDING",
+          "url": "https://app.metricool.com/planner/calendar?blogId=7132930&openWithPostUuid=4315626267923661438"
+        },
+        {
+          "type": "provider_processing",
+          "id": "419625455",
+          "uuid": "4315626267923661438",
+          "status": "AWAITING_CONFIRMATION",
+          "detail": "Published:7705259266164410382",
+          "public_visibility": "not_yet_verified"
+        }
+      ],
+      "note": "Owner approved this one post after reviewing final assets; publication needs provider receipt. Manual typed visits have no guaranteed channel attribution.",
+      "authorized_on": "2026-11-07",
+      "authorized_scope": "One reviewed TikTok carousel on agifuturelife; no spend, repeats or other accounts.",
+      "scheduled_at": "2026-11-07T11:00:00+08:00",
+      "publication_record": "docs/tds-buy-01-publication-2026-11-07.md"
     },
     "daily_checks": [
       "Reuse existing reporting cadence; one cached shopping aggregate read, no new cron. Public health summary excludes private metrics.",
