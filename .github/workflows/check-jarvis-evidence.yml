@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   fixtures:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # Pinned Playwright browser runtime; ubuntu-latest may be unsupported
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4

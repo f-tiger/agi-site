@@ -51,7 +51,7 @@ jobs:
   future-discovery:
     name: Discover interviews, creator videos and AI company updates
     if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.refresh_future == true) }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # Pinned Playwright browser runtime; ubuntu-latest may be unsupported
     timeout-minutes: 5
     permissions:
       contents: write
@@ -88,7 +88,7 @@ jobs:
     # A source outage must remain visible but must not stop the site deploying
     # its last good content. Push runs skip discovery and only build/test/deploy.
     if: ${{ always() && !cancelled() }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # Pinned Playwright browser runtime; ubuntu-latest may be unsupported
     outputs:
       deployed_sha: ${{ steps.release.outputs.sha }}
     steps:
@@ -606,7 +606,7 @@ jobs:
     # Root CI policy: external model calls belong to the daily path or explicit
     # manual verification, not every content/analytics push. No new cron.
     if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.check_relay_ai == true) }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # Pinned Playwright browser runtime; ubuntu-latest may be unsupported
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4

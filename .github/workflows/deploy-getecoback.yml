@@ -55,7 +55,7 @@ jobs:
       # Automatic content releases verify production without synthetic customer
       # events, membership configuration or payment/order probes.
       OUTCOME_READ_ONLY_RELEASE: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && contains(github.event.head_commit.message, '[outcome-readonly-release]')) }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # Pinned Playwright browser runtime; ubuntu-latest may be unsupported
     defaults:
       run:
         working-directory: sites/getecoback

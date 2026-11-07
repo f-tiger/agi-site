@@ -51,7 +51,7 @@ concurrency:
 
 jobs:
   update-build-deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # Pinned Playwright browser runtime; ubuntu-latest may be unsupported
     env:
       # Explicit product release: marked push or an opted-in current-main dispatch.
       # This is not the daily refresh and never creates production test accounts.
