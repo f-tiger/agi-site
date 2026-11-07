@@ -1163,11 +1163,16 @@
     ],
     "cadence": "Existing 06:00 UTC report and existing growth reviews only; no new scheduler or spending",
     "next_dependency": "Existing GA4_PROPERTY_ID_TDS and GA4_SERVICE_ACCOUNT_JSON repository secrets plus TDS property Viewer access; no secrets in chat",
-    "report": "docs/tds-traffic-1000-2026-11-07.md"
+    "report": "docs/tds-traffic-1000-2026-11-07.md",
+    "latest_native_access_check": {
+      "workflow_run": 42373644556,
+      "status": "missing_credentials",
+      "result": "unknown"
+    }
   },
   "growth_iteration": {
     "id": "tds-task-entry-20261107",
-    "status": "implementation_verified_release_pending",
+    "status": "released_verified_goal_blocked_missing_read_access",
     "benchmark_reference": "docs/tds-affiliate-benchmarks-2026-11-07.md",
     "observed_gap": "84 localized series links still used old collector guide;24 brand tool handoffs did not choose task-specific new shopping destinations",
     "delivered": [
@@ -1187,7 +1192,7 @@
       "javascript_and_no_javascript": true,
       "original_tools": "passed",
       "external_or_production_requests": 0,
-      "live_receipt": "pending"
+      "live_receipt": "passed:9 route pairs,19 public GETs,exact build,zero business events"
     },
     "not_proven": [
       "incremental acquisition",
@@ -1196,6 +1201,46 @@
       "attributable revenue"
     ],
     "next_action": "Release and verify; restore readonly evidence; select subsequent growth change from matched-date channel/country/task evidence",
-    "release": null
+    "release": {
+      "implementation_pr": "https://github.com/f-tiger/agi-site/pull/278",
+      "test_recovery_pr": "https://github.com/f-tiger/agi-site/pull/279",
+      "deployed_commit": "3bc0a2a24f0ddd1572779d6435f555ab92edd14e",
+      "deployment_run": "https://github.com/f-tiger/agi-site/actions/runs/42378270607",
+      "status": "success",
+      "verified_date": "2026-11-07",
+      "first_complete_utc_day": "2026-11-08",
+      "initial_failed_run": {
+        "id": 42377934722,
+        "phase": "before_upload",
+        "cause": "Existing concurrent cloud-save test assumed first request wins; actual CAS returned one success and one conflict",
+        "fix": "Test both real SQLite write orders and verify winner; production logic unchanged"
+      },
+      "ga4": {
+        "build_routes": 314,
+        "live_routes": 74,
+        "asset_version": "5759f9b61970",
+        "backend_receipt": "not-tested"
+      },
+      "indexnow": {
+        "workbench_urls_accepted": 8,
+        "catchup_changed_urls_accepted": 109,
+        "catchup_http_status": 200,
+        "catchup_verified_at": "2026-11-07T13:47:00.587Z",
+        "indexing": "unknown"
+      },
+      "shopping_measurement": "indexed query verified;pending_first_complete_day",
+      "production_business_write_probes": "skipped_not_counted_as_passed",
+      "private_reporting_tests": 21,
+      "final_main_test_group": 142,
+      "final_original_tool_cloud_test_group": 42
+    },
+    "approved_tiktok_receipt": {
+      "checked_at": "2026-11-07T13:41:00Z",
+      "same_original_item": true,
+      "status": "AWAITING_CONFIRMATION",
+      "published_detail_present": true,
+      "public_visibility": "unverified",
+      "reposted": false
+    }
   }
 }

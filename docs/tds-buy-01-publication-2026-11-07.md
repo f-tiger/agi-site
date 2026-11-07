@@ -14,6 +14,8 @@ At the initial queue readback the provider status was `PENDING`. It subsequently
 
 Current tracking entry: [Metricool planner](https://app.metricool.com/planner/calendar?blogId=7132930&openWithPostUuid=4315626267923661438). The final bounded provider read at 03:05 UTC still returned `AWAITING_CONFIRMATION` for the same ID. No error or final `PUBLISHED` status was supplied. A later provider/public verification must supersede this in-progress state before marking the action published.
 
+A bounded follow-up read on **2026-11-07 at 13:41 UTC** found the same original item still `AWAITING_CONFIRMATION`, with a Published detail and no independently verified public visibility. It was not resubmitted. This supersedes the earlier provider status timestamp, not the publication-verification limit.
+
 ## Measurement
 
 Private prior-post metrics and source responses stay outside the public repository. Zero-view observations for earlier posts are distinct from publication failures, analytics absence and this new carousel's future performance. No account restriction or recommendation-ineligibility diagnosis is established by a zero count.
