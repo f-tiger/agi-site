@@ -12,7 +12,7 @@ The pending queue was empty before the one submission. Metricool accepted item `
 
 At the initial queue readback the provider status was `PENDING`. It subsequently changed to `AWAITING_CONFIRMATION` with detail `Published:7705259266164410382`. That returned ID is not yet a final `PUBLISHED` receipt. A public document check at 03:03:27 UTC could not independently confirm the item: the photo route served an app shell, and the alternate detail route returned an item-not-found status. This can reflect propagation and does not establish failure or private visibility. Inspect this same item/provider receipt before any retry; do not duplicate it to address missing analytics.
 
-Current tracking entry: [Metricool planner](https://app.metricool.com/planner/calendar?blogId=7132930&openWithPostUuid=4315626267923661438). A final provider/public verification will supersede this in-progress state.
+Current tracking entry: [Metricool planner](https://app.metricool.com/planner/calendar?blogId=7132930&openWithPostUuid=4315626267923661438). The final bounded provider read at 03:05 UTC still returned `AWAITING_CONFIRMATION` for the same ID. No error or final `PUBLISHED` status was supplied. A later provider/public verification must supersede this in-progress state before marking the action published.
 
 ## Measurement
 

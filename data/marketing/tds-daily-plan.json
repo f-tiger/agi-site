@@ -453,7 +453,9 @@
       "authorized_on": "2026-11-07",
       "authorized_scope": "One reviewed TikTok carousel on agifuturelife; no spend, repeats or other accounts.",
       "scheduled_at": "2026-11-07T11:00:00+08:00",
-      "publication_record": "docs/tds-buy-01-publication-2026-11-07.md"
+      "publication_record": "docs/tds-buy-01-publication-2026-11-07.md",
+      "last_checked_utc": "2026-11-07T03:05:00Z",
+      "next_action": "Read the same provider/public item until final publication or a concrete error; do not create another post to address processing delay or zero views."
     },
     "daily_checks": [
       "Reuse existing reporting cadence; one cached shopping aggregate read, no new cron. Public health summary excludes private metrics.",
