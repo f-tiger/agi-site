@@ -1,5 +1,6 @@
 """Check actual catalog preservation and reasoned route policy, not styling."""
 from html.parser import HTMLParser
+from html import escape
 from contextlib import redirect_stdout
 from io import StringIO
 from pathlib import Path
@@ -11,6 +12,8 @@ from unittest.mock import patch
 from urllib.parse import urlsplit
 
 import build_structure
+import build_onpage
+import check_related
 from moisture_journeys import (
     COMMERCE_DEFER_SLUGS, GUIDE_NEXT, ROUTE_META, category_content, category_inventory,
     render_next_steps,
@@ -184,6 +187,117 @@ class MoistureJourneys(unittest.TestCase):
         for original_anchor in ('messort', 'protokoll', 'einordnen', 'auswahl', 'sources'):
             self.assertIn('id="' + original_anchor + '"', final)
         self.assertIn('data-country-shop="DE"', final)
+
+
+class CuratedRelatedGate(unittest.TestCase):
+    """The owned handoff can cite an existing destination, never drift silently."""
+
+    def test_all_reviewed_routes_accept_both_owned_renderers_and_body_citations(self):
+        self.assertEqual(len(GUIDE_NEXT), 17)
+        for route, steps in GUIDE_NEXT.items():
+            for country_actions in (False, True):
+                with self.subTest(route=route, country_actions=country_actions):
+                    block = render_next_steps(route, country_actions=country_actions)
+                    citation = '<p>See <a href="' + escape(steps[0]['href'], quote=True) + '">the existing explanation</a>.</p>'
+                    html = '<article><h1>Existing guide</h1>' + citation + block + '</article>'
+                    self.assertEqual(check_related.check_curated_block(route, html), [])
+
+    def test_only_the_localized_onpage_heading_id_is_an_accepted_mutation(self):
+        for route in GUIDE_NEXT:
+            for country_actions in (False, True):
+                with self.subTest(route=route, country_actions=country_actions):
+                    block = render_next_steps(route, country_actions=country_actions)
+                    heading_id = 'next-step' if route.startswith('/en/') else 'dein-naechster-schritt'
+                    sections = ''.join('<h2>Existing section ' + str(i) + '</h2><p>Original guide content.</p>'
+                                       for i in range(build_onpage.MIN_H2))
+                    onpage = build_onpage.inject_toc('<article>' + sections + block + '</article>', route.startswith('/en/'))
+                    self.assertIn('id="' + heading_id + '"', onpage)
+                    self.assertEqual(check_related.check_curated_block(route, onpage), [])
+                    wrong_id = onpage.replace('id="' + heading_id + '"', 'id="unreviewed-handoff"', 1)
+                    self.assertTrue(check_related.check_curated_block(route, wrong_id))
+
+    def test_changed_destination_label_or_reason_and_missing_reason_fail(self):
+        for route, steps in GUIDE_NEXT.items():
+            block = render_next_steps(route)
+            first = steps[0]
+            reason = escape(first['why'])
+            changes = {
+                'destination': block.replace(escape(first['href'], quote=True), '/guide/unreviewed.html', 1),
+                'label': block.replace(escape(first['label']), 'Different advice', 1),
+                'reason_changed': block.replace(reason, 'Unreviewed reason', 1),
+                'reason_removed': block.replace(reason, '', 1),
+            }
+            for mutation, html in changes.items():
+                with self.subTest(route=route, mutation=mutation):
+                    self.assertNotEqual(html, block)
+                    self.assertTrue(check_related.check_curated_block(route, html))
+
+    def test_extra_handoff_or_link_is_rejected_even_with_approved_destinations(self):
+        for route, steps in GUIDE_NEXT.items():
+            block = render_next_steps(route)
+            href = escape(steps[0]['href'], quote=True)
+            extra = '<a href="' + href + '">One more action</a>'
+            for mutation, html in (
+                ('additional_step', block.replace('</ul>', '<li>' + extra + '<p>Extra reason</p></li></ul>', 1)),
+                ('link_outside_list', block.replace('</nav>', extra + '</nav>', 1)),
+            ):
+                with self.subTest(route=route, mutation=mutation):
+                    self.assertTrue(check_related.check_curated_block(route, html))
+
+    def test_missing_partial_and_duplicate_marker_pairs_fail(self):
+        route = next(iter(GUIDE_NEXT))
+        block = render_next_steps(route)
+        cases = {
+            'missing_block': '<article><h1>Existing guide without its handoff</h1></article>',
+            'missing_open': block.replace('<!--EB_RELATED-->', '', 1),
+            'missing_close': block.replace('<!--/EB_RELATED-->', '', 1),
+            'duplicate_block': block + block,
+            'stray_open': block + '<!--EB_RELATED-->',
+            'stray_close': '<!--/EB_RELATED-->' + block,
+        }
+        for mutation, html in cases.items():
+            with self.subTest(mutation=mutation):
+                self.assertTrue(check_related.check_curated_block(route, html))
+
+    def run_site_gate(self, overrides):
+        """Exercise main's routing too, with all approved routes represented."""
+        pages = {route: '<article>' + render_next_steps(route) + '</article>' for route in GUIDE_NEXT}
+        pages.update(overrides)
+        # The gate checks real destinations as well as block ownership. Supply
+        # every referenced path/fragment so each mutation tests its own fault.
+        targets = {}
+        for steps in GUIDE_NEXT.values():
+            for step in steps:
+                target = urlsplit(step['href'])
+                targets.setdefault(target.path, set())
+                if target.fragment:
+                    targets[target.path].add(target.fragment)
+        for target, fragments in targets.items():
+            pages.setdefault(target, '<article><h1>Existing destination</h1></article>')
+            pages[target] += ''.join('<span id="' + escape(fragment, quote=True) + '"></span>' for fragment in fragments)
+        with tempfile.TemporaryDirectory(prefix='eco-related-contract-') as directory:
+            for route, html in pages.items():
+                target = Path(directory) / route.lstrip('/')
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_text(html)
+            with patch.object(check_related, 'SITE', directory), redirect_stdout(StringIO()):
+                return check_related.main()
+
+    def test_main_checks_curated_pages_even_when_their_block_is_missing(self):
+        self.assertEqual(self.run_site_gate({}), 0)
+        route = next(iter(GUIDE_NEXT))
+        self.assertNotEqual(self.run_site_gate({route: '<article><h1>Missing next steps</h1></article>'}), 0)
+
+    def test_noncore_impersonation_and_generic_duplicate_rules_still_fail(self):
+        route = next(iter(GUIDE_NEXT))
+        impersonation = render_next_steps(route)
+        unreviewed = '/guide/unreviewed-moisture-copy.html'
+        self.assertTrue(check_related.check_curated_block(unreviewed, impersonation))
+        self.assertNotEqual(self.run_site_gate({unreviewed: impersonation}), 0)
+        duplicate = ('<article><a href="/guide/existing.html">Body citation</a>'
+                     '<!--EB_RELATED--><aside><a href="/guide/existing.html">Related</a></aside>'
+                     '<!--/EB_RELATED--></article>')
+        self.assertNotEqual(self.run_site_gate({unreviewed: duplicate}), 0)
 
 
 if __name__ == '__main__':
