@@ -366,27 +366,22 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: |
           if [ "$OUTCOME_READONLY_RELEASE" = "true" ]; then
-            node sites/agiscorecard/tools/member-release-health.mjs
+            node sites/agiscorecard/tools/member-release-health.mjs --release-health
             exit 0
           fi
           for attempt in 1 2 3 4; do
-            if node sites/agiscorecard/tools/member-release-health.mjs && node tools/member-studio/verify.mjs --site agi --live; then exit 0; fi
+            if node sites/agiscorecard/tools/member-release-health.mjs --release-health && node tools/member-studio/verify.mjs --site agi --live --release-health; then exit 0; fi
             if [ "$attempt" != "4" ]; then sleep 8; fi
           done
           exit 1
 
+      # Receipt processing and strict payment alerts belong to bpj-ad-watch.yml.
       - name: Verify independent membership after deployment
         if: github.event_name != 'push'
         working-directory: ${{ github.workspace }}
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
         run: |
-          for attempt in 1 2 3 4; do
-            if node tools/member-studio/ops.mjs watch agi && node tools/member-studio/verify.mjs --site agi --live; then exit 0; fi
-            if [ "$attempt" != "4" ]; then sleep 8; fi
-          done
-          exit 1
+          node sites/agiscorecard/tools/member-release-health.mjs --release-health
+          node tools/member-studio/verify.mjs --site agi --live --release-health
 
       - name: Verify live Work Mentor and revenue counters
         if: env.OUTCOME_READONLY_RELEASE != 'true'
