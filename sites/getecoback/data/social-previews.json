@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "origin": "https://getecoback.com",
+  "cards": {
+    "climate": {
+      "image": "/assets/social/raumklima-v1.png",
+      "heading": "Raumklima verstehen.",
+      "description": "Feuchte, Wärme und Stromkosten einordnen.",
+      "alt": "Schematischer Wohnraum mit Thermometer, Feuchtemesser und Stromzähler."
+    },
+    "comparison": {
+      "image": "/assets/social/entfeuchter-vergleich-v1.png",
+      "heading": "Welcher Entfeuchter passt?",
+      "description": "Raumtemperatur und Herstellerdaten zuerst.",
+      "alt": "Schematischer Entscheidungsweg vom Messen der Raumbedingungen über Herstellerdaten zum Luftentfeuchter."
+    },
+    "cellar": {
+      "image": "/assets/social/kalter-keller-v1.png",
+      "heading": "Kalter Keller?",
+      "description": "Die Literzahl allein reicht nicht.",
+      "alt": "Schematischer Keller mit Thermometer und Datenblatt: Temperatur und Betriebsgrenzen vor der Gerätewahl prüfen."
+    },
+    "laundry": {
+      "image": "/assets/social/waesche-kosten-v1.png",
+      "heading": "Wäsche drinnen trocknen.",
+      "description": "Feuchte beobachten. Kosten je Ladung vergleichen.",
+      "alt": "Schematischer Wäscheständer neben Luftentfeuchter, Wäschetrockner und Strommessgerät."
+    }
+  },
+  "pages": {
+    "/": "climate",
+    "/guide/luftentfeuchter-ratgeber.html": "comparison",
+    "/guide/luftentfeuchter-keller.html": "cellar",
+    "/guide/waesche-trocknen-wohnung.html": "laundry",
+    "/waeschetrockner-oder-luftentfeuchter.html": "laundry"
+  }
+}

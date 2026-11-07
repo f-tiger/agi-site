@@ -1,0 +1,46 @@
+name: Read ECO official analytics privately
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Preflight checks credential presence only; report reads official data
+        type: choice
+        options: [preflight, report]
+        default: preflight
+        required: true
+      report_public_key:
+        description: RSA public PEM (2048+ bits); required for report. Never enter a private key.
+        type: string
+        required: false
+permissions:
+  contents: read
+concurrency:
+  group: eco-readonly-report
+  cancel-in-progress: false
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Verify reporting privacy and request contracts
+        run: node --test tools/eco-reporting/report.test.mjs
+      - name: Read with existing Google credentials; output status only
+        id: report
+        env:
+          GA4_SERVICE_ACCOUNT_JSON: ${{ secrets.GA4_SERVICE_ACCOUNT_JSON }}
+          ECO_REPORT_MODE: ${{ inputs.mode }}
+          ECO_REPORT_PUBLIC_KEY: ${{ inputs.report_public_key }}
+          ECO_REPORT_OUTPUT: ${{ runner.temp }}/eco-readonly/report.enc.json
+        run: node tools/eco-reporting/report.mjs
+      - name: Upload encrypted report only
+        if: ${{ always() && steps.report.outputs.report_written == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: eco-official-report-encrypted
+          path: ${{ runner.temp }}/eco-readonly/report.enc.json
+          retention-days: 3
+          if-no-files-found: error

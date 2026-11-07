@@ -259,6 +259,8 @@ jobs:
 
       - name: Rebuild sitemap from filesystem (auto-sync new pages before deploy)
         run: |
+          python3 tools/test_social_previews.py
+          python3 tools/build_social_previews.py
           python3 tools/build_sitemap.py --selftest
           python3 tools/build_sitemap.py
 
@@ -453,6 +455,8 @@ jobs:
         run: |
           python3 tools/test_home_order.py
           python3 tools/build_home_order.py
+          python3 tools/build_social_previews.py
+          python3 tools/build_social_previews.py --check
 
       - name: Configure independent membership secrets
         if: env.OUTCOME_READ_ONLY_RELEASE != 'true'

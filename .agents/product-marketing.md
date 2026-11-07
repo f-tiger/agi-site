@@ -1,12 +1,20 @@
 # Product marketing context
 
-**Document version: v20** — **Last updated: 2026-11-06**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
+**Document version: v21** — **Last updated: 2026-11-07**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
 
 ## Business goal and proof
 
 Owner's latest staged goals are USD 1,000, USD 5,000 and USD 10,000 in monthly revenue (2026-10-03 conversation). These supersede the historical euro milestones; deadlines and gross/net accounting treatment remain unspecified. Record gross customer payments, refunds, settled receipts and delivery/acquisition costs separately; revenue is not profit or MRR. Manual selling/delivery and automation are both acceptable to the owner. Eco has historical owner-reported affiliate commissions; do not re-label them as a new service sale or assume they have settled. New experiments have no verified customers, paid retention, CAC or revenue. Prices displayed on discovery experiments are hypotheses. The original four probes remain closed; BPJ has separate live wallet checkout for placements and membership, whose readiness and sales need independent checks.
 
 ## Current revenue directions — owner steering 2026-10-04
+
+### ECO acquisition goal — owner steering 2026-11-07
+
+The owner confirmed ECO (getecoback.com) as the target and requested continued improvement toward 1,000 visitors per day. The measurement convention is daily GA4 totalUsers as a browser/device estimate, with activeUsers and engaged sessions as quality checks; none establishes verified human identities. Sum daily totalUsers over seven complete property-timezone days and divide by seven, rather than dividing a period-deduplicated user count. Report Germany separately from global arrivals. Raw first-party pageview events, bot-labelled traffic, MCP calls and affiliate clicks are not substitute user totals. Existing revenue goals and historical commissions remain separate.
+
+Acquisition now takes priority over adding comparison features: preserve the existing source-backed buying paths and observe the published YouTube campaign. Apply home&smart's concrete seasonal problem entry and CHIP's promise-to-answer-to-next-step continuity without copying sensational claims, third-party photographs or laboratory credibility. This iteration repairs missing topic-specific social previews on existing URLs and sends indoor-laundry cost links to the actual laundry calculator. Large-image metadata does not guarantee Discover eligibility, display or traffic; source-check dates must remain distinct from material page-update dates.
+
+Expand a proven acquisition path in stages (100, 300, then 1,000 daily users as operating milestones, not forecasts). Without readable first-party user/search reports or sufficient complete-day observations, record the outcome as unknown. No new paid promotion, account changes, recurring jobs or unsolicited outreach is authorized by this goal; use existing publication and measurement channels.
 
 ### ECO German buying decisions — owner steering 2026-11-06
 
@@ -118,6 +126,7 @@ Distribution uses the relevant bilingual tools directory, shared navigation's To
 The owner explicitly authorized expansion and deployment after selecting broader household tasks, including pools, garden robots and 3D-printed household repair. First release: free German/English constraint checks, downloadable local checklists and a bounded original drawer-divider STL generator. Existing confirmed DE/US Amazon category links are shown only after relevant comparison outcomes, with disclosure; no model certification, paid files, new subscription or checkout. All household inputs stay local. Family fit and repeat-task value remain hypotheses; downloads, shopping intent and merchant revenue are measured separately. This supersedes the earlier 3D-printer-accessory rejection only for the newly requested household repair/template direction. See `sites/getecoback/docs/family-workshop-release-2026-10-29.md`.
 
 ## Changelog
+- v21 (2026-11-07): Added the owner-confirmed ECO daily visitor goal, precise user-count convention, acquisition-first scope and source-aligned preview/next-step repair; preserves existing revenue and fleet directions.
 - v19 (2026-11-06): Added the owner-authorized German affiliate comparison upgrade: existing decision paths, uniform model evidence, accurate merchant destinations and privacy-aware measurement; preserves other fleet directions.
 - v18 (2026-10-31): Applied the owner’s automated-site requirement to the current niche-site task and selected ECO’s source-backed US replacement-filter affiliate product. Preserves concurrent fleet product updates.
 - v15 (2026-10-29): Added the owner-authorized Eco household expansion, bounded free deliverables and commercialization/measurement limits.
