@@ -15,6 +15,7 @@ on:
       - ".github/scripts/deploy-main-guard*"
       - "tools/revenue-studio/**"
       - "tools/member-studio/**"
+      - "tools/affiliate-growth/tds-*"
       - "sites/baipiaoji/lib/**"
       - "sites/baipiaoji/functions/api/member*.js"
       - "sites/baipiaoji/scripts/ad-runner-config.mjs"
@@ -101,7 +102,8 @@ jobs:
           node scripts/documents/build.mjs
           node scripts/documents/verify.mjs
           node scripts/collecting/build.mjs
-          node --test scripts/collecting/shopping-tests.mjs scripts/collecting/affiliate-tests.mjs scripts/collecting/tests.mjs scripts/collecting/mcp-tests.mjs scripts/collecting/collection-task-tests.mjs scripts/collecting/event-kit-tests.mjs scripts/collecting/event-report-tests.mjs scripts/collecting/planning-tests.mjs scripts/collecting/series-share-tests.mjs scripts/collecting/measurement-tests.mjs scripts/collecting/canonical-host-tests.mjs scripts/collecting/swap-kit-tests.mjs
+          node --test ../../tools/affiliate-growth/tds-goal.test.mjs
+          node --test scripts/collecting/shopping-report-tests.mjs scripts/collecting/shopping-growth-tests.mjs scripts/collecting/shopping-tests.mjs scripts/collecting/affiliate-tests.mjs scripts/collecting/tests.mjs scripts/collecting/mcp-tests.mjs scripts/collecting/collection-task-tests.mjs scripts/collecting/event-kit-tests.mjs scripts/collecting/event-report-tests.mjs scripts/collecting/planning-tests.mjs scripts/collecting/series-share-tests.mjs scripts/collecting/measurement-tests.mjs scripts/collecting/canonical-host-tests.mjs scripts/collecting/swap-kit-tests.mjs
           npm ci --prefix mcp --ignore-scripts
           node scripts/collecting/verify-mcp-client.mjs --local
 
@@ -289,6 +291,10 @@ jobs:
       - name: Verify indexed collector measurement and complete-day coverage
         if: ${{ env.OUTCOME_READONLY_RELEASE != 'true' && (!cancelled() && steps.publish.outcome == 'success') }}
         run: node scripts/collecting/verify-measurement.mjs
+
+      - name: Verify complete-day shopping measurement
+        if: ${{ !cancelled() && steps.publish.outcome == 'success' }}
+        run: node scripts/collecting/verify-shopping-growth.mjs
 
       - name: Verify live document pages and assets
         id: document_pages

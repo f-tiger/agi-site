@@ -175,5 +175,11 @@ jobs:
           set -o pipefail
           node scripts/collecting/event-report.mjs --health-only 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
 
+      - name: Check country shopping measurement and next review action
+        if: always()
+        run: |
+          set -o pipefail
+          node scripts/collecting/shopping-report.mjs --health-only 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
+
       # content/ is excluded from the published site, so there is nothing to
       # deploy here — the file exists for the growth loop, not for visitors.

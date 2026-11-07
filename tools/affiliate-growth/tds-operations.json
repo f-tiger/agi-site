@@ -1,0 +1,107 @@
+{
+  "updated": "2026-11-07",
+  "goal": {
+    "usd": 100,
+    "scope": "All TDS-attributable site revenue per complete calendar month, net of refunds and reversals, before operating costs. Cash receipt is separate.",
+    "confirmedByOwner": true,
+    "channels": ["affiliate", "direct_sale", "membership", "sponsorship"],
+    "checkpointsUsd": [1, 10, 100],
+    "repeatability": "Meet the goal in two complete calendar months before describing it as repeatable. This is an operating rule, not subscription MRR.",
+    "currentVerifiedSiteTotalUsd": null,
+    "unknownIsNotZero": true
+  },
+  "countryPriorities": [
+    {
+      "market": "US",
+      "priority": 1,
+      "revenueReadiness": "Existing owner-approved Amazon.com tag is available but shared with other fleet sites; TDS-exclusive revenue is unknown.",
+      "focus": ["Rigid-figure display fit and dust protection", "Compartment size and safe transport", "Plush display without compression", "Gifts with an exact wanted item"],
+      "next": "Use source-backed product specifications and US shipping/returns to improve one pain-specific buying path. Replace shared tagging only with an actually created TDS tracking ID."
+    },
+    {
+      "market": "DE",
+      "priority": 1,
+      "revenueReadiness": "Existing owner-approved Amazon.de tag is available but shared; actual product classifications and TDS-exclusive earnings remain unverified.",
+      "focus": ["Vitrinen-Innenmaße und Stellfläche", "Fächergrößen und Transport", "Plüsch ohne Quetschen", "Geschenke und Rückgabebedingungen"],
+      "next": "Publish local measurement and seller checks. Do not multiply VAT-inclusive retail prices by a headline rate or assign every storage item to Haushalt."
+    },
+    {
+      "market": "UK",
+      "priority": 2,
+      "revenueReadiness": "Local official-source guidance can be useful now; no UK monetization is verified. OneLink enrollment must be inspected before calling UK traffic monetized.",
+      "focus": ["Local product availability and returns", "Small-space display fit"],
+      "next": "Keep links to UK official sellers unmonetized until real local eligibility, tracking and destination behavior are verified. No invented tracking ID."
+    },
+    {
+      "market": "CA/FR/IT/ES and other countries",
+      "priority": 3,
+      "revenueReadiness": "Unverified. Simplified OneLink can support CA and EU5 after setup; JP/SG/NL/SA/PL/SE/AU require separate country accounts in the current official guide.",
+      "next": "Expand a country only after source-backed demand and a usable local seller route. Translate a real local decision, not just the language."
+    }
+  ],
+  "revenuePaths": [
+    {
+      "channel": "affiliate",
+      "state": "Existing earning mechanism; unverified TDS attribution",
+      "action": "Improve the current buying paths, verify marketplace and product fit, obtain a real TDS-exclusive tracking ID per active market, and reconcile merchant reports.",
+      "economics": "Public US Toys/Home/Furniture standard rate is 3%. A hypothetical USD50 commissionable order yields USD1.50 before reversals. USD100 contribution requires at least 67 such net qualifying orders. Conversion and traffic requirements are scenario inputs, not observed rates.",
+      "firstGate": "USD1 attributable confirmed net commission; then USD10 before expanding the winning category."
+    },
+    {
+      "channel": "direct_sale",
+      "state": "No implemented offer or verified checkout for a new paid deliverable",
+      "action": "Look for repeated requests for a deliverable beyond the existing free tools, such as a clearly scoped custom collection/packing plan. Prepare the actual deliverable and validate demand before offering payment.",
+      "economics": "Ten hypothetical USD10 net sales would contribute USD100, but USD10 is a sensitivity example, not a published price or validated willingness to pay. Include refunds, fulfillment time and payment fees in the operating review.",
+      "firstGate": "One unrelated real customer paying for a fulfilled, explicitly described offer; no interest click counted as revenue."
+    },
+    {
+      "channel": "membership",
+      "state": "Checkout currently NOT READY; do not enable or market as purchasable",
+      "action": "Keep existing membership separate from free shopping and collection tools. Restore and verify payment, access and delivery only in an explicitly scoped task; no new subscription expansion here.",
+      "economics": "Unknown. No subscription price, customer count or recurring revenue is assumed.",
+      "firstGate": "Actual payment readiness and repeat value verified before any membership contribution is claimed."
+    },
+    {
+      "channel": "sponsorship",
+      "state": "No verified sponsor, signed deal or inventory sale",
+      "action": "After obtaining relevant audience evidence, prepare a small clearly labeled placement with a concrete duration and reporting scope. Do not sell authenticity claims, favorable rankings or unverified reach.",
+      "economics": "One hypothetical USD100 net sponsorship would meet the target, but it is not a quoted offer or evidence of buyer demand. Small or unverified reach makes this a later path.",
+      "firstGate": "A real, disclosed and delivered sponsorship with attributable payment evidence."
+    }
+  ],
+  "actions": [
+    {
+      "order": 1,
+      "action": "Establish revenue attribution and a private calendar-month evidence ledger. Request or create real TDS tracking IDs through the merchant account; preserve the existing shared tags until replacements exist.",
+      "gate": "Merchant/payment evidence has TDS-exclusive scope, period, currency and reversals. Missing channel amounts stay unknown."
+    },
+    {
+      "order": 2,
+      "action": "Choose one US and one DE pain/category hypothesis from real customer questions, source checks and existing analytics. Improve product-fit comparison, explicit local market and merchant exits before adding more pages.",
+      "gate": "Readers can determine fit or decide not to buy; listing/specification evidence is documented. No fabricated testing, stock or prices."
+    },
+    {
+      "order": 3,
+      "action": "Distribute useful demonstrations and checklists through existing owned channels and permitted communities. Localize the problem and shopping destination. Record actual publication receipts and canonical landing routes.",
+      "gate": "Draft, published post, referred visit, tool completion, merchant click and verified revenue remain separate. No new ad spend or unsolicited messages are implied by this file."
+    },
+    {
+      "order": 4,
+      "action": "Review complete calendar-month revenue and use rolling 30 complete days only for operational comparison with the existing reporting cadence. If fewer than 30 genuine cohort visits arrive, investigate distribution. If 30 or more arrive without merchant clicks, review task-to-offer fit. If 100 matured merchant clicks have no confirmed net commission, check eligibility, product/country matching and reporting lag before expansion.",
+      "gate": "These are exploratory operating thresholds, not statistical proof. Missing data is not zero; anonymous actions are not people or purchases."
+    },
+    {
+      "order": 5,
+      "action": "Progress from USD1 to USD10 to USD100 total site net revenue. Allocate effort to a path with real evidence, while keeping unready membership and hypothetical sponsors outside claimed earnings.",
+      "gate": "USD100 across a complete calendar month, with every contributing amount supported and no overlapping or cross-channel duplicate receipts."
+    }
+  ],
+  "sources": [
+    {"url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ", "retrieved": "2026-11-07", "fact": "US offsite standard rate: Toys, Home and Furniture 3%; actual eligibility and classification still matter."},
+    {"url": "https://partnernet.amazon.de/help/node/topic/GRXPHT8U84RAYDXZ", "retrieved": "2026-11-07", "fact": "Opened current DE table: Haushalt 6%, Möbel 5.5%, Spiele und Spielwaren 3%; Amazon classifies each item. Search snippets can be stale."},
+    {"url": "https://affiliate-program.amazon.com/help/operating/policies", "retrieved": "2026-11-07", "fact": "Qualifying revenue excludes listed charges; returns/cancellations can disqualify purchases; payout and earned commission differ."},
+    {"url": "https://partnernet.amazon.de/help/operating/policies", "retrieved": "2026-11-07", "fact": "Commissionable proceeds exclude taxes including VAT and other charges; relevant original content is required for product-list links."},
+    {"url": "https://affiliate-program.amazon.com/help/node/topic/G2L3ZBRGXTS7EMEY", "retrieved": "2026-11-07", "fact": "Simplified OneLink country setup differs from countries requiring individual local accounts. User enrollment was not inspected."},
+    {"url": "https://affiliate-program.amazon.com/help/node/topic/GJDYPQZK6E37RLPU", "retrieved": "2026-11-07", "fact": "Real separate tracking IDs support per-site reporting within an account; never invent a tag."}
+  ]
+}

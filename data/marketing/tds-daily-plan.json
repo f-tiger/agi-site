@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "site": "tds",
   "start_date": "2026-10-12",
   "days": 30,
@@ -322,6 +322,14 @@
   ],
   "preparation_iterations": [
     {
+      "date": "2026-11-07",
+      "phase": "country-growth",
+      "action": "Source-backed shopping countries, calendar-month total revenue model, marketing assets and complete-date measurement",
+      "status": "implemented_pending_release_verification",
+      "receipt": "docs/tds-country-growth-2026-11-07.md",
+      "external_posts": 0
+    },
+    {
       "date": "2026-10-17",
       "phase": "morning",
       "action": "Exclude unchanged demonstration dimensions from standalone display calculator completion events",
@@ -341,109 +349,142 @@
     }
   ],
   "acquisition_priority": {
-    "updated": "2026-10-15",
-    "owner_direction": "换其他方案",
-    "primary": "Searchable, printable trading-meetup preparation kit with organizer reuse permission and canonical return links.",
+    "updated": "2026-11-07",
+    "owner_direction": "Research user pain points; execute toward USD100 monthly total site revenue with proactive marketing and country-specific categories.",
+    "primary": "US display decisions and DE authorized sourcing/accessories, with useful UK Jellycat regional guidance.",
     "status": "implemented_pending_release_verification",
-    "receipt": "docs/tds-swap-kit-2026-10-15.md",
-    "deprioritized": [
-      "More video production without a verified acquisition path",
-      "Additional Pinterest assets before channel readiness"
-    ],
+    "receipt": "docs/tds-country-growth-2026-11-07.md",
     "preserve": [
-      "Museum/Snack collection experiment and existing gates",
-      "Existing native source schedule and quotas",
-      "Already published video observation windows"
+      "Existing free tools, organizer/MCP experiment history and published-post windows",
+      "Native source quotas and schedules"
     ],
-    "external_distribution": "No new post, message, outreach, paid placement or partner adoption authorized or claimed."
+    "external_distribution": "One concrete TikTok carousel prepared; publication requires bounded approval. No spend or unsolicited outreach."
   },
   "current_experiment": {
-    "id": "collector-event-pilot-20261031",
-    "updated": "2026-10-31",
-    "owner_direction": "不光是调研，要最终落地",
-    "audience": "Retailers or organizers who already host collector meetups, and participants preparing explicit wanted/offered lists.",
-    "hypothesis": "A rules-aware event template and a recipient-to-own-card workflow reduce preparation work enough for an organizer to distribute and reuse the tool.",
-    "status": "deployed_live_verified",
-    "endpoint": "https://thedollscout.com/mcp",
-    "mcp_tool": "prepare_swap_event_card",
-    "pages": [
-      "/collecting/event-kit",
-      "/de/collecting/event-kit",
-      "/zh/collecting/event-kit"
-    ],
-    "previous_experiment_id": "mcp-collection-tasks-20261031",
-    "measurement_window": {
-      "start": "2026-11-01",
-      "end_inclusive": "2026-11-14",
-      "review_on": "2026-11-15",
-      "timezone": "UTC"
+    "id": "tds-country-buying-20261107",
+    "updated": "2026-11-07",
+    "owner_direction": "每月全站总收入 $100",
+    "status": "implemented_pending_release_verification",
+    "goal": {
+      "usd": 100,
+      "period": "calendar_month",
+      "scope": "TDS-attributable total revenue after reversals, before operating costs",
+      "channels": [
+        "affiliate",
+        "direct_sale",
+        "membership",
+        "sponsorship"
+      ],
+      "current_verified_total_usd": null,
+      "gates_usd": [
+        1,
+        10,
+        100
+      ]
     },
-    "learning_gates": {
-      "organizers_with_independently_confirmed_distribution": 1,
-      "participants_completing_their_own_real_preparation_task": 10,
-      "organizers_reusing_at_a_later_real_event": 1,
-      "interpretation": "Exploratory gates, not forecasts or statistical significance. Independent voluntary evidence is required; anonymous actions cannot establish people or adoption. Later-event reuse may require an extended observation window."
+    "audience": [
+      "US figure owners choosing display construction and fit",
+      "DE collectors checking official sellers, delivery and accessory fit",
+      "UK Jellycat buyers checking exact item and local destination"
+    ],
+    "hypothesis": "A source-backed local buying decision plus a useful no-purchase alternative can earn qualified merchant exits and eventually attributable revenue.",
+    "pages": [
+      "/",
+      "/shop",
+      "/shop/display-cases",
+      "/shop/storage-transport",
+      "/shop/plush-display",
+      "/shop/collector-gifts",
+      "/de/shop",
+      "/zh/shop"
+    ],
+    "measurement_window": {
+      "first_complete_utc_day": "2026-11-08",
+      "end_inclusive": "2026-11-21",
+      "review_on": "2026-11-22",
+      "note": "14-day operational observation; calendar-month merchant/payment statements determine the revenue goal. Before coverage, counts remain null."
     },
     "delivered_flow": [
-      "Organizer supplies event name/date and peer/store/display rules without participant lists",
-      "Participant explicitly selects wanted/offered items; source matches and unresolved names remain visible",
-      "Reviewed share link opens read-only; recipient can start a new personal card with both lists cleared",
-      "No registration, marketplace, messaging, automatic posting or transaction guarantee"
+      "Three country entries within existing localized hub routes",
+      "Four guides with dated primary-source examples",
+      "Original three-panel TikTok carousel and exact caption staged for review",
+      "Complete-date shopping aggregate by country/path/merchant",
+      "Calendar-month evidence ledger validation and explicit scenario calculator"
     ],
-    "owned_distribution": [
-      "Homepage first-screen link",
-      "Existing trading-meetup guide and wanted-card entry",
-      "Collector tool directory, localized for-agents and repository MCP README",
-      "Recipient can create and share a separate personal preparation card"
-    ],
+    "commercial_readiness": {
+      "affiliate": "Existing US/DE links; shared tags prevent verified TDS-exclusive earnings",
+      "membership": "NOT READY",
+      "direct_sale": "No live paid offer",
+      "sponsorship": "No evidenced buyer or contract"
+    },
     "external_distribution": {
-      "status": "two_unsent_gmail_drafts_prepared_for_review",
-      "candidates": [
-        "Friends NYC",
-        "TATE’S Comics + Toys + More"
-      ],
-      "blocked_candidate": "SONIANDSMI official downstream contact form unavailable at research time; no delivery claimed",
-      "private_materials": "Target contact details, invitation copies and replies remain outside the public repository."
+      "campaign": "tds-buy-01",
+      "state": "assets_prepared_not_published",
+      "channel": "TikTok",
+      "format": "three original screenshot/text photo panels",
+      "landing": "https://thedollscout.com/shop/display-cases",
+      "receipts": [],
+      "note": "No publishing, delivered reach or visit is claimed. Explicit typed URL, no unverified link-in-bio claim."
     },
     "daily_checks": [
-      "Existing 06:00 UTC tds-traffic job reads one cached collector-growth report and reports coverage/health/next review focus. It does not publish raw counts, customer inputs or identities.",
-      "Generation, link copying, valid recipient opening, own-card starts and print requests are distinct fixed actions; no inferred people, delivered shares, prints, event attendance, matches or revenue.",
-      "Investigate missing coverage or broken paths before interpreting zero counts. QA, DNT/GPC and stored opt-outs remain excluded.",
-      "Review voluntary organizer and participant feedback before another feature expansion. Existing MCP 3-trial/1-repeat gate remains a separate initial technical-adoption experiment."
+      "Reuse existing reporting cadence; one cached shopping aggregate read, no new cron. Public health summary excludes private metrics.",
+      "Separate publication, platform reach, site events, merchant clicks and confirmed revenue; no inferred unique users.",
+      "Fix unavailable measurement or broken destinations before interpreting zeros. Preserve all opt-outs and QA exclusions."
+    ],
+    "actions": [
+      {
+        "date": "2026-11-07",
+        "task": "Research questions and primary sources; implement country paths and useful named examples",
+        "state": "implemented_pending_release"
+      },
+      {
+        "date": "2026-11-08",
+        "task": "Verify live shopping report pending/complete-date behavior and source links; review exact carousel for bounded publication",
+        "state": "prepared"
+      },
+      {
+        "date": "2026-11-09",
+        "task": "Verify or obtain authentic TDS-exclusive US/DE tracking IDs and merchant-report access; keep shared tags until actual IDs exist",
+        "state": "blocked_account_access_not_verified"
+      },
+      {
+        "date": "2026-11-11",
+        "task": "Review first complete dates and any actual post receipt. Fix acquisition or task blockers supported by evidence",
+        "state": "planned"
+      },
+      {
+        "date": "2026-11-15",
+        "task": "Compare US display and DE local sourcing/accessory signals without claiming statistically significant differences",
+        "state": "planned"
+      },
+      {
+        "date": "2026-11-21",
+        "task": "Close 14-day observation window; reconcile any mature merchant reporting privately",
+        "state": "planned"
+      },
+      {
+        "date": "2026-11-22",
+        "task": "Choose continue, repair or stop using evidence; do not create more country pages without local usefulness and a viable destination",
+        "state": "planned"
+      },
+      {
+        "date": "2026-12-01",
+        "task": "Reconcile November total-site revenue after report lag; do not convert unknown channels to zero",
+        "state": "planned"
+      }
     ],
     "decision_rules": [
-      "No organizer actually distributes: examine acquisition and the organizer value proposition before expanding features.",
-      "Real participants encounter a reproducible blocker: repair the smallest demonstrated failure.",
-      "Successful preparation but no later reuse: investigate event cadence and ongoing value; do not infer retention from repeated calls."
+      "Insufficient relevant visits: improve distribution rather than adding generic guides.",
+      "Observed buying-task failure: repair that task before expanding.",
+      "Mature merchant clicks without commission: inspect tracking, eligibility, country fit and statement lag.",
+      "Revenue requires real non-overlapping TDS evidence; a shared tag or anonymous click is not revenue."
     ],
-    "privacy": "Browser creation stays local. Shared links contain readable, editable data and cannot revoke copies. MCP processes supplied arguments statelessly. No free-text inputs, fragment, event ID or participant identity enter telemetry.",
+    "operations": "tools/affiliate-growth/tds-operations.json",
+    "research": "docs/tds-country-growth-2026-11-07.md",
     "release": {
-      "target_version": "2.6.0",
-      "status": "verified",
-      "scheduling": "Existing 06:00 UTC reporting and 07:20 UTC source checks retained; no new cron, paid model or enabled chat automation.",
-      "version": "2.6.0",
-      "commit": "06efe45b89e00ae14cdb79776edeb8f90b9377aa",
-      "pull_request": "https://github.com/f-tiger/agi-site/pull/220",
-      "workflow_run": "https://github.com/f-tiger/agi-site/actions/runs/41217960707",
-      "verified_at": "2026-10-31T16:11:03.417Z",
-      "endpoint": "https://thedollscout.com/mcp",
-      "registry_name": "io.github.f-tiger/dollscout-collecting",
-      "checks": [
-        "Four pull-request CI checks passed",
-        "Production build, three localized event pages and official SDK event/card/recipient workflow verified",
-        "Official Registry reads back 2.6.0 active/latest at the existing MCP endpoint",
-        "Existing daily health reporter successfully reads the new coverage; no complete observation day yet",
-        "27 local browser scenarios passed including actual clipboard and cross-context recipient reuse",
-        "Final GA4 configuration covers 299 public pages with 5 explicit exclusions; backend ingestion was not independently tested"
-      ],
-      "adoption": "External distribution, organizer adoption and repeat use are not established by QA or publication.",
-      "indexnow": {
-        "changed_urls": 23,
-        "status": 200,
-        "accepted": true,
-        "indexing": "unknown",
-        "note": "Verified current production URLs before manual notification after original push range was skipped."
-      }
+      "status": "pending",
+      "external_posts": 0,
+      "scheduler": "Existing cadence retained; no added scheduler or paid model."
     }
   },
   "previous_experiments": [
@@ -597,6 +638,95 @@
           "IndexNow accepted 11 changed public URLs with HTTP 200; indexing remains unknown"
         ],
         "adoption": "Not established by this release. SDK tests, directory registration and anonymous call counts are not external users or repeat adoption."
+      }
+    },
+    {
+      "id": "collector-event-pilot-20261031",
+      "updated": "2026-10-31",
+      "owner_direction": "不光是调研，要最终落地",
+      "audience": "Retailers or organizers who already host collector meetups, and participants preparing explicit wanted/offered lists.",
+      "hypothesis": "A rules-aware event template and a recipient-to-own-card workflow reduce preparation work enough for an organizer to distribute and reuse the tool.",
+      "status": "deployed_live_verified",
+      "endpoint": "https://thedollscout.com/mcp",
+      "mcp_tool": "prepare_swap_event_card",
+      "pages": [
+        "/collecting/event-kit",
+        "/de/collecting/event-kit",
+        "/zh/collecting/event-kit"
+      ],
+      "previous_experiment_id": "mcp-collection-tasks-20261031",
+      "measurement_window": {
+        "start": "2026-11-01",
+        "end_inclusive": "2026-11-14",
+        "review_on": "2026-11-15",
+        "timezone": "UTC"
+      },
+      "learning_gates": {
+        "organizers_with_independently_confirmed_distribution": 1,
+        "participants_completing_their_own_real_preparation_task": 10,
+        "organizers_reusing_at_a_later_real_event": 1,
+        "interpretation": "Exploratory gates, not forecasts or statistical significance. Independent voluntary evidence is required; anonymous actions cannot establish people or adoption. Later-event reuse may require an extended observation window."
+      },
+      "delivered_flow": [
+        "Organizer supplies event name/date and peer/store/display rules without participant lists",
+        "Participant explicitly selects wanted/offered items; source matches and unresolved names remain visible",
+        "Reviewed share link opens read-only; recipient can start a new personal card with both lists cleared",
+        "No registration, marketplace, messaging, automatic posting or transaction guarantee"
+      ],
+      "owned_distribution": [
+        "Homepage first-screen link",
+        "Existing trading-meetup guide and wanted-card entry",
+        "Collector tool directory, localized for-agents and repository MCP README",
+        "Recipient can create and share a separate personal preparation card"
+      ],
+      "external_distribution": {
+        "status": "two_unsent_gmail_drafts_prepared_for_review",
+        "candidates": [
+          "Friends NYC",
+          "TATE’S Comics + Toys + More"
+        ],
+        "blocked_candidate": "SONIANDSMI official downstream contact form unavailable at research time; no delivery claimed",
+        "private_materials": "Target contact details, invitation copies and replies remain outside the public repository."
+      },
+      "daily_checks": [
+        "Existing 06:00 UTC tds-traffic job reads one cached collector-growth report and reports coverage/health/next review focus. It does not publish raw counts, customer inputs or identities.",
+        "Generation, link copying, valid recipient opening, own-card starts and print requests are distinct fixed actions; no inferred people, delivered shares, prints, event attendance, matches or revenue.",
+        "Investigate missing coverage or broken paths before interpreting zero counts. QA, DNT/GPC and stored opt-outs remain excluded.",
+        "Review voluntary organizer and participant feedback before another feature expansion. Existing MCP 3-trial/1-repeat gate remains a separate initial technical-adoption experiment."
+      ],
+      "decision_rules": [
+        "No organizer actually distributes: examine acquisition and the organizer value proposition before expanding features.",
+        "Real participants encounter a reproducible blocker: repair the smallest demonstrated failure.",
+        "Successful preparation but no later reuse: investigate event cadence and ongoing value; do not infer retention from repeated calls."
+      ],
+      "privacy": "Browser creation stays local. Shared links contain readable, editable data and cannot revoke copies. MCP processes supplied arguments statelessly. No free-text inputs, fragment, event ID or participant identity enter telemetry.",
+      "release": {
+        "target_version": "2.6.0",
+        "status": "verified",
+        "scheduling": "Existing 06:00 UTC reporting and 07:20 UTC source checks retained; no new cron, paid model or enabled chat automation.",
+        "version": "2.6.0",
+        "commit": "06efe45b89e00ae14cdb79776edeb8f90b9377aa",
+        "pull_request": "https://github.com/f-tiger/agi-site/pull/220",
+        "workflow_run": "https://github.com/f-tiger/agi-site/actions/runs/41217960707",
+        "verified_at": "2026-10-31T16:11:03.417Z",
+        "endpoint": "https://thedollscout.com/mcp",
+        "registry_name": "io.github.f-tiger/dollscout-collecting",
+        "checks": [
+          "Four pull-request CI checks passed",
+          "Production build, three localized event pages and official SDK event/card/recipient workflow verified",
+          "Official Registry reads back 2.6.0 active/latest at the existing MCP endpoint",
+          "Existing daily health reporter successfully reads the new coverage; no complete observation day yet",
+          "27 local browser scenarios passed including actual clipboard and cross-context recipient reuse",
+          "Final GA4 configuration covers 299 public pages with 5 explicit exclusions; backend ingestion was not independently tested"
+        ],
+        "adoption": "External distribution, organizer adoption and repeat use are not established by QA or publication.",
+        "indexnow": {
+          "changed_urls": 23,
+          "status": 200,
+          "accepted": true,
+          "indexing": "unknown",
+          "note": "Verified current production URLs before manual notification after original push range was skipped."
+        }
       }
     }
   ]

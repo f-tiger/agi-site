@@ -1,6 +1,6 @@
 # The Doll Scout — collector buying guides and free collection tools
 
-TDS helps collectors choose display, storage and gifts through buying criteria and clearly labeled US/German affiliate searches. The collection desk, series checklists and planning tools support those decisions. English is the default, with German and Chinese guides.
+TDS helps collectors choose display, storage and gifts through buying criteria, US/DE/UK country-specific source checks and clearly labeled US/German affiliate searches. The collection desk, series checklists and planning tools support those decisions. English is the default, with German and Chinese guides.
 
 - [Buying guides](https://thedollscout.com/shop): display cases, storage and transport, plush display and collector gifts; measurements, alternatives and seller checks before shopping.
 - [Series checklists](https://thedollscout.com/series): official-source SMISKI and Sonny Angel names, saved in the same local collection used by the tracker.
@@ -29,3 +29,5 @@ The production workflow also builds the shared workbench, then digital tools, th
 Daily expansion uses official-source checks and the existing scheduled release, with at most two new series per day. A check date is not a release date. Failed checks retain verified records. Local checklist data stays in the browser: back it up before switching devices or clearing storage.
 
 TDS is independent of the brands discussed. Existing US/DE Amazon links are labeled. Visits, successful tool actions and merchant clicks are separate from verified commission revenue. Former retired content remains retired.
+
+Current commercial goal: **USD100 total TDS-attributable revenue per calendar month**, after reversals and before operating costs. See repository-root `docs/tds-country-growth-2026-11-07.md`, `tools/affiliate-growth/tds-operations.json` and `data/marketing/tds-daily-plan.json`. Shared affiliate tags do not verify site revenue; membership checkout remains unavailable. `/api/shopping-growth` reports only complete UTC dates from 2026-11-08, fixed buying-guide paths and anonymous country/merchant actions. A pending or failed window is not a zero. Marketing assets are prepared; publication status requires a real receipt.
