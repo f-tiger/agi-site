@@ -4,7 +4,7 @@ import {generateKeyPairSync,privateDecrypt,createDecipheriv,constants} from 'nod
 import {mkdtemp,readFile,readdir,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
-import {credentials,validatePublicKey,encryptReport,run,collect,dayInZone} from './report.mjs';
+import {credentials,validatePublicKey,encryptReport,run,collect,dayInZone,exitCode} from './report.mjs';
 
 const pair=generateKeyPairSync('rsa',{modulusLength:2048});
 const publicPem=pair.publicKey.export({type:'spki',format:'pem'});
@@ -88,4 +88,11 @@ test('existing envelope roundtrip authenticates ciphertext and rejects tampering
 test('date boundary uses each source timezone at DST boundary',()=>{
  assert.equal(dayInZone(new Date('2026-10-25T23:30:00Z'),'Europe/Berlin'),'2026-10-26');
  assert.equal(dayInZone(new Date('2026-10-25T23:30:00Z'),'America/Los_Angeles'),'2026-10-25');
+});
+
+test('missing setup is a visible preflight block; actual report failures stay strict',()=>{
+ const missing={status:'blocked',reason:'missing_GA4_SERVICE_ACCOUNT_JSON',reportWritten:false};
+ assert.equal(exitCode(missing,'preflight'),0);assert.equal(exitCode(missing,'report'),2);
+ assert.equal(exitCode({...missing,reason:'invalid_service_account_json'},'preflight'),2);
+ assert.equal(exitCode({status:'blocked_or_partial'},'report'),2);
 });

@@ -1,4 +1,5 @@
-name: Read ECO official analytics privately
+name: ECO analytics access and private reports
+run-name: ECO analytics ${{ inputs.mode }}
 on:
   workflow_dispatch:
     inputs:

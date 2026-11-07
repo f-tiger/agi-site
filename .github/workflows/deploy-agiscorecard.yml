@@ -61,7 +61,9 @@ jobs:
           ref: main
           fetch-depth: 0
       - name: Validate discovery failure and freshness handling
-        run: python3 sites/agiscorecard/tools/foresight/test_refresh.py
+        run: |
+          python3 sites/agiscorecard/tools/foresight/test_refresh.py
+          python3 sites/agiscorecard/tools/foresight/test_source_health.py
       - name: Read bounded public publisher feeds
         run: python3 sites/agiscorecard/tools/foresight/refresh.py
       - name: Validate and refresh bounded AI company sources
@@ -78,18 +80,9 @@ jobs:
           git commit -m 'chore(agi): refresh public interview and company source health'
           git pull --rebase origin main
           git push origin HEAD:main
-      - name: Report any unavailable source after preserving its last good content
-        run: |
-          python3 - <<'PY'
-          import json
-          s=json.load(open('sites/agiscorecard/foresight-assets/discovery.json'))
-          print(s['checkedAt'], len(s['items']), 'items')
-          bad=[x['id'] for x in s['sources'] if x['status']!='ok']
-          f=json.load(open('sites/agiscorecard/futures-assets/snapshot.json'))
-          print(f['checkedAt'], len(f['items']), 'company updates')
-          bad += ['company:'+x['id'] for x in f['sources'] if not x['ok']]
-          assert not bad, 'Sources unavailable (cached content retained): '+', '.join(bad)
-          PY
+      - name: Report publisher availability without mislabelling the page release
+        run: python3 sites/agiscorecard/tools/foresight/source_health.py
+
   deploy:
     needs: future-discovery
     # A source outage must remain visible but must not stop the site deploying

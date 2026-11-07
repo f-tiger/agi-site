@@ -105,6 +105,12 @@ export async function run(env=process.env, dependencies={}) {
   await writeFile(env.ECO_REPORT_OUTPUT,JSON.stringify(envelope),{mode:0o600});
   return {status:report.ga4.status==='received'&&report.gsc.status==='received'?'received':'blocked_or_partial',ga4:report.ga4.status,gsc:report.gsc.status,reportWritten:true,encrypted:true};
 }
+// An explicit access preflight can be blocked by missing setup without being
+// an execution failure. Actual reports and malformed credentials remain strict.
+export function exitCode(result, mode='preflight') {
+  if (result.status==='blocked' && result.reason==='missing_GA4_SERVICE_ACCOUNT_JSON' && mode==='preflight') return 0;
+  return result.status==='blocked'||result.status==='blocked_or_partial'?2:0;
+}
 if (process.argv[1] && import.meta.url===pathToFileURL(resolve(process.argv[1])).href) {
   let result;
   try { result=await run(); } catch { result={status:'blocked',reason:'report_output_failed',reportWritten:false}; }
@@ -112,5 +118,6 @@ if (process.argv[1] && import.meta.url===pathToFileURL(resolve(process.argv[1]))
   console.log(JSON.stringify(result));
   if (process.env.GITHUB_STEP_SUMMARY) await writeFile(process.env.GITHUB_STEP_SUMMARY,'ECO official read-only report: '+result.status+'. '+(result.reason||'Raw metrics are not printed.')+'\n');
   if (process.env.GITHUB_OUTPUT) await writeFile(process.env.GITHUB_OUTPUT,'report_written='+result.reportWritten+'\n');
-  if (result.status==='blocked'||result.status==='blocked_or_partial') process.exitCode=2;
+  if (result.status==='blocked' && result.reason==='missing_GA4_SERVICE_ACCOUNT_JSON' && (process.env.ECO_REPORT_MODE || 'preflight')==='preflight') console.log('::warning::ECO analytics access is not configured. Add GA4_SERVICE_ACCOUNT_JSON in repository Secrets; no report was read or generated.');
+  process.exitCode=exitCode(result,process.env.ECO_REPORT_MODE || 'preflight');
 }
