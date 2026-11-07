@@ -758,12 +758,47 @@ jobs:
           check "https://getecoback.com/en/guide/portable-ac-leaking-water.html" '/en/guide/btu-calculator.html'
           check "https://getecoback.com/guide/klimaanlage-25-qm.html" 'source:"sizer"'
           check "https://getecoback.com/" 'source:"home-tool"'
-          # Diagnosis-first shelves on the three troubleshooting pages (2026-09-23):
-          # the shape of the incident is a new unit offered to a reader whose unit
-          # misbehaves, so assert the measuring/cleaning item is on the page.
-          check "https://getecoback.com/guide/luftentfeuchter-zieht-kein-wasser.html" 'adsorptions+luftentfeuchter'
+          # Reviewed diagnostic routes own an exact next step, not a generic
+          # replacement shelf. Keep the diagnostic copy and reject restored ads.
+          if ! python3 - <<'PY'
+          import sys
+          from urllib.request import Request, urlopen
+          sys.path.insert(0, 'tools')
+          from check_related import check_curated_block
+          routes = {
+              '/guide/luftentfeuchter-zieht-kein-wasser.html': 'Prüfen, bevor du ein neues Gerät kaufst',
+              '/guide/luftentfeuchter-stinkt.html': 'Die Quelle eingrenzen: das Muster des Geruchs',
+              '/guide/schimmel-am-fenster.html': 'Schritt 1: Welche Fläche ist es?',
+          }
+          removed = ('EB_TOPPICK', 'EB_MODELS', 'EB_POPUP', 'EB_STICKY',
+                     'EB_PROFILE', 'EB_USMARKET', 'EB_USSWITCH', 'EB_QUICKPICK', 'EB_SIZER')
+          errors = []
+          for route, diagnosis in routes.items():
+              request = Request('https://getecoback.com' + route + '?__probe=1', headers={
+                  'User-Agent': 'getecoback-ci-release', 'DNT': '1', 'Sec-GPC': '1',
+                  'Cache-Control': 'no-cache',
+              })
+              try:
+                  with urlopen(request, timeout=20) as response:
+                      if response.status != 200:
+                          raise ValueError('unexpected HTTP status ' + str(response.status))
+                      html = response.read().decode('utf-8')
+                  issues = check_curated_block(route, html)
+                  if diagnosis not in html:
+                      issues.append(route + ': core diagnostic explanation missing')
+                  issues.extend(route + ': restored generic block ' + marker
+                                for marker in removed if '<!--' + marker + '-->' in html)
+                  errors.extend(issues)
+                  if not issues:
+                      print('OK ' + route + ': diagnosis, exact handoff and absent generic commerce')
+              except Exception as error:
+                  errors.append(route + ': ' + str(error))
+          for error in errors:
+              print('::error::' + error)
+          raise SystemExit(bool(errors))
+          PY
+          then fail=1; fi
           check "https://getecoback.com/guide/heizluefter-schaltet-sich-aus.html" 'erst messen, dann die kleine Stufe'
-          check "https://getecoback.com/guide/luftentfeuchter-stinkt.html" 'lamellenb%C3%BCrste+weich'
           # 2026-09-24 season calendar: Heizstrahler was expanded onto this ranked
           # page instead of a new one (new pages are not being crawled by Bing yet).
           check "https://getecoback.com/guide/heizluefter-stromverbrauch.html" 'heizstrahler+innen+stufen'
@@ -974,7 +1009,8 @@ jobs:
           # which would put a cooling sizer and an air-conditioner shelf on a
           # page about condensation in January. Assert the dehumidifier shelf is
           # there AND the cooling sizer is not.
-          check "https://getecoback.com/guide/schimmel-am-fenster.html" "MeacoDry"
+          # schimmel-am-fenster is checked above as a reviewed diagnostic route;
+          # the airing guides retain their existing device-family checks below.
           # Humidifier guide (2026-09-15). Its device family is "dehum" because
           # that is the humidity table's key, so the default shelf would offer
           # dehumidifiers to a reader whose air is too DRY — the page would sell
