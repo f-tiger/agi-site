@@ -1,7 +1,8 @@
-# The Doll Scout — collectible guides and free collection tools
+# The Doll Scout — collector buying guides and free collection tools
 
-TDS helps collectors find a series, keep a private collection checklist, understand blind-box probabilities and plan a purchase or display. English is the default, with German and Chinese guides.
+TDS helps collectors choose display, storage and gifts through buying criteria and clearly labeled US/German affiliate searches. The collection desk, series checklists and planning tools support those decisions. English is the default, with German and Chinese guides.
 
+- [Buying guides](https://thedollscout.com/shop): display cases, storage and transport, plush display and collector gifts; measurements, alternatives and seller checks before shopping.
 - [Series checklists](https://thedollscout.com/series): official-source SMISKI and Sonny Angel names, saved in the same local collection used by the tracker.
 - [Collection tracker](https://thedollscout.com/collection-tracker): owned figures, wishlist, duplicate quantities, JSON backup and CSV export. No account or cloud sync is required or implied.
 - [Budget comparison](https://thedollscout.com/collecting/budget): compare independent boxes with a confirmed figure using your own costs and probabilities.
