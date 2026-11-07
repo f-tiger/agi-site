@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-06",
+ "fetched": "2026-11-07",
  "geo": "US",
  "seeds": {
   "deepseek": {
@@ -121,50 +121,58 @@
    "fetched": "2026-09-22"
   },
   "sora": {
+   "auto": [
+    "sora",
+    "sorana cirstea",
+    "sora 2",
+    "sora kingdom hearts",
+    "sora oh salon",
+    "sora soba",
+    "sora fortnite",
+    "sora soba sf",
+    "soraka aram mayhem",
+    "soraka build"
+   ],
    "rising": [
     {
-     "q": "sora release date fortnite speculation",
-     "v": 9000
+     "q": "sorana cirstea",
+     "v": "new"
     },
     {
-     "q": "when does sora come to fortnite",
-     "v": 8650
+     "q": "sora 2",
+     "v": "new"
     },
     {
-     "q": "when will sora be in fortnite",
-     "v": 7550
+     "q": "sora kingdom hearts",
+     "v": "new"
     },
     {
-     "q": "is sora in fortnite",
-     "v": 3900
+     "q": "sora oh salon",
+     "v": "new"
     },
     {
-     "q": "when is sora coming to fortnite",
-     "v": 3850
+     "q": "sora soba",
+     "v": "new"
     },
     {
-     "q": "sora no manimani anime",
-     "v": 3000
+     "q": "sora fortnite",
+     "v": "new"
     },
     {
-     "q": "kingdom hearts grandista sora figure",
-     "v": 2700
+     "q": "sora soba sf",
+     "v": "new"
     },
     {
-     "q": "sora in fortnite",
-     "v": 2500
+     "q": "soraka aram mayhem",
+     "v": "new"
     },
     {
-     "q": "sora no manimani",
-     "v": 2400
-    },
-    {
-     "q": "fortnite sora",
-     "v": 2050
+     "q": "soraka build",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-10-27"
+   "source": "autocomplete-diff",
+   "fetched": "2026-11-07"
   },
   "gemini": {
    "auto": [
@@ -289,50 +297,58 @@
    "fetched": "2026-11-06"
   },
   "claude code": {
+   "auto": [
+    "claude code",
+    "claude code install",
+    "claude code download",
+    "claude code pricing",
+    "claude code cli",
+    "claude code desktop",
+    "claude code vs codex",
+    "claude code subscription",
+    "claude code docs",
+    "claude code mods"
+   ],
    "rising": [
     {
-     "q": "codex vs claude code abraham quiros villalba",
-     "v": 94700
+     "q": "claude code install",
+     "v": "new"
     },
     {
-     "q": "apple smartring abraham quiros villalba",
-     "v": 31250
+     "q": "claude code download",
+     "v": "new"
     },
     {
-     "q": "abrahamquirosvillalba .com",
-     "v": 29450
+     "q": "claude code pricing",
+     "v": "new"
     },
     {
-     "q": "what does milliondollarthings.com sell",
-     "v": 17050
+     "q": "claude code cli",
+     "v": "new"
     },
     {
-     "q": "elon musk milliondollarthings.com",
-     "v": 16300
+     "q": "claude code desktop",
+     "v": "new"
     },
     {
-     "q": "jev",
-     "v": 14900
+     "q": "claude code vs codex",
+     "v": "new"
     },
     {
-     "q": "cheapest flights to tokyo",
-     "v": 11650
+     "q": "claude code subscription",
+     "v": "new"
     },
     {
-     "q": "technology milliondollarthings.com",
-     "v": 11600
+     "q": "claude code docs",
+     "v": "new"
     },
     {
-     "q": "how to make sushi",
-     "v": 11350
-    },
-    {
-     "q": "best time to visit maldives",
-     "v": 9900
+     "q": "claude code mods",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-10-27"
+   "source": "autocomplete-diff",
+   "fetched": "2026-11-07"
   }
  }
 }
