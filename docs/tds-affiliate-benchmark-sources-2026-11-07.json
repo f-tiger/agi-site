@@ -1,0 +1,670 @@
+{
+  "title": "TDS affiliate benchmark decision evidence",
+  "research_date": "2026-11-07",
+  "report": "tds-affiliate-benchmarks-2026-11-07.md",
+  "language": "zh-CN",
+  "target_site": "TDS",
+  "goal": {
+    "amount": 100,
+    "currency": "USD",
+    "period": "complete_calendar_month",
+    "scope": "total_TDS_site_revenue",
+    "basis": "after_refunds_and_reversals_before_operating_costs",
+    "channels": [
+      "attributable_affiliate",
+      "direct_sale",
+      "membership",
+      "sponsorship"
+    ],
+    "cash_receipt_is_separate": true,
+    "missing_channel_evidence_is_not_zero": true
+  },
+  "publication_status": {
+    "report": "decision_report",
+    "implementation": "pending_integration",
+    "tests": "not_claimed_by_this_report",
+    "deployment": "pending_main_delivery_receipts",
+    "backend_analytics_receipt": "not_proven_by_frontend_tests",
+    "revenue": "not_established"
+  },
+  "research_boundaries": [
+    "17 official primary comparator sources; no independently verified current traffic ranking.",
+    "TIWIB public GETs returned Angular shell; indexed official content supplements markup. Asset/content requests returning403 were not retried or bypassed.",
+    "Unresolved template expressions and hidden default-zero metrics are excluded as performance evidence.",
+    "Wirecutter article bodies were robots-blocked. SEC filings, official publisher Help and NYT-authored Apple Podcasts metadata supply the evidence; no bypass.",
+    "No tracked merchant redirect was followed and no checkout, account dashboard or form was used.",
+    "Exact current card layout, final merchant links, prices, stock and checkout outcomes are not independently verified.",
+    "Public report excludes private account identifiers, channel metrics, payloads and credentials."
+  ],
+  "unknown_competitor_metrics": [
+    "affiliate_revenue",
+    "average_order_value",
+    "channel_shares",
+    "merchant_order_cvr",
+    "merchant_outbound_ctr",
+    "organic_traffic_share",
+    "product_card_ctr",
+    "revenue_per_click",
+    "source_profitability",
+    "wirecutter_standalone_total_revenue"
+  ],
+  "scale_claims": [
+    {
+      "site": "ThisIsWhyImBroke",
+      "source_id": "T03",
+      "kind": "publisher_self_report_unverified_period",
+      "monthly_visitors": 2000000,
+      "email_subscribers": 427000,
+      "social_followers": 391000,
+      "not_evidence_of": [
+        "audited_audience",
+        "purchase_conversion",
+        "TDS_demand"
+      ]
+    },
+    {
+      "site": "Wirecutter",
+      "source_id": "W02",
+      "kind": "year_on_year_affiliate_revenue_increment_not_total",
+      "period": "2025",
+      "usd_increment": 5100000
+    },
+    {
+      "site": "Wirecutter",
+      "source_id": "W01",
+      "kind": "year_on_year_affiliate_revenue_increment_not_total",
+      "period": "2026-Q3",
+      "usd_increment": 1000000
+    },
+    {
+      "site": "Wirecutter",
+      "source_id": "W01",
+      "kind": "year_on_year_affiliate_revenue_increment_not_total",
+      "period": "2026-first-nine-months",
+      "usd_increment": 4800000
+    }
+  ],
+  "sources": [
+    {
+      "id": "T01",
+      "comparator": "ThisIsWhyImBroke",
+      "original_id": "tiwib-home",
+      "url": "https://www.thisiswhyimbroke.com/",
+      "source_type": "official_public_app_markup_and_indexed_page",
+      "checked_date": "2026-11-07",
+      "indexed_age_as_reported": "about one month",
+      "page_updated": null,
+      "evidence": [
+        "Named-item cards with save and merchant actions in indexed content",
+        "Public HTML declares wishlist, newsletter, social links and placement-impression components"
+      ],
+      "limitations": [
+        "Direct current read is an Angular shell; unresolved values and hidden zero metrics are not performance evidence",
+        "Current visual layout and resolved merchant hrefs not independently audited"
+      ]
+    },
+    {
+      "id": "T02",
+      "comparator": "ThisIsWhyImBroke",
+      "original_id": "tiwib-about",
+      "url": "https://www.thisiswhyimbroke.com/about/",
+      "source_type": "official_publisher_statement_indexed",
+      "checked_date": "2026-11-07",
+      "indexed_age_as_reported": "six days",
+      "page_updated": null,
+      "evidence": [
+        "Free discovery magazine; no inventory or direct retail sale",
+        "Some referrals earn commission; some recommendations do not"
+      ],
+      "limitations": [
+        "Editorial philosophy is publisher self-description, not independent testing or current leadership proof"
+      ]
+    },
+    {
+      "id": "T03",
+      "comparator": "ThisIsWhyImBroke",
+      "original_id": "tiwib-pitch",
+      "url": "https://www.thisiswhyimbroke.com/product-pitch",
+      "source_type": "official_commercial_offer_indexed",
+      "checked_date": "2026-11-07",
+      "indexed_age_as_reported": "two weeks",
+      "page_updated": null,
+      "evidence": [
+        "Self-reported audience: 2m monthly visitors,427k email subscribers,391k social followers",
+        "Paid pitch test described as20k unique-user exposure; weighted unique-click/wishlist score;30-day recalculation",
+        "Qualifying items may receive ongoing guide,email and social distribution; underperformance not refundable"
+      ],
+      "limitations": [
+        "No audited traffic period,actual CTR,CVR,earnings or promised sales verified",
+        "Testimonials and promised exposure are not observed results"
+      ]
+    },
+    {
+      "id": "T04",
+      "comparator": "ThisIsWhyImBroke",
+      "original_id": "tiwib-new",
+      "url": "https://www.thisiswhyimbroke.com/new/",
+      "source_type": "official_indexed_feed",
+      "checked_date": "2026-11-07",
+      "indexed_age_as_reported": "four months",
+      "page_updated": null,
+      "evidence": [
+        "New-product discovery feed with named products,price fields,save actions and merchant actions"
+      ],
+      "limitations": [
+        "Displayed prices and save counts not independently verified; feed extraction includes hidden template zeros"
+      ]
+    },
+    {
+      "id": "T05",
+      "comparator": "ThisIsWhyImBroke",
+      "original_id": "tiwib-marvel",
+      "url": "https://www.thisiswhyimbroke.com/marvel-gifts/",
+      "source_type": "official_indexed_gift_guide",
+      "checked_date": "2026-11-07",
+      "indexed_age_as_reported": "about one month",
+      "page_updated": "2022-10-04",
+      "evidence": [
+        "Fandom gift intent leads to individual product cards and Amazon/Etsy-labeled actions",
+        "Customized Comic Storage Box is a concrete storage-related candidate"
+      ],
+      "limitations": [
+        "Old update date; no live price,availability,fit or seller check",
+        "Merchant-label observation is not an inspected final href or checkout"
+      ]
+    },
+    {
+      "id": "T06",
+      "comparator": "ThisIsWhyImBroke",
+      "original_id": "tiwib-harry-potter",
+      "url": "https://www.thisiswhyimbroke.com/harry-potter-gifts/",
+      "source_type": "official_indexed_gift_guide",
+      "checked_date": "2026-11-07",
+      "indexed_age_as_reported": "about one month",
+      "page_updated": "2022-10-02",
+      "evidence": [
+        "Fandom guide includes a wand-holder candidate and Etsy-labeled action"
+      ],
+      "limitations": [
+        "Selection and displayed price are not current verification"
+      ]
+    },
+    {
+      "id": "T07",
+      "comparator": "ThisIsWhyImBroke",
+      "original_id": "tiwib-godzilla",
+      "url": "https://www.thisiswhyimbroke.com/godzilla-vs-mechagodzilla-diorama/",
+      "source_type": "official_indexed_product_page",
+      "checked_date": "2026-11-07",
+      "indexed_age_as_reported": "two weeks",
+      "page_updated": null,
+      "evidence": [
+        "Product-specific landing with short specification summary,save and merchant action"
+      ],
+      "limitations": [
+        "No hands-on performance,authenticity,current price or conversion validation"
+      ]
+    },
+    {
+      "id": "T08",
+      "comparator": "ThisIsWhyImBroke",
+      "original_id": "tiwib-friends-diorama",
+      "url": "https://www.thisiswhyimbroke.com/friends-apartment-paper-diorama/",
+      "source_type": "official_indexed_product_page",
+      "checked_date": "2026-11-07",
+      "indexed_age_as_reported": "five months",
+      "page_updated": null,
+      "evidence": [
+        "Named collectible,save option,merchant action and related-item recirculation"
+      ],
+      "limitations": [
+        "Recirculation is a surface,not measured retention"
+      ]
+    },
+    {
+      "id": "T09",
+      "comparator": "ThisIsWhyImBroke",
+      "original_id": "tiwib-pc-gamer",
+      "url": "https://www.thisiswhyimbroke.com/gifts-for-pc-gamers/",
+      "source_type": "official_indexed_gift_guide",
+      "checked_date": "2026-11-07",
+      "indexed_age_as_reported": "two weeks",
+      "page_updated": null,
+      "evidence": [
+        "Recipient/interest guide spans setup accessories,decor and personalization"
+      ],
+      "limitations": [
+        "Copy and prices are not recommended TDS product evidence"
+      ]
+    },
+    {
+      "id": "T10",
+      "comparator": "ThisIsWhyImBroke",
+      "original_id": "tiwib-delorean",
+      "url": "https://www.thisiswhyimbroke.com/replica-delorean-time-machine/",
+      "source_type": "official_indexed_product_page",
+      "checked_date": "2026-11-07",
+      "indexed_age_as_reported": "four months",
+      "page_updated": null,
+      "evidence": [
+        "Collectible novelty and high-ticket curiosity exist alongside practical gifts"
+      ],
+      "limitations": [
+        "Curiosity or saves do not imply purchase intent or revenue"
+      ]
+    },
+    {
+      "id": "W01",
+      "comparator": "Wirecutter",
+      "original_id": "S1",
+      "title": "The New York Times Company Form 10-Q, period ended 2026-09-30",
+      "url": "https://www.sec.gov/Archives/edgar/data/71691/000007169126000041/nyt-20260930.htm",
+      "source_type": "company SEC filing",
+      "checked_date": "2026-11-07",
+      "period_end": "2026-09-30",
+      "publication_date": null,
+      "access": "opened official full filing; relevant revenue section inspected",
+      "evidence": [
+        "Wirecutter affiliate referral revenue increased $1.0m in Q3 2026 and $4.8m in first nine months, year on year.",
+        "Partner promotion timing is mentioned."
+      ],
+      "limitations": [
+        "These are changes, not standalone total revenue. Group revenue captions include licensing and other operations. No isolated CTR/CVR/EPC."
+      ]
+    },
+    {
+      "id": "W02",
+      "comparator": "Wirecutter",
+      "original_id": "S2",
+      "title": "The New York Times Company Form 10-K, year ended 2025-12-31",
+      "url": "https://www.sec.gov/Archives/edgar/data/71691/000007169126000011/nyt-20251231.htm",
+      "source_type": "company SEC filing",
+      "checked_date": "2026-11-07",
+      "period_end": "2025-12-31",
+      "publication_date": null,
+      "access": "opened official full filing; relevant revenue section inspected",
+      "evidence": [
+        "Wirecutter affiliate referral revenue increased $5.1m year on year."
+      ],
+      "limitations": [
+        "Not total Wirecutter revenue. NYT digital affiliate/licensing/other totals cannot be attributed exclusively to Wirecutter."
+      ]
+    },
+    {
+      "id": "W03",
+      "comparator": "Wirecutter",
+      "original_id": "S3",
+      "title": "Wirecutter Product Recommendations",
+      "url": "https://thenewyorktimeshelpcenter.helpjuice.com/21870729656596-Wirecutter-Product-Recommendations",
+      "source_type": "official publisher support page",
+      "checked_date": "2026-11-07",
+      "period_end": null,
+      "publication_date": null,
+      "access": "opened public official Help page",
+      "evidence": [
+        "Publisher describes comparison-led selection, editorial independence, monitored deals, conditional purchase commissions and a separate store."
+      ],
+      "limitations": [
+        "Self-described process, not independent audit or per-page visual evidence. Store body not inspected."
+      ]
+    },
+    {
+      "id": "W04",
+      "comparator": "Wirecutter",
+      "original_id": "S4",
+      "title": "The Wirecutter Show",
+      "url": "https://podcasts.apple.com/us/podcast/the-wirecutter-show/id1762217793",
+      "source_type": "publisher-authored official distribution page",
+      "checked_date": "2026-11-07",
+      "period_end": null,
+      "publication_date": null,
+      "access": "opened public Apple Podcasts page; publisher shown as The New York Times",
+      "evidence": [
+        "Weekly problem-led audio; listed social destinations; description references more than 140 journalists."
+      ],
+      "limitations": [
+        "Publisher assertion; no verified reach, traffic share, channel profitability or purchase conversion."
+      ]
+    },
+    {
+      "id": "W05",
+      "comparator": "Wirecutter",
+      "original_id": "S5",
+      "title": "Gift Guide 2025: Kids Tell Us What They Want",
+      "url": "https://podcasts.apple.com/us/podcast/gift-guide-2025-kids-tell-us-what-they-want/id1762217793?i=1000740981447",
+      "source_type": "publisher-authored official episode and public HTML metadata",
+      "checked_date": "2026-11-07",
+      "period_end": null,
+      "publication_date": "2025-12-12",
+      "access": "opened public episode; fetched public Apple HTML and extracted original embedded link metadata",
+      "evidence": [
+        "Recipient guides, named-product outbound routes and podcast campaign UTMs occur together."
+      ],
+      "limitations": [
+        "Historical campaign. Guide bodies and final retailer destinations not opened. Product availability and card layouts unverified."
+      ]
+    },
+    {
+      "id": "W06",
+      "comparator": "Wirecutter",
+      "original_id": "S6",
+      "title": "Wirecutter Subscription",
+      "url": "https://thenewyorktimeshelpcenter.helpjuice.com/360050444131-Wirecutter-Subscription",
+      "source_type": "official publisher support page",
+      "checked_date": "2026-11-07",
+      "period_end": null,
+      "publication_date": null,
+      "access": "opened public official Help page",
+      "evidence": [
+        "NYT app and bundle distribution; saved lists; limited non-subscriber access; publisher states over 1,000 reviews."
+      ],
+      "limitations": [
+        "No standalone subscriber total, cohort retention or subscription conversion."
+      ]
+    },
+    {
+      "id": "W07",
+      "comparator": "Wirecutter",
+      "original_id": "S7",
+      "title": "Wirecutter Newsletters",
+      "url": "https://thenewyorktimeshelpcenter.helpjuice.com/21870757912084-Wirecutter-Newsletters?kb_language=en_US",
+      "source_type": "official publisher support page",
+      "checked_date": "2026-11-07",
+      "period_end": null,
+      "publication_date": null,
+      "access": "opened public official Help page",
+      "evidence": [
+        "The Recommendation and Clean Everything; free sign-up may lead to subscription-gated articles."
+      ],
+      "limitations": [
+        "Inventory differs from historical episode promotion; completeness/current campaign status not inferred. No list-size or performance metrics."
+      ]
+    }
+  ],
+  "tds_preupgrade_audit": {
+    "checked_date": "2026-11-07",
+    "provenance": "current-task browser/content audit supplied to report synthesis; not competitor evidence",
+    "viewport_width_css_px": 390,
+    "hub_first_category_document_y_css_px": 2268,
+    "guide_amazon_exit_document_y_css_px": [
+      2718,
+      2750
+    ],
+    "english_generic_search_links": 8,
+    "named_source_examples": 2,
+    "measurement_gap": "merchant actions exist; no item/placement-level comparison evidence",
+    "limitations": [
+      "Document coordinates are not measured user scrolling or bounce rate.",
+      "No causal conversion lift is established.",
+      "This is the baseline, not post-release verification."
+    ]
+  },
+  "selected_product_evidence": [
+    {
+      "id": "blaliden",
+      "name": "IKEA BLÅLIDEN glass-door cabinet, black",
+      "product_identity": "005.205.19",
+      "role": "Glass-sided cabinet when enclosure matters more than the smallest footprint",
+      "source_urls": [
+        "https://www.ikea.com/us/en/p/blaliden-glass-door-cabinet-black-00520519/",
+        "https://www.ikea.com/de/de/p/blaliden-vitrine-schwarz-00520519/"
+      ],
+      "limitations": [
+        "External dimensions do not establish usable shelf size or clearance.",
+        "Glass enclosure is a useful contrast with BAGGEBO mesh sides; no independent dust-seal or protection test was performed.",
+        "Follow manufacturer wall-anchoring instructions; no safe heavy-figure load inferred beyond the per-shelf limit."
+      ],
+      "checked_date": "2026-11-07",
+      "source_scope": "product evidence; not counted in 17 comparator sources",
+      "release_status": "selected_pending_integration_and_production_verification"
+    },
+    {
+      "id": "baggebo",
+      "name": "IKEA BAGGEBO glass-door cabinet, metal/white",
+      "product_identity": "805.029.98",
+      "role": "Narrow cabinet for collectors who accept mesh sides and regular dusting",
+      "source_urls": [
+        "https://www.ikea.com/us/en/p/baggebo-glass-door-cabinet-metal-white-80502998/",
+        "https://www.ikea.com/de/de/p/baggebo-vitrine-metall-weiss-80502998/"
+      ],
+      "limitations": [
+        "Mesh sides leave openings; do not describe as sealed or dustproof.",
+        "Usable shelf width/depth and clearance were not established.",
+        "Follow manufacturer wall-anchoring instructions; wall fixings depend on wall type."
+      ],
+      "checked_date": "2026-11-07",
+      "source_scope": "product evidence; not counted in 17 comparator sources",
+      "release_status": "selected_pending_integration_and_production_verification"
+    },
+    {
+      "id": "lustigt",
+      "name": "IKEA LUSTIGT wall shelf",
+      "product_identity": "303.818.52",
+      "role": "Shallow wall display for small objects where floor space is scarce",
+      "source_urls": [
+        "https://www.ikea.com/us/en/p/lustigt-wall-shelf-30381852/",
+        "https://www.ikea.com/de/de/p/lustigt-wandregal-30381852/"
+      ],
+      "limitations": [
+        "The 6 cm depth is the listed product depth, not a guaranteed usable footprint for any figure.",
+        "Open shelves offer no enclosure against dust or falls.",
+        "Follow installation and loading instructions. Manufacturer age recommendation is 6+; small-parts warning for children under 3.",
+        "No standard figure capacity or fit guarantee was established."
+      ],
+      "checked_date": "2026-11-07",
+      "source_scope": "product evidence; not counted in 17 comparator sources",
+      "release_status": "selected_pending_integration_and_production_verification"
+    },
+    {
+      "id": "samla",
+      "name": "IKEA SAMLA clear box, 5 l / US 1-gallon size",
+      "product_identity": "701.029.72",
+      "role": "See-through indoor storage for small accessories; buy the matching lid separately",
+      "source_urls": [
+        "https://www.ikea.com/us/en/p/samla-box-clear-70102972/",
+        "https://www.ikea.com/de/de/p/samla-box-transparent-70102972/"
+      ],
+      "limitations": [
+        "Interior usable dimensions and padding allowance were not established.",
+        "This is an indoor household storage box, not a tested shipping or archival case.",
+        "No waterproof, airtight, drop-protection or UV-protection claim is supported.",
+        "Manufacturer says stackable with the appropriate lid; check the matching lid before purchase."
+      ],
+      "checked_date": "2026-11-07",
+      "source_scope": "product evidence; not counted in 17 comparator sources",
+      "release_status": "selected_pending_integration_and_production_verification"
+    },
+    {
+      "id": "my-bestie",
+      "name": "Sonny Angel My Bestie Case Sweet Candy Series",
+      "product_identity": "SAS67532–SAS67536",
+      "role": "Character-specific carry accessory for an owner who already knows the figure and case fit",
+      "source_urls": [
+        "https://www.sonnyangelstore.com/en/products/mybestiecase2",
+        "https://www.sonnyangel.com/en/2026/05/11/sa_mybestiecase_vol2/"
+      ],
+      "limitations": [
+        "A 103 × 148 mm outline does not prove a figure fits inside.",
+        "No tested impact, compression, water or UV protection.",
+        "Japan/global official source does not establish US or German stock, shipping, authorized marketplace sellers or local returns.",
+        "Do not add an Amazon exact-product button without verifying an actual matching listing."
+      ],
+      "checked_date": "2026-11-07",
+      "source_scope": "product evidence; not counted in 17 comparator sources",
+      "release_status": "selected_pending_integration_and_production_verification"
+    },
+    {
+      "id": "niubee-risers",
+      "name": "NIUBEE acrylic display risers, 3/4/5-inch sizes, two sets",
+      "product_identity": "B07KN5G9CQ",
+      "role": "Rearrangeable open risers for separating rows of small collectibles",
+      "source_urls": [
+        "https://www.amazon.com/dp/B07KN5G9CQ"
+      ],
+      "limitations": [
+        "Open risers do not protect figures from dust or falls.",
+        "No supported load rating or exact useful top-surface dimensions were found.",
+        "Listing bullet says 3-inch, 4-inch and 5-inch cubic risers while a generic Item Dimensions field says 5 × 4 × 3 inches. Do not use that generic field in a fit calculator; confirm the selected variant and measurements with the seller.",
+        "Reviewed page is a cached primary marketplace listing; it does not establish a current featured offer, stock, price or an authorized seller.",
+        "Amazon DE copies of this ASIN could not be verified. Do not show an Amazon DE product button for this record."
+      ],
+      "checked_date": "2026-11-07",
+      "source_scope": "product evidence; not counted in 17 comparator sources",
+      "release_status": "selected_pending_integration_and_production_verification"
+    }
+  ],
+  "selected_delivery_decisions": {
+    "surface": "existing /shop hub and four task guides in EN/DE/ZH",
+    "priority": "task and named options before long explanatory sections",
+    "comparison": "maximum3 locally saved option IDs; share using an allowlisted ID fragment",
+    "privacy": "no collection contents, free-form inputs or personal data in analytics/share fragments",
+    "exact_us_affiliate_candidate": {
+      "asin": "B07KN5G9CQ",
+      "url": "https://www.amazon.com/dp/B07KN5G9CQ",
+      "identity_verified": true,
+      "live_stock_price_seller_or_performance_verified": false
+    },
+    "de": "verified local IKEA sources; no fabricated Amazon DE exact-product destination",
+    "measurement": "bounded item/placement/official-versus-affiliate and compare events; shared GA4 owner preserved",
+    "marketing": "owned-page paths and existing approved TikTok landing improve; no additional external posts or ad spend initiated by this report",
+    "seo_geo_indexnow": "required at actual release; receipt is not indexing or AI citation"
+  },
+  "self_challenge_rounds": [
+    {
+      "round": 1,
+      "challenge": "Why would a buyer use six cards instead of the original merchant pages?",
+      "decision": "Task-first comparison, fit limitations, reuse/no-purchase option, local destination and measurement tool; no invented inner capacity or best-product claim."
+    },
+    {
+      "round": 2,
+      "challenge": "How can mostly noncommissionable options produce USD100, and could more clicks still produce no income?",
+      "decision": "Keep useful official choices, restrict monetized exact models to verified identity, solve independent attribution and qualified distribution, treat revenue scenarios as assumptions; no unready paid product or pitch business."
+    }
+  ],
+  "revenue_scenarios": {
+    "source": "tools/affiliate-growth/tds-goal.mjs",
+    "kind": "existing_planning_arithmetic_not_forecast_or_test_result",
+    "examples": [
+      {
+        "name": "Small accessory, weak unverified funnel",
+        "kind": "hypothesis_not_forecast",
+        "currency": "USD",
+        "target": {
+          "amount": 100,
+          "period": "calendar_month",
+          "status": "owner_confirmed_monthly_site_total_goal",
+          "siteTotalGoalUsd": 100,
+          "measure": "Modeled affiliate contribution to TDS total site revenue; confirmed net after reversals; before operating costs; cash separate"
+        },
+        "inputs": {
+          "targetUsd": 100,
+          "commissionableBasketUsd": 25,
+          "commissionRate": 0.03,
+          "merchantOrderRate": 0.02,
+          "landingOutboundRate": 0.1,
+          "qualificationRate": 0.9,
+          "refundRate": 0.05
+        },
+        "commissionPerQualifyingOrderUsd": 0.75,
+        "expectedNetCommissionPerPlacedOrderUsd": 0.64125,
+        "requiredAttributableNetCommissionUsd": 100,
+        "requiredNetQualifyingOrders": 134,
+        "requiredPlacedOrders": 157,
+        "requiredMerchantClicks": 7850,
+        "requiredEligibleLandingVisits": 78500,
+        "attribution": "pending_real_TDS_exclusive_tracking_ID_and_merchant_report",
+        "caveats": [
+          "Basket is commissionable revenue after excluded taxes, shipping and adjustments, not the consumer retail total. One modeled category per order is a simplifying assumption.",
+          "Category rate and product classification must be checked with Amazon; a guide category or search term does not establish an eligible category or account-specific rate.",
+          "Every conversion, qualification and refund rate is an assumption. Counts are successive rounded planning volumes, not guaranteed results or a time-to-revenue forecast.",
+          "Qualification rate is the fraction of placed merchant orders eligible before returns; refund rate applies to that subset. Required merchant clicks use merchant-reported clicks, not site click events.",
+          "The confirmed goal is USD100 total site revenue per calendar month. This scenario models affiliate contribution only. Shared US/DE tags establish account totals, not TDS earnings.",
+          "Zero observed conversion cannot be inverted into a finite forecast. Per-item rounding, mixed baskets and later reversals require actual merchant reports."
+        ]
+      },
+      {
+        "name": "Mid-size purchase, working hypothesis",
+        "kind": "hypothesis_not_forecast",
+        "currency": "USD",
+        "target": {
+          "amount": 100,
+          "period": "calendar_month",
+          "status": "owner_confirmed_monthly_site_total_goal",
+          "siteTotalGoalUsd": 100,
+          "measure": "Modeled affiliate contribution to TDS total site revenue; confirmed net after reversals; before operating costs; cash separate"
+        },
+        "inputs": {
+          "targetUsd": 100,
+          "commissionableBasketUsd": 50,
+          "commissionRate": 0.03,
+          "merchantOrderRate": 0.04,
+          "landingOutboundRate": 0.15,
+          "qualificationRate": 0.9,
+          "refundRate": 0.05
+        },
+        "commissionPerQualifyingOrderUsd": 1.5,
+        "expectedNetCommissionPerPlacedOrderUsd": 1.2825,
+        "requiredAttributableNetCommissionUsd": 100,
+        "requiredNetQualifyingOrders": 67,
+        "requiredPlacedOrders": 79,
+        "requiredMerchantClicks": 1975,
+        "requiredEligibleLandingVisits": 13167,
+        "attribution": "pending_real_TDS_exclusive_tracking_ID_and_merchant_report",
+        "caveats": [
+          "Basket is commissionable revenue after excluded taxes, shipping and adjustments, not the consumer retail total. One modeled category per order is a simplifying assumption.",
+          "Category rate and product classification must be checked with Amazon; a guide category or search term does not establish an eligible category or account-specific rate.",
+          "Every conversion, qualification and refund rate is an assumption. Counts are successive rounded planning volumes, not guaranteed results or a time-to-revenue forecast.",
+          "Qualification rate is the fraction of placed merchant orders eligible before returns; refund rate applies to that subset. Required merchant clicks use merchant-reported clicks, not site click events.",
+          "The confirmed goal is USD100 total site revenue per calendar month. This scenario models affiliate contribution only. Shared US/DE tags establish account totals, not TDS earnings.",
+          "Zero observed conversion cannot be inverted into a finite forecast. Per-item rounding, mixed baskets and later reversals require actual merchant reports."
+        ]
+      },
+      {
+        "name": "Larger purchase, stronger unverified funnel",
+        "kind": "hypothesis_not_forecast",
+        "currency": "USD",
+        "target": {
+          "amount": 100,
+          "period": "calendar_month",
+          "status": "owner_confirmed_monthly_site_total_goal",
+          "siteTotalGoalUsd": 100,
+          "measure": "Modeled affiliate contribution to TDS total site revenue; confirmed net after reversals; before operating costs; cash separate"
+        },
+        "inputs": {
+          "targetUsd": 100,
+          "commissionableBasketUsd": 100,
+          "commissionRate": 0.03,
+          "merchantOrderRate": 0.06,
+          "landingOutboundRate": 0.2,
+          "qualificationRate": 0.9,
+          "refundRate": 0.05
+        },
+        "commissionPerQualifyingOrderUsd": 3,
+        "expectedNetCommissionPerPlacedOrderUsd": 2.565,
+        "requiredAttributableNetCommissionUsd": 100,
+        "requiredNetQualifyingOrders": 34,
+        "requiredPlacedOrders": 40,
+        "requiredMerchantClicks": 667,
+        "requiredEligibleLandingVisits": 3335,
+        "attribution": "pending_real_TDS_exclusive_tracking_ID_and_merchant_report",
+        "caveats": [
+          "Basket is commissionable revenue after excluded taxes, shipping and adjustments, not the consumer retail total. One modeled category per order is a simplifying assumption.",
+          "Category rate and product classification must be checked with Amazon; a guide category or search term does not establish an eligible category or account-specific rate.",
+          "Every conversion, qualification and refund rate is an assumption. Counts are successive rounded planning volumes, not guaranteed results or a time-to-revenue forecast.",
+          "Qualification rate is the fraction of placed merchant orders eligible before returns; refund rate applies to that subset. Required merchant clicks use merchant-reported clicks, not site click events.",
+          "The confirmed goal is USD100 total site revenue per calendar month. This scenario models affiliate contribution only. Shared US/DE tags establish account totals, not TDS earnings.",
+          "Zero observed conversion cannot be inverted into a finite forecast. Per-item rounding, mixed baskets and later reversals require actual merchant reports."
+        ]
+      }
+    ],
+    "shared_tags_do_not_establish_tds_revenue": true
+  },
+  "operating_window": {
+    "planned_start": "2026-11-08",
+    "planned_end_inclusive": "2026-11-21",
+    "review": "2026-11-22",
+    "actual_start_must_follow_release": true,
+    "gates_are_operational_not_statistical": true,
+    "calendar_month_revenue_reconciliation": "after November report maturity; not a14day revenue goal"
+  }
+}

@@ -32,7 +32,7 @@ async function checkMerchants(page, prefix) {
     assert.equal(url.hostname.replace(/^www\./, ''), german ? 'amazon.de' : 'amazon.com', page.url());
     assert.equal(url.searchParams.get('tag'), german ? 'getecoback-21' : 'ecoback0d-20');
     assert.deepEqual(url.searchParams.getAll('tag'), [german ? 'getecoback-21' : 'ecoback0d-20']);
-    assert.ok(url.pathname === '/s' && url.searchParams.get('k'), 'Explicit search links, no invented product IDs');
+    assert.ok((url.pathname === '/s' && url.searchParams.get('k')) || (!german && url.pathname === '/dp/B07KN5G9CQ'), 'Explicit searches or the source-verified US product');
     for (const value of ['sponsored', 'nofollow', 'noopener']) assert.ok(link.rel.split(/\s+/).includes(value), value);
     assert.ok(link.text.length > 0);
   }

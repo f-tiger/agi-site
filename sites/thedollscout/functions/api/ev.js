@@ -1,11 +1,13 @@
 // Client beacon endpoint (added 2026-08-19): the real-reader line. A row here
 // means JavaScript actually ran, which no crawler in the server-side log does.
-// Privacy: no cookies, no identifiers, no IP, referrer reduced to its host.
+// Privacy: no cookies, people identifiers or IP. Referrers are reduced to their
+// host; shopping actions may use only fixed merchant/item/placement labels.
 // Always answers 204 — a broken binding must cost a data point, never a page.
 // The lang column used to be the constant 'en' — every /de/ /zh/ /th/ row was
 // logged as English, and the "该语言 28 天真人 pv ≥ 德语区" upgrade line read a
 // constant. Derived from the path, exactly like the URL layout itself.
 import {COLLECTOR_EVENTS, collectorEventAllowed, measurableRequest, qaURL} from '../../lib/collector-measurement.js';
+import {shoppingMeasurement} from '../../collector-assets/shopping-contract.mjs';
 export function langOf(path) {
   const m = /^\/(de|zh|th)(\/|$)/.exec(path || '');
   return m ? m[1] : 'en';
@@ -19,15 +21,21 @@ export async function onRequestPost(ctx) {
     if (Number(ctx.request.headers.get('content-length')) > 2048) return new Response(null, {status:204});
     let body = {};
     try { const raw = await ctx.request.text(); if (raw.length > 2048) return new Response(null, {status:204}); body = JSON.parse(raw); } catch (e) {}
-    if (!body || typeof body !== 'object' || Array.isArray(body) || Object.keys(body).some(k => !['p','e','r'].includes(k))) return new Response(null, {status:204});
+    if (!body || typeof body !== 'object' || Array.isArray(body) || Object.keys(body).some(k => !['p','e','r','item','placement'].includes(k))) return new Response(null, {status:204});
     const path = String(body.p || '').split('?')[0].slice(0, 120);
     if (!path.startsWith('/') || !ctx.env.HITS) return new Response(null, { status: 204 });
     if (qaURL('https://thedollscout.com'+String(body.p))) return new Response(null, {status:204});
     let ref = '';
     try { ref = body.r ? new URL(body.r).hostname.slice(0, 60) : ''; } catch (e) {}
+    const shopping = ['shopping_official_click', 'shopping_compare'].includes(body.e) || Object.hasOwn(body, 'item') || Object.hasOwn(body, 'placement');
+    if (shopping) {
+      const metadata = shoppingMeasurement(body);
+      if (!metadata) return new Response(null, {status:204});
+      ref = metadata.ref;
+    }
     // Unknown event names are dropped, not stored — an open-name endpoint is
     // write-anything storage, and the table stays honest by refusing it.
-    const ALLOWED = new Set([...COLLECTOR_EVENTS,'collector_wish_generate','collector_wish_export','collector_wish_response_reported','collector_wish_fulfilled_reported','', 'affiliate_click', 'price_check', 'odds_calc', 'cost_calc', 'checker_use', 'finder_use', 'lookup_use', 'collection_save', 'collection_export', 'collection_import', 'display_calc','display_plan_export','display_plan_example', 'collector_video_request', 'collector_video_tool','collector_budget_calc','collector_progress_calc','collector_series_calc','collector_series_save','collector_series_export','collector_mcp_copy','collector_swap_print_request','collector_swap_link_copy']);
+    const ALLOWED = new Set([...COLLECTOR_EVENTS,'collector_wish_generate','collector_wish_export','collector_wish_response_reported','collector_wish_fulfilled_reported','', 'affiliate_click', 'shopping_official_click', 'shopping_compare', 'price_check', 'odds_calc', 'cost_calc', 'checker_use', 'finder_use', 'lookup_use', 'collection_save', 'collection_export', 'collection_import', 'display_calc','display_plan_export','display_plan_example', 'collector_video_request', 'collector_video_tool','collector_budget_calc','collector_progress_calc','collector_series_calc','collector_series_save','collector_series_export','collector_mcp_copy','collector_swap_print_request','collector_swap_link_copy']);
     if (body.e && !ALLOWED.has(body.e)) return new Response(null, { status: 204 });
     if (COLLECTOR_EVENTS.has(body.e) && (body.p !== path || !collectorEventAllowed(body.e, path))) return new Response(null, {status:204});
     // These are player requests and tool-link clicks, never watch time or completed plays.

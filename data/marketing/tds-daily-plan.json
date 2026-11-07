@@ -1,5 +1,5 @@
 {
-  "version": 5,
+  "version": 6,
   "site": "tds",
   "start_date": "2026-10-12",
   "days": 30,
@@ -12,7 +12,10 @@
     "The native source expansion retains its existing caps and schedule.",
     "External drafts are not posts, platform views are not site users, and clicks are not revenue.",
     "Private metrics and identities never enter this public plan.",
-    "Blocked tasks remain explicit; choose another useful authorized task instead of silently waiting."
+    "Blocked tasks remain explicit; choose another useful authorized task instead of silently waiting.",
+    "The active comparison upgrade does not complete or reset earlier experiments; preserve their original dates and outcomes.",
+    "One reviewed TikTok carousel is already approved and submitted. Reconcile that item; no duplicate post for processing delay or zero views.",
+    "Role assignments are a backlog within the existing cadence, not new jobs, sending authority, advertising spend or service fees."
   ],
   "days_plan": [
     {
@@ -323,6 +326,15 @@
   "preparation_iterations": [
     {
       "date": "2026-11-07",
+      "phase": "benchmark-comparison-operations",
+      "action": "Apply two-competitor research to six source-backed options, local shortlist and item/placement measurement; assign country/category/marketing owners and stop conditions",
+      "status": "documentation_complete_implementation_release_pending",
+      "receipt": "docs/tds-affiliate-benchmarks-2026-11-07.md",
+      "external_posts": 0,
+      "note": "No new post or spend. Earlier approved tds-buy-01 remains the same pending provider confirmation. Historical experiment dates and results preserved."
+    },
+    {
+      "date": "2026-11-07",
       "phase": "approved-organic-publication",
       "action": "Submit the one owner-approved TDS display-guide TikTok carousel and inspect its provider/public state",
       "status": "submitted_awaiting_platform_confirmation",
@@ -360,20 +372,25 @@
   "acquisition_priority": {
     "updated": "2026-11-07",
     "owner_direction": "Research user pain points; execute toward USD100 monthly total site revenue with proactive marketing and country-specific categories.",
-    "primary": "US display decisions and DE authorized sourcing/accessories, with useful UK Jellycat regional guidance.",
-    "status": "deployed_and_live_verified",
-    "receipt": "docs/tds-country-growth-2026-11-07.md",
+    "primary": "US named display comparisons; DE local official display/storage decisions; useful UK Jellycat country guidance. Task-first cards and owned entry paths precede catalog expansion.",
+    "status": "country_baseline_live_comparison_upgrade_pending_release",
+    "receipt": "docs/tds-affiliate-benchmarks-2026-11-07.md",
     "preserve": [
       "Existing free tools, organizer/MCP experiment history and published-post windows",
       "Native source quotas and schedules"
     ],
-    "external_distribution": "One concrete TikTok carousel prepared; publication requires bounded approval. No spend or unsolicited outreach."
+    "external_distribution": "One owner-approved TikTok carousel already submitted; latest provider state remains AWAITING_CONFIRMATION. Read the same item, do not resubmit. No additional posts, spend or unsolicited outreach initiated.",
+    "benchmarks": [
+      "ThisIsWhyImBroke",
+      "Wirecutter"
+    ],
+    "benchmark_evidence": "docs/tds-affiliate-benchmark-sources-2026-11-07.json"
   },
   "current_experiment": {
     "id": "tds-country-buying-20261107",
     "updated": "2026-11-07",
     "owner_direction": "每月全站总收入 $100",
-    "status": "deployed_and_live_verified",
+    "status": "country_baseline_live_comparison_upgrade_pending_release",
     "goal": {
       "usd": 100,
       "period": "calendar_month",
@@ -389,14 +406,15 @@
         1,
         10,
         100
-      ]
+      ],
+      "attribution_status": "unknown_pending_authentic_TDS_exclusive_reporting"
     },
     "audience": [
       "US figure owners choosing display construction and fit",
       "DE collectors checking official sellers, delivery and accessory fit",
       "UK Jellycat buyers checking exact item and local destination"
     ],
-    "hypothesis": "A source-backed local buying decision plus a useful no-purchase alternative can earn qualified merchant exits and eventually attributable revenue.",
+    "hypothesis": "A task-first comparison of a few named source-backed options, with explicit limits and the correct shopping context, helps collectors make useful choices and may earn attributable merchant revenue; no demand or conversion lift is established.",
     "pages": [
       "/",
       "/shop",
@@ -411,7 +429,8 @@
       "first_complete_utc_day": "2026-11-08",
       "end_inclusive": "2026-11-21",
       "review_on": "2026-11-22",
-      "note": "14-day operational observation; calendar-month merchant/payment statements determine the revenue goal. Before coverage, counts remain null."
+      "note": "Preserve the existing 14-day operational window. Log the comparison release actual first complete day separately if later; no backfill. Calendar-month merchant/payment evidence determines total revenue. Pending, missing or failed coverage remains null/unknown.",
+      "comparison_first_complete_utc_day": null
     },
     "delivered_flow": [
       "Three country entries within existing localized hub routes",
@@ -421,7 +440,7 @@
       "Calendar-month evidence ledger validation and explicit scenario calculator"
     ],
     "commercial_readiness": {
-      "affiliate": "Existing US/DE links; shared tags prevent verified TDS-exclusive earnings",
+      "affiliate": "Existing US/DE mechanism; one verified US exact-model identity B07KN5G9CQ joins configured links pending release. IKEA and official Japan references are noncommissionable. Shared tags still prevent verified TDS-exclusive earnings.",
       "membership": "NOT READY",
       "direct_sale": "No live paid offer",
       "sponsorship": "No evidenced buyer or contract"
@@ -447,68 +466,108 @@
           "status": "AWAITING_CONFIRMATION",
           "detail": "Published:7705259266164410382",
           "public_visibility": "not_yet_verified"
+        },
+        {
+          "type": "provider_status_recheck",
+          "checked_at": "2026-11-07T03:26:58Z",
+          "status": "AWAITING_CONFIRMATION",
+          "detail": "Published:7705259266164410382",
+          "public_visibility": "not_yet_verified",
+          "receipt_scope": "sanitized state only; full response retained privately"
         }
       ],
-      "note": "Owner approved this one post after reviewing final assets; publication needs provider receipt. Manual typed visits have no guaranteed channel attribution.",
+      "note": "Owner already approved this one reviewed post. Latest provider state is AWAITING_CONFIRMATION despite published-item detail; public visibility remains unverified. Typed visits have no guaranteed channel attribution. Do not ask again for the same approval or create a replacement post.",
       "authorized_on": "2026-11-07",
       "authorized_scope": "One reviewed TikTok carousel on agifuturelife; no spend, repeats or other accounts.",
       "scheduled_at": "2026-11-07T11:00:00+08:00",
       "publication_record": "docs/tds-buy-01-publication-2026-11-07.md",
-      "last_checked_utc": "2026-11-07T03:05:00Z",
-      "next_action": "Read the same provider/public item until final publication or a concrete error; do not create another post to address processing delay or zero views."
+      "last_checked_utc": "2026-11-07T03:26:58Z",
+      "next_action": "At a bounded existing review, read the same provider item and verify public visibility when available. Preserve status/detail separately; diagnose an explicit error. Do not resubmit, duplicate or infer reach from submission.",
+      "landing_upgrade": "Same approved /shop/display-cases destination gains named choices and comparison after its separate production release; no new external distribution action."
     },
     "daily_checks": [
-      "Reuse existing reporting cadence; one cached shopping aggregate read, no new cron. Public health summary excludes private metrics.",
-      "Separate publication, platform reach, site events, merchant clicks and confirmed revenue; no inferred unique users.",
-      "Fix unavailable measurement or broken destinations before interpreting zeros. Preserve all opt-outs and QA exclusions."
+      "Use the existing review cadence and one normal cached shopping aggregate per iteration. No new cron, paid service or added native source quota.",
+      "Check receipt/coverage/known errors before interpreting counts. The new comparison measurement starts only after verified release; retain baseline coverage separately.",
+      "Inspect fixed task/market/item/placement official and affiliate actions, not private inputs. Raw actions are not unique people; visit gates remain unknown without a qualified cohort denominator.",
+      "Separate provider submission, publicly visible post, platform reach, site visits, comparison actions, merchant-reported orders and earned revenue. Keep private metrics outside this plan.",
+      "Repair one evidenced broken entry, source, comparison or destination before creating another page, asset or category. No-change is a valid decision.",
+      "Reconcile the existing approved TikTok item without reposting. No additional external message, campaign, spend or subscription is initiated by this backlog."
     ],
     "actions": [
       {
         "date": "2026-11-07",
-        "task": "Research questions and primary sources; implement country paths and useful named examples",
-        "state": "deployed_and_live_verified"
+        "task": "Country paths and named source examples are deployed; integrate six-option comparison as a distinct follow-up with separate receipts",
+        "state": "country_baseline_verified_comparison_upgrade_pending",
+        "owner": "product_release_owner",
+        "cadence": "once on recorded date; continue only with new evidence or pending dependency",
+        "evidence_rule": "Record only actual completed work; unavailable metrics and unresolved dependencies remain unknown."
       },
       {
         "date": "2026-11-08",
-        "task": "Verify live shopping report pending/complete-date behavior and source links; review exact carousel for bounded publication",
-        "state": "live_measurement_and_assets_verified_publication_approval_pending"
+        "task": "Verify live comparison and bounded measurements if released; inspect the already approved/submitted TikTok item without duplicating it",
+        "state": "comparison_live_verification_pending_tiktok_confirmation_pending",
+        "owner": "growth_operator",
+        "cadence": "once on recorded date; continue only with new evidence or pending dependency",
+        "evidence_rule": "Record only actual completed work; unavailable metrics and unresolved dependencies remain unknown."
       },
       {
         "date": "2026-11-09",
         "task": "Verify or obtain authentic TDS-exclusive US/DE tracking IDs and merchant-report access; keep shared tags until actual IDs exist",
-        "state": "blocked_account_access_not_verified"
+        "state": "blocked_account_access_not_verified",
+        "owner": "account_revenue_owner",
+        "cadence": "once on recorded date; continue only with new evidence or pending dependency",
+        "evidence_rule": "Record only actual completed work; unavailable metrics and unresolved dependencies remain unknown."
       },
       {
         "date": "2026-11-11",
         "task": "Review first complete dates and any actual post receipt. Fix acquisition or task blockers supported by evidence",
-        "state": "planned"
+        "state": "planned",
+        "owner": "growth_operator",
+        "cadence": "once on recorded date; continue only with new evidence or pending dependency",
+        "evidence_rule": "Record only actual completed work; unavailable metrics and unresolved dependencies remain unknown."
       },
       {
         "date": "2026-11-15",
         "task": "Compare US display and DE local sourcing/accessory signals without claiming statistically significant differences",
-        "state": "planned"
+        "state": "planned",
+        "owner": "growth_operator",
+        "cadence": "once on recorded date; continue only with new evidence or pending dependency",
+        "evidence_rule": "Record only actual completed work; unavailable metrics and unresolved dependencies remain unknown."
       },
       {
         "date": "2026-11-21",
         "task": "Close 14-day observation window; reconcile any mature merchant reporting privately",
-        "state": "planned"
+        "state": "planned",
+        "owner": "growth_operator",
+        "cadence": "once on recorded date; continue only with new evidence or pending dependency",
+        "evidence_rule": "Record only actual completed work; unavailable metrics and unresolved dependencies remain unknown."
       },
       {
         "date": "2026-11-22",
         "task": "Choose continue, repair or stop using evidence; do not create more country pages without local usefulness and a viable destination",
-        "state": "planned"
+        "state": "planned",
+        "owner": "growth_operator",
+        "cadence": "once on recorded date; continue only with new evidence or pending dependency",
+        "evidence_rule": "Record only actual completed work; unavailable metrics and unresolved dependencies remain unknown."
       },
       {
         "date": "2026-12-01",
         "task": "Reconcile November total-site revenue after report lag; do not convert unknown channels to zero",
-        "state": "planned"
+        "state": "planned",
+        "owner": "account_revenue_owner",
+        "cadence": "once on recorded date; continue only with new evidence or pending dependency",
+        "evidence_rule": "Record only actual completed work; unavailable metrics and unresolved dependencies remain unknown."
       }
     ],
     "decision_rules": [
       "Insufficient relevant visits: improve distribution rather than adding generic guides.",
       "Observed buying-task failure: repair that task before expanding.",
       "Mature merchant clicks without commission: inspect tracking, eligibility, country fit and statement lag.",
-      "Revenue requires real non-overlapping TDS evidence; a shared tag or anonymous click is not revenue."
+      "Revenue requires real non-overlapping TDS evidence; a shared tag or anonymous click is not revenue.",
+      "Use the same complete observation dates and matching units; actions divided by sessions are not a user conversion rate.",
+      "Do not revive or mark old organizer/MCP/search experiments complete when acquisition priority changes.",
+      "A local shortlist or fewer unqualified exits may still help the task; do not optimize raw clicks without mature purchase evidence.",
+      "Limit option expansion until source identity, country destination and the current six-option task are reliable."
     ],
     "operations": "tools/affiliate-growth/tds-operations.json",
     "research": "docs/tds-country-growth-2026-11-07.md",
@@ -532,8 +591,269 @@
         "indexing": "unknown"
       },
       "external_posts": 0,
-      "scheduler": "Existing cadence retained; shopping health read added without new schedule or model calls."
-    }
+      "scheduler": "Existing cadence retained; shopping health read added without new schedule or model calls.",
+      "scope": "Previously verified country-buying baseline; does not verify the new six-option comparison release."
+    },
+    "upgrade_release": {
+      "scope": "six-option source-backed comparison and bounded item/placement measurement",
+      "status": "pending_integration_and_production_verification",
+      "commit": null,
+      "pull_request": null,
+      "workflow_run": null,
+      "verified_at": null,
+      "live_checks": [],
+      "indexnow": {
+        "status": null,
+        "accepted": null,
+        "indexing": "unknown"
+      },
+      "ga4_backend_receipt": "not_established",
+      "owner": "product_release_owner",
+      "report": "docs/tds-affiliate-benchmarks-2026-11-07.md"
+    },
+    "benchmark_upgrade": {
+      "decision_date": "2026-11-07",
+      "report": "docs/tds-affiliate-benchmarks-2026-11-07.md",
+      "source_ledger": "docs/tds-affiliate-benchmark-sources-2026-11-07.json",
+      "source_count": 17,
+      "catalog_ids": [
+        "blaliden",
+        "baggebo",
+        "lustigt",
+        "samla",
+        "my-bestie",
+        "niubee-risers"
+      ],
+      "product_work": [
+        "Move tasks and named options before long explanatory sections",
+        "Show consider/skip reasons, source/check date, listed-dimension limits and original type illustrations",
+        "Task filter plus maximum3 locally saved comparison options",
+        "Share allowlisted public option IDs in fragment; preserve the existing collection ledger",
+        "Explicit US shopping context on EN/ZH and German context on DE; no inferred shipping country or fabricated local offer",
+        "No-JavaScript product/source destinations remain usable"
+      ],
+      "comparison_metrics": {
+        "first_party_compare_action": "shopping_compare",
+        "official_exit_action": "shopping_official_click",
+        "affiliate_exit_action": "affiliate_click",
+        "item_labels": "six fixed public IDs only",
+        "placement_labels": [
+          "card",
+          "compare",
+          "guide"
+        ],
+        "legacy_events": "item/placement unknown; no retroactive assignment",
+        "not_collected": [
+          "user_dimensions",
+          "free_text",
+          "collection_contents",
+          "shared_shortlist_payload",
+          "identities"
+        ],
+        "ga4": "Shared owner retains affiliate dispatch; preserve privacy exits and verify backend receipt separately"
+      },
+      "claims_not_established": [
+        "causal conversion lift",
+        "live stock or price",
+        "independent product testing",
+        "TDS-exclusive commission",
+        "paid customer demand",
+        "current competitor CTR/CVR"
+      ],
+      "source_maintenance": "Review relevant sources at weekly review or a reported change; do not add daily scraping or extra native source requests."
+    },
+    "country_category_actions": [
+      {
+        "id": "us-display",
+        "country": "US",
+        "category": "figure-display",
+        "priority": "P0",
+        "owner": "product_release_owner_then_growth_operator",
+        "cadence": "implement in this release; inspect complete-date evidence at existing daily review",
+        "paths": [
+          "/shop",
+          "/shop/display-cases"
+        ],
+        "options": [
+          "blaliden",
+          "baggebo",
+          "lustigt",
+          "niubee-risers"
+        ],
+        "action": "Show task, fit/enclosure tradeoffs and named comparison before the long guide; connect the fit tool and exact US destination.",
+        "metrics": [
+          "shopping_compare actions",
+          "official exits by item/placement",
+          "affiliate exits for verified US NIUBEE",
+          "merchant-reported eligible clicks and settled earnings only if attributable"
+        ],
+        "stop_conditions": [
+          "broken or mismatched product destination",
+          "unsupported size/protection statement",
+          "100 mature merchant-reported clicks without commission triggers eligibility/attribution review before expansion"
+        ]
+      },
+      {
+        "id": "de-display-storage",
+        "country": "DE",
+        "category": "display-and-storage",
+        "priority": "P0",
+        "owner": "product_source_editor",
+        "cadence": "release; weekly evidence review; reported source change",
+        "paths": [
+          "/de/shop",
+          "/de/shop/display-cases",
+          "/de/shop/storage-transport"
+        ],
+        "options": [
+          "blaliden",
+          "baggebo",
+          "lustigt",
+          "samla"
+        ],
+        "action": "Use verified German IKEA source pages and declared construction/space limits; retain official seller and delivery checks.",
+        "metrics": [
+          "official product exits by fixed item/placement",
+          "comparison actions",
+          "documented task failures"
+        ],
+        "stop_conditions": [
+          "local listing identity cannot be verified",
+          "claim relies only on US page or old price",
+          "no DE exact NIUBEE listing: do not create its Amazon DE product button"
+        ]
+      },
+      {
+        "id": "carry-gifts",
+        "country": [
+          "US",
+          "DE"
+        ],
+        "category": "carry-and-gifting",
+        "priority": "P0",
+        "owner": "product_source_editor",
+        "cadence": "release; weekly evidence-led revision",
+        "paths": [
+          "/shop/storage-transport",
+          "/shop/collector-gifts",
+          "/de/shop/storage-transport",
+          "/de/shop/collector-gifts"
+        ],
+        "options": [
+          "samla",
+          "my-bestie"
+        ],
+        "action": "Compare reuse/original packaging, storage box and official character pouch; explain separate lid, flat dimensions and unverified local shipping.",
+        "metrics": [
+          "comparison actions",
+          "official exits",
+          "voluntary task feedback kept privately"
+        ],
+        "stop_conditions": [
+          "unverified shipping/protection/fit promise",
+          "no meaningful difference between cards: improve decision text before adding another product"
+        ]
+      },
+      {
+        "id": "uk-plush",
+        "country": "UK",
+        "category": "jellycat-and-gifting",
+        "priority": "P1",
+        "owner": "product_source_editor",
+        "cadence": "weekly source review or reported delivery-policy change",
+        "paths": [
+          "/shop",
+          "/shop/plush-display",
+          "/shop/collector-gifts"
+        ],
+        "options": [],
+        "action": "Maintain current official regional character/size, delivery and returns guidance; no new thin country route or assumed affiliate eligibility.",
+        "metrics": [
+          "verified source freshness",
+          "available task feedback",
+          "regional route correctness"
+        ],
+        "stop_conditions": [
+          "historical restock mistaken for current stock",
+          "destination redirects to unrelated US/DE affiliate offer",
+          "monetization unverified: revenue remains unknown"
+        ]
+      }
+    ],
+    "operating_owners": {
+      "product_release_owner": "Active implementation/delivery role: integrate and verify; no fabricated release receipts.",
+      "product_source_editor": "Existing maintainer role: check named official facts and remove unsupported claims; no new headcount.",
+      "growth_operator": "Existing TDS review role: resume one shared state across current iterations; no new scheduler or external-post authority.",
+      "account_revenue_owner": "Existing authorized account/operator role: read or obtain authentic reporting if access permits; retain evidence privately."
+    },
+    "proactive_marketing_actions": [
+      {
+        "id": "owned-task-bridges",
+        "owner": "product_release_owner",
+        "cadence": "this release and subsequent evidenced fixes",
+        "action": "Connect homepage and eight-brand guides to the matching existing shopping task, comparison and fit tool.",
+        "metrics": [
+          "working canonical entry path",
+          "qualified visits only when observable",
+          "fixed compare/exit actions"
+        ],
+        "stop_condition": "Broken path or missing decision content: fix before adding traffic or another generic guide.",
+        "status": "pending_comparison_release"
+      },
+      {
+        "id": "existing-tiktok-landing",
+        "owner": "growth_operator",
+        "cadence": "bounded receipt read in existing review; complete-day performance only after available",
+        "action": "Keep approved tds-buy-01 submission; improve its existing display-case landing, reconcile provider/public state without duplicate.",
+        "metrics": [
+          "provider state",
+          "public visibility verified separately",
+          "channel reach and site visits privately and separately",
+          "merchant evidence for any revenue"
+        ],
+        "stop_condition": "Explicit provider error triggers diagnosis, not automatic replacement. No second post or spend is authorized by this plan.",
+        "status": "submitted_awaiting_platform_confirmation"
+      },
+      {
+        "id": "search-ai-discovery",
+        "owner": "product_release_owner_then_growth_operator",
+        "cadence": "SEO/GEO/IndexNow at release; search evidence at weekly review if accessible",
+        "action": "Maintain source/date/limitation parity in readable pages, canonical/hreflang and sitemap; submit only actual changed URLs through existing workflow.",
+        "metrics": [
+          "release coverage",
+          "notification receipt",
+          "GSC clicks/impressions only if readable with matched scope"
+        ],
+        "stop_condition": "Access limitation remains unknown; no paid connector upgrade or account disconnect. Notification acceptance is not indexing or AI citation.",
+        "status": "pending_comparison_release"
+      },
+      {
+        "id": "revenue-attribution",
+        "owner": "account_revenue_owner",
+        "cadence": "2026-11-09, then weekly as statements mature; November close after report lag",
+        "action": "Verify authentic TDS-specific tracking/report scope without fabricating IDs; reconcile site-total channels and reversals.",
+        "metrics": [
+          "documented USD1/USD10/USD100 milestones",
+          "recognized net site revenue",
+          "unknown channels and report lag"
+        ],
+        "stop_condition": "Shared-account amount or missing channel evidence cannot become a TDS total; no paid offer, sponsor or membership sold before readiness.",
+        "status": "attribution_unknown"
+      },
+      {
+        "id": "weekly-country-decision",
+        "owner": "growth_operator",
+        "cadence": "2026-11-15 interim;2026-11-22 review",
+        "action": "Choose one observed US/DE task or destination problem to repair; keep UK useful guidance; expand only with local evidence.",
+        "metrics": [
+          "qualified cohort visits if available",
+          "fixed comparison and official/affiliate actions",
+          "mature merchant evidence"
+        ],
+        "stop_condition": "Below30 qualified visits means insufficient acquisition evidence. At least30 without exits prompts fit review; unavailable denominators stay unknown.",
+        "status": "planned"
+      }
+    ]
   },
   "previous_experiments": [
     {

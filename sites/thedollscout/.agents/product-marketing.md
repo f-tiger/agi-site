@@ -1,3 +1,68 @@
+# TDS product and commercial context — version 8.0 (2026-11-07)
+
+**Document version:** v8
+**Last updated:** 2026-11-07
+
+**Decision and release boundary:** TDS is an independent collector buying guide with free fit and collection tools. The country-buying release is already verified (PR #270); the new six-option comparison is being integrated and must not be called live until its own build, browser, production and measurement receipts are recorded. This version implements the owner's latest TDS benchmark decision, not an ECO change. See repository-root `docs/tds-affiliate-benchmarks-2026-11-07.md` and its 17-source evidence JSON. The report distinguishes publisher claims, indexed pages, access limits and unverified conversion metrics.
+
+## Product, audience and promise
+
+**One-liner:** Choose a display or carrying option by the job, the measurements and the actual shopping destination.
+
+**Buyer:** a collector choosing a display/carry accessory, or a gift buyer who knows the recipient's item and constraints. US rigid-figure display is the first commercial hypothesis; DE local sources and accessory fit are the second; UK Jellycat character/size/delivery remains useful official guidance with local monetization unverified. These are source-backed problem hypotheses, not a measured market-size ranking or buyer interviews.
+
+**Free value:** compare six named options, understand why to choose or skip each, save up to three locally, and share a link containing only approved public option IDs. Keep task filters, source dates, a usable no-JavaScript route, measurement tools and a reuse/no-purchase alternative. Existing collection records, tools, accounts, series pages and MCP remain available. Shortlist storage is browser-local and can be lost; it is not account sync or a sales lead.
+
+The six records are `blaliden`, `baggebo`, `lustigt`, `samla`, `my-bestie` and `niubee-risers`. BLÅLIDEN is a glass-enclosed comparison, BAGGEBO has mesh sides, LUSTIGT is a shallow open wall shelf, SAMLA is an indoor box with separately sold lid, and My Bestie is a character carrying accessory with local delivery unverified. NIUBEE has one verified US model identity, ASIN B07KN5G9CQ; cached listing evidence does not establish current price, stock, seller authorization or tested performance. External dimensions never become invented usable interior capacity. Original type illustrations are not product photographs. No live-price, dustproof, drop-protection, universal-fit or tested-best claims.
+
+**Shopping country:** the current implementation explicitly labels US context on EN/ZH routes and German context on DE routes; links let readers choose the relevant context. It does not infer destination from language or visitor IP, offer an independent country dropdown, or guarantee delivery. Four IKEA records have verified US/DE official product pages with no affiliate commission. My Bestie remains an official Japan reference. Only NIUBEE's verified US exact-model destination joins the existing disclosed affiliate configuration; there is no fabricated DE exact-product link. Remaining generic searches must stay labeled as searches.
+
+## Differentiation and objections
+
+TIWIB suggests a short named-item-to-merchant path; Wirecutter suggests an inspectable buying rationale and task-specific distribution. Neither supplies a verified conversion rate for TDS. TIWIB audience figures are publisher self-report; Wirecutter's cited financial figures are year-on-year affiliate revenue increments, not total revenue. Their catalog breadth, paid pitching, subscriber bundle and production scale are not the operating plan here.
+
+| Buyer objection | Product response and limit |
+| --- | --- |
+| I can read the retailer page myself. | Compare enclosure, display depth, storage versus transport and local destination across options; keep official sources one click away. This benefit still needs real user evidence. |
+| Will it fit or protect my figure? | Show source-backed dimensions and explicit uncertainty, then use actual usable measurements in the fit tool. No independent protection testing is claimed. |
+| Is this just paid promotion? | Official no-commission alternatives stay visible; disclose affiliate exits beside the action. No sponsored ranking or invented popularity. |
+
+Voice is specific, calm and candid. Use “consider when,” “check before choosing,” “official reference,” and “current offer at merchant.” Avoid “best,” “guaranteed fit,” “dustproof,” “in stock,” “most popular” and revenue claims without the necessary evidence. No invented customer quotation, testimonial, adoption count or hands-on review. Buyers seeking authentication, live stock alerts or insured shipping are outside the current promise.
+
+## Commercial goal and readiness
+
+The owner-confirmed goal remains **USD100 total TDS-attributable revenue per complete calendar month**, including real affiliate, fulfilled direct-sale, membership and sponsorship revenue, after refunds/reversals and before operating costs. Revenue is not profit, cash receipt or subscription MRR. Record USD1 and USD10 evidence checkpoints; do not relabel the goal affiliate-only. The current verified site total is **unknown**. Missing channel statements stay unknown, not zero; shared fleet tags cannot establish exclusive TDS earnings. Use root `tools/affiliate-growth/tds-goal.mjs` and `tds-operations.json`. Scenario rates are assumptions, not competitor benchmarks or forecasts.
+
+Existing disclosed affiliate links are the ready commercial mechanism. Exact-model identity does not prove commission eligibility or earnings. Membership checkout remains NOT READY; there is no new live direct-sale offer, paid plan, sponsored placement or proven customer. Merchant statements, real tracking IDs, private audience metrics and counterpart identities remain outside the public repository. Do not invent an account-specific ID to make attribution look solved.
+
+## Country/category actions and accountable cadence
+
+Owners below are operating roles, not newly hired people or autonomous jobs. The active root delivery agent implements and verifies this release; the existing growth operator executes the retained review cadence. No scheduler or new sending authority is created.
+
+| Market / category | Concrete action and destination | Owner / frequency | Evidence and stop condition |
+| --- | --- | --- | --- |
+| US / figure display | Front-load task and options on `/shop` and `/shop/display-cases`; compare BLÅLIDEN/BAGGEBO/LUSTIGT/NIUBEE, link the fit tool, use exact US NIUBEE only. | Product/release owner now; growth operator reviews complete dates in the existing daily cadence. | Confirm comparison and official/affiliate exits by item/placement. Broken source, changed variant or misleading fit claim: remove or relabel that action before adding inventory. |
+| DE / display and storage | `/de/shop`, `/de/shop/display-cases`, `/de/shop/storage-transport` use local IKEA destinations and usable-space/closure limits; keep seller/delivery checks. | Product/source editor at release, at the weekly review and when a reported mismatch appears. | Local link/spec evidence and correctly labeled events. No verified local product destination: no exact Amazon button; no expansion based on US clicks. |
+| US/DE / carrying and gifts | Compare reuse/original packaging, SAMLA and the My Bestie reference in existing guides; separate a carrying pouch from shipping protection. | Product editor on launch and evidence-led weekly revision. | Real task feedback or fixed compare/exit actions. Stop a claim when dimensions, delivery or protection cannot be supported; no invented gift demand. |
+| UK / plush and gifting | Preserve official Jellycat country, character/size, delivery and returns guidance in the existing country sections; do not add a new thin locale. | Source editor at weekly review or a policy-change report. | Correct regional source and explicitly unknown monetization. Do not force a US/DE affiliate exit or publish historical restocks as current inventory. |
+| Owned discovery / all markets | Homepage and eight-brand bridges point to the relevant existing task; synchronize readable sources, sitemap, canonical/hreflang and applicable IndexNow after release. | Release owner once per actual change; growth operator checks available search evidence weekly. | Crawlable task path and notification receipts; receipt is not indexing or AI citation. Fix broken entry before producing another guide. |
+| Approved TikTok / US display | Improve the same `/shop/display-cases` landing for `tds-buy-01`; reconcile the already submitted item, then inspect actual available complete-day results privately. | Growth operator, bounded read at the existing review cadence. | As of 2026-11-07 03:26:58 UTC provider status is AWAITING_CONFIRMATION with a published-item detail; public visibility is unverified. Do not resubmit for delay or zero views; stop retrying on a concrete error and diagnose it. |
+| Revenue / site total | Establish authentic TDS-exclusive attribution if account access permits; reconcile mature November statements across actual channels. | Account/revenue owner on 2026-11-09 and weekly when reports are available; calendar-month close after report maturity. | Same-period source evidence, eligibility and reversals. Missing access or shared scope stays unknown; no fee, account disconnect or fabricated receipt. |
+
+## Active distribution and measurement
+
+The owner already approved **one** reviewed `tds-buy-01` TikTok carousel. It was submitted; no second approval or duplicate post is needed. At the latest read, provider status and its published-item detail do not yet establish independently visible publication. Keep the current item and `docs/tds-buy-01-publication-2026-11-07.md` as the public status reference; private receipts stay private. This update creates no additional external post, unsolicited message, advertising spend, paid upgrade or recurring publishing job. Native official-source checks keep their existing quotas and 07:20 UTC schedule.
+
+New conversion measurement is pending release validation: `shopping_compare` is an explicit comparison action; `shopping_official_click` is a bounded official-product exit; `affiliate_click` remains separate. Item/placement labels are fixed public IDs, not dimensions, collection contents, a shortlist or free text. Legacy affiliate events have unknown item/placement and are not retroactively classified. GA4 affiliate dispatch retains one shared owner; browser tests do not prove backend receipt. Preserve explicit opt-outs, QA/DNT/GPC and private-page exclusions. Country in aggregate reporting is visitor geography, not checkout country or a reliable unique-user cohort.
+
+Keep the existing **2026-11-08–2026-11-21 UTC** observation window and **2026-11-22** review; log the comparison release's actual first complete day separately if it lands later. The older organizer/MCP/search experiments retain their own dates and unverified outcomes; a new priority does not complete them. Read the normal cached aggregate once per existing review iteration; do not turn sparse or unavailable data into zeros. Fewer than 30 qualified cohort visits means acquisition evidence is insufficient; at least 30 without a merchant exit calls for a task/offer review; 100 mature merchant-reported clicks without commission calls for eligibility, destination, tracking and lag checks. If only action counts are available, the visit-based gate remains unknown. These are exploratory operating lines, not statistical proof. Keep comparison, search CTR, site exits, merchant orders and recognized revenue on matching but separate denominators.
+
+## Changelog
+
+- v8 (2026-11-07) — Repositioned the active buying path around six source-backed options and local comparison, added TIWIB/Wirecutter evidence limits, country/category owners and stop rules, retained the $100 site-total goal and experiment dates, and corrected the already approved/submitted TikTok state without claiming publication, release or revenue success.
+
+# Historical context — version 7.0 (superseded by the comparison decisions above)
+
 # TDS product and commercial context — version 7.0 (2026-11-07)
 
 The owner confirmed the current goal: **USD100 total TDS revenue per calendar month**, across attributable affiliate commissions, fulfilled direct sales, membership and sponsorship, after refunds/reversals and before operating costs. This is revenue, not profit or subscription MRR. Missing channel evidence remains unknown. A shared fleet Amazon tracking tag cannot establish TDS revenue. Use `tools/affiliate-growth/tds-goal.mjs` and `tds-operations.json` at the repository root; keep merchant statements and private audience metrics outside this public repository.

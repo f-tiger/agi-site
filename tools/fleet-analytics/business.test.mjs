@@ -48,6 +48,17 @@ test('Eco upkeep actions are fixed, route-bound and contain no answers', () => {
 import fs from 'node:fs';
 const registry = JSON.parse(fs.readFileSync(new URL('./registry.json', import.meta.url), 'utf8'));
 const registeredHosts = Object.fromEntries(Object.values(registry).flatMap(site => site.hosts.map(host => [host, site.id])));
+test('TDS shortlist actions expose only fixed names on public shopping pages',()=>{
+ for(const prefix of ['/','/de/','/zh/'])for(const slug of ['', 'shop', 'shop/display-cases', 'shop/storage-transport', 'shop/plush-display', 'shop/collector-gifts'])for(const name of ['shopping_compare','shopping_official_click']){
+  const path=prefix+slug;
+  assert.deepEqual(businessEvent('thedollscout.com',path,{name}),{name,tool_id:'shopping-shortlist',repeat:true});
+  for(const host of ['getecoback.com','baipiaoji.com','preview.pages.dev'])assert.equal(businessEvent(host,path,{name}),null);
+  for(const field of ['item','placement','ids','url','dimensions','email'])assert.equal(businessEvent('thedollscout.com',path,{name,[field]:'PRIVATE'}),null);
+  assert.equal(businessEvent('thedollscout.com',path+'?selection=PRIVATE',{name}),null);
+ }
+ for(const name of ['shopping_compare','shopping_official_click'])for(const path of ['/account','/api/private','/shop/private','/collection-tracker','/shopping','/shop#PRIVATE','/it/shop','/en/shop','/fr/shop','/shop.html'])assert.equal(businessEvent('thedollscout.com',path,{name}),null);
+ for(const name of ['shopping_purchase','shopping_revenue','shopping_saved'])assert.equal(businessEvent('thedollscout.com','/shop',{name}),null);
+});
 test('Fleet account intent uses the current registry and a public route, never signup or identity data', () => {
  for (const host of Object.keys(registeredHosts).filter(host => host !== 'baipiaoji.com')) {
   assert.deepEqual(businessEvent(host, '/en/tools/example', {name:'fleet_account_entry'}, registeredHosts), {name:'fleet_account_entry', tool_id:'fleet-free-account', repeat:true});
