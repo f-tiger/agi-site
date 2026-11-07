@@ -85,6 +85,7 @@ jobs:
           python3 tools/build_uk_opportunities.py
           python3 tools/build_tools_hub.py
           python3 tools/build_structure.py
+          python3 tools/build_related.py
           python3 -m unittest discover -s tools -p test_heatpump_intent.py
           python3 -m unittest discover -s tools -p test_toppick_anchor.py
           python3 -m unittest discover -s tools -p test_buyer_comparison.py
@@ -133,6 +134,7 @@ jobs:
           python3 tools/check_gone.py
           python3 tools/check_expansion_queue.py
           python3 tools/build_search.py
+          python3 tools/check_related.py
           python3 tools/build_sitemap.py
           python3 tools/build_llmstxt.py
           python3 tools/build_agent_md.py
@@ -160,6 +162,8 @@ jobs:
           python3 tools/build_demand_discovery.py
           python3 tools/test_demand_discovery.py
           python3 tools/build_home_order.py
+          python3 tools/check_adlabel.py
+          python3 tools/test_conversion_routes.py
           node --test tools/test_demand_search.mjs
           python3 ../../tools/fleet-analytics/coverage.py --site eco --out site --write
           node --test tools/test-public-engagement.mjs

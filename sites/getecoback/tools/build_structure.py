@@ -2830,6 +2830,7 @@ function calc(){
   r.innerHTML='<div style="font-size:13.5px;color:#4a5a67;">Empfohlene Kühlleistung für '+qm+' m²</div>'+
     '<div style="font-size:30px;font-weight:800;color:#0a4d7a;line-height:1.2;">ca. '+btu.toLocaleString("de-DE")+' BTU</div>'+
     (model?'<div style="margin:8px 0 0;font-size:14.5px;">Passende Geräteklasse ('+label+'): <strong>'+model+'</strong> — kein Bohren: Schlauch ans Fenster, Abdichtung drum.</div>':'<div style="margin:8px 0 0;font-size:14.5px;">Klasse: <strong>'+label+'</strong> — hier ist ein tragbarer Monoblock am Limit. Ehrlich empfehlen können wir dafür keines unserer Geräte; realistisch sind ein <a href="/guide/split-klimaanlage-ohne-kernbohrung.html">Splitgerät ohne Kernbohrung</a> oder zwei kleinere Geräte.</div>')+
+    (model?'<p data-home-tool-ad-label style="margin:10px 0 0;font-size:13px;color:#4a5a67;">Anzeige · Affiliate-Link: Als Amazon-Partner verdienen wir an qualifizierten Verkäufen.</p>':'')+
     '<div style="margin:12px 0 0;display:flex;gap:9px;flex-wrap:wrap;">'+
     (model?'<a href="'+url+'" target="_blank" rel="sponsored noopener" style="background:#f59e0b;color:#1a2733;font-weight:800;padding:10px 16px;border-radius:8px;text-decoration:none;font-size:14px;">Preis auf Amazon prüfen →</a>':'')+
     '<a href="/guide/klimaanlage-'+qp+'-qm.html" style="background:#fff;color:#0a4d7a;border:1px solid #cfe0ea;font-weight:700;padding:10px 16px;border-radius:8px;text-decoration:none;font-size:14px;">Alle Empfehlungen für '+qp+' m² →</a>'+

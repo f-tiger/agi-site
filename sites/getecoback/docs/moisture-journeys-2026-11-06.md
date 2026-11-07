@@ -26,6 +26,8 @@ Homepage composition moves the existing household task block directly below the 
 
 The shared next-step renderer is used by both the related-link builder and the later country-page generator, so measurement-page rebuilding cannot restore the previous three-link list. English headings and locale-specific destinations stay English. German default Germany and English default information-only market behavior remain.
 
+A reviewed task handoff may recap a destination already cited in the explanation. Its release gate requires the exact reviewed destinations, labels and reasons, one complete block, at most two distinct steps and real local targets/anchors. Unreviewed related-link blocks retain their no-repeat rule. The seasonal homepage also identifies its existing cooling merchant sections before their links; a calculated result shows an ad label only when it offers a merchant action.
+
 The browser comparison has two speeds. Prepared readers open the existing comparison without changing their answers. Readers needing help keep all six outcomes. Static manufacturer evidence is open without JavaScript. A failed module leaves no submitting form. Cold-cellar links point to a verified section, and measurement/wait outcomes link to useful observation guidance. `buyer_next / compare / direct` never becomes `buyer_result` or tool completion; exact categorical metadata, opt-outs, QA exclusions and event deduplication remain enforced.
 
 ## Acquisition and measurement

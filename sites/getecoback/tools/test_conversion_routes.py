@@ -5,6 +5,8 @@ import re
 from urllib.parse import urlsplit
 from build_rising_rail import destination_for
 from build_home_order import compose
+from check_related import check_curated_block
+from moisture_journeys import GUIDE_NEXT
 
 SITE = Path(__file__).resolve().parents[1] / 'site'
 
@@ -14,7 +16,15 @@ class ConversionRoutes(unittest.TestCase):
                      'schimmel-im-keller-entfernen','heizluefter-stromsparend',
                      'heizluefter-stromverbrauch']:
             html=(SITE/'guide'/f'{slug}.html').read_text()
-            block=re.search(r'<!--EB_HOUSEHOLD_LINK-->(.*?)<!--/EB_HOUSEHOLD_LINK-->',html,re.S)
+            route='/guide/'+slug+'.html'
+            if route in GUIDE_NEXT:
+                self.assertEqual(check_curated_block(route, html), [], route)
+                self.assertNotIn('<!--EB_HOUSEHOLD_LINK-->', html, route)
+                block=re.search(r'<!--EB_RELATED-->(.*?)<!--/EB_RELATED-->',html,re.S)
+                self.assertEqual(re.findall(r'href="([^"]+)"',block[1]),
+                                 [step['href'] for step in GUIDE_NEXT[route]])
+            else:
+                block=re.search(r'<!--EB_HOUSEHOLD_LINK-->(.*?)<!--/EB_HOUSEHOLD_LINK-->',html,re.S)
             self.assertIsNotNone(block,slug)
             for href in re.findall(r'href="([^"]+)"',block[1]):
                 url=urlsplit(href)
