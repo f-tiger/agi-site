@@ -80,8 +80,8 @@
   <div class="tool"><strong>hitzewelle_vorschau</strong><p>Live-Maximaltemperatur der nächsten 3 Tage für Berlin/Frankfurt/München (open-meteo), mit Einordnung ab 28 °C / 32 °C — dieselbe Datenquelle wie das Hitzeband dieser Website.</p></div>
   <div class="tool"><strong>klimaanlage_stromkosten</strong><p>Stromkosten eines Klimageräts: Watt × Stunden × Arbeitspreis × Kompressor-Auslastung.</p></div>
   <div class="tool"><strong>heizleistung_watt</strong><p>Benötigte Heizleistung in Watt für einen Raum (Infrarot/Elektro) aus Fläche und Dämmstandard — 60 W/m² Neubau, 80 Bestand, 100 Altbau — inklusive Betriebskosten pro Volllaststunde und Hinweis, ab wann zwei Panels sinnvoller sind.</p></div>
-  <div class="tool"><strong>ratgeber_suche</strong><p>Durchsucht die Ratgeber dieser Website und liefert Titel, URL und Kurzbeschreibung — damit dein Assistent zur Antwort auch die Quelle nennen kann. Optional auf Deutsch oder Englisch eingegrenzt.</p></div>
-  <div class="tool"><strong>ratgeber_lesen</strong><p>Volltext eines einzelnen Ratgebers als Klartext (ohne Navigation, Shop-Karten und Skripte), inklusive zitierfähiger Quell-URL.</p></div>
+  <div class="tool"><strong>ratgeber_suche</strong><p>Durchsucht veröffentlichte Ratgeber mit vorhandener Textansicht und liefert Titel, kanonische URL und eine Kurzbeschreibung zur Aufgabe. Jeder Treffer kann mit ratgeber_lesen abgerufen werden. Optional auf Deutsch oder Englisch eingegrenzt.</p></div>
+  <div class="tool"><strong>ratgeber_lesen</strong><p>Liest die bereinigte Markdown-Ansicht mit Bedingungen, Grenzen und geprüften Quellenlinks. Lange Auszüge sind ausdrücklich als gekürzt markiert; der vollständige Text und dessen Originalquellen bleiben verlinkt. Nur exakte veröffentlichte Seitenpfade oder HTTPS-URLs dieser Website, ohne Query oder Fragment.</p></div>
   <div class="tool"><strong>taupunkt_lueften</strong><p>Taupunkt der Außenluft (Magnus-Formel) und die Antwort auf „darf ich jetzt lüften?" für Keller und feuchte Räume — Wände werden 2 °C unter Raumtemperatur gerechnet.</p></div>
 
 
@@ -98,6 +98,11 @@
   <p>Ergebnis: Ursache klären; ein Gerät ersetzt die fachliche Prüfung nicht. <a href="/guide/luftentfeuchter-gegen-schimmel.html">Ursachen und Grenzen</a>.</p>
   <p><code>purpose</code>: <code>room</code>, <code>laundry</code> oder <code>damage</code>. <code>humidity</code>: <code>unknown</code>, <code>normal</code> (meist 40–60 % oder darunter) oder <code>high</code> (wiederholt über 60 %). <code>temperature</code>: <code>unknown</code>, <code>warm</code> (mindestens 15 °C) oder <code>cold</code> (darunter). Diese Kategorien sind Orientierung, keine Ferndiagnose oder Schimmelfrei-Garantie.</p>
   <p>Die <a href="/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice">Entscheidungshilfe im Browser</a> verarbeitet ihre Auswahl lokal. Der MCP-Aufruf übermittelt seine Argumente dagegen an unseren Server. Übermittle keine persönlichen Daten oder freien Beschreibungen.</p>
+
+  <h2 id="waesche-quellen">Wäschekosten: finden und die Quellen lesen</h2>
+  <pre><code>{"jsonrpc":"2.0","id":4,"method":"tools/call","params":{"name":"ratgeber_suche","arguments":{"frage":"Wäsche trocknen Wohnung Stromkosten","sprache":"de","max":3}}}</code></pre>
+  <pre><code>{"jsonrpc":"2.0","id":5,"method":"tools/call","params":{"name":"ratgeber_lesen","arguments":{"pfad":"/waeschetrockner-oder-luftentfeuchter.html"}}}</code></pre>
+  <p>Die Textansicht erklärt den Vergleich bei gleicher Wäschemenge und gleichem Trocknungsgrad. Sie verlinkt die Originalquellen zum Energielabel; Rechenbeispiele sind keine Produktmessungen. Für eigene Werte öffne den <a href="/waeschetrockner-oder-luftentfeuchter.html#laundry-check">vorhandenen Kostenvergleich</a>.</p>
 
   <h2 id="einrichten">In deinem Client einrichten</h2>
 

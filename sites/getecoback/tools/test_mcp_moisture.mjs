@@ -82,7 +82,7 @@ test('tool schema keeps legacy inputs optional and documents bounded choices and
   assert.ok(schema.properties.temperature.description.includes('keine allgemeine Betriebsgrenze'));
   assert.ok(schema.properties.qm.description.includes('heating/cooling only'));
   const init = await rpc('initialize');
-  assert.equal(init.serverInfo.version, '1.3.1');
+  assert.equal(init.serverInfo.version, '1.3.2');
   assert.ok(init.instructions.includes('keine Affiliate-Kauflinks'));
 });
 

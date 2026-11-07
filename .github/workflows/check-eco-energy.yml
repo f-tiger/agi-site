@@ -161,6 +161,8 @@ jobs:
           python3 tools/test_language_nav.py
           python3 tools/build_demand_discovery.py
           python3 tools/test_demand_discovery.py
+          python3 tools/build_mcp_guides.py
+          node --test tools/test_mcp_guides.mjs
           python3 tools/build_home_order.py
           python3 tools/check_adlabel.py
           python3 tools/test_conversion_routes.py
