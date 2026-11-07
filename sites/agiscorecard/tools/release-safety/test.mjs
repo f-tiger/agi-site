@@ -73,7 +73,22 @@ test('read-only CLI requests use new actions and manual redirects with no legacy
 test('live community verifier probes the new path, rejects redirects and checks unauthorized JSON',()=>{
  const source=fs.readFileSync(new URL('../community/verify.mjs',import.meta.url),'utf8');assert.ok(source.includes("['/api/discuss/verify-status-access',{action:'status'}]"));assert.ok(!source.includes("['/api/discuss',{action:'status'}]"));assert.ok(source.includes("redirect:'manual'"));assert.ok(source.includes("denial.code,'unauthorized'"));assert.ok(source.includes('Original status-handler behavior is covered by offline fixtures'));
 });
-test('push split keeps original non-push maintenance and known safety checks without adding schedules or credentials',()=>{
- const workflow=fs.readFileSync(new URL('../../../../.github/workflows/deploy-agiscorecard.yml',import.meta.url),'utf8');const push=workflow.match(/- name: Verify non-destructive membership readiness after push([\s\S]*?)(?=\n      - name:)/)[1],legacy=workflow.match(/- name: Verify independent membership after deployment([\s\S]*?)(?=\n      - name:)/)[1];assert.ok(push.includes("if: github.event_name == 'push'"));assert.ok(push.includes('member-release-health.mjs')&&push.includes('member-studio/verify.mjs --site agi --live'));assert.ok(!push.includes('ops.mjs watch')&&!push.includes('ADS_WATCH_SECRET')&&!push.includes('continue-on-error'));assert.ok(legacy.includes("if: github.event_name != 'push'")&&legacy.includes('ops.mjs watch agi'));for(const command of ['mentor/metrics.mjs','create/ops.mjs stats','community/ops.mjs stats'])assert.ok(workflow.includes(command+' --read-only'));
+test('release checks separate payment maintenance and retain read-only safety boundaries',()=>{
+ const workflow=fs.readFileSync(new URL('../../../../.github/workflows/deploy-agiscorecard.yml',import.meta.url),'utf8');const push=workflow.match(/- name: Verify non-destructive membership readiness after push([\s\S]*?)(?=\n      - name:)/)[1],legacy=workflow.match(/- name: Verify independent membership after deployment([\s\S]*?)(?=\n      - name:)/)[1];assert.ok(push.includes("if: github.event_name == 'push'"));assert.ok(push.includes('member-release-health.mjs')&&push.includes('member-studio/verify.mjs --site agi --live'));assert.ok(!push.includes('ops.mjs watch')&&!push.includes('ADS_WATCH_SECRET')&&!push.includes('continue-on-error'));assert.ok(legacy.includes("if: github.event_name != 'push'")&&legacy.includes('member-studio/verify.mjs --site agi --live --release-health')&&!legacy.includes('ops.mjs watch'));for(const command of ['mentor/metrics.mjs','create/ops.mjs stats','community/ops.mjs stats'])assert.ok(workflow.includes(command+' --read-only'));
  for(const command of ['jarvis/ops.mjs verify','jarvis/ops.mjs verify-sources','community/verify.mjs','member-studio/ops.mjs configure agi'])assert.ok(workflow.includes(command));assert.ok(!/jarvis\/ops\.mjs run|tick\(/.test(workflow));assert.match(workflow,/cron: "50 2 \* \* \*"/);assert.ok(workflow.includes("github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.check_relay_ai == true)"));
+});
+
+test('AGI page release reports closed checkout without weakening maintenance or API/plan checks',async()=>{
+ const warnings=[],options={requireReady:false,logger:{log(){},warn(s){warnings.push(s)}},summaryPath:null};
+ assert.equal(validateMemberStatus({...valid(),ready:false},options).ready,false);
+ assert.equal(warnings.length,1);assert.match(warnings[0],/checkout remains closed/);
+ assert.throws(()=>validateMemberStatus({...valid(),ready:false}));
+ for(const patch of [{ready:'false'},{site:'eco'},{chain:'unknown'},{token:'USDC'},{auto_renew:true},{plan:{...valid().plan,price_units:1}}])assert.throws(()=>validateMemberStatus({...valid(),...patch},options));
+ let requests=0;const status=await checkMemberReleaseHealth(async(url,init)=>{requests++;assert.equal(init.method,'GET');assert.equal(init.body,undefined);return Response.json({...valid(),ready:false});},options);
+ assert.equal(requests,1);assert.equal(status.ready,false);assert.equal(status.ordersProcessed,false);
+ await assert.rejects(()=>checkMemberReleaseHealth(async()=>Response.json(valid(),{status:503}),options));
+ const workflow=fs.readFileSync(new URL('../../../../.github/workflows/deploy-agiscorecard.yml',import.meta.url),'utf8');
+ const push=workflow.match(/- name: Verify non-destructive membership readiness after push([\s\S]*?)(?=\n      - name:)/)[1];
+ assert.equal((push.match(/member-release-health.mjs --release-health/g)||[]).length,2);
+ assert.match(push,/member-studio\/verify.mjs --site agi --live --release-health/);
 });
