@@ -1,12 +1,12 @@
 {
-  "checkedAt": "2026-11-06T09:55:02Z",
+  "checkedAt": "2026-11-07T09:16:17Z",
   "sources": [
     {
       "id": "openai",
       "company": "OpenAI",
       "url": "https://openai.com/news/rss.xml",
-      "checkedAt": "2026-11-06T09:55:02Z",
-      "lastSuccessAt": "2026-11-06T09:55:02Z",
+      "checkedAt": "2026-11-07T09:16:17Z",
+      "lastSuccessAt": "2026-11-07T09:16:17Z",
       "ok": true,
       "error": null
     },
@@ -14,8 +14,8 @@
       "id": "anthropic",
       "company": "Anthropic",
       "url": "https://www.anthropic.com/news",
-      "checkedAt": "2026-11-06T09:55:02Z",
-      "lastSuccessAt": "2026-11-06T09:55:02Z",
+      "checkedAt": "2026-11-07T09:16:17Z",
+      "lastSuccessAt": "2026-11-07T09:16:17Z",
       "ok": true,
       "error": null
     },
@@ -23,8 +23,8 @@
       "id": "meta",
       "company": "Meta",
       "url": "https://about.fb.com/news/feed/",
-      "checkedAt": "2026-11-06T09:55:02Z",
-      "lastSuccessAt": "2026-11-06T09:55:02Z",
+      "checkedAt": "2026-11-07T09:16:17Z",
+      "lastSuccessAt": "2026-11-07T09:16:17Z",
       "ok": true,
       "error": null
     },
@@ -32,7 +32,7 @@
       "id": "xai",
       "company": "xAI / SpaceX",
       "url": "https://x.ai/news",
-      "checkedAt": "2026-11-06T09:55:02Z",
+      "checkedAt": "2026-11-07T09:16:17Z",
       "lastSuccessAt": "2026-10-31T16:20:44Z",
       "ok": false,
       "error": "http_403"
@@ -41,13 +41,43 @@
       "id": "deepmind",
       "company": "Google DeepMind",
       "url": "https://deepmind.google/blog/rss.xml",
-      "checkedAt": "2026-11-06T09:55:02Z",
-      "lastSuccessAt": "2026-11-06T09:55:02Z",
+      "checkedAt": "2026-11-07T09:16:17Z",
+      "lastSuccessAt": "2026-11-07T09:16:17Z",
       "ok": true,
       "error": null
     }
   ],
   "items": [
+    {
+      "id": "b5bcf41c52f066a759faa6ae",
+      "company": "Meta",
+      "title": "Design the Muse App, Just for You",
+      "url": "https://about.fb.com/news/2026/11/introducing-spaces-customize-muse-app",
+      "publishedAt": "2026-11-06T18:00:58Z",
+      "discoveredAt": "2026-11-07T09:16:17Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "a0a44ed09dc9a1089b4e099f",
+      "company": "OpenAI",
+      "title": "Partnering with Hacktron to find vulnerabilities in OpenAI’s systems",
+      "url": "https://openai.com/index/partnering-with-hacktron",
+      "publishedAt": "2026-11-06T08:00:00Z",
+      "discoveredAt": "2026-11-07T09:16:17Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "5f721228af3682c2417b4131",
+      "company": "OpenAI",
+      "title": "Measuring how AI agents handle everyday wet-lab science",
+      "url": "https://openai.com/index/measuring-how-ai-agents-handle-wet-lab-science",
+      "publishedAt": "2026-11-06T00:00:00Z",
+      "discoveredAt": "2026-11-07T09:16:17Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
     {
       "id": "bbd492caba72ca544b8bac32",
       "company": "OpenAI",
