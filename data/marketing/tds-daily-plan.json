@@ -625,12 +625,33 @@
       "shared_release_exception": {
         "site": "web3",
         "workflow_run": "https://github.com/f-tiger/agi-site/actions/runs/42335131334",
-        "status": "failed_after_asset_upload_during_custom_domain_configuration",
-        "provider_error": 10013,
-        "independent_public_gets": 44,
-        "existing_hosts_verified": 11,
-        "public_build_matches_release": true,
-        "retry": "blocked_by_automatic_approval_review_separate_authorization_required",
+        "status": "resolved_by_authorized_single_rerun",
+        "initial_attempt": {
+          "attempt": 1,
+          "status": "failed_after_asset_upload_during_custom_domain_configuration",
+          "provider_error": 10013,
+          "independent_public_gets": 44,
+          "existing_hosts_verified": 11,
+          "public_build_matches_initial_release": true,
+          "retry_review": "blocked_by_automatic_approval_review_separate_authorization_required"
+        },
+        "recovery": {
+          "authorization": "Owner explicitly approved one rerun of this failed job",
+          "authorized_on": "2026-11-07",
+          "attempt": 2,
+          "job_id": 128333923684,
+          "status": "success",
+          "deployed_commit": "aa9c826688efded1658121de6229ea8c017dd4db",
+          "verified_at": "2026-11-07T07:01:36Z",
+          "custom_domain_triggers": "passed",
+          "verified_hosts": 11,
+          "live_ga4_routes_verified": 66,
+          "analytics_asset_version": "5759f9b61970",
+          "ga4_backend_receipt": "not-tested",
+          "read_only_probes": true,
+          "business_write_probes": "skipped_not_counted_as_passed",
+          "additional_reruns": 0
+        },
         "tds_release_affected": false
       }
     },
