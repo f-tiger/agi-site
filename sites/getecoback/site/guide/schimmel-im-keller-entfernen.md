@@ -74,6 +74,12 @@ Luftentfeuchter für den Keller auf Amazon.de ansehen →
 [Keller lüften im Sommer: Wann es hilft, wann es schadet →](https://getecoback.com/guide/keller-lueften-sommer.html)
 [Fenster beschlagen von innen: Ursachen & Abhilfe →](https://getecoback.com/guide/fenster-beschlagen-innen.html)
 
+## Dein nächster Schritt
+
+- [Raumwerte getrennt von Schäden notieren](https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html) Ein Hygrometer erfasst Raumluft, nicht die Ursache einer nassen Wand.
+
+- [Geräteeinsatz erst nach der Ursachenfrage prüfen](https://getecoback.com/guide/luftentfeuchter-keller.html#vor-dem-kauf) Ein Entfeuchter kann die Raumluft beeinflussen, ersetzt aber keine nötige Sanierung.
+
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp

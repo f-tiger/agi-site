@@ -98,6 +98,12 @@ Kein eigener Produkttest. Anschlussmaß, Gefälle und zulässige Betriebsbedingu
 [Luftentfeuchter für den Keller — worauf es ankommt →](https://getecoback.com/guide/luftentfeuchter-keller.html)
 [Granulat- oder elektrischer Luftentfeuchter — was passt wann? →](https://getecoback.com/guide/luftentfeuchter-granulat-oder-elektrisch.html)
 
+## Dein nächster Schritt
+
+- [Tatsächlichen kWh-Verbrauch messen](https://getecoback.com/strommess-protokoll.html) Typenschildleistung ist nicht der Verbrauch eines ganzen Betriebstags.
+
+- [Geht es um Wäsche?](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#laundry-check) Vergleiche den Strom je gleich trockener Ladung statt unterschiedlicher Laufzeiten.
+
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp

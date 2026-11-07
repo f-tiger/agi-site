@@ -153,7 +153,11 @@ async function cards(root,lang,label){
    assert.equal(page.url(),before,pathname+' '+mode+' reading fallback cannot submit');checks++;
    const links=await root.locator('[data-choice-fallback] a').evaluateAll(nodes=>nodes.map(a=>a.href));
    assert.equal(links.length,3);checks++;
-   for(const href of links){const u=new URL(href);check(u.origin===origin&&!u.search&&fs.existsSync(path.join(site,u.pathname)),pathname+' '+mode+' usable local fallback');}
+   for(const href of links){
+    const u=new URL(href),samePageAnchor=u.pathname===pathname&&!!u.hash;
+    check(u.origin===origin&&(!u.search||(samePageAnchor&&u.search===new URL(before).search))&&fs.existsSync(path.join(site,u.pathname)),pathname+' '+mode+' usable local fallback');
+    if(u.hash)check(fs.readFileSync(path.join(site,u.pathname),'utf8').includes('id="'+u.hash.slice(1)+'"'),pathname+' '+mode+' actual fallback anchor');
+   }
    const destination=links[0];await root.locator('[data-choice-fallback] a').first().click();await page.waitForURL(destination);
    check(f.navigations.every(href=>!['purpose','humidity','temperature','market'].some(k=>new URL(href).searchParams.has(k))),pathname+' '+mode+' no answers in navigation URLs');
    assert.deepEqual(f.errors,[],pathname+' '+mode+' page errors');assert.deepEqual(f.merchants,[]);checks+=2;

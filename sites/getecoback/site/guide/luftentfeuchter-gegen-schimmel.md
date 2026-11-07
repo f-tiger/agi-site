@@ -87,6 +87,12 @@ Welche Geräteklasse zu welcher Raumgröße passt, wie laut die Geräte sind und
 [Wäsche in der Wohnung trocknen ohne Schimmelrisiko →](https://getecoback.com/guide/waesche-trocknen-wohnung.html)
 [Granulat oder elektrisch — was entfeuchtet besser? →](https://getecoback.com/guide/luftentfeuchter-granulat-oder-elektrisch.html)
 
+## Dein nächster Schritt
+
+- [Wenn Schimmel an der Wand wiederkommt](https://getecoback.com/guide/schimmel-wand-kommt-wieder.html) Wiederkehrende Feuchte braucht eine Ursachenprüfung; ein Gerät saniert keine Wand.
+
+- [Raumwerte begleitend dokumentieren](https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html) Notiere Temperatur und Feuchte, ohne daraus eine Bauwerksdiagnose abzuleiten.
+
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp

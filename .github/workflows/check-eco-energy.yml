@@ -31,7 +31,7 @@ jobs:
     container:
       image: mcr.microsoft.com/playwright:v1.58.2-noble
       options: --ipc=host
-    timeout-minutes: 10
+    timeout-minutes: 15
     defaults:
       run:
         shell: bash
@@ -88,6 +88,10 @@ jobs:
           python3 -m unittest discover -s tools -p test_heatpump_intent.py
           python3 -m unittest discover -s tools -p test_toppick_anchor.py
           python3 -m unittest discover -s tools -p test_buyer_comparison.py
+          python3 -m unittest discover -s tools -p test_buyer_entry.py
+          python3 -m unittest discover -s tools -p test_moisture_journeys.py
+          python3 -m unittest discover -s tools -p test_journey_geo.py
+          python3 -m unittest discover -s tools -p test_home_editorial.py
           python3 -m unittest discover -s tools -p test_buyer_geo.py
           python3 -m unittest discover -s tools -p test_air_category_entry.py
           python3 -m unittest discover -s tools -p test_humidity_evidence.py
@@ -155,6 +159,7 @@ jobs:
           python3 tools/test_language_nav.py
           python3 tools/build_demand_discovery.py
           python3 tools/test_demand_discovery.py
+          python3 tools/build_home_order.py
           node --test tools/test_demand_search.mjs
           python3 ../../tools/fleet-analytics/coverage.py --site eco --out site --write
           node --test tools/test-public-engagement.mjs
@@ -184,6 +189,7 @@ jobs:
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_revenue.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_buyer_decision.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_moisture_analytics.cjs
+          NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa/moisture-journeys" node tools/browser_moisture_journeys.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/test-public-engagement-browser.mjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_winter.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_au_cooling.cjs

@@ -14,6 +14,9 @@ export function validBuyerEvent(body){
  // Evidence inspection is meaningful only after the two-candidate result.
  // Keep the existing event schema: no model, measurements or user identifiers.
  if(body.n==='buyer_next'&&m.action==='evidence')return ['compare','laundry'].includes(m.choice);
+ // A prepared reader can inspect the same comparison without completing the
+ // needs questionnaire. This is navigation, never a diagnostic result.
+ if(body.n==='buyer_next'&&m.action==='direct')return m.choice==='compare';
  if(body.n==='buyer_next')return [...choices,'none'].includes(m.choice)&&['guide','cost','shop','share'].includes(m.action)&&(m.choice!=='none'||m.action==='share');
  return false;
 }

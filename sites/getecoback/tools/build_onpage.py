@@ -120,7 +120,13 @@ def inject_toc(html, en):
            "<!--/EB_TOC-->\n")
 
     # place after the disclosure box when present, else after the intro <p>
-    if "<!--EB_TOC-->" in body:
+    if "<!--/EB_BUYER-->" in body:
+        # Six buyer guides offer the two reading speeds before the long TOC.
+        # Old TOCs could be inside a regenerated market aside; replacing them
+        # there made the next market pass delete both content and navigation.
+        body = re.sub(r"<!--EB_TOC-->.*?<!--/EB_TOC-->\n?", '', body, flags=re.S)
+        body = body.replace("<!--/EB_BUYER-->", "<!--/EB_BUYER-->\n" + toc, 1)
+    elif "<!--EB_TOC-->" in body:
         body = re.sub(r"<!--EB_TOC-->.*?<!--/EB_TOC-->\n?", toc, body, flags=re.S)
     else:
         disc = re.search(r'<div class="disclosure">.*?</div>\s*', body, re.S)

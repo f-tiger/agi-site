@@ -1,0 +1,400 @@
+{
+  "version": 1,
+  "category": {
+    "title": "Luftqualität: Feuchte klären, Geräte passend wählen",
+    "description": "Feuchte messen, Entfeuchter auswählen, Wäschekosten vergleichen und vorhandene Geräte prüfen. Bestehende Ratgeber nach deiner Aufgabe geordnet.",
+    "groups": [
+      {
+        "id": "feuchte-verstehen",
+        "title": "Feuchte verstehen: erst messen und einordnen",
+        "intro": "Noch unklar, woher die Feuchte kommt? Beginne mit Beobachtungen und passenden Maßnahmen.",
+        "slugs": [
+          "luftfeuchtigkeit-richtig-messen",
+          "luftfeuchtigkeit-senken",
+          "fenster-beschlagen-innen"
+        ]
+      },
+      {
+        "id": "entfeuchter-auswaehlen",
+        "title": "Ein Gerät auswählen: Bedingungen vor Literzahl",
+        "intro": "Wenn ein Entfeuchter infrage kommt, zählen Einsatzort, Temperatur und überprüfbare Modelldaten. Ein Gerät beseitigt keine bauliche Ursache.",
+        "slugs": [
+          "luftentfeuchter-ratgeber",
+          "luftentfeuchter-keller",
+          "meacodry-arete-one-test"
+        ]
+      },
+      {
+        "id": "waesche-und-betrieb",
+        "title": "Wäsche und Betrieb: mit der eigenen Nutzung rechnen",
+        "intro": "Ein niedriger Wattwert ist noch kein niedriger Verbrauch. Vergleiche vollständige Nutzungen und die gleiche Aufgabe.",
+        "slugs": [
+          "waesche-trocknen-wohnung",
+          "luftentfeuchter-dauerbetrieb-stromkosten"
+        ],
+        "tool": {
+          "href": "/waeschetrockner-oder-luftentfeuchter.html#laundry-check",
+          "label": "Trockner und Entfeuchter durchrechnen",
+          "why": "Mit eigenen Werten je gleich trockener Ladung."
+        }
+      },
+      {
+        "id": "geraet-pruefen",
+        "title": "Gerät vorhanden: prüfen, pflegen, weiterverwenden",
+        "intro": "Bei fehlender Wasseraufnahme oder Geruch zuerst den vorhandenen Betrieb prüfen. Ein Problem ist kein automatischer Ersatzkauf.",
+        "slugs": [
+          "luftentfeuchter-zieht-kein-wasser",
+          "luftentfeuchter-stinkt"
+        ]
+      },
+      {
+        "id": "partikel-filtern",
+        "title": "Andere Aufgabe: Partikel aus der Luft filtern",
+        "intro": "Ein Luftreiniger filtert Partikel – das ist eine andere Aufgabe als Luft entfeuchten. Prüfe Filter, Raumleistung und Folgekosten.",
+        "slugs": [
+          "luftreiniger-ratgeber",
+          "luftentfeuchter-oder-luftreiniger"
+        ]
+      }
+    ],
+    "card_overrides": {
+      "luftentfeuchter-ratgeber": {
+        "label": "Entfeuchter: Bedarf und Modelldaten prüfen",
+        "desc": "Bedarf klären, Bauarten unterscheiden und vorhandene Modellkandidaten mit ihren Datenlücken vergleichen.",
+        "action": {
+          "href": "/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice",
+          "label": "Entscheidungshilfe öffnen",
+          "why": ""
+        }
+      },
+      "luftreiniger-ratgeber": {
+        "label": "Luftreiniger: Filter und Raumleistung prüfen",
+        "desc": "Luftleistung, Filtertyp und laufende Kosten anhand deines Einsatzzwecks einordnen.",
+        "action": {
+          "href": "/guide/luftreiniger-ratgeber.html",
+          "label": "Auswahlkriterien lesen",
+          "why": ""
+        }
+      },
+      "meacodry-arete-one-test": {
+        "label": "MeacoDry Arete: Produktfamilie einordnen",
+        "desc": "Redaktionelle Übersicht zur Modellfamilie. Konkrete Generation, Größe und Herstellerdaten vor einem Kauf abgleichen; kein eigener Labortest."
+      },
+      "luftentfeuchter-10-qm": {
+        "label": "Luftentfeuchter für 10 m²: Raumgröße einordnen",
+        "desc": "Die Fläche allein legt keine Literleistung fest. Prüfe zusätzlich Temperatur, Feuchtelast und die Messbedingungen der Herstellerangaben."
+      },
+      "luftentfeuchter-15-qm": {
+        "label": "Luftentfeuchter für 15 m²: Raumgröße einordnen",
+        "desc": "Die Fläche allein legt keine Literleistung fest. Prüfe zusätzlich Temperatur, Feuchtelast und die Messbedingungen der Herstellerangaben."
+      },
+      "luftentfeuchter-20-qm": {
+        "label": "Luftentfeuchter für 20 m²: Raumgröße einordnen",
+        "desc": "Die Fläche allein legt keine Literleistung fest. Prüfe zusätzlich Temperatur, Feuchtelast und die Messbedingungen der Herstellerangaben."
+      },
+      "luftentfeuchter-25-qm": {
+        "label": "Luftentfeuchter für 25 m²: Raumgröße einordnen",
+        "desc": "Die Fläche allein legt keine Literleistung fest. Prüfe zusätzlich Temperatur, Feuchtelast und die Messbedingungen der Herstellerangaben."
+      },
+      "luftentfeuchter-30-qm": {
+        "label": "Luftentfeuchter für 30 m²: Raumgröße einordnen",
+        "desc": "Die Fläche allein legt keine Literleistung fest. Prüfe zusätzlich Temperatur, Feuchtelast und die Messbedingungen der Herstellerangaben."
+      },
+      "luftentfeuchter-40-qm": {
+        "label": "Luftentfeuchter für 40 m²: Raumgröße einordnen",
+        "desc": "Die Fläche allein legt keine Literleistung fest. Prüfe zusätzlich Temperatur, Feuchtelast und die Messbedingungen der Herstellerangaben."
+      }
+    }
+  },
+  "routes": {
+    "/guide/luftfeuchtigkeit-richtig-messen.html": {
+      "role": "measure",
+      "primary_task": "Temperatur und Feuchte nachvollziehbar beobachten",
+      "commerce_policy": "defer_generic",
+      "next_steps": [
+        {
+          "href": "/guide/luftfeuchtigkeit-senken.html#moisture-check",
+          "label": "Mit Messwerten das Lüften prüfen",
+          "why": "Wenn du Innen- und Außenwerte hast, kannst du den Feuchteunterschied einordnen."
+        },
+        {
+          "href": "/guide/fenster-beschlagen-innen.html",
+          "label": "Beschlagene Fenster einordnen",
+          "why": "Wenn das Problem nur an einer kalten Scheibe sichtbar wird, prüfe diesen Fall gesondert."
+        }
+      ]
+    },
+    "/guide/luftfeuchtigkeit-senken.html": {
+      "role": "diagnose",
+      "primary_task": "Erst Feuchteursache und kostenlose Maßnahmen prüfen",
+      "commerce_policy": "defer_generic",
+      "next_steps": [
+        {
+          "href": "/guide/luftfeuchtigkeit-richtig-messen.html",
+          "label": "Noch keine verlässlichen Messwerte?",
+          "why": "Ein fester Messort und ein kleiner Verlauf sind der erste Schritt."
+        },
+        {
+          "href": "/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice",
+          "label": "Trotz passender Maßnahmen weiter zu feucht?",
+          "why": "Prüfe dann Bedarf und Einsatzbedingungen vor einem Gerätekauf."
+        }
+      ]
+    },
+    "/guide/luftentfeuchter-gegen-schimmel.html": {
+      "role": "diagnose",
+      "primary_task": "Schimmelursache von der Entfeuchterfrage trennen",
+      "commerce_policy": "defer_generic",
+      "next_steps": [
+        {
+          "href": "/guide/schimmel-wand-kommt-wieder.html",
+          "label": "Wenn Schimmel an der Wand wiederkommt",
+          "why": "Wiederkehrende Feuchte braucht eine Ursachenprüfung; ein Gerät saniert keine Wand."
+        },
+        {
+          "href": "/guide/luftfeuchtigkeit-richtig-messen.html",
+          "label": "Raumwerte begleitend dokumentieren",
+          "why": "Notiere Temperatur und Feuchte, ohne daraus eine Bauwerksdiagnose abzuleiten."
+        }
+      ]
+    },
+    "/guide/fenster-beschlagen-innen.html": {
+      "role": "diagnose",
+      "primary_task": "Kondensation am Fenster einordnen",
+      "commerce_policy": "defer_generic",
+      "next_steps": [
+        {
+          "href": "/guide/luftfeuchtigkeit-richtig-messen.html",
+          "label": "Raumwert und Fensteroberfläche unterscheiden",
+          "why": "Ein Wert an der kalten Scheibe beschreibt einen anderen Ort als die Raummitte."
+        },
+        {
+          "href": "/guide/luftfeuchtigkeit-senken.html#moisture-check",
+          "label": "Lüften mit Innen- und Außenwerten prüfen",
+          "why": "Nutze vorhandene Messwerte, bevor du über ein zusätzliches Gerät nachdenkst."
+        }
+      ]
+    },
+    "/guide/schimmel-am-fenster.html": {
+      "role": "diagnose",
+      "primary_task": "Feuchte am Fenster und weiteren Prüfbedarf erkennen",
+      "commerce_policy": "defer_generic",
+      "next_steps": [
+        {
+          "href": "/guide/fenster-beschlagen-innen.html",
+          "label": "Wiederkehrenden Beschlag einordnen",
+          "why": "Die Bedingungen am Fenster sind ein eigener Prüfschritt."
+        },
+        {
+          "href": "/guide/luftfeuchtigkeit-richtig-messen.html",
+          "label": "Beobachtungen und Raumwerte festhalten",
+          "why": "Ein Protokoll hilft, den Verlauf nachvollziehbar zu beschreiben."
+        }
+      ]
+    },
+    "/guide/schimmel-im-keller-entfernen.html": {
+      "role": "diagnose",
+      "primary_task": "Kellerfeuchte und Ursachenprüfung einordnen",
+      "commerce_policy": "defer_generic",
+      "next_steps": [
+        {
+          "href": "/guide/luftfeuchtigkeit-richtig-messen.html",
+          "label": "Raumwerte getrennt von Schäden notieren",
+          "why": "Ein Hygrometer erfasst Raumluft, nicht die Ursache einer nassen Wand."
+        },
+        {
+          "href": "/guide/luftentfeuchter-keller.html#vor-dem-kauf",
+          "label": "Geräteeinsatz erst nach der Ursachenfrage prüfen",
+          "why": "Ein Entfeuchter kann die Raumluft beeinflussen, ersetzt aber keine nötige Sanierung."
+        }
+      ]
+    },
+    "/guide/luftentfeuchter-zieht-kein-wasser.html": {
+      "role": "repair",
+      "primary_task": "Vorhandenen Entfeuchter prüfen, bevor Ersatz infrage kommt",
+      "commerce_policy": "defer_generic",
+      "next_steps": [
+        {
+          "href": "/guide/luftentfeuchter-keller.html#kalter-keller",
+          "label": "Läuft das Gerät in einem kalten Raum?",
+          "why": "Prüfe die Temperaturbedingungen; ein leerer Tank allein beweist keinen Defekt."
+        },
+        {
+          "href": "/guide/luftentfeuchter-stinkt.html",
+          "label": "Zusätzlich Geruch oder Pflegeprobleme?",
+          "why": "Nutze die Hinweise für Tank, Filter und den vorgesehenen Betrieb."
+        }
+      ]
+    },
+    "/guide/luftentfeuchter-stinkt.html": {
+      "role": "repair",
+      "primary_task": "Geruch, Pflege und vorhandenes Gerät prüfen",
+      "commerce_policy": "defer_generic",
+      "next_steps": [
+        {
+          "href": "/guide/luftentfeuchter-zieht-kein-wasser.html",
+          "label": "Auch die Wasseraufnahme bleibt aus?",
+          "why": "Gehe die Betriebsbedingungen und möglichen Ursachen durch."
+        },
+        {
+          "href": "/guide/luftentfeuchter-dauerbetrieb-stromkosten.html",
+          "label": "Nach der Pflege den Betrieb einordnen",
+          "why": "Verbrauch und Laufzeit helfen, die Nutzung zu verstehen; sie beweisen keinen Defekt."
+        }
+      ]
+    },
+    "/guide/luftentfeuchter-ratgeber.html": {
+      "role": "choose",
+      "primary_task": "Bedarf, Bedingungen und belegbare Modelldaten vergleichen",
+      "commerce_policy": "qualified_comparison",
+      "next_steps": [
+        {
+          "href": "/guide/luftentfeuchter-keller.html#kalter-keller",
+          "label": "Aufstellort unter 15 °C?",
+          "why": "Vergleiche die Bauarten und prüfe Herstellerdaten bei deiner Temperatur."
+        },
+        {
+          "href": "/guide/meacodry-arete-one-test.html",
+          "label": "Meaco-Familie genauer einordnen",
+          "why": "Lies die redaktionelle Einordnung; gleiche Generation und Größe mit dem konkreten Angebot ab."
+        }
+      ]
+    },
+    "/guide/luftentfeuchter-keller.html": {
+      "role": "choose",
+      "primary_task": "Bei Kellerbedingungen Gerätetyp und Daten prüfen",
+      "commerce_policy": "qualified_comparison",
+      "next_steps": [
+        {
+          "href": "/guide/luftentfeuchter-dauerbetrieb-stromkosten.html",
+          "label": "Betriebskosten für deinen Einsatz rechnen",
+          "why": "Entzugsleistung und Strombedarf sind verschiedene Größen."
+        },
+        {
+          "href": "/guide/schimmel-im-keller-entfernen.html",
+          "label": "Nasse Wand oder sichtbarer Schimmel?",
+          "why": "Kläre die Ursache, statt von einem Gerät eine Sanierung zu erwarten."
+        }
+      ]
+    },
+    "/guide/luftentfeuchter-20-qm.html": {
+      "role": "choose",
+      "primary_task": "Raumgröße durch Temperatur und Feuchtelast ergänzen",
+      "commerce_policy": "qualified_comparison",
+      "next_steps": [
+        {
+          "href": "/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice",
+          "label": "Bedarf und Modelldaten vergleichen",
+          "why": "20 m² allein bestimmen weder Bauart noch benötigte Literleistung."
+        },
+        {
+          "href": "/guide/luftentfeuchter-keller.html#kalter-keller",
+          "label": "Der Raum ist kühl?",
+          "why": "Prüfe die Temperaturbedingungen, bevor du Geräteangaben vergleichst."
+        }
+      ]
+    },
+    "/guide/waesche-trocknen-wohnung.html": {
+      "role": "use",
+      "primary_task": "Wäsche, Raumfeuchte und Geräteeinsatz auseinanderhalten",
+      "commerce_policy": "qualified_comparison",
+      "next_steps": [
+        {
+          "href": "/waeschetrockner-oder-luftentfeuchter.html#laundry-check",
+          "label": "Eine gleich trockene Ladung durchrechnen",
+          "why": "Vergleiche den ganzen Durchgang, nicht nur die Wattzahl."
+        },
+        {
+          "href": "/guide/luftfeuchtigkeit-senken.html#moisture-check",
+          "label": "Der Raum bleibt unabhängig von Wäsche feucht?",
+          "why": "Prüfe Raumluft und Lüften als eigene Aufgabe."
+        }
+      ]
+    },
+    "/guide/luftentfeuchter-dauerbetrieb-stromkosten.html": {
+      "role": "use",
+      "primary_task": "Stromkosten mit Laufzeit und eigenem Tarif einordnen",
+      "commerce_policy": "contextual_only",
+      "next_steps": [
+        {
+          "href": "/strommess-protokoll.html",
+          "label": "Tatsächlichen kWh-Verbrauch messen",
+          "why": "Typenschildleistung ist nicht der Verbrauch eines ganzen Betriebstags."
+        },
+        {
+          "href": "/waeschetrockner-oder-luftentfeuchter.html#laundry-check",
+          "label": "Geht es um Wäsche?",
+          "why": "Vergleiche den Strom je gleich trockener Ladung statt unterschiedlicher Laufzeiten."
+        }
+      ]
+    },
+    "/waeschetrockner-oder-luftentfeuchter.html": {
+      "role": "use",
+      "primary_task": "Strom je gleich trockener Ladung vergleichen",
+      "commerce_policy": "contextual_only",
+      "next_steps": [
+        {
+          "href": "/strommess-protokoll.html",
+          "label": "Eigene Verbrauchswerte ermitteln",
+          "why": "Eine vollständige Nutzung messen, wenn bisher nur Leistungsangaben vorliegen."
+        },
+        {
+          "href": "/guide/waesche-trocknen-wohnung.html",
+          "label": "Den passenden Trockenablauf prüfen",
+          "why": "Kosten allein sagen nichts über Platz, Dauer und Raumfeuchte aus."
+        }
+      ]
+    },
+    "/guide/meacodry-arete-one-test.html": {
+      "role": "evidence",
+      "primary_task": "Meaco-Produktfamilie und konkrete Modellvariante unterscheiden",
+      "commerce_policy": "contextual_only",
+      "next_steps": [
+        {
+          "href": "/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice",
+          "label": "Mit einheitlichen Prüfpunkten vergleichen",
+          "why": "Prüfe das genaue Modell und ausdrücklich fehlende Vergleichswerte."
+        },
+        {
+          "href": "/guide/luftentfeuchter-dauerbetrieb-stromkosten.html",
+          "label": "Betriebskosten zur eigenen Nutzung prüfen",
+          "why": "Herstellerleistung ist keine Zusage für deinen gemessenen Verbrauch."
+        }
+      ]
+    },
+    "/en/guide/dehumidifier-20-sqm.html": {
+      "role": "choose",
+      "primary_task": "Check conditions as well as floor area",
+      "commerce_policy": "qualified_comparison",
+      "next_steps": [
+        {
+          "href": "/en/guide/desiccant-vs-compressor-dehumidifier.html",
+          "label": "Using a cold room?",
+          "why": "Compare operating conditions before interpreting the rated extraction."
+        },
+        {
+          "href": "/en/guide/dehumidifier-drying-clothes-cost.html",
+          "label": "Buying mainly for laundry?",
+          "why": "Compare energy for an equally dry load, not wattage alone."
+        }
+      ]
+    },
+    "/en/guide/dehumidifier-drying-clothes-cost.html": {
+      "role": "use",
+      "primary_task": "Compare drying energy for an equivalent load",
+      "commerce_policy": "qualified_comparison",
+      "next_steps": [
+        {
+          "href": "/en/guide/dehumidifier-20-sqm.html",
+          "label": "Still deciding whether a device fits?",
+          "why": "Check room conditions and model evidence before shopping."
+        },
+        {
+          "href": "/en/guide/desiccant-vs-compressor-dehumidifier.html",
+          "label": "Drying in a cold room?",
+          "why": "Temperature affects the device comparison and expected operation."
+        }
+      ]
+    }
+  }
+}

@@ -142,6 +142,12 @@ Weil in trockener werdender Luft nicht mehr viel Wasser ist. Ein 40 m³ großer 
 
 **Woher die Zahlen kommen.** Alle Feuchtewerte sind mit der Magnus-Formel aus den genannten Temperaturen berechnet — dieselbe Rechnung, die unsere Taupunkt-Rechner im Browser ausführen; die 61 Gramm stammen aus [unserem Entfeuchter-Ratgeber](https://getecoback.com/guide/luftentfeuchter-zieht-kein-wasser.html), die Liter-Leiter aus dem [offenen Datensatz](https://getecoback.com/daten.html) dieser Seite. Die Schwellen 60 Prozent (Raum) und 70 Prozent (Oberfläche) sind die, mit denen alle unsere Schimmel-Ratgeber arbeiten. Wir sind keine Bausachverständigen: Wenn eine Wand trotz trockener Luft nass bleibt, ist das ein Fall für einen, nicht für ein Gerät.
 
+## Dein nächster Schritt
+
+- [Noch keine verlässlichen Messwerte?](https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html) Ein fester Messort und ein kleiner Verlauf sind der erste Schritt.
+
+- [Trotz passender Maßnahmen weiter zu feucht?](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice) Prüfe dann Bedarf und Einsatzbedingungen vor einem Gerätekauf.
+
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp

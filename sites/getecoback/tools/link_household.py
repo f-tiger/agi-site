@@ -3,6 +3,7 @@
 from pathlib import Path
 import re
 import hashlib
+from moisture_journeys import GUIDE_NEXT
 SITE=Path(__file__).resolve().parents[1]/'site'
 TARGETS={
 'guide/fenster-beschlagen-innen.html':('Vor dem Gerätekauf: Feuchte richtig messen','/guide/luftfeuchtigkeit-richtig-messen.html','Temperatur und Luftfeuchte an mehreren typischen Tagen prüfen. Kondenswasser allein legt keine Gerätegröße fest.'),
@@ -24,6 +25,11 @@ for name,(title,url,desc) in TARGETS.items():
  p=SITE/name
  if not p.exists():raise SystemExit('Missing source page: '+name)
  s=p.read_text();block=f'<!--EB_HOUSEHOLD_LINK--><aside style="margin:24px 0;padding:20px;border-left:5px solid #075f88;background:#eff7fb;"><strong><a href="{url}">{title}</a></strong><p style="margin:6px 0 0;">{desc}</p></aside><!--/EB_HOUSEHOLD_LINK-->\n'
+ if '/'+name in GUIDE_NEXT:
+  # build_related owns the reasoned next steps on these moisture routes.
+  # Keep running the label/asset hygiene below without re-adding a second CTA.
+  s=re.sub(r'<!--EB_HOUSEHOLD_LINK-->.*?<!--/EB_HOUSEHOLD_LINK-->\n?', '', s, flags=re.S)
+  block=''
  if name=='index.html':
   block='''<!--EB_HOUSEHOLD_LINK--><section id="eb-household-entry" aria-labelledby="eb-household-title" style="max-width:1000px;margin:20px auto;padding:18px 20px;background:#eff7fb;border-left:5px solid #075f88;box-sizing:border-box;">
 <h2 id="eb-household-title" style="margin:0 0 8px;">Erst prüfen, dann kaufen</h2>

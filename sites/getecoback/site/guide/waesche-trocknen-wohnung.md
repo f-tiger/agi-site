@@ -139,6 +139,12 @@ Rechenweg: 52 × Nutzungen/Woche × (manuell − Gerätenutzung − Pflege) ÷ 6
 - Midea — PortaSplit installatie
 - Tineco — Switch S6 care FAQ
 
+## Dein nächster Schritt
+
+- [Eine gleich trockene Ladung durchrechnen](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#laundry-check) Vergleiche den ganzen Durchgang, nicht nur die Wattzahl.
+
+- [Der Raum bleibt unabhängig von Wäsche feucht?](https://getecoback.com/guide/luftfeuchtigkeit-senken.html#moisture-check) Prüfe Raumluft und Lüften als eigene Aufgabe.
+
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp

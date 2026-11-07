@@ -17,8 +17,9 @@ Run: python3 tools/build_structure.py   (then python3 tools/build_sitemap.py)
 import os, re, glob, json, urllib.parse, html as htmllib
 from html.parser import HTMLParser
 from laundry_decision import inject as inject_laundry
-from moisture_decision import inject as inject_moisture_decision, creator_entry
+from moisture_decision import inject as inject_moisture_decision, creator_entry, PATHS as BUYER_GUIDES
 from demand_tools import inject as inject_demand, seal_block
+from moisture_journeys import category_content, CATEGORY_TITLE, CATEGORY_DESC, COMMERCE_DEFER_SLUGS, category_inventory
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
@@ -446,13 +447,17 @@ STYLE = """  * { box-sizing:border-box; margin:0; padding:0; }
   a { color:#0f6ba8; }"""
 
 def hub_page(key, arts):
-    title = CAT_TITLE[key]
-    desc = CAT_DESC[key]
+    title = CATEGORY_TITLE if key == 'luftqualitaet' else CAT_TITLE[key]
+    desc = CATEGORY_DESC if key == 'luftqualitaet' else CAT_DESC[key]
+    page_title = title if key == "luftqualitaet" else title + ": Ratgeber 2026"
     url = f"https://getecoback.com/kategorie/{key}.html"
-    shop = shop_section(key)
+    shop = '' if key == 'luftqualitaet' else shop_section(key)
     cards = "\n".join(
         f'    <div class="eb-card"><a href="{a["url"]}">{htmllib.escape(a["title"])}</a>'
         f'<p>{htmllib.escape(a["desc"])}</p></div>' for a in arts)
+    content = (category_content(arts) if key == 'luftqualitaet' else
+               f'<p>Alle EcoBack-Ratgeber aus dem Bereich <strong>{title}</strong> auf einen Blick — mit ehrlichen Kaufkriterien und konkreten Modell-Empfehlungen nach Einsatzzweck.</p>'
+               f'<div class="eb-cards">{cards}</div>')
     others = "\n".join(
         f'    <a href="/kategorie/{k}.html">{t} →</a>'
         for k, t, _ in CATEGORIES if k != key)
@@ -466,12 +471,20 @@ def hub_page(key, arts):
               '{"@type":"ListItem","position":1,"name":"EcoBack","item":"https://getecoback.com/"},'
               f'{{"@type":"ListItem","position":2,"name":"{title}","item":"{url}"}}]}},'
               f'{{"@type":"ItemList","itemListElement":[{items}]}}]}}')
+    if key == 'luftqualitaet':
+        # Describe the visible editorial directory, including its order and
+        # honest labels, not the old alphabetical list or a product ranking.
+        graph = json.loads(jsonld)
+        graph['@graph'][-1]['itemListElement'] = [
+            {'@type': 'ListItem', 'position': i + 1, 'url': a['url'], 'name': a['title']}
+            for i, a in enumerate(category_inventory(arts))]
+        jsonld = json.dumps(graph, ensure_ascii=False).replace('<', '\u003c')
     return f"""<!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{title}: Ratgeber 2026 | EcoBack</title>
+<title>{page_title} | EcoBack</title>
 <meta name="description" content="{desc}">
 <link rel="canonical" href="{url}">
 <link rel="alternate" hreflang="de" href="{url}">
@@ -500,10 +513,7 @@ def hub_page(key, arts):
 {shop}
 <div class="wrap">
 <article>
-  <p>Alle EcoBack-Ratgeber aus dem Bereich <strong>{title}</strong> auf einen Blick — mit ehrlichen Kaufkriterien und konkreten Modell-Empfehlungen nach Einsatzzweck.</p>
-  <div class="eb-cards">
-{cards}
-  </div>
+{content}
   <div class="related">
     <strong>Weitere Kategorien</strong>
 {others}
@@ -4673,6 +4683,15 @@ def main():
                 new = re.sub(r'<!--' + marker + r'-->.*?<!--/' + marker + r'-->', '', new, flags=re.S)
         from moisture_check import inject as inject_moisture_check
         new = inject_moisture_check(new, os.path.basename(path)[:-5])
+        if os.path.dirname(path) == GUIDE and os.path.basename(path)[:-5] in BUYER_GUIDES[False]:
+            for marker in ('EB_STICKY', 'EB_PROFILE'):
+                new = re.sub(r'<!--' + marker + r'-->.*?<!--/' + marker + r'-->', '', new, flags=re.S)
+        if os.path.dirname(path) == GUIDE and os.path.basename(path)[:-5] in COMMERCE_DEFER_SLUGS:
+            # Diagnosis and maintenance own a different job from purchase
+            # selection. Preserve authored links; remove only generic overlays
+            # that bypass the page's cause/measurement/repair decision.
+            for marker in ('EB_TOPPICK', 'EB_MODELS', 'EB_POPUP', 'EB_STICKY', 'EB_PROFILE', 'EB_USMARKET', 'EB_USSWITCH', 'EB_QUICKPICK'):
+                new = re.sub(r'<!--' + marker + r'-->.*?<!--/' + marker + r'-->', '', new, flags=re.S)
         if new != html:
             open(path, "w", encoding="utf-8").write(new)
             processed += 1
@@ -4714,7 +4733,7 @@ def main():
         new = inject_demand(new, os.path.basename(path)[:-5], en=True)
         if '<!--EB_USTOP-->' not in new:
             new = re.sub(r'<!--EB_USUNITS-->.*?<!--/EB_USUNITS-->\n?', '', new, flags=re.S)
-        if os.path.basename(path) == 'dehumidifier-drying-clothes-cost.html':
+        if os.path.basename(path)[:-5] in BUYER_GUIDES[True]:
             # This route has UK buying checks, not a verified UK affiliate shop.
             # Generic profile/sticky promotions bypass the explicit market choice.
             for marker in ('EB_STICKY', 'EB_PROFILE'):

@@ -11,6 +11,7 @@ export function decide({purpose,humidity,temperature}) {
 const root=typeof document!=='undefined'?document.getElementById('eb-moisture-choice'):null;
 if(root){
  const form=root.querySelector('form'),results=root.querySelector('[data-results]'),sent=new Set();
+ const context=root.querySelector('#eb-choice-context'),method=root.querySelector('[data-choice-method]'),directNote=root.querySelector('[data-choice-direct-note]');
  const lang=root.dataset.lang;
  let state=null;
  const allowed=()=>{
@@ -29,17 +30,35 @@ if(root){
   try{if(navigator.sendBeacon)navigator.sendBeacon('/api/ev',new Blob([body],{type:'text/plain'}));else fetch('/api/ev',{method:'POST',headers:{'Content-Type':'text/plain'},body,keepalive:true}).catch(()=>{});}catch{}
  }
  function reset(){
-  state=null;results.hidden=true;root.querySelector('[data-status]').textContent='';
+  state=null;results.hidden=true;context.hidden=false;directNote.hidden=true;root.querySelector('[data-status]').textContent='';
   root.querySelectorAll('[data-choice-evidence]').forEach(details=>details.open=false);
+ }
+ function show(choice,market,direct=false){
+  state=choice;results.hidden=false;context.hidden=direct;directNote.hidden=!direct;
+  root.querySelectorAll('[data-answer]').forEach(x=>x.hidden=x.dataset.answer!==state);
+  root.querySelectorAll('[data-market-de]').forEach(x=>x.hidden=market!=='de');
+  root.querySelectorAll('[data-market-other]').forEach(x=>x.hidden=market==='de');
+  // Advice-only readers can still compare the existing public evidence table.
+  // No German merchant or candidate panel is revealed for that market.
+  if(direct&&market!=='de')method.open=true;
+  results.focus();
  }
  form.addEventListener('change',reset);
  form.addEventListener('submit',e=>{
-  e.preventDefault();const fields=new FormData(form);state=decide(Object.fromEntries(fields));
-  results.hidden=false;root.querySelectorAll('[data-answer]').forEach(x=>x.hidden=x.dataset.answer!==state);
-  root.querySelectorAll('[data-market-de]').forEach(x=>x.hidden=fields.get('market')!=='de');
-  root.querySelectorAll('[data-market-other]').forEach(x=>x.hidden=fields.get('market')==='de');
-  results.focus();event('buyer_result',state);
+  e.preventDefault();const fields=new FormData(form);
+  show(decide(Object.fromEntries(fields)),fields.get('market'));event('buyer_result',state);
  });
+ root.querySelector('[data-choice-direct]').addEventListener('click',e=>{
+  if(e.button!==0||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey)return;
+  e.preventDefault();event('buyer_view');reset();
+  // Opening a model comparison does not answer the needs questionnaire and is
+  // not a tool completion. Keep all selections and the existing market gate.
+  show('compare',form.elements.market.value,true);event('buyer_next','compare','direct');
+ });
+ root.querySelectorAll('[data-choice-needs]').forEach(a=>a.addEventListener('click',e=>{
+  if(e.button!==0||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey)return;
+  e.preventDefault();event('buyer_view');reset();form.querySelector('select').focus();
+ }));
  root.querySelectorAll('a[data-choice-action]').forEach(a=>a.addEventListener('click',()=>{
   if(!state)return;event('buyer_next',state,a.dataset.choiceAction);
   // Existing page tracker coalesces affiliate clicks. This supplies the surface.
@@ -59,7 +78,9 @@ if(root){
   root.querySelector('[data-status]').textContent=lang==='de'?(copied?'Link kopiert. Deine Auswahl wird nicht mitgeteilt.':'Link markieren und kopieren. Deine Auswahl wird nicht mitgeteilt.'):(copied?'Link copied. Your answers are not shared.':'Select and copy the link. Your answers are not shared.');
   event('buyer_next',state||'none','share');
  });
- if('IntersectionObserver' in window){const observer=new IntersectionObserver(rows=>{if(rows.some(r=>r.isIntersecting)){event('buyer_view');observer.disconnect();}},{threshold:.25});observer.observe(form);}
+ // Exposure now covers the shared two-speed entry, not just the questionnaire.
+ // Entry clicks above provide a deterministic fallback and share the same dedup.
+ if('IntersectionObserver' in window){const observer=new IntersectionObserver(rows=>{if(rows.some(r=>r.isIntersecting)){event('buyer_view');observer.disconnect();}},{threshold:.25});observer.observe(root.querySelector('.choice-entry'));}
  // A failed or unavailable module leaves useful reading links, never a native
  // GET form that would put answers in the URL. Enable only after all handlers.
  root.querySelector('[data-choice-fallback]').hidden=true;
@@ -67,4 +88,6 @@ if(root){
  form.querySelector('[data-choice-fields]').disabled=false;
  form.removeAttribute('inert');
  form.hidden=false;
+ // The unenhanced method is open. Honour a direct hash even after JS starts.
+ method.open=location.hash==='#eb-choice-method';
 }

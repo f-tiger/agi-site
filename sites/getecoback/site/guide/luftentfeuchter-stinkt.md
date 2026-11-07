@@ -86,6 +86,12 @@ Dann sitzt der Belag an einer Stelle, an die du ohne Öffnen des Gehäuses nicht
 
 **Was wir hier wissen und was nicht.** Der Mechanismus — kondensierende Oberfläche, Staub, Wärme, stehendes Wasser — ist derselbe, den wir für [Klimaanlagen](https://getecoback.com/guide/mobile-klimaanlage-stinkt-schimmel.html) beschrieben haben, und er gilt für jedes Kompressorgerät. Welche Reiniger ein bestimmtes Gerät verträgt, steht nur in dessen Anleitung; wir testen Geräte nicht selbst und nennen deshalb weder Mittel noch Mengen. Bei Atemwegsbeschwerden, die mit dem Gerät zusammenfallen, ist der Arzt die richtige Adresse, nicht diese Seite.
 
+## Dein nächster Schritt
+
+- [Auch die Wasseraufnahme bleibt aus?](https://getecoback.com/guide/luftentfeuchter-zieht-kein-wasser.html) Gehe die Betriebsbedingungen und möglichen Ursachen durch.
+
+- [Nach der Pflege den Betrieb einordnen](https://getecoback.com/guide/luftentfeuchter-dauerbetrieb-stromkosten.html) Verbrauch und Laufzeit helfen, die Nutzung zu verstehen; sie beweisen keinen Defekt.
+
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp

@@ -1,6 +1,6 @@
 # Product marketing context
 
-**Document version: v19** — **Last updated: 2026-11-06**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
+**Document version: v20** — **Last updated: 2026-11-06**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
 
 ## Business goal and proof
 
@@ -15,6 +15,8 @@ The owner requested a deep comparison of two mature German affiliate publishers 
 Free value: clarify whether a purchase is justified, inspect the exact model and compare what official evidence actually establishes. The two existing candidates have uniform evidence fields, explicit missing same-condition data and a three-part pre-purchase checklist. Monetization remains qualifying transactions through the established disclosed merchant links. A product-page link and a model-search link must be named accurately; no live-price, stock, best-value or own-testing claim is introduced.
 
 Acquisition uses existing topic/category and task entry points, useful sourced explanations and shareable guide URLs. Research on home&smart and CHIP supports these information patterns, not a forecast of traffic or conversion uplift. Avoid copying their full catalogs, experimental rankings, paid traffic costs or unverified merchant mappings. Meaningful results, evidence inspection, merchant clicks and verified commission are separate. Newly respected opt-out states change event coverage; annotate this intervention in the existing observation window. Product forms must remain non-submitting when their JavaScript is unavailable.
+
+The follow-up product correction treats acquisition, qualification, comparison, and ongoing use as different page jobs. The home page prioritizes existing household tasks; the air-quality hub groups the retained inventory by task. Reviewed measurement, diagnosis and repair routes defer generic shopping overlays. Core routes have at most two reasoned next steps. Prepared buyers can open the existing comparison without answering the questionnaire, including static evidence without JavaScript; this direct navigation is not a completed needs assessment. Keep the two existing models and sourced restrictions, not invented best-in-class roles. Seasonal promotional copy must land at the matching existing task, and competing content modules should be consolidated rather than accumulated. These are tested usability changes, not demonstrated revenue gains.
 
 ### Automated niche sites — current task, owner steering 2026-10-31
 
