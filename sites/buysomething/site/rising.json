@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-06",
+ "fetched": "2026-11-07",
  "seeds": {
   "electric spin scrubber": {
    "rising": [
@@ -334,63 +334,31 @@
     "makeup organizer target",
     "makeup organizer nearby"
    ],
-   "rising": [
-    {
-     "q": "makeup organizer drawers",
-     "v": "new"
-    },
-    {
-     "q": "makeup organizer countertop",
-     "v": "new"
-    },
-    {
-     "q": "makeup organizer for vanity",
-     "v": "new"
-    },
-    {
-     "q": "makeup organizer bag",
-     "v": "new"
-    },
-    {
-     "q": "makeup organizer box",
-     "v": "new"
-    },
-    {
-     "q": "makeup organizer near me",
-     "v": "new"
-    },
-    {
-     "q": "makeup organizer for bathroom",
-     "v": "new"
-    },
-    {
-     "q": "makeup organizer target",
-     "v": "new"
-    },
-    {
-     "q": "makeup organizer nearby",
-     "v": "new"
-    }
-   ],
+   "rising": [],
    "source": "autocomplete-diff",
-   "fetched": "2026-11-06"
+   "fetched": "2026-11-07"
   },
   "mamian skirt": {
    "auto": [
     "mamian skirt",
     "mamian skirt pattern",
-    "mamian skirt men",
     "mamian skirt chinese",
     "mamian skirt modern",
+    "mamian skirt men",
     "mamian skirt sewing pattern",
     "mamian skirt how to wear",
-    "mamian skirt plus size",
     "mamian skirt dior",
-    "mamian skirt dance"
+    "mamian skirt short",
+    "mamian skirt plus size"
    ],
-   "rising": [],
+   "rising": [
+    {
+     "q": "mamian skirt short",
+     "v": "new"
+    }
+   ],
    "source": "autocomplete-diff",
-   "fetched": "2026-10-08"
+   "fetched": "2026-11-07"
   },
   "chinese style shirt": {
    "rising": [
