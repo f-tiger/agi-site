@@ -23,6 +23,27 @@ test('homepage provides direct functional buying paths without a script or form 
  for(const lang of Object.keys(locales)){const html=shoppingHomeHTML({lang,route,esc});assert.equal((html.match(/<h1>/g)||[]).length,1);for(const slug of shoppingSlugs)assert.ok(html.includes('href="'+route(lang,slug)+'"'));assert.ok(html.includes(shoppingCopy[lang].market));assert.ok(html.includes(shoppingCopy[lang].disclosure));for(const script of html.matchAll(/<script\b([^>]*)>/g))assert.match(script[1],/^ type="application\/json"/);}
 });
 
+test('the buying journey presents the task and measurement decision before product exits',()=>{
+ for(const lang of Object.keys(locales)){
+  const home=shoppingHomeHTML({lang,route,esc});
+  const tasks=home.indexOf('class="shop-task-nav"'),firstProduct=home.indexOf('data-shopping-card');
+  assert.ok(tasks>=0&&tasks<firstProduct, 'Choose a task before the homepage product list: '+lang);
+  for(const p of pages().filter(p=>p[0]===lang&&p[1]!=='shop')){
+   const html=p[4],checkpoint=html.match(/<section class="shop-decision-start"[\s\S]*?<\/section>/)?.[0];
+   assert.ok(checkpoint, 'Guide has a decision checkpoint: '+p[1]);
+   const firstExit=html.indexOf('data-shopping-destination');
+   if(firstExit>=0)assert.ok(html.indexOf(checkpoint)<firstExit, 'Decision before merchant exit');
+   const summary=html.match(/<p data-shopping-decision>(.*?)<\/p>/)?.[1];
+   assert.ok(summary&&p[5].includes(summary), 'Visible decision advice is in the text mirror');
+   assert.ok(html.includes('<details class="shop-measure-details"'));
+   assert.ok(html.includes('id="measure-before-buying"'));
+   const target=checkpoint.match(/data-shopping-compare-jump href="#([^"]+)"/)?.[1];
+   assert.ok(target&&html.includes('id="'+target+'"'), 'Compare shortcut has a real target');
+   assert.ok(p[5].includes(origin+route(lang,p[1])+'#measure-before-buying'), 'Text mirror links to the full checklist');
+  }
+ }
+});
+
 test('country paths are differentiated and UK destinations never borrow a foreign affiliate tag',()=>{
  for(const lang of Object.keys(locales)){const hub=pages().find(p=>p[0]===lang&&p[1]==='shop')[4];
   for(const country of ['us','de','uk']){assert.ok(hub.includes('href="#country-'+country+'"'));assert.ok(hub.includes('id="country-'+country+'"'));}

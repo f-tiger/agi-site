@@ -6,11 +6,14 @@ import {fileURLToPath} from 'node:url';
 const {chromium} = createRequire(new URL('../../../../tools/revenue-studio/package.json', import.meta.url))('playwright');
 const args = process.argv.slice(2);
 const root = args.includes('--out') ? path.resolve(args[args.indexOf('--out') + 1]) : fileURLToPath(new URL('../../', import.meta.url));
+const artifacts = args.includes('--artifacts') ? path.resolve(args[args.indexOf('--artifacts') + 1]) : '/tmp/tds-shopping-journey';
+fs.mkdirSync(artifacts, {recursive:true});
 const origin = 'https://thedollscout.com';
 const categories = ['display-cases', 'storage-transport', 'plush-display', 'collector-gifts'];
 const types = {'.html': 'text/html', '.js': 'application/javascript', '.mjs': 'application/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.jpg': 'image/jpeg', '.png': 'image/png', '.webp': 'image/webp', '.txt': 'text/plain'};
 const browser = await chromium.launch({headless: true, executablePath: process.env.CHROMIUM_PATH || '/usr/bin/chromium', args: ['--no-sandbox']});
 const errors = [], missing = [], apiRequests = [], external = [];
+const journeys = [];
 async function serve(context) {
   await context.route('**/*', route => {
     const url = new URL(route.request().url());
@@ -37,13 +40,58 @@ async function checkMerchants(page, prefix) {
     assert.ok(link.text.length > 0);
   }
 }
+async function checkJourney(page, prefix, slug, width, javascript=true) {
+  const top = async locator => locator.evaluate(el => Math.round(el.getBoundingClientRect().top + scrollY));
+  if (slug === '/') {
+    const tasks = page.locator('.shop-shopping-intro .shop-task-nav');
+    assert.equal(await tasks.locator('a').count(), 4, 'Four task choices before homepage products');
+    const taskTop = await top(tasks), productTop = await top(page.locator('[data-shopping-card]').first());
+    assert.ok(taskTop < productTop, 'Task navigation precedes products');
+    if (width === 390) assert.ok(taskTop < 900, 'Mobile tasks arrive within the first viewport area');
+    for (const category of categories) assert.equal(await tasks.locator(`a[href="${prefix}/shop/${category}"]`).count(), 1);
+    journeys.push({prefix,slug,width,javascript,taskTop,productTop});
+  } else if (slug.startsWith('/shop/')) {
+    const start = page.locator('.shop-decision-start'), details = page.locator('.shop-measure-details');
+    assert.ok(await start.locator('[data-shopping-decision]').isVisible(), 'Task-specific advice is visible before expanding details');
+    const decisionTop = await top(start), summaryTop = await top(details.locator('summary'));
+    const firstExit = page.locator('a[data-shopping-destination],a[data-shopping-merchant]').first();
+    assert.ok(decisionTop < await top(firstExit), 'Advice precedes the merchant exit');
+    assert.equal(await details.getAttribute('open'), null, 'Full checklist does not push products down until requested');
+    await details.locator('summary').press('Enter');
+    assert.notEqual(await details.getAttribute('open'), null, 'Keyboard opens native checklist');
+    assert.ok(await details.locator('.shop-measure').isVisible());
+    assert.ok(await details.locator('.shop-no-buy').isVisible(), 'No-purchase option stays available');
+    assert.ok(await details.locator('.shop-measure li').count() >= 2);
+    const tool = start.locator('a').nth(1), href = await tool.getAttribute('href');
+    assert.ok(href.startsWith('/') && !href.startsWith('//'));
+    const toolFile = path.join(root, href + '.html');
+    assert.ok(fs.existsSync(toolFile), 'The measurement or budget tool exists');
+    await details.locator('summary').press('Enter');
+    const target = await start.locator('[data-shopping-compare-jump]').getAttribute('href');
+    assert.equal(await page.locator(target).count(), 1, 'Compare link resolves exactly once');
+    await start.locator('[data-shopping-compare-jump]').click();
+    assert.equal(new URL(page.url()).hash, target);
+    assert.ok(await page.locator(target).isVisible());
+    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+    journeys.push({prefix,slug,width,javascript,decisionTop,summaryTop,target,tool:href});
+    if (width === 390) {
+      await page.goto(origin + prefix + slug + '?__ci=1');
+      await page.screenshot({path:path.join(artifacts, `${prefix.slice(1) || 'en'}-${slug.split('/').at(-1)}.png`)});
+      // Navigate the verified tool destination with QA exclusion retained.
+      // APIRequestContext is not used: it bypasses the local browser interception.
+      await page.goto(origin + href + '?__ci=1');
+      assert.equal(await page.locator('h1').count(), 1, 'Existing tool page loads');
+      await page.goto(origin + prefix + slug + '?__ci=1');
+    }
+  }
+}
 try {
   const context = await browser.newContext({viewport: {width: 390, height: 844}});
   await serve(context);
   const page = await context.newPage();
   page.on('pageerror', error => errors.push({url: page.url(), message: error.message}));
-  for (const width of [390, 1440]) {
-    await page.setViewportSize({width, height: width === 390 ? 844 : 1000});
+  for (const width of [320, 390, 1440]) {
+    await page.setViewportSize({width, height: width <= 390 ? 844 : 1000});
     for (const prefix of ['', '/de', '/zh']) {
       for (const slug of ['/', '/shop', ...categories.map(id => '/shop/' + id)]) {
         const pathname = prefix + slug;
@@ -53,14 +101,14 @@ try {
         assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'), origin + pathname);
         assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), pathname + ' overflow at ' + width);
         if (slug !== '/shop') await checkMerchants(page, prefix);
+        await checkJourney(page, prefix, slug, width);
         if (slug.startsWith('/shop/')) {
           await page.locator('details.shop-method > summary').click();
           assert.notEqual(await page.locator('details.shop-method').getAttribute('open'), null);
-          assert.ok(await page.locator('.shop-no-buy').isVisible());
           assert.equal(await page.locator('.shop-table-wrap').getAttribute('tabindex'), '0');
         }
         if (slug === '/') {
-          await page.screenshot({path: `/tmp/tds-shopping-${prefix.slice(1) || 'en'}-${width}.png`, fullPage: false});
+          await page.screenshot({path: path.join(artifacts, `home-${prefix.slice(1) || 'en'}-${width}.png`), fullPage: false});
           const workspace = page.locator('.shopping-workspace');
           assert.equal(await workspace.getAttribute('open'), null);
           await workspace.locator('summary').first().click();
@@ -72,9 +120,9 @@ try {
         }
       }
       await page.goto(origin + prefix + '/shop?__ci=1');
-      const guide = page.locator(`a[href="${prefix}/shop/display-cases"]`).first();
-      await guide.click();
-      await page.waitForURL(origin + prefix + '/shop/display-cases');
+      // Keep QA exclusion on every local navigation; a URL without it could
+      // make a functional test attempt a business event.
+      await page.goto(origin + prefix + '/shop/display-cases?__ci=1');
       assert.equal(await page.locator('h1').count(), 1);
     }
   }
@@ -89,10 +137,17 @@ try {
   const staticPage = await nojs.newPage();
   await staticPage.goto(origin + '/shop?__ci=1');
   for (const category of categories) assert.ok(await staticPage.locator(`a[href="/shop/${category}"]`).count() > 0);
-  await staticPage.goto(origin + '/shop/display-cases?__ci=1');
-  await checkMerchants(staticPage, '');
+  for (const prefix of ['', '/de', '/zh']) {
+    for (const slug of ['/', ...categories.map(id => '/shop/' + id)]) {
+      await staticPage.goto(origin + prefix + slug + '?__ci=1');
+      await checkJourney(staticPage, prefix, slug, 1280, false);
+      await checkMerchants(staticPage, prefix);
+    }
+  }
   assert.deepEqual(errors, [], 'No runtime JavaScript errors');
   assert.deepEqual(missing, [], 'Every requested local asset exists');
   assert.ok(!apiRequests.includes('/api/ev'), 'QA must never submit business events');
-  console.log(JSON.stringify({status: 'passed', viewports: [390, 1440], languages: ['en', 'de', 'zh'], shoppingPages: 18, merchantTags: 'verified', workspace: 'preserved', javascriptErrors: errors.length, externalRequestsBlocked: external.length, apiRequestsBlocked: apiRequests.length, productionTraffic: false}));
+  const report = {status: 'passed', viewports: [320,390,1440], languages: ['en', 'de', 'zh'], shoppingPages: 18, journeys, merchantTags: 'verified', workspace: 'preserved', javascriptErrors: errors.length, externalRequestsBlocked: external.length, apiRequestsBlocked: apiRequests.length, productionTraffic: false};
+  fs.writeFileSync(path.join(artifacts,'report.json'), JSON.stringify(report,null,2));
+  console.log(JSON.stringify({...report,journeys:journeys.length}));
 } finally {await browser.close();}
