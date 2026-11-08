@@ -67,15 +67,22 @@ export function installShoppingShortlist(root,runtime=globalThis) {
   const document=root.ownerDocument,labels=config.labels,byId=new Map(config.items.map(item=>[item.id,item]));
   const toolbar=root.querySelector('[data-shortlist-toolbar]'),status=root.querySelector('[data-shortlist-status]'),counter=root.querySelector('[data-shortlist-count]'),selectedList=root.querySelector('[data-shortlist-selected]');
   const actions=root.querySelector('[data-shortlist-actions]'),comparison=root.querySelector('[data-shortlist-comparison]'),compareButton=root.querySelector('[data-shortlist-compare]'),copyButton=root.querySelector('[data-shortlist-copy]'),clearButton=root.querySelector('[data-shortlist-clear]'),shareLink=root.querySelector('[data-shortlist-share-link]'),persistence=root.querySelector('[data-shortlist-persistence]');
-  if (![toolbar,status,counter,selectedList,actions,comparison,compareButton,copyButton,clearButton,shareLink,persistence].every(Boolean)) return null;
+  const dock=root.querySelector('[data-shortlist-dock]'),dockCount=root.querySelector('[data-shortlist-dock-count]'),dockHint=root.querySelector('[data-shortlist-dock-hint]');
+  if (![toolbar,status,counter,selectedList,actions,comparison,compareButton,copyButton,clearButton,shareLink,persistence,dock,dockCount,dockHint].every(Boolean)) return null;
   let storage;try{storage=runtime.localStorage;}catch{}
   const initial=initialSelection({hash:runtime.location?.hash||'',storage,market:config.market,allowed:config.allowed});
   let ids=initial.ids,revision=0;
-  const setStatus=(key,message)=>{status.dataset.shortlistState=key;status.textContent=message;};
+  const setStatus=(key,message)=>{
+    status.dataset.shortlistState=key;status.textContent=message;
+    dockHint.textContent=key==='limit'?labels.limit:ids.length===1?labels.oneMore:'';
+    dockHint.hidden=!dockHint.textContent;
+  };
   const hideComparison=()=>{comparison.hidden=true;comparison.replaceChildren();};
   const snapshot=()=>ids.join(',');
   function renderSelection(){
     counter.textContent=ids.length+' '+labels.count;
+    dock.hidden=!ids.length;dockCount.textContent=ids.length+' / '+SHORTLIST_LIMIT;
+    dockHint.textContent=ids.length===1?labels.oneMore:'';dockHint.hidden=!dockHint.textContent;
     actions.hidden=!ids.length;selectedList.hidden=!ids.length;persistence.hidden=!ids.length;
     for(const input of root.querySelectorAll('[data-shortlist-select]'))input.checked=ids.includes(input.dataset.shortlistSelect);
     selectedList.replaceChildren();
@@ -104,8 +111,17 @@ export function installShoppingShortlist(root,runtime=globalThis) {
       for(const card of root.querySelectorAll('[data-shopping-card]'))card.hidden=filter!=='all'&&!card.dataset.shoppingTasks.split(' ').includes(filter);
     }
   });
-  selectedList.addEventListener('click',event=>{const button=event.target?.closest?.('[data-shortlist-remove]');if(!button||!selectedList.contains(button))return;const next=changeSelection(ids,button.dataset.shortlistRemove,false,config.allowed);if(next.changed)update(next.ids);});
-  clearButton.addEventListener('click',()=>update([]));
+  // Rebuilding chips or hiding actions must not strand keyboard focus on body.
+  function focusSelection(index=0){
+    const chips=selectedList.querySelectorAll('[data-shortlist-remove]');
+    (chips[Math.min(index,chips.length-1)]||toolbar).focus();
+  }
+  selectedList.addEventListener('click',event=>{
+    const button=event.target?.closest?.('[data-shortlist-remove]');if(!button||!selectedList.contains(button))return;
+    const index=ids.indexOf(button.dataset.shortlistRemove),next=changeSelection(ids,button.dataset.shortlistRemove,false,config.allowed);
+    if(next.changed){update(next.ids);focusSelection(index);}
+  });
+  clearButton.addEventListener('click',()=>{update([]);focusSelection();});
   compareButton.addEventListener('click',event=>{
     if(ids.length<2)return;
     const selected=validateSelection(ids,config.allowed),heading=document.createElement('h3'),hint=document.createElement('p'),wrap=document.createElement('div'),table=document.createElement('table');
@@ -121,7 +137,9 @@ export function installShoppingShortlist(root,runtime=globalThis) {
         if(!source){hideComparison();return;}const anchor=source.cloneNode(true);anchor.dataset.shoppingPlacement='compare';cell.append(anchor);
       }else cell.textContent=byId.get(id)[key];row.append(cell);}tbody.append(row);
     }
-    table.append(tbody);wrap.append(table);comparison.replaceChildren(heading,hint,wrap);comparison.hidden=false;setStatus('compared',labels.compared);comparison.focus({preventScroll:true});comparison.scrollIntoView({behavior:runtime.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches?'auto':'smooth',block:'start'});persist();
+    const edit=document.createElement('button');edit.type='button';edit.className='button shopping-comparison-edit';edit.dataset.shortlistEdit='';edit.textContent=labels.edit;
+    edit.addEventListener('click',()=>{toolbar.scrollIntoView({behavior:'instant',block:'start'});focusSelection();});
+    table.append(tbody);wrap.append(table);comparison.replaceChildren(heading,edit,hint,wrap);comparison.hidden=false;setStatus('compared',labels.compared);comparison.focus({preventScroll:true});comparison.scrollIntoView({behavior:runtime.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches?'auto':'smooth',block:'start'});persist();
     // Only an explicit actual comparison reaches the fixed event helper. Restores,
     // filters and example data never emit comparison or purchase events.
     try{recordShoppingCompare(event,selected,runtime);}catch{}

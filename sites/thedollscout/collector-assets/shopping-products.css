@@ -2,3 +2,18 @@
 @media(max-width:1000px){.shopping-product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}.shopping-products-compact .shopping-product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.shopping-products-compact .shopping-product-heading{grid-template-columns:1fr}.shopping-products-compact .shopping-product-illustration{max-width:96px}}
 @media(max-width:640px){.shopping-comparison-hint{display:block}.shopping-products{margin:24px 0 36px}.shopping-product-grid,.shopping-products-compact .shopping-product-grid{grid-template-columns:1fr;gap:24px}.shopping-product-heading,.shopping-products-compact .shopping-product-heading{grid-template-columns:minmax(0,1fr) 96px}.shopping-product-card{padding:18px 0}.shopping-product-heading h3{font-size:27px}.shopping-products-intro{margin-bottom:18px}.shopping-products-intro h2{font-size:29px}.shopping-products-intro p{font-size:15px}.shopping-shortlist-toolbar{padding:12px;margin-bottom:18px}.shopping-products-intro-minimal{margin-bottom:12px}.shopping-shortlist-actions .button{min-height:44px}.shopping-product-facts>div{margin-bottom:12px}.shopping-product-facts dd{font-size:14px}.shopping-shortlist-comparison>h3{font-size:25px}.shopping-shortlist-comparison th,.shopping-shortlist-comparison td{padding:12px}.shopping-shortlist-comparison th:first-child{width:128px}}
 @media(prefers-reduced-motion:reduce){.shopping-products{scroll-behavior:auto}}
+
+/* Keep the primary comparison action near the choices, within this section. */
+.shopping-shortlist-dock{position:sticky;top:8px;z-index:5;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,auto);align-items:center;gap:8px 16px;padding:12px 16px;margin:0 0 20px;background:#fff;border:1px solid #111114;box-shadow:0 3px 0 #111114}
+.shopping-shortlist-dock strong{font-size:13px;line-height:1.5}
+.shopping-shortlist-dock .button{font-size:13px;line-height:1.4;white-space:normal;min-height:44px;max-width:230px;padding:10px 14px}
+.shopping-shortlist-dock .button:disabled{opacity:.55;cursor:default}
+.shopping-shortlist-dock p{grid-column:1/-1;font-size:13px;line-height:1.5;margin:0}
+.shopping-shortlist-toolbar{scroll-margin-top:24px}
+.shopping-shortlist-toolbar:focus-visible{outline:3px solid #e4002b;outline-offset:3px}
+.shopping-shortlist-chip{min-height:44px}
+.shopping-shortlist-comparison{scroll-margin-top:152px}
+.shopping-comparison-edit{margin:0 0 20px;min-height:44px;font-size:14px}
+@media(max-width:640px){.shopping-shortlist-dock{padding:10px 12px;gap:8px 12px;grid-template-columns:minmax(0,1fr) minmax(0,3fr)}.shopping-shortlist-dock .button{max-width:none;width:100%}}
+/* A short/zoomed viewport needs its vertical space for the product itself. */
+@media(max-height:480px){.shopping-shortlist-dock{position:static}.shopping-shortlist-comparison{scroll-margin-top:24px}}
