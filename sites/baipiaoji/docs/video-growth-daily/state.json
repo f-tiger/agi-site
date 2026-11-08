@@ -13,7 +13,9 @@
     "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/42382597542",
     "sourceObservedAt": "2026-11-07T14:49:10.7416683Z",
     "actualPaymentTested": false,
-    "actualViewerUseVerified": false
+    "actualViewerUseVerified": false,
+    "recordedInPullRequest": 283,
+    "receiptCommit": "97c33c88ad4c6f6bece6a909cd7b0bb2cab8dfad"
   },
   "lastWeeklyReview": {
     "completedAt": "2026-11-03T02:55:20.885140Z",
@@ -621,7 +623,9 @@
         "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/42179717835",
         "independentJob": "removed_by_PR259_not_skipped",
         "meaning": "Current jobs API contains only primary job; PR259 explicitly removed independent membership-readiness job. API/security release checks remain, payment availability reported separately; no actual payment, paid grant or revenue evidence."
-      }
+      },
+      "recordedInPullRequest": 283,
+      "receiptCommit": "97c33c88ad4c6f6bece6a909cd7b0bb2cab8dfad"
     },
     {
       "id": "persist-manju-signals",
@@ -797,7 +801,9 @@
       "rootSelfCheck": "Root self-check passed JSON, relative links, exact four-document scope, private path exclusions, 14-entry history, unchanged weekly/creator/English/source policy, membership source/history and distinct IndexNow receipts. Separate offline source/cache assertions passed. No product build, source/production or analytics request.",
       "independentReleaseReceiptAudit": "Two completed Nov7 job logs read once each by an independent reviewer; exact built/main, source, deployment, applicable gates, membership and IndexNow receipts verified."
     },
-    "nextAction": "On Nov9 reuse only the next original scheduled artifacts for source stability and any existing membership readiness receipt. Checkout recovery belongs to the existing BPJ payment watcher; no new probe, configuration change or duplicate dispatch. Tutorial manual playback/listening and a usable authorized channel remain the distribution blockers; review Nov3-Nov9 Asia/Shanghai on Nov10."
+    "nextAction": "On Nov9 reuse only the next original scheduled artifacts for source stability and any existing membership readiness receipt. Checkout recovery belongs to the existing BPJ payment watcher; no new probe, configuration change or duplicate dispatch. Tutorial manual playback/listening and a usable authorized channel remain the distribution blockers; review Nov3-Nov9 Asia/Shanghai on Nov10.",
+    "recordedInPullRequest": 283,
+    "receiptCommit": "97c33c88ad4c6f6bece6a909cd7b0bb2cab8dfad"
   },
   "recentActions": [
     {
@@ -998,7 +1004,9 @@
       "sourceObservedAt": "2026-11-07T14:49:10.7416683Z",
       "action": "Correct stale Nov6 ready to last observed Nov7 not_ready; free release passed. Cause unknown, actual payment untested. Documentation only.",
       "nextOriginalScheduleReviewDate": "2026-11-09",
-      "nextWeeklyReviewDate": "2026-11-10"
+      "nextWeeklyReviewDate": "2026-11-10",
+      "recordedInPullRequest": 283,
+      "receiptCommit": "97c33c88ad4c6f6bece6a909cd7b0bb2cab8dfad"
     }
   ],
   "historyPolicy": "Keep at most 14 compact completed-action receipts; use linked commits for older public implementation history. Private analytics and customer data stay outside this file.",
