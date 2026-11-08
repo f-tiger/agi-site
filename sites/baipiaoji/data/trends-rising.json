@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-07",
+ "fetched": "2026-11-08",
  "geo": "US",
  "seeds": {
   "deepseek": {
@@ -175,104 +175,88 @@
    "fetched": "2026-11-07"
   },
   "gemini": {
-   "auto": [
-    "gemini",
-    "gemini ai",
-    "gemini notebook",
-    "gemini columbus ohio",
-    "gemini google",
-    "gemini horoscope",
-    "gemini dates",
-    "gemini sign",
-    "gemini zodiac",
-    "gemini zodiac sign"
-   ],
    "rising": [
     {
-     "q": "gemini ai",
-     "v": "new"
+     "q": "gemini 4 argon",
+     "v": 24350
     },
     {
-     "q": "gemini notebook",
-     "v": "new"
+     "q": "gemini argon",
+     "v": 9450
     },
     {
-     "q": "gemini columbus ohio",
-     "v": "new"
+     "q": "gemini 3.8 flash",
+     "v": 8550
     },
     {
-     "q": "gemini google",
-     "v": "new"
+     "q": "google gemini interface changes november",
+     "v": 2650
     },
     {
-     "q": "gemini horoscope",
-     "v": "new"
+     "q": "gemini 3.7 flash",
+     "v": 1900
     },
     {
-     "q": "gemini dates",
-     "v": "new"
+     "q": "notebook gemini",
+     "v": 400
     },
     {
-     "q": "gemini sign",
-     "v": "new"
+     "q": "gemini 4 carbon",
+     "v": 300
     },
     {
-     "q": "gemini zodiac",
-     "v": "new"
-    },
-    {
-     "q": "gemini zodiac sign",
-     "v": "new"
+     "q": "gemini student offer",
+     "v": 170
     }
    ],
-   "source": "autocomplete-diff",
-   "fetched": "2026-10-28"
+   "source": "related-queries",
+   "fetched": "2026-11-08"
   },
   "perplexity": {
    "rising": [
     {
      "q": "best time to visit maldives",
-     "v": 69600
-    },
-    {
-     "q": "how to bake a cake",
-     "v": 66200
+     "v": 82550
     },
     {
      "q": "top tourist attractions in paris",
-     "v": 65000
-    },
-    {
-     "q": "cheapest flights to tokyo",
-     "v": 55650
-    },
-    {
-     "q": "headway careers",
-     "v": 11350
-    },
-    {
-     "q": "vanta careers",
-     "v": 9650
-    },
-    {
-     "q": "vane open source perplexity alternative",
-     "v": 8050
+     "v": 79400
     },
     {
      "q": "how to make sushi",
-     "v": 5450
+     "v": 78600
+    },
+    {
+     "q": "cheapest flights to tokyo",
+     "v": 74600
+    },
+    {
+     "q": "chatgpt claude perplexity financial advice",
+     "v": 17050
+    },
+    {
+     "q": "how to bake a cake",
+     "v": 15600
+    },
+    {
+     "q": "grok bot",
+     "v": 11900
+    },
+    {
+     "q": "vanta careers",
+     "v": 10400
+    },
+    {
+     "q": "vane open source perplexity alternative",
+     "v": 6900
     },
     {
      "q": "best pizza near me",
-     "v": 5350
-    },
-    {
-     "q": "apollo.io careers",
-     "v": 4550
+     "v": 4750
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-28"
+   "fetched": "2026-11-08"
   },
   "cursor": {
    "auto": [

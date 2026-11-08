@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-07",
- "radar_fetched": "2026-11-07",
+ "generated": "2026-11-08",
+ "radar_fetched": "2026-11-08",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -13,10 +13,10 @@
  },
  "note": "Derived facts only: no Reddit post text, bodies or permalinks are stored here or published. Themes are normalised request titles used as matching keys; demand = Google Trends rising; supply = PH/HN public feeds.",
  "counts": {
-  "candidates": 6,
+  "candidates": 7,
   "demand_confirmed": 0,
   "recurring": 0,
-  "scout": 6,
+  "scout": 7,
   "supplied": 0
  },
  "opportunities": [
@@ -30,7 +30,7 @@
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.74,
+   "score": 2.79,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -45,7 +45,7 @@
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.49,
+   "score": 2.71,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -87,6 +87,21 @@
    "subreddit": "ask_hn",
    "days_seen": [
     "2026-11-04"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.14,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "what software provides a markup language for wireframing",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "softwarerecs",
+   "days_seen": [
+    "2026-11-07"
    ],
    "state": "scout",
    "supplied": false,
