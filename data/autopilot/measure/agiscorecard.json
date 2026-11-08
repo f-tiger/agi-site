@@ -3,12 +3,16 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 25,
+    "n": 28,
     "q": "tool:portfolio_returns"
    },
    {
-    "n": 8,
+    "n": 9,
     "q": "tool:verdicts"
+   },
+   {
+    "n": 9,
+    "q": "tool:invest_positions"
    },
    {
     "n": 8,
@@ -17,10 +21,6 @@
    {
     "n": 8,
     "q": "tool:sunwatch_ledger"
-   },
-   {
-    "n": 8,
-    "q": "tool:invest_positions"
    },
    {
     "n": 6,
@@ -44,22 +44,26 @@
    }
   ]
  },
- "fetched": "2026-11-07",
+ "fetched": "2026-11-08",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
+  "/agents": {
+   "n7": 51,
+   "p7": 6
+  },
   "/ai-futures": {
-   "n7": 93,
-   "p7": 11
+   "n7": 99,
+   "p7": 20
   },
   "/tianya": {
-   "n7": 69,
-   "p7": 5
+   "n7": 73,
+   "p7": 10
   },
-  "/workbench/classroompuzzles": {
-   "n7": 56,
-   "p7": 27
+  "/zh/how-close-is-agi": {
+   "n7": 50,
+   "p7": 25
   }
  },
  "site": "agiscorecard",

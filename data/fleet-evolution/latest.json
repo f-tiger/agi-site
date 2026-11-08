@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "as_of": "2026-11-07",
+  "as_of": "2026-11-08",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
@@ -8,15 +8,15 @@
     "membership_ready": 0,
     "paid_members": 0,
     "active_members": 0,
-    "opportunities": 5,
+    "opportunities": 6,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-11-07T09:11:57.387Z",
-    "health": "2026-11-06T15:30:07Z",
-    "ai_referrals": "2026-11-06T15:30:36Z",
-    "opportunities": "2026-11-06",
-    "autopilot_receipt": "2026-11-07"
+    "membership": "2026-11-08T09:26:28.567Z",
+    "health": "2026-11-07T14:33:03Z",
+    "ai_referrals": "2026-11-07T14:33:29Z",
+    "opportunities": "2026-11-07",
+    "autopilot_receipt": "2026-11-08"
   },
   "input_ages_days": {
     "membership": 0,
@@ -28,7 +28,7 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-11-07T09:11:57.387Z",
+    "generated": "2026-11-08T09:26:28.567Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
     "ok": false,
@@ -131,7 +131,16 @@
       "theme": "are you building an ai company brain",
       "site": null,
       "state": "scout",
-      "score": 2.27,
+      "score": 2.74,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "openclaw saas",
+      "site": null,
+      "state": "scout",
+      "score": 2.49,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -167,7 +176,7 @@
       "theme": "can the whatsapp business calling api initiate calls using a canadian business p",
       "site": null,
       "state": "scout",
-      "score": 2.0,
+      "score": 1.98,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -363,7 +372,7 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 24,
+        "count": 21,
         "query": "infrarotheizung wandmontage",
         "value": 88250
       },
@@ -388,8 +397,8 @@
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/ai-futures",
-        "n7": 93,
-        "p7": 11
+        "n7": 99,
+        "p7": 20
       },
       "mode": "queue"
     },
@@ -400,8 +409,8 @@
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/",
-        "n7": 9,
-        "p7": 5
+        "n7": 10,
+        "p7": 2
       },
       "mode": "queue"
     },
@@ -411,7 +420,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 635,
+        "human_pv_28d": 627,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -422,7 +431,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 295,
+        "human_pv_28d": 300,
         "ai_ref_28d": 0
       },
       "mode": "queue"
