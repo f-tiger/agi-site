@@ -119,9 +119,9 @@ async function measure(page, locale, pathname, width) {
 
 try {
   // The matrix catches translated controls and responsive comparison overflow.
-  for (const width of [390, 1440]) {
+  for (const width of [320, 390, 1440]) {
     for (const [locale, prefix, market] of [['en','','US'], ['de','/de','DE'], ['zh','/zh','US']]) {
-      const ctx = await context({viewport:{width,height:width === 390 ? 844 : 1000}, permissions:['clipboard-read','clipboard-write']});
+      const ctx = await context({viewport:{width,height:width <= 390 ? 844 : 1000}, permissions:['clipboard-read','clipboard-write']});
       const page = await ctx.newPage();
       for (const suffix of ['/', '/shop', '/shop/display-cases']) {
         const pathname = prefix + suffix;
@@ -150,8 +150,21 @@ try {
           }
           await filter.selectOption('all');
           const eligible = settings.items.filter(item => item.eligible).map(item => item.id);
-          for (const id of eligible.slice(0, 2)) await checkbox(page, id).check();
+          await checkbox(page, eligible[0]).check();
+          assert.ok(await page.locator('[data-shortlist-compare]').isDisabled(), 'One choice cannot create a comparison');
+          assert.equal(await page.locator('[data-shortlist-dock-hint]').textContent(), settings.labels.oneMore, 'A single choice explains how to proceed');
+          await checkbox(page, eligible[1]).check();
+          if (width <= 390) {
+            const bounds = await page.locator('[data-shortlist-compare]').boundingBox();
+            assert.ok(bounds && bounds.y >= 0 && bounds.y + bounds.height <= 844, 'Compare remains reachable after selecting a lower product without scrolling back');
+            const countBounds = await page.locator('[data-shortlist-dock-count]').boundingBox();
+            assert.ok(countBounds.x + countBounds.width <= bounds.x, 'Selection count does not overlap the translated compare button');
+            const countFits = await page.locator('[data-shortlist-dock-count]').evaluate(el => el.scrollWidth <= el.clientWidth);
+            assert.ok(countFits, 'Selection count fits at narrow widths');
+          }
           await compare(page, eligible.slice(0, 2), settings);
+          await page.locator('[data-shortlist-edit]').press('Enter');
+          assert.equal(await page.evaluate(() => document.activeElement.dataset.shortlistRemove), eligible[0], 'Edit comparison returns keyboard focus to the selection');
           await checkbox(page, eligible[2]).check();
           assert.equal(await page.locator(selectors.comparison).isVisible(), false, 'Changed selection invalidates the old comparison');
           await compare(page, eligible.slice(0, 3), settings);
@@ -160,6 +173,7 @@ try {
             await fourth.click();
             assert.equal(await page.locator(selectors.status).getAttribute('data-shortlist-state'), 'limit');
             assert.ok((await page.locator(selectors.status).textContent()).trim().length > 8, 'Selection limit explains the next action');
+            assert.equal(await page.locator('[data-shortlist-dock-hint]').textContent(), settings.labels.limit, 'Limit feedback is also present beside the reachable action');
           }
           assert.deepEqual(await selectedIDs(page), eligible.slice(0, 3), 'A fourth selection never enters the list');
           await page.reload();
@@ -168,8 +182,9 @@ try {
           const envelope = await page.evaluate(key => JSON.parse(localStorage.getItem(key)), 'tds_shopping_shortlist_v1:' + market);
           assert.equal(envelope.version, 1);
           assert.deepEqual(envelope.ids, eligible.slice(0, 3));
-          await page.locator(`[data-shortlist-remove="${eligible[2]}"]`).click();
+          await page.locator(`[data-shortlist-remove="${eligible[2]}"]`).press('Enter');
           assert.deepEqual(await selectedIDs(page), eligible.slice(0, 2), 'Remove updates actual selection');
+          assert.equal(await page.evaluate(() => document.activeElement.dataset.shortlistRemove), eligible[1], 'Removing the last chip keeps focus on the previous chip');
           await compare(page, eligible.slice(0, 2), settings);
           const screenshot = path.join(artifacts, `shortlist-${locale}-${width}.png`);
           await page.locator(selectors.comparison).evaluate(element => element.scrollIntoView({behavior:'instant',block:'start'}));
@@ -194,12 +209,14 @@ try {
           assert.ok(errorText.length > 8 && errorText !== success, 'Clipboard rejection produces distinct, nonempty user feedback');
           assert.ok(await page.locator('[data-shortlist-share-link]').isVisible(), 'Clipboard failure retains a usable manual link');
           assert.equal(await page.locator('[data-shortlist-share-link]').getAttribute('href'), shared);
-          await page.locator('[data-shortlist-clear]').click();
+          await page.locator('[data-shortlist-clear]').press('Enter');
           assert.deepEqual(await selectedIDs(page), [], 'Clear removes the selection');
+          assert.ok(await page.evaluate(() => document.activeElement.matches('[data-shortlist-toolbar]')), 'Clearing moves focus out of hidden controls');
+          assert.equal(await page.locator('[data-shortlist-dock]').isVisible(), false, 'No empty sticky action after clearing');
           assert.equal(await page.locator(selectors.comparison).isVisible(), false);
           await page.reload();
           assert.deepEqual(await selectedIDs(page), [], 'Clear survives reload');
-          checks.push({locale,width,filters:true,comparison:'2 and 3 named products',max3:true,persistence:true,removeClear:true,realClipboard:true,clipboardFailure:true});
+          checks.push({locale,width,filters:true,comparison:'2 and 3 named products',reachableCompare:true,keyboardEditRemoveClear:true,max3:true,persistence:true,removeClear:true,realClipboard:true,clipboardFailure:true});
           await page.evaluate(() => scrollTo(0, 0));
           const hubScreenshot = path.join(artifacts, `hub-${locale}-${width}.png`);
           await page.screenshot({path:hubScreenshot, fullPage:false});
@@ -209,6 +226,25 @@ try {
       await ctx.close();
     }
   }
+
+  const landscape = await context({viewport:{width:667,height:375}});
+  const landscapePage = await landscape.newPage();
+  await open(landscapePage, '/de/shop', '#shortlist=blaliden,samla');
+  assert.equal(await landscapePage.locator('[data-shortlist-dock]').evaluate(el => getComputedStyle(el).position), 'static', 'Short landscape viewports retain room for product content');
+  await compare(landscapePage, ['blaliden','samla'], await config(landscapePage));
+  await noOverflow(landscapePage, 'Landscape');
+  await landscape.close();
+  checks.push({shortLandscape:true});
+
+  const keyboard = await context();
+  const keyboardPage = await keyboard.newPage();
+  await open(keyboardPage, '/shop', '#shortlist=blaliden,samla');
+  await keyboardPage.locator('[data-shortlist-remove="blaliden"]').press('Enter');
+  assert.equal(await keyboardPage.evaluate(() => document.activeElement.dataset.shortlistRemove), 'samla', 'Removing the first chip focuses its successor');
+  await keyboardPage.locator('[data-shortlist-remove="samla"]').press('Enter');
+  assert.ok(await keyboardPage.evaluate(() => document.activeElement.matches('[data-shortlist-toolbar]')), 'Removing the only chip focuses the selection container');
+  await keyboard.close();
+  checks.push({firstAndOnlyChipFocus:true});
 
   // Share and storage inputs are an untrusted boundary, separate from happy-path controls.
   const edge = await context();
@@ -314,7 +350,7 @@ try {
   }
 } finally {
   await browser.close();
-  const report = {status:failure ? 'failed' : 'passed', generatedAt:new Date().toISOString(), root, viewports:[390,1440], locales:['en','de','zh'], checks, measurements, layoutFailures, screenshots, javascriptErrors:errors, missingAssets:missing, blockedRequests:blocked, productionNetworkRequests:0, backendReceiptVerified:false, failure};
+  const report = {status:failure ? 'failed' : 'passed', generatedAt:new Date().toISOString(), root, viewports:[320,390,1440], locales:['en','de','zh'], checks, measurements, layoutFailures, screenshots, javascriptErrors:errors, missingAssets:missing, blockedRequests:blocked, productionNetworkRequests:0, backendReceiptVerified:false, failure};
   const reportPath = path.join(artifacts, 'report.json');
   fs.writeFileSync(reportPath, JSON.stringify(report,null,2) + '\n');
   console.log(JSON.stringify({status:report.status, reportPath, checks:checks.length, measurements:measurements.length, screenshots:screenshots.length, javascriptErrors:errors.length, missingAssets:missing.length, blockedRequests:blocked.length, productionNetworkRequests:0, backendReceiptVerified:false, failure:failure?.message}));
