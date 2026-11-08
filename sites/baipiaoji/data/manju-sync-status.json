@@ -1,39 +1,8 @@
 {
   "version": 1,
-  "attemptedAt": "2026-11-07T06:33:24.124Z",
+  "attemptedAt": "2026-11-08T06:40:25.521Z",
   "schedule": "每日北京时间 08:30，复用 BPJ 发布任务",
-  "status": "ok",
-  "completedAt": "2026-11-07T06:33:59.685Z",
+  "status": "failed",
   "lastSuccessAt": "2026-11-07T06:33:59.203695+00:00",
-  "sourceDates": [
-    {
-      "kind": "ai-drama",
-      "date": "2026-11-07"
-    },
-    {
-      "kind": "comic-drama",
-      "date": "2026-11-07"
-    }
-  ],
-  "records": 1412,
-  "discoveryImport": {
-    "status": "ok",
-    "fetched": 2,
-    "added": 0,
-    "rejected": 2
-  },
-  "added": 27,
-  "changes": [
-    {
-      "kind": "ai-drama",
-      "newEntries": 7,
-      "heatChanges": 93
-    },
-    {
-      "kind": "comic-drama",
-      "newEntries": 21,
-      "heatChanges": 79
-    }
-  ],
-  "sourceFingerprint": "0898e8694b22cadcecdde279136241f2efeb9e2168f0344b98a18b11fe5d1797"
+  "error": "采集或数据校验失败；保留上次有效内容。详见 Actions 日志。"
 }

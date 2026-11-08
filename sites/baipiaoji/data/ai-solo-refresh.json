@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-11-07T06:34:03.868Z",
+  "lastRun": "2026-11-08T06:40:41.344Z",
   "status": "degraded",
   "checkedSources": 8,
   "queue": [
@@ -253,25 +253,25 @@
       "caseId": "cruise-robotaxi",
       "reason": "source-unreachable",
       "sourceUrl": "https://investor.gm.com/news-releases/news-release-details/gm-refocus-autonomous-driving-development-personal-vehicles/",
-      "lastChecked": "2026-10-25T05:13:31.074Z"
+      "lastChecked": "2026-11-08T06:40:41.344Z"
     },
     {
       "caseId": "cruise-robotaxi",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1467858/000146785826000013/gm-20251231.htm",
-      "lastChecked": "2026-10-25T05:13:31.074Z"
+      "lastChecked": "2026-11-08T06:40:41.344Z"
     },
     {
       "caseId": "poppy",
       "reason": "source-unreachable",
       "sourceUrl": "https://getpoppy.app/blog/sunset",
-      "lastChecked": "2026-10-25T05:13:31.074Z"
+      "lastChecked": "2026-11-08T06:40:41.344Z"
     },
     {
       "caseId": "yara-ai",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.linkedin.com/posts/joebraidwood_after-a-year-of-building-yara-ai-its-time-activity-7394436184648736769-T_Z1/",
-      "lastChecked": "2026-10-26T05:16:10.172Z"
+      "lastChecked": "2026-11-08T06:40:41.344Z"
     },
     {
       "caseId": "windsurf",
@@ -832,7 +832,7 @@
     "cruise-robotaxi|https://investor.gm.com/news-releases/news-release-details/gm-refocus-autonomous-driving-development-personal-vehicles/": {
       "caseId": "cruise-robotaxi",
       "sourceUrl": "https://investor.gm.com/news-releases/news-release-details/gm-refocus-autonomous-driving-development-personal-vehicles/",
-      "lastAttempt": "2026-10-25T05:13:31.074Z",
+      "lastAttempt": "2026-11-08T06:40:41.344Z",
       "status": "unreachable",
       "http": 403,
       "consecutiveChange": 0
@@ -840,7 +840,7 @@
     "cruise-robotaxi|https://www.sec.gov/Archives/edgar/data/1467858/000146785826000013/gm-20251231.htm": {
       "caseId": "cruise-robotaxi",
       "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1467858/000146785826000013/gm-20251231.htm",
-      "lastAttempt": "2026-10-25T05:13:31.074Z",
+      "lastAttempt": "2026-11-08T06:40:41.344Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -848,7 +848,7 @@
     "poppy|https://getpoppy.app/blog/sunset": {
       "caseId": "poppy",
       "sourceUrl": "https://getpoppy.app/blog/sunset",
-      "lastAttempt": "2026-10-25T05:13:31.074Z",
+      "lastAttempt": "2026-11-08T06:40:41.344Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -856,10 +856,10 @@
     "poppy|https://www.juyoungkim.net/posts/poppy-second-nature": {
       "caseId": "poppy",
       "sourceUrl": "https://www.juyoungkim.net/posts/poppy-second-nature",
-      "lastAttempt": "2026-10-25T05:13:31.074Z",
+      "lastAttempt": "2026-11-08T06:40:41.344Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-10-25T05:13:31.074Z",
+      "lastSuccess": "2026-11-08T06:40:41.344Z",
       "lastHash": "f884c00e6ca3bd46dbd438b37dc5225c3b8129fd79c2bfb25c7818bb6d9897d0",
       "hash": "f884c00e6ca3bd46dbd438b37dc5225c3b8129fd79c2bfb25c7818bb6d9897d0",
       "simhash": "227630541f4ce077",
@@ -869,11 +869,11 @@
     "super-ai|https://gravity.fast/blog/super-ai-postmortem/": {
       "caseId": "super-ai",
       "sourceUrl": "https://gravity.fast/blog/super-ai-postmortem/",
-      "lastAttempt": "2026-10-26T05:16:10.172Z",
+      "lastAttempt": "2026-11-08T06:40:41.344Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-10-26T05:16:10.172Z",
-      "lastHash": "27c1c19734be3904885c55b4ef8b2b5f211c5e5e326147240985974fbbef3967",
+      "lastSuccess": "2026-11-08T06:40:41.344Z",
+      "lastHash": "9a8550c4047745d1b9fe0d52d74c30c38ac17b562bf2f99689a1f22ee6842f4a",
       "hash": "2a038809a3773a17c88b265e3b0d112c42444aaf22ee824a9bfdd71fb8e87fe4",
       "simhash": "be02d0295cfd039f",
       "words": 1873,
@@ -882,11 +882,11 @@
     "vibe-ai|https://gravity.fast/blog/vibe-ai-postmortem/": {
       "caseId": "vibe-ai",
       "sourceUrl": "https://gravity.fast/blog/vibe-ai-postmortem/",
-      "lastAttempt": "2026-10-26T05:16:10.172Z",
+      "lastAttempt": "2026-11-08T06:40:41.344Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-10-26T05:16:10.172Z",
-      "lastHash": "dec28bc8c6ac32e0c94a752bfdf1f31732b4ff8814aafea4afd89210443fe8fb",
+      "lastSuccess": "2026-11-08T06:40:41.344Z",
+      "lastHash": "7eb55e9b5b1bd5750d503d907528ce5a76793602228845b0230d034b7e500d41",
       "hash": "b93f7e1d5d4ee6b40b12ba45c3dfac55ef74a68d2359db423d84b11bcc8d6174",
       "simhash": "a412d97a8edc039e",
       "words": 1817,
@@ -895,10 +895,10 @@
     "yara-ai|https://www.meetyara.com/privacy": {
       "caseId": "yara-ai",
       "sourceUrl": "https://www.meetyara.com/privacy",
-      "lastAttempt": "2026-10-26T05:16:10.172Z",
+      "lastAttempt": "2026-11-08T06:40:41.344Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-10-26T05:16:10.172Z",
+      "lastSuccess": "2026-11-08T06:40:41.344Z",
       "lastHash": "5e6975e6bdabb2a423b170160fa14be847e9ba23dddc59556ffb3c70e1211364",
       "hash": "5e6975e6bdabb2a423b170160fa14be847e9ba23dddc59556ffb3c70e1211364",
       "simhash": "6827315ae4e4d68c",
@@ -908,7 +908,7 @@
     "yara-ai|https://www.linkedin.com/posts/joebraidwood_after-a-year-of-building-yara-ai-its-time-activity-7394436184648736769-T_Z1/": {
       "caseId": "yara-ai",
       "sourceUrl": "https://www.linkedin.com/posts/joebraidwood_after-a-year-of-building-yara-ai-its-time-activity-7394436184648736769-T_Z1/",
-      "lastAttempt": "2026-10-26T05:16:10.172Z",
+      "lastAttempt": "2026-11-08T06:40:41.344Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1159,31 +1159,21 @@
       "consecutiveChange": 0
     }
   },
-  "cursor": 41,
+  "cursor": 46,
   "errors": [
     {
-      "caseId": "olive-ai",
-      "sourceUrl": "https://www.fiercehealthcare.com/health-tech/once-high-flying-unicorn-olive-ai-sells-two-key-businesses-winds-down-operations",
+      "caseId": "cruise-robotaxi",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1467858/000146785826000013/gm-20251231.htm",
       "reason": "body-limit"
     },
     {
-      "caseId": "builder-ai",
-      "sourceUrl": "https://www.computerworld.com/article/3991362/microsoft-backed-no-code-ai-startup-files-for-bankruptcy.html",
-      "reason": "unsafe-source"
+      "caseId": "poppy",
+      "sourceUrl": "https://getpoppy.app/blog/sunset",
+      "reason": "network-error"
     },
     {
-      "caseId": "embodied",
-      "sourceUrl": "https://www.businessinsider.com/moxie-robot-toy-shutting-down-kids-embodied-goodbye-2024-12",
-      "reason": "body-limit"
-    },
-    {
-      "caseId": "ghost-autonomy",
-      "sourceUrl": "https://autotechinsight.ihsmarkit.com/main/news/view/printer-friendly?id=5275319",
-      "reason": "unsafe-source"
-    },
-    {
-      "caseId": "argo-ai",
-      "sourceUrl": "https://www.euronews.com/next/2022/11/01/ford-motor-autonomous-argo",
+      "caseId": "yara-ai",
+      "sourceUrl": "https://www.linkedin.com/posts/joebraidwood_after-a-year-of-building-yara-ai-its-time-activity-7394436184648736769-T_Z1/",
       "reason": "body-limit"
     }
   ]

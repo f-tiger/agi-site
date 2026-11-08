@@ -1,6 +1,26 @@
 {
   "items": [
     {
+      "name": "We compressed a 31B video+audio diffusion model to 14B, 6 steps, INT8",
+      "url": "https://github.com/Video-Rebirth/hyperflow-h3-flash",
+      "host": "github.com",
+      "src": "https://news.ycombinator.com/item?id=50405263",
+      "points": 63,
+      "comments": 12,
+      "found": "2026-11-08",
+      "status": "candidate"
+    },
+    {
+      "name": "Tmux-restore saves tmux windows and agent sessions across reboots",
+      "url": "https://github.com/andrewboldi/tmux-restore",
+      "host": "github.com",
+      "src": "https://news.ycombinator.com/item?id=50355009",
+      "points": 57,
+      "comments": 36,
+      "found": "2026-11-08",
+      "status": "candidate"
+    },
+    {
       "name": "Stroq – a local audit of what your coding agent did and why",
       "url": "https://github.com/AGGIB/Stroq",
       "host": "github.com",
@@ -359,17 +379,7 @@
       "comments": 44,
       "found": "2026-09-26",
       "status": "candidate"
-    },
-    {
-      "name": "AI·rete·RAG – a Rete rule engine decides, RAG explains why",
-      "url": "https://ai-rete-rag.com/",
-      "host": "ai-rete-rag.com",
-      "src": "https://news.ycombinator.com/item?id=49803683",
-      "points": 43,
-      "comments": 9,
-      "found": "2026-09-24",
-      "status": "candidate"
     }
   ],
-  "updated": "2026-11-07"
+  "updated": "2026-11-08"
 }

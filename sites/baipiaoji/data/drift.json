@@ -1,10 +1,49 @@
 {
-  "generated": "2026-11-07",
+  "generated": "2026-11-08",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 105,
-  "fetched_fail": 22,
+  "fetched_ok": 107,
+  "fetched_fail": 20,
   "pending": 10,
   "items": [
+    {
+      "slug": "immersive-translate",
+      "url": "https://immersivetranslate.com",
+      "confirmed": "2026-11-08",
+      "first_seen": "2026-11-07",
+      "added": [
+        "2752b"
+      ],
+      "removed": [
+        "4550b"
+      ],
+      "checked_then": "2026-08-03"
+    },
+    {
+      "slug": "elevenlabs",
+      "url": "https://elevenlabs.io/pricing",
+      "confirmed": "2026-11-08",
+      "first_seen": "2026-11-07",
+      "added": [
+        "$0/mo",
+        "$1.",
+        "$19",
+        "$21",
+        "$23",
+        "$299/mo",
+        "$99/mo",
+        "$990/mo",
+        "00m"
+      ],
+      "removed": [
+        "$17",
+        "$29",
+        "$55",
+        "$56",
+        "50%",
+        "83%"
+      ],
+      "checked_then": "2026-08-02"
+    },
     {
       "slug": "bailian",
       "url": "https://aliyun.com",
@@ -137,20 +176,6 @@
         "160k"
       ],
       "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "immersive-translate",
-      "url": "https://immersivetranslate.com",
-      "confirmed": "2026-11-06",
-      "first_seen": "2026-11-05",
-      "added": [
-        "79222b",
-        "8655b"
-      ],
-      "removed": [
-        "349b"
-      ],
-      "checked_then": "2026-08-03"
     },
     {
       "slug": "lovable",
@@ -436,28 +461,6 @@
         "2image"
       ],
       "checked_then": "2026-08-06"
-    },
-    {
-      "slug": "elevenlabs",
-      "url": "https://elevenlabs.io/pricing",
-      "confirmed": "2026-10-24",
-      "first_seen": "2026-10-23",
-      "added": [
-        "$1",
-        "$17",
-        "$18",
-        "$2",
-        "$24",
-        "$25",
-        "$26",
-        "$27",
-        "$28",
-        "$29",
-        "$3",
-        "$30"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-02"
     },
     {
       "slug": "cline",

@@ -1,19 +1,19 @@
 {
- "generated": "2026-11-07",
+ "generated": "2026-11-08",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "opusclip",
-  "perplexity",
-  "phind",
-  "pika",
-  "pixlr",
-  "poe",
-  "qoder",
-  "quark-ai"
+  "caiyun",
+  "mistral",
+  "playground-ai",
+  "processon",
+  "tongyi",
+  "wenxin",
+  "canva",
+  "cohere"
  ],
- "cursor": "quark-ai",
+ "cursor": "cohere",
  "summary": {
   "ready": 42,
   "empty": 36,
@@ -204,30 +204,27 @@
    "name": "Canva 可画",
    "cat": "image",
    "reach": 2,
-   "probed": "2026-10-31",
+   "probed": "2026-11-08",
    "env": "runner",
    "state": "blocked",
    "tried": [
     {
      "url": "https://www.canva.cn/pricing",
-     "status": 0,
+     "status": 403,
      "bytes": 0,
-     "tokens": 0,
-     "error": "ETIMEDOUT"
+     "tokens": 0
     },
     {
      "url": "https://www.canva.cn/price",
-     "status": 0,
+     "status": 403,
      "bytes": 0,
-     "tokens": 0,
-     "error": "ETIMEDOUT"
+     "tokens": 0
     },
     {
      "url": "https://www.canva.cn/plans",
-     "status": 0,
+     "status": 403,
      "bytes": 0,
-     "tokens": 0,
-     "error": "ETIMEDOUT"
+     "tokens": 0
     }
    ],
    "best": null
@@ -456,8 +453,8 @@
    "slug": "tongyi",
    "name": "通义千问",
    "cat": "chat",
-   "reach": 8,
-   "probed": "2026-10-17",
+   "reach": 3,
+   "probed": "2026-11-08",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -935,7 +932,7 @@
    "name": "彩云小译",
    "cat": "writing",
    "reach": 3,
-   "probed": "2026-10-31",
+   "probed": "2026-11-08",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -1085,21 +1082,21 @@
    "slug": "cohere",
    "name": "Cohere",
    "cat": "api",
-   "reach": 0,
-   "probed": "2026-11-02",
+   "reach": 2,
+   "probed": "2026-11-08",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://cohere.com/pricing",
      "status": 200,
-     "bytes": 577197,
-     "tokens": 41
+     "bytes": 597149,
+     "tokens": 45
     }
    ],
    "best": {
     "url": "https://cohere.com/pricing",
-    "tokens": 41,
+    "tokens": 45,
     "excerpt": "will be billed on a pay-as-you-go basis. Your bill will be issued at the end of every calendar month or when you reach $250 in outstanding balances. The endpoint I’m using is billed by token. What is a token? Language models understand “tokens” rather than characters or bytes. The number of tokens per word depends on the complexity of the text. Simple text may approach 1 token per word on average, while complex texts may use less common words that require 3-4 tokens per word on average. For more details on tokens, refer to this page . Where do I find pricing for our legacy models? For existing customers: Command pricing is $1.00/1M tokens for input and $2.00/1M tokens for output Command-ligh"
    }
   },
@@ -2023,31 +2020,28 @@
    "slug": "mistral",
    "name": "Mistral AI",
    "cat": "api",
-   "reach": 0,
-   "probed": "2026-11-06",
+   "reach": 3,
+   "probed": "2026-11-08",
    "env": "runner",
    "state": "blocked",
    "tried": [
     {
      "url": "https://console.mistral.ai/pricing",
-     "status": 0,
+     "status": 401,
      "bytes": 0,
-     "tokens": 0,
-     "error": "TypeError"
+     "tokens": 0
     },
     {
      "url": "https://console.mistral.ai/price",
-     "status": 0,
+     "status": 401,
      "bytes": 0,
-     "tokens": 0,
-     "error": "TypeError"
+     "tokens": 0
     },
     {
      "url": "https://console.mistral.ai/plans",
-     "status": 0,
+     "status": 401,
      "bytes": 0,
-     "tokens": 0,
-     "error": "TypeError"
+     "tokens": 0
     }
    ],
    "best": null
@@ -2361,21 +2355,21 @@
    "name": "Playground AI",
    "cat": "image",
    "reach": 3,
-   "probed": "2026-10-31",
+   "probed": "2026-11-08",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://playgroundai.com/design/pricing",
      "status": 200,
-     "bytes": 170932,
-     "tokens": 8
+     "bytes": 174620,
+     "tokens": 10
     }
    ],
    "best": {
     "url": "https://playgroundai.com/design/pricing",
-    "tokens": 8,
-    "excerpt": "d images up to 2048×2048 with GPT Image 2 and GPT Image 2.5 Commercial use World-wide, royalty free license Annual -20% $ 15 $ 12 /mo $ 144 will be charged in total annually Upgrade to Pro Pro Plus BEST VALUE For professionals who need the best Unlimited image generations No generation caps Advanced model access 1,000 monthly credits across all models including Nano Banana Pro. Standard models use 1 credit per generation, Nano Banana Pro uses 4 Premium templates Unlimited access to the full premium template library Enhanced image editing Unlimited upscaling and background removal Up to 4K AI image editing Generate, resize, and AI-extend images up to 3840×2160 with GPT Image 2 and GPT Image 2"
+    "tokens": 10,
+    "excerpt": "ting Generate, resize, and AI-extend images up to 2048×2048 Commercial use World-wide, royalty free license Annual -20% $ 15 $ 12 /mo $ 144 will be charged in total annually Upgrade to Pro Pro Plus BEST VALUE For professionals who need the best Unlimited Playground v3 images No 3-hour limit Advanced model access 6,000 monthly credits 25% off top-up credits Buy extra credit packs at a discount whenever you need more Premium templates Unlimited access to the full premium template library Enhanced image editing Precise upscaling from 50 credits, plus upscaling and background removal at 1 credit each Up to 4K AI image editing Generate, resize, and AI-extend images up to 4K portrait Commercial us"
    }
   },
   "poe": {
@@ -2405,7 +2399,7 @@
    "name": "ProcessOn",
    "cat": "office",
    "reach": 3,
-   "probed": "2026-10-31",
+   "probed": "2026-11-08",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -3009,26 +3003,26 @@
    "name": "文心一言（百度）",
    "cat": "chat",
    "reach": 3,
-   "probed": "2026-10-31",
+   "probed": "2026-11-08",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://yiyan.baidu.com/pricing",
      "status": 200,
-     "bytes": 11152,
+     "bytes": 11020,
      "tokens": 0
     },
     {
      "url": "https://yiyan.baidu.com/price",
      "status": 200,
-     "bytes": 11114,
+     "bytes": 11126,
      "tokens": 0
     },
     {
      "url": "https://yiyan.baidu.com/plans",
      "status": 200,
-     "bytes": 11184,
+     "bytes": 11028,
      "tokens": 0
     }
    ],

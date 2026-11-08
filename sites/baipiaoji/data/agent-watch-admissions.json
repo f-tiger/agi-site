@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-07",
+ "checked": "2026-11-08",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -3762,299 +3762,27 @@
    "source_http": 404,
    "repo_http": 404,
    "reason": "source HTTP 404"
+  },
+  "cambercloud-camber-mcp-camber-mcp-server": {
+   "attempts": 1,
+   "first_attempt": "2026-11-08",
+   "last_attempt": "2026-11-08",
+   "attemptedAt": "2026-11-08T06:39:52.254Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "unsafe-url"
+  },
+  "chadanalytics-chad": {
+   "attempts": 1,
+   "first_attempt": "2026-11-08",
+   "last_attempt": "2026-11-08",
+   "attemptedAt": "2026-11-08T06:39:52.254Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
   }
  },
  "admitted": [
-  {
-   "slug": "agentgpt",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "aios",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "agent-zero",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "txtai",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "youtu-agent",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "agent-lightning",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "eliza",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "continue",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "cline",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "spring-ai-alibaba",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "gemini-cli",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "roo-code",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "kilo-code",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "qwen-code",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "claude-code",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "crush",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "opencode",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "devin",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "cursor",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "windsurf",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "github-copilot-agent",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "jules",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "kiro",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "replit-agent",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "trae",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "bolt-diy",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "swe-agent",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "mini-swe-agent",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "coderabbit",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "pr-agent",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "augment-code",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "warp",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "codegen",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "factory-droids",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "void",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "amazon-q-developer",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "junie",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "refact",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "potpie",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "gpt-pilot",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "mcp-python-sdk",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "model-context-protocol",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "vibe-kanban",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "mcp-typescript-sdk",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "mcp-java-sdk",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "mcp-csharp-sdk",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "mcp-go-sdk",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "mcp-kotlin-sdk",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "mcp-rust-sdk",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "mcp-swift-sdk",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "mcp-ruby-sdk",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "mcp-inspector",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "playwright-mcp",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "github-mcp-server",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "brave-search-mcp",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "fastmcp",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "firecrawl-mcp-server",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "exa-mcp-server",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
   {
    "slug": "tavily-mcp",
    "date": "2026-09-22",
@@ -20570,6 +20298,354 @@
    "date": "2026-11-07",
    "source_http": 200,
    "repo_http": null
+  },
+  {
+   "slug": "californiahvacreplacementcost-site",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "californiasolarcostcalculator-site",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "caliuapp-caliu-notes",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "callingly-callingly",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "callmemcp-call-me",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "callstay-hotels",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "calmseo-seo-mcp",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "calorieapi-calorie-mcp",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "calvingwatch-public-knowledge",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "camdentools-shop",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "campiamo-campsites",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "canadapayrollcalculator-site",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "canalnav-canal-nav",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "canarics-canarics",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "candidcost-mcp",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "canhelpto-support",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "canienter-visa-check",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "capanix-site",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "capital-workbench-mcp",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "capitalgainstaxhq-site",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "captiatechnology-knowledge",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "captionpipe-captionpipe",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "car-gene-genealogy",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "carathunter-diamond-prices",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "carbikly-site",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cardvolume-market-data",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "careerrift-career-rift",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "careplankit-care-plans",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "careranks-data",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cargovox-mcp",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "carhandshake-inventory",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "caribooks-quickbooks",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "carrepaircostestimator-cost-estimator",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "carrierscrub-carrier-lookup",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cars-data-car-specs-api",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "carsmultiverse-recall-record",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "carto-carto",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "casemargin-mcp-server",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "caspchecklist-site",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "caspio-caspio",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "catalogapi-catalogapi",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "catchdoms-expired-domains",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "caudexcatena-mcp",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cautellus-scam-detection",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cavuno-job-board-operator",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cazimedia-agentnative-data-exchange",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cazimedia-agentnative-government-public-open-data-datasets-federal-state-city-statistics-census-records-police-education-schools",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cazimedia-agentnative-official-provenance-aggregations-insights-free-samples-open-data",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cefradar-cefradar",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "centeringlab-centering-lab",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "centipidbilling-billing",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cerberusindex-cerberus-index",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ceruleanjobs-search",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "chainfolioai-chainfolioai",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "chaingrantor-grantor-mcp",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "chainstack-chainstack",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "chalet-montagne-rentals",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "changethisfile-mcp",
+   "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": 200
   }
  ],
  "note": "Written by scripts/agent-watch-admit.mjs. A slug listed under rejected was NOT admitted (reason + last HTTP status); it is retried on later runs. Candidates that were admitted appear in data/agent-watch.json."
