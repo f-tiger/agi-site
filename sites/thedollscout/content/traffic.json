@@ -2,10 +2,10 @@
   "source": "Cloudflare GraphQL Analytics API (edge-measured)",
   "note": "Counted at the edge, so unaffected by ad blockers, privacy browsers or network-level blocking of Google. Includes bot and crawler traffic, which on a new site is most of it — read it as a floor, not as humans.",
   "zone": "thedollscout.com",
-  "updated": "2026-11-07",
+  "updated": "2026-11-08",
   "window": {
     "since": "2026-07-26",
-    "until": "2026-11-06"
+    "until": "2026-11-07"
   },
   "days": {
     "2026-07-26": {
@@ -5955,6 +5955,76 @@
         "CN": 164,
         "NL": 160,
         "HK": 80
+      }
+    },
+    "2026-11-07": {
+      "date": "2026-11-07",
+      "requests": 19307,
+      "pageViews": 12463,
+      "uniques": 1396,
+      "byIpType": {
+        "noRecord": 12467,
+        "unknown": 6376,
+        "searchEngine": 439,
+        "allowlist": 24,
+        "badHost": 1
+      },
+      "byBrowser": {
+        "Unknown": 11028,
+        "Curl": 540,
+        "Chrome": 387,
+        "MobileSafari": 218,
+        "YandexBot": 88,
+        "Firefox": 65,
+        "BingBot": 45,
+        "Edge": 28,
+        "GoogleBot": 26,
+        "FirefoxMobile": 15,
+        "ChromeHeadless": 9,
+        "Safari": 8,
+        "ChromeMobile": 3,
+        "MobileSafariWebview": 2,
+        "ChromeDerivative": 1
+      },
+      "byContentType": {
+        "html": 13108,
+        "txt": 2308,
+        "json": 1395,
+        "js": 1176,
+        "empty": 764,
+        "css": 339,
+        "xml": 65,
+        "unknown": 51,
+        "pdf": 39,
+        "svg": 29,
+        "png": 18,
+        "jpeg": 9,
+        "zip": 6
+      },
+      "byStatus": {
+        "200": 17803,
+        "202": 263,
+        "204": 36,
+        "301": 285,
+        "303": 228,
+        "304": 38,
+        "308": 77,
+        "401": 9,
+        "403": 18,
+        "404": 422,
+        "405": 47,
+        "410": 71,
+        "499": 10
+      },
+      "topCountries": {
+        "BE": 8182,
+        "US": 7828,
+        "FR": 613,
+        "FI": 392,
+        "SG": 376,
+        "CN": 349,
+        "HK": 270,
+        "DE": 258
       }
     }
   }
