@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-07",
+ "fetched": "2026-11-08",
  "seeds": {
   "electric spin scrubber": {
    "rising": [
@@ -351,24 +351,58 @@
     "mamian skirt short",
     "mamian skirt plus size"
    ],
+   "rising": [],
+   "source": "autocomplete-diff",
+   "fetched": "2026-11-08"
+  },
+  "chinese style shirt": {
+   "auto": [
+    "chinese style shirt",
+    "chinese style shirt women",
+    "chinese style shirt name",
+    "chinese style shirt men",
+    "chinese style shirt zara",
+    "chinese style shirt pattern",
+    "what are traditional chinese shirts called",
+    "chinese shirt name",
+    "chinese style dishes"
+   ],
    "rising": [
     {
-     "q": "mamian skirt short",
+     "q": "chinese style shirt women",
+     "v": "new"
+    },
+    {
+     "q": "chinese style shirt name",
+     "v": "new"
+    },
+    {
+     "q": "chinese style shirt men",
+     "v": "new"
+    },
+    {
+     "q": "chinese style shirt zara",
+     "v": "new"
+    },
+    {
+     "q": "chinese style shirt pattern",
+     "v": "new"
+    },
+    {
+     "q": "what are traditional chinese shirts called",
+     "v": "new"
+    },
+    {
+     "q": "chinese shirt name",
+     "v": "new"
+    },
+    {
+     "q": "chinese style dishes",
      "v": "new"
     }
    ],
    "source": "autocomplete-diff",
-   "fetched": "2026-11-07"
-  },
-  "chinese style shirt": {
-   "rising": [
-    {
-     "q": "mandarin collar shirt",
-     "v": 53400
-    }
-   ],
-   "source": "related-queries",
-   "fetched": "2026-10-09"
+   "fetched": "2026-11-08"
   },
   "gongfu tea set": {
    "rising": [
