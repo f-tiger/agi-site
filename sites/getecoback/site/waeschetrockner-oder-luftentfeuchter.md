@@ -25,6 +25,8 @@ Wenn du bereits einen Trockner besitzt, ist dessen Kaufpreis für diese einzelne
 Die [Verbraucherzentrale erklärt das Trockner-Energielabel](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/beim-kauf-eines-waeschetrockners-an-den-stromverbrauch-denken-37984), einschließlich kWh je 100 Trocknungen. Unsere Szenariorechnung ist keine Prüfung eines bestimmten Geräts. [Hinweise zu Heizen und Lüften](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426) helfen, Raumfeuchte getrennt von den Stromkosten zu betrachten.
 [Zur Haushaltswerkstatt](https://getecoback.com/wohnkosten-werkstatt.html) · [Wie wir empfehlen](https://getecoback.com/wie-wir-empfehlen.html)
 
+Frei gewähltes Beispiel, keine Produktmessung: 250 W × 8 h ÷ 1.000 = 2 kWh; bei 0,35 €/kWh sind das 0,70 €. Ein Trockner mit 1,5 kWh kostet 0,525 €. Gleiche Wäschemenge und gleichen Trocknungsgrad vorausgesetzt; Raumheizung und Lüftungswärme fehlen.
+
 ### Welche Situation passt zu dir?
 **Ich habe bereits einen Trockner**
 Vergleiche zuerst einen vollständigen Durchgang deines vorhandenen Geräts. Ein neuer Entfeuchter muss zusätzlich angeschafft werden; ein niedriger Wattwert allein rechtfertigt den Kauf nicht. Das Rechenbeispiel unten zeigt, wie eine lange Laufzeit den Vorteil umkehren kann.
