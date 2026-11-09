@@ -1,10 +1,73 @@
 {
-  "generated": "2026-11-08",
+  "generated": "2026-11-09",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
   "fetched_ok": 107,
   "fetched_fail": 20,
-  "pending": 10,
+  "pending": 8,
   "items": [
+    {
+      "slug": "replit",
+      "url": "https://docs.replit.com",
+      "confirmed": "2026-11-09",
+      "first_seen": "2026-11-08",
+      "added": [
+        "0026s",
+        "0256b",
+        "100%",
+        "1144b",
+        "12%",
+        "1942b",
+        "1b",
+        "302b",
+        "323b",
+        "36%",
+        "38%",
+        "4b"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-03"
+    },
+    {
+      "slug": "bolt",
+      "url": "https://support.bolt.new",
+      "confirmed": "2026-11-09",
+      "first_seen": "2026-11-08",
+      "added": [
+        "0.15s",
+        "5432b",
+        "616b"
+      ],
+      "removed": [
+        "36b"
+      ],
+      "checked_then": "2026-09-21"
+    },
+    {
+      "slug": "v0",
+      "url": "https://v0.app",
+      "confirmed": "2026-11-09",
+      "first_seen": "2026-11-08",
+      "added": [],
+      "removed": [
+        "100%",
+        "9%"
+      ],
+      "checked_then": "2026-08-03"
+    },
+    {
+      "slug": "zhipu-glm",
+      "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
+      "confirmed": "2026-11-09",
+      "first_seen": "2026-11-08",
+      "added": [
+        "40b",
+        "96b"
+      ],
+      "removed": [
+        "28b"
+      ],
+      "checked_then": "2026-08-01"
+    },
     {
       "slug": "immersive-translate",
       "url": "https://immersivetranslate.com",
@@ -56,31 +119,6 @@
         "10k",
         "1mo",
         "70m"
-      ],
-      "checked_then": "2026-08-03"
-    },
-    {
-      "slug": "v0",
-      "url": "https://v0.app",
-      "confirmed": "2026-11-07",
-      "first_seen": "2026-11-06",
-      "added": [
-        "10.2k",
-        "14.8k"
-      ],
-      "removed": [
-        "1.2k",
-        "1.3k",
-        "1.4k",
-        "1.9k",
-        "10.8k",
-        "10k",
-        "11.1k",
-        "14.7k",
-        "2.4k",
-        "20.8k",
-        "3.1k",
-        "4.4k"
       ],
       "checked_then": "2026-08-03"
     },
@@ -351,24 +389,6 @@
       "checked_then": "2026-09-21"
     },
     {
-      "slug": "bolt",
-      "url": "https://support.bolt.new",
-      "confirmed": "2026-11-01",
-      "first_seen": "2026-10-31",
-      "added": [
-        "000k",
-        "0026s",
-        "0b",
-        "100%",
-        "36b",
-        "38b",
-        "4b",
-        "74734b"
-      ],
-      "removed": [],
-      "checked_then": "2026-09-21"
-    },
-    {
       "slug": "krea",
       "url": "https://krea.ai/pricing",
       "confirmed": "2026-11-01",
@@ -414,17 +434,6 @@
         "4.5s"
       ],
       "checked_then": "2026-08-13"
-    },
-    {
-      "slug": "zhipu-glm",
-      "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
-      "confirmed": "2026-10-30",
-      "first_seen": "2026-10-29",
-      "added": [
-        "28b"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-01"
     },
     {
       "slug": "notebooklm",

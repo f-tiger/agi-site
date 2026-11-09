@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-08",
+ "checked": "2026-11-09",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -3780,239 +3780,135 @@
    "source_http": 404,
    "repo_http": null,
    "reason": "source HTTP 404"
+  },
+  "checkmarx-checkmarx": {
+   "attempts": 1,
+   "first_attempt": "2026-11-09",
+   "last_attempt": "2026-11-09",
+   "attemptedAt": "2026-11-09T07:07:06.011Z",
+   "source_http": 404,
+   "repo_http": 200,
+   "reason": "source HTTP 404"
+  },
+  "checkmycontractorquote-ai-inventory-network": {
+   "attempts": 1,
+   "first_attempt": "2026-11-09",
+   "last_attempt": "2026-11-09",
+   "attemptedAt": "2026-11-09T07:07:06.011Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "checkmycontractorquote-ai-mcp-enablement-agency": {
+   "attempts": 1,
+   "first_attempt": "2026-11-09",
+   "last_attempt": "2026-11-09",
+   "attemptedAt": "2026-11-09T07:07:06.011Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "checkmycontractorquote-firebuy": {
+   "attempts": 1,
+   "first_attempt": "2026-11-09",
+   "last_attempt": "2026-11-09",
+   "attemptedAt": "2026-11-09T07:07:06.011Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "checkmycontractorquote-firegrant-ai": {
+   "attempts": 1,
+   "first_attempt": "2026-11-09",
+   "last_attempt": "2026-11-09",
+   "attemptedAt": "2026-11-09T07:07:06.011Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "checkmycontractorquote-grantops-ai": {
+   "attempts": 1,
+   "first_attempt": "2026-11-09",
+   "last_attempt": "2026-11-09",
+   "attemptedAt": "2026-11-09T07:07:06.011Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "checkmycontractorquote-local-compliance-os": {
+   "attempts": 1,
+   "first_attempt": "2026-11-09",
+   "last_attempt": "2026-11-09",
+   "attemptedAt": "2026-11-09T07:07:06.011Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "checkmycontractorquote-maintenance-concierge-ai": {
+   "attempts": 1,
+   "first_attempt": "2026-11-09",
+   "last_attempt": "2026-11-09",
+   "attemptedAt": "2026-11-09T07:07:06.011Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "checkmycontractorquote-permit-pilot": {
+   "attempts": 1,
+   "first_attempt": "2026-11-09",
+   "last_attempt": "2026-11-09",
+   "attemptedAt": "2026-11-09T07:07:06.011Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "checkmycontractorquote-public-safety-bid": {
+   "attempts": 1,
+   "first_attempt": "2026-11-09",
+   "last_attempt": "2026-11-09",
+   "attemptedAt": "2026-11-09T07:07:06.011Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "checkmycontractorquote-smb-rfp-copilot": {
+   "attempts": 1,
+   "first_attempt": "2026-11-09",
+   "last_attempt": "2026-11-09",
+   "attemptedAt": "2026-11-09T07:07:06.011Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "cherokeeai-fifty50": {
+   "attempts": 1,
+   "first_attempt": "2026-11-09",
+   "last_attempt": "2026-11-09",
+   "attemptedAt": "2026-11-09T07:07:06.011Z",
+   "source_http": 410,
+   "repo_http": null,
+   "reason": "source HTTP 410"
+  },
+  "civic-nexus": {
+   "attempts": 1,
+   "first_attempt": "2026-11-09",
+   "last_attempt": "2026-11-09",
+   "attemptedAt": "2026-11-09T07:07:06.011Z",
+   "source_http": 503,
+   "repo_http": 404,
+   "reason": "source HTTP 503"
+  },
+  "claritybriefs-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-11-09",
+   "last_attempt": "2026-11-09",
+   "attemptedAt": "2026-11-09T07:07:06.011Z",
+   "source_http": 404,
+   "repo_http": 200,
+   "reason": "source HTTP 404"
   }
  },
  "admitted": [
-  {
-   "slug": "tavily-mcp",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "supabase-mcp",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "neon-mcp",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "aws-mcp-servers",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "microsoft-mcp",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "sentry-mcp",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "stripe-agent-toolkit",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "grafana-mcp",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "notion-mcp-server",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "mcpo",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "docker-mcp-toolkit",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "smithery",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "glama-mcp",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "mcp-use",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "awesome-mcp-servers",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "mcp-agent",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "pulsemcp",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "zapier-mcp",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "fast-agent",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "mcp-so",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "arcade",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "pipedream-mcp",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "chrome-devtools-mcp",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "desktop-commander",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "jetbrains-mcp",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "apify-mcp",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "blender-mcp",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "hf-mcp-server",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "toolhive",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "mcp-scan",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "agentgateway",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "redis-mcp",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "postgres-mcp",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "metamcp",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "dbhub",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "kubernetes-mcp-server",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "terraform-mcp-server",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "mongodb-mcp-server",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "vercel-mcp",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "figma-context-mcp",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "shopify-dev-mcp",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "perplexity-mcp",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "markitdown",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "modelscope-mcp",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "windmill",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "zapier-agents",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
   {
    "slug": "nacos",
    "date": "2026-09-22",
@@ -20644,6 +20540,282 @@
   {
    "slug": "changethisfile-mcp",
    "date": "2026-11-08",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "chargerdojo-ocpi",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "chartercaptain-charter-captain",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "chartervsown-site",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "chartforgeai-chartforge",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "chasync-chasync",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "chateaupedia-chateaux",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cheap409a-site",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cheapestinference-mcp",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "checkmycontractorquote-contractor-quote-check",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "checkoutpage-checkout-page",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "checkrecall-vehicle-recalls",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "chessigma-chessigma",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "chnlsync-advisor",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "choosehelp-directory",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "choosemylo-mind-of-mylo-quotes",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "chorilo-chorilo",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "choruskeepsake-chorus",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "churnsolution-analytics",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cielstay-cielstay",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cinderfi-retirement-planning",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cinegenta-studio",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cinevva-game-creator",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cintrasupply-cintra-quote",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "citead-score",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "citefiles-citefiles",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "citehawk-citehawk",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "citevana-mcp",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "citizenleap-civica",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "citizenshipdescentchecker-site",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "citlyze-citlyze",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cituna-mcp",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cityparity-cityparity",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "citywalkplan-planner",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "claidex-failure-intelligence",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "claraconverts-clara",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "claribi-mcp-server",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "claude-world-worlds-knowledge",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "claudeers-mcp",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "claudeimagine-claude-imagine",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "clauselane-site",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "clauxel-a2adependencyinspector-a2adependencyinspector-mcp",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-a2aidentitytoll-a2aidentitytoll-mcp",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-a2areplayreceipt-a2areplayreceipt-mcp",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-agentdataboundary-agentdataboundary-mcp",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-agenticbudgetrouter-agenticbudgetrouter-mcp",
+   "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-agentichtmlexportqa-agentichtmlexportqa-mcp",
+   "date": "2026-11-09",
    "source_http": 200,
    "repo_http": 200
   }

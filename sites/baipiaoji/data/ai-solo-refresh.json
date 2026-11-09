@@ -1,7 +1,7 @@
 {
-  "lastRun": "2026-11-08T06:40:41.344Z",
+  "lastRun": "2026-11-09T07:08:06.967Z",
   "status": "degraded",
-  "checkedSources": 8,
+  "checkedSources": 7,
   "queue": [
     {
       "caseId": "photo-ai",
@@ -277,13 +277,13 @@
       "caseId": "windsurf",
       "reason": "source-unreachable",
       "sourceUrl": "https://cognition.com/blog/windsurf",
-      "lastChecked": "2026-10-27T05:32:53.430Z"
+      "lastChecked": "2026-11-09T07:08:06.967Z"
     },
     {
       "caseId": "casetext",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.thomsonreuters.com/en/press-releases/2023/august/thomson-reuters-completes-acquisition-of-casetext-inc",
-      "lastChecked": "2026-10-27T05:32:53.430Z"
+      "lastChecked": "2026-11-09T07:08:06.967Z"
     },
     {
       "caseId": "jasper",
@@ -916,10 +916,10 @@
     "brainstory|https://cassidoo.co/post/getting-paid-is-weird/": {
       "caseId": "brainstory",
       "sourceUrl": "https://cassidoo.co/post/getting-paid-is-weird/",
-      "lastAttempt": "2026-10-26T05:16:10.172Z",
+      "lastAttempt": "2026-11-09T07:08:06.967Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-10-26T05:16:10.172Z",
+      "lastSuccess": "2026-11-09T07:08:06.967Z",
       "lastHash": "281689e2a2109dc4bca3c73d863039e29e99e7d412714f03d526304b6a7d0953",
       "hash": "281689e2a2109dc4bca3c73d863039e29e99e7d412714f03d526304b6a7d0953",
       "simhash": "b4163553cd7da715",
@@ -929,10 +929,10 @@
     "brainstory|https://cassidoo.co/post/adios-2024/": {
       "caseId": "brainstory",
       "sourceUrl": "https://cassidoo.co/post/adios-2024/",
-      "lastAttempt": "2026-10-26T05:16:10.172Z",
+      "lastAttempt": "2026-11-09T07:08:06.967Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-10-26T05:16:10.172Z",
+      "lastSuccess": "2026-11-09T07:08:06.967Z",
       "lastHash": "1d58247358c85afa9918da94473bc8c2cc73fbcd0857ff829b6b835c6e58c6f3",
       "hash": "1d58247358c85afa9918da94473bc8c2cc73fbcd0857ff829b6b835c6e58c6f3",
       "simhash": "e2d23450c5f4a79d",
@@ -942,11 +942,11 @@
     "contenda-studio|https://dev.to/contenda/lessons-in-pivoting-from-studio-to-brainstory-cli": {
       "caseId": "contenda-studio",
       "sourceUrl": "https://dev.to/contenda/lessons-in-pivoting-from-studio-to-brainstory-cli",
-      "lastAttempt": "2026-10-26T05:16:10.172Z",
+      "lastAttempt": "2026-11-09T07:08:06.967Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-10-26T05:16:10.172Z",
-      "lastHash": "76d043d18d305a9a11c8fec9ab8de85f0c1b3ff302a7aec8b53525185f8bf97c",
+      "lastSuccess": "2026-11-09T07:08:06.967Z",
+      "lastHash": "3a18d776d2421a445b564a26c9b00463d1dd9bafc2a0b7a24b4e2414c285d722",
       "hash": "76d043d18d305a9a11c8fec9ab8de85f0c1b3ff302a7aec8b53525185f8bf97c",
       "simhash": "286e88152c5aa317",
       "words": 1057,
@@ -955,10 +955,10 @@
     "contenda-studio|https://cassidoo.co/post/bye-bye-2023/": {
       "caseId": "contenda-studio",
       "sourceUrl": "https://cassidoo.co/post/bye-bye-2023/",
-      "lastAttempt": "2026-10-26T05:16:10.172Z",
+      "lastAttempt": "2026-11-09T07:08:06.967Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-10-26T05:16:10.172Z",
+      "lastSuccess": "2026-11-09T07:08:06.967Z",
       "lastHash": "f88f5aefef56b4d5ece23b25d0f96b5669a7d589c37a1da889e8aae166f3b98e",
       "hash": "f88f5aefef56b4d5ece23b25d0f96b5669a7d589c37a1da889e8aae166f3b98e",
       "simhash": "a24a26d04c34853f",
@@ -968,11 +968,11 @@
     "otter-ai|https://otter.ai/blog/otter-ai-breaks-100m-arr-barrier-and-transforms-business-meetings-launching-industry-first-ai-meeting-agent-suite": {
       "caseId": "otter-ai",
       "sourceUrl": "https://otter.ai/blog/otter-ai-breaks-100m-arr-barrier-and-transforms-business-meetings-launching-industry-first-ai-meeting-agent-suite",
-      "lastAttempt": "2026-10-27T05:32:53.430Z",
+      "lastAttempt": "2026-11-09T07:08:06.967Z",
       "status": "change-pending",
       "http": 200,
-      "lastSuccess": "2026-10-27T05:32:53.430Z",
-      "lastHash": "cf0bc77e0935b7a0bcc80e254793604c7565eb5e013f4581274c0ace95448553",
+      "lastSuccess": "2026-11-09T07:08:06.967Z",
+      "lastHash": "b02cf6e1ded4b548750c3b0c4406f9ae4926531fa3d068f027515dbe67d26b47",
       "hash": "dd7e913edc1229f76ee72ced886e8700b872712073767af5fb19ec27c5505cb7",
       "simhash": "b27b3118eed2839d",
       "words": 1065,
@@ -981,7 +981,7 @@
     "windsurf|https://cognition.com/blog/windsurf": {
       "caseId": "windsurf",
       "sourceUrl": "https://cognition.com/blog/windsurf",
-      "lastAttempt": "2026-10-27T05:32:53.430Z",
+      "lastAttempt": "2026-11-09T07:08:06.967Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -989,7 +989,7 @@
     "casetext|https://www.thomsonreuters.com/en/press-releases/2023/august/thomson-reuters-completes-acquisition-of-casetext-inc": {
       "caseId": "casetext",
       "sourceUrl": "https://www.thomsonreuters.com/en/press-releases/2023/august/thomson-reuters-completes-acquisition-of-casetext-inc",
-      "lastAttempt": "2026-10-27T05:32:53.430Z",
+      "lastAttempt": "2026-11-09T07:08:06.967Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1159,21 +1159,16 @@
       "consecutiveChange": 0
     }
   },
-  "cursor": 46,
+  "cursor": 51,
   "errors": [
     {
-      "caseId": "cruise-robotaxi",
-      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1467858/000146785826000013/gm-20251231.htm",
+      "caseId": "windsurf",
+      "sourceUrl": "https://cognition.com/blog/windsurf",
       "reason": "body-limit"
     },
     {
-      "caseId": "poppy",
-      "sourceUrl": "https://getpoppy.app/blog/sunset",
-      "reason": "network-error"
-    },
-    {
-      "caseId": "yara-ai",
-      "sourceUrl": "https://www.linkedin.com/posts/joebraidwood_after-a-year-of-building-yara-ai-its-time-activity-7394436184648736769-T_Z1/",
+      "caseId": "casetext",
+      "sourceUrl": "https://www.thomsonreuters.com/en/press-releases/2023/august/thomson-reuters-completes-acquisition-of-casetext-inc",
       "reason": "body-limit"
     }
   ]

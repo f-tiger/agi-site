@@ -1,29 +1,29 @@
 {
-  "generated": "2026-11-08",
-  "source_generated_at": "2026-11-08T06:38:18.760Z",
-  "exported_at": "2026-11-08T06:38:18.828Z",
+  "generated": "2026-11-09",
+  "source_generated_at": "2026-11-09T07:06:29.659Z",
+  "exported_at": "2026-11-09T07:06:29.725Z",
   "source": "/api/reach",
   "window_days": 28,
-  "since": "2026-10-11",
-  "until": "2026-11-08",
+  "since": "2026-10-12",
+  "until": "2026-11-09",
   "definition": "ev='' AND ref != '' — client-reported external-referrer page-view events; not verified humans, unique visitors, search-engine clicks or conversions. Direct/no-referrer visits and /__ self-test paths excluded. Historical rows can contain automated visits or repeated loads; no row-level data.",
-  "humans_referred": 605,
-  "per_day": 21.6,
+  "humans_referred": 592,
+  "per_day": 21.1,
   "by_kind": {
-    "tool": 433,
-    "page": 61,
-    "category": 28,
+    "tool": 426,
+    "page": 55,
+    "category": 27,
     "plans": 13,
-    "upgrade": 29,
+    "upgrade": 30,
     "alternatives": 14,
-    "judgement": 12,
-    "vs": 12,
+    "vs": 13,
+    "judgement": 11,
     "wall": 3
   },
   "categories": [
     {
       "cat": "chat",
-      "n": 162
+      "n": 157
     },
     {
       "cat": "search",
@@ -31,7 +31,7 @@
     },
     {
       "cat": "image",
-      "n": 62
+      "n": 65
     },
     {
       "cat": "video",
@@ -43,19 +43,19 @@
     },
     {
       "cat": "coding",
-      "n": 39
+      "n": 37
     },
     {
       "cat": "writing",
-      "n": 36
-    },
-    {
-      "cat": "office",
-      "n": 19
+      "n": 35
     },
     {
       "cat": "local",
       "n": 18
+    },
+    {
+      "cat": "office",
+      "n": 17
     },
     {
       "cat": "audio",
@@ -82,22 +82,22 @@
     {
       "slug": "kimi",
       "cat": "chat",
-      "n": 116
+      "n": 109
     },
     {
       "slug": "exa",
       "cat": "search",
-      "n": 48
+      "n": 49
     },
     {
       "slug": "grok",
       "cat": "chat",
-      "n": 21
+      "n": 23
     },
     {
       "slug": "jimeng",
       "cat": "image",
-      "n": 15
+      "n": 18
     },
     {
       "slug": "haiper",
@@ -105,14 +105,9 @@
       "n": 12
     },
     {
-      "slug": "feishu-miaoji",
-      "cat": "office",
-      "n": 10
-    },
-    {
       "slug": "tongyi-wanxiang",
       "cat": "image",
-      "n": 10
+      "n": 9
     },
     {
       "slug": "deepl",
@@ -120,13 +115,18 @@
       "n": 8
     },
     {
-      "slug": "immersive-translate",
-      "cat": "writing",
-      "n": 7
+      "slug": "feishu-miaoji",
+      "cat": "office",
+      "n": 8
     },
     {
       "slug": "metaso",
       "cat": "search",
+      "n": 7
+    },
+    {
+      "slug": "quillbot",
+      "cat": "writing",
       "n": 7
     },
     {
@@ -150,7 +150,17 @@
       "n": 7
     },
     {
-      "slug": "quillbot",
+      "slug": "immersive-translate",
+      "cat": "writing",
+      "n": 6
+    },
+    {
+      "slug": "qingying",
+      "cat": "video",
+      "n": 6
+    },
+    {
+      "slug": "wordvice",
       "cat": "writing",
       "n": 6
     },
@@ -167,16 +177,6 @@
     {
       "slug": "liblib",
       "cat": "image",
-      "n": 5
-    },
-    {
-      "slug": "qingying",
-      "cat": "video",
-      "n": 5
-    },
-    {
-      "slug": "wordvice",
-      "cat": "writing",
       "n": 5
     },
     {
@@ -235,16 +235,6 @@
       "n": 3
     },
     {
-      "slug": "runway",
-      "cat": "video",
-      "n": 3
-    },
-    {
-      "slug": "caiyun",
-      "cat": "writing",
-      "n": 3
-    },
-    {
       "slug": "tongyi",
       "cat": "chat",
       "n": 3
@@ -278,13 +268,19 @@
       "slug": "cohere",
       "cat": "api",
       "n": 2
+    },
+    {
+      "slug": "elicit",
+      "cat": "study",
+      "n": 2
+    },
+    {
+      "slug": "grammarly",
+      "cat": "writing",
+      "n": 2
     }
   ],
   "judgement": [
-    {
-      "path": "/is-cline-still-free",
-      "n": 2
-    },
     {
       "path": "/is-pixverse-still-free",
       "n": 2
@@ -310,6 +306,10 @@
       "n": 1
     },
     {
+      "path": "/is-cline-still-free",
+      "n": 1
+    },
+    {
       "path": "/is-hailuo-still-free",
       "n": 1
     },
@@ -325,27 +325,27 @@
   "pages": [
     {
       "path": "kimi",
-      "n": 116
+      "n": 109
     },
     {
       "path": "exa",
-      "n": 48
+      "n": 49
     },
     {
       "path": "/",
-      "n": 34
+      "n": 32
     },
     {
       "path": "grok",
-      "n": 21
-    },
-    {
-      "path": "coding",
-      "n": 18
+      "n": 23
     },
     {
       "path": "jimeng",
-      "n": 15
+      "n": 18
+    },
+    {
+      "path": "coding",
+      "n": 17
     },
     {
       "path": "/plans/free-video-gen",
@@ -356,23 +356,23 @@
       "n": 12
     },
     {
-      "path": "feishu-miaoji",
-      "n": 10
-    },
-    {
       "path": "tongyi-wanxiang",
-      "n": 10
+      "n": 9
     },
     {
       "path": "deepl",
       "n": 8
     },
     {
-      "path": "immersive-translate",
-      "n": 7
+      "path": "feishu-miaoji",
+      "n": 8
     },
     {
       "path": "metaso",
+      "n": 7
+    },
+    {
+      "path": "quillbot",
       "n": 7
     },
     {
@@ -396,7 +396,15 @@
       "n": 7
     },
     {
-      "path": "quillbot",
+      "path": "immersive-translate",
+      "n": 6
+    },
+    {
+      "path": "qingying",
+      "n": 6
+    },
+    {
+      "path": "wordvice",
       "n": 6
     },
     {
@@ -412,20 +420,8 @@
       "n": 5
     },
     {
-      "path": "qingying",
-      "n": 5
-    },
-    {
-      "path": "wordvice",
-      "n": 5
-    },
-    {
       "path": "/upgrade/video-cost",
       "n": 5
-    },
-    {
-      "path": "/claim",
-      "n": 4
     },
     {
       "path": "github-models",
@@ -464,6 +460,10 @@
       "n": 3
     },
     {
+      "path": "/claim",
+      "n": 3
+    },
+    {
       "path": "mistral",
       "n": 3
     },
@@ -484,7 +484,7 @@
       "n": 3
     },
     {
-      "path": "runway",
+      "path": "/upgrade/kling",
       "n": 3
     },
     {
@@ -497,10 +497,6 @@
     },
     {
       "path": "image",
-      "n": 3
-    },
-    {
-      "path": "caiyun",
       "n": 3
     },
     {
@@ -540,14 +536,6 @@
       "n": 2
     },
     {
-      "path": "/which-free-image-tool-gives-the-most",
-      "n": 2
-    },
-    {
-      "path": "/is-cline-still-free",
-      "n": 2
-    },
-    {
       "path": "anythingllm",
       "n": 2
     },
@@ -562,16 +550,28 @@
     {
       "path": "cohere",
       "n": 2
+    },
+    {
+      "path": "elicit",
+      "n": 2
+    },
+    {
+      "path": "grammarly",
+      "n": 2
+    },
+    {
+      "path": "guojia-fanzha",
+      "n": 2
     }
   ],
   "referrers": [
     {
       "ref": "cn.bing.com",
-      "n": 284
+      "n": 278
     },
     {
       "ref": "www.google.com",
-      "n": 165
+      "n": 163
     },
     {
       "ref": "www.bing.com",
@@ -595,7 +595,7 @@
     },
     {
       "ref": "yandex.com",
-      "n": 6
+      "n": 4
     },
     {
       "ref": "bing.com",
@@ -611,10 +611,6 @@
     },
     {
       "ref": "m.baidu.com",
-      "n": 2
-    },
-    {
-      "ref": "search.brave.com",
       "n": 2
     },
     {
@@ -642,7 +638,11 @@
       "n": 1
     },
     {
-      "ref": "www.instagram.com",
+      "ref": "www.openmultipleurl.com",
+      "n": 1
+    },
+    {
+      "ref": "www.youtube.com",
       "n": 1
     }
   ],
@@ -674,27 +674,26 @@
     }
   ],
   "events": {
-    "manju": 5536,
-    "biz": 634,
-    "sub_view": 383,
-    "home": 163,
-    "go": 155,
-    "gs": 122,
+    "manju": 5635,
+    "biz": 637,
+    "sub_view": 382,
+    "home": 164,
+    "go": 153,
+    "gs": 132,
     "github_tools": 97,
-    "star": 66,
-    "calc": 54,
+    "star": 64,
+    "calc": 61,
     "quote": 48,
-    "ai_solo": 31,
+    "ai_solo": 32,
     "coding_access": 27,
-    "gs_go": 10,
+    "gs_go": 11,
     "video": 10,
     "depth": 6,
-    "distribution": 5,
-    "earn": 3
+    "distribution": 5
   },
   "submissions": {
-    "new": 288,
-    "total": 288
+    "new": 290,
+    "total": 290
   },
   "ads": {},
   "commercial_triggers": {
@@ -705,7 +704,7 @@
       "video_post_export": "2026-10-29"
     },
     "counts": {
-      "vendor-view": 252,
+      "vendor-view": 254,
       "vendor-sponsor": 0,
       "vendor-wait": 36,
       "ad-view": 1,
@@ -726,8 +725,8 @@
   "conversion_stages": {
     "ok": true,
     "window": {
-      "start": "2026-10-11",
-      "end_exclusive": "2026-11-08",
+      "start": "2026-10-12",
+      "end_exclusive": "2026-11-09",
       "complete_days": 28,
       "date_basis": "UTC"
     },
@@ -756,8 +755,8 @@
       "tool_results_demo": 0,
       "tool_download_actions_own": 0,
       "tool_download_actions_demo": 0,
-      "other_calc_events": 30,
-      "directory_outbound_clicks": 155,
+      "other_calc_events": 37,
+      "directory_outbound_clicks": 152,
       "homepage_limit_navigation": 1,
       "video_exports_own": 0,
       "video_exports_demo": 0,
@@ -777,11 +776,6 @@
       "total_currently_email_verified": 9
     },
     "accounts_daily": [
-      {
-        "date": "2026-10-11",
-        "created": 0,
-        "new_accounts_currently_email_verified": 0
-      },
       {
         "date": "2026-10-12",
         "created": 0,
@@ -916,6 +910,11 @@
         "date": "2026-11-07",
         "created": 0,
         "new_accounts_currently_email_verified": 0
+      },
+      {
+        "date": "2026-11-08",
+        "created": 0,
+        "new_accounts_currently_email_verified": 0
       }
     ],
     "account_scope": "fleet_shared_account_pool",
@@ -940,31 +939,31 @@
   "homepage_signals": {
     "ok": true,
     "window": {
-      "requested_start": "2026-10-11",
-      "start": "2026-10-11",
-      "until": "2026-11-08",
+      "requested_start": "2026-10-12",
+      "start": "2026-10-12",
+      "until": "2026-11-09",
       "date_basis": "UTC",
       "includes_current_partial_day": true
     },
-    "clicks": 152,
+    "clicks": 153,
     "unclassified_records": 0,
     "by_language": {
-      "zh": 140,
+      "zh": 141,
       "en": 12,
       "other": 0
     },
     "by_block": [
       {
-        "id": "directory",
-        "n": 43
+        "id": "hero",
+        "n": 45
       },
       {
-        "id": "hero",
+        "id": "directory",
         "n": 42
       },
       {
         "id": "site-header",
-        "n": 29
+        "n": 28
       },
       {
         "id": "other",
@@ -998,15 +997,15 @@
     "by_destination": [
       {
         "id": "tool-category",
-        "n": 44
+        "n": 43
       },
       {
         "id": "other-destination",
-        "n": 26
+        "n": 27
       },
       {
         "id": "tool-directory",
-        "n": 22
+        "n": 23
       },
       {
         "id": "agents",
@@ -1066,14 +1065,6 @@
       }
     ],
     "daily": [
-      {
-        "date": "2026-10-11",
-        "complete": true,
-        "clicks": 3,
-        "zh": 3,
-        "en": 0,
-        "other": 0
-      },
       {
         "date": "2026-10-12",
         "complete": true,
@@ -1292,9 +1283,17 @@
       },
       {
         "date": "2026-11-08",
-        "complete": false,
+        "complete": true,
         "clicks": 1,
         "zh": 1,
+        "en": 0,
+        "other": 0
+      },
+      {
+        "date": "2026-11-09",
+        "complete": false,
+        "clicks": 4,
+        "zh": 4,
         "en": 0,
         "other": 0
       }
@@ -1304,13 +1303,13 @@
         "language": "zh",
         "block": "directory",
         "destination": "tool-category",
-        "n": 38
+        "n": 37
       },
       {
         "language": "zh",
         "block": "hero",
         "destination": "tool-directory",
-        "n": 16
+        "n": 17
       },
       {
         "language": "zh",
@@ -1332,13 +1331,13 @@
       },
       {
         "language": "zh",
-        "block": "site-footer",
+        "block": "hero",
         "destination": "other-destination",
-        "n": 7
+        "n": 8
       },
       {
         "language": "zh",
-        "block": "hero",
+        "block": "site-footer",
         "destination": "other-destination",
         "n": 7
       },
@@ -1399,12 +1398,6 @@
       {
         "language": "zh",
         "block": "site-header",
-        "destination": "ai-tools",
-        "n": 2
-      },
-      {
-        "language": "zh",
-        "block": "site-header",
         "destination": "tool-directory",
         "n": 2
       },
@@ -1430,6 +1423,12 @@
         "language": "zh",
         "block": "featured-tools",
         "destination": "pdf-tools",
+        "n": 1
+      },
+      {
+        "language": "zh",
+        "block": "site-header",
+        "destination": "ai-tools",
         "n": 1
       },
       {
@@ -1515,33 +1514,15 @@
         "block": "featured-tools",
         "destination": "work-plan",
         "n": 1
+      },
+      {
+        "language": "zh",
+        "block": "hero",
+        "destination": "ai-tools",
+        "n": 1
       }
     ],
     "daily_entries": [
-      {
-        "date": "2026-10-11",
-        "complete": true,
-        "language": "zh",
-        "block": "directory",
-        "destination": "tool-category",
-        "n": 1
-      },
-      {
-        "date": "2026-10-11",
-        "complete": true,
-        "language": "zh",
-        "block": "hero",
-        "destination": "tool-directory",
-        "n": 1
-      },
-      {
-        "date": "2026-10-11",
-        "complete": true,
-        "language": "zh",
-        "block": "site-header",
-        "destination": "ai-tools",
-        "n": 1
-      },
       {
         "date": "2026-10-12",
         "complete": true,
@@ -2376,10 +2357,34 @@
       },
       {
         "date": "2026-11-08",
+        "complete": true,
+        "language": "zh",
+        "block": "hero",
+        "destination": "other-destination",
+        "n": 1
+      },
+      {
+        "date": "2026-11-09",
+        "complete": false,
+        "language": "zh",
+        "block": "hero",
+        "destination": "tool-directory",
+        "n": 2
+      },
+      {
+        "date": "2026-11-09",
         "complete": false,
         "language": "zh",
         "block": "hero",
         "destination": "other-destination",
+        "n": 1
+      },
+      {
+        "date": "2026-11-09",
+        "complete": false,
+        "language": "zh",
+        "block": "hero",
+        "destination": "ai-tools",
         "n": 1
       }
     ],
@@ -2393,7 +2398,7 @@
   },
   "quote_signals": {
     "ok": true,
-    "since": "2026-10-11",
+    "since": "2026-10-12",
     "includes_current_partial_utc_day": true,
     "actions": {
       "entry_open": 23,
@@ -2435,11 +2440,11 @@
   "manju_signals": {
     "schema_version": 1,
     "measurement_version": "manju-cloud-actions-v3",
-    "source_generated_at": "2026-11-08T06:38:18.760Z",
+    "source_generated_at": "2026-11-09T07:06:29.659Z",
     "window": {
       "requested_days": 28,
-      "since": "2026-10-11",
-      "until": "2026-11-08",
+      "since": "2026-10-12",
+      "until": "2026-11-09",
       "timezone": "UTC",
       "includes_current_partial_utc_day": true
     },
@@ -2447,9 +2452,9 @@
     "partial": false,
     "reason": null,
     "actions": {
-      "view": 3900,
-      "filter": 161,
-      "empty": 136,
+      "view": 3981,
+      "filter": 164,
+      "empty": 137,
       "open": 25,
       "source": 12,
       "save": 0,
@@ -2462,20 +2467,20 @@
       "inquiry_error": 0,
       "return": 0,
       "preview_open": 0,
-      "rank_sort": 117,
+      "rank_sort": 118,
       "topic_complete": 8,
       "topic_empty": 0,
       "topic_export": 2,
-      "search_start": 103,
-      "search_submit": 175,
+      "search_start": 104,
+      "search_submit": 176,
       "search_results": 52,
-      "search_empty": 190,
-      "suggest_view": 191,
+      "search_empty": 193,
+      "suggest_view": 194,
       "suggest_select": 10,
       "recommend_select": 4,
-      "discover_start": 189,
-      "discover_found": 45,
-      "discover_empty": 47,
+      "discover_start": 191,
+      "discover_found": 46,
+      "discover_empty": 48,
       "discover_error": 4,
       "discover_limited": 45,
       "discover_cached": 28,
@@ -2485,7 +2490,7 @@
       "video_example": 0,
       "video_export": 0,
       "video_compare": 0,
-      "official_open": 83,
+      "official_open": 84,
       "platform_search": 0,
       "intro_open": 0,
       "share_native": 5,
@@ -2507,17 +2512,17 @@
     "viewer_depth": {
       "schema_version": 1,
       "source": "depth_signals",
-      "source_generated_at": "2026-11-08T06:38:18.760Z",
+      "source_generated_at": "2026-11-09T07:06:29.659Z",
       "measurement_start": "2026-10-31",
       "first_complete_utc_day": "2026-11-01",
       "window": {
         "start": "2026-10-31",
-        "end_exclusive": "2026-11-08",
+        "end_exclusive": "2026-11-09",
         "timezone": "UTC"
       },
       "complete_window": {
         "start": "2026-11-01",
-        "end_exclusive": "2026-11-08",
+        "end_exclusive": "2026-11-09",
         "timezone": "UTC"
       },
       "ok": true,
