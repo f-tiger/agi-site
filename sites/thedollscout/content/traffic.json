@@ -2,10 +2,10 @@
   "source": "Cloudflare GraphQL Analytics API (edge-measured)",
   "note": "Counted at the edge, so unaffected by ad blockers, privacy browsers or network-level blocking of Google. Includes bot and crawler traffic, which on a new site is most of it — read it as a floor, not as humans.",
   "zone": "thedollscout.com",
-  "updated": "2026-11-08",
+  "updated": "2026-11-09",
   "window": {
     "since": "2026-07-26",
-    "until": "2026-11-07"
+    "until": "2026-11-08"
   },
   "days": {
     "2026-07-26": {
@@ -6025,6 +6025,73 @@
         "CN": 349,
         "HK": 270,
         "DE": 258
+      }
+    },
+    "2026-11-08": {
+      "date": "2026-11-08",
+      "requests": 11347,
+      "pageViews": 3332,
+      "uniques": 1397,
+      "byIpType": {
+        "noRecord": 8397,
+        "unknown": 2651,
+        "searchEngine": 278,
+        "allowlist": 21
+      },
+      "byBrowser": {
+        "Unknown": 1983,
+        "Chrome": 532,
+        "Curl": 270,
+        "Firefox": 144,
+        "Edge": 124,
+        "MobileSafari": 123,
+        "ChromeHeadless": 54,
+        "YandexBot": 31,
+        "BingBot": 24,
+        "Safari": 21,
+        "GoogleBot": 17,
+        "ChromeMobile": 5,
+        "ChromeMobileWebview": 4
+      },
+      "byContentType": {
+        "html": 3740,
+        "js": 2077,
+        "json": 1573,
+        "txt": 1558,
+        "empty": 1348,
+        "css": 681,
+        "svg": 262,
+        "unknown": 35,
+        "xml": 28,
+        "pdf": 23,
+        "jpeg": 9,
+        "png": 9,
+        "zip": 4
+      },
+      "byStatus": {
+        "200": 9238,
+        "202": 259,
+        "204": 511,
+        "301": 376,
+        "303": 88,
+        "304": 105,
+        "308": 264,
+        "401": 9,
+        "403": 19,
+        "404": 356,
+        "405": 44,
+        "410": 43,
+        "499": 35
+      },
+      "topCountries": {
+        "US": 4826,
+        "JP": 1635,
+        "BE": 802,
+        "SG": 731,
+        "FI": 405,
+        "GB": 324,
+        "CN": 307,
+        "FR": 297
       }
     }
   }
