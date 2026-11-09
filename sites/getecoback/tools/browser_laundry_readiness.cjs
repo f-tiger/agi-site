@@ -11,7 +11,7 @@ let checks=0;const check=(ok,message)=>{assert.ok(ok,message);checks++;};
  const cases=[];
  try{
   for(const [lang,pathname] of [['de','/waeschetrockner-oder-luftentfeuchter.html'],['en','/en/guide/dehumidifier-drying-clothes-cost.html']]){
-   for(const failure of ['no-js','module','dependency','delayed']){
+   for(const failure of ['no-js','module','dependency','delayed','legacy']){
     const context=await browser.newContext({javaScriptEnabled:failure!=='no-js',viewport:{width:390,height:844},serviceWorkers:'block'});
     const navigations=[],events=[],errors=[];let release;
     const delayed=new Promise(resolve=>release=resolve);
@@ -26,11 +26,19 @@ let checks=0;const check=(ok,message)=>{assert.ok(ok,message);checks++;};
      const file=path.join(site,u.pathname.endsWith('/')?u.pathname+'index.html':u.pathname);
      if(!fs.existsSync(file))return route.fulfill({status:404,body:'Missing fixture'});
      const mime={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json','.png':'image/png','.svg':'image/svg+xml'};
-     return route.fulfill({contentType:mime[path.extname(file)]||'application/octet-stream',body:fs.readFileSync(file)});
+     let body=fs.readFileSync(file);
+     if(failure==='legacy'&&u.pathname===pathname){
+      // A page already open during rollout can fetch the updated module.
+      body=body.toString().replace(/<div class="lc-evidence" data-laundry-fallback>.*?<\/div>/s,'')
+       .replace(/<form data-laundry hidden inert><fieldset[^>]*data-laundry-fields disabled><legend[^>]*>.*?<\/legend>/s,'<form data-laundry>')
+       .replace('</fieldset></form>','</form>').replace('data-example disabled','data-example').replace('data-share disabled','data-share');
+     }
+     return route.fulfill({contentType:mime[path.extname(file)]||'application/octet-stream',body});
     });
     const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
     await page.goto(origin+pathname+'?__probe=1',{waitUntil:failure==='delayed'?'commit':'load'});
     const root=page.locator('#laundry-check'),fallback=root.locator('[data-laundry-fallback]'),form=root.locator('form');
+    if(failure!=='legacy'){
     await fallback.waitFor({state:'visible'});
     check(await form.isHidden(),`${lang}/${failure}: no premature input form`);
     check(await form.getAttribute('inert')!==null,`${lang}/${failure}: inert form`);
@@ -43,7 +51,8 @@ let checks=0;const check=(ok,message)=>{assert.ok(ok,message);checks++;};
     }
     await page.setViewportSize({width:390,height:844});
     if(failure==='no-js')await root.screenshot({path:path.join(dir,`laundry-${lang}-fallback.png`)});
-    if(failure==='delayed'){
+    }
+    if(failure==='delayed'||failure==='legacy'){
      // While the dependency is pending the user can already read the fallback.
      release();await page.waitForSelector('#laundry-check[data-laundry-ready="true"]');
      check(await fallback.isHidden(),`${lang}: remove fallback after readiness`);

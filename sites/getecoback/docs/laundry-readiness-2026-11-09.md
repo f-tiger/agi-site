@@ -24,8 +24,9 @@ The default example signature is captured after enabling the fieldset, so native
 FormData includes the intended initial values. Example calculations remain
 separate from edited-input comparisons. Existing validation, result focus,
 exports, active-mode scenario sharing and no-purchase advice remain in place.
-The module URL uses a content hash to avoid pairing updated markup with an old
-cached module. The existing shared experience waits for that same module URL.
+Both module and stylesheet URLs use a content hash to avoid pairing updated markup with an old
+cached asset. The module also accepts the previous markup during a rolling
+release. The existing shared experience waits for that same module URL.
 
 The generator owns both language variants. Markdown extraction accepts the
 checklist's new fragment ID and preserves the worked example and measurement
@@ -40,7 +41,7 @@ GA4 coverage; IndexNow is limited to the two authored HTML changes.
 - `node tools/browser_laundry.cjs`: both languages, real calculations, validity,
   PNG/CSV exports, scenario restoration and mobile layout.
 - `node tools/browser_laundry_readiness.cjs`: no JavaScript, blocked main module,
-  blocked math dependency and delayed recovery in both languages; 320/390/1280px,
+  blocked math dependency, delayed recovery and previous markup in both languages; 320/390/1280px,
   keyboard fallback, no native form navigation and normal result focus.
 - Existing Markdown/full-text tests and the full ECO CI build continue to apply.
   The new browser test runs in the existing CI job, with all traffic intercepted

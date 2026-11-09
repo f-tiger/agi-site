@@ -63,9 +63,11 @@ if(typeof document!=='undefined'){
  if('IntersectionObserver'in window){const observer=new IntersectionObserver(rows=>{if(rows.some(r=>r.isIntersecting)){emit('laundry_view','view');observer.disconnect();}},{threshold:.2});observer.observe(form);}
  // Safe HTML stays useful if this module or its math dependency cannot load.
  // Reveal inputs only after every handler is installed; never submit them as a GET.
- q('[data-laundry-fields]').disabled=false;initial=signature(values());
+ const fields=q('[data-laundry-fields]');if(fields)fields.disabled=false;
+ initial=signature(values());
  form.removeAttribute('inert');form.hidden=false;
  q('[data-example]').disabled=false;q('[data-share]').disabled=false;
- q('[data-laundry-fallback]').hidden=true;root.dataset.laundryReady='true';
+ const fallback=q('[data-laundry-fallback]');if(fallback)fallback.hidden=true;
+ root.dataset.laundryReady='true';
  }
 }
