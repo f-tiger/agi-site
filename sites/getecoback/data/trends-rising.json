@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-08",
+ "fetched": "2026-11-09",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -42,66 +42,48 @@
     "schimmel entfernen bad fugen",
     "schimmel entfernen wand innen",
     "schimmel entfernen dm",
-    "schimmel entfernen tapete",
     "schimmel entfernen firma in der nähe",
+    "schimmel entfernen tapete",
     "schimmel entfernen alkohol"
    ],
    "new_vocabulary": [],
    "rising": [],
    "source": "autocomplete-vocabulary",
    "signal_limit": "vocabulary_only_not_growth_or_search_volume",
-   "last_attempt_at": "2026-11-08T11:31:44.002987+00:00",
+   "last_attempt_at": "2026-11-09T13:14:51.596208+00:00",
    "last_attempt_status": "failed",
-   "fetched": "2026-11-08"
+   "fetched": "2026-11-09"
   },
   "infrarotheizung": {
-   "rising": [
-    {
-     "q": "infrarotheizung wandmontage",
-     "v": 88250
-    },
-    {
-     "q": "ölradiator",
-     "v": 65750
-    },
-    {
-     "q": "byecold infrarotheizung",
-     "v": 41400
-    },
-    {
-     "q": "infrarotheizung wintergarten",
-     "v": 39700
-    },
-    {
-     "q": "konvektorheizung",
-     "v": 38500
-    },
-    {
-     "q": "infrarotheizung garage",
-     "v": 37700
-    },
-    {
-     "q": "infrarotheizung als bild",
-     "v": 35500
-    },
-    {
-     "q": "infrarotheizung outdoor",
-     "v": 34500
-    },
-    {
-     "q": "stand infrarotheizung",
-     "v": 32400
-    },
-    {
-     "q": "könighaus infrarotheizung 1200 watt",
-     "v": 32300
-    }
+   "auto": [
+    "infrarotheizung",
+    "infrarotheizung wand",
+    "infrarotheizung decke",
+    "infrarotheizung badezimmer",
+    "infrarotheizung standgerät",
+    "infrarotheizung test",
+    "infrarotheizung bild",
+    "infrarotheizungen",
+    "infrarotheizung test stiftung warentest",
+    "infrarotheizung decke mit licht"
    ],
-   "source": "related-queries",
-   "fetched": "2026-11-01",
-   "polluted": false,
-   "last_attempt_at": "2026-11-01T11:25:48.331520+00:00",
-   "last_attempt_status": "ok"
+   "new_vocabulary": [
+    "infrarotheizung wand",
+    "infrarotheizung decke",
+    "infrarotheizung badezimmer",
+    "infrarotheizung standgerät",
+    "infrarotheizung test",
+    "infrarotheizung bild",
+    "infrarotheizungen",
+    "infrarotheizung test stiftung warentest",
+    "infrarotheizung decke mit licht"
+   ],
+   "rising": [],
+   "source": "autocomplete-vocabulary",
+   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
+   "last_attempt_at": "2026-11-09T13:17:51.752282+00:00",
+   "last_attempt_status": "failed",
+   "fetched": "2026-11-09"
   },
   "luftentfeuchter": {
    "rising": [
