@@ -8,6 +8,7 @@ import {products} from '../../../tools/revenue-studio/catalog.mjs';
 import {pageURL} from '../../../tools/revenue-studio/i18n.mjs';
 import {GITHUB_TOOLS} from '../lib/github-catalog.mjs';
 import {countClaimText} from '../lib/count-claim-text.mjs';
+import {hasPlaceholderText} from '../lib/placeholder-text.mjs';
 
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -57,7 +58,7 @@ for (const p of pages) {
   for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
     try { JSON.parse(m[1]); } catch { console.log('LD-ERR', p); ldErr++; }
   }
-  if (/暂无|待补|TBD|TODO|undefined|\[object /.test(uiHtml)) { console.log('PLACEHOLDER', p); placeholder++; }
+  if (hasPlaceholderText(uiHtml)) { console.log('PLACEHOLDER', p); placeholder++; }
   // 数据里用 **…** 标重点，渲染时必须转成 <strong>。漏一处，星号就出现在页面和搜索摘要里——
   // 这个洞曾经在 43 个工具页上活了很久，加个门禁堵死。
   if (uiHtml.includes('**')) { console.log('RAW MARKDOWN', p); md++; }
