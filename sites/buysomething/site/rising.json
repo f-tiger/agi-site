@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-08",
+ "fetched": "2026-11-09",
  "seeds": {
   "electric spin scrubber": {
    "rising": [
@@ -367,52 +367,63 @@
     "chinese shirt name",
     "chinese style dishes"
    ],
+   "rising": [],
+   "source": "autocomplete-diff",
+   "fetched": "2026-11-09"
+  },
+  "gongfu tea set": {
+   "auto": [
+    "gongfu tea set",
+    "gongfu tea set parts",
+    "gongfu tea set near me",
+    "gongfu tea set with tray",
+    "gongfu tea set travel",
+    "gongfu tea setup",
+    "gongfu tea set reddit",
+    "gongfu tea set how to use",
+    "gongfu tea set amazon",
+    "gongfu tea set gaiwan"
+   ],
    "rising": [
     {
-     "q": "chinese style shirt women",
+     "q": "gongfu tea set parts",
      "v": "new"
     },
     {
-     "q": "chinese style shirt name",
+     "q": "gongfu tea set near me",
      "v": "new"
     },
     {
-     "q": "chinese style shirt men",
+     "q": "gongfu tea set with tray",
      "v": "new"
     },
     {
-     "q": "chinese style shirt zara",
+     "q": "gongfu tea set travel",
      "v": "new"
     },
     {
-     "q": "chinese style shirt pattern",
+     "q": "gongfu tea setup",
      "v": "new"
     },
     {
-     "q": "what are traditional chinese shirts called",
+     "q": "gongfu tea set reddit",
      "v": "new"
     },
     {
-     "q": "chinese shirt name",
+     "q": "gongfu tea set how to use",
      "v": "new"
     },
     {
-     "q": "chinese style dishes",
+     "q": "gongfu tea set amazon",
+     "v": "new"
+    },
+    {
+     "q": "gongfu tea set gaiwan",
      "v": "new"
     }
    ],
    "source": "autocomplete-diff",
-   "fetched": "2026-11-08"
-  },
-  "gongfu tea set": {
-   "rising": [
-    {
-     "q": "gaiwan",
-     "v": 90
-    }
-   ],
-   "source": "related-queries",
-   "fetched": "2026-10-10"
+   "fetched": "2026-11-09"
   },
   "car refrigerator": {
    "rising": [
