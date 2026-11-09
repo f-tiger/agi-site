@@ -14,7 +14,9 @@
     "actualSourceRecoveryVerified": false,
     "deploymentRequired": true,
     "originalFailureRun": "https://github.com/f-tiger/agi-site/actions/runs/42455371882",
-    "releaseEvidencePolicy": "Read actual outcome from the linked PR; a merge or local test is not deployment."
+    "releaseEvidencePolicy": "Read actual outcome from the linked PR; a merge or local test is not deployment.",
+    "recordedInPullRequest": 287,
+    "receiptCommit": "22f35567e8cd8a5d2e74e59ee470e0e077eda516"
   },
   "lastWeeklyReview": {
     "completedAt": "2026-11-03T02:55:20.885140Z",
@@ -683,7 +685,9 @@
       "previousReadinessCorrection": {
         "recordedInPullRequest": 283,
         "receiptCommit": "97c33c88ad4c6f6bece6a909cd7b0bb2cab8dfad"
-      }
+      },
+      "recordedInPullRequest": 287,
+      "receiptCommit": "22f35567e8cd8a5d2e74e59ee470e0e077eda516"
     },
     {
       "id": "persist-manju-signals",
@@ -854,7 +858,8 @@
       "dispatchCount": 0,
       "indexNowSubmissions": null,
       "externalMessages": 0,
-      "meaning": "Prepared before the one authorized main release. Counts requiring actual workflow completion are not prefilled. Original failed schedule deployed nothing; release and IndexNow outcomes belong to actual linked receipts, not this preparation timestamp."
+      "meaning": "Prepared before the one authorized main release. Counts requiring actual workflow completion are not prefilled. Original failed schedule deployed nothing; release and IndexNow outcomes belong to actual linked receipts, not this preparation timestamp.",
+      "releaseEvidenceUrl": "https://github.com/f-tiger/agi-site/pull/287"
     },
     "review": {
       "optimizationRounds": 3,
@@ -864,7 +869,9 @@
       "finalIndependentReview": "passed_final_eight_file_scope_code_receipts_and_privacy",
       "rootSelfCheck": "3764-page full content gate and 3760 canonical routes passed; Manju/video-fit local acceptance passed. Actual two generated pages retain source URL; injecting bare undefined fails production gate. Old-rule and disabled-gate mutations both fail regression tests. No source/production/analytics requests."
     },
-    "nextAction": "Verify the authorized current-main read-only repair release using actual applicable gates and public static checks; record its receipt in the linked PR and private task report. Do not count this as source recovery. On Nov10 reuse the next original schedule for the distinct Missing heat failure and perform the Nov3-Nov9 Asia/Shanghai creator review. No duplicate crawl, new cron, source-rule relaxation or speculative heat values."
+    "nextAction": "Verify the authorized current-main read-only repair release using actual applicable gates and public static checks; record its receipt in the linked PR and private task report. Do not count this as source recovery. On Nov10 reuse the next original schedule for the distinct Missing heat failure and perform the Nov3-Nov9 Asia/Shanghai creator review. No duplicate crawl, new cron, source-rule relaxation or speculative heat values.",
+    "recordedInPullRequest": 287,
+    "receiptCommit": "22f35567e8cd8a5d2e74e59ee470e0e077eda516"
   },
   "recentActions": [
     {
@@ -1067,7 +1074,9 @@
       "originalFailureRun": "https://github.com/f-tiger/agi-site/actions/runs/42455371882",
       "action": "Repair standalone undefined token classification; actual full build and negative/mutation checks passed. Source Missing heat unresolved. Authorized read-only release outcome belongs to linked PR receipts.",
       "nextOriginalScheduleReviewDate": "2026-11-10",
-      "nextWeeklyReviewDate": "2026-11-10"
+      "nextWeeklyReviewDate": "2026-11-10",
+      "recordedInPullRequest": 287,
+      "receiptCommit": "22f35567e8cd8a5d2e74e59ee470e0e077eda516"
     }
   ],
   "historyPolicy": "Keep at most 14 compact completed-action receipts; use linked commits for older public implementation history. Private analytics and customer data stay outside this file.",
@@ -1504,7 +1513,8 @@
       "dispatchCount": 0,
       "indexNowSubmissions": null,
       "externalMessages": 0,
-      "meaning": "Prepared before the one authorized main release. Counts requiring actual workflow completion are not prefilled. Original failed schedule deployed nothing; release and IndexNow outcomes belong to actual linked receipts, not this preparation timestamp."
+      "meaning": "Prepared before the one authorized main release. Counts requiring actual workflow completion are not prefilled. Original failed schedule deployed nothing; release and IndexNow outcomes belong to actual linked receipts, not this preparation timestamp.",
+      "releaseEvidenceUrl": "https://github.com/f-tiger/agi-site/pull/287"
     },
     "latestExistingRelease": {
       "run": "https://github.com/f-tiger/agi-site/actions/runs/42382597542",
