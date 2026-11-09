@@ -49,7 +49,7 @@
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/ai-futures",
-        "n7_band": "10-99",
+        "n7_band": "100+",
         "p7_band": "10-99"
       },
       "mode": "queue"

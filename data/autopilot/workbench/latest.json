@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-11-08T09:26:44.212Z",
+  "as_of": "2026-11-09T10:16:39.748Z",
   "kind": "owned_page_health_not_market_validation",
   "ok": true,
   "site_checks": [
@@ -634,7 +634,7 @@
     }
   ],
   "checkout": {
-    "ready": true,
+    "ready": false,
     "status": "observed",
     "real_payment_verified": null
   },
@@ -1000,6 +1000,10 @@
     "net_revenue": null
   },
   "next_actions": [
+    {
+      "priority": "checkout",
+      "reason": "Verify BPJ live Web3 readiness before promoting paid placements."
+    },
     {
       "priority": "evidence",
       "reason": "Import dated Search Console/Bing, referral and settled-payment evidence before claiming acquisition or revenue."

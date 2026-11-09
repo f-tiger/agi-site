@@ -1,4 +1,4 @@
-# Fleet evolution report — 2026-11-08
+# Fleet evolution report — 2026-11-09
 
 Deterministic, aggregate-only report. Missing data remains unknown; no editorial text, payments or membership rights are changed by this job.
 
@@ -6,7 +6,7 @@ Deterministic, aggregate-only report. Missing data remains unknown; no editorial
 
 - Sites: 14 (healthy probes: 31)
 - Membership ready: 0 · paid members: 0 · active members: 0
-- Opportunity candidates: 6 · stale inputs: 0
+- Opportunity candidates: 7 · stale inputs: 0
 
 ## Priority actions
 
@@ -18,22 +18,22 @@ Deterministic, aggregate-only report. Missing data remains unknown; no editorial
 | 92 | thedollscout | membership_health | alert | public_ok=True; ready=False |
 | 55 | agiscorecard | content_gap | queue | count=4; query=ai stocks down; value=1 |
 | 55 | buysomething | content_gap | queue | count=1; query=costco; value=250 |
-| 55 | getecoback | content_gap | queue | count=21; query=infrarotheizung wandmontage; value=88250 |
+| 55 | getecoback | content_gap | queue | count=16; query=infrarotheizung wandmontage; value=88250 |
 | 55 | thedollscout | content_gap | queue | count=20; query=cat mode labubu; value=61150 |
-| 52 | agiscorecard | improve_hot_page | queue | page=/ai-futures; n7=99; p7=20 |
-| 52 | getecoback | improve_hot_page | queue | page=/; n7=10; p7=2 |
-| 48 | goldrush | ai_discovery | queue | human_pv_28d=627; ai_ref_28d=0 |
-| 48 | thedollscout | ai_discovery | queue | human_pv_28d=300; ai_ref_28d=0 |
+| 52 | agiscorecard | improve_hot_page | queue | page=/ai-futures; n7=118; p7=28 |
+| 52 | getecoback | improve_hot_page | queue | page=/; n7=11; p7=2 |
+| 48 | goldrush | ai_discovery | queue | human_pv_28d=631; ai_ref_28d=0 |
+| 48 | thedollscout | ai_discovery | queue | human_pv_28d=471; ai_ref_28d=0 |
 
 ## Input freshness
 
 | Input | Date | Age (days) |
 |---|---|---:|
-| membership | 2026-11-08T09:26:28.567Z | 0 |
-| health | 2026-11-07T14:33:03Z | 1 |
-| ai_referrals | 2026-11-07T14:33:29Z | 1 |
-| opportunities | 2026-11-07 | 1 |
-| autopilot_receipt | 2026-11-08 | 0 |
+| membership | 2026-11-09T10:16:16.983Z | 0 |
+| health | 2026-11-08T14:39:55Z | 1 |
+| ai_referrals | 2026-11-08T14:40:20Z | 1 |
+| opportunities | 2026-11-08 | 1 |
+| autopilot_receipt | 2026-11-09 | 0 |
 
 ## Autonomous boundary
 

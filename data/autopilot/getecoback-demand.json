@@ -3,7 +3,7 @@
   {
    "heat": {
     "n7": 2,
-    "p7": 0
+    "p7": 1
    },
    "kind": "value",
    "match": 0.667,
@@ -17,7 +17,7 @@
   {
    "heat": {
     "n7": 2,
-    "p7": 0
+    "p7": 1
    },
    "kind": "value",
    "match": 0.667,
@@ -31,7 +31,7 @@
   {
    "heat": {
     "n7": 2,
-    "p7": 0
+    "p7": 1
    },
    "kind": "value",
    "match": 0.9,
@@ -89,7 +89,7 @@
   {
    "heat": {
     "n7": 2,
-    "p7": 0
+    "p7": 1
    },
    "kind": "value",
    "match": 0.667,
@@ -176,39 +176,6 @@
    "source": "related-queries",
    "stand": "2026-11-06",
    "v": 8250
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 1.0,
-   "page": "guide/klimaanlage-mit-heizfunktion.html",
-   "q": "heizen mit klimaanlage",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-11-07",
-   "v": 400
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.917,
-   "page": "guide/klimaanlage-mit-heizfunktion.html",
-   "q": "klimaanlage zum heizen",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-11-07",
-   "v": 350
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 1.0,
-   "page": "guide/klimaanlage-mit-heizfunktion.html",
-   "q": "klimaanlage mit heizfunktion",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-11-07",
-   "v": 250
   },
   {
    "heat": null,
@@ -380,16 +347,6 @@
   },
   {
    "kind": "value",
-   "match": 0.583,
-   "page": "guide/air-zuma-erfahrungen.html",
-   "q": "black friday klimaanlage",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-11-07",
-   "v": 700
-  },
-  {
-   "kind": "value",
    "match": 0.0,
    "page": null,
    "q": "philips kaffeevollautomat ep5443/70 5400 series",
@@ -397,16 +354,6 @@
    "source": "related-queries",
    "stand": "2026-11-02",
    "v": 350
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "guide/air-zuma-erfahrungen.html",
-   "q": "vrf klimaanlage",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-11-07",
-   "v": 300
   },
   {
    "kind": "value",
@@ -420,36 +367,6 @@
   },
   {
    "kind": "value",
-   "match": 0.333,
-   "page": "guide/air-zuma-erfahrungen.html",
-   "q": "verkleidung klimaanlage außengerät",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-11-07",
-   "v": 250
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "guide/air-zuma-erfahrungen.html",
-   "q": "bodenkonsole klimaanlage",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-11-07",
-   "v": 250
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "guide/air-zuma-erfahrungen.html",
-   "q": "environ klimaanlage",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-11-07",
-   "v": 200
-  },
-  {
-   "kind": "value",
    "match": 0.5,
    "page": "guide/delonghi-pac-n90-test.html",
    "q": "de'longhi kaffeevollautomat",
@@ -459,48 +376,48 @@
    "v": 140
   }
  ],
- "generated": "2026-11-08",
+ "generated": "2026-11-09",
  "geo": "DE",
- "heat_source": "measured 2026-11-08 (19 pages); no notes",
+ "heat_source": "measured 2026-11-09 (19 pages); no notes",
  "hot_pages": [
   {
-   "n7": 10,
+   "n7": 11,
    "p7": 2,
    "page": "/"
   },
   {
-   "n7": 5,
+   "n7": 6,
    "p7": 3,
    "page": "/guide/luftentfeuchter-ratgeber.html"
   },
   {
    "n7": 4,
-   "p7": 3,
+   "p7": 2,
    "page": "/guide/klimaanlage-dachfenster.html"
   },
   {
    "n7": 4,
-   "p7": 3,
-   "page": "/guide/mobile-klimaanlage-ueberwintern.html"
-  },
-  {
-   "n7": 3,
    "p7": 1,
-   "page": "/guide/heizluefter-schaltet-sich-aus.html"
+   "page": "/guide/klimaanlage-wann-kaufen.html"
   },
   {
-   "n7": 3,
+   "n7": 4,
    "p7": 1,
    "page": "/guide/klimaanlage-wohnmobil.html"
   },
   {
-   "n7": 2,
+   "n7": 3,
    "p7": 2,
    "page": "/en/guide/portable-ac-leaking-water.html"
   },
   {
-   "n7": 2,
+   "n7": 3,
    "p7": 0,
+   "page": "/guide/fensterabdichtung-selber-bauen.html"
+  },
+  {
+   "n7": 2,
+   "p7": 1,
    "page": "/guide/akku-heizluefter.html"
   },
   {
@@ -511,7 +428,12 @@
   {
    "n7": 2,
    "p7": 0,
-   "page": "/guide/fensterabdichtung-selber-bauen.html"
+   "page": "/guide/fensterabdichtung-klimaanlage.html"
+  },
+  {
+   "n7": 2,
+   "p7": 2,
+   "page": "/guide/heizluefter-schaltet-sich-aus.html"
   },
   {
    "n7": 2,
@@ -520,18 +442,13 @@
   },
   {
    "n7": 2,
-   "p7": 0,
+   "p7": 1,
    "page": "/guide/klimaanlage-30-qm.html"
   },
   {
    "n7": 2,
    "p7": 0,
    "page": "/guide/klimaanlage-50-qm.html"
-  },
-  {
-   "n7": 2,
-   "p7": 2,
-   "page": "/guide/klimaanlage-wann-kaufen.html"
   },
   {
    "n7": 2,
@@ -547,8 +464,6 @@
   "avreno",
   "meacodry arete two 25l",
   "meacodry arete two 12l",
-  "daikin stylish",
-  "daikin perfera",
   "philips lattego"
  ],
  "site": "getecoback",

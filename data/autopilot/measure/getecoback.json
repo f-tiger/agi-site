@@ -2,8 +2,8 @@
  "extra": {
   "events": {
    "affiliate_click": {
-    "n7": 18,
-    "p7": 12
+    "n7": 19,
+    "p7": 11
    },
    "buyer_next": {
     "n7": 1,
@@ -18,11 +18,11 @@
     "p7": 3
    },
    "cold_now": {
-    "n7": 15,
-    "p7": 14
+    "n7": 22,
+    "p7": 16
    },
    "feuchte_now": {
-    "n7": 12,
+    "n7": 14,
     "p7": 12
    },
    "laundry_view": {
@@ -30,24 +30,24 @@
     "p7": 0
    },
    "page_view": {
-    "n7": 85,
-    "p7": 72
+    "n7": 89,
+    "p7": 73
    },
    "popup_click": {
     "n7": 0,
     "p7": 1
    },
    "popup_close": {
-    "n7": 11,
-    "p7": 10
+    "n7": 12,
+    "p7": 11
    },
    "popup_view": {
-    "n7": 24,
-    "p7": 16
+    "n7": 28,
+    "p7": 18
    },
    "strom_now": {
-    "n7": 7,
-    "p7": 14
+    "n7": 8,
+    "p7": 15
    },
    "stromkosten_calc": {
     "n7": 0,
@@ -55,7 +55,7 @@
    },
    "strompreis_api": {
     "n7": 1,
-    "p7": 2
+    "p7": 0
    },
    "video_play": {
     "n7": 0,
@@ -64,34 +64,38 @@
   },
   "zero_hit_records": 0
  },
- "fetched": "2026-11-08",
+ "fetched": "2026-11-09",
  "kind": "eco-trend",
  "notes": [],
  "ok": true,
  "pages": {
   "/": {
-   "n7": 10,
+   "n7": 11,
    "p7": 2
   },
   "/en/guide/portable-ac-leaking-water.html": {
-   "n7": 2,
+   "n7": 3,
    "p7": 2
   },
   "/guide/akku-heizluefter.html": {
    "n7": 2,
-   "p7": 0
+   "p7": 1
   },
   "/guide/balkon-terrasse-beschatten.html": {
    "n7": 2,
    "p7": 1
   },
-  "/guide/fensterabdichtung-selber-bauen.html": {
+  "/guide/fensterabdichtung-klimaanlage.html": {
    "n7": 2,
    "p7": 0
   },
-  "/guide/heizluefter-schaltet-sich-aus.html": {
+  "/guide/fensterabdichtung-selber-bauen.html": {
    "n7": 3,
-   "p7": 1
+   "p7": 0
+  },
+  "/guide/heizluefter-schaltet-sich-aus.html": {
+   "n7": 2,
+   "p7": 2
   },
   "/guide/heizluefter-stromverbrauch.html": {
    "n7": 2,
@@ -99,7 +103,7 @@
   },
   "/guide/klimaanlage-30-qm.html": {
    "n7": 2,
-   "p7": 0
+   "p7": 1
   },
   "/guide/klimaanlage-50-qm.html": {
    "n7": 2,
@@ -107,18 +111,18 @@
   },
   "/guide/klimaanlage-dachfenster.html": {
    "n7": 4,
-   "p7": 3
-  },
-  "/guide/klimaanlage-wann-kaufen.html": {
-   "n7": 2,
    "p7": 2
   },
+  "/guide/klimaanlage-wann-kaufen.html": {
+   "n7": 4,
+   "p7": 1
+  },
   "/guide/klimaanlage-wohnmobil.html": {
-   "n7": 3,
+   "n7": 4,
    "p7": 1
   },
   "/guide/luftentfeuchter-ratgeber.html": {
-   "n7": 5,
+   "n7": 6,
    "p7": 3
   },
   "/guide/meacodry-arete-one-test.html": {
@@ -128,10 +132,6 @@
   "/guide/midea-portasplit-ausverkauft-alternativen.html": {
    "n7": 2,
    "p7": 0
-  },
-  "/guide/mobile-klimaanlage-ueberwintern.html": {
-   "n7": 4,
-   "p7": 3
   },
   "/guide/was-bedeutet-btu.html": {
    "n7": 2,
