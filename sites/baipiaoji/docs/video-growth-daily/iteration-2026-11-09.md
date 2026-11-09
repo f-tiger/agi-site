@@ -1,6 +1,6 @@
 # 2026-11-09：修复发布门禁误报，来源缺热度独立保留
 
-本轮推进现有 `bpj-release-readiness` 的一个最小动作：修复全站占位符门禁对合法 GitHub 命名空间 `codeundefinedhq` 的误判。Nov8 自动导入的公开仓库链接出现在中英文 MCP 分类页，旧规则对整个 HTML 匹配 `undefined` 子串，恰好误报两页并阻止发布。无需删合法目录记录、改来源 URL 或跳过门禁。当前 main 尚无这项修复，也没有同目标开放 PR / 进行中的 BPJ 发布。
+本轮推进现有 `bpj-release-readiness` 的一个最小动作：修复全站占位符门禁对合法 GitHub 命名空间 `codeundefinedhq` 的误判。Nov8 自动导入的公开仓库链接出现在中英文 MCP 分类页，旧规则对整个 HTML 匹配 `undefined` 子串，恰好误报两页并阻止发布。无需删合法目录记录、改来源 URL 或跳过门禁。本轮开始检查时，main 尚无这项修复，也没有同目标开放 PR / 进行中的 BPJ 发布。
 
 ## 三轮任务优化与独立检查
 
@@ -18,7 +18,7 @@
 - **06:40:25.521Z** 开始采集；**06:40:37.0279237Z** 在 `manju-fetch.py:51` 报 `ValueError: Missing heat`。原响应、实际热度文本、榜别/页号/排名和 HTTP 状态未保存；原因未知。新增问题 `bpj-manju-source-missing-heat`，与 Nov5 `ranking-page-shape` 不同；不重开旧页面形状问题，不擅自把缺值当 0 或跳过异常作品。
 - 数据持久化与构建版本为 **`8b2d6e6f3ec10ed65173bcc58d6872834f86d347`**。片库和榜单与前值逐字相同，仍 **Nov7 双榜、1412 条含分季记录**，最后成功来源 **2026-11-07T06:33:59.203695+00:00**；没有有效 Nov8 新榜。官方日期时区未提供。
 - **06:42:30.9868935Z** 全站内容门禁因两个分类页占位误报失败。采集 step 因 `continue-on-error` 在 jobs API 显示 success，但真实 exit1，最终 **06:42:31.0248094Z** 汇总门另明确 source failure；不能把 step 显示当采集成功。
-- 部署前末次 current-main 校验、部署、GA4 覆盖/线上验证、会员检查与 IndexNow 均跳过。新 reach **已落盘、未由该任务上线**。最近部署仍为 Nov7 `2152236c`；最近有效会员观察仍是 **Nov7 14:49:10.7416683Z，not_ready、结账关闭**，原因未知，不改写成 Nov8 请求或收入证据。
+- 部署前末次 current-main 校验、部署、GA4 覆盖/线上验证、会员检查与 IndexNow 均跳过。新 reach **已落盘、未由该任务上线**。截至该原任务结束时，最近部署仍为 Nov7 `2152236c`；当时最近有效会员观察仍是 **Nov7 14:49:10.7416683Z，not_ready、结账关闭**，原因未知，不改写成 Nov8 请求或收入证据。
 
 ## 最小实施与验收
 
@@ -43,4 +43,20 @@ Windsor 保留 **Nov3 02:53:04Z** 实际全局暂停，本轮不重试/换身份
 
 **Nov10** 核对下一份原定时来源与发布回执，保留 Missing heat 阻塞直到实际恢复；按期复盘 **Nov3–9 Asia/Shanghai**。首轮 5 位首次实际任务、其中 3 位具体有用反馈和 2 位自愿复用仍是操作门槛，不是统计证明；数据不足或无再次发布机会照实记录，不延后复盘。
 
-实施与后续真实发布回执：[PR #287](https://github.com/f-tiger/agi-site/pull/287)；[首个修复提交 22f35567](https://github.com/f-tiger/agi-site/commit/22f35567e8cd8a5d2e74e59ee470e0e077eda516)。引用不代表已部署，实际结果按回执补记。
+实施与后续真实发布回执：[PR #287](https://github.com/f-tiger/agi-site/pull/287)；[首个修复提交 22f35567](https://github.com/f-tiger/agi-site/commit/22f35567e8cd8a5d2e74e59ee470e0e077eda516)。最初引用不代表已部署；实际结果现补记如下。
+
+## 发布后实际回执
+
+[修复发布 42553931816](https://github.com/f-tiger/agi-site/actions/runs/42553931816) 已成功。实际 built / 末次 checked-main 均为 **`99802e4bd753e2f3c271d6e38b7618627eccf95b`**；**Nov9 03:07:19.4698793Z** 防回滚校验、**03:07:46.1189648Z** 部署、**03:08:38.8330688Z** 最终适用门禁通过。关闭占位符误报子问题，不关闭 `Missing heat`。
+
+新回归测试 **03:01:30.3401665Z** 通过，生产内容门禁 **03:01:34.3342664Z** 核验 3764 页、placeholder=0、其余错误列全 0；Manju / video-fit 浏览器 **03:04:39.4243676Z / 03:06:45.4910712Z** 通过，video-fit 线上 **03:08:11.4502542Z** 通过。GA4 **03:07:49.8848300Z** 核验 3751 构建路由 / 75 线上样本，后台收数未测。来源抓取、生产注册/事件/支付观察写入、MCP 工具和聚合探测按只读模式跳过，不计为通过。
+
+会员最近有效只读观察更新为 **Nov9 03:08:17.0403622Z，ready**；保留 Nov7 not_ready 历史。变化原因未知，不能归因本补丁，未验证真实付款或收入。IndexNow **03:08:35.5473801Z** 收到 **81 个 BPJ 全站变更 canonical URL 的 HTTP200**，不是全数 Manju，也不全由本门禁补丁产生；不代表已收录、排名、AI 引用或访问。现有 startup MCP 版本已登记，未重复发布。
+
+主执行者另以正常 URL 做 7 个静态 GET：6 个通过（帧选首页、方法、工具、中英文 MCP 分类页、同步状态 JSON）。canonical、GA4 公共标签、结构化数据、合法来源 URL、Nov7 日期及“更新未成功，保留上次有效数据”提示核对通过。`/manju/catalog.json` 触及 **8 MB** 明确读取上限，未完成整份 JSON 复验；这是本轮 QA 限制，不是端点失败结论，不绕缓存重读。首次默认沙箱连接失败且无 HTTP 响应，随后用同一继承代理和 QA 身份完成获准连接；无身份切换或 reach API 请求。
+
+### 范围偏差与收尾
+
+新增 helper 放在 `sites/baipiaoji/lib/` 命中三个预存跨站 push 路径过滤，自动触发 [TDS 42553931883](https://github.com/f-tiger/agi-site/actions/runs/42553931883)、[AGI 42553931794](https://github.com/f-tiger/agi-site/actions/runs/42553931794)、[ECO 42553931858](https://github.com/f-tiger/agi-site/actions/runs/42553931858) 的只读发布；最终元数据均 success；ECO 另自动触发 [registry 工作流 42554292346](https://github.com/f-tiger/agi-site/actions/runs/42554292346) 与 [MCP smoke 42554292536](https://github.com/f-tiger/agi-site/actions/runs/42554292536)，元数据 success，仅查状态，不据此声称新登记或独立采用。BPJ 视频/创业 MCP 后继登记工作流均 skipped。没有修改它们源码，但额外触发是本轮副作用，不能归为他人操作或帧选增长成果。此前八文件范围审查漏查跨工作流路径依赖，独立审查已补记这项缺口；补记不是第三轮对抗检查。后续此类构建专用检查应先审触发依赖并优先使用本站 scripts 位置。本轮不追加迁移、其他站改动、dispatch 或取消操作。
+
+只用一笔产品合并触发 BPJ 发布；发布后的状态与回执补记是纯文档提交，不再部署或提交 IndexNow。Nov8 reach 与失败状态已随该已验收代码版本发布；原日任务失败历史不改写。主实验、分发阻塞、Nov10 周复盘及来源待恢复项均保留。
