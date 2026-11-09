@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-08",
- "radar_fetched": "2026-11-08",
+ "generated": "2026-11-09",
+ "radar_fetched": "2026-11-09",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -21,21 +21,6 @@
  },
  "opportunities": [
   {
-   "theme": "are you building an ai company brain",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "ask_hn",
-   "days_seen": [
-    "2026-11-05"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.79,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
    "theme": "openclaw saas",
    "site": "",
    "kind": "request-board",
@@ -45,37 +30,22 @@
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.71,
+   "score": 2.98,
    "demand": [],
    "supply": [],
    "fleet_pages": []
   },
   {
-   "theme": "ublock origin for the iot devices in my house",
+   "theme": "are you building an ai company brain",
    "site": "",
    "kind": "request-board",
    "subreddit": "ask_hn",
    "days_seen": [
-    "2026-11-02"
+    "2026-11-05"
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.22,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
-   "theme": "sell a developer problem that llm s can t solve",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "ask_hn",
-   "days_seen": [
-    "2026-11-01"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.17,
+   "score": 2.89,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -106,6 +76,36 @@
    "state": "scout",
    "supplied": false,
    "score": 2.14,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "does any software provide a graphical interface to sign text with an ssh key",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "softwarerecs",
+   "days_seen": [
+    "2026-11-09"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.0,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "looking for not yet released kickstarter campaign for 3d model manipulation",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "softwarerecs",
+   "days_seen": [
+    "2026-11-08"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.0,
    "demand": [],
    "supply": [],
    "fleet_pages": []
