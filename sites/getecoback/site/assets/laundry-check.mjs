@@ -21,7 +21,7 @@ if(typeof document!=='undefined'){
  if(root){
  const en=root.dataset.lang==='en',t=(de,english)=>en?english:de,form=root.querySelector('form'),q=s=>root.querySelector(s),results=q('[data-results]'),seen=new Set();let latest=null;
  const values=()=>{const d=new FormData(form),number=n=>Number(d.get(n));return {dryer:number('dryer'),dryerBasis:d.get('dryerBasis'),method:d.get('method'),watts:number('watts'),hours:number('hours'),dehum:number('dehum'),price:number('price'),loads:number('loads'),purchase:number('purchase'),currency:d.get('currency'),comparable:d.has('comparable')};};
- const signature=x=>JSON.stringify({...x,comparable:false,watts:x.method==='estimate'?x.watts:0,hours:x.method==='estimate'?x.hours:0,dehum:x.method==='measured'?x.dehum:0});const initial=signature(values());
+ const signature=x=>JSON.stringify({...x,comparable:false,watts:x.method==='estimate'?x.watts:0,hours:x.method==='estimate'?x.hours:0,dehum:x.method==='measured'?x.dehum:0});let initial;
  const inputKind=x=>signature(x)===initial?'example':'edited';
  const privacy=()=>navigator.doNotTrack==='1'||navigator.globalPrivacyControl||navigator.webdriver||/[?&]__(probe|ci|qa)(=|&|$)/.test(location.search);
  const emit=(name,action,x=values())=>{if(privacy()||window.__ecoToolExample)return;const m={lang:en?'en':'de',input:inputKind(x),method:x.method,equal:x.comparable?'yes':'no',action,...acquisition(location.href,document.referrer)},key=name+JSON.stringify(m);if(seen.has(key))return;seen.add(key);const fixed=laundryAction(name,m);if(fixed)window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:fixed}}));try{fetch('/api/ev',{method:'POST',keepalive:true,credentials:'omit',headers:{'content-type':'application/json'},body:JSON.stringify({n:name,p:location.pathname,r:document.referrer,m})}).catch(()=>{});}catch{}};
@@ -61,5 +61,13 @@ if(typeof document!=='undefined'){
  q('[data-share]').addEventListener('click',async()=>{const url='https://getecoback.com'+location.pathname+'#laundry-check';q('[data-share-url]').textContent=url;try{await navigator.clipboard.writeText(url);q('[data-share-url]').textContent=t('Kopiert: ','Copied: ')+url;}catch{}emit('laundry_next','share');});
  q('[data-laundry-next]').addEventListener('click',()=>emit('laundry_next','guide'));
  if('IntersectionObserver'in window){const observer=new IntersectionObserver(rows=>{if(rows.some(r=>r.isIntersecting)){emit('laundry_view','view');observer.disconnect();}},{threshold:.2});observer.observe(form);}
+ // Safe HTML stays useful if this module or its math dependency cannot load.
+ // Reveal inputs only after every handler is installed; never submit them as a GET.
+ const fields=q('[data-laundry-fields]');if(fields)fields.disabled=false;
+ initial=signature(values());
+ form.removeAttribute('inert');form.hidden=false;
+ q('[data-example]').disabled=false;q('[data-share]').disabled=false;
+ const fallback=q('[data-laundry-fallback]');if(fallback)fallback.hidden=true;
+ root.dataset.laundryReady='true';
  }
 }

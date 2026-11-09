@@ -122,8 +122,11 @@ def to_markdown(src_html, path_url, lang):
             body += f'<h2>{heading}</h2>' + evidence
     laundry = re.search(r'<!--EB_LAUNDRY-->(.*?)<!--/EB_LAUNDRY-->', src_html, re.S)
     if laundry:
-        protocol = re.search(r'<details><summary>(?:Measure one load fairly: checklist|Eine Ladung fair messen: Checkliste)</summary>(.*?)</details>', laundry.group(1), re.S)
+        protocol = re.search(r'<details\b[^>]*><summary>(?:Measure one load fairly: checklist|Eine Ladung fair messen: Checkliste)</summary>(.*?)</details>', laundry.group(1), re.S)
         if protocol:
+            worked = re.search(r'<p data-laundry-example>(.*?)</p>', laundry.group(1), re.S)
+            if worked:
+                body += '<p>' + worked.group(1) + '</p>'
             if lang == 'de':
                 decisions = re.search(r'<div class="lc-evidence" id="waesche-entscheidung">(.*?)</div>', laundry.group(1), re.S)
                 body += re.sub(r'<summary>(.*?)</summary>', r'<p><strong>\1</strong></p>', decisions.group(1), flags=re.S) if decisions else ''
