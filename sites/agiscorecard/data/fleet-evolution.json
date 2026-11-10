@@ -14,7 +14,7 @@
     },
     "demand": {
       "has_underserved": false,
-      "has_gaps": true,
+      "has_gaps": false,
       "has_hot_pages": true,
       "top_underserved_page": null,
       "top_hot_page": "/ai-futures"
@@ -31,17 +31,6 @@
       "reason": "membership API is not ready",
       "evidence": {},
       "mode": "alert"
-    },
-    {
-      "kind": "content_gap",
-      "priority": 55,
-      "reason": "rising demand has no matching page; editorial judgement is required",
-      "evidence": {
-        "count_band": "1-9",
-        "query": "ai stocks down",
-        "value_band": "1-9"
-      },
-      "mode": "queue"
     },
     {
       "kind": "improve_hot_page",

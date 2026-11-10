@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "as_of": "2026-11-09",
+  "as_of": "2026-11-10",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
@@ -12,11 +12,11 @@
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-11-09T10:16:16.983Z",
-    "health": "2026-11-08T14:39:55Z",
-    "ai_referrals": "2026-11-08T14:40:20Z",
-    "opportunities": "2026-11-08",
-    "autopilot_receipt": "2026-11-09"
+    "membership": "2026-11-10T10:19:22.241Z",
+    "health": "2026-11-09T18:04:13Z",
+    "ai_referrals": "2026-11-09T18:04:42Z",
+    "opportunities": "2026-11-09",
+    "autopilot_receipt": "2026-11-10"
   },
   "input_ages_days": {
     "membership": 0,
@@ -28,7 +28,7 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-11-09T10:16:16.983Z",
+    "generated": "2026-11-10T10:19:22.241Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
     "ok": false,
@@ -128,37 +128,19 @@
   },
   "opportunities": [
     {
-      "theme": "are you building an ai company brain",
-      "site": null,
-      "state": "scout",
-      "score": 2.79,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
       "theme": "openclaw saas",
       "site": null,
       "state": "scout",
-      "score": 2.71,
+      "score": 2.98,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
     },
     {
-      "theme": "ublock origin for the iot devices in my house",
+      "theme": "are you building an ai company brain",
       "site": null,
       "state": "scout",
-      "score": 2.22,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
-      "theme": "sell a developer problem that llm s can t solve",
-      "site": null,
-      "state": "scout",
-      "score": 2.17,
+      "score": 2.89,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -177,6 +159,24 @@
       "site": null,
       "state": "scout",
       "score": 2.14,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "does any software provide a graphical interface to sign text with an ssh key",
+      "site": null,
+      "state": "scout",
+      "score": 2.0,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "looking for not yet released kickstarter campaign for 3d model manipulation",
+      "site": null,
+      "state": "scout",
+      "score": 2.0,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -352,18 +352,6 @@
       "mode": "alert"
     },
     {
-      "site": "agiscorecard",
-      "kind": "content_gap",
-      "priority": 55,
-      "reason": "rising demand has no matching page; editorial judgement is required",
-      "evidence": {
-        "count": 4,
-        "query": "ai stocks down",
-        "value": 1
-      },
-      "mode": "queue"
-    },
-    {
       "site": "buysomething",
       "kind": "content_gap",
       "priority": 55,
@@ -381,9 +369,9 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 16,
-        "query": "infrarotheizung wandmontage",
-        "value": 88250
+        "count": 10,
+        "query": "vivosun luftentfeuchter",
+        "value": 28600
       },
       "mode": "queue"
     },
@@ -406,8 +394,8 @@
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/ai-futures",
-        "n7": 118,
-        "p7": 28
+        "n7": 125,
+        "p7": 52
       },
       "mode": "queue"
     },
@@ -429,7 +417,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 631,
+        "human_pv_28d": 645,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -440,7 +428,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 471,
+        "human_pv_28d": 642,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -449,7 +437,7 @@
   "site_manifests": {
     "agiscorecard": {
       "path": "sites/agiscorecard/data/fleet-evolution.json",
-      "action_count": 3
+      "action_count": 2
     },
     "baipiaoji": {
       "path": "sites/baipiaoji/data/fleet-evolution.json",

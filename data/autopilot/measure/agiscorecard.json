@@ -3,11 +3,11 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 29,
+    "n": 27,
     "q": "tool:portfolio_returns"
    },
    {
-    "n": 11,
+    "n": 10,
     "q": "tool:verdicts"
    },
    {
@@ -36,38 +36,38 @@
    },
    {
     "n": 1,
-    "q": "neuralink"
+    "q": "tool:agi_consensus mcp-discovery-measuremen"
    },
    {
     "n": 1,
-    "q": "google"
+    "q": "personal loan"
    }
   ]
  },
- "fetched": "2026-11-09",
+ "fetched": "2026-11-10",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
   "/agents": {
-   "n7": 66,
-   "p7": 9
+   "n7": 87,
+   "p7": 12
   },
   "/ai-futures": {
-   "n7": 118,
-   "p7": 28
+   "n7": 125,
+   "p7": 52
   },
-  "/changelog": {
-   "n7": 68,
-   "p7": 30
+  "/ai-infrastructure": {
+   "n7": 125,
+   "p7": 59
   },
   "/tianya": {
-   "n7": 93,
-   "p7": 18
+   "n7": 113,
+   "p7": 31
   },
   "/workbench/classroompuzzles": {
-   "n7": 73,
-   "p7": 36
+   "n7": 84,
+   "p7": 35
   }
  },
  "site": "agiscorecard",

@@ -2,52 +2,52 @@
  "extra": {
   "events": {
    "affiliate_click": {
-    "n7": 19,
-    "p7": 11
+    "n7": 16,
+    "p7": 12
    },
    "buyer_next": {
     "n7": 1,
     "p7": 1
    },
    "buyer_result": {
-    "n7": 2,
-    "p7": 1
+    "n7": 1,
+    "p7": 2
    },
    "buyer_view": {
-    "n7": 7,
-    "p7": 3
+    "n7": 6,
+    "p7": 4
    },
    "cold_now": {
-    "n7": 22,
-    "p7": 16
+    "n7": 25,
+    "p7": 17
    },
    "feuchte_now": {
-    "n7": 14,
-    "p7": 12
+    "n7": 13,
+    "p7": 14
    },
    "laundry_view": {
     "n7": 1,
     "p7": 0
    },
    "page_view": {
-    "n7": 89,
-    "p7": 73
+    "n7": 85,
+    "p7": 69
    },
    "popup_click": {
     "n7": 0,
     "p7": 1
    },
    "popup_close": {
-    "n7": 12,
-    "p7": 11
+    "n7": 11,
+    "p7": 12
    },
    "popup_view": {
-    "n7": 28,
-    "p7": 18
+    "n7": 25,
+    "p7": 20
    },
    "strom_now": {
-    "n7": 8,
-    "p7": 15
+    "n7": 6,
+    "p7": 10
    },
    "stromkosten_calc": {
     "n7": 0,
@@ -64,7 +64,7 @@
   },
   "zero_hit_records": 0
  },
- "fetched": "2026-11-09",
+ "fetched": "2026-11-10",
  "kind": "eco-trend",
  "notes": [],
  "ok": true,
@@ -93,10 +93,6 @@
    "n7": 3,
    "p7": 0
   },
-  "/guide/heizluefter-schaltet-sich-aus.html": {
-   "n7": 2,
-   "p7": 2
-  },
   "/guide/heizluefter-stromverbrauch.html": {
    "n7": 2,
    "p7": 2
@@ -106,12 +102,12 @@
    "p7": 1
   },
   "/guide/klimaanlage-50-qm.html": {
-   "n7": 2,
+   "n7": 3,
    "p7": 0
   },
   "/guide/klimaanlage-dachfenster.html": {
-   "n7": 4,
-   "p7": 2
+   "n7": 2,
+   "p7": 3
   },
   "/guide/klimaanlage-wann-kaufen.html": {
    "n7": 4,
@@ -119,29 +115,25 @@
   },
   "/guide/klimaanlage-wohnmobil.html": {
    "n7": 4,
-   "p7": 1
+   "p7": 0
   },
   "/guide/luftentfeuchter-ratgeber.html": {
-   "n7": 6,
-   "p7": 3
+   "n7": 5,
+   "p7": 4
   },
   "/guide/meacodry-arete-one-test.html": {
    "n7": 2,
    "p7": 0
   },
   "/guide/midea-portasplit-ausverkauft-alternativen.html": {
-   "n7": 2,
+   "n7": 3,
    "p7": 0
   },
   "/guide/was-bedeutet-btu.html": {
-   "n7": 2,
+   "n7": 3,
    "p7": 3
   },
   "/hitze-radar.html": {
-   "n7": 2,
-   "p7": 0
-  },
-  "/zh/agents/eudr-geolocation-evidence.html": {
    "n7": 2,
    "p7": 0
   }

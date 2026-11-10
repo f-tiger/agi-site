@@ -1,4 +1,4 @@
-# Fleet evolution report — 2026-11-09
+# Fleet evolution report — 2026-11-10
 
 Deterministic, aggregate-only report. Missing data remains unknown; no editorial text, payments or membership rights are changed by this job.
 
@@ -16,24 +16,23 @@ Deterministic, aggregate-only report. Missing data remains unknown; no editorial
 | 92 | baipiaoji | membership_health | alert | public_ok=True; ready=False |
 | 92 | getecoback | membership_health | alert | public_ok=True; ready=False |
 | 92 | thedollscout | membership_health | alert | public_ok=True; ready=False |
-| 55 | agiscorecard | content_gap | queue | count=4; query=ai stocks down; value=1 |
 | 55 | buysomething | content_gap | queue | count=1; query=costco; value=250 |
-| 55 | getecoback | content_gap | queue | count=16; query=infrarotheizung wandmontage; value=88250 |
+| 55 | getecoback | content_gap | queue | count=10; query=vivosun luftentfeuchter; value=28600 |
 | 55 | thedollscout | content_gap | queue | count=20; query=cat mode labubu; value=61150 |
-| 52 | agiscorecard | improve_hot_page | queue | page=/ai-futures; n7=118; p7=28 |
+| 52 | agiscorecard | improve_hot_page | queue | page=/ai-futures; n7=125; p7=52 |
 | 52 | getecoback | improve_hot_page | queue | page=/; n7=11; p7=2 |
-| 48 | goldrush | ai_discovery | queue | human_pv_28d=631; ai_ref_28d=0 |
-| 48 | thedollscout | ai_discovery | queue | human_pv_28d=471; ai_ref_28d=0 |
+| 48 | goldrush | ai_discovery | queue | human_pv_28d=645; ai_ref_28d=0 |
+| 48 | thedollscout | ai_discovery | queue | human_pv_28d=642; ai_ref_28d=0 |
 
 ## Input freshness
 
 | Input | Date | Age (days) |
 |---|---|---:|
-| membership | 2026-11-09T10:16:16.983Z | 0 |
-| health | 2026-11-08T14:39:55Z | 1 |
-| ai_referrals | 2026-11-08T14:40:20Z | 1 |
-| opportunities | 2026-11-08 | 1 |
-| autopilot_receipt | 2026-11-09 | 0 |
+| membership | 2026-11-10T10:19:22.241Z | 0 |
+| health | 2026-11-09T18:04:13Z | 1 |
+| ai_referrals | 2026-11-09T18:04:42Z | 1 |
+| opportunities | 2026-11-09 | 1 |
+| autopilot_receipt | 2026-11-10 | 0 |
 
 ## Autonomous boundary
 

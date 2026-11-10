@@ -76,17 +76,6 @@
    "v": 43050
   },
   {
-   "heat": null,
-   "kind": "value",
-   "match": 1.0,
-   "page": "guide/infrarotheizung-garage.html",
-   "q": "infrarotheizung garage",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-11-01",
-   "v": 37700
-  },
-  {
    "heat": {
     "n7": 2,
     "p7": 1
@@ -99,28 +88,6 @@
    "source": "related-queries",
    "stand": "2026-11-07",
    "v": 36350
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.917,
-   "page": "guide/infrarotheizung-garage.html",
-   "q": "infrarotheizung als bild",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-11-01",
-   "v": 35500
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.75,
-   "page": "guide/heizung-tauschen-oder-warten-gmodg.html",
-   "q": "stand infrarotheizung",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-11-01",
-   "v": 32400
   },
   {
    "heat": null,
@@ -215,66 +182,6 @@
   "zero_hit_records": 0
  },
  "gaps": [
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "guide/heizkosten-vergleich-rechner.html",
-   "q": "infrarotheizung wandmontage",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-11-01",
-   "v": 88250
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "guide/heizkosten-vergleich-rechner.html",
-   "q": "byecold infrarotheizung",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-11-01",
-   "v": 41400
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "guide/heizkosten-vergleich-rechner.html",
-   "q": "infrarotheizung wintergarten",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-11-01",
-   "v": 39700
-  },
-  {
-   "kind": "value",
-   "match": 0.0,
-   "page": null,
-   "q": "konvektorheizung",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-11-01",
-   "v": 38500
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "guide/heizkosten-vergleich-rechner.html",
-   "q": "infrarotheizung outdoor",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-11-01",
-   "v": 34500
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "guide/infrarotheizung-badezimmer.html",
-   "q": "könighaus infrarotheizung 1200 watt",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-11-01",
-   "v": 32300
-  },
   {
    "kind": "value",
    "match": 0.5,
@@ -376,9 +283,9 @@
    "v": 140
   }
  ],
- "generated": "2026-11-09",
+ "generated": "2026-11-10",
  "geo": "DE",
- "heat_source": "measured 2026-11-09 (19 pages); no notes",
+ "heat_source": "measured 2026-11-10 (17 pages); no notes",
  "hot_pages": [
   {
    "n7": 11,
@@ -386,14 +293,9 @@
    "page": "/"
   },
   {
-   "n7": 6,
-   "p7": 3,
+   "n7": 5,
+   "p7": 4,
    "page": "/guide/luftentfeuchter-ratgeber.html"
-  },
-  {
-   "n7": 4,
-   "p7": 2,
-   "page": "/guide/klimaanlage-dachfenster.html"
   },
   {
    "n7": 4,
@@ -402,7 +304,7 @@
   },
   {
    "n7": 4,
-   "p7": 1,
+   "p7": 0,
    "page": "/guide/klimaanlage-wohnmobil.html"
   },
   {
@@ -414,6 +316,21 @@
    "n7": 3,
    "p7": 0,
    "page": "/guide/fensterabdichtung-selber-bauen.html"
+  },
+  {
+   "n7": 3,
+   "p7": 0,
+   "page": "/guide/klimaanlage-50-qm.html"
+  },
+  {
+   "n7": 3,
+   "p7": 0,
+   "page": "/guide/midea-portasplit-ausverkauft-alternativen.html"
+  },
+  {
+   "n7": 3,
+   "p7": 3,
+   "page": "/guide/was-bedeutet-btu.html"
   },
   {
    "n7": 2,
@@ -433,11 +350,6 @@
   {
    "n7": 2,
    "p7": 2,
-   "page": "/guide/heizluefter-schaltet-sich-aus.html"
-  },
-  {
-   "n7": 2,
-   "p7": 2,
    "page": "/guide/heizluefter-stromverbrauch.html"
   },
   {
@@ -447,19 +359,13 @@
   },
   {
    "n7": 2,
-   "p7": 0,
-   "page": "/guide/klimaanlage-50-qm.html"
-  },
-  {
-   "n7": 2,
-   "p7": 0,
-   "page": "/guide/meacodry-arete-one-test.html"
+   "p7": 3,
+   "page": "/guide/klimaanlage-dachfenster.html"
   }
  ],
  "how_to_read": "Research candidates only; token matching is not an editorial or market decision. Relative growth is not search volume, and autocomplete is vocabulary evidence only. Underserved requires an observed zero in the matching measurement window; missing page measurements are unknown, and zero arrivals do not establish a title or internal-link cause. First-party evidence contains only aggregate zero-hit record counts, never raw search terms. Freshness, country, independent evidence and the reviewed page catalog must pass tools/eco_evolution.py before prioritising an existing page. This research queue does not publish. The separate getecoback scheduled deployment runs tools/auto_content.py to discover official product specifications, validate evidence and publish at most one substantive guide change per UTC day.",
  "note": "选题输入,不是选题依据。任何由它引出的页面仍要过本站三门与硬内容规则。本文件由 tools/autopilot 每日确定性生成,零 AI、零编造。",
  "offtopic_dropped": [
-  "ölradiator",
   "dreo atom 316",
   "avreno",
   "meacodry arete two 25l",
