@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-09",
- "radar_fetched": "2026-11-09",
+ "generated": "2026-11-10",
+ "radar_fetched": "2026-11-10",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -30,7 +30,7 @@
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.98,
+   "score": 3.03,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -45,7 +45,22 @@
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.89,
+   "score": 2.94,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "what software provides a markup language for wireframing",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "softwarerecs",
+   "days_seen": [
+    "2026-11-07"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.18,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -66,16 +81,16 @@
    "fleet_pages": []
   },
   {
-   "theme": "what software provides a markup language for wireframing",
+   "theme": "one static docs site from openapi mcp and doxygen specs",
    "site": "",
    "kind": "request-board",
    "subreddit": "softwarerecs",
    "days_seen": [
-    "2026-11-07"
+    "2026-11-09"
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.14,
+   "score": 2.05,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -106,21 +121,6 @@
    "state": "scout",
    "supplied": false,
    "score": 2.0,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
-   "theme": "can the whatsapp business calling api initiate calls using a canadian business p",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "softwarerecs",
-   "days_seen": [
-    "2026-11-02"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 1.98,
    "demand": [],
    "supply": [],
    "fleet_pages": []
