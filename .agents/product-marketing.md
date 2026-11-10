@@ -8,6 +8,14 @@ Owner's latest staged goals are USD 1,000, USD 5,000 and USD 10,000 in monthly r
 
 ## Current revenue directions — owner steering 2026-10-04
 
+### ECO CEO acquisition review — owner steering 2026-11-10
+
+Treat low reach as the first bottleneck until matched landing and completion data says otherwise. Retain existing German cooling pages with observed merchant intent; keep the cellar/dehumidifier/laundry cluster as a bounded seasonal acquisition hypothesis. Do not replace converting cooling paths solely because it is winter, bulk-expand countries, or add more tools from raw MCP request counts.
+
+GEO success requires identifiable useful arrivals and downstream actions, not crawler access, AI files, requests or IndexNow acceptance. Use complete-week filtered affiliate_audit channels for pageview-event shares; raw refs is capped and has different filtering. Missing Search Console/GA4 access remains unknown. Google AI Search traffic is not separately identifiable from these referrers. No automatic expansion based on a tiny AI share or unverified MCP adoption.
+
+Next content work should strengthen an existing German problem-specific answer with verifiable original comparison/calculation value, clear assumptions and a matching next step. First inspect property-level indexing and query/page impressions through an existing authorized connection; missing reports do not justify guessing CTR rewrites. Preserve the published campaign destinations and evaluate complete observation windows. See sites/getecoback/docs/ceo-acquisition-2026-11-10.md.
+
 ### ECO acquisition goal — owner steering 2026-11-07
 
 The owner confirmed ECO (getecoback.com) as the target and requested continued improvement toward 1,000 visitors per day. The measurement convention is daily GA4 totalUsers as a browser/device estimate, with activeUsers and engaged sessions as quality checks; none establishes verified human identities. Sum daily totalUsers over seven complete property-timezone days and divide by seven, rather than dividing a period-deduplicated user count. Report Germany separately from global arrivals. Raw first-party pageview events, bot-labelled traffic, MCP calls and affiliate clicks are not substitute user totals. Existing revenue goals and historical commissions remain separate.
