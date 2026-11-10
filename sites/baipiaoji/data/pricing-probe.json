@@ -1,22 +1,22 @@
 {
- "generated": "2026-11-09",
+ "generated": "2026-11-10",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "elicit",
-  "grammarly",
-  "ai360",
-  "aider",
-  "aippt",
-  "ante",
-  "bing-image",
-  "caiyun"
+  "cerebras",
+  "character-ai",
+  "chatgpt",
+  "codebuddy",
+  "cody",
+  "comate",
+  "continue",
+  "coze"
  ],
- "cursor": "caiyun",
+ "cursor": "coze",
  "summary": {
-  "ready": 42,
-  "empty": 36,
+  "ready": 43,
+  "empty": 35,
   "blocked": 30,
   "probed_total": 108
  },
@@ -594,14 +594,14 @@
    "name": "Cerebras",
    "cat": "api",
    "reach": 0,
-   "probed": "2026-11-01",
+   "probed": "2026-11-10",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://cerebras.ai/pricing",
      "status": 200,
-     "bytes": 243617,
+     "bytes": 243415,
      "tokens": 1
     },
     {
@@ -966,7 +966,7 @@
    "name": "Character.AI",
    "cat": "chat",
    "reach": 0,
-   "probed": "2026-11-01",
+   "probed": "2026-11-10",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -996,37 +996,29 @@
    "name": "ChatGPT",
    "cat": "chat",
    "reach": 0,
-   "probed": "2026-11-01",
+   "probed": "2026-11-10",
    "env": "runner",
-   "state": "blocked",
+   "state": "ready",
    "tried": [
     {
      "url": "https://chatgpt.com/pricing",
-     "status": 403,
-     "bytes": 0,
-     "tokens": 0
-    },
-    {
-     "url": "https://chatgpt.com/price",
-     "status": 403,
-     "bytes": 0,
-     "tokens": 0
-    },
-    {
-     "url": "https://chatgpt.com/plans",
-     "status": 403,
-     "bytes": 0,
-     "tokens": 0
+     "status": 200,
+     "bytes": 600000,
+     "tokens": 3
     }
    ],
-   "best": null
+   "best": {
+    "url": "https://chatgpt.com/pricing",
+    "tokens": 3,
+    "excerpt": "部处理（审阅信息、推理和生成回复）也会占用空间。所标示的用户输入空间为估算值，可能随所用功能及记忆内容动态变化。 ****须满足激活要求和资格条件。首次发放的额度按比例折算。未使用的额度将在相应账单周期结束时到期。Business 年度套餐每年发放一次额度。API 额度权益可能变更或终止，包括额度金额和未来的续发安排。更多信息请见 此处 ⁠ 。 常见问题解答 ChatGPT 定价方式是怎样的？ ChatGPT 免费版对所有人开放。付费套餐（Go、Plus、Business 和 Enterprise）按每位用户每月收费。我们提供 Go、Plus 和 Business 的月度套餐，以及 Business 和 Enterprise 的年度套餐。 ChatGPT 可以免费使用吗？ ChatGPT 免费版对所有人开放。升级到 Go、Plus、Business 或 Enterprise 套餐，即可可通过更多模型和功能的使用权限，畅享更出色的体验。 OpenAI 是否为教育机构提供 ChatGPT 套餐？ 是的。我们提供 ChatGPT for Teachers ⁠ ，这是面向经认证的美国 K–12 教育工作者的免费套餐，有效期至 2027 年 6 月；同时也推出 ChatGPT Edu ⁠ ，一款价格合理的套餐，帮助高校在校园社区广泛部署 AI。两款套餐均配备更出色的安全与隐私保护，为院校、学区和大学提供更多管理功能。 联系我们的团队 ⁠ ，了解更多信息。 OpenAI 是否为非营利组织提供优惠？ 通过 OpenAI for Nonprofits，非营利组织现在可以享受 ChatGPT B"
+   }
   },
   "codebuddy": {
    "slug": "codebuddy",
    "name": "CodeBuddy（腾讯）",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-11-01",
+   "probed": "2026-11-10",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -1040,7 +1032,7 @@
     {
      "url": "https://copilot.tencent.com/pricing",
      "status": 200,
-     "bytes": 6849,
+     "bytes": 6688,
      "tokens": 0
     },
     {
@@ -1061,14 +1053,14 @@
    "name": "Sourcegraph Cody",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-11-02",
+   "probed": "2026-11-10",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://sourcegraph.com/blog/changes-to-cody-free-pro-and-enterprise-starter-plans",
      "status": 200,
-     "bytes": 32621,
+     "bytes": 32622,
      "tokens": 5
     }
    ],
@@ -1105,15 +1097,16 @@
    "name": "文心快码 Comate（百度）",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-11-02",
+   "probed": "2026-11-10",
    "env": "runner",
-   "state": "empty",
+   "state": "blocked",
    "tried": [
     {
      "url": "https://comate.baidu.com/pricing",
-     "status": 200,
-     "bytes": 13995,
-     "tokens": 0
+     "status": 0,
+     "bytes": 0,
+     "tokens": 0,
+     "error": "UND_ERR_CONNECT_TIMEOUT"
     },
     {
      "url": "https://comate.baidu.com/price",
@@ -1128,18 +1121,14 @@
      "tokens": 0
     }
    ],
-   "best": {
-    "url": "https://comate.baidu.com/pricing",
-    "tokens": 0,
-    "excerpt": ""
-   }
+   "best": null
   },
   "continue": {
    "slug": "continue",
    "name": "Continue",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-11-02",
+   "probed": "2026-11-10",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1169,26 +1158,26 @@
    "name": "扣子 Coze（字节）",
    "cat": "agent",
    "reach": 0,
-   "probed": "2026-11-02",
+   "probed": "2026-11-10",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://www.coze.cn/pricing",
      "status": 200,
-     "bytes": 89484,
+     "bytes": 89603,
      "tokens": 0
     },
     {
      "url": "https://www.coze.cn/price",
      "status": 200,
-     "bytes": 89484,
+     "bytes": 89603,
      "tokens": 0
     },
     {
      "url": "https://www.coze.cn/plans",
      "status": 200,
-     "bytes": 89484,
+     "bytes": 89603,
      "tokens": 0
     }
    ],

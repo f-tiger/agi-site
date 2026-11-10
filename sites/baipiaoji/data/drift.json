@@ -1,10 +1,38 @@
 {
-  "generated": "2026-11-09",
+  "generated": "2026-11-10",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
   "fetched_ok": 107,
   "fetched_fail": 20,
-  "pending": 8,
+  "pending": 14,
   "items": [
+    {
+      "slug": "dify",
+      "url": "https://dify.ai",
+      "confirmed": "2026-11-10",
+      "first_seen": "2026-11-09",
+      "added": [
+        "160k"
+      ],
+      "removed": [
+        "148k"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "windsurf",
+      "url": "https://windsurf.com",
+      "confirmed": "2026-11-10",
+      "first_seen": "2026-11-09",
+      "added": [
+        "$31",
+        "$58"
+      ],
+      "removed": [
+        "$32",
+        "$59"
+      ],
+      "checked_then": "2026-08-03"
+    },
     {
       "slug": "replit",
       "url": "https://docs.replit.com",
@@ -203,19 +231,6 @@
       "checked_then": "2026-08-04"
     },
     {
-      "slug": "dify",
-      "url": "https://dify.ai",
-      "confirmed": "2026-11-06",
-      "first_seen": "2026-11-05",
-      "added": [
-        "148k"
-      ],
-      "removed": [
-        "160k"
-      ],
-      "checked_then": "2026-08-04"
-    },
-    {
       "slug": "lovable",
       "url": "https://docs.lovable.dev",
       "confirmed": "2026-11-06",
@@ -347,24 +362,6 @@
         "3天"
       ],
       "checked_then": "2026-09-29"
-    },
-    {
-      "slug": "windsurf",
-      "url": "https://windsurf.com",
-      "confirmed": "2026-11-04",
-      "first_seen": "2026-11-03",
-      "added": [
-        "$32",
-        "$59",
-        "02b",
-        "76k"
-      ],
-      "removed": [
-        "$31",
-        "$58",
-        "1mo"
-      ],
-      "checked_then": "2026-08-03"
     },
     {
       "slug": "deepl",

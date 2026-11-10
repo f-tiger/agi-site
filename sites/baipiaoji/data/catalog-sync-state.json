@@ -1,19 +1,9 @@
 {
  "version": 1,
  "github": {
-  "queryIndex": 12,
+  "queryIndex": 18,
   "page": 1,
   "pending": [
-   {
-    "repo": "xixihhhh/clipforge",
-    "topic": "agents",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "yusufkaraaslan/Skill_Seekers",
-    "topic": "agents",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
    {
     "repo": "Zipstack/unstract",
     "topic": "agents",
@@ -130,16 +120,6 @@
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
-    "repo": "The-PR-Agent/pr-agent",
-    "topic": "coding",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "datawhalechina/vibe-vibe",
-    "topic": "coding",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
     "repo": "the-open-engine/zeroshot",
     "topic": "coding",
     "foundAt": "2026-10-04T06:17:42.048Z"
@@ -242,11 +222,6 @@
    {
     "repo": "yanliudesign/mono-color-skill",
     "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "TalAter/annyang",
-    "topic": "audio",
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
@@ -507,11 +482,6 @@
    {
     "repo": "microsoft/WindowsAgentArena",
     "topic": "agents",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
-    "repo": "TriliumNext/Trilium",
-    "topic": "knowledge",
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
@@ -985,11 +955,6 @@
     "foundAt": "2026-10-06T06:50:25.349Z"
    },
    {
-    "repo": "NightMean/OlliteRT",
-    "topic": "local",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
     "repo": "ARahim3/mlx-dspark",
     "topic": "coding",
     "foundAt": "2026-10-09T06:38:33.001Z"
@@ -1120,11 +1085,6 @@
     "foundAt": "2026-10-09T06:38:33.001Z"
    },
    {
-    "repo": "dynobo/normcap",
-    "topic": "documents",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
     "repo": "datalab-to/lift",
     "topic": "documents",
     "foundAt": "2026-10-09T06:38:33.001Z"
@@ -1187,11 +1147,6 @@
    {
     "repo": "lancedb/vectordb-recipes",
     "topic": "agents",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
-    "repo": "pakerwreah/Calendr",
-    "topic": "everyday",
     "foundAt": "2026-10-09T06:38:33.001Z"
    },
    {
@@ -1500,11 +1455,6 @@
     "foundAt": "2026-10-14T05:19:33.308Z"
    },
    {
-    "repo": "zurawiki/gptcommit",
-    "topic": "ai",
-    "foundAt": "2026-10-14T08:05:15.418Z"
-   },
-   {
     "repo": "langfengQ/verl-agent",
     "topic": "agents",
     "foundAt": "2026-10-14T08:05:15.418Z"
@@ -1597,11 +1547,6 @@
    {
     "repo": "Th0rgal/orb",
     "topic": "coding",
-    "foundAt": "2026-10-17T04:57:48.620Z"
-   },
-   {
-    "repo": "Stability-AI/StableSwarmUI",
-    "topic": "image",
     "foundAt": "2026-10-17T04:57:48.620Z"
    },
    {
@@ -2515,11 +2460,6 @@
     "foundAt": "2026-11-01T06:46:25.416Z"
    },
    {
-    "repo": "SciSharp/LLamaSharp",
-    "topic": "chat",
-    "foundAt": "2026-11-01T06:46:25.416Z"
-   },
-   {
     "repo": "fmaclen/hollama",
     "topic": "chat",
     "foundAt": "2026-11-01T06:46:25.416Z"
@@ -2928,6 +2868,31 @@
     "repo": "digitalsamba/claude-code-video-toolkit",
     "topic": "coding",
     "foundAt": "2026-11-09T07:07:06.011Z"
+   },
+   {
+    "repo": "rohitg00/agentmemory",
+    "topic": "coding",
+    "foundAt": "2026-11-10T07:43:58.535Z"
+   },
+   {
+    "repo": "sqfcyily/deva",
+    "topic": "coding",
+    "foundAt": "2026-11-10T07:43:58.535Z"
+   },
+   {
+    "repo": "ericrisco/rsc-harness",
+    "topic": "coding",
+    "foundAt": "2026-11-10T07:43:58.535Z"
+   },
+   {
+    "repo": "scenario-labs/skills",
+    "topic": "coding",
+    "foundAt": "2026-11-10T07:43:58.535Z"
+   },
+   {
+    "repo": "anomalyco/hex",
+    "topic": "audio",
+    "foundAt": "2026-11-10T07:43:58.535Z"
    }
   ],
   "checked": {
@@ -2979,10 +2944,10 @@
    "gh-naptha-tesseract-js-2298e8": "2026-11-05T07:19:29.391Z",
    "gh-files-community-files-986e61": "2026-11-05T07:19:29.391Z",
    "gh-google-langextract-13c14e": "2026-11-05T07:19:29.391Z",
-   "gh-mem0ai-mem0-4eaa28": "2026-10-16T04:57:03.412Z",
-   "gh-bojieli-ai-agent-book-6ca4c8": "2026-10-16T04:57:03.412Z",
-   "gh-zhulinsen-daily-stock-analysis-9bbdee": "2026-10-16T04:57:03.412Z",
-   "gh-kilo-org-kilocode-23d22a": "2026-10-16T04:57:03.412Z",
+   "gh-mem0ai-mem0-4eaa28": "2026-11-10T07:43:58.535Z",
+   "gh-bojieli-ai-agent-book-6ca4c8": "2026-11-10T07:43:58.535Z",
+   "gh-zhulinsen-daily-stock-analysis-9bbdee": "2026-11-10T07:43:58.535Z",
+   "gh-kilo-org-kilocode-23d22a": "2026-11-10T07:43:58.535Z",
    "gh-hismax-redink-0b401d": "2026-10-16T04:57:03.412Z",
    "gh-openbmb-voxcpm-aa49aa": "2026-10-16T04:57:03.412Z",
    "gh-deta-surf-8dfc85": "2026-10-17T04:57:48.620Z",
@@ -3080,11 +3045,13 @@
    "gh-cvhub520-x-anylabeling-1bc27e": "2026-11-09T07:07:06.011Z",
    "gh-stochasticai-xturing-6c365c": "2026-11-09T07:07:06.011Z",
    "gh-pykeio-ort-bad1b8": "2026-11-09T07:07:06.011Z",
-   "gh-jarun-nnn-1bf384": "2026-11-09T07:07:06.011Z"
+   "gh-jarun-nnn-1bf384": "2026-11-09T07:07:06.011Z",
+   "gh-fareedkhan-dev-train-llm-from-scratch-d602fc": "2026-11-10T07:43:58.535Z",
+   "gh-holmesgpt-holmesgpt-4825b9": "2026-11-10T07:43:58.535Z"
   }
  },
  "mcp": {
-  "cursor": "live.status/themeparks:1.0.0",
+  "cursor": "org.memoryapi/ai:1.0.0",
   "since": null,
   "watermark": null,
   "scanStarted": "2026-10-02T15:26:40.958Z",
@@ -3179,36 +3146,36 @@
    "atagon-kogiqa-mcp": "2026-11-09T07:07:06.011Z",
    "atlassian-mcp-server": "2026-11-09T07:07:06.011Z",
    "atomic-agents": "2026-11-09T07:07:06.011Z",
-   "au-ato-mcp-ato-mcp": "2026-10-04T06:17:42.048Z",
-   "audiopod-audiopod": "2026-10-04T06:17:42.048Z",
-   "augment-code": "2026-10-04T06:17:42.048Z",
-   "auraspay-merchant-payments": "2026-10-04T06:17:42.048Z",
-   "aureum-tech-website": "2026-10-04T06:17:42.048Z",
-   "ausca-agent-services": "2026-10-04T06:17:42.048Z",
-   "autogen": "2026-10-04T06:17:42.048Z",
-   "autogpt": "2026-10-04T06:17:42.048Z",
-   "autonomad-computeback": "2026-10-04T06:17:42.048Z",
-   "avagama-openings": "2026-10-04T06:17:42.048Z",
-   "avidquant-optiondesk": "2026-10-04T06:17:42.048Z",
-   "awesome-mcp-servers": "2026-10-04T06:17:42.048Z",
-   "aws-mcp-servers": "2026-10-04T06:17:42.048Z",
-   "azure-ai-foundry": "2026-10-04T06:17:42.048Z",
-   "backpow-pow-mining-oracle": "2026-10-04T06:17:42.048Z",
-   "bailian": "2026-10-04T06:17:42.048Z",
-   "balmasai-balmas-mcp": "2026-10-04T06:17:42.048Z",
-   "baml": "2026-10-04T06:17:42.048Z",
-   "bedrock-agentcore": "2026-10-04T06:17:42.048Z",
-   "bedrock-agents": "2026-10-04T06:17:42.048Z",
-   "bestremotetools-image-resize-convert-compress-crop": "2026-10-04T06:17:42.048Z",
-   "bestremotetools-office-suite-all-servers-one-install": "2026-10-04T06:17:42.048Z",
-   "bigapi-mcp": "2026-10-04T06:17:42.048Z",
-   "bird-mcp": "2026-10-04T06:17:42.048Z",
-   "bisheng": "2026-10-04T06:17:42.048Z",
-   "bitbybit-cad": "2026-10-04T06:17:42.048Z",
-   "bizmoon-regulatory": "2026-10-04T06:17:42.048Z",
-   "blackveilsecurity-dns": "2026-10-04T06:17:42.048Z",
-   "bland": "2026-10-04T06:17:42.048Z",
-   "blender-mcp": "2026-10-04T06:17:42.048Z",
+   "au-ato-mcp-ato-mcp": "2026-11-10T07:43:58.535Z",
+   "audiopod-audiopod": "2026-11-10T07:43:58.535Z",
+   "augment-code": "2026-11-10T07:43:58.535Z",
+   "auraspay-merchant-payments": "2026-11-10T07:43:58.535Z",
+   "aureum-tech-website": "2026-11-10T07:43:58.535Z",
+   "ausca-agent-services": "2026-11-10T07:43:58.535Z",
+   "autogen": "2026-11-10T07:43:58.535Z",
+   "autogpt": "2026-11-10T07:43:58.535Z",
+   "autonomad-computeback": "2026-11-10T07:43:58.535Z",
+   "avagama-openings": "2026-11-10T07:43:58.535Z",
+   "avidquant-optiondesk": "2026-11-10T07:43:58.535Z",
+   "awesome-mcp-servers": "2026-11-10T07:43:58.535Z",
+   "aws-mcp-servers": "2026-11-10T07:43:58.535Z",
+   "azure-ai-foundry": "2026-11-10T07:43:58.535Z",
+   "backpow-pow-mining-oracle": "2026-11-10T07:43:58.535Z",
+   "bailian": "2026-11-10T07:43:58.535Z",
+   "balmasai-balmas-mcp": "2026-11-10T07:43:58.535Z",
+   "baml": "2026-11-10T07:43:58.535Z",
+   "bedrock-agentcore": "2026-11-10T07:43:58.535Z",
+   "bedrock-agents": "2026-11-10T07:43:58.535Z",
+   "bestremotetools-image-resize-convert-compress-crop": "2026-11-10T07:43:58.535Z",
+   "bestremotetools-office-suite-all-servers-one-install": "2026-11-10T07:43:58.535Z",
+   "bigapi-mcp": "2026-11-10T07:43:58.535Z",
+   "bird-mcp": "2026-11-10T07:43:58.535Z",
+   "bisheng": "2026-11-10T07:43:58.535Z",
+   "bitbybit-cad": "2026-11-10T07:43:58.535Z",
+   "bizmoon-regulatory": "2026-11-10T07:43:58.535Z",
+   "blackveilsecurity-dns": "2026-11-10T07:43:58.535Z",
+   "bland": "2026-11-10T07:43:58.535Z",
+   "blender-mcp": "2026-11-10T07:43:58.535Z",
    "blindpay-mcp": "2026-10-05T06:14:17.704Z",
    "blockscout-mcp-server": "2026-10-05T06:14:17.704Z",
    "blue-brick-hub": "2026-10-05T06:14:17.704Z",
@@ -4518,7 +4485,17 @@
    "verificate-mcp": "2026-11-09T07:07:06.011Z",
    "verifox-email-verifier": "2026-11-09T07:07:06.011Z",
    "wiplash-wiplash": "2026-11-09T07:07:06.011Z",
-   "zipquote-us-property-hazard-risk": "2026-11-09T07:07:06.011Z"
+   "zipquote-us-property-hazard-risk": "2026-11-09T07:07:06.011Z",
+   "agentutility-mcp-wordmint": "2026-11-10T07:43:58.535Z",
+   "aiponge-mcp": "2026-11-10T07:43:58.535Z",
+   "argushq-enforcement-database": "2026-11-10T07:43:58.535Z",
+   "arpi-mcp": "2026-11-10T07:43:58.535Z",
+   "backengine-mcp": "2026-11-10T07:43:58.535Z",
+   "basethread-basethread": "2026-11-10T07:43:58.535Z",
+   "betterpost-server": "2026-11-10T07:43:58.535Z",
+   "callmcp-server": "2026-11-10T07:43:58.535Z",
+   "canvora-canvora": "2026-11-10T07:43:58.535Z",
+   "cellarion-cellarion": "2026-11-10T07:43:58.535Z"
   }
  }
 }

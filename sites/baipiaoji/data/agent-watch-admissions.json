@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-09",
+ "checked": "2026-11-10",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -3906,299 +3906,27 @@
    "source_http": 404,
    "repo_http": 200,
    "reason": "source HTTP 404"
+  },
+  "clauxel-dbqueryguard-dbqueryguard-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-11-10",
+   "last_attempt": "2026-11-10",
+   "attemptedAt": "2026-11-10T07:43:58.535Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
+  },
+  "clauxel-mcpriskledger-mcpriskledger-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-11-10",
+   "last_attempt": "2026-11-10",
+   "attemptedAt": "2026-11-10T07:43:58.535Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
   }
  },
  "admitted": [
-  {
-   "slug": "nacos",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "kestra",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "higress",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "gumloop",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "relay-app",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "lindy",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "relevance-ai",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "voiceflow",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "rasa",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "sim",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "superagent",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "open-webui",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "botpress",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "anythingllm",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "librechat",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "lobe-chat",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "5ire",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "jan",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "khoj",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "dust",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "openmanus",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "owl",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "onyx",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "agenticseek",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "ii-agent",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "suna",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "manus",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "minimax-agent",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "genspark",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "coze-studio",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "fastgpt",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "ragflow",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "maxkb",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "vertex-agent-builder",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "bisheng",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "agentforce",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "copilot-studio",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "bedrock-agents",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "azure-ai-foundry",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "watsonx-orchestrate",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "sierra",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "decagon",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "bailian",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "vellum",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "fin",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "wordware",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "stagehand",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "skyvern",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "steel",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "lightpanda",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "crawl4ai",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "firecrawl",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "jina-reader",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "scrapegraph-ai",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "self-operating-computer",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "ui-tars-desktop",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "open-interpreter",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "nanobrowser",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
   {
    "slug": "magnitude",
    "date": "2026-09-22",
@@ -20816,6 +20544,354 @@
   {
    "slug": "clauxel-agentichtmlexportqa-agentichtmlexportqa-mcp",
    "date": "2026-11-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-agentmailrooms-agentmailrooms-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-agentmemorymcp-agentmemorymcp-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-agentmonitorrelay-agentmonitorrelay-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-agentskillupdategate-agentskillupdategate-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-aistudioandroidreleasegate-aistudioandroidreleasegate-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-aistudioworkspaceapproval-aistudioworkspaceapproval-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-aiwaiverdesk-aiwaiverdesk-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-androidcliagentgate-androidcliagentgate-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-antigravityextensiongate-antigravityextensiongate-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-antigravityrunledger-antigravityrunledger-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-autobrowserapproval-autobrowserapproval-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-browserspendguard-browserspendguard-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-bumblebeereceipt-bumblebeereceipt-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-byterovermemory-byterovermemory-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-c2padisclosure-c2padisclosure-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-c2paintake-c2paintake-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-chromedevtoolsmcp-chromedevtoolsmcp-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-clawmanagerfleet-clawmanagerfleet-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-clianythingharness-clianythingharness-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-codegraphcontext-codegraphcontext-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-codegworkspace-codegworkspace-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-codexrunledger-codexrunledger-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-context7docs-context7docs-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-copilotcliswitchgate-copilotcliswitchgate-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-copilotconnectorledger-copilotconnectorledger-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-coralquery-coralquery-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-decapodkernel-decapodkernel-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-equiblesagent-equiblesagent-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-evalscopebench-evalscopebench-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-fastmcpruntime-fastmcpruntime-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-futureagievals-futureagievals-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-geminiomnirights-geminiomnirights-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-geminiupgradeqa-geminiupgradeqa-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-genaispanmapper-genaispanmapper-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-hyperframesrender-hyperframesrender-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-jcodeharness-jcodeharness-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-kirowebreleasebinder-kirowebreleasebinder-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-lixversion-lixversion-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-mcpdeprecation-mcpdeprecation-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-mcpgatewaydesk-mcpgatewaydesk-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-mcpoauthscopegate-mcpoauthscopegate-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-mcpscopeconsent-mcpscopeconsent-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-mcptoollicense-mcptoollicense-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-mcpuptimeledger-mcpuptimeledger-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-opendesignguard-opendesignguard-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-playwrightselectorguard-playwrightselectorguard-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-playwritermcp-playwritermcp-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-pptmasterdeck-pptmasterdeck-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-pydanticcontract-pydanticcontract-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-rtkcontext-rtkcontext-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-safetyreplay-safetyreplay-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-schemadriftgate-schemadriftgate-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-semblecodesearchgate-semblecodesearchgate-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-shipswiftcomponents-shipswiftcomponents-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-skybridgepackager-skybridgepackager-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-speckitacceptance-speckitacceptance-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-sregymgate-sregymgate-mcp",
+   "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-statewrightgate-statewrightgate-mcp",
+   "date": "2026-11-10",
    "source_http": 200,
    "repo_http": 200
   }

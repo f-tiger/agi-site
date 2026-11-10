@@ -1,6 +1,16 @@
 {
   "items": [
     {
+      "name": "STE80 Humanizer – de-AI text by writing 80% of the way to ASD-STE100",
+      "url": "https://github.com/Dodaios/ste80-humanizer",
+      "host": "github.com",
+      "src": "https://news.ycombinator.com/item?id=50429144",
+      "points": 84,
+      "comments": 24,
+      "found": "2026-11-10",
+      "status": "candidate"
+    },
+    {
       "name": "We compressed a 31B video+audio diffusion model to 14B, 6 steps, INT8",
       "url": "https://github.com/Video-Rebirth/hyperflow-h3-flash",
       "host": "github.com",
@@ -369,17 +379,7 @@
       "comments": 45,
       "found": "2026-09-29",
       "status": "candidate"
-    },
-    {
-      "name": "Doom or Bloom, map your AI worldview",
-      "url": "https://www.doom-or-bloom.com",
-      "host": "doom-or-bloom.com",
-      "src": "https://news.ycombinator.com/item?id=49846953",
-      "points": 56,
-      "comments": 44,
-      "found": "2026-09-26",
-      "status": "candidate"
     }
   ],
-  "updated": "2026-11-09"
+  "updated": "2026-11-10"
 }

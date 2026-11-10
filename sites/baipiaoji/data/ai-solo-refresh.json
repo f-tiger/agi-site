@@ -1,7 +1,7 @@
 {
-  "lastRun": "2026-11-09T07:08:06.967Z",
+  "lastRun": "2026-11-10T07:45:01.403Z",
   "status": "degraded",
-  "checkedSources": 7,
+  "checkedSources": 5,
   "queue": [
     {
       "caseId": "photo-ai",
@@ -289,25 +289,25 @@
       "caseId": "jasper",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.prnewswire.com/news-releases/jasper-accelerates-enterprise-strategy-following-record-growth-introduces-new-purpose-built-products-for-marketers-302291388.html",
-      "lastChecked": "2026-10-27T05:32:53.430Z"
+      "lastChecked": "2026-11-10T07:45:01.403Z"
     },
     {
       "caseId": "github-copilot",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q4",
-      "lastChecked": "2026-10-27T05:32:53.430Z"
+      "lastChecked": "2026-11-10T07:45:01.403Z"
     },
     {
       "caseId": "donotpay",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.ftc.gov/news-events/news/press-releases/2025/02/ftc-finalizes-order-donotpay-prohibits-deceptive-ai-lawyer-claims-imposes-monetary-relief-requires",
-      "lastChecked": "2026-10-28T06:15:49.747Z"
+      "lastChecked": "2026-11-10T07:45:01.403Z"
     },
     {
       "caseId": "anki",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.macrumors.com/2019/04/29/anki-robotics-company-shutting-down/",
-      "lastChecked": "2026-10-28T06:15:49.747Z"
+      "lastChecked": "2026-11-10T07:45:01.403Z"
     },
     {
       "caseId": "glam-up",
@@ -997,7 +997,7 @@
     "jasper|https://www.prnewswire.com/news-releases/jasper-accelerates-enterprise-strategy-following-record-growth-introduces-new-purpose-built-products-for-marketers-302291388.html": {
       "caseId": "jasper",
       "sourceUrl": "https://www.prnewswire.com/news-releases/jasper-accelerates-enterprise-strategy-following-record-growth-introduces-new-purpose-built-products-for-marketers-302291388.html",
-      "lastAttempt": "2026-10-27T05:32:53.430Z",
+      "lastAttempt": "2026-11-10T07:45:01.403Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1005,7 +1005,7 @@
     "github-copilot|https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q4": {
       "caseId": "github-copilot",
       "sourceUrl": "https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q4",
-      "lastAttempt": "2026-10-27T05:32:53.430Z",
+      "lastAttempt": "2026-11-10T07:45:01.403Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1013,10 +1013,10 @@
     "ross-intelligence|https://blog.rossintelligence.com/post/announcement": {
       "caseId": "ross-intelligence",
       "sourceUrl": "https://blog.rossintelligence.com/post/announcement",
-      "lastAttempt": "2026-10-28T06:15:49.747Z",
+      "lastAttempt": "2026-11-10T07:45:01.403Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-10-28T06:15:49.747Z",
+      "lastSuccess": "2026-11-10T07:45:01.403Z",
       "lastHash": "527e97ecea00971adf19bba3d5f3c09be8f13d474ae1862717ccb7daba28f410",
       "hash": "527e97ecea00971adf19bba3d5f3c09be8f13d474ae1862717ccb7daba28f410",
       "simhash": "02983b528ed8a79f",
@@ -1026,7 +1026,7 @@
     "donotpay|https://www.ftc.gov/news-events/news/press-releases/2025/02/ftc-finalizes-order-donotpay-prohibits-deceptive-ai-lawyer-claims-imposes-monetary-relief-requires": {
       "caseId": "donotpay",
       "sourceUrl": "https://www.ftc.gov/news-events/news/press-releases/2025/02/ftc-finalizes-order-donotpay-prohibits-deceptive-ai-lawyer-claims-imposes-monetary-relief-requires",
-      "lastAttempt": "2026-10-28T06:15:49.747Z",
+      "lastAttempt": "2026-11-10T07:45:01.403Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1034,7 +1034,7 @@
     "anki|https://www.macrumors.com/2019/04/29/anki-robotics-company-shutting-down/": {
       "caseId": "anki",
       "sourceUrl": "https://www.macrumors.com/2019/04/29/anki-robotics-company-shutting-down/",
-      "lastAttempt": "2026-10-28T06:15:49.747Z",
+      "lastAttempt": "2026-11-10T07:45:01.403Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1159,16 +1159,26 @@
       "consecutiveChange": 0
     }
   },
-  "cursor": 51,
+  "cursor": 56,
   "errors": [
     {
-      "caseId": "windsurf",
-      "sourceUrl": "https://cognition.com/blog/windsurf",
+      "caseId": "jasper",
+      "sourceUrl": "https://www.prnewswire.com/news-releases/jasper-accelerates-enterprise-strategy-following-record-growth-introduces-new-purpose-built-products-for-marketers-302291388.html",
       "reason": "body-limit"
     },
     {
-      "caseId": "casetext",
-      "sourceUrl": "https://www.thomsonreuters.com/en/press-releases/2023/august/thomson-reuters-completes-acquisition-of-casetext-inc",
+      "caseId": "github-copilot",
+      "sourceUrl": "https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q4",
+      "reason": "body-limit"
+    },
+    {
+      "caseId": "donotpay",
+      "sourceUrl": "https://www.ftc.gov/news-events/news/press-releases/2025/02/ftc-finalizes-order-donotpay-prohibits-deceptive-ai-lawyer-claims-imposes-monetary-relief-requires",
+      "reason": "body-limit"
+    },
+    {
+      "caseId": "anki",
+      "sourceUrl": "https://www.macrumors.com/2019/04/29/anki-robotics-company-shutting-down/",
       "reason": "body-limit"
     }
   ]
