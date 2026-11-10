@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-13",
+ "fetched": "2026-11-10",
  "geo": "DE",
  "timeframe": "today 5-y",
  "anchor": "heizlüfter",
@@ -21,7 +21,7 @@
     "schimmel",
     "heizkosten sparen"
    ],
-   "factor": 1.7174
+   "factor": 1.7866
   },
   {
    "terms": [
@@ -30,7 +30,7 @@
     "zugluft",
     "richtig heizen"
    ],
-   "factor": 0.9301
+   "factor": 0.9436
   },
   {
    "terms": [
@@ -39,7 +39,7 @@
     "heizstrahler",
     "wandheizung"
    ],
-   "factor": 0.9301
+   "factor": 0.9441
   },
   {
    "terms": [
@@ -48,7 +48,7 @@
     "fenster beschlagen",
     "heizung einstellen"
    ],
-   "factor": 0.9298
+   "factor": 0.9441
   },
   {
    "terms": [
@@ -57,7 +57,7 @@
     "schimmel fenster",
     "schimmel schlafzimmer"
    ],
-   "factor": 0.9301
+   "factor": 0.9441
   },
   {
    "terms": [
@@ -66,7 +66,7 @@
     "schwarzer schimmel",
     "schimmel tapete"
    ],
-   "factor": 0.9301
+   "factor": 0.9441
   },
   {
    "terms": [
@@ -75,7 +75,7 @@
     "saugroboter",
     "kaffeevollautomat"
    ],
-   "factor": 2.4493
+   "factor": 2.4231
   },
   {
    "terms": [
@@ -84,7 +84,7 @@
     "luftreiniger",
     "akku staubsauger"
    ],
-   "factor": 2.0363
+   "factor": 2.0669
   },
   {
    "terms": [
@@ -93,7 +93,7 @@
     "heizkörper thermostat",
     "fussbodenheizung"
    ],
-   "factor": 0.9301
+   "factor": 0.9441
   },
   {
    "terms": [
@@ -102,178 +102,186 @@
     "wallbox",
     "balkonkraftwerk"
    ],
-   "factor": 3.2067
+   "factor": 3.242
   }
  ],
  "weeks": 262,
  "terms": [
   {
    "term": "wärmepumpe",
-   "sep": 156.4,
-   "peak": 185.9,
+   "sep": 157.2,
+   "peak": 189.3,
    "peak_month": 3,
-   "winter_mean": 139.6,
-   "win_over_sep": 0.89
+   "winter_mean": 145.8,
+   "win_over_sep": 0.93
   },
   {
    "term": "matratze",
-   "sep": 150.4,
-   "peak": 159.8,
-   "peak_month": 1,
-   "winter_mean": 147.9,
-   "win_over_sep": 0.98
+   "sep": 152.7,
+   "peak": 163.1,
+   "peak_month": 11,
+   "winter_mean": 151.2,
+   "win_over_sep": 0.99
   },
   {
    "term": "kaffeevollautomat",
-   "sep": 77.1,
-   "peak": 146.6,
+   "sep": 79.4,
+   "peak": 145.2,
    "peak_month": 11,
-   "winter_mean": 108.7,
-   "win_over_sep": 1.41
+   "winter_mean": 110.3,
+   "win_over_sep": 1.39
   },
   {
    "term": "balkonkraftwerk",
-   "sep": 83.5,
-   "peak": 128.9,
+   "sep": 83.7,
+   "peak": 130.1,
    "peak_month": 4,
-   "winter_mean": 60.0,
-   "win_over_sep": 0.72
+   "winter_mean": 61.1,
+   "win_over_sep": 0.73
   },
   {
    "term": "schimmel",
-   "sep": 75.5,
-   "peak": 116.6,
-   "peak_month": 1,
-   "winter_mean": 108.7,
+   "sep": 77.2,
+   "peak": 119.9,
+   "peak_month": 12,
+   "winter_mean": 110.8,
    "win_over_sep": 1.44
   },
   {
    "term": "wallbox",
-   "sep": 67.2,
-   "peak": 73.5,
+   "sep": 67.3,
+   "peak": 75.6,
    "peak_month": 3,
-   "winter_mean": 57.6,
-   "win_over_sep": 0.86
+   "winter_mean": 59.1,
+   "win_over_sep": 0.88
   },
   {
    "term": "saugroboter",
-   "sep": 33.0,
-   "peak": 57.8,
+   "sep": 33.9,
+   "peak": 58.0,
    "peak_month": 11,
-   "winter_mean": 40.6,
-   "win_over_sep": 1.23
+   "winter_mean": 41.2,
+   "win_over_sep": 1.21
   },
   {
    "term": "akku staubsauger",
-   "sep": 33.3,
-   "peak": 55.1,
+   "sep": 34.0,
+   "peak": 54.5,
    "peak_month": 11,
-   "winter_mean": 43.5,
-   "win_over_sep": 1.31
+   "winter_mean": 43.9,
+   "win_over_sep": 1.29
   },
   {
    "term": "luftentfeuchter",
-   "sep": 19.3,
+   "sep": 19.8,
    "peak": 31.9,
    "peak_month": 11,
-   "winter_mean": 23.2,
-   "win_over_sep": 1.2
+   "winter_mean": 23.5,
+   "win_over_sep": 1.18
   },
   {
    "term": "infrarotheizung",
-   "sep": 30.5,
-   "peak": 30.5,
+   "sep": 31.0,
+   "peak": 31.0,
    "peak_month": 9,
-   "winter_mean": 20.7,
+   "winter_mean": 21.1,
    "win_over_sep": 0.68
   },
   {
    "term": "heizlüfter",
-   "sep": 23.9,
-   "peak": 27.1,
+   "sep": 24.3,
+   "peak": 28.7,
    "peak_month": 11,
-   "winter_mean": 19.9,
-   "win_over_sep": 0.83
+   "winter_mean": 20.5,
+   "win_over_sep": 0.84
   },
   {
    "term": "luftreiniger",
-   "sep": 14.4,
-   "peak": 23.4,
+   "sep": 14.7,
+   "peak": 23.9,
    "peak_month": 6,
-   "winter_mean": 20.4,
-   "win_over_sep": 1.41
+   "winter_mean": 20.8,
+   "win_over_sep": 1.42
   },
   {
    "term": "luftbefeuchter",
    "sep": 7.1,
-   "peak": 21.3,
+   "peak": 21.7,
    "peak_month": 12,
-   "winter_mean": 19.0,
-   "win_over_sep": 2.68
+   "winter_mean": 19.3,
+   "win_over_sep": 2.72
   },
   {
    "term": "heizdecke",
-   "sep": 10.6,
-   "peak": 20.9,
-   "peak_month": 12,
-   "winter_mean": 14.8,
-   "win_over_sep": 1.39
+   "sep": 10.8,
+   "peak": 21.1,
+   "peak_month": 11,
+   "winter_mean": 15.2,
+   "win_over_sep": 1.4
   },
   {
    "term": "heizstrahler",
-   "sep": 15.6,
-   "peak": 18.7,
+   "sep": 16.1,
+   "peak": 19.2,
    "peak_month": 11,
-   "winter_mean": 13.3,
-   "win_over_sep": 0.86
+   "winter_mean": 13.7,
+   "win_over_sep": 0.85
   },
   {
    "term": "fussbodenheizung",
-   "sep": 10.9,
-   "peak": 15.0,
+   "sep": 11.2,
+   "peak": 16.0,
    "peak_month": 11,
-   "winter_mean": 12.8,
-   "win_over_sep": 1.18
+   "winter_mean": 13.3,
+   "win_over_sep": 1.19
   },
   {
    "term": "schimmel wand",
-   "sep": 3.7,
-   "peak": 11.6,
+   "sep": 3.8,
+   "peak": 11.8,
    "peak_month": 12,
    "winter_mean": 10.1,
-   "win_over_sep": 2.71
+   "win_over_sep": 2.66
   },
   {
    "term": "heizung einstellen",
-   "sep": 5.5,
-   "peak": 8.1,
+   "sep": 5.7,
+   "peak": 7.9,
    "peak_month": 11,
-   "winter_mean": 5.5,
-   "win_over_sep": 1.0
+   "winter_mean": 5.6,
+   "win_over_sep": 0.99
   },
   {
    "term": "saugwischer",
-   "sep": 5.1,
-   "peak": 8.0,
+   "sep": 5.2,
+   "peak": 7.9,
    "peak_month": 11,
-   "winter_mean": 7.1,
-   "win_over_sep": 1.38
+   "winter_mean": 7.2,
+   "win_over_sep": 1.39
   },
   {
    "term": "heizkörper thermostat",
    "sep": 4.0,
-   "peak": 5.8,
+   "peak": 5.9,
    "peak_month": 11,
-   "winter_mean": 4.0,
-   "win_over_sep": 1.01
+   "winter_mean": 4.1,
+   "win_over_sep": 1.04
   },
   {
    "term": "fenster beschlagen",
-   "sep": 1.5,
-   "peak": 5.3,
+   "sep": 1.6,
+   "peak": 5.1,
    "peak_month": 11,
-   "winter_mean": 3.0,
-   "win_over_sep": 1.92
+   "winter_mean": 2.9,
+   "win_over_sep": 1.8
+  },
+  {
+   "term": "wandheizung",
+   "sep": 4.0,
+   "peak": 5.0,
+   "peak_month": 10,
+   "winter_mean": 4.0,
+   "win_over_sep": 1.0
   },
   {
    "term": "schimmel fenster",
@@ -281,31 +289,23 @@
    "peak": 4.6,
    "peak_month": 12,
    "winter_mean": 3.8,
-   "win_over_sep": 4.09
-  },
-  {
-   "term": "wandheizung",
-   "sep": 3.8,
-   "peak": 4.3,
-   "peak_month": 10,
-   "winter_mean": 3.7,
-   "win_over_sep": 0.96
+   "win_over_sep": 4.03
   },
   {
    "term": "zugluft",
-   "sep": 2.5,
-   "peak": 3.2,
+   "sep": 2.7,
+   "peak": 3.4,
    "peak_month": 11,
-   "winter_mean": 2.8,
-   "win_over_sep": 1.14
+   "winter_mean": 2.9,
+   "win_over_sep": 1.08
   },
   {
    "term": "fenster abdichten",
-   "sep": 2.5,
+   "sep": 2.6,
    "peak": 3.0,
    "peak_month": 12,
    "winter_mean": 2.5,
-   "win_over_sep": 1.02
+   "win_over_sep": 0.96
   },
   {
    "term": "schwarzer schimmel",
@@ -313,63 +313,63 @@
    "peak": 2.9,
    "peak_month": 12,
    "winter_mean": 2.6,
-   "win_over_sep": 1.56
+   "win_over_sep": 1.62
   },
   {
    "term": "richtig heizen",
-   "sep": 1.6,
+   "sep": 1.5,
    "peak": 2.8,
    "peak_month": 11,
-   "winter_mean": 1.7,
-   "win_over_sep": 1.12
+   "winter_mean": 1.8,
+   "win_over_sep": 1.16
   },
   {
    "term": "luftfeuchtigkeit senken",
    "sep": 1.1,
-   "peak": 2.3,
+   "peak": 2.6,
    "peak_month": 10,
    "winter_mean": 1.1,
-   "win_over_sep": 1.04
+   "win_over_sep": 1.0
   },
   {
    "term": "schimmel schlafzimmer",
-   "sep": 0.4,
-   "peak": 2.2,
+   "sep": 0.5,
+   "peak": 2.3,
    "peak_month": 12,
    "winter_mean": 2.0,
-   "win_over_sep": 4.97
+   "win_over_sep": 4.12
   },
   {
    "term": "schimmel tapete",
-   "sep": 0.8,
-   "peak": 2.2,
+   "sep": 0.9,
+   "peak": 2.3,
    "peak_month": 12,
-   "winter_mean": 1.9,
-   "win_over_sep": 2.42
+   "winter_mean": 2.0,
+   "win_over_sep": 2.18
   },
   {
    "term": "konvektorheizung",
-   "sep": 0.9,
-   "peak": 1.2,
-   "peak_month": 7,
+   "sep": 1.1,
+   "peak": 1.3,
+   "peak_month": 11,
    "winter_mean": 0.8,
-   "win_over_sep": 0.9
+   "win_over_sep": 0.77
+  },
+  {
+   "term": "wäsche trocknen wohnung",
+   "sep": 0.4,
+   "peak": 0.9,
+   "peak_month": 11,
+   "winter_mean": 0.7,
+   "win_over_sep": 1.81
   },
   {
    "term": "heizkosten sparen",
    "sep": 0.7,
-   "peak": 0.9,
-   "peak_month": 10,
+   "peak": 0.7,
+   "peak_month": 9,
    "winter_mean": 0.2,
-   "win_over_sep": 0.37
-  },
-  {
-   "term": "wäsche trocknen wohnung",
-   "sep": 0.3,
-   "peak": 0.9,
-   "peak_month": 11,
-   "winter_mean": 0.7,
-   "win_over_sep": 2.14
+   "win_over_sep": 0.27
   }
  ],
  "errors": []

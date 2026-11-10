@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-09",
+ "fetched": "2026-11-10",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -55,35 +55,53 @@
    "fetched": "2026-11-09"
   },
   "infrarotheizung": {
-   "auto": [
-    "infrarotheizung",
-    "infrarotheizung wand",
-    "infrarotheizung decke",
-    "infrarotheizung badezimmer",
-    "infrarotheizung standgerät",
-    "infrarotheizung test",
-    "infrarotheizung bild",
-    "infrarotheizungen",
-    "infrarotheizung test stiftung warentest",
-    "infrarotheizung decke mit licht"
+   "rising": [
+    {
+     "q": "heizlüfter",
+     "v": 151950
+    },
+    {
+     "q": "diesel infrarotheizung",
+     "v": 74650
+    },
+    {
+     "q": "infrarotheizung 300 watt",
+     "v": 66250
+    },
+    {
+     "q": "toom infrarotheizung",
+     "v": 52500
+    },
+    {
+     "q": "infrarotheizung schreibtisch",
+     "v": 51050
+    },
+    {
+     "q": "konvektorheizung",
+     "v": 39400
+    },
+    {
+     "q": "elektrische heizung",
+     "v": 37600
+    },
+    {
+     "q": "lidl infrarotheizung",
+     "v": 32500
+    },
+    {
+     "q": "infrarotheizung werkstatt",
+     "v": 31900
+    },
+    {
+     "q": "infrarotheizung auf rollen",
+     "v": 30700
+    }
    ],
-   "new_vocabulary": [
-    "infrarotheizung wand",
-    "infrarotheizung decke",
-    "infrarotheizung badezimmer",
-    "infrarotheizung standgerät",
-    "infrarotheizung test",
-    "infrarotheizung bild",
-    "infrarotheizungen",
-    "infrarotheizung test stiftung warentest",
-    "infrarotheizung decke mit licht"
-   ],
-   "rising": [],
-   "source": "autocomplete-vocabulary",
-   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
-   "last_attempt_at": "2026-11-09T13:17:51.752282+00:00",
-   "last_attempt_status": "failed",
-   "fetched": "2026-11-09"
+   "source": "related-queries",
+   "fetched": "2026-11-10",
+   "polluted": false,
+   "last_attempt_at": "2026-11-10T12:53:08.401498+00:00",
+   "last_attempt_status": "ok"
   },
   "luftentfeuchter": {
    "rising": [
@@ -186,40 +204,32 @@
   "kaffeevollautomat": {
    "rising": [
     {
-     "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
-     "v": 12100
+     "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
+     "v": 15450
     },
     {
      "q": "philips series 5500 kaffeevollautomat ep5547/90",
-     "v": 10650
-    },
-    {
-     "q": "siemens eq.6 plus s700 te657m03de kaffeevollautomat",
-     "v": 7900
-    },
-    {
-     "q": "wmf perfection 840l kaffeevollautomat",
-     "v": 6750
+     "v": 10450
     },
     {
      "q": "philips ep2230/10 series 2200 kaffeevollautomat",
-     "v": 5350
-    },
-    {
-     "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
-     "v": 800
-    },
-    {
-     "q": "philips kaffeevollautomat ep5443/70 5400 series",
-     "v": 350
+     "v": 8700
     },
     {
      "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
-     "v": 300
+     "v": 7700
+    },
+    {
+     "q": "de'longhi kaffeevollautomat ecam 21.118.b",
+     "v": 6300
     },
     {
      "q": "de'longhi kaffeevollautomat",
      "v": 140
+    },
+    {
+     "q": "philips kaffeevollautomat lattego",
+     "v": 60
     },
     {
      "q": "philips lattego",
@@ -227,9 +237,9 @@
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-11-02",
+   "fetched": "2026-11-10",
    "polluted": false,
-   "last_attempt_at": "2026-11-02T12:45:30.282650+00:00",
+   "last_attempt_at": "2026-11-10T12:54:09.630506+00:00",
    "last_attempt_status": "ok"
   },
   "akku staubsauger": {
