@@ -127,31 +127,50 @@ def render(today, trend, peak, peak_city, peak_day, next_season, days_left):
         lines.append("- /api/trend 本轮无数据")
     lines.append("")
 
-    # Discovery layer (rule 2): being cited and being called are the site's two
-    # AI-era channels — the radar measures both daily so the judgment layer can
-    # iterate keywords from data instead of registering once and forgetting.
-    lines.append("## 6. 发现层：被引用与被调用（规则二监测）")
-    refs = (trend or {}).get("refs", [])
-    AI_HOSTS = ("chatgpt.com", "perplexity.ai", "copilot.microsoft.com",
-                "gemini.google.com", "claude.ai", "chat.deepseek.com")
-    total7 = sum(r.get("n7") or 0 for r in refs)
-    ai7 = sum(r.get("n7") or 0 for r in refs if any(h in (r.get("ref") or "") for h in AI_HOSTS))
-    if total7:
-        share = round(100 * ai7 / total7)
-        lines.append(f"- AI 助手引荐份额（7天）：**{ai7}/{total7} = {share}%**"
-                     + ("　→ **≥20% 连续 4 周则 GEO 深化升为常设优先级**（战略预注册）" if share >= 20 else ""))
-        top_ai = [r for r in refs if any(h in (r.get("ref") or "") for h in AI_HOSTS)][:4]
-        for r in top_ai:
-            lines.append(f"  - {r['ref']}: {r.get('p7') or 0} → {r['n7']}")
+    # The raw refs list is capped and has a different bot/window policy. Never
+    # use its sum as a site-wide denominator or hostname substrings as proof.
+    lines.append("## 6. 发现层：AI 引荐事件与未经验证的 MCP 请求")
+    audit = trend.get("affiliate_audit")
+    week = None
+    if isinstance(audit, dict) and audit.get("metric") == "recorded_events_not_users_or_orders":
+        weeks = audit.get("weeks")
+        if isinstance(weeks, list) and weeks and isinstance(weeks[-1], dict):
+            candidate = weeks[-1]
+            try:
+                start = date.fromisoformat(candidate["start"])
+                end = date.fromisoformat(candidate["end_exclusive"])
+                total = candidate["page_views"]
+                channels = candidate["channels"]
+                ai = channels.get("ai", {}).get("page_views", 0)
+                valid_count = lambda n: type(n) is int and n >= 0
+                counts = [v["page_views"] for v in channels.values()]
+                if (audit.get("timezone") == "UTC" and end <= today
+                        and candidate["end_exclusive"] == audit.get("end_exclusive")
+                        and (end-start).days == 7 and valid_count(total)
+                        and valid_count(ai) and ai <= total
+                        and all(valid_count(n) for n in counts) and sum(counts) == total):
+                    week = (candidate, total, ai)
+            except (KeyError, TypeError, ValueError, AttributeError):
+                pass
+    if week:
+        row, total, ai = week
+        lines.append(f"- 完整 UTC 窗口：{row['start']} 至 {row['end_exclusive']}（不含结束日）。")
+        if total:
+            lines.append(f"- 可识别 AI 引荐的页面浏览事件：**{ai}/{total} = {100*ai/total:.1f}%**。分母含直接与站内引荐；不是独立用户或会话份额。")
+        else:
+            lines.append("- 完整窗口记录 0 次页面浏览事件；AI 份额不可计算，不能解释为没有引用。")
+        lines.append("- 已剔除标记为机器人及 CI 路径；历史未知 UA 仍保留，不能认定全是真人。")
     else:
-        lines.append("- 本周无带 Referrer 的访问")
-    mcp = [m for m in (trend or {}).get("mcp", []) if m.get("tool")]
+        lines.append("- AI 引荐份额：**不可用 / 未知**。缺少有效完整周审计，不能用截断的 refs 列表补算。")
+    lines.append("- 引荐不是引用覆盖率；无 Referrer 的 AI 到访可能无法识别，Google AI 搜索无法由此单独拆分。")
+    lines.append("- 不以低基数的百分比触发 GEO 扩张；先核查落地页、任务完成及商家点击，再决定投入。")
+    mcp = [m for m in trend.get("mcp", []) if isinstance(m, dict) and m.get("tool")]
     if mcp:
-        lines.append(f"- **MCP 真实调用（28天，已排除 Registry 健康探针）**：" +
+        lines.append("- MCP 请求计数（接口的近28天窗口，未验证独立采用）：" +
                      "、".join(f"{m['tool']}×{m['n']}" for m in mcp))
-        lines.append("  - → 有真实第三方调用即触发预注册判定：扩工具集 + 按被调用的工具迭代 Registry 关键词")
     else:
-        lines.append("- MCP 调用（28天）：0 —— Registry 条目在册即可，不扩张（预注册口径）")
+        lines.append("- MCP 请求列表为空；不据此推断真实第三方采用为零。")
+    lines.append("- 请求数不等于真实客户、AI 引用或到站访问；探针/自动化/重复调用仍需独立核验，不能据此触发扩工具集。")
     lines.append("")
     body = "\n".join(lines)
     return body + f"\n---\n_生成于 {today.isoformat()}（UTC 日界）_\n"
