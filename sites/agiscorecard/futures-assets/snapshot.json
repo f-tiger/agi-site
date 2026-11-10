@@ -1,12 +1,12 @@
 {
-  "checkedAt": "2026-11-09T10:24:07Z",
+  "checkedAt": "2026-11-10T10:27:57Z",
   "sources": [
     {
       "id": "openai",
       "company": "OpenAI",
       "url": "https://openai.com/news/rss.xml",
-      "checkedAt": "2026-11-09T10:24:07Z",
-      "lastSuccessAt": "2026-11-09T10:24:07Z",
+      "checkedAt": "2026-11-10T10:27:57Z",
+      "lastSuccessAt": "2026-11-10T10:27:57Z",
       "ok": true,
       "error": null
     },
@@ -14,8 +14,8 @@
       "id": "anthropic",
       "company": "Anthropic",
       "url": "https://www.anthropic.com/news",
-      "checkedAt": "2026-11-09T10:24:07Z",
-      "lastSuccessAt": "2026-11-09T10:24:07Z",
+      "checkedAt": "2026-11-10T10:27:57Z",
+      "lastSuccessAt": "2026-11-10T10:27:57Z",
       "ok": true,
       "error": null
     },
@@ -23,8 +23,8 @@
       "id": "meta",
       "company": "Meta",
       "url": "https://about.fb.com/news/feed/",
-      "checkedAt": "2026-11-09T10:24:07Z",
-      "lastSuccessAt": "2026-11-09T10:24:07Z",
+      "checkedAt": "2026-11-10T10:27:57Z",
+      "lastSuccessAt": "2026-11-10T10:27:57Z",
       "ok": true,
       "error": null
     },
@@ -32,7 +32,7 @@
       "id": "xai",
       "company": "xAI / SpaceX",
       "url": "https://x.ai/news",
-      "checkedAt": "2026-11-09T10:24:07Z",
+      "checkedAt": "2026-11-10T10:27:57Z",
       "lastSuccessAt": "2026-10-31T16:20:44Z",
       "ok": false,
       "error": "http_403"
@@ -41,13 +41,83 @@
       "id": "deepmind",
       "company": "Google DeepMind",
       "url": "https://deepmind.google/blog/rss.xml",
-      "checkedAt": "2026-11-09T10:24:07Z",
-      "lastSuccessAt": "2026-11-09T10:24:07Z",
+      "checkedAt": "2026-11-10T10:27:57Z",
+      "lastSuccessAt": "2026-11-10T10:27:57Z",
       "ok": true,
       "error": null
     }
   ],
   "items": [
+    {
+      "id": "69d4d9d74efa01629a6c751d",
+      "company": "OpenAI",
+      "title": "Closing the AI guidance gap in education",
+      "url": "https://openai.com/index/closing-ai-guidance-gap-education",
+      "publishedAt": "2026-11-10T09:00:00Z",
+      "discoveredAt": "2026-11-10T10:27:57Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "caa9073cefb43725f1a58e80",
+      "company": "OpenAI",
+      "title": "ChatGPT Enterprise now available in AWS Marketplace",
+      "url": "https://openai.com/index/chatgpt-enterprise-aws-marketplace",
+      "publishedAt": "2026-11-09T19:00:00Z",
+      "discoveredAt": "2026-11-10T10:27:57Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "952d2516af2e905436adea3b",
+      "company": "OpenAI",
+      "title": "Control Room: A central system to track and stop model workloads across our research infrastructure",
+      "url": "https://openai.com/index/control-room",
+      "publishedAt": "2026-11-09T13:00:00Z",
+      "discoveredAt": "2026-11-10T10:27:57Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "176cc398524bc8df95af455e",
+      "company": "Meta",
+      "title": "Expanding Teen Account Protections to Teens Around the World",
+      "url": "https://about.fb.com/news/2026/11/expanding-teen-account-protections-to-teens-around-the-world",
+      "publishedAt": "2026-11-09T12:00:45Z",
+      "discoveredAt": "2026-11-10T10:27:57Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "2e34e84f0999c607fcd02663",
+      "company": "OpenAI",
+      "title": "Kuken Industries searches 70 years of drawings in minutes",
+      "url": "https://openai.com/index/kuken",
+      "publishedAt": "2026-11-09T08:00:00Z",
+      "discoveredAt": "2026-11-10T10:27:57Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "02e9abf47eaf3fa01f98fe0d",
+      "company": "OpenAI",
+      "title": "CodeRabbit scales agentic software development and ships 20x more",
+      "url": "https://openai.com/index/coderabbit-codex-daybreak",
+      "publishedAt": "2026-11-09T08:00:00Z",
+      "discoveredAt": "2026-11-10T10:27:57Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "9fbaf812b26d34ed6027ee9a",
+      "company": "Anthropic",
+      "title": "Introducing Claude Fable 5.2 and Claude Mythos 5.2",
+      "url": "https://anthropic.com/claude-fable-and-mythos-5-2",
+      "publishedAt": "2026-11-09T00:00:00Z",
+      "discoveredAt": "2026-11-10T10:27:57Z",
+      "signal": "capability",
+      "reviewStatus": "automatic"
+    },
     {
       "id": "b5bcf41c52f066a759faa6ae",
       "company": "Meta",
@@ -1545,7 +1615,7 @@
       "url": "https://x.ai/news/grok-4-6",
       "publishedAt": "2026-08-12T00:00:00Z",
       "discoveredAt": "2026-10-31T15:44:42Z",
-      "signal": "capability",
+      "signal": "neutral",
       "reviewStatus": "automatic"
     },
     {
