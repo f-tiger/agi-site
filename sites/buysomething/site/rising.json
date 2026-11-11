@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-10",
+ "fetched": "2026-11-11",
  "seeds": {
   "electric spin scrubber": {
    "rising": [
@@ -389,48 +389,112 @@
    "fetched": "2026-11-10"
   },
   "car refrigerator": {
+   "auto": [
+    "car refrigerator",
+    "car refrigerator cooler",
+    "car refrigerator 12v",
+    "car refrigerator freezer",
+    "car refrigerator nearby",
+    "car refrigerator with battery",
+    "car refrigerator near me",
+    "car refrigerator walmart",
+    "car refrigerator amazon",
+    "car refrigerator euhomy"
+   ],
    "rising": [
     {
-     "q": "the svensons find a refrigerator valued at $2,300 on sale for $1,900. they decid",
-     "v": 24700
+     "q": "car refrigerator cooler",
+     "v": "new"
     },
     {
-     "q": "top tourist attractions in paris",
-     "v": 7850
+     "q": "car refrigerator 12v",
+     "v": "new"
     },
     {
-     "q": "refrigerator sale",
-     "v": 70
+     "q": "car refrigerator freezer",
+     "v": "new"
     },
     {
-     "q": "refrigerator for sale",
-     "v": 60
+     "q": "car refrigerator nearby",
+     "v": "new"
     },
     {
-     "q": "car insurance",
-     "v": 60
+     "q": "car refrigerator with battery",
+     "v": "new"
+    },
+    {
+     "q": "car refrigerator near me",
+     "v": "new"
+    },
+    {
+     "q": "car refrigerator walmart",
+     "v": "new"
+    },
+    {
+     "q": "car refrigerator amazon",
+     "v": "new"
+    },
+    {
+     "q": "car refrigerator euhomy",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-11-10"
+   "source": "autocomplete-diff",
+   "fetched": "2026-11-11"
   },
   "rollator walker": {
+   "auto": [
+    "rollator walker",
+    "rollator walker with seat",
+    "rollator walker with seat near me",
+    "rollator walker with seat and basket",
+    "rollator walker near me",
+    "rollator walker with seat heavy duty",
+    "rollator walker accessories",
+    "rollator walker with seat amazon",
+    "rollator walker amazon",
+    "rollator walkers for seniors"
+   ],
    "rising": [
     {
-     "q": "quad cane",
-     "v": 13500
+     "q": "rollator walker with seat",
+     "v": "new"
     },
     {
-     "q": "knee scooter",
-     "v": 4200
+     "q": "rollator walker with seat near me",
+     "v": "new"
+    },
+    {
+     "q": "rollator walker with seat and basket",
+     "v": "new"
     },
     {
      "q": "rollator walker near me",
-     "v": 50
+     "v": "new"
+    },
+    {
+     "q": "rollator walker with seat heavy duty",
+     "v": "new"
+    },
+    {
+     "q": "rollator walker accessories",
+     "v": "new"
+    },
+    {
+     "q": "rollator walker with seat amazon",
+     "v": "new"
+    },
+    {
+     "q": "rollator walker amazon",
+     "v": "new"
+    },
+    {
+     "q": "rollator walkers for seniors",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-10-12"
+   "source": "autocomplete-diff",
+   "fetched": "2026-11-11"
   },
   "smart pill organizer": {
    "auto": [
