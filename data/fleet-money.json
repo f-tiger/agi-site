@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-10T15:59:21+00:00",
+ "generated": "2026-11-11T15:44:30+00:00",
  "note": "aggregate counts read from each site's public pulse/reach endpoint; owner_reported figures are hand-entered from PartnerNet screenshots with their data window and are never extrapolated",
  "sites": [
   {
@@ -15,19 +15,19 @@
      "legacy_window": "28d key includes today plus 28 previous UTC dates",
      "timezone": "UTC",
      "complete_28d": {
-      "start": "2026-10-13",
-      "end_exclusive": "2026-11-10",
+      "start": "2026-10-14",
+      "end_exclusive": "2026-11-11",
       "clicks": 47
      },
      "recent_7d": {
-      "start": "2026-11-03",
-      "end_exclusive": "2026-11-10",
+      "start": "2026-11-04",
+      "end_exclusive": "2026-11-11",
       "clicks": 16
      },
      "previous_7d": {
-      "start": "2026-10-27",
-      "end_exclusive": "2026-11-03",
-      "clicks": 12
+      "start": "2026-10-28",
+      "end_exclusive": "2026-11-04",
+      "clicks": 10
      },
      "today_partial": 1,
      "markets_28d": {
@@ -62,10 +62,10 @@
     "subscribers": 3,
     "ev_calc_use_28d": 1,
     "ev_subscribe_click_28d": 4,
-    "ev_tool_click_28d": 639,
-    "pv_advertise_28d": 156,
-    "pv_audits_28d": 121,
-    "pv_workbench_28d": 329,
+    "ev_tool_click_28d": 651,
+    "pv_advertise_28d": 155,
+    "pv_audits_28d": 133,
+    "pv_workbench_28d": 356,
     "member_orders_by_state": {},
     "discuss_profiles": 0
    },
@@ -94,9 +94,9 @@
     "video_orders_by_state": {},
     "video_order_definition": "Orders first created from the video membership entry within this window; paid means confirmed payment, not profit or causal attribution.",
     "scope_note": "Inventory/state counts are lifetime unless a metric explicitly says window; go_28d and biz_28d retain legacy names and use the requested window. Video-order states are windowed. These are not an attributed acquisition funnel.",
-    "submissions_total": 309,
-    "go_28d": 163,
-    "biz_28d": 666,
+    "submissions_total": 341,
+    "go_28d": 173,
+    "biz_28d": 716,
     "claims_verified": 0,
     "attestations_queued": 0
    },
@@ -125,8 +125,8 @@
    "via": "endpoint",
    "money": {
     "days": 28,
-    "calc_use_28d": 3,
-    "mcp_call_28d": 125,
+    "calc_use_28d": 1,
+    "mcp_call_28d": 119,
     "pick_open_28d": 1
    },
    "summary": {
@@ -168,6 +168,6 @@
   "spend_usd_30d": 0,
   "net_usd_30d": null,
   "north_star_resolved_prelogged": 0,
-  "generated": "2026-11-10T15:59:20+00:00"
+  "generated": "2026-11-11T15:44:30+00:00"
  }
 }
