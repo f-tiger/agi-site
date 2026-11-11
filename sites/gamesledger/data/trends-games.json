@@ -1,7 +1,14 @@
 {
- "d": "2026-11-10",
+ "d": "2026-11-11",
  "hits": [],
- "discovered": [],
+ "discovered": [
+  {
+   "query": "space force",
+   "appid": 864010,
+   "name": "Space Force",
+   "sim": 1.0
+  }
+ ],
  "watch": [
   {
    "appid": 207610,
@@ -47,6 +54,11 @@
    "appid": 4068560,
    "name": "Housing Market",
    "first_seen": "2026-11-06"
+  },
+  {
+   "appid": 864010,
+   "name": "Space Force",
+   "first_seen": "2026-11-11"
   }
  ],
  "note": "hits=in-pool trending; discovered=new games surfaced by trends via Steam official storesearch (>=0.85 name similarity); watch feeds the search pool only — verdict pages stay hand-curated."
