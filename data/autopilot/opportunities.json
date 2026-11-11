@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-10",
- "radar_fetched": "2026-11-10",
+ "generated": "2026-11-11",
+ "radar_fetched": "2026-11-11",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -13,10 +13,10 @@
  },
  "note": "Derived facts only: no Reddit post text, bodies or permalinks are stored here or published. Themes are normalised request titles used as matching keys; demand = Google Trends rising; supply = PH/HN public feeds.",
  "counts": {
-  "candidates": 7,
+  "candidates": 8,
   "demand_confirmed": 0,
   "recurring": 0,
-  "scout": 7,
+  "scout": 8,
   "supplied": 0
  },
  "opportunities": [
@@ -30,7 +30,7 @@
    ],
    "state": "scout",
    "supplied": false,
-   "score": 3.03,
+   "score": 3.08,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -51,6 +51,21 @@
    "fleet_pages": []
   },
   {
+   "theme": "why does reddit want me to use the ios app on my desktop",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "ask_hn",
+   "days_seen": [
+    "2026-11-11"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.25,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
    "theme": "what software provides a markup language for wireframing",
    "site": "",
    "kind": "request-board",
@@ -66,16 +81,16 @@
    "fleet_pages": []
   },
   {
-   "theme": "what do you call holy grail mania risk",
+   "theme": "why doesn t ramp ai index include openrouter or other aggregators",
    "site": "",
    "kind": "request-board",
    "subreddit": "ask_hn",
    "days_seen": [
-    "2026-11-04"
+    "2026-11-11"
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.14,
+   "score": 2.13,
    "demand": [],
    "supply": [],
    "fleet_pages": []
