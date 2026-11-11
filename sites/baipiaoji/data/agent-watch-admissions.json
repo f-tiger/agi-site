@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-10",
+ "checked": "2026-11-11",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -3924,289 +3924,45 @@
    "source_http": null,
    "repo_http": null,
    "reason": "network-or-response-error"
+  },
+  "clauxel-toolbudgetrouter-toolbudgetrouter-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-11-11",
+   "last_attempt": "2026-11-11",
+   "attemptedAt": "2026-11-11T07:02:18.386Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
+  },
+  "codmir-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-11-11",
+   "last_attempt": "2026-11-11",
+   "attemptedAt": "2026-11-11T07:02:18.386Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "coinmaulers-forecast-desk": {
+   "attempts": 1,
+   "first_attempt": "2026-11-11",
+   "last_attempt": "2026-11-11",
+   "attemptedAt": "2026-11-11T07:02:18.386Z",
+   "source_http": 530,
+   "repo_http": null,
+   "reason": "source HTTP 530"
+  },
+  "coloringbookify-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-11-11",
+   "last_attempt": "2026-11-11",
+   "attemptedAt": "2026-11-11T07:02:18.386Z",
+   "source_http": 530,
+   "repo_http": null,
+   "reason": "source HTTP 530"
   }
  },
  "admitted": [
-  {
-   "slug": "magnitude",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "notte",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "agent-s",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "cua",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "browserless",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "fellou",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "vapi",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "livekit-agents",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "retell",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "pipecat",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "elevenlabs-agents",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "bland",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "deepgram-voice-agent",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "openai-realtime-agents",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "ultravox",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "vocode",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "bolna",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "langsmith",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "langfuse",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "langwatch",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "agentops",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "arize-phoenix",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "openllmetry",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "helicone",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "promptfoo",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "deepeval",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "inspect-ai",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "ragas",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "weave",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "opik",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "laminar",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "guardrails-ai",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "braintrust",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "nemo-guardrails",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "garak",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "letta",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "mem0",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "graphiti",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "cognee",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "langmem",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "supermemory",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "microsandbox",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "e2b",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "zep",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "daytona",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "inngest-agentkit",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "litellm",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "portkey",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "deer-flow",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "open-deep-research",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "storm",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "perplexica",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "paperqa",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "gpt-researcher",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "pandas-ai",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "langchain-chatchat",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
   {
    "slug": "vanna",
    "date": "2026-09-22",
@@ -20892,6 +20648,342 @@
   {
    "slug": "clauxel-statewrightgate-statewrightgate-mcp",
    "date": "2026-11-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-toolcallwitness-toolcallwitness-mcp",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-tracepiishield-tracepiishield-mcp",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-unitymcptest-unitymcptest-mcp",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-universalcartmerchantgate-universalcartmerchantgate-mcp",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-veocreditwaste-veocreditwaste-mcp",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-webmcpactionreceipt-webmcpactionreceipt-mcp",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-zeroidagent-zeroidagent-mcp",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clauxel-zerolangcompiler-zerolangcompiler-mcp",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clearedindex-mcp",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clearmakes-agents",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "clearmind-capital-clearmind",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "clearpostplugin-wordpress-seo",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cleartracedata-cleartrace",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "clicksend-mcp-server",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clientvo-site",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "clinkforge-clink-forge",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "clipboardo-site",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "clment-clment",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "clootrack-mcp",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cloudeide-cloudeide",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cloudquell-mcp-server",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cloziq-cloziq",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "clypmint-clypmint",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cmmsly-site",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "coachwatts-coach-watts",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cobaltcapture-cobalt",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "coco-pier-fx-context",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "codeniverse-mcp",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "codepostalpro-postal-codes",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "codequiry-mcp",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "coderbuds-insights",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "codescene-mcp-server",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "codician-growmos",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cofferdock-cofferdock",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cofferline-treasury",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cognethics-cognethics",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cognivators-mcp-safeguard",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cogram-project",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "coildesk-site",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "coinbucha-bitcoin-signals",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "coinfuty-coinfuty",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "coinira-calculators",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "coinlobster-whale-data",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "coinmarketcap-coinmarketcap",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "coinpaprika-coinpaprika",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "coinrailz-mcp",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "collegecalcai-admissions",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "collhub-collhub",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "coloradoroofreplacementcost-site",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "commandplusk-command-k",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "commareports-comma",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "commerceforagents-commerceforagents",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "commercialbuses-commercialbuses",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "commercialrefinancequotes-site",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "commonelements-data",
+   "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "commonlands-optics-mcp",
+   "date": "2026-11-11",
    "source_http": 200,
    "repo_http": 200
   }
