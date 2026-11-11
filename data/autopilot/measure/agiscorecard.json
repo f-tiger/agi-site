@@ -3,7 +3,7 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 27,
+    "n": 24,
     "q": "tool:portfolio_returns"
    },
    {
@@ -44,30 +44,30 @@
    }
   ]
  },
- "fetched": "2026-11-10",
+ "fetched": "2026-11-11",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
   "/agents": {
-   "n7": 87,
-   "p7": 12
-  },
-  "/ai-futures": {
-   "n7": 125,
-   "p7": 52
+   "n7": 104,
+   "p7": 21
   },
   "/ai-infrastructure": {
-   "n7": 125,
-   "p7": 59
+   "n7": 138,
+   "p7": 62
+  },
+  "/changelog": {
+   "n7": 74,
+   "p7": 37
+  },
+  "/portfolio-tracker": {
+   "n7": 127,
+   "p7": 61
   },
   "/tianya": {
-   "n7": 113,
-   "p7": 31
-  },
-  "/workbench/classroompuzzles": {
-   "n7": 84,
-   "p7": 35
+   "n7": 123,
+   "p7": 45
   }
  },
  "site": "agiscorecard",

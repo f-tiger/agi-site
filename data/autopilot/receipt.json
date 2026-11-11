@@ -5,9 +5,9 @@
    "counts": {
     "bootstrapped": 0,
     "changed": 0,
-    "covered": 0,
-    "demand_terms": 0,
-    "gaps": 0,
+    "covered": 2,
+    "demand_terms": 3,
+    "gaps": 1,
     "hot_pages": 5,
     "lastmod_updated": 0,
     "offtopic": 0,
@@ -17,12 +17,12 @@
    },
    "notes": [
     "34 URL(s) left untouched for want of a defensible date",
-    "sites/agiscorecard/trends-rising.json: 2 fresh seed(s) used; 2 stale and 0 undated dropped",
-    "heat: measured 2026-11-10 (5 pages); no notes"
+    "sites/agiscorecard/trends-rising.json: 1 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (ai stocks). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
+    "heat: measured 2026-11-11 (5 pages); no notes"
    ],
    "outcome": "ok",
    "site": "agiscorecard",
-   "today": "2026-11-10",
+   "today": "2026-11-11",
    "wrote": [
     "data/autopilot/agiscorecard.json",
     "data/autopilot/agiscorecard-demand.json"
@@ -37,23 +37,23 @@
     "bootstrapped": 0,
     "changed": 2,
     "covered": 0,
-    "demand_terms": 25,
+    "demand_terms": 14,
     "gaps": 1,
     "hot_pages": 0,
     "lastmod_updated": 2,
-    "offtopic": 24,
+    "offtopic": 13,
     "pages": 7,
     "undatable": 0,
     "underserved": 0
    },
    "notes": [
-    "sites/buysomething/site/rising.json: 3 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (gongfu tea set, mini massage gun, vegetable chopper). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
+    "sites/buysomething/site/rising.json: 1 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (vegetable chopper). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
     "sites/buysomething/site/rising.json: 11 fresh seed(s) used; 20 stale and 0 undated dropped",
-    "heat: measured 2026-11-10 (0 pages); no notes"
+    "heat: measured 2026-11-11 (0 pages); no notes"
    ],
    "outcome": "ok",
    "site": "buysomething",
-   "today": "2026-11-10",
+   "today": "2026-11-11",
    "wrote": [
     "sites/buysomething/site/sitemap.xml",
     "data/autopilot/buysomething.json",
@@ -61,13 +61,15 @@
    ]
   },
   {
-   "changed_urls": [],
+   "changed_urls": [
+    "https://getecoback.com/guide/klimaanlage-wann-kaufen.html"
+   ],
    "counts": {
     "bootstrapped": 0,
-    "changed": 0,
-    "covered": 15,
-    "demand_terms": 30,
-    "gaps": 10,
+    "changed": 1,
+    "covered": 21,
+    "demand_terms": 37,
+    "gaps": 11,
     "hot_pages": 15,
     "offtopic": 5,
     "pages": 279,
@@ -76,11 +78,11 @@
    },
    "notes": [
     "sitemap owned by this site's own generator — not touched",
-    "heat: measured 2026-11-10 (17 pages); no notes"
+    "heat: measured 2026-11-11 (16 pages); no notes"
    ],
    "outcome": "ok",
    "site": "getecoback",
-   "today": "2026-11-10",
+   "today": "2026-11-11",
    "wrote": [
     "data/autopilot/getecoback.json",
     "data/autopilot/getecoback-demand.json"
@@ -106,7 +108,7 @@
    ],
    "outcome": "ok",
    "site": "goldrush",
-   "today": "2026-11-10",
+   "today": "2026-11-11",
    "wrote": [
     "data/autopilot/goldrush.json",
     "data/autopilot/goldrush-demand.json"
@@ -132,7 +134,7 @@
    ],
    "outcome": "ok",
    "site": "gridlings",
-   "today": "2026-11-10",
+   "today": "2026-11-11",
    "wrote": [
     "data/autopilot/gridlings.json",
     "data/autopilot/gridlings-demand.json"
@@ -143,12 +145,12 @@
     "https://thedollscout.com/collecting/event-kit.html",
     "https://thedollscout.com/de/collecting/event-kit.html",
     "https://thedollscout.com/de/series.html",
-    "https://thedollscout.com/de/series/smiski-bath-series.html",
-    "https://thedollscout.com/de/series/smiski-bed-series.html",
-    "https://thedollscout.com/de/series/smiski-cheer.html",
-    "https://thedollscout.com/de/series/smiski-living-series.html",
-    "https://thedollscout.com/de/series/smiski-toilet-series.html",
-    "https://thedollscout.com/de/series/smiski-yoga-series.html",
+    "https://thedollscout.com/de/series/smiski-birthday.html",
+    "https://thedollscout.com/de/series/smiski-construction.html",
+    "https://thedollscout.com/de/series/smiski-series1.html",
+    "https://thedollscout.com/de/series/smiski-series2.html",
+    "https://thedollscout.com/de/series/smiski-series3.html",
+    "https://thedollscout.com/de/series/smiski-series4.html",
     "https://thedollscout.com/de/series/sonny-angel-animal-series-1.html",
     "https://thedollscout.com/de/series/sonny-angel-animal-series-2.html",
     "https://thedollscout.com/de/series/sonny-angel-animal-series-3.html",
@@ -160,12 +162,12 @@
     "https://thedollscout.com/de/series/sonny-angel-sweets-series.html",
     "https://thedollscout.com/de/series/sonny-angel-vegetable-series.html",
     "https://thedollscout.com/series.html",
-    "https://thedollscout.com/series/smiski-bath-series.html",
-    "https://thedollscout.com/series/smiski-bed-series.html",
-    "https://thedollscout.com/series/smiski-cheer.html",
-    "https://thedollscout.com/series/smiski-living-series.html",
-    "https://thedollscout.com/series/smiski-toilet-series.html",
-    "https://thedollscout.com/series/smiski-yoga-series.html",
+    "https://thedollscout.com/series/smiski-birthday.html",
+    "https://thedollscout.com/series/smiski-construction.html",
+    "https://thedollscout.com/series/smiski-series1.html",
+    "https://thedollscout.com/series/smiski-series2.html",
+    "https://thedollscout.com/series/smiski-series3.html",
+    "https://thedollscout.com/series/smiski-series4.html",
     "https://thedollscout.com/series/sonny-angel-animal-series-1.html",
     "https://thedollscout.com/series/sonny-angel-animal-series-2.html",
     "https://thedollscout.com/series/sonny-angel-animal-series-3.html",
@@ -178,12 +180,12 @@
     "https://thedollscout.com/series/sonny-angel-vegetable-series.html",
     "https://thedollscout.com/zh/collecting/event-kit.html",
     "https://thedollscout.com/zh/series.html",
-    "https://thedollscout.com/zh/series/smiski-bath-series.html",
-    "https://thedollscout.com/zh/series/smiski-bed-series.html",
-    "https://thedollscout.com/zh/series/smiski-cheer.html",
-    "https://thedollscout.com/zh/series/smiski-living-series.html",
-    "https://thedollscout.com/zh/series/smiski-toilet-series.html",
-    "https://thedollscout.com/zh/series/smiski-yoga-series.html",
+    "https://thedollscout.com/zh/series/smiski-birthday.html",
+    "https://thedollscout.com/zh/series/smiski-construction.html",
+    "https://thedollscout.com/zh/series/smiski-series1.html",
+    "https://thedollscout.com/zh/series/smiski-series2.html",
+    "https://thedollscout.com/zh/series/smiski-series3.html",
+    "https://thedollscout.com/zh/series/smiski-series4.html",
     "https://thedollscout.com/zh/series/sonny-angel-animal-series-1.html",
     "https://thedollscout.com/zh/series/sonny-angel-animal-series-2.html",
     "https://thedollscout.com/zh/series/sonny-angel-animal-series-3.html",
@@ -198,23 +200,23 @@
    "counts": {
     "bootstrapped": 0,
     "changed": 54,
-    "covered": 6,
-    "demand_terms": 30,
-    "gaps": 20,
+    "covered": 5,
+    "demand_terms": 10,
+    "gaps": 4,
     "hot_pages": 0,
     "lastmod_updated": 54,
-    "offtopic": 4,
+    "offtopic": 1,
     "pages": 306,
     "undatable": 0,
     "underserved": 0
    },
    "notes": [
-    "sites/thedollscout/content/trends-rising.json: 3 fresh seed(s) used; 5 stale and 0 undated dropped",
+    "sites/thedollscout/content/trends-rising.json: 1 fresh seed(s) used; 7 stale and 0 undated dropped",
     "heat: no public aggregate endpoint on this site — heat needs either a Worker /api/* aggregate route or the D1 read permission on the deploy token"
    ],
    "outcome": "ok",
    "site": "thedollscout",
-   "today": "2026-11-10",
+   "today": "2026-11-11",
    "wrote": [
     "sites/thedollscout/sitemap.xml",
     "data/autopilot/thedollscout.json",
@@ -222,5 +224,5 @@
    ]
   }
  ],
- "today": "2026-11-10"
+ "today": "2026-11-11"
 }

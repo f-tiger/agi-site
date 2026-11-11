@@ -1,6 +1,6 @@
 # 自动营销准备清单
 
-2026-11-10；只生成草稿，未外发。
+2026-11-11；只生成草稿，未外发。
 
 ## 当前唯一获客实验
 
@@ -47,50 +47,50 @@ https://thedollscout.com/?utm_source=owned_search_content&utm_medium=owned&utm_c
 
 ## tds-smiski-checklist-20261011
 
-draft_ready / 
+blocked / review_stale
 Check the officially sourced SMISKI Museum Series names, mark the figures you own, and keep your checklist in this browser. Export a backup from the collection tracker.
 
 https://thedollscout.com/series/smiski-museum
 
-pinterest — prepared, not authorized: specific_publication_authorization_required, account_and_website_claim_unverified, final_pin_asset_review_required
+pinterest — prepared, not authorized: review_stale, specific_publication_authorization_required, account_and_website_claim_unverified, final_pin_asset_review_required
 https://thedollscout.com/series/smiski-museum?utm_source=pinterest&utm_medium=social&utm_campaign=free-tools
 
-reddit — prepared, not authorized: specific_publication_authorization_required, account_and_community_rules_unverified
+reddit — prepared, not authorized: review_stale, specific_publication_authorization_required, account_and_community_rules_unverified
 https://thedollscout.com/series/smiski-museum?utm_source=reddit&utm_medium=social&utm_campaign=free-tools
 
-youtube — prepared, not authorized: specific_publication_authorization_required, clickable_channel_entry_unverified, video_audio_and_platform_review_required
+youtube — prepared, not authorized: review_stale, specific_publication_authorization_required, clickable_channel_entry_unverified, video_audio_and_platform_review_required
 https://thedollscout.com/series/smiski-museum?utm_source=youtube&utm_medium=organic_video&utm_campaign=free-tools
 
 ## tds-sonny-checklist-20261011
 
-draft_ready / 
+blocked / review_stale
 Use the officially sourced Sonny Angel Snack Series checklist to record the figures you own. Progress stays in this browser; save a backup from the collection tracker.
 
 https://thedollscout.com/series/sonny-angel-snack-series
 
-pinterest — prepared, not authorized: specific_publication_authorization_required, account_and_website_claim_unverified, final_pin_asset_review_required
+pinterest — prepared, not authorized: review_stale, specific_publication_authorization_required, account_and_website_claim_unverified, final_pin_asset_review_required
 https://thedollscout.com/series/sonny-angel-snack-series?utm_source=pinterest&utm_medium=social&utm_campaign=free-tools
 
-reddit — prepared, not authorized: specific_publication_authorization_required, account_and_community_rules_unverified
+reddit — prepared, not authorized: review_stale, specific_publication_authorization_required, account_and_community_rules_unverified
 https://thedollscout.com/series/sonny-angel-snack-series?utm_source=reddit&utm_medium=social&utm_campaign=free-tools
 
-youtube — prepared, not authorized: specific_publication_authorization_required, clickable_channel_entry_unverified, video_audio_and_platform_review_required
+youtube — prepared, not authorized: review_stale, specific_publication_authorization_required, clickable_channel_entry_unverified, video_audio_and_platform_review_required
 https://thedollscout.com/series/sonny-angel-snack-series?utm_source=youtube&utm_medium=organic_video&utm_campaign=free-tools
 
 ## tds-collection-backup-20261011
 
-draft_ready / 
+blocked / review_stale
 Keep owned quantities and wishlist entries in your browser, then export a JSON backup you can restore later. No account or cloud sync is required.
 
 https://thedollscout.com/collection-tracker
 
-pinterest — prepared, not authorized: specific_publication_authorization_required, account_and_website_claim_unverified, final_pin_asset_review_required
+pinterest — prepared, not authorized: review_stale, specific_publication_authorization_required, account_and_website_claim_unverified, final_pin_asset_review_required
 https://thedollscout.com/collection-tracker?utm_source=pinterest&utm_medium=social&utm_campaign=free-tools
 
-reddit — prepared, not authorized: specific_publication_authorization_required, account_and_community_rules_unverified
+reddit — prepared, not authorized: review_stale, specific_publication_authorization_required, account_and_community_rules_unverified
 https://thedollscout.com/collection-tracker?utm_source=reddit&utm_medium=social&utm_campaign=free-tools
 
-youtube — prepared, not authorized: specific_publication_authorization_required, clickable_channel_entry_unverified, video_audio_and_platform_review_required
+youtube — prepared, not authorized: review_stale, specific_publication_authorization_required, clickable_channel_entry_unverified, video_audio_and_platform_review_required
 https://thedollscout.com/collection-tracker?utm_source=youtube&utm_medium=organic_video&utm_campaign=free-tools
 
 ## localebatch-csv-check

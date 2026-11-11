@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-11-10T10:19:58.769Z",
+  "as_of": "2026-11-11T09:49:19.334Z",
   "kind": "owned_page_health_not_market_validation",
   "ok": true,
   "site_checks": [
@@ -640,7 +640,7 @@
   },
   "marketing": {
     "queue_fresh": true,
-    "draft_ready": 3,
+    "draft_ready": 0,
     "blocked": [
       {
         "id": "bpj-sponsored-placement",
@@ -669,6 +669,24 @@
       },
       {
         "id": "tds-collector-decision",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "tds-smiski-checklist-20261011",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "tds-sonny-checklist-20261011",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "tds-collection-backup-20261011",
         "reasons": [
           "review_stale"
         ]

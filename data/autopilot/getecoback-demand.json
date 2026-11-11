@@ -1,10 +1,18 @@
 {
  "covered": [
   {
-   "heat": {
-    "n7": 2,
-    "p7": 1
-   },
+   "heat": null,
+   "kind": "value",
+   "match": 1.0,
+   "page": "guide/akku-heizluefter.html",
+   "q": "heizlüfter",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-11-10",
+   "v": 151950
+  },
+  {
+   "heat": null,
    "kind": "value",
    "match": 0.667,
    "page": "guide/akku-heizluefter.html",
@@ -15,10 +23,7 @@
    "v": 99500
   },
   {
-   "heat": {
-    "n7": 2,
-    "p7": 1
-   },
+   "heat": null,
    "kind": "value",
    "match": 0.667,
    "page": "guide/akku-heizluefter.html",
@@ -29,10 +34,7 @@
    "v": 94650
   },
   {
-   "heat": {
-    "n7": 2,
-    "p7": 1
-   },
+   "heat": null,
    "kind": "value",
    "match": 0.9,
    "page": "guide/akku-heizluefter.html",
@@ -52,6 +54,28 @@
    "source": "related-queries",
    "stand": "2026-11-07",
    "v": 66300
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.933,
+   "page": "guide/infrarotheizung-gegen-schimmel.html",
+   "q": "infrarotheizung 300 watt",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-11-10",
+   "v": 66250
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.9,
+   "page": "kategorie/heizen.html",
+   "q": "infrarotheizung schreibtisch",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-11-10",
+   "v": 51050
   },
   {
    "heat": null,
@@ -76,10 +100,18 @@
    "v": 43050
   },
   {
-   "heat": {
-    "n7": 2,
-    "p7": 1
-   },
+   "heat": null,
+   "kind": "value",
+   "match": 0.875,
+   "page": "guide/heizung-tauschen-oder-warten-gmodg.html",
+   "q": "elektrische heizung",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-11-10",
+   "v": 37600
+  },
+  {
+   "heat": null,
    "kind": "value",
    "match": 0.667,
    "page": "guide/akku-heizluefter.html",
@@ -92,6 +124,17 @@
   {
    "heat": null,
    "kind": "value",
+   "match": 0.775,
+   "page": "guide/stromkosten-rechner.html",
+   "q": "infrarotheizung werkstatt",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-11-10",
+   "v": 31900
+  },
+  {
+   "heat": null,
+   "kind": "value",
    "match": 0.6,
    "page": "guide/auto-bei-hitze-kuehlen.html",
    "q": "heizlüfter auto 12v",
@@ -99,6 +142,17 @@
    "source": "related-queries",
    "stand": "2026-11-07",
    "v": 31700
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.667,
+   "page": "guide/infrarotheizung-badezimmer.html",
+   "q": "infrarotheizung auf rollen",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-11-10",
+   "v": 30700
   },
   {
    "heat": null,
@@ -185,6 +239,36 @@
   {
    "kind": "value",
    "match": 0.5,
+   "page": "guide/heizkosten-vergleich-rechner.html",
+   "q": "diesel infrarotheizung",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-11-10",
+   "v": 74650
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/heizkosten-vergleich-rechner.html",
+   "q": "toom infrarotheizung",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-11-10",
+   "v": 52500
+  },
+  {
+   "kind": "value",
+   "match": 0.0,
+   "page": null,
+   "q": "konvektorheizung",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-11-10",
+   "v": 39400
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
    "page": "guide/luftentfeuchter-10-qm.html",
    "q": "vivosun luftentfeuchter",
    "seed": "luftentfeuchter",
@@ -196,11 +280,11 @@
    "kind": "value",
    "match": 0.18,
    "page": "guide/bei-hitze-schlafen.html",
-   "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
+   "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-11-02",
-   "v": 12100
+   "stand": "2026-11-10",
+   "v": 15450
   },
   {
    "kind": "value",
@@ -209,28 +293,8 @@
    "q": "philips series 5500 kaffeevollautomat ep5547/90",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-11-02",
-   "v": 10650
-  },
-  {
-   "kind": "value",
-   "match": 0.18,
-   "page": "guide/bei-hitze-schlafen.html",
-   "q": "siemens eq.6 plus s700 te657m03de kaffeevollautomat",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-11-02",
-   "v": 7900
-  },
-  {
-   "kind": "value",
-   "match": 0.0,
-   "page": null,
-   "q": "wmf perfection 840l kaffeevollautomat",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-11-02",
-   "v": 6750
+   "stand": "2026-11-10",
+   "v": 10450
   },
   {
    "kind": "value",
@@ -239,28 +303,8 @@
    "q": "philips ep2230/10 series 2200 kaffeevollautomat",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-11-02",
-   "v": 5350
-  },
-  {
-   "kind": "value",
-   "match": 0.18,
-   "page": "guide/bei-hitze-schlafen.html",
-   "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-11-02",
-   "v": 800
-  },
-  {
-   "kind": "value",
-   "match": 0.0,
-   "page": null,
-   "q": "philips kaffeevollautomat ep5443/70 5400 series",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-11-02",
-   "v": 350
+   "stand": "2026-11-10",
+   "v": 8700
   },
   {
    "kind": "value",
@@ -269,8 +313,18 @@
    "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-11-02",
-   "v": 300
+   "stand": "2026-11-10",
+   "v": 7700
+  },
+  {
+   "kind": "value",
+   "match": 0.25,
+   "page": "guide/delonghi-pac-n90-test.html",
+   "q": "de'longhi kaffeevollautomat ecam 21.118.b",
+   "seed": "kaffeevollautomat",
+   "source": "related-queries",
+   "stand": "2026-11-10",
+   "v": 6300
   },
   {
    "kind": "value",
@@ -279,28 +333,38 @@
    "q": "de'longhi kaffeevollautomat",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-11-02",
+   "stand": "2026-11-10",
    "v": 140
+  },
+  {
+   "kind": "value",
+   "match": 0.0,
+   "page": null,
+   "q": "philips kaffeevollautomat lattego",
+   "seed": "kaffeevollautomat",
+   "source": "related-queries",
+   "stand": "2026-11-10",
+   "v": 60
   }
  ],
- "generated": "2026-11-10",
+ "generated": "2026-11-11",
  "geo": "DE",
- "heat_source": "measured 2026-11-10 (17 pages); no notes",
+ "heat_source": "measured 2026-11-11 (16 pages); no notes",
  "hot_pages": [
   {
-   "n7": 11,
-   "p7": 2,
+   "n7": 10,
+   "p7": 4,
    "page": "/"
   },
   {
    "n7": 5,
-   "p7": 4,
-   "page": "/guide/luftentfeuchter-ratgeber.html"
-  },
-  {
-   "n7": 4,
    "p7": 1,
    "page": "/guide/klimaanlage-wann-kaufen.html"
+  },
+  {
+   "n7": 5,
+   "p7": 3,
+   "page": "/guide/luftentfeuchter-ratgeber.html"
   },
   {
    "n7": 4,
@@ -308,9 +372,14 @@
    "page": "/guide/klimaanlage-wohnmobil.html"
   },
   {
-   "n7": 3,
+   "n7": 4,
+   "p7": 0,
+   "page": "/guide/midea-portasplit-ausverkauft-alternativen.html"
+  },
+  {
+   "n7": 4,
    "p7": 2,
-   "page": "/en/guide/portable-ac-leaking-water.html"
+   "page": "/guide/was-bedeutet-btu.html"
   },
   {
    "n7": 3,
@@ -323,23 +392,13 @@
    "page": "/guide/klimaanlage-50-qm.html"
   },
   {
-   "n7": 3,
-   "p7": 0,
-   "page": "/guide/midea-portasplit-ausverkauft-alternativen.html"
-  },
-  {
-   "n7": 3,
+   "n7": 2,
    "p7": 3,
-   "page": "/guide/was-bedeutet-btu.html"
+   "page": "/en/guide/portable-ac-leaking-water.html"
   },
   {
    "n7": 2,
-   "p7": 1,
-   "page": "/guide/akku-heizluefter.html"
-  },
-  {
-   "n7": 2,
-   "p7": 1,
+   "p7": 0,
    "page": "/guide/balkon-terrasse-beschatten.html"
   },
   {
@@ -361,6 +420,11 @@
    "n7": 2,
    "p7": 3,
    "page": "/guide/klimaanlage-dachfenster.html"
+  },
+  {
+   "n7": 2,
+   "p7": 0,
+   "page": "/guide/meacodry-arete-one-test.html"
   }
  ],
  "how_to_read": "Research candidates only; token matching is not an editorial or market decision. Relative growth is not search volume, and autocomplete is vocabulary evidence only. Underserved requires an observed zero in the matching measurement window; missing page measurements are unknown, and zero arrivals do not establish a title or internal-link cause. First-party evidence contains only aggregate zero-hit record counts, never raw search terms. Freshness, country, independent evidence and the reviewed page catalog must pass tools/eco_evolution.py before prioritising an existing page. This research queue does not publish. The separate getecoback scheduled deployment runs tools/auto_content.py to discover official product specifications, validate evidence and publish at most one substantive guide change per UTC day.",
