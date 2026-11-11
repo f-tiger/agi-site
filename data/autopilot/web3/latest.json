@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-11-10T10:19:07.316Z",
+  "asOf": "2026-11-11T09:48:47.646Z",
   "ok": true,
   "checks": [
     {
@@ -15,15 +15,7 @@
       "ok": true
     },
     {
-      "name": "compute.agiscorecard.com",
-      "ok": true
-    },
-    {
       "name": "evidence.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "protocol.agiscorecard.com",
       "ok": true
     },
     {
@@ -31,19 +23,7 @@
       "ok": true
     },
     {
-      "name": "proof.agiscorecard.com",
-      "ok": true
-    },
-    {
       "name": "disclosures.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "incentives.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "route.agiscorecard.com",
       "ok": true
     },
     {
@@ -51,11 +31,31 @@
       "ok": true
     },
     {
-      "name": "web3.agiscorecard.com",
+      "name": "incentives.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "proof.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "compute.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "protocol.agiscorecard.com",
       "ok": true
     },
     {
       "name": "permit.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "web3.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "route.agiscorecard.com",
       "ok": true
     },
     {
@@ -70,36 +70,36 @@
   "sources": {
     "market": {
       "status": "fresh",
-      "retrievedAt": "2026-11-10T10:19:07.761Z",
+      "retrievedAt": "2026-11-11T09:48:48.123Z",
       "ageSeconds": 0,
       "quotes": [
         {
           "symbol": "BTC",
           "quote": "USD",
-          "price": 74237.7913585,
-          "sourceUpdatedAt": "2026-11-10T10:19:04.000Z",
+          "price": 73598.45,
+          "sourceUpdatedAt": "2026-11-11T09:48:42.000Z",
           "deviationBps": null
         },
         {
           "symbol": "ETH",
           "quote": "USD",
-          "price": 2093.21,
-          "sourceUpdatedAt": "2026-11-10T10:19:04.000Z",
+          "price": 2052.02,
+          "sourceUpdatedAt": "2026-11-11T09:48:42.000Z",
           "deviationBps": null
         },
         {
           "symbol": "USDC",
           "quote": "USD",
-          "price": 0.9998037607000001,
-          "sourceUpdatedAt": "2026-11-10T10:19:04.000Z",
-          "deviationBps": -1.9623929999990075
+          "price": 0.999689014,
+          "sourceUpdatedAt": "2026-11-11T09:48:42.000Z",
+          "deviationBps": -3.109860000000131
         },
         {
           "symbol": "USDT",
           "quote": "USD",
-          "price": 0.99878,
-          "sourceUpdatedAt": "2026-11-10T10:19:04.000Z",
-          "deviationBps": -12.199999999999989
+          "price": 0.9988,
+          "sourceUpdatedAt": "2026-11-11T09:48:42.000Z",
+          "deviationBps": -11.999999999999789
         }
       ],
       "source": {
@@ -110,65 +110,65 @@
     },
     "briefs": {
       "status": "fresh",
-      "retrievedAt": "2026-11-10T10:19:07.870Z",
+      "retrievedAt": "2026-11-11T09:48:48.255Z",
       "sources": [
         {
           "id": "ethereum",
           "status": "ok",
-          "checkedAt": "2026-11-10T10:19:07.574Z"
+          "checkedAt": "2026-11-11T09:48:47.996Z"
         },
         {
           "id": "x402",
           "status": "ok",
-          "checkedAt": "2026-11-10T10:19:07.574Z"
+          "checkedAt": "2026-11-11T09:48:47.996Z"
         },
         {
           "id": "ezkl",
           "status": "ok",
-          "checkedAt": "2026-11-10T10:19:07.574Z"
+          "checkedAt": "2026-11-11T09:48:47.996Z"
         }
       ],
       "items": [
         {
-          "title": "fix(svm): keep distribute extra.channels as []string (#4203)",
-          "url": "https://github.com/x402-foundation/x402/commit/ff58685d2c58e578c4edc1e51306c25551d872b9",
-          "publishedAt": "2026-11-10T08:17:23.000Z",
+          "title": "fix(python): register ethereum and flare v1 networks (#4212)",
+          "url": "https://github.com/x402-foundation/x402/commit/8b5b0cd393f13dc2c367383e5bbef0fb0cbb3f60",
+          "publishedAt": "2026-11-11T08:41:52.000Z",
           "source": "x402 Foundation repository",
           "sourceId": "x402",
           "kind": "commits",
           "task": "stablecoin"
         },
         {
-          "title": "docs: add AffixIO to third-party utilities (#3518)",
-          "url": "https://github.com/x402-foundation/x402/commit/9843d752b12d53705f5bbdb7fec5e6a1c730a6f8",
-          "publishedAt": "2026-11-09T17:58:14.000Z",
+          "title": "refactor(core): share facilitator initialization across HTTP middleware (#4183)",
+          "url": "https://github.com/x402-foundation/x402/commit/d3eb19d018801c190be58acf4017e76f8bcf6d45",
+          "publishedAt": "2026-11-10T17:05:41.000Z",
           "source": "x402 Foundation repository",
           "sourceId": "x402",
           "kind": "commits",
           "task": "stablecoin"
         },
         {
-          "title": "fix(python): only retry a payment when on_payment_response explicitly recovers (#4194)",
-          "url": "https://github.com/x402-foundation/x402/commit/ac01018697d854721b16e5b43504c41e87522a3e",
-          "publishedAt": "2026-11-09T15:59:00.000Z",
+          "title": "fix(evm): normalize the EIP-2612 permit recovery byte to 27/28 (#3583)",
+          "url": "https://github.com/x402-foundation/x402/commit/b70d6d5e3c08804670e254e178e92b16f8629682",
+          "publishedAt": "2026-11-10T16:12:56.000Z",
           "source": "x402 Foundation repository",
           "sourceId": "x402",
           "kind": "commits",
           "task": "stablecoin"
         },
         {
-          "title": "chore(evm): inline batch-settlement channel network reader (#4201)",
-          "url": "https://github.com/x402-foundation/x402/commit/6e9400dd24ccda3177d238bcbc93819edb1c51ae",
-          "publishedAt": "2026-11-09T15:04:50.000Z",
+          "title": "fix(python): correct three v1 legacy network chain IDs (#4170)",
+          "url": "https://github.com/x402-foundation/x402/commit/47030c58557ac94f8fcce4ef7367910506d60cd6",
+          "publishedAt": "2026-11-10T15:48:49.000Z",
           "source": "x402 Foundation repository",
           "sourceId": "x402",
           "kind": "commits",
           "task": "stablecoin"
         },
         {
-          "title": "fix(python): scope batch-settlement channel manager to configured network (#4186)",
-          "url": "https://github.com/x402-foundation/x402/commit/88b66dd4bd25b07f545905905f791dc3f7e1a6c1",
-          "publishedAt": "2026-11-08T11:22:32.000Z",
+          "title": "feat(evm): add Robinhood Chain (eip155:4663) with USDG as default asset (#4207)",
+          "url": "https://github.com/x402-foundation/x402/commit/1d2858cf5d3a7df6938737eb61ebaacf59b1733f",
+          "publishedAt": "2026-11-10T12:45:08.000Z",
           "source": "x402 Foundation repository",
           "sourceId": "x402",
           "kind": "commits",
@@ -223,134 +223,134 @@
     },
     "research": {
       "status": "fresh",
-      "retrievedAt": "2026-11-10T10:19:08.682Z",
+      "retrievedAt": "2026-11-11T09:48:48.438Z",
       "historyStatus": "fresh",
       "quotes": [
         {
           "symbol": "BTC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-10T10:19:04.000Z",
+          "sourceUpdatedAt": "2026-11-11T09:48:42.000Z",
           "day": {
-            "percent": 0.02749337593130896,
-            "from": "2026-11-09T10:00:00.000Z",
-            "to": "2026-11-10T10:19:04.000Z"
+            "percent": -1.3883341218518752,
+            "from": "2026-11-10T09:00:00.000Z",
+            "to": "2026-11-11T09:48:42.000Z"
           },
           "week": {
-            "percent": -3.541090255106283,
-            "from": "2026-11-03T10:00:00.000Z",
-            "to": "2026-11-10T10:19:04.000Z"
+            "percent": -6.1204746911901475,
+            "from": "2026-11-04T09:00:00.000Z",
+            "to": "2026-11-11T09:48:42.000Z"
           }
         },
         {
           "symbol": "ETH",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-10T10:19:04.000Z",
+          "sourceUpdatedAt": "2026-11-11T09:48:42.000Z",
           "day": {
-            "percent": -0.6578002076781497,
-            "from": "2026-11-09T10:00:00.000Z",
-            "to": "2026-11-10T10:19:04.000Z"
+            "percent": -3.0094682321886723,
+            "from": "2026-11-10T09:00:00.000Z",
+            "to": "2026-11-11T09:48:42.000Z"
           },
           "week": {
-            "percent": -7.5884099285106865,
-            "from": "2026-11-03T10:00:00.000Z",
-            "to": "2026-11-10T10:19:04.000Z"
+            "percent": -11.553859564295832,
+            "from": "2026-11-04T09:00:00.000Z",
+            "to": "2026-11-11T09:48:42.000Z"
           }
         },
         {
           "symbol": "USDC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-10T10:19:04.000Z",
+          "sourceUpdatedAt": "2026-11-11T09:48:42.000Z",
           "day": {
-            "percent": 0.03437960908478921,
-            "from": "2026-11-09T10:00:00.000Z",
-            "to": "2026-11-10T10:19:04.000Z"
+            "percent": 0.01755317275780044,
+            "from": "2026-11-10T09:00:00.000Z",
+            "to": "2026-11-11T09:48:42.000Z"
           },
           "week": {
-            "percent": 0.04402714628393145,
-            "from": "2026-11-03T10:00:00.000Z",
-            "to": "2026-11-10T10:19:04.000Z"
+            "percent": 0.028211163932101435,
+            "from": "2026-11-04T09:00:00.000Z",
+            "to": "2026-11-11T09:48:42.000Z"
           }
         },
         {
           "symbol": "USDT",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-10T10:19:04.000Z",
+          "sourceUpdatedAt": "2026-11-11T09:48:42.000Z",
           "day": {
-            "percent": -0.03295290555852537,
-            "from": "2026-11-09T10:00:00.000Z",
-            "to": "2026-11-10T10:19:04.000Z"
+            "percent": 0.010013016922005846,
+            "from": "2026-11-10T09:00:00.000Z",
+            "to": "2026-11-11T09:48:42.000Z"
           },
           "week": {
-            "percent": 0.005674797915977692,
-            "from": "2026-11-03T10:00:00.000Z",
-            "to": "2026-11-10T10:19:04.000Z"
+            "percent": -0.008974549563356415,
+            "from": "2026-11-04T09:00:00.000Z",
+            "to": "2026-11-11T09:48:42.000Z"
           }
         },
         {
           "symbol": "TAO",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-10T10:19:04.000Z",
+          "sourceUpdatedAt": "2026-11-11T09:48:42.000Z",
           "day": {
-            "percent": 1.9804137345107442,
-            "from": "2026-11-09T09:59:49.000Z",
-            "to": "2026-11-10T10:19:04.000Z"
+            "percent": -1.6534019468073535,
+            "from": "2026-11-10T09:00:01.000Z",
+            "to": "2026-11-11T09:48:42.000Z"
           },
           "week": {
-            "percent": -0.9787481658313002,
-            "from": "2026-11-03T09:56:59.000Z",
-            "to": "2026-11-10T10:19:04.000Z"
+            "percent": -4.784704946778384,
+            "from": "2026-11-04T09:00:00.000Z",
+            "to": "2026-11-11T09:48:42.000Z"
           }
         },
         {
           "symbol": "RENDER",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-10T10:19:04.000Z",
+          "sourceUpdatedAt": "2026-11-11T09:48:42.000Z",
           "day": {
-            "percent": -1.0800237000197388,
-            "from": "2026-11-09T09:59:49.000Z",
-            "to": "2026-11-10T10:19:04.000Z"
+            "percent": 1.0226119138483591,
+            "from": "2026-11-10T09:00:01.000Z",
+            "to": "2026-11-11T09:48:42.000Z"
           },
           "week": {
-            "percent": 6.469134332566973,
-            "from": "2026-11-03T09:56:59.000Z",
-            "to": "2026-11-10T10:19:04.000Z"
+            "percent": 3.5901992872668043,
+            "from": "2026-11-04T08:57:03.000Z",
+            "to": "2026-11-11T09:48:42.000Z"
           }
         },
         {
           "symbol": "FET",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-10T10:19:04.000Z",
+          "sourceUpdatedAt": "2026-11-11T09:48:42.000Z",
           "day": {
-            "percent": 2.4841819119026054,
-            "from": "2026-11-09T09:59:49.000Z",
-            "to": "2026-11-10T10:19:04.000Z"
+            "percent": -0.2047372377502854,
+            "from": "2026-11-10T09:00:01.000Z",
+            "to": "2026-11-11T09:48:42.000Z"
           },
           "week": {
-            "percent": -6.550736669711609,
-            "from": "2026-11-03T09:56:59.000Z",
-            "to": "2026-11-10T10:19:04.000Z"
+            "percent": -8.227450510624424,
+            "from": "2026-11-04T08:57:03.000Z",
+            "to": "2026-11-11T09:48:42.000Z"
           }
         },
         {
           "symbol": "AKT",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-10T10:19:04.000Z",
+          "sourceUpdatedAt": "2026-11-11T09:48:42.000Z",
           "day": {
-            "percent": 5.914806769342729,
-            "from": "2026-11-09T09:59:49.000Z",
-            "to": "2026-11-10T10:19:04.000Z"
+            "percent": -3.92489068101306,
+            "from": "2026-11-10T09:00:01.000Z",
+            "to": "2026-11-11T09:48:42.000Z"
           },
           "week": {
-            "percent": 6.214493422063128,
-            "from": "2026-11-03T09:52:50.000Z",
-            "to": "2026-11-10T10:19:04.000Z"
+            "percent": -2.0769376066085754,
+            "from": "2026-11-04T08:53:00.000Z",
+            "to": "2026-11-11T09:48:42.000Z"
           }
         }
       ]
     }
   },
   "events": {
-    "asOf": "2026-11-10T10:19:08.000Z",
+    "asOf": "2026-11-11T09:48:48.000Z",
     "windowDays": 28,
     "measurement": "Opt-in event counts, deduplicated by event ID. Not unique people or a cross-domain session funnel. Incoming attribution is unverified; stripped referrers appear direct. Default examples, probes and MCP requests do not generate events.",
     "groups": []
@@ -361,29 +361,36 @@
   },
   "changes": [
     {
-      "url": "https://github.com/x402-foundation/x402/commit/ff58685d2c58e578c4edc1e51306c25551d872b9",
-      "title": "fix(svm): keep distribute extra.channels as []string (#4203)",
+      "url": "https://github.com/x402-foundation/x402/commit/8b5b0cd393f13dc2c367383e5bbef0fb0cbb3f60",
+      "title": "fix(python): register ethereum and flare v1 networks (#4212)",
       "task": "stablecoin",
       "kind": "new_since_previous_check",
       "requiresReview": true
     },
     {
-      "url": "https://github.com/x402-foundation/x402/commit/9843d752b12d53705f5bbdb7fec5e6a1c730a6f8",
-      "title": "docs: add AffixIO to third-party utilities (#3518)",
+      "url": "https://github.com/x402-foundation/x402/commit/d3eb19d018801c190be58acf4017e76f8bcf6d45",
+      "title": "refactor(core): share facilitator initialization across HTTP middleware (#4183)",
       "task": "stablecoin",
       "kind": "new_since_previous_check",
       "requiresReview": true
     },
     {
-      "url": "https://github.com/x402-foundation/x402/commit/ac01018697d854721b16e5b43504c41e87522a3e",
-      "title": "fix(python): only retry a payment when on_payment_response explicitly recovers (#4194)",
+      "url": "https://github.com/x402-foundation/x402/commit/b70d6d5e3c08804670e254e178e92b16f8629682",
+      "title": "fix(evm): normalize the EIP-2612 permit recovery byte to 27/28 (#3583)",
       "task": "stablecoin",
       "kind": "new_since_previous_check",
       "requiresReview": true
     },
     {
-      "url": "https://github.com/x402-foundation/x402/commit/6e9400dd24ccda3177d238bcbc93819edb1c51ae",
-      "title": "chore(evm): inline batch-settlement channel network reader (#4201)",
+      "url": "https://github.com/x402-foundation/x402/commit/47030c58557ac94f8fcce4ef7367910506d60cd6",
+      "title": "fix(python): correct three v1 legacy network chain IDs (#4170)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/1d2858cf5d3a7df6938737eb61ebaacf59b1733f",
+      "title": "feat(evm): add Robinhood Chain (eip155:4663) with USDG as default asset (#4207)",
       "task": "stablecoin",
       "kind": "new_since_previous_check",
       "requiresReview": true
