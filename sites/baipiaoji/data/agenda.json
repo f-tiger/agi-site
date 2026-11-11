@@ -1,8 +1,8 @@
 {
-  "generated": "2026-11-10",
+  "generated": "2026-11-11",
   "note": "由 scripts/trend-radar.mjs 每日聚合五路站内信号生成。只排队不写事实；核实动作按硬规则执行。分数是领先指标的相对排序，不是预测。",
   "counts": {
-    "candidate": 38,
+    "candidate": 39,
     "category_hot": 1,
     "stale": 5,
     "demand": 0
@@ -25,6 +25,30 @@
     "next_structuring": "study"
   },
   "items": [
+    {
+      "id": "drift:deepl",
+      "type": "source_drift",
+      "title": "来源页变动：DeepL（2026-11-11 确认）",
+      "why": "官方来源页的数字令牌变了——新增 7m；消失 无。本站条目仍是 2026-09-21 的版本",
+      "action": "打开 https://www.deepl.com/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "deepl",
+        "https://www.deepl.com/pricing"
+      ],
+      "score": 75
+    },
+    {
+      "id": "drift:immersive-translate",
+      "type": "source_drift",
+      "title": "来源页变动：沉浸式翻译（2026-11-11 确认）",
+      "why": "官方来源页的数字令牌变了——新增 无；消失 2752b。本站条目仍是 2026-08-03 的版本",
+      "action": "打开 https://immersivetranslate.com 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "immersive-translate",
+        "https://immersivetranslate.com"
+      ],
+      "score": 75
+    },
     {
       "id": "drift:dify",
       "type": "source_drift",
@@ -54,6 +78,18 @@
       "score": 70
     },
     {
+      "id": "drift:fastgpt",
+      "type": "source_drift",
+      "title": "来源页变动：FastGPT（2026-11-11 确认）",
+      "why": "官方来源页的数字令牌变了——新增 ¥10；消失 无。本站条目仍是 2026-09-21 的版本",
+      "action": "打开 https://fastgpt.cn/price 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "fastgpt",
+        "https://fastgpt.cn/price"
+      ],
+      "score": 65
+    },
+    {
       "id": "drift:windsurf",
       "type": "source_drift",
       "title": "来源页变动：Windsurf（2026-11-10 确认）",
@@ -78,42 +114,6 @@
       "score": 65
     },
     {
-      "id": "drift:bolt",
-      "type": "source_drift",
-      "title": "来源页变动：Bolt.new（2026-11-09 确认）",
-      "why": "官方来源页的数字令牌变了——新增 0.15s / 5432b / 616b；消失 36b。本站条目仍是 2026-09-21 的版本",
-      "action": "打开 https://support.bolt.new 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "bolt",
-        "https://support.bolt.new"
-      ],
-      "score": 65
-    },
-    {
-      "id": "drift:v0",
-      "type": "source_drift",
-      "title": "来源页变动：v0（Vercel）（2026-11-09 确认）",
-      "why": "官方来源页的数字令牌变了——新增 无；消失 100% / 9%。本站条目仍是 2026-08-03 的版本",
-      "action": "打开 https://v0.app 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "v0",
-        "https://v0.app"
-      ],
-      "score": 65
-    },
-    {
-      "id": "drift:zhipu-glm",
-      "type": "source_drift",
-      "title": "来源页变动：智谱开放平台（2026-11-09 确认）",
-      "why": "官方来源页的数字令牌变了——新增 40b / 96b；消失 28b。本站条目仍是 2026-08-01 的版本",
-      "action": "打开 https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "zhipu-glm",
-        "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash"
-      ],
-      "score": 65
-    },
-    {
       "id": "candidate:github.com",
       "type": "verify_candidate",
       "title": "核实候选：Let your AI agents paint big arrows, boxes and text on your screen",
@@ -122,6 +122,18 @@
       "refs": [
         "https://github.com/franzenzenhofer/big-arrow-on-the-screen",
         "https://news.ycombinator.com/item?id=50018817"
+      ],
+      "score": 60
+    },
+    {
+      "id": "candidate:github.com",
+      "type": "verify_candidate",
+      "title": "核实候选：Get your coding agent off ~2019 JavaScript, onto modern web primitives",
+      "why": "HN 336 分 / 101 评论（2026-11-11 发现）——外部热度已验证，站内尚未收录",
+      "action": "按收录标准核实 https://github.com/GoogleChrome/modern-web-guidance；合格则中英同步入库，limits 走 limits-edit.mjs",
+      "refs": [
+        "https://github.com/GoogleChrome/modern-web-guidance",
+        "https://news.ycombinator.com/item?id=50443812"
       ],
       "score": 60
     },
@@ -138,21 +150,9 @@
       "score": 60
     },
     {
-      "id": "candidate:llmspeed.dev",
-      "type": "verify_candidate",
-      "title": "核实候选：Llmspeed – feel how fast a local LLM runs before you buy the hardware",
-      "why": "HN 268 分 / 78 评论（2026-10-18 发现）——外部热度已验证，站内尚未收录",
-      "action": "按收录标准核实 https://llmspeed.dev/；合格则中英同步入库，limits 走 limits-edit.mjs",
-      "refs": [
-        "https://llmspeed.dev/",
-        "https://news.ycombinator.com/item?id=50127979"
-      ],
-      "score": 60
-    },
-    {
       "id": "paidgap:kimi",
       "type": "paid_gap",
-      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 103 次，无付费档）",
+      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 98 次，无付费档）",
       "why": "有需求、无判定页：is-kimi-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
       "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
       "refs": [
@@ -163,7 +163,7 @@
     {
       "id": "paidgap:exa",
       "type": "paid_gap",
-      "title": "补付费档：Exa（工具页 28 天带来源真人 47 次，无付费档）",
+      "title": "补付费档：Exa（工具页 28 天带来源真人 48 次，无付费档）",
       "why": "有需求、无判定页：is-exa-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
       "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
       "refs": [
