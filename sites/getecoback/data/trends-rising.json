@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-10",
+ "fetched": "2026-11-11",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -204,32 +204,36 @@
   "kaffeevollautomat": {
    "rising": [
     {
-     "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
-     "v": 15450
+     "q": "siemens eq.6 plus s700 te657m03de kaffeevollautomat",
+     "v": 12100
     },
     {
      "q": "philips series 5500 kaffeevollautomat ep5547/90",
-     "v": 10450
+     "v": 10550
     },
     {
-     "q": "philips ep2230/10 series 2200 kaffeevollautomat",
-     "v": 8700
+     "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
+     "v": 9750
     },
     {
      "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
-     "v": 7700
+     "v": 7650
+    },
+    {
+     "q": "philips ep2230/10 series 2200 kaffeevollautomat",
+     "v": 7350
     },
     {
      "q": "de'longhi kaffeevollautomat ecam 21.118.b",
-     "v": 6300
+     "v": 6000
     },
     {
      "q": "de'longhi kaffeevollautomat",
-     "v": 140
+     "v": 130
     },
     {
      "q": "philips kaffeevollautomat lattego",
-     "v": 60
+     "v": 50
     },
     {
      "q": "philips lattego",
@@ -237,41 +241,59 @@
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-11-10",
+   "fetched": "2026-11-11",
    "polluted": false,
-   "last_attempt_at": "2026-11-10T12:54:09.630506+00:00",
+   "last_attempt_at": "2026-11-11T12:01:24.031843+00:00",
    "last_attempt_status": "ok"
   },
   "akku staubsauger": {
-   "auto": [
-    "akku staubsauger",
-    "akku staubsauger test",
-    "akku staubsauger test 2026",
-    "akku staubsauger bosch",
-    "akku staubsauger mit wischfunktion",
-    "akku staubsauger stiftung warentest",
-    "akku staubsauger dyson",
-    "akku staubsauger tierhaare",
-    "akku staubsauger makita",
-    "akku staubsauger mediamarkt"
+   "rising": [
+    {
+     "q": "dripl akku staubsauger",
+     "v": 600
+    },
+    {
+     "q": "levoit akku staubsauger lvac 200 max",
+     "v": 250
+    },
+    {
+     "q": "akku staubsauger mit licht",
+     "v": 180
+    },
+    {
+     "q": "bissell staubsauger akku",
+     "v": 150
+    },
+    {
+     "q": "grundig akku staubsauger",
+     "v": 140
+    },
+    {
+     "q": "dreame v20 pro",
+     "v": 140
+    },
+    {
+     "q": "dreame r20",
+     "v": 130
+    },
+    {
+     "q": "shark powerdetect clean & empty",
+     "v": 100
+    },
+    {
+     "q": "sky scanner",
+     "v": 90
+    },
+    {
+     "q": "shark staubsauger",
+     "v": 70
+    }
    ],
-   "new_vocabulary": [
-    "akku staubsauger test",
-    "akku staubsauger test 2026",
-    "akku staubsauger bosch",
-    "akku staubsauger mit wischfunktion",
-    "akku staubsauger stiftung warentest",
-    "akku staubsauger dyson",
-    "akku staubsauger tierhaare",
-    "akku staubsauger makita",
-    "akku staubsauger mediamarkt"
-   ],
-   "rising": [],
-   "source": "autocomplete-vocabulary",
-   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
-   "last_attempt_at": "2026-11-03T12:13:13.464531+00:00",
-   "last_attempt_status": "failed",
-   "fetched": "2026-11-03"
+   "source": "related-queries",
+   "fetched": "2026-11-11",
+   "polluted": false,
+   "last_attempt_at": "2026-11-11T12:02:25.529262+00:00",
+   "last_attempt_status": "ok"
   },
   "matratze": {
    "auto": [
