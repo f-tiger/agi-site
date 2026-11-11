@@ -2,7 +2,7 @@
   "ok": true,
   "since": "2026-09-25",
   "days": 28,
-  "generated": "2026-11-10T14:35:33.334Z",
+  "generated": "2026-11-11T13:49:43.270Z",
   "cache_seconds": 300,
   "unit": "Anonymous action counts, deduplicated per event per page load in the browser. Not unique users; not verified buyers. Bots, CI and samples are excluded from task completion. Open endpoint counts can be spoofed. Public aggregates may be cached for 5 minutes.",
   "events": {
@@ -10,7 +10,7 @@
     "doc_video_load_upscayl": 1
   },
   "excluded": {
-    "doc_ci": 38,
+    "doc_ci": 37,
     "doc_image_sample": 1
   },
   "daily": [
@@ -136,10 +136,6 @@
       "n": 201
     },
     {
-      "path": "/de/delivery-evidence",
-      "n": 6
-    },
-    {
       "path": "/delivery-evidence",
       "n": 6
     },
@@ -152,15 +148,15 @@
       "n": 6
     },
     {
+      "path": "/llms-full.txt",
+      "n": 6
+    },
+    {
       "path": "/llms.txt",
       "n": 6
     },
     {
-      "path": "/document-assets/text/en/compare-pdf-text.txt",
-      "n": 5
-    },
-    {
-      "path": "/document-assets/text/en/delivery-evidence.txt",
+      "path": "/de/delivery-evidence",
       "n": 5
     },
     {
@@ -176,10 +172,6 @@
       "n": 5
     },
     {
-      "path": "/document-assets/text/en/open-source/audacity.txt",
-      "n": 5
-    },
-    {
       "path": "/document-assets/text/en/open-source/obs.txt",
       "n": 5
     },
@@ -188,35 +180,15 @@
       "n": 5
     },
     {
-      "path": "/document-assets/text/en/open-source/upscayl.txt",
-      "n": 5
-    },
-    {
-      "path": "/document-assets/text/en/pdf-accessibility-checker.txt",
-      "n": 5
-    },
-    {
-      "path": "/document-assets/text/en/pdf-batch-audit.txt",
-      "n": 5
-    },
-    {
-      "path": "/document-assets/text/en/verify-file.txt",
-      "n": 5
-    },
-    {
-      "path": "/document-assets/text/en/videos.txt",
-      "n": 5
-    },
-    {
-      "path": "/document-assets/text/en/videos/audacity.txt",
-      "n": 5
-    },
-    {
-      "path": "/llms-full.txt",
-      "n": 5
-    },
-    {
       "path": "/",
+      "n": 4
+    },
+    {
+      "path": "/document-assets/text/en/compare-pdf-text.txt",
+      "n": 4
+    },
+    {
+      "path": "/document-assets/text/en/delivery-evidence.txt",
       "n": 4
     },
     {
@@ -224,7 +196,27 @@
       "n": 4
     },
     {
-      "path": "/zh/delivery-evidence",
+      "path": "/document-assets/text/en/open-source/audacity.txt",
+      "n": 4
+    },
+    {
+      "path": "/document-assets/text/en/open-source/upscayl.txt",
+      "n": 4
+    },
+    {
+      "path": "/document-assets/text/en/pdf-batch-audit.txt",
+      "n": 4
+    },
+    {
+      "path": "/document-assets/text/en/verify-file.txt",
+      "n": 4
+    },
+    {
+      "path": "/document-assets/text/en/videos.txt",
+      "n": 4
+    },
+    {
+      "path": "/document-assets/text/en/videos/audacity.txt",
       "n": 4
     },
     {
@@ -272,11 +264,15 @@
       "n": 3
     },
     {
-      "path": "/document-assets/text/en/pdf-to-text.txt",
+      "path": "/document-assets/text/en/pdf-accessibility-checker.txt",
       "n": 3
     },
     {
       "path": "/document-assets/tool-capabilities.json",
+      "n": 3
+    },
+    {
+      "path": "/zh/delivery-evidence",
       "n": 3
     },
     {
@@ -325,6 +321,10 @@
     },
     {
       "path": "/document-assets/text/en/open-source/whisper.txt",
+      "n": 2
+    },
+    {
+      "path": "/document-assets/text/en/pdf-to-text.txt",
       "n": 2
     },
     {
@@ -422,16 +422,16 @@
       "n": 163
     },
     {
+      "claimed_agent": "Meta-ExternalAgent",
+      "n": 65
+    },
+    {
       "claimed_agent": "Amazonbot",
-      "n": 73
+      "n": 64
     },
     {
       "claimed_agent": "Applebot",
-      "n": 65
-    },
-    {
-      "claimed_agent": "Meta-ExternalAgent",
-      "n": 65
+      "n": 60
     },
     {
       "claimed_agent": "GPTBot",
@@ -450,11 +450,11 @@
       "n": 3
     },
     {
-      "claimed_agent": "Bingbot",
-      "n": 1
+      "claimed_agent": "OAI-SearchBot",
+      "n": 3
     },
     {
-      "claimed_agent": "OAI-SearchBot",
+      "claimed_agent": "Bingbot",
       "n": 1
     }
   ],
@@ -535,5 +535,5 @@
   "homepage_scope": "Homepage selections are fixed tool-link actions introduced on 2026-09-27, not completed tasks or unique visitors. Homepage views include historical document homepages and the current /document-tools directory; collector page views use a separate event stream. Legacy tool_views includes homepage views; dedicated_tool_views does not.",
   "attribution_scope": "Per-action observed referrer, not session attribution or a conversion rate. Missing referrers are unknown; Google AI search is not distinguishable from ordinary Google referrals. Crawler identities are user-agent claims, not verified IPs or citations.",
   "tool_views": 11,
-  "query_rows_read": 3092
+  "query_rows_read": 3049
 }
