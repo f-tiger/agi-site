@@ -939,18 +939,32 @@
       "published": "2026-10-18"
     },
     "/guide/trotec-ttk-96-e-betriebskosten.html": {
-      "modified": "2026-10-28",
+      "modified": "2026-11-12",
       "product": {
         "brand": "Trotec",
-        "checked_at": "2026-10-28T09:44:08.099424+00:00",
+        "checked_at": "2026-11-12T11:19:09.345274+00:00",
         "country": "DE",
         "facts": [
           {
+            "context": "bei 30 °C / 80 % r.F. [l/24h]",
+            "key": "extraction_l_per_day",
+            "label": "Entfeuchtung unter Prüfbedingungen",
+            "unit": "L/24h",
+            "value": 28.3
+          },
+          {
             "context": "",
-            "key": "tank_l",
-            "label": "Wasserbehälter",
-            "unit": "L",
-            "value": 3.0
+            "key": "operating_temperature_min_c",
+            "label": "Betriebstemperatur mindestens",
+            "unit": "°C",
+            "value": 5.0
+          },
+          {
+            "context": "",
+            "key": "operating_temperature_max_c",
+            "label": "Betriebstemperatur höchstens",
+            "unit": "°C",
+            "value": 32.0
           },
           {
             "context": "Herstellerangabe; keine gemessene mittlere Nutzung",
@@ -961,43 +975,50 @@
           },
           {
             "context": "",
-            "key": "operating_temperature_max_c",
-            "label": "Betriebstemperatur höchstens",
-            "unit": "°C",
-            "value": 32.0
+            "key": "plug",
+            "label": "Anschlussstecker",
+            "unit": "",
+            "value": "CEE 7/7"
           },
           {
             "context": "",
-            "key": "operating_temperature_min_c",
-            "label": "Betriebstemperatur mindestens",
-            "unit": "°C",
-            "value": 5.0
+            "key": "tank_l",
+            "label": "Wasserbehälter",
+            "unit": "L",
+            "value": 3.0
           },
           {
-            "context": "30 °C / 80 % r.F.",
-            "key": "extraction_l_per_day",
-            "label": "Entfeuchtung unter Prüfbedingungen",
-            "unit": "L/24h",
-            "value": 28.3
-          },
-          {
-            "context": "Abstand 1 m",
+            "context": "Abstand 1 m [dB(A)]",
             "key": "noise_db",
             "label": "Geräuschangabe",
             "unit": "dB(A)",
             "value": 50.0
+          },
+          {
+            "context": "",
+            "key": "weight_kg",
+            "label": "Gewicht ohne Verpackung",
+            "unit": "kg",
+            "value": 17.0
+          },
+          {
+            "context": "ohne Verpackung",
+            "key": "dimensions_mm",
+            "label": "Abmessungen L × B × H",
+            "unit": "mm",
+            "value": "260 × 386 × 500"
           }
         ],
         "language": "de",
         "market": {
           "currency": "EUR",
-          "plug": null
+          "plug": "CEE 7/7"
         },
         "model": "TTK 96 E",
         "name": "Luftentfeuchter TTK 96 E",
         "power_watts": 720.0,
         "product_url": "https://de.trotec.com/shop/luftentfeuchter-ttk-96-e.html",
-        "source_hash": "a042ad3f2cec138187f31b9c00e497ab9711e489c073ce45c49932291237cde1",
+        "source_hash": "fd4c7019ac2328508b00d38dd5c2ed0436b4550ba922619674fa5f4e684abab9",
         "source_id": "trotec-de:cd50efec13f1",
         "source_urls": [
           "https://de.trotec.com/shop/luftentfeuchter-ttk-96-e.html"
