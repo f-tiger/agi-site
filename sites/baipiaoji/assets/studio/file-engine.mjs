@@ -3,8 +3,8 @@ let library;
 export const pdfLibrary=()=>library||(library=import('./vendor/pdf-lib-1.17.1.mjs'));
 export async function openPDF(file){
   const {PDFDocument}=await pdfLibrary();
-  try {const doc=await PDFDocument.load(await file.arrayBuffer());if(doc.isEncrypted)throw Error('encrypted');if(doc.getPageCount()>LIMITS.pages)throw Error('pages');return doc;}
-  catch(e){if(e.message==='pages')throw e;throw Error(/encrypt|password/i.test(e.message)?'encrypted':'pdf');}
+  try {const doc=await PDFDocument.load(await file.arrayBuffer());if(doc.isEncrypted)throw Error('encrypted');if(doc.getPageCount()>LIMITS.pages)throw Error('sourcePages');return doc;}
+  catch(e){if(e.message==='sourcePages')throw e;throw Error(/encrypt|password/i.test(e.message)?'encrypted':'pdf');}
 }
 export async function decodeImage(file){
   const url=URL.createObjectURL(file),img=new Image();
@@ -39,3 +39,4 @@ export async function assemblePDF(items,s,progress=()=>{},alive=()=>true){
   if(!count)throw Error('empty');if(!alive())throw Error('cancel');out.setProducer('BPJ PDF tools');out.setCreator('BPJ');
   const data=await out.save();if(data.length>LIMITS.outputBytes)throw Error('output');if(!alive())throw Error('cancel');return {blob:new Blob([data],{type:'application/pdf'}),pages:count};
 }
+
