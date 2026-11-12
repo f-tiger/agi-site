@@ -121,6 +121,7 @@ const settle = () => Promise.all(pendingWrites.splice(0));
     async all() { if (/\bFROM hits\b/.test(q)) reads++; if (/\bFROM free_accounts\b/.test(q)) accountReads++; return { results: sql.prepare(q).all(...a) }; },
     async first() { if (/\bFROM free_accounts\b/.test(q)) accountReads++; return sql.prepare(q).get(...a) ?? null; }, async run() { return sql.prepare(q).run(...a); } }; return st; } };
   const call = () => onRequestGet({ request: new Request('https://baipiaoji.com/api/reach?days=7'), env: { HITS }, waitUntil: () => {} });
+  sql.prepare('INSERT INTO hits(d,path,lang,ev) VALUES(?,?,?,?)').run(new Date(Date.now()-86400000).toISOString().slice(0,10),'/go/kimi','zh','go');
   const waits = [];
   const first = await onRequestGet({ request: new Request('https://baipiaoji.com/api/reach?days=7'), env: { HITS }, waitUntil: (p) => waits.push(p) });
   await Promise.all(waits);
@@ -134,6 +135,7 @@ const settle = () => Promise.all(pendingWrites.splice(0));
   const j = await second.json();
   ok(j.ok === true && j.window_days === 7 && j.humans_referred === 1 && Array.isArray(j.paths), '缓存里的是完整的 reach 响应');
   ok(j.conversion_stages.ok && j.conversion_stages.accounts.created === 0, '注册空表是已知零，完整分层统计一起命中缓存');
+  ok(JSON.stringify(j.conversion_stages.directory_outbound)===JSON.stringify({by_tool:[{slug:'kimi',clicks:1}],unattributed_clicks:0}), '目录出站明细与原聚合一起缓存，命中不新增 D1 读取');
   ok(j.conversion_stages.account_scope === 'fleet_shared_account_pool' && j.conversion_stages.accounts_daily.length === 7 && j.conversion_stages.accounts_daily.every(row=>row.created===0), '共享账户池UTC日明细仅成功读取才补零');
   ok(j.homepage_signals.ok && j.homepage_signals.clicks===0,'首页空表是已知零且一起命中缓存');
   // 商业触发那条查询失败（额度边缘时实见）→ 响应标 partial，不进缓存，下一次重算。

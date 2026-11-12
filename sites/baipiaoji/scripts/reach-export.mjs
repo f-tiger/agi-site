@@ -180,7 +180,7 @@ if (SELFTEST) {
     referrers: [{ ref: 'www.google.com', n: 8 }], ai_referrals: [], events: { go: 3 }, submissions: { new: 2, total: 7 }, ads: {},
   };
   fixture.commercial_triggers={ok:true,counts:{'vendor-view':3,'ad-wallet':1}};
-  fixture.conversion_stages={ok:true,events:{tool_results_own:2},accounts:{created:1}};
+  fixture.conversion_stages={ok:true,events:{tool_results_own:2},accounts:{created:1},directory_outbound:{by_tool:[{slug:'grok',clicks:3}],unattributed_clicks:1}};
   fixture.quote_signals={ok:true,actions:{builder_open:3,own_ready:1},builder_entries:{'video-guide':3}};
   fixture.homepage_signals={ok:true,clicks:2,entries:[{language:'zh',block:'hero',destination:'toolbox',n:2}],daily:[{date:'2026-10-01',complete:false,clicks:2}]};
   fixture.manju_signals={ok:true,measurement_version:MANJU_MEASUREMENT_VERSION,actions:Object.fromEntries(MANJU_ACTIONS.map(k=>[k,0])),inquiries:{submit:0,cooperate:0,correction:0}};
@@ -195,6 +195,8 @@ if (SELFTEST) {
   assert(s.commercial_triggers.counts['vendor-view']===3 && s.commercial_triggers.counts['ad-wallet']===1,'商业触发计数必须进入每日快照');
   assert(summarise({...fixture,commercial_triggers:null}).commercial_triggers.counts===null,'缺失的新字段不能伪装成零');
   assert(s.conversion_stages.accounts.created===1 && s.conversion_stages.events.tool_results_own===2,'分层指标必须进入每日快照');
+  assert(s.conversion_stages.directory_outbound.by_tool[0].clicks===3 && s.conversion_stages.directory_outbound.unattributed_clicks===1,'目录出站明细沿用同一窗口进入快照，不能与工具页浏览混算');
+  assert(summarise({...fixture,conversion_stages:{...fixture.conversion_stages,directory_outbound:null}}).conversion_stages.directory_outbound===null,'出站读取失败保留未知');
   assert(summarise({...fixture,conversion_stages:null}).conversion_stages.accounts===null,'缺失的注册数据不能伪装成零');
   assert(s.quote_signals.actions.own_ready===1 && s.quote_signals.builder_entries['video-guide']===3,'报价使用信号必须进入每日快照');
   assert(summarise({...fixture,quote_signals:null}).quote_signals.actions===null,'缺失报价信号不能伪装成零');
