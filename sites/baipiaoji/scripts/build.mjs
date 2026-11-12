@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import {kimiTaskPanel} from './depth-pages.mjs';
+import {pricingPage,pricingMarkdown,affiliateDisclosure} from './pricing-page.mjs';
 import {buildDevBuying} from './dev-buying-pages.mjs';
 import {buildManju,manjuSearch,manjuHome,manjuEvidenceSummary} from './manju-pages.mjs';
 import {buildAiVideo,aiVideoSearch,aiVideoHome} from './ai-video-pages.mjs';
@@ -529,7 +530,7 @@ ${subJs()}
 <footer class="site-footer">
   ${friendLinks.length ? `<nav class="friend-links"><span>${UI('friend_links', '友情链接')}</span>${friendLinks.map((l) => `<a href="${esc(l.url)}" target="_blank" rel="noopener nofollow" title="${esc(l.desc || '')}">${esc(l.name)}</a>`).join('')}</nav>` : ''}
   <p>${esc(NAME)} · ${esc(TAGLINE)} · ${UI('footer_count', '共收录')} ${tools.length} ${LOCALE.code === 'zh' ? '个 AI 工具；免费额度以单独核实记录为准' : 'AI tools; free allowances require a separate verified record'}</p>
-  <p class="disclosure">${UI('disclosure', '部分链接为合作推广链接，我们可能因此获得佣金；这不影响工具的收录标准与排序，也不会让你多花一分钱。福利以官方页面实时信息为准。')}${site.ga_id ? (LOCALE.code==='zh'?'本站使用 Google Analytics 统计访问数据，用于改进内容。':' This site uses Google Analytics to measure traffic and improve content.') : ''}${privacyNotice || (LOCALE.code==='zh'?' 免费账户保存邮箱、显示名、密码校验数据、会话、关注清单及主动保存的帧选作品编号，用于登录与跨设备保存和恢复；注册不会自动订阅邮件。旧订阅可在退订页管理。':' Free accounts store an email address, display name, password-verification data, sessions, followed tools and explicitly saved manju work IDs for sign-in and cross-device save/restore. Signup does not subscribe you to email. Legacy subscriptions can be managed on the unsubscribe page.')}</p>
+  <p class="disclosure">${esc(affiliateDisclosure(LOCALE.code === 'zh', RAW_TOOLS.some(tool => Boolean(tool.affiliate))))}${site.ga_id ? (LOCALE.code==='zh'?'本站使用 Google Analytics 统计访问数据，用于改进内容。':' This site uses Google Analytics to measure traffic and improve content.') : ''}${privacyNotice || (LOCALE.code==='zh'?' 免费账户保存邮箱、显示名、密码校验数据、会话、关注清单及主动保存的帧选作品编号，用于登录与跨设备保存和恢复；注册不会自动订阅邮件。旧订阅可在退订页管理。':' Free accounts store an email address, display name, password-verification data, sessions, followed tools and explicitly saved manju work IDs for sign-in and cross-device save/restore. Signup does not subscribe you to email. Legacy subscriptions can be managed on the unsubscribe page.')}</p>
   <p><a href="${BASE}/">${UI('home', '首页')}</a> · <a data-studio-footer href="${BASE}/studio/">${LOCALE.code === 'zh' ? '自研工具' : 'Built by BPJ'}</a> · <a href="${BASE}/myths.html">${UI('myths_title', 'AI 免费额度流言核查')}</a> · <a href="${BASE}/free-for-you.html">${UI('ffy_nav', '你能白嫖什么')}</a> · <a href="${BASE}/publish-check.html">${UI('pc_nav', '能不能发')}</a> · <a href="${BASE}/no-official-source.html">${UI('ns_nav', '查无官方来源')}</a> · <a href="${BASE}/changes.html">${UI('ch_nav', '额度变更记录')}</a> · <a href="${BASE}/upgrade/">${UI('up_nav', '该买哪档')}</a> · <a href="${BASE}/solutions/coding.html">${LOCALE.code === 'zh' ? '解决方案' : 'Solutions'}</a> · <a href="${BASE}/earn/">${LOCALE.code === 'zh' ? 'AI 赚钱作业包' : 'AI earning packs'}</a> · <a href="${BASE}/why-did-my-ai-free-tier-stop-working.html">${LOCALE.code === 'zh' ? '额度突然不能用了' : 'Free tier stopped working'}</a> · <a href="${BASE}/report.html">${LOCALE.code === 'zh' ? '真相报告' : 'The report'}</a> · <a href="${BASE}/watch.html">${LOCALE.code === 'zh' ? '额度监控' : 'Watch'}</a> · <a href="${BASE}/agents/">${LOCALE.code === 'zh' ? 'Agent 与 MCP 目录' : 'Agents & MCP'}</a> · <a href="${BASE}/submit.html">${UI('submit_nav', '提交工具')}</a> · <a href="${BASE}/for-vendors.html">${UI('vendors_nav', '厂商自荐')}</a> · <a href="${BASE}/developers.html">${UI('dev_nav', '开发者 API')}</a> · <a href="${BASE}/travel/">${UI('travel_nav', '旅行白嫖')}</a> · <a href="${BASE}/feed.xml">${UI('rss', 'RSS 订阅')}</a> · <a href="${BASE}/unsubscribe.html">${UI('unsub_nav', '退订提醒')}</a>${site.contact_email ? ` · <a href="mailto:${esc(site.contact_email)}">${UI('contact', '商务合作')}</a>` : ''}</p>
 </footer>
 </body>
@@ -4478,117 +4479,15 @@ if (CODQ && CHATQ) {
   allPages.push({u: `${BASE}/subscription-audit.html`, pr: '0.9'});
 }
 
-// ---- 定价页：付费机制建好，开关默认关闭 ----
-// PRD-revenue 的硬规则是「三级证据门槛未达标不上收费」，当前真人手势事件约 10 次/天、
-// 订阅数 0——今天挂收银台，收入会精确为零。所以这一页现在只做三件事：
-// 说清哪些能力永久免费（这是分发本身，动它等于自断被引用的理由）、
-// 哪些将来收费、以及我们**永远不卖**的东西。付款入口由 PAID_ENABLED 控制，默认不出现。
+// ---- Pricing: existing products, live availability links and separate vendor purchases ----
 {
-  const zh = LOCALE.code === 'zh';
-  const h1 = zh ? '定价：数据永久免费，卖的是围绕数据的服务' : 'Pricing: the data stays free — what is sold is the service around it';
-  const desc = zh
-    ? '已核实数字、JSON API 与 MCP 服务器永久免费，数据以 CC BY 4.0 开放；本地 PDF、图片工具免注册可用；免费账户可同步关注清单并使用免费会员工具与资料包。付费云项目另计 9 USDT / 30 天，不自动续费。持续监控扩展等服务以各自页面标明的可用状态为准。付费收录、付费排序、付费徽章一概不卖——排序能买，核实就一文不值。厂商能买的只有两样：队列位置（加急核实：结论来得更快，不是更好的结论），以及带明示「广告」标注、与目录物理分开的广告位（见<a href="' + BASE + '/advertise.html">投放</a>）。详见厂商自荐页的「付费买不到的东西」。'
-    : 'The verified figures, the JSON API and the MCP server are free for good, and the data is open under CC BY 4.0. Local PDF and image tools work without signup. Free accounts add synced lists, free member tools and packs. Paid cloud projects cost 9 USDT per 30 days without automatic renewal. Other services, such as expanded monitoring, follow the availability stated on their pages. Paid listing, paid ranking and paid badges are not for sale at any price: if ranking can be bought, verification is worthless. A vendor can buy exactly two things: queue position (expedited verification: a faster verdict, never a better one) and a labelled ad slot that sits apart from the directory (see <a href="' + BASE + '/advertise.html">advertise</a>). The vendor page lists what payment cannot buy.';
-  const FREE = zh
-    ? [['全部已核实数字与出处', '这是全站存在的理由'], ['免费会员工具与资料包', '订阅体检、API 计算器、能不能发、分词器等，登录免费账户后使用；不含付费云项目'],
-       ['JSON API 与 limits.json / llms-full.txt', 'CC BY 4.0，署名回链即可商用'], ['MCP 服务器（16 工具 / 11 资源 / 4 提示词）', '无鉴权，无需安装']]
-    : [['Every verified figure and its source', 'This is why the site exists'], ['Free member tools and packs', 'Audit, API calculator, publish-check and tokenizer with a free account; paid cloud projects are separate'],
-       ['JSON API and limits.json / llms-full.txt', 'CC BY 4.0 — attribute and link back, commercial use included'], ['MCP server (16 tools / 11 resources / 4 prompts)', 'No auth, nothing to install']];
-  const PAID = zh
-    ? [['持续监控·扩展档', '免费档已上线：/watch.html 可注册 webhook 监控 3 个工具。Pro 解锁全量监控与将来的历史时间序列导出——厂商不发公告，这来自每日重新核实'],
-       ['报告导出', '体检结论导出为可传阅的一页版，团队场景用'],
-       ['MCP 高频配额与变更 webhook', '给把本数据接进生产流程的 agent']]
-    : [['Monitoring · extended', 'The free tier is live: register a webhook at /watch.html and watch 3 tools. Pro unlocks watching everything plus, later, historical time-series export — vendors do not announce these changes, so it all comes from daily re-checks'],
-       ['Report export', 'The audit verdict as a shareable one-pager, for team use'],
-       ['Higher MCP quota and change webhooks', 'For agents that wire this data into production']];
-  const NEVER = zh
-    ? ['付费收录 —— 收录与否只由「是否确有免费额度」决定', '付费推荐位 / 付费排序 —— 排序能买，核实就一文不值',
-       '付费徽章 —— 厂商掏钱换「已核实」标记，是最恶劣的一种', '联盟佣金影响判定或排序 —— 判定只随官方条款走']
-    : ['Paid listing — inclusion is decided solely by whether a real free tier exists', 'Paid placement or ranking — if ranking can be bought, verification is worthless',
-       'Paid badges — a vendor buying a "verified" mark is the worst version of this', 'Affiliate commission influencing a verdict or a rank — verdicts follow the vendor\'s own terms and nothing else'];
-
-  const body = `${railOf()}
-<main class="stage">
-  <nav class="crumb"><a href="${BASE}/">${esc(NAME)}</a><i>/</i><span>${esc(zh ? '定价' : 'Pricing')}</span></nav>
-  <header class="hero"><div class="hero-inner">
-    <h1>${esc(h1)}</h1>
-    <p class="answer">${esc(desc)}</p>
-  </div></header>
-
-  <section class="limits-table">
-    <div class="calc-row calc-warn"><b>${zh ? '免费账户与付费云项目' : 'Free accounts and paid cloud projects'}</b>
-      <p>${zh
-        ? '免费注册、关注同步和资料包已开放。付费云项目为 9 USDT / 30 天，含 50 个工作区、每个项目最近 10 个版本，不自动续费；请在会员页查看可用支付入口。下面的 Pro 数据服务是单独的未来计划，不代表已交付。'
-        : 'Free signup, synced followed tools and packs are available. Paid cloud projects cost 9 USDT per 30 days, with 50 workspaces and the latest 10 versions per project, without automatic renewal; see the membership page for payment availability. The Pro data services below are separate future plans, not delivered features.'}</p></div>
-  </section>
-
-  <section class="limits-table">
-    <h2 class="group-title">${zh ? '永久免费' : 'Free for good'}<span>${FREE.length}</span></h2>
-    <div class="lt-scroll"><table><thead><tr><th>${zh ? '能力' : 'Capability'}</th><th>${zh ? '为什么不收费' : 'Why it stays free'}</th></tr></thead>
-    <tbody>${FREE.map(([a, b]) => `<tr><td><b>${esc(a)}</b></td><td>${esc(b)}</td></tr>`).join('')}</tbody></table></div>
-  </section>
-
-  <section class="limits-table">
-    <h2 class="group-title">${zh ? '将来收费的（Pro）' : 'What will be paid (Pro)'}<span>${PAID.length}</span></h2>
-    <div class="lt-scroll"><table><thead><tr><th>${zh ? '能力' : 'Capability'}</th><th>${zh ? '说明' : 'What it is'}</th></tr></thead>
-    <tbody>${PAID.map(([a, b]) => `<tr><td><b>${esc(a)}</b></td><td>${esc(b)}</td></tr>`).join('')}</tbody></table></div>
-    <p class="money-lede">${zh
-      ? '价格未定，且不会在邮件通道打通之前定——「持续监控」的交付方式就是邮件，通道没通就等于卖一个交付不了的东西。'
-      : 'No price is set, and none will be until the email channel works — continuous monitoring is delivered by email, and selling an undeliverable thing is not something we are going to do.'}</p>
-  </section>
-
-  <section class="limits-table">
-    <h2 class="group-title">${zh ? '我们永远不卖的' : 'Never for sale'}<span>${NEVER.length}</span></h2>
-    <ul class="pc-duties">${NEVER.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
-    <p class="money-lede">${zh
-      ? '这一栏比上面两栏重要。本站唯一别人抄不动的东西是「每个数字都有官方出处、且不受任何人付费影响」——上面任何一条都能换来更快的收入，也都会把它一次性毁掉。'
-      : 'This list matters more than the two above it. The only thing here that cannot be copied is that every figure has an official source and is influenced by nobody\'s money. Each line above would buy faster revenue and destroy that in one move.'}</p>
-  </section>
-
-  <section class="limits-table">
-    <h2 class="group-title">${zh ? '已有授权码' : 'Already have a key'}<span>1</span></h2>
-    <div class="pc-form">
-      <label><span>${zh ? '授权码' : 'License key'}</span>
-        <input type="text" id="licKey" placeholder="bpj.…" autocomplete="off" spellcheck="false"></label>
-    </div>
-    <div class="ask-hint"><button type="button" id="licGo">${zh ? '校验' : 'Check'}</button></div>
-    <p id="licOut" class="sub-note" aria-live="polite"></p>
-    <p class="money-lede">${zh
-      ? '授权码里只有「档位 + 到期日 + 随机串」，不含任何个人信息——所以校验不需要数据库，我们也无从知道是谁在用。'
-      : 'A key carries only a tier, an expiry date and a random string — no personal information at all. That is why checking one needs no database, and why we cannot tell who is using it.'}</p>
-  </section>
-</main>
-<script>
-(function(){
-  var ZH=${zh}, k=document.getElementById('licKey'), go=document.getElementById('licGo'), out=document.getElementById('licOut');
-  var MSG={disabled:ZH?'付费尚未开放——门槛达标之前，这里不会有付款入口。':'Nothing is on sale yet — no checkout will appear here before the bar is met.',
-    not_configured:ZH?'服务端未配置签发密钥。':'No signing secret is configured on the server.',
-    missing:ZH?'先填授权码。':'Enter a key first.',
-    malformed:ZH?'这不是本站签发的码。':'That is not a key issued here.',
-    bad_signature:ZH?'签名对不上——码可能被改过。':'Signature does not match — the key may have been altered.',
-    expired:ZH?'这枚码已过期。':'That key has expired.'};
-  go.addEventListener('click',function(){
-    out.textContent=ZH?'校验中…':'Checking…';
-    fetch('/api/entitlement',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({key:k.value})})
-      .then(function(r){return r.json()})
-      .then(function(j){
-        if(j.ok){ try{localStorage.setItem('bpj_tier',j.tier)}catch(e){}
-          out.textContent=(ZH?'已解锁：':'Unlocked: ')+j.tier+(ZH?'，有效至 ':', valid until ')+j.expires; return; }
-        out.textContent=MSG[j.reason]||(ZH?'校验未通过。':'Check failed.');
-      })
-      .catch(function(){out.textContent=ZH?'网络错误，稍后再试。':'Network error, try again.'});
-  });
-})();
-</script>`;
-
+  const pricing = pricingPage({zh: LOCALE.code === 'zh', BASE, NAME, rail: railOf(), esc,
+    affiliateEnabled: RAW_TOOLS.some(tool => Boolean(tool.affiliate))});
   writeFileSync(join(dist, ...(L.dir ? [L.dir.slice(1)] : []), 'pricing.html'), layout({
-    title: zh ? `定价：数据永久免费，卖的是服务 - ${NAME}` : `Pricing: the data stays free - ${NAME}`,
-    description: desc,
-    path: '/pricing.html',
-    body,
-    schema: [crumbLd([{ name: NAME, url: `${BASE}/` }, { name: zh ? '定价' : 'Pricing', url: `${BASE}/pricing.html` }])],
+    ...pricing, path: '/pricing.html',
+    schema: [crumbLd([{name: NAME, url: `${BASE}/`}, {name: LOCALE.code === 'zh' ? '定价' : 'Pricing', url: `${BASE}/pricing.html`}])],
   }));
-  allPages.push({ u: `${BASE}/pricing.html`, pr: '0.6' });
+  allPages.push({u: `${BASE}/pricing.html`, pr: '0.6'});
 }
 
 // ---- 自研工具 12 号：分词器（PRD-selfbuilt MVP，PRD-own-tools 路线图 #12）----
@@ -8012,40 +7911,9 @@ for (const t of RAW_TOOLS.filter((x) => x.last_verified)) {
 }
 
 // llms.txt：给 AI 系统的站点说明书（llmstxt.org 规范）
-// ── /pricing.md：给 agent 读的定价事实 ──
-// AI 采购型 agent 在推荐工具前会先找可解析的定价；藏在 JS 渲染页或「联系销售」后面的
-// 一律被跳过。我们的定价本身就极简（数据永久免费、付费未开放），更该让它一眼可读。
-writeFileSync(join(dist, 'pricing.md'), `# Pricing — ${site.name} (baipiaoji.com)
-
-## Free (permanent)
-- Price: 0
-- Includes: every verified free-tier figure with its official source and check date;
-  one-off calculation in every self-built tool; JSON API (/api/tools, /api/limits);
-  limits.json / llms-full.txt; MCP server at /api/mcp (16 tools, 11 resources, 4 prompts)
-- Auth: none for public data, API, MCP and local file tools. Free member tools and packs require an email/password account at /account.
-- Free account: sync up to 40 followed tools, view recorded changes and export a sourced sheet. No email alerts.
-- Data licence: CC BY 4.0 — commercial use permitted with attribution to 白嫖计 baipiaoji.com and a link back
-
-## Paid cloud projects
-- Price: 9 USDT / 30 days, no automatic renewal
-- Includes: 50 workspaces, latest 10 versions per project; 64 KiB per version and 5 MiB total
-- Auth: linked free account or paid access key; free signup alone does not grant paid access
-- Payment availability and terms: /members
-
-## Planned Pro data services
-- Price: not set
-- Status: not available for purchase
-- Already live for free: webhook monitoring of up to 3 tools (${site.base_url}/watch.html)
-- Planned paid scope: watching all verified tools, historical time-series export, report export,
-  higher MCP quota
-- Delivery: by email, so it cannot ship before the email channel works
-
-## Never sold
-- Paid listing, paid placement or ranking, paid "verified" badges
-- Affiliate commission influencing any verdict or rank
-
-Details: ${site.base_url}/pricing.html
-`);
+// Public pricing facts share the same product constants as the HTML summary.
+writeFileSync(join(dist, 'pricing.md'), pricingMarkdown({name:site.name,baseUrl:site.base_url,
+  affiliateEnabled:RAW_TOOLS.some(tool=>Boolean(tool.affiliate))}));
 
 writeFileSync(join(dist, 'llms.txt'), pubText(`# ${site.name} / Baipiaoji (baipiaoji.com)
 

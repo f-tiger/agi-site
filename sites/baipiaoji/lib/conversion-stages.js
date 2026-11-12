@@ -1,5 +1,25 @@
 import { EVENT_ROWS } from './hits-schema.js';
 import {parseListingEvent,emptyListingCounts} from './listing-signals.mjs';
+import catalog from '../data/tools.json' with {type:'json'};
+
+const toolSlugs = new Set(catalog.map(tool => tool.slug));
+
+// Project the existing grouped query; no extra tracking request or D1 read.
+// Unknown paths are counted without exposing arbitrary client-supplied strings.
+export function directoryOutboundCounts(rows) {
+  const counts = new Map();
+  let unattributed_clicks = 0;
+  for (const row of rows) {
+    if (row.ev !== 'go') continue;
+    const n = Number(row.n);
+    if (!Number.isSafeInteger(n) || n < 0) continue;
+    const slug = /^\/go\/([a-z0-9-]+)$/.exec(String(row.path || ''))?.[1];
+    if (!toolSlugs.has(slug)) { unattributed_clicks += n; continue; }
+    counts.set(slug, (counts.get(slug) || 0) + n);
+  }
+  return {by_tool: [...counts].map(([slug, clicks]) => ({slug, clicks}))
+    .sort((a,b) => b.clicks-a.clicks || a.slug.localeCompare(b.slug)), unattributed_clicks};
+}
 
 // Separate stage counts, deliberately not a user-level or Google-attributed funnel.
 // Reuse the hourly reach cache and the partial event index; never fetch identity fields.
@@ -81,6 +101,7 @@ export async function readConversionStages(db, days, clock = Date.now()) {
     ok: eventsOK && accountsOK && accountDaysOK,
     window: { start, end_exclusive: end, complete_days: days, date_basis: 'UTC' },
     events: eventsOK ? stageCounts(events.value.results || []) : null,
+    directory_outbound: eventsOK ? directoryOutboundCounts(events.value.results || []) : null,
     accounts: accountsOK ? { created: Number(accounts.value.created), new_accounts_currently_email_verified: Number(accounts.value.email_verified),
       total_non_test: Number(accounts.value.total_non_test), total_currently_email_verified: Number(accounts.value.total_email_verified) } : null,
     accounts_daily: accountDaysOK ? Array.from({length: days}, (_, index) => {
@@ -104,6 +125,7 @@ export async function readConversionStages(db, days, clock = Date.now()) {
       account_tool_entries: 'Public tool-to-account link actions within the complete-day window. Repeated actions count again; they are not successful signups and have no person-level attribution.',
       coding_access: 'Fixed coding-access actions in the same complete UTC-day window. Selection copies mean the browser reported successful clipboard writing; generic checklist copies are separate. Repeated actions count again; neither action counts nor their ratios prove people, retained users, installs, purchases or revenue. No query or checklist content is collected.',
       attribution: 'Independent stages, no shared visitor identifier or channel attribution. Do not divide tool events or accounts by GSC clicks to claim a conversion rate.',
+      directory_outbound: 'Client-reported outbound actions by current catalog slug within the same complete UTC-day window. Repeated clicks count again; these are not page views, unique people, affiliate-attributed clicks, purchases or revenue. Unknown paths are combined as unattributed_clicks without publishing their text. Current affiliate configuration never reclassifies past clicks. A failed event query returns null, not an empty ranking.',
       quality: 'Known CI excluded; unlabelled automation and lost browser events remain possible. Missing tables/read failures return null, never zero.',
     },
   };

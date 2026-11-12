@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
-import {readConversionStages,STAGE_EVENTS_SQL,STAGE_ACCOUNTS_DAILY_SQL} from '../lib/conversion-stages.js';
+import {readConversionStages,directoryOutboundCounts,STAGE_EVENTS_SQL,STAGE_ACCOUNTS_DAILY_SQL} from '../lib/conversion-stages.js';
 import {emptyListingCounts} from '../lib/listing-signals.mjs';
 import {HITS_INDEXES} from '../lib/hits-schema.js';
 import {assertCountTree} from './conversion-stage-counts.mjs';
@@ -39,6 +39,15 @@ for(const [id,date,qa,verified] of [['real','2026-09-26',0,1],['unverified','202
 const out=await readConversionStages(binding,28,Date.parse('2026-09-27T15:01:00Z'));
 assert.deepEqual(out.window,{start:'2026-08-30',end_exclusive:'2026-09-27',complete_days:28,date_basis:'UTC'});
 assert.equal(out.ok,true);
+assert.deepEqual(out.directory_outbound,{by_tool:[{slug:'fireworks',clicks:1}],unattributed_clicks:0});
+// Catalog allowlist prevents publishing arbitrary tracked paths. Page views and
+// current affiliate settings cannot turn outbound actions into commissions.
+assert.deepEqual(directoryOutboundCounts([
+ {ev:'go',path:'/go/kimi',n:2},{ev:'go',path:'/go/fireworks',n:2},{ev:'go',path:'/go/kimi',n:1},
+ {ev:'go',path:'/go/private-customer-input',n:3},{ev:'go',path:'/go/kimi?email=private@example.test',n:2},
+ {ev:'go',path:'/go/kimi/extra',n:1},{ev:'',path:'/tools/kimi',n:99},
+]),{by_tool:[{slug:'kimi',clicks:3},{slug:'fireworks',clicks:2}],unattributed_clicks:6});
+assert.match(out.definitions.directory_outbound,/not page views/);
 // The live gate must accept the actual aggregator contract, including grouped
 // listing actions, while still rejecting malformed scalar and nested leaves.
 assertCountTree(out.events, 'events');
@@ -75,6 +84,10 @@ addAccount('deleted','2026-09-26T12:00:00Z',1);
 db.prepare('DELETE FROM free_account_identities WHERE account_id=?').run('deleted');
 db.prepare('DELETE FROM free_accounts WHERE id=?').run('deleted');
 const boundaries=await readConversionStages(binding,28,Date.parse('2026-09-27T15:01:00Z'));
+insert.run('2026-09-27','/go/kimi','en','go');
+insert.run('2026-08-29','/go/kimi','en','go');
+insert.run('2026-09-26','/go/kimi','ci','go');
+assert.deepEqual((await readConversionStages(binding,28,Date.parse('2026-09-27T15:01:00Z'))).directory_outbound,out.directory_outbound);
 assert.deepEqual(boundaries.accounts_daily[0],{date:'2026-08-30',created:1,new_accounts_currently_email_verified:1});
 assert.deepEqual(boundaries.accounts_daily.at(-2),{date:'2026-09-25',created:1,new_accounts_currently_email_verified:0});
 assert.deepEqual(boundaries.accounts_daily.at(-1),{date:'2026-09-26',created:3,new_accounts_currently_email_verified:2});
@@ -100,6 +113,7 @@ const queryPlan=db.prepare('EXPLAIN QUERY PLAN '+STAGE_EVENTS_SQL).all('2026-08-
 assert.ok(queryPlan.some(r=>r.detail.includes('hits_events')),JSON.stringify(queryPlan));
 db.exec('DELETE FROM hits; DELETE FROM free_accounts; DELETE FROM free_account_identities;');
 const empty=await readConversionStages(binding,28);
+assert.deepEqual(empty.directory_outbound,{by_tool:[],unattributed_clicks:0});
 assert.equal(empty.accounts.total_non_test,0);assert.equal(empty.accounts.total_currently_email_verified,0);assert.equal(empty.accounts.created,0);assert.equal(empty.events.tool_results_own,0);assert.equal(empty.events.coding_access_selection_copies,0);
 assert.equal(empty.accounts_daily.length,28);assert.ok(empty.accounts_daily.every(row=>row.created===0&&row.new_accounts_currently_email_verified===0));
 db.exec('DROP TABLE free_account_identities');
@@ -107,5 +121,6 @@ const missing=await readConversionStages(binding,28);
 assert.equal(missing.ok,false);assert.equal(missing.accounts,null);assert.equal(missing.accounts_daily,null);assert.deepEqual(missing.missing,['accounts','accounts_daily']);
 db.exec('DROP TABLE hits');
 const failed=await readConversionStages(binding,28);
+assert.equal(failed.directory_outbound,null);
 assert.equal(failed.events,null);assert.equal(failed.accounts,null);
 console.log('PASS: actual SQLite aggregation, UTC creation-day cohorts, current verification vs verification events, QA/deletion separation, indexed reads, zero vs unknown');
