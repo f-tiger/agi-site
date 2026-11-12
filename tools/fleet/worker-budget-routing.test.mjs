@@ -4,7 +4,7 @@ import {mkdtempSync,mkdirSync,writeFileSync,rmSync,readFileSync,existsSync} from
 import {tmpdir} from 'node:os';
 import {resolve,dirname} from 'node:path';
 import {createRequire} from 'node:module';
-import {policy,readConfig,rulesFor,assetFiles,headerBlock,analyticsHeaders,analyticsBypassFor} from './worker-budget-routing.mjs';
+import {policy,readConfig,rulesFor,assetFiles,headerBlock,analyticsHeaders,analyticsBypassFor,ecoCacheRules} from './worker-budget-routing.mjs';
 import {protectAnalyticsResponse} from '../fleet-analytics/edge.mjs';
 const root=resolve(import.meta.dirname,'../..');
 test('reviewed routing retains dynamic/auth/HTML boundaries and provider limits',()=>{
@@ -24,6 +24,55 @@ test('asset analytics protections match the existing Worker contract',()=>{
  for(const [name,value] of Object.entries(analyticsHeaders))assert.equal(value,expected.get(name),name);
  for(const site of Object.keys(policy.sites))if(analyticsBypassFor(site).length)assert(headerBlock(site,[]).includes('Cache-Control: public, max-age=0, must-revalidate, no-transform'));
  assert.equal(analyticsBypassFor('localebatch').length,0,'Keep analytics behind Worker when existing global CSP/header rules overlap');
+});
+
+test('ECO category and marketing growth stays below the header budget with unchanged caching',()=>{
+ const assets=assetFiles('getecoback',resolve(root,'sites/getecoback/site'));
+ const growth=Array.from({length:300},(_,i)=>`/assets/marketing/category-${i}/01-slide.jpg`);
+ const files=[...assets,...growth,'/assets/catalog/icon.svg','/assets/catalog/new-catalog.json','/assets/catalog/new-ui.css','/assets/catalog/new-ui.mjs','/assets/catalog/new-ui.js'];
+ const block=headerBlock('getecoback',files),rules=block.split('\n').filter(line=>line.startsWith('/'));
+ // Allow the existing GA4 frame/header rules, plus headroom for other owned
+ // header blocks; this regression must not merely raise the provider limit.
+ assert(rules.length+2<50,`Unexpected rule growth: ${rules.length}`);
+ assert.equal(block,headerBlock('getecoback',[...files].reverse()),'Output must not depend on file traversal order');
+ const cache=Object.fromEntries(ecoCacheRules(files));
+ for(const ext of ['jpg','png','svg'])assert.equal(cache['/assets/*.'+ext],'public, max-age=31536000, immutable');
+ for(const ext of ['css','js'])assert.equal(cache['/assets/*.'+ext],'public, max-age=86400');
+ for(const ext of ['mjs','json'])assert.equal(cache['/assets/*.'+ext],'public, max-age=3600');
+ assert.equal(cache['/favicon.svg'],'public, max-age=31536000, immutable');
+ assert.equal(cache['/eco-engagement.mjs'],'public, max-age=3600');
+ assert(!Object.keys(cache).some(p=>p.startsWith('/*')||p.startsWith('/analytics-assets/')));
+ for(const invalid of ['/api/private.json','/auth/nav.js','/guide/test.html','/assets/secret.html'])assert.throws(()=>ecoCacheRules([invalid]));
+});
+
+test('ECO workerd keeps grouped cache rules nonoverlapping and protected routes Worker-first',{skip:!process.env.WORKER_BUDGET_WRANGLER_MODULE,timeout:120000},async()=>{
+ const require=createRequire(import.meta.url),{unstable_dev}=require(process.env.WORKER_BUDGET_WRANGLER_MODULE);
+ const tmp=mkdtempSync(resolve(tmpdir(),'eco-grouped-headers-')),assets=resolve(tmp,'assets');mkdirSync(assets);
+ const add=(path,text='fixture')=>{const target=resolve(assets,path.slice(1));mkdirSync(dirname(target),{recursive:true});writeFileSync(target,text);};
+ const cacheCases={
+  '/assets/marketing/new-category/01.jpg':'public, max-age=31536000, immutable',
+  '/assets/social/new-category.png':'public, max-age=31536000, immutable',
+  '/assets/catalog/new-catalog.json':'public, max-age=3600',
+  '/assets/catalog/nested/widget.css':'public, max-age=86400',
+  '/assets/catalog/widget.mjs':'public, max-age=3600',
+  '/assets/catalog/widget.js':'public, max-age=86400',
+  '/css/category.css':'public, max-age=86400',
+  '/js/category.js':'public, max-age=86400',
+  '/favicon.svg':'public, max-age=31536000, immutable',
+  '/eco-engagement.mjs':'public, max-age=3600'
+ };
+ const guarded=['/guide/category.html','/api/private.json','/auth/nav.js','/analytics-assets/frame.html','/analytics-assets/frame'];
+ const files=Object.keys(cacheCases);for(const p of [...files,...analyticsBypassFor('getecoback'),...guarded])add(p);
+ writeFileSync(resolve(assets,'_headers'),headerBlock('getecoback',files));
+ const worker=resolve(tmp,'worker.mjs');writeFileSync(worker,"export default {async fetch(request,env){const response=await env.ASSETS.fetch(request);const out=new Response(response.body,response);out.headers.set('x-fixture-worker','yes');return out;}}");
+ const config=resolve(tmp,'wrangler.json');writeFileSync(config,JSON.stringify({name:'eco-header-regression',main:'worker.mjs',compatibility_date:'2026-08-01',assets:{directory:'./assets',binding:'ASSETS',run_worker_first:rulesFor('getecoback'),html_handling:'none',not_found_handling:'none'}}));
+ let dev;
+ try{
+  dev=await unstable_dev(worker,{config,local:true,port:0,logLevel:'error',experimental:{disableExperimentalWarning:true,disableDevRegistry:true,watch:false}});
+  for(const[p,cache]of Object.entries(cacheCases)){const r=await dev.fetch(p);assert.equal(r.status,200,p);assert.equal(r.headers.get('cache-control'),cache,p+' grouped cache differs or overlaps');assert.equal(r.headers.get('x-fixture-worker'),null,p);assert.equal(r.headers.get('x-fleet-delivery'),'static-worker-v1',p);await r.arrayBuffer();}
+  for(const p of analyticsBypassFor('getecoback')){const r=await dev.fetch(p);for(const[name,value]of Object.entries(analyticsHeaders))assert.equal(r.headers.get(name),value,p+' '+name);await r.arrayBuffer();}
+  for(const p of guarded){const r=await dev.fetch(p);assert.equal(r.headers.get('x-fixture-worker'),'yes',p);assert.equal(r.headers.get('x-fleet-delivery'),null,p+' acquired public marker');if(!p.startsWith('/analytics-assets/'))assert(!/max-age=31536000|immutable/.test(r.headers.get('cache-control')||''),p+' acquired asset caching');await r.arrayBuffer();}
+ }finally{if(dev)await dev.stop();rmSync(tmp,{recursive:true,force:true});}
 });
 
 // Optional actual Cloudflare routing test, no production requests or DB access.

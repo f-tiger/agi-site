@@ -193,6 +193,11 @@ jobs:
         run: |
           git fetch --depth=1 origin 902485034ee0598aed3dd8b21e718c9fca5569f7
           git fetch --depth=1 origin 270ed3253a1941a15e0dee45e53554dbadbca6b2
+      - name: Validate final public asset header budget before browser acceptance
+        run: |
+          node ../../tools/fleet/worker-budget-routing.mjs --site=getecoback --write
+          node ../../tools/fleet/worker-budget-routing.mjs --site=getecoback
+          node ../../tools/fleet/worker-budget-routing.test.mjs
       - name: Exercise five languages, mobile, files and privacy
         run: |
           python3 -m http.server 8765 --directory site > /tmp/eco-preview.log 2>&1 &
