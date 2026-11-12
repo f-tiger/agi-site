@@ -1,4 +1,5 @@
 import {PRODUCT,METRICS,TICKERS,usable,baseline,changes,stale,normalize,emptyNote,validateReview} from './core.mjs';
+import {createThesis} from './thesis-ui.mjs';
 const zh=document.body.dataset.language==='zh',t=(en,cn)=>zh?cn:en,$=id=>document.getElementById(id);
 const names={revenue:t('Revenue','收入'),income:t('Net income','净利润'),ocf:t('Operating cash flow','经营现金流'),capex:t('Cash property capex','固定资产现金支出'),inventory:t('Inventory balance','存货余额')};
 const layers={compute:t('Compute & design','算力与设计'),memory:t('Memory & manufacturing','存储与制造'),systems:t('Servers & networking','服务器与网络'),power:t('Power & cooling','供电与散热'),cloud:t('Cloud platforms','云平台'),facilities:t('Data centers','数据中心')};
@@ -43,26 +44,28 @@ function reviewStatus(){const c=company(),n=state.notes[c.ticker]||emptyNote(),d
 function render(){const c=company();renderList();renderComparison();$('company-name').textContent=c.name+' · '+c.ticker;$('company-layer').textContent=layers[c.layer];$('company-date').textContent=t('SEC checked: ','SEC 核对：')+c.checked_at.replace('T',' ').replace('Z',' UTC')+(stale(c)?t(' · Refresh overdue or failed; showing last good facts.',' · 刷新逾期或失败，正在显示上次成功数据。'):'');
  $('watch').textContent=(state.watch.includes(c.ticker)?'★ ':'☆ ')+t('Watch','关注');$('watch').setAttribute('aria-pressed',String(state.watch.includes(c.ticker)));renderFacts(c);
  const n=state.notes[c.ticker]||emptyNote();for(const k of ['thesis','counter','trigger','review'])$('note-'+k).value=n[k];reviewStatus();$('ai-run').disabled=pending||stale(c);
- const u=new URL($('language').href);u.searchParams.set('ticker',c.ticker);$('language').href=u.pathname+u.search;
+ const u=new URL($('language').href);u.searchParams.set('ticker',c.ticker);$('language').href=u.pathname+u.search;thesis.render();
 }
 function restore(raw){const r=normalize(raw);state=r.values;report=null;$('ai-result').replaceChildren();render();status(t('Record restored. Imported notes and baselines are user supplied, not authenticated.','记录已恢复。导入的笔记与基线由用户提供，未经真实性核验。'));}
 function historyList(){try{const list=JSON.parse(localStorage.getItem(historySlot)||'[]');if(!Array.isArray(list))return [];return list.slice(-10).filter(x=>typeof x?.at==='string'&&x.record);}catch{return [];}}
 function showHistory(){const list=historyList();$('local-history').replaceChildren(el('option','—'));$('local-history').firstChild.value='';list.forEach((x,i)=>{const o=el('option',x.at.replace('T',' ').slice(0,19)+' UTC');o.value=String(i);$('local-history').append(o);});}
 function download(name,text,type){const url=URL.createObjectURL(new Blob([text],{type}));const a=el('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 function protect(fn){return (...args)=>{try{const result=fn(...args);if(result?.catch)result.catch(()=>status(t('Could not complete this action. Check the record format, date or browser storage. Keep an exported copy.','操作未完成，请检查文件格式、日期或浏览器存储，并保留导出副本。')));}catch{status(t('Could not complete this action. Check the record format, date or storage limit (60 KB).','操作未完成，请检查文件格式、日期或记录大小（最大 60 KB）。'));}};}
+const thesis=createThesis({company,note:()=>{stash();return state.notes[state.selected];},snapshot:()=>snapshot,notice:status,download});
 for(const id of ['search','layer','watched-only'])$(id).addEventListener(id==='search'?'input':'change',()=>{if(snapshot)renderList();});
 for(const k of ['thesis','counter','trigger','review'])$('note-'+k).addEventListener('input',()=>{stash();reviewStatus();status(t('Unsaved changes in this tab.','当前标签页有尚未保存的修改。'));});
 $('watch').onclick=()=>{const ticker=state.selected;state.watch=state.watch.includes(ticker)?state.watch.filter(t=>t!==ticker):[...state.watch,ticker];stash();render();status(t('Watchlist changed. Save to keep it.','关注列表已修改，请保存以保留。'));};
 $('baseline').onclick=()=>{stash();state.notes[state.selected].baseline=baseline(company());reviewStatus();status(t('Current facts marked reviewed. Save the record to keep this baseline.','已将当前数据标记为复查基线，请保存记录。'));};
-$('save-local').onclick=protect(()=>{const r=record(),h=[...historyList(),{at:new Date().toISOString(),record:r}].slice(-10);localStorage.setItem(historySlot,JSON.stringify(h));localStorage.setItem(slot,JSON.stringify(r));showHistory();status(t('Saved in this browser with version history. No cloud upload.','已保存到本浏览器并保留历史版本，未上传云端。'));});
+$('save-local').onclick=protect(()=>{const r=record(),h=[...historyList(),{at:new Date().toISOString(),record:r}].slice(-10);localStorage.setItem(historySlot,JSON.stringify(h));localStorage.setItem(slot,JSON.stringify(r));showHistory();thesis.track('save');status(t('Saved in this browser with version history. No cloud upload.','已保存到本浏览器并保留历史版本，未上传云端。'));});
 $('restore-local').onclick=protect(()=>{const raw=localStorage.getItem(slot);if(!raw){status(t('No local record found.','没有本机记录。'));return;}restore(JSON.parse(raw));cloudContext=null;});
 $('restore-version').onclick=protect(()=>{const i=$('local-history').value;if(i==='')return;restore(historyList()[Number(i)].record);cloudContext=null;});
 $('erase-local').onclick=protect(()=>{localStorage.removeItem(slot);localStorage.removeItem(historySlot);showHistory();status(t('Local copies deleted. Current fields, downloads and cloud versions remain.','本机副本已删除，当前表单、下载文件及云端版本仍保留。'));});
-$('export-json').onclick=protect(()=>download('ai-infrastructure-notes.json',JSON.stringify(record(),null,2),'application/json'));
+$('export-json').onclick=protect(()=>{download('ai-infrastructure-notes.json',JSON.stringify(record(),null,2),'application/json');thesis.track('export');});
 $('import-json').onchange=protect(async e=>{const f=e.target.files[0];try{if(!f)return;if(f.size>60000)throw Error('size');restore(JSON.parse(await f.text()));cloudContext=null;}finally{e.target.value='';}});
 $('export-md').onclick=protect(()=>{const r=record(),c=company(),n=r.values.notes[c.ticker]||emptyNote();const lines=['# '+t('AI infrastructure research','AI 产业链研究')+' · '+c.ticker,'',t('Snapshot: ','数据快照：')+snapshot.id,t('Checked: ','核对时间：')+c.checked_at,t('Scope: annual company-wide US GAAP facts, not AI segment revenue.','范围：公司整体 US GAAP 年度数据，不是 AI 分部收入。'),stale(c)?t('Refresh overdue or failed.','刷新逾期或失败。'):'',t('Exported: ','导出：')+new Date().toISOString(),''];for(const k of METRICS){const f=c.facts[k];lines.push('## '+names[k]);if(usable(f))lines.push('USD '+f.val,`${f.start||'As of'} → ${f.end}`,`${f.form} · filed ${f.filed} · us-gaap:${f.tag}`,f.source);else lines.push(t('Unavailable','不可用'));lines.push('');}
  for(const k of ['thesis','counter','trigger','review'])lines.push('## '+$('note-'+k).parentElement.firstChild.textContent,n[k]||'—','');
  if(report?.ticker===c.ticker){lines.push('## '+t('AI questions — unverified hypotheses','AI 研究问题——待核实假设'),report.model,report.generated_at);for(const item of report.review.checks){lines.push('- '+item.question);for(const id of item.sources){const f=Object.values(c.facts).find(f=>f?.id===id);lines.push('  '+f.source);}}}
+ lines.push('',thesis.markdown());
  lines.push('',t('Not a stock recommendation. Open the sources and reconcile financial periods and definitions.','非股票推荐，请打开来源并核对财务期间和定义。'),'https://agiscorecard.com'+(zh?'/zh':'')+'/ai-infrastructure?ticker='+c.ticker);download(c.ticker+'-research.md',lines.join('\n'),'text/markdown;charset=utf-8');});
 $('ai-run').onclick=async()=>{
  if(!$('ai-consent').checked){$('ai-status').textContent=t('Check the consent box first.','请先勾选调用授权。');return;}
@@ -77,11 +80,15 @@ $('save-cloud').onclick=protect(()=>{
  const data=record(),json=JSON.stringify(data),handoff=[...crypto.getRandomValues(new Uint8Array(16))].map(x=>x.toString(16).padStart(2,'0')).join('');
  if(cloudHandler)window.removeEventListener('message',cloudHandler);
  const target=new URL((zh?'/zh':'')+'/members',location.origin);target.searchParams.set('tool',PRODUCT);target.searchParams.set('from',location.origin);if(new URLSearchParams(location.search).has('__qa'))target.searchParams.set('__qa','1');
- cloudWindow=window.open(target.href,'_blank');const win=cloudWindow;if(!win){status(t('Allow the member page to open, or export JSON and import it there.','请允许打开会员页，或导出 JSON 后在该页导入。'));return;}
+ cloudWindow=window.open(target.href,'_blank');const win=cloudWindow;if(win)thesis.track('member');if(!win){status(t('Allow the member page to open, or export JSON and import it there.','请允许打开会员页，或导出 JSON 后在该页导入。'));return;}
  let delivered=false;cloudHandler=e=>{if(e.origin!==location.origin||e.source!==win)return;if(e.data?.kind==='workbench-member-ready'&&!delivered){win.postMessage({kind:'workbench-save',data,handoff,context:cloudContext},location.origin);delivered=true;status(t('Draft opened in the member page. Nothing is uploaded until you choose Save there.','草稿已交给会员页，只有在那里主动点击保存后才会上传。'));}
   if(e.data?.kind==='workbench-saved'&&e.data.handoff===handoff&&e.data.product===PRODUCT){cloudContext=e.data.context;status(e.data.same&&JSON.stringify(record())===json?t('This version was saved to your cloud workspace.','此版本已保存到云端工作区。'):t('A cloud version was saved. Changes in this tab may still be unsaved.','已保存一个云端版本，当前标签页的后续修改可能尚未保存。'));}};
  window.addEventListener('message',cloudHandler);const handler=cloudHandler;setTimeout(()=>window.removeEventListener('message',handler),120000);
 });
+async function memberAvailability(){
+ try{const r=await fetch('/api/member',{cache:'no-store',signal:AbortSignal.timeout(12000)}),j=await r.json();if(!r.ok||j.ok!==true||typeof j.ready!=='boolean')throw Error();$('membership-status').textContent=j.ready?t('New membership orders are available. Review the exact amount and terms on the member page.','当前可创建会员订单，请在会员页核对准确金额与条款。'):t('New membership orders are temporarily unavailable. Local checks, saves and exports remain free; existing members can open their workspace.','新会员订单暂不可用。本机检查、保存和导出仍免费，已有会员可打开工作区。');}
+ catch{$('membership-status').textContent=t('Membership availability could not be checked. Local checks and exports still work.','暂时无法确认会员可用性，本机检查和导出仍可使用。');}
+}
 async function start(){
  for(const [key,label]of Object.entries(layers)){const o=el('option',label);o.value=key;$('layer').append(o);}
  if(new URLSearchParams(location.search).get('embed')==='1')document.documentElement.classList.add('embed');
@@ -93,3 +100,4 @@ async function start(){
  }catch{$('data-status').textContent=t('The snapshot could not load. Reload to retry, or open the source JSON below.','数据快照载入失败，请刷新重试或打开下方来源 JSON。');for(const b of document.querySelectorAll('button'))b.disabled=true;}
 }
 start();
+memberAvailability();

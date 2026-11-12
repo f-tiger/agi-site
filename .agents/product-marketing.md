@@ -1,12 +1,18 @@
 # Product marketing context
 
-**Document version: v22** — **Last updated: 2026-11-12**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
+**Document version: v23** — **Last updated: 2026-11-12**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
 
 ## Business goal and proof
 
 Owner's latest staged goals are USD 1,000, USD 5,000 and USD 10,000 in monthly revenue (2026-10-03 conversation). These supersede the historical euro milestones; deadlines and gross/net accounting treatment remain unspecified. Record gross customer payments, refunds, settled receipts and delivery/acquisition costs separately; revenue is not profit or MRR. Manual selling/delivery and automation are both acceptable to the owner. Eco has historical owner-reported affiliate commissions; do not re-label them as a new service sale or assume they have settled. New experiments have no verified customers, paid retention, CAC or revenue. Prices displayed on discovery experiments are hypotheses. The original four probes remain closed; BPJ has separate live wallet checkout for placements and membership, whose readiness and sales need independent checks.
 
 ## Current revenue directions — owner steering 2026-10-04
+
+### AGI investment thesis checks — owner steering 2026-11-12
+
+The owner continued AGI after BPJ, retaining the differentiated investment-tool objective. Extend the existing bilingual AI infrastructure workspace with explicit annual financial review conditions, source-linked arithmetic and saved review checkpoints. Free local use remains; the existing optional membership stores records across devices. This is a commercial hypothesis, not a proven subscription business or a personal alert service. Annual facts are company-wide, and daily source checks do not produce new daily earnings data.
+
+Read `docs/agi-thesis-watch-2026-11-12.md`. Preserve the existing homepage, investment modules, model quotas and portfolio rules. Missing or incompatible facts remain unknown. The live member readiness flag must be displayed and verified; the scoped receipt-recovery action uses existing chain verification without creating orders, transferring money or deleting records. Demo actions, own-rule checks, later rechecks, cloud intent, paid receipts and revenue are separate. Use existing owned channels, bounded publication and daily observation; no additional spend or unsolicited outreach.
 
 ### BPJ AI table rewrite review — owner steering 2026-11-12
 

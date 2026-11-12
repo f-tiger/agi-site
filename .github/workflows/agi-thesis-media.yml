@@ -1,0 +1,76 @@
+name: Prepare AGI thesis check media
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: agi-thesis-media
+  cancel-in-progress: false
+jobs:
+  prepare:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Require the matching live tool before recording
+        run: |
+          set -euo pipefail
+          for asset in app.mjs core.mjs thesis.mjs thesis-ui.mjs thesis-signals.mjs style.css; do
+            curl --fail --silent --show-error --max-time 30 -A 'agi-ci-media-readonly/1.0' "https://agiscorecard.com/infrastructure-assets/$asset?__qa=1" -o "/tmp/$asset"
+            cmp "sites/agiscorecard/infrastructure-assets/$asset" "/tmp/$asset"
+          done
+      - name: Record the deployed annual-financial tool with a labelled example
+        run: |
+          set -euo pipefail
+          python -m pip install playwright==1.58.0
+          python -m playwright install --with-deps chromium --only-shell
+          if ! command -v ffmpeg >/dev/null; then
+            sudo apt-get update
+            sudo apt-get install -y ffmpeg
+          fi
+          python sites/agiscorecard/tools/infrastructure/record-thesis-demo.py
+          python sites/agiscorecard/tools/infrastructure/render-thesis-demo.py
+      - name: Attach draft media without replacing existing assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          tag='agi-thesis-watch-demo-20261112'
+          test "$(gh release view "$tag" --json isDraft --jq .isDraft)" = true
+          gh release upload "$tag" /tmp/agi-thesis-watch-video/agi-thesis-watch-demo-en.mp4
+          python - <<'PY'
+          import hashlib,json,subprocess,os
+          from pathlib import Path
+          p=Path('/tmp/agi-thesis-watch-video/agi-thesis-watch-demo-en.mp4')
+          probe=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration','-of','json',str(p)]))
+          note=f'''Original AGI investment thesis check demonstration.
+
+          Continuous operation of the deployed tool: a labelled Microsoft example threshold, annual cash capex / operating cash flow calculation, dated SEC source links, user checkpoint, local save and actual report download. Company-wide annual figures do not isolate AI spending. No performance claim or trade recommendation. Original procedural music, no customer data or external music.
+
+          Duration: {float(probe['format']['duration']):.2f} seconds. H.264/AAC, 1080x1920. Bytes: {p.stat().st_size}.
+          SHA-256: {hashlib.sha256(p.read_bytes()).hexdigest()}
+
+          Tool: https://agiscorecard.com/ai-infrastructure#thesis-watch
+          Source: https://github.com/f-tiger/agi-site/commit/{os.environ['GITHUB_SHA']}
+          This is a marketing media attachment, not an installable software package. Full playback/editorial review and publication remain separate from this draft upload.
+          '''
+          Path('/tmp/agi-thesis-watch-video/release-notes.md').write_text(note)
+          PY
+          gh release edit "$tag" --notes-file /tmp/agi-thesis-watch-video/release-notes.md
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agi-thesis-media-review
+          path: |
+            /tmp/agi-thesis-watch-video/steps.json
+            /tmp/agi-thesis-watch-video/recording-end.png
+            /tmp/agi-thesis-watch-video/live-zh-mobile.png
+            /tmp/agi-thesis-watch-video/msft-check-*.md
+            /tmp/agi-thesis-watch-video/release-notes.md
+          retention-days: 14

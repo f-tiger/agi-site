@@ -78,7 +78,7 @@ def main():
     for u in locs:
         slug = u.replace('https://agiscorecard.com/', '')
         if not slug: slug = 'index'
-        if '/' in slug and not slug.startswith(('earn/','future-guide/','zh/future-guide/')) and slug not in ('zh/tianya','zh/tianya-research','zh/ai-futures','zh/invest','zh/jarvis','zh/future-guide','zh/progress-index','zh/ai-and-your-job','zh/will-agi-arrive-2027','zh/did-open-source-ai-fade'):          # selected published collections and evidence translations only.
+        if '/' in slug and not slug.startswith(('earn/','future-guide/','zh/future-guide/')) and slug not in ('zh/ai-infrastructure','zh/tianya','zh/tianya-research','zh/ai-futures','zh/invest','zh/jarvis','zh/future-guide','zh/progress-index','zh/ai-and-your-job','zh/will-agi-arrive-2027','zh/did-open-source-ai-fade'):          # selected published collections and evidence translations only.
             continue
         fname = slug if slug.endswith('.html') else slug + '.html'
         fpath = os.path.join(ROOT, fname)
