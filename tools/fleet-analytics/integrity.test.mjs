@@ -14,6 +14,7 @@ test('Only registered campaign fields survive, including inside the frame',()=>{
  assert.deepEqual(campaignFields('?utm_source=reddit&utm_source=SECRET'),{});
  assert.deepEqual(validatedCampaign({...fields,filename:'SECRET',campaign_content:'SECRET'}),fields);
  assert.deepEqual(validatedCampaign({campaign_source:'PRIVATE_EMAIL'}),{});
+ assert.deepEqual(campaignFields('?utm_source=tiktok&utm_medium=social&utm_campaign=eco-dach-catalog-01'),{campaign_source:'tiktok',campaign_medium:'social',campaign_name:'eco-dach-catalog-01'});
 });
 test('One merchant click classification, no raw URLs, arbitrary merchants or purchase events',()=>{
  const action=affiliateAction('https://www.amazon.de/s?k=SECRET&tag=getecoback-21','home-herbst');

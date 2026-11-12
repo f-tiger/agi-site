@@ -1,0 +1,23 @@
+{
+  "creative_id": "de-catalog-20261112",
+  "campaign": "eco-dach-catalog-01",
+  "format": "photo_carousel",
+  "language": "de",
+  "brand_id": "7132930",
+  "channel": "tiktok",
+  "source_checked": "2026-11-12",
+  "reviewed": true,
+  "publication_state": "prepared_not_scheduled",
+  "receipt_location": "Release PR delivery update; reconcile with Metricool before publishing or retrying. This manifest is creative evidence, not a publication receipt.",
+  "landing_url": "https://getecoback.com/entfeuchter-tiktok",
+  "title": "Luftentfeuchter: drei Checks vor dem Kauf",
+  "caption": "Werbung · eigener EcoBack-Ratgeber\n\nDrei Checks vor dem Luftentfeuchter-Kauf:\n1. Genaue Modellnummer: Arete One und Two sind unterschiedliche Generationen.\n2. Wasserablauf: Tank oder Schlauch? Ein Anschluss bedeutet nicht automatisch eine Pumpe. Anleitung und Aufstellung prüfen.\n3. Liter pro Tag gelten unter bestimmten Bedingungen. Temperatur und relative Luftfeuchte mitlesen – besonders für den Keller.\n\nSechs Modelle mit Hersteller-/Anbieterquellen und Grenzen: getecoback.com/entfeuchter-tiktok\n\nKein eigener Gerätetest. Quellen geprüft am 12.11.2026; Preise, Variante und Lieferbarkeit beim Händler prüfen. Die Website enthält gekennzeichnete Affiliate-Links.\n\n#Luftentfeuchter #Raumklima #Kaufberatung",
+  "media": [
+    {"path": "/assets/marketing/de-catalog-20261112/01-model.jpg", "sha256": "064c2243464563d6bef15b6e210541ec5f3153894fad28dc0661f115f62ce1d1"},
+    {"path": "/assets/marketing/de-catalog-20261112/02-drain.jpg", "sha256": "15c7dd142cd7de35b5be81ba9269353d8ff9cc7764777cac55bcda5d319ba2a6"},
+    {"path": "/assets/marketing/de-catalog-20261112/03-conditions.jpg", "sha256": "1724a74d12b5b9495382138bbea06b306e6c31216c916a32eeae12e0eda41dc7"},
+    {"path": "/assets/marketing/de-catalog-20261112/04-guide.jpg", "sha256": "12852fa6fbd0ff33e0fa4c6d8ddf21cb6726e4832483c5470ae06ab73fa85f2c"}
+  ],
+  "distribution_limits": {"max_new_creatives_per_run": 1, "max_new_creatives_per_7_days": 2, "no_repeat_days": 30},
+  "measurement": "Platform reach and engagement, tagged site arrivals and affiliate click events are separate from orders and settled commission. GA4 campaign registration does not prove backend receipt. The older /api/video-growth report does not cover this campaign."
+}

@@ -84,3 +84,18 @@ test('German laundry video routes reach the German tool without changing the Eng
  assert.equal(videoEntry(new URL('https://getecoback.com/waesche-youtube'),'POST'),null);
  assert.equal(videoEntry(new URL('https://getecoback.com/waesche-untrusted')),null);
 });
+
+
+test('German catalog entries preserve only fixed campaign fields and QA',async()=>{
+ const {videoEntry}=await import('../src/video-entry.mjs');
+ for(const network of ['youtube','tiktok']) {
+  const url=new URL(`https://getecoback.com/entfeuchter-${network}?next=https://evil.test&email=private&__probe=1`);
+  for(const method of ['GET','HEAD']) {
+   const r=videoEntry(url,method),u=new URL(r.headers.get('location'));
+   assert.equal(r.status,302);assert.equal(r.headers.get('x-robots-tag'),'noindex');
+   assert.equal(u.origin,'https://getecoback.com');assert.equal(u.pathname,'/guide/luftentfeuchter-ratgeber.html');assert.equal(u.hash,'#eb-models');
+   assert.deepEqual(Object.fromEntries(u.searchParams),{utm_source:network,utm_medium:network==='tiktok'?'social':'organic_video',utm_campaign:'eco-dach-catalog-01',__probe:'1'});
+  }
+  assert.equal(videoEntry(url,'POST'),null);
+ }
+});
