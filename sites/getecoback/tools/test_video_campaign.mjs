@@ -115,3 +115,22 @@ test('Thermostat campaign lands on its own model block and never forwards arbitr
  }
  assert.equal(videoEntry(new URL('https://getecoback.com/thermostat-tiktok'),'POST'),null);
 });
+
+test('Robot entry is a fixed housing-fit destination with approved campaign and probe isolation',async()=>{
+ const {videoEntry}=await import('../src/video-entry.mjs');
+ const {CAMPAIGNS}=await import('../../../tools/fleet-analytics/campaign.mjs');
+ assert(CAMPAIGNS.has('eco-dach-robot-01'));
+ for(const source of ['youtube','tiktok']) for(const method of ['GET','HEAD']) {
+  const response=videoEntry(new URL(`https://getecoback.com/robot-${source}?next=https://evil.test&email=private&__ci=1`),method);
+  assert.equal(response.status,302);
+  const target=new URL(response.headers.get('location'));
+  assert.equal(target.origin,'https://getecoback.com');
+  assert.equal(target.pathname,'/guide/saugroboter-kaufberatung.html');
+  assert.equal(target.hash,'#wohnung-pruefen');
+  assert.deepEqual(Object.fromEntries(target.searchParams),{utm_source:source,utm_medium:source==='tiktok'?'social':'organic_video',utm_campaign:'eco-dach-robot-01',__probe:'1'});
+  assert.equal(response.headers.get('cache-control'),'no-store');
+  assert.equal(response.headers.get('x-robots-tag'),'noindex');
+ }
+ assert.equal(videoEntry(new URL('https://getecoback.com/robot-tiktok'),'POST'),null);
+ assert.equal(videoEntry(new URL('https://getecoback.com/robot-unknown')),null);
+});

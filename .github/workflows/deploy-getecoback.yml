@@ -177,6 +177,8 @@ jobs:
         run: |
           python3 tools/test_home_commercial.py
           python3 tools/build_floorcare_guide.py
+          python3 tools/build_robot_guide.py
+          python3 tools/build_humidifier_guide.py
           python3 tools/build_structure.py
           python3 -m unittest discover -s tools -p test_heatpump_intent.py
           python3 -m unittest discover -s tools -p test_toppick_anchor.py
@@ -264,6 +266,8 @@ jobs:
           python3 tools/test_dehum_catalog.py
           python3 tools/test_thermostat_catalog.py
           python3 tools/test_floorcare_guide.py
+          python3 tools/test_robot_guide.py
+          python3 tools/test_humidifier_catalog.py
           python3 tools/test_dach_discovery.py
           python3 tools/test_market_choice.py
           python3 tools/test_social_previews.py
@@ -531,6 +535,7 @@ jobs:
               node sites/getecoback/tools/browser_heater_examples.cjs
               node sites/getecoback/tools/browser_personal_warmth.cjs
               node sites/getecoback/tools/browser_thermostat_fit.cjs
+              node sites/getecoback/tools/browser_categories34.cjs
               node sites/getecoback/tools/browser_moisture_journeys.cjs
             '
 
@@ -755,7 +760,7 @@ jobs:
           check "https://getecoback.com/guide/luftfeuchtigkeit-senken.html" "48 Prozent"
           check "https://getecoback.com/guide/heizluefter-schaltet-sich-aus.html" "8,7 A"
           check "https://getecoback.com/guide/luftentfeuchter-stinkt.html" "Nichts in den Tank"
-          check "https://getecoback.com/guide/luftbefeuchter-weisser-staub.html" "Verdunster mit Hygrostat"
+          check "https://getecoback.com/guide/luftbefeuchter-weisser-staub.html" "use-and-care-home-humidifiers"
           # Tools audit 2026-09-22: the hub is generated from the filesystem and must carry the
           # pages that were unreachable before (a dew-point guide, the DE decision calculator);
           # the Pro energy tool must ship a default that its own validation accepts.
@@ -1030,9 +1035,10 @@ jobs:
           # dehumidifiers to a reader whose air is too DRY — the page would sell
           # the opposite of what it advises. CONTEXT_MODELS overrides it; assert
           # both directions, since a silent override failure looks like nothing.
-          check "https://getecoback.com/guide/luftbefeuchter-ratgeber.html" "Verdunster mit Hygrostat"
+          check "https://getecoback.com/guide/luftbefeuchter-ratgeber.html" "data-humidifier-guide"
+          check "https://getecoback.com/guide/saugroboter-kaufberatung.html" "data-robot-guide"
           if curl -sL --max-time 20 "https://getecoback.com/guide/luftbefeuchter-ratgeber.html" | grep -q "MeacoDry\|Comfee MDDF"; then
-            echo "::error::the humidifier guide is showing dehumidifiers — CONTEXT_MODELS override lost"
+            echo "::error::the humidifier guide is showing dehumidifiers — curated category exclusion lost"
             fail=1
           else
             echo "OK humidifier guide shows no dehumidifier cards"

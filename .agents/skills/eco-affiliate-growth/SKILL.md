@@ -16,6 +16,8 @@ Read root AGENTS.md, current site instructions, `.agents/product-marketing.md` a
 
 ## Product and SEO/GEO
 
+The owner subsequently required categories 3 and 4, overriding conditional research deferral. Read `sites/getecoback/docs/categories-34-release-2026-11-12.md`, `data/robot-catalog.json` and `data/humidifier-catalog.json` before choosing those topics. Preserve the dedicated builders, catalog gates and final category browser tests. Distinguish dry-only robots from mopping variants, single from double thresholds, and exact humidifier controls, water/cleaning instructions and consumables. Existing support pages must not regain generic or overstated humidifier recommendations. Neither manufacturer clearance claims nor the generic home-fit check certifies a model for the user's home.
+
 The 2026-11-12 DACH release also owns `data/thermostat-catalog.json` and `data/floorcare-catalog.json`. Read `sites/getecoback/docs/dach-products-release-2026-11-12.md` before choosing these topics. Their official-source dates and exact market/generation limits control shopping eligibility; never refresh a date without checking the cited facts. Preserve the category generators and final-artifact tests, including generic-overlay exclusions and the floor-tool example-state deep link.
 
 Prefer expanding an existing intent-owning page to duplicating near-identical pages. Preserve measurement/cause-first/no-purchase branches and exact merchant attribution. A small-room guide must not inherit every larger model just because its generic category is dehumidifiers.
@@ -31,6 +33,8 @@ The owner explicitly authorized ECO automated marketing on 2026-11-12. Use exist
 Choose one concrete buyer question, provide a useful answer in the post itself and one matching live landing page. Verify current sources and the live destination before scheduling. Use fixed approved campaign tags; disclose EcoBack ownership and affiliate links. For video, follow the repository's motion, narration, subtitles, original/licensed music and continuous playback requirements. Carousels are photo posts, never describe them as videos.
 
 Before any send, check the platform queue and repository/private publication receipts for the same campaign/media. Reconcile unknown outcomes instead of resubmitting. Cap at one new creative per run and two per seven days; reuse across owned channels only where the media format is supported. No same-creative repost within 30 days. If auth/reconnect/approval is required, pause that channel and report the exact blocker.
+
+`data/marketing/de-robot-fit-20261112.json` is a reviewed preparation, not a posting instruction or scheduled receipt. Recheck the pending Nov12 catalog and Nov14 thermostat posts and their reach before allocating a later slot. The manifest's review date is not a publication promise. PR294/296 record thermostat post425658724; a prepared repository snapshot must never cause a duplicate.
 
 Record media hash, reviewed content, landing URL, source date, platform post ID/status and timestamp. Scheduled, awaiting confirmation and published are distinct. Read actual reach/watch time/site arrivals separately; empty analytics rows are unavailable evidence, not zero performance. Stop expanding volume if reach/engagement fails to justify it.
 

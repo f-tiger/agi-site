@@ -16,6 +16,8 @@ Read `sites/baipiaoji/docs/PRD-table-review-2026-11-12.md` and `sites/baipiaoji/
 
 ### ECO DACH category research — 2026-11-12
 
+**Owner follow-through:** the owner explicitly requested the remaining numbered product categories 3 (robot vacuum/mop decisions) and 4 (humidifiers). Read `sites/getecoback/docs/categories-34-release-2026-11-12.md`. This overrides the earlier conditional robot deferral; do not silently shrink the requested four-category delivery to the first two. Exact catalogs, generator integration and live release receipts determine completion. The robot creative `data/marketing/de-robot-fit-20261112.json` is reviewed but deliberately not scheduled: existing Nov12/Nov14 posts and their results must be reconciled before any new publication. PR294/296 record thermostat post425658724; do not recreate it from the prepared manifest.
+
 Implementation follow-through: `sites/getecoback/docs/dach-products-release-2026-11-12.md` records the first sourced thermostat/floor-cleaner buying paths and their release/marketing gates. Product implementation is separate from verified growth; use live and publication receipts before claiming delivery status. Conditional later-wave categories are not launched by this first batch.
 
 The owner asked to research German-speaking market trends before expanding categories. Read `docs/eco-dach-category-research-2026-11-12.md` for sourced market evidence, country differences and the bounded implementation brief. The recommended first batch deepens the existing smart-thermostat buying path and pilots German wet/dry floor cleaners; robot vacuum buying decisions follow conditionally. These are research recommendations, not validated ECO conversion or revenue outcomes. Preserve cooling and dehumidifier/laundry paths.

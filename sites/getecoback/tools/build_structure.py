@@ -54,6 +54,7 @@ CAT_OF = {
     # that bridge is why the vertical lives on this domain at all.
     "tineco-saugt-nicht-mehr": "luftqualitaet",
     "saugwischer-kaufberatung": "luftqualitaet",
+    "saugroboter-kaufberatung": "luftqualitaet",
     "klimaanlage-mit-heizfunktion": "heizen",
     "heizluefter-stromsparend": "heizen",
     "akku-heizluefter": "heizen",
@@ -1088,7 +1089,7 @@ CANON_NAMES = ["De'Longhi", "De%27Longhi", "Comfee", "AEG ChillFlex", "Midea Por
 # Interactive tool pages carry their own widgets/CTAs — no model grid there.
 # Also skip pages whose real product (car sunshade, cooling mat, myth-buster)
 # doesn't match any device set, so cards never look irrelevant.
-SKIP_MODELS = {"saugwischer-kaufberatung", "smarte-heizkoerperthermostate-lohnen-sich", "btu-rechner", "stromkosten-rechner", "infrarotheizung-watt-rechner",
+SKIP_MODELS = {"saugroboter-kaufberatung", "luftbefeuchter-ratgeber", "luftbefeuchter-stromverbrauch", "luftbefeuchter-weisser-staub", "saugwischer-kaufberatung", "smarte-heizkoerperthermostate-lohnen-sich", "btu-rechner", "stromkosten-rechner", "infrarotheizung-watt-rechner",
                # Heat-pump suitability needs its own technical/installation
                # decision. Resistance heaters and generic US ACs do not fit it.
                "klimaanlage-mit-heizfunktion",
@@ -1436,24 +1437,9 @@ CONTEXT_MODELS = {
  # "dehum" only because that is the humidity table's key — inject_quickpick
  # blocks the dehumidifier router on luftbefeuchter slugs by keyword, so a
  # reader whose air is too DRY is never routed to an entfeuchter picker.
- "luftbefeuchter-ratgeber": [
-   ("Hygrometer (innen, Min/Max)", "Erst messen", "Unter 40 % über mehrere Tage ist der einzige Fall, der ein Gerät rechtfertigt — und es zeigt, ob der Zielwert gehalten wird.", "ab 10 €", "hygrometer+innen+min+max", "dehum"),
-   ("Verdunster mit Hygrostat", "Dauerbetrieb", "Kaltverdunstung: je feuchter die Luft, desto weniger nimmt sie auf — überfeuchtet konstruktionsbedingt kaum. Matten sind Verschleißteil.", "Preis vor Ort prüfen", "luftbefeuchter+verdunster+hygrostat", "dehum"),
-   ("Infrarot-Thermometer", "Kälteste Fläche finden", "Der Zielwert hängt an der kältesten Wand — ohne diese Messung stellst du den Hygrostat blind ein.", "ab ca. 20 €", "infrarot+thermometer", "dehum"),
- ],
- "luftbefeuchter-stromverbrauch": [
-   ("Hygrometer (innen, Min/Max)", "Erst messen", "Zeigt in zwei Tagen, ob die Luft wirklich dauerhaft unter 40 % liegt — ohne Messung ist jeder Befeuchter geraten.", "ab 10 €", "hygrometer+innen+min+max", "dehum"),
-   ("Verdunster-Luftbefeuchter", "Sparsam im Dauerbetrieb", "Kaltverdunstung mit Lüfter, wenige Watt — überfeuchtet konstruktionsbedingt kaum.", "Preis vor Ort prüfen", "luftbefeuchter+verdunster+leise", "dehum"),
-   ("Ultraschall mit Hygrostat", "Schnell & leise", "Schaltet am Zielwert ab. Bei hartem Wasser destilliertes Wasser nutzen — sonst Kalkstaub.", "Preis vor Ort prüfen", "ultraschall+luftbefeuchter+hygrostat", "dehum"),
- ],
  # The white-dust page (2026-09-18): a humidifier page, so the default "dehum"
  # grid would recommend dehumidifiers — the opposite appliance. Its three
  # remedies ARE the page's three sections, in the page's own order.
- "luftbefeuchter-weisser-staub": [
-   ("Destilliertes Wasser (5 l)", "Wirkt sofort", "Keine Mineralien, kein Staub — die einzige Abhilfe, die beim Ultraschallgerät vollständig wirkt. Laufende Kosten.", "Preis vor Ort prüfen", "destilliertes+wasser+5+liter", "dehum"),
-   ("Verdunster mit Hygrostat", "Staubfrei gebaut", "Gibt Dampf ab, keinen Nebel — der Kalk bleibt in der Matte. Matten sind Verschleißteil.", "Preis vor Ort prüfen", "luftbefeuchter+verdunster+hygrostat", "dehum"),
-   ("Hygrometer (innen, Min/Max)", "Erst messen", "Über 50 % im Altbau ist schon die Zone, in der die kalte Wand zum Problem wird — ein Befeuchter ohne Zielwert läuft blind.", "ab 10 €", "hygrometer+innen+min+max", "dehum"),
- ],
  # Diagnosis-first shelves for the three troubleshooting pages of 2026-09-17/18
  # (affiliate-click audit 2026-09-23). Until today these pages inherited the
  # dehumidifier/heater default and offered a reader whose unit misbehaves two
@@ -4712,7 +4698,7 @@ def main():
         from dehum_catalog import inject as inject_catalog
         new = inject_catalog(new, os.path.basename(path)[:-5])
         new = strip_decision_promotions(new, os.path.basename(path)[:-5])
-        if os.path.basename(path) in ('tineco-saugt-nicht-mehr.html', 'thermovorhang-ratgeber.html', 'saugwischer-kaufberatung.html', 'smarte-heizkoerperthermostate-lohnen-sich.html'):
+        if os.path.basename(path) in ('tineco-saugt-nicht-mehr.html', 'thermovorhang-ratgeber.html', 'saugwischer-kaufberatung.html', 'saugroboter-kaufberatung.html', 'luftbefeuchter-ratgeber.html', 'luftbefeuchter-stromverbrauch.html', 'luftbefeuchter-weisser-staub.html', 'smarte-heizkoerperthermostate-lohnen-sich.html'):
             # These guides qualify a specific maintenance/fit decision. Generic
             # shopping overlays bypass it and may advertise an unrelated device.
             for marker in ('EB_TOPPICK', 'EB_MODELS', 'EB_STICKY', 'EB_PROFILE', 'EB_USMARKET', 'EB_POPUP', 'EB_USSWITCH'):

@@ -13,7 +13,10 @@ class DiscoveryTests(unittest.TestCase):
             text = (ROOT / 'site' / name).read_text()
             self.assertIn('<!--EB_DACH_BUYING-->', text, name)
             self.assertIn('/guide/saugwischer-kaufberatung.html', text, name)
+            self.assertIn('/guide/saugroboter-kaufberatung.html', text, name)
+            self.assertIn('/guide/luftbefeuchter-ratgeber.html', text, name)
         self.assertTrue((ROOT / 'site/guide/saugwischer-kaufberatung.html').exists())
+        self.assertTrue((ROOT / 'site/guide/saugroboter-kaufberatung.html').exists())
 
 if __name__ == '__main__':
     unittest.main()

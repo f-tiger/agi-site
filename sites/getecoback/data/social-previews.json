@@ -37,6 +37,18 @@
       "heading": "Saugwischer auswählen.",
       "description": "Boden prüfen. Pflegezeit mitrechnen.",
       "alt": "Schematischer Saugwischer neben Bodenprüfung und Uhr für den Pflegeaufwand."
+    },
+    "robot": {
+      "image": "/assets/social/robot-v1.png",
+      "heading": "Passt der Roboter in deine Wohnung?",
+      "description": "Schwellen, Möbel, Teppiche und Station prüfen.",
+      "alt": "Schematische Prüfung von Türschwelle, Möbelhöhe und Platz für eine Roboterstation."
+    },
+    "humidifier": {
+      "image": "/assets/social/humidifier-v1.png",
+      "heading": "Befeuchten? Erst messen.",
+      "description": "Bauart, Wasser und laufende Pflege vergleichen.",
+      "alt": "Schematischer Luftfeuchtemesser, Wasserbehälter und Filter als Schritte vor dem Luftbefeuchterkauf."
     }
   },
   "pages": {
@@ -46,6 +58,8 @@
     "/guide/waesche-trocknen-wohnung.html": "laundry",
     "/waeschetrockner-oder-luftentfeuchter.html": "laundry",
     "/guide/smarte-heizkoerperthermostate-lohnen-sich.html": "thermostat",
-    "/guide/saugwischer-kaufberatung.html": "floorcare"
+    "/guide/saugwischer-kaufberatung.html": "floorcare",
+    "/guide/saugroboter-kaufberatung.html": "robot",
+    "/guide/luftbefeuchter-ratgeber.html": "humidifier"
   }
 }
