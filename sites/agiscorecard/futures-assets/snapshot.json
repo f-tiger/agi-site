@@ -1,12 +1,12 @@
 {
-  "checkedAt": "2026-11-11T09:52:17Z",
+  "checkedAt": "2026-11-12T10:21:15Z",
   "sources": [
     {
       "id": "openai",
       "company": "OpenAI",
       "url": "https://openai.com/news/rss.xml",
-      "checkedAt": "2026-11-11T09:52:17Z",
-      "lastSuccessAt": "2026-11-11T09:52:17Z",
+      "checkedAt": "2026-11-12T10:21:15Z",
+      "lastSuccessAt": "2026-11-12T10:21:15Z",
       "ok": true,
       "error": null
     },
@@ -14,8 +14,8 @@
       "id": "anthropic",
       "company": "Anthropic",
       "url": "https://www.anthropic.com/news",
-      "checkedAt": "2026-11-11T09:52:17Z",
-      "lastSuccessAt": "2026-11-11T09:52:17Z",
+      "checkedAt": "2026-11-12T10:21:15Z",
+      "lastSuccessAt": "2026-11-12T10:21:15Z",
       "ok": true,
       "error": null
     },
@@ -23,8 +23,8 @@
       "id": "meta",
       "company": "Meta",
       "url": "https://about.fb.com/news/feed/",
-      "checkedAt": "2026-11-11T09:52:17Z",
-      "lastSuccessAt": "2026-11-11T09:52:17Z",
+      "checkedAt": "2026-11-12T10:21:15Z",
+      "lastSuccessAt": "2026-11-12T10:21:15Z",
       "ok": true,
       "error": null
     },
@@ -32,7 +32,7 @@
       "id": "xai",
       "company": "xAI / SpaceX",
       "url": "https://x.ai/news",
-      "checkedAt": "2026-11-11T09:52:17Z",
+      "checkedAt": "2026-11-12T10:21:15Z",
       "lastSuccessAt": "2026-10-31T16:20:44Z",
       "ok": false,
       "error": "http_403"
@@ -41,13 +41,33 @@
       "id": "deepmind",
       "company": "Google DeepMind",
       "url": "https://deepmind.google/blog/rss.xml",
-      "checkedAt": "2026-11-11T09:52:17Z",
-      "lastSuccessAt": "2026-11-11T09:52:17Z",
+      "checkedAt": "2026-11-12T10:21:15Z",
+      "lastSuccessAt": "2026-11-12T10:21:15Z",
       "ok": true,
       "error": null
     }
   ],
   "items": [
+    {
+      "id": "65b96c238445cdedc96b3e82",
+      "company": "OpenAI",
+      "title": "Gilbert + Tobin rethinks the business of law with AI",
+      "url": "https://openai.com/index/gilbert-tobin-sam-nickless",
+      "publishedAt": "2026-11-12T00:00:00Z",
+      "discoveredAt": "2026-11-12T10:21:15Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "ba0fcf4e325b4115c73c9ef8",
+      "company": "Google DeepMind",
+      "title": "AlphaGenome 2: Deciphering how cells read DNA to better understand disease",
+      "url": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease",
+      "publishedAt": "2026-11-11T15:00:15Z",
+      "discoveredAt": "2026-11-12T10:21:15Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
     {
       "id": "ac94b61a25ade5edbf713f08",
       "company": "OpenAI",
@@ -55,6 +75,16 @@
       "url": "https://openai.com/index/chatgpt-plus-for-veterans",
       "publishedAt": "2026-11-11T08:00:00Z",
       "discoveredAt": "2026-11-11T09:52:17Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "55ff14dc4213127df72a8039",
+      "company": "OpenAI",
+      "title": "JioStar’s chief architect on AI discovery at 500M-user scale",
+      "url": "https://openai.com/index/jiostar-vijay-seshadri",
+      "publishedAt": "2026-11-11T00:00:00Z",
+      "discoveredAt": "2026-11-12T10:21:15Z",
       "signal": "neutral",
       "reviewStatus": "automatic"
     },
@@ -1695,7 +1725,7 @@
       "url": "https://deepmind.google/blog/introducing-gemini-3-7-flash",
       "publishedAt": "2026-08-13T17:04:18Z",
       "discoveredAt": "2026-10-31T15:47:37Z",
-      "signal": "capability",
+      "signal": "neutral",
       "reviewStatus": "automatic"
     },
     {
