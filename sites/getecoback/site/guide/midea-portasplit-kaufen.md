@@ -62,7 +62,7 @@ Prüfe Hindernisse, Einrichtung und Pflege vor dem Kauf. Wähle eine Situation; 
 Grundlagen und GrenzenQuellen geprüft: 05.10.2026. Herstellerangaben, keine eigene Produktprüfung.
 
 ### Saugroboter & Wohnung
-Referenz: Saros 10R, keine Rangliste. Hersteller nennt bis 3 cm einfache bzw. 4 cm doppelte Schwellen. Geometrie, Bodenhaftung und Firmware beeinflussen das Ergebnis. Die Stationsmaße sind benötigter Freiraum, nicht das Gehäusemaß.
+Globales Hersteller-Referenzbeispiel: Saros 10R, keine Rangliste und keine Modellfreigabe für deine Wohnung. Hersteller nennt bis 3 cm einfache bzw. 4 cm doppelte Schwellen. Geometrie, Bodenhaftung und Firmware beeinflussen das Ergebnis. Die Stationsmaße sind benötigter Freiraum, nicht das Gehäusemaß.
 
 ### Wäsche wird nicht trocken
 Feuchteursachen und notwendige Wohnungslüftung getrennt prüfen. Keine Lüftungsöffnungen verschließen. Ein Entfeuchter repariert keine Undichtigkeit; bei anhaltender Feuchte Ursache klären.

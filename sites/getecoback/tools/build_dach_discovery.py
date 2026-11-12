@@ -4,11 +4,16 @@ from pathlib import Path
 import re
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGES = ('wohnen.html', 'rechner.html', 'tools.html', 'guide/tineco-saugt-nicht-mehr.html')
+PAGES = ('wohnen.html', 'rechner.html', 'tools.html', 'guide/tineco-saugt-nicht-mehr.html',
+         'guide/saugwischer-kaufberatung.html', 'guide/saugroboter-kaufberatung.html',
+         'guide/luftbefeuchter-ratgeber.html', 'guide/luftbefeuchter-stromverbrauch.html',
+         'guide/luftbefeuchter-weisser-staub.html')
 BLOCK = '''<!--EB_DACH_BUYING--><aside id="dach-kaufhilfe" aria-labelledby="dach-kaufhilfe-title" style="max-width:980px;margin:24px auto;padding:20px;border:1px solid #bdd1dd;border-radius:12px;background:#f3f8fb">
 <h2 id="dach-kaufhilfe-title">Vom Wohnungs-Check zur passenden Auswahl</h2>
 <p><a href="/guide/smarte-heizkoerperthermostate-lohnen-sich.html#eb-thermostat-products">Heizkörperthermostat: Ventil, Zentrale und vollständiges Set prüfen</a></p>
 <p><a href="/guide/saugwischer-kaufberatung.html">Saugwischer: Bodenfreigabe, Pflegeaufwand und konkrete Modelle vergleichen</a></p>
+<p><a href="/guide/saugroboter-kaufberatung.html">Saugroboter: Schwellen, Möbelhöhe, Teppiche und Stationsplatz prüfen</a></p>
+<p><a href="/guide/luftbefeuchter-ratgeber.html">Luftbefeuchter: erst Feuchte messen, dann Bauart, Pflege und Verbrauchsmaterial vergleichen</a></p>
 <p>Erst die Bedingungen zu Hause klären. Wenn das vorhandene Gerät genügt, ist kein Neukauf nötig. Händlerangebote und Lieferung am eigenen Standort prüfen.</p>
 </aside><!--/EB_DACH_BUYING-->'''
 

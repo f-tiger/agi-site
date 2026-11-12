@@ -156,20 +156,21 @@ test('buying paths count exact pilot pages without changing frozen buckets or le
     row('2026-11-03',thermostat,'page_view',3),
     row('2026-11-03',floor,'affiliate_click',4),
     // Prefixes, localized paths, maintenance pages and queries must not be
-    // folded into the fixed two-page experiment just because names overlap.
+    // folded into the fixed buying paths just because names overlap.
     ...[floor+'-unreviewed',floor+'?private=value','/en'+floor,
       '/guide/tineco-saugt-nicht-mehr.html','/guide/heizluefter-stromverbrauch.html']
       .map(path=>row('2026-11-10',path,'page_view',11)),
   ];
   const audit=await affiliateAudit(dbFor(rows),()=> 'search');
-  const expectedRecent={smart_thermostat:{page_views:7,affiliate_clicks:2},saugwischer:{page_views:5,affiliate_clicks:1}};
-  const expectedPrior={smart_thermostat:{page_views:3,affiliate_clicks:0},saugwischer:{page_views:0,affiliate_clicks:4}};
+  const emptyLaterPaths={robot:{page_views:0,affiliate_clicks:0},humidifier:{page_views:0,affiliate_clicks:0}};
+  const expectedRecent={smart_thermostat:{page_views:7,affiliate_clicks:2},saugwischer:{page_views:5,affiliate_clicks:1},...emptyLaterPaths};
+  const expectedPrior={smart_thermostat:{page_views:3,affiliate_clicks:0},saugwischer:{page_views:0,affiliate_clicks:4},...emptyLaterPaths};
   assert.deepEqual(audit.last_three_complete_days.buying_paths,expectedRecent);
   assert.deepEqual(audit.same_weekdays_previous_week.buying_paths,expectedPrior);
   assert.deepEqual(audit.weeks.at(-1).buying_paths,expectedRecent);
   assert.deepEqual(audit.weeks.at(-2).buying_paths,expectedPrior);
   for(const w of audit.weeks.slice(0,-2)) {
-    assert.deepEqual(w.buying_paths,{smart_thermostat:{page_views:0,affiliate_clicks:0},saugwischer:{page_views:0,affiliate_clicks:0}});
+    assert.deepEqual(w.buying_paths,{smart_thermostat:{page_views:0,affiliate_clicks:0},saugwischer:{page_views:0,affiliate_clicks:0},...emptyLaterPaths});
   }
   for(const path of [thermostat,floor]) {
     const expected=path===thermostat?'heating':'other_guides';
@@ -179,6 +180,52 @@ test('buying paths count exact pilot pages without changing frozen buckets or le
   assert.deepEqual(audit.last_three_complete_days.cohorts,{heating:{page_views:18,affiliate_clicks:2},other_guides:{page_views:49,affiliate_clicks:1}});
   assert.deepEqual(audit.last_three_complete_days.cohorts_v2,audit.last_three_complete_days.cohorts);
   assert.equal(audit.cohorts_v2_version,'task-path-v2-2026-11-06');
+  assert.doesNotMatch(JSON.stringify(audit),/\/guide\/|private-|private=|amazon\./);
+  assert.equal(audit.amazon_orders,null);
+});
+
+test('robot and humidifier buying paths stay exact, independent and additive across comparison windows',async()=>{
+  const robot='/guide/saugroboter-kaufberatung.html';
+  const humidifier='/guide/luftbefeuchter-ratgeber.html';
+  const row=(day,page,name,n)=>({day,page,name,n,ref:'private-ref.test',
+    link:'https://www.amazon.de/s?k=private-model',source:'body',end_exclusive:'2026-11-12'});
+  const rows=[
+    row('2026-11-10',robot,'page_view',8),
+    row('2026-11-10',robot,'affiliate_click',2),
+    row('2026-11-11',humidifier,'page_view',6),
+    row('2026-11-11',humidifier,'affiliate_click',3),
+    row('2026-11-03',robot,'affiliate_click',1),
+    row('2026-11-03',humidifier,'page_view',4),
+    ...[robot+'-unreviewed',robot+'?private=value',robot+'#modelle','/en'+robot,
+      '/guide/luftbefeuchter-stromverbrauch.html','/guide/luftentfeuchter-ratgeber.html',
+      '/guide/luftbefeuchter-ratgeber.md','/guide/saugwischer-kaufberatung.html']
+      .map(path=>row('2026-11-10',path,'page_view',11)),
+  ];
+  const audit=await affiliateAudit(dbFor(rows),()=> 'search');
+  const recent={smart_thermostat:{page_views:0,affiliate_clicks:0},saugwischer:{page_views:11,affiliate_clicks:0},
+    robot:{page_views:8,affiliate_clicks:2},humidifier:{page_views:6,affiliate_clicks:3}};
+  const prior={smart_thermostat:{page_views:0,affiliate_clicks:0},saugwischer:{page_views:0,affiliate_clicks:0},
+    robot:{page_views:0,affiliate_clicks:1},humidifier:{page_views:4,affiliate_clicks:0}};
+  assert.deepEqual(audit.last_three_complete_days.buying_paths,recent);
+  assert.deepEqual(audit.weeks.at(-1).buying_paths,recent);
+  assert.deepEqual(audit.same_weekdays_previous_week.buying_paths,prior);
+  assert.deepEqual(audit.weeks.at(-2).buying_paths,prior);
+  for(const path of [robot,humidifier]) {
+    const expected=path===robot?'other_guides':'humidity';
+    assert.equal(pageGroup(path),expected);
+    assert.equal(pageGroupV2(path),expected);
+  }
+  assert.deepEqual(audit.last_three_complete_days.cohorts,{
+    other_guides:{page_views:63,affiliate_clicks:2},humidity:{page_views:39,affiliate_clicks:3}});
+  assert.deepEqual(audit.last_three_complete_days.cohorts_v2,audit.last_three_complete_days.cohorts);
+  assert.equal(audit.cohorts_v2_version,'task-path-v2-2026-11-06');
+  for(const section of [...audit.weeks,audit.last_three_complete_days,audit.same_weekdays_previous_week]) {
+    assert.deepEqual(Object.keys(section.buying_paths),['smart_thermostat','saugwischer','robot','humidifier']);
+    for(const field of ['page_views','affiliate_clicks']) {
+      assert.equal(Object.values(section.cohorts).reduce((n,c)=>n+c[field],0),section[field]);
+      assert.equal(Object.values(section.cohorts_v2).reduce((n,c)=>n+c[field],0),section[field]);
+    }
+  }
   assert.doesNotMatch(JSON.stringify(audit),/\/guide\/|private-|private=|amazon\./);
   assert.equal(audit.amazon_orders,null);
 });

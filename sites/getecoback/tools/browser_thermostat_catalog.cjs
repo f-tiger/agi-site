@@ -1,11 +1,15 @@
 // Local files only: neither merchant navigation nor production events are sent.
 const { chromium } = require('playwright');
 const fs = require('node:fs'), path = require('node:path'), assert = require('node:assert/strict');
+const {assertCatalogCommerce,eligibilitySelftest,thermostatSpec} = require('./browser_dach_buying.cjs');
 const root = path.resolve(__dirname, '../site'), origin = 'https://getecoback.com';
 const routePath = '/guide/smarte-heizkoerperthermostate-lohnen-sich.html';
 (async () => {
+  eligibilitySelftest();
+  const data=JSON.parse(fs.readFileSync(path.resolve(__dirname,'../data/thermostat-catalog.json'),'utf8'));
+  const today=new Date().toISOString().slice(0,10);
   const browser = await chromium.launch({headless:true, ...(process.env.CHROMIUM_PATH ? {executablePath:process.env.CHROMIUM_PATH,args:['--no-sandbox']} : {})});
-  let cases = 0;
+  let cases = 0, eligibleSearches;
   try {
     for (const enabled of [true, false]) {
       const ctx = await browser.newContext({javaScriptEnabled:enabled, viewport:{width:390,height:844}});
@@ -22,7 +26,7 @@ const routePath = '/guide/smarte-heizkoerperthermostate-lohnen-sich.html';
       const catalog = page.locator('#eb-thermostat-products');
       assert(await catalog.isVisible());
       assert.equal(await catalog.locator('.tc-card').count(),3);
-      assert.equal(await catalog.locator('a[rel~="sponsored"]').count(),3);
+      eligibleSearches=await assertCatalogCommerce(catalog,thermostatSpec,data,today);
       assert.match(await catalog.innerText(), /V3\+.*nicht miteinander kompatibel/);
       assert.match(await catalog.innerText(), /vorhandene Köpfe weiter nutzen/);
       for (const a of await catalog.locator('a[rel~="sponsored"]').all()) {
@@ -49,6 +53,6 @@ const routePath = '/guide/smarte-heizkoerperthermostate-lohnen-sich.html';
       await page.setViewportSize({width:390,height:844});await catalog.screenshot({path:path.join(dir,'thermostat-catalog-'+(enabled?'js':'nojs')+'.png')});
       assert.deepEqual(errors,[]);await ctx.close();
     }
-    console.log('PASS thermostat catalog: '+cases+' viewport/JS cases, three exact searches, no-purchase branch, X not validated by V3, zero-savings result.');
+    console.log('PASS thermostat catalog: '+cases+' viewport/JS cases, '+eligibleSearches+' exact eligible searches on '+today+', three readable source cards, no-purchase branch, X not validated by V3, zero-savings result.');
   } finally { await browser.close(); }
 })().catch(error => { console.error(error); process.exit(1); });

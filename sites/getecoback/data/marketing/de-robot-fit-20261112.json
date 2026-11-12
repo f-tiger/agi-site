@@ -1,0 +1,66 @@
+{
+  "creative_id": "de-robot-fit-20261112",
+  "campaign": "eco-dach-robot-01",
+  "format": "photo_carousel",
+  "language": "de",
+  "brand_id": "7132930",
+  "channel": "tiktok",
+  "source_checked": "2026-11-12",
+  "reviewed": true,
+  "publication_state": "prepared_not_scheduled",
+  "receipt_location": "This creative has not been submitted. Read the latest ECO release receipt and Metricool queue before considering scheduling.",
+  "landing_url": "https://getecoback.com/robot-tiktok",
+  "canonical_destination": "https://getecoback.com/guide/saugroboter-kaufberatung.html?utm_source=tiktok&utm_medium=social&utm_campaign=eco-dach-robot-01#wohnung-pruefen",
+  "title": "Hohe Türschwelle? Miss Form und Höhe.",
+  "caption": "Werbung · eigener EcoBack-Ratgeber\n\nHohe Türschwelle? Vor dem Saugroboter-Kauf Form und Höhe messen:\n1. Jede einzelne Stufe, den Abstand zwischen Stufen und die Kantenform notieren. Eine Doppelschwelle ist nicht dieselbe Hürde wie eine einzelne hohe Stufe.\n2. Für die Station Grundfläche, Zufahrt und Platz zum Entnehmen der Behälter nach der genauen Modellanleitung prüfen.\n3. Hersteller-Maxima mit ihren Bedingungen lesen. Sie sind keine Zusage für deine Wohnung. Auch Möbel, Teppiche und Pflegeaufwand gehören zum Vergleich.\n\nWohnungscheck und Modellquellen: getecoback.com/robot-tiktok\n\nQuellen: Roborock Saros 10R Produktseite und Aufstellhinweise, geprüft am 12.11.2026. Originale Skizzen, kein eigener Gerätetest und keine pauschale cm-Zusage. Die Website enthält gekennzeichnete Affiliate-Links.\n\n#Saugroboter #Türschwelle #Kaufberatung",
+  "sources": [
+    {
+      "url": "https://de.roborock.com/pages/roborock-saros-10r",
+      "supports": "Manufacturer distinguishes double-threshold capability; maxima and conditions are model-specific.",
+      "checked_at": "2026-11-12"
+    },
+    {
+      "url": "https://support.roborock.com/hc/en-us/articles/43407403865369-Where-should-I-position-Saros-10R",
+      "supports": "Dock placement requires reserved floor and height space; no universal dimensions inferred.",
+      "checked_at": "2026-11-12"
+    }
+  ],
+  "media": [
+    {
+      "path": "/assets/marketing/de-robot-fit-20261112/01-threshold.jpg",
+      "sha256": "27d5b0766faa9325a34b44ca8dacc42e8396a96ac8b5b0929365505d45730991"
+    },
+    {
+      "path": "/assets/marketing/de-robot-fit-20261112/02-measure.jpg",
+      "sha256": "c1bcd75a7aed9d643bac3b43c54918364793461b1911f7629f4e58c57de1cf97"
+    },
+    {
+      "path": "/assets/marketing/de-robot-fit-20261112/03-dock.jpg",
+      "sha256": "6f9cc327fd3487037c1518525be20e5057c14b1b19a4e48d19fb4c5e71b10226"
+    },
+    {
+      "path": "/assets/marketing/de-robot-fit-20261112/04-guide.jpg",
+      "sha256": "441b3b57288101a1bde9ad921fd06ec30f2a28389c536ff5a6163fbace477be9"
+    }
+  ],
+  "distribution_limits": {
+    "max_new_creatives_per_run": 1,
+    "max_new_creatives_per_7_days": 2,
+    "no_repeat_days": 30
+  },
+  "distribution_decision": {
+    "state": "hold_prepared",
+    "reason": "Existing ECO posts on November 12 and 14 occupy the current cadence; no positive prior photo reach evidence. Do not add a third forward post in this release.",
+    "earliest_window_after": "2026-11-19T18:30:00+01:00",
+    "next_review_slot": "2026-11-20T18:30:00+01:00",
+    "review_slot_is_not_a_schedule": true,
+    "required_before_send": [
+      "Review actual results of the two pending ECO posts",
+      "Recheck rolling seven-day queue and 30-day creative deduplication",
+      "Verify live landing, source facts, campaign and every media hash",
+      "Stay within the existing bounded pilot; no cadence increase"
+    ]
+  },
+  "measurement": "Platform reported reach, tagged arrivals and affiliate clicks are separate from orders and settled commission. Missing or unsupported photo metrics remain unknown.",
+  "review_notes": "Four original German frames visually reviewed at half-size contact-sheet scale; no clipping, readable labels, schematic limitations and owner/affiliate disclosure present. No measured performance, universal cm threshold or borrowed product image."
+}

@@ -1,64 +1,42 @@
-# Weißer Staub vom Luftbefeuchter: das ist Kalk — so hört es auf
+# Weißer Staub am Luftbefeuchter: Wasser und Technik prüfen
 
-> Der weiße Belag ist der Mineralgehalt deines Leitungswassers, vom Ultraschallgerät zerstäubt. Drei Abhilfen — und warum der Tank das größere Problem ist.
+> Weißer Staub beim Luftbefeuchter? Mineralien, Wasserart und Reinigung prüfen. Ultraschall von Verdunstung unterscheiden, ohne vorschnellen Neukauf.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftbefeuchter-weisser-staub.html
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
 
-**Kurz:** Ein **Ultraschall**-Luftbefeuchter zerstäubt Wasser samt allem, was darin gelöst ist. Die Tröpfchen verdunsten, der **Kalk bleibt als feiner weißer Staub** liegen — auf Möbeln, Bildschirmen, dunklen Flächen. Je härter dein Leitungswasser, desto mehr. Drei Abhilfen: **entmineralisiertes Wasser** (wirkt vollständig, kostet laufend), eine **Entkalkungskartusche** (wirkt, bis sie erschöpft ist), oder eine **andere Bauart** — Verdunster und Verdampfer geben Dampf ab, keinen Nebel, und lassen den Kalk im Gerät. Und der Staub ist beim Ultraschallgerät nicht einmal das wichtigste Thema; das ist der Tank.
+Aktualisiert am 12. November 2026 · Redaktionelle Kauf- und Nutzungshilfe, kein eigener Gerätetest.
+**Zuerst Wasser und Anleitung prüfen**Ultraschall kann Mineralien aus dem Wasser verteilen. Das kann weißen Staub erklären, beweist aber nicht die Herkunft jedes Belags. Schalte das Gerät für die Prüfung aus und folge den Reinigungs- und Wasserangaben seiner Anleitung.
+Zum Prüfablauf →
 
-## Wie der Kalk in die Luft kommt
+## Warum Wasserhärte bei Ultraschall relevant ist
+Die US-Umweltbehörde EPA beschreibt, dass Ultraschall- und bestimmte Kaltnebelgeräte Wasserinhalte in die Raumluft abgeben können. Bei Verdunstung und Dampf ist keine vergleichbar große Mineralverteilung zu erwarten. Diese Unterscheidung ist keine Sauberkeitsgarantie für Tank oder Gerät.
+Quellen: [US EPA: Use and Care of Home Humidifiers](https://www.epa.gov/indoor-air-quality-iaq/use-and-care-home-humidifiers).
 
-Ein Ultraschallgerät schlägt mit einer schwingenden Membran winzige Tröpfchen aus dem Wasser und bläst sie als kalten Nebel in den Raum. Das ist kein Verdampfen: Die Tröpfchen sind flüssiges Wasser, und flüssiges Leitungswasser enthält gelöste Mineralien — Calcium, Magnesium, das, was den Wasserkocher weiß macht. In der Raumluft verdunstet das Wasser aus jedem Tröpfchen, die Mineralien können nicht verdunsten und bleiben als Partikel zurück. Sie sind so leicht, dass sie eine Weile schweben, und setzen sich dann dort ab, wo man sie sieht: auf dem Fernseher, dem Klavier, dem schwarzen Regal.
+## Vier Prüfungen vor einem Neukauf
 
-Verdunster und Verdampfer haben dieses Problem aus demselben Grund nicht: Sie geben Wasserdampf ab, also einzelne Wassermoleküle ohne Fracht. Beim Verdunster bleibt der Kalk in der nassen Matte, beim Verdampfer im Heizbehälter — dort muss er dann entkalkt werden, aber er landet nicht auf den Möbeln. Der Unterschied der drei Bauarten steht ausführlich im [Luftbefeuchter-Ratgeber](https://getecoback.com/guide/luftbefeuchter-ratgeber.html).
+- **Gerätetechnik identifizieren:** Modell und Anleitung nachschlagen. Ein Produktfoto mit Nebel ersetzt keine Angabe zur Technik.
+- **Wasser prüfen:** Wasserhärte beim Versorger nachsehen und die vom Hersteller erlaubte Wasserart beachten. Mineralarmes Wasser kann Mineralrückstände verringern. Mineralwasser oder beliebig gefiltertes Leitungswasser sind nicht automatisch dafür geeignet.
+- **Pflege prüfen:** Gerät ausstecken; Tank und zugängliche Teile nur nach Anleitung reinigen. Frisches Wasser ersetzt die Reinigung nicht, und Entkalkung ersetzt nicht jeden weiteren Pflegeschritt.
+- **Bedarf erneut prüfen:** Bei ausreichender Feuchte muss kein Ersatzgerät her. Beobachte, ob und wann der Belag erneut auftritt. Bei unklarer Herkunft nicht alle Rückstände vorschnell dem Gerät zuordnen.
 
-## Wie hart ist dein Wasser?
+## Nicht jede Wasserempfehlung gilt für jedes Modell
+Die LB-200-Anleitung erlaubt kaltes Leitungswasser oder destilliertes Wasser. Beim LB 55 nennt Beurer entmineralisiertes oder destilliertes Wasser als Möglichkeit bei hartem Leitungswasser. Das ist keine Freigabe für andere Geräte. Herstellerangaben zu Zusätzen, Temperatur und Befüllung bleiben maßgeblich.
+Quellen: [LB 200: Anleitung 2026, DE S. 7–11](https://res.cloudinary.com/beurer/image/upload/v1772130462/stibo-live/10069_LB200_2026-02-12_03_IM1_BEU.pdf) · [LB 55: Anleitung 2026, DE S. 5–10](https://res.cloudinary.com/beurer/image/upload/v1785407071/stibo-live/68605_LB55_2026-06-01_09_IM1_BEU.pdf).
 
-Die Menge des Staubs hängt direkt an der Wasserhärte, und die ist in Deutschland und Österreich regional sehr verschieden — von weichem Wasser in Mittelgebirgs- und Alpenregionen bis zu hartem Wasser über Kalkstein und Kreide. Dein Wasserversorger veröffentlicht die Härte für dein Versorgungsgebiet, meist online und auf der Jahresabrechnung, in Grad deutscher Härte (°dH) oder als Härtebereich weich, mittel, hart. Die Faustprobe steht in der Küche: Wer den Wasserkocher alle paar Wochen entkalken muss, hat hartes Wasser — und sieht beim Ultraschallgerät entsprechend viel Staub.
+## Wann ein Verdunster eine Alternative ist
+Wenn du zusätzliche Befeuchtung brauchst und die Wasser- oder Pflegeanforderungen des bisherigen Geräts nicht zu deinem Alltag passen, lohnt ein Technikvergleich. Verdunster benötigen ebenfalls Wasserwechsel, Tankpflege und passende Ersatzteile. Die automatische Filtertrocknung eines Geräts macht diese Schritte nicht überflüssig.
 
-## Drei Abhilfen — und was jede kostet
+Ein „Luftwäscher“ ist nicht allein aufgrund seines Namens ein nachgewiesen wirksamer Luftreiniger. Diese Seite verspricht weder eine medizinische Wirkung noch Partikelfilterung.
 
-Abhilfe | Wirkung auf den Staub | Preis dafür | Für wen |
-
-**Destilliertes oder entmineralisiertes Wasser** | Vollständig — es gibt keine Mineralien zu verteilen | Laufende Kosten bei mehreren Litern pro Tag; Schleppen | Kleiner Tank, gelegentlicher Betrieb, Kinderzimmer |
-
-**Entkalkungskartusche** (Ionentauscher, oft vom Hersteller vorgesehen) | Gut, solange sie nicht erschöpft ist — das sieht man daran, dass der Staub zurückkommt | Kartusche regelmäßig wechseln; bei hartem Wasser häufig | Wer beim Ultraschallgerät bleiben will |
-
-**Andere Bauart**: Verdunster oder Verdampfer | Vollständig, konstruktionsbedingt | Neues Gerät; Verdunster: Matte tauschen; Verdampfer: entkalken, höchster Stromverbrauch der drei | Dauerbetrieb, hartes Wasser, wer den Staub ein für alle Mal loswerden will |
-
-Was nicht hilft: gefiltertes Wasser aus dem Tischfilter (der nimmt zwar Härte, aber meist nicht genug, um den Staub zu beenden), abgekochtes Wasser (der Kalk ist noch drin, nur teilweise im Topf) und Zusätze für den Tank, die versprechen, Kalk zu „binden" — was gebunden ist, wird trotzdem zerstäubt.
-
-## Der Staub ist das kleinere Problem: der Tank
-
-Der Mechanismus, der den Kalk verteilt, verteilt alles, was im Wasser ist. Ein Tank mit lauwarmem Wasser, der drei Tage steht, ist ein Nährboden, und das Ultraschallgerät nebelt seinen Inhalt in die Raumluft, statt ihn wie ein Verdampfer abzukochen. Deshalb gilt für Ultraschallgeräte strenger als für alle anderen: **Wasser täglich wechseln, Tank wöchentlich reinigen**, das Gerät nie mit Restwasser stehen lassen. Wie beim [muffigen Entfeuchter](https://getecoback.com/guide/luftentfeuchter-stinkt.html) gilt: nur ein Reinigungsmittel, nichts Chlorhaltiges mit Essig oder Entkalker mischen, keine Konzentrationen aus dem Internet — die stehen auf dem Etikett.
-
-Und vor der Reinigung die Frage davor: **Ist die Luft überhaupt zu trocken?** Ein Hygrometer kostet wenig; unter 40 Prozent ist trocken, über 50 Prozent ist in einem Altbau mit kalten Außenwänden bereits die Zone, in der die [Feuchte an der Wand](https://getecoback.com/guide/luftfeuchtigkeit-senken.html) zum Problem wird — der Ratgeber erklärt, warum der Zielwert an deiner kältesten Wand hängt. Ein Luftbefeuchter ohne Hygrostat, der in einem Raum mit 50 Prozent weiterläuft, tauscht weißen Staub gegen schwarze Punkte hinter dem Schrank.
+[Oskar, LB 200 und LB 55 nach Pflege und Regelung vergleichen →](https://getecoback.com/guide/luftbefeuchter-ratgeber.html#modelle-vergleichen)
+[Strom und weitere Betriebskosten berechnen](https://getecoback.com/guide/luftbefeuchter-stromverbrauch.html) · [Raumfeuchte richtig messen](https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html)
 
 ## Häufige Fragen
-
-### Was ist der weiße Staub, den mein Luftbefeuchter hinterlässt?
-
-Der Mineralgehalt deines Leitungswassers — vor allem Kalk. Ein Ultraschallgerät zerstäubt das Wasser mit allem, was darin gelöst ist; die Tröpfchen verdunsten in der Luft, die Mineralien bleiben als feiner Staub übrig und setzen sich auf Möbeln, Bildschirmen und dunklen Flächen ab. Je härter das Wasser, desto mehr.
-
-### Ist der Staub gesundheitsschädlich?
-
-Wir sind keine Ärzte und beantworten das nicht. Was wir sagen können: Der Staub ist Kalk, also dasselbe, was sich im Wasserkocher absetzt. Das größere Thema beim Ultraschallgerät ist ein anderes: Derselbe Nebel, der die Mineralien verteilt, verteilt auch alles, was im Tank wächst, wenn das Wasser tagelang steht. Wer Beschwerden mit dem Gerät in Verbindung bringt, spricht mit einem Arzt — und tauscht das Wasser täglich.
-
-### Hilft destilliertes Wasser wirklich?
-
-Ja, vollständig — destilliertes oder entmineralisiertes Wasser enthält keine Mineralien, also gibt es nichts zu verteilen. Der Nachteil ist der Preis bei mehreren Litern pro Tag. Eine Zwischenlösung ist die Entkalkungskartusche, die viele Geräte vorsehen; sie bindet die Härte, muss aber regelmäßig gewechselt werden und wirkt nur, solange sie nicht erschöpft ist — was man dem Staub ansieht.
-
-### Welche Bauart macht keinen weißen Staub?
-
-Verdunster und Verdampfer. Beim Verdunster zieht Luft durch eine nasse Matte, nur Wasserdampf geht in den Raum, der Kalk bleibt in der Matte. Beim Verdampfer kocht das Wasser, der Dampf ist mineralfrei, der Kalk bleibt im Heizbehälter und muss dort entkalkt werden. Beide sind aus demselben Grund staubfrei: Sie verteilen Dampf, kein zerstäubtes Wasser.
-
-### Wie erfahre ich, wie hart mein Wasser ist?
-
-Dein Wasserversorger veröffentlicht die Härte für dein Versorgungsgebiet, meist online und auf der Jahresabrechnung, in Grad deutscher Härte (°dH) oder als Härtebereich. Eine grobe Antwort gibt auch der Wasserkocher: Wer alle paar Wochen entkalken muss, hat hartes Wasser — und wird mit einem Ultraschallgerät viel Staub sehen.
-
-**Was hier Physik ist und was nicht.** Dass zerstäubtes Wasser seine Mineralien mitnimmt und Dampf nicht, ist der ganze Unterschied zwischen den Bauarten und keine Herstellerangabe. Welche Kartusche zu welchem Gerät passt und wie lange sie hält, steht nur in dessen Anleitung; wir testen Geräte nicht selbst. Zur Gesundheit äußern wir uns nicht — das ist Sache eines Arztes.
+Warum kann ein Ultraschall-Luftbefeuchter weißen Staub erzeugen?Ultraschallgeräte können Mineralien aus dem Wasser mit dem Nebel verteilen. Diese können sich als weißer Belag absetzen. Ob ein bestimmter Belag tatsächlich aus dem Gerät stammt, muss vor Ort geprüft werden; nicht jeder Staub hat dieselbe Ursache.
+Kann ich einfach anderes Wasser einfüllen?Prüfe zuerst die Anleitung deines genauen Modells. Mineralarmes Wasser kann die Mineralverteilung verringern, ersetzt aber keine Reinigung. Mineralwasser ist kein Ersatz für mineralarmes Wasser, und ein beliebiger Haushalts-Wasserfilter garantiert keine ausreichende Entmineralisierung.
+Muss ich wegen weißen Staubs einen Verdunster kaufen?Nicht automatisch. Kläre zuerst Bedarf, Wasserfreigabe und Pflege des vorhandenen Geräts. Ein Verdunster ist eine mögliche Alternative, wenn ein Gerätewechsel ohnehin sinnvoll ist. Er braucht weiter Tankpflege und passende Ersatzteile; ein Luftwäscher ist dadurch nicht automatisch ein geprüfter Luftreiniger.
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
