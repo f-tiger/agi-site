@@ -1,5 +1,14 @@
 // Fixed, first-party video entry paths. A typed URL is tag-only evidence.
 export function videoEntry(url, method='GET') {
+ const thermostatSource={'/thermostat-youtube':'youtube','/thermostat-tiktok':'tiktok'}[url.pathname];
+ if(thermostatSource && ['GET','HEAD'].includes(method)) {
+  const target=new URL('/guide/smarte-heizkoerperthermostate-lohnen-sich.html','https://getecoback.com');
+  target.hash='eb-thermostat-products';target.searchParams.set('utm_source',thermostatSource);
+  target.searchParams.set('utm_medium',thermostatSource==='tiktok'?'social':'organic_video');
+  target.searchParams.set('utm_campaign','eco-dach-thermostat-01');
+  if(url.searchParams.has('__ci')||url.searchParams.has('__probe'))target.searchParams.set('__probe','1');
+  return new Response(null,{status:302,headers:{location:target.href,'cache-control':'no-store','x-robots-tag':'noindex'}});
+ }
  const catalogSource={'/entfeuchter-youtube':'youtube','/entfeuchter-tiktok':'tiktok'}[url.pathname];
  if(catalogSource && ['GET','HEAD'].includes(method)) {
   const target=new URL('/guide/luftentfeuchter-ratgeber.html','https://getecoback.com');

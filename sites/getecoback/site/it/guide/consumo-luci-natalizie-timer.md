@@ -32,7 +32,7 @@ La potenza massima dell’alimentatore è il consumo?Non necessariamente. Usa la
 ## Fonti e limiti
 Le fonti tecniche seguenti sono in tedesco, verificate per la guida originale il 4 ottobre 2026. L’adattamento non stabilisce norme locali su affitto, installazione o tariffe. Rispetta i requisiti locali e le istruzioni del tuo impianto.
 
-- Verbraucherzentrale: LED-Lichterketten (DE)
+- [Verbraucherzentrale: LED-Lichterketten (DE)](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/energiesparende-lichterketten-leds-sind-die-beste-wahl-10902)
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json

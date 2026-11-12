@@ -17,12 +17,12 @@ A heated airer evaporates water into the room; it does not collect it. Ventilati
 
 ## A dated electricity reference, not a UK-wide tariff
 Ofgem lists **26.32p/kWh** as the average Direct Debit electricity unit rate for **1 October to 31 December 2026** in England, Scotland and Wales. Actual rates vary by region, payment method and plan. This is not a Northern Ireland tariff; enter the rate on your own bill. Standing charges are excluded from appliance running costs. The headline annual price-cap figure is not a maximum household bill.
-Read from Ofgem’s unit-rate table on 2026-10-04. Recheck the applicable period before using this reference.
+Read from [Ofgem’s unit-rate table](https://www.ofgem.gov.uk/your-energy-supply/your-energy-bill/energy-price-cap-unit-rates-and-standing-charges) on 2026-10-04. Recheck the applicable period before using this reference.
 
 ## Oil-filled radiator, fan heater or heated throw?
 For a plug-in resistance heater, oil is a way to store and release heat, not a free energy source. Two devices averaging the same electrical input over the same time use the same kWh. Their controls, heat distribution and cycling can differ. A heated throw warms a person rather than the whole room: a lower cost does not establish equivalent service or suitable room conditions.
 Illustrative continuous operation for four hours at the reference rate: a 100 W device uses 0.4 kWh (£0.11); a 2,000 W device uses 8 kWh (£2.11). These are invented power examples, not measured products or promised savings. Formula: watts ÷ 1,000 × hours × pence/kWh ÷ 100.
-[Work-from-home warmth and room-condition checks](https://getecoback.com/en/guide/keep-warm-working-from-home.html). See MoneySavingExpert’s personal-warmth guidance and follow the appliance’s safety instructions. Keep necessary ventilation open; Energy Saving Trust explains the distinction between draughts and ventilation.
+[Work-from-home warmth and room-condition checks](https://getecoback.com/en/guide/keep-warm-working-from-home.html). See MoneySavingExpert’s personal-warmth guidance and follow the appliance’s safety instructions. Keep necessary ventilation open; [Energy Saving Trust explains the distinction between draughts and ventilation](https://energysavingtrust.org.uk/advice/draught-proofing/).
 
 ## Damp in a rented home: keep a useful record
 A dehumidifier cannot repair a leak or a building defect. Record the date, room, location of patches, whether rain or plumbing use precedes them, any available temperature and humidity readings, photographs, and when the problem was reported. Readings alone do not diagnose the cause. Keep the record privately; this page does not collect it.

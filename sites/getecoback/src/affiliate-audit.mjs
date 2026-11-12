@@ -46,7 +46,13 @@ export function pageGroupV2(path='') {
   return pageGroup(path);
 }
 const count = ()=>({page_views:0,affiliate_clicks:0});
-const section = ()=>({...count(),cohorts:{},cohorts_v2:{},channels:{},destinations:{product:0,search:0,prime_trial:0,other:0},surfaces:{},models:{ex105:0,n90:0,other:0}});
+// Additive, exact intent paths for the DACH buying pilot. Do not reclassify the
+// frozen experiment cohorts or export arbitrary page names from event rows.
+const buyingPathKeys = new Map([
+  ['/guide/smarte-heizkoerperthermostate-lohnen-sich.html','smart_thermostat'],
+  ['/guide/saugwischer-kaufberatung.html','saugwischer'],
+]);
+const section = ()=>({...count(),cohorts:{},cohorts_v2:{},buying_paths:{smart_thermostat:count(),saugwischer:count()},channels:{},destinations:{product:0,search:0,prime_trial:0,other:0},surfaces:{},models:{ex105:0,n90:0,other:0}});
 const dayAt = (end,offset)=>new Date(Date.parse(end+'T00:00:00Z')+offset*86400000).toISOString().slice(0,10);
 const range = (start,end)=>({...section(),start,end_exclusive:end});
 function destination(link) {
@@ -66,6 +72,8 @@ function add(s,r,channel) {
   (s.cohorts[group]??=count())[field]+=r.n;
   const groupV2=pageGroupV2(r.page);
   (s.cohorts_v2[groupV2]??=count())[field]+=r.n;
+  const buyingPath = buyingPathKeys.get(r.page);
+  if(buyingPath) s.buying_paths[buyingPath][field]+=r.n;
   (s.channels[channel]??=count())[field]+=r.n;
   if(field==='affiliate_clicks') {
     const [dest,model]=destination(r.link);

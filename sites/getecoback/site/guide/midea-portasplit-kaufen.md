@@ -75,9 +75,9 @@ Zeiten sind frei änderbare Rechenbeispiele, keine Produkttests. Ersparnis kann 
 Rechenweg: 52 × Nutzungen/Woche × (manuell − Gerätenutzung − Pflege) ÷ 60.
 
 - Roborock — Saros 10R threshold limits
-- Roborock — required dock space
-- Meaco — laundry setup
-- Meaco — cold-room laundry considerations
+- [Roborock — required dock space](https://support.roborock.com/hc/en-us/articles/43407403865369-Where-should-I-position-Saros-10R)
+- [Meaco — laundry setup](https://blog.meaco.com/the-benefits-of-using-a-dehumidifier-to-dry-your-laundry/)
+- [Meaco — cold-room laundry considerations](https://blog.meaco.com/the-best-dehumidifiers-for-drying-clothes-and-gentle-laundry-drying/)
 - Midea — PortaSplit installation
 - Midea — PortaSplit installatie
 - Tineco — Switch S6 care FAQ

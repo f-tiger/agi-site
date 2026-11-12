@@ -73,7 +73,7 @@ Tumble dryer, one cycle | per cycle | — | 2.0 kWh | 0.53 |
 
 In this example, a 300 W airer plus a 300 W dehumidifier, both running for eight hours, use **4.8 kWh (£1.26)**. That is **2.4 times** the energy of the assumed **2.0 kWh (£0.53)** dryer cycle at the same unit rate. This is an arithmetic comparison, not evidence that either setup dries the same load to the same final dryness.
 
-Unit rate only, standing charge excluded — that is a daily fixed cost you pay whether the machine runs or not. There is no VAT on electricity from 1 October 2026 to 31 March 2027. Rate from Ofgem, read 2026-10-04. Your tariff may differ; the sum is watts ÷ 1000 × hours × your rate.
+Unit rate only, standing charge excluded — that is a daily fixed cost you pay whether the machine runs or not. There is no VAT on electricity from 1 October 2026 to 31 March 2027. Rate from [Ofgem](https://www.ofgem.gov.uk/your-energy-supply/your-energy-bill/energy-price-cap-unit-rates-and-standing-charges), read 2026-10-04. Your tariff may differ; the sum is watts ÷ 1000 × hours × your rate.
 
 Use the figure on your own airer's plate as an estimate, or measure whole-run kWh. Include the electricity used by any dehumidifier or other powered moisture removal. Compare the same laundry mass and final dryness, with the washing spin, room conditions and actual running hours recorded. A low-wattage appliance running longer can use more energy; the table cannot establish a cheapest method for your home. Space, fabric-care needs and whether you already own a dryer also matter.
 

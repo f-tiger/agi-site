@@ -77,7 +77,7 @@ Das Risiko ist real, aber regional und auf die Zukunft gerichtet: Die Bundesnetz
 
 - New Jersey: RZ-Tarifgesetz (07.07.2026 verkündet) · New York: Executive Order 62 (14.07.2026)
 
-- § 11 EnEfG — Ökostrompflicht 50 % → 100 % ab 2027, Abwärmequoten
+- [§ 11 EnEfG](https://www.gesetze-im-internet.de/enefg/__11.html) — Ökostrompflicht 50 % → 100 % ab 2027, Abwärmequoten
 
 - AlgorithmWatch: Rechenzentrenausbau auf Kosten der Stromkunden? — Frankfurt-Recherche
 

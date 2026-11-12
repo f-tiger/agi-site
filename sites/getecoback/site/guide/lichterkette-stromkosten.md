@@ -37,7 +37,7 @@ Entspricht die Netzteilangabe dem Stromverbrauch?Nicht unbedingt. Eine maximale 
 ## Quellen und Grenzen
 Die folgenden Quellen wurden am 4. Oktober 2026 geprüft. Rechenbeispiele sind eigene Szenarien, keine Markt- oder Messdaten.
 
-- Verbraucherzentrale: LED-Lichterketten
+- [Verbraucherzentrale: LED-Lichterketten](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/energiesparende-lichterketten-leds-sind-die-beste-wahl-10902)
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json

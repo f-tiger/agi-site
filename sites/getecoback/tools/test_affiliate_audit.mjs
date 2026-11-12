@@ -142,3 +142,43 @@ test('existing trend fails visibly when the audit query fails',async()=>{
   const r=await worker.fetch(new Request('https://getecoback.com/api/trend'),env,{waitUntil(){}});
   assert.equal(r.status,503);assert.equal(r.headers.get('cache-control'),'no-store');
 });
+
+test('buying paths count exact pilot pages without changing frozen buckets or leaking paths',async()=>{
+  const thermostat='/guide/smarte-heizkoerperthermostate-lohnen-sich.html';
+  const floor='/guide/saugwischer-kaufberatung.html';
+  const row=(day,page,name,n)=>({day,page,name,n,ref:'private-ref.test',
+    link:'https://www.amazon.de/s?k=private-model',source:'body',end_exclusive:'2026-11-12'});
+  const rows=[
+    row('2026-11-10',thermostat,'page_view',7),
+    row('2026-11-10',thermostat,'affiliate_click',2),
+    row('2026-11-11',floor,'page_view',5),
+    row('2026-11-11',floor,'affiliate_click',1),
+    row('2026-11-03',thermostat,'page_view',3),
+    row('2026-11-03',floor,'affiliate_click',4),
+    // Prefixes, localized paths, maintenance pages and queries must not be
+    // folded into the fixed two-page experiment just because names overlap.
+    ...[floor+'-unreviewed',floor+'?private=value','/en'+floor,
+      '/guide/tineco-saugt-nicht-mehr.html','/guide/heizluefter-stromverbrauch.html']
+      .map(path=>row('2026-11-10',path,'page_view',11)),
+  ];
+  const audit=await affiliateAudit(dbFor(rows),()=> 'search');
+  const expectedRecent={smart_thermostat:{page_views:7,affiliate_clicks:2},saugwischer:{page_views:5,affiliate_clicks:1}};
+  const expectedPrior={smart_thermostat:{page_views:3,affiliate_clicks:0},saugwischer:{page_views:0,affiliate_clicks:4}};
+  assert.deepEqual(audit.last_three_complete_days.buying_paths,expectedRecent);
+  assert.deepEqual(audit.same_weekdays_previous_week.buying_paths,expectedPrior);
+  assert.deepEqual(audit.weeks.at(-1).buying_paths,expectedRecent);
+  assert.deepEqual(audit.weeks.at(-2).buying_paths,expectedPrior);
+  for(const w of audit.weeks.slice(0,-2)) {
+    assert.deepEqual(w.buying_paths,{smart_thermostat:{page_views:0,affiliate_clicks:0},saugwischer:{page_views:0,affiliate_clicks:0}});
+  }
+  for(const path of [thermostat,floor]) {
+    const expected=path===thermostat?'heating':'other_guides';
+    assert.equal(pageGroup(path),expected);
+    assert.equal(pageGroupV2(path),expected);
+  }
+  assert.deepEqual(audit.last_three_complete_days.cohorts,{heating:{page_views:18,affiliate_clicks:2},other_guides:{page_views:49,affiliate_clicks:1}});
+  assert.deepEqual(audit.last_three_complete_days.cohorts_v2,audit.last_three_complete_days.cohorts);
+  assert.equal(audit.cohorts_v2_version,'task-path-v2-2026-11-06');
+  assert.doesNotMatch(JSON.stringify(audit),/\/guide\/|private-|private=|amazon\./);
+  assert.equal(audit.amazon_orders,null);
+});

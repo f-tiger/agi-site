@@ -47,7 +47,7 @@ Ein Zwei-Stunden-Beispiel passt rechnerisch in dieses Zeitfenster. Drei Stunden 
 
 ## Warum daraus keine pauschale Heizkostenersparnis folgt
 
-Eine warme Person bedeutet nicht automatisch ausreichend warme Wandoberflächen. Die Verbraucherzentrale erläutert den Zusammenhang zwischen Heizen, Lüften und Schimmelrisiko. Ihre Orientierung von mindestens 16–18 °C in Wohn- und Schlafräumen während der Heizperiode ist keine universelle Schimmelfrei-Garantie; bei schlechtem Bauzustand können höhere Temperaturen nötig sein. Gebäudeteile, Feuchte und Luftaustausch entscheiden mit.
+Eine warme Person bedeutet nicht automatisch ausreichend warme Wandoberflächen. Die [Verbraucherzentrale erläutert den Zusammenhang zwischen Heizen, Lüften und Schimmelrisiko](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426). Ihre Orientierung von mindestens 16–18 °C in Wohn- und Schlafräumen während der Heizperiode ist keine universelle Schimmelfrei-Garantie; bei schlechtem Bauzustand können höhere Temperaturen nötig sein. Gebäudeteile, Feuchte und Luftaustausch entscheiden mit.
 
 Wir rechnen deshalb weder einen festen Eurobetrag für eingesparte Raumheizung noch einen pauschalen Prozentvorteil aus. Beobachte Raumtemperatur, Feuchte und kalte Oberflächen. [Winter-Lüftung und Taupunkt prüfen](https://getecoback.com/guide/richtig-lueften-im-winter.html) · [Tatsächliche kWh über eine vollständige Nutzung messen](https://getecoback.com/strommess-protokoll.html).
 

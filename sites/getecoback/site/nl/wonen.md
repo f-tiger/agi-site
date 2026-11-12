@@ -67,9 +67,9 @@ Luchtontvochtigers bekijken op Amazon.nl ↗
 ## Bronnen en werkwijze
 Redactionele uitleg op basis van de onderstaande bronnen. We hebben geen eigen apparaattests uitgevoerd. De checklist is onze praktische vergelijkhulp, geen diagnose van je woning.
 
-- Milieu Centraal: woning ventileren
-- Milieu Centraal: natuurlijke ventilatie
-- Milieu Centraal: beter en energiezuiniger ventileren
+- [Milieu Centraal: woning ventileren](https://www.milieucentraal.nl/energie-besparen/ventilatie/woning-ventileren/)
+- [Milieu Centraal: natuurlijke ventilatie](https://www.milieucentraal.nl/energie-besparen/ventilatie/natuurlijke-ventilatie/)
+- [Milieu Centraal: beter en energiezuiniger ventileren](https://www.milieucentraal.nl/energie-besparen/ventilatie/tips-voor-beter-en-energiezuiniger-ventileren/)
 - Consumentenbond: koopadvies luchtontvochtigers
 
 ## Minder kopen, beter vergelijken
@@ -90,13 +90,13 @@ Waterverschil = debietverschil × minuten × douches. Energie = liters × temper
 
 ### Bronnen & methode
 
-- EU dryer label
-- EU dishwasher label
-- Milieu Centraal: Vaatwasser
-- UK energy labels
-- FTC: EnergyGuide
-- NRCan: EnerGuide
-- EPA: WaterSense showerheads
+- [EU dryer label](https://energy-efficient-products.ec.europa.eu/product-list/tumble-dryers_en)
+- [EU dishwasher label](https://energy-efficient-products.ec.europa.eu/product-list/dishwashers_en)
+- [Milieu Centraal: Vaatwasser](https://www.milieucentraal.nl/energie-besparen/apparaten-in-huis/vaatwasser/)
+- [UK energy labels](https://www.gov.uk/guidance/the-energy-labelling-of-products)
+- [FTC: EnergyGuide](https://consumer.ftc.gov/articles/how-use-energyguide-label-shop-home-appliances)
+- [NRCan: EnerGuide](https://natural-resources.canada.ca/energy-efficiency/product-energy-ratings/energuide/energuide-label)
+- [EPA: WaterSense showerheads](https://www.epa.gov/watersense/showerheads)
 
 ## Past het apparaat echt in jouw huis?
 Controleer obstakels, plaatsing en onderhoud vóór aankoop. Kies een situatie; voeg alleen maten toe die de beslissing veranderen.
@@ -117,9 +117,9 @@ Tijden zijn aanpasbare rekenvoorbeelden, geen producttests. Tijdwinst kan negati
 Formule: 52 × beurten/week × (handmatig − apparaatgebruik − onderhoud) ÷ 60.
 
 - Roborock — Saros 10R threshold limits
-- Roborock — required dock space
-- Meaco — laundry setup
-- Meaco — cold-room laundry considerations
+- [Roborock — required dock space](https://support.roborock.com/hc/en-us/articles/43407403865369-Where-should-I-position-Saros-10R)
+- [Meaco — laundry setup](https://blog.meaco.com/the-benefits-of-using-a-dehumidifier-to-dry-your-laundry/)
+- [Meaco — cold-room laundry considerations](https://blog.meaco.com/the-best-dehumidifiers-for-drying-clothes-and-gentle-laundry-drying/)
 - Midea — PortaSplit installation
 - Midea — PortaSplit installatie
 - Tineco — Switch S6 care FAQ

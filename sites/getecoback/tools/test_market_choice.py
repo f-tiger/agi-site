@@ -64,6 +64,51 @@ class MarketChoice(unittest.TestCase):
         source = '<a href="https://www.amazon.com/s?k=MERV+13+20x25x1&tag=ecoback0d-20">US: MERV 13 20x25x1</a>'
         self.assertEqual(B.strip_legacy_market_switch(source), source)
 
+    def test_unverified_categories_cannot_inherit_air_conditioner_fallback(self):
+        for slug in ['luftreiniger-ratgeber', 'air-purifier-guide',
+                     'air-purifier-heatwave', 'heating-pad-guide',
+                     'humidifier-guide', 'luftbefeuchter-ratgeber',
+                     'saugwischer-kaufberatung', 'saugroboter-kaufberatung',
+                     'smarte-heizkoerperthermostate-lohnen-sich',
+                     'heizdecke-stromverbrauch', 'balkon-terrasse-beschatten',
+                     'treiben-rechenzentren-die-strompreise',
+                     'future-household-category', '']:
+            with self.subTest(slug=slug):
+                self.assertFalse(B.us_market_allowed(slug))
+                self.assertEqual(B.usmarket_html(slug), '')
+
+    def test_purifier_rebuild_removes_old_cooling_surfaces_only(self):
+        # A real guide had the default AC alternatives despite its purifier
+        # subject. Keep the authored text and separate US filter reference.
+        slug = 'luftreiniger-ratgeber'
+        authored = '<p>Check the exact purifier filter.</p><a href="https://www.amazon.com/s?k=MERV+13&tag=ecoback0d-20">US filter reference</a>'
+        source = '<html lang="de"><article>' + authored + '<!--EB_TOPPICK-->DE<!--/EB_TOPPICK-->\n<!--EB_MODELS-->DE<!--/EB_MODELS-->\n</article>'
+        for marker in ['USMARKET', 'USTOP', 'USSHELF', 'USUNITS']:
+            source += '<!--EB_' + marker + '-->Midea Duo MAP14HS1TBL<!--/EB_' + marker + '-->'
+        def rebuild(value):
+            for inject in [B.inject_usmarket, B.inject_us_toppick,
+                           B.inject_us_shelf, B.inject_us_units]:
+                value = inject(value, slug)
+            return value
+        result = rebuild(source)
+        self.assertIn(authored, result)
+        self.assertNotIn('Midea Duo', result)
+        self.assertNotRegex(result, r'<!--EB_(?:USMARKET|USTOP|USSHELF|USUNITS)-->')
+        self.assertEqual(rebuild(result), result)
+
+    def test_known_cooling_and_humidity_topics_keep_matching_families(self):
+        # "overheating" must never become an electric-heater recommendation.
+        for slug in ['gaming-pc-overheating-summer', 'portable-ac-vs-air-cooler',
+                     'mobile-klimaanlage-vergleich', 'how-many-btu-do-i-need',
+                     'aeg-chillflex-pro-test', 'delonghi-pac-n90-test']:
+            self.assertEqual(B.us_term(slug)[0], 'portable air conditioner', slug)
+        for slug in ['meacodry-arete-one-test', 'dehumidifier-20-sqm',
+                     'tilt-and-turn-windows-winter-condensation',
+                     'richtig-lueften-im-winter']:
+            self.assertEqual(B.us_term(slug)[0], 'dehumidifier', slug)
+        for slug in ['electric-heater-20-sqm', 'heizung-20-qm']:
+            self.assertEqual(B.us_term(slug)[0], 'space heater', slug)
+
     def test_clean_page_and_second_build_keep_one_consistent_choice(self):
         slug = 'portable-ac-vs-air-cooler'
         source = '<html lang="en"><head></head><body><!--EB_NAV--><nav>Navigation</nav><!--/EB_NAV--><article><h1>Compare cooling</h1><h2>Options</h2><p>Original article.</p></article><!--EB_TRACK--></body></html>'

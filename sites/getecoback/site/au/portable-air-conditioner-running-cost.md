@@ -34,7 +34,7 @@ The following public Australian sources were read on 4 October 2026. Calculation
 
 - Australian Energy Regulator · Energy Made Easy: electricity tariffs
 - CHOICE: portable air conditioner buying guide
-- Healthdirect Australia: hot weather risks and staying cool
+- [Healthdirect Australia: hot weather risks and staying cool](https://www.healthdirect.gov.au/hot-weather-risks-and-staying-cool)
 [Our editorial method](https://getecoback.com/en/how-we-recommend.html) · [Privacy (German)](https://getecoback.com/datenschutz.html)
 
 ---

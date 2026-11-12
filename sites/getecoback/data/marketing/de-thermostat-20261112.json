@@ -1,0 +1,52 @@
+{
+  "creative_id": "de-thermostat-20261112",
+  "campaign": "eco-dach-thermostat-01",
+  "format": "photo_carousel",
+  "language": "de",
+  "brand_id": "7132930",
+  "channel": "tiktok",
+  "source_checked": "2026-11-12",
+  "reviewed": true,
+  "publication_state": "prepared_not_scheduled",
+  "receipt_location": "Release PR delivery update and Metricool readback; reconcile before retrying.",
+  "landing_url": "https://getecoback.com/thermostat-tiktok",
+  "canonical_destination": "https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html?utm_source=tiktok&utm_medium=social&utm_campaign=eco-dach-thermostat-01#eb-thermostat-products",
+  "title": "Thermostat-Kauf: drei Checks vor dem Bestellen",
+  "caption": "Werbung · eigener EcoBack-Ratgeber\n\nPasst das smarte Heizkörperthermostat wirklich?\n1. Ventil bestimmen und den Adapter für das genaue Modell prüfen. Die Gewindegröße allein ist kein Passungsnachweis.\n2. Vorhandene Bridge und neue Generation abgleichen: tado° X und V3+ sind laut Hersteller nicht miteinander kompatibel.\n3. Die Gesamtkosten zählen: Anzahl der Heizkörper, nötige Zentrale, Adapter und optionale Abos.\n\nKosten und Modellquellen prüfen: getecoback.com/thermostat-tiktok\n\nQuelle zum Generationenvergleich: tado° Shop, geprüft am 12.11.2026. Kein eigener Gerätetest und keine pauschale Sparzusage. Die Website enthält gekennzeichnete Affiliate-Links.\n\n#Heizkörperthermostat #SmartHome #Heizkosten",
+  "sources": [
+    {
+      "url": "https://shop.tado.com/products/smart-radiator-thermostat-x-starter-kit-1",
+      "checked_at": "2026-11-12",
+      "supports": "tado X / V3+ incompatibility and kit contents"
+    }
+  ],
+  "media": [
+    {
+      "path": "/assets/marketing/de-thermostat-20261112/01-fit.jpg",
+      "sha256": "8b317971c505d9d6151d2b7ffef4611cf430db32b64150cbc425ad8a6b5d36e4"
+    },
+    {
+      "path": "/assets/marketing/de-thermostat-20261112/02-valve.jpg",
+      "sha256": "77d4a41c2f27ec696bf5147d254ce10c1335a5236b301d78d2c3ea8e6b06b65e"
+    },
+    {
+      "path": "/assets/marketing/de-thermostat-20261112/03-system.jpg",
+      "sha256": "7001fa124b7f343c4f6623612b2cb02e61aa5e190bc5946285b70990b349d49d"
+    },
+    {
+      "path": "/assets/marketing/de-thermostat-20261112/04-cost.jpg",
+      "sha256": "25d61a938673aea923ef19cb3e90c8464dda0ed5a8d37aee0c513ad02aab4c39"
+    }
+  ],
+  "distribution_limits": {
+    "max_new_creatives_per_run": 1,
+    "max_new_creatives_per_7_days": 2,
+    "no_repeat_days": 30
+  },
+  "proposed_publication": {
+    "Europe/Berlin": "2026-11-14T18:30:00+01:00",
+    "Asia/Shanghai": "2026-11-15T01:30:00+08:00"
+  },
+  "measurement": "Reach, tagged visits and affiliate clicks are distinct from orders and settled commission; no backend receipt inferred from campaign registration.",
+  "review_notes": "All four frames visually checked at 50% contact-sheet scale: readable German, no clipping, original diagram, owner/affiliate disclosure on every frame, no borrowed appliance image or test claim."
+}

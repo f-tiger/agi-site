@@ -6,10 +6,6 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/beheizter-waeschest
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
 
-Hygrometer schon über 70 %? Dann nicht auf den Rabatt warten: ab da geht es um die Wand, nicht um ein paar Euro.
-Echter Rabatt? Zu jeder Preisermäßigung gehört der niedrigste Preis der letzten 30 Tage (§ 11 PAngV): vergleiche mit dem, nicht mit dem durchgestrichenen.
-Kein Prime? Prime gratis testen →Anzeige · Amazon zahlt uns eine Prämie für den Gratiszeitraum. Ab wann Prime kostet und wie du kündigst, steht auf der Amazon-Seite.
-
 ## Kosten pro fertig getrockneter Ladung
 Watt ÷ 1.000 × Stunden × eigener Strompreis ergibt die elektrische Arbeit und ihre Kosten. Ein frei gewähltes Beispiel: 200 W für sechs Stunden sind 1,2 kWh und bei 0,30 €/kWh 0,36 €. Eine niedrige Wattzahl allein beweist keine günstigere Ladung: Dauer, Wäschemenge, Endtrockenheit und zusätzliche Geräte gehören dazu.
 [Eigene Laufzeit berechnen](https://getecoback.com/guide/stromkosten-rechner.html) · [Gleiche Wäscheladung vergleichen](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html).
@@ -50,7 +46,7 @@ Nein. Vergleiche den gesamten Energiebedarf bei gleicher Wäschemenge und Endtro
 
 ## Rechenweg und Grenzen
 Rechenweg: absolute Feuchte = 216,679 × (RH/100 × es(T)) ÷ (273,15 + T). Zusätzliche Luftkapazität = Raumvolumen × (Sättigungsfeuchte − aktuelle absolute Feuchte).
-Keine eigenen Gerätetests, keine Ferndiagnose. Überarbeitet am 4. Oktober 2026. Hintergrund zu Feuchtequellen und Lüftung: Verbraucherzentrale: Heizen und Lüften.
+Keine eigenen Gerätetests, keine Ferndiagnose. Überarbeitet am 4. Oktober 2026. Hintergrund zu Feuchtequellen und Lüftung: [Verbraucherzentrale: Heizen und Lüften](https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizen-und-lueften-so-gehts-richtig-10426).
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json

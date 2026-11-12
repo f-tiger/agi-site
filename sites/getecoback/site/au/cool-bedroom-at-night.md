@@ -23,7 +23,7 @@ Is a fan enough during severe heat?Not necessarily. It does not refrigerate the 
 ## Sources and scope
 The following public Australian sources were read on 4 October 2026. Calculations and checklists are editorial work, not independent appliance tests. Local installation, rental and safety requirements vary; check the actual system and location.
 
-- Healthdirect Australia: hot weather risks and staying cool
+- [Healthdirect Australia: hot weather risks and staying cool](https://www.healthdirect.gov.au/hot-weather-risks-and-staying-cool)
 - CHOICE: portable air conditioner buying guide
 - Australian Energy Regulator · Energy Made Easy: electricity tariffs
 [Our editorial method](https://getecoback.com/en/how-we-recommend.html) · [Privacy (German)](https://getecoback.com/datenschutz.html)

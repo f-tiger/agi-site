@@ -10,7 +10,7 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/thermovorhang-ratge
 Dass es am Fenster oder an der Tür kalt wirkt, beweist keine kaputte Dichtung. Beobachte die Stelle und den Zustand vorhandener Dichtungen. Bei unklaren baulichen Mängeln den Vermieter oder einen Fachbetrieb einbeziehen; ein Vorhang ersetzt die Klärung nicht. Lüftungsöffnungen und vorgeschriebene Luftwege dürfen nicht zugestellt werden.
 
 ## Heizkörper und Thermostat bleiben frei
-Die Verbraucherzentrale empfiehlt ausdrücklich, Heizkörper nicht mit Vorhängen zu verdecken. Wärme soll in den Raum gelangen. Berücksichtige auch die Abstände aus der Anleitung eines elektrischen Heizgeräts. Der Check erkennt einen von dir angegebenen Konflikt, misst aber keine Abstände.
+Die [Verbraucherzentrale empfiehlt ausdrücklich, Heizkörper nicht mit Vorhängen zu verdecken](https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizung-10-einfache-tipps-zum-heizkosten-sparen-13892). Wärme soll in den Raum gelangen. Berücksichtige auch die Abstände aus der Anleitung eines elektrischen Heizgeräts. Der Check erkennt einen von dir angegebenen Konflikt, misst aber keine Abstände.
 
 ## Vor dem Kauf: messen und Befestigung prüfen
 
@@ -46,7 +46,7 @@ Fiktives Beispiel ansehen
 
 ###
 
-Offizielle Grundlage / Herstellerhilfe lesen →
+[Offizielle Grundlage / Herstellerhilfe lesen →](https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizung-10-einfache-tipps-zum-heizkosten-sparen-13892)
 **Erst messen, dann Angebote prüfen**Anzeige · Amazon.de · vorhandene Partnerverbindung. Dies sind allgemeine Suchergebnisse, keine geprüften Modelle oder Größen. Lieferung nach Österreich oder in die Schweiz sowie Endpreis und Rückgabe separat beim Händler prüfen.
 Thermovorhänge auf Amazon.de suchen →
 Ergebnis zum Teilen kopieren

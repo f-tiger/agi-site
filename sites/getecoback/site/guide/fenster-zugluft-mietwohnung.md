@@ -32,8 +32,8 @@ Sollten alle Öffnungen am Fenster verschlossen werden?Nein. Entwässerung, vorg
 ## Quellen und Grenzen
 Die folgenden Quellen wurden am 4. Oktober 2026 geprüft. Rechenbeispiele sind eigene Szenarien, keine Markt- oder Messdaten.
 
-- co2online: Lüften und Fenster abdichten
-- Verbraucherzentrale: Heizen und Lüften
+- [co2online: Lüften und Fenster abdichten](https://www.co2online.de/energie-sparen/heizenergie-sparen/lueften-lueftungsanlagen-fenster/)
+- [Verbraucherzentrale: Heizen und Lüften](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426)
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json

@@ -7,7 +7,7 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/tineco-saugt-nicht-
 **Die kurze Antwort:** Schwache Saugleistung, eine Tankmeldung oder automatisches Abschalten belegen noch keinen Teiledefekt. Dieser Check trennt kostenlose Pflege, Kundendienst und eine notwendige Ersatzteilprüfung. Er diagnostiziert weder Akku noch Motor.
 
 ## Was dieser Check abdeckt
-Die modellbezogenen Grundlagen sind die offiziellen FLOOR-ONE-S5-FAQ und die S7-FlashDry-Hilfe zu Geruch. Die S7-Quelle belegt kein Verfahren für alle Saug- oder Startprobleme. Andere FLOOR-ONE-Varianten dürfen nicht gleichgesetzt werden. EcoBack hat diese Geräte nicht selbst geprüft.
+Die modellbezogenen Grundlagen sind die [offiziellen FLOOR-ONE-S5-FAQ](https://de.tineco.com/support/faqs/floor-one-s5/) und die [S7-FlashDry-Hilfe zu Geruch](https://de.tineco.com/support/troubleshooting/floor-one-s7-flashdry/solution/1432.html). Die S7-Quelle belegt kein Verfahren für alle Saug- oder Startprobleme. Andere FLOOR-ONE-Varianten dürfen nicht gleichgesetzt werden. EcoBack hat diese Geräte nicht selbst geprüft.
 
 ## Pflege vor einem Teilekauf
 Beim S5 ist der Filter laut FAQ waschbar und muss vollständig trocknen. Tank-, Walzen- oder Kanalhinweise geben Anlass, die jeweils freigegebenen Pflegeschritte zu prüfen. Beim S7 FlashDry unterscheidet Tineco muffigen Geruch von elektrischem oder verbranntem Geruch. Im ersten Fall nennt der Hersteller die Reinigung von Filter, Tank, Walze und Kanal; im zweiten den Kundendienst.
@@ -43,7 +43,7 @@ Fiktives Beispiel ansehen
 
 ###
 
-Offizielle Grundlage / Herstellerhilfe lesen →
+[Offizielle Grundlage / Herstellerhilfe lesen →](https://de.tineco.com/support/faqs/floor-one-s5/)
 Ergebnis zum Teilen kopieren
 
 Deine Auswahl bleibt in diesem Browser. Es werden keine Modell- oder Symptomauswahlen übertragen. Nutzung und Beispielaufruf werden getrennt gezählt; die Datenschutzeinstellung gilt weiterhin. Teilen ist freiwillig und veröffentlicht nichts automatisch.

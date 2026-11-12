@@ -41,7 +41,7 @@ Desiccant dehumidifier, low setting | 330 W | 8.7p | 2.6 kWh | 0.69 |
 
 Desiccant dehumidifier, high setting | 650 W | 17.1p | 5.2 kWh | 1.37 |
 
-Unit rate only, standing charge excluded — that is a daily fixed cost you pay whether the machine runs or not. There is no VAT on electricity from 1 October 2026 to 31 March 2027. Rate from Ofgem, read 2026-10-04. Your tariff may differ; the sum is watts ÷ 1000 × hours × your rate.
+Unit rate only, standing charge excluded — that is a daily fixed cost you pay whether the machine runs or not. There is no VAT on electricity from 1 October 2026 to 31 March 2027. Rate from [Ofgem](https://www.ofgem.gov.uk/your-energy-supply/your-energy-bill/energy-price-cap-unit-rates-and-standing-charges), read 2026-10-04. Your tariff may differ; the sum is watts ÷ 1000 × hours × your rate.
 
 ## Common questions
 

@@ -34,8 +34,8 @@ Kann jede Sparbrause an einen Durchlauferhitzer?Nein. Besonders hydraulische Ger
 ## Quellen und Grenzen
 Die folgenden Quellen wurden am 4. Oktober 2026 geprüft. Rechenbeispiele sind eigene Szenarien, keine Markt- oder Messdaten.
 
-- co2online: Sparduschkopf und Durchlauferhitzer
-- Verbraucherzentrale: Warmwasser und Hygiene
+- [co2online: Sparduschkopf und Durchlauferhitzer](https://www.co2online.de/energie-sparen/wasser-sparen/wasserspartipps/sparduschkopf/)
+- [Verbraucherzentrale: Warmwasser und Hygiene](https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/kosten-fuer-warmwasser-senken-das-koennen-sie-als-hausbesitzer-tun-17755)
 
 ## Weniger kaufen, besser vergleichen
 Vergleiche Energielabel, Geschirrspülen und Duschköpfe. Beispiel öffnen, Land und Entscheidung wählen. Ohne Konto oder persönliche Angaben.
@@ -55,38 +55,15 @@ Wasserdifferenz = Durchflussdifferenz × Minuten × Duschen. Energieeinsatz = Li
 
 ### Quellen & Methode
 
-- EU dryer label
-- EU dishwasher label
-- Milieu Centraal: Vaatwasser
-- UK energy labels
-- FTC: EnergyGuide
-- NRCan: EnerGuide
-- EPA: WaterSense showerheads
+- [EU dryer label](https://energy-efficient-products.ec.europa.eu/product-list/tumble-dryers_en)
+- [EU dishwasher label](https://energy-efficient-products.ec.europa.eu/product-list/dishwashers_en)
+- [Milieu Centraal: Vaatwasser](https://www.milieucentraal.nl/energie-besparen/apparaten-in-huis/vaatwasser/)
+- [UK energy labels](https://www.gov.uk/guidance/the-energy-labelling-of-products)
+- [FTC: EnergyGuide](https://consumer.ftc.gov/articles/how-use-energyguide-label-shop-home-appliances)
+- [NRCan: EnerGuide](https://natural-resources.canada.ca/energy-efficiency/product-energy-ratings/energuide/energuide-label)
+- [EPA: WaterSense showerheads](https://www.epa.gov/watersense/showerheads)
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
 Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
-<!--EB_PRODUCT_DECISIONS_MD-->
-## Weniger kaufen, besser vergleichen
-
-Vergleiche Energielabel, Geschirrspülen und Duschköpfe. Beispiel öffnen, Land und Entscheidung wählen. Ohne Konto oder persönliche Angaben.
-
-Label: kWh/100 Zyklen ÷ 100 × Jahreszyklen; Jahreslabel unverändert. Gesamtkosten = Kauf + Jahresstrom × Preis × Jahre. Amortisation = positive Mehrinvestition ÷ positive Jahresersparnis. Geschirr: Maschinenstrom × Strompreis + Liter × Wasserpreis/1000; Handwasser zusätzlich mit dem Warmwasserpreis bewerten.
-
-Jahreslabels behalten ihre Standardnutzung; Zyklen ändern nur zyklusbasierte Werte. Unterschiedliche Prüfstandards oder Kapazitäten nicht vergleichen. Ohne Finanzierung, Reparaturen, Wasser, Restwert oder Ersatzgeräte. Behalten oder reparieren kann besser sein. Nur Elektrogeräte: Brennstoffkosten gasbetriebener Geräte fehlen.
-
-Bilanzgrenze wählen: Gesamter Zyklusstrom enthält Warmwasser genau einmal. Bei Warmwasseranschluss Gerätestrom und extern erwärmte Liter getrennt einsetzen. Keine jährlichen EnergyGuide-kWh als Zykluswert verwenden. Gleiche Geschirrmenge und Spülwassermenge vergleichen. Ohne Spülmittel, Reinigungsqualität, Zeit, Kauf- und Einbaukosten.
-
-Wasserdifferenz = Durchflussdifferenz × Minuten × Duschen. Energieeinsatz = Liter × Temperaturanstieg × 0,001163 ÷ Wärme/Einsatz-Verhältnis. Bei Wärmepumpen kann das Verhältnis über 1 liegen; bei Kesseln Brennstoffpreis einsetzen. Fixe Warmhalteverluste fehlen. Sicherheitsvorgaben für Warmwasser nicht ändern.
-
-- Wärmepumpentrockner: Kapazität, Stellplatz, Abfluss und Programmdauer prüfen.
-- Kühl- und Gefriergeräte: Nutzvolumen, Belüftungsabstand und Jahres-kWh vergleichen.
-- Geschirrspüler: gleiche Ladung, Eco-Programm, Wasseranschluss und Einbaumaße prüfen.
-- Sparduschköpfe: Mindestdurchfluss, Druck, Heizgerät und Freigabe prüfen; kürzer duschen bleibt eine Alternative ohne Kauf.
-
-Quellen & Methode
-- [EU dryer label](https://energy-efficient-products.ec.europa.eu/product-list/tumble-dryers_en)
-- [EU dishwasher label](https://energy-efficient-products.ec.europa.eu/product-list/dishwashers_en)
-- [Verbraucherzentrale: Warmwasser](https://www.verbraucherzentrale.nrw/wissen/energie/heizen-und-warmwasser/warmwasser-im-alltag-sparen-so-gehts-17752)
-<!--/EB_PRODUCT_DECISIONS_MD-->

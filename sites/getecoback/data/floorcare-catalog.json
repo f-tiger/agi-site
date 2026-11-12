@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "market": "DE",
+  "checked": "2026-11-12",
+  "max_age_days": 90,
+  "selection_note": "Editorial purchase candidates, not a ranking or own product test. S7 Max Pro was replaced by the precisely documented S7 FlashDry: the Max Pro FAQ contains ambiguous steam wording and no exact Max Pro manual was found in the official manual index. No specifications are transferred between variants.",
+  "sources": {
+    "tineco_product": {
+      "title": "Tineco: FLOOR ONE S7 FlashDry",
+      "url": "https://de.tineco.com/products/floor-one-s7-flashdry.html"
+    },
+    "tineco_manual": {
+      "title": "Tineco: EU-Anleitung FLOOR ONE S7 FLASHDRY Series",
+      "url": "https://static-ussite.tineco.com/12.CL2335G%20FLOOR%20ONE%20S7%20FLASHDRY%20%E6%AC%A7%E7%89%88%20%E8%AF%B4%E6%98%8E%E4%B9%A6%2020240123.pdf_09e2dcdb-0.pdf",
+      "review_note": "Opened exact S7 FLASHDRY Series PDF from official manual index; German use scope and tank-care instructions verified. Do not substitute S7 Max Pro, Pro, Pet or Stretch.",
+      "index_url": "https://de.tineco.com/support/instruction-manual/"
+    },
+    "dreame_product": {
+      "title": "Dreame: H14 Pro",
+      "url": "https://de.dreametech.com/products/h14-pro"
+    },
+    "dreame_manual": {
+      "title": "Dreame: H14 Pro, Anleitung Teil 1, S. 24 und 34–35",
+      "url": "https://cdn.shopify.com/s/files/1/0669/4387/7400/files/H14Pro-W2306E-User_Manual-A01_1-43.pdf",
+      "review_note": "Downloaded official H14Pro-W2306E-User_Manual-A01_1-43.pdf linked in H14 Pro section. German floor-use restrictions, dirty-water tank care and complete filter drying verified.",
+      "index_url": "https://de.dreametech.com/pages/user_manual"
+    },
+    "roborock_product": {
+      "title": "Roborock: F25 XT, als F25 ACE Neue Version bezeichnet",
+      "url": "https://de.roborock.com/products/roborock-f25-xt"
+    },
+    "roborock_manual": {
+      "title": "Roborock: F25 ACE, deutsche Anleitung, S. 26–27",
+      "url": "https://support.roborock.com/hc/de/article_attachments/46141882909721",
+      "review_note": "Official F25 ACE manual read. Product page identifies F25 XT as F25 ACE new version. Only maintenance workload and variant-check context used; no claim of identical replacement parts or floor certification."
+    }
+  },
+  "products": [
+    {
+      "id": "tineco-s7-flashdry",
+      "name": "Tineco FLOOR ONE S7 FlashDry",
+      "role": "Unterstützung beim Schieben und Ziehen",
+      "facts": "Tineco beschreibt einen Vortrieb in beide Richtungen und ein Selbstreinigungs- und Trocknungssystem. Das ist keine Messung der Kraft, die du selbst aufbringen musst.",
+      "floor": "Die EU-Anleitung nennt Hartböden im Innenbereich, etwa Vinyl, Fliesen und versiegeltes Holz; keine Teppichflächen. Zusätzlich gilt die Pflegefreigabe deines Bodens.",
+      "care": "Die Anleitung verlangt die Reinigung des Schmutzwasserbehälters nach jedem Gebrauch. Selbstreinigung nimmt dir diese Arbeit nicht vollständig ab.",
+      "variant": "S7 FlashDry; nicht S7 Pro, Max Pro, Stretch oder FlashDry Pet. Vortrieb erleichtert das Führen, nicht das Tragen über Treppen.",
+      "parts": "Walze, Filter und Reinigungslösung anhand des vollständigen Modellnamens beim Hersteller prüfen. Keine pauschale S7-Zubehör-Kompatibilität.",
+      "sources": [
+        "tineco_product",
+        "tineco_manual"
+      ],
+      "query": "Tineco FLOOR ONE S7 FlashDry",
+      "status": "verified"
+    },
+    {
+      "id": "dreame-h14-pro",
+      "name": "Dreame H14 Pro",
+      "role": "Unter niedrigen Möbeln reinigen",
+      "facts": "Dreame beschreibt ein 180°-Flachdesign und getrennte Anforderungen für Bürstenkopf und Gehäuse. Miss die niedrigste freie Stelle unter deinen Möbeln; die Kopfhöhe allein reicht nicht.",
+      "floor": "Die deutsche Anleitung nennt Innenräume mit Vinyl, Fliesen und versiegeltem Holz ohne Teppichflächen. Die Freigabe deines Bodenherstellers bleibt erforderlich.",
+      "care": "Die Anleitung empfiehlt, den Schmutzwasserbehälter nach jeder Nutzung sowie vor und nach der Selbstreinigung zu reinigen. Ein gewaschener Filter muss vor dem Einsetzen vollständig trocken sein.",
+      "variant": "H14 Pro; nicht H14, H14 Dual oder H14 Pro TangleCut. Flachbetrieb nur nach der Anleitung des gelieferten Modells.",
+      "parts": "Rollenbürste, Filter und freigegebene Lösung gehören in die Kostenrechnung. Den aktuellen Lieferumfang prüfen; ein beiliegendes Ersatzteil belegt keine spätere Verfügbarkeit.",
+      "sources": [
+        "dreame_product",
+        "dreame_manual"
+      ],
+      "query": "Dreame H14 Pro Nass Trockensauger",
+      "status": "verified"
+    },
+    {
+      "id": "roborock-f25-xt",
+      "name": "Roborock F25 XT",
+      "role": "Automatische Dosierung und App-Einstellungen",
+      "facts": "Die deutsche Produktseite nennt automatische Reinigungsmitteldosierung und App-Anpassung. Prüfe, ob du diese Funktionen brauchst und ob sie im angebotenen Modell enthalten sind.",
+      "floor": "Vor dem Kauf die Eignung für deinen Boden in der zum Angebot gehörenden Anleitung bestätigen. Die hier gelesene ACE-Anleitung ist keine Freigabe für jedes Parkett oder einen Teppicheinsatz.",
+      "care": "Die F25-ACE-Anleitung beschreibt die manuelle Pflege von Schmutzwassertank, Filter, Rolle und Schmutzwasserleitung. Die Selbstreinigungsfunktion ersetzt diese Kontrollen nicht.",
+      "variant": "Die Herstellerseite bezeichnet F25 XT als F25 ACE Neue Version. ALT, RT, Combo und Ultra sind andere Varianten. Die ACE-Anleitung belegt keine automatische Ersatzteil-Kompatibilität mit jeder XT-Ausführung.",
+      "parts": "Exakte Modellkennung und passende Rolle, Filter und Lösung vorab bestätigen lassen. Händlerbilder oder die Bezeichnung F25 allein genügen nicht.",
+      "sources": [
+        "roborock_product",
+        "roborock_manual"
+      ],
+      "query": "Roborock F25 XT Nass Trockenstaubsauger",
+      "status": "verified"
+    }
+  ]
+}

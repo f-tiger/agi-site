@@ -23,8 +23,8 @@ Posso sigillare tutte le aperture?No. Ventilazione prevista e aperture per la co
 ## Fonti e limiti
 Le fonti tecniche seguenti sono in tedesco, verificate per la guida originale il 4 ottobre 2026. L’adattamento non stabilisce norme locali su affitto, installazione o tariffe. Rispetta i requisiti locali e le istruzioni del tuo impianto.
 
-- co2online: Lüften und Fenster abdichten (DE)
-- Verbraucherzentrale: Heizen und Lüften (DE)
+- [co2online: Lüften und Fenster abdichten (DE)](https://www.co2online.de/energie-sparen/heizenergie-sparen/lueften-lueftungsanlagen-fenster/)
+- [Verbraucherzentrale: Heizen und Lüften (DE)](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426)
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json

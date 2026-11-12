@@ -32,8 +32,8 @@ Un soffione a basso flusso va bene con ogni scaldacqua?No. Verifica portata mini
 ## Fonti e limiti
 Le fonti tecniche seguenti sono in tedesco, verificate per la guida originale il 4 ottobre 2026. L’adattamento non stabilisce norme locali su affitto, installazione o tariffe. Rispetta i requisiti locali e le istruzioni del tuo impianto.
 
-- co2online: Sparduschkopf und Durchlauferhitzer (DE)
-- Verbraucherzentrale: Warmwasser und Hygiene (DE)
+- [co2online: Sparduschkopf und Durchlauferhitzer (DE)](https://www.co2online.de/energie-sparen/wasser-sparen/wasserspartipps/sparduschkopf/)
+- [Verbraucherzentrale: Warmwasser und Hygiene (DE)](https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/kosten-fuer-warmwasser-senken-das-koennen-sie-als-hausbesitzer-tun-17755)
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json

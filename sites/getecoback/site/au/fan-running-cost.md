@@ -33,7 +33,7 @@ Is the default tariff a current Australian average?No. All prefilled values are 
 The following public Australian sources were read on 4 October 2026. Calculations and checklists are editorial work, not independent appliance tests. Local installation, rental and safety requirements vary; check the actual system and location.
 
 - Australian Energy Regulator · Energy Made Easy: electricity tariffs
-- Healthdirect Australia: hot weather risks and staying cool
+- [Healthdirect Australia: hot weather risks and staying cool](https://www.healthdirect.gov.au/hot-weather-risks-and-staying-cool)
 [Our editorial method](https://getecoback.com/en/how-we-recommend.html) · [Privacy (German)](https://getecoback.com/datenschutz.html)
 
 ---

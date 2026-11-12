@@ -32,7 +32,7 @@ Is the power-supply maximum the actual consumption?Not necessarily. Use actual s
 ## Sources and limits
 Technical sources below are in German, checked for the original guide on 4 October 2026. These adaptations do not establish local rental law, installation rules or tariffs. Follow local requirements and the instructions for your actual system.
 
-- Verbraucherzentrale: LED-Lichterketten (DE)
+- [Verbraucherzentrale: LED-Lichterketten (DE)](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/energiesparende-lichterketten-leds-sind-die-beste-wahl-10902)
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json

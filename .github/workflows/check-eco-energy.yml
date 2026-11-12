@@ -87,6 +87,7 @@ jobs:
           python3 tools/build_au_cooling.py
           python3 tools/build_uk_opportunities.py
           python3 tools/build_tools_hub.py
+          python3 tools/build_floorcare_guide.py
           python3 tools/build_structure.py
           python3 tools/build_related.py
           python3 -m unittest discover -s tools -p test_heatpump_intent.py
@@ -122,6 +123,7 @@ jobs:
           python3 tools/build_auto_discovery.py
           python3 tools/build_family_workshop.py
           node --test tools/test_family_workshop.mjs
+          python3 tools/build_dach_discovery.py
           python3 tools/build_onpage.py
           node --test tools/test_upkeep_decisions.mjs tools/test_meaco_care.mjs
           python3 tools/test_upkeep_decisions.py
@@ -139,6 +141,10 @@ jobs:
           python3 tools/build_search.py
           python3 tools/check_related.py
           python3 tools/test_dehum_catalog.py
+          python3 tools/test_thermostat_catalog.py
+          python3 tools/test_floorcare_guide.py
+          python3 tools/test_dach_discovery.py
+          python3 tools/test_market_choice.py
           python3 tools/test_social_previews.py
           python3 tools/build_social_previews.py
           python3 tools/build_sitemap.py
@@ -211,6 +217,8 @@ jobs:
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_tool_experience.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_product_decisions.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_home_fit.cjs
+          NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_dach_buying.cjs
+          NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_thermostat_catalog.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_family_workshop.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_tool_audit.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_task_flows.cjs

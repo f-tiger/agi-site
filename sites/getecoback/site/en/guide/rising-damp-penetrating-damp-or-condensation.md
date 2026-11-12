@@ -48,7 +48,7 @@ Rising damp is groundwater drawn up through masonry by capillary action, where a
 
 ## If you rent
 
-Which of the three you have also changes whose problem it is. Damp arising from the condition of the building is generally the landlord's to repair, and that is a legal question rather than a technical one — so rather than paraphrase it, here is where the official answer lives: gov.uk on repairs in private renting, and Shelter's free advice on damp and mould in rented homes.
+Which of the three you have also changes whose problem it is. Damp arising from the condition of the building is generally the landlord's to repair, and that is a legal question rather than a technical one — so rather than paraphrase it, here is where the official answer lives: [gov.uk on repairs in private renting](https://www.gov.uk/private-renting/repairs), and Shelter's free advice on damp and mould in rented homes.
 
 We sell nothing on this page and we are not lawyers. If your damp is a repair the landlord owes you, buying a dehumidifier is not the answer to it — at best it manages a symptom you should not be paying to manage.
 

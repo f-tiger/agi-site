@@ -33,8 +33,8 @@ Ist ein unten kühler Heizkörper defekt?Nicht zwingend. Eine Temperaturdifferen
 ## Quellen und Grenzen
 Die folgenden Quellen wurden am 4. Oktober 2026 geprüft. Rechenbeispiele sind eigene Szenarien, keine Markt- oder Messdaten.
 
-- Verbraucherzentrale: Thermostat einstellen und wechseln
-- Verbraucherzentrale: Heizen und Lüften
+- [Verbraucherzentrale: Thermostat einstellen und wechseln](https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizkosten-sparen-thermostat-richtig-einstellen-und-wechseln-7940)
+- [Verbraucherzentrale: Heizen und Lüften](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426)
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
