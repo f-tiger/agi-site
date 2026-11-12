@@ -1,12 +1,20 @@
 # Product marketing context
 
-**Document version: v21** — **Last updated: 2026-11-07**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
+**Document version: v22** — **Last updated: 2026-11-12**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
 
 ## Business goal and proof
 
 Owner's latest staged goals are USD 1,000, USD 5,000 and USD 10,000 in monthly revenue (2026-10-03 conversation). These supersede the historical euro milestones; deadlines and gross/net accounting treatment remain unspecified. Record gross customer payments, refunds, settled receipts and delivery/acquisition costs separately; revenue is not profit or MRR. Manual selling/delivery and automation are both acceptable to the owner. Eco has historical owner-reported affiliate commissions; do not re-label them as a new service sale or assume they have settled. New experiments have no verified customers, paid retention, CAC or revenue. Prices displayed on discovery experiments are hypotheses. The original four probes remain closed; BPJ has separate live wallet checkout for placements and membership, whose readiness and sales need independent checks.
 
 ## Current revenue directions — owner steering 2026-10-04
+
+### ECO DACH category research — 2026-11-12
+
+The owner asked to research German-speaking market trends before expanding categories. Read `docs/eco-dach-category-research-2026-11-12.md` for sourced market evidence, country differences and the bounded implementation brief. The recommended first batch deepens the existing smart-thermostat buying path and pilots German wet/dry floor cleaners; robot vacuum buying decisions follow conditionally. These are research recommendations, not validated ECO conversion or revenue outcomes. Preserve cooling and dehumidifier/laundry paths.
+
+Reuse the existing valve, home-fit and maintenance tools. Add exact sourced models and meaningful role differences before multiplying URLs. The valve database currently covers tado V3+ and earlier generations, not X; the replacement-filter database is US-specific. Do not transfer compatibility across generations or markets. DE is the first commercial test; AT delivery and CH local merchant/CHF readiness must be checked separately. Google Trends seasonality and autocomplete fallback are not current sales growth or absolute search volume.
+
+This research does not publish new categories, change the legacy expansion queue or alter the already authorized owned-channel marketing pilot. The project ECO growth skill and existing delivery receipts govern its cadence, deduplication and status verification. Scheduled posts remain distinct from published posts and useful visits. No additional ad spend, accounts, outreach or recurring work is introduced here; storage and balcony PV remain excluded.
 
 ### ECO CEO acquisition review — owner steering 2026-11-10
 
@@ -134,6 +142,7 @@ Distribution uses the relevant bilingual tools directory, shared navigation's To
 The owner explicitly authorized expansion and deployment after selecting broader household tasks, including pools, garden robots and 3D-printed household repair. First release: free German/English constraint checks, downloadable local checklists and a bounded original drawer-divider STL generator. Existing confirmed DE/US Amazon category links are shown only after relevant comparison outcomes, with disclosure; no model certification, paid files, new subscription or checkout. All household inputs stay local. Family fit and repeat-task value remain hypotheses; downloads, shopping intent and merchant revenue are measured separately. This supersedes the earlier 3D-printer-accessory rejection only for the newly requested household repair/template direction. See `sites/getecoback/docs/family-workshop-release-2026-10-29.md`.
 
 ## Changelog
+- v22 (2026-11-12): Recorded the owner's research-first DACH category request and a sourced, bounded ECO expansion recommendation; preserves the authorized marketing pilot and separates sales, adoption and seasonality evidence.
 - v21 (2026-11-07): Added the owner-confirmed ECO daily visitor goal, precise user-count convention, acquisition-first scope and source-aligned preview/next-step repair; preserves existing revenue and fleet directions.
 - v19 (2026-11-06): Added the owner-authorized German affiliate comparison upgrade: existing decision paths, uniform model evidence, accurate merchant destinations and privacy-aware measurement; preserves other fleet directions.
 - v18 (2026-10-31): Applied the owner’s automated-site requirement to the current niche-site task and selected ECO’s source-backed US replacement-filter affiliate product. Preserves concurrent fleet product updates.
