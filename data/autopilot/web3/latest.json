@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-11-11T09:48:47.646Z",
+  "asOf": "2026-11-12T10:13:37.870Z",
   "ok": true,
   "checks": [
     {
@@ -15,15 +15,15 @@
       "ok": true
     },
     {
+      "name": "route.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "permit.agiscorecard.com",
+      "ok": true
+    },
+    {
       "name": "evidence.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "calls.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "disclosures.agiscorecard.com",
       "ok": true
     },
     {
@@ -39,23 +39,23 @@
       "ok": true
     },
     {
-      "name": "compute.agiscorecard.com",
-      "ok": true
-    },
-    {
       "name": "protocol.agiscorecard.com",
       "ok": true
     },
     {
-      "name": "permit.agiscorecard.com",
+      "name": "calls.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "disclosures.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "compute.agiscorecard.com",
       "ok": true
     },
     {
       "name": "web3.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "route.agiscorecard.com",
       "ok": true
     },
     {
@@ -70,36 +70,36 @@
   "sources": {
     "market": {
       "status": "fresh",
-      "retrievedAt": "2026-11-11T09:48:48.123Z",
+      "retrievedAt": "2026-11-12T10:13:38.175Z",
       "ageSeconds": 0,
       "quotes": [
         {
           "symbol": "BTC",
           "quote": "USD",
-          "price": 73598.45,
-          "sourceUpdatedAt": "2026-11-11T09:48:42.000Z",
+          "price": 73334.538225,
+          "sourceUpdatedAt": "2026-11-12T10:13:29.000Z",
           "deviationBps": null
         },
         {
           "symbol": "ETH",
           "quote": "USD",
-          "price": 2052.02,
-          "sourceUpdatedAt": "2026-11-11T09:48:42.000Z",
+          "price": 2040.5016246999999,
+          "sourceUpdatedAt": "2026-11-12T10:13:29.000Z",
           "deviationBps": null
         },
         {
           "symbol": "USDC",
           "quote": "USD",
-          "price": 0.999689014,
-          "sourceUpdatedAt": "2026-11-11T09:48:42.000Z",
-          "deviationBps": -3.109860000000131
+          "price": 0.9997789716999999,
+          "sourceUpdatedAt": "2026-11-12T10:13:29.000Z",
+          "deviationBps": -2.2102830000014784
         },
         {
           "symbol": "USDT",
           "quote": "USD",
-          "price": 0.9988,
-          "sourceUpdatedAt": "2026-11-11T09:48:42.000Z",
-          "deviationBps": -11.999999999999789
+          "price": 0.99884,
+          "sourceUpdatedAt": "2026-11-12T10:13:29.000Z",
+          "deviationBps": -11.600000000000499
         }
       ],
       "source": {
@@ -110,65 +110,65 @@
     },
     "briefs": {
       "status": "fresh",
-      "retrievedAt": "2026-11-11T09:48:48.255Z",
+      "retrievedAt": "2026-11-12T10:13:38.222Z",
       "sources": [
         {
           "id": "ethereum",
           "status": "ok",
-          "checkedAt": "2026-11-11T09:48:47.996Z"
+          "checkedAt": "2026-11-12T10:13:38.022Z"
         },
         {
           "id": "x402",
           "status": "ok",
-          "checkedAt": "2026-11-11T09:48:47.996Z"
+          "checkedAt": "2026-11-12T10:13:38.022Z"
         },
         {
           "id": "ezkl",
-          "status": "ok",
-          "checkedAt": "2026-11-11T09:48:47.996Z"
+          "status": "unavailable",
+          "checkedAt": "2026-11-12T10:13:38.039Z"
         }
       ],
       "items": [
         {
-          "title": "fix(python): register ethereum and flare v1 networks (#4212)",
-          "url": "https://github.com/x402-foundation/x402/commit/8b5b0cd393f13dc2c367383e5bbef0fb0cbb3f60",
-          "publishedAt": "2026-11-11T08:41:52.000Z",
+          "title": "fix(python): strip Settlement-Overrides when the handler fails (#4227)",
+          "url": "https://github.com/x402-foundation/x402/commit/031568feedcd66b2f5e1434381b7b73cdaebd5ee",
+          "publishedAt": "2026-11-12T10:13:02.000Z",
           "source": "x402 Foundation repository",
           "sourceId": "x402",
           "kind": "commits",
           "task": "stablecoin"
         },
         {
-          "title": "refactor(core): share facilitator initialization across HTTP middleware (#4183)",
-          "url": "https://github.com/x402-foundation/x402/commit/d3eb19d018801c190be58acf4017e76f8bcf6d45",
-          "publishedAt": "2026-11-10T17:05:41.000Z",
+          "title": "Update docs/schemes/exact.mdx (#4234)",
+          "url": "https://github.com/x402-foundation/x402/commit/281ceeeb44fe643665d8b9f3b079a2427b4d650b",
+          "publishedAt": "2026-11-12T10:01:20.000Z",
           "source": "x402 Foundation repository",
           "sourceId": "x402",
           "kind": "commits",
           "task": "stablecoin"
         },
         {
-          "title": "fix(evm): normalize the EIP-2612 permit recovery byte to 27/28 (#3583)",
-          "url": "https://github.com/x402-foundation/x402/commit/b70d6d5e3c08804670e254e178e92b16f8629682",
-          "publishedAt": "2026-11-10T16:12:56.000Z",
+          "title": "feat(cardano): adding python cardano x402 implementation (#3546)",
+          "url": "https://github.com/x402-foundation/x402/commit/31ce6bbf7e3af2f56f07ec9b9ac38168b3ca1a41",
+          "publishedAt": "2026-11-12T09:59:00.000Z",
           "source": "x402 Foundation repository",
           "sourceId": "x402",
           "kind": "commits",
           "task": "stablecoin"
         },
         {
-          "title": "fix(python): correct three v1 legacy network chain IDs (#4170)",
-          "url": "https://github.com/x402-foundation/x402/commit/47030c58557ac94f8fcce4ef7367910506d60cd6",
-          "publishedAt": "2026-11-10T15:48:49.000Z",
+          "title": "feat(evm): add Hemi default stablecoins (#4213)",
+          "url": "https://github.com/x402-foundation/x402/commit/4f674517cee0bd3c4ef9c7be2b09f16b3efaaa7f",
+          "publishedAt": "2026-11-11T21:05:41.000Z",
           "source": "x402 Foundation repository",
           "sourceId": "x402",
           "kind": "commits",
           "task": "stablecoin"
         },
         {
-          "title": "feat(evm): add Robinhood Chain (eip155:4663) with USDG as default asset (#4207)",
-          "url": "https://github.com/x402-foundation/x402/commit/1d2858cf5d3a7df6938737eb61ebaacf59b1733f",
-          "publishedAt": "2026-11-10T12:45:08.000Z",
+          "title": "docs: add CSPR.cloud x402 facilitator (#4224)",
+          "url": "https://github.com/x402-foundation/x402/commit/d69ee2f7780f47ec7a901cd364c2b15bc83888c0",
+          "publishedAt": "2026-11-11T18:46:37.000Z",
           "source": "x402 Foundation repository",
           "sourceId": "x402",
           "kind": "commits",
@@ -223,134 +223,134 @@
     },
     "research": {
       "status": "fresh",
-      "retrievedAt": "2026-11-11T09:48:48.438Z",
+      "retrievedAt": "2026-11-12T10:13:38.420Z",
       "historyStatus": "fresh",
       "quotes": [
         {
           "symbol": "BTC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-11T09:48:42.000Z",
+          "sourceUpdatedAt": "2026-11-12T10:13:29.000Z",
           "day": {
-            "percent": -1.3883341218518752,
-            "from": "2026-11-10T09:00:00.000Z",
-            "to": "2026-11-11T09:48:42.000Z"
+            "percent": -0.5172016013751612,
+            "from": "2026-11-11T10:00:00.000Z",
+            "to": "2026-11-12T10:13:29.000Z"
           },
           "week": {
-            "percent": -6.1204746911901475,
-            "from": "2026-11-04T09:00:00.000Z",
-            "to": "2026-11-11T09:48:42.000Z"
+            "percent": -8.784693976788471,
+            "from": "2026-11-05T10:00:00.000Z",
+            "to": "2026-11-12T10:13:29.000Z"
           }
         },
         {
           "symbol": "ETH",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-11T09:48:42.000Z",
+          "sourceUpdatedAt": "2026-11-12T10:13:29.000Z",
           "day": {
-            "percent": -3.0094682321886723,
-            "from": "2026-11-10T09:00:00.000Z",
-            "to": "2026-11-11T09:48:42.000Z"
+            "percent": -0.7648762760393502,
+            "from": "2026-11-11T10:00:00.000Z",
+            "to": "2026-11-12T10:13:29.000Z"
           },
           "week": {
-            "percent": -11.553859564295832,
-            "from": "2026-11-04T09:00:00.000Z",
-            "to": "2026-11-11T09:48:42.000Z"
+            "percent": -15.624699985479285,
+            "from": "2026-11-05T10:00:00.000Z",
+            "to": "2026-11-12T10:13:29.000Z"
           }
         },
         {
           "symbol": "USDC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-11T09:48:42.000Z",
+          "sourceUpdatedAt": "2026-11-12T10:13:29.000Z",
           "day": {
-            "percent": 0.01755317275780044,
-            "from": "2026-11-10T09:00:00.000Z",
-            "to": "2026-11-11T09:48:42.000Z"
+            "percent": 0.021346835727520386,
+            "from": "2026-11-11T10:00:00.000Z",
+            "to": "2026-11-12T10:13:29.000Z"
           },
           "week": {
-            "percent": 0.028211163932101435,
-            "from": "2026-11-04T09:00:00.000Z",
-            "to": "2026-11-11T09:48:42.000Z"
+            "percent": -0.006289165326878177,
+            "from": "2026-11-05T10:00:00.000Z",
+            "to": "2026-11-12T10:13:29.000Z"
           }
         },
         {
           "symbol": "USDT",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-11T09:48:42.000Z",
+          "sourceUpdatedAt": "2026-11-12T10:13:29.000Z",
           "day": {
-            "percent": 0.010013016922005846,
-            "from": "2026-11-10T09:00:00.000Z",
-            "to": "2026-11-11T09:48:42.000Z"
+            "percent": -0.03805278511439525,
+            "from": "2026-11-11T10:00:00.000Z",
+            "to": "2026-11-12T10:13:29.000Z"
           },
           "week": {
-            "percent": -0.008974549563356415,
-            "from": "2026-11-04T09:00:00.000Z",
-            "to": "2026-11-11T09:48:42.000Z"
+            "percent": -0.06875790273901394,
+            "from": "2026-11-05T10:00:00.000Z",
+            "to": "2026-11-12T10:13:29.000Z"
           }
         },
         {
           "symbol": "TAO",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-11T09:48:42.000Z",
+          "sourceUpdatedAt": "2026-11-12T10:13:28.000Z",
           "day": {
-            "percent": -1.6534019468073535,
-            "from": "2026-11-10T09:00:01.000Z",
-            "to": "2026-11-11T09:48:42.000Z"
+            "percent": -2.569368419426532,
+            "from": "2026-11-11T10:00:00.000Z",
+            "to": "2026-11-12T10:13:28.000Z"
           },
           "week": {
-            "percent": -4.784704946778384,
-            "from": "2026-11-04T09:00:00.000Z",
-            "to": "2026-11-11T09:48:42.000Z"
+            "percent": -9.408651645893729,
+            "from": "2026-11-05T10:00:00.000Z",
+            "to": "2026-11-12T10:13:28.000Z"
           }
         },
         {
           "symbol": "RENDER",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-11T09:48:42.000Z",
+          "sourceUpdatedAt": "2026-11-12T10:13:29.000Z",
           "day": {
-            "percent": 1.0226119138483591,
-            "from": "2026-11-10T09:00:01.000Z",
-            "to": "2026-11-11T09:48:42.000Z"
+            "percent": -6.764019407589894,
+            "from": "2026-11-11T09:59:39.000Z",
+            "to": "2026-11-12T10:13:29.000Z"
           },
           "week": {
-            "percent": 3.5901992872668043,
-            "from": "2026-11-04T08:57:03.000Z",
-            "to": "2026-11-11T09:48:42.000Z"
+            "percent": -8.108022544212313,
+            "from": "2026-11-05T10:00:18.000Z",
+            "to": "2026-11-12T10:13:29.000Z"
           }
         },
         {
           "symbol": "FET",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-11T09:48:42.000Z",
+          "sourceUpdatedAt": "2026-11-12T10:13:29.000Z",
           "day": {
-            "percent": -0.2047372377502854,
-            "from": "2026-11-10T09:00:01.000Z",
-            "to": "2026-11-11T09:48:42.000Z"
+            "percent": 0.1580140205183822,
+            "from": "2026-11-11T09:59:39.000Z",
+            "to": "2026-11-12T10:13:29.000Z"
           },
           "week": {
-            "percent": -8.227450510624424,
-            "from": "2026-11-04T08:57:03.000Z",
-            "to": "2026-11-11T09:48:42.000Z"
+            "percent": -7.058264892268706,
+            "from": "2026-11-05T10:00:18.000Z",
+            "to": "2026-11-12T10:13:29.000Z"
           }
         },
         {
           "symbol": "AKT",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-11T09:48:42.000Z",
+          "sourceUpdatedAt": "2026-11-12T10:13:28.000Z",
           "day": {
-            "percent": -3.92489068101306,
-            "from": "2026-11-10T09:00:01.000Z",
-            "to": "2026-11-11T09:48:42.000Z"
+            "percent": -0.82681731703802,
+            "from": "2026-11-11T09:59:39.000Z",
+            "to": "2026-11-12T10:13:28.000Z"
           },
           "week": {
-            "percent": -2.0769376066085754,
-            "from": "2026-11-04T08:53:00.000Z",
-            "to": "2026-11-11T09:48:42.000Z"
+            "percent": -8.74671776843715,
+            "from": "2026-11-05T10:00:18.000Z",
+            "to": "2026-11-12T10:13:28.000Z"
           }
         }
       ]
     }
   },
   "events": {
-    "asOf": "2026-11-11T09:48:48.000Z",
+    "asOf": "2026-11-12T10:13:38.000Z",
     "windowDays": 28,
     "measurement": "Opt-in event counts, deduplicated by event ID. Not unique people or a cross-domain session funnel. Incoming attribution is unverified; stripped referrers appear direct. Default examples, probes and MCP requests do not generate events.",
     "groups": []
@@ -361,36 +361,36 @@
   },
   "changes": [
     {
-      "url": "https://github.com/x402-foundation/x402/commit/8b5b0cd393f13dc2c367383e5bbef0fb0cbb3f60",
-      "title": "fix(python): register ethereum and flare v1 networks (#4212)",
+      "url": "https://github.com/x402-foundation/x402/commit/031568feedcd66b2f5e1434381b7b73cdaebd5ee",
+      "title": "fix(python): strip Settlement-Overrides when the handler fails (#4227)",
       "task": "stablecoin",
       "kind": "new_since_previous_check",
       "requiresReview": true
     },
     {
-      "url": "https://github.com/x402-foundation/x402/commit/d3eb19d018801c190be58acf4017e76f8bcf6d45",
-      "title": "refactor(core): share facilitator initialization across HTTP middleware (#4183)",
+      "url": "https://github.com/x402-foundation/x402/commit/281ceeeb44fe643665d8b9f3b079a2427b4d650b",
+      "title": "Update docs/schemes/exact.mdx (#4234)",
       "task": "stablecoin",
       "kind": "new_since_previous_check",
       "requiresReview": true
     },
     {
-      "url": "https://github.com/x402-foundation/x402/commit/b70d6d5e3c08804670e254e178e92b16f8629682",
-      "title": "fix(evm): normalize the EIP-2612 permit recovery byte to 27/28 (#3583)",
+      "url": "https://github.com/x402-foundation/x402/commit/31ce6bbf7e3af2f56f07ec9b9ac38168b3ca1a41",
+      "title": "feat(cardano): adding python cardano x402 implementation (#3546)",
       "task": "stablecoin",
       "kind": "new_since_previous_check",
       "requiresReview": true
     },
     {
-      "url": "https://github.com/x402-foundation/x402/commit/47030c58557ac94f8fcce4ef7367910506d60cd6",
-      "title": "fix(python): correct three v1 legacy network chain IDs (#4170)",
+      "url": "https://github.com/x402-foundation/x402/commit/4f674517cee0bd3c4ef9c7be2b09f16b3efaaa7f",
+      "title": "feat(evm): add Hemi default stablecoins (#4213)",
       "task": "stablecoin",
       "kind": "new_since_previous_check",
       "requiresReview": true
     },
     {
-      "url": "https://github.com/x402-foundation/x402/commit/1d2858cf5d3a7df6938737eb61ebaacf59b1733f",
-      "title": "feat(evm): add Robinhood Chain (eip155:4663) with USDG as default asset (#4207)",
+      "url": "https://github.com/x402-foundation/x402/commit/d69ee2f7780f47ec7a901cd364c2b15bc83888c0",
+      "title": "docs: add CSPR.cloud x402 facilitator (#4224)",
       "task": "stablecoin",
       "kind": "new_since_previous_check",
       "requiresReview": true
