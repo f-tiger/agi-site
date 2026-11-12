@@ -8,6 +8,12 @@ Owner's latest staged goals are USD 1,000, USD 5,000 and USD 10,000 in monthly r
 
 ## Current revenue directions — owner steering 2026-10-04
 
+### BPJ AI table rewrite review — owner steering 2026-11-12
+
+The owner authorized launching the validated CSV review prototype and automatic owned-channel marketing. The bilingual `/studio/table-review` tool checks original and rewritten CSV by stable ID, restores locked strings and retains permitted edits for human review. Checking, repair and export are free and local, with no new model call, cloud storage or paid SKU. It does not verify facts or translation meaning. Recurring paid demand, savings and revenue remain unproven.
+
+Read `sites/baipiaoji/docs/PRD-table-review-2026-11-12.md` and `sites/baipiaoji/docs/table-review-growth-2026-11-12.md`. The bounded launch uses a labelled synthetic demonstration of real tool operation, existing YouTube/TikTok accounts, zero ad spend, separate demo/own action counts and registered campaign attribution. A 28-check pilot separates daily health/receipt checks from at most one new creative per channel per rolling seven days. Keep publication state and analytics private; do not duplicate existing fleet data collection or ECO campaigns. Scheduled, published, useful visits, exports and revenue remain separate facts.
+
 ### ECO DACH category research — 2026-11-12
 
 Implementation follow-through: `sites/getecoback/docs/dach-products-release-2026-11-12.md` records the first sourced thermostat/floor-cleaner buying paths and their release/marketing gates. Product implementation is separate from verified growth; use live and publication receipts before claiming delivery status. Conditional later-wave categories are not launched by this first batch.

@@ -9,7 +9,7 @@ export const CAMPAIGNS = [{
   paths: ['/en/video'],
   sources: ['youtube', 'tiktok'],
   state: 'awaiting_distribution',
-}];
+}, {id:'bpj-table-review-01',paths:['/en/studio/table-review','/studio/table-review'],sources:['youtube','tiktok'],state:'awaiting_distribution'}];
 export const SESSION_SECONDS = 1800;
 export const RETENTION_DAYS = 31;
 export const QUALIFY_SECONDS = 10;
