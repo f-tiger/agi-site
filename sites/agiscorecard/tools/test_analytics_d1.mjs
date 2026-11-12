@@ -15,7 +15,7 @@
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import { DatabaseSync } from 'node:sqlite';
-import { pulseResponse, trendsResponse } from './analytics-worker/index.js';
+import worker, { pulseResponse, trendsResponse } from './analytics-worker/index.js';
 import { aggregateCache, AGG_CACHE_VERSION } from './analytics-worker/aggregate-cache.js';
 
 const here = new URL('.', import.meta.url);
@@ -169,6 +169,72 @@ const settle = () => Promise.all(waits.splice(0));
 
 // ── 4: the worker routes both endpoints through the cache ──
 ok(/url\.pathname === '\/api\/pulse'[^\n]*\n\s*return aggregateCache\(request, ctx, 'pulse'/.test(WORKER), '/api/pulse goes through aggregateCache');
-ok(/url\.pathname === '\/api\/trends'\) \{\n\s*return aggregateCache\(request, ctx, 'trends'/.test(WORKER), '/api/trends goes through aggregateCache');
+ok(/aggregateCache\(getRequest, ctx, 'trends', 1800/.test(WORKER), '/api/trends goes through aggregateCache with its existing TTL');
+
+// ── 5: real worker method boundary, without network or production bindings ──
+{
+  const savedCaches = globalThis.caches;
+  const savedFetch = globalThis.fetch;
+  const cache = memCache();
+  const calls = [];
+  const sql = fixture(); sql.exec(MIGRATION);
+  const env = { EVENTS: d1(sql, calls), ASSETS: { fetch() { throw new Error('unexpected asset fetch'); } } };
+  globalThis.caches = { default: cache };
+  globalThis.fetch = async () => { throw new Error('network forbidden in D1 regression'); };
+  const call = async (method, suffix = '', path = '/api/trends', headers = {}) => {
+    const res = await worker.fetch(new Request('https://agiscorecard.com' + path + suffix, { method, headers }), env, ctx);
+    await settle();
+    return res;
+  };
+  try {
+    const head = await call('HEAD');
+    ok(head.status === 200 && head.headers.get('x-agi-aggregate-cache') === 'miss' && calls.length === 4,
+      'cold HEAD computes the same four trends queries once');
+    ok(await head.text() === '' && head.headers.get('access-control-allow-origin') === '*', 'HEAD has no body and preserves CORS');
+    const get = await call('GET', '?ci=1&noise=2');
+    ok(get.headers.get('x-agi-aggregate-cache') === 'hit' && calls.length === 4 && (await get.json()).ok,
+      'GET with query noise reuses the cold HEAD result, including its JSON body');
+    const warmHead = await call('HEAD', '?other=3');
+    ok(warmHead.headers.get('x-agi-aggregate-cache') === 'hit' && calls.length === 4 && await warmHead.text() === '',
+      'warm HEAD shares GET cache and issues zero SQL');
+    ok(/^public, max-age=\d+$/.test(warmHead.headers.get('cache-control')) &&
+      Number(/max-age=(\d+)/.exec(warmHead.headers.get('cache-control'))[1]) <= 1800,
+      'HEAD preserves the existing 30-minute freshness bound');
+    cache.store.clear();
+    const coldGet = await call('GET');
+    const afterGet = calls.length;
+    const afterGetHead = await call('HEAD');
+    ok(coldGet.headers.get('x-agi-aggregate-cache') === 'miss' && afterGet === 8 &&
+      afterGetHead.headers.get('x-agi-aggregate-cache') === 'hit' && calls.length === afterGet,
+      'GET-first then HEAD also shares one computation');
+    for (const method of ['POST', 'PUT', 'PATCH', 'DELETE']) {
+      for (const cold of [false, true]) {
+        if (cold) cache.store.clear();
+        else await call('GET');
+        const before = calls.length;
+        const res = await call(method);
+        ok(res.status === 405 && res.headers.get('allow') === 'GET, HEAD, OPTIONS' &&
+          res.headers.get('cache-control') === 'no-store' && res.headers.get('access-control-allow-origin') === '*' && calls.length === before,
+          `${method} with ${cold ? 'cold' : 'warm'} cache returns 405 and issues zero SQL`);
+      }
+    }
+    const beforeOptions = calls.length;
+    const options = await call('OPTIONS', '', '/api/trends', { Origin: 'https://example.org', 'Access-Control-Request-Method': 'GET' });
+    ok(options.status === 204 && await options.text() === '' && options.headers.get('access-control-allow-origin') === '*' &&
+      options.headers.get('access-control-allow-methods') === 'GET, HEAD, OPTIONS' && calls.length === beforeOptions,
+      'trends OPTIONS preserves public CORS without a database query');
+    for (const [path, origin, expected] of [['/api/e', 'https://agiscorecard.com', 'https://agiscorecard.com'],
+      ['/api/sub', 'https://compass.agiscorecard.com', 'https://compass.agiscorecard.com']]) {
+      const res = await call('OPTIONS', '', path, { Origin: origin });
+      ok(res.status === 200 && res.headers.get('access-control-allow-methods') === 'POST' &&
+        res.headers.get('access-control-allow-headers') === 'content-type' && res.headers.get('access-control-allow-origin') === expected &&
+        await res.text() === '' && calls.length === beforeOptions, `${path} existing OPTIONS contract is unchanged`);
+    }
+  } finally {
+    globalThis.caches = savedCaches;
+    globalThis.fetch = savedFetch;
+    sql.close();
+  }
+}
 
 console.log(`✅ test_analytics_d1: ${n} checks — pulse/trends read only the human covering index, identical numbers with and without it, one computation per endpoint per TTL, failures and partial results never cached`);
