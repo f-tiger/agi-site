@@ -1,8 +1,9 @@
-// Runs only on two eligible pages AND a registered campaign link. No cookies,
+// Runs only on eligible pages AND a registered campaign link. No cookies,
 // fingerprint, cross-site identifier or changes to account/legacy event tracking.
 export function campaignInput(win, doc, script) {
   const url = new URL(win.location.href), params = url.searchParams;
-  if (win.navigator.webdriver || win.navigator.doNotTrack==='1' || win.navigator.globalPrivacyControl || ['__ci','__probe','qa'].some(k=>params.has(k))) return null;
+  if (win.navigator.webdriver || win.navigator.doNotTrack==='1' || win.navigator.globalPrivacyControl || ['__ci','__probe','__qa','qa','ci'].some(k=>params.has(k))) return null;
+  try { if(win.localStorage?.getItem('fleet_ga4_choice_v1')==='denied')return null; } catch { return null; }
   const campaign = script?.dataset.bpjGrowth, source = params.get('utm_source');
   if (!campaign || params.get('utm_campaign')!==campaign || !script.dataset.growthSources.split(',').includes(source)) return null;
   let referrer_host = '';

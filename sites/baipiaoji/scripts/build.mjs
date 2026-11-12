@@ -7918,6 +7918,7 @@ writeFileSync(join(dist, 'pricing.md'), pricingMarkdown({name:site.name,baseUrl:
 writeFileSync(join(dist, 'llms.txt'), pubText(`# ${site.name} / Baipiaoji (baipiaoji.com)
 
 ## BPJ first-party AI workflow tools
+- AI table rewrite review: https://baipiaoji.com/en/studio/table-review . Compare original and rewritten CSV by unique ID; restore locked strings and retain allowed edits. Free local checking and export, no account or model call. Not semantic or factual verification.
 - Listing pack: https://baipiaoji.com/en/studio/listing-pack . Free local CSV checks, external AI handoff, draft review and ZIP export. Not automatic translation, platform publishing or semantic verification. Optional assistance inquiry is not an order or payment.
 - Hub: https://baipiaoji.com/en/studio/ai/
 - Kimi task steps: https://baipiaoji.com/tools/kimi#kimi-task . Free local self-check steps and prompt templates; no AI execution or document upload to BPJ. Account sync saves the tool only, not these steps.

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
 import {normalizeGrowthEvent,recordGrowthEvent,readGrowthMeasurement,GROWTH_SQL} from '../lib/growth-measurement.js';
-import {arrivalClass,growthMarkup} from '../lib/growth-campaigns.js';
+import {arrivalClass,growthMarkup,campaignFor} from '../lib/growth-campaigns.js';
 import {onRequestPost,onRequestGet} from '../functions/api/growth.js';
 import {officialTarget,campaignInput} from '../assets/studio/growth-campaign.mjs';
 const sql=new DatabaseSync(':memory:');
@@ -60,6 +60,13 @@ const fakeWin={location:{href:page+'?utm_campaign=bpj-quota-clarity-01&utm_sourc
 const script={dataset:{bpjGrowth:'bpj-quota-clarity-01',growthSources:'github,x'}};
 assert.equal(campaignInput(fakeWin,{referrer:'https://github.com/x?private=1'},script).referrer_host,'github.com');
 fakeWin.navigator.globalPrivacyControl=true;assert.equal(campaignInput(fakeWin,{},script),null);
+fakeWin.navigator.globalPrivacyControl=false;
+fakeWin.localStorage={getItem:()=> 'denied'};assert.equal(campaignInput(fakeWin,{},script),null);
+fakeWin.localStorage={getItem:()=>null};
+for(const key of ['ci','__qa']){fakeWin.location.href=page+'?utm_campaign=bpj-quota-clarity-01&utm_source=github&'+key+'=1';assert.equal(campaignInput(fakeWin,{},script),null);}
+for(const path of ['/studio/table-review','/en/studio/table-review'])for(const source of ['youtube','tiktok'])assert.equal(campaignFor('bpj-table-review-01',path,source)?.id,'bpj-table-review-01');
+assert.equal(campaignFor('bpj-table-review-01','/account','youtube'),undefined);
+assert.equal(campaignFor('bpj-table-review-01','/en/studio/table-review','unregistered'),undefined);
 // Exercise the deployed allowlist through the browser parser, server and report.
 const sources=growthMarkup('/en/tools/google-ai-studio').match(/data-growth-sources="([^"]+)"/)[1];
 for(const [source,sid] of [['youtube','2'],['tiktok','3']]) {

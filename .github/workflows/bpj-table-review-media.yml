@@ -1,0 +1,80 @@
+name: Prepare BPJ table review media
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: bpj-table-review-media
+  cancel-in-progress: false
+jobs:
+  prepare:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Require the matching live tool before recording
+        run: |
+          set -euo pipefail
+          for asset in table-review-core.mjs table-review-app.mjs table-review-copy.mjs; do
+            curl --fail --silent --show-error --max-time 30 -A 'bpj-ci-media-readonly/1.0' "https://baipiaoji.com/studio-assets/$asset?__probe=1" -o "/tmp/$asset"
+            cmp "sites/baipiaoji/assets/studio/$asset" "/tmp/$asset"
+          done
+      - name: Build and record the actual tool with synthetic data
+        run: |
+          set -euo pipefail
+          python -m pip install playwright==1.58.0
+          python -m playwright install --with-deps chromium --only-shell
+          if ! command -v ffmpeg >/dev/null; then
+            sudo apt-get update
+            sudo apt-get install -y ffmpeg
+          fi
+          (cd sites/baipiaoji && npm run build)
+          python sites/baipiaoji/scripts/record-table-review-demo.py
+          python sites/baipiaoji/scripts/render-table-review-demo.py
+      - name: Upload a draft media attachment without replacing existing assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          tag='bpj-table-review-demo-20261112'
+          asset='/tmp/bpj-table-review-video/bpj-table-review-demo-en.mp4'
+          test "$(gh release view "$tag" --json isDraft --jq .isDraft)" = true
+          gh release upload "$tag" "$asset"
+          python - <<'PY'
+          import hashlib,json,subprocess
+          from pathlib import Path
+          p=Path('/tmp/bpj-table-review-video/bpj-table-review-demo-en.mp4')
+          probe=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration','-of','json',str(p)]))
+          note=f'''Original English demonstration for BPJ AI Table Rewrite Review.
+
+          Actual browser operation with labelled fictional data: compare, restore locked strings, review and download CSV. This is not a model benchmark or customer outcome. Original procedural background music; no external music or customer data.
+
+          Duration: {float(probe['format']['duration']):.2f} seconds. H.264/AAC, 1080x1920. Bytes: {p.stat().st_size}.
+          SHA-256: {hashlib.sha256(p.read_bytes()).hexdigest()}
+
+          Tool: https://baipiaoji.com/en/studio/table-review
+          Source: https://github.com/f-tiger/agi-site/pull/295
+          This is a marketing media attachment, not an installable software package. Full editorial/playback review and publication remain separate from this draft upload.
+          '''
+          Path('/tmp/bpj-table-review-video/release-notes.md').write_text(note)
+          PY
+          gh release edit "$tag" --notes-file /tmp/bpj-table-review-video/release-notes.md
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bpj-table-review-media-review
+          path: |
+            /tmp/bpj-table-review-video/steps.json
+            /tmp/bpj-table-review-video/recording-end.png
+            /tmp/bpj-table-review-video/synthetic-reviewed.csv
+            /tmp/bpj-table-review-video/release-notes.md
+          retention-days: 14

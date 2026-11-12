@@ -1,4 +1,5 @@
 import {parseDepthEvent} from '../../lib/depth-signals.mjs';
+import {parseTableReviewEvent} from '../../lib/table-review-signals.mjs';
 import {parseListingEvent} from '../../lib/listing-signals.mjs';
 import {parseAiSoloEvent} from '../../lib/ai-solo-events.mjs';
 import {parseManjuEvent} from '../../lib/manju.mjs';
@@ -19,6 +20,7 @@ import {parseQuoteEvent} from '../../../../tools/quote-page-lab/growth.mjs';
 //
 // 事件名走白名单：打点接口是公开的，不限制取值就等于给了任何人一个往自家库里写任意字符串的口子。
 export const EVENTS = new Set([
+  'table_review', // Fixed CSV review actions, not users, orders or semantic verification.
   'listing', // Source/draft handoff actions, not customers, accepted listings or revenue.
   'depth', // Fixed task-plan and watchlist actions, not completed tasks or viewers.
   'ai_solo', // Fixed plan/case actions, never questions, amounts or income claims.
@@ -73,6 +75,16 @@ export async function onRequestPost({ request, env }) {
     // 一个拼错的事件名不是丢失，而是冒充成页面浏览。
     if (b.e && !EVENTS.has(b.e)) return new Response(null, { status: 204 });
     const ev = b.e || '';
+    if (ev === 'table_review') {
+      if (!['zh','en'].includes(lang) || !parseTableReviewEvent(path)) return new Response(null,{status:204});
+      let ref;
+      try { ref = new URL(request.headers.get('referer') || ''); } catch { return new Response(null,{status:204}); }
+      if (ref.origin !== 'https://baipiaoji.com' || !['/studio/table-review','/en/studio/table-review'].includes(ref.pathname) ||
+        request.headers.get('dnt') === '1' || request.headers.get('sec-gpc') === '1' ||
+        /[?&](?:__ci|__probe|__qa|qa|ci)(?:=|&|$)/.test(ref.search) ||
+        /bot|spider|crawler|headless|bpj-ci|playwright|curl|wget|python|node/i.test(request.headers.get('user-agent') || '')) return new Response(null,{status:204});
+      b.r = '';
+    }
     if (ev === 'listing') {
       if (!['zh','en'].includes(lang) || !parseListingEvent(path)) return new Response(null,{status:204});
       let ref;
