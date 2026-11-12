@@ -229,7 +229,8 @@ jobs:
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_product_decisions.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_home_fit.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_dach_buying.cjs
-          NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_categories34.cjs
+          # Match deployment: resolve the locked workbench dependency without NODE_PATH.
+          env -u NODE_PATH node tools/browser_categories34.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_thermostat_catalog.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_family_workshop.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_tool_audit.cjs

@@ -1,7 +1,10 @@
 // Final-artifact regression for both remaining DACH categories. No merchant clicks.
 // Local files by default. LIVE=1 checks production with QA events suppressed.
-const {chromium}=require('playwright');
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const {createRequire}=require('node:module');
+// The deployment container uses the workbench's locked browser dependency.
+const requireTools=createRequire(path.resolve(__dirname,'../../../tools/revenue-studio/package.json'));
+const {chromium}=requireTools('playwright');
 const root=path.resolve(__dirname,'../site'),origin='https://getecoback.com';
 const live=process.env.LIVE==='1',proxyTLSException=live&&process.env.QA_IGNORE_HTTPS_ERRORS==='1';
 const out=process.env.QA_DIR||'/tmp/eco-categories34-qa';fs.mkdirSync(out,{recursive:true});
