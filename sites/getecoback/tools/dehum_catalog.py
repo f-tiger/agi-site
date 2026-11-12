@@ -73,6 +73,17 @@ def block(slug, today=None, data=None):
             '<tbody>' + ''.join(rows) + '</tbody></table></div><div class="dc-grid">' + ''.join(cards) +
             '</div></div></section><!--/EB_MODELS-->\n')
 
+def inject(html, slug):
+    reviewed = block(slug)
+    if reviewed is None:
+        return html
+    html = re.sub(r'<!--EB_MODELS-->.*?<!--/EB_MODELS-->\n?', '', html, flags=re.S)
+    anchor = '<!--/EB_BUYER-->'
+    if html.count(anchor) != 1:
+        raise ValueError('Catalog needs one preceding buyer decision: ' + slug)
+    # A sibling, not a child of the replaceable EB_BUYER/EB_DEMAND regions.
+    return re.sub(re.escape(anchor) + r'\n?', lambda m: anchor + '\n' + reviewed, html, count=1)
+
 def evidence_html(source):
     """Extract the same public evidence, excluding all shopping, styles and chrome."""
     match = re.search(r'<!--EB_MODELS-->(.*?)<!--/EB_MODELS-->', source, re.S)

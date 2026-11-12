@@ -1719,11 +1719,6 @@ def model_card(entry, en=False, url=None):
 
 
 def models_block(device, en=False, slug=None):
-    if not en and device == "dehum":
-        from dehum_catalog import block as catalog_block
-        reviewed = catalog_block(slug)
-        if reviewed:
-            return reviewed
     table = DEVICE_MODELS_EN if en else DEVICE_MODELS
     ctx = context_entries(slug, en)
     entries = ctx or table.get(device) or table["ac"]
@@ -4681,6 +4676,10 @@ def main():
             new = inject_popup(new, slug)
         new = strip_legacy_market_switch(new)
         new = inject_demand(new, os.path.basename(path)[:-5], en=False)
+        # The buyer flow replaces its whole region. Add the reviewed catalog
+        # afterward as a sibling so it survives that rebuild and follows need.
+        from dehum_catalog import inject as inject_catalog
+        new = inject_catalog(new, os.path.basename(path)[:-5])
         new = strip_decision_promotions(new, os.path.basename(path)[:-5])
         if os.path.basename(path) in ('tineco-saugt-nicht-mehr.html', 'thermovorhang-ratgeber.html'):
             # These guides qualify a specific maintenance/fit decision. Generic

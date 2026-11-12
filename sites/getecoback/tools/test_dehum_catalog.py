@@ -7,16 +7,33 @@ from html import unescape
 import dehum_catalog as C
 from build_agent_md import to_markdown
 from build_structure import inject_models
+from moisture_decision import inject as inject_buyer
 
 class CatalogTest(unittest.TestCase):
     def test_committed_purchase_routes_survive_repeated_injection(self):
         for slug in C.load()['pages']:
             source=(C.DATA.parent.parent/'site/guide'/f'{slug}.html').read_text()
-            first=inject_models(source,slug)
-            self.assertEqual(first,inject_models(first,slug))
+            # Assert final generated files BEFORE repairing them in memory.
+            # Otherwise a later generator can erase the catalog and CI passes.
+            self.assertEqual(source.count('data-catalog-evidence'),1,slug)
+            self.assertEqual(source.count('class="dc-card"'),6,slug)
+            self.assertLess(source.index('<!--/EB_BUYER-->'),source.index('<!--EB_MODELS-->'))
+            def rebuild(html):
+                return C.inject(inject_buyer(inject_models(html,slug),slug),slug)
+            first=rebuild(source)
+            self.assertEqual(first,rebuild(first))
             self.assertEqual(first.count('data-catalog-evidence'),1)
             self.assertEqual(first.count('class="dc-card"'),6)
         self.assertIsNone(C.block('luftentfeuchter-20-qm'))
+
+    def test_buyer_replacement_cannot_swallow_the_catalog(self):
+        slug='luftentfeuchter-ratgeber'
+        seed='<article><!--EB_BUYER--><h2>Old buyer</h2>'+C.block(slug)+'<!--/EB_BUYER--><h2>Guide</h2></article>'
+        first=C.inject(inject_buyer(seed,slug),slug)
+        self.assertEqual(first.count('class="dc-card"'),6)
+        self.assertLess(first.index('<!--/EB_BUYER-->'),first.index('<!--EB_MODELS-->'))
+        self.assertEqual(first,C.inject(inject_buyer(first,slug),slug))
+        with self.assertRaises(ValueError):C.inject('<article><h2>Missing buyer</h2></article>',slug)
 
     def test_scoped_routes_and_source_identity(self):
         d=C.load()
