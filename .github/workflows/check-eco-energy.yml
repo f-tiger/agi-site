@@ -126,6 +126,8 @@ jobs:
           python3 tools/build_family_workshop.py
           node --test tools/test_family_workshop.mjs
           python3 tools/build_dach_discovery.py
+          # Discovery adds authored links; recompute related links after it to avoid duplicates.
+          python3 tools/build_related.py
           python3 tools/build_onpage.py
           node --test tools/test_upkeep_decisions.mjs tools/test_meaco_care.mjs
           python3 tools/test_upkeep_decisions.py

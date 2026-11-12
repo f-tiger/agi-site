@@ -257,6 +257,8 @@ jobs:
           node --test tools/test_filter_finder.mjs
           python3 tools/link_filter_finder.py
           python3 tools/build_dach_discovery.py
+          # Discovery adds authored links; recompute related links after it to avoid duplicates.
+          python3 tools/build_related.py
           python3 tools/build_onpage.py
           python3 tools/build_tools_hub.py
           python3 tools/build_hreflang.py
