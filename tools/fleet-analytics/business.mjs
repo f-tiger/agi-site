@@ -85,6 +85,7 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
   if (name.startsWith('legacy:')) return legacyEvent(host, pathname, name.slice(7));
   const route = String(pathname).replace(/^\/(?:en|de|zh|it)\//, '/').replace(/\.html$/, '');
   if (host === 'agiscorecard.com' && route === '/tianya' && /^(?:tianya_(?:calculate|local_save|export)_(?:demo|own)|tianya_(?:member_open|register_open|research_open|restore|import))$/.test(name)) return {name,tool_id:'tianya-validation',repeat:true};
+  if(host==='agiscorecard.com'&&['/ai-infrastructure','/zh/ai-infrastructure'].includes(route)&&/^thesis_(add|check|blocked|review|export|save|recheck|member)_(sample|own)$/.test(name))return {name,tool_id:'ai-infrastructure',repeat:true};
   if(host==='agiscorecard.com'&&['/matrix-odds','/zh/matrix-odds'].includes(pathname)&&name==='matrix_calculate')return {name,tool_id:'matrix-odds'};
   // BPJ video production is distinct from manju discovery and AI-work browsing.
   // Demos never become own exports, and cloud intent is never a payment event.

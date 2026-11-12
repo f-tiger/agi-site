@@ -9,6 +9,9 @@ on:
       - 'sites/agiscorecard/tools/mentor/**'
       - 'sites/agiscorecard/tools/create/**'
       - 'sites/agiscorecard/tools/community/**'
+      - 'sites/agiscorecard/tools/infrastructure/**'
+      - 'sites/agiscorecard/infrastructure-assets/**'
+      - 'sites/agiscorecard/tools/analytics-worker/thesis-growth.mjs'
 permissions:
   contents: read
 concurrency:
@@ -30,6 +33,7 @@ jobs:
           node --test sites/agiscorecard/tools/release-safety/test.mjs sites/agiscorecard/tools/mentor/test.mjs sites/agiscorecard/tools/create/test.mjs sites/agiscorecard/tools/create/ai-check-test.mjs sites/agiscorecard/tools/community/test.mjs sites/agiscorecard/tools/jarvis/test.mjs sites/agiscorecard/tools/jarvis/security-test.mjs sites/agiscorecard/tools/jarvis/membership-test.mjs
           node tools/member-studio/test-isolation.mjs
           node tools/member-studio/test-failure.mjs
+          node --test sites/agiscorecard/tools/infrastructure/test.mjs sites/agiscorecard/tools/infrastructure/thesis.test.mjs
       - name: Install pinned browser test dependencies without lifecycle scripts
         run: |
           npm ci --prefix tools/revenue-studio --ignore-scripts --no-audit --no-fund
@@ -40,6 +44,7 @@ jobs:
           node sites/agiscorecard/tools/mentor/build.mjs
           python3 sites/agiscorecard/tools/create/build.py
           node sites/agiscorecard/tools/jarvis/build.mjs
+          python3 sites/agiscorecard/tools/infrastructure/build.py
           python3 tools/fleet-analytics/coverage.py --site agi --write
           python3 tools/fleet-analytics/coverage.py --site agi
       - name: Exercise existing local browser regressions
@@ -48,4 +53,5 @@ jobs:
           node sites/agiscorecard/tools/community/browser-test.mjs
           node sites/agiscorecard/tools/mentor/browser-test.mjs
           node sites/agiscorecard/tools/jarvis/browser-test.mjs
+          node sites/agiscorecard/tools/infrastructure/browser-test.mjs
       # No secrets, production request, deployment or operation/watch runner.

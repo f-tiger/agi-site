@@ -122,7 +122,7 @@ assert.match(deploy,/cancel-in-progress: false/);
 // Explicit maintenance modes must remain isolated from each other and
 // the wider scheduled job. No watcher is executed by these truth tables.
 const maintenanceSites={eco:'Eco',agi:'AGI',tds:'TDS'};
-const watchModes=['watch','ads-only','receipts-only','fleet-receipts-only',...Object.keys(maintenanceSites).map(site=>site+'-watch'),'inspect'];
+const watchModes=['watch','ads-only','receipts-only','fleet-receipts-only',...Object.keys(maintenanceSites).flatMap(site=>site==='agi'?['agi-watch','agi-receipts-only']:[site+'-watch']),'inspect'];
 function watchStep(source,name){
  assert.equal(source.split('      - name: '+name+'\n').length-1,1,'Each maintenance step must be unique: '+name);
  const start=source.indexOf('      - name: '+name+'\n');assert.ok(start>=0,name);
@@ -184,6 +184,26 @@ function checkFleetReceiptsIsolation(source){
  }
 }
 checkFleetReceiptsIsolation(watch);
+function checkAgiReceiptsIsolation(source){
+ const target=watchStep(source,'Recover AGI receipts without cleanup (manual, current main)');
+ const guard=block=>block.match(/^        if: (.+)$/m)?.[1];
+ assert.match(target,/^        timeout-minutes: 5$/m);
+ assert.match(target,/^        working-directory: \$\{\{ github.workspace \}\}$/m);
+ const commands=[...target.split('        run: |')[1].matchAll(/^          (\S.*)$/gm)].map(m=>m[1]);
+ assert.deepEqual(commands,[`node --input-type=module -e 'import {recoverSiteReceipts} from "./tools/member-studio/ops.mjs"; await recoverSiteReceipts("agi",process.env);'`,'node sites/agiscorecard/tools/member-release-health.mjs']);
+ const excluded=['Inspect incoming tokens (manual, read-only)','Recover ad payment watcher only (manual)','Recover ads and membership receipts only (manual)','Recover sibling membership receipts only (manual)','Match on-chain payments to pending ad slots',...Object.values(maintenanceSites).map(name=>'Recover '+name+' membership only (manual, current main)'),'Check each independent site membership','Continue bounded Jarvis missions'];
+ for(const event of ['push','schedule','workflow_dispatch'])for(const ref of ['refs/heads/main','refs/heads/feature','refs/tags/test'])for(const mode of [...watchModes,'unknown']){
+  const context={event,ref,mode};
+  assert.equal(allows(guard(target),context),event==='workflow_dispatch'&&ref==='refs/heads/main'&&mode==='agi-receipts-only','AGI receipt admission '+JSON.stringify(context));
+  if(event==='workflow_dispatch'&&mode==='agi-receipts-only')for(const name of excluded)assert.equal(allows(guard(watchStep(source,name)),context),false,'AGI receipts must not run '+name);
+ }
+}
+checkAgiReceiptsIsolation(watch);
+for(const mutated of [
+ watch.replace(" && github.ref == 'refs/heads/main' && inputs.mode == 'agi-receipts-only'"," && inputs.mode == 'agi-receipts-only'"),
+ watch.replace('await recoverSiteReceipts("agi",process.env);','await recoverSiteReceipts("eco",process.env);'),
+ watch.replace("inputs.mode == 'watch'","inputs.mode == 'agi-receipts-only'"),
+])assert.throws(()=>checkAgiReceiptsIsolation(mutated),assert.AssertionError,'AGI receipts isolation regression must fail');
 for(const mutated of [
  watch.replace("(github.ref == 'refs/heads/main' && inputs.mode == 'fleet-receipts-only')","inputs.mode == 'fleet-receipts-only'"),
  watch.replace(" && github.ref == 'refs/heads/main' && inputs.mode == 'fleet-receipts-only'"," && inputs.mode == 'fleet-receipts-only'"),

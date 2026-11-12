@@ -14,6 +14,7 @@ import {communityRoute} from '../community/server.mjs';
 import {memberRoute,memberPage,secureMemberPage} from '../../../../tools/member-studio/server.mjs';
 import {aggregateCache} from './aggregate-cache.js';
 import {videoGrowth} from './video-growth.js';
+import {THESIS_EVENTS,cleanThesisEvent,thesisGrowth} from './thesis-growth.mjs';
 // First-party analytics for agiscorecard.com. This runs ALONGSIDE GA4, never instead
 // of it (owner rule, 2026-08-05): two independent channels, so either one failing
 // leaves the other still recording. The beacon below wraps gtag() and forwards a copy
@@ -39,6 +40,7 @@ import {videoGrowth} from './video-growth.js';
 // identify a person or link one visit to another. /privacy says all of this in prose.
 
 const ALLOWED_EVENTS = new Set([
+  ...THESIS_EVENTS,
   'focus_entry', 'task_start', 'task_complete', 'result_copy', 'evidence_action', 'share_arrival',
   'discussion_click', 'discussion_home_view',
   'page_view', 'subscribe_click', 'tool_click', 'agi_test_click', 'index_click',
@@ -462,6 +464,9 @@ const fleetWrappedWorker = {
     if (url.pathname === '/api/video-growth' && request.method === 'GET') {
       return aggregateCache(request, ctx, 'video-growth', 3600, () => videoGrowth(env));
     }
+    if (url.pathname === '/api/thesis-growth' && request.method === 'GET') {
+      return aggregateCache(request, ctx, 'thesis-growth', 3600, () => thesisGrowth(env));
+    }
 
     // /api/crowd (2026-09-27): how readers answered the one question the site asks —
     // "when does AGI arrive?" — as five bucket counts. Shown only AFTER a reader answers
@@ -644,6 +649,11 @@ const fleetWrappedWorker = {
         return new Response(null, {status:204,headers:CORS});
       }
       const name = clean(body.n, 40);
+      if (name && name.startsWith('thesis_')) {
+        if (['__ci','__qa','__probe','ci','qa'].some(k=>qaQuery.has(k))) return new Response(null,{status:204,headers:CORS});
+        body=cleanThesisEvent(body);
+        if (!body) return new Response(null,{status:204,headers:CORS});
+      }
       // The assessment accepts fixed action labels only; no grades or free text.
       if (['focus_entry','task_start','task_complete','result_copy','evidence_action','share_arrival'].includes(name) &&
           !validFocusEvent(name, body.l, body.b)) return new Response(null, {status:204,headers:CORS});

@@ -1,3 +1,4 @@
+import {normalizeRules} from './thesis.mjs';
 export const PRODUCT='ai-infrastructure';
 export const METRICS=['revenue','income','ocf','capex','inventory'];
 export const TICKERS=['NVDA','AMD','AVGO','MRVL','MU','INTC','DELL','SMCI','HPE','ANET','VRT','ETN','MSFT','AMZN','GOOGL','META','ORCL','EQIX','DLR','SNPS'];
@@ -5,7 +6,7 @@ export const MODEL='@cf/meta/llama-3.3-70b-instruct-fp8-fast';
 export const usable=f=>f&&Number.isFinite(f.val)&&!f.error;
 export const baseline=c=>Object.fromEntries(METRICS.filter(k=>usable(c.facts[k])).map(k=>[k,{val:c.facts[k].val,end:c.facts[k].end,filed:c.facts[k].filed}]));
 export function changes(c,old){return METRICS.filter(k=>old?.[k]&&usable(c.facts[k])&&(old[k].val!==c.facts[k].val||old[k].end!==c.facts[k].end));}
-export function stale(c,now=Date.now()){return !!c.refresh_failed||now-Date.parse(c.checked_at)>72*3600e3;}
+export function stale(c,now=Date.now()){const at=Date.parse(c?.checked_at);return !!c?.refresh_failed||!Number.isFinite(at)||at>now+300000||now-at>72*3600e3;}
 const validDate=s=>/^\d{4}-\d{2}-\d{2}$/.test(s)&&!isNaN(Date.parse(s))&&new Date(s).toISOString().slice(0,10)===s;
 export function normalize(raw){
  if(raw?.version!==1||raw.product!==PRODUCT||!raw.values||typeof raw.values!=='object')throw Error('record');
@@ -20,6 +21,7 @@ export function normalize(raw){
    if(!METRICS.includes(k)||!Number.isFinite(f?.val)||!validDate(f.end)||!validDate(f.filed))throw Error('baseline');
    note.baseline[k]={val:f.val,end:f.end,filed:f.filed};
   }
+  if(n.rules!==undefined)note.rules=normalizeRules(n.rules);
   out.notes[t]=note;
  }
  return {version:1,product:PRODUCT,values:out};

@@ -39,7 +39,7 @@ test('new research product saves only with AGI entitlement; real membership hand
  const reset=mockChain(),sites=await setupSites();
  try{
   const api=async(site,b)=>{const r=await memberRoute(new Request((site==='agi'?origin:'https://ecoback.com')+'/api/member',{method:'POST',headers:{Origin:site==='agi'?origin:'https://ecoback.com','Content-Type':'application/json',Authorization:'Bearer '+KEY},body:JSON.stringify(b)}),sites[site].raw,site);return {status:r.status,data:await r.json()};};
-  const record={version:1,product:PRODUCT,values:{selected:'NVDA',watch:['NVDA'],notes:{NVDA:emptyNote()}}},save={action:'save',id:'a'.repeat(32),revision:0,name:'Research QA',data:record};
+  const record={version:1,product:PRODUCT,values:{selected:'NVDA',watch:['NVDA'],notes:{NVDA:{...emptyNote(),rules:[{metric:'capex_to_ocf',op:'gt',threshold:50,mode:'own'}]}}}},save={action:'save',id:'a'.repeat(32),revision:0,name:'Research QA',data:record};
   assert.equal((await api('agi',save)).status,401);
   assert.equal((await api('agi',{action:'checkout',nonce:'b'.repeat(32),source:PRODUCT,accept_terms:true,key_saved:true})).status,200);
   const order=sites.agi.db.sql.prepare('SELECT * FROM wb_orders').get();fixture.receipt=transfer(order);

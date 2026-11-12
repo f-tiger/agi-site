@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "attempted_at": "2026-09-30T08:30:20Z",
+  "attempted_at": "2026-11-12T15:32:24Z",
   "failed": [],
   "companies": [
     {
@@ -9,7 +9,8 @@
       "name": "NVIDIA",
       "entity": "NVIDIA CORP",
       "layer": "compute",
-      "checked_at": "2026-09-30T08:30:20Z",
+      "checked_at": "2026-11-12T15:32:24Z",
+      "annual_end": "2026-01-25",
       "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json",
       "facts": {
         "revenue": {
@@ -113,16 +114,16 @@
           "id": "NVDA:inventory:2026-01-25:0001045810-26-000021",
           "source": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/0001045810-26-000021-index.html"
         }
-      },
-      "annual_end": "2026-01-25"
+      }
     },
     {
       "ticker": "AMD",
       "cik": 2488,
       "name": "AMD",
-      "entity": "ADVANCED MICRO DEVICES INC",
+      "entity": "ADVANCED MICRO DEVICES, INC",
       "layer": "compute",
-      "checked_at": "2026-09-30T08:30:20Z",
+      "checked_at": "2026-11-12T15:32:24Z",
+      "annual_end": "2025-12-27",
       "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000002488.json",
       "facts": {
         "revenue": {
@@ -245,8 +246,7 @@
           "id": "AMD:inventory:2025-12-27:0000002488-26-000018",
           "source": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000018/0000002488-26-000018-index.html"
         }
-      },
-      "annual_end": "2025-12-27"
+      }
     },
     {
       "ticker": "AVGO",
@@ -254,7 +254,8 @@
       "name": "Broadcom",
       "entity": "Broadcom Inc.",
       "layer": "compute",
-      "checked_at": "2026-09-30T08:30:20Z",
+      "checked_at": "2026-11-12T15:32:24Z",
+      "annual_end": "2025-11-02",
       "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001730168.json",
       "facts": {
         "revenue": {
@@ -358,8 +359,7 @@
           "id": "AVGO:inventory:2025-11-02:0001730168-25-000121",
           "source": "https://www.sec.gov/Archives/edgar/data/1730168/000173016825000121/0001730168-25-000121-index.html"
         }
-      },
-      "annual_end": "2025-11-02"
+      }
     },
     {
       "ticker": "MRVL",
@@ -367,7 +367,8 @@
       "name": "Marvell",
       "entity": "MARVELL TECHNOLOGY, INC",
       "layer": "compute",
-      "checked_at": "2026-09-30T08:30:20Z",
+      "checked_at": "2026-11-12T15:32:24Z",
+      "annual_end": "2026-01-31",
       "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001835632.json",
       "facts": {
         "revenue": {
@@ -490,8 +491,7 @@
           "id": "MRVL:inventory:2026-01-31:0001835632-26-000011",
           "source": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000011/0001835632-26-000011-index.html"
         }
-      },
-      "annual_end": "2026-01-31"
+      }
     },
     {
       "ticker": "MU",
@@ -499,139 +499,140 @@
       "name": "Micron",
       "entity": "Micron Technology, Inc.",
       "layer": "memory",
-      "checked_at": "2026-09-30T08:30:20Z",
+      "checked_at": "2026-11-12T15:32:24Z",
+      "annual_end": "2026-09-03",
       "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000723125.json",
       "facts": {
         "revenue": {
-          "end": "2025-08-28",
-          "filed": "2025-10-03",
-          "val": 37378000000,
-          "accn": "0000723125-25-000028",
+          "end": "2026-09-03",
+          "filed": "2026-10-09",
+          "val": 133188000000,
+          "accn": "0000723125-26-000023",
           "form": "10-K",
-          "start": "2024-08-30",
-          "original_filed": "2025-10-03",
+          "start": "2025-08-29",
+          "original_filed": "2026-10-09",
           "revised": false,
           "previous": {
-            "start": "2023-09-01",
-            "end": "2024-08-29",
-            "val": 25111000000,
-            "filed": "2025-10-03",
-            "accn": "0000723125-25-000028"
+            "start": "2024-08-30",
+            "end": "2025-08-28",
+            "val": 37378000000,
+            "filed": "2026-10-09",
+            "accn": "0000723125-26-000023"
           },
-          "yoy": 48.85110111106685,
+          "yoy": 256.3272513243084,
           "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
           "unit": "USD",
           "basis": "US GAAP",
           "kind": "annual",
-          "id": "MU:revenue:2025-08-28:0000723125-25-000028",
-          "source": "https://www.sec.gov/Archives/edgar/data/723125/000072312525000028/0000723125-25-000028-index.html"
+          "id": "MU:revenue:2026-09-03:0000723125-26-000023",
+          "source": "https://www.sec.gov/Archives/edgar/data/723125/000072312526000023/0000723125-26-000023-index.html"
         },
         "income": {
-          "end": "2025-08-28",
-          "filed": "2025-10-03",
-          "val": 8539000000,
-          "accn": "0000723125-25-000028",
+          "end": "2026-09-03",
+          "filed": "2026-10-09",
+          "val": 84969000000,
+          "accn": "0000723125-26-000023",
           "form": "10-K",
-          "start": "2024-08-30",
-          "original_filed": "2025-10-03",
+          "start": "2025-08-29",
+          "original_filed": "2026-10-09",
           "revised": false,
           "previous": {
-            "start": "2023-09-01",
-            "end": "2024-08-29",
-            "val": 778000000,
-            "filed": "2025-10-03",
-            "accn": "0000723125-25-000028"
+            "start": "2024-08-30",
+            "end": "2025-08-28",
+            "val": 8539000000,
+            "filed": "2026-10-09",
+            "accn": "0000723125-26-000023"
           },
-          "yoy": 997.5578406169666,
+          "yoy": 895.0696802904322,
           "tag": "NetIncomeLoss",
           "unit": "USD",
           "basis": "US GAAP",
           "kind": "annual",
-          "id": "MU:income:2025-08-28:0000723125-25-000028",
-          "source": "https://www.sec.gov/Archives/edgar/data/723125/000072312525000028/0000723125-25-000028-index.html"
+          "id": "MU:income:2026-09-03:0000723125-26-000023",
+          "source": "https://www.sec.gov/Archives/edgar/data/723125/000072312526000023/0000723125-26-000023-index.html"
         },
         "ocf": {
-          "end": "2025-08-28",
-          "filed": "2025-10-03",
-          "val": 17525000000,
-          "accn": "0000723125-25-000028",
+          "end": "2026-09-03",
+          "filed": "2026-10-09",
+          "val": 89675000000,
+          "accn": "0000723125-26-000023",
           "form": "10-K",
-          "start": "2024-08-30",
-          "original_filed": "2025-10-03",
+          "start": "2025-08-29",
+          "original_filed": "2026-10-09",
           "revised": false,
           "previous": {
-            "start": "2023-09-01",
-            "end": "2024-08-29",
-            "val": 8507000000,
-            "filed": "2025-10-03",
-            "accn": "0000723125-25-000028"
+            "start": "2024-08-30",
+            "end": "2025-08-28",
+            "val": 17525000000,
+            "filed": "2026-10-09",
+            "accn": "0000723125-26-000023"
           },
-          "yoy": 106.00681791465854,
+          "yoy": 411.69757489301,
           "tag": "NetCashProvidedByUsedInOperatingActivities",
           "unit": "USD",
           "basis": "US GAAP",
           "kind": "annual",
-          "id": "MU:ocf:2025-08-28:0000723125-25-000028",
-          "source": "https://www.sec.gov/Archives/edgar/data/723125/000072312525000028/0000723125-25-000028-index.html"
+          "id": "MU:ocf:2026-09-03:0000723125-26-000023",
+          "source": "https://www.sec.gov/Archives/edgar/data/723125/000072312526000023/0000723125-26-000023-index.html"
         },
         "capex": {
-          "end": "2025-08-28",
-          "filed": "2025-10-03",
-          "val": 15857000000,
-          "accn": "0000723125-25-000028",
+          "end": "2026-09-03",
+          "filed": "2026-10-09",
+          "val": 30712000000,
+          "accn": "0000723125-26-000023",
           "form": "10-K",
-          "start": "2024-08-30",
-          "original_filed": "2025-10-03",
+          "start": "2025-08-29",
+          "original_filed": "2026-10-09",
           "revised": false,
           "previous": {
-            "start": "2023-09-01",
-            "end": "2024-08-29",
-            "val": 8386000000,
-            "filed": "2025-10-03",
-            "accn": "0000723125-25-000028"
+            "start": "2024-08-30",
+            "end": "2025-08-28",
+            "val": 15857000000,
+            "filed": "2026-10-09",
+            "accn": "0000723125-26-000023"
           },
-          "yoy": 89.08895778678749,
+          "yoy": 93.68102415337076,
           "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
           "unit": "USD",
           "basis": "US GAAP",
           "kind": "annual",
-          "id": "MU:capex:2025-08-28:0000723125-25-000028",
-          "source": "https://www.sec.gov/Archives/edgar/data/723125/000072312525000028/0000723125-25-000028-index.html"
+          "id": "MU:capex:2026-09-03:0000723125-26-000023",
+          "source": "https://www.sec.gov/Archives/edgar/data/723125/000072312526000023/0000723125-26-000023-index.html"
         },
         "inventory": {
-          "end": "2025-08-28",
-          "filed": "2025-10-03",
-          "val": 8355000000,
-          "accn": "0000723125-25-000028",
+          "end": "2026-09-03",
+          "filed": "2026-10-09",
+          "val": 10372000000,
+          "accn": "0000723125-26-000023",
           "form": "10-K",
           "start": null,
-          "original_filed": "2025-10-03",
+          "original_filed": "2026-10-09",
           "revised": false,
           "previous": {
             "start": null,
-            "end": "2024-08-29",
-            "val": 8875000000,
-            "filed": "2025-10-03",
-            "accn": "0000723125-25-000028"
+            "end": "2025-08-28",
+            "val": 8355000000,
+            "filed": "2026-10-09",
+            "accn": "0000723125-26-000023"
           },
-          "yoy": -5.85915492957747,
+          "yoy": 24.141232794733703,
           "tag": "InventoryNet",
           "unit": "USD",
           "basis": "US GAAP",
           "kind": "instant",
-          "id": "MU:inventory:2025-08-28:0000723125-25-000028",
-          "source": "https://www.sec.gov/Archives/edgar/data/723125/000072312525000028/0000723125-25-000028-index.html"
+          "id": "MU:inventory:2026-09-03:0000723125-26-000023",
+          "source": "https://www.sec.gov/Archives/edgar/data/723125/000072312526000023/0000723125-26-000023-index.html"
         }
-      },
-      "annual_end": "2025-08-28"
+      }
     },
     {
       "ticker": "INTC",
       "cik": 50863,
       "name": "Intel",
-      "entity": "INTEL CORP",
+      "entity": "Intel Corporation",
       "layer": "memory",
-      "checked_at": "2026-09-30T08:30:20Z",
+      "checked_at": "2026-11-12T15:32:24Z",
+      "annual_end": "2025-12-27",
       "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000050863.json",
       "facts": {
         "revenue": {
@@ -754,8 +755,7 @@
           "id": "INTC:inventory:2025-12-27:0000050863-26-000011",
           "source": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000011/0000050863-26-000011-index.html"
         }
-      },
-      "annual_end": "2025-12-27"
+      }
     },
     {
       "ticker": "DELL",
@@ -763,7 +763,8 @@
       "name": "Dell",
       "entity": "Dell Technologies Inc.",
       "layer": "systems",
-      "checked_at": "2026-09-30T08:30:20Z",
+      "checked_at": "2026-11-12T15:32:24Z",
+      "annual_end": "2026-01-30",
       "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001571996.json",
       "facts": {
         "revenue": {
@@ -886,8 +887,7 @@
           "id": "DELL:inventory:2026-01-30:0001571996-26-000008",
           "source": "https://www.sec.gov/Archives/edgar/data/1571996/000157199626000008/0001571996-26-000008-index.html"
         }
-      },
-      "annual_end": "2026-01-30"
+      }
     },
     {
       "ticker": "SMCI",
@@ -895,7 +895,8 @@
       "name": "Supermicro",
       "entity": "Super Micro Computer, Inc.",
       "layer": "systems",
-      "checked_at": "2026-09-30T08:30:20Z",
+      "checked_at": "2026-11-12T15:32:24Z",
+      "annual_end": "2026-06-30",
       "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001375365.json",
       "facts": {
         "revenue": {
@@ -1018,8 +1019,7 @@
           "id": "SMCI:inventory:2026-06-30:0001375365-26-000022",
           "source": "https://www.sec.gov/Archives/edgar/data/1375365/000137536526000022/0001375365-26-000022-index.html"
         }
-      },
-      "annual_end": "2026-06-30"
+      }
     },
     {
       "ticker": "HPE",
@@ -1027,7 +1027,8 @@
       "name": "HPE",
       "entity": "HEWLETT PACKARD ENTERPRISE COMPANY",
       "layer": "systems",
-      "checked_at": "2026-09-30T08:30:20Z",
+      "checked_at": "2026-11-12T15:32:24Z",
+      "annual_end": "2025-10-31",
       "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001645590.json",
       "facts": {
         "revenue": {
@@ -1127,8 +1128,7 @@
           "id": "HPE:inventory:2025-10-31:0001645590-25-000130",
           "source": "https://www.sec.gov/Archives/edgar/data/1645590/000164559025000130/0001645590-25-000130-index.html"
         }
-      },
-      "annual_end": "2025-10-31"
+      }
     },
     {
       "ticker": "ANET",
@@ -1136,7 +1136,8 @@
       "name": "Arista Networks",
       "entity": "Arista Networks, Inc.",
       "layer": "systems",
-      "checked_at": "2026-09-30T08:30:20Z",
+      "checked_at": "2026-11-12T15:32:24Z",
+      "annual_end": "2025-12-31",
       "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001596532.json",
       "facts": {
         "revenue": {
@@ -1240,8 +1241,7 @@
           "id": "ANET:inventory:2025-12-31:0001596532-26-000013",
           "source": "https://www.sec.gov/Archives/edgar/data/1596532/000159653226000013/0001596532-26-000013-index.html"
         }
-      },
-      "annual_end": "2025-12-31"
+      }
     },
     {
       "ticker": "VRT",
@@ -1249,7 +1249,8 @@
       "name": "Vertiv",
       "entity": "Vertiv Holdings Co",
       "layer": "power",
-      "checked_at": "2026-09-30T08:30:20Z",
+      "checked_at": "2026-11-12T15:32:24Z",
+      "annual_end": "2025-12-31",
       "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001674101.json",
       "facts": {
         "revenue": {
@@ -1372,8 +1373,7 @@
           "id": "VRT:inventory:2025-12-31:0001674101-26-000008",
           "source": "https://www.sec.gov/Archives/edgar/data/1674101/000167410126000008/0001674101-26-000008-index.html"
         }
-      },
-      "annual_end": "2025-12-31"
+      }
     },
     {
       "ticker": "ETN",
@@ -1381,7 +1381,8 @@
       "name": "Eaton",
       "entity": "EATON CORPORATION plc",
       "layer": "power",
-      "checked_at": "2026-09-30T08:30:20Z",
+      "checked_at": "2026-11-12T15:32:24Z",
+      "annual_end": "2025-12-31",
       "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001551182.json",
       "facts": {
         "revenue": {
@@ -1504,16 +1505,16 @@
           "id": "ETN:inventory:2025-12-31:0001551182-26-000007",
           "source": "https://www.sec.gov/Archives/edgar/data/1551182/000155118226000007/0001551182-26-000007-index.html"
         }
-      },
-      "annual_end": "2025-12-31"
+      }
     },
     {
       "ticker": "MSFT",
       "cik": 789019,
       "name": "Microsoft",
-      "entity": "MICROSOFT CORPORATION",
+      "entity": "MICROSOFT CORP",
       "layer": "cloud",
-      "checked_at": "2026-09-30T08:30:20Z",
+      "checked_at": "2026-11-12T15:32:24Z",
+      "annual_end": "2026-06-30",
       "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json",
       "facts": {
         "revenue": {
@@ -1636,16 +1637,16 @@
           "id": "MSFT:inventory:2026-06-30:0001193125-26-323660",
           "source": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/0001193125-26-323660-index.html"
         }
-      },
-      "annual_end": "2026-06-30"
+      }
     },
     {
       "ticker": "AMZN",
       "cik": 1018724,
       "name": "Amazon",
-      "entity": "AMAZON COM INC",
+      "entity": "AMAZON.COM, INC.",
       "layer": "cloud",
-      "checked_at": "2026-09-30T08:30:20Z",
+      "checked_at": "2026-11-12T15:32:24Z",
+      "annual_end": "2025-12-31",
       "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json",
       "facts": {
         "revenue": {
@@ -1749,8 +1750,7 @@
           "id": "AMZN:inventory:2025-12-31:0001018724-26-000004",
           "source": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/0001018724-26-000004-index.html"
         }
-      },
-      "annual_end": "2025-12-31"
+      }
     },
     {
       "ticker": "GOOGL",
@@ -1758,7 +1758,8 @@
       "name": "Alphabet",
       "entity": "Alphabet Inc.",
       "layer": "cloud",
-      "checked_at": "2026-09-30T08:30:20Z",
+      "checked_at": "2026-11-12T15:32:24Z",
+      "annual_end": "2025-12-31",
       "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json",
       "facts": {
         "revenue": {
@@ -1862,8 +1863,7 @@
           "end": "2022-12-31",
           "tag": "InventoryNet"
         }
-      },
-      "annual_end": "2025-12-31"
+      }
     },
     {
       "ticker": "META",
@@ -1871,7 +1871,8 @@
       "name": "Meta",
       "entity": "Meta Platforms, Inc.",
       "layer": "cloud",
-      "checked_at": "2026-09-30T08:30:20Z",
+      "checked_at": "2026-11-12T15:32:24Z",
+      "annual_end": "2025-12-31",
       "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001326801.json",
       "facts": {
         "revenue": {
@@ -1971,16 +1972,16 @@
           "source": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/0001628280-26-003942-index.html"
         },
         "inventory": null
-      },
-      "annual_end": "2025-12-31"
+      }
     },
     {
       "ticker": "ORCL",
       "cik": 1341439,
       "name": "Oracle",
-      "entity": "Oracle Corporation",
+      "entity": "ORACLE CORP",
       "layer": "cloud",
-      "checked_at": "2026-09-30T08:30:20Z",
+      "checked_at": "2026-11-12T15:32:24Z",
+      "annual_end": "2026-05-31",
       "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001341439.json",
       "facts": {
         "revenue": {
@@ -2084,16 +2085,16 @@
           "end": "2025-05-31",
           "tag": "InventoryNet"
         }
-      },
-      "annual_end": "2026-05-31"
+      }
     },
     {
       "ticker": "EQIX",
       "cik": 1101239,
       "name": "Equinix",
-      "entity": "EQUINIX, INC.",
+      "entity": "EQUINIX INC",
       "layer": "facilities",
-      "checked_at": "2026-09-30T08:30:20Z",
+      "checked_at": "2026-11-12T15:32:24Z",
+      "annual_end": "2025-12-31",
       "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001101239.json",
       "facts": {
         "revenue": {
@@ -2174,8 +2175,7 @@
           "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
         },
         "inventory": null
-      },
-      "annual_end": "2025-12-31"
+      }
     },
     {
       "ticker": "DLR",
@@ -2183,7 +2183,8 @@
       "name": "Digital Realty",
       "entity": "DIGITAL REALTY TRUST, INC.",
       "layer": "facilities",
-      "checked_at": "2026-09-30T08:30:20Z",
+      "checked_at": "2026-11-12T15:32:24Z",
+      "annual_end": "2025-12-31",
       "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001297996.json",
       "facts": {
         "revenue": {
@@ -2260,8 +2261,7 @@
         },
         "capex": null,
         "inventory": null
-      },
-      "annual_end": "2025-12-31"
+      }
     },
     {
       "ticker": "SNPS",
@@ -2269,7 +2269,8 @@
       "name": "Synopsys",
       "entity": "SYNOPSYS INC",
       "layer": "compute",
-      "checked_at": "2026-09-30T08:30:20Z",
+      "checked_at": "2026-11-12T15:32:24Z",
+      "annual_end": "2025-10-31",
       "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000883241.json",
       "facts": {
         "revenue": {
@@ -2392,9 +2393,8 @@
           "id": "SNPS:inventory:2025-10-31:0000883241-25-000028",
           "source": "https://www.sec.gov/Archives/edgar/data/883241/000088324125000028/0000883241-25-000028-index.html"
         }
-      },
-      "annual_end": "2025-10-31"
+      }
     }
   ],
-  "id": "0c430c2d4fcee5ecc6f0"
+  "id": "381a40265b07bd3d9c12"
 }
