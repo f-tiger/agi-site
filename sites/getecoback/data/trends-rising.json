@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-11",
+ "fetched": "2026-11-12",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -247,63 +247,45 @@
    "last_attempt_status": "ok"
   },
   "akku staubsauger": {
-   "rising": [
-    {
-     "q": "dripl akku staubsauger",
-     "v": 600
-    },
-    {
-     "q": "levoit akku staubsauger lvac 200 max",
-     "v": 250
-    },
-    {
-     "q": "akku staubsauger mit licht",
-     "v": 180
-    },
-    {
-     "q": "bissell staubsauger akku",
-     "v": 150
-    },
-    {
-     "q": "grundig akku staubsauger",
-     "v": 140
-    },
-    {
-     "q": "dreame v20 pro",
-     "v": 140
-    },
-    {
-     "q": "dreame r20",
-     "v": 130
-    },
-    {
-     "q": "shark powerdetect clean & empty",
-     "v": 100
-    },
-    {
-     "q": "sky scanner",
-     "v": 90
-    },
-    {
-     "q": "shark staubsauger",
-     "v": 70
-    }
+   "auto": [
+    "akku staubsauger",
+    "akku staubsauger test",
+    "akku staubsauger testsieger",
+    "akku staubsauger test 2026",
+    "akku staubsauger bosch",
+    "akku staubsauger mit wischfunktion",
+    "akku staubsauger stiftung warentest",
+    "akku staubsauger tierhaare",
+    "akku staubsauger dyson",
+    "akku staubsauger makita"
    ],
-   "source": "related-queries",
-   "fetched": "2026-11-11",
-   "polluted": false,
-   "last_attempt_at": "2026-11-11T12:02:25.529262+00:00",
-   "last_attempt_status": "ok"
+   "new_vocabulary": [
+    "akku staubsauger test",
+    "akku staubsauger testsieger",
+    "akku staubsauger test 2026",
+    "akku staubsauger bosch",
+    "akku staubsauger mit wischfunktion",
+    "akku staubsauger stiftung warentest",
+    "akku staubsauger tierhaare",
+    "akku staubsauger dyson",
+    "akku staubsauger makita"
+   ],
+   "rising": [],
+   "source": "autocomplete-vocabulary",
+   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
+   "last_attempt_at": "2026-11-12T13:06:35.983706+00:00",
+   "last_attempt_status": "failed",
+   "fetched": "2026-11-12"
   },
   "matratze": {
    "auto": [
-    "matratzen concord",
     "matratze",
+    "matratzen concord",
     "matratze 140x200",
     "matratze 90x200",
     "matratze 180x200",
-    "matratzen",
     "matratze 160x200",
+    "matratzen",
     "matratze 120x200",
     "matratzenschoner",
     "matratzen topper"
@@ -312,9 +294,9 @@
    "rising": [],
    "source": "autocomplete-vocabulary",
    "signal_limit": "vocabulary_only_not_growth_or_search_volume",
-   "last_attempt_at": "2026-11-04T12:25:36.832623+00:00",
+   "last_attempt_at": "2026-11-12T13:09:36.162825+00:00",
    "last_attempt_status": "failed",
-   "fetched": "2026-11-04"
+   "fetched": "2026-11-12"
   },
   "saugwischer": {
    "auto": [
