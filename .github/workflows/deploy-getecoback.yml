@@ -259,6 +259,7 @@ jobs:
 
       - name: Rebuild sitemap from filesystem (auto-sync new pages before deploy)
         run: |
+          python3 tools/test_dehum_catalog.py
           python3 tools/test_social_previews.py
           python3 tools/build_social_previews.py
           python3 tools/build_sitemap.py --selftest

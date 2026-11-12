@@ -120,6 +120,9 @@ def to_markdown(src_html, path_url, lang):
             evidence = re.sub(r'<summary>(.*?)</summary>', r'<p><strong>\1</strong></p>', evidence, flags=re.S)
             evidence = evidence.replace('</caption>', '</caption>\n')
             body += f'<h2>{heading}</h2>' + evidence
+    # Preserve the visible sourced catalog while excluding its merchant actions.
+    from dehum_catalog import evidence_html
+    body += evidence_html(src_html)
     laundry = re.search(r'<!--EB_LAUNDRY-->(.*?)<!--/EB_LAUNDRY-->', src_html, re.S)
     if laundry:
         protocol = re.search(r'<details\b[^>]*><summary>(?:Measure one load fairly: checklist|Eine Ladung fair messen: Checkliste)</summary>(.*?)</details>', laundry.group(1), re.S)

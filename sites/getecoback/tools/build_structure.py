@@ -1719,6 +1719,11 @@ def model_card(entry, en=False, url=None):
 
 
 def models_block(device, en=False, slug=None):
+    if not en and device == "dehum":
+        from dehum_catalog import block as catalog_block
+        reviewed = catalog_block(slug)
+        if reviewed:
+            return reviewed
     table = DEVICE_MODELS_EN if en else DEVICE_MODELS
     ctx = context_entries(slug, en)
     entries = ctx or table.get(device) or table["ac"]

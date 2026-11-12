@@ -111,7 +111,61 @@ Bedingung | Comfee MDDF-20DEN7 | MeacoDry Arete One 20L |
 Die genannten 20 L/Tag beziehen sich in den Modellunterlagen auf 30 °C / 80 % RH. Das ist keine Zusage für den Keller oder eine Wäscheladung. Für Comfee wurden in den verlinkten Unterlagen keine Werte für die beiden Tabellenbedingungen verifiziert. Anschlusswert oder Nennleistung dürfen diese Datenlücke nicht ersetzen.
 Modellgrenzen: Comfee MDDF-20DEN7 ist hier die Variante ohne WF. MeacoDry Arete One 20L ist weder Arete Two noch One 25L. Die UK-Modellseite bestätigt keine deutsche Händlerausstattung, Stecker, Lieferbarkeit oder Rückgabe. Netzspannung, Typenschild und Anleitung immer mit dem konkreten Angebot abgleichen. Beide Kandidaten ersetzen weder Ursachenklärung noch eine passende Lüftung.
 Rechenbeispiel: 216 W × 6 h ÷ 1.000 × 0,35 €/kWh = 0,45 €. Das ist weder eine gemessene Wäscheladung noch eine Einsparzusage.
-Quellen geprüft am 06.11.2026: [Meaco One 20L](https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-air-purifier) · [Comfee MDDF-20DEN7](https://www.feelcomfee.com/de/produkte/klimatisieren-heizen/mddf-20den7) · [Comfee-Datenblatt, Seite 2](https://www.feelcomfee.com/content/dam/comfee-aem/de/produkte/klimatisieren-heizen/mddf-20den7/comfee-MDDF-20DEN7-Datenblatt.pdf#page=2) · [Comfee-Bedienhinweise](https://www.feelcomfee.com/content/dam/comfee-aem/global/products/heating-cooling/dehumidifier-mddf-20den7/DF-Owners-Manual.pdf) · [Verbraucherzentrale](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426). Herstellerangaben, keine eigenen Messungen. Orientierung, keine Ferndiagnose.
+Quellen geprüft am 06.11.2026: [Meaco One 20L](https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-air-purifier) · [Comfee MDDF-20DEN7](https://www.feelcomfee.com/de/produkte/klimatisieren-heizen/mddf-20den7) · [Comfee-Datenblatt, Seite 2](https://www.feelcomfee.com/content/dam/comfee-aem/de/produkte/klimatisieren-heizen/mddf-20den7/comfee-MDDF-20DEN7-Datenblatt.pdf#page=2) · [Comfee-Bedienhinweise](https://www.feelcomfee.com/content/dam/comfee-aem/global/products/heating-cooling/dehumidifier-mddf-20den7/DF-Owners-Manual.pdf) · [Verbraucherzentrale](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426). Herstellerangaben, keine eigenen Messungen. Orientierung, keine Ferndiagnose.Sechs Luftentfeuchter: Unterschiede vor dem Kauf
+Du hast die Feuchte gemessen und brauchst ein Gerät? Vergleiche zuerst Bedienung, Ablauf und die genaue Modellvariante. Diese Auswahl erweitert die Möglichkeiten; sie ist keine Rangliste und kein eigener Gerätetest.
+**Deutschland:** Händlerlinks führen zu Amazon.de. Für Österreich und die Schweiz Lieferung, Stecker, Garantie und Gesamtkosten separat prüfen.
+Bei ungeklärter Feuchte zuerst [richtig messen](https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html); bei nassen Wänden oder Schimmel [die Ursache klären](https://getecoback.com/guide/luftentfeuchter-gegen-schimmel.html). Für kalte Räume [Betriebsgrenzen prüfen](https://getecoback.com/guide/luftentfeuchter-keller.html#kalter-keller); bei Wäsche [Kosten je Ladung vergleichen](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#laundry-check).
+Hersteller-/Anbieterquellen geprüft: 2026-11-12. Keine Live-Preise oder garantierte Lieferbarkeit. Unterschiedliche Nennkapazitäten, Messbedingungen oder Quellen ergeben keinen Effizienzsieger.
+Kaufgründe und genaue Varianten
+Modell | Prüfen, wenn dir dies wichtig ist | Variante |
+Bosch Dry 4000 | Drei Betriebsmodi statt vieler Einstellungen | D4000-EU · Artikel 7733703558 |
+MeacoDry Arete Two 12L | App-Steuerung und kleinerer Tank | Arete Two 12L · nicht One oder Two 20L |
+Stadler Form Lukas | Schwenkfunktion und Wäschemodus | Lukas weiss L-031E · nicht Lukas little oder Pro |
+Comfee MDDF-20DEN7 | Feuchteregelung mit Timer | MDDF-20DEN7 · ohne WF |
+MeacoDry Arete One 20L | Leistungsdaten unter konkreten Raumbedingungen | Arete One 20L · nicht Two oder One 25L |
+MeacoDry Arete One 25L | Weitere Kapazitätsvariante derselben Baureihe | Arete One 25L · nicht Two 25L |
+
+### Bosch Dry 4000
+**Drei Betriebsmodi statt vieler Einstellungen**
+D4000-EU · Artikel 7733703558
+Auto-, Nacht- und Wäschemodus; 2,5-Liter-Tank und kontinuierlicher Ablauf laut Bosch.
+**Vor dem Kauf:** Die beworbenen bis zu 16 L/Tag sind keine Zusage für deinen Raum. Vergleichbare Entzugs- und Stromwerte bei 10 °C / 60 % sind hier nicht belegt.
+Quelle: [Bosch Deutschland: D4000-EU](https://www.bosch-homecomfort.com/de/de/ocs/wohngebaeude/dry-4000-20990506-p/)
+
+### MeacoDry Arete Two 12L
+**App-Steuerung und kleinerer Tank**
+Arete Two 12L · nicht One oder Two 20L
+App, 2,5-Liter-Tank und kontinuierlicher Ablauf. Die verlinkte deutsche Anbieterseite nennt 5,40 L/Tag und 136 W bei 20 °C / 60 % RH.
+**Vor dem Kauf:** Am 12.11.2026 war dieses Modell dort als ausverkauft markiert. Das sagt nichts über andere Händler aus. Liefertermin, Stecker und genaue Modellvariante prüfen; keine Energie-Rangliste aus unterschiedlichen Quellen.
+Quelle: [Meaco.de: deutsche Anbieter- und Datenseite](https://www.meaco.de/produkt/luftentfeuchter-meaco-arete-two-12-l/)
+
+### Stadler Form Lukas
+**Schwenkfunktion und Wäschemodus**
+Lukas weiss L-031E · nicht Lukas little oder Pro
+4,2-Liter-Tank, vier Stufen, App und 100-cm-Drainageschlauch laut Hersteller. HEPA-Filter ist optional.
+**Vor dem Kauf:** Die Betriebsgrenze bis 5 °C belegt keine bestimmte Leistung im kalten Keller. Die genannten 260 W sind kein gemessener Verbrauch pro Wäscheladung.
+Quelle: [Stadler Form Deutschland: Lukas](https://www.stadlerform.com/de-de/luftentfeuchter/lukas-weiss-l-031e)
+
+### Comfee MDDF-20DEN7
+**Feuchteregelung mit Timer**
+MDDF-20DEN7 · ohne WF
+3-Liter-Tank, Feuchtigkeitskontrolle, Timer und Auto-Restart laut deutscher Produktseite.
+**Vor dem Kauf:** Nicht mit MDDF-20DEN7-WF verwechseln. Vergleichbare Entzugs- und Stromwerte bei 10 °C / 60 % sind hier nicht belegt.
+Quelle: [Comfee Deutschland: MDDF-20DEN7](https://www.feelcomfee.com/de/produkte/klimatisieren-heizen/mddf-20den7)
+
+### MeacoDry Arete One 20L
+**Leistungsdaten unter konkreten Raumbedingungen**
+Arete One 20L · nicht Two oder One 25L
+Die UK-Herstellerdaten nennen 8,5 L/Tag bei 20 °C / 60 % und 3,4 L/Tag bei 10 °C / 60 % RH.
+**Vor dem Kauf:** UK-Daten bestätigen weder deutschen Stecker noch Lieferumfang oder Verfügbarkeit. Die Nennkapazität ist keine Wäsche-Trocknungszeit.
+Quelle: [Meaco UK: Arete One 20L](https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-air-purifier)
+
+### MeacoDry Arete One 25L
+**Weitere Kapazitätsvariante derselben Baureihe**
+Arete One 25L · nicht Two 25L
+UK-Herstellerseite mit 4,8-Liter-Tank und Modellunterlagen zur 25L-Variante.
+**Vor dem Kauf:** 25L ist kein pauschaler Vorteil gegenüber 20L. Entzug bei denselben Raumbedingungen, Platzbedarf und konkretes deutsches Angebot abgleichen.
+Quelle: [Meaco UK: Arete One 25L](https://www.meaco.com/products/meacodry-arete-one-25l-dehumidifier-and-air-purifier)
 
 ## Passt das Gerät wirklich zu deinem Zuhause?
 Prüfe Hindernisse, Einrichtung und Pflege vor dem Kauf. Wähle eine Situation; genaue Angaben sind nur nötig, wenn sie die Entscheidung ändern.

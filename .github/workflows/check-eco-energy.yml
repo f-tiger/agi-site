@@ -138,6 +138,7 @@ jobs:
           python3 tools/check_expansion_queue.py
           python3 tools/build_search.py
           python3 tools/check_related.py
+          python3 tools/test_dehum_catalog.py
           python3 tools/test_social_previews.py
           python3 tools/build_social_previews.py
           python3 tools/build_sitemap.py
