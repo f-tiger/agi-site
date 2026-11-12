@@ -1,6 +1,6 @@
 # Product marketing context
 
-**Document version: v23** — **Last updated: 2026-11-12**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
+**Document version: v24** — **Last updated: 2026-11-12**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
 
 ## Business goal and proof
 
@@ -13,6 +13,12 @@ Owner's latest staged goals are USD 1,000, USD 5,000 and USD 10,000 in monthly r
 The owner continued AGI after BPJ, retaining the differentiated investment-tool objective. Extend the existing bilingual AI infrastructure workspace with explicit annual financial review conditions, source-linked arithmetic and saved review checkpoints. Free local use remains; the existing optional membership stores records across devices. This is a commercial hypothesis, not a proven subscription business or a personal alert service. Annual facts are company-wide, and daily source checks do not produce new daily earnings data.
 
 Read `docs/agi-thesis-watch-2026-11-12.md`. Preserve the existing homepage, investment modules, model quotas and portfolio rules. Missing or incompatible facts remain unknown. The live member readiness flag must be displayed and verified; the scoped receipt-recovery action uses existing chain verification without creating orders, transferring money or deleting records. Demo actions, own-rule checks, later rechecks, cloud intent, paid receipts and revenue are separate. Use existing owned channels, bounded publication and daily observation; no additional spend or unsolicited outreach.
+
+### Fleet revenue execution — owner steering 2026-11-12
+
+Use the newly installed startup and marketing Skills to improve existing revenue paths. Read `docs/fleet-revenue-execution-2026-11-12.md`. Check current payment readiness before interpreting missing orders: a closed checkout is an operational blocker, not rejected demand. The existing four-site receipts-only workflow restored readiness during this run, without an order, transfer, schedule or safety-threshold change; that status is time-bounded and must be rechecked.
+
+BPJ's house-placement entries retain the originating category into the existing sponsorship form and describe referred page-view events accurately. ECO remains the affiliate acquisition priority using its already authorized pilot; cloud-membership expansion requires real task/repeat/paid-delivery evidence. Keep current prices, free capabilities and separate site entitlements. Preserve the 2026-11-15 vendor-inquiry deadline and existing campaign observation windows. No new ad spend, accounts, subscriptions, unsolicited outreach or recurring job is authorized by this execution record. Private metrics stay outside the public repository; inaccessible Google data and current Amazon commissions remain unknown.
 
 ### BPJ AI table rewrite review — owner steering 2026-11-12
 
@@ -158,6 +164,7 @@ Distribution uses the relevant bilingual tools directory, shared navigation's To
 The owner explicitly authorized expansion and deployment after selecting broader household tasks, including pools, garden robots and 3D-printed household repair. First release: free German/English constraint checks, downloadable local checklists and a bounded original drawer-divider STL generator. Existing confirmed DE/US Amazon category links are shown only after relevant comparison outcomes, with disclosure; no model certification, paid files, new subscription or checkout. All household inputs stay local. Family fit and repeat-task value remain hypotheses; downloads, shopping intent and merchant revenue are measured separately. This supersedes the earlier 3D-printer-accessory rejection only for the newly requested household repair/template direction. See `sites/getecoback/docs/family-workshop-release-2026-10-29.md`.
 
 ## Changelog
+- v24 (2026-11-12): Applied startup/marketing Skills to existing fleet revenue paths, recorded time-bounded receipts-only checkout recovery and repaired BPJ category-specific sponsorship handoff; preserves current offers, campaign windows, concurrent AGI thesis work and private reporting boundaries.
 - v22 (2026-11-12): Recorded the owner's research-first DACH category request and a sourced, bounded ECO expansion recommendation; preserves the authorized marketing pilot and separates sales, adoption and seasonality evidence.
 - v21 (2026-11-07): Added the owner-confirmed ECO daily visitor goal, precise user-count convention, acquisition-first scope and source-aligned preview/next-step repair; preserves existing revenue and fleet directions.
 - v19 (2026-11-06): Added the owner-authorized German affiliate comparison upgrade: existing decision paths, uniform model evidence, accurate merchant destinations and privacy-aware measurement; preserves other fleet directions.

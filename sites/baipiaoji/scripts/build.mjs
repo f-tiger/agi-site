@@ -2187,14 +2187,24 @@ const adSlotOf = (cat, toolSlug) => {
       // 空位自售:没有广告时这块位置就是库存,标出真实触达数与投放入口。数字来自 CI 每日落库的 reach.json;
       // 没有数字就只放入口。这一行是站方自己的话,不是广告,所以标「广告位」而非「广告」。
       var R=${JSON.stringify(R)}, P=${page ? 'true' : 'false'};
-      el.innerHTML='<p class="ad-slot-h">${zh ? '广告位' : 'Ad slot'}</p><a class="ad-house" href="${BASE}/advertise.html">'+
+      var destination=new URL(${JSON.stringify(BASE + '/advertise')});
+      if(c)destination.searchParams.set('cat',c);
+      var qa=['qa','__qa','ci','__ci','__probe'].some(function(k){return new URLSearchParams(location.search).has(k)});
+      if(qa)destination.searchParams.set('__ci','1');
+      destination.hash='adForm';
+      el.innerHTML='<p class="ad-slot-h">${zh ? '广告位' : 'Ad slot'}</p><a class="ad-house" href="'+destination.href+'">'+
         ${zh
-          ? `(P?'这一页的广告位空着，它在过去 ${REACH ? REACH.window_days : 28} 天有 '+R+' 次带来源真人浏览'
-               :'这个板块的广告位空着'+(R==null?'':'，过去 ${REACH ? REACH.window_days : 28} 天有 '+R+' 次带来源真人浏览'))+'。自助投放，付款后自动排期 →'`
-          : `(P?'The ad slot on this page is open — it had '+R+' referred human views in the past ${REACH ? REACH.window_days : 28} days'
-               :'This section has an open ad slot'+(R==null?'':' with '+R+' referred human views in the past ${REACH ? REACH.window_days : 28} days'))+'. Self-serve, scheduled after payment →'`}+'</a>';
+          ? `(P?'这一工具页过去 ${REACH ? REACH.window_days : 28} 天记录了 '+R+' 次带来源页面浏览事件'
+               :'此分类设有独立赞助位'+(R==null?'':'；分类页面过去 ${REACH ? REACH.window_days : 28} 天记录了 '+R+' 次带来源页面浏览事件'))+'。浏览事件不代表独立用户或未来曝光。查看本分类的价格与开售状态 →'`
+          : `(P?'This tool page recorded '+R+' referred page-view events in the past ${REACH ? REACH.window_days : 28} days'
+               :'This category has a separate sponsored placement'+(R==null?'':'; the category page recorded '+R+' referred page-view events in the past ${REACH ? REACH.window_days : 28} days'))+'. Events are not unique visitors or promised impressions. Review this category, price and availability →'`}+'</a>';
+      var note=document.createElement('p');note.className='sub-note';
+      note.textContent=${JSON.stringify(zh
+        ? '分类赞助位展示在该分类及其工具页，与免费收录、目录排序和编辑判断分开。' + (REACH ? ' 历史数据截至 ' + String(REACH.until || REACH.generated) + '。来源字段不验证真人身份。' : ' 当前没有可引用的历史触达快照。')
+        : 'A category placement runs on its category and tool pages, separately from free inclusion, directory ranking and editorial judgments.' + (REACH ? ' Historical snapshot through ' + String(REACH.until || REACH.generated) + '. A referrer does not verify a human visitor.' : ' No historical reach snapshot is available.'))};
+      el.append(note);
       el.hidden=false;
-      el.querySelector('.ad-house').addEventListener('click',function(){if(window.bpjEv)bpjEv('ad','/ad/house/'+(tl?'tool/'+tl:(c||'all')))});
+      el.querySelector('.ad-house').addEventListener('click',function(){if(!qa&&window.bpjEv)bpjEv('ad','/ad/house/'+(tl?'tool/'+tl:(c||'all')))});
       return;
     }
     var H='<p class="ad-slot-h">${zh ? '广告' : 'Ad'}</p>';
