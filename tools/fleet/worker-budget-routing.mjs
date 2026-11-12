@@ -33,6 +33,22 @@ export function assetFiles(site,assetRoot){
  return paths;
 }
 const headerRule=(path,headers)=>path+'\n'+Object.entries(headers).map(([key,value])=>'  '+key+': '+value).join('\n')+'\n';
+export function ecoCacheRules(files){
+ // These directories already bypass the Worker, and assetFiles() validates
+ // every contained file. Group only within those reviewed prefixes: a new
+ // campaign image must not consume another of Cloudflare's 100 header rules.
+ // No root wildcard, HTML/API/private scope, or cache-policy change is added.
+ const paths=policy.sites.getecoback.paths,rules=new Map();
+ for(const file of files){
+  const ext=extname(file);assert(safeExtensions.has(ext),'Unreviewed ECO cache asset '+file);
+  const directory=paths.find(p=>p.endsWith('/*')&&file.startsWith(p.slice(0,-1)));
+  assert(directory||paths.includes(file),'ECO cache path outside reviewed assets '+file);
+  const target=directory?directory.slice(0,-1)+'*'+ext:file;
+  const cache=/\.(svg|ico|png|jpe?g|webp|gif|woff2?)$/.test(file)?'public, max-age=31536000, immutable':['.js','.css'].includes(ext)?'public, max-age=86400':'public, max-age=3600';
+  rules.set(target,cache);
+ }
+ return [...rules].sort(([a],[b])=>a.localeCompare(b));
+}
 export function headerBlock(site,files){
  let out='# FLEET-WORKER-STATIC-HEADERS\n';const rules=new Map();
  const add=(path,headers)=>rules.set(path,{...(rules.get(path)||{}),...headers});
@@ -42,7 +58,7 @@ export function headerBlock(site,files){
  // Never use /* for this marker: ASSETS.fetch also serves Worker-owned HTML.
  for(const path of [...analyticsBypassFor(site),...policy.sites[site].paths])add(path,{'X-Fleet-Delivery':'static-worker-v1'});
  if(site==='agiscorecard')for(const path of ['/share/*','/badge/*'])add(path,{'Cache-Control':'public, max-age=604800'});
- if(site==='getecoback')for(const path of files){const ext=extname(path),cache=/\.(svg|ico|png|jpe?g|webp|gif|woff2?)$/.test(path)?'public, max-age=31536000, immutable':['.js','.css'].includes(ext)?'public, max-age=86400':'public, max-age=3600';add(path,{'Cache-Control':cache});}
+ if(site==='getecoback')for(const [path,cache] of ecoCacheRules(files))add(path,{'Cache-Control':cache});
  if(site==='buysomething')for(const path of files)add(path,{'Cache-Control':'public, max-age=86400'});
  if(site==='agent-delivery-lab')for(const path of files)add(path,labHeaders);
  for(const [path,headers] of rules)out+=headerRule(path,headers);
