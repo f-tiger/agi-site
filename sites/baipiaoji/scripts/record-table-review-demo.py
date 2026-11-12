@@ -1,9 +1,9 @@
 from pathlib import Path
 from playwright.sync_api import sync_playwright
-import mimetypes,time,json
+import mimetypes,time,json,os
 root=Path(__file__).resolve().parents[1]/'dist'; out=Path('/tmp/bpj-table-review-video');out.mkdir(exist_ok=True)
 with sync_playwright() as p:
- b=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox','--disable-dev-shm-usage'])
+ b=p.chromium.launch(executable_path=os.environ.get('WORKBENCH_CHROMIUM'),headless=True,args=['--no-sandbox','--disable-dev-shm-usage'])
  c=b.new_context(viewport={'width':720,'height':1280},record_video_dir=str(out),record_video_size={'width':720,'height':1280},accept_downloads=True)
  def route(r):
   from urllib.parse import urlparse,unquote
