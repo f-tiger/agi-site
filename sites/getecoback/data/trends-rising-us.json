@@ -1,52 +1,60 @@
 {
- "fetched": "2026-11-11",
+ "fetched": "2026-11-12",
  "geo": "US",
  "seeds": {
   "portable air conditioner": {
+   "auto": [
+    "portable air conditioner",
+    "portable air conditioner without hose",
+    "portable air conditioner nearby",
+    "portable air conditioner for car",
+    "portable air conditioner near me",
+    "portable air conditioner without window access",
+    "portable air conditioner for bedroom",
+    "portable air conditioner pick up today",
+    "portable air conditioner home depot",
+    "portable air conditioner costco"
+   ],
    "rising": [
     {
+     "q": "portable air conditioner without hose",
+     "v": "new"
+    },
+    {
+     "q": "portable air conditioner nearby",
+     "v": "new"
+    },
+    {
+     "q": "portable air conditioner for car",
+     "v": "new"
+    },
+    {
+     "q": "portable air conditioner near me",
+     "v": "new"
+    },
+    {
+     "q": "portable air conditioner without window access",
+     "v": "new"
+    },
+    {
+     "q": "portable air conditioner for bedroom",
+     "v": "new"
+    },
+    {
      "q": "portable air conditioner pick up today",
-     "v": 300
+     "v": "new"
     },
     {
-     "q": "hisense portable air conditioner e5",
-     "v": 300
+     "q": "portable air conditioner home depot",
+     "v": "new"
     },
     {
-     "q": "cybertake s2 pro portable air conditioner",
-     "v": 250
-    },
-    {
-     "q": "hisense portable air conditioner e5 code",
-     "v": 250
-    },
-    {
-     "q": "aircon portable air conditioner",
-     "v": 200
-    },
-    {
-     "q": "shop deals on portable air conditioner",
-     "v": 170
-    },
-    {
-     "q": "serene life portable air conditioner",
-     "v": 160
-    },
-    {
-     "q": "how to drain midea portable air conditioner",
-     "v": 160
-    },
-    {
-     "q": "portable air conditioner in stock near me",
-     "v": 160
-    },
-    {
-     "q": "shop deals on portable air conditioner for room",
-     "v": 160
+     "q": "portable air conditioner costco",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-11-01"
+   "source": "autocomplete-diff",
+   "fetched": "2026-11-12"
   },
   "dehumidifier": {
    "auto": [
