@@ -155,6 +155,9 @@ jobs:
           node sites/agiscorecard/tools/roadmap/build.mjs
           node --test sites/agiscorecard/tools/roadmap/test.mjs
 
+      - name: Build annual financial thesis workspace
+        run: python3 sites/agiscorecard/tools/infrastructure/build.py
+
       - name: Regenerate feed and agent-readable mirrors from current pages
         working-directory: sites/agiscorecard
         run: |
@@ -187,7 +190,7 @@ jobs:
         run: |
           python3 sites/agiscorecard/tools/infrastructure/refresh.py
           python3 sites/agiscorecard/tools/infrastructure/test_data.py
-          node --test sites/agiscorecard/tools/infrastructure/test.mjs
+          node --test sites/agiscorecard/tools/infrastructure/test.mjs sites/agiscorecard/tools/infrastructure/thesis.test.mjs
       - name: Validate Relay stories, permissions and cost caps
         run: node --test sites/agiscorecard/tools/create/test.mjs sites/agiscorecard/tools/create/ai-check-test.mjs
 
