@@ -3,19 +3,19 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 24,
+    "n": 25,
     "q": "tool:portfolio_returns"
    },
    {
-    "n": 10,
+    "n": 11,
     "q": "tool:verdicts"
    },
    {
-    "n": 10,
+    "n": 11,
     "q": "tool:thesis_tracker"
    },
    {
-    "n": 10,
+    "n": 9,
     "q": "tool:sunwatch_ledger"
    },
    {
@@ -23,7 +23,7 @@
     "q": "tool:invest_positions"
    },
    {
-    "n": 6,
+    "n": 5,
     "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
    },
    {
@@ -35,39 +35,39 @@
     "q": "tool:agi_consensus rokmcp-collector/0.2 (+h"
    },
    {
-    "n": 1,
-    "q": "tool:agi_consensus mcp-discovery-measuremen"
+    "n": 2,
+    "q": "python"
    },
    {
-    "n": 1,
-    "q": "personal loan"
+    "n": 2,
+    "q": "[object object]"
    }
   ]
  },
- "fetched": "2026-11-11",
+ "fetched": "2026-11-12",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
-  "/agents": {
-   "n7": 104,
-   "p7": 21
-  },
   "/ai-infrastructure": {
-   "n7": 138,
-   "p7": 62
+   "n7": 145,
+   "p7": 63
   },
-  "/changelog": {
-   "n7": 74,
-   "p7": 37
+  "/earn": {
+   "n7": 161,
+   "p7": 80
   },
   "/portfolio-tracker": {
-   "n7": 127,
+   "n7": 133,
    "p7": 61
   },
+  "/search": {
+   "n7": 436,
+   "p7": 207
+  },
   "/tianya": {
-   "n7": 123,
-   "p7": 45
+   "n7": 134,
+   "p7": 55
   }
  },
  "site": "agiscorecard",

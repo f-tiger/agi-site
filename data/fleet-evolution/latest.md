@@ -1,4 +1,4 @@
-# Fleet evolution report — 2026-11-11
+# Fleet evolution report — 2026-11-12
 
 Deterministic, aggregate-only report. Missing data remains unknown; no editorial text, payments or membership rights are changed by this job.
 
@@ -6,7 +6,7 @@ Deterministic, aggregate-only report. Missing data remains unknown; no editorial
 
 - Sites: 14 (healthy probes: 31)
 - Membership ready: 0 · paid members: 0 · active members: 0
-- Opportunity candidates: 7 · stale inputs: 0
+- Opportunity candidates: 8 · stale inputs: 0
 
 ## Priority actions
 
@@ -17,23 +17,22 @@ Deterministic, aggregate-only report. Missing data remains unknown; no editorial
 | 92 | getecoback | membership_health | alert | public_ok=True; ready=False |
 | 92 | thedollscout | membership_health | alert | public_ok=True; ready=False |
 | 55 | agiscorecard | content_gap | queue | count=1; query=ai stocks crashing; value=1 |
-| 55 | buysomething | content_gap | queue | count=1; query=costco; value=250 |
-| 55 | getecoback | content_gap | queue | count=11; query=diesel infrarotheizung; value=74650 |
-| 55 | thedollscout | content_gap | queue | count=4; query=shu uemura sonny angel; value=23850 |
-| 52 | agiscorecard | improve_hot_page | queue | page=/ai-infrastructure; n7=138; p7=62 |
-| 52 | getecoback | improve_hot_page | queue | page=/; n7=10; p7=4 |
-| 48 | goldrush | ai_discovery | queue | human_pv_28d=643; ai_ref_28d=0 |
-| 48 | thedollscout | ai_discovery | queue | human_pv_28d=803; ai_ref_28d=0 |
+| 55 | getecoback | content_gap | queue | count=18; query=diesel infrarotheizung; value=74650 |
+| 55 | thedollscout | content_gap | queue | count=13; query=labubu cat mode; value=73950 |
+| 52 | agiscorecard | improve_hot_page | queue | page=/search; n7=436; p7=207 |
+| 52 | getecoback | improve_hot_page | queue | page=/; n7=8; p7=6 |
+| 48 | goldrush | ai_discovery | queue | human_pv_28d=649; ai_ref_28d=0 |
+| 48 | thedollscout | ai_discovery | queue | human_pv_28d=808; ai_ref_28d=0 |
 
 ## Input freshness
 
 | Input | Date | Age (days) |
 |---|---|---:|
-| membership | 2026-11-11T09:49:02.016Z | 0 |
-| health | 2026-11-10T15:58:05Z | 1 |
-| ai_referrals | 2026-11-10T15:59:17Z | 1 |
-| opportunities | 2026-11-10 | 1 |
-| autopilot_receipt | 2026-11-11 | 0 |
+| membership | 2026-11-12T10:13:55.511Z | 0 |
+| health | 2026-11-11T15:44:02Z | 1 |
+| ai_referrals | 2026-11-11T15:44:29Z | 1 |
+| opportunities | 2026-11-11 | 1 |
+| autopilot_receipt | 2026-11-12 | 0 |
 
 ## Autonomous boundary
 
@@ -60,6 +59,6 @@ Deterministic, aggregate-only report. Missing data remains unknown; no editorial
   - 下一步: 核验官方试用、退款和取消规则，与现有 BPJ 数据字段比对后决定是否补齐。
   - 门槛/反证: status is done；可能只需要链接官方帮助页，不需要新工具。
 - **agiscorecard · 通用 AI 客户报告生成暂不扩建** [hold]
-  - ID: agency-reporting-generic-20261031；原帖与日期门通过来源数: 2；复盘: 2026-11-14
+  - ID: agency-reporting-generic-20261031；原帖与日期门通过来源数: 1；复盘: 2026-11-14
   - 下一步: 仅保存反证；不建立新的代理商报告站或改变现有导师定位。
   - 门槛/反证: status is rejected；Swydo、AgencyAnalytics 与 Whatagraph 已覆盖通用 AI 报告；存在满意用户反证。

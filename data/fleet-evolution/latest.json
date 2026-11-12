@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "as_of": "2026-11-11",
+  "as_of": "2026-11-12",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
@@ -8,15 +8,15 @@
     "membership_ready": 0,
     "paid_members": 0,
     "active_members": 0,
-    "opportunities": 7,
+    "opportunities": 8,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-11-11T09:49:02.016Z",
-    "health": "2026-11-10T15:58:05Z",
-    "ai_referrals": "2026-11-10T15:59:17Z",
-    "opportunities": "2026-11-10",
-    "autopilot_receipt": "2026-11-11"
+    "membership": "2026-11-12T10:13:55.511Z",
+    "health": "2026-11-11T15:44:02Z",
+    "ai_referrals": "2026-11-11T15:44:29Z",
+    "opportunities": "2026-11-11",
+    "autopilot_receipt": "2026-11-12"
   },
   "input_ages_days": {
     "membership": 0,
@@ -28,7 +28,7 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-11-11T09:49:02.016Z",
+    "generated": "2026-11-12T10:13:55.511Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
     "ok": false,
@@ -131,7 +131,7 @@
       "theme": "openclaw saas",
       "site": null,
       "state": "scout",
-      "score": 3.03,
+      "score": 3.08,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -146,6 +146,15 @@
       "supply": 0
     },
     {
+      "theme": "why does reddit want me to use the ios app on my desktop",
+      "site": null,
+      "state": "scout",
+      "score": 2.25,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
       "theme": "what software provides a markup language for wireframing",
       "site": null,
       "state": "scout",
@@ -155,10 +164,10 @@
       "supply": 0
     },
     {
-      "theme": "what do you call holy grail mania risk",
+      "theme": "why doesn t ramp ai index include openrouter or other aggregators",
       "site": null,
       "state": "scout",
-      "score": 2.14,
+      "score": 2.13,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -293,7 +302,7 @@
         "重新投入需同类买家重复缺口、明确现有替代失效与可交付结果。"
       ],
       "priority": 30,
-      "verified_sources": 2,
+      "verified_sources": 1,
       "source_refs": [
         "AGENCY-R1",
         "AGENCY-R2"
@@ -364,24 +373,12 @@
       "mode": "queue"
     },
     {
-      "site": "buysomething",
-      "kind": "content_gap",
-      "priority": 55,
-      "reason": "rising demand has no matching page; editorial judgement is required",
-      "evidence": {
-        "count": 1,
-        "query": "costco",
-        "value": 250
-      },
-      "mode": "queue"
-    },
-    {
       "site": "getecoback",
       "kind": "content_gap",
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 11,
+        "count": 18,
         "query": "diesel infrarotheizung",
         "value": 74650
       },
@@ -393,9 +390,9 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 4,
-        "query": "shu uemura sonny angel",
-        "value": 23850
+        "count": 13,
+        "query": "labubu cat mode",
+        "value": 73950
       },
       "mode": "queue"
     },
@@ -405,9 +402,9 @@
       "priority": 52,
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
-        "page": "/ai-infrastructure",
-        "n7": 138,
-        "p7": 62
+        "page": "/search",
+        "n7": 436,
+        "p7": 207
       },
       "mode": "queue"
     },
@@ -418,8 +415,8 @@
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/",
-        "n7": 10,
-        "p7": 4
+        "n7": 8,
+        "p7": 6
       },
       "mode": "queue"
     },
@@ -429,7 +426,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 643,
+        "human_pv_28d": 649,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -440,7 +437,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 803,
+        "human_pv_28d": 808,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -465,7 +462,7 @@
     },
     "buysomething": {
       "path": "sites/buysomething/data/fleet-evolution.json",
-      "action_count": 1
+      "action_count": 0
     },
     "goldrush": {
       "path": "sites/goldrush/data/fleet-evolution.json",

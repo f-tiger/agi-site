@@ -280,11 +280,11 @@
    "kind": "value",
    "match": 0.18,
    "page": "guide/bei-hitze-schlafen.html",
-   "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
+   "q": "siemens eq.6 plus s700 te657m03de kaffeevollautomat",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-11-10",
-   "v": 15450
+   "stand": "2026-11-11",
+   "v": 12100
   },
   {
    "kind": "value",
@@ -293,18 +293,18 @@
    "q": "philips series 5500 kaffeevollautomat ep5547/90",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-11-10",
-   "v": 10450
+   "stand": "2026-11-11",
+   "v": 10550
   },
   {
    "kind": "value",
-   "match": 0.0,
-   "page": null,
-   "q": "philips ep2230/10 series 2200 kaffeevollautomat",
+   "match": 0.18,
+   "page": "guide/bei-hitze-schlafen.html",
+   "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-11-10",
-   "v": 8700
+   "stand": "2026-11-11",
+   "v": 9750
   },
   {
    "kind": "value",
@@ -313,8 +313,18 @@
    "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-11-10",
-   "v": 7700
+   "stand": "2026-11-11",
+   "v": 7650
+  },
+  {
+   "kind": "value",
+   "match": 0.0,
+   "page": null,
+   "q": "philips ep2230/10 series 2200 kaffeevollautomat",
+   "seed": "kaffeevollautomat",
+   "source": "related-queries",
+   "stand": "2026-11-11",
+   "v": 7350
   },
   {
    "kind": "value",
@@ -323,8 +333,58 @@
    "q": "de'longhi kaffeevollautomat ecam 21.118.b",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-11-10",
-   "v": 6300
+   "stand": "2026-11-11",
+   "v": 6000
+  },
+  {
+   "kind": "value",
+   "match": 0.333,
+   "page": "guide/akku-heizluefter.html",
+   "q": "dripl akku staubsauger",
+   "seed": "akku staubsauger",
+   "source": "related-queries",
+   "stand": "2026-11-11",
+   "v": 600
+  },
+  {
+   "kind": "value",
+   "match": 0.258,
+   "page": "kategorie/heizen.html",
+   "q": "levoit akku staubsauger lvac 200 max",
+   "seed": "akku staubsauger",
+   "source": "related-queries",
+   "stand": "2026-11-11",
+   "v": 250
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/akku-heizluefter.html",
+   "q": "akku staubsauger mit licht",
+   "seed": "akku staubsauger",
+   "source": "related-queries",
+   "stand": "2026-11-11",
+   "v": 180
+  },
+  {
+   "kind": "value",
+   "match": 0.333,
+   "page": "guide/akku-heizluefter.html",
+   "q": "bissell staubsauger akku",
+   "seed": "akku staubsauger",
+   "source": "related-queries",
+   "stand": "2026-11-11",
+   "v": 150
+  },
+  {
+   "kind": "value",
+   "match": 0.333,
+   "page": "guide/akku-heizluefter.html",
+   "q": "grundig akku staubsauger",
+   "seed": "akku staubsauger",
+   "source": "related-queries",
+   "stand": "2026-11-11",
+   "v": 140
   },
   {
    "kind": "value",
@@ -333,8 +393,18 @@
    "q": "de'longhi kaffeevollautomat",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-11-10",
-   "v": 140
+   "stand": "2026-11-11",
+   "v": 130
+  },
+  {
+   "kind": "value",
+   "match": 0.375,
+   "page": "guide/heizluefter-schaltet-sich-aus.html",
+   "q": "shark staubsauger",
+   "seed": "akku staubsauger",
+   "source": "related-queries",
+   "stand": "2026-11-11",
+   "v": 70
   },
   {
    "kind": "value",
@@ -343,33 +413,33 @@
    "q": "philips kaffeevollautomat lattego",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-11-10",
-   "v": 60
+   "stand": "2026-11-11",
+   "v": 50
   }
  ],
- "generated": "2026-11-11",
+ "generated": "2026-11-12",
  "geo": "DE",
- "heat_source": "measured 2026-11-11 (16 pages); no notes",
+ "heat_source": "measured 2026-11-12 (15 pages); no notes",
  "hot_pages": [
   {
-   "n7": 10,
-   "p7": 4,
+   "n7": 8,
+   "p7": 6,
    "page": "/"
   },
   {
    "n7": 5,
-   "p7": 1,
+   "p7": 0,
+   "page": "/guide/fensterabdichtung-selber-bauen.html"
+  },
+  {
+   "n7": 5,
+   "p7": 0,
    "page": "/guide/klimaanlage-wann-kaufen.html"
   },
   {
    "n7": 5,
    "p7": 3,
    "page": "/guide/luftentfeuchter-ratgeber.html"
-  },
-  {
-   "n7": 4,
-   "p7": 0,
-   "page": "/guide/klimaanlage-wohnmobil.html"
   },
   {
    "n7": 4,
@@ -384,17 +454,12 @@
   {
    "n7": 3,
    "p7": 0,
-   "page": "/guide/fensterabdichtung-selber-bauen.html"
-  },
-  {
-   "n7": 3,
-   "p7": 0,
    "page": "/guide/klimaanlage-50-qm.html"
   },
   {
-   "n7": 2,
-   "p7": 3,
-   "page": "/en/guide/portable-ac-leaking-water.html"
+   "n7": 3,
+   "p7": 1,
+   "page": "/waeschetrockner-oder-luftentfeuchter.html"
   },
   {
    "n7": 2,
@@ -408,11 +473,6 @@
   },
   {
    "n7": 2,
-   "p7": 2,
-   "page": "/guide/heizluefter-stromverbrauch.html"
-  },
-  {
-   "n7": 2,
    "p7": 1,
    "page": "/guide/klimaanlage-30-qm.html"
   },
@@ -423,8 +483,18 @@
   },
   {
    "n7": 2,
+   "p7": 2,
+   "page": "/guide/klimaanlage-wohnmobil.html"
+  },
+  {
+   "n7": 2,
    "p7": 0,
    "page": "/guide/meacodry-arete-one-test.html"
+  },
+  {
+   "n7": 2,
+   "p7": 3,
+   "page": "/guide/wohnmobil-feuchtigkeit-winter.html"
   }
  ],
  "how_to_read": "Research candidates only; token matching is not an editorial or market decision. Relative growth is not search volume, and autocomplete is vocabulary evidence only. Underserved requires an observed zero in the matching measurement window; missing page measurements are unknown, and zero arrivals do not establish a title or internal-link cause. First-party evidence contains only aggregate zero-hit record counts, never raw search terms. Freshness, country, independent evidence and the reviewed page catalog must pass tools/eco_evolution.py before prioritising an existing page. This research queue does not publish. The separate getecoback scheduled deployment runs tools/auto_content.py to discover official product specifications, validate evidence and publish at most one substantive guide change per UTC day.",
@@ -434,6 +504,10 @@
   "avreno",
   "meacodry arete two 25l",
   "meacodry arete two 12l",
+  "dreame v20 pro",
+  "dreame r20",
+  "shark powerdetect clean & empty",
+  "sky scanner",
   "philips lattego"
  ],
  "site": "getecoback",
