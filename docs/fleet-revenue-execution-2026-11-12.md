@@ -91,3 +91,13 @@ and the standard deployment/live gates. No new public route, tracking property,
 or schema claim is added. Existing changed-page IndexNow release checks and
 scheduled indexing work remain in place; no duplicate manual batch is added.
 Successful release is not backend GA4 receipt, indexing or new revenue.
+
+## Release validation
+
+The first marked release passed the product, real-browser, account and final
+analytics gates: https://github.com/f-tiger/agi-site/actions/runs/43257645915.
+Its current-main guard stopped deployment after parallel ECO test and fleet
+heartbeat updates arrived. No stale build was published. The follow-up release
+uses updated main with the same guard and read-only product-release isolation.
+Local offline-file assertions used localhost because the managed browser blocks
+file URLs; the unmodified offline-file test also passed in GitHub CI.
