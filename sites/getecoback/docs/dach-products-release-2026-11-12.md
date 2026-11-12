@@ -15,4 +15,6 @@ Validation before PR: catalog and freshness/unknown-state tests; discovery idemp
 
 Marketing: four reviewed original German thermostat photo slides, plus two original social previews. The manifest is `data/marketing/de-thermostat-20261112.json`. An eligible proposed slot is 2026-11-14 18:30 Europe/Berlin; preparation alone is not publication. Schedule only after live destination/media verification and queue deduplication; record actual status in the PR delivery receipt. Existing owned-channel two-per-seven-days cap and one-new-creative-per-run remain in force. No paid spend, new accounts or unsolicited outreach.
 
+`/api/trend` now includes additive `affiliate_audit` section `buying_paths` for the exact smart-thermostat and Saugwischer pages in complete-week and three-day windows. Existing cohorts remain frozen. These are pageview and affiliate-click event counts, not unique users or orders; query failure remains an error rather than a fabricated zero.
+
 Current TikTok reporting offers no positive reach evidence for the older ECO laundry photo post; photo-stat coverage/lag remains unverified. This release does not expand posting volume. Review arrivals and useful task completions separately from merchant clicks and verified commissions.
