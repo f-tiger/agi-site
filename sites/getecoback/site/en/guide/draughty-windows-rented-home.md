@@ -23,8 +23,8 @@ Can I seal every opening?No. Intended ventilation and combustion-air openings mu
 ## Sources and limits
 Technical sources below are in German, checked for the original guide on 4 October 2026. These adaptations do not establish local rental law, installation rules or tariffs. Follow local requirements and the instructions for your actual system.
 
-- co2online: Lüften und Fenster abdichten (DE)
-- Verbraucherzentrale: Heizen und Lüften (DE)
+- [co2online: Lüften und Fenster abdichten (DE)](https://www.co2online.de/energie-sparen/heizenergie-sparen/lueften-lueftungsanlagen-fenster/)
+- [Verbraucherzentrale: Heizen und Lüften (DE)](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426)
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json

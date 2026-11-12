@@ -53,6 +53,7 @@ CAT_OF = {
     # for its own category (>=4 pages): floor dust IS indoor air quality, and
     # that bridge is why the vertical lives on this domain at all.
     "tineco-saugt-nicht-mehr": "luftqualitaet",
+    "saugwischer-kaufberatung": "luftqualitaet",
     "klimaanlage-mit-heizfunktion": "heizen",
     "heizluefter-stromsparend": "heizen",
     "akku-heizluefter": "heizen",
@@ -1046,6 +1047,8 @@ def device_of(slug):
             # this default would have produced. Its shelf is set in CONTEXT_MODELS.
             or "waeschestaender" in s):
         return "dehum"
+    if "heizkoerperthermostat" in s:
+        return "thermostat"
     if "luftreiniger" in s:
         return "purifier"
     # Bodenpflege family (vertical replication #1, 2026-08-28): a distinct key
@@ -1085,7 +1088,7 @@ CANON_NAMES = ["De'Longhi", "De%27Longhi", "Comfee", "AEG ChillFlex", "Midea Por
 # Interactive tool pages carry their own widgets/CTAs — no model grid there.
 # Also skip pages whose real product (car sunshade, cooling mat, myth-buster)
 # doesn't match any device set, so cards never look irrelevant.
-SKIP_MODELS = {"btu-rechner", "stromkosten-rechner", "infrarotheizung-watt-rechner",
+SKIP_MODELS = {"saugwischer-kaufberatung", "smarte-heizkoerperthermostate-lohnen-sich", "btu-rechner", "stromkosten-rechner", "infrarotheizung-watt-rechner",
                # Heat-pump suitability needs its own technical/installation
                # decision. Resistance heaters and generic US ACs do not fit it.
                "klimaanlage-mit-heizfunktion",
@@ -3334,19 +3337,47 @@ US_MODELS = {
 
 
 def us_term(slug):
-    s = slug.lower()
-    # German slug tokens included since 2026-08-28: US visitors read the German
-    # section too (110 pv / 1 click in 28 days — the second-largest country x
-    # section cell, monetised at ~0%), so the bridge now runs there as well and
-    # must not map a Luftentfeuchter page to air conditioners.
-    if any(k in s for k in ("dehumidif", "damp", "musty", "mold", "mould", "drying-clothes", "humid",
-                            "luftentfeuchter", "meacodry", "waesche-trocknen", "schimmel", "taupunkt", "beschlagen", "keller")):
+    """Return a supported US appliance family, never a default for unknown tasks.
+
+    New categories must supply their own checked US catalog before gaining US
+    alternatives. device_of() is a legacy layout classifier and defaults to AC;
+    that fallback is not evidence of a matching product or shopping market.
+    """
+    s = (slug or "").lower()
+    device = device_of(s)
+    if device in {"purifier", "shade", "vacuum", "storage"}:
+        return None, None
+    # Humidifiers need the opposite action from dehumidifiers. Accessories,
+    # radiator controls and personal warming products are not space heaters.
+    if (re.search(r"(?:^|-)(?:humidifiers?|purifiers?|vacuum)(?:-|$)", s)
+            or any(k in s for k in ("luftbefeuchter", "thermostat", "heizkoerper",
+                                    "heizkörper", "heizdecke", "heizkissen",
+                                    "heated-blanket", "heating-pad"))):
+        return None, None
+    if device == "dehum":
         return "dehumidifier", "dehumidifiers"
-    if "fan" in s or "ventilator" in s:
-        return "tower fan", "tower fans"
-    if any(k in s for k in ("heater", "heating", "radiator", "heiz", "infrarot")):
+    if device == "heater":
         return "space heater", "space heaters"
-    return "portable air conditioner", "portable air conditioners"
+    if device == "fan" or re.search(r"(?:^|-)fans?(?:-|$)", s):
+        return "tower fan", "tower fans"
+    # Explicit English appliance terms supplement the German layout classifier.
+    if re.search(r"(?:^|-)(?:dehumidifiers?|damp|musty|mold|mould|humidity)(?:-|$)", s):
+        return "dehumidifier", "dehumidifiers"
+    if "drying-clothes" in s:
+        return "dehumidifier", "dehumidifiers"
+    if re.search(r"(?:^|-)(?:heaters?|heating|radiators?)(?:-|$)", s):
+        return "space heater", "space heaters"
+    cooling_terms = ("klimaanlage", "portable-ac", "air-conditioner", "btu",
+                     "pinguino", "delonghi-pac-", "chillflex", "kraftwerk", "mpph-", "kuehlen",
+                     "cool-room", "cool-a-room", "cool-attic", "heatwave",
+                     "pc-overheating")
+    cooling_topics = {"heat-check", "bei-hitze-schlafen", "air-zuma-erfahrungen",
+                      "epicooler-erfahrungen", "coolizi-erfahrungen",
+                      "klarstein-geraete-test", "midea-geraete-test",
+                      "comfee-geraete-test"}
+    if any(k in s for k in cooling_terms) or s in cooling_topics:
+        return "portable air conditioner", "portable air conditioners"
+    return None, None
 
 
 def usmarket_html(slug, en=True, html=""):
@@ -4681,7 +4712,7 @@ def main():
         from dehum_catalog import inject as inject_catalog
         new = inject_catalog(new, os.path.basename(path)[:-5])
         new = strip_decision_promotions(new, os.path.basename(path)[:-5])
-        if os.path.basename(path) in ('tineco-saugt-nicht-mehr.html', 'thermovorhang-ratgeber.html'):
+        if os.path.basename(path) in ('tineco-saugt-nicht-mehr.html', 'thermovorhang-ratgeber.html', 'saugwischer-kaufberatung.html', 'smarte-heizkoerperthermostate-lohnen-sich.html'):
             # These guides qualify a specific maintenance/fit decision. Generic
             # shopping overlays bypass it and may advertise an unrelated device.
             for marker in ('EB_TOPPICK', 'EB_MODELS', 'EB_STICKY', 'EB_PROFILE', 'EB_USMARKET', 'EB_POPUP', 'EB_USSWITCH'):

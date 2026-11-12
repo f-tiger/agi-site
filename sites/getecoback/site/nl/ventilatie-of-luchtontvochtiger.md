@@ -65,9 +65,9 @@ Luchtontvochtigers bekijken op Amazon.nl ↗
 ## Bronnen en werkwijze
 Redactionele uitleg op basis van de onderstaande bronnen. We hebben geen eigen apparaattests uitgevoerd. De checklist is onze praktische vergelijkhulp, geen diagnose van je woning.
 
-- Milieu Centraal: woning ventileren
-- Milieu Centraal: natuurlijke ventilatie
-- Milieu Centraal: beter en energiezuiniger ventileren
+- [Milieu Centraal: woning ventileren](https://www.milieucentraal.nl/energie-besparen/ventilatie/woning-ventileren/)
+- [Milieu Centraal: natuurlijke ventilatie](https://www.milieucentraal.nl/energie-besparen/ventilatie/natuurlijke-ventilatie/)
+- [Milieu Centraal: beter en energiezuiniger ventileren](https://www.milieucentraal.nl/energie-besparen/ventilatie/tips-voor-beter-en-energiezuiniger-ventileren/)
 - Consumentenbond: koopadvies luchtontvochtigers
 
 ---

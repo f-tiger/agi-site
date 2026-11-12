@@ -67,7 +67,7 @@ Check the exact model and seller before paying. A German listing or an English-l
 - Check current availability and return terms directly; this page makes no stock or price promise.
 
 ## Manufacturer sources
-MeacoDry Arete One 12L specifications · MeacoDry Arete One 20L specifications. These source links are not an independent endorsement or a claim that either is the best purchase for your home.
+MeacoDry Arete One 12L specifications · [MeacoDry Arete One 20L specifications](https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-air-purifier). These source links are not an independent endorsement or a claim that either is the best purchase for your home.
 [All UK decisions](https://getecoback.com/en/guide/uk-damp-and-heating-decisions.html) · [Editorial method](https://getecoback.com/en/how-we-recommend.html) · [Privacy (German)](https://getecoback.com/datenschutz.html)
 
 ---

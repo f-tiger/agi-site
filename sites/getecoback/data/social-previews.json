@@ -25,6 +25,18 @@
       "heading": "Wäsche drinnen trocknen.",
       "description": "Feuchte beobachten. Kosten je Ladung vergleichen.",
       "alt": "Schematischer Wäscheständer neben Luftentfeuchter, Wäschetrockner und Strommessgerät."
+    },
+    "thermostat": {
+      "image": "/assets/social/thermostat-v1.png",
+      "heading": "Passt dein Thermostat?",
+      "description": "Ventil, System und vollständiges Set prüfen.",
+      "alt": "Schematische Prüfung von Thermostatventil, Smart-Home-Zentrale und vollständigen Kosten."
+    },
+    "floorcare": {
+      "image": "/assets/social/floorcare-v1.png",
+      "heading": "Saugwischer auswählen.",
+      "description": "Boden prüfen. Pflegezeit mitrechnen.",
+      "alt": "Schematischer Saugwischer neben Bodenprüfung und Uhr für den Pflegeaufwand."
     }
   },
   "pages": {
@@ -32,6 +44,8 @@
     "/guide/luftentfeuchter-ratgeber.html": "comparison",
     "/guide/luftentfeuchter-keller.html": "cellar",
     "/guide/waesche-trocknen-wohnung.html": "laundry",
-    "/waeschetrockner-oder-luftentfeuchter.html": "laundry"
+    "/waeschetrockner-oder-luftentfeuchter.html": "laundry",
+    "/guide/smarte-heizkoerperthermostate-lohnen-sich.html": "thermostat",
+    "/guide/saugwischer-kaufberatung.html": "floorcare"
   }
 }

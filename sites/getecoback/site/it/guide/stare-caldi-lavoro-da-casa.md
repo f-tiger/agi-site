@@ -23,8 +23,8 @@ Meno watt significa sempre meno spesa?A parità di durata consuma meno elettrici
 ## Fonti e limiti
 Le fonti tecniche seguenti sono in tedesco, verificate per la guida originale il 4 ottobre 2026. L’adattamento non stabilisce norme locali su affitto, installazione o tariffe. Rispetta i requisiti locali e le istruzioni del tuo impianto.
 
-- Verbraucherzentrale: Heizen und Lüften (DE)
-- Verbraucherzentrale: Thermostat einstellen und wechseln (DE)
+- [Verbraucherzentrale: Heizen und Lüften (DE)](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426)
+- [Verbraucherzentrale: Thermostat einstellen und wechseln (DE)](https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizkosten-sparen-thermostat-richtig-einstellen-und-wechseln-7940)
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json

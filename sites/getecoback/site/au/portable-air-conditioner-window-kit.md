@@ -52,9 +52,9 @@ Compare window kits on Amazon.com.au ↗
 ## Sources and method
 Editorial guidance based on the sources below, with our own practical comparison checklist. We have not tested these products. Follow the specific appliance and accessory manuals.
 
-- Australian Government: heating and cooling
-- Australian Government: tropical and subtropical living
-- Australian Government: hot arid living
+- [Australian Government: heating and cooling](https://www.energy.gov.au/households/heating-and-cooling)
+- [Australian Government: tropical and subtropical living](https://www.energy.gov.au/households/household-guides/energy-saving-guide-northern-australia/tropical-and-sub-tropical-living)
+- [Australian Government: hot arid living](https://www.energy.gov.au/households/household-guides/energy-saving-guide-northern-australia/hot-arid-living)
 - Goldair Australia: an example of a soft window kit
 
 ---

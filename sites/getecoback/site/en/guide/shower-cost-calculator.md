@@ -32,8 +32,8 @@ Can a water-saving head fit any heater?No. Minimum-flow and fitting requirements
 ## Sources and limits
 Technical sources below are in German, checked for the original guide on 4 October 2026. These adaptations do not establish local rental law, installation rules or tariffs. Follow local requirements and the instructions for your actual system.
 
-- co2online: Sparduschkopf und Durchlauferhitzer (DE)
-- Verbraucherzentrale: Warmwasser und Hygiene (DE)
+- [co2online: Sparduschkopf und Durchlauferhitzer (DE)](https://www.co2online.de/energie-sparen/wasser-sparen/wasserspartipps/sparduschkopf/)
+- [Verbraucherzentrale: Warmwasser und Hygiene (DE)](https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/kosten-fuer-warmwasser-senken-das-koennen-sie-als-hausbesitzer-tun-17755)
 
 ## Buy less, compare better
 Compare appliance labels, dishwashing and showerheads. Start with an example; choose a country and decision. No account or personal details needed.
@@ -53,37 +53,15 @@ Water difference = flow difference × minutes × showers. Input energy = litres 
 
 ### Sources & method
 
-- EU dryer label
-- EU dishwasher label
-- Milieu Centraal: Vaatwasser
-- UK energy labels
-- FTC: EnergyGuide
-- NRCan: EnerGuide
-- EPA: WaterSense showerheads
+- [EU dryer label](https://energy-efficient-products.ec.europa.eu/product-list/tumble-dryers_en)
+- [EU dishwasher label](https://energy-efficient-products.ec.europa.eu/product-list/dishwashers_en)
+- [Milieu Centraal: Vaatwasser](https://www.milieucentraal.nl/energie-besparen/apparaten-in-huis/vaatwasser/)
+- [UK energy labels](https://www.gov.uk/guidance/the-energy-labelling-of-products)
+- [FTC: EnergyGuide](https://consumer.ftc.gov/articles/how-use-energyguide-label-shop-home-appliances)
+- [NRCan: EnerGuide](https://natural-resources.canada.ca/energy-efficiency/product-energy-ratings/energuide/energuide-label)
+- [EPA: WaterSense showerheads](https://www.epa.gov/watersense/showerheads)
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
 Note: EcoBack does not test devices itself; picks summarise public tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.
-<!--EB_PRODUCT_DECISIONS_MD-->
-## Buy less, compare better
-
-Compare appliance labels, dishwashing and showerheads. Start with an example; choose a country and decision. No account or personal details needed.
-
-Label: kWh/100 cycles ÷ 100 × yearly cycles; annual labels unchanged. Total = purchase + annual electricity × rate × years. Payback = positive extra investment ÷ positive annual saving. Dishes: machine energy × electricity price + litres × water price/1000; price handwash heating separately.
-
-Annual labels retain their standard test usage; cycle counts affect only cycle-based labels. Do not compare different test standards or capacities. Costs exclude finance, repairs, water, residual value and replacement. Keeping or repairing may be better. Electric appliances only: gas-appliance running costs are not modelled.
-
-Select the energy boundary: whole-cycle electricity includes heating once; for a hot-feed machine, use appliance-only electricity and externally heated litres separately. Do not enter annual EnergyGuide kWh as cycle energy. Dishwashers use the same load and rinse volume. The comparison excludes detergent, cleaning quality, time, purchase and installation costs.
-
-Water difference = flow difference × minutes × showers. Input energy = litres × temperature rise × 0.001163 ÷ heat/input ratio. Heat-pump ratio can exceed 1; use fuel price for a boiler. Does not model fixed tank losses. Do not change stored-water safety settings.
-
-- Heat-pump dryers: check capacity, space, drainage and cycle duration.
-- Fridges and freezers: compare usable volume, ventilation clearance and annual kWh.
-- Dishwashers: match load size, eco programme, plumbing and installation dimensions.
-- Low-flow showerheads: check minimum flow, pressure, heater and approval; shorter showers remain a no-purchase option.
-
-Sources & method
-- [UK energy labels](https://www.gov.uk/guidance/the-energy-labelling-of-products)
-- [Energy Saving Trust: water](https://energysavingtrust.org.uk/advice/saving-water-at-home/)
-<!--/EB_PRODUCT_DECISIONS_MD-->

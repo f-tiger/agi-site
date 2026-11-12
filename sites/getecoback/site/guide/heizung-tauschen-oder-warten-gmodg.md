@@ -18,7 +18,7 @@ Gesetz selbst (vormals GEG) | **Bleibt** — reformiert & umbenannt in GModG |
 
 Quote für Biomasse/erneuerbare Brennstoffe bei neuen fossilen Heizungen | **Neu ab 2029**, stufenweise (10 % → 15 % → 30 % → 60 % bis 2040; Zwischenjahre siehe Gesetzestext) |
 
-Quellen: Gesetzestext im Wortlaut auf gesetze-im-internet.de (Erstquelle); Einordnungen u. a. beim ADAC. Achtung: Viele Artikel im Netz nennen fälschlich den 1. Juli als Stichtag — maßgeblich ist das Inkrafttreten am **29. Juli 2026**.
+Quellen: Gesetzestext im Wortlaut auf [gesetze-im-internet.de](https://www.gesetze-im-internet.de/geg/) (Erstquelle); Einordnungen u. a. beim ADAC. Achtung: Viele Artikel im Netz nennen fälschlich den 1. Juli als Stichtag — maßgeblich ist das Inkrafttreten am **29. Juli 2026**.
 
 ## Tauschen oder warten? Die ehrliche Entscheidungshilfe
 

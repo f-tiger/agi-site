@@ -99,3 +99,19 @@ test('German catalog entries preserve only fixed campaign fields and QA',async()
   assert.equal(videoEntry(url,'POST'),null);
  }
 });
+
+test('Thermostat campaign lands on its own model block and never forwards arbitrary parameters',async()=>{
+ const {videoEntry}=await import('../src/video-entry.mjs');
+ for(const source of ['youtube','tiktok']) for(const method of ['GET','HEAD']) {
+  const response=videoEntry(new URL(`https://getecoback.com/thermostat-${source}?email=private&next=https://evil.test&__ci=1`),method);
+  const target=new URL(response.headers.get('location'));
+  assert.equal(target.pathname,'/guide/smarte-heizkoerperthermostate-lohnen-sich.html');
+  assert.equal(target.hash,'#eb-thermostat-products');
+  assert.equal(target.searchParams.get('utm_campaign'),'eco-dach-thermostat-01');
+  assert.equal(target.searchParams.get('utm_medium'),source==='tiktok'?'social':'organic_video');
+  assert.equal(target.searchParams.get('__probe'),'1');
+  assert(!target.searchParams.has('email')); assert(!target.searchParams.has('next'));
+  assert.equal(response.headers.get('x-robots-tag'),'noindex');
+ }
+ assert.equal(videoEntry(new URL('https://getecoback.com/thermostat-tiktok'),'POST'),null);
+});

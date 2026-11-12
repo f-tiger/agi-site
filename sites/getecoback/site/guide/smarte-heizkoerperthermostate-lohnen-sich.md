@@ -1,6 +1,6 @@
 # Smarte Heizkörperthermostate: Ventil prüfen, Kosten rechnen | EcoBack
 
-> Passt der smarte Thermostatkopf? Ventilcheck für tado° V3+: Heimeier, Herz, Danfoss RA und Oventrop unterscheiden. Danach eigene Kosten und Sparannahmen rechnen.
+> tado° X, Bosch oder FRITZ!: System, Ventil und vollständiges Paket vergleichen. Mit V3+-Ventilcheck und Rechner für eigene Kosten statt Sparversprechen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html
 
@@ -22,11 +22,11 @@ Identifiziertes Ventil | Nächster Prüfschritt | Quelle / Abbildung |
 Heimeier · M30 × 1,5 | **In der Herstellerliste ohne Adapter geführt** Gilt für den dort gezeigten thermostatischen Heimeier-Anschluss M30 × 1,5. Ventil und Bild in der Liste abgleichen; die Gewindegröße allein reicht nicht als Nachweis.
 | Herstellerangabe; Bildabgleich in der Ventilliste, Seite 5 |
 Herz 7230/7235/7260/7262 · M28 × 1,5 | **M28-Adapter und passende Stiftverlängerung prüfen** Die aufgeführten Herz-Ausführungen benötigen laut tado° einen M28 × 1,5-Adapter. Die korrekte Stiftverlängerung ist Teil der Prüfung. „Herz Mini“ oder die Marke allein identifizieren das Ventil nicht.
-| Herstellerangabe; Bildabgleich in der Ventilliste, Seite 5 |
+| [Herstellerangabe](https://support.tado.com/de/articles/3405520); Bildabgleich in der Ventilliste, Seite 5 |
 Danfoss RA · 23-mm-Klemme mit Kerben | **RA-Adapter prüfen; RAV und RAVL sind andere Anschlüsse** Nur für den identifizierten RA-Anschluss. Eine ähnlich aussehende Klemme ist kein Nachweis. Montageanleitung und Lieferumfang der konkreten Packung abgleichen.
-| Herstellerangabe; Bildabgleich in der Ventilliste, Seite 3 |
+| [Herstellerangabe](https://support.tado.com/de/articles/3405517); Bildabgleich in der Ventilliste, Seite 3 |
 Oventrop Uni L / Uni DH · M30 × 1,0 | **Separaten M30 × 1,0-Adapter einplanen** Diese Gewindesteigung ist nicht M30 × 1,5. Laut Herstellerhilfe ist der benötigte Adapter nicht im tado°-Lieferumfang enthalten. Exakte Ausführung vor Bestellung abgleichen.
-| Herstellerangabe; Bildabgleich in der Ventilliste, Seite 7 |
+| [Herstellerangabe](https://support.tado.com/de/articles/3405491); Bildabgleich in der Ventilliste, Seite 7 |
 Oventrop Uni LV · 30,5-mm-Klemme | **Uni LV ist kein Uni L: andere Adapterfamilie** Die Herstellerliste führt Uni LV mit einer 30,5-mm-Klemme und einem separat zu beschaffenden Adapter. Nicht den M30 × 1,0-Adapter für Uni L übernehmen.
 | Herstellerangabe; Bildabgleich in der Ventilliste, Seite 6 |
 Manuelles Ventil oder RTL-Begrenzer | **Kein passender Anwendungsfall für diesen Thermostatkopf** Die tado°-Unterlagen schließen manuelle Ventile und Rücklauftemperaturbegrenzer aus. Ein Kopfwechsel ist keine Umrüstung des Ventils; Fachbetrieb und Zuständigkeit klären.
@@ -38,7 +38,7 @@ Manuelles Ventil oder RTL-Begrenzer | **Kein passender Anwendungsfall für diese
 - Gewinde, Klemmanschluss und genaue Variante zusammen prüfen. Uni L und Uni LV oder RA, RAV und RAVL sind nicht austauschbare Bezeichnungen.
 - Den wasserführenden Ventilkörper nicht lösen. Bei Leckage, festsitzenden Teilen oder unklarer Zuständigkeit stoppen und einen Fachbetrieb beziehungsweise die Hausverwaltung einbeziehen.
 
-tado°: vollständige Herstellerübersicht öffnen · Separate Hilfe für tado° X
+[tado°: vollständige Herstellerübersicht öffnen](https://support.tado.com/de/articles/3482335) · Separate Hilfe für tado° X
 
 Stand der Prüfung: 31. Oktober 2026. Die verlinkte Ventilliste trägt Version 2.0, September 2021 und wird weiterhin von der Herstellerhilfe verlinkt. Die Liste ist indikativ und unvollständig. Neuere Modellunterlagen und Herstellerbestätigung gehen vor. Keine eigenen Montage- oder Produkttests; die Herstellerlinks sind keine Affiliate-Links.
 
@@ -54,6 +54,52 @@ Eigene Berechnungen benötigen JavaScript. Rechenweg und Beispiel stehen darunte
 
 ## Rechenweg und Beispiel
 600 € beeinflussbare Heizkosten × 5 % angenommene Ersparnis − 10 € laufende Kosten = 20 € pro Jahr. 150 € Kaufpreis ÷ 20 € = 7,5 Jahre einfache Amortisation. Bei 0 % Ersparnis entsteht kein positiver Rückfluss.
+
+## Welches System und welches Paket passt zu dir?
+Drei konkrete Modelle für unterschiedliche vorhandene Systeme. Die Auswahl ist keine Rangliste und kein eigener Produkttest. Die Ventilpassung und der Nutzen eines Zeitplans bleiben eigene Prüfschritte.
+
+### Vierte Möglichkeit: vorhandene Köpfe weiter nutzen
+Deine Räume werden passend zur Nutzung warm und du regelst zuverlässig herunter? Dann musst du nicht auf smarte Köpfe wechseln. Für gleichbleibende Zeiten kann ein einfacher programmierbarer Kopf genügen. Vergleiche diese Lösung vor einem neuen Funk-System.
+Erst mit 0 % zusätzlicher Ersparnis rechnen · Ventil und Modellgeneration klären
+
+Herstellerquellen geprüft: 2026-11-12. Keine Live-Preise, Bestands- oder Spargarantie. Aktuelle Herstellerunterlagen und das konkrete Händlerpaket gehen vor.
+Auf kleinen Bildschirmen kannst du die Vergleichstabelle seitlich verschieben.
+Erst die vorhandene Zentrale, dann den Thermostatkopf wählen
+Genaues Modell | Ausgangslage | Was benötigt wird |
+tado° Smartes Heizkörper-Thermostat X – Starter Kit | Neues tado° X-System mit enthaltener Bridge | Bridge X liegt diesem Starter Kit bei. Ein bereits vorhandener, kompatibler Thread Border Router kann eine andere Paketwahl ermöglichen; die genaue Freigabe prüfen. |
+Bosch Heizkörper-Thermostat II [+M] | Vorhandenes Bosch-System oder geprüftes Matter-System nutzen | Im Bosch-System ist ein Bosch Smart Home Controller nötig. Für ein fremdes Matter-System verlangt die Anleitung einen eingerichteten Matter Controller mit Thread-Unterstützung und dessen App. Fehlt dem Matter Controller die integrierte Thread-Kommunikation, ist zusätzlich ein Thread Border Router nötig. |
+FRITZ!Smart Thermo 302 · Artikel 20003120 | Passende FRITZ!Box mit DECT bereits vorhanden | Laut Produktseite: FRITZ!Box mit DECT-Basis und FRITZ!OS ab 6.83; FRITZ!Box 7312 und 7412 sind ausgenommen. Das genaue Routermodell vor dem Kauf prüfen. |
+
+### tado° Smartes Heizkörper-Thermostat X – Starter Kit
+Neues tado° X-System mit enthaltener Bridge
+SystemBridge X liegt diesem Starter Kit bei. Ein bereits vorhandener, kompatibler Thread Border Router kann eine andere Paketwahl ermöglichen; die genaue Freigabe prüfen.Paket und ZusatzkaufEin Thermostatkopf, Bridge X und sechs Adapter. USB-C-Ladekabel nicht enthalten. Ein Einzelkopf oder Trio-Pack ist nicht automatisch dasselbe Starter Kit.Betrieb und FunktionenAbnehmbarer, per USB-C ladbarer Akku. Die kostenlose App enthält Zeitpläne; zusätzliche Automatisierungen können das optionale AI-Assist-Abo benötigen. Gewünschte Funktion vor dem Kauf prüfen.**Vor der Bestellung:** tado° X und die V3+-Geräte/Internet Bridge sind nicht miteinander kompatibel. Die V3+-Ventiltabelle auf dieser Seite bestätigt keine Passung für X.
+[tado°: X Starter Kit, Packung und Kompatibilität](https://shop.tado.com/products/smart-radiator-thermostat-x-starter-kit-1)
+Anzeige · Modellsuche, kein geprüftes Einzelangebot.tado° Smartes Heizkörper-Thermostat X – Starter Kit bei Amazon.de suchen →
+
+### Bosch Heizkörper-Thermostat II [+M]
+Vorhandenes Bosch-System oder geprüftes Matter-System nutzen
+SystemIm Bosch-System ist ein Bosch Smart Home Controller nötig. Für ein fremdes Matter-System verlangt die Anleitung einen eingerichteten Matter Controller mit Thread-Unterstützung und dessen App. Fehlt dem Matter Controller die integrierte Thread-Kommunikation, ist zusätzlich ein Thread Border Router nötig.Paket und ZusatzkaufDie [+M]-Variante gezielt prüfen. Heizkörper-Thermostat II ohne [+M] wird nicht auf dieselbe Weise direkt in ein Matter-System eingebunden. Einen benötigten Controller separat zum Kopf kalkulieren.Betrieb und FunktionenBatterien und gegebenenfalls separate Fensterkontakte mit einplanen. Funktionen unterscheiden sich zwischen dem Bosch-System und der direkten Matter-Einbindung; die Funktionsübersicht des Herstellers abgleichen.**Vor der Bestellung:** Matter bedeutet hier nicht Betrieb ohne passende Zentrale. Den Ventilanschluss anhand der Bosch-Anleitung prüfen; die tado°-Zuordnungen gelten nicht für dieses Modell.
+[Bosch: Modellvarianten und Systemfunktionen](https://www.bosch-smarthome.com/de/de/produkte/heizung/heizkoerper-thermostat/) · [Bosch: Anleitung II [+M], Matter-/Thread-Anforderungen](https://www.bosch-smarthome.com/res/web/produkt/heizkoerper-thermostat2/pdf/8-750-002-924_BTH-RAD_OM_11L.pdf)
+Anzeige · Modellsuche, kein geprüftes Einzelangebot.Bosch Heizkörper-Thermostat II [+M] bei Amazon.de suchen →
+
+### FRITZ!Smart Thermo 302 · Artikel 20003120
+Passende FRITZ!Box mit DECT bereits vorhanden
+SystemLaut Produktseite: FRITZ!Box mit DECT-Basis und FRITZ!OS ab 6.83; FRITZ!Box 7312 und 7412 sind ausgenommen. Das genaue Routermodell vor dem Kauf prüfen.Paket und ZusatzkaufDer Hersteller nennt einen Thermo 302, drei AA-Batterien und einen Danfoss-RA-Adapter. Keine FRITZ!Box enthalten. Andere Ventiltypen separat in der Montagehilfe prüfen.Betrieb und FunktionenBetrieb mit drei AA-Batterien und DECT-ULE. Der Hersteller schließt Nass- und Feuchträume aus. Das Gerät ist kein Ersatz für eine passende Zentrale.**Vor der Bestellung:** Artikelnummer 20003120 und Paketinhalt abgleichen. Nicht allein aus dem Namen FRITZ! oder einem M30-Anschluss auf System- oder Ventilkompatibilität schließen.
+[FRITZ!: Thermo 302, Voraussetzungen und Lieferumfang](https://fritz.com/products/fritz-smart-thermo-302-20003120)
+Anzeige · Modellsuche, kein geprüftes Einzelangebot.FRITZ!Smart Thermo 302 · Artikel 20003120 bei Amazon.de suchen →
+
+### Deutschland, Österreich oder Schweiz?
+**Anzeige · Affiliate-Links:** Als Amazon-Partner verdienen wir an qualifizierten Verkäufen. Die drei Links öffnen Modellsuchen bei Amazon.de, keine geprüften Einzelangebote. Modell, Generation, Starter Kit und Verkäufer im Ergebnis abgleichen.
+**DE:** EUR-Gesamtkosten einschließlich benötigter Zentrale prüfen. **AT:** Lieferung an deine Adresse, Rückgabe und Endpreis separat bestätigen. **CH:** lokale CHF-Kosten, Anschluss, Import und Garantie prüfen; diese Auswahl bestätigt keinen Schweizer Händler. Keine automatische Währungsumrechnung.
+
+### Ein Raum oder drei Räume: das vollständige Paket rechnen
+Preise selbst beim Händler eintragen und alle Beträge in derselben Währung halten. Ein Raum kann mehrere Heizkörper haben: Köpfe zählen, nicht nur Räume. Bereits enthaltene oder weiterverwendbare Teile nicht doppelt kaufen.
+
+- **Ein Heizkörper:** benötigter Kopf bzw. Starter Kit + fehlende Zentrale + nötige Adapter.
+- **Drei Heizkörper:** Starter Kit mit einem Kopf + zwei passende Einzelköpfe, oder drei Köpfe + fehlende Zentrale; jeweils benötigte Adapter hinzufügen. Mehrfachpack und Starter Kit nicht verwechseln.
+- **Jährlicher Betrieb:** Batterien bzw. Laden, Zentrale und nur tatsächlich gewählte kostenpflichtige Dienste berücksichtigen.
+Gesamtsumme und eigene Sparannahme im Rechner prüfen ↑
+Die Rechnung bestätigt weder die Ventilpassung noch eine Ersparnis. Mit 0 % Annahme zeigt sie auch den Fall ohne finanziellen Rückfluss.
 
 ## Erst die Routine, dann die Funktechnik
 Du drehst vor jedem Verlassen der Wohnung bereits herunter und heizt passend zur Nutzung? Dann ist der zusätzliche Spareffekt möglicherweise klein. Vergisst du das regelmäßig, helfen Zeitpläne. Für feste Zeiten reicht oft ein programmierbarer Kopf ohne App. Eine App lohnt sich eher bei wechselnder Anwesenheit oder mehreren gemeinsam gesteuerten Räumen.
@@ -82,8 +128,8 @@ Nein. Ventilanschluss, Adapter, System und Herstellerfreigabe müssen zusammenpa
 ## Quellen und Grenzen
 Die folgenden Quellen wurden am 4. Oktober 2026 geprüft. Rechenbeispiele sind eigene Szenarien, keine Markt- oder Messdaten.
 
-- Verbraucherzentrale: Thermostat einstellen und wechseln
-- Verbraucherzentrale: Heizen und Lüften
+- [Verbraucherzentrale: Thermostat einstellen und wechseln](https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizkosten-sparen-thermostat-richtig-einstellen-und-wechseln-7940)
+- [Verbraucherzentrale: Heizen und Lüften](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426)
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json

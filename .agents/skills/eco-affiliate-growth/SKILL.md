@@ -16,6 +16,8 @@ Read root AGENTS.md, current site instructions, `.agents/product-marketing.md` a
 
 ## Product and SEO/GEO
 
+The 2026-11-12 DACH release also owns `data/thermostat-catalog.json` and `data/floorcare-catalog.json`. Read `sites/getecoback/docs/dach-products-release-2026-11-12.md` before choosing these topics. Their official-source dates and exact market/generation limits control shopping eligibility; never refresh a date without checking the cited facts. Preserve the category generators and final-artifact tests, including generic-overlay exclusions and the floor-tool example-state deep link.
+
 Prefer expanding an existing intent-owning page to duplicating near-identical pages. Preserve measurement/cause-first/no-purchase branches and exact merchant attribution. A small-room guide must not inherit every larger model just because its generic category is dehumidifiers.
 
 Audit rendered HTML as well as source: status, robots, canonical, language alternates, headings, source links, internal discovery, metadata, mobile/no-JS behavior and structured data. Keep schema consistent with visible content; do not invent ratings or offers. Search Console index/rank/CTR claims require actual access. HTTP200 and IndexNow acceptance do not prove indexing.

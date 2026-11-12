@@ -10,6 +10,8 @@ Owner's latest staged goals are USD 1,000, USD 5,000 and USD 10,000 in monthly r
 
 ### ECO DACH category research — 2026-11-12
 
+Implementation follow-through: `sites/getecoback/docs/dach-products-release-2026-11-12.md` records the first sourced thermostat/floor-cleaner buying paths and their release/marketing gates. Product implementation is separate from verified growth; use live and publication receipts before claiming delivery status. Conditional later-wave categories are not launched by this first batch.
+
 The owner asked to research German-speaking market trends before expanding categories. Read `docs/eco-dach-category-research-2026-11-12.md` for sourced market evidence, country differences and the bounded implementation brief. The recommended first batch deepens the existing smart-thermostat buying path and pilots German wet/dry floor cleaners; robot vacuum buying decisions follow conditionally. These are research recommendations, not validated ECO conversion or revenue outcomes. Preserve cooling and dehumidifier/laundry paths.
 
 Reuse the existing valve, home-fit and maintenance tools. Add exact sourced models and meaningful role differences before multiplying URLs. The valve database currently covers tado V3+ and earlier generations, not X; the replacement-filter database is US-specific. Do not transfer compatibility across generations or markets. DE is the first commercial test; AT delivery and CH local merchant/CHF readiness must be checked separately. Google Trends seasonality and autocomplete fallback are not current sales growth or absolute search volume.

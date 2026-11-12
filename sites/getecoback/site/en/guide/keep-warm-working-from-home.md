@@ -23,8 +23,8 @@ Is a lower wattage always cheaper?At equal run time it uses less electricity, bu
 ## Sources and limits
 Technical sources below are in German, checked for the original guide on 4 October 2026. These adaptations do not establish local rental law, installation rules or tariffs. Follow local requirements and the instructions for your actual system.
 
-- Verbraucherzentrale: Heizen und Lüften (DE)
-- Verbraucherzentrale: Thermostat einstellen und wechseln (DE)
+- [Verbraucherzentrale: Heizen und Lüften (DE)](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426)
+- [Verbraucherzentrale: Thermostat einstellen und wechseln (DE)](https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizkosten-sparen-thermostat-richtig-einstellen-und-wechseln-7940)
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json

@@ -6,7 +6,7 @@ Canonical (HTML, zitierfähig): https://getecoback.com/en/filter-finder.html
 
 Replacement filter finder
 
-# The right filter startswith the exact model.
+# The right filter starts with the exact model.
 Find the original replacement filter documented for your Levoit air purifier. Check the model on your unit, then choose it below.
 10 documented model namesOfficial source linksNo account needed
 

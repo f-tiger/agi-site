@@ -4,10 +4,6 @@
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/infrarotheizung-gegen-schimmel.html
 
-Ein Rabatt macht kein Heizgerät sparsamer: Watt mal Stunden mal Strompreis bleibt.
-Echter Rabatt? Zu jeder Preisermäßigung gehört der niedrigste Preis der letzten 30 Tage (§ 11 PAngV): vergleiche mit dem, nicht mit dem durchgestrichenen.
-Kein Prime? Prime gratis testen →Anzeige · Amazon zahlt uns eine Prämie für den Gratiszeitraum. Ab wann Prime kostet und wie du kündigst, steht auf der Amazon-Seite.
-
 ## Was die Rechnung beantwortet
 Bei gleichem Wasserdampfgehalt ist die relative Feuchte an einer kalten Oberfläche höher als an einer warmen. Die Magnus-Näherung verbindet Raumtemperatur, Raumluftfeuchte und die gemessene Oberflächentemperatur. Bei 20 °C Raumluft und 55 % relativer Feuchte ergeben sich an einer 14 °C kalten Fläche etwa 80 %, an einer 17 °C warmen Fläche etwa 66 %.
 **Eine bestrahlte oder beheizte Wand kann wärmer als die Raumluft sein.** Die frühere Annahme einer festen Obergrenze auf Raumtemperatur ist falsch. Ebenso gibt es keine allgemeine 60-%-Raumluftgrenze, oberhalb derer Erwärmung physikalisch wirkungslos wäre.
@@ -41,7 +37,7 @@ Nein. Die Rechnung ist eine Momentaufnahme mit Messunsicherheit. Material, Dauer
 
 ## Rechenweg und Grenzen
 Rechenweg: Oberflächen-RH = Raum-RH × es(Raumtemperatur) ÷ es(Oberflächentemperatur), mit es(T) = 6,112 × exp(17,62 × T ÷ (243,12 + T)). Werte über Sättigung werden als Kondensationsrisiko eingeordnet.
-Keine eigenen Gerätetests, keine Ferndiagnose. Überarbeitet am 4. Oktober 2026. Hintergrund zu Feuchtequellen und Lüftung: Verbraucherzentrale: Heizen und Lüften.
+Keine eigenen Gerätetests, keine Ferndiagnose. Überarbeitet am 4. Oktober 2026. Hintergrund zu Feuchtequellen und Lüftung: [Verbraucherzentrale: Heizen und Lüften](https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizen-und-lueften-so-gehts-richtig-10426).
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
