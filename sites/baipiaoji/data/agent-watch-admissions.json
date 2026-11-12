@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-11",
+ "checked": "2026-11-12",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -3960,289 +3960,45 @@
    "source_http": 530,
    "repo_http": null,
    "reason": "source HTTP 530"
+  },
+  "commonpaper-contracts": {
+   "attempts": 1,
+   "first_attempt": "2026-11-12",
+   "last_attempt": "2026-11-12",
+   "attemptedAt": "2026-11-12T07:39:36.501Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "unsafe-url"
+  },
+  "controlargastos-gastos-compartidos": {
+   "attempts": 1,
+   "first_attempt": "2026-11-12",
+   "last_attempt": "2026-11-12",
+   "attemptedAt": "2026-11-12T07:39:36.501Z",
+   "source_http": 403,
+   "repo_http": null,
+   "reason": "source HTTP 403"
+  },
+  "copythevideo-video": {
+   "attempts": 1,
+   "first_attempt": "2026-11-12",
+   "last_attempt": "2026-11-12",
+   "attemptedAt": "2026-11-12T07:39:36.501Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "timeout"
+  },
+  "cordering-whitelabel-ordering": {
+   "attempts": 1,
+   "first_attempt": "2026-11-12",
+   "last_attempt": "2026-11-12",
+   "attemptedAt": "2026-11-12T07:39:36.501Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
   }
  },
  "admitted": [
-  {
-   "slug": "vanna",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "wren-ai",
-   "date": "2026-09-22",
-   "origin": "curated"
-  },
-  {
-   "slug": "avagama-openings",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "marketinque-launch-plan",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "a2awire-benchmark-accurate-financial-record-reconcile-2026-09-22-af293a80",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "bird-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "rationalbloks-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "dimensions-analytics-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "trustysquire-trusty-squire",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "usepromise-promise",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "gocardless-gc-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "getloggerhead-loggerhead",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "steledger-gateway",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "files-python-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "nibomo-flashcards",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "gtmotto-linkedin",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "bowmark-bowmark",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "sendraven-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "getplexa-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "ekwo-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "art-maddegen-agent-solsnap",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "club-atlasyield-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "githits-githits",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hasdata-instagram",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hasdata-google-images",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hasdata-glassdoor",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "sendinel-mcp-server",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hasdata-facebook",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hasdata-zillow",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "jobspipe-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hasdata-youtube",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hasdata-yelp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hasdata-yellowpages",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hasdata-web-scraping",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hasdata-walmart",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hasdata-tiktok",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "getmunin-munin",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hasdata-shopify",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hasdata-redfin",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hasdata-indeed",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hasdata-google-trends",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hasdata-google-search",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hasdata-google-scholar",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hasdata-google-hotels",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hasdata-google-maps",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hasdata-google-flights",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hasdata-duckduckgo",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hasdata-booking",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hasdata-bing",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hasdata-amazon",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hasdata-airbnb",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "day-shyn-shyn",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "magnemo-magnemo",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "vibgrate-ai-context",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "laraue-boards",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "draugr-draugr",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
   {
    "slug": "starreel-starreel",
    "date": "2026-09-22",
@@ -20984,6 +20740,342 @@
   {
    "slug": "commonlands-optics-mcp",
    "date": "2026-11-11",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "commonspecs-catalog",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "commontape-booking",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "commsharbor-commsharbor",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "compamir-news",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "compareanswering-site",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "comparecallanswering-site",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "comparefairly-comparefairly",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "comparehvacsoftware-site",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "comparetradesoftware-site",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "comparevetsoftware-site",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "compensationprofessional-discovery",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "completionkit-evals",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "compliapi-screening",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "complylayer-complylayer",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "compoid-mcp-server",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "compraventa360-marketplace",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "compslate-compslate",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "compsniper-compsniper",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "computesage-stackbench",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "conduyt-mcp",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "conferencegrid-conferencegrid",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "configdirector-mcp",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "congressmcp-congressmcp",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "connectmybot-workspace",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "connorgallic-connorgallic",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "conquerorapp-mcp",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "consensus-analytics-mcp",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "consentlayer-mcp",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "consentvia-site",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "considus-pagespeed-insights-mcp",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "considus-proton-bridge-mcp",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "contadeo-mcp",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "containermath-cbm",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "contaktly-contaktly",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "contenta-software-ai-video-enhancer",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "contextaco-contextaco",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "contextli-contextli",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "contextser-mcp-nodecel",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "continueops-public",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "contractorleadquotes-site",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "contractorroster-contractorroster",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "contrastcyber-api",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "contrie-contrie",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "controldrill-mcp",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "conv2pdf-conv2pdf",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "converttoit-converter",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "convexvalue-cvserver",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "conveyancingfeesaustralia-site",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "conveyancingfeesireland-site",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "convika-convika",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cookiefreeanalytics-mcp",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cookievo-site",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "coordinalo-mcp-server",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "coppica-persuasion-taxonomy",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "corapilot-whatsapp",
+   "date": "2026-11-12",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "coresignal-mcp",
+   "date": "2026-11-12",
    "source_http": 200,
    "repo_http": 200
   }

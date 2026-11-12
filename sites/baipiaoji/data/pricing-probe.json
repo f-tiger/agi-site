@@ -1,19 +1,19 @@
 {
- "generated": "2026-11-11",
+ "generated": "2026-11-12",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "d-id",
-  "devv",
-  "dify",
-  "doubao-aixue",
-  "duckduckgo-ai",
-  "elevenlabs",
-  "elicit",
-  "felo"
+  "figma",
+  "framer",
+  "gamma",
+  "gaoding",
+  "gemini",
+  "gemini-cli",
+  "gezhe",
+  "gptzero"
  ],
- "cursor": "felo",
+ "cursor": "gptzero",
  "summary": {
   "ready": 43,
   "empty": 35,
@@ -1450,7 +1450,7 @@
    "name": "Figma",
    "cat": "design",
    "reach": 0,
-   "probed": "2026-11-03",
+   "probed": "2026-11-12",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -1472,7 +1472,7 @@
    "name": "Framer",
    "cat": "design",
    "reach": 0,
-   "probed": "2026-11-03",
+   "probed": "2026-11-12",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -1480,13 +1480,13 @@
      "url": "https://framer.com/pricing",
      "status": 200,
      "bytes": 600000,
-     "tokens": 19
+     "tokens": 12
     }
    ],
    "best": {
     "url": "https://framer.com/pricing",
-    "tokens": 19,
-    "excerpt": "ntroduction Examples Start free, then scale your site Start free, then scale your site Yearly billing Free Try for free $0 500 AI credits to try Free Framer domain 1 GB bandwidth Design pages MCP server Start for Free Basic Creative personal sites $10 per month 1,000 AI credits / month 2,000 AI credits / month 3,000 AI credits / month 5,000 AI credits / month 8,000 AI credits / month 10,000 AI credits / month 15,000 credits / month Free custom domain 2× credits first month 2 CMS collections 50 GB bandwidth Built-in SEO Use your own domain Localization (add-on) Start with Basic Pro Growing professional sites $30 per month 3,000 credits / month 5,000 credits / month 10,000 credits / month 20,0"
+    "tokens": 12,
+    "excerpt": "ntroduction Examples Start free, then scale your site Start free, then scale your site Yearly billing Free Try for free $0 500 AI credits / month Free Framer domain 1 GB bandwidth Design pages MCP server Start for Free Basic Creative personal sites $10 per month 1,000 AI credits / month 2,000 AI credits / month 3,000 AI credits / month 5,000 AI credits / month 8,000 AI credits / month 10,000 AI credits / month 15,000 credits / month Free custom domain 2× credits first month 2 CMS collections 50 GB bandwidth Built-in SEO Use your own domain Localization (add-on) Start with Basic Pro Growing professional sites $30 <p class=\"framer-text framer-styles-preset-rhbxb3\" data-styles-preset=\"vvG68NbwN"
    }
   },
   "gamma": {
@@ -1494,7 +1494,7 @@
    "name": "Gamma",
    "cat": "office",
    "reach": 0,
-   "probed": "2026-11-03",
+   "probed": "2026-11-12",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1524,7 +1524,7 @@
    "name": "稿定 AI",
    "cat": "design",
    "reach": 0,
-   "probed": "2026-11-03",
+   "probed": "2026-11-12",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -1538,7 +1538,7 @@
    "best": {
     "url": "https://www.gaoding.com/pricing",
     "tokens": 28,
-    "excerpt": "下载会员、AI 大会员套餐对比 会员兑换 双11钜惠狂欢 · 年会员 3折起抢 个人使用 企业使用 2年 限时送1年 连续包年 连续包季 更多选择 模板会员 3.7折↓2年送1年 付费模板、无水印导出，不含 AI 创作与素材源文件下载权益 ¥ 289 /36个月 ¥799 ¥8.03/月 明细 50 豆/月 最多可生成约 50 张图片或 5 个视频 立即开通 购买后即时生效，不自动续费 模板创作权益 个人商用授权 模板作品高清无水印下载 模板作品 PSD 导出 海量海报、PPT、视频、H5 等 VIP 模板 持续更新 高级工具功能：尺寸延展、PSD 转模板等 随时随地 在线编辑 AI 创作权益 50 豆/月 访问所有AI模型 加购豆享折扣 AI作品高清下载（可设置多倍数尺寸） 模型限时优惠 精选素材组合包 无官方自营素材下载次数 无第三方合作素材下载次数 通用权益 50 GB 存储空间 AI 创作会员 6折↓2年送1年 AI 创意生成、豆灵活定制，不含付费模板与素材源文件下载 ¥ 859 /36个月 ¥1419 ¥23.86/月 1豆=0.08元 明细 0.3K 0.5K 1K 2K 3K 300 豆/月 每月最多可生成约 300 张图片或 30 个视频 立即开通 购买后即时生效，不自动续费 模板创作权益 无个人商用授权 模板作品高清无水印下载 模板作品 PSD 导出 海量海报、PPT、视频、H5 等 VIP 模板 持续更新 高级工具功能：尺寸延展、PSD 转模板等 随时随地 在线编辑 AI 创作权益 300～3000豆/月 访问所有AI模型 加购豆享折扣 AI作品高清下载（可"
+    "excerpt": "大会员入手不亏，创作提效一步到位 01 天 08 小时 20 分钟 42 秒 个人使用 企业使用 2年 限时送1年 连续包年 连续包季 更多选择 模板会员 3.7折↓2年送1年 付费模板、无水印导出，不含 AI 创作与素材源文件下载权益 ¥ 289 /36个月 ¥799 ¥8.03/月 明细 50 豆/月 最多可生成约 50 张图片或 5 个视频 立即开通 购买后即时生效，不自动续费 模板创作权益 个人商用授权 模板作品高清无水印下载 模板作品 PSD 导出 海量海报、PPT、视频、H5 等 VIP 模板 持续更新 高级工具功能：尺寸延展、PSD 转模板等 随时随地 在线编辑 AI 创作权益 50 豆/月 访问所有AI模型 加购豆享折扣 AI作品高清下载（可设置多倍数尺寸） 模型限时优惠 精选素材组合包 无官方自营素材下载次数 无第三方合作素材下载次数 通用权益 50 GB 存储空间 AI 创作会员 6折↓2年送1年 AI 创意生成、豆灵活定制，不含付费模板与素材源文件下载 ¥ 859 /36个月 ¥1419 ¥23.86/月 1豆=0.08元 明细 0.3K 0.5K 1K 2K 3K 300 豆/月 每月最多可生成约 300 张图片或 30 个视频 立即开通 购买后即时生效，不自动续费 模板创作权益 无个人商用授权 模板作品高清无水印下载 模板作品 PSD 导出 海量海报、PPT、视频、H5 等 VIP 模板 持续更新 高级工具功能：尺寸延展、PSD 转模板等 随时随地 在线编辑 AI 创作权益 300～3000豆/月 访问所有AI模型 加购豆享折扣 AI作品高清下载（可设"
    }
   },
   "gemini": {
@@ -1546,7 +1546,7 @@
    "name": "Google Gemini",
    "cat": "chat",
    "reach": 0,
-   "probed": "2026-11-04",
+   "probed": "2026-11-12",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1576,14 +1576,20 @@
    "name": "Gemini CLI",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-11-04",
+   "probed": "2026-11-12",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://github.com/google-gemini/gemini-cli/blob/main/docs/resources/quota-and-pricing.md",
      "status": 200,
-     "bytes": 257795,
+     "bytes": 251201,
+     "tokens": 0
+    },
+    {
+     "url": "https://geminicli.com/plans/",
+     "status": 200,
+     "bytes": 53523,
      "tokens": 0
     },
     {
@@ -1604,7 +1610,7 @@
    "name": "歌者 PPT",
    "cat": "office",
    "reach": 0,
-   "probed": "2026-11-04",
+   "probed": "2026-11-12",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1634,14 +1640,14 @@
    "name": "GPTZero",
    "cat": "safety",
    "reach": 0,
-   "probed": "2026-11-04",
+   "probed": "2026-11-12",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://gptzero.me/pricing",
      "status": 200,
-     "bytes": 241483,
+     "bytes": 244401,
      "tokens": 6
     }
    ],

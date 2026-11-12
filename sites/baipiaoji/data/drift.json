@@ -1,10 +1,93 @@
 {
-  "generated": "2026-11-11",
+  "generated": "2026-11-12",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 107,
-  "fetched_fail": 20,
-  "pending": 17,
+  "fetched_ok": 108,
+  "fetched_fail": 19,
+  "pending": 15,
   "items": [
+    {
+      "slug": "framer",
+      "url": "https://framer.com/pricing",
+      "confirmed": "2026-11-12",
+      "first_seen": "2026-11-11",
+      "added": [],
+      "removed": [
+        "10,000credits",
+        "100,000credits",
+        "20,000credits",
+        "3,000credits",
+        "30,000credits",
+        "5,000credits",
+        "50,000credits"
+      ],
+      "checked_then": "2026-08-06"
+    },
+    {
+      "slug": "continue",
+      "url": "https://github.com/continuedev/continue",
+      "confirmed": "2026-11-12",
+      "first_seen": "2026-11-11",
+      "added": [
+        "36.5k"
+      ],
+      "removed": [
+        "36.4k"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "google-flow",
+      "url": "https://support.google.com/flow/answer/16526234",
+      "confirmed": "2026-11-12",
+      "first_seen": "2026-11-11",
+      "added": [],
+      "removed": [
+        "0b"
+      ],
+      "checked_then": "2026-08-06"
+    },
+    {
+      "slug": "cline",
+      "url": "https://cline.bot",
+      "confirmed": "2026-11-12",
+      "first_seen": "2026-11-11",
+      "added": [
+        "72k"
+      ],
+      "removed": [
+        "71k"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "siliconflow",
+      "url": "https://siliconflow.cn",
+      "confirmed": "2026-11-12",
+      "first_seen": "2026-11-11",
+      "added": [],
+      "removed": [
+        "29b",
+        "4k"
+      ],
+      "checked_then": "2026-08-03"
+    },
+    {
+      "slug": "windsurf",
+      "url": "https://windsurf.com",
+      "confirmed": "2026-11-12",
+      "first_seen": "2026-11-11",
+      "added": [
+        "$47",
+        "$49"
+      ],
+      "removed": [
+        "$31",
+        "$58",
+        "02b",
+        "76k"
+      ],
+      "checked_then": "2026-08-03"
+    },
     {
       "slug": "deepl",
       "url": "https://www.deepl.com/pricing",
@@ -50,21 +133,6 @@
         "148k"
       ],
       "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "windsurf",
-      "url": "https://windsurf.com",
-      "confirmed": "2026-11-10",
-      "first_seen": "2026-11-09",
-      "added": [
-        "$31",
-        "$58"
-      ],
-      "removed": [
-        "$32",
-        "$59"
-      ],
-      "checked_then": "2026-08-03"
     },
     {
       "slug": "replit",
@@ -171,39 +239,6 @@
       "checked_then": "2026-08-03"
     },
     {
-      "slug": "continue",
-      "url": "https://github.com/continuedev/continue",
-      "confirmed": "2026-11-07",
-      "first_seen": "2026-11-06",
-      "added": [
-        "5.6k"
-      ],
-      "removed": [
-        "5.5k"
-      ],
-      "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "google-flow",
-      "url": "https://support.google.com/flow/answer/16526234",
-      "confirmed": "2026-11-07",
-      "first_seen": "2026-11-06",
-      "added": [
-        "0b",
-        "0credits",
-        "1.2credit",
-        "10credits",
-        "1credit",
-        "2credits",
-        "3credits",
-        "50credits",
-        "5credits",
-        "6credits"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-06"
-    },
-    {
       "slug": "kiro",
       "url": "https://kiro.dev/pricing/",
       "confirmed": "2026-11-06",
@@ -280,17 +315,6 @@
       "checked_then": "2026-09-21"
     },
     {
-      "slug": "framer",
-      "url": "https://framer.com/pricing",
-      "confirmed": "2026-11-05",
-      "first_seen": "2026-11-04",
-      "added": [],
-      "removed": [
-        "100gb"
-      ],
-      "checked_then": "2026-08-06"
-    },
-    {
       "slug": "elicit",
       "url": "https://elicit.com",
       "confirmed": "2026-11-05",
@@ -327,17 +351,6 @@
         "30seconds"
       ],
       "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "siliconflow",
-      "url": "https://siliconflow.cn",
-      "confirmed": "2026-11-05",
-      "first_seen": "2026-11-04",
-      "added": [
-        "4k"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-03"
     },
     {
       "slug": "metaso",
@@ -465,20 +478,6 @@
         "2image"
       ],
       "checked_then": "2026-08-06"
-    },
-    {
-      "slug": "cline",
-      "url": "https://cline.bot",
-      "confirmed": "2026-10-22",
-      "first_seen": "2026-10-21",
-      "added": [
-        "71k"
-      ],
-      "removed": [
-        "70.4k",
-        "70k"
-      ],
-      "checked_then": "2026-08-04"
     },
     {
       "slug": "cloudflare-workers-ai",
