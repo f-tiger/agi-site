@@ -69,6 +69,8 @@ export async function checkPagination(browser, dist) {
   await test.page.locator('#mj-load-retry').click();
   await test.page.locator(`[data-item="${distant.id}"]`).waitFor({ state: 'visible' });
   assert.equal(await test.page.locator(`[data-save="${distant.id}"]`).getAttribute('aria-pressed'), 'true');
+  await test.page.locator(`[data-depth-id="${distant.id}"]`).selectOption('watching');
+  assert.equal(await test.page.evaluate(id => JSON.parse(localStorage.getItem('bpj-manju-progress-v1')).entries[id], distant.id), 'watching', 'Fetched cards retain the independent watching-state control');
   await test.page.goto(base + '/manju/beipai?__probe=1');
   await test.page.locator('[data-save="beipai"]').click();
   assert.deepEqual(await readSaved(test.page), [distant.id], 'Saving on a detail page retains off-page saved IDs');
@@ -96,6 +98,7 @@ export async function checkPagination(browser, dist) {
   assert.ok(await race.page.locator(`[data-item="${first.id}"]`).isVisible(), 'A slow old search must not replace the latest result');
   assert.equal(await race.page.locator(`[data-item="${distant.id}"]`).count(), 0);
   assert.ok(await race.page.locator('[data-item]').count() <= 24);
+  assert.equal(await race.page.locator('.mj-card-actions select[data-depth-id]').count(), await race.page.locator('[data-item]').count(), 'Exactly one watching-state control per mounted card');
   assert.deepEqual(race.errors, []);
   await race.context.close();
   console.log('PASS crawlable pagination: no-JS/mobile, bounded DOM, index/page failures, retry, revision mismatch, cross-page saves and search races.');

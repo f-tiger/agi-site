@@ -113,7 +113,7 @@
       if(version!==renderVersion)return;
       if(wanted.some(id=>!cards.has(id)))throw Error('directory_incomplete');
       grid.replaceChildren(...wanted.map(id=>cards.get(id)));grid.setAttribute('aria-busy','false');
-      status.hidden=true;$('#mj-share-page').disabled=false;renderSaved();showHeat();
+      status.hidden=true;$('#mj-share-page').disabled=false;renderSaved();showHeat();document.dispatchEvent(new CustomEvent('manju:cards-ready'));
       grid.querySelectorAll('[data-mj-thumbnail]').forEach(img=>{if(img.complete&&!img.naturalWidth)imageFailure(img);});
       // Bound detached-card memory across long browsing sessions.
       if(cards.size>768)for(const id of cards.keys()){if(!wanted.includes(id))cards.delete(id);if(cards.size<=384)break;}
