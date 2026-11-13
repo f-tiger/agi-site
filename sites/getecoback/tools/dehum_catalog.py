@@ -52,7 +52,7 @@ def block(slug, today=None, data=None):
     return ('<!--EB_MODELS--><section class="eb-shop eb-models dc-catalog" id="eb-models" aria-labelledby="dc-title">'
             '<style>.dc-catalog{scroll-margin-top:100px}.dc-catalog .dc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:16px}'
             '.dc-catalog .dc-card{padding:18px;border:1px solid #cfe0ea;border-radius:12px;background:#fff;min-width:0}'
-            '.dc-catalog h3{margin:0 0 10px;color:#0a4d7a;font-size:19px;scroll-margin-top:100px}'
+            '.dc-catalog h3{margin:0 0 10px;color:#0a4d7a;font-size:19px;scroll-margin-top:180px}'
             '.dc-catalog p{font-size:15px;line-height:1.6}.dc-catalog a{overflow-wrap:anywhere}'
             '.dc-catalog small{display:block;margin-top:8px;color:#5b6b78}.dc-catalog table{width:100%;min-width:620px;font-size:14px}'
             '.dc-catalog th[scope="row"]{min-width:145px}'
