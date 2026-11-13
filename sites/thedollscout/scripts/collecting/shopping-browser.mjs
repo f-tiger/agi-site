@@ -43,13 +43,16 @@ async function checkMerchants(page, prefix) {
 async function checkJourney(page, prefix, slug, width, javascript=true) {
   const top = async locator => locator.evaluate(el => Math.round(el.getBoundingClientRect().top + scrollY));
   if (slug === '/') {
-    const tasks = page.locator('.shop-shopping-intro .shop-task-nav');
-    assert.equal(await tasks.locator('a').count(), 4, 'Four task choices before homepage products');
-    const taskTop = await top(tasks), productTop = await top(page.locator('[data-shopping-card]').first());
-    assert.ok(taskTop < productTop, 'Task navigation precedes products');
-    if (width === 390) assert.ok(taskTop < 900, 'Mobile tasks arrive within the first viewport area');
+    const catalogue = page.locator('[data-home-catalog]'), tasks = page.locator('#collector-corner .shop-task-nav');
+    const models = await catalogue.locator('[data-home-product]').count();
+    assert.ok(models >= 8 && models <= 12, 'Homepage selects 8–12 real home models');
+    assert.equal(await catalogue.locator('[data-catalog-category-link]').count(), 9, 'Nine home-life categories');
+    assert.equal(await tasks.locator('a').count(), 4, 'Four collector tasks remain in their corner');
+    const catalogueTop=await top(catalogue), taskTop = await top(tasks), productTop = await top(page.locator('[data-shopping-card]').first());
+    assert.ok(catalogueTop < taskTop && taskTop < productTop, 'Home catalogue is primary; collector tasks and saved comparison remain below');
+    if (width === 390) assert.ok(catalogueTop < 900, 'Mobile catalogue begins within the first viewport area');
     for (const category of categories) assert.equal(await tasks.locator(`a[href="${prefix}/shop/${category}"]`).count(), 1);
-    journeys.push({prefix,slug,width,javascript,taskTop,productTop});
+    journeys.push({prefix,slug,width,javascript,catalogueTop,taskTop,productTop,models});
   } else if (slug.startsWith('/shop/')) {
     const start = page.locator('.shop-decision-start'), details = page.locator('.shop-measure-details');
     assert.ok(await start.locator('[data-shopping-decision]').isVisible(), 'Task-specific advice is visible before expanding details');
@@ -104,6 +107,11 @@ try {
         const amazon = page.locator('[data-amazon-shopping]');
         assert.equal(await amazon.count(), 1, 'One Amazon primary section');
         assert.ok(await amazon.locator('a[rel~="sponsored"]').count() > 0, 'Primary section has Amazon exits');
+        if (slug === '/shop') {
+          const catalogue=page.locator('[data-home-catalog]');
+          assert.equal(await catalogue.locator('[data-home-product]').count(),100,'Full catalogue contains 100 models');
+          assert.ok(await catalogue.evaluate(el=>el.getBoundingClientRect().top+scrollY) < await amazon.evaluate(el=>el.getBoundingClientRect().top+scrollY),'Home catalogue precedes collector Amazon guides');
+        }
         const supplemental = page.locator('[data-shopping-products]');
         if(await supplemental.count()) assert.ok(await amazon.evaluate(el=>el.getBoundingClientRect().top+scrollY) < await supplemental.evaluate(el=>el.getBoundingClientRect().top+scrollY), 'Amazon path precedes supplementary sources');
         await checkJourney(page, prefix, slug, width);
@@ -137,7 +145,8 @@ try {
     assert.equal(await page.locator('h1').count(), 1);
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), pathname);
   }
-  const nojs = await browser.newContext({javaScriptEnabled: false});
+  // Native details focus can keep smooth scrolling while the next click awaits stability.
+  const nojs = await browser.newContext({javaScriptEnabled: false, reducedMotion: 'reduce'});
   await serve(nojs);
   const staticPage = await nojs.newPage();
   await staticPage.goto(origin + '/shop?__ci=1');

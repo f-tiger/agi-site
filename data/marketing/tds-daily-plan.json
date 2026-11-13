@@ -1,10 +1,10 @@
 {
-  "version": 9,
+  "version": 10,
   "site": "tds",
   "start_date": "2026-10-12",
   "days": 30,
   "timezone": "Asia/Shanghai",
-  "mode": "owner_authorized_amazon_affiliate_pivot",
+  "mode": "owner_authorized_home_lifestyle_amazon_catalog",
   "native_schedule_unchanged": "07:20 UTC / 15:20 Asia/Shanghai",
   "rules": [
     "The 2026-11-13 explicit Amazon affiliate pivot supersedes the earlier development freeze for this bounded implementation and release; no new expense, account, recurring task or outbound-post authority.",
@@ -374,8 +374,8 @@
   "acquisition_priority": {
     "updated": "2026-11-13",
     "owner_direction": "Research user pain points; execute toward USD100 monthly total site revenue with proactive marketing and country-specific categories.",
-    "primary": "Owner-authorized Amazon affiliate task pages and source-backed US products; DE labelled local category searches.",
-    "status": "amazon_pivot_in_progress",
+    "primary": "Household and everyday-life Amazon catalog with 100 distinct named models, useful categories and US/DE shopping links.",
+    "status": "home_catalog_in_progress",
     "receipt": "docs/tds-affiliate-benchmarks-2026-11-07.md",
     "preserve": [
       "Existing free tools, organizer/MCP experiment history and published-post windows",
@@ -1312,13 +1312,18 @@
     "authorized_exception": {
       "date": "2026-11-13",
       "owner_direction": "转型为亚马逊联盟站",
-      "scope": "Implement and release a focused Amazon affiliate buying path using the existing US/DE accounts; old observations and income goals remain separate."
+      "scope": "Implement and release a focused Amazon affiliate buying path using the existing US/DE accounts; old observations and income goals remain separate.",
+      "additional_requests": [
+        "100种不同商品带分类联盟推荐",
+        "居家生活全品类",
+        "参考竞品"
+      ]
     }
   },
-  "active_experiment_id": "tds-amazon-affiliate-20261113",
+  "active_experiment_id": "tds-home-amazon-100-20261113",
   "amazon_pivot": {
     "id": "tds-amazon-affiliate-20261113",
-    "status": "implementation_in_progress",
+    "status": "base_pivot_released_catalog_expansion_authorized",
     "owner_direction": "转型为亚马逊联盟站",
     "authorized_on": "2026-11-13",
     "positioning": "Amazon affiliate buying guide for collector display, storage and accessories",
@@ -1362,6 +1367,34 @@
       "No attributed commission after100 mature eligible merchant clicks prompts eligibility/attribution review; operational gate only"
     ],
     "source_ledger": "docs/tds-amazon-pivot-2026-11-13.json",
+    "release": {
+      "pr": 315,
+      "commit": "55bb162db09935a4072fbd70e467429b052605ac",
+      "run": 43459845146,
+      "status": "success",
+      "first_complete_utc_day": "2026-11-14"
+    }
+  },
+  "home_catalog": {
+    "owner_requests": [
+      "100种不同商品带分类联盟推荐",
+      "居家生活全品类",
+      "参考竞品"
+    ],
+    "authorized_on": "2026-11-13",
+    "status": "implementation_and_source_verification_in_progress",
+    "target_products": 100,
+    "count_unit": "Distinct named brand/model products; no colour/pack-size padding or generic category searches counted as products",
+    "organization": "Nine household and daily-life category groups, localized useful-task and check-before-buying copy, browse all without JS, local category/search enhancement",
+    "link_modes": "Only the two existing US exact ASIN identities. Other verified named models use explicitly labelled Amazon brand/model searches, not assumed ASIN listings or local stock. US/DE existing tags remain.",
+    "reference_sites": {
+      "ThisIsWhyImBroke": "Scene/category discovery and short named product card-to-merchant paths",
+      "Wirecutter": "Inspectible choose/skip reasons, source-backed comparison and disclosed affiliate relationship; TDS does not claim hands-on testing"
+    },
+    "marketing_execution": "Owned categorized catalog and existing site navigation; no new external posts, messages, paid ads, sources quota or scheduler",
+    "measurement": "Existing shopping path/affiliate event contract; non-exact model searches remain merchant-only item unknown, never inferred product-level sales",
+    "prior_windows": "Preserve earlier experiments and 22 November review; record exact release and first complete date for this expansion separately.",
+    "revenue_goal": "Preserve USD100 monthly total TDS-attributable revenue; actual unknown",
     "release": null
   }
 }
