@@ -1,0 +1,117 @@
+{
+  "observed_at": "2026-11-13T09:28:23Z",
+  "evidence_source": "Metricool brand 7132930 provider records; direct media hash checks",
+  "brand_id": "7132930",
+  "brand_timezone": "Asia/Shanghai",
+  "catalog": {
+    "creative_id": "de-catalog-20261112",
+    "campaign": "eco-dach-catalog-01",
+    "format": "photo_carousel",
+    "language": "de",
+    "source_checked": "2026-11-12",
+    "metricool_post_id": 425192059,
+    "uuid": "5630460762000670752",
+    "provider": {
+      "network": "tiktok",
+      "id": "7707339266384334111",
+      "status": "PUBLISHED",
+      "publicUrl": "https://www.tiktok.com/@agifuturelife/video/7707339266384334111",
+      "detailedStatus": "Published"
+    },
+    "scheduled_time": {
+      "Asia_Shanghai": "2026-11-13T01:30:00+08:00",
+      "Europe_Berlin": "2026-11-12T18:30:00+01:00",
+      "UTC": "2026-11-12T17:30:00Z"
+    },
+    "actual_published_at": null,
+    "actual_published_at_note": "Provider status is PUBLISHED; response has no exact actual publication timestamp. publicationDate is the scheduled time.",
+    "autoPublish": true,
+    "draft": false,
+    "caption": "Werbung · eigener EcoBack-Ratgeber\n\nDrei Checks vor dem Luftentfeuchter-Kauf:\n1. Genaue Modellnummer: Arete One und Two sind unterschiedliche Generationen.\n2. Wasserablauf: Tank oder Schlauch? Ein Anschluss bedeutet nicht automatisch eine Pumpe. Anleitung und Aufstellung prüfen.\n3. Liter pro Tag gelten unter bestimmten Bedingungen. Temperatur und relative Luftfeuchte mitlesen – besonders für den Keller.\n\nSechs Modelle mit Hersteller-/Anbieterquellen und Grenzen: getecoback.com/entfeuchter-tiktok\n\nKein eigener Gerätetest. Quellen geprüft am 12.11.2026; Preise, Variante und Lieferbarkeit beim Händler prüfen. Die Website enthält gekennzeichnete Affiliate-Links.\n\n#Luftentfeuchter #Raumklima #Kaufberatung",
+    "caption_matches_manifest": true,
+    "metricool_media": [
+      "https://static.metricool.com/planner/202611/7132930-file-7112672990745726025.jpeg",
+      "https://static.metricool.com/planner/202611/7132930-file-2340129254518228986.jpeg",
+      "https://static.metricool.com/planner/202611/7132930-file-17965685350071665645.jpeg",
+      "https://static.metricool.com/planner/202611/7132930-file-11210283858493648756.jpeg"
+    ],
+    "all_four_media_sha256_match_manifest": true,
+    "media_hash_verification_completed_at": "2026-11-13T09:29:44Z",
+    "manifest_path": "data/marketing/de-catalog-20261112.json",
+    "manifest_sha256": "06570077cd6c897f4a64a5c96245d484a5002c37ca5449ec69e0e25b26b1149f",
+    "landing_url": "https://getecoback.com/entfeuchter-tiktok",
+    "media": [
+      {
+        "path": "/assets/marketing/de-catalog-20261112/01-model.jpg",
+        "sha256": "064c2243464563d6bef15b6e210541ec5f3153894fad28dc0661f115f62ce1d1"
+      },
+      {
+        "path": "/assets/marketing/de-catalog-20261112/02-drain.jpg",
+        "sha256": "15c7dd142cd7de35b5be81ba9269353d8ff9cc7764777cac55bcda5d319ba2a6"
+      },
+      {
+        "path": "/assets/marketing/de-catalog-20261112/03-conditions.jpg",
+        "sha256": "1724a74d12b5b9495382138bbea06b306e6c31216c916a32eeae12e0eda41dc7"
+      },
+      {
+        "path": "/assets/marketing/de-catalog-20261112/04-guide.jpg",
+        "sha256": "12852fa6fbd0ff33e0fa4c6d8ddf21cb6726e4832483c5470ae06ab73fa85f2c"
+      }
+    ]
+  },
+  "thermostat": {
+    "creative_id": "de-thermostat-20261112",
+    "metricool_post_id": 425658724,
+    "uuid": "870940558159268939",
+    "status": "PENDING",
+    "scheduled_time": {
+      "Asia_Shanghai": "2026-11-15T01:30:00+08:00",
+      "Europe_Berlin": "2026-11-14T18:30:00+01:00",
+      "UTC": "2026-11-14T17:30:00Z"
+    },
+    "autoPublish": true,
+    "draft": false,
+    "manifest_path": "data/marketing/de-thermostat-20261112.json",
+    "manifest_sha256": "b1ac1f8e490268058113344609d3837ed1e9b2eede5b63daaebb2fe95a80dc11",
+    "landing_url": "https://getecoback.com/thermostat-tiktok",
+    "source_checked": "2026-11-12",
+    "caption": "Werbung · eigener EcoBack-Ratgeber\n\nPasst das smarte Heizkörperthermostat wirklich?\n1. Ventil bestimmen und den Adapter für das genaue Modell prüfen. Die Gewindegröße allein ist kein Passungsnachweis.\n2. Vorhandene Bridge und neue Generation abgleichen: tado° X und V3+ sind laut Hersteller nicht miteinander kompatibel.\n3. Die Gesamtkosten zählen: Anzahl der Heizkörper, nötige Zentrale, Adapter und optionale Abos.\n\nKosten und Modellquellen prüfen: getecoback.com/thermostat-tiktok\n\nQuelle zum Generationenvergleich: tado° Shop, geprüft am 12.11.2026. Kein eigener Gerätetest und keine pauschale Sparzusage. Die Website enthält gekennzeichnete Affiliate-Links.\n\n#Heizkörperthermostat #SmartHome #Heizkosten",
+    "media": [
+      {
+        "path": "/assets/marketing/de-thermostat-20261112/01-fit.jpg",
+        "sha256": "8b317971c505d9d6151d2b7ffef4611cf430db32b64150cbc425ad8a6b5d36e4"
+      },
+      {
+        "path": "/assets/marketing/de-thermostat-20261112/02-valve.jpg",
+        "sha256": "77d4a41c2f27ec696bf5147d254ce10c1335a5236b301d78d2c3ea8e6b06b65e"
+      },
+      {
+        "path": "/assets/marketing/de-thermostat-20261112/03-system.jpg",
+        "sha256": "7001fa124b7f343c4f6623612b2cb02e61aa5e190bc5946285b70990b349d49d"
+      },
+      {
+        "path": "/assets/marketing/de-thermostat-20261112/04-cost.jpg",
+        "sha256": "25d61a938673aea923ef19cb3e90c8464dda0ed5a8d37aee0c513ad02aab4c39"
+      }
+    ],
+    "campaign": "eco-dach-thermostat-01",
+    "format": "photo_carousel",
+    "language": "de"
+  },
+  "legacy": {
+    "youtube": {
+      "id": "TVobXi1Xgow",
+      "metricool_post_id": 419729739,
+      "status": "PUBLISHED",
+      "publicUrl": "https://www.youtube.com/watch?v=TVobXi1Xgow"
+    },
+    "tiktok": {
+      "id": "7704985361356883981",
+      "current_publication_status": "unknown",
+      "url": "https://www.tiktok.com/@agifuturelife/video/7704985361356883981",
+      "evidence": "No matching Metricool queue/post-analytics row; public oEmbed returns HTTP 200 and the exact embed product ID but no owner/title/status. This does not establish current playback availability. Retain no-resubmission guard."
+    }
+  },
+  "mutations_performed": 0,
+  "status_scope": "Point-in-time provider receipts; prepared manifests do not override these publication states. Reconcile before any retry."
+}

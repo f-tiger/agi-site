@@ -122,6 +122,16 @@ Du hast die Feuchte gemessen und brauchst ein Gerät? Vergleiche zuerst Bedienun
 **Deutschland:** Händlerlinks führen zu Amazon.de. Für Österreich und die Schweiz Lieferung, Stecker, Garantie und Gesamtkosten separat prüfen.
 Bei ungeklärter Feuchte zuerst [richtig messen](https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html); bei nassen Wänden oder Schimmel [die Ursache klären](https://getecoback.com/guide/luftentfeuchter-gegen-schimmel.html). Für kalte Räume [Betriebsgrenzen prüfen](https://getecoback.com/guide/luftentfeuchter-keller.html#kalter-keller); bei Wäsche [Kosten je Ladung vergleichen](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#laundry-check).
 Hersteller-/Anbieterquellen geprüft: 2026-11-12. Keine Live-Preise oder garantierte Lieferbarkeit. Unterschiedliche Nennkapazitäten, Messbedingungen oder Quellen ergeben keinen Effizienzsieger.
+
+### Schlauchanschluss oder Pumpe: Passt der Ablauf zu deinem Raum?
+**Ein Schlauchanschluss allein bestätigt keine Pumpe.** Liegt dein Abfluss höher als der Geräteauslass, muss die Anleitung genau dieses Modells eine passende Lösung bestätigen. Fehlt eine Pumpenangabe, ist die Eignung für deinen Ablauf ungeklärt.
+
+- **Platz prüfen:** Stellfläche und Freiräume aus der genauen Anleitung abgleichen. Auch der Tank muss zum Leeren erreichbar bleiben.
+- **Wasserweg skizzieren:** Geräteauslass, Schlauchverlauf und Zielablauf einzeichnen. Gefälle, Knicke und gegebenenfalls Förderhöhe mit der Anleitung abgleichen; nicht allein nach dem Anschlussfoto kaufen.
+- **Lieferumfang klären:** Schlauch, Adapter und Pumpe getrennt prüfen. Ohne bestätigte Schlauch- oder Pumpenlösung den vorgesehenen Tankbetrieb oder einen anderen geeigneten Standort prüfen; zuerst vorhandene Möglichkeiten prüfen.
+**Konkretes Beispiel: MeacoDry Arete One 20L.** Die UK-Herstellerseite nennt einen Schlauchadapter, keinen mitgelieferten Schlauch und eine separat verkaufte Pumpe für Entwässerung nach oben. Das bestätigt weder den deutschen Lieferumfang noch die Eignung der Arete Two 12L. Vor Bestellung die genaue deutsche Variante und ihre Anleitung abgleichen.
+Quelle: [Meaco UK: Arete One 20L, Ablauf und separates Pumpenzubehör](https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-air-purifier) · geprüft am 13.11.2026. Bei ungeklärter Feuchte bleibt Messen und Ursachenklärung der erste Schritt; ein Neukauf ist dann noch nicht begründet.
+
 Kaufgründe und genaue Varianten
 Modell | Prüfen, wenn dir dies wichtig ist | Variante |
 Bosch Dry 4000 | Drei Betriebsmodi statt vieler Einstellungen | D4000-EU · Artikel 7733703558 |

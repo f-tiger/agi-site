@@ -25,6 +25,10 @@ def check(slug):
             assert html.index('<!--/EB_BUYER-->') < match.start(), slug + ': catalog nested in buyer'
             assert match[1].count('class="dc-card"') == len(DATA['products']), slug
             md = read(path, 'text/markdown')
+            assert match[1].count('id="ablauf-vor-kauf"') == 1, slug + ': drain answer missing'
+            for surface in [match[1], md]:
+                assert 'Ein Schlauchanschluss allein bestätigt keine Pumpe.' in surface, slug + ': drain limitation missing'
+                assert 'weder den deutschen Lieferumfang noch die Eignung der Arete Two 12L' in surface, slug + ': market/model caveat missing'
             for product in DATA['products']:
                 for surface in [match[1], md]:
                     assert product['name'] in surface and product['source'] in surface, slug + ': evidence missing'
