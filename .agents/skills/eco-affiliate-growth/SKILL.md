@@ -7,6 +7,14 @@ description: Research German affiliate competitors and improve ECO product cover
 
 Read root AGENTS.md, current site instructions, `.agents/product-marketing.md` and the latest ECO release/marketing receipts. User authorization persists; use the current session and available connectors. No separate model login or paid SEO subscription is required.
 
+## Installed execution skills (2026-11-13)
+
+Use the project-discoverable skills in `.agents/skills/`: `content-strategy` to choose one buyer question; `social` and `video` for original owned-channel material; `seo-audit` / `ai-seo` for discoverability; `cro` for the matching existing landing page; `analytics` / `attribution` for actual evidence; `marketing-loops` for deduplication and bounded execution. `product-marketing` reads the existing `.agents/product-marketing.md`, never overwrites it merely on install. Source/license/commit and hashes: `.agents/marketing-skills.lock.json`. Full bundled references/tools live in `.agents/vendor/marketingskills`; this is a project install, not a claim of account-global installation.
+
+Before publishing, read `.agents/marketing-state/eco-2026-11-13.json` and latest provider records. Catalog425192059 and thermostat426988578 are PUBLISHED. Thermostat UUID870940558159268939 stayed the same while its ID changed from425658724; final TikTokID7707655249196043533 supersedes the intermediate awaiting-confirmation ID. The owner advanced this existing post toNov13; this does not increase general volume. Old Nov14 pending wording is historical. Robot creative remains prepared, not scheduled. Concrete next execution brief: `docs/eco-marketing-skills-execution-2026-11-13.md`.
+
+Upstream examples, suggested posting frequencies, paid integrations and approval defaults do not override the user's existing authorization, no-spend boundary, dedup/cadence limits or stop dates. Use current connected tools; do not request new keys or execute bundled telemetry/installers just because a skill mentions them. Prefer official platform evidence over vendor growth claims. Do not interpret an internal content score as real demand or ROI.
+
 ## Diagnose and research
 
 1. Use complete UTC windows from `/api/trend` → `affiliate_audit`. Keep event counts, visitors, AI referrals, citations, orders and settled commission separate. Unknown-UA rows and historical collection gaps limit comparisons. Do not divide by the capped raw referrer list.

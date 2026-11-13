@@ -1,0 +1,84 @@
+{
+  "observed_at": "2026-11-13T15:29:00Z",
+  "brand_id": "7132930",
+  "timezone": "Asia/Shanghai",
+  "posts": [
+    {
+      "id": 418692675,
+      "uuid": "7293479448787503555",
+      "providers": [
+        {
+          "network": "tiktok",
+          "id": "7705499864188112141",
+          "status": "PUBLISHED",
+          "publicUrl": "https://www.tiktok.com/@agifuturelife/video/7705499864188112141",
+          "detailedStatus": "Published"
+        }
+      ],
+      "publicationDate": {
+        "dateTime": "2026-11-06T17:19:00",
+        "timezone": "Asia/Shanghai"
+      }
+    },
+    {
+      "id": 419729739,
+      "uuid": "4058664062424008329",
+      "providers": [
+        {
+          "network": "youtube",
+          "id": "TVobXi1Xgow",
+          "status": "PUBLISHED",
+          "publicUrl": "https://www.youtube.com/watch?v=TVobXi1Xgow",
+          "detailedStatus": "Published"
+        }
+      ],
+      "publicationDate": {
+        "dateTime": "2026-11-07T15:05:00",
+        "timezone": "Asia/Shanghai"
+      }
+    },
+    {
+      "id": 425192059,
+      "uuid": "5630460762000670752",
+      "providers": [
+        {
+          "network": "tiktok",
+          "id": "7707339266384334111",
+          "status": "PUBLISHED",
+          "publicUrl": "https://www.tiktok.com/@agifuturelife/video/7707339266384334111",
+          "detailedStatus": "Published"
+        }
+      ],
+      "publicationDate": {
+        "dateTime": "2026-11-13T01:30:00",
+        "timezone": "Asia/Shanghai"
+      }
+    },
+    {
+      "id": 426988578,
+      "uuid": "870940558159268939",
+      "providers": [
+        {
+          "network": "tiktok",
+          "id": "7707655249196043533",
+          "status": "PUBLISHED",
+          "publicUrl": "https://www.tiktok.com/@agifuturelife/video/7707655249196043533",
+          "detailedStatus": "Published"
+        }
+      ],
+      "publicationDate": {
+        "dateTime": "2026-11-13T21:59:00",
+        "timezone": "Asia/Shanghai"
+      }
+    }
+  ],
+  "actual_publication_timestamps": "Not returned; publicationDate is scheduled time, not exact publication proof.",
+  "catalog_creative": "de-catalog-20261112",
+  "thermostat_creative": "de-thermostat-20261112",
+  "next_creative": "de-robot-fit-20261112",
+  "next_state": "hold_prepared",
+  "earliest_review_not_schedule": "2026-11-20T18:30:00+01:00",
+  "new_submissions": 0,
+  "rule": "Re-read provider and last30days before any send; known publication overrides prepared manifests. Owner's earlier advance applies only to thermostat, not general cadence.",
+  "private_metrics": "Not stored here; missing reports remain unknown."
+}
