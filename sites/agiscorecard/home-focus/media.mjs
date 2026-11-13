@@ -17,12 +17,12 @@ function rotate(){
  if(editionPool!==snapshot.rotation||edition?.day!==rotationDay()){edition=homeEdition(snapshot.rotation);editionPool=snapshot.rotation;}if(!edition)return;
  const feature=document.getElementById('home-feature'),grid=document.querySelector('.home-latest-grid');
  const stats=document.getElementById('home-stats');if(stats&&!focused(stats)&&stats.innerHTML!==snapshot.locales[lang].stats)stats.innerHTML=snapshot.locales[lang].stats;
- // Refresh source metadata separately; do not replace a focused card or the
- // current day's choices when the publisher feed arrives later in the day.
+ // A new source snapshot can bring new videos on the same editorial day.
+ // Defer replacing focused cards and keep an active featured player intact.
  for(const selector of ['.home-topics','.home-sync-note']){const node=document.querySelector(selector),next=sourceFragments?.querySelector(selector);if(node&&next&&!focused(node)&&node.outerHTML!==next.outerHTML)node.replaceWith(next.cloneNode(true));}
  // Keep an existing player and its matching takeaways intact, even across midnight.
  if(feature&&!feature.querySelector('iframe')&&!focused(feature)&&feature.querySelector('[data-home-edition]')?.dataset.homeEdition!==edition.day){feature.innerHTML=renderHomeFeature(edition,lang);images(feature);}
- if(grid&&!focused(grid)&&grid.dataset.homePicksDay!==edition.day){grid.innerHTML=renderHomePicks(edition,lang);grid.dataset.homePicksDay=edition.day;images(grid);}
+ if(grid&&!focused(grid)&&(grid.dataset.homePicksDay!==edition.day||grid.dataset.homePicksVersion!==snapshot.checkedAt)){grid.innerHTML=renderHomePicks(edition,lang);grid.dataset.homePicksDay=edition.day;grid.dataset.homePicksVersion=snapshot.checkedAt;images(grid);}
  for(const time of document.querySelectorAll('[data-home-edition-date]')){const displayed=grid?.dataset.homePicksDay;if(displayed){time.dateTime=displayed;time.textContent=displayed;}}
  document.documentElement.dataset.homeRotationDay=grid?.dataset.homePicksDay||edition.day;
 }

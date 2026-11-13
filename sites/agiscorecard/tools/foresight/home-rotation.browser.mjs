@@ -42,7 +42,7 @@ try{
   await p.locator('#home-feature iframe').evaluate(n=>n.dataset.survivor='same-player');state.fail=true;
   await p.clock.runFor(61000);const next=await actual(p);
   assert.equal(next.feature,old.feature);assert.equal(await p.locator('#home-feature iframe').getAttribute('src'),src);assert.equal(await p.locator('#home-feature iframe').getAttribute('data-survivor'),'same-player');
-  assert.notDeepEqual(next.picks,old.picks);assert.equal(next.day,nextDay);
+  assert.deepEqual(next.picks,homeEdition(snapshot.rotation,after).recommendations.zh.map(v=>v.video));assert.equal(next.day,nextDay);
   await p.clock.fastForward(86400000);assert.equal((await actual(p)).day,laterDay,'cached pool rotates despite failed source refresh');assert.ok(state.requests>=2);assert.equal(state.frames,1);assert.deepEqual(state.errors,[]);await ctx.close();
  }
  {
@@ -58,5 +58,20 @@ try{
   const {ctx,p,state}=await fixture('zh',{fail:true});assert.equal(await p.locator('.home-latest-card').count(),4,'published HTML remains useful on initial fetch failure');state.fail=false;
   await p.clock.runFor(300000);await p.waitForFunction(d=>document.documentElement.dataset.homeRotationDay===d,nextDay);await verify(p,'zh',after);assert.deepEqual(state.errors,[]);await ctx.close();
  }
- console.log('Daily home rotation: bilingual midnight rollover, same-day stability, 320/390px layout, focused-card protection, uninterrupted playback, source metadata refresh and failed/invalid feeds passed.');
+
+ {
+  const {ctx,p,state}=await fixture('en');await p.clock.setSystemTime(new Date(day+'T12:00:00Z'));await p.reload();
+  await p.waitForFunction(d=>document.documentElement.dataset.homeRotationDay===d,day);
+  const old=await actual(p);await p.locator('[data-home-video]').click();await p.locator('#home-feature iframe').waitFor();
+  await p.locator('#home-feature iframe').evaluate(n=>n.dataset.survivor='same-player');
+  state.data.checkedAt=day+'T12:01:00Z';state.data.locales.en.feed=state.data.locales.en.feed.replaceAll(snapshot.checkedAt,state.data.checkedAt);
+  state.data.rotation.videos.push({...state.data.rotation.videos.find(v=>v.language==='en'),video:'freshEN0001',date:day,publishedAt:day+'T12:00:30Z',views:[],title:'Fixture new publication'});
+  await p.locator('.home-latest-card a').first().focus();await p.clock.runFor(300000);
+  assert.deepEqual((await actual(p)).picks,old.picks,'focused card survives same-day refresh');
+  await p.locator('h1').click();await p.clock.runFor(60000);
+  assert.equal((await actual(p)).day,old.day);assert.equal((await actual(p)).picks[0],'freshEN0001','new snapshot updates latest cards on the same day');
+  assert.equal(await p.locator('#home-feature iframe').getAttribute('data-survivor'),'same-player');
+  assert.equal((await actual(p)).feature,old.feature);assert.deepEqual(state.errors,[]);await ctx.close();
+ }
+ console.log('Daily home rotation: bilingual midnight rollover, same-day new-publication refresh, 320/390px layout, focused-card protection, uninterrupted playback, source metadata refresh and failed/invalid feeds passed.');
 }finally{await browser.close();}

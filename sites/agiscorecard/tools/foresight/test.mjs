@@ -37,7 +37,7 @@ test('media classification overrides podcast syndication, preserves reviewed vie
  assert.equal(items.filter(i=>i.views.length).length,16);assert.equal(items.reduce((n,i)=>n+i.views.length,0),30);
  for(const medium of ['video','audio','text']){const matches=selectedItems(data,{medium,asOf:'2026-10-03'});assert.ok(matches.length);assert.ok(matches.every(i=>i.medium===medium));}
  assert.equal(selectedItems(data,{medium:'audio',goal:'family',query:'Belsky',asOf:'2026-10-03'})[0].id,'leah');
- const html=discoveryCards(data,'zh',{medium:'audio'},4);assert.match(html,/观点重点/);assert.match(html,/学习也需要连接/);assert.ok(!html.includes('media-poster'));assert.match(html,/节目简介（出版方原文）/);
+ const html=discoveryCards(data,'zh',{medium:'audio',order:'views'},4);assert.match(html,/观点重点/);assert.match(html,/学习也需要连接/);assert.ok(!html.includes('media-poster'));assert.match(html,/节目简介（出版方原文）/);
  assert.equal(videoId('https://evil.test/watch?v=abcdefghijk'),null);assert.equal(videoId('https://www.youtube.com/watch?v=abcdefghijk'),'abcdefghijk');
  const evil={sources:[{id:'test',name:'Publisher',language:'en'}],items:[{id:'test',sourceId:'test',url:'https://example.com/source',title:'<script>alert(1)</script>',medium:'audio',publishedAt:'2026-10-03T00:00:00Z',goals:['work'],publisherExcerpt:'<img onerror="evil()">',audioUrl:'javascript:alert(1)'}]};
  const safe=discoveryCards(evil,'en',{medium:'audio',query:'alert'},4);assert.ok(!safe.includes('<script>')&&!safe.includes('data-play-audio'));assert.match(safe,/&lt;script&gt;/);
@@ -50,4 +50,12 @@ test('bilingual home and library use the same deduplicated collection and exact 
  assert.equal(snapshot.counts.videos,items.filter(i=>i.medium==='video').length);assert.equal(snapshot.counts.views,claims.length);assert.equal(snapshot.checkedAt,data.checkedAt);
  for(const lang of ['en','zh']){const home=snapshot.locales[lang],prefix=lang==='zh'?'/zh':'',links=[...home.feed.matchAll(/watch=([\w-]{11})/g)].map(m=>m[1]);assert.equal(new Set(links).size,4);for(const id of links){assert.equal(selectedItems(data,{watch:id,asOf}).length,1);assert.ok(items.find(i=>i.video===id).language===lang);}assert.ok(home.feed.includes(prefix+'/future-guide?topic=work#fresh'));assert.match(home.feature,/data-home-video="[\w-]{11}"/);assert.ok(!home.feature.includes('<iframe'));assert.ok(siteHeader(lang,{slug:'future-guide/test',current:'videos'}).includes('href="'+(lang==='zh'?'':'/zh')+'/future-guide/test"'));}
  const next=structuredClone(data);next.items.push({id:'test-new-video',sourceId:data.sources[0].id,url:'https://www.youtube.com/watch?v=aNewVideo001',publishedAt:'2026-10-03T00:00:00Z',medium:'video',title:'New source episode',goals:['work']});assert.equal(homeSnapshot(next).counts.videos,snapshot.counts.videos+1);
+});
+
+
+test('newest publications lead the default library, including same-day timestamps; takeaways remain selectable',()=>{
+ const data={sources:[{id:'fixture',name:'Fixture publisher',language:'en'}],items:[1,2].map(n=>({id:'fresh-'+n,sourceId:'fixture',url:'https://www.youtube.com/watch?v=freshVideo'+n,videoId:'freshVideo'+n,title:'Fixture episode '+n,medium:'video',publishedAt:'2026-11-30T'+(18+n)+':00:00Z',goals:['work']}))};
+ assert.equal(selectedItems(data,{asOf:'2026-12-01'})[0].video,'freshVideo2');
+ assert.match(discoveryCards(data,'en',{asOf:'2026-12-01'}),/data-discovery-card="fresh-2"/);
+ assert.ok(selectedItems(data,{asOf:'2026-12-01',order:'views'})[0].views.length);
 });
