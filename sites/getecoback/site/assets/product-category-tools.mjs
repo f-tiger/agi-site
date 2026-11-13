@@ -67,6 +67,8 @@ export function initCategoryTools(root) {
     if(form.dataset.categoryToolBound)continue;
     form.dataset.categoryToolBound='1';
     const result=form.closest('.pc-tool').querySelector('[data-category-result]');
+    const clearResult=()=>{result.replaceChildren();result.hidden=true;};
+    form.addEventListener('input',clearResult);form.addEventListener('change',clearResult);form.addEventListener('invalid',clearResult,true);
     form.addEventListener('submit',event=>{
       event.preventDefault();
       try{

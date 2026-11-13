@@ -105,6 +105,7 @@ try{
     await setValues(form,spec.values);await form.locator('button[type=submit]').click();
     const text=await resultText(page,spec.category);assert.match(text,spec.expect);independentSubmissions++;
     if(spec.category==='dampfreiniger')assert.doesNotMatch(text,/weitere Prüfung nach Anleitung nicht aus/);
+    if(spec.category==='luftreiniger'){await form.locator('[name=length]').fill('');assert(await page.locator('#pc-tool-luftreiniger [data-category-result]').isHidden(),'Editing inputs must withdraw an old answer');}
     await form.locator('button[type=reset]').click();
    }
    const form=page.locator('form[data-category-tool="luftreiniger"]'),output=page.locator('#pc-tool-luftreiniger [data-category-result]');
