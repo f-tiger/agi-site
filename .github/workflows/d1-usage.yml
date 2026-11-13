@@ -70,6 +70,7 @@ jobs:
       - name: BPJ traffic diagnosis (read-only, encrypted)
         if: inputs.dataset == 'bpj'
         env:
+          BPJ_DIAG_PHASE: clients
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_API_TOKEN_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}

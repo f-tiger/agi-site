@@ -14,10 +14,20 @@ test('Cloudflare reads only BPJ aggregates; forbidden bot scores stay unknown',a
   return ok({data:{viewer:{zones:[{httpRequestsAdaptiveGroups:[{count:7,dimensions:{clientCountryName:'CN',clientRequestPath:'/manju/a?private=no',userAgent:'robot person@example.com'}}]}]}}});
  };
  const out=await cloudflare({CLOUDFLARE_API_TOKEN:'mock-secret-token-123'},{fetchFn,days:['2026-11-12']});
- assert.equal(out.status,'partial');assert.equal(out.reports.length,12);assert.equal(out.reports.filter(x=>x.status==='blocked').length,2);
+ assert.equal(out.status,'partial');assert.equal(out.reports.length,13);assert.equal(out.reports.filter(x=>x.status==='blocked').length,2);
  assert.doesNotMatch(JSON.stringify(out),/person@example|private=no|mock-secret/);
  assert(calls.every(c=>c.url.startsWith('https://api.cloudflare.com/client/v4/')));
  assert.throws(()=>cfQuery(['clientIP']));assert.throws(()=>cfQuery(['userAgent'],',clientRequestPath_like:"/%"'));
+});
+test('client followup avoids inaccessible ASN fields and repeats only missing groups',async()=>{
+ let queries=0;
+ const fetchFn=async(url,opt)=>{
+  if(url.includes('/zones?'))return ok({result:[{id:'bpj',name:'baipiaoji.com'}]});
+  queries++;const b=JSON.parse(opt.body);assert.match(b.query,/userAgent verifiedBotCategory/);assert.doesNotMatch(b.query,/clientAsn|clientASNDescription|clientRefererHost|botScoreBucket/);
+  return ok({data:{viewer:{zones:[{httpRequestsAdaptiveGroups:[]}]}}});
+ };
+ const out=await cloudflare({CLOUDFLARE_API_TOKEN:'mock-secret-token-123'},{fetchFn,days:['2026-11-12'],clientsOnly:true});
+ assert.equal(queries,3);assert.equal(out.status,'received');assert(out.reports.every(x=>x.name.endsWith('_clients')));
 });
 test('GA4 uses readonly scope and only BPJ property; redacts query/private paths',async()=>{
  const dims=['date','country','sessionSourceMedium','landingPage','pagePath','deviceCategory','browser','browserVersion','operatingSystem','eventName','dateHour','hostName'];

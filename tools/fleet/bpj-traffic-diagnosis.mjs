@@ -10,6 +10,8 @@ import {credentials,validatePublicKey} from '../eco-reporting/report.mjs';
 export const HOST='baipiaoji.com', PROPERTY='547077892';
 const CF='https://api.cloudflare.com/client/v4/';
 const DAYS=['2026-11-10','2026-11-11','2026-11-12'];
+const POPULAR_PATHS=['hg-7701328280862854168','hg-7697622096326708286','hg-7702378804068502552','hg-7701588705932217406','hg-7696095984266251326'].map(id=>'/manju/'+id);
+const POPULAR_FILTER=',clientRequestPath_in:'+JSON.stringify(POPULAR_PATHS)+',clientRequestHTTPMethodName:"GET",edgeResponseStatus:200';
 const SCOPE='https://www.googleapis.com/auth/analytics.readonly';
 const failure=e=>String(e?.code||e?.message||'request_failed').slice(0,320);
 const fail=code=>{throw Object.assign(new Error(code),{code});};
@@ -25,10 +27,10 @@ async function json(fetchFn,url,options={},label='request'){
 export function cfQuery(dimensions,extra='',limit=2000){
  const safe=['datetimeHour','clientCountryName','clientAsn','clientASNDescription','userAgent','userAgentBrowser','userAgentOS','clientRequestPath','clientRequestHTTPMethodName','edgeResponseStatus','edgeResponseContentTypeName','clientRefererHost','verifiedBotCategory','botScoreBucketBy10','jsDetectionPassed','securityAction'];
  if(dimensions.some(d=>!safe.includes(d)))fail('unsupported_cf_dimension');
- if(!['',',clientRequestPath_like:"/manju/%"',',clientRequestPath_like:"/manju/%",clientRequestHTTPMethodName:"GET",edgeResponseStatus:200',',clientRequestPath_in:["/analytics-assets/frame","/analytics-assets/frame.html"],clientRequestHTTPMethodName:"GET",edgeResponseStatus:200'].includes(extra))fail('unsupported_cf_filter');
+ if(!['',',clientRequestPath_like:"/manju/%"',',clientRequestPath_like:"/manju/%",clientRequestHTTPMethodName:"GET",edgeResponseStatus:200',',clientRequestPath_in:["/analytics-assets/frame","/analytics-assets/frame.html"],clientRequestHTTPMethodName:"GET",edgeResponseStatus:200',POPULAR_FILTER].includes(extra))fail('unsupported_cf_filter');
  return `query($z:string,$s:Time,$e:Time){viewer{zones(filter:{zoneTag:$z}){httpRequestsAdaptiveGroups(limit:${limit},orderBy:[count_DESC],filter:{datetime_geq:$s,datetime_lt:$e,requestSource:"eyeball",clientRequestHTTPHost:"${HOST}"${extra}}){count dimensions{${dimensions.join(' ')}}}}}}`;
 }
-export async function cloudflare(env,{fetchFn=fetch,days=DAYS}={}){
+export async function cloudflare(env,{fetchFn=fetch,days=DAYS,clientsOnly=false}={}){
  const tokens=[...new Set(['CLOUDFLARE_API_TOKEN','CLOUDFLARE_API_TOKEN_ZONE','CF_API_TOKEN'].map(k=>env[k]).filter(Boolean))];
  const out={host:HOST,timezone:'UTC',definition:'Adaptive request aggregates, not users, GA4 events or exact billing. HEAD requests do not execute page JavaScript. Unavailable bot scores do not classify traffic as human.',reports:[]};
  if(!tokens.length)return {...out,status:'blocked',reason:'cloudflare_credentials_missing'};
@@ -50,21 +52,23 @@ export async function cloudflare(env,{fetchFn=fetch,days=DAYS}={}){
  const sections=[
   ['site_country',['clientCountryName','clientRequestHTTPMethodName','edgeResponseContentTypeName','edgeResponseStatus'],''],
   ['manju_status',['clientCountryName','clientRequestHTTPMethodName','edgeResponseStatus'],manju],
-  ['manju_clients',['clientCountryName','clientAsn','clientASNDescription','userAgent'],page],
+  ['manju_clients',['clientCountryName','userAgent','verifiedBotCategory'],page],
   ['manju_paths',['clientRequestPath','clientCountryName'],page],
   ['manju_hours',['datetimeHour','clientCountryName','userAgentBrowser'],page],
   ['manju_referrers',['clientCountryName','clientRefererHost'],page],
-  ['frame_clients',['clientCountryName','clientAsn','clientASNDescription','userAgent'],frame],
+  ['frame_clients',['clientCountryName','userAgent','verifiedBotCategory'],frame],
   ['frame_hours',['datetimeHour','clientCountryName','userAgentBrowser'],frame],
   ['manju_verified_bots',['clientCountryName','verifiedBotCategory'],page],
   ['frame_verified_bots',['clientCountryName','verifiedBotCategory'],frame],
   ['manju_bot_score',['clientCountryName','botScoreBucketBy10'],page],
   ['frame_bot_score',['clientCountryName','botScoreBucketBy10'],frame],
+  ['popular_manju_clients',['clientCountryName','clientRequestPath','userAgent','verifiedBotCategory'],POPULAR_FILTER],
  ];
+ const selected=clientsOnly?sections.filter(([name])=>name.endsWith('_clients')):sections;
  for(const date of days){
   const start=date+'T00:00:00.000Z',end=new Date(Date.parse(start)+86400000).toISOString();
   // Two concurrent bounded aggregates; no retries on a rejected dataset.
-  for(let i=0;i<sections.length;i+=2)await Promise.all(sections.slice(i,i+2).map(async([name,dims,extra])=>{
+  for(let i=0;i<selected.length;i+=2)await Promise.all(selected.slice(i,i+2).map(async([name,dims,extra])=>{
    const item={name,date,start,end,limit:2000};
    try{const d=await request('graphql',{query:cfQuery(dims,extra),variables:{z:zone,s:start,e:end}});const rows=d?.viewer?.zones?.[0]?.httpRequestsAdaptiveGroups;if(!Array.isArray(rows))fail('cf_missing_rows');out.reports.push({...item,status:'received',truncated:rows.length>=2000,rows:scrubRows(rows)});}
    catch(e){out.reports.push({...item,status:'blocked',reason:failure(e)});}
@@ -127,8 +131,9 @@ export async function google(env,{fetchFn=fetch,now=new Date()}={}){
 
 export async function run(env=process.env,dependencies={}){
  const pem=Buffer.from(env.WORKERS_REPORT_PUBLIC_KEY||'','base64').toString();validatePublicKey(pem);
- const [cf,ga4]=await Promise.all([cloudflare(env,dependencies),google(env,dependencies)]);
- const report={schema:1,generated:new Date().toISOString(),host:HOST,question:'Did automated access cause the GA4 increase on November 11–12?',cloudflare:cf,ga4};
+ const phase=env.BPJ_DIAG_PHASE||'full';if(!['full','clients'].includes(phase))fail('unsupported_phase');
+ const [cf,ga4]=await Promise.all([cloudflare(env,{...dependencies,clientsOnly:phase==='clients'}),phase==='full'?google(env,dependencies):Promise.resolve({status:'not_requested',reason:'client_followup_reuses_previous_ga4_access_result',reports:[]})]);
+ const report={schema:1,phase,generated:new Date().toISOString(),host:HOST,question:'Did automated access cause the GA4 increase on November 11–12?',cloudflare:cf,ga4};
  const envelope=seal(report,pem);
  (dependencies.write||((body)=>writeFileSync('/tmp/bpj-traffic-diagnosis.enc.json',body,{mode:0o600})))(JSON.stringify(envelope));
  return {reportWritten:true,cloudflare:cf.status,ga4:ga4.status};
