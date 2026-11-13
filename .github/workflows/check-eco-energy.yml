@@ -90,6 +90,10 @@ jobs:
           python3 tools/build_floorcare_guide.py
           python3 tools/build_robot_guide.py
           python3 tools/build_humidifier_guide.py
+          python3 tools/test_product_catalog.py
+          node --test tools/test_product_category_tools.mjs
+          python3 tools/build_product_catalog.py
+          python3 tools/link_product_catalog.py
           python3 tools/build_structure.py
           python3 tools/build_related.py
           python3 -m unittest discover -s tools -p test_heatpump_intent.py
@@ -226,6 +230,7 @@ jobs:
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_au_cooling.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_language_nav.cjs
           env -u NODE_PATH ECO_READING_ONLY=1 node tools/browser_dach_growth.mjs
+          env -u NODE_PATH node tools/browser_product_catalog.mjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_tool_experience.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_product_decisions.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_home_fit.cjs

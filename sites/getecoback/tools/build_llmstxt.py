@@ -213,6 +213,12 @@ def main():
     lines += ["", "## Guides (English)", ""]
     for url, t, d in en:
         lines.append(f"- [{t}]({url}): {d}")
+    catalog = os.path.join(ROOT, 'produkte.html')
+    if os.path.isfile(catalog):
+        title, description = meta(catalog)
+        lines += ['', '## Produkte und passende Auswahlhilfen (Deutschland)', '',
+                  f'- [{title}]({BASE}/produkte.html): {description}',
+                  f'  Commerce-free facts, examples and exact sources: {BASE}/produkte.md']
     finder = os.path.join(ROOT, "en", "filter-finder.html")
     if os.path.isfile(finder):
         title, description = meta(finder)
@@ -286,6 +292,9 @@ def main():
     for lang in ("de", "en", "it"):
         t = energy[lang]
         full += [body_text(os.path.join(ROOT, t["path"])).rstrip(), "", "---", ""]
+        n += 1
+    if os.path.isfile(catalog):
+        full += [body_text(catalog).rstrip(), '', '---', '']
         n += 1
     if os.path.isfile(finder):
         title, _ = meta(finder)

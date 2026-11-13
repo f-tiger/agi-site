@@ -179,6 +179,10 @@ jobs:
           python3 tools/build_floorcare_guide.py
           python3 tools/build_robot_guide.py
           python3 tools/build_humidifier_guide.py
+          python3 tools/test_product_catalog.py
+          node --test tools/test_product_category_tools.mjs
+          python3 tools/build_product_catalog.py
+          python3 tools/link_product_catalog.py
           python3 tools/build_structure.py
           python3 -m unittest discover -s tools -p test_heatpump_intent.py
           python3 -m unittest discover -s tools -p test_toppick_anchor.py
@@ -534,6 +538,7 @@ jobs:
             bash -euo pipefail -c '
               node sites/getecoback/tools/browser_demand_discovery.cjs
               node sites/getecoback/tools/browser_dach_growth.mjs
+              node sites/getecoback/tools/browser_product_catalog.mjs
               node sites/getecoback/tools/browser_heater_examples.cjs
               node sites/getecoback/tools/browser_personal_warmth.cjs
               node sites/getecoback/tools/browser_thermostat_fit.cjs

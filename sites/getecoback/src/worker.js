@@ -417,6 +417,7 @@ const EV_NAMES = new Set([
   "eco_moisture_example", "eco_moisture_check", "eco_moisture_save", "eco_moisture_export",
   ...LAUNDRY_EVENTS,
   "crawl",
+  "tool_complete", // Local category tools; path and empty-metadata gate below.
   "page_view", "affiliate_click", "b2b_intent", "lead_intent", "outbound_choice", "cold_now", "strom_now",
   "feuchte_now",
   "embed_copy", "share", "video_play", "btu_calc", "hitze_check", "heat_check",
@@ -780,6 +781,13 @@ async function handleEvent(request, env, ctx) {
   const name = String(body.n || "").slice(0, 40);
   if (!EV_NAMES.has(name)) return json({ ok: false, error: "unknown_event" }, 200, cors);
 
+  if(name==='tool_complete') {
+    const metadata=body.m;
+    if(body.p!=='/produkte.html'||Object.keys(body).some(k=>!['n','p','r','m'].includes(k))
+       ||(metadata!=null&&(typeof metadata!=='object'||Array.isArray(metadata)||Object.keys(metadata).length)))
+      return json({ok:false,error:'invalid_catalog_tool_event'},400,cors);
+    if(request.headers.get('dnt')==='1'||request.headers.get('sec-gpc')==='1'||evUaClass(request.headers.get('user-agent')||'')!=='human')return json({ok:true,skipped:true},200,cors);
+  }
   if(DISTRIBUTION_EVENTS.includes(name)) {
     if(!validDistribution(body))return json({ok:false,error:'invalid_distribution'},400,cors);
     if(request.headers.get('dnt')==='1'||request.headers.get('sec-gpc')==='1'||evUaClass(request.headers.get('user-agent')||'')!=='human')return json({ok:true,skipped:true},200,cors);
