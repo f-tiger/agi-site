@@ -50,7 +50,7 @@ def block(slug, today=None, data=None):
             action = '<p data-catalog-commerce>Quellenprüfung ausstehend. Prüfe die verlinkten Unterlagen vor einer Kaufentscheidung.</p>'
         cards.append(f'<div class="dc-card">{evidence}{action}</div>')
     return ('<!--EB_MODELS--><section class="eb-shop eb-models dc-catalog" id="eb-models" aria-labelledby="dc-title">'
-            '<style>.dc-catalog{scroll-margin-top:100px}.dc-catalog .dc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:16px}'
+            '<style>.dc-catalog{scroll-margin-top:180px}.dc-catalog .dc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:16px}'
             '.dc-catalog .dc-card{padding:18px;border:1px solid #cfe0ea;border-radius:12px;background:#fff;min-width:0}'
             '.dc-catalog h3{margin:0 0 10px;color:#0a4d7a;font-size:19px;scroll-margin-top:180px}'
             '.dc-catalog p{font-size:15px;line-height:1.6}.dc-catalog a{overflow-wrap:anywhere}'
@@ -119,7 +119,7 @@ def inject(html, slug):
              'padding:8px 12px;border:1px solid #7895a4;border-radius:6px;color:#0a4d7a;background:#fff;'
              'font-weight:700">Modellvarianten vergleichen</a></nav><!--/EB_CATALOG_ENTRY-->')
     reading = ('<!--EB_CATALOG_READING--><div id="eb-catalog-reading" '
-               'style="scroll-margin-top:150px" tabindex="-1"></div><!--/EB_CATALOG_READING-->')
+               'style="scroll-margin-top:180px" tabindex="-1"></div><!--/EB_CATALOG_READING-->')
     html = html.replace('<!--EB_BUYER-->', entry + '<!--EB_BUYER-->', 1)
     # The existing on-page builder replaces only EB_TOC, so this destination
     # survives that rebuild. Minimal fixtures without a TOC use the buyer end.
