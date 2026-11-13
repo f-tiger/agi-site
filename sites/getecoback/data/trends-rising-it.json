@@ -1,28 +1,52 @@
 {
- "fetched": "2026-11-12",
+ "fetched": "2026-11-13",
  "geo": "IT",
  "seeds": {
   "condizionatore portatile": {
-   "auto": [
-    "condizionatore portatile",
-    "condizionatore portatile senza tubo",
-    "condizionatore portatile 12000 btu",
-    "condizionatore portatile con tubo",
-    "condizionatore portatile silenzioso",
-    "condizionatore portatile unieuro",
-    "condizionatore portatile 9000 btu",
-    "condizionatore portatile mediaworld",
-    "condizionatore portatile lidl",
-    "condizionatore portatile euronics"
-   ],
    "rising": [
     {
-     "q": "condizionatore portatile euronics",
-     "v": "new"
+     "q": "condizionatore aria calda",
+     "v": 300
+    },
+    {
+     "q": "condizionatore caldo freddo portatile",
+     "v": 190
+    },
+    {
+     "q": "tubo flessibile per condizionatore portatile",
+     "v": 130
+    },
+    {
+     "q": "condizionatore portatile pompa di calore",
+     "v": 130
+    },
+    {
+     "q": "condizionatore portatile vinco",
+     "v": 120
+    },
+    {
+     "q": "trotec condizionatore portatile",
+     "v": 110
+    },
+    {
+     "q": "condizionatore portatile delonghi",
+     "v": 90
+    },
+    {
+     "q": "condizionatore portatile con pompa di calore",
+     "v": 80
+    },
+    {
+     "q": "equation condizionatore portatile",
+     "v": 80
+    },
+    {
+     "q": "condizionatore portatile 13000 btu",
+     "v": 70
     }
    ],
-   "source": "autocomplete-diff",
-   "fetched": "2026-11-02"
+   "source": "related-queries",
+   "fetched": "2026-11-13"
   },
   "deumidificatore": {
    "rising": [

@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-12",
- "radar_fetched": "2026-11-12",
+ "generated": "2026-11-13",
+ "radar_fetched": "2026-11-13",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -36,21 +36,6 @@
    "fleet_pages": []
   },
   {
-   "theme": "are you building an ai company brain",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "ask_hn",
-   "days_seen": [
-    "2026-11-05"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.94,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
    "theme": "why does reddit want me to use the ios app on my desktop",
    "site": "",
    "kind": "request-board",
@@ -60,7 +45,7 @@
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.43,
+   "score": 2.45,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -121,6 +106,21 @@
    "state": "scout",
    "supplied": false,
    "score": 2.02,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "how to set up an isolated environment for c development session with the ability",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "softwarerecs",
+   "days_seen": [
+    "2026-11-12"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.0,
    "demand": [],
    "supply": [],
    "fleet_pages": []
