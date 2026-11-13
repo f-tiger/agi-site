@@ -105,3 +105,19 @@ source/identity constraints, category tools, build/discovery integration and
 real release acceptance. Two self-challenges rejected color/candidate inflation
 and a generic tool copied across unrelated categories. Product implementation is
 not proof that demand, traffic or merchant orders increased.
+
+## Release validation
+
+PR [316](https://github.com/f-tiger/agi-site/pull/316) passed the complete ECO
+[CI run](https://github.com/f-tiger/agi-site/actions/runs/43464098790) and the
+fleet route-input checks before merging. Final local browser verification covered
+six scenes, all 48 model searches, 54 valid tool submissions and nine rejected
+input paths, without production writes.
+
+The first production run
+[43465896912](https://github.com/f-tiger/agi-site/actions/runs/43465896912)
+stopped at the current-main guard before upload because another site's record
+advanced main during the build. No obsolete artifact was uploaded. The follow-up
+marked content-only release starts from updated main, preserves the same guard
+and full acceptance checks, and leaves live verification/IndexNow outcomes to
+the actual release receipt. This note does not assert deployed growth or sales.
