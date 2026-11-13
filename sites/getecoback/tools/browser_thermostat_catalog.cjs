@@ -34,7 +34,8 @@ const routePath = '/guide/smarte-heizkoerperthermostate-lohnen-sich.html';
           await page.waitForTimeout(600);
           assert.equal(new URL(page.url()).hash,'#'+target);
           const box=await page.locator('#'+target).boundingBox();
-          assert(box && box.y>=150 && box.y<400, 'Native route heading obscured: '+target+' @'+width+' y='+box?.y);
+          const nav=await page.locator('nav.eb-nav').boundingBox();
+          assert(box && nav && box.y>=nav.y+nav.height+8 && box.y<400, 'Native route heading obscured: '+JSON.stringify({target,width,box,nav}));
         }
       }
       const catalog = page.locator('#eb-thermostat-products');

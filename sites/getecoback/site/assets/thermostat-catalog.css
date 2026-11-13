@@ -10,3 +10,6 @@
 .tc-start{margin:2rem 0;padding:clamp(16px,3vw,28px);border:1px solid #cadde8;border-radius:16px;background:#f0f6fa;scroll-margin-top:180px}
 .tc-start h2{margin-top:0}.tc-routes{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}.tc-routes li{margin:0}.tc-routes a{display:block;height:100%;box-sizing:border-box;padding:16px;background:white;border:1px solid #aac4d4;border-radius:10px;text-decoration:none;overflow-wrap:anywhere}.tc-routes strong,.tc-routes span{display:block}.tc-routes span{margin-top:8px;color:#42586b;font-size:.95rem;line-height:1.55}.tc-routes a:hover{border-color:#075d80}.tc-start :focus-visible{outline:3px solid #b35b00;outline-offset:3px}.tc-card dd p{margin:0}
 #thermostat-behalten,#thermostat-paketkosten,#eb-thermostat-products,#ventilcheck{scroll-margin-top:180px}
+
+/* Final production navigation includes language, account and search controls. */
+@media(max-width:600px){.winter-page :is(#thermostat-start,#eb-thermostat-products,#ventilcheck,#thermostat-paketkosten,#thermostat-behalten,#rechner,.tc-card,.tc-card h3){scroll-margin-top:260px}}
