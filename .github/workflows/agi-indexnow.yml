@@ -28,9 +28,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          deployed_sha=$(gh api 'repos/f-tiger/agi-site/actions/workflows/deploy-agiscorecard.yml/runs?status=success&per_page=1' --jq '.workflow_runs[0].head_sha')
-          test -n "$deployed_sha" && test "$deployed_sha" != null
-          git diff --exit-code "$deployed_sha" HEAD -- sites/agiscorecard tools/revenue-studio tools/member-studio tools/fleet-analytics
+          python3 .github/scripts/agi-deployment-receipt-test.py
+          python3 .github/scripts/agi-deployment-receipt.py check
       - name: Test and submit changed canonical AGI URLs
         run: |
           node --test sites/agiscorecard/tools/test_indexnow.mjs
@@ -56,3 +55,4 @@ jobs:
       - name: Submit Web3 Workbench sitemaps after per-host validation
         if: always()
         run: node sites/web3-studio/scripts/indexnow.mjs
+
