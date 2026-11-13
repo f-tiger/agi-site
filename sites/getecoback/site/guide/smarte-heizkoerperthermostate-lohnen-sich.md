@@ -4,6 +4,15 @@
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html
 
+## Lohnt sich ein smartes Heizkörperthermostat für mich?
+**Ein smarter Kopf lohnt sich eher, wenn ein Zeitplan deine bisherige Heizroutine verbessert.** Wer schon passend herunterregelt, hat möglicherweise wenig zusätzlichen Nutzen. Vor dem Kauf müssen Ventil, vorhandene Zentrale und vollständiges Paket zusammenpassen. Eine feste Ersparnis ist nicht garantiert.
+
+- [Ich kenne mein vorhandenes System tado° X, Bosch II [+M] oder FRITZ! 302 samt benötigter Zentrale vergleichen.](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#eb-thermostat-products)
+- [Ich bin beim Ventil unsicher Modell und Anschluss klären. Der belegte V3+-Check bestätigt keine Passung für X, Bosch oder FRITZ!.](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#ventilcheck)
+- [Ich möchte die Gesamtkosten prüfen Köpfe, fehlende Zentrale und Adapter zählen; danach mit eigener Sparannahme rechnen.](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-paketkosten)
+- [Mein bisheriger Kopf reicht vielleicht Weiterverwenden oder einen einfachen Zeitplan prüfen, bevor du ein Funk-System kaufst.](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-behalten)
+Grundlage: [Verbraucherzentrale zur Thermostatregelung](https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizkosten-sparen-thermostat-richtig-einstellen-und-wechseln-7940) (Quellenstand 4. Oktober 2026). Modell- und Paketquellen vom 12. November 2026 stehen bei den jeweiligen Geräten. Redaktionelle Entscheidungshilfe, kein eigener Produkttest.
+
 Vor dem Kauf · zwei Auswahlen, keine Texteingabe
 
 ## Welcher Thermostatkopf passt zu meinem Ventil?
@@ -72,19 +81,28 @@ Erst die vorhandene Zentrale, dann den Thermostatkopf wählen
 
 ### tado° Smartes Heizkörper-Thermostat X – Starter Kit
 Neues tado° X-System mit enthaltener Bridge
-SystemBridge X liegt diesem Starter Kit bei. Ein bereits vorhandener, kompatibler Thread Border Router kann eine andere Paketwahl ermöglichen; die genaue Freigabe prüfen.Paket und ZusatzkaufEin Thermostatkopf, Bridge X und sechs Adapter. USB-C-Ladekabel nicht enthalten. Ein Einzelkopf oder Trio-Pack ist nicht automatisch dasselbe Starter Kit.Betrieb und FunktionenAbnehmbarer, per USB-C ladbarer Akku. Die kostenlose App enthält Zeitpläne; zusätzliche Automatisierungen können das optionale AI-Assist-Abo benötigen. Gewünschte Funktion vor dem Kauf prüfen.**Vor der Bestellung:** tado° X und die V3+-Geräte/Internet Bridge sind nicht miteinander kompatibel. Die V3+-Ventiltabelle auf dieser Seite bestätigt keine Passung für X.
+**System:** Bridge X liegt diesem Starter Kit bei. Ein bereits vorhandener, kompatibler Thread Border Router kann eine andere Paketwahl ermöglichen; die genaue Freigabe prüfen.
+**Paket und Zusatzkauf:** Ein Thermostatkopf, Bridge X und sechs Adapter. USB-C-Ladekabel nicht enthalten. Ein Einzelkopf oder Trio-Pack ist nicht automatisch dasselbe Starter Kit.
+**Betrieb und Funktionen:** Abnehmbarer, per USB-C ladbarer Akku. Die kostenlose App enthält Zeitpläne; zusätzliche Automatisierungen können das optionale AI-Assist-Abo benötigen. Gewünschte Funktion vor dem Kauf prüfen.
+**Vor der Bestellung:** tado° X und die V3+-Geräte/Internet Bridge sind nicht miteinander kompatibel. Die V3+-Ventiltabelle auf dieser Seite bestätigt keine Passung für X.
 [tado°: X Starter Kit, Packung und Kompatibilität](https://shop.tado.com/products/smart-radiator-thermostat-x-starter-kit-1)
 Anzeige · Modellsuche, kein geprüftes Einzelangebot.tado° Smartes Heizkörper-Thermostat X – Starter Kit bei Amazon.de suchen →
 
 ### Bosch Heizkörper-Thermostat II [+M]
 Vorhandenes Bosch-System oder geprüftes Matter-System nutzen
-SystemIm Bosch-System ist ein Bosch Smart Home Controller nötig. Für ein fremdes Matter-System verlangt die Anleitung einen eingerichteten Matter Controller mit Thread-Unterstützung und dessen App. Fehlt dem Matter Controller die integrierte Thread-Kommunikation, ist zusätzlich ein Thread Border Router nötig.Paket und ZusatzkaufDie [+M]-Variante gezielt prüfen. Heizkörper-Thermostat II ohne [+M] wird nicht auf dieselbe Weise direkt in ein Matter-System eingebunden. Einen benötigten Controller separat zum Kopf kalkulieren.Betrieb und FunktionenBatterien und gegebenenfalls separate Fensterkontakte mit einplanen. Funktionen unterscheiden sich zwischen dem Bosch-System und der direkten Matter-Einbindung; die Funktionsübersicht des Herstellers abgleichen.**Vor der Bestellung:** Matter bedeutet hier nicht Betrieb ohne passende Zentrale. Den Ventilanschluss anhand der Bosch-Anleitung prüfen; die tado°-Zuordnungen gelten nicht für dieses Modell.
+**System:** Im Bosch-System ist ein Bosch Smart Home Controller nötig. Für ein fremdes Matter-System verlangt die Anleitung einen eingerichteten Matter Controller mit Thread-Unterstützung und dessen App. Fehlt dem Matter Controller die integrierte Thread-Kommunikation, ist zusätzlich ein Thread Border Router nötig.
+**Paket und Zusatzkauf:** Die [+M]-Variante gezielt prüfen. Heizkörper-Thermostat II ohne [+M] wird nicht auf dieselbe Weise direkt in ein Matter-System eingebunden. Einen benötigten Controller separat zum Kopf kalkulieren.
+**Betrieb und Funktionen:** Batterien und gegebenenfalls separate Fensterkontakte mit einplanen. Funktionen unterscheiden sich zwischen dem Bosch-System und der direkten Matter-Einbindung; die Funktionsübersicht des Herstellers abgleichen.
+**Vor der Bestellung:** Matter bedeutet hier nicht Betrieb ohne passende Zentrale. Den Ventilanschluss anhand der Bosch-Anleitung prüfen; die tado°-Zuordnungen gelten nicht für dieses Modell.
 [Bosch: Modellvarianten und Systemfunktionen](https://www.bosch-smarthome.com/de/de/produkte/heizung/heizkoerper-thermostat/) · [Bosch: Anleitung II [+M], Matter-/Thread-Anforderungen](https://www.bosch-smarthome.com/res/web/produkt/heizkoerper-thermostat2/pdf/8-750-002-924_BTH-RAD_OM_11L.pdf)
 Anzeige · Modellsuche, kein geprüftes Einzelangebot.Bosch Heizkörper-Thermostat II [+M] bei Amazon.de suchen →
 
 ### FRITZ!Smart Thermo 302 · Artikel 20003120
 Passende FRITZ!Box mit DECT bereits vorhanden
-SystemLaut Produktseite: FRITZ!Box mit DECT-Basis und FRITZ!OS ab 6.83; FRITZ!Box 7312 und 7412 sind ausgenommen. Das genaue Routermodell vor dem Kauf prüfen.Paket und ZusatzkaufDer Hersteller nennt einen Thermo 302, drei AA-Batterien und einen Danfoss-RA-Adapter. Keine FRITZ!Box enthalten. Andere Ventiltypen separat in der Montagehilfe prüfen.Betrieb und FunktionenBetrieb mit drei AA-Batterien und DECT-ULE. Der Hersteller schließt Nass- und Feuchträume aus. Das Gerät ist kein Ersatz für eine passende Zentrale.**Vor der Bestellung:** Artikelnummer 20003120 und Paketinhalt abgleichen. Nicht allein aus dem Namen FRITZ! oder einem M30-Anschluss auf System- oder Ventilkompatibilität schließen.
+**System:** Laut Produktseite: FRITZ!Box mit DECT-Basis und FRITZ!OS ab 6.83; FRITZ!Box 7312 und 7412 sind ausgenommen. Das genaue Routermodell vor dem Kauf prüfen.
+**Paket und Zusatzkauf:** Der Hersteller nennt einen Thermo 302, drei AA-Batterien und einen Danfoss-RA-Adapter. Keine FRITZ!Box enthalten. Andere Ventiltypen separat in der Montagehilfe prüfen.
+**Betrieb und Funktionen:** Betrieb mit drei AA-Batterien und DECT-ULE. Der Hersteller schließt Nass- und Feuchträume aus. Das Gerät ist kein Ersatz für eine passende Zentrale.
+**Vor der Bestellung:** Artikelnummer 20003120 und Paketinhalt abgleichen. Nicht allein aus dem Namen FRITZ! oder einem M30-Anschluss auf System- oder Ventilkompatibilität schließen.
 [FRITZ!: Thermo 302, Voraussetzungen und Lieferumfang](https://fritz.com/products/fritz-smart-thermo-302-20003120)
 Anzeige · Modellsuche, kein geprüftes Einzelangebot.FRITZ!Smart Thermo 302 · Artikel 20003120 bei Amazon.de suchen →
 

@@ -49,7 +49,7 @@ class CatalogTests(unittest.TestCase):
         self.assertIn('keinen Schweizer Händler', html)
         self.assertIn('0 %', html)
         self.assertIn('12. November 2026', html)
-        self.assertIn('"dateModified": "2026-11-12"', html)
+        self.assertIn('"dateModified": "2026-11-13"', html)
         self.assertEqual(html, page(catalog.SLUG, PAGES[catalog.SLUG]))
 
     def test_other_winter_pages_do_not_gain_thermostats(self):
@@ -65,6 +65,10 @@ class CatalogTests(unittest.TestCase):
             self.assertIn(product['source'], md)
             if product.get('manual'):
                 self.assertIn(product['manual'], md)
+        self.assertIn('**System:**', md)
+        self.assertIn('**Paket und Zusatzkauf:**', md)
+        self.assertIn('Lohnt sich ein smartes Heizkörperthermostat für mich?', md)
+        self.assertNotIn('SystemBridge', md)
         self.assertNotIn('amazon.de/', md)
         self.assertNotIn('getecoback-21', md)
         self.assertIn('nicht miteinander kompatibel', md)
@@ -72,6 +76,10 @@ class CatalogTests(unittest.TestCase):
     def test_final_artifact_not_only_generator(self):
         html = (catalog.ROOT / 'site/guide' / (catalog.SLUG + '.html')).read_text()
         self.assertEqual(html.count('id="eb-thermostat-products"'), 1)
+        self.assertLess(html.index('id="thermostat-start"'), html.index('id="ventilcheck"'))
+        for target in ['eb-thermostat-products', 'ventilcheck', 'thermostat-paketkosten', 'thermostat-behalten']:
+            self.assertIn('href="#' + target + '"', html)
+            self.assertEqual(html.count('id="' + target + '"'), 1)
         for p in catalog.load()['products']:
             self.assertIn('id="thermostat-' + p['id'] + '"', html)
             self.assertIn(p['source'], html)

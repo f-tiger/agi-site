@@ -23,6 +23,20 @@ const routePath = '/guide/smarte-heizkoerperthermostate-lohnen-sich.html';
       const page = await ctx.newPage(), errors=[];
       page.on('pageerror', error => errors.push(error.message));
       await page.goto(origin + routePath + '#eb-thermostat-products');
+      const start = page.locator('#thermostat-start');
+      assert.equal(await start.locator('.tc-routes a').count(),4);
+      assert.match(await start.innerText(), /keine Passung für X, Bosch oder FRITZ!/);
+      for (const width of [320,390]) {
+        await page.setViewportSize({width,height:844});
+        for (const target of ['eb-thermostat-products','ventilcheck','thermostat-paketkosten','thermostat-behalten']) {
+          await page.goto(origin + routePath + '#thermostat-start');
+          await start.locator('a[href="#'+target+'"]').click();
+          await page.waitForTimeout(600);
+          assert.equal(new URL(page.url()).hash,'#'+target);
+          const box=await page.locator('#'+target).boundingBox();
+          assert(box && box.y>=150 && box.y<400, 'Native route heading obscured: '+target+' @'+width+' y='+box?.y);
+        }
+      }
       const catalog = page.locator('#eb-thermostat-products');
       assert(await catalog.isVisible());
       assert.equal(await catalog.locator('.tc-card').count(),3);

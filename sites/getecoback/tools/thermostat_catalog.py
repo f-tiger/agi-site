@@ -33,6 +33,28 @@ def load():
     return data
 
 
+def buyer_start():
+    """Static route choice before the model-specific valve tool; no inferred fit."""
+    return ('<section class="tc-start" id="thermostat-start" aria-labelledby="tc-start-title">'
+            '<h2 id="tc-start-title">Lohnt sich ein smartes Heizkörperthermostat für mich?</h2>'
+            '<p><strong>Ein smarter Kopf lohnt sich eher, wenn ein Zeitplan deine bisherige Heizroutine verbessert.</strong> '
+            'Wer schon passend herunterregelt, hat möglicherweise wenig zusätzlichen Nutzen. Vor dem Kauf müssen '
+            'Ventil, vorhandene Zentrale und vollständiges Paket zusammenpassen. Eine feste Ersparnis ist nicht garantiert.</p>'
+            '<ul class="tc-routes">'
+            '<li><a href="#eb-thermostat-products"><strong>Ich kenne mein vorhandenes System</strong>'
+            ' <span>tado° X, Bosch II [+M] oder FRITZ! 302 samt benötigter Zentrale vergleichen.</span></a></li>'
+            '<li><a href="#ventilcheck"><strong>Ich bin beim Ventil unsicher</strong>'
+            ' <span>Modell und Anschluss klären. Der belegte V3+-Check bestätigt keine Passung für X, Bosch oder FRITZ!.</span></a></li>'
+            '<li><a href="#thermostat-paketkosten"><strong>Ich möchte die Gesamtkosten prüfen</strong>'
+            ' <span>Köpfe, fehlende Zentrale und Adapter zählen; danach mit eigener Sparannahme rechnen.</span></a></li>'
+            '<li><a href="#thermostat-behalten"><strong>Mein bisheriger Kopf reicht vielleicht</strong>'
+            ' <span>Weiterverwenden oder einen einfachen Zeitplan prüfen, bevor du ein Funk-System kaufst.</span></a></li>'
+            '</ul><p class="tc-source">Grundlage: <a href="https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizkosten-sparen-thermostat-richtig-einstellen-und-wechseln-7940">'
+            'Verbraucherzentrale zur Thermostatregelung</a> (Quellenstand 4. Oktober 2026). '
+            'Modell- und Paketquellen vom 12. November 2026 stehen bei den jeweiligen Geräten. '
+            'Redaktionelle Entscheidungshilfe, kein eigener Produkttest.</p></section>')
+
+
 def render(today=None, data=None):
     data = load() if data is None else data
     age = ((today or dt.datetime.now(dt.timezone.utc).date()) - dt.date.fromisoformat(data['checked'])).days
@@ -49,8 +71,8 @@ def render(today=None, data=None):
             href = 'https://www.amazon.de/s?k=' + quote_plus(item['query']) + '&tag=getecoback-21'
             action = f'<p class="tc-commerce"><small>Anzeige · Modellsuche, kein geprüftes Einzelangebot.</small><a data-winter-shop href="{e(href, quote=True)}" target="_blank" rel="sponsored nofollow noopener">{e(item["name"])} bei Amazon.de suchen →</a></p>'
         cards.append(f'<section class="tc-card" id="{target}" aria-labelledby="{target}-title"><h3 id="{target}-title">{e(item["name"])}</h3>'
-                     f'<p class="tc-role">{e(item["role"])}</p><dl><dt>System</dt><dd>{e(item["system"])}</dd>'
-                     f'<dt>Paket und Zusatzkauf</dt><dd>{e(item["package"])}</dd><dt>Betrieb und Funktionen</dt><dd>{e(item["care"])}</dd></dl>'
+                     f'<p class="tc-role">{e(item["role"])}</p><dl><dt><strong>System: </strong></dt><dd><p> {e(item["system"])}</p></dd>'
+                     f'<dt><strong>Paket und Zusatzkauf: </strong></dt><dd><p> {e(item["package"])}</p></dd><dt><strong>Betrieb und Funktionen: </strong></dt><dd><p> {e(item["care"])}</p></dd></dl>'
                      f'<p class="tc-limit"><strong>Vor der Bestellung:</strong> {e(item["limit"])}</p><p class="tc-source">{sources}</p>{action}</section>')
     return ('<section class="thermostat-catalog" id="eb-thermostat-products" aria-labelledby="tc-title">'
             '<h2 id="tc-title">Welches System und welches Paket passt zu dir?</h2>'
@@ -58,7 +80,7 @@ def render(today=None, data=None):
             'Die Ventilpassung und der Nutzen eines Zeitplans bleiben eigene Prüfschritte.</p>'
             '<nav class="tc-jump" aria-label="Vorhandenes Thermostat-System"><a href="#thermostat-tado-x-starter">Neues tado° X-System</a>'
             '<a href="#thermostat-bosch-ii-m">Bosch oder Matter</a><a href="#thermostat-fritz-302">FRITZ!Box vorhanden</a></nav>'
-            '<div class="tc-keep"><h3>Vierte Möglichkeit: vorhandene Köpfe weiter nutzen</h3>'
+            '<div class="tc-keep" id="thermostat-behalten"><h3>Vierte Möglichkeit: vorhandene Köpfe weiter nutzen</h3>'
             '<p>Deine Räume werden passend zur Nutzung warm und du regelst zuverlässig herunter? Dann musst du nicht auf smarte Köpfe wechseln. '
             'Für gleichbleibende Zeiten kann ein einfacher programmierbarer Kopf genügen. Vergleiche diese Lösung vor einem neuen Funk-System.</p>'
             '<p><a href="#rechner">Erst mit 0 % zusätzlicher Ersparnis rechnen</a> · <a href="#ventilcheck">Ventil und Modellgeneration klären</a></p></div>'
