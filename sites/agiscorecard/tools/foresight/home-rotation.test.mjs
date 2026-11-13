@@ -27,7 +27,8 @@ test('100 daily editions rotate the main video through freshness cutoffs without
   for(const lang of ['en','zh']){
    assert.equal(picks[lang].length,4,e.day+' '+lang);assert.equal(new Set(picks[lang]).size,4);
    assert.ok(!picks[lang].includes(e.feature.video));assert.ok(e.recommendations[lang].every(v=>v.language===lang&&v.date<=e.day));
-   if(previous)assert.notDeepEqual([...picks[lang]].sort(),[...ids(previous)[lang]].sort(),e.day+' changes the card selection');
+   const expected=pool.videos.filter(v=>v.language===lang&&v.date<=e.day&&v.video!==e.feature.video).sort((a,b)=>(b.publishedAt||b.date).localeCompare(a.publishedAt||a.date)||a.video.localeCompare(b.video)).slice(0,4);
+   assert.deepEqual(picks[lang],expected.map(v=>v.video),'latest row follows publication dates, not daily shuffling');
   }
   previous=e;
  }
@@ -61,4 +62,13 @@ test('malformed, duplicate and future sources cannot become featured evidence; s
  assert.ok(!renderHomePicks(render,'en').includes('<script>'));assert.match(renderHomePicks(render,'en'),/&lt;script&gt;/);
  const feature={...e,feature:{...e.feature,title:injected.title},view:{...e.view,en:{title:injected.title,summary:injected.title}}};
  assert.ok(!renderHomeFeature(feature,'en').includes('<script>'));
+});
+
+
+test('a same-day source refresh puts the new publication first without inventing a reviewed summary',()=>{
+ const before=homeEdition(pool,start),updated=structuredClone(pool);
+ for(const lang of ['en','zh'])updated.videos.push({...pool.videos.find(v=>v.language===lang),video:lang==='en'?'freshEN0001':'freshZH0001',date:before.day,publishedAt:before.day+'T23:00:00Z',views:[],title:'Fixture new publication'});
+ const after=homeEdition(updated,start);
+ assert.equal(after.day,before.day);assert.equal(after.feature.video,before.feature.video);
+ for(const lang of ['en','zh']){assert.equal(after.recommendations[lang][0].title,'Fixture new publication');assert.equal(after.recommendations[lang][0].views.length,0);}
 });

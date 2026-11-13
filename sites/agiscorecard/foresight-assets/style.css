@@ -29,3 +29,5 @@
 
 /* Claim-specific commercial evidence: existing light theme, no score badge. */
 .commercial-row{border-top:1px solid var(--line,#dfe2e8);padding:14px 0}.commercial-row h3{font-size:1rem}.commercial-fit{border:1px solid var(--line,#dfe2e8);padding:16px;margin-top:22px;min-width:0}.commercial-fit legend{font-weight:700;padding:0 6px}.commercial-fit .field{display:block;margin:14px 0}.commercial-fit select{display:block;width:100%;margin-top:6px}.commercial-evidence a{overflow-wrap:anywhere}.commercial-evidence [hidden]{display:none!important}
+
+.feed-order-control label{display:flex;align-items:center;gap:6px;font-size:12px}.feed-order-control select{width:auto;max-width:100%;padding:5px;font-size:12px}.feed-status{font-size:12px;margin:0 0 14px}.browse-meta{flex-wrap:wrap}

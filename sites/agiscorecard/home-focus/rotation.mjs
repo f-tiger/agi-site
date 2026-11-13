@@ -11,7 +11,7 @@ export function rotationDay(now=Date.now()){
 }
 export function rotationPool(items){
  const seen=new Set();
- return {version:1,timeZone:'Asia/Shanghai',videos:items.filter(i=>i.medium==='video'&&/^[\w-]{11}$/.test(i.video||'')&&validDate(i.date)&&!seen.has(i.video)&&seen.add(i.video)).map(i=>({video:i.video,date:i.date,title:i.title,publisher:i.publisher,speaker:i.speaker||'',posterLabel:i.posterLabel||'',language:i.language,goals:i.goals||[],views:(i.views||[]).filter(validView).map(v=>({id:v.id,en:{title:v.en.title,summary:v.en.summary},zh:{title:v.zh.title,summary:v.zh.summary}}))}))};
+ return {version:1,timeZone:'Asia/Shanghai',videos:items.filter(i=>i.medium==='video'&&/^[\w-]{11}$/.test(i.video||'')&&validDate(i.date)&&!seen.has(i.video)&&seen.add(i.video)).map(i=>({video:i.video,date:i.date,publishedAt:i.publishedAt||i.date+'T00:00:00Z',title:i.title,publisher:i.publisher,speaker:i.speaker||'',posterLabel:i.posterLabel||'',language:i.language,goals:i.goals||[],views:(i.views||[]).filter(validView).map(v=>({id:v.id,en:{title:v.en.title,summary:v.en.summary},zh:{title:v.zh.title,summary:v.zh.summary}}))}))};
 }
 function eligible(v,day){return v&&/^[\w-]{11}$/.test(v.video||'')&&validDate(v.date)&&v.date<=day&&Array.isArray(v.views)&&Array.isArray(v.goals)&&['en','zh'].includes(v.language)&&typeof v.publisher==='string'&&(typeof v.title==='string'||typeof v.title?.en==='string'&&typeof v.title?.zh==='string');}
 function recent(list,day,minimum=8){
@@ -20,8 +20,7 @@ function recent(list,day,minimum=8){
  return list;
 }
 // Interleave creators. Within each creator's newest four candidates, prefer
-// topics not covered by the previous three entries. Rotation itself is a ring,
-// so disjoint consecutive four-card batches are possible with >= 8 candidates.
+// topics not covered by the previous three entries for the reviewed feature.
 function balancedRing(list,limit=96){
  const groups=new Map();
  for(const item of [...list].sort((a,b)=>cmp(b.date,a.date)||cmp(a.video,b.video))){if(!groups.has(item.publisher))groups.set(item.publisher,[]);if(groups.get(item.publisher).length<8)groups.get(item.publisher).push(item);}
@@ -34,20 +33,15 @@ function balancedRing(list,limit=96){
  }
  return ring;
 }
-function batch(ring,dayIndex,count){
- if(!ring.length)return [];
- const n=Math.min(count,ring.length),start=((dayIndex*count)%ring.length+ring.length)%ring.length;
- return Array.from({length:n},(_,i)=>ring[(start+i)%ring.length]);
-}
 function dailyFeature(videos,day){
  const reviewed=videos.filter(v=>v.views.length);if(!reviewed.length)return null;
  // Replay the small reviewed collection deterministically. A 30/90-day cutoff
  // can change the ring size; remember yesterday's choice to avoid a repeat at
  // that boundary without cookies, user tracking or a successful daily build.
  const end=Date.parse(day+'T00:00:00Z'),start=Math.min(...reviewed.map(v=>Date.parse(v.date+'T00:00:00Z')));
- let feature=null,ring=[];const history=[];
- for(let time=start;time<=end;time+=DAY){const date=new Date(time).toISOString().slice(0,10);ring=balancedRing(recent(reviewed.filter(v=>v.date<=date),date,2),24);const index=Math.floor(time/DAY)%ring.length;let next=ring[index];if(next?.video===feature?.video&&ring.length>1)next=ring[(index+1)%ring.length];feature=next;history.push({date,feature});}
- return {feature,ringSize:ring.length,history};
+ let feature=null,ring=[];
+ for(let time=start;time<=end;time+=DAY){const date=new Date(time).toISOString().slice(0,10);ring=balancedRing(recent(reviewed.filter(v=>v.date<=date),date,2),24);const index=Math.floor(time/DAY)%ring.length;let next=ring[index];if(next?.video===feature?.video&&ring.length>1)next=ring[(index+1)%ring.length];feature=next;}
+ return {feature,ringSize:ring.length};
 }
 export function homeEdition(pool,now=Date.now()){
  if(pool?.version!==1||!Array.isArray(pool.videos))throw Error('Invalid home rotation pool');
@@ -56,30 +50,17 @@ export function homeEdition(pool,now=Date.now()){
  const chosen=dailyFeature(videos,day);if(!chosen)return null;
  const {feature,ringSize}=chosen,view=feature.views[Math.floor(dayIndex/Math.max(1,ringSize))%feature.views.length];
  const recommendations={en:[],zh:[]};
- // Replay recommendation choices across freshness boundaries too. A shrinking
- // 30/90-day ring can otherwise select yesterday's exact set despite advancing
- // the batch index. Retain four distinct cards and exclude that day's feature.
- for(const entry of chosen.history)for(const lang of ['en','zh']){
-  const index=Math.floor(Date.parse(entry.date+'T00:00:00Z')/DAY);
-  const ring=balancedRing(recent(videos.filter(v=>v.language===lang&&v.date<=entry.date),entry.date));
-  const picks=batch(ring,index,4).filter(v=>v.video!==entry.feature?.video);
-  for(const v of [...batch(ring,index+1,4),...ring]){
-   if(picks.length>=4)break;
-   if(v.video!==entry.feature?.video&&!picks.some(x=>x.video===v.video))picks.push(v);
-  }
-  const previous=new Set(recommendations[lang].map(v=>v.video));
-  if(picks.length===previous.size&&picks.every(v=>previous.has(v.video))){
-   const alternate=ring.find(v=>v.video!==entry.feature?.video&&!previous.has(v.video));
-   if(alternate)picks[picks.length-1]=alternate;
-  }
-  recommendations[lang]=picks;
- }
+ // The latest-video row follows publisher dates, not an editorial rotation.
+ // With no new publications its cards can remain unchanged across days.
+ for(const lang of ['en','zh'])recommendations[lang]=videos
+  .filter(v=>v.language===lang&&v.video!==feature.video)
+  .sort((a,b)=>cmp(b.publishedAt||b.date,a.publishedAt||a.date)||cmp(a.video,b.video)).slice(0,4);
 
  return {day,timeZone:'Asia/Shanghai',feature,view,recommendations};
 }
 export function renderHomeFeature(edition,lang){
  const {feature:f,view,day}=edition,t=(en,zh)=>lang==='zh'?zh:en,hub=(lang==='zh'?'/zh':'')+'/future-guide',d=view[lang],title=typeof f.title==='string'?f.title:f.title[lang];
- return `<article class="home-feature" data-home-feature="${f.video}" data-home-edition="${day}"><div class="home-poster"><div class="home-poster-fallback" aria-hidden="true"><span>${esc(f.publisher)}</span><strong>${esc(f.posterLabel||f.publisher)}</strong><small>${esc(f.speaker)}</small></div><img src="https://i.ytimg.com/vi/${f.video}/hqdefault.jpg" width="480" height="360" alt="" decoding="async" referrerpolicy="no-referrer"><button type="button" data-home-video="${f.video}" data-player-title="${esc(title)}" aria-label="${esc(t('Watch: ','观看：')+title)}"><span aria-hidden="true">▶</span>${t('Watch here','直接观看')}</button></div><div class="home-feature-copy"><p class="home-eyebrow">${t('Daily perspective','每日精选观点')} <span>${f.language==='zh'?t('Chinese original','中文原片'):t('English original','英文原片')} · ${f.date}</span></p><h2><a href="${hub}/${view.id}" data-home-action="view">${esc(d.title)}</a></h2><p>${esc(d.summary)}</p><div class="home-feature-actions"><a href="${hub}/${view.id}" data-home-action="view">${t('Read takeaways & evidence','看观点与证据')} ↗</a><a href="https://www.youtube.com/watch?v=${f.video}" target="_blank" rel="noopener">${t('Original video','原视频')} ↗</a></div></div></article>`;
+ return `<article class="home-feature" data-home-feature="${f.video}" data-home-edition="${day}"><div class="home-poster"><div class="home-poster-fallback" aria-hidden="true"><span>${esc(f.publisher)}</span><strong>${esc(f.posterLabel||f.publisher)}</strong><small>${esc(f.speaker)}</small></div><img src="https://i.ytimg.com/vi/${f.video}/hqdefault.jpg" width="480" height="360" alt="" decoding="async" referrerpolicy="no-referrer"><button type="button" data-home-video="${f.video}" data-player-title="${esc(title)}" aria-label="${esc(t('Watch: ','观看：')+title)}"><span aria-hidden="true">▶</span>${t('Watch here','直接观看')}</button></div><div class="home-feature-copy"><p class="home-eyebrow">${t('From the reviewed collection','已核对内容精选')} <span>${f.language==='zh'?t('Chinese original','中文原片'):t('English original','英文原片')} · ${f.date}</span></p><h2><a href="${hub}/${view.id}" data-home-action="view">${esc(d.title)}</a></h2><p>${esc(d.summary)}</p><div class="home-feature-actions"><a href="${hub}/${view.id}" data-home-action="view">${t('Read takeaways & evidence','看观点与证据')} ↗</a><a href="https://www.youtube.com/watch?v=${f.video}" target="_blank" rel="noopener">${t('Original video','原视频')} ↗</a></div></div></article>`;
 }
 export function renderHomePicks(edition,lang){
  const t=(en,zh)=>lang==='zh'?zh:en,hub=(lang==='zh'?'/zh':'')+'/future-guide';
