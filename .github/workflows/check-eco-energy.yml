@@ -186,6 +186,8 @@ jobs:
           python3 tools/build_mcp_guides.py
           node --test tools/test_mcp_guides.mjs
           python3 tools/build_home_order.py
+          # Final writers can rebuild household pages; restore catalog entries last.
+          python3 tools/link_product_catalog.py
           python3 tools/build_social_previews.py
           python3 tools/build_social_previews.py --check
           python3 tools/check_adlabel.py

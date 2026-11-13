@@ -11,6 +11,7 @@ const {chromium}=requireTools('playwright');
 const origin='https://getecoback.com',today=new Date().toISOString().slice(0,10),cases=[];
 const day=value=>{const n=Date.parse(value+'T00:00:00Z');return Number.isFinite(n)&&new Date(n).toISOString().slice(0,10)===value?n/86400000:NaN;};
 const expected=data.products.filter(p=>p.status==='verified'&&day(today)-day(p.checked)>=0&&day(today)-day(p.checked)<=90);
+for(const route of ['index.html','wohnen.html','tools.html']){const html=fs.readFileSync(path.join(root,route),'utf8');assert(html.includes('data-product-catalog-entry')&&html.includes('href="/produkte.html"'),'Final discovery missing from '+route);}
 const executablePath=process.env.CHROMIUM_PATH||process.env.PILOT_CHROMIUM;
 const localTools=['luftreiniger','hygrometer','dampfreiniger','fenstersauger','nass-trockensauger','bodenstaubsauger','wasserkocher','heissluftfritteusen','kontaktgrills'];
 const reusedTools={ventilatoren:'/guide/stromkosten-rechner.html',heizluefter:'/guide/heizluefter-stromverbrauch.html#eb-heater-cost',waeschetrockner:'/waeschetrockner-oder-luftentfeuchter.html#laundry-check'};

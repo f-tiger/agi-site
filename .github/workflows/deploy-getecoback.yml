@@ -472,6 +472,8 @@ jobs:
         run: |
           python3 tools/test_home_order.py
           python3 tools/build_home_order.py
+          # Final writers can rebuild household pages; restore catalog entries last.
+          python3 tools/link_product_catalog.py
           python3 tools/build_social_previews.py
           python3 tools/build_social_previews.py --check
 
