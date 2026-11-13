@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-12",
+ "fetched": "2026-11-13",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -278,48 +278,102 @@
    "fetched": "2026-11-12"
   },
   "matratze": {
-   "auto": [
-    "matratze",
-    "matratzen concord",
-    "matratze 140x200",
-    "matratze 90x200",
-    "matratze 180x200",
-    "matratze 160x200",
-    "matratzen",
-    "matratze 120x200",
-    "matratzenschoner",
-    "matratzen topper"
+   "rising": [
+    {
+     "q": "schlafsofa mit bettkasten",
+     "v": 140
+    },
+    {
+     "q": "emma original pro matratze",
+     "v": 140
+    },
+    {
+     "q": "beco maxima plus",
+     "v": 130
+    },
+    {
+     "q": "emma flip matratze",
+     "v": 110
+    },
+    {
+     "q": "jysk online",
+     "v": 90
+    },
+    {
+     "q": "emma original matratze",
+     "v": 80
+    },
+    {
+     "q": "emma performance matratze",
+     "v": 80
+    },
+    {
+     "q": "alvi matratze",
+     "v": 70
+    },
+    {
+     "q": "bett 120x200 mit matratze und lattenrost",
+     "v": 70
+    },
+    {
+     "q": "encasing matratze",
+     "v": 60
+    }
    ],
-   "new_vocabulary": [],
-   "rising": [],
-   "source": "autocomplete-vocabulary",
-   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
-   "last_attempt_at": "2026-11-12T13:09:36.162825+00:00",
-   "last_attempt_status": "failed",
-   "fetched": "2026-11-12"
+   "source": "related-queries",
+   "fetched": "2026-11-13",
+   "polluted": false,
+   "last_attempt_at": "2026-11-13T12:28:51.015321+00:00",
+   "last_attempt_status": "ok"
   },
   "saugwischer": {
-   "auto": [
-    "saugwischer",
-    "saugwischer test",
-    "saugwischer testsieger",
-    "saugwischer testsieger stiftung warentest",
-    "saugwischer vorwerk",
-    "saugwischer akku",
-    "saugwischer akku testsieger",
-    "saugwischer roboter",
-    "saugwischer kärcher",
-    "saugwischer mit selbstreinigung"
+   "rising": [
+    {
+     "q": "tineco floor one s7",
+     "v": 77200
+    },
+    {
+     "q": "kobold sp600 saugwischer",
+     "v": 76550
+    },
+    {
+     "q": "wischsauger testsieger",
+     "v": 61650
+    },
+    {
+     "q": "roborock saros 20",
+     "v": 52300
+    },
+    {
+     "q": "dyson wischsauger",
+     "v": 46750
+    },
+    {
+     "q": "leifheit bodenwischer",
+     "v": 38100
+    },
+    {
+     "q": "kärcher saugwischer roboter",
+     "v": 35800
+    },
+    {
+     "q": "wischroboter test",
+     "v": 10850
+    },
+    {
+     "q": "tineco",
+     "v": 120
+    },
+    {
+     "q": "vorwerk kobold saugwischer",
+     "v": 90
+    }
    ],
-   "new_vocabulary": [
-    "saugwischer mit selbstreinigung"
-   ],
-   "rising": [],
-   "source": "autocomplete-vocabulary",
-   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
-   "last_attempt_at": "2026-11-05T12:40:50.312186+00:00",
-   "last_attempt_status": "failed",
-   "fetched": "2026-11-05"
+   "source": "related-queries",
+   "fetched": "2026-11-13",
+   "polluted": true,
+   "last_attempt_at": "2026-11-13T12:29:51.675453+00:00",
+   "last_attempt_status": "ok"
   }
  }
 }
