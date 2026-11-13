@@ -64,7 +64,8 @@ async function harness(mode = 'normal') {
 
 const gaEvents = page => page.evaluate(() => Array.from(document.querySelector('iframe[title="Optional analytics"]')?.contentWindow.dataLayer || []).map(event => Array.from(event)));
 const ready = page => page.waitForFunction(() => document.querySelector('iframe[title="Optional analytics"]')?.contentWindow.dataLayer?.length > 0);
-const visibleIds = page => page.locator('[data-item]:visible').evaluateAll(rows => rows.map(row => row.dataset.item));
+const settled = page => page.waitForFunction(() => document.querySelector('.mj-grid')?.getAttribute('aria-busy') === 'false' && document.querySelector('#mj-load-retry')?.hidden);
+const visibleIds = async page => { await settled(page); return page.locator('[data-item]:visible').evaluateAll(rows => rows.map(row => row.dataset.item)); };
 const sharingState = page => page.evaluate(() => ({ native: window.__consumer.native, clipboard: window.__consumer.clipboard }));
 const shareCount = hits => hits.filter(hit => /\/manju\/share(?:_native|_copy)?\//.test(hit.p)).length;
 const gaShareCount = events => events.filter(event => /^manju_share(?:_native|_copy)?$/.test(event[1])).length;
@@ -100,7 +101,7 @@ try {
   assert.ok(await page.locator('[data-item]:visible .mj-watch-link [data-mj-action="official_open"]').count() > 0);
   assert.equal(await page.locator('[data-item][data-official="true"]').count(), await page.locator('.mj-watch-link [data-mj-action="official_open"]').count());
   assert.equal(await page.locator('[data-item]:not([data-official="true"]) .mj-watch-link [data-mj-action="official_open"]').count(), 0);
-  assert.equal(await page.locator('.mj-watch-link a').count(), MANJU.items.length);
+  assert.equal(await page.locator('.mj-watch-link a').count(), 24);
   assert.equal(await page.locator('[data-item] .mj-record[open]').count(), 0);
   for (const width of [320, 390, 768, 1440]) {
     await page.setViewportSize({ width, height: 900 });
@@ -121,7 +122,7 @@ try {
 
   // Source observation dates, not build dates, follow the selected cohort.
   for (const [mode, suffix] of [['hot-ai', 'ai-drama'], ['hot-comic', 'comic-drama']]) {
-    await page.locator(`[data-browse="${mode}"]`).click();
+    await page.locator(`[data-browse="${mode}"]`).click(); if (await page.locator('#mj-query').count()) await settled(page);
     const cohort = INSIGHTS.cohorts.find(item => item.metric === 'snapshot_heat' && item.id.includes(suffix));
     const date = INSIGHTS.reports.find(report => report.id === cohort.reportId).observedAt;
     assert.ok((await page.locator('#mj-result-note').textContent()).includes(date), 'Selected cohort source date is visible');
@@ -134,7 +135,7 @@ try {
   const failedSync = '最近一次自动更新未成功，保留上次有效数据。';
   await page.locator('#mj-result-note').evaluate((element, failedSync) => { element.dataset.aiDate = '2026-09-29'; element.dataset.comicDate = '2026-09-30'; element.dataset.syncState = failedSync; }, failedSync);
   for (const [mode, expected, other] of [['hot-ai', '2026-09-29', '2026-09-30'], ['hot-comic', '2026-09-30', '2026-09-29']]) {
-    await page.locator(`[data-browse="${mode}"]`).click();
+    await page.locator(`[data-browse="${mode}"]`).click(); if (await page.locator('#mj-query').count()) await settled(page);
     const note = await page.locator('#mj-result-note').textContent();
     assert.ok(note.includes(expected) && !note.includes(other), 'Each cohort uses its own observation date');
     assert.ok(note.includes(failedSync), 'Failed-sync fixture remains visible when switching cohorts');
@@ -143,20 +144,20 @@ try {
 
   // An official-only toggle is a real filter, survives a shared URL/reload and
   // does not trap the next search, saved list or hash destination inside it.
-  await page.locator('[data-browse="all"]').click();
-  await page.locator('#mj-official').click();
+  await page.locator('[data-browse="all"]').click(); if (await page.locator('#mj-query').count()) await settled(page);
+  await page.locator('#mj-official').click(); if (await page.locator('#mj-query').count()) await settled(page);
   assert.equal(await page.locator('#mj-official').getAttribute('aria-pressed'), 'true');
   assert.equal(new URL(page.url()).searchParams.get('official'), '1');
   assert.equal(await page.locator('[data-item]:visible:not([data-official="true"])').count(), 0);
   await page.reload();
   await ready(page);
   assert.equal(await page.locator('#mj-official').getAttribute('aria-pressed'), 'true');
-  await page.locator('#mj-reset').click();
+  await page.locator('#mj-reset').click(); if (await page.locator('#mj-query').count()) await settled(page);
   assert.equal(await page.locator('#mj-official').getAttribute('aria-pressed'), 'false');
   assert.equal(new URL(page.url()).searchParams.has('official'), false);
-  await page.locator('#mj-official').click();
+  await page.locator('#mj-official').click(); if (await page.locator('#mj-query').count()) await settled(page);
   const searchWork = MANJU.items.find(item => item.linkType === 'search');
-  await page.locator('#mj-query').fill(searchWork.title);
+  await page.locator('#mj-query').fill(searchWork.title); if (await page.locator('#mj-query').count()) await settled(page);
   await page.locator('#mj-query').press('Escape');
   assert.equal(await page.locator('#mj-official').getAttribute('aria-pressed'), 'false');
   const searched = page.locator(`[data-item="${searchWork.id}"]`);
@@ -165,36 +166,36 @@ try {
   assert.match(await searched.locator('.mj-watch-link').textContent(), /搜索/);
   await clickWithoutNavigation(searched.locator('.mj-watch-link a'));
   await searched.locator('[data-save]').click();
-  await page.locator('#mj-official').click();
-  await page.locator('#mj-saved').click();
+  await page.locator('#mj-official').click(); if (await page.locator('#mj-query').count()) await settled(page);
+  await page.locator('#mj-saved').click(); if (await page.locator('#mj-query').count()) await settled(page);
   assert.equal(await page.locator('#mj-official').getAttribute('aria-pressed'), 'false');
   assert.deepEqual(await visibleIds(page), [searchWork.id]);
-  await page.locator('[data-browse="all"]').click();
-  await page.locator('#mj-official').click();
+  await page.locator('[data-browse="all"]').click(); if (await page.locator('#mj-query').count()) await settled(page);
+  await page.locator('#mj-official').click(); if (await page.locator('#mj-query').count()) await settled(page);
   await page.evaluate(id => { location.hash = 'work-' + id; }, searchWork.id);
   await searched.waitFor({ state: 'visible' });
   assert.equal(await page.locator('#mj-official').getAttribute('aria-pressed'), 'false');
-  await page.locator('#mj-official').click();
-  await page.locator('[data-browse="all"]').click();
+  await page.locator('#mj-official').click(); if (await page.locator('#mj-query').count()) await settled(page);
+  await page.locator('[data-browse="all"]').click(); if (await page.locator('#mj-query').count()) await settled(page);
   assert.equal(await page.locator('#mj-official').getAttribute('aria-pressed'), 'false');
 
   // A preview/intro stays visibly distinct from a verified official collection.
   const intro = MANJU.items.find(item => item.linkType === 'intro');
-  await page.locator('#mj-query').fill(intro.title);
+  await page.locator('#mj-query').fill(intro.title); if (await page.locator('#mj-query').count()) await settled(page);
   await page.locator('#mj-query').press('Escape');
   const introCard = page.locator(`[data-item="${intro.id}"]`);
   assert.equal(await introCard.getAttribute('data-official'), 'false');
   assert.ok(await introCard.locator('.mj-watch-link [data-mj-action="intro_open"]').isVisible());
   await clickWithoutNavigation(introCard.locator('.mj-watch-link a'));
-  await page.locator('[data-browse="hot-ai"]').click();
+  await page.locator('[data-browse="hot-ai"]').click(); if (await page.locator('#mj-query').count()) await settled(page);
   await clickWithoutNavigation(page.locator('[data-item]:visible .mj-watch-link [data-mj-action="official_open"]').first());
 
   // Homepage share is always the clean consumer entry, independent of a query
   // or browse filters. Native resolution records only that the API returned.
-  await page.locator('#mj-query').fill(privateInput);
+  await page.locator('#mj-query').fill(privateInput); if (await page.locator('#mj-query').count()) await settled(page);
   await page.locator('#mj-query').press('Escape');
   await setShare(page, 'success');
-  await page.locator('#mj-share-home').click();
+  await page.locator('#mj-share-home').click(); if (await page.locator('#mj-query').count()) await settled(page);
   assert.equal((await sharingState(page)).native.at(-1).url, home);
   publicShare((await sharingState(page)).native.at(-1).url);
   await page.waitForFunction(() => Array.from(document.querySelector('iframe[title="Optional analytics"]').contentWindow.dataLayer).some(event => event[1] === 'manju_share_native'));
@@ -202,7 +203,7 @@ try {
   // Cancel is neither a successful share nor a reason to copy to clipboard.
   const cancelStart = await sharingState(page), cancelEvents = shareCount(hits), cancelGa = gaShareCount(await gaEvents(page));
   await setShare(page, 'cancel');
-  await page.locator('#mj-share-home').click();
+  await page.locator('#mj-share-home').click(); if (await page.locator('#mj-query').count()) await settled(page);
   await page.waitForFunction(() => Array.from(document.querySelectorAll('.mj-share-feedback')).some(element => element.textContent.includes('取消')));
   await page.waitForTimeout(100);
   assert.equal((await sharingState(page)).clipboard.length, cancelStart.clipboard.length);
@@ -211,18 +212,18 @@ try {
 
   // Default hot results exceed 60; the new visible page action shares exactly
   // 24 instead of failing like the deliberate whole-filtered-list action.
-  await page.locator('[data-browse="hot-ai"]').click();
+  await page.locator('[data-browse="hot-ai"]').click(); if (await page.locator('#mj-query').count()) await settled(page);
   await setShare(page, 'unavailable');
-  await page.locator('#mj-share-page').click();
+  await page.locator('#mj-share-page').click(); if (await page.locator('#mj-query').count()) await settled(page);
   publicShare((await sharingState(page)).clipboard.at(-1), await visibleIds(page));
   await page.waitForFunction(() => Array.from(document.querySelector('iframe[title="Optional analytics"]').contentWindow.dataLayer).some(event => event[1] === 'manju_share_copy'));
-  await page.locator('#mj-next').click();
-  await page.locator('#mj-share-page').click();
+  await page.locator('#mj-next').click(); if (await page.locator('#mj-query').count()) await settled(page);
+  await page.locator('#mj-share-page').click(); if (await page.locator('#mj-query').count()) await settled(page);
   publicShare((await sharingState(page)).clipboard.at(-1), await visibleIds(page));
   await page.waitForTimeout(100);
   const beforeLarge = await sharingState(page), beforeLargeEvents = shareCount(hits);
   await page.locator('.mj-library-tools').evaluate(element => { element.open = true; });
-  await page.locator('#mj-share').click();
+  await page.locator('#mj-share').click(); if (await page.locator('#mj-query').count()) await settled(page);
   assert.match(await page.locator('#mj-toast').textContent(), /60/);
   assert.deepEqual(await sharingState(page), beforeLarge);
   assert.equal(shareCount(hits), beforeLargeEvents, 'Rejected large filtered list is not a share');
@@ -230,7 +231,7 @@ try {
   // Per-work sharing keeps the published canonical work URL, including its
   // intentional catalogue hash when a dedicated evidence page does not exist.
   const workId = (await visibleIds(page))[0], work = MANJU.items.find(item => item.id === workId);
-  await page.locator(`[data-share-work="${workId}"]`).click();
+  await page.locator(`[data-share-work="${workId}"]`).click(); if (await page.locator('#mj-query').count()) await settled(page);
   assert.equal((await sharingState(page)).clipboard.at(-1), workURL(work));
   publicShare((await sharingState(page)).clipboard.at(-1));
   await page.waitForTimeout(100);
@@ -238,7 +239,7 @@ try {
   // Permission failure gives a visible, selectable URL, never false success.
   await setShare(page, 'error', 'denied');
   const deniedCount = shareCount(hits), deniedGa = gaShareCount(await gaEvents(page));
-  await page.locator('#mj-share-home').click();
+  await page.locator('#mj-share-home').click(); if (await page.locator('#mj-query').count()) await settled(page);
   const manual = page.locator('.mj-share-feedback input[readonly]:visible');
   await manual.first().waitFor();
   assert.equal(await manual.first().inputValue(), home);
@@ -258,11 +259,11 @@ try {
   assert.ok(!requests.some(request => request.body?.includes(privateInput)), 'Private email-shaped input is not sent to discovery');
 
   // A footer withdrawal takes effect immediately for both measurement paths.
-  await page.locator('[data-analytics-choice="denied"]').click();
+  await page.locator('[data-analytics-choice="denied"]').click(); if (await page.locator('#mj-query').count()) await settled(page);
   await page.waitForFunction(() => !document.querySelector('iframe[title="Optional analytics"]'));
   const optOutHits = hits.length;
   await setShare(page, 'success');
-  await page.locator('#mj-share-home').click();
+  await page.locator('#mj-share-home').click(); if (await page.locator('#mj-query').count()) await settled(page);
   await clickWithoutNavigation(page.locator('[data-item]:visible .mj-watch-link a').first());
   await page.waitForTimeout(100);
   assert.equal(hits.length, optOutHits, 'Opt-out also suppresses first-party consumer actions');

@@ -20,7 +20,7 @@ export function buildDiscovery({publish,page,write,catalog,insights,external,plo
   ['AI 漫剧和 AI 短剧去哪里看？','从作品的官方片库或原平台详情页进入。帧选目录区分官方片库、介绍／预告和平台搜索；红果榜单记录附官方详情链接。本站不播放视频，能否播放、登录与收费条件以原平台为准。'],
   ['AI 短剧和漫剧是一回事吗？','不是同一种划分方式。AI 描述制作技术，漫剧描述内容形态；漫剧不一定全部由 AI 制作。帧选保留来源对形态的标注，没有逐部审计制作过程。'],
   ['红果热度能当播放量吗？','不能。红果公开榜单以观看、互动等综合热度排序，完整计算窗口未公开。快照热度、月峰值和抖音月播放增量分别展示，不相加，也不据此推算人数或收入。'],
-  ['为什么 9 月和 10 月数据不能直接比较？',`当前核实的是 ${insights.reviewedAt} 检查的红果官方榜单快照，9 月完整官方月榜尚未核实。8 月保留的是 DataEye 报告摘录。来源、指标和周期不同，不能计算同比或环比增长。`],
+  ['为什么不同月份、不同榜单的数据不能直接比较？',`当前核实的是 ${insights.reviewedAt} 检查的红果官方榜单快照，9 月完整官方月榜尚未核实。8 月保留的是 DataEye 报告摘录。来源、指标和周期不同，不能计算同比或环比增长。`],
   ['如何引用帧选的榜单和题材计数？','写明原始来源、平台、观察日期、指标与样本范围，并附本站页面和原始来源链接。题材计数含分季、多标签有交叉，不是市场份额。可查看带出处的 JSON 和 Markdown 摘要；资料公开不等于获得作品素材转载许可。'],
   ['收藏会同步到账号吗？','收藏默认保存在当前浏览器，可免费导出文本或主动分享。登录 BPJ 免费账户后，可在片单区手动保存最多 200 部收藏并在其他设备恢复，不会自动上传；观看进度仍在本机。目录 RSS 通知资料更新，不是剧集追更。']
  ];
@@ -33,5 +33,5 @@ export function buildDiscovery({publish,page,write,catalog,insights,external,plo
  }
  const title='AI 漫剧去哪看：官方入口、热度口径与选剧指南';
  publish('guide',page({title,path:'guide',description:'了解 AI 漫剧与 AI 短剧的区别，找到官方观看入口，正确理解红果热度、抖音播放量和榜单日期，按题材找剧或生成创作选题。',body:`<article class="mj-topic-article"><a href="/manju/">帧选</a><h1>${title}</h1><p>想看作品，先按题材选片，再核对原平台；想做作品，先看带日期的题材依据，再验证自己的样片。</p>${genreLinks()}${faq.map(([q,a])=>`<section><h2>${q}</h2><p>${a}</p></section>`).join('')}<h2>数据来源与下一步</h2>${insights.reports.map(r=>`<p>${external(r.url,r.publisher)} · ${r.kind==='official_snapshot'?'观察日期 '+r.observedAt:'统计期 '+r.periodStart+'—'+r.periodEnd}</p>`).join('')}<p><a class="mj-button" href="/manju/topics">生成带出处的选题参考</a></p><p><a href="/manju/previews">先看官方预告与视频入口</a> · <a href="/manju/rankings">查官方榜单快照</a></p><p><a href="/manju/insights.json">榜单 JSON</a> · <a href="/manju/insights.md">可引用的榜单摘要</a> · <a href="/manju/guide.md">本指南文字版</a></p><p>需要补充官方物料或讨论专题合作，可<a href="/manju/cooperate?kind=cooperate">提交合作意向</a>。普通投稿免费，不出售排名，目前不在线收款。</p></article>`,schema:[{'@context':'https://schema.org','@type':'FAQPage',name:title,url:root+'guide',inLanguage:'zh-Hans',mainEntity:faq.map(([q,a])=>({'@type':'Question',name:q,acceptedAnswer:{'@type':'Answer',text:a}}))},breadcrumb(title,'guide')]}));
- write('manju/guide.md','# '+title+'\n\n'+faq.map(([q,a])=>'## '+q+'\n\n'+a).join('\n\n')+'\n\n来源：\n'+insights.reports.map(r=>'- '+r.publisher+' '+r.url+'；依据截止 '+r.periodEnd).join('\n')+'\n\n'+root+'topics\n');
+ write('manju/guide.md','# '+title+'\n\n'+faq.map(([q,a])=>'## '+q+'\n\n'+a).join('\n\n')+'\n\n来源：\n'+insights.reports.map(r=>'- '+r.publisher+' '+r.url+'；'+(r.kind==='official_snapshot'?'观察日期 '+r.observedAt:'统计期 '+r.periodStart+'—'+r.periodEnd)).join('\n')+'\n\n'+root+'topics\n');
 }

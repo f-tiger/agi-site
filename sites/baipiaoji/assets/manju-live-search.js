@@ -1,6 +1,7 @@
 (() => {
  const input=document.querySelector('#mj-query'),form=document.querySelector('#mj-search-form'),box=document.querySelector('#mj-search-results');if(!input||!form||!box)return;
- const status=document.querySelector('#mj-search-status'),list=document.querySelector('#mj-search-list'),retry=document.querySelector('#mj-search-retry'),works=JSON.parse(document.querySelector('#mj-works')?.textContent||'[]'),S=globalThis.ManjuSearch;
+ const status=document.querySelector('#mj-search-status'),list=document.querySelector('#mj-search-list'),retry=document.querySelector('#mj-search-retry'),works=globalThis.ManjuWorks,S=globalThis.ManjuSearch;
+ if(!Array.isArray(works))return;
  let timer,revision=0,controller,lastQuery='',composing=false,phase='idle',cooldownUntil=0;
  // Tab-memory only: never persist search text or send it to analytics.
  const recent=new Map(),queryKey=q=>q.trim().toLocaleLowerCase();

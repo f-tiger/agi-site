@@ -3,7 +3,10 @@
   function imageFailure(img){if(!img.matches?.('[data-mj-thumbnail]'))return;img.hidden=true;const label=img.closest('.mj-thumb')?.querySelector('.mj-thumb-source');if(label)label.textContent='封面未加载';}
   document.addEventListener('error',e=>imageFailure(e.target),true);document.querySelectorAll('[data-mj-thumbnail]').forEach(img=>{if(img.complete&&!img.naturalWidth)imageFailure(img);});
   const $=s=>document.querySelector(s),key='bpj-manju-saved-v1';
-  const works=JSON.parse($('#mj-works')?.textContent||'[]'),workMap=new Map(works.map(x=>[x.id,x])),ids=new Set(workMap.keys());
+  const works=globalThis.ManjuWorks;
+  // A failed index download must never turn an existing watchlist into an empty one.
+  if(!Array.isArray(works)){document.querySelectorAll('[data-save],[data-share-work]').forEach(b=>b.disabled=true);$('#mj-toast').textContent='目录索引未加载，可继续阅读或使用目录分页；刷新后可搜索与管理收藏。';return;}
+  const workMap=new Map(works.map(x=>[x.id,x])),ids=new Set(workMap.keys());
   let saved=new Set(),storage=true;
   try{const data=JSON.parse(localStorage.getItem(key)||'[]');if(Array.isArray(data))saved=new Set(data.filter(x=>ids.has(x)));}catch{storage=false;}
   const qa=/[?&](?:__ci|__probe|qa)(?:=|&|$)/.test(location.search);
@@ -24,7 +27,9 @@
   function renderSaved(){document.querySelectorAll('[data-save]').forEach(b=>{const on=saved.has(b.dataset.save);b.setAttribute('aria-pressed',String(on));b.textContent=on?'✓ 已收藏':'＋ 收藏';});document.querySelectorAll('[data-save-count]').forEach(e=>e.textContent=saved.size);}
   function persist(next){try{localStorage.setItem(key,JSON.stringify([...next]));saved=next;storage=true;renderSaved();showRecommendations();return true;}catch{storage=false;toast('浏览器未允许保存。请使用片单分享或导出，收藏没有写入。');return false;}}
   document.addEventListener('click',e=>{document.querySelectorAll('.mj-home .mj-record[open],.mj-home .mj-more[open]').forEach(d=>{if(!d.contains(e.target))d.open=false;});});document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.mj-home details[open]').forEach(d=>d.open=false);});
-  const rows=[...document.querySelectorAll('[data-item]')],params=new URLSearchParams(location.search),shared=(params.get('list')||'').split(',').filter(x=>ids.has(x));
+  const cards=new Map([...document.querySelectorAll('[data-item]')].map(r=>[r.dataset.item,r]));
+  const rows=$('#mj-query')?works.map(w=>({id:'work-'+w.id,hidden:true,dataset:{item:w.id,url:w.url,channel:w.channel,category:w.category,tags:w.tags.join(' '),...Object.fromEntries(['format','platform','link','evidence','official','hasPlot','hasPreview'].map(k=>[k,String(w[k])]))}})):[...cards.values()];
+  const params=new URLSearchParams(location.search),shared=(params.get('list')||'').split(',').filter(x=>ids.has(x));
   let sharedActive=params.has('list'),onlySaved=params.get('saved')==='1',onlyOfficial=params.get('official')==='1',currentPage=Math.max(1,Math.min(10000,Number.parseInt(params.get('page'),10)||1)),matches=[];const pageSize=24;
   const content=$('#mj-content'),sort=$('#mj-sort'),search=globalThis.ManjuSearch;
   if(sort){const explicit=['genre','tag','format','link','evidence','q','content','saved','list','channel','official'].some(k=>params.has(k));sort.value=[...sort.options].some(o=>o.value===params.get('sort'))?params.get('sort'):explicit?'relevance':'hot-ai';}
@@ -76,10 +81,56 @@
   $('#mj-share-home')?.addEventListener('click',e=>shareURL(e.currentTarget,shareRoot,'BPJ 帧选 · 找 AI 漫剧与短剧'));
   $('#mj-share-page')?.addEventListener('click',e=>shareList(e.currentTarget,matches.filter(r=>!r.hidden).map(r=>r.dataset.item),pageSize));
   document.addEventListener('click',e=>{const button=e.target.closest('[data-share-work]');if(!button)return;const id=button.dataset.shareWork,url=canonicalWorkURL(id);if(!url){shareStatus(button,'这个作品暂时无法生成分享链接，请使用目录入口。');return;}shareURL(button,url,workMap.get(id).title+' · BPJ 帧选',id);});
+  // Fetch the same public, crawlable HTML a reader sees. No search text or saved
+  // list is sent. Only the current 24 result cards are mounted in the document.
+  const pendingPages=new Map(),pageQueue=[];
+  let activePages=0,renderVersion=0,renderTask=Promise.resolve();
+  async function loadPage(n){
+    if(pendingPages.has(n))return pendingPages.get(n);
+    const task=(async()=>{
+      if(activePages>=4)await new Promise(resolve=>pageQueue.push(resolve));
+      activePages++;
+      const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),12000);
+      try{
+        const response=await fetch(n===1?'/manju/':'/manju/page/'+n,{credentials:'omit',signal:controller.signal});
+        if(!response.ok)throw Error('directory_unavailable');
+        const doc=new DOMParser().parseFromString(await response.text(),'text/html');
+        if(doc.querySelector('meta[name="manju-catalog-revision"]')?.content!==document.querySelector('meta[name="manju-catalog-revision"]').content)throw Error('directory_changed');
+        const found=[...doc.querySelectorAll('.mj-grid [data-item]')];
+        if(!found.length||found.length>pageSize||found.some(r=>workMap.get(r.dataset.item)?.directoryPage!==n))throw Error('directory_invalid');
+        for(const card of found)cards.set(card.dataset.item,document.importNode(card,true));
+      }finally{clearTimeout(timeout);activePages--;pageQueue.shift()?.();}
+    })();
+    pendingPages.set(n,task);
+    try{await task;}finally{pendingPages.delete(n);}
+  }
+  function showHeat(){const mode=sort?.value;document.querySelectorAll('[data-heat-kind]').forEach(e=>{const kinds=[...e.parentNode.querySelectorAll('[data-heat-kind]')];e.hidden=(mode==='hot-ai'||mode==='hot-comic')?e.dataset.heatKind!==mode:kinds[0]!==e;});}
+  function mountPage(selected){
+    const version=++renderVersion,grid=$('.mj-grid'),status=$('#mj-load-status'),retry=$('#mj-load-retry');
+    const wanted=selected.map(r=>r.dataset.item),missing=[...new Set(wanted.filter(id=>!cards.has(id)).map(id=>workMap.get(id).directoryPage))];
+    status.hidden=true;retry.hidden=true;grid.setAttribute('aria-busy',String(missing.length>0));$('#mj-share-page').disabled=missing.length>0;
+    function commit(){
+      if(version!==renderVersion)return;
+      if(wanted.some(id=>!cards.has(id)))throw Error('directory_incomplete');
+      grid.replaceChildren(...wanted.map(id=>cards.get(id)));grid.setAttribute('aria-busy','false');
+      status.hidden=true;$('#mj-share-page').disabled=false;renderSaved();showHeat();
+      grid.querySelectorAll('[data-mj-thumbnail]').forEach(img=>{if(img.complete&&!img.naturalWidth)imageFailure(img);});
+      // Bound detached-card memory across long browsing sessions.
+      if(cards.size>768)for(const id of cards.keys()){if(!wanted.includes(id))cards.delete(id);if(cards.size<=384)break;}
+    }
+    if(!missing.length){commit();return Promise.resolve();}
+    grid.replaceChildren();status.hidden=false;status.textContent='正在加载作品资料……';
+    return Promise.all(missing.map(loadPage)).then(commit).catch(error=>{
+      if(version!==renderVersion)return;
+      grid.setAttribute('aria-busy','false');status.hidden=false;retry.hidden=false;
+      status.textContent=error.message==='directory_changed'?'目录已更新，请刷新页面后继续；本机收藏仍保留。':'作品资料暂未加载，请重试，或使用下方完整目录分页阅读。';
+    });
+  }
+  $('#mj-load-retry')?.addEventListener('click',()=>{renderTask=mountPage(matches.filter(r=>!r.hidden));});
   function update(track=false,keepPage=false){
     if(!query)return;if(!keepPage)currentPage=1;
     scores=new Map(works.map(w=>[w.id,search.score(w,query.value)]));
-    matches=ordered(rows.filter(r=>scope(r)&&(!genre||r.dataset.category===genre)&&(!tag||r.dataset.tags.split(' ').includes(tag))));const n=matches.length,pages=Math.max(1,Math.ceil(n/pageSize));currentPage=Math.min(currentPage,pages);const pageRows=new Set(matches.slice((currentPage-1)*pageSize,currentPage*pageSize));for(const r of rows)r.hidden=!pageRows.has(r);for(const r of matches)r.parentNode.append(r);
+    matches=ordered(rows.filter(r=>scope(r)&&(!genre||r.dataset.category===genre)&&(!tag||r.dataset.tags.split(' ').includes(tag))));const n=matches.length,pages=Math.max(1,Math.ceil(n/pageSize));currentPage=Math.min(currentPage,pages);const pageRows=matches.slice((currentPage-1)*pageSize,currentPage*pageSize),selected=new Set(pageRows);for(const r of rows)r.hidden=!selected.has(r);renderTask=mountPage(pageRows);
     $('#mj-pagination').hidden=pages===1;$('#mj-prev').disabled=currentPage===1;$('#mj-next').disabled=currentPage===pages;$('#mj-page-state').textContent='第 '+currentPage+' / '+pages+' 页 · 每页 '+pageSize+' 条';
     channelButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.channelChoice===channel)));
     for(const b of genreButtons){const v=b.dataset.genreChoice,count=rows.filter(r=>scope(r)&&(!v||r.dataset.category===v)).length;b.hidden=!!v&&count===0&&genre!==v;b.setAttribute('aria-pressed',String(genre===v));b.querySelector('[data-facet-count]').textContent=count;}
@@ -99,14 +150,14 @@
   document.querySelectorAll('[data-browse]').forEach(b=>b.addEventListener('click',()=>{sort.value=b.dataset.browse==='all'?'relevance':b.dataset.browse;channel=b.dataset.browse==='all'?'all':'stories';genre='';tag='';onlySaved=false;onlyOfficial=false;sharedActive=false;query.value='';if(content)content.value='';fields.forEach(f=>f.value='');update(true);}));$('#mj-close-recommendations')?.addEventListener('click',()=>{$('#mj-recommendations').hidden=true;});
   $('#mj-official')?.addEventListener('click',()=>{onlyOfficial=!onlyOfficial;update(true);});
   renderSaved();showRecommendations();sort?.addEventListener('change',()=>update(true));
-  document.addEventListener('click',e=>{const b=e.target.closest('[data-related]');if(b){showRecommendations(b.dataset.related);event('filter');}});
+  document.addEventListener('click',e=>{const b=e.target.closest('[data-related]');if(b&&$('#mj-recommendations')){e.preventDefault();showRecommendations(b.dataset.related);event('filter');}});
   document.addEventListener('click',e=>{const b=e.target.closest('[data-save]');if(b){const next=new Set(saved),id=b.dataset.save;if(!ids.has(id))return;next.has(id)?next.delete(id):next.add(id);if(persist(next)){event(next.has(id)?'save':'unsave',id);update(false,true);toast(next.has(id)?'已收藏到当前浏览器。':'已从本机片单移除。');}}const a=e.target.closest('[data-mj-action]');if(a)event(a.dataset.mjAction,a.dataset.mjId);});
   window.addEventListener('storage',e=>{if(e.key!==key)return;try{const data=JSON.parse(e.newValue||'[]');saved=new Set(Array.isArray(data)?data.filter(x=>ids.has(x)):[]);renderSaved();update();}catch{}});
   if(query){content?.addEventListener('change',()=>{channel='all';sort.value='relevance';update(true);});fields.forEach(f=>f.addEventListener('change',()=>update(true)));query.addEventListener('input',()=>{channel='all';genre='';tag='';onlySaved=false;onlyOfficial=false;sharedActive=false;sort.value='relevance';if(content)content.value='';fields.forEach(f=>f.value='');update();});query.addEventListener('change',()=>event(rows.some(r=>!r.hidden)?'filter':'empty'));$('#mj-reset').addEventListener('click',reset);$('[data-reset]').addEventListener('click',reset);$('#mj-saved').addEventListener('click',()=>{onlySaved=!onlySaved;onlyOfficial=false;sort.value='relevance';if(content)content.value='';sharedActive=false;channel='all';genre='';tag='';fields.forEach(f=>f.value='');query.value='';update(true);});$('#mj-clear').addEventListener('click',()=>{if(!saved.size)return toast('本机片单已经是空的。');if(confirm('清空当前浏览器的所有帧选收藏？')){if(persist(new Set())){update();toast('本机收藏已清空。');}}});
     $('#mj-share').addEventListener('click',e=>shareList(e.currentTarget,matches.map(r=>r.dataset.item),60));
-    $('#mj-export').addEventListener('click',()=>{if(!saved.size)return toast('先收藏一部作品，再导出。');const text='我的帧选片单\n\n'+rows.filter(r=>saved.has(r.dataset.item)).map(r=>r.querySelector('h2').textContent+'\n'+r.dataset.url).join('\n\n')+'\n\n收藏为本机数据；此文件不包含视频。';const url=URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download='我的帧选片单.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);event('export');toast('片单文本已生成。');});
+    $('#mj-export').addEventListener('click',()=>{if(!saved.size)return toast('先收藏一部作品，再导出。');const text='我的帧选片单\n\n'+rows.filter(r=>saved.has(r.dataset.item)).map(r=>workMap.get(r.dataset.item).title+'\n'+r.dataset.url).join('\n\n')+'\n\n收藏为本机数据；此文件不包含视频。';const url=URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download='我的帧选片单.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);event('export');toast('片单文本已生成。');});
     for(const [id,delta]of [['mj-prev',-1],['mj-next',1]])$('#'+id).addEventListener('click',()=>{currentPage+=delta;update(false,true);$('#mj-result-heading').scrollIntoView({block:'start'});});
-    function revealHash(){const target=location.hash.slice(1),r=rows.find(x=>x.id===target);if(!r)return;sort.value='relevance';if(content)content.value='';channel='all';genre='';tag='';sharedActive=false;onlySaved=false;onlyOfficial=false;query.value='';fields.forEach(f=>f.value='');update(false,true);currentPage=Math.floor(matches.indexOf(r)/pageSize)+1;update(false,true);requestAnimationFrame(()=>r.scrollIntoView({block:'start'}));}
+    function revealHash(){const target=location.hash.slice(1),r=rows.find(x=>x.id===target);if(!r)return;sort.value='relevance';if(content)content.value='';channel='all';genre='';tag='';sharedActive=false;onlySaved=false;onlyOfficial=false;query.value='';fields.forEach(f=>f.value='');update(false,true);currentPage=Math.floor(matches.indexOf(r)/pageSize)+1;update(false,true);renderTask.then(()=>requestAnimationFrame(()=>document.getElementById(target)?.scrollIntoView({block:'start'})));}
     update(false,true);revealHash();if(!location.hash&&(['genre','tag','saved','list','official','content','evidence','page'].some(k=>params.has(k))||params.get('channel')==='culture'))document.getElementById('mj-full-directory')?.scrollIntoView({block:'start'});window.addEventListener('hashchange',revealHash);
   }
   const form=$('#mj-inquiry');if(form){const kind=form.elements.kind,email=form.elements.email;const initial=params.get('kind');if(['submit','cooperate','correction'].includes(initial))kind.value=initial;const work=params.get('work');if(ids.has(work))form.elements.url.value=workMap.get(work).url;const change=()=>{email.required=kind.value==='cooperate';};change();kind.addEventListener('change',change);let started=false;form.addEventListener('focusin',()=>{if(!started){started=true;event('inquiry_start');}});
