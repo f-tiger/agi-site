@@ -57,7 +57,7 @@ def block(slug, today=None, data=None):
             '.dc-catalog small{display:block;margin-top:8px;color:#5b6b78}.dc-catalog table{width:100%;min-width:620px;font-size:14px}'
             '.dc-catalog th[scope="row"]{min-width:145px}'
             '.dc-catalog th,.dc-catalog td{vertical-align:top;padding:10px}.dc-table{overflow-x:auto;margin:16px 0}'
-            '.dc-drain{scroll-margin-top:100px;padding:18px;border-left:4px solid #0a4d7a;background:#f2f7fa;border-radius:8px;margin:18px 0}'
+            '.dc-drain{scroll-margin-top:180px;padding:18px;border-left:4px solid #0a4d7a;background:#f2f7fa;border-radius:8px;margin:18px 0}'
             '.dc-drain li{margin:10px 0;font-size:15px;line-height:1.6}'
             '.dc-catalog :focus-visible{outline:3px solid #c77400;outline-offset:3px}</style>'
             '<div data-catalog-evidence><div class="eb-shop-h" role="heading" aria-level="2" id="dc-title">Sechs Luftentfeuchter: Unterschiede vor dem Kauf</div>'
