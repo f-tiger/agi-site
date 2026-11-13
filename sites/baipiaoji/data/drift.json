@@ -1,10 +1,111 @@
 {
-  "generated": "2026-11-12",
+  "generated": "2026-11-13",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 108,
-  "fetched_fail": 19,
-  "pending": 15,
+  "fetched_ok": 107,
+  "fetched_fail": 20,
+  "pending": 12,
   "items": [
+    {
+      "slug": "deepl",
+      "url": "https://www.deepl.com/pricing",
+      "confirmed": "2026-11-13",
+      "first_seen": "2026-11-12",
+      "added": [
+        "100个",
+        "20个",
+        "3个"
+      ],
+      "removed": [
+        "0m",
+        "10次",
+        "1b",
+        "1m",
+        "1次",
+        "2b",
+        "2k",
+        "30分钟",
+        "3m",
+        "4m",
+        "5k",
+        "60b"
+      ],
+      "checked_then": "2026-09-21"
+    },
+    {
+      "slug": "elicit",
+      "url": "https://elicit.com",
+      "confirmed": "2026-11-13",
+      "first_seen": "2026-11-12",
+      "added": [
+        "135%",
+        "18k"
+      ],
+      "removed": [
+        "10.32m",
+        "11.946m",
+        "13.569m",
+        "19.921m",
+        "21.669m",
+        "24.803m",
+        "26.77m",
+        "32.448m",
+        "32.664m",
+        "7.874m",
+        "8.325m"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "dify",
+      "url": "https://dify.ai",
+      "confirmed": "2026-11-13",
+      "first_seen": "2026-11-12",
+      "added": [
+        "161k"
+      ],
+      "removed": [
+        "160k"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "immersive-translate",
+      "url": "https://immersivetranslate.com",
+      "confirmed": "2026-11-13",
+      "first_seen": "2026-11-12",
+      "added": [],
+      "removed": [
+        "79222b",
+        "8655b"
+      ],
+      "checked_then": "2026-08-03"
+    },
+    {
+      "slug": "bolt",
+      "url": "https://support.bolt.new",
+      "confirmed": "2026-11-13",
+      "first_seen": "2026-11-12",
+      "added": [],
+      "removed": [
+        "5432b",
+        "616b"
+      ],
+      "checked_then": "2026-09-21"
+    },
+    {
+      "slug": "zhipu-glm",
+      "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
+      "confirmed": "2026-11-13",
+      "first_seen": "2026-11-12",
+      "added": [
+        "5b"
+      ],
+      "removed": [
+        "2b",
+        "96b"
+      ],
+      "checked_then": "2026-08-01"
+    },
     {
       "slug": "framer",
       "url": "https://framer.com/pricing",
@@ -89,17 +190,6 @@
       "checked_then": "2026-08-03"
     },
     {
-      "slug": "deepl",
-      "url": "https://www.deepl.com/pricing",
-      "confirmed": "2026-11-11",
-      "first_seen": "2026-11-10",
-      "added": [
-        "7m"
-      ],
-      "removed": [],
-      "checked_then": "2026-09-21"
-    },
-    {
       "slug": "fastgpt",
       "url": "https://fastgpt.cn/price",
       "confirmed": "2026-11-11",
@@ -109,30 +199,6 @@
       ],
       "removed": [],
       "checked_then": "2026-09-21"
-    },
-    {
-      "slug": "immersive-translate",
-      "url": "https://immersivetranslate.com",
-      "confirmed": "2026-11-11",
-      "first_seen": "2026-11-10",
-      "added": [],
-      "removed": [
-        "2752b"
-      ],
-      "checked_then": "2026-08-03"
-    },
-    {
-      "slug": "dify",
-      "url": "https://dify.ai",
-      "confirmed": "2026-11-10",
-      "first_seen": "2026-11-09",
-      "added": [
-        "160k"
-      ],
-      "removed": [
-        "148k"
-      ],
-      "checked_then": "2026-08-04"
     },
     {
       "slug": "replit",
@@ -157,21 +223,6 @@
       "checked_then": "2026-08-03"
     },
     {
-      "slug": "bolt",
-      "url": "https://support.bolt.new",
-      "confirmed": "2026-11-09",
-      "first_seen": "2026-11-08",
-      "added": [
-        "0.15s",
-        "5432b",
-        "616b"
-      ],
-      "removed": [
-        "36b"
-      ],
-      "checked_then": "2026-09-21"
-    },
-    {
       "slug": "v0",
       "url": "https://v0.app",
       "confirmed": "2026-11-09",
@@ -182,20 +233,6 @@
         "9%"
       ],
       "checked_then": "2026-08-03"
-    },
-    {
-      "slug": "zhipu-glm",
-      "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
-      "confirmed": "2026-11-09",
-      "first_seen": "2026-11-08",
-      "added": [
-        "40b",
-        "96b"
-      ],
-      "removed": [
-        "28b"
-      ],
-      "checked_then": "2026-08-01"
     },
     {
       "slug": "elevenlabs",
@@ -313,30 +350,6 @@
         "37months"
       ],
       "checked_then": "2026-09-21"
-    },
-    {
-      "slug": "elicit",
-      "url": "https://elicit.com",
-      "confirmed": "2026-11-05",
-      "first_seen": "2026-11-04",
-      "added": [
-        "10.32m",
-        "11.946m",
-        "13.569m",
-        "19.921m",
-        "21.669m",
-        "24.803m",
-        "26.77m",
-        "32.448m",
-        "32.664m",
-        "7.874m",
-        "8.325m"
-      ],
-      "removed": [
-        "135%",
-        "18k"
-      ],
-      "checked_then": "2026-08-04"
     },
     {
       "slug": "ragflow",

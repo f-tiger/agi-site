@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-12",
+ "checked": "2026-11-13",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -3996,274 +3996,72 @@
    "source_http": 404,
    "repo_http": 404,
    "reason": "source HTTP 404"
+  },
+  "correctover-mcp-server": {
+   "attempts": 1,
+   "first_attempt": "2026-11-13",
+   "last_attempt": "2026-11-13",
+   "attemptedAt": "2026-11-13T07:10:31.167Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "cortex-mem-memory": {
+   "attempts": 1,
+   "first_attempt": "2026-11-13",
+   "last_attempt": "2026-11-13",
+   "attemptedAt": "2026-11-13T07:10:31.167Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "courtdelta-court-delta": {
+   "attempts": 1,
+   "first_attempt": "2026-11-13",
+   "last_attempt": "2026-11-13",
+   "attemptedAt": "2026-11-13T07:10:31.167Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "coverlttr-coverlttr": {
+   "attempts": 1,
+   "first_attempt": "2026-11-13",
+   "last_attempt": "2026-11-13",
+   "attemptedAt": "2026-11-13T07:10:31.167Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "crabbitmq-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-11-13",
+   "last_attempt": "2026-11-13",
+   "attemptedAt": "2026-11-13T07:10:31.167Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "crackandreveal-locks": {
+   "attempts": 1,
+   "first_attempt": "2026-11-13",
+   "last_attempt": "2026-11-13",
+   "attemptedAt": "2026-11-13T07:10:31.167Z",
+   "source_http": 429,
+   "repo_http": null,
+   "reason": "source HTTP 429"
+  },
+  "craftablesoftware-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-11-13",
+   "last_attempt": "2026-11-13",
+   "attemptedAt": "2026-11-13T07:10:31.167Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
   }
  },
  "admitted": [
-  {
-   "slug": "starreel-starreel",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "pubfi-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "adrkit-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "deepledger-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "kleooai-kleo",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "clauderecall-recall",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "prominara-prominara",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "odilelabs-odile",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "goaimoat-ai-visibility",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "blindpay-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "jaxon-dsail",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "arbitron-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cloud-gagarin-gagarin",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "getclera-clera",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "wa-campaigns-whatsapp-campaigns",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "agtnames-agt",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "maxvideoai-maxvideoai",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "prereason-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "parseapi-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "buckybuild-bucky",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "onvaou-itineraires",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "rithmo-rithmo",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "spicyapi-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "sumoffice-office",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "agentixshop-agentix",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "sallim-korea-realty",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "sallim-contract-compass",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "blackveilsecurity-dns",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "apiguru-amazon-data",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "igods-space-monkey",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "debugbundle-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "captureoneai-web-perception",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "clusteragent-cluster-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "fiatdock-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "postman-mcp-server",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "povver-mcp-server",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "pack4back-nutrition",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "tokportal-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "tribeunal-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "mochify-mochify",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hydrata-mcp-server",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "deerdawn-deerdawn",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "teamwork-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "growsurf-growsurf",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "shipstatic-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "skilltotal-skilltotal",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "keboola-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "kapruka-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "artisign-artisign",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "mencoro-mencoro",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "followontours-cricket-travel",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "htmlradar-share",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "pokemontcgapi-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
   {
    "slug": "402cron-402cron",
    "date": "2026-09-22",
@@ -21078,6 +20876,324 @@
    "date": "2026-11-12",
    "source_http": 200,
    "repo_http": 200
+  },
+  {
+   "slug": "corkandcurve-wine-travel",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "corpole-requirements",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cortexpad-cortexpad",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "coshhvo-site",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cosmicjs-mcp",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "costbench-mcp",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "costsegsmart-cost-seg-smart",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cotribute-mcp",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "courseprofiler-courseprofiler",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "covasyn-chemistry",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "coverage-rights-coverage-rights",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "coverbureau-mcp",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "coversignalai-jevan-nfl-picks",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "coverthegaps-coverthegaps",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "coworkingview-mcp",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cpz-lab-mcp-cpzai",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "craftedtrust-mcp-shield",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "crashstory-crashstory",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "crawdar-business-research",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "crawlconsole-crawlconsole",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "crawlraven-mcp",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "create-web-page-create-web-page",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "createavataaars-avatars",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "createmod-schematics",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "crimsoncrawler-mcp-server",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "criora-criora",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cromanion-cromanion",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cronpulser-cronpulser",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "crosbynews-weather",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cross-deck-prism",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "crosswire-api-crosswire-polymarket-kalshi-arbitrage",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "crosswirepay-crosswire",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "crowdhum-crowdhum",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "crownofsilence-inner-circle",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "crucibleui-registry",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "cruise-itinerary-mcp",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "crustapi-search",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cryptoamlpolicy-site",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cryptodataapi-mcp",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cryptoexchangecomparehq-site",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cryptohopper-mcp-data",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cryptolicencecosts-site",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cryptominium-cryptominium",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cryptoquant-mcp-server",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cryptowhaleinsights-whale-insights",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "csatzo-site",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "csidia-notes",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ctlsurf-notebook",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cumulativeweb-cwi-mcp-server",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "curaiz-remote-jobs",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "curatorsearch-jobs",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "currencyguard-guard-pricing",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": 403
+  },
+  {
+   "slug": "curtilo-site",
+   "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
   }
  ],
  "note": "Written by scripts/agent-watch-admit.mjs. A slug listed under rejected was NOT admitted (reason + last HTTP status); it is retried on later runs. Candidates that were admitted appear in data/agent-watch.json."
