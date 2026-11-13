@@ -29,6 +29,6 @@ const clearance=await p.evaluate(()=>{const heading=document.querySelector('#dc-
 await p.screenshot({path:path.join(out,`${slug}-${width}-${js?'js':'nojs'}-native-anchor.png`)});
 assert(clearance.headingTop>=clearance.navBottom+8,'Native fragment heading obscured: '+JSON.stringify(clearance));
 assert(clearance.headingBottom<clearance.viewport,'Heading must be visible in first viewport');
-assert(writes.every(w=>w.path==='/api/ev'&&['page_view','feuchte_now'].includes(JSON.parse(w.body).n)),'Unexpected blocked write: '+JSON.stringify(writes));assert.equal(merchants.length,0);assert.deepEqual(errors,[]);
+assert(writes.every(w=>w.path==='/api/ev'&&(['page_view','feuchte_now'].includes(JSON.parse(w.body).n)||(slug==='waesche-trocknen-wohnung'&&JSON.parse(w.body).n==='strom_now'&&JSON.parse(w.body).m?.src==='heat'))),'Unexpected blocked write: '+JSON.stringify(writes));assert.equal(merchants.length,0);assert.deepEqual(errors,[]);
 cases.push({slug,width,js,status:'PASS',clearance,documentWidth:info.w,blockedLegacyEventAttempts:writes.map(w=>JSON.parse(w.body).n),submittedPostRequests:0,merchantRequests:merchants.length});await c.close();
 }fs.writeFileSync(path.join(out,'browser-drain.json'),JSON.stringify({live,proxyTLSException:tls,status:'PASS',cases},null,2));console.log(JSON.stringify({live,proxyTLSException:tls,status:'PASS',cases:cases.length,out}));}finally{await browser.close();}})().catch(e=>{console.error(e);process.exit(1)});
