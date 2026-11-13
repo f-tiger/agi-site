@@ -1,0 +1,52 @@
+{
+  "date": "2026-11-13",
+  "decision": "Owner-authorized Amazon affiliate pivot",
+  "sources": [
+    {
+      "id": "niubee-risers",
+      "market": "US",
+      "asin": "B07KN5G9CQ",
+      "url": "https://www.amazon.com/dp/B07KN5G9CQ",
+      "evidence": "Amazon public primary listing via search index; previously verified identity retained",
+      "limits": "Cached identity; no live stock, price, seller authorization or tested fit. Listed dimensions remain inconsistent."
+    },
+    {
+      "id": "rub-4l",
+      "market": "US",
+      "asin": "B000KN4DQ4",
+      "model": "4C",
+      "url": "https://www.amazon.com/dp/B000KN4DQ4",
+      "manufacturer": "https://www.reallyusefulproducts.co.uk/usa/html/onlineshop/rub/b04_0litreUS.php",
+      "evidence": "Amazon public primary listing identity matches manufacturer US4L clear box with clip-lock lid",
+      "limits": "US4C specification only; approximate minimum internal dimensions, not UK variant. Indoor storage, no tested shipping or archival guarantee."
+    },
+    {
+      "id": "amazon-us-agreement",
+      "url": "https://affiliate-program.amazon.com/help/operating/agreement",
+      "finding": "Use the official As an Amazon Associate I earn from qualifying purchases statement."
+    },
+    {
+      "id": "amazon-de-agreement",
+      "url": "https://partnernet.amazon.de/help/operating/agreement",
+      "finding": "Use Als Amazon-Partner verdiene ich an qualifizierten Verkäufen."
+    },
+    {
+      "id": "amazon-disclosure",
+      "url": "https://affiliate-program.amazon.com/help/node/topic/GPXFHVYZMTGPUMPE",
+      "finding": "Clear and conspicuous affiliate disclosure near links."
+    },
+    {
+      "id": "amazon-original-content",
+      "url": "https://affiliate-program.amazon.com/help/operating/policies",
+      "finding": "Relevant original site content accompanies category/search links; no unlicensed scraped product content."
+    }
+  ],
+  "excluded": "No verified DE exact listing; a second NIUBEE variation is not needed for the first release. Product listings and cached search results do not establish current availability.",
+  "self_challenges": [
+    "A search-link directory adds little value: require task-specific choose/skip criteria and named traceable examples before merchant actions.",
+    "Higher affiliate-click count may not earn revenue: retain correct-market destinations and require mature TDS-attributable reporting before claiming business success."
+  ],
+  "release": {
+    "status": "pending"
+  }
+}

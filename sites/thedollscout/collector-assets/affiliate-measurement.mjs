@@ -1,6 +1,6 @@
 // First-party shopping actions only. Shared fleet analytics owns GA4 events.
 // Never send search terms, arbitrary product labels, full links or user inputs.
-import {shoppingMarket, shoppingItemAllowed, shoppingLinkPayload} from './shopping-contract.mjs';
+import {shoppingMarket, shoppingItemAllowed, shoppingLinkPayload} from './shopping-contract.mjs?v=20261113.amazon1';
 const QA_KEYS = ['ci', '__ci', '__probe', 'qa', '__qa'];
 const installed = new WeakSet();
 const compared = new WeakSet();

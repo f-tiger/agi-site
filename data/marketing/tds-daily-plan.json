@@ -1,12 +1,13 @@
 {
-  "version": 8,
+  "version": 9,
   "site": "tds",
   "start_date": "2026-10-12",
   "days": 30,
   "timezone": "Asia/Shanghai",
-  "mode": "validation_only_until_existing_review",
+  "mode": "owner_authorized_amazon_affiliate_pivot",
   "native_schedule_unchanged": "07:20 UTC / 15:20 Asia/Shanghai",
   "rules": [
+    "The 2026-11-13 explicit Amazon affiliate pivot supersedes the earlier development freeze for this bounded implementation and release; no new expense, account, recurring task or outbound-post authority.",
     "The 2026-11-13 investment_gate overrides the old calendar backlog: validation and necessary maintenance only until the original 2026-11-22 review; unavailable evidence does not restart the window.",
     "Repair real failures before the calendar topic.",
     "The two daily iterations share one primary experiment; morning selects or implements, afternoon resumes and verifies. Do not duplicate existing changes, PRs, source requests, posts or registration. No-change is a valid evidence-based outcome.",
@@ -373,8 +374,8 @@
   "acquisition_priority": {
     "updated": "2026-11-13",
     "owner_direction": "Research user pain points; execute toward USD100 monthly total site revenue with proactive marketing and country-specific categories.",
-    "primary": "Validate the existing Sonny Angel small-shelf task and one repeatable permitted acquisition route; follow investment_gate before any expansion.",
-    "status": "validation_only_subject_to_investment_gate",
+    "primary": "Owner-authorized Amazon affiliate task pages and source-backed US products; DE labelled local category searches.",
+    "status": "amazon_pivot_in_progress",
     "receipt": "docs/tds-affiliate-benchmarks-2026-11-07.md",
     "preserve": [
       "Existing free tools, organizer/MCP experiment history and published-post windows",
@@ -1248,7 +1249,7 @@
   "investment_gate": {
     "updated": "2026-11-13",
     "reason": "Owner challenges whether TDS warrants continued investment; product delivery has not established a repeatable acquisition and useful-task loop.",
-    "status": "validation_only_no_feature_expansion",
+    "status": "superseded_for_owner_authorized_amazon_pivot",
     "takes_precedence_over": [
       "days_plan",
       "acquisition_priority",
@@ -1306,6 +1307,61 @@
     },
     "authorization_boundary": "This operating decision does not delete or dehost the site, disable workflows, create a paid service or grant new external posting/messaging authority.",
     "automation_effect": "Operator policy recorded in the existing plan and site handbook; no runtime schedule or source-collector setting changed. No new unattended decision job is installed.",
-    "evidence_state": "Latest private complete-date review recorded outside the public repository; raw traffic, platform metrics and identities are not published."
+    "evidence_state": "Latest private complete-date review recorded outside the public repository; raw traffic, platform metrics and identities are not published.",
+    "prior_status": "validation_only_no_feature_expansion",
+    "authorized_exception": {
+      "date": "2026-11-13",
+      "owner_direction": "转型为亚马逊联盟站",
+      "scope": "Implement and release a focused Amazon affiliate buying path using the existing US/DE accounts; old observations and income goals remain separate."
+    }
+  },
+  "active_experiment_id": "tds-amazon-affiliate-20261113",
+  "amazon_pivot": {
+    "id": "tds-amazon-affiliate-20261113",
+    "status": "implementation_in_progress",
+    "owner_direction": "转型为亚马逊联盟站",
+    "authorized_on": "2026-11-13",
+    "positioning": "Amazon affiliate buying guide for collector display, storage and accessories",
+    "markets": {
+      "US": "EN/ZH; ecoback0d-20",
+      "DE": "DE; getecoback-21"
+    },
+    "categories": [
+      "display-cases",
+      "storage-transport",
+      "plush-display",
+      "collector-gifts"
+    ],
+    "verified_exact_us": [
+      {
+        "id": "niubee-risers",
+        "asin": "B07KN5G9CQ"
+      },
+      {
+        "id": "rub-4l",
+        "asin": "B000KN4DQ4",
+        "model": "4C"
+      }
+    ],
+    "other_destinations": "Clearly labelled category searches with task-specific original buying criteria; no fabricated DE exact listings",
+    "product_changes": [
+      "Amazon buying area before supplementary multi-retailer references",
+      "Explicit market navigation and adjacent affiliate disclosure",
+      "Source-backed named US product links and no-price/no-stock claims",
+      "Existing free tools and local shortlist continue as supplementary aids"
+    ],
+    "measurement": "Reuse affiliate_click and existing canonical shopping scope. Named products use fixed public item/placement labels; type searches keep merchant-only unknown item. Preserve historic official tuples and all privacy exclusions.",
+    "revenue_goal": "USD100 total TDS-attributable revenue per calendar month after reversals and before costs; actual unknown",
+    "traffic_goal": "1000 daily measured users remains unverified; missing GA4 read access is not a UI release blocker",
+    "prior_observation_window": "Preserve 2026-11-08..2026-11-21 UTC and 2026-11-22 review; do not attribute older exposure to this pivot.",
+    "new_observation_window": "Actual release and first complete UTC day must be recorded at verification; no backfilled counts.",
+    "marketing": "Search-oriented task pages and existing authorized owned entry paths; do not duplicate old TikTok or create new external posts/messages/spend.",
+    "review_rules": [
+      "Distinguish listing identity from tested suitability, availability and commission eligibility",
+      "No eligible merchant exits after30 defined qualified visits prompts offer/task review; unavailable visit denominator remains unknown",
+      "No attributed commission after100 mature eligible merchant clicks prompts eligibility/attribution review; operational gate only"
+    ],
+    "source_ledger": "docs/tds-amazon-pivot-2026-11-13.json",
+    "release": null
   }
 }

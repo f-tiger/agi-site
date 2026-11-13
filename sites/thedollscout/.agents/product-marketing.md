@@ -1,7 +1,17 @@
-# TDS product and commercial context — version 9.0 (2026-11-07)
+# TDS product and commercial context — version 10.0 (2026-11-07)
 
-**Document version:** v9
+**Document version:** v10
 **Last updated:** 2026-11-07
+
+## Amazon affiliate positioning — owner direction 2026-11-13
+
+The owner explicitly requests conversion to an Amazon affiliate site, superseding the same-day development freeze for this bounded release. TDS helps collectors choose display, storage, plush accessories and gifts using task-specific checks and explicit Amazon shopping destinations. The main homepage/hub/guide buying area precedes supplementary multi-retailer references. Existing tools and saved six-item comparison remain available; they are supporting value, not the main offer.
+
+Use the existing US and German accounts: EN/ZH expressly carry US shopping context, DE German context. Identity-verified exact US links are NIUBEE B07KN5G9CQ and Really Useful Box 4L clear/model4C/B000KN4DQ4. German exact identities remain unverified, so label type-search links clearly. A source-verified listing is not a tested recommendation, live stock, current price, delivery guarantee or confirmation of seller authorization. Never manufacture a DE counterpart, prices, ratings, sales, product photographs or fit claims. The new storage box is an indoor accessory comparison, not tested shipping protection. Use official Amazon Associate wording and adjacent visible affiliate disclosure.
+
+The USD100 total-site monthly revenue goal remains below; user and revenue results remain unknown. Source traceability, fixed item/placement labels, historic reporting compatibility and privacy exclusions are mandatory. Actual new release day and first complete reporting day must be logged separately; preserve the prior 8–21 November window and 22 November review. Existing owned routes are the distribution work in this release; no new external post, message, ad spend, paid service, credential or cron is introduced. Official source checks retain their limits. Public sources and final release receipt: root `docs/tds-amazon-pivot-2026-11-13.json`.
+
+The following v9 traffic goal and v8 comparison sections are preserved history; this Amazon positioning governs the current product.
 
 ## Daily traffic objective — current steering 2026-11-07
 

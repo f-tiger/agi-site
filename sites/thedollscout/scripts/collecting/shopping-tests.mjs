@@ -12,7 +12,7 @@ test('shopping publishes every route in all languages with useful comparison and
 });
 test('merchant markets and tags remain explicit, exact and separate',()=>{
  for(const l of Object.keys(locales)){const u=new URL(merchantURL(l,'case & riser'));assert.equal(u.hostname,l==='de'?'www.amazon.de':'www.amazon.com');assert.equal(u.searchParams.get('tag'),l==='de'?'getecoback-21':'ecoback0d-20');assert.equal(u.searchParams.get('k'),'case & riser');
-  for(const p of pages().filter(p=>p[0]===l)){const html=p[4];for(const m of html.matchAll(/href="(https:\/\/www\.amazon\.[^"]+)"/g)){const a=new URL(m[1].replaceAll('&amp;','&'));assert.equal(a.hostname,u.hostname);assert.equal(a.searchParams.get('tag'),u.searchParams.get('tag'));assert.ok(a.pathname==='/s'||(l!=='de'&&a.pathname==='/dp/B07KN5G9CQ'));if(a.pathname==='/s')assert.ok(html.includes(shoppingCopy[l].market));}}
+  for(const p of pages().filter(p=>p[0]===l)){const html=p[4];for(const m of html.matchAll(/href="(https:\/\/www\.amazon\.[^"]+)"/g)){const a=new URL(m[1].replaceAll('&amp;','&'));assert.equal(a.hostname,u.hostname);assert.equal(a.searchParams.get('tag'),u.searchParams.get('tag'));assert.ok(a.pathname==='/s'||(l!=='de'&&['/dp/B07KN5G9CQ','/dp/B000KN4DQ4'].includes(a.pathname)));if(a.pathname==='/s')assert.ok(html.includes(shoppingCopy[l].market));}}
  }
 });
 test('agent text has canonical guides and official sources but never merchant links',()=>{

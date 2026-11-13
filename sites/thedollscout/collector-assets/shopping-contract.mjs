@@ -1,5 +1,12 @@
 // Fixed public catalogue labels only. No customer data, dimensions or free text.
 export const SHOPPING_IDS = Object.freeze(['blaliden', 'baggebo', 'lustigt', 'samla', 'my-bestie', 'niubee-risers']);
+// Exact marketplace choices are separate from the six saved-shortlist IDs.
+// Keep old IDs/tuples readable when the active storefront changes.
+export const SHOPPING_EXACT_ITEMS = Object.freeze({
+  'niubee-risers': Object.freeze({market: 'US', merchant: 'amazon.com', asin: 'B07KN5G9CQ'}),
+  'rub-4l': Object.freeze({market: 'US', merchant: 'amazon.com', asin: 'B000KN4DQ4'}),
+});
+export const SHOPPING_EXACT_IDS = Object.freeze(Object.keys(SHOPPING_EXACT_ITEMS));
 export const SHOPPING_PLACEMENTS = Object.freeze(['card', 'compare', 'guide']);
 export const SHOPPING_PATHS = Object.freeze(['/', '/de/', '/zh/'].flatMap(prefix =>
   ['', 'shop', 'shop/display-cases', 'shop/storage-transport', 'shop/plush-display', 'shop/collector-gifts'].map(path => prefix + path)));
@@ -14,19 +21,23 @@ const ikeaPaths = Object.freeze({
 
 export function shoppingMarket(path) {return paths.has(path) ? path.startsWith('/de/') ? 'DE' : 'US' : null;}
 export function shoppingItemAllowed(item, market) {
-  return ['US', 'DE'].includes(market) && SHOPPING_IDS.includes(item) && (item !== 'niubee-risers' || market === 'US');
+  if (typeof item !== 'string') return false;
+  const exact = Object.hasOwn(SHOPPING_EXACT_ITEMS, item) ? SHOPPING_EXACT_ITEMS[item] : null;
+  return ['US', 'DE'].includes(market) && (SHOPPING_IDS.includes(item) || !!exact) && (!exact || market === exact.market);
 }
 export function shoppingTupleAllowed({path, event, merchant, item, placement}) {
   const market = shoppingMarket(path);
   if (!shoppingItemAllowed(item, market) || !SHOPPING_PLACEMENTS.includes(placement)) return false;
-  if (event === 'affiliate_click') return item === 'niubee-risers' && market === 'US' && merchant === 'amazon.com';
+  if (event === 'affiliate_click') return Object.hasOwn(SHOPPING_EXACT_ITEMS, item) &&
+    market === SHOPPING_EXACT_ITEMS[item].market && merchant === SHOPPING_EXACT_ITEMS[item].merchant;
   return event === 'shopping_official_click' && (item === 'my-bestie' ? merchant === 'sonnyangelstore.com' :
     Object.hasOwn(ikeaPaths, item) && merchant === 'ikea.com');
 }
 export function encodeShoppingRef({merchant, item, placement}) {return `s1|${merchant}|${item}|${placement}`;}
-export const SHOPPING_TUPLES = Object.freeze(SHOPPING_IDS.flatMap(item => SHOPPING_PLACEMENTS.map(placement => {
-  const event = item === 'niubee-risers' ? 'affiliate_click' : 'shopping_official_click';
-  const merchant = item === 'niubee-risers' ? 'amazon.com' : item === 'my-bestie' ? 'sonnyangelstore.com' : 'ikea.com';
+export const SHOPPING_TUPLES = Object.freeze([...new Set([...SHOPPING_IDS, ...SHOPPING_EXACT_IDS])].flatMap(item => SHOPPING_PLACEMENTS.map(placement => {
+  const exact = Object.hasOwn(SHOPPING_EXACT_ITEMS, item) ? SHOPPING_EXACT_ITEMS[item] : null;
+  const event = exact ? 'affiliate_click' : 'shopping_official_click';
+  const merchant = exact ? exact.merchant : item === 'my-bestie' ? 'sonnyangelstore.com' : 'ikea.com';
   return Object.freeze({event, merchant, item, placement, ref: encodeShoppingRef({merchant, item, placement})});
 })));
 
@@ -57,7 +68,7 @@ export function shoppingLinkPayload({p, href, item, placement, affiliate = false
     if (host !== expectedHost || url.searchParams.getAll('tag').length !== 1 || url.searchParams.get('tag') !== tag) return null;
     if (!hasMetadata) return {p, e: 'affiliate_click', r: 'https://' + host};
     if (!shoppingTupleAllowed({path: p, event: 'affiliate_click', merchant: host, item, placement}) ||
-        !/^\/dp\/B07KN5G9CQ\/?$/.test(url.pathname)) return null;
+        url.pathname.replace(/\/$/, '') !== '/dp/' + SHOPPING_EXACT_ITEMS[item].asin) return null;
     return {p, e: 'affiliate_click', r: 'https://' + host, item, placement};
   }
   if (!shoppingTupleAllowed({path: p, event: 'shopping_official_click', merchant: host, item, placement}) || url.search || url.hash) return null;

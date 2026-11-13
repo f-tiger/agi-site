@@ -113,8 +113,10 @@ test('Item and placement measurement requires a verified product link and the co
   ]) assert.equal(affiliatePayload(ui.event(href, attrs), ui.runtime), null, href + JSON.stringify(attrs));
 });
 
-test('The shared contract only admits the six IDs, US/DE paths and complete fixed metadata tuples', () => {
-  assert.equal(SHOPPING_IDS.length, 6); assert.equal(SHOPPING_TUPLES.length, 18);
+test('The shared contract preserves six shortlist IDs and admits only fixed product/market/placement tuples', () => {
+  assert.equal(SHOPPING_IDS.length, 6);
+  assert.deepEqual([...new Set(SHOPPING_TUPLES.map(tuple => tuple.item))], [...SHOPPING_IDS, 'rub-4l']);
+  for (const item of [...SHOPPING_IDS, 'rub-4l']) assert.deepEqual(SHOPPING_TUPLES.filter(tuple => tuple.item === item).map(tuple => tuple.placement), ['card', 'compare', 'guide']);
   assert.equal(shoppingMarket('/zh/shop'), 'US'); assert.equal(shoppingMarket('/de/shop'), 'DE');
   assert.equal(shoppingMarket('/uk/shop'), null); assert.equal(shoppingItemAllowed('niubee-risers', 'DE'), false);
   assert.ok(SHOPPING_TUPLES.every(tuple => tuple.ref.length <= 60));

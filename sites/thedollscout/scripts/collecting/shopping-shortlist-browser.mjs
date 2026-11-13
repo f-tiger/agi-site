@@ -107,13 +107,16 @@ async function measure(page, locale, pathname, width) {
     const productLinks = cards.flatMap(item => [...item.querySelectorAll('a[data-shopping-destination]')]).filter(link => visible(link) && new URL(link.href).origin !== location.origin);
     const productAffiliateLinks = productLinks.filter(link => link.rel.split(/\s+/).includes('sponsored'));
     const affiliateLinks = [...document.querySelectorAll('a[rel~="sponsored"]')].filter(visible);
+    const amazon = document.querySelector('[data-amazon-shopping]');
+    const firstAmazon = amazon && [...amazon.querySelectorAll('a[rel~="sponsored"]')].find(link => visible(link) && /^https:\/\/www\.amazon\.(com|de)\//.test(link.href));
+    const supplement = document.querySelector('.amazon-supplement');
     const sourceBlocks = [...document.querySelectorAll('.shopping-product-source,.shop-sources,.official-panel,[data-shopping-source],.shop-method')].filter(visible).map(element => ({selector:element.className || element.tagName, top:top(element)}));
-    return {firstNamedCardTop:top(first), firstProductDestinationTop:top(productLinks[0]), firstProductDestination:productLinks[0]?.href || null, firstProductAffiliateLinkTop:top(productAffiliateLinks[0]), firstAffiliateLinkTop:top(affiliateLinks[0]), sourceBlocks};
+    return {amazonTop:top(amazon), firstAmazonDestinationTop:top(firstAmazon), firstAmazonDestination:firstAmazon?.href || null, supplementTop:top(supplement), firstNamedCardTop:top(first), firstProductDestinationTop:top(productLinks[0]), firstProductDestination:productLinks[0]?.href || null, firstProductAffiliateLinkTop:top(productAffiliateLinks[0]), firstAffiliateLinkTop:top(affiliateLinks[0]), sourceBlocks};
   }, {card:selectors.card});
   measurements.push({locale, pathname, width, ...positions});
   if (pathname.endsWith('/shop') && width === 390) {
-    if (positions.firstNamedCardTop === null || positions.firstNamedCardTop >= 900) layoutFailures.push({locale,check:'first hub named card above 900px',actual:positions.firstNamedCardTop});
-    if (positions.firstProductDestinationTop === null || positions.firstProductDestinationTop >= 1400) layoutFailures.push({locale,check:'first hub product destination above 1400px',actual:positions.firstProductDestinationTop});
+    if (positions.amazonTop === null || positions.supplementTop === null || positions.amazonTop >= positions.supplementTop) layoutFailures.push({locale,check:'Amazon main area precedes supplementary references',actual:positions});
+    if (positions.firstAmazonDestinationTop === null || positions.firstNamedCardTop === null || positions.firstAmazonDestinationTop >= positions.supplementTop || positions.firstAmazonDestinationTop >= positions.firstNamedCardTop) layoutFailures.push({locale,check:'a usable Amazon destination precedes the original six reference cards',actual:positions});
   }
 }
 
@@ -341,7 +344,7 @@ try {
   assert.deepEqual(errors, [], 'No uncaught JavaScript errors');
   assert.deepEqual(missing, [], 'Every requested same-origin static asset exists');
   assert.deepEqual(blocked.filter(request => request.kind === 'api' && request.path === '/api/ev'), [], 'QA comparisons and clicks must not attempt business-event submission');
-  assert.deepEqual(layoutFailures, [], 'Mobile hub product entry meets the agreed placement thresholds');
+  assert.deepEqual(layoutFailures, [], 'Mobile hub prioritizes usable Amazon destinations before supplementary references');
 } catch (error) {
   failure = {message:error.message, stack:error.stack};
   if (activePage && !activePage.isClosed()) {

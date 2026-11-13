@@ -103,7 +103,7 @@ jobs:
           node scripts/documents/verify.mjs
           node scripts/collecting/build.mjs
           node --test ../../tools/affiliate-growth/tds-goal.test.mjs
-          node --test scripts/traffic-goal-tests.mjs scripts/private-gsc-health-tests.mjs scripts/collecting/shopping-shortlist-tests.mjs scripts/collecting/shopping-report-tests.mjs scripts/collecting/shopping-growth-tests.mjs scripts/collecting/shopping-tests.mjs scripts/collecting/affiliate-tests.mjs scripts/collecting/tests.mjs scripts/collecting/mcp-tests.mjs scripts/collecting/collection-task-tests.mjs scripts/collecting/event-kit-tests.mjs scripts/collecting/event-report-tests.mjs scripts/collecting/planning-tests.mjs scripts/collecting/series-share-tests.mjs scripts/collecting/measurement-tests.mjs scripts/collecting/canonical-host-tests.mjs scripts/collecting/swap-kit-tests.mjs
+          node --test scripts/collecting/amazon-pivot-tests.mjs scripts/traffic-goal-tests.mjs scripts/private-gsc-health-tests.mjs scripts/collecting/shopping-shortlist-tests.mjs scripts/collecting/shopping-report-tests.mjs scripts/collecting/shopping-growth-tests.mjs scripts/collecting/shopping-tests.mjs scripts/collecting/affiliate-tests.mjs scripts/collecting/tests.mjs scripts/collecting/mcp-tests.mjs scripts/collecting/collection-task-tests.mjs scripts/collecting/event-kit-tests.mjs scripts/collecting/event-report-tests.mjs scripts/collecting/planning-tests.mjs scripts/collecting/series-share-tests.mjs scripts/collecting/measurement-tests.mjs scripts/collecting/canonical-host-tests.mjs scripts/collecting/swap-kit-tests.mjs
           npm ci --prefix mcp --ignore-scripts
           node scripts/collecting/verify-mcp-client.mjs --local
 
