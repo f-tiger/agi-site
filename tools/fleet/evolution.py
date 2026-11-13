@@ -2,8 +2,9 @@
 """Deterministic fleet opportunity, membership and data-quality loop.
 
 The script is intentionally conservative. It may refresh measured manifests and
-queues, but it never writes editorial prose, changes prices, grants membership,
-or treats missing data as zero. A human or an AI session can use the queue for
+queues, but it never generates editorial claims, changes prices, grants membership,
+or treats missing data as zero. Reviewed direction hypotheses are copied into
+the report from a versioned policy. A human or an AI session can use the queue for
 judgement-heavy work; GitHub Actions can keep the measured layer alive alone.
 """
 from __future__ import annotations
@@ -73,6 +74,38 @@ def age_days(value: Any, today: dt.date) -> int | None:
     return None if parsed is None else max(0, (today - parsed).days)
 
 
+def readiness_snapshot_current(value: Any, today: dt.date, now: dt.datetime) -> bool:
+    """A dated report is not a live checkout check; expire its volatile flag."""
+    if not isinstance(value, str) or "T" not in value or now.date() != today:
+        return False
+    try:
+        stamp = dt.datetime.fromisoformat(value.replace("Z", "+00:00"))
+        if stamp.tzinfo is None:
+            return False
+        seconds = (now - stamp).total_seconds()
+        return 0 <= seconds < 4 * 60 * 60
+    except (ValueError, TypeError):
+        return False
+
+
+def growth_policy() -> dict[str, Any] | None:
+    policy = read_json(DATA / "fleet-growth-policy.json")
+    if not isinstance(policy, dict) or type(policy.get("version")) is not int or policy["version"] != 1:
+        return None
+    if date_value(policy.get("reviewed_at")) is None or any(not isinstance(policy.get(key), str) or not policy[key].strip() for key in ["status", "review"]):
+        return None
+    sites = policy.get("sites")
+    if not isinstance(sites, dict) or set(sites) != set(MEMBER_SITE):
+        return None
+    fields = {"buyer", "job", "free_value", "existing_revenue", "acquisition", "next_action", "expansion_gate", "revenue_evidence", "review_contract"}
+    if any(not isinstance(row, dict) or any(not isinstance(row.get(key), str) or not row[key].strip() for key in fields) for row in sites.values()):
+        return None
+    other = policy.get("other_sites")
+    if not isinstance(other, dict) or any(not isinstance(other.get(key), str) or not other[key].strip() for key in ["status", "next_action", "expansion_gate"]):
+        return None
+    return policy
+
+
 def load_demand(site: str) -> dict[str, Any]:
     raw = read_json(DATA / "autopilot" / f"{site}-demand.json", {}) or {}
     underserved = raw.get("underserved") if isinstance(raw.get("underserved"), list) else []
@@ -140,13 +173,20 @@ def member_count(value: Any) -> int | None:
     return value if type(value) is int and value >= 0 else None
 
 
+def public_readiness(member: Any) -> bool | None:
+    public = member.get("public") if isinstance(member, dict) else None
+    if not isinstance(public, dict) or public.get("ok") is not True or type(public.get("ready")) is not bool:
+        return None
+    return public["ready"]
+
+
 def compact_action(action: dict[str, Any]) -> dict[str, Any]:
     """Keep stable evidence in site files; exact numbers remain in latest.json."""
     compact: dict[str, Any] = {}
     for key, value in (action.get("evidence") or {}).items():
         if key in {"page", "query", "http", "site", "pain_id", "scope", "acceptance", "source_refs", "gate_reasons", "verified_sources"}:
             compact[key] = value
-        elif key in {"count", "value", "n7", "p7", "human_pv_28d", "ai_ref_28d", "referred_humans_28d", "paid_members", "active_members"}:
+        elif key in {"count", "value", "n7", "p7", "human_pv_28d", "ai_ref_28d", "referred_humans_28d", "external_referrer_page_view_events", "legacy_page_view_events", "ai_referrer_events", "paid_members", "active_members"}:
             compact[f"{key}_band"] = band(value)
     return {"kind": action.get("kind"), "priority": action.get("priority"), "reason": action.get("reason"), "evidence": compact, "mode": action.get("mode")}
 
@@ -160,12 +200,14 @@ def membership_by_site(snapshot: dict[str, Any]) -> dict[str, dict[str, Any]]:
     return out
 
 
-def build(today: dt.date) -> tuple[dict[str, Any], dict[str, str]]:
+def build(today: dt.date, now: dt.datetime | None = None) -> tuple[dict[str, Any], dict[str, str]]:
+    now = now or dt.datetime.now(dt.timezone.utc)
+    policy = growth_policy()
     membership = read_json(EVOLUTION / "membership.json", {}) or {}
     # Readiness is intentionally short-lived in the Workers (four hours). A
     # previous-day aggregate can still be useful for historical counters, but
     # it cannot prove that checkout is ready or broken now.
-    membership_readiness_current = age_days(membership.get("generated"), today) == 0
+    membership_readiness_current = readiness_snapshot_current(membership.get("generated"), today, now)
     membership_rows = membership_by_site(membership)
     health = read_json(DATA / "fleet-health.json", {}) or {}
     health_rows = {
@@ -219,6 +261,7 @@ def build(today: dt.date) -> tuple[dict[str, Any], dict[str, str]]:
         traffic = load_traffic(site, site_dir, ai_rows)
         member = membership_rows.get(MEMBER_SITE.get(site, ""), {})
         admin = member.get("admin", {}) if isinstance(member, dict) else {}
+        admin = admin if isinstance(admin, dict) else {}
         member_observed = "membership" not in stale and admin.get("ok") is True
         paid = member_count(admin.get("paid_members")) if member_observed else None
         active = member_count(admin.get("active_members")) if member_observed else None
@@ -234,16 +277,22 @@ def build(today: dt.date) -> tuple[dict[str, Any], dict[str, str]]:
 
         if site in MEMBER_SITE:
             public = member.get("public", {}) if isinstance(member, dict) else {}
+            public = public if isinstance(public, dict) else {}
+            observed_ready = public_readiness(member)
+            if membership_readiness_current and observed_ready is True:
+                site_actions.append(safe_action("membership_readiness_check", 70, "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders", {"snapshot_date": input_dates.get("membership")}, "observe"))
             if not membership_readiness_current:
-                site_actions.append(safe_action("membership_observability", 68, "membership readiness snapshot is not current", {"snapshot_date": input_dates.get("membership")}, "observe"))
-            elif not public.get("ok") or not public.get("ready"):
-                site_actions.append(safe_action("membership_health", 92, "membership API is not ready", {"public_ok": public.get("ok"), "ready": public.get("ready")}, "alert"))
+                site_actions.append(safe_action("membership_observability", 68, "membership readiness snapshot is missing or expired; check the live API before commercial decisions", {"snapshot_date": input_dates.get("membership")}, "observe"))
+            elif observed_ready is None:
+                site_actions.append(safe_action("membership_observability", 68, "public readiness read is unavailable or malformed; do not infer closed checkout or absent demand", {"public_ok": public.get("ok")}, "observe"))
+            elif observed_ready is False:
+                site_actions.append(safe_action("membership_health", 92, "recent snapshot reported unavailable checkout; check the live API before recovery", {"public_ok": public.get("ok"), "ready": public.get("ready")}, "alert"))
             elif paid is None or active is None:
                 site_actions.append(safe_action("membership_observability", 68, "membership aggregate counters are unavailable", {"admin_ok": admin.get("ok")}, "observe"))
             else:
                 pv = traffic.get("reach_humans_referred")
                 if paid == 0 and isinstance(pv, int) and pv >= 100:
-                    site_actions.append(safe_action("membership_conversion", 64, "ready membership has qualified referred traffic but no paid members", {"referred_humans_28d": pv, "paid_members": paid}, "queue"))
+                    site_actions.append(safe_action("membership_demand_review", 64, "review product-matched own tasks, repeat use and the paid increment before membership expansion; referrer events do not establish qualified buyers", {"external_referrer_page_view_events": pv, "paid_members": paid}, "queue"))
                 if active > 0:
                     site_actions.append(safe_action("membership_retention", 58, "active members exist; review renewal and workspace usage", {"active_members": active, "paid_members": paid}, "queue"))
 
@@ -252,20 +301,20 @@ def build(today: dt.date) -> tuple[dict[str, Any], dict[str, str]]:
         hot_pages = demand["hot_pages"]
         if underserved:
             first = underserved[0] if isinstance(underserved[0], dict) else {}
-            site_actions.append(safe_action("optimize_existing_page", 80, "measured demand reaches an existing page with zero recent referred readers", {"count": len(underserved), "query": first.get("q"), "page": first.get("page"), "value": first.get("v")}, "queue"))
+            site_actions.append(safe_action("optimize_existing_page", 80, "review the source and fit of topic signals mapped to an existing page; missing page-view events do not establish rejected demand", {"count": len(underserved), "query": first.get("q"), "page": first.get("page"), "value": first.get("v")}, "queue"))
         if gaps:
             first = gaps[0] if isinstance(gaps[0], dict) else {}
-            site_actions.append(safe_action("content_gap", 55, "rising demand has no matching page; editorial judgement is required", {"count": len(gaps), "query": first.get("q"), "value": first.get("v")}, "queue"))
+            site_actions.append(safe_action("content_gap", 55, "topic-signal overlap has no matching page; apply the buyer, source, country and distribution gates before expansion", {"count": len(gaps), "query": first.get("q"), "value": first.get("v")}, "queue"))
         if hot_pages:
             first = hot_pages[0] if isinstance(hot_pages[0], dict) else {}
-            site_actions.append(safe_action("improve_hot_page", 52, "prioritize a page with measured reader heat", {"page": first.get("page"), "n7": first.get("n7"), "p7": first.get("p7")}, "queue"))
+            site_actions.append(safe_action("improve_hot_page", 52, "review observed page-event activity and source quality; activity is not verified people or buying intent", {"page": first.get("page"), "n7": first.get("n7"), "p7": first.get("p7")}, "queue"))
 
         human_pv = traffic.get("human_pv")
         ai_ref = traffic.get("ai_ref")
         # pv_caveat (2026-09-23): this pv is instrument noise, not referred readers,
         # so the premise of the action ("referred traffic exists") is false.
         if isinstance(human_pv, int) and human_pv >= 100 and ai_ref == 0 and not traffic.get("pv_caveat"):
-            site_actions.append(safe_action("ai_discovery", 48, "referred traffic exists but no AI-assistant referral is measured", {"human_pv_28d": human_pv, "ai_ref_28d": ai_ref}, "queue"))
+            site_actions.append(safe_action("ai_attribution_review", 48, "check source coverage and useful AI arrivals before expanding discovery work; legacy page views do not establish referred people or citations", {"legacy_page_view_events": human_pv, "ai_referrer_events": ai_ref}, "queue"))
         if site in ai_rows and ai_ref is None:
             site_actions.append(safe_action("data_quality", 45, "AI referral snapshot has no numeric value for this site", {"site": site}, "observe"))
 
@@ -281,8 +330,8 @@ def build(today: dt.date) -> tuple[dict[str, Any], dict[str, str]]:
             "schema_version": 1,
             "site": site,
             "signals": {
-                "membership": {"ready": (member.get("public", {}) or {}).get("ready") if membership_readiness_current and isinstance(member, dict) else None, "has_paid_members": positive_flag(paid), "has_active_members": positive_flag(active)},
-                "traffic": {"human_pv_band": band(traffic.get("human_pv")), "ai_ref_band": band(traffic.get("ai_ref")), "reach_humans_referred_band": band(traffic.get("reach_humans_referred"))},
+                "membership": {"ready": public_readiness(member) if membership_readiness_current else None, "has_paid_members": positive_flag(paid), "has_active_members": positive_flag(active)},
+                "traffic": {"human_pv_band": band(traffic.get("human_pv")), "ai_ref_band": band(traffic.get("ai_ref")), "reach_humans_referred_band": band(traffic.get("reach_humans_referred")), "measurement": "Legacy field names contain page-view/referrer events, not verified people, qualified buyers or paid demand."},
                 "demand": {"has_underserved": bool(underserved), "has_gaps": bool(gaps), "has_hot_pages": bool(hot_pages), "top_underserved_page": (underserved[0] or {}).get("page") if underserved and isinstance(underserved[0], dict) else None, "top_hot_page": (hot_pages[0] or {}).get("page") if hot_pages and isinstance(hot_pages[0], dict) else None},
                 "health": {"http": health_row.get("http"), "stale_deploy": integer(health_row.get("days_since_deploy"), -1) < 0 or integer(health_row.get("days_since_deploy"), -1) >= 7},
             },
@@ -291,10 +340,12 @@ def build(today: dt.date) -> tuple[dict[str, Any], dict[str, str]]:
         }
 
     actions.sort(key=lambda item: (-item["priority"], item["site"], item["kind"]))
+    expected_members = {MEMBER_SITE[site] for site in SITE_DIRS if site in MEMBER_SITE}
+    readiness_complete = membership_readiness_current and bool(expected_members) and all(public_readiness(membership_rows.get(site)) is not None for site in expected_members)
     fleet = {
         "sites": len(SITE_DIRS),
         "healthy": sum(1 for row in health_rows.values() if str(row.get("http")) == "200"),
-        "membership_ready": sum(1 for row in membership_rows.values() if (row.get("public", {}) or {}).get("ready")) if membership_readiness_current else None,
+        "membership_ready": sum(1 for site in expected_members if public_readiness(membership_rows.get(site)) is True) if readiness_complete else None,
         "paid_members": member_count((membership.get("totals", {}) or {}).get("paid_members")) if membership.get("counters_complete") is True and "membership" not in stale else None,
         "active_members": member_count((membership.get("totals", {}) or {}).get("active_members")) if membership.get("counters_complete") is True and "membership" not in stale else None,
         "opportunities": len(opportunity_rows),
@@ -313,10 +364,14 @@ def build(today: dt.date) -> tuple[dict[str, Any], dict[str, str]]:
         "user_pain_radar": pain_rows,
         "actions": actions[:50],
         "site_manifests": {site: {"path": f"{site_dir}/data/fleet-evolution.json", "action_count": len(manifests[site]["actions"])} for site, site_dir in SITE_DIRS.items()},
+        "growth_policy": policy,
+        "readiness_note": "A recent aggregate is an observation, not a live payment guarantee. Recheck checkout before selling.",
         "rules": {
             "no_editorial_autowrite": True,
             "no_payment_or_membership_mutation": True,
             "missing_is_unknown": True,
+            "pageviews_are_not_paid_demand": True,
+            "growth_policy_requires_editorial_judgement": True,
             "site_deploys_only_when_manifest_or_site_content_changes": True,
         },
     }
@@ -339,7 +394,17 @@ def render_markdown(latest: dict[str, Any]) -> str:
     lines += ["", "## Input freshness", "", "| Input | Date | Age (days) |", "|---|---|---:|"]
     for name, value in latest["input_dates"].items():
         lines.append(f"| {name} | {value or 'unknown'} | {latest['input_ages_days'].get(name) if latest['input_ages_days'].get(name) is not None else 'unknown'} |")
-    lines += ["", "## Autonomous boundary", "", "- Refresh measured snapshots and derived queues.", "- Keep sitemap lastmod tied to content hashes and ping only changed URLs.", "- Queue copy, pricing, new products and membership experiments for judgement; do not fabricate evidence.", ""]
+    lines += ["", "## Growth directions", "", "Buyer/value propositions are reviewable hypotheses. Legacy page-view fields do not establish qualified users, paid demand, citations or profit. A recent payment snapshot is not a live checkout guarantee.", ""]
+    policy = latest.get("growth_policy")
+    if policy:
+        lines += ["| Site | Buyer hypothesis | Existing revenue route | Next action | Expansion gate |", "|---|---|---|---|---|"]
+        for site, row in policy["sites"].items():
+            cells = [site, row["buyer"], row["existing_revenue"], row["next_action"], row["expansion_gate"]]
+            lines.append("| " + " | ".join(str(cell).replace("|", "/").replace("\n", " ") for cell in cells) + " |")
+        lines += ["", "Other sites: " + str(policy["other_sites"].get("expansion_gate", "unknown")), "", "Review: " + str(policy.get("review", "unknown"))]
+    else:
+        lines.append("Growth policy unavailable: review buyers, alternatives and distribution before allocating expansion work.")
+    lines += ["", "## Autonomous boundary", "", "- Refresh measured snapshots and derived queues.", "- Keep sitemap lastmod tied to content hashes and ping only changed URLs.", "- Apply the approved growth directions and experiment gates before proposing expansion.", "- Queue copy, pricing, new products and membership experiments for judgement; do not fabricate evidence.", ""]
     lines += ["", pain_radar.markdown(latest.get("user_pain_radar", []))]
     return "\n".join(lines)
 

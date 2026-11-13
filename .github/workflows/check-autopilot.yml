@@ -16,6 +16,7 @@ on:
       - 'tools/fleet/test_evolution.py'
       - 'tools/fleet/demand_digest.py'
       - 'data/user-pain-radar.json'
+      - 'data/fleet-growth-policy.json'
       - 'tools/fleet/marketing_queue.py'
       - 'tools/fleet/test_marketing_queue.py'
       - 'tools/fleet-analytics/campaign.mjs'

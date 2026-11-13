@@ -1,5 +1,5 @@
 import {RULE_LIMIT,normalizeRule,normalizeRules,evaluateRule,markReviewed} from './thesis.mjs';
-import {emitThesis} from './thesis-signals.mjs';
+import {emitThesis,publicThesisLink} from './thesis-signals.mjs';
 
 export function createThesis({company,note,snapshot,notice,download}) {
   const zh=document.body.dataset.language==='zh',t=(en,cn)=>zh?cn:en,$=id=>document.getElementById(id);
@@ -58,7 +58,7 @@ export function createThesis({company,note,snapshot,notice,download}) {
   function markdown() {
     const c=company(),lines=['# '+t('Investment thesis check','投资论点复查')+' · '+c.ticker,'',t('Snapshot: ','数据快照：')+snapshot().id,t('Source checked: ','来源核对：')+c.checked_at,t('Exported: ','导出：')+new Date().toISOString(),t('Annual company-wide USD / US GAAP figures, not AI segment revenue. Thresholds are user choices or labelled examples. These conditions are not trading recommendations.','年度公司整体 USD / US GAAP 数据，不是 AI 分部收入。阈值来自用户选择或标注的示例；条件结果不是交易建议。'),''];
     for(const r of results()){lines.push('## '+ruleText(r.rule),r.rule.mode==='sample'?t('Example threshold','示例阈值'):t('User condition','用户条件'),statusNames[r.status],equation(r));if(r.status!=='unknown'){lines.push(r.start+' → '+r.end);for(const f of r.facts)lines.push(`${f.tag}: USD ${f.val}; ${f.start} → ${f.end}; filed ${f.filed}`,f.source);if(r.prior)lines.push(t('Prior-period input: ','上期输入：')+JSON.stringify(r.prior),priorSource(c,r));}if(r.rule.reviewed)lines.push(t('User-saved checkpoint (not authenticated): ','用户保存的复查记录（未经真实性核验）：')+JSON.stringify(r.rule.reviewed));lines.push('');}
-    lines.push(t('Cash property capex excludes finance leases and acquisitions. No personal background alerts are sent.','固定资产现金支出不含融资租赁与收购，不发送个人后台提醒。'),'https://agiscorecard.com'+(zh?'/zh':'')+'/ai-infrastructure#thesis-watch');return lines.join('\n');
+    lines.push(t('Cash property capex excludes finance leases and acquisitions. No personal background alerts are sent.','固定资产现金支出不含融资租赁与收购，不发送个人后台提醒。'),'',t('Public company check — this link contains no personal conditions or notes.','公开公司复查入口——此链接不包含个人条件或笔记。'),publicThesisLink(c.ticker,zh?'zh':'en'));return lines.join('\n');
   }
   $('thesis-export').onclick=()=>{download(company().ticker+'-thesis-check.md',markdown(),'text/markdown;charset=utf-8');track('export');};
   return {render,markdown,track};

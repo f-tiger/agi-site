@@ -1,12 +1,18 @@
 # Product marketing context
 
-**Document version: v24** — **Last updated: 2026-11-12**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
+**Document version: v25** — **Last updated: 2026-11-13**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
 
 ## Business goal and proof
 
 Owner's latest staged goals are USD 1,000, USD 5,000 and USD 10,000 in monthly revenue (2026-10-03 conversation). These supersede the historical euro milestones; deadlines and gross/net accounting treatment remain unspecified. Record gross customer payments, refunds, settled receipts and delivery/acquisition costs separately; revenue is not profit or MRR. Manual selling/delivery and automation are both acceptable to the owner. Eco has historical owner-reported affiliate commissions; do not re-label them as a new service sale or assume they have settled. New experiments have no verified customers, paid retention, CAC or revenue. Prices displayed on discovery experiments are hypotheses. The original four probes remain closed; BPJ has separate live wallet checkout for placements and membership, whose readiness and sales need independent checks.
 
 ## Current revenue directions — owner steering 2026-10-04
+
+### Fleet direction, expansion, acquisition and revenue — owner steering 2026-11-13
+
+The owner requested comprehensive continued use of the installed startup/marketing Skills. Read `docs/fleet-growth-operating-plan-2026-11-13.md` and its machine-readable `data/fleet-growth-policy.json`. Each core site keeps a distinct buyer, free value, existing revenue route, acquisition mechanism and expansion gate. Other sites remain bounded probes until a repeated task, delivery gap and reachable buyer justify more work. The daily evolution report reads this reviewed policy; it does not invent market demand or authorize new fees/spend.
+
+Referrer/page-view events cannot qualify a membership buyer or prove AI citations. The queue now calls for product-matched demand and attribution review, and expires volatile member status after four hours rather than accepting any same-day timestamp. The AGI thesis export leads to the correct public company and language through existing registered referral labels; private conditions and notes stay out of the link and telemetry. Existing pilot windows, the 2026-11-15 vendor deadline, prices, entitlements and free local work remain. Current raw reports and platform receipts stay private; promotion, useful tasks, actual receipts, commission and profit remain separate.
 
 ### AGI investment thesis checks — owner steering 2026-11-12
 
@@ -164,6 +170,7 @@ Distribution uses the relevant bilingual tools directory, shared navigation's To
 The owner explicitly authorized expansion and deployment after selecting broader household tasks, including pools, garden robots and 3D-printed household repair. First release: free German/English constraint checks, downloadable local checklists and a bounded original drawer-divider STL generator. Existing confirmed DE/US Amazon category links are shown only after relevant comparison outcomes, with disclosure; no model certification, paid files, new subscription or checkout. All household inputs stay local. Family fit and repeat-task value remain hypotheses; downloads, shopping intent and merchant revenue are measured separately. This supersedes the earlier 3D-printer-accessory rejection only for the newly requested household repair/template direction. See `sites/getecoback/docs/family-workshop-release-2026-10-29.md`.
 
 ## Changelog
+- v25 (2026-11-13): Defined four-site buyer/value/acquisition/revenue policies and probe expansion gates, corrected event-based paid-demand/AI assumptions and volatile readiness, and added a clean company-specific referral path in existing AGI exports.
 - v24 (2026-11-12): Applied startup/marketing Skills to existing fleet revenue paths, recorded time-bounded receipts-only checkout recovery and repaired BPJ category-specific sponsorship handoff; preserves current offers, campaign windows, concurrent AGI thesis work and private reporting boundaries.
 - v22 (2026-11-12): Recorded the owner's research-first DACH category request and a sourced, bounded ECO expansion recommendation; preserves the authorized marketing pilot and separates sales, adoption and seasonality evidence.
 - v21 (2026-11-07): Added the owner-confirmed ECO daily visitor goal, precise user-count convention, acquisition-first scope and source-aligned preview/next-step repair; preserves existing revenue and fleet directions.
