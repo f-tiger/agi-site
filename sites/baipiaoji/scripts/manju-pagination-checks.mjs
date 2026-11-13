@@ -20,7 +20,7 @@ export async function checkPagination(browser, dist) {
       assert.ok(!url.pathname.startsWith('/api/'), 'QA must not create business or analytics requests');
       if (mode.indexFailure && url.pathname === '/manju/directory.js') return route.fulfill({ status: 503 });
       if (/^\/manju\/page\/\d+$/.test(url.pathname)) {
-        mode.requests.push(url.href);
+        mode.requests.push({url:url.href,referer:route.request().headers().referer||''});
         if (mode.pause) await mode.pause;
         if (mode.fail) return route.fulfill({ status: 503 });
       }
@@ -59,12 +59,12 @@ export async function checkPagination(browser, dist) {
   await brokenIndex.context.close();
 
   const test = await setup({ fail: true });
-  await test.page.goto(base + '/manju/?__probe=1');
+  await test.page.goto(base + '/manju/?__probe=1&private=PRIVATE_FIXTURE');
   await test.page.locator('#mj-query').fill(distant.title);
   await test.page.locator('#mj-load-retry').waitFor({ state: 'visible' });
   assert.ok(await test.page.locator('#mj-share-page').isDisabled());
   assert.deepEqual(await readSaved(test.page), saved);
-  assert.ok(test.mode.requests.every(url => !url.includes('?') && !url.includes(encodeURIComponent(distant.title))), 'Pagination fetches send no search text or saved list');
+  assert.ok(test.mode.requests.every(({url,referer}) => !referer && !url.includes('?') && !url.includes(encodeURIComponent(distant.title))), 'Pagination fetches send no referrer, search text or saved list');
   test.mode.fail = false;
   await test.page.locator('#mj-load-retry').click();
   await test.page.locator(`[data-item="${distant.id}"]`).waitFor({ state: 'visible' });

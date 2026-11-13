@@ -92,7 +92,7 @@
       activePages++;
       const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),12000);
       try{
-        const response=await fetch(n===1?'/manju/':'/manju/page/'+n,{credentials:'omit',signal:controller.signal});
+        const response=await fetch(n===1?'/manju/':'/manju/page/'+n,{credentials:'omit',referrerPolicy:'no-referrer',signal:controller.signal});
         if(!response.ok)throw Error('directory_unavailable');
         const doc=new DOMParser().parseFromString(await response.text(),'text/html');
         if(doc.querySelector('meta[name="manju-catalog-revision"]')?.content!==document.querySelector('meta[name="manju-catalog-revision"]').content)throw Error('directory_changed');
