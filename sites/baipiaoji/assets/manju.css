@@ -33,3 +33,6 @@
 
 /* A complete HTML catalogue is also readable without client-side filtering. */
 .mj-crawl-pages{flex-wrap:wrap}.mj-crawl-pages details{position:relative}.mj-crawl-pages summary{cursor:pointer}.mj-page-links{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;padding:14px;max-height:260px;overflow:auto;border:1px solid #ccc;background:#fff;border-radius:8px}.mj-page-links a{padding:6px;white-space:nowrap}.mj-page-links [aria-current="page"]{font-weight:700;text-decoration:underline}.mj-crawl-pages a{min-height:40px;display:inline-flex;align-items:center}.mj-grid[aria-busy="true"]{min-height:180px}
+
+/* Keep the textual poster fallback readable when images fail without JS. */
+.mj-home .mj-thumb img{font-size:0;color:transparent}
