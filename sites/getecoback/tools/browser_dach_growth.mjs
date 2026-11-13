@@ -29,7 +29,10 @@ try{
    return route.continue();
   });
   const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
-  for(const [path,anchor] of [['/','.hero-btns'],['/guide/luftentfeuchter-keller.html','#kalter-keller'],['/guide/luftentfeuchter-ratgeber.html','#einsatzort-waehlen'],['/guide/waesche-trocknen-wohnung.html','h2[id^="warum-waeschetrocknen-"]'],['/wohnen.html','#dach']]){
+  const routes=[['/','.hero-btns'],['/guide/luftentfeuchter-keller.html','#kalter-keller'],['/guide/luftentfeuchter-ratgeber.html','#einsatzort-waehlen'],['/guide/waesche-trocknen-wohnung.html','h2[id^="warum-waeschetrocknen-"]'],['/wohnen.html','#dach']];
+  // PRs exercise these three guides with final navigation. Production retains
+  // the complete existing home/household acceptance when this flag is absent.
+  for(const [path,anchor] of routes.filter(([route])=>process.env.ECO_READING_ONLY!=='1'||route.startsWith('/guide/'))){
    await page.goto(base+path+'?__probe=1');
    assert(await page.locator(anchor).isVisible(),path+' authored section lost');
    assert.equal(await page.locator('link[rel=canonical]').getAttribute('href'),'https://getecoback.com'+path);
