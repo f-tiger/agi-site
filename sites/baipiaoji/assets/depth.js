@@ -1,7 +1,7 @@
 (() => {
  'use strict';
  const $=s=>document.querySelector(s),taskRoot=$('#kimi-task'),watchRoot=$('#watch-progress');
- const works=JSON.parse($('#mj-works')?.textContent||'[]'),ids=new Set(works.map(w=>w.id));
+ const works=globalThis.ManjuWorks||JSON.parse($('#mj-works')?.textContent||'[]'),ids=new Set(works.map(w=>w.id));
  const labels={want:'想看',watching:'在看',watched:'看完'};
  function track(name){
   try{if(location.hostname!=='baipiaoji.com'||/[?&](?:__ci|__probe|qa)(?:=|&|$)/.test(location.search)||navigator.webdriver||navigator.doNotTrack==='1'||navigator.globalPrivacyControl||localStorage.getItem('fleet_ga4_choice_v1')==='denied')return;}catch{return;}
@@ -42,7 +42,8 @@
   const state=storage('bpj-manju-progress-v1',valid);let entries={...(state.data?.entries||{})};
   const message=text=>{const target=$('#depth-watch-feedback')||$('#mj-toast');if(target)target.textContent=text;};
   function control(id){const wrap=document.createElement('label');wrap.className='depth-watch-control';wrap.append(document.createTextNode('观看记录 '));const sel=document.createElement('select');sel.dataset.depthId=id;sel.setAttribute('aria-label',(works.find(w=>w.id===id)?.title||'作品')+'的观看记录');sel.append(new Option('未记录',''),...Object.entries(labels).map(([k,v])=>new Option(v,k)));sel.value=entries[id]||'';sel.addEventListener('change',()=>{try{const next={...entries};if(sel.value)next[id]=sel.value;else delete next[id];state.save({version:1,entries:next});entries=next;track('watch_save');render();message('观看记录已保存在本机；收藏片单不变。');}catch{sel.value=entries[id]||'';message(state.error||'保存失败或记录已在别页更新，请刷新重试。');}});wrap.append(sel);return wrap;}
-  const placed=new Set();document.querySelectorAll('[data-save], [data-depth-work]').forEach(el=>{const id=el.dataset.save||el.dataset.depthWork;if(!ids.has(id))return;const parent=el.parentElement;if(placed.has(parent))return;placed.add(parent);parent.append(control(id));});
+  function attachControls(){const placed=new Set();document.querySelectorAll('[data-save], [data-depth-work]').forEach(el=>{const id=el.dataset.save||el.dataset.depthWork;if(!ids.has(id))return;const parent=el.parentElement;if(placed.has(parent)||parent.querySelector('select[data-depth-id]'))return;placed.add(parent);parent.append(control(id));});}
+  attachControls();document.addEventListener('manju:cards-ready',()=>{attachControls();render();});
   function render(){document.querySelectorAll('select[data-depth-id]').forEach(s=>s.value=entries[s.dataset.depthId]||'');if(!watchRoot)return;const list=$('#depth-watch-list'),filter=$('#depth-watch-filter').value;list.replaceChildren();const selected=works.filter(w=>entries[w.id]&&(!filter||filter==='all'||entries[w.id]===filter));
    for(const w of selected){const row=document.createElement('div');row.className='depth-watch-row';const a=document.createElement('a');const u=new URL(w.url,location.origin);if(u.origin!==location.origin||!u.pathname.startsWith('/manju/'))continue;a.href=u.pathname+u.hash;a.textContent=w.title+' · 打开资料与观看入口';a.addEventListener('click',()=>track('watch_resume'));row.append(a,control(w.id));list.append(row);}
    if(!selected.length)list.textContent=state.error||'还没有这类记录。在作品旁选择观看状态，或到找剧页挑选一部。';
