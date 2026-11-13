@@ -375,7 +375,7 @@
     "updated": "2026-11-13",
     "owner_direction": "Research user pain points; execute toward USD100 monthly total site revenue with proactive marketing and country-specific categories.",
     "primary": "Household and everyday-life Amazon catalog with 100 distinct named models, useful categories and US/DE shopping links.",
-    "status": "home_catalog_in_progress",
+    "status": "home_catalog_live_verified",
     "receipt": "docs/tds-affiliate-benchmarks-2026-11-07.md",
     "preserve": [
       "Existing free tools, organizer/MCP experiment history and published-post windows",
@@ -1382,7 +1382,7 @@
       "参考竞品"
     ],
     "authorized_on": "2026-11-13",
-    "status": "implementation_and_source_verification_in_progress",
+    "status": "released_verified_100_products",
     "target_products": 100,
     "count_unit": "Distinct named brand/model products; no colour/pack-size padding or generic category searches counted as products",
     "organization": "Nine household and daily-life category groups, localized useful-task and check-before-buying copy, browse all without JS, local category/search enhancement",
@@ -1395,6 +1395,84 @@
     "measurement": "Existing shopping path/affiliate event contract; non-exact model searches remain merchant-only item unknown, never inferred product-level sales",
     "prior_windows": "Preserve earlier experiments and 22 November review; record exact release and first complete date for this expansion separately.",
     "revenue_goal": "Preserve USD100 monthly total TDS-attributable revenue; actual unknown",
-    "release": null
+    "release": {
+      "status": "success",
+      "pr": "https://github.com/f-tiger/agi-site/pull/319",
+      "commit": "ca8d27fb4da5e2c0a6a7562298cd67128f6cd920",
+      "deployment": "https://github.com/f-tiger/agi-site/actions/runs/43465079659",
+      "verified_on": "2026-11-13",
+      "first_complete_utc_day": "2026-11-14",
+      "actual_catalog_products": 100,
+      "unique_brand_model_pairs": 100,
+      "categories": {
+        "storage_display": 18,
+        "desk_stationery": 12,
+        "lighting": 5,
+        "smart_home": 11,
+        "electronics_photo": 9,
+        "kitchen": 10,
+        "cleaning_climate": 15,
+        "personal_care_bath": 16,
+        "creative": 4
+      },
+      "homepage_featured_products": 10,
+      "localized_catalogs": [
+        "en",
+        "de",
+        "zh"
+      ],
+      "link_modes": {
+        "US": "2 existing exact ASIN identities +98 explicitly labelled model searches",
+        "DE": "100 explicitly labelled model searches",
+        "local_availability": "unverified; identity/source confirmation does not establish current Amazon inventory"
+      },
+      "local_validation": {
+        "focused_tests": 60,
+        "browser_matrix_states": 18,
+        "catalog_interaction_groups": 6,
+        "saved_shortlist_journeys": 13,
+        "no_javascript_journeys": 15,
+        "final_mobile_pages": 6,
+        "final_mobile_first_amazon_cta_y": {
+          "homepage": [
+            998,
+            1157
+          ],
+          "catalog": [
+            1322,
+            1408
+          ]
+        },
+        "independent_code_and_data_review": "passed",
+        "browser_external_api_production_requests": 0
+      },
+      "production_validation": {
+        "public_pages": 18,
+        "exact_build_verified": true,
+        "catalog_products_each": 100,
+        "categories_each": 9,
+        "assets_byte_matched": 2,
+        "business_write_probes": "skipped_not_counted_as_passed",
+        "ga4_build_routes": 314,
+        "ga4_live_routes": 74,
+        "ga4_asset_version": "cae7d0105b62",
+        "ga4_backend_receipt": "not-tested"
+      },
+      "indexnow": {
+        "changed_urls": 174,
+        "http_status": 200,
+        "accepted": true,
+        "workbench_urls_accepted": 8,
+        "indexing": "unknown"
+      },
+      "not_established": [
+        "traffic growth",
+        "unique people per day",
+        "conversion lift",
+        "Amazon current stock or eligibility",
+        "TDS-attributable commissions"
+      ]
+    },
+    "next_action": "Review actual complete dates starting 2026-11-14 within existing reporting cadence. Preserve 2026-11-22 review and separate old observations; merchant statements determine revenue."
   }
 }
