@@ -3,8 +3,9 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {normalizeRule,normalizeRules,evaluateRule,markReviewed} from '../../infrastructure-assets/thesis.mjs';
 import {normalize,emptyNote,stale} from '../../infrastructure-assets/core.mjs';
-import {emitThesis,THESIS_EVENTS} from '../../infrastructure-assets/thesis-signals.mjs';
+import {emitThesis,THESIS_EVENTS,publicThesisLink,thesisAttribution} from '../../infrastructure-assets/thesis-signals.mjs';
 import {businessEvent} from '../../../../tools/fleet-analytics/business.mjs';
+import {campaignFields} from '../../../../tools/fleet-analytics/campaign.mjs';
 import {cleanThesisEvent,THESIS_SQL,thesisGrowth} from '../analytics-worker/thesis-growth.mjs';
 import {spawnSync} from 'node:child_process';
 import worker from '../analytics-worker/index.js';
@@ -12,6 +13,16 @@ const now=Date.parse('2026-11-12T14:00:00Z'),snapshot='a'.repeat(20),context={no
 const source=JSON.parse(fs.readFileSync(new URL('../../infrastructure-assets/snapshot.json',import.meta.url))).companies.find(c=>c.ticker==='NVDA');
 function company(){const c=structuredClone(source);c.checked_at='2026-11-12T12:00:00Z';delete c.refresh_failed;for(const k of ['revenue','ocf','capex']){c.facts[k]={...structuredClone(source.facts.revenue),tag:k==='revenue'?'Revenues':k==='ocf'?'NetCashProvidedByUsedInOperatingActivities':'PaymentsToAcquirePropertyPlantAndEquipment'};c.facts[k].start='2025-01-27';c.facts[k].end='2026-01-25';c.facts[k].filed='2026-03-01';}c.annual_end='2026-01-25';c.facts.revenue.val=100;c.facts.ocf.val=40;c.facts.capex.val=24;c.facts.revenue.previous={start:'2024-01-29',end:'2025-01-26',filed:'2026-03-01',val:80,accn:c.facts.revenue.accn};return c;}
 const rule=(metric='capex_to_ocf',threshold=50,op='gt')=>({metric,threshold,op,mode:'own'});
+test('export referral links retain only a public company and fixed attribution',()=>{
+ for(const lang of ['en','zh']){
+  const u=new URL(publicThesisLink('MU',lang));assert.equal(u.origin,'https://agiscorecard.com');assert.equal(u.pathname,(lang==='zh'?'/zh':'')+'/ai-infrastructure');assert.equal(u.searchParams.get('ticker'),'MU');assert.equal(u.hash,'#thesis-watch');assert.deepEqual([...u.searchParams.keys()].sort(),['ticker','utm_campaign','utm_medium','utm_source']);
+  assert.deepEqual(campaignFields(u.searchParams),{campaign_source:'reader_share',campaign_medium:'referral',campaign_name:'agi-thesis-watch-01'});
+  const event=cleanThesisEvent({n:'thesis_check_own',p:'/ai-infrastructure',u:u.search+'&note=PRIVATE&threshold=PRIVATE'});
+  assert.equal(new URLSearchParams(event.u).get('utm_source'),'reader_share');assert(!event.u.includes('MU'));assert(!event.u.includes('PRIVATE'));
+ }
+ for(const ticker of ['MU?note=PRIVATE','../../../private',null,'UNKNOWN'])assert.throws(()=>publicThesisLink(ticker));
+ for(const query of ['utm_campaign=agi-thesis-watch-01&utm_source=reader_share&utm_medium=organic_video','utm_campaign=agi-thesis-watch-01&utm_source=youtube&utm_medium=referral','utm_campaign=private&utm_source=reader_share&utm_medium=referral'])assert.equal(thesisAttribution(query).toString(),'');
+});
 test('three calculations use actual matched facts, with strict thresholds and negative margins',()=>{
  const c=company();for(const [metric,value]of [['revenue_growth',25],['ocf_margin',40],['capex_to_ocf',60]]){const r=evaluateRule(c,rule(metric,value),context);assert.equal(r.value,value);assert.equal(r.status,'not_triggered');assert.equal(evaluateRule(c,rule(metric,value-1),context).status,'triggered');assert.equal(evaluateRule(c,rule(metric,value+1,'lt'),context).status,'triggered');}
  c.facts.ocf.val=-10;assert.equal(evaluateRule(c,rule('ocf_margin',0,'lt'),context).value,-10);assert.equal(evaluateRule(c,rule(),context).status,'unknown');
@@ -54,4 +65,20 @@ test('real SQLite aggregation separates actions and tagged arrivals over complet
  const py=`import sqlite3,json,sys\ndb=sqlite3.connect(':memory:');db.row_factory=sqlite3.Row\ndb.execute('CREATE TABLE events(day,name,path,ua_class,utm_source,utm_medium,utm_campaign)')\ndef add(name='thesis_check_own',day='-1 day',ua='human',path='/ai-infrastructure',campaign='agi-thesis-watch-01'):\n db.execute("INSERT INTO events VALUES(date('now',?),?,?,?,?,?,?)",(day,name,path,ua,'youtube','organic_video',campaign))\nadd();add(name='thesis_check_sample');add(name='page_view');add(day='0 days');add(day='-29 days');add(ua='bot');add(path='/invest');add(campaign='other');\nprint(json.dumps([dict(r) for r in db.execute(sys.argv[1])]))`;
  const p=spawnSync('python3',['-c',py,THESIS_SQL],{encoding:'utf8',timeout:15000});assert.equal(p.status,0,p.stderr);const rows=JSON.parse(p.stdout);assert.equal(rows.reduce((n,r)=>n+r.n,0),4);assert(rows.some(r=>r.source==='unattributed'));
  assert.equal((await thesisGrowth({})).status,503);const response=await thesisGrowth({EVENTS:{prepare:()=>({all:async()=>({results:rows})})}}),body=await response.json();assert.equal(body.window.complete_utc_days,28);assert.equal(body.metric,'browser_action_events_not_users');
+});
+test('reader export referrals remain a separate hint and preserve source/date exclusions',async()=>{
+ const fixtures=[
+  ['thesis_check_own','-1 day','human','/ai-infrastructure','reader_share','referral'],
+  ['page_view','-1 day','human','/zh/ai-infrastructure','reader_share','referral'],
+  ['thesis_check_own','-1 day','human','/ai-infrastructure','reader_share','organic_video'],
+  ['thesis_export_sample','-1 day','human','/ai-infrastructure','youtube','organic_video'],
+  ['thesis_check_own','0 days','human','/ai-infrastructure','reader_share','referral'],
+  ['thesis_check_own','-29 days','human','/ai-infrastructure','reader_share','referral'],
+  ['thesis_check_own','-1 day','ci','/ai-infrastructure','reader_share','referral'],
+  ['thesis_check_own','-1 day','human','/invest','reader_share','referral'],
+  ['purchase','-1 day','human','/ai-infrastructure','reader_share','referral']
+ ];
+ const py=`import sqlite3,json,sys\ndb=sqlite3.connect(':memory:');db.row_factory=sqlite3.Row\ndb.execute('CREATE TABLE events(day,name,path,ua_class,utm_source,utm_medium,utm_campaign)')\nfor name,day,ua,path,source,medium in json.loads(sys.argv[2]):\n db.execute("INSERT INTO events VALUES(date('now',?),?,?,?,?,?,?)",(day,name,path,ua,source,medium,'agi-thesis-watch-01'))\nprint(json.dumps([dict(r) for r in db.execute(sys.argv[1])]))`;
+ const p=spawnSync('python3',['-c',py,THESIS_SQL,JSON.stringify(fixtures)],{encoding:'utf8',timeout:15000});assert.equal(p.status,0,p.stderr);const rows=JSON.parse(p.stdout);const sum=source=>rows.filter(r=>r.source===source).reduce((n,r)=>n+r.n,0);assert.equal(sum('reader_share'),2);assert.equal(sum('youtube'),1);assert.equal(sum('unattributed'),1);assert.equal(rows.reduce((n,r)=>n+r.n,0),4);
+ const response=await thesisGrowth({EVENTS:{prepare:()=>({all:async()=>({results:rows})})}});assert.equal(response.status,200);assert((await response.json()).rows.some(r=>r.source==='reader_share'));
 });
