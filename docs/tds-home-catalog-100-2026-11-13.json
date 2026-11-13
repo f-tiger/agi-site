@@ -1,0 +1,47 @@
+{
+  "date": "2026-11-13",
+  "scope": "100 distinct named household and everyday-life products with categorized Amazon affiliate recommendations",
+  "benchmarks": [
+    {
+      "name": "ThisIsWhyImBroke",
+      "sources": [
+        "https://www.thisiswhyimbroke.com/",
+        "https://www.thisiswhyimbroke.com/about/",
+        "https://www.thisiswhyimbroke.com/gifts-for-homebodies/",
+        "https://www.thisiswhyimbroke.com/useful-gifts/"
+      ],
+      "observed": "Category/recipient/scenario guides and short named product cards connect discovery with merchant actions. Saved counts and prices are their own published fields, not verified performance.",
+      "adopt": "Scene-based category navigation, concise use case and one clear outbound action per card.",
+      "do_not_copy": "Product photographs, current or historical prices, save counts, rankings or novelty claims. Some guide dates are years old."
+    },
+    {
+      "name": "Wirecutter",
+      "sources": [
+        "https://thenewyorktimeshelpcenter.helpjuice.com/21870729656596-Wirecutter-Product-Recommendations"
+      ],
+      "observed": "Official policy describes editorial/testing standards and independent recommendations with affiliate disclosure. This is a stated process, not access to current internal conversion data.",
+      "adopt": "Explain who a product may suit and what to check or skip, with traceable sources.",
+      "do_not_copy": "Hands-on testing claims, best-product rankings or assumed traffic/CVR."
+    }
+  ],
+  "catalog_sources": "Each of 100 actual records in sites/thedollscout/content/amazon-products.json includes its own primary source and checked date. The source file is internal build input; human cards and AI-readable mirrors expose appropriate source references without tracked merchant links.",
+  "link_caveat": "Manufacturer/model identity confirmation is distinct from Amazon listing availability. Most outgoing links are labelled brand/model searches, not verified exact ASIN offers.",
+  "release": {
+    "status": "pending"
+  },
+  "inventory_validation": {
+    "products": 100,
+    "unique_brand_model_pairs": 100,
+    "raw_categories": 14,
+    "display_groups": 9,
+    "localized_use_and_check_languages": [
+      "en",
+      "de",
+      "zh"
+    ],
+    "exact_us_asin_products": 2,
+    "other_products_link_mode": "Explicit brand/model Amazon search; no claim of local availability",
+    "primary_source_fields": "sourceUrl,sourceEvidence,checked on every record",
+    "limitations": "Some official model references are historical catalogs or support pages; access limits and catalog dates are retained in sourceEvidence, not presented as current stock."
+  }
+}

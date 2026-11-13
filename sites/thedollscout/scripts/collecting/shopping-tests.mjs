@@ -27,6 +27,7 @@ test('the buying journey presents the task and measurement decision before produ
  for(const lang of Object.keys(locales)){
   const home=shoppingHomeHTML({lang,route,esc});
   const tasks=home.indexOf('class="shop-task-nav"'),firstProduct=home.indexOf('data-shopping-card');
+  assert.ok(home.indexOf('data-home-catalog')<home.indexOf('id="collector-corner"'),'Home/lifestyle catalogue precedes the collector corner');
   assert.ok(tasks>=0&&tasks<firstProduct, 'Choose a task before the homepage product list: '+lang);
   for(const p of pages().filter(p=>p[0]===lang&&p[1]!=='shop')){
    const html=p[4],checkpoint=html.match(/<section class="shop-decision-start"[\s\S]*?<\/section>/)?.[0];

@@ -1,7 +1,13 @@
-# TDS product and commercial context — version 10.0 (2026-11-07)
+# TDS product and commercial context — version 11.0 (2026-11-07)
 
-**Document version:** v10
+**Document version:** v11
 **Last updated:** 2026-11-07
+
+## Household and daily-life catalog — latest owner direction 2026-11-13
+
+The owner adds 100 different categorized affiliate products, explicitly chooses household/everyday-life coverage, and asks to reference competitors. This supersedes the collection-only scope below. Serve shoppers comparing household organization, kitchen, cleaning, lighting, smart home, desk and personal-care tasks. Build one browsable 100-model catalog at /shop with localized categories, actual uses, check/skip points and primary sources; feature a small editorial selection on the homepage. Do not inflate count with colours, pack sizes or generic searches. Preserve collector guides/tools as a supplementary section.
+
+Product identity from a manufacturer is not verified Amazon stock or a confirmed local ASIN. Except for the two established US exact models, label destinations as brand/model Amazon searches with the existing market tags. No price, rating, sales, medical efficacy or hands-on claim; no copied product photos. Adopt TIWIB’s scenario discovery and Wirecutter’s inspectible reasoning without claiming their audience, conversion rate or testing capabilities. The numeric catalog size is an inventory count, not adoption. Existing revenue/traffic goals and earlier windows remain; log the new release independently. Source/release ledger: root docs/tds-home-catalog-100-2026-11-13.json.
 
 ## Amazon affiliate positioning — owner direction 2026-11-13
 

@@ -107,15 +107,15 @@ async function measure(page, locale, pathname, width) {
     const productLinks = cards.flatMap(item => [...item.querySelectorAll('a[data-shopping-destination]')]).filter(link => visible(link) && new URL(link.href).origin !== location.origin);
     const productAffiliateLinks = productLinks.filter(link => link.rel.split(/\s+/).includes('sponsored'));
     const affiliateLinks = [...document.querySelectorAll('a[rel~="sponsored"]')].filter(visible);
-    const amazon = document.querySelector('[data-amazon-shopping]');
+    const amazon = document.querySelector('[data-home-catalog]') || document.querySelector('[data-amazon-shopping]');
     const firstAmazon = amazon && [...amazon.querySelectorAll('a[rel~="sponsored"]')].find(link => visible(link) && /^https:\/\/www\.amazon\.(com|de)\//.test(link.href));
-    const supplement = document.querySelector('.amazon-supplement');
+    const supplement = document.querySelector('.home-collector-corner') || document.querySelector('.amazon-supplement');
     const sourceBlocks = [...document.querySelectorAll('.shopping-product-source,.shop-sources,.official-panel,[data-shopping-source],.shop-method')].filter(visible).map(element => ({selector:element.className || element.tagName, top:top(element)}));
     return {amazonTop:top(amazon), firstAmazonDestinationTop:top(firstAmazon), firstAmazonDestination:firstAmazon?.href || null, supplementTop:top(supplement), firstNamedCardTop:top(first), firstProductDestinationTop:top(productLinks[0]), firstProductDestination:productLinks[0]?.href || null, firstProductAffiliateLinkTop:top(productAffiliateLinks[0]), firstAffiliateLinkTop:top(affiliateLinks[0]), sourceBlocks};
   }, {card:selectors.card});
   measurements.push({locale, pathname, width, ...positions});
   if (pathname.endsWith('/shop') && width === 390) {
-    if (positions.amazonTop === null || positions.supplementTop === null || positions.amazonTop >= positions.supplementTop) layoutFailures.push({locale,check:'Amazon main area precedes supplementary references',actual:positions});
+    if (positions.amazonTop === null || positions.supplementTop === null || positions.amazonTop >= positions.supplementTop) layoutFailures.push({locale,check:'Household Amazon catalogue precedes the collector corner',actual:positions});
     if (positions.firstAmazonDestinationTop === null || positions.firstNamedCardTop === null || positions.firstAmazonDestinationTop >= positions.supplementTop || positions.firstAmazonDestinationTop >= positions.firstNamedCardTop) layoutFailures.push({locale,check:'a usable Amazon destination precedes the original six reference cards',actual:positions});
   }
 }

@@ -47,6 +47,32 @@
     "Higher affiliate-click count may not earn revenue: retain correct-market destinations and require mature TDS-attributable reporting before claiming business success."
   ],
   "release": {
-    "status": "pending"
+    "status": "success",
+    "implementation_pr": "https://github.com/f-tiger/agi-site/pull/315",
+    "commit": "55bb162db09935a4072fbd70e467429b052605ac",
+    "run": "https://github.com/f-tiger/agi-site/actions/runs/43459845146",
+    "production_pages_verified": 18,
+    "assets_verified": 2,
+    "local_focused_tests": 48,
+    "local_browser_states": 54,
+    "final_mobile_pages": 18,
+    "mobile_first_amazon_cta_y_range": [
+      995,
+      1332
+    ],
+    "ga4": {
+      "build_routes": 314,
+      "live_routes": 74,
+      "asset_version": "cae7d0105b62",
+      "backend_receipt": "not-tested"
+    },
+    "indexnow": {
+      "changed_urls": 174,
+      "http_status": 200,
+      "accepted": true,
+      "indexed": "unknown"
+    },
+    "first_complete_utc_day": "2026-11-14",
+    "business_write_probes": "skipped_not_counted_as_passed"
   }
 }
