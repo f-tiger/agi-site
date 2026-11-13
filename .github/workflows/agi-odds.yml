@@ -30,6 +30,13 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
+      # Match the deployment prerequisites; validate the complete site, not a
+      # checkout with missing generated routes. Keep the commit allowlist below.
+      - name: Generate membership and workbench pages before sitemap validation
+        run: |
+          npm ci --prefix tools/revenue-studio --ignore-scripts
+          node tools/revenue-studio/build.mjs --site agi --out sites/agiscorecard
+          (cd sites/agiscorecard && python3 tools/add_breadcrumbs.py --apply)
       - working-directory: sites/agiscorecard
         run: node tools/fetch_odds.mjs
       - name: Render the odds-vs-evidence issue from the snapshot (ledger accumulates, never rebuilt from one point)
@@ -52,6 +59,12 @@ jobs:
         with: { ref: main }
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
+      # This job has its own clean checkout and needs the same static routes.
+      - name: Generate membership and workbench pages before sitemap validation
+        run: |
+          npm ci --prefix tools/revenue-studio --ignore-scripts
+          node tools/revenue-studio/build.mjs --site agi --out sites/agiscorecard
+          (cd sites/agiscorecard && python3 tools/add_breadcrumbs.py --apply)
       # 四家来源:Polymarket public-search、Kalshi series→markets、Manifold search(免鉴权),
       # Metaculus api/posts(未登录 403,用机器人的只读 token;缺了就该来源 ok:false,板照出)。
       - name: Fetch the AGI consensus board (discover-then-filter, four venues)
