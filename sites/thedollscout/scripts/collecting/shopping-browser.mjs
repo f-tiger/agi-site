@@ -35,7 +35,7 @@ async function checkMerchants(page, prefix) {
     assert.equal(url.hostname.replace(/^www\./, ''), german ? 'amazon.de' : 'amazon.com', page.url());
     assert.equal(url.searchParams.get('tag'), german ? 'getecoback-21' : 'ecoback0d-20');
     assert.deepEqual(url.searchParams.getAll('tag'), [german ? 'getecoback-21' : 'ecoback0d-20']);
-    assert.ok((url.pathname === '/s' && url.searchParams.get('k')) || (!german && url.pathname === '/dp/B07KN5G9CQ'), 'Explicit searches or the source-verified US product');
+    assert.ok((url.pathname === '/s' && url.searchParams.get('k')) || (!german && ['/dp/B07KN5G9CQ','/dp/B000KN4DQ4'].includes(url.pathname)), 'Explicit searches or the source-verified US product');
     for (const value of ['sponsored', 'nofollow', 'noopener']) assert.ok(link.rel.split(/\s+/).includes(value), value);
     assert.ok(link.text.length > 0);
   }
@@ -62,7 +62,7 @@ async function checkJourney(page, prefix, slug, width, javascript=true) {
     assert.ok(await details.locator('.shop-measure').isVisible());
     assert.ok(await details.locator('.shop-no-buy').isVisible(), 'No-purchase option stays available');
     assert.ok(await details.locator('.shop-measure li').count() >= 2);
-    const tool = start.locator('a').nth(1), href = await tool.getAttribute('href');
+    const tool = start.locator('a[href^="/"]').last(), href = await tool.getAttribute('href');
     assert.ok(href.startsWith('/') && !href.startsWith('//'));
     const toolFile = path.join(root, href + '.html');
     assert.ok(fs.existsSync(toolFile), 'The measurement or budget tool exists');
@@ -100,7 +100,12 @@ try {
         assert.equal(await page.locator('h1').count(), 1, pathname);
         assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'), origin + pathname);
         assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), pathname + ' overflow at ' + width);
-        if (slug !== '/shop') await checkMerchants(page, prefix);
+        await checkMerchants(page, prefix);
+        const amazon = page.locator('[data-amazon-shopping]');
+        assert.equal(await amazon.count(), 1, 'One Amazon primary section');
+        assert.ok(await amazon.locator('a[rel~="sponsored"]').count() > 0, 'Primary section has Amazon exits');
+        const supplemental = page.locator('[data-shopping-products]');
+        if(await supplemental.count()) assert.ok(await amazon.evaluate(el=>el.getBoundingClientRect().top+scrollY) < await supplemental.evaluate(el=>el.getBoundingClientRect().top+scrollY), 'Amazon path precedes supplementary sources');
         await checkJourney(page, prefix, slug, width);
         if (slug.startsWith('/shop/')) {
           await page.locator('details.shop-method > summary').click();

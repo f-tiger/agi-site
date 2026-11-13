@@ -94,7 +94,9 @@ test('SQLite retains existing affiliate totals while grouping known items, place
       insert.run('2026-11-08', path, 'US', tuple.event, tuple.ref);
   }
   const rows = db.prepare(SHOPPING_QUERY).all('2026-11-08', '2026-11-09'), report = aggregateShopping(rows, firstWindow);
-  assert.deepEqual(report.counts, {pageviews: 18, affiliate_clicks: 54, official_clicks: 270, compare_actions: 18});
+  // Eighteen legacy route clicks plus two US-only exact items on twelve routes
+  // in three placements. The five official references retain all eighteen routes.
+  assert.deepEqual(report.counts, {pageviews: 18, affiliate_clicks: 18 + 2 * 12 * 3, official_clicks: 5 * 18 * 3, compare_actions: 18});
   assert.equal(db.prepare("SELECT COUNT(*) AS n FROM hits WHERE ev='affiliate_click'").get().n, report.counts.affiliate_clicks);
   assert.ok(report.daily.filter(row => row.event === 'shopping_compare').every(row => row.merchant === null && row.item === null && row.placement === null));
   for (const placement of ['card', 'compare', 'guide']) assert.equal(report.daily.filter(row => row.item === 'niubee-risers' && row.placement === placement).length, 12);
