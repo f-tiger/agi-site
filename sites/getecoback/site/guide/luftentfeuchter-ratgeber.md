@@ -74,13 +74,11 @@ Das ist der häufigste Irrtum. Ein Luftentfeuchter senkt die Luftfeuchtigkeit, n
 
 **Was er bei Schwüle trotzdem bringt — in Zahlen.** Wie heiß sich Luft anfühlt, hängt von der Feuchte ab. Der Hitzeindex des US-Wetterdienstes NOAA (Rothfusz-Regression, Stand 2026) rechnet das nach; bei gleicher Thermometer-Temperatur ergibt sich:
 
-Raumtemperatur | 70 % rF (schwül) | 50 % rF (entfeuchtet) | gefühlter Unterschied |
-
-26 °C | 27,3 °C | 26,6 °C | ≈ 0,7 K |
-
-28 °C | 30,7 °C | 28,4 °C | ≈ 2,3 K |
-
-30 °C | 35,0 °C | 31,0 °C | ≈ 4 K |
+| Raumtemperatur | 70 % rF (schwül) | 50 % rF (entfeuchtet) | gefühlter Unterschied |
+| --- | --- | --- | --- |
+| 26 °C | 27,3 °C | 26,6 °C | ≈ 0,7 K |
+| 28 °C | 30,7 °C | 28,4 °C | ≈ 2,3 K |
+| 30 °C | 35,0 °C | 31,0 °C | ≈ 4 K |
 
 Das Thermometer bleibt also stehen — aber bei 28–30 °C nimmt ein Entfeuchter der Luft 2–4 Grad gefühlte Hitze. Deshalb die ehrliche Reihenfolge: Ist es vor allem **heiß**, ist eine [mobile Klimaanlage](https://getecoback.com/guide/klimaanlage-30-qm.html) das richtige Gerät (sie entfeuchtet nebenbei). Ist es vor allem **feucht und stickig** — beschlagene Fenster, muffiger Geruch, Wäsche trocknet nicht — dann zuerst Feuchteursache und Messwerte prüfen; der [Ratgeber für einen 40-m²-Raum](https://getecoback.com/guide/luftentfeuchter-40-qm.html) ergänzt die Prüfung der Bedingungen. Ob Lüften gerade hilft oder Feuchte hereinholt, zeigt das Taupunkt-Band oben auf den Entfeuchter-Seiten, stündlich aus open-meteo.
 
@@ -109,10 +107,13 @@ Luftentfeuchter auf Amazon.de ansehen →
 ## Herstellerdaten vor dem Kauf prüfen
 **So vergleichst du die Herstellerdaten**
 Zwei Beispiele aus vorhandenen Ratgebern, kein vollständiger Marktvergleich und kein EcoBack-Produkttest. Verglichen werden Wasserentzug und Betriebsleistung bei derselben Temperatur und relativen Feuchte (RH). Fehlende Angaben bleiben offen; daraus folgt keine Rangfolge.
+
 Herstellerangaben zu Wasserentzug und Leistung; geprüft am 06.11.2026
-Bedingung | Comfee MDDF-20DEN7 | MeacoDry Arete One 20L |
-20 °C / 60 % RH | Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert. | 8.5 L/Tag · 216 W |
-10 °C / 60 % RH | Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert. | 3.4 L/Tag · 180 W |
+
+| Bedingung | Comfee MDDF-20DEN7 | MeacoDry Arete One 20L |
+| --- | --- | --- |
+| 20 °C / 60 % RH | Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert. | 8.5 L/Tag · 216 W |
+| 10 °C / 60 % RH | Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert. | 3.4 L/Tag · 180 W |
 
 Die genannten 20 L/Tag beziehen sich in den Modellunterlagen auf 30 °C / 80 % RH. Das ist keine Zusage für den Keller oder eine Wäscheladung. Für Comfee wurden in den verlinkten Unterlagen keine Werte für die beiden Tabellenbedingungen verifiziert. Anschlusswert oder Nennleistung dürfen diese Datenlücke nicht ersetzen.
 Modellgrenzen: Comfee MDDF-20DEN7 ist hier die Variante ohne WF. MeacoDry Arete One 20L ist weder Arete Two noch One 25L. Die UK-Modellseite bestätigt keine deutsche Händlerausstattung, Stecker, Lieferbarkeit oder Rückgabe. Netzspannung, Typenschild und Anleitung immer mit dem konkreten Angebot abgleichen. Beide Kandidaten ersetzen weder Ursachenklärung noch eine passende Lüftung.
@@ -133,13 +134,15 @@ Hersteller-/Anbieterquellen geprüft: 2026-11-12. Keine Live-Preise oder garanti
 Quelle: [Meaco UK: Arete One 20L, Ablauf und separates Pumpenzubehör](https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-air-purifier) · geprüft am 13.11.2026. Bei ungeklärter Feuchte bleibt Messen und Ursachenklärung der erste Schritt; ein Neukauf ist dann noch nicht begründet.
 
 Kaufgründe und genaue Varianten
-Modell | Prüfen, wenn dir dies wichtig ist | Variante |
-Bosch Dry 4000 | Drei Betriebsmodi statt vieler Einstellungen | D4000-EU · Artikel 7733703558 |
-MeacoDry Arete Two 12L | App-Steuerung und kleinerer Tank | Arete Two 12L · nicht One oder Two 20L |
-Stadler Form Lukas | Schwenkfunktion und Wäschemodus | Lukas weiss L-031E · nicht Lukas little oder Pro |
-Comfee MDDF-20DEN7 | Feuchteregelung mit Timer | MDDF-20DEN7 · ohne WF |
-MeacoDry Arete One 20L | Leistungsdaten unter konkreten Raumbedingungen | Arete One 20L · nicht Two oder One 25L |
-MeacoDry Arete One 25L | Weitere Kapazitätsvariante derselben Baureihe | Arete One 25L · nicht Two 25L |
+
+| Modell | Prüfen, wenn dir dies wichtig ist | Variante |
+| --- | --- | --- |
+| [Bosch Dry 4000](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#modell-bosch-d4000-eu) | Drei Betriebsmodi statt vieler Einstellungen | D4000-EU · Artikel 7733703558 |
+| [MeacoDry Arete Two 12L](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#modell-meaco-two-12) | App-Steuerung und kleinerer Tank | Arete Two 12L · nicht One oder Two 20L |
+| [Stadler Form Lukas](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#modell-stadler-lukas) | Schwenkfunktion und Wäschemodus | Lukas weiss L-031E · nicht Lukas little oder Pro |
+| [Comfee MDDF-20DEN7](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#modell-comfee-mddf20) | Feuchteregelung mit Timer | MDDF-20DEN7 · ohne WF |
+| [MeacoDry Arete One 20L](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#modell-meaco-one-20) | Leistungsdaten unter konkreten Raumbedingungen | Arete One 20L · nicht Two oder One 25L |
+| [MeacoDry Arete One 25L](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#modell-meaco-one-25) | Weitere Kapazitätsvariante derselben Baureihe | Arete One 25L · nicht Two 25L |
 
 ### Bosch Dry 4000
 **Drei Betriebsmodi statt vieler Einstellungen**
@@ -192,4 +195,4 @@ Quelle: [Meaco UK: Arete One 25L](https://www.meaco.com/products/meacodry-arete-
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

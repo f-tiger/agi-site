@@ -22,13 +22,13 @@ Das Geschäftsmodell ist reiner **Online-Direktvertrieb**: eigener Shop plus Mar
 
 Wir empfehlen nicht „die Marke“, sondern genau ein Gerät — dort, wo es in seiner Klasse eine echte Lücke füllt:
 
-Gerät | Rolle | Raumgröße | Links |
-
-**Klarstein Kraftwerk Smart 12K**Mobiles Klimagerät, 12.000 BTU (ca. 3,5 kW) | Der Pick für große Räume — echte Reserve, wo 9.000er-Geräte nur noch gegenhalten, plus App-Steuerung mit Alexa und Google Assistant | 25–35 m² | [Test-Überblick](https://getecoback.com/guide/klarstein-kraftwerk-smart-12k-test.html) · Preis auf Amazon |
+| Gerät | Rolle | Raumgröße | Links |
+| --- | --- | --- | --- |
+| **Klarstein Kraftwerk Smart 12K** Mobiles Klimagerät, 12.000 BTU (ca. 3,5 kW) | Der Pick für große Räume — echte Reserve, wo 9.000er-Geräte nur noch gegenhalten, plus App-Steuerung mit Alexa und Google Assistant | 25–35 m² | [Test-Überblick](https://getecoback.com/guide/klarstein-kraftwerk-smart-12k-test.html) · Preis auf Amazon |
 
 Anzeige · Affiliate-Links — du zahlst denselben Preis. Nicht selbst getestet; Auswahl fasst öffentliche Tests zusammen.
 
-Warum nur eines, bei diesem Katalog? Weil dieses Portal Raumklima macht, nicht Küchengeräte — und weil wir nur empfehlen, was öffentliche Tests belastbar einordnen. Mit der Faustregel **340 BTU pro m²** (nachrechnen im [BTU-Rechner](https://getecoback.com/guide/btu-rechner.html)) decken die 12.000 BTU des Kraftwerk Smart 12K etwa 25–35 m² ab. Unter 25 m² ist es überdimensioniert — dort führt die Leiter zu den Alternativen unten. Und über einem Bedarf von etwa **13.500 BTU** (ab ~40 m², Dachlage, große Südfenster) ist **kein Monoblock mehr ehrlich empfehlbar** — auch kein Klarstein; realistisch sind dann ein Split-Gerät oder zwei kleinere Geräte, die Einordnung steht im [Ratgeber für große Räume](https://getecoback.com/guide/klimaanlage-30-qm.html).
+Warum nur eines, bei diesem Katalog? Weil dieses Portal Raumklima macht, nicht Küchengeräte — und weil wir nur empfehlen, was öffentliche Tests belastbar einordnen. Mit der Faustregel **340 BTU pro m²** (nachrechnen im [BTU-Rechner](https://getecoback.com/guide/btu-rechner.html)) decken die 12.000 BTU des Kraftwerk Smart 12K etwa 25–35 m² ab. Unter 25 m² ist es überdimensioniert — dort führt die Leiter zu den [Alternativen unten](https://getecoback.com/guide/klarstein-geraete-test.html#andere-marke). Und über einem Bedarf von etwa **13.500 BTU** (ab ~40 m², Dachlage, große Südfenster) ist **kein Monoblock mehr ehrlich empfehlbar** — auch kein Klarstein; realistisch sind dann ein Split-Gerät oder zwei kleinere Geräte, die Einordnung steht im [Ratgeber für große Räume](https://getecoback.com/guide/klimaanlage-30-qm.html).
 
 ## Wo Klarstein spart — und wo nicht
 
@@ -46,15 +46,12 @@ Und wo nicht gespart wird: an Design, Bedienung und Funktionsumfang fürs Geld. 
 
 ## Wann lieber eine andere Marke?
 
-Situation | Bessere Wahl | Warum |
-
-15–25 m², Effizienz und Ruhe wichtig | [De'Longhi Pinguino PAC EX105](https://getecoback.com/guide/pinguino-pac-ex105-test.html) | A+++ statt A, in Messungen leiser als das Feld — der Premium-Allrounder für normale Raumgrößen |
-
-Kleines Zimmer, Budget knapp | [Comfee MPPH-09CRN7](https://getecoback.com/guide/comfee-mpph-09crn7-test.html) · [Comfee-Marken-Check](https://getecoback.com/guide/comfee-geraete-test.html) | 9.000 BTU Grundleistung zum deutlich niedrigeren Preis — dieselbe Frage „Budgetmarke, was taugt sie?“, andere Antwortlage |
-
-Sehr geräuschempfindlich, Schlafzimmer | Midea PortaSplit | Split-Bauweise: Der Kompressor hängt draußen — drinnen deutlich leiser als jeder Monoblock |
-
-Bedarf über ~13.500 BTU (ab ~40 m², Dachlage) | [Split-Gerät oder zwei Geräte](https://getecoback.com/guide/klimaanlage-30-qm.html) | Kein Monoblock mehr ehrlich empfehlbar — das gilt auch für das Kraftwerk Smart 12K |
+| Situation | Bessere Wahl | Warum |
+| --- | --- | --- |
+| 15–25 m², Effizienz und Ruhe wichtig | [De'Longhi Pinguino PAC EX105](https://getecoback.com/guide/pinguino-pac-ex105-test.html) | A+++ statt A, in Messungen leiser als das Feld — der Premium-Allrounder für normale Raumgrößen |
+| Kleines Zimmer, Budget knapp | [Comfee MPPH-09CRN7](https://getecoback.com/guide/comfee-mpph-09crn7-test.html) · [Comfee-Marken-Check](https://getecoback.com/guide/comfee-geraete-test.html) | 9.000 BTU Grundleistung zum deutlich niedrigeren Preis — dieselbe Frage „Budgetmarke, was taugt sie?“, andere Antwortlage |
+| Sehr geräuschempfindlich, Schlafzimmer | Midea PortaSplit | Split-Bauweise: Der Kompressor hängt draußen — drinnen deutlich leiser als jeder Monoblock |
+| Bedarf über ~13.500 BTU (ab ~40 m², Dachlage) | [Split-Gerät oder zwei Geräte](https://getecoback.com/guide/klimaanlage-30-qm.html) | Kein Monoblock mehr ehrlich empfehlbar — das gilt auch für das Kraftwerk Smart 12K |
 
 Anzeige · Affiliate-Links — du zahlst denselben Preis. Nicht selbst getestet; Auswahl fasst öffentliche Tests zusammen.
 
@@ -92,4 +89,4 @@ Klarstein Kraftwerk Smart 12K auf Amazon →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

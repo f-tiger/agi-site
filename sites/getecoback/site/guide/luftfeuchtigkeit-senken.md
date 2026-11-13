@@ -30,13 +30,11 @@ Ohne JavaScript: Temperatur und Feuchte innen und außen notieren, Feuchtequelle
 
 Das Hygrometer in Raummitte gibt dir eine Zahl. Sie ist die richtige Zahl für dein Wohlbefinden und die falsche für die Wand. Relative Feuchte hängt von der Temperatur ab: Dieselbe Luft, an einer kalten Oberfläche abgekühlt, hat dort eine höhere relative Feuchte — und Schimmel wächst an Oberflächen. Die Tabelle rechnet das für einen Raum mit 20 °C durch (Magnus-Formel, dieselbe wie in unserem [Taupunkt-Rechner](https://getecoback.com/guide/richtig-lueften-im-winter.html)):
 
-Hygrometer zeigt … | Wand 17 °C | Wand 14 °C | Wand 12 °C | Bewertung |
-
-40 % | 48 % | 58 % | 67 % | Raum in Ordnung; nur die kalte Wand nähert sich der Grenze |
-
-50 % | 60 % | **73 %** | 83 % | Raum in Ordnung — an einer 14-°C-Wand wächst trotzdem Schimmel |
-
-60 % | 72 % | 88 % | 100 % (Kondensat) | Zu feucht; jede kühle Wand ist im Schimmelbereich |
+| Hygrometer zeigt … | Wand 17 °C | Wand 14 °C | Wand 12 °C | Bewertung |
+| --- | --- | --- | --- | --- |
+| 40 % | 48 % | 58 % | 67 % | Raum in Ordnung; nur die kalte Wand nähert sich der Grenze |
+| 50 % | 60 % | **73 %** | 83 % | Raum in Ordnung — an einer 14-°C-Wand wächst trotzdem Schimmel |
+| 60 % | 72 % | 88 % | 100 % (Kondensat) | Zu feucht; jede kühle Wand ist im Schimmelbereich |
 
 Die Faustregeln daraus: **40–60 Prozent** im Raum sind der Zielbereich, ab **60 Prozent** beginnt die Grauzone, ab etwa **70 Prozent an der Oberfläche** keimen Sporen. Und die unbequeme Zahl: Bei einer 14 °C kalten Wand reichen im Raum schon **48 Prozent**, damit die Wand bei 70 liegt. Wer wissen will, wie kalt die eigene Außenwand ist, misst sie mit einem Infrarotthermometer an einem kalten Morgen — nicht am milden Nachmittag.
 
@@ -58,17 +56,13 @@ Ein Raum ist ein kleiner Behälter. Ein Zimmer mit 40 m³ Luft bei 18 °C enthä
 
 Lüften tauscht Innenluft gegen Außenluft. Ob das trocknet, hängt nicht von den Prozentzahlen draußen ab, sondern davon, **wie viel Wasser die Außenluft absolut enthält**, sobald sie auf Raumtemperatur ist. Die Tabelle rechnet Außenluft auf 20 °C hoch:
 
-Außenluft | Nach dem Erwärmen auf 20 °C | Lüften … |
-
-0 °C / 90 % | 24 % | trocknet stark |
-
-5 °C / 80 % | 30 % | trocknet stark |
-
-10 °C / 90 % (Herbstnebel) | 47 % | trocknet noch, aber langsam |
-
-15 °C / 90 % | 66 % | bringt fast nichts |
-
-25 °C / 70 % (Sommertag) | 95 % — im kühlen Raum kondensiert es | **macht es schlimmer** |
+| Außenluft | Nach dem Erwärmen auf 20 °C | Lüften … |
+| --- | --- | --- |
+| 0 °C / 90 % | 24 % | trocknet stark |
+| 5 °C / 80 % | 30 % | trocknet stark |
+| 10 °C / 90 % (Herbstnebel) | 47 % | trocknet noch, aber langsam |
+| 15 °C / 90 % | 66 % | bringt fast nichts |
+| 25 °C / 70 % (Sommertag) | 95 % — im kühlen Raum kondensiert es | **macht es schlimmer** |
 
 Deshalb ist Stoßlüften im Winter so wirksam: Selbst neblige 90-Prozent-Luft ist, einmal warm, trocken. Und deshalb wird ein [Keller, der im Sommer gelüftet wird](https://getecoback.com/guide/keller-lueften-sommer.html), nicht trockener, sondern nasser — die warme Außenluft schlägt sich an den kühlen Kellerwänden nieder. Die Regel: **lüften, wenn es draußen kälter ist als drinnen**; sonst Hebel 3.
 
@@ -86,19 +80,14 @@ Ein Entfeuchter führt Wasser ab, ohne dass die Außenluft mitspielen muss. Er i
 
 - oder die Zahl an der Wand nach Hebel 1 und 2 immer noch über 70 liegt.
 
-Raum | Nennleistung (Liter/Tag) | Ratgeber |
-
-10 m² | 10–12 | [10 m²](https://getecoback.com/guide/luftentfeuchter-10-qm.html) |
-
-15 m² | 12–16 | [15 m²](https://getecoback.com/guide/luftentfeuchter-15-qm.html) |
-
-20 m² | 16–20 | [20 m²](https://getecoback.com/guide/luftentfeuchter-20-qm.html) |
-
-25 m² | 20 | [25 m²](https://getecoback.com/guide/luftentfeuchter-25-qm.html) |
-
-30 m² | 20–25 | [30 m²](https://getecoback.com/guide/luftentfeuchter-30-qm.html) |
-
-40 m² | 25–30 | [40 m²](https://getecoback.com/guide/luftentfeuchter-40-qm.html) |
+| Raum | Nennleistung (Liter/Tag) | Ratgeber |
+| --- | --- | --- |
+| 10 m² | 10–12 | [10 m²](https://getecoback.com/guide/luftentfeuchter-10-qm.html) |
+| 15 m² | 12–16 | [15 m²](https://getecoback.com/guide/luftentfeuchter-15-qm.html) |
+| 20 m² | 16–20 | [20 m²](https://getecoback.com/guide/luftentfeuchter-20-qm.html) |
+| 25 m² | 20 | [25 m²](https://getecoback.com/guide/luftentfeuchter-25-qm.html) |
+| 30 m² | 20–25 | [30 m²](https://getecoback.com/guide/luftentfeuchter-30-qm.html) |
+| 40 m² | 25–30 | [40 m²](https://getecoback.com/guide/luftentfeuchter-40-qm.html) |
 
 Zwei Dinge zu den Litern: Die Nennleistung wird bei 30 °C und 80 Prozent gemessen — in einem 18 °C warmen Zimmer bei 60 Prozent zieht dasselbe Gerät ungefähr ein Drittel davon, und das ist normal, nicht defekt. Und unter etwa **12 °C Raumtemperatur** arbeitet ein Kompressorgerät kaum noch, weil sein Kühlregister unter den Taupunkt der Luft muss; für kalte Keller und ungeheizte Räume ist ein Adsorptionsgerät die richtige Bauart — der [Bauart-Vergleich](https://getecoback.com/guide/luftentfeuchter-granulat-oder-elektrisch.html) erklärt die Grenze.
 
@@ -108,15 +97,12 @@ Wer heizt, sieht das Hygrometer fallen: Warme Luft kann mehr Wasser aufnehmen, a
 
 ## Die Reihenfolge, wenn du heute anfängst
 
-Du misst … | Erster Schritt | Wenn das nicht reicht |
-
-Raum über 60 %, draußen kälter als drinnen | Stoßlüften 3× täglich, Wasserquellen abstellen (Hebel 1 + 2) | Entfeuchter im feuchtesten Raum |
-
-Raum über 60 %, draußen warm und feucht (Sommer, Keller) | Fenster zu, Entfeuchter (Hebel 3) — Lüften macht es schlimmer | Ursache suchen: [feuchter Keller](https://getecoback.com/guide/luftentfeuchter-keller.html) hat oft eine bauliche |
-
-Raum 45–55 %, aber Schimmel an einer Wand | Wand messen; Möbel abrücken; Raum gleichmäßig warm halten | Wand gezielt wärmen — mit der 62-%-Grenze im Kopf |
-
-Fenster morgens beschlagen | Nachts Tür auf oder Schlafzimmer leicht heizen; morgens stoßlüften | [Fenster beschlagen von innen](https://getecoback.com/guide/fenster-beschlagen-innen.html): die drei Ursachen |
+| Du misst … | Erster Schritt | Wenn das nicht reicht |
+| --- | --- | --- |
+| Raum über 60 %, draußen kälter als drinnen | Stoßlüften 3× täglich, Wasserquellen abstellen (Hebel 1 + 2) | Entfeuchter im feuchtesten Raum |
+| Raum über 60 %, draußen warm und feucht (Sommer, Keller) | Fenster zu, Entfeuchter (Hebel 3) — Lüften macht es schlimmer | Ursache suchen: [feuchter Keller](https://getecoback.com/guide/luftentfeuchter-keller.html) hat oft eine bauliche |
+| Raum 45–55 %, aber Schimmel an einer Wand | Wand messen; Möbel abrücken; Raum gleichmäßig warm halten | Wand gezielt wärmen — mit der 62-%-Grenze im Kopf |
+| Fenster morgens beschlagen | Nachts Tür auf oder Schlafzimmer leicht heizen; morgens stoßlüften | [Fenster beschlagen von innen](https://getecoback.com/guide/fenster-beschlagen-innen.html): die drei Ursachen |
 
 ## Häufige Fragen
 
@@ -151,4 +137,4 @@ Weil in trockener werdender Luft nicht mehr viel Wasser ist. Ein 40 m³ großer 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

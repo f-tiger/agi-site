@@ -19,13 +19,11 @@ Das ist dieselbe Physik wie an einer kalten Kellerwand — deshalb funktioniert 
 
 Die meisten Kaufberatungen vergleichen Literleistung pro Tag. Für ein überwinterndes Fahrzeug ist das die falsche Kennzahl, weil sie bei Wohnraumtemperatur gemessen wird.
 
-Bauart | In der Kälte | Strom nötig | Passt, wenn … |
-
-**Kompressor** (Standard für Wohnräume) | Verliert mit sinkender Temperatur deutlich an Leistung — er muss Feuchte an einer kalten Fläche auskondensieren, und je kälter die Luft, desto weniger Wasser trägt sie überhaupt | Ja (230 V) | … das Fahrzeug beheizt bleibt oder in einer temperierten Halle steht |
-
-**Adsorption** (Trockenmittel) | Arbeitet auch bei niedrigen Temperaturen — deshalb die übliche Empfehlung für den Winter | Ja (230 V) | … Strom am Stellplatz liegt und es richtig kalt wird |
-
-**Granulat** (passiv, Box) | Funktioniert temperaturunabhängig, aber mit begrenzter Aufnahme | Nein | … kein Strom da ist — die einzige Option, die dann überhaupt wirkt |
+| Bauart | In der Kälte | Strom nötig | Passt, wenn … |
+| --- | --- | --- | --- |
+| **Kompressor** (Standard für Wohnräume) | Verliert mit sinkender Temperatur deutlich an Leistung — er muss Feuchte an einer kalten Fläche auskondensieren, und je kälter die Luft, desto weniger Wasser trägt sie überhaupt | Ja (230 V) | … das Fahrzeug beheizt bleibt oder in einer temperierten Halle steht |
+| **Adsorption** (Trockenmittel) | Arbeitet auch bei niedrigen Temperaturen — deshalb die übliche Empfehlung für den Winter | Ja (230 V) | … Strom am Stellplatz liegt und es richtig kalt wird |
+| **Granulat** (passiv, Box) | Funktioniert temperaturunabhängig, aber mit begrenzter Aufnahme | Nein | … kein Strom da ist — die einzige Option, die dann überhaupt wirkt |
 
 **Die ehrliche Konsequenz:** Wer den Entfeuchter aus der Wohnung in den kalten Camper stellt, hat meist ein Gerät aufgestellt, das dort kaum noch Wasser zieht. Das ist kein Defekt, sondern die Bauart. Wenn du wissen willst, wie sich die beiden Prinzipien grundsätzlich unterscheiden, steht das ausführlich unter [Granulat oder elektrisch?](https://getecoback.com/guide/luftentfeuchter-granulat-oder-elektrisch.html)
 
@@ -76,4 +74,4 @@ Alles, was Feuchte speichert und schlecht abtrocknet: Matratzen, Polster und los
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

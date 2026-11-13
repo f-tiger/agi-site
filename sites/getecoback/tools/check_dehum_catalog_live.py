@@ -6,7 +6,7 @@ import urllib.request
 from dehum_catalog import load
 
 DATA = load()
-HEADERS = {'User-Agent': 'eco-catalog-release-probe/1.0', 'x-probe': '1'}
+HEADERS = {'User-Agent': 'getecoback-ci geo-catalog-probe/1.0', 'x-probe': '1'}
 
 def read(path, accept='text/html'):
     request = urllib.request.Request('https://getecoback.com' + path + '?__probe=1',

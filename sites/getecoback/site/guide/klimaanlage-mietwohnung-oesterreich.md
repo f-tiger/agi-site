@@ -39,21 +39,15 @@ Das ist der Teil, den kein deutscher Ratgeber kennt, weil das BGB ihn nicht hat.
 
 Alle sieben müssen zusammen vorliegen. Wir geben sie hier in der Reihenfolge des Gesetzes wieder, jeweils mit dem, was daraus für ein Klimagerät oder eine Heizung praktisch folgt — der linke Teil ist Gesetzestext, der rechte unsere Lesart.
 
-Z | Bedingung (§ 9 Abs. 1 MRG) | Was das für Klimaanlage & Heizung heißt |
-
-1 | die Veränderung entspricht dem jeweiligen Stand der Technik | Ein aktuelles Gerät eines regulären Herstellers, fachgerecht geplant. Ein selbst gebauter Wanddurchbruch nicht. |
-
-2 | die Veränderung entspricht der Übung des Verkehrs und dient einem wichtigen Interesse des Hauptmieters | Für Beheizungsanlagen gilt diese Ziffer laut Absatz 2 jedenfalls als erfüllt (siehe unten). Für eine Klimaanlage musst du sie begründen — etwa mit einer Dachgeschosswohnung, die im Sommer nicht mehr nutzbar ist. |
-
-3 | die einwandfreie Ausführung der Veränderung ist gewährleistet | Bei einer Splitanlage mit Kältemittel: Fachbetrieb. Das ist in Österreich wie in Deutschland ohnehin keine Bastelarbeit. |
-
-4 | der Hauptmieter trägt die Kosten | Du zahlst Gerät, Montage und später den Rückbau, falls einer vereinbart wird (Absatz 3). |
-
-5 | keine Beeinträchtigung schutzwürdiger Interessen des Vermieters oder eines anderen Mieters ist zu besorgen | Das ist die Ziffer, an der Außengeräte scheitern: Lärm und Abwärme für den Nachbarbalkon sind genau so ein Interesse. |
-
-6 | keine Schädigung des Hauses, im besonderen keine Beeinträchtigung der äußeren Erscheinung des Hauses | Ein Außengerät an der Straßenfassade eines Gründerzeithauses fällt hier durch; ein Innengerät, das man von außen nicht sieht, eher nicht. |
-
-7 | keine Gefahr für die Sicherheit von Personen und Sachen | Fensterdurchführungen, die Fluchtwege blockieren, oder eine unsicher montierte Außeneinheit über einem Gehsteig. |
+| Z | Bedingung (§ 9 Abs. 1 MRG) | Was das für Klimaanlage & Heizung heißt |
+| --- | --- | --- |
+| 1 | die Veränderung entspricht dem jeweiligen Stand der Technik | Ein aktuelles Gerät eines regulären Herstellers, fachgerecht geplant. Ein selbst gebauter Wanddurchbruch nicht. |
+| 2 | die Veränderung entspricht der Übung des Verkehrs und dient einem wichtigen Interesse des Hauptmieters | Für Beheizungsanlagen gilt diese Ziffer laut Absatz 2 jedenfalls als erfüllt (siehe unten). Für eine Klimaanlage musst du sie begründen — etwa mit einer Dachgeschosswohnung, die im Sommer nicht mehr nutzbar ist. |
+| 3 | die einwandfreie Ausführung der Veränderung ist gewährleistet | Bei einer Splitanlage mit Kältemittel: Fachbetrieb. Das ist in Österreich wie in Deutschland ohnehin keine Bastelarbeit. |
+| 4 | der Hauptmieter trägt die Kosten | Du zahlst Gerät, Montage und später den Rückbau, falls einer vereinbart wird (Absatz 3). |
+| 5 | keine Beeinträchtigung schutzwürdiger Interessen des Vermieters oder eines anderen Mieters ist zu besorgen | Das ist die Ziffer, an der Außengeräte scheitern: Lärm und Abwärme für den Nachbarbalkon sind genau so ein Interesse. |
+| 6 | keine Schädigung des Hauses, im besonderen keine Beeinträchtigung der äußeren Erscheinung des Hauses | Ein Außengerät an der Straßenfassade eines Gründerzeithauses fällt hier durch; ein Innengerät, das man von außen nicht sieht, eher nicht. |
+| 7 | keine Gefahr für die Sicherheit von Personen und Sachen | Fensterdurchführungen, die Fluchtwege blockieren, oder eine unsicher montierte Außeneinheit über einem Gehsteig. |
 
 ## Heizung ist privilegiert — Klimaanlage nicht ausdrücklich
 
@@ -76,17 +70,13 @@ Und Absatz 3 nennt den Preis für alles, was nicht in dieser Liste steht: Der Ve
 
 § 9 handelt von Veränderungen des Mietgegenstandes. Ein tragbarer Monoblock, dessen Abluftschlauch mit einer Stoffabdichtung im gekippten Fenster hängt, verändert die Wohnung nicht mehr als ein Staubsauger — er wird benutzt und beim Auszug mitgenommen. Dasselbe gilt für eine Infrarotheizung als Standgerät und einen Ölradiator. Die praktische Reihenfolge ist deshalb in Österreich dieselbe wie in Deutschland, nur mit anderem Paragraphen dahinter:
 
-Lösung | Verändert die Wohnung? | § 9 MRG nötig? |
-
-Mobile Klimaanlage mit [Fensterabdichtung](https://getecoback.com/guide/klimaanlage-kippfenster.html) | Nein — steht, hängt, geht wieder mit | Nein |
-
-[Infrarotheizung als Standgerät](https://getecoback.com/guide/infrarotheizung-standgeraet.html), Ölradiator, Heizlüfter | Nein | Nein |
-
-Infrarotpaneel fest an Wand oder Decke | Ja, mit Dübeln — aber Beheizungsanlage (Abs. 2 Z 1) | Ja, Anzeige; Ziffer 2 gilt als erfüllt |
-
-[Quick-Connect-Split](https://getecoback.com/guide/split-klimaanlage-ohne-kernbohrung.html) durch ein vorhandenes Fenster oder eine Kernbohrung | Ja | Ja, Anzeige; alle sieben Bedingungen selbst darlegen |
-
-Balkonkraftwerk am Geländer | Kommt auf die Befestigung an | Auslegungsfrage — vor der Anzeige beraten lassen |
+| Lösung | Verändert die Wohnung? | § 9 MRG nötig? |
+| --- | --- | --- |
+| Mobile Klimaanlage mit [Fensterabdichtung](https://getecoback.com/guide/klimaanlage-kippfenster.html) | Nein — steht, hängt, geht wieder mit | Nein |
+| [Infrarotheizung als Standgerät](https://getecoback.com/guide/infrarotheizung-standgeraet.html), Ölradiator, Heizlüfter | Nein | Nein |
+| Infrarotpaneel fest an Wand oder Decke | Ja, mit Dübeln — aber Beheizungsanlage (Abs. 2 Z 1) | Ja, Anzeige; Ziffer 2 gilt als erfüllt |
+| [Quick-Connect-Split](https://getecoback.com/guide/split-klimaanlage-ohne-kernbohrung.html) durch ein vorhandenes Fenster oder eine Kernbohrung | Ja | Ja, Anzeige; alle sieben Bedingungen selbst darlegen |
+| Balkonkraftwerk am Geländer | Kommt auf die Befestigung an | Auslegungsfrage — vor der Anzeige beraten lassen |
 
 ## Gilt § 9 überhaupt für deine Wohnung? (§ 1 MRG)
 
@@ -104,13 +94,11 @@ Das ist die Frage, an der Ratschläge aus dem Internet am häufigsten vorbeigehe
 
 Alle Rechner auf dieser Seite arbeiten mit 0,30 €/kWh. Das ist eine deutsche Annahme, und wir haben geprüft, ob sie für Österreich daneben liegt. Die Regulierungsbehörde E-Control nennt für einen Haushalt mit 3.500 kWh Jahresverbrauch Gesamtkosten von **25 bis 35 Cent je kWh** für Bestandskunden bei den ehemaligen Landesversorgern und **22 bis 28 Cent** für Neukunden beim jeweils günstigsten Anbieter, inklusive Wechselrabatten (Stand: E-Control, Newsletter 3/2026). Regional streut das: 22 Cent in Vorarlberg, 28 Cent in Kärnten beim günstigsten Anbieter ohne Wechselrabatte.
 
-Gerät | Leistung | bei 25 ct/kWh | bei 30 ct/kWh | bei 35 ct/kWh |
-
-Mobile Klimaanlage (Monoblock) | ~1.000 W | 0,25 €/h | 0,30 €/h | 0,35 €/h |
-
-Infrarotheizung, kleines Zimmer | 600 W | 0,15 €/h | 0,18 €/h | 0,21 €/h |
-
-Heizlüfter, volle Stufe | 2.000 W | 0,50 €/h | 0,60 €/h | 0,70 €/h |
+| Gerät | Leistung | bei 25 ct/kWh | bei 30 ct/kWh | bei 35 ct/kWh |
+| --- | --- | --- | --- | --- |
+| Mobile Klimaanlage (Monoblock) | ~1.000 W | 0,25 €/h | 0,30 €/h | 0,35 €/h |
+| Infrarotheizung, kleines Zimmer | 600 W | 0,15 €/h | 0,18 €/h | 0,21 €/h |
+| Heizlüfter, volle Stufe | 2.000 W | 0,50 €/h | 0,60 €/h | 0,70 €/h |
 
 Die 30 Cent liegen also mitten in der österreichischen Spanne. Der [Stromkosten-Rechner](https://getecoback.com/guide/stromkosten-rechner.html) und der [Watt-Rechner](https://getecoback.com/guide/infrarotheizung-watt-rechner.html) passen ohne Umrechnung — trag einfach den Arbeitspreis von deiner eigenen Rechnung ein, wenn du es genau willst.
 
@@ -145,4 +133,4 @@ Wir sind keine Juristen, das hier ist keine Rechtsberatung, und Gesetze ändern 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

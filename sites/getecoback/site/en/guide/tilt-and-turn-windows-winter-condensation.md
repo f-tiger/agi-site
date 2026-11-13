@@ -26,15 +26,12 @@ This is why the tilted window is such a reliable mould machine. It does not floo
 
 The common objection is that it is cold and wet outside, so letting that air in must make things damper. It does the opposite, because cold air physically cannot hold much water.
 
-Outside | Water it actually carries | Same air once it is 20 °C indoors |
-
-−5 °C at 90 % RH | ≈ 3.1 g/m³ | ≈ 16 % RH |
-
-0 °C at 80 % RH | ≈ 3.9 g/m³ | ≈ 21 % RH |
-
-5 °C at 80 % RH | ≈ 5.4 g/m³ | ≈ 30 % RH |
-
-10 °C at 80 % RH | ≈ 7.5 g/m³ | ≈ 42 % RH |
+| Outside | Water it actually carries | Same air once it is 20 °C indoors |
+| --- | --- | --- |
+| −5 °C at 90 % RH | ≈ 3.1 g/m³ | ≈ 16 % RH |
+| 0 °C at 80 % RH | ≈ 3.9 g/m³ | ≈ 21 % RH |
+| 5 °C at 80 % RH | ≈ 5.4 g/m³ | ≈ 30 % RH |
+| 10 °C at 80 % RH | ≈ 7.5 g/m³ | ≈ 42 % RH |
 
 Figures are the Magnus formula for saturation vapour pressure, the standard approximation used in building physics. Relative humidity is the ratio of the water vapour actually present to what the air could hold at that temperature, so warming air without adding water lowers the ratio: 0 °C air at 80 % keeps its vapour pressure and lands near 21 % once it is 20 °C indoors. The grams-per-cubic-metre column is what that outdoor air physically carries. You can check the arithmetic yourself — [how we work](https://getecoback.com/en/how-we-recommend.html#check-the-maths).
 
@@ -123,4 +120,4 @@ Five to ten minutes with the sash fully open is enough to swap the air in a norm
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Note: EcoBack does not test devices itself; picks summarise public tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.
+Note: Editorial guidance based on the linked sources, not our own device tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.

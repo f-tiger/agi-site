@@ -22,19 +22,13 @@ Wichtig: BTU beschreibt die Kühlleistung, nicht den Stromverbrauch. Ein 9.000-B
 
 Die Formel ist simpel: **BTU ÷ 3.412 = Kilowatt**. Die gängigen Klassen:
 
-BTU/h |
-Kühlleistung |
-Passende Raumgröße* |
-
-**5.000 BTU** | ~1,5 kW | bis ~14 m² |
-
-**7.000 BTU** | ~2,1 kW | bis ~20 m² |
-
-**9.000 BTU** | ~2,6 kW | bis ~26 m² |
-
-**12.000 BTU** | ~3,5 kW | bis ~35 m² |
-
-**14.000 BTU** | ~4,1 kW | bis ~40 m² |
+| BTU/h | Kühlleistung | Passende Raumgröße* |
+| --- | --- | --- |
+| **5.000 BTU** | ~1,5 kW | bis ~14 m² |
+| **7.000 BTU** | ~2,1 kW | bis ~20 m² |
+| **9.000 BTU** | ~2,6 kW | bis ~26 m² |
+| **12.000 BTU** | ~3,5 kW | bis ~35 m² |
+| **14.000 BTU** | ~4,1 kW | bis ~40 m² |
 
 *Faustregel ~300–350 BTU pro m² bei normaler Deckenhöhe und Dämmung. Dachgeschoss, große Fensterflächen oder viele Geräte im Raum brauchen eine Klasse mehr — die genaue Zuordnung nach Raum steht im Ratgeber [Wie viel BTU brauche ich?](https://getecoback.com/guide/wie-viel-btu-brauche-ich.html).
 
@@ -75,4 +69,4 @@ Comfee 9.000 BTU →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

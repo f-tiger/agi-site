@@ -12,21 +12,14 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unte
 
 ## Die wichtigsten Unterschiede auf einen Blick
 
-Kriterium |
-Turmventilator |
-Standventilator |
-
-**Platzbedarf** | Sehr schmale Standfläche | Breiter Fuß, mehr Platz nötig |
-
-**Luftstrom / Reichweite** | Breiter, sanfter Luftschleier | Kräftig, weite Reichweite |
-
-**Lautstärke** | Meist leiser (niedrige Stufe) | Auf voller Stufe hörbarer |
-
-**Höhenverstellung** | Meist fest | Höhe frei einstellbar |
-
-**Optik** | Modern, unauffällig | Klassisch, technischer |
-
-**Preis** | Oft etwas höher | Meist günstiger |
+| Kriterium | Turmventilator | Standventilator |
+| --- | --- | --- |
+| **Platzbedarf** | Sehr schmale Standfläche | Breiter Fuß, mehr Platz nötig |
+| **Luftstrom / Reichweite** | Breiter, sanfter Luftschleier | Kräftig, weite Reichweite |
+| **Lautstärke** | Meist leiser (niedrige Stufe) | Auf voller Stufe hörbarer |
+| **Höhenverstellung** | Meist fest | Höhe frei einstellbar |
+| **Optik** | Modern, unauffällig | Klassisch, technischer |
+| **Preis** | Oft etwas höher | Meist günstiger |
 
 ## Platzbedarf und Optik
 
@@ -89,4 +82,4 @@ Turmventilatoren auf Amazon.de ansehen →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

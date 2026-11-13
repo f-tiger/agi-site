@@ -1,0 +1,17 @@
+# Verifiable answers for AI search readers
+
+The existing cellar guide's Markdown flattened its comparison and cost tables: column separators had no GFM header rule, and the calculation caption ran into the first column. Model-card links lost their source-section fragments. This release fixes extraction from existing public HTML rather than adding separate product claims or duplicate landing pages.
+
+Rectangular tables with explicit column headers now preserve captions, empty cells, units, source links and escaped pipe characters as GFM tables. Merged, irregular or headerless layouts remain ordered row text without invented column ownership; arbitrary nested layouts are not a supported GFM conversion. Existing visible fragment destinations become absolute links to canonical HTML. Script/form/stripped shopping targets and hidden/aria-hidden/inline-hidden ancestors do not become new citations. This does not infer visibility from external stylesheets.
+
+Generated page Markdown and llms-full share the converter. The worker's negotiated route uses existing prebuilt mirrors; its legacy fallback converter is outside this change. HTML remains canonical, mirrors remain noindex, approved references remain links, merchant URLs remain excluded. The generic German/English/Italian disclosure now accurately describes editorial guidance from linked sources without claiming the material necessarily summarizes independent tests. Source-review dates, product models and measurement conditions are unchanged.
+
+Official guidance read on 2026-11-13:
+- https://developers.google.com/search/docs/appearance/ai-features — existing SEO fundamentals apply; no special AI files or schema are required; eligibility does not guarantee crawling, indexing or appearance.
+- https://developers.openai.com/api/docs/bots — OAI-SearchBot concerns search; GPTBot concerns model training. Existing robots access rules are unchanged; explanatory comments distinguish these purposes.
+
+The existing home&smart/CHIP mechanism review is reused: answer the concrete buyer question and expose the limits before a merchant exit. This change preserves the current reading-first layout from PR304. It does not copy ratings, add a winner, claim AI endorsement or refresh manufacturer dates.
+
+Validation: actual generated catalog mirrors before any in-memory repair, caption/cell/entity/source cases, hidden and missing fragment targets, ambiguous table fallback, no-commerce gates and shared full-document extraction. Check the final files after every generator, native mobile/no-JS buying paths, production catalog/negotiated Markdown and GA4. Use `User-Agent: getecoback-ci` for read-only Markdown probes because the existing server explicitly excludes it from md_serve accounting. Frontend verification is not analytics backend receipt.
+
+Marketing: retain the already published catalog and thermostat assets and their fixed landing routes. PR290/296 contain the advanced thermostat's final PUBLISHED ID7707655249196043533; do not resubmit older prepared manifests or pending receipts. No new creative, schedule, account or spend is introduced. Existing observation windows remain; useful AI arrivals, buyer actions and verified commission need actual evidence. AI files, robots access and IndexNow acceptance are not growth outcomes.

@@ -34,30 +34,12 @@ Calculate BTU
 
 Even without the calculator, these are the common guide values for a portable air conditioner by room size (at normal ceiling height and average sun exposure).
 
-Room size |
-Recommended BTU |
-Typical room |
-Matching model |
-
-up to 15 m² |
-**7,000–9,000 BTU** |
-small bedroom, office |
-Comfee (value) |
-
-15–25 m² |
-**9,000–12,000 BTU** |
-bedroom, home office |
-De'Longhi Pinguino (sweet spot) |
-
-25–35 m² |
-**12,000–14,000 BTU** |
-living room |
-Klarstein (large rooms) |
-
-over 35 m² |
-**14,000+ BTU / monobloc** |
-open-plan space |
-Klarstein (high-BTU) |
+| Room size | Recommended BTU | Typical room | Matching model |
+| --- | --- | --- | --- |
+| up to 15 m² | **7,000–9,000 BTU** | small bedroom, office | Comfee (value) |
+| 15–25 m² | **9,000–12,000 BTU** | bedroom, home office | De'Longhi Pinguino (sweet spot) |
+| 25–35 m² | **12,000–14,000 BTU** | living room | Klarstein (large rooms) |
+| over 35 m² | **14,000+ BTU / monobloc** | open-plan space | Klarstein (high-BTU) |
 
 Models compiled from public reviews, not tested by us. For high ceilings, south/top-floor rooms or several people, size one step up — the calculator above does this automatically.
 
@@ -82,4 +64,4 @@ The base is about **340 BTU per m²**, adjusted for ceiling height, sun exposure
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Note: EcoBack does not test devices itself; picks summarise public tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.
+Note: Editorial guidance based on the linked sources, not our own device tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.

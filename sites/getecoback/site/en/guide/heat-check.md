@@ -39,15 +39,12 @@ New build / good
 
 The check scores the four factors from 0 to 100. The higher the total, the higher the overheating risk:
 
-Factor | Biggest driver | Effect |
-
-Location | Attic / loft | strongest — roof rooms heat up extremely |
-
-Window direction | South / West | very strong — direct afternoon sun |
-
-Window area | large / floor-to-ceiling | strong — more glass, more solar gain |
-
-Insulation | old building / poor | medium — heat stays in the room longer |
+| Factor | Biggest driver | Effect |
+| --- | --- | --- |
+| Location | Attic / loft | strongest — roof rooms heat up extremely |
+| Window direction | South / West | very strong — direct afternoon sun |
+| Window area | large / floor-to-ceiling | strong — more glass, more solar gain |
+| Insulation | old building / poor | medium — heat stays in the room longer |
 
 ## What helps — in the right order
 
@@ -69,4 +66,4 @@ Order matters: **first block the sun, then ventilate, then actively cool.** An a
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Note: EcoBack does not test devices itself; picks summarise public tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.
+Note: Editorial guidance based on the linked sources, not our own device tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.

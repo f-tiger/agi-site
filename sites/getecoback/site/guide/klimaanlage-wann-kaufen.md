@@ -17,15 +17,13 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Wir zeigen bewuss
 Mehr Zeit zum Prüfen ist ein Planungsargument, kein Preisnachweis. Uns liegen hier keine belastbare monatliche Preisreihe und keine bundesweite Erhebung zu Liefer- oder Montageterminen vor. Einen pauschalen Montagerabatt nennen wir deshalb nicht.
 
 Vier Prüfungen vor dem Kauf — unabhängig von der Jahreszeit
-Prüfpunkt | Was du abgleichst | Wann du weiter prüfen solltest |
 
-Gerätepreis | Exakte Modellnummer und Variante, Zustand, Versand und benötigtes Zubehör; Preisverlauf desselben Modells. | Wenn nur ein Rabatt gegenüber einer UVP gezeigt wird oder Varianten vermischt werden. |
-
-Lieferung | Den angebotenen Liefertermin für deine Adresse und den tatsächlichen Verkäufer. | Wenn das Gerät erst nach deinem benötigten Einsatztermin ankommt. |
-
-Aufstellung | Abluftführung, Fenster und Platz beim Monoblock; Außenplatz und passende Montage bei Splitgeräten. | Wenn die Aufstellung ungeklärt ist, auch bei einem niedrigen Preis. |
-
-Gesamtkosten | Gerät, Lieferung, notwendiges Zubehör und gegebenenfalls Montage; Betriebsstrom separat abschätzen. | Wenn Angebote unterschiedliche Leistungen enthalten. |
+| Prüfpunkt | Was du abgleichst | Wann du weiter prüfen solltest |
+| --- | --- | --- |
+| Gerätepreis | Exakte Modellnummer und Variante, Zustand, Versand und benötigtes Zubehör; Preisverlauf desselben Modells. | Wenn nur ein Rabatt gegenüber einer UVP gezeigt wird oder Varianten vermischt werden. |
+| Lieferung | Den angebotenen Liefertermin für deine Adresse und den tatsächlichen Verkäufer. | Wenn das Gerät erst nach deinem benötigten Einsatztermin ankommt. |
+| Aufstellung | Abluftführung, Fenster und Platz beim Monoblock; Außenplatz und passende Montage bei Splitgeräten. | Wenn die Aufstellung ungeklärt ist, auch bei einem niedrigen Preis. |
+| Gesamtkosten | Gerät, Lieferung, notwendiges Zubehör und gegebenenfalls Montage; Betriebsstrom separat abschätzen. | Wenn Angebote unterschiedliche Leistungen enthalten. |
 
 **Frei gewähltes Rechenbeispiel, kein Händlerangebot:** 299 € Gerät + 39 € benötigtes Zubehör + 15 € Versand = 353 €. Ein passendes Angebot zu 329 €, das diese Positionen bereits enthält, wäre in diesem Beispiel 24 € günstiger. Die Zahlen belegen keinen Saisonrabatt und keine gleiche Geräteleistung.
 
@@ -68,4 +66,4 @@ Aktuelle Preise ansehen →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

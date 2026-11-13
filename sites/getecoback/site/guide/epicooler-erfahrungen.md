@@ -16,15 +16,12 @@ Für echte Kühlung: Monoblock mit Schlauch oder Split — Empfehlungen unten.
 
 ## Herstellerangabe vs. was überprüfbar ist
 
-Behauptung (Herstellerangabe) | Überprüfbarer Stand |
-
-„Klimaanlage & Heizung, ohne Abluftschlauch, ohne Außeneinheit“ | Physikalisch kann so ein Gerät den Raum **netto nicht kühlen** — Wärme muss abgeführt werden. Heizen (PTC-Element) funktioniert dagegen problemlos: Heizen erzeugt Wärme im Raum, genau das kann jedes Gerät. |
-
-„Kondensat verdunstet intern, kein Tank nötig“ | Verdunstung im selben Raum führt die Wärme **nicht ab** und erhöht die Luftfeuchte — der gefühlte Kühleffekt sinkt damit sogar. |
-
-„Testsieger / Stiftung Warentest 2026“ | Ein Stiftung-Warentest-Eintrag war für uns **nicht auffindbar**; die Behauptung erscheint nur auf Seiten, die das Gerät selbst verkaufen. |
-
-Positive „Erfahrungsberichte“ auf Test-Portalen | Die Top-Treffer gehören zu Verkaufsdomains (z. B. my-epicooler.com, go-epicooler.site). Auch Portale, die stattdessen Warnberichte veröffentlichen, folgen teils demselben Muster — dieselbe Seitenvorlage taucht bei jedem neuen viralen Kühlgerät wieder auf. Prüfe die Domain, bevor du einem „Test“ glaubst, egal in welche Richtung er ausschlägt. |
+| Behauptung (Herstellerangabe) | Überprüfbarer Stand |
+| --- | --- |
+| „Klimaanlage & Heizung, ohne Abluftschlauch, ohne Außeneinheit“ | Physikalisch kann so ein Gerät den Raum **netto nicht kühlen** — Wärme muss abgeführt werden. Heizen (PTC-Element) funktioniert dagegen problemlos: Heizen erzeugt Wärme im Raum, genau das kann jedes Gerät. |
+| „Kondensat verdunstet intern, kein Tank nötig“ | Verdunstung im selben Raum führt die Wärme **nicht ab** und erhöht die Luftfeuchte — der gefühlte Kühleffekt sinkt damit sogar. |
+| „Testsieger / Stiftung Warentest 2026“ | Ein Stiftung-Warentest-Eintrag war für uns **nicht auffindbar**; die Behauptung erscheint nur auf Seiten, die das Gerät selbst verkaufen. |
+| Positive „Erfahrungsberichte“ auf Test-Portalen | Die Top-Treffer gehören zu Verkaufsdomains (z. B. my-epicooler.com, go-epicooler.site). Auch Portale, die stattdessen Warnberichte veröffentlichen, folgen teils demselben Muster — dieselbe Seitenvorlage taucht bei jedem neuen viralen Kühlgerät wieder auf. Prüfe die Domain, bevor du einem „Test“ glaubst, egal in welche Richtung er ausschlägt. |
 
 ## Die Physik in drei Sätzen
 
@@ -68,4 +65,4 @@ Methode: Wir haben den EpiCooler nicht selbst getestet. Geprüft wird, was sich 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

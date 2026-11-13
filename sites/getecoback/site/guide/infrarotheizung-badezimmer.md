@@ -22,15 +22,12 @@ Ein praktischer Punkt, der oft untergeht: Das Panel wärmt keine Fliesen auf Vor
 
 Wir rechnen hier mit denselben Bandbreiten wie im Watt-Rechner dieser Seite: **60 W pro m²** bei guter Dämmung (Neubau), **80 W pro m²** bei mittlerer Dämmung, **100 W pro m²** bei schlechter Dämmung oder im Altbau. Bäder sind klein, deshalb hier die vier Größen, die in Wohnungen tatsächlich vorkommen:
 
-Badgröße | Gute Dämmung (Neubau)60 W/m² | Mittlere Dämmung80 W/m² | Schlechte Dämmung / Altbau100 W/m² |
-
-**4 m²** (Gäste-WC, innenliegendes Bad) | 240 W | 320 W | 400 W |
-
-**6 m²** (typisches Wohnungsbad) | 360 W | 480 W | 600 W |
-
-**8 m²** | 480 W | 640 W | 800 W |
-
-**10 m²** (großes Bad, oft mit Fenster) | 600 W | 800 W | 1.000 W |
+| Badgröße | Gute Dämmung (Neubau) 60 W/m² | Mittlere Dämmung 80 W/m² | Schlechte Dämmung / Altbau 100 W/m² |
+| --- | --- | --- | --- |
+| **4 m²** (Gäste-WC, innenliegendes Bad) | 240 W | 320 W | 400 W |
+| **6 m²** (typisches Wohnungsbad) | 360 W | 480 W | 600 W |
+| **8 m²** | 480 W | 640 W | 800 W |
+| **10 m²** (großes Bad, oft mit Fenster) | 600 W | 800 W | 1.000 W |
 
 Zwei Dinge, die die Tabelle nicht sagen kann. Erstens: Die Dämmung ist der größere Hebel als die Fläche. Dasselbe 6-m²-Bad liegt zwischen 360 und 600 Watt, je nachdem, ob es im gedämmten Neubau innen liegt oder im Altbau an zwei Außenwänden mit einem alten Fenster hängt. Zweitens: Diese Werte beschreiben die Leistung, um einen Raum warm zu halten. Für das Bad-Muster — von kalt auf angenehm in einer Viertelstunde — ist das eher die Untergrenze. Wenn du zwischen zwei Stufen stehst, ist die größere die vernünftigere Wahl: Ein zu kleines Panel läuft durch und wird trotzdem nicht rechtzeitig fertig.
 
@@ -40,13 +37,11 @@ Für deine konkreten Zahlen inklusive Deckenhöhe und offengelegter Formel: [Inf
 
 Das eigentliche Problem im Bad ist selten die Leistung, sondern der **Platz**. Fliesenspiegel, Schrank, Handtuchhalter, Tür, Fenster, Dusche — die freie zusammenhängende Wandfläche ist in einem 6-m²-Bad oft schon vergeben. Die Bauform entscheidet deshalb häufig vor der Wattzahl. Der folgende Vergleich betrifft ausschließlich die Bauform, nicht die Heizleistung — bleibt gar keine Wand frei, geht es an die [Decke, und diese Entscheidung hat ihre eigene Seite](https://getecoback.com/guide/infrarotheizung-decke-oder-wand.html); und wer zur Miete nicht bohren will, kommt bei der [Standgerät-Variante](https://getecoback.com/guide/infrarotheizung-standgeraet.html) heraus: Bei gleicher Wattzahl ist ein Spiegelpanel elektrisch nichts anderes als ein weißes.
 
-Bauform | Wohin sie physisch passt | Was du dafür aufgibst |
-
-**Spiegelheizung** | Auf die Wand über dem Waschbecken — also genau dorthin, wo ohnehin ein Spiegel hängt. In kleinen Bädern oft die einzige Fläche, die noch frei ist, weil sie doppelt genutzt wird. | Die Fläche ist danach festgelegt. Du kannst das Gerät nicht später umhängen, ohne den Spiegelplatz zu verlieren. Und ob der Spiegel beim Duschen beschlagsfrei bleibt, steht in den Herstellerangaben — nicht selbst getestet, wir übernehmen dafür keine Zusage. |
-
-**Glattes Wandpanel** | Jede freie, zusammenhängende Wandfläche in der passenden Größe. Am flexibelsten, solange es diese Fläche gibt. | Genau diese Fläche — im Bad meist die Wand, an der sonst Handtuchhalter, Schrank oder Regal hängen würden. Vor dem Kauf ausmessen, nicht schätzen. |
-
-**Deckenpanel** | An die Decke, wenn keine Wand mehr frei ist. Für Bäder, in denen jede Wandfläche belegt ist, die naheliegendste Lösung. | Montage über Kopf, und der Anschluss liegt in aller Regel nicht neben einer Steckdose — das ist dann ein Fall für die Elektrofachkraft, nicht fürs Wochenende. |
+| Bauform | Wohin sie physisch passt | Was du dafür aufgibst |
+| --- | --- | --- |
+| **Spiegelheizung** | Auf die Wand über dem Waschbecken — also genau dorthin, wo ohnehin ein Spiegel hängt. In kleinen Bädern oft die einzige Fläche, die noch frei ist, weil sie doppelt genutzt wird. | Die Fläche ist danach festgelegt. Du kannst das Gerät nicht später umhängen, ohne den Spiegelplatz zu verlieren. Und ob der Spiegel beim Duschen beschlagsfrei bleibt, steht in den Herstellerangaben — nicht selbst getestet, wir übernehmen dafür keine Zusage. |
+| **Glattes Wandpanel** | Jede freie, zusammenhängende Wandfläche in der passenden Größe. Am flexibelsten, solange es diese Fläche gibt. | Genau diese Fläche — im Bad meist die Wand, an der sonst Handtuchhalter, Schrank oder Regal hängen würden. Vor dem Kauf ausmessen, nicht schätzen. |
+| **Deckenpanel** | An die Decke, wenn keine Wand mehr frei ist. Für Bäder, in denen jede Wandfläche belegt ist, die naheliegendste Lösung. | Montage über Kopf, und der Anschluss liegt in aller Regel nicht neben einer Steckdose — das ist dann ein Fall für die Elektrofachkraft, nicht fürs Wochenende. |
 
 Praktische Reihenfolge: erst die freie Fläche messen, dann die Wattzahl aus der Tabelle oben ziehen, dann prüfen, ob ein Panel dieser Leistung in dieser Größe überhaupt an die gemessene Stelle passt. Wer umgekehrt anfängt, kauft ein Gerät, für das die Wand fehlt.
 
@@ -131,4 +126,4 @@ Elektrische Handtuchheizkörper auf Amazon.de ansehen →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

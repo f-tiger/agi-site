@@ -9,7 +9,7 @@ Canonical (HTML, zitierfähig): https://getecoback.com/it/guide/climatizzatore-s
 Split senza carotaggioMidea PortaSplit→
 Monoblocco tuttofareDe'Longhi Pinguino PAC EX105→
 Miglior prezzoComfee MPPH-09CRN7→
-Tutti i modelli con le motivazioni ↓
+[Tutti i modelli con le motivazioni ↓](https://getecoback.com/it/guide/climatizzatore-senza-unita-esterna.html#i-modelli)
 
 🗓 Aggiornato il 28 agosto 2026 · Redazione EcoBack
 
@@ -25,19 +25,14 @@ Come in ogni split, il compressore rumoroso sta fuori (balcone, terrazzo, davanz
 
 ## Split quick-connect vs monoblocco portatile
 
-| Split quick-connect | Monoblocco portatile |
-
-Rumore in stanza | ~35–42 dB (da camera da letto) | ~55–65 dB |
-
-Efficienza | Più alta (vero split) | Più bassa |
-
-Prezzo | ~800–1.300 € | ~250–600 € |
-
-Montaggio | Da soli, ~1–2 ore | Da soli, ~10 minuti |
-
-Serve un modulo esterno? | Sì (balcone/davanzale) | No, solo il tubo di scarico |
-
-Funzione riscaldamento | Quasi sempre (pompa di calore) | A volte |
+|  | Split quick-connect | Monoblocco portatile |
+| --- | --- | --- |
+| Rumore in stanza | ~35–42 dB (da camera da letto) | ~55–65 dB |
+| Efficienza | Più alta (vero split) | Più bassa |
+| Prezzo | ~800–1.300 € | ~250–600 € |
+| Montaggio | Da soli, ~1–2 ore | Da soli, ~10 minuti |
+| Serve un modulo esterno? | Sì (balcone/davanzale) | No, solo il tubo di scarico |
+| Funzione riscaldamento | Quasi sempre (pompa di calore) | A volte |
 
 ## Centro storico e condominio: perché qui conta doppio
 
@@ -114,4 +109,4 @@ Split da montare da soli →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Nota: EcoBack non testa i prodotti in proprio; le scelte riassumono test pubblici. Il sito è finanziato con link affiliati Amazon sulle pagine HTML — questa vista Markdown non ne contiene volutamente.
+Nota: Indicazioni redazionali basate sulle fonti collegate, non test propri. Il sito è finanziato con link affiliati Amazon sulle pagine HTML — questa vista Markdown non ne contiene volutamente.

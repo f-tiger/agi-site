@@ -16,13 +16,11 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unte
 
 „AEG ChillFlex Pro“ bezeichnet kein einzelnes Gerät, sondern mehrere Modelle mit sehr ähnlichen Namen — wer Testergebnisse liest, sollte darum immer auf die Modellnummer achten:
 
-Variante | Leistung | Einordnung |
-
-**AXP26U338CW** | 9.000 BTU (2,6 kW), EEK A | Die meistgetestete Variante — auf sie beziehen sich die Zahlen dieser Seite |
-
-AXP34U338CW / AXP35U538CW | ca. 12.000 BTU (3,4–3,5 kW) | Die stärkeren Varianten für größere Räume; in öffentlichen Tests als praktisch baugleich beschrieben |
-
-AXP26U558HW „Silence“ | 9.000-BTU-Klasse | Eigene Leise-Variante, in Test-Aggregationen mit besserer Note geführt (1,8 „gut“ bei Testberichte.de) |
+| Variante | Leistung | Einordnung |
+| --- | --- | --- |
+| **AXP26U338CW** | 9.000 BTU (2,6 kW), EEK A | Die meistgetestete Variante — auf sie beziehen sich die Zahlen dieser Seite |
+| AXP34U338CW / AXP35U538CW | ca. 12.000 BTU (3,4–3,5 kW) | Die stärkeren Varianten für größere Räume; in öffentlichen Tests als praktisch baugleich beschrieben |
+| AXP26U558HW „Silence“ | 9.000-BTU-Klasse | Eigene Leise-Variante, in Test-Aggregationen mit besserer Note geführt (1,8 „gut“ bei Testberichte.de) |
 
 Wichtig beim Kauf über Suchergebnisse: Die Angebote mischen diese Varianten. Wer die kleine 9.000-BTU-Ausführung erwartet und die 12.000-BTU-Variante erwischt (oder umgekehrt), bekommt ein anderes Gerät für einen anderen Raum.
 
@@ -30,19 +28,14 @@ Wichtig beim Kauf über Suchergebnisse: Die Angebote mischen diese Varianten. We
 
 Der AXP26U338CW wird in Test-Aggregationen mit der Gesamtnote **2,4 („gut“)** geführt (Testberichte.de); in Messungen von testit.de lag die Leistungsaufnahme je nach Modus und Außentemperatur zwischen 718 und 990 W. Über die öffentlichen Tests hinweg wiederholen sich dieselben Befunde:
 
-Befund öffentlicher Tests | Unsere Einordnung für den Alltag |
-
-✓ Schlafmodus senkt die Lautstärke auf ca. 52 dB(A), Ventilator-Betrieb unter 50 dB | Das ist das eigentliche Kaufargument — Einordnung unten |
-
-✓ Gemessener Verbrauch 718–990 W je nach Modus und Außentemperatur | Was das pro Sommer kostet, steht im [Stromkosten-Ratgeber](https://getecoback.com/guide/klimaanlage-stromkosten.html) |
-
-✓ Gleichmäßige Temperaturverteilung im Raum, gut lesbares Bedienfeld | Solide Grundtugenden, kein Alleinstellungsmerkmal |
-
-✕ Rund 64 dB(A) im Normalbetrieb | Oberes Mittelfeld der Monoblock-Klasse — der Leise-Ruf gilt nur für den Schlafmodus |
-
-✕ Keine Fensterabdichtung im Lieferumfang | Ohne Abdichtung verliert jeder Monoblock den Großteil seiner Wirkung — Kit (15–30 €) direkt mitbestellen: [welches passt zu welchem Fenster](https://getecoback.com/guide/fensterabdichtung-klimaanlage.html) |
-
-✕ Keine App-Steuerung | Bedienung am Gerät oder per Fernbedienung; für Smart-Home-Automatik die falsche Wahl |
+| Befund öffentlicher Tests | Unsere Einordnung für den Alltag |
+| --- | --- |
+| ✓ Schlafmodus senkt die Lautstärke auf ca. 52 dB(A), Ventilator-Betrieb unter 50 dB | Das ist das eigentliche Kaufargument — Einordnung unten |
+| ✓ Gemessener Verbrauch 718–990 W je nach Modus und Außentemperatur | Was das pro Sommer kostet, steht im [Stromkosten-Ratgeber](https://getecoback.com/guide/klimaanlage-stromkosten.html) |
+| ✓ Gleichmäßige Temperaturverteilung im Raum, gut lesbares Bedienfeld | Solide Grundtugenden, kein Alleinstellungsmerkmal |
+| ✕ Rund 64 dB(A) im Normalbetrieb | Oberes Mittelfeld der Monoblock-Klasse — der Leise-Ruf gilt nur für den Schlafmodus |
+| ✕ Keine Fensterabdichtung im Lieferumfang | Ohne Abdichtung verliert jeder Monoblock den Großteil seiner Wirkung — Kit (15–30 €) direkt mitbestellen: [welches passt zu welchem Fenster](https://getecoback.com/guide/fensterabdichtung-klimaanlage.html) |
+| ✕ Keine App-Steuerung | Bedienung am Gerät oder per Fernbedienung; für Smart-Home-Automatik die falsche Wahl |
 
 ## Für welchen Raum reicht er?
 
@@ -60,15 +53,12 @@ Daraus folgt die praktikable Nacht-Strategie: am Abend auf voller Leistung **vor
 
 ## Alternativen: wann ein anderes Gerät besser passt
 
-Situation | Bessere Wahl | Warum |
-
-15–25 m², Effizienz-Priorität | De'Longhi Pinguino PAC EX105 | Energieeffizienzklasse A+++ — Ausnahme in dieser Klasse, [Test-Überblick hier](https://getecoback.com/guide/pinguino-pac-ex105-test.html) |
-
-15–20 m², Budget knapp | Comfee MPPH-09CRN7 | 9.000 BTU Grundleistung, deutlich günstiger |
-
-Sehr geräuschempfindlich | Midea PortaSplit | Kompressor hängt draußen — drinnen deutlich leiser als jeder Monoblock |
-
-Über 30 m² | Klarstein Kraftwerk Smart 12K | 12.000 BTU Reserve für große Räume |
+| Situation | Bessere Wahl | Warum |
+| --- | --- | --- |
+| 15–25 m², Effizienz-Priorität | De'Longhi Pinguino PAC EX105 | Energieeffizienzklasse A+++ — Ausnahme in dieser Klasse, [Test-Überblick hier](https://getecoback.com/guide/pinguino-pac-ex105-test.html) |
+| 15–20 m², Budget knapp | Comfee MPPH-09CRN7 | 9.000 BTU Grundleistung, deutlich günstiger |
+| Sehr geräuschempfindlich | Midea PortaSplit | Kompressor hängt draußen — drinnen deutlich leiser als jeder Monoblock |
+| Über 30 m² | Klarstein Kraftwerk Smart 12K | 12.000 BTU Reserve für große Räume |
 
 Anzeige · Affiliate-Links — du zahlst denselben Preis. Nicht selbst getestet; Auswahl fasst öffentliche Tests zusammen.
 
@@ -107,4 +97,4 @@ AEG ChillFlex Pro auf Amazon →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

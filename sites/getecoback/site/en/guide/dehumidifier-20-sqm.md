@@ -31,10 +31,13 @@ Example: 300 W ÷ 1,000 × 6 h × €0.30/kWh = €0.54. This is an illustration
 ## Check manufacturer data before buying
 **How to compare the manufacturer data**
 Two examples from existing guides, not a whole-market comparison or an EcoBack product test. Compare extraction and running power at the same temperature and relative humidity (RH). Missing figures remain unknown; they do not establish a ranking.
+
 Manufacturer extraction and power figures; checked on 6 November 2026
-Condition | Comfee MDDF-20DEN7 | MeacoDry Arete One 20L |
-20 °C / 60 % RH | Extraction and running power at these conditions are not verified here. | 8.5 L/day · 216 W |
-10 °C / 60 % RH | Extraction and running power at these conditions are not verified here. | 3.4 L/day · 180 W |
+
+| Condition | Comfee MDDF-20DEN7 | MeacoDry Arete One 20L |
+| --- | --- | --- |
+| 20 °C / 60 % RH | Extraction and running power at these conditions are not verified here. | 8.5 L/day · 216 W |
+| 10 °C / 60 % RH | Extraction and running power at these conditions are not verified here. | 3.4 L/day · 180 W |
 
 The model documents associate 20 L/day with 30°C / 80% RH. That is not a promise for a basement or a laundry load. The linked Comfee documents do not verify figures at the two conditions in this table. Connection ratings or rated input must not be substituted for this missing data.
 Model boundaries: Comfee MDDF-20DEN7 here is the variant without WF. MeacoDry Arete One 20L is neither Arete Two nor One 25L. The UK model page does not verify a German retailer’s equipment, plug, availability or returns. Match voltage, rating plate and manual to the actual offer. Neither candidate replaces investigating moisture sources or suitable ventilation.
@@ -50,4 +53,4 @@ Sources checked on 6 November 2026: [Meaco One 20L](https://www.meaco.com/produc
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Note: EcoBack does not test devices itself; picks summarise public tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.
+Note: Editorial guidance based on the linked sources, not our own device tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.

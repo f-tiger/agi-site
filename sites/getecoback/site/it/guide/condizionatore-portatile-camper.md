@@ -9,7 +9,7 @@ Canonical (HTML, zitierfähig): https://getecoback.com/it/guide/condizionatore-p
 In libera & di notteVentola da campeggio 12V→
 Fermare il caldoTelo termico per il parabrezza→
 Raffreddamento veroClimatizzatore a tetto per camper→
-Tutte le opzioni con le motivazioni ↓
+[Tutte le opzioni con le motivazioni ↓](https://getecoback.com/it/guide/condizionatore-portatile-camper.html#le-quattro-opzioni)
 
 🗓 Aggiornato il 28 agosto 2026 · Redazione EcoBack
 
@@ -23,15 +23,12 @@ In qualità di Affiliato Amazon, EcoBack riceve un guadagno dagli acquisti idone
 
 Le strade per raffreddare un camper sono in sostanza quattro. Si distinguono soprattutto per una cosa: se rendono l'aria davvero più fredda (compressore) oppure la muovono e la umidificano soltanto (ventola/evaporazione).
 
-Tipo | Raffredda davvero? | Consumo | Peso / montaggio | Per chi |
-
-Climatizzatore a tetto | Sì, molto | ~400–900 W (230 V) | 25–35 kg, montaggio fisso | Camper con colonnina o piazzola fissa |
-
-Climatizzatore nel gavone | Sì, molto | ~400–800 W (230 V) | ~20–30 kg, nel doppio fondo o in coda | Van e furgonati, altezza contenuta |
-
-Monoblocco portatile | Sì, medio | ~800–1.200 W (230 V) | ~20–30 kg, con tubo di scarico | Uso occasionale, con colonnina |
-
-Mini raffrescatore 12V / ventola | No (solo flusso d'aria) | ~2–60 W (12 V) | Leggerissimo, mobile | Tenda, soste in libera, come complemento |
+| Tipo | Raffredda davvero? | Consumo | Peso / montaggio | Per chi |
+| --- | --- | --- | --- | --- |
+| Climatizzatore a tetto | Sì, molto | ~400–900 W (230 V) | 25–35 kg, montaggio fisso | Camper con colonnina o piazzola fissa |
+| Climatizzatore nel gavone | Sì, molto | ~400–800 W (230 V) | ~20–30 kg, nel doppio fondo o in coda | Van e furgonati, altezza contenuta |
+| Monoblocco portatile | Sì, medio | ~800–1.200 W (230 V) | ~20–30 kg, con tubo di scarico | Uso occasionale, con colonnina |
+| Mini raffrescatore 12V / ventola | No (solo flusso d'aria) | ~2–60 W (12 V) | Leggerissimo, mobile | Tenda, soste in libera, come complemento |
 
 ## Climatizzatore a tetto: il più potente — ma corrente e peso
 
@@ -116,4 +113,4 @@ Climatizzatori per camper →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Nota: EcoBack non testa i prodotti in proprio; le scelte riassumono test pubblici. Il sito è finanziato con link affiliati Amazon sulle pagine HTML — questa vista Markdown non ne contiene volutamente.
+Nota: Indicazioni redazionali basate sulle fonti collegate, non test propri. Il sito è finanziato con link affiliati Amazon sulle pagine HTML — questa vista Markdown non ne contiene volutamente.

@@ -12,11 +12,10 @@ A heated airer is a drying rack with a low-wattage heating element in the bars. 
 
 Air can only hold so much water vapour, and at British indoor temperatures it is much less than intuition suggests. Here is how much water the air of an ordinary room can absorb before it is completely saturated, starting from a normal 55% humidity:
 
-Room | At 16 °C | At 18 °C | At 20 °C |
-
-12 m² bedroom (about 30 m³) | 184 g | 207 g | 233 g |
-
-18 m² living room (about 45 m³) | 275 g | 310 g | 349 g |
+| Room | At 16 °C | At 18 °C | At 20 °C |
+| --- | --- | --- | --- |
+| 12 m² bedroom (about 30 m³) | 184 g | 207 g | 233 g |
+| 18 m² living room (about 45 m³) | 275 g | 310 g | 349 g |
 
 Grams. Not litres. A spun wash load carries considerably more water than that out of the machine — weigh the basket wet, then weigh it again when the washing is dry, and the difference is what you are about to put into the room.
 
@@ -37,17 +36,13 @@ Assumes the door and windows are shut. Any ventilation raises the figure, which 
 
 ## What each machine is actually for
 
-| Heated airer | Dehumidifier |
-
-What it does | Adds gentle heat to the fabric so water leaves it faster | Takes water out of the room's air and puts it in a tank |
-
-Where the water ends up | In your air | In the tank, which you empty down the sink |
-
-Speeds up drying | Yes, strongly at the start | Yes, and it keeps working after the air would otherwise have saturated |
-
-Risk if used alone in a closed room | Condensation on the cold surfaces | None from moisture; it is the thing removing it |
-
-Leaves the room warmer | Yes, slightly | Yes — nearly all the electricity becomes heat |
+|  | Heated airer | Dehumidifier |
+| --- | --- | --- |
+| What it does | Adds gentle heat to the fabric so water leaves it faster | Takes water out of the room's air and puts it in a tank |
+| Where the water ends up | In your air | In the tank, which you empty down the sink |
+| Speeds up drying | Yes, strongly at the start | Yes, and it keeps working after the air would otherwise have saturated |
+| Risk if used alone in a closed room | Condensation on the cold surfaces | None from moisture; it is the thing removing it |
+| Leaves the room warmer | Yes, slightly | Yes — nearly all the electricity becomes heat |
 
 They are complements, not alternatives. The airer moves water out of the clothes; the dehumidifier moves it out of the room. Run the airer alone in a closed bedroom and the drying stalls anyway once the air approaches saturation, because wet fabric only gives up water to air that has room for it.
 
@@ -57,19 +52,14 @@ At the Ofgem price cap for **1 October to 31 December 2026**, the average electr
 
 Illustrative fixed-draw examples, not product measurements or matched drying tests. Eight hours is an assumed runtime, not a promise that a load will be dry. The dryer row assumes 2.0 kWh for one cycle; use your own cycle measurement or label basis.
 
-Example appliance | Assumed draw | Per hour | Energy (8 h; dryer: 1 cycle) | Cost (£) |
-
-Heated airer, low-wattage | 100 W | 2.6p | 0.8 kWh | 0.21 |
-
-Heated airer, mid | 200 W | 5.3p | 1.6 kWh | 0.42 |
-
-Heated airer, three-tier | 300 W | 7.9p | 2.4 kWh | 0.63 |
-
-Compressor dehumidifier alongside it | 300 W | 7.9p | 2.4 kWh | 0.63 |
-
-Airer plus dehumidifier (both at 300 W) | 600 W | 15.8p | 4.8 kWh | 1.26 |
-
-Tumble dryer, one cycle | per cycle | — | 2.0 kWh | 0.53 |
+| Example appliance | Assumed draw | Per hour | Energy (8 h; dryer: 1 cycle) | Cost (£) |
+| --- | --- | --- | --- | --- |
+| Heated airer, low-wattage | 100 W | 2.6p | 0.8 kWh | 0.21 |
+| Heated airer, mid | 200 W | 5.3p | 1.6 kWh | 0.42 |
+| Heated airer, three-tier | 300 W | 7.9p | 2.4 kWh | 0.63 |
+| Compressor dehumidifier alongside it | 300 W | 7.9p | 2.4 kWh | 0.63 |
+| Airer plus dehumidifier (both at 300 W) | 600 W | 15.8p | 4.8 kWh | 1.26 |
+| Tumble dryer, one cycle | per cycle | — | 2.0 kWh | 0.53 |
 
 In this example, a 300 W airer plus a 300 W dehumidifier, both running for eight hours, use **4.8 kWh (£1.26)**. That is **2.4 times** the energy of the assumed **2.0 kWh (£0.53)** dryer cycle at the same unit rate. This is an arithmetic comparison, not evidence that either setup dries the same load to the same final dryness.
 
@@ -114,4 +104,4 @@ Brief, full ventilation works and costs nothing, because cold outside air is dry
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Note: EcoBack does not test devices itself; picks summarise public tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.
+Note: Editorial guidance based on the linked sources, not our own device tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.

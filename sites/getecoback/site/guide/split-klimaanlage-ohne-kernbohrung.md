@@ -16,19 +16,14 @@ Wie bei jeder Splitanlage hängt der laute Kompressor draußen (Balkon, Terrasse
 
 ## Quick-Connect-Split vs. tragbare Monoblock-Klimaanlage
 
-| Quick-Connect-Split | Tragbarer Monoblock |
-
-Lautstärke innen | ~35–42 dB (schlafzimmertauglich) | ~55–65 dB |
-
-Effizienz | Höher (echter Split) | Niedriger |
-
-Preis | ~800–1.300 € | ~250–600 € |
-
-Montage | Selbst, ~1–2 Std. | Selbst, ~10 Min. |
-
-Außeneinheit nötig? | Ja (Balkon/Fensterplatz) | Nein, nur Abluftschlauch |
-
-Heizfunktion | Meist ja (Wärmepumpe) | Teilweise |
+|  | Quick-Connect-Split | Tragbarer Monoblock |
+| --- | --- | --- |
+| Lautstärke innen | ~35–42 dB (schlafzimmertauglich) | ~55–65 dB |
+| Effizienz | Höher (echter Split) | Niedriger |
+| Preis | ~800–1.300 € | ~250–600 € |
+| Montage | Selbst, ~1–2 Std. | Selbst, ~10 Min. |
+| Außeneinheit nötig? | Ja (Balkon/Fensterplatz) | Nein, nur Abluftschlauch |
+| Heizfunktion | Meist ja (Wärmepumpe) | Teilweise |
 
 ## Für wen lohnt sich der Aufpreis?
 
@@ -90,4 +85,4 @@ Splitanlagen zur Selbstmontage →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

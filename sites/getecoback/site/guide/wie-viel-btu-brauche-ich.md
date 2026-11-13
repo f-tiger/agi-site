@@ -14,19 +14,14 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unte
 
 **Kurz:** Rechne rund **340 BTU pro m²** und kauf das Gerät der Klasse, die eine Stufe darüber liegt. Für 20 m² sind das 6.800 BTU gerechnet und ein Gerät der 9.000-BTU-Klasse. Das ist dieselbe Regel, mit der unser [BTU-Rechner](https://getecoback.com/guide/btu-rechner.html) und unser [offener Datensatz](https://getecoback.com/daten.html) rechnen.
 
-Raumgröße | Rechenwert (340 × m², Normalfall) | Geräteklasse mit Reserve |
-
-[10 m²](https://getecoback.com/guide/klimaanlage-10-qm.html) | 3.400 BTU | 5.000–7.000 BTU |
-
-[15 m²](https://getecoback.com/guide/klimaanlage-15-qm.html) | 5.100 BTU | 7.000–9.000 BTU |
-
-[20 m²](https://getecoback.com/guide/klimaanlage-20-qm.html) | 6.800 BTU | 9.000 BTU |
-
-[25 m²](https://getecoback.com/guide/klimaanlage-25-qm.html) | 8.500 BTU | 10.000–12.000 BTU |
-
-[30 m²](https://getecoback.com/guide/klimaanlage-30-qm.html) | 10.200 BTU | 12.000–13.000 BTU |
-
-[40 m²](https://getecoback.com/guide/klimaanlage-40-qm.html) | 13.600 BTU | 14.000+ → Split BTU |
+| Raumgröße | Rechenwert (340 × m², Normalfall) | Geräteklasse mit Reserve |
+| --- | --- | --- |
+| [10 m²](https://getecoback.com/guide/klimaanlage-10-qm.html) | 3.400 BTU | 5.000–7.000 BTU |
+| [15 m²](https://getecoback.com/guide/klimaanlage-15-qm.html) | 5.100 BTU | 7.000–9.000 BTU |
+| [20 m²](https://getecoback.com/guide/klimaanlage-20-qm.html) | 6.800 BTU | 9.000 BTU |
+| [25 m²](https://getecoback.com/guide/klimaanlage-25-qm.html) | 8.500 BTU | 10.000–12.000 BTU |
+| [30 m²](https://getecoback.com/guide/klimaanlage-30-qm.html) | 10.200 BTU | 12.000–13.000 BTU |
+| [40 m²](https://getecoback.com/guide/klimaanlage-40-qm.html) | 13.600 BTU | 14.000+ → Split BTU |
 
 Der Rechenwert gilt für normale Deckenhöhe bis 2,6 m, normale Sonne und zwei Personen. Die rechte Spalte ist unser Datensatz: eine Klasse Reserve für alles, was davon abweicht. Eine Klasse Reserve ist in Ordnung, das Doppelte nicht. Der Rechner oben rundet auf volle 500 BTU, deshalb zeigt er für 20 m² 7.000 statt 6.800. Zur Einordnung: 1 kW Kühlleistung sind rund 3.412 BTU pro Stunde, ein 9.000-BTU-Gerät kühlt also mit etwa 2,6 kW.
 
@@ -94,4 +89,4 @@ Fürs Schlafzimmer auch die Lautstärke prüfen — siehe [beste Klimaanlage fü
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

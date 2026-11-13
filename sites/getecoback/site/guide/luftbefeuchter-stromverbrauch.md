@@ -13,10 +13,13 @@ Aktualisiert am 12. November 2026 · Redaktionelle Kauf- und Nutzungshilfe, kein
 ## Was acht Stunden rechnerisch kosten
 Beispielannahmen: 8 Stunden täglich, 30 Tage und 0,30 €/kWh. Der Tarif ist frei gewählt, kein aktueller deutscher Durchschnitt. Hersteller-Nennleistungen sind die Grundlage; Regelpausen, Nachlauf oder Filtertrocknung sind nicht als gemessener Nutzungsablauf abgebildet.
 
-Rechenszenario, keine VerbrauchsmessungModell | Nennleistung | 8 Stunden | pro Tag | 30 Tage |
-Stadler Form Oskar weiß O-020 | 6–18 W | 0,048–0,144 kWh | 0,01–0,04 € | 0,43–1,30 € |
-Beurer LB 200 | 17 W | 0,136 kWh | 0,04 € | 1,22 € |
-Beurer LB 55 | 365 W | 2,920 kWh | 0,88 € | 26,28 € |
+Rechenszenario, keine Verbrauchsmessung
+
+| Modell | Nennleistung | 8 Stunden | pro Tag | 30 Tage |
+| --- | --- | --- | --- | --- |
+| Stadler Form Oskar weiß O-020 | 6–18 W | 0,048–0,144 kWh | 0,01–0,04 € | 0,43–1,30 € |
+| Beurer LB 200 | 17 W | 0,136 kWh | 0,04 € | 1,22 € |
+| Beurer LB 55 | 365 W | 2,920 kWh | 0,88 € | 26,28 € |
 
 Quellen: [Oskar: EU-Anleitung, DE S. 10–15](https://www.stadlerform.com/media/ed/93/91/1712837853/stadler-form-oskar-manual-eu.pdf) · [LB 200: Anleitung 2026, DE S. 7–11](https://res.cloudinary.com/beurer/image/upload/v1772130462/stibo-live/10069_LB200_2026-02-12_03_IM1_BEU.pdf) · [LB 55: Anleitung 2026, DE S. 5–10](https://res.cloudinary.com/beurer/image/upload/v1785407071/stibo-live/68605_LB55_2026-06-01_09_IM1_BEU.pdf).
 
@@ -46,4 +49,4 @@ Sind Filter und Wasser in der Stromrechnung enthalten?Nein. Ersatzfilter oder Ka
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

@@ -30,15 +30,12 @@ Referenzwerte: Stromspiegel 2025, Wohnung ohne elektrische Warmwasserbereitung. 
 
 ## Einordnung nach Haushaltsgröße
 
-Haushalt (Wohnung) | Ø Verbrauch/Jahr* | Ø Kosten bei 37 ct |
-
-1 Person | ~1.200 kWh | ~444 € |
-
-2 Personen | ~1.900 kWh | ~703 € |
-
-3 Personen | ~2.400 kWh | ~888 € |
-
-4 Personen | ~2.600 kWh | ~962 € |
+| Haushalt (Wohnung) | Ø Verbrauch/Jahr* | Ø Kosten bei 37 ct |
+| --- | --- | --- |
+| 1 Person | ~1.200 kWh | ~444 € |
+| 2 Personen | ~1.900 kWh | ~703 € |
+| 3 Personen | ~2.400 kWh | ~888 € |
+| 4 Personen | ~2.600 kWh | ~962 € |
 
 *Stromspiegel 2025 (co2online), Wohnung ohne elektrische Warmwasserbereitung — basiert auf 57.000 realen Haushaltsdaten.
 
@@ -71,4 +68,4 @@ Strommessgeräte ansehen →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

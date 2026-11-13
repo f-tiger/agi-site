@@ -26,21 +26,15 @@ Wichtigste Lese-Regel: **Höhere Zahl heißt mehr Leistung für größere Räume
 
 ## Vergleichstabelle: EX105 × N90 ECO Silent × EX130
 
-| PAC EX105 | PAC N90 ECO Silent | PAC EX130 |
-
-**Kühlleistung** | 10.000 BTU/h (2,5 kW) | 9.800 BTU/h | 13.000 BTU/h |
-
-**Lautstärke** | ~63 dB Turbo am Gerät, ~55 dB Raummitte gemessen | 50–52 dB(A) Schalldruck lt. Datenblatt; Silent-Modus unter 50 dB | ~64 dB(A) lt. Datenblatt |
-
-**Energieeffizienz** | A+++ | A | A |
-
-**Preisband** | bei Amazon.de zuletzt ohne Neuangebot (Stand 27.09.2026) — tagesaktuell prüfen | zuletzt ab ca. 400 € gelistet — tagesaktuell prüfen | je nach Variante — tagesaktuell prüfen |
-
-**Raumgröße (340-BTU-Regel)** | 15–25 m² | 15–25 m² | ca. 25–35 m² |
-
-**Rolle** | Allrounder, sparsamster der Familie · [Test-Überblick](https://getecoback.com/guide/pinguino-pac-ex105-test.html) | Am leisesten — Schlafzimmer-Wahl | Große Räume innerhalb der Familie |
-
-| Preis prüfen → | Preis prüfen → | Preis prüfen → |
+|  | PAC EX105 | PAC N90 ECO Silent | PAC EX130 |
+| --- | --- | --- | --- |
+| **Kühlleistung** | 10.000 BTU/h (2,5 kW) | 9.800 BTU/h | 13.000 BTU/h |
+| **Lautstärke** | ~63 dB Turbo am Gerät, ~55 dB Raummitte gemessen | 50–52 dB(A) Schalldruck lt. Datenblatt; Silent-Modus unter 50 dB | ~64 dB(A) lt. Datenblatt |
+| **Energieeffizienz** | A+++ | A | A |
+| **Preisband** | bei Amazon.de zuletzt ohne Neuangebot (Stand 27.09.2026) — tagesaktuell prüfen | zuletzt ab ca. 400 € gelistet — tagesaktuell prüfen | je nach Variante — tagesaktuell prüfen |
+| **Raumgröße (340-BTU-Regel)** | 15–25 m² | 15–25 m² | ca. 25–35 m² |
+| **Rolle** | Allrounder, sparsamster der Familie · [Test-Überblick](https://getecoback.com/guide/pinguino-pac-ex105-test.html) | Am leisesten — Schlafzimmer-Wahl | Große Räume innerhalb der Familie |
+|  | Preis prüfen → | Preis prüfen → | Preis prüfen → |
 
 Anzeige · Affiliate-Links — du zahlst denselben Preis. Nicht selbst getestet; Zahlen aus Hersteller-Datenblättern und öffentlichen Tests.
 
@@ -62,13 +56,11 @@ Genauer nachrechnen (Deckenhöhe, Personen, Küche): [BTU-Rechner](https://getec
 
 Markentreue ist ein schlechter Kaufberater, wenn das Anforderungsprofil nicht passt. Drei Fälle, in denen wir ehrlicherweise woandershin zeigen:
 
-Situation | Bessere Wahl | Warum |
-
-Budget knapp, 15–20 m² | Comfee MPPH-09CRN7 · [Test-Überblick](https://getecoback.com/guide/comfee-mpph-09crn7-test.html) | 9.000 BTU Grundleistung deutlich günstiger — ohne A+++-Effizienz und Silent-Anspruch |
-
-Absolute Ruhe beim Schlafen | Midea PortaSplit | Split-Bauweise: Kompressor hängt draußen — leiser als jeder Monoblock, auch als der N90 |
-
-Über 25–30 m², kleinerer Preis als EX130 | Klarstein Kraftwerk Smart 12K | 12.000 BTU Reserve für große Räume — Details im [30-m²-Ratgeber](https://getecoback.com/guide/klimaanlage-30-qm.html) |
+| Situation | Bessere Wahl | Warum |
+| --- | --- | --- |
+| Budget knapp, 15–20 m² | Comfee MPPH-09CRN7 · [Test-Überblick](https://getecoback.com/guide/comfee-mpph-09crn7-test.html) | 9.000 BTU Grundleistung deutlich günstiger — ohne A+++-Effizienz und Silent-Anspruch |
+| Absolute Ruhe beim Schlafen | Midea PortaSplit | Split-Bauweise: Kompressor hängt draußen — leiser als jeder Monoblock, auch als der N90 |
+| Über 25–30 m², kleinerer Preis als EX130 | Klarstein Kraftwerk Smart 12K | 12.000 BTU Reserve für große Räume — Details im [30-m²-Ratgeber](https://getecoback.com/guide/klimaanlage-30-qm.html) |
 
 Anzeige · Affiliate-Links — du zahlst denselben Preis. Nicht selbst getestet; Auswahl fasst öffentliche Tests zusammen.
 
@@ -109,4 +101,4 @@ De'Longhi PAC N90 ECO Silent auf Amazon →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

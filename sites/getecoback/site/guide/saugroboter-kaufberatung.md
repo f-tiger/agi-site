@@ -5,7 +5,7 @@
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/saugroboter-kaufberatung.html
 
 **Die kurze Entscheidung**Prüfe zuerst Übergänge, Möbelhöhe, Teppiche und den freien Platz für die Station. Erst wenn diese Grenzen passen, lohnt sich der Modellvergleich. Eine große Pa-Zahl oder maximale Kletterhöhe allein entscheidet das nicht.
-1. Wohnung prüfen · 2. Modelle abgleichen · 3. Pflege einplanen
+[1. Wohnung prüfen](https://getecoback.com/guide/saugroboter-kaufberatung.html#wohnung-pruefen) · [2. Modelle abgleichen](https://getecoback.com/guide/saugroboter-kaufberatung.html#modelle-vergleichen) · [3. Pflege einplanen](https://getecoback.com/guide/saugroboter-kaufberatung.html#pflege-einplanen)
 
 Redaktionelle Kaufhilfe, kein eigener Gerätetest. Quellenstand: 2026-11-12. Drei Ansätze von manuell gepflegtem Wischpad bis zur Tankstation. Keine Live-Preise oder Liefergarantie.
 
@@ -33,10 +33,13 @@ Ein Roboter übernimmt keine Treppenreinigung und beseitigt nicht jede manuelle 
 ## Drei unterschiedliche Ansätze, mit klaren Grenzen
 Die Reihenfolge ist keine Rangliste. Beim D10 Plus Gen 2 pflegst du das Wischpad von Hand. Der L10s Ultra Gen 2 ergänzt Moppwäsche und Tankpflege. Beim Saros 10R kommen die flache Bauhöhe und die genau zu prüfende Doppelschwellen-Angabe hinzu. Den Quellenstatus findest du bei jedem Modell.
 
-Wohnungsbedarf und Quellenstatus vergleichenModell | Ansatz | Schwellenangabe mit Grenze | Status |
-Dreame D10 Plus Gen 2 | Absaugstation, Wischpad von Hand pflegen | Bis zu 20 mm laut Dreame-Labortest; die tatsächliche Leistung hängt von der Wohnsituation ab. Keine gesonderte Doppelschwellen-Angabe belegt. Kantenform, Abstand und Boden daher zusätzlich prüfen. | Quellen geprüft |
-Dreame L10s Ultra Gen 2 | Saugen und Wischen mit Tankpflege | Bis zu 20 mm laut internen Hersteller-Labortests. Daraus folgt keine Garantie für scharfkantige, rutschige oder mehrstufige Übergänge. Eine gesonderte Doppelschwellen-Angabe wird hier nicht belegt. | Quellen geprüft |
-Roborock Saros 10R | Flache Bauhöhe und schwierige Übergänge prüfen | Maximal 4 cm bei Doppelschwellen laut deutscher Produktseite. Fußnote 10: interne Roborock-Tests, Ergebnis abhängig von Umgebungsfaktoren. Das bedeutet keine einzelne 4-cm-Kante. Ein separater Einzelschwellenwert wird hier nicht bestätigt. | Quellen geprüft |
+Wohnungsbedarf und Quellenstatus vergleichen
+
+| Modell | Ansatz | Schwellenangabe mit Grenze | Status |
+| --- | --- | --- | --- |
+| [Dreame D10 Plus Gen 2](https://getecoback.com/guide/saugroboter-kaufberatung.html#dreame-d10-plus-gen2) | Absaugstation, Wischpad von Hand pflegen | Bis zu 20 mm laut Dreame-Labortest; die tatsächliche Leistung hängt von der Wohnsituation ab. Keine gesonderte Doppelschwellen-Angabe belegt. Kantenform, Abstand und Boden daher zusätzlich prüfen. | Quellen geprüft |
+| [Dreame L10s Ultra Gen 2](https://getecoback.com/guide/saugroboter-kaufberatung.html#dreame-l10s-ultra-gen2) | Saugen und Wischen mit Tankpflege | Bis zu 20 mm laut internen Hersteller-Labortests. Daraus folgt keine Garantie für scharfkantige, rutschige oder mehrstufige Übergänge. Eine gesonderte Doppelschwellen-Angabe wird hier nicht belegt. | Quellen geprüft |
+| [Roborock Saros 10R](https://getecoback.com/guide/saugroboter-kaufberatung.html#roborock-saros-10r) | Flache Bauhöhe und schwierige Übergänge prüfen | Maximal 4 cm bei Doppelschwellen laut deutscher Produktseite. Fußnote 10: interne Roborock-Tests, Ergebnis abhängig von Umgebungsfaktoren. Das bedeutet keine einzelne 4-cm-Kante. Ein separater Einzelschwellenwert wird hier nicht bestätigt. | Quellen geprüft |
 
 Anzeige · Die gekennzeichneten Modellsuchen enthalten Affiliate-Links. EcoBack kann bei qualifizierten Käufen eine Provision erhalten. Suchergebnisse bestätigen weder die genaue Variante noch Lieferumfang, Preis oder Verfügbarkeit.
 
@@ -90,4 +93,4 @@ Sind die Links zu Amazon.de feste Produktangebote?Nein. Die gekennzeichneten Aff
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

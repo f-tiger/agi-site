@@ -16,27 +16,18 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unte
 
 Alle Angaben stammen aus den Produktdaten des Lidl-Onlineshops — eine unabhängige Messung liegt uns nicht vor:
 
-Merkmal | Angabe laut Lidl |
-
-Kühlleistung | 2,64 kW / 9.000 BTU (Kompressor-Gerät, keine Verdunstungskühlung) |
-
-Funktionen | 3-in-1: Kühlen, Entfeuchten, Ventilieren · Zieltemperatur 16–31 °C |
-
-Raumempfehlung | 42–60 m³ — bei 2,5 m Deckenhöhe entspricht das ca. 17–24 m² (Einordnung unten) |
-
-Leistungsaufnahme | 1.010 W · Luftumwälzung ca. 350 m³/h |
-
-Bedienung | Am Gerät und per Fernbedienung, 24-h-Timer |
-
-Lieferumfang | Fensterabdichtung für Kippfenster, Schlauchanschluss, 1,5-m-Ablaufschlauch, Fernbedienung |
-
-Maße / Mobilität | 35 × 71 × 35,3 cm, Transportrollen |
-
-Preis | 199 € (wiederkehrendes Aktionsangebot) |
-
-Kundenbewertung | ca. 4,1 von 5 Sternen im Lidl-Onlineshop (Kundenrezensionen, kein unabhängiger Test) |
-
-Lautstärke | Keine dB-Angabe im Angebot gefunden, keine unabhängige Messung — Einordnung unten |
+| Merkmal | Angabe laut Lidl |
+| --- | --- |
+| Kühlleistung | 2,64 kW / 9.000 BTU (Kompressor-Gerät, keine Verdunstungskühlung) |
+| Funktionen | 3-in-1: Kühlen, Entfeuchten, Ventilieren · Zieltemperatur 16–31 °C |
+| Raumempfehlung | 42–60 m³ — bei 2,5 m Deckenhöhe entspricht das ca. 17–24 m² (Einordnung unten) |
+| Leistungsaufnahme | 1.010 W · Luftumwälzung ca. 350 m³/h |
+| Bedienung | Am Gerät und per Fernbedienung, 24-h-Timer |
+| Lieferumfang | Fensterabdichtung für Kippfenster, Schlauchanschluss, 1,5-m-Ablaufschlauch, Fernbedienung |
+| Maße / Mobilität | 35 × 71 × 35,3 cm, Transportrollen |
+| Preis | 199 € (wiederkehrendes Aktionsangebot) |
+| Kundenbewertung | ca. 4,1 von 5 Sternen im Lidl-Onlineshop (Kundenrezensionen, kein unabhängiger Test) |
+| Lautstärke | Keine dB-Angabe im Angebot gefunden, keine unabhängige Messung — Einordnung unten |
 
 Zwei Punkte fallen positiv auf: Die **Fensterabdichtung für Kippfenster liegt bei** — bei vielen Markengeräten (auch dem Pinguino PAC EX105) muss sie separat gekauft werden, dabei steht und fällt die Kühlleistung mit ihr ([welche Abdichtung zu welchem Fenster passt](https://getecoback.com/guide/fensterabdichtung-klimaanlage.html)). Und die Bedienung per Fernbedienung plus 24-h-Timer ist für ein 199-€-Gerät vollständig. Zur Namensverwirrung: Lidl hat 9.000-BTU-Monoblöcke auch unter der Eigenmarke **Silvercrest** verkauft — testberichte.de führt das Modell „9000 BTU WIFI A1" (max. ca. 24 m², 65 dB). Die Tronic ist das aktuelle Pendant ohne WLAN-Anbindung in den Angebotsdaten.
 
@@ -54,13 +45,11 @@ Zwei Punkte fallen positiv auf: Die **Fensterabdichtung für Kippfenster liegt b
 
 Wer jetzt kühlen muss, wartet nicht auf das nächste Aktionsfenster. Diese Geräte derselben Leistungsklasse sind dauerhaft lieferbar:
 
-Situation | Immer verfügbare Wahl | Warum |
-
-Gleiche Klasse, kleinster Aufpreis | Comfee MPPH-09CRN7 · [Test-Überblick](https://getecoback.com/guide/comfee-mpph-09crn7-test.html) | 9.000 BTU wie die Tronic, ca. 250–320 €, belegte Testlage |
-
-Schlafzimmer, Ruhe wichtig | De'Longhi PAC N90 ECO Silent · [Test-Überblick](https://getecoback.com/guide/delonghi-pac-n90-test.html) | Leiser ausgerichtet — bei der Tronic ist die Lautstärke unbelegt |
-
-Mehr Budget, mehr Effizienz | De'Longhi Pinguino PAC EX105 · [Test-Überblick](https://getecoback.com/guide/pinguino-pac-ex105-test.html) | A+++ — die Ausnahme in der Monoblock-Klasse, spart im Dauerbetrieb |
+| Situation | Immer verfügbare Wahl | Warum |
+| --- | --- | --- |
+| Gleiche Klasse, kleinster Aufpreis | Comfee MPPH-09CRN7 · [Test-Überblick](https://getecoback.com/guide/comfee-mpph-09crn7-test.html) | 9.000 BTU wie die Tronic, ca. 250–320 €, belegte Testlage |
+| Schlafzimmer, Ruhe wichtig | De'Longhi PAC N90 ECO Silent · [Test-Überblick](https://getecoback.com/guide/delonghi-pac-n90-test.html) | Leiser ausgerichtet — bei der Tronic ist die Lautstärke unbelegt |
+| Mehr Budget, mehr Effizienz | De'Longhi Pinguino PAC EX105 · [Test-Überblick](https://getecoback.com/guide/pinguino-pac-ex105-test.html) | A+++ — die Ausnahme in der Monoblock-Klasse, spart im Dauerbetrieb |
 
 Anzeige · Affiliate-Links — du zahlst denselben Preis. Nicht selbst getestet; Auswahl fasst öffentliche Tests zusammen.
 
@@ -100,4 +89,4 @@ Leiser fürs Schlafzimmer: De'Longhi PAC N90 ECO Silent →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

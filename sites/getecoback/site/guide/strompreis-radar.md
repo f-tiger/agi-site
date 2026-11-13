@@ -51,15 +51,12 @@ Ehrlich eingeordnet für diese Seite: Eine mobile Klimaanlage (~1 kW) ist keine 
 
 ## Börsenpreis vs. dein Haushaltspreis
 
-Komponente | Anteil am Endpreis (~37 ct/kWh) |
-
-Beschaffung (Börsenpreis) | ~10–15 ct — der Teil, der stündlich schwankt |
-
-Netzentgelte | ~9–11 ct |
-
-Steuern, Abgaben, Umlagen | ~9–11 ct |
-
-Vertrieb & Marge | ~2–4 ct |
+| Komponente | Anteil am Endpreis (~37 ct/kWh) |
+| --- | --- |
+| Beschaffung (Börsenpreis) | ~10–15 ct — der Teil, der stündlich schwankt |
+| Netzentgelte | ~9–11 ct |
+| Steuern, Abgaben, Umlagen | ~9–11 ct |
+| Vertrieb & Marge | ~2–4 ct |
 
 Richtwerte Stand Juli 2026 — genaue Anteile variieren nach Region und Tarif.
 
@@ -88,4 +85,4 @@ Code kopieren
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

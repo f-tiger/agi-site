@@ -22,13 +22,11 @@ In practice it does pause. Once the room reaches your target temperature, the th
 
 Small 7,000–8,000 BTU units draw around 800 W, the common 9,000 BTU class sits near 1,000 W, and big 13,000–14,000 BTU machines pull up to 1,400 W. At €0.35/kWh, full draw:
 
-Power draw | Cost per hour | 4 hours (evening) | 8 hours (night) |
-
-800 W (≈7,000–8,000 BTU) | €0.28 | €1.12 | €2.24 |
-
-1,000 W (≈9,000 BTU) | €0.35 | €1.40 | €2.80 |
-
-1,400 W (≈13,000–14,000 BTU) | €0.49 | €1.96 | €3.92 |
+| Power draw | Cost per hour | 4 hours (evening) | 8 hours (night) |
+| --- | --- | --- | --- |
+| 800 W (≈7,000–8,000 BTU) | €0.28 | €1.12 | €2.24 |
+| 1,000 W (≈9,000 BTU) | €0.35 | €1.40 | €2.80 |
+| 1,400 W (≈13,000–14,000 BTU) | €0.49 | €1.96 | €3.92 |
 
 Two things the table hides: a correctly sized unit reaches the target and starts cycling, so the real night is cheaper than shown — while an undersized unit runs flat out all night and hits the full figure. And a bigger unit isn't automatically the expensive choice: in a large room a 1,400 W machine that cycles can cost less overall than an 800 W one that never stops.
 
@@ -81,4 +79,4 @@ Comfee MPPH-09CRN7 →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Note: EcoBack does not test devices itself; picks summarise public tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.
+Note: Editorial guidance based on the linked sources, not our own device tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.

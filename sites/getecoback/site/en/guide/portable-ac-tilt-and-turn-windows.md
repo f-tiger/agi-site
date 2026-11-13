@@ -26,25 +26,11 @@ Most portable ACs ship with a flat "sliding window" kit designed for horizontal 
 
 ## Three ways to seal a tilt-and-turn window — compared
 
-Method |
-Renter-friendly? |
-Price |
-Best for |
-
-**Fabric seal kit** (velcro, zip port) |
-✔ no residue |
-€15–30 |
-Most people — fastest, works on any tilt window |
-
-**Cut acrylic / XPS panel** with hose hole |
-✔ clamped, not glued |
-€10–40 |
-Best seal & insulation; needs measuring and cutting |
-
-**Tilt-window outlet adapter** (e.g. Eurom Way-Out type) |
-✔ removable |
-€30–60 |
-Window stays almost closed & lockable; tidy long-term setup |
+| Method | Renter-friendly? | Price | Best for |
+| --- | --- | --- | --- |
+| **Fabric seal kit** (velcro, zip port) | ✔ no residue | €15–30 | Most people — fastest, works on any tilt window |
+| **Cut acrylic / XPS panel** with hose hole | ✔ clamped, not glued | €10–40 | Best seal & insulation; needs measuring and cutting |
+| **Tilt-window outlet adapter** (e.g. Eurom Way-Out type) | ✔ removable | €30–60 | Window stays almost closed & lockable; tidy long-term setup |
 
 ## Method 1: fabric window seal (what most people should buy)
 
@@ -119,4 +105,4 @@ See also: [renting and what needs the landlord's agreement](https://getecoback.c
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Note: EcoBack does not test devices itself; picks summarise public tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.
+Note: Editorial guidance based on the linked sources, not our own device tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.

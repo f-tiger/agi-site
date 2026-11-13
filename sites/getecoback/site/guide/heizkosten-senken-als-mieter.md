@@ -17,17 +17,13 @@ Wir sind keine Anwälte und geben keine Rechtsberatung. Das oben ist die überei
 
 ## Das Wirkungs-Ranking
 
-Maßnahme | Was sie wirklich bringt | Lohnt sich, wenn … |
-
-**1. Programmierbarer Thermostatkopf** | Der größte Hebel — aber nur über die Absenkung. Faustregel der Energieberatung: ca. 1 °C weniger ≈ ca. 6 % weniger Heizenergie. | … du die Absenkung wirklich einstellst. Auf Dauerkomfort stehen gelassen spart er nichts. |
-
-**2. Türdichtung / Zugluftstopper** | Wirkt sofort und spürbar, wo es zieht — alte Wohnungstüren, Kellertreppe, unbeheizte Nebenräume. | … du an der Tür einen Luftzug spürst. Sonst nicht. |
-
-**3. Fenster-Isolierfolie** | Deutlich nur auf **Einfachverglasung**. Auf Doppel-/Dreifachverglasung leistet die Scheibe die Dämmung schon. | … du im Altbau echte Einfachverglasung hast (Flammentest: mehrere Spiegelbilder = mehrere Scheiben). |
-
-**4. Reflektorfolie hinter dem Heizkörper** | **Laut Zentralverband Sanitär Heizung Klima maximal ~4 %** der Heizkosten, und nur in schlecht gedämmten Gebäuden; in der Praxis werden 1–3 % im betroffenen Raum genannt. | … Altbau, ungedämmte Außenwand, alte schwere Rippenheizkörper. Im gedämmten Neubau kaum messbar. |
-
-**5. Thermovorhang** | Wirkt in beide Richtungen — [im Sommer gegen Hitze](https://getecoback.com/guide/thermovorhang-ratgeber.html), im Winter gegen Abstrahlung am Fenster. | … du ohnehin Vorhänge willst; als reine Heizmaßnahme ist er nicht der erste Griff. |
+| Maßnahme | Was sie wirklich bringt | Lohnt sich, wenn … |
+| --- | --- | --- |
+| **1. Programmierbarer Thermostatkopf** | Der größte Hebel — aber nur über die Absenkung. Faustregel der Energieberatung: ca. 1 °C weniger ≈ ca. 6 % weniger Heizenergie. | … du die Absenkung wirklich einstellst. Auf Dauerkomfort stehen gelassen spart er nichts. |
+| **2. Türdichtung / Zugluftstopper** | Wirkt sofort und spürbar, wo es zieht — alte Wohnungstüren, Kellertreppe, unbeheizte Nebenräume. | … du an der Tür einen Luftzug spürst. Sonst nicht. |
+| **3. Fenster-Isolierfolie** | Deutlich nur auf **Einfachverglasung**. Auf Doppel-/Dreifachverglasung leistet die Scheibe die Dämmung schon. | … du im Altbau echte Einfachverglasung hast (Flammentest: mehrere Spiegelbilder = mehrere Scheiben). |
+| **4. Reflektorfolie hinter dem Heizkörper** | **Laut Zentralverband Sanitär Heizung Klima maximal ~4 %** der Heizkosten, und nur in schlecht gedämmten Gebäuden; in der Praxis werden 1–3 % im betroffenen Raum genannt. | … Altbau, ungedämmte Außenwand, alte schwere Rippenheizkörper. Im gedämmten Neubau kaum messbar. |
+| **5. Thermovorhang** | Wirkt in beide Richtungen — [im Sommer gegen Hitze](https://getecoback.com/guide/thermovorhang-ratgeber.html), im Winter gegen Abstrahlung am Fenster. | … du ohnehin Vorhänge willst; als reine Heizmaßnahme ist er nicht der erste Griff. |
 
 ## Der Faktencheck zur 15-Euro-Folie
 
@@ -78,4 +74,4 @@ Das hängt komplett an deiner Verglasung. Auf echter Einfachverglasung — im Al
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

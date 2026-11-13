@@ -14,17 +14,13 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks sind
 
 ## Die Einkaufsliste (10–40 €)
 
-Material | Wofür | Richtpreis |
-
-**Hohlkammerplatte** (alternativ Acrylglas) ansehen → | Die Platte selbst — leicht, mit dem Cuttermesser schneidbar | 10–25 € |
-
-**Acrylglas-Zuschnitt** (die durchsichtige Variante) ansehen → | Stabiler und lässt Licht durch — dafür teurer, Schneiden braucht Säge | 20–40 € |
-
-**Magnetband selbstklebend** ansehen → | Befestigung ohne Bohren — Platte in Sekunden abnehmbar | 8–12 € |
-
-**Schaumstoff-Dichtungsband** ansehen → | Randabdichtung — hier entscheidet sich die Dichtheit | 5–8 € |
-
-**Alu-Klebeband** ansehen → | Schlauchdurchführung luftdicht anschließen | ~6 € |
+| Material | Wofür | Richtpreis |
+| --- | --- | --- |
+| **Hohlkammerplatte** (alternativ Acrylglas) ansehen → | Die Platte selbst — leicht, mit dem Cuttermesser schneidbar | 10–25 € |
+| **Acrylglas-Zuschnitt** (die durchsichtige Variante) ansehen → | Stabiler und lässt Licht durch — dafür teurer, Schneiden braucht Säge | 20–40 € |
+| **Magnetband selbstklebend** ansehen → | Befestigung ohne Bohren — Platte in Sekunden abnehmbar | 8–12 € |
+| **Schaumstoff-Dichtungsband** ansehen → | Randabdichtung — hier entscheidet sich die Dichtheit | 5–8 € |
+| **Alu-Klebeband** ansehen → | Schlauchdurchführung luftdicht anschließen | ~6 € |
 
 Nicht auf der Liste: teure Spezialwerkzeuge. Hohlkammerplatten schneidet ein Cuttermesser mit Lineal; Acrylglas lässt du am besten gleich im Zuschnitt liefern oder im Baumarkt sägen. Bei Säge- und Schleifarbeiten Schutzbrille tragen — Plexiglas splittert.
 
@@ -58,15 +54,12 @@ Zuschnitt berechnen
 
 ## Die ehrliche Abwägung: Bauen oder kaufen?
 
-| Selbstbau-Platte | Stoff-Set (fertig) | Auslass-Panel (fertig) |
-
-**Dichtheit** | **Am besten** | Okay, nie ganz dicht | Gut |
-
-**Kosten** | 10–40 € | 15–25 € | 40–60 € |
-
-**Zeit** | Ein Nachmittag | 15 Minuten | 15 Minuten |
-
-**Fensterwechsel** | Nur passendes Fenster | **Flexibel** | Nur passende Größe |
+|  | Selbstbau-Platte | Stoff-Set (fertig) | Auslass-Panel (fertig) |
+| --- | --- | --- | --- |
+| **Dichtheit** | **Am besten** | Okay, nie ganz dicht | Gut |
+| **Kosten** | 10–40 € | 15–25 € | 40–60 € |
+| **Zeit** | Ein Nachmittag | 15 Minuten | 15 Minuten |
+| **Fensterwechsel** | Nur passendes Fenster | **Flexibel** | Nur passende Größe |
 
 Kurz: **Gerät bleibt den Sommer am selben Fenster → bauen lohnt sich.** Gerät wandert zwischen Räumen, oder du willst in 15 Minuten fertig sein → [fertige Abdichtung kaufen](https://getecoback.com/guide/fensterabdichtung-klimaanlage.html). Und wenn dein Fensterumfang über den üblichen Konfektionsgrößen liegt (der Rechner auf der Kaufseite sagt es dir), ist der Selbstbau ohnehin die günstigste Maßanfertigung.
 
@@ -93,4 +86,4 @@ Hohlkammerplatten →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

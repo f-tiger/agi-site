@@ -66,17 +66,13 @@ If your problem is smell rather than visible growth, start with the dedicated wa
 
 Frequencies below reflect what manufacturers typically recommend in their manuals; shorten them if you run the unit around the clock, have pets, or live somewhere dusty.
 
-Part | How often | Method |
-
-Air filter | Every 1–2 weeks in season | Vacuum or lukewarm rinse, air-dry fully |
-
-Water tank & drain | Monthly, plus at season end | 50/50 white-vinegar rinse, 30 min, rinse well |
-
-Coils & fins | 1–2× per season | Soft brush along the fins; coil cleaner if grimy |
-
-Housing & grilles | Monthly | Damp cloth, vacuum the grilles |
-
-Interior drying (fan-only run) | After every cooling session | 15–30 min fan mode until the coil is dry |
+| Part | How often | Method |
+| --- | --- | --- |
+| Air filter | Every 1–2 weeks in season | Vacuum or lukewarm rinse, air-dry fully |
+| Water tank & drain | Monthly, plus at season end | 50/50 white-vinegar rinse, 30 min, rinse well |
+| Coils & fins | 1–2× per season | Soft brush along the fins; coil cleaner if grimy |
+| Housing & grilles | Monthly | Damp cloth, vacuum the grilles |
+| Interior drying (fan-only run) | After every cooling session | 15–30 min fan mode until the coil is dry |
 
 ## Before storage: the autumn shutdown
 
@@ -116,4 +112,4 @@ Keep it dry. Empty the internal tank regularly, run fan-only mode after cooling 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Note: EcoBack does not test devices itself; picks summarise public tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.
+Note: Editorial guidance based on the linked sources, not our own device tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.

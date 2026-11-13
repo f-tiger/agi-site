@@ -16,19 +16,14 @@ As an Amazon Associate, EcoBack earns from qualifying purchases. Product links b
 
 A **portable air conditioner** is a real AC: it removes heat from the room and vents it outside through a window hose. It genuinely lowers the temperature. An **air cooler** (evaporative cooler) just blows air over water to cool that airflow a few degrees — it doesn't lower the room temperature and adds humidity.
 
-| Portable AC | Air cooler |
-
-Actually lowers room temp? | Yes | No — cools the airflow only |
-
-Needs a window vent? | Yes | No |
-
-Power draw | ~800–1,400 W | ~60–120 W |
-
-Running cost | Higher | Much lower |
-
-Best in | Any heat, incl. humid | Dry heat only |
-
-Price from | ~€250 | ~€60 |
+|  | Portable AC | Air cooler |
+| --- | --- | --- |
+| Actually lowers room temp? | Yes | No — cools the airflow only |
+| Needs a window vent? | Yes | No |
+| Power draw | ~800–1,400 W | ~60–120 W |
+| Running cost | Higher | Much lower |
+| Best in | Any heat, incl. humid | Dry heat only |
+| Price from | ~€250 | ~€60 |
 
 ## Which is cheaper to run?
 
@@ -71,4 +66,4 @@ Specific models with a role, compiled from public reviews (not tested by us) —
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Note: EcoBack does not test devices itself; picks summarise public tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.
+Note: Editorial guidance based on the linked sources, not our own device tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.

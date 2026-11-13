@@ -26,17 +26,13 @@ Aber: Die Zuluft ist im Kern Außenluft. Wenn es draußen 34 °C hat, kommen —
 
 ## Der direkte Vergleich
 
-| Klimaanlage | Lüftungsanlage |
-
-**Zweck** | Kühlen & Entfeuchten | Luftaustausch (Frischluft, CO₂-Abfuhr) |
-
-**Temperatur** | sinkt spürbar (5–10 °C) | bleibt nahe Außentemperatur |
-
-**Feuchte** | entfeuchtet beim Kühlen | führt Feuchte ab (Schimmelschutz) |
-
-**Kosten** | mobil ab ca. 300 €, Split ab ca. 1.500–3.000 € installiert | dezentral ab ca. 400 €/Raum, zentral 5.000–15.000 € |
-
-**Nachrüstbar?** | mobil: sofort, ohne Genehmigung | zentral kaum, dezentral mit Wanddurchbruch |
+|  | Klimaanlage | Lüftungsanlage |
+| --- | --- | --- |
+| **Zweck** | Kühlen & Entfeuchten | Luftaustausch (Frischluft, CO₂-Abfuhr) |
+| **Temperatur** | sinkt spürbar (5–10 °C) | bleibt nahe Außentemperatur |
+| **Feuchte** | entfeuchtet beim Kühlen | führt Feuchte ab (Schimmelschutz) |
+| **Kosten** | mobil ab ca. 300 €, Split ab ca. 1.500–3.000 € installiert | dezentral ab ca. 400 €/Raum, zentral 5.000–15.000 € |
+| **Nachrüstbar?** | mobil: sofort, ohne Genehmigung | zentral kaum, dezentral mit Wanddurchbruch |
 
 Kurz gesagt: Die Klimaanlage verändert den Zustand der Luft (kälter, trockener), die Lüftungsanlage verändert die Zusammensetzung (frischer, weniger CO₂ und Feuchte).
 
@@ -81,4 +77,4 @@ De'Longhi Pinguino PAC EX105 →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

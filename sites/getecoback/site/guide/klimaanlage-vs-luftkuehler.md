@@ -16,19 +16,14 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unte
 
 Eine **tragbare Klimaanlage** ist eine echte Klimaanlage: Sie entzieht dem Raum Wärme und leitet sie über einen Fensterschlauch nach draußen. Sie senkt die Temperatur wirklich. Ein **Luftkühler** (Verdunstungskühler) bläst nur Luft über Wasser und kühlt diesen Luftstrom um ein paar Grad — die Raumtemperatur sinkt nicht, und es kommt Feuchtigkeit dazu.
 
-| Tragbare Klimaanlage | Luftkühler |
-
-Senkt die Raumtemperatur? | Ja | Nein — kühlt nur den Luftstrom |
-
-Fensterabluft nötig? | Ja | Nein |
-
-Stromverbrauch | ~800–1.400 W | ~60–120 W |
-
-Betriebskosten | Höher | Deutlich niedriger |
-
-Am besten bei | Jeder Hitze, auch schwül | Nur trockener Hitze |
-
-Preis ab | ~250 € | ~60 € |
+|  | Tragbare Klimaanlage | Luftkühler |
+| --- | --- | --- |
+| Senkt die Raumtemperatur? | Ja | Nein — kühlt nur den Luftstrom |
+| Fensterabluft nötig? | Ja | Nein |
+| Stromverbrauch | ~800–1.400 W | ~60–120 W |
+| Betriebskosten | Höher | Deutlich niedriger |
+| Am besten bei | Jeder Hitze, auch schwül | Nur trockener Hitze |
+| Preis ab | ~250 € | ~60 € |
 
 ## Was ist günstiger im Betrieb?
 
@@ -56,4 +51,4 @@ Konkrete Modelle mit Rolle, aus öffentlichen Testberichten zusammengestellt (ni
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

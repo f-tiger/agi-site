@@ -43,17 +43,13 @@ Stromkosten berechnen
 
 Alle Werte gerechnet mit **0,30 €/kWh** und der Formel unten. Die Auslastung ist der Anteil der Zeit, in dem das Gerät tatsächlich Strom zieht: Ventilator und Luftkühler laufen durch, Klimaanlage und Infrarotheizung takten.
 
-Gerät | Leistung | Auslastung | pro Stunde | 8 Std. | 30 × 8 Std. |
-
-Standventilator | 50 W | 100 % | 1,5 ct | 0,12 € | 3,60 € |
-
-Luftkühler | 80 W | 100 % | 2,4 ct | 0,19 € | 5,76 € |
-
-Turmventilator | 120 W | 100 % | 3,6 ct | 0,29 € | 8,64 € |
-
-Mobile Klimaanlage | 1.000 W | 65 % | 19,5 ct | 1,56 € | 46,80 € |
-
-Infrarotheizung | 2.000 W | 40 % | 24,0 ct | 1,92 € | 57,60 € |
+| Gerät | Leistung | Auslastung | pro Stunde | 8 Std. | 30 × 8 Std. |
+| --- | --- | --- | --- | --- | --- |
+| Standventilator | 50 W | 100 % | 1,5 ct | 0,12 € | 3,60 € |
+| Luftkühler | 80 W | 100 % | 2,4 ct | 0,19 € | 5,76 € |
+| Turmventilator | 120 W | 100 % | 3,6 ct | 0,29 € | 8,64 € |
+| Mobile Klimaanlage | 1.000 W | 65 % | 19,5 ct | 1,56 € | 46,80 € |
+| Infrarotheizung | 2.000 W | 40 % | 24,0 ct | 1,92 € | 57,60 € |
 
 Die Watt-Angaben sind typische Werte für die jeweilige Geräteklasse, keine Messung eines bestimmten Modells — auf dem Typenschild deines Geräts steht der genaue Wert. Trag ihn oben ein, dann rechnet der Rechner mit deiner Zahl statt mit unserer.
 
@@ -90,4 +86,4 @@ Effiziente Klimaanlagen →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

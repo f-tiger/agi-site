@@ -10,17 +10,13 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 ## Deutschland vs. USA: dieselbe Frage, zwei verschiedene Antworten
 
-| Deutschland | USA |
-
-**Haushaltspreis-Trend** | Fällt: ~47 ct (Anfang 2023) → 39,6 (2025) → **37,0 ct/kWh** (BDEW 4/2026) | Steigt: ~13,15 ¢ (2020) → ~17,3 ¢ (2025), 8/2026: **18,44 ¢/kWh** — rund **+31 %** seit 2020 (EIA) |
-
-**Rechenzentren-Anteil** | 21,3 Mrd. kWh (2025, Bitkom/Borderstep) ≈ **rund 4 %** des Verbrauchs | PJM-Marktaufseher: Rechenzentren = **63 % des Kapazitätspreisanstiegs** der 2025/26-Auktion |
-
-**Durchschlag auf Haushalte** | **Keiner dokumentiert.** Netzentgelte 2026: **−17,6 %** (u. a. 6,5 Mrd. € Bundeszuschuss) | Dokumentiert: PJM-Kapazitätspreis **28,92 → 333,44 $/MW-Tag** (2024/25 → 2027/28) |
-
-**Politische Reaktion** | Netzentgeltreform „AgNes" der Bundesnetzagentur (läuft) | New Jersey: eigene RZ-Tarife ab 50 MW (Gesetz 30.06.2026) · New York: **erstes landesweites Moratorium** (EO 62, 14.07.2026) |
-
-**Ausblick** | BNetzA: **78–116 TWh bis 2037** = bis zu 10 % des Verbrauchs; 3.000-MW-Marke wird Anfang 2026 erstmals überschritten | Weiteres Wachstum eingepreist; Auktion 12/2025 lag bereits am Preisdeckel (333,44 $) |
+|  | Deutschland | USA |
+| --- | --- | --- |
+| **Haushaltspreis-Trend** | Fällt: ~47 ct (Anfang 2023) → 39,6 (2025) → **37,0 ct/kWh** (BDEW 4/2026) | Steigt: ~13,15 ¢ (2020) → ~17,3 ¢ (2025), 8/2026: **18,44 ¢/kWh** — rund **+31 %** seit 2020 (EIA) |
+| **Rechenzentren-Anteil** | 21,3 Mrd. kWh (2025, Bitkom/Borderstep) ≈ **rund 4 %** des Verbrauchs | PJM-Marktaufseher: Rechenzentren = **63 % des Kapazitätspreisanstiegs** der 2025/26-Auktion |
+| **Durchschlag auf Haushalte** | **Keiner dokumentiert.** Netzentgelte 2026: **−17,6 %** (u. a. 6,5 Mrd. € Bundeszuschuss) | Dokumentiert: PJM-Kapazitätspreis **28,92 → 333,44 $/MW-Tag** (2024/25 → 2027/28) |
+| **Politische Reaktion** | Netzentgeltreform „AgNes" der Bundesnetzagentur (läuft) | New Jersey: eigene RZ-Tarife ab 50 MW (Gesetz 30.06.2026) · New York: **erstes landesweites Moratorium** (EO 62, 14.07.2026) |
+| **Ausblick** | BNetzA: **78–116 TWh bis 2037** = bis zu 10 % des Verbrauchs; 3.000-MW-Marke wird Anfang 2026 erstmals überschritten | Weiteres Wachstum eingepreist; Auktion 12/2025 lag bereits am Preisdeckel (333,44 $) |
 
 Quellen unten verlinkt: BDEW, Bitkom/Borderstep, Bundesnetzagentur, PJM/IEEFA, EIA-Kompilationen, Gouverneursbüros NJ/NY. Der ~4-%-Anteil ist aus 21,3 TWh und ~460–465 TWh Netto-Stromverbrauch errechnet, kein Zitat.
 
@@ -86,4 +82,4 @@ Stand: 21. August 2026. Diese Seite wird aktualisiert, wenn sich eine der Kippbe
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

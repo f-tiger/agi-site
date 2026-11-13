@@ -23,7 +23,7 @@ Vergelijk een ontvochtiger pas op kamertemperatuur, geluid, afvoer en werkelijk 
 **Condens of natte plekken, ook wanneer er geen was hangt**
 Noteer waar en wanneer dit gebeurt, en of regen of watergebruik eraan voorafgaat. Laat een mogelijke lekkage of ventilatiestoring beoordelen; bij huur meld je dit bij de verhuurder. Een grotere ontvochtiger herstelt geen bouwkundig gebrek.
 Een hygrometer meet luchtvochtigheid; een CO₂-meter geeft andere informatie over ventilatie tijdens gebruik. Geen van beide stelt de oorzaak vast. Leen zo mogelijk eerst een meter.
-De ruimte- en aankoopchecklist is redactionele begeleiding, geen producttest. Houd de bestaande ventilatie in gebruik. Bewaar de aankoopchecklist →
+De ruimte- en aankoopchecklist is redactionele begeleiding, geen producttest. Houd de bestaande ventilatie in gebruik. [Bewaar de aankoopchecklist →](https://getecoback.com/nl/ventilatie-of-luchtontvochtiger.html#checklist-heading)
 
 ## 1. Breng je ventilatie in kaart
 Milieu Centraal maakt onderscheid tussen voortdurend ventileren en kort luchten met een open raam. Bij natuurlijke ventilatie horen open ventilatieroosters en een luchtweg door de woning. Dicht zulke voorzieningen niet af als tochtmaatregel.

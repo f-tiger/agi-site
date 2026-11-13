@@ -25,10 +25,13 @@ Quellen: [Umweltbundesamt: Heizen und Feuchte an kalten Wänden](https://www.umw
 
 ## Verdunster, Ultraschall und Dampf sind verschiedene Aufgabenpakete
 
-Technik wählen, ohne Pflege auszublendenTechnik | Worauf du achten solltest | Kaufgrenze |
-Verdunstung | Luft strömt über feuchtes Material; Filter und Tank müssen gepflegt werden. | Kein sichtbarer Nebel ist kein Beweis für einen Defekt. Hygrostat und Raumkontrolle bleiben wichtig. |
-Ultraschall | Wasser wird vernebelt. Mineralien können mitverteilt werden; Anleitung zur Wasserart prüfen. | Bei hartem Wasser zuerst den [Weißer-Staub-Check](https://getecoback.com/guide/luftbefeuchter-weisser-staub.html) nutzen. Hier ist kein Ultraschallmodell ausgewählt. |
-Dampf | Wasser wird elektrisch erhitzt. Heiße Teile, Wasser und Dampf sowie Entkalkung mitdenken. | Der LB 55 ist eine bewusste Alternative, keine allgemeine Empfehlung für Kinderzimmer. |
+Technik wählen, ohne Pflege auszublenden
+
+| Technik | Worauf du achten solltest | Kaufgrenze |
+| --- | --- | --- |
+| Verdunstung | Luft strömt über feuchtes Material; Filter und Tank müssen gepflegt werden. | Kein sichtbarer Nebel ist kein Beweis für einen Defekt. Hygrostat und Raumkontrolle bleiben wichtig. |
+| Ultraschall | Wasser wird vernebelt. Mineralien können mitverteilt werden; Anleitung zur Wasserart prüfen. | Bei hartem Wasser zuerst den [Weißer-Staub-Check](https://getecoback.com/guide/luftbefeuchter-weisser-staub.html) nutzen. Hier ist kein Ultraschallmodell ausgewählt. |
+| Dampf | Wasser wird elektrisch erhitzt. Heiße Teile, Wasser und Dampf sowie Entkalkung mitdenken. | Der LB 55 ist eine bewusste Alternative, keine allgemeine Empfehlung für Kinderzimmer. |
 
 Ein Gerät, das als „Luftwäscher“ beworben wird, ist nicht allein deshalb ein nachgewiesen wirksamer Luftreiniger. Diese Kaufhilfe bewertet Befeuchtung, keine Partikelreinigung oder gesundheitliche Wirkung.
 Quellen: [US EPA: Use and Care of Home Humidifiers](https://www.epa.gov/indoor-air-quality-iaq/use-and-care-home-humidifiers).
@@ -37,10 +40,14 @@ Quellen: [US EPA: Use and Care of Home Humidifiers](https://www.epa.gov/indoor-a
 Zwei Verdunster unterscheiden sich hier durch Bedienung und Pflegeablauf. Der Dampfbefeuchter ist eine bewusste Alternative mit höherer elektrischer Nennleistung und heißem Wasser. Die Reihenfolge ist keine Rangliste; wir haben die Geräte nicht selbst getestet.
 Herstellerquellen geprüft: 2026-11-12. Keine Live-Preise, Lieferzusagen oder Verbrauchsmessungen. Das Prüfdatum bestätigt keine aktuellen Händlerangebote.
 Die Tabelle lässt sich auf kleinen Bildschirmen seitlich verschieben. Nennleistung ist keine Effizienzbewertung bei gleicher Befeuchtungsleistung.
-Bedienung und Herstellerleistung im VergleichGenaues Modell | Kaufgrund prüfen | Hersteller-Nennleistung |
-Stadler Form Oskar weiß O-020 | Verdunster mit einfachen Zielstufen | 6–18 W |
-Beurer LB 200 | Verdunster mit Anzeige und Filtertrocknung | 17 W |
-Beurer LB 55 | Dampf als bewusste Alternative | 365 W |
+
+Bedienung und Herstellerleistung im Vergleich
+
+| Genaues Modell | Kaufgrund prüfen | Hersteller-Nennleistung |
+| --- | --- | --- |
+| [Stadler Form Oskar weiß O-020](https://getecoback.com/guide/luftbefeuchter-ratgeber.html#humidifier-oskar-o020) | Verdunster mit einfachen Zielstufen | 6–18 W |
+| [Beurer LB 200](https://getecoback.com/guide/luftbefeuchter-ratgeber.html#humidifier-beurer-lb200) | Verdunster mit Anzeige und Filtertrocknung | 17 W |
+| [Beurer LB 55](https://getecoback.com/guide/luftbefeuchter-ratgeber.html#humidifier-beurer-lb55) | Dampf als bewusste Alternative | 365 W |
 
 Anzeige · Affiliate-Links: Als Amazon-Partner verdienen wir an qualifizierten Verkäufen. Die gekennzeichneten Links öffnen genaue Modellsuchen bei Amazon.de. Suchergebnisse können andere Varianten enthalten; Modell, Verkäufer und Lieferumfang abgleichen.
 Verdunster mit einfachen Zielstufen
@@ -81,12 +88,15 @@ Eine Heizsaison und ein ganzes Betriebsjahr sind nicht dasselbe. Die Wechselanze
 
 Relative Feuchte steigt beim Abkühlen derselben Luft, solange ihr Wasserdampfgehalt gleich bleibt. Die folgende idealisierte Rechnung nimmt 20 °C Raumluft und unveränderten Wasserdampf-Partialdruck bis zur Oberfläche an. Sie ist keine Messung deiner Wand und keine universelle Schimmelgrenze.
 
-Rechenbeispiel: relative Feuchte bei drei OberflächentemperaturenRaum bei 20 °C | Oberfläche 16 °C | 14 °C | 12 °C |
-35 % | 45 % | 51 % | 58 % |
-40 % | 51 % | 58 % | 67 % |
-45 % | 58 % | 66 % | 75 % |
-50 % | 64 % | 73 % | 83 % |
-55 % | 71 % | 80 % | 92 % |
+Rechenbeispiel: relative Feuchte bei drei Oberflächentemperaturen
+
+| Raum bei 20 °C | Oberfläche 16 °C | 14 °C | 12 °C |
+| --- | --- | --- | --- |
+| 35 % | 45 % | 51 % | 58 % |
+| 40 % | 51 % | 58 % | 67 % |
+| 45 % | 58 % | 66 % | 75 % |
+| 50 % | 64 % | 73 % | 83 % |
+| 55 % | 71 % | 80 % | 92 % |
 
 Rechenweg: relative Feuchte an der Oberfläche = Raumfeuchte × eₛ(20 °C) ÷ eₛ(Oberflächentemperatur), mit eₛ(T) proportional zu exp(17,62 × T ÷ (243,12 + T)); gerundet. Material, Luftbewegung, Messfehler und Dauer der Feuchte sind nicht abgebildet. Die Zahlen ersetzen keine Ursachenprüfung.
 
@@ -111,4 +121,4 @@ Sind die Amazon-Links geprüfte Angebote?Nein. Die gekennzeichneten Affiliate-Li
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

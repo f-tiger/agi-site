@@ -60,19 +60,13 @@ Achte beim Kauf auf die Leistung: grob 60–100 Watt pro Quadratmeter in gut ged
 
 **Faustregel: 60 Watt pro m² in gut gedämmten Räumen, bis 100 Watt pro m² bei schlechter Dämmung oder im Altbau.** Für 20 m² brauchst du also grob 1.200–2.000 Watt. Umgekehrt deckt eine 600-Watt-Infrarotheizung etwa 6–10 m² ab. Als Zusatzheizung für einzelne Zonen (Schreibtisch, Bad) reicht weniger; als alleinige Heizung eher das obere Ende.
 
-Raumgröße |
-Gut gedämmt (~60 W/m²) |
-Schlecht gedämmt (~100 W/m²) |
-
-**10 m²** | ~600 W | ~1.000 W |
-
-**15 m²** | ~900 W | ~1.500 W |
-
-**20 m²** | ~1.200 W | ~2.000 W |
-
-**25 m²** | ~1.500 W | ~2.500 W |
-
-**30 m²** | ~1.800 W | ~3.000 W* |
+| Raumgröße | Gut gedämmt (~60 W/m²) | Schlecht gedämmt (~100 W/m²) |
+| --- | --- | --- |
+| **10 m²** | ~600 W | ~1.000 W |
+| **15 m²** | ~900 W | ~1.500 W |
+| **20 m²** | ~1.200 W | ~2.000 W |
+| **25 m²** | ~1.500 W | ~2.500 W |
+| **30 m²** | ~1.800 W | ~3.000 W* |
 
 *Ab etwa 2.000 Watt besser auf zwei Panels aufteilen — das heizt gleichmäßiger als ein einzelnes Riesenpanel. Für größere Räume oder Dauerbetrieb lohnt der Blick auf [Heizleistung für 30 m²](https://getecoback.com/guide/heizung-30-qm.html) und die [stromsparende Heizalternativen](https://getecoback.com/guide/heizluefter-stromsparend.html).
 
@@ -110,4 +104,4 @@ Infrarotheizung mit Thermostat auf Amazon.de ansehen →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

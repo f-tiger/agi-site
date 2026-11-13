@@ -38,15 +38,12 @@ Wenn außen und Folie nicht in Frage kommen, ist ein Thermo-Verdunkelungsrollo o
 
 Thermo-Verdunkelungsrollos auf Amazon.de →
 
-Lösung | Wirkung | Preis | Für wen |
-
-Außenrollo / -jalousie | Sehr hoch | €€–€€€ | Wer außen montieren darf |
-
-Sonnenschutz-/Hitzeschutzfolie | Hoch | € | Obere Etagen, kleines Budget |
-
-Thermo-Verdunkelungsrollo | Mittel | €–€€ | Mieter ohne Außenzugang |
-
-Nur normaler Vorhang | Gering | € | Notlösung |
+| Lösung | Wirkung | Preis | Für wen |
+| --- | --- | --- | --- |
+| Außenrollo / -jalousie | Sehr hoch | €€–€€€ | Wer außen montieren darf |
+| Sonnenschutz-/Hitzeschutzfolie | Hoch | € | Obere Etagen, kleines Budget |
+| Thermo-Verdunkelungsrollo | Mittel | €–€€ | Mieter ohne Außenzugang |
+| Nur normaler Vorhang | Gering | € | Notlösung |
 
 ## Kipp- und Dachfenster: die Sonderfälle
 
@@ -82,4 +79,4 @@ Thermo-Verdunkelungsrollos ansehen →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

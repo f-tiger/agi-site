@@ -11,8 +11,8 @@ Inhaltlich geprüft am 6. November 2026. Einordnung anhand der unten verlinkten 
 **Deine nächste Entscheidung**
 Gerät schon vorhanden? Heizmodus und Verbrauch prüfen. Neukauf geplant? Erst Aufstellung und Wärmebedarf klären.
 
-Wärmekosten nachrechnen
-Kauf- und Montagecheck ↓
+[Wärmekosten nachrechnen](https://getecoback.com/guide/klimaanlage-mit-heizfunktion.html#kosten-pro-kwh-waerme)
+[Kauf- und Montagecheck ↓](https://getecoback.com/guide/klimaanlage-mit-heizfunktion.html#worauf-beim-kauf-achten)
 
 EcoBack finanziert sich teilweise über Affiliate-Links. Diese Seite führt zuerst zu Rechenwegen und bestehenden Ratgebern; Herstellerangaben sind keine unabhängigen Testergebnisse.
 
@@ -24,15 +24,12 @@ Eine Wärmepumpe transportiert Wärme von außen nach innen. Deshalb kann die ab
 
 ## Festes Splitgerät, mobiles Splitgerät oder Monoblock?
 
-Bauart | Was du vor dem Heizen prüfen musst | Aufstellung |
-
-Fest installiertes Splitgerät | Reversibler Heizbetrieb, Heizleistung bei Kälte und Schallwerte der konkreten Innen-/Außengeräte-Kombination. | Fachmontage, Leitungsweg und Außenplatz; bei baulichen Änderungen Zustimmung klären. |
-
-Mobiles Splitgerät | Heizfreigabe und Temperaturgrenzen; nicht aus dem Wort „mobil“ auf die Technik schließen. | Außeneinheit sicher aufstellen, Leitungslänge und Fensterspalt prüfen. Ein werkseitig geschlossener Kältekreis bleibt geschlossen. |
-
-Mobiler Monoblock | Heizprinzip, Ein-/Zweischlauchführung und Kondensatablauf ausdrücklich für den Heizmodus in der Anleitung nachsehen. | Luftführung ins Freie und Fensterlösung nach Herstellervorgabe; kein pauschaler Heiz-COP für diese Bauart. |
-
-Elektrisches Heizelement / Heizlüfter | Leistungsaufnahme, Laufzeit und Abschaltung. Kein Wärmepumpenbonus. | Die Aufstell- und Sicherheitsvorgaben des Heizgeräts gelten. |
+| Bauart | Was du vor dem Heizen prüfen musst | Aufstellung |
+| --- | --- | --- |
+| Fest installiertes Splitgerät | Reversibler Heizbetrieb, Heizleistung bei Kälte und Schallwerte der konkreten Innen-/Außengeräte-Kombination. | Fachmontage, Leitungsweg und Außenplatz; bei baulichen Änderungen Zustimmung klären. |
+| Mobiles Splitgerät | Heizfreigabe und Temperaturgrenzen; nicht aus dem Wort „mobil“ auf die Technik schließen. | Außeneinheit sicher aufstellen, Leitungslänge und Fensterspalt prüfen. Ein werkseitig geschlossener Kältekreis bleibt geschlossen. |
+| Mobiler Monoblock | Heizprinzip, Ein-/Zweischlauchführung und Kondensatablauf ausdrücklich für den Heizmodus in der Anleitung nachsehen. | Luftführung ins Freie und Fensterlösung nach Herstellervorgabe; kein pauschaler Heiz-COP für diese Bauart. |
+| Elektrisches Heizelement / Heizlüfter | Leistungsaufnahme, Laufzeit und Abschaltung. Kein Wärmepumpenbonus. | Die Aufstell- und Sicherheitsvorgaben des Heizgeräts gelten. |
 
 Die [Verbraucherzentrale unterscheidet diese Klimageräte-Bauarten und Montageanforderungen](https://www.verbraucherzentrale.de/wissen/energie/energetische-sanierung/klimaanlage-installieren-was-ist-zu-beachten-10525). Bei mobilen Splitgeräten ersetzt „ohne Kernbohrung“ weder einen sicheren Außenplatz noch die Prüfung einer Befestigung. Unsere [Einordnung zu Splitgeräten ohne Kernbohrung](https://getecoback.com/guide/split-klimaanlage-ohne-kernbohrung.html) hilft bei diesem Teil der Entscheidung.
 
@@ -42,15 +39,12 @@ Die [Verbraucherzentrale unterscheidet diese Klimageräte-Bauarten und Montagean
 
 Die folgende Tabelle ist reine **Szenariorechnung mit angenommenen 0,30 €/kWh Strom**. Die COP-Werte sind keine Temperaturzuordnung und keine Zusage für ein Gerät oder deinen Winter:
 
-Angenommener COP | Rechnung | Stromkosten je kWh Wärme |
-
-1 | 0,30 € ÷ 1 | 0,30 € |
-
-2 | 0,30 € ÷ 2 | 0,15 € |
-
-3 | 0,30 € ÷ 3 | 0,10 € |
-
-4 | 0,30 € ÷ 4 | 0,075 € |
+| Angenommener COP | Rechnung | Stromkosten je kWh Wärme |
+| --- | --- | --- |
+| 1 | 0,30 € ÷ 1 | 0,30 € |
+| 2 | 0,30 € ÷ 2 | 0,15 € |
+| 3 | 0,30 € ÷ 3 | 0,10 € |
+| 4 | 0,30 € ÷ 4 | 0,075 € |
 
 **SCOP ist keine persönliche Verbrauchsprognose.** Er beschreibt eine standardisierte Heizsaison für ein Referenzklima. Das EU-Label unterscheidet bis zu drei Klimazonen; vergleiche denselben Klimabezug. Betriebsgrenzen, Teillast, Abtauen und zusätzliche Verbraucher müssen zur konkreten Nutzung passen. [Quelle: EU-Kommission, Energieetikett für Klimageräte](https://energy-efficient-products.ec.europa.eu/product-list/air-conditioners-and-comfort-fans_en).
 
@@ -114,4 +108,4 @@ Kläre zuerst den Einbauweg und hole bei festem Split oder einem Heizungstausch 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

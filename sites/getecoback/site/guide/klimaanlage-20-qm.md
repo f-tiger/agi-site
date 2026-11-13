@@ -31,15 +31,12 @@ Ein für 20 m² passendes Gerät zieht ca. 1000 W. Bei 0,30 €/kWh (Rechenbasis
 
 ### Die Kosten im Überblick
 
-Zeitraum | Rechnung (1000 W, 0,30 €/kWh, ~65 % Takt) | Kosten |
-
-1 Stunde Volllast | 1000 W ÷ 1.000 × 0,30 € | **0,30 €** |
-
-1 Nacht (8 h) | × 8 h × 0,65 | **1,56 €** |
-
-1 Hitzemonat (30 Nächte) | × 30 | **~47 €** |
-
-Ohne Fensterabdichtung | Warmluft strömt zurück, Gerät taktet kaum | **bis ×2** |
+| Zeitraum | Rechnung (1000 W, 0,30 €/kWh, ~65 % Takt) | Kosten |
+| --- | --- | --- |
+| 1 Stunde Volllast | 1000 W ÷ 1.000 × 0,30 € | **0,30 €** |
+| 1 Nacht (8 h) | × 8 h × 0,65 | **1,56 €** |
+| 1 Hitzemonat (30 Nächte) | × 30 | **~47 €** |
+| Ohne Fensterabdichtung | Warmluft strömt zurück, Gerät taktet kaum | **bis ×2** |
 
 Die letzte Zeile ist der am meisten unterschätzte Posten: Ohne dichtes Fenster kühlt das Gerät gegen die eigene Abwärme an. Mit dynamischem Stromtarif lässt sich zusätzlich [mittags billig vorkühlen](https://getecoback.com/guide/strompreis-radar.html).
 
@@ -79,4 +76,4 @@ Klimaanlagen vergleichen →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

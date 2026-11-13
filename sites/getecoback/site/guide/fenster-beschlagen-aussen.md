@@ -20,15 +20,12 @@ Bei einem alten Fenster kommt von innen genug Wärme durch das Glas, um die Auß
 
 Entscheidend ist der Taupunkt der Außenluft: die Temperatur, bei der sie ihr Wasser abgibt. An feuchten Herbst- und Wintermorgen liegt er nur knapp unter der Lufttemperatur. So viel kälter als die Luft muss die Scheibe sein, damit sie außen beschlägt:
 
-Morgen | Taupunkt der Außenluft | Scheibe muss kälter sein als die Luft um |
-
-8 °C, 95 % (nebliger Herbstmorgen) | 7,2 °C | **0,8 Grad** |
-
-5 °C, 90 % | 3,5 °C | **1,5 Grad** |
-
-3 °C, 85 % | 0,7 °C | **2,3 Grad** |
-
-0 °C, 90 % | −1,4 °C | **1,4 Grad** — unter 0 °C wird aus dem Beschlag Raureif |
+| Morgen | Taupunkt der Außenluft | Scheibe muss kälter sein als die Luft um |
+| --- | --- | --- |
+| 8 °C, 95 % (nebliger Herbstmorgen) | 7,2 °C | **0,8 Grad** |
+| 5 °C, 90 % | 3,5 °C | **1,5 Grad** |
+| 3 °C, 85 % | 0,7 °C | **2,3 Grad** |
+| 0 °C, 90 % | −1,4 °C | **1,4 Grad** — unter 0 °C wird aus dem Beschlag Raureif |
 
 Ein, zwei Grad reichen also. Deshalb sieht man es vor allem in der Übergangszeit und im Winter, an klaren Morgen nach kalten Nächten, und deshalb verschwindet es, sobald Sonne oder wärmere Luft die Scheibe wieder über den Taupunkt bringen.
 
@@ -43,13 +40,11 @@ Die Luftfeuchte draußen steht in jeder Wetter-App. Gerechnet mit der Magnus-For
 
 ## Außen, innen oder dazwischen — drei verschiedene Fälle
 
-Wo die Scheibe beschlägt | Was es bedeutet | Was zu tun ist |
-
-**Außen** | Die Verglasung dämmt gut, die Außenscheibe bekommt kaum Wärme von innen | Nichts. Es trocknet im Lauf des Vormittags ab |
-
-**Innen** | Die Raumluft ist zu feucht oder die innere Scheibe zu kalt | Luftfeuchte messen, lüften, notfalls entfeuchten — siehe [Fenster beschlagen innen](https://getecoback.com/guide/fenster-beschlagen-innen.html) |
-
-**Zwischen den Scheiben** | Der Randverbund des Isolierglases ist undicht, feuchte Luft ist in den Scheibenzwischenraum gekommen | Lässt sich nicht abwischen. Ein Fall für den Fensterbauer, in der Mietwohnung für den Vermieter |
+| Wo die Scheibe beschlägt | Was es bedeutet | Was zu tun ist |
+| --- | --- | --- |
+| **Außen** | Die Verglasung dämmt gut, die Außenscheibe bekommt kaum Wärme von innen | Nichts. Es trocknet im Lauf des Vormittags ab |
+| **Innen** | Die Raumluft ist zu feucht oder die innere Scheibe zu kalt | Luftfeuchte messen, lüften, notfalls entfeuchten — siehe [Fenster beschlagen innen](https://getecoback.com/guide/fenster-beschlagen-innen.html) |
+| **Zwischen den Scheiben** | Der Randverbund des Isolierglases ist undicht, feuchte Luft ist in den Scheibenzwischenraum gekommen | Lässt sich nicht abwischen. Ein Fall für den Fensterbauer, in der Mietwohnung für den Vermieter |
 
 Die Unterscheidung ist wichtig, weil die Lösungen entgegengesetzt sind: Außen muss man nichts tun, innen muss die Feuchte aus der Wohnung, und zwischen den Scheiben hilft weder Lüften noch Entfeuchten. Wer innen und außen verwechselt, lüftet im Zweifel eine Wohnung trocken, die gar nicht zu feucht war.
 
@@ -84,4 +79,4 @@ Dann ist der Randverbund des Isolierglases undicht, und feuchte Luft ist in den 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

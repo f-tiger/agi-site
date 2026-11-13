@@ -40,21 +40,15 @@ Die Gegenrechnung: ab etwa **120 €** Anschaffung, rund **300 W** Leistungsaufn
 
 ## Direkter Vergleich
 
-| Granulat-Absorber | Elektrischer Luftentfeuchter |
-
-**Preis** | 5–15 € + Nachfüllpacks (3–6 €) | ab ~120 € |
-
-**Entzugsleistung** | ~1–2 L insgesamt, über Wochen | 10–25 L pro Tag |
-
-**Strom** | keiner | ~300 W im Betrieb |
-
-**Geräusch** | lautlos | 40–48 dB (hörbar) |
-
-**Regelbar** | nein | ja (Hygrostat, Ziel-Feuchte) |
-
-**Geeignet für** | Auto, Schrank, Wohnwagen, kleine geschlossene Volumen | Wohnräume, Keller, Bad, Wäschetrocknen, Schimmelprävention |
-
-**Laufende Kosten** | Nachfüllen alle 4–8 Wochen | Stromkosten (~0,10 €/Betriebsstunde) |
+|  | Granulat-Absorber | Elektrischer Luftentfeuchter |
+| --- | --- | --- |
+| **Preis** | 5–15 € + Nachfüllpacks (3–6 €) | ab ~120 € |
+| **Entzugsleistung** | ~1–2 L insgesamt, über Wochen | 10–25 L pro Tag |
+| **Strom** | keiner | ~300 W im Betrieb |
+| **Geräusch** | lautlos | 40–48 dB (hörbar) |
+| **Regelbar** | nein | ja (Hygrostat, Ziel-Feuchte) |
+| **Geeignet für** | Auto, Schrank, Wohnwagen, kleine geschlossene Volumen | Wohnräume, Keller, Bad, Wäschetrocknen, Schimmelprävention |
+| **Laufende Kosten** | Nachfüllen alle 4–8 Wochen | Stromkosten (~0,10 €/Betriebsstunde) |
 
 ## Entscheidungshilfe: Welcher passt zu dir?
 
@@ -87,4 +81,4 @@ Elektrische Entfeuchter →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

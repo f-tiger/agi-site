@@ -12,11 +12,13 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/homeoffice-warm-ble
 - **Gezielt ergänzen:** Erst danach persönliche Wärme oder kurzzeitige Raumwärme auswählen und den Verbrauch für dieselbe Nutzungsdauer berechnen.
 
 ## Was die Geräte leisten
-Option | Geeignetes Ziel | Grenze |
-Unbeheizte Decke | Wärme am Körper halten | Keine Raumheizung |
-Heizdecke oder Fußwärmer | Lokale persönliche Wärme | Anleitung, Abschaltung und Eignung für die Person beachten |
-Heizlüfter | Zeitweise einen Bereich erwärmen | Laufzeit, Leistung und Stromkreis belasten das Budget |
-Bestehende Heizung passend regeln | Raumkomfort über längere Zeit | Regelung und Anlage müssen funktionieren |
+
+| Option | Geeignetes Ziel | Grenze |
+| --- | --- | --- |
+| Unbeheizte Decke | Wärme am Körper halten | Keine Raumheizung |
+| Heizdecke oder Fußwärmer | Lokale persönliche Wärme | Anleitung, Abschaltung und Eignung für die Person beachten |
+| Heizlüfter | Zeitweise einen Bereich erwärmen | Laufzeit, Leistung und Stromkreis belasten das Budget |
+| Bestehende Heizung passend regeln | Raumkomfort über längere Zeit | Regelung und Anlage müssen funktionieren |
 
 ## Kosten vergleichen, ohne gleiche Wirkung zu behaupten
 Ein frei gewähltes Rechenbeispiel: 100 W über vier Stunden ergeben bei 0,35 €/kWh 0,14 €. 2.000 W über denselben Zeitraum ergeben 2,80 €. Das ist kein fairer Leistungsvergleich für dieselbe Aufgabe: Die Geräte erwärmen Unterschiedliches und thermostatische Geräte laufen nicht ständig mit Nennleistung. Nutze [die Sofortbeispiele und den eigenen Heizdecken-Rechner](https://getecoback.com/guide/heizdecke-stromverbrauch.html#waerme-rechner) und [den Heizlüfter-Rechner](https://getecoback.com/guide/heizluefter-stromverbrauch.html) mit tatsächlicher Nutzung.
@@ -43,4 +45,4 @@ Die folgenden Quellen wurden am 4. Oktober 2026 geprüft. Rechenbeispiele sind e
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

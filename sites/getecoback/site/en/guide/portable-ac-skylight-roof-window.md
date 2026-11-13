@@ -24,25 +24,11 @@ Three things make roof windows the tricky case:
 
 ## Three ways to seal a skylight — compared
 
-Method |
-Renter-friendly? |
-Price |
-Best for |
-
-**Universal cloth seal kit** (casement/skylight type) |
-✔ no residue |
-€20–35 |
-Most people — adjustable zipper fits angled openings |
-
-**Cut acrylic / XPS panel** with hose hole |
-✔ clamped, not glued |
-€10–40 |
-Best seal & rain shedding; needs measuring and cutting |
-
-**Roof-window outlet adapter** |
-✔ removable |
-€30–60 |
-Window stays mostly closed; tidiest long-term setup |
+| Method | Renter-friendly? | Price | Best for |
+| --- | --- | --- | --- |
+| **Universal cloth seal kit** (casement/skylight type) | ✔ no residue | €20–35 | Most people — adjustable zipper fits angled openings |
+| **Cut acrylic / XPS panel** with hose hole | ✔ clamped, not glued | €10–40 | Best seal & rain shedding; needs measuring and cutting |
+| **Roof-window outlet adapter** | ✔ removable | €30–60 | Window stays mostly closed; tidiest long-term setup |
 
 ## Method 1: universal cloth seal (what most people should buy)
 
@@ -102,4 +88,4 @@ See also: [cooling the whole attic room](https://getecoback.com/en/guide/cool-at
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Note: EcoBack does not test devices itself; picks summarise public tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.
+Note: Editorial guidance based on the linked sources, not our own device tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.

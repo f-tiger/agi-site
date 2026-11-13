@@ -12,19 +12,14 @@ Wir verkaufen nichts selbst und importieren nichts. Amazon-Links sind Affiliate-
 
 ## Was der günstige Weg wirklich kostet
 
-  | Amazon / deutscher Händler | Direktimport (AliExpress, Temu) |
-
-Preis beim Zubehör | Referenz | **oft rund die Hälfte** |
-
-Lieferzeit | 1–2 Tage | 1–3 Wochen |
-
-Rückgabe | unkompliziert, Retoure im Inland | über die Plattform; Rückversand nach China lohnt selten |
-
-Einfuhrumsatzsteuer | im Preis | unter 150 € über IOSS meist im Preis enthalten |
-
-Passform / Qualität | Maßangaben meist verlässlich | Maße prüfen — Klettband und Kleber sind der häufigste Schwachpunkt |
-
-Sinnvoll wenn… | du das Teil **jetzt** brauchst | du **vorausplanst** und Wartezeit egal ist |
+|  | Amazon / deutscher Händler | Direktimport (AliExpress, Temu) |
+| --- | --- | --- |
+| Preis beim Zubehör | Referenz | **oft rund die Hälfte** |
+| Lieferzeit | 1–2 Tage | 1–3 Wochen |
+| Rückgabe | unkompliziert, Retoure im Inland | über die Plattform; Rückversand nach China lohnt selten |
+| Einfuhrumsatzsteuer | im Preis | unter 150 € über IOSS meist im Preis enthalten |
+| Passform / Qualität | Maßangaben meist verlässlich | Maße prüfen — Klettband und Kleber sind der häufigste Schwachpunkt |
+| Sinnvoll wenn… | du das Teil **jetzt** brauchst | du **vorausplanst** und Wartezeit egal ist |
 
 ## Die fünf Teile, bei denen sich der Vergleich lohnt
 
@@ -89,4 +84,4 @@ Miss dein Fenster, bevor du bestellst — die Abdichtungen gibt es in festen Lä
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

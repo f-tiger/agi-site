@@ -18,17 +18,13 @@ Ein **Luftentfeuchter** entzieht der Raumluft Wasser und senkt die Luftfeuchtigk
 
 ## Direkter Vergleich
 
-| Luftentfeuchter | Luftreiniger |
-
-Entfernt | Feuchtigkeit (Wasser) | Partikel (Pollen, Staub) |
-
-Hilft gegen | Schimmel, klamme Wäsche, Muff | Allergien, Staub, Gerüche |
-
-Ändert Luftfeuchte? | Ja, senkt sie | Nein |
-
-Filter nötig? | Nein (Kondensprinzip) | Ja (HEPA, regelmäßig tauschen) |
-
-Typischer Preis | ab ~120 € | ab ~80 € |
+|  | Luftentfeuchter | Luftreiniger |
+| --- | --- | --- |
+| Entfernt | Feuchtigkeit (Wasser) | Partikel (Pollen, Staub) |
+| Hilft gegen | Schimmel, klamme Wäsche, Muff | Allergien, Staub, Gerüche |
+| Ändert Luftfeuchte? | Ja, senkt sie | Nein |
+| Filter nötig? | Nein (Kondensprinzip) | Ja (HEPA, regelmäßig tauschen) |
+| Typischer Preis | ab ~120 € | ab ~80 € |
 
 ## Nimm den Luftentfeuchter, wenn …
 
@@ -66,4 +62,4 @@ Luftreiniger auf Amazon.de ansehen →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

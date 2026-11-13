@@ -39,15 +39,12 @@ Neubau / gut
 
 Der Check bewertet die vier Faktoren mit Punkten (0–100). Je höher die Summe, desto höher das Überhitzungs-Risiko:
 
-Faktor | Größter Treiber | Wirkung |
-
-Lage | Dachgeschoss | am stärksten — Dachräume heizen sich extrem auf |
-
-Fensterausrichtung | Süd / West | sehr stark — direkte Nachmittagssonne |
-
-Fensterfläche | groß / bodentief | stark — mehr Glas, mehr Sonneneintrag |
-
-Dämmung | Altbau / schlecht | mittel — Wärme bleibt länger im Raum |
+| Faktor | Größter Treiber | Wirkung |
+| --- | --- | --- |
+| Lage | Dachgeschoss | am stärksten — Dachräume heizen sich extrem auf |
+| Fensterausrichtung | Süd / West | sehr stark — direkte Nachmittagssonne |
+| Fensterfläche | groß / bodentief | stark — mehr Glas, mehr Sonneneintrag |
+| Dämmung | Altbau / schlecht | mittel — Wärme bleibt länger im Raum |
 
 ## Was hilft — in der richtigen Reihenfolge
 
@@ -89,4 +86,4 @@ Für die Kaufentscheidung ist genau das der entscheidende Punkt: Solange die Nac
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

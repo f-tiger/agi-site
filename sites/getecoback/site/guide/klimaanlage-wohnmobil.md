@@ -16,15 +16,12 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unte
 
 Grundsätzlich gibt es vier Wege, einen Camper zu kühlen. Sie unterscheiden sich vor allem darin, ob sie die Luft tatsächlich kälter machen (Kompressor) oder nur bewegen und befeuchten (Ventilator/Verdunstung).
 
-Typ | Kühlt echt? | Strombedarf | Gewicht/Einbau | Für wen |
-
-Dachklimaanlage | Ja, stark | ~400–900 W (230 V) | 25–35 kg, feste Montage | Reisemobil mit Landstrom/Stellplatz |
-
-Staukasten-Klimaanlage | Ja, stark | ~400–800 W (230 V) | ~20–30 kg, im Doppelboden/Heck | Kastenwagen, niedrige Bauhöhe |
-
-Mobiles Monoblock-Gerät | Ja, mittel | ~800–1.200 W (230 V) | ~20–30 kg, mit Abluftschlauch | Gelegenheitsnutzer, Landstrom da |
-
-12V-Mini-Kühler / Ventilator | Nein (nur Luftstrom) | ~2–60 W (12 V) | Sehr leicht, mobil | Zelt, autark, als Ergänzung |
+| Typ | Kühlt echt? | Strombedarf | Gewicht/Einbau | Für wen |
+| --- | --- | --- | --- | --- |
+| Dachklimaanlage | Ja, stark | ~400–900 W (230 V) | 25–35 kg, feste Montage | Reisemobil mit Landstrom/Stellplatz |
+| Staukasten-Klimaanlage | Ja, stark | ~400–800 W (230 V) | ~20–30 kg, im Doppelboden/Heck | Kastenwagen, niedrige Bauhöhe |
+| Mobiles Monoblock-Gerät | Ja, mittel | ~800–1.200 W (230 V) | ~20–30 kg, mit Abluftschlauch | Gelegenheitsnutzer, Landstrom da |
+| 12V-Mini-Kühler / Ventilator | Nein (nur Luftstrom) | ~2–60 W (12 V) | Sehr leicht, mobil | Zelt, autark, als Ergänzung |
 
 ## Dachklimaanlage: die stärkste Lösung — aber Strom und Gewicht
 
@@ -99,4 +96,4 @@ Wohnmobil-Klimaanlagen ansehen →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

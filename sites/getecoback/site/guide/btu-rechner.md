@@ -34,30 +34,12 @@ BTU berechnen
 
 Auch ohne den Rechner: Das sind die gängigen Richtwerte für eine tragbare Klimaanlage nach Raumgröße (bei normaler Deckenhöhe und durchschnittlicher Sonneneinstrahlung).
 
-Raumgröße |
-Empfohlene BTU |
-Typischer Raum |
-Passendes Modell |
-
-bis 15 m² |
-**7.000–9.000 BTU** |
-kleines Schlafzimmer, Büro |
-[Comfee (kleine Räume)](https://getecoback.com/guide/klimaanlage-15-qm.html) |
-
-15–25 m² |
-**9.000–12.000 BTU** |
-Schlafzimmer, Homeoffice |
-[De'Longhi Pinguino (Sweet Spot)](https://getecoback.com/guide/klimaanlage-20-qm.html) |
-
-25–35 m² |
-**12.000–14.000 BTU** |
-Wohnzimmer |
-[Klarstein (große Räume)](https://getecoback.com/guide/klimaanlage-30-qm.html) |
-
-über 35 m² |
-**14.000+ BTU / Monoblock** |
-offener Grundriss |
-[Klarstein High-BTU](https://getecoback.com/guide/klimaanlage-40-qm.html) |
+| Raumgröße | Empfohlene BTU | Typischer Raum | Passendes Modell |
+| --- | --- | --- | --- |
+| bis 15 m² | **7.000–9.000 BTU** | kleines Schlafzimmer, Büro | [Comfee (kleine Räume)](https://getecoback.com/guide/klimaanlage-15-qm.html) |
+| 15–25 m² | **9.000–12.000 BTU** | Schlafzimmer, Homeoffice | [De'Longhi Pinguino (Sweet Spot)](https://getecoback.com/guide/klimaanlage-20-qm.html) |
+| 25–35 m² | **12.000–14.000 BTU** | Wohnzimmer | [Klarstein (große Räume)](https://getecoback.com/guide/klimaanlage-30-qm.html) |
+| über 35 m² | **14.000+ BTU / Monoblock** | offener Grundriss | [Klarstein High-BTU](https://getecoback.com/guide/klimaanlage-40-qm.html) |
 
 Modelle aus öffentlichen Testberichten zusammengestellt, nicht selbst getestet. Für hohe Decken, Süd-/Dachlage oder viele Personen eine Stufe höher wählen — der Rechner oben rechnet das automatisch.
 
@@ -89,4 +71,4 @@ Tragbare Klimaanlagen ansehen →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

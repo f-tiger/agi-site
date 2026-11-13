@@ -8,15 +8,12 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/heizung-tauschen-od
 
 ## Was gilt, was fällt — die Übersicht
 
-Regel | Status seit 29.07.2026 |
-
-65-Prozent-Erneuerbare-Vorgabe für neue Heizungen | **Abgeschafft** |
-
-Freie Wahl des Heizsystems (Gas, Öl, Wärmepumpe, Pellet …) | **Wieder möglich** |
-
-Gesetz selbst (vormals GEG) | **Bleibt** — reformiert & umbenannt in GModG |
-
-Quote für Biomasse/erneuerbare Brennstoffe bei neuen fossilen Heizungen | **Neu ab 2029**, stufenweise (10 % → 15 % → 30 % → 60 % bis 2040; Zwischenjahre siehe Gesetzestext) |
+| Regel | Status seit 29.07.2026 |
+| --- | --- |
+| 65-Prozent-Erneuerbare-Vorgabe für neue Heizungen | **Abgeschafft** |
+| Freie Wahl des Heizsystems (Gas, Öl, Wärmepumpe, Pellet …) | **Wieder möglich** |
+| Gesetz selbst (vormals GEG) | **Bleibt** — reformiert & umbenannt in GModG |
+| Quote für Biomasse/erneuerbare Brennstoffe bei neuen fossilen Heizungen | **Neu ab 2029**, stufenweise (10 % → 15 % → 30 % → 60 % bis 2040; Zwischenjahre siehe Gesetzestext) |
 
 Quellen: Gesetzestext im Wortlaut auf [gesetze-im-internet.de](https://www.gesetze-im-internet.de/geg/) (Erstquelle); Einordnungen u. a. beim ADAC. Achtung: Viele Artikel im Netz nennen fälschlich den 1. Juli als Stichtag — maßgeblich ist das Inkrafttreten am **29. Juli 2026**.
 
@@ -54,4 +51,4 @@ Pauschal nein. Läuft dein Kessel zuverlässig, verschafft dir die neue Rechtsla
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

@@ -10,13 +10,11 @@ Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/mould-italian-ap
 
 Relative humidity is relative to temperature. Cool a parcel of air and its relative humidity rises even though it contains exactly the same water, because cold air can hold less. The air touching an outside wall is colder than the air in the middle of the room, so its relative humidity is higher — and mould grows on the wall, not in the middle of the room. The table gives the humidity at the surface for a room at 20 °C, computed with the standard Magnus formula (the same one our calculator below uses):
 
-Room at 20 °C, hygrometer reads… | Wall at 17 °C | Wall at 14 °C | Wall at 12 °C | Wall at 10 °C |
-
-40 % | 48 % | 58 % | 67 % | 76 % |
-
-50 % | 60 % | **73 %** | 83 % | 95 % |
-
-60 % | 72 % | 88 % | 100 % — water condenses | 100 % — water condenses |
+| Room at 20 °C, hygrometer reads… | Wall at 17 °C | Wall at 14 °C | Wall at 12 °C | Wall at 10 °C |
+| --- | --- | --- | --- | --- |
+| 40 % | 48 % | 58 % | 67 % | 76 % |
+| 50 % | 60 % | **73 %** | 83 % | 95 % |
+| 60 % | 72 % | 88 % | 100 % — water condenses | 100 % — water condenses |
 
 Two things stand out. A wall at 14 °C — an ordinary reading for an uninsulated exterior wall in January — needs only **48 percent in the room** to reach 70 at the surface. And at 60 percent in the room, a 12 °C wall is not merely damp; the air at it has reached its dew point and water is forming. That is the wet patch that appears overnight behind furniture on an outside wall.
 
@@ -34,13 +32,11 @@ This is why the most effective heating change is not more heat but steadier heat
 
 ## Three levers, in the order that works
 
-Lever | What it does to the number | How |
-
-**1. Make less moisture, get it out** | Lowers the room's humidity, so every wall improves at once | Lid on pans; extractor or window during and after showers; laundry dried in one closed room with a dehumidifier, not on radiators in the living room; windows fully open for 5–10 minutes several times a day instead of ajar for hours ([why the ajar window is the mould setting](https://getecoback.com/en/guide/tilt-and-turn-windows-winter-condensation.html)) |
-
-**2. Dry the air** | Same effect as lever 1, mechanically, on days ventilation cannot do it | A dehumidifier sized to the room — [16–20 litres per day rated capacity for 20 m²](https://getecoback.com/en/guide/dehumidifier-20-sqm.html). Compressor models are fine in a heated room; in a cold, unheated room read [compressor vs desiccant](https://getecoback.com/en/guide/desiccant-vs-compressor-dehumidifier.html) first, because below about 12 °C the compressor type barely works |
-
-**3. Warm the surface** | Only helps the wall it warms — but three degrees of wall temperature are worth about 13 points of surface humidity in the 50 % example above | Steady low heat rather than bursts; furniture off outside walls; an infrared panel aimed at the cold wall. One hard limit, explained in our [German infrared-versus-mould guide](https://getecoback.com/guide/infrarotheizung-gegen-schimmel.html): a surface can never be warmer than the room air, so above roughly 62 percent room humidity no amount of heating gets the wall under 60 — then it is lever 1 or 2 or nothing |
+| Lever | What it does to the number | How |
+| --- | --- | --- |
+| **1. Make less moisture, get it out** | Lowers the room's humidity, so every wall improves at once | Lid on pans; extractor or window during and after showers; laundry dried in one closed room with a dehumidifier, not on radiators in the living room; windows fully open for 5–10 minutes several times a day instead of ajar for hours ([why the ajar window is the mould setting](https://getecoback.com/en/guide/tilt-and-turn-windows-winter-condensation.html)) |
+| **2. Dry the air** | Same effect as lever 1, mechanically, on days ventilation cannot do it | A dehumidifier sized to the room — [16–20 litres per day rated capacity for 20 m²](https://getecoback.com/en/guide/dehumidifier-20-sqm.html). Compressor models are fine in a heated room; in a cold, unheated room read [compressor vs desiccant](https://getecoback.com/en/guide/desiccant-vs-compressor-dehumidifier.html) first, because below about 12 °C the compressor type barely works |
+| **3. Warm the surface** | Only helps the wall it warms — but three degrees of wall temperature are worth about 13 points of surface humidity in the 50 % example above | Steady low heat rather than bursts; furniture off outside walls; an infrared panel aimed at the cold wall. One hard limit, explained in our [German infrared-versus-mould guide](https://getecoback.com/guide/infrarotheizung-gegen-schimmel.html): a surface can never be warmer than the room air, so above roughly 62 percent room humidity no amount of heating gets the wall under 60 — then it is lever 1 or 2 or nothing |
 
 ## Check your own wall
 
@@ -97,4 +93,4 @@ Electrically yes: both countries use 230 V. The plug is the question. Italy has 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Note: EcoBack does not test devices itself; picks summarise public tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.
+Note: Editorial guidance based on the linked sources, not our own device tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.

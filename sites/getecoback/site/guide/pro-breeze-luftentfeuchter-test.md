@@ -16,15 +16,12 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unte
 
 Bei Meaco unterscheiden sich die Varianten in der Größe — bei Pro Breeze unterscheiden sie sich in der Technik. Unter demselben Markennamen laufen Mini-Geräte mit Peltier-Element und ausgewachsene Kompressor-Entfeuchter, und die Namen machen es nicht leichter: Beim Mini steht die Zahl für die **Tankgröße in Millilitern**, bei den Kompressor-Geräten für die **Entfeuchtungsleistung in Litern pro Tag**. Ein „500ml“-Mini und ein „20L“ klingen wie Nachbarn im Sortiment — zwischen ihnen liegt der Faktor 80.
 
-Variante | Technik | Entzug (Herstellerangabe) | Ehrlicher Einsatz |
-
-Mini 500ml (PB-02) | Peltier, ca. 20 W | bis ca. 0,25 l/Tag | Kleiderschrank, Bad-Regal, Auto, Wohnwagen im Winterlager — **kein Raumgerät** |
-
-Größere Minis (1500ml, 3000ml) | Peltier | Tank wächst, Prinzip bleibt | Größerer Schrank oder Abstellkammer; Testberichte.de attestiert dem 3000ml-Modell „geringe Entfeuchtungswirkung“ |
-
-Pro Breeze 12L | Kompressor, 240 W | bis 12 l/Tag | Einzelnes Zimmer um die 10–15 m²; 40 dB und 1,8-l-Tank laut Hersteller |
-
-**Pro Breeze 20L** | Kompressor, 440 W | bis 20 l/Tag | Die hier besprochene Größe — Wohnräume ca. 25–30 m², mit Wäschemodus und 5,5-l-Tank |
+| Variante | Technik | Entzug (Herstellerangabe) | Ehrlicher Einsatz |
+| --- | --- | --- | --- |
+| Mini 500ml (PB-02) | Peltier, ca. 20 W | bis ca. 0,25 l/Tag | Kleiderschrank, Bad-Regal, Auto, Wohnwagen im Winterlager — **kein Raumgerät** |
+| Größere Minis (1500ml, 3000ml) | Peltier | Tank wächst, Prinzip bleibt | Größerer Schrank oder Abstellkammer; Testberichte.de attestiert dem 3000ml-Modell „geringe Entfeuchtungswirkung“ |
+| Pro Breeze 12L | Kompressor, 240 W | bis 12 l/Tag | Einzelnes Zimmer um die 10–15 m²; 40 dB und 1,8-l-Tank laut Hersteller |
+| **Pro Breeze 20L** | Kompressor, 440 W | bis 20 l/Tag | Die hier besprochene Größe — Wohnräume ca. 25–30 m², mit Wäschemodus und 5,5-l-Tank |
 
 Das 20L-Modell gibt es zudem in mehreren Ausführungen (u. a. mit Ein-Klick-Wäschemodus und als WiFi-Version PB-D-23) — Kernwerte laut Hersteller sind bis 20 l/Tag, einstellbare Ziel-Feuchte von 30–80 % rF, Dauerablauf-Anschluss und Kältemittel R290. Alle Zahlen auf dieser Seite beziehen sich, wo nicht anders gesagt, auf das **20L-Modell**; Quellen sind die Produktseiten des Herstellers und die verlinkten Testübersichten.
 
@@ -38,19 +35,14 @@ Die Zahlen machen es konkret: Der Mini 500ml schafft laut Testberichte.de mit 20
 
 Einen eigenen Test der Stiftung Warentest zu Pro-Breeze-Entfeuchtern haben wir nicht gefunden; die öffentliche Testlage besteht vor allem aus den Aggregat-Noten von Testberichte.de und Nutzer-Erfahrungen — dünner als beim MeacoDry Arete One, zu dem mehrere unabhängige Messungen existieren. Was sich daraus belegen lässt:
 
-Befund öffentlicher Quellen | Unsere Einordnung für den Alltag |
-
-✓ Testberichte.de führt den 12L-Kompressor mit Gesamtnote „sehr gut“ (1,5) | Für einzelne Zimmer die runde Budget-Wahl der Marke |
-
-✓ Der 20-Liter-OmniDry der Marke steht bei Testberichte.de mit „gut“ (1,6) | Die 20-l-Klasse von Pro Breeze schneidet ordentlich ab — ohne Spitzenwertung |
-
-✓ Ausstattung des 20L laut Hersteller: Wäschemodus, Ziel-Feuchte 30–80 % rF, 5,5-l-Tank, Dauerablauf, R290 | Auf dem Niveau der Klasse — funktional fehlt gegenüber teureren Geräten wenig |
-
-✕ 440 W laut Produktseite des 20L | Deutlich über den 216 W des Meaco und über den ~300 W typischer Kompressor-Geräte — Rechenweg unten |
-
-✕ Kein Leise-Anspruch: bis 48 dB beim 20L laut Hersteller | Für Keller und Abwesenheit egal, fürs Schlafzimmer ein echter Abstrich |
-
-✕ Peltier-Minis: Testberichte.de attestiert dem 3000ml-Modell „geringe Entfeuchtungswirkung“, „auf wenige Anwendungsfälle definiert“ | Deckt sich mit der Physik: als Raum-Entfeuchter ungeeignet, als Schrank-Entfeuchter in Ordnung |
+| Befund öffentlicher Quellen | Unsere Einordnung für den Alltag |
+| --- | --- |
+| ✓ Testberichte.de führt den 12L-Kompressor mit Gesamtnote „sehr gut“ (1,5) | Für einzelne Zimmer die runde Budget-Wahl der Marke |
+| ✓ Der 20-Liter-OmniDry der Marke steht bei Testberichte.de mit „gut“ (1,6) | Die 20-l-Klasse von Pro Breeze schneidet ordentlich ab — ohne Spitzenwertung |
+| ✓ Ausstattung des 20L laut Hersteller: Wäschemodus, Ziel-Feuchte 30–80 % rF, 5,5-l-Tank, Dauerablauf, R290 | Auf dem Niveau der Klasse — funktional fehlt gegenüber teureren Geräten wenig |
+| ✕ 440 W laut Produktseite des 20L | Deutlich über den 216 W des Meaco und über den ~300 W typischer Kompressor-Geräte — Rechenweg unten |
+| ✕ Kein Leise-Anspruch: bis 48 dB beim 20L laut Hersteller | Für Keller und Abwesenheit egal, fürs Schlafzimmer ein echter Abstrich |
+| ✕ Peltier-Minis: Testberichte.de attestiert dem 3000ml-Modell „geringe Entfeuchtungswirkung“, „auf wenige Anwendungsfälle definiert“ | Deckt sich mit der Physik: als Raum-Entfeuchter ungeeignet, als Schrank-Entfeuchter in Ordnung |
 
 ## Für welchen Raum reicht welcher?
 
@@ -72,15 +64,12 @@ Die ehrliche Faustregel: **Der Pro Breeze 20L ist beim Kauf der günstigste Eins
 
 ## Alternativen: wann ein anderes Gerät besser passt
 
-Situation | Bessere Wahl | Warum |
-
-Wohnraum, in dem du dich aufhältst — leise und sparsam im Dauerbetrieb | MeacoDry Arete One 20L | 216 W, Leise-Auslegung, 5 Jahre Garantie — der Gegenentwurf zum Budget-Einstieg; unsere Einordnung im [Arete-One-Test-Überblick](https://getecoback.com/guide/meacodry-arete-one-test.html) |
-
-Bewährte Standard-Alternative der 20-l-Klasse | Comfee MDDF-20DEN7 | Unsere langjährige Standard-Empfehlung der Klasse — preislich zwischen Pro Breeze und Meaco |
-
-Nur ein einzelnes Zimmer bis ca. 15 m² | Pro Breeze 12L | Kompressor-Technik mit 240 W und laut Hersteller 40 dB — reicht für den Raum und kostet weniger |
-
-Wirklich nur Schrank, Auto oder Wohnwagen | Pro Breeze Mini 500ml | Im geschlossenen Kleinst-Volumen ist das Peltier-Prinzip zu Hause — nur dort |
+| Situation | Bessere Wahl | Warum |
+| --- | --- | --- |
+| Wohnraum, in dem du dich aufhältst — leise und sparsam im Dauerbetrieb | MeacoDry Arete One 20L | 216 W, Leise-Auslegung, 5 Jahre Garantie — der Gegenentwurf zum Budget-Einstieg; unsere Einordnung im [Arete-One-Test-Überblick](https://getecoback.com/guide/meacodry-arete-one-test.html) |
+| Bewährte Standard-Alternative der 20-l-Klasse | Comfee MDDF-20DEN7 | Unsere langjährige Standard-Empfehlung der Klasse — preislich zwischen Pro Breeze und Meaco |
+| Nur ein einzelnes Zimmer bis ca. 15 m² | Pro Breeze 12L | Kompressor-Technik mit 240 W und laut Hersteller 40 dB — reicht für den Raum und kostet weniger |
+| Wirklich nur Schrank, Auto oder Wohnwagen | Pro Breeze Mini 500ml | Im geschlossenen Kleinst-Volumen ist das Peltier-Prinzip zu Hause — nur dort |
 
 Anzeige · Affiliate-Links — du zahlst denselben Preis. Nicht selbst getestet; Auswahl fasst öffentliche Tests zusammen.
 
@@ -118,4 +107,4 @@ Pro Breeze Luftentfeuchter 20L auf Amazon →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

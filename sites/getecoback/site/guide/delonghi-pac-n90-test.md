@@ -16,17 +16,13 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unte
 
 Die Basisdaten sind unstrittig und stehen im Händler-Datenblatt: 9.800 BTU/h (2,5 kW) Kühlleistung, Energieeffizienzklasse A mit EER 2,6, rund 940 W Leistungsaufnahme im Kühlbetrieb, Kältemittel R290, rund 30 kg. Interessanter ist, was öffentliche Tests und Nutzerberichte daraus machen — über die Quellen hinweg wiederholen sich dieselben Befunde:
 
-Befund öffentlicher Tests | Unsere Einordnung für den Alltag |
-
-✓ Leisester Monoblock im Stiftung-Warentest-Umfeld: Silent-Modus unter 50 dB, laut Datenblatt 50–52 dB(A) Schalldruck | Das ist die Kaufbegründung — die ehrliche Einordnung der Zahlen steht unten |
-
-✓ Kondenswasser-Recycling: Im Kühlbetrieb wird das Kondensat intern verdampft, Restfeuchte geht über den Abluftschlauch raus | Kein Tank, der nachts voll läuft und das Gerät stoppt — ein echter Schlafzimmer-Vorteil |
-
-✓ Energieeffizienzklasse A, EER 2,6, Kältemittel R290 (klimafreundlicher als ältere F-Gase) | Solide, aber kein A+++ wie der EX105 — was der Betrieb kostet, steht im [Stromkosten-Ratgeber](https://getecoback.com/guide/klimaanlage-stromkosten.html) |
-
-✕ Trotz „Silent“ kein Flüstergerät: In Nutzerbewertungen wird der Pegel teils mit einem Wäschetrockner verglichen, vereinzelt wird Klappern beim Kompressor-Start berichtet | Realistische Erwartung: leiser als das Feld, nicht lautlos — was gegen gefühlte Lautstärke hilft: [mobile Klimaanlage zu laut](https://getecoback.com/guide/mobile-klimaanlage-zu-laut.html) |
-
-✕ Rund 30 kg; eine Fensterabdichtung für Kipp- oder Flügelfenster liegt nicht bei | Auf Rollen im Geschoss kein Problem, Treppen zu zweit; das Abdichtungs-Kit (15–30 €) direkt mitbestellen: [welches passt zu welchem Fenster](https://getecoback.com/guide/fensterabdichtung-klimaanlage.html) |
+| Befund öffentlicher Tests | Unsere Einordnung für den Alltag |
+| --- | --- |
+| ✓ Leisester Monoblock im Stiftung-Warentest-Umfeld: Silent-Modus unter 50 dB, laut Datenblatt 50–52 dB(A) Schalldruck | Das ist die Kaufbegründung — die ehrliche Einordnung der Zahlen steht unten |
+| ✓ Kondenswasser-Recycling: Im Kühlbetrieb wird das Kondensat intern verdampft, Restfeuchte geht über den Abluftschlauch raus | Kein Tank, der nachts voll läuft und das Gerät stoppt — ein echter Schlafzimmer-Vorteil |
+| ✓ Energieeffizienzklasse A, EER 2,6, Kältemittel R290 (klimafreundlicher als ältere F-Gase) | Solide, aber kein A+++ wie der EX105 — was der Betrieb kostet, steht im [Stromkosten-Ratgeber](https://getecoback.com/guide/klimaanlage-stromkosten.html) |
+| ✕ Trotz „Silent“ kein Flüstergerät: In Nutzerbewertungen wird der Pegel teils mit einem Wäschetrockner verglichen, vereinzelt wird Klappern beim Kompressor-Start berichtet | Realistische Erwartung: leiser als das Feld, nicht lautlos — was gegen gefühlte Lautstärke hilft: [mobile Klimaanlage zu laut](https://getecoback.com/guide/mobile-klimaanlage-zu-laut.html) |
+| ✕ Rund 30 kg; eine Fensterabdichtung für Kipp- oder Flügelfenster liegt nicht bei | Auf Rollen im Geschoss kein Problem, Treppen zu zweit; das Abdichtungs-Kit (15–30 €) direkt mitbestellen: [welches passt zu welchem Fenster](https://getecoback.com/guide/fensterabdichtung-klimaanlage.html) |
 
 ## Für welchen Raum reicht er?
 
@@ -44,29 +40,23 @@ Der Silent-Modus ist dabei ein Tausch, kein Gratis-Feature: Er fährt die Lüfte
 
 So sortiert sich die Leise-Hierarchie im Sortiment dieser Seite:
 
-Gerät | Leise-Angabe | Charakter |
-
-[Midea PortaSplit](https://getecoback.com/guide/portasplit-vs-monoblock.html) | Kompressor hängt draußen | Bauartbedingt leiser als jeder Monoblock — auch als der N90 |
-
-**De'Longhi PAC N90 ECO Silent** | Silent-Modus unter 50 dB; Datenblatt 50–52 dB(A) Schalldruck | Leise über alle Lüfterstufen, nicht nur in einem Sondermodus |
-
-[AEG ChillFlex Pro](https://getecoback.com/guide/aeg-chillflex-pro-test.html) | ~52 dB im Schlafmodus gemessen, ~64 dB(A) im Normalbetrieb | Nur der Schlafmodus ist leise — im Normalbetrieb oberes Mittelfeld |
-
-[Pinguino PAC EX105](https://getecoback.com/guide/pinguino-pac-ex105-test.html) | ~63 dB im Turbo am Gerät, ~55 dB in Raummitte gemessen | Für einen Monoblock leise, aber auf Effizienz statt Nachtruhe optimiert |
+| Gerät | Leise-Angabe | Charakter |
+| --- | --- | --- |
+| [Midea PortaSplit](https://getecoback.com/guide/portasplit-vs-monoblock.html) | Kompressor hängt draußen | Bauartbedingt leiser als jeder Monoblock — auch als der N90 |
+| **De'Longhi PAC N90 ECO Silent** | Silent-Modus unter 50 dB; Datenblatt 50–52 dB(A) Schalldruck | Leise über alle Lüfterstufen, nicht nur in einem Sondermodus |
+| [AEG ChillFlex Pro](https://getecoback.com/guide/aeg-chillflex-pro-test.html) | ~52 dB im Schlafmodus gemessen, ~64 dB(A) im Normalbetrieb | Nur der Schlafmodus ist leise — im Normalbetrieb oberes Mittelfeld |
+| [Pinguino PAC EX105](https://getecoback.com/guide/pinguino-pac-ex105-test.html) | ~63 dB im Turbo am Gerät, ~55 dB in Raummitte gemessen | Für einen Monoblock leise, aber auf Effizienz statt Nachtruhe optimiert |
 
 Wichtig: dB-Angaben aus verschiedenen Quellen sind nur bedingt vergleichbar, weil Messabstand, Messgröße und Modus sich unterscheiden — die Tabelle zeigt die Richtung, keine Labor-Rangliste.
 
 ## Alternativen: wann ein anderes Gerät besser passt
 
-Situation | Bessere Wahl | Warum |
-
-15–20 m², Budget knapp | Comfee MPPH-09CRN7 · [Test-Überblick](https://getecoback.com/guide/comfee-mpph-09crn7-test.html) | 9.000 BTU Grundleistung, deutlich günstiger — ohne Silent-Anspruch |
-
-Dauerbetrieb, Stromkosten zählen | De'Longhi Pinguino PAC EX105 · [Test-Überblick](https://getecoback.com/guide/pinguino-pac-ex105-test.html) | A+++ statt A — der sparsamere Dauerläufer derselben Raumklasse |
-
-Sehr geräuschempfindlich, absolute Ruhe | Midea PortaSplit | Kompressor hängt draußen — drinnen leiser als jeder Monoblock |
-
-Gleiche Leise-Klasse, N90 nicht lieferbar | AEG ChillFlex Pro · [Test-Überblick](https://getecoback.com/guide/aeg-chillflex-pro-test.html) | Ähnliches Preisband, leiser Schlafmodus — aber lauterer Normalbetrieb |
+| Situation | Bessere Wahl | Warum |
+| --- | --- | --- |
+| 15–20 m², Budget knapp | Comfee MPPH-09CRN7 · [Test-Überblick](https://getecoback.com/guide/comfee-mpph-09crn7-test.html) | 9.000 BTU Grundleistung, deutlich günstiger — ohne Silent-Anspruch |
+| Dauerbetrieb, Stromkosten zählen | De'Longhi Pinguino PAC EX105 · [Test-Überblick](https://getecoback.com/guide/pinguino-pac-ex105-test.html) | A+++ statt A — der sparsamere Dauerläufer derselben Raumklasse |
+| Sehr geräuschempfindlich, absolute Ruhe | Midea PortaSplit | Kompressor hängt draußen — drinnen leiser als jeder Monoblock |
+| Gleiche Leise-Klasse, N90 nicht lieferbar | AEG ChillFlex Pro · [Test-Überblick](https://getecoback.com/guide/aeg-chillflex-pro-test.html) | Ähnliches Preisband, leiser Schlafmodus — aber lauterer Normalbetrieb |
 
 Anzeige · Affiliate-Links — du zahlst denselben Preis. Nicht selbst getestet; Auswahl fasst öffentliche Tests zusammen.
 
@@ -105,4 +95,4 @@ De'Longhi PAC N90 ECO Silent auf Amazon →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

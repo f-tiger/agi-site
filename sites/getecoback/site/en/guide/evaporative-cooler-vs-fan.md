@@ -26,17 +26,13 @@ Two catches. First, only the airstream is cooler — the room temperature doesn'
 
 ## Evaporative cooler vs fan: the numbers
 
-| Fan | Evaporative cooler |
-
-Price from | ~€25–60 (good models ~€100+) | ~€60–150 |
-
-Power draw | ~20–50 W | ~60–120 W |
-
-Cools the air? | No — wind-chill on skin only | Yes, output stream ~3–8°C cooler (dry air) |
-
-Works in humid weather? | Yes, unchanged | Poorly above ~60–70% humidity |
-
-Maintenance | Dust the blades occasionally | Weekly tank rinse + pad cleaning |
+|  | Fan | Evaporative cooler |
+| --- | --- | --- |
+| Price from | ~€25–60 (good models ~€100+) | ~€60–150 |
+| Power draw | ~20–50 W | ~60–120 W |
+| Cools the air? | No — wind-chill on skin only | Yes, output stream ~3–8°C cooler (dry air) |
+| Works in humid weather? | Yes, unchanged | Poorly above ~60–70% humidity |
+| Maintenance | Dust the blades occasionally | Weekly tank rinse + pad cleaning |
 
 ## Where the cooler stops working — and the maintenance nobody mentions
 
@@ -78,4 +74,4 @@ MeacoFan 1056 →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Note: EcoBack does not test devices itself; picks summarise public tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.
+Note: Editorial guidance based on the linked sources, not our own device tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.

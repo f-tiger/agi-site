@@ -14,21 +14,15 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unte
 
 ## Der direkte Vergleich
 
-| Midea PortaSplit | Mobiler Monoblock |
-
-Lautstärke innen | ~35–42 dB (schlafzimmertauglich) | ~55–65 dB |
-
-Effizienz | Höher (echter Split) | Niedriger (Abluftschlauch) |
-
-Preis | ~800–1.300 € | ~250–600 € |
-
-Montage | Selbst, ~1–2 Std., kein Bohren | Auspacken, ~10 Min. |
-
-Außeneinheit nötig? | Ja (Balkon/Fensterplatz) | Nein, nur Abluftschlauch |
-
-Flexibel umstellen | Eingeschränkt | Ja, rollbar |
-
-Heizfunktion | Meist ja (Wärmepumpe) | Teilweise |
+|  | Midea PortaSplit | Mobiler Monoblock |
+| --- | --- | --- |
+| Lautstärke innen | ~35–42 dB (schlafzimmertauglich) | ~55–65 dB |
+| Effizienz | Höher (echter Split) | Niedriger (Abluftschlauch) |
+| Preis | ~800–1.300 € | ~250–600 € |
+| Montage | Selbst, ~1–2 Std., kein Bohren | Auspacken, ~10 Min. |
+| Außeneinheit nötig? | Ja (Balkon/Fensterplatz) | Nein, nur Abluftschlauch |
+| Flexibel umstellen | Eingeschränkt | Ja, rollbar |
+| Heizfunktion | Meist ja (Wärmepumpe) | Teilweise |
 
 ## Wann die Midea PortaSplit gewinnt
 
@@ -72,4 +66,4 @@ Mobile Monoblock-Klimaanlagen ansehen →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

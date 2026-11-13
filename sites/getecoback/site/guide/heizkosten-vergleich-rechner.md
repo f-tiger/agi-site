@@ -34,13 +34,11 @@ Annahmen, ehrlich offengelegt: Heizsaison = **150 Tage** (5 Monate). Heizlüfter
 
 ## Kosten pro Winter (Richtwerte, 20 m², 37 ct/kWh)
 
-Gerät | 4 h/Tag | 0,5 h/Tag (Bad) | Anschaffung |
-
-Heizlüfter (2.000 W) | ~444 € | ~55 € | ab 25 € |
-
-Infrarotheizung (2.000 W) | ~444 € | ~55 € | ab 180 € |
-
-Klima mit WP-Funktion | ~148 € | ~19 € | ab 300 € |
+| Gerät | 4 h/Tag | 0,5 h/Tag (Bad) | Anschaffung |
+| --- | --- | --- | --- |
+| Heizlüfter (2.000 W) | ~444 € | ~55 € | ab 25 € |
+| Infrarotheizung (2.000 W) | ~444 € | ~55 € | ab 180 € |
+| Klima mit WP-Funktion | ~148 € | ~19 € | ab 300 € |
 
 150 Heiztage angenommen. Faustregel: Je mehr Stunden du heizt, desto schneller rechnet sich die Wärmepumpen-Klima — bei 4 h/Tag spart sie ~300 € pro Winter gegenüber der Widerstandsheizung.
 
@@ -64,4 +62,4 @@ Klima mit WP-Funktion | ~148 € | ~19 € | ab 300 € |
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

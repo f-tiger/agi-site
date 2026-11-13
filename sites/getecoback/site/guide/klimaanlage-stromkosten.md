@@ -18,17 +18,13 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unte
 
 ## Kosten pro Stunde im Vergleich
 
-Gerät | Typische Leistung | Kosten/Stunde (0,30 €/kWh) | 8 Std./Nacht, 30 Tage |
-
-Turmventilator | ~50 W | ~1,5 Cent | ~3,60 € |
-
-Luftkühler | ~80 W | ~2,4 Cent | ~5,80 € |
-
-Luftentfeuchter | ~300 W | ~9 Cent | ~21,60 € |
-
-Tragbare Klimaanlage (9.000 BTU) | ~1.000 W | ~30 Cent | ~72 € |
-
-Tragbare Klimaanlage (14.000 BTU) | ~1.400 W | ~42 Cent | ~100 € |
+| Gerät | Typische Leistung | Kosten/Stunde (0,30 €/kWh) | 8 Std./Nacht, 30 Tage |
+| --- | --- | --- | --- |
+| Turmventilator | ~50 W | ~1,5 Cent | ~3,60 € |
+| Luftkühler | ~80 W | ~2,4 Cent | ~5,80 € |
+| Luftentfeuchter | ~300 W | ~9 Cent | ~21,60 € |
+| Tragbare Klimaanlage (9.000 BTU) | ~1.000 W | ~30 Cent | ~72 € |
+| Tragbare Klimaanlage (14.000 BTU) | ~1.400 W | ~42 Cent | ~100 € |
 
 Wichtig: Klimaanlagen laufen nicht durchgehend auf Volllast — bei erreichter Zieltemperatur taktet der Kompressor herunter. Real liegst du oft bei 60–70 % der Tabellenwerte.
 
@@ -91,4 +87,4 @@ Tragbare Klimaanlagen →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

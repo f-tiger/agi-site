@@ -14,15 +14,12 @@ As an Amazon Associate, EcoBack earns from qualifying purchases. Product links b
 
 A good rule of thumb is roughly **350–400 BTU per m²**. Use this chart:
 
-Room size | Recommended BTU | Typical room |
-
-Up to 15 m² | 7,000–9,000 BTU | Small bedroom, study |
-
-15–25 m² | 9,000–12,000 BTU | Bedroom, home office |
-
-25–35 m² | 12,000–14,000 BTU | Living room |
-
-35 m²+ | 14,000+ BTU / monobloc | Open-plan, large lounge |
+| Room size | Recommended BTU | Typical room |
+| --- | --- | --- |
+| Up to 15 m² | 7,000–9,000 BTU | Small bedroom, study |
+| 15–25 m² | 9,000–12,000 BTU | Bedroom, home office |
+| 25–35 m² | 12,000–14,000 BTU | Living room |
+| 35 m²+ | 14,000+ BTU / monobloc | Open-plan, large lounge |
 
 ## Add BTU if…
 
@@ -52,4 +49,4 @@ For a bedroom, also check the noise rating — see [best portable AC for a bedro
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Note: EcoBack does not test devices itself; picks summarise public tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.
+Note: Editorial guidance based on the linked sources, not our own device tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.

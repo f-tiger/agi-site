@@ -9,7 +9,7 @@ Canonical (HTML, zitierfähig): https://getecoback.com/it/guide/condizionatore-p
 Contro le vibrazioniTappetino antivibrazione→
 Se la ventola fischiaFiltro di ricambio→
 La via davvero silenziosaMidea PortaSplit→
-Tutti i rimedi con le motivazioni ↓
+[Tutti i rimedi con le motivazioni ↓](https://getecoback.com/it/guide/condizionatore-portatile-rumoroso.html#cosa-aiuta)
 
 🗓 Aggiornato il 28 agosto 2026 · Redazione EcoBack
 
@@ -29,17 +29,13 @@ Questa premessa è importante prima di spendere soldi: le misure qui sotto posso
 
 Annuncio · link affiliati — il prezzo per te non cambia
 
-Rimedio | Costo | Effetto |
-
-**Tappetino antivibrazione** | 10–20 € | Disaccoppia l'apparecchio dal pavimento e assorbe il ronzio a bassa frequenza che passa da assi e pareti |
-
-**Modalità notturna** | gratis | Ventola ridotta: spesso 3–5 dB in meno — percepiti quasi come un dimezzamento |
-
-**Timer: preraffreddare, poi spegnere** | gratis | Camera fresca 1–2 ore prima di coricarsi, silenzio quando dormi |
-
-**Pulizia del filtro** (ogni 2 settimane) | gratis | Un filtro intasato costringe la ventola a girare più forte — e si sente |
-
-**Inscatolare / rivestire di gommapiuma** | — | Da non fare: blocca il flusso d'aria, l'apparecchio si surriscalda |
+| Rimedio | Costo | Effetto |
+| --- | --- | --- |
+| **Tappetino antivibrazione** | 10–20 € | Disaccoppia l'apparecchio dal pavimento e assorbe il ronzio a bassa frequenza che passa da assi e pareti |
+| **Modalità notturna** | gratis | Ventola ridotta: spesso 3–5 dB in meno — percepiti quasi come un dimezzamento |
+| **Timer: preraffreddare, poi spegnere** | gratis | Camera fresca 1–2 ore prima di coricarsi, silenzio quando dormi |
+| **Pulizia del filtro** (ogni 2 settimane) | gratis | Un filtro intasato costringe la ventola a girare più forte — e si sente |
+| **Inscatolare / rivestire di gommapiuma** | — | Da non fare: blocca il flusso d'aria, l'apparecchio si surriscalda |
 
 - **Metti sotto un tappetino antivibrazione (10–20 €):** la leva efficace più economica. Un tappetino in gomma disaccoppia l'apparecchio dal pavimento e assorbe il ronzio a bassa frequenza che altrimenti viaggia per assi e pareti — in condominio anche per riguardo verso i vicini. Tappetini antivibrazione su Amazon →
 
@@ -113,4 +109,4 @@ Tappetini antivibrazione →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Nota: EcoBack non testa i prodotti in proprio; le scelte riassumono test pubblici. Il sito è finanziato con link affiliati Amazon sulle pagine HTML — questa vista Markdown non ne contiene volutamente.
+Nota: Indicazioni redazionali basate sulle fonti collegate, non test propri. Il sito è finanziato con link affiliati Amazon sulle pagine HTML — questa vista Markdown non ne contiene volutamente.

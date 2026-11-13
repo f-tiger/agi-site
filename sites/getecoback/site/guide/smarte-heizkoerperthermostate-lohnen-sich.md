@@ -17,20 +17,17 @@ Der Link enthält nur diese beiden festen Auswahlkategorien, keine Fotos, Adress
 
 **Geprüfte Orientierung ohne JavaScript**
 **Nur tado° V3+ und frühere Generationen.** Nicht auf tado° X, TP-Link oder andere Thermostatköpfe übertragen. Bei unklarer Generation gibt es hier keine Zuordnung.
+
 Begrenzte Auswahl aus Herstellerunterlagen, geprüft am 31. Oktober 2026
-Identifiziertes Ventil | Nächster Prüfschritt | Quelle / Abbildung |
-Heimeier · M30 × 1,5 | **In der Herstellerliste ohne Adapter geführt** Gilt für den dort gezeigten thermostatischen Heimeier-Anschluss M30 × 1,5. Ventil und Bild in der Liste abgleichen; die Gewindegröße allein reicht nicht als Nachweis.
-| Herstellerangabe; Bildabgleich in der Ventilliste, Seite 5 |
-Herz 7230/7235/7260/7262 · M28 × 1,5 | **M28-Adapter und passende Stiftverlängerung prüfen** Die aufgeführten Herz-Ausführungen benötigen laut tado° einen M28 × 1,5-Adapter. Die korrekte Stiftverlängerung ist Teil der Prüfung. „Herz Mini“ oder die Marke allein identifizieren das Ventil nicht.
-| [Herstellerangabe](https://support.tado.com/de/articles/3405520); Bildabgleich in der Ventilliste, Seite 5 |
-Danfoss RA · 23-mm-Klemme mit Kerben | **RA-Adapter prüfen; RAV und RAVL sind andere Anschlüsse** Nur für den identifizierten RA-Anschluss. Eine ähnlich aussehende Klemme ist kein Nachweis. Montageanleitung und Lieferumfang der konkreten Packung abgleichen.
-| [Herstellerangabe](https://support.tado.com/de/articles/3405517); Bildabgleich in der Ventilliste, Seite 3 |
-Oventrop Uni L / Uni DH · M30 × 1,0 | **Separaten M30 × 1,0-Adapter einplanen** Diese Gewindesteigung ist nicht M30 × 1,5. Laut Herstellerhilfe ist der benötigte Adapter nicht im tado°-Lieferumfang enthalten. Exakte Ausführung vor Bestellung abgleichen.
-| [Herstellerangabe](https://support.tado.com/de/articles/3405491); Bildabgleich in der Ventilliste, Seite 7 |
-Oventrop Uni LV · 30,5-mm-Klemme | **Uni LV ist kein Uni L: andere Adapterfamilie** Die Herstellerliste führt Uni LV mit einer 30,5-mm-Klemme und einem separat zu beschaffenden Adapter. Nicht den M30 × 1,0-Adapter für Uni L übernehmen.
-| Herstellerangabe; Bildabgleich in der Ventilliste, Seite 6 |
-Manuelles Ventil oder RTL-Begrenzer | **Kein passender Anwendungsfall für diesen Thermostatkopf** Die tado°-Unterlagen schließen manuelle Ventile und Rücklauftemperaturbegrenzer aus. Ein Kopfwechsel ist keine Umrüstung des Ventils; Fachbetrieb und Zuständigkeit klären.
-| Herstellerangabe; Bildabgleich in der Ventilliste, Seite 1 |
+
+| Identifiziertes Ventil | Nächster Prüfschritt | Quelle / Abbildung |
+| --- | --- | --- |
+| Heimeier · M30 × 1,5 | **In der Herstellerliste ohne Adapter geführt** Gilt für den dort gezeigten thermostatischen Heimeier-Anschluss M30 × 1,5. Ventil und Bild in der Liste abgleichen; die Gewindegröße allein reicht nicht als Nachweis. | Herstellerangabe; Bildabgleich in der Ventilliste, Seite 5 |
+| Herz 7230/7235/7260/7262 · M28 × 1,5 | **M28-Adapter und passende Stiftverlängerung prüfen** Die aufgeführten Herz-Ausführungen benötigen laut tado° einen M28 × 1,5-Adapter. Die korrekte Stiftverlängerung ist Teil der Prüfung. „Herz Mini“ oder die Marke allein identifizieren das Ventil nicht. | [Herstellerangabe](https://support.tado.com/de/articles/3405520); Bildabgleich in der Ventilliste, Seite 5 |
+| Danfoss RA · 23-mm-Klemme mit Kerben | **RA-Adapter prüfen; RAV und RAVL sind andere Anschlüsse** Nur für den identifizierten RA-Anschluss. Eine ähnlich aussehende Klemme ist kein Nachweis. Montageanleitung und Lieferumfang der konkreten Packung abgleichen. | [Herstellerangabe](https://support.tado.com/de/articles/3405517); Bildabgleich in der Ventilliste, Seite 3 |
+| Oventrop Uni L / Uni DH · M30 × 1,0 | **Separaten M30 × 1,0-Adapter einplanen** Diese Gewindesteigung ist nicht M30 × 1,5. Laut Herstellerhilfe ist der benötigte Adapter nicht im tado°-Lieferumfang enthalten. Exakte Ausführung vor Bestellung abgleichen. | [Herstellerangabe](https://support.tado.com/de/articles/3405491); Bildabgleich in der Ventilliste, Seite 7 |
+| Oventrop Uni LV · 30,5-mm-Klemme | **Uni LV ist kein Uni L: andere Adapterfamilie** Die Herstellerliste führt Uni LV mit einer 30,5-mm-Klemme und einem separat zu beschaffenden Adapter. Nicht den M30 × 1,0-Adapter für Uni L übernehmen. | Herstellerangabe; Bildabgleich in der Ventilliste, Seite 6 |
+| Manuelles Ventil oder RTL-Begrenzer | **Kein passender Anwendungsfall für diesen Thermostatkopf** Die tado°-Unterlagen schließen manuelle Ventile und Rücklauftemperaturbegrenzer aus. Ein Kopfwechsel ist keine Umrüstung des Ventils; Fachbetrieb und Zuständigkeit klären. | Herstellerangabe; Bildabgleich in der Ventilliste, Seite 1 |
 
 ### Ventil noch unbekannt?
 
@@ -44,7 +41,7 @@ Stand der Prüfung: 31. Oktober 2026. Die verlinkte Ventilliste trägt Version 2
 
 ### Passt technisch – lohnt sich der Wechsel?
 Kompatibilität belegt noch keine Heizkostenersparnis. Prüfe zuerst deinen Zeitplan. Rechne danach Köpfe, notwendige Adapter, Zentrale, Batterien und verpflichtende Dienste zusammen. Für Deutschland und Österreich EUR, für die Schweiz CHF verwenden; keine Währungsumrechnung und keine bestätigte lokale Lieferbarkeit.
-Gesamtkosten und eigene Sparannahme prüfen ↓
+[Gesamtkosten und eigene Sparannahme prüfen ↓](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#rechner)
 
 ## Mit eigenen Werten rechnen
 Alle Vorgaben sind frei gewählte Beispiele, keine aktuellen Tarife, Produktmessungen oder Sparversprechen. Für Deutschland und Österreich EUR, für die Schweiz CHF wählen. Alle Geldbeträge müssen dieselbe Währung verwenden; keine Wechselkursumrechnung.
@@ -60,15 +57,18 @@ Drei konkrete Modelle für unterschiedliche vorhandene Systeme. Die Auswahl ist 
 
 ### Vierte Möglichkeit: vorhandene Köpfe weiter nutzen
 Deine Räume werden passend zur Nutzung warm und du regelst zuverlässig herunter? Dann musst du nicht auf smarte Köpfe wechseln. Für gleichbleibende Zeiten kann ein einfacher programmierbarer Kopf genügen. Vergleiche diese Lösung vor einem neuen Funk-System.
-Erst mit 0 % zusätzlicher Ersparnis rechnen · Ventil und Modellgeneration klären
+[Erst mit 0 % zusätzlicher Ersparnis rechnen](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#rechner) · [Ventil und Modellgeneration klären](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#ventilcheck)
 
 Herstellerquellen geprüft: 2026-11-12. Keine Live-Preise, Bestands- oder Spargarantie. Aktuelle Herstellerunterlagen und das konkrete Händlerpaket gehen vor.
 Auf kleinen Bildschirmen kannst du die Vergleichstabelle seitlich verschieben.
+
 Erst die vorhandene Zentrale, dann den Thermostatkopf wählen
-Genaues Modell | Ausgangslage | Was benötigt wird |
-tado° Smartes Heizkörper-Thermostat X – Starter Kit | Neues tado° X-System mit enthaltener Bridge | Bridge X liegt diesem Starter Kit bei. Ein bereits vorhandener, kompatibler Thread Border Router kann eine andere Paketwahl ermöglichen; die genaue Freigabe prüfen. |
-Bosch Heizkörper-Thermostat II [+M] | Vorhandenes Bosch-System oder geprüftes Matter-System nutzen | Im Bosch-System ist ein Bosch Smart Home Controller nötig. Für ein fremdes Matter-System verlangt die Anleitung einen eingerichteten Matter Controller mit Thread-Unterstützung und dessen App. Fehlt dem Matter Controller die integrierte Thread-Kommunikation, ist zusätzlich ein Thread Border Router nötig. |
-FRITZ!Smart Thermo 302 · Artikel 20003120 | Passende FRITZ!Box mit DECT bereits vorhanden | Laut Produktseite: FRITZ!Box mit DECT-Basis und FRITZ!OS ab 6.83; FRITZ!Box 7312 und 7412 sind ausgenommen. Das genaue Routermodell vor dem Kauf prüfen. |
+
+| Genaues Modell | Ausgangslage | Was benötigt wird |
+| --- | --- | --- |
+| [tado° Smartes Heizkörper-Thermostat X – Starter Kit](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-tado-x-starter) | Neues tado° X-System mit enthaltener Bridge | Bridge X liegt diesem Starter Kit bei. Ein bereits vorhandener, kompatibler Thread Border Router kann eine andere Paketwahl ermöglichen; die genaue Freigabe prüfen. |
+| [Bosch Heizkörper-Thermostat II [+M]](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-bosch-ii-m) | Vorhandenes Bosch-System oder geprüftes Matter-System nutzen | Im Bosch-System ist ein Bosch Smart Home Controller nötig. Für ein fremdes Matter-System verlangt die Anleitung einen eingerichteten Matter Controller mit Thread-Unterstützung und dessen App. Fehlt dem Matter Controller die integrierte Thread-Kommunikation, ist zusätzlich ein Thread Border Router nötig. |
+| [FRITZ!Smart Thermo 302 · Artikel 20003120](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-fritz-302) | Passende FRITZ!Box mit DECT bereits vorhanden | Laut Produktseite: FRITZ!Box mit DECT-Basis und FRITZ!OS ab 6.83; FRITZ!Box 7312 und 7412 sind ausgenommen. Das genaue Routermodell vor dem Kauf prüfen. |
 
 ### tado° Smartes Heizkörper-Thermostat X – Starter Kit
 Neues tado° X-System mit enthaltener Bridge
@@ -98,7 +98,7 @@ Preise selbst beim Händler eintragen und alle Beträge in derselben Währung ha
 - **Ein Heizkörper:** benötigter Kopf bzw. Starter Kit + fehlende Zentrale + nötige Adapter.
 - **Drei Heizkörper:** Starter Kit mit einem Kopf + zwei passende Einzelköpfe, oder drei Köpfe + fehlende Zentrale; jeweils benötigte Adapter hinzufügen. Mehrfachpack und Starter Kit nicht verwechseln.
 - **Jährlicher Betrieb:** Batterien bzw. Laden, Zentrale und nur tatsächlich gewählte kostenpflichtige Dienste berücksichtigen.
-Gesamtsumme und eigene Sparannahme im Rechner prüfen ↑
+[Gesamtsumme und eigene Sparannahme im Rechner prüfen ↑](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#rechner)
 Die Rechnung bestätigt weder die Ventilpassung noch eine Ersparnis. Mit 0 % Annahme zeigt sie auch den Fall ohne finanziellen Rückfluss.
 
 ## Erst die Routine, dann die Funktechnik
@@ -134,4 +134,4 @@ Die folgenden Quellen wurden am 4. Oktober 2026 geprüft. Rechenbeispiele sind e
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
