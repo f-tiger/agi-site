@@ -46,15 +46,12 @@ Genau deshalb ist das gekippte Fenster so verlässlich im Schimmelmachen. Es bri
 
 Der übliche Einwand: Draußen ist es kalt und nass, also muss diese Luft die Wohnung feuchter machen. Es ist umgekehrt, weil kalte Luft physikalisch kaum Wasser transportieren kann.
 
-Draußen | Tatsächlich enthaltenes Wasser | Dieselbe Luft bei 20 °C drinnen |
-
-−5 °C bei 90 % rF | ≈ 3,1 g/m³ | ≈ 16 % rF |
-
-0 °C bei 80 % rF | ≈ 3,9 g/m³ | ≈ 21 % rF |
-
-5 °C bei 80 % rF | ≈ 5,4 g/m³ | ≈ 30 % rF |
-
-10 °C bei 80 % rF | ≈ 7,5 g/m³ | ≈ 42 % rF |
+| Draußen | Tatsächlich enthaltenes Wasser | Dieselbe Luft bei 20 °C drinnen |
+| --- | --- | --- |
+| −5 °C bei 90 % rF | ≈ 3,1 g/m³ | ≈ 16 % rF |
+| 0 °C bei 80 % rF | ≈ 3,9 g/m³ | ≈ 21 % rF |
+| 5 °C bei 80 % rF | ≈ 5,4 g/m³ | ≈ 30 % rF |
+| 10 °C bei 80 % rF | ≈ 7,5 g/m³ | ≈ 42 % rF |
 
 Gerechnet mit der Magnus-Formel für den Sättigungsdampfdruck, der üblichen Näherung in der Bauphysik. Relative Feuchte ist das Verhältnis des tatsächlich vorhandenen Wasserdampfs zu dem, was die Luft bei dieser Temperatur aufnehmen könnte — erwärmt man Luft, ohne Wasser zuzugeben, sinkt dieses Verhältnis: Außenluft mit 0 °C und 80 % behält ihren Dampfdruck und liegt bei 20 °C drinnen bei rund 21 %. Die Spalte in Gramm pro Kubikmeter ist, was diese Außenluft physikalisch mit sich trägt. Nachrechnen ausdrücklich erwünscht — [so arbeiten wir](https://getecoback.com/wie-wir-empfehlen.html#nachrechnen).
 
@@ -143,4 +140,4 @@ Fünf bis zehn Minuten weit geöffnet reichen, um die Luft in einem normalen Rau
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

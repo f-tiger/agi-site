@@ -20,17 +20,13 @@ Kellerwände liegen im Erdreich und bleiben ganzjährig kühl. Strömt wärmere,
 
 Die verbreitete Faustregel aus dem Schimmelleitfaden des Umweltbundesamts: Flächen bis etwa **einen halben Quadratmeter** sind Eigenleistung, wenn der Befall oberflächlich sitzt. Genauso wichtig wie die Fläche ist das Material:
 
-Situation | Selbst machen? | Warum |
-
-Kleiner Fleck auf Fliesen, Beton, Lack | **Ja** | Glatte Flächen speichern kein Geflecht — abwischen und nachbehandeln reicht meist. |
-
-Tapete, Gipskarton, Holz | Nur sehr kleinflächig | Poröse Materialien durchwächst der Schimmel in der Tiefe — betroffene Stellen müssen raus, nicht drüberwischen. |
-
-Deutlich mehr als ~0,5 m², mehrere Stellen | **Nein** | Großflächiger Befall deutet auf ein bauliches oder dauerhaftes Feuchteproblem — Fachbetrieb. |
-
-Nach Wasserschaden / Leckage | **Nein** | Durchfeuchtete Bausubstanz trocknet nicht von allein — erst Trocknung, dann Sanierung. |
-
-Kommt trotz Entfeuchtung wieder | **Nein** | Dann liegt die Ursache in der Substanz (aufsteigende Feuchte, defekte Abdichtung) — das löst kein Mittel. |
+| Situation | Selbst machen? | Warum |
+| --- | --- | --- |
+| Kleiner Fleck auf Fliesen, Beton, Lack | **Ja** | Glatte Flächen speichern kein Geflecht — abwischen und nachbehandeln reicht meist. |
+| Tapete, Gipskarton, Holz | Nur sehr kleinflächig | Poröse Materialien durchwächst der Schimmel in der Tiefe — betroffene Stellen müssen raus, nicht drüberwischen. |
+| Deutlich mehr als ~0,5 m², mehrere Stellen | **Nein** | Großflächiger Befall deutet auf ein bauliches oder dauerhaftes Feuchteproblem — Fachbetrieb. |
+| Nach Wasserschaden / Leckage | **Nein** | Durchfeuchtete Bausubstanz trocknet nicht von allein — erst Trocknung, dann Sanierung. |
+| Kommt trotz Entfeuchtung wieder | **Nein** | Dann liegt die Ursache in der Substanz (aufsteigende Feuchte, defekte Abdichtung) — das löst kein Mittel. |
 
 ## Womit entfernen — und womit besser nicht
 
@@ -83,4 +79,4 @@ Luftentfeuchter für den Keller auf Amazon.de ansehen →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

@@ -12,13 +12,11 @@ EcoBack is funded through Amazon affiliate links. We have not tested these machi
 
 The table below assumes six hours at a constant average power and **€0.30/kWh**. These are arithmetic examples. They do not establish how long your laundry takes to dry. Replace both runtime and unit price with your own values.
 
-Machine | Power | Per hour | 6 hours (assumed run) | 3 runs a week, 4 weeks |
-
-Example A | 200 W | 6.0 ct | €0.36 | €4.32 |
-
-Example B | 300 W | 9.0 ct | €0.54 | €6.48 |
-
-Example C | 500 W | 15.0 ct | €0.90 | €10.80 |
+| Machine | Power | Per hour | 6 hours (assumed run) | 3 runs a week, 4 weeks |
+| --- | --- | --- | --- | --- |
+| Example A | 200 W | 6.0 ct | €0.36 | €4.32 |
+| Example B | 300 W | 9.0 ct | €0.54 | €6.48 |
+| Example C | 500 W | 15.0 ct | €0.90 | €10.80 |
 
 These are neither guaranteed upper limits nor measurements. Compressor cycling, fan operation, temperature and the selected programme affect average power and runtime. Read total kWh over a complete run for a more useful comparison.
 
@@ -64,10 +62,13 @@ Indoor drying adds moisture to room air. The [Verbraucherzentrale guidance on he
 ## Check manufacturer data before buying
 **How to compare the manufacturer data**
 Two examples from existing guides, not a whole-market comparison or an EcoBack product test. Compare extraction and running power at the same temperature and relative humidity (RH). Missing figures remain unknown; they do not establish a ranking.
+
 Manufacturer extraction and power figures; checked on 6 November 2026
-Condition | Comfee MDDF-20DEN7 | MeacoDry Arete One 20L |
-20 °C / 60 % RH | Extraction and running power at these conditions are not verified here. | 8.5 L/day · 216 W |
-10 °C / 60 % RH | Extraction and running power at these conditions are not verified here. | 3.4 L/day · 180 W |
+
+| Condition | Comfee MDDF-20DEN7 | MeacoDry Arete One 20L |
+| --- | --- | --- |
+| 20 °C / 60 % RH | Extraction and running power at these conditions are not verified here. | 8.5 L/day · 216 W |
+| 10 °C / 60 % RH | Extraction and running power at these conditions are not verified here. | 3.4 L/day · 180 W |
 
 The model documents associate 20 L/day with 30°C / 80% RH. That is not a promise for a basement or a laundry load. The linked Comfee documents do not verify figures at the two conditions in this table. Connection ratings or rated input must not be substituted for this missing data.
 Model boundaries: Comfee MDDF-20DEN7 here is the variant without WF. MeacoDry Arete One 20L is neither Arete Two nor One 25L. The UK model page does not verify a German retailer’s equipment, plug, availability or returns. Match voltage, rating plate and manual to the actual offer. Neither candidate replaces investigating moisture sources or suitable ventilation.
@@ -117,4 +118,4 @@ Formula: 52 × sessions/week × (manual − machine use − cleanup) ÷ 60.
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Note: EcoBack does not test devices itself; picks summarise public tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.
+Note: Editorial guidance based on the linked sources, not our own device tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.

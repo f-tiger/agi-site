@@ -25,15 +25,13 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unte
 Für das **500-W-Rechenbeispiel** ergibt sich diese Tabelle. Ein Monat bedeutet hier genau **30 Tage** mit derselben täglichen Laufzeit.
 
 Rechenbeispiel: konstante 500 W, 0,30 €/kWh, 30 Tage pro Monat
-Laufzeit pro Tag | Verbrauch pro Tag | Kosten pro Tag | Kosten in 30 Tagen |
 
-1 h | 0,5 kWh | 0,15 € | 4,50 € |
-
-4 h | 2 kWh | 0,60 € | 18,00 € |
-
-8 h | 4 kWh | 1,20 € | 36,00 € |
-
-24 h | 12 kWh | 3,60 € | 108,00 € |
+| Laufzeit pro Tag | Verbrauch pro Tag | Kosten pro Tag | Kosten in 30 Tagen |
+| --- | --- | --- | --- |
+| 1 h | 0,5 kWh | 0,15 € | 4,50 € |
+| 4 h | 2 kWh | 0,60 € | 18,00 € |
+| 8 h | 4 kWh | 1,20 € | 36,00 € |
+| 24 h | 12 kWh | 3,60 € | 108,00 € |
 
 Bei konstant 300 W wären 24 Stunden 2,16 € pro Tag und 64,80 € in 30 Tagen; bei konstant 700 W 5,04 € und 151,20 €. Vier statt 24 Stunden sind rechnerisch günstiger, leisten aber nicht automatisch dieselbe Trocknung. Daraus folgt kein pauschales Sparversprechen. Mit eigenen Werten kannst du im [Stromkosten-Rechner](https://getecoback.com/guide/stromkosten-rechner.html) die Kosten berechnen: [deine Leistung, Laufzeit und deinen Tarif einsetzen →](https://getecoback.com/guide/stromkosten-rechner.html)
 
@@ -107,4 +105,4 @@ Kein eigener Produkttest. Anschlussmaß, Gefälle und zulässige Betriebsbedingu
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

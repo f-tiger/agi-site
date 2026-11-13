@@ -34,11 +34,10 @@ Wenn du den ganzen Raum wirklich warm haben willst, ist das eine andere Aufgabe:
 
 Die Formel ist dieselbe wie überall auf dieser Seite: **Leistung (kW) × Stunden × Strompreis**. Wir rechnen mit 0,30 €/kWh — das ist der veröffentlichte Rechenpreis dieser Seite, nicht dein Tarif. Deinen echten Preis setzt du in dieselbe Formel ein, das Ergebnis skaliert linear mit.
 
-Leistung | 1 Stunde | 3 Stunden (ein Abend) | 30 Abende à 3 Stunden |
-
-**800 W** = 0,8 kW | 0,8 × 1 × 0,30 € = **0,24 €** | 0,8 × 3 × 0,30 € = **0,72 €** | 0,8 × 3 × 30 = 72 kWh → **21,60 €** |
-
-**1.200 W** = 1,2 kW | 1,2 × 1 × 0,30 € = **0,36 €** | 1,2 × 3 × 0,30 € = **1,08 €** | 1,2 × 3 × 30 = 108 kWh → **32,40 €** |
+| Leistung | 1 Stunde | 3 Stunden (ein Abend) | 30 Abende à 3 Stunden |
+| --- | --- | --- | --- |
+| **800 W** = 0,8 kW | 0,8 × 1 × 0,30 € = **0,24 €** | 0,8 × 3 × 0,30 € = **0,72 €** | 0,8 × 3 × 30 = 72 kWh → **21,60 €** |
+| **1.200 W** = 1,2 kW | 1,2 × 1 × 0,30 € = **0,36 €** | 1,2 × 3 × 0,30 € = **1,08 €** | 1,2 × 3 × 30 = 108 kWh → **32,40 €** |
 
 Zwischen den beiden Geräten liegen also **10,80 € im Monat**, wenn beide gleich lang laufen. Das ist überschaubar. Interessant wird die Formel an einer anderen Stelle: Der einzige Faktor, den du im Alltag wirklich in der Hand hast, sind die **Stunden**. Läuft dasselbe 1.200-W-Gerät statt drei Stunden sechs Stunden am Abend, verdoppelt sich der Monat auf 64,80 € — ohne dass du irgendetwas anderes gekauft hättest.
 
@@ -102,4 +101,4 @@ Ob dann Wand oder Decke die passendere Montage ist, hängt an Raumhöhe, Möblie
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

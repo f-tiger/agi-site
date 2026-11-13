@@ -23,10 +23,12 @@ Record room size, ceiling height, sunny glazing, roof exposure and humidity. Hot
 [AC versus evaporative cooler](https://getecoback.com/en/guide/portable-ac-vs-air-cooler.html) · [Room sizing and European options](https://getecoback.com/en/guide/best-portable-air-conditioner-europe-heatwave.html)
 
 ## Three candidates to verify
-Candidate | Why compare it? | Before ordering |
-Comfee MPPH-09CRN7 | Hose-based option already covered in this guide. | Confirm the exact variant, cooling requirement, hose kit and delivered cost. |
-Midea PortaSplit | Alternative with a separate outdoor module. | Check the manufacturer’s mounting instructions and your building’s requirements. |
-De’Longhi PAC EX105 | Older Pinguino candidate retained for readers comparing that exact model. | Availability is unverified. Do not substitute a different Pinguino model based only on the series name. |
+
+| Candidate | Why compare it? | Before ordering |
+| --- | --- | --- |
+| Comfee MPPH-09CRN7 | Hose-based option already covered in this guide. | Confirm the exact variant, cooling requirement, hose kit and delivered cost. |
+| Midea PortaSplit | Alternative with a separate outdoor module. | Check the manufacturer’s mounting instructions and your building’s requirements. |
+| De’Longhi PAC EX105 | Older Pinguino candidate retained for readers comparing that exact model. | Availability is unverified. Do not substitute a different Pinguino model based only on the series name. |
 
 **Ad · Affiliate searches:** These links preserve the model name; search results may contain different variants or unavailable listings.
 Comfee MPPH-09CRN7 · Amazon.deMidea PortaSplit · Amazon.deDe’Longhi PAC EX105 · Amazon.de
@@ -44,4 +46,4 @@ Check Amazon.de against a retailer serving your Italian address. Compare the ful
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Note: EcoBack does not test devices itself; picks summarise public tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.
+Note: Editorial guidance based on the linked sources, not our own device tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.

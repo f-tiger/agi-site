@@ -7,11 +7,12 @@ Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/12l-vs-20l-dehum
 ## Compare the same temperature and humidity
 The figures below are manufacturer specifications for the MeacoDry Arete One family, read on 4 October 2026. They are not EcoBack measurements, an independent ranking, or a comparison with Arete Two. Litres/day describe water extraction at the stated test point.
 
-Model | Conditions | Extraction | Power |
-Arete One 12L | 10°C / 60% RH | 1.95 L/day | 130 W |
-Arete One 20L | 10°C / 60% RH | 3.4 L/day | 180 W |
-Arete One 12L | 20°C / 60% RH | 5.23 L/day | 151 W |
-Arete One 20L | 20°C / 60% RH | 8.5 L/day | 216 W |
+| Model | Conditions | Extraction | Power |
+| --- | --- | --- | --- |
+| Arete One 12L | 10°C / 60% RH | 1.95 L/day | 130 W |
+| Arete One 20L | 10°C / 60% RH | 3.4 L/day | 180 W |
+| Arete One 12L | 20°C / 60% RH | 5.23 L/day | 151 W |
+| Arete One 20L | 20°C / 60% RH | 8.5 L/day | 216 W |
 
 The same 12L model lists 12.18 L/day at 30°C / 80% RH. That does not mean it will remove 12 litres per day in a cool UK bedroom. Both models extract less at the cooler 10°C / 60% test point than at 20°C / 60%.
 
@@ -35,7 +36,7 @@ The model and maintenance guidance below works without JavaScript. Interactive s
 
 ###
 
-See the dated cost example and its limits.
+[See the dated cost example and its limits](https://getecoback.com/en/guide/12l-vs-20l-dehumidifier-uk.html#meaco-care-cost).
 Copy this guidance
 Guidance to copy
 
@@ -47,11 +48,15 @@ Do not wash, cut or improvise a HEPA filter. The standard dust filter and the re
 ### Annual consumption is not the same as buying whole packs
 The official listing showed **£29.99 for three filters** when read on 17 October 2026. It showed unavailable stock at that reading; that is a dated observation, not a current stock promise. Check the exact item, current stock, delivery charges and return conditions with the seller before buying. This is an ordinary manufacturer source, not an affiliate buying link.
 The manufacturer gives roughly three months as a replacement reference, depending on conditions. It is not a guaranteed filter lifespan. The example below uses four filters in a year and starts with no filters in hand; any filter included with your appliance is excluded.
-Illustration at the dated pack price; not a quote or a replacement scheduleWhat is counted | Example |
-Annual filters consumed | 4 filters |
-Annual consumption cost | 4 × (£29.99 ÷ 3) = £39.99, rounded |
-Whole packs bought from zero stock | 2 packs × £29.99 = £59.98 |
-Filters left after that year | 6 bought − 4 used = 2 |
+
+Illustration at the dated pack price; not a quote or a replacement schedule
+
+| What is counted | Example |
+| --- | --- |
+| Annual filters consumed | 4 filters |
+| Annual consumption cost | 4 × (£29.99 ÷ 3) = £39.99, rounded |
+| Whole packs bought from zero stock | 2 packs × £29.99 = £59.98 |
+| Filters left after that year | 6 bought − 4 used = 2 |
 
 Unused filters are inventory, not money lost or a cash saving. Delivery, future prices, disposal, electricity and any included filter are excluded. Follow your manual and filter condition instead of treating this example as a personal replacement schedule.
 
@@ -73,4 +78,4 @@ MeacoDry Arete One 12L specifications · [MeacoDry Arete One 20L specifications]
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Note: EcoBack does not test devices itself; picks summarise public tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.
+Note: Editorial guidance based on the linked sources, not our own device tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.

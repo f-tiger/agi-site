@@ -113,7 +113,8 @@ class BuyerGeo(unittest.TestCase):
                                else 'Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert.')
                     self.assertEqual(markdown.count(unknown), 2)
                     self.assertIn('6 November 2026' if en else '06.11.2026', markdown)
-                    self.assertIn('2026\n' + ('Condition' if en else 'Bedingung') + ' |', markdown)
+                    self.assertIn('2026\n\n| ' + ('Condition' if en else 'Bedingung') +
+                                  ' | Comfee MDDF-20DEN7 | MeacoDry Arete One 20L |\n| --- | --- | --- |', markdown)
                     self.assertIn('not a whole-market comparison or an EcoBack product test' if en
                                   else 'kein vollständiger Marktvergleich und kein EcoBack-Produkttest', markdown)
                     self.assertNotRegex(markdown, r'https?://[^\s)]*amazon|tag=getecoback|ecoback0d')

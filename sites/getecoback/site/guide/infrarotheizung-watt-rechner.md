@@ -28,21 +28,14 @@ Der Rechner nutzt die gängige Faustformel der Hersteller: **60 W/m² bei guter,
 
 Falls du nicht rechnen willst — hier der Bedarf für typische Raumgrößen, gerundet auf handelsübliche Panel-Leistungen:
 
-Raumgröße |
-Gute Dämmung (60 W/m²) |
-Schlechte Dämmung (100 W/m²) |
-
-8 m² (Bad) | ca. 480 W → 500-W-Panel | ca. 800 W |
-
-10 m² | ca. 600 W | ca. 1.000 W |
-
-15 m² | ca. 900 W | ca. 1.500 W |
-
-20 m² (Wohnzimmer) | ca. 1.200 W | ca. 2.000 W |
-
-25 m² | ca. 1.500 W | ca. 2.500 W → 2 Panels |
-
-30 m² | ca. 1.800 W | ca. 3.000 W → 2 Panels |
+| Raumgröße | Gute Dämmung (60 W/m²) | Schlechte Dämmung (100 W/m²) |
+| --- | --- | --- |
+| 8 m² (Bad) | ca. 480 W → 500-W-Panel | ca. 800 W |
+| 10 m² | ca. 600 W | ca. 1.000 W |
+| 15 m² | ca. 900 W | ca. 1.500 W |
+| 20 m² (Wohnzimmer) | ca. 1.200 W | ca. 2.000 W |
+| 25 m² | ca. 1.500 W | ca. 2.500 W → 2 Panels |
+| 30 m² | ca. 1.800 W | ca. 3.000 W → 2 Panels |
 
 Mittlere Dämmung liegt jeweils dazwischen (80 W/m²): für 20 m² also rund 1.600 W. Zwei Sonderfälle: Im **Bad** rechnest du besser eine Stufe höher, weil dort 22–24 °C statt 20 °C üblich sind — für 8 m² also eher 800 W statt 500 W. Und Panels gibt es nur in festen Stufen (typisch 300, 450, 600, 900 und 1.200 W): Runde deshalb immer auf die **nächstgrößere** Panel-Leistung auf, nicht ab. Speziell für 20-m²-Räume vergleichen wir alle Heizoptionen im Ratgeber [Heizung für 20 qm](https://getecoback.com/guide/heizung-20-qm.html).
 
@@ -92,4 +85,4 @@ Infrarotheizungen ansehen →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

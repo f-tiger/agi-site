@@ -26,25 +26,11 @@ Die meisten tragbaren Klimaanlagen kommen mit einem flachen Kit für Schiebefens
 
 ## Drei Wege zum dichten Kippfenster — im Vergleich
 
-Methode |
-Mietwohnung? |
-Preis |
-Am besten für |
-
-**Stoff-Abdichtung** (Klett + Reißverschluss) |
-✔ rückstandsfrei |
-15–30 € |
-Die meisten — am schnellsten, passt an jedes Kippfenster |
-
-**Kunststoff-/XPS-Platte** mit Schlauchloch |
-✔ geklemmt, nicht geklebt |
-10–40 € |
-Beste Dämmung; erfordert Messen und Zuschnitt |
-
-**Kippfenster-Adapter** (z. B. Eurom Way-Out) |
-✔ abnehmbar |
-30–60 € |
-Fenster bleibt fast geschlossen & abschließbar |
+| Methode | Mietwohnung? | Preis | Am besten für |
+| --- | --- | --- | --- |
+| **Stoff-Abdichtung** (Klett + Reißverschluss) | ✔ rückstandsfrei | 15–30 € | Die meisten — am schnellsten, passt an jedes Kippfenster |
+| **Kunststoff-/XPS-Platte** mit Schlauchloch | ✔ geklemmt, nicht geklebt | 10–40 € | Beste Dämmung; erfordert Messen und Zuschnitt |
+| **Kippfenster-Adapter** (z. B. Eurom Way-Out) | ✔ abnehmbar | 30–60 € | Fenster bleibt fast geschlossen & abschließbar |
 
 ## Die Lösung: eine universelle Stoff-Fensterabdichtung
 
@@ -104,4 +90,4 @@ Tragbare Klimaanlagen auf Amazon.de →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

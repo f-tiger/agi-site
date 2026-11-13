@@ -16,13 +16,14 @@ As an Amazon Associate, EcoBack earns from qualifying purchases. Product links b
 
 ## The full size ladder
 
-Room size | Extraction capacity | Typical room |
-[10 m²](https://getecoback.com/en/guide/dehumidifier-10-sqm.html) | 10–12 litres/day | bathroom or small room |
-**15 m² (this page)** | 12–16 litres/day | bedroom or home office |
-[20 m²](https://getecoback.com/en/guide/dehumidifier-20-sqm.html) | 16–20 litres/day | living room or bedroom |
-[25 m²](https://getecoback.com/en/guide/dehumidifier-25-sqm.html) | 20 litres/day | larger living room |
-[30 m²](https://getecoback.com/en/guide/dehumidifier-30-sqm.html) | 20–25 litres/day | open-plan living area |
-[40 m²](https://getecoback.com/en/guide/dehumidifier-40-sqm.html) | 25–30 litres/day | basement or very large room |
+| Room size | Extraction capacity | Typical room |
+| --- | --- | --- |
+| [10 m²](https://getecoback.com/en/guide/dehumidifier-10-sqm.html) | 10–12 litres/day | bathroom or small room |
+| **15 m² (this page)** | 12–16 litres/day | bedroom or home office |
+| [20 m²](https://getecoback.com/en/guide/dehumidifier-20-sqm.html) | 16–20 litres/day | living room or bedroom |
+| [25 m²](https://getecoback.com/en/guide/dehumidifier-25-sqm.html) | 20 litres/day | larger living room |
+| [30 m²](https://getecoback.com/en/guide/dehumidifier-30-sqm.html) | 20–25 litres/day | open-plan living area |
+| [40 m²](https://getecoback.com/en/guide/dehumidifier-40-sqm.html) | 25–30 litres/day | basement or very large room |
 
 ## Recommended unit for 15 m²
 
@@ -64,4 +65,4 @@ See dehumidifiers →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Note: EcoBack does not test devices itself; picks summarise public tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.
+Note: Editorial guidance based on the linked sources, not our own device tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.

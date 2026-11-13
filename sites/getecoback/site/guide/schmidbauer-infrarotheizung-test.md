@@ -14,33 +14,25 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unte
 
 Schmidbauer ist eine Infrarotheizungs-Marke mit eigener Website (schmidbauer-heizungen.de), deren Paneele in Deutschland vor allem über große Online-Händler wie Otto verkauft werden. Einen klassischen Marken-Test einer großen Testorganisation haben wir bei der Recherche **nicht** gefunden — die öffentliche Testlage besteht aus Händlerbewertungen und Aggregator-Seiten. Was sich daraus und aus den Herstellerangaben festhalten lässt:
 
-Belegbarer Befund | Unsere Einordnung für den Alltag |
-
-Herstellerangabe: über 20 Jahre Erfahrung, Produktion in Europa, pulverbeschichteter Vollstahl bzw. Vollaluminium, Aluminium-Heizdrähte | Das sind Angaben des Herstellers, keine unabhängig geprüften Fakten — für die Kaufentscheidung zählen eher Garantie, Thermostat und Wattzahl |
-
-✓ Je nach Serie 5 bis 10 Jahre Garantie in Händlerlistungen ausgelobt | Deutlich mehr als die gesetzlichen 2 Jahre Gewährleistung — vor dem Kauf die Garantiebedingungen des konkreten Modells lesen, die Dauer unterscheidet sich zwischen den Serien |
-
-✓ Leistungsstufen von rund 300 bis 1.400 W über die Serien (u. a. Wand-/Decken-Paneele, Hybrid-Serie, Tafel-Variante) | Nach der 60–100-W-Faustregel deckt das Sortiment etwa 3 bis 20 m² pro Paneel ab — die Wattzahl ist die eigentliche Kaufentscheidung, nicht das Markenlogo |
-
-✓ Hybrid-Serie kombiniert Infrarot mit Konvektion; in öffentlichen Erfahrungsberichten werden das stufenlose Thermostat, die Verarbeitung und die einfache Wand-/Deckenmontage gelobt | Das Thermostat ist der Sparhebel: Ohne läuft ein Paneel durch, mit schaltet es nur, wenn der Raum es braucht |
-
-✕ Kein Test einer großen unabhängigen Testorganisation gefunden | „Meistgesucht“ heißt nur: hohe Nachfrage. Wir behandeln die Marke deshalb wie jede andere — nach Physik, Wattzahl und belegbaren Angaben, nicht nach Beliebtheit |
+| Belegbarer Befund | Unsere Einordnung für den Alltag |
+| --- | --- |
+| Herstellerangabe: über 20 Jahre Erfahrung, Produktion in Europa, pulverbeschichteter Vollstahl bzw. Vollaluminium, Aluminium-Heizdrähte | Das sind Angaben des Herstellers, keine unabhängig geprüften Fakten — für die Kaufentscheidung zählen eher Garantie, Thermostat und Wattzahl |
+| ✓ Je nach Serie 5 bis 10 Jahre Garantie in Händlerlistungen ausgelobt | Deutlich mehr als die gesetzlichen 2 Jahre Gewährleistung — vor dem Kauf die Garantiebedingungen des konkreten Modells lesen, die Dauer unterscheidet sich zwischen den Serien |
+| ✓ Leistungsstufen von rund 300 bis 1.400 W über die Serien (u. a. Wand-/Decken-Paneele, Hybrid-Serie, Tafel-Variante) | Nach der 60–100-W-Faustregel deckt das Sortiment etwa 3 bis 20 m² pro Paneel ab — die Wattzahl ist die eigentliche Kaufentscheidung, nicht das Markenlogo |
+| ✓ Hybrid-Serie kombiniert Infrarot mit Konvektion; in öffentlichen Erfahrungsberichten werden das stufenlose Thermostat, die Verarbeitung und die einfache Wand-/Deckenmontage gelobt | Das Thermostat ist der Sparhebel: Ohne läuft ein Paneel durch, mit schaltet es nur, wenn der Raum es braucht |
+| ✕ Kein Test einer großen unabhängigen Testorganisation gefunden | „Meistgesucht“ heißt nur: hohe Nachfrage. Wir behandeln die Marke deshalb wie jede andere — nach Physik, Wattzahl und belegbaren Angaben, nicht nach Beliebtheit |
 
 ## Welches Modell für welchen Raum?
 
 Für normal gedämmte Räume gilt die Faustregel **60–100 W pro m²** — bei schlechter Dämmung eher das obere Ende. Daran gemessen sortieren sich die beiden Modelle aus unseren Empfehlungen so ein:
 
-Raum | Passende Klasse | Empfehlung |
-
-Bis ca. 6 m² (Flur, kleines Büro) | 300–500 W | Kleinere Paneele der Wand-/Decken-Serie — konkrete Rechnung im [10-m²-Ratgeber](https://getecoback.com/guide/heizung-10-qm.html) |
-
-6–10 m² (kleines Schlafzimmer, Homeoffice) | 600 W | Schmidbauer Hybrid Pro 600 W — Infrarot plus Konvektion mit stufenlosem Thermostat; der Hersteller nennt 6–12 m² als Einsatzbereich |
-
-7–11 m², auch Bad/Feuchtraum | 700 W | Schmidbauer ISP T 700 W — laut Hersteller für Feuchträume geeignet, die Antwort auf „Heizung fürs Bad“ |
-
-Über ~11 m² | Mehr Watt oder mehrere Paneele | Erst rechnen, dann kaufen: [Watt-Rechner](https://getecoback.com/guide/infrarotheizung-watt-rechner.html) und die Raumgrößen-Ratgeber von [15](https://getecoback.com/guide/heizung-15-qm.html), [20](https://getecoback.com/guide/heizung-20-qm.html), [30](https://getecoback.com/guide/heizung-30-qm.html) bis [50 m²](https://getecoback.com/guide/heizung-50-qm.html) |
-
-Garage / Werkstatt | Sonderfall | Punktwärme ja, ganze Garage nein — warum, steht im [Garagen-Ratgeber](https://getecoback.com/guide/infrarotheizung-garage.html) |
+| Raum | Passende Klasse | Empfehlung |
+| --- | --- | --- |
+| Bis ca. 6 m² (Flur, kleines Büro) | 300–500 W | Kleinere Paneele der Wand-/Decken-Serie — konkrete Rechnung im [10-m²-Ratgeber](https://getecoback.com/guide/heizung-10-qm.html) |
+| 6–10 m² (kleines Schlafzimmer, Homeoffice) | 600 W | Schmidbauer Hybrid Pro 600 W — Infrarot plus Konvektion mit stufenlosem Thermostat; der Hersteller nennt 6–12 m² als Einsatzbereich |
+| 7–11 m², auch Bad/Feuchtraum | 700 W | Schmidbauer ISP T 700 W — laut Hersteller für Feuchträume geeignet, die Antwort auf „Heizung fürs Bad“ |
+| Über ~11 m² | Mehr Watt oder mehrere Paneele | Erst rechnen, dann kaufen: [Watt-Rechner](https://getecoback.com/guide/infrarotheizung-watt-rechner.html) und die Raumgrößen-Ratgeber von [15](https://getecoback.com/guide/heizung-15-qm.html), [20](https://getecoback.com/guide/heizung-20-qm.html), [30](https://getecoback.com/guide/heizung-30-qm.html) bis [50 m²](https://getecoback.com/guide/heizung-50-qm.html) |
+| Garage / Werkstatt | Sonderfall | Punktwärme ja, ganze Garage nein — warum, steht im [Garagen-Ratgeber](https://getecoback.com/guide/infrarotheizung-garage.html) |
 
 Anzeige · Affiliate-Links — du zahlst denselben Preis. Nicht selbst getestet; Links führen zur Amazon-Suche nach dem Modellnamen.
 
@@ -48,13 +40,11 @@ Anzeige · Affiliate-Links — du zahlst denselben Preis. Nicht selbst getestet;
 
 Die Rechnung ist bei jeder Elektroheizung dieselbe und völlig transparent: **Watt ÷ 1.000 × Strompreis = Kosten pro Stunde Volllast**. Mit 0,30 € pro kWh als Rechenbasis:
 
-Paneel | Rechnung | Kosten pro Stunde Volllast |
-
-Hybrid Pro 600 W | 0,6 kW × 0,30 € | **0,18 €** |
-
-ISP T 700 W | 0,7 kW × 0,30 € | **0,21 €** |
-
-1.100-W-Paneel (größte Stufe der Wand-/Decken-Serie) | 1,1 kW × 0,30 € | **0,33 €** |
+| Paneel | Rechnung | Kosten pro Stunde Volllast |
+| --- | --- | --- |
+| Hybrid Pro 600 W | 0,6 kW × 0,30 € | **0,18 €** |
+| ISP T 700 W | 0,7 kW × 0,30 € | **0,21 €** |
+| 1.100-W-Paneel (größte Stufe der Wand-/Decken-Serie) | 1,1 kW × 0,30 € | **0,33 €** |
 
 Wichtig: Mit Thermostat läuft ein Paneel nicht durchgehend auf Volllast, sondern **taktet** — die echten Stunden hängen an Dämmung, Zieltemperatur und Raum. Rechne es mit deinem eigenen Strompreis durch: [Infrarotheizung-Watt-Rechner](https://getecoback.com/guide/infrarotheizung-watt-rechner.html). Wer zur Miete wohnt und die Heizkosten insgesamt drücken will, findet die reversiblen Hebel im Ratgeber [Heizkosten senken als Mieter](https://getecoback.com/guide/heizkosten-senken-als-mieter.html).
 
@@ -96,4 +86,4 @@ ISP T 700 W (fürs Bad) auf Amazon →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

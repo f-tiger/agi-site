@@ -2,7 +2,9 @@
 User-agent: *
 Allow: /
 
-# KI-Suchcrawler ausdrücklich erlauben (Voraussetzung, um in KI-Antworten zitiert zu werden)
+# Bestehende Zugriffsregeln: Suche, nutzerinitiierte Abrufe und Training sind getrennte Zwecke.
+# OAI-SearchBot betrifft ChatGPT-Suche; GPTBot betrifft Modelltraining.
+# Erlaubter Zugriff garantiert weder Indexierung noch Zitate oder Besucher.
 User-agent: GPTBot
 Allow: /
 

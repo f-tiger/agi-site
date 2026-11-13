@@ -16,17 +16,13 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unte
 
 De'Longhi hat den EX105 als ersten Pinguino mit **Energieeffizienzklasse A+++** eingeführt (ETM Testmagazin) — in einer Geräteklasse, in der die meisten Monoblöcke bei A und darunter liegen, ist das der zentrale Effizienz-Vorsprung. Über die öffentlichen Tests hinweg wiederholen sich dieselben Befunde:
 
-Befund öffentlicher Tests | Unsere Einordnung für den Alltag |
-
-✓ Energieeffizienzklasse A+++, unterdurchschnittlicher Verbrauch in Messungen | Bei täglicher Nutzung im Hochsommer summiert sich das — Rechenweg im [Stromkosten-Ratgeber](https://getecoback.com/guide/klimaanlage-stromkosten.html) |
-
-✓ Für einen Monoblock leise („Silent Technology"): ~63 dB Turbo am Gerät, ~55 dB Raummitte gemessen | Leiser als das Feld, aber hörbar — Einordnung unten |
-
-✓ Kräftige, schnelle Abkühlung in Raumtests seiner Klasse | Gilt für die 15–25-m²-Klasse; kein Freifahrtschein für große Räume |
-
-✕ Rund 36 kg schwer | Auf Rollen im Geschoss kein Problem; Treppen sind eine Zwei-Personen-Aufgabe |
-
-✕ Keine Fensterabdichtung im Lieferumfang | Ohne Abdichtung verliert jeder Monoblock den Großteil seiner Wirkung — Kit (15–30 €) direkt mitbestellen: [welches passt zu welchem Fenster](https://getecoback.com/guide/fensterabdichtung-klimaanlage.html) |
+| Befund öffentlicher Tests | Unsere Einordnung für den Alltag |
+| --- | --- |
+| ✓ Energieeffizienzklasse A+++, unterdurchschnittlicher Verbrauch in Messungen | Bei täglicher Nutzung im Hochsommer summiert sich das — Rechenweg im [Stromkosten-Ratgeber](https://getecoback.com/guide/klimaanlage-stromkosten.html) |
+| ✓ Für einen Monoblock leise („Silent Technology"): ~63 dB Turbo am Gerät, ~55 dB Raummitte gemessen | Leiser als das Feld, aber hörbar — Einordnung unten |
+| ✓ Kräftige, schnelle Abkühlung in Raumtests seiner Klasse | Gilt für die 15–25-m²-Klasse; kein Freifahrtschein für große Räume |
+| ✕ Rund 36 kg schwer | Auf Rollen im Geschoss kein Problem; Treppen sind eine Zwei-Personen-Aufgabe |
+| ✕ Keine Fensterabdichtung im Lieferumfang | Ohne Abdichtung verliert jeder Monoblock den Großteil seiner Wirkung — Kit (15–30 €) direkt mitbestellen: [welches passt zu welchem Fenster](https://getecoback.com/guide/fensterabdichtung-klimaanlage.html) |
 
 ## Für welchen Raum reicht er?
 
@@ -42,15 +38,12 @@ Monoblöcke liegen typisch bei 55–65 dB — der Kompressor steht mit im Raum, 
 
 ## Alternativen: wann ein anderes Gerät besser passt
 
-Situation | Bessere Wahl | Warum |
-
-15–20 m², Budget knapp | Comfee MPPH-09CRN7 · [Test-Überblick](https://getecoback.com/guide/comfee-mpph-09crn7-test.html) | 9.000 BTU Grundleistung, deutlich günstiger |
-
-Über 25–30 m² | Klarstein Kraftwerk Smart 12K · [Test-Überblick](https://getecoback.com/guide/klarstein-kraftwerk-smart-12k-test.html) | 12.000 BTU Reserve für große Räume |
-
-Sehr geräuschempfindlich | Midea PortaSplit | Kompressor hängt draußen — drinnen deutlich leiser |
-
-Ähnliche Klasse, EX105 nicht lieferbar | AEG ChillFlex Pro · [Test-Überblick](https://getecoback.com/guide/aeg-chillflex-pro-test.html) | Gleiche Leise-Ausrichtung, ähnliches Preisband |
+| Situation | Bessere Wahl | Warum |
+| --- | --- | --- |
+| 15–20 m², Budget knapp | Comfee MPPH-09CRN7 · [Test-Überblick](https://getecoback.com/guide/comfee-mpph-09crn7-test.html) | 9.000 BTU Grundleistung, deutlich günstiger |
+| Über 25–30 m² | Klarstein Kraftwerk Smart 12K · [Test-Überblick](https://getecoback.com/guide/klarstein-kraftwerk-smart-12k-test.html) | 12.000 BTU Reserve für große Räume |
+| Sehr geräuschempfindlich | Midea PortaSplit | Kompressor hängt draußen — drinnen deutlich leiser |
+| Ähnliche Klasse, EX105 nicht lieferbar | AEG ChillFlex Pro · [Test-Überblick](https://getecoback.com/guide/aeg-chillflex-pro-test.html) | Gleiche Leise-Ausrichtung, ähnliches Preisband |
 
 Anzeige · Affiliate-Links — du zahlst denselben Preis. Nicht selbst getestet; Auswahl fasst öffentliche Tests zusammen.
 
@@ -89,4 +82,4 @@ De'Longhi PAC EX105 auf Amazon →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

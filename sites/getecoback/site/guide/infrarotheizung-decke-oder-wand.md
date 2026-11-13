@@ -20,13 +20,11 @@ Die Frage ist fast nie „was heizt besser“, sondern „wo ist überhaupt noch
 
 ## Wand, Decke, Bildheizung: der direkte Vergleich
 
-Montageart | Wofür es gemacht ist | Was du dafür aufgibst | Wie aufwendig die Montage ist | Für Mieter geeignet |
-
-**Wand** | Der Normalfall: ein Raum mit einer freien Wandfläche. Strahlt quer durch den Raum auf Sitz- und Stehhöhe. | Die Wandfläche als Stellfläche. Davor darf auf Dauer kein Schrank stehen und kein Vorhang hängen. | Am wenigsten heikel: anzeichnen, bohren, Halterung setzen. Der zulässige Untergrund steht in der Montageanleitung. | Nur mit Erlaubnis des Vermieters. Die Löcher bleiben. |
-
-**Decke** | Räume, in denen jede Wand belegt ist — und Situationen, in denen das Panel außer Reichweite von Möbeln und Kindern bleiben soll. | Die Strahlung geht nach unten: Gewärmt wird, was direkt darunter ist. Wer im Raum herumgeht, spürt sie ungleichmäßiger als bei Wandmontage. | Der aufwendigste Fall. Deckenaufbau und Befestigungsmaterial entscheiden alles, über Kopf arbeitest du dabei auch noch. Bei unbekanntem Deckenaufbau gehört das in Fachhände. | Am erklärungsbedürftigsten. Im Zweifel eher nein. |
-
-**Bildheizung** | Räume, in denen ein weißes Rechteck an der Wand stört — Wohnzimmer, Schlafzimmer, sichtbare Flure. | Beim Heizen nichts. Dafür legst du dich auf ein Motiv fest, und die Auswahl an Größen und Leistungen ist kleiner als bei schlichten Panels. | Wie bei der Wandmontage — es ist dieselbe Aufhängung. | Wie Wandmontage: nur mit Erlaubnis. |
+| Montageart | Wofür es gemacht ist | Was du dafür aufgibst | Wie aufwendig die Montage ist | Für Mieter geeignet |
+| --- | --- | --- | --- | --- |
+| **Wand** | Der Normalfall: ein Raum mit einer freien Wandfläche. Strahlt quer durch den Raum auf Sitz- und Stehhöhe. | Die Wandfläche als Stellfläche. Davor darf auf Dauer kein Schrank stehen und kein Vorhang hängen. | Am wenigsten heikel: anzeichnen, bohren, Halterung setzen. Der zulässige Untergrund steht in der Montageanleitung. | Nur mit Erlaubnis des Vermieters. Die Löcher bleiben. |
+| **Decke** | Räume, in denen jede Wand belegt ist — und Situationen, in denen das Panel außer Reichweite von Möbeln und Kindern bleiben soll. | Die Strahlung geht nach unten: Gewärmt wird, was direkt darunter ist. Wer im Raum herumgeht, spürt sie ungleichmäßiger als bei Wandmontage. | Der aufwendigste Fall. Deckenaufbau und Befestigungsmaterial entscheiden alles, über Kopf arbeitest du dabei auch noch. Bei unbekanntem Deckenaufbau gehört das in Fachhände. | Am erklärungsbedürftigsten. Im Zweifel eher nein. |
+| **Bildheizung** | Räume, in denen ein weißes Rechteck an der Wand stört — Wohnzimmer, Schlafzimmer, sichtbare Flure. | Beim Heizen nichts. Dafür legst du dich auf ein Motiv fest, und die Auswahl an Größen und Leistungen ist kleiner als bei schlichten Panels. | Wie bei der Wandmontage — es ist dieselbe Aufhängung. | Wie Wandmontage: nur mit Erlaubnis. |
 
 Was in dieser Tabelle bewusst fehlt, sind Zentimeter, Kilogramm und Schutzarten. Die stehen gerätespezifisch in der Montageanleitung, und ein Ratgeber, der sie pauschal nennt, rät am konkreten Gerät vorbei.
 
@@ -121,4 +119,4 @@ Das ist keine Elektro- oder Rechtsberatung. Wir haben keine dieser Montagearten 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

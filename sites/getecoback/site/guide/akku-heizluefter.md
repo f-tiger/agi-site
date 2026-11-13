@@ -10,17 +10,13 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/akku-heizluefter.ht
 
 Auf jedem Werkzeugakku stehen zwei Zahlen: Volt und Amperestunden. Multipliziert ergeben sie die **Wattstunden**, also die Energie im Akku. 18 V × 5 Ah = 90 Wh. Teilt man die durch die Leistung des Heizgeräts, kommt die Laufzeit in Stunden heraus. Mehr steckt nicht dahinter, und deshalb lässt sich jede Laufzeitangabe mit dem Typenschild nachprüfen.
 
-Leistung | 18 V · 2 Ah (36 Wh) | 18 V · 5 Ah (90 Wh) | 18 V · 8 Ah (144 Wh) |
-
-2.000 W (Heizlüfter, volle Stufe) | 1,1 min | **2,7 min** | 4,3 min |
-
-1.000 W | 2,2 min | 5,4 min | 8,6 min |
-
-500 W | 4,3 min | 10,8 min | 17,3 min |
-
-50 W (Heizkissen-Klasse) | 43 min | 1 h 48 min | 2 h 53 min |
-
-25 W | 1 h 26 min | **3 h 36 min** | 5 h 46 min |
+| Leistung | 18 V · 2 Ah (36 Wh) | 18 V · 5 Ah (90 Wh) | 18 V · 8 Ah (144 Wh) |
+| --- | --- | --- | --- |
+| 2.000 W (Heizlüfter, volle Stufe) | 1,1 min | **2,7 min** | 4,3 min |
+| 1.000 W | 2,2 min | 5,4 min | 8,6 min |
+| 500 W | 4,3 min | 10,8 min | 17,3 min |
+| 50 W (Heizkissen-Klasse) | 43 min | 1 h 48 min | 2 h 53 min |
+| 25 W | 1 h 26 min | **3 h 36 min** | 5 h 46 min |
 
 Zwei Akkus im Gerät bedeuten doppelte Wattstunden und doppelte Minuten, an der Größenordnung ändert das nichts. Die Werte sind die Nennkapazität; was ein Akku tatsächlich abgibt, liegt in der Praxis etwas darunter.
 
@@ -51,13 +47,11 @@ Das Laden kostet übrigens fast nichts: 90 Wh sind bei 0,30 €/kWh **2,7 Cent**
 
 Wenn der Akku klein ist, muss die Wärme dorthin, wo sie gebraucht wird: an den Körper. Alles, was Luft erwärmt, verteilt sie im Raum und verliert sie an Wände und Türritzen; alles, was am Körper anliegt, kommt mit einem Bruchteil der Leistung aus. Ein Heizkissen liegt bei 40–60 W (siehe [Heizdecke und Heizkissen: Stromverbrauch](https://getecoback.com/guide/heizdecke-stromverbrauch.html)), und damit reichen 90 Wh anderthalb bis zwei Stunden.
 
-Situation | Was funktioniert | Was nicht |
-
-Werkstatt, Garage mit Steckdose | Heizgerät am Netz, nah am Arbeitsplatz | Akku als „Raumheizung" |
-
-Draußen, Baustelle, Angeln, Tribüne | Beheizte Weste, Sitzauflage, Handwärmer | Heizlüfter mit Akku auf voller Stufe |
-
-Kurz die Hände wärmen | Akku-Gerät auf kleiner Stufe, Minuten statt Stunden | Dauerbetrieb |
+| Situation | Was funktioniert | Was nicht |
+| --- | --- | --- |
+| Werkstatt, Garage mit Steckdose | Heizgerät am Netz, nah am Arbeitsplatz | Akku als „Raumheizung" |
+| Draußen, Baustelle, Angeln, Tribüne | Beheizte Weste, Sitzauflage, Handwärmer | Heizlüfter mit Akku auf voller Stufe |
+| Kurz die Hände wärmen | Akku-Gerät auf kleiner Stufe, Minuten statt Stunden | Dauerbetrieb |
 
 **Was du nicht tust.** Keine fremden oder beschädigten Akkus in ein Heizgerät, nichts vor den Auslass legen, das Gerät nicht unbeaufsichtigt oder unter einer Decke laufen lassen. Was für ein bestimmtes Gerät gilt, steht in dessen Anleitung — wir testen Geräte nicht selbst.
 
@@ -84,4 +78,4 @@ Alles, was die Wärme an den Körper bringt statt in die Luft: beheizte Weste, b
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

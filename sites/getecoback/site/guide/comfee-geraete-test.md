@@ -22,11 +22,10 @@ Verkauft werden Comfee-Geräte in Deutschland vor allem über Online-Händler wi
 
 Wir empfehlen nicht „die Marke", sondern zwei konkrete Geräte, die in ihrer jeweiligen Preisklasse die Kernfunktion sauber erfüllen:
 
-Gerät | Rolle | Raumgröße | Preisband | Links |
-
-**Comfee MPPH-09CRN7**Mobiles Klimagerät, 9.000 BTU | Preis-Leistungs-Einstieg — meistgekauftes Klimagerät bei Amazon | 15–20 m² | ca. 250–320 € | [Test-Überblick](https://getecoback.com/guide/comfee-mpph-09crn7-test.html) · Preis auf Amazon |
-
-**Comfee MDDF-20DEN7**Luftentfeuchter, 20 Liter/Tag | Preis-Leistungs-Wahl fürs Entfeuchten und Wäschetrocknen | bis ca. 20 m² pro Raum | ca. 150–200 € | [Einordnung nach Raumgröße](https://getecoback.com/guide/luftentfeuchter-20-qm.html) · Preis auf Amazon |
+| Gerät | Rolle | Raumgröße | Preisband | Links |
+| --- | --- | --- | --- | --- |
+| **Comfee MPPH-09CRN7** Mobiles Klimagerät, 9.000 BTU | Preis-Leistungs-Einstieg — meistgekauftes Klimagerät bei Amazon | 15–20 m² | ca. 250–320 € | [Test-Überblick](https://getecoback.com/guide/comfee-mpph-09crn7-test.html) · Preis auf Amazon |
+| **Comfee MDDF-20DEN7** Luftentfeuchter, 20 Liter/Tag | Preis-Leistungs-Wahl fürs Entfeuchten und Wäschetrocknen | bis ca. 20 m² pro Raum | ca. 150–200 € | [Einordnung nach Raumgröße](https://getecoback.com/guide/luftentfeuchter-20-qm.html) · Preis auf Amazon |
 
 Anzeige · Affiliate-Links — du zahlst denselben Preis. Nicht selbst getestet; Auswahl fasst öffentliche Tests zusammen.
 
@@ -48,11 +47,10 @@ Und wo nicht gespart wird: an der Kernfunktion. Das Klimagerät kühlt seine 15�
 
 ## Wann lieber eine andere Marke?
 
-Situation | Bessere Wahl | Warum |
-
-Nachts bei laufendem Gerät schlafen, Effizienz wichtig | [De'Longhi Pinguino PAC EX105](https://getecoback.com/guide/pinguino-pac-ex105-test.html) · [alle Pinguino-Modelle im Vergleich](https://getecoback.com/guide/delonghi-pinguino-vergleich.html) | A+++ statt A, in Messungen leiser als das Feld — kostet aber deutlich mehr |
-
-Räume über 25–30 m² | Klarstein Kraftwerk Smart 12K · [Test-Überblick](https://getecoback.com/guide/klarstein-kraftwerk-smart-12k-test.html) | 12.000 BTU Reserve — den 9.000 BTU des Comfee geht dort die Puste aus |
+| Situation | Bessere Wahl | Warum |
+| --- | --- | --- |
+| Nachts bei laufendem Gerät schlafen, Effizienz wichtig | [De'Longhi Pinguino PAC EX105](https://getecoback.com/guide/pinguino-pac-ex105-test.html) · [alle Pinguino-Modelle im Vergleich](https://getecoback.com/guide/delonghi-pinguino-vergleich.html) | A+++ statt A, in Messungen leiser als das Feld — kostet aber deutlich mehr |
+| Räume über 25–30 m² | Klarstein Kraftwerk Smart 12K · [Test-Überblick](https://getecoback.com/guide/klarstein-kraftwerk-smart-12k-test.html) | 12.000 BTU Reserve — den 9.000 BTU des Comfee geht dort die Puste aus |
 
 Anzeige · Affiliate-Links — du zahlst denselben Preis. Nicht selbst getestet; Auswahl fasst öffentliche Tests zusammen.
 
@@ -91,4 +89,4 @@ Comfee MDDF-20DEN7 auf Amazon →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

@@ -24,6 +24,7 @@ X-Robots-Tag: noindex so the mirrors never compete with the pages.
 Idempotent: byte-stable on re-run. Wired into deploy after build_llmstxt.
 """
 import html as H
+from html.parser import HTMLParser
 import json
 import os
 import re
@@ -38,14 +39,14 @@ BASE = "https://getecoback.com"
 DISCLOSURE = {
     "nl": "Redactionele keuzehulp, geen eigen apparaattest. De HTML-pagina bevat gewone winkellinks; deze tekstweergave niet.",
     "en-AU": "Editorial buying guidance, not hands-on product testing. The HTML page contains ordinary retailer links; this text view does not.",
-    "de": ("Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests "
-           "zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den "
+    "de": ("Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. "
+           "Die Website finanziert sich über Amazon-Affiliate-Links auf den "
            "HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine."),
-    "en": ("Note: EcoBack does not test devices itself; picks summarise public tests. "
+    "en": ("Note: Editorial guidance based on the linked sources, not our own device tests. "
            "The site is funded via Amazon affiliate links on the HTML pages — this "
            "Markdown view deliberately contains none."),
-    "it": ("Nota: EcoBack non testa i prodotti in proprio; le scelte riassumono test "
-           "pubblici. Il sito è finanziato con link affiliati Amazon sulle pagine HTML — "
+    "it": ("Nota: Indicazioni redazionali basate sulle fonti collegate, non test propri. "
+           "Il sito è finanziato con link affiliati Amazon sulle pagine HTML — "
            "questa vista Markdown non ne contiene volutamente."),
 }
 
@@ -75,6 +76,56 @@ def buyer_method_html(fragment):
         return ''
     source = re.search(r'<small>(?:Quellen geprüft|Sources checked).*?</small>', fragment, re.S)
     return legacy[0].group(2) + (source.group(0) if source else '')
+
+
+def retained_fragment_ids(body):
+    class Targets(HTMLParser):
+        def __init__(self):
+            super().__init__()
+            self.stack, self.ids = [], set()
+        def handle_starttag(self, tag, attrs):
+            attrs = dict(attrs)
+            hidden = (any(item[1] for item in self.stack) or 'hidden' in attrs
+                      or attrs.get('aria-hidden', '').lower() == 'true'
+                      or bool(re.search(r'(?:display\s*:\s*none|visibility\s*:\s*hidden)', attrs.get('style', ''), re.I)))
+            if not hidden and attrs.get('id'):
+                self.ids.add(attrs['id'])
+            if tag not in {'br','hr','img','input','meta','link','source','area','base','embed','param','track','wbr'}:
+                self.stack.append((tag, hidden))
+        def handle_endtag(self, tag):
+            for i in range(len(self.stack)-1, -1, -1):
+                if self.stack[i][0] == tag:
+                    del self.stack[i:]
+                    break
+    parser = Targets()
+    parser.feed(body)
+    return parser.ids
+
+
+def markdown_table(fragment):
+    """Preserve cell boundaries; never invent headers for ambiguous layouts."""
+    def text(value):
+        value = re.sub(r'<br\s*/?>', ' ', value, flags=re.I)
+        return re.sub(r'\s+', ' ', H.unescape(re.sub(r'<[^>]+>', '', value))).strip()
+    caption = re.search(r'<caption\b[^>]*>(.*?)</caption>', fragment, re.S | re.I)
+    title = text(caption[1]) + "\n\n" if caption else ''
+    rows = [re.findall(r'<(th|td)\b[^>]*>(.*?)</\1>', row, re.S | re.I)
+            for row in re.findall(r'<tr\b[^>]*>(.*?)</tr>', fragment, re.S | re.I)]
+    rows = [row for row in rows if row]
+    if not rows:
+        return title + text(fragment)
+    values = [[text(value) for _, value in row] for row in rows]
+    simple = (len(re.findall(r'<table\b', fragment, re.I)) == 1 and len(rows) > 1 and all(tag.lower() == 'th' for tag, _ in rows[0])
+              and all(len(row) == len(rows[0]) for row in rows)
+              and not re.search(r'\b(?:rowspan|colspan)\s*=', fragment, re.I))
+    if not simple:
+        # Row order is retained, but merged/headerless cells are not asserted
+        # to belong to fabricated GFM column headings.
+        return title + '\n'.join('- ' + ' · '.join(row) for row in values)
+    def line(row):
+        return '| ' + ' | '.join(v.replace('\\', '\\\\').replace('|', '\\|') for v in row) + ' |'
+    return title + '\n'.join([line(values[0]), line(['---'] * len(values[0]))]
+                              + [line(row) for row in values[1:]])
 
 
 def to_markdown(src_html, path_url, lang):
@@ -167,6 +218,8 @@ def to_markdown(src_html, path_url, lang):
     if journey:
         body += journey.group(1).replace('</a><p', '</a> <p')
 
+    retained_ids = retained_fragment_ids(body)
+
     def link(mm):
         href, text = mm.group(1), re.sub(r"<[^>]+>", "", mm.group(2)).strip()
         if not text:
@@ -179,8 +232,8 @@ def to_markdown(src_html, path_url, lang):
             return f"[{text}]({source})"
         if re.match(r"^/(?!/)", href):
             return f"[{text}]({BASE}{href})"
-        if href.startswith("#"):
-            return text
+        if href.startswith("#") and href[1:] in retained_ids:
+            return f"[{text}]({BASE}{path_url}{href})"
         return text
 
     body = re.sub(r'<a\b[^>]*href="([^"]+)"[^>]*>(.*?)</a>', link, body, flags=re.S)
@@ -189,6 +242,11 @@ def to_markdown(src_html, path_url, lang):
                   body, flags=re.S)
     body = re.sub(r"<(strong|b)\b[^>]*>(.*?)</\1>",
                   lambda mm: "**" + re.sub(r"<[^>]+>", "", mm.group(2)).strip() + "**", body, flags=re.S)
+    tables = []
+    def table(match):
+        tables.append(markdown_table(match.group(0)))
+        return f"\n\nECOMDTABLE{len(tables)-1}END\n\n"
+    body = re.sub(r'<table\b[^>]*>.*?</table>', table, body, flags=re.S | re.I)
     body = re.sub(r"<li[^>]*>", "\n- ", body)
     body = re.sub(r"</t[dh]>", " | ", body)
     body = re.sub(r"</(p|div|tr|table|ul|ol|section|blockquote)>", "\n", body)
@@ -198,6 +256,9 @@ def to_markdown(src_html, path_url, lang):
     body = re.sub(r" ?\n ?", "\n", body)
     body = re.sub(r"^-\s*$", "", body, flags=re.M)
     body = re.sub(r"\n{3,}", "\n\n", body).strip()
+
+    for i, table_text in enumerate(tables):
+        body = body.replace(f"ECOMDTABLE{i}END", table_text)
 
     head = [f"# {title}", ""]
     if desc:

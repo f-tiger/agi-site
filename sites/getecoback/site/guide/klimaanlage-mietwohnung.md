@@ -32,15 +32,12 @@ Vereinfacht gilt: Alles, was du beim Auszug rückstandslos wieder mitnimmst und 
 
 ## Der praktische Mieter-Kompromiss
 
-Lösung | Genehmigung? | Kühlleistung | Beim Auszug |
-
-Turmventilator | Nein | Gering (Luftbewegung) | Mitnehmen |
-
-Tragbare Monoblock-Klimaanlage | Nein | Gut | Rückstandslos |
-
-Quick-Connect-Split | Anfragen empfohlen | Sehr gut, leise | Mitnehmen |
-
-Fest verbaute Split | Ja, schriftlich | Am besten | Ggf. Rückbau nötig |
+| Lösung | Genehmigung? | Kühlleistung | Beim Auszug |
+| --- | --- | --- | --- |
+| Turmventilator | Nein | Gering (Luftbewegung) | Mitnehmen |
+| Tragbare Monoblock-Klimaanlage | Nein | Gut | Rückstandslos |
+| Quick-Connect-Split | Anfragen empfohlen | Sehr gut, leise | Mitnehmen |
+| Fest verbaute Split | Ja, schriftlich | Am besten | Ggf. Rückbau nötig |
 
 Für die allermeisten Mieter ist die **tragbare Monoblock-Klimaanlage die pragmatischste Wahl**: sofort einsatzbereit, keine Genehmigung, beim Umzug kommt sie einfach mit. Wer dauerhaft und leise kühlen will und einen Balkon hat, fährt mit einem Quick-Connect-Split besser — sollte aber vorher kurz mit dem Vermieter sprechen.
 
@@ -101,4 +98,4 @@ Tragbare Klimaanlagen →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

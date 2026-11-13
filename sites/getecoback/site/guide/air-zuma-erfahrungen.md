@@ -16,17 +16,13 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks zu d
 
 Die Werbe- und Shop-Seiten zum AirZuma machen im Kern diese Zusagen:
 
-Werbeversprechen | Prüfbarer Befund |
-
-„Tragbare Klimaanlage ohne Abluftschlauch" — keine Verbindung nach draußen nötig | Ohne Weg nach draußen kann keine Wärme den Raum verlassen — netto keine Raumkühlung möglich; die Produktbeschreibung selbst nennt das Gerät an anderer Stelle „Luftkühler" ohne Kältemittel |
-
-„CoolCore™-Technologie kühlt die Luft aktiv, statt sie nur zu bewegen"; Rückgang „um mehrere Grad innerhalb einer halben Stunde" | Für mehrere Grad Raumkühlung wären tausende Watt Kälteleistung samt Wärmeabfuhr nötig; ein befeuchtetes Element im Luftstrom kühlt nur lokal — und macht die Luft dabei feuchter |
-
-Verbraucht „nur 2–7 Watt" — statt rund 1.000 Watt einer Klimaanlage | Das Argument widerlegt sich selbst: 2–7 Watt ist die Leistungsklasse eines kleinen Ventilators. Echte Klimageräte brauchen ~1.000 Watt, weil sie Wärme nach draußen pumpen — genau die Arbeit, die hier nicht stattfindet |
-
-Bis zu 12 Stunden Akku, kabellos, flüsterleise, Wandmontage ohne Bohren | Als Ventilator-Eigenschaften plausibel — über Kühlleistung sagen sie nichts aus |
-
-„50 % Rabatt" (99,99 € statt 199,98 €), Staffelpreise, nur im Hersteller-Shop, 30-Tage-Geld-zurück | Durchgestrichener Vergleichspreis plus „nur direkt beim Hersteller" = bekanntes Funnel-Muster; kein unabhängiger Test auffindbar, keine Stiftung-Warentest-Prüfung |
+| Werbeversprechen | Prüfbarer Befund |
+| --- | --- |
+| „Tragbare Klimaanlage ohne Abluftschlauch" — keine Verbindung nach draußen nötig | Ohne Weg nach draußen kann keine Wärme den Raum verlassen — netto keine Raumkühlung möglich; die Produktbeschreibung selbst nennt das Gerät an anderer Stelle „Luftkühler" ohne Kältemittel |
+| „CoolCore™-Technologie kühlt die Luft aktiv, statt sie nur zu bewegen"; Rückgang „um mehrere Grad innerhalb einer halben Stunde" | Für mehrere Grad Raumkühlung wären tausende Watt Kälteleistung samt Wärmeabfuhr nötig; ein befeuchtetes Element im Luftstrom kühlt nur lokal — und macht die Luft dabei feuchter |
+| Verbraucht „nur 2–7 Watt" — statt rund 1.000 Watt einer Klimaanlage | Das Argument widerlegt sich selbst: 2–7 Watt ist die Leistungsklasse eines kleinen Ventilators. Echte Klimageräte brauchen ~1.000 Watt, weil sie Wärme nach draußen pumpen — genau die Arbeit, die hier nicht stattfindet |
+| Bis zu 12 Stunden Akku, kabellos, flüsterleise, Wandmontage ohne Bohren | Als Ventilator-Eigenschaften plausibel — über Kühlleistung sagen sie nichts aus |
+| „50 % Rabatt" (99,99 € statt 199,98 €), Staffelpreise, nur im Hersteller-Shop, 30-Tage-Geld-zurück | Durchgestrichener Vergleichspreis plus „nur direkt beim Hersteller" = bekanntes Funnel-Muster; kein unabhängiger Test auffindbar, keine Stiftung-Warentest-Prüfung |
 
 ## Die Physik: 2–7 Watt kühlen keinen Raum
 
@@ -98,4 +94,4 @@ Comfee MPPH-09CRN7 →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

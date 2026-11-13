@@ -16,19 +16,14 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unte
 
 Das MPPH-09CRN7 ist seit Jahren eines der meistverkauften mobilen Klimageräte in Deutschland — Technik-Medien wie PC Games Hardware führen es regelmäßig als meistgekauftes Klimagerät bei Amazon, typischerweise deutlich unter 300 €. Laut Hersteller-Datenblatt ist es ein 3-in-1-Gerät (Kühlen, Entfeuchten, Ventilieren) mit 9.000 BTU/2,6 kW, Kältemittel R290 und rund 25 kg Gewicht. Über die öffentlichen Tests und Käuferbewertungen hinweg wiederholen sich dieselben Befunde:
 
-Befund öffentlicher Tests | Unsere Einordnung für den Alltag |
-
-✓ Echte Kompressorkühlung zum Einstiegspreis; Käuferbewertungen überwiegend positiv (bei Otto 4,3 von 5 Sternen bei rund 1.200 Bewertungen) | Der Referenz-Budget-Pick für 15–20 m² — kein Verdunstungskühler-Trick, sondern dieselbe Kältetechnik wie in teureren Monoblöcken |
-
-✓ In Erfahrungsberichten schnelle, spürbare Abkühlung kleiner Räume | Gilt für die 15–20-m²-Klasse mit abgedichtetem Fenster; kein Freifahrtschein für große Räume |
-
-✓ Hohe Entfeuchtungsleistung: laut Datenblatt bis 50,9 l/Tag (Laborbedingungen) | Praktischer Nebennutzen an schwülen Tagen — ersetzt aber keinen dedizierten Luftentfeuchter im Dauereinsatz |
-
-✕ Hörbarer Betrieb: 63 dB(A) laut Datenblatt, in Tests der häufigste Kritikpunkt | Typisches Monoblock-Band — ehrliche Einordnung unten |
-
-✕ Energieeffizienzklasse A, rund 1 kWh pro Stunde Kühlen laut Datenblatt | Solide, aber kein A+++: bei 0,30 €/kWh ca. 0,30 € pro Stunde — Rechenweg im [Stromkosten-Ratgeber](https://getecoback.com/guide/klimaanlage-stromkosten.html) |
-
-✕ Beigelegtes Fenster-Kit ist ein Schiebefenster-Set | Für die in Deutschland üblichen Kipp- und Flügelfenster braucht es eine separate Abdichtung (15–30 €) — [welche zu welchem Fenster passt](https://getecoback.com/guide/fensterabdichtung-klimaanlage.html) |
+| Befund öffentlicher Tests | Unsere Einordnung für den Alltag |
+| --- | --- |
+| ✓ Echte Kompressorkühlung zum Einstiegspreis; Käuferbewertungen überwiegend positiv (bei Otto 4,3 von 5 Sternen bei rund 1.200 Bewertungen) | Der Referenz-Budget-Pick für 15–20 m² — kein Verdunstungskühler-Trick, sondern dieselbe Kältetechnik wie in teureren Monoblöcken |
+| ✓ In Erfahrungsberichten schnelle, spürbare Abkühlung kleiner Räume | Gilt für die 15–20-m²-Klasse mit abgedichtetem Fenster; kein Freifahrtschein für große Räume |
+| ✓ Hohe Entfeuchtungsleistung: laut Datenblatt bis 50,9 l/Tag (Laborbedingungen) | Praktischer Nebennutzen an schwülen Tagen — ersetzt aber keinen dedizierten Luftentfeuchter im Dauereinsatz |
+| ✕ Hörbarer Betrieb: 63 dB(A) laut Datenblatt, in Tests der häufigste Kritikpunkt | Typisches Monoblock-Band — ehrliche Einordnung unten |
+| ✕ Energieeffizienzklasse A, rund 1 kWh pro Stunde Kühlen laut Datenblatt | Solide, aber kein A+++: bei 0,30 €/kWh ca. 0,30 € pro Stunde — Rechenweg im [Stromkosten-Ratgeber](https://getecoback.com/guide/klimaanlage-stromkosten.html) |
+| ✕ Beigelegtes Fenster-Kit ist ein Schiebefenster-Set | Für die in Deutschland üblichen Kipp- und Flügelfenster braucht es eine separate Abdichtung (15–30 €) — [welche zu welchem Fenster passt](https://getecoback.com/guide/fensterabdichtung-klimaanlage.html) |
 
 Der rote Faden: Kein Test wirft dem Gerät vor, dass es nicht kühlt — die Kritik betrifft durchgängig das, was der niedrige Preis strukturell mitbringt. Genau deshalb ist die ehrliche Frage nicht „ist es gut?", sondern „reicht es für meinen Raum und meine Nutzung?".
 
@@ -48,17 +43,13 @@ Monoblöcke liegen typisch bei 55–65 dB — der Kompressor steht mit im Raum, 
 
 Die Kernfrage dieser Seite: Was gibt man für den Budget-Preis auf — und wann fehlt einem das wirklich? Gegenüber dem Pinguino verzichtet man auf die A+++-Effizienz (relevant bei täglichem Betrieb über Wochen) und den leiseren Messwert (relevant für empfindliche Schläfer). Wer beides nicht braucht, weil er ein kleines Zimmer nur an Hitzetagen kühlt, kauft mit dem Comfee rational:
 
-Situation | Bessere Wahl | Warum |
-
-15–20 m², nur an Hitzetagen, Budget zählt | Comfee MPPH-09CRN7 | 9.000 BTU Grundleistung zum Einstiegspreis — bleibt hier die Empfehlung |
-
-Täglicher Betrieb, Stromkosten & Ruhe wichtig | De'Longhi Pinguino PAC EX105 | A+++ statt A, in Messungen leiser — [unser Test-Überblick](https://getecoback.com/guide/pinguino-pac-ex105-test.html) |
-
-Über 25–30 m² | Klarstein Kraftwerk Smart 12K | 12.000 BTU Reserve für große Räume |
-
-Sehr geräuschempfindlich | Midea PortaSplit | Kompressor hängt draußen — drinnen deutlich leiser |
-
-Leise-Ausrichtung, mittleres Budget | AEG ChillFlex Pro | Leise-Anspruch bei ca. 350–500 € — zwischen Comfee und Pinguino |
+| Situation | Bessere Wahl | Warum |
+| --- | --- | --- |
+| 15–20 m², nur an Hitzetagen, Budget zählt | Comfee MPPH-09CRN7 | 9.000 BTU Grundleistung zum Einstiegspreis — bleibt hier die Empfehlung |
+| Täglicher Betrieb, Stromkosten & Ruhe wichtig | De'Longhi Pinguino PAC EX105 | A+++ statt A, in Messungen leiser — [unser Test-Überblick](https://getecoback.com/guide/pinguino-pac-ex105-test.html) |
+| Über 25–30 m² | Klarstein Kraftwerk Smart 12K | 12.000 BTU Reserve für große Räume |
+| Sehr geräuschempfindlich | Midea PortaSplit | Kompressor hängt draußen — drinnen deutlich leiser |
+| Leise-Ausrichtung, mittleres Budget | AEG ChillFlex Pro | Leise-Anspruch bei ca. 350–500 € — zwischen Comfee und Pinguino |
 
 Anzeige · Affiliate-Links — du zahlst denselben Preis. Nicht selbst getestet; Auswahl fasst öffentliche Tests zusammen.
 
@@ -97,4 +88,4 @@ Comfee MPPH-09CRN7 auf Amazon →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

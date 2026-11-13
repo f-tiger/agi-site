@@ -40,47 +40,14 @@ BTU ist die Kühlleistung. Zu wenig, und das Gerät kommt nicht hinterher; zu vi
 
 Diese Übersicht stellt Modelle mit unterschiedlichen Bauarten und Funktionen gegenüber. **Wir testen nicht selbst** und weisen hier keine Rangfolge aus einem gemeinsamen Vergleichstest aus. Prüfe die genaue Modellvariante, die Kühlleistung und die Aufstellbedingungen, bevor du kaufst. Die Amazon-Links führen je nach Modell zur Produktseite oder zu einer Modell-Suche; Preise und Verfügbarkeit musst du dort prüfen.
 
-Modell |
-Rolle |
-Kühlleistung |
-Lautstärke |
-Am besten für |
-
-**De'Longhi Pinguino PAC EX105** |
-Allrounder |
-Stark (mittel-groß) |
-Mittel, Sleep-Modus |
-Schlaf-/Wohnzimmer |
-
-**De'Longhi PAC N90 ECO Silent** |
-Mit Silent-Modus |
-Stark (mittel-groß) |
-Messgröße und Betriebsstufe prüfen |
-Vorkühlen mit passender Abluftführung |
-
-**Comfee MPPH-09CRN7** |
-Preis-Leistung |
-~9.000 BTU (klein) |
-Mittel |
-Kleine Räume bis ~15 m² |
-
-**Klarstein Kraftwerk Smart 12K** |
-12K-Variante prüfen |
-Leistung der 12K-Variante prüfen |
-Mittel-hoch |
-Raum mit passender Kühllast |
-
-**AEG ChillFlex Pro** |
-Modellfamilie vergleichen |
-Abhängig von der genauen Variante |
-dB-Messgröße und Modus prüfen |
-Raum mit geeigneter Abluftführung |
-
-**Midea PortaSplit** |
-Mobiles Splitgerät |
-Leistung mit Kühllast abgleichen |
-Innen- und Außengerät getrennt prüfen |
-Geeigneter Außenplatz erforderlich |
+| Modell | Rolle | Kühlleistung | Lautstärke | Am besten für |
+| --- | --- | --- | --- | --- |
+| **De'Longhi Pinguino PAC EX105** | Allrounder | Stark (mittel-groß) | Mittel, Sleep-Modus | Schlaf-/Wohnzimmer |
+| **De'Longhi PAC N90 ECO Silent** | Mit Silent-Modus | Stark (mittel-groß) | Messgröße und Betriebsstufe prüfen | Vorkühlen mit passender Abluftführung |
+| **Comfee MPPH-09CRN7** | Preis-Leistung | ~9.000 BTU (klein) | Mittel | Kleine Räume bis ~15 m² |
+| **Klarstein Kraftwerk Smart 12K** | 12K-Variante prüfen | Leistung der 12K-Variante prüfen | Mittel-hoch | Raum mit passender Kühllast |
+| **AEG ChillFlex Pro** | Modellfamilie vergleichen | Abhängig von der genauen Variante | dB-Messgröße und Modus prüfen | Raum mit geeigneter Abluftführung |
+| **Midea PortaSplit** | Mobiles Splitgerät | Leistung mit Kühllast abgleichen | Innen- und Außengerät getrennt prüfen | Geeigneter Außenplatz erforderlich |
 
 Die Tabelle ist eine Kaufprüfung, keine Labor-Rangliste. Schallleistung und Schalldruck sind unterschiedliche Größen; dB-Werte sind nur bei gleicher Messgröße, Betriebsstufe und vergleichbaren Messbedingungen sinnvoll vergleichbar. Maßgeblich sind die Angaben zur genauen Modellvariante.
 
@@ -161,4 +128,4 @@ Konkrete Modelle mit Rolle, aus öffentlichen Testberichten zusammengestellt (ni
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

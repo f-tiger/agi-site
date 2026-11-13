@@ -9,7 +9,7 @@ Canonical (HTML, zitierfähig): https://getecoback.com/it/guide/condizionatore-p
 AllrounderDe'Longhi Pinguino PAC EX105→
 Più riservaKlarstein Kraftwerk Smart 12K→
 Il più silenziosoDe'Longhi PAC N90 ECO Silent→
-Tutti i modelli con le motivazioni ↓
+[Tutti i modelli con le motivazioni ↓](https://getecoback.com/it/guide/condizionatore-portatile-30-mq.html#i-modelli)
 
 🗓 Aggiornato il 28 agosto 2026 · Redazione EcoBack
 
@@ -27,15 +27,12 @@ La regola base di questo sito è **circa 340 BTU per metro quadrato**. Per 30 m�
 
 Non abbiamo testato queste unità noi stessi — riassumiamo test pubblici e feedback degli utenti.
 
-Modello | Ruolo | Punto di forza |
-
-**Klarstein mobile Klimaanlage 12000 BTU** | La classe giusta per 30 m² | 12.000 BTU, dimensionato correttamente per un soggiorno o una zona giorno aperta; citato regolarmente nei test pubblici e tra i più venduti |
-
-**Klarstein Kraftwerk Smart 12K** | Più riserva | La variante smart della stessa classe 12.000 BTU, per chi vuole margine in più |
-
-**De'Longhi Pinguino PAC EX105** | Allrounder | Il riferimento della classe sotto: adatto se la stanza è ombreggiata o vicina ai 25 m², non per 30 m² pieni al sole |
-
-**Midea PortaSplit** | Alternativa split senza fori | Compressore appeso fuori dalla finestra senza forare: dentro nettamente più silenzioso ed efficiente di un monoblocco |
+| Modello | Ruolo | Punto di forza |
+| --- | --- | --- |
+| **Klarstein mobile Klimaanlage 12000 BTU** | La classe giusta per 30 m² | 12.000 BTU, dimensionato correttamente per un soggiorno o una zona giorno aperta; citato regolarmente nei test pubblici e tra i più venduti |
+| **Klarstein Kraftwerk Smart 12K** | Più riserva | La variante smart della stessa classe 12.000 BTU, per chi vuole margine in più |
+| **De'Longhi Pinguino PAC EX105** | Allrounder | Il riferimento della classe sotto: adatto se la stanza è ombreggiata o vicina ai 25 m², non per 30 m² pieni al sole |
+| **Midea PortaSplit** | Alternativa split senza fori | Compressore appeso fuori dalla finestra senza forare: dentro nettamente più silenzioso ed efficiente di un monoblocco |
 
 - **Klarstein mobile Klimaanlage 12000 BTU — la scelta principale per 30 m².** Dimensionato correttamente per un soggiorno o una zona giorno aperta, citato regolarmente nei test pubblici. Requisiti, come per ogni portatile: tubo di scarico e guarnizione alla finestra. La variante Klarstein Kraftwerk Smart 12K è la stessa classe con controllo smart.
 
@@ -47,15 +44,12 @@ Modello | Ruolo | Punto di forza |
 
 Un apparecchio adatto a 30 m² assorbe circa **1300 W**. Con una tariffa di 0,30 €/kWh come base di calcolo — inserisci il prezzo del tuo contratto — sono circa **0,39 € all'ora**. In un mese di caldo (circa 8 ore a notte, con il compressore che riduce il funzionamento a temperatura raggiunta) si arriva realisticamente a **~61 €**.
 
-Periodo | Calcolo (1300 W, 0,30 €/kWh, ciclo ~65 %) | Costo |
-
-1 ora a pieno carico | 1300 W ÷ 1.000 × 0,30 € | **0,39 €** |
-
-1 notte (8 h) | × 8 h × 0,65 | **2,03 €** |
-
-1 mese di caldo (30 notti) | × 30 | **~61 €** |
-
-Senza guarnizione alla finestra | l'aria calda rientra, il compressore non stacca mai | **fino a ×2** |
+| Periodo | Calcolo (1300 W, 0,30 €/kWh, ciclo ~65 %) | Costo |
+| --- | --- | --- |
+| 1 ora a pieno carico | 1300 W ÷ 1.000 × 0,30 € | **0,39 €** |
+| 1 notte (8 h) | × 8 h × 0,65 | **2,03 €** |
+| 1 mese di caldo (30 notti) | × 30 | **~61 €** |
+| Senza guarnizione alla finestra | l'aria calda rientra, il compressore non stacca mai | **fino a ×2** |
 
 L'ultima riga è la voce più sottovalutata: senza una finestra ben sigillata, l'apparecchio raffresca lottando contro il proprio calore di scarico che rientra — e la bolletta può raddoppiare.
 
@@ -107,4 +101,4 @@ Klarstein 12000 BTU →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Nota: EcoBack non testa i prodotti in proprio; le scelte riassumono test pubblici. Il sito è finanziato con link affiliati Amazon sulle pagine HTML — questa vista Markdown non ne contiene volutamente.
+Nota: Indicazioni redazionali basate sulle fonti collegate, non test propri. Il sito è finanziato con link affiliati Amazon sulle pagine HTML — questa vista Markdown non ne contiene volutamente.

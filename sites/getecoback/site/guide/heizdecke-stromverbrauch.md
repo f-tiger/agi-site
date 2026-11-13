@@ -18,10 +18,13 @@ Kurze Pause · 30 Minuten
 Sofa · 2 Stunden
 Homeoffice-Block · 3 Stunden
 
-Statische Beispiele bei 110 W und 0,35 €/kWh – auch ohne JavaScript lesbarDauer | Energie | Gerundete Stromkosten |
-30 Minuten | 55 Wh / 0,055 kWh | 0,02 € |
-2 Stunden | 220 Wh / 0,22 kWh | 0,08 € |
-3 Stunden | 330 Wh / 0,33 kWh | 0,12 € |
+Statische Beispiele bei 110 W und 0,35 €/kWh – auch ohne JavaScript lesbar
+
+| Dauer | Energie | Gerundete Stromkosten |
+| --- | --- | --- |
+| 30 Minuten | 55 Wh / 0,055 kWh | 0,02 € |
+| 2 Stunden | 220 Wh / 0,22 kWh | 0,08 € |
+| 3 Stunden | 330 Wh / 0,33 kWh | 0,12 € |
 
 Rechenbeispiel · 220 Wh = 0,22 kWh pro Nutzung · 0,08 €. Durchgehende Nennleistung; keine Verbrauchsmessung.
 
@@ -83,4 +86,4 @@ Der Rechenweg gilt in allen drei Ländern. Deutschland und Österreich werden in
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

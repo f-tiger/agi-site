@@ -24,15 +24,12 @@ How to tell: look at the remote. A sun symbol, the word calor, or bomba de calor
 
 The rule first, because shops will not tell you: **every electric resistance heater is 100 percent efficient**. Oil radiator, ceramic fan heater, infrared panel, halogen bar, electric blanket — a kilowatt-hour in is a kilowatt-hour of heat out, for all of them. There is no "economical" resistance heater; there is only heating less space for fewer hours. What the types differ in is where the heat goes and how fast.
 
-Type | What it heats | Speed | Noise | Best used for |
-
-Oil-filled radiator | The whole room, by convection | Slow (20–40 min) | Silent | Bedroom overnight on a low thermostat; living room you sit in all evening |
-
-Ceramic fan heater | The air in front of it, then the room | Fast (minutes) | Audible fan | Bathroom before a shower; a quick warm-up, not hours of running |
-
-Infrared panel | People and surfaces in its line of sight, not the air | Felt immediately, room slowly | Silent | Desk or sofa in a tiled, high-ceilinged room; aimed at a cold, damp-prone wall |
-
-Electric blanket / brasero eléctrico | You, not the room | Minutes | Silent | The cheapest evening there is: 100–200 W instead of 2,000 |
+| Type | What it heats | Speed | Noise | Best used for |
+| --- | --- | --- | --- | --- |
+| Oil-filled radiator | The whole room, by convection | Slow (20–40 min) | Silent | Bedroom overnight on a low thermostat; living room you sit in all evening |
+| Ceramic fan heater | The air in front of it, then the room | Fast (minutes) | Audible fan | Bathroom before a shower; a quick warm-up, not hours of running |
+| Infrared panel | People and surfaces in its line of sight, not the air | Felt immediately, room slowly | Silent | Desk or sofa in a tiled, high-ceilinged room; aimed at a cold, damp-prone wall |
+| Electric blanket / brasero eléctrico | You, not the room | Minutes | Silent | The cheapest evening there is: 100–200 W instead of 2,000 |
 
 The last row is the Spanish tradition — the brasero under a skirted table — in its modern electric form, and it embodies the rule better than any appliance review: heating the person costs a tenth of heating the room.
 
@@ -40,19 +37,14 @@ The last row is the Spanish tradition — the brasero under a skirted table — 
 
 The sizing ladder below is the one all our heater guides use: **60–100 W per square metre** for a reasonably insulated room. For the flats described above — single glazing, uninsulated masonry, a north-facing exterior wall — use the top of the range or step up one row. A heater larger than the room needs does not waste electricity in itself (the thermostat cycles it off), but a heater that is too small runs flat out and never gets there.
 
-Room | Recommended heater | Guide |
-
-10 m² | 600–800 W | [10 m² guide](https://getecoback.com/en/guide/electric-heater-10-sqm.html) |
-
-15 m² | 900–1,200 W | [15 m² guide](https://getecoback.com/en/guide/electric-heater-15-sqm.html) |
-
-20 m² | 1,200–1,600 W | [20 m² guide](https://getecoback.com/en/guide/electric-heater-20-sqm.html) |
-
-25 m² | 1,500–2,000 W | [25 m² guide](https://getecoback.com/en/guide/electric-heater-25-sqm.html) |
-
-30 m² | 1,800–2,400 W | [30 m² guide](https://getecoback.com/en/guide/electric-heater-30-sqm.html) |
-
-40 m² | 2,400–3,200 W | [40 m² guide](https://getecoback.com/en/guide/electric-heater-40-sqm.html) |
+| Room | Recommended heater | Guide |
+| --- | --- | --- |
+| 10 m² | 600–800 W | [10 m² guide](https://getecoback.com/en/guide/electric-heater-10-sqm.html) |
+| 15 m² | 900–1,200 W | [15 m² guide](https://getecoback.com/en/guide/electric-heater-15-sqm.html) |
+| 20 m² | 1,200–1,600 W | [20 m² guide](https://getecoback.com/en/guide/electric-heater-20-sqm.html) |
+| 25 m² | 1,500–2,000 W | [25 m² guide](https://getecoback.com/en/guide/electric-heater-25-sqm.html) |
+| 30 m² | 1,800–2,400 W | [30 m² guide](https://getecoback.com/en/guide/electric-heater-30-sqm.html) |
+| 40 m² | 2,400–3,200 W | [40 m² guide](https://getecoback.com/en/guide/electric-heater-40-sqm.html) |
 
 Above about 2,000 W you are past what a single plug-in heater sensibly delivers, and at the point where it is worth asking whether a split unit with heat mode would pay for itself instead.
 
@@ -60,29 +52,22 @@ Above about 2,000 W you are past what a single plug-in heater sensibly delivers,
 
 Spain is unusual in Europe in that a large share of households are on the regulated **PVPC** tariff, whose energy price follows the wholesale market hour by hour and whose network charges are split into three time periods. The periods are set by the regulator, and they matter for heating because the expensive one is exactly when you come home cold:
 
-Period (2.0TD tariff) | Weekdays, mainland · Balearics · Canaries | Ceuta and Melilla |
-
-P1 — punta (peak) | 10:00–14:00 and 18:00–22:00 | 11:00–15:00 and 19:00–23:00 |
-
-P2 — llano (standard) | 08:00–10:00, 14:00–18:00, 22:00–24:00 | 08:00–11:00, 15:00–19:00, 23:00–24:00 |
-
-P3 — valle (off-peak) | 00:00–08:00 | 00:00–08:00 |
-
-All hours on Saturdays, Sundays, 6 January and national public holidays count as P3 (valle). Source: CNMC Circular 3/2020, as published in the BOE. |
+- Period (2.0TD tariff) · Weekdays, mainland · Balearics · Canaries · Ceuta and Melilla
+- P1 — punta (peak) · 10:00–14:00 and 18:00–22:00 · 11:00–15:00 and 19:00–23:00
+- P2 — llano (standard) · 08:00–10:00, 14:00–18:00, 22:00–24:00 · 08:00–11:00, 15:00–19:00, 23:00–24:00
+- P3 — valle (off-peak) · 00:00–08:00 · 00:00–08:00
+- All hours on Saturdays, Sundays, 6 January and national public holidays count as P3 (valle). Source: CNMC Circular 3/2020, as published in the BOE.
 
 The practical move on PVPC is a timer: warm the bedroom or living room during llano before 18:00, then let the thermostat hold it through the evening peak rather than start cold at 19:00. On a fixed-price contract the hour changes nothing and you can ignore this section.
 
 What an hour costs depends on your contract price, which is why the table below is arithmetic at three assumed prices rather than a claim about your bill — read the €/kWh from your own invoice and use that column:
 
-Heater | at €0.15/kWh | at €0.20/kWh | at €0.25/kWh |
-
-1,000 W for one hour | €0.15 | €0.20 | €0.25 |
-
-2,000 W for one hour | €0.30 | €0.40 | €0.50 |
-
-2,000 W, four evening hours, thermostat on half the time | €0.60 | €0.80 | €1.00 |
-
-Same warmth from a heat pump at COP 3 | €0.20 | €0.27 | €0.33 |
+| Heater | at €0.15/kWh | at €0.20/kWh | at €0.25/kWh |
+| --- | --- | --- | --- |
+| 1,000 W for one hour | €0.15 | €0.20 | €0.25 |
+| 2,000 W for one hour | €0.30 | €0.40 | €0.50 |
+| 2,000 W, four evening hours, thermostat on half the time | €0.60 | €0.80 | €1.00 |
+| Same warmth from a heat pump at COP 3 | €0.20 | €0.27 | €0.33 |
 
 Our German pages assume €0.30/kWh; Spanish contract prices are often below that, which is why the columns start lower. The [cost calculator](https://getecoback.com/guide/stromkosten-rechner.html) takes any price you type in.
 
@@ -127,4 +112,4 @@ Electrically, yes: Spain and Germany both use 230 V and Type F sockets, so a Sch
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Note: EcoBack does not test devices itself; picks summarise public tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.
+Note: Editorial guidance based on the linked sources, not our own device tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.

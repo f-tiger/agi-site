@@ -20,13 +20,11 @@ Dazu kommt: Das Schlafzimmer ist meist der kühlste Raum der Wohnung. Kalte Luft
 
 Miss morgens direkt nach dem Aufstehen die Luftfeuchte im Schlafzimmer — dann ist der Wert am höchsten. Danach ordnest du dich hier ein:
 
-Beobachtung | Wahrscheinliche Ursache | Was wirkt |
-
-Morgens über 60 % Luftfeuchte, Scheibe großflächig nass | **Zu viel Feuchte** | Feuchtequellen reduzieren (Wäsche raus, Türen zum Bad zu) und entfeuchten |
-
-Feuchte tagsüber normal, morgens hoch, Fenster nachts zu | **Zu wenig Luftwechsel** | Morgens und abends 5–10 Minuten stoßlüften, quer wenn möglich |
-
-Feuchte unter 55 %, aber Scheibe trotzdem nass — oder nur Rahmen/Ecken | **Zu kalte Fläche** (Einfachglas, Wärmebrücke) | Baulich: Verglasung, Dämmung, ggf. Fachbetrieb. Kein Entfeuchter-Fall. |
+| Beobachtung | Wahrscheinliche Ursache | Was wirkt |
+| --- | --- | --- |
+| Morgens über 60 % Luftfeuchte, Scheibe großflächig nass | **Zu viel Feuchte** | Feuchtequellen reduzieren (Wäsche raus, Türen zum Bad zu) und entfeuchten |
+| Feuchte tagsüber normal, morgens hoch, Fenster nachts zu | **Zu wenig Luftwechsel** | Morgens und abends 5–10 Minuten stoßlüften, quer wenn möglich |
+| Feuchte unter 55 %, aber Scheibe trotzdem nass — oder nur Rahmen/Ecken | **Zu kalte Fläche** (Einfachglas, Wärmebrücke) | Baulich: Verglasung, Dämmung, ggf. Fachbetrieb. Kein Entfeuchter-Fall. |
 
 **Warum diese Unterscheidung zählt:** Wer bei Ursache 3 einen Entfeuchter kauft, hat Strom bezahlt und das Problem nicht gelöst. Wer bei Ursache 1 nur lüftet, bekommt es im Winter nicht in den Griff, weil das Lüftungsfenster zu kurz ist. Und wer bei Ursache 2 die Fenster dauerhaft kippt, kühlt die Laibung aus und produziert genau dort neuen Schimmel.
 
@@ -74,4 +72,4 @@ Es gibt eine harte Grenze, ab der Kondensat entsteht: Sinkt die Oberflächentemp
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

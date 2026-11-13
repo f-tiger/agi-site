@@ -38,15 +38,12 @@ Morgens und abends kommt die Sonne flach von der Seite — dagegen hilft kein Sc
 
 Sonnenschutz für den Balkon auf Amazon.de →
 
-Lösung | Am besten für | Ohne Bohren? | Windstabilität |
-
-Sonnensegel | Kleiner Balkon, große Fläche | Oft ja | Gut, wenn straff verspannt |
-
-Ampel-/Sonnenschirm | Terrasse, flexibel | Ja (freistehend) | Nur mit schwerem Ständer |
-
-Markise / Klemmmarkise | Breite Balkontür | Klemmvariante ja | Hoch (mit Windwächter) |
-
-Seitenmarkise | Tiefe Seitensonne, Sichtschutz | Klemmvariante ja | Hoch (einfahrbar) |
+| Lösung | Am besten für | Ohne Bohren? | Windstabilität |
+| --- | --- | --- | --- |
+| Sonnensegel | Kleiner Balkon, große Fläche | Oft ja | Gut, wenn straff verspannt |
+| Ampel-/Sonnenschirm | Terrasse, flexibel | Ja (freistehend) | Nur mit schwerem Ständer |
+| Markise / Klemmmarkise | Breite Balkontür | Klemmvariante ja | Hoch (mit Windwächter) |
+| Seitenmarkise | Tiefe Seitensonne, Sichtschutz | Klemmvariante ja | Hoch (einfahrbar) |
 
 ## Richtig messen und ausrichten
 
@@ -76,4 +73,4 @@ Sonnensegel ansehen →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

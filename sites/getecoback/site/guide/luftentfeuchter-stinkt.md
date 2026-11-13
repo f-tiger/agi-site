@@ -18,17 +18,13 @@ Bei [mobilen Klimaanlagen](https://getecoback.com/guide/mobile-klimaanlage-stink
 
 ## Die Quelle eingrenzen: das Muster des Geruchs
 
-Wann es riecht | Wahrscheinliche Quelle | Was du tust |
-
-Beim Einschalten deutlich, nach einigen Minuten schwächer | Belag auf dem Register; der erste Luftstrom bläst ihn aus | Register reinigen (unten), Gerät nach dem Betrieb trocken laufen lassen |
-
-Gleichmäßig, oder stärker, je voller der Tank | Stehendes Wasser im Tank | Tank heiß ausspülen, täglich leeren oder Ablaufschlauch |
-
-Nur wenn du den Filter herausziehst; sonst kaum | Feuchter, verstaubter Ansaugfilter | Filter auswaschen, vollständig trocknen, erst dann einsetzen |
-
-Säuerlich und nur bei niedriger Raumtemperatur | Register vereist und taut ab — das Tauwasser löst alten Belag | Reinigen; unter etwa 12 °C ist ein Kompressorgerät ohnehin die [falsche Bauart](https://getecoback.com/guide/luftentfeuchter-granulat-oder-elektrisch.html) |
-
-Verbrannt, heißer Kunststoff, elektrisch | Kein Biofilm — Motor, Lüfter oder Elektronik | **Stecker ziehen, nicht weiter benutzen**, Hersteller oder Händler |
+| Wann es riecht | Wahrscheinliche Quelle | Was du tust |
+| --- | --- | --- |
+| Beim Einschalten deutlich, nach einigen Minuten schwächer | Belag auf dem Register; der erste Luftstrom bläst ihn aus | Register reinigen (unten), Gerät nach dem Betrieb trocken laufen lassen |
+| Gleichmäßig, oder stärker, je voller der Tank | Stehendes Wasser im Tank | Tank heiß ausspülen, täglich leeren oder Ablaufschlauch |
+| Nur wenn du den Filter herausziehst; sonst kaum | Feuchter, verstaubter Ansaugfilter | Filter auswaschen, vollständig trocknen, erst dann einsetzen |
+| Säuerlich und nur bei niedriger Raumtemperatur | Register vereist und taut ab — das Tauwasser löst alten Belag | Reinigen; unter etwa 12 °C ist ein Kompressorgerät ohnehin die [falsche Bauart](https://getecoback.com/guide/luftentfeuchter-granulat-oder-elektrisch.html) |
+| Verbrannt, heißer Kunststoff, elektrisch | Kein Biofilm — Motor, Lüfter oder Elektronik | **Stecker ziehen, nicht weiter benutzen**, Hersteller oder Händler |
 
 ## Reinigen, Schritt für Schritt
 
@@ -95,4 +91,4 @@ Dann sitzt der Belag an einer Stelle, an die du ohne Öffnen des Gehäuses nicht
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

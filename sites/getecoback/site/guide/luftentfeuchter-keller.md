@@ -22,13 +22,11 @@ Die Verbraucherzentrale erläutert: Kalte Außenluft kann im Winter beim Lüften
 
 Die Bauart ist ein erster Filter, keine Kaufgarantie. Stiftung Warentest beschreibt die unterschiedliche Temperaturabhängigkeit der Verfahren. Entscheidend bleibt die Anleitung des konkreten Modells. Eine zulässige Mindesttemperatur sagt noch nicht, wie viel Wasser das Gerät dort pro Tag entzieht.
 
-Situation | Vor dem Kauf vergleichen | Nicht daraus ableiten |
-
-Beheizter Keller | Kompressorgeräte: Entzug und Stromaufnahme bei passender Temperatur und Feuchte. | Eine höhere Nennleistung ist nicht automatisch sparsamer. |
-
-Kalter, unbeheizter Keller | Leistungsdaten bei 10 oder 15 °C, Mindesttemperatur und Abtauverhalten; auch Adsorptionsgeräte vergleichen. | „Ab 5 °C geeignet“ bedeutet nicht volle Literleistung bei 5 °C. |
-
-Wasser dringt laufend ein | Ursache, Abdichtung oder Leitung fachlich prüfen lassen. | Kein Gerät saniert die Wasserquelle. |
+| Situation | Vor dem Kauf vergleichen | Nicht daraus ableiten |
+| --- | --- | --- |
+| Beheizter Keller | Kompressorgeräte: Entzug und Stromaufnahme bei passender Temperatur und Feuchte. | Eine höhere Nennleistung ist nicht automatisch sparsamer. |
+| Kalter, unbeheizter Keller | Leistungsdaten bei 10 oder 15 °C, Mindesttemperatur und Abtauverhalten; auch Adsorptionsgeräte vergleichen. | „Ab 5 °C geeignet“ bedeutet nicht volle Literleistung bei 5 °C. |
+| Wasser dringt laufend ein | Ursache, Abdichtung oder Leitung fachlich prüfen lassen. | Kein Gerät saniert die Wasserquelle. |
 
 Fehlen niedrigere Prüftemperaturen im Datenblatt, frage beim Anbieter nach, bevor du eine Größe auswählst. Eine pauschale Regel wie „20 m² brauchen 12 Liter“ übersieht Raumhöhe, Luftwechsel und Feuchtenachschub.
 
@@ -50,10 +48,13 @@ Als Recherchehilfe zeigt die Schweizer Plattform Topten separat Entzugsleistung 
 
 **Kosten = gemessene kWh × eigener Preis pro kWh.** Ohne Messung lässt sich zunächst ein Szenario rechnen: Watt ÷ 1.000 × aktive Stunden × Preis pro kWh. Laufzeit, Abtauen und Regelung bleiben dabei Annahmen.
 
-Rechenbeispiele: 300 W während der angesetzten Laufzeit, angenommene 0,30 €/kWh; kein Produktvergleich, kein aktueller TarifAktive Stunden/Tag | kWh/Tag | €/Tag | €/30 Tage |
-4 | 1,2 | 0,36 | 10,80 |
-8 | 2,4 | 0,72 | 21,60 |
-12 | 3,6 | 1,08 | 32,40 |
+Rechenbeispiele: 300 W während der angesetzten Laufzeit, angenommene 0,30 €/kWh; kein Produktvergleich, kein aktueller Tarif
+
+| Aktive Stunden/Tag | kWh/Tag | €/Tag | €/30 Tage |
+| --- | --- | --- | --- |
+| 4 | 1,2 | 0,36 | 10,80 |
+| 8 | 2,4 | 0,72 | 21,60 |
+| 12 | 3,6 | 1,08 | 32,40 |
 
 Rechne deinen Tarif im [Stromkosten-Rechner](https://getecoback.com/guide/stromkosten-rechner.html) nach oder lies die [Erklärung zum Dauerbetrieb](https://getecoback.com/guide/luftentfeuchter-dauerbetrieb-stromkosten.html). Für einen Vergleich zu Hause einen vollständigen Einsatz messen, Temperatur und Feuchte mitnotieren und nur ein für die Last geeignetes Messgerät verwenden. Für die Schweiz in CHF rechnen; Euro-Beispiele sind keine Währungsumrechnung.
 
@@ -109,10 +110,13 @@ Redaktionell geprüft am 30. Oktober 2026. Technische Einordnung anhand öffentl
 ## Herstellerdaten vor dem Kauf prüfen
 **So vergleichst du die Herstellerdaten**
 Zwei Beispiele aus vorhandenen Ratgebern, kein vollständiger Marktvergleich und kein EcoBack-Produkttest. Verglichen werden Wasserentzug und Betriebsleistung bei derselben Temperatur und relativen Feuchte (RH). Fehlende Angaben bleiben offen; daraus folgt keine Rangfolge.
+
 Herstellerangaben zu Wasserentzug und Leistung; geprüft am 06.11.2026
-Bedingung | Comfee MDDF-20DEN7 | MeacoDry Arete One 20L |
-20 °C / 60 % RH | Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert. | 8.5 L/Tag · 216 W |
-10 °C / 60 % RH | Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert. | 3.4 L/Tag · 180 W |
+
+| Bedingung | Comfee MDDF-20DEN7 | MeacoDry Arete One 20L |
+| --- | --- | --- |
+| 20 °C / 60 % RH | Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert. | 8.5 L/Tag · 216 W |
+| 10 °C / 60 % RH | Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert. | 3.4 L/Tag · 180 W |
 
 Die genannten 20 L/Tag beziehen sich in den Modellunterlagen auf 30 °C / 80 % RH. Das ist keine Zusage für den Keller oder eine Wäscheladung. Für Comfee wurden in den verlinkten Unterlagen keine Werte für die beiden Tabellenbedingungen verifiziert. Anschlusswert oder Nennleistung dürfen diese Datenlücke nicht ersetzen.
 Modellgrenzen: Comfee MDDF-20DEN7 ist hier die Variante ohne WF. MeacoDry Arete One 20L ist weder Arete Two noch One 25L. Die UK-Modellseite bestätigt keine deutsche Händlerausstattung, Stecker, Lieferbarkeit oder Rückgabe. Netzspannung, Typenschild und Anleitung immer mit dem konkreten Angebot abgleichen. Beide Kandidaten ersetzen weder Ursachenklärung noch eine passende Lüftung.
@@ -133,13 +137,15 @@ Hersteller-/Anbieterquellen geprüft: 2026-11-12. Keine Live-Preise oder garanti
 Quelle: [Meaco UK: Arete One 20L, Ablauf und separates Pumpenzubehör](https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-air-purifier) · geprüft am 13.11.2026. Bei ungeklärter Feuchte bleibt Messen und Ursachenklärung der erste Schritt; ein Neukauf ist dann noch nicht begründet.
 
 Kaufgründe und genaue Varianten
-Modell | Prüfen, wenn dir dies wichtig ist | Variante |
-Bosch Dry 4000 | Drei Betriebsmodi statt vieler Einstellungen | D4000-EU · Artikel 7733703558 |
-MeacoDry Arete Two 12L | App-Steuerung und kleinerer Tank | Arete Two 12L · nicht One oder Two 20L |
-Stadler Form Lukas | Schwenkfunktion und Wäschemodus | Lukas weiss L-031E · nicht Lukas little oder Pro |
-Comfee MDDF-20DEN7 | Feuchteregelung mit Timer | MDDF-20DEN7 · ohne WF |
-MeacoDry Arete One 20L | Leistungsdaten unter konkreten Raumbedingungen | Arete One 20L · nicht Two oder One 25L |
-MeacoDry Arete One 25L | Weitere Kapazitätsvariante derselben Baureihe | Arete One 25L · nicht Two 25L |
+
+| Modell | Prüfen, wenn dir dies wichtig ist | Variante |
+| --- | --- | --- |
+| [Bosch Dry 4000](https://getecoback.com/guide/luftentfeuchter-keller.html#modell-bosch-d4000-eu) | Drei Betriebsmodi statt vieler Einstellungen | D4000-EU · Artikel 7733703558 |
+| [MeacoDry Arete Two 12L](https://getecoback.com/guide/luftentfeuchter-keller.html#modell-meaco-two-12) | App-Steuerung und kleinerer Tank | Arete Two 12L · nicht One oder Two 20L |
+| [Stadler Form Lukas](https://getecoback.com/guide/luftentfeuchter-keller.html#modell-stadler-lukas) | Schwenkfunktion und Wäschemodus | Lukas weiss L-031E · nicht Lukas little oder Pro |
+| [Comfee MDDF-20DEN7](https://getecoback.com/guide/luftentfeuchter-keller.html#modell-comfee-mddf20) | Feuchteregelung mit Timer | MDDF-20DEN7 · ohne WF |
+| [MeacoDry Arete One 20L](https://getecoback.com/guide/luftentfeuchter-keller.html#modell-meaco-one-20) | Leistungsdaten unter konkreten Raumbedingungen | Arete One 20L · nicht Two oder One 25L |
+| [MeacoDry Arete One 25L](https://getecoback.com/guide/luftentfeuchter-keller.html#modell-meaco-one-25) | Weitere Kapazitätsvariante derselben Baureihe | Arete One 25L · nicht Two 25L |
 
 ### Bosch Dry 4000
 **Drei Betriebsmodi statt vieler Einstellungen**
@@ -192,4 +198,4 @@ Quelle: [Meaco UK: Arete One 25L](https://www.meaco.com/products/meacodry-arete-
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

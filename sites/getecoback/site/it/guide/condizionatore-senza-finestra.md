@@ -9,7 +9,7 @@ Canonical (HTML, zitierfähig): https://getecoback.com/it/guide/condizionatore-s
 TuttofareDe'Longhi Pinguino PAC EX105→
 Miglior prezzoComfee MPPH-09CRN7→
 Il silenziosoAEG ChillFlex Pro→
-Tutti i modelli con le motivazioni ↓
+[Tutti i modelli con le motivazioni ↓](https://getecoback.com/it/guide/condizionatore-senza-finestra.html#i-modelli)
 
 🗓 Aggiornato il 28 agosto 2026 · Redazione EcoBack
 
@@ -21,17 +21,13 @@ In qualità di Affiliato Amazon, EcoBack riceve un guadagno dagli acquisti idone
 
 ## Le 5 vie reali a confronto
 
-Via | Adatta all'affitto? | Impegno | Il trucco |
-
-**Kit di guarnizione per porta** (corridoio, vano scale o stanza attigua) | ✅ Sì | 15–30 min | Lo spazio attiguo assorbe il calore — bene per un vano scale, male per la camera accanto |
-
-**Porta-finestra / portabalcone a ribalta** + guarnizione | ✅ Sì | 15–30 min | Stessa tecnica della finestra a ribalta; serve una porta che si apra |
-
-**Foro passante nel muro** (carotaggio, griglia esterna) | ❌ Serve il permesso | Lavoro da artigiano | Foro permanente; ma il miglior flusso d'aria di tutte le vie |
-
-**Locale di servizio / controsoffitto** | ⚠️ Dipende | 30–60 min | Il calore deve pur andare da qualche parte — funziona solo se lo spazio è grande, inutilizzato e possibilmente ventilato |
-
-**Canna fumaria** (inutilizzata) | ❌ Solo con un professionista | Lavoro da artigiano | Va prima verificata e approvata dallo spazzacamino — mai improvvisare |
+| Via | Adatta all'affitto? | Impegno | Il trucco |
+| --- | --- | --- | --- |
+| **Kit di guarnizione per porta** (corridoio, vano scale o stanza attigua) | ✅ Sì | 15–30 min | Lo spazio attiguo assorbe il calore — bene per un vano scale, male per la camera accanto |
+| **Porta-finestra / portabalcone a ribalta** + guarnizione | ✅ Sì | 15–30 min | Stessa tecnica della finestra a ribalta; serve una porta che si apra |
+| **Foro passante nel muro** (carotaggio, griglia esterna) | ❌ Serve il permesso | Lavoro da artigiano | Foro permanente; ma il miglior flusso d'aria di tutte le vie |
+| **Locale di servizio / controsoffitto** | ⚠️ Dipende | 30–60 min | Il calore deve pur andare da qualche parte — funziona solo se lo spazio è grande, inutilizzato e possibilmente ventilato |
+| **Canna fumaria** (inutilizzata) | ❌ Solo con un professionista | Lavoro da artigiano | Va prima verificata e approvata dallo spazzacamino — mai improvvisare |
 
 ## Via 1: il kit di guarnizione per porta (parti da qui)
 
@@ -69,17 +65,13 @@ Un foro carotato (di solito 130–160 mm) con griglia esterna e serranda antirit
 
 Questi sono i portatili che questo sito consiglia con costanza — la via di scarico che hai scelto sopra funziona con tutti. Selezione da test pubblici e recensioni dei clienti, non testati da noi. I prezzi oscillano: controlla il prezzo attuale su Amazon.
 
-Modello | Ruolo | Punto di forza | Punto debole | Fascia di prezzo |
-
-**De'Longhi Pinguino PAC EX105** | Tuttofare | Raffreddamento potente, buona efficienza; spesso nella linea dei vincitori dei test | Grande e pesante | Prezzo da verificare |
-
-**Comfee MPPH-09CRN7** | Miglior prezzo | Economico e compatto, per camere e studi piccoli | Chiaramente udibile (~63 dB) | €€ · ca. 250–320 € |
-
-**AEG ChillFlex Pro** | Il silenzioso | Molto silenzioso e ben equipaggiato, comodo in camera da letto | Prezzo più alto | €€€ · ca. 350–500 € |
-
-**De'Longhi PAC N90 ECO Silent** | Il più silenzioso | Vincitore del test monoblocco di Stiftung Warentest, modalità silent, refrigerante R290 | Più caro della scelta economica | Prezzo da verificare |
-
-**Klarstein Kraftwerk Smart 12K** | Stanze grandi | Il raffreddamento più potente del suo gruppo nei confronti pubblici | Sensibilmente rumoroso | Prezzo da verificare |
+| Modello | Ruolo | Punto di forza | Punto debole | Fascia di prezzo |
+| --- | --- | --- | --- | --- |
+| **De'Longhi Pinguino PAC EX105** | Tuttofare | Raffreddamento potente, buona efficienza; spesso nella linea dei vincitori dei test | Grande e pesante | Prezzo da verificare |
+| **Comfee MPPH-09CRN7** | Miglior prezzo | Economico e compatto, per camere e studi piccoli | Chiaramente udibile (~63 dB) | €€ · ca. 250–320 € |
+| **AEG ChillFlex Pro** | Il silenzioso | Molto silenzioso e ben equipaggiato, comodo in camera da letto | Prezzo più alto | €€€ · ca. 350–500 € |
+| **De'Longhi PAC N90 ECO Silent** | Il più silenzioso | Vincitore del test monoblocco di Stiftung Warentest, modalità silent, refrigerante R290 | Più caro della scelta economica | Prezzo da verificare |
+| **Klarstein Kraftwerk Smart 12K** | Stanze grandi | Il raffreddamento più potente del suo gruppo nei confronti pubblici | Sensibilmente rumoroso | Prezzo da verificare |
 
 ## Se davvero non c'è nessuna via: smetti di combattere la fisica
 
@@ -117,4 +109,4 @@ Kit per porta →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Nota: EcoBack non testa i prodotti in proprio; le scelte riassumono test pubblici. Il sito è finanziato con link affiliati Amazon sulle pagine HTML — questa vista Markdown non ne contiene volutamente.
+Nota: Indicazioni redazionali basate sulle fonti collegate, non test propri. Il sito è finanziato con link affiliati Amazon sulle pagine HTML — questa vista Markdown non ne contiene volutamente.

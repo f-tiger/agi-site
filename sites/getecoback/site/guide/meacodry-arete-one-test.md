@@ -16,13 +16,11 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unte
 
 Arete One ist eine Modellfamilie, kein einzelnes Gerät — und die Größen unterscheiden sich in Leistung und Lautstärke. Im deutschen Handel sind vor allem vier Varianten zu finden:
 
-Variante | Entzug (Herstellerangabe) | Einordnung |
-
-Arete One 10L / 12L | bis 10–12 l/Tag | Kleinere Nennleistung; erst Leistungsdaten bei der gemessenen Temperatur und Feuchte prüfen. Für das 10L-Modell nennt der Hersteller 35 dB |
-
-**Arete One 20L** | bis 20 l/Tag | Die hier besprochene Variante; keine pauschale Raumgrößen-Zusage. Herstellerangabe 38–40 dB |
-
-Arete One 25L | bis 25 l/Tag | Höhere Nennleistung, aber nicht automatisch nötig oder sparsamer. Herstellerangabe 40–42 dB |
+| Variante | Entzug (Herstellerangabe) | Einordnung |
+| --- | --- | --- |
+| Arete One 10L / 12L | bis 10–12 l/Tag | Kleinere Nennleistung; erst Leistungsdaten bei der gemessenen Temperatur und Feuchte prüfen. Für das 10L-Modell nennt der Hersteller 35 dB |
+| **Arete One 20L** | bis 20 l/Tag | Die hier besprochene Variante; keine pauschale Raumgrößen-Zusage. Herstellerangabe 38–40 dB |
+| Arete One 25L | bis 25 l/Tag | Höhere Nennleistung, aber nicht automatisch nötig oder sparsamer. Herstellerangabe 40–42 dB |
 
 Wichtig beim Kauf über Suchergebnisse: Die Angebote mischen diese Varianten, und die dB- und Liter-Werte aus Tests gelten jeweils nur für die getestete Größe. Nicht zu verwechseln ist die Familie außerdem mit der neueren Serie Arete Two — das ist eine eigene Baureihe. Alle Zahlen auf dieser Seite beziehen sich, wo nicht anders gesagt, auf das **20L-Modell**.
 
@@ -30,19 +28,14 @@ Wichtig beim Kauf über Suchergebnisse: Die Angebote mischen diese Varianten, un
 
 Meaco vermarktet den Arete One als besonders leisen und sparsamen Entfeuchter; das 20L-Modell trägt das Quiet-Mark-Siegel. Über die öffentlichen Tests hinweg wiederholen sich dieselben Befunde:
 
-Befund öffentlicher Tests | Unsere Einordnung für den Alltag |
-
-✓ Sparsam: 216 W laut Datenblatt (bei 20 °C/60 % rF) | Deutlich unter den ca. 300 W typischer Kompressor-Geräte — Rechenweg unten |
-
-✓ Leise-Auslegung: Hersteller 38–40 dB, unabhängig gemessen 45,9–52,7 dB | Leiser als das Feld, aber die Herstellerzahl ist ein Laborwert — Einordnung unten |
-
-✓ Wäschemodus: 6 h maximale Entfeuchtung, danach automatische Abschaltung | Im Test von Real Homes trocknete er damit einen Ständer Bettwäsche — Kostenrechnung im Ratgeber [Wäsche trocknen in der Wohnung](https://getecoback.com/guide/waesche-trocknen-wohnung.html) |
-
-✓ 5 Jahre Garantie, H13-HEPA-Filter, Hygrostat, Dauerablauf über Schlauchadapter im Tankdeckel | Die Garantie ist in dieser Preisklasse die Ausnahme; der HEPA-Teil ersetzt keinen vollwertigen Luftreiniger, ist aber ein echter Filter (H13) |
-
-Herstellerangabe „für Räume bis 100 m²“ | Die Flächenangabe allein belegt keine Eignung für deinen Raum. Temperatur, Feuchte, Luftaustausch und neue Feuchtelasten mitprüfen |
-
-✕ Im Wäschemodus über 50 dB gemessen | Der Leise-Vorteil gilt für die niedrige Lüfterstufe, nicht für Volllast |
+| Befund öffentlicher Tests | Unsere Einordnung für den Alltag |
+| --- | --- |
+| ✓ Sparsam: 216 W laut Datenblatt (bei 20 °C/60 % rF) | Deutlich unter den ca. 300 W typischer Kompressor-Geräte — Rechenweg unten |
+| ✓ Leise-Auslegung: Hersteller 38–40 dB, unabhängig gemessen 45,9–52,7 dB | Leiser als das Feld, aber die Herstellerzahl ist ein Laborwert — Einordnung unten |
+| ✓ Wäschemodus: 6 h maximale Entfeuchtung, danach automatische Abschaltung | Im Test von Real Homes trocknete er damit einen Ständer Bettwäsche — Kostenrechnung im Ratgeber [Wäsche trocknen in der Wohnung](https://getecoback.com/guide/waesche-trocknen-wohnung.html) |
+| ✓ 5 Jahre Garantie, H13-HEPA-Filter, Hygrostat, Dauerablauf über Schlauchadapter im Tankdeckel | Die Garantie ist in dieser Preisklasse die Ausnahme; der HEPA-Teil ersetzt keinen vollwertigen Luftreiniger, ist aber ein echter Filter (H13) |
+| Herstellerangabe „für Räume bis 100 m²“ | Die Flächenangabe allein belegt keine Eignung für deinen Raum. Temperatur, Feuchte, Luftaustausch und neue Feuchtelasten mitprüfen |
+| ✕ Im Wäschemodus über 50 dB gemessen | Der Leise-Vorteil gilt für die niedrige Lüfterstufe, nicht für Volllast |
 
 ## Für welchen Raum reicht er?
 
@@ -62,15 +55,12 @@ Das Datenblatt nennt **216 W** (gemessen bei 20 °C und 60 % rF). Der Rechenweg 
 
 ## Alternativen: wann ein anderes Gerät besser passt
 
-Situation | Modell zum Vergleichen | Vor dem Kauf prüfen |
-
-Keller/Abstellraum, wo niemand sitzt | Comfee MDDF-20DEN7 | Temperaturbereich, Entzug und Strombedarf im Keller prüfen; gleiche Nennliter allein machen Geräte nicht gleich geeignet |
-
-20-l-Klasse zum Einstiegspreis | Pro Breeze Luftentfeuchter 20 L | Preis-Einstieg in die Klasse — ohne Leise-Anspruch, HEPA-Teil und 5-Jahre-Garantie |
-
-20L- und 25L-Variante bei gemessenen Bedingungen vergleichen | MeacoDry Arete One 25L | Höhere Nennleistung ersetzt keine Prüfung von Feuchtelast und Ursache; Hersteller nennt 40–42 dB |
-
-Kleinere Variante als mögliche Alternative prüfen | MeacoDry Arete One 10L | Leistungsdaten bei deiner Temperatur und Feuchte vergleichen; Hersteller nennt 35 dB, die Fläche allein belegt die Eignung nicht |
+| Situation | Modell zum Vergleichen | Vor dem Kauf prüfen |
+| --- | --- | --- |
+| Keller/Abstellraum, wo niemand sitzt | Comfee MDDF-20DEN7 | Temperaturbereich, Entzug und Strombedarf im Keller prüfen; gleiche Nennliter allein machen Geräte nicht gleich geeignet |
+| 20-l-Klasse zum Einstiegspreis | Pro Breeze Luftentfeuchter 20 L | Preis-Einstieg in die Klasse — ohne Leise-Anspruch, HEPA-Teil und 5-Jahre-Garantie |
+| 20L- und 25L-Variante bei gemessenen Bedingungen vergleichen | MeacoDry Arete One 25L | Höhere Nennleistung ersetzt keine Prüfung von Feuchtelast und Ursache; Hersteller nennt 40–42 dB |
+| Kleinere Variante als mögliche Alternative prüfen | MeacoDry Arete One 10L | Leistungsdaten bei deiner Temperatur und Feuchte vergleichen; Hersteller nennt 35 dB, die Fläche allein belegt die Eignung nicht |
 
 Anzeige · Affiliate-Links — du zahlst denselben Preis. Nicht selbst getestet; Auswahl fasst öffentliche Tests zusammen.
 
@@ -115,4 +105,4 @@ MeacoDry Arete One 20L auf Amazon →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

@@ -14,6 +14,54 @@ MEACO = 'https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-
 
 
 class LlmsFull(unittest.TestCase):
+    def test_real_final_catalog_tables_keep_headers_and_canonical_fragments(self):
+        for slug in ['luftentfeuchter-ratgeber', 'luftentfeuchter-keller', 'waesche-trocknen-wohnung']:
+            # Actual generated files, before any renderer can repair them.
+            md = (SITE / 'guide' / (slug + '.md')).read_text()
+            self.assertIn('| Modell | Prüfen, wenn dir dies wichtig ist | Variante |\n| --- | --- | --- |', md)
+            self.assertIn(f'https://getecoback.com/guide/{slug}.html#modell-meaco-one-20', md)
+            self.assertIn('10 °C / 60 %', md)
+            self.assertNotIn('amazon.de/', md)
+            self.assertNotIn('picks summarise public tests', md)
+
+    def test_table_caption_cells_entities_and_reference_survive(self):
+        source = ('<html lang="en"><article><table><caption>Measured conditions</caption>'
+                  '<tr><th>Model</th><th>Conditions</th><th>Source</th></tr>'
+                  '<tr><td>A &#124; B</td><td>10 °C<br>60 % RH</td>'
+                  f'<td><a href="{MEACO}">Manufacturer</a></td></tr>'
+                  '<tr><td>C</td><td></td><td><a href="https://amazon.de/?tag=getecoback-21">Shop</a></td></tr>'
+                  '</table></article></html>')
+        md = self.extract(source)
+        self.assertIn('Measured conditions\n\n| Model | Conditions | Source |\n| --- | --- | --- |', md)
+        self.assertIn('| A \\| B | 10 °C 60 % RH |', md)
+        self.assertIn(f'[Manufacturer]({MEACO})', md)
+        self.assertIn('| C |  | Shop |', md)
+        self.assertNotIn('amazon.de', md)
+        self.assertNotIn('ECOMDTABLE', md)
+
+    def test_merged_or_headerless_table_does_not_invent_column_ownership(self):
+        for table in ['<tr><th colspan="2">Combined</th></tr><tr><td>10 °C</td><td>3.4 L</td></tr>',
+                      '<tr><td>10 °C</td><td>3.4 L</td></tr>']:
+            md = self.extract('<html lang="en"><article><table>'+table+'</table></article></html>')
+            self.assertIn('- 10 °C · 3.4 L', md)
+            self.assertNotIn('| --- |', md)
+
+    def test_only_retained_visible_fragment_targets_become_citations(self):
+        source = ('<html lang="en"><article><h2 id="evidence">Evidence</h2>'
+                  '<a href="#evidence">Check source</a><a href="#missing">Missing</a>'
+                  '<a href="#hidden">Hidden</a><script><div id="hidden">secret</div></script>'
+                  '<a href="#secret-form">Form</a><form id="secret-form">private</form>'
+                  '<a href="#hidden-section">Collapsed</a><section hidden><h2 id="hidden-section">Hidden title</h2></section>'
+                  '<a href="#aria">Aria</a><div aria-hidden="true" id="aria">Decorative</div>'
+                  '</article></html>')
+        md = self.extract(source)
+        self.assertIn('[Check source](https://getecoback.com/guide/example.html#evidence)', md)
+        self.assertNotIn('.html#missing', md)
+        self.assertNotIn('.html#hidden', md)
+        self.assertNotIn('.html#secret-form', md)
+        self.assertNotIn('.html#hidden-section', md)
+        self.assertNotIn('.html#aria', md)
+
     def extract(self, source, route='guide/example.html', mirror=None):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / route

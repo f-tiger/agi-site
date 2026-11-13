@@ -16,27 +16,22 @@ Ein Rechenbeispiel mit einem 10-m²-Zimmer: Bei 60 W pro m², der unteren Stufe 
 
 Mit Thermostat läuft es nur, solange der Raum unter der Zieltemperatur liegt. Wie viele Stunden das sind, hängt an Dämmung, Außentemperatur, Zieltemperatur und der Größe des Panels im Verhältnis zum Raum. Das kann dir niemand vorher sagen, auch wir nicht. Du kannst es aber in einem Abend messen: ein **Energiekostenmessgerät** zwischen Steckdose und Thermostat stecken, den Abend normal heizen, am Ende die kWh ablesen. Dann ist die Rechnung einfach:
 
-Das Messgerät zeigt für 8 Stunden | Kosten bei 0,30 €/kWh | gegenüber Dauerbetrieb |
-
-4,8 kWh | 1,44 € | das Thermostat hat nie abgeschaltet |
-
-3,6 kWh | 1,08 € | 0,36 € weniger |
-
-2,4 kWh | 0,72 € | 0,72 € weniger |
+| Das Messgerät zeigt für 8 Stunden | Kosten bei 0,30 €/kWh | gegenüber Dauerbetrieb |
+| --- | --- | --- |
+| 4,8 kWh | 1,44 € | das Thermostat hat nie abgeschaltet |
+| 3,6 kWh | 1,08 € | 0,36 € weniger |
+| 2,4 kWh | 0,72 € | 0,72 € weniger |
 
 Zeigt das Gerät die vollen 4,8 kWh, ist das ein Befund: Entweder ist das Panel für den Raum zu klein, oder die Zieltemperatur ist höher, als dieser Raum mit diesem Panel erreichen kann. Ein Thermostat spart dann gar nichts, und das ist die wichtigste Information, die dir der Abend liefert.
 
 ## Vier Arten, eine Infrarotheizung zu regeln
 
-Bauart | Wo gemessen wird | Installation | Für Mieter |
-
-**Steckdosenthermostat** | In der Steckdose, meist auf Fußleistenhöhe | Einstecken, Panel einstecken | Ja |
-
-**Funk-Thermostat mit Empfänger** | Wo du den Fühler hinstellst oder hängst | Empfänger an die Steckdose, Fühler frei platzieren | Ja, wenn der Empfänger ein Stecker ist |
-
-**Im Panel eingebaut** | Am oder im Gerät selbst | Keine, schon dabei | Ja |
-
-**Wandthermostat, fest verdrahtet** | An der Wand, frei gewählt | Elektrofachkraft | Nur mit dem Vermieter |
+| Bauart | Wo gemessen wird | Installation | Für Mieter |
+| --- | --- | --- | --- |
+| **Steckdosenthermostat** | In der Steckdose, meist auf Fußleistenhöhe | Einstecken, Panel einstecken | Ja |
+| **Funk-Thermostat mit Empfänger** | Wo du den Fühler hinstellst oder hängst | Empfänger an die Steckdose, Fühler frei platzieren | Ja, wenn der Empfänger ein Stecker ist |
+| **Im Panel eingebaut** | Am oder im Gerät selbst | Keine, schon dabei | Ja |
+| **Wandthermostat, fest verdrahtet** | An der Wand, frei gewählt | Elektrofachkraft | Nur mit dem Vermieter |
 
 **Steckdosenthermostat:** die einfachste Lösung und die einzige, bei der man wirklich nichts montiert. Der Haken ist der Messort. Steckdosen sitzen meist auf Fußleistenhöhe, und dort ist es kühler als auf der Höhe, auf der du sitzt, weil kalte Luft nach unten sinkt. Das Thermostat heizt dann eher etwas länger, als du brauchst. Stell den Zielwert danach ein und prüf ihn mit einem Thermometer auf Tischhöhe.
 
@@ -89,4 +84,4 @@ Es spart Stunden, nicht Leistung. Wie viele, hängt an Dämmung, Außentemperatu
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

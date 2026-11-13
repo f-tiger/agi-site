@@ -12,15 +12,12 @@ Die schwarzen Punkte tauchen fast immer an derselben Stelle auf: unten im Fenste
 
 ## Schritt 1: Welche Fläche ist es?
 
-Fläche | Woran du sie erkennst | Richtige Antwort |
-
-**Rahmen** (Kunststoff, lackiertes Holz) | Glatte, geschlossene Oberfläche; der Belag lässt sich anwischen | Reinigen — die Fläche ist dicht, der Pilz sitzt obenauf |
-
-**Gummidichtung** | Schwarzes, weiches Profil, das beim Schließen anliegt | Schonend reinigen, nichts Scharfes; danach pflegen statt schrubben |
-
-**Silikonfuge** (Rahmen zur Wand, Glasrand) | Weiche, leicht gummiartige Fuge; Fleck lässt sich nicht wegwischen | Sitzt er im Material: herausschneiden und neu ziehen |
-
-**Laibung / Putz** | Gestrichene Wandfläche seitlich und oben am Fenster | Reinigen — aber die Ausdehnung im Auge behalten |
+| Fläche | Woran du sie erkennst | Richtige Antwort |
+| --- | --- | --- |
+| **Rahmen** (Kunststoff, lackiertes Holz) | Glatte, geschlossene Oberfläche; der Belag lässt sich anwischen | Reinigen — die Fläche ist dicht, der Pilz sitzt obenauf |
+| **Gummidichtung** | Schwarzes, weiches Profil, das beim Schließen anliegt | Schonend reinigen, nichts Scharfes; danach pflegen statt schrubben |
+| **Silikonfuge** (Rahmen zur Wand, Glasrand) | Weiche, leicht gummiartige Fuge; Fleck lässt sich nicht wegwischen | Sitzt er im Material: herausschneiden und neu ziehen |
+| **Laibung / Putz** | Gestrichene Wandfläche seitlich und oben am Fenster | Reinigen — aber die Ausdehnung im Auge behalten |
 
 ## Schritt 2: Sitzt er obenauf oder im Material?
 
@@ -112,4 +109,4 @@ Wenn der Fleck nach dem Erneuern der Fuge wiederkommt, wenn er sich von der Laib
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

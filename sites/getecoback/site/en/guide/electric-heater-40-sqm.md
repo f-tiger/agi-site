@@ -16,14 +16,15 @@ As an Amazon Associate, EcoBack earns from qualifying purchases. Product links b
 
 ## The full size ladder
 
-Room size | Heating power | Typical room |
-[10 m²](https://getecoback.com/en/guide/electric-heater-10-sqm.html) | 600–800 W | small office or bathroom |
-[15 m²](https://getecoback.com/en/guide/electric-heater-15-sqm.html) | 900–1,200 W | home office or small living room |
-[20 m²](https://getecoback.com/en/guide/electric-heater-20-sqm.html) | 1,200–1,600 W | living room or bedroom |
-[25 m²](https://getecoback.com/en/guide/electric-heater-25-sqm.html) | 1,500–2,000 W | larger living room |
-[30 m²](https://getecoback.com/en/guide/electric-heater-30-sqm.html) | 1,800–2,400 W | open-plan living area |
-**40 m² (this page)** | 2,400–3,200 W | very large or open-plan room |
-[50 m²](https://getecoback.com/en/guide/electric-heater-50-sqm.html) | 3,000–4,000 W | very large open area |
+| Room size | Heating power | Typical room |
+| --- | --- | --- |
+| [10 m²](https://getecoback.com/en/guide/electric-heater-10-sqm.html) | 600–800 W | small office or bathroom |
+| [15 m²](https://getecoback.com/en/guide/electric-heater-15-sqm.html) | 900–1,200 W | home office or small living room |
+| [20 m²](https://getecoback.com/en/guide/electric-heater-20-sqm.html) | 1,200–1,600 W | living room or bedroom |
+| [25 m²](https://getecoback.com/en/guide/electric-heater-25-sqm.html) | 1,500–2,000 W | larger living room |
+| [30 m²](https://getecoback.com/en/guide/electric-heater-30-sqm.html) | 1,800–2,400 W | open-plan living area |
+| **40 m² (this page)** | 2,400–3,200 W | very large or open-plan room |
+| [50 m²](https://getecoback.com/en/guide/electric-heater-50-sqm.html) | 3,000–4,000 W | very large open area |
 
 ## Recommended setup for 40 m²
 
@@ -64,4 +65,4 @@ See heating panels →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Note: EcoBack does not test devices itself; picks summarise public tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.
+Note: Editorial guidance based on the linked sources, not our own device tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.

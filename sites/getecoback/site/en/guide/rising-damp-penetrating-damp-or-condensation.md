@@ -10,15 +10,12 @@ Before you spend anything, work out which one you are looking at. Two questions 
 
 ## The two-question test
 
-| Condensation | Penetrating damp | Rising damp |
-
-**Where** | Coldest surfaces: outside walls, corners, window reveals, behind furniture, unheated rooms | One localised patch, any height, usually on a wall with something wrong outside it | Bottom of a ground-floor wall, fading out at a fairly level line |
-
-**When** | Winter, and within hours of showering, cooking or drying washing indoors | During and after heavy or driving rain; can persist in summer if the weather does | All year round, roughly constant, indifferent to the weather |
-
-**Looks like** | Black spotty mould, misted windows, damp-smelling fabric | An irregular blotch, often darker in the middle, may be tide-free | A tide mark, blown or crumbling plaster, white salt deposits |
-
-**Fixed by** | Ventilation, heating the surface, a dehumidifier | Repair to the outside: gutters, pointing, render, flashing | Building work to the wall base — a surveyor's job |
+|  | Condensation | Penetrating damp | Rising damp |
+| --- | --- | --- | --- |
+| **Where** | Coldest surfaces: outside walls, corners, window reveals, behind furniture, unheated rooms | One localised patch, any height, usually on a wall with something wrong outside it | Bottom of a ground-floor wall, fading out at a fairly level line |
+| **When** | Winter, and within hours of showering, cooking or drying washing indoors | During and after heavy or driving rain; can persist in summer if the weather does | All year round, roughly constant, indifferent to the weather |
+| **Looks like** | Black spotty mould, misted windows, damp-smelling fabric | An irregular blotch, often darker in the middle, may be tide-free | A tide mark, blown or crumbling plaster, white salt deposits |
+| **Fixed by** | Ventilation, heating the surface, a dehumidifier | Repair to the outside: gutters, pointing, render, flashing | Building work to the wall base — a surveyor's job |
 
 ## Condensation is the common one, and the only one we can help with
 
@@ -79,4 +76,4 @@ Because the wall behind it is colder than the rest of the room and the air there
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Note: EcoBack does not test devices itself; picks summarise public tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.
+Note: Editorial guidance based on the linked sources, not our own device tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.

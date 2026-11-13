@@ -8,33 +8,25 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/heizluefter-schalte
 
 ## Die fünf Abschalter und ihr Muster
 
-Muster | Abschalter | Was dahintersteckt | Das darfst du tun |
-
-Läuft, wird heiß, geht nach 2–15 Minuten aus, nach Abkühlen wieder an | Überhitzungsschutz im Gerät | Zu wenig Luft durch das Heizelement: Ansauggitter/Filter voll Staub, zu nah an Wand oder Vorhang, Auslass halb abgedeckt, Gerät auf weichem Untergrund, der die Ansaugung unten verschließt | Filter reinigen, Abstand nach Anleitung (in der Regel gilt: nichts vor dem Auslass), harter Boden. **Nicht** den Wächter überbrücken. |
-
-Geht sofort aus, sobald du es hinstellst, oder wenn es angestoßen wird | Kippschutz (Schalter im Boden) | Das Gerät steht nicht gerade oder nicht mit vollem Gewicht auf: Hochflor, Sofa, schräger Boden, ein Fuß hängt | Auf harte, ebene Fläche. Schaltet es dort weiter ab: Schalter defekt, Händler. |
-
-Geht regelmäßig an und aus, Raum ist warm | Thermostat | Kein Fehler. Es hält die eingestellte Temperatur und pausiert dazwischen | Nichts. Wer die Pausen nicht will, stellt höher ein — und zahlt entsprechend. |
-
-Alles an derselben Wand ist plötzlich stromlos | Leitungsschutzschalter (Sicherung) im Verteiler | Mehr als 16 A auf dem Stromkreis: der Heizlüfter plus Wasserkocher, zweiter Heizlüfter, Staubsauger, Föhn | Andere Geräte auf dem Kreis abschalten oder den Heizlüfter an einen anderen Kreis. **Nie** eine stärkere Sicherung einsetzen. |
-
-Nur die Steckdosenleiste ist aus, der Rest der Wohnung nicht | Überlastschalter der Leiste | Die Leiste ist für die Dauerlast nicht gemacht oder es hängt zu viel dran | Direkt in die Wandsteckdose. Siehe unten. |
+| Muster | Abschalter | Was dahintersteckt | Das darfst du tun |
+| --- | --- | --- | --- |
+| Läuft, wird heiß, geht nach 2–15 Minuten aus, nach Abkühlen wieder an | Überhitzungsschutz im Gerät | Zu wenig Luft durch das Heizelement: Ansauggitter/Filter voll Staub, zu nah an Wand oder Vorhang, Auslass halb abgedeckt, Gerät auf weichem Untergrund, der die Ansaugung unten verschließt | Filter reinigen, Abstand nach Anleitung (in der Regel gilt: nichts vor dem Auslass), harter Boden. **Nicht** den Wächter überbrücken. |
+| Geht sofort aus, sobald du es hinstellst, oder wenn es angestoßen wird | Kippschutz (Schalter im Boden) | Das Gerät steht nicht gerade oder nicht mit vollem Gewicht auf: Hochflor, Sofa, schräger Boden, ein Fuß hängt | Auf harte, ebene Fläche. Schaltet es dort weiter ab: Schalter defekt, Händler. |
+| Geht regelmäßig an und aus, Raum ist warm | Thermostat | Kein Fehler. Es hält die eingestellte Temperatur und pausiert dazwischen | Nichts. Wer die Pausen nicht will, stellt höher ein — und zahlt entsprechend. |
+| Alles an derselben Wand ist plötzlich stromlos | Leitungsschutzschalter (Sicherung) im Verteiler | Mehr als 16 A auf dem Stromkreis: der Heizlüfter plus Wasserkocher, zweiter Heizlüfter, Staubsauger, Föhn | Andere Geräte auf dem Kreis abschalten oder den Heizlüfter an einen anderen Kreis. **Nie** eine stärkere Sicherung einsetzen. |
+| Nur die Steckdosenleiste ist aus, der Rest der Wohnung nicht | Überlastschalter der Leiste | Die Leiste ist für die Dauerlast nicht gemacht oder es hängt zu viel dran | Direkt in die Wandsteckdose. Siehe unten. |
 
 ## Die Rechnung mit den 16 Ampere
 
 Ein Wohnungsstromkreis ist in Deutschland und Österreich üblicherweise mit **16 A** abgesichert. Bei 230 V Netzspannung sind das rund **3.680 W**, die der ganze Kreis zusammen tragen kann — und ein Stromkreis versorgt fast immer mehrere Steckdosen, oft ein ganzes Zimmer oder die halbe Küche.
 
-Gerät | Leistung | Strom bei 230 V |
-
-Heizlüfter, volle Stufe | 2.000 W | 8,7 A |
-
-Heizlüfter, kleine Stufe | 1.000–1.200 W | 4,3–5,2 A |
-
-Wasserkocher | ~2.000 W | ~8,7 A |
-
-Zwei Heizlüfter auf voller Stufe | 4.000 W | **17,4 A — löst aus** |
-
-Heizlüfter + Wasserkocher | 4.000 W | **17,4 A — löst aus** |
+| Gerät | Leistung | Strom bei 230 V |
+| --- | --- | --- |
+| Heizlüfter, volle Stufe | 2.000 W | 8,7 A |
+| Heizlüfter, kleine Stufe | 1.000–1.200 W | 4,3–5,2 A |
+| Wasserkocher | ~2.000 W | ~8,7 A |
+| Zwei Heizlüfter auf voller Stufe | 4.000 W | **17,4 A — löst aus** |
+| Heizlüfter + Wasserkocher | 4.000 W | **17,4 A — löst aus** |
 
 Das ist die ganze Erklärung dafür, warum die Sicherung „immer genau dann" fliegt, wenn jemand in der Küche Tee kocht. Die Formel ist Strom = Leistung ÷ Spannung; wer nachrechnen will, welche Geräte zusammen noch unter 16 A bleiben, braucht nur die Wattzahlen von den Typenschildern. Welche Steckdosen an einem Kreis hängen, verrät die Beschriftung am Sicherungskasten — oder ein Test mit einer Lampe, während der Automat aus ist.
 
@@ -81,4 +73,4 @@ Die Hersteller von Heizgeräten sagen fast durchweg: direkt in die Wandsteckdose
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

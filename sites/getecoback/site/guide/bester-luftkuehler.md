@@ -46,19 +46,14 @@ Ehrlich gesagt: Die typische deutsche Sommerhitze ist oft schwül. In diesen Pha
 
 Bevor du überhaupt einen Luftkühler kaufst, lohnt der ehrliche Vergleich mit den beiden Alternativen:
 
-| Luftkühler | Ventilator | Mobile Klimaanlage |
-
-Senkt Raumtemperatur? | Nein | Nein | Ja |
-
-Wirkung bei schwüler Hitze | Schwach | Nur Luftbewegung | Stark |
-
-Stromverbrauch | ~60–120 W | ~30–60 W | ~800–1.400 W |
-
-Abluftschlauch nötig? | Nein | Nein | Ja |
-
-Wartung | Tank & Filter reinigen | Gering | Filter, Kondensat |
-
-Preis ab | ~60 € | ~30 € | ~250 € |
+|  | Luftkühler | Ventilator | Mobile Klimaanlage |
+| --- | --- | --- | --- |
+| Senkt Raumtemperatur? | Nein | Nein | Ja |
+| Wirkung bei schwüler Hitze | Schwach | Nur Luftbewegung | Stark |
+| Stromverbrauch | ~60–120 W | ~30–60 W | ~800–1.400 W |
+| Abluftschlauch nötig? | Nein | Nein | Ja |
+| Wartung | Tank & Filter reinigen | Gering | Filter, Kondensat |
+| Preis ab | ~60 € | ~30 € | ~250 € |
 
 Kurz: Für ein paar Euro mehr als ein Ventilator bekommst du mit einem Luftkühler etwas mehr Kühlgefühl bei trockener Hitze. Willst du dagegen einen Raum wirklich herunterkühlen — besonders bei Schwüle — führt kein Weg an einer Klimaanlage vorbei.
 
@@ -102,4 +97,4 @@ Luftkühler auf Amazon.de ansehen →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

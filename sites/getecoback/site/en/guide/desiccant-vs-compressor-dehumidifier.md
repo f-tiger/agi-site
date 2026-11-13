@@ -31,15 +31,12 @@ These power bands and eight-hour runs are examples, not product tests, extractio
 
 At the Ofgem price cap for **1 October to 31 December 2026**, the average electricity unit rate for Direct Debit in England, Scotland and Wales is **26.32p per kWh**. This is not a Northern Ireland tariff; regional and plan rates vary. Scale the hours to your own run.
 
-Machine | Plate | Per hour | 8 hours | Cost (£) |
-
-Compressor dehumidifier, small | 200 W | 5.3p | 1.6 kWh | 0.42 |
-
-Compressor dehumidifier, typical | 300 W | 7.9p | 2.4 kWh | 0.63 |
-
-Desiccant dehumidifier, low setting | 330 W | 8.7p | 2.6 kWh | 0.69 |
-
-Desiccant dehumidifier, high setting | 650 W | 17.1p | 5.2 kWh | 1.37 |
+| Machine | Plate | Per hour | 8 hours | Cost (£) |
+| --- | --- | --- | --- | --- |
+| Compressor dehumidifier, small | 200 W | 5.3p | 1.6 kWh | 0.42 |
+| Compressor dehumidifier, typical | 300 W | 7.9p | 2.4 kWh | 0.63 |
+| Desiccant dehumidifier, low setting | 330 W | 8.7p | 2.6 kWh | 0.69 |
+| Desiccant dehumidifier, high setting | 650 W | 17.1p | 5.2 kWh | 1.37 |
 
 Unit rate only, standing charge excluded — that is a daily fixed cost you pay whether the machine runs or not. There is no VAT on electricity from 1 October 2026 to 31 March 2027. Rate from [Ofgem](https://www.ofgem.gov.uk/your-energy-supply/your-energy-bill/energy-price-cap-unit-rates-and-standing-charges), read 2026-10-04. Your tariff may differ; the sum is watts ÷ 1000 × hours × your rate.
 
@@ -57,4 +54,4 @@ Manufacturer example: MeacoDry Arete One 12L. No hands-on EcoBack tests. The dew
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Note: EcoBack does not test devices itself; picks summarise public tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.
+Note: Editorial guidance based on the linked sources, not our own device tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.

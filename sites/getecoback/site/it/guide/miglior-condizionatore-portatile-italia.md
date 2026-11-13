@@ -9,7 +9,7 @@ Canonical (HTML, zitierfähig): https://getecoback.com/it/guide/miglior-condizio
 Scelta principaleDe'Longhi Pinguino PAC EX105→
 Miglior prezzoComfee MPPH-09CRN7→
 Il più silenziosoMidea PortaSplit→
-Tutti i modelli con le motivazioni ↓
+[Tutti i modelli con le motivazioni ↓](https://getecoback.com/it/guide/miglior-condizionatore-portatile-italia.html#i-tre-modelli)
 
 🗓 Aggiornato il 28 agosto 2026 · Redazione EcoBack
 
@@ -47,13 +47,11 @@ Un'unità portatile aggira completamente entrambi i problemi: sta dentro la stan
 
 Questi sono i modelli che questo sito consiglia con costanza, abbinati alle condizioni italiane. Non abbiamo testato queste unità noi stessi — riassumiamo test pubblici e feedback degli utenti.
 
-Modello | Per chi | Stanza indicativa | Punto di forza |
-
-**De'Longhi Pinguino PAC EX105** | Scelta principale | fino a ~25 m² | Progettato in Italia, ricambi e assistenza capillari; nei test pubblici regolarmente tra i portatili più efficaci |
-
-**Comfee MPPH-09CRN7** | Budget limitato | 15–20 m² | 9.000 BTU essenziali e affidabili a un prezzo nettamente inferiore al Pinguino |
-
-**Midea PortaSplit** | Stanze grandi, sonno leggero | stanze grandi | Compressore in un modulo separato fuori dalla finestra, senza fori: dentro è molto più silenzioso di un monoblocco |
+| Modello | Per chi | Stanza indicativa | Punto di forza |
+| --- | --- | --- | --- |
+| **De'Longhi Pinguino PAC EX105** | Scelta principale | fino a ~25 m² | Progettato in Italia, ricambi e assistenza capillari; nei test pubblici regolarmente tra i portatili più efficaci |
+| **Comfee MPPH-09CRN7** | Budget limitato | 15–20 m² | 9.000 BTU essenziali e affidabili a un prezzo nettamente inferiore al Pinguino |
+| **Midea PortaSplit** | Stanze grandi, sonno leggero | stanze grandi | Compressore in un modulo separato fuori dalla finestra, senza fori: dentro è molto più silenzioso di un monoblocco |
 
 - **De'Longhi Pinguino PAC EX105 — la scelta principale.** La linea Pinguino è progettata in Italia ed è da decenni il riferimento nazionale per la climatizzazione portatile, quindi ricambi e assistenza sono insolitamente ben coperti. Nei test pubblici il PAC EX105 è regolarmente tra i portatili più efficaci, con la capacità di gestire sia una camera afosa a Bologna sia un soggiorno rovente a Roma fino a ~25 m².
 
@@ -104,4 +102,4 @@ De'Longhi PAC EX105 →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Nota: EcoBack non testa i prodotti in proprio; le scelte riassumono test pubblici. Il sito è finanziato con link affiliati Amazon sulle pagine HTML — questa vista Markdown non ne contiene volutamente.
+Nota: Indicazioni redazionali basate sulle fonti collegate, non test propri. Il sito è finanziato con link affiliati Amazon sulle pagine HTML — questa vista Markdown non ne contiene volutamente.

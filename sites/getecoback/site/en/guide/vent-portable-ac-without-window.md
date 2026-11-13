@@ -16,17 +16,13 @@ A compressor AC doesn't "make cold" — it moves heat. Everything it pulls out o
 
 ## The 5 real routes, compared
 
-Route | Renter-safe? | Effort | Catch |
-
-**Door seal kit** (hallway, stairwell or adjoining room) | ✅ Yes | 15–30 min | The adjoining space absorbs the heat — fine for a stairwell, bad for the bedroom next door |
-
-**Balcony / French door, tilted** + seal | ✅ Yes | 15–30 min | Same technique as a tilt window; needs a door that opens |
-
-**Through-wall vent** (core-drilled, outside grille) | ❌ Permission needed | Trade job | Permanent hole; but the best airflow of all routes |
-
-**Utility room / drop ceiling** | ⚠️ Depends | 30–60 min | Heat has to go somewhere — only works if that space is big, unused and ideally ventilated |
-
-**Chimney flue** (unused) | ❌ Professional only | Trade job | Must be checked and approved by a chimney sweep first — never improvise this |
+| Route | Renter-safe? | Effort | Catch |
+| --- | --- | --- | --- |
+| **Door seal kit** (hallway, stairwell or adjoining room) | ✅ Yes | 15–30 min | The adjoining space absorbs the heat — fine for a stairwell, bad for the bedroom next door |
+| **Balcony / French door, tilted** + seal | ✅ Yes | 15–30 min | Same technique as a tilt window; needs a door that opens |
+| **Through-wall vent** (core-drilled, outside grille) | ❌ Permission needed | Trade job | Permanent hole; but the best airflow of all routes |
+| **Utility room / drop ceiling** | ⚠️ Depends | 30–60 min | Heat has to go somewhere — only works if that space is big, unused and ideally ventilated |
+| **Chimney flue** (unused) | ❌ Professional only | Trade job | Must be checked and approved by a chimney sweep first — never improvise this |
 
 ## Route 1: the door seal kit (start here)
 
@@ -83,4 +79,4 @@ A room with no window, no suitable door, no wall you may drill and no approved f
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Note: EcoBack does not test devices itself; picks summarise public tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.
+Note: Editorial guidance based on the linked sources, not our own device tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.

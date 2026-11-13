@@ -79,15 +79,12 @@ Wenn die Hitze vorbei ist, entscheidet die richtige Einlagerung darüber, ob dei
 - **Filtermatte zum Zuschneiden** — wenn der Staubfilter durchgescheuert ist und es keinen Original-Ersatz mehr gibt. Filtermatten ansehen →
 Affiliate-Links — du zahlst denselben Preis. Nur Dinge, die diese Anleitung selbst empfiehlt.
 
-Teil | Wie oft | Womit |
-
-Filter | Dauerbetrieb: alle zwei Wochen · gelegentlich: einmal im Monat · Haustiere/Staub: eher wöchentlich kontrollieren | Herauslösen, absaugen oder lauwarm ausspülen — sitzt hinter dem Ansauggitter, meist ohne Werkzeug |
-
-Kondenswasser | Vor jeder längeren Pause ablassen und trocknen lassen | Ablassstopfen — stehendes Wasser ist die Schimmel- und Geruchsquelle |
-
-Wassertank (Luftkühler) | Bei sichtbaren Kalkrändern | Wasser mit Zitronensäure oder Antikalk-Mittel, 30–60 Minuten einwirken lassen |
-
-Lamellen/Verdampfer | Bei muffigem Geruch und am Saisonende | Milde Essig- oder Zitronensäurelösung, antibakterieller Klimaanlagen-Reiniger |
+| Teil | Wie oft | Womit |
+| --- | --- | --- |
+| Filter | Dauerbetrieb: alle zwei Wochen · gelegentlich: einmal im Monat · Haustiere/Staub: eher wöchentlich kontrollieren | Herauslösen, absaugen oder lauwarm ausspülen — sitzt hinter dem Ansauggitter, meist ohne Werkzeug |
+| Kondenswasser | Vor jeder längeren Pause ablassen und trocknen lassen | Ablassstopfen — stehendes Wasser ist die Schimmel- und Geruchsquelle |
+| Wassertank (Luftkühler) | Bei sichtbaren Kalkrändern | Wasser mit Zitronensäure oder Antikalk-Mittel, 30–60 Minuten einwirken lassen |
+| Lamellen/Verdampfer | Bei muffigem Geruch und am Saisonende | Milde Essig- oder Zitronensäurelösung, antibakterieller Klimaanlagen-Reiniger |
 
 ## Häufige Fragen
 
@@ -113,4 +110,4 @@ Klimaanlagen-Reiniger auf Amazon.de ansehen →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

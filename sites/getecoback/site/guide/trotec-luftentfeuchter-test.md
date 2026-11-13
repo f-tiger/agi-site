@@ -20,15 +20,12 @@ Die Trotec GmbH sitzt in Heinsberg (Nordrhein-Westfalen) und stellt Luftbehandlu
 
 Die Zahlen stammen aus Hersteller- und Händler-Datenblättern (Otto, Kaufland, Geizhals, testbericht.de); die realistische Raumgröße ordnen wir nach der Größen-Staffel unseres [Luftentfeuchter-Ratgebers](https://getecoback.com/guide/luftentfeuchter-ratgeber.html) ein — warum die deutlich unter der Herstellerangabe liegt, steht im nächsten Abschnitt.
 
-Modell | Entzug (Hersteller) | Realistische Raumgröße (unsere Staffel) | Besonderheit | Preis prüfen |
-
-**TTK 52 E** | bis 16 l/Tag | ca. 15–20 m² (Hersteller: bis 31 m²) | Preis-Leistung für einzelne Zimmer; 270 W, 40 dB(A), 2,4-l-Tank, ab ca. 140 € | Amazon → |
-
-**TTK 72 E** | bis 24 l/Tag | ca. 30–35 m² (Hersteller: bis 50 m²) | Das Arbeitstier der Reihe: meiste Literleistung pro Euro (ca. 165–190 €), 5,5-l-Tank, Wäschemodus — aber 48 dB(A) | Amazon → |
-
-**TTK 70 HEPA** | bis 20 l/Tag | ca. 25–30 m² (Hersteller: bis 45 m²) | Wohnraum-Modell mit echtem HEPA-Filter (2-in-1 mit Luftreinigung); häufiger Vergleichssieger | Amazon → |
-
-**TTK 75 ECO** | bis 21 l/Tag | ca. 25–30 m², auch kalt/ungeheizt (Hersteller-Angaben je nach Szenario 45–90 m²) | Gewerbe-Serie: Heißgas-Abtauautomatik für kalte Keller, R290-Kältemittel, Metall-Tragegriff, 20,5 kg — ab ca. 340 € | Amazon → |
+| Modell | Entzug (Hersteller) | Realistische Raumgröße (unsere Staffel) | Besonderheit | Preis prüfen |
+| --- | --- | --- | --- | --- |
+| **TTK 52 E** | bis 16 l/Tag | ca. 15–20 m² (Hersteller: bis 31 m²) | Preis-Leistung für einzelne Zimmer; 270 W, 40 dB(A), 2,4-l-Tank, ab ca. 140 € | Amazon → |
+| **TTK 72 E** | bis 24 l/Tag | ca. 30–35 m² (Hersteller: bis 50 m²) | Das Arbeitstier der Reihe: meiste Literleistung pro Euro (ca. 165–190 €), 5,5-l-Tank, Wäschemodus — aber 48 dB(A) | Amazon → |
+| **TTK 70 HEPA** | bis 20 l/Tag | ca. 25–30 m² (Hersteller: bis 45 m²) | Wohnraum-Modell mit echtem HEPA-Filter (2-in-1 mit Luftreinigung); häufiger Vergleichssieger | Amazon → |
+| **TTK 75 ECO** | bis 21 l/Tag | ca. 25–30 m², auch kalt/ungeheizt (Hersteller-Angaben je nach Szenario 45–90 m²) | Gewerbe-Serie: Heißgas-Abtauautomatik für kalte Keller, R290-Kältemittel, Metall-Tragegriff, 20,5 kg — ab ca. 340 € | Amazon → |
 
 Anzeige · Affiliate-Links — du zahlst denselben Preis. Nicht selbst getestet; Auswahl fasst öffentliche Quellen zusammen.
 
@@ -38,19 +35,14 @@ Zwei Hinweise zum Sortiment: Den TTK 70 HEPA gibt es in zwei Ausführungen — d
 
 Wir haben keines der Geräte selbst getestet. Über die öffentlichen Auswertungen hinweg — Testnoten-Aggregatoren wie testberichte.de, Vergleichsportale wie Vergleich.org — wiederholen sich dieselben Befunde:
 
-Befund öffentlicher Auswertungen | Unsere Einordnung für den Alltag |
-
-✓ TTK 70 HEPA: bei Vergleich.org Vergleichssieger der Trotec-Reihe, testberichte.de-Note 1,5 („sehr gut“) | Der Wohnraum-Kandidat — als einziges Modell der Reihe mit echtem HEPA-Filter, relevant bei Pollen- oder Hausstaub-Allergie |
-
-✓ TTK 72 E: 24 l/Tag für ca. 165–190 € (Amazon/Geizhals-Preisstand) | Die meiste Entfeuchtungsleistung pro Euro im Vergleichsfeld — deshalb das Standard-Arbeitstier für Keller und Wäschetrocknung |
-
-✓ TTK 52 E: testberichte.de-Note 1,6 („gut“), ab ca. 140 € | Solide Basisausstattung (Zielwert-Automatik, Anschluss für Dauerablauf, waschbarer Filter) zum kleinsten Preis der Runde |
-
-✓ TTK 75 ECO: testberichte.de führt ihn je nach Auswertungsstand mit 1,5–1,6; Heißgas-Abtauautomatik | Entfeuchtet auch in kalten, ungeheizten Räumen zuverlässig — genau da steigen normale Wohnraum-Geräte aus |
-
-✕ Nutzer-Berichte nennen bei mehreren Modellen die Lautstärke als Schwäche; Datenblätter: 46–48 dB(A) bei 72 E und 75 ECO | Kein Schlafzimmer-Anspruch — die Reihe ist auf Leistung ausgelegt, nicht auf Leise-Betrieb |
-
-✕ Hersteller-Raumangaben (31/45/50 m²) sind Idealwerte | Nach unserer Größen-Staffel realistisch etwa die Hälfte — Einordnung im nächsten Abschnitt |
+| Befund öffentlicher Auswertungen | Unsere Einordnung für den Alltag |
+| --- | --- |
+| ✓ TTK 70 HEPA: bei Vergleich.org Vergleichssieger der Trotec-Reihe, testberichte.de-Note 1,5 („sehr gut“) | Der Wohnraum-Kandidat — als einziges Modell der Reihe mit echtem HEPA-Filter, relevant bei Pollen- oder Hausstaub-Allergie |
+| ✓ TTK 72 E: 24 l/Tag für ca. 165–190 € (Amazon/Geizhals-Preisstand) | Die meiste Entfeuchtungsleistung pro Euro im Vergleichsfeld — deshalb das Standard-Arbeitstier für Keller und Wäschetrocknung |
+| ✓ TTK 52 E: testberichte.de-Note 1,6 („gut“), ab ca. 140 € | Solide Basisausstattung (Zielwert-Automatik, Anschluss für Dauerablauf, waschbarer Filter) zum kleinsten Preis der Runde |
+| ✓ TTK 75 ECO: testberichte.de führt ihn je nach Auswertungsstand mit 1,5–1,6; Heißgas-Abtauautomatik | Entfeuchtet auch in kalten, ungeheizten Räumen zuverlässig — genau da steigen normale Wohnraum-Geräte aus |
+| ✕ Nutzer-Berichte nennen bei mehreren Modellen die Lautstärke als Schwäche; Datenblätter: 46–48 dB(A) bei 72 E und 75 ECO | Kein Schlafzimmer-Anspruch — die Reihe ist auf Leistung ausgelegt, nicht auf Leise-Betrieb |
+| ✕ Hersteller-Raumangaben (31/45/50 m²) sind Idealwerte | Nach unserer Größen-Staffel realistisch etwa die Hälfte — Einordnung im nächsten Abschnitt |
 
 ## Für welchen Raum reicht welcher TTK?
 
@@ -70,15 +62,12 @@ Entfeuchter werden nach Litern pro Tag eingestuft — aber die Herstellerzahl gi
 
 Der Rechenweg ist transparent: Leistungsaufnahme × Strompreis. Wir rechnen mit der Beispielannahme **0,30 €/kWh** — setze deinen eigenen Arbeitspreis ein:
 
-Modell | Leistungsaufnahme (Datenblatt) | Kosten pro Stunde bei 0,30 €/kWh |
-
-TTK 52 E | 270 W | ca. 0,08 € |
-
-TTK 72 E | 320–420 W (Quellen differieren) | ca. 0,10–0,13 € |
-
-TTK 70 HEPA | 420 W | ca. 0,13 € |
-
-TTK 75 ECO | 440 W | ca. 0,13 € |
+| Modell | Leistungsaufnahme (Datenblatt) | Kosten pro Stunde bei 0,30 €/kWh |
+| --- | --- | --- |
+| TTK 52 E | 270 W | ca. 0,08 € |
+| TTK 72 E | 320–420 W (Quellen differieren) | ca. 0,10–0,13 € |
+| TTK 70 HEPA | 420 W | ca. 0,13 € |
+| TTK 75 ECO | 440 W | ca. 0,13 € |
 
 Zur Einordnung: Ein typisches 300-W-Kompressorgerät liegt bei ca. 0,09 €/h, der auf Sparsamkeit ausgelegte MeacoDry Arete One 20L laut Datenblatt bei ca. 0,06 €/h (216 W). Die Trotec-Geräte kaufen ihre hohe Literleistung also mit etwas mehr Anschlussleistung ein. Entscheidend für die Monatsrechnung ist aber die Laufzeit: Mit der Zielwert-Automatik (bei allen vier Modellen einstellbar bzw. in Stufen wählbar) läuft der Kompressor nur, bis die eingestellte Feuchte erreicht ist — meist deutlich kürzer als die eingeschaltete Zeit. Wer dauerhaft entfeuchtet, findet die ehrliche Monatsrechnung im Ratgeber [Luftentfeuchter im Dauerbetrieb](https://getecoback.com/guide/luftentfeuchter-dauerbetrieb-stromkosten.html).
 
@@ -86,15 +75,12 @@ Zur Einordnung: Ein typisches 300-W-Kompressorgerät liegt bei ca. 0,09 €/h, d
 
 Die ehrliche Dreier-Abwägung — alle drei Marken tauchen auf diesem Portal wiederholt auf, und keine ist „die beste“ für jeden Einsatz:
 
-Situation | Bessere Wahl | Warum |
-
-Keller, Wäsche, kalte Räume — Leistung und Robustheit zählen, Lautstärke nicht | Trotec TTK 72 E (kalt: TTK 75 ECO) | Meiste Literleistung pro Euro; die Baustellen-Herkunft der Marke ist genau hier der Vorteil |
-
-Wohn- oder Schlafraum, in dem das Gerät läuft, während Menschen anwesend sind | MeacoDry Arete One 20L | Leise ausgelegt, sparsame 216 W, 5 Jahre Garantie — der Aufpreis (ca. 250–280 €) kauft Ruhe, Details in unserem [Arete-One-Überblick](https://getecoback.com/guide/meacodry-arete-one-test.html) |
-
-Kleinstes Budget, unbewohnter Raum, 20-l-Klasse | Comfee MDDF-20DEN7 | Gleiche Leistungsklasse zum Standard-Preis — ohne HEPA-Teil, Leise-Anspruch oder Gewerbe-Robustheit |
-
-Wohnraum mit Pollen- oder Hausstaub-Allergie | Trotec TTK 70 HEPA | Entfeuchter und HEPA-Luftreiniger in einem Gerät — dieses 2-in-1 hat in der Preisklasse sonst kaum jemand |
+| Situation | Bessere Wahl | Warum |
+| --- | --- | --- |
+| Keller, Wäsche, kalte Räume — Leistung und Robustheit zählen, Lautstärke nicht | Trotec TTK 72 E (kalt: TTK 75 ECO) | Meiste Literleistung pro Euro; die Baustellen-Herkunft der Marke ist genau hier der Vorteil |
+| Wohn- oder Schlafraum, in dem das Gerät läuft, während Menschen anwesend sind | MeacoDry Arete One 20L | Leise ausgelegt, sparsame 216 W, 5 Jahre Garantie — der Aufpreis (ca. 250–280 €) kauft Ruhe, Details in unserem [Arete-One-Überblick](https://getecoback.com/guide/meacodry-arete-one-test.html) |
+| Kleinstes Budget, unbewohnter Raum, 20-l-Klasse | Comfee MDDF-20DEN7 | Gleiche Leistungsklasse zum Standard-Preis — ohne HEPA-Teil, Leise-Anspruch oder Gewerbe-Robustheit |
+| Wohnraum mit Pollen- oder Hausstaub-Allergie | Trotec TTK 70 HEPA | Entfeuchter und HEPA-Luftreiniger in einem Gerät — dieses 2-in-1 hat in der Preisklasse sonst kaum jemand |
 
 Anzeige · Affiliate-Links — du zahlst denselben Preis. Nicht selbst getestet; Auswahl fasst öffentliche Tests zusammen.
 
@@ -133,4 +119,4 @@ Trotec TTK 72 E auf Amazon →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

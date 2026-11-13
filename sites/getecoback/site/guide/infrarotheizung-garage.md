@@ -14,13 +14,11 @@ Das heißt umgekehrt: Der Vorteil gilt nur, solange du **im Strahlungsfeld stehs
 
 ## Drei Ziele, drei ehrliche Antworten
 
-Ziel | Passende Lösung | Ehrliche Einschätzung |
-
-**Punktwärme am Werktisch** (regelmäßige Arbeitsstunden) | Infrarot-Heizstrahler oder -Panel über bzw. schräg vor dem Arbeitsplatz | **Der sinnvolle Einsatzfall.** Wärme dort, wo du stehst — die kalte Restgarage ist egal. |
-
-**Frostfrei halten** (Leitungen, Farben, Batterien) | Frostwächter mit Thermostat | Läuft nur unterhalb der eingestellten Temperatur an. Ein Infrarot-Panel kann das auch, bestrahlt dann aber Fläche, auf der niemand steht. |
-
-**Ganze Garage dauerhaft warm** | Erst dämmen (v. a. Tor), dann über Heiztechnik reden | **Ohne Dämmung ein Verlustgeschäft** — jede elektrische Heizung kämpft hier gegen ein offenes Scheunentor aus Wärmesicht. |
+| Ziel | Passende Lösung | Ehrliche Einschätzung |
+| --- | --- | --- |
+| **Punktwärme am Werktisch** (regelmäßige Arbeitsstunden) | Infrarot-Heizstrahler oder -Panel über bzw. schräg vor dem Arbeitsplatz | **Der sinnvolle Einsatzfall.** Wärme dort, wo du stehst — die kalte Restgarage ist egal. |
+| **Frostfrei halten** (Leitungen, Farben, Batterien) | Frostwächter mit Thermostat | Läuft nur unterhalb der eingestellten Temperatur an. Ein Infrarot-Panel kann das auch, bestrahlt dann aber Fläche, auf der niemand steht. |
+| **Ganze Garage dauerhaft warm** | Erst dämmen (v. a. Tor), dann über Heiztechnik reden | **Ohne Dämmung ein Verlustgeschäft** — jede elektrische Heizung kämpft hier gegen ein offenes Scheunentor aus Wärmesicht. |
 
 ## Stromkosten ehrlich rechnen
 
@@ -67,4 +65,4 @@ Infrarot-Heizstrahler für die Werkstatt auf Amazon.de ansehen →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

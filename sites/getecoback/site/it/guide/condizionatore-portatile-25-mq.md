@@ -9,7 +9,7 @@ Canonical (HTML, zitierfähig): https://getecoback.com/it/guide/condizionatore-p
 AllrounderDe'Longhi Pinguino PAC EX105→
 Il più silenziosoDe'Longhi PAC N90 ECO Silent→
 Miglior prezzoComfee MPPH-09CRN7→
-Tutti i modelli con le motivazioni ↓
+[Tutti i modelli con le motivazioni ↓](https://getecoback.com/it/guide/condizionatore-portatile-25-mq.html#i-modelli)
 
 🗓 Aggiornato il 28 agosto 2026 · Redazione EcoBack
 
@@ -27,13 +27,11 @@ La regola base di questo sito è **circa 340 BTU per metro quadrato**. Per 25 m�
 
 Non abbiamo testato queste unità noi stessi — riassumiamo test pubblici e feedback degli utenti.
 
-Modello | Ruolo | Punto di forza |
-
-**De'Longhi Pinguino PAC EX105** | Allrounder | Dimensionato correttamente per un soggiorno o una camera grande; citato regolarmente nei test pubblici e tra i più venduti; linea Pinguino progettata in Italia |
-
-**De'Longhi PAC N90 ECO Silent** | Il più silenzioso | In modalità silent resta sotto la soglia dei 50 dB(A) indicata per dormire |
-
-**Comfee MPPH-09CRN7** | Miglior prezzo | 9.000 BTU: sufficiente solo se la stanza è ombreggiata e sotto i 25 m² pieni — l'opzione economica onesta, non la prima scelta per questa metratura |
+| Modello | Ruolo | Punto di forza |
+| --- | --- | --- |
+| **De'Longhi Pinguino PAC EX105** | Allrounder | Dimensionato correttamente per un soggiorno o una camera grande; citato regolarmente nei test pubblici e tra i più venduti; linea Pinguino progettata in Italia |
+| **De'Longhi PAC N90 ECO Silent** | Il più silenzioso | In modalità silent resta sotto la soglia dei 50 dB(A) indicata per dormire |
+| **Comfee MPPH-09CRN7** | Miglior prezzo | 9.000 BTU: sufficiente solo se la stanza è ombreggiata e sotto i 25 m² pieni — l'opzione economica onesta, non la prima scelta per questa metratura |
 
 - **De'Longhi Pinguino PAC EX105 — la scelta principale per 25 m².** Dimensionato correttamente per un soggiorno o una camera grande, è il modello di questa classe citato più spesso nei test pubblici. La linea Pinguino è progettata in Italia, con ricambi e assistenza ben coperti sul mercato nazionale. Requisiti, come per ogni portatile: tubo di scarico e guarnizione alla finestra.
 
@@ -45,15 +43,12 @@ Modello | Ruolo | Punto di forza |
 
 Un apparecchio adatto a 25 m² assorbe circa **1200 W**. Con una tariffa di 0,30 €/kWh come base di calcolo — inserisci il prezzo del tuo contratto — sono circa **0,36 € all'ora**. In un mese di caldo (circa 8 ore a notte, con il compressore che riduce il funzionamento a temperatura raggiunta) si arriva realisticamente a **~56 €**.
 
-Periodo | Calcolo (1200 W, 0,30 €/kWh, ciclo ~65 %) | Costo |
-
-1 ora a pieno carico | 1200 W ÷ 1.000 × 0,30 € | **0,36 €** |
-
-1 notte (8 h) | × 8 h × 0,65 | **1,87 €** |
-
-1 mese di caldo (30 notti) | × 30 | **~56 €** |
-
-Senza guarnizione alla finestra | l'aria calda rientra, il compressore non stacca mai | **fino a ×2** |
+| Periodo | Calcolo (1200 W, 0,30 €/kWh, ciclo ~65 %) | Costo |
+| --- | --- | --- |
+| 1 ora a pieno carico | 1200 W ÷ 1.000 × 0,30 € | **0,36 €** |
+| 1 notte (8 h) | × 8 h × 0,65 | **1,87 €** |
+| 1 mese di caldo (30 notti) | × 30 | **~56 €** |
+| Senza guarnizione alla finestra | l'aria calda rientra, il compressore non stacca mai | **fino a ×2** |
 
 L'ultima riga è la voce più sottovalutata: senza una finestra ben sigillata, l'apparecchio raffresca lottando contro il proprio calore di scarico che rientra — e la bolletta può raddoppiare.
 
@@ -105,4 +100,4 @@ De'Longhi PAC EX105 →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Nota: EcoBack non testa i prodotti in proprio; le scelte riassumono test pubblici. Il sito è finanziato con link affiliati Amazon sulle pagine HTML — questa vista Markdown non ne contiene volutamente.
+Nota: Indicazioni redazionali basate sulle fonti collegate, non test propri. Il sito è finanziato con link affiliati Amazon sulle pagine HTML — questa vista Markdown non ne contiene volutamente.

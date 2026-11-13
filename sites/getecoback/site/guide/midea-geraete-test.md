@@ -22,11 +22,10 @@ Für den deutschsprachigen Markt sitzt die **Midea Europe GmbH in Eschborn bei F
 
 Wir empfehlen nicht „die Marke", sondern zwei konkrete Geräte, die jeweils genau eine Aufgabe gut lösen:
 
-Gerät | Rolle | Einsatz | Preisband | Links |
-
-**Midea PortaSplit**Mobile Split-Klimaanlage | Kategorie-Bestseller — leises Split-Kühlen ohne Bohren, ohne Installateur | Wohn- und Schlafräume; Kompressor hängt außen am gekippten Fenster | ca. 900–1.200 € (normaler Preis) | [Kauf-Check](https://getecoback.com/guide/midea-portasplit-kaufen.html) · Preis auf Amazon |
-
-**Midea NTH20-17BR**Keramik-Heizlüfter, 2 Stufen | Heizlüfter-Empfehlung fürs schnelle Aufheizen — nicht für den Dauerbetrieb | Kleine Räume; 1.200/2.000 W | Preis vor Ort prüfen | [Stromkosten-Einordnung](https://getecoback.com/guide/heizluefter-stromverbrauch.html) · Preis auf Amazon |
+| Gerät | Rolle | Einsatz | Preisband | Links |
+| --- | --- | --- | --- | --- |
+| **Midea PortaSplit** Mobile Split-Klimaanlage | Kategorie-Bestseller — leises Split-Kühlen ohne Bohren, ohne Installateur | Wohn- und Schlafräume; Kompressor hängt außen am gekippten Fenster | ca. 900–1.200 € (normaler Preis) | [Kauf-Check](https://getecoback.com/guide/midea-portasplit-kaufen.html) · Preis auf Amazon |
+| **Midea NTH20-17BR** Keramik-Heizlüfter, 2 Stufen | Heizlüfter-Empfehlung fürs schnelle Aufheizen — nicht für den Dauerbetrieb | Kleine Räume; 1.200/2.000 W | Preis vor Ort prüfen | [Stromkosten-Einordnung](https://getecoback.com/guide/heizluefter-stromverbrauch.html) · Preis auf Amazon |
 
 Anzeige · Affiliate-Links — du zahlst denselben Preis. Nicht selbst getestet; Auswahl fasst öffentliche Tests zusammen.
 
@@ -40,11 +39,10 @@ Die ehrliche Kehrseite des Erfolgs: **Verfügbarkeit.** Die PortaSplit ist in De
 
 ## Wann lieber eine andere Marke?
 
-Situation | Bessere Wahl | Warum |
-
-Budget deutlich unter 900 €, kleiner Raum | [Comfee](https://getecoback.com/guide/comfee-geraete-test.html) (gehört ebenfalls zur Midea Group) | Monoblock ab ca. 250–320 € — hörbar lauter als die PortaSplit, aber die Kernfunktion fürs halbe Geld und weniger |
-
-Klassischer Monoblock gewünscht, Effizienz und Laufruhe wichtig | [De'Longhi Pinguino PAC EX105](https://getecoback.com/guide/pinguino-pac-ex105-test.html) | A+++, in Messungen leiser als das Monoblock-Feld — bleibt aber bauartbedingt lauter als eine Split-Lösung |
+| Situation | Bessere Wahl | Warum |
+| --- | --- | --- |
+| Budget deutlich unter 900 €, kleiner Raum | [Comfee](https://getecoback.com/guide/comfee-geraete-test.html) (gehört ebenfalls zur Midea Group) | Monoblock ab ca. 250–320 € — hörbar lauter als die PortaSplit, aber die Kernfunktion fürs halbe Geld und weniger |
+| Klassischer Monoblock gewünscht, Effizienz und Laufruhe wichtig | [De'Longhi Pinguino PAC EX105](https://getecoback.com/guide/pinguino-pac-ex105-test.html) | A+++, in Messungen leiser als das Monoblock-Feld — bleibt aber bauartbedingt lauter als eine Split-Lösung |
 
 Der ehrliche Gegen-Check gilt auch andersherum: Wer dauerhaft leise kühlen will, ohne bohren zu dürfen, findet in der Preisklasse der PortaSplit derzeit schlicht keinen gleichwertigen Ersatz — genau deshalb ist sie so oft vergriffen. Die Alternativen sind Kompromisse bei Lautstärke oder Leistung, keine gleichwertigen Kopien.
 
@@ -82,4 +80,4 @@ Midea NTH20-17BR auf Amazon →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

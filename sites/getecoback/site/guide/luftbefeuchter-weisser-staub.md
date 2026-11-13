@@ -8,7 +8,7 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Aktualisiert am 12. November 2026 · Redaktionelle Kauf- und Nutzungshilfe, kein eigener Gerätetest.
 **Zuerst Wasser und Anleitung prüfen**Ultraschall kann Mineralien aus dem Wasser verteilen. Das kann weißen Staub erklären, beweist aber nicht die Herkunft jedes Belags. Schalte das Gerät für die Prüfung aus und folge den Reinigungs- und Wasserangaben seiner Anleitung.
-Zum Prüfablauf →
+[Zum Prüfablauf →](https://getecoback.com/guide/luftbefeuchter-weisser-staub.html#pruefen)
 
 ## Warum Wasserhärte bei Ultraschall relevant ist
 Die US-Umweltbehörde EPA beschreibt, dass Ultraschall- und bestimmte Kaltnebelgeräte Wasserinhalte in die Raumluft abgeben können. Bei Verdunstung und Dampf ist keine vergleichbar große Mineralverteilung zu erwarten. Diese Unterscheidung ist keine Sauberkeitsgarantie für Tank oder Gerät.
@@ -41,4 +41,4 @@ Muss ich wegen weißen Staubs einen Verdunster kaufen?Nicht automatisch. Kläre 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

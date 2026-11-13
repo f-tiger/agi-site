@@ -16,19 +16,14 @@ Ein Ventilator **bewegt nur Luft** — die Raumtemperatur bleibt gleich, aber de
 
 ## Direkter Vergleich
 
-| Ventilator | Mobile Klimaanlage |
-
-Senkt die Temperatur? | Nein (nur gefühlt) | Ja, wirklich |
-
-Anschaffung | ab ~30 € | ab ~250 € |
-
-Stromkosten | ~1,5 Cent/Std. | ~30 Cent/Std. |
-
-Lautstärke | Leise–mittel | Mittel–laut |
-
-Installation | Keine | Abluftschlauch ins Fenster |
-
-Am besten für | Erträglichkeit, kleines Budget | Echte Abkühlung, Schlaf bei >30 °C |
+|  | Ventilator | Mobile Klimaanlage |
+| --- | --- | --- |
+| Senkt die Temperatur? | Nein (nur gefühlt) | Ja, wirklich |
+| Anschaffung | ab ~30 € | ab ~250 € |
+| Stromkosten | ~1,5 Cent/Std. | ~30 Cent/Std. |
+| Lautstärke | Leise–mittel | Mittel–laut |
+| Installation | Keine | Abluftschlauch ins Fenster |
+| Am besten für | Erträglichkeit, kleines Budget | Echte Abkühlung, Schlaf bei >30 °C |
 
 ## Wann der Ventilator reicht
 
@@ -75,4 +70,4 @@ Die effizienteste Lösung ist oft beides: Die Klimaanlage kühlt den Raum herunt
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

@@ -29,6 +29,13 @@ const clearance=await p.evaluate(()=>{const heading=document.querySelector('#dc-
 await p.screenshot({path:path.join(out,`${slug}-${width}-${js?'js':'nojs'}-native-anchor.png`)});
 assert(clearance.headingTop>=clearance.navBottom+8,'Native fragment heading obscured: '+JSON.stringify(clearance));
 assert(clearance.headingBottom<clearance.viewport,'Heading must be visible in first viewport');
+await p.goto(origin+'/guide/'+slug+'.html?__probe=1#modell-meaco-one-20',{waitUntil:'load'});
+await p.waitForTimeout(250);
+const modelClearance=await p.evaluate(()=>({top:document.querySelector('#modell-meaco-one-20').getBoundingClientRect().top,nav:document.querySelector('nav.eb-nav').getBoundingClientRect().bottom}));
+assert(modelClearance.top>=modelClearance.nav+8,'Canonical model citation obscured: '+JSON.stringify(modelClearance));
+assert(modelClearance.top<850,'Model heading must be in viewport');
+await p.screenshot({path:path.join(out,`${slug}-${width}-${js?'js':'nojs'}-model-anchor.png`)});
+
 assert(writes.every(w=>w.path==='/api/ev'&&(['page_view','feuchte_now'].includes(JSON.parse(w.body).n)||(slug==='waesche-trocknen-wohnung'&&JSON.parse(w.body).n==='strom_now'&&JSON.parse(w.body).m?.src==='heat'))),'Unexpected blocked write: '+JSON.stringify(writes));assert.equal(merchants.length,0);assert.deepEqual(errors,[]);
-cases.push({slug,width,js,status:'PASS',clearance,documentWidth:info.w,blockedLegacyEventAttempts:writes.map(w=>JSON.parse(w.body).n),submittedPostRequests:0,merchantRequests:merchants.length});await c.close();
+cases.push({slug,width,js,status:'PASS',clearance,modelClearance,documentWidth:info.w,blockedLegacyEventAttempts:writes.map(w=>JSON.parse(w.body).n),submittedPostRequests:0,merchantRequests:merchants.length});await c.close();
 }fs.writeFileSync(path.join(out,'browser-drain.json'),JSON.stringify({live,proxyTLSException:tls,status:'PASS',cases},null,2));console.log(JSON.stringify({live,proxyTLSException:tls,status:'PASS',cases:cases.length,out}));}finally{await browser.close();}})().catch(e=>{console.error(e);process.exit(1)});

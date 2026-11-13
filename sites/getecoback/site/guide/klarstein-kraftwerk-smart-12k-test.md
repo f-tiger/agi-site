@@ -16,19 +16,14 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unte
 
 Das Kraftwerk Smart 12K ist die 12.000-BTU-Variante von Klarsteins Kraftwerk-Smart-Reihe; die Eckdaten — **12.000 BTU Kühlleistung (ca. 3,5 kW), Energieeffizienzklasse A, EER 2,6, ca. 1,3 kWh Verbrauch pro Stunde im Kühlbetrieb, ca. 27 kg** — stehen im Datenblatt des Herstellers. Über die öffentlichen Tests hinweg wiederholen sich dieselben Befunde:
 
-Befund öffentlicher Tests | Unsere Einordnung für den Alltag |
-
-✓ Kräftige Kühlleistung, in Tests auch für größere Räume als tauglich beschrieben | Gilt für die 25–35-m²-Klasse — die Reserve ist der Kaufgrund, nicht ein Bonus |
-
-✓ App-Steuerung (WLAN) mit Zeitplänen, Timer und Sprachsteuerung über Alexa/Google Assistant, in Tests als funktional und übersichtlich beschrieben | Der echte Nutzen ist das Vorkühlen vor Feierabend — Einordnung unten |
-
-✕ Laut Datenblatt 50–65 dB; Tests nennen die Maximalstufe deutlich hörbar und das Gerät fürs Schlafzimmer nur eingeschränkt geeignet | Bauartbedingt: mehr BTU = mehr Lärm — Einordnung unten |
-
-✕ Ca. 1,3 kWh pro Stunde im Kühlbetrieb (Herstellerangabe) | Bei angenommenen 0,30 €/kWh rund 0,39 € pro Stunde — dein Arbeitspreis steht im Stromvertrag, Rechenweg im [Stromkosten-Ratgeber](https://getecoback.com/guide/klimaanlage-stromkosten.html) |
-
-✕ Ca. 27 kg schwer | Auf Rollen im Geschoss kein Problem; Treppen sind eine Zwei-Personen-Aufgabe |
-
-✕ Wie bei jedem Monoblock entscheidet die Fensterabdichtung stark über die Wirkung | Ohne Abdichtung strömt die warme Luft direkt zurück — Kit (15–30 €) direkt mitdenken: [welches zu welchem Fenster passt](https://getecoback.com/guide/fensterabdichtung-klimaanlage.html) |
+| Befund öffentlicher Tests | Unsere Einordnung für den Alltag |
+| --- | --- |
+| ✓ Kräftige Kühlleistung, in Tests auch für größere Räume als tauglich beschrieben | Gilt für die 25–35-m²-Klasse — die Reserve ist der Kaufgrund, nicht ein Bonus |
+| ✓ App-Steuerung (WLAN) mit Zeitplänen, Timer und Sprachsteuerung über Alexa/Google Assistant, in Tests als funktional und übersichtlich beschrieben | Der echte Nutzen ist das Vorkühlen vor Feierabend — Einordnung unten |
+| ✕ Laut Datenblatt 50–65 dB; Tests nennen die Maximalstufe deutlich hörbar und das Gerät fürs Schlafzimmer nur eingeschränkt geeignet | Bauartbedingt: mehr BTU = mehr Lärm — Einordnung unten |
+| ✕ Ca. 1,3 kWh pro Stunde im Kühlbetrieb (Herstellerangabe) | Bei angenommenen 0,30 €/kWh rund 0,39 € pro Stunde — dein Arbeitspreis steht im Stromvertrag, Rechenweg im [Stromkosten-Ratgeber](https://getecoback.com/guide/klimaanlage-stromkosten.html) |
+| ✕ Ca. 27 kg schwer | Auf Rollen im Geschoss kein Problem; Treppen sind eine Zwei-Personen-Aufgabe |
+| ✕ Wie bei jedem Monoblock entscheidet die Fensterabdichtung stark über die Wirkung | Ohne Abdichtung strömt die warme Luft direkt zurück — Kit (15–30 €) direkt mitdenken: [welches zu welchem Fenster passt](https://getecoback.com/guide/fensterabdichtung-klimaanlage.html) |
 
 ## Für welchen Raum reicht es?
 
@@ -52,15 +47,12 @@ Vorab die unbequeme Physik: **12.000-BTU-Geräte sind lauter als kleinere Monobl
 
 ## Alternativen: wann ein anderes Gerät besser passt
 
-Situation | Bessere Wahl | Warum |
-
-15–25 m², Effizienz und Ruhe wichtig | De'Longhi Pinguino PAC EX105 | A+++ statt A, in Messungen leiser — für normale Räume die rundere Wahl |
-
-Kleines Zimmer, Budget knapp | Comfee MPPH-09CRN7 | 9.000 BTU Grundleistung, deutlich günstiger |
-
-Sehr geräuschempfindlich | Midea PortaSplit | Kompressor hängt draußen — drinnen deutlich leiser |
-
-Bedarf über ~13.500 BTU (ab ~40 m², Dachlage) | [Split-Gerät oder zwei Geräte](https://getecoback.com/guide/split-klimaanlage-ohne-kernbohrung.html) | Kein Monoblock mehr ehrlich empfehlbar — das gilt auch für das 12K |
+| Situation | Bessere Wahl | Warum |
+| --- | --- | --- |
+| 15–25 m², Effizienz und Ruhe wichtig | De'Longhi Pinguino PAC EX105 | A+++ statt A, in Messungen leiser — für normale Räume die rundere Wahl |
+| Kleines Zimmer, Budget knapp | Comfee MPPH-09CRN7 | 9.000 BTU Grundleistung, deutlich günstiger |
+| Sehr geräuschempfindlich | Midea PortaSplit | Kompressor hängt draußen — drinnen deutlich leiser |
+| Bedarf über ~13.500 BTU (ab ~40 m², Dachlage) | [Split-Gerät oder zwei Geräte](https://getecoback.com/guide/split-klimaanlage-ohne-kernbohrung.html) | Kein Monoblock mehr ehrlich empfehlbar — das gilt auch für das 12K |
 
 Anzeige · Affiliate-Links — du zahlst denselben Preis. Nicht selbst getestet; Auswahl fasst öffentliche Tests zusammen.
 
@@ -99,4 +91,4 @@ Klarstein Kraftwerk Smart 12K auf Amazon →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

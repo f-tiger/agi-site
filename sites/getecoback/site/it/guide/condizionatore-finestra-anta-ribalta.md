@@ -9,7 +9,7 @@ Canonical (HTML, zitierfähig): https://getecoback.com/it/guide/condizionatore-f
 Il pezzo che manca davveroGuarnizione per finestra (velcro, universale)→
 Per il tuboBocchetta di scarico per vasistas→
 La tenuta migliorePannello XPS su misura→
-Tutte le soluzioni con le motivazioni ↓
+[Tutte le soluzioni con le motivazioni ↓](https://getecoback.com/it/guide/condizionatore-finestra-anta-ribalta.html#le-tre-soluzioni)
 
 🗓 Aggiornato il 28 agosto 2026 · Redazione EcoBack
 
@@ -27,13 +27,11 @@ Quasi tutti i condizionatori portatili arrivano con un kit piatto pensato per le
 
 Non abbiamo testato queste unità noi stessi — riassumiamo test pubblici e feedback degli utenti.
 
-Metodo | Casa in affitto? | Prezzo | Ideale per |
-
-**Guarnizione in tessuto** (velcro + cerniera lampo) | ✔ senza residui | 15–30 € | La maggior parte delle persone — la più rapida, si adatta a qualsiasi anta-ribalta |
-
-**Pannello acrilico/XPS** con foro per il tubo | ✔ a incastro, senza colla | 10–40 € | La tenuta e l'isolamento migliori; richiede misura e taglio |
-
-**Adattatore per vasistas** (tipo Eurom Way-Out) | ✔ rimovibile | 30–60 € | La finestra resta quasi chiusa e bloccabile; la soluzione più ordinata per tutta l'estate |
+| Metodo | Casa in affitto? | Prezzo | Ideale per |
+| --- | --- | --- | --- |
+| **Guarnizione in tessuto** (velcro + cerniera lampo) | ✔ senza residui | 15–30 € | La maggior parte delle persone — la più rapida, si adatta a qualsiasi anta-ribalta |
+| **Pannello acrilico/XPS** con foro per il tubo | ✔ a incastro, senza colla | 10–40 € | La tenuta e l'isolamento migliori; richiede misura e taglio |
+| **Adattatore per vasistas** (tipo Eurom Way-Out) | ✔ rimovibile | 30–60 € | La finestra resta quasi chiusa e bloccabile; la soluzione più ordinata per tutta l'estate |
 
 ## La soluzione per la maggior parte: guarnizione in tessuto
 
@@ -117,4 +115,4 @@ Guarnizioni per finestra →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Nota: EcoBack non testa i prodotti in proprio; le scelte riassumono test pubblici. Il sito è finanziato con link affiliati Amazon sulle pagine HTML — questa vista Markdown non ne contiene volutamente.
+Nota: Indicazioni redazionali basate sulle fonti collegate, non test propri. Il sito è finanziato con link affiliati Amazon sulle pagine HTML — questa vista Markdown non ne contiene volutamente.

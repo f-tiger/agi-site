@@ -16,17 +16,13 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks zu d
 
 Die Werbeseiten und -anzeigen zum Coolizi Coolzy machen im Kern diese Zusagen:
 
-Werbeversprechen | Prüfbarer Befund |
-
-„Klimaanlage ohne Abluftschlauch, ohne Installation" | Ohne Weg nach draußen kann keine Wärme den Raum verlassen — netto keine Raumkühlung möglich (Details unten) |
-
-Kühlt einen Raum von ca. 23 m² „um 12–15 °F" (7–8 °C) in 45 Minuten | Dafür wären mehrere tausend Watt Kälteleistung samt Wärmeabfuhr nötig — bei einem tragbaren Gerät ohne Abluft ausgeschlossen |
-
-„Nano-Waben-Filter entzieht der Luft Wärme auf molekularer Ebene" | Kein bekanntes physikalisches Prinzip; ein Filter kann Wärme nicht „entziehen", ohne sie irgendwo abzugeben |
-
-Kühlen und Heizen in einem Mini-Gerät (bis ca. 15 °C kühlen / bis ca. 45 °C heizen) | Heizen ist mit Strom trivial — die Kühl-Hälfte des Versprechens bleibt der unbelegte Teil |
-
-„Von Experten getestet", „Geld-zurück-Garantie", nur im Hersteller-Shop | Kein unabhängiger Test auffindbar; keine Stiftung-Warentest-Prüfung; alle „Testberichte" verlinken in denselben Shop |
+| Werbeversprechen | Prüfbarer Befund |
+| --- | --- |
+| „Klimaanlage ohne Abluftschlauch, ohne Installation" | Ohne Weg nach draußen kann keine Wärme den Raum verlassen — netto keine Raumkühlung möglich (Details unten) |
+| Kühlt einen Raum von ca. 23 m² „um 12–15 °F" (7–8 °C) in 45 Minuten | Dafür wären mehrere tausend Watt Kälteleistung samt Wärmeabfuhr nötig — bei einem tragbaren Gerät ohne Abluft ausgeschlossen |
+| „Nano-Waben-Filter entzieht der Luft Wärme auf molekularer Ebene" | Kein bekanntes physikalisches Prinzip; ein Filter kann Wärme nicht „entziehen", ohne sie irgendwo abzugeben |
+| Kühlen und Heizen in einem Mini-Gerät (bis ca. 15 °C kühlen / bis ca. 45 °C heizen) | Heizen ist mit Strom trivial — die Kühl-Hälfte des Versprechens bleibt der unbelegte Teil |
+| „Von Experten getestet", „Geld-zurück-Garantie", nur im Hersteller-Shop | Kein unabhängiger Test auffindbar; keine Stiftung-Warentest-Prüfung; alle „Testberichte" verlinken in denselben Shop |
 
 ## Die Physik: warum „kühlen ohne Schlauch" nicht aufgeht
 
@@ -96,4 +92,4 @@ Comfee MPPH-09CRN7 →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

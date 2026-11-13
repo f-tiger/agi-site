@@ -12,17 +12,13 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unte
 
 ## Die fünf Bauformen im Überblick
 
-Typ | Am besten für | Luftstrom | Platzbedarf |
-
-Turmventilator | Schlafzimmer, Wohnzimmer, Optik | mittel, breit gestreut | schlank, wenig Stellfläche |
-
-Standventilator | große Räume, Allrounder | hoch, höhenverstellbar | größer, Bodenständer |
-
-Tischventilator | Schreibtisch, Nachttisch, Küche | gering, punktuell | klein |
-
-Deckenventilator | dauerhafte Raum-Umluft | umwälzend, ganzer Raum | Montage nötig, kein Bodenplatz |
-
-Akku/USB-Ventilator | unterwegs, Balkon, Camping | gering, punktuell | sehr klein, mobil |
+| Typ | Am besten für | Luftstrom | Platzbedarf |
+| --- | --- | --- | --- |
+| Turmventilator | Schlafzimmer, Wohnzimmer, Optik | mittel, breit gestreut | schlank, wenig Stellfläche |
+| Standventilator | große Räume, Allrounder | hoch, höhenverstellbar | größer, Bodenständer |
+| Tischventilator | Schreibtisch, Nachttisch, Küche | gering, punktuell | klein |
+| Deckenventilator | dauerhafte Raum-Umluft | umwälzend, ganzer Raum | Montage nötig, kein Bodenplatz |
+| Akku/USB-Ventilator | unterwegs, Balkon, Camping | gering, punktuell | sehr klein, mobil |
 
 ## Turmventilator: schlank und wohnzimmertauglich
 
@@ -102,4 +98,4 @@ Leise Ventilatoren ansehen →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

@@ -12,15 +12,12 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unte
 
 ## Zuerst: Welcher Gerätetyp passt zu dir?
 
-Typ | Kühlt richtig? | Lautstärke | Preis | Für wen |
-
-Monoblock (tragbar) | Ja | ~55–65 dB | ~250–600 € | Schnelle Lösung, ein Raum, Miete |
-
-Quick-Connect-Split | Ja, am besten | ~35–42 dB | ~800–1.300 € | Jeden Sommer, Schlafzimmer, Balkon vorhanden |
-
-Luftkühler (Verdunstung) | Nein, nur gefühlt | ~45–55 dB | ~60–150 € | Milde Tage, kleines Budget |
-
-Ventilator | Nein | ~40–55 dB | ~30–120 € | Luft bewegen, ergänzend |
+| Typ | Kühlt richtig? | Lautstärke | Preis | Für wen |
+| --- | --- | --- | --- | --- |
+| Monoblock (tragbar) | Ja | ~55–65 dB | ~250–600 € | Schnelle Lösung, ein Raum, Miete |
+| Quick-Connect-Split | Ja, am besten | ~35–42 dB | ~800–1.300 € | Jeden Sommer, Schlafzimmer, Balkon vorhanden |
+| Luftkühler (Verdunstung) | Nein, nur gefühlt | ~45–55 dB | ~60–150 € | Milde Tage, kleines Budget |
+| Ventilator | Nein | ~40–55 dB | ~30–120 € | Luft bewegen, ergänzend |
 
 Ehrlich: Wenn es bei 33 °C+ wirklich kühl werden soll, kommen nur Monoblock oder Split infrage. Luftkühler und Ventilatoren machen Hitze erträglicher, senken die Raumtemperatur aber nicht — Details im [Klimaanlage-vs-Luftkühler-Vergleich](https://getecoback.com/guide/klimaanlage-vs-luftkuehler.html).
 
@@ -81,4 +78,4 @@ Mobile Klimaanlagen ansehen →
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

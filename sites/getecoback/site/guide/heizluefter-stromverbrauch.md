@@ -42,18 +42,12 @@ Wir rechnen hier durchgehend mit **~40 ct/kWh** (frei gewählte Rechenannahme, k
 
 Die Tabelle zeigt die Kosten für die gängigen Heizlüfter-Leistungsstufen — pro Stunde, pro Abend (4 Stunden) und pro Monat (4 Stunden täglich, 30 Tage), jeweils bei 0,40 €/kWh:
 
-Wattzahl |
-Kosten pro Stunde |
-Pro Abend (4 h) |
-Pro Monat (4 h × 30) |
-
-**500 W** | 0,20 € | 0,80 € | 24 € |
-
-**1000 W** | 0,40 € | 1,60 € | 48 € |
-
-**1500 W** | 0,60 € | 2,40 € | 72 € |
-
-**2000 W** | 0,80 € | 3,20 € | 96 € |
+| Wattzahl | Kosten pro Stunde | Pro Abend (4 h) | Pro Monat (4 h × 30) |
+| --- | --- | --- | --- |
+| **500 W** | 0,20 € | 0,80 € | 24 € |
+| **1000 W** | 0,40 € | 1,60 € | 48 € |
+| **1500 W** | 0,60 € | 2,40 € | 72 € |
+| **2000 W** | 0,80 € | 3,20 € | 96 € |
 
 Annahme: 0,40 €/kWh (frei gewählte Rechenannahme). Bei 0,30 €/kWh sinken alle Werte um ein Viertel — z. B. 2000 W auf 0,60 € pro Stunde und 72 € pro Monat. Ein Gerät mit Thermostat läuft zudem nicht durchgehend auf voller Leistung, sobald der Raum warm ist; die Tabelle zeigt den Dauerbetrieb als Obergrenze.
 
@@ -91,17 +85,13 @@ Wer im Herbst nach einem Heizstrahler sucht, fragt meistens eigentlich: **Ist de
 
 **Der Unterschied ist, wohin die Wärme geht.** Der Heizlüfter heizt die Luft. Die warme Luft steigt nach oben und verteilt sich, und warm wird dir erst, wenn der ganze Raum wärmer ist. Ein Heizstrahler strahlt auf das, was vor ihm steht: auf dich, deinen Stuhl, deinen Tisch. Du spürst die Wärme sofort, auch wenn die Raumluft kühl bleibt. Wer an einer Stelle sitzt, kommt deshalb oft mit einer kleinen Stufe aus, und nur daher kommt die Ersparnis.
 
-Gerät / Stufe | Leistung | Kosten pro Stunde (0,40 €/kWh) |
-
-Heizlüfter, volle Stufe | 2.000 W | 0,80 € |
-
-Heizlüfter, halbe Stufe | 1.000 W | 0,40 € |
-
-Heizstrahler, Rechenbeispiel | 1.200 W | 0,48 € |
-
-Heizstrahler, Rechenbeispiel | 800 W | 0,32 € |
-
-Heizstrahler, Rechenbeispiel | 400 W | 0,16 € |
+| Gerät / Stufe | Leistung | Kosten pro Stunde (0,40 €/kWh) |
+| --- | --- | --- |
+| Heizlüfter, volle Stufe | 2.000 W | 0,80 € |
+| Heizlüfter, halbe Stufe | 1.000 W | 0,40 € |
+| Heizstrahler, Rechenbeispiel | 1.200 W | 0,48 € |
+| Heizstrahler, Rechenbeispiel | 800 W | 0,32 € |
+| Heizstrahler, Rechenbeispiel | 400 W | 0,16 € |
 
 Die Strahler-Zeilen sind Rechenbeispiele, keine Marktübersicht: Die Leistung deines Geräts steht auf dem Typenschild. Gerechnet wird wie oben, Watt ÷ 1.000 × Stunden × Strompreis. Mit 0,30 €/kWh sind es jeweils drei Viertel der Beträge.
 
@@ -113,7 +103,7 @@ Die Strahler-Zeilen sind Rechenbeispiele, keine Marktübersicht: Die Leistung de
 
 - **Werkstatt, Garage, zugige Räume:** Strahler. Warme Luft zieht dort ab, Strahlung trifft dich trotzdem. Mehr dazu im [Ratgeber für Garage und Werkstatt](https://getecoback.com/guide/infrarotheizung-garage.html).
 
-- **Einen ganzen Raum den Winter über heizen:** keins von beiden. Dafür sind die Alternativen unten da.
+- **Einen ganzen Raum den Winter über heizen:** keins von beiden. Dafür sind die [Alternativen unten](https://getecoback.com/guide/heizluefter-stromverbrauch.html#alternativen-infrarotheizung-und-waermepumpe) da.
 
 **Was ein Strahler nicht kann.** Er wärmt nur, was er „sieht“: Die abgewandte Seite bleibt kalt, und wenn du aufstehst, ist die Wärme weg. Er heizt auch keine kalten Außenwände. Gegen Kondenswasser und Schimmel hilft ein auf dich gerichteter Strahler deshalb nicht; warum es dort auf die Wandtemperatur ankommt, steht im Ratgeber [Infrarotheizung gegen Schimmel](https://getecoback.com/guide/infrarotheizung-gegen-schimmel.html). Und viele Quarz-, Halogen- und Carbonstrahler glühen sichtbar, was im Schlafzimmer oder vor dem Fernseher stören kann.
 
@@ -168,4 +158,4 @@ Die drei Beispielkosten oben funktionieren ohne JavaScript. Formel: W ÷ 1.000 �
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.

@@ -51,13 +51,11 @@ Vergleiche denselben abgeschlossenen Trocknungsvorgang unter passenden Bedingung
 
 Die Formel ist dieselbe wie bei jedem Gerät: **Watt ÷ 1.000 × Stunden × Strompreis**. Die folgende Tabelle nimmt eine konstante Leistung, **0,30 €/kWh** und sechs Stunden Laufzeit an. Das ist ein Rechenbeispiel, keine gemessene Ladung oder Trocknungszusage:
 
-Gerät | Leistung | pro Stunde | 6 Std. (Beispiel) | 12 × 6 Std. in 4 Wochen |
-
-Kleiner Entfeuchter | 200 W | 6,0 ct | 0,36 € | 4,32 € |
-
-Übliches Kompressorgerät | 300 W | 9,0 ct | 0,54 € | 6,48 € |
-
-Großes Gerät / Wäschemodus | 500 W | 15,0 ct | 0,90 € | 10,80 € |
+| Gerät | Leistung | pro Stunde | 6 Std. (Beispiel) | 12 × 6 Std. in 4 Wochen |
+| --- | --- | --- | --- | --- |
+| Kleiner Entfeuchter | 200 W | 6,0 ct | 0,36 € | 4,32 € |
+| Übliches Kompressorgerät | 300 W | 9,0 ct | 0,54 € | 6,48 € |
+| Großes Gerät / Wäschemodus | 500 W | 15,0 ct | 0,90 € | 10,80 € |
 
 Diese Beträge sind keine Obergrenzen für eine trockene Ladung. Leistung, Laufzeit und Abschaltungen hängen von Gerät, Modus und Bedingungen ab; der tatsächliche Gesamtverbrauch kann niedriger oder höher ausfallen. Miss die kWh bis zum gewünschten Trocknungsgrad und multipliziere sie mit deinem Strompreis. Mit deinen eigenen Zahlen rechnest du es im [Stromkosten-Rechner](https://getecoback.com/guide/stromkosten-rechner.html) nach.
 
@@ -103,10 +101,13 @@ Beachte die Aufstellhinweise des Hygrometers und miss an vergleichbaren Stellen.
 ## Herstellerdaten vor dem Kauf prüfen
 **So vergleichst du die Herstellerdaten**
 Zwei Beispiele aus vorhandenen Ratgebern, kein vollständiger Marktvergleich und kein EcoBack-Produkttest. Verglichen werden Wasserentzug und Betriebsleistung bei derselben Temperatur und relativen Feuchte (RH). Fehlende Angaben bleiben offen; daraus folgt keine Rangfolge.
+
 Herstellerangaben zu Wasserentzug und Leistung; geprüft am 06.11.2026
-Bedingung | Comfee MDDF-20DEN7 | MeacoDry Arete One 20L |
-20 °C / 60 % RH | Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert. | 8.5 L/Tag · 216 W |
-10 °C / 60 % RH | Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert. | 3.4 L/Tag · 180 W |
+
+| Bedingung | Comfee MDDF-20DEN7 | MeacoDry Arete One 20L |
+| --- | --- | --- |
+| 20 °C / 60 % RH | Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert. | 8.5 L/Tag · 216 W |
+| 10 °C / 60 % RH | Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert. | 3.4 L/Tag · 180 W |
 
 Die genannten 20 L/Tag beziehen sich in den Modellunterlagen auf 30 °C / 80 % RH. Das ist keine Zusage für den Keller oder eine Wäscheladung. Für Comfee wurden in den verlinkten Unterlagen keine Werte für die beiden Tabellenbedingungen verifiziert. Anschlusswert oder Nennleistung dürfen diese Datenlücke nicht ersetzen.
 Modellgrenzen: Comfee MDDF-20DEN7 ist hier die Variante ohne WF. MeacoDry Arete One 20L ist weder Arete Two noch One 25L. Die UK-Modellseite bestätigt keine deutsche Händlerausstattung, Stecker, Lieferbarkeit oder Rückgabe. Netzspannung, Typenschild und Anleitung immer mit dem konkreten Angebot abgleichen. Beide Kandidaten ersetzen weder Ursachenklärung noch eine passende Lüftung.
@@ -127,13 +128,15 @@ Hersteller-/Anbieterquellen geprüft: 2026-11-12. Keine Live-Preise oder garanti
 Quelle: [Meaco UK: Arete One 20L, Ablauf und separates Pumpenzubehör](https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-air-purifier) · geprüft am 13.11.2026. Bei ungeklärter Feuchte bleibt Messen und Ursachenklärung der erste Schritt; ein Neukauf ist dann noch nicht begründet.
 
 Kaufgründe und genaue Varianten
-Modell | Prüfen, wenn dir dies wichtig ist | Variante |
-Bosch Dry 4000 | Drei Betriebsmodi statt vieler Einstellungen | D4000-EU · Artikel 7733703558 |
-MeacoDry Arete Two 12L | App-Steuerung und kleinerer Tank | Arete Two 12L · nicht One oder Two 20L |
-Stadler Form Lukas | Schwenkfunktion und Wäschemodus | Lukas weiss L-031E · nicht Lukas little oder Pro |
-Comfee MDDF-20DEN7 | Feuchteregelung mit Timer | MDDF-20DEN7 · ohne WF |
-MeacoDry Arete One 20L | Leistungsdaten unter konkreten Raumbedingungen | Arete One 20L · nicht Two oder One 25L |
-MeacoDry Arete One 25L | Weitere Kapazitätsvariante derselben Baureihe | Arete One 25L · nicht Two 25L |
+
+| Modell | Prüfen, wenn dir dies wichtig ist | Variante |
+| --- | --- | --- |
+| [Bosch Dry 4000](https://getecoback.com/guide/waesche-trocknen-wohnung.html#modell-bosch-d4000-eu) | Drei Betriebsmodi statt vieler Einstellungen | D4000-EU · Artikel 7733703558 |
+| [MeacoDry Arete Two 12L](https://getecoback.com/guide/waesche-trocknen-wohnung.html#modell-meaco-two-12) | App-Steuerung und kleinerer Tank | Arete Two 12L · nicht One oder Two 20L |
+| [Stadler Form Lukas](https://getecoback.com/guide/waesche-trocknen-wohnung.html#modell-stadler-lukas) | Schwenkfunktion und Wäschemodus | Lukas weiss L-031E · nicht Lukas little oder Pro |
+| [Comfee MDDF-20DEN7](https://getecoback.com/guide/waesche-trocknen-wohnung.html#modell-comfee-mddf20) | Feuchteregelung mit Timer | MDDF-20DEN7 · ohne WF |
+| [MeacoDry Arete One 20L](https://getecoback.com/guide/waesche-trocknen-wohnung.html#modell-meaco-one-20) | Leistungsdaten unter konkreten Raumbedingungen | Arete One 20L · nicht Two oder One 25L |
+| [MeacoDry Arete One 25L](https://getecoback.com/guide/waesche-trocknen-wohnung.html#modell-meaco-one-25) | Weitere Kapazitätsvariante derselben Baureihe | Arete One 25L · nicht Two 25L |
 
 ### Bosch Dry 4000
 **Drei Betriebsmodi statt vieler Einstellungen**
@@ -212,4 +215,4 @@ Rechenweg: 52 × Nutzungen/Woche × (manuell − Gerätenutzung − Pflege) ÷ 6
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
-Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
+Hinweis: Redaktionelle Einordnung anhand der verlinkten Quellen, keine eigenen Gerätetests. Die Website finanziert sich über Amazon-Affiliate-Links auf den HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine.
