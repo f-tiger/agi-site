@@ -1,12 +1,13 @@
 {
-  "version": 7,
+  "version": 8,
   "site": "tds",
   "start_date": "2026-10-12",
   "days": 30,
   "timezone": "Asia/Shanghai",
-  "mode": "evidence_gated_backlog_not_daily_publish_quota",
+  "mode": "validation_only_until_existing_review",
   "native_schedule_unchanged": "07:20 UTC / 15:20 Asia/Shanghai",
   "rules": [
+    "The 2026-11-13 investment_gate overrides the old calendar backlog: validation and necessary maintenance only until the original 2026-11-22 review; unavailable evidence does not restart the window.",
     "Repair real failures before the calendar topic.",
     "The two daily iterations share one primary experiment; morning selects or implements, afternoon resumes and verifies. Do not duplicate existing changes, PRs, source requests, posts or registration. No-change is a valid evidence-based outcome.",
     "The native source expansion retains its existing caps and schedule.",
@@ -370,10 +371,10 @@
     }
   ],
   "acquisition_priority": {
-    "updated": "2026-11-07",
+    "updated": "2026-11-13",
     "owner_direction": "Research user pain points; execute toward USD100 monthly total site revenue with proactive marketing and country-specific categories.",
-    "primary": "US named display comparisons; DE local official display/storage decisions; useful UK Jellycat country guidance. Task-first cards and owned entry paths precede catalog expansion.",
-    "status": "country_baseline_live_comparison_upgrade_pending_release",
+    "primary": "Validate the existing Sonny Angel small-shelf task and one repeatable permitted acquisition route; follow investment_gate before any expansion.",
+    "status": "validation_only_subject_to_investment_gate",
     "receipt": "docs/tds-affiliate-benchmarks-2026-11-07.md",
     "preserve": [
       "Existing free tools, organizer/MCP experiment history and published-post windows",
@@ -1165,9 +1166,10 @@
     "next_dependency": "Existing GA4_PROPERTY_ID_TDS and GA4_SERVICE_ACCOUNT_JSON repository secrets plus TDS property Viewer access; no secrets in chat",
     "report": "docs/tds-traffic-1000-2026-11-07.md",
     "latest_native_access_check": {
-      "workflow_run": 42373644556,
+      "workflow_run": 43441065642,
       "status": "missing_credentials",
-      "result": "unknown"
+      "result": "unknown",
+      "checked_on": "2026-11-13"
     }
   },
   "growth_iteration": {
@@ -1200,7 +1202,7 @@
       "1000 daily users",
       "attributable revenue"
     ],
-    "next_action": "Release and verify; restore readonly evidence; select subsequent growth change from matched-date channel/country/task evidence",
+    "next_action": "Apply investment_gate: bounded evidence and necessary maintenance only through the existing 2026-11-22 review; no new feature or catalog expansion.",
     "release": {
       "implementation_pr": "https://github.com/f-tiger/agi-site/pull/278",
       "test_recovery_pr": "https://github.com/f-tiger/agi-site/pull/279",
@@ -1242,5 +1244,68 @@
       "public_visibility": "unverified",
       "reposted": false
     }
+  },
+  "investment_gate": {
+    "updated": "2026-11-13",
+    "reason": "Owner challenges whether TDS warrants continued investment; product delivery has not established a repeatable acquisition and useful-task loop.",
+    "status": "validation_only_no_feature_expansion",
+    "takes_precedence_over": [
+      "days_plan",
+      "acquisition_priority",
+      "growth_iteration.next_action"
+    ],
+    "preserve_original_goals": {
+      "daily_users": 1000,
+      "monthly_total_site_revenue_usd": 100,
+      "both_verified": false
+    },
+    "observation_window": {
+      "first_complete_utc_day": "2026-11-08",
+      "end_inclusive": "2026-11-21",
+      "review_on": "2026-11-22",
+      "reset_or_extend": false
+    },
+    "permitted_work": [
+      "Bounded private reporting within existing cadence",
+      "Necessary service, security and factual accuracy maintenance",
+      "Evaluate an existing authorized distribution or voluntary user-test result",
+      "Prepare a concrete distribution draft within the existing single-task scope"
+    ],
+    "deferred_work": [
+      "New tools or MCP capabilities",
+      "New product categories, markets or locales",
+      "Generic buying guides or template expansion",
+      "Unproven content-volume campaigns",
+      "More development as a response to missing acquisition evidence"
+    ],
+    "validation_focus": {
+      "audience": "Sonny Angel owners with an actual small-shelf display decision",
+      "entry": "/brands/sonny-angel#display-fit",
+      "promise": "Use actual usable-space and full-item dimensions to identify a simple layout and the next fact to verify, including a no-purchase decision",
+      "limitations": [
+        "No wall-free claim for products requiring wall attachment",
+        "No load, stability, safe-installation or exact product-fit certification",
+        "Existing community questions do not prove demand for TDS"
+      ]
+    },
+    "continuation_requires_all": [
+      {
+        "id": "repeatable_acquisition",
+        "evidence": "One actual channel produces attributable non-test arrivals on at least two distinct dated placements or distribution occasions; a prepared draft, directory listing or page publication is insufficient."
+      },
+      {
+        "id": "useful_external_task",
+        "evidence": "Seek five voluntary external collectors; at least three independently complete their own task and at least two explain a concrete useful next decision or one independently documented person returns. Do not infer people or return use from anonymous counters."
+      }
+    ],
+    "commercial_review": "Reconcile actual eligible merchant exits, attribution readiness and mature revenue separately. Passing the two early gates supports only one bounded follow-up decision; it is not USD100/month validation or open-ended expansion.",
+    "review_outcomes": {
+      "both_gates_supported": "Consider one further bounded acquisition or commercial validation action, supported by the evidence and existing authorization.",
+      "either_gate_unsupported_or_unknown": "End the current growth experiment and archive expansion backlog; retain the existing working public site with necessary maintenance.",
+      "inadequate_distribution_or_missing_data": "Record validation inconclusive, not proof of absent market demand; default still ends expansion investment, without another observation-window extension."
+    },
+    "authorization_boundary": "This operating decision does not delete or dehost the site, disable workflows, create a paid service or grant new external posting/messaging authority.",
+    "automation_effect": "Operator policy recorded in the existing plan and site handbook; no runtime schedule or source-collector setting changed. No new unattended decision job is installed.",
+    "evidence_state": "Latest private complete-date review recorded outside the public repository; raw traffic, platform metrics and identities are not published."
   }
 }
