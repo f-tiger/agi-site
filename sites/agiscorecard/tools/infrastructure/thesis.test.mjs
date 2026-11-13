@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {normalizeRule,normalizeRules,evaluateRule,markReviewed} from '../../infrastructure-assets/thesis.mjs';
 import {normalize,emptyNote,stale} from '../../infrastructure-assets/core.mjs';
-import {emitThesis,THESIS_EVENTS,publicThesisLink,thesisAttribution} from '../../infrastructure-assets/thesis-signals.mjs';
+import {emitThesis,emitResource,RESOURCE_EVENTS,THESIS_EVENTS,publicThesisLink,thesisAttribution} from '../../infrastructure-assets/thesis-signals.mjs';
 import {businessEvent} from '../../../../tools/fleet-analytics/business.mjs';
 import {campaignFields} from '../../../../tools/fleet-analytics/campaign.mjs';
 import {cleanThesisEvent,THESIS_SQL,thesisGrowth} from '../analytics-worker/thesis-growth.mjs';
@@ -81,4 +81,16 @@ test('reader export referrals remain a separate hint and preserve source/date ex
  const py=`import sqlite3,json,sys\ndb=sqlite3.connect(':memory:');db.row_factory=sqlite3.Row\ndb.execute('CREATE TABLE events(day,name,path,ua_class,utm_source,utm_medium,utm_campaign)')\nfor name,day,ua,path,source,medium in json.loads(sys.argv[2]):\n db.execute("INSERT INTO events VALUES(date('now',?),?,?,?,?,?,?)",(day,name,path,ua,source,medium,'agi-thesis-watch-01'))\nprint(json.dumps([dict(r) for r in db.execute(sys.argv[1])]))`;
  const p=spawnSync('python3',['-c',py,THESIS_SQL,JSON.stringify(fixtures)],{encoding:'utf8',timeout:15000});assert.equal(p.status,0,p.stderr);const rows=JSON.parse(p.stdout);const sum=source=>rows.filter(r=>r.source===source).reduce((n,r)=>n+r.n,0);assert.equal(sum('reader_share'),2);assert.equal(sum('youtube'),1);assert.equal(sum('unattributed'),1);assert.equal(rows.reduce((n,r)=>n+r.n,0),4);
  const response=await thesisGrowth({EVENTS:{prepare:()=>({all:async()=>({results:rows})})}});assert.equal(response.status,200);assert((await response.json()).rows.some(r=>r.source==='reader_share'));
+});
+
+test('research-resource opens remain separate, fixed and private through client, GA4 and aggregate',async()=>{
+ const sent=[],events=[];const win={location:{href:'https://agiscorecard.com/zh/ai-infrastructure?ticker=PRIVATE&note=PRIVATE'},navigator:{},localStorage:{getItem:()=>null},CustomEvent:class{constructor(type,options){this.detail=options.detail;}},dispatchEvent:e=>events.push(e),fetch:async(u,o)=>sent.push(JSON.parse(o.body))};
+ for(const id of ['sec','stockanalysis','koyfin','fiscal'])emitResource(id,win);
+ assert.equal(sent.length,4);assert.equal(events[0].detail.name,'legacy:invest_tool_click');assert.equal(businessEvent('agiscorecard.com','/zh/ai-infrastructure',events[0].detail).name,'invest_tool_click');assert(!JSON.stringify(sent).includes('PRIVATE'));assert(!sent.some(e=>THESIS_EVENTS.includes(e.n)));
+ for(const name of RESOURCE_EVENTS){assert.equal(businessEvent('agiscorecard.com','/zh/ai-infrastructure',{name}),null);assert.equal(businessEvent('baipiaoji.com','/ai-infrastructure',{name}),null);assert.equal(businessEvent('agiscorecard.com','/invest',{name}),null);assert.equal(businessEvent('agiscorecard.com','/ai-infrastructure',{name,note:'PRIVATE'}),null);assert.ok(THESIS_SQL.includes(name));assert.deepEqual(cleanThesisEvent({n:name,p:'/zh/ai-infrastructure',u:'note=PRIVATE'}),{n:name,p:'/zh/ai-infrastructure',u:''});}
+ for(const id of ['unknown','sec?note=PRIVATE',null])emitResource(id,win);
+ for(const key of ['__ci','__qa','__probe','ci','qa'])emitResource('sec',{...win,location:{href:win.location.href+'&'+key+'=1'}});
+ for(const navigator of [{webdriver:true},{globalPrivacyControl:true},{doNotTrack:'1'}])emitResource('sec',{...win,navigator});
+ emitResource('sec',{...win,localStorage:{getItem:()=> 'denied'}});assert.equal(sent.length,4);
+ const response=await thesisGrowth({EVENTS:{prepare:()=>({all:async()=>({results:[{day:'2026-11-13',name:'thesis_resource_sec',source:'unattributed',n:1}]})})}});const j=await response.json();assert.equal(j.ok,true);assert.equal(j.rows[0].event,'thesis_resource_sec');assert(j.limits.some(x=>x.includes('not affiliate sales')));
 });

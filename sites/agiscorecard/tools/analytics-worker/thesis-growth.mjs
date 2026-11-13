@@ -1,5 +1,6 @@
-import {THESIS_EVENTS,thesisAttribution} from '../../infrastructure-assets/thesis-signals.mjs';
-export {THESIS_EVENTS};
+import {THESIS_EVENTS as TASK_EVENTS,RESOURCE_EVENTS,thesisAttribution} from '../../infrastructure-assets/thesis-signals.mjs';
+// Preserve the existing report and query; resource opens are separate event names.
+export const THESIS_EVENTS=[...TASK_EVENTS,...RESOURCE_EVENTS];
 export function cleanThesisEvent(body) {
   if(!body || !THESIS_EVENTS.includes(body.n) || !['/ai-infrastructure','/zh/ai-infrastructure'].includes(body.p) || Object.keys(body).some(k=>!['n','p','u'].includes(k)))return null;
   const safe=thesisAttribution(typeof body.u==='string'?body.u:'');
@@ -17,6 +18,6 @@ export async function thesisGrowth(env) {
     if(!Array.isArray(result.results))throw Error('unavailable');
     const rows=result.results.map(r=>{if(!/^\d{4}-\d{2}-\d{2}$/.test(r.day)||!['page_view',...THESIS_EVENTS].includes(r.name)||!['youtube','tiktok','reader_share','unattributed'].includes(r.source)||!Number.isSafeInteger(r.n)||r.n<0)throw Error('invalid');return {day:r.day,event:r.name,source:r.source,n:r.n};});
     const end=new Date();end.setUTCHours(0,0,0,0);const start=new Date(end);start.setUTCDate(start.getUTCDate()-28);
-    return new Response(JSON.stringify({ok:true,metric:'browser_action_events_not_users',window:{start:start.toISOString().slice(0,10),end_exclusive:end.toISOString().slice(0,10),complete_utc_days:28},campaign:'agi-thesis-watch-01',rows,limits:['Sample and own actions are separate.','Campaign tags are attribution hints, not verified referrers.','Reader-share tags do not prove an export was shared or that a different person arrived; older exports had no such link.','Recheck is a check after a saved review at least 24 hours earlier; not unique-user retention.','Membership intent and exports are not purchases.'],generated:new Date().toISOString()}),{headers});
+    return new Response(JSON.stringify({ok:true,metric:'browser_action_events_not_users',window:{start:start.toISOString().slice(0,10),end_exclusive:end.toISOString().slice(0,10),complete_utc_days:28},campaign:'agi-thesis-watch-01',rows,limits:['Sample and own actions are separate.','Campaign tags are attribution hints, not verified referrers.','Reader-share tags do not prove an export was shared or that a different person arrived; older exports had no such link.','Recheck is a check after a saved review at least 24 hours earlier; not unique-user retention.','Membership intent and exports are not purchases.','thesis_resource_* counts ordinary official-site link opens, not affiliate sales or independent users.'],generated:new Date().toISOString()}),{headers});
   }catch{return new Response(JSON.stringify({ok:false,error:'unavailable'}),{status:503,headers:{...headers,'cache-control':'no-store'}});}
 }

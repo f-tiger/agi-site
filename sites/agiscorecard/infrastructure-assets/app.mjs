@@ -1,3 +1,4 @@
+import {emitResource} from './thesis-signals.mjs';
 import {PRODUCT,METRICS,TICKERS,usable,baseline,changes,stale,normalize,emptyNote,validateReview} from './core.mjs';
 import {createThesis} from './thesis-ui.mjs';
 const zh=document.body.dataset.language==='zh',t=(en,cn)=>zh?cn:en,$=id=>document.getElementById(id);
@@ -101,3 +102,5 @@ async function start(){
 }
 start();
 memberAvailability();
+
+for(const link of document.querySelectorAll('[data-research-resource]'))link.addEventListener('click',()=>emitResource(link.dataset.researchResource));

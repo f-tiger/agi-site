@@ -26,6 +26,12 @@ The owner requested comprehensive continued use of the installed startup/marketi
 
 Referrer/page-view events cannot qualify a membership buyer or prove AI citations. The queue now calls for product-matched demand and attribution review, and expires volatile member status after four hours rather than accepting any same-day timestamp. The AGI thesis export leads to the correct public company and language through existing registered referral labels; private conditions and notes stay out of the link and telemetry. Existing pilot windows, the 2026-11-15 vendor deadline, prices, entitlements and free local work remain. Current raw reports and platform receipts stay private; promotion, useful tasks, actual receipts, commission and profit remain separate.
 
+### AGI commercial benchmarks and task-matched referrals — owner steering 2026-11-13
+
+The owner asked for deep comparable-site research and implementation. Read `docs/agi-commercial-benchmarks-2026-11-13.md`: six commercial comparables plus the free SEC alternative. The existing bilingual infrastructure page adds a collapsed task-based comparison after free local saving, before existing cloud membership. Four official links are ordinary non-commission links; published affiliate programs do not establish AGI approval, attribution or payment eligibility. No broker recommendation, paid SKU, new financial feed or model quota is added.
+
+Use the existing complete-UTC-day thesis report for fixed `thesis_resource_*` official-link action counts, separate from sample/own completions, membership intent and merchant-confirmed revenue. Keep the original 28-check window and marketing limits. Do not infer paid demand from vendor pricing or raw clicks. Next commercial connection requires verified affiliate eligibility, an owner-controlled link, payout/attribution/refund terms and clear disclosure; no personal-data application or merchant outreach was submitted by this change.
+
 ### AGI investment thesis checks — owner steering 2026-11-12
 
 The owner continued AGI after BPJ, retaining the differentiated investment-tool objective. Extend the existing bilingual AI infrastructure workspace with explicit annual financial review conditions, source-linked arithmetic and saved review checkpoints. Free local use remains; the existing optional membership stores records across devices. This is a commercial hypothesis, not a proven subscription business or a personal alert service. Annual facts are company-wide, and daily source checks do not produce new daily earnings data.

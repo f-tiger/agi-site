@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 const origin='https://agiscorecard.com';
 for(const [path,needle]of [['/ai-infrastructure','infrastructure-assets/app.mjs'],['/zh/ai-infrastructure','AI 产业链'],['/invest','/ai-infrastructure'],['/zh/invest','/zh/ai-infrastructure']]){
- const r=await fetch(origin+path+'?__qa=1',{signal:AbortSignal.timeout(20000)});assert.equal(r.status,200,path);assert.ok((await r.text()).includes(needle),path);console.log('OK '+path);
+ const r=await fetch(origin+path+'?__qa=1',{signal:AbortSignal.timeout(20000)});assert.equal(r.status,200,path);const html=await r.text();assert.ok(html.includes(needle),path);if(path.endsWith('/ai-infrastructure')){assert.ok(html.includes('id="research-options"'));assert.ok(html.includes('data-research-resource="stockanalysis"'));}console.log('OK '+path);
 }
 for(const asset of ['app.mjs','core.mjs','thesis.mjs','thesis-ui.mjs','thesis-signals.mjs','style.css']){
  const r=await fetch(origin+'/infrastructure-assets/'+asset+'?__qa=1',{signal:AbortSignal.timeout(20000)});assert.equal(r.status,200,asset);assert.equal(await r.text(),await readFile(new URL('../../infrastructure-assets/'+asset,import.meta.url),'utf8'),'Deployed '+asset);

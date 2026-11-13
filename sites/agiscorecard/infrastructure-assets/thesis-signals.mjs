@@ -14,14 +14,23 @@ export function publicThesisLink(ticker,lang='en') {
   const url=new URL('https://agiscorecard.com'+(lang==='zh'?'/zh':'')+'/ai-infrastructure');
   url.searchParams.set('ticker',ticker);url.searchParams.set('utm_source','reader_share');url.searchParams.set('utm_medium','referral');url.searchParams.set('utm_campaign','agi-thesis-watch-01');url.hash='thesis-watch';return url.href;
 }
+export const RESOURCE_IDS=['sec','stockanalysis','koyfin','fiscal'];
+export const RESOURCE_EVENTS=RESOURCE_IDS.map(id=>'thesis_resource_'+id);
+export function emitResource(id,win=window){if(RESOURCE_IDS.includes(id))emitFixed('thesis_resource_'+id,win);}
 export function emitThesis(action,mode,win=window) {
   const name='thesis_'+action+'_'+mode;if(!THESIS_EVENTS.includes(name))return;
+  emitFixed(name,win);
+}
+function emitFixed(name,win) {
   const url=new URL(win.location.href),nav=win.navigator;
   if(nav.webdriver||nav.doNotTrack==='1'||nav.globalPrivacyControl||['__ci','__qa','__probe','ci','qa'].some(k=>url.searchParams.has(k)))return;
   try{if(win.localStorage.getItem('fleet_ga4_choice_v1')==='denied')return;}catch{return;}
   const path=url.pathname.replace(/\.html$/,'');if(!['/ai-infrastructure','/zh/ai-infrastructure'].includes(path))return;
   const query=thesisAttribution(url.searchParams);
   // Never send selections, thresholds, source facts, filenames or research notes.
-  win.dispatchEvent(new win.CustomEvent('fleet:business',{detail:{name}}));
+  // Resource destinations stay in first-party fixed counters; reuse the existing
+  // GA4 investment-tool action without changing other sites' shared policy.
+  const gaName=RESOURCE_EVENTS.includes(name)?'legacy:invest_tool_click':name;
+  win.dispatchEvent(new win.CustomEvent('fleet:business',{detail:{name:gaName}}));
   win.fetch('/api/e',{method:'POST',keepalive:true,headers:{'Content-Type':'application/json'},body:JSON.stringify({n:name,p:path,u:query.toString()})}).catch(()=>{});
 }
