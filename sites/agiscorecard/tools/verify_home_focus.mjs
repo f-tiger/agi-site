@@ -9,6 +9,8 @@ for(let attempt=1;attempt<=4;attempt++){
       if(route==='/'||route==='/cn'){
         assert.ok(body.includes('agi-home-library-20261003'),route+' content-led homepage');
         assert.ok(body.includes('data-home-video='),route+' watchable perspective');
+        const expectedFeature=home.locales[route==='/cn'?'zh':'en'].feature.match(/data-home-feature="([^"]+)"/)[1];
+        assert.ok(body.includes('data-home-feature="'+expectedFeature+'"'),route+' prominent video matches the latest source snapshot');
         assert.equal((body.match(/class="home-latest-card"/g)||[]).length,4);
         assert.ok(body.includes('data-home-edition="'+home.editionDay+'"'),route+' static daily edition');
         assert.ok(body.includes('data-home-picks-day="'+home.editionDay+'"'),route+' daily cards');

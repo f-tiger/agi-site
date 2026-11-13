@@ -17,6 +17,8 @@ export function selectUrls({current,previous,changed,html}){
   const active=new Set(current),old=new Set(previous),selected=new Set(current.filter(u=>!old.has(u)));
   for(const file of changed){if(!file.startsWith(SITE)||!file.endsWith('.html'))continue;const text=html(file);if(!text)continue;const url=canonical(text);if(url&&active.has(url))selected.add(url);}
   if(changed.includes(SITE+'data.json'))for(const p of ['/','/cn','/progress-index','/zh/progress-index','/for-agents'])if(active.has(ORIGIN+p))selected.add(ORIGIN+p);
+  // Homepage HTML is generated at deploy time; its source updates still count.
+  if(changed.some(f=>[SITE+'home-focus/rotation.mjs',SITE+'home-focus/media.mjs',SITE+'foresight-assets/home.mjs',SITE+'foresight-assets/discovery.json'].includes(f)))for(const p of ['/','/cn'])if(active.has(ORIGIN+p))selected.add(ORIGIN+p);
   return {updated:[...selected].sort(),removed:previous.filter(u=>!active.has(u)).sort()};
 }
 export function checkPage(url,response,html){
