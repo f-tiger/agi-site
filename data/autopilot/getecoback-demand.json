@@ -36,7 +36,7 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.9,
+   "match": 0.917,
    "page": "guide/akku-heizluefter.html",
    "q": "heizlüfter 500 watt",
    "seed": "heizlüfter",
@@ -69,8 +69,8 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.9,
-   "page": "kategorie/heizen.html",
+   "match": 0.875,
+   "page": "guide/infrarotheizung-standgeraet.html",
    "q": "infrarotheizung schreibtisch",
    "seed": "infrarotheizung",
    "source": "related-queries",
@@ -80,7 +80,7 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.625,
+   "match": 0.675,
    "page": "guide/epicooler-erfahrungen.html",
    "q": "test heizlüfter stiftung warentest",
    "seed": "heizlüfter",
@@ -92,7 +92,7 @@
    "heat": null,
    "kind": "value",
    "match": 0.875,
-   "page": "guide/heizung-15-qm.html",
+   "page": "guide/heizkosten-vergleich-rechner.html",
    "q": "infrarot heizung",
    "seed": "heizlüfter",
    "source": "related-queries",
@@ -103,7 +103,7 @@
    "heat": null,
    "kind": "value",
    "match": 0.875,
-   "page": "guide/heizung-tauschen-oder-warten-gmodg.html",
+   "page": "guide/heizung-15-qm.html",
    "q": "elektrische heizung",
    "seed": "infrarotheizung",
    "source": "related-queries",
@@ -124,7 +124,7 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.775,
+   "match": 0.8,
    "page": "guide/stromkosten-rechner.html",
    "q": "infrarotheizung werkstatt",
    "seed": "infrarotheizung",
@@ -168,7 +168,7 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.875,
+   "match": 0.887,
    "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
    "q": "luftentfeuchter keller ohne strom",
    "seed": "luftentfeuchter",
@@ -179,8 +179,8 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.65,
-   "page": "guide/luftentfeuchter-10-qm.html",
+   "match": 0.675,
+   "page": "guide/luftentfeuchter-30-qm.html",
    "q": "comfee mddf-16den7 wf luftentfeuchter",
    "seed": "luftentfeuchter",
    "source": "related-queries",
@@ -212,7 +212,7 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.775,
+   "match": 0.8,
    "page": "guide/schimmel-kleiderschrank.html",
    "q": "luftentfeuchter nachfüllpack",
    "seed": "luftentfeuchter",
@@ -223,7 +223,7 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.95,
+   "match": 0.975,
    "page": "guide/pro-breeze-luftentfeuchter-test.html",
    "q": "mini luftentfeuchter",
    "seed": "luftentfeuchter",
@@ -288,8 +288,8 @@
   },
   {
    "kind": "value",
-   "match": 0.0,
-   "page": null,
+   "match": 0.15,
+   "page": "en/guide/best-portable-air-conditioner-italy.html",
    "q": "philips series 5500 kaffeevollautomat ep5547/90",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
@@ -318,8 +318,8 @@
   },
   {
    "kind": "value",
-   "match": 0.0,
-   "page": null,
+   "match": 0.15,
+   "page": "en/guide/best-portable-air-conditioner-italy.html",
    "q": "philips ep2230/10 series 2200 kaffeevollautomat",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
@@ -338,56 +338,6 @@
   },
   {
    "kind": "value",
-   "match": 0.333,
-   "page": "guide/akku-heizluefter.html",
-   "q": "dripl akku staubsauger",
-   "seed": "akku staubsauger",
-   "source": "related-queries",
-   "stand": "2026-11-11",
-   "v": 600
-  },
-  {
-   "kind": "value",
-   "match": 0.258,
-   "page": "kategorie/heizen.html",
-   "q": "levoit akku staubsauger lvac 200 max",
-   "seed": "akku staubsauger",
-   "source": "related-queries",
-   "stand": "2026-11-11",
-   "v": 250
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "guide/akku-heizluefter.html",
-   "q": "akku staubsauger mit licht",
-   "seed": "akku staubsauger",
-   "source": "related-queries",
-   "stand": "2026-11-11",
-   "v": 180
-  },
-  {
-   "kind": "value",
-   "match": 0.333,
-   "page": "guide/akku-heizluefter.html",
-   "q": "bissell staubsauger akku",
-   "seed": "akku staubsauger",
-   "source": "related-queries",
-   "stand": "2026-11-11",
-   "v": 150
-  },
-  {
-   "kind": "value",
-   "match": 0.333,
-   "page": "guide/akku-heizluefter.html",
-   "q": "grundig akku staubsauger",
-   "seed": "akku staubsauger",
-   "source": "related-queries",
-   "stand": "2026-11-11",
-   "v": 140
-  },
-  {
-   "kind": "value",
    "match": 0.5,
    "page": "guide/delonghi-pac-n90-test.html",
    "q": "de'longhi kaffeevollautomat",
@@ -395,16 +345,6 @@
    "source": "related-queries",
    "stand": "2026-11-11",
    "v": 130
-  },
-  {
-   "kind": "value",
-   "match": 0.375,
-   "page": "guide/heizluefter-schaltet-sich-aus.html",
-   "q": "shark staubsauger",
-   "seed": "akku staubsauger",
-   "source": "related-queries",
-   "stand": "2026-11-11",
-   "v": 70
   },
   {
    "kind": "value",
@@ -417,18 +357,33 @@
    "v": 50
   }
  ],
- "generated": "2026-11-12",
+ "generated": "2026-11-13",
  "geo": "DE",
- "heat_source": "measured 2026-11-12 (15 pages); no notes",
+ "heat_source": "measured 2026-11-13 (15 pages); no notes",
  "hot_pages": [
   {
-   "n7": 8,
-   "p7": 6,
+   "n7": 11,
+   "p7": 0,
+   "page": "/guide/luftbefeuchter-ratgeber.html"
+  },
+  {
+   "n7": 9,
+   "p7": 0,
+   "page": "/guide/saugroboter-kaufberatung.html"
+  },
+  {
+   "n7": 7,
+   "p7": 8,
    "page": "/"
   },
   {
-   "n7": 5,
+   "n7": 7,
    "p7": 0,
+   "page": "/en/agents/compliance.html"
+  },
+  {
+   "n7": 5,
+   "p7": 1,
    "page": "/guide/fensterabdichtung-selber-bauen.html"
   },
   {
@@ -438,33 +393,23 @@
   },
   {
    "n7": 5,
-   "p7": 3,
+   "p7": 1,
    "page": "/guide/luftentfeuchter-ratgeber.html"
   },
   {
-   "n7": 4,
-   "p7": 0,
+   "n7": 3,
+   "p7": 1,
    "page": "/guide/midea-portasplit-ausverkauft-alternativen.html"
   },
   {
-   "n7": 4,
-   "p7": 2,
-   "page": "/guide/was-bedeutet-btu.html"
-  },
-  {
    "n7": 3,
-   "p7": 0,
-   "page": "/guide/klimaanlage-50-qm.html"
+   "p7": 3,
+   "page": "/guide/was-bedeutet-btu.html"
   },
   {
    "n7": 3,
    "p7": 1,
    "page": "/waeschetrockner-oder-luftentfeuchter.html"
-  },
-  {
-   "n7": 2,
-   "p7": 0,
-   "page": "/guide/balkon-terrasse-beschatten.html"
   },
   {
    "n7": 2,
@@ -483,13 +428,8 @@
   },
   {
    "n7": 2,
-   "p7": 2,
-   "page": "/guide/klimaanlage-wohnmobil.html"
-  },
-  {
-   "n7": 2,
    "p7": 0,
-   "page": "/guide/meacodry-arete-one-test.html"
+   "page": "/guide/strompreis-radar.html"
   },
   {
    "n7": 2,
@@ -504,10 +444,6 @@
   "avreno",
   "meacodry arete two 25l",
   "meacodry arete two 12l",
-  "dreame v20 pro",
-  "dreame r20",
-  "shark powerdetect clean & empty",
-  "sky scanner",
   "philips lattego"
  ],
  "site": "getecoback",

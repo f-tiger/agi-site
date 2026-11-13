@@ -1,38 +1,35 @@
-# Fleet evolution report — 2026-11-12
+# Fleet evolution report — 2026-11-13
 
 Deterministic, aggregate-only report. Missing data remains unknown; no editorial text, payments or membership rights are changed by this job.
 
 ## Fleet counters
 
 - Sites: 14 (healthy probes: 31)
-- Membership ready: 0 · paid members: 0 · active members: 0
+- Membership ready: 4 · paid members: 0 · active members: 0
 - Opportunity candidates: 8 · stale inputs: 0
 
 ## Priority actions
 
 | Priority | Site | Action | Mode | Evidence |
 |---:|---|---|---|---|
-| 92 | agiscorecard | membership_health | alert | public_ok=True; ready=False |
-| 92 | baipiaoji | membership_health | alert | public_ok=True; ready=False |
-| 92 | getecoback | membership_health | alert | public_ok=True; ready=False |
-| 92 | thedollscout | membership_health | alert | public_ok=True; ready=False |
+| 64 | baipiaoji | membership_conversion | queue | referred_humans_28d=588; paid_members=0 |
 | 55 | agiscorecard | content_gap | queue | count=1; query=ai stocks crashing; value=1 |
-| 55 | getecoback | content_gap | queue | count=18; query=diesel infrarotheizung; value=74650 |
-| 55 | thedollscout | content_gap | queue | count=13; query=labubu cat mode; value=73950 |
-| 52 | agiscorecard | improve_hot_page | queue | page=/search; n7=436; p7=207 |
-| 52 | getecoback | improve_hot_page | queue | page=/; n7=8; p7=6 |
-| 48 | goldrush | ai_discovery | queue | human_pv_28d=649; ai_ref_28d=0 |
-| 48 | thedollscout | ai_discovery | queue | human_pv_28d=808; ai_ref_28d=0 |
+| 55 | getecoback | content_gap | queue | count=12; query=diesel infrarotheizung; value=74650 |
+| 55 | thedollscout | content_gap | queue | count=15; query=labubu cat mode; value=73950 |
+| 52 | agiscorecard | improve_hot_page | queue | page=/search; n7=515; p7=256 |
+| 52 | getecoback | improve_hot_page | queue | page=/guide/luftbefeuchter-ratgeber.html; n7=11; p7=0 |
+| 48 | goldrush | ai_discovery | queue | human_pv_28d=637; ai_ref_28d=0 |
+| 48 | thedollscout | ai_discovery | queue | human_pv_28d=972; ai_ref_28d=0 |
 
 ## Input freshness
 
 | Input | Date | Age (days) |
 |---|---|---:|
-| membership | 2026-11-12T10:13:55.511Z | 0 |
-| health | 2026-11-11T15:44:02Z | 1 |
-| ai_referrals | 2026-11-11T15:44:29Z | 1 |
-| opportunities | 2026-11-11 | 1 |
-| autopilot_receipt | 2026-11-12 | 0 |
+| membership | 2026-11-13T09:56:23.808Z | 0 |
+| health | 2026-11-12T16:28:16Z | 1 |
+| ai_referrals | 2026-11-12T16:28:43Z | 1 |
+| opportunities | 2026-11-12 | 1 |
+| autopilot_receipt | 2026-11-13 | 0 |
 
 ## Autonomous boundary
 

@@ -2,13 +2,21 @@
  "extra": {
   "days": 28,
   "picks": {
-   "spin-scrubber": {
+   "led-mask": {
     "open": 1,
+    "out": 0
+   },
+   "mamian-skirt": {
+    "open": 1,
+    "out": 0
+   },
+   "spin-scrubber": {
+    "open": 3,
     "out": 0
    }
   }
  },
- "fetched": "2026-11-12",
+ "fetched": "2026-11-13",
  "kind": "sr-pop",
  "notes": [],
  "ok": true,

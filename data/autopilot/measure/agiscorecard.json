@@ -3,32 +3,36 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 25,
+    "n": 26,
     "q": "tool:portfolio_returns"
    },
    {
-    "n": 11,
+    "n": 10,
     "q": "tool:verdicts"
    },
    {
-    "n": 11,
+    "n": 10,
     "q": "tool:thesis_tracker"
    },
    {
-    "n": 9,
+    "n": 8,
     "q": "tool:sunwatch_ledger"
    },
    {
-    "n": 9,
+    "n": 8,
     "q": "tool:invest_positions"
    },
    {
-    "n": 5,
+    "n": 4,
     "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
    },
    {
-    "n": 2,
+    "n": 3,
     "q": "tool:claim_ledger https://goldrush.agiscorecard."
+   },
+   {
+    "n": 3,
+    "q": "python"
    },
    {
     "n": 2,
@@ -36,38 +40,34 @@
    },
    {
     "n": 2,
-    "q": "python"
-   },
-   {
-    "n": 2,
     "q": "[object object]"
    }
   ]
  },
- "fetched": "2026-11-12",
+ "fetched": "2026-11-13",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
-  "/ai-infrastructure": {
-   "n7": 145,
-   "p7": 63
-  },
   "/earn": {
-   "n7": 161,
-   "p7": 80
+   "n7": 196,
+   "p7": 89
   },
-  "/portfolio-tracker": {
-   "n7": 133,
-   "p7": 61
+  "/invest": {
+   "n7": 204,
+   "p7": 101
+  },
+  "/mentor": {
+   "n7": 188,
+   "p7": 91
   },
   "/search": {
-   "n7": 436,
-   "p7": 207
+   "n7": 515,
+   "p7": 256
   },
-  "/tianya": {
-   "n7": 134,
-   "p7": 55
+  "/workbench": {
+   "n7": 188,
+   "p7": 86
   }
  },
  "site": "agiscorecard",

@@ -1,22 +1,22 @@
 {
   "schema_version": 1,
-  "as_of": "2026-11-12",
+  "as_of": "2026-11-13",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
     "healthy": 31,
-    "membership_ready": 0,
+    "membership_ready": 4,
     "paid_members": 0,
     "active_members": 0,
     "opportunities": 8,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-11-12T10:13:55.511Z",
-    "health": "2026-11-11T15:44:02Z",
-    "ai_referrals": "2026-11-11T15:44:29Z",
-    "opportunities": "2026-11-11",
-    "autopilot_receipt": "2026-11-12"
+    "membership": "2026-11-13T09:56:23.808Z",
+    "health": "2026-11-12T16:28:16Z",
+    "ai_referrals": "2026-11-12T16:28:43Z",
+    "opportunities": "2026-11-12",
+    "autopilot_receipt": "2026-11-13"
   },
   "input_ages_days": {
     "membership": 0,
@@ -28,10 +28,10 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-11-12T10:13:55.511Z",
+    "generated": "2026-11-13T09:56:23.808Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
-    "ok": false,
+    "ok": true,
     "counters_complete": true,
     "sites": [
       {
@@ -39,7 +39,7 @@
         "origin": "https://baipiaoji.com",
         "public": {
           "ok": true,
-          "ready": false,
+          "ready": true,
           "site": "bpj",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -60,7 +60,7 @@
         "origin": "https://agiscorecard.com",
         "public": {
           "ok": true,
-          "ready": false,
+          "ready": true,
           "site": "agi",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -81,7 +81,7 @@
         "origin": "https://getecoback.com",
         "public": {
           "ok": true,
-          "ready": false,
+          "ready": true,
           "site": "eco",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -102,7 +102,7 @@
         "origin": "https://thedollscout.com",
         "public": {
           "ok": true,
-          "ready": false,
+          "ready": true,
           "site": "tds",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -149,7 +149,7 @@
       "theme": "why does reddit want me to use the ios app on my desktop",
       "site": null,
       "state": "scout",
-      "score": 2.25,
+      "score": 2.43,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -185,13 +185,13 @@
       "theme": "does any software provide a graphical interface to sign text with an ssh key",
       "site": null,
       "state": "scout",
-      "score": 2.0,
+      "score": 2.02,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
     },
     {
-      "theme": "looking for not yet released kickstarter campaign for 3d model manipulation",
+      "theme": "looking for specfic 3d model manipulation software with not yet released kicksta",
       "site": null,
       "state": "scout",
       "score": 2.0,
@@ -317,48 +317,15 @@
   ],
   "actions": [
     {
-      "site": "agiscorecard",
-      "kind": "membership_health",
-      "priority": 92,
-      "reason": "membership API is not ready",
-      "evidence": {
-        "public_ok": true,
-        "ready": false
-      },
-      "mode": "alert"
-    },
-    {
       "site": "baipiaoji",
-      "kind": "membership_health",
-      "priority": 92,
-      "reason": "membership API is not ready",
+      "kind": "membership_conversion",
+      "priority": 64,
+      "reason": "ready membership has qualified referred traffic but no paid members",
       "evidence": {
-        "public_ok": true,
-        "ready": false
+        "referred_humans_28d": 588,
+        "paid_members": 0
       },
-      "mode": "alert"
-    },
-    {
-      "site": "getecoback",
-      "kind": "membership_health",
-      "priority": 92,
-      "reason": "membership API is not ready",
-      "evidence": {
-        "public_ok": true,
-        "ready": false
-      },
-      "mode": "alert"
-    },
-    {
-      "site": "thedollscout",
-      "kind": "membership_health",
-      "priority": 92,
-      "reason": "membership API is not ready",
-      "evidence": {
-        "public_ok": true,
-        "ready": false
-      },
-      "mode": "alert"
+      "mode": "queue"
     },
     {
       "site": "agiscorecard",
@@ -378,7 +345,7 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 18,
+        "count": 12,
         "query": "diesel infrarotheizung",
         "value": 74650
       },
@@ -390,7 +357,7 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 13,
+        "count": 15,
         "query": "labubu cat mode",
         "value": 73950
       },
@@ -403,8 +370,8 @@
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/search",
-        "n7": 436,
-        "p7": 207
+        "n7": 515,
+        "p7": 256
       },
       "mode": "queue"
     },
@@ -414,9 +381,9 @@
       "priority": 52,
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
-        "page": "/",
-        "n7": 8,
-        "p7": 6
+        "page": "/guide/luftbefeuchter-ratgeber.html",
+        "n7": 11,
+        "p7": 0
       },
       "mode": "queue"
     },
@@ -426,7 +393,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 649,
+        "human_pv_28d": 637,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -437,7 +404,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 808,
+        "human_pv_28d": 972,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -446,7 +413,7 @@
   "site_manifests": {
     "agiscorecard": {
       "path": "sites/agiscorecard/data/fleet-evolution.json",
-      "action_count": 3
+      "action_count": 2
     },
     "baipiaoji": {
       "path": "sites/baipiaoji/data/fleet-evolution.json",
@@ -454,11 +421,11 @@
     },
     "getecoback": {
       "path": "sites/getecoback/data/fleet-evolution.json",
-      "action_count": 3
+      "action_count": 2
     },
     "thedollscout": {
       "path": "sites/thedollscout/data/fleet-evolution.json",
-      "action_count": 3
+      "action_count": 2
     },
     "buysomething": {
       "path": "sites/buysomething/data/fleet-evolution.json",
