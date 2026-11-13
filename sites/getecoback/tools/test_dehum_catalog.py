@@ -18,6 +18,14 @@ class CatalogTest(unittest.TestCase):
             self.assertEqual(source.count('data-catalog-evidence'),1,slug)
             self.assertEqual(source.count('class="dc-card"'),6,slug)
             self.assertLess(source.index('<!--/EB_BUYER-->'),source.index('<!--EB_MODELS-->'))
+            # Read the actual final file, not a repaired renderer output.
+            self.assertEqual(source.count('id="ablauf-vor-kauf"'),1,slug)
+            self.assertLess(source.index('id="ablauf-vor-kauf"'),source.index('<div class="dc-table"'))
+            self.assertIn('Ein Schlauchanschluss allein bestätigt keine Pumpe.',source)
+            mirror=(C.DATA.parent.parent/'site/guide'/f'{slug}.md').read_text()
+            self.assertIn('Ein Schlauchanschluss allein bestätigt keine Pumpe.',mirror,slug)
+            self.assertIn('weder den deutschen Lieferumfang noch die Eignung der Arete Two 12L',mirror,slug)
+            self.assertIn('geprüft am 13.11.2026',mirror,slug)
             def rebuild(html):
                 return C.inject(inject_buyer(inject_models(html,slug),slug),slug)
             first=rebuild(source)
@@ -75,6 +83,20 @@ class CatalogTest(unittest.TestCase):
         self.assertNotIn('getecoback-21',md)
         self.assertNotIn('data-catalog-commerce',md)
         self.assertEqual(C.evidence_html('<article>Other article</article>'),'')
+
+    def test_drain_answer_preserves_evidence_and_uncertainty_in_mirror(self):
+        source=C.block('luftentfeuchter-ratgeber',dt.date(2026,11,13))
+        md=to_markdown('<title>Ablauf prüfen</title><article>'+source+'</article>','/guide/luftentfeuchter-ratgeber.html','de')
+        for phrase in ['Ein Schlauchanschluss allein bestätigt keine Pumpe.',
+                       'ist die Eignung für deinen Ablauf ungeklärt',
+                       'keinen mitgelieferten Schlauch',
+                       'weder den deutschen Lieferumfang noch die Eignung der Arete Two 12L',
+                       'geprüft am 13.11.2026',
+                       'ein Neukauf ist dann noch nicht begründet']:
+            for surface in [source,md]:self.assertIn(phrase,surface)
+        self.assertIn('https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-air-purifier',md)
+        self.assertNotIn('amazon.de',md)
+        self.assertNotIn('getecoback-21',md)
 
     def test_unknown_conditions_do_not_become_efficiency_rankings(self):
         d=C.load();bos=d['products'][0];two=d['products'][1];luk=d['products'][2]
