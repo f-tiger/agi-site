@@ -382,7 +382,7 @@ def main():
         for fn in sorted(os.listdir(d)):
             if not fn.endswith(".html"):
                 continue
-            if not sub and fn not in ('waeschetrockner-oder-luftentfeuchter.html', 'for-agents.html'):
+            if not sub and fn not in ('waeschetrockner-oder-luftentfeuchter.html', 'for-agents.html', 'produkte.html'):
                 continue
             if sub == 'en' and fn != 'filter-finder.html':
                 continue

@@ -123,6 +123,9 @@ def discover():
             url = "/" + os.path.relpath(path, SITE).replace(os.sep, "/")
             if url.endswith("/index.html") or url == "/index.html" or url == "/tools.html" or url == "/404.html":
                 continue
+            # A product directory has category tools but is not one calculator.
+            if url == '/produkte.html':
+                continue
             if url.startswith(SKIP_PREFIX):
                 continue
             with open(path, encoding="utf-8") as f:

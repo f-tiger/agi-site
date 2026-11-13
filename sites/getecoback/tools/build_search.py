@@ -40,7 +40,11 @@ def collect():
    import re
    match=re.search(r'<script id="home-fit-config" type="application/json">(.*?)</script>',text,re.S)
    fit=json.loads(match[1])['text'];desc=' · '.join(fit[k] for k in ['robot','laundry','ac','floor'])+'. '+desc
-  out.append({'u':route,'t':' '.join(h.title.split()),'d':desc[:320],'l':lang,'a':aliases.get((lang,route),'')})
+  extra=aliases.get((lang,route),'')
+  if route=='/produkte.html':
+   catalog=json.loads((ROOT/'data/product-catalog.json').read_text())
+   extra=' '.join([extra]+[c['name'] for c in catalog['categories']]+[p['name']+' '+p['variant'] for p in catalog['products']])
+  out.append({'u':route,'t':' '.join(h.title.split()),'d':desc[:320],'l':lang,'a':extra})
  return out
 
 def main():

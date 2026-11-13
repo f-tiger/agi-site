@@ -106,6 +106,7 @@ FOOTER = ("<!--EB_FOOTER--><footer class=\"eb-footer\"><div class=\"eb-footer-in
           "<a href=\"/kategorie/klimaanlagen.html\">Klimaanlagen &amp; Kühlen</a>"
           "<a href=\"/kategorie/energie-sparen.html\">Energie sparen</a></div>"
           "<div><strong>EcoBack</strong>"
+          "<a href=\"/produkte.html\">Produkte nach Kategorie</a>"
           "<a href=\"/tools.html\">🧮 Alle Rechner &amp; Checks</a>"
           "<a href=\"/widgets.html\">🧩 Widgets für deine Website</a>"
           "<a href=\"/daten.html\">📊 Offene Daten (CC BY 4.0)</a>"
@@ -4637,7 +4638,8 @@ def main():
         new = inject_chrome(new)
         new = inject_search(new)
         new = inject_track(new)
-        new = inject_profile(new)
+        if os.path.basename(path) != 'produkte.html':
+            new = inject_profile(new)
         new = inject_share(new)
         if os.path.basename(path) == "index.html" and os.path.dirname(path) == SITE:
             new = inject_heatnow(new)

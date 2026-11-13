@@ -16,7 +16,7 @@ for name in sorted(paths):
  p=SITE/name;t=p.read_text();t=re.sub(r'\n*<!--EB_TOOL_EXPERIENCE-->.*?<!--/EB_TOOL_EXPERIENCE-->\s*','\n',t,flags=re.S)
  # This exact-model directory has no numerical scenario or calculation inputs.
  # Keep its selection first; generic calculator sharing makes false assumptions.
- if name=='en/filter-finder.html':
+ if name in ('en/filter-finder.html', 'produkte.html'):
   p.write_text(t)
   continue
  if 'noindex' in t[:4000]:continue
