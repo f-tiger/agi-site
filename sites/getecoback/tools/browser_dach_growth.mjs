@@ -29,11 +29,24 @@ try{
    return route.continue();
   });
   const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
-  for(const [path,anchor] of [['/','.hero-btns'],['/guide/luftentfeuchter-keller.html','#kalter-keller'],['/guide/luftentfeuchter-ratgeber.html','#einsatzort-waehlen'],['/wohnen.html','#dach']]){
+  for(const [path,anchor] of [['/','.hero-btns'],['/guide/luftentfeuchter-keller.html','#kalter-keller'],['/guide/luftentfeuchter-ratgeber.html','#einsatzort-waehlen'],['/guide/waesche-trocknen-wohnung.html','h2[id^="warum-waeschetrocknen-"]'],['/wohnen.html','#dach']]){
    await page.goto(base+path+'?__probe=1');
    assert(await page.locator(anchor).isVisible(),path+' authored section lost');
    assert.equal(await page.locator('link[rel=canonical]').getAttribute('href'),'https://getecoback.com'+path);
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,path+' overflows at '+width);
+   if(path.startsWith('/guide/')){
+    const entry=page.locator('.dc-entry');
+    assert.equal(await entry.count(),1,path+' one ordinary reading/comparison entry');
+    assert(await entry.evaluate(node=>!!(node.compareDocumentPosition(document.querySelector('#eb-moisture-choice'))&Node.DOCUMENT_POSITION_FOLLOWING)),path+' shortcuts precede the optional helper');
+    assert(await page.locator('#eb-catalog-reading').evaluate(node=>!!(node.compareDocumentPosition(document.querySelector('#eb-models'))&Node.DOCUMENT_POSITION_FOLLOWING)),path+' article advice precedes all model cards');
+    assert.equal(await page.locator('#eb-models .dc-card').count(),6,path+' all reviewed variants retained');
+    for(const target of ['eb-catalog-reading','eb-models']){
+     await entry.locator('a[href="#'+target+'"]').click();
+     await page.waitForURL(u=>u.hash==='#'+target);
+     const rect=await page.locator('#'+target).evaluate(node=>({top:node.getBoundingClientRect().top,nav:document.querySelector('.eb-nav').getBoundingClientRect().bottom,viewport:innerHeight}));
+     assert(rect.top>=rect.nav-1&&rect.top<rect.viewport,path+' '+target+' exposes its destination below navigation: '+JSON.stringify(rect));
+    }
+   }
    // The daily build rotates in March/June too; winter ordering is a cold-season contract.
    if(path==='/' && [0,1,8,9,10,11].includes(new Date().getMonth())){
     const html=await page.content(), season=html.indexOf('<!--EB_SEASON-->'), winter=html.indexOf('<!--EB_WINTER_LINK-->');

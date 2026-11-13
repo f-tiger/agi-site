@@ -2,7 +2,15 @@
   "version": 1,
   "reviewed_at": "2026-11-13",
   "status": "owner-directed hypotheses; not validated product-market fit",
-  "review": "docs/fleet-growth-operating-plan-2026-11-13.md",
+  "review": "docs/ceo-revenue-execution-2026-11-13.md",
+  "revenue_targets": {
+    "currency": "USD",
+    "period": "monthly",
+    "milestones": [1000, 5000, 10000],
+    "deadline": null,
+    "accounting_basis": "Owner has not specified gross/net treatment; report payments, refunds, revenue, settled cash and costs separately.",
+    "proof": "Reconciled attributable revenue, with source dates and actual currency conversion where needed. Events, orders without payment, and shared affiliate tags cannot establish the fleet total."
+  },
   "shared_boundaries": [
     "Check the current public payment-readiness API before selling or interpreting absent orders; a recent report is only an observation.",
     "Preserve current prices, free capabilities, separate entitlements and original experiment windows.",

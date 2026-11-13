@@ -8,8 +8,49 @@ import dehum_catalog as C
 from build_agent_md import to_markdown
 from build_structure import inject_models
 from moisture_decision import inject as inject_buyer
+from build_onpage import inject_toc
+from test_buyer_comparison import Document
 
 class CatalogTest(unittest.TestCase):
+    def test_native_reading_and_comparison_shortcuts_survive_the_full_rebuild_order(self):
+        for slug in C.load()['pages']:
+            source = (C.DATA.parent.parent/'site/guide'/f'{slug}.html').read_text()
+            for _ in range(2):
+                source = inject_toc(C.inject(inject_buyer(inject_models(source, slug), slug), slug), False)
+                doc = Document(source).root
+                nav = next(n for n in doc.find('nav') if n.attrs.get('class') == 'dc-entry')
+                self.assertEqual([n.attrs['href'] for n in nav.find('a')], ['#eb-catalog-reading', '#eb-models'])
+                ids = [n.attrs['id'] for n in doc.find(attr='id')]
+                self.assertEqual(len(ids), len(set(ids)), slug)
+                self.assertLess(source.index('class="dc-entry"'), source.index('<!--EB_BUYER-->'))
+                self.assertLess(source.index('<!--/EB_TOC-->'), source.index('id="eb-catalog-reading"'))
+                self.assertLess(source.index('id="eb-catalog-reading"'), source.index('<!--EB_MODELS-->'))
+                faq = re.search(r'<h2\b[^>]*>\s*Häufige Fragen(?:\s+[^<]*)?\s*</h2>', source)
+                self.assertIsNotNone(faq, slug)
+                self.assertLess(source.index('<!--/EB_MODELS-->'), faq.start())
+                # The actual article answer is before the full catalog, rather
+                # than following all six product cards as in the old layout.
+                self.assertIn('<h2', source[source.index('<!--/EB_CATALOG_READING-->'):source.index('<!--EB_MODELS-->')])
+            # The existing TOC builder adds one inter-tag newline per pass even
+            # on main. Compare rendered structure here; our own injection must
+            # still be byte-for-byte idempotent below and in the older test.
+            rebuilt = inject_toc(C.inject(inject_buyer(inject_models(source, slug), slug), slug), False)
+            normalize = lambda value: re.sub(r'>\s+<', '><', value)
+            self.assertEqual(normalize(source), normalize(rebuilt))
+
+    def test_without_contents_or_faq_the_article_reading_and_model_destinations_still_work(self):
+        seed = ('<header><h2>Häufige Fragen</h2></header><article><!--EB_BUYER-->'
+                '<section>Existing helper</section><!--/EB_BUYER--><h2>Authored answer</h2>'
+                '<p>Existing reader advice.</p></article>')
+        output = C.inject(seed, 'luftentfeuchter-ratgeber')
+        self.assertEqual(output, C.inject(output, 'luftentfeuchter-ratgeber'))
+        self.assertLess(output.index('id="eb-catalog-reading"'), output.index('<h2>Authored answer</h2>'))
+        self.assertLess(output.index('Existing reader advice.'), output.index('<!--EB_MODELS-->'))
+        article = Document(output).root.find('article')[0]
+        self.assertEqual(len([n for n in article.find('section') if n.attrs.get('id') == 'eb-models']), 1)
+        with self.assertRaises(ValueError):
+            C.inject('<!--EB_BUYER-->x<!--/EB_BUYER--><article><h2>Advice</h2></article>', 'luftentfeuchter-ratgeber')
+
     def test_committed_purchase_routes_survive_repeated_injection(self):
         for slug in C.load()['pages']:
             source=(C.DATA.parent.parent/'site/guide'/f'{slug}.html').read_text()
