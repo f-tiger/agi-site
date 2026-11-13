@@ -21,7 +21,7 @@ function rotate(){
  // Defer replacing focused cards and keep an active featured player intact.
  for(const selector of ['.home-topics','.home-sync-note']){const node=document.querySelector(selector),next=sourceFragments?.querySelector(selector);if(node&&next&&!focused(node)&&node.outerHTML!==next.outerHTML)node.replaceWith(next.cloneNode(true));}
  // Keep an existing player and its matching takeaways intact, even across midnight.
- if(feature&&!feature.querySelector('iframe')&&!focused(feature)&&feature.querySelector('[data-home-edition]')?.dataset.homeEdition!==edition.day){feature.innerHTML=renderHomeFeature(edition,lang);images(feature);}
+ if(feature&&!feature.querySelector('iframe')&&!focused(feature)&&(feature.querySelector('[data-home-edition]')?.dataset.homeEdition!==edition.day||feature.dataset.homeFeatureVersion!==snapshot.checkedAt)){feature.innerHTML=renderHomeFeature(edition,lang);feature.dataset.homeFeatureVersion=snapshot.checkedAt;images(feature);}
  if(grid&&!focused(grid)&&(grid.dataset.homePicksDay!==edition.day||grid.dataset.homePicksVersion!==snapshot.checkedAt)){grid.innerHTML=renderHomePicks(edition,lang);grid.dataset.homePicksDay=edition.day;grid.dataset.homePicksVersion=snapshot.checkedAt;images(grid);}
  for(const time of document.querySelectorAll('[data-home-edition-date]')){const displayed=grid?.dataset.homePicksDay;if(displayed){time.dateTime=displayed;time.textContent=displayed;}}
  document.documentElement.dataset.homeRotationDay=grid?.dataset.homePicksDay||edition.day;
@@ -39,7 +39,7 @@ async function refresh(){
   const feature=document.getElementById('home-feature'),grid=document.querySelector('.home-latest-grid');
   if(first){if(feature&&!feature.querySelector('iframe'))feature.querySelector('[data-home-edition]')?.removeAttribute('data-home-edition');if(grid)delete grid.dataset.homePicksDay;}
   rotate();images();
- }catch{/* Preserve the last published content. An already loaded pool still rotates. */}
+ }catch{/* Preserve the last published content. The last sourced video remains available. */}
  finally{fetching=false;}
 }
 function tick(){rotate();refresh();}

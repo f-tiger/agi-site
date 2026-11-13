@@ -37,3 +37,11 @@ test('actual mirror response carries canonical and noindex headers',async()=>{
   assert.equal(r.headers.get('x-robots-tag'),'noindex');assert.equal(r.headers.get('link'),expected?'<https://agiscorecard.com'+expected+'>; rel="canonical"':null);assert.equal(await r.text(),'# Evidence');
  }
 });
+
+test('generated homepage source updates enter only the existing canonical homepage queue',()=>{
+ const urls=[ORIGIN+'/',ORIGIN+'/cn',ORIGIN+'/invest'];
+ for(const file of ['home-focus/rotation.mjs','home-focus/media.mjs','foresight-assets/home.mjs','foresight-assets/discovery.json']){
+  const result=selectUrls({current:urls,previous:urls,changed:['sites/agiscorecard/'+file],html:()=>null});
+  assert.deepEqual(result.updated,[ORIGIN+'/',ORIGIN+'/cn']);assert.deepEqual(result.removed,[]);
+ }
+});

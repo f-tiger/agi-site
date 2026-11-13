@@ -69,9 +69,26 @@ try{
   await p.locator('.home-latest-card a').first().focus();await p.clock.runFor(300000);
   assert.deepEqual((await actual(p)).picks,old.picks,'focused card survives same-day refresh');
   await p.locator('h1').click();await p.clock.runFor(60000);
-  assert.equal((await actual(p)).day,old.day);assert.equal((await actual(p)).picks[0],'freshEN0001','new snapshot updates latest cards on the same day');
+  assert.equal((await actual(p)).day,old.day);assert.ok(!(await actual(p)).picks.includes('freshEN0001'),'the new main video is not duplicated in recommendations');
   assert.equal(await p.locator('#home-feature iframe').getAttribute('data-survivor'),'same-player');
-  assert.equal((await actual(p)).feature,old.feature);assert.deepEqual(state.errors,[]);await ctx.close();
+  assert.equal((await actual(p)).feature,old.feature);
+  await p.locator('#home-feature iframe').evaluate(n=>n.remove());await p.clock.runFor(60000);
+  assert.equal((await actual(p)).feature,'freshEN0001','main video catches up after playback is removed');
+  assert.match(await p.locator('#home-feature').textContent(),/Summary pending review/);assert.deepEqual(state.errors,[]);await ctx.close();
  }
- console.log('Daily home rotation: bilingual midnight rollover, same-day new-publication refresh, 320/390px layout, focused-card protection, uninterrupted playback, source metadata refresh and failed/invalid feeds passed.');
+
+ for(const lang of ['en','zh']){
+  const {ctx,p,state}=await fixture(lang);await p.clock.setSystemTime(new Date(day+'T12:00:00Z'));await p.reload();
+  await p.waitForFunction(d=>document.documentElement.dataset.homeRotationDay===d,day);
+  const old=await actual(p);await p.locator('#home-feature h2 a').focus();
+  state.data.checkedAt=day+'T12:01:00Z';state.data.locales[lang].feed=state.data.locales[lang].feed.replaceAll(snapshot.checkedAt,state.data.checkedAt);
+  state.data.rotation.videos.push({...state.data.rotation.videos[0],video:'freshEN0002',date:day,publishedAt:day+'T12:00:30Z',views:[],title:'Fixture newest main video',publisherExcerpt:'Fixture publisher introduction.'});
+  await p.clock.runFor(300000);assert.equal((await actual(p)).feature,old.feature,'focused main card is preserved');
+  await p.locator('h1').click();await p.clock.runFor(60000);
+  assert.equal((await actual(p)).feature,'freshEN0002','same-day source update replaces the main card in both languages');
+  assert.ok((await p.locator('#home-feature h2 a').getAttribute('href')).includes('watch=freshEN0002'));
+  assert.match(await p.locator('#home-feature').textContent(),/Fixture publisher introduction/);
+  assert.equal(await p.locator('#home-feature iframe').count(),0);assert.deepEqual(state.errors,[]);await ctx.close();
+ }
+ console.log('Homepage freshness: bilingual midnight rollover, same-day new-publication refresh, 320/390px layout, focused-card protection, uninterrupted playback, source metadata refresh and failed/invalid feeds passed.');
 }finally{await browser.close();}

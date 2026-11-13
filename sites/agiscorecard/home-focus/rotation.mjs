@@ -1,5 +1,5 @@
 // Pure selection and rendering shared by the daily build and the browser.
-const DAY=86400000,OFFSET=8*3600000;
+const OFFSET=8*3600000;
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const cmp=(a,b)=>a<b?-1:a>b?1:0;
 const validDate=s=>/^\d{4}-\d\d-\d\d$/.test(s||'')&&Number.isFinite(Date.parse(s+'T00:00:00Z'))&&new Date(s+'T00:00:00Z').toISOString().slice(0,10)===s;
@@ -11,56 +11,27 @@ export function rotationDay(now=Date.now()){
 }
 export function rotationPool(items){
  const seen=new Set();
- return {version:1,timeZone:'Asia/Shanghai',videos:items.filter(i=>i.medium==='video'&&/^[\w-]{11}$/.test(i.video||'')&&validDate(i.date)&&!seen.has(i.video)&&seen.add(i.video)).map(i=>({video:i.video,date:i.date,publishedAt:i.publishedAt||i.date+'T00:00:00Z',title:i.title,publisher:i.publisher,speaker:i.speaker||'',posterLabel:i.posterLabel||'',language:i.language,goals:i.goals||[],views:(i.views||[]).filter(validView).map(v=>({id:v.id,en:{title:v.en.title,summary:v.en.summary},zh:{title:v.zh.title,summary:v.zh.summary}}))}))};
+ return {version:1,timeZone:'Asia/Shanghai',videos:items.filter(i=>i.medium==='video'&&/^[\w-]{11}$/.test(i.video||'')&&validDate(i.date)&&!seen.has(i.video)&&seen.add(i.video)).map(i=>({video:i.video,date:i.date,publishedAt:i.publishedAt||i.date+'T00:00:00Z',title:i.title,publisher:i.publisher,speaker:i.speaker||'',publisherExcerpt:i.publisherExcerpt||'',posterLabel:i.posterLabel||'',language:i.language,goals:i.goals||[],views:(i.views||[]).filter(validView).map(v=>({id:v.id,en:{title:v.en.title,summary:v.en.summary},zh:{title:v.zh.title,summary:v.zh.summary}}))}))};
 }
 function eligible(v,day){return v&&/^[\w-]{11}$/.test(v.video||'')&&validDate(v.date)&&v.date<=day&&Array.isArray(v.views)&&Array.isArray(v.goals)&&['en','zh'].includes(v.language)&&typeof v.publisher==='string'&&(typeof v.title==='string'||typeof v.title?.en==='string'&&typeof v.title?.zh==='string');}
-function recent(list,day,minimum=8){
- const today=Date.parse(day+'T00:00:00Z');
- for(const days of [30,90]){const pool=list.filter(v=>today-Date.parse(v.date+'T00:00:00Z')<=days*DAY);if(pool.length>=minimum)return pool;}
- return list;
-}
-// Interleave creators. Within each creator's newest four candidates, prefer
-// topics not covered by the previous three entries for the reviewed feature.
-function balancedRing(list,limit=96){
- const groups=new Map();
- for(const item of [...list].sort((a,b)=>cmp(b.date,a.date)||cmp(a.video,b.video))){if(!groups.has(item.publisher))groups.set(item.publisher,[]);if(groups.get(item.publisher).length<8)groups.get(item.publisher).push(item);}
- const names=[...groups.keys()].sort(cmp),ring=[];
- while(ring.length<limit&&names.some(n=>groups.get(n).length))for(const name of names){
-  const q=groups.get(name);if(!q.length||ring.length>=limit)continue;
-  const covered=new Set(ring.slice(-3).flatMap(x=>x.goals));let best=0,novel=-1;
-  for(let i=0;i<Math.min(4,q.length);i++){const score=q[i].goals.filter(g=>!covered.has(g)).length;if(score>novel){novel=score;best=i;}}
-  ring.push(q.splice(best,1)[0]);
- }
- return ring;
-}
-function dailyFeature(videos,day){
- const reviewed=videos.filter(v=>v.views.length);if(!reviewed.length)return null;
- // Replay the small reviewed collection deterministically. A 30/90-day cutoff
- // can change the ring size; remember yesterday's choice to avoid a repeat at
- // that boundary without cookies, user tracking or a successful daily build.
- const end=Date.parse(day+'T00:00:00Z'),start=Math.min(...reviewed.map(v=>Date.parse(v.date+'T00:00:00Z')));
- let feature=null,ring=[];
- for(let time=start;time<=end;time+=DAY){const date=new Date(time).toISOString().slice(0,10);ring=balancedRing(recent(reviewed.filter(v=>v.date<=date),date,2),24);const index=Math.floor(time/DAY)%ring.length;let next=ring[index];if(next?.video===feature?.video&&ring.length>1)next=ring[(index+1)%ring.length];feature=next;}
- return {feature,ringSize:ring.length};
-}
+const newestFirst=(a,b)=>cmp(b.publishedAt||b.date,a.publishedAt||a.date)||cmp(a.video,b.video);
 export function homeEdition(pool,now=Date.now()){
  if(pool?.version!==1||!Array.isArray(pool.videos))throw Error('Invalid home rotation pool');
- const day=rotationDay(now),dayIndex=Math.floor(Date.parse(day+'T00:00:00Z')/DAY),seen=new Set();
- const videos=pool.videos.filter(v=>eligible(v,day)&&!seen.has(v.video)&&seen.add(v.video)).map(v=>({...v,views:v.views.filter(validView)}));
- const chosen=dailyFeature(videos,day);if(!chosen)return null;
- const {feature,ringSize}=chosen,view=feature.views[Math.floor(dayIndex/Math.max(1,ringSize))%feature.views.length];
- const recommendations={en:[],zh:[]};
- // The latest-video row follows publisher dates, not an editorial rotation.
- // With no new publications its cards can remain unchanged across days.
- for(const lang of ['en','zh'])recommendations[lang]=videos
-  .filter(v=>v.language===lang&&v.video!==feature.video)
-  .sort((a,b)=>cmp(b.publishedAt||b.date,a.publishedAt||a.date)||cmp(a.video,b.video)).slice(0,4);
-
+ const day=rotationDay(now),seen=new Set();
+ const videos=pool.videos.filter(v=>eligible(v,day)&&!seen.has(v.video)&&seen.add(v.video)).map(v=>({...v,views:v.views.filter(validView)})).sort(newestFirst);
+ // New source publications lead the homepage even before editorial takeaways exist.
+ // With no new publication, keep the latest video and its original date.
+ const feature=videos[0];if(!feature)return null;
+ const view=feature.views[0]||null,recommendations={en:[],zh:[]};
+ for(const lang of ['en','zh'])recommendations[lang]=videos.filter(v=>v.language===lang&&v.video!==feature.video).slice(0,4);
  return {day,timeZone:'Asia/Shanghai',feature,view,recommendations};
 }
 export function renderHomeFeature(edition,lang){
- const {feature:f,view,day}=edition,t=(en,zh)=>lang==='zh'?zh:en,hub=(lang==='zh'?'/zh':'')+'/future-guide',d=view[lang],title=typeof f.title==='string'?f.title:f.title[lang];
- return `<article class="home-feature" data-home-feature="${f.video}" data-home-edition="${day}"><div class="home-poster"><div class="home-poster-fallback" aria-hidden="true"><span>${esc(f.publisher)}</span><strong>${esc(f.posterLabel||f.publisher)}</strong><small>${esc(f.speaker)}</small></div><img src="https://i.ytimg.com/vi/${f.video}/hqdefault.jpg" width="480" height="360" alt="" decoding="async" referrerpolicy="no-referrer"><button type="button" data-home-video="${f.video}" data-player-title="${esc(title)}" aria-label="${esc(t('Watch: ','观看：')+title)}"><span aria-hidden="true">▶</span>${t('Watch here','直接观看')}</button></div><div class="home-feature-copy"><p class="home-eyebrow">${t('From the reviewed collection','已核对内容精选')} <span>${f.language==='zh'?t('Chinese original','中文原片'):t('English original','英文原片')} · ${f.date}</span></p><h2><a href="${hub}/${view.id}" data-home-action="view">${esc(d.title)}</a></h2><p>${esc(d.summary)}</p><div class="home-feature-actions"><a href="${hub}/${view.id}" data-home-action="view">${t('Read takeaways & evidence','看观点与证据')} ↗</a><a href="https://www.youtube.com/watch?v=${f.video}" target="_blank" rel="noopener">${t('Original video','原视频')} ↗</a></div></div></article>`;
+ const {feature:f,view,day}=edition,t=(en,zh)=>lang==='zh'?zh:en,hub=(lang==='zh'?'/zh':'')+'/future-guide',d=view?.[lang],title=typeof f.title==='string'?f.title:f.title[lang];
+ const destination=d?hub+'/'+view.id:hub+'?watch='+f.video+'#fresh',action=d?'view':'latest';
+ const description=d?.summary||f.publisherExcerpt||t('Watch the original source. A viewpoint summary has not been reviewed yet.','观看原始视频；观点总结尚未核对。');
+ const attribution=d?t('Reviewed takeaways','已核对观点'):t('Publisher’s introduction · Summary pending review','出版方简介 · 观点总结待核对');
+ return `<article class="home-feature" data-home-feature="${f.video}" data-home-edition="${day}"><div class="home-poster"><div class="home-poster-fallback" aria-hidden="true"><span>${esc(f.publisher)}</span><strong>${esc(f.posterLabel||f.publisher)}</strong><small>${esc(f.speaker)}</small></div><img src="https://i.ytimg.com/vi/${f.video}/hqdefault.jpg" width="480" height="360" alt="" decoding="async" referrerpolicy="no-referrer"><button type="button" data-home-video="${f.video}" data-player-title="${esc(title)}" aria-label="${esc(t('Watch: ','观看：')+title)}"><span aria-hidden="true">▶</span>${t('Watch here','直接观看')}</button></div><div class="home-feature-copy"><p class="home-eyebrow">${t('Latest video','最新视频')} <span>${f.language==='zh'?t('Chinese original','中文原片'):t('English original','英文原片')} · <time datetime="${f.date}">${f.date}</time></span></p><h2><a href="${destination}" data-home-action="${action}">${esc(d?.title||title)}</a></h2><p class="home-review-label">${esc(f.publisher)} · ${attribution}</p><p${d||!f.publisherExcerpt?'':' lang="'+(f.language==='zh'?'zh-Hans':'en')+'"'}>${esc(description)}</p><div class="home-feature-actions"><a href="${destination}" data-home-action="${action}">${d?t('Read takeaways & evidence','看观点与证据'):t('Open this episode','打开这期视频')} ↗</a><a href="https://www.youtube.com/watch?v=${f.video}" target="_blank" rel="noopener">${t('Original video','原视频')} ↗</a></div></div></article>`;
 }
 export function renderHomePicks(edition,lang){
  const t=(en,zh)=>lang==='zh'?zh:en,hub=(lang==='zh'?'/zh':'')+'/future-guide';

@@ -5,7 +5,7 @@ import {siteHeader} from '../site-nav/render.mjs';
 export {siteHeader} from '../site-nav/render.mjs';
 export function homeSnapshot(data,{now=Date.now()}={}){
  const items=contentItems(data),videos=items.filter(i=>i.medium==='video'),rotation=rotationPool(items),edition=homeEdition(rotation,now);
- if(!edition)throw Error('Homepage requires a sourced, reviewed video');
+ if(!edition)throw Error('Homepage requires a sourced video');
  const counts={videos:videos.length,audio:items.filter(i=>i.medium==='audio').length,views:items.reduce((n,i)=>n+i.views.length,0),sources:data.sources.length};
  const locales={};
  for(const lang of ['en','zh']){
