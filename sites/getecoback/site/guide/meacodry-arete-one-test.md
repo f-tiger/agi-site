@@ -1,6 +1,6 @@
-# MeacoDry Arete One: Was sagen die Tests?
+# MeacoDry Arete One im Test-Überblick: One oder Two?
 
-> MeacoDry Arete One 20L im Test-Überblick: 38–40 dB laut Hersteller, 46–53 dB unabhängig gemessen, 216 W — für wen sich der Leise-Aufpreis lohnt.
+> Arete One 20L: öffentliche Tests richtig einordnen. One oder Two? App, Bedienung und genaue Variante vor dem Kauf mit deutschen Herstellerquellen prüfen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/meacodry-arete-one-test.html
 
@@ -23,6 +23,24 @@ Arete One ist eine Modellfamilie, kein einzelnes Gerät — und die Größen unt
 | Arete One 25L | bis 25 l/Tag | Höhere Nennleistung, aber nicht automatisch nötig oder sparsamer. Herstellerangabe 40–42 dB |
 
 Wichtig beim Kauf über Suchergebnisse: Die Angebote mischen diese Varianten, und die dB- und Liter-Werte aus Tests gelten jeweils nur für die getestete Größe. Nicht zu verwechseln ist die Familie außerdem mit der neueren Serie Arete Two — das ist eine eigene Baureihe. Alle Zahlen auf dieser Seite beziehen sich, wo nicht anders gesagt, auf das **20L-Modell**.
+
+### Arete One oder Two: Welche Unterschiede helfen bei der Auswahl?
+
+**Wähle zuerst die Bedienfunktionen, danach die passende Größe.** Wenn du am Gerät bedienen möchtest, kann One genügen. Wenn App-Steuerung, Zeitplanung oder eine verstellbare Luftführung wichtig sind, prüfe Two. Daraus folgt keine pauschale Empfehlung, ein funktionierendes One-Gerät zu ersetzen.
+
+Herstellerfunktionen der Baureihen — keine eigene Vergleichsmessung
+
+| Was möchtest du? | Arete One | Arete Two |
+| --- | --- | --- |
+| Bedienen und von unterwegs ändern | Bedienung am Gerät; laut Herstellervergleich ohne App-Anbindung. | Meaco App sowie Sprachsteuerung mit Alexa und Google Assistant. Vor dem Kauf Anforderungen der App prüfen. |
+| Wäschebetrieb gezielt einstellen | Wäschemodus vorhanden; die hier besprochene One-20L-Funktion bleibt vom Two getrennt. | Zusätzliche dritte Lüfterstufe und manuell einstellbare Luftklappe; Ein-/Aus-Timer. Das belegt keine bestimmte Trocknungszeit bei dir. |
+| Ein vorhandenes One ersetzen | Weiterverwenden, wenn Bedienung und gemessene Entfeuchtung den Bedarf decken. | Zusatzfunktionen gegen den eigenen Bedarf abwägen. „Neuer“ allein belegt weder nötigen Ersatz noch eine Kostenersparnis. |
+
+Die [deutsche Herstellerseite zum Two 12L](https://eu.meaco.com/products/meacodry-arete-two-12l-luftentfeuchter-luftreiniger) nennt einen 2,5-Liter-Tank und einen Dauerablauf, dessen Schlauch nicht enthalten ist. Das sind Angaben für **Two 12L**, nicht für One 20L oder Two 20L. Vergleiche Entzug und Strombedarf nur bei derselben Temperatur und Feuchte; die One-20L-Testzahlen weiter unten bewerten kein Two-Gerät.
+
+**Genaues Modell vor der Händlersuche prüfen:** [Two 12L: Variantenhinweise und Amazon.de-Modellsuche](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#modell-meaco-two-12) · [One 20L: Datenbasis und Amazon.de-Modellsuche](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#modell-meaco-one-20) · [One 25L: Unterschiede und Amazon.de-Modellsuche](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#modell-meaco-one-25). Die dortigen One-20L-/25L-Daten stammen aus UK-Unterlagen; deutschen Stecker, Lieferumfang und passende Anleitung beim konkreten Angebot abgleichen. Eine Modellsuche bestätigt weder einen bestimmten Händler noch Preis oder Lieferbarkeit.
+
+Quellen für diesen Baureihenvergleich geprüft am 13.11.2026: [Meaco DE: Arete-Übersicht](https://eu.meaco.com/collections/arete), [Meaco: offizieller One-/Two-Vergleich](https://eu.blog.meaco.com/luftentfeuchter/arete-one-vs-arete-two-welcher-meaco-luftentfeuchter-passt-zu-ihrem-zuhause/) und die verlinkte Two-12L-Produktseite. Herstellerangaben, keine eigenen Produkttests. Die ursprünglichen Quellen und Messbedingungen des One-Testüberblicks bleiben separat angegeben.
 
 ## Die Testlage: Stärken und Schwächen
 

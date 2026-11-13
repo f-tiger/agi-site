@@ -1,12 +1,18 @@
 # Product marketing context
 
-**Document version: v26** — **Last updated: 2026-11-13**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
+**Document version: v27** — **Last updated: 2026-11-13**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
 
 ## Business goal and proof
 
 Owner's latest staged goals are USD 1,000, USD 5,000 and USD 10,000 in monthly revenue (2026-10-03 conversation). These supersede the historical euro milestones; deadlines and gross/net accounting treatment remain unspecified. Record gross customer payments, refunds, settled receipts and delivery/acquisition costs separately; revenue is not profit or MRR. Manual selling/delivery and automation are both acceptable to the owner. Eco has historical owner-reported affiliate commissions; do not re-label them as a new service sale or assume they have settled. New experiments have no verified customers, paid retention, CAC or revenue. Prices displayed on discovery experiments are hypotheses. The original four probes remain closed; BPJ has separate live wallet checkout for placements and membership, whose readiness and sales need independent checks.
 
 ## Current revenue directions — owner steering 2026-10-04
+
+### ECO click growth — owner clarification 2026-11-13
+
+The owner clarified the immediate target as **200 on-site affiliate product-click events per day**, not 200 external arrivals. Use the existing filtered `affiliate_click` contract over seven complete UTC days: at least 1,400 actions, with merchant product-page and merchant-search destinations reported separately. Repeated actions are not distinct people; no automatic redirects, incentives or synthetic events qualify. This supplements the separate historical 1,000 daily GA4 totalUsers goal and fleet revenue goals; none is achieved by publication.
+
+Read `docs/eco-200-affiliate-clicks-2026-11-13.md`. Prioritize qualified acquisition and concrete model/variant decisions, preserving cooling entries with observed merchant intent. This iteration strengthens the existing Meaco article's One-versus-Two subquestion using current first-party sources and the already approved model catalog. No new category or duplicated page is required. Search reports, platform performance, merchant orders and commission remain distinct; inaccessible values stay unknown. Existing pilot windows, cadence and publication receipts still govern distribution.
 
 ### CEO / CTO execution — owner steering 2026-11-13
 
