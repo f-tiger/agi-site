@@ -192,6 +192,9 @@ def test_strategy_is_reviewable_and_missing_policy_does_not_invent_direction() -
     assert policy and set(policy["sites"]) == set(evolution.MEMBER_SITE)
     report, _ = evolution.build(dt.date(2026, 11, 13), now=utc_noon(dt.date(2026, 11, 13)))
     assert report["latest"]["growth_policy"] == policy
+    assert policy["revenue_targets"]["milestones"] == [1000, 5000, 10000]
+    assert "USD 1,000 → USD 5,000 → USD 10,000" in report["markdown"]
+    assert "targets, not measured revenue" in report["markdown"]
     for row in policy["sites"].values():
         assert row["buyer"] in report["markdown"]
         assert (evolution.ROOT / row["review_contract"]).exists(), row["review_contract"]
@@ -203,6 +206,11 @@ def test_strategy_is_reviewable_and_missing_policy_does_not_invent_direction() -
             assert "Growth policy unavailable" in missing["markdown"]
             (data / "fleet-growth-policy.json").write_text('{"version":1,"sites":{}}')
             assert evolution.growth_policy() is None
+            for milestones in [[], [True], [-1], [1000, 1000], [5000, 1000], ["1000"]]:
+                broken = json.loads(json.dumps(policy))
+                broken["revenue_targets"]["milestones"] = milestones
+                (data / "fleet-growth-policy.json").write_text(json.dumps(broken))
+                assert evolution.growth_policy() is None
             for field in ["buyer", "expansion_gate"]:
                 broken = json.loads(json.dumps(policy)); del broken["sites"]["baipiaoji"][field]
                 (data / "fleet-growth-policy.json").write_text(json.dumps(broken))

@@ -103,6 +103,18 @@ def growth_policy() -> dict[str, Any] | None:
     other = policy.get("other_sites")
     if not isinstance(other, dict) or any(not isinstance(other.get(key), str) or not other[key].strip() for key in ["status", "next_action", "expansion_gate"]):
         return None
+    targets = policy.get("revenue_targets")
+    if targets is not None:
+        if not isinstance(targets, dict) or targets.get("currency") != "USD" or targets.get("period") != "monthly":
+            return None
+        amounts = targets.get("milestones")
+        if not isinstance(amounts, list) or not amounts or any(type(n) is not int or n <= 0 for n in amounts) or amounts != sorted(set(amounts)):
+            return None
+        deadline = targets.get("deadline")
+        if deadline is not None and (not isinstance(deadline, str) or len(deadline) != 10 or date_value(deadline) is None):
+            return None
+        if any(not isinstance(targets.get(key), str) or not targets[key].strip() for key in ["accounting_basis", "proof"]):
+            return None
     return policy
 
 
@@ -397,6 +409,11 @@ def render_markdown(latest: dict[str, Any]) -> str:
     lines += ["", "## Growth directions", "", "Buyer/value propositions are reviewable hypotheses. Legacy page-view fields do not establish qualified users, paid demand, citations or profit. A recent payment snapshot is not a live checkout guarantee.", ""]
     policy = latest.get("growth_policy")
     if policy:
+        if targets := policy.get("revenue_targets"):
+            amounts = " → ".join(f"USD {amount:,}" for amount in targets["milestones"])
+            deadline = "Target deadline: " + targets["deadline"] + "." if targets.get("deadline") else "No target deadline has been specified."
+            lines += ["Owner monthly revenue targets: " + amounts + ". These are targets, not measured revenue. " + deadline,
+                      "", targets["accounting_basis"], "", targets["proof"], ""]
         lines += ["| Site | Buyer hypothesis | Existing revenue route | Next action | Expansion gate |", "|---|---|---|---|---|"]
         for site, row in policy["sites"].items():
             cells = [site, row["buyer"], row["existing_revenue"], row["next_action"], row["expansion_gate"]]

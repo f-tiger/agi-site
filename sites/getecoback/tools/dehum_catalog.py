@@ -100,11 +100,42 @@ def inject(html, slug):
     if reviewed is None:
         return html
     html = re.sub(r'<!--EB_MODELS-->.*?<!--/EB_MODELS-->\n?', '', html, flags=re.S)
+    for marker in ('EB_CATALOG_ENTRY', 'EB_CATALOG_READING'):
+        html = re.sub(r'<!--' + marker + r'-->.*?<!--/' + marker + r'-->', '', html, flags=re.S)
     anchor = '<!--/EB_BUYER-->'
     if html.count(anchor) != 1:
         raise ValueError('Catalog needs one preceding buyer decision: ' + slug)
-    # A sibling, not a child of the replaceable EB_BUYER/EB_DEMAND regions.
-    return re.sub(re.escape(anchor) + r'\n?', lambda m: anchor + '\n' + reviewed, html, count=1)
+    article = re.search(r'<article\b[^>]*>(.*?)</article\s*>', html, re.S)
+    if not article or not article.start() < html.index('<!--EB_BUYER-->') < article.end():
+        raise ValueError('Catalog needs an article containing the buyer decision: ' + slug)
+    # Preserve both reading speeds without making the reader traverse the quiz
+    # or every model card to reach the answer promised by the article title.
+    entry = ('<!--EB_CATALOG_ENTRY--><nav class="dc-entry" aria-label="Ratgeber oder Modelle" '
+             'style="display:flex;flex-wrap:wrap;gap:10px;margin:18px 0">'
+             '<a href="#eb-catalog-reading" style="display:inline-flex;align-items:center;min-height:44px;'
+             'padding:8px 12px;border:1px solid #7895a4;border-radius:6px;color:#0a4d7a;background:#fff;'
+             'font-weight:700">Ratgeber direkt lesen</a>'
+             '<a href="#eb-models" style="display:inline-flex;align-items:center;min-height:44px;'
+             'padding:8px 12px;border:1px solid #7895a4;border-radius:6px;color:#0a4d7a;background:#fff;'
+             'font-weight:700">Modellvarianten vergleichen</a></nav><!--/EB_CATALOG_ENTRY-->')
+    reading = ('<!--EB_CATALOG_READING--><div id="eb-catalog-reading" '
+               'style="scroll-margin-top:150px" tabindex="-1"></div><!--/EB_CATALOG_READING-->')
+    html = html.replace('<!--EB_BUYER-->', entry + '<!--EB_BUYER-->', 1)
+    # The existing on-page builder replaces only EB_TOC, so this destination
+    # survives that rebuild. Minimal fixtures without a TOC use the buyer end.
+    reading_anchor = '<!--/EB_TOC-->' if '<!--/EB_TOC-->' in article.group(1) else anchor
+    # Keep the preceding builder's owned newline next to its closing marker;
+    # otherwise its replacement leaves an extra blank line on every build.
+    article = re.search(r'<article\b[^>]*>(.*?)</article\s*>', html, re.S)
+    preceding = re.search(re.escape(reading_anchor) + r'\n?', article.group(1))
+    position = article.start(1) + preceding.end()
+    html = html[:position] + reading + html[position:]
+    # Keep the catalog outside all replaceable buyer/contents regions, after
+    # authored advice and before the ordinary FAQ. No product fact/date changes.
+    article = re.search(r'<article\b[^>]*>(.*?)</article\s*>', html, re.S)
+    faq = re.search(r'<h2\b[^>]*>\s*Häufige Fragen(?:\s+[^<]*)?\s*</h2>', article.group(1))
+    position = article.start(1) + faq.start() if faq else article.end(1)
+    return html[:position] + reviewed + html[position:]
 
 def evidence_html(source):
     """Extract the same public evidence, excluding all shopping, styles and chrome."""
