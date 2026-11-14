@@ -72,7 +72,11 @@ try{
  assert.equal(measured.filter(event=>event[1]==='ai_video_view').length,1,'Exposure arrives once through the real isolated collector');
  assert.equal(measured.filter(event=>event[1]==='ai_video_search').length,1,'Search arrives through the fixed business allowlist');
  await page.locator('[data-fp-save]').click();assert.equal(await page.locator('#fp-save-count').innerText(),'1');
- await page.reload();assert.equal(await page.locator('#fp-save-count').innerText(),'1');
+ // Module loading is asynchronous; exercise a slow dependency on reload.
+ await page.route('**/ai-video-core.mjs*',async route=>{await new Promise(resolve=>setTimeout(resolve,150));await route.fallback();});
+ await page.reload();
+ await page.waitForFunction(()=>document.getElementById('fp-count').textContent.includes(' of '));
+ assert.equal(await page.locator('#fp-save-count').innerText(),'1');
  await page.locator('#fp-saved').click();assert.equal(await page.locator('#fp-results .fp-card').count(),1);
  await page.locator('.fp-details summary').click();await page.locator('[data-fp-related]').click();assert.ok(await page.locator('.fp-related-note').count()>0);
  assert.match(await page.locator('#fp-order-note').innerText(),/not AI video analysis/);
