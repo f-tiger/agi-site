@@ -1,14 +1,23 @@
 {
- "generated": "2026-11-13T15:49:48+00:00",
+ "generated": "2026-11-14T14:41:03+00:00",
  "definition": "share of sampled open FutureEval/MiniBench questions whose resolution text names a host the fleet archives on a schedule (tools/fleet/archived_sources.txt); unknown = not covered",
  "tournaments": [
   "33121"
  ],
- "sampled": 1,
+ "sampled": 2,
  "covered": 0,
  "coverage_share": 0.0,
  "stale": false,
  "sample": [
+  {
+   "post_id": 46473,
+   "title": "How many Bank of England MPC members will vote to raise Bank Rate at the December 17, 2026 meeting?",
+   "hosts": [
+    "www.bankofengland.co.uk"
+   ],
+   "covered_by": null,
+   "tournament": "33121"
+  },
   {
    "post_id": 45615,
    "title": "Announcing Fall 2026 FutureEval Bot Tournament",
