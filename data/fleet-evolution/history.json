@@ -1,178 +1,5 @@
 [
   {
-    "as_of": "2026-10-15",
-    "fleet": {
-      "sites": 14,
-      "healthy": 31,
-      "membership_ready": 4,
-      "paid_members": null,
-      "active_members": null,
-      "opportunities": 12,
-      "stale_inputs": 0
-    },
-    "actions": [
-      {
-        "site": "agiscorecard",
-        "kind": "optimize_existing_page",
-        "priority": 80,
-        "reason": "measured demand reaches an existing page with zero recent referred readers",
-        "evidence": {
-          "count": 1,
-          "query": "cathie wood ark invest ai stocks",
-          "page": "invest/cathie-wood.html",
-          "value": 900
-        },
-        "mode": "queue"
-      },
-      {
-        "site": "getecoback",
-        "kind": "optimize_existing_page",
-        "priority": 80,
-        "reason": "measured demand reaches an existing page with zero recent referred readers",
-        "evidence": {
-          "count": 9,
-          "query": "thermostat für infrarotheizung",
-          "page": "guide/infrarotheizung-garage.html",
-          "value": 100900
-        },
-        "mode": "queue"
-      },
-      {
-        "site": "agiscorecard",
-        "kind": "membership_observability",
-        "priority": 68,
-        "reason": "membership aggregate counters are unavailable",
-        "evidence": {
-          "admin_ok": false
-        },
-        "mode": "observe"
-      },
-      {
-        "site": "baipiaoji",
-        "kind": "membership_observability",
-        "priority": 68,
-        "reason": "membership aggregate counters are unavailable",
-        "evidence": {
-          "admin_ok": false
-        },
-        "mode": "observe"
-      },
-      {
-        "site": "getecoback",
-        "kind": "membership_observability",
-        "priority": 68,
-        "reason": "membership aggregate counters are unavailable",
-        "evidence": {
-          "admin_ok": false
-        },
-        "mode": "observe"
-      },
-      {
-        "site": "thedollscout",
-        "kind": "membership_observability",
-        "priority": 68,
-        "reason": "membership aggregate counters are unavailable",
-        "evidence": {
-          "admin_ok": false
-        },
-        "mode": "observe"
-      },
-      {
-        "site": "agiscorecard",
-        "kind": "content_gap",
-        "priority": 55,
-        "reason": "rising demand has no matching page; editorial judgement is required",
-        "evidence": {
-          "count": 5,
-          "query": "ai infrastructure stocks comeback",
-          "value": 4700
-        },
-        "mode": "queue"
-      },
-      {
-        "site": "buysomething",
-        "kind": "content_gap",
-        "priority": 55,
-        "reason": "rising demand has no matching page; editorial judgement is required",
-        "evidence": {
-          "count": 2,
-          "query": "costco vegetable chopper",
-          "value": 110
-        },
-        "mode": "queue"
-      },
-      {
-        "site": "getecoback",
-        "kind": "content_gap",
-        "priority": 55,
-        "reason": "rising demand has no matching page; editorial judgement is required",
-        "evidence": {
-          "count": 33,
-          "query": "infrarotheizung hornbach",
-          "value": 55350
-        },
-        "mode": "queue"
-      },
-      {
-        "site": "thedollscout",
-        "kind": "content_gap",
-        "priority": 55,
-        "reason": "rising demand has no matching page; editorial judgement is required",
-        "evidence": {
-          "count": 18,
-          "query": "lets try the viral crumbl labubu",
-          "value": 17850
-        },
-        "mode": "queue"
-      },
-      {
-        "site": "getecoback",
-        "kind": "improve_hot_page",
-        "priority": 52,
-        "reason": "prioritize a page with measured reader heat",
-        "evidence": {
-          "page": "/en/guide/portable-ac-not-cooling.html",
-          "n7": 12,
-          "p7": 2
-        },
-        "mode": "queue"
-      },
-      {
-        "site": "buysomething",
-        "kind": "ai_discovery",
-        "priority": 48,
-        "reason": "referred traffic exists but no AI-assistant referral is measured",
-        "evidence": {
-          "human_pv_28d": 288,
-          "ai_ref_28d": 0
-        },
-        "mode": "queue"
-      },
-      {
-        "site": "goldrush",
-        "kind": "ai_discovery",
-        "priority": 48,
-        "reason": "referred traffic exists but no AI-assistant referral is measured",
-        "evidence": {
-          "human_pv_28d": 209,
-          "ai_ref_28d": 0
-        },
-        "mode": "queue"
-      },
-      {
-        "site": "gridlings",
-        "kind": "ai_discovery",
-        "priority": 48,
-        "reason": "referred traffic exists but no AI-assistant referral is measured",
-        "evidence": {
-          "human_pv_28d": 971,
-          "ai_ref_28d": 0
-        },
-        "mode": "queue"
-      }
-    ]
-  },
-  {
     "as_of": "2026-10-16",
     "fleet": {
       "sites": 14,
@@ -4286,6 +4113,153 @@
         "evidence": {
           "human_pv_28d": 972,
           "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      }
+    ]
+  },
+  {
+    "as_of": "2026-11-14",
+    "fleet": {
+      "sites": 14,
+      "healthy": 31,
+      "membership_ready": 4,
+      "paid_members": 0,
+      "active_members": 0,
+      "opportunities": 8,
+      "stale_inputs": 0
+    },
+    "actions": [
+      {
+        "site": "agiscorecard",
+        "kind": "membership_readiness_check",
+        "priority": 70,
+        "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
+        "evidence": {
+          "snapshot_date": "2026-11-14T09:22:31.152Z"
+        },
+        "mode": "observe"
+      },
+      {
+        "site": "baipiaoji",
+        "kind": "membership_readiness_check",
+        "priority": 70,
+        "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
+        "evidence": {
+          "snapshot_date": "2026-11-14T09:22:31.152Z"
+        },
+        "mode": "observe"
+      },
+      {
+        "site": "getecoback",
+        "kind": "membership_readiness_check",
+        "priority": 70,
+        "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
+        "evidence": {
+          "snapshot_date": "2026-11-14T09:22:31.152Z"
+        },
+        "mode": "observe"
+      },
+      {
+        "site": "thedollscout",
+        "kind": "membership_readiness_check",
+        "priority": 70,
+        "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
+        "evidence": {
+          "snapshot_date": "2026-11-14T09:22:31.152Z"
+        },
+        "mode": "observe"
+      },
+      {
+        "site": "baipiaoji",
+        "kind": "membership_demand_review",
+        "priority": 64,
+        "reason": "review product-matched own tasks, repeat use and the paid increment before membership expansion; referrer events do not establish qualified buyers",
+        "evidence": {
+          "external_referrer_page_view_events": 574,
+          "paid_members": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "agiscorecard",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "topic-signal overlap has no matching page; apply the buyer, source, country and distribution gates before expansion",
+        "evidence": {
+          "count": 1,
+          "query": "ai stocks crashing",
+          "value": 1
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "getecoback",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "topic-signal overlap has no matching page; apply the buyer, source, country and distribution gates before expansion",
+        "evidence": {
+          "count": 19,
+          "query": "diesel infrarotheizung",
+          "value": 74650
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "thedollscout",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "topic-signal overlap has no matching page; apply the buyer, source, country and distribution gates before expansion",
+        "evidence": {
+          "count": 16,
+          "query": "labubu cat mode",
+          "value": 73950
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "agiscorecard",
+        "kind": "improve_hot_page",
+        "priority": 52,
+        "reason": "review observed page-event activity and source quality; activity is not verified people or buying intent",
+        "evidence": {
+          "page": "/invest",
+          "n7": 232,
+          "p7": 108
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "getecoback",
+        "kind": "improve_hot_page",
+        "priority": 52,
+        "reason": "review observed page-event activity and source quality; activity is not verified people or buying intent",
+        "evidence": {
+          "page": "/guide/luftbefeuchter-ratgeber.html",
+          "n7": 11,
+          "p7": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "goldrush",
+        "kind": "ai_attribution_review",
+        "priority": 48,
+        "reason": "check source coverage and useful AI arrivals before expanding discovery work; legacy page views do not establish referred people or citations",
+        "evidence": {
+          "legacy_page_view_events": 656,
+          "ai_referrer_events": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "thedollscout",
+        "kind": "ai_attribution_review",
+        "priority": 48,
+        "reason": "check source coverage and useful AI arrivals before expanding discovery work; legacy page views do not establish referred people or citations",
+        "evidence": {
+          "legacy_page_view_events": 1124,
+          "ai_referrer_events": 0
         },
         "mode": "queue"
       }

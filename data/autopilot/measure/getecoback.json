@@ -2,8 +2,8 @@
  "extra": {
   "events": {
    "affiliate_click": {
-    "n7": 14,
-    "p7": 12
+    "n7": 10,
+    "p7": 17
    },
    "buyer_next": {
     "n7": 1,
@@ -18,100 +18,96 @@
     "p7": 2
    },
    "cold_now": {
-    "n7": 41,
-    "p7": 11
+    "n7": 42,
+    "p7": 12
    },
    "feuchte_now": {
-    "n7": 23,
-    "p7": 7
+    "n7": 22,
+    "p7": 8
    },
    "laundry_view": {
     "n7": 2,
     "p7": 0
    },
    "page_view": {
-    "n7": 103,
-    "p7": 77
+    "n7": 100,
+    "p7": 83
    },
    "popup_click": {
     "n7": 2,
     "p7": 0
    },
    "popup_close": {
-    "n7": 10,
-    "p7": 12
+    "n7": 9,
+    "p7": 13
    },
    "popup_view": {
-    "n7": 21,
-    "p7": 25
+    "n7": 19,
+    "p7": 27
    },
    "strom_now": {
-    "n7": 6,
+    "n7": 5,
     "p7": 10
    },
    "strompreis_api": {
-    "n7": 2,
-    "p7": 0
+    "n7": 1,
+    "p7": 1
    }
   },
   "zero_hit_records": 0
  },
- "fetched": "2026-11-13",
+ "fetched": "2026-11-14",
  "kind": "eco-trend",
  "notes": [],
  "ok": true,
  "pages": {
   "/": {
    "n7": 7,
-   "p7": 8
+   "p7": 7
+  },
+  "/agents/compliance.html": {
+   "n7": 4,
+   "p7": 0
   },
   "/en/agents/compliance.html": {
    "n7": 7,
    "p7": 0
   },
-  "/guide/fensterabdichtung-klimaanlage.html": {
-   "n7": 2,
-   "p7": 0
-  },
   "/guide/fensterabdichtung-selber-bauen.html": {
    "n7": 5,
-   "p7": 1
+   "p7": 2
   },
   "/guide/klimaanlage-30-qm.html": {
    "n7": 2,
    "p7": 1
   },
-  "/guide/klimaanlage-dachfenster.html": {
-   "n7": 2,
-   "p7": 3
-  },
   "/guide/klimaanlage-wann-kaufen.html": {
    "n7": 5,
    "p7": 0
+  },
+  "/guide/klimaanlage-wohnmobil.html": {
+   "n7": 4,
+   "p7": 3
   },
   "/guide/luftbefeuchter-ratgeber.html": {
    "n7": 11,
    "p7": 0
   },
   "/guide/luftentfeuchter-ratgeber.html": {
-   "n7": 5,
-   "p7": 1
+   "n7": 4,
+   "p7": 2
   },
   "/guide/midea-portasplit-ausverkauft-alternativen.html": {
-   "n7": 3,
-   "p7": 1
+   "n7": 2,
+   "p7": 2
   },
   "/guide/saugroboter-kaufberatung.html": {
    "n7": 9,
    "p7": 0
   },
-  "/guide/strompreis-radar.html": {
-   "n7": 2,
-   "p7": 0
-  },
   "/guide/was-bedeutet-btu.html": {
    "n7": 3,
-   "p7": 3
+   "p7": 2
   },
   "/guide/wohnmobil-feuchtigkeit-winter.html": {
    "n7": 2,

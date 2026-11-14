@@ -1,4 +1,4 @@
-# Fleet evolution report — 2026-11-13
+# Fleet evolution report — 2026-11-14
 
 Deterministic, aggregate-only report. Missing data remains unknown; no editorial text, payments or membership rights are changed by this job.
 
@@ -12,29 +12,55 @@ Deterministic, aggregate-only report. Missing data remains unknown; no editorial
 
 | Priority | Site | Action | Mode | Evidence |
 |---:|---|---|---|---|
-| 64 | baipiaoji | membership_conversion | queue | referred_humans_28d=588; paid_members=0 |
+| 70 | agiscorecard | membership_readiness_check | observe | snapshot_date=2026-11-14T09:22:31.152Z |
+| 70 | baipiaoji | membership_readiness_check | observe | snapshot_date=2026-11-14T09:22:31.152Z |
+| 70 | getecoback | membership_readiness_check | observe | snapshot_date=2026-11-14T09:22:31.152Z |
+| 70 | thedollscout | membership_readiness_check | observe | snapshot_date=2026-11-14T09:22:31.152Z |
+| 64 | baipiaoji | membership_demand_review | queue | external_referrer_page_view_events=574; paid_members=0 |
 | 55 | agiscorecard | content_gap | queue | count=1; query=ai stocks crashing; value=1 |
-| 55 | getecoback | content_gap | queue | count=12; query=diesel infrarotheizung; value=74650 |
-| 55 | thedollscout | content_gap | queue | count=15; query=labubu cat mode; value=73950 |
-| 52 | agiscorecard | improve_hot_page | queue | page=/search; n7=515; p7=256 |
+| 55 | getecoback | content_gap | queue | count=19; query=diesel infrarotheizung; value=74650 |
+| 55 | thedollscout | content_gap | queue | count=16; query=labubu cat mode; value=73950 |
+| 52 | agiscorecard | improve_hot_page | queue | page=/invest; n7=232; p7=108 |
 | 52 | getecoback | improve_hot_page | queue | page=/guide/luftbefeuchter-ratgeber.html; n7=11; p7=0 |
-| 48 | goldrush | ai_discovery | queue | human_pv_28d=637; ai_ref_28d=0 |
-| 48 | thedollscout | ai_discovery | queue | human_pv_28d=972; ai_ref_28d=0 |
+| 48 | goldrush | ai_attribution_review | queue | legacy_page_view_events=656; ai_referrer_events=0 |
+| 48 | thedollscout | ai_attribution_review | queue | legacy_page_view_events=1124; ai_referrer_events=0 |
 
 ## Input freshness
 
 | Input | Date | Age (days) |
 |---|---|---:|
-| membership | 2026-11-13T09:56:23.808Z | 0 |
-| health | 2026-11-12T16:28:16Z | 1 |
-| ai_referrals | 2026-11-12T16:28:43Z | 1 |
-| opportunities | 2026-11-12 | 1 |
-| autopilot_receipt | 2026-11-13 | 0 |
+| membership | 2026-11-14T09:22:31.152Z | 0 |
+| health | 2026-11-13T15:49:18Z | 1 |
+| ai_referrals | 2026-11-13T15:49:44Z | 1 |
+| opportunities | 2026-11-13 | 1 |
+| autopilot_receipt | 2026-11-14 | 0 |
+
+## Growth directions
+
+Buyer/value propositions are reviewable hypotheses. Legacy page-view fields do not establish qualified users, paid demand, citations or profit. A recent payment snapshot is not a live checkout guarantee.
+
+Owner monthly revenue targets: USD 1,000 → USD 5,000 → USD 10,000. These are targets, not measured revenue. No target deadline has been specified.
+
+Owner has not specified gross/net treatment; report payments, refunds, revenue, settled cash and costs separately.
+
+Reconciled attributable revenue, with source dates and actual currency conversion where needed. Events, orders without payment, and shared affiliate tags cannot establish the fleet total.
+
+| Site | Buyer hypothesis | Existing revenue route | Next action | Expansion gate |
+|---|---|---|---|---|
+| getecoback | German-speaking households deciding whether and what to buy for a specific room or maintenance task | Disclosed, confirmed DE/US affiliate destinations; commission requires merchant order and refund reconciliation. | Expand distinct household product categories, source-checked models and appropriate category tools as explicitly requested by the owner. Retain the separate 200 voluntary affiliate_click events/day goal, accurate destination labels, source expiry and existing publication windows; never count unverified candidates or duplicate colors as product growth. | An uncovered buyer question with a reachable channel, exact model/market sources, useful original value and maintenance capacity; follow the existing category and daily-page rules. |
+| baipiaoji | Readers selecting an AI tool; separately, tool vendors buying a clearly labelled category placement | Existing vendor sponsorship and optional cloud workspace; commissions only for verified approved partner configurations. | Review category-entry and voluntary-order evidence separately; acquire relevant own-task use before expanding cloud features. | A repeat task from the same buyer, a documented gap versus free alternatives, usable delivery and a reachable distribution path. |
+| agiscorecard | Readers following auditable AGI claims and researchers revisiting source-backed AI infrastructure theses | Existing optional cross-device member storage; other historic monetization paths require their own current partner and payment evidence. | Review public-company referrals and own checks from requested exports, preserving clean links and the earned ledger identity. | Observed own-rule use, later reviewed checks and an explicit cross-device need before more data products, models or alert services. |
+| thedollscout | US/DE collectible owners and swap-event participants organizing a collection or checking a relevant purchase | Disclosed eligible US/DE affiliate transactions; existing optional workspace remains independent of free collector tools. | Assess collection completions, usable shared materials and relevant shopping actions separately before adding categories or membership features. | A verified brand/series or repeated collector task, official source coverage and a relevant discovery path; no unsupported rarity, valuation or authenticity claims. |
+
+Other sites: Repeated own-task evidence, a documented alternative gap, feasible delivery costs and a reachable buyer. Low distribution remains inconclusive.
+
+Review: docs/ceo-revenue-execution-2026-11-13.md
 
 ## Autonomous boundary
 
 - Refresh measured snapshots and derived queues.
 - Keep sitemap lastmod tied to content hashes and ping only changed URLs.
+- Apply the approved growth directions and experiment gates before proposing expansion.
 - Queue copy, pricing, new products and membership experiments for judgement; do not fabricate evidence.
 
 

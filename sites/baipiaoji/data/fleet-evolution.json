@@ -10,7 +10,8 @@
     "traffic": {
       "human_pv_band": "100+",
       "ai_ref_band": "10-99",
-      "reach_humans_referred_band": "100+"
+      "reach_humans_referred_band": "100+",
+      "measurement": "Legacy field names contain page-view/referrer events, not verified people, qualified buyers or paid demand."
     },
     "demand": {
       "has_underserved": false,
@@ -26,11 +27,18 @@
   },
   "actions": [
     {
-      "kind": "membership_conversion",
+      "kind": "membership_readiness_check",
+      "priority": 70,
+      "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
+      "evidence": {},
+      "mode": "observe"
+    },
+    {
+      "kind": "membership_demand_review",
       "priority": 64,
-      "reason": "ready membership has qualified referred traffic but no paid members",
+      "reason": "review product-matched own tasks, repeat use and the paid increment before membership expansion; referrer events do not establish qualified buyers",
       "evidence": {
-        "referred_humans_28d_band": "100+",
+        "external_referrer_page_view_events_band": "100+",
         "paid_members_band": "0"
       },
       "mode": "queue"

@@ -10,7 +10,8 @@
     "traffic": {
       "human_pv_band": "100+",
       "ai_ref_band": "1-9",
-      "reach_humans_referred_band": null
+      "reach_humans_referred_band": null,
+      "measurement": "Legacy field names contain page-view/referrer events, not verified people, qualified buyers or paid demand."
     },
     "demand": {
       "has_underserved": false,

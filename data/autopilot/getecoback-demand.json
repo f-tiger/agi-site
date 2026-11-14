@@ -338,6 +338,16 @@
   },
   {
    "kind": "value",
+   "match": 0.25,
+   "page": "guide/aeg-chillflex-pro-test.html",
+   "q": "emma original pro matratze",
+   "seed": "matratze",
+   "source": "related-queries",
+   "stand": "2026-11-13",
+   "v": 140
+  },
+  {
+   "kind": "value",
    "match": 0.5,
    "page": "guide/delonghi-pac-n90-test.html",
    "q": "de'longhi kaffeevollautomat",
@@ -350,6 +360,66 @@
    "kind": "value",
    "match": 0.0,
    "page": null,
+   "q": "emma flip matratze",
+   "seed": "matratze",
+   "source": "related-queries",
+   "stand": "2026-11-13",
+   "v": 110
+  },
+  {
+   "kind": "value",
+   "match": 0.333,
+   "page": "en/filter-finder.html",
+   "q": "emma original matratze",
+   "seed": "matratze",
+   "source": "related-queries",
+   "stand": "2026-11-13",
+   "v": 80
+  },
+  {
+   "kind": "value",
+   "match": 0.317,
+   "page": "en/guide/desiccant-vs-compressor-dehumidifier.html",
+   "q": "emma performance matratze",
+   "seed": "matratze",
+   "source": "related-queries",
+   "stand": "2026-11-13",
+   "v": 80
+  },
+  {
+   "kind": "value",
+   "match": 0.0,
+   "page": null,
+   "q": "alvi matratze",
+   "seed": "matratze",
+   "source": "related-queries",
+   "stand": "2026-11-13",
+   "v": 70
+  },
+  {
+   "kind": "value",
+   "match": 0.458,
+   "page": "guide/ventilator-nachts-schlafen.html",
+   "q": "bett 120x200 mit matratze und lattenrost",
+   "seed": "matratze",
+   "source": "related-queries",
+   "stand": "2026-11-13",
+   "v": 70
+  },
+  {
+   "kind": "value",
+   "match": 0.0,
+   "page": null,
+   "q": "encasing matratze",
+   "seed": "matratze",
+   "source": "related-queries",
+   "stand": "2026-11-13",
+   "v": 60
+  },
+  {
+   "kind": "value",
+   "match": 0.0,
+   "page": null,
    "q": "philips kaffeevollautomat lattego",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
@@ -357,9 +427,9 @@
    "v": 50
   }
  ],
- "generated": "2026-11-13",
+ "generated": "2026-11-14",
  "geo": "DE",
- "heat_source": "measured 2026-11-13 (15 pages); no notes",
+ "heat_source": "measured 2026-11-14 (14 pages); no notes",
  "hot_pages": [
   {
    "n7": 11,
@@ -373,7 +443,7 @@
   },
   {
    "n7": 7,
-   "p7": 8,
+   "p7": 7,
    "page": "/"
   },
   {
@@ -383,7 +453,7 @@
   },
   {
    "n7": 5,
-   "p7": 1,
+   "p7": 2,
    "page": "/guide/fensterabdichtung-selber-bauen.html"
   },
   {
@@ -392,18 +462,23 @@
    "page": "/guide/klimaanlage-wann-kaufen.html"
   },
   {
-   "n7": 5,
-   "p7": 1,
+   "n7": 4,
+   "p7": 0,
+   "page": "/agents/compliance.html"
+  },
+  {
+   "n7": 4,
+   "p7": 3,
+   "page": "/guide/klimaanlage-wohnmobil.html"
+  },
+  {
+   "n7": 4,
+   "p7": 2,
    "page": "/guide/luftentfeuchter-ratgeber.html"
   },
   {
    "n7": 3,
-   "p7": 1,
-   "page": "/guide/midea-portasplit-ausverkauft-alternativen.html"
-  },
-  {
-   "n7": 3,
-   "p7": 3,
+   "p7": 2,
    "page": "/guide/was-bedeutet-btu.html"
   },
   {
@@ -413,23 +488,13 @@
   },
   {
    "n7": 2,
-   "p7": 0,
-   "page": "/guide/fensterabdichtung-klimaanlage.html"
-  },
-  {
-   "n7": 2,
    "p7": 1,
    "page": "/guide/klimaanlage-30-qm.html"
   },
   {
    "n7": 2,
-   "p7": 3,
-   "page": "/guide/klimaanlage-dachfenster.html"
-  },
-  {
-   "n7": 2,
-   "p7": 0,
-   "page": "/guide/strompreis-radar.html"
+   "p7": 2,
+   "page": "/guide/midea-portasplit-ausverkauft-alternativen.html"
   },
   {
    "n7": 2,
@@ -444,6 +509,9 @@
   "avreno",
   "meacodry arete two 25l",
   "meacodry arete two 12l",
+  "schlafsofa mit bettkasten",
+  "beco maxima plus",
+  "jysk online",
   "philips lattego"
  ],
  "site": "getecoback",

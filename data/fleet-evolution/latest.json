@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "as_of": "2026-11-13",
+  "as_of": "2026-11-14",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
@@ -12,11 +12,11 @@
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-11-13T09:56:23.808Z",
-    "health": "2026-11-12T16:28:16Z",
-    "ai_referrals": "2026-11-12T16:28:43Z",
-    "opportunities": "2026-11-12",
-    "autopilot_receipt": "2026-11-13"
+    "membership": "2026-11-14T09:22:31.152Z",
+    "health": "2026-11-13T15:49:18Z",
+    "ai_referrals": "2026-11-13T15:49:44Z",
+    "opportunities": "2026-11-13",
+    "autopilot_receipt": "2026-11-14"
   },
   "input_ages_days": {
     "membership": 0,
@@ -28,7 +28,7 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-11-13T09:56:23.808Z",
+    "generated": "2026-11-14T09:22:31.152Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
     "ok": true,
@@ -137,19 +137,10 @@
       "supply": 0
     },
     {
-      "theme": "are you building an ai company brain",
-      "site": null,
-      "state": "scout",
-      "score": 2.94,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
       "theme": "why does reddit want me to use the ios app on my desktop",
       "site": null,
       "state": "scout",
-      "score": 2.43,
+      "score": 2.45,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -186,6 +177,15 @@
       "site": null,
       "state": "scout",
       "score": 2.02,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "how to set up an isolated environment for c development session with the ability",
+      "site": null,
+      "state": "scout",
+      "score": 2.0,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -317,12 +317,52 @@
   ],
   "actions": [
     {
-      "site": "baipiaoji",
-      "kind": "membership_conversion",
-      "priority": 64,
-      "reason": "ready membership has qualified referred traffic but no paid members",
+      "site": "agiscorecard",
+      "kind": "membership_readiness_check",
+      "priority": 70,
+      "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
       "evidence": {
-        "referred_humans_28d": 588,
+        "snapshot_date": "2026-11-14T09:22:31.152Z"
+      },
+      "mode": "observe"
+    },
+    {
+      "site": "baipiaoji",
+      "kind": "membership_readiness_check",
+      "priority": 70,
+      "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
+      "evidence": {
+        "snapshot_date": "2026-11-14T09:22:31.152Z"
+      },
+      "mode": "observe"
+    },
+    {
+      "site": "getecoback",
+      "kind": "membership_readiness_check",
+      "priority": 70,
+      "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
+      "evidence": {
+        "snapshot_date": "2026-11-14T09:22:31.152Z"
+      },
+      "mode": "observe"
+    },
+    {
+      "site": "thedollscout",
+      "kind": "membership_readiness_check",
+      "priority": 70,
+      "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
+      "evidence": {
+        "snapshot_date": "2026-11-14T09:22:31.152Z"
+      },
+      "mode": "observe"
+    },
+    {
+      "site": "baipiaoji",
+      "kind": "membership_demand_review",
+      "priority": 64,
+      "reason": "review product-matched own tasks, repeat use and the paid increment before membership expansion; referrer events do not establish qualified buyers",
+      "evidence": {
+        "external_referrer_page_view_events": 574,
         "paid_members": 0
       },
       "mode": "queue"
@@ -331,7 +371,7 @@
       "site": "agiscorecard",
       "kind": "content_gap",
       "priority": 55,
-      "reason": "rising demand has no matching page; editorial judgement is required",
+      "reason": "topic-signal overlap has no matching page; apply the buyer, source, country and distribution gates before expansion",
       "evidence": {
         "count": 1,
         "query": "ai stocks crashing",
@@ -343,9 +383,9 @@
       "site": "getecoback",
       "kind": "content_gap",
       "priority": 55,
-      "reason": "rising demand has no matching page; editorial judgement is required",
+      "reason": "topic-signal overlap has no matching page; apply the buyer, source, country and distribution gates before expansion",
       "evidence": {
-        "count": 12,
+        "count": 19,
         "query": "diesel infrarotheizung",
         "value": 74650
       },
@@ -355,9 +395,9 @@
       "site": "thedollscout",
       "kind": "content_gap",
       "priority": 55,
-      "reason": "rising demand has no matching page; editorial judgement is required",
+      "reason": "topic-signal overlap has no matching page; apply the buyer, source, country and distribution gates before expansion",
       "evidence": {
-        "count": 15,
+        "count": 16,
         "query": "labubu cat mode",
         "value": 73950
       },
@@ -367,11 +407,11 @@
       "site": "agiscorecard",
       "kind": "improve_hot_page",
       "priority": 52,
-      "reason": "prioritize a page with measured reader heat",
+      "reason": "review observed page-event activity and source quality; activity is not verified people or buying intent",
       "evidence": {
-        "page": "/search",
-        "n7": 515,
-        "p7": 256
+        "page": "/invest",
+        "n7": 232,
+        "p7": 108
       },
       "mode": "queue"
     },
@@ -379,7 +419,7 @@
       "site": "getecoback",
       "kind": "improve_hot_page",
       "priority": 52,
-      "reason": "prioritize a page with measured reader heat",
+      "reason": "review observed page-event activity and source quality; activity is not verified people or buying intent",
       "evidence": {
         "page": "/guide/luftbefeuchter-ratgeber.html",
         "n7": 11,
@@ -389,23 +429,23 @@
     },
     {
       "site": "goldrush",
-      "kind": "ai_discovery",
+      "kind": "ai_attribution_review",
       "priority": 48,
-      "reason": "referred traffic exists but no AI-assistant referral is measured",
+      "reason": "check source coverage and useful AI arrivals before expanding discovery work; legacy page views do not establish referred people or citations",
       "evidence": {
-        "human_pv_28d": 637,
-        "ai_ref_28d": 0
+        "legacy_page_view_events": 656,
+        "ai_referrer_events": 0
       },
       "mode": "queue"
     },
     {
       "site": "thedollscout",
-      "kind": "ai_discovery",
+      "kind": "ai_attribution_review",
       "priority": 48,
-      "reason": "referred traffic exists but no AI-assistant referral is measured",
+      "reason": "check source coverage and useful AI arrivals before expanding discovery work; legacy page views do not establish referred people or citations",
       "evidence": {
-        "human_pv_28d": 972,
-        "ai_ref_28d": 0
+        "legacy_page_view_events": 1124,
+        "ai_referrer_events": 0
       },
       "mode": "queue"
     }
@@ -413,19 +453,19 @@
   "site_manifests": {
     "agiscorecard": {
       "path": "sites/agiscorecard/data/fleet-evolution.json",
-      "action_count": 2
+      "action_count": 3
     },
     "baipiaoji": {
       "path": "sites/baipiaoji/data/fleet-evolution.json",
-      "action_count": 1
+      "action_count": 2
     },
     "getecoback": {
       "path": "sites/getecoback/data/fleet-evolution.json",
-      "action_count": 2
+      "action_count": 3
     },
     "thedollscout": {
       "path": "sites/thedollscout/data/fleet-evolution.json",
-      "action_count": 2
+      "action_count": 3
     },
     "buysomething": {
       "path": "sites/buysomething/data/fleet-evolution.json",
@@ -468,10 +508,89 @@
       "action_count": 0
     }
   },
+  "growth_policy": {
+    "version": 1,
+    "reviewed_at": "2026-11-13",
+    "status": "owner-directed hypotheses; not validated product-market fit",
+    "review": "docs/ceo-revenue-execution-2026-11-13.md",
+    "revenue_targets": {
+      "currency": "USD",
+      "period": "monthly",
+      "milestones": [
+        1000,
+        5000,
+        10000
+      ],
+      "deadline": null,
+      "accounting_basis": "Owner has not specified gross/net treatment; report payments, refunds, revenue, settled cash and costs separately.",
+      "proof": "Reconciled attributable revenue, with source dates and actual currency conversion where needed. Events, orders without payment, and shared affiliate tags cannot establish the fleet total."
+    },
+    "shared_boundaries": [
+      "Check the current public payment-readiness API before selling or interpreting absent orders; a recent report is only an observation.",
+      "Preserve current prices, free capabilities, separate entitlements and original experiment windows.",
+      "Use existing owned channels and reporting; no new spend, unsolicited outreach or recurring job.",
+      "Page-view events, task actions, accounts, payments, commission and profit are different measures.",
+      "Missing access, unknown source quality and insufficient distribution are not rejected demand."
+    ],
+    "sites": {
+      "getecoback": {
+        "buyer": "German-speaking households deciding whether and what to buy for a specific room or maintenance task",
+        "job": "Check the cause and home constraints, compare exact sourced models, then decide whether a purchase is justified.",
+        "free_value": "Source-linked household guides, a multi-category exact-model catalog, useful category-specific local tools and no-purchase outcomes.",
+        "existing_revenue": "Disclosed, confirmed DE/US affiliate destinations; commission requires merchant order and refund reconciliation.",
+        "acquisition": "Prioritize relevant arrivals to concrete buying questions and exact model/variant comparisons; maintain functioning cooling entries alongside seasonal household paths and the bounded owned-channel pilot.",
+        "next_action": "Expand distinct household product categories, source-checked models and appropriate category tools as explicitly requested by the owner. Retain the separate 200 voluntary affiliate_click events/day goal, accurate destination labels, source expiry and existing publication windows; never count unverified candidates or duplicate colors as product growth.",
+        "expansion_gate": "An uncovered buyer question with a reachable channel, exact model/market sources, useful original value and maintenance capacity; follow the existing category and daily-page rules.",
+        "revenue_evidence": "Attributed eligible merchant orders, commission after reversals, settlement and costs; site clicks are separate.",
+        "review_contract": "sites/getecoback/docs/multicategory-products-2026-11-13.md"
+      },
+      "baipiaoji": {
+        "buyer": "Readers selecting an AI tool; separately, tool vendors buying a clearly labelled category placement",
+        "job": "Match a task to actual access, limits and purchase terms; let vendors assess a separate sponsorship offer.",
+        "free_value": "Tool selection and local task utilities remain available without a paid membership.",
+        "existing_revenue": "Existing vendor sponsorship and optional cloud workspace; commissions only for verified approved partner configurations.",
+        "acquisition": "Intent-matched tool/category entries, discoverable task tools and the existing table-review launch pilot.",
+        "next_action": "Review category-entry and voluntary-order evidence separately; acquire relevant own-task use before expanding cloud features.",
+        "expansion_gate": "A repeat task from the same buyer, a documented gap versus free alternatives, usable delivery and a reachable distribution path.",
+        "revenue_evidence": "Verified sponsorship/member payment, correct entitlement, delivery, refunds and cost; directory outbound actions are not commission.",
+        "review_contract": "docs/fleet-revenue-execution-2026-11-12.md"
+      },
+      "agiscorecard": {
+        "buyer": "Readers following auditable AGI claims and researchers revisiting source-backed AI infrastructure theses",
+        "job": "Separate dated evidence from a hypothesis, record a review condition and revisit it after a relevant disclosure.",
+        "free_value": "The prediction ledger, public sources, local research, checks and exports remain free.",
+        "existing_revenue": "Existing optional cross-device member storage; other historic monetization paths require their own current partner and payment evidence.",
+        "acquisition": "Maintain the earned research/ledger identity; reuse the bounded thesis demonstration and public company links in requested exports.",
+        "next_action": "Review public-company referrals and own checks from requested exports, preserving clean links and the earned ledger identity.",
+        "expansion_gate": "Observed own-rule use, later reviewed checks and an explicit cross-device need before more data products, models or alert services.",
+        "revenue_evidence": "Attributed paid receipts and delivered saved-record use; exports, rechecks and member intent are separate.",
+        "review_contract": "docs/agi-thesis-watch-2026-11-12.md"
+      },
+      "thedollscout": {
+        "buyer": "US/DE collectible owners and swap-event participants organizing a collection or checking a relevant purchase",
+        "job": "Know what is owned or wanted, prepare a collection/swap task, then compare official or accurately labelled merchant options.",
+        "free_value": "Sourced series information, local collection tools, printable preparation and reusable blank materials.",
+        "existing_revenue": "Disclosed eligible US/DE affiliate transactions; existing optional workspace remains independent of free collector tools.",
+        "acquisition": "Series/task search entries and reusable collector materials; retain existing publication receipts and country-specific buying paths.",
+        "next_action": "Assess collection completions, usable shared materials and relevant shopping actions separately before adding categories or membership features.",
+        "expansion_gate": "A verified brand/series or repeated collector task, official source coverage and a relevant discovery path; no unsupported rarity, valuation or authenticity claims.",
+        "revenue_evidence": "Attributed merchant orders and settled commission after refunds/costs; wish lists and shopping intent are not purchases.",
+        "review_contract": "docs/tds-country-growth-2026-11-07.md"
+      }
+    },
+    "other_sites": {
+      "status": "bounded probes; no automatic paid-feature expansion",
+      "next_action": "Preserve working free utilities and existing obligations; choose one independently evidenced buyer/task/channel before allocating feature work.",
+      "expansion_gate": "Repeated own-task evidence, a documented alternative gap, feasible delivery costs and a reachable buyer. Low distribution remains inconclusive."
+    }
+  },
+  "readiness_note": "A recent aggregate is an observation, not a live payment guarantee. Recheck checkout before selling.",
   "rules": {
     "no_editorial_autowrite": true,
     "no_payment_or_membership_mutation": true,
     "missing_is_unknown": true,
+    "pageviews_are_not_paid_demand": true,
+    "growth_policy_requires_editorial_judgement": true,
     "site_deploys_only_when_manifest_or_site_content_changes": true
   }
 }

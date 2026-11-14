@@ -13,8 +13,8 @@
   },
   {
    "heat": {
-    "n7": 204,
-    "p7": 101
+    "n7": 232,
+    "p7": 108
    },
    "kind": "autocomplete-new",
    "match": 0.833,
@@ -30,7 +30,7 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 26,
+    "n": 23,
     "q": "tool:portfolio_returns"
    },
    {
@@ -46,16 +46,16 @@
     "q": "tool:sunwatch_ledger"
    },
    {
-    "n": 8,
+    "n": 7,
     "q": "tool:invest_positions"
    },
    {
     "n": 4,
-    "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
+    "q": "tool:claim_ledger https://goldrush.agiscorecard."
    },
    {
-    "n": 3,
-    "q": "tool:claim_ledger https://goldrush.agiscorecard."
+    "n": 4,
+    "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
    },
    {
     "n": 3,
@@ -83,33 +83,33 @@
    "v": 1
   }
  ],
- "generated": "2026-11-13",
+ "generated": "2026-11-14",
  "geo": "US",
- "heat_source": "measured 2026-11-13 (5 pages); no notes",
+ "heat_source": "measured 2026-11-14 (5 pages); no notes",
  "hot_pages": [
   {
-   "n7": 515,
-   "p7": 256,
-   "page": "/search"
-  },
-  {
-   "n7": 204,
-   "p7": 101,
+   "n7": 232,
+   "p7": 108,
    "page": "/invest"
   },
   {
-   "n7": 196,
-   "p7": 89,
+   "n7": 224,
+   "p7": 98,
    "page": "/earn"
   },
   {
-   "n7": 188,
-   "p7": 91,
+   "n7": 217,
+   "p7": 99,
    "page": "/mentor"
   },
   {
-   "n7": 188,
-   "p7": 86,
+   "n7": 213,
+   "p7": 100,
+   "page": "/jarvis"
+  },
+  {
+   "n7": 213,
+   "p7": 98,
    "page": "/workbench"
   }
  ],

@@ -22,8 +22,8 @@
   },
   {
    "kind": "autocomplete-new",
-   "match": 0.767,
-   "page": "de/shop/plush-display.html",
+   "match": 0.75,
+   "page": "de/collecting/wish-card.html",
    "q": "sonny angel usa",
    "seed": "sonny angel",
    "source": "autocomplete-diff",
@@ -45,16 +45,6 @@
    "match": 0.667,
    "page": "brands/sonny-angel.html",
    "q": "sonny angel christmas",
-   "seed": "sonny angel",
-   "source": "autocomplete-diff",
-   "stand": "2026-11-12",
-   "v": 1
-  },
-  {
-   "kind": "autocomplete-new",
-   "match": 0.6,
-   "page": "zh/shop.html",
-   "q": "sonny angel advent calendar 2026",
    "seed": "sonny angel",
    "source": "autocomplete-diff",
    "stand": "2026-11-12",
@@ -125,8 +115,8 @@
   },
   {
    "kind": "value",
-   "match": 0.487,
-   "page": "zh/shop.html",
+   "match": 0.475,
+   "page": "time-zone-planner.html",
    "q": "jellycat advent calendar 2026",
    "seed": "jellycat",
    "source": "related-queries",
@@ -215,9 +205,19 @@
   },
   {
    "kind": "autocomplete-new",
-   "match": 0.333,
-   "page": "brands/sonny-angel.html",
+   "match": 0.5,
+   "page": "legal/affiliate-disclosure.html",
    "q": "sonny angels near me",
+   "seed": "sonny angel",
+   "source": "autocomplete-diff",
+   "stand": "2026-11-12",
+   "v": 1
+  },
+  {
+   "kind": "autocomplete-new",
+   "match": 0.59,
+   "page": "collecting/trading-meetup-checklist.html",
+   "q": "sonny angel advent calendar 2026",
    "seed": "sonny angel",
    "source": "autocomplete-diff",
    "stand": "2026-11-12",
@@ -234,7 +234,7 @@
    "v": 1
   }
  ],
- "generated": "2026-11-13",
+ "generated": "2026-11-14",
  "geo": "US",
  "heat_source": "no public aggregate endpoint on this site — heat needs either a Worker /api/* aggregate route or the D1 read permission on the deploy token",
  "hot_pages": [],

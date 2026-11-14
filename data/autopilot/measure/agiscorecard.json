@@ -3,7 +3,7 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 26,
+    "n": 23,
     "q": "tool:portfolio_returns"
    },
    {
@@ -19,16 +19,16 @@
     "q": "tool:sunwatch_ledger"
    },
    {
-    "n": 8,
+    "n": 7,
     "q": "tool:invest_positions"
    },
    {
     "n": 4,
-    "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
+    "q": "tool:claim_ledger https://goldrush.agiscorecard."
    },
    {
-    "n": 3,
-    "q": "tool:claim_ledger https://goldrush.agiscorecard."
+    "n": 4,
+    "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
    },
    {
     "n": 3,
@@ -44,30 +44,30 @@
    }
   ]
  },
- "fetched": "2026-11-13",
+ "fetched": "2026-11-14",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
   "/earn": {
-   "n7": 196,
-   "p7": 89
+   "n7": 224,
+   "p7": 98
   },
   "/invest": {
-   "n7": 204,
-   "p7": 101
+   "n7": 232,
+   "p7": 108
+  },
+  "/jarvis": {
+   "n7": 213,
+   "p7": 100
   },
   "/mentor": {
-   "n7": 188,
-   "p7": 91
-  },
-  "/search": {
-   "n7": 515,
-   "p7": 256
+   "n7": 217,
+   "p7": 99
   },
   "/workbench": {
-   "n7": 188,
-   "p7": 86
+   "n7": 213,
+   "p7": 98
   }
  },
  "site": "agiscorecard",

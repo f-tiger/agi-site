@@ -10,7 +10,8 @@
     "traffic": {
       "human_pv_band": "100+",
       "ai_ref_band": "0",
-      "reach_humans_referred_band": null
+      "reach_humans_referred_band": null,
+      "measurement": "Legacy field names contain page-view/referrer events, not verified people, qualified buyers or paid demand."
     },
     "demand": {
       "has_underserved": false,
@@ -26,12 +27,12 @@
   },
   "actions": [
     {
-      "kind": "ai_discovery",
+      "kind": "ai_attribution_review",
       "priority": 48,
-      "reason": "referred traffic exists but no AI-assistant referral is measured",
+      "reason": "check source coverage and useful AI arrivals before expanding discovery work; legacy page views do not establish referred people or citations",
       "evidence": {
-        "human_pv_28d_band": "100+",
-        "ai_ref_28d_band": "0"
+        "legacy_page_view_events_band": "100+",
+        "ai_referrer_events_band": "0"
       },
       "mode": "queue"
     }
