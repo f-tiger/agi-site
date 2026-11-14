@@ -1,7 +1,15 @@
-# TDS product and commercial context — version 11.0 (2026-11-07)
+# TDS product and commercial context — version 12.0 (2026-11-14)
 
-**Document version:** v11
-**Last updated:** 2026-11-07
+**Document version:** v12
+**Last updated:** 2026-11-14
+
+## Nine category buying guides — latest owner direction 2026-11-14
+
+The owner asks to deepen the existing categories against similar sites for SEO, AI discovery and IndexNow. Serve people making a concrete household purchase decision. Nine guides in EN/DE/ZH explain the task, compatibility, trade-offs, recurring supplies and a reason to reuse or skip where relevant. Compare Good Housekeeping’s household topic hierarchy and Wirecutter’s explicit comparison criteria. Those publishers describe testing facilities; TDS interprets published sources and does not claim their testing, rankings, traffic or conversion rates. This release adds category depth and owned navigation, not more products or per-model landing templates.
+
+Use crawlable static HTML, direct category links, unique localized titles/descriptions, reciprocal language links, same-page model lists, breadcrumbs and truthful modification dates. Sources and product-card check dates remain distinct from the guide’s editorial review date. Visible questions help shoppers; they do not establish Google FAQ rich-result eligibility. Google says no special GEO markup or llms.txt is required for its AI features; optional mirrors remain convenience copies. IndexNow notifies participating engines of actual changes; accepted submission is not indexing, ranking or citation.
+
+New canonical category paths support pageviews and existing sanitized affiliate exits. Preserve the original18-path shopping-growth report scope and 2026-11-08 baseline; new pages need their actual first complete UTC day. US/DE destination rules and the two existing exact-US identities remain. Search-model exits stay merchant-only, with no query text sent. Keep the 2026-11-22 review and the USD100 monthly total-site revenue goal; a release cannot validate traffic, conversions or income. No new external post, paid placement, account, credential or scheduler. Evidence and current release state: root docs/tds-category-depth-2026-11-14.json.
 
 ## Household and daily-life catalog — latest owner direction 2026-11-13
 

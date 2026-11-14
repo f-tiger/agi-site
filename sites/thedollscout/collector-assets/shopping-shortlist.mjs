@@ -1,5 +1,5 @@
-import {SHOPPING_IDS} from './shopping-contract.mjs?v=20261113.amazon1';
-import {recordShoppingCompare} from './affiliate-measurement.mjs?v=2026-11-13.amazon1';
+import {SHOPPING_IDS} from './shopping-contract.mjs?v=20261114.category1';
+import {recordShoppingCompare} from './affiliate-measurement.mjs?v=2026-11-14.category1';
 
 export const SHORTLIST_LIMIT = 3;
 export const shortlistStorageKey = market => 'tds_shopping_shortlist_v1:' + (market === 'DE' ? 'DE' : 'US');

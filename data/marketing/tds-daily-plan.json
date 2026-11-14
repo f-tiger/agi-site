@@ -1,12 +1,13 @@
 {
-  "version": 10,
+  "version": 11,
   "site": "tds",
   "start_date": "2026-10-12",
   "days": 30,
   "timezone": "Asia/Shanghai",
-  "mode": "owner_authorized_home_lifestyle_amazon_catalog",
+  "mode": "owner_authorized_home_category_depth",
   "native_schedule_unchanged": "07:20 UTC / 15:20 Asia/Shanghai",
   "rules": [
+    "The 2026-11-14 explicit category-depth/competitor/SEO/GEO/IndexNow request authorizes this bounded nine-category implementation and release; it does not restart earlier experiments or authorize further template-volume expansion.",
     "The 2026-11-13 explicit Amazon affiliate pivot supersedes the earlier development freeze for this bounded implementation and release; no new expense, account, recurring task or outbound-post authority.",
     "The 2026-11-13 investment_gate overrides the old calendar backlog: validation and necessary maintenance only until the original 2026-11-22 review; unavailable evidence does not restart the window.",
     "Repair real failures before the calendar topic.",
@@ -1249,7 +1250,7 @@
   "investment_gate": {
     "updated": "2026-11-13",
     "reason": "Owner challenges whether TDS warrants continued investment; product delivery has not established a repeatable acquisition and useful-task loop.",
-    "status": "superseded_for_owner_authorized_amazon_pivot",
+    "status": "superseded_for_owner_authorized_category_depth",
     "takes_precedence_over": [
       "days_plan",
       "acquisition_priority",
@@ -1316,7 +1317,8 @@
       "additional_requests": [
         "100种不同商品带分类联盟推荐",
         "居家生活全品类",
-        "参考竞品"
+        "参考竞品",
+        "深化这些类目，对比同类型网站，让它们可以被ai geo或者seo，indexnow喜欢检索"
       ]
     }
   },
@@ -1474,5 +1476,22 @@
       ]
     },
     "next_action": "Review actual complete dates starting 2026-11-14 within existing reporting cadence. Preserve 2026-11-22 review and separate old observations; merchant statements determine revenue."
+  },
+  "category_depth": {
+    "authorized_on": "2026-11-14",
+    "status": "implementation_pending_release_receipt",
+    "scope": "Nine distinct household buying guides, three translated interfaces,27 canonical pages;100 existing named models, no thin per-model pages",
+    "marketing": "Crawlable home/catalog-to-category navigation, task comparison and related-topic links; owned search distribution only",
+    "benchmarks": [
+      "Good Housekeeping: household task/category hierarchy",
+      "Wirecutter: explicit comparison criteria and evidence boundaries"
+    ],
+    "technical": "Static HTML; self canonical and reciprocal hreflang; accurate lastmod; visible-model ItemList and breadcrumbs; source links; optional text mirrors; existing IndexNow notifications only after deployment",
+    "measurement": "New category paths separately admitted to fixed first-party affiliate measurement; original18-path shopping-growth aggregate and Nov8 baseline unchanged. Model searches remain merchant-only unknown item. GA4 pageview+affiliate action on new public routes via existing isolated channel. Backend receipt and search visibility require authentic reporting access.",
+    "first_complete_utc_day": null,
+    "original_review": "2026-11-22",
+    "window_reset": false,
+    "ledger": "docs/tds-category-depth-2026-11-14.json",
+    "next_action": "After release, inspect actual landing/query/country/merchant evidence within existing cadence. Check impressions -> search CTR -> guide arrivals -> merchant exits -> mature attributable revenue separately; missing account data stays unknown. Fix relevance/source failures before adding pages."
   }
 }

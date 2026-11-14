@@ -1,3 +1,4 @@
+import {categorySlugs} from './category-pages.mjs';
 import {shoppingSlugs} from './shopping.mjs';
 import {inspectCollectorHome} from '../../../../tools/revenue-studio/collector-discovery.mjs';
 import {seriesSlugs,seriesState} from './series-pages.mjs';
@@ -12,7 +13,7 @@ import {isRetiredPath} from '../../functions/retired-paths.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..'),args=process.argv.slice(2),live=args.includes('--live'),out=args.includes('--out')?path.resolve(args[args.indexOf('--out')+1]):root;
 const file=p=>path.join(out,p.replace(/^\//,'')+(p.endsWith('/')?'index.html':path.extname(p)?'':'.html'));
 async function read(p,ready=()=>true){if(!live)return fs.readFileSync(file(p),'utf8');let last;for(let i=0;i<6;i++){try{const r=await fetch(origin+p,{headers:{'x-probe':'collector-release','user-agent':'tds-release-probe'},signal:AbortSignal.timeout(20000)});assert.equal(r.status,200,p);const text=await r.text();assert.ok(ready(text),p+' is still propagating');return text;}catch(e){last=e;if(i<5)await new Promise(r=>setTimeout(r,3000));}}throw last;}
-const expectedRecords=Object.keys(locales).length*(brands.length+2+extraSlugs.length+seriesSlugs.length+shoppingSlugs.length);
+const expectedRecords=Object.keys(locales).length*(brands.length+2+extraSlugs.length+seriesSlugs.length+shoppingSlugs.length+categorySlugs.length);
 const manifest=JSON.parse(await read('/collector-assets/manifest.json',text=>{const m=JSON.parse(text);return m.edition===edition&&m.records.length===expectedRecords;}));assert.equal(manifest.edition,edition);assert.equal(manifest.records.length,expectedRecords);
 // The manifest and sitemap can propagate at different times. Retry the same strict URL contract.
 const sitemap=await read('/sitemap.xml',text=>manifest.records.every(r=>text.split('<loc>'+r.url+'</loc>').length-1===1));
