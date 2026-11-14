@@ -2,7 +2,7 @@
   "date": "2026-11-14",
   "site": "tds",
   "owner_request": "深化这些类目，对比同类型网站，让它们可以被ai geo或者seo，indexnow喜欢检索",
-  "status": "validated_ready_for_release",
+  "status": "released_and_live_verified",
   "prompt_passes": [
     {
       "round": 1,
@@ -78,7 +78,7 @@
   },
   "intent_evidence": "Editorial task hypotheses supported by manufacturer instructions and existing product inventory; not measured query volume or buyer interviews.",
   "distribution": "Owned home/catalog category links and sibling-topic links; existing public sitemap and IndexNow workflow. No new outbound post/message or spend.",
-  "measurement_scope": "New category allowlist separated from historical18-path shopping-growth aggregate; GA4 existing property and isolated channel; no query text or fake production event. Actual first complete day pending.",
+  "measurement_scope": "First complete UTC day for new27 category paths is2026-11-15. Existing18-path shopping-growth aggregate and2026-11-08 baseline unchanged; new category allowlist used by first-party affiliate validation. GA4 existing341 public routes use same property/isolated channel. No production business test events. Authentic backend reports/search visibility remain unavailable and unknown.",
   "goals": {
     "monthly_total_tds_revenue_usd": 100,
     "actual_revenue": "unknown",
@@ -133,6 +133,46 @@
     "indexed_or_ai_cited": "unknown",
     "traffic_or_revenue_lift": "unknown"
   },
-  "release": null,
-  "next_action": "Review available genuine search/query/landing, affiliate exits and mature merchant revenue separately within existing cadence. Do not expand solely because impressions or reporting access are missing."
+  "release": {
+    "pr": "https://github.com/f-tiger/agi-site/pull/324",
+    "commit": "dfd1efcb9dbf27737d49b98326be3c3ec560642e",
+    "deployment": "https://github.com/f-tiger/agi-site/actions/runs/43594651638",
+    "status": "success",
+    "verified_on": "2026-11-14",
+    "first_complete_utc_day": "2026-11-15",
+    "localized_category_pages": 27,
+    "categories": 9,
+    "existing_distinct_models": 100,
+    "production_validation": {
+      "exact_build_verified": true,
+      "all_category_pages": 27,
+      "home_shop_pages": 6,
+      "asset_bytes_matched": 6,
+      "canonical_hreflang_indexable_schema_text_ga4": "passed",
+      "full_collector_live_gate_pages": 198,
+      "business_events": 0,
+      "merchant_visits": 0,
+      "business_write_probes": "skipped_not_counted_as_passed",
+      "ga4_build_routes": 341,
+      "ga4_live_spread_routes": 74,
+      "ga4_version": "cae7d0105b62",
+      "ga4_backend_receipt": "not-tested"
+    },
+    "indexnow": {
+      "changed_urls": 200,
+      "http_status": 200,
+      "accepted": true,
+      "accepted_at": "2026-11-14T12:26:48.2988651Z",
+      "workbench_urls_accepted": 8,
+      "indexed": "unknown",
+      "ai_citations": "unknown"
+    },
+    "not_established": [
+      "Incremental organic or AI-referred traffic",
+      "Search or merchant CTR/CVR lift",
+      "Local Amazon availability/eligibility",
+      "TDS-attributable commissions or USD100 monthly goal"
+    ]
+  },
+  "next_action": "Inspect genuinely available data from first complete2026-11-15 onward within existing reporting cadence; preserve original2026-11-22 review and earlier experiment dates. Review query/landing/country relevance, search impressions and CTR, guide-to-merchant exits and mature attributable revenue separately. Missing data stays unknown. Fix factual/intent failures before further category/page expansion."
 }
