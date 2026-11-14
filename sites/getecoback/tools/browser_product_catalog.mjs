@@ -84,6 +84,37 @@ try{
    assert(await page.locator('#produkt-'+example.id).isVisible());
    await page.locator('#product-filters button[type=reset]').click();
   }else{assert(await page.locator('#product-filters').isHidden());assert.equal(await page.locator('[data-product-card]:visible').count(),data.products.length);}
+  // Static reading routes and fragment history must work on final built files.
+  const firstGroup=data.categories[0],secondGroup=data.categories[1];
+  assert.equal(await page.locator('.pc-buyer-routes').count(),data.categories.length);
+  await page.locator('#kategorie-'+firstGroup.id+' .pc-buyer-routes a').first().click();
+  await page.waitForTimeout(700);
+  const modelHeading=page.locator('#modelle-'+firstGroup.id),headingBox=await modelHeading.boundingBox();
+  const navBox=await page.locator('nav.eb-nav').boundingBox();
+  assert(headingBox&&headingBox.y>=(navBox?navBox.y+navBox.height:0)+8&&headingBox.y<450,'Comparison heading obscured');
+  if(javaScriptEnabled){
+   await page.locator('[data-category-link="'+firstGroup.id+'"]').click();
+   await page.locator('[data-category-link="'+secondGroup.id+'"]').click();
+   await page.goBack();
+   await page.waitForFunction(id=>document.querySelector('#product-category').value===id,firstGroup.id);
+   assert.equal(await page.locator('[data-product-card]:visible').count(),data.products.filter(p=>p.category===firstGroup.id).length);
+   const target=data.products.find(p=>p.category===secondGroup.id);
+   await page.locator('#product-query').fill('__missing__');
+   await page.evaluate(id=>location.hash='produkt-'+id,target.id);
+   await page.locator('#produkt-'+target.id).waitFor({state:'visible'});
+   assert.equal(await page.locator('#product-query').inputValue(),'');
+   assert.equal(await page.locator('#product-category').inputValue(),secondGroup.id);
+   await page.reload();
+   await page.locator('#produkt-'+target.id).waitFor({state:'visible'});
+   await page.goto(origin+'/produkte.html?__probe=1#%E0%A4%A');
+   await page.reload();
+   await page.locator('#product-filters').waitFor({state:'visible'});
+   await page.locator('#product-query').fill(data.products[0].name);
+   assert(await page.locator('#produkt-'+data.products[0].id).isVisible());
+   assert.equal(new URL(page.url()).hash,'','Typed filters never retain a misleading model fragment');
+  }
+  await page.goto(origin+'/produkte.html?__probe=1');
+  if(javaScriptEnabled)await page.locator('#product-filters').waitFor({state:'visible'});
   assert.equal(await page.locator('.pc-tool').count(),12);
   for(const [category,href] of Object.entries(reusedTools)){
    const tool=page.locator('#pc-tool-'+category);assert(await tool.isVisible());

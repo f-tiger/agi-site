@@ -125,7 +125,8 @@ def render(data, today=None):
         groups.append(f'''<section class="pc-category" id="kategorie-{esc(category['id'])}" data-product-category="{esc(category['id'])}">
 <h2>{esc(category['name'])} <span class="pc-category-count">{len(cards)} Modelle</span></h2>
 <p>{esc(category['intro'])}</p><p class="pc-no-purchase"><strong>Vorhandenes weiter nutzen?</strong> {esc(category['no_purchase'])}</p>
-{tool}<div class="pc-grid">{''.join(cards)}</div></section>''')
+<p class="pc-buyer-routes"><a href="#modelle-{esc(category['id'])}">Direkt die {len(cards)} Modelle vergleichen ↓</a> <a href="#pc-tool-{esc(category['id'])}">Erst die passende Auswahlhilfe nutzen ↓</a></p>
+{tool}<h3 class="pc-model-heading" id="modelle-{esc(category['id'])}">{esc(category['name'])}: Modelle und Kaufgrenzen</h3><div class="pc-grid">{''.join(cards)}</div></section>''')
     nav = ''.join(f'<a href="#kategorie-{esc(c["id"])}" data-category-link="{esc(c["id"])}">{esc(c["name"])}</a>' for c in data['categories'])
     options = ''.join(f'<option value="{esc(c["id"])}">{esc(c["name"])}</option>' for c in data['categories'])
     count = len(data['products'])

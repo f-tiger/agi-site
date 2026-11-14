@@ -51,6 +51,9 @@ class CatalogTest(unittest.TestCase):
         self.assertIn('href="#kategorie-luftreiniger"',html)
         self.assertIn('id="product-filters" role="search" hidden',html)
         self.assertIn('id="produkt-beispiel-modell"',html)
+        self.assertIn('href="#modelle-luftreiniger"',html)
+        self.assertIn('id="modelle-luftreiniger"',html)
+        self.assertIn('href="#pc-tool-luftreiniger"',html)
 
     def test_rejects_missing_or_duplicate_models_bad_sources_and_merchant_overrides(self):
         for change in [lambda d:d.update(products=[]),lambda d:d.update(market='GB'),lambda d:d.update(max_age_days=True),
