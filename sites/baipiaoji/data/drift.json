@@ -1,10 +1,56 @@
 {
-  "generated": "2026-11-13",
+  "generated": "2026-11-14",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
   "fetched_ok": 107,
   "fetched_fail": 20,
   "pending": 12,
   "items": [
+    {
+      "slug": "framer",
+      "url": "https://framer.com/pricing",
+      "confirmed": "2026-11-14",
+      "first_seen": "2026-11-13",
+      "added": [],
+      "removed": [
+        "$30"
+      ],
+      "checked_then": "2026-08-06"
+    },
+    {
+      "slug": "v0",
+      "url": "https://v0.app",
+      "confirmed": "2026-11-14",
+      "first_seen": "2026-11-13",
+      "added": [
+        "10.3k"
+      ],
+      "removed": [
+        "10.2k"
+      ],
+      "checked_then": "2026-08-03"
+    },
+    {
+      "slug": "cloudflare-workers-ai",
+      "url": "https://developers.cloudflare.com/workers-ai/platform/pricing",
+      "confirmed": "2026-11-14",
+      "first_seen": "2026-11-13",
+      "added": [
+        "$0.0017"
+      ],
+      "removed": [],
+      "checked_then": "2026-09-16"
+    },
+    {
+      "slug": "recraft",
+      "url": "https://recraft.ai/blog/ownership-and-commercial-use-faq",
+      "confirmed": "2026-11-14",
+      "first_seen": "2026-11-13",
+      "added": [
+        "3image"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-06"
+    },
     {
       "slug": "deepl",
       "url": "https://www.deepl.com/pricing",
@@ -107,23 +153,6 @@
       "checked_then": "2026-08-01"
     },
     {
-      "slug": "framer",
-      "url": "https://framer.com/pricing",
-      "confirmed": "2026-11-12",
-      "first_seen": "2026-11-11",
-      "added": [],
-      "removed": [
-        "10,000credits",
-        "100,000credits",
-        "20,000credits",
-        "3,000credits",
-        "30,000credits",
-        "5,000credits",
-        "50,000credits"
-      ],
-      "checked_then": "2026-08-06"
-    },
-    {
       "slug": "continue",
       "url": "https://github.com/continuedev/continue",
       "confirmed": "2026-11-12",
@@ -220,18 +249,6 @@
         "4b"
       ],
       "removed": [],
-      "checked_then": "2026-08-03"
-    },
-    {
-      "slug": "v0",
-      "url": "https://v0.app",
-      "confirmed": "2026-11-09",
-      "first_seen": "2026-11-08",
-      "added": [],
-      "removed": [
-        "100%",
-        "9%"
-      ],
       "checked_then": "2026-08-03"
     },
     {
@@ -491,18 +508,6 @@
         "2image"
       ],
       "checked_then": "2026-08-06"
-    },
-    {
-      "slug": "cloudflare-workers-ai",
-      "url": "https://developers.cloudflare.com/workers-ai/platform/pricing",
-      "confirmed": "2026-10-21",
-      "first_seen": "2026-10-20",
-      "added": [
-        "$0.006",
-        "$1.200"
-      ],
-      "removed": [],
-      "checked_then": "2026-09-16"
     },
     {
       "slug": "gptzero",

@@ -1,19 +1,9 @@
 {
  "version": 1,
  "github": {
-  "queryIndex": 12,
+  "queryIndex": 18,
   "page": 2,
   "pending": [
-   {
-    "repo": "llmware-ai/llmware",
-    "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "neuml/txtai",
-    "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
    {
     "repo": "simular-ai/Agent-S",
     "topic": "agents",
@@ -90,11 +80,6 @@
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
-    "repo": "repowise-dev/claude-code-prompts",
-    "topic": "coding",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
     "repo": "ferrislucas/promptr",
     "topic": "coding",
     "foundAt": "2026-10-04T06:17:42.048Z"
@@ -167,11 +152,6 @@
    {
     "repo": "yanliudesign/mono-color-skill",
     "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "Picovoice/porcupine",
-    "topic": "audio",
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
@@ -492,11 +472,6 @@
    {
     "repo": "Azure/agent-landing-zone",
     "topic": "agents",
-    "foundAt": "2026-10-06T06:50:25.349Z"
-   },
-   {
-    "repo": "RyanCodrai/turbovec",
-    "topic": "knowledge",
     "foundAt": "2026-10-06T06:50:25.349Z"
    },
    {
@@ -900,11 +875,6 @@
     "foundAt": "2026-10-09T06:38:33.001Z"
    },
    {
-    "repo": "Pangu-Immortal/MagicWX",
-    "topic": "local",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
     "repo": "jofizcd/Soul-of-Waifu",
     "topic": "local",
     "foundAt": "2026-10-09T06:38:33.001Z"
@@ -990,11 +960,6 @@
     "foundAt": "2026-10-09T06:38:33.001Z"
    },
    {
-    "repo": "dmMaze/BallonsTranslator",
-    "topic": "documents",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
     "repo": "robocorp/rpaframework",
     "topic": "documents",
     "foundAt": "2026-10-09T06:38:33.001Z"
@@ -1037,11 +1002,6 @@
    {
     "repo": "agent-sh/agentsys",
     "topic": "coding",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
-    "repo": "vchelaru/FlatRedBall",
-    "topic": "everyday",
     "foundAt": "2026-10-09T06:38:33.001Z"
    },
    {
@@ -1332,11 +1292,6 @@
    {
     "repo": "Andrew-Jang/RAGHub",
     "topic": "knowledge",
-    "foundAt": "2026-10-14T08:05:15.418Z"
-   },
-   {
-    "repo": "AkaliKong/MiniOneRec",
-    "topic": "ai",
     "foundAt": "2026-10-14T08:05:15.418Z"
    },
    {
@@ -2970,11 +2925,6 @@
     "foundAt": "2026-11-13T07:10:31.167Z"
    },
    {
-    "repo": "aureth-labs/dsh-aurabot-qq",
-    "topic": "chat",
-    "foundAt": "2026-11-13T07:10:31.167Z"
-   },
-   {
     "repo": "santifer/cv-santiago",
     "topic": "chat",
     "foundAt": "2026-11-13T07:10:31.167Z"
@@ -3003,6 +2953,56 @@
     "repo": "aws-samples/bedrock-chat",
     "topic": "chat",
     "foundAt": "2026-11-13T07:10:31.167Z"
+   },
+   {
+    "repo": "wici-ai/inferssd",
+    "topic": "local",
+    "foundAt": "2026-11-14T06:58:47.664Z"
+   },
+   {
+    "repo": "OpenCSGs/csghub",
+    "topic": "local",
+    "foundAt": "2026-11-14T06:58:47.664Z"
+   },
+   {
+    "repo": "RunanywhereAI/trnrt",
+    "topic": "local",
+    "foundAt": "2026-11-14T06:58:47.664Z"
+   },
+   {
+    "repo": "llm-lab-org/Multimodal-RAG-Survey",
+    "topic": "knowledge",
+    "foundAt": "2026-11-14T06:58:47.664Z"
+   },
+   {
+    "repo": "Azure-Samples/serverless-chat-langchainjs",
+    "topic": "knowledge",
+    "foundAt": "2026-11-14T06:58:47.664Z"
+   },
+   {
+    "repo": "awslabs/generative-ai-cdk-constructs",
+    "topic": "agents",
+    "foundAt": "2026-11-14T06:58:47.664Z"
+   },
+   {
+    "repo": "Automattic/studio",
+    "topic": "agents",
+    "foundAt": "2026-11-14T06:58:47.664Z"
+   },
+   {
+    "repo": "Team-Commonly/commonly",
+    "topic": "coding",
+    "foundAt": "2026-11-14T06:58:47.664Z"
+   },
+   {
+    "repo": "looplj/axonhub",
+    "topic": "coding",
+    "foundAt": "2026-11-14T06:58:47.664Z"
+   },
+   {
+    "repo": "ahmadrosid/nakama",
+    "topic": "agents",
+    "foundAt": "2026-11-14T06:58:47.664Z"
    }
   ],
   "checked": {
@@ -3064,8 +3064,8 @@
    "gh-ai-shifu-chatall-209f88": "2026-11-13T07:10:31.167Z",
    "gh-lingyichen-ai-aicomicbuilder-76cce5": "2026-11-13T07:10:31.167Z",
    "gh-ocrmypdf-ocrmypdf-584c2a": "2026-11-13T07:10:31.167Z",
-   "gh-sxyazi-yazi-eead04": "2026-10-17T04:57:48.620Z",
-   "gh-langfuse-langfuse-e85578": "2026-10-17T04:57:48.620Z",
+   "gh-sxyazi-yazi-eead04": "2026-11-14T06:58:47.664Z",
+   "gh-langfuse-langfuse-e85578": "2026-11-14T06:58:47.664Z",
    "gh-jeecgboot-jeecgboot-779f20": "2026-10-19T05:13:57.229Z",
    "gh-hugohe3-ppt-master-6a5126": "2026-10-19T05:13:57.229Z",
    "gh-tradecatlabs-vibe-coding-cn-d8961e": "2026-10-19T05:13:57.229Z",
@@ -3169,14 +3169,18 @@
    "gh-dstackai-dstack-7053bd": "2026-11-12T07:39:36.501Z",
    "gh-danielmiessler-lifeos-75ff5a": "2026-11-12T07:39:36.501Z",
    "gh-kalyanks-nlp-llm-engineer-toolkit-1e7265": "2026-11-13T07:10:31.167Z",
-   "gh-theopenconversationkit-tock-ae93e5": "2026-11-13T07:10:31.167Z"
+   "gh-theopenconversationkit-tock-ae93e5": "2026-11-13T07:10:31.167Z",
+   "gh-virgiliojr94-book-to-skill-905acd": "2026-11-14T06:58:47.664Z",
+   "gh-can1357-oh-my-pi-5b8496": "2026-11-14T06:58:47.664Z",
+   "gh-tw93-kaku-bdee44": "2026-11-14T06:58:47.664Z",
+   "gh-chaofantao-autoregressive-models-in-vision-survey-a3dae4": "2026-11-14T06:58:47.664Z"
   }
  },
  "mcp": {
-  "cursor": "",
+  "cursor": "ai.shumi/mcp:1.3.0",
   "since": "2026-10-01T15:26:40.958Z",
   "watermark": "2026-10-02T15:26:40.958Z",
-  "scanStarted": null,
+  "scanStarted": "2026-11-14T06:58:47.664Z",
   "checked": {
    "1102tools-acquisition-gov-mcp": "2026-11-05T07:19:29.391Z",
    "1325-mcp": "2026-11-05T07:19:29.391Z",
@@ -3338,38 +3342,38 @@
    "chrome-devtools-mcp": "2026-11-13T07:10:31.167Z",
    "churnkey-churnkey": "2026-11-13T07:10:31.167Z",
    "citadeldb-mcp": "2026-11-13T07:10:31.167Z",
-   "classifier-docs": "2026-10-06T06:50:25.349Z",
-   "claude-agent-sdk": "2026-10-06T06:50:25.349Z",
-   "claude-code": "2026-10-06T06:50:25.349Z",
-   "clauderecall-recall": "2026-10-06T06:50:25.349Z",
-   "cleanvector-cleanvector": "2026-10-06T06:50:25.349Z",
-   "clideck-network-knowledge": "2026-10-06T06:50:25.349Z",
-   "cline": "2026-10-06T06:50:25.349Z",
-   "clipcliper-clipcliper": "2026-10-06T06:50:25.349Z",
-   "clipstudio-mcp": "2026-10-06T06:50:25.349Z",
-   "clize-clize": "2026-10-06T06:50:25.349Z",
-   "cloud-agenteconomy-mcp": "2026-10-06T06:50:25.349Z",
-   "cloud-artibot-zhijiangyun": "2026-10-06T06:50:25.349Z",
-   "cloud-dchub-mcp-server": "2026-10-06T06:50:25.349Z",
-   "cloud-easybits-easybits": "2026-10-06T06:50:25.349Z",
-   "cloud-gagarin-gagarin": "2026-10-06T06:50:25.349Z",
-   "cloud-krova-mcp": "2026-10-06T06:50:25.349Z",
-   "cloud-tiniest-tiniest-cloud": "2026-10-06T06:50:25.349Z",
-   "cloudflare-agents": "2026-10-06T06:50:25.349Z",
-   "club-atlasyield-mcp": "2026-10-06T06:50:25.349Z",
-   "club-inite-inite-club": "2026-10-06T06:50:25.349Z",
-   "club-worldorder-cube-playground": "2026-10-06T06:50:25.349Z",
-   "clusteragent-cluster-mcp": "2026-10-06T06:50:25.349Z",
-   "cn-housingsentinel-housing-sentinel": "2026-10-06T06:50:25.349Z",
-   "cn-moonlybox-moonlink": "2026-10-06T06:50:25.349Z",
-   "cn-narracore-screenplay-formatter": "2026-10-06T06:50:25.349Z",
-   "cn-pianam-mcp-12306-train-mcp": "2026-10-06T06:50:25.349Z",
-   "cn-pianam-mcp-calendar-mcp": "2026-10-06T06:50:25.349Z",
-   "cn-pianam-mcp-devtools-mcp": "2026-10-06T06:50:25.349Z",
-   "cn-pianam-mcp-exchange-rate-mcp": "2026-10-06T06:50:25.349Z",
-   "cn-pianam-mcp-fuel-mcp": "2026-10-06T06:50:25.349Z",
-   "cn-pianam-mcp-hot-trending-mcp": "2026-10-06T06:50:25.349Z",
-   "cn-pianam-mcp-ip-location-mcp": "2026-10-06T06:50:25.349Z",
+   "classifier-docs": "2026-11-14T06:58:47.664Z",
+   "claude-agent-sdk": "2026-11-14T06:58:47.664Z",
+   "claude-code": "2026-11-14T06:58:47.664Z",
+   "clauderecall-recall": "2026-11-14T06:58:47.664Z",
+   "cleanvector-cleanvector": "2026-11-14T06:58:47.664Z",
+   "clideck-network-knowledge": "2026-11-14T06:58:47.664Z",
+   "cline": "2026-11-14T06:58:47.664Z",
+   "clipcliper-clipcliper": "2026-11-14T06:58:47.664Z",
+   "clipstudio-mcp": "2026-11-14T06:58:47.664Z",
+   "clize-clize": "2026-11-14T06:58:47.664Z",
+   "cloud-agenteconomy-mcp": "2026-11-14T06:58:47.664Z",
+   "cloud-artibot-zhijiangyun": "2026-11-14T06:58:47.664Z",
+   "cloud-dchub-mcp-server": "2026-11-14T06:58:47.664Z",
+   "cloud-easybits-easybits": "2026-11-14T06:58:47.664Z",
+   "cloud-gagarin-gagarin": "2026-11-14T06:58:47.664Z",
+   "cloud-krova-mcp": "2026-11-14T06:58:47.664Z",
+   "cloud-tiniest-tiniest-cloud": "2026-11-14T06:58:47.664Z",
+   "cloudflare-agents": "2026-11-14T06:58:47.664Z",
+   "club-atlasyield-mcp": "2026-11-14T06:58:47.664Z",
+   "club-inite-inite-club": "2026-11-14T06:58:47.664Z",
+   "club-worldorder-cube-playground": "2026-11-14T06:58:47.664Z",
+   "clusteragent-cluster-mcp": "2026-11-14T06:58:47.664Z",
+   "cn-housingsentinel-housing-sentinel": "2026-11-14T06:58:47.664Z",
+   "cn-moonlybox-moonlink": "2026-11-14T06:58:47.664Z",
+   "cn-narracore-screenplay-formatter": "2026-11-14T06:58:47.664Z",
+   "cn-pianam-mcp-12306-train-mcp": "2026-11-14T06:58:47.664Z",
+   "cn-pianam-mcp-calendar-mcp": "2026-11-14T06:58:47.664Z",
+   "cn-pianam-mcp-devtools-mcp": "2026-11-14T06:58:47.664Z",
+   "cn-pianam-mcp-exchange-rate-mcp": "2026-11-14T06:58:47.664Z",
+   "cn-pianam-mcp-fuel-mcp": "2026-11-14T06:58:47.664Z",
+   "cn-pianam-mcp-hot-trending-mcp": "2026-11-14T06:58:47.664Z",
+   "cn-pianam-mcp-ip-location-mcp": "2026-11-14T06:58:47.664Z",
    "cn-pianam-mcp-stock-mcp": "2026-10-06T06:50:25.349Z",
    "cn-pianam-mcp-weather-mcp-china": "2026-10-06T06:50:25.349Z",
    "cn-savantcat-ai-compliance": "2026-10-06T06:50:25.349Z",
@@ -4697,7 +4701,15 @@
    "solenium-netsuite-link": "2026-11-13T07:10:31.167Z",
    "speko-mcp": "2026-11-13T07:10:31.167Z",
    "spritecook-generate": "2026-11-13T07:10:31.167Z",
-   "syntitan-mcp": "2026-11-13T07:10:31.167Z"
+   "syntitan-mcp": "2026-11-13T07:10:31.167Z",
+   "tensorfeed-mcp-server": "2026-11-14T06:58:47.664Z",
+   "thinkneo-control-plane": "2026-11-14T06:58:47.664Z",
+   "toolsnap-mcp": "2026-11-14T06:58:47.664Z",
+   "upgradeagent-upgrade-agent": "2026-11-14T06:58:47.664Z",
+   "upriver-upriver": "2026-11-14T06:58:47.664Z",
+   "variel-mcp-server": "2026-11-14T06:58:47.664Z",
+   "webanatomy-webanatomy": "2026-11-14T06:58:47.664Z",
+   "webuplink-mcp": "2026-11-14T06:58:47.664Z"
   }
  }
 }

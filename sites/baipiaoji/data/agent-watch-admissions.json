@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-13",
+ "checked": "2026-11-14",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -4059,294 +4059,36 @@
    "source_http": 404,
    "repo_http": 404,
    "reason": "source HTTP 404"
+  },
+  "cvelens-cvelens": {
+   "attempts": 1,
+   "first_attempt": "2026-11-14",
+   "last_attempt": "2026-11-14",
+   "attemptedAt": "2026-11-14T06:58:47.664Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
+  },
+  "data-apis-api-sec-event-intelligence": {
+   "attempts": 1,
+   "first_attempt": "2026-11-14",
+   "last_attempt": "2026-11-14",
+   "attemptedAt": "2026-11-14T06:58:47.664Z",
+   "source_http": 503,
+   "repo_http": null,
+   "reason": "source HTTP 503"
+  },
+  "datocapital-api": {
+   "attempts": 1,
+   "first_attempt": "2026-11-14",
+   "last_attempt": "2026-11-14",
+   "attemptedAt": "2026-11-14T06:58:47.664Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
   }
  },
  "admitted": [
-  {
-   "slug": "402cron-402cron",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "naumu-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "ausca-agent-services",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cheap-doc-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "dregs-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "rocketlist-rocketlist",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "nomnaviet-han-nom",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "bykaranteli-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "sapiensinteticos-sapiens",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "lotsofsounds-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "plori-plori",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "clipstudio-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "instavar-mcp-server",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "squawkflow-mcp-market-structure",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "killbottleneck-killbottleneck",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "trustydata-trustydata",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "antideploy-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "coingraph-coingraph",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "br-acorridadosbairros-metro-quadrado",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "dvt-dvt",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "quantcalc-retirement-engine",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "decionis-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "ogstamp-og",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "truevaluerankings-tvr-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "bitbybit-cad",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "ch-stratta-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "regulations-ai",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "aiconduit-conduit",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "tapeperp-tape",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "agenticbooks-books",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "ankimcp-anki-mcp-server-addon",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "vithanco-vgraph-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "br-ia-cnpj-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "playwrightgen-playwrightgen",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "pdfgate-mcp-server",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "croviatrust-crovia",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "origozero-zeromind",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "merchantflow-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "ufcalendar-fight-api",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "memgit-memgit",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "getcited-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "gominddb-gomind",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "materialscodegraph-mcg",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cn-moonlybox-moonlink",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "asrmemory-asr",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "openmayhem-openmayhem",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "streamsapps-nuberea",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "minitok-minitok",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "growaify-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "adako-ads",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "mailmcp-mailmcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cn-narracore-screenplay-formatter",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hiddenswap-swap",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "execbro-execbro",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "csscreme-design-systems",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "frameonlab-frameon",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "apick-business",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
   {
    "slug": "handsforagents-hands",
    "date": "2026-09-22",
@@ -21192,6 +20934,348 @@
   {
    "slug": "curtilo-site",
    "date": "2026-11-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cutconvert-converter",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cve-security-cve-intelligence",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cyberspf-mcp",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cycle-platform-cycle-intelligence",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cyclecalcs-astronomy",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cymetica-event-trader-mcp",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cymetica-event-trader-research",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cymosoft-cymosoft",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "cypruscompanycost-site",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cyprusgrosstonet-site",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cyprusnondomcalculator-site",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cytado-cytado",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "dadrasai-iranian-law",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "daedalusdevelopmentgroup-ddg-agent-services-mcp",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "dailylogdesk-site",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "daisycon-mcp-daisycon",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "dajsve-mcp",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "damagerestorehq-site",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "danielsdesignstudio-mirror-ai-citability",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "dannykeane-mcp",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "danubeai-danube",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "dapdip-youtube-growth",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "dartai-dart",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "dashboardbase-mcp",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "dataclawe-mcp",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "datacommenter-the-data-commenter",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "datadoe-amazon-seller-mcp",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "datahyena-signals",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "datailo-datailo",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "datakoot-cve-vulnerability-lookup",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "datakoot-fx-currency-exchange-rates",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "datakoot-npm-pypi-crates-packages",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "datakoot-sec-edgar-filings",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "datalastic-vessel-tracking",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "datanem-datanem",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "dataplex-consulting-healthcare-data",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "dataroia-data-trust",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "dataroompicker-site",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "datasignalslab-datasignals-lab-events-mcp",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "datasignalslab-datasignals-lab-mcp",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "datavrn-schedule-iii",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "datpaq-datpaq",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "datronis-mcp",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "davisvillelabs-filedproof-filedproof",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "davisvillelabs-exitproof",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "davisvillelabs-facilityproof",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "daxoom-daxoom",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "dayonelead-dayonelead",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "dbconvert-streams",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "dbtrail-dbtrail",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "dcamethod-dca-tools",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "dcisionai-dcisionai",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "dealerific-dealerific",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "dealerslip-invoice",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "deberli-audience",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "debitura-mcp-server",
+   "date": "2026-11-14",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "debyko-mcp",
+   "date": "2026-11-14",
    "source_http": 200,
    "repo_http": null
   }
