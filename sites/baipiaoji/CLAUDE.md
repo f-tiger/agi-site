@@ -1043,3 +1043,7 @@ Checkout defaults closed until owner enablement and live readiness; do not silen
 
 ## 2026-10-31 Existing-use depth experiment
 Chinese `/tools/kimi` has a free local task checklist/prompt and text export; BPJ does not run Kimi or read documents. After saving, the existing account link saves the tool only, not the local steps. Manju has independent want/watching/watched records, continue links and export; original favorites are untouched and accounts do not sync watch states. `depth` events are fixed action counts with exact public routes and no payload content; `reach.depth_signals` provides complete UTC days behind the hour cache with unknown on failure. Read `docs/bpj-depth-2026-10-31.md` for assumptions, two self-reviews, measurement start and operating gate. Search-empty remains a local miss, not final search failure. Browser fixtures must intercept all analytics and production calls.
+
+## 2026-11-14 帧选题材类目深化
+
+Owner 指定 CRO、AI SEO、SEO Audit 并要求同类对比。`/manju/categories` 汇总 15 个有记录类目，11 个题材指南共用 `manju-genre-pages.mjs` 事实模型输出 HTML/MD/JSON；小类仅筛选，不为 SEO 造薄页。主类目、剧情标签、制作形态和入口性质分开；逐条来源日期、核查范围与固定编辑修订日不同。类目基础记录链接直达静态分页卡片，有详情则保留原稳定 URL。沿用 filter/source/official_open 计量与真实变更 IndexNow；通知不等于收录，点击不等于播放。对比来源、技能校正、无 JS/窄屏及镜像门禁见 `docs/manju-category-seo-cro-2026-11-14.md`。GSC Wizard 本轮订阅不可用，真实搜索/AI 引用提升仍未知。

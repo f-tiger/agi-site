@@ -33,3 +33,4 @@
 @media(max-width:540px){.mj-home .mj-browser{padding-top:14px}.mj-home .mj-discover-heading{margin-bottom:10px}.mj-home .mj-search-suggestions{margin-bottom:7px}.mj-home .mj-directory{padding-top:8px;padding-bottom:6px}.mj-home .mj-results-bar{padding-top:9px}.mj-home .mj-results-bar>div{font-size:11px;line-height:1.4}.mj-home .mj-results-bar h2{line-height:1.4}.mj-home #mj-result-note{line-height:1.6;margin:4px 0 8px}.mj-home .mj-consumer-tools{margin-bottom:8px}}
 
 .mj-cloud{margin:1.5rem 0;padding:1.2rem;border:1px solid var(--line,#ddd6cb);border-radius:14px;background:#f1f4ed}.mj-cloud h2{font-size:1.15rem;margin:0 0 .4rem}.mj-cloud p{font-size:.9rem;line-height:1.65}.mj-cloud .mj-collection-bar{display:flex;flex-wrap:wrap;align-items:center;gap:.65rem}.mj-cloud button:disabled{opacity:.5;cursor:not-allowed}.mj-cloud [role=status]{min-height:1.65em}
+@media(max-width:540px){.mj-home .mj-header nav{flex-wrap:wrap;row-gap:4px}}

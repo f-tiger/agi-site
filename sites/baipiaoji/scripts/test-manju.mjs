@@ -1,3 +1,4 @@
+import {checkGenreOutput} from './manju-genre-checks.mjs';
 import {workURL,hasWorkPage,validateWorkEvidence} from './manju-work-urls.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -67,6 +68,7 @@ for(const c of snapshots){assert.ok(c.records.every(r=>r.thumbnail&&r.thumbnail.
 for(const change of [t=>t.url='https://attacker.example/a.png',t=>t.url='http://p3-novel.byteimg.com/novel-pic/a.image',t=>t.source='https://unknown.example/rank',t=>t.url+='?token=secret']){const copy=structuredClone(INSIGHTS);change(copy.cohorts.find(c=>c.metric==='snapshot_heat').records[0].thumbnail);assert.throws(()=>validateInsights(copy,MANJU));}
 // Crawlable genre pages must expose real catalogue records, evidence and conversion paths.
 for(const g of GENRES){const h=await get('manju/genre-'+g.id+'.html'),rows=MANJU.items.filter(x=>x.category===g.id);assert.ok(rows.length>=10);assert.ok(h.includes('rel="canonical" href="'+base+'/manju/genre-'+g.id+'"'));assert.ok(h.includes('CollectionPage'));assert.ok(h.includes('ItemList'));assert.ok(h.includes('不是热度排名'));for(const x of rows){assert.ok(h.includes(x.title.replaceAll('&','&amp;')));assert.ok(h.includes(x.source.replaceAll('&','&amp;')));}assert.ok((await get('manju/genre-'+g.id+'.md')).includes(g.angle));assert.ok(home.includes('/manju/genre-'+g.id));assert.ok((await get('sitemap.xml')).includes(base+'/manju/genre-'+g.id));}
+await checkGenreOutput({get,catalog:MANJU,genres:GENRES});
 const guide=await get('manju/guide.html');assert.ok(guide.includes('FAQPage'));assert.ok(guide.includes('红果热度能当播放量吗'));assert.ok(guide.includes('/manju/topics'));assert.ok(guide.includes('/manju/insights.json'));
 const index=JSON.parse(await get('search-index.json'));for(const path of discoveryPaths())assert.ok(index.some(r=>r.u===base+'/manju/'+path));
 validateWorkEvidence(MANJU);
