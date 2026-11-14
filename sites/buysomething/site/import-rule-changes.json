@@ -1,8 +1,8 @@
 {
- "generated": "2026-11-13",
+ "generated": "2026-11-14",
  "source": "https://www.federalregister.gov/developers/documentation/api/v1 (official Federal Register API, keyless)",
  "window_days": 120,
- "since": "2026-07-16",
+ "since": "2026-07-17",
  "queries": [
   "section 301",
   "section 232",
@@ -194,8 +194,7 @@
    ],
    "url": "https://www.federalregister.gov/documents/2026/10/22/2026-21600/indefinite-suspension-of-the-de-minimis-exemption-for-mail-shipments-and-new-postal-informal-entry",
    "matched": [
-    "de minimis exemption",
-    "harmonized tariff schedule"
+    "de minimis exemption"
    ],
    "matched_in": "title_or_abstract"
   },
@@ -211,7 +210,6 @@
    ],
    "url": "https://www.federalregister.gov/documents/2026/10/22/2026-21570/modification-of-the-test-of-the-new-electronic-informal-entry-process-for-mail",
    "matched": [
-    "harmonized tariff schedule",
     "section 232",
     "section 301"
    ],

@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-13",
+ "fetched": "2026-11-14",
  "seeds": {
   "electric spin scrubber": {
    "rising": [
@@ -484,102 +484,74 @@
   "walking pad": {
    "rising": [
     {
+     "q": "hatch alarm clock",
+     "v": 500
+    },
+    {
      "q": "get up cruze 150 walking pad",
-     "v": 4750
+     "v": 250
     },
     {
      "q": "motorless walking pad",
-     "v": 170
+     "v": 180
     },
     {
-     "q": "king smith walking pad",
-     "v": 160
+     "q": "manual walking pad wooden",
+     "v": 150
     },
     {
      "q": "walkolution walking pad",
-     "v": 160
-    },
-    {
-     "q": "actflame walking pad",
      "v": 140
-    },
-    {
-     "q": "how many steps in a mile",
-     "v": 140
-    },
-    {
-     "q": "quietest walking pad",
-     "v": 130
     },
     {
      "q": "walkolution",
      "v": 120
     },
     {
-     "q": "tkw walking pad",
-     "v": 120
+     "q": "king smith walking pad",
+     "v": 110
     },
     {
-     "q": "yrun walking pad",
+     "q": "quietest walking pad",
+     "v": 110
+    },
+    {
+     "q": "are walking pads worth it",
+     "v": 110
+    },
+    {
+     "q": "tkw walking pad",
      "v": 110
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-11-13"
+   "fetched": "2026-11-14"
   },
   "portable bottle warmer": {
-   "auto": [
-    "portable bottle warmer",
-    "portable bottle warmer baby",
-    "portable bottle warmer nearby",
-    "portable bottle warmer for travel",
-    "portable bottle warmer for breastmilk",
-    "portable bottle warmer near me",
-    "portable bottle warmer and cooler",
-    "portable bottle warmer for car",
-    "portable bottle warmer momcozy",
-    "portable bottle warmer reddit"
-   ],
    "rising": [
     {
-     "q": "portable bottle warmer baby",
-     "v": "new"
+     "q": "momcozy portable breast milk cooler",
+     "v": 105400
     },
     {
-     "q": "portable bottle warmer nearby",
-     "v": "new"
+     "q": "best bottle warmer for breastmilk",
+     "v": 68400
     },
     {
-     "q": "portable bottle warmer for travel",
-     "v": "new"
+     "q": "how to use momcozy bottle warmer",
+     "v": 200
     },
     {
-     "q": "portable bottle warmer for breastmilk",
-     "v": "new"
+     "q": "mom cozy bottle warmer",
+     "v": 160
     },
     {
-     "q": "portable bottle warmer near me",
-     "v": "new"
-    },
-    {
-     "q": "portable bottle warmer and cooler",
-     "v": "new"
-    },
-    {
-     "q": "portable bottle warmer for car",
-     "v": "new"
-    },
-    {
-     "q": "portable bottle warmer momcozy",
-     "v": "new"
-    },
-    {
-     "q": "portable bottle warmer reddit",
-     "v": "new"
+     "q": "tommee tippee portable bottle warmer",
+     "v": 90
     }
    ],
-   "source": "autocomplete-diff",
-   "fetched": "2026-10-15"
+   "source": "related-queries",
+   "fetched": "2026-11-14"
   },
   "electric pruning shears": {
    "auto": [

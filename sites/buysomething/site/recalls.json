@@ -1,7 +1,7 @@
 {
- "generated": "2026-11-13",
+ "generated": "2026-11-14",
  "window_days": 365,
- "since": "2025-11-13",
+ "since": "2025-11-14",
  "sources": {
   "cpsc": "https://www.saferproducts.gov/RestWebServices/Recall (official CPSC API)",
   "eu_safety_gate": "not wired: probed URL serves HTML, JSON endpoint unconfirmed (2026-09-13)"
@@ -264,7 +264,7 @@
    "stale": false
   },
   "cable-powerbank": {
-   "n": 7,
+   "n": 6,
    "latest": "2026-10-29",
    "items": [
     {
