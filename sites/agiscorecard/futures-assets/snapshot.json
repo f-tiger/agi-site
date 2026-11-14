@@ -1,12 +1,12 @@
 {
-  "checkedAt": "2026-11-13T10:01:51Z",
+  "checkedAt": "2026-11-14T09:27:30Z",
   "sources": [
     {
       "id": "openai",
       "company": "OpenAI",
       "url": "https://openai.com/news/rss.xml",
-      "checkedAt": "2026-11-13T10:01:51Z",
-      "lastSuccessAt": "2026-11-13T10:01:51Z",
+      "checkedAt": "2026-11-14T09:27:30Z",
+      "lastSuccessAt": "2026-11-14T09:27:30Z",
       "ok": true,
       "error": null
     },
@@ -14,8 +14,8 @@
       "id": "anthropic",
       "company": "Anthropic",
       "url": "https://www.anthropic.com/news",
-      "checkedAt": "2026-11-13T10:01:51Z",
-      "lastSuccessAt": "2026-11-13T10:01:51Z",
+      "checkedAt": "2026-11-14T09:27:30Z",
+      "lastSuccessAt": "2026-11-14T09:27:30Z",
       "ok": true,
       "error": null
     },
@@ -23,8 +23,8 @@
       "id": "meta",
       "company": "Meta",
       "url": "https://about.fb.com/news/feed/",
-      "checkedAt": "2026-11-13T10:01:51Z",
-      "lastSuccessAt": "2026-11-13T10:01:51Z",
+      "checkedAt": "2026-11-14T09:27:30Z",
+      "lastSuccessAt": "2026-11-14T09:27:30Z",
       "ok": true,
       "error": null
     },
@@ -32,7 +32,7 @@
       "id": "xai",
       "company": "xAI / SpaceX",
       "url": "https://x.ai/news",
-      "checkedAt": "2026-11-13T10:01:51Z",
+      "checkedAt": "2026-11-14T09:27:30Z",
       "lastSuccessAt": "2026-10-31T16:20:44Z",
       "ok": false,
       "error": "http_403"
@@ -41,13 +41,23 @@
       "id": "deepmind",
       "company": "Google DeepMind",
       "url": "https://deepmind.google/blog/rss.xml",
-      "checkedAt": "2026-11-13T10:01:51Z",
-      "lastSuccessAt": "2026-11-13T10:01:51Z",
+      "checkedAt": "2026-11-14T09:27:30Z",
+      "lastSuccessAt": "2026-11-14T09:27:30Z",
       "ok": true,
       "error": null
     }
   ],
   "items": [
+    {
+      "id": "7d4d71d056da02862d0b2ec1",
+      "company": "OpenAI",
+      "title": "Introducing ChatGPT Wallet",
+      "url": "https://openai.com/index/introducing-chatgpt-wallet",
+      "publishedAt": "2026-11-13T15:00:00Z",
+      "discoveredAt": "2026-11-14T09:27:30Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
     {
       "id": "5b69826eead48a963c75ef96",
       "company": "Google DeepMind",
@@ -145,6 +155,16 @@
       "url": "https://openai.com/index/helping-caregivers-use-ai-in-everyday-life",
       "publishedAt": "2026-11-10T12:00:00Z",
       "discoveredAt": "2026-11-11T09:52:17Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "1972a6107d7cc016e042577c",
+      "company": "Google DeepMind",
+      "title": "Opening the datasets behind our AI weather models",
+      "url": "https://deepmind.google/blog/opening-the-datasets-behind-our-ai-weather-models",
+      "publishedAt": "2026-11-10T11:13:04Z",
+      "discoveredAt": "2026-11-14T09:27:30Z",
       "signal": "neutral",
       "reviewStatus": "automatic"
     },
