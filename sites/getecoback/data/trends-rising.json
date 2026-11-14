@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-13",
+ "fetched": "2026-11-14",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -106,50 +106,50 @@
   "luftentfeuchter": {
    "rising": [
     {
+     "q": "meacodry arete two",
+     "v": 39900
+    },
+    {
      "q": "avreno",
-     "v": 31050
+     "v": 34950
     },
     {
-     "q": "vivosun luftentfeuchter",
-     "v": 28600
+     "q": "luftentfeuchter growbox",
+     "v": 22800
     },
     {
-     "q": "luftentfeuchter keller ohne strom",
-     "v": 20500
+     "q": "black friday",
+     "v": 18450
     },
     {
-     "q": "meacodry arete two 25l",
-     "v": 14500
+     "q": "discounter",
+     "v": 12100
     },
     {
-     "q": "comfee mddf-16den7 wf luftentfeuchter",
-     "v": 13550
-    },
-    {
-     "q": "meacodry arete two 12l",
-     "v": 9500
+     "q": "meacodry arete one 10l",
+     "v": 8850
     },
     {
      "q": "luftentfeuchter kissen auto",
-     "v": 8250
+     "v": 8550
     },
     {
-     "q": "auto luftentfeuchter",
-     "v": 200
+     "q": "comfee mddf-16den7 wf luftentfeuchter",
+     "v": 7950
     },
     {
-     "q": "luftentfeuchter nachfüllpack",
-     "v": 80
+     "q": "meacodry arete two 12l",
+     "v": 7950
     },
     {
-     "q": "mini luftentfeuchter",
-     "v": 80
+     "q": "luftentfeuchter badezimmer testsieger",
+     "v": 7550
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-11-06",
+   "fetched": "2026-11-14",
    "polluted": false,
-   "last_attempt_at": "2026-11-06T12:21:05.434768+00:00",
+   "last_attempt_at": "2026-11-14T11:43:25.515349+00:00",
    "last_attempt_status": "ok"
   },
   "heizlüfter": {
@@ -329,50 +329,50 @@
   "saugwischer": {
    "rising": [
     {
-     "q": "tineco floor one s7",
-     "v": 77200
-    },
-    {
-     "q": "kobold sp600 saugwischer",
-     "v": 76550
-    },
-    {
-     "q": "wischsauger testsieger",
-     "v": 61650
-    },
-    {
-     "q": "roborock saros 20",
-     "v": 52300
-    },
-    {
-     "q": "dyson wischsauger",
-     "v": 46750
+     "q": "vorwerk saugwischer roboter",
+     "v": 158500
     },
     {
      "q": "leifheit bodenwischer",
-     "v": 38100
+     "v": 55400
     },
     {
-     "q": "kärcher saugwischer roboter",
-     "v": 35800
+     "q": "hyla saugwischer",
+     "v": 53800
     },
     {
-     "q": "wischroboter test",
-     "v": 10850
+     "q": "kobold sp600 saugwischer",
+     "v": 38650
     },
     {
-     "q": "tineco",
+     "q": "wischmopp",
+     "v": 32300
+    },
+    {
+     "q": "roborock saros 20",
+     "v": 10400
+    },
+    {
+     "q": "tineco saugwischer",
      "v": 120
     },
     {
-     "q": "vorwerk kobold saugwischer",
-     "v": 90
+     "q": "tineco",
+     "v": 100
+    },
+    {
+     "q": "vorwerk akku saugwischer",
+     "v": 80
+    },
+    {
+     "q": "vorwerk kobold",
+     "v": 50
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-11-13",
-   "polluted": true,
-   "last_attempt_at": "2026-11-13T12:29:51.675453+00:00",
+   "fetched": "2026-11-14",
+   "polluted": false,
+   "last_attempt_at": "2026-11-14T11:40:24.223471+00:00",
    "last_attempt_status": "ok"
   }
  }
