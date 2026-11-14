@@ -8,10 +8,16 @@ export const SHOPPING_EXACT_ITEMS = Object.freeze({
 });
 export const SHOPPING_EXACT_IDS = Object.freeze(Object.keys(SHOPPING_EXACT_ITEMS));
 export const SHOPPING_PLACEMENTS = Object.freeze(['card', 'compare', 'guide']);
+// Historical 18-page reporting scope. New guides must not retroactively widen
+// the shopping-growth aggregate whose first complete day is 2026-11-08.
 export const SHOPPING_PATHS = Object.freeze(['/', '/de/', '/zh/'].flatMap(prefix =>
   ['', 'shop', 'shop/display-cases', 'shop/storage-transport', 'shop/plush-display', 'shop/collector-gifts'].map(path => prefix + path)));
+// Separately admitted measurement paths for the category-guide release.
+// These are canonical routes, never a wildcard or a user-provided category.
+export const SHOPPING_CATEGORY_PATHS = Object.freeze(['/', '/de/', '/zh/'].flatMap(prefix =>
+  ['storage', 'workspace', 'lighting', 'smart-home', 'electronics', 'kitchen', 'home-care', 'daily-care', 'creative'].map(id => prefix + 'shop/categories/' + id)));
 export const SHOPPING_MERCHANTS = Object.freeze(['amazon.com', 'amazon.de', 'ikea.com', 'sonnyangelstore.com']);
-const paths = new Set(SHOPPING_PATHS);
+const paths = new Set([...SHOPPING_PATHS, ...SHOPPING_CATEGORY_PATHS]);
 const ikeaPaths = Object.freeze({
   blaliden: {US: '/us/en/p/blaliden-glass-door-cabinet-black-00520519/', DE: '/de/de/p/blaliden-vitrine-schwarz-00520519/'},
   baggebo: {US: '/us/en/p/baggebo-glass-door-cabinet-metal-white-80502998/', DE: '/de/de/p/baggebo-vitrine-metall-weiss-80502998/'},

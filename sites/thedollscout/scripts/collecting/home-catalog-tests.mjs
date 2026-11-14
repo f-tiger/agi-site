@@ -95,7 +95,7 @@ test('nine nonempty categories partition all 100 products exactly once and their
    const expected=products.filter(p=>group.types.includes(p.category)).length;assert.ok(expected>0);
    const link=navigation.find(link=>link.attrs['data-catalog-category-link']===group.id);assert.ok(link);
    const count=Number(/(\d+)\s*$/.exec(link.text)?.[1]);assert.equal(count,expected);total+=count;
-   assert.equal(link.attrs.href,(compact?route(lang,'shop'):'')+'#catalog-category-'+group.id);
+   assert.equal(link.attrs.href,route(lang,'shop/categories/'+group.id));
    if(!compact)assert.equal(cards(html).filter(card=>card.attrs['data-catalog-category']===group.id).length,expected);
   }
   assert.equal(total,100);
@@ -208,7 +208,7 @@ function interactionFixture(html,effects){
  const rendered=cards(html),elements=rendered.map(card=>node({dataset:{homeProduct:card.attrs['data-home-product'],catalogCategory:card.attrs['data-catalog-category'],catalogSearch:card.attrs['data-catalog-search']}}));
  const config=JSON.parse(/<script[^>]*data-home-catalog-config[^>]*>([\s\S]*?)<\/script>/.exec(html)[1]);
  const groups=config.categories.map(category=>{const label=node();return node({dataset:{homeCategory:category},querySelector:selector=>{assert.equal(selector,'[data-catalog-group-count]');return label;}});});
- const categoryLinks=config.categories.map(category=>node({dataset:{catalogCategoryLink:category}}));
+ const categoryLinks=anchors(html).filter(link=>link.attrs['data-catalog-category-link']).map(link=>node({dataset:{catalogCategoryLink:link.attrs['data-catalog-category-link']},getAttribute:name=>link.attrs[name]}));
  const view=node({location:new URL(origin+'/shop'),fetch:forbidden('window.fetch'),navigator:{sendBeacon:forbidden('sendBeacon')},history:{pushState:forbidden('history.pushState'),replaceState:forbidden('history.replaceState')}});
  for(const name of ['localStorage','sessionStorage'])Object.defineProperty(view,name,{get:forbidden('window.'+name)});
  const selectors={'[data-home-catalog-config]':{textContent:JSON.stringify(config)},'[data-catalog-controls]':controls,'[data-catalog-filter]':select,
@@ -243,7 +243,9 @@ test('actual local-search handlers never send or store the query, inject markup,
   ui.select.value='kitchen';ui.select.emit('change');assert.equal(ui.visible().length,10);
   ui.reset.emit('click');assert.equal(ui.visible().length,100);assert.equal(ui.input.value,'');assert.equal(ui.select.value,'all');assert.equal(ui.reset.disabled,true);assert.equal(ui.input.focused,true);
   const group=ui.categoryLinks.find(link=>link.dataset.catalogCategoryLink==='daily-care');
-  ui.root.emit('click',{button:0,target:{closest:()=>group}});assert.equal(ui.select.value,'daily-care');assert.equal(ui.visible().length,16);
+  ui.root.emit('click',{button:0,target:{closest:()=>group}});assert.equal(ui.select.value,'all');assert.equal(ui.visible().length,100,'Canonical guide links navigate without changing local filters');
+  group.getAttribute=name=>name==='href'?'#catalog-category-daily-care':null;
+  ui.root.emit('click',{button:0,target:{closest:()=>group}});assert.equal(ui.select.value,'daily-care');assert.equal(ui.visible().length,16,'Existing local fragment links still filter');
   ui.view.location.hash='#catalog-category-kitchen';ui.view.emit('hashchange');assert.equal(ui.select.value,'kitchen');assert.equal(ui.visible().length,10);
   ui.view.location.hash='#catalog-item-'+products[0].id;ui.view.emit('hashchange');assert.equal(ui.select.value,'all');assert.equal(ui.visible().length,100);
   assert.deepEqual(effects,[],'Queries stay in the input and local filtering state');

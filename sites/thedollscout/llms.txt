@@ -1,6 +1,6 @@
 # The Doll Scout
 
-Independent household and everyday-life affiliate discovery with 100 named product models in nine categories. Each entry explains a use, a buying check and a traceable source. The website distinguishes existing exact US product links from branded model searches using the US or German Amazon programme. Model identity is not proof of local availability; no hands-on tests, live prices, ratings or offers are claimed. Collector buying guides, display comparisons and free collection tools remain a separate supporting section. MCP tools directly search verified SMISKI and Sonny Angel series and compare user-supplied owned and wanted names, returning source dates, unmatched names and a copyable checklist. Browser-local collection tracking, printable lists and planning tools remain available. Optional free account backup saves one collection (500 entries, 128 KiB) only on explicit Save; restore and cloud deletion are explicit, with no automatic sync. The MCP cannot access account backups. Collector-series coverage is partial; unmarked figures are not automatically wanted. Not a toy seller or official authentication service. No live stock, popularity, resale-price or investment-return claims.
+Independent household and everyday-life affiliate discovery with 100 named product models in nine categories. Nine independent category buying guides compare the task, compatibility, recurring supplies and reasons to skip a purchase. Each model entry explains a use, a buying check and a traceable source. The website distinguishes existing exact US product links from branded model searches using the US or German Amazon programme. Model identity is not proof of local availability; no hands-on tests, live prices, ratings or offers are claimed. Collector buying guides, display comparisons and free collection tools remain a separate supporting section. MCP tools directly search verified SMISKI and Sonny Angel series and compare user-supplied owned and wanted names, returning source dates, unmatched names and a copyable checklist. Browser-local collection tracking, printable lists and planning tools remain available. Optional free account backup saves one collection (500 entries, 128 KiB) only on explicit Save; restore and cloud deletion are explicit, with no automatic sync. The MCP cannot access account backups. Collector-series coverage is partial; unmarked figures are not automatically wanted. Not a toy seller or official authentication service. No live stock, popularity, resale-price or investment-return claims.
 
 - [Home & lifestyle Amazon catalogue](https://thedollscout.com/) (en): Explore 100 home and lifestyle models by task, with source-backed uses, buying checks and clearly labelled Amazon links.
   Text: https://thedollscout.com/collector-assets/text/en/home.txt
@@ -86,6 +86,60 @@ Independent household and everyday-life affiliate discovery with 100 named produ
   Text: https://thedollscout.com/collector-assets/text/zh/shop/plush-display.txt
 - [Amazon 送给收藏者的礼物](https://thedollscout.com/zh/shop/collector-gifts) (zh): 先确定对方真正想要的是某个角色、拆盒惊喜，还是安放现有藏品的配件。买更多盒，并不自动成为更好的礼物。
   Text: https://thedollscout.com/collector-assets/text/zh/shop/collector-gifts.txt
+- [Storage boxes and drawer organizers: choose by usable space](https://thedollscout.com/shop/categories/storage) (en): Compare lidded boxes, removable cases, parts drawers and dividers by fit, access and installation. Start with the items and storage you already own.
+  Text: https://thedollscout.com/collector-assets/text/en/shop/categories/storage.txt
+- [Desk organization: keep room for the work first](https://thedollscout.com/shop/categories/workspace) (en): Choose between open organizers, drawers, paper trays and cable holders by the task they solve and the space they leave usable.
+  Text: https://thedollscout.com/collector-assets/text/en/shop/categories/workspace.txt
+- [Home lighting: choose placement, power and controls](https://thedollscout.com/shop/categories/lighting) (en): Compare portable, corner, monitor and strip lighting. Check glare, mounting, USB power and regional plugs before choosing a model.
+  Text: https://thedollscout.com/collector-assets/text/en/shop/categories/lighting.txt
+- [Smart home buying guide: hubs, privacy and running costs](https://thedollscout.com/shop/categories/smart-home) (en): Compare light controls, sensors, cameras and retrofit actuators. Check hub dependencies, storage fees, regional compatibility and installation first.
+  Text: https://thedollscout.com/collector-assets/text/en/shop/categories/smart-home.txt
+- [Home tech & photography: power, Wi-Fi and camera supports](https://thedollscout.com/shop/categories/electronics) (en): Choose USB or wireless charging, desk power, Wi-Fi extension and phone or camera supports. Check compatibility, regional power and mounting.
+  Text: https://thedollscout.com/collector-assets/text/en/shop/categories/electronics.txt
+- [Kitchen tools: choose for measuring, cooking and cleanup](https://thedollscout.com/shop/categories/kitchen) (en): Compare liquid measures, kitchen scales, temperature probes and food-storage systems by the task they solve, their care requirements and what you already own.
+  Text: https://thedollscout.com/collector-assets/text/en/shop/categories/kitchen.txt
+- [Cleaning and indoor climate: match the device to the problem](https://thedollscout.com/shop/categories/home-care) (en): Separate settled dirt, airborne particles, humidity and ventilation questions before choosing a cleaning tool or monitor.
+  Text: https://thedollscout.com/collector-assets/text/en/shop/categories/home-care.txt
+- [Personal care and bath: choose fit, upkeep and a repeatable routine](https://thedollscout.com/shop/categories/daily-care) (en): Compare oral-care handles, grooming tools, hair brushes and shower fittings by compatibility and upkeep, with clear limits on comfort claims.
+  Text: https://thedollscout.com/collector-assets/text/en/shop/categories/daily-care.txt
+- [Craft tools: compare cutting, decoration and ongoing supplies](https://thedollscout.com/shop/categories/creative) (en): Choose tools for the projects you will actually repeat. Compare hand cutting, digital cutting and paint markers with material checks and a realistic consumables plan.
+  Text: https://thedollscout.com/collector-assets/text/en/shop/categories/creative.txt
+- [Aufbewahrungsboxen und Schubladen-Organizer nach Nutzraum auswählen](https://thedollscout.com/de/shop/categories/storage) (de): Boxen mit Deckel, entnehmbare Behälter, Kleinteileschubladen und Trennwände nach Passform, Zugriff und Befestigung vergleichen. Vorhandene Dinge und Möbel sind der Ausgangspunkt.
+  Text: https://thedollscout.com/collector-assets/text/de/shop/categories/storage.txt
+- [Schreibtisch organisieren: zuerst Platz zum Arbeiten schaffen](https://thedollscout.com/de/shop/categories/workspace) (de): Offene Organizer, Schubladen, Briefablagen und Kabelhalter danach auswählen, welche Aufgabe sie lösen und wie viel Arbeitsfläche nutzbar bleibt.
+  Text: https://thedollscout.com/collector-assets/text/de/shop/categories/workspace.txt
+- [Beleuchtung zu Hause: Platz, Strom und Steuerung wählen](https://thedollscout.com/de/shop/categories/lighting) (de): Mobile Leuchten, Ecklampen, Monitorlicht und Lichtstreifen vergleichen. Blendung, Montage, USB-Leistung und regionale Stecker vor dem Kauf prüfen.
+  Text: https://thedollscout.com/collector-assets/text/de/shop/categories/lighting.txt
+- [Smart Home kaufen: Hubs, Datenschutz und Folgekosten](https://thedollscout.com/de/shop/categories/smart-home) (de): Lichtsteuerung, Sensoren, Kameras und Nachrüstantriebe vergleichen. Hub-Abhängigkeiten, Speicherkosten, regionale Kompatibilität und Montage prüfen.
+  Text: https://thedollscout.com/collector-assets/text/de/shop/categories/smart-home.txt
+- [Technik zu Hause: Laden, WLAN und Kamerahalterungen](https://thedollscout.com/de/shop/categories/electronics) (de): USB- oder kabelloses Laden, Tischsteckdosen, WLAN-Erweiterung und Kamera- oder Telefonhalterungen wählen. Kompatibilität, Netz und Montage prüfen.
+  Text: https://thedollscout.com/collector-assets/text/de/shop/categories/electronics.txt
+- [Küchenhelfer nach Messen, Kochen und Reinigung auswählen](https://thedollscout.com/de/shop/categories/kitchen) (de): Messbecher, Küchenwaagen, Temperaturfühler und Vorratssysteme nach Aufgabe, Pflege und vorhandener Ausstattung vergleichen.
+  Text: https://thedollscout.com/collector-assets/text/de/shop/categories/kitchen.txt
+- [Reinigung und Raumklima: das Gerät zum Problem wählen](https://thedollscout.com/de/shop/categories/home-care) (de): Abgelagerten Schmutz, Luftpartikel, Feuchtigkeit und Lüftungsfragen trennen, bevor ein Reinigungsgerät oder Messgerät ausgewählt wird.
+  Text: https://thedollscout.com/collector-assets/text/de/shop/categories/home-care.txt
+- [Körperpflege und Bad: Passform, Pflege und Alltagstauglichkeit](https://thedollscout.com/de/shop/categories/daily-care) (de): Zahnpflegegeräte, Rasier- und Haarpflegewerkzeuge sowie Duscharmaturen nach Kompatibilität und Pflege vergleichen; Wohlbefinden bleibt individuell.
+  Text: https://thedollscout.com/collector-assets/text/de/shop/categories/daily-care.txt
+- [Bastelwerkzeuge: Schneiden, Gestalten und laufenden Bedarf vergleichen](https://thedollscout.com/de/shop/categories/creative) (de): Werkzeuge nach tatsächlich wiederkehrenden Projekten auswählen. Handschnitt, digitales Schneiden und Farbmarker mit Materialprüfung und realistischem Verbrauchsplan vergleichen.
+  Text: https://thedollscout.com/collector-assets/text/de/shop/categories/creative.txt
+- [收纳箱与抽屉整理：按可用空间选，不只看容量](https://thedollscout.com/zh/shop/categories/storage) (zh): 从已有物品与柜子出发，比较带盖箱、独立小盒、零件抽屉和隔板的适配、取用与安装方式。
+  Text: https://thedollscout.com/collector-assets/text/zh/shop/categories/storage.txt
+- [工作区整理：先留出做事的台面](https://thedollscout.com/zh/shop/categories/workspace) (zh): 根据实际任务和剩余可用台面，在开放收纳、抽屉、文件托盘与理线工具之间做选择。
+  Text: https://thedollscout.com/collector-assets/text/zh/shop/categories/workspace.txt
+- [居家照明怎么选：先看光源位置、供电与控制](https://thedollscout.com/zh/shop/categories/lighting) (zh): 比较便携氛围灯、角落落地灯、屏幕补光灯与灯带，先核对眩光、安装方式、USB 供电和当地插头，再选择具体型号。
+  Text: https://thedollscout.com/collector-assets/text/zh/shop/categories/lighting.txt
+- [智能家居怎么选：网关、隐私、订阅与安装](https://thedollscout.com/zh/shop/categories/smart-home) (zh): 比较灯光控制、环境传感器、摄像设备与改装执行器；先核对网关依赖、存储费用、地区兼容性和安装条件。
+  Text: https://thedollscout.com/collector-assets/text/zh/shop/categories/smart-home.txt
+- [居家数码与摄影：充电、网络和拍摄支架怎么选](https://thedollscout.com/zh/shop/categories/electronics) (zh): 比较 USB 与无线充电、桌沿供电、无线网络扩展和手机或相机支架；按实际问题核对设备兼容性、地区电源和安装条件。
+  Text: https://thedollscout.com/collector-assets/text/zh/shop/categories/electronics.txt
+- [厨房工具怎么选：先看量取、烹饪与清洗流程](https://thedollscout.com/zh/shop/categories/kitchen) (zh): 按实际任务、保养要求和已有装备，比较量杯、厨房秤、食物温度计与保鲜系统。
+  Text: https://thedollscout.com/collector-assets/text/zh/shop/categories/kitchen.txt
+- [清洁与室内环境：按问题选择设备](https://thedollscout.com/zh/shop/categories/home-care) (zh): 先分清表面脏污、空气颗粒、湿度和通风问题，再选择清洁工具或监测仪。
+  Text: https://thedollscout.com/collector-assets/text/zh/shop/categories/home-care.txt
+- [个护与浴室选购：看适配、维护与日常习惯](https://thedollscout.com/zh/shop/categories/daily-care) (zh): 按兼容性和维护要求比较口腔护理设备、修剪工具、梳子和花洒，并明确舒适感因人而异。
+  Text: https://thedollscout.com/collector-assets/text/zh/shop/categories/daily-care.txt
+- [手工工具怎么选：比较裁切、装饰与长期耗材](https://thedollscout.com/zh/shop/categories/creative) (zh): 按实际会重复完成的项目选工具，比较手工裁切、机器裁切与彩绘，并提前核对材料兼容性和耗材。
+  Text: https://thedollscout.com/collector-assets/text/zh/shop/categories/creative.txt
 - [Explore all collectible brands](https://thedollscout.com/brands) (en): Choose a collection by its format and the decision you need to make. Each guide includes its own working tools and official reference.
   Text: https://thedollscout.com/collector-assets/text/en/brands.txt
 - [Free collector tools](https://thedollscout.com/collector-tools) (en): A calculator for the next decision: probability, budget, collection progress or display space.

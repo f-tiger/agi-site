@@ -1,0 +1,138 @@
+{
+  "date": "2026-11-14",
+  "site": "tds",
+  "owner_request": "深化这些类目，对比同类型网站，让它们可以被ai geo或者seo，indexnow喜欢检索",
+  "status": "validated_ready_for_release",
+  "prompt_passes": [
+    {
+      "round": 1,
+      "goal": "Deepen9 existing household categories into useful standalone buying decisions; preserve100 real models and USD100 total-site monthly goal"
+    },
+    {
+      "round": 2,
+      "constraints": "Original source-based editorial reasoning, translated EN/DE/ZH, no tests/stock/prices/search volumes/competitor performance invented; preserve actual dates and marketplace disclosure"
+    },
+    {
+      "round": 3,
+      "acceptance": "27 crawlable static pages, source links/useful comparisons, canonical/hreflang/schema/text parity, sitemap/IndexNow, privacy-safe pageview and affiliate tracking, independent review and live verification"
+    }
+  ],
+  "self_challenges": [
+    {
+      "challenge": "Would this merely multiply thin category templates or copy manufacturer prose?",
+      "response": "Nine distinct task-focused guides, actual compare/skip criteria and checklists; no100 per-product pages or new country variants. Human-independent content review before release."
+    },
+    {
+      "challenge": "Could SEO/GEO artefacts or a notification be misreported as indexed content, new traffic or revenue?",
+      "response": "Official Google guidance rejects special GEO markup requirements; distinguish release, accepted notification, crawl/index/search impressions, AI citation and mature merchant revenue. Keep reporting unknown without authentic read evidence."
+    }
+  ],
+  "competitors": [
+    {
+      "name": "Good Housekeeping",
+      "sources": [
+        "https://www.goodhousekeeping.com/what-to-buy/home-products/",
+        "https://www.goodhousekeeping.com/about/institute/a19748212/good-housekeeping-institute-product-reviews/"
+      ],
+      "observable": "Household directory links to distinct room/task/product guides and states its testing methods.",
+      "tds_gap": "Existing nine groups were only inventory sections on one catalog; no standalone buying explanation.",
+      "action": "One original guide per existing category, task criteria, related guides and source trail.",
+      "limits": "Publisher testing claims are its own; TDS has no lab or independent hands-on test. No verified competitor traffic, CTR or sales-conversion data."
+    },
+    {
+      "name": "Wirecutter",
+      "sources": [
+        "https://thenewyorktimeshelpcenter.helpjuice.com/21870729656596-Wirecutter-Product-Recommendations"
+      ],
+      "observable": "Its official help center describes editorial/product-testing standards and feature-comparison tables.",
+      "tds_gap": "Short use/check cards alone did not explain competing approaches or prerequisites.",
+      "action": "Explain need/consider/trade-off, link comparison examples to visible named models, disclose published-source methodology.",
+      "limits": "TDS adopts transparent reasoning, not a tested-best claim or Wirecutter scale. No measured TDS conversion lift."
+    }
+  ],
+  "additional_reference_limit": "ThisIsWhyImBroke homebodies URL returned a JavaScript/404 template in the current text fetch. Do not treat internal template zero metrics as real CTR or conversion evidence; retained previous catalog research is historical.",
+  "official_guidance": [
+    {
+      "url": "https://developers.google.com/search/docs/appearance/ai-features",
+      "decision": "Foundational SEO, indexable eligible pages and useful visible content also apply to Google AI features."
+    },
+    {
+      "url": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+      "decision": "No special AI file/schema requirement; Google says llms.txt does not affect its visibility. Existing mirrors are optional convenience, not an indexing tactic."
+    },
+    {
+      "url": "https://www.indexnow.org/documentation",
+      "decision": "Notify actual added/changed/deleted URLs after public deployment and key proof. Acceptance does not guarantee indexing."
+    }
+  ],
+  "category_intents": {
+    "storage": "Usable dimensions, opening clearance and access frequency",
+    "workspace": "Work surface, document flow and removable cable routing",
+    "lighting": "Task vs ambient, glare, mounting and power supply",
+    "smart-home": "Ecosystem, hub, local/cloud controls and subscriptions",
+    "electronics": "Shared charger output, USB data/video and local power compatibility",
+    "kitchen": "Preparation workflow, material fit, maintenance and parts",
+    "home-care": "Surface cleaning versus measuring humidity/air; consumables",
+    "daily-care": "Routine, safe use, replacement supplies and regional model",
+    "creative": "Manual vs machine workflow, material limits and recurring supplies"
+  },
+  "intent_evidence": "Editorial task hypotheses supported by manufacturer instructions and existing product inventory; not measured query volume or buyer interviews.",
+  "distribution": "Owned home/catalog category links and sibling-topic links; existing public sitemap and IndexNow workflow. No new outbound post/message or spend.",
+  "measurement_scope": "New category allowlist separated from historical18-path shopping-growth aggregate; GA4 existing property and isolated channel; no query text or fake production event. Actual first complete day pending.",
+  "goals": {
+    "monthly_total_tds_revenue_usd": 100,
+    "actual_revenue": "unknown",
+    "traffic_goal_verified": false,
+    "original_review": "2026-11-22",
+    "prior_window_reset": false
+  },
+  "validation": {
+    "category_tests": {
+      "passed": 8,
+      "routes": 27,
+      "model_partition_per_locale": 100
+    },
+    "catalog_regression_tests": 12,
+    "affiliate_tests": 13,
+    "required_collector_test_files_passed": 20,
+    "full_build": {
+      "collector_pages": 198,
+      "document_pages": 93,
+      "total_html": 346,
+      "ga4_public_routes": 341,
+      "wrong_or_duplicate_tags": 0,
+      "private_exclusions_preserved": 5,
+      "canonical_hreflang_links_text_retired_rules": "passed",
+      "structured_data_gate": "182 FAQ/DefinedTerm entries checked;0 invisible",
+      "category_schema": "BreadcrumbList+same-page ItemList only"
+    },
+    "independent_reviews": {
+      "code": "pass;27 in-memory and54 source/dist documents",
+      "content_a": "pass;storage,workspace,creative reviewed by separate agent",
+      "content_bc": "pass;other6categories plus final electronics expansion reviewed by separate agent",
+      "final_source_sha256": "cc875aa1d2be125e1a05a15f46bab0c3c4bb21218b73304db284a9572cc6ea92"
+    },
+    "browser": {
+      "states": 57,
+      "interaction_journeys": 57,
+      "mobile_js_and_no_js_states": 54,
+      "desktop_language_representatives": 3,
+      "viewed_screenshots": 6,
+      "page_overflow": 0,
+      "missing_assets": 0,
+      "runtime_errors": 0,
+      "production_requests": 0,
+      "merchant_visits": 0
+    },
+    "fixed_findings": [
+      "Workspace comparison contained2 storage-only product IDs; removed row and obsolete source references",
+      "German lighting title overflowed390px viewport by7px; shortened title and enabled heading wrapping",
+      "Electronics explanation covered charging but omitted network/photo tasks; expanded original guide to all9 existingmodels"
+    ],
+    "backend_receipt": "not-tested;browser request generation does not establish GA4 backend receipt",
+    "indexed_or_ai_cited": "unknown",
+    "traffic_or_revenue_lift": "unknown"
+  },
+  "release": null,
+  "next_action": "Review available genuine search/query/landing, affiliate exits and mature merchant revenue separately within existing cadence. Do not expand solely because impressions or reporting access are missing."
+}

@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {affiliatePayload, installAffiliateMeasurement, recordShoppingCompare} from '../../collector-assets/affiliate-measurement.mjs';
-import {SHOPPING_IDS, SHOPPING_PLACEMENTS, SHOPPING_TUPLES, shoppingLinkPayload, shoppingMeasurement, shoppingMarket, shoppingItemAllowed} from '../../collector-assets/shopping-contract.mjs';
+import {SHOPPING_IDS, SHOPPING_PATHS, SHOPPING_CATEGORY_PATHS, SHOPPING_PLACEMENTS, SHOPPING_TUPLES, shoppingLinkPayload, shoppingMeasurement, shoppingMarket, shoppingItemAllowed} from '../../collector-assets/shopping-contract.mjs';
 import {onRequestPost} from '../../functions/api/ev.js';
 
 function browser({path = '/shop', query = '?search=PRIVATE#PRIVATE', canonical, host = 'thedollscout.com', navigator = {}, denied = false, storageUnavailable = false, embedded = false} = {}) {
@@ -31,6 +31,46 @@ test('shopping clicks send only canonical route, fixed action and merchant host 
     const merchant = lang === 'de/' ? 'https://www.amazon.de/s?k=PRIVATE&tag=getecoback-21' : undefined;
     assert.deepEqual(affiliatePayload(ui.event(merchant), ui.runtime), {p: path, e: 'affiliate_click', r: lang === 'de/' ? 'https://amazon.de' : 'https://amazon.com'});
   }
+});
+
+test('new category guides admit local merchant clicks without changing the historical aggregate scope', () => {
+  assert.equal(SHOPPING_PATHS.length, 18);
+  assert.ok(SHOPPING_PATHS.every(path => !path.includes('/categories/')));
+  assert.equal(SHOPPING_CATEGORY_PATHS.length, 27);
+  assert.equal(new Set([...SHOPPING_PATHS, ...SHOPPING_CATEGORY_PATHS]).size, 45);
+  for (const path of SHOPPING_CATEGORY_PATHS) {
+    const de = path.startsWith('/de/'), ui = browser({path});
+    const host = de ? 'amazon.de' : 'amazon.com', tag = de ? 'getecoback-21' : 'ecoback0d-20';
+    const event = ui.event(`https://${host}/s?k=PRIVATE&tag=${tag}#PRIVATE`);
+    const payload = affiliatePayload(event, ui.runtime);
+    assert.deepEqual(payload, {p: path, e: 'affiliate_click', r: 'https://' + host});
+    assert.doesNotMatch(JSON.stringify(payload), /PRIVATE|tag=|search|item|placement/);
+    assert.equal(affiliatePayload(ui.event(`https://${de ? 'amazon.com' : 'amazon.de'}/s?tag=${de ? 'ecoback0d-20' : 'getecoback-21'}`), ui.runtime), null);
+    const excluded = browser({path, query: '?__qa=1'});
+    assert.equal(affiliatePayload(excluded.event(), excluded.runtime), null);
+  }
+  for (const path of ['/shop/categories/private', '/shop/categories/storage/', '/de/shop/categories', '/uk/shop/categories/storage'])
+    assert.equal(shoppingMarket(path), null);
+});
+
+test('category model links keep exact US identity bounded and model searches unlabelled end to end', async () => {
+  for (const path of ['/shop/categories/storage', '/zh/shop/categories/storage']) {
+    const ui = browser({path});
+    for (const [item, asin] of [['niubee-risers', 'B07KN5G9CQ'], ['rub-4l', 'B000KN4DQ4']]) {
+      const payload = affiliatePayload(ui.event(`https://amazon.com/dp/${asin}?tag=ecoback0d-20`, {item, placement: 'guide'}), ui.runtime);
+      assert.deepEqual(payload, {p: path, e: 'affiliate_click', r: 'https://amazon.com', item, placement: 'guide'});
+      const rows = await record(payload);
+      assert.deepEqual(rows[0].slice(1), [path, path.startsWith('/zh/') ? 'zh' : 'en', '', `s1|amazon.com|${item}|guide`, 'affiliate_click']);
+      assert.equal(affiliatePayload(ui.event('https://amazon.com/s?k=PRIVATE&tag=ecoback0d-20', {item, placement: 'guide'}), ui.runtime), null);
+    }
+  }
+  const de = browser({path: '/de/shop/categories/storage'});
+  const search = affiliatePayload(de.event('https://amazon.de/s?k=PRIVATE&tag=getecoback-21'), de.runtime);
+  assert.deepEqual(search, {p: '/de/shop/categories/storage', e: 'affiliate_click', r: 'https://amazon.de'});
+  const rows = await record(search);
+  assert.deepEqual(rows[0].slice(1), ['/de/shop/categories/storage', 'de', '', 'amazon.de', 'affiliate_click']);
+  assert.equal(affiliatePayload(de.event('https://amazon.de/dp/B000KN4DQ4?tag=getecoback-21', {item: 'rub-4l', placement: 'guide'}), de.runtime), null);
+  assert.equal((await record({p: '/de/shop/categories/storage', e: 'affiliate_click', r: 'https://amazon.de', item: 'rub-4l', placement: 'guide'})).length, 0);
 });
 
 test('QA, bots, previews, private routes, frames and privacy exclusions never create merchant counts', () => {

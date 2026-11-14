@@ -1,5 +1,5 @@
-# thedollscout.com — The Doll Scout: collectible toys and collection tools.
-# General digital tools remain available at /document-tools.
+# thedollscout.com — The Doll Scout: home and everyday-life buying guides.
+# Collector tools and general digital tools remain available.
 # AI crawlers are welcome by name: being read and cited by assistants is a
 # distribution channel we court, not a cost.
 
@@ -36,11 +36,8 @@ Allow: /
 User-agent: xAI-Bot
 Allow: /
 
-# Machine-readable surfaces for AI engines and agents. Listed here because
-# robots.txt is measurably where crawlers stop: on 2026-08-30 the D1 edge log
-# showed OAI-SearchBot fetching /robots.txt three times and nothing else, and
-# not one crawler had ever fetched llms.txt — nothing on the site pointed at it.
-# (Comments are advisory; every path below is also Allow-ed by the rules above.)
+# Optional assistant indexes mirror public content; they do not guarantee
+# search indexing, ranking or citation. Sitemap and crawlable HTML remain primary.
 #   Site index for AI:      https://thedollscout.com/llms.txt
 #   Full site text:         https://thedollscout.com/llms-full.txt
 #   PDF tool capabilities: https://thedollscout.com/document-assets/tool-capabilities.json

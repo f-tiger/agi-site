@@ -20,7 +20,7 @@ export function installHomeCatalog(root){
   return visible.map(c=>c.id);
  }
  input.addEventListener('input',render);select.addEventListener('change',render);reset.addEventListener('click',()=>{select.value='all';input.value='';render();input.focus();});
- root.addEventListener('click',event=>{const link=event.target?.closest?.('[data-catalog-category-link]');if(!link||!root.contains(link)||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey||event.button!==0)return;const category=link.dataset.catalogCategoryLink;if(!allowed.has(category))return;select.value=category;input.value='';render();});
+ root.addEventListener('click',event=>{const link=event.target?.closest?.('[data-catalog-category-link]');if(!link||!root.contains(link)||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey||event.button!==0)return;const href=link.getAttribute('href');if(href&&!href.startsWith('#catalog-category-'))return;const category=link.dataset.catalogCategoryLink;if(!allowed.has(category))return;select.value=category;input.value='';render();});
  const view=root.ownerDocument.defaultView;
  function applyFragment(){
   const hash=view?.location?.hash||'',match=hash.match(/^#catalog-category-([a-z-]+)$/);

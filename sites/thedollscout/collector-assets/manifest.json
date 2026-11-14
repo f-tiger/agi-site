@@ -9,7 +9,7 @@
       "title": "Home & lifestyle Amazon catalogue",
       "description": "Explore 100 home and lifestyle models by task, with source-backed uses, buying checks and clearly labelled Amazon links.",
       "textUrl": "https://thedollscout.com/collector-assets/text/en/home.txt",
-      "modified": "2026-11-13"
+      "modified": "2026-11-14"
     },
     {
       "lang": "en",
@@ -90,7 +90,7 @@
       "title": "Amazon-Katalog für Haushalt und Alltag",
       "description": "100 Modelle für Haushalt und Alltag: nach Aufgabe entdecken, Quellen und Kaufkriterien prüfen, dann bei Amazon Deutschland suchen.",
       "textUrl": "https://thedollscout.com/collector-assets/text/de/home.txt",
-      "modified": "2026-11-13"
+      "modified": "2026-11-14"
     },
     {
       "lang": "de",
@@ -171,7 +171,7 @@
       "title": "Amazon 居家生活商品目录",
       "description": "按用途探索 100 款居家生活型号，先看来源、适用理由与核对条件，再使用明确标示的 Amazon 选购入口。",
       "textUrl": "https://thedollscout.com/collector-assets/text/zh/home.txt",
-      "modified": "2026-11-13"
+      "modified": "2026-11-14"
     },
     {
       "lang": "zh",
@@ -252,7 +252,7 @@
       "title": "Home & lifestyle Amazon catalogue",
       "description": "Explore 100 home and lifestyle models by task, with source-backed uses, buying checks and clearly labelled Amazon links.",
       "textUrl": "https://thedollscout.com/collector-assets/text/en/shop.txt",
-      "modified": "2026-11-13"
+      "modified": "2026-11-14"
     },
     {
       "lang": "en",
@@ -297,7 +297,7 @@
       "title": "Amazon-Katalog für Haushalt und Alltag",
       "description": "100 Modelle für Haushalt und Alltag: nach Aufgabe entdecken, Quellen und Kaufkriterien prüfen, dann bei Amazon Deutschland suchen.",
       "textUrl": "https://thedollscout.com/collector-assets/text/de/shop.txt",
-      "modified": "2026-11-13"
+      "modified": "2026-11-14"
     },
     {
       "lang": "de",
@@ -342,7 +342,7 @@
       "title": "Amazon 居家生活商品目录",
       "description": "按用途探索 100 款居家生活型号，先看来源、适用理由与核对条件，再使用明确标示的 Amazon 选购入口。",
       "textUrl": "https://thedollscout.com/collector-assets/text/zh/shop.txt",
-      "modified": "2026-11-13"
+      "modified": "2026-11-14"
     },
     {
       "lang": "zh",
@@ -379,6 +379,249 @@
       "description": "先确定对方真正想要的是某个角色、拆盒惊喜，还是安放现有藏品的配件。买更多盒，并不自动成为更好的礼物。",
       "textUrl": "https://thedollscout.com/collector-assets/text/zh/shop/collector-gifts.txt",
       "modified": "2026-11-13"
+    },
+    {
+      "lang": "en",
+      "slug": "shop/categories/storage",
+      "url": "https://thedollscout.com/shop/categories/storage",
+      "title": "Storage boxes and drawer organizers: choose by usable space",
+      "description": "Compare lidded boxes, removable cases, parts drawers and dividers by fit, access and installation. Start with the items and storage you already own.",
+      "textUrl": "https://thedollscout.com/collector-assets/text/en/shop/categories/storage.txt",
+      "modified": "2026-11-14"
+    },
+    {
+      "lang": "en",
+      "slug": "shop/categories/workspace",
+      "url": "https://thedollscout.com/shop/categories/workspace",
+      "title": "Desk organization: keep room for the work first",
+      "description": "Choose between open organizers, drawers, paper trays and cable holders by the task they solve and the space they leave usable.",
+      "textUrl": "https://thedollscout.com/collector-assets/text/en/shop/categories/workspace.txt",
+      "modified": "2026-11-14"
+    },
+    {
+      "lang": "en",
+      "slug": "shop/categories/lighting",
+      "url": "https://thedollscout.com/shop/categories/lighting",
+      "title": "Home lighting: choose placement, power and controls",
+      "description": "Compare portable, corner, monitor and strip lighting. Check glare, mounting, USB power and regional plugs before choosing a model.",
+      "textUrl": "https://thedollscout.com/collector-assets/text/en/shop/categories/lighting.txt",
+      "modified": "2026-11-14"
+    },
+    {
+      "lang": "en",
+      "slug": "shop/categories/smart-home",
+      "url": "https://thedollscout.com/shop/categories/smart-home",
+      "title": "Smart home buying guide: hubs, privacy and running costs",
+      "description": "Compare light controls, sensors, cameras and retrofit actuators. Check hub dependencies, storage fees, regional compatibility and installation first.",
+      "textUrl": "https://thedollscout.com/collector-assets/text/en/shop/categories/smart-home.txt",
+      "modified": "2026-11-14"
+    },
+    {
+      "lang": "en",
+      "slug": "shop/categories/electronics",
+      "url": "https://thedollscout.com/shop/categories/electronics",
+      "title": "Home tech & photography: power, Wi-Fi and camera supports",
+      "description": "Choose USB or wireless charging, desk power, Wi-Fi extension and phone or camera supports. Check compatibility, regional power and mounting.",
+      "textUrl": "https://thedollscout.com/collector-assets/text/en/shop/categories/electronics.txt",
+      "modified": "2026-11-14"
+    },
+    {
+      "lang": "en",
+      "slug": "shop/categories/kitchen",
+      "url": "https://thedollscout.com/shop/categories/kitchen",
+      "title": "Kitchen tools: choose for measuring, cooking and cleanup",
+      "description": "Compare liquid measures, kitchen scales, temperature probes and food-storage systems by the task they solve, their care requirements and what you already own.",
+      "textUrl": "https://thedollscout.com/collector-assets/text/en/shop/categories/kitchen.txt",
+      "modified": "2026-11-14"
+    },
+    {
+      "lang": "en",
+      "slug": "shop/categories/home-care",
+      "url": "https://thedollscout.com/shop/categories/home-care",
+      "title": "Cleaning and indoor climate: match the device to the problem",
+      "description": "Separate settled dirt, airborne particles, humidity and ventilation questions before choosing a cleaning tool or monitor.",
+      "textUrl": "https://thedollscout.com/collector-assets/text/en/shop/categories/home-care.txt",
+      "modified": "2026-11-14"
+    },
+    {
+      "lang": "en",
+      "slug": "shop/categories/daily-care",
+      "url": "https://thedollscout.com/shop/categories/daily-care",
+      "title": "Personal care and bath: choose fit, upkeep and a repeatable routine",
+      "description": "Compare oral-care handles, grooming tools, hair brushes and shower fittings by compatibility and upkeep, with clear limits on comfort claims.",
+      "textUrl": "https://thedollscout.com/collector-assets/text/en/shop/categories/daily-care.txt",
+      "modified": "2026-11-14"
+    },
+    {
+      "lang": "en",
+      "slug": "shop/categories/creative",
+      "url": "https://thedollscout.com/shop/categories/creative",
+      "title": "Craft tools: compare cutting, decoration and ongoing supplies",
+      "description": "Choose tools for the projects you will actually repeat. Compare hand cutting, digital cutting and paint markers with material checks and a realistic consumables plan.",
+      "textUrl": "https://thedollscout.com/collector-assets/text/en/shop/categories/creative.txt",
+      "modified": "2026-11-14"
+    },
+    {
+      "lang": "de",
+      "slug": "shop/categories/storage",
+      "url": "https://thedollscout.com/de/shop/categories/storage",
+      "title": "Aufbewahrungsboxen und Schubladen-Organizer nach Nutzraum auswählen",
+      "description": "Boxen mit Deckel, entnehmbare Behälter, Kleinteileschubladen und Trennwände nach Passform, Zugriff und Befestigung vergleichen. Vorhandene Dinge und Möbel sind der Ausgangspunkt.",
+      "textUrl": "https://thedollscout.com/collector-assets/text/de/shop/categories/storage.txt",
+      "modified": "2026-11-14"
+    },
+    {
+      "lang": "de",
+      "slug": "shop/categories/workspace",
+      "url": "https://thedollscout.com/de/shop/categories/workspace",
+      "title": "Schreibtisch organisieren: zuerst Platz zum Arbeiten schaffen",
+      "description": "Offene Organizer, Schubladen, Briefablagen und Kabelhalter danach auswählen, welche Aufgabe sie lösen und wie viel Arbeitsfläche nutzbar bleibt.",
+      "textUrl": "https://thedollscout.com/collector-assets/text/de/shop/categories/workspace.txt",
+      "modified": "2026-11-14"
+    },
+    {
+      "lang": "de",
+      "slug": "shop/categories/lighting",
+      "url": "https://thedollscout.com/de/shop/categories/lighting",
+      "title": "Beleuchtung zu Hause: Platz, Strom und Steuerung wählen",
+      "description": "Mobile Leuchten, Ecklampen, Monitorlicht und Lichtstreifen vergleichen. Blendung, Montage, USB-Leistung und regionale Stecker vor dem Kauf prüfen.",
+      "textUrl": "https://thedollscout.com/collector-assets/text/de/shop/categories/lighting.txt",
+      "modified": "2026-11-14"
+    },
+    {
+      "lang": "de",
+      "slug": "shop/categories/smart-home",
+      "url": "https://thedollscout.com/de/shop/categories/smart-home",
+      "title": "Smart Home kaufen: Hubs, Datenschutz und Folgekosten",
+      "description": "Lichtsteuerung, Sensoren, Kameras und Nachrüstantriebe vergleichen. Hub-Abhängigkeiten, Speicherkosten, regionale Kompatibilität und Montage prüfen.",
+      "textUrl": "https://thedollscout.com/collector-assets/text/de/shop/categories/smart-home.txt",
+      "modified": "2026-11-14"
+    },
+    {
+      "lang": "de",
+      "slug": "shop/categories/electronics",
+      "url": "https://thedollscout.com/de/shop/categories/electronics",
+      "title": "Technik zu Hause: Laden, WLAN und Kamerahalterungen",
+      "description": "USB- oder kabelloses Laden, Tischsteckdosen, WLAN-Erweiterung und Kamera- oder Telefonhalterungen wählen. Kompatibilität, Netz und Montage prüfen.",
+      "textUrl": "https://thedollscout.com/collector-assets/text/de/shop/categories/electronics.txt",
+      "modified": "2026-11-14"
+    },
+    {
+      "lang": "de",
+      "slug": "shop/categories/kitchen",
+      "url": "https://thedollscout.com/de/shop/categories/kitchen",
+      "title": "Küchenhelfer nach Messen, Kochen und Reinigung auswählen",
+      "description": "Messbecher, Küchenwaagen, Temperaturfühler und Vorratssysteme nach Aufgabe, Pflege und vorhandener Ausstattung vergleichen.",
+      "textUrl": "https://thedollscout.com/collector-assets/text/de/shop/categories/kitchen.txt",
+      "modified": "2026-11-14"
+    },
+    {
+      "lang": "de",
+      "slug": "shop/categories/home-care",
+      "url": "https://thedollscout.com/de/shop/categories/home-care",
+      "title": "Reinigung und Raumklima: das Gerät zum Problem wählen",
+      "description": "Abgelagerten Schmutz, Luftpartikel, Feuchtigkeit und Lüftungsfragen trennen, bevor ein Reinigungsgerät oder Messgerät ausgewählt wird.",
+      "textUrl": "https://thedollscout.com/collector-assets/text/de/shop/categories/home-care.txt",
+      "modified": "2026-11-14"
+    },
+    {
+      "lang": "de",
+      "slug": "shop/categories/daily-care",
+      "url": "https://thedollscout.com/de/shop/categories/daily-care",
+      "title": "Körperpflege und Bad: Passform, Pflege und Alltagstauglichkeit",
+      "description": "Zahnpflegegeräte, Rasier- und Haarpflegewerkzeuge sowie Duscharmaturen nach Kompatibilität und Pflege vergleichen; Wohlbefinden bleibt individuell.",
+      "textUrl": "https://thedollscout.com/collector-assets/text/de/shop/categories/daily-care.txt",
+      "modified": "2026-11-14"
+    },
+    {
+      "lang": "de",
+      "slug": "shop/categories/creative",
+      "url": "https://thedollscout.com/de/shop/categories/creative",
+      "title": "Bastelwerkzeuge: Schneiden, Gestalten und laufenden Bedarf vergleichen",
+      "description": "Werkzeuge nach tatsächlich wiederkehrenden Projekten auswählen. Handschnitt, digitales Schneiden und Farbmarker mit Materialprüfung und realistischem Verbrauchsplan vergleichen.",
+      "textUrl": "https://thedollscout.com/collector-assets/text/de/shop/categories/creative.txt",
+      "modified": "2026-11-14"
+    },
+    {
+      "lang": "zh",
+      "slug": "shop/categories/storage",
+      "url": "https://thedollscout.com/zh/shop/categories/storage",
+      "title": "收纳箱与抽屉整理：按可用空间选，不只看容量",
+      "description": "从已有物品与柜子出发，比较带盖箱、独立小盒、零件抽屉和隔板的适配、取用与安装方式。",
+      "textUrl": "https://thedollscout.com/collector-assets/text/zh/shop/categories/storage.txt",
+      "modified": "2026-11-14"
+    },
+    {
+      "lang": "zh",
+      "slug": "shop/categories/workspace",
+      "url": "https://thedollscout.com/zh/shop/categories/workspace",
+      "title": "工作区整理：先留出做事的台面",
+      "description": "根据实际任务和剩余可用台面，在开放收纳、抽屉、文件托盘与理线工具之间做选择。",
+      "textUrl": "https://thedollscout.com/collector-assets/text/zh/shop/categories/workspace.txt",
+      "modified": "2026-11-14"
+    },
+    {
+      "lang": "zh",
+      "slug": "shop/categories/lighting",
+      "url": "https://thedollscout.com/zh/shop/categories/lighting",
+      "title": "居家照明怎么选：先看光源位置、供电与控制",
+      "description": "比较便携氛围灯、角落落地灯、屏幕补光灯与灯带，先核对眩光、安装方式、USB 供电和当地插头，再选择具体型号。",
+      "textUrl": "https://thedollscout.com/collector-assets/text/zh/shop/categories/lighting.txt",
+      "modified": "2026-11-14"
+    },
+    {
+      "lang": "zh",
+      "slug": "shop/categories/smart-home",
+      "url": "https://thedollscout.com/zh/shop/categories/smart-home",
+      "title": "智能家居怎么选：网关、隐私、订阅与安装",
+      "description": "比较灯光控制、环境传感器、摄像设备与改装执行器；先核对网关依赖、存储费用、地区兼容性和安装条件。",
+      "textUrl": "https://thedollscout.com/collector-assets/text/zh/shop/categories/smart-home.txt",
+      "modified": "2026-11-14"
+    },
+    {
+      "lang": "zh",
+      "slug": "shop/categories/electronics",
+      "url": "https://thedollscout.com/zh/shop/categories/electronics",
+      "title": "居家数码与摄影：充电、网络和拍摄支架怎么选",
+      "description": "比较 USB 与无线充电、桌沿供电、无线网络扩展和手机或相机支架；按实际问题核对设备兼容性、地区电源和安装条件。",
+      "textUrl": "https://thedollscout.com/collector-assets/text/zh/shop/categories/electronics.txt",
+      "modified": "2026-11-14"
+    },
+    {
+      "lang": "zh",
+      "slug": "shop/categories/kitchen",
+      "url": "https://thedollscout.com/zh/shop/categories/kitchen",
+      "title": "厨房工具怎么选：先看量取、烹饪与清洗流程",
+      "description": "按实际任务、保养要求和已有装备，比较量杯、厨房秤、食物温度计与保鲜系统。",
+      "textUrl": "https://thedollscout.com/collector-assets/text/zh/shop/categories/kitchen.txt",
+      "modified": "2026-11-14"
+    },
+    {
+      "lang": "zh",
+      "slug": "shop/categories/home-care",
+      "url": "https://thedollscout.com/zh/shop/categories/home-care",
+      "title": "清洁与室内环境：按问题选择设备",
+      "description": "先分清表面脏污、空气颗粒、湿度和通风问题，再选择清洁工具或监测仪。",
+      "textUrl": "https://thedollscout.com/collector-assets/text/zh/shop/categories/home-care.txt",
+      "modified": "2026-11-14"
+    },
+    {
+      "lang": "zh",
+      "slug": "shop/categories/daily-care",
+      "url": "https://thedollscout.com/zh/shop/categories/daily-care",
+      "title": "个护与浴室选购：看适配、维护与日常习惯",
+      "description": "按兼容性和维护要求比较口腔护理设备、修剪工具、梳子和花洒，并明确舒适感因人而异。",
+      "textUrl": "https://thedollscout.com/collector-assets/text/zh/shop/categories/daily-care.txt",
+      "modified": "2026-11-14"
+    },
+    {
+      "lang": "zh",
+      "slug": "shop/categories/creative",
+      "url": "https://thedollscout.com/zh/shop/categories/creative",
+      "title": "手工工具怎么选：比较裁切、装饰与长期耗材",
+      "description": "按实际会重复完成的项目选工具，比较手工裁切、机器裁切与彩绘，并提前核对材料兼容性和耗材。",
+      "textUrl": "https://thedollscout.com/collector-assets/text/zh/shop/categories/creative.txt",
+      "modified": "2026-11-14"
     },
     {
       "lang": "en",
