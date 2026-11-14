@@ -26,6 +26,7 @@ if(root){
  form.addEventListener('reset',event=>{event.preventDefault();query.value='';category.value='';filter();query.focus();});
  root.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',event=>{
   // Native fragment navigation owns history. Same-fragment clicks still reveal a filtered target.
+  if(event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
   if(a.hash===location.hash){event.preventDefault();followFragment();}
  }));
  window.addEventListener('hashchange',followFragment);

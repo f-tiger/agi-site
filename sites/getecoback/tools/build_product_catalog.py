@@ -11,6 +11,7 @@ import argparse
 import datetime as dt
 from html import escape
 import json
+import hashlib
 from pathlib import Path
 import re
 from urllib.parse import urlencode
@@ -129,6 +130,8 @@ def render(data, today=None):
 {tool}<h3 class="pc-model-heading" id="modelle-{esc(category['id'])}">{esc(category['name'])}: Modelle und Kaufgrenzen</h3><div class="pc-grid">{''.join(cards)}</div></section>''')
     nav = ''.join(f'<a href="#kategorie-{esc(c["id"])}" data-category-link="{esc(c["id"])}">{esc(c["name"])}</a>' for c in data['categories'])
     options = ''.join(f'<option value="{esc(c["id"])}">{esc(c["name"])}</option>' for c in data['categories'])
+    css_version = hashlib.sha256((ROOT / 'site/assets/product-catalog.css').read_bytes()).hexdigest()[:12]
+    script_version = hashlib.sha256((ROOT / 'site/assets/product-catalog.mjs').read_bytes()).hexdigest()[:12]
     count = len(data['products'])
     published, modified = data['published'], data['modified']
     graph = {'@context': 'https://schema.org', '@type': 'CollectionPage', 'name': TITLE,
@@ -143,7 +146,7 @@ def render(data, today=None):
 <title>{TITLE}</title><meta name="description" content="{DESCRIPTION}"><link rel="canonical" href="{CANONICAL}">
 <link rel="alternate" type="text/markdown" href="https://getecoback.com/produkte.md"><link rel="alternate" hreflang="de" href="{CANONICAL}">
 <meta property="og:type" content="website"><meta property="og:title" content="{TITLE}"><meta property="og:description" content="{DESCRIPTION}"><meta property="og:url" content="{CANONICAL}">
-<link rel="stylesheet" href="/assets/product-catalog.css"><script type="module" src="/assets/product-catalog.mjs"></script><script type="module" src="/assets/product-category-tools.mjs"></script>
+<link rel="stylesheet" href="/assets/product-catalog.css?v={css_version}"><script type="module" src="/assets/product-catalog.mjs?v={script_version}"></script><script type="module" src="/assets/product-category-tools.mjs"></script>
 <script type="application/ld+json">{structured}</script></head><body>
 <main class="pc-page"><article data-product-directory><header class="pc-header"><p><a href="/">EcoBack</a> / Produkte</p>
 <h1>Haushaltsgeräte: konkrete Modelle für deine Aufgabe</h1><p class="pc-lead">{count} konkrete Modelle in {len(data['categories'])} Produktgruppen. Vergleiche Einsatz, genaue Variante und Grenzen anhand der Herstellerquellen — ohne Testnoten oder Preisrangliste.</p>
