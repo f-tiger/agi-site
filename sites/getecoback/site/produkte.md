@@ -11,7 +11,7 @@ Canonical (HTML, zitierfähig): https://getecoback.com/produkte.html
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Händlersuchen sind als Anzeige gekennzeichnet. Keine eigenen Gerätetests; Herstellerangaben sind keine Leistungszusage für dein Zuhause.
 
-Veröffentlicht: 13.11.2026 · Inhalt geändert: 13.11.2026. Der Quellenstand steht an jedem Modell.
+Veröffentlicht: 13.11.2026 · Inhalt geändert: 14.11.2026. Der Quellenstand steht an jedem Modell.
 
 48 Modelle in 12 Produktgruppen.
 
@@ -22,6 +22,8 @@ Keine passenden Modelle. Ändere die Suche oder setze die Filter zurück.
 Vor der Auswahl Filtertyp, Bedienung und Verbrauchsmaterial des genauen Modells abgleichen. Die Herstellerfunktionen sind keine eigenen Produkttests und keine medizinische Wirkungsaussage.
 **Vorhandenes weiter nutzen?** Zuerst Partikelquellen und Lüftung prüfen. Ein vorhandenes passendes Gerät weiterverwenden; ein Luftreiniger behebt keine nassen Bauteile.
 
+[Direkt die 4 Modelle vergleichen ↓](https://getecoback.com/produkte.html#modelle-luftreiniger) [Erst die passende Auswahlhilfe nutzen ↓](https://getecoback.com/produkte.html#pc-tool-luftreiniger)
+
 ### Raumvolumen und geplanten Luftdurchsatz berechnen
 Plane einen Luftdurchsatz aus Raummaßen und einer selbst gewählten Zahl von Luftwechseln. Das ist keine Gesundheits- oder Kaufempfehlung.
 **Rechenweg:** Raumvolumen = Länge × Breite × Höhe; geplanter Luftdurchsatz = Raumvolumen × Luftwechsel pro Stunde.
@@ -29,6 +31,8 @@ Plane einen Luftdurchsatz aus Raummaßen und einer selbst gewählten Zahl von Lu
 Hersteller-CADR, Filterzustand, Luftführung und Messbedingungen separat prüfen. Das Ergebnis bestätigt keine Eignung eines der Geräte.
 
 Die Formel und das fiktive Beispiel sind ohne JavaScript lesbar. Eigene Werte kannst du damit von Hand nachrechnen.
+
+### Luftreiniger: Modelle und Kaufgrenzen
 
 ### Levoit Core 300S
 Levoit · Core 300S; nicht Core 300 oder Core 300S Pro
@@ -83,11 +87,15 @@ Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue 
 Turm-, Tisch- und Akkuventilatoren nach Stellplatz und Bedienung auswählen. Luftbewegung und aktive Klimatisierung sind unterschiedliche Aufgaben.
 **Vorhandenes weiter nutzen?** Wenn Beschattung, geeignete Lüftung oder ein vorhandener Ventilator genügen, ist kein weiteres Gerät nötig.
 
+[Direkt die 4 Modelle vergleichen ↓](https://getecoback.com/produkte.html#modelle-ventilatoren) [Erst die passende Auswahlhilfe nutzen ↓](https://getecoback.com/produkte.html#pc-tool-ventilatoren)
+
 ### Stromkosten für deine Ventilator-Nutzung
 Watt ÷ 1.000 × Betriebsstunden × eigener Arbeitspreis.
 **Rechenbeispiel:** Fiktives Beispiel: 30 W × 8 h × 0,35 €/kWh ÷ 1.000 = 0,084 € pro Tag.
 Die Rechnung senkt keine Raumtemperatur und sagt nichts über Luftstrom oder Lautstärke. Watt und Nutzung der genauen Variante selbst prüfen.
 [Vorhandenes Werkzeug öffnen →](https://getecoback.com/guide/stromkosten-rechner.html)
+
+### Ventilatoren: Modelle und Kaufgrenzen
 
 ### Stadler Form Peter
 Stadler Form · Peter schwarz P-018; aktuelle deutsche Produktseite mit sechs Stufen
@@ -142,6 +150,8 @@ Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue 
 Temperatur und relative Luftfeuchte wiederholt und am passenden Ort messen. Anzeige, Speicher, Messgenauigkeit und benötigte Batterien vor dem Kauf vergleichen.
 **Vorhandenes weiter nutzen?** Ein vorhandenes ausreichend geeignetes Messgerät weiterverwenden. Raumluftmessungen allein untersuchen weder Wandfeuchte noch die Ursache eines Schadens.
 
+[Direkt die 4 Modelle vergleichen ↓](https://getecoback.com/produkte.html#modelle-hygrometer) [Erst die passende Auswahlhilfe nutzen ↓](https://getecoback.com/produkte.html#pc-tool-hygrometer)
+
 ### Zwei Feuchteanzeigen am selben Ort vergleichen
 Notiere zwei gleichzeitig abgelesene Werte nach einer gemeinsamen Angleichzeit am gleichen Ort.
 **Rechenweg:** Anzeigedifferenz = Betrag von Messwert A minus Messwert B, in Prozentpunkten.
@@ -149,6 +159,8 @@ Notiere zwei gleichzeitig abgelesene Werte nach einer gemeinsamen Angleichzeit a
 Die Differenz zeigt nicht, welches Gerät richtig misst. Sie ist keine Kalibrierung und keine Prüfung der Feuchte an kalten Bauteilen. Genauigkeit und Angleichzeit der Anleitungen beachten.
 
 Die Formel und das fiktive Beispiel sind ohne JavaScript lesbar. Eigene Werte kannst du damit von Hand nachrechnen.
+
+### Thermo-Hygrometer: Modelle und Kaufgrenzen
 
 ### TFA COMFORT CONTROL 30.5011
 TFA Dostmann · COMFORT CONTROL 30.5011; digitales Thermo-Hygrometer
@@ -203,6 +215,8 @@ Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue 
 Handdampfer und Kesselgeräte unterscheiden sich bei Tank, Aufheizzeit und Boden-Zubehör. Die Freigabe der Oberfläche muss vor dem Einsatz feststehen.
 **Vorhandenes weiter nutzen?** Wenn Wischen und passende Bürste die Aufgabe lösen, ist kein Dampfreiniger nötig. Bei unbekannter Materialfreigabe zuerst Boden- oder Oberflächenhersteller fragen.
 
+[Direkt die 4 Modelle vergleichen ↓](https://getecoback.com/produkte.html#modelle-dampfreiniger) [Erst die passende Auswahlhilfe nutzen ↓](https://getecoback.com/produkte.html#pc-tool-dampfreiniger)
+
 ### Oberflächenfreigabe vor dem Dampfreinigen prüfen
 Prüfe die Pflegefreigabe der konkreten Oberfläche und die Anleitung des konkreten Geräts.
 **Rechenweg:** Nur eine ausdrückliche Dampffreigabe und geklärte Wärme-/Feuchteempfindlichkeit erlauben eine weitere Prüfung nach Anleitung. Fehlende Angaben sind keine Freigabe.
@@ -210,6 +224,8 @@ Prüfe die Pflegefreigabe der konkreten Oberfläche und die Anleitung des konkre
 Der Check bewertet nur deine Angaben. Er prüft weder Material, Versiegelung noch Gerät und ersetzt keinen vorgeschriebenen Test an unauffälliger Stelle.
 
 Die Formel und das fiktive Beispiel sind ohne JavaScript lesbar. Eigene Werte kannst du damit von Hand nachrechnen.
+
+### Dampfreiniger: Modelle und Kaufgrenzen
 
 ### Kärcher SC 1 Multi
 Kärcher · SC 1 Multi · 1.516-404.0
@@ -264,6 +280,8 @@ Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue 
 Fenstersauger nehmen Flüssigkeit von geeigneten glatten Flächen auf. Tank, schmale Düse, Vorreinigung und Ladezeit gehören zur Auswahl.
 **Vorhandenes weiter nutzen?** Für wenige Scheiben können vorhandener Einwascher und Abzieher genügen. Kondenswasser aufnehmen beseitigt keine Feuchteursache.
 
+[Direkt die 4 Modelle vergleichen ↓](https://getecoback.com/produkte.html#modelle-fenstersauger) [Erst die passende Auswahlhilfe nutzen ↓](https://getecoback.com/produkte.html#pc-tool-fenstersauger)
+
 ### Die zu reinigende Glasfläche planen
 Berechne die Glasfläche gleich großer Scheiben. Für unterschiedliche Größen getrennte Rechnungen verwenden.
 **Rechenweg:** Glasfläche = Scheibenbreite × Scheibenhöhe × Scheibenzahl × zu reinigende Seiten.
@@ -271,6 +289,8 @@ Berechne die Glasfläche gleich großer Scheiben. Für unterschiedliche Größen
 Rahmen, Sprossen und unzugängliche Seiten separat prüfen. Aus der Fläche folgen weder Akkulaufzeit noch Reinigungstempo oder eine sichere Arbeitshöhe.
 
 Die Formel und das fiktive Beispiel sind ohne JavaScript lesbar. Eigene Werte kannst du damit von Hand nachrechnen.
+
+### Fenstersauger: Modelle und Kaufgrenzen
 
 ### Kärcher WV 2 Plus Multi Edition
 Kärcher · WV 2 Plus Multi Edition · 1.633-662.0
@@ -325,6 +345,8 @@ Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue 
 Für nassen oder trockenen Schmutz: Behälter, Filtervorgaben, Kabellänge und bei Akkugeräten das vollständige Akku-Set prüfen. Nicht mit einem Saugwischer gleichsetzen.
 **Vorhandenes weiter nutzen?** Für normales Staubsaugen vorhandenes Gerät weiterverwenden, wenn es die Aufgabe erfüllt. Bei unbekanntem Staub oder Material zuerst die ausdrücklich erlaubte Nutzung klären.
 
+[Direkt die 4 Modelle vergleichen ↓](https://getecoback.com/produkte.html#modelle-nass-trockensauger) [Erst die passende Auswahlhilfe nutzen ↓](https://getecoback.com/produkte.html#pc-tool-nass-trockensauger)
+
 ### Saugaufgabe und Filtervorgaben vorprüfen
 Wähle das tatsächlich aufzunehmende Material. Eine Bezeichnung als Nass-/Trockensauger ist keine Freigabe für jede Flüssigkeit oder Staubart.
 **Rechenweg:** Aufgabe bestimmen → genaue Gerätefreigabe → Filter-/Beutelvorgaben und Entleerung in der Anleitung prüfen. Gefahrstoffe nicht als gewöhnlichen Schmutz behandeln.
@@ -332,6 +354,8 @@ Wähle das tatsächlich aufzunehmende Material. Eine Bezeichnung als Nass-/Trock
 Keine Staubklasse, Explosionsfreigabe oder Gefahrstoff-Eignung wird bestätigt. Für eine Werkzeugsteckdose zusätzlich die zulässige Anschlussleistung prüfen.
 
 Die Formel und das fiktive Beispiel sind ohne JavaScript lesbar. Eigene Werte kannst du damit von Hand nachrechnen.
+
+### Nass-/Trockensauger: Modelle und Kaufgrenzen
 
 ### Kärcher WD 3 V-17/4/20
 Kärcher · WD 3 V-17/4/20 · 1.628-130.0
@@ -386,6 +410,8 @@ Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue 
 Kabelgebundene Beutelsauger nach Reichweite, Bodendüse und Verbrauchsmaterial vergleichen.
 **Vorhandenes weiter nutzen?** Wenn das vorhandene Gerät ausreicht, zuerst Beutel, Filter und Düse prüfen statt ein neues Gerät zu kaufen.
 
+[Direkt die 4 Modelle vergleichen ↓](https://getecoback.com/produkte.html#modelle-bodenstaubsauger) [Erst die passende Auswahlhilfe nutzen ↓](https://getecoback.com/produkte.html#pc-tool-bodenstaubsauger)
+
 ### Beutel- und Filterkosten pro Jahr planen
 Trage die von dir ermittelten Preise und deinen eigenen Wechselbedarf ein. Die Vorgaben des konkreten Geräts gehen vor.
 **Rechenweg:** Jahreskosten = Packungspreis ÷ Beutel pro Packung × Beutel pro Jahr + Filterpreis × Filterwechsel pro Jahr.
@@ -393,6 +419,8 @@ Trage die von dir ermittelten Preise und deinen eigenen Wechselbedarf ein. Die V
 Kein Produktpreisvergleich. Anschaffung, Strom und weitere Teile fehlen. Verbrauch und Preise können sich ändern; die Rechnung legt kein Wartungsintervall fest.
 
 Die Formel und das fiktive Beispiel sind ohne JavaScript lesbar. Eigene Werte kannst du damit von Hand nachrechnen.
+
+### Bodenstaubsauger: Modelle und Kaufgrenzen
 
 ### Miele Guard S1
 Miele · Guard S1 12558410
@@ -447,11 +475,15 @@ Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue 
 PTC-Heizer für gezielte, beaufsichtigte Zusatzwärme; Leistung und Aufstellbedingungen vor der Auswahl klären.
 **Vorhandenes weiter nutzen?** Zugluft, vorhandene Heizung und Nutzung zuerst prüfen. Ein zusätzlicher Elektroheizer ist nicht automatisch sparsamer.
 
+[Direkt die 4 Modelle vergleichen ↓](https://getecoback.com/produkte.html#modelle-heizluefter) [Erst die passende Auswahlhilfe nutzen ↓](https://getecoback.com/produkte.html#pc-tool-heizluefter)
+
 ### Heizlüfter: Kosten pro Stunde und Nutzung
 Watt ÷ 1.000 × Nutzungsstunden × Heizanteil × Arbeitspreis.
 **Rechenbeispiel:** Fiktives Beispiel: 2.000 W bei angenommener voller Heizzeit, 2 h und 0,35 €/kWh ergeben 1,40 €.
 Der Heizanteil ist eine Annahme; ein Thermostat garantiert keine bestimmte Ersparnis. Das bestehende Werkzeug berücksichtigt deinen Tarif.
 [Vorhandenes Werkzeug öffnen →](https://getecoback.com/guide/heizluefter-stromverbrauch.html#eb-heater-cost)
+
+### Keramik-Heizlüfter: Modelle und Kaufgrenzen
 
 ### Stadler Form Anna
 Stadler Form · Anna A-021E
@@ -506,11 +538,15 @@ Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue 
 Beladung, Kondensatorpflege und Aufstellraum prüfen; diese Modelle sind Wärmepumpentrockner.
 **Vorhandenes weiter nutzen?** Wenn Lufttrocknen mit vertretbarer Feuchte und Zeit möglich ist, braucht es nicht automatisch einen zusätzlichen Trockner.
 
+[Direkt die 4 Modelle vergleichen ↓](https://getecoback.com/produkte.html#modelle-waeschetrockner) [Erst die passende Auswahlhilfe nutzen ↓](https://getecoback.com/produkte.html#pc-tool-waeschetrockner)
+
 ### Eine Wäscheladung mit Entfeuchter oder Trockner vergleichen
 Gemessene kWh für einen vollständigen Durchgang × eigener Arbeitspreis.
 **Rechenbeispiel:** Fiktives Beispiel: 1,5 kWh pro vollständiger Ladung × 0,35 €/kWh ergeben 0,525 €.
 Nur gleiche Wäschemenge und gleicher Trocknungsgrad sind vergleichbar. Nennleistung allein beweist keinen Verbrauch pro Ladung.
 [Vorhandenes Werkzeug öffnen →](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#laundry-check)
+
+### Wärmepumpen-Wäschetrockner: Modelle und Kaufgrenzen
 
 ### Bosch WTH83V03
 Bosch · WTH83V03 Serie 4
@@ -565,6 +601,8 @@ Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue 
 Vergleiche Bedienung, Temperaturwahl und passende Füllmenge, bevor du ein weiteres Gerät kaufst.
 **Vorhandenes weiter nutzen?** Wenn dein vorhandener Wasserkocher die benötigte Menge zuverlässig erhitzt, ist ein Wechsel nur für zusätzliche Programme nicht nötig.
 
+[Direkt die 4 Modelle vergleichen ↓](https://getecoback.com/produkte.html#modelle-wasserkocher) [Erst die passende Auswahlhilfe nutzen ↓](https://getecoback.com/produkte.html#pc-tool-wasserkocher)
+
 ### Wasserbedarf für deine Tassen planen
 Plane die tatsächlich benötigte Wassermenge, bevor du ein Kannenvolumen vergleichst.
 **Rechenweg:** Benötigtes Wasser = Tassenanzahl × Wasser pro Tasse + zusätzlich benötigtes Wasser; Milliliter ÷ 1.000 = Liter.
@@ -572,6 +610,8 @@ Plane die tatsächlich benötigte Wassermenge, bevor du ein Kannenvolumen vergle
 Die berechnete Menge darf die tatsächliche Mindest- und Höchstfüllmenge des Geräts nicht ersetzen. Bei Bedarf mehrere Durchgänge planen. Keine Kochzeit oder Energieersparnis wird vorhergesagt.
 
 Die Formel und das fiktive Beispiel sind ohne JavaScript lesbar. Eigene Werte kannst du damit von Hand nachrechnen.
+
+### Wasserkocher: Modelle und Kaufgrenzen
 
 ### Braun PurEase WK 3000
 Braun · WK 3000 BK; Herstellerkennung WK304AI-WK3000BK
@@ -626,6 +666,8 @@ Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue 
 Eine große Kammer und zwei getrennte Garzonen lösen unterschiedliche Aufgaben. Prüfe nutzbare Menge, Platz und Reinigungsaufwand.
 **Vorhandenes weiter nutzen?** Nutze einen vorhandenen Backofen weiter, wenn Menge, Garaufgabe und Alltag damit bereits passen. Aus Hersteller-Werbeprozenten folgt keine individuelle Stromersparnis.
 
+[Direkt die 4 Modelle vergleichen ↓](https://getecoback.com/produkte.html#modelle-heissluftfritteusen) [Erst die passende Auswahlhilfe nutzen ↓](https://getecoback.com/produkte.html#pc-tool-heissluftfritteusen)
+
 ### Zwei getrennte Garzonen zeitlich planen
 Nutze eigene Rezeptzeiten und Temperaturen als Planungswerte. Die Rechnung setzt zwei unabhängig bedienbare Zonen voraus.
 **Rechenweg:** Gemeinsamer Plan-Endpunkt = längere Rezeptdauer. Startverzögerung je Zone = längere Rezeptdauer minus Dauer dieser Zone.
@@ -633,6 +675,8 @@ Nutze eigene Rezeptzeiten und Temperaturen als Planungswerte. Die Rechnung setzt
 Unterschiedliche Temperaturen benötigen getrennt geregelte Zonen. Platz, zulässige Einstellungen, Aufheizen und tatsächliche Garung separat prüfen. Keine Aussage zu Lebensmittelsicherheit oder Portionenzahl.
 
 Die Formel und das fiktive Beispiel sind ohne JavaScript lesbar. Eigene Werte kannst du damit von Hand nachrechnen.
+
+### Heißluftfritteusen: Modelle und Kaufgrenzen
 
 ### Ninja MAX PRO AF180EU
 Ninja · AF180EU; nicht als AF160 oder Dual-Zone-Modell auswählen
@@ -687,6 +731,8 @@ Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue 
 Wähle zwischen einfacher Kontaktfläche, Programmen und einer aufklappbaren Tischgrillfunktion. Die Kochaufgabe und Reinigung zählen mehr als die Zahl der Modi.
 **Vorhandenes weiter nutzen?** Wenn Pfanne, Toaster oder vorhandener Grill die Aufgabe schon erfüllen, ist ein zusätzliches Gerät nicht zwingend nötig.
 
+[Direkt die 4 Modelle vergleichen ↓](https://getecoback.com/produkte.html#modelle-kontaktgrills) [Erst die passende Auswahlhilfe nutzen ↓](https://getecoback.com/produkte.html#pc-tool-kontaktgrills)
+
 ### Aufstellfläche mit Handbuch-Abständen prüfen
 Übernimm Gerätebreite, Gerätetiefe und erforderliche horizontale Abstände aus der Anleitung deiner genauen Variante.
 **Rechenweg:** Benötigte Breite/Tiefe = Gerätemaß + zweimal der größte vorgeschriebene horizontale Abstand je Seite. Mit freier Arbeitsfläche vergleichen.
@@ -694,6 +740,8 @@ Wähle zwischen einfacher Kontaktfläche, Programmen und einer aufklappbaren Tis
 Nur ein rechteckiger Flächenvergleich. Öffnungshöhe, Kabel, Untergrund, Hitzebeständigkeit und reale Abstandsregeln bleiben separat zu prüfen. Beispielwerte vor einer echten Prüfung ersetzen.
 
 Die Formel und das fiktive Beispiel sind ohne JavaScript lesbar. Eigene Werte kannst du damit von Hand nachrechnen.
+
+### Kontaktgrills: Modelle und Kaufgrenzen
 
 ### Tefal OptiGrill Elite GC750D
 Tefal · GC750D; Referenz GC750D12

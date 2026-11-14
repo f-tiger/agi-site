@@ -10,11 +10,25 @@ if(root){
   for(const group of groups){const has=cards.some(card=>card.category===group.dataset.productCategory&&!card.node.hidden);group.hidden=!has;if(has)groupCount++;}
   status.textContent=`${count} von ${cards.length} Modellen · ${groupCount} Produktgruppen.`;empty.hidden=count!==0;
  };
- form.addEventListener('submit',event=>{event.preventDefault();render();});
- query.addEventListener('input',render);category.addEventListener('change',render);
- form.addEventListener('reset',event=>{event.preventDefault();query.value='';category.value='';render();query.focus();});
- root.querySelectorAll('[data-category-link]').forEach(a=>a.addEventListener('click',()=>{query.value='';category.value=a.dataset.categoryLink;render();}));
- const initial=decodeURIComponent(location.hash).match(/^#kategorie-([a-z0-9-]+)$/)?.[1];
- if(initial&&[...category.options].some(option=>option.value===initial))category.value=initial;
- form.hidden=false;render();
+ const clearFragment=()=>{if(location.hash)history.replaceState(history.state,'',location.pathname+location.search);};
+ const filter=()=>{clearFragment();render();};
+ const followFragment=()=>{
+  let id;try{id=decodeURIComponent(location.hash.slice(1));}catch{return;}
+  if(!id){query.value='';category.value='';render();return;}
+  const target=document.getElementById(id),group=target?.closest('[data-product-category]');
+  if(!group||!root.contains(target))return;
+  query.value='';category.value=group.dataset.productCategory;render();
+  // Reveal before scrolling: a previous local filter may have hidden this model.
+  requestAnimationFrame(()=>target.scrollIntoView({block:'start'}));
+ };
+ form.addEventListener('submit',event=>{event.preventDefault();filter();});
+ query.addEventListener('input',filter);category.addEventListener('change',filter);
+ form.addEventListener('reset',event=>{event.preventDefault();query.value='';category.value='';filter();query.focus();});
+ root.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',event=>{
+  // Native fragment navigation owns history. Same-fragment clicks still reveal a filtered target.
+  if(event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
+  if(a.hash===location.hash){event.preventDefault();followFragment();}
+ }));
+ window.addEventListener('hashchange',followFragment);
+ form.hidden=false;render();followFragment();
 }

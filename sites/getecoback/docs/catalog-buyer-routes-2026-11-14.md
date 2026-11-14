@@ -1,0 +1,11 @@
+# Apply installed marketing skills to the 48-model directory
+
+Applied CRO (ready-to-compare versus needs-guidance routes), AI SEO (stable exact-model citations) and SEO audit (native fragments, final mobile/no-JS discovery). The existing 12-category directory is the owning page; no extra category or duplicate URL is created.
+
+Two observed interface gaps: every category places its optional planning tool before model cards; the filter only reads the initial category hash and does not reconcile later history/model fragments. A reader who changes categories, goes Back, or opens a model hidden by the current filter can land in the wrong visible selection. These are reproducible usability failures, not proof of why traffic is low.
+
+Each category now provides native links to its existing tool and a named model-comparison section. JS navigation reconciles category/tool/comparison/model hashes with visible groups, resets incompatible search text, and preserves native Back/Forward. Manual filtering removes the old fragment without putting search text in the URL; malformed encoded fragments do not break the filter. All sources/cards and both reading routes remain in static HTML. Small-screen targets reserve room for the final site navigation, including account/language/search controls.
+
+Exact model facts, 48 eligible model searches, evidence dates, expiry withdrawals, no-purchase branches and local-input privacy are unchanged. The editorial date advances for this actual interface change, separately from source checks. Markdown keeps model names, source references, limits and canonical comparison links; no affiliate URLs are introduced into AI mirrors.
+
+Acceptance runs after generators on actual files: product freshness/source/tool checks; all 48 merchant destinations; native mobile/no-JS comparison links; category Back, hidden-model reveal, direct-model reload, malformed fragment and reset; existing tool calculations/invalid inputs; complete ECO CI, live content/GA4 configuration and dehumidifier catalog gate. Automated checks send no production business events or merchant requests. No new social post, paid integration, recurring job or observation-window change. Conversion uplift, AI citations and merchant orders remain unmeasured until real evidence exists.
