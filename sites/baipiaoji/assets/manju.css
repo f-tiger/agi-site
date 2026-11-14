@@ -36,3 +36,6 @@
 
 /* Keep the textual poster fallback readable when images fail without JS. */
 .mj-home .mj-thumb img{font-size:0;color:transparent}
+/* Category navigation remains reachable on narrow screens. */
+@media(max-width:540px){.mj-header nav{flex-wrap:wrap;row-gap:4px;max-width:100%}.mj-header nav>.mj-creator-nav{flex-shrink:0}}
+.mj-category-table{table-layout:fixed}.mj-category-table th,.mj-category-table td{min-width:0;white-space:normal;text-align:left;font-size:14px;padding:10px;overflow-wrap:anywhere}.mj-category-table th:first-child{width:22%}.mj-category-table th:nth-child(2){width:27%}

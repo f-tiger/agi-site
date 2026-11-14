@@ -1,3 +1,4 @@
+import {checkGenreBrowser} from './manju-genre-browser-checks.mjs';
 import {checkPagination} from './manju-pagination-checks.mjs';
 async function settled(p){if(await p.locator('#mj-query').count())await p.waitForFunction(()=>document.querySelector('.mj-grid')?.getAttribute('aria-busy')==='false'&&document.querySelector('#mj-load-retry')?.hidden);}
 import {workURL,hasWorkPage,createWorkResolver} from './manju-work-urls.mjs';
@@ -56,6 +57,8 @@ try{
  await p.goto('https://baipiaoji.com/manju/previews?__probe=1');await settled(p);assert.equal(await p.locator('[data-mj-action="preview_open"]').count(),4);for(const a of await p.locator('[data-mj-action="preview_open"]').all()){assert.ok(new URL(await a.getAttribute('href')).hostname.endsWith('cctv.com'));assert.equal(await a.getAttribute('target'),'_blank');}
  await p.goto('https://baipiaoji.com/manju/?__probe=1');await settled(p);await p.locator('.mj-more').evaluate(d=>d.open=true);await p.locator('#mj-content').selectOption('plot');await settled(p);assert.ok((await p.locator('#mj-count').textContent()).includes('28'));await p.locator('.mj-more').evaluate(d=>d.open=true);await p.locator('#mj-content').selectOption('preview');await settled(p);assert.equal(await p.locator('[data-item]:visible').count(),4);await p.locator('#mj-query').press('Escape');await p.locator('#mj-reset').click();await settled(p);assert.equal(await p.locator('#mj-content').inputValue(),'');
  await measured.goto('https://baipiaoji.com/manju/topics');await measured.locator('#mj-topic-form button').click();await measured.waitForFunction(()=>window.mjActions.includes('manju_topic_complete'));assert.ok(events.some(x=>x?.includes('/manju/topic_complete/catalog')));assert.ok(!events.some(x=>x?.includes('interior')));
+ await measured.goto('https://baipiaoji.com/manju/genre-family');const beforeGenreClick=events.length;await measured.getByRole('link',{name:'筛选、收藏这份片单',exact:true}).click();await settled(measured);assert.ok(events.slice(beforeGenreClick).some(x=>x?.includes('/manju/filter/catalog')));
+ await checkGenreBrowser(browser,root);
  await checkPagination(browser,root);
  assert.deepEqual(errors,[]);console.log('PASS manju browser: full-library search, pagination/reload, deep links, cross-page/cross-channel save/share/export, legacy URLs, source disclosure, mobile, inquiry failures, QA privacy and denied storage. Screenshots: '+out);
 }finally{await browser.close();}
