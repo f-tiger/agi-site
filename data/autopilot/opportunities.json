@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-13",
- "radar_fetched": "2026-11-13",
+ "generated": "2026-11-14",
+ "radar_fetched": "2026-11-14",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -20,21 +20,6 @@
   "supplied": 0
  },
  "opportunities": [
-  {
-   "theme": "openclaw saas",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "ask_hn",
-   "days_seen": [
-    "2026-11-06"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 3.08,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
   {
    "theme": "why does reddit want me to use the ios app on my desktop",
    "site": "",
@@ -132,6 +117,21 @@
    "subreddit": "softwarerecs",
    "days_seen": [
     "2026-11-08"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.0,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "what software can help manage large volumes of data for long term archiving",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "softwarerecs",
+   "days_seen": [
+    "2026-11-13"
    ],
    "state": "scout",
    "supplied": false,
