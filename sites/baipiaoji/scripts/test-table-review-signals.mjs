@@ -1,3 +1,4 @@
+import {hitWriteFixture} from './hit-write-fixture.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {onRequestPost} from '../functions/api/hit.js';
@@ -19,7 +20,7 @@ test('only fixed listing actions are admitted in both languages; no extra data o
   assert.equal(businessEvent('getecoback.com','/studio/table-review',{name:'table_review_export_own'}),null);
 });
 test('first-party signal removes referrer context and rejects automation, QA and wrong origins',async()=>{
-  const rows=[];const env={HITS:{prepare(){return{bind(...args){return{run:async()=>rows.push(args)}}}}}};
+  const rows=[];const env={HITS:hitWriteFixture(rows)};
   const send=(ref,headers={},action='/table-review/export/own')=>onRequestPost({env,request:new Request('https://baipiaoji.com/api/hit',{method:'POST',headers:{referer:ref,'user-agent':'Mozilla/5.0',...headers},body:JSON.stringify({e:'table_review',l:'en',p:action,r:'https://private.example.test/product'})})});
   await send('https://baipiaoji.com/en/studio/table-review');
   assert.equal(rows.length,1);assert.equal(rows[0][4],'');assert.equal(rows[0][1],'/table-review/export/own');

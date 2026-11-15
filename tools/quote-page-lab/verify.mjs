@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {EDITION,ROUTE} from './render.mjs';
 import {EVENTS,onRequestPost} from '../../sites/baipiaoji/functions/api/hit.js';
+import {hitWriteFixture} from '../../sites/baipiaoji/scripts/hit-write-fixture.mjs';
 
 const live=process.argv.includes('--live'),base='https://baipiaoji.com';
 const dist=new URL('../../sites/baipiaoji/dist/',import.meta.url);
@@ -12,7 +13,7 @@ async function read(path){
 }
 assert(EVENTS.has('quote'));
 let saved=[];
-const env={HITS:{prepare:()=>({bind:(...values)=>({run:async()=>saved.push(values)})})}};
+const env={HITS:hitWriteFixture(saved)};
 for(const p of ['/quote-builder/link_copied','/quote-builder/client-name','/quote-builder/link_copied?secret=1']){
   await onRequestPost({env,request:new Request(base+'/api/hit',{method:'POST',body:JSON.stringify({p,l:'en',e:'quote'})})});
 }
