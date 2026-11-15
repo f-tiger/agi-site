@@ -51,7 +51,10 @@ export function calculate(category, values) {
       return {litres,lines:[`Geplanter Wasserbedarf: ${nf.format(litres)} Liter.`, 'Mindest- und Höchstfüllmenge des tatsächlichen Geräts separat beachten; gegebenenfalls mehrere Durchgänge. Keine Kochzeit oder Energieersparnis wird daraus abgeleitet.']};
     }
     case 'heissluftfritteusen': {
+      const zones=choice(values,'zones',['single','dual','unknown']);
+      if(zones==='unknown')return {zones,lines:['Zuerst die nutzbaren Garzonen in der genauen Anleitung prüfen. Keine Zeitberechnung bei ungeklärter Konfiguration.', 'Vorhandenen Backofen weiter nutzen, wenn er deine Aufgabe bereits erfüllt. Zwei Programme oder ein Grillrost belegen keine zwei unabhängig geregelten Zonen.']};
       const a=n('minutesA',.1,240),b=n('minutesB',.1,240),ta=n('temperatureA',30,300),tb=n('temperatureB',30,300),end=Math.max(a,b);
+      if(zones==='single')return {zones,total:a+b,startA:0,startB:a,lines:[`Eine Zone: zuerst A (${nf.format(a)} Minuten), danach B (${nf.format(b)} Minuten). Reine Rezeptzeit zusammen: ${nf.format(a+b)} Minuten.`, 'Kein gemeinsamer Endzeitpunkt. Aufheizen, Temperaturwechsel und Umfüllen kommen gegebenenfalls hinzu. Auch gleiche Temperaturen bestätigen nicht, dass beide Speisen gemeinsam hineinpassen.', 'Nur Ablaufplanung; tatsächliche Garung, zulässige Einstellungen und Anleitung separat prüfen. Keine Gar- oder Lebensmittelsicherheitszusage.']};
       return {startA:end-a,startB:end-b,differentTemperatures:ta!==tb,lines:[`Plan-Endpunkt nach ${nf.format(end)} Minuten; Zone A nach ${nf.format(end-a)}, Zone B nach ${nf.format(end-b)} Minuten beginnen.`, ta!==tb?'Die Temperaturen unterscheiden sich: Dafür sind unabhängig geregelte Zonen mit passenden zulässigen Einstellungen nötig.':'Die Temperaturannahmen sind gleich; das bestätigt weder gemeinsamen Platz noch passende Garbedingungen.', 'Nur Zeitplanung anhand deiner Angaben. Aufheizen, Platz, tatsächliche Garung und Anleitung separat prüfen; keine Gar- oder Lebensmittelsicherheitszusage.']};
     }
     case 'kontaktgrills': {

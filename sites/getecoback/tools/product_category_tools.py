@@ -63,11 +63,12 @@ TOOLS = {
         'fields': [('cups', 'Tassenanzahl', '4', '1', '40', '1'), ('millilitres', 'Wasser pro Tasse (ml)', '250', '1', '1000', '1'), ('extra', 'Zusätzlicher Wasserbedarf (ml)', '0', '0', '10000', '1')],
     },
     'heissluftfritteusen': {
-        'title': 'Zwei getrennte Garzonen zeitlich planen',
-        'intro': 'Nutze eigene Rezeptzeiten und Temperaturen als Planungswerte. Die Rechnung setzt zwei unabhängig bedienbare Zonen voraus.',
-        'method': 'Gemeinsamer Plan-Endpunkt = längere Rezeptdauer. Startverzögerung je Zone = längere Rezeptdauer minus Dauer dieser Zone.',
-        'example': 'Fiktives Beispiel: A braucht 20, B 30 Minuten. B beginnt zuerst; A folgt nach 10 Minuten. Das ist eine Zeitplanung, keine Garprobe.',
-        'limit': 'Unterschiedliche Temperaturen benötigen getrennt geregelte Zonen. Platz, zulässige Einstellungen, Aufheizen und tatsächliche Garung separat prüfen. Keine Aussage zu Lebensmittelsicherheit oder Portionenzahl.',
+        'title': 'Eine oder zwei Garzonen: deinen Ablauf planen',
+        'intro': 'Wähle zuerst die tatsächlich nutzbare Konfiguration laut Anleitung. Nutze eigene Rezeptzeiten und Temperaturen als Planungswerte.',
+        'method': 'Eine Zone: A danach B, reine Rezeptzeit = A + B. Zwei unabhängig geregelte Zonen: Plan-Endpunkt = längere Rezeptdauer; Startverzögerung = längere Dauer minus eigene Dauer. Ungeklärte Konfiguration: keine Zeitberechnung.',
+        'example': 'Fiktives Beispiel: A braucht 20, B 30 Minuten. Eine Zone: A danach B, zusammen 50 Minuten Rezeptzeit. Zwei unabhängige Zonen: B zuerst, A nach 10 Minuten, Plan-Endpunkt nach 30 Minuten. Das ist keine Garprobe.',
+        'limit': 'Gleichzeitiges Garen bei unterschiedlichen Temperaturen benötigt getrennt geregelte Zonen. Aufheizen, Temperaturwechsel und Umfüllen sind nicht eingerechnet. Platz, zulässige Einstellungen und tatsächliche Garung separat prüfen. Keine Aussage zu Lebensmittelsicherheit oder Portionenzahl.',
+        'selects': [('zones', 'Nutzbare Garzonen laut Anleitung', [('single', 'Eine Zone: A und B nacheinander'), ('dual', 'Zwei unabhängig geregelte Zonen'), ('unknown', 'Noch nicht geklärt')])],
         'fields': [('minutesA', 'Eigene Rezeptdauer A (min)', '20', '.1', '240', '.1'), ('minutesB', 'Eigene Rezeptdauer B (min)', '30', '.1', '240', '.1'), ('temperatureA', 'Eigene Rezepttemperatur A (°C)', '180', '30', '300', '1'), ('temperatureB', 'Eigene Rezepttemperatur B (°C)', '200', '30', '300', '1')],
     },
     'kontaktgrills': {

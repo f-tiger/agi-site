@@ -36,9 +36,9 @@ test('water planning uses ml to litre conversion and own added demand',()=>{
   assert.equal(run('wasserkocher',{cups:'2',millilitres:'200',extra:'100'}).litres,.5);
 });
 test('two zones have nonnegative offsets that finish at the same planning point',()=>{
-  const r=run('heissluftfritteusen',{minutesA:'20',minutesB:'30',temperatureA:'180',temperatureB:'200'});
+  const r=run('heissluftfritteusen',{zones:'dual',minutesA:'20',minutesB:'30',temperatureA:'180',temperatureB:'200'});
   assert.equal(r.startA,10);assert.equal(r.startB,0);assert.equal(r.startA+20,r.startB+30);assert.equal(r.differentTemperatures,true);
-  const same=run('heissluftfritteusen',{minutesA:'15',minutesB:'15',temperatureA:'180',temperatureB:'180'});assert.equal(same.startA,0);assert.equal(same.startB,0);assert.equal(same.differentTemperatures,false);
+  const same=run('heissluftfritteusen',{zones:'dual',minutesA:'15',minutesB:'15',temperatureA:'180',temperatureB:'180'});assert.equal(same.startA,0);assert.equal(same.startB,0);assert.equal(same.differentTemperatures,false);
 });
 test('grill plan uses both horizontal margins and checks both axes',()=>{
   const p={deviceWidth:'37',deviceDepth:'35',clearance:'10',spaceWidth:'80',spaceDepth:'70'};
@@ -64,4 +64,12 @@ test('catalog completion collector accepts no inputs and respects path and priva
  for(const bad of [{...body,p:'/guide/luftentfeuchter-ratgeber.html'},{...body,m:{input:48}},{...body,m:[]},{...body,m:'private'}, {...body,input:'private'}])assert.equal((await send(bad)).status,400);
  for(const headers of [{'dnt':'1'},{'sec-gpc':'1'},{'user-agent':'getecoback-ci'},{'user-agent':'Googlebot'}])await send(body,headers);
  assert.equal(writes.length,1);
+});
+
+test('one zone is sequential; unknown and absent configuration cannot imply dual zones',()=>{
+ const v={minutesA:'20',minutesB:'30',temperatureA:'180',temperatureB:'200'};
+ const single=run('heissluftfritteusen',{...v,zones:'single'});
+ assert.equal(single.total,50);assert.equal(single.startB,20);assert.match(single.lines.join(' '),/Kein gemeinsamer Endzeitpunkt/);
+ const unknown=run('heissluftfritteusen',{...v,zones:'unknown'});assert.equal(unknown.total,undefined);assert.equal(unknown.startA,undefined);assert.match(unknown.lines.join(' '),/Keine Zeitberechnung/);
+ for(const zones of ['',undefined,'two'])assert.throws(()=>run('heissluftfritteusen',{...v,zones}),InputError);
 });
