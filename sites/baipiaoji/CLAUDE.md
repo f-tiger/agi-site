@@ -1047,3 +1047,7 @@ Chinese `/tools/kimi` has a free local task checklist/prompt and text export; BP
 ## 2026-11-14 帧选题材类目深化
 
 Owner 指定 CRO、AI SEO、SEO Audit 并要求同类对比。`/manju/categories` 汇总 15 个有记录类目，11 个题材指南共用 `manju-genre-pages.mjs` 事实模型输出 HTML/MD/JSON；小类仅筛选，不为 SEO 造薄页。主类目、剧情标签、制作形态和入口性质分开；逐条来源日期、核查范围与固定编辑修订日不同。类目基础记录链接直达静态分页卡片，有详情则保留原稳定 URL。沿用 filter/source/official_open 计量与真实变更 IndexNow；通知不等于收录，点击不等于播放。对比来源、技能校正、无 JS/窄屏及镜像门禁见 `docs/manju-category-seo-cro-2026-11-14.md`。GSC Wizard 本轮订阅不可用，真实搜索/AI 引用提升仍未知。
+
+## 2026-11-15 帧选偏好选片路径
+
+11 个题材指南各有两条人工审阅的问题路径，标签交集取已有收录数据，例子仅按收录顺序前三条，不是推荐榜。分类总页链接稳定指南锚点；HTML/MD/JSON 复用模型。保持每条来源核查日期，编辑日期只在指南内容修改时调整；不为每个标签生成薄页。见 `docs/manju-category-decisions-2026-11-15.md`。
