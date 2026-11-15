@@ -1,3 +1,4 @@
+import {hitWriteFixture} from './hit-write-fixture.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -6,7 +7,7 @@ import {onRequestPost} from '../functions/api/hit.js';
 import {SKILL_FILES} from './skill-discovery.mjs';
 let checks=0;const ok=(v,m)=>{assert.ok(v,m);checks++;};
 const valid={p:'/distribution/work-plan/calculate/external/edited',e:'distribution',l:'en',r:'https://publisher.example/private?email=must-not-store'};
-async function hit(body,headers={}){const rows=[];await onRequestPost({request:new Request('https://baipiaoji.com/api/hit',{method:'POST',headers,body:JSON.stringify(body)}),env:{HITS:{prepare:()=>({bind:(...args)=>({run:async()=>rows.push(args)})})}}});return rows;}
+async function hit(body,headers={}){const rows=[];await onRequestPost({request:new Request('https://baipiaoji.com/api/hit',{method:'POST',headers,body:JSON.stringify(body)}),env:{HITS:hitWriteFixture(rows)}});return rows;}
 const rows=await hit(valid);ok(rows.length===1&&rows[0][4]==='publisher.example','valid action stores only domain');
 for(const body of [{...valid,p:'/distribution/work-plan/calculate/external/404'},{...valid,l:'private'},{...valid,p:valid.p+'?email=x'}])ok((await hit(body)).length===0,'reject arbitrary input data');
 for(const headers of [{'dnt':'1'},{'sec-gpc':'1'},{referer:'https://baipiaoji.com/embed/work-plan?__probe=1'},{'user-agent':'Playwright'},{'user-agent':'bpj-ci-selftest'}])ok((await hit(valid,headers)).length===0,'server privacy/QA gate');

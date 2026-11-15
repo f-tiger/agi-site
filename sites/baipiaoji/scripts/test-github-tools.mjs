@@ -1,3 +1,4 @@
+import {hitWriteFixture} from './hit-write-fixture.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {GITHUB_TOOLS} from './github-tools-pages.mjs';
@@ -37,7 +38,7 @@ for(const base of ['https://baipiaoji.com','https://baipiaoji.com/en']){
 }
 const unsafe='javascript:alert(1) <img src=x onerror=alert(1)>';
 const handoff=new URL(githubSearchURL(unsafe));assert.equal(handoff.origin,'https://github.com');assert.equal(handoff.searchParams.get('q'),unsafe);
-async function hit(p,headers={},extra={}){const rows=[];await onRequestPost({request:new Request('https://baipiaoji.com/api/hit',{method:'POST',headers,body:JSON.stringify({p,e:'github_tools',l:'zh',...extra})}),env:{HITS:{prepare:()=>({bind:(...v)=>({run:async()=>rows.push(v)})})}}});return rows;}
+async function hit(p,headers={},extra={}){const rows=[];await onRequestPost({request:new Request('https://baipiaoji.com/api/hit',{method:'POST',headers,body:JSON.stringify({p,e:'github_tools',l:'zh',...extra})}),env:{HITS:hitWriteFixture(rows)}});return rows;}
 assert.equal((await hit('/github-tools/open/localsend')).length,1);
 assert.equal((await hit('/github-tools/search-hit/catalog',{}, {r:'https://private.example/search?q=private'}))[0][4],'');
 for(const p of ['/github-tools/open/unknown','/github-tools/view/localsend','/github-tools/search-hit/email','/github-tools/open/localsend?private=secret'])assert.equal((await hit(p)).length,0,p);

@@ -2,6 +2,7 @@ import test from 'node:test';import assert from 'node:assert/strict';import {Dat
 import {guardTraffic,trafficClass,recordQuality,RULES,qualityEligible,qualityKind} from '../lib/traffic-controls.mjs';
 import {onRequestPost as submit} from '../functions/api/submit.js';
 import {onRequestGet as report} from '../functions/api/traffic-quality.js';
+import {onRequestPost as hit} from '../functions/api/hit.js';
 function db(){const sqlite=new DatabaseSync(':memory:');return {sqlite,prepare(sql){let args=[];const stmt=()=>sqlite.prepare(sql);return {bind(...a){args=a;return this;},async first(){return stmt().get(...args)||null;},async run(){const r=stmt().run(...args);return {meta:{changes:r.changes,last_row_id:r.lastInsertRowid}};},async all(){return {results:stmt().all(...args)};}};}};}
 const req=(path='/api/submit',body='{}',extra={})=>new Request('https://baipiaoji.com'+path,{method:'POST',headers:{origin:'https://baipiaoji.com','content-type':'application/json','cf-connecting-ip':'192.0.2.1',...extra},body});
 test('bounded targeted protection; atomic concurrent budget, reset and separate identities',async()=>{
@@ -57,4 +58,16 @@ test('views are never relabeled as meaningful interactions',()=>{
  assert.equal(qualityKind('manju','/manju/official_open/hg-123'),'manju_official_open');
  assert.equal(qualityKind('manju','/manju/search_submit/catalog'),'manju_search_submit');
  assert.equal(qualityKind('manju','/manju/search_results/catalog'),'other_event');
+});
+
+test('quality writes preserve raw events and fail independently without leaking input',async()=>{
+ const HITS=db();HITS.sqlite.exec('CREATE TABLE hits(d TEXT,path TEXT,lang TEXT,country TEXT,ref TEXT,ev TEXT)');
+ const request=()=>req('/api/hit',JSON.stringify({p:'/distribution/work-plan/calculate/external/edited',e:'distribution',l:'en',r:'https://publisher.example/private?email=private-marker',input:'private-marker'}),{'user-agent':'Mozilla/5.0'});
+ const pending=[];assert.equal((await hit({request:request(),env:{HITS},waitUntil:p=>pending.push(p)})).status,204);await Promise.all(pending);
+ const rows=HITS.sqlite.prepare('SELECT * FROM hits').all();assert.equal(rows.length,1);assert.equal(rows[0].ref,'publisher.example');assert.equal(rows[0].ev,'distribution');
+ const totals=HITS.sqlite.prepare('SELECT * FROM bpj_traffic_quality').all();assert.equal(totals.length,1);assert.equal(totals[0].kind,'other_event');assert.equal(totals[0].class,'unclassified');assert.equal(totals[0].n,1);assert.ok(!JSON.stringify({rows,totals}).includes('private-marker'));
+ const broken={prepare(sql){if(sql.includes('bpj_traffic_quality'))throw Error('quality unavailable');return HITS.prepare(sql);}};
+ assert.equal((await hit({request:request(),env:{HITS:broken}})).status,204);
+ await hit({request:request(),env:{HITS,BPJ_TRAFFIC_QUALITY:'off'}});
+ assert.equal(HITS.sqlite.prepare('SELECT count(*) n FROM hits').get().n,3);assert.equal(HITS.sqlite.prepare('SELECT sum(n) n FROM bpj_traffic_quality').get().n,1);
 });
