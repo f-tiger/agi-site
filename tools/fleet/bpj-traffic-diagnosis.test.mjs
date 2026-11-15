@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {generateKeyPairSync,privateDecrypt,createDecipheriv,constants} from 'node:crypto';
-import {cloudflare,google,run,gaRequest,cfQuery,scrubRows,assertNoSecrets} from './bpj-traffic-diagnosis.mjs';
+import {recentDays,cloudflare,google,run,gaRequest,cfQuery,scrubRows,assertNoSecrets} from './bpj-traffic-diagnosis.mjs';
 const keys=generateKeyPairSync('rsa',{modulusLength:2048,publicKeyEncoding:{type:'spki',format:'pem'},privateKeyEncoding:{type:'pkcs8',format:'pem'}});
 const sa=JSON.stringify({type:'service_account',client_email:'readonly@fixture.iam.gserviceaccount.com',private_key:keys.privateKey});
 const ok=d=>({ok:true,status:200,json:async()=>d});
@@ -61,4 +61,9 @@ test('missing access remains unknown, and only encrypted output is written',asyn
  const report=JSON.parse(Buffer.concat([d.update(Buffer.from(e.data,'base64')),d.final()]).toString());assert.equal(report.host,'baipiaoji.com');assert.equal(report.cloudflare.reports.length,0);
  assert.throws(()=>assertNoSecrets({bad:'secret-must-not-appear'},['secret-must-not-appear']));
  const rows=scrubRows([{count:1,dimensions:{clientRequestPath:'/auth/callback?code=private'}}]);assert.equal(rows[0].dimensions.clientRequestPath,'/auth/*');
+});
+
+test('baseline uses complete UTC days and rejects unbounded history',()=>{
+ assert.deepEqual(recentDays(new Date('2026-11-15T23:59:59Z'),2),['2026-11-13','2026-11-14']);
+ assert.throws(()=>recentDays(new Date(),15));assert.throws(()=>recentDays(new Date(),NaN));
 });

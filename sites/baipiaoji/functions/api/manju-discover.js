@@ -22,4 +22,12 @@ export async function onRequestPost({request,env}){
  return reply({ok:true,status,records,cached:false,checkedAt:new Date().toISOString()});
  }catch(error){if(key)try{await db.prepare("UPDATE manju_discovery_cache SET status='error',expires_at=? WHERE cache_key=?").bind(now+60000,key).run();}catch{}return reply({ok:false,status:'source_unavailable',retryAfter:60,reason:stage+':'+(/^[a-z-]+(?:-[0-9]{3})?$/.test(error.message)?error.message:error.name)},503);}
 }
-export async function onRequestGet({env}){try{await schema(env.HITS);await env.HITS.prepare('DELETE FROM manju_discovery_limits WHERE expires_at<?').bind(Date.now()).run();await env.HITS.prepare('DELETE FROM manju_discovery_cache WHERE expires_at<?').bind(Date.now()-7*86400000).run();const {results=[]}=await env.HITS.prepare("SELECT records_json FROM manju_discovery_cache WHERE status='found' AND updated_at>? ORDER BY updated_at DESC LIMIT 100").bind(Date.now()-7*86400000).all();const unique=new Map();for(const row of results)for(const fact of JSON.parse(row.records_json))if(!exclusions.items.some(x=>fact.title.includes(x.title)))unique.set(fact.source,fact);return reply({version:1,records:[...unique.values()].slice(0,300)});}catch{return reply({ok:false,status:'unavailable'},503);}}
+async function readPublicCatalog({env}){try{await schema(env.HITS);await env.HITS.prepare('DELETE FROM manju_discovery_limits WHERE expires_at<?').bind(Date.now()).run();await env.HITS.prepare('DELETE FROM manju_discovery_cache WHERE expires_at<?').bind(Date.now()-7*86400000).run();const {results=[]}=await env.HITS.prepare("SELECT records_json FROM manju_discovery_cache WHERE status='found' AND updated_at>? ORDER BY updated_at DESC LIMIT 100").bind(Date.now()-7*86400000).all();const unique=new Map();for(const row of results)for(const fact of JSON.parse(row.records_json))if(!exclusions.items.some(x=>fact.title.includes(x.title)))unique.set(fact.source,fact);return reply({version:1,records:[...unique.values()].slice(0,300)});}catch{return reply({ok:false,status:'unavailable'},503);}}
+
+export async function onRequestGet(ctx){
+ const cache=globalThis.caches?.default,key=ctx.request?new Request(new URL('/api/manju-discover',ctx.request.url)):null;
+ if(cache&&key){const cached=await cache.match(key).catch(()=>null);if(cached)return cached;}
+ const res=await readPublicCatalog(ctx);
+ if(res.ok&&cache&&key){const cached=new Response(res.clone().body,res);cached.headers.set('Cache-Control','public, max-age=300');const pending=cache.put(key,cached).catch(()=>{});if(ctx.waitUntil)ctx.waitUntil(pending);else await pending;}
+ return res;
+}

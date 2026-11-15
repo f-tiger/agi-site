@@ -1,3 +1,4 @@
+import {recordQuality,trafficClass,qualityEligible,qualityKind} from '../../lib/traffic-controls.mjs';
 import {parseDepthEvent} from '../../lib/depth-signals.mjs';
 import {parseTableReviewEvent} from '../../lib/table-review-signals.mjs';
 import {parseListingEvent} from '../../lib/listing-signals.mjs';
@@ -65,7 +66,7 @@ export const EVENTS = new Set([
                  // 认领本身的真值在 claims 表（/api/reach money.claims_verified），这里只量「从哪来、走到哪一步」。
 ]);
 
-export async function onRequestPost({ request, env }) {
+export async function onRequestPost({ request, env, waitUntil }) {
   try {
     const b = await request.json().catch(() => ({}));
     const path = String(b.p || '').slice(0, 200);
@@ -145,6 +146,8 @@ export async function onRequestPost({ request, env }) {
     const d = new Date().toISOString().slice(0, 10);
     await env.HITS.prepare('INSERT INTO hits (d, path, lang, country, ref, ev) VALUES (?,?,?,?,?,?)')
       .bind(d, path, lang, country, ref, ev).run();
+    const quality=(env.BPJ_TRAFFIC_QUALITY==='off'||!qualityEligible(request,path,lang))?Promise.resolve():recordQuality(env.HITS,qualityKind(ev,path),trafficClass(request)).catch(()=>{});
+    if(waitUntil)waitUntil(quality);else await quality;
   } catch (e) { /* 打点失败静默 */ }
   return new Response(null, { status: 204 });
 }
