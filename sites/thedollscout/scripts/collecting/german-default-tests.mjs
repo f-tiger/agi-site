@@ -185,3 +185,23 @@ test('legacy generation workflow preserves all three canonical homepages without
   assert.equal(fs.existsSync(path.join(fixture, 'de/index.html')), false, 'The redirect alias must not be required or recreated');
  } finally {fs.rmSync(fixture, {recursive: true, force: true});}
 });
+
+// The live checker must distinguish an intentionally redirected old homepage
+// from a canonical page; inspect its real probe list against the route policy.
+test('post-deploy 200-only probes cover every canonical home and exclude intentional homepage aliases', async () => {
+ const {HOME_PATHS} = await import('../../collector-assets/site-locale.mjs');
+ const {homeLanguageRedirect} = await import('../../functions/home-language.mjs');
+ const workflow = fs.readFileSync(new URL('../../../../.github/workflows/deploy-thedollscout.yml', import.meta.url), 'utf8');
+ const step = workflow.match(/      - name: Post-deploy self-check\r?\n([\s\S]*?)(?=      - name:|$)/);
+ assert.ok(step, 'Inspect the actual post-deployment checker');
+ const loop = step[1].match(/^\s*for p in ([^\r\n]+);\s*do\r?\n([\s\S]*?)^\s*done\s*$/m);
+ assert.ok(loop, 'The real canonical-page probe loop must be present');
+ assert.ok(loop[2].includes('[ "$code" = "200" ]'), 'Validate the strict HTTP200 loop, rather than the retired-page or alias loop');
+ const paths = loop[1].trim().split(/\s+/);
+ assert.equal(new Set(paths).size, paths.length, 'Do not duplicate canonical probes');
+ for (const home of Object.values(HOME_PATHS)) assert.ok(paths.includes(home), home + ': every current homepage receives a direct HTTP200 check');
+ for (const pathname of paths) {
+  assert.ok(pathname.startsWith('/') && !pathname.startsWith('//'), 'Only local canonical paths in the strict probe list');
+  assert.equal(homeLanguageRedirect(new Request(origin + pathname)), null, pathname + ': intentional homepage aliases belong in the separate redirect checks');
+ }
+});
