@@ -316,7 +316,7 @@ for (const lang of ['zh', 'en']) {
   }
 }
 const inserts = [];
-const env = {HITS: {prepare: sql => ({bind: (...values) => ({run: async () => inserts.push({sql, values})})})}};
+const env = {HITS: {prepare: sql => ({bind: (...values) => ({run: async () => { if (/^INSERT INTO hits\s*\(/i.test(sql)) inserts.push({sql, values}); }})})}};
 async function send(body, headers = {}) {
   const request = new Request(origin + '/api/hit', {method: 'POST', headers: {'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0', Referer: origin + '/ai-solo/agent/', ...headers}, body: JSON.stringify(body)});
   assert.equal((await onRequestPost({request, env})).status, 204, 'Analytics must never block product use');
