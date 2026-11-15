@@ -1,7 +1,15 @@
-# TDS product and commercial context — version 12.0 (2026-11-14)
+# TDS product and commercial context — version 13.0 (2026-11-15)
 
-**Document version:** v12
-**Last updated:** 2026-11-14
+**Document version:** v13
+**Last updated:** 2026-11-15
+
+## German-first household entry — latest owner direction 2026-11-15
+
+The owner chooses German as the default homepage and Germany as the existing-market acquisition priority. The root now serves a German household buying entry; explicit English and Chinese homes remain at /en/ and /zh/. Existing deep guide/catalog paths remain. Prioritize usable storage dimensions, Smart-Home compatibility/cloud and recurring costs, and cleaning versus indoor-climate measurement through the existing German guides. Keep the100-model catalog and all nine categories. This does not prove lower competition, demand, search visibility, conversion or revenue.
+
+German shopping exits lead to the existing Amazon.de program and remain clearly labelled model searches; US manufacturer references are not proof of German variants or inventory. German-market copy and DE-first navigation align the entry with the destination. UBA and Verbraucherzentrale guidance supports compatibility/support/privacy/cost checks; Stiftung Warentest illustrates established German buying advice. TDS has no rights to borrow their tests or ratings. Source ledger: root docs/tds-german-default-2026-11-15.json.
+
+Ship stable public language choices, German x-default, reciprocal language annotations, consistent canonical homes, original sources and true update dates. The old /de/ home redirects to the German root. Keep the original18-path shopping aggregate and historic root-US labels readable; new root writes are German-market only and the new /en/ path has separate active admission. Preserve the Nov22 review and USD100 total-site monthly revenue goal, with actual new first complete day recorded separately. No new posts, messages, spend, paid service, credentials or schedule. Read actual qualified arrivals, guide-to-merchant exits and mature attributable revenue independently within the existing cadence.
 
 ## Nine category buying guides — latest owner direction 2026-11-14
 

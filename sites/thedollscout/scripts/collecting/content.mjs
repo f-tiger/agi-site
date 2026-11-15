@@ -1,9 +1,10 @@
+import {HOME_PATHS} from '../../collector-assets/site-locale.mjs';
 import {expandedBrands} from './brand-expansion.mjs';
 export const edition = '2026-10-30.3';
 export const updated = '2026-10-02';
 export const origin = 'https://thedollscout.com';
 export const locales = {en:{prefix:'',tag:'en',label:'EN'},de:{prefix:'/de',tag:'de',label:'DE'},zh:{prefix:'/zh',tag:'zh-Hans',label:'中文'}};
-export const route = (lang, slug='') => locales[lang].prefix+'/'+slug;
+export const route = (lang, slug='') => slug?locales[lang].prefix+'/'+slug:HOME_PATHS[lang];
 export const brands = [
  ...expandedBrands,
  {id:'labubu',name:'Labubu / THE MONSTERS',kind:'blind',art:'box',official:'https://www.popmart.com/us',source:'POP MART US',

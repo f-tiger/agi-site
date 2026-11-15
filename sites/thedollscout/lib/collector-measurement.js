@@ -37,7 +37,7 @@ export function measurableRequest(request, {mcp = false} = {}) {
 }
 
 export function collectorEventAllowed(event, path) {
-  if(['collection_cloud_save','collection_cloud_restore','collection_cloud_delete'].includes(event))return /^\/(?:de\/|zh\/)?(?:collection-tracker|series)?$/.test(path);
+  if(['collection_cloud_save','collection_cloud_restore','collection_cloud_delete'].includes(event))return path==='/en/' || /^\/(?:de\/|zh\/)?(?:collection-tracker|series)?$/.test(path);
   if (EVENT_KIT_EVENTS.has(event)) return /^\/(?:de\/|zh\/)?collecting\/event-kit$/.test(path);
   if (['collector_wish_generate','collector_wish_export','collector_wish_response_reported','collector_wish_fulfilled_reported'].includes(event)) return /^\/(?:de\/|zh\/)?collecting\/wish-card$/.test(path);
   if (['display_plan_export','display_plan_example'].includes(event)) return /^\/(?:de\/)?display-calculator$/.test(path);

@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {shoppingSlugs,shoppingCopy,merchantURL,shoppingHomeHTML,shoppingHomeText,buildShopping} from './shopping.mjs';
 const locales={en:{},de:{},zh:{}};
-const route=(l,s='')=>(l==='en'?'':'/'+l)+'/'+s;
+import {route} from './content.mjs';
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const origin='https://thedollscout.com';
 function pages(){const out=[];buildShopping({emit:(...args)=>out.push(args),route,esc,locales,origin});return out;}
@@ -28,7 +28,8 @@ test('the buying journey presents the task and measurement decision before produ
   const home=shoppingHomeHTML({lang,route,esc});
   const tasks=home.indexOf('class="shop-task-nav"'),firstProduct=home.indexOf('data-shopping-card');
   assert.ok(home.indexOf('data-home-catalog')<home.indexOf('id="collector-corner"'),'Home/lifestyle catalogue precedes the collector corner');
-  assert.ok(tasks>=0&&tasks<firstProduct, 'Choose a task before the homepage product list: '+lang);
+  if(lang==='en'){assert.ok(tasks>=0);assert.ok(home.includes('href="/shop#collector-corner"'));assert.equal(firstProduct,-1,'English home routes comparisons to the established catalogue');}
+  else assert.ok(tasks>=0&&tasks<firstProduct, 'Choose a task before the homepage product list: '+lang);
   for(const p of pages().filter(p=>p[0]===lang&&p[1]!=='shop')){
    const html=p[4],checkpoint=html.match(/<section class="shop-decision-start"[\s\S]*?<\/section>/)?.[0];
    assert.ok(checkpoint, 'Guide has a decision checkpoint: '+p[1]);

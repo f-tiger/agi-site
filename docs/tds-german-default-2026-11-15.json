@@ -1,0 +1,136 @@
+{
+  "date": "2026-11-15",
+  "site": "tds",
+  "owner_request": "首页默认是德语，小语种切入，避免无流量",
+  "status": "validated_ready_for_release",
+  "prompt_passes": [
+    {
+      "round": 1,
+      "goal": "Make German the default homepage and Germany the existing-market acquisition priority; keep English/Chinese access and100 useful models"
+    },
+    {
+      "round": 2,
+      "constraints": "Language focus is a hypothesis, not low-competition or traffic evidence. Preserve deepURLs, market disclosures, old report history and privacy; no new languages/spend/outreach/jobs"
+    },
+    {
+      "round": 3,
+      "acceptance": "Root German200, English/en/, Chinese/zh/, oldDEhome308; clear German tasks/DEdestinations; reciprocalSEO/text/sitemap/IndexNow/GA4; historic data compatibility; browser and live verification"
+    }
+  ],
+  "self_challenges": [
+    {
+      "challenge": "Would switching language alone solve low traffic?",
+      "response": "No such evidence. Add3 concrete existing German task paths and clear DE-market promise; preserve original Nov22 review and require genuine acquisition/exits/revenue evidence."
+    },
+    {
+      "challenge": "Would routing silently break English links or reinterpret old US root data?",
+      "response": "Only home URLs change; deep URLs stay. Explicit alias redirects and reciprocal language mapping. Current input market validation separated from historic fixedtuple reads; original18-path aggregate and old rows unchanged."
+    }
+  ],
+  "routes": {
+    "de": "/",
+    "en": "/en/",
+    "zh": "/zh/",
+    "old_de_home": "/de/ → / permanent308"
+  },
+  "deep_urls_unchanged": true,
+  "technical_decision": "German root200 preserves existing public-content delivery gate. EN home moves to/en/ without prefixing English deepURLs. OldDEhomepage static file removed; edge-only308alias. No shared fleet analytics changes or unrelated site deploys.",
+  "marketing_actions": [
+    "German-market homepage promise and DE-first shopping selector",
+    "Storage dimensions, Smart-Home prerequisites and home-care task links",
+    "Reciprocal language home links, German x-default, canonical sitemap and optional text indexes"
+  ],
+  "source_observations": [
+    {
+      "id": "warentest",
+      "url": "https://www.test.de/Luftreiniger-im-Test-5579439-0",
+      "title": "Stiftung Warentest: Luftreiniger im Test",
+      "published": "2026-04-23",
+      "checked": "2026-11-15",
+      "type": "German publisher primary source",
+      "observed": "The public article separates use-specific selection, running electricity/filter costs and its own testing process; detailed ratings require paid access.",
+      "implication": "Present specific buying checks and recurring costs, with transparent methodology. Do not borrow its ratings, images or testing claims.",
+      "access_limit": "Public text only; paid results not unlocked."
+    },
+    {
+      "id": "uba",
+      "url": "https://www.umweltbundesamt.de/umwelttipps-fuer-den-alltag/elektrogeraete/vernetzte-smarte-produkte",
+      "title": "Umweltbundesamt: vernetzte und smarte Produkte",
+      "updated": "2024-02-12",
+      "checked": "2026-11-15",
+      "type": "German public authority primary guidance",
+      "observed": "Advises checking offline core functions, extra hardware/software, update and cloud support, deletion options and recurring subscription requirements before purchase.",
+      "implication": "Surface the existing Smart-Home guide by task and prerequisites. Do not promise an unsupported device lifespan or savings.",
+      "age_limit": "Older evergreen guidance, not current market demand or search-volume data."
+    },
+    {
+      "id": "vzbv",
+      "url": "https://www.verbraucherzentrale.de/wissen/umwelt-haushalt/wohnen/smart-home-das-intelligente-zuhause-6882",
+      "title": "Verbraucherzentrale: Smart Home – das intelligente Zuhause",
+      "updated": "2026-02-24",
+      "checked": "2026-11-15",
+      "type": "German consumer organisation primary guidance",
+      "observed": "Explains components and compatibility, cloud and account data, app permissions and update questions; savings cannot be stated universally.",
+      "implication": "Use concrete compatibility/privacy questions, not generic smart-home enthusiasm or an invented energy-saving percentage."
+    }
+  ],
+  "counterevidence": [
+    "Established German-language household test and advice publishers already exist; language alone is not evidence of low competition.",
+    "No authenticated TDS German query volumes, rankings, search CTR, arrivals, conversion rate or revenue were available in this task. Do not report them as zero or invent estimates.",
+    "A default-language change does not establish that German visitors are the actual audience, that Amazon.de stocks the catalog models, or that merchant clicks earn commission.",
+    "German interfaces are not verified German product variants; many manufacturer references use US pages. Keep local-version and electrical compatibility checks explicit.",
+    "No comparison of total German versus English demand or competition was performed. The decision implements the owner’s requested market focus, not a proven easier niche."
+  ],
+  "measurement": "Root newwrites DE/langde; /en/ admitted separately for USaffiliate/pageview/cloud events. Historical18-path aggregate/Nov8 baseline unchanged. Separate read-only fixedtuple validator preserves stored USrootexact events. Root market/language change is a dated breakpoint, not historic reclassification. English-home comparison links to existing measured/shop; full English catalog and DE/ZH comparison UI retained.",
+  "commercial_goal": {
+    "monthly_total_tds_revenue_usd": 100,
+    "actual": "unknown",
+    "original_review": "2026-11-22",
+    "new_window_reset": false
+  },
+  "validation": {
+    "german_home_tests": 6,
+    "german_measurement_tests": 6,
+    "required_collector_test_files_passed": 22,
+    "full_build": {
+      "collector_pages": 198,
+      "document_pages": 93,
+      "total_html": 346,
+      "ga4_public_routes": 341,
+      "wrong_or_duplicate_tags": 0,
+      "private_exclusions_preserved": 5,
+      "canonical_hreflang_links_text_retired_rules": "passed",
+      "structured_data_gate": "182 entries;0 invisible"
+    },
+    "independent_code_review": {
+      "status": "pass",
+      "adversarial_and_integration_assertions": 145,
+      "current_input_and_historical_decoding_separate": true,
+      "root_language_market_breakpoint_documented": true,
+      "shared_analytics_changed": false
+    },
+    "browser": {
+      "status": "passed",
+      "page_states": 21,
+      "home_states": 12,
+      "de_category_mobile_states": 9,
+      "interaction_groups": 14,
+      "root_accept_language_checks": 3,
+      "single_hop_alias_checks": 3,
+      "de_official_payloads_in_memory": 2,
+      "viewed_screenshots": 6,
+      "overflow": 0,
+      "missing_assets": 0,
+      "site_runtime_errors": 0,
+      "production_requests": 0,
+      "merchant_visits": 0,
+      "cloud_api_calls": 0,
+      "qa_harness_corrections": "Guard initial about:blank storage access and select direct native summary; only affected tail rerun, preserved21-state evidence."
+    },
+    "historic_rows": "unchanged;original18paths/Nov8baseline/schema2 preserved;fixedrootUSmetadata readable and currentrootUSexactmetadata rejected",
+    "ga4_backend_receipt": "not-tested",
+    "traffic_revenue_or_search_lift": "unknown"
+  },
+  "release": null,
+  "next_action": "After live verification, use available genuine Germany/country/language/landing evidence and mature Amazon.de reports within existing cadence. Compare before/after only across actual exposure dates; preserve Nov22 review and $100 total-site monthly revenue goal."
+}

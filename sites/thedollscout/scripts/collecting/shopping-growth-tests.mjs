@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
 import {onRequestGet as growth, SHOPPING_PATHS, SHOPPING_QUERY, CACHE_SECONDS, SCHEMA_VERSION, shoppingWindow, shoppingQueryWithPlan, aggregateShopping} from '../../functions/api/shopping-growth.js';
-import {SHOPPING_TUPLES, shoppingTupleAllowed} from '../../collector-assets/shopping-contract.mjs';
+import {SHOPPING_TUPLES, readShoppingTupleAllowed} from '../../collector-assets/shopping-contract.mjs';
 import {usesDateRangeIndex} from '../../functions/api/collector-growth.js';
 import {onRequestPost as beacon} from '../../functions/api/ev.js';
 import {shoppingSlugs} from './shopping.mjs';
@@ -29,7 +29,7 @@ async function atDate(value, callback) {
 const firstWindow = shoppingWindow(new Date('2026-11-09T12:00:00Z'));
 const validRow = () => ({d: '2026-11-08', path: '/shop/display-cases', country_code: 'US', ev: 'affiliate_click', merchant: 'amazon.com', item: 'unknown', placement: 'unknown', n: 1});
 
-test('Shopping scope matches the deployed home and five guide routes in all three languages', () => {
+test('Historical shopping scope preserves the original home and five guide paths in all three languages', () => {
   assert.deepEqual(SHOPPING_PATHS, ['/', '/de/', '/zh/'].flatMap(prefix => ['', ...shoppingSlugs].map(path => prefix + path)));
   assert.equal(SHOPPING_PATHS.length, 18);
   assert.ok(SHOPPING_PATHS.every(path => !path.includes('__ci')));
@@ -90,7 +90,7 @@ test('SQLite retains existing affiliate totals while grouping known items, place
     insert.run('2026-11-08', path, 'US', '', 'PRIVATE referrer');
     insert.run('2026-11-08', path, 'US', 'shopping_compare', '');
     insert.run('2026-11-08', path, 'US', 'affiliate_click', path.startsWith('/de/') ? 'amazon.de' : 'amazon.com');
-    for (const tuple of SHOPPING_TUPLES) if (shoppingTupleAllowed({path, ...tuple}))
+    for (const tuple of SHOPPING_TUPLES) if (readShoppingTupleAllowed({path, ...tuple}))
       insert.run('2026-11-08', path, 'US', tuple.event, tuple.ref);
   }
   const rows = db.prepare(SHOPPING_QUERY).all('2026-11-08', '2026-11-09'), report = aggregateShopping(rows, firstWindow);

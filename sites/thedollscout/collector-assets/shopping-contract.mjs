@@ -16,8 +16,11 @@ export const SHOPPING_PATHS = Object.freeze(['/', '/de/', '/zh/'].flatMap(prefix
 // These are canonical routes, never a wildcard or a user-provided category.
 export const SHOPPING_CATEGORY_PATHS = Object.freeze(['/', '/de/', '/zh/'].flatMap(prefix =>
   ['storage', 'workspace', 'lighting', 'smart-home', 'electronics', 'kitchen', 'home-care', 'daily-care', 'creative'].map(id => prefix + 'shop/categories/' + id)));
+// Current English homepage is admitted separately from the historical report scope.
+export const SHOPPING_HOME_PATHS = Object.freeze(['/en/']);
+export const ROOT_MARKET_TRANSITION = Object.freeze({path:'/', changed_on:'2026-11-15', previous_market:'US', current_market:'DE', historical_rows:'unchanged'});
 export const SHOPPING_MERCHANTS = Object.freeze(['amazon.com', 'amazon.de', 'ikea.com', 'sonnyangelstore.com']);
-const paths = new Set([...SHOPPING_PATHS, ...SHOPPING_CATEGORY_PATHS]);
+const paths = new Set([...SHOPPING_PATHS, ...SHOPPING_CATEGORY_PATHS, ...SHOPPING_HOME_PATHS]);
 const ikeaPaths = Object.freeze({
   blaliden: {US: '/us/en/p/blaliden-glass-door-cabinet-black-00520519/', DE: '/de/de/p/blaliden-vitrine-schwarz-00520519/'},
   baggebo: {US: '/us/en/p/baggebo-glass-door-cabinet-metal-white-80502998/', DE: '/de/de/p/baggebo-vitrine-metall-weiss-80502998/'},
@@ -25,7 +28,7 @@ const ikeaPaths = Object.freeze({
   samla: {US: '/us/en/p/samla-box-clear-70102972/', DE: '/de/de/p/samla-box-transparent-70102972/'}
 });
 
-export function shoppingMarket(path) {return paths.has(path) ? path.startsWith('/de/') ? 'DE' : 'US' : null;}
+export function shoppingMarket(path) {return paths.has(path) ? path === '/' || path.startsWith('/de/') ? 'DE' : 'US' : null;}
 export function shoppingItemAllowed(item, market) {
   if (typeof item !== 'string') return false;
   const exact = Object.hasOwn(SHOPPING_EXACT_ITEMS, item) ? SHOPPING_EXACT_ITEMS[item] : null;
@@ -38,6 +41,19 @@ export function shoppingTupleAllowed({path, event, merchant, item, placement}) {
     market === SHOPPING_EXACT_ITEMS[item].market && merchant === SHOPPING_EXACT_ITEMS[item].merchant;
   return event === 'shopping_official_click' && (item === 'my-bestie' ? merchant === 'sonnyangelstore.com' :
     Object.hasOwn(ikeaPaths, item) && merchant === 'ikea.com');
+}
+// Read-only compatibility for stored fixed labels from the former US root.
+// Current browser/server admission above remains German at '/' and never uses
+// this fallback. No historical row or reporting path is rewritten.
+export function readShoppingTupleAllowed(tuple) {
+  if (!tuple || typeof tuple !== 'object') return false;
+  if (shoppingTupleAllowed(tuple)) return true;
+  const {path, event, merchant, item, placement} = tuple || {};
+  return path === '/' && event === 'affiliate_click' &&
+    Object.hasOwn(SHOPPING_EXACT_ITEMS, item) &&
+    SHOPPING_EXACT_ITEMS[item].market === 'US' &&
+    merchant === SHOPPING_EXACT_ITEMS[item].merchant &&
+    SHOPPING_PLACEMENTS.includes(placement);
 }
 export function encodeShoppingRef({merchant, item, placement}) {return `s1|${merchant}|${item}|${placement}`;}
 export const SHOPPING_TUPLES = Object.freeze([...new Set([...SHOPPING_IDS, ...SHOPPING_EXACT_IDS])].flatMap(item => SHOPPING_PLACEMENTS.map(placement => {
@@ -53,7 +69,7 @@ export function decodeShoppingRef(event, path, ref) {
   if (event === 'affiliate_click' && ['amazon.com', 'amazon.de', 'unknown'].includes(ref))
     return {merchant: ref, item: 'unknown', placement: 'unknown'};
   const tuple = SHOPPING_TUPLES.find(candidate => candidate.ref === ref && candidate.event === event);
-  return tuple && shoppingTupleAllowed({path, ...tuple}) ? {merchant: tuple.merchant, item: tuple.item, placement: tuple.placement} : null;
+  return tuple && readShoppingTupleAllowed({path, ...tuple}) ? {merchant: tuple.merchant, item: tuple.item, placement: tuple.placement} : null;
 }
 
 function merchantURL(value) {

@@ -56,7 +56,8 @@ async function submit(payload, {headers = {}, url = origin + '/api/ev'} = {}) {
 }
 
 test('All 18 rendered canonical entry points distinguish type searches from verified US ASINs and reach the existing event writer once', async () => {
-  assert.deepEqual([...rendered.keys()].sort(), [...SHOPPING_PATHS].sort());
+  assert.deepEqual([...rendered.keys()].sort(), [...SHOPPING_PATHS.filter(path=>path!=='/de/'),'/en/'].sort());
+  assert.equal(SHOPPING_PATHS.length,18,'Historical aggregate scope remains18 paths');
   const observedExact = new Set();
   for (const [path, page] of rendered) {
     const region = mainRegion(page.html), german = page.lang === 'de';
