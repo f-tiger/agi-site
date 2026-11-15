@@ -39,6 +39,22 @@ class CatalogTest(unittest.TestCase):
         self.assertIn('Keine Zeitberechnung',md.replace('keine Zeitberechnung','Keine Zeitberechnung'))
         self.assertRegex(html,r'product-category-tools\.mjs\?v=[a-f0-9]{12}')
 
+    def test_all_categories_have_source_linked_static_comparisons(self):
+        data=C.load(); html=C.render(data,dt.date(2026,11,15))
+        self.assertEqual(html.count('class="pc-comparison"'),12)
+        self.assertEqual(html.count('<th scope="row">'),48)
+        markdown=C.to_markdown(html,C.ROUTE,'de')
+        for category in data['categories']:
+            if 'buying_guide' not in category:continue
+            guide=category['buying_guide']
+            self.assertIn(guide['question'],markdown)
+            self.assertIn(guide['answer'],markdown)
+            for step in guide['steps']:self.assertIn(step,markdown)
+        for bad in [None, [], ['one'], ['one','two',0]]:
+            broken=copy.deepcopy(data);broken['categories'][0]['buying_guide']['steps']=bad
+            with self.assertRaises(ValueError):C.validate(broken)
+        self.assertEqual(len(Document(html).ids),len(set(Document(html).ids)))
+
     def test_freshness_boundaries_keep_facts_but_withdraw_merchant_action(self):
         data=fixture(); p=data['products'][0]
         for day,allowed in [(dt.date(2026,11,12),False),(dt.date(2026,11,13),True),(dt.date(2027,2,11),True),(dt.date(2027,2,12),False)]:

@@ -63,6 +63,13 @@ def validate(data):
             raise ValueError('Invalid or duplicate category identity')
         if storage_veto.is_storage(category['id'] + ' ' + category['name'], veto):
             raise ValueError('Storage/PV categories are excluded')
+        guide = category.get('buying_guide')
+        if guide is not None:
+            if (not isinstance(guide, dict) or
+                any(not isinstance(guide.get(k), str) or not guide[k].strip() for k in ('question', 'answer')) or
+                not isinstance(guide.get('steps'), list) or len(guide['steps']) != 3 or
+                any(not isinstance(step, str) or not step.strip() for step in guide['steps'])):
+                raise ValueError('Invalid category buying guide')
         category_ids.add(key); category_names.add(normalized(category['name']))
     for product in products:
         if not isinstance(product, dict) or any(not isinstance(product.get(k), str) or not product[k].strip() for k in PRODUCT_FIELDS):
@@ -121,7 +128,7 @@ def render(data, today=None):
 <p class="pc-limit"><strong>Vor dem Kauf:</strong> {esc(product['limit'])}</p>
 <p class="pc-source">Quelle: <a href="{esc(product['source'])}" target="_blank" rel="noopener">{esc(product['source_label'])}</a> · geprüft am <time datetime="{esc(product['checked'])}">{date(product['checked']).strftime('%d.%m.%Y')}</time>.</p>
 {merchant}</section>''')
-        comparison = render_comparison(category['id'], data['products'])
+        comparison = render_comparison(category['id'], data['products'], category.get('buying_guide'))
         tool = render_tool(category['id'])
         if not isinstance(tool, str) or not tool.strip():
             raise ValueError('Missing category tool: ' + category['id'])
