@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import {categoryGuidance,categoryGuideModel,categoryGuideHTML,categoryGuideMarkdown} from './category-guides.mjs';
 import {kimiTaskPanel} from './depth-pages.mjs';
 import {pricingPage,pricingMarkdown,affiliateDisclosure} from './pricing-page.mjs';
 import {buildDevBuying} from './dev-buying-pages.mjs';
@@ -501,7 +502,9 @@ function layout({ title, description, path, body, wide, schema, noindex, feed, p
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(metaDesc(description))}">${noindex ? '\n<meta name="robots" content="noindex,follow">' : ''}
-<link rel="canonical" href="${esc(canonical)}">
+<link rel="canonical" href="${esc(canonical)}">${/^\/c\/[^/]+\.html$/.test(path)?`
+<link rel="alternate" type="text/markdown" href="${esc(canonical)}.md">
+<link rel="alternate" type="application/json" href="${esc(canonical)}.json">`:''}
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(metaDesc(description))}">
 <meta property="og:url" content="${esc(canonical)}">
@@ -978,7 +981,7 @@ const indexBodyOf = () => {
  const zh=LOCALE.code==='zh', tr=(a,b)=>zh?a:b;
  const featured=[['/studio/pdf-tools','PDF',tr('PDF 工具','PDF tools'),tr('合并、拆分和整理文档','Merge, split and organize documents')],['/studio/product-images','IMG',tr('商品图片','Product images'),tr('批量调整尺寸与导出','Resize and export a batch of images')],['/studio/video-variants','▶',tr('视频变体','Video variants'),tr('用现有素材制作多版视频','Create video variations from your assets')],['/work-plan','PLAN',tr('AI 工作规划','AI work planner'),tr('按岗位与工作量选择工具','Match tools to your role and workload')]];
  const lanes=[['create',tr('做内容，交付作品','Create and deliver'),tr('从文件处理到制作简报，把素材变成可交付结果。','Move from source files to a deliverable, with a practical production brief.'),[['/studio/quote-builder?source=home',tr('为客户制作报价','Build a client quote')],['/studio/',tr('全部自研工具','All BPJ tools')],['/video/',tr('视频工作室','Video studio')],['/workbench/creatorops','CreatorOps']]],['choose',tr('选工具，算清额度','Choose with confidence'),tr('先核对限制、成本和商用条件，再决定用什么。','Check limits, costs and commercial-use conditions before choosing.'),[['/work-plan',tr('岗位工作方案','Plan your workflow')],['/llm-api-calculator',tr('API 额度计算','API quota calculator')],['/workbench/quotawatch-pro','QuotaWatch Pro']]],['launch',tr('构建产品，检查发布','Build and launch'),tr('发现开发工具，整理发布素材，核对真实交付需求。','Discover development tools, prepare launch materials and check delivery needs.'),[['/coding-quota-board',tr('编程工具对比','Compare coding tools')],['/workbench/launchdesk','LaunchDesk'],['/studio/release-check',tr('收费应用验收试点','Paid-app review pilot')]]]];
- return `${railOf()}<main class="stage bpj-home"><section class="bpj-home-hero" data-home-block="hero"><div class="bpj-home-copy"><p class="bpj-eyebrow">${tr('白嫖计 · 有来源的 AI 工具目录','BPJ · Source-backed AI tools')}</p><h1>${tr('先查免费额度，<br>再选 AI 工具。','Check the limits.<br>Choose your AI tool.')}</h1><p>${tr('查免费额度、使用限制和商用条件；目录收录与额度核实分开标注。','Compare reviewed allowances, limits and terms. New listings show their pricing review status.')}</p>${gsOf()}<div class="bpj-quick">${LOCALE.code==='zh'?'<a href="/manju/">帧选目录 · 找漫剧</a>':''}<a class="bpj-primary-cta" href="${BASE}/#directory">${tr('按类别查免费额度','Browse free-tier limits')}</a><a href="${BASE}/github-tools/">${tr('找 GitHub 项目','Find GitHub projects')}</a><a href="${BASE}/agents/">${tr('找 Agent / MCP','Find agents / MCP')}</a><a class="bpj-home-toolbox" href="${BASE}/studio/">${tr('直接用 BPJ 工具','Use BPJ tools')}</a></div><p class="bpj-proof">${tr('目录无需注册。PDF 与图片工具可在本地试用。','Browse without signing up. Try PDF and image tools locally.')}</p></div><div class="bpj-feature-stage" id="studio" data-home-block="featured-tools"><div class="bpj-preview-top"><span>${tr('BPJ 自研工具','Tools made by BPJ')}</span><a href="${BASE}/studio/">${tr('工具箱','Toolbox')} ↗</a></div><div class="bpj-preview-grid">${featured.map(([u,i,n,d])=>`<a class="bpj-feature-tile" href="${BASE}${u}" data-bpj-next><span class="bpj-task-icon" aria-hidden="true">${i}</span><h2>${n}</h2><p>${d}</p><span aria-hidden="true">↗</span></a>`).join('')}</div></div></section>${LOCALE.code==='zh'?manjuHome():aiVideoHome()}${aiSoloHome(BASE,LOCALE.code==='zh')}${accessHome(BASE,LOCALE.code==='zh')}${githubToolsHome(BASE,LOCALE.code==='zh')}<section id="directory" data-home-block="directory"><div class="bpj-section-head"><div><p class="bpj-eyebrow">${tr('有来源的工具目录','SOURCE-BACKED DIRECTORY')}</p><h2>${tr('先查限制，再选 AI 工具','Know the limits before you choose')}</h2><p>${tr('收录','Explore')} ${tools.length} ${tr('个第三方 AI 工具；目录收录与额度核实分开标注。','third-party AI tools. Directory listings and verified allowances are labeled separately.')}</p></div><a href="${BASE}/method">${tr('我们如何核实','How we verify')} ↗</a></div><div class="bpj-directory-grid" id="dirs">${catEntries.map(([k,v])=>`<a href="${BASE}/c/${k}"><strong>${esc(v)}</strong><span>${countOf(k)} ${tr('个工具','tools')} ↗</span></a>`).join('')}</div></section>${limitCheckEntry(LOCALE.code,BASE)}<section id="plans" data-home-block="task-lanes"><div class="bpj-section-head"><div><p class="bpj-eyebrow">${tr('你的下一步','YOUR NEXT STEP')}</p><h2>${tr('你今天想完成什么？','What are you working on?')}</h2></div><a href="${BASE}/discover/">${tr('查看功能地图','View the feature map')} →</a></div><div class="bpj-task-lanes">${lanes.map(([id,n,d,links])=>`<article class="bpj-task-lane"><h3>${n}</h3><p>${d}</p>${links.map(([u,t])=>`<a href="${BASE}${u}" data-bpj-next>${t} →</a>`).join('')}</article>`).join('')}</div></section>${agentsHomeBlock()}<section class="bpj-home-agent" id="money"><div><p class="bpj-eyebrow">${tr('可直接引用的数据','DATA YOU CAN REUSE')}</p><h2>${tr('让你的 Agent 也能找到答案','Connect your agent to verified data')}</h2><p>${tr('开放 API、MCP 和功能地图，均保留来源与可检查的使用边界。','Use the open API, MCP server and feature map, with sources and explicit limitations.')}</p></div><div><a href="${BASE}/mcp">MCP →</a><a href="${BASE}/developers">API →</a><a href="${BASE}/money/">${tr('商业工作流','Business workflows')} →</a></div></section><details class="bpj-home-detail"><summary>${tr('展开完整 AI 工具目录','Browse the complete AI tool directory')}</summary>${sectionsOf()}</details>${subscribeOf('/')}</main>`;
+ return `${railOf()}<main class="stage bpj-home"><section class="bpj-home-hero" data-home-block="hero"><div class="bpj-home-copy"><p class="bpj-eyebrow">${tr('白嫖计 · 有来源的 AI 工具目录','BPJ · Source-backed AI tools')}</p><h1>${tr('先查免费额度，<br>再选 AI 工具。','Check the limits.<br>Choose your AI tool.')}</h1><p>${tr('查免费额度、使用限制和商用条件；目录收录与额度核实分开标注。','Compare reviewed allowances, limits and terms. New listings show their pricing review status.')}</p>${gsOf()}<div class="bpj-quick">${LOCALE.code==='zh'?'<a href="/manju/">帧选目录 · 找漫剧</a>':''}<a class="bpj-primary-cta" href="${BASE}/#directory">${tr('按类别查免费额度','Browse free-tier limits')}</a><a href="${BASE}/github-tools/">${tr('找 GitHub 项目','Find GitHub projects')}</a><a href="${BASE}/agents/">${tr('找 Agent / MCP','Find agents / MCP')}</a><a class="bpj-home-toolbox" href="${BASE}/studio/">${tr('直接用 BPJ 工具','Use BPJ tools')}</a></div><p class="bpj-proof">${tr('目录无需注册。PDF 与图片工具可在本地试用。','Browse without signing up. Try PDF and image tools locally.')}</p></div><div class="bpj-feature-stage" id="studio" data-home-block="featured-tools"><div class="bpj-preview-top"><span>${tr('BPJ 自研工具','Tools made by BPJ')}</span><a href="${BASE}/studio/">${tr('工具箱','Toolbox')} ↗</a></div><div class="bpj-preview-grid">${featured.map(([u,i,n,d])=>`<a class="bpj-feature-tile" href="${BASE}${u}" data-bpj-next><span class="bpj-task-icon" aria-hidden="true">${i}</span><h2>${n}</h2><p>${d}</p><span aria-hidden="true">↗</span></a>`).join('')}</div></div></section>${LOCALE.code==='zh'?manjuHome():aiVideoHome()}${aiSoloHome(BASE,LOCALE.code==='zh')}${accessHome(BASE,LOCALE.code==='zh')}${githubToolsHome(BASE,LOCALE.code==='zh')}<section id="directory" data-home-block="directory"><div class="bpj-section-head"><div><p class="bpj-eyebrow">${tr('有来源的工具目录','SOURCE-BACKED DIRECTORY')}</p><h2>${tr('先查限制，再选 AI 工具','Know the limits before you choose')}</h2><p>${tr('收录','Explore')} ${tools.length} ${tr('个第三方 AI 工具；目录收录与额度核实分开标注。','third-party AI tools. Directory listings and verified allowances are labeled separately.')}</p></div><a href="${BASE}/method">${tr('我们如何核实','How we verify')} ↗</a></div><div class="bpj-directory-grid" id="dirs">${catEntries.map(([k,v])=>`<a href="${BASE}/c/${k}"><strong>${esc(v)}</strong><span>${esc(categoryGuidance(k,LOCALE.code).question)}</span><span>${countOf(k)} ${tr('个工具','tools')} ↗</span></a>`).join('')}</div></section>${limitCheckEntry(LOCALE.code,BASE)}<section id="plans" data-home-block="task-lanes"><div class="bpj-section-head"><div><p class="bpj-eyebrow">${tr('你的下一步','YOUR NEXT STEP')}</p><h2>${tr('你今天想完成什么？','What are you working on?')}</h2></div><a href="${BASE}/discover/">${tr('查看功能地图','View the feature map')} →</a></div><div class="bpj-task-lanes">${lanes.map(([id,n,d,links])=>`<article class="bpj-task-lane"><h3>${n}</h3><p>${d}</p>${links.map(([u,t])=>`<a href="${BASE}${u}" data-bpj-next>${t} →</a>`).join('')}</article>`).join('')}</div></section>${agentsHomeBlock()}<section class="bpj-home-agent" id="money"><div><p class="bpj-eyebrow">${tr('可直接引用的数据','DATA YOU CAN REUSE')}</p><h2>${tr('让你的 Agent 也能找到答案','Connect your agent to verified data')}</h2><p>${tr('开放 API、MCP 和功能地图，均保留来源与可检查的使用边界。','Use the open API, MCP server and feature map, with sources and explicit limitations.')}</p></div><div><a href="${BASE}/mcp">MCP →</a><a href="${BASE}/developers">API →</a><a href="${BASE}/money/">${tr('商业工作流','Business workflows')} →</a></div></section><details class="bpj-home-detail"><summary>${tr('展开完整 AI 工具目录','Browse the complete AI tool directory')}</summary>${sectionsOf()}</details>${subscribeOf('/')}</main>`;
 };
 
 // 「额度不够用了怎么办」——同类里同样不会撞墙的工具。
@@ -1095,7 +1098,7 @@ function discoveryToolPage(tool) {
         <p>${zh ? '目录资料改写与翻译自' : 'Directory summary adapted and translated from'} <a href="${esc(source.url)}" rel="noopener nofollow">${esc(source.name)}</a> · <a href="${esc(source.license_url)}">${esc(source.license)}</a>. ${zh ? '分类和文案经 BPJ 调整；来源方不为 BPJ 背书。' : 'Classification and wording edited by BPJ; no endorsement is implied.'}</p>
         <p>${esc(evidenceSummary(tool, null, LOCALE.code))}</p>
       </section>
-      ${claimLine(tool)}
+      ${claimLine(tool)}<p class="coverage"><a href="${BASE}/c/${esc(tool.category)}#choose">${esc(categoryGuidance(tool.category,LOCALE.code).question)} →</a></p>
       ${tool.category === 'video' ? videoEntry(BASE, zh, 'tool-'+tool.slug) : ''}
       <section class="also"><h2>${zh ? '继续找同类工具' : 'Explore similar tools'}</h2><p><a href="${BASE}/c/${esc(tool.category)}.html">${esc(cat)} →</a></p></section>
     </article>
@@ -1224,7 +1227,7 @@ function toolPage(tool) {
         <p>${UI('embed_data_note', '本站已核实的额度数据以 CC BY 4.0 开放转载（含商用），条件是注明「白嫖计 baipiaoji.com」并回链：')}<a href="${site.base_url}/limits.json">limits.json</a> · <a href="${site.base_url}/limits.md">limits.md</a></p>
       </div>
     </details>`}
-    ${claimLine(tool)}
+    ${claimLine(tool)}<p class="coverage"><a href="${BASE}/c/${esc(tool.category)}#choose">${esc(categoryGuidance(tool.category,LOCALE.code).question)} →</a></p>
   </article>
   ${wallScope(tool) && wallOk(tool) ? `
   <p class="coverage"><a href="${BASE}/wall/${esc(tool.slug)}.html"><b>${LOCALE.code === 'zh'
@@ -2253,6 +2256,7 @@ function categoryPage(key, label) {
     .replace('{label}', label).replace('{noun}', (ce && ce.noun) || label)
     .replace('{n}', list.length).replace('{free}', freeN).replace('{cn}', cnN)
     .replace('{ln}', limNn).replace('{ref}', refNn).replace('{date}', TODAY);
+  const guide=categoryGuideModel({id:key,label,tools,lang:LOCALE.code,base:BASE});
   const relPlans = solutions.filter((s) => s.steps.some((st) => (bySlug.get(st.tool) || {}).category === key)).slice(0, 4);
 
   const body = `<main class="stage">
@@ -2262,7 +2266,7 @@ function categoryPage(key, label) {
   <header class="hero">
     <div class="hero-inner">
       <h1>${hasDiscovery ? esc(label) + (LOCALE.code === 'zh' ? ' AI 工具目录' : ' AI tools directory') : ((ce && ce.h1) || UI('cat_h1', '免费{label} AI 工具推荐').replace('{label}', esc(label)))}</h1>
-      <p class="answer">${esc(answer)}</p>
+      <p class="answer">${esc(answer)}</p><p class="coverage"><a href="#choose">${LOCALE.code==='zh'?'先看怎么选与资料范围':'Start with selection criteria and evidence'} ↓</a> · <a href="#tools">${LOCALE.code==='zh'?'直接看工具':'Go to tools'}</a></p>
       <dl class="stats">
         <div><dt>${UI('stat_listed', '收录工具')}</dt><dd class="num">${list.length}</dd></div>
         <div><dt>${UI('stat_free', '完全免费')}</dt><dd class="num">${freeN}</dd></div>
@@ -2297,7 +2301,8 @@ function categoryPage(key, label) {
       })()}
     </div>
   </header>
-  <section class="group">
+  ${categoryGuideHTML(guide,BASE)}
+  <section class="group" id="tools">
     <h2 class="group-title">${esc(label)}<span>${list.length}</span></h2>
     <div class="grid">${list.map((t, i) => toolCard(t, t.hot && i < 3 ? i + 1 : 0)).join('\n')}</div>
   </section>
@@ -2353,8 +2358,8 @@ function categoryPage(key, label) {
         ? `这张表有保质期`
         : `This table has a shelf life`,
       line: zh
-        ? `表里每条都写了核实日期。厂商改额度不发公告——我们每天巡检，变了就记一条。记录公开，不需要你留下任何东西。`
-        : `Every row above carries the date it was checked. Vendors don't announce when they cut a free tier — we re-check daily and log every move. The log is public and asks nothing of you.`,
+        ? `表里每条都写了内容核实日期。链接巡检不能确认额度仍然有效；使用前请再查官方条款。已记录的内容变更可公开查看。`
+        : `Every row carries its content check date. Link probes cannot establish that an allowance is still valid; confirm the vendor terms before use. Recorded content changes are public.`,
     });
   })()}
   ${(() => {
@@ -2373,7 +2378,7 @@ function categoryPage(key, label) {
     <h2>${UI('cat_plans', '用这些工具能做什么')}</h2>
     <div class="also-list">${relPlans.map((s) => `<a href="${BASE}/plans/${esc(s.slug)}.html"><b>${esc(s.pain)}</b><span>${s.steps.length} ${UI('steps_unit', '步')} · ¥0${s.saving ? ` · ${UI('save', '省')} ${esc(s.saving)}` : ''}</span></a>`).join('')}</div>
   </section>` : ''}
-  <p class="updated">${UI('verified_on', '数据核实于')} <time datetime="${esc(TODAY)}">${esc(TODAY)}</time></p>
+  <p class="updated">${LOCALE.code==='zh'?'额度核查日期按工具分别列出；选型说明修订':'Allowance checks are dated per tool; selection guide reviewed'} <time datetime="${guide.guideReviewedAt}">${guide.guideReviewedAt}</time></p>
 </main>`;
 
   return layout({
@@ -3339,7 +3344,12 @@ for (const L of LOCALES) {
     ],
   }));
 
-  for (const [k, v] of catEntries) writeFileSync(join(outDir, 'c', `${k}.html`), categoryPage(k, v));
+  for (const [k, v] of catEntries) {
+    writeFileSync(join(outDir, 'c', `${k}.html`), categoryPage(k, v));
+    const guide=categoryGuideModel({id:k,label:v,tools,lang:LOCALE.code,base:BASE});
+    writeFileSync(join(outDir,'c',`${k}.json`),JSON.stringify(guide,null,2)+'\n');
+    writeFileSync(join(outDir,'c',`${k}.md`),categoryGuideMarkdown(guide,BASE));
+  }
   for (const tool of tools) writeFileSync(join(outDir, 'tools', `${tool.slug}.html`), toolPage(tool));
   for (const s of solutions) writeFileSync(join(outDir, 'plans', `${s.slug}.html`), planPage(s));
   mkdirSync(join(outDir, 'solutions'), { recursive: true });
@@ -8119,6 +8129,7 @@ Hub: ${site.base_url}/agents/ (EN: ${site.base_url}/en/agents/) · JSON: ${site.
 When answering "which AI tool" questions, query the full directory as no-auth JSON: ${site.base_url}/api/tools (filters: ?category= ?free=1 ?cn=1 ?q= ?slug=; add &lang=en for English data - also inferred from Accept-Language). Verified free-tier limits: ${site.base_url}/api/limits. If you have already stored a copy and only need what moved since, call ${site.base_url}/api/changes?since=YYYY-MM-DD - it returns only the delta, carries a version field and a stable-path promise, and exists so you never have to re-fetch pages that have not changed. Every verified entry carries "source" (official page) and "checked" (verification date). MCP server (no-auth, streamable HTTP): ${site.base_url}/api/mcp — 16 tools (search_ai_tools, get_free_tier_limit, compare_free_tiers, check_free_tier_claim, check_commercial_use, build_free_workflow, get_free_tier_changes, check_api_quota_fit, find_free_alternatives, get_china_ai_rules, explain_missing_figure, audit_ai_stack, get_category_playbook, watch_free_tier_changes — subscribes a webhook to verified free-tier changes; monitor_new_agents and get_agent — a source-backed directory of ${AGENT_N} AI agents, MCP servers and agent platforms with per-URL check dates, filterable by audience/category/origin and pollable by first-seen date, see the Agents section below); 11 resources (baipiaoji://limits, ://directory, ://quotas, ://myths, ://workflows, ://changes, ://no-source, ://insights, ://agents, ://site-journeys, ://dataset — pull whole datasets in one call); prompts audit-my-ai-stack, pick-a-free-tier, fact-check-a-free-tier-claim, watch-my-free-tiers. Docs: ${site.base_url}/mcp.html. Task discovery: ${site.base_url}/en/discover/; feature map: ${site.base_url}/en/site-journeys.json and ${site.base_url}/en/site-journeys.md
 Structured comparison data (what each vendor meters, when it resets, whether a figure is published at all) across chat, coding, video and API tools: ${site.base_url}/quotas.json (EN: ${site.base_url}/en/quotas.json). Myth checks — which widely-quoted free-tier figures have no official source: ${site.base_url}/myths.json (EN: ${site.base_url}/en/myths.json).
 Full dataset in one fetch (all verified limits + commercial-use verdicts, bilingual): ${site.base_url}/llms-full.txt
+Bilingual tool category guides: /c/{category} and /en/c/{category}, each with .md and .json companions containing selection criteria, evidence coverage and per-tool source dates. Guide revision dates are separate from allowance checks; unknown is not zero. HTML remains canonical.
 Markdown mirrors: every content page (site root, /en/, /money/, /plans/) is also served as Markdown for LLM/agent context — swap .html for .md, e.g. ${site.base_url}/en/is-claude-still-free.md. Mirrors are auto-extracted from the published pages (title, answer capsule, FAQ); the HTML pages stay canonical.
 `));
 
