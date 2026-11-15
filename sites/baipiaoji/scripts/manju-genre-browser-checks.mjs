@@ -12,6 +12,10 @@ export async function checkGenreBrowser(browser,root){
    assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),JSON.stringify(await p.evaluate(()=>[...document.querySelectorAll('body *')].filter(e=>e.getBoundingClientRect().right>innerWidth+1).slice(0,8).map(e=>({tag:e.tagName,cls:e.className,text:e.textContent.slice(0,60),right:e.getBoundingClientRect().right})))));
    if(width===390)await p.screenshot({path:'/tmp/manju-genre-mobile.png',fullPage:false});
    const schemas=await p.locator('script[type="application/ld+json"]').allTextContents();assert.ok(schemas.map(JSON.parse).some(s=>s['@type']==='CollectionPage'));
+   await p.locator('#choose-1 a[href*="#record-"]').first().click();
+   const recordHash=new URL(p.url()).hash;
+   assert.ok(await p.locator(recordHash+' h3').isVisible());
+   assert.ok(await p.locator(recordHash+' a[data-mj-action="source"]').count()>0);
    const staticCard=p.locator('.mj-source-list h3 a[href*="#work-"]').first();const href=await staticCard.getAttribute('href');assert.ok(href);await staticCard.click();
    await p.locator(new URL(href).hash).waitFor({state:'visible'});assert.ok(await p.locator(new URL(href).hash+' h2').isVisible());
   }

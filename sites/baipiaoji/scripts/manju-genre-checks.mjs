@@ -14,6 +14,16 @@ export async function checkGenreOutput({get,catalog,genres}){
   assert.equal(list.numberOfItems,rows.length);assert.deepEqual(list.itemListElement.map(x=>x.url),j.items.map(x=>x.url));
   assert.equal(schema.find(x=>x['@type']==='BreadcrumbList').itemListElement[1].item,'https://baipiaoji.com/manju/categories');
   for(const [q,a] of j.faq){assert.ok(h.includes(escape(q))&&h.includes(escape(a)));assert.ok(md.includes(q)&&md.includes(a));}
+  assert.equal(j.decisions.length,2);
+  for(const d of j.decisions){
+   const matching=rows.filter(x=>x.tags.includes(d.tag));
+   assert.equal(d.count,matching.length);
+   assert.deepEqual(d.examples.map(x=>x.id),matching.slice(0,3).map(x=>x.id));
+   assert.ok(h.includes('id="'+d.id+'"'));
+   assert.ok(h.includes(escape(d.question))&&md.includes(d.question));
+   assert.ok(h.includes(escape(d.answer))&&md.includes(d.answer));
+   for(const x of d.examples){assert.ok(h.includes('id="record-'+x.id+'"'));assert.ok(md.includes(x.url));}
+  }
   for(const t of j.tags){assert.equal(t.count,rows.filter(x=>x.tags.includes(t.label)).length);assert.ok(h.includes(escape(t.url)));}
   for(const x of j.items){const original=rows.find(r=>r.id===x.id);assert.ok(original);assert.equal(x.source,original.source);assert.equal(x.checkedAt,original.checkedAt);assert.ok(md.includes(x.source));assert.ok(h.includes(escape(x.entry.url)));if(x.plot)assert.ok(h.includes(escape(x.plot.source))&&md.includes(x.plot.source));}
   assert.ok(h.includes(escape(j.summary))&&md.includes(j.summary));
@@ -21,6 +31,6 @@ export async function checkGenreOutput({get,catalog,genres}){
  const hub=JSON.parse(await get('manju/categories.json')),html=await get('manju/categories.html');
  assert.equal(hub.categories.reduce((n,x)=>n+x.count,0),catalog.items.length);
  assert.equal(hub.categories.filter(x=>x.guide).length,genres.length);
- for(const c of hub.categories){assert.equal(c.count,catalog.items.filter(x=>x.category===c.id).length);assert.ok(html.includes(escape(c.url)));}
+ for(const c of hub.categories){assert.equal(c.count,catalog.items.filter(x=>x.category===c.id).length);assert.ok(html.includes(escape(c.url)));for(const d of c.decisions)assert.ok(html.includes(escape(d.url)));}
  assert.ok((await get('sitemap.xml')).includes('<loc>https://baipiaoji.com/manju/categories</loc>'));
 }
