@@ -1,3 +1,13 @@
+## 2026-11-15 英国与荷兰本地选购深化
+
+Owner追加“tds面向英国和荷兰深化一轮”，限定覆盖旧市场/语言扩建冻结。日计划v13增加country_depth_uk_nl；德语默认首页、英语/en/、中文/zh/与原100款目录不变。新/uk/英国英文和/nl/荷兰语各有收纳、室内湿度/晾衣、智能插座三篇静态任务指南，来源为当地厂家与公开消费者指导，区域例子与原100款目录分开，不把美版型号或尺寸当作本地商品。
+
+英国Amazon.co.uk和荷兰Amazon.nl联盟Tracking ID均未获确认；当地出口使用明确披露的普通型号搜索链接，不借用美/德tag，不宣称佣金或库存。英国13A与荷兰16A通用/阻性负载及单独电机限制不能互换；购买前必须核对具体硬件、地区和手册。源数据content/market-guides.json，生成器scripts/collecting/market-guides.mjs；同步提交生成HTML、文本、sitemap与llms目录。
+
+新8页独立计量：第一方market_shop_click/market_source_click，GA4 tds_market_shop/tds_market_source。只传固定路径、动作与允许的主机，不传型号/查询/输入；普通商店点击不是affiliate_click、订单或收入。旧18页shopping-growth与27类别范围及历史行不扩写。SEO/GA4/静态资产精确允许列表和线上验收都进发布流程；IndexNow接收不等于收录或AI引用。
+
+自有首页/目录/类别链接是本轮实际营销动作；没有新增外发、付费、凭据或调度。原11/22复盘与$100全站月收入目标不变，地区首个完整日按实际上线记录。最新版区域商业决策和发布回执以根docs/tds-uk-nl-depth-2026-11-15.json为准；下方德国优先及更早UK Jellycat说明作为历史保留。MCP能力未变，无需重复注册。
+
 ## 2026-11-15 默认德语首页与德国购物场景
 
 Owner明确要求“首页默认是德语，小语种切入，避免无流量”。当前日计划v12，商业上下文v13；本轮限定覆盖旧首页默认英语规则。根路径`/`直接HTTP200德语，英语首页`/en/`，中文`/zh/`。旧`/de/`及其首页别名308到`/`；不按IP、浏览器语言或cookie切换。所有已有英文无前缀、德文`/de/`、中文`/zh/`深层商品/指南URL保留。`collector-assets/site-locale.mjs`统一首页身份与新写入语言，`functions/home-language.mjs`只处理明确首页别名。
