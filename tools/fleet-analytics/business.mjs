@@ -38,6 +38,8 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
     return {name: 'fleet_account_entry', tool_id: 'fleet-free-account', repeat: true};
   }
   if (host === 'baipiaoji.com' && ['/dev-buying/', '/en/dev-buying/'].includes(pathname) && ['dev_buy_guidance','dev_buy_calculate','dev_buy_export','dev_buy_official'].includes(detail.name)) return {name:detail.name,tool_id:'dev-buying',repeat:true};
+  // Ordinary local merchant/source clicks are distinct from affiliate commissions.
+  if(host==='thedollscout.com' && ['/uk/','/uk/storage-boxes','/uk/indoor-laundry','/uk/smart-plugs','/nl/','/nl/opbergboxen','/nl/binnenklimaat','/nl/slimme-stekkers'].includes(pathname) && ['tds_market_shop','tds_market_source'].includes(detail.name))return {name:detail.name,tool_id:'local-buying-guide',repeat:true};
   const affiliate = affiliateEvent(host, detail);
   if (affiliate) return affiliate;
   const name = detail.name;

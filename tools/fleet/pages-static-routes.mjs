@@ -42,6 +42,8 @@ const REVIEWED_DATA={
   ...['PDFJS_JBIG2','JBIG2','QCMS','OPENJPEG','PDFJS_OPENJPEG','PDFJS_QCMS'].map(name=>'/document-assets/vendor/wasm/LICENSE_'+name),
   ...['LIBERATION','FOXIT'].map(name=>'/document-assets/vendor/standard_fonts/LICENSE_'+name),
   ...['learning-guides','videos','tool-capabilities','brand-guides','series-catalog','manifest'].map(name=>'/collector-assets/'+name+'.json'),
+  '/collector-assets/market-manifest.json',
+  ...['uk/home','uk/storage-boxes','uk/indoor-laundry','uk/smart-plugs','nl/home','nl/opbergboxen','nl/binnenklimaat','nl/slimme-stekkers'].map(name=>'/collector-assets/text/'+name+'.txt'),
  ]),
 };
 function reviewedDirectoryAsset(site,path){
