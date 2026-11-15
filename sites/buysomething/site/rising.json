@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-14",
+ "fetched": "2026-11-15",
  "seeds": {
   "electric spin scrubber": {
    "rising": [
@@ -530,28 +530,36 @@
   "portable bottle warmer": {
    "rising": [
     {
+     "q": "befano portable bottle warmer",
+     "v": 24600
+    },
+    {
+     "q": "dr browns bottle warmer",
+     "v": 12850
+    },
+    {
      "q": "momcozy portable breast milk cooler",
-     "v": 105400
-    },
-    {
-     "q": "best bottle warmer for breastmilk",
-     "v": 68400
-    },
-    {
-     "q": "how to use momcozy bottle warmer",
-     "v": 200
+     "v": 450
     },
     {
      "q": "mom cozy bottle warmer",
-     "v": 160
+     "v": 250
     },
     {
-     "q": "tommee tippee portable bottle warmer",
-     "v": 90
+     "q": "dr brown bottle warmer",
+     "v": 200
+    },
+    {
+     "q": "best bottle warmer for breastmilk",
+     "v": 150
+    },
+    {
+     "q": "how to use momcozy bottle warmer",
+     "v": 110
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-11-14"
+   "fetched": "2026-11-15"
   },
   "electric pruning shears": {
    "auto": [
@@ -562,13 +570,18 @@
     "electric pruning shears home depot",
     "electric pruning shears amazon",
     "electric pruning shears reviews",
-    "electric pruning shears nearby",
+    "electric pruning shears near me",
     "electric pruning shears ryobi",
-    "electric pruning shears near me"
+    "electric pruning shears milwaukee"
    ],
-   "rising": [],
+   "rising": [
+    {
+     "q": "electric pruning shears milwaukee",
+     "v": "new"
+    }
+   ],
    "source": "autocomplete-diff",
-   "fetched": "2026-10-16"
+   "fetched": "2026-11-15"
   },
   "aroma diffuser": {
    "rising": [
