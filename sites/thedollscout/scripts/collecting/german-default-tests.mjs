@@ -1,6 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import {execFileSync} from 'node:child_process';
 import {origin, locales, route} from './content.mjs';
 import {homeCatalogFeatured, homeCatalogCopy, loadHomeCatalog} from './home-catalog.mjs';
 import {shoppingHomeHTML, shoppingHomeText} from './shopping.mjs';
@@ -144,4 +147,41 @@ test('manifest and sitemap describe canonical homes and keep all localized guide
  const notified = read('scripts/urls.txt').trim().split('\n');
  for (const path of ['/', '/en/', '/zh/']) assert.ok(notified.includes(origin + path));
  assert.equal(notified.includes(origin + '/de/'), false, 'Do not treat the old alias as another current content homepage');
+});
+
+
+// Exercise the actual pre-upload workflow sequence in an isolated site, rather
+// than importing the builder or requiring a retired /de/ homepage fixture.
+test('legacy generation workflow preserves all three canonical homepages without the retired German index file', () => {
+ const workflow = fs.readFileSync(new URL('../../../../.github/workflows/deploy-thedollscout.yml', import.meta.url), 'utf8');
+ const step = workflow.match(/      - name: Verify collector tools and generated pages\r?\n        run: \|\r?\n([\s\S]*?)(?=      - name:|$)/);
+ assert.ok(step, 'Use the real legacy collector verification step');
+ const commands = step[1].split('\n').map(line => line.trim()).filter(line => line.startsWith('sha256sum ') || line === 'node scripts/gen-collector-pages.mjs');
+ assert.equal(commands.length, 3, 'Run real sha256sum → legacy generator → sha256sum --check commands');
+ assert.ok(commands[0].startsWith('sha256sum ') && commands[1] === 'node scripts/gen-collector-pages.mjs' && commands[2].startsWith('sha256sum --check '));
+ const fixture = fs.mkdtempSync(path.join(os.tmpdir(), 'tds-german-legacy-'));
+ try {
+  for (const dir of ['scripts/collecting', 'collector-assets', 'de', 'en', 'zh', 'runner-temp']) fs.mkdirSync(path.join(fixture, dir), {recursive: true});
+  for (const file of ['scripts/gen-collector-pages.mjs', 'collector-assets/site-locale.mjs', 'collector-assets/cloud-copy.mjs', 'scripts/collecting/wish-card.mjs', 'scripts/collecting/event-kit.mjs']) fs.copyFileSync(new URL(file, root), path.join(fixture, file));
+  const before = new Map();
+  for (const file of Object.values(homeFiles)) {
+   const bytes = fs.readFileSync(new URL(file, root));
+   assert.ok(bytes.includes(Buffer.from('data-collector-edition=')), file + ': seed the actual generated homepage');
+   before.set(file, bytes); fs.writeFileSync(path.join(fixture, file), bytes);
+  }
+  assert.equal(fs.existsSync(path.join(fixture, 'de/index.html')), false);
+  const output = execFileSync('bash', ['-e', '-u', '-o', 'pipefail', '-c', commands.join('\n')], {
+   cwd: fixture, env: {...process.env, RUNNER_TEMP: path.join(fixture, 'runner-temp')}, encoding: 'utf8', timeout: 20000
+  });
+  for (const [file, bytes] of before) {
+   assert.deepEqual(fs.readFileSync(path.join(fixture, file)), bytes, file + ': legacy pass must preserve exact homepage bytes');
+   assert.ok(output.includes(file + ': OK'), file + ': actual workflow checksum verified');
+  }
+  for (const prefix of ['', 'de/']) for (const slug of ['collection-tracker', 'display-calculator', 'collector-guide']) {
+   const file = prefix + slug + '.html', html = fs.readFileSync(path.join(fixture, file), 'utf8');
+   assert.ok(html.includes('data-collector-tool-workspace'), file + ': original tool generated');
+   assert.ok(html.includes('rel="canonical" href="' + origin + '/' + prefix + slug + '"'), file + ': no tool URL migration');
+  }
+  assert.equal(fs.existsSync(path.join(fixture, 'de/index.html')), false, 'The redirect alias must not be required or recreated');
+ } finally {fs.rmSync(fixture, {recursive: true, force: true});}
 });

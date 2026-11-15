@@ -1,3 +1,4 @@
+import {HOME_PATHS} from '../collector-assets/site-locale.mjs';
 import fs from 'node:fs';
 import {cloudPanel} from '../collector-assets/cloud-copy.mjs';
 import path from 'node:path';
@@ -57,7 +58,7 @@ for(const [lang,c] of Object.entries(copy)) {
  page('display-calculator',c.display,c.displayDesc,`<noscript>${c.noscript}</noscript><div data-collector="display" data-invalid="${esc(c.dimensionError)}" ${attrs(['normal','rotated'])}><div class="tool"><form><label>${c.unit} <select name="unit"><option value="cm">${c.cm}</option><option value="in">${c.inch}</option></select></label><fieldset><legend>${c.shelf}</legend><div class="fields">${num('width',40)}${num('depth',30)}${num('height',25)}</div></fieldset><fieldset><legend>${c.figure}</legend><div class="fields">${num('itemWidth',8)}${num('itemDepth',10)}${num('itemHeight',18)}${num('gap',1)}</div></fieldset><label><input type="checkbox" name="rotate" checked> ${c.rotate}</label><div class="actions"><button class="btn">${c.calculate}</button></div></form><p class="tool-message" data-message role="status"></p><div data-result hidden aria-live="polite"><p><strong class="res-big" data-count></strong> ${c.count}</p><p data-layout></p><p data-zero hidden>${c.zero}</p><div class="shelf-plan" data-plan aria-hidden="true"></div><p data-cap hidden>${c.cap}</p><p>${c.buyingNote}</p><button type="button" class="btn secondary" data-buying-brief>${c.buyingBrief}</button></div></div></div><p>${c.fitHelp}</p><p class="callout">${c.example}</p>${affiliate}${related}`,true);
  page('collector-guide',c.guide,c.guideDesc,`${c.guideBody}${related}${affiliate}`);
  // Retain the existing rarity calculator, sourced references and language links.
- const file=path.join(root,pre.slice(1),'index.html');let home=fs.readFileSync(file,'utf8');
+ const file=path.join(root,HOME_PATHS[lang].slice(1),'index.html');let home=fs.readFileSync(file,'utf8');
  if(!home.includes('data-collector-home') && !home.includes('data-document-edition') && !home.includes('data-collector-edition')) {
   home=home.replace('</head>','<link rel="stylesheet" href="/css/collector.css"><link rel="stylesheet" href="/collector-assets/workspace.css?v=2026-10-30.1">\n</head>');
   home=home.replace(/<title>[\s\S]*?<\/title>/,`<title>DollScout — ${c.tools}</title>`);
