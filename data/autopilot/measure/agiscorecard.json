@@ -3,7 +3,7 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 23,
+    "n": 21,
     "q": "tool:portfolio_returns"
    },
    {
@@ -11,19 +11,19 @@
     "q": "tool:verdicts"
    },
    {
-    "n": 10,
+    "n": 9,
     "q": "tool:thesis_tracker"
    },
    {
     "n": 8,
-    "q": "tool:sunwatch_ledger"
-   },
-   {
-    "n": 7,
     "q": "tool:invest_positions"
    },
    {
-    "n": 4,
+    "n": 7,
+    "q": "tool:sunwatch_ledger"
+   },
+   {
+    "n": 6,
     "q": "tool:claim_ledger https://goldrush.agiscorecard."
    },
    {
@@ -40,34 +40,34 @@
    },
    {
     "n": 2,
-    "q": "[object object]"
+    "q": "github"
    }
   ]
  },
- "fetched": "2026-11-14",
+ "fetched": "2026-11-15",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
   "/earn": {
-   "n7": 224,
-   "p7": 98
+   "n7": 247,
+   "p7": 109
+  },
+  "/future-guide": {
+   "n7": 1779,
+   "p7": 883
   },
   "/invest": {
-   "n7": 232,
-   "p7": 108
-  },
-  "/jarvis": {
-   "n7": 213,
-   "p7": 100
+   "n7": 253,
+   "p7": 126
   },
   "/mentor": {
-   "n7": 217,
-   "p7": 99
+   "n7": 242,
+   "p7": 110
   },
   "/workbench": {
-   "n7": 213,
-   "p7": 98
+   "n7": 234,
+   "p7": 105
   }
  },
  "site": "agiscorecard",

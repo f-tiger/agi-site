@@ -1,18 +1,15 @@
 {
  "runs": [
   {
-   "changed_urls": [
-    "https://agiscorecard.com/ai-infrastructure.html",
-    "https://agiscorecard.com/zh/ai-infrastructure.html"
-   ],
+   "changed_urls": [],
    "counts": {
     "bootstrapped": 0,
-    "changed": 2,
+    "changed": 0,
     "covered": 2,
     "demand_terms": 3,
     "gaps": 1,
     "hot_pages": 5,
-    "lastmod_updated": 2,
+    "lastmod_updated": 0,
     "offtopic": 0,
     "pages": 359,
     "undatable": 34,
@@ -21,13 +18,12 @@
    "notes": [
     "34 URL(s) left untouched for want of a defensible date",
     "sites/agiscorecard/trends-rising.json: 1 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (ai stocks). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
-    "heat: measured 2026-11-14 (5 pages); no notes"
+    "heat: measured 2026-11-15 (5 pages); no notes"
    ],
    "outcome": "ok",
    "site": "agiscorecard",
-   "today": "2026-11-14",
+   "today": "2026-11-15",
    "wrote": [
-    "sites/agiscorecard/sitemap.xml",
     "data/autopilot/agiscorecard.json",
     "data/autopilot/agiscorecard-demand.json"
    ]
@@ -41,11 +37,11 @@
     "bootstrapped": 0,
     "changed": 2,
     "covered": 0,
-    "demand_terms": 20,
+    "demand_terms": 25,
     "gaps": 0,
     "hot_pages": 0,
     "lastmod_updated": 2,
-    "offtopic": 20,
+    "offtopic": 25,
     "pages": 7,
     "undatable": 0,
     "underserved": 0
@@ -53,11 +49,11 @@
    "notes": [
     "sites/buysomething/site/rising.json: 3 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (car refrigerator, rollator walker, vegetable chopper). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
     "sites/buysomething/site/rising.json: 11 fresh seed(s) used; 20 stale and 0 undated dropped",
-    "heat: measured 2026-11-14 (0 pages); no notes"
+    "heat: measured 2026-11-15 (0 pages); no notes"
    ],
    "outcome": "ok",
    "site": "buysomething",
-   "today": "2026-11-14",
+   "today": "2026-11-15",
    "wrote": [
     "sites/buysomething/site/sitemap.xml",
     "data/autopilot/buysomething.json",
@@ -65,36 +61,26 @@
    ]
   },
   {
-   "changed_urls": [
-    "https://getecoback.com/guide/luftentfeuchter-keller.html",
-    "https://getecoback.com/guide/luftentfeuchter-ratgeber.html",
-    "https://getecoback.com/guide/meacodry-arete-one-test.html",
-    "https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html",
-    "https://getecoback.com/guide/trotec-ttk-26-e-betriebskosten.html",
-    "https://getecoback.com/guide/waesche-trocknen-wohnung.html",
-    "https://getecoback.com/index.html",
-    "https://getecoback.com/tools.html",
-    "https://getecoback.com/wohnen.html"
-   ],
+   "changed_urls": [],
    "counts": {
     "bootstrapped": 0,
-    "changed": 9,
-    "covered": 21,
-    "demand_terms": 48,
-    "gaps": 19,
-    "hot_pages": 14,
-    "offtopic": 8,
+    "changed": 0,
+    "covered": 18,
+    "demand_terms": 58,
+    "gaps": 24,
+    "hot_pages": 15,
+    "offtopic": 16,
     "pages": 299,
     "undatable": 0,
     "underserved": 0
    },
    "notes": [
     "sitemap owned by this site's own generator — not touched",
-    "heat: measured 2026-11-14 (14 pages); no notes"
+    "heat: measured 2026-11-15 (16 pages); no notes"
    ],
    "outcome": "ok",
    "site": "getecoback",
-   "today": "2026-11-14",
+   "today": "2026-11-15",
    "wrote": [
     "data/autopilot/getecoback.json",
     "data/autopilot/getecoback-demand.json"
@@ -120,7 +106,7 @@
    ],
    "outcome": "ok",
    "site": "goldrush",
-   "today": "2026-11-14",
+   "today": "2026-11-15",
    "wrote": [
     "data/autopilot/goldrush.json",
     "data/autopilot/goldrush-demand.json"
@@ -146,7 +132,7 @@
    ],
    "outcome": "ok",
    "site": "gridlings",
-   "today": "2026-11-14",
+   "today": "2026-11-15",
    "wrote": [
     "data/autopilot/gridlings.json",
     "data/autopilot/gridlings-demand.json"
@@ -234,7 +220,6 @@
     "https://thedollscout.com/editorial.html",
     "https://thedollscout.com/for-agents.html",
     "https://thedollscout.com/index.html",
-    "https://thedollscout.com/legal/affiliate-disclosure.html",
     "https://thedollscout.com/series.html",
     "https://thedollscout.com/series/smiski-bath-series.html",
     "https://thedollscout.com/series/smiski-bed-series.html",
@@ -328,15 +313,15 @@
     "https://thedollscout.com/zh/shop/storage-transport.html"
    ],
    "counts": {
-    "bootstrapped": 0,
-    "changed": 172,
+    "bootstrapped": 27,
+    "changed": 171,
     "covered": 7,
     "demand_terms": 29,
     "gaps": 16,
     "hot_pages": 0,
-    "lastmod_updated": 172,
+    "lastmod_updated": 171,
     "offtopic": 6,
-    "pages": 306,
+    "pages": 333,
     "undatable": 0,
     "underserved": 0
    },
@@ -347,7 +332,7 @@
    ],
    "outcome": "ok",
    "site": "thedollscout",
-   "today": "2026-11-14",
+   "today": "2026-11-15",
    "wrote": [
     "sites/thedollscout/sitemap.xml",
     "data/autopilot/thedollscout.json",
@@ -355,5 +340,5 @@
    ]
   }
  ],
- "today": "2026-11-14"
+ "today": "2026-11-15"
 }

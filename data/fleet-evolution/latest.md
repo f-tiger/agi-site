@@ -1,39 +1,38 @@
-# Fleet evolution report — 2026-11-14
+# Fleet evolution report — 2026-11-15
 
 Deterministic, aggregate-only report. Missing data remains unknown; no editorial text, payments or membership rights are changed by this job.
 
 ## Fleet counters
 
 - Sites: 14 (healthy probes: 31)
-- Membership ready: 4 · paid members: 0 · active members: 0
+- Membership ready: 0 · paid members: 0 · active members: 0
 - Opportunity candidates: 8 · stale inputs: 0
 
 ## Priority actions
 
 | Priority | Site | Action | Mode | Evidence |
 |---:|---|---|---|---|
-| 70 | agiscorecard | membership_readiness_check | observe | snapshot_date=2026-11-14T09:22:31.152Z |
-| 70 | baipiaoji | membership_readiness_check | observe | snapshot_date=2026-11-14T09:22:31.152Z |
-| 70 | getecoback | membership_readiness_check | observe | snapshot_date=2026-11-14T09:22:31.152Z |
-| 70 | thedollscout | membership_readiness_check | observe | snapshot_date=2026-11-14T09:22:31.152Z |
-| 64 | baipiaoji | membership_demand_review | queue | external_referrer_page_view_events=574; paid_members=0 |
+| 92 | agiscorecard | membership_health | alert | public_ok=True; ready=False |
+| 92 | baipiaoji | membership_health | alert | public_ok=True; ready=False |
+| 92 | getecoback | membership_health | alert | public_ok=True; ready=False |
+| 92 | thedollscout | membership_health | alert | public_ok=True; ready=False |
 | 55 | agiscorecard | content_gap | queue | count=1; query=ai stocks crashing; value=1 |
-| 55 | getecoback | content_gap | queue | count=19; query=diesel infrarotheizung; value=74650 |
+| 55 | getecoback | content_gap | queue | count=24; query=vorwerk saugwischer roboter; value=158500 |
 | 55 | thedollscout | content_gap | queue | count=16; query=labubu cat mode; value=73950 |
-| 52 | agiscorecard | improve_hot_page | queue | page=/invest; n7=232; p7=108 |
+| 52 | agiscorecard | improve_hot_page | queue | page=/future-guide; n7=1779; p7=883 |
 | 52 | getecoback | improve_hot_page | queue | page=/guide/luftbefeuchter-ratgeber.html; n7=11; p7=0 |
-| 48 | goldrush | ai_attribution_review | queue | legacy_page_view_events=656; ai_referrer_events=0 |
-| 48 | thedollscout | ai_attribution_review | queue | legacy_page_view_events=1124; ai_referrer_events=0 |
+| 48 | goldrush | ai_attribution_review | queue | legacy_page_view_events=653; ai_referrer_events=0 |
+| 48 | thedollscout | ai_attribution_review | queue | legacy_page_view_events=1291; ai_referrer_events=0 |
 
 ## Input freshness
 
 | Input | Date | Age (days) |
 |---|---|---:|
-| membership | 2026-11-14T09:22:31.152Z | 0 |
-| health | 2026-11-13T15:49:18Z | 1 |
-| ai_referrals | 2026-11-13T15:49:44Z | 1 |
-| opportunities | 2026-11-13 | 1 |
-| autopilot_receipt | 2026-11-14 | 0 |
+| membership | 2026-11-15T09:51:49.224Z | 0 |
+| health | 2026-11-14T14:40:35Z | 1 |
+| ai_referrals | 2026-11-14T14:41:01Z | 1 |
+| opportunities | 2026-11-14 | 1 |
+| autopilot_receipt | 2026-11-15 | 0 |
 
 ## Growth directions
 
@@ -74,7 +73,7 @@ Review: docs/ceo-revenue-execution-2026-11-13.md
   - 下一步: 核对现有选型页的新旧订阅分组、额度单位与重置规则；先确认官方方案适用人群，再补具体事实缺口。
   - 门槛/反证: status is done；原帖回复有相反体验；现有 BPJ 选型器已覆盖多数决策。官方方案可能区分新旧订阅，不能把旧套餐一律判错或批量覆盖。
 - **agiscorecard · AI 结论缺少业务背景与来源支撑** [hold]
-  - ID: agi-claim-context-20261031；原帖与日期门通过来源数: 1；复盘: 2026-11-07
+  - ID: agi-claim-context-20261031；原帖与日期门通过来源数: 0；复盘: 2026-11-07
   - 下一步: 用合成任务复核现有 Jarvis 的证据与不确定性输出；先确认是否存在可复现缺口。
   - 门槛/反证: status is done；来源为代理商报告语境，与 AGI 使用者适配需要单独验证；一个帖子不是普遍需求。
 - **baipiaoji · 试用、取消与续费条件核对** [hold]
@@ -82,6 +81,6 @@ Review: docs/ceo-revenue-execution-2026-11-13.md
   - 下一步: 核验官方试用、退款和取消规则，与现有 BPJ 数据字段比对后决定是否补齐。
   - 门槛/反证: status is done；可能只需要链接官方帮助页，不需要新工具。
 - **agiscorecard · 通用 AI 客户报告生成暂不扩建** [hold]
-  - ID: agency-reporting-generic-20261031；原帖与日期门通过来源数: 1；复盘: 2026-11-14
+  - ID: agency-reporting-generic-20261031；原帖与日期门通过来源数: 0；复盘: 2026-11-14
   - 下一步: 仅保存反证；不建立新的代理商报告站或改变现有导师定位。
   - 门槛/反证: status is rejected；Swydo、AgencyAnalytics 与 Whatagraph 已覆盖通用 AI 报告；存在满意用户反证。

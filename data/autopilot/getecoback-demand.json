@@ -168,13 +168,13 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.887,
+   "match": 0.633,
    "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
-   "q": "luftentfeuchter keller ohne strom",
+   "q": "luftentfeuchter kissen auto",
    "seed": "luftentfeuchter",
    "source": "related-queries",
-   "stand": "2026-11-06",
-   "v": 20500
+   "stand": "2026-11-14",
+   "v": 8550
   },
   {
    "heat": null,
@@ -184,58 +184,35 @@
    "q": "comfee mddf-16den7 wf luftentfeuchter",
    "seed": "luftentfeuchter",
    "source": "related-queries",
-   "stand": "2026-11-06",
-   "v": 13550
+   "stand": "2026-11-14",
+   "v": 7950
   },
   {
    "heat": null,
    "kind": "value",
-   "match": 0.633,
-   "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
-   "q": "luftentfeuchter kissen auto",
-   "seed": "luftentfeuchter",
+   "match": 0.875,
+   "page": "guide/saugwischer-kaufberatung.html",
+   "q": "tineco saugwischer",
+   "seed": "saugwischer",
    "source": "related-queries",
-   "stand": "2026-11-06",
-   "v": 8250
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.95,
-   "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
-   "q": "auto luftentfeuchter",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-11-06",
-   "v": 200
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.8,
-   "page": "guide/schimmel-kleiderschrank.html",
-   "q": "luftentfeuchter nachfüllpack",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-11-06",
-   "v": 80
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.975,
-   "page": "guide/pro-breeze-luftentfeuchter-test.html",
-   "q": "mini luftentfeuchter",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-11-06",
-   "v": 80
+   "stand": "2026-11-14",
+   "v": 120
   }
  ],
  "first_party_demand": {
   "zero_hit_records": 0
  },
  "gaps": [
+  {
+   "kind": "value",
+   "match": 0.533,
+   "page": "guide/saugroboter-kaufberatung.html",
+   "q": "vorwerk saugwischer roboter",
+   "seed": "saugwischer",
+   "source": "related-queries",
+   "stand": "2026-11-14",
+   "v": 158500
+  },
   {
    "kind": "value",
    "match": 0.5,
@@ -245,6 +222,16 @@
    "source": "related-queries",
    "stand": "2026-11-10",
    "v": 74650
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/saugwischer-kaufberatung.html",
+   "q": "hyla saugwischer",
+   "seed": "saugwischer",
+   "source": "related-queries",
+   "stand": "2026-11-14",
+   "v": 53800
   },
   {
    "kind": "value",
@@ -268,13 +255,23 @@
   },
   {
    "kind": "value",
+   "match": 0.333,
+   "page": "guide/saugwischer-kaufberatung.html",
+   "q": "kobold sp600 saugwischer",
+   "seed": "saugwischer",
+   "source": "related-queries",
+   "stand": "2026-11-14",
+   "v": 38650
+  },
+  {
+   "kind": "value",
    "match": 0.5,
    "page": "guide/luftentfeuchter-10-qm.html",
-   "q": "vivosun luftentfeuchter",
+   "q": "luftentfeuchter growbox",
    "seed": "luftentfeuchter",
    "source": "related-queries",
-   "stand": "2026-11-06",
-   "v": 28600
+   "stand": "2026-11-14",
+   "v": 22800
   },
   {
    "kind": "value",
@@ -315,6 +312,16 @@
    "source": "related-queries",
    "stand": "2026-11-11",
    "v": 7650
+  },
+  {
+   "kind": "value",
+   "match": 0.533,
+   "page": "waeschetrockner-oder-luftentfeuchter.html",
+   "q": "luftentfeuchter badezimmer testsieger",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-11-14",
+   "v": 7550
   },
   {
    "kind": "value",
@@ -388,6 +395,16 @@
   },
   {
    "kind": "value",
+   "match": 0.333,
+   "page": "guide/akku-heizluefter.html",
+   "q": "vorwerk akku saugwischer",
+   "seed": "saugwischer",
+   "source": "related-queries",
+   "stand": "2026-11-14",
+   "v": 80
+  },
+  {
+   "kind": "value",
    "match": 0.0,
    "page": null,
    "q": "alvi matratze",
@@ -427,9 +444,9 @@
    "v": 50
   }
  ],
- "generated": "2026-11-14",
+ "generated": "2026-11-15",
  "geo": "DE",
- "heat_source": "measured 2026-11-14 (14 pages); no notes",
+ "heat_source": "measured 2026-11-15 (16 pages); no notes",
  "hot_pages": [
   {
    "n7": 11,
@@ -443,8 +460,8 @@
   },
   {
    "n7": 7,
-   "p7": 7,
-   "page": "/"
+   "p7": 0,
+   "page": "/agents/compliance.html"
   },
   {
    "n7": 7,
@@ -453,66 +470,79 @@
   },
   {
    "n7": 5,
+   "p7": 9,
+   "page": "/"
+  },
+  {
+   "n7": 5,
    "p7": 2,
    "page": "/guide/fensterabdichtung-selber-bauen.html"
   },
   {
    "n7": 5,
-   "p7": 0,
+   "p7": 2,
    "page": "/guide/klimaanlage-wann-kaufen.html"
   },
   {
-   "n7": 4,
-   "p7": 0,
-   "page": "/agents/compliance.html"
-  },
-  {
-   "n7": 4,
+   "n7": 5,
    "p7": 3,
    "page": "/guide/klimaanlage-wohnmobil.html"
   },
   {
    "n7": 4,
    "p7": 2,
-   "page": "/guide/luftentfeuchter-ratgeber.html"
-  },
-  {
-   "n7": 3,
-   "p7": 2,
    "page": "/guide/was-bedeutet-btu.html"
   },
   {
    "n7": 3,
-   "p7": 1,
+   "p7": 0,
+   "page": "/guide/wohnmobil-feuchtigkeit-winter.html"
+  },
+  {
+   "n7": 3,
+   "p7": 0,
    "page": "/waeschetrockner-oder-luftentfeuchter.html"
   },
   {
    "n7": 2,
+   "p7": 2,
+   "page": "/en/guide/portable-ac-leaking-water.html"
+  },
+  {
+   "n7": 2,
    "p7": 1,
+   "page": "/en/guide/tilt-and-turn-windows-winter-condensation.html"
+  },
+  {
+   "n7": 2,
+   "p7": 2,
    "page": "/guide/klimaanlage-30-qm.html"
   },
   {
    "n7": 2,
    "p7": 2,
    "page": "/guide/midea-portasplit-ausverkauft-alternativen.html"
-  },
-  {
-   "n7": 2,
-   "p7": 3,
-   "page": "/guide/wohnmobil-feuchtigkeit-winter.html"
   }
  ],
  "how_to_read": "Research candidates only; token matching is not an editorial or market decision. Relative growth is not search volume, and autocomplete is vocabulary evidence only. Underserved requires an observed zero in the matching measurement window; missing page measurements are unknown, and zero arrivals do not establish a title or internal-link cause. First-party evidence contains only aggregate zero-hit record counts, never raw search terms. Freshness, country, independent evidence and the reviewed page catalog must pass tools/eco_evolution.py before prioritising an existing page. This research queue does not publish. The separate getecoback scheduled deployment runs tools/auto_content.py to discover official product specifications, validate evidence and publish at most one substantive guide change per UTC day.",
  "note": "选题输入,不是选题依据。任何由它引出的页面仍要过本站三门与硬内容规则。本文件由 tools/autopilot 每日确定性生成,零 AI、零编造。",
  "offtopic_dropped": [
   "dreo atom 316",
+  "leifheit bodenwischer",
+  "meacodry arete two",
   "avreno",
-  "meacodry arete two 25l",
+  "wischmopp",
+  "black friday",
+  "discounter",
+  "roborock saros 20",
+  "meacodry arete one 10l",
   "meacodry arete two 12l",
   "schlafsofa mit bettkasten",
   "beco maxima plus",
+  "tineco",
   "jysk online",
-  "philips lattego"
+  "philips lattego",
+  "vorwerk kobold"
  ],
  "site": "getecoback",
  "source_notes": [],

@@ -13,8 +13,8 @@
   },
   {
    "heat": {
-    "n7": 232,
-    "p7": 108
+    "n7": 253,
+    "p7": 126
    },
    "kind": "autocomplete-new",
    "match": 0.833,
@@ -30,7 +30,7 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 23,
+    "n": 21,
     "q": "tool:portfolio_returns"
    },
    {
@@ -38,19 +38,19 @@
     "q": "tool:verdicts"
    },
    {
-    "n": 10,
+    "n": 9,
     "q": "tool:thesis_tracker"
    },
    {
     "n": 8,
-    "q": "tool:sunwatch_ledger"
-   },
-   {
-    "n": 7,
     "q": "tool:invest_positions"
    },
    {
-    "n": 4,
+    "n": 7,
+    "q": "tool:sunwatch_ledger"
+   },
+   {
+    "n": 6,
     "q": "tool:claim_ledger https://goldrush.agiscorecard."
    },
    {
@@ -67,7 +67,7 @@
    },
    {
     "n": 2,
-    "q": "[object object]"
+    "q": "github"
    }
   ]
  },
@@ -83,33 +83,33 @@
    "v": 1
   }
  ],
- "generated": "2026-11-14",
+ "generated": "2026-11-15",
  "geo": "US",
- "heat_source": "measured 2026-11-14 (5 pages); no notes",
+ "heat_source": "measured 2026-11-15 (5 pages); no notes",
  "hot_pages": [
   {
-   "n7": 232,
-   "p7": 108,
+   "n7": 1779,
+   "p7": 883,
+   "page": "/future-guide"
+  },
+  {
+   "n7": 253,
+   "p7": 126,
    "page": "/invest"
   },
   {
-   "n7": 224,
-   "p7": 98,
+   "n7": 247,
+   "p7": 109,
    "page": "/earn"
   },
   {
-   "n7": 217,
-   "p7": 99,
+   "n7": 242,
+   "p7": 110,
    "page": "/mentor"
   },
   {
-   "n7": 213,
-   "p7": 100,
-   "page": "/jarvis"
-  },
-  {
-   "n7": 213,
-   "p7": 98,
+   "n7": 234,
+   "p7": 105,
    "page": "/workbench"
   }
  ],
