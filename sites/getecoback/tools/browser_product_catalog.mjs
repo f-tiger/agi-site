@@ -23,7 +23,7 @@ const ownCases=[
  {category:'nass-trockensauger',values:{material:'hazard'},expect:/Keinen gewöhnlichen Haushaltssauger/},
  {category:'bodenstaubsauger',values:{},expect:/55 €.*pro Jahr/s},
  {category:'wasserkocher',values:{cups:'2',millilitres:'300',extra:'100'},expect:/0,7 Liter/},
- {category:'heissluftfritteusen',values:{minutesA:'20',minutesB:'30',temperatureA:'180',temperatureB:'200'},expect:/Zone A nach 10, Zone B nach 0 Minuten/},
+ {category:'heissluftfritteusen',values:{zones:'dual',minutesA:'20',minutesB:'30',temperatureA:'180',temperatureB:'200'},expect:/Zone A nach 10, Zone B nach 0 Minuten/},
  {category:'kontaktgrills',values:{},expect:/freie Breite und Tiefe reichen/},
 ];
 async function resultText(page,category){
@@ -128,6 +128,7 @@ try{
     assert(await form.isVisible());assert(await output.isHidden());
     // Required categorical choices have no invented initial approval.
     if(category==='dampfreiniger')await setValues(form,{approval:'unknown',sensitive:'unknown'});
+    if(category==='heissluftfritteusen')await setValues(form,{zones:'unknown'});
     if(category==='nass-trockensauger')await setValues(form,{material:'unknown'});
     await form.locator('button[type=submit]').click();await resultText(page,category);defaultSubmissions++;
     await form.locator('button[type=reset]').click();assert(await output.isHidden());assert.equal(await output.innerText(),'');
@@ -140,6 +141,12 @@ try{
     if(spec.category==='luftreiniger'){await form.locator('[name=length]').fill('');assert(await page.locator('#pc-tool-luftreiniger [data-category-result]').isHidden(),'Editing inputs must withdraw an old answer');}
     await form.locator('button[type=reset]').click();
    }
+   const air=page.locator('form[data-category-tool="heissluftfritteusen"]');
+   await setValues(air,{zones:'single',minutesA:'20',minutesB:'30',temperatureA:'180',temperatureB:'200'});
+   await air.locator('button[type=submit]').click();assert.match(await resultText(page,'heissluftfritteusen'),/zusammen: 50 Minuten/);
+   await setValues(air,{zones:'unknown'});assert(await page.locator('#pc-tool-heissluftfritteusen [data-category-result]').isHidden());
+   await air.locator('button[type=submit]').click();assert.match(await resultText(page,'heissluftfritteusen'),/Keine Zeitberechnung/);
+   await air.locator('button[type=reset]').click();await air.locator('button[type=submit]').click();assert.equal(await air.evaluate(n=>n.checkValidity()),false);
    const form=page.locator('form[data-category-tool="luftreiniger"]'),output=page.locator('#pc-tool-luftreiniger [data-category-result]');
    for(const invalid of ['', '101']){
     await form.locator('[name=length]').fill(invalid);

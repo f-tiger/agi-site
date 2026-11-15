@@ -103,6 +103,7 @@ def render(data, today=None):
     # Every published product group must have its matching practical check.
     # A missing helper is a build error, never an empty feature placeholder.
     from product_category_tools import render_tool
+    from product_category_comparison import render_comparison
     groups = []
     for category in data['categories']:
         cards = []
@@ -120,6 +121,7 @@ def render(data, today=None):
 <p class="pc-limit"><strong>Vor dem Kauf:</strong> {esc(product['limit'])}</p>
 <p class="pc-source">Quelle: <a href="{esc(product['source'])}" target="_blank" rel="noopener">{esc(product['source_label'])}</a> · geprüft am <time datetime="{esc(product['checked'])}">{date(product['checked']).strftime('%d.%m.%Y')}</time>.</p>
 {merchant}</section>''')
+        comparison = render_comparison(category['id'], data['products'])
         tool = render_tool(category['id'])
         if not isinstance(tool, str) or not tool.strip():
             raise ValueError('Missing category tool: ' + category['id'])
@@ -127,11 +129,12 @@ def render(data, today=None):
 <h2>{esc(category['name'])} <span class="pc-category-count">{len(cards)} Modelle</span></h2>
 <p>{esc(category['intro'])}</p><p class="pc-no-purchase"><strong>Vorhandenes weiter nutzen?</strong> {esc(category['no_purchase'])}</p>
 <p class="pc-buyer-routes"><a href="#modelle-{esc(category['id'])}">Direkt die {len(cards)} Modelle vergleichen ↓</a> <a href="#pc-tool-{esc(category['id'])}">Erst die passende Auswahlhilfe nutzen ↓</a></p>
-{tool}<h3 class="pc-model-heading" id="modelle-{esc(category['id'])}">{esc(category['name'])}: Modelle und Kaufgrenzen</h3><div class="pc-grid">{''.join(cards)}</div></section>''')
+{comparison}{tool}<h3 class="pc-model-heading" id="modelle-{esc(category['id'])}">{esc(category['name'])}: Modelle und Kaufgrenzen</h3><div class="pc-grid">{''.join(cards)}</div></section>''')
     nav = ''.join(f'<a href="#kategorie-{esc(c["id"])}" data-category-link="{esc(c["id"])}">{esc(c["name"])}</a>' for c in data['categories'])
     options = ''.join(f'<option value="{esc(c["id"])}">{esc(c["name"])}</option>' for c in data['categories'])
     css_version = hashlib.sha256((ROOT / 'site/assets/product-catalog.css').read_bytes()).hexdigest()[:12]
     script_version = hashlib.sha256((ROOT / 'site/assets/product-catalog.mjs').read_bytes()).hexdigest()[:12]
+    tool_version = hashlib.sha256((ROOT / 'site/assets/product-category-tools.mjs').read_bytes()).hexdigest()[:12]
     count = len(data['products'])
     published, modified = data['published'], data['modified']
     graph = {'@context': 'https://schema.org', '@type': 'CollectionPage', 'name': TITLE,
@@ -146,7 +149,7 @@ def render(data, today=None):
 <title>{TITLE}</title><meta name="description" content="{DESCRIPTION}"><link rel="canonical" href="{CANONICAL}">
 <link rel="alternate" type="text/markdown" href="https://getecoback.com/produkte.md"><link rel="alternate" hreflang="de" href="{CANONICAL}">
 <meta property="og:type" content="website"><meta property="og:title" content="{TITLE}"><meta property="og:description" content="{DESCRIPTION}"><meta property="og:url" content="{CANONICAL}">
-<link rel="stylesheet" href="/assets/product-catalog.css?v={css_version}"><script type="module" src="/assets/product-catalog.mjs?v={script_version}"></script><script type="module" src="/assets/product-category-tools.mjs"></script>
+<link rel="stylesheet" href="/assets/product-catalog.css?v={css_version}"><script type="module" src="/assets/product-catalog.mjs?v={script_version}"></script><script type="module" src="/assets/product-category-tools.mjs?v={tool_version}"></script>
 <script type="application/ld+json">{structured}</script></head><body>
 <main class="pc-page"><article data-product-directory><header class="pc-header"><p><a href="/">EcoBack</a> / Produkte</p>
 <h1>Haushaltsgeräte: konkrete Modelle für deine Aufgabe</h1><p class="pc-lead">{count} konkrete Modelle in {len(data['categories'])} Produktgruppen. Vergleiche Einsatz, genaue Variante und Grenzen anhand der Herstellerquellen — ohne Testnoten oder Preisrangliste.</p>

@@ -25,6 +25,20 @@ def fixture():
 
 
 class CatalogTest(unittest.TestCase):
+    def test_final_airfryer_evidence_survives_all_generators(self):
+        from html import unescape
+        html=(C.ROOT/'site/produkte.html').read_text()
+        md=(C.ROOT/'site/produkte.md').read_text()
+        self.assertIn('id="airfryer-choice"',html)
+        self.assertIn('Eine Zone: A danach B',md)
+        for p in C.load()['products']:
+            if p['category']=='heissluftfritteusen':
+                for field in ['name','facts','limit','source']:
+                    self.assertIn(p[field],unescape(html))
+                    self.assertIn(p[field],md)
+        self.assertIn('Keine Zeitberechnung',md.replace('keine Zeitberechnung','Keine Zeitberechnung'))
+        self.assertRegex(html,r'product-category-tools\.mjs\?v=[a-f0-9]{12}')
+
     def test_freshness_boundaries_keep_facts_but_withdraw_merchant_action(self):
         data=fixture(); p=data['products'][0]
         for day,allowed in [(dt.date(2026,11,12),False),(dt.date(2026,11,13),True),(dt.date(2027,2,11),True),(dt.date(2027,2,12),False)]:
