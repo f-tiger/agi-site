@@ -28,8 +28,9 @@ test('shopping clicks send only canonical route, fixed action and merchant host 
   for (const lang of ['', 'de/', 'zh/']) for (const slug of ['', 'shop', 'shop/display-cases', 'shop/storage-transport', 'shop/plush-display', 'shop/collector-gifts']) {
     const path = '/' + lang + slug;
     const ui = browser({path});
-    const merchant = lang === 'de/' ? 'https://www.amazon.de/s?k=PRIVATE&tag=getecoback-21' : undefined;
-    assert.deepEqual(affiliatePayload(ui.event(merchant), ui.runtime), {p: path, e: 'affiliate_click', r: lang === 'de/' ? 'https://amazon.de' : 'https://amazon.com'});
+    const germanMarket = path === '/' || lang === 'de/';
+    const merchant = germanMarket ? 'https://www.amazon.de/s?k=PRIVATE&tag=getecoback-21' : undefined;
+    assert.deepEqual(affiliatePayload(ui.event(merchant), ui.runtime), {p: path, e: 'affiliate_click', r: germanMarket ? 'https://amazon.de' : 'https://amazon.com'});
   }
 });
 

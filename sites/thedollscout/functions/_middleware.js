@@ -1,3 +1,5 @@
+import {homeLanguageRedirect} from './home-language.mjs';
+import {pageLanguage} from '../collector-assets/site-locale.mjs';
 import {accountRoute,addAccountEntry} from '../../../tools/fleet-account/edge.mjs';
 import {isAnalyticsPath,protectAnalyticsResponse} from '../../../tools/fleet-analytics/edge.mjs';
 import {isRetiredPath} from './retired-paths.mjs';
@@ -51,6 +53,7 @@ function botOf(ua) {
 
 async function handleRequest(ctx) {
   const canonicalRedirect=canonicalHostRedirect(ctx.request);if(canonicalRedirect)return canonicalRedirect;
+  const languageRedirect=homeLanguageRedirect(ctx.request);if(languageRedirect)return languageRedirect;
   const account=await accountRoute(ctx.request,ctx.env);if(account)return account;
   if(isAnalyticsPath(new URL(ctx.request.url).pathname))return protectAnalyticsResponse(await ctx.next(),ctx.request.method);
   if(memberPage(new URL(ctx.request.url).pathname))return secureMemberPage(await ctx.next());
@@ -82,7 +85,7 @@ async function handleRequest(ctx) {
     const country = (ctx.request.headers.get('cf-ipcountry') || '').slice(0, 2);
     ctx.waitUntil(
       ctx.env.HITS.prepare('INSERT INTO hits (d, path, lang, country, ref, ev) VALUES (?,?,?,?,?,?)')
-        .bind(d, url.pathname.slice(0, 120), (/^\/(de|zh|th)(\/|$)/.exec(url.pathname) || [,'en'])[1], country, bot, 'bot')
+        .bind(d, url.pathname.slice(0, 120), pageLanguage(url.pathname), country, bot, 'bot')
         .run().catch(() => {})
     );
   } catch (e) { /* never let logging surface as a page error */ }

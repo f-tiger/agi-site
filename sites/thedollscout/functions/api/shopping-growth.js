@@ -1,7 +1,7 @@
 import {cachedAggregate} from '../../lib/aggregate-cache.js';
 import {findDateIndex, resultRows, usesDateRangeIndex} from './collector-growth.js';
 import {databaseFailure} from './doc-events.js';
-import {SHOPPING_PATHS, SHOPPING_MERCHANTS, SHOPPING_TUPLES, decodeShoppingRef, shoppingTupleAllowed} from '../../collector-assets/shopping-contract.mjs';
+import {SHOPPING_PATHS, SHOPPING_MERCHANTS, SHOPPING_TUPLES, decodeShoppingRef, readShoppingTupleAllowed, ROOT_MARKET_TRANSITION} from '../../collector-assets/shopping-contract.mjs';
 
 // The buying-guide release is 2026-11-07 UTC; never backfill its partial day.
 export const FIRST_FULL_UTC_DAY = '2026-11-08';
@@ -68,7 +68,7 @@ export function aggregateShopping(rows, window) {
     const actionWithoutItem = ['', 'shopping_compare'].includes(row.ev);
     const legacy = row.ev === 'affiliate_click' && row.item === 'unknown' && row.placement === 'unknown' && ['amazon.com', 'amazon.de', 'unknown'].includes(row.merchant);
     if (actionWithoutItem ? row.merchant !== '' || row.item !== '' || row.placement !== '' :
-        !legacy && !shoppingTupleAllowed({path: row.path, event: row.ev, merchant: row.merchant, item: row.item, placement: row.placement})) throw Error('Invalid shopping aggregate');
+        !legacy && !readShoppingTupleAllowed({path: row.path, event: row.ev, merchant: row.merchant, item: row.item, placement: row.placement})) throw Error('Invalid shopping aggregate');
     const key = JSON.stringify([row.d, row.path, row.country_code, row.ev, row.merchant, row.item, row.placement]);
     if (seen.has(key)) throw Error('Duplicate shopping aggregate');
     seen.add(key);
@@ -98,8 +98,8 @@ export async function onRequestGet(ctx) {
       const query = await shoppingQueryWithPlan(read, bounds);
       if (!query) return json({ok: false, error: 'missing_date_index', reason: 'schema', counts: null}, 503);
       const base = {ok: true, schema_version: SCHEMA_VERSION, ...window, generated: new Date().toISOString(), cache_seconds: CACHE_SECONDS,
-        unit: 'anonymous_events_not_users', scope: {paths: SHOPPING_PATHS, merchants: MERCHANTS},
-        notes: 'Pageviews, affiliate clicks, official product/source exits and completed local comparisons are separate stored anonymous actions, not unique people, sessions, purchases, conversion or revenue. Official exits include the Japan/global My Bestie specification source and do not establish local fulfillment or purchase intent. Comparison events contain no selected item list. Country is an approximate request-country hint, not language, residence or shipping destination. Legacy clicks have unknown item/placement; no referrer or product URL is returned. QA, crawlers and declared privacy opt-outs are excluded at collection. The partial release day and today are excluded. Complete-day coverage describes eligible dates, not proof of uninterrupted collection. Zero means no stored eligible actions in a successfully queried window; silent write failures and outages cannot be reconstructed.'};
+        unit: 'anonymous_events_not_users', root_market_transition: ROOT_MARKET_TRANSITION, scope: {paths: SHOPPING_PATHS, merchants: MERCHANTS},
+        notes: 'Pageviews, affiliate clicks, official product/source exits and completed local comparisons are separate stored anonymous actions, not unique people, sessions, purchases, conversion or revenue. Official exits include the Japan/global My Bestie specification source and do not establish local fulfillment or purchase intent. Comparison events contain no selected item list. Country is an approximate request-country hint, not language, residence or shipping destination. Legacy clicks have unknown item/placement; no referrer or product URL is returned. QA, crawlers and declared privacy opt-outs are excluded at collection. The root path changed from US/English to German shopping context on 2026-11-15; earlier stored rows retain their original language and fixed labels, so this path is not a homogeneous language cohort across the change. The new /en/ homepage is outside this historical 18-path aggregate. The partial release day and today are excluded. Complete-day coverage describes eligible dates, not proof of uninterrupted collection. Zero means no stored eligible actions in a successfully queried window; silent write failures and outages cannot be reconstructed.'};
       if (!window.coveredDays) return json({...base, counts: null, daily: [], query_rows_read: 0});
       const result = await read(query, bounds), rows = resultRows(result);
       if (rows.length > 10000) return json({ok: false, error: 'aggregate_capacity', counts: null}, 503);

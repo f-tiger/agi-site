@@ -8,9 +8,10 @@
 // constant. Derived from the path, exactly like the URL layout itself.
 import {COLLECTOR_EVENTS, collectorEventAllowed, measurableRequest, qaURL} from '../../lib/collector-measurement.js';
 import {shoppingMeasurement} from '../../collector-assets/shopping-contract.mjs';
+import {pageLanguage} from '../../collector-assets/site-locale.mjs';
 export function langOf(path) {
-  const m = /^\/(de|zh|th)(\/|$)/.exec(path || '');
-  return m ? m[1] : 'en';
+  // Preserve the older Thai path label; the new default only changes new root rows.
+  return /^\/th(?:\/|$)/.test(path || '') ? 'th' : pageLanguage(path);
 }
 
 export async function onRequestPost(ctx) {
