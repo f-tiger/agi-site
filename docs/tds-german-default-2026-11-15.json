@@ -2,7 +2,7 @@
   "date": "2026-11-15",
   "site": "tds",
   "owner_request": "首页默认是德语，小语种切入，避免无流量",
-  "status": "validated_recovery_pending_release",
+  "status": "live_verified_postdeploy_probe_recovery_pending",
   "prompt_passes": [
     {
       "round": 1,
@@ -89,7 +89,7 @@
     "new_window_reset": false
   },
   "validation": {
-    "german_home_tests": 7,
+    "german_home_tests": 8,
     "german_measurement_tests": 6,
     "required_collector_test_files_passed": 22,
     "full_build": {
@@ -131,7 +131,8 @@
     "ga4_backend_receipt": "not-tested",
     "traffic_revenue_or_search_lift": "unknown",
     "legacy_tool_test_files_passed": 7,
-    "legacy_generator_integration": "Actual workflow checksum→real generator→checksum sequence passes in an isolated fixture; three homepage byte sequences retained, six old tool pages emitted at existing URLs, deleted de/index.html not required or recreated."
+    "legacy_generator_integration": "Actual workflow checksum→real generator→checksum sequence passes in an isolated fixture; three homepage byte sequences retained, six old tool pages emitted at existing URLs, deleted de/index.html not required or recreated.",
+    "postdeploy_probe_integration": "Actual200-only path list contains all three canonical homes and no intentional redirects; actual full post-deploy shell check passes against livef2dacd3 in the existing read-only mode."
   },
   "release": null,
   "next_action": "After live verification, use available genuine Germany/country/language/landing evidence and mature Amazon.de reports within existing cadence. Compare before/after only across actual exposure dates; preserve Nov22 review and $100 total-site monthly revenue goal.",
@@ -144,5 +145,36 @@
     "production_changed": false,
     "fix": "Use root/en/zh canonical home files in the workflow checksum; make legacy generator use HOME_PATHS for home preservation; update dormant legacy text-index file list; add a real workflow-chain integration regression.",
     "indexnow_catchup_required": "Successful recovery push changes scripts only. After exact live verification, notify the actual content diff from18cd45c31afdd2fbfdf1deaad6a41d318aeab84f to the successful deployed recovery SHA via existing IndexNow runner; accepted is not indexed."
+  },
+  "intermediate_deployment": {
+    "commit": "f2dacd3272b95156d06174d8dceb30ae8c97412b",
+    "recovery_pr": "https://github.com/f-tiger/agi-site/pull/332",
+    "run": "https://github.com/f-tiger/agi-site/actions/runs/43720589807",
+    "upload": "success",
+    "ga4_live_gate": "success",
+    "collector_live_gate": "198pages passed",
+    "custom_live_verification": {
+      "pages": 33,
+      "alias_get_head_checks": 12,
+      "asset_bytes_matched": 6,
+      "ga4_public_routes": 341,
+      "business_events": 0,
+      "api_requests": 0,
+      "merchant_visits": 0
+    },
+    "postdeploy_result": "Existing200/no-redirect list still contained old/de/home. Expected308 to Germanroot was misclassified; product routes and content were live and independently verified.",
+    "fix": "Replace/de/with/en/in200-only probe list; separately assert six canonical alias redirects and all three HTML languages; add actual workflow-vs-routing regression. No product UI/runtime changes."
+  },
+  "indexnow_content_notification": {
+    "method": "manual catch-up using existing range-guarded runner after exact public verification",
+    "before": "18cd45c31afdd2fbfdf1deaad6a41d318aeab84f",
+    "deployed_content_sha": "f2dacd3272b95156d06174d8dceb30ae8c97412b",
+    "submitted_on": "2026-11-15",
+    "changed_urls": 200,
+    "http_status": 200,
+    "accepted": true,
+    "indexing": "unknown",
+    "ai_citations": "unknown",
+    "repeat_required_for_probe_only_fix": false
   }
 }

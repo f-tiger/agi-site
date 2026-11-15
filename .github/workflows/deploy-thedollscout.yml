@@ -380,12 +380,26 @@ jobs:
           else
             echo "www canonical-host redirect ok: $www_location"
           fi
-          for p in / /collection-tracker /display-calculator /collector-guide /de/collection-tracker /de/display-calculator /de/collector-guide /js/collector-core.js /js/collector-tools.js /css/collector.css /rarity /fake-check /where-to-buy /how-blind-boxes-work /glossary /start /psychology /checker /finder /lookup /zh/ /th/ /de/ /de/rarity /de/fake-check /de/where-to-buy /de/how-blind-boxes-work /de/glossary /de/start /de/psychology /de/checker /de/finder /de/lookup /data/ /robots.txt /sitemap.xml /llms.txt /llms-full.txt /img/og.png /data/rarity-odds.json /data/labubu-glossary.json /data/labubu-fake-signals.json /data/pull-math.json /.well-known/mcp.json /legal/affiliate-disclosure /legal/privacy /odds/ /odds/one-box /odds/six-boxes /odds/twelve-boxes-full-case /odds/twenty-four-boxes /odds/seventy-two-boxes /de/odds/ /de/odds/one-box /de/odds/six-boxes /de/odds/twelve-boxes-full-case /de/odds/twenty-four-boxes /de/odds/seventy-two-boxes /0252657e77641154c50b39045dc829f8.txt; do
+          for p in / /collection-tracker /display-calculator /collector-guide /de/collection-tracker /de/display-calculator /de/collector-guide /js/collector-core.js /js/collector-tools.js /css/collector.css /rarity /fake-check /where-to-buy /how-blind-boxes-work /glossary /start /psychology /checker /finder /lookup /zh/ /th/ /en/ /de/rarity /de/fake-check /de/where-to-buy /de/how-blind-boxes-work /de/glossary /de/start /de/psychology /de/checker /de/finder /de/lookup /data/ /robots.txt /sitemap.xml /llms.txt /llms-full.txt /img/og.png /data/rarity-odds.json /data/labubu-glossary.json /data/labubu-fake-signals.json /data/pull-math.json /.well-known/mcp.json /legal/affiliate-disclosure /legal/privacy /odds/ /odds/one-box /odds/six-boxes /odds/twelve-boxes-full-case /odds/twenty-four-boxes /odds/seventy-two-boxes /de/odds/ /de/odds/one-box /de/odds/six-boxes /de/odds/twelve-boxes-full-case /de/odds/twenty-four-boxes /de/odds/seventy-two-boxes /0252657e77641154c50b39045dc829f8.txt; do
             code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 20 "https://thedollscout.com$p")
             redirs=$(curl -s -o /dev/null -w "%{num_redirects}" -L --max-redirs 5 --max-time 20 "https://thedollscout.com$p" || echo 99)
             echo "$p -> HTTP $code, redirects $redirs"
             [ "$code" = "200" ] || { echo "::error::$p returned $code (expected 200)"; fail=1; }
             [ "$redirs" = "0" ] || { echo "::error::$p redirected $redirs times (expected 0)"; fail=1; }
+          done
+          # Home aliases are intentional308s; never put them in the200-only list.
+          for alias in /de /de/ /de/index.html /index.html /en /en/index.html; do
+            target=/
+            case "$alias" in /en|/en/index.html) target=/en/ ;; esac
+            result=$(curl -s -o /dev/null -w "%{http_code} %{redirect_url}" --max-time 20 -H 'x-probe: home-language-check' "https://thedollscout.com${alias}?ci=1")
+            expected="308 https://thedollscout.com${target}?ci=1"
+            [ "$result" = "$expected" ] || { echo "::error::homepage alias $alias did not preserve its canonical target"; fail=1; }
+          done
+          for home in / /en/ /zh/; do
+            expected=de
+            case "$home" in /en/) expected=en ;; /zh/) expected=zh-Hans ;; esac
+            html=$(curl -fsS --max-time 20 -H 'x-probe: home-language-check' "https://thedollscout.com${home}?ci=1")
+            [[ "$html" == *"<html lang=\"$expected\">"* ]] || { echo "::error::homepage $home has the wrong language"; fail=1; }
           done
           # 旧页断言:middleware 对退役路径回 410；404/410 均表示内容已移除；
           # 边缘缓存抖动(run #21/#25 实测 /scam-check 忽 200 忽 404)给一次 15s
