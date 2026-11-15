@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-14",
+ "fetched": "2026-11-15",
  "geo": "US",
  "seeds": {
   "mattress fiberglass": {
@@ -51,12 +51,16 @@
   "furniture scam": {
    "rising": [
     {
+     "q": "bobs furniture",
+     "v": 228400
+    },
+    {
      "q": "ashley furniture",
-     "v": 80
+     "v": 190
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-11-04"
+   "fetched": "2026-11-15"
   },
   "counterfeit makeup": {
    "auto": [
@@ -68,7 +72,7 @@
    ],
    "rising": [],
    "source": "autocomplete-diff",
-   "fetched": "2026-11-04"
+   "fetched": "2026-11-15"
   }
  }
 }
