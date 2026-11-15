@@ -1,7 +1,7 @@
 {
-  "lastRun": "2026-11-14T07:00:01.607Z",
+  "lastRun": "2026-11-15T07:07:09.778Z",
   "status": "degraded",
-  "checkedSources": 7,
+  "checkedSources": 6,
   "queue": [
     {
       "caseId": "photo-ai",
@@ -67,25 +67,25 @@
       "caseId": "formula-bot",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.starterstory.com/stories/excelformulabot",
-      "lastChecked": "2026-11-01T06:48:07.712Z"
+      "lastChecked": "2026-11-15T07:07:09.778Z"
     },
     {
       "caseId": "jenni-ai",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.linkedin.com/posts/davidjpark96_we-had-10-years-of-failure-before-any-semblance-activity-7205340923675746304-xIK0",
-      "lastChecked": "2026-11-02T06:46:39.808Z"
+      "lastChecked": "2026-11-15T07:07:09.778Z"
     },
     {
       "caseId": "customgpt",
       "reason": "source-unreachable",
       "sourceUrl": "https://customgpt.ai/customers/",
-      "lastChecked": "2026-11-02T06:46:39.808Z"
+      "lastChecked": "2026-11-15T07:07:09.778Z"
     },
     {
       "caseId": "julius-ai",
       "reason": "source-unreachable",
       "sourceUrl": "https://julius.ai/home/ai-powered-business-intelligence",
-      "lastChecked": "2026-11-02T06:46:39.808Z"
+      "lastChecked": "2026-11-15T07:07:09.778Z"
     },
     {
       "caseId": "chatbase",
@@ -480,10 +480,10 @@
     "docsbot|https://docsbot.ai/about": {
       "caseId": "docsbot",
       "sourceUrl": "https://docsbot.ai/about",
-      "lastAttempt": "2026-11-01T06:48:07.712Z",
+      "lastAttempt": "2026-11-15T07:07:09.778Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-11-01T06:48:07.712Z",
+      "lastSuccess": "2026-11-15T07:07:09.778Z",
       "lastHash": "2fa521664baeae2223b7eee6803a41e54e192382e6926a794ebc04c3fdd7a3e7",
       "hash": "2fa521664baeae2223b7eee6803a41e54e192382e6926a794ebc04c3fdd7a3e7",
       "simhash": "b2f4825e3cfe25af",
@@ -493,7 +493,7 @@
     "formula-bot|https://www.starterstory.com/stories/excelformulabot": {
       "caseId": "formula-bot",
       "sourceUrl": "https://www.starterstory.com/stories/excelformulabot",
-      "lastAttempt": "2026-11-01T06:48:07.712Z",
+      "lastAttempt": "2026-11-15T07:07:09.778Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -501,11 +501,11 @@
     "formula-bot|https://n8n.io/case-studies/formula-bot/": {
       "caseId": "formula-bot",
       "sourceUrl": "https://n8n.io/case-studies/formula-bot/",
-      "lastAttempt": "2026-11-01T06:48:07.712Z",
-      "status": "baseline",
+      "lastAttempt": "2026-11-15T07:07:09.778Z",
+      "status": "available",
       "http": 200,
       "consecutiveChange": 0,
-      "lastSuccess": "2026-11-01T06:48:07.712Z",
+      "lastSuccess": "2026-11-15T07:07:09.778Z",
       "lastHash": "055a6a8f2e346dc3f1beb0304b64a2559449c5073605dd8276fa31db1057277a",
       "hash": "055a6a8f2e346dc3f1beb0304b64a2559449c5073605dd8276fa31db1057277a",
       "simhash": "3d56915f8cdcf79d",
@@ -514,7 +514,7 @@
     "jenni-ai|https://www.linkedin.com/posts/davidjpark96_we-had-10-years-of-failure-before-any-semblance-activity-7205340923675746304-xIK0": {
       "caseId": "jenni-ai",
       "sourceUrl": "https://www.linkedin.com/posts/davidjpark96_we-had-10-years-of-failure-before-any-semblance-activity-7205340923675746304-xIK0",
-      "lastAttempt": "2026-11-02T06:46:39.808Z",
+      "lastAttempt": "2026-11-15T07:07:09.778Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -522,7 +522,7 @@
     "customgpt|https://customgpt.ai/customers/": {
       "caseId": "customgpt",
       "sourceUrl": "https://customgpt.ai/customers/",
-      "lastAttempt": "2026-11-02T06:46:39.808Z",
+      "lastAttempt": "2026-11-15T07:07:09.778Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -530,7 +530,7 @@
     "julius-ai|https://julius.ai/home/ai-powered-business-intelligence": {
       "caseId": "julius-ai",
       "sourceUrl": "https://julius.ai/home/ai-powered-business-intelligence",
-      "lastAttempt": "2026-11-02T06:46:39.808Z",
+      "lastAttempt": "2026-11-15T07:07:09.778Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1159,36 +1159,26 @@
       "consecutiveChange": 0
     }
   },
-  "cursor": 9,
+  "cursor": 14,
   "errors": [
     {
-      "caseId": "pdf-ai",
-      "sourceUrl": "https://www.linkedin.com/posts/damengchen_pdfai-crossed-60k-in-revenue-in-november-activity-7136059894838820864-53OW",
+      "caseId": "formula-bot",
+      "sourceUrl": "https://www.starterstory.com/stories/excelformulabot",
       "reason": "body-limit"
     },
     {
-      "caseId": "sitegpt",
-      "sourceUrl": "https://www.linkedin.com/posts/pbteja1998_we-just-crossed-500k-in-lifetime-revenue-activity-7397602042841686016-1OWJ",
+      "caseId": "jenni-ai",
+      "sourceUrl": "https://www.linkedin.com/posts/davidjpark96_we-had-10-years-of-failure-before-any-semblance-activity-7205340923675746304-xIK0",
       "reason": "body-limit"
     },
     {
-      "caseId": "audiopen",
-      "sourceUrl": "https://www.indiehackers.com/post/tech/building-an-ai-tool-in-a-half-day-hackathon-and-hitting-20k-mo-BCloDTDRfjuip0pDghap",
+      "caseId": "customgpt",
+      "sourceUrl": "https://customgpt.ai/customers/",
       "reason": "body-limit"
     },
     {
-      "caseId": "audiopen",
-      "sourceUrl": "https://www.audiopen.ai/",
-      "reason": "body-limit"
-    },
-    {
-      "caseId": "my-askai",
-      "sourceUrl": "https://www.indiehackers.com/post/tech/bootstrapping-to-40k-mrr-after-his-vc-backed-startup-failed-LF1CwRs1vL3oVLcuoIoE",
-      "reason": "body-limit"
-    },
-    {
-      "caseId": "castmagic",
-      "sourceUrl": "https://www.linkedin.com/posts/blainebolus_kicking-off-24-with-a-big-milestone-1m-activity-7148357869464154112-U4ic",
+      "caseId": "julius-ai",
+      "sourceUrl": "https://julius.ai/home/ai-powered-business-intelligence",
       "reason": "body-limit"
     }
   ]

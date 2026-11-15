@@ -1,19 +1,19 @@
 {
- "generated": "2026-11-14",
+ "generated": "2026-11-15",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "leonardo",
-  "lovable",
-  "luma",
-  "marscode",
-  "motiff",
-  "n8n",
-  "napkin",
-  "notebooklm"
+  "notion-ai",
+  "nvidia-nim",
+  "ollama",
+  "opusclip",
+  "perplexity",
+  "phind",
+  "pika",
+  "pixlr"
  ],
- "cursor": "notebooklm",
+ "cursor": "pixlr",
  "summary": {
   "ready": 43,
   "empty": 35,
@@ -2146,14 +2146,14 @@
    "name": "Notion AI",
    "cat": "office",
    "reach": 0,
-   "probed": "2026-11-06",
+   "probed": "2026-11-15",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://www.notion.so/pricing",
      "status": 200,
-     "bytes": 392881,
+     "bytes": 392958,
      "tokens": 18
     }
    ],
@@ -2168,26 +2168,26 @@
    "name": "NVIDIA NIM",
    "cat": "api",
    "reach": 0,
-   "probed": "2026-11-06",
+   "probed": "2026-11-15",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://build.nvidia.com/pricing",
      "status": 200,
-     "bytes": 38512,
+     "bytes": 39447,
      "tokens": 0
     },
     {
      "url": "https://build.nvidia.com/price",
      "status": 200,
-     "bytes": 38504,
+     "bytes": 39439,
      "tokens": 0
     },
     {
      "url": "https://build.nvidia.com/plans",
      "status": 200,
-     "bytes": 38504,
+     "bytes": 39439,
      "tokens": 0
     }
    ],
@@ -2202,20 +2202,20 @@
    "name": "Ollama",
    "cat": "local",
    "reach": 0,
-   "probed": "2026-11-06",
+   "probed": "2026-11-15",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://ollama.com/pricing",
      "status": 200,
-     "bytes": 51902,
-     "tokens": 98
+     "bytes": 50958,
+     "tokens": 94
     }
    ],
    "best": {
     "url": "https://ollama.com/pricing",
-    "tokens": 98,
+    "tokens": 94,
     "excerpt": "lus: $300 of usage credits per month Early access to the newest models 10 concurrent requests Get Max Team Early access $500 / mo. For teams scaling with open models Everything in Pro, plus: Unlimited users $1,000 of usage credits per month, shared across the team Centralized billing and administration Priority support Shared projects, skills, and instructions (coming soon) Get Team Enterprise Custom For larger teams with volume usage pricing Everything in Team, plus: Model access controls Limit team access to specific models Set cost budgets for users and API keys Private Slack channel with dedicated support Custom security questionnaires Contact us Model pricing Pay as you go with usage cr"
    }
   },
@@ -2224,21 +2224,21 @@
    "name": "OpusClip",
    "cat": "video",
    "reach": 0,
-   "probed": "2026-11-07",
+   "probed": "2026-11-15",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://help.opus.pro/docs/article/plans-and-credits",
      "status": 200,
-     "bytes": 223876,
+     "bytes": 214648,
      "tokens": 8
     }
    ],
    "best": {
     "url": "https://help.opus.pro/docs/article/plans-and-credits",
     "tokens": 8,
-    "excerpt": "is free forever! You can take advantage of the following benefits without needing to pay such as: 60 processing minutes per month AI Captions with emojis and keyword highlighter Importing video sources from YouTube and local files 1 Brand Template ​ Starter Our Starter Plan is our mid level plan just above the Free Forever Plan but below the Pro Plan. With the Starter Plan you can enjoy benefits such as: 150 processing minutes per month Faster processing time compared to Free and Trial users Additional importing video sources from Google Drive, Vimeo, Zoom, Rumble, StreamYard Editing capability Social media posting to YouTube, TikTok, and Instagram And much more! ​ Pro Our Pro Plan is our to"
+    "excerpt": "is free forever! You can take advantage of the following benefits without needing to pay such as: 60 processing minutes per month AI Captions with emojis and keyword highlighter Importing video sources from YouTube and local files 1 Brand Template Starter Our Starter Plan is our mid level plan just above the Free Forever Plan but below the Pro Plan. With the Starter Plan you can enjoy benefits such as: 150 processing minutes per month Faster processing time compared to Free and Trial users Additional importing video sources from Google Drive, Vimeo, Zoom, Rumble, StreamYard Editing capability Social media posting to YouTube, TikTok, and Instagram And much more! Pro Our Pro Plan is our top ti"
    }
   },
   "perplexity": {
@@ -2246,7 +2246,7 @@
    "name": "Perplexity",
    "cat": "search",
    "reach": 0,
-   "probed": "2026-11-07",
+   "probed": "2026-11-15",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -2276,7 +2276,7 @@
    "name": "Phind",
    "cat": "search",
    "reach": 0,
-   "probed": "2026-11-07",
+   "probed": "2026-11-15",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -2306,20 +2306,20 @@
    "name": "Pika",
    "cat": "video",
    "reach": 0,
-   "probed": "2026-11-07",
+   "probed": "2026-11-15",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://pika.art/pricing",
      "status": 200,
-     "bytes": 347535,
-     "tokens": 75
+     "bytes": 352117,
+     "tokens": 78
     }
    ],
    "best": {
     "url": "https://pika.art/pricing",
-    "tokens": 75,
+    "tokens": 78,
     "excerpt": "e on pika.art and MCP on pika.art/mcp. They can’t be used with the API, iOS app, or old.pika.art. 1,500 credits Buy for $25 12 clips Seedance 2.5 214 images Nano Banana 2 3,000 credits Buy for $50 24 clips Seedance 2.5 428 images Nano Banana 2 6,000 credits Popular Buy for $100 49 clips Seedance 2.5 857 images Nano Banana 2 12,000 credits Buy for $200 98 clips Seedance 2.5 1.7k images Nano Banana 2 30,000 credits Buy for $500 245 clips Seedance 2.5 4.3k images Nano Banana 2 66,000 credits +10% Buy for $1,000 540 clips Seedance 2.5 9.4k images Nano Banana 2 One-time top up 60 credits per $1 on every plan. Buy once, create whenever. Credit pack amount 0 100 25 50 100 200 500 1,000 $ USD 6,000 "
    }
   },
@@ -2328,14 +2328,14 @@
    "name": "Pixlr",
    "cat": "image",
    "reach": 0,
-   "probed": "2026-11-07",
+   "probed": "2026-11-15",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://pixlr.com/pricing",
      "status": 200,
-     "bytes": 380812,
+     "bytes": 382801,
      "tokens": 18
     }
    ],

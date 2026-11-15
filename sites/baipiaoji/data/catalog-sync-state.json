@@ -1,19 +1,9 @@
 {
  "version": 1,
  "github": {
-  "queryIndex": 18,
-  "page": 2,
+  "queryIndex": 0,
+  "page": 3,
   "pending": [
-   {
-    "repo": "simular-ai/Agent-S",
-    "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "The-Pocket/PocketFlow",
-    "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
    {
     "repo": "Marker-Inc-Korea/AutoRAG",
     "topic": "agents",
@@ -80,16 +70,6 @@
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
-    "repo": "ferrislucas/promptr",
-    "topic": "coding",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "OleksandrChekhovskyi/hax",
-    "topic": "coding",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
     "repo": "riponcm/projectmem",
     "topic": "coding",
     "foundAt": "2026-10-04T06:17:42.048Z"
@@ -152,11 +132,6 @@
    {
     "repo": "yanliudesign/mono-color-skill",
     "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "yanshengjia/ml-road",
-    "topic": "audio",
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
@@ -492,11 +467,6 @@
    {
     "repo": "trustgraph-ai/trustgraph",
     "topic": "agents",
-    "foundAt": "2026-10-06T06:50:25.349Z"
-   },
-   {
-    "repo": "DenisovAV/flutter_edge_ai",
-    "topic": "knowledge",
     "foundAt": "2026-10-06T06:50:25.349Z"
    },
    {
@@ -875,11 +845,6 @@
     "foundAt": "2026-10-09T06:38:33.001Z"
    },
    {
-    "repo": "jofizcd/Soul-of-Waifu",
-    "topic": "local",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
     "repo": "pguso/agents-from-scratch",
     "topic": "agents",
     "foundAt": "2026-10-09T06:38:33.001Z"
@@ -960,11 +925,6 @@
     "foundAt": "2026-10-09T06:38:33.001Z"
    },
    {
-    "repo": "robocorp/rpaframework",
-    "topic": "documents",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
     "repo": "liustack/modlens",
     "topic": "coding",
     "foundAt": "2026-10-09T06:38:33.001Z"
@@ -1002,11 +962,6 @@
    {
     "repo": "agent-sh/agentsys",
     "topic": "coding",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
-    "repo": "carapace-sh/carapace-bin",
-    "topic": "everyday",
     "foundAt": "2026-10-09T06:38:33.001Z"
    },
    {
@@ -1363,11 +1318,6 @@
     "repo": "pluja/whishper",
     "topic": "audio",
     "foundAt": "2026-10-17T04:57:48.620Z"
-   },
-   {
-    "repo": "OpenRLHF/OpenRLHF",
-    "topic": "ai",
-    "foundAt": "2026-10-18T05:05:17.089Z"
    },
    {
     "repo": "edenfunf/reelmimic",
@@ -2925,11 +2875,6 @@
     "foundAt": "2026-11-13T07:10:31.167Z"
    },
    {
-    "repo": "santifer/cv-santiago",
-    "topic": "chat",
-    "foundAt": "2026-11-13T07:10:31.167Z"
-   },
-   {
     "repo": "SimonSchubert/Kai",
     "topic": "chat",
     "foundAt": "2026-11-13T07:10:31.167Z"
@@ -3003,6 +2948,61 @@
     "repo": "ahmadrosid/nakama",
     "topic": "agents",
     "foundAt": "2026-11-14T06:58:47.664Z"
+   },
+   {
+    "repo": "SynaLinks/synalinks-skills",
+    "topic": "ai",
+    "foundAt": "2026-11-15T07:06:00.331Z"
+   },
+   {
+    "repo": "MMMU-Benchmark/MMMU",
+    "topic": "ai",
+    "foundAt": "2026-11-15T07:06:00.331Z"
+   },
+   {
+    "repo": "open-compass/VLMEvalKit",
+    "topic": "ai",
+    "foundAt": "2026-11-15T07:06:00.331Z"
+   },
+   {
+    "repo": "OmniJev/Flide",
+    "topic": "agents",
+    "foundAt": "2026-11-15T07:06:00.331Z"
+   },
+   {
+    "repo": "brontoguana/krasis",
+    "topic": "local",
+    "foundAt": "2026-11-15T07:06:00.331Z"
+   },
+   {
+    "repo": "sysprog21/zhtw-mcp",
+    "topic": "coding",
+    "foundAt": "2026-11-15T07:06:00.331Z"
+   },
+   {
+    "repo": "EvolvingLMMs-Lab/NEO",
+    "topic": "ai",
+    "foundAt": "2026-11-15T07:06:00.331Z"
+   },
+   {
+    "repo": "open-thought/reasoning-gym",
+    "topic": "ai",
+    "foundAt": "2026-11-15T07:06:00.331Z"
+   },
+   {
+    "repo": "Sylinko/Everywhere",
+    "topic": "agents",
+    "foundAt": "2026-11-15T07:06:00.331Z"
+   },
+   {
+    "repo": "udecode/plate",
+    "topic": "agents",
+    "foundAt": "2026-11-15T07:06:00.331Z"
+   },
+   {
+    "repo": "zereight/gitlab-mcp",
+    "topic": "agents",
+    "foundAt": "2026-11-15T07:06:00.331Z"
    }
   ],
   "checked": {
@@ -3173,11 +3173,17 @@
    "gh-virgiliojr94-book-to-skill-905acd": "2026-11-14T06:58:47.664Z",
    "gh-can1357-oh-my-pi-5b8496": "2026-11-14T06:58:47.664Z",
    "gh-tw93-kaku-bdee44": "2026-11-14T06:58:47.664Z",
-   "gh-chaofantao-autoregressive-models-in-vision-survey-a3dae4": "2026-11-14T06:58:47.664Z"
+   "gh-chaofantao-autoregressive-models-in-vision-survey-a3dae4": "2026-11-14T06:58:47.664Z",
+   "gh-argmaxinc-argmax-oss-swift-e2010a": "2026-11-15T07:06:00.331Z",
+   "gh-evolinkai-gpt-image-2-seedance-2-5-workflow-dd812f": "2026-11-15T07:06:00.331Z",
+   "gh-kubeflow-trainer-d632ea": "2026-11-15T07:06:00.331Z",
+   "gh-activitywatch-activitywatch-cb0f04": "2026-11-15T07:06:00.331Z",
+   "gh-ultralytics-yolov5-eebd31": "2026-11-15T07:06:00.331Z",
+   "gh-lobehub-lobe-ui-dd168f": "2026-11-15T07:06:00.331Z"
   }
  },
  "mcp": {
-  "cursor": "ai.shumi/mcp:1.3.0",
+  "cursor": "app.troving/trove:1.1.1",
   "since": "2026-10-01T15:26:40.958Z",
   "watermark": "2026-10-02T15:26:40.958Z",
   "scanStarted": "2026-11-14T06:58:47.664Z",
@@ -3374,14 +3380,14 @@
    "cn-pianam-mcp-fuel-mcp": "2026-11-14T06:58:47.664Z",
    "cn-pianam-mcp-hot-trending-mcp": "2026-11-14T06:58:47.664Z",
    "cn-pianam-mcp-ip-location-mcp": "2026-11-14T06:58:47.664Z",
-   "cn-pianam-mcp-stock-mcp": "2026-10-06T06:50:25.349Z",
-   "cn-pianam-mcp-weather-mcp-china": "2026-10-06T06:50:25.349Z",
-   "cn-savantcat-ai-compliance": "2026-10-06T06:50:25.349Z",
-   "codegen": "2026-10-06T06:50:25.349Z",
-   "codenib-codenib": "2026-10-06T06:50:25.349Z",
-   "coderabbit": "2026-10-06T06:50:25.349Z",
-   "cognee": "2026-10-06T06:50:25.349Z",
-   "composio": "2026-10-06T06:50:25.349Z",
+   "cn-pianam-mcp-stock-mcp": "2026-11-15T07:06:00.331Z",
+   "cn-pianam-mcp-weather-mcp-china": "2026-11-15T07:06:00.331Z",
+   "cn-savantcat-ai-compliance": "2026-11-15T07:06:00.331Z",
+   "codegen": "2026-11-15T07:06:00.331Z",
+   "codenib-codenib": "2026-11-15T07:06:00.331Z",
+   "coderabbit": "2026-11-15T07:06:00.331Z",
+   "cognee": "2026-11-15T07:06:00.331Z",
+   "composio": "2026-11-15T07:06:00.331Z",
    "computer-tin-tin": "2026-10-09T06:38:33.001Z",
    "context7": "2026-10-09T06:38:33.001Z",
    "continue": "2026-10-09T06:38:33.001Z",
@@ -4709,7 +4715,39 @@
    "upriver-upriver": "2026-11-14T06:58:47.664Z",
    "variel-mcp-server": "2026-11-14T06:58:47.664Z",
    "webanatomy-webanatomy": "2026-11-14T06:58:47.664Z",
-   "webuplink-mcp": "2026-11-14T06:58:47.664Z"
+   "webuplink-mcp": "2026-11-14T06:58:47.664Z",
+   "3dstreet-3dstreet": "2026-11-15T07:06:00.331Z",
+   "adeu-adeu": "2026-11-15T07:06:00.331Z",
+   "agentdm-agentdm": "2026-11-15T07:06:00.331Z",
+   "agenticshelf-mcp": "2026-11-15T07:06:00.331Z",
+   "agenticterminal-directory": "2026-11-15T07:06:00.331Z",
+   "auralogs-auralogs": "2026-11-15T07:06:00.331Z",
+   "autorfp-mcp": "2026-11-15T07:06:00.331Z",
+   "auxen-auxen": "2026-11-15T07:06:00.331Z",
+   "bareun-bareun": "2026-11-15T07:06:00.331Z",
+   "boolsai-signals": "2026-11-15T07:06:00.331Z",
+   "calendarmcp-server": "2026-11-15T07:06:00.331Z",
+   "compeller-compel": "2026-11-15T07:06:00.331Z",
+   "cooperpetcare-cooper": "2026-11-15T07:06:00.331Z",
+   "cosmonote-notes": "2026-11-15T07:06:00.331Z",
+   "decibelshield-decibel-shield": "2026-11-15T07:06:00.331Z",
+   "deinai-creator-skill": "2026-11-15T07:06:00.331Z",
+   "dreamlit-mcp": "2026-11-15T07:06:00.331Z",
+   "dynsoft-sac": "2026-11-15T07:06:00.331Z",
+   "ganty-mcp-server": "2026-11-15T07:06:00.331Z",
+   "gethal-mcp": "2026-11-15T07:06:00.331Z",
+   "haymon-dbmcp": "2026-11-15T07:06:00.331Z",
+   "humantaste-taste-mcp": "2026-11-15T07:06:00.331Z",
+   "ironscout-ironscout": "2026-11-15T07:06:00.331Z",
+   "joinmultiplayer-gpu": "2026-11-15T07:06:00.331Z",
+   "law-mcp-lawyer-search": "2026-11-15T07:06:00.331Z",
+   "marketcore-mcp": "2026-11-15T07:06:00.331Z",
+   "marketintell-marketintell": "2026-11-15T07:06:00.331Z",
+   "mashop-mcp": "2026-11-15T07:06:00.331Z",
+   "nausika-mcp": "2026-11-15T07:06:00.331Z",
+   "ninar-ninar": "2026-11-15T07:06:00.331Z",
+   "orggen-orggen": "2026-11-15T07:06:00.331Z",
+   "painspotter-painspotter": "2026-11-15T07:06:00.331Z"
   }
  }
 }

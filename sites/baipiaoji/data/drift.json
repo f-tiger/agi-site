@@ -1,10 +1,43 @@
 {
-  "generated": "2026-11-14",
+  "generated": "2026-11-15",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
   "fetched_ok": 107,
   "fetched_fail": 20,
-  "pending": 12,
+  "pending": 9,
   "items": [
+    {
+      "slug": "ragflow",
+      "url": "https://ragflow.io/docs/faq",
+      "confirmed": "2026-11-15",
+      "first_seen": "2026-11-14",
+      "added": [],
+      "removed": [
+        "30minutes"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "quark-ai",
+      "url": "https://quark.cn",
+      "confirmed": "2026-11-15",
+      "first_seen": "2026-11-14",
+      "added": [],
+      "removed": [
+        "4k"
+      ],
+      "checked_then": "2026-08-13"
+    },
+    {
+      "slug": "zhipu-glm",
+      "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
+      "confirmed": "2026-11-15",
+      "first_seen": "2026-11-14",
+      "added": [],
+      "removed": [
+        "5b"
+      ],
+      "checked_then": "2026-08-01"
+    },
     {
       "slug": "framer",
       "url": "https://framer.com/pricing",
@@ -137,20 +170,6 @@
         "616b"
       ],
       "checked_then": "2026-09-21"
-    },
-    {
-      "slug": "zhipu-glm",
-      "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
-      "confirmed": "2026-11-13",
-      "first_seen": "2026-11-12",
-      "added": [
-        "5b"
-      ],
-      "removed": [
-        "2b",
-        "96b"
-      ],
-      "checked_then": "2026-08-01"
     },
     {
       "slug": "continue",
@@ -367,20 +386,6 @@
         "37months"
       ],
       "checked_then": "2026-09-21"
-    },
-    {
-      "slug": "ragflow",
-      "url": "https://ragflow.io/docs/faq",
-      "confirmed": "2026-11-05",
-      "first_seen": "2026-11-04",
-      "added": [
-        "30m",
-        "30minutes"
-      ],
-      "removed": [
-        "30seconds"
-      ],
-      "checked_then": "2026-08-04"
     },
     {
       "slug": "metaso",
@@ -624,17 +629,6 @@
       ],
       "removed": [],
       "checked_then": "2026-08-05"
-    },
-    {
-      "slug": "quark-ai",
-      "url": "https://quark.cn",
-      "confirmed": "2026-10-03",
-      "first_seen": "2026-10-01",
-      "added": [
-        "4k"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-13"
     },
     {
       "slug": "notion-ai",
