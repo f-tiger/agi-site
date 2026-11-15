@@ -1620,7 +1620,7 @@
     }
   },
   "country_depth_uk_nl": {
-    "status": "validated_ready_to_release",
+    "status": "released_and_live_verified",
     "date": "2026-11-15",
     "ledger": "docs/tds-uk-nl-depth-2026-11-15.json",
     "paths": [
@@ -1664,7 +1664,8 @@
       "local_commissions": "not_enabled",
       "whole_site_monthly_goal_usd": 100,
       "goal_definition": "TDS-attributable calendar-month total revenue after reversals before costs",
-      "actual_revenue": "unknown"
+      "actual_revenue": "unknown",
+      "existing_membership_checkout": "NOT_READY; remains closed; separate from free-page release"
     },
     "measurement": {
       "ga4_events": [
@@ -1685,8 +1686,51 @@
     "review": {
       "original_date": "2026-11-22",
       "original_window": "2026-11-08 through2026-11-21 retained",
-      "new_first_full_day": "pending actual deployment",
+      "new_first_full_day": "2026-11-16",
       "decision_rule": "Operational, not statistical: if a market receives at least50 genuine guide visits but zero merchant clicks, revisit task/CTA/local offer. With fewer than50, investigate discovery and distribution rather than infer absent demand. Search impressions/CTR require real GSC access; merchant sales require attributable programme reports. Do not enlarge content inventory solely because pages were accepted by IndexNow."
-    }
+    },
+    "release": {
+      "pr": 338,
+      "pr_url": "https://github.com/f-tiger/agi-site/pull/338",
+      "merge_sha": "b5853190763330dbf9cdb95b87575c94fd8a92c9",
+      "deployment_run": 43725046341,
+      "deployment_url": "https://github.com/f-tiger/agi-site/actions/runs/43725046341",
+      "deployment_job": 132845044458,
+      "conclusion": "success",
+      "released_on": "2026-11-15",
+      "exact_live_build_verified": true,
+      "pr_checks": {
+        "count": 4,
+        "conclusion": "success"
+      },
+      "native_live_gates": {
+        "collector_pages": 198,
+        "regional_pages": 8,
+        "regional_existing_entries": 6,
+        "documents": 93,
+        "ga4_public_routes": 349,
+        "ga4_live_spread_routes": 75,
+        "ga4_version": "60b7faaef420",
+        "ga4_backend_receipt": "not-tested",
+        "routing_privacy_checks": 9,
+        "postdeploy_selfcheck": "success",
+        "business_write_probes": "skipped_not_counted_as_passed"
+      },
+      "indexnow": {
+        "mechanism": "existing changed-canonical push-diff runner after successful deployment checks",
+        "changed_urls": 43,
+        "http_status": 200,
+        "accepted": true,
+        "receipt_at": "2026-11-15T14:36:44Z",
+        "indexing": "unknown",
+        "ai_citations": "unknown",
+        "existing_workbench_notification": {
+          "pages": 8,
+          "http_status": 200,
+          "accepted": true
+        }
+      }
+    },
+    "next_action": "At the existing November22 review, inspect genuine country-specific arrivals and fixed ordinary merchant/source clicks for these8pages; keep search visibility, affiliate eligibility and attributable revenue separate. Do not reset the original experiment or assume missing data means no demand."
   }
 }
