@@ -259,6 +259,10 @@ jobs:
           python3 tools/refresh_filter_finder.py
           python3 tools/build_filter_finder.py
           node --test tools/test_filter_finder.mjs
+          python3 tools/test_filter_care_sources.py
+          python3 tools/filter_finder_de_sources.py
+          python3 tools/build_filter_care.py
+          node --test tools/test_filter_care.mjs
           python3 tools/link_filter_finder.py
           python3 tools/build_dach_discovery.py
           # Discovery adds authored links; recompute related links after it to avoid duplicates.
@@ -541,6 +545,7 @@ jobs:
               node sites/getecoback/tools/browser_demand_discovery.cjs
               node sites/getecoback/tools/browser_dach_growth.mjs
               node sites/getecoback/tools/browser_product_catalog.mjs
+              node sites/getecoback/tools/browser_filter_care.mjs
               node sites/getecoback/tools/browser_heater_examples.cjs
               node sites/getecoback/tools/browser_personal_warmth.cjs
               node sites/getecoback/tools/browser_thermostat_fit.cjs
@@ -598,6 +603,7 @@ jobs:
           node tools/fleet-account/verify-live.mjs eco
           node sites/getecoback/tools/verify-family-workshop-live.mjs
           node sites/getecoback/tools/verify-filter-finder-live.mjs
+          node sites/getecoback/tools/verify-filter-care-live.mjs
 
       - name: Verify independent membership after deployment
         if: env.OUTCOME_READ_ONLY_RELEASE != 'true'

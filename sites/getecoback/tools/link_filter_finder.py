@@ -27,6 +27,15 @@ def main():
         if anchor is None:
             raise ValueError(f'No editorial insertion point in {name}')
         path.write_text(source.replace(anchor, '\n'+block+'\n'+anchor, 1), encoding='utf-8')
+    path = SITE / 'guide/luftreiniger-ratgeber.html'
+    source = re.sub(r'\s*<!--EB_FILTER_CARE_DE-->.*?<!--/EB_FILTER_CARE_DE-->\s*', '\n', path.read_text(), flags=re.S)
+    block = ('<!--EB_FILTER_CARE_DE--><aside style="max-width:980px;margin:28px auto;padding:24px;border:1px solid #c9d4d5;border-left:4px solid #1f6666;background:#f3f7f5">'
+             '<h2>Schon einen Core 300S oder LR 401 zu Hause?</h2><p>Prüfe die deutsche Herstellerzuordnung zum Ersatzfilter und notiere die letzte Pflege direkt in deinem Browser.</p>'
+             '<a href="/ersatzfilter.html">Ersatzfilter finden und Pflege notieren →</a></aside><!--/EB_FILTER_CARE_DE-->')
+    anchor = '</article>' if '</article>' in source else '</main>'
+    if anchor not in source:
+        raise ValueError('No German editorial insertion point')
+    path.write_text(source.replace(anchor, block + anchor, 1))
     print('Filter finder: 2 relevant owned entry points linked.')
 
 if __name__ == '__main__':

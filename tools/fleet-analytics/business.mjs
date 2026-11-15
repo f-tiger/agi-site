@@ -41,6 +41,9 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
   const affiliate = affiliateEvent(host, detail);
   if (affiliate) return affiliate;
   const name = detail.name;
+  if (host === 'getecoback.com' && pathname === '/ersatzfilter.html' &&
+      ['eco_filter_save','eco_filter_care_save','eco_filter_source'].includes(name))
+    return {name,tool_id:'filter-care-de',repeat:true};
   if (host === 'baipiaoji.com' && ['/studio/table-review','/en/studio/table-review'].includes(pathname) && /^table_review_(import|handoff|check|blocked|preview|report|export)_(demo|own)$/.test(name)) return {name,tool_id:'table-review',repeat:true};
   if (host === 'baipiaoji.com' && ['/studio/listing-pack','/en/studio/listing-pack'].includes(pathname) && /^listing_(import|check|handoff|draft|review|export|inquiry)_(demo|own)$/.test(name)) return {name,tool_id:'listing-pack',repeat:true};
   if(host==='baipiaoji.com' && ((pathname==='/tools/kimi' && ['plan_select','plan_save','plan_copy','plan_export'].some(a=>name==='bpj_depth_'+a)) || (/^\/manju(?:\/[a-z0-9-]*)?\/?$/.test(pathname) && ['watch_save','watch_resume','watch_export'].some(a=>name==='bpj_depth_'+a)))) return {name,tool_id:'bpj-depth',repeat:true};

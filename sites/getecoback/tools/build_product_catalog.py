@@ -17,6 +17,7 @@ import re
 from urllib.parse import urlencode
 
 from agent_sources import citation_url
+from filter_finder_de_sources import BINDINGS as FILTER_CARE_MODELS
 from build_agent_md import to_markdown
 import storage_veto
 
@@ -122,12 +123,14 @@ def render(data, today=None):
                 merchant = f'<p class="pc-commerce"><a href="{esc(url)}" target="_blank" rel="sponsored nofollow noopener">Modellsuche bei Amazon.de →</a><small>Anzeige · Suche, keine feste Produktseite. Genaue Variante, Gesamtpreis und Lieferung beim Händler prüfen.</small></p>'
             else:
                 merchant = '<p class="pc-commerce pc-paused">Händlersuche pausiert: Quellenprüfung ausstehend. Die Angaben unten sind der dokumentierte Stand, keine aktuelle Kaufempfehlung.</p>'
+            care_link = (f'<p class="pc-care"><a href="/ersatzfilter.html#{esc(product["id"])}">Ersatzfilter zuordnen &amp; Pflege notieren →</a></p>'
+                         if product['id'] in FILTER_CARE_MODELS else '')
             cards.append(f'''<section class="pc-card" id="produkt-{esc(product['id'])}" data-product-card data-category="{esc(category['id'])}">
 <h3>{esc(product['name'])}</h3><p class="pc-brand">{esc(product['brand'])} · {esc(product['variant'])}</p>
 <p><strong>Aufgabe:</strong> {esc(product['role'])}</p><p>{esc(product['facts'])}</p>
 <p class="pc-limit"><strong>Vor dem Kauf:</strong> {esc(product['limit'])}</p>
 <p class="pc-source">Quelle: <a href="{esc(product['source'])}" target="_blank" rel="noopener">{esc(product['source_label'])}</a> · geprüft am <time datetime="{esc(product['checked'])}">{date(product['checked']).strftime('%d.%m.%Y')}</time>.</p>
-{merchant}</section>''')
+{merchant}{care_link}</section>''')
         comparison = render_comparison(category['id'], data['products'], category.get('buying_guide'))
         tool = render_tool(category['id'])
         if not isinstance(tool, str) or not tool.strip():

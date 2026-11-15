@@ -36,6 +36,7 @@ EXTRA = {"/nl/wonen.html", "/wohnen.html", "/guide/heizluefter-stromverbrauch.ht
 SKIP_PREFIX = ("/widgets/", "/workbench", "/member")
 EXTRA.update({"/guide/tineco-saugt-nicht-mehr.html", "/guide/thermovorhang-ratgeber.html", "/en/guide/12l-vs-20l-dehumidifier-uk.html"})
 EXTRA.add("/en/filter-finder.html")
+EXTRA.add("/ersatzfilter.html")
 
 FAMILIES = [
     ("family", "Pool, Garten & Reparieren", "🛠", r"familienwerkstatt|home-workshop"),
