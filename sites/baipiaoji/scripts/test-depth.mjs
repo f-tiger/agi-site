@@ -6,11 +6,15 @@ test('valid browser actions write only fixed event and quality fields without so
  const rows=[],quality=[];
  // The hit handler also writes a separate quality aggregate after PR #335.
  // Assert both contracts instead of treating every SQL write as a hit row.
- const env={HITS:{prepare(sql){return{bind(...args){return{run:async()=>{
-   if(sql.startsWith('INSERT INTO hits '))rows.push(args);
-   else if(sql.startsWith('INSERT INTO bpj_traffic_quality('))quality.push(args);
-   else assert.fail('Unexpected SQL write: '+sql);
- }}}}}};
+ const env={HITS:{prepare(sql){
+  return {bind(...args){
+   return {run:async()=>{
+    if(sql.startsWith('INSERT INTO hits '))rows.push(args);
+    else if(sql.startsWith('INSERT INTO bpj_traffic_quality('))quality.push(args);
+    else assert.fail('Unexpected SQL write: '+sql);
+   }};
+  }};
+ }}};
  for(const [route,action] of [['/tools/kimi','plan_save'],['/manju/rankings','watch_resume']]){
   await onRequestPost({env,request:new Request('https://baipiaoji.com/api/hit',{method:'POST',headers:{referer:'https://baipiaoji.com'+route,'user-agent':'Mozilla/5.0'},body:JSON.stringify({e:'depth',p:'/depth/'+action,l:'zh',r:'https://private.example.test/content'})})});
  }
