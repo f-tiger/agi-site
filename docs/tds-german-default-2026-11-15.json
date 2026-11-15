@@ -2,7 +2,7 @@
   "date": "2026-11-15",
   "site": "tds",
   "owner_request": "首页默认是德语，小语种切入，避免无流量",
-  "status": "validated_ready_for_release",
+  "status": "validated_recovery_pending_release",
   "prompt_passes": [
     {
       "round": 1,
@@ -89,7 +89,7 @@
     "new_window_reset": false
   },
   "validation": {
-    "german_home_tests": 6,
+    "german_home_tests": 7,
     "german_measurement_tests": 6,
     "required_collector_test_files_passed": 22,
     "full_build": {
@@ -129,8 +129,20 @@
     },
     "historic_rows": "unchanged;original18paths/Nov8baseline/schema2 preserved;fixedrootUSmetadata readable and currentrootUSexactmetadata rejected",
     "ga4_backend_receipt": "not-tested",
-    "traffic_revenue_or_search_lift": "unknown"
+    "traffic_revenue_or_search_lift": "unknown",
+    "legacy_tool_test_files_passed": 7,
+    "legacy_generator_integration": "Actual workflow checksum→real generator→checksum sequence passes in an isolated fixture; three homepage byte sequences retained, six old tool pages emitted at existing URLs, deleted de/index.html not required or recreated."
   },
   "release": null,
-  "next_action": "After live verification, use available genuine Germany/country/language/landing evidence and mature Amazon.de reports within existing cadence. Compare before/after only across actual exposure dates; preserve Nov22 review and $100 total-site monthly revenue goal."
+  "next_action": "After live verification, use available genuine Germany/country/language/landing evidence and mature Amazon.de reports within existing cadence. Compare before/after only across actual exposure dates; preserve Nov22 review and $100 total-site monthly revenue goal.",
+  "initial_failed_deployment": {
+    "implementation_pr": "https://github.com/f-tiger/agi-site/pull/331",
+    "commit": "0cd2329854c5d2a402d928eb8a168e0dd6c82549",
+    "run": "https://github.com/f-tiger/agi-site/actions/runs/43719767588",
+    "phase": "before_upload",
+    "cause": "Legacy workflow homepage checksum and generator reader still referenced the removed de/index.html after the home route migration.",
+    "production_changed": false,
+    "fix": "Use root/en/zh canonical home files in the workflow checksum; make legacy generator use HOME_PATHS for home preservation; update dormant legacy text-index file list; add a real workflow-chain integration regression.",
+    "indexnow_catchup_required": "Successful recovery push changes scripts only. After exact live verification, notify the actual content diff from18cd45c31afdd2fbfdf1deaad6a41d318aeab84f to the successful deployed recovery SHA via existing IndexNow runner; accepted is not indexed."
+  }
 }

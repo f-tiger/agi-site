@@ -48,7 +48,7 @@ const PAGES = [
   ["odds/twelve-boxes-full-case.html", "/odds/twelve-boxes-full-case"],
   ["odds/twenty-four-boxes.html", "/odds/twenty-four-boxes"],
   ["odds/seventy-two-boxes.html", "/odds/seventy-two-boxes"],
-  ["de/index.html", "/de/"],
+  ["en/index.html", "/en/"],
   ["de/start.html", "/de/start"],
   ["de/rarity.html", "/de/rarity"],
   ["de/how-blind-boxes-work.html", "/de/how-blind-boxes-work"],
