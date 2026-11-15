@@ -61,6 +61,9 @@ try{
   const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
   assert.equal((await page.goto(origin+'/produkte.html?__probe=1',{waitUntil:'load'})).status(),200);
   assert.equal(await page.locator('[data-product-card]').count(),data.products.length);
+  assert.equal(await page.locator('.pc-comparison').count(),12);
+  assert.equal(await page.locator('.pc-comparison tbody tr').count(),48);
+
   assert.equal(await page.locator('[data-product-category]').count(),data.categories.length);
   assert.equal(await page.locator('[data-product-card] a[href*="amazon.de"]').count(),expected.length);
   for(const product of data.products){

@@ -10,61 +10,151 @@
       "id": "luftreiniger",
       "name": "Luftreiniger",
       "intro": "Vor der Auswahl Filtertyp, Bedienung und Verbrauchsmaterial des genauen Modells abgleichen. Die Herstellerfunktionen sind keine eigenen Produkttests und keine medizinische Wirkungsaussage.",
-      "no_purchase": "Zuerst Partikelquellen und Lüftung prüfen. Ein vorhandenes passendes Gerät weiterverwenden; ein Luftreiniger behebt keine nassen Bauteile."
+      "no_purchase": "Zuerst Partikelquellen und Lüftung prüfen. Ein vorhandenes passendes Gerät weiterverwenden; ein Luftreiniger behebt keine nassen Bauteile.",
+      "buying_guide": {
+        "question": "Wie wähle ich einen Luftreiniger für meinen Raum?",
+        "steps": [
+          "Raumfläche und Deckenhöhe notieren; mit dem Werkzeug das Raumvolumen und den gewünschten Planungs-Luftstrom berechnen.",
+          "Filterbezeichnung, Ersatzfilterkosten und Bedienung am genauen Modell prüfen.",
+          "Herstellerangaben zu Raumgröße nur mit den zugehörigen Betriebsbedingungen vergleichen."
+        ],
+        "answer": "Der Raumrechner liefert einen Planungswert aus deinen Eingaben. Er bestätigt weder die Reinigungsleistung eines Modells noch eine medizinische Wirkung."
+      }
     },
     {
       "id": "ventilatoren",
       "name": "Ventilatoren",
       "intro": "Turm-, Tisch- und Akkuventilatoren nach Stellplatz und Bedienung auswählen. Luftbewegung und aktive Klimatisierung sind unterschiedliche Aufgaben.",
-      "no_purchase": "Wenn Beschattung, geeignete Lüftung oder ein vorhandener Ventilator genügen, ist kein weiteres Gerät nötig."
+      "no_purchase": "Wenn Beschattung, geeignete Lüftung oder ein vorhandener Ventilator genügen, ist kein weiteres Gerät nötig.",
+      "buying_guide": {
+        "question": "Turm-, Tisch- oder Akkuventilator: Was passt zu mir?",
+        "steps": [
+          "Stellfläche, Ausrichtung und Abstand zum Sitzplatz messen.",
+          "Für wechselnde Plätze Akku, Ladegerät und Laufzeitbedingungen des konkreten Sets prüfen.",
+          "Leistungsaufnahme und tägliche Nutzungsdauer in den Stromkostenrechner einsetzen."
+        ],
+        "answer": "Wähle die Bauform nach Stellplatz und Stromversorgung. Die Kostenrechnung sagt nichts darüber aus, wie angenehm Luftstrom und Geräusch für dich sind."
+      }
     },
     {
       "id": "hygrometer",
       "name": "Thermo-Hygrometer",
       "intro": "Temperatur und relative Luftfeuchte wiederholt und am passenden Ort messen. Anzeige, Speicher, Messgenauigkeit und benötigte Batterien vor dem Kauf vergleichen.",
-      "no_purchase": "Ein vorhandenes ausreichend geeignetes Messgerät weiterverwenden. Raumluftmessungen allein untersuchen weder Wandfeuchte noch die Ursache eines Schadens."
+      "no_purchase": "Ein vorhandenes ausreichend geeignetes Messgerät weiterverwenden. Raumluftmessungen allein untersuchen weder Wandfeuchte noch die Ursache eines Schadens.",
+      "buying_guide": {
+        "question": "Wie vergleiche ich zwei Hygrometer sinnvoll?",
+        "steps": [
+          "Messbereich, angegebene Genauigkeit und Anzeige des genauen Modells prüfen.",
+          "Geräte unter gleichen Bedingungen nebeneinander ablesen; unterschiedliche Messorte nicht direkt vergleichen.",
+          "Die Differenz in Prozentpunkten berechnen und die Herstellerangaben zur Messabweichung heranziehen."
+        ],
+        "answer": "Eine Differenz zwischen zwei Anzeigen zeigt nicht, welches Gerät richtig misst. Der Vergleich ersetzt keine Kalibrierung und ist keine Diagnose für die Wohnung."
+      }
     },
     {
       "id": "dampfreiniger",
       "name": "Dampfreiniger",
       "intro": "Handdampfer und Kesselgeräte unterscheiden sich bei Tank, Aufheizzeit und Boden-Zubehör. Die Freigabe der Oberfläche muss vor dem Einsatz feststehen.",
-      "no_purchase": "Wenn Wischen und passende Bürste die Aufgabe lösen, ist kein Dampfreiniger nötig. Bei unbekannter Materialfreigabe zuerst Boden- oder Oberflächenhersteller fragen."
+      "no_purchase": "Wenn Wischen und passende Bürste die Aufgabe lösen, ist kein Dampfreiniger nötig. Bei unbekannter Materialfreigabe zuerst Boden- oder Oberflächenhersteller fragen.",
+      "buying_guide": {
+        "question": "Handdampfer oder Boden-Dampfreiniger: Wie entscheide ich?",
+        "steps": [
+          "Zuerst die ausdrückliche Dampffreigabe des Oberflächenherstellers prüfen.",
+          "Handgerät, Bodendüse und Zubehör nach den tatsächlich zu reinigenden Stellen auswählen.",
+          "Tank, Nachfüllbedingungen und Aufheizzeit am konkreten Modell vergleichen."
+        ],
+        "answer": "Ohne gesicherte Oberflächenfreigabe liefert auch ein leistungsfähigeres Gerät keine Freigabe. Das Werkzeug klärt diese Voraussetzung vor dem Modellvergleich."
+      }
     },
     {
       "id": "fenstersauger",
       "name": "Fenstersauger",
       "intro": "Fenstersauger nehmen Flüssigkeit von geeigneten glatten Flächen auf. Tank, schmale Düse, Vorreinigung und Ladezeit gehören zur Auswahl.",
-      "no_purchase": "Für wenige Scheiben können vorhandener Einwascher und Abzieher genügen. Kondenswasser aufnehmen beseitigt keine Feuchteursache."
+      "no_purchase": "Für wenige Scheiben können vorhandener Einwascher und Abzieher genügen. Kondenswasser aufnehmen beseitigt keine Feuchteursache.",
+      "buying_guide": {
+        "question": "Welcher Fenstersauger passt zu meinen Fenstern?",
+        "steps": [
+          "Scheibenbreite, Höhe und Anzahl der zu reinigenden Seiten erfassen.",
+          "Für schmale Scheiben die mitgelieferte Absaugdüse am genauen Set prüfen.",
+          "Vorreinigung, Tankentleerung und Ladezeit in den Arbeitsablauf einplanen."
+        ],
+        "answer": "Die berechnete Glasfläche hilft bei der Arbeitsplanung. Daraus lässt sich ohne passende Herstellerbedingungen keine Akkuladung oder Reinigungsdauer ableiten."
+      }
     },
     {
       "id": "nass-trockensauger",
       "name": "Nass-/Trockensauger",
       "intro": "Für nassen oder trockenen Schmutz: Behälter, Filtervorgaben, Kabellänge und bei Akkugeräten das vollständige Akku-Set prüfen. Nicht mit einem Saugwischer gleichsetzen.",
-      "no_purchase": "Für normales Staubsaugen vorhandenes Gerät weiterverwenden, wenn es die Aufgabe erfüllt. Bei unbekanntem Staub oder Material zuerst die ausdrücklich erlaubte Nutzung klären."
+      "no_purchase": "Für normales Staubsaugen vorhandenes Gerät weiterverwenden, wenn es die Aufgabe erfüllt. Bei unbekanntem Staub oder Material zuerst die ausdrücklich erlaubte Nutzung klären.",
+      "buying_guide": {
+        "question": "Was muss ich vor dem Kauf eines Nass-Trockensaugers klären?",
+        "steps": [
+          "Material bestimmen: trockener Schmutz, Wasser oder ein unbekannter beziehungsweise gefährlicher Stoff.",
+          "In der Anleitung die Freigabe sowie Filter- und Beutelvorgaben für diesen Einsatz prüfen.",
+          "Behälter, Schlauch, Reichweite und bei Akku-Sets den genauen Lieferumfang vergleichen."
+        ],
+        "answer": "Ein Nass-Trockensauger ist nicht automatisch für gefährliche Stäube oder brennbare Flüssigkeiten geeignet. Bei unbekanntem Material zuerst die Eignung klären."
+      }
     },
     {
       "id": "bodenstaubsauger",
       "name": "Bodenstaubsauger",
       "intro": "Kabelgebundene Beutelsauger nach Reichweite, Bodendüse und Verbrauchsmaterial vergleichen.",
-      "no_purchase": "Wenn das vorhandene Gerät ausreicht, zuerst Beutel, Filter und Düse prüfen statt ein neues Gerät zu kaufen."
+      "no_purchase": "Wenn das vorhandene Gerät ausreicht, zuerst Beutel, Filter und Düse prüfen statt ein neues Gerät zu kaufen.",
+      "buying_guide": {
+        "question": "Wie vergleiche ich Beutelsauger einschließlich Folgekosten?",
+        "steps": [
+          "Bodenarten und dafür vorgesehene Düsen des konkreten Sets abgleichen.",
+          "Aktionsradius und Platz für die Aufbewahrung prüfen.",
+          "Beutelpackung, Anzahl der Beutel und geplante Filterwechsel in den Kostenrechner eintragen."
+        ],
+        "answer": "Der Rechner vergleicht deine eingetragenen Verbrauchsmaterialkosten. Ein niedrigerer Betrag beweist weder bessere Reinigung noch geringeren Stromverbrauch."
+      }
     },
     {
       "id": "heizluefter",
       "name": "Keramik-Heizlüfter",
       "intro": "PTC-Heizer für gezielte, beaufsichtigte Zusatzwärme; Leistung und Aufstellbedingungen vor der Auswahl klären.",
-      "no_purchase": "Zugluft, vorhandene Heizung und Nutzung zuerst prüfen. Ein zusätzlicher Elektroheizer ist nicht automatisch sparsamer."
+      "no_purchase": "Zugluft, vorhandene Heizung und Nutzung zuerst prüfen. Ein zusätzlicher Elektroheizer ist nicht automatisch sparsamer.",
+      "buying_guide": {
+        "question": "Wie plane ich die Nutzung eines Heizlüfters?",
+        "steps": [
+          "Zuerst den vorgesehenen Aufstellort mit den Sicherheitsabständen und Vorgaben der Anleitung abgleichen.",
+          "Leistungsstufe und geplante Laufzeit festlegen.",
+          "Im Stromkostenrechner die tatsächliche Leistungsaufnahme und deinen Tarif verwenden."
+        ],
+        "answer": "Die Rechnung beschreibt Stromkosten für die eingegebene Leistung und Laufzeit. Sie garantiert weder eine Raumtemperatur noch die Eignung für einen bestimmten Raum."
+      }
     },
     {
       "id": "waeschetrockner",
       "name": "Wärmepumpen-Wäschetrockner",
       "intro": "Beladung, Kondensatorpflege und Aufstellraum prüfen; diese Modelle sind Wärmepumpentrockner.",
-      "no_purchase": "Wenn Lufttrocknen mit vertretbarer Feuchte und Zeit möglich ist, braucht es nicht automatisch einen zusätzlichen Trockner."
+      "no_purchase": "Wenn Lufttrocknen mit vertretbarer Feuchte und Zeit möglich ist, braucht es nicht automatisch einen zusätzlichen Trockner.",
+      "buying_guide": {
+        "question": "Welche Unterschiede zählen bei Wärmepumpentrocknern?",
+        "steps": [
+          "Übliche Wäschemenge mit der Kapazität für das jeweilige Programm abgleichen.",
+          "Maße, Türöffnung, Aufstellbedingungen und Wasserableitung prüfen.",
+          "Kondensatorpflege und Filterreinigung für die genaue Modellnummer vergleichen."
+        ],
+        "answer": "Die Kapazität allein entscheidet nicht über die Alltagseignung. Vergleiche den Platzbedarf und die Wartung; der Wäsche-Check hilft zuerst bei der Wahl der Trocknungsmethode."
+      }
     },
     {
       "id": "wasserkocher",
       "name": "Wasserkocher",
       "intro": "Vergleiche Bedienung, Temperaturwahl und passende Füllmenge, bevor du ein weiteres Gerät kaufst.",
-      "no_purchase": "Wenn dein vorhandener Wasserkocher die benötigte Menge zuverlässig erhitzt, ist ein Wechsel nur für zusätzliche Programme nicht nötig."
+      "no_purchase": "Wenn dein vorhandener Wasserkocher die benötigte Menge zuverlässig erhitzt, ist ein Wechsel nur für zusätzliche Programme nicht nötig.",
+      "buying_guide": {
+        "question": "Welche Füllmenge und Ausstattung brauche ich?",
+        "steps": [
+          "Tassenzahl und tatsächliche Milliliter pro Tasse mit dem Werkzeug zusammenrechnen.",
+          "Die berechnete Menge mit Mindest- und Höchstfüllung in der Anleitung abgleichen.",
+          "Temperaturwahl, Deckelbedienung und Reinigung nach deinem Gebrauch vergleichen."
+        ],
+        "answer": "Das Werkzeug berechnet nur die benötigte Wassermenge. Die Mindestfüllung und weitere Bedienvorgaben des Geräts gelten auch bei kleinen Portionen."
+      }
     },
     {
       "id": "heissluftfritteusen",
@@ -76,7 +166,16 @@
       "id": "kontaktgrills",
       "name": "Kontaktgrills",
       "intro": "Wähle zwischen einfacher Kontaktfläche, Programmen und einer aufklappbaren Tischgrillfunktion. Die Kochaufgabe und Reinigung zählen mehr als die Zahl der Modi.",
-      "no_purchase": "Wenn Pfanne, Toaster oder vorhandener Grill die Aufgabe schon erfüllen, ist ein zusätzliches Gerät nicht zwingend nötig."
+      "no_purchase": "Wenn Pfanne, Toaster oder vorhandener Grill die Aufgabe schon erfüllen, ist ein zusätzliches Gerät nicht zwingend nötig.",
+      "buying_guide": {
+        "question": "Wie finde ich einen Kontaktgrill für meine Küche?",
+        "steps": [
+          "Klären, ob Kontaktgrillen genügt oder eine ausdrücklich vorgesehene offene Grillposition gebraucht wird.",
+          "Stellfläche und horizontale Freiräume aus der Anleitung in den Platzcheck übernehmen.",
+          "Platten, Fettauffangbehälter und Reinigungsvorgaben des konkreten Modells vergleichen."
+        ],
+        "answer": "Der Platzcheck berücksichtigt nur die eingegebenen horizontalen Maße. Öffnungshöhe, Wärmeabstände und alle weiteren Aufstellvorgaben müssen zusätzlich geprüft werden."
+      }
     }
   ],
   "products": [
