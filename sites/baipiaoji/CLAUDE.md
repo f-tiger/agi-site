@@ -1055,3 +1055,7 @@ Owner 指定 CRO、AI SEO、SEO Audit 并要求同类对比。`/manju/categories
 ## 2026-11-15 全站类目选型升级
 
 `category-guides.mjs` 是 14 类中英文任务问题、选型说明与类目证据模型的来源：首页卡片、类目 HTML/JSON/MD、工具详情回链共用。额度覆盖只计同时有 source 与 checked 的 limits；指南修订日不代表额度重新核实，link probe 不刷新内容日期。保留 discovery noindex 与既有 canonical。新增静态及无 JS 浏览器门禁已入 deploy；见 `docs/site-discovery-upgrade-2026-11-15.md`。
+
+## 2026-11-15 异常流量治理
+
+Owner 授权统计分层与精准限流。API middleware 仅保护四个 POST（manju-discover、submit、claim、manju-inquiry），正常 GET/内容/API/MCP 不受限；原始 hits 保留，traffic-quality 提供完整 UTC 日、固定事件和启发式类别的聚合，不能称真人或 GA4 去机器人结果。缺数据=null，QA/DNT/GPC 排除。限流键为短期伪名安全数据，不存原始 IP。回滚开关、共享出口风险、测量范围和验证见 `docs/traffic-controls-2026-11-15.md`；禁止根据国家或 UA 单独新增封禁。

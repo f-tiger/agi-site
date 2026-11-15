@@ -42,15 +42,18 @@ export async function onRequestPost({ request, env }) {
       "CREATE TABLE IF NOT EXISTS submissions (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, url TEXT NOT NULL, note TEXT DEFAULT '', email TEXT DEFAULT '', country TEXT DEFAULT '', created TEXT DEFAULT '', status TEXT DEFAULT 'new')"
     ).run();
 
+    await env.HITS.prepare('CREATE INDEX IF NOT EXISTS submissions_url ON submissions(url)').run();
+
     // 同一 URL 重复提交不报错也不重复记——对提交者来说「已经在队列里」就是成功
     const dup = await env.HITS.prepare('SELECT id FROM submissions WHERE url = ?').bind(url).first();
     if (dup) return json({ ok: true, code: 'already' });
 
     const country = (request.cf && request.cf.country) || '';
     const created = new Date().toISOString().slice(0, 10);
-    await env.HITS.prepare(
-      'INSERT INTO submissions (name, url, note, email, country, created, status) VALUES (?,?,?,?,?,?,?)'
-    ).bind(name, url, note, email, country, created, 'new').run();
+    const inserted = await env.HITS.prepare(
+      'INSERT INTO submissions (name, url, note, email, country, created, status) SELECT ?,?,?,?,?,?,? WHERE NOT EXISTS (SELECT 1 FROM submissions WHERE url=?)'
+    ).bind(name, url, note, email, country, created, 'new', url).run();
+    if(inserted.meta?.changes===0)return json({ok:true,code:'already'});
 
     return json({ ok: true, code: 'ok' });
   } catch (e) {
