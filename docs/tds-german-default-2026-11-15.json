@@ -2,7 +2,7 @@
   "date": "2026-11-15",
   "site": "tds",
   "owner_request": "首页默认是德语，小语种切入，避免无流量",
-  "status": "live_verified_postdeploy_probe_recovery_pending",
+  "status": "released_and_live_verified_german_default",
   "prompt_passes": [
     {
       "round": 1,
@@ -134,8 +134,64 @@
     "legacy_generator_integration": "Actual workflow checksum→real generator→checksum sequence passes in an isolated fixture; three homepage byte sequences retained, six old tool pages emitted at existing URLs, deleted de/index.html not required or recreated.",
     "postdeploy_probe_integration": "Actual200-only path list contains all three canonical homes and no intentional redirects; actual full post-deploy shell check passes against livef2dacd3 in the existing read-only mode."
   },
-  "release": null,
-  "next_action": "After live verification, use available genuine Germany/country/language/landing evidence and mature Amazon.de reports within existing cadence. Compare before/after only across actual exposure dates; preserve Nov22 review and $100 total-site monthly revenue goal.",
+  "release": {
+    "implementation_pr": "https://github.com/f-tiger/agi-site/pull/331",
+    "release_path_recovery_pr": "https://github.com/f-tiger/agi-site/pull/332",
+    "postdeploy_probe_recovery_pr": "https://github.com/f-tiger/agi-site/pull/333",
+    "commit": "d773627e66d217933e99ea8e9d3771983c7ef5b1",
+    "deployment": "https://github.com/f-tiger/agi-site/actions/runs/43721504007",
+    "status": "success",
+    "verified_on": "2026-11-15",
+    "first_complete_utc_day": "2026-11-16",
+    "home_routes": {
+      "de": "/",
+      "en": "/en/",
+      "zh": "/zh/",
+      "old_de_home": "308to/"
+    },
+    "production_validation": {
+      "exact_build_verified": true,
+      "public_pages": 33,
+      "localized_categories": 27,
+      "models_per_language": 100,
+      "home_alias_get_head_checks": 12,
+      "explicit_accept_language_checks": 2,
+      "asset_bytes_matched": 6,
+      "full_collector_live_gate_pages": 198,
+      "corrected_postdeploy_selfcheck": "success",
+      "business_events": 0,
+      "api_requests": 0,
+      "merchant_visits": 0,
+      "business_write_probes": "skipped_not_counted_as_passed",
+      "ga4_build_routes": 341,
+      "ga4_live_spread_routes": 74,
+      "ga4_version": "cae7d0105b62",
+      "ga4_backend_receipt": "not-tested"
+    },
+    "indexnow": {
+      "method": "manual catch-up using existing range-guarded runner after exact public verification",
+      "before": "18cd45c31afdd2fbfdf1deaad6a41d318aeab84f",
+      "deployed_content_sha": "f2dacd3272b95156d06174d8dceb30ae8c97412b",
+      "submitted_on": "2026-11-15",
+      "changed_urls": 200,
+      "http_status": 200,
+      "accepted": true,
+      "indexing": "unknown",
+      "ai_citations": "unknown",
+      "repeat_required_for_probe_only_fix": false,
+      "final_served_content_matches_notified_sha": true,
+      "evidence": "Only german-default-tests.mjs changed inside TDS between notifiedf2dacd3 and finald773627; servedHTML/assets unchanged. Final native content ping correctly skipped script-only diff.",
+      "latest_workbench_urls_accepted": 8
+    },
+    "not_established": [
+      "German organic or AI-referred traffic growth",
+      "Lower German keyword competition",
+      "Search/merchant conversion lift",
+      "Current local Amazon stock or commission eligibility",
+      "TDS-attributable revenue or USD100 monthly goal"
+    ]
+  },
+  "next_action": "Use genuinely available full dates from2026-11-16 for the German-default exposure, within the existing cadence. Preserve original2026-11-22 review and previous windows. Focus Germany storage dimensions, Smart-Home prerequisites/running costs and home care. Review search impressions, qualified arrivals, guide-to-Amazon.de exits and mature attributed revenue separately; missing access stays unknown, not zero. No automatic new page/market expansion or new external posting authority.",
   "initial_failed_deployment": {
     "implementation_pr": "https://github.com/f-tiger/agi-site/pull/331",
     "commit": "0cd2329854c5d2a402d928eb8a168e0dd6c82549",
