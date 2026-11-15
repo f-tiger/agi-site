@@ -1,0 +1,9 @@
+import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';import {createRequire} from 'node:module';import {fileURLToPath} from 'node:url';
+const {chromium}=createRequire(new URL('../../../tools/revenue-studio/package.json',import.meta.url))('playwright');const root=fileURLToPath(new URL('../dist/',import.meta.url));
+const b=await chromium.launch({executablePath:process.env.WORKBENCH_CHROMIUM,args:['--no-sandbox']});
+try{const c=await b.newContext();await c.route('**/*',r=>{const u=new URL(r.request().url());if(u.origin!=='https://baipiaoji.com')return r.abort();if(u.pathname==='/api/submit'||u.pathname==='/api/claim')return r.fulfill({status:429,contentType:'application/json',body:JSON.stringify({ok:false,code:'rate_limited',retryAfter:60})});if(u.pathname.startsWith('/api/'))return r.fulfill({contentType:'application/json',body:'{}'});let p=u.pathname;if(p.endsWith('/'))p+='index.html';else if(!path.extname(p))p+='.html';const f=path.join(root,p);return fs.existsSync(f)?r.fulfill({body:fs.readFileSync(f),contentType:({'.js':'text/javascript','.mjs':'text/javascript','.css':'text/css','.json':'application/json'})[path.extname(f)]||'text/html'}):r.fulfill({status:404});});const p=await c.newPage();
+for(const prefix of ['', '/en']){
+ await p.goto('https://baipiaoji.com'+prefix+'/submit?__probe=1');const f=p.locator('#submitForm');await f.locator('[name=name]').fill('Fixture');await f.locator('[name=url]').fill('https://example.com/');await f.locator('button[type=submit]').click();await p.getByText(prefix?'Too many requests. Retry in 60 seconds; your input is preserved.':'提交过于频繁，请等待 60 秒后重试；输入已保留。',{exact:true}).waitFor();assert.equal(await f.locator('[name=name]').inputValue(),'Fixture');assert.ok(await f.locator('button[type=submit]').isEnabled());
+}
+console.log('PASS bilingual rate-limit recovery: wait message, input preserved, retry enabled; all network intercepted');
+}finally{await b.close();}

@@ -269,6 +269,7 @@ jobs:
       - name: Vendor claim layer tests (zero network)
         run: |
           node scripts/test-claim.mjs
+          node --test scripts/test-traffic-controls.mjs
           node scripts/claims-export.mjs --selftest
 
       # 付费档探针的零网络自检（2026-09-16）：这个探针决定「下一轮去读哪几家的定价页」，
@@ -508,6 +509,7 @@ jobs:
           node tools/quote-page-lab/test-hosted.mjs
           node sites/baipiaoji/scripts/test-file-events-browser.mjs
           node sites/baipiaoji/scripts/test-homepage-clicks-browser.mjs
+          node sites/baipiaoji/scripts/test-traffic-controls-browser.mjs
           node sites/baipiaoji/scripts/test-category-guides-browser.mjs
           node sites/baipiaoji/scripts/test-search-ui-browser.mjs
           node sites/baipiaoji/scripts/test-catalog-browser.mjs
@@ -865,7 +867,7 @@ jobs:
         id: st_submit
         run: |
           api() { curl -s -o /tmp/r.json -w "%{http_code}" -X POST "https://baipiaoji.com/api/submit" \
-            -H 'Content-Type: application/json' -d "$1" --max-time 20; }
+            -H 'Origin: https://baipiaoji.com' -H 'Content-Type: application/json' -d "$1" --max-time 20; }
           c1=$(api '{"name":"__ci-selftest","url":"https://baipiaoji.com/__ci-submit-selftest","note":"CI"}')
           b1=$(cat /tmp/r.json)
           c2=$(api '{"name":"x","url":"not a url"}')
@@ -887,7 +889,7 @@ jobs:
           c1=$(curl -s -o /tmp/r1.json -w "%{http_code}" -A "$UA" -m 20 'https://baipiaoji.com/api/claim?slug=kimi'); b1=$(cat /tmp/r1.json)
           c2=$(curl -s -o /dev/null -w "%{http_code}" -A "$UA" -m 20 'https://baipiaoji.com/api/claim?slug=no-such-tool-xyz')
           c3=$(curl -s -o /tmp/r3.json -w "%{http_code}" -A "$UA" -m 20 -X POST 'https://baipiaoji.com/api/claim' \
-            -H 'Content-Type: application/json' -d '{"slug":"kimi","action":"attest","field":"quota","value":"__ci","official_url":"https://kimi.moonshot.cn/"}'); b3=$(cat /tmp/r3.json)
+            -H 'Origin: https://baipiaoji.com' -H 'Content-Type: application/json' -d '{"slug":"kimi","action":"attest","field":"quota","value":"__ci","official_url":"https://kimi.moonshot.cn/"}'); b3=$(cat /tmp/r3.json)
           echo "claim(status) HTTP $c1  $(echo "$b1" | head -c 240)"
           echo "claim(404)    HTTP $c2"
           echo "claim(attest) HTTP $c3  $b3"

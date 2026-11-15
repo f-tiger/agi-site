@@ -6753,7 +6753,8 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
       btn.disabled=false;
       if(!d.ok){
         msg.className='sub-msg is-err';
-        msg.textContent = d.code==='badurl' ? (ZH?'网址不对——需要以 http(s):// 开头的完整地址。':'That URL does not parse — a full http(s):// address is needed.')
+        msg.textContent = d.code==='rate_limited' ? (ZH?'提交过于频繁，请等待 '+Math.max(1,Math.min(600,Number(d.retryAfter)||60))+' 秒后重试；输入已保留。':'Too many requests. Retry in '+Math.max(1,Math.min(600,Number(d.retryAfter)||60))+' seconds; your input is preserved.')
+          : d.code==='badurl' ? (ZH?'网址不对——需要以 http(s):// 开头的完整地址。':'That URL does not parse — a full http(s):// address is needed.')
           : d.code==='bademail' ? (ZH?'邮箱格式看起来不对。':'That email does not look right.')
           : (ZH?'没提交上，稍后再试。':'That did not go through — try again shortly.');
         return;
@@ -6898,6 +6899,7 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
   function esc(s){var d=document.createElement('div');d.textContent=s==null?'':String(s);return d.innerHTML;}
   function busy(on){Array.prototype.forEach.call(f.querySelectorAll('button'),function(b){b.disabled=on;});}
   function render(d){
+    if(d&&d.code==='rate_limited'){st.textContent=(ZH?'核验请求过于频繁，请等待 ':'Too many verification requests. Retry in ')+Math.max(1,Math.min(600,Number(d.retryAfter)||60))+(ZH?' 秒后重试。':' seconds.');return;}
     if(!d||!d.ok&&d.code!=='cooldown'&&d.code!=='no_token'){
       st.innerHTML='<p class="sub-msg is-err">'+(d&&d.code==='unknown_slug'
         ? (ZH?'没有这条记录：slug 是工具页网址的最后一段，例如 kimi。':'No such record: the slug is the last segment of the tool page URL, e.g. kimi.')
@@ -6950,7 +6952,8 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
       btn.disabled=false;
       if(!d.ok){
         msg.className='sub-msg is-err';
-        msg.textContent = d.code==='bad_official_url' ? (ZH?'出处必须是你们域名上的 https 页面（'+(d.host||'')+'）。':'The source must be an https page on your own domain ('+(d.host||'')+').')
+        msg.textContent = d.code==='rate_limited' ? (ZH?'提交过于频繁，请稍后重试；输入已保留。':'Too many requests. Retry shortly; your input is preserved.')
+          : d.code==='bad_official_url' ? (ZH?'出处必须是你们域名上的 https 页面（'+(d.host||'')+'）。':'The source must be an https page on your own domain ('+(d.host||'')+').')
           : d.code==='unclaimed' ? (ZH?'这条记录当前没有有效认领，先验证。':'This record has no valid claim right now; verify first.')
           : d.code==='too_many' ? (ZH?'未处理的更正已达上限，等我们处理完再提交。':'The pending-correction limit is reached; wait until we have processed them.')
           : d.code==='badfield' ? (ZH?'字段不在允许列表里。':'That field is not allowed.')
@@ -7110,7 +7113,8 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
       btn.disabled=false;
       if(!d.ok){
         msg.className='sub-msg is-err';
-        msg.textContent = d.code==='badurl' ? (ZH?'网址不对——需要以 http(s):// 开头的完整地址。':'That URL does not parse — a full http(s):// address is needed.')
+        msg.textContent = d.code==='rate_limited' ? (ZH?'提交过于频繁，请等待 '+Math.max(1,Math.min(600,Number(d.retryAfter)||60))+' 秒后重试；输入已保留。':'Too many requests. Retry in '+Math.max(1,Math.min(600,Number(d.retryAfter)||60))+' seconds; your input is preserved.')
+          : d.code==='badurl' ? (ZH?'网址不对——需要以 http(s):// 开头的完整地址。':'That URL does not parse — a full http(s):// address is needed.')
           : d.code==='bademail' ? (ZH?'邮箱格式看起来不对——报价需要发到这里。':'That email does not look right — quotes go there.')
           : (ZH?'没发出去，稍后再试。':'That did not go through — try again shortly.');
         return;
