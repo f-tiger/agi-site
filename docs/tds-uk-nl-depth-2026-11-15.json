@@ -1,0 +1,196 @@
+{
+  "date": "2026-11-15",
+  "site": "thedollscout.com",
+  "status": "validated_ready_to_release",
+  "owner_request": "tds面向英国和荷兰深化一轮",
+  "brief_rounds": [
+    "保留德语默认与100款目录，深化英国英文、荷兰语的本地购买任务。",
+    "以当地第一方资料与竞品公开框架验证差异；不推断低竞争、需求、库存或联盟资格。",
+    "交付2个专区+6篇指南、当地商店入口、SEO/GEO/IndexNow、浏览器验证及独立点击统计并上线。"
+  ],
+  "self_review": {
+    "independent_agents": false,
+    "product_challenge": "Eight task pages avoid multiplying100 mostly-US-model listings into unverified local offers. New regional references are separate from the original100-model catalogue.",
+    "engineering_challenge": "Country routes stay outside old shopping-growth18-page and27category scopes; ordinary store clicks must never inflate affiliate clicks or revenue. Exact asset allowlist and real browser tests required."
+  },
+  "buyer": "UK or Netherlands household shopper comparing fit, indoor moisture/laundry or plug compatibility before a purchase.",
+  "free_value": "Source-backed local decision guides, comparison tables, no-purchase options and exact-market checks.",
+  "paid_value": "No new paid product. Existing US/DE affiliate links and collection membership remain. UK/NL references and model-search exits are ordinary non-affiliate links.",
+  "payment_readiness": {
+    "uk_tracking_id": "unknown_not_configured",
+    "nl_tracking_id": "unknown_not_configured",
+    "owner_optional_question": "asked; no response at implementation time",
+    "local_commissions": "not_enabled",
+    "whole_site_monthly_goal_usd": 100,
+    "goal_definition": "TDS-attributable calendar-month total revenue after reversals before costs",
+    "actual_revenue": "unknown"
+  },
+  "competitors": [
+    {
+      "name": "Which?",
+      "url": "https://www.which.co.uk/reviews/dehumidifiers/article/how-to-buy-the-best-dehumidifier-ay5gu4q77WQN",
+      "observed": "Public topic hub combines intent-matched heading, jump navigation, method explanations, operating costs, model references, membership gates and affiliate disclosure. Paid test results not accessed.",
+      "acquisition": "Task/problem and buying-guide internal links give search entry points; traffic volume unknown.",
+      "conversion": "Visible retailer links and membership offer; CTR/CVR/revenue unknown.",
+      "adaptation": "Explain task first; compare conditions and whole-session cost; link sources and local offers; do not copy test results or claim TDS testing."
+    },
+    {
+      "name": "Consumentenbond",
+      "url": "https://www.consumentenbond.nl/luchtontvochtiger/kopen",
+      "observed": "Dutch buying advice distinguishes appliance technologies and buying checks, linking to product comparison and testing.",
+      "acquisition": "Dutch problem vocabulary and separate advice/comparison pages; ranking and demand unknown.",
+      "conversion": "Advice leads to comparison/testing ecosystem; CTR/CVR/revenue unknown.",
+      "adaptation": "Native Dutch problem headings; ventilation versus dehumidification versus measurement; plain answers, tables and dated sources."
+    }
+  ],
+  "counterevidence": [
+    "German/Dutch language does not establish low competition. Both markets have established consumer-advice incumbents.",
+    "UK and NL Tapo P110M specifications differ; UK13A and NL16A general/resistive load with separate motor limits must not be mixed.",
+    "UK4L box interior is not the US4C identity.",
+    "One Dutch Tapo store URL returned404 and was replaced with the live TP-Link NL manufacturer page.",
+    "Dutch Meaco reference showed unavailable stock at inspection; content records dated observation and no stock promise.",
+    "Source availability and manufacturer claims do not establish Amazon local offers or commission eligibility."
+  ],
+  "source_checked_on": "2026-11-15",
+  "sources": [
+    {
+      "label": "Really Useful Products · Britse 4L-maatvoering",
+      "url": "https://www.reallyusefulproducts.co.uk/uk/html/onlineshop/rub/b04_0litre.php"
+    },
+    {
+      "label": "IKEA UK · SAMLA box with lid",
+      "url": "https://www.ikea.com/gb/en/p/samla-box-with-lid-transparent-s09440839/"
+    },
+    {
+      "label": "Which? · public dehumidifier buying and test-method guide",
+      "url": "https://www.which.co.uk/reviews/dehumidifiers/article/how-to-buy-the-best-dehumidifier-ay5gu4q77WQN"
+    },
+    {
+      "label": "Meaco · Arete One 12L manufacturer information",
+      "url": "https://www.meaco.com/products/meacodryarete1-12l"
+    },
+    {
+      "label": "SwitchBot EU · Meter Plus",
+      "url": "https://eu.switch-bot.com/products/switchbot-meter-plus/"
+    },
+    {
+      "label": "TP-Link UK · P110",
+      "url": "https://www.tp-link.com/uk/home-networking/smart-plug/tapo-p110/"
+    },
+    {
+      "label": "Tapo UK · P110M and load restrictions",
+      "url": "https://www.tapo.com/uk/product/tapo-p110m-smart-plug/v1/1-pack"
+    },
+    {
+      "label": "IKEA Nederland · SAMLA met deksel",
+      "url": "https://www.ikea.com/nl/nl/p/samla-bak-met-deksel-transparant-s09440839/"
+    },
+    {
+      "label": "Milieu Centraal · woning ventileren",
+      "url": "https://www.milieucentraal.nl/energie-besparen/ventilatie/woning-ventileren/"
+    },
+    {
+      "label": "Consumentenbond · luchtontvochtiger kopen",
+      "url": "https://www.consumentenbond.nl/luchtontvochtiger/kopen"
+    },
+    {
+      "label": "Meaco Nederland · Arete One 12L",
+      "url": "https://www.meaco.nl/product/luchtontvochtiger-meaco-arete-one-12-l/"
+    },
+    {
+      "label": "TP-Link Nederland · P110",
+      "url": "https://www.tp-link.com/nl/home-networking/smart-plug/tapo-p110/"
+    },
+    {
+      "label": "TP-Link Nederland · P110M",
+      "url": "https://www.tp-link.com/nl/home-networking/smart-plug/tapo-p110m/"
+    }
+  ],
+  "paths": [
+    "/uk/",
+    "/nl/",
+    "/uk/storage-boxes",
+    "/uk/indoor-laundry",
+    "/uk/smart-plugs",
+    "/nl/opbergboxen",
+    "/nl/binnenklimaat",
+    "/nl/slimme-stekkers"
+  ],
+  "seo_geo": {
+    "html": "static fully readable without JavaScript",
+    "hreflang": "reciprocal en-GB/nl-NL same-topic pairs, self canonicals; regional hubs do not replace German root",
+    "schema": "visible BreadcrumbList and ItemList only, no invented reviews/offers/ratings/FAQPage",
+    "sources": "dated local public references, limits and no-purchase options",
+    "discovery": "home, catalog and27category entries; sitemap and text/llms mirrors updated",
+    "indexnow": "existing changed-canonical workflow after successful deploy; acceptance not indexing"
+  },
+  "marketing": {
+    "executed_owned_actions": [
+      "country entry links on3homes+3catalogues+27category pages",
+      "2regional hubs link to3guides each",
+      "same-topic reciprocal country links and related-task links",
+      "local Amazon model searches with explicit availability uncertainty"
+    ],
+    "search_intent_hypotheses": {
+      "UK": [
+        "storage box internal dimensions UK",
+        "drying clothes indoors dehumidifier running cost",
+        "Tapo P110 vs P110M UK energy monitoring"
+      ],
+      "NL": [
+        "opbergbox binnenmaten deksel",
+        "luchtontvochtiger of ventileren was drogen",
+        "slimme stekker energiemeting Matter Nederland"
+      ]
+    },
+    "volume": "unknown",
+    "outbound_posts": 0,
+    "paid_spend": 0,
+    "new_schedules": 0
+  },
+  "measurement": {
+    "ga4_events": [
+      "tds_market_shop",
+      "tds_market_source"
+    ],
+    "first_party_events": [
+      "market_shop_click",
+      "market_source_click"
+    ],
+    "fields": "canonical fixed page, fixed event and allowed host only; no model, query, customer inputs or price",
+    "merchant_click_is_affiliate_click": false,
+    "merchant_click_is_order_or_revenue": false,
+    "historical_shopping_report": "unchanged18page scope; new markets separate",
+    "country": "GA4country and existing cf-ipcountry aggregate field; page market is content context, not visitor country",
+    "backend_receipt": "not_tested"
+  },
+  "review": {
+    "original_date": "2026-11-22",
+    "original_window": "2026-11-08 through2026-11-21 retained",
+    "new_first_full_day": "pending actual deployment",
+    "decision_rule": "Operational, not statistical: if a market receives at least50 genuine guide visits but zero merchant clicks, revisit task/CTA/local offer. With fewer than50, investigate discovery and distribution rather than infer absent demand. Search impressions/CTR require real GSC access; merchant sales require attributable programme reports. Do not enlarge content inventory solely because pages were accepted by IndexNow."
+  },
+  "validation": {
+    "required_tests": 190,
+    "required_tests_status": "passed; final targeted57tests also passed",
+    "structured_data_entries": 182,
+    "structured_data_invisible": 0,
+    "ga4_public_routes": 349,
+    "routing": "fixed reviewed manifest and8text files; unknown data still rejected",
+    "browser": {
+      "states": 32,
+      "journeys": 10,
+      "measurement_contexts": 2,
+      "final_layout_recheck_states": 8,
+      "errors": 0,
+      "missing_assets": 0,
+      "production_events": 0,
+      "merchant_visits": 0,
+      "ga4_google_tag": "intercepted test stub; backend receipt not tested"
+    },
+    "live": "pending",
+    "indexnow": "pending",
+    "targeted_tests": 57,
+    "build": "93document pages+198collector pages+8regional pages;349publicGA4routes; all static routing and privacy gates passed"
+  }
+}

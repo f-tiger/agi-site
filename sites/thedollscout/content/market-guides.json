@@ -1,0 +1,521 @@
+{
+  "updated": "2026-11-15",
+  "markets": [
+    {
+      "id": "uk",
+      "lang": "en-GB",
+      "country": "United Kingdom",
+      "merchant": "amazon.co.uk",
+      "currency": "GBP",
+      "title": "UK home buying guides: fit, moisture and smart plugs",
+      "description": "Practical buying guides for UK homes. Compare storage dimensions, indoor laundry choices and smart-plug compatibility before checking a local seller.",
+      "intro": "Make one useful choice for your home. Start with the task, compare the trade-offs and check the UK version before buying.",
+      "guides": [
+        {
+          "id": "storage",
+          "slug": "storage-boxes",
+          "title": "Storage boxes for small UK spaces: inside dimensions first",
+          "description": "Compare shelf fit, usable inside space, lids and access before buying a UK storage box. Includes a separately sourced UK Really Useful Box 4L example.",
+          "answer": "Choose a box by what must fit inside and where it must go. Litres alone do not tell you whether papers, cables or craft supplies will fit. Measure the narrowest usable interior, then allow room for your fingers, dividers and a lid.",
+          "decisions": [
+            {
+              "title": "Start with the shelf, not the bundle",
+              "body": "Write down shelf width, depth and clearance above it. A handle, hinge or lid can prevent a box from sliding out even when the main body fits. Keep frequently used items within easy reach; a bigger stack is not automatically more useful."
+            },
+            {
+              "title": "Keep UK and US model information separate",
+              "body": "The UK Really Useful Box 4L source lists a different interior from the US 4C reference in the general catalogue. Do not transfer a US measurement or Amazon.com product identity to a UK offer. Check the exact size and variant in the seller listing."
+            },
+            {
+              "title": "An existing box may be enough",
+              "body": "Try sorting one drawer with boxes you already own before buying a multipack. A dry indoor storage box is not automatically a waterproof transport case or archival protection. Follow the manufacturer’s stacking and load guidance."
+            }
+          ],
+          "comparisons": [
+            {
+              "need": "A4 papers and flat craft materials",
+              "consider": "A shallow box with a known minimum interior",
+              "check": "Check height after adding a tray; lid and carrying room still matter."
+            },
+            {
+              "need": "Mixed household supplies on a shelf",
+              "consider": "A transparent box with a matching lid",
+              "check": "Overall dimensions describe shelf fit, not the usable internal space."
+            },
+            {
+              "need": "Items opened every day",
+              "consider": "A small open tray or existing drawer divider",
+              "check": "Easy access may matter more than a lid; open storage leaves contents exposed."
+            }
+          ],
+          "beforeBuying": [
+            "Measure the item and the narrowest inside space in millimetres; reserve room for padding or dividers.",
+            "Confirm whether the offer includes the lid and how many complete boxes are in the pack.",
+            "Compare total price in GBP including delivery to your postcode, particularly island or Northern Ireland exclusions.",
+            "Check who sells the item, return postage and the exact size before ordering several."
+          ],
+          "faq": [
+            {
+              "question": "Is a 4L UK box the same as the US 4C?",
+              "answer": "Do not assume so. The UK source below gives a minimum internal size of 348 × 220 × 68 mm; the US reference is separate. Match the listing to the local manufacturer page."
+            },
+            {
+              "question": "Should I buy the largest multipack?",
+              "answer": "Only after one box fits and solves the task. Count usable complete boxes and included lids rather than comparing pack price alone."
+            }
+          ],
+          "models": [
+            {
+              "name": "Really Useful Box 4L · UK version",
+              "url": "https://www.reallyusefulproducts.co.uk/uk/html/onlineshop/rub/b04_0litre.php",
+              "use": "A shallow example for papers and small craft materials; the UK manufacturer gives minimum internal dimensions of 348 × 220 × 68 mm.",
+              "check": "Confirm UK version, lid and any tray. This is separate from the US 4C model in the general catalogue.",
+              "query": "Really Useful Box 4 litre UK"
+            },
+            {
+              "name": "IKEA SAMLA 5L with lid · UK",
+              "url": "https://www.ikea.com/gb/en/p/samla-box-with-lid-transparent-s09440839/",
+              "use": "A locally documented alternative for a shelf; the listed overall size with lid is 28 × 20 × 14 cm.",
+              "check": "These are outside dimensions. Verify the usable interior and the selected box-and-lid combination.",
+              "query": null
+            }
+          ],
+          "sources": [
+            {
+              "label": "Really Useful Products · UK 4L dimensions",
+              "url": "https://www.reallyusefulproducts.co.uk/uk/html/onlineshop/rub/b04_0litre.php"
+            },
+            {
+              "label": "IKEA UK · SAMLA box with lid",
+              "url": "https://www.ikea.com/gb/en/p/samla-box-with-lid-transparent-s09440839/"
+            }
+          ]
+        },
+        {
+          "id": "climate",
+          "slug": "indoor-laundry",
+          "title": "Drying clothes indoors in the UK: moisture, space and running cost",
+          "description": "Decide whether you need ventilation, a humidity monitor or a dehumidifier. Compare whole-session electricity use and local model details before buying.",
+          "answer": "A dehumidifier and an air purifier do different jobs. For laundry, start with the moisture source, ventilation and available drying space. If you compare dehumidifiers, use performance at similar temperature and humidity and the cost of a whole drying session.",
+          "decisions": [
+            {
+              "title": "Find the problem before choosing an appliance",
+              "body": "Note when moisture appears, where laundry dries and whether extraction and ventilation work as intended. A purchase does not repair a leak or a building defect. For persistent damp, follow appropriate housing or professional advice rather than relying on a product guide."
+            },
+            {
+              "title": "Compare the same conditions",
+              "body": "Which? describes testing extraction, energy use and noise. Use that decision framework, but do not treat TDS as a testing laboratory. A headline litres-per-day claim is not a promise for your room, and tank volume is a different measurement."
+            },
+            {
+              "title": "Budget for the full job",
+              "body": "Use measured kWh for a complete comparable session multiplied by your own GBP-per-kWh tariff. Rated watts × hours ÷ 1,000 is only a constant-power estimate; cycling and conditions change. Add filter costs only where the chosen mode actually needs that filter."
+            }
+          ],
+          "comparisons": [
+            {
+              "need": "You need to understand humidity changes",
+              "consider": "A thermometer/hygrometer and an observation log",
+              "check": "It measures conditions; it does not remove moisture or establish the cause."
+            },
+            {
+              "need": "Laundry dries slowly and extra extraction is appropriate",
+              "consider": "A dehumidifier rated for the intended room conditions",
+              "check": "Check extraction, noise, tank access, drainage and required clearance."
+            },
+            {
+              "need": "The concern is particles or smells",
+              "consider": "Read an air-purifier guide separately",
+              "check": "Particle filtration does not remove water vapour or replace ventilation."
+            }
+          ],
+          "beforeBuying": [
+            "Confirm the exact generation, UK plug, rated supply and manufacturer operating range.",
+            "Compare a whole session under similar conditions; do not compare only maximum watts.",
+            "Check the standard washable filter versus optional replacement filters in the exact manual.",
+            "Verify delivery to your postcode, current stock, seller, warranty and return arrangements."
+          ],
+          "faq": [
+            {
+              "question": "Does the lowest wattage mean the cheapest drying?",
+              "answer": "No. A lower-power appliance may need longer. Compare a similar load and drying outcome over the whole session, using your own tariff."
+            },
+            {
+              "question": "Is a small moisture absorber equivalent to a room dehumidifier?",
+              "answer": "No. Check the intended space and extraction method. A product intended for a cupboard is not evidence of useful performance for wet laundry in a room."
+            }
+          ],
+          "models": [
+            {
+              "name": "MeacoDry Arete One 12L · UK",
+              "url": "https://www.meaco.com/products/meacodryarete1-12l",
+              "use": "A compressor dehumidifier example with published operating and maintenance information.",
+              "check": "Match Arete One rather than Arete Two, check room conditions and the actual UK offer. TDS has not tested drying speed or verified current stock.",
+              "query": "MeacoDry Arete One 12L UK"
+            },
+            {
+              "name": "SwitchBot Meter Plus",
+              "url": "https://eu.switch-bot.com/products/switchbot-meter-plus/",
+              "use": "A display for observing temperature and humidity before deciding what equipment is needed.",
+              "check": "The linked EU source identifies the model. Check the UK seller’s version and whether remote features require a separate hub.",
+              "query": "SwitchBot Meter Plus"
+            }
+          ],
+          "sources": [
+            {
+              "label": "Which? · public dehumidifier buying and test-method guide",
+              "url": "https://www.which.co.uk/reviews/dehumidifiers/article/how-to-buy-the-best-dehumidifier-ay5gu4q77WQN"
+            },
+            {
+              "label": "Meaco · Arete One 12L manufacturer information",
+              "url": "https://www.meaco.com/products/meacodryarete1-12l"
+            },
+            {
+              "label": "SwitchBot EU · Meter Plus",
+              "url": "https://eu.switch-bot.com/products/switchbot-meter-plus/"
+            }
+          ]
+        },
+        {
+          "id": "smart-home",
+          "slug": "smart-plugs",
+          "title": "UK smart plugs: energy monitoring, Matter and load checks",
+          "description": "Choose a UK smart plug by the appliance, app and energy data you need. Compare Tapo P110 and P110M references without assuming automatic savings.",
+          "answer": "Start with the appliance and the feature you need: switching, a timer or measured electricity use. Confirm the UK plug and permitted load first. Matter compatibility and energy reporting are separate checks; a smart plug does not save energy merely by being installed.",
+          "decisions": [
+            {
+              "title": "Choose the job before the ecosystem",
+              "body": "A lamp timer may need only scheduled switching. Investigating consumption needs energy monitoring and access to the history you require. Write down whether local control, remote access or a particular home platform is essential before choosing a model."
+            },
+            {
+              "title": "Check the actual integration",
+              "body": "Tapo’s UK P110M page describes Matter and energy monitoring but also carries a limitation on energy reporting through Matter. Features can depend on hardware, firmware and the controller. Verify the exact integration instead of assuming every app displays the same readings."
+            },
+            {
+              "title": "Match the load, not just the headline amperage",
+              "body": "The UK P110M source gives a 13A maximum and separate restrictions for motors/compressors and EV charging. Follow the exact device and appliance manuals. Do not use a generic rating as permission to control an unsuitable appliance remotely."
+            }
+          ],
+          "comparisons": [
+            {
+              "need": "On/off scheduling in the Tapo app",
+              "consider": "A locally specified P110",
+              "check": "Check Wi-Fi requirements, the desired history and behaviour if the network is unavailable."
+            },
+            {
+              "need": "Connection to a Matter ecosystem",
+              "consider": "A locally specified P110M",
+              "check": "Verify supported features in your actual controller; energy data may differ from switching support."
+            },
+            {
+              "need": "Only one occasional energy measurement",
+              "consider": "Borrowing or using an existing suitable meter",
+              "check": "A new app account and always-on device may not be necessary for a single check."
+            }
+          ],
+          "beforeBuying": [
+            "Match the UK plug, rated voltage, load type and exact hardware version.",
+            "Check whether the device must remain powered, and whether the appliance allows remote switching.",
+            "Confirm setup requirements, firmware support, account requirements and retained energy history.",
+            "Compare complete pack cost, delivery, seller and returns in GBP; do not infer stock from a search result."
+          ],
+          "faq": [
+            {
+              "question": "Does Matter guarantee energy readings in every app?",
+              "answer": "No. Check the product’s firmware notes and your controller’s supported functions. A logo alone does not establish that the measurements you need will appear."
+            },
+            {
+              "question": "Will a smart plug lower my bill?",
+              "answer": "Only a useful change in appliance operation could reduce consumption. Include the plug’s own use and purchase cost; TDS does not claim a saving for your home."
+            }
+          ],
+          "models": [
+            {
+              "name": "Tapo P110 · UK",
+              "url": "https://www.tp-link.com/uk/home-networking/smart-plug/tapo-p110/",
+              "use": "A UK manufacturer reference for a smart socket with energy monitoring.",
+              "check": "Check the exact UK hardware and app features; do not confuse P110 with P110M.",
+              "query": "Tapo P110 UK"
+            },
+            {
+              "name": "Tapo P110M · UK",
+              "url": "https://www.tapo.com/uk/product/tapo-p110m-smart-plug/v1/1-pack",
+              "use": "A UK manufacturer reference with Matter and energy monitoring listed as distinct features.",
+              "check": "Confirm the current integration limits and permitted loads in the official page and manual.",
+              "query": "Tapo P110M UK"
+            }
+          ],
+          "sources": [
+            {
+              "label": "TP-Link UK · P110",
+              "url": "https://www.tp-link.com/uk/home-networking/smart-plug/tapo-p110/"
+            },
+            {
+              "label": "Tapo UK · P110M and load restrictions",
+              "url": "https://www.tapo.com/uk/product/tapo-p110m-smart-plug/v1/1-pack"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nl",
+      "lang": "nl-NL",
+      "country": "Nederland",
+      "merchant": "amazon.nl",
+      "currency": "EUR",
+      "title": "Koopgidsen voor je huis in Nederland",
+      "description": "Praktische koopgidsen voor opbergen, binnenklimaat en slimme stekkers. Vergelijk gebruik, uitvoering en kosten vóór je een lokale aanbieding kiest.",
+      "intro": "Kies wat je thuis echt nodig hebt. Begin bij je vraag, vergelijk de mogelijkheden en controleer de Nederlandse uitvoering vóór aankoop.",
+      "guides": [
+        {
+          "id": "storage",
+          "slug": "opbergboxen",
+          "title": "Opbergboxen kiezen: binnenmaten, deksel en kastruimte",
+          "description": "Vergelijk opbergboxen voor een Nederlandse woning op bruikbare binnenruimte, bereikbaarheid en deksel. Met lokale SAMLA-bron en praktische meetlijst.",
+          "answer": "Kies een opbergbox op wat erin moet passen én op de ruimte in je kast. Het aantal liters vertelt niet of een map, kabeldoos of hobbyproject past. Meet de smalste binnenkant en houd ruimte over voor je handen, tussenschotten en het deksel.",
+          "decisions": [
+            {
+              "title": "Meet de hele handeling",
+              "body": "Meet de kastopening, plankdiepte en ruimte boven de box. Je moet de box ook kunnen pakken en openen. Handgrepen en dekselranden tellen mee voor de buitenruimte; afgeronde hoeken kunnen juist binnenruimte kosten."
+            },
+            {
+              "title": "Vergelijk complete sets",
+              "body": "Een losse bak, een bak met deksel en een set met meerdere deksels zijn verschillende aanbiedingen. Reken met het aantal bruikbare complete boxen. Koop eerst één passende maat als je nog niet weet of het systeem werkt."
+            },
+            {
+              "title": "Bewaar wat al voldoet",
+              "body": "Sorteer een lade eerst met bestaande dozen. Open bakjes kunnen prettiger zijn voor spullen die je dagelijks gebruikt. Een gewone opbergbox is niet automatisch waterdicht, geschikt voor verzending of bedoeld voor langdurige conservering."
+            }
+          ],
+          "comparisons": [
+            {
+              "need": "Kleine spullen op een plank",
+              "consider": "Een transparante box met passend deksel",
+              "check": "Controleer binnenmaten en ruimte om de box uit de kast te halen."
+            },
+            {
+              "need": "Papier of plat hobbymateriaal",
+              "consider": "Een ondiepe box met gepubliceerde binnenmaten",
+              "check": "Controleer de regionale variant; dezelfde inhoud in liters bewijst geen gelijke afmetingen."
+            },
+            {
+              "need": "Dagelijks gebruikte kabels en accessoires",
+              "consider": "Een open ladebakje of bestaande verdeler",
+              "check": "Makkelijk pakken kan belangrijker zijn dan stapelen; open opbergen beschermt minder tegen stof."
+            }
+          ],
+          "beforeBuying": [
+            "Meet inhoud en kast in millimeters; houd rekening met handgrepen, binnenhoeken en eventuele bekleding.",
+            "Controleer of de deksels bij de gekozen maat horen en in de prijs zijn inbegrepen.",
+            "Vergelijk het totaal in euro inclusief bezorging naar je postcode.",
+            "Controleer verkoper, retouradres en eventuele kosten voor terugsturen voordat je een grote set koopt."
+          ],
+          "faq": [
+            {
+              "question": "Zijn de maten van SAMLA de binnenmaten?",
+              "answer": "De lokale bron voor de 5L-combinatie met deksel noemt 28 × 20 × 14 cm als totale maat. Gebruik die voor de kastruimte en controleer de bruikbare binnenruimte apart."
+            },
+            {
+              "question": "Kan ik een Britse box op basis van de naam bestellen?",
+              "answer": "Controleer eerst de exacte variant en levering naar Nederland. De Britse 4L-bron is een maatvoorbeeld, geen bewijs van Nederlands aanbod of dezelfde maten bij een andere uitvoering."
+            }
+          ],
+          "models": [
+            {
+              "name": "IKEA SAMLA 5L met deksel · Nederland",
+              "url": "https://www.ikea.com/nl/nl/p/samla-bak-met-deksel-transparant-s09440839/",
+              "use": "Een lokaal gedocumenteerde box-dekselcombinatie om naast je kastmaten te leggen.",
+              "check": "De totale maat is geen binnenmaat. Controleer de exacte combinatie en beschikbare ruimte.",
+              "query": null
+            },
+            {
+              "name": "Really Useful Box 4L · Britse referentie",
+              "url": "https://www.reallyusefulproducts.co.uk/uk/html/onlineshop/rub/b04_0litre.php",
+              "use": "Een voorbeeld waarvan de Britse fabrikant minimale binnenmaten publiceert: 348 × 220 × 68 mm.",
+              "check": "Britse referentie; Nederlands aanbod en uitvoering zijn niet bevestigd. Verwar deze box niet met de Amerikaanse 4C.",
+              "query": "Really Useful Box 4 liter"
+            }
+          ],
+          "sources": [
+            {
+              "label": "IKEA Nederland · SAMLA met deksel",
+              "url": "https://www.ikea.com/nl/nl/p/samla-bak-met-deksel-transparant-s09440839/"
+            },
+            {
+              "label": "Really Useful Products · Britse 4L-maatvoering",
+              "url": "https://www.reallyusefulproducts.co.uk/uk/html/onlineshop/rub/b04_0litre.php"
+            }
+          ]
+        },
+        {
+          "id": "climate",
+          "slug": "binnenklimaat",
+          "title": "Vocht in huis: ventileren, meten of een ontvochtiger?",
+          "description": "Kies op basis van de oorzaak: ventilatie, luchtvochtigheid, was drogen of deeltjes. Nederlandse koopchecks voor meters en ontvochtigers, zonder besparingsclaims.",
+          "answer": "Begin bij ventilatie en de bron van vocht. Een hygrometer meet luchtvochtigheid, een ontvochtiger haalt vocht uit de lucht en een luchtreiniger richt zich op deeltjes. Deze apparaten hebben verschillende taken; geen ervan repareert een lekkage of vervangt goede ventilatie.",
+          "decisions": [
+            {
+              "title": "Kijk eerst naar de woning",
+              "body": "Milieu Centraal benadrukt voortdurende aanvoer en afvoer van lucht, ook bij was drogen. Noteer wanneer condens ontstaat en controleer de werking van aanwezige ventilatie. Bij een blijvend probleem hoort onderzoek naar de oorzaak; bij gebreken in een huurwoning is alleen een apparaat kopen geen oplossing."
+            },
+            {
+              "title": "Vergelijk bij passende omstandigheden",
+              "body": "Consumentenbond onderscheidt de soorten ontvochtigers en aandachtspunten bij gebruik. Kijk naar temperatuur, geluidsniveau, tank, afvoer en gebruiksduur. Een geadverteerd aantal liters per dag is niet hetzelfde als de inhoud van het waterreservoir of de opbrengst in jouw kamer."
+            },
+            {
+              "title": "Reken met je eigen gebruik",
+              "body": "Vermenigvuldig gemeten kWh over een volledige sessie met je eigen euro-per-kWh-tarief. Een berekening met vast vermogen is slechts een schatting. Neem eventuele filters en andere verbruiksartikelen alleen mee als ze bij jouw model en gebruik horen."
+            }
+          ],
+          "comparisons": [
+            {
+              "need": "Je wilt vochtpatronen begrijpen",
+              "consider": "Een hygrometer en een eenvoudig logboek",
+              "check": "Een meting stelt geen diagnose en verwijdert geen vocht."
+            },
+            {
+              "need": "Extra ontvochtigen is na de basischecks passend",
+              "consider": "Een model met gegevens bij relevante kamertemperatuur",
+              "check": "Controleer geluid, plaatsing, leegmaken en afvoermogelijkheden."
+            },
+            {
+              "need": "Je wilt meer weten over ventilatie",
+              "consider": "Een ventilatiecheck en eventueel een passende CO₂-meter",
+              "check": "Een hygrometer meet geen CO₂; een luchtreiniger vervangt geen toevoer van verse lucht."
+            }
+          ],
+          "beforeBuying": [
+            "Controleer lokale uitvoering, stekker, nominale spanning en gebruiksbereik.",
+            "Vergelijk verbruik over een complete vergelijkbare sessie, niet alleen het maximale vermogen.",
+            "Controleer welke filters standaard zijn en welke vervangingsdelen echt nodig zijn.",
+            "Verifieer actuele voorraad, bezorging naar Nederland, verkoper en retourvoorwaarden; de bron is geen actuele voorraadgarantie."
+          ],
+          "faq": [
+            {
+              "question": "Kan een ontvochtiger ventilatie vervangen?",
+              "answer": "Nee. Vocht verwijderen is een andere taak dan verse lucht aanvoeren en vervuilde lucht afvoeren. Pak de bron en ventilatie aan voordat je een apparaat als oplossing ziet."
+            },
+            {
+              "question": "Is een luchtreiniger hetzelfde als een ontvochtiger?",
+              "answer": "Nee. Kies eerst het probleem dat je wilt aanpakken. Een apparaat voor deeltjes maakt natte was niet vanzelf droog en een hygrometer verwijdert geen vocht."
+            }
+          ],
+          "models": [
+            {
+              "name": "SwitchBot Meter Plus",
+              "url": "https://eu.switch-bot.com/products/switchbot-meter-plus/",
+              "use": "Een temperatuur- en luchtvochtigheidsmeter om veranderingen in de ruimte te volgen.",
+              "check": "Controleer of je alleen het scherm nodig hebt of ook appfuncties; voor functies op afstand kan een aparte hub nodig zijn.",
+              "query": "SwitchBot Meter Plus"
+            },
+            {
+              "name": "MeacoDry Arete One 12L · Nederlandse referentie",
+              "url": "https://www.meaco.nl/product/luchtontvochtiger-meaco-arete-one-12-l/",
+              "use": "Een lokale productreferentie voor het vergelijken van handleiding, onderhoud en uitvoering.",
+              "check": "De bron meldde bij deze controle geen bestelbare voorraad. Dat is een gedateerde waarneming; controleer de actuele situatie en exact dezelfde generatie.",
+              "query": "MeacoDry Arete One 12L"
+            }
+          ],
+          "sources": [
+            {
+              "label": "Milieu Centraal · woning ventileren",
+              "url": "https://www.milieucentraal.nl/energie-besparen/ventilatie/woning-ventileren/"
+            },
+            {
+              "label": "Consumentenbond · luchtontvochtiger kopen",
+              "url": "https://www.consumentenbond.nl/luchtontvochtiger/kopen"
+            },
+            {
+              "label": "SwitchBot EU · Meter Plus",
+              "url": "https://eu.switch-bot.com/products/switchbot-meter-plus/"
+            },
+            {
+              "label": "Meaco Nederland · Arete One 12L",
+              "url": "https://www.meaco.nl/product/luchtontvochtiger-meaco-arete-one-12-l/"
+            }
+          ]
+        },
+        {
+          "id": "smart-home",
+          "slug": "slimme-stekkers",
+          "title": "Slimme stekker kiezen: energiemeting, Matter en belasting",
+          "description": "Vergelijk Tapo P110 en P110M voor Nederland. Controleer stekkeruitvoering, appfuncties en belasting voordat je energiemeting of automatisering koopt.",
+          "answer": "Bepaal eerst of je wilt schakelen, een tijdschema wilt gebruiken of stroomverbruik wilt meten. Controleer daarna de Nederlandse stekkeruitvoering en toegestane belasting. Matter-ondersteuning betekent niet dat elke app dezelfde energiegegevens toont.",
+          "decisions": [
+            {
+              "title": "Maak de gewenste functie concreet",
+              "body": "Voor een lamp kan een tijdschema genoeg zijn. Voor verbruiksinzicht zijn energiemeting en bruikbare historie nodig. Noteer welke telefoon, app en eventueel smart-homeplatform je gebruikt. Koop geen extra hub of abonnement voordat duidelijk is dat je functie dat nodig heeft."
+            },
+            {
+              "title": "Controleer versie en platform",
+              "body": "De Nederlandse P110M-bron noemt Matter en energiebewaking. Wat je in een andere app kunt zien, hangt ook af van firmware en controller. Controleer de actuele ondersteuning voor juist die gegevens; schakelen en energierapportage zijn aparte functies."
+            },
+            {
+              "title": "Let op het soort apparaat",
+              "body": "De Nederlandse P110M-specificatie onderscheidt algemene of weerstandsbelasting van motorbelasting. De Britse uitvoering heeft andere specificaties. Volg de handleiding van zowel stekker als aangesloten apparaat en ga niet af op alleen de hoogste stroomwaarde."
+            }
+          ],
+          "comparisons": [
+            {
+              "need": "Schakelen en meten via de Tapo-app",
+              "consider": "Tapo P110 in de Nederlandse uitvoering",
+              "check": "Controleer de precieze uitvoering, gewenste historie en wifi-vereisten."
+            },
+            {
+              "need": "Koppelen met een Matter-platform",
+              "consider": "Tapo P110M in een passende lokale uitvoering",
+              "check": "Controleer functies per controller en firmware; de naam alleen is onvoldoende."
+            },
+            {
+              "need": "Eén apparaat eenmalig meten",
+              "consider": "Een bestaande geschikte verbruiksmeter",
+              "check": "Een nieuw gekoppeld apparaat is mogelijk overbodig; neem aanschaf en eigen verbruik mee."
+            }
+          ],
+          "beforeBuying": [
+            "Controleer stekker, spanning, belastingstype en hardwareversie van de exacte aanbieding.",
+            "Controleer of het aangesloten apparaat op afstand geschakeld mag worden en wat er bij stroomuitval gebeurt.",
+            "Bekijk accountvereisten, updates, gegevensbewaring en werking zonder internet.",
+            "Vergelijk de totale prijs in euro, aantal stekkers, bezorging en retourvoorwaarden bij de verkoper."
+          ],
+          "faq": [
+            {
+              "question": "Bespaart een slimme stekker automatisch stroom?",
+              "answer": "Nee. Alleen een zinvolle verandering in gebruik kan het verbruik verlagen. De stekker zelf gebruikt ook stroom. TDS belooft geen besparing voor je woning."
+            },
+            {
+              "question": "Kan ik een Britse P110M als hetzelfde product behandelen?",
+              "answer": "Nee. Controleer de lokale uitvoering en specificaties. Een gelijke modelnaam is geen bewijs van dezelfde stekker of toegestane belasting."
+            }
+          ],
+          "models": [
+            {
+              "name": "Tapo P110 · Nederlandse uitvoering",
+              "url": "https://www.tp-link.com/nl/home-networking/smart-plug/tapo-p110/",
+              "use": "De Nederlandse fabrikantpagina beschrijft een lokale uitvoering van een stekker met energiemeting.",
+              "check": "Controleer P110 versus P110M, verpakking en actuele functies; een bronvermelding is geen voorraadcontrole.",
+              "query": "Tapo P110 Nederland"
+            },
+            {
+              "name": "Tapo P110M · Nederland",
+              "url": "https://www.tp-link.com/nl/home-networking/smart-plug/tapo-p110m/",
+              "use": "De Nederlandse fabrikantpagina beschrijft een Matter-stekker met energiebewaking.",
+              "check": "Controleer de exacte uitvoering en belasting. De bron noemt 16A voor algemene of weerstandsbelasting en een afzonderlijke motorlimiet; dat is geen universele toestemming.",
+              "query": "Tapo P110M Nederland"
+            }
+          ],
+          "sources": [
+            {
+              "label": "TP-Link Nederland · P110",
+              "url": "https://www.tp-link.com/nl/home-networking/smart-plug/tapo-p110/"
+            },
+            {
+              "label": "TP-Link Nederland · P110M",
+              "url": "https://www.tp-link.com/nl/home-networking/smart-plug/tapo-p110m/"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

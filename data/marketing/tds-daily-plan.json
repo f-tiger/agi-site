@@ -1,5 +1,5 @@
 {
-  "version": 12,
+  "version": 13,
   "site": "tds",
   "start_date": "2026-10-12",
   "days": 30,
@@ -1617,6 +1617,76 @@
         "Current local Amazon stock or commission eligibility",
         "TDS-attributable revenue or USD100 monthly goal"
       ]
+    }
+  },
+  "country_depth_uk_nl": {
+    "status": "validated_ready_to_release",
+    "date": "2026-11-15",
+    "ledger": "docs/tds-uk-nl-depth-2026-11-15.json",
+    "paths": [
+      "/uk/",
+      "/nl/",
+      "/uk/storage-boxes",
+      "/uk/indoor-laundry",
+      "/uk/smart-plugs",
+      "/nl/opbergboxen",
+      "/nl/binnenklimaat",
+      "/nl/slimme-stekkers"
+    ],
+    "strategy": {
+      "executed_owned_actions": [
+        "country entry links on3homes+3catalogues+27category pages",
+        "2regional hubs link to3guides each",
+        "same-topic reciprocal country links and related-task links",
+        "local Amazon model searches with explicit availability uncertainty"
+      ],
+      "search_intent_hypotheses": {
+        "UK": [
+          "storage box internal dimensions UK",
+          "drying clothes indoors dehumidifier running cost",
+          "Tapo P110 vs P110M UK energy monitoring"
+        ],
+        "NL": [
+          "opbergbox binnenmaten deksel",
+          "luchtontvochtiger of ventileren was drogen",
+          "slimme stekker energiemeting Matter Nederland"
+        ]
+      },
+      "volume": "unknown",
+      "outbound_posts": 0,
+      "paid_spend": 0,
+      "new_schedules": 0
+    },
+    "payment_readiness": {
+      "uk_tracking_id": "unknown_not_configured",
+      "nl_tracking_id": "unknown_not_configured",
+      "owner_optional_question": "asked; no response at implementation time",
+      "local_commissions": "not_enabled",
+      "whole_site_monthly_goal_usd": 100,
+      "goal_definition": "TDS-attributable calendar-month total revenue after reversals before costs",
+      "actual_revenue": "unknown"
+    },
+    "measurement": {
+      "ga4_events": [
+        "tds_market_shop",
+        "tds_market_source"
+      ],
+      "first_party_events": [
+        "market_shop_click",
+        "market_source_click"
+      ],
+      "fields": "canonical fixed page, fixed event and allowed host only; no model, query, customer inputs or price",
+      "merchant_click_is_affiliate_click": false,
+      "merchant_click_is_order_or_revenue": false,
+      "historical_shopping_report": "unchanged18page scope; new markets separate",
+      "country": "GA4country and existing cf-ipcountry aggregate field; page market is content context, not visitor country",
+      "backend_receipt": "not_tested"
+    },
+    "review": {
+      "original_date": "2026-11-22",
+      "original_window": "2026-11-08 through2026-11-21 retained",
+      "new_first_full_day": "pending actual deployment",
+      "decision_rule": "Operational, not statistical: if a market receives at least50 genuine guide visits but zero merchant clicks, revisit task/CTA/local offer. With fewer than50, investigate discovery and distribution rather than infer absent demand. Search impressions/CTR require real GSC access; merchant sales require attributable programme reports. Do not enlarge content inventory solely because pages were accepted by IndexNow."
     }
   }
 }
