@@ -219,6 +219,12 @@ def main():
         lines += ['', '## Produkte und passende Auswahlhilfen (Deutschland)', '',
                   f'- [{title}]({BASE}/produkte.html): {description}',
                   f'  Commerce-free facts, examples and exact sources: {BASE}/produkte.md']
+    care = os.path.join(ROOT, 'ersatzfilter.html')
+    if os.path.isfile(care):
+        title, description = meta(care)
+        lines += ['', '## Ersatzfilter und lokale Pflege (Deutschland)', '',
+                  f'- [{title}]({BASE}/ersatzfilter.html): {description}',
+                  f'  Commerce-free manufacturer evidence: {BASE}/ersatzfilter.md']
     finder = os.path.join(ROOT, "en", "filter-finder.html")
     if os.path.isfile(finder):
         title, description = meta(finder)

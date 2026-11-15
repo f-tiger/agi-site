@@ -62,6 +62,7 @@ Die deutsche Produktseite nennt einen Partikelsensor, Auto- und Schlafmodus sowi
 Quelle: [Levoit: Levoit Core 300S – deutsche Herstellerseite](https://levoit.de/products/levoit-core-300s-luftreiniger) · geprüft am 13.11.2026.
 
 Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue Variante, Gesamtpreis und Lieferung beim Händler prüfen.
+[Ersatzfilter zuordnen & Pflege notieren →](https://getecoback.com/ersatzfilter.html#levoit-core-300s)
 
 ### Bosch Air 4000
 Bosch · Air 4000, Artikel 7733701943; nicht Air 4000i
@@ -86,6 +87,7 @@ Die offizielle Seite beschreibt App-Steuerung mit beurer FreshHome, einen Automa
 Quelle: [Beurer: Beurer LR 401 – deutsche Herstellerseite](https://www.beurer.com/de/p/68013/) · geprüft am 13.11.2026.
 
 Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue Variante, Gesamtpreis und Lieferung beim Händler prüfen.
+[Ersatzfilter zuordnen & Pflege notieren →](https://getecoback.com/ersatzfilter.html#beurer-lr401)
 
 ### Stadler Form Roger little
 Stadler Form · Roger little weiß R-015; nicht Roger oder Roger big

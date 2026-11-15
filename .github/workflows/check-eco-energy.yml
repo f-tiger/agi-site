@@ -136,6 +136,10 @@ jobs:
           node --test tools/test_upkeep_decisions.mjs tools/test_meaco_care.mjs
           python3 tools/test_upkeep_decisions.py
           python3 tools/test_meaco_generator.py
+          python3 tools/test_filter_care_sources.py
+          python3 tools/build_filter_care.py
+          node --test tools/test_filter_care.mjs
+          python3 tools/link_filter_finder.py
           python3 tools/build_tools_hub.py
           python3 tools/build_hreflang.py
           python3 tools/check_purchase_intent.py
@@ -233,6 +237,7 @@ jobs:
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_language_nav.cjs
           env -u NODE_PATH ECO_READING_ONLY=1 node tools/browser_dach_growth.mjs
           env -u NODE_PATH node tools/browser_product_catalog.mjs
+          env -u NODE_PATH node tools/browser_filter_care.mjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_tool_experience.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_product_decisions.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_home_fit.cjs
