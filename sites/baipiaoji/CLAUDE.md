@@ -1051,3 +1051,7 @@ Owner 指定 CRO、AI SEO、SEO Audit 并要求同类对比。`/manju/categories
 ## 2026-11-15 帧选偏好选片路径
 
 11 个题材指南各有两条人工审阅的问题路径，标签交集取已有收录数据，例子仅按收录顺序前三条，不是推荐榜。分类总页链接稳定指南锚点；HTML/MD/JSON 复用模型。保持每条来源核查日期，编辑日期只在指南内容修改时调整；不为每个标签生成薄页。见 `docs/manju-category-decisions-2026-11-15.md`。
+
+## 2026-11-15 全站类目选型升级
+
+`category-guides.mjs` 是 14 类中英文任务问题、选型说明与类目证据模型的来源：首页卡片、类目 HTML/JSON/MD、工具详情回链共用。额度覆盖只计同时有 source 与 checked 的 limits；指南修订日不代表额度重新核实，link probe 不刷新内容日期。保留 discovery noindex 与既有 canonical。新增静态及无 JS 浏览器门禁已入 deploy；见 `docs/site-discovery-upgrade-2026-11-15.md`。
