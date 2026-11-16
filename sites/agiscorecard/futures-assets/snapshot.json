@@ -1,12 +1,12 @@
 {
-  "checkedAt": "2026-11-15T09:56:54Z",
+  "checkedAt": "2026-11-16T10:11:19Z",
   "sources": [
     {
       "id": "openai",
       "company": "OpenAI",
       "url": "https://openai.com/news/rss.xml",
-      "checkedAt": "2026-11-15T09:56:54Z",
-      "lastSuccessAt": "2026-11-15T09:56:54Z",
+      "checkedAt": "2026-11-16T10:11:19Z",
+      "lastSuccessAt": "2026-11-16T10:11:19Z",
       "ok": true,
       "error": null
     },
@@ -14,8 +14,8 @@
       "id": "anthropic",
       "company": "Anthropic",
       "url": "https://www.anthropic.com/news",
-      "checkedAt": "2026-11-15T09:56:54Z",
-      "lastSuccessAt": "2026-11-15T09:56:54Z",
+      "checkedAt": "2026-11-16T10:11:19Z",
+      "lastSuccessAt": "2026-11-16T10:11:19Z",
       "ok": true,
       "error": null
     },
@@ -23,8 +23,8 @@
       "id": "meta",
       "company": "Meta",
       "url": "https://about.fb.com/news/feed/",
-      "checkedAt": "2026-11-15T09:56:54Z",
-      "lastSuccessAt": "2026-11-15T09:56:54Z",
+      "checkedAt": "2026-11-16T10:11:19Z",
+      "lastSuccessAt": "2026-11-16T10:11:19Z",
       "ok": true,
       "error": null
     },
@@ -32,7 +32,7 @@
       "id": "xai",
       "company": "xAI / SpaceX",
       "url": "https://x.ai/news",
-      "checkedAt": "2026-11-15T09:56:54Z",
+      "checkedAt": "2026-11-16T10:11:19Z",
       "lastSuccessAt": "2026-10-31T16:20:44Z",
       "ok": false,
       "error": "http_403"
@@ -41,13 +41,53 @@
       "id": "deepmind",
       "company": "Google DeepMind",
       "url": "https://deepmind.google/blog/rss.xml",
-      "checkedAt": "2026-11-15T09:56:54Z",
-      "lastSuccessAt": "2026-11-15T09:56:54Z",
+      "checkedAt": "2026-11-16T10:11:19Z",
+      "lastSuccessAt": "2026-11-16T10:11:19Z",
       "ok": true,
       "error": null
     }
   ],
   "items": [
+    {
+      "id": "ff7833693fa2a06713dc923a",
+      "company": "OpenAI",
+      "title": "LVMH’s Media Division announces strategic partnership with OpenAI",
+      "url": "https://openai.com/index/lvmh-media-division-partnership",
+      "publishedAt": "2026-11-16T09:00:00Z",
+      "discoveredAt": "2026-11-16T10:11:19Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "ed8a714b90bf2d22a5799eb9",
+      "company": "Meta",
+      "title": "94% of Singapore Small Business Owners Surveyed Say More AI Guidance Is Needed",
+      "url": "https://about.fb.com/news/2026/11/94-of-singapore-small-business-owners-surveyed-say-more-ai-guidance-is-needed",
+      "publishedAt": "2026-11-16T06:25:27Z",
+      "discoveredAt": "2026-11-16T10:11:19Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "2e8f421d2ee2a3dfd36bfcc5",
+      "company": "OpenAI",
+      "title": "A step toward defining the Standard Model on a lattice",
+      "url": "https://openai.com/index/step-toward-defining-the-standard-model",
+      "publishedAt": "2026-11-15T22:00:01Z",
+      "discoveredAt": "2026-11-16T10:11:19Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "33b95c2112c46efd09554302",
+      "company": "OpenAI",
+      "title": "Our new blog for science",
+      "url": "https://openai.com/index/our-new-blog-for-science",
+      "publishedAt": "2026-11-15T22:00:00Z",
+      "discoveredAt": "2026-11-16T10:11:19Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
     {
       "id": "7d4d71d056da02862d0b2ec1",
       "company": "OpenAI",
