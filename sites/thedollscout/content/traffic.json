@@ -2,10 +2,10 @@
   "source": "Cloudflare GraphQL Analytics API (edge-measured)",
   "note": "Counted at the edge, so unaffected by ad blockers, privacy browsers or network-level blocking of Google. Includes bot and crawler traffic, which on a new site is most of it — read it as a floor, not as humans.",
   "zone": "thedollscout.com",
-  "updated": "2026-11-15",
+  "updated": "2026-11-16",
   "window": {
     "since": "2026-07-26",
-    "until": "2026-11-14"
+    "until": "2026-11-15"
   },
   "days": {
     "2026-07-26": {
@@ -6489,6 +6489,73 @@
         "NL": 336,
         "DE": 225,
         "PL": 224
+      }
+    },
+    "2026-11-15": {
+      "date": "2026-11-15",
+      "requests": 14051,
+      "pageViews": 4673,
+      "uniques": 1414,
+      "byIpType": {
+        "noRecord": 7227,
+        "unknown": 6199,
+        "searchEngine": 588,
+        "allowlist": 33,
+        "monitoringService": 4
+      },
+      "byBrowser": {
+        "Unknown": 3033,
+        "Curl": 647,
+        "Chrome": 491,
+        "MobileSafari": 136,
+        "Firefox": 107,
+        "YandexBot": 104,
+        "Edge": 87,
+        "BingBot": 31,
+        "GoogleBot": 23,
+        "Safari": 7,
+        "ChromeMobile": 6,
+        "ChromeDerivative": 1
+      },
+      "byContentType": {
+        "html": 5813,
+        "txt": 2629,
+        "empty": 1807,
+        "json": 1573,
+        "js": 1489,
+        "css": 386,
+        "svg": 186,
+        "xml": 56,
+        "unknown": 49,
+        "pdf": 37,
+        "png": 20,
+        "zip": 6
+      },
+      "byStatus": {
+        "200": 10693,
+        "202": 296,
+        "204": 555,
+        "206": 6,
+        "301": 724,
+        "303": 29,
+        "304": 122,
+        "308": 340,
+        "401": 3,
+        "403": 19,
+        "404": 1060,
+        "405": 77,
+        "410": 80,
+        "499": 47
+      },
+      "topCountries": {
+        "US": 8838,
+        "SG": 717,
+        "CN": 612,
+        "BR": 425,
+        "FI": 400,
+        "HK": 393,
+        "IL": 284,
+        "FR": 260
       }
     }
   }

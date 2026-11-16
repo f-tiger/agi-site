@@ -2,17 +2,22 @@
   "ok": true,
   "since": "2026-09-25",
   "days": 28,
-  "generated": "2026-11-15T13:41:27.730Z",
+  "generated": "2026-11-16T15:15:51.443Z",
   "cache_seconds": 300,
   "unit": "Anonymous action counts, deduplicated per event per page load in the browser. Not unique users; not verified buyers. Bots, CI and samples are excluded from task completion. Open endpoint counts can be spoofed. Public aggregates may be cached for 5 minutes.",
   "events": {
-    "doc_view": 92
+    "doc_view": 105
   },
   "excluded": {
     "doc_ci": 34,
     "doc_image_sample": 1
   },
   "daily": [
+    {
+      "d": "2026-11-16",
+      "ev": "doc_view",
+      "n": 13
+    },
     {
       "d": "2026-11-15",
       "ev": "doc_view",
@@ -57,55 +62,55 @@
   "pages": [
     {
       "path": "/document-tools",
-      "n": 8
+      "n": 9
     },
     {
       "path": "/collectors",
-      "n": 7
+      "n": 8
     },
     {
       "path": "/document-privacy",
-      "n": 7
+      "n": 8
     },
     {
       "path": "/methodology",
-      "n": 7
+      "n": 8
     },
     {
       "path": "/open-source",
-      "n": 7
+      "n": 8
     },
     {
       "path": "/open-source/ollama",
-      "n": 7
+      "n": 8
     },
     {
       "path": "/open-source/upscayl",
-      "n": 7
+      "n": 8
     },
     {
       "path": "/open-source/whisper",
-      "n": 7
+      "n": 8
     },
     {
       "path": "/videos",
-      "n": 7
+      "n": 8
     },
     {
       "path": "/videos/shotcut",
-      "n": 7
+      "n": 8
     },
     {
       "path": "/zh/document-tools",
-      "n": 7
+      "n": 8
     },
     {
       "path": "/de/document-tools",
-      "n": 6
+      "n": 7
     },
     {
       "path": "/videos/upscayl",
-      "n": 6
+      "n": 7
     },
     {
       "path": "/ai-text-summarizer",
@@ -119,7 +124,7 @@
   "referrers": [
     {
       "ref": "",
-      "n": 89
+      "n": 102
     },
     {
       "ref": "www.google.com",
@@ -133,11 +138,7 @@
   "crawler_fetches": [
     {
       "path": "/document-sitemap.xml",
-      "n": 201
-    },
-    {
-      "path": "/llms-full.txt",
-      "n": 9
+      "n": 202
     },
     {
       "path": "/llms.txt",
@@ -145,6 +146,10 @@
     },
     {
       "path": "/de/delivery-evidence",
+      "n": 7
+    },
+    {
+      "path": "/llms-full.txt",
       "n": 7
     },
     {
@@ -168,10 +173,6 @@
       "n": 4
     },
     {
-      "path": "/document-assets/text/en/open-source/obs.txt",
-      "n": 4
-    },
-    {
       "path": "/document-assets/text/en/open-source/shotcut.txt",
       "n": 4
     },
@@ -181,10 +182,6 @@
     },
     {
       "path": "/document-assets/text/en/videos/audacity.txt",
-      "n": 4
-    },
-    {
-      "path": "/zh/delivery-evidence",
       "n": 4
     },
     {
@@ -236,6 +233,10 @@
       "n": 3
     },
     {
+      "path": "/document-assets/text/en/open-source/obs.txt",
+      "n": 3
+    },
+    {
       "path": "/document-assets/text/en/pdf-accessibility-checker.txt",
       "n": 3
     },
@@ -252,7 +253,7 @@
       "n": 3
     },
     {
-      "path": "/document-assets/tool-capabilities.json",
+      "path": "/zh/delivery-evidence",
       "n": 3
     },
     {
@@ -392,6 +393,10 @@
       "n": 2
     },
     {
+      "path": "/document-assets/tool-capabilities.json",
+      "n": 2
+    },
+    {
       "path": "/document-tools",
       "n": 2
     },
@@ -419,7 +424,7 @@
   "crawler_agents": [
     {
       "claimed_agent": "ClaudeBot",
-      "n": 164
+      "n": 165
     },
     {
       "claimed_agent": "Meta-ExternalAgent",
@@ -431,7 +436,7 @@
     },
     {
       "claimed_agent": "Applebot",
-      "n": 44
+      "n": 40
     },
     {
       "claimed_agent": "GPTBot",
@@ -439,7 +444,7 @@
     },
     {
       "claimed_agent": "Googlebot",
-      "n": 14
+      "n": 13
     },
     {
       "claimed_agent": "YandexBot",
@@ -462,7 +467,7 @@
     {
       "source": "direct_or_unknown",
       "events": {
-        "doc_view": 89
+        "doc_view": 102
       }
     },
     {
@@ -478,7 +483,7 @@
       }
     }
   ],
-  "homepage_views": 21,
+  "homepage_views": 24,
   "dedicated_tool_views": 2,
   "homepage_selections": {
     "portrait": 0,
@@ -494,7 +499,7 @@
     "text": 0,
     "compare": 0
   },
-  "resource_views": 48,
+  "resource_views": 55,
   "resource_actions": {
     "doc_library_open_source": 0,
     "doc_library_videos": 0,
@@ -533,6 +538,6 @@
   "revenue_scope": "Equipment outbound clicks are purchase intent, not orders or revenue. Actual earned commission must be reconciled with Amazon reports; no sales attribution is inferred from these anonymous actions. Video loads are not plays or completed watches.",
   "homepage_scope": "Homepage selections are fixed tool-link actions introduced on 2026-09-27, not completed tasks or unique visitors. Homepage views include historical document homepages and the current /document-tools directory; collector page views use a separate event stream. Legacy tool_views includes homepage views; dedicated_tool_views does not.",
   "attribution_scope": "Per-action observed referrer, not session attribution or a conversion rate. Missing referrers are unknown; Google AI search is not distinguishable from ordinary Google referrals. Crawler identities are user-agent claims, not verified IPs or citations.",
-  "tool_views": 23,
-  "query_rows_read": 3742
+  "tool_views": 26,
+  "query_rows_read": 3938
 }
