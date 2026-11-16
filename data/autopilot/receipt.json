@@ -8,7 +8,7 @@
     "covered": 2,
     "demand_terms": 3,
     "gaps": 1,
-    "hot_pages": 5,
+    "hot_pages": 4,
     "lastmod_updated": 0,
     "offtopic": 0,
     "pages": 359,
@@ -18,11 +18,11 @@
    "notes": [
     "34 URL(s) left untouched for want of a defensible date",
     "sites/agiscorecard/trends-rising.json: 1 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (ai stocks). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
-    "heat: measured 2026-11-15 (5 pages); no notes"
+    "heat: measured 2026-11-16 (4 pages); no notes"
    ],
    "outcome": "ok",
    "site": "agiscorecard",
-   "today": "2026-11-15",
+   "today": "2026-11-16",
    "wrote": [
     "data/autopilot/agiscorecard.json",
     "data/autopilot/agiscorecard-demand.json"
@@ -37,23 +37,23 @@
     "bootstrapped": 0,
     "changed": 2,
     "covered": 0,
-    "demand_terms": 25,
+    "demand_terms": 27,
     "gaps": 0,
     "hot_pages": 0,
     "lastmod_updated": 2,
-    "offtopic": 25,
+    "offtopic": 27,
     "pages": 7,
     "undatable": 0,
     "underserved": 0
    },
    "notes": [
-    "sites/buysomething/site/rising.json: 3 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (car refrigerator, rollator walker, vegetable chopper). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
+    "sites/buysomething/site/rising.json: 3 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (car refrigerator, electric pruning shears, rollator walker). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
     "sites/buysomething/site/rising.json: 11 fresh seed(s) used; 20 stale and 0 undated dropped",
-    "heat: measured 2026-11-15 (0 pages); no notes"
+    "heat: measured 2026-11-16 (0 pages); no notes"
    ],
    "outcome": "ok",
    "site": "buysomething",
-   "today": "2026-11-15",
+   "today": "2026-11-16",
    "wrote": [
     "sites/buysomething/site/sitemap.xml",
     "data/autopilot/buysomething.json",
@@ -61,26 +61,29 @@
    ]
   },
   {
-   "changed_urls": [],
+   "changed_urls": [
+    "https://getecoback.com/guide/luftreiniger-ratgeber.html",
+    "https://getecoback.com/guide/trotec-ttk-54-e-betriebskosten.html"
+   ],
    "counts": {
     "bootstrapped": 0,
-    "changed": 0,
-    "covered": 18,
-    "demand_terms": 58,
+    "changed": 2,
+    "covered": 20,
+    "demand_terms": 57,
     "gaps": 24,
     "hot_pages": 15,
-    "offtopic": 16,
+    "offtopic": 13,
     "pages": 299,
     "undatable": 0,
     "underserved": 0
    },
    "notes": [
     "sitemap owned by this site's own generator — not touched",
-    "heat: measured 2026-11-15 (16 pages); no notes"
+    "heat: measured 2026-11-16 (16 pages); no notes"
    ],
    "outcome": "ok",
    "site": "getecoback",
-   "today": "2026-11-15",
+   "today": "2026-11-16",
    "wrote": [
     "data/autopilot/getecoback.json",
     "data/autopilot/getecoback-demand.json"
@@ -106,7 +109,7 @@
    ],
    "outcome": "ok",
    "site": "goldrush",
-   "today": "2026-11-15",
+   "today": "2026-11-16",
    "wrote": [
     "data/autopilot/goldrush.json",
     "data/autopilot/goldrush-demand.json"
@@ -132,7 +135,7 @@
    ],
    "outcome": "ok",
    "site": "gridlings",
-   "today": "2026-11-15",
+   "today": "2026-11-16",
    "wrote": [
     "data/autopilot/gridlings.json",
     "data/autopilot/gridlings-demand.json"
@@ -182,7 +185,6 @@
     "https://thedollscout.com/de/collector-tools.html",
     "https://thedollscout.com/de/editorial.html",
     "https://thedollscout.com/de/for-agents.html",
-    "https://thedollscout.com/de/index.html",
     "https://thedollscout.com/de/series.html",
     "https://thedollscout.com/de/series/smiski-bath-series.html",
     "https://thedollscout.com/de/series/smiski-bed-series.html",
@@ -213,6 +215,15 @@
     "https://thedollscout.com/de/series/sonny-angel-sweets-series.html",
     "https://thedollscout.com/de/series/sonny-angel-vegetable-series.html",
     "https://thedollscout.com/de/shop.html",
+    "https://thedollscout.com/de/shop/categories/creative.html",
+    "https://thedollscout.com/de/shop/categories/daily-care.html",
+    "https://thedollscout.com/de/shop/categories/electronics.html",
+    "https://thedollscout.com/de/shop/categories/home-care.html",
+    "https://thedollscout.com/de/shop/categories/kitchen.html",
+    "https://thedollscout.com/de/shop/categories/lighting.html",
+    "https://thedollscout.com/de/shop/categories/smart-home.html",
+    "https://thedollscout.com/de/shop/categories/storage.html",
+    "https://thedollscout.com/de/shop/categories/workspace.html",
     "https://thedollscout.com/de/shop/collector-gifts.html",
     "https://thedollscout.com/de/shop/display-cases.html",
     "https://thedollscout.com/de/shop/plush-display.html",
@@ -250,6 +261,15 @@
     "https://thedollscout.com/series/sonny-angel-sweets-series.html",
     "https://thedollscout.com/series/sonny-angel-vegetable-series.html",
     "https://thedollscout.com/shop.html",
+    "https://thedollscout.com/shop/categories/creative.html",
+    "https://thedollscout.com/shop/categories/daily-care.html",
+    "https://thedollscout.com/shop/categories/electronics.html",
+    "https://thedollscout.com/shop/categories/home-care.html",
+    "https://thedollscout.com/shop/categories/kitchen.html",
+    "https://thedollscout.com/shop/categories/lighting.html",
+    "https://thedollscout.com/shop/categories/smart-home.html",
+    "https://thedollscout.com/shop/categories/storage.html",
+    "https://thedollscout.com/shop/categories/workspace.html",
     "https://thedollscout.com/shop/collector-gifts.html",
     "https://thedollscout.com/shop/display-cases.html",
     "https://thedollscout.com/shop/plush-display.html",
@@ -307,21 +327,30 @@
     "https://thedollscout.com/zh/series/sonny-angel-sweets-series.html",
     "https://thedollscout.com/zh/series/sonny-angel-vegetable-series.html",
     "https://thedollscout.com/zh/shop.html",
+    "https://thedollscout.com/zh/shop/categories/creative.html",
+    "https://thedollscout.com/zh/shop/categories/daily-care.html",
+    "https://thedollscout.com/zh/shop/categories/electronics.html",
+    "https://thedollscout.com/zh/shop/categories/home-care.html",
+    "https://thedollscout.com/zh/shop/categories/kitchen.html",
+    "https://thedollscout.com/zh/shop/categories/lighting.html",
+    "https://thedollscout.com/zh/shop/categories/smart-home.html",
+    "https://thedollscout.com/zh/shop/categories/storage.html",
+    "https://thedollscout.com/zh/shop/categories/workspace.html",
     "https://thedollscout.com/zh/shop/collector-gifts.html",
     "https://thedollscout.com/zh/shop/display-cases.html",
     "https://thedollscout.com/zh/shop/plush-display.html",
     "https://thedollscout.com/zh/shop/storage-transport.html"
    ],
    "counts": {
-    "bootstrapped": 27,
-    "changed": 171,
+    "bootstrapped": 9,
+    "changed": 197,
     "covered": 7,
     "demand_terms": 29,
     "gaps": 16,
     "hot_pages": 0,
-    "lastmod_updated": 171,
+    "lastmod_updated": 197,
     "offtopic": 6,
-    "pages": 333,
+    "pages": 341,
     "undatable": 0,
     "underserved": 0
    },
@@ -332,7 +361,7 @@
    ],
    "outcome": "ok",
    "site": "thedollscout",
-   "today": "2026-11-15",
+   "today": "2026-11-16",
    "wrote": [
     "sites/thedollscout/sitemap.xml",
     "data/autopilot/thedollscout.json",
@@ -340,5 +369,5 @@
    ]
   }
  ],
- "today": "2026-11-15"
+ "today": "2026-11-16"
 }

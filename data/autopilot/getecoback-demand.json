@@ -19,41 +19,8 @@
    "q": "akku heizlüfter auto",
    "seed": "heizlüfter",
    "source": "related-queries",
-   "stand": "2026-11-07",
-   "v": 99500
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.667,
-   "page": "guide/akku-heizluefter.html",
-   "q": "heizlüfter für auto",
-   "seed": "heizlüfter",
-   "source": "related-queries",
-   "stand": "2026-11-07",
-   "v": 94650
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.917,
-   "page": "guide/akku-heizluefter.html",
-   "q": "heizlüfter 500 watt",
-   "seed": "heizlüfter",
-   "source": "related-queries",
-   "stand": "2026-11-07",
-   "v": 69050
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 1.0,
-   "page": "guide/heizkosten-vergleich-rechner.html",
-   "q": "heizlüfter oder infrarotheizung",
-   "seed": "heizlüfter",
-   "source": "related-queries",
-   "stand": "2026-11-07",
-   "v": 66300
+   "stand": "2026-11-15",
+   "v": 107350
   },
   {
    "heat": null,
@@ -69,6 +36,17 @@
   {
    "heat": null,
    "kind": "value",
+   "match": 0.633,
+   "page": "guide/heizluefter-stromsparend.html",
+   "q": "keramik heizlüfter test",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-11-15",
+   "v": 54400
+  },
+  {
+   "heat": null,
+   "kind": "value",
    "match": 0.875,
    "page": "guide/infrarotheizung-standgeraet.html",
    "q": "infrarotheizung schreibtisch",
@@ -80,24 +58,68 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.675,
-   "page": "guide/epicooler-erfahrungen.html",
-   "q": "test heizlüfter stiftung warentest",
+   "match": 0.667,
+   "page": "guide/akku-heizluefter.html",
+   "q": "heizlüfter mit zeitschaltuhr",
    "seed": "heizlüfter",
    "source": "related-queries",
-   "stand": "2026-11-07",
-   "v": 49950
+   "stand": "2026-11-15",
+   "v": 50350
   },
   {
    "heat": null,
    "kind": "value",
    "match": 0.875,
-   "page": "guide/heizkosten-vergleich-rechner.html",
-   "q": "infrarot heizung",
+   "page": "guide/akku-heizluefter.html",
+   "q": "12 volt heizlüfter",
    "seed": "heizlüfter",
    "source": "related-queries",
-   "stand": "2026-11-07",
-   "v": 43050
+   "stand": "2026-11-15",
+   "v": 50250
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 1.0,
+   "page": "guide/heizluefter-stromsparend.html",
+   "q": "heizlüfter stromsparend",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-11-15",
+   "v": 45650
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.6,
+   "page": "guide/auto-bei-hitze-kuehlen.html",
+   "q": "auto heizlüfter 12v",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-11-15",
+   "v": 42550
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.875,
+   "page": "guide/infrarotheizung-garage.html",
+   "q": "heizlüfter garage",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-11-15",
+   "v": 38200
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.925,
+   "page": "guide/heizluefter-stromsparend.html",
+   "q": "sparsamer heizlüfter",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-11-15",
+   "v": 37900
   },
   {
    "heat": null,
@@ -113,17 +135,6 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.667,
-   "page": "guide/akku-heizluefter.html",
-   "q": "akku heizlüfter makita",
-   "seed": "heizlüfter",
-   "source": "related-queries",
-   "stand": "2026-11-07",
-   "v": 36350
-  },
-  {
-   "heat": null,
-   "kind": "value",
    "match": 0.8,
    "page": "guide/stromkosten-rechner.html",
    "q": "infrarotheizung werkstatt",
@@ -131,17 +142,6 @@
    "source": "related-queries",
    "stand": "2026-11-10",
    "v": 31900
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.6,
-   "page": "guide/auto-bei-hitze-kuehlen.html",
-   "q": "heizlüfter auto 12v",
-   "seed": "heizlüfter",
-   "source": "related-queries",
-   "stand": "2026-11-07",
-   "v": 31700
   },
   {
    "heat": null,
@@ -157,35 +157,35 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.75,
-   "page": "guide/stromkosten-rechner.html",
-   "q": "heizlüfter werkstatt",
-   "seed": "heizlüfter",
+   "match": 0.917,
+   "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
+   "q": "luftentfeuchter fürs auto",
+   "seed": "luftentfeuchter",
    "source": "related-queries",
-   "stand": "2026-11-07",
-   "v": 29300
+   "stand": "2026-11-15",
+   "v": 29600
   },
   {
    "heat": null,
    "kind": "value",
    "match": 0.633,
    "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
-   "q": "luftentfeuchter kissen auto",
+   "q": "luftentfeuchter auto testsieger",
    "seed": "luftentfeuchter",
    "source": "related-queries",
-   "stand": "2026-11-14",
-   "v": 8550
+   "stand": "2026-11-15",
+   "v": 3000
   },
   {
    "heat": null,
    "kind": "value",
-   "match": 0.675,
-   "page": "guide/luftentfeuchter-30-qm.html",
-   "q": "comfee mddf-16den7 wf luftentfeuchter",
+   "match": 0.95,
+   "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
+   "q": "auto luftentfeuchter",
    "seed": "luftentfeuchter",
    "source": "related-queries",
-   "stand": "2026-11-14",
-   "v": 7950
+   "stand": "2026-11-15",
+   "v": 180
   },
   {
    "heat": null,
@@ -197,6 +197,28 @@
    "source": "related-queries",
    "stand": "2026-11-14",
    "v": 120
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.8,
+   "page": "guide/schimmel-kleiderschrank.html",
+   "q": "luftentfeuchter nachfüllpack",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-11-15",
+   "v": 90
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.975,
+   "page": "guide/pro-breeze-luftentfeuchter-test.html",
+   "q": "mini luftentfeuchter",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-11-15",
+   "v": 80
   }
  ],
  "first_party_demand": {
@@ -222,6 +244,16 @@
    "source": "related-queries",
    "stand": "2026-11-10",
    "v": 74650
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/akku-heizluefter.html",
+   "q": "kaufland heizlüfter",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-11-15",
+   "v": 55400
   },
   {
    "kind": "value",
@@ -267,11 +299,11 @@
    "kind": "value",
    "match": 0.5,
    "page": "guide/luftentfeuchter-10-qm.html",
-   "q": "luftentfeuchter growbox",
+   "q": "pingi luftentfeuchter",
    "seed": "luftentfeuchter",
    "source": "related-queries",
-   "stand": "2026-11-14",
-   "v": 22800
+   "stand": "2026-11-15",
+   "v": 27500
   },
   {
    "kind": "value",
@@ -312,16 +344,6 @@
    "source": "related-queries",
    "stand": "2026-11-11",
    "v": 7650
-  },
-  {
-   "kind": "value",
-   "match": 0.533,
-   "page": "waeschetrockner-oder-luftentfeuchter.html",
-   "q": "luftentfeuchter badezimmer testsieger",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-11-14",
-   "v": 7550
   },
   {
    "kind": "value",
@@ -444,14 +466,19 @@
    "v": 50
   }
  ],
- "generated": "2026-11-15",
+ "generated": "2026-11-16",
  "geo": "DE",
- "heat_source": "measured 2026-11-15 (16 pages); no notes",
+ "heat_source": "measured 2026-11-16 (16 pages); no notes",
  "hot_pages": [
   {
    "n7": 11,
    "p7": 0,
    "page": "/guide/luftbefeuchter-ratgeber.html"
+  },
+  {
+   "n7": 11,
+   "p7": 0,
+   "page": "/produkte.html"
   },
   {
    "n7": 9,
@@ -470,22 +497,22 @@
   },
   {
    "n7": 5,
-   "p7": 9,
-   "page": "/"
-  },
-  {
-   "n7": 5,
-   "p7": 2,
-   "page": "/guide/fensterabdichtung-selber-bauen.html"
-  },
-  {
-   "n7": 5,
-   "p7": 2,
+   "p7": 3,
    "page": "/guide/klimaanlage-wann-kaufen.html"
   },
   {
-   "n7": 5,
+   "n7": 4,
+   "p7": 11,
+   "page": "/"
+  },
+  {
+   "n7": 4,
    "p7": 3,
+   "page": "/guide/fensterabdichtung-selber-bauen.html"
+  },
+  {
+   "n7": 4,
+   "p7": 4,
    "page": "/guide/klimaanlage-wohnmobil.html"
   },
   {
@@ -494,29 +521,24 @@
    "page": "/guide/was-bedeutet-btu.html"
   },
   {
-   "n7": 3,
+   "n7": 4,
    "p7": 0,
    "page": "/guide/wohnmobil-feuchtigkeit-winter.html"
   },
   {
-   "n7": 3,
+   "n7": 4,
    "p7": 0,
    "page": "/waeschetrockner-oder-luftentfeuchter.html"
   },
   {
-   "n7": 2,
-   "p7": 2,
-   "page": "/en/guide/portable-ac-leaking-water.html"
+   "n7": 3,
+   "p7": 0,
+   "page": "/guide/heizung-10-qm.html"
   },
   {
    "n7": 2,
-   "p7": 1,
+   "p7": 0,
    "page": "/en/guide/tilt-and-turn-windows-winter-condensation.html"
-  },
-  {
-   "n7": 2,
-   "p7": 2,
-   "page": "/guide/klimaanlage-30-qm.html"
   },
   {
    "n7": 2,
@@ -527,16 +549,13 @@
  "how_to_read": "Research candidates only; token matching is not an editorial or market decision. Relative growth is not search volume, and autocomplete is vocabulary evidence only. Underserved requires an observed zero in the matching measurement window; missing page measurements are unknown, and zero arrivals do not establish a title or internal-link cause. First-party evidence contains only aggregate zero-hit record counts, never raw search terms. Freshness, country, independent evidence and the reviewed page catalog must pass tools/eco_evolution.py before prioritising an existing page. This research queue does not publish. The separate getecoback scheduled deployment runs tools/auto_content.py to discover official product specifications, validate evidence and publish at most one substantive guide change per UTC day.",
  "note": "选题输入,不是选题依据。任何由它引出的页面仍要过本站三门与硬内容规则。本文件由 tools/autopilot 每日确定性生成,零 AI、零编造。",
  "offtopic_dropped": [
-  "dreo atom 316",
+  "ölradiator",
   "leifheit bodenwischer",
-  "meacodry arete two",
-  "avreno",
   "wischmopp",
-  "black friday",
-  "discounter",
-  "roborock saros 20",
   "meacodry arete one 10l",
-  "meacodry arete two 12l",
+  "black friday 2026",
+  "roborock saros 20",
+  "echooria",
   "schlafsofa mit bettkasten",
   "beco maxima plus",
   "tineco",

@@ -1,7 +1,7 @@
 {
-  "as_of": "2026-11-15T09:52:08.403Z",
+  "as_of": "2026-11-16T10:08:49.249Z",
   "kind": "owned_page_health_not_market_validation",
-  "ok": true,
+  "ok": false,
   "site_checks": [
     {
       "site": "bpj",
@@ -20,7 +20,13 @@
     },
     {
       "site": "tds",
-      "errors": [],
+      "errors": [
+        "collector_entry:/collector-tools",
+        "collector_entry:/brands/labubu#style-probability",
+        "collector_entry:/brands/skullpanda#display-fit",
+        "collector_entry:/collection-tracker",
+        "collector_home:de"
+      ],
       "discovery_pages": 6
     }
   ],
@@ -1018,6 +1024,11 @@
     "net_revenue": null
   },
   "next_actions": [
+    {
+      "priority": "repair",
+      "url": "https://thedollscout.com",
+      "reason": "collector_entry:/collector-tools, collector_entry:/brands/labubu#style-probability, collector_entry:/brands/skullpanda#display-fit, collector_entry:/collection-tracker, collector_home:de"
+    },
     {
       "priority": "evidence",
       "reason": "Import dated Search Console/Bing, referral and settled-payment evidence before claiming acquisition or revenue."

@@ -1,22 +1,22 @@
 {
   "schema_version": 1,
-  "as_of": "2026-11-15",
+  "as_of": "2026-11-16",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
     "healthy": 31,
-    "membership_ready": 0,
+    "membership_ready": 4,
     "paid_members": 0,
     "active_members": 0,
-    "opportunities": 8,
+    "opportunities": 9,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-11-15T09:51:49.224Z",
-    "health": "2026-11-14T14:40:35Z",
-    "ai_referrals": "2026-11-14T14:41:01Z",
-    "opportunities": "2026-11-14",
-    "autopilot_receipt": "2026-11-15"
+    "membership": "2026-11-16T10:08:23.795Z",
+    "health": "2026-11-15T15:09:13Z",
+    "ai_referrals": "2026-11-15T15:09:38Z",
+    "opportunities": "2026-11-15",
+    "autopilot_receipt": "2026-11-16"
   },
   "input_ages_days": {
     "membership": 0,
@@ -28,10 +28,10 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-11-15T09:51:49.224Z",
+    "generated": "2026-11-16T10:08:23.795Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
-    "ok": false,
+    "ok": true,
     "counters_complete": true,
     "sites": [
       {
@@ -39,7 +39,7 @@
         "origin": "https://baipiaoji.com",
         "public": {
           "ok": true,
-          "ready": false,
+          "ready": true,
           "site": "bpj",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -60,7 +60,7 @@
         "origin": "https://agiscorecard.com",
         "public": {
           "ok": true,
-          "ready": false,
+          "ready": true,
           "site": "agi",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -81,7 +81,7 @@
         "origin": "https://getecoback.com",
         "public": {
           "ok": true,
-          "ready": false,
+          "ready": true,
           "site": "eco",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -102,7 +102,7 @@
         "origin": "https://thedollscout.com",
         "public": {
           "ok": true,
-          "ready": false,
+          "ready": true,
           "site": "tds",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -159,6 +159,15 @@
       "site": null,
       "state": "scout",
       "score": 2.05,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "is there a way to use gemini api keys with antigravity",
+      "site": null,
+      "state": "scout",
+      "score": 2.04,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -318,47 +327,54 @@
   "actions": [
     {
       "site": "agiscorecard",
-      "kind": "membership_health",
-      "priority": 92,
-      "reason": "recent snapshot reported unavailable checkout; check the live API before recovery",
+      "kind": "membership_readiness_check",
+      "priority": 70,
+      "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
       "evidence": {
-        "public_ok": true,
-        "ready": false
+        "snapshot_date": "2026-11-16T10:08:23.795Z"
       },
-      "mode": "alert"
+      "mode": "observe"
     },
     {
       "site": "baipiaoji",
-      "kind": "membership_health",
-      "priority": 92,
-      "reason": "recent snapshot reported unavailable checkout; check the live API before recovery",
+      "kind": "membership_readiness_check",
+      "priority": 70,
+      "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
       "evidence": {
-        "public_ok": true,
-        "ready": false
+        "snapshot_date": "2026-11-16T10:08:23.795Z"
       },
-      "mode": "alert"
+      "mode": "observe"
     },
     {
       "site": "getecoback",
-      "kind": "membership_health",
-      "priority": 92,
-      "reason": "recent snapshot reported unavailable checkout; check the live API before recovery",
+      "kind": "membership_readiness_check",
+      "priority": 70,
+      "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
       "evidence": {
-        "public_ok": true,
-        "ready": false
+        "snapshot_date": "2026-11-16T10:08:23.795Z"
       },
-      "mode": "alert"
+      "mode": "observe"
     },
     {
       "site": "thedollscout",
-      "kind": "membership_health",
-      "priority": 92,
-      "reason": "recent snapshot reported unavailable checkout; check the live API before recovery",
+      "kind": "membership_readiness_check",
+      "priority": 70,
+      "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
       "evidence": {
-        "public_ok": true,
-        "ready": false
+        "snapshot_date": "2026-11-16T10:08:23.795Z"
       },
-      "mode": "alert"
+      "mode": "observe"
+    },
+    {
+      "site": "baipiaoji",
+      "kind": "membership_demand_review",
+      "priority": 64,
+      "reason": "review product-matched own tasks, repeat use and the paid increment before membership expansion; referrer events do not establish qualified buyers",
+      "evidence": {
+        "external_referrer_page_view_events": 587,
+        "paid_members": 0
+      },
+      "mode": "queue"
     },
     {
       "site": "agiscorecard",
@@ -402,9 +418,9 @@
       "priority": 52,
       "reason": "review observed page-event activity and source quality; activity is not verified people or buying intent",
       "evidence": {
-        "page": "/future-guide",
-        "n7": 1779,
-        "p7": 883
+        "page": "/agents",
+        "n7": 167,
+        "p7": 80
       },
       "mode": "queue"
     },
@@ -426,7 +442,7 @@
       "priority": 48,
       "reason": "check source coverage and useful AI arrivals before expanding discovery work; legacy page views do not establish referred people or citations",
       "evidence": {
-        "legacy_page_view_events": 653,
+        "legacy_page_view_events": 666,
         "ai_referrer_events": 0
       },
       "mode": "queue"
@@ -437,7 +453,7 @@
       "priority": 48,
       "reason": "check source coverage and useful AI arrivals before expanding discovery work; legacy page views do not establish referred people or citations",
       "evidence": {
-        "legacy_page_view_events": 1291,
+        "legacy_page_view_events": 1516,
         "ai_referrer_events": 0
       },
       "mode": "queue"
@@ -450,7 +466,7 @@
     },
     "baipiaoji": {
       "path": "sites/baipiaoji/data/fleet-evolution.json",
-      "action_count": 1
+      "action_count": 2
     },
     "getecoback": {
       "path": "sites/getecoback/data/fleet-evolution.json",

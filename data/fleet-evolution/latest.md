@@ -1,38 +1,39 @@
-# Fleet evolution report — 2026-11-15
+# Fleet evolution report — 2026-11-16
 
 Deterministic, aggregate-only report. Missing data remains unknown; no editorial text, payments or membership rights are changed by this job.
 
 ## Fleet counters
 
 - Sites: 14 (healthy probes: 31)
-- Membership ready: 0 · paid members: 0 · active members: 0
-- Opportunity candidates: 8 · stale inputs: 0
+- Membership ready: 4 · paid members: 0 · active members: 0
+- Opportunity candidates: 9 · stale inputs: 0
 
 ## Priority actions
 
 | Priority | Site | Action | Mode | Evidence |
 |---:|---|---|---|---|
-| 92 | agiscorecard | membership_health | alert | public_ok=True; ready=False |
-| 92 | baipiaoji | membership_health | alert | public_ok=True; ready=False |
-| 92 | getecoback | membership_health | alert | public_ok=True; ready=False |
-| 92 | thedollscout | membership_health | alert | public_ok=True; ready=False |
+| 70 | agiscorecard | membership_readiness_check | observe | snapshot_date=2026-11-16T10:08:23.795Z |
+| 70 | baipiaoji | membership_readiness_check | observe | snapshot_date=2026-11-16T10:08:23.795Z |
+| 70 | getecoback | membership_readiness_check | observe | snapshot_date=2026-11-16T10:08:23.795Z |
+| 70 | thedollscout | membership_readiness_check | observe | snapshot_date=2026-11-16T10:08:23.795Z |
+| 64 | baipiaoji | membership_demand_review | queue | external_referrer_page_view_events=587; paid_members=0 |
 | 55 | agiscorecard | content_gap | queue | count=1; query=ai stocks crashing; value=1 |
 | 55 | getecoback | content_gap | queue | count=24; query=vorwerk saugwischer roboter; value=158500 |
 | 55 | thedollscout | content_gap | queue | count=16; query=labubu cat mode; value=73950 |
-| 52 | agiscorecard | improve_hot_page | queue | page=/future-guide; n7=1779; p7=883 |
+| 52 | agiscorecard | improve_hot_page | queue | page=/agents; n7=167; p7=80 |
 | 52 | getecoback | improve_hot_page | queue | page=/guide/luftbefeuchter-ratgeber.html; n7=11; p7=0 |
-| 48 | goldrush | ai_attribution_review | queue | legacy_page_view_events=653; ai_referrer_events=0 |
-| 48 | thedollscout | ai_attribution_review | queue | legacy_page_view_events=1291; ai_referrer_events=0 |
+| 48 | goldrush | ai_attribution_review | queue | legacy_page_view_events=666; ai_referrer_events=0 |
+| 48 | thedollscout | ai_attribution_review | queue | legacy_page_view_events=1516; ai_referrer_events=0 |
 
 ## Input freshness
 
 | Input | Date | Age (days) |
 |---|---|---:|
-| membership | 2026-11-15T09:51:49.224Z | 0 |
-| health | 2026-11-14T14:40:35Z | 1 |
-| ai_referrals | 2026-11-14T14:41:01Z | 1 |
-| opportunities | 2026-11-14 | 1 |
-| autopilot_receipt | 2026-11-15 | 0 |
+| membership | 2026-11-16T10:08:23.795Z | 0 |
+| health | 2026-11-15T15:09:13Z | 1 |
+| ai_referrals | 2026-11-15T15:09:38Z | 1 |
+| opportunities | 2026-11-15 | 1 |
+| autopilot_receipt | 2026-11-16 | 0 |
 
 ## Growth directions
 
