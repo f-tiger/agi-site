@@ -1,19 +1,19 @@
 {
- "generated": "2026-11-15",
+ "generated": "2026-11-16",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "notion-ai",
-  "nvidia-nim",
-  "ollama",
-  "opusclip",
-  "perplexity",
-  "phind",
-  "pika",
-  "pixlr"
+  "poe",
+  "processon",
+  "qoder",
+  "ragflow",
+  "recraft",
+  "removebg",
+  "scispace",
+  "suno"
  ],
- "cursor": "pixlr",
+ "cursor": "suno",
  "summary": {
   "ready": 43,
   "empty": 35,
@@ -2372,29 +2372,29 @@
    "name": "Poe",
    "cat": "chat",
    "reach": 0,
-   "probed": "2026-11-07",
+   "probed": "2026-11-16",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://poe.com/subscription_plans",
      "status": 200,
-     "bytes": 121064,
+     "bytes": 120707,
      "tokens": 10
     }
    ],
    "best": {
     "url": "https://poe.com/subscription_plans",
     "tokens": 10,
-    "excerpt": "GPT-5、Claude-Sonnet-5、DeepSeek-R1、Veo-3.1及数千款其他模型。 下载应用 在 X 上关注我们 职业 · 帮助中心 · 隐私政策 · 服务条款 0 订阅套餐 按年计费 节省17% 按月计费 每天1万积分 £49.99/年 ( £4.17/月 ) 开始使用 66万积分/月 £199.99/年 ( £16.67/月 ) 开始使用 165万积分/月 £499.99/年 ( £41.67/月 ) 开始使用 330万积分/月 £999.99/年 ( £83.33/月 ) 开始使用 825万积分/月 £2,499.99/年 ( £208.33/月 ) 开始使用 包括什么？ 所有 Poe 订阅套餐均匀允许您： 发送和接收更多消息 访问更多顶尖模型，包括GPT-5.5、Claude-Opus-4.7、Gemini-3.5-Flash、Nano-Banana-Pro和Veo-3.1 解锁每个机器人的最大输入大小和聊天记录 价格以美元显示。您的最终价格可能因地区税费和货币兑换而有所不同。 有关订阅服务的可用地区，请参见 此处 。 订阅即表示您同意自动付款（如适用，需加税费）。可通过设置中的 Stripe 客户门户取消或管理您的订阅。适用 销售条款 。"
+    "excerpt": "GPT-5、Claude-Sonnet-5、DeepSeek-R1、Veo-3.1及数千款其他模型。 下载应用 在 X 上关注我们 职业 · 帮助中心 · 隐私政策 · 服务条款 0 订阅套餐 按年计费 节省17% 按月计费 每天1万积分 $49.99/年 ( $4.17/月 ) 开始使用 66万积分/月 $199.99/年 ( $16.67/月 ) 开始使用 165万积分/月 $499.99/年 ( $41.67/月 ) 开始使用 330万积分/月 $999.99/年 ( $83.33/月 ) 开始使用 825万积分/月 $2,499.99/年 ( $208.33/月 ) 开始使用 包括什么？ 所有 Poe 订阅套餐均匀允许您： 发送和接收更多消息 访问更多顶尖模型，包括GPT-5.5、Claude-Opus-4.7、Gemini-3.5-Flash、Nano-Banana-Pro和Veo-3.1 解锁每个机器人的最大输入大小和聊天记录 价格以美元显示。您的最终价格可能因地区税费和货币兑换而有所不同。 有关订阅服务的可用地区，请参见 此处 。 订阅即表示您同意自动付款（如适用，需加税费）。可通过设置中的 Stripe 客户门户取消或管理您的订阅。适用 销售条款 。"
    }
   },
   "processon": {
    "slug": "processon",
    "name": "ProcessOn",
    "cat": "office",
-   "reach": 3,
-   "probed": "2026-11-08",
+   "reach": 0,
+   "probed": "2026-11-16",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -2424,14 +2424,14 @@
    "name": "Qoder（阿里）",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-11-07",
+   "probed": "2026-11-16",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://qoder.com/pricing",
      "status": 200,
-     "bytes": 8629,
+     "bytes": 8705,
      "tokens": 0
     },
     {
@@ -2488,7 +2488,7 @@
    "name": "RAGFlow",
    "cat": "agent",
    "reach": 0,
-   "probed": "2026-10-26",
+   "probed": "2026-11-16",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -2518,20 +2518,20 @@
    "name": "Recraft",
    "cat": "image",
    "reach": 0,
-   "probed": "2026-10-26",
+   "probed": "2026-11-16",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://recraft.ai/pricing",
      "status": 200,
-     "bytes": 48962,
+     "bytes": 62488,
      "tokens": 1
     },
     {
      "url": "https://www.recraft.ai/pricing",
      "status": 200,
-     "bytes": 48962,
+     "bytes": 62488,
      "tokens": 1
     },
     {
@@ -2552,20 +2552,20 @@
    "name": "remove.bg",
    "cat": "image",
    "reach": 0,
-   "probed": "2026-10-26",
+   "probed": "2026-11-16",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://remove.bg/pricing",
      "status": 200,
-     "bytes": 63585,
+     "bytes": 63625,
      "tokens": 0
     },
     {
      "url": "https://www.remove.bg/pricing",
      "status": 200,
-     "bytes": 63585,
+     "bytes": 63625,
      "tokens": 0
     },
     {
@@ -2585,15 +2585,15 @@
    "slug": "scispace",
    "name": "SciSpace",
    "cat": "study",
-   "reach": 3,
-   "probed": "2026-10-31",
+   "reach": 0,
+   "probed": "2026-11-16",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://typeset.io/pricing",
      "status": 200,
-     "bytes": 142788,
+     "bytes": 142789,
      "tokens": 0
     },
     {
@@ -2620,21 +2620,21 @@
    "name": "Suno",
    "cat": "audio",
    "reach": 0,
-   "probed": "2026-10-27",
+   "probed": "2026-11-16",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://suno.com/pricing",
      "status": 200,
-     "bytes": 268399,
-     "tokens": 11
+     "bytes": 375667,
+     "tokens": 14
     }
    ],
    "best": {
     "url": "https://suno.com/pricing",
-    "tokens": 11,
-    "excerpt": "y creator FAQs You&#x27;ve got questions. We&#x27;ve got answers. 不同模型版本之间有什么区别？ Standard 和 Pro 分别有哪些功能？ 我的歌曲有商业使用权吗？ 用完每月积分后会怎样？ 我可以升级或降级套餐吗？ 0:00 --:-- Monthly Annual save 20% 免费套餐 我们的入门套餐。 $0 /月 注册 可使用我们的免费模型 每天50点积分 仅限标准功能 最多可上传8分钟音频 共享创作队列 每月无歌曲下载 无商业版权 不支持购买附加积分 不支持音轨分离 Pro 最受欢迎 使用我们最优质的模型和编辑工具。 $8 /月 按年计费可节省$24！ 税费将在结账时计算 订阅 使用我们最优质的模型 每月2,500点数 每月20首歌曲下载 商业使用权 包含 Standard 与 Pro 全部功能 2 种音轨分离类型（自动；从混音中分离） 优先体验新功能 可购买额外点数和下载次数 优先队列；最多同时处理 10 首歌曲 录制、上传并使用你自己的声音进行创作 创建自定义模型 Premier 套餐 超值之选 最高点数上限，全部功能解锁。 $24 /月 按年计费可节省 $72！ 税费将在结账时计算 订阅 使用 Suno Studio——现已支持 MIDI、效果器、自动化及自定义插件设计 每月10,000点数 每月可下载 60 首歌曲 使用我们最优质的模型 商业使用权 Standard + Pro 全部功能（含 Persona 及高级编辑） 3种音轨分离类型（自动；从混音中分离和高级分离） 上传最多 30 分"
+    "tokens": 14,
+    "excerpt": "rade or downgrade my plan? 0:00 --:-- Monthly Yearly Save 20% Free Turn any idea into a song. No cost, just creativity. $0 / month Free forever Join Suno for free Included Access to our free models Included 50 credits per day Included Standard features only Included Upload up to 8 min of audio Included Shared creation queue Not included No monthly song downloads Not included No commercial rights Not included No add-on credit purchases Not included No stem separation Pro Most Popular Unlock our best models, song downloads and commercial use rights. $10 $8 / month Billed $96/year Get Pro Included Access to our best models Included 2,500 credits per month Included 20 song downloads per month In"
    }
   },
   "trae": {

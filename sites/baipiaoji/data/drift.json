@@ -1,10 +1,40 @@
 {
-  "generated": "2026-11-15",
+  "generated": "2026-11-16",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
   "fetched_ok": 107,
   "fetched_fail": 20,
   "pending": 9,
   "items": [
+    {
+      "slug": "replit",
+      "url": "https://docs.replit.com",
+      "confirmed": "2026-11-16",
+      "first_seen": "2026-11-15",
+      "added": [
+        "10b",
+        "1521b",
+        "385b",
+        "42b",
+        "7376b",
+        "900b"
+      ],
+      "removed": [
+        "1942b"
+      ],
+      "checked_then": "2026-08-03"
+    },
+    {
+      "slug": "v0",
+      "url": "https://v0.app",
+      "confirmed": "2026-11-16",
+      "first_seen": "2026-11-15",
+      "added": [
+        "100%",
+        "9%"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-03"
+    },
     {
       "slug": "ragflow",
       "url": "https://ragflow.io/docs/faq",
@@ -48,19 +78,6 @@
         "$30"
       ],
       "checked_then": "2026-08-06"
-    },
-    {
-      "slug": "v0",
-      "url": "https://v0.app",
-      "confirmed": "2026-11-14",
-      "first_seen": "2026-11-13",
-      "added": [
-        "10.3k"
-      ],
-      "removed": [
-        "10.2k"
-      ],
-      "checked_then": "2026-08-03"
     },
     {
       "slug": "cloudflare-workers-ai",
@@ -247,28 +264,6 @@
       ],
       "removed": [],
       "checked_then": "2026-09-21"
-    },
-    {
-      "slug": "replit",
-      "url": "https://docs.replit.com",
-      "confirmed": "2026-11-09",
-      "first_seen": "2026-11-08",
-      "added": [
-        "0026s",
-        "0256b",
-        "100%",
-        "1144b",
-        "12%",
-        "1942b",
-        "1b",
-        "302b",
-        "323b",
-        "36%",
-        "38%",
-        "4b"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-03"
     },
     {
       "slug": "elevenlabs",
