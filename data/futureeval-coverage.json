@@ -1,19 +1,29 @@
 {
- "generated": "2026-11-15T15:09:39+00:00",
+ "generated": "2026-11-16T17:43:32+00:00",
  "definition": "share of sampled open FutureEval/MiniBench questions whose resolution text names a host the fleet archives on a schedule (tools/fleet/archived_sources.txt); unknown = not covered",
  "tournaments": [
   "33121"
  ],
- "sampled": 2,
+ "sampled": 3,
  "covered": 0,
  "coverage_share": 0.0,
  "stale": false,
  "sample": [
   {
-   "post_id": 46463,
-   "title": "How many of Taiwan's 22 mayor and county magistrate seats will the KMT win in the November 28, 2026 local elections?",
+   "post_id": 46505,
+   "title": "Will Ukraine have de facto control of Dobropillia, Donetsk on December 31, 2026?",
    "hosts": [
-    "db.cec.gov.tw",
+    "storymaps.arcgis.com",
+    "www.google.com",
+    "www.metaculus.com"
+   ],
+   "covered_by": null,
+   "tournament": "33121"
+  },
+  {
+   "post_id": 46497,
+   "title": "Will criminal or civil immigration charges be brought against Ilhan Omar before 2027?",
+   "hosts": [
     "www.metaculus.com"
    ],
    "covered_by": null,
