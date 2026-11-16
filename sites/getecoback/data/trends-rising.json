@@ -1,37 +1,55 @@
 {
- "fetched": "2026-11-15",
+ "fetched": "2026-11-16",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
-   "auto": [
-    "klimaanlage",
-    "klimaanlage mobil",
-    "klimaanlage splitgerät",
-    "klimaanlage mit abluftschlauch",
-    "klimaanlage wohnwagen",
-    "klimaanlage ohne abluftschlauch",
-    "klimaanlagen",
-    "klimaanlage mitsubishi",
-    "klimaanlage kaufen",
-    "klimaanlage wohnung"
+   "rising": [
+    {
+     "q": "black friday klimaanlage",
+     "v": 1100
+    },
+    {
+     "q": "mit klimaanlage heizen",
+     "v": 550
+    },
+    {
+     "q": "klimaanlage heizen",
+     "v": 500
+    },
+    {
+     "q": "klimaanlage zum heizen",
+     "v": 450
+    },
+    {
+     "q": "daikin stylish",
+     "v": 350
+    },
+    {
+     "q": "vrf klimaanlage",
+     "v": 350
+    },
+    {
+     "q": "klimaanlage verkleidung",
+     "v": 300
+    },
+    {
+     "q": "multi split klimaanlage 2 innengeräte",
+     "v": 300
+    },
+    {
+     "q": "verkleidung klimaanlage außengerät",
+     "v": 300
+    },
+    {
+     "q": "klimaanlage mit heizfunktion",
+     "v": 300
+    }
    ],
-   "new_vocabulary": [
-    "klimaanlage mobil",
-    "klimaanlage splitgerät",
-    "klimaanlage mit abluftschlauch",
-    "klimaanlage wohnwagen",
-    "klimaanlage ohne abluftschlauch",
-    "klimaanlagen",
-    "klimaanlage mitsubishi",
-    "klimaanlage kaufen",
-    "klimaanlage wohnung"
-   ],
-   "rising": [],
-   "source": "autocomplete-vocabulary",
-   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
-   "last_attempt_at": "2026-11-08T11:28:43.725658+00:00",
-   "last_attempt_status": "failed",
-   "fetched": "2026-11-08"
+   "source": "related-queries",
+   "fetched": "2026-11-16",
+   "polluted": false,
+   "last_attempt_at": "2026-11-16T13:05:07.566270+00:00",
+   "last_attempt_status": "ok"
   },
   "schimmel entfernen": {
    "auto": [
@@ -153,53 +171,35 @@
    "last_attempt_status": "ok"
   },
   "heizlüfter": {
-   "rising": [
-    {
-     "q": "akku heizlüfter auto",
-     "v": 107350
-    },
-    {
-     "q": "ölradiator",
-     "v": 78450
-    },
-    {
-     "q": "kaufland heizlüfter",
-     "v": 55400
-    },
-    {
-     "q": "keramik heizlüfter test",
-     "v": 54400
-    },
-    {
-     "q": "heizlüfter mit zeitschaltuhr",
-     "v": 50350
-    },
-    {
-     "q": "12 volt heizlüfter",
-     "v": 50250
-    },
-    {
-     "q": "heizlüfter stromsparend",
-     "v": 45650
-    },
-    {
-     "q": "auto heizlüfter 12v",
-     "v": 42550
-    },
-    {
-     "q": "heizlüfter garage",
-     "v": 38200
-    },
-    {
-     "q": "sparsamer heizlüfter",
-     "v": 37900
-    }
+   "auto": [
+    "heizlüfter",
+    "heizlüfter test",
+    "heizlüfter bad",
+    "heizlüfter auto",
+    "heizlüfter camping",
+    "heizlüfter media markt",
+    "heizlüfter testsieger",
+    "heizlüfter test stiftung warentest",
+    "heizlüfter mit akku",
+    "heizlüfter energiesparend"
    ],
-   "source": "related-queries",
-   "fetched": "2026-11-15",
-   "polluted": false,
-   "last_attempt_at": "2026-11-15T12:10:05.310768+00:00",
-   "last_attempt_status": "ok"
+   "new_vocabulary": [
+    "heizlüfter test",
+    "heizlüfter bad",
+    "heizlüfter auto",
+    "heizlüfter camping",
+    "heizlüfter media markt",
+    "heizlüfter testsieger",
+    "heizlüfter test stiftung warentest",
+    "heizlüfter mit akku",
+    "heizlüfter energiesparend"
+   ],
+   "rising": [],
+   "source": "autocomplete-vocabulary",
+   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
+   "last_attempt_at": "2026-11-16T13:04:05.672829+00:00",
+   "last_attempt_status": "failed",
+   "fetched": "2026-11-16"
   },
   "kaffeevollautomat": {
    "rising": [
