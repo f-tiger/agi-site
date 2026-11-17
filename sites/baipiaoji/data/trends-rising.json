@@ -1,32 +1,32 @@
 {
- "fetched": "2026-11-16",
+ "fetched": "2026-11-17",
  "geo": "US",
  "seeds": {
   "deepseek": {
    "auto": [
     "deepseek",
-    "deepseek api",
     "deepseek ai",
-    "deepseek harness desktop",
-    "deepseek v4 flash",
+    "deepseek api",
     "deepseek v4.1 flash",
-    "deepseek super agent",
-    "deepseek v4",
+    "deepseek v4 flash",
+    "deepseek harness desktop",
     "deepseek chat",
-    "deepseek harness github"
+    "deepseek login",
+    "deepseek v4",
+    "deepseek news"
    ],
    "rising": [
     {
-     "q": "deepseek super agent",
+     "q": "deepseek login",
      "v": "new"
     },
     {
-     "q": "deepseek harness github",
+     "q": "deepseek news",
      "v": "new"
     }
    ],
    "source": "autocomplete-diff",
-   "fetched": "2026-11-06"
+   "fetched": "2026-11-17"
   },
   "midjourney": {
    "rising": [
@@ -262,23 +262,27 @@
    "auto": [
     "cursor",
     "cursor ai",
+    "cursor download",
     "cursory",
     "cursory definition",
-    "cursor download",
-    "cursor library",
-    "cursor careers",
-    "cursor pricing",
     "cursor ide",
-    "cursor vs claude code"
+    "cursor library",
+    "cursor usage",
+    "cursor pricing",
+    "cursor student plan"
    ],
    "rising": [
     {
-     "q": "cursor careers",
+     "q": "cursor usage",
+     "v": "new"
+    },
+    {
+     "q": "cursor student plan",
      "v": "new"
     }
    ],
    "source": "autocomplete-diff",
-   "fetched": "2026-11-06"
+   "fetched": "2026-11-17"
   },
   "claude code": {
    "auto": [
