@@ -1,12 +1,12 @@
 {
-  "checkedAt": "2026-11-16T10:11:19Z",
+  "checkedAt": "2026-11-17T11:13:10Z",
   "sources": [
     {
       "id": "openai",
       "company": "OpenAI",
       "url": "https://openai.com/news/rss.xml",
-      "checkedAt": "2026-11-16T10:11:19Z",
-      "lastSuccessAt": "2026-11-16T10:11:19Z",
+      "checkedAt": "2026-11-17T11:13:10Z",
+      "lastSuccessAt": "2026-11-17T11:13:10Z",
       "ok": true,
       "error": null
     },
@@ -14,8 +14,8 @@
       "id": "anthropic",
       "company": "Anthropic",
       "url": "https://www.anthropic.com/news",
-      "checkedAt": "2026-11-16T10:11:19Z",
-      "lastSuccessAt": "2026-11-16T10:11:19Z",
+      "checkedAt": "2026-11-17T11:13:10Z",
+      "lastSuccessAt": "2026-11-17T11:13:10Z",
       "ok": true,
       "error": null
     },
@@ -23,8 +23,8 @@
       "id": "meta",
       "company": "Meta",
       "url": "https://about.fb.com/news/feed/",
-      "checkedAt": "2026-11-16T10:11:19Z",
-      "lastSuccessAt": "2026-11-16T10:11:19Z",
+      "checkedAt": "2026-11-17T11:13:10Z",
+      "lastSuccessAt": "2026-11-17T11:13:10Z",
       "ok": true,
       "error": null
     },
@@ -32,7 +32,7 @@
       "id": "xai",
       "company": "xAI / SpaceX",
       "url": "https://x.ai/news",
-      "checkedAt": "2026-11-16T10:11:19Z",
+      "checkedAt": "2026-11-17T11:13:10Z",
       "lastSuccessAt": "2026-10-31T16:20:44Z",
       "ok": false,
       "error": "http_403"
@@ -41,13 +41,73 @@
       "id": "deepmind",
       "company": "Google DeepMind",
       "url": "https://deepmind.google/blog/rss.xml",
-      "checkedAt": "2026-11-16T10:11:19Z",
-      "lastSuccessAt": "2026-11-16T10:11:19Z",
+      "checkedAt": "2026-11-17T11:13:10Z",
+      "lastSuccessAt": "2026-11-17T11:13:10Z",
       "ok": true,
       "error": null
     }
   ],
   "items": [
+    {
+      "id": "c16f8679fa5ca047fcd66cef",
+      "company": "Meta",
+      "title": "An Update on the Content We Recommend on Instagram in India",
+      "url": "https://about.fb.com/news/2026/11/an-update-on-the-content-we-recommend-on-instagram-in-india",
+      "publishedAt": "2026-11-17T03:58:09Z",
+      "discoveredAt": "2026-11-17T11:13:10Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "1a9c6ab00ef328f441c2236f",
+      "company": "Meta",
+      "title": "Introducing Direct: An App Just for Messaging",
+      "url": "https://about.fb.com/news/2026/11/introducing-direct-an-app-just-for-messaging",
+      "publishedAt": "2026-11-17T01:00:48Z",
+      "discoveredAt": "2026-11-17T11:13:10Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "0e7f690aa4ff229bd2e8f275",
+      "company": "OpenAI",
+      "title": "Strengthening NATO and allied cyber defenses with AI",
+      "url": "https://openai.com/index/strengthening-nato-allied-cyber-defences-ai",
+      "publishedAt": "2026-11-17T00:00:00Z",
+      "discoveredAt": "2026-11-17T11:13:10Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "dd659f011024f04f24b0b918",
+      "company": "OpenAI",
+      "title": "Strengthening the fight against online child sexual abuse with new tools and support",
+      "url": "https://openai.com/index/strengthening-online-child-safety",
+      "publishedAt": "2026-11-16T17:00:00Z",
+      "discoveredAt": "2026-11-17T11:13:10Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "2d7a5d6b20fff3cd431e56c6",
+      "company": "OpenAI",
+      "title": "Broadening access to AI for scientists",
+      "url": "https://openai.com/index/expanding-chatgpt-for-academic-researchers",
+      "publishedAt": "2026-11-16T17:00:00Z",
+      "discoveredAt": "2026-11-17T11:13:10Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "d91fd06de7b8771ee8ad78bb",
+      "company": "OpenAI",
+      "title": "Science at the Frontier: How scientists use ChatGPT",
+      "url": "https://openai.com/index/science-at-the-frontier",
+      "publishedAt": "2026-11-16T12:00:00Z",
+      "discoveredAt": "2026-11-17T11:13:10Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
     {
       "id": "ff7833693fa2a06713dc923a",
       "company": "OpenAI",
@@ -59,12 +119,52 @@
       "reviewStatus": "automatic"
     },
     {
+      "id": "9fe6d2ae73e55f52b8078f18",
+      "company": "OpenAI",
+      "title": "Our first phase of embedded assessments",
+      "url": "https://openai.com/index/our-first-phase-of-embedded-assessments",
+      "publishedAt": "2026-11-16T08:00:00Z",
+      "discoveredAt": "2026-11-17T11:13:10Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
       "id": "ed8a714b90bf2d22a5799eb9",
       "company": "Meta",
       "title": "94% of Singapore Small Business Owners Surveyed Say More AI Guidance Is Needed",
       "url": "https://about.fb.com/news/2026/11/94-of-singapore-small-business-owners-surveyed-say-more-ai-guidance-is-needed",
       "publishedAt": "2026-11-16T06:25:27Z",
       "discoveredAt": "2026-11-16T10:11:19Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "21e886491b30cfff0403f0b9",
+      "company": "OpenAI",
+      "title": "More ways to move care forward with ChatGPT for Healthcare",
+      "url": "https://openai.com/index/more-ways-to-move-care-forward-with-chatgpt-for-healthcare",
+      "publishedAt": "2026-11-16T06:00:00Z",
+      "discoveredAt": "2026-11-17T11:13:10Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "21b4758ab52123ac78ffa3db",
+      "company": "OpenAI",
+      "title": "Advancing computer-use agents for healthcare teams",
+      "url": "https://openai.com/index/advancing-computer-use-for-healthcare-teams",
+      "publishedAt": "2026-11-16T06:00:00Z",
+      "discoveredAt": "2026-11-17T11:13:10Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "60f3c7381bc61eae5e3d002a",
+      "company": "OpenAI",
+      "title": "The King’s Trust and OpenAI launch £1m partnership",
+      "url": "https://openai.com/index/the-kings-trust-and-openai",
+      "publishedAt": "2026-11-16T00:00:00Z",
+      "discoveredAt": "2026-11-17T11:13:10Z",
       "signal": "neutral",
       "reviewStatus": "automatic"
     },
