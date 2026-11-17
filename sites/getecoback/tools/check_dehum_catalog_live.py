@@ -25,6 +25,8 @@ def check(slug):
             assert html.index('<!--/EB_BUYER-->') < match.start(), slug + ': catalog nested in buyer'
             assert match[1].count('class="dc-card"') == len(DATA['products']), slug
             md = read(path, 'text/markdown')
+            assert match[1].count('data-catalog-drain-entry') == 1, slug + ': quick entry missing'
+            assert 'Abfluss höher als der Geräteauslass?' in md, slug + ': quick answer missing from mirror'
             assert match[1].count('id="ablauf-vor-kauf"') == 1, slug + ': drain answer missing'
             for surface in [match[1], md]:
                 assert 'Ein Schlauchanschluss allein bestätigt keine Pumpe.' in surface, slug + ': drain limitation missing'

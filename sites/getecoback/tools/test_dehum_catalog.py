@@ -61,10 +61,14 @@ class CatalogTest(unittest.TestCase):
             self.assertLess(source.index('<!--/EB_BUYER-->'),source.index('<!--EB_MODELS-->'))
             # Read the actual final file, not a repaired renderer output.
             self.assertEqual(source.count('id="ablauf-vor-kauf"'),1,slug)
+            self.assertEqual(source.count('data-catalog-drain-entry'),1,slug)
+            self.assertIn('Abfluss höher als der Geräteauslass?',source)
+            self.assertLess(source.index('data-catalog-drain-entry'),source.index('id="ablauf-vor-kauf"'))
             self.assertLess(source.index('id="ablauf-vor-kauf"'),source.index('<div class="dc-table"'))
             self.assertIn('Ein Schlauchanschluss allein bestätigt keine Pumpe.',source)
             mirror=(C.DATA.parent.parent/'site/guide'/f'{slug}.md').read_text()
             self.assertIn('Ein Schlauchanschluss allein bestätigt keine Pumpe.',mirror,slug)
+            self.assertIn('Abfluss höher als der Geräteauslass?',mirror,slug)
             self.assertIn('weder den deutschen Lieferumfang noch die Eignung der Arete Two 12L',mirror,slug)
             self.assertIn('geprüft am 13.11.2026',mirror,slug)
             def rebuild(html):
