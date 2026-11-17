@@ -2,6 +2,10 @@
  "extra": {
   "days": 28,
   "picks": {
+   "bottle-warmer": {
+    "open": 1,
+    "out": 0
+   },
    "led-mask": {
     "open": 1,
     "out": 0
@@ -28,7 +32,7 @@
    }
   }
  },
- "fetched": "2026-11-16",
+ "fetched": "2026-11-17",
  "kind": "sr-pop",
  "notes": [],
  "ok": true,

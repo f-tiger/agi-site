@@ -3,40 +3,40 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 20,
+    "n": 21,
     "q": "tool:portfolio_returns"
    },
    {
-    "n": 11,
+    "n": 13,
     "q": "tool:verdicts"
    },
    {
-    "n": 9,
+    "n": 11,
     "q": "tool:thesis_tracker"
    },
    {
-    "n": 7,
+    "n": 8,
     "q": "tool:sunwatch_ledger"
+   },
+   {
+    "n": 8,
+    "q": "tool:claim_ledger https://goldrush.agiscorecard."
    },
    {
     "n": 7,
     "q": "tool:invest_positions"
    },
    {
-    "n": 7,
-    "q": "tool:claim_ledger https://goldrush.agiscorecard."
+    "n": 5,
+    "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
    },
    {
     "n": 4,
-    "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
+    "q": "github"
    },
    {
     "n": 3,
     "q": "python"
-   },
-   {
-    "n": 3,
-    "q": "github"
    },
    {
     "n": 2,
@@ -44,26 +44,30 @@
    }
   ]
  },
- "fetched": "2026-11-16",
+ "fetched": "2026-11-17",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
-  "/agents": {
-   "n7": 167,
-   "p7": 80
+  "/": {
+   "n7": 2066,
+   "p7": 1031
   },
   "/ai-and-your-job": {
-   "n7": 129,
-   "p7": 41
+   "n7": 146,
+   "p7": 47
   },
   "/calibration": {
-   "n7": 124,
-   "p7": 45
+   "n7": 133,
+   "p7": 51
   },
   "/did-open-source-ai-fade": {
-   "n7": 143,
-   "p7": 59
+   "n7": 156,
+   "p7": 69
+  },
+  "/will-agi-arrive-2027": {
+   "n7": 205,
+   "p7": 101
   }
  },
  "site": "agiscorecard",

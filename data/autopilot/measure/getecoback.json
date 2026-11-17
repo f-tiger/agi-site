@@ -3,10 +3,10 @@
   "events": {
    "affiliate_click": {
     "n7": 9,
-    "p7": 19
+    "p7": 16
    },
    "btu_calc": {
-    "n7": 1,
+    "n7": 2,
     "p7": 0
    },
    "buyer_next": {
@@ -15,18 +15,18 @@
    },
    "buyer_result": {
     "n7": 0,
-    "p7": 2
+    "p7": 1
    },
    "buyer_view": {
     "n7": 0,
-    "p7": 7
+    "p7": 6
    },
    "cold_now": {
-    "n7": 41,
-    "p7": 20
+    "n7": 47,
+    "p7": 22
    },
    "feuchte_now": {
-    "n7": 20,
+    "n7": 23,
     "p7": 13
    },
    "laundry_view": {
@@ -34,8 +34,8 @@
     "p7": 1
    },
    "page_view": {
-    "n7": 120,
-    "p7": 85
+    "n7": 135,
+    "p7": 82
    },
    "popup_click": {
     "n7": 2,
@@ -43,10 +43,10 @@
    },
    "popup_close": {
     "n7": 6,
-    "p7": 12
+    "p7": 11
    },
    "popup_view": {
-    "n7": 18,
+    "n7": 17,
     "p7": 25
    },
    "strom_now": {
@@ -64,7 +64,7 @@
   },
   "zero_hit_records": 0
  },
- "fetched": "2026-11-16",
+ "fetched": "2026-11-17",
  "kind": "eco-trend",
  "notes": [],
  "ok": true,
@@ -81,6 +81,14 @@
    "n7": 7,
    "p7": 0
   },
+  "/en/guide/btu-calculator.html": {
+   "n7": 2,
+   "p7": 0
+  },
+  "/en/guide/portable-air-conditioner-france.html": {
+   "n7": 2,
+   "p7": 1
+  },
   "/en/guide/tilt-and-turn-windows-winter-condensation.html": {
    "n7": 2,
    "p7": 0
@@ -89,13 +97,17 @@
    "n7": 4,
    "p7": 3
   },
+  "/guide/heizluefter-stromsparend.html": {
+   "n7": 2,
+   "p7": 0
+  },
   "/guide/heizung-10-qm.html": {
    "n7": 3,
    "p7": 0
   },
   "/guide/klimaanlage-wann-kaufen.html": {
    "n7": 5,
-   "p7": 3
+   "p7": 4
   },
   "/guide/klimaanlage-wohnmobil.html": {
    "n7": 4,
@@ -104,6 +116,10 @@
   "/guide/luftbefeuchter-ratgeber.html": {
    "n7": 11,
    "p7": 0
+  },
+  "/guide/luftentfeuchter-ratgeber.html": {
+   "n7": 5,
+   "p7": 5
   },
   "/guide/midea-portasplit-ausverkauft-alternativen.html": {
    "n7": 2,
@@ -122,8 +138,8 @@
    "p7": 2
   },
   "/guide/wohnmobil-feuchtigkeit-winter.html": {
-   "n7": 4,
-   "p7": 0
+   "n7": 3,
+   "p7": 1
   },
   "/produkte.html": {
    "n7": 11,
