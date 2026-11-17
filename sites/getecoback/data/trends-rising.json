@@ -1,15 +1,15 @@
 {
- "fetched": "2026-11-16",
+ "fetched": "2026-11-17",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
    "rising": [
     {
      "q": "black friday klimaanlage",
-     "v": 1100
+     "v": 1500
     },
     {
-     "q": "mit klimaanlage heizen",
+     "q": "heizen mit klimaanlage",
      "v": 550
     },
     {
@@ -18,59 +18,87 @@
     },
     {
      "q": "klimaanlage zum heizen",
-     "v": 450
-    },
-    {
-     "q": "daikin stylish",
-     "v": 350
+     "v": 500
     },
     {
      "q": "vrf klimaanlage",
-     "v": 350
+     "v": 400
+    },
+    {
+     "q": "daikin stylish",
+     "v": 400
     },
     {
      "q": "klimaanlage verkleidung",
-     "v": 300
-    },
-    {
-     "q": "multi split klimaanlage 2 innengeräte",
-     "v": 300
-    },
-    {
-     "q": "verkleidung klimaanlage außengerät",
-     "v": 300
+     "v": 350
     },
     {
      "q": "klimaanlage mit heizfunktion",
      "v": 300
+    },
+    {
+     "q": "environ klimaanlage",
+     "v": 300
+    },
+    {
+     "q": "klimaanlage zum heizen und kühlen",
+     "v": 250
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-11-16",
+   "fetched": "2026-11-17",
    "polluted": false,
-   "last_attempt_at": "2026-11-16T13:05:07.566270+00:00",
+   "last_attempt_at": "2026-11-17T13:44:08.701683+00:00",
    "last_attempt_status": "ok"
   },
   "schimmel entfernen": {
-   "auto": [
-    "schimmel entfernen",
-    "schimmel entfernen wand",
-    "schimmel entfernen hausmittel",
-    "schimmel entfernen dusche",
-    "schimmel entfernen bad fugen",
-    "schimmel entfernen wand innen",
-    "schimmel entfernen dm",
-    "schimmel entfernen firma in der nähe",
-    "schimmel entfernen tapete",
-    "schimmel entfernen alkohol"
+   "rising": [
+    {
+     "q": "schimmel mit alkohol entfernen",
+     "v": 82200
+    },
+    {
+     "q": "schimmel aus auto entfernen",
+     "v": 49700
+    },
+    {
+     "q": "isopropanol gegen schimmel",
+     "v": 35600
+    },
+    {
+     "q": "schimmel von leder entfernen",
+     "v": 28050
+    },
+    {
+     "q": "wasserstoffperoxid kaufen",
+     "v": 4900
+    },
+    {
+     "q": "schimmel aus kleidung entfernen",
+     "v": 50
+    },
+    {
+     "q": "schimmel in der dusche entfernen",
+     "v": 50
+    },
+    {
+     "q": "schimmel entfernen wohnung",
+     "v": 50
+    },
+    {
+     "q": "dusche schimmel entfernen",
+     "v": 40
+    },
+    {
+     "q": "schimmel silikonfugen entfernen",
+     "v": 40
+    }
    ],
-   "new_vocabulary": [],
-   "rising": [],
-   "source": "autocomplete-vocabulary",
-   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
-   "last_attempt_at": "2026-11-09T13:14:51.596208+00:00",
-   "last_attempt_status": "failed",
-   "fetched": "2026-11-09"
+   "source": "related-queries",
+   "fetched": "2026-11-17",
+   "polluted": false,
+   "last_attempt_at": "2026-11-17T13:45:09.991276+00:00",
+   "last_attempt_status": "ok"
   },
   "infrarotheizung": {
    "rising": [
