@@ -1,0 +1,106 @@
+{
+  "observed_at": "2026-11-17",
+  "brand_id": "7132930",
+  "timezone": "Asia/Shanghai",
+  "posts": [
+    {
+      "id": 425192059,
+      "uuid": "5630460762000670752",
+      "providers": [
+        {
+          "network": "tiktok",
+          "id": "7707339266384334111",
+          "status": "PUBLISHED",
+          "publicUrl": "https://www.tiktok.com/@agifuturelife/video/7707339266384334111",
+          "detailedStatus": "Published"
+        }
+      ],
+      "publicationDate": {
+        "dateTime": "2026-11-13T01:30:00",
+        "timezone": "Asia/Shanghai"
+      },
+      "media": [
+        "https://static.metricool.com/planner/202611/7132930-file-7112672990745726025.jpeg",
+        "https://static.metricool.com/planner/202611/7132930-file-2340129254518228986.jpeg",
+        "https://static.metricool.com/planner/202611/7132930-file-17965685350071665645.jpeg",
+        "https://static.metricool.com/planner/202611/7132930-file-11210283858493648756.jpeg"
+      ]
+    },
+    {
+      "id": 426988578,
+      "uuid": "870940558159268939",
+      "providers": [
+        {
+          "network": "tiktok",
+          "id": "7707655249196043533",
+          "status": "PUBLISHED",
+          "publicUrl": "https://www.tiktok.com/@agifuturelife/video/7707655249196043533",
+          "detailedStatus": "Published"
+        }
+      ],
+      "publicationDate": {
+        "dateTime": "2026-11-13T21:59:00",
+        "timezone": "Asia/Shanghai"
+      },
+      "media": [
+        "https://static.metricool.com/planner/202611/7132930-file-7892694559052571295.jpeg",
+        "https://static.metricool.com/planner/202611/7132930-file-7650286089630818255.jpeg",
+        "https://static.metricool.com/planner/202611/7132930-file-16176138808269286608.jpeg",
+        "https://static.metricool.com/planner/202611/7132930-file-1793257472135806201.jpeg"
+      ]
+    }
+  ],
+  "new_submissions": 0,
+  "reason": "two published creatives in rolling seven days; no new scheduling",
+  "actual_published_at": "unknown; provider publicationDate is scheduled time",
+  "verified_media": [
+    {
+      "creative": "de-catalog-20261112",
+      "path": "/assets/marketing/de-catalog-20261112/01-model.jpg",
+      "sha256": "064c2243464563d6bef15b6e210541ec5f3153894fad28dc0661f115f62ce1d1",
+      "live_and_hosted_match": true
+    },
+    {
+      "creative": "de-catalog-20261112",
+      "path": "/assets/marketing/de-catalog-20261112/02-drain.jpg",
+      "sha256": "15c7dd142cd7de35b5be81ba9269353d8ff9cc7764777cac55bcda5d319ba2a6",
+      "live_and_hosted_match": true
+    },
+    {
+      "creative": "de-catalog-20261112",
+      "path": "/assets/marketing/de-catalog-20261112/03-conditions.jpg",
+      "sha256": "1724a74d12b5b9495382138bbea06b306e6c31216c916a32eeae12e0eda41dc7",
+      "live_and_hosted_match": true
+    },
+    {
+      "creative": "de-catalog-20261112",
+      "path": "/assets/marketing/de-catalog-20261112/04-guide.jpg",
+      "sha256": "12852fa6fbd0ff33e0fa4c6d8ddf21cb6726e4832483c5470ae06ab73fa85f2c",
+      "live_and_hosted_match": true
+    },
+    {
+      "creative": "de-thermostat-20261112",
+      "path": "/assets/marketing/de-thermostat-20261112/01-fit.jpg",
+      "sha256": "8b317971c505d9d6151d2b7ffef4611cf430db32b64150cbc425ad8a6b5d36e4",
+      "live_and_hosted_match": true
+    },
+    {
+      "creative": "de-thermostat-20261112",
+      "path": "/assets/marketing/de-thermostat-20261112/02-valve.jpg",
+      "sha256": "77d4a41c2f27ec696bf5147d254ce10c1335a5236b301d78d2c3ea8e6b06b65e",
+      "live_and_hosted_match": true
+    },
+    {
+      "creative": "de-thermostat-20261112",
+      "path": "/assets/marketing/de-thermostat-20261112/03-system.jpg",
+      "sha256": "7001fa124b7f343c4f6623612b2cb02e61aa5e190bc5946285b70990b349d49d",
+      "live_and_hosted_match": true
+    },
+    {
+      "creative": "de-thermostat-20261112",
+      "path": "/assets/marketing/de-thermostat-20261112/04-cost.jpg",
+      "sha256": "25d61a938673aea923ef19cb3e90c8464dda0ed5a8d37aee0c513ad02aab4c39",
+      "live_and_hosted_match": true
+    }
+  ]
+}

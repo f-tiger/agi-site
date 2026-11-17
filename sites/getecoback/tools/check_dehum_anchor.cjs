@@ -19,6 +19,10 @@ const mime={'.html':'text/html; charset=utf-8','.css':'text/css','.js':'text/jav
 const p=await c.newPage();p.on('pageerror',e=>errors.push(e.message));
 const res=await p.goto(origin+'/guide/'+slug+'.html?__probe=1#ablauf-vor-kauf',{waitUntil:'load'});assert.equal(res.status(),200);
 await p.evaluate(()=>document.fonts.ready);const box=p.locator('#eb-models');assert.equal(await box.count(),1);assert.equal(await box.locator('.dc-card').count(),6);
+await p.goto(origin+'/guide/'+slug+'.html?__probe=1#eb-models',{waitUntil:'load'});
+assert.equal(await p.locator('[data-catalog-drain-entry]').count(),1);
+await p.locator('[data-catalog-drain-entry]').click();
+await p.waitForURL(u=>u.hash==='#ablauf-vor-kauf');
 const check=p.locator('#ablauf-vor-kauf');assert.equal(await check.count(),1);assert.equal(await check.locator('ol li').count(),3);
 const text=await check.innerText();for(const s of['Ein Schlauchanschluss allein bestätigt keine Pumpe.','MeacoDry Arete One 20L','weder den deutschen Lieferumfang noch die Eignung der Arete Two 12L','13.11.2026'])assert(text.includes(s));
 assert.equal(await check.locator('a[href="https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-air-purifier"]').count(),1);
