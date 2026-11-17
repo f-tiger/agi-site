@@ -1,19 +1,9 @@
 {
  "version": 1,
  "github": {
-  "queryIndex": 6,
+  "queryIndex": 12,
   "page": 3,
   "pending": [
-   {
-    "repo": "genieincodebottle/generative-ai",
-    "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "usestrix/strix",
-    "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
    {
     "repo": "rohitg00/ai-engineering-from-scratch",
     "topic": "agents",
@@ -60,16 +50,6 @@
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
-    "repo": "juggler-ai/juggler",
-    "topic": "coding",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "coipond/coi",
-    "topic": "coding",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
     "repo": "mostafasadeghi97/design2code",
     "topic": "coding",
     "foundAt": "2026-10-04T06:17:42.048Z"
@@ -112,11 +92,6 @@
    {
     "repo": "yanliudesign/mono-color-skill",
     "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "HeyWillow/willow",
-    "topic": "audio",
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
@@ -457,11 +432,6 @@
    {
     "repo": "usemoss/moss",
     "topic": "agents",
-    "foundAt": "2026-10-06T06:50:25.349Z"
-   },
-   {
-    "repo": "HelixDB/helix-db",
-    "topic": "knowledge",
     "foundAt": "2026-10-06T06:50:25.349Z"
    },
    {
@@ -930,11 +900,6 @@
     "foundAt": "2026-10-09T06:38:33.001Z"
    },
    {
-    "repo": "Tianyu199509/DeskBox",
-    "topic": "everyday",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
     "repo": "passbolt/passbolt_api",
     "topic": "everyday",
     "foundAt": "2026-10-09T06:38:33.001Z"
@@ -968,11 +933,6 @@
     "repo": "AmintaCCCP/GithubStarsManager",
     "topic": "everyday",
     "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
-    "repo": "triton-inference-server/model_analyzer",
-    "topic": "local",
-    "foundAt": "2026-10-10T06:21:21.428Z"
    },
    {
     "repo": "google/agentmesh",
@@ -1237,11 +1197,6 @@
    {
     "repo": "Vincentwei1021/anything2explainer",
     "topic": "coding",
-    "foundAt": "2026-10-16T04:57:03.412Z"
-   },
-   {
-    "repo": "mg-chao/snow-apps",
-    "topic": "documents",
     "foundAt": "2026-10-16T04:57:03.412Z"
    },
    {
@@ -1568,11 +1523,6 @@
     "repo": "Raudaschl/rag-fusion",
     "topic": "knowledge",
     "foundAt": "2026-10-21T05:15:35.227Z"
-   },
-   {
-    "repo": "MLGroupJLU/LLM-eval-survey",
-    "topic": "ai",
-    "foundAt": "2026-10-22T05:18:29.886Z"
    },
    {
     "repo": "zjunlp/LLMAgentPapers",
@@ -2825,11 +2775,6 @@
     "foundAt": "2026-11-13T07:10:31.167Z"
    },
    {
-    "repo": "nonebot/nonebot2",
-    "topic": "chat",
-    "foundAt": "2026-11-13T07:10:31.167Z"
-   },
-   {
     "repo": "Hainrixz/whatsapp-agentkit",
     "topic": "coding",
     "foundAt": "2026-11-13T07:10:31.167Z"
@@ -3003,6 +2948,61 @@
     "repo": "KunAgent/Kun",
     "topic": "agents",
     "foundAt": "2026-11-16T07:12:41.275Z"
+   },
+   {
+    "repo": "nace-ai/kapitsa",
+    "topic": "local",
+    "foundAt": "2026-11-17T08:26:32.925Z"
+   },
+   {
+    "repo": "Indras-Mirror/Xolotl",
+    "topic": "local",
+    "foundAt": "2026-11-17T08:26:32.925Z"
+   },
+   {
+    "repo": "llm-workflow-engine/llm-workflow-engine",
+    "topic": "chat",
+    "foundAt": "2026-11-17T08:26:32.925Z"
+   },
+   {
+    "repo": "jackmpcollins/magentic",
+    "topic": "agents",
+    "foundAt": "2026-11-17T08:26:32.925Z"
+   },
+   {
+    "repo": "eikek/docspell",
+    "topic": "documents",
+    "foundAt": "2026-11-17T08:26:32.925Z"
+   },
+   {
+    "repo": "yjid/kensaku",
+    "topic": "agents",
+    "foundAt": "2026-11-17T08:26:32.925Z"
+   },
+   {
+    "repo": "lzhgus/Capso",
+    "topic": "documents",
+    "foundAt": "2026-11-17T08:26:32.925Z"
+   },
+   {
+    "repo": "Ramakm/AI-Engineering",
+    "topic": "knowledge",
+    "foundAt": "2026-11-17T08:26:32.925Z"
+   },
+   {
+    "repo": "zelon88/HRConvert2",
+    "topic": "documents",
+    "foundAt": "2026-11-17T08:26:32.925Z"
+   },
+   {
+    "repo": "myhub/tr",
+    "topic": "documents",
+    "foundAt": "2026-11-17T08:26:32.925Z"
+   },
+   {
+    "repo": "ttop32/MouseTooltipTranslator",
+    "topic": "documents",
+    "foundAt": "2026-11-17T08:26:32.925Z"
    }
   ],
   "checked": {
@@ -3179,11 +3179,17 @@
    "gh-kubeflow-trainer-d632ea": "2026-11-15T07:06:00.331Z",
    "gh-activitywatch-activitywatch-cb0f04": "2026-11-15T07:06:00.331Z",
    "gh-ultralytics-yolov5-eebd31": "2026-11-15T07:06:00.331Z",
-   "gh-lobehub-lobe-ui-dd168f": "2026-11-15T07:06:00.331Z"
+   "gh-lobehub-lobe-ui-dd168f": "2026-11-15T07:06:00.331Z",
+   "gh-tencent-weknora-916540": "2026-11-17T08:26:32.925Z",
+   "gh-twigpine-openclaude-b379fd": "2026-11-17T08:26:32.925Z",
+   "gh-metalbear-co-mirrord-616b5a": "2026-11-17T08:26:32.925Z",
+   "gh-vigozhao-ai-visual-prompt-cookbook-6bbad4": "2026-11-17T08:26:32.925Z",
+   "gh-snakers4-silero-models-55875d": "2026-11-17T08:26:32.925Z",
+   "gh-stranslate-stranslate-f46eea": "2026-11-17T08:26:32.925Z"
   }
  },
  "mcp": {
-  "cursor": "com.a2awire/data-pubmed-biomedical-paper-research-article:0.1.2",
+  "cursor": "com.chikocorp/cuadre:1.0.0",
   "since": "2026-10-01T15:26:40.958Z",
   "watermark": "2026-10-02T15:26:40.958Z",
   "scanStarted": "2026-11-14T06:58:47.664Z",
@@ -3411,23 +3417,23 @@
    "ctxfile-ctxfile": "2026-11-16T07:12:41.275Z",
    "cua": "2026-11-16T07:12:41.275Z",
    "cursor": "2026-11-16T07:12:41.275Z",
-   "curviate-mcp": "2026-10-09T06:38:33.001Z",
-   "darkfunnels-docs": "2026-10-09T06:38:33.001Z",
-   "datakoot-base-onchain-wallet-tokens": "2026-10-09T06:38:33.001Z",
-   "datakoot-domain-dns-whois": "2026-10-09T06:38:33.001Z",
-   "datakoot-economy-gdp-inflation-unemployment": "2026-10-09T06:38:33.001Z",
-   "datakoot-federal-register-rules": "2026-10-09T06:38:33.001Z",
-   "datakoot-us-weather-forecast-alerts": "2026-10-09T06:38:33.001Z",
-   "datatreehaus-skopia-floor-plan-layout": "2026-10-09T06:38:33.001Z",
-   "datavidence-financials": "2026-10-09T06:38:33.001Z",
-   "day-shyn-shyn": "2026-10-09T06:38:33.001Z",
-   "daytona": "2026-10-09T06:38:33.001Z",
-   "dayze-life-context": "2026-10-09T06:38:33.001Z",
-   "dbhub": "2026-10-09T06:38:33.001Z",
-   "de-bibelstudium-mcp-bibelstudium": "2026-10-09T06:38:33.001Z",
-   "de-cronjob-cronjob-de-mcp": "2026-10-09T06:38:33.001Z",
-   "debugbundle-mcp": "2026-10-09T06:38:33.001Z",
-   "decaframe-decaframe": "2026-10-09T06:38:33.001Z",
+   "curviate-mcp": "2026-11-17T08:26:32.925Z",
+   "darkfunnels-docs": "2026-11-17T08:26:32.925Z",
+   "datakoot-base-onchain-wallet-tokens": "2026-11-17T08:26:32.925Z",
+   "datakoot-domain-dns-whois": "2026-11-17T08:26:32.925Z",
+   "datakoot-economy-gdp-inflation-unemployment": "2026-11-17T08:26:32.925Z",
+   "datakoot-federal-register-rules": "2026-11-17T08:26:32.925Z",
+   "datakoot-us-weather-forecast-alerts": "2026-11-17T08:26:32.925Z",
+   "datatreehaus-skopia-floor-plan-layout": "2026-11-17T08:26:32.925Z",
+   "datavidence-financials": "2026-11-17T08:26:32.925Z",
+   "day-shyn-shyn": "2026-11-17T08:26:32.925Z",
+   "daytona": "2026-11-17T08:26:32.925Z",
+   "dayze-life-context": "2026-11-17T08:26:32.925Z",
+   "dbhub": "2026-11-17T08:26:32.925Z",
+   "de-bibelstudium-mcp-bibelstudium": "2026-11-17T08:26:32.925Z",
+   "de-cronjob-cronjob-de-mcp": "2026-11-17T08:26:32.925Z",
+   "debugbundle-mcp": "2026-11-17T08:26:32.925Z",
+   "decaframe-decaframe": "2026-11-17T08:26:32.925Z",
    "decagon": "2026-10-10T06:21:21.428Z",
    "dechonet-mcp": "2026-10-10T06:21:21.428Z",
    "decionis-mcp": "2026-10-10T06:21:21.428Z",
@@ -4764,7 +4770,30 @@
    "trydock-dock": "2026-11-16T07:12:41.275Z",
    "tunnelmind-scry": "2026-11-16T07:12:41.275Z",
    "tuteliq-mcp": "2026-11-16T07:12:41.275Z",
-   "uploadcheck-uploadcheck": "2026-11-16T07:12:41.275Z"
+   "uploadcheck-uploadcheck": "2026-11-16T07:12:41.275Z",
+   "agency-lona-trading": "2026-11-17T08:26:32.925Z",
+   "agentic-news-mcp": "2026-11-17T08:26:32.925Z",
+   "agenttrust-mcp-server": "2026-11-17T08:26:32.925Z",
+   "anomalyarmor-armor-mcp": "2026-11-17T08:26:32.925Z",
+   "bankee-inferventis-mcp": "2026-11-17T08:26:32.925Z",
+   "businys-mcp-server": "2026-11-17T08:26:32.925Z",
+   "clarid-hmda": "2026-11-17T08:26:32.925Z",
+   "contendeo-contendeo": "2026-11-17T08:26:32.925Z",
+   "cueapi-mcp": "2026-11-17T08:26:32.925Z",
+   "elasticflow-mcp": "2026-11-17T08:26:32.925Z",
+   "example4-xmp4": "2026-11-17T08:26:32.925Z",
+   "fiber-mcp": "2026-11-17T08:26:32.925Z",
+   "gavelin-mcp": "2026-11-17T08:26:32.925Z",
+   "getperspective-mcp": "2026-11-17T08:26:32.925Z",
+   "himalayas-mcp": "2026-11-17T08:26:32.925Z",
+   "i18nagent-i18n-agent": "2026-11-17T08:26:32.925Z",
+   "imboard-dossier": "2026-11-17T08:26:32.925Z",
+   "inflowpay-inflow": "2026-11-17T08:26:32.925Z",
+   "mcp-skills-search": "2026-11-17T08:26:32.925Z",
+   "mcp-strava": "2026-11-17T08:26:32.925Z",
+   "nefesh-human-state": "2026-11-17T08:26:32.925Z",
+   "newzai-api-news-mcp": "2026-11-17T08:26:32.925Z",
+   "nexustoken-sdk": "2026-11-17T08:26:32.925Z"
   }
  }
 }

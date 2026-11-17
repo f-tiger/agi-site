@@ -1,19 +1,19 @@
 {
- "generated": "2026-11-16",
+ "generated": "2026-11-17",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "poe",
-  "processon",
-  "qoder",
-  "ragflow",
-  "recraft",
-  "removebg",
-  "scispace",
-  "suno"
+  "tongyi-lingma",
+  "trae",
+  "ttsmaker",
+  "tusiart",
+  "udio",
+  "upscayl",
+  "v0",
+  "wenxin"
  ],
- "cursor": "suno",
+ "cursor": "wenxin",
  "summary": {
   "ready": 43,
   "empty": 35,
@@ -520,7 +520,7 @@
    "name": "TTSMaker",
    "cat": "audio",
    "reach": 0,
-   "probed": "2026-10-27",
+   "probed": "2026-11-17",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -748,7 +748,7 @@
    "name": "通义灵码",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-10-27",
+   "probed": "2026-11-17",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -2642,21 +2642,21 @@
    "name": "Trae（字节跳动）",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-10-27",
+   "probed": "2026-11-17",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://www.trae.cn/pricing",
      "status": 200,
-     "bytes": 132706,
+     "bytes": 128435,
      "tokens": 11
     }
    ],
    "best": {
     "url": "https://www.trae.cn/pricing",
     "tokens": 11,
-    "excerpt": "定价 | TRAE - The Real AI Engineer 产品 企业版 定价 文档 更新日志 社区 知识库 登录 下载中心 个人方案与定价 企业版选型与咨询， 前往火山引擎 ↗ 免费 Free ¥ 0 每月 500 积分 所有功能均可免费使用 支持 2 个云端任务同时执行 免费使用 会员 Lite 首月优惠 低至 ¥ 39 /月 ¥49 包含免费版功能与积分，以及 2,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed-2.1 2.5折，GLM、Deepseek-V4.1 5折 高峰期优先响应 2个云端任务同时执行 立即升级 会员 Pro 首月优惠 低至 ¥ 69 /月 ¥99 包含免费版功能与积分，以及 4,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed-2.1 2.5折，GLM、Deepseek-V4.1 5折 高峰期优先响应 10个云端任务同时执行 立即升级 会员 Pro+ 低至 ¥ 219 /月 ¥239 包含免费版功能与积分，以及 12,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed-2.1 2.5折，GLM、Deepseek-V4.1 5折 高峰期优先响应 10个云端任务同时执行 立即升级 会员 Ultra 低至 ¥ 629 /月 ¥699 包含免费版功能与积分，以及 40,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed-2.1 2.5折，GLM、Deepseek-V4.1 5折 高峰期优先响应 新模型优先使用 20个云端任务同时执行 立即升级 权益列表 免费 Free 免费使用 →"
+    "excerpt": "定价 | TRAE - The Real AI Engineer 产品 企业版 定价 文档 更新日志 社区 知识库 登录 下载中心 个人方案与定价 企业版选型与咨询， 前往火山引擎 ↗ 免费 Free ¥ 0 每月 500 积分 所有功能均可免费使用 支持 2 个云端任务同时执行 免费使用 会员 Lite 首月优惠 低至 ¥ 39 /月 ¥49 包含免费版功能与积分，以及 2,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed 2.1 模型 2.5 折、Deepseek-V4.1模型闲时5折 高峰期优先响应 2个云端任务同时执行 立即升级 会员 Pro 首月优惠 低至 ¥ 69 /月 ¥99 包含免费版功能与积分，以及 4,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed 2.1 模型 2.5 折、Deepseek-V4.1模型闲时5折 高峰期优先响应 10个云端任务同时执行 立即升级 会员 Pro+ 低至 ¥ 219 /月 ¥239 包含免费版功能与积分，以及 12,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed 2.1 模型 2.5 折、Deepseek-V4.1模型闲时5折 高峰期优先响应 10个云端任务同时执行 立即升级 会员 Ultra 低至 ¥ 629 /月 ¥699 包含免费版功能与积分，以及 40,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed 2.1 模型 2.5 折、Deepseek-V4.1模型闲时5折 高峰期优先响应 新模型优先使用 20个云端任务同时执行 立即升级 权益列表 免费"
    }
   },
   "tusiart": {
@@ -2664,7 +2664,7 @@
    "name": "吐司 AI",
    "cat": "image",
    "reach": 0,
-   "probed": "2026-10-27",
+   "probed": "2026-11-17",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -2694,26 +2694,26 @@
    "name": "Udio",
    "cat": "audio",
    "reach": 0,
-   "probed": "2026-10-27",
+   "probed": "2026-11-17",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://www.udio.com/pricing",
      "status": 200,
-     "bytes": 168525,
+     "bytes": 168526,
      "tokens": 0
     },
     {
      "url": "https://www.udio.com/price",
      "status": 200,
-     "bytes": 162601,
+     "bytes": 162600,
      "tokens": 0
     },
     {
      "url": "https://www.udio.com/plans",
      "status": 200,
-     "bytes": 162600,
+     "bytes": 162601,
      "tokens": 0
     }
    ],
@@ -2728,14 +2728,14 @@
    "name": "Upscayl",
    "cat": "image",
    "reach": 0,
-   "probed": "2026-10-27",
+   "probed": "2026-11-17",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://upscayl.org/pricing",
      "status": 200,
-     "bytes": 48092,
+     "bytes": 48057,
      "tokens": 5
     }
    ],
@@ -2750,14 +2750,14 @@
    "name": "v0（Vercel）",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-10-27",
+   "probed": "2026-11-17",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://v0.app/pricing",
      "status": 200,
-     "bytes": 282651,
+     "bytes": 270433,
      "tokens": 44
     }
    ],
@@ -2997,27 +2997,27 @@
    "slug": "wenxin",
    "name": "文心一言（百度）",
    "cat": "chat",
-   "reach": 3,
-   "probed": "2026-11-08",
+   "reach": 0,
+   "probed": "2026-11-17",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://yiyan.baidu.com/pricing",
      "status": 200,
-     "bytes": 11020,
+     "bytes": 11065,
      "tokens": 0
     },
     {
      "url": "https://yiyan.baidu.com/price",
      "status": 200,
-     "bytes": 11126,
+     "bytes": 11083,
      "tokens": 0
     },
     {
      "url": "https://yiyan.baidu.com/plans",
      "status": 200,
-     "bytes": 11028,
+     "bytes": 11059,
      "tokens": 0
     }
    ],

@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-11-16T07:13:42.312Z",
+  "lastRun": "2026-11-17T08:28:30.645Z",
   "status": "degraded",
   "checkedSources": 5,
   "queue": [
@@ -115,25 +115,25 @@
       "caseId": "gamma",
       "reason": "source-unreachable",
       "sourceUrl": "https://gamma.app/insights/how-we-built-a-usd100m-business-differently",
-      "lastChecked": "2026-11-03T07:13:59.586Z"
+      "lastChecked": "2026-11-17T08:28:30.645Z"
     },
     {
       "caseId": "elevenlabs",
       "reason": "source-unreachable",
       "sourceUrl": "https://elevenlabs.io/blog/500m-arr-and-new-investors",
-      "lastChecked": "2026-11-03T07:13:59.586Z"
+      "lastChecked": "2026-11-17T08:28:30.645Z"
     },
     {
       "caseId": "synthesia",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.synthesia.io/post/100-million-revenue-adobe-investment",
-      "lastChecked": "2026-11-04T06:58:40.954Z"
+      "lastChecked": "2026-11-17T08:28:30.645Z"
     },
     {
       "caseId": "heygen",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.heygen.com/blog/heygen-surpasses-200m-arr",
-      "lastChecked": "2026-11-04T06:58:40.954Z"
+      "lastChecked": "2026-11-17T08:28:30.645Z"
     },
     {
       "caseId": "glean",
@@ -583,7 +583,7 @@
     "gamma|https://gamma.app/insights/how-we-built-a-usd100m-business-differently": {
       "caseId": "gamma",
       "sourceUrl": "https://gamma.app/insights/how-we-built-a-usd100m-business-differently",
-      "lastAttempt": "2026-11-03T07:13:59.586Z",
+      "lastAttempt": "2026-11-17T08:28:30.645Z",
       "status": "unreachable",
       "http": 403,
       "consecutiveChange": 0
@@ -591,7 +591,7 @@
     "elevenlabs|https://elevenlabs.io/blog/500m-arr-and-new-investors": {
       "caseId": "elevenlabs",
       "sourceUrl": "https://elevenlabs.io/blog/500m-arr-and-new-investors",
-      "lastAttempt": "2026-11-03T07:13:59.586Z",
+      "lastAttempt": "2026-11-17T08:28:30.645Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -599,20 +599,20 @@
     "midjourney|https://www.cbinsights.com/research/midjourney-revenue-valuation/": {
       "caseId": "midjourney",
       "sourceUrl": "https://www.cbinsights.com/research/midjourney-revenue-valuation/",
-      "lastAttempt": "2026-11-04T06:58:40.954Z",
-      "status": "change-pending",
+      "lastAttempt": "2026-11-17T08:28:30.645Z",
+      "status": "available",
       "http": 200,
-      "lastSuccess": "2026-11-04T06:58:40.954Z",
-      "lastHash": "c616a8f5472821f196acc96d0d14ff7997eb9c3ae9c87add95998f1fac89960d",
+      "lastSuccess": "2026-11-17T08:28:30.645Z",
+      "lastHash": "4c5f2bafbf05c39772789faa501749ac5109c55817cbe12c41777df091605aa6",
       "hash": "a3a469a1a583d0748bd575b1a16e6b0cdba7fad50caf1056adb53efeaca8e70e",
       "simhash": "a6082704b4c1a81e",
       "words": 387,
-      "consecutiveChange": 1
+      "consecutiveChange": 0
     },
     "synthesia|https://www.synthesia.io/post/100-million-revenue-adobe-investment": {
       "caseId": "synthesia",
       "sourceUrl": "https://www.synthesia.io/post/100-million-revenue-adobe-investment",
-      "lastAttempt": "2026-11-04T06:58:40.954Z",
+      "lastAttempt": "2026-11-17T08:28:30.645Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -620,7 +620,7 @@
     "heygen|https://www.heygen.com/blog/heygen-surpasses-200m-arr": {
       "caseId": "heygen",
       "sourceUrl": "https://www.heygen.com/blog/heygen-surpasses-200m-arr",
-      "lastAttempt": "2026-11-04T06:58:40.954Z",
+      "lastAttempt": "2026-11-17T08:28:30.645Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1159,26 +1159,21 @@
       "consecutiveChange": 0
     }
   },
-  "cursor": 19,
+  "cursor": 24,
   "errors": [
     {
-      "caseId": "chatbase",
-      "sourceUrl": "https://supabase.com/customers/chatbase",
+      "caseId": "elevenlabs",
+      "sourceUrl": "https://elevenlabs.io/blog/500m-arr-and-new-investors",
       "reason": "body-limit"
     },
     {
-      "caseId": "bolt",
-      "sourceUrl": "https://www.lennysnewsletter.com/p/inside-bolt-eric-simons",
+      "caseId": "synthesia",
+      "sourceUrl": "https://www.synthesia.io/post/100-million-revenue-adobe-investment",
       "reason": "body-limit"
     },
     {
-      "caseId": "cursor",
-      "sourceUrl": "https://cursor.com/en-US/blog/series-c",
-      "reason": "body-limit"
-    },
-    {
-      "caseId": "lovable",
-      "sourceUrl": "https://lovable.dev/blog/agent",
+      "caseId": "heygen",
+      "sourceUrl": "https://www.heygen.com/blog/heygen-surpasses-200m-arr",
       "reason": "body-limit"
     }
   ]
