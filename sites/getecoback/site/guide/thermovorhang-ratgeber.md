@@ -37,6 +37,8 @@ Kann ich eine genaue Vorhanggröße aus diesem Check übernehmen?Nein. Der Check
 
 Transparenz: Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Der nach passender Auswahl eingeblendete Amazon.de-Link ist als Anzeige gekennzeichnet. Suchergebnisse sind keine getesteten oder als passend bestätigten Modelle. Preise, Versand und Rückgabe beim Händler prüfen.
 
+**[Erst klären, woher die Kälte kommt](https://getecoback.com/guide/fenster-zugluft-mietwohnung.html)**Undichte Fuge oder kalte Scheibe? Die Ursache entscheidet über die Maßnahme.
+
 - EcoBack · zuerst prüfen
 
 ## Passt ein Vorhang an diese Stelle?

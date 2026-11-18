@@ -208,6 +208,9 @@ def to_markdown(src_html, path_url, lang):
     live = [ep for marker, ep in (("<!--EB_FEUCHTENOW-->", "/api/feuchte"),
                                   ("<!--EB_HEATNOW-->", "/api/heat"),
                                   ("<!--EB_STROMNOW-->", "/api/strom")) if marker in src_html]
+    if path_url == '/guide/thermovorhang-ratgeber.html':
+        # This authored handoff distinguishes a leaking frame from cold glass.
+        body = body.replace('<!--EB_WINTER_LINK-->', '').replace('<!--/EB_WINTER_LINK-->', '')
     for pat in (r"<!--EB_[A-Z_]+-->.*?<!--/EB_[A-Z_]+-->", r"<script\b.*?</script>",
                 r"<style\b.*?</style>", r"<nav\b.*?</nav>", r"<form\b.*?</form>"):
         body = re.sub(pat, " ", body, flags=re.S)

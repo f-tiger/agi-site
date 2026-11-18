@@ -16,23 +16,29 @@ TARGETS={
  'guide/richtig-lueften-im-winter.html':('/guide/nachtabsenkung-heizung.html','Absenken, ohne die Raumfeuchte zu vergessen','Gebäude, Heizsystem und Komfort am Morgen gemeinsam prüfen.'),
  'guide/luftbefeuchter-ratgeber.html':('/winter-energiesparen.html','Raumklima und Winterkosten zusammen betrachten','Heizungsregelung, Lüften und Messen kommen vor einem weiteren Gerät.'),
  'strommess-protokoll.html':('/guide/lichterkette-stromkosten.html','Gemessene Watt in Winterkosten übersetzen','Beleuchtungsdauer und Timer-Eigenverbrauch gegenüberstellen.')}
+def inject_winter_entry(s, name):
+ """Install just this page’s winter route, replacing its previous copy."""
+ url,title,desc=TARGETS[name]
+ s=re.sub(r'<!--EB_WINTER_LINK-->.*?<!--/EB_WINTER_LINK-->\n?','',s,flags=re.S)
+ block=f'<!--EB_WINTER_LINK--><aside style="max-width:1000px;margin:24px auto;padding:20px;border-left:5px solid #376548;background:#edf3e6;box-sizing:border-box;"><strong><a href="{url}">{title}</a></strong><p>{desc}</p></aside><!--/EB_WINTER_LINK-->\n'
+ if name=='index.html':
+  marker='<!--/EB_HOUSEHOLD_LINK-->'
+  if marker not in s:raise ValueError('Homepage household entry missing')
+  s=s.replace(marker,marker+'\n'+block,1)
+ else:
+  match=re.search(r'</article>|</main>|</body>',s)
+  if not match:raise ValueError(name)
+  s=s[:match.start()]+block+s[match.start():]
+ return s
+
 def main():
  from build_winter_guides import PAGES
  from demand_tools import inject
  for slug in [*PAGES, 'winter-energiesparen']:
   p=SITE/('winter-energiesparen.html' if slug=='winter-energiesparen' else 'guide/'+slug+'.html')
   p.write_text(inject(p.read_text(),slug))
- for name,(url,title,desc) in TARGETS.items():
-  p=SITE/name;s=p.read_text();s=re.sub(r'<!--EB_WINTER_LINK-->.*?<!--/EB_WINTER_LINK-->\n?','',s,flags=re.S)
-  block=f'<!--EB_WINTER_LINK--><aside style="max-width:1000px;margin:24px auto;padding:20px;border-left:5px solid #376548;background:#edf3e6;box-sizing:border-box;"><strong><a href="{url}">{title}</a></strong><p>{desc}</p></aside><!--/EB_WINTER_LINK-->\n'
-  if name=='index.html':
-   marker='<!--/EB_HOUSEHOLD_LINK-->'
-   if marker not in s:raise ValueError('Homepage household entry missing')
-   s=s.replace(marker,marker+'\n'+block,1)
-  else:
-   match=re.search(r'</article>|</main>|</body>',s)
-   if not match:raise ValueError(name)
-   s=s[:match.start()]+block+s[match.start():]
-  p.write_text(s)
+ for name in TARGETS:
+  p=SITE/name
+  p.write_text(inject_winter_entry(p.read_text(),name))
  print('Winter paths linked from',len(TARGETS),'existing entries.')
 if __name__=='__main__':main()

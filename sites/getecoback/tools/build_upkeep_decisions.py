@@ -108,9 +108,15 @@ def article(slug,cfg):
  # EB_UPDATED markers and lose it when onpage normalizes that badge.
  return '<article><div class="wrap up-editorial">'+intro+'<!--EB_UPDATED--><p class="up-sources">Aktualisiert am 17. Oktober 2026 · EcoBack Redaktion</p><!--/EB_UPDATED-->'+tool(cfg['tool'])+content+faq_block(cfg)+'<p class="up-sources">'+disclosure+'</p></div></article>'
 
+from link_winter_guides import TARGETS as WINTER_ENTRIES, inject_winter_entry
+
 def build(slug,source):
  cfg=PAGES[slug]
  source=re.sub(r'<article\b[^>]*>.*?</article>',lambda _:article(slug,cfg),source,count=1,flags=re.S)
+ # Replacing the article above also replaces any winter handoff inside it.
+ route=f'guide/{slug}.html'
+ if route in WINTER_ENTRIES:
+  source=inject_winter_entry(source,route)
  for name in ['TOPPICK','MODELS','STICKY','PROFILE','USMARKET','POPUP','USSWITCH']:
   source=re.sub(r'<!--EB_'+name+r'-->.*?<!--/EB_'+name+r'-->','',source,flags=re.S)
  source=re.sub(r'<title>.*?</title>','<title>'+esc(cfg['title'])+'</title>',source,count=1,flags=re.S)

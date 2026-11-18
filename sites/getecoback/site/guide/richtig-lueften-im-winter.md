@@ -1,14 +1,14 @@
 # Richtig lüften im Winter: gekippt oder kurz weit auf?
 
-> Dauerhaft gekipptes Fenster ist die häufigste Schimmelursache im Winter. Warum kurzes Stoßlüften schneller trocknet — mit Zahlen zum Nachrechnen.
+> Hilft Lüften bei Regen oder Frost? Zwei Rechenbeispiele zeigen, wann Außenluft Feuchte abführt. Mit Tipps bei nassen Fenstern und Wäsche im Raum.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/richtig-lueften-im-winter.html
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
 
-Im Sommer ist die Kippstellung praktisch: Sie ist der Weg, über den die meisten den Abluftschlauch einer mobilen Klimaanlage nach draußen bekommen. Im Winter ist sie die Einstellung, die am zuverlässigsten Schimmel an die Fensterlaibung bringt. Das ist kein Widerspruch, sondern dieselbe Physik mit umgedrehtem Vorzeichen.
+Sind die Scheiben morgens innen nass? Miss zuerst Raumtemperatur und Luftfeuchte. Eine kalte Scheibe kann beschlagen, auch wenn die übrige Wohnung trocken erscheint.
 
-**Kurze Antwort:** Das Fenster im Winter nicht dauerhaft kippen. Ein gekipptes Fenster tauscht die Luft nur langsam aus, kühlt aber Rahmen und Laibung über Stunden aus — und die kalte Fläche ist die Stelle, an der Schimmel anfängt, nicht die Raummitte. Stattdessen **zweimal täglich 5–10 Minuten ganz öffnen**, wenn möglich zwei Fenster gleichzeitig. Kalte Luft ist trockene Luft: Kurzes Stoßlüften nimmt Feuchtigkeit mit, und der Raum ist schnell wieder warm.
+**Kurze Antwort:** Zum Trocknen hilft Luftaustausch, wenn die Außenluft bei gleicher Temperatur weniger Wasserdampf enthält als die Raumluft. Vergleiche möglichst gleichzeitig gemessene Temperatur und relative Feuchte auf beiden Seiten des Fensters. Die Regenanzeige allein reicht dafür nicht.
 
 ## Erst messen: Hilft Lüften gerade gegen Feuchte?
 Vier Messwerte statt einer vorschnellen Kaufempfehlung. Nutze möglichst gleichzeitig gemessene Innen- und Außenwerte. Keine Werte zur Hand? Erst messen – keine Schätzung als persönliche Empfehlung.
@@ -40,11 +40,11 @@ Der Grund ist, dass sich relative Luftfeuchte immer auf die Temperatur bezieht. 
 
 - Bei **20 °C und 60 %** liegt der Taupunkt bei rund **12 °C**: Jede Fläche, die kälter ist, sammelt flüssiges Wasser, nicht nur Feuchte.
 
-Genau deshalb ist das gekippte Fenster so verlässlich im Schimmelmachen. Es bringt keine Feuchtigkeit in den Raum; es hält das Mauerwerk rund um die Öffnung stundenlang nahe an der Außentemperatur, und den Rest erledigt ganz normale Innenluft an diesem kalten Streifen. Das schwarze Muster, das der Laibung folgt, ist die Form des Problems.
+Ein stundenlang gekipptes Fenster kann Rahmen und Laibung auskühlen. An einer kalten Fläche kann sich Feuchte halten. Eine einzelne Messung weist die Ursache von Flecken am Rahmen nicht nach.
 
-## Kalte Außenluft trocknet die Wohnung
+## Wann trocknet Außenluft die Wohnung?
 
-Der übliche Einwand: Draußen ist es kalt und nass, also muss diese Luft die Wohnung feuchter machen. Es ist umgekehrt, weil kalte Luft physikalisch kaum Wasser transportieren kann.
+Regen draußen und hohe relative Luftfeuchte schließen eine Trocknungswirkung nicht aus. Rechne die Außenluft auf die Temperatur des Zimmers um und vergleiche mit dem gemessenen Innenwert.
 
 | Draußen | Tatsächlich enthaltenes Wasser | Dieselbe Luft bei 20 °C drinnen |
 | --- | --- | --- |
@@ -55,7 +55,15 @@ Der übliche Einwand: Draußen ist es kalt und nass, also muss diese Luft die Wo
 
 Gerechnet mit der Magnus-Formel für den Sättigungsdampfdruck, der üblichen Näherung in der Bauphysik. Relative Feuchte ist das Verhältnis des tatsächlich vorhandenen Wasserdampfs zu dem, was die Luft bei dieser Temperatur aufnehmen könnte — erwärmt man Luft, ohne Wasser zuzugeben, sinkt dieses Verhältnis: Außenluft mit 0 °C und 80 % behält ihren Dampfdruck und liegt bei 20 °C drinnen bei rund 21 %. Die Spalte in Gramm pro Kubikmeter ist, was diese Außenluft physikalisch mit sich trägt. Nachrechnen ausdrücklich erwünscht — [so arbeiten wir](https://getecoback.com/wie-wir-empfehlen.html#nachrechnen).
 
-Dieser „Platz zum Aufnehmen“ ist der ganze Mechanismus. Winterluft kommt trocken herein, nimmt auf, was Duschen, Kochen, Wäsche und Atmen in die Wohnung bringen, und beim nächsten Stoßlüften geht sie damit wieder hinaus. Ein gekipptes Fenster macht davon eine schwache Dauerversion und kühlt dabei die Bauteile aus — die schlechtere Hälfte von beidem.
+Zwei Rechenbeispiele mit derselben Raumluft: **20 °C und 50 % relative Feuchte**.
+
+- **Draußen 5 °C und 90 %:** Auf 20 °C erwärmt hat die Außenluft rund **34 %** relative Feuchte. Der Luftaustausch kann Feuchte aus dem Zimmer abführen.
+
+- **Draußen 14 °C und 95 %:** Bei 20 °C entspricht das rund **65 %**. Für dieses Zimmer bringt der Luftaustausch mehr Feuchte herein.
+
+Die Rechnung vergleicht zwei Luftproben bei gleichem Druck. Wie sich das ganze Zimmer verändert, hängt auch von Luftwechsel, feuchter Wäsche und kalten Flächen ab. Lüftungsanlagen nach Anleitung betreiben und vorgesehene Zu- und Abluftöffnungen frei halten. Bei dauerhaft nassen Stellen oder Leckagen die Ursache klären. [Verbraucherzentrale: Heizen und Lüften](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426).
+
+Bleibt die Wäsche drinnen, vergleiche die [Kosten für dieselbe vollständig getrocknete Ladung](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#laundry-check) mit deinem Tarif. Genügen Wäscheständer und Lüftung, kannst du sie weiter nutzen.
 
 ## Die eigene kalte Stelle prüfen
 
@@ -73,23 +81,23 @@ Läuft im Browser, es wird nichts übertragen. Beantwortet genau eine Frage: ob 
 
 ## Die vier Zahlen, die man behalten sollte
 
-- **40–60 % rF** im Raum: grüner Bereich.
+- **40–60 % rF** in der Raummitte: Achte zusätzlich auf kalte Flächen und Kondenswasser.
 
 - **60–70 %**: Grauzone, beobachten — vor allem der Morgenwert.
 
-- **Wiederholt über 70 %**: Handlungsbedarf — mehr lüften, Feuchtequellen reduzieren, und erst danach ein Gerät.
+- **Wiederholt über 70 %**: Feuchtequellen und Luftaustausch prüfen. Zum Trocknen nur dann zusätzliche Außenluft nutzen, wenn der Vergleich mit der Raumluft dafür spricht.
 
-- **Unter 16 °C** im Schlafzimmer: Die relative Feuchte wird auch ohne zusätzliche Quelle kritisch. Deshalb ist das ungeheizte Schlafzimmer mit geschlossener Tür der Klassiker.
+- **Unter 16 °C** im Schlafzimmer: Kühlt dieselbe Luft ab, steigt ihre relative Feuchte. Ob an einer kalten Wand Kondenswasser entsteht, hängt auch vom Feuchtegehalt und der Oberflächentemperatur ab.
 
 Das Gegenteil gibt es auch: Zeigt das Hygrometer in der Frostperiode dauerhaft unter 40 %, ist die Luft zu trocken. Was das Gegenmittel im Betrieb kostet, steht in der [Rechnung zum Luftbefeuchter-Stromverbrauch](https://getecoback.com/guide/luftbefeuchter-stromverbrauch.html).
 
 ## Die Routine, die das Kippen ersetzt
 
-- **Zweimal täglich 5–10 Minuten, Fenster ganz auf.** Zwei gegenüberliegende Fenster gleichzeitig (Querlüften) geht am schnellsten.
+- **Wenn sich das Fenster sicher weit öffnen lässt, kurz stoßlüften.** Fünf bis zehn Minuten können ein Ausgangspunkt sein. Wind, Fenstergröße und Querlüftung beeinflussen den Luftwechsel. Nach dem Schließen prüfen, wie sich die Raumfeuchte bei wieder vergleichbarer Temperatur entwickelt.
 
 - **Thermostat währenddessen herunterdrehen**, danach wieder auf. Sonst heizt das Ventil brav die Straße mit.
 
-- **Direkt nach Duschen, Kochen und Wäschetrocknen lüften** — das sind die großen Feuchteereignisse, und die Feuchte geht am leichtesten raus, bevor sie sich verteilt.
+- **Bei Duschen, Kochen und Wäschetrocknen den Feuchteeintrag begrenzen.** Nutze eine vorhandene Abluftanlage wie vorgesehen. Für zusätzliches Fensterlüften zum Trocknen vergleiche die Luft drinnen und draußen.
 
 - **Möbel an Außenwänden mit Abstand stellen.** Ein Schrank direkt an der kalten Wand macht sich seine eigene kalte Stelle; dieser Fehlermodus steht ausführlich unter [Schimmel an der Wand kommt wieder](https://getecoback.com/guide/schimmel-wand-kommt-wieder.html).
 
@@ -107,7 +115,7 @@ Anzeige Sortiert danach, wie oft es wirklich die Antwort ist:
 
 - **Ein Hygrometer mit Min/Max-Speicher** — vor allem anderen. Es hält den Nachtwert fest, den man nie selbst sieht, und ist der Unterschied zwischen Wissen und Raten. Hygrometer mit Min/Max auf Amazon.de →
 
-- **Ein Infrarot-Thermometer** für den Oberflächenwert, nach dem die Rechnung oben fragt. Infrarot-Thermometer auf Amazon.de →
+- **Ein Infrarot-Thermometer** kann helfen, die Temperatur an einer kalten Wandstelle zu messen. Infrarot-Thermometer auf Amazon.de →
 
 - **Ein Luftentfeuchter mit Hygrostat**, aber erst, wenn Lüften und Quellenkontrolle nicht reichen — er hält den Raum unter einem eingestellten Wert und arbeitet nachts weiter, wenn Lüften nicht geht. Nach Raumgröße: [20 m²](https://getecoback.com/guide/luftentfeuchter-20-qm.html) · [30 m²](https://getecoback.com/guide/luftentfeuchter-30-qm.html) · [40 m²](https://getecoback.com/guide/luftentfeuchter-40-qm.html).
 
@@ -117,11 +125,11 @@ Die Reihenfolge ist Absicht. Ein Luftentfeuchter, der vor einem Hygrometer für 
 
 ### Ist ein dauerhaft gekipptes Fenster im Winter schlecht?
 
-Ja, als Dauerzustand. Ein gekipptes Fenster tauscht die Luft nur langsam aus, kühlt aber Rahmen und Laibung über Stunden aus, und die kalte Fläche ist genau die Stelle, an der Schimmel anfängt. Besser zweimal am Tag 5 bis 10 Minuten ganz öffnen, am besten zwei Fenster gleichzeitig.
+Ein lange gekipptes Fenster kann Rahmen und Laibung abkühlen. Bei geeigneter Außenluft kann kurzes weites Öffnen Feuchte abführen. Fenstergröße, Wind und Querlüftung beeinflussen, wie lange das dauert. Bei einer Lüftungsanlage die für das Haus vorgesehene Betriebsweise beachten.
 
 ### Macht Lüften im Winter die Wohnung nicht feuchter, weil es draußen kalt und nass ist?
 
-Nein, im Gegenteil. Kalte Luft kann kaum Wasser transportieren. Außenluft mit 0 Grad und 80 Prozent Luftfeuchte enthält etwa 3,9 Gramm Wasser pro Kubikmeter; auf 20 Grad erwärmt liegt dieselbe Luft bei rund 21 Prozent relativer Feuchte und hat damit viel Platz, Feuchtigkeit aufzunehmen und beim nächsten Lüften wieder mitzunehmen.
+Das hängt von beiden Luftmassen ab. Miss drinnen und draußen Temperatur und relative Feuchte. Liegt die auf Raumtemperatur umgerechnete Außenfeuchte unter dem Innenwert, kann Lüften Feuchte abführen. Ist sie höher, führt Lüften mehr Wasserdampf zu.
 
 ### Mein Hygrometer zeigt 50 Prozent, warum ist trotzdem Schimmel in der Ecke?
 
@@ -129,7 +137,7 @@ Weil das Hygrometer die Raummitte misst und Schimmel an der kältesten Fläche w
 
 ### Wie lange soll ich lüften, und kühlt die Wohnung dabei aus?
 
-Fünf bis zehn Minuten weit geöffnet reichen, um die Luft in einem normalen Raum auszutauschen. Wände, Boden und Möbel halten ihre Wärme in dieser Zeit und erwärmen die frische Luft schnell wieder, weshalb kurzes Stoßlüften weniger Wärme kostet als ein stundenlang gekipptes Fenster. Das Thermostatventil während des Lüftens herunterdrehen und danach wieder aufdrehen.
+Fünf bis zehn Minuten sind ein möglicher Ausgangspunkt bei weit geöffnetem Fenster im Winter. Die nötige Dauer hängt von Wind, Öffnung und Feuchtenachschub ab. Bei wieder vergleichbarer Raumtemperatur nachmessen. Bleibt die Feuchte hoch, zuerst die Ursache und die vorgesehene Lüftung prüfen.
 
 **Passende Ratgeber**
 [Klimaanlage am Kippfenster abdichten (der Sommerjob)](https://getecoback.com/guide/klimaanlage-kippfenster.html)
