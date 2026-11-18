@@ -19,8 +19,8 @@ try{
   const options=page.locator('#research-options');assert.equal(await options.locator('details').getAttribute('open'),null);await options.locator('summary').click();
   assert.match(await options.innerText(),lang==='zh'?/普通官网链接/:/ordinary links/);
   const resourceLinks=await options.locator('[data-research-resource]').evaluateAll(nodes=>nodes.map(a=>({id:a.dataset.researchResource,href:a.href,rel:a.rel})));
-  assert.deepEqual(resourceLinks.map(x=>x.id),['sec','stockanalysis','koyfin','fiscal']);
-  assert.deepEqual(resourceLinks.map(x=>x.href),['https://www.sec.gov/search-filings','https://stockanalysis.com/pro/','https://www.koyfin.com/pricing/','https://fiscal.ai/pricing/']);
+  assert.deepEqual(resourceLinks.map(x=>x.id),['sec','stockanalysis','stockanalysis','koyfin','fiscal']);
+  assert.deepEqual(resourceLinks.map(x=>x.href),['https://www.sec.gov/search-filings','https://stockanalysis.com/stocks/msft/financials/cash-flow-statement/','https://stockanalysis.com/pro/','https://www.koyfin.com/pricing/','https://fiscal.ai/pricing/']);
   for(const link of resourceLinks){assert(link.rel.includes('noreferrer'));assert.equal(new URL(link.href).search,'');}
   await page.setViewportSize({width:390,height:844});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);await options.screenshot({path:path.join(process.env.INFRA_ARTIFACT_DIR||'/tmp','research-options-'+lang+'.png')});await options.locator('summary').click();await page.setViewportSize({width:1365,height:1000});
   await page.locator('#search').fill('MU');assert.equal(await page.locator('.company-option').count(),1);await page.locator('[data-ticker=MU]').click();assert.match(await page.locator('#company-name').textContent(),/Micron/);await page.locator('#search').fill('');
