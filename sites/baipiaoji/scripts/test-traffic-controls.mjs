@@ -99,7 +99,7 @@ test('filtered conversion writes, bilingual task routes and independent page mea
 test('vendor repeat attempts produce one inquiry and the sixth request stays outside the handler', async () => {
  const {onRequestPost: vendor} = await import('../functions/api/vendor.js');
  const HITS = db(), env={HITS};
- const body=JSON.stringify({name:'Fixture',url:'https://example.org/',email:'test@example.org',kind:'other',note:'local fixture'});
+ const body=JSON.stringify({name:'Fixture',url:'https://example.org/',email:'test@example.org',kind:'sponsor',note:'local fixture'});
  const results=await Promise.all(Array.from({length:6},()=>guardTraffic({request:req('/api/vendor',body),env,next:request=>vendor({request,env})},{now:1800000000000,cache:null})));
  assert.equal(results.filter(r=>r.status===429).length,1);
  const replies=await Promise.all(results.filter(r=>r.ok).map(r=>r.json()));

@@ -25,7 +25,7 @@ export async function onRequestPost({ request, env }) {
     const note = String(b.note || '').trim().slice(0, 500);
     const email = String(b.email || '').trim().toLowerCase().slice(0, 254);
     // 意向走白名单：探针的读数就按这三档聚合，自由文本会把读数搅成浆糊
-    const kind = ['expedite', 'feature', 'other'].includes(b.kind) ? b.kind : '';
+    const kind = ['expedite', 'feature', 'sponsor', 'other'].includes(b.kind) ? b.kind : '';
     let url = String(b.url || '').trim().slice(0, 300);
 
     if (!name) return json({ ok: false, code: 'noname' }, 400);
