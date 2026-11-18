@@ -37,6 +37,27 @@ def graph(source):
 
 
 class HumidityEvidence(unittest.TestCase):
+    def test_winter_ventilation_examples_survive_in_both_editions(self):
+        # A humid but warmer outdoor sample can add moisture even in winter.
+        # Check each example in the published text, including its direction.
+        editions = [
+            ('guide/richtig-lueften-im-winter', 'Feuchte aus dem Zimmer abführen', 'mehr Feuchte herein',
+             '/waeschetrockner-oder-luftentfeuchter.html#laundry-check'),
+            ('en/guide/tilt-and-turn-windows-winter-condensation', 'carry moisture out', 'more moisture into',
+             '/en/guide/dehumidifier-drying-clothes-cost.html#laundry-check'),
+        ]
+        for path, drier, wetter, next_step in editions:
+            for ext in ['html', 'md']:
+                with self.subTest(path=path, ext=ext):
+                    surface = (SITE / f'{path}.{ext}').read_text()
+                    # Read each list entry independently so reversed outcomes fail.
+                    rows = [text(line).replace('**', '') for line in surface.splitlines()]
+                    for temp, outdoor_rh, adjusted, direction in [(5, 90, 34, drier), (14, 95, 65, wetter)]:
+                        self.assertTrue(any(f'{temp} °C' in row and f'{outdoor_rh}%' in row.replace(' ', '')
+                                            and f'{adjusted}%' in row.replace(' ', '') and direction in row
+                                            for row in rows), (temp, direction))
+                    self.assertIn(next_step, surface)
+
     def test_visible_faq_matches_structured_answers(self):
         for name, count in [(COST, 4), (WINTER, 3)]:
             with self.subTest(page=name):
