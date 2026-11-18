@@ -30,6 +30,7 @@ def validate(data):
             raise ValueError('Invalid source status or model query')
         if not product['sources'] or any(k not in data['sources'] for k in product['sources']):
             raise ValueError('Missing official evidence')
+        dt.date.fromisoformat(product.get('checked', data['checked']))
         lo, hi = product['power_w']
         if not (0 < lo <= hi):
             raise ValueError('Invalid nameplate power')
@@ -52,22 +53,25 @@ def power_label(p):
 
 def render(today=None, data=None):
     d = load() if data is None else validate(data)
-    age = ((today or dt.datetime.now(dt.timezone.utc).date()) - dt.date.fromisoformat(d['checked'])).days
-    fresh = 0 <= age <= d['max_age_days']
+    now = today or dt.datetime.now(dt.timezone.utc).date()
     rows, cards = [], []
     for p in d['products']:
+        checked = p.get('checked', d['checked'])
+        age = (now - dt.date.fromisoformat(checked)).days
+        fresh = 0 <= age <= d['max_age_days']
         target = 'humidifier-' + p['id']
         rows.append(f'<tr><th scope="row"><a href="#{target}">{esc(p["name"])}</a></th><td>{esc(p["role"])}</td><td>{power_label(p)}</td></tr>')
         action = '<p class="hc-status">Modellsuche pausiert: Quellenprüfung ausstehend. Aktuelle Herstellerunterlagen zuerst prüfen.</p>'
         if fresh and p['status'] == 'verified':
             href = 'https://www.amazon.de/s?k=' + quote_plus(p['query']) + '&tag=getecoback-21'
             action = f'<p class="hc-commerce"><small>Anzeige · Modellsuche, kein geprüftes Einzelangebot.</small><a class="hc-button" href="{esc(href, quote=True)}" target="_blank" rel="sponsored nofollow noopener">{esc(p["name"])} bei Amazon.de suchen →</a></p>'
-        cards.append(f'<section class="hc-card" id="{target}" aria-labelledby="{target}-title"><p class="hc-kicker">{esc(p["role"])}</p><h3 id="{target}-title">{esc(p["name"])}</h3><dl><dt>Regelung</dt><dd>{esc(p["controls"])}</dd><dt>Pflege einplanen</dt><dd>{esc(p["care"])}</dd><dt>Passendes Verbrauchsmaterial</dt><dd>{esc(p["parts"])}</dd></dl><p class="hc-limit"><strong>Vor dem Kauf:</strong> {esc(p["limit"])}</p><p class="hc-source">{source_links(p["sources"], d)}</p>{action}</section>')
+        cards.append(f'<section class="hc-card" id="{target}" aria-labelledby="{target}-title"><p class="hc-kicker">{esc(p["role"])}</p><h3 id="{target}-title">{esc(p["name"])}</h3><dl><dt>Regelung</dt><dd>{esc(p["controls"])}</dd><dt>Pflege einplanen</dt><dd>{esc(p["care"])}</dd><dt>Passendes Verbrauchsmaterial</dt><dd>{esc(p["parts"])}</dd></dl><p class="hc-limit"><strong>Vor dem Kauf:</strong> {esc(p["limit"])}</p><p class="hc-source">Herstellerquellen geprüft: {esc(checked)}. {source_links(p["sources"], d)}</p>{action}</section>')
     return ('<section id="eb-humidifier-products" class="humidifier-catalog" aria-labelledby="modelle-vergleichen">'
-            '<h2 id="modelle-vergleichen">Drei genaue Modelle: Regelung und Pflege entscheiden</h2>'
-            '<p>Zwei Verdunster unterscheiden sich hier durch Bedienung und Pflegeablauf. Der Dampfbefeuchter ist eine bewusste Alternative mit höherer elektrischer Nennleistung und heißem Wasser. Die Reihenfolge ist keine Rangliste; wir haben die Geräte nicht selbst getestet.</p>'
-            f'<p class="hc-source">Herstellerquellen geprüft: {esc(d["checked"])}. Keine Live-Preise, Lieferzusagen oder Verbrauchsmessungen. Das Prüfdatum bestätigt keine aktuellen Händlerangebote.</p>'
+            '<h2 id="modelle-vergleichen">Vier genaue Modelle: Regelung und Pflege entscheiden</h2>'
+            '<p>Drei Verdunster unterscheiden sich hier durch Bedienung und Pflegeablauf. Der Dampfbefeuchter ist eine bewusste Alternative mit höherer elektrischer Nennleistung und heißem Wasser. Die Reihenfolge ist keine Rangliste; wir haben die Geräte nicht selbst getestet.</p>'
+            '<p class="hc-source">Das Quellenprüfdatum steht an jedem Modell. Keine Live-Preise, Lieferzusagen oder Verbrauchsmessungen. Das Prüfdatum bestätigt keine aktuellen Händlerangebote.</p>'
             '<p class="hc-note">Die Tabelle lässt sich auf kleinen Bildschirmen seitlich verschieben. Nennleistung ist keine Effizienzbewertung bei gleicher Befeuchtungsleistung.</p>'
             '<div class="hc-table" role="region" aria-label="Luftbefeuchter-Modellvergleich, horizontal scrollbar" tabindex="0"><table><caption>Bedienung und Herstellerleistung im Vergleich</caption><thead><tr><th scope="col">Genaues Modell</th><th scope="col">Kaufgrund prüfen</th><th scope="col">Hersteller-Nennleistung</th></tr></thead><tbody>' + ''.join(rows) + '</tbody></table></div>'
+            '<div class="hc-answer"><h3>Oskar oder Oskar little: Was musst du selbst regeln?</h3><p>Wenn du einen Feuchtezielwert einstellen möchtest, bietet Oskar O-020 40, 45, 50 oder 55 %. Die EU-Anleitung des Oskar little O-060 beschreibt zwei Leistungsstufen ohne einstellbaren Zielwert: Du misst die Raumfeuchte separat und passt den Betrieb selbst an. Ein kleineres Gerät nimmt dir diese Aufgabe nicht ab.</p><p>Beim vollständigen Filterwechsel braucht Oskar zwei Matten, Oskar little eine. Ein O-030-Zweierpack reicht entsprechend für einen bzw. zwei vollständige Wechsel. Das ist eine Mengenentscheidung, keine Zusage geringerer Gesamtkosten: Kaufpreis, Laufzeit, Wasser und Pflege bleiben offen. Wenn du die Pflege nicht zuverlässig leisten kannst oder keinen Befeuchtungsbedarf gemessen hast, kaufe vorerst nichts.</p></div>'
             '<p class="hc-disclosure">Anzeige · Affiliate-Links: Als Amazon-Partner verdienen wir an qualifizierten Verkäufen. Die gekennzeichneten Links öffnen genaue Modellsuchen bei Amazon.de. Suchergebnisse können andere Varianten enthalten; Modell, Verkäufer und Lieferumfang abgleichen.</p>'
             '<div class="hc-models">' + ''.join(cards) + '</div></section>')

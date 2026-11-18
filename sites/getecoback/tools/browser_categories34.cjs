@@ -17,18 +17,18 @@ const categoryPaths=[
 // Expected exact identities/selectors are fixed independently of the runtime catalog.
 const pages=[
  {key:'robot',path:categoryPaths[2],box:'article[data-robot-guide]',cards:'.rb-card',shops:'.rb-commerce a',sources:'.rb-sources a',names:['Dreame D10 Plus Gen 2','Dreame L10s Ultra Gen 2','Roborock Saros 10R'],queries:['Dreame D10 Plus Gen 2','Dreame L10s Ultra Gen 2','Roborock Saros 10R'],ids:['dreame-d10-plus-gen2','dreame-l10s-ultra-gen2','roborock-saros-10r'],datedSources:true},
- {key:'humidifier',path:categoryPaths[3],box:'#eb-humidifier-products',cards:'.hc-card',shops:'.hc-commerce a',sources:'.hc-source a',names:['Stadler Form Oskar weiß O-020','Beurer LB 200','Beurer LB 55'],queries:['Stadler Form Oskar O-020 weiß','Beurer LB 200 10069','Beurer LB 55 68605'],ids:['oskar-o020','beurer-lb200','beurer-lb55'],cardPrefix:'humidifier-'}
+ {key:'humidifier',path:categoryPaths[3],box:'#eb-humidifier-products',cards:'.hc-card',shops:'.hc-commerce a',sources:'.hc-source a',names:['Stadler Form Oskar weiß O-020','Beurer LB 200','Beurer LB 55','Stadler Form Oskar little weiß O-060'],queries:['Stadler Form Oskar O-020 weiß','Beurer LB 200 10069','Beurer LB 55 68605','Stadler Form Oskar little O-060 weiß'],ids:['oskar-o020','beurer-lb200','beurer-lb55','oskar-little-o060'],cardPrefix:'humidifier-'}
 ];
 // Independent publication oracle: do not import either production render helper.
-// Humidifiers record one catalog review date; robots additionally date every model/source.
+// Humidifiers use per-model review dates with a catalog fallback; robots additionally date each source.
 function evidenceAllows(product,catalog,today,datedSources=false){
  const day=value=>{
   if(typeof value!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(value))return NaN;
   const time=Date.parse(value+'T00:00:00Z');return Number.isFinite(time)&&new Date(time).toISOString().slice(0,10)===value?time/86400000:NaN;
  };
  if(catalog.market!=='DE'||catalog.max_age_days!==90||product.status!=='verified'||!Array.isArray(product.sources)||!product.sources.length)return false;
- if(product.sources.some(key=>!catalog.sources?.[key]))return false;
- const records=datedSources?[catalog,product,...product.sources.map(key=>catalog.sources[key])]:[catalog];
+ if(product.sources.some(key=>!catalog.sources?.[key])||!Number.isFinite(day(catalog.checked)))return false;
+ const records=datedSources?[catalog,product,...product.sources.map(key=>catalog.sources[key])]:[{checked:product.checked??catalog.checked}];
  const now=day(today);
  return records.every(record=>{
   const age=now-day(record.checked);
@@ -44,17 +44,24 @@ function eligibilitySelftest(){
   assert(!evidenceAllows(product,catalog,'2025-12-31',dated),'Future evidence must withdraw commerce');
   assert(!evidenceAllows({...product,status:'conflict'},catalog,'2026-01-01',dated),'Conflicted model must withdraw commerce');
   assert(!evidenceAllows({...product,sources:['missing']},catalog,'2026-01-01',dated),'Missing source must withdraw commerce');
-  assert(!evidenceAllows(product,{...catalog,checked:'2026-02-30'},'2026-03-01',dated),'Invalid date must withdraw commerce');
+  assert(!evidenceAllows({...product,checked:'2026-02-30'},catalog,'2026-03-01',dated),'Invalid model date must withdraw commerce');
+  assert(!evidenceAllows(product,{...catalog,checked:'2026-02-30'},'2026-03-01',dated),'Invalid catalog date must withdraw commerce');
  }
+ assert(evidenceAllows({...product,checked:'2026-01-07'},catalog,'2026-04-02'),'New model remains eligible after old catalog date expires');
+ assert(!evidenceAllows({...product,checked:undefined},catalog,'2026-04-02'),'Undated model retains original expiry');
+ assert(!evidenceAllows({...product,checked:'2026-01-07'},catalog,'2026-01-01'),'Future model evidence must withdraw commerce');
  assert(!evidenceAllows(product,{...catalog,sources:{manual:{status:'unverified',checked:'2026-01-01'}}},'2026-01-01',true),'Unverified robot source must withdraw commerce');
  assert(!evidenceAllows(product,{...catalog,checked:'2026-04-02'},'2026-04-02',true),'Refreshing only catalog date must not renew robot sources');
 }
 eligibilitySelftest();
 if(process.argv.includes('--eligibility-selftest')){console.log('PASS categories34 independent freshness boundaries');process.exit(0);}
 async function contextFor(browser,width,javaScriptEnabled=true){
- const context=await browser.newContext({viewport:{width,height:900},javaScriptEnabled,serviceWorkers:'block',ignoreHTTPSErrors:proxyTLSException});
- if(!live)await context.route('**/*',route=>{
-  const u=new URL(route.request().url());if(u.origin!==origin)return route.abort();
+ const context=await browser.newContext({viewport:{width,height:900},javaScriptEnabled,serviceWorkers:'block',ignoreHTTPSErrors:proxyTLSException,userAgent:'EcoBackQA/1.0 (read-only; no business events)',extraHTTPHeaders:{DNT:'1','Sec-GPC':'1'}});
+ await context.route('**/*',route=>{
+  const request=route.request(),u=new URL(request.url());
+  if(!['GET','HEAD'].includes(request.method())||u.pathname==='/api/ev'||u.pathname.startsWith('/api/ev/'))return route.abort();
+  if(u.origin!==origin)return route.abort();
+  if(live)return route.continue();
   if(u.pathname.startsWith('/api/'))return route.fulfill({contentType:'application/json',body:'{}'});
   const file=path.resolve(root,'.'+decodeURIComponent(u.pathname));
   if(!file.startsWith(root+'/')||!fs.existsSync(file)||!fs.statSync(file).isFile())return route.fulfill({status:404,body:'missing'});
@@ -72,7 +79,7 @@ async function discoveryCheck(page,label){
  const results=[];
  try{
   for(const spec of pages)for(const[width,js]of [[320,true],[390,true],[1280,true],[390,false]]){
-   assert.equal(spec.names.length,3,'QA must define three independently expected model identities');
+   assert.equal(spec.names.length,spec.key==='robot'?3:4,'QA must define all independently expected model identities');
    const catalog=JSON.parse(fs.readFileSync(path.resolve(__dirname,`../data/${spec.key}-catalog.json`),'utf8'));
    const today=new Date().toISOString().slice(0,10),expected=[];
    for(let i=0;i<spec.ids.length;i++){
@@ -83,7 +90,7 @@ async function discoveryCheck(page,label){
    const context=await contextFor(browser,width,js),page=await context.newPage(),errors=[];
    page.on('pageerror',error=>errors.push(error.message));
    const response=await page.goto(origin+spec.path+'?__probe=1',{waitUntil:'load'});assert.equal(response.status(),200);
-   const box=page.locator(spec.box);assert.equal(await box.count(),1);assert.equal(await box.locator(spec.cards).count(),3);
+   const box=page.locator(spec.box);assert.equal(await box.count(),1);assert.equal(await box.locator(spec.cards).count(),spec.names.length);
    const text=await box.innerText();for(const name of spec.names)assert(text.includes(name),`${spec.path}: missing model ${name}`);
    const expectedQueries=expected.filter(model=>model.eligible).map(model=>model.query);
    assert.equal(await box.locator(spec.shops).count(),expectedQueries.length,'Missing eligible or unsuppressed stale catalog merchant links');

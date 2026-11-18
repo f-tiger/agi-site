@@ -6,7 +6,7 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftbefeuchter-weis
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
 
-Aktualisiert am 12. November 2026 · Redaktionelle Kauf- und Nutzungshilfe, kein eigener Gerätetest.
+Redaktionell aktualisiert am 12. November 2026 · Redaktionelle Kauf- und Nutzungshilfe, kein eigener Gerätetest.
 **Zuerst Wasser und Anleitung prüfen**Ultraschall kann Mineralien aus dem Wasser verteilen. Das kann weißen Staub erklären, beweist aber nicht die Herkunft jedes Belags. Schalte das Gerät für die Prüfung aus und folge den Reinigungs- und Wasserangaben seiner Anleitung.
 [Zum Prüfablauf →](https://getecoback.com/guide/luftbefeuchter-weisser-staub.html#pruefen)
 
