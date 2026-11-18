@@ -1,6 +1,6 @@
 # Richtig lüften im Winter: gekippt oder kurz weit auf?
 
-> Hilft Lüften bei Regen oder Frost? Zwei Rechenbeispiele zeigen, wann Außenluft Feuchte abführt. Mit Tipps bei nassen Fenstern und Wäsche im Raum.
+> Lüften bei Regen? Bei 20 °C und 50 % drinnen kann Außenluft mit 5 °C und 90 % trocknen. Bei 14 °C und 95 % bringt sie Feuchte herein. Zwei Rechenbeispiele.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/richtig-lueften-im-winter.html
 

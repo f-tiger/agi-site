@@ -298,9 +298,6 @@ jobs:
             python3 tools/check_sitemap_lastmod.py
           fi
 
-      - name: Rebuild RSS feed (auto-sync new guides before deploy)
-        run: python3 tools/build_feed.py
-
       - name: Rebuild llms.txt (AI-search index, auto-sync before deploy)
         run: python3 tools/build_llmstxt.py
 
@@ -480,6 +477,8 @@ jobs:
           python3 tools/link_product_catalog.py
           python3 tools/build_social_previews.py
           python3 tools/build_social_previews.py --check
+          python3 tools/build_feed.py
+          python3 tools/test_feed.py
 
       - name: Configure independent membership secrets
         if: env.OUTCOME_READ_ONLY_RELEASE != 'true'
@@ -693,6 +692,7 @@ jobs:
           check "https://getecoback.com/" "tag=getecoback-21"
           check "https://getecoback.com/sitemap.xml" "<urlset"
           check "https://getecoback.com/feed.xml" "<rss"
+          check "https://getecoback.com/en/feed.xml" "<language>en</language>"
           check "https://getecoback.com/guide/dachgeschoss-kuehlen.html" "tag=getecoback-21"
           check "https://getecoback.com/impressum.html" "Impressum"
           check "https://getecoback.com/datenschutz.html" "DSGVO"

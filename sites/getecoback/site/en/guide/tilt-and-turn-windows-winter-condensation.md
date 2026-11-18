@@ -1,6 +1,6 @@
 # Tilt-and-Turn Windows in Winter: Tilted or Wide Open?
 
-> Does opening the window help on a cold or rainy day? Compare two humidity readings, check cold surfaces and work out how to dry a laundry load.
+> At 20°C and 50% humidity indoors, outside air at 5°C and 90% can dry the room. At 14°C and 95% it adds moisture. See when opening the window helps.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/tilt-and-turn-windows-winter-condensation.html
 

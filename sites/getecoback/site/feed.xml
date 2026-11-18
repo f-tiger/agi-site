@@ -1,361 +1,411 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-<channel>
-<title>EcoBack – Kühlen, Heizen &amp; Energie sparen</title>
-<link>https://getecoback.com/</link>
-<description>Unabhängiger deutschsprachiger Ratgeber für Klimageräte, Heizen, Luftqualität und Energiesparen.</description>
-<language>de-DE</language>
-<lastBuildDate>Sun, 27 Sep 2026 08:00:00 +0000</lastBuildDate>
-<atom:link href="https://getecoback.com/feed.xml" rel="self" type="application/rss+xml"/>
-<item>
-<title>Akku-Heizlüfter: Wie lange heizt er wirklich? (Rechner)</title>
-<link>https://getecoback.com/guide/akku-heizluefter.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/akku-heizluefter.html</guid>
-<pubDate>Sun, 27 Sep 2026 08:00:00 +0000</pubDate>
-<description>Ein 18-V-Akku mit 5 Ah hat 90 Wh: Das reicht einem 2.000-W-Heizlüfter für 2,7 Minuten. Rechner, Tabelle und was ohne Steckdose wirklich wärmt.</description>
-</item>
-<item>
-<title>Infrarotheizung mit Thermostat: welches, wohin, was es spart</title>
-<link>https://getecoback.com/guide/infrarotheizung-thermostat.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/infrarotheizung-thermostat.html</guid>
-<pubDate>Thu, 24 Sep 2026 08:00:00 +0000</pubDate>
-<description>Ohne Thermostat zieht ein 600-W-Panel acht Stunden lang durch: 4,8 kWh, rund 1,44 €. Welches Thermostat ohne Installation geht und wohin der Fühler gehört.</description>
-</item>
-<item>
-<title>Fenster beschlagen außen: warum das ein gutes Zeichen ist</title>
-<link>https://getecoback.com/guide/fenster-beschlagen-aussen.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/fenster-beschlagen-aussen.html</guid>
-<pubDate>Thu, 24 Sep 2026 08:00:00 +0000</pubDate>
-<description>Außen beschlagen heißt: Die Wärme bleibt drinnen. Bei 5 °C und 90 % Luftfeuchte reicht eine Scheibe, die 1,5 Grad kälter ist als die Luft. Die Rechnung.</description>
-</item>
-<item>
-<title>Beheizter Wäscheständer: Kosten und wohin das Wasser geht</title>
-<link>https://getecoback.com/guide/beheizter-waeschestaender.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/beheizter-waeschestaender.html</guid>
-<pubDate>Thu, 24 Sep 2026 08:00:00 +0000</pubDate>
-<description>Ein beheizter Wäscheständer mit 200 W kostet in 6 Stunden 0,36 €. Doch ein 12-m²-Zimmer nimmt nur gut 200 g Wasser auf — der Rest landet an der Wand.</description>
-</item>
-<item>
-<title>Haushaltskosten prüfen: messen, trocknen, vergleichen | EcoBack</title>
-<link>https://getecoback.com/wohnkosten-werkstatt.html</link>
-<guid isPermaLink="true">https://getecoback.com/wohnkosten-werkstatt.html</guid>
-<pubDate>Sat, 19 Sep 2026 08:00:00 +0000</pubDate>
-<description>Drei kostenlose Rechner für Haushaltsstrom: Wäsche trocknen, Verbrauch messen und Gerätewechsel prüfen. Mit Rechenbeispielen und Messprotokoll.</description>
-</item>
-<item>
-<title>Trockner oder Entfeuchter? Stromkosten vergleichen | EcoBack</title>
-<link>https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html</link>
-<guid isPermaLink="true">https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html</guid>
-<pubDate>Sat, 19 Sep 2026 08:00:00 +0000</pubDate>
-<description>Vergleiche Trockner und Luftentfeuchter mit eigenen Verbrauchswerten: Kosten pro Ladung und Jahr, Grenzen des Vergleichs und Anleitung zum Messen.</description>
-</item>
-<item>
-<title>Stromverbrauch messen: Protokoll und Jahreskosten | EcoBack</title>
-<link>https://getecoback.com/strommess-protokoll.html</link>
-<guid isPermaLink="true">https://getecoback.com/strommess-protokoll.html</guid>
-<pubDate>Sat, 19 Sep 2026 08:00:00 +0000</pubDate>
-<description>Gemessene Kilowattstunden statt Typenschild-Watt: Verbrauch auf Betriebstage hochrechnen, Messprotokoll herunterladen und Stromfresser prüfen.</description>
-</item>
-<item>
-<title>Altes Gerät behalten oder ersetzen? Kostenrechner | EcoBack</title>
-<link>https://getecoback.com/geraete-austausch-rechner.html</link>
-<guid isPermaLink="true">https://getecoback.com/geraete-austausch-rechner.html</guid>
-<pubDate>Sat, 19 Sep 2026 08:00:00 +0000</pubDate>
-<description>Berechne, wann geringere Stromkosten einen Gerätekauf ausgleichen. Mit Kaufpreis, eigenem Tarif, Jahresverbrauch und offenem Rechenweg.</description>
-</item>
-<item>
-<title>Luftfeuchtigkeit senken: die drei Hebel — und welcher zuerst</title>
-<link>https://getecoback.com/guide/luftfeuchtigkeit-senken.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/luftfeuchtigkeit-senken.html</guid>
-<pubDate>Fri, 18 Sep 2026 08:00:00 +0000</pubDate>
-<description>Zu feucht ist über 60 %, an der kalten Wand schon bei 48 %. Drei Hebel in der richtigen Reihenfolge: weniger Wasser erzeugen, lüften, entfeuchten — mit Zahlen.</description>
-</item>
-<item>
-<title>Luftentfeuchter stinkt muffig? Ursache finden und beheben</title>
-<link>https://getecoback.com/guide/luftentfeuchter-stinkt.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/luftentfeuchter-stinkt.html</guid>
-<pubDate>Fri, 18 Sep 2026 08:00:00 +0000</pubDate>
-<description>Der Geruch kommt fast immer aus dem Gerät: Biofilm auf dem kalten Register, Wasser im Tank, nasser Filter. Woran du die Quelle erkennst, was nie in den Tank gehört.</description>
-</item>
-<item>
-<title>Weißer Staub vom Luftbefeuchter: das ist Kalk — so hört es auf</title>
-<link>https://getecoback.com/guide/luftbefeuchter-weisser-staub.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/luftbefeuchter-weisser-staub.html</guid>
-<pubDate>Fri, 18 Sep 2026 08:00:00 +0000</pubDate>
-<description>Der weiße Belag ist der Mineralgehalt deines Leitungswassers, vom Ultraschallgerät zerstäubt. Drei Abhilfen — und warum der Tank das größere Problem ist.</description>
-</item>
-<item>
-<title>Klimaanlage in der Mietwohnung in Österreich: § 9 MRG erklärt</title>
-<link>https://getecoback.com/guide/klimaanlage-mietwohnung-oesterreich.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/klimaanlage-mietwohnung-oesterreich.html</guid>
-<pubDate>Fri, 18 Sep 2026 08:00:00 +0000</pubDate>
-<description>Nicht § 554 BGB, sondern § 9 MRG: Anzeige an den Vermieter, zwei Monate Frist, sieben Bedingungen. Was das für Klimaanlage, Heizung und Balkonkraftwerk heißt.</description>
-</item>
-<item>
-<title>Heizlüfter schaltet sich immer aus? Fünf Ursachen, in der Reihenfolge</title>
-<link>https://getecoback.com/guide/heizluefter-schaltet-sich-aus.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/heizluefter-schaltet-sich-aus.html</guid>
-<pubDate>Fri, 18 Sep 2026 08:00:00 +0000</pubDate>
-<description>Überhitzungsschutz, Kippschutz, Thermostat, Sicherung oder Steckdosenleiste: welcher Abschalter zugeschlagen hat, verrät das Muster. Plus die Rechnung mit 16 A.</description>
-</item>
-<item>
-<title>Luftentfeuchter zieht kein Wasser — woran es wirklich liegt</title>
-<link>https://getecoback.com/guide/luftentfeuchter-zieht-kein-wasser.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/luftentfeuchter-zieht-kein-wasser.html</guid>
-<pubDate>Thu, 17 Sep 2026 08:00:00 +0000</pubDate>
-<description>Meist ist das Gerät in Ordnung: In einem 40-m³-Raum bei 18 °C stecken zwischen 60 % und 50 % nur 61 Gramm Wasser. Die sechs Ursachen der Reihe nach.</description>
-</item>
-<item>
-<title>Infrarotheizung gegen Schimmel: Wann sie hilft — und wann nicht</title>
-<link>https://getecoback.com/guide/infrarotheizung-gegen-schimmel.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/infrarotheizung-gegen-schimmel.html</guid>
-<pubDate>Thu, 17 Sep 2026 08:00:00 +0000</pubDate>
-<description>Sie wirkt, aber sie hat eine harte Grenze: Über etwa 60 % Raumluftfeuchte kommt die Wandoberfläche rechnerisch nie unter die Schimmelschwelle. Mit der Rechnung.</description>
-</item>
-<item>
-<title>Schimmel am Fenster entfernen: vier Flächen, vier Antworten</title>
-<link>https://getecoback.com/guide/schimmel-am-fenster.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/schimmel-am-fenster.html</guid>
-<pubDate>Tue, 15 Sep 2026 08:00:00 +0000</pubDate>
-<description>Schwarze Punkte am Fensterrahmen, in der Silikonfuge oder an der Laibung: welche Fläche sich reinigen lässt und welche erneuert werden muss.</description>
-</item>
-<item>
-<title>Richtig lüften im Winter: gekippt oder kurz weit auf?</title>
-<link>https://getecoback.com/guide/richtig-lueften-im-winter.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/richtig-lueften-im-winter.html</guid>
-<pubDate>Tue, 15 Sep 2026 08:00:00 +0000</pubDate>
-<description>Dauerhaft gekipptes Fenster ist die häufigste Schimmelursache im Winter. Warum kurzes Stoßlüften schneller trocknet — mit Zahlen zum Nachrechnen.</description>
-</item>
-<item>
-<title>Luftbefeuchter: Verdunster, Verdampfer oder Ultraschall?</title>
-<link>https://getecoback.com/guide/luftbefeuchter-ratgeber.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/luftbefeuchter-ratgeber.html</guid>
-<pubDate>Tue, 15 Sep 2026 08:00:00 +0000</pubDate>
-<description>Welche Bauart wofür taugt — und die Frage davor: Bei einer kalten Außenwand wird ab rund 48 % Raumfeuchte die Wandfläche kritisch. Mit Tabelle zum Nachsehen.</description>
-</item>
-<item>
-<title>Schimmel an der Wand kommt wieder: warum genau dort? (2026)</title>
-<link>https://getecoback.com/guide/schimmel-wand-kommt-wieder.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/schimmel-wand-kommt-wieder.html</guid>
-<pubDate>Wed, 09 Sep 2026 08:00:00 +0000</pubDate>
-<description>Schimmel an der Wand kommt wieder? Der Fleck sitzt auf einer kalten Fläche — ab etwa 70 % Luftfeuchte an der Oberfläche keimen die Sporen erneut.</description>
-</item>
-<item>
-<title>Schimmel im Kleiderschrank: die Ursache steht dahinter (2026)</title>
-<link>https://getecoback.com/guide/schimmel-kleiderschrank.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/schimmel-kleiderschrank.html</guid>
-<pubDate>Wed, 09 Sep 2026 08:00:00 +0000</pubDate>
-<description>Schimmel im Kleiderschrank: Die Kleidung ist das Symptom, die kalte Außenwand die Ursache. Was mit den Textilien geht — und ab wann 70 % kritisch sind.</description>
-</item>
-<item>
-<title>Schimmel in Badfugen entfernen: Mörtel oder Silikon? (2026)</title>
-<link>https://getecoback.com/guide/schimmel-bad-fugen.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/schimmel-bad-fugen.html</guid>
-<pubDate>Wed, 09 Sep 2026 08:00:00 +0000</pubDate>
-<description>Schimmel in Badfugen entfernen: Fugenmörtel lässt sich reinigen, Silikon oft nicht. Entscheidend ist die halbe Stunde nach dem Duschen — ab 70 % kritisch.</description>
-</item>
-<item>
-<title>Infrarotheizung als Standgerät: heizen ohne Bohren (2026)</title>
-<link>https://getecoback.com/guide/infrarotheizung-standgeraet.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/infrarotheizung-standgeraet.html</guid>
-<pubDate>Mon, 07 Sep 2026 08:00:00 +0000</pubDate>
-<description>Infrarotheizung als Standgerät: kein Bohren, keine Erlaubnis, keine Löcher. Zonenwärme statt Raumwärme, 800 W kosten 0,72 € pro 3-Stunden-Abend.</description>
-</item>
-<item>
-<title>Infrarotheizung: Decke oder Wand? Die Montage-Entscheidung (2026)</title>
-<link>https://getecoback.com/guide/infrarotheizung-decke-oder-wand.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/infrarotheizung-decke-oder-wand.html</guid>
-<pubDate>Mon, 07 Sep 2026 08:00:00 +0000</pubDate>
-<description>Infrarotheizung an Decke oder Wand? Wand ist der Standard, Decke rettet zugestellte Räume, Bildheizung ist Optik. Dazu die Watt-Regel: 60–100 W pro m².</description>
-</item>
-<item>
-<title>Infrarotheizung im Badezimmer: Watt, Kosten, Spiegelheizung (2026)</title>
-<link>https://getecoback.com/guide/infrarotheizung-badezimmer.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/infrarotheizung-badezimmer.html</guid>
-<pubDate>Mon, 07 Sep 2026 08:00:00 +0000</pubDate>
-<description>Infrarotheizung im Badezimmer: 60–100 W pro m² je nach Dämmung, was 20 Minuten Morgenwärme bei 0,30 €/kWh kosten – und wann ein Handtuchheizkörper reicht.</description>
-</item>
-<item>
-<title>Trotec Luftentfeuchter: Welcher TTK lohnt sich?</title>
-<link>https://getecoback.com/guide/trotec-luftentfeuchter-test.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/trotec-luftentfeuchter-test.html</guid>
-<pubDate>Sat, 29 Aug 2026 08:00:00 +0000</pubDate>
-<description>Trotec TTK 52 E, 72 E, 70 HEPA oder 75 ECO? Test-Überblick: 16–24 l/Tag, reale Raumgrößen, Stromkosten ab 0,08 €/h — welcher TTK zu welchem Raum passt.</description>
-</item>
-<item>
-<title>Schmidbauer Infrarotheizung: Was sagen die Tests?</title>
-<link>https://getecoback.com/guide/schmidbauer-infrarotheizung-test.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/schmidbauer-infrarotheizung-test.html</guid>
-<pubDate>Sat, 29 Aug 2026 08:00:00 +0000</pubDate>
-<description>Schmidbauer Infrarotheizung im Überblick: Serien von 300 bis 1.400 W, Faustregel 60–100 W pro m², Betrieb ab 0,18 €/h — was sich wirklich belegen lässt.</description>
-</item>
-<item>
-<title>Pro Breeze Luftentfeuchter: Was sagen die Tests?</title>
-<link>https://getecoback.com/guide/pro-breeze-luftentfeuchter-test.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/pro-breeze-luftentfeuchter-test.html</guid>
-<pubDate>Sat, 29 Aug 2026 08:00:00 +0000</pubDate>
-<description>Pro Breeze im Test-Überblick: Der 20L-Kompressor schafft bis 20 l/Tag und trocknet echte Räume — die Mini-Peltier-Geräte mit 250 ml/Tag nur den Schrank.</description>
-</item>
-<item>
-<title>De&#x27;Longhi Pinguino PAC EX105: Was sagen die Tests?</title>
-<link>https://getecoback.com/guide/pinguino-pac-ex105-test.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/pinguino-pac-ex105-test.html</guid>
-<pubDate>Sat, 29 Aug 2026 08:00:00 +0000</pubDate>
-<description>De&#x27;Longhi Pinguino PAC EX105 im Test-Überblick: A+++, ca. 63 dB im Turbo, bis ~25 m² — was öffentliche Tests messen und welche Alternativen es gibt.</description>
-</item>
-<item>
-<title>Midea Geräte: Was taugen sie in Tests?</title>
-<link>https://getecoback.com/guide/midea-geraete-test.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/midea-geraete-test.html</guid>
-<pubDate>Sat, 29 Aug 2026 08:00:00 +0000</pubDate>
-<description>Midea im Marken-Check: weltgrößter Hausgeräte-Konzern hinter PortaSplit, Comfee &amp; Toshiba — was öffentliche Quellen sagen und welche 2 Geräte wir führen.</description>
-</item>
-<item>
-<title>MeacoDry Arete One: Was sagen die Tests?</title>
-<link>https://getecoback.com/guide/meacodry-arete-one-test.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/meacodry-arete-one-test.html</guid>
-<pubDate>Sat, 29 Aug 2026 08:00:00 +0000</pubDate>
-<description>MeacoDry Arete One 20L im Test-Überblick: 38–40 dB laut Hersteller, 46–53 dB unabhängig gemessen, 216 W — für wen sich der Leise-Aufpreis lohnt.</description>
-</item>
-<item>
-<title>Lidl Tronic Klimaanlage: Was taugt sie wirklich?</title>
-<link>https://getecoback.com/guide/lidl-tronic-klimaanlage-test.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/lidl-tronic-klimaanlage-test.html</guid>
-<pubDate>Sat, 29 Aug 2026 08:00:00 +0000</pubDate>
-<description>Lidl Tronic Klimaanlage im Check: 9.000 BTU für 199 € — für welche Räume das ehrlich reicht und welche Alternativen immer lieferbar sind.</description>
-</item>
-<item>
-<title>Klarstein Kraftwerk Smart 12K: Was sagen die Tests?</title>
-<link>https://getecoback.com/guide/klarstein-kraftwerk-smart-12k-test.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/klarstein-kraftwerk-smart-12k-test.html</guid>
-<pubDate>Sat, 29 Aug 2026 08:00:00 +0000</pubDate>
-<description>Klarstein Kraftwerk Smart 12K im Test-Überblick: 12.000 BTU für 25–35 m², App-Steuerung, laut Datenblatt 50–65 dB — Stärken, Schwächen, Alternativen.</description>
-</item>
-<item>
-<title>Klarstein Geräte: Was taugen sie in Tests?</title>
-<link>https://getecoback.com/guide/klarstein-geraete-test.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/klarstein-geraete-test.html</guid>
-<pubDate>Sat, 29 Aug 2026 08:00:00 +0000</pubDate>
-<description>Klarstein im Marken-Check: Berliner Online-Marke seit 2005 — was öffentliche Tests loben, wo die Geräte sparen und wann das Kraftwerk Smart 12K passt.</description>
-</item>
-<item>
-<title>De&#x27;Longhi Pinguino: Welches Modell lohnt sich?</title>
-<link>https://getecoback.com/guide/delonghi-pinguino-vergleich.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/delonghi-pinguino-vergleich.html</guid>
-<pubDate>Sat, 29 Aug 2026 08:00:00 +0000</pubDate>
-<description>De&#x27;Longhi Pinguino im Vergleich: PAC EX105 mit A+++ oder PAC N90 ECO Silent unter 50 dB? Modellnummern erklärt, Vergleichstabelle, ehrliche Alternativen.</description>
-</item>
-<item>
-<title>De&#x27;Longhi PAC N90 ECO Silent: Was sagen die Tests?</title>
-<link>https://getecoback.com/guide/delonghi-pac-n90-test.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/delonghi-pac-n90-test.html</guid>
-<pubDate>Sat, 29 Aug 2026 08:00:00 +0000</pubDate>
-<description>De&#x27;Longhi PAC N90 ECO Silent im Test-Überblick: Silent-Modus unter 50 dB, 9.800 BTU/h für 15–25 m² — was Datenblatt und öffentliche Tests wirklich sagen.</description>
-</item>
-<item>
-<title>Coolizi Coolzy Erfahrungen: Was steckt hinter der Werbung?</title>
-<link>https://getecoback.com/guide/coolizi-erfahrungen.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/coolizi-erfahrungen.html</guid>
-<pubDate>Sat, 29 Aug 2026 08:00:00 +0000</pubDate>
-<description>Coolizi Coolzy im Faktencheck: Warum ein Gerät ohne Abluftschlauch keinen Raum um 7–8 °C kühlt, woran du die Werbe-Testseiten erkennst — plus Alternative.</description>
-</item>
-<item>
-<title>Comfee MPPH-09CRN7: Was sagen die Tests?</title>
-<link>https://getecoback.com/guide/comfee-mpph-09crn7-test.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/comfee-mpph-09crn7-test.html</guid>
-<pubDate>Sat, 29 Aug 2026 08:00:00 +0000</pubDate>
-<description>Comfee MPPH-09CRN7 im Test-Überblick: 9.000 BTU für 15–20 m², ca. 250–320 € — was öffentliche Tests loben und wo der Budget-Preis ehrliche Grenzen hat.</description>
-</item>
-<item>
-<title>Comfee Geräte: Was taugen sie in Tests?</title>
-<link>https://getecoback.com/guide/comfee-geraete-test.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/comfee-geraete-test.html</guid>
-<pubDate>Sat, 29 Aug 2026 08:00:00 +0000</pubDate>
-<description>Comfee im Marken-Check: Budgetmarke der Midea Group — was öffentliche Tests loben, wo die Geräte sparen und welche 2 Modelle für welche Räume passen.</description>
-</item>
-<item>
-<title>Air Zuma Klimaanlage: Erfahrungen und Fakten</title>
-<link>https://getecoback.com/guide/air-zuma-erfahrungen.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/air-zuma-erfahrungen.html</guid>
-<pubDate>Sat, 29 Aug 2026 08:00:00 +0000</pubDate>
-<description>Air Zuma im Faktencheck: Warum 2–7 Watt keinen Raum kühlen können, woran du die Werbe-Testseiten erkennst — und die ehrliche Alternative.</description>
-</item>
-<item>
-<title>AEG ChillFlex Pro: Was sagen die Tests?</title>
-<link>https://getecoback.com/guide/aeg-chillflex-pro-test.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/aeg-chillflex-pro-test.html</guid>
-<pubDate>Sat, 29 Aug 2026 08:00:00 +0000</pubDate>
-<description>AEG ChillFlex Pro im Test-Überblick: 64 dB normal, ~52 dB im Schlafmodus, 9.000–12.000 BTU je Variante — was öffentliche Tests messen, plus Alternativen.</description>
-</item>
-<item>
-<title>Feuchtigkeit im Wohnmobil im Winter: was wirklich hilft (2026)</title>
-<link>https://getecoback.com/guide/wohnmobil-feuchtigkeit-winter.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/wohnmobil-feuchtigkeit-winter.html</guid>
-<pubDate>Fri, 28 Aug 2026 08:00:00 +0000</pubDate>
-<description>Kondenswasser und Schimmel im Wohnmobil über den Winter: warum Kompressor-Entfeuchter unter 10–15 °C kaum arbeiten und wann Granulat reicht.</description>
-</item>
-<item>
-<title>Tineco saugt nicht mehr? Die 4 Ursachen im Überblick (2026)</title>
-<link>https://getecoback.com/guide/tineco-saugt-nicht-mehr.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/tineco-saugt-nicht-mehr.html</guid>
-<pubDate>Fri, 28 Aug 2026 08:00:00 +0000</pubDate>
-<description>Tineco saugt nicht oder nur schwach: zugesetzter Filter, verschmutzte Tank-Sensoren, gerissener Schlauch oder müder Akku — mit Lösung und Kosten je Ursache.</description>
-</item>
-<item>
-<title>Heizkosten senken als Mieter: erlaubt &amp; was sich rechnet (2026)</title>
-<link>https://getecoback.com/guide/heizkosten-senken-als-mieter.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/heizkosten-senken-als-mieter.html</guid>
-<pubDate>Fri, 28 Aug 2026 08:00:00 +0000</pubDate>
-<description>Als Mieter darfst du mehr ändern, als die meisten denken — aber nicht alles rechnet sich. Thermostatkopf, Türdichtung und Folien im ehrlichen Ranking.</description>
-</item>
-<item>
-<title>Infrarotheizung für die Garage: sinnvoll oder nicht? (2026)</title>
-<link>https://getecoback.com/guide/infrarotheizung-garage.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/infrarotheizung-garage.html</guid>
-<pubDate>Wed, 26 Aug 2026 08:00:00 +0000</pubDate>
-<description>Infrarotheizung in der Garage: sinnvoll als Punktwärme am Werktisch, teuer als Raumheizung ohne Dämmung. Mit Stromkosten-Formel &amp; Frostschutz-Alternative.</description>
-</item>
-<item>
-<title>Schimmel im Keller entfernen: was wirklich hilft (2026)</title>
-<link>https://getecoback.com/guide/schimmel-im-keller-entfernen.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/schimmel-im-keller-entfernen.html</guid>
-<pubDate>Tue, 25 Aug 2026 08:00:00 +0000</pubDate>
-<description>Schimmel im Keller entfernen: kleinflächig selbst behandeln, großflächig Fachbetrieb — und warum er ohne Entfeuchtung wiederkommt. Ehrliche Anleitung.</description>
-</item>
-<item>
-<title>EpiCooler Erfahrungen &amp; Test 2026: Was überprüfbar ist</title>
-<link>https://getecoback.com/guide/epicooler-erfahrungen.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/epicooler-erfahrungen.html</guid>
-<pubDate>Sun, 23 Aug 2026 08:00:00 +0000</pubDate>
-<description>EpiCooler im Faktencheck: Kühlen ohne Abluftschlauch widerspricht der Physik, die „Testsieger“-Seiten gehören dem Verkäufer — plus ehrliche Alternativen.</description>
-</item>
-<item>
-<title>Treiben KI-Rechenzentren die Strompreise? Faktencheck 2026</title>
-<link>https://getecoback.com/guide/treiben-rechenzentren-die-strompreise.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/treiben-rechenzentren-die-strompreise.html</guid>
-<pubDate>Fri, 21 Aug 2026 08:00:00 +0000</pubDate>
-<description>Nein — bisher nicht: Haushaltsstrom fiel auf 37,0 ct/kWh (BDEW 4/2026), Netzentgelte sanken 17,6 %. Aber Frankfurt und die USA zeigen das Risiko. Die Zahlen.</description>
-</item>
-<item>
-<title>Heizung jetzt tauschen oder warten? GModG erklärt (2026)</title>
-<link>https://getecoback.com/guide/heizung-tauschen-oder-warten-gmodg.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/heizung-tauschen-oder-warten-gmodg.html</guid>
-<pubDate>Thu, 20 Aug 2026 08:00:00 +0000</pubDate>
-<description>Das GModG gilt seit 29.07.2026: 65-Prozent-Regel abgeschafft, Heizungsfreiheit zurück, Bio-Quote ab 2029. Was das für deine Tauschentscheidung heißt — mit Tabelle.</description>
-</item>
-<item>
-<title>Luftbefeuchter Stromverbrauch: Kosten pro Nacht (2026)</title>
-<link>https://getecoback.com/guide/luftbefeuchter-stromverbrauch.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/luftbefeuchter-stromverbrauch.html</guid>
-<pubDate>Mon, 17 Aug 2026 08:00:00 +0000</pubDate>
-<description>Verdunster 1–5 Cent, Ultraschall 5–7 Cent, Verdampfer bis 84 Cent pro Nacht — alle Zahlen mit der Formel Watt ÷ 1000 × Stunden × Strompreis nachrechenbar.</description>
-</item>
-<item>
-<title>Heizdecke Stromverbrauch: Was kostet eine Nacht? (2026)</title>
-<link>https://getecoback.com/guide/heizdecke-stromverbrauch.html</link>
-<guid isPermaLink="true">https://getecoback.com/guide/heizdecke-stromverbrauch.html</guid>
-<pubDate>Sat, 15 Aug 2026 08:00:00 +0000</pubDate>
-<description>Was eine Heizdecke wirklich kostet: 2–5 Cent pro Stunde, rund 0,24 € pro Nacht — und warum sie mit Nachtabsenkung zum Sparhebel wird. Zahlen nachrechenbar.</description>
-</item>
-</channel>
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>EcoBack – Kühlen, Heizen &amp; Energie sparen</title>
+    <link>https://getecoback.com/</link>
+    <description>Unabhängiger deutschsprachiger Ratgeber für Klimageräte, Heizen, Luftqualität und Energiesparen.</description>
+    <language>de-DE</language>
+    <lastBuildDate>Wed, 18 Nov 2026 08:00:00 +0000</lastBuildDate>
+    <atom:link href="https://getecoback.com/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Richtig lüften im Winter: gekippt oder kurz weit auf?</title>
+      <link>https://getecoback.com/guide/richtig-lueften-im-winter.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/richtig-lueften-im-winter.html</guid>
+      <pubDate>Tue, 15 Sep 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-11-18T08:00:00Z</atom:updated>
+      <description>Lüften bei Regen? Bei 20 °C und 50 % drinnen kann Außenluft mit 5 °C und 90 % trocknen. Bei 14 °C und 95 % bringt sie Feuchte herein. Zwei Rechenbeispiele.</description>
+    </item>
+    <item>
+      <title>Luftbefeuchter wählen: Bedarf, Pflege und vier genaue Modelle</title>
+      <link>https://getecoback.com/guide/luftbefeuchter-ratgeber.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/luftbefeuchter-ratgeber.html</guid>
+      <pubDate>Tue, 15 Sep 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-11-18T08:00:00Z</atom:updated>
+      <description>Luftbefeuchter vergleichen: Oskar oder Oskar little, Beurer LB 200 und LB 55 nach Regelung, Pflege und Filterkosten für DE, AT und CH prüfen.</description>
+    </item>
+    <item>
+      <title>Luftbefeuchter-Stromverbrauch: Watt in echte Kosten umrechnen</title>
+      <link>https://getecoback.com/guide/luftbefeuchter-stromverbrauch.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/luftbefeuchter-stromverbrauch.html</guid>
+      <pubDate>Mon, 17 Aug 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-11-18T08:00:00Z</atom:updated>
+      <description>Luftbefeuchter-Stromkosten: 6–15, 6–18, 17 und 365 Watt als Herstellerwerte in Rechenszenarien umwandeln; Filter- und Pflegekosten separat prüfen.</description>
+    </item>
+    <item>
+      <title>TTK 127 E: Stromkosten und Tank</title>
+      <link>https://getecoback.com/guide/trotec-ttk-127-e-betriebskosten.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/trotec-ttk-127-e-betriebskosten.html</guid>
+      <pubDate>Fri, 30 Oct 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-11-17T08:00:00Z</atom:updated>
+      <description>TTK 127 E: Stromkosten rechnen und Tank oder Ablauf planen. Herstellerwerte, Prüfbedingungen und Grenzen; kein eigener Produkttest.</description>
+    </item>
+    <item>
+      <title>TTK 54 E: Stromkosten und Tank</title>
+      <link>https://getecoback.com/guide/trotec-ttk-54-e-betriebskosten.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/trotec-ttk-54-e-betriebskosten.html</guid>
+      <pubDate>Thu, 22 Oct 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-11-15T08:00:00Z</atom:updated>
+      <description>TTK 54 E: Stromkosten rechnen und Tank oder Ablauf planen. Herstellerwerte, Prüfbedingungen und Grenzen; kein eigener Produkttest.</description>
+    </item>
+    <item>
+      <title>TTK 26 E: Stromkosten und Tank</title>
+      <link>https://getecoback.com/guide/trotec-ttk-26-e-betriebskosten.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/trotec-ttk-26-e-betriebskosten.html</guid>
+      <pubDate>Sat, 31 Oct 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-11-13T08:00:00Z</atom:updated>
+      <description>TTK 26 E: Stromkosten rechnen und Tank oder Ablauf planen. Herstellerwerte, Prüfbedingungen und Grenzen; kein eigener Produkttest.</description>
+    </item>
+    <item>
+      <title>Smarte Heizkörperthermostate: Ventil prüfen, Kosten rechnen | EcoBack</title>
+      <link>https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html</guid>
+      <pubDate>Sun, 04 Oct 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-11-13T08:00:00Z</atom:updated>
+      <description>tado° X, Bosch oder FRITZ!: System, Ventil und vollständiges Paket vergleichen. Mit V3+-Ventilcheck und Rechner für eigene Kosten statt Sparversprechen.</description>
+    </item>
+    <item>
+      <title>MeacoDry Arete One im Test-Überblick: One oder Two?</title>
+      <link>https://getecoback.com/guide/meacodry-arete-one-test.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/meacodry-arete-one-test.html</guid>
+      <pubDate>Sat, 29 Aug 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-11-13T08:00:00Z</atom:updated>
+      <description>Arete One 20L: öffentliche Tests richtig einordnen. One oder Two? App, Bedienung und genaue Variante vor dem Kauf mit deutschen Herstellerquellen prüfen.</description>
+    </item>
+    <item>
+      <title>Wäsche in der Wohnung: Feuchte und Kosten prüfen (2026)</title>
+      <link>https://getecoback.com/guide/waesche-trocknen-wohnung.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/waesche-trocknen-wohnung.html</guid>
+      <pubDate>Fri, 10 Jul 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-11-13T08:00:00Z</atom:updated>
+      <description>Wäsche in der Wohnung trocknen: Feuchte und Bedingungen prüfen, Stromkosten beispielhaft rechnen und gemessene kWh je gleich trockener Ladung vergleichen.</description>
+    </item>
+    <item>
+      <title>Luftentfeuchter kaufen: 10 oder 20 Liter für den kalten Keller?</title>
+      <link>https://getecoback.com/guide/luftentfeuchter-ratgeber.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/luftentfeuchter-ratgeber.html</guid>
+      <pubDate>Fri, 10 Jul 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-11-13T08:00:00Z</atom:updated>
+      <description>Luftentfeuchter mit 10 oder 20 Litern? Temperatur, Feuchte und Herstellerwerte vor dem Kauf prüfen. Was im kalten Keller zählt und wann kein Gerät hilft.</description>
+    </item>
+    <item>
+      <title>Luftentfeuchter Keller: kalte Räume, Leistung &amp; Stromkosten</title>
+      <link>https://getecoback.com/guide/luftentfeuchter-keller.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/luftentfeuchter-keller.html</guid>
+      <pubDate>Fri, 10 Jul 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-11-13T08:00:00Z</atom:updated>
+      <description>Luftentfeuchter für kalte Keller auswählen: Leistung bei 10–15 °C, Kompressor oder Adsorption, Ablauf und Stromkosten prüfen. Mit Checkliste für DE, AT und CH.</description>
+    </item>
+    <item>
+      <title>Saugwischer kaufen: Boden, Pflege und drei Modelle prüfen</title>
+      <link>https://getecoback.com/guide/saugwischer-kaufberatung.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/saugwischer-kaufberatung.html</guid>
+      <pubDate>Thu, 12 Nov 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-11-12T08:00:00Z</atom:updated>
+      <description>Saugwischer wählen: Bodenfreigabe, Pflegezeit und drei Modelle vergleichen. Herstellerquellen und Kaufhinweise für Deutschland, Österreich, Schweiz.</description>
+    </item>
+    <item>
+      <title>Saugroboter kaufen: Schwellen, Teppiche und Station prüfen</title>
+      <link>https://getecoback.com/guide/saugroboter-kaufberatung.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/saugroboter-kaufberatung.html</guid>
+      <pubDate>Thu, 12 Nov 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-11-12T08:00:00Z</atom:updated>
+      <description>Saugroboter passend zur Wohnung wählen: Schwellen, Teppiche, Stationsplatz und Pflege vergleichen. Genaue Modelle mit Herstellerquellen für DACH.</description>
+    </item>
+    <item>
+      <title>TTK 96 E: Stromkosten und Tank</title>
+      <link>https://getecoback.com/guide/trotec-ttk-96-e-betriebskosten.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/trotec-ttk-96-e-betriebskosten.html</guid>
+      <pubDate>Wed, 28 Oct 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-11-12T08:00:00Z</atom:updated>
+      <description>TTK 96 E: Stromkosten rechnen und Tank oder Ablauf planen. Herstellerwerte, Prüfbedingungen und Grenzen; kein eigener Produkttest.</description>
+    </item>
+    <item>
+      <title>Weißer Staub am Luftbefeuchter: Wasser und Technik prüfen</title>
+      <link>https://getecoback.com/guide/luftbefeuchter-weisser-staub.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/luftbefeuchter-weisser-staub.html</guid>
+      <pubDate>Fri, 18 Sep 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-11-12T08:00:00Z</atom:updated>
+      <description>Weißer Staub beim Luftbefeuchter? Mineralien, Wasserart und Reinigung prüfen. Ultraschall von Verdunstung unterscheiden, ohne vorschnellen Neukauf.</description>
+    </item>
+    <item>
+      <title>Klimaanlage kaufen: Wann ist der beste Zeitpunkt? (2026)</title>
+      <link>https://getecoback.com/guide/klimaanlage-wann-kaufen.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/klimaanlage-wann-kaufen.html</guid>
+      <pubDate>Sat, 08 Aug 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-11-10T08:00:00Z</atom:updated>
+      <description>Klimaanlage jetzt kaufen oder warten? Prüfe Preisverlauf, Liefertermin, Aufstellung und Gesamtkosten mit vier Kaufchecks und einem Rechenbeispiel.</description>
+    </item>
+    <item>
+      <title>TTK 32 E: Stromkosten und Tank</title>
+      <link>https://getecoback.com/guide/trotec-ttk-32-e-betriebskosten.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/trotec-ttk-32-e-betriebskosten.html</guid>
+      <pubDate>Sat, 17 Oct 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-11-09T08:00:00Z</atom:updated>
+      <description>TTK 32 E: Stromkosten rechnen und Tank oder Ablauf planen. Herstellerwerte, Prüfbedingungen und Grenzen; kein eigener Produkttest.</description>
+    </item>
+    <item>
+      <title>Trockner oder Entfeuchter? Stromkosten vergleichen | EcoBack</title>
+      <link>https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html</guid>
+      <pubDate>Sat, 19 Sep 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-11-07T08:00:00Z</atom:updated>
+      <description>Vergleiche Trockner und Luftentfeuchter mit eigenen Verbrauchswerten: Kosten pro Ladung und Jahr, Grenzen des Vergleichs und Anleitung zum Messen.</description>
+    </item>
+    <item>
+      <title>Mobile Klimaanlage überwintern: 6 Schritte richtig lagern 2026</title>
+      <link>https://getecoback.com/guide/mobile-klimaanlage-ueberwintern.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/mobile-klimaanlage-ueberwintern.html</guid>
+      <pubDate>Fri, 17 Jul 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-11-06T08:00:00Z</atom:updated>
+      <description>Mobile Klimaanlage überwintern: 6 Schritte zum Entleeren, Reinigen, Trocknen und Lagern. Mit Herstellerquelle und Modellvorgaben statt pauschaler Zeiten.</description>
+    </item>
+    <item>
+      <title>Luftentfeuchter im Dauerbetrieb: Stromkosten 2026</title>
+      <link>https://getecoback.com/guide/luftentfeuchter-dauerbetrieb-stromkosten.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/luftentfeuchter-dauerbetrieb-stromkosten.html</guid>
+      <pubDate>Sat, 11 Jul 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-11-06T08:00:00Z</atom:updated>
+      <description>Luftentfeuchter: Stromkosten mit Watt, Laufzeit und Tarif berechnen. 500-W-Beispiel, tatsächlicher Verbrauch und Grenzen des Dauerbetriebs erklärt.</description>
+    </item>
+    <item>
+      <title>Klimaanlagen-Rechner: BTU &amp; Größe berechnen (kostenlos 2026)</title>
+      <link>https://getecoback.com/guide/btu-rechner.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/btu-rechner.html</guid>
+      <pubDate>Fri, 10 Jul 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-11-06T08:00:00Z</atom:updated>
+      <description>BTU-Rechner für tragbare Klimaanlagen: Raumgröße, Deckenhöhe, Sonne und Personen eingeben — sofort passende BTU-Zahl plus Modell-Empfehlung erhalten.</description>
+    </item>
+    <item>
+      <title>Klimaanlage mit Heizfunktion: Kosten und Eignung prüfen</title>
+      <link>https://getecoback.com/guide/klimaanlage-mit-heizfunktion.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/klimaanlage-mit-heizfunktion.html</guid>
+      <pubDate>Thu, 09 Jul 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-11-06T08:00:00Z</atom:updated>
+      <description>Mit Klimaanlage heizen: Wärmepumpe und Direktheizung unterscheiden, Stromkosten mit COP rechnen und Montage, Winterbetrieb sowie Raumaufteilung prüfen.</description>
+    </item>
+    <item>
+      <title>Beste tragbare Klimaanlage für die Hitzewelle 2026</title>
+      <link>https://getecoback.com/guide/beste-tragbare-klimaanlage-hitzewelle.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/beste-tragbare-klimaanlage-hitzewelle.html</guid>
+      <pubDate>Tue, 07 Jul 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-11-06T08:00:00Z</atom:updated>
+      <description>Tragbare Klimaanlage für die Hitzewelle auswählen: Monoblock oder mobiles Splitgerät, Abluft, Raumgröße und Geräuschangaben vor dem Kauf prüfen.</description>
+    </item>
+    <item>
+      <title>TTK 52 E: Stromkosten und Tank</title>
+      <link>https://getecoback.com/guide/trotec-ttk-52-e-betriebskosten.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/trotec-ttk-52-e-betriebskosten.html</guid>
+      <pubDate>Tue, 20 Oct 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-11-05T08:00:00Z</atom:updated>
+      <description>TTK 52 E: Stromkosten rechnen und Tank oder Ablauf planen. Herstellerwerte, Prüfbedingungen und Grenzen; kein eigener Produkttest.</description>
+    </item>
+    <item>
+      <title>Homeoffice im Winter: warm bleiben, Kosten prüfen | EcoBack</title>
+      <link>https://getecoback.com/guide/homeoffice-warm-bleiben.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/homeoffice-warm-bleiben.html</guid>
+      <pubDate>Sun, 04 Oct 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-10-31T08:00:00Z</atom:updated>
+      <description>Im Homeoffice frieren? Arbeitsplatz, Zugluft und persönliche Wärme prüfen. Heizdecke, Fußwärmer und Raumheizung nach Zweck und Betriebskosten einordnen.</description>
+    </item>
+    <item>
+      <title>Heizdecke: Stromkosten für Sofa und Homeoffice berechnen</title>
+      <link>https://getecoback.com/guide/heizdecke-stromverbrauch.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/heizdecke-stromverbrauch.html</guid>
+      <pubDate>Sat, 15 Aug 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-10-31T08:00:00Z</atom:updated>
+      <description>Heizdecken-Stromkosten ohne Pflichtangaben: Beispiele für Sofa und Homeoffice, eigener Tarif in EUR oder CHF, Abschaltzeit und sichere Auswahl prüfen.</description>
+    </item>
+    <item>
+      <title>Heizlüfter Stromverbrauch: Kosten pro Stunde berechnen (2026)</title>
+      <link>https://getecoback.com/guide/heizluefter-stromverbrauch.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/heizluefter-stromverbrauch.html</guid>
+      <pubDate>Fri, 24 Jul 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-10-31T08:00:00Z</atom:updated>
+      <description>Heizlüfter-Kosten mit eigener Wattzahl, Strompreis, Laufzeit und Heizanteil berechnen. Kosten pro Tag und Zeitraum; 0,40 €/kWh ist eine Rechenannahme.</description>
+    </item>
+    <item>
+      <title>TTK 53 E: Stromkosten und Tank</title>
+      <link>https://getecoback.com/guide/trotec-ttk-53-e-betriebskosten.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/trotec-ttk-53-e-betriebskosten.html</guid>
+      <pubDate>Thu, 29 Oct 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-10-29T08:00:00Z</atom:updated>
+      <description>TTK 53 E: Stromkosten rechnen und Tank oder Ablauf planen. Herstellerwerte, Prüfbedingungen und Grenzen; kein eigener Produkttest.</description>
+    </item>
+    <item>
+      <title>TTK 66 E: Stromkosten und Tank</title>
+      <link>https://getecoback.com/guide/trotec-ttk-66-e-betriebskosten.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/trotec-ttk-66-e-betriebskosten.html</guid>
+      <pubDate>Tue, 27 Oct 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-10-27T08:00:00Z</atom:updated>
+      <description>TTK 66 E: Stromkosten rechnen und Tank oder Ablauf planen. Herstellerwerte, Prüfbedingungen und Grenzen; kein eigener Produkttest.</description>
+    </item>
+    <item>
+      <title>TTK 90 E: Stromkosten und Tank</title>
+      <link>https://getecoback.com/guide/trotec-ttk-90-e-betriebskosten.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/trotec-ttk-90-e-betriebskosten.html</guid>
+      <pubDate>Mon, 26 Oct 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-10-26T08:00:00Z</atom:updated>
+      <description>TTK 90 E: Stromkosten rechnen und Tank oder Ablauf planen. Herstellerwerte, Prüfbedingungen und Grenzen; kein eigener Produkttest.</description>
+    </item>
+    <item>
+      <title>TTK 27 E: Stromkosten und Tank</title>
+      <link>https://getecoback.com/guide/trotec-ttk-27-e-betriebskosten.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/trotec-ttk-27-e-betriebskosten.html</guid>
+      <pubDate>Sun, 25 Oct 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-10-25T08:00:00Z</atom:updated>
+      <description>TTK 27 E: Stromkosten rechnen und Tank oder Ablauf planen. Herstellerwerte, Prüfbedingungen und Grenzen; kein eigener Produkttest.</description>
+    </item>
+    <item>
+      <title>TTK 72 E: Stromkosten und Tank</title>
+      <link>https://getecoback.com/guide/trotec-ttk-72-e-betriebskosten.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/trotec-ttk-72-e-betriebskosten.html</guid>
+      <pubDate>Sat, 24 Oct 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-10-24T08:00:00Z</atom:updated>
+      <description>TTK 72 E: Stromkosten rechnen und Tank oder Ablauf planen. Herstellerwerte, Prüfbedingungen und Grenzen; kein eigener Produkttest.</description>
+    </item>
+    <item>
+      <title>TTK 30 E: Stromkosten und Tank</title>
+      <link>https://getecoback.com/guide/trotec-ttk-30-e-betriebskosten.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/trotec-ttk-30-e-betriebskosten.html</guid>
+      <pubDate>Fri, 23 Oct 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-10-23T08:00:00Z</atom:updated>
+      <description>TTK 30 E: Stromkosten rechnen und Tank oder Ablauf planen. Herstellerwerte, Prüfbedingungen und Grenzen; kein eigener Produkttest.</description>
+    </item>
+    <item>
+      <title>TTK 75 E: Stromkosten und Tank</title>
+      <link>https://getecoback.com/guide/trotec-ttk-75-e-betriebskosten.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/trotec-ttk-75-e-betriebskosten.html</guid>
+      <pubDate>Wed, 21 Oct 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-10-21T08:00:00Z</atom:updated>
+      <description>TTK 75 E: Stromkosten rechnen und Tank oder Ablauf planen. Herstellerwerte, Prüfbedingungen und Grenzen; kein eigener Produkttest.</description>
+    </item>
+    <item>
+      <title>TTK 95 E: Stromkosten und Tank</title>
+      <link>https://getecoback.com/guide/trotec-ttk-95-e-betriebskosten.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/trotec-ttk-95-e-betriebskosten.html</guid>
+      <pubDate>Sun, 18 Oct 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-10-18T08:00:00Z</atom:updated>
+      <description>TTK 95 E: Stromkosten rechnen und Tank oder Ablauf planen. Herstellerwerte, Prüfbedingungen und Grenzen; kein eigener Produkttest.</description>
+    </item>
+    <item>
+      <title>Tineco saugt nicht mehr: Pflege-Check für S5 und S7 FlashDry</title>
+      <link>https://getecoback.com/guide/tineco-saugt-nicht-mehr.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/tineco-saugt-nicht-mehr.html</guid>
+      <pubDate>Fri, 28 Aug 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-10-17T08:00:00Z</atom:updated>
+      <description>Modell, Symptom und Pflegezustand auswählen: kostenlose Prüfung, Kundendienst oder Ersatzteil-Abgleich. Keine pauschale Filter- oder Akku-Kaufempfehlung.</description>
+    </item>
+    <item>
+      <title>Thermovorhang prüfen: Fenster, Tür und Heizkörper richtig einplanen</title>
+      <link>https://getecoback.com/guide/thermovorhang-ratgeber.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/thermovorhang-ratgeber.html</guid>
+      <pubDate>Fri, 10 Jul 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-10-17T08:00:00Z</atom:updated>
+      <description>Kostenloser Montagecheck für Thermovorhänge: Tür oder Fenster, freier Heizkörper und Öffnungsweg. Erst prüfen und messen, dann passende Angebote vergleichen.</description>
+    </item>
+    <item>
+      <title>Nachtabsenkung: Wann weniger Heizen sinnvoll ist | EcoBack</title>
+      <link>https://getecoback.com/guide/nachtabsenkung-heizung.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/nachtabsenkung-heizung.html</guid>
+      <pubDate>Sun, 04 Oct 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-10-04T08:00:00Z</atom:updated>
+      <description>Nachtabsenkung nach Gebäude, Heizkörpern und Fußbodenheizung beurteilen. Komfort, Feuchte und Wiederaufheizen prüfen, statt feste Sparprozente zu versprechen.</description>
+    </item>
+    <item>
+      <title>Lichterkette: Stromkosten und Timer berechnen | EcoBack</title>
+      <link>https://getecoback.com/guide/lichterkette-stromkosten.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/lichterkette-stromkosten.html</guid>
+      <pubDate>Sun, 04 Oct 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-10-04T08:00:00Z</atom:updated>
+      <description>Stromkosten von Lichterketten aus Watt, Laufzeit und Tagen berechnen. Timer-Eigenverbrauch berücksichtigen und Innen- oder Außeneinsatz vor dem Kauf prüfen.</description>
+    </item>
+    <item>
+      <title>Heizkörper wird nicht warm: sinnvoll eingrenzen | EcoBack</title>
+      <link>https://getecoback.com/guide/heizkoerper-wird-nicht-warm.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/heizkoerper-wird-nicht-warm.html</guid>
+      <pubDate>Sun, 04 Oct 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-10-04T08:00:00Z</atom:updated>
+      <description>Ein Heizkörper bleibt kalt? Symptome eingrenzen, Regelung und Luft prüfen, Zuständigkeit klären. Mit Checkliste für die Meldung an Vermieter oder Fachbetrieb.</description>
+    </item>
+    <item>
+      <title>Fenster zieht: Zugluft in der Mietwohnung prüfen | EcoBack</title>
+      <link>https://getecoback.com/guide/fenster-zugluft-mietwohnung.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/fenster-zugluft-mietwohnung.html</guid>
+      <pubDate>Sun, 04 Oct 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-10-04T08:00:00Z</atom:updated>
+      <description>Zugluft am Fenster eingrenzen: Dichtung, Beschlag oder kalte Scheibe? Mietwohnung sinnvoll abdichten, Schäden melden und Lüftungsöffnungen freihalten.</description>
+    </item>
+    <item>
+      <title>Duschen: Kosten und Sparbrause durchrechnen | EcoBack</title>
+      <link>https://getecoback.com/guide/duschen-kosten-rechner.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/duschen-kosten-rechner.html</guid>
+      <pubDate>Sun, 04 Oct 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-10-04T08:00:00Z</atom:updated>
+      <description>Duschkosten aus Litern, Minuten, Temperatur und Energiepreis berechnen. Zwei Durchflüsse vergleichen, Wasser mitrechnen und Sparbrause auf Eignung prüfen.</description>
+    </item>
+    <item>
+      <title>Beheizter Wäscheständer: Kosten und wohin das Wasser geht</title>
+      <link>https://getecoback.com/guide/beheizter-waeschestaender.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/beheizter-waeschestaender.html</guid>
+      <pubDate>Thu, 24 Sep 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-10-04T08:00:00Z</atom:updated>
+      <description>Beheizten Wäscheständer mit eigener Laufzeit und Feuchteabfuhr beurteilen. Luftkapazität abschätzen, ohne daraus eine sichere Trocknungsmenge abzuleiten.</description>
+    </item>
+    <item>
+      <title>Luftentfeuchter zieht kein Wasser — woran es wirklich liegt</title>
+      <link>https://getecoback.com/guide/luftentfeuchter-zieht-kein-wasser.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/luftentfeuchter-zieht-kein-wasser.html</guid>
+      <pubDate>Thu, 17 Sep 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-10-04T08:00:00Z</atom:updated>
+      <description>Leerer Entfeuchter-Tank: Zielwert, Temperatur, Ablauf und Luftwege prüfen. Der Rechner zeigt nur Wasser in der Luft, nicht die gesamte Tagesleistung.</description>
+    </item>
+    <item>
+      <title>Infrarotheizung gegen Schimmel: Wann sie hilft — und wann nicht</title>
+      <link>https://getecoback.com/guide/infrarotheizung-gegen-schimmel.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/infrarotheizung-gegen-schimmel.html</guid>
+      <pubDate>Thu, 17 Sep 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-10-04T08:00:00Z</atom:updated>
+      <description>Oberflächenfeuchte aus Raumtemperatur, Luftfeuchte und gemessener Wandtemperatur abschätzen. Grenzen erkennen, bevor du eine Heizung kaufst.</description>
+    </item>
+    <item>
+      <title>Schimmel im Keller entfernen: was wirklich hilft (2026)</title>
+      <link>https://getecoback.com/guide/schimmel-im-keller-entfernen.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/schimmel-im-keller-entfernen.html</guid>
+      <pubDate>Tue, 25 Aug 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-10-04T08:00:00Z</atom:updated>
+      <description>Schimmel im Keller entfernen: kleinflächig selbst behandeln, großflächig Fachbetrieb — und warum er ohne Entfeuchtung wiederkommt. Ehrliche Anleitung.</description>
+    </item>
+    <item>
+      <title>Fenster beschlagen von innen: 3 Ursachen, 1 Diagnose</title>
+      <link>https://getecoback.com/guide/fenster-beschlagen-innen.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/fenster-beschlagen-innen.html</guid>
+      <pubDate>Tue, 04 Aug 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-10-04T08:00:00Z</atom:updated>
+      <description>Morgens nasse Scheiben? Nicht immer ist Lüften die Lösung. Der 3-Ursachen-Check zeigt, ob es an Feuchte, Lüftung oder kalter Scheibe liegt.</description>
+    </item>
+    <item>
+      <title>Heizlüfter stromsparend 2026: Welcher lohnt sich?</title>
+      <link>https://getecoback.com/guide/heizluefter-stromsparend.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/heizluefter-stromsparend.html</guid>
+      <pubDate>Fri, 10 Jul 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-10-04T08:00:00Z</atom:updated>
+      <description>Sparsamer Heizlüfter gesucht? Stromkosten bei 0,30 €/kWh, Keramik vs. Draht, Sicherheit — und wann sich ein Heizlüfter lohnt und wann nicht.</description>
+    </item>
+    <item>
+      <title>Fensterabdichtung für Klimaanlagen: Welche passt? (2026)</title>
+      <link>https://getecoback.com/guide/fensterabdichtung-klimaanlage.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/fensterabdichtung-klimaanlage.html</guid>
+      <pubDate>Fri, 07 Aug 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-10-02T08:00:00Z</atom:updated>
+      <description>Klett-Stoff, starre Platte oder Dachfenster-Version? Welche Fensterabdichtung an dein Fenster passt, welche Länge du brauchst — und was meist versagt.</description>
+    </item>
+    <item>
+      <title>Klimaanlagen-Zubehör günstig: Amazon oder Direktimport?</title>
+      <link>https://getecoback.com/guide/klimaanlage-zubehoer-guenstig.html?utm_source=getecoback&amp;utm_medium=referral&amp;utm_campaign=listing</link>
+      <guid isPermaLink="true">https://getecoback.com/guide/klimaanlage-zubehoer-guenstig.html</guid>
+      <pubDate>Thu, 06 Aug 2026 08:00:00 +0000</pubDate>
+      <atom:updated>2026-10-02T08:00:00Z</atom:updated>
+      <description>Fensterabdichtung, Schlauchadapter, Thermo-Rollo: Wo Zubehör wirklich günstiger ist, was der Direktimport aus China kostet — an Wartezeit, Rückgabe und Nerven.</description>
+    </item>
+  </channel>
 </rss>
