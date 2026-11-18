@@ -10,26 +10,27 @@ from pathlib import Path
 import humidifier_catalog as catalog
 
 ROOT = catalog.ROOT
-CHECKED = '2026-11-12'
 MAIN = catalog.SLUG
 ENERGY = 'luftbefeuchter-stromverbrauch'
 DUST = 'luftbefeuchter-weisser-staub'
 PAGES = {
     MAIN: {
-        'title':'Luftbefeuchter wählen: Bedarf, Pflege und drei genaue Modelle',
-        'description':'Luftbefeuchter vergleichen: Bedarf messen, Oskar, Beurer LB 200 und LB 55 mit Pflege, Filterkosten und Herstellerquellen für DE, AT und CH prüfen.',
+        'modified':'2026-11-18',
+        'title':'Luftbefeuchter wählen: Bedarf, Pflege und vier genaue Modelle',
+        'description':'Luftbefeuchter vergleichen: Oskar oder Oskar little, Beurer LB 200 und LB 55 nach Regelung, Pflege und Filterkosten für DE, AT und CH prüfen.',
         'published':'2026-09-15',
-        'intro':'Erst die Raumfeuchte verstehen, dann die Technik wählen. Hier vergleichst du drei genaue Modelle samt Pflege und passenden Ersatzteilen.',
+        'intro':'Erst die Raumfeuchte verstehen, dann die Technik wählen. Hier vergleichst du vier genaue Modelle samt Pflege und passenden Ersatzteilen.',
         'faq':[
             ('Brauche ich bei weniger als 40 Prozent einen Luftbefeuchter?', 'Ein einzelner Messwert entscheidet das nicht. Miss Temperatur und Feuchte über mehrere Tage, prüfe den Messort und beachte kalte Oberflächen. Ob zusätzliche Feuchte sinnvoll ist, hängt vom Raum und der Nutzung ab. Bei Kondenswasser zuerst die Ursache klären.'),
             ('Welcher Luftbefeuchter passt bei hartem Wasser?', 'Bei Ultraschall kann mineralhaltiges Wasser weißen Staub verursachen. Verdunster sind deshalb eine mögliche Alternative, brauchen aber ebenfalls Pflege und passende Filter. Beim Dampfbefeuchter gehört Entkalkung dazu. Die erlaubte Wasserart steht in der genauen Geräteanleitung.'),
-            ('Haben alle drei ausgewählten Geräte einen Hygrostat?', 'Nein. Oskar und LB 200 bieten einstellbare Feuchteziele. Beim LB 55 wählst du eine Dampfstufe und kontrollierst die Raumfeuchte separat. Ein Hygrostat ersetzt weder die Reinigung noch den Blick auf kalte Fenster und Wände.'),
-            ('Welcher Filter passt zum Oskar und zum LB 200?', 'Für den hier gemeinten Oskar O-020 führt Stadler Form die Filtermatten O-030 im Zweierpack. Zum Beurer LB 200 passt der Original-Ersatzfilter 110005, in der Anleitung als 110.005 geschrieben. Vor der Bestellung die vollständige Modell- und Teilekennung abgleichen.'),
+            ('Haben alle vier ausgewählten Geräte einen einstellbaren Feuchtezielwert?', 'Nein. Oskar O-020 und LB 200 bieten einstellbare Feuchteziele. Die EU-Anleitung des Oskar little O-060 beschreibt zwei Leistungsstufen ohne einstellbaren Feuchtezielwert. Beim LB 55 wählst du eine Dampfstufe. Bei manueller Stufenwahl misst du die Raumfeuchte separat und passt den Betrieb selbst an. Ein Hygrostat ersetzt weder die Reinigung noch den Blick auf kalte Fenster und Wände.'),
+            ('Welcher Filter passt zu Oskar, Oskar little und LB 200?', 'Die Filtermatten O-030 im Zweierpack passen zu Oskar O-020 und Oskar little O-060. Oskar braucht zwei Matten pro vollständigem Wechsel, Oskar little eine. Zum Beurer LB 200 passt der Original-Ersatzfilter 110005, in der Anleitung als 110.005 geschrieben. Vor der Bestellung die vollständige Modell- und Teilekennung abgleichen.'),
             ('Sind die Amazon-Links geprüfte Angebote?', 'Nein. Die gekennzeichneten Affiliate-Links öffnen Modellsuchen bei Amazon.de. Sie bestätigen weder Preis noch Bestand oder Versand. Deutschland, Österreich und Schweiz können unterschiedliche Endkosten und Lieferbedingungen haben.')]
     },
     ENERGY: {
+        'modified':'2026-11-18',
         'title':'Luftbefeuchter-Stromverbrauch: Watt in echte Kosten umrechnen',
-        'description':'Stromkosten von Luftbefeuchtern berechnen: 6–18, 17 und 365 Watt als Herstellerwerte, klare Rechenbeispiele und Filterkosten getrennt vergleichen.',
+        'description':'Luftbefeuchter-Stromkosten: 6–15, 6–18, 17 und 365 Watt als Herstellerwerte in Rechenszenarien umwandeln; Filter- und Pflegekosten separat prüfen.',
         'published':'2026-08-17',
         'intro':'Eine Wattzahl liefert eine Kostenannahme. Für deine tatsächliche Rechnung zählen gemessene Kilowattstunden, Laufzeit und Stromtarif.',
         'faq':[
@@ -38,6 +39,7 @@ PAGES = {
             ('Sind Filter und Wasser in der Stromrechnung enthalten?', 'Nein. Ersatzfilter oder Kalkpads, Wasser und freigegebene Reinigungsmittel kommen getrennt hinzu. Nutze aktuelle Preise und die Wechselvorgaben deiner genauen Anleitung, statt pauschale jährliche Betriebskosten anzunehmen.')]
     },
     DUST: {
+        'modified':'2026-11-12',
         'title':'Weißer Staub am Luftbefeuchter: Wasser und Technik prüfen',
         'description':'Weißer Staub beim Luftbefeuchter? Mineralien, Wasserart und Reinigung prüfen. Ultraschall von Verdunstung unterscheiden, ohne vorschnellen Neukauf.',
         'published':'2026-09-18',
@@ -69,9 +71,9 @@ def main_body(d, today=None):
 <p>Ein Gerät, das als „Luftwäscher“ beworben wird, ist nicht allein deshalb ein nachgewiesen wirksamer Luftreiniger. Diese Kaufhilfe bewertet Befeuchtung, keine Partikelreinigung oder gesundheitliche Wirkung.</p>''' + ref(['epa'],d) + catalog.render(today,d) + '''
 <h2 id="gesamtkosten">Kaufpreis plus Pflege: mit deinen Preisen rechnen</h2>
 <p>Trage aktuelle Händlerpreise selbst in eine Notiz ein und bleibe bei derselben Währung. Für einen Vergleich brauchst du dieselbe Nutzungsdauer und dieselbe Aufgabe.</p>
-<ol><li><strong>Anschaffung:</strong> Gerät + wirklich fehlendes Zubehör. Bereits beiliegende Filter oder Pads nicht doppelt addieren.</li><li><strong>Verbrauchsmaterial:</strong> Preis je passendem Ersatzteil × geplante zusätzliche Wechsel. Oskar benötigt zwei Filtermatten pro vollständigem Wechsel; O-030 ist dafür ein Zweierpack. Beim LB 200 die kürzere Frist aus sechs Monaten und tatsächlichem Zustand beachten.</li><li><strong>Wasser und Reinigung:</strong> freigegebene Wasserart, Wasserhärte und Reinigungsmittel einplanen. Unbekannte Preise bleiben offen, nicht null.</li><li><strong>Strom:</strong> gemessene kWh × eigener Tarif; für eine erste Schätzung Nennleistung und Laufzeit klar als Annahmen markieren.</li></ol>
+<ol><li><strong>Anschaffung:</strong> Gerät + wirklich fehlendes Zubehör. Bereits beiliegende Filter oder Pads nicht doppelt addieren.</li><li><strong>Verbrauchsmaterial:</strong> Preis je passendem Ersatzteil × geplante zusätzliche Wechsel. Oskar O-020 benötigt zwei Filtermatten pro vollständigem Wechsel, Oskar little O-060 eine; der O-030-Zweierpack reicht also für einen bzw. zwei Wechsel. Das allein belegt keine niedrigeren Gesamtkosten. Beim LB 200 die kürzere Frist aus sechs Monaten und tatsächlichem Zustand beachten.</li><li><strong>Wasser und Reinigung:</strong> freigegebene Wasserart, Wasserhärte und Reinigungsmittel einplanen. Unbekannte Preise bleiben offen, nicht null.</li><li><strong>Strom:</strong> gemessene kWh × eigener Tarif; für eine erste Schätzung Nennleistung und Laufzeit klar als Annahmen markieren.</li></ol>
 <p>Eine Heizsaison und ein ganzes Betriebsjahr sind nicht dasselbe. Die Wechselanzeige ist kein Nachweis, dass ein verschmutzter Filter bis dahin weiterverwendet werden kann.</p>
-<p><a class="hc-secondary" href="/guide/luftbefeuchter-stromverbrauch.html">Die drei Leistungswerte in Beispielkosten umrechnen →</a></p>
+<p><a class="hc-secondary" href="/guide/luftbefeuchter-stromverbrauch.html">Die Leistungswerte in Beispielkosten umrechnen →</a></p>
 <h2 id="kalte-wand">Warum 50 % im Raum nicht 50 % an der kalten Wand sind</h2>
 <p>Relative Feuchte steigt beim Abkühlen derselben Luft, solange ihr Wasserdampfgehalt gleich bleibt. Die folgende idealisierte Rechnung nimmt 20 °C Raumluft und unveränderten Wasserdampf-Partialdruck bis zur Oberfläche an. Sie ist keine Messung deiner Wand und keine universelle Schimmelgrenze.</p>
 <div class="hc-table" role="region" aria-label="Berechnete Oberflächenfeuchte, horizontal scrollbar" tabindex="0"><table><caption>Rechenbeispiel: relative Feuchte bei drei Oberflächentemperaturen</caption><thead><tr><th scope="col">Raum bei 20 °C</th><th scope="col">Oberfläche 16 °C</th><th scope="col">14 °C</th><th scope="col">12 °C</th></tr></thead><tbody>''' + wall_rows() + '''</tbody></table></div>
@@ -91,7 +93,7 @@ def energy_body(d):
         rows.append(f'<tr><th scope="row">{esc(p["name"])}</th><td>{catalog.power_label(p)}</td><td>{energy.replace(".",",")} kWh</td><td>{cost.replace(".",",")} €</td><td>{month.replace(".",",")} €</td></tr>')
     return '''<div class="hc-answer"><strong>Die direkte Rechnung</strong><p>Watt ÷ 1.000 × Betriebsstunden × eigener Preis je kWh = Stromkosten bei konstant angenommener Leistung. Für reale Kosten die gemessene Energiemenge verwenden.</p><a href="/guide/stromkosten-rechner.html">Watt und eigenen Tarif im vorhandenen Rechner einsetzen →</a></div>
 <h2 id="kostenbeispiel">Was acht Stunden rechnerisch kosten</h2><p>Beispielannahmen: 8 Stunden täglich, 30 Tage und 0,30 €/kWh. Der Tarif ist frei gewählt, kein aktueller deutscher Durchschnitt. Hersteller-Nennleistungen sind die Grundlage; Regelpausen, Nachlauf oder Filtertrocknung sind nicht als gemessener Nutzungsablauf abgebildet.</p>
-<div class="hc-table" role="region" aria-label="Beispiel-Stromkosten, horizontal scrollbar" tabindex="0"><table><caption>Rechenszenario, keine Verbrauchsmessung</caption><thead><tr><th scope="col">Modell</th><th scope="col">Nennleistung</th><th scope="col">8 Stunden</th><th scope="col">pro Tag</th><th scope="col">30 Tage</th></tr></thead><tbody>''' + ''.join(rows) + '''</tbody></table></div>''' + ref(['oskar_manual','lb200_manual','lb55_manual'],d) + '''
+<div class="hc-table" role="region" aria-label="Beispiel-Stromkosten, horizontal scrollbar" tabindex="0"><table><caption>Rechenszenario, keine Verbrauchsmessung</caption><thead><tr><th scope="col">Modell</th><th scope="col">Nennleistung</th><th scope="col">8 Stunden</th><th scope="col">pro Tag</th><th scope="col">30 Tage</th></tr></thead><tbody>''' + ''.join(rows) + '''</tbody></table></div>''' + ref(['oskar_manual','oskar_little_manual','lb200_manual','lb55_manual'],d) + '''
 <p>Die niedrigere Wattzahl beweist nicht, dass zwei Geräte dieselbe Wassermenge unter gleichen Bedingungen effizienter bereitstellen. Raumtemperatur, Ausgangsfeuchte, Luftwechsel, Stufe und Betriebsdauer müssten für einen solchen Vergleich gleich sein. Die Raumgrößenangaben verschiedener Hersteller sind ebenfalls keine gemeinsame Messung.</p>
 <h2 id="eigenen-verbrauch-messen">Vom Typenschild zu deinem tatsächlichen Verbrauch</h2><ol><li>Ein geeignetes Strommessgerät nach dessen Anleitung einsetzen und den Zählerstand vor Beginn notieren.</li><li>Über mehrere typische Tage messen. Laufzeiten, Feuchteeinstellung und Nachpflege dokumentieren, einschließlich aktivierter Trocknungsprogramme.</li><li>Gemessene kWh mit deinem vertraglichen Arbeitspreis multiplizieren. Diese Messung gilt für deinen Ablauf, nicht automatisch für einen anderen Raum.</li></ol>
 <p>Der LB 200 kann den entleerten Filter mit einem dreistündigen Programm trocknen. Solche zusätzlichen Laufzeiten gehören zur vollständigen Messung; ein Hygrostat kann die Befeuchtung zugleich zeitweise unterbrechen. Die Richtung des Unterschieds zur Beispielrechnung ist daher nicht pauschal vorgegeben.</p>
@@ -117,7 +119,7 @@ def render(slug, today=None, data=None):
     body = main_body(d,today) if slug == MAIN else energy_body(d) if slug == ENERGY else dust_body(d)
     faq = ''.join(f'<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q,a in page['faq'])
     ld = {'@context':'https://schema.org','@graph':[
-        {'@type':'Article','headline':page['title'],'description':page['description'],'inLanguage':'de','mainEntityOfPage':url,'datePublished':page['published'],'dateModified':CHECKED,'author':{'@type':'Organization','name':'EcoBack','url':'https://getecoback.com/'},'publisher':{'@type':'Organization','name':'EcoBack','url':'https://getecoback.com/'}},
+        {'@type':'Article','headline':page['title'],'description':page['description'],'inLanguage':'de','mainEntityOfPage':url,'datePublished':page['published'],'dateModified':page['modified'],'author':{'@type':'Organization','name':'EcoBack','url':'https://getecoback.com/'},'publisher':{'@type':'Organization','name':'EcoBack','url':'https://getecoback.com/'}},
         {'@type':'FAQPage','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in page['faq']]}
     ]}
     css=hashlib.sha256((ROOT/'site/assets/humidifier-catalog.css').read_bytes()).hexdigest()[:12]
@@ -130,7 +132,7 @@ def render(slug, today=None, data=None):
 <script type="application/ld+json">{json.dumps(ld,ensure_ascii=False).replace('<','\\u003c')}</script></head><body>
 <header class="hc-hero"><div class="wrap"><a href="/">EcoBack</a><p class="hc-kicker">Raumklima · Besser entscheiden</p><h1>{esc(page['title'])}</h1><p>{esc(page['intro'])}</p></div></header>
 <article class="wrap" {'data-humidifier-guide' if slug == MAIN else 'data-humidifier-support'}>
-<p class="hc-note">Aktualisiert am 12. November 2026 · Redaktionelle Kauf- und Nutzungshilfe, kein eigener Gerätetest.</p>{body}
+<p class="hc-note">Redaktionell aktualisiert am {int(page['modified'][-2:])}. November 2026 · Redaktionelle Kauf- und Nutzungshilfe, kein eigener Gerätetest.</p>{body}
 <section id="haeufige-fragen" class="hc-faq"><h2>Häufige Fragen</h2>{faq}</section>
 <nav class="hc-next" aria-label="Weitere Kaufhilfen"><a href="/kategorie/luftqualitaet.html">Raumklima</a><a href="/rechner.html">Rechner und Prüfungen</a><a href="/wie-wir-empfehlen.html">Unsere Methodik</a></nav>
 </article><footer><a href="/">EcoBack</a> · <a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></footer></body></html>

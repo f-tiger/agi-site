@@ -51,6 +51,14 @@
     "oskar_identity": {
       "title": "Stadler Form: Modell- und Farbkennungen, Übersicht 2025 S. 2",
       "url": "https://www.stadlerform.com/media/df/e8/d1/1750152809/stadler-form-product-overview-international-2025-de.pdf"
+    },
+    "oskar_little": {
+      "title": "Stadler Form: Oskar little weiß O-060",
+      "url": "https://www.stadlerform.com/de-de/luftbefeuchter/oskar-little-weiss-o-060"
+    },
+    "oskar_little_manual": {
+      "title": "Oskar little: EU-Anleitung, DE S. 10–14",
+      "url": "https://www.stadlerform.com/media/85/64/6d/1712837923/stadler-form-oskar-little-manual-eu.pdf"
     }
   },
   "products": [
@@ -116,6 +124,29 @@
         "lb55",
         "lb55_manual",
         "lb55_pads"
+      ]
+    },
+    {
+      "id": "oskar-little-o060",
+      "name": "Stadler Form Oskar little weiß O-060",
+      "query": "Stadler Form Oskar little O-060 weiß",
+      "status": "verified",
+      "checked": "2026-11-18",
+      "role": "Verdunster mit manueller Stufenwahl",
+      "technology": "Verdunstung",
+      "power_w": [
+        6,
+        15
+      ],
+      "controls": "Zwei Leistungsstufen. Die EU-Anleitung beschreibt keinen einstellbaren Feuchtezielwert: Raumfeuchte separat messen und den Betrieb selbst anpassen. Nicht mit der Zielwertregelung des Oskar O-020 gleichsetzen.",
+      "care": "Täglich frisches kaltes Leitungswasser; Wasserbehälter alle drei Tage reinigen. Bei mehrtägiger Pause entleeren; je nach Wasserhärte entkalken. Einen Filterwechsel nach spätestens zwei Monaten einplanen, bei Bedarf früher. Abweichende Pflegeintervalle in der Produkt-FAQ verlängern diese Planung nicht.",
+      "parts": "Ein Filter pro Wechsel; O-030 enthält zwei passende Filtermatten. Die Produktseite nennt spätestens zwei Monate, die EU-Anleitung 2–3 Monate; hier gilt der frühere Planungstermin.",
+      "limit": "O-060 bezeichnet Weiß in der Herstellerübersicht 2025. Nicht Oskar O-020 oder Oskar big. Die aktuelle Produktseite nennt Hygiene Tabs, die EU-Anleitung Water Cube: Lieferumfang und Pflege anhand der mitgelieferten Anleitung prüfen; Zubehör nicht ungeprüft austauschen.",
+      "sources": [
+        "oskar_little",
+        "oskar_little_manual",
+        "oskar_filter",
+        "oskar_identity"
       ]
     }
   ]

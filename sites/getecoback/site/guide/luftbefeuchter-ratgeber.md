@@ -1,12 +1,12 @@
-# Luftbefeuchter wählen: Bedarf, Pflege und drei genaue Modelle
+# Luftbefeuchter wählen: Bedarf, Pflege und vier genaue Modelle
 
-> Luftbefeuchter vergleichen: Bedarf messen, Oskar, Beurer LB 200 und LB 55 mit Pflege, Filterkosten und Herstellerquellen für DE, AT und CH prüfen.
+> Luftbefeuchter vergleichen: Oskar oder Oskar little, Beurer LB 200 und LB 55 nach Regelung, Pflege und Filterkosten für DE, AT und CH prüfen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftbefeuchter-ratgeber.html
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
 
-Aktualisiert am 12. November 2026 · Redaktionelle Kauf- und Nutzungshilfe, kein eigener Gerätetest.
+Redaktionell aktualisiert am 18. November 2026 · Redaktionelle Kauf- und Nutzungshilfe, kein eigener Gerätetest.
 **Die kurze Entscheidung**Ohne nachvollziehbaren Bedarf brauchst du kein neues Gerät. Bei wiederholt trockener Raumluft zuerst Messung und Nutzung prüfen. Wenn Befeuchtung sinnvoll bleibt, sind passende Regelung, Wasserart und eine Pflege, die du zuverlässig erledigst, wichtiger als ein pauschaler Testsieger.
 
 ## Erst messen: Vielleicht ist kein Kauf nötig
@@ -36,9 +36,9 @@ Technik wählen, ohne Pflege auszublenden
 Ein Gerät, das als „Luftwäscher“ beworben wird, ist nicht allein deshalb ein nachgewiesen wirksamer Luftreiniger. Diese Kaufhilfe bewertet Befeuchtung, keine Partikelreinigung oder gesundheitliche Wirkung.
 Quellen: [US EPA: Use and Care of Home Humidifiers](https://www.epa.gov/indoor-air-quality-iaq/use-and-care-home-humidifiers).
 
-## Drei genaue Modelle: Regelung und Pflege entscheiden
-Zwei Verdunster unterscheiden sich hier durch Bedienung und Pflegeablauf. Der Dampfbefeuchter ist eine bewusste Alternative mit höherer elektrischer Nennleistung und heißem Wasser. Die Reihenfolge ist keine Rangliste; wir haben die Geräte nicht selbst getestet.
-Herstellerquellen geprüft: 2026-11-12. Keine Live-Preise, Lieferzusagen oder Verbrauchsmessungen. Das Prüfdatum bestätigt keine aktuellen Händlerangebote.
+## Vier genaue Modelle: Regelung und Pflege entscheiden
+Drei Verdunster unterscheiden sich hier durch Bedienung und Pflegeablauf. Der Dampfbefeuchter ist eine bewusste Alternative mit höherer elektrischer Nennleistung und heißem Wasser. Die Reihenfolge ist keine Rangliste; wir haben die Geräte nicht selbst getestet.
+Das Quellenprüfdatum steht an jedem Modell. Keine Live-Preise, Lieferzusagen oder Verbrauchsmessungen. Das Prüfdatum bestätigt keine aktuellen Händlerangebote.
 Die Tabelle lässt sich auf kleinen Bildschirmen seitlich verschieben. Nennleistung ist keine Effizienzbewertung bei gleicher Befeuchtungsleistung.
 
 Bedienung und Herstellerleistung im Vergleich
@@ -48,41 +48,53 @@ Bedienung und Herstellerleistung im Vergleich
 | [Stadler Form Oskar weiß O-020](https://getecoback.com/guide/luftbefeuchter-ratgeber.html#humidifier-oskar-o020) | Verdunster mit einfachen Zielstufen | 6–18 W |
 | [Beurer LB 200](https://getecoback.com/guide/luftbefeuchter-ratgeber.html#humidifier-beurer-lb200) | Verdunster mit Anzeige und Filtertrocknung | 17 W |
 | [Beurer LB 55](https://getecoback.com/guide/luftbefeuchter-ratgeber.html#humidifier-beurer-lb55) | Dampf als bewusste Alternative | 365 W |
+| [Stadler Form Oskar little weiß O-060](https://getecoback.com/guide/luftbefeuchter-ratgeber.html#humidifier-oskar-little-o060) | Verdunster mit manueller Stufenwahl | 6–15 W |
+
+### Oskar oder Oskar little: Was musst du selbst regeln?
+Wenn du einen Feuchtezielwert einstellen möchtest, bietet Oskar O-020 40, 45, 50 oder 55 %. Die EU-Anleitung des Oskar little O-060 beschreibt zwei Leistungsstufen ohne einstellbaren Zielwert: Du misst die Raumfeuchte separat und passt den Betrieb selbst an. Ein kleineres Gerät nimmt dir diese Aufgabe nicht ab.
+Beim vollständigen Filterwechsel braucht Oskar zwei Matten, Oskar little eine. Ein O-030-Zweierpack reicht entsprechend für einen bzw. zwei vollständige Wechsel. Das ist eine Mengenentscheidung, keine Zusage geringerer Gesamtkosten: Kaufpreis, Laufzeit, Wasser und Pflege bleiben offen. Wenn du die Pflege nicht zuverlässig leisten kannst oder keinen Befeuchtungsbedarf gemessen hast, kaufe vorerst nichts.
 
 Anzeige · Affiliate-Links: Als Amazon-Partner verdienen wir an qualifizierten Verkäufen. Die gekennzeichneten Links öffnen genaue Modellsuchen bei Amazon.de. Suchergebnisse können andere Varianten enthalten; Modell, Verkäufer und Lieferumfang abgleichen.
 Verdunster mit einfachen Zielstufen
 
 ### Stadler Form Oskar weiß O-020
 RegelungHygrostat mit 40, 45, 50 oder 55 % sowie Dauerbetrieb; zwei Lüfterstufen. Zielstufe wählen und mit einem separaten Hygrometer prüfen.Pflege einplanenTäglich frisches Wasser; Wasserbehälter alle drei Tage reinigen. Zwei Filtermatten: Wechsel nach zwei Monaten einplanen, bei Bedarf früher. Weitere Reinigung und Entkalkung nach Anleitung.Passendes VerbrauchsmaterialO-030: Zweierpack passender Filtermatten. Die Anleitung nennt beim Wechselhinweis zwei Monate, im Pflegetext 2–3 Monate; wir planen mit dem früheren Zeitpunkt.**Vor dem Kauf:** O-020 bezeichnet Weiß in der Herstellerübersicht 2025; die verlinkte Shopseite kann eine andere Farbe vorauswählen. Nicht Oskar little oder big. Händlerpakete können Hygiene Tabs oder Water Cube enthalten; Farbe, Artikelnummer und Zubehör abgleichen.
-[Stadler Form: Oskar O-020](https://www.stadlerform.com/de-de/luftbefeuchter/oskar-weiss-o-020-0) · [Oskar: EU-Anleitung, DE S. 10–15](https://www.stadlerform.com/media/ed/93/91/1712837853/stadler-form-oskar-manual-eu.pdf) · [Stadler Form: Filter O-030](https://www.stadlerform.com/de-de/luftbefeuchter-zubehoer/luftbefeuchter-filter-2-er-pack-o-030) · [Stadler Form: Modell- und Farbkennungen, Übersicht 2025 S. 2](https://www.stadlerform.com/media/df/e8/d1/1750152809/stadler-form-product-overview-international-2025-de.pdf)
+Herstellerquellen geprüft: 2026-11-12. [Stadler Form: Oskar O-020](https://www.stadlerform.com/de-de/luftbefeuchter/oskar-weiss-o-020-0) · [Oskar: EU-Anleitung, DE S. 10–15](https://www.stadlerform.com/media/ed/93/91/1712837853/stadler-form-oskar-manual-eu.pdf) · [Stadler Form: Filter O-030](https://www.stadlerform.com/de-de/luftbefeuchter-zubehoer/luftbefeuchter-filter-2-er-pack-o-030) · [Stadler Form: Modell- und Farbkennungen, Übersicht 2025 S. 2](https://www.stadlerform.com/media/df/e8/d1/1750152809/stadler-form-product-overview-international-2025-de.pdf)
 Anzeige · Modellsuche, kein geprüftes Einzelangebot.Stadler Form Oskar weiß O-020 bei Amazon.de suchen →
 
 Verdunster mit Anzeige und Filtertrocknung
 
 ### Beurer LB 200
 RegelungDigitale Feuchteanzeige, Zielwerte 40, 50 oder 60 % und Automatikmodus. Achtung: Leuchtet kein Zielwert, arbeitet das Gerät laut Anleitung bis 70 %; das bedeutet nicht „aus“.Pflege einplanenRestwasser nach der Anwendung entleeren, Filter trocknen. Filter wöchentlich abspülen; Anleitung empfiehlt wöchentliches Entkalken. Die dreistündige Filtertrocknung ersetzt keine Reinigung.Passendes VerbrauchsmaterialOriginal-Ersatzfilter 110005 (110.005). Spätestens nach sechs Monaten wechseln, früher bei Verformung, Verfärbung oder starker Verschmutzung; Wechselanzeige nach 1.440 Betriebsstunden.**Vor dem Kauf:** Artikel 10069. Zielwert passend zum Raum wählen; 60 oder 70 % sind keine pauschalen Wohnraum-Empfehlungen. Restfeuchte unter dem Filterhalter manuell trocknen.
-[Beurer: LB 200, Art. 10069](https://www.beurer.com/de/p/10069/) · [LB 200: Anleitung 2026, DE S. 7–11](https://res.cloudinary.com/beurer/image/upload/v1772130462/stibo-live/10069_LB200_2026-02-12_03_IM1_BEU.pdf) · [Beurer: Ersatzfilter 110005](https://www.beurer.com/de/p/110005/)
+Herstellerquellen geprüft: 2026-11-12. [Beurer: LB 200, Art. 10069](https://www.beurer.com/de/p/10069/) · [LB 200: Anleitung 2026, DE S. 7–11](https://res.cloudinary.com/beurer/image/upload/v1772130462/stibo-live/10069_LB200_2026-02-12_03_IM1_BEU.pdf) · [Beurer: Ersatzfilter 110005](https://www.beurer.com/de/p/110005/)
 Anzeige · Modellsuche, kein geprüftes Einzelangebot.Beurer LB 200 bei Amazon.de suchen →
 
 Dampf als bewusste Alternative
 
 ### Beurer LB 55
 RegelungZwei Dampfstufen mit 200 oder 400 ml/h. Kein einstellbares Feuchteziel wie bei den beiden Verdunstern; Raumfeuchte mit eigenem Hygrometer kontrollieren und Betrieb anpassen.Pflege einplanenGeräteinneres, Tank und Dampfteil wöchentlich reinigen. Kalkpad mindestens wöchentlich prüfen/reinigen; je nach Wasserhärte ersetzen, spätestens nach der Befeuchtungssaison.Passendes VerbrauchsmaterialPassende Kalkpads: 163141 (163.141). Packungsgröße beim Händler prüfen; ein Pad ist kein Ersatz für die Entkalkung des Geräts.**Vor dem Kauf:** Artikel 68605. Heißer Dampf und heißes Wasser: außer Reichweite von Kindern aufstellen. Vor der Reinigung ausstecken und abkühlen lassen. Die 365 W Nennleistung im Kostenplan berücksichtigen.
-[Beurer: LB 55, Art. 68605](https://www.beurer.com/de/p/68605/) · [LB 55: Anleitung 2026, DE S. 5–10](https://res.cloudinary.com/beurer/image/upload/v1785407071/stibo-live/68605_LB55_2026-06-01_09_IM1_BEU.pdf) · [Beurer: Kalkpads 163141](https://www.beurer.com/de/p/163141/)
+Herstellerquellen geprüft: 2026-11-12. [Beurer: LB 55, Art. 68605](https://www.beurer.com/de/p/68605/) · [LB 55: Anleitung 2026, DE S. 5–10](https://res.cloudinary.com/beurer/image/upload/v1785407071/stibo-live/68605_LB55_2026-06-01_09_IM1_BEU.pdf) · [Beurer: Kalkpads 163141](https://www.beurer.com/de/p/163141/)
 Anzeige · Modellsuche, kein geprüftes Einzelangebot.Beurer LB 55 bei Amazon.de suchen →
+
+Verdunster mit manueller Stufenwahl
+
+### Stadler Form Oskar little weiß O-060
+RegelungZwei Leistungsstufen. Die EU-Anleitung beschreibt keinen einstellbaren Feuchtezielwert: Raumfeuchte separat messen und den Betrieb selbst anpassen. Nicht mit der Zielwertregelung des Oskar O-020 gleichsetzen.Pflege einplanenTäglich frisches kaltes Leitungswasser; Wasserbehälter alle drei Tage reinigen. Bei mehrtägiger Pause entleeren; je nach Wasserhärte entkalken. Einen Filterwechsel nach spätestens zwei Monaten einplanen, bei Bedarf früher. Abweichende Pflegeintervalle in der Produkt-FAQ verlängern diese Planung nicht.Passendes VerbrauchsmaterialEin Filter pro Wechsel; O-030 enthält zwei passende Filtermatten. Die Produktseite nennt spätestens zwei Monate, die EU-Anleitung 2–3 Monate; hier gilt der frühere Planungstermin.**Vor dem Kauf:** O-060 bezeichnet Weiß in der Herstellerübersicht 2025. Nicht Oskar O-020 oder Oskar big. Die aktuelle Produktseite nennt Hygiene Tabs, die EU-Anleitung Water Cube: Lieferumfang und Pflege anhand der mitgelieferten Anleitung prüfen; Zubehör nicht ungeprüft austauschen.
+Herstellerquellen geprüft: 2026-11-18. [Stadler Form: Oskar little weiß O-060](https://www.stadlerform.com/de-de/luftbefeuchter/oskar-little-weiss-o-060) · [Oskar little: EU-Anleitung, DE S. 10–14](https://www.stadlerform.com/media/85/64/6d/1712837923/stadler-form-oskar-little-manual-eu.pdf) · [Stadler Form: Filter O-030](https://www.stadlerform.com/de-de/luftbefeuchter-zubehoer/luftbefeuchter-filter-2-er-pack-o-030) · [Stadler Form: Modell- und Farbkennungen, Übersicht 2025 S. 2](https://www.stadlerform.com/media/df/e8/d1/1750152809/stadler-form-product-overview-international-2025-de.pdf)
+Anzeige · Modellsuche, kein geprüftes Einzelangebot.Stadler Form Oskar little weiß O-060 bei Amazon.de suchen →
 
 ## Kaufpreis plus Pflege: mit deinen Preisen rechnen
 
 Trage aktuelle Händlerpreise selbst in eine Notiz ein und bleibe bei derselben Währung. Für einen Vergleich brauchst du dieselbe Nutzungsdauer und dieselbe Aufgabe.
 
 - **Anschaffung:** Gerät + wirklich fehlendes Zubehör. Bereits beiliegende Filter oder Pads nicht doppelt addieren.
-- **Verbrauchsmaterial:** Preis je passendem Ersatzteil × geplante zusätzliche Wechsel. Oskar benötigt zwei Filtermatten pro vollständigem Wechsel; O-030 ist dafür ein Zweierpack. Beim LB 200 die kürzere Frist aus sechs Monaten und tatsächlichem Zustand beachten.
+- **Verbrauchsmaterial:** Preis je passendem Ersatzteil × geplante zusätzliche Wechsel. Oskar O-020 benötigt zwei Filtermatten pro vollständigem Wechsel, Oskar little O-060 eine; der O-030-Zweierpack reicht also für einen bzw. zwei Wechsel. Das allein belegt keine niedrigeren Gesamtkosten. Beim LB 200 die kürzere Frist aus sechs Monaten und tatsächlichem Zustand beachten.
 - **Wasser und Reinigung:** freigegebene Wasserart, Wasserhärte und Reinigungsmittel einplanen. Unbekannte Preise bleiben offen, nicht null.
 - **Strom:** gemessene kWh × eigener Tarif; für eine erste Schätzung Nennleistung und Laufzeit klar als Annahmen markieren.
 
 Eine Heizsaison und ein ganzes Betriebsjahr sind nicht dasselbe. Die Wechselanzeige ist kein Nachweis, dass ein verschmutzter Filter bis dahin weiterverwendet werden kann.
 
-[Die drei Leistungswerte in Beispielkosten umrechnen →](https://getecoback.com/guide/luftbefeuchter-stromverbrauch.html)
+[Die Leistungswerte in Beispielkosten umrechnen →](https://getecoback.com/guide/luftbefeuchter-stromverbrauch.html)
 
 ## Warum 50 % im Raum nicht 50 % an der kalten Wand sind
 
@@ -114,8 +126,8 @@ Vor einem Neukauf kannst du auch die [Lüftungsstrategie im Winter](https://gete
 ## Häufige Fragen
 Brauche ich bei weniger als 40 Prozent einen Luftbefeuchter?Ein einzelner Messwert entscheidet das nicht. Miss Temperatur und Feuchte über mehrere Tage, prüfe den Messort und beachte kalte Oberflächen. Ob zusätzliche Feuchte sinnvoll ist, hängt vom Raum und der Nutzung ab. Bei Kondenswasser zuerst die Ursache klären.
 Welcher Luftbefeuchter passt bei hartem Wasser?Bei Ultraschall kann mineralhaltiges Wasser weißen Staub verursachen. Verdunster sind deshalb eine mögliche Alternative, brauchen aber ebenfalls Pflege und passende Filter. Beim Dampfbefeuchter gehört Entkalkung dazu. Die erlaubte Wasserart steht in der genauen Geräteanleitung.
-Haben alle drei ausgewählten Geräte einen Hygrostat?Nein. Oskar und LB 200 bieten einstellbare Feuchteziele. Beim LB 55 wählst du eine Dampfstufe und kontrollierst die Raumfeuchte separat. Ein Hygrostat ersetzt weder die Reinigung noch den Blick auf kalte Fenster und Wände.
-Welcher Filter passt zum Oskar und zum LB 200?Für den hier gemeinten Oskar O-020 führt Stadler Form die Filtermatten O-030 im Zweierpack. Zum Beurer LB 200 passt der Original-Ersatzfilter 110005, in der Anleitung als 110.005 geschrieben. Vor der Bestellung die vollständige Modell- und Teilekennung abgleichen.
+Haben alle vier ausgewählten Geräte einen einstellbaren Feuchtezielwert?Nein. Oskar O-020 und LB 200 bieten einstellbare Feuchteziele. Die EU-Anleitung des Oskar little O-060 beschreibt zwei Leistungsstufen ohne einstellbaren Feuchtezielwert. Beim LB 55 wählst du eine Dampfstufe. Bei manueller Stufenwahl misst du die Raumfeuchte separat und passt den Betrieb selbst an. Ein Hygrostat ersetzt weder die Reinigung noch den Blick auf kalte Fenster und Wände.
+Welcher Filter passt zu Oskar, Oskar little und LB 200?Die Filtermatten O-030 im Zweierpack passen zu Oskar O-020 und Oskar little O-060. Oskar braucht zwei Matten pro vollständigem Wechsel, Oskar little eine. Zum Beurer LB 200 passt der Original-Ersatzfilter 110005, in der Anleitung als 110.005 geschrieben. Vor der Bestellung die vollständige Modell- und Teilekennung abgleichen.
 Sind die Amazon-Links geprüfte Angebote?Nein. Die gekennzeichneten Affiliate-Links öffnen Modellsuchen bei Amazon.de. Sie bestätigen weder Preis noch Bestand oder Versand. Deutschland, Österreich und Schweiz können unterschiedliche Endkosten und Lieferbedingungen haben.
 
 ---

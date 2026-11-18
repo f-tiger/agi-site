@@ -1,0 +1,13 @@
+# Humidifier decision extension — 2026-11-18
+
+Buyer: a German reader with a measured humidification need, choosing between manual operation and a selectable humidity target, while accounting for filter care. The existing guide owns this intent; no new guide, country or broad product list is created. The no-purchase, condensation/cause-first and separate-hygrometer branches remain.
+
+This release adds one exact model, Stadler Form Oskar little white O-060, to the existing three-model selection. It is a different control and maintenance choice, not a colour variant of Oskar O-020. Official evidence: [Stadler Form Germany: Oskar little white O-060](https://www.stadlerform.com/de-de/luftbefeuchter/oskar-little-weiss-o-060) and its linked EU manual govern facts, power and care. Existing models retain their Nov12 evidence dates; adding a Nov18 record must not renew older merchant eligibility. Manufacturer descriptions are not ECO tests, measured savings, current offers or availability.
+
+The comparison explains the tradeoff rather than ranking by nameplate watts or nominal room coverage. HTML, non-commerce Markdown and the existing running-cost scenario retain the same new model evidence. Editorial modification and per-model source dates are separate. Existing Amazon.de exact-model search uses only the approved tag; no ASIN is guessed and no order/revenue claim is implied.
+
+Mechanism mapping: the Nov12 documented home&smart/CHIP humidifier review identified technology, control and maintenance as decision dimensions. ECO previously had two evaporators with humidity targets and a steam alternative; adding a smaller manually operated evaporator tests a distinct buyer choice. Failure case: readers mistake smaller size or lower rated power for sufficient humidification or guaranteed lower total cost. The guide explicitly requires actual room conditions, separate measurements, care and exact variants. Small traffic samples cannot establish that product breadth caused the click gap.
+
+Marketing remains within the existing cadence. The Nov12 catalog and Nov13 thermostat creatives occupy the rolling-seven-day limit on Nov18. No new creative, new scheduling, paid spend, account or unsolicited outreach. Existing owned guide/support links provide discovery. Original Nov5–18 revenue observation and Nov24 acquisition review remain, without automatic extension. Private diagnosis and reporting gaps stay outside this public release note.
+
+Validation and actual production receipts will be attached to the PR after final generation, source/expiry/collector tests, mobile/no-JS checks, complete CI and deployment. IndexNow and frontend GA4 checks establish technical delivery only, not rankings, AI citations, backend analytics receipts or sales.
