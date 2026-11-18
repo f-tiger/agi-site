@@ -1,34 +1,14 @@
 {
- "generated": "2026-11-17T17:16:19+00:00",
+ "generated": "2026-11-18T16:51:45+00:00",
  "definition": "share of sampled open FutureEval/MiniBench questions whose resolution text names a host the fleet archives on a schedule (tools/fleet/archived_sources.txt); unknown = not covered",
  "tournaments": [
   "33121"
  ],
- "sampled": 3,
+ "sampled": 1,
  "covered": 0,
  "coverage_share": 0.0,
  "stale": false,
  "sample": [
-  {
-   "post_id": 46552,
-   "title": "Will Jensen Huang deliver the keynote at Nvidia GTC Washington, D.C. before December 4, 2026?",
-   "hosts": [
-    "investor.nvidia.com",
-    "www.metaculus.com",
-    "www.nvidia.com"
-   ],
-   "covered_by": null,
-   "tournament": "33121"
-  },
-  {
-   "post_id": 46498,
-   "title": "By how many points will Kiko Llaneras beat the Community Prediction in the 2026 Fall Metaculus Cup?",
-   "hosts": [
-    "www.metaculus.com"
-   ],
-   "covered_by": null,
-   "tournament": "33121"
-  },
   {
    "post_id": 45615,
    "title": "Announcing Fall 2026 FutureEval Bot Tournament",
