@@ -12,8 +12,9 @@
  document.addEventListener('click',e=>{
   const el=e.target.closest?.('[data-commercial-action]');if(!el)return;
   const action=el.dataset.commercialAction;
-  if(!['vendor-sponsor','vendor-wait','ad-wallet','ad-reach','ad-later'].includes(action))return;
+  if(!['vendor-sponsor','vendor-wait','ad-inquiry','ad-wallet','ad-reach','ad-later'].includes(action))return;
   track(action);
+  if(action==='ad-inquiry')return;
   if(action==='vendor-wait'){vendor.hidden=true;return;}
   if(action.startsWith('ad-')){for(const b of decision.querySelectorAll('button[data-commercial-action]')){b.disabled=true;b.setAttribute('aria-pressed',String(b===el));}const msg=document.getElementById('adReasonStatus');if(msg)msg.textContent=say('已选择；你可以不创建订单。此反馈不订阅邮件，也不改变免费投稿。','Selected. You can leave without creating an order. This feedback does not subscribe you to emails or affect a free submission.');}
  });

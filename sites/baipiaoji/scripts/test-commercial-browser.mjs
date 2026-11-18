@@ -18,8 +18,28 @@ try{browser=await pw.chromium.launch({headless:true,...(process.env.PILOT_CHROMI
  assert.equal((await p.evaluate(()=>window.__biz)).filter(x=>x[1]==='/biz/trigger/vendor-sponsor').length,1);assert.equal(await p.locator('#vendorForm select[name=kind]').inputValue(),'expedite');assert.equal(orders,0);
 
  await p.goto(origin+prefix+'/submit.html?__ci=1');assert.equal(await p.locator('#vendorSponsor').isVisible(),false);await p.locator('#submitForm input[name=name]').fill('Test tool');await p.locator('#submitForm input[name=url]').fill('https://example.test/');failSubmit=true;await p.locator('#submitForm button').click();await p.locator('#submitForm .is-err').waitFor();assert.equal(await p.locator('#vendorSponsor').isVisible(),false);failSubmit=false;await p.locator('#submitForm button').click();await p.locator('#vendorSponsor').waitFor();await p.locator('[data-commercial-action=vendor-sponsor]').click();await p.waitForURL(u=>/\/advertise(?:\.html)?$/.test(u.pathname));assert.ok(p.url().includes('__ci=1'));await p.locator('[data-commercial-availability]').filter({hasText:'49.00'}).waitFor();assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));assert.equal((await p.evaluate(()=>window.__biz)).filter(x=>x[1]?.startsWith('/biz/trigger/')).length,0);
+ await p.goto(origin+prefix+'/submit.html?__ci=1');
+ const submitted=p.locator('#submitForm');
+ await submitted.locator('[name=name]').fill('Example Studio');
+ await submitted.locator('[name=url]').fill('https://example.test/tool');
+ await submitted.locator('[name=email]').fill('private@example.test');
+ await submitted.locator('button').click();
+ await p.locator('[data-biz=from-submit]').click();
+ await p.waitForURL(u=>u.hash==='#vendorForm');
+ const inquiry=p.locator('#vendorForm');
+ assert.equal(await inquiry.locator('[name=name]').inputValue(),'Example Studio');
+ assert.equal(await inquiry.locator('[name=url]').inputValue(),'https://example.test/tool');
+ assert.equal(await inquiry.locator('[name=email]').inputValue(),'');
+ assert.equal(await inquiry.locator('[name=kind]').inputValue(),'expedite');
+ assert.equal(new URL(p.url()).searchParams.get('__ci'),'1');
+ assert(!p.url().includes('example.test'));
+ assert.equal(await p.evaluate(()=>sessionStorage.getItem('bpj-vendor-handoff')),null);
  await p.goto(origin+prefix+'/advertise.html#adDecision');await p.locator('[data-commercial-availability]').filter({hasText:'49.00'}).waitFor();await p.waitForFunction(()=>window.__biz.some(x=>x[1]==='/biz/trigger/ad-view'));await p.locator('#adDecision summary').click();await p.locator('[data-commercial-action=ad-wallet]').click();assert.equal(await p.locator('[data-commercial-action=ad-reach]').isDisabled(),true);assert.equal((await p.evaluate(()=>window.__biz)).filter(x=>x[1]==='/biz/trigger/ad-wallet').length,1);
  mode='test';await p.reload();await p.locator('[data-commercial-availability]').filter({hasText:lang==='en'?'Test mode':'测试模式'}).waitFor();mode='live';failDoctor=true;await p.reload();await p.locator('[data-commercial-availability]').filter({hasText:lang==='en'?'could not':'无法'}).waitFor();failDoctor=false;
+ await p.goto(origin+prefix+'/advertise.html?__ci=1');
+ await p.locator('[data-commercial-action=ad-inquiry]').click();
+ assert.equal(await p.locator('#vendorForm [name=kind]').inputValue(),'sponsor');
+ assert.equal(new URL(p.url()).searchParams.get('__ci'),'1');
  // House placements retain the category from tool AND category pages. Carry only
  // the fixed category/QA flag; never forward search text or other query values.
  for(const [entry,category]of[['/tools/kling.html','video'],['/c/coding.html','coding']]){
