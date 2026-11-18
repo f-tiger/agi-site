@@ -25,6 +25,17 @@ export function installMeterReferral(win) {
     }).catch(() => {});
     win.dispatchEvent(new win.CustomEvent('fleet:business', {detail:{name}}));
   }
+  let referringPage;
+  try { referringPage = new URL(doc.referrer); } catch { /* Direct visit or withheld referrer. */ }
+  if (referringPage?.origin === url.origin && referringPage.pathname === '/guide/luftbefeuchter-stromverbrauch.html') {
+    function recordGuideArrival() {
+      if (doc.visibilityState !== 'visible') return;
+      doc.removeEventListener('visibilitychange', recordGuideArrival);
+      record('eco_meter_from_guide');
+    }
+    doc.addEventListener('visibilitychange', recordGuideArrival);
+    recordGuideArrival();
+  }
   function activate(event) {
     if (event.isTrusted && (event.type === 'click' && event.button === 0 ||
         event.type === 'auxclick' && event.button === 1)) record('eco_meter_guide_click');

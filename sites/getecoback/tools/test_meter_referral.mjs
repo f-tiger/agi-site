@@ -2,11 +2,11 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {DatabaseSync} from 'node:sqlite';
-import {METER_PAGE, METER_QUERY, validMeterEvent, meterReferralReport} from '../src/meter-referral.mjs';
+import {METER_PAGE, HUMIDIFIER_PAGE, METER_QUERY, validMeterEvent, meterReferralReport} from '../src/meter-referral.mjs';
 import {ecoPublicBusinessEvent} from '../site/assets/public-engagement.mjs';
 
 test('only the exact source and fixed action pass both analytics contracts', () => {
-  for (const name of ['eco_meter_guide_view','eco_meter_guide_click']) {
+  for (const name of ['eco_meter_from_guide','eco_meter_guide_view','eco_meter_guide_click']) {
     const request = new Request('https://getecoback.com/api/ev', {headers:{origin:'https://getecoback.com'}});
     const body = {n:name,p:METER_PAGE};
     assert.ok(validMeterEvent(body,request));
@@ -23,7 +23,10 @@ test('date-indexed report distinguishes pre-launch missing coverage, real zeros,
   db.exec(fs.readFileSync(new URL('../db/d1_schema.sql', import.meta.url),'utf8'));
   const insert = db.prepare('INSERT INTO ev(day,name,page,ua_class) VALUES(?,?,?,?)');
   for (const [d,name,page,ua] of [
+    [17,'page_view',HUMIDIFIER_PAGE,'human'],[19,'page_view',HUMIDIFIER_PAGE,'human'],
+    [19,'page_view',HUMIDIFIER_PAGE,'ci'],[19,'eco_meter_guide_click',HUMIDIFIER_PAGE,'human'],
     [17,'page_view',METER_PAGE,'human'],[18,'eco_meter_guide_view',METER_PAGE,'human'],
+    [19,'eco_meter_from_guide',METER_PAGE,'human'],[19,'eco_meter_from_guide',METER_PAGE,'ci'],
     [19,'eco_meter_guide_view',METER_PAGE,'human'],[19,'eco_meter_guide_click',METER_PAGE,'human'],
     [19,'eco_meter_guide_click',METER_PAGE,'ci'],[19,'eco_meter_guide_click','/other','human'],
     [21,'eco_meter_guide_click',METER_PAGE,'human']]) insert.run('2026-11-'+d,name,page,ua);
@@ -31,8 +34,10 @@ test('date-indexed report distinguishes pre-launch missing coverage, real zeros,
   const now=new Date('2026-11-21T15:00:00Z');
   const report=await (await meterReferralReport(env,now)).json();
   assert.equal(report.ok,true);
-  assert.deepEqual(report.daily.slice(-4).map(r=>[r.date,r.source_pageviews,r.link_views,r.link_clicks]),[
-    ['2026-11-17',1,null,null],['2026-11-18',0,null,null],['2026-11-19',0,1,1],['2026-11-20',0,0,0]]);
+  assert.deepEqual(report.daily.slice(-4).map(r=>[r.date,r.source_pageviews,r.humidifier_arrivals,r.link_views,r.link_clicks]),[
+    ['2026-11-17',1,null,null,null],['2026-11-18',0,null,null,null],['2026-11-19',0,1,1,1],['2026-11-20',0,0,0,0]]);
+  assert.equal(report.feeder_path,HUMIDIFIER_PAGE);
+  assert.deepEqual(report.daily.slice(-4).map(r=>r.humidifier_pageviews),[1,0,1,0]);
   assert.match(db.prepare('EXPLAIN QUERY PLAN '+METER_QUERY).all('2026-11-15','2026-11-21',METER_PAGE)[0].detail,/idx_ev_day/);
   const fail=await meterReferralReport({},now);
   assert.equal(fail.status,503);assert.equal((await fail.json()).daily,null);

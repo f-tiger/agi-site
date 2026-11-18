@@ -29,7 +29,7 @@ export function countryScenarioEvent(pathname, detail) {
 // selected products, household answers or a share URL. Each is once per page.
 export function ecoPublicBusinessEvent(pathname, detail) {
   if (!detail || typeof detail !== 'object' || !Object.hasOwn(detail,'name') || Object.keys(detail).length !== 1 || typeof detail.name !== 'string') return null;
-  if (pathname === '/strommess-protokoll.html' && ['eco_meter_guide_view','eco_meter_guide_click'].includes(detail.name))
+  if (pathname === '/strommess-protokoll.html' && ['eco_meter_from_guide','eco_meter_guide_view','eco_meter_guide_click'].includes(detail.name))
     return {name:detail.name, tool_id:'eco-meter-guide'};
   if (/^\/(?:[a-z0-9-]+\/)*(?:[a-z0-9-]+\.html)?$/.test(pathname) &&
       !pathname.split('/').some(p => /^(?:auth|api|account|members|widgets|analytics-assets|member-assets)(?:\.html)?$/.test(p)) &&

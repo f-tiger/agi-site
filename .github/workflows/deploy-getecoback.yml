@@ -648,6 +648,12 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: node tools/revenue-studio/indexnow.mjs --site eco --out sites/getecoback/site
 
+      - name: Read the live EcoBack and TDS guide reports
+        if: ${{ !cancelled() && steps.deploy.outcome == 'success' }}
+        # TDS availability is independent of the EcoBack deployment.
+        continue-on-error: true
+        run: node tools/meter-referral-report.mjs
+
       - name: Post-deploy health check (live site serves key pages)
         if: ${{ !cancelled() && steps.deploy.outcome == 'success' }}
         run: |
