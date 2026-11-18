@@ -144,6 +144,37 @@ class HumidifierTests(unittest.TestCase):
                     for key in p['sources']:self.assertIn(self.data['sources'][key]['url'],md)
                 self.assertIn(self.data['sources']['uba']['url'],md)
 
+    def test_published_accessory_lookup_keeps_model_to_part_matches(self):
+        base = catalog.ROOT / 'site/guide'
+        html = (base / f'{guide.MAIN}.html').read_text()
+        md = (base / f'{guide.MAIN}.md').read_text()
+        heading = 'Welcher Ersatzfilter oder welches Kalkpad passt zu meinem Luftbefeuchter?'
+        self.assertEqual(html.count('id="ersatzteile-zuordnen"'), 1)
+        self.assertIn('href="#ersatzteile-zuordnen"', html)
+        self.assertIn(heading, md)
+        html_lookup = html.split('id="ersatzteile-zuordnen"', 1)[1].split('</section>', 1)[0]
+        md_lookup = md.split('## ' + heading, 1)[1].split('\n## ', 1)[0]
+        html_rows = re.findall(r'<li>(.*?)</li>', html_lookup, re.S)
+        md_rows = [line for line in md_lookup.splitlines() if line.startswith('- ')]
+        matches = [
+            ('O-020', 'oskar_filter', 'Zwei Filtermatten'),
+            ('O-060', 'oskar_filter', 'Eine Filtermatte'),
+            ('LB 200', 'lb200_filter', '110.005'),
+            ('LB 55', 'lb55_pads', 'Kalkpads'),
+        ]
+        for rows in (html_rows, md_rows):
+            self.assertEqual(len(rows), len(matches))
+            for model, source, detail in matches:
+                matching = [row for row in rows if model in row]
+                self.assertEqual(len(matching), 1, model)
+                self.assertIn(self.data['sources'][source]['url'], matching[0])
+                self.assertIn(detail, matching[0])
+        for lookup in (html_lookup, md_lookup):
+            self.assertIn('Typenschild', lookup)
+            self.assertIn('unleserlichen', lookup)
+            self.assertIn('Mengenangaben', lookup)
+            self.assertNotIn('amazon.de/', lookup)
+
     def test_final_artifacts_keep_catalog_and_support_separation(self):
         for slug in guide.PAGES:
             html=(catalog.ROOT/'site/guide'/f'{slug}.html').read_text()

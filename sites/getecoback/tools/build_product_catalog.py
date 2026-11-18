@@ -32,6 +32,30 @@ PRODUCT_FIELDS = ('id', 'category', 'name', 'brand', 'variant', 'role', 'facts',
 FORBIDDEN = {'asin', 'tag', 'affiliate_tag', 'merchant_url', 'affiliate_url', 'price', 'rating', 'stock'}
 
 
+# These comparisons have their own reviewed catalogs and merchant eligibility.
+# Only their editorial entry points belong in this directory.
+SPECIALIST_GUIDES = (
+    ('Luftentfeuchter', '/guide/luftentfeuchter-ratgeber.html#eb-models',
+     'Ist dein Keller dauerhaft feucht? Erst messen und die Ursache klären. Bei Bedarf Tankbetrieb und Schlauchablauf vergleichen.',
+     'Raumfeuchte Feuchtigkeit feuchter Keller Luftentfeuchtung Meaco Bosch Dry'),
+    ('Luftbefeuchter', '/guide/luftbefeuchter-ratgeber.html#modelle-vergleichen',
+     'Trockene Luft gemessen? Vergleiche manuelle Stufen mit einstellbarem Feuchteziel und prüfe, welche Filter du wechseln musst.',
+     'Raumfeuchte Luftbefeuchtung trockene Raumluft Hygrostat Stadler Form Oskar little O-060 Beurer'),
+    ('Ersatzteile für Luftbefeuchter', '/guide/luftbefeuchter-ratgeber.html#ersatzteile-zuordnen',
+     'Welches Teil passt zu deinem Gerät? Gleiche die Modellkennung mit den Filtermatten O-030, dem Ersatzfilter 110005 oder den Kalkpads 163141 ab.',
+     'Zubehör Ersatzteile Ersatzfilter Filtermatten Kalkpads O-030 110005 163141 Stadler Form Beurer'),
+    ('Heizkörperthermostate', '/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-start',
+     'Willst du Heizzeiten einstellen? Prüfe zuerst dein Ventil und ob das gewählte Thermostat eine passende Zentrale braucht.',
+     'Heizung Heizkörper regeln Thermostat Ventiladapter Smart Home tado Bosch FRITZ'),
+    ('Saugroboter', '/guide/saugroboter-kaufberatung.html#modelle-vergleichen',
+     'Soll ein Roboter die Räume selbstständig reinigen? Miss die Türschwellen und den Platz für die Station, bevor du die Wischfunktion wählst.',
+     'Staubsaugerroboter Wischroboter Türschwelle Teppich Dreame D10 Plus Gen 2 L10s Ultra Gen 2 Roborock Saros 10R'),
+    ('Saugwischer', '/guide/saugwischer-kaufberatung.html#modelle-vergleichen',
+     'Willst du Hartboden von Hand saugen und wischen? Prüfe die Freigabe für feuchte Reinigung und plane Zeit für Tank und Walze ein.',
+     'Wischsauger Nasswischen Bodenfreigabe Parkett Tineco S7 FlashDry Dreame H14 Pro Roborock F25 XT'),
+)
+
+
 def date(value):
     if not isinstance(value, str) or not re.fullmatch(r'\d{4}-\d{2}-\d{2}', value):
         raise ValueError('Expected exact ISO calendar date')
@@ -141,6 +165,11 @@ def render(data, today=None):
 <p class="pc-buyer-routes"><a href="#modelle-{esc(category['id'])}">Direkt die {len(cards)} Modelle vergleichen ↓</a> <a href="#pc-tool-{esc(category['id'])}">Erst die passende Auswahlhilfe nutzen ↓</a></p>
 {comparison}{tool}<h3 class="pc-model-heading" id="modelle-{esc(category['id'])}">{esc(category['name'])}: Modelle und Kaufgrenzen</h3><div class="pc-grid">{''.join(cards)}</div></section>''')
     nav = ''.join(f'<a href="#kategorie-{esc(c["id"])}" data-category-link="{esc(c["id"])}">{esc(c["name"])}</a>' for c in data['categories'])
+    guide_items = ''.join(
+        f'<li data-specialist-guide data-search-terms="{esc(keywords)}">'
+        f'<a href="{esc(target)}">{esc(name)}</a> <p>{esc(question)}</p></li>'
+        for name, target, question, keywords in SPECIALIST_GUIDES
+    )
     options = ''.join(f'<option value="{esc(c["id"])}">{esc(c["name"])}</option>' for c in data['categories'])
     css_version = hashlib.sha256((ROOT / 'site/assets/product-catalog.css').read_bytes()).hexdigest()[:12]
     script_version = hashlib.sha256((ROOT / 'site/assets/product-catalog.mjs').read_bytes()).hexdigest()[:12]
@@ -165,14 +194,17 @@ def render(data, today=None):
 <h1>Haushaltsgeräte: konkrete Modelle für deine Aufgabe</h1><p class="pc-lead">{count} konkrete Modelle in {len(data['categories'])} Produktgruppen. Vergleiche Einsatz, genaue Variante und Grenzen anhand der Herstellerquellen — ohne Testnoten oder Preisrangliste.</p>
 <p class="pc-disclosure">Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Händlersuchen sind als Anzeige gekennzeichnet. Keine eigenen Gerätetests; Herstellerangaben sind keine Leistungszusage für dein Zuhause.</p>
 <p class="pc-dates">Veröffentlicht: <time datetime="{published}">{date(published).strftime('%d.%m.%Y')}</time> · Inhalt geändert: <time datetime="{modified}">{date(modified).strftime('%d.%m.%Y')}</time>. Der Quellenstand steht an jedem Modell.</p></header>
-<nav class="pc-categories" aria-label="Produktgruppen">{nav}</nav>
-<form class="pc-filters" id="product-filters" role="search" hidden><label for="product-query">Modell, Marke oder Aufgabe<input id="product-query" type="search" maxlength="100" autocomplete="off" placeholder="Zum Beispiel: Fenster, Bosch, Akku"></label>
+<nav class="pc-categories" aria-label="Produktgruppen und Kaufhilfen">{nav}<a class="pc-guide-jump" href="#kaufhilfen">Zu den {len(SPECIALIST_GUIDES)} Kaufhilfen ↓</a></nav>
+<form class="pc-filters" id="product-filters" role="search" hidden><label for="product-query">Modelle und Kaufhilfen durchsuchen<input id="product-query" type="search" maxlength="100" autocomplete="off" placeholder="Zum Beispiel: Luftbefeuchter, Bosch, Parkett"></label>
 <label for="product-category">Produktgruppe<select id="product-category"><option value="">Alle Produktgruppen</option>{options}</select></label><button type="reset">Filter zurücksetzen</button>
-<p class="pc-filter-note">Die Suche läuft nur in diesem Browser. Dein Suchtext wird nicht übertragen.</p></form>
+<p class="pc-filter-note">Die Suche läuft nur in diesem Browser. Dein Suchtext wird nicht übertragen.</p>
+<p id="product-filter-empty" hidden>Keine passenden Modelle oder Kaufhilfen gefunden. Ändere die Suche oder setze die Filter zurück.</p></form>
 <p id="product-filter-status" role="status" aria-live="polite">{count} Modelle in {len(data['categories'])} Produktgruppen.</p>
-<p id="product-filter-empty" hidden>Keine passenden Modelle. Ändere die Suche oder setze die Filter zurück.</p>
+<section class="pc-guides" id="kaufhilfen" data-specialist-guides aria-labelledby="pc-guides-heading">
+<h2 id="pc-guides-heading">Kaufhilfen für Raumklima, Heizung und Böden</h2>
+<ul>{guide_items}</ul></section>
 {''.join(groups)}
-<section class="pc-method" id="auswahlmethode"><h2>Was diese Auswahl leistet</h2><p>Die Gruppen zeigen unterschiedliche Aufgaben und konkrete Modelle, keine vollständige Marktübersicht. Herstellerdaten und genaue Varianten stehen bei jedem Gerät. Wir haben diese Geräte nicht selbst getestet. Eine Händlersuche bestätigt weder ein bestimmtes Angebot noch Verfügbarkeit oder einen Preis.</p><p>Quellen älter als 90 Tage, zukünftige Prüfdaten oder offene Widersprüche pausieren die Händlersuche. Die zuletzt dokumentierten Fakten bleiben nachvollziehbar. Zubehör, regionale Ausführung und die passende Anleitung am konkreten Angebot prüfen. Ein funktionierendes vorhandenes Gerät muss nicht ersetzt werden.</p><p>Weitere genaue Kaufhilfen: <a href="/guide/luftentfeuchter-ratgeber.html">Luftentfeuchter</a> · <a href="/guide/smarte-heizkoerperthermostate-lohnen-sich.html">Heizkörperthermostate</a> · <a href="/guide/saugwischer-kaufberatung.html">Saugwischer</a> · <a href="/guide/saugroboter-kaufberatung.html">Saugroboter</a> · <a href="/guide/luftbefeuchter-ratgeber.html">Luftbefeuchter</a>.</p></section>
+<section class="pc-method" id="auswahlmethode"><h2>Was diese Auswahl leistet</h2><p>Die Gruppen zeigen unterschiedliche Aufgaben und konkrete Modelle, keine vollständige Marktübersicht. Herstellerdaten und genaue Varianten stehen bei jedem Gerät. Wir haben diese Geräte nicht selbst getestet. Eine Händlersuche bestätigt weder ein bestimmtes Angebot noch Verfügbarkeit oder einen Preis.</p><p>Quellen älter als 90 Tage, zukünftige Prüfdaten oder offene Widersprüche pausieren die Händlersuche. Die zuletzt dokumentierten Fakten bleiben nachvollziehbar. Zubehör, regionale Ausführung und die passende Anleitung am konkreten Angebot prüfen. Ein funktionierendes vorhandenes Gerät muss nicht ersetzt werden.</p></section>
 </article></main><footer class="pc-footer"><a href="/wie-wir-empfehlen.html">Unsere Methode</a> · <a href="/datenschutz.html">Datenschutz</a> · <a href="/impressum.html">Impressum</a></footer></body></html>\n'''
 
 
