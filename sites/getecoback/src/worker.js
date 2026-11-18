@@ -1,3 +1,4 @@
+import {validMeterEvent, meterReferralReport} from './meter-referral.mjs';
 import {citationUrl} from './agent-sources.mjs';
 import {guidePath, publishedGuides, readGuide} from './mcp-guides.mjs';
 import {normalize as normalizeSearch} from '../site/assets/demand-discovery.mjs';
@@ -413,6 +414,7 @@ async function serveAsset(request, env, pathname, ctx) {
 // no consent banner is required and nothing here identifies a visitor.
 const EV_NAMES = new Set([
   ...DISTRIBUTION_EVENTS,
+  "eco_meter_guide_view", "eco_meter_guide_click",
   ...BUYER_EVENTS,
   "eco_moisture_example", "eco_moisture_check", "eco_moisture_save", "eco_moisture_export",
   ...LAUNDRY_EVENTS,
@@ -781,6 +783,13 @@ async function handleEvent(request, env, ctx) {
   const name = String(body.n || "").slice(0, 40);
   if (!EV_NAMES.has(name)) return json({ ok: false, error: "unknown_event" }, 200, cors);
 
+  const meterEvent = name === 'eco_meter_guide_view' || name === 'eco_meter_guide_click';
+  if (meterEvent) {
+    if (!validMeterEvent(body, request)) return json({ok:false,error:'invalid_meter_referral'},400,cors);
+    if (request.headers.get('dnt') === '1' || request.headers.get('sec-gpc') === '1' ||
+        evUaClass(request.headers.get('user-agent') || '') !== 'human') return json({ok:true,skipped:true},200,cors);
+  }
+
   if(name==='tool_complete') {
     const metadata=body.m;
     if(body.p!=='/produkte.html'||Object.keys(body).some(k=>!['n','p','r','m'].includes(k))
@@ -811,7 +820,7 @@ async function handleEvent(request, env, ctx) {
   try { ref = body.r ? new URL(String(body.r)).hostname.slice(0, 100) : ""; } catch { ref = ""; }
   const meta = name === 'affiliate_click' ? affiliateMeta(body.m)
     : body.m ? JSON.stringify(body.m).slice(0, 200) : "";
-  const country = request.headers.get("CF-IPCountry") || "";
+  const country = meterEvent ? "" : request.headers.get("CF-IPCountry") || "";
   const day = new Date().toISOString().slice(0, 10);
 
   const evUa = request.headers.get("user-agent") || "";
@@ -1641,6 +1650,9 @@ export default {
     // /api/pulse:见 pulseCompute;从 Cache API 出(1 小时,键含部署版本),错误永不入缓存。
     if (url.pathname === "/api/pulse" && request.method === "GET") {
       return cachedJson(request, env, ctx, 3600, () => pulseCompute(url, env));
+    }
+    if (url.pathname === "/api/meter-referral" && request.method === "GET") {
+      return cachedJson(request, env, ctx, 300, () => meterReferralReport(env));
     }
     if (url.pathname === "/api/distribution-growth" && request.method === "GET") {
       return cachedJson(request, env, ctx, 3600, () => distributionGrowth(env));
