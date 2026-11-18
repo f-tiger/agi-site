@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-17",
+ "fetched": "2026-11-18",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -52,102 +52,66 @@
    "last_attempt_status": "ok"
   },
   "schimmel entfernen": {
-   "rising": [
-    {
-     "q": "schimmel mit alkohol entfernen",
-     "v": 82200
-    },
-    {
-     "q": "schimmel aus auto entfernen",
-     "v": 49700
-    },
-    {
-     "q": "isopropanol gegen schimmel",
-     "v": 35600
-    },
-    {
-     "q": "schimmel von leder entfernen",
-     "v": 28050
-    },
-    {
-     "q": "wasserstoffperoxid kaufen",
-     "v": 4900
-    },
-    {
-     "q": "schimmel aus kleidung entfernen",
-     "v": 50
-    },
-    {
-     "q": "schimmel in der dusche entfernen",
-     "v": 50
-    },
-    {
-     "q": "schimmel entfernen wohnung",
-     "v": 50
-    },
-    {
-     "q": "dusche schimmel entfernen",
-     "v": 40
-    },
-    {
-     "q": "schimmel silikonfugen entfernen",
-     "v": 40
-    }
+   "auto": [
+    "schimmel entfernen",
+    "schimmel entfernen wand",
+    "schimmel entfernen hausmittel",
+    "schimmel entfernen dusche",
+    "schimmel entfernen bad fugen",
+    "schimmel entfernen wand innen",
+    "schimmel entfernen dm",
+    "schimmel entfernen firma in der nähe",
+    "schimmel entfernen tapete",
+    "schimmel entfernen alkohol"
    ],
-   "source": "related-queries",
-   "fetched": "2026-11-17",
-   "polluted": false,
-   "last_attempt_at": "2026-11-17T13:45:09.991276+00:00",
-   "last_attempt_status": "ok"
+   "new_vocabulary": [
+    "schimmel entfernen wand",
+    "schimmel entfernen hausmittel",
+    "schimmel entfernen dusche",
+    "schimmel entfernen bad fugen",
+    "schimmel entfernen wand innen",
+    "schimmel entfernen dm",
+    "schimmel entfernen firma in der nähe",
+    "schimmel entfernen tapete",
+    "schimmel entfernen alkohol"
+   ],
+   "rising": [],
+   "source": "autocomplete-vocabulary",
+   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
+   "last_attempt_at": "2026-11-18T13:20:12.237242+00:00",
+   "last_attempt_status": "failed",
+   "fetched": "2026-11-18"
   },
   "infrarotheizung": {
-   "rising": [
-    {
-     "q": "heizlüfter",
-     "v": 151950
-    },
-    {
-     "q": "diesel infrarotheizung",
-     "v": 74650
-    },
-    {
-     "q": "infrarotheizung 300 watt",
-     "v": 66250
-    },
-    {
-     "q": "toom infrarotheizung",
-     "v": 52500
-    },
-    {
-     "q": "infrarotheizung schreibtisch",
-     "v": 51050
-    },
-    {
-     "q": "konvektorheizung",
-     "v": 39400
-    },
-    {
-     "q": "elektrische heizung",
-     "v": 37600
-    },
-    {
-     "q": "lidl infrarotheizung",
-     "v": 32500
-    },
-    {
-     "q": "infrarotheizung werkstatt",
-     "v": 31900
-    },
-    {
-     "q": "infrarotheizung auf rollen",
-     "v": 30700
-    }
+   "auto": [
+    "infrarotheizung",
+    "infrarotheizung wand",
+    "infrarotheizung decke",
+    "infrarotheizung badezimmer",
+    "infrarotheizung standgerät",
+    "infrarotheizung test",
+    "infrarotheizung bild",
+    "infrarotheizungen",
+    "infrarotheizung test stiftung warentest",
+    "infrarotheizung decke mit licht"
    ],
-   "source": "related-queries",
-   "fetched": "2026-11-10",
-   "polluted": false,
-   "last_attempt_at": "2026-11-10T12:53:08.401498+00:00",
-   "last_attempt_status": "ok"
+   "new_vocabulary": [
+    "infrarotheizung wand",
+    "infrarotheizung decke",
+    "infrarotheizung badezimmer",
+    "infrarotheizung standgerät",
+    "infrarotheizung test",
+    "infrarotheizung bild",
+    "infrarotheizungen",
+    "infrarotheizung test stiftung warentest",
+    "infrarotheizung decke mit licht"
+   ],
+   "rising": [],
+   "source": "autocomplete-vocabulary",
+   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
+   "last_attempt_at": "2026-11-18T13:23:12.350171+00:00",
+   "last_attempt_status": "failed",
+   "fetched": "2026-11-18"
   },
   "luftentfeuchter": {
    "rising": [
