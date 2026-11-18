@@ -238,3 +238,32 @@ test('Server collection excludes shopping QA actions and arbitrary payloads befo
     await Promise.all(pending); assert.equal(writes.length, 0, JSON.stringify(options));
   }
 });
+
+test('German smart-home report covers one page, with distinct ECO views and Amazon.de clicks across complete UTC dates', async () => {
+  const {guideReport, onRequestGet} = await import('../../functions/api/smart-home-growth.js');
+  const db = database(), ctx = contextForDB(db);
+  const guide = '/de/shop/categories/smart-home';
+  const insert = db.prepare('INSERT INTO hits(d,path,ref,ev) VALUES (?,?,?,?)');
+  const view = (date, ref, path = guide) => insert.run(date, path, ref, '');
+  view('2026-11-14', 'getecoback.com');
+  view('2026-11-15', 'getecoback.com');
+  view('2026-11-15', 'getecoback.com.fake.test');
+  view('2026-11-18', 'getecoback.com');
+  view('2026-11-19', 'www.getecoback.com');
+  view('2026-11-19', 'getecoback.com', '/uk/smart-plugs');
+  view('2026-11-20', 'getecoback.com');
+  for (const ref of ['amazon.de', 'amazon.com']) insert.run('2026-11-19', guide, ref, 'affiliate_click');
+  insert.run('2026-11-19', guide, 'getecoback.com', 'bot');
+  const read = (sql, params = []) => ctx.env.HITS.prepare(sql).bind(...params).all();
+  const report = await guideReport(read, new Date('2026-11-20T13:00:00Z'));
+  assert.deepEqual(report.daily.map(r => [r.date, r.period, r.pageviews, r.eco_referred_pageviews, r.amazon_de_clicks]), [
+    ['2026-11-15', 'before', 2, 1, 0], ['2026-11-16', 'before', 0, 0, 0],
+    ['2026-11-17', 'before', 0, 0, 0], ['2026-11-19', 'after', 1, 1, 1],
+  ]);
+  assert.doesNotMatch(JSON.stringify(report), /fake\.test|smart-plugs|amazon\.com/);
+  db.exec('DROP INDEX real_shopping_date_index');
+  const result = await onRequestGet(ctx);
+  assert.equal(result.status, 503);
+  assert.equal((await result.json()).daily, null);
+  db.close();
+});

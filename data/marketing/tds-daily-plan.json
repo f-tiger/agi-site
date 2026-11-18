@@ -1,5 +1,5 @@
 {
-  "version": 13,
+  "version": 14,
   "site": "tds",
   "start_date": "2026-10-12",
   "days": 30,
@@ -1732,5 +1732,23 @@
       }
     },
     "next_action": "At the existing November22 review, inspect genuine country-specific arrivals and fixed ordinary merchant/source clicks for these8pages; keep search visibility, affiliate eligibility and attributable revenue separate. Do not reset the original experiment or assume missing data means no demand."
+  },
+  "german_metering_guide": {
+    "date": "2026-11-18",
+    "entry_page": "https://getecoback.com/strommess-protokoll.html",
+    "destination": "https://thedollscout.com/de/shop/categories/smart-home#strommessung",
+    "query_to_test": "Tapo P110 oder P110M zur Strommessung",
+    "reader": "German household measuring a plug-in appliance and deciding whether their existing setup needs Matter.",
+    "benchmark_pages": [
+      "https://www.faz.net/kaufkompass/test/die-beste-wlan-steckdose/",
+      "https://www.goodhousekeeping.com/uk/product-reviews/tech/a44125716/how-to-set-up-smart-home/",
+      "https://www.goodhousekeeping.com/uk/product-reviews/tech/g28393904/best-smart-plugs/"
+    ],
+    "hypothesis": "A link within an energy measurement task and a model comparison reachable from the German homepage will bring relevant readers to the guide and lead to Amazon.de clicks.",
+    "public_measurement": "https://thedollscout.com/api/smart-home-growth",
+    "first_day_if_published_on_release_date_utc": "2026-11-19",
+    "review_utc": "2026-11-22",
+    "decision": "Compare complete-day guide views, ECO-referred views and recorded Amazon.de clicks with the 15–17 November baseline. If referrals stay at zero check source-page reach and link visibility. If visits accumulate without exits, review intent and the model search experience before expanding.",
+    "attribution": "The referrer count requires the ECO hostname. The click count covers the whole guide. Neither measure identifies a reader, order or commission."
   }
 }

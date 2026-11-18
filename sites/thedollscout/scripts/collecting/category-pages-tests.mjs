@@ -90,7 +90,7 @@ test('all 27 category pages expose usable decisions, comparison anchors and ever
   const displayed=[];
   for(const guide of data.categories){
    const slug='shop/categories/'+guide.id,page=pages.get(route(lang,slug)),d=guide[lang],group=homeCatalogCategories.find(g=>g.id===guide.id);
-   assert.ok(page,lang+'/'+guide.id);assert.equal(page.title,d.title);assert.equal(page.description,d.description);assert.equal(page.modified,data.updated);
+   assert.ok(page,lang+'/'+guide.id);assert.equal(page.title,d.title);assert.equal(page.description,d.description);assert.equal(page.modified,d.smartPlugDecision?.checked ?? data.updated);
    assert.equal((page.html.match(/<h1[ >]/g)||[]).length,1);
    assert.ok(page.html.includes(esc(d.answer)));assert.ok(page.html.includes('datetime="'+guide.checked+'"'));
    assert.ok(page.html.includes('<table>'));assert.ok(page.html.includes('id="category-faq"'));
@@ -106,6 +106,43 @@ test('all 27 category pages expose usable decisions, comparison anchors and ever
    for(const id of guide.related)assert.ok(anchors(page.html).some(a=>a.attrs.href===route(lang,'shop/categories/'+id)));
   }
   assert.equal(displayed.length,100,'Category pages partition the same 100 real models');assert.equal(new Set(displayed).size,100);
+ }
+});
+
+test('German plug choices lead to disclosed, measurable model searches from the comparison', () => {
+ const path = '/de/shop/categories/smart-home';
+ const pages = renderedPages();
+ const page = pages.get(path);
+ for (const [otherPath, otherPage] of pages) {
+  assert.equal(otherPage.html.includes('id="strommessung"'), otherPath === path);
+ }
+ const section = /<section id="strommessung"[^>]*>([\s\S]*?)<\/section>/.exec(page.html)?.[1];
+ assert.ok(section);
+ assert.match(page.html, /href="#strommessung"/);
+ const mirror = page.text.join('\n');
+ const links = anchors(section);
+ const exits = links.filter(link => Object.hasOwn(link.attrs, 'data-shopping-merchant'));
+ assert.deepEqual(exits.map(link => new URL(link.attrs.href).searchParams.get('k')), ['Tapo P110', 'Tapo P110M']);
+ for (const {attrs, text} of exits) {
+  const url = new URL(attrs.href);
+  assert.equal(url.origin + url.pathname, 'https://www.amazon.de/s');
+  assert.deepEqual(url.searchParams.getAll('tag'), ['getecoback-21']);
+  assert.equal(attrs.rel, 'sponsored nofollow noopener');
+  assert.ok(text.includes('suchen'));
+  assert.deepEqual(shoppingLinkPayload({p:path, href:attrs.href, affiliate:true}), {
+   e: 'affiliate_click', p:path, r:'https://amazon.de'
+  });
+ }
+ assert.ok(section.includes(shoppingCopy.de.disclosure));
+ assert.ok(section.indexOf(shoppingCopy.de.disclosure) < section.indexOf('data-shopping-merchant'));
+ for (const slug of ['tapo-p110-energieuberwachung','tapo-p110m-matter-zertifiziert']) {
+  const url = 'https://de.store.tapo.com/products/' + slug;
+  assert.ok(links.some(link => link.attrs.href === url));
+  assert.ok(mirror.includes(url));
+ }
+ for (const term of ['16 A','3.680 W','1/6 HP','0,12 kWh']) {
+  assert.ok(mirror.includes(term));
+  assert.ok(section.includes(term));
  }
 });
 

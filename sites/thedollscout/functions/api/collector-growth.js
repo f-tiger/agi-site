@@ -49,18 +49,18 @@ export async function findDateIndex(read) {
   return null;
 }
 
-export function indexedCollectorQuery(index) {
-  return COLLECTOR_QUERY.replace('FROM hits WHERE','FROM hits INDEXED BY '+quoteIndex(index)+' WHERE');
+export function indexedCollectorQuery(index, query = COLLECTOR_QUERY) {
+  return query.replace('FROM hits WHERE','FROM hits INDEXED BY '+quoteIndex(index)+' WHERE');
 }
 
-export async function collectorQueryWithPlan(read,bounds) {
-  let sql=COLLECTOR_QUERY;
+export async function collectorQueryWithPlan(read,bounds,query = COLLECTOR_QUERY) {
+  let sql=query;
   if (usesDateRangeIndex(resultRows(await read('EXPLAIN QUERY PLAN '+sql,bounds)))) return sql;
   // SQLite can prefer an ev index even while a full date-leading index exists.
   // Force only a real, non-partial date-leading index verified from metadata.
   const index=await findDateIndex(read);
   if (!index) return null;
-  sql=indexedCollectorQuery(index);
+  sql=indexedCollectorQuery(index,query);
   if (!usesDateRangeIndex(resultRows(await read('EXPLAIN QUERY PLAN '+sql,bounds)))) throw Object.assign(Error('Date index plan rejected'),{collectorIndexCode:'date_index_plan_rejected'});
   return sql;
 }

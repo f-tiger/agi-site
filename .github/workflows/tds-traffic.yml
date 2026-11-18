@@ -173,5 +173,32 @@ jobs:
           set -o pipefail
           node scripts/collecting/shopping-report.mjs --health-only 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
 
+      - name: Read German smart plug guide acquisition signals
+        if: always()
+        run: |
+          python3 - <<'PYTHON'
+          import json, os, urllib.request
+          from datetime import datetime, timezone, timedelta
+
+          report = 'https://thedollscout.com/api/smart-home-growth'
+          with urllib.request.urlopen(report, timeout=20) as response:
+              data = json.load(response)
+          yesterday = (datetime.now(timezone.utc).date() - timedelta(days=1)).isoformat()
+          if data.get('ok') is not True or data.get('path') != '/de/shop/categories/smart-home':
+              raise ValueError('German guide report unavailable')
+          if yesterday == data['excluded_release_day']:
+              message = 'Release day excluded. The first complete day is pending.'
+          else:
+              rows = [row for row in data['daily'] if row['date'] == yesterday]
+              if len(rows) != 1:
+                  raise ValueError('Missing complete UTC date in German guide report')
+              row = rows[0]
+              message = (f"{yesterday} UTC ({row['period']}): {row['pageviews']} guide views, "
+                         f"{row['eco_referred_pageviews']} ECO-referred views, "
+                         f"{row['amazon_de_clicks']} Amazon.de clicks across the guide.")
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as summary:
+              print(f"German smart plug guide · {message} [First-party report]({report})", file=summary)
+          PYTHON
+
       # content/ is excluded from the published site, so there is nothing to
       # deploy here — the file exists for the growth loop, not for visitors.

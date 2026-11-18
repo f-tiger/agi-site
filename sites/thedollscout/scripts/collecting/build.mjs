@@ -32,8 +32,13 @@ function shell(lang,slug,title,description,body,extra=[],modified=updated){
 }
 function emit(lang,slug,title,description,body,paragraphs,extra=[],modified=updated){
  const marketEntry=!slug||slug==='shop'||slug.startsWith('shop/categories/');
- if(marketEntry){body=marketBridgeHTML(lang)+body;paragraphs=[...marketBridgeText(),...paragraphs];modified='2026-11-15';}
- if(!slug)modified='2026-11-15';
+ // The German home includes its market links below the local shopping action.
+ if(marketEntry && (slug || lang!=='de')){
+  body=marketBridgeHTML(lang)+body;
+  paragraphs=[...marketBridgeText(),...paragraphs];
+  modified=[modified,'2026-11-15'].sort().at(-1);
+ }
+ if(!slug)modified=lang==='de'?'2026-11-18':'2026-11-15';
  if(slug==='shop')modified='2026-11-15';
  if(slug.startsWith('brands/'))modified='2026-11-07';
  if(slug==='series')modified='2026-11-05';
