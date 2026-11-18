@@ -53,5 +53,5 @@ jobs:
           node sites/agiscorecard/tools/community/browser-test.mjs
           node sites/agiscorecard/tools/mentor/browser-test.mjs
           node sites/agiscorecard/tools/jarvis/browser-test.mjs
-          node sites/agiscorecard/tools/infrastructure/browser-test.mjs
+          INFRA_BROWSER_FIXTURE=1 node sites/agiscorecard/tools/infrastructure/browser-test.mjs
       # No secrets, production request, deployment or operation/watch runner.
