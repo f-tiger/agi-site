@@ -938,9 +938,9 @@
         ]
       },
       "de": {
-        "title": "Smart Home kaufen: Hubs, Datenschutz und Folgekosten",
-        "description": "Lichtsteuerung, Sensoren, Kameras und Nachrüstantriebe vergleichen. Hub-Abhängigkeiten, Speicherkosten, regionale Kompatibilität und Montage prüfen.",
-        "answer": "Eine Aktion wählen, etwa Licht beim Betreten einzuschalten oder einen Besucher zu sehen. Benötigtes Gerät, kompatiblen Hub, App, Strom und Speicher auflisten. Ein Sensor meldet einen Zustand; er behebt ihn nicht. Mit der kleinsten geeigneten Lösung beginnen und laufende Kosten sowie Auswirkungen auf die Privatsphäre vergleichen.",
+        "title": "Smart Home für zu Hause: Steckdosen, Sensoren und Kameras",
+        "description": "Tapo P110 und P110M für die Strommessung vergleichen. Welche Steckdose braucht Matter? Dazu Kaufhilfen für Sensoren, Kameras, Hubs und laufende Kosten.",
+        "answer": "Willst du den Stromverbrauch eines Geräts messen, genügt eine passende Messsteckdose. Für Lichtsteuerung, Türkontakte oder Kameras entscheidet dagegen die vorhandene Ausstattung: Welche Zentrale hast du, wo gibt es Strom und welche Funktionen sollen auch ohne Abo laufen?",
         "decisions": [
           {
             "title": "Abhängigkeiten aufschreiben",
@@ -1022,7 +1022,28 @@
             "question": "Sollte ich alle Sensoren und eine Kamera zusammen kaufen?",
             "answer": "Mit einem Problem und einer kompatiblen Lösung beginnen. Prüfen, ob Meldung oder Aktion die richtige Person erreicht, und bei Bedarf erweitern. Mehr Geräte verbessern eine Automation nicht automatisch."
           }
-        ]
+        ],
+        "smartPlugDecision": {
+          "checked": "2026-11-18",
+          "title": "Tapo P110 oder P110M: Brauche ich Matter für die Strommessung?",
+          "answer": "Beide Modelle messen den Verbrauch in der Tapo-App. Entscheide danach, wo du die Steckdose steuern möchtest.",
+          "models": [
+            {
+              "name": "Tapo P110",
+              "use": "Ich möchte den Verbrauch in der Tapo-App sehen",
+              "detail": "Der P110 erfasst den Stromverbrauch und schaltet nach Zeitplan. Für diese Aufgaben reichen laut Hersteller die App und ein 2,4-GHz-WLAN. Ein separater Hub ist dafür nicht erforderlich.",
+              "source": "https://de.store.tapo.com/products/tapo-p110-energieuberwachung"
+            },
+            {
+              "name": "Tapo P110M",
+              "use": "Ich möchte die Steckdose in Apple Home oder einem anderen Matter-System schalten",
+              "detail": "Der P110M ergänzt die Verbrauchsmessung um Matter über 2,4-GHz-WLAN. Prüfe, welchen Matter-Controller dein System voraussetzt und ob deine gewünschte App auch die Energiedaten dieses Modells anzeigt.",
+              "source": "https://de.store.tapo.com/products/tapo-p110m-matter-zertifiziert"
+            }
+          ],
+          "example": "Was bedeuten 5 Watt im Standby? Bleibt die Leistung einen ganzen Tag bei 5 W, ergeben sich 5 × 24 ÷ 1.000 = 0,12 kWh. Multipliziere die gemessenen kWh mit deinem eigenen Arbeitspreis, um die Kosten zu berechnen.",
+          "load": "Prüfe vor dem Kauf die Lastart des Geräts. Für die hier verlinkten deutschen Ausführungen nennt TP-Link 16 A bzw. 3.680 W für ohmsche Lasten und eine separate Motorgrenze von 1/6 HP. Für Kühlschränke und Klimaanlagen rät der Hersteller von diesen Steckdosen ab. Gleiche Modell, Typenschild und Anleitung ab."
+        }
       },
       "zh": {
         "title": "智能家居怎么选：网关、隐私、订阅与安装",

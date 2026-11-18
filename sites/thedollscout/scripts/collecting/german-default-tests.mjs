@@ -72,6 +72,12 @@ test('German home gives German shopping and useful local task entry points befor
  const marketLinks = anchors(market[1]);
  assert.equal(marketLinks[0].attrs.href, '/de/shop#home-catalog', 'Germany is first, rather than the US destination');
  assert.ok(marketLinks.some(a => a.attrs.href === '/shop#home-catalog'), 'US context remains an explicit alternative');
+ const localGuide = '/de/shop/categories/smart-home#strommessung';
+ const primary = anchors(body)[0];
+ assert.equal(primary.attrs.href, localGuide, 'First shopping action opens the local comparison');
+ assert.ok(primary.text.includes('P110M'));
+ assert.ok(body.indexOf('class="market-bridge"') > body.indexOf('href="' + localGuide + '"'));
+ assert.ok(shoppingHomeText('de', route, origin).includes('Tapo P110 und P110M vergleichen: ' + origin + localGuide));
  const catalogue = body.indexOf('id="home-catalog"');
  for (const id of ['storage', 'smart-home', 'home-care']) {
   const destination = route('de', 'shop/categories/' + id);
@@ -79,7 +85,7 @@ test('German home gives German shopping and useful local task entry points befor
   assert.ok(location >= 0 && location < catalogue, id + ': task entry is discoverable before the model inventory');
   assert.ok(shoppingHomeText('de', route, origin).join('\n').includes(origin + destination), id + ': same destination in text mirror');
  }
- assert.equal((body.match(/data-home-product=/g) || []).length, homeCatalogFeatured(loadHomeCatalog()).length);
+ assert.equal((body.match(/data-home-product=/g) || []).length, homeCatalogFeatured(loadHomeCatalog(), 'de').length);
  const destinations = anchors(body).filter(a => (a.attrs.rel || '').split(/\s+/).includes('sponsored'));
  assert.ok(destinations.length > 0);
  for (const a of destinations) {

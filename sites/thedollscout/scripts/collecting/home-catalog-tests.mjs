@@ -131,8 +131,13 @@ test('the actual catalogue renders 100 real models in every language and a bound
   assert.match(html,/data-catalog-controls[^>]*hidden/,'Interactive controls stay hidden until initialization');
   const featuredGroups=new Set(featured.map(card=>card.attrs['data-catalog-category']));
   assert.equal(featuredGroups.size,9,'Homepage features every nonempty household category');
-  assert.ok(featured.some(card=>card.attrs['data-home-product']==='niubee-risers'));
-  assert.ok(featured.some(card=>card.attrs['data-home-product']==='rub-4l'));
+  if(lang==='de') {
+   assert.equal(featured[0].attrs['data-home-product'],'c13','German shelf opens with the Leifheit duster');
+   assert.ok(featured.every(card=>!['niubee-risers','rub-4l'].includes(card.attrs['data-home-product'])));
+  } else {
+   assert.ok(featured.some(card=>card.attrs['data-home-product']==='niubee-risers'));
+   assert.ok(featured.some(card=>card.attrs['data-home-product']==='rub-4l'));
+  }
  }
 });
 
@@ -145,7 +150,7 @@ test('actual shopping page generation wires the full no-JavaScript catalogue and
   for(const id of SHOPPING_IDS)assert.match(hub.html,new RegExp('data-shopping-card[^>]*data-shopping-item="'+id+'"'),'Original shortlist card '+id);
   const home=shoppingHomeHTML({lang,route,esc}),featured=cards(home);
   assert.ok(featured.length>=9&&featured.length<=12);
-  assert.deepEqual(featured.map(card=>card.attrs['data-home-product']),homeCatalogFeatured(products).map(p=>p.id));
+  assert.deepEqual(featured.map(card=>card.attrs['data-home-product']),homeCatalogFeatured(products,lang).map(p=>p.id));
   assert.ok(anchors(home).some(link=>link.attrs.href===route(lang,'shop')&&/100/.test(link.text)),'Homepage opens the complete 100-model catalogue');
   for(const text of [hub.text,shoppingHomeText(lang,route,origin)])assert.doesNotMatch(text.join('\n'),/https?:\/\/(?:www\.)?amazon\.|[?&]tag=/i);
  }
