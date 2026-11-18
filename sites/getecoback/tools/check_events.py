@@ -40,6 +40,8 @@ def used_names():
         names |= set(re.findall(r'\bevent\(\s*["\']([a-z_0-9]+)["\']', text))
     for name in re.findall(r"distribution\(\s*[\"\']([a-z_0-9]+)[\"\']", open(os.path.join(SITE,"assets","energy-workbench.mjs"),encoding="utf-8").read()): names.add(name)
     names |= set(re.findall(r"emit\(\s*'([a-z_0-9]+)'",open(os.path.join(SITE,"assets","laundry-check.mjs"),encoding="utf-8").read()))
+    with open(os.path.join(SITE, "assets", "meter-referral.mjs"), encoding="utf-8") as source:
+        names.update(re.findall(r"record\(\s*'([a-z_0-9]+)'", source.read()))
     return names
 
 

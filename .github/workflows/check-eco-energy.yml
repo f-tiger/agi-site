@@ -198,7 +198,7 @@ jobs:
           python3 tools/test_conversion_routes.py
           node --test tools/test_demand_search.mjs
           python3 ../../tools/fleet-analytics/coverage.py --site eco --out site --write
-          node --test tools/test-public-engagement.mjs
+          node --test tools/test-public-engagement.mjs tools/test_meter_referral.mjs
           node tools/install-public-engagement.mjs --write
           node tools/install-public-engagement.mjs
 
