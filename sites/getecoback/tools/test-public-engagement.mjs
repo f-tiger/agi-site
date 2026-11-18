@@ -80,3 +80,11 @@ test('Short intervals accumulate; opt-out/regrant reset has no replay', () => {
   c.sample(1800,true); c.sample(3800,false); c.reset(); assert.equal(c.take(),0);
   c.sample(10000,true); c.sample(12000,false); assert.equal(c.take(),2000);
 });
+
+test('cellar model navigation is page-scoped and carries no model or household data', () => {
+  const page = '/guide/luftentfeuchter-keller.html';
+  const detail = {name:'eco_cellar_model_open'};
+  assert.deepEqual(ecoPublicBusinessEvent(page, detail), {...detail, tool_id:'eco-cellar-drain'});
+  assert.equal(ecoPublicBusinessEvent('/guide/luftentfeuchter-ratgeber.html', detail), null);
+  assert.equal(ecoPublicBusinessEvent(page, {...detail, model:'private'}), null);
+});

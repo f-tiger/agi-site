@@ -88,6 +88,25 @@ class CatalogTest(unittest.TestCase):
         self.assertEqual(first,C.inject(inject_buyer(first,slug),slug))
         with self.assertRaises(ValueError):C.inject('<article><h2>Missing buyer</h2></article>',slug)
 
+    def test_cellar_handoff_on_final_files(self):
+        site = C.DATA.parent.parent / 'site/guide'
+        for slug in C.load()['pages']:
+            page = (site / f'{slug}.html').read_text()
+            if slug != 'luftentfeuchter-keller':
+                self.assertNotIn('<nav class="dc-drain-paths"', page)
+                continue
+            self.assertIn('<a href="#ablauf-vor-kauf">Schlauch mit Gefälle', page)
+            choices = re.search(r'<nav class="dc-drain-paths".*?</nav>', page, re.S)[0]
+            self.assertEqual(re.findall(r'href="#([^"]+)"', choices),
+                             ['modell-stadler-lukas', 'modell-meaco-one-20'])
+            for target in ['modell-stadler-lukas', 'modell-meaco-one-20']:
+                self.assertEqual(page.count(f'id="{target}"'), 1)
+            mirror = (site / f'{slug}.md').read_text()
+            for surface in (page, mirror):
+                self.assertIn('Sein Ende muss tiefer liegen als der Anfang.', surface)
+                self.assertIn('die passende Pumpe und den deutschen Lieferumfang', surface)
+            self.assertNotIn('getecoback-21', mirror)
+
     def test_scoped_routes_and_source_identity(self):
         d=C.load()
         self.assertEqual(len(d['products']),6)

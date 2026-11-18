@@ -33,7 +33,23 @@ const clearance=await p.evaluate(()=>{const heading=document.querySelector('#dc-
 await p.screenshot({path:path.join(out,`${slug}-${width}-${js?'js':'nojs'}-native-anchor.png`)});
 assert(clearance.headingTop>=clearance.navBottom+8,'Native fragment heading obscured: '+JSON.stringify(clearance));
 assert(clearance.headingBottom<clearance.viewport,'Heading must be visible in first viewport');
-await p.goto(origin+'/guide/'+slug+'.html?__probe=1#modell-meaco-one-20',{waitUntil:'load'});
+if(slug==='luftentfeuchter-keller') {
+  for(const model of ['stadler-lukas','meaco-one-20']) {
+    const link=check.locator('.dc-drain-paths a[href="#modell-'+model+'"]');
+    assert.equal(await link.count(),1);
+    await link.click();
+    await p.waitForURL(u=>u.hash==='#modell-'+model);
+    const card=p.locator('.dc-card').filter({has:p.locator('#modell-'+model)});
+    assert((await card.innerText()).includes('Wasserablauf:'));
+    const merchant=card.locator('[data-catalog-commerce] a');
+    if(await merchant.count()) {
+      assert((await merchant.innerText()).includes('bei Amazon.de suchen'));
+      assert.equal(new URL(await merchant.getAttribute('href')).searchParams.get('tag'),'getecoback-21');
+    }
+  }
+} else {
+  await p.goto(origin+'/guide/'+slug+'.html?__probe=1#modell-meaco-one-20',{waitUntil:'load'});
+}
 await p.waitForTimeout(250);
 const modelClearance=await p.evaluate(()=>({top:document.querySelector('#modell-meaco-one-20').getBoundingClientRect().top,nav:document.querySelector('nav.eb-nav').getBoundingClientRect().bottom}));
 assert(modelClearance.top>=modelClearance.nav+8,'Canonical model citation obscured: '+JSON.stringify(modelClearance));

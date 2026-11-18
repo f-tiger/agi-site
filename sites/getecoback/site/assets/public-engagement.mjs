@@ -39,6 +39,7 @@ export function ecoPublicBusinessEvent(pathname, detail) {
   const country = countryScenarioEvent(pathname, detail);
   if (country) return {name:country, tool_id:pathname === '/wohnen.html' ? 'eco-country-de' : 'eco-country-nl'};
   const routes = {
+    '/guide/luftentfeuchter-keller.html': {tool_id:'eco-cellar-drain', names:['eco_cellar_model_open']},
     '/guide/heizdecke-stromverbrauch.html': {tool_id:'eco-personal-warmth', names:['eco_warmth_example','eco_warmth_calculate','eco_warmth_share']},
     '/guide/smarte-heizkoerperthermostate-lohnen-sich.html': {tool_id:'eco-valve-fit', names:['eco_valve_result','eco_valve_official','eco_valve_share']},
     '/guide/richtig-lueften-im-winter.html': {tool_id:'eco-wall-moisture', names:['eco_dewpoint_example','eco_dewpoint_check']}
@@ -69,6 +70,13 @@ export function installPublicEngagement() {
     return !!frame?.isConnected && !frame.contentWindow['ga-disable-' + id];
   };
   const actionsSent = new Set();
+  if (page.pathname === '/guide/luftentfeuchter-keller.html') {
+    document.addEventListener('click', event => {
+      if (event.isTrusted && event.target.closest?.('.dc-drain-paths a[href^="#modell-"]')) {
+        window.dispatchEvent(new CustomEvent('fleet:business', {detail:{name:'eco_cellar_model_open'}}));
+      }
+    });
+  }
   window.addEventListener('fleet:business', event => {
     const action = ecoPublicBusinessEvent(page.pathname, event.detail);
     if (!action || !permitted() || actionsSent.has(action.name)) return;

@@ -40,7 +40,7 @@ Fehlen niedrigere Prüftemperaturen im Datenblatt, frage beim Anbieter nach, bev
 
 - **Aufstellung:** Abstände, Geräusch, Tankgröße und Zugänglichkeit im eigenen Keller prüfen.
 
-- **Ablauf:** Schlauchmaß, Gefälle und gegebenenfalls Pumpe klären. Den Tankalarm nicht umgehen.
+- **Ablauf:** Schlauchmaß, Gefälle und gegebenenfalls Pumpe klären. Den Tankalarm nicht umgehen. [Schlauch mit Gefälle oder Pumpe für einen höheren Ablauf prüfen](https://getecoback.com/guide/luftentfeuchter-keller.html#ablauf-vor-kauf).
 
 Als Recherchehilfe zeigt die Schweizer Plattform Topten separat Entzugsleistung bei 10, 15 und 20 °C sowie Leistungsaufnahme bei 15 °C. Das ist ein Beispiel für vergleichbare Datenfelder, keine pauschale Empfehlung eines gelisteten Geräts.
 
@@ -167,6 +167,7 @@ Quelle: [Meaco.de: deutsche Anbieter- und Datenseite](https://www.meaco.de/produ
 Lukas weiss L-031E · nicht Lukas little oder Pro
 4,2-Liter-Tank, vier Stufen, App und 100-cm-Drainageschlauch laut Hersteller. HEPA-Filter ist optional.
 **Vor dem Kauf:** Die Betriebsgrenze bis 5 °C belegt keine bestimmte Leistung im kalten Keller. Die genannten 260 W sind kein gemessener Verbrauch pro Wäscheladung.
+**Wasserablauf:** Beim Lukas weiss L-031E gehört ein 100-cm-Schlauch zum Lieferumfang. Sein Ende muss tiefer liegen als der Anfang. Quelle: Stadler Form Deutschland, geprüft am 18.11.2026.
 Quelle: [Stadler Form Deutschland: Lukas](https://www.stadlerform.com/de-de/luftentfeuchter/lukas-weiss-l-031e)
 
 ### Comfee MDDF-20DEN7
@@ -181,6 +182,7 @@ Quelle: [Comfee Deutschland: MDDF-20DEN7](https://www.feelcomfee.com/de/produkte
 Arete One 20L · nicht Two oder One 25L
 Die UK-Herstellerdaten nennen 8,5 L/Tag bei 20 °C / 60 % und 3,4 L/Tag bei 10 °C / 60 % RH.
 **Vor dem Kauf:** UK-Daten bestätigen weder deutschen Stecker noch Lieferumfang oder Verfügbarkeit. Die Nennkapazität ist keine Wäsche-Trocknungszeit.
+**Wasserablauf:** Für einen höher gelegenen Ablauf nennt Meaco UK eine separat erhältliche Pumpe. Vor dem Kauf die passende Pumpe und den deutschen Lieferumfang für die One 20L prüfen. Quelle: Meaco UK, geprüft am 18.11.2026.
 Quelle: [Meaco UK: Arete One 20L](https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-air-purifier)
 
 ### MeacoDry Arete One 25L

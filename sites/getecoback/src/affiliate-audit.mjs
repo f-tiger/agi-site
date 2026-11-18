@@ -54,7 +54,7 @@ const buyingPathKeys = new Map([
   ['/guide/saugroboter-kaufberatung.html','robot'],
   ['/guide/luftbefeuchter-ratgeber.html','humidifier'],
 ]);
-const section = ()=>({...count(),cohorts:{},cohorts_v2:{},buying_paths:{smart_thermostat:count(),saugwischer:count(),robot:count(),humidifier:count()},channels:{},destinations:{product:0,search:0,prime_trial:0,other:0},surfaces:{},models:{ex105:0,n90:0,other:0}});
+const section = ()=>({...count(),cohorts:{},cohorts_v2:{},cellar_catalog:{...count(),catalog_product_clicks:0,catalog_search_clicks:0},buying_paths:{smart_thermostat:count(),saugwischer:count(),robot:count(),humidifier:count()},channels:{},destinations:{product:0,search:0,prime_trial:0,other:0},surfaces:{},models:{ex105:0,n90:0,other:0}});
 const dayAt = (end,offset)=>new Date(Date.parse(end+'T00:00:00Z')+offset*86400000).toISOString().slice(0,10);
 const range = (start,end)=>({...section(),start,end_exclusive:end});
 function destination(link) {
@@ -70,6 +70,8 @@ function destination(link) {
 function add(s,r,channel) {
   const field=r.name==='page_view'?'page_views':'affiliate_clicks';
   s[field]+=r.n;
+  const cellar = r.page === '/guide/luftentfeuchter-keller.html';
+  if (cellar) s.cellar_catalog[field] += r.n;
   const group=pageGroup(r.page);
   (s.cohorts[group]??=count())[field]+=r.n;
   const groupV2=pageGroupV2(r.page);
@@ -79,6 +81,9 @@ function add(s,r,channel) {
   (s.channels[channel]??=count())[field]+=r.n;
   if(field==='affiliate_clicks') {
     const [dest,model]=destination(r.link);
+    if (cellar && r.source === 'models' && (dest === 'product' || dest === 'search')) {
+      s.cellar_catalog['catalog_' + dest + '_clicks'] += r.n;
+    }
     s.destinations[dest]+=r.n;s.models[model]+=r.n;
     const surface=['body','toppick','models','sticky','home-herbst','us-market','inline','ac-finder','grid'].includes(r.source)?r.source:'other_or_unknown';
     s.surfaces[surface]=(s.surfaces[surface]||0)+r.n;
