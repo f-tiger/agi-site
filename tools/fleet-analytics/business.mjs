@@ -43,6 +43,9 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
   const affiliate = affiliateEvent(host, detail);
   if (affiliate) return affiliate;
   const name = detail.name;
+  if (host === 'baipiaoji.com' && /^\/(?:en\/)?tools\/(chatgpt|kimi|qingying)$/.test(pathname) && name === 'catalog_task_open') {
+    return {name, tool_id: pathname.split('/').pop(), repeat: true};
+  }
   if (host === 'getecoback.com' && pathname === '/ersatzfilter.html' &&
       ['eco_filter_save','eco_filter_care_save','eco_filter_source'].includes(name))
     return {name,tool_id:'filter-care-de',repeat:true};

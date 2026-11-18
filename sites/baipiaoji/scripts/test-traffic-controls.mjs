@@ -71,3 +71,38 @@ test('quality writes preserve raw events and fail independently without leaking 
  await hit({request:request(),env:{HITS,BPJ_TRAFFIC_QUALITY:'off'}});
  assert.equal(HITS.sqlite.prepare('SELECT count(*) n FROM hits').get().n,3);assert.equal(HITS.sqlite.prepare('SELECT sum(n) n FROM bpj_traffic_quality').get().n,1);
 });
+
+test('filtered conversion writes, bilingual task routes and independent page measurement', async () => {
+ const HITS = db();
+ HITS.sqlite.exec('CREATE TABLE hits(d TEXT,path TEXT,lang TEXT,country TEXT,ref TEXT,ev TEXT)');
+ async function send(event, path, headers = {}, verified = false) {
+   const request = new Request('https://baipiaoji.com/api/hit', {
+     method: 'POST', headers, body: JSON.stringify({p:path, e:event, l:'en', r:'https://private.example/test'})
+   });
+   if (verified) Object.defineProperty(request, 'cf', {value:{botManagement:{verifiedBot:true}}});
+   await hit({request, env:{HITS}});
+ }
+ const fromTool = {origin:'https://baipiaoji.com', referer:'https://baipiaoji.com/en/tools/kimi'};
+ await send('catalog_task','/catalog-task/kimi',fromTool);
+ await send('catalog_task','/catalog-task/chatgpt',fromTool);
+ await send('catalog_task','/catalog-task/kimi',{...fromTool,dnt:'1'});
+ await send('go','/go/kimi',{'user-agent':'curl/8'});
+ await send('star','/star/kimi',{origin:'https://other.example'});
+ await send('biz','/biz/submit/other',fromTool,true);
+ await send('go','/go/kimi',{'user-agent':'Mozilla/5.0'});
+ await send('', '/tools/kimi',{'user-agent':'curl/8'});
+ assert.deepEqual(HITS.sqlite.prepare('SELECT ev FROM hits ORDER BY rowid').all().map(x=>x.ev),['catalog_task','go','']);
+ assert.equal(HITS.sqlite.prepare("SELECT ref FROM hits WHERE ev='catalog_task'").get().ref,'');
+ assert.equal(HITS.sqlite.prepare("SELECT n FROM bpj_traffic_quality WHERE kind='catalog_task_kimi'").get().n,1);
+});
+
+test('vendor repeat attempts produce one inquiry and the sixth request stays outside the handler', async () => {
+ const {onRequestPost: vendor} = await import('../functions/api/vendor.js');
+ const HITS = db(), env={HITS};
+ const body=JSON.stringify({name:'Fixture',url:'https://example.org/',email:'test@example.org',kind:'other',note:'local fixture'});
+ const results=await Promise.all(Array.from({length:6},()=>guardTraffic({request:req('/api/vendor',body),env,next:request=>vendor({request,env})},{now:1800000000000,cache:null})));
+ assert.equal(results.filter(r=>r.status===429).length,1);
+ const replies=await Promise.all(results.filter(r=>r.ok).map(r=>r.json()));
+ assert.equal(replies.filter(r=>r.code==='already').length,4);
+ assert.equal(HITS.sqlite.prepare('SELECT count(*) n FROM vendor_inquiries').get().n,1);
+});

@@ -48,17 +48,15 @@ export async function onRequestPost({ request, env }) {
     ).run();
 
     // 同一 URL 同一意向重复提交不报错也不重复记——对询价者来说「已经在队列里」就是成功
-    const dup = await env.HITS.prepare('SELECT id FROM vendor_inquiries WHERE url = ? AND kind = ?')
-      .bind(url, kind).first();
-    if (dup) return json({ ok: true, code: 'already' });
+    await env.HITS.prepare('CREATE INDEX IF NOT EXISTS vendor_inquiries_url_kind ON vendor_inquiries(url,kind)').run();
 
     const country = (request.cf && request.cf.country) || '';
     const created = new Date().toISOString().slice(0, 10);
-    await env.HITS.prepare(
-      'INSERT INTO vendor_inquiries (name, url, kind, note, email, country, created, status) VALUES (?,?,?,?,?,?,?,?)'
-    ).bind(name, url, kind, note, email, country, created, 'new').run();
+    const insert = await env.HITS.prepare(
+      'INSERT INTO vendor_inquiries (name, url, kind, note, email, country, created, status) SELECT ?,?,?,?,?,?,?,? WHERE NOT EXISTS (SELECT 1 FROM vendor_inquiries WHERE url=? AND kind=?)'
+    ).bind(name, url, kind, note, email, country, created, 'new', url, kind).run();
 
-    return json({ ok: true, code: 'ok' });
+    return json({ ok: true, code: insert.meta.changes === 0 ? 'already' : 'ok' });
   } catch (e) {
     return json({ ok: false, code: 'error' }, 500);
   }

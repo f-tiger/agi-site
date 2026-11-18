@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import {categoryGuidance,categoryGuideModel,categoryGuideHTML,categoryGuideMarkdown} from './category-guides.mjs';
+import {catalogTaskLink} from './catalog-task-link.mjs';
 import {kimiTaskPanel} from './depth-pages.mjs';
 import {pricingPage,pricingMarkdown,affiliateDisclosure} from './pricing-page.mjs';
 import {buildDevBuying} from './dev-buying-pages.mjs';
@@ -1110,6 +1111,7 @@ function discoveryToolPage(tool) {
 
 function toolPage(tool) {
   if (tool.catalog_status === 'discovery') return discoveryToolPage(tool);
+  const taskLink = catalogTaskLink(tool.slug, LOCALE.code, BASE);
   const catName = CATS[tool.category] || tool.category;
   const { char, hue } = markOf(tool);
   const used = (plansUsing.get(tool.slug) || []).slice(0, 4);
@@ -1143,8 +1145,9 @@ function toolPage(tool) {
     <p class="answer">${esc(answer)}</p>
     <p class="go-top"><a href="${esc(outLink(tool))}" target="_blank" rel="noopener nofollow"
        data-tool="${esc(tool.slug)}" data-cat="${esc(tool.category)}" data-aff="${tool.affiliate ? 1 : 0}" data-place="tool_top">${UI('go_top', '直达官网领取')} — ${esc(tool.name)} →</a>${watchBtnOf(tool.slug)}</p>
+    ${taskLink}
     ${LOCALE.code==='zh'&&tool.slug==='kimi'?kimiTaskPanel():''}
-    ${saveToolEntry(tool)}
+    ${taskLink ? '' : saveToolEntry(tool)}
     <p class="coverage">${tool.limits ? `<a href="#free-tier-limits">${LOCALE.code === 'zh' ? '查看完整额度与限制' : 'Read the full allowance and conditions'}</a> · ` : ''}<a href="${BASE}/c/${esc(tool.category)}">${LOCALE.code === 'zh' ? '对比同类工具的额度与限制' : 'Compare limits across this category'} →</a> · <a href="#sources">${LOCALE.code === 'zh' ? '查看来源与内容日期' : 'Check sources and content dates'}</a></p>
     <div class="tags">${(tool.tags || []).map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div>${tool.category==='video'?'\n    '+videoEntry(BASE,LOCALE.code==='zh','tool-'+tool.slug):''}
     <section class="panel evidence-panel" id="sources">
@@ -1205,6 +1208,7 @@ function toolPage(tool) {
           : `It was checked on ${tool.limits.checked}. Vendors don't announce when they cut a free tier — we check links and source-change signals daily, then update the limit record after reviewing the content. The log is public and needs no account.`,
       });
     })()}` : ''}
+    ${taskLink ? saveToolEntry(tool) : ''}
     <div class="detail-foot">
       ${isPending(tool)
         ? `<span class="seal lg is-pending">${UI('pending', '待核实')}</span>`
@@ -7616,7 +7620,7 @@ ${el.groups.map((g) => `  <section class="limits-table">
 // 站点级文件只出一份（用中文态的数据做统计）
 useLocale(LOCALES[0]);
 writeFileSync(join(dist, 'style.css'), readFileSync(join(root, 'assets/style.css'), 'utf8') + '\n' + readFileSync(join(root, 'assets/studio/studio.css'), 'utf8'));
-for(const f of ['site-shell.css','site-shell.js','account.css','account.js','depth.js','depth.css']) cpSync(join(root,'assets',f),join(dist,f));
+for(const f of ['site-shell.css','site-shell.js','account.css','account.js','depth.js','depth.css','catalog-task.js']) cpSync(join(root,'assets',f),join(dist,f));
 cpSync(join(root, 'assets/studio'), join(dist, 'studio-assets'), { recursive: true });
 buildReleaseCheckAssets(root,dist);
 buildSkillDiscovery(root,dist);
