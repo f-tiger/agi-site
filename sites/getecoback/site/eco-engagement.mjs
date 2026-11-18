@@ -29,6 +29,8 @@ export function countryScenarioEvent(pathname, detail) {
 // selected products, household answers or a share URL. Each is once per page.
 export function ecoPublicBusinessEvent(pathname, detail) {
   if (!detail || typeof detail !== 'object' || !Object.hasOwn(detail,'name') || Object.keys(detail).length !== 1 || typeof detail.name !== 'string') return null;
+  if (pathname === '/strommess-protokoll.html' && ['eco_meter_guide_view','eco_meter_guide_click'].includes(detail.name))
+    return {name:detail.name, tool_id:'eco-meter-guide'};
   if (/^\/(?:[a-z0-9-]+\/)*(?:[a-z0-9-]+\.html)?$/.test(pathname) &&
       !pathname.split('/').some(p => /^(?:auth|api|account|members|widgets|analytics-assets|member-assets)(?:\.html)?$/.test(p)) &&
       ['eco_discovery_open','eco_discovery_task','eco_discovery_result'].includes(detail.name))
@@ -37,6 +39,7 @@ export function ecoPublicBusinessEvent(pathname, detail) {
   const country = countryScenarioEvent(pathname, detail);
   if (country) return {name:country, tool_id:pathname === '/wohnen.html' ? 'eco-country-de' : 'eco-country-nl'};
   const routes = {
+    '/guide/luftentfeuchter-keller.html': {tool_id:'eco-cellar-drain', names:['eco_cellar_model_open']},
     '/guide/heizdecke-stromverbrauch.html': {tool_id:'eco-personal-warmth', names:['eco_warmth_example','eco_warmth_calculate','eco_warmth_share']},
     '/guide/smarte-heizkoerperthermostate-lohnen-sich.html': {tool_id:'eco-valve-fit', names:['eco_valve_result','eco_valve_official','eco_valve_share']},
     '/guide/richtig-lueften-im-winter.html': {tool_id:'eco-wall-moisture', names:['eco_dewpoint_example','eco_dewpoint_check']}
@@ -67,6 +70,13 @@ export function installPublicEngagement() {
     return !!frame?.isConnected && !frame.contentWindow['ga-disable-' + id];
   };
   const actionsSent = new Set();
+  if (page.pathname === '/guide/luftentfeuchter-keller.html') {
+    document.addEventListener('click', event => {
+      if (event.isTrusted && event.target.closest?.('.dc-drain-paths a[href^="#modell-"]')) {
+        window.dispatchEvent(new CustomEvent('fleet:business', {detail:{name:'eco_cellar_model_open'}}));
+      }
+    });
+  }
   window.addEventListener('fleet:business', event => {
     const action = ecoPublicBusinessEvent(page.pathname, event.detail);
     if (!action || !permitted() || actionsSent.has(action.name)) return;

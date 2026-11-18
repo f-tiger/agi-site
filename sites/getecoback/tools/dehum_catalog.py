@@ -28,27 +28,45 @@ def block(slug, today=None, data=None):
         return None
     age = ((today or dt.datetime.now(dt.timezone.utc).date()) - dt.date.fromisoformat(data['checked'])).days
     fresh = 0 <= age <= data['max_age_days']
+    cellar = slug == 'luftentfeuchter-keller'
+    drain_notes = {
+        'stadler-lukas': 'Beim Lukas weiss L-031E gehört ein 100-cm-Schlauch zum Lieferumfang. Sein Ende muss tiefer liegen als der Anfang. Quelle: Stadler Form Deutschland, geprüft am 18.11.2026.',
+        'meaco-one-20': 'Für einen höher gelegenen Ablauf nennt Meaco UK eine separat erhältliche Pumpe. Vor dem Kauf die passende Pumpe und den deutschen Lieferumfang für die One 20L prüfen. Quelle: Meaco UK, geprüft am 18.11.2026.',
+    }
     rows, cards = [], []
     for p in data['products']:
         anchor = 'modell-' + p['id']
         rows.append(f'<tr><th scope="row"><a href="#{anchor}">{e(p["name"])}</a></th>'
                     f'<td>{e(p["reason"])}</td><td>{e(p["variant"])}</td></tr>')
         source = f'<a href="{e(p["source"], quote=True)}">{e(p["source_label"])}</a>'
+        note = drain_notes.get(p['id']) if cellar else None
+        drain = f'<p><strong>Wasserablauf:</strong> {e(note)}</p>' if note else ''
         evidence = (f'<h3 id="{anchor}">{e(p["name"])}</h3>'
                     f'<p><strong>{e(p["reason"])}</strong></p><p>{e(p["variant"])}</p>'
                     f'<p>{e(p["facts"])}</p><p><strong>Vor dem Kauf:</strong> {e(p["limit"])}</p>'
-                    f'<p>Quelle: {source}</p>')
+                    f'{drain}<p>Quelle: {source}</p>')
         # Static facts remain visible; stale/conflicting evidence removes only this catalog's commerce.
         if fresh and p['status'] == 'verified':
             href = ('https://www.amazon.de/dp/' + p['asin'] + '?tag=getecoback-21' if p.get('asin')
                     else 'https://www.amazon.de/s?k=' + quote_plus(p['query']) + '&tag=getecoback-21')
             label = 'Produktseite' if p.get('asin') else 'Modellsuche'
+            cta = f'{label} bei Amazon.de'
+            if cellar:
+                cta = (f'{p["name"]} bei Amazon.de ansehen' if p.get('asin')
+                       else f'{p["name"]} bei Amazon.de suchen')
             action = (f'<p data-catalog-commerce><a class="eb-shop-btn" href="{e(href, quote=True)}" '
-                      f'target="_blank" rel="sponsored nofollow noopener">{label} bei Amazon.de →</a>'
+                      f'target="_blank" rel="sponsored nofollow noopener">{e(cta)} →</a>'
                       '<small>Anzeige · Preis, Variante und Lieferbarkeit beim Händler prüfen.</small></p>')
         else:
             action = '<p data-catalog-commerce>Quellenprüfung ausstehend. Prüfe die verlinkten Unterlagen vor einer Kaufentscheidung.</p>'
         cards.append(f'<div class="dc-card">{evidence}{action}</div>')
+    drain_style = '.dc-drain-paths a{display:flex;align-items:center;min-height:44px;width:fit-content;margin:6px 0;font-weight:700}' if cellar else ''
+    drain_choices = (
+        '<nav class="dc-drain-paths" aria-label="Modell nach Wasserweg prüfen">'
+        '<a href="#modell-stadler-lukas">Ablauf mit Gefälle: Schlauch beim Lukas L-031E prüfen</a>'
+        '<a href="#modell-meaco-one-20">Ablauf liegt höher: Pumpenoption der Arete One 20L prüfen</a>'
+        '</nav>'
+    ) if cellar else ''
     return ('<!--EB_MODELS--><section class="eb-shop eb-models dc-catalog" id="eb-models" aria-labelledby="dc-title">'
             '<style>.dc-catalog{scroll-margin-top:180px}.dc-catalog .dc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:16px}'
             '.dc-catalog .dc-card{padding:18px;border:1px solid #cfe0ea;border-radius:12px;background:#fff;min-width:0}'
@@ -59,6 +77,7 @@ def block(slug, today=None, data=None):
             '.dc-catalog th,.dc-catalog td{vertical-align:top;padding:10px}.dc-table{overflow-x:auto;margin:16px 0}'
             '.dc-drain{scroll-margin-top:180px;padding:18px;border-left:4px solid #0a4d7a;background:#f2f7fa;border-radius:8px;margin:18px 0}'
             '.dc-drain li{margin:10px 0;font-size:15px;line-height:1.6}'
+            f'{drain_style}'
             '.dc-catalog :focus-visible{outline:3px solid #c77400;outline-offset:3px}</style>'
             '<div data-catalog-evidence><div class="eb-shop-h" role="heading" aria-level="2" id="dc-title">Sechs Luftentfeuchter: Unterschiede vor dem Kauf</div>'
             '<aside class="dc-quick" aria-label="Kurzantwort zum Wasserablauf" style="padding:12px;border:1px solid #cfe0ea;border-radius:8px;margin:12px 0">'
@@ -95,7 +114,7 @@ def block(slug, today=None, data=None):
             '<p>Quelle: <a href="https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-air-purifier">'
             'Meaco UK: Arete One 20L, Ablauf und separates Pumpenzubehör</a> · geprüft am 13.11.2026. '
             'Bei ungeklärter Feuchte bleibt Messen und Ursachenklärung der erste Schritt; ein Neukauf ist dann noch nicht begründet.</p>'
-            '</section>'
+            f'{drain_choices}</section>'
             '<div class="dc-table" role="region" aria-label="Modellübersicht, horizontal scrollbar" tabindex="0"><table>'
             '<caption>Kaufgründe und genaue Varianten</caption>\n<thead><tr><th scope="col">Modell</th><th scope="col">Prüfen, wenn dir dies wichtig ist</th><th scope="col">Variante</th></tr></thead>'
             '<tbody>' + ''.join(rows) + '</tbody></table></div><div class="dc-grid">' + ''.join(cards) +

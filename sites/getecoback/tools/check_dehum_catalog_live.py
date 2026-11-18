@@ -31,6 +31,14 @@ def check(slug):
             for surface in [match[1], md]:
                 assert 'Ein Schlauchanschluss allein bestätigt keine Pumpe.' in surface, slug + ': drain limitation missing'
                 assert 'weder den deutschen Lieferumfang noch die Eignung der Arete Two 12L' in surface, slug + ': market/model caveat missing'
+            if slug == 'luftentfeuchter-keller':
+                choices = re.search(r'<nav class="dc-drain-paths".*?</nav>', match[1], re.S)
+                assert choices, 'Cellar drainage model choices missing'
+                for model in ('stadler-lukas', 'meaco-one-20'):
+                    assert f'href="#modell-{model}"' in choices[0]
+                    assert match[1].count(f'id="modell-{model}"') == 1
+                for surface in (match[1], md):
+                    assert 'Sein Ende muss tiefer liegen als der Anfang.' in surface
             for product in DATA['products']:
                 for surface in [match[1], md]:
                     assert product['name'] in surface and product['source'] in surface, slug + ': evidence missing'

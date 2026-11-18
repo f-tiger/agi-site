@@ -229,3 +229,20 @@ test('robot and humidifier buying paths stay exact, independent and additive acr
   assert.doesNotMatch(JSON.stringify(audit),/\/guide\/|private-|private=|amazon\./);
   assert.equal(audit.amazon_orders,null);
 });
+
+test('cellar totals and catalog destinations count only their own page and surface', async () => {
+  const cellar = '/guide/luftentfeuchter-keller.html';
+  const rows = [
+    [cellar, 'page_view', '', '', 10],
+    [cellar, 'affiliate_click', 'models','/dp/EXAMPLE', 3],
+    [cellar, 'affiliate_click', 'models','/s?k=example', 2],
+    [cellar, 'affiliate_click', 'body','/dp/EXAMPLE', 1],
+    ['/guide/luftentfeuchter-ratgeber.html','affiliate_click','models','/dp/EXAMPLE', 4],
+  ].map(([page,name,source,path,n]) => ({
+    day:'2026-09-30',end_exclusive:'2026-10-01',page,name,source,link:'https://www.amazon.de'+path,n,ref:'',
+  }));
+  const audit = await affiliateAudit(dbFor(rows), () => 'direct');
+  assert.deepEqual(audit.weeks.at(-1).cellar_catalog, {
+    page_views:10, affiliate_clicks:6, catalog_product_clicks:3, catalog_search_clicks:2,
+  });
+});
