@@ -210,9 +210,9 @@ jobs:
           if yesterday < upstream['first_full_link_day']:
               actions = 'link measurement pending for this date'
           else:
-              if any(type(row[key]) is not int or row[key] < 0 for key in ('link_views','link_clicks')):
+              if any(type(row[key]) is not int or row[key] < 0 for key in ('humidifier_arrivals','link_views','link_clicks')):
                   raise ValueError('Incomplete EcoBack link data')
-              actions = f"{row['link_views']} link views, {row['link_clicks']} link clicks"
+              actions = f"{row['humidifier_arrivals']} arrivals from the humidifier guide, {row['link_views']} link views, {row['link_clicks']} link clicks"
           with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as summary:
               print(f"EcoBack · {yesterday} UTC: {row['source_pageviews']} source page views, {actions}. [Source report]({source})", file=summary)
           PYTHON

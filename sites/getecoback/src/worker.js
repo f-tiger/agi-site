@@ -414,7 +414,7 @@ async function serveAsset(request, env, pathname, ctx) {
 // no consent banner is required and nothing here identifies a visitor.
 const EV_NAMES = new Set([
   ...DISTRIBUTION_EVENTS,
-  "eco_meter_guide_view", "eco_meter_guide_click",
+  "eco_meter_from_guide", "eco_meter_guide_view", "eco_meter_guide_click",
   ...BUYER_EVENTS,
   "eco_moisture_example", "eco_moisture_check", "eco_moisture_save", "eco_moisture_export",
   ...LAUNDRY_EVENTS,
@@ -783,7 +783,7 @@ async function handleEvent(request, env, ctx) {
   const name = String(body.n || "").slice(0, 40);
   if (!EV_NAMES.has(name)) return json({ ok: false, error: "unknown_event" }, 200, cors);
 
-  const meterEvent = name === 'eco_meter_guide_view' || name === 'eco_meter_guide_click';
+  const meterEvent = ['eco_meter_from_guide','eco_meter_guide_view','eco_meter_guide_click'].includes(name);
   if (meterEvent) {
     if (!validMeterEvent(body, request)) return json({ok:false,error:'invalid_meter_referral'},400,cors);
     if (request.headers.get('dnt') === '1' || request.headers.get('sec-gpc') === '1' ||
