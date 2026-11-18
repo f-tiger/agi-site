@@ -62,16 +62,38 @@ def wall_rows():
     return ''.join('<tr><th scope="row">' + str(rh) + ' %</th>' + ''.join(f'<td>{round(rh*saturated(20)/saturated(t))} %</td>' for t in [16,14,12]) + '</tr>' for rh in [35,40,45,50,55])
 
 
+def accessory_guide(data):
+    models = {product['id']: product['name'] for product in data['products']}
+    matches = [
+        ('oskar-o020', 'oskar_filter', 'Zwei Filtermatten pro vollständigem Wechsel. Ein Zweierpack reicht für einen Wechsel.'),
+        ('oskar-little-o060', 'oskar_filter', 'Eine Filtermatte pro Wechsel. Ein Zweierpack reicht für zwei Wechsel.'),
+        ('beurer-lb200', 'lb200_filter', 'Geräteartikel 10069. Die Anleitung schreibt die Filternummer als 110.005.'),
+        ('beurer-lb55', 'lb55_pads', 'Geräteartikel 68605. Für dieses Dampfgerät sind Kalkpads vorgesehen. Prüfe die Stückzahl auf der konkreten Packung.'),
+    ]
+    items = []
+    for model, source, detail in matches:
+        part = catalog.source_links([source], data)
+        items.append(f'<li><strong>{esc(models[model])}</strong> – {part}. {esc(detail)}</li>')
+    return (
+        '<section aria-labelledby="ersatzteile-zuordnen"><h2 id="ersatzteile-zuordnen">Welcher Ersatzfilter oder welches Kalkpad passt zu meinem Luftbefeuchter?</h2>'
+        '<p>Lies Modell und Artikelnummer auf dem Typenschild ab und vergleiche sie mit den vier Geräten unten. '
+        'Bei einer anderen oder unleserlichen Bezeichnung kläre die Teilenummer zuerst anhand der Anleitung oder beim Hersteller.</p>'
+        '<ul>' + ''.join(items) + '</ul>'
+        '<p class="hc-note">Abgleich mit den deutschen Zubehörseiten der Hersteller am <time datetime="2026-11-18">18. November 2026</time>. '
+        'Beim LB 55 weichen die Mengenangaben auf der Zubehörseite voneinander ab.</p></section>'
+    )
+
+
 def main_body(d, today=None):
-    return '''<div class="hc-answer"><strong>Die kurze Entscheidung</strong><p>Ohne nachvollziehbaren Bedarf brauchst du kein neues Gerät. Bei wiederholt trockener Raumluft zuerst Messung und Nutzung prüfen. Wenn Befeuchtung sinnvoll bleibt, sind passende Regelung, Wasserart und eine Pflege, die du zuverlässig erledigst, wichtiger als ein pauschaler Testsieger.</p><nav aria-label="Luftbefeuchter auswählen"><a href="#bedarf-pruefen">1. Bedarf prüfen</a> · <a href="#technik-waehlen">2. Technik verstehen</a> · <a href="#modelle-vergleichen">3. Modelle vergleichen</a></nav></div>
+    return '''<div class="hc-answer"><strong>Die kurze Entscheidung</strong><p>Ohne nachvollziehbaren Bedarf brauchst du kein neues Gerät. Bei wiederholt trockener Raumluft zuerst Messung und Nutzung prüfen. Wenn Befeuchtung sinnvoll bleibt, sind passende Regelung, Wasserart und eine Pflege, die du zuverlässig erledigst, wichtiger als ein pauschaler Testsieger.</p><nav aria-label="Luftbefeuchter auswählen"><a href="#bedarf-pruefen">1. Bedarf prüfen</a> · <a href="#technik-waehlen">2. Technik verstehen</a> · <a href="#modelle-vergleichen">3. Modelle vergleichen</a> · <a href="#ersatzteile-zuordnen">Ersatzteil fürs vorhandene Gerät finden</a></nav></div>
 <h2 id="bedarf-pruefen">Erst messen: Vielleicht ist kein Kauf nötig</h2>
 <div class="hc-steps"><section><h3>Mehrere Tage beobachten</h3><p>Notiere Temperatur und relative Feuchte zu verschiedenen Tageszeiten. Stelle das Messgerät nicht direkt an Heizung, Fenster oder Nebelauslass. Ein Einzelwert unter 40 % begründet für sich keine Kaufempfehlung.</p><a href="/guide/luftfeuchtigkeit-richtig-messen.html">Messort und Vergleichsmessung prüfen →</a></section><section><h3>Kalte Flächen beachten</h3><p>Bei Kondenswasser oder feuchten Stellen zusätzliche Befeuchtung pausieren und Ursachen klären. Für schlecht gedämmte Wohnungen empfiehlt das Umweltbundesamt im Winter als Faustregel unter 50 % Raumfeuchte; das ist keine universelle Zielzahl für jedes Gebäude.</p></section><section><h3>Vorhandene Lösung reicht</h3><p>Wenn der Raum keinen zusätzlichen Feuchteeintrag braucht oder du die notwendige Pflege nicht übernehmen kannst, kaufe vorerst nichts. Ein vorhandenes Gerät erst nach seiner Anleitung prüfen, statt es allein wegen eines Belags zu ersetzen.</p></section></div>''' + ref(['uba'],d) + '''
 <h2 id="technik-waehlen">Verdunster, Ultraschall und Dampf sind verschiedene Aufgabenpakete</h2>
 <div class="hc-table" role="region" aria-label="Befeuchtungstechniken, horizontal scrollbar" tabindex="0"><table><caption>Technik wählen, ohne Pflege auszublenden</caption><thead><tr><th scope="col">Technik</th><th scope="col">Worauf du achten solltest</th><th scope="col">Kaufgrenze</th></tr></thead><tbody><tr><th scope="row">Verdunstung</th><td>Luft strömt über feuchtes Material; Filter und Tank müssen gepflegt werden.</td><td>Kein sichtbarer Nebel ist kein Beweis für einen Defekt. Hygrostat und Raumkontrolle bleiben wichtig.</td></tr><tr><th scope="row">Ultraschall</th><td>Wasser wird vernebelt. Mineralien können mitverteilt werden; Anleitung zur Wasserart prüfen.</td><td>Bei hartem Wasser zuerst den <a href="/guide/luftbefeuchter-weisser-staub.html">Weißer-Staub-Check</a> nutzen. Hier ist kein Ultraschallmodell ausgewählt.</td></tr><tr><th scope="row">Dampf</th><td>Wasser wird elektrisch erhitzt. Heiße Teile, Wasser und Dampf sowie Entkalkung mitdenken.</td><td>Der LB 55 ist eine bewusste Alternative, keine allgemeine Empfehlung für Kinderzimmer.</td></tr></tbody></table></div>
-<p>Ein Gerät, das als „Luftwäscher“ beworben wird, ist nicht allein deshalb ein nachgewiesen wirksamer Luftreiniger. Diese Kaufhilfe bewertet Befeuchtung, keine Partikelreinigung oder gesundheitliche Wirkung.</p>''' + ref(['epa'],d) + catalog.render(today,d) + '''
+<p>Ein Gerät, das als „Luftwäscher“ beworben wird, ist nicht allein deshalb ein nachgewiesen wirksamer Luftreiniger. Diese Kaufhilfe bewertet Befeuchtung, keine Partikelreinigung oder gesundheitliche Wirkung.</p>''' + ref(['epa'],d) + catalog.render(today,d) + accessory_guide(d) + '''
 <h2 id="gesamtkosten">Kaufpreis plus Pflege: mit deinen Preisen rechnen</h2>
 <p>Trage aktuelle Händlerpreise selbst in eine Notiz ein und bleibe bei derselben Währung. Für einen Vergleich brauchst du dieselbe Nutzungsdauer und dieselbe Aufgabe.</p>
-<ol><li><strong>Anschaffung:</strong> Gerät + wirklich fehlendes Zubehör. Bereits beiliegende Filter oder Pads nicht doppelt addieren.</li><li><strong>Verbrauchsmaterial:</strong> Preis je passendem Ersatzteil × geplante zusätzliche Wechsel. Oskar O-020 benötigt zwei Filtermatten pro vollständigem Wechsel, Oskar little O-060 eine; der O-030-Zweierpack reicht also für einen bzw. zwei Wechsel. Das allein belegt keine niedrigeren Gesamtkosten. Beim LB 200 die kürzere Frist aus sechs Monaten und tatsächlichem Zustand beachten.</li><li><strong>Wasser und Reinigung:</strong> freigegebene Wasserart, Wasserhärte und Reinigungsmittel einplanen. Unbekannte Preise bleiben offen, nicht null.</li><li><strong>Strom:</strong> gemessene kWh × eigener Tarif; für eine erste Schätzung Nennleistung und Laufzeit klar als Annahmen markieren.</li></ol>
+<ol><li><strong>Anschaffung:</strong> Gerät + wirklich fehlendes Zubehör. Bereits beiliegende Filter oder Pads nicht doppelt addieren.</li><li><strong>Verbrauchsmaterial:</strong> Preis je passendem Ersatzteil × geplante zusätzliche Wechsel. Nutze die Anzahl der Filter pro Wechsel für dein genaues Modell. Beim LB 200 die kürzere Frist aus sechs Monaten und tatsächlichem Zustand beachten.</li><li><strong>Wasser und Reinigung:</strong> freigegebene Wasserart, Wasserhärte und Reinigungsmittel einplanen. Unbekannte Preise bleiben offen, nicht null.</li><li><strong>Strom:</strong> gemessene kWh × eigener Tarif; für eine erste Schätzung Nennleistung und Laufzeit klar als Annahmen markieren.</li></ol>
 <p>Eine Heizsaison und ein ganzes Betriebsjahr sind nicht dasselbe. Die Wechselanzeige ist kein Nachweis, dass ein verschmutzter Filter bis dahin weiterverwendet werden kann.</p>
 <p><a class="hc-secondary" href="/guide/luftbefeuchter-stromverbrauch.html">Die Leistungswerte in Beispielkosten umrechnen →</a></p>
 <h2 id="kalte-wand">Warum 50 % im Raum nicht 50 % an der kalten Wand sind</h2>

@@ -72,7 +72,7 @@ Anzeige · Modellsuche, kein geprüftes Einzelangebot.Beurer LB 200 bei Amazon.d
 Dampf als bewusste Alternative
 
 ### Beurer LB 55
-RegelungZwei Dampfstufen mit 200 oder 400 ml/h. Kein einstellbares Feuchteziel wie bei den beiden Verdunstern; Raumfeuchte mit eigenem Hygrometer kontrollieren und Betrieb anpassen.Pflege einplanenGeräteinneres, Tank und Dampfteil wöchentlich reinigen. Kalkpad mindestens wöchentlich prüfen/reinigen; je nach Wasserhärte ersetzen, spätestens nach der Befeuchtungssaison.Passendes VerbrauchsmaterialPassende Kalkpads: 163141 (163.141). Packungsgröße beim Händler prüfen; ein Pad ist kein Ersatz für die Entkalkung des Geräts.**Vor dem Kauf:** Artikel 68605. Heißer Dampf und heißes Wasser: außer Reichweite von Kindern aufstellen. Vor der Reinigung ausstecken und abkühlen lassen. Die 365 W Nennleistung im Kostenplan berücksichtigen.
+RegelungZwei Dampfstufen mit 200 oder 400 ml/h. Kein einstellbares Feuchteziel. Raumfeuchte mit einem separaten Hygrometer kontrollieren und die Dampfstufe selbst wählen.Pflege einplanenGeräteinneres, Tank und Dampfteil wöchentlich reinigen. Kalkpad mindestens wöchentlich prüfen/reinigen; je nach Wasserhärte ersetzen, spätestens nach der Befeuchtungssaison.Passendes VerbrauchsmaterialPassende Kalkpads: 163141 (163.141). Packungsgröße beim Händler prüfen; ein Pad ist kein Ersatz für die Entkalkung des Geräts.**Vor dem Kauf:** Artikel 68605. Heißer Dampf und heißes Wasser: außer Reichweite von Kindern aufstellen. Vor der Reinigung ausstecken und abkühlen lassen. Die 365 W Nennleistung im Kostenplan berücksichtigen.
 Herstellerquellen geprüft: 2026-11-12. [Beurer: LB 55, Art. 68605](https://www.beurer.com/de/p/68605/) · [LB 55: Anleitung 2026, DE S. 5–10](https://res.cloudinary.com/beurer/image/upload/v1785407071/stibo-live/68605_LB55_2026-06-01_09_IM1_BEU.pdf) · [Beurer: Kalkpads 163141](https://www.beurer.com/de/p/163141/)
 Anzeige · Modellsuche, kein geprüftes Einzelangebot.Beurer LB 55 bei Amazon.de suchen →
 
@@ -83,12 +83,21 @@ RegelungZwei Leistungsstufen. Die EU-Anleitung beschreibt keinen einstellbaren F
 Herstellerquellen geprüft: 2026-11-18. [Stadler Form: Oskar little weiß O-060](https://www.stadlerform.com/de-de/luftbefeuchter/oskar-little-weiss-o-060) · [Oskar little: EU-Anleitung, DE S. 10–14](https://www.stadlerform.com/media/85/64/6d/1712837923/stadler-form-oskar-little-manual-eu.pdf) · [Stadler Form: Filter O-030](https://www.stadlerform.com/de-de/luftbefeuchter-zubehoer/luftbefeuchter-filter-2-er-pack-o-030) · [Stadler Form: Modell- und Farbkennungen, Übersicht 2025 S. 2](https://www.stadlerform.com/media/df/e8/d1/1750152809/stadler-form-product-overview-international-2025-de.pdf)
 Anzeige · Modellsuche, kein geprüftes Einzelangebot.Stadler Form Oskar little weiß O-060 bei Amazon.de suchen →
 
+## Welcher Ersatzfilter oder welches Kalkpad passt zu meinem Luftbefeuchter?
+Lies Modell und Artikelnummer auf dem Typenschild ab und vergleiche sie mit den vier Geräten unten. Bei einer anderen oder unleserlichen Bezeichnung kläre die Teilenummer zuerst anhand der Anleitung oder beim Hersteller.
+
+- **Stadler Form Oskar weiß O-020** – [Stadler Form: Filter O-030](https://www.stadlerform.com/de-de/luftbefeuchter-zubehoer/luftbefeuchter-filter-2-er-pack-o-030). Zwei Filtermatten pro vollständigem Wechsel. Ein Zweierpack reicht für einen Wechsel.
+- **Stadler Form Oskar little weiß O-060** – [Stadler Form: Filter O-030](https://www.stadlerform.com/de-de/luftbefeuchter-zubehoer/luftbefeuchter-filter-2-er-pack-o-030). Eine Filtermatte pro Wechsel. Ein Zweierpack reicht für zwei Wechsel.
+- **Beurer LB 200** – [Beurer: Ersatzfilter 110005](https://www.beurer.com/de/p/110005/). Geräteartikel 10069. Die Anleitung schreibt die Filternummer als 110.005.
+- **Beurer LB 55** – [Beurer: Kalkpads 163141](https://www.beurer.com/de/p/163141/). Geräteartikel 68605. Für dieses Dampfgerät sind Kalkpads vorgesehen. Prüfe die Stückzahl auf der konkreten Packung.
+Abgleich mit den deutschen Zubehörseiten der Hersteller am 18. November 2026. Beim LB 55 weichen die Mengenangaben auf der Zubehörseite voneinander ab.
+
 ## Kaufpreis plus Pflege: mit deinen Preisen rechnen
 
 Trage aktuelle Händlerpreise selbst in eine Notiz ein und bleibe bei derselben Währung. Für einen Vergleich brauchst du dieselbe Nutzungsdauer und dieselbe Aufgabe.
 
 - **Anschaffung:** Gerät + wirklich fehlendes Zubehör. Bereits beiliegende Filter oder Pads nicht doppelt addieren.
-- **Verbrauchsmaterial:** Preis je passendem Ersatzteil × geplante zusätzliche Wechsel. Oskar O-020 benötigt zwei Filtermatten pro vollständigem Wechsel, Oskar little O-060 eine; der O-030-Zweierpack reicht also für einen bzw. zwei Wechsel. Das allein belegt keine niedrigeren Gesamtkosten. Beim LB 200 die kürzere Frist aus sechs Monaten und tatsächlichem Zustand beachten.
+- **Verbrauchsmaterial:** Preis je passendem Ersatzteil × geplante zusätzliche Wechsel. Nutze die Anzahl der Filter pro Wechsel für dein genaues Modell. Beim LB 200 die kürzere Frist aus sechs Monaten und tatsächlichem Zustand beachten.
 - **Wasser und Reinigung:** freigegebene Wasserart, Wasserhärte und Reinigungsmittel einplanen. Unbekannte Preise bleiben offen, nicht null.
 - **Strom:** gemessene kWh × eigener Tarif; für eine erste Schätzung Nennleistung und Laufzeit klar als Annahmen markieren.
 

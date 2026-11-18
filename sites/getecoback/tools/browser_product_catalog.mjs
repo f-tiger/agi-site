@@ -64,6 +64,13 @@ try{
   assert.equal(await page.locator('.pc-comparison').count(),12);
   assert.equal(await page.locator('.pc-comparison tbody tr').count(),48);
 
+  const guideLinks=page.locator('[data-specialist-guide] a');
+  assert.equal(await guideLinks.count(),6);
+  assert.equal(await page.locator('[data-specialist-guide]:visible').count(),6);
+  const humidifierLink=guideLinks.filter({hasText:/^Luftbefeuchter$/i});
+  assert.equal(await humidifierLink.count(),1);
+  const humidifierPath=await humidifierLink.getAttribute('href');
+  assert.equal(humidifierPath,'/guide/luftbefeuchter-ratgeber.html#modelle-vergleichen');
   assert.equal(await page.locator('[data-product-category]').count(),data.categories.length);
   assert.equal(await page.locator('[data-product-card] a[href*="amazon.de"]').count(),expected.length);
   for(const product of data.products){
@@ -79,14 +86,47 @@ try{
    const first=data.categories[0],firstProducts=data.products.filter(p=>p.category===first.id);
    await page.locator('#product-category').selectOption(first.id);
    assert.equal(await page.locator('[data-product-card]:visible').count(),firstProducts.length);
+   assert(await page.locator('[data-specialist-guides]').isHidden());
+   await page.locator('a[href="#kaufhilfen"]').click();
+   await page.locator('[data-specialist-guides]').waitFor({state:'visible'});
+   assert.equal(await page.locator('#product-category').inputValue(),'');
    await page.locator('#product-query').fill('__nicht_vorhanden_743_');
    assert.equal(await page.locator('[data-product-card]:visible').count(),0);assert(await page.locator('#product-filter-empty').isVisible());
+   assert(await page.locator('[data-specialist-guides]').isHidden());
+   for(const [query,id] of Object.entries({
+    Fenstersauger:'fenstersauger',Bodenstaubsauger:'bodenstaubsauger',Dampfreiniger:'dampfreiniger',
+    Luftreiniger:'luftreiniger','Heißluftfritteuse':'heissluftfritteusen',heissluftfritteuse:'heissluftfritteusen'
+   })){
+    await page.locator('#product-query').fill(query);
+    const count=data.products.filter(p=>p.category===id).length;
+    assert.equal(await page.locator('[data-product-card][data-category="'+id+'"]:visible').count(),count,query);
+   }
+   await page.locator('#product-query').fill('Oskar little');
+   assert.equal(await page.locator('[data-product-card]:visible').count(),0);
+   assert.equal(await page.locator('[data-specialist-guide]:visible').count(),1);
+   assert(await humidifierLink.isVisible());
+   assert(await page.locator('#product-filter-empty').isHidden());
+   assert.match(await page.locator('#product-filter-status').innerText(),/0 von 48 Modellen.*1 Kaufhilfe\./);
+   const accessoryLink=page.locator('[data-specialist-guide] a[href="/guide/luftbefeuchter-ratgeber.html#ersatzteile-zuordnen"]');
+   for(const part of ['163141','O-030']){
+    await page.locator('#product-query').fill(part);
+    assert(await accessoryLink.isVisible());
+    assert(await page.locator('#product-filter-empty').isHidden());
+   }
    await page.locator('#product-filters button[type=reset]').click();
    assert.equal(await page.locator('[data-product-card]:visible').count(),data.products.length);
+   assert.equal(await page.locator('[data-specialist-guide]:visible').count(),6);
    const example=data.products[0];await page.locator('#product-query').fill(example.name);
    assert(await page.locator('#produkt-'+example.id).isVisible());
    await page.locator('#product-filters button[type=reset]').click();
   }else{assert(await page.locator('#product-filters').isHidden());assert.equal(await page.locator('[data-product-card]:visible').count(),data.products.length);}
+  // Follow an actual buying-guide result by keyboard in both script modes.
+  await humidifierLink.focus();
+  await page.keyboard.press('Enter');
+  await page.waitForURL(origin+humidifierPath);
+  assert(await page.locator('#modelle-vergleichen').isVisible());
+  await page.goto(origin+'/produkte.html?__probe=1');
+  if(javaScriptEnabled)await page.locator('#product-filters').waitFor({state:'visible'});
   // Static reading routes and fragment history must work on final built files.
   const firstGroup=data.categories[0],secondGroup=data.categories[1];
   assert.equal(await page.locator('.pc-buyer-routes').count(),data.categories.length);

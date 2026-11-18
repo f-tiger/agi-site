@@ -11,11 +11,23 @@ Canonical (HTML, zitierfähig): https://getecoback.com/produkte.html
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Händlersuchen sind als Anzeige gekennzeichnet. Keine eigenen Gerätetests; Herstellerangaben sind keine Leistungszusage für dein Zuhause.
 
-Veröffentlicht: 13.11.2026 · Inhalt geändert: 15.11.2026. Der Quellenstand steht an jedem Modell.
+Veröffentlicht: 13.11.2026 · Inhalt geändert: 18.11.2026. Der Quellenstand steht an jedem Modell.
 
 48 Modelle in 12 Produktgruppen.
 
-Keine passenden Modelle. Ändere die Suche oder setze die Filter zurück.
+## Kaufhilfen für Raumklima, Heizung und Böden
+
+- [Luftentfeuchter](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#eb-models) Ist dein Keller dauerhaft feucht? Erst messen und die Ursache klären. Bei Bedarf Tankbetrieb und Schlauchablauf vergleichen.
+
+- [Luftbefeuchter](https://getecoback.com/guide/luftbefeuchter-ratgeber.html#modelle-vergleichen) Trockene Luft gemessen? Vergleiche manuelle Stufen mit einstellbarem Feuchteziel und prüfe, welche Filter du wechseln musst.
+
+- [Ersatzteile für Luftbefeuchter](https://getecoback.com/guide/luftbefeuchter-ratgeber.html#ersatzteile-zuordnen) Welches Teil passt zu deinem Gerät? Gleiche die Modellkennung mit den Filtermatten O-030, dem Ersatzfilter 110005 oder den Kalkpads 163141 ab.
+
+- [Heizkörperthermostate](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-start) Willst du Heizzeiten einstellen? Prüfe zuerst dein Ventil und ob das gewählte Thermostat eine passende Zentrale braucht.
+
+- [Saugroboter](https://getecoback.com/guide/saugroboter-kaufberatung.html#modelle-vergleichen) Soll ein Roboter die Räume selbstständig reinigen? Miss die Türschwellen und den Platz für die Station, bevor du die Wischfunktion wählst.
+
+- [Saugwischer](https://getecoback.com/guide/saugwischer-kaufberatung.html#modelle-vergleichen) Willst du Hartboden von Hand saugen und wischen? Prüfe die Freigabe für feuchte Reinigung und plane Zeit für Tank und Walze ein.
 
 ## Luftreiniger 4 Modelle
 
@@ -1002,7 +1014,6 @@ Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue 
 ## Was diese Auswahl leistet
 Die Gruppen zeigen unterschiedliche Aufgaben und konkrete Modelle, keine vollständige Marktübersicht. Herstellerdaten und genaue Varianten stehen bei jedem Gerät. Wir haben diese Geräte nicht selbst getestet. Eine Händlersuche bestätigt weder ein bestimmtes Angebot noch Verfügbarkeit oder einen Preis.
 Quellen älter als 90 Tage, zukünftige Prüfdaten oder offene Widersprüche pausieren die Händlersuche. Die zuletzt dokumentierten Fakten bleiben nachvollziehbar. Zubehör, regionale Ausführung und die passende Anleitung am konkreten Angebot prüfen. Ein funktionierendes vorhandenes Gerät muss nicht ersetzt werden.
-Weitere genaue Kaufhilfen: [Luftentfeuchter](https://getecoback.com/guide/luftentfeuchter-ratgeber.html) · [Heizkörperthermostate](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html) · [Saugwischer](https://getecoback.com/guide/saugwischer-kaufberatung.html) · [Saugroboter](https://getecoback.com/guide/saugroboter-kaufberatung.html) · [Luftbefeuchter](https://getecoback.com/guide/luftbefeuchter-ratgeber.html).
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json

@@ -5,3 +5,21 @@ body{margin:0;background:#f8fafb;font-family:system-ui,-apple-system,BlinkMacSys
 .pc-buyer-routes{display:flex;flex-wrap:wrap;gap:10px}.pc-buyer-routes a{display:inline-block;padding:12px 14px;border:1px solid #9fb8c6;border-radius:8px;background:#fff;font-weight:650;text-decoration:none}.pc-buyer-routes a:first-child{background:#075f88;color:#fff}.pc-model-heading{font-size:22px}.pc-category,.pc-card,.pc-tool,.pc-model-heading{scroll-margin-top:180px}@media(max-width:680px){.pc-category,.pc-card,.pc-tool,.pc-model-heading{scroll-margin-top:260px}.pc-buyer-routes a{width:100%}}
 
 .pc-comparison{margin:1.5rem 0;padding:1rem;border:1px solid #a9bcc6;border-radius:12px;background:#fff}.pc-table-scroll{overflow-x:auto}.pc-table-scroll:focus-visible{outline:3px solid #236894;outline-offset:3px}.pc-comparison table{border-collapse:collapse;min-width:720px;width:100%;font-size:.95rem}.pc-comparison caption{text-align:left;font-weight:700;padding:.6rem}.pc-comparison th,.pc-comparison td{padding:.75rem;border:1px solid #c9d5db;vertical-align:top;text-align:left}.pc-comparison thead{background:#edf4f7}#airfryer-choice{scroll-margin-top:180px}@media(max-width:680px){#airfryer-choice{scroll-margin-top:260px}}
+
+.pc-categories .pc-guide-jump { border-style: dashed; }
+.pc-guides { margin: 32px 0; scroll-margin-top: 180px; }
+.pc-guides ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 265px), 1fr));
+  gap: 12px 24px;
+  margin: 0;
+  padding: 0;
+}
+.pc-guides li { border-top: 1px solid #b3c9d5; padding: 4px 0 8px; }
+.pc-guides li a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 700; }
+.pc-guides li p { margin: 0; font-size: 15px; }
+@media (max-width: 680px) {
+  .pc-guides { scroll-margin-top: 260px; }
+}
+#product-filter-empty { grid-column: 1 / -1; margin: 0; }
