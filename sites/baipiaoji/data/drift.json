@@ -1,10 +1,47 @@
 {
-  "generated": "2026-11-17",
+  "generated": "2026-11-18",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 107,
-  "fetched_fail": 20,
-  "pending": 13,
+  "fetched_ok": 105,
+  "fetched_fail": 22,
+  "pending": 16,
   "items": [
+    {
+      "slug": "quark-ai",
+      "url": "https://quark.cn",
+      "confirmed": "2026-11-18",
+      "first_seen": "2026-11-17",
+      "added": [
+        "1分钟",
+        "30天",
+        "37秒",
+        "4000元",
+        "40分钟"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-13"
+    },
+    {
+      "slug": "replit",
+      "url": "https://docs.replit.com",
+      "confirmed": "2026-11-18",
+      "first_seen": "2026-11-17",
+      "added": [],
+      "removed": [
+        "385b"
+      ],
+      "checked_then": "2026-08-03"
+    },
+    {
+      "slug": "notebooklm",
+      "url": "https://support.google.com/gemininotebook",
+      "confirmed": "2026-11-18",
+      "first_seen": "2026-11-17",
+      "added": [],
+      "removed": [
+        "100%"
+      ],
+      "checked_then": "2026-08-13"
+    },
     {
       "slug": "deepl",
       "url": "https://www.deepl.com/pricing",
@@ -32,24 +69,6 @@
       "checked_then": "2026-09-21"
     },
     {
-      "slug": "replit",
-      "url": "https://docs.replit.com",
-      "confirmed": "2026-11-16",
-      "first_seen": "2026-11-15",
-      "added": [
-        "10b",
-        "1521b",
-        "385b",
-        "42b",
-        "7376b",
-        "900b"
-      ],
-      "removed": [
-        "1942b"
-      ],
-      "checked_then": "2026-08-03"
-    },
-    {
       "slug": "v0",
       "url": "https://v0.app",
       "confirmed": "2026-11-16",
@@ -71,17 +90,6 @@
         "30minutes"
       ],
       "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "quark-ai",
-      "url": "https://quark.cn",
-      "confirmed": "2026-11-15",
-      "first_seen": "2026-11-14",
-      "added": [],
-      "removed": [
-        "4k"
-      ],
-      "checked_then": "2026-08-13"
     },
     {
       "slug": "zhipu-glm",
@@ -470,17 +478,6 @@
       "removed": [
         "1.5s",
         "4.5s"
-      ],
-      "checked_then": "2026-08-13"
-    },
-    {
-      "slug": "notebooklm",
-      "url": "https://support.google.com/gemininotebook",
-      "confirmed": "2026-10-29",
-      "first_seen": "2026-10-28",
-      "added": [],
-      "removed": [
-        "18,gb"
       ],
       "checked_then": "2026-08-13"
     },

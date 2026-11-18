@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-11-17T08:28:30.645Z",
+  "lastRun": "2026-11-18T07:56:53.072Z",
   "status": "degraded",
   "checkedSources": 5,
   "queue": [
@@ -139,25 +139,25 @@
       "caseId": "glean",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.glean.com/press/glean-surpasses-200m-in-arr-for-enterprise-ai-doubling-revenue-in-nine-months",
-      "lastChecked": "2026-11-04T06:58:40.954Z"
+      "lastChecked": "2026-11-18T07:56:53.072Z"
     },
     {
       "caseId": "harvey",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.harvey.ai/blog/harveys-three-year-anniversary",
-      "lastChecked": "2026-11-05T07:20:29.079Z"
+      "lastChecked": "2026-11-18T07:56:53.072Z"
     },
     {
       "caseId": "fireflies",
       "reason": "source-unreachable",
       "sourceUrl": "https://fireflies.ai/blog/fireflies-1-billion-valuation",
-      "lastChecked": "2026-11-05T07:20:29.079Z"
+      "lastChecked": "2026-11-18T07:56:53.072Z"
     },
     {
       "caseId": "cydoc",
       "reason": "source-unreachable",
       "sourceUrl": "https://glassboxmedicine.com/2026/02/21/why-i-shut-down-my-bootstrapped-health-ai-startup-after-7-years-a-founders-postmortem/",
-      "lastChecked": "2026-11-05T07:20:29.079Z"
+      "lastChecked": "2026-11-18T07:56:53.072Z"
     },
     {
       "caseId": "kite",
@@ -628,10 +628,10 @@
     "photoroom|https://help.photoroom.com/en/articles/9626719-what-is-photoroom": {
       "caseId": "photoroom",
       "sourceUrl": "https://help.photoroom.com/en/articles/9626719-what-is-photoroom",
-      "lastAttempt": "2026-11-04T06:58:40.954Z",
+      "lastAttempt": "2026-11-18T07:56:53.072Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-11-04T06:58:40.954Z",
+      "lastSuccess": "2026-11-18T07:56:53.072Z",
       "lastHash": "66e98277f2a2fe7ff23bbfb09f2d37283f3fdba2da8a5c3daa015ed39770a823",
       "hash": "66e98277f2a2fe7ff23bbfb09f2d37283f3fdba2da8a5c3daa015ed39770a823",
       "simhash": "2ad22595e494c99c",
@@ -641,7 +641,7 @@
     "glean|https://www.glean.com/press/glean-surpasses-200m-in-arr-for-enterprise-ai-doubling-revenue-in-nine-months": {
       "caseId": "glean",
       "sourceUrl": "https://www.glean.com/press/glean-surpasses-200m-in-arr-for-enterprise-ai-doubling-revenue-in-nine-months",
-      "lastAttempt": "2026-11-04T06:58:40.954Z",
+      "lastAttempt": "2026-11-18T07:56:53.072Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -649,7 +649,7 @@
     "harvey|https://www.harvey.ai/blog/harveys-three-year-anniversary": {
       "caseId": "harvey",
       "sourceUrl": "https://www.harvey.ai/blog/harveys-three-year-anniversary",
-      "lastAttempt": "2026-11-05T07:20:29.079Z",
+      "lastAttempt": "2026-11-18T07:56:53.072Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -657,7 +657,7 @@
     "fireflies|https://fireflies.ai/blog/fireflies-1-billion-valuation": {
       "caseId": "fireflies",
       "sourceUrl": "https://fireflies.ai/blog/fireflies-1-billion-valuation",
-      "lastAttempt": "2026-11-05T07:20:29.079Z",
+      "lastAttempt": "2026-11-18T07:56:53.072Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -665,7 +665,7 @@
     "cydoc|https://glassboxmedicine.com/2026/02/21/why-i-shut-down-my-bootstrapped-health-ai-startup-after-7-years-a-founders-postmortem/": {
       "caseId": "cydoc",
       "sourceUrl": "https://glassboxmedicine.com/2026/02/21/why-i-shut-down-my-bootstrapped-health-ai-startup-after-7-years-a-founders-postmortem/",
-      "lastAttempt": "2026-11-05T07:20:29.079Z",
+      "lastAttempt": "2026-11-18T07:56:53.072Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1159,22 +1159,27 @@
       "consecutiveChange": 0
     }
   },
-  "cursor": 24,
+  "cursor": 29,
   "errors": [
     {
-      "caseId": "elevenlabs",
-      "sourceUrl": "https://elevenlabs.io/blog/500m-arr-and-new-investors",
+      "caseId": "glean",
+      "sourceUrl": "https://www.glean.com/press/glean-surpasses-200m-in-arr-for-enterprise-ai-doubling-revenue-in-nine-months",
       "reason": "body-limit"
     },
     {
-      "caseId": "synthesia",
-      "sourceUrl": "https://www.synthesia.io/post/100-million-revenue-adobe-investment",
+      "caseId": "harvey",
+      "sourceUrl": "https://www.harvey.ai/blog/harveys-three-year-anniversary",
       "reason": "body-limit"
     },
     {
-      "caseId": "heygen",
-      "sourceUrl": "https://www.heygen.com/blog/heygen-surpasses-200m-arr",
+      "caseId": "fireflies",
+      "sourceUrl": "https://fireflies.ai/blog/fireflies-1-billion-valuation",
       "reason": "body-limit"
+    },
+    {
+      "caseId": "cydoc",
+      "sourceUrl": "https://glassboxmedicine.com/2026/02/21/why-i-shut-down-my-bootstrapped-health-ai-startup-after-7-years-a-founders-postmortem/",
+      "reason": "unsafe-source"
     }
   ]
 }

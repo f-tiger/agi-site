@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-17",
+ "checked": "2026-11-18",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -4167,169 +4167,261 @@
    "source_http": 404,
    "repo_http": null,
    "reason": "source HTTP 404"
+  },
+  "edgethirteen-accessproof": {
+   "attempts": 1,
+   "first_attempt": "2026-11-18",
+   "last_attempt": "2026-11-18",
+   "attemptedAt": "2026-11-18T07:56:05.716Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "edgethirteen-advisor-letter": {
+   "attempts": 1,
+   "first_attempt": "2026-11-18",
+   "last_attempt": "2026-11-18",
+   "attemptedAt": "2026-11-18T07:56:05.716Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "edgethirteen-ai-disclosure-kit": {
+   "attempts": 1,
+   "first_attempt": "2026-11-18",
+   "last_attempt": "2026-11-18",
+   "attemptedAt": "2026-11-18T07:56:05.716Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "edgethirteen-apidrift": {
+   "attempts": 1,
+   "first_attempt": "2026-11-18",
+   "last_attempt": "2026-11-18",
+   "attemptedAt": "2026-11-18T07:56:05.716Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "edgethirteen-bank-stress-dataset": {
+   "attempts": 1,
+   "first_attempt": "2026-11-18",
+   "last_attempt": "2026-11-18",
+   "attemptedAt": "2026-11-18T07:56:05.716Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "edgethirteen-chargeback-response": {
+   "attempts": 1,
+   "first_attempt": "2026-11-18",
+   "last_attempt": "2026-11-18",
+   "attemptedAt": "2026-11-18T07:56:05.716Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "edgethirteen-cloakcheck": {
+   "attempts": 1,
+   "first_attempt": "2026-11-18",
+   "last_attempt": "2026-11-18",
+   "attemptedAt": "2026-11-18T07:56:05.716Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "edgethirteen-commentlettercheck": {
+   "attempts": 1,
+   "first_attempt": "2026-11-18",
+   "last_attempt": "2026-11-18",
+   "attemptedAt": "2026-11-18T07:56:05.716Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "edgethirteen-drop-compliance-kit": {
+   "attempts": 1,
+   "first_attempt": "2026-11-18",
+   "last_attempt": "2026-11-18",
+   "attemptedAt": "2026-11-18T07:56:05.716Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "edgethirteen-exploitwatch": {
+   "attempts": 1,
+   "first_attempt": "2026-11-18",
+   "last_attempt": "2026-11-18",
+   "attemptedAt": "2026-11-18T07:56:05.716Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "edgethirteen-hubspot-dbv": {
+   "attempts": 1,
+   "first_attempt": "2026-11-18",
+   "last_attempt": "2026-11-18",
+   "attemptedAt": "2026-11-18T07:56:05.716Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "edgethirteen-industry-primers": {
+   "attempts": 1,
+   "first_attempt": "2026-11-18",
+   "last_attempt": "2026-11-18",
+   "attemptedAt": "2026-11-18T07:56:05.716Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "edgethirteen-kdpcheck": {
+   "attempts": 1,
+   "first_attempt": "2026-11-18",
+   "last_attempt": "2026-11-18",
+   "attemptedAt": "2026-11-18T07:56:05.716Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "edgethirteen-killcord": {
+   "attempts": 1,
+   "first_attempt": "2026-11-18",
+   "last_attempt": "2026-11-18",
+   "attemptedAt": "2026-11-18T07:56:05.716Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "edgethirteen-meterkit": {
+   "attempts": 1,
+   "first_attempt": "2026-11-18",
+   "last_attempt": "2026-11-18",
+   "attemptedAt": "2026-11-18T07:56:05.716Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "edgethirteen-postingcheck": {
+   "attempts": 1,
+   "first_attempt": "2026-11-18",
+   "last_attempt": "2026-11-18",
+   "attemptedAt": "2026-11-18T07:56:05.716Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "edgethirteen-pumpcheck": {
+   "attempts": 1,
+   "first_attempt": "2026-11-18",
+   "last_attempt": "2026-11-18",
+   "attemptedAt": "2026-11-18T07:56:05.716Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "edgethirteen-renewal-matrix": {
+   "attempts": 1,
+   "first_attempt": "2026-11-18",
+   "last_attempt": "2026-11-18",
+   "attemptedAt": "2026-11-18T07:56:05.716Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "edgethirteen-rewardsguard": {
+   "attempts": 1,
+   "first_attempt": "2026-11-18",
+   "last_attempt": "2026-11-18",
+   "attemptedAt": "2026-11-18T07:56:05.716Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "edgethirteen-site-audit": {
+   "attempts": 1,
+   "first_attempt": "2026-11-18",
+   "last_attempt": "2026-11-18",
+   "attemptedAt": "2026-11-18T07:56:05.716Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "edgethirteen-slopcheck": {
+   "attempts": 1,
+   "first_attempt": "2026-11-18",
+   "last_attempt": "2026-11-18",
+   "attemptedAt": "2026-11-18T07:56:05.716Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "edgethirteen-stackledger": {
+   "attempts": 1,
+   "first_attempt": "2026-11-18",
+   "last_attempt": "2026-11-18",
+   "attemptedAt": "2026-11-18T07:56:05.716Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "edgethirteen-tariff-refund-screen": {
+   "attempts": 1,
+   "first_attempt": "2026-11-18",
+   "last_attempt": "2026-11-18",
+   "attemptedAt": "2026-11-18T07:56:05.716Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "edgethirteen-triageshield": {
+   "attempts": 1,
+   "first_attempt": "2026-11-18",
+   "last_attempt": "2026-11-18",
+   "attemptedAt": "2026-11-18T07:56:05.716Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "edgethirteen-us-diligence": {
+   "attempts": 1,
+   "first_attempt": "2026-11-18",
+   "last_attempt": "2026-11-18",
+   "attemptedAt": "2026-11-18T07:56:05.716Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "edgethirteen-valuefeed": {
+   "attempts": 1,
+   "first_attempt": "2026-11-18",
+   "last_attempt": "2026-11-18",
+   "attemptedAt": "2026-11-18T07:56:05.716Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "edgethirteen-vercelpycheck": {
+   "attempts": 1,
+   "first_attempt": "2026-11-18",
+   "last_attempt": "2026-11-18",
+   "attemptedAt": "2026-11-18T07:56:05.716Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "edgethirteen-voicebrief": {
+   "attempts": 1,
+   "first_attempt": "2026-11-18",
+   "last_attempt": "2026-11-18",
+   "attemptedAt": "2026-11-18T07:56:05.716Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
   }
  },
  "admitted": [
-  {
-   "slug": "moosejudge-castor-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "shiftinbits-constellation",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "meetsquad-squad",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "sequentum-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "merofoundry-merofoundry",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hovercode-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "tectonicplates-tectonic-plates",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "empiriolabs-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "macaroonnetwork-mcp-server",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "jenriks-photo-archive",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "scfcontrolsplatform-mcp-server-scf",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "octapi-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "thedploy-deployer",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "helvabase-helvabase",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "art-travel-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "goalieip-trademark",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "macaroonnetwork-bible-evidence",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "outfitmaker-outfit-assistant",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "forestrie-resolve",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "proxycove-mcp-server",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "kema-studio-invoice",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "name-nameai-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "forestrie-verify",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "expense-budget-tracker-expense-budget-tracker",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "lyricpatch-lyricpatch",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "glasser-glasser",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "omnara-omnara",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "stravue-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "timeprooflabs-forge-arena-wilds",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "fluttergo-remote",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "flyvolo-knowledge",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "edgedepth-research",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
   {
    "slug": "laddro-career",
    "date": "2026-09-22",
@@ -21530,6 +21622,198 @@
    "date": "2026-11-17",
    "source_http": 200,
    "repo_http": 404
+  },
+  {
+   "slug": "edgethirteen-altman-z-score-calculator",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "edgethirteen-dcf-calculator",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "edgethirteen-gateway",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "edgethirteen-graham-number-calculator",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "edgethirteen-lite",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "edgethirteen-numbercheck",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "edgethirteen-sanctions",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ediscoverydecoder-mcp",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "editalmd-editalmd",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "edwyna-fax",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "efon-call-rates",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "eformogi-records-vault",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "einvoicewiz-einvoicewiz",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "electionsmcp-electionsmcp",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "electricskateboard-electricskateboard",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "electronics-architect-electronics-architect",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "elevenflo-mcp",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "eleyed-redact",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "eligiblebydescent-site",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "elixirconf-async",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "elkassabgidata-elkassabgidata",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "eloedge-kalshi-prediction-markets",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "eloedge-prediction-market-data",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "elsewhereagents-world",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "elucora-evidence",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "emailchaser-emailchaser",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "emailplane-mail",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "embersds-embers",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "emdly-emdly",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "emergentphysicslab-waveguard",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "emergingtechcenter-gigs",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "emetzor-signal-one",
+   "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": null
   }
  ],
  "note": "Written by scripts/agent-watch-admit.mjs. A slug listed under rejected was NOT admitted (reason + last HTTP status); it is retried on later runs. Candidates that were admitted appear in data/agent-watch.json."

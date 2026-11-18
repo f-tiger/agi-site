@@ -1,6 +1,26 @@
 {
   "items": [
     {
+      "name": "TrnRT – An open-source LLM inference engine for AWS Trainium",
+      "url": "https://github.com/RunanywhereAI/trnrt",
+      "host": "github.com",
+      "src": "https://news.ycombinator.com/item?id=50533270",
+      "points": 48,
+      "comments": 7,
+      "found": "2026-11-18",
+      "status": "candidate"
+    },
+    {
+      "name": "Launch HN: StarSling (YC P25) – Self-improving CI for agent-volume repos",
+      "url": "https://starsling.dev",
+      "host": "starsling.dev",
+      "src": "https://news.ycombinator.com/item?id=50536468",
+      "points": 66,
+      "comments": 37,
+      "found": "2026-11-18",
+      "status": "candidate"
+    },
+    {
       "name": "db-branch – database branches in seconds for AI agents and CI, via ZFS",
       "url": "https://github.com/db-branch/db-branch",
       "host": "github.com",
@@ -329,27 +349,7 @@
       "comments": 67,
       "found": "2026-10-05",
       "status": "candidate"
-    },
-    {
-      "name": "Offrun – manage every coding agent from one workspace",
-      "url": "https://offrun.dev/",
-      "host": "offrun.dev",
-      "src": "https://news.ycombinator.com/item?id=49942434",
-      "points": 74,
-      "comments": 61,
-      "found": "2026-10-04",
-      "status": "candidate"
-    },
-    {
-      "name": "Pi pod – Run your pi coding agent in sandboxes on your own server",
-      "url": "https://pipod.dev/",
-      "host": "pipod.dev",
-      "src": "https://news.ycombinator.com/item?id=49937304",
-      "points": 89,
-      "comments": 32,
-      "found": "2026-10-04",
-      "status": "candidate"
     }
   ],
-  "updated": "2026-11-17"
+  "updated": "2026-11-18"
 }

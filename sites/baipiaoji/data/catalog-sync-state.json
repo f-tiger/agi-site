@@ -1,19 +1,9 @@
 {
  "version": 1,
  "github": {
-  "queryIndex": 12,
+  "queryIndex": 18,
   "page": 3,
   "pending": [
-   {
-    "repo": "rohitg00/ai-engineering-from-scratch",
-    "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "elder-plinius/CL4R1T4S",
-    "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
    {
     "repo": "vectorize-io/hindsight",
     "topic": "agents",
@@ -47,11 +37,6 @@
    {
     "repo": "openai/openai-agents-python",
     "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "mostafasadeghi97/design2code",
-    "topic": "coding",
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
@@ -655,11 +640,6 @@
     "foundAt": "2026-10-06T06:50:25.349Z"
    },
    {
-    "repo": "Azure-Samples/Cognitive-Speech-TTS",
-    "topic": "audio",
-    "foundAt": "2026-10-06T06:50:25.349Z"
-   },
-   {
     "repo": "fluxions-ai/vui",
     "topic": "audio",
     "foundAt": "2026-10-06T06:50:25.349Z"
@@ -767,11 +747,6 @@
    {
     "repo": "ASCIT31/Dark-Moon",
     "topic": "agents",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
-    "repo": "jegly/Box",
-    "topic": "knowledge",
     "foundAt": "2026-10-09T06:38:33.001Z"
    },
    {
@@ -900,11 +875,6 @@
     "foundAt": "2026-10-09T06:38:33.001Z"
    },
    {
-    "repo": "passbolt/passbolt_api",
-    "topic": "everyday",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
     "repo": "aayushch/laya",
     "topic": "agents",
     "foundAt": "2026-10-09T06:38:33.001Z"
@@ -947,11 +917,6 @@
    {
     "repo": "theopenco/llmgateway",
     "topic": "coding",
-    "foundAt": "2026-10-10T06:21:21.428Z"
-   },
-   {
-    "repo": "pegainfer-project/pegainfer",
-    "topic": "local",
     "foundAt": "2026-10-10T06:21:21.428Z"
    },
    {
@@ -1232,11 +1197,6 @@
    {
     "repo": "cclank/lanshu-create-ai-presenter-video",
     "topic": "coding",
-    "foundAt": "2026-10-18T05:05:17.089Z"
-   },
-   {
-    "repo": "datalab-to/indra",
-    "topic": "documents",
     "foundAt": "2026-10-18T05:05:17.089Z"
    },
    {
@@ -1547,11 +1507,6 @@
    {
     "repo": "octotools/octotools",
     "topic": "agents",
-    "foundAt": "2026-10-22T05:18:29.886Z"
-   },
-   {
-    "repo": "xinxuxin/keystone-bench",
-    "topic": "ai",
     "foundAt": "2026-10-22T05:18:29.886Z"
    },
    {
@@ -2780,11 +2735,6 @@
     "foundAt": "2026-11-13T07:10:31.167Z"
    },
    {
-    "repo": "aws-samples/bedrock-chat",
-    "topic": "chat",
-    "foundAt": "2026-11-13T07:10:31.167Z"
-   },
-   {
     "repo": "wici-ai/inferssd",
     "topic": "local",
     "foundAt": "2026-11-14T06:58:47.664Z"
@@ -3003,6 +2953,56 @@
     "repo": "ttop32/MouseTooltipTranslator",
     "topic": "documents",
     "foundAt": "2026-11-17T08:26:32.925Z"
+   },
+   {
+    "repo": "chrishayuk/larql",
+    "topic": "local",
+    "foundAt": "2026-11-18T07:56:05.716Z"
+   },
+   {
+    "repo": "sybil-solutions/inference-optimisation-skill",
+    "topic": "coding",
+    "foundAt": "2026-11-18T07:56:05.716Z"
+   },
+   {
+    "repo": "hhy-huang/HiRAG",
+    "topic": "knowledge",
+    "foundAt": "2026-11-18T07:56:05.716Z"
+   },
+   {
+    "repo": "dagger/dagger",
+    "topic": "agents",
+    "foundAt": "2026-11-18T07:56:05.716Z"
+   },
+   {
+    "repo": "backnotprop/plannotator",
+    "topic": "coding",
+    "foundAt": "2026-11-18T07:56:05.716Z"
+   },
+   {
+    "repo": "max-sixty/worktrunk",
+    "topic": "coding",
+    "foundAt": "2026-11-18T07:56:05.716Z"
+   },
+   {
+    "repo": "langchain-ai/open-swe",
+    "topic": "agents",
+    "foundAt": "2026-11-18T07:56:05.716Z"
+   },
+   {
+    "repo": "tambo-ai/tambo",
+    "topic": "agents",
+    "foundAt": "2026-11-18T07:56:05.716Z"
+   },
+   {
+    "repo": "google/adk-recipes",
+    "topic": "agents",
+    "foundAt": "2026-11-18T07:56:05.716Z"
+   },
+   {
+    "repo": "neondatabase/electric",
+    "topic": "agents",
+    "foundAt": "2026-11-18T07:56:05.716Z"
    }
   ],
   "checked": {
@@ -3185,11 +3185,17 @@
    "gh-metalbear-co-mirrord-616b5a": "2026-11-17T08:26:32.925Z",
    "gh-vigozhao-ai-visual-prompt-cookbook-6bbad4": "2026-11-17T08:26:32.925Z",
    "gh-snakers4-silero-models-55875d": "2026-11-17T08:26:32.925Z",
-   "gh-stranslate-stranslate-f46eea": "2026-11-17T08:26:32.925Z"
+   "gh-stranslate-stranslate-f46eea": "2026-11-17T08:26:32.925Z",
+   "gh-nvidia-nemo-nemotron-695c1b": "2026-11-18T07:56:05.716Z",
+   "gh-alyssaxuu-screenity-c28ea6": "2026-11-18T07:56:05.716Z",
+   "gh-deepspeedai-deepspeed-808abe": "2026-11-18T07:56:05.716Z",
+   "gh-vllm-project-vllm-omni-1737ff": "2026-11-18T07:56:05.716Z",
+   "gh-berriai-litellm-eff325": "2026-11-18T07:56:05.716Z",
+   "gh-ovidijusparsiunas-deep-chat-97d623": "2026-11-18T07:56:05.716Z"
   }
  },
  "mcp": {
-  "cursor": "com.chikocorp/cuadre:1.0.0",
+  "cursor": "com.fiftyasks/booking:1.0.0",
   "since": "2026-10-01T15:26:40.958Z",
   "watermark": "2026-10-02T15:26:40.958Z",
   "scanStarted": "2026-11-14T06:58:47.664Z",
@@ -3434,26 +3440,26 @@
    "de-cronjob-cronjob-de-mcp": "2026-11-17T08:26:32.925Z",
    "debugbundle-mcp": "2026-11-17T08:26:32.925Z",
    "decaframe-decaframe": "2026-11-17T08:26:32.925Z",
-   "decagon": "2026-10-10T06:21:21.428Z",
-   "dechonet-mcp": "2026-10-10T06:21:21.428Z",
-   "decionis-mcp": "2026-10-10T06:21:21.428Z",
-   "deepagents": "2026-10-10T06:21:21.428Z",
-   "deepeval": "2026-10-10T06:21:21.428Z",
-   "deepgram-voice-agent": "2026-10-10T06:21:21.428Z",
-   "deepledger-mcp": "2026-10-10T06:21:21.428Z",
-   "deer-flow": "2026-10-10T06:21:21.428Z",
-   "deerdawn-deerdawn": "2026-10-10T06:21:21.428Z",
-   "desktop-commander": "2026-10-10T06:21:21.428Z",
-   "devart-mcp-sqlserver": "2026-10-10T06:21:21.428Z",
-   "devin": "2026-10-10T06:21:21.428Z",
-   "dexpaprika-dexpaprika": "2026-10-10T06:21:21.428Z",
-   "dify": "2026-10-10T06:21:21.428Z",
-   "dimensions-analytics-mcp": "2026-10-10T06:21:21.428Z",
-   "dinglebear-labby": "2026-10-10T06:21:21.428Z",
-   "dmarkoff-mcp": "2026-10-10T06:21:21.428Z",
-   "dnsdoctor-dns-doctor": "2026-10-10T06:21:21.428Z",
-   "docker-mcp-toolkit": "2026-10-10T06:21:21.428Z",
-   "docs2mcp-docs2mcp": "2026-10-10T06:21:21.428Z",
+   "decagon": "2026-11-18T07:56:05.716Z",
+   "dechonet-mcp": "2026-11-18T07:56:05.716Z",
+   "decionis-mcp": "2026-11-18T07:56:05.716Z",
+   "deepagents": "2026-11-18T07:56:05.716Z",
+   "deepeval": "2026-11-18T07:56:05.716Z",
+   "deepgram-voice-agent": "2026-11-18T07:56:05.716Z",
+   "deepledger-mcp": "2026-11-18T07:56:05.716Z",
+   "deer-flow": "2026-11-18T07:56:05.716Z",
+   "deerdawn-deerdawn": "2026-11-18T07:56:05.716Z",
+   "desktop-commander": "2026-11-18T07:56:05.716Z",
+   "devart-mcp-sqlserver": "2026-11-18T07:56:05.716Z",
+   "devin": "2026-11-18T07:56:05.716Z",
+   "dexpaprika-dexpaprika": "2026-11-18T07:56:05.716Z",
+   "dify": "2026-11-18T07:56:05.716Z",
+   "dimensions-analytics-mcp": "2026-11-18T07:56:05.716Z",
+   "dinglebear-labby": "2026-11-18T07:56:05.716Z",
+   "dmarkoff-mcp": "2026-11-18T07:56:05.716Z",
+   "dnsdoctor-dns-doctor": "2026-11-18T07:56:05.716Z",
+   "docker-mcp-toolkit": "2026-11-18T07:56:05.716Z",
+   "docs2mcp-docs2mcp": "2026-11-18T07:56:05.716Z",
    "donnyautomation-dex-data": "2026-10-10T06:21:21.428Z",
    "draugr-draugr": "2026-10-10T06:21:21.428Z",
    "dregs-mcp": "2026-10-10T06:21:21.428Z",
@@ -4793,7 +4799,27 @@
    "mcp-strava": "2026-11-17T08:26:32.925Z",
    "nefesh-human-state": "2026-11-17T08:26:32.925Z",
    "newzai-api-news-mcp": "2026-11-17T08:26:32.925Z",
-   "nexustoken-sdk": "2026-11-17T08:26:32.925Z"
+   "nexustoken-sdk": "2026-11-17T08:26:32.925Z",
+   "nocturnus-logic-server": "2026-11-18T07:56:05.716Z",
+   "obris-mcp": "2026-11-18T07:56:05.716Z",
+   "paichart-mcp-hub": "2026-11-18T07:56:05.716Z",
+   "paperlantern-code": "2026-11-18T07:56:05.716Z",
+   "preclick-mcp": "2026-11-18T07:56:05.716Z",
+   "proofslip-mcp-server": "2026-11-18T07:56:05.716Z",
+   "qwady-borough": "2026-11-18T07:56:05.716Z",
+   "radiusos-crm": "2026-11-18T07:56:05.716Z",
+   "scanbim-mcp": "2026-11-18T07:56:05.716Z",
+   "selis-mcp-pmo": "2026-11-18T07:56:05.716Z",
+   "specproof-mcp": "2026-11-18T07:56:05.716Z",
+   "stompy-stompy": "2026-11-18T07:56:05.716Z",
+   "tandem-docs-mcp": "2026-11-18T07:56:05.716Z",
+   "telbase-deploy": "2026-11-18T07:56:05.716Z",
+   "traderouter-trade-router-mcp": "2026-11-18T07:56:05.716Z",
+   "trustrails-server": "2026-11-18T07:56:05.716Z",
+   "undisk-mcp-stdio-proxy": "2026-11-18T07:56:05.716Z",
+   "unulu-unulu": "2026-11-18T07:56:05.716Z",
+   "websitepublisher-mcp": "2026-11-18T07:56:05.716Z",
+   "windsor-mcp": "2026-11-18T07:56:05.716Z"
   }
  }
 }
