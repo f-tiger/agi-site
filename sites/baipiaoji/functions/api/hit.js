@@ -21,6 +21,7 @@ import {parseQuoteEvent} from '../../../../tools/quote-page-lab/growth.mjs';
 //
 // 事件名走白名单：打点接口是公开的，不限制取值就等于给了任何人一个往自家库里写任意字符串的口子。
 export const EVENTS = new Set([
+  'catalog_task',
   'table_review', // Fixed CSV review actions, not users, orders or semantic verification.
   'listing', // Source/draft handoff actions, not customers, accepted listings or revenue.
   'depth', // Fixed task-plan and watchlist actions, not completed tasks or viewers.
@@ -76,6 +77,23 @@ export async function onRequestPost({ request, env, waitUntil }) {
     // 一个拼错的事件名不是丢失，而是冒充成页面浏览。
     if (b.e && !EVENTS.has(b.e)) return new Response(null, { status: 204 });
     const ev = b.e || '';
+    if (['go', 'star', 'biz', 'catalog_task'].includes(ev)) {
+      const origin = new URL(request.url).origin;
+      const source = request.headers.get('origin');
+      const referrer = request.headers.get('referer');
+      let ref;
+      try { if (referrer) ref = new URL(referrer); } catch {}
+      const classification = trafficClass(request);
+      const foreign = (source && source !== origin) || (ref && ref.origin !== origin) || request.headers.get('sec-fetch-site') === 'cross-site';
+      const scripted = classification === 'declared_automation' && source !== origin && ref?.origin !== origin;
+      if (env.BPJ_FILTER_CONVERSIONS !== 'off' && (foreign || scripted || classification === 'verified_bot')) return new Response(null, {status:204});
+      if (ev === 'catalog_task') {
+        const slug = /^\/catalog-task\/(chatgpt|kimi|qingying)$/.exec(path)?.[1];
+        const expected = (lang === 'en' ? '/en' : '') + '/tools/' + slug;
+        if (!slug || !['zh','en'].includes(lang) || ref?.origin !== origin || ref.pathname !== expected || !qualityEligible(request,path,lang)) return new Response(null, {status:204});
+        b.r = '';
+      }
+    }
     if (ev === 'table_review') {
       if (!['zh','en'].includes(lang) || !parseTableReviewEvent(path)) return new Response(null,{status:204});
       let ref;

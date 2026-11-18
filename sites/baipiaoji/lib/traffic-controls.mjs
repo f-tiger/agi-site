@@ -1,6 +1,7 @@
 // Private, short-lived abuse counters; never persist raw IPs, UA strings or queries.
 export const RULES=Object.freeze({
  '/api/manju-discover':{limit:30,seconds:60,bytes:2000},
+ '/api/vendor':{limit:5,seconds:600,bytes:12000},
  '/api/submit':{limit:5,seconds:600,bytes:16000},
  '/api/claim':{limit:6,seconds:600,bytes:16000},
  '/api/manju-inquiry':{limit:5,seconds:600,bytes:6000}
@@ -66,6 +67,7 @@ export function qualityEligible(request,path,lang){
 
 export function qualityKind(ev,path){
  if(!ev)return 'page';
+ if(ev==='catalog_task' && /^\/catalog-task\/(chatgpt|kimi|qingying)$/.test(path))return 'catalog_task_'+path.split('/')[2];
  if(ev==='manju'){
   const action=path.split('/')[2];
   if(action==='view')return 'manju_view';
