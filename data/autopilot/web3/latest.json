@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-11-17T11:03:57.593Z",
+  "asOf": "2026-11-18T10:39:56.897Z",
   "ok": true,
   "checks": [
     {
@@ -15,35 +15,11 @@
       "ok": true
     },
     {
-      "name": "evidence.agiscorecard.com",
-      "ok": true
-    },
-    {
       "name": "reconcile.agiscorecard.com",
       "ok": true
     },
     {
-      "name": "route.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "permit.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "protocol.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "incentives.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "calls.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "compute.agiscorecard.com",
+      "name": "evidence.agiscorecard.com",
       "ok": true
     },
     {
@@ -51,11 +27,35 @@
       "ok": true
     },
     {
+      "name": "route.agiscorecard.com",
+      "ok": true
+    },
+    {
       "name": "proof.agiscorecard.com",
       "ok": true
     },
     {
+      "name": "compute.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "incentives.agiscorecard.com",
+      "ok": true
+    },
+    {
       "name": "web3.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "protocol.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "calls.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "permit.agiscorecard.com",
       "ok": true
     },
     {
@@ -70,36 +70,36 @@
   "sources": {
     "market": {
       "status": "fresh",
-      "retrievedAt": "2026-11-17T11:03:58.462Z",
+      "retrievedAt": "2026-11-18T10:39:57.270Z",
       "ageSeconds": 0,
       "quotes": [
         {
           "symbol": "BTC",
           "quote": "USD",
-          "price": 64110.900349999996,
-          "sourceUpdatedAt": "2026-11-17T11:03:54.000Z",
+          "price": 64162.41445,
+          "sourceUpdatedAt": "2026-11-18T10:39:42.000Z",
           "deviationBps": null
         },
         {
           "symbol": "ETH",
           "quote": "USD",
-          "price": 1789.9,
-          "sourceUpdatedAt": "2026-11-17T11:03:54.000Z",
+          "price": 1798.7451185999998,
+          "sourceUpdatedAt": "2026-11-18T10:39:42.000Z",
           "deviationBps": null
         },
         {
           "symbol": "USDC",
           "quote": "USD",
-          "price": 0.9997990099999998,
-          "sourceUpdatedAt": "2026-11-17T11:03:54.000Z",
-          "deviationBps": -2.0099000000017853
+          "price": 0.9998588813,
+          "sourceUpdatedAt": "2026-11-18T10:39:42.000Z",
+          "deviationBps": -1.4111869999999804
         },
         {
           "symbol": "USDT",
           "quote": "USD",
-          "price": 0.99891,
-          "sourceUpdatedAt": "2026-11-17T11:03:54.000Z",
-          "deviationBps": -10.900000000000354
+          "price": 0.9988702070000001,
+          "sourceUpdatedAt": "2026-11-18T10:39:42.000Z",
+          "deviationBps": -11.297929999999345
         }
       ],
       "source": {
@@ -110,25 +110,70 @@
     },
     "briefs": {
       "status": "fresh",
-      "retrievedAt": "2026-11-17T11:03:57.990Z",
+      "retrievedAt": "2026-11-18T10:39:57.377Z",
       "sources": [
         {
           "id": "ethereum",
           "status": "ok",
-          "checkedAt": "2026-11-17T11:03:57.952Z"
+          "checkedAt": "2026-11-18T10:39:57.156Z"
         },
         {
           "id": "x402",
-          "status": "unavailable",
-          "checkedAt": "2026-11-17T11:03:57.982Z"
+          "status": "ok",
+          "checkedAt": "2026-11-18T10:39:57.156Z"
         },
         {
           "id": "ezkl",
-          "status": "unavailable",
-          "checkedAt": "2026-11-17T11:03:57.981Z"
+          "status": "ok",
+          "checkedAt": "2026-11-18T10:39:57.156Z"
         }
       ],
       "items": [
+        {
+          "title": "fix(siwx): checksum SIWE account address so cross-SDK sign-in verifies (#4272)",
+          "url": "https://github.com/x402-foundation/x402/commit/911709c32e62641f7bd4df345b2029ebe84968c8",
+          "publishedAt": "2026-11-17T17:00:12.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "fix(evm): reject non-canonical exact amounts (#4303)",
+          "url": "https://github.com/x402-foundation/x402/commit/b38d3becc5a05234008506a42f62c3b2186510ce",
+          "publishedAt": "2026-11-17T13:12:53.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "fix(go): reject non-canonical exact EVM amounts (#4304)",
+          "url": "https://github.com/x402-foundation/x402/commit/c9b2842e34366b466ac6d3eb45674653cae1b8c5",
+          "publishedAt": "2026-11-17T13:09:57.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "docs: list all Celo facilitator assets and note the cNGN approval (#4011)",
+          "url": "https://github.com/x402-foundation/x402/commit/7e34ec9cb43bd713289b6d5b0cdfff541ac1c83f",
+          "publishedAt": "2026-11-17T12:18:24.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "feat(stellar): upgrade @stellar/stellar-sdk to 17.4.0 (#4229)",
+          "url": "https://github.com/x402-foundation/x402/commit/e2b5bcba52ca181664c66a717da27aa727b8c539",
+          "publishedAt": "2026-11-17T10:57:29.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
         {
           "title": "EIP-8037/EIP-8038 Glamsterdam",
           "url": "https://blog.ethereum.org/en/2026/11/06/glamsterdam-8037-8038",
@@ -178,134 +223,134 @@
     },
     "research": {
       "status": "fresh",
-      "retrievedAt": "2026-11-17T11:03:58.655Z",
+      "retrievedAt": "2026-11-18T10:39:57.563Z",
       "historyStatus": "fresh",
       "quotes": [
         {
           "symbol": "BTC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-17T11:03:54.000Z",
+          "sourceUpdatedAt": "2026-11-18T10:39:42.000Z",
           "day": {
-            "percent": -0.6542808493868235,
-            "from": "2026-11-16T11:00:00.000Z",
-            "to": "2026-11-17T11:03:54.000Z"
+            "percent": -0.2360108621457746,
+            "from": "2026-11-17T10:00:00.000Z",
+            "to": "2026-11-18T10:39:42.000Z"
           },
           "week": {
-            "percent": -13.546600604358726,
-            "from": "2026-11-10T11:00:00.000Z",
-            "to": "2026-11-17T11:03:54.000Z"
+            "percent": -12.95974998963917,
+            "from": "2026-11-11T10:00:00.000Z",
+            "to": "2026-11-18T10:39:42.000Z"
           }
         },
         {
           "symbol": "ETH",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-17T11:03:54.000Z",
+          "sourceUpdatedAt": "2026-11-18T10:39:42.000Z",
           "day": {
-            "percent": -1.00668358362197,
-            "from": "2026-11-16T11:00:00.000Z",
-            "to": "2026-11-17T11:03:54.000Z"
+            "percent": -0.6438192386472252,
+            "from": "2026-11-17T10:00:00.000Z",
+            "to": "2026-11-18T10:39:42.000Z"
           },
           "week": {
-            "percent": -14.322772017198805,
-            "from": "2026-11-10T11:00:00.000Z",
-            "to": "2026-11-17T11:03:54.000Z"
+            "percent": -12.522150322529324,
+            "from": "2026-11-11T10:00:00.000Z",
+            "to": "2026-11-18T10:39:42.000Z"
           }
         },
         {
           "symbol": "USDC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-17T11:03:54.000Z",
+          "sourceUpdatedAt": "2026-11-18T10:39:42.000Z",
           "day": {
-            "percent": 0.016451229309111248,
-            "from": "2026-11-16T11:00:00.000Z",
-            "to": "2026-11-17T11:03:54.000Z"
+            "percent": 0.02543066254259152,
+            "from": "2026-11-17T10:00:00.000Z",
+            "to": "2026-11-18T10:39:42.000Z"
           },
           "week": {
-            "percent": 0.022580053210563555,
-            "from": "2026-11-10T11:00:00.000Z",
-            "to": "2026-11-17T11:03:54.000Z"
+            "percent": 0.029341268540528098,
+            "from": "2026-11-11T10:00:00.000Z",
+            "to": "2026-11-18T10:39:42.000Z"
           }
         },
         {
           "symbol": "USDT",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-17T11:03:54.000Z",
+          "sourceUpdatedAt": "2026-11-18T10:39:42.000Z",
           "day": {
-            "percent": -0.036824642963895204,
-            "from": "2026-11-16T11:00:00.000Z",
-            "to": "2026-11-17T11:03:54.000Z"
+            "percent": -0.042660796252314004,
+            "from": "2026-11-17T10:00:00.000Z",
+            "to": "2026-11-18T10:39:42.000Z"
           },
           "week": {
-            "percent": -0.01607179259510705,
-            "from": "2026-11-10T11:00:00.000Z",
-            "to": "2026-11-17T11:03:54.000Z"
+            "percent": -0.03502972782841729,
+            "from": "2026-11-11T10:00:00.000Z",
+            "to": "2026-11-18T10:39:42.000Z"
           }
         },
         {
           "symbol": "TAO",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-17T11:03:54.000Z",
+          "sourceUpdatedAt": "2026-11-18T10:39:41.000Z",
           "day": {
-            "percent": 0.38418173422432034,
-            "from": "2026-11-16T11:00:01.000Z",
-            "to": "2026-11-17T11:03:54.000Z"
+            "percent": 1.890837145729174,
+            "from": "2026-11-17T10:00:09.000Z",
+            "to": "2026-11-18T10:39:41.000Z"
           },
           "week": {
-            "percent": -12.728839253020885,
-            "from": "2026-11-10T11:00:09.000Z",
-            "to": "2026-11-17T11:03:54.000Z"
+            "percent": -11.147191279594404,
+            "from": "2026-11-11T10:00:00.000Z",
+            "to": "2026-11-18T10:39:41.000Z"
           }
         },
         {
           "symbol": "RENDER",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-17T11:03:54.000Z",
+          "sourceUpdatedAt": "2026-11-18T10:39:42.000Z",
           "day": {
-            "percent": -0.9253814992173481,
-            "from": "2026-11-16T11:00:02.000Z",
-            "to": "2026-11-17T11:03:54.000Z"
+            "percent": 3.8018748993491336,
+            "from": "2026-11-17T10:00:09.000Z",
+            "to": "2026-11-18T10:39:42.000Z"
           },
           "week": {
-            "percent": -14.143623748229505,
-            "from": "2026-11-10T11:00:09.000Z",
-            "to": "2026-11-17T11:03:54.000Z"
+            "percent": -11.406077315319097,
+            "from": "2026-11-11T09:59:39.000Z",
+            "to": "2026-11-18T10:39:42.000Z"
           }
         },
         {
           "symbol": "FET",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-17T11:03:54.000Z",
+          "sourceUpdatedAt": "2026-11-18T10:39:42.000Z",
           "day": {
-            "percent": 0.7441936897255363,
-            "from": "2026-11-16T11:00:02.000Z",
-            "to": "2026-11-17T11:03:54.000Z"
+            "percent": -0.31250000000001554,
+            "from": "2026-11-17T10:00:09.000Z",
+            "to": "2026-11-18T10:39:42.000Z"
           },
           "week": {
-            "percent": -9.590695041029685,
-            "from": "2026-11-10T11:00:09.000Z",
-            "to": "2026-11-17T11:03:54.000Z"
+            "percent": -10.681284359560816,
+            "from": "2026-11-11T09:59:39.000Z",
+            "to": "2026-11-18T10:39:42.000Z"
           }
         },
         {
           "symbol": "AKT",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-17T11:03:54.000Z",
+          "sourceUpdatedAt": "2026-11-18T10:39:41.000Z",
           "day": {
-            "percent": -4.4295436639308345,
-            "from": "2026-11-16T11:00:01.000Z",
-            "to": "2026-11-17T11:03:54.000Z"
+            "percent": 9.066724035800444,
+            "from": "2026-11-17T10:00:09.000Z",
+            "to": "2026-11-18T10:39:41.000Z"
           },
           "week": {
-            "percent": -24.193842958626412,
-            "from": "2026-11-10T11:00:09.000Z",
-            "to": "2026-11-17T11:03:54.000Z"
+            "percent": -13.48687058575142,
+            "from": "2026-11-11T09:59:39.000Z",
+            "to": "2026-11-18T10:39:41.000Z"
           }
         }
       ]
     }
   },
   "events": {
-    "asOf": "2026-11-17T11:03:58.000Z",
+    "asOf": "2026-11-18T10:39:57.000Z",
     "windowDays": 28,
     "measurement": "Opt-in event counts, deduplicated by event ID. Not unique people or a cross-domain session funnel. Incoming attribution is unverified; stripped referrers appear direct. Default examples, probes and MCP requests do not generate events.",
     "groups": []
@@ -314,7 +359,43 @@
     "groups": [],
     "measurement": "Self-reported submissions, not independent buyers."
   },
-  "changes": [],
+  "changes": [
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/911709c32e62641f7bd4df345b2029ebe84968c8",
+      "title": "fix(siwx): checksum SIWE account address so cross-SDK sign-in verifies (#4272)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/b38d3becc5a05234008506a42f62c3b2186510ce",
+      "title": "fix(evm): reject non-canonical exact amounts (#4303)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/c9b2842e34366b466ac6d3eb45674653cae1b8c5",
+      "title": "fix(go): reject non-canonical exact EVM amounts (#4304)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/7e34ec9cb43bd713289b6d5b0cdfff541ac1c83f",
+      "title": "docs: list all Celo facilitator assets and note the cNGN approval (#4011)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/e2b5bcba52ca181664c66a717da27aa727b8c539",
+      "title": "feat(stellar): upgrade @stellar/stellar-sdk to 17.4.0 (#4229)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    }
+  ],
   "outcomes": {
     "indexedPages": null,
     "verifiedThirdPartyBacklinks": null,
