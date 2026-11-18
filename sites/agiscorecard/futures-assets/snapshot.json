@@ -1,12 +1,12 @@
 {
-  "checkedAt": "2026-11-17T11:13:10Z",
+  "checkedAt": "2026-11-18T10:46:13Z",
   "sources": [
     {
       "id": "openai",
       "company": "OpenAI",
       "url": "https://openai.com/news/rss.xml",
-      "checkedAt": "2026-11-17T11:13:10Z",
-      "lastSuccessAt": "2026-11-17T11:13:10Z",
+      "checkedAt": "2026-11-18T10:46:13Z",
+      "lastSuccessAt": "2026-11-18T10:46:13Z",
       "ok": true,
       "error": null
     },
@@ -14,8 +14,8 @@
       "id": "anthropic",
       "company": "Anthropic",
       "url": "https://www.anthropic.com/news",
-      "checkedAt": "2026-11-17T11:13:10Z",
-      "lastSuccessAt": "2026-11-17T11:13:10Z",
+      "checkedAt": "2026-11-18T10:46:13Z",
+      "lastSuccessAt": "2026-11-18T10:46:13Z",
       "ok": true,
       "error": null
     },
@@ -23,8 +23,8 @@
       "id": "meta",
       "company": "Meta",
       "url": "https://about.fb.com/news/feed/",
-      "checkedAt": "2026-11-17T11:13:10Z",
-      "lastSuccessAt": "2026-11-17T11:13:10Z",
+      "checkedAt": "2026-11-18T10:46:13Z",
+      "lastSuccessAt": "2026-11-18T10:46:13Z",
       "ok": true,
       "error": null
     },
@@ -32,7 +32,7 @@
       "id": "xai",
       "company": "xAI / SpaceX",
       "url": "https://x.ai/news",
-      "checkedAt": "2026-11-17T11:13:10Z",
+      "checkedAt": "2026-11-18T10:46:13Z",
       "lastSuccessAt": "2026-10-31T16:20:44Z",
       "ok": false,
       "error": "http_403"
@@ -41,13 +41,53 @@
       "id": "deepmind",
       "company": "Google DeepMind",
       "url": "https://deepmind.google/blog/rss.xml",
-      "checkedAt": "2026-11-17T11:13:10Z",
-      "lastSuccessAt": "2026-11-17T11:13:10Z",
+      "checkedAt": "2026-11-18T10:46:13Z",
+      "lastSuccessAt": "2026-11-18T10:46:13Z",
       "ok": true,
       "error": null
     }
   ],
   "items": [
+    {
+      "id": "a1de396d3910fa2e0f79d5fc",
+      "company": "OpenAI",
+      "title": "Le Groupe Figaro and OpenAI partner to bring Le Figaro journalism to ChatGPT",
+      "url": "https://openai.com/index/le-groupe-figaro-and-openai-announce-partnership",
+      "publishedAt": "2026-11-18T00:00:00Z",
+      "discoveredAt": "2026-11-18T10:46:13Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "3212e751c4906b22aa1b9e0a",
+      "company": "Meta",
+      "title": "Muse Is Now Available in Australia: The World’s First Personal AI Agent Built for Everyone",
+      "url": "https://about.fb.com/news/2026/11/muse-is-now-available-in-australia",
+      "publishedAt": "2026-11-17T18:00:31Z",
+      "discoveredAt": "2026-11-18T10:46:13Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "8f6af8c44a4a1bfb5de31585",
+      "company": "OpenAI",
+      "title": "Introducing GPT-6.2 Astra and Sol",
+      "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol",
+      "publishedAt": "2026-11-17T17:45:00Z",
+      "discoveredAt": "2026-11-18T10:46:13Z",
+      "signal": "capability",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "3047d7657748ea760feb4367",
+      "company": "OpenAI",
+      "title": "Introducing ChatGPT for Sales",
+      "url": "https://openai.com/index/introducing-chatgpt-for-sales",
+      "publishedAt": "2026-11-17T08:00:00Z",
+      "discoveredAt": "2026-11-18T10:46:13Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
     {
       "id": "c16f8679fa5ca047fcd66cef",
       "company": "Meta",
@@ -65,6 +105,26 @@
       "url": "https://about.fb.com/news/2026/11/introducing-direct-an-app-just-for-messaging",
       "publishedAt": "2026-11-17T01:00:48Z",
       "discoveredAt": "2026-11-17T11:13:10Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "3b3be741a87f5e2153e62660",
+      "company": "OpenAI",
+      "title": "Introducing OpenAI for Chile",
+      "url": "https://openai.com/index/introducing-openai-for-chile",
+      "publishedAt": "2026-11-17T00:00:00Z",
+      "discoveredAt": "2026-11-18T10:46:13Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "b43ef08ac3ed4f7af6f4fa4f",
+      "company": "OpenAI",
+      "title": "Astra for Law leads in legal intelligence",
+      "url": "https://openai.com/index/astra-law-6-2",
+      "publishedAt": "2026-11-17T00:00:00Z",
+      "discoveredAt": "2026-11-18T10:46:13Z",
       "signal": "neutral",
       "reviewStatus": "automatic"
     },
