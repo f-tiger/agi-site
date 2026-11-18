@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-11-17T11:04:44.610Z",
+  "as_of": "2026-11-18T10:40:28.516Z",
   "kind": "owned_page_health_not_market_validation",
   "ok": false,
   "site_checks": [
@@ -640,7 +640,7 @@
     }
   ],
   "checkout": {
-    "ready": false,
+    "ready": true,
     "status": "observed",
     "real_payment_verified": null
   },
@@ -1028,10 +1028,6 @@
       "priority": "repair",
       "url": "https://thedollscout.com",
       "reason": "collector_entry:/collector-tools, collector_entry:/brands/labubu#style-probability, collector_entry:/brands/skullpanda#display-fit, collector_entry:/collection-tracker, collector_home:de"
-    },
-    {
-      "priority": "checkout",
-      "reason": "Verify BPJ live Web3 readiness before promoting paid placements."
     },
     {
       "priority": "evidence",

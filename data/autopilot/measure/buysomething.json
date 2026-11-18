@@ -6,12 +6,16 @@
     "open": 1,
     "out": 0
    },
-   "led-mask": {
+   "hair-dryer": {
     "open": 1,
     "out": 0
    },
+   "led-mask": {
+    "open": 3,
+    "out": 0
+   },
    "mamian-skirt": {
-    "open": 1,
+    "open": 3,
     "out": 0
    },
    "massage-gun": {
@@ -23,16 +27,16 @@
     "out": 0
    },
    "spin-scrubber": {
-    "open": 3,
+    "open": 4,
     "out": 0
    },
    "vac-consumables": {
-    "open": 1,
+    "open": 2,
     "out": 0
    }
   }
  },
- "fetched": "2026-11-17",
+ "fetched": "2026-11-18",
  "kind": "sr-pop",
  "notes": [],
  "ok": true,

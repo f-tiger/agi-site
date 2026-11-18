@@ -2,7 +2,7 @@
  "extra": {
   "events": {
    "affiliate_click": {
-    "n7": 9,
+    "n7": 8,
     "p7": 16
    },
    "btu_calc": {
@@ -13,28 +13,24 @@
     "n7": 0,
     "p7": 1
    },
-   "buyer_result": {
-    "n7": 0,
-    "p7": 1
-   },
    "buyer_view": {
-    "n7": 0,
-    "p7": 6
+    "n7": 1,
+    "p7": 5
    },
    "cold_now": {
-    "n7": 47,
-    "p7": 22
+    "n7": 45,
+    "p7": 29
    },
    "feuchte_now": {
-    "n7": 23,
-    "p7": 13
+    "n7": 59,
+    "p7": 11
    },
    "laundry_view": {
     "n7": 1,
     "p7": 1
    },
    "page_view": {
-    "n7": 135,
+    "n7": 194,
     "p7": 82
    },
    "popup_click": {
@@ -46,12 +42,12 @@
     "p7": 11
    },
    "popup_view": {
-    "n7": 17,
-    "p7": 25
+    "n7": 16,
+    "p7": 24
    },
    "strom_now": {
-    "n7": 8,
-    "p7": 6
+    "n7": 13,
+    "p7": 7
    },
    "strompreis_api": {
     "n7": 1,
@@ -64,14 +60,14 @@
   },
   "zero_hit_records": 0
  },
- "fetched": "2026-11-17",
+ "fetched": "2026-11-18",
  "kind": "eco-trend",
  "notes": [],
  "ok": true,
  "pages": {
   "/": {
-   "n7": 4,
-   "p7": 11
+   "n7": 6,
+   "p7": 9
   },
   "/agents/compliance.html": {
    "n7": 7,
@@ -81,16 +77,16 @@
    "n7": 7,
    "p7": 0
   },
-  "/en/guide/btu-calculator.html": {
+  "/en/guide/heated-airer-vs-dehumidifier.html": {
    "n7": 2,
    "p7": 0
   },
   "/en/guide/portable-air-conditioner-france.html": {
    "n7": 2,
-   "p7": 1
+   "p7": 0
   },
   "/en/guide/tilt-and-turn-windows-winter-condensation.html": {
-   "n7": 2,
+   "n7": 10,
    "p7": 0
   },
   "/guide/fensterabdichtung-selber-bauen.html": {
@@ -107,42 +103,50 @@
   },
   "/guide/klimaanlage-wann-kaufen.html": {
    "n7": 5,
-   "p7": 4
+   "p7": 5
   },
   "/guide/klimaanlage-wohnmobil.html": {
    "n7": 4,
    "p7": 4
   },
   "/guide/luftbefeuchter-ratgeber.html": {
-   "n7": 11,
+   "n7": 24,
    "p7": 0
   },
+  "/guide/luftbefeuchter-stromverbrauch.html": {
+   "n7": 8,
+   "p7": 1
+  },
   "/guide/luftentfeuchter-ratgeber.html": {
-   "n7": 5,
+   "n7": 6,
    "p7": 5
   },
-  "/guide/midea-portasplit-ausverkauft-alternativen.html": {
-   "n7": 2,
-   "p7": 2
-  },
   "/guide/mobile-klimaanlage-ueberwintern.html": {
-   "n7": 2,
+   "n7": 3,
    "p7": 1
+  },
+  "/guide/richtig-lueften-im-winter.html": {
+   "n7": 17,
+   "p7": 0
   },
   "/guide/saugroboter-kaufberatung.html": {
    "n7": 9,
    "p7": 0
   },
+  "/guide/thermovorhang-ratgeber.html": {
+   "n7": 6,
+   "p7": 0
+  },
   "/guide/was-bedeutet-btu.html": {
-   "n7": 4,
-   "p7": 2
+   "n7": 2,
+   "p7": 4
   },
   "/guide/wohnmobil-feuchtigkeit-winter.html": {
    "n7": 3,
    "p7": 1
   },
   "/produkte.html": {
-   "n7": 11,
+   "n7": 16,
    "p7": 0
   },
   "/waeschetrockner-oder-luftentfeuchter.html": {

@@ -14,6 +14,17 @@
   {
    "heat": null,
    "kind": "value",
+   "match": 0.887,
+   "page": "guide/schimmel-im-keller-entfernen.html",
+   "q": "schimmel mit alkohol entfernen",
+   "seed": "schimmel entfernen",
+   "source": "related-queries",
+   "stand": "2026-11-17",
+   "v": 82200
+  },
+  {
+   "heat": null,
+   "kind": "value",
    "match": 0.933,
    "page": "guide/infrarotheizung-gegen-schimmel.html",
    "q": "infrarotheizung 300 watt",
@@ -36,6 +47,17 @@
   {
    "heat": null,
    "kind": "value",
+   "match": 0.7,
+   "page": "guide/schimmel-am-fenster.html",
+   "q": "schimmel aus auto entfernen",
+   "seed": "schimmel entfernen",
+   "source": "related-queries",
+   "stand": "2026-11-17",
+   "v": 49700
+  },
+  {
+   "heat": null,
+   "kind": "value",
    "match": 0.875,
    "page": "guide/heizung-15-qm.html",
    "q": "elektrische heizung",
@@ -43,6 +65,17 @@
    "source": "related-queries",
    "stand": "2026-11-10",
    "v": 37600
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.667,
+   "page": "guide/infrarotheizung-gegen-schimmel.html",
+   "q": "isopropanol gegen schimmel",
+   "seed": "schimmel entfernen",
+   "source": "related-queries",
+   "stand": "2026-11-17",
+   "v": 35600
   },
   {
    "heat": null,
@@ -80,6 +113,17 @@
   {
    "heat": null,
    "kind": "value",
+   "match": 0.712,
+   "page": "guide/schimmel-am-fenster.html",
+   "q": "schimmel von leder entfernen",
+   "seed": "schimmel entfernen",
+   "source": "related-queries",
+   "stand": "2026-11-17",
+   "v": 28050
+  },
+  {
+   "heat": null,
+   "kind": "value",
    "match": 0.633,
    "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
    "q": "luftentfeuchter auto testsieger",
@@ -93,10 +137,10 @@
    "kind": "value",
    "match": 1.0,
    "page": "guide/klimaanlage-mit-heizfunktion.html",
-   "q": "mit klimaanlage heizen",
+   "q": "heizen mit klimaanlage",
    "seed": "klimaanlage",
    "source": "related-queries",
-   "stand": "2026-11-16",
+   "stand": "2026-11-17",
    "v": 550
   },
   {
@@ -107,7 +151,7 @@
    "q": "klimaanlage heizen",
    "seed": "klimaanlage",
    "source": "related-queries",
-   "stand": "2026-11-16",
+   "stand": "2026-11-17",
    "v": 500
   },
   {
@@ -118,8 +162,8 @@
    "q": "klimaanlage zum heizen",
    "seed": "klimaanlage",
    "source": "related-queries",
-   "stand": "2026-11-16",
-   "v": 450
+   "stand": "2026-11-17",
+   "v": 500
   },
   {
    "heat": null,
@@ -129,8 +173,19 @@
    "q": "klimaanlage mit heizfunktion",
    "seed": "klimaanlage",
    "source": "related-queries",
-   "stand": "2026-11-16",
+   "stand": "2026-11-17",
    "v": 300
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.92,
+   "page": "guide/kinderzimmer-kuehlen.html",
+   "q": "klimaanlage zum heizen und kühlen",
+   "seed": "klimaanlage",
+   "source": "related-queries",
+   "stand": "2026-11-17",
+   "v": 250
   },
   {
    "heat": null,
@@ -175,6 +230,61 @@
    "source": "related-queries",
    "stand": "2026-11-15",
    "v": 80
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.712,
+   "page": "guide/schimmel-kleiderschrank.html",
+   "q": "schimmel aus kleidung entfernen",
+   "seed": "schimmel entfernen",
+   "source": "related-queries",
+   "stand": "2026-11-17",
+   "v": 50
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.75,
+   "page": "guide/schimmel-am-fenster.html",
+   "q": "schimmel in der dusche entfernen",
+   "seed": "schimmel entfernen",
+   "source": "related-queries",
+   "stand": "2026-11-17",
+   "v": 50
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.667,
+   "page": "guide/schimmel-am-fenster.html",
+   "q": "schimmel entfernen wohnung",
+   "seed": "schimmel entfernen",
+   "source": "related-queries",
+   "stand": "2026-11-17",
+   "v": 50
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.667,
+   "page": "guide/schimmel-am-fenster.html",
+   "q": "dusche schimmel entfernen",
+   "seed": "schimmel entfernen",
+   "source": "related-queries",
+   "stand": "2026-11-17",
+   "v": 40
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.667,
+   "page": "guide/schimmel-am-fenster.html",
+   "q": "schimmel silikonfugen entfernen",
+   "seed": "schimmel entfernen",
+   "source": "related-queries",
+   "stand": "2026-11-17",
+   "v": 40
   }
  ],
  "first_party_demand": {
@@ -318,8 +428,8 @@
    "q": "black friday klimaanlage",
    "seed": "klimaanlage",
    "source": "related-queries",
-   "stand": "2026-11-16",
-   "v": 1100
+   "stand": "2026-11-17",
+   "v": 1500
   },
   {
    "kind": "value",
@@ -328,8 +438,8 @@
    "q": "vrf klimaanlage",
    "seed": "klimaanlage",
    "source": "related-queries",
-   "stand": "2026-11-16",
-   "v": 350
+   "stand": "2026-11-17",
+   "v": 400
   },
   {
    "kind": "value",
@@ -338,27 +448,17 @@
    "q": "klimaanlage verkleidung",
    "seed": "klimaanlage",
    "source": "related-queries",
-   "stand": "2026-11-16",
-   "v": 300
+   "stand": "2026-11-17",
+   "v": 350
   },
   {
    "kind": "value",
    "match": 0.5,
-   "page": "guide/split-klimaanlage-ohne-kernbohrung.html",
-   "q": "multi split klimaanlage 2 innengeräte",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-11-16",
-   "v": 300
-  },
-  {
-   "kind": "value",
-   "match": 0.333,
    "page": "guide/air-zuma-erfahrungen.html",
-   "q": "verkleidung klimaanlage außengerät",
+   "q": "environ klimaanlage",
    "seed": "klimaanlage",
    "source": "related-queries",
-   "stand": "2026-11-16",
+   "stand": "2026-11-17",
    "v": 300
   },
   {
@@ -462,24 +562,39 @@
    "v": 50
   }
  ],
- "generated": "2026-11-17",
+ "generated": "2026-11-18",
  "geo": "DE",
- "heat_source": "measured 2026-11-17 (20 pages); no notes",
+ "heat_source": "measured 2026-11-18 (22 pages); no notes",
  "hot_pages": [
   {
-   "n7": 11,
+   "n7": 24,
    "p7": 0,
    "page": "/guide/luftbefeuchter-ratgeber.html"
   },
   {
-   "n7": 11,
+   "n7": 17,
+   "p7": 0,
+   "page": "/guide/richtig-lueften-im-winter.html"
+  },
+  {
+   "n7": 16,
    "p7": 0,
    "page": "/produkte.html"
+  },
+  {
+   "n7": 10,
+   "p7": 0,
+   "page": "/en/guide/tilt-and-turn-windows-winter-condensation.html"
   },
   {
    "n7": 9,
    "p7": 0,
    "page": "/guide/saugroboter-kaufberatung.html"
+  },
+  {
+   "n7": 8,
+   "p7": 1,
+   "page": "/guide/luftbefeuchter-stromverbrauch.html"
   },
   {
    "n7": 7,
@@ -492,19 +607,24 @@
    "page": "/en/agents/compliance.html"
   },
   {
-   "n7": 5,
-   "p7": 4,
-   "page": "/guide/klimaanlage-wann-kaufen.html"
+   "n7": 6,
+   "p7": 9,
+   "page": "/"
   },
   {
-   "n7": 5,
+   "n7": 6,
    "p7": 5,
    "page": "/guide/luftentfeuchter-ratgeber.html"
   },
   {
-   "n7": 4,
-   "p7": 11,
-   "page": "/"
+   "n7": 6,
+   "p7": 0,
+   "page": "/guide/thermovorhang-ratgeber.html"
+  },
+  {
+   "n7": 5,
+   "p7": 5,
+   "page": "/guide/klimaanlage-wann-kaufen.html"
   },
   {
    "n7": 4,
@@ -518,28 +638,8 @@
   },
   {
    "n7": 4,
-   "p7": 2,
-   "page": "/guide/was-bedeutet-btu.html"
-  },
-  {
-   "n7": 4,
    "p7": 0,
    "page": "/waeschetrockner-oder-luftentfeuchter.html"
-  },
-  {
-   "n7": 3,
-   "p7": 0,
-   "page": "/guide/heizung-10-qm.html"
-  },
-  {
-   "n7": 3,
-   "p7": 1,
-   "page": "/guide/wohnmobil-feuchtigkeit-winter.html"
-  },
-  {
-   "n7": 2,
-   "p7": 0,
-   "page": "/en/guide/btu-calculator.html"
   }
  ],
  "how_to_read": "Research candidates only; token matching is not an editorial or market decision. Relative growth is not search volume, and autocomplete is vocabulary evidence only. Underserved requires an observed zero in the matching measurement window; missing page measurements are unknown, and zero arrivals do not establish a title or internal-link cause. First-party evidence contains only aggregate zero-hit record counts, never raw search terms. Freshness, country, independent evidence and the reviewed page catalog must pass tools/eco_evolution.py before prioritising an existing page. This research queue does not publish. The separate getecoback scheduled deployment runs tools/auto_content.py to discover official product specifications, validate evidence and publish at most one substantive guide change per UTC day.",
@@ -551,6 +651,7 @@
   "black friday 2026",
   "roborock saros 20",
   "echooria",
+  "wasserstoffperoxid kaufen",
   "daikin stylish",
   "schlafsofa mit bettkasten",
   "beco maxima plus",
