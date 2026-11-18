@@ -112,6 +112,7 @@ FOOTER = ("<!--EB_FOOTER--><footer class=\"eb-footer\"><div class=\"eb-footer-in
           "<a href=\"/daten.html\">📊 Offene Daten (CC BY 4.0)</a>"
           "<a href=\"/hitze-radar.html\">🌡️ Hitze-Radar</a>"
           "<a href=\"/ueber-uns.html\">Über uns</a>"
+          '<a href="/feed.xml" type="application/rss+xml">Deutsche Ratgeber per RSS abonnieren</a>'
           "<a href=\"/wie-wir-empfehlen.html\">Wie wir empfehlen</a>"
           "<a href=\"/kontakt.html\">Kontakt</a></div>"
           "<div><strong>Rechtliches</strong>"
@@ -173,6 +174,7 @@ EN_FOOTER = ("<!--EB_FOOTER--><footer class=\"eb-footer\"><div class=\"eb-footer
              "<a href=\"/daten.html\">📊 Open data (CC BY 4.0)</a>"
              "<a href=\"/en/heat-radar.html\">🌡️ Heat Radar</a>"
              "<a href=\"/en/\">All Guides</a>"
+             '<a href="/en/feed.xml" type="application/rss+xml">Subscribe to English guides via RSS</a>'
              "<a href=\"/\">Deutsche Version</a></div>"
              "<div><strong>Legal</strong>"
              "<a href=\"/impressum.html\">Impressum</a>"
@@ -4281,7 +4283,7 @@ def inject_chrome(html, nav=NAV, footer=FOOTER):
                       html, count=1, flags=re.S)
     else:
         html = html.replace("</head>", HEAD_EXTRA + "</head>", 1)
-    if 'application/rss+xml' not in html:
+    if 'application/rss+xml' not in html.partition('</head>')[0]:
         html = html.replace("</head>", FEED_LINK + "</head>", 1)
     if "<!--eb-perf-->" not in html:
         html = html.replace("</head>", PERF_HINTS + "</head>", 1)

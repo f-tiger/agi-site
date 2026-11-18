@@ -194,6 +194,8 @@ jobs:
           python3 tools/link_product_catalog.py
           python3 tools/build_social_previews.py
           python3 tools/build_social_previews.py --check
+          python3 tools/build_feed.py
+          python3 tools/test_feed.py
           python3 tools/check_adlabel.py
           python3 tools/test_conversion_routes.py
           node --test tools/test_demand_search.mjs
