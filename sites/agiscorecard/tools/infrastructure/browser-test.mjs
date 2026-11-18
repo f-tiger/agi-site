@@ -2,8 +2,9 @@ import {chromium} from '../../../../tools/revenue-studio/node_modules/playwright
 import http from 'node:http';import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
 const data=JSON.parse(fs.readFileSync(path.join(root,'infrastructure-assets/snapshot.json')));
-// These local browser fixtures exercise usable/stale UI paths independently of
-// when the committed source snapshot was fetched. Never refresh production data.
+// PR fixtures isolate the committed snapshot's check age. Deployment tests keep
+// the real refreshed snapshot and its failure flags; never alter production data.
+const fixtureMode=process.env.INFRA_BROWSER_FIXTURE==='1';
 const freshFixture={...data,companies:data.companies.map(c=>({...c,checked_at:new Date().toISOString(),refresh_failed:false}))};
 const server=http.createServer((req,res)=>{const u=new URL(req.url,'http://localhost');let f=path.join(root,decodeURIComponent(u.pathname));if(!path.extname(f))f+='.html';if(!f.startsWith(root+path.sep)){res.writeHead(403).end();return;}try{const body=fs.readFileSync(f);res.setHeader('Content-Type',({'.html':'text/html','.mjs':'text/javascript','.css':'text/css','.json':'application/json'})[path.extname(f)]||'text/plain');res.end(body);}catch{res.writeHead(404).end();}});
 await new Promise(r=>server.listen(0,'127.0.0.1',r));const base='http://127.0.0.1:'+server.address().port;
@@ -13,7 +14,7 @@ try{
   const context=await browser.newContext({viewport:{width:1365,height:1000},acceptDownloads:true});const page=await context.newPage();let staleFixture=false;const errors=[];page.on('pageerror',e=>errors.push(e.message));
   await context.route('**/*',async route=>{
    const url=route.request().url();if(!url.startsWith(base))return route.abort();
-   if(url.includes('/infrastructure-assets/snapshot.json'))return route.fulfill({json:staleFixture?{...data,companies:data.companies.map(c=>({...c,checked_at:'2000-01-01T00:00:00Z'}))}:freshFixture});
+   if(url.includes('/infrastructure-assets/snapshot.json'))return route.fulfill({json:staleFixture?{...data,companies:data.companies.map(c=>({...c,checked_at:'2000-01-01T00:00:00Z'}))}:fixtureMode?freshFixture:data});
    if(url.includes('/api/infrastructure-review')){const b=route.request().postDataJSON();assert.deepEqual(Object.keys(b).sort(),['consent','lang','snapshot','ticker']);const c=data.companies.find(x=>x.ticker===b.ticker);const id=c.facts.revenue.id;return route.fulfill({json:{ok:true,ticker:b.ticker,snapshot:data.id,model:'test-fixture',generated_at:new Date().toISOString(),review:{checks:[{question:lang==='zh'?'应如何核对收入增长是否转化为经营现金流？':'Does revenue growth translate into operating cash flow?',sources:[id]},{question:lang==='zh'?'哪些附注有助于区分整体收入与人工智能需求？':'Which disclosures separate company revenue from AI demand?',sources:[id]}]}}});}
    if(url.includes('/api/member'))return route.fulfill({json:{ok:true,ready:false}});
    return route.continue();
