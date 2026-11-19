@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {MONITOR_UA,TARGETS,monitorOptOut,withMonitorOptOut} from './mcp-liveness-optout.mjs';
 import {onRequest} from '../../sites/baipiaoji/functions/_middleware.js';
+import {onRequest as tdsRequest} from '../../sites/thedollscout/functions/_middleware.js';
+import {sites,hubHost} from '../../sites/web3-studio/public/catalog.mjs';
 
 test('only exact observed liveness probes receive the documented uncached opt-out',async()=>{
  for(const[host,paths]of Object.entries(TARGETS))for(const path of paths)for(const method of ['GET','POST']){
@@ -22,8 +24,25 @@ test('wrapper preserves context, arguments and non-fetch handlers; probe reads n
  const response=await wrapped.fetch(new Request('https://agiscorecard.com/mcp',{headers:{'User-Agent':MONITOR_UA}}),env,ctx);assert.equal(response.status,403);assert.equal(calls,1);
 });
 test('BPJ middleware stops the probe before routing/DB but retains its delivery marker',async()=>{
- const response=await onRequest({request:new Request('https://baipiaoji.com/api/mcp',{method:'POST',body:'not JSON',headers:{'User-Agent':MONITOR_UA}}),get env(){throw Error('Unexpected DB')},next(){throw Error('Unexpected handler')}});
+ for(const path of ['/api/mcp','/api/ai-mcp','/api/startup-mcp','/api/video-mcp']){
+ const response=await onRequest({request:new Request('https://baipiaoji.com'+path,{method:'POST',body:'not JSON',headers:{'User-Agent':MONITOR_UA}}),get env(){throw Error('Unexpected DB')},next(){throw Error('Unexpected handler')}});
  assert.equal(response.status,403);assert.equal(response.headers.get('X-Sentinel-OptOut'),'1');assert.equal(response.headers.get('X-Fleet-Delivery'),'pages-function');
+ }
+});
+test('all current Web3 MCP hosts are covered without changing discovery or tool clients',()=>{
+ for(const host of [hubHost,...sites.map(s=>s.host)]){
+  assert.equal(monitorOptOut(new Request('https://'+host+'/mcp',{headers:{'User-Agent':MONITOR_UA}}))?.status,403,host);
+  for(const path of ['/mcp','/.well-known/mcp.json','/tool.json','/api/account/me'])assert.equal(monitorOptOut(new Request('https://'+host+path,{headers:{'User-Agent':'ordinary-mcp-client'}})),null);
+  assert.equal(monitorOptOut(new Request('https://'+host+'/tool.json',{headers:{'User-Agent':MONITOR_UA}})),null);
+ }
+});
+test('TDS opts out before account/DB/body execution and keeps ordinary and retired routes intact',async()=>{
+ const response=await tdsRequest({request:new Request('https://thedollscout.com/mcp',{method:'POST',body:'not JSON',headers:{'User-Agent':MONITOR_UA}}),get env(){throw Error('Unexpected account/DB read')},next(){throw Error('Unexpected MCP handler')}});
+ assert.equal(response.status,403);assert.equal(response.headers.get('X-Sentinel-OptOut'),'1');assert.equal(response.headers.get('X-Fleet-Delivery'),'pages-function');
+ const ordinary=await tdsRequest({request:new Request('https://thedollscout.com/mcp',{method:'POST',headers:{'User-Agent':'ordinary-mcp-client'}}),env:{},next:async()=>new Response('MCP response')});
+ assert.equal(await ordinary.text(),'MCP response');
+ const retired=await tdsRequest({request:new Request('https://thedollscout.com/picks',{headers:{'User-Agent':MONITOR_UA}}),env:{},next(){throw Error('Retired route must stop')}});
+ assert.equal(retired.status,410);
 });
 test('all four Worker entrypoints apply the guard outside account/MCP execution',()=>{
  for(const path of ['sites/agiscorecard/tools/analytics-worker/index.js','sites/buysomething/worker.js','sites/getecoback/src/cached-worker.mjs','sites/web3-studio/worker.mjs'])assert.match(readFileSync(new URL('../../'+path,import.meta.url),'utf8'),/export default withMonitorOptOut\(withFleetAccount\(/);

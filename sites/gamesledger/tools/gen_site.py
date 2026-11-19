@@ -7,7 +7,7 @@ data/concurrents.json (Valve official API, written by CI) + data/games.json
 excluded, never estimated. SITE_URL is the single point to change when the
 owner attaches the real domain.
 """
-import json, os, html, datetime, urllib.parse
+import json, os, html, datetime, urllib.parse, struct
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
@@ -327,6 +327,20 @@ def main():
     games = json.load(open(os.path.join(ROOT, "data", "games.json"), encoding="utf-8"))["games"]
     store = json.load(open(os.path.join(ROOT, "data", "concurrents.json"), encoding="utf-8"))
     os.makedirs(SITE, exist_ok=True)
+    # Browsers and icon collectors also request /favicon.ico independently of
+    # the inline SVG. Give that exact path a real static icon, not a Worker 404.
+    # Dependency-free ICO: the existing dark/green-dot brand, 32-bit BGRA DIB.
+    size = 32
+    pixels = bytearray()
+    for y in range(size - 1, -1, -1):
+        for x in range(size):
+            rgb = (65, 209, 143) if (x - 15.5)**2 + (y - 15.5)**2 <= 36 else (11, 12, 14)
+            pixels.extend((*reversed(rgb), 255))
+    dib = struct.pack('<IiiHHIIiiII', 40, size, size * 2, 1, 32, 0, len(pixels), 0, 0, 0, 0)
+    image = dib + pixels + bytes(size * 4)  # padded one-bit transparency mask
+    icon = struct.pack('<HHH', 0, 1, 1) + struct.pack('<BBBBHHII', size, size, 0, 0, 1, 32, len(image), 22) + image
+    with open(os.path.join(SITE, 'favicon.ico'), 'wb') as f:
+        f.write(icon)
     entries = []
     skipped = []
     for g in games:

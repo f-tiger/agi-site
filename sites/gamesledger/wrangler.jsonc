@@ -15,7 +15,8 @@
       "!/analytics-assets/legacy.mjs",
       "!/analytics-assets/campaign.mjs",
       "!/analytics-assets/engagement.mjs",
-      "!/analytics-assets/registry.mjs"
+      "!/analytics-assets/registry.mjs",
+      "!/favicon.ico"
 ] },
   "routes": [{ "pattern": "games.agiscorecard.com", "custom_domain": true }],
   "d1_databases": [{ "binding": "EV", "database_name": "gamesledger-events", "database_id": "2bebbaef-aa46-4b75-89ca-77920ad4f863" }],
