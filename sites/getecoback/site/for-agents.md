@@ -1,6 +1,6 @@
 # EcoBack for AI Agents
 
-> Every machine interface of getecoback.com on one page: MCP server (10 tools), per-page Markdown mirrors, llms.txt, open JSON APIs and the CC-BY sizing dataset.
+> Every machine interface of getecoback.com on one page: MCP server (100 tools), per-page Markdown mirrors, llms.txt, open JSON APIs and the CC-BY sizing dataset.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/for-agents.html
 
@@ -9,9 +9,15 @@ EcoBack is a German-language home-climate guide (portable air conditioning, dehu
 **1 · MCP server**
 Model Context Protocol, Streamable HTTP, no auth: https://getecoback.com/mcp/v1
 
-Ten tools with published formulas, model sources and explicit assumptions: entfeuchter_ablaufcheck (dehumidifier drain height and pump options), geraet_wahl (the next step for an indoor-climate problem, including reasons to measure first or avoid a dehumidifier purchase), btu_empfehlung, heizleistung_watt, fensterabdichtung_laenge, klimaanlage_stromkosten, taupunkt_lueften, hitzewelle_vorschau, plus ratgeber_suche / ratgeber_lesen for full-text search and retrieval. Answers include source URLs and our funding disclosure. Humidity decisions share the website’s decision rules; floor area alone does not determine litres per day.
+100 tools cover humidity, cooling, heating and hot water, household electricity, device fit and maintenance. Use the [full JSON catalogue](https://getecoback.com/api/mcp-tools) for names and categories, then call `tools/list` for input schemas. Results give units, assumptions and links for further reading.
 
 Discovery: [/.well-known/mcp.json](https://getecoback.com/.well-known/mcp.json) · Docs: [/mcp.html](https://getecoback.com/mcp.html) · Registry: io.github.f-tiger/hvac-btu-heat-klimaanlage
+
+**Project a plug-in meter reading**
+
+At €0.30/kWh, a reading of 2 kWh in 24 hours projects to €60 over 100 days of comparable use. See [the replacement and laundry examples](https://getecoback.com/mcp.html#haushalt-beispiele).
+
+{"jsonrpc":"2.0","id":7,"method":"tools/call","params":{"name":"strommessung_hochrechnen","arguments":{"kwh":2,"hours":24,"days":100,"price":0.3}}}
 
 **Can my MeacoDry Arete One 20L drain uphill into a sink?**
 A gravity hose needs a continuous drop. Meaco lists a separate pump for this model. Check the German package contents and permitted lift before buying, or use the tank. See the [model-specific drainage evidence](https://getecoback.com/guide/luftentfeuchter-keller.html#ablauf-vor-kauf).
@@ -22,7 +28,7 @@ A gravity hose needs a continuous drop. Meaco lists a separate pump for this mod
 Existing problem/qm calls remain valid. Missing humidity or temperature information returns measurement advice. For a cold room with repeatedly high humidity:
 
 {"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"geraet_wahl","arguments":{"problem":"feucht_schimmel","purpose":"room","humidity":"high","temperature":"cold"}}}
-Read the [input categories and more examples](https://getecoback.com/mcp.html#feuchte-beispiele), then use the [existing cold-room decision guide](https://getecoback.com/guide/luftentfeuchter-keller.html#eb-moisture-choice). The response explains limits and points to a human-readable source; it does not provide affiliate links or guarantee a suitable model. MCP arguments are processed remotely. New geraet_wahl and entfeuchter_ablaufcheck calls retain a predefined outcome code instead of raw arguments; other tools retain bounded arguments as described in the [privacy notice](https://getecoback.com/datenschutz.html).
+Read the [input categories and more examples](https://getecoback.com/mcp.html#feuchte-beispiele), then use the [existing cold-room decision guide](https://getecoback.com/guide/luftentfeuchter-keller.html#eb-moisture-choice). The response explains limits and points to a human-readable source; it does not provide affiliate links or guarantee a suitable model. MCP arguments are processed remotely. Usage records for all 90 tools added in version 1.5.0 and for geraet_wahl and entfeuchter_ablaufcheck include a tool name and fixed outcome code. Other tools retain bounded arguments as described in the [privacy notice](https://getecoback.com/datenschutz.html).
 
 **2 · Markdown mirrors (read & cite)**
 Every guide has a directly linkable Markdown twin: replace .html with .md. Navigation, commerce blocks and scripts are stripped; headings and internal links survive; the mirrors carry no affiliate links by design and are served noindex — the HTML page stays canonical and is what to cite.

@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Raumklima-MCP: Feuchte prüfen, BTU und Stromkosten rechnen</title>
-<meta name="description" content="Luftentfeuchter im Keller: Braucht der Ablauf eine Pumpe? Zehn MCP-Tools prüfen Modell, Gefälle, Feuchte und Stromkosten. Mit Quellen und ohne Anmeldung.">
+<title>100 MCP-Tools für Raumklima und Haushalt | EcoBack</title>
+<meta name="description" content="100 MCP-Tools für Feuchte, Kühlen, Heizen, Stromkosten und Gerätefragen. Mit Eingabeschemata, Einheiten, Quellen und Beispielen. Ohne Anmeldung.">
 <link rel="canonical" href="https://getecoback.com/mcp.html">
 <link rel="alternate" hreflang="de" href="https://getecoback.com/mcp.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Raumklima-MCP-Server — KI-Agenten-Tools von EcoBack">
-<meta property="og:description" content="Zehn MCP-Tools von EcoBack, darunter der Ablaufcheck für Luftentfeuchter. Prüfe am genauen Modell, ob ein Schlauch mit Gefälle genügt oder Pumpenzubehör nötig ist.">
+<meta property="og:description" content="100 MCP-Tools für den Haushalt. Prüfe Feuchte, Kühlung, Heizkosten, Stromverbrauch und Geräteeignung mit nachvollziehbaren Annahmen.">
 <meta property="og:url" content="https://getecoback.com/mcp.html">
 <!-- Google Analytics (GA4) -->
 
@@ -35,12 +35,22 @@
   .tool { background:#fff; border:1px solid #e4ebf0; border-radius:12px; padding:14px 16px; margin:10px 0; }
   .tool strong { color:#0a4d7a; }
   .tool p { margin:4px 0 0; font-size:14px; color:#5b6b78; }
+  #mcp-catalog { margin:16px 0 24px; }
+  .catalog-filters { margin:12px 0; }
+  .catalog-filters[hidden] { display:none; }
+  .catalog-filters label { display:flex; flex-direction:column; min-width:0; gap:4px; font-weight:600; }
+  .catalog-filters input { font:inherit; width:100%; padding:6px 8px; border:1px solid #92a9b8; border-radius:6px; background:#fff; color:#1a2733; }
+  #mcp-results strong { display:block; overflow-wrap:anywhere; }
+  #mcp-results .category { font-size:13px; font-weight:600; }
+  #mcp-categories { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; }
+  #mcp-categories button { font:inherit; font-weight:600; padding:6px 10px; border:1px solid #92a9b8; border-radius:8px; background:#fff; color:#0a4d7a; cursor:pointer; }
+  #mcp-categories button[aria-pressed="true"] { background:#0a4d7a; border-color:#0a4d7a; color:#fff; }
   .related { background:#fff; border:1px solid #e4ebf0; border-radius:12px; padding:18px 20px; margin:26px 0; }
   .related a { display:block; margin:6px 0; }
   footer { text-align:center; color:#5b6b78; font-size:13px; padding:30px 20px 50px; }
   footer a, a { color:#0f6ba8; }
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebAPI","name":"EcoBack Raumklima MCP Server","description":"Offener Model-Context-Protocol-Server mit zehn Raumklima-Tools: Ablaufcheck am genauen Entfeuchtermodell, Feuchte-Entscheidung vor dem Gerätekauf, BTU-Empfehlung, Fensterabdichtung, Hitzevorschau, Stromkosten, Heizleistung, Taupunkt sowie Ratgeber-Suche und -Abruf. Ohne Anmeldung; Eingaben werden auf dem Server verarbeitet.","documentation":"https://getecoback.com/mcp.html","termsOfService":"https://getecoback.com/datenschutz.html","provider":{"@type":"Organization","@id":"https://getecoback.com/#org","name":"EcoBack","url":"https://getecoback.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebAPI","name":"EcoBack Raumklima MCP Server","description":"Offener Model-Context-Protocol-Server mit 100 Werkzeugen für Raumklima, Haushaltsenergie und Geräteeignung.","documentation":"https://getecoback.com/mcp.html","termsOfService":"https://getecoback.com/datenschutz.html","provider":{"@type":"Organization","@id":"https://getecoback.com/#org","name":"EcoBack","url":"https://getecoback.com/"}}</script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="alternate" type="application/rss+xml" title="EcoBack Ratgeber" href="/feed.xml">
@@ -62,16 +72,43 @@
 <header>
   <div class="wrap">
     <a href="/">← EcoBack Raumklima-Ratgeber</a>
-    <h1>Raumklima-Tools für KI-Agenten (MCP-Server)</h1>
-    <p>Zehn Werkzeuge für kompatible MCP-Clients wie Claude oder Cursor. Prüfe Feuchte, Schlauchführung und Pumpenzubehör vor dem Gerätekauf.</p>
+    <h1>100 MCP-Tools für Raumklima und Haushalt</h1>
+    <p>Rechne mit eigenen Messwerten, prüfe die Bedingungen vor dem Gerätekauf und vergleiche Alternativen. Verbinde den EcoBack-Server mit einem MCP-Client wie Claude, Cursor oder VS Code.</p>
   </div>
 </header>
 
 <div class="wrap">
 <article>
-  <div class="answer"><strong>Endpoint:</strong> <code>https://getecoback.com/mcp/v1</code> (Model Context Protocol, Streamable HTTP, keine Authentifizierung). Die Tools verwenden veröffentlichte Formeln und Entscheidungsregeln der <a href="/tools.html">Website</a>. Annahmen und Grenzen gehören zum Ergebnis. Antworten nennen Quell-URLs und die Finanzierung über Affiliate-Links auf der Website; wir testen Geräte nicht selbst.</div>
+  <div class="answer"><strong>Endpoint:</strong> <code>https://getecoback.com/mcp/v1</code> (Model Context Protocol, Streamable HTTP, keine Authentifizierung). Die Antworten dokumentieren Einheiten, Annahmen und passende Quellen. Viele Rechner verwenden dieselben Formeln wie die <a href="/tools.html">Website</a>. Die Website finanziert sich über gekennzeichnete Affiliate-Links.</div>
 
-  <h2 id="tools">Die zehn Tools</h2>
+  <h2 id="tools">Werkzeuge nach Aufgabe finden</h2>
+  <ul>
+    <li><strong>Feuchte, Keller und Wäsche.</strong> Messwerte einordnen, den Kondensatablauf prüfen und gleich trockene Wäsche vergleichen.</li>
+    <li><strong>Kühlen und Lüften.</strong> Fenster, Raum und Betriebsbedingungen prüfen.</li>
+    <li><strong>Heizen und Warmwasser.</strong> Wärmebedarf, Warmwasser und Dämmung mit eigenen Annahmen abschätzen.</li>
+    <li><strong>Strommessung und Haushaltskosten.</strong> Messungen hochrechnen, Tarife vergleichen und Gerätewechsel kalkulieren.</li>
+    <li><strong>Geräteeignung und Pflege.</strong> Maße, Wartung und Kompatibilität vor dem Kauf oder Austausch prüfen.</li>
+    <li><strong>Raumklima und Ratgeber.</strong> Mit einer konkreten Frage passende Entscheidungshilfen und Quellen finden.</li>
+  </ul>
+  <p>Der <a href="/api/mcp-tools">vollständige Katalog als JSON</a> führt alle 100 Werkzeuge mit Kategorien auf. Im MCP-Client liefert <code>tools/list</code> die Namen und Eingabeschemata.</p>
+  <section id="mcp-catalog" aria-label="Interaktiver Werkzeugkatalog" hidden>
+    <div class="catalog-filters" hidden>
+      <label>Aufgabe oder Werkzeugname <input type="search" autocomplete="off" maxlength="100"></label>
+      <div id="mcp-categories" role="group" aria-label="Werkzeugkategorien"></div>
+    </div>
+    <p class="catalog-status" role="status"></p>
+    <div id="mcp-results"></div>
+  </section>
+  <h3>Fünf Fragen zum Ausprobieren</h3>
+  <ul>
+    <li><a href="#ablauf-beispiel">Kann mein MeacoDry Arete One 20L in ein höher liegendes Becken abpumpen?</a></li>
+    <li><a href="#btu-beispiel">Wie viel Kühlleistung braucht ein 20 m² großes Zimmer bei normaler Sonne?</a></li>
+    <li><a href="#strom-beispiel">Was kosten 100 vergleichbare Betriebstage bei 2 kWh pro Tag?</a></li>
+    <li><a href="#wechsel-beispiel">Wann rechnet sich ein 300 € teurer Ersatz bei 200 kWh Minderverbrauch im Jahr?</a></li>
+    <li><a href="#waesche-beispiel">Was kostet eine gleich trockene Wäscheladung mit dem Trockner oder Entfeuchter?</a></li>
+  </ul>
+
+  <h3>Ausgewählte Werkzeuge und Ratgeber</h3>
   <div class="tool"><strong>entfeuchter_ablaufcheck</strong><p>Liegt der Abfluss höher als der Auslass des Entfeuchters? Prüfe Schlauchgefälle, mögliche Pumpen und Tankbetrieb für dein genaues Modell. <a href="#ablauf-beispiel">Beispiel für den Keller</a></p></div>
   <div class="tool"><strong>geraet_wahl</strong><p>Der nächste Schritt bei Hitze, Feuchte, Kälte oder stickiger Luft. Bei Feuchte nutzt das Tool dieselben sechs Entscheidungszweige wie die Website: erst messen, weiter beobachten, Ursache klären, kalte Räume prüfen, Wäschekosten vergleichen oder gezielt Geräte vergleichen. Eine Raumfläche allein ergibt keine Liter-Empfehlung.</p></div>
   <div class="tool"><strong>btu_empfehlung</strong><p>Empfohlene Kühlleistung (BTU) für einen Raum aus m² und Sonneneinstrahlung, mit passender Geräteklasse. Formel: 340 BTU/m² × Sonnenfaktor.</p></div>
@@ -84,9 +121,24 @@
   <div class="tool"><strong>taupunkt_lueften</strong><p>Taupunkt der Außenluft (Magnus-Formel) und die Antwort auf „darf ich jetzt lüften?" für Keller und feuchte Räume — Wände werden 2 °C unter Raumtemperatur gerechnet.</p></div>
 
 
+  <h2 id="haushalt-beispiele">Drei kopierbare Aufrufe mit Messwerten</h2>
+  <h3 id="strom-beispiel">Strommessung auf 100 vergleichbare Tage hochrechnen</h3>
+  <p>2 kWh in 24 Stunden ergeben 200 kWh in 100 Tagen. Bei 0,30 €/kWh sind das 60 €. Verwende eine Messung aus einem repräsentativen Betrieb.</p>
+  <pre><code>{"jsonrpc":"2.0","id":7,"method":"tools/call","params":{"name":"strommessung_hochrechnen","arguments":{"kwh":2,"hours":24,"days":100,"price":0.3}}}</code></pre>
+  <h3 id="wechsel-beispiel">Altgerät behalten oder ersetzen</h3>
+  <p>400 statt 200 kWh im Jahr bedeuten bei 0,30 €/kWh eine Differenz von 60 € pro Jahr. Bei 300 € Anschaffungskosten liegt der einfache Rückfluss bei fünf Jahren. Reparaturen und Restwert kommen in dieser Rechnung nicht vor.</p>
+  <pre><code>{"jsonrpc":"2.0","id":8,"method":"tools/call","params":{"name":"geraetewechsel_rechnen","arguments":{"oldKwh":400,"newKwh":200,"purchase":300,"years":10,"price":0.3}}}</code></pre>
+  <h3 id="waesche-beispiel">Wäsche bei gleichem Trocknungsgrad vergleichen</h3>
+  <p>2 kWh für den Trockner und 1 kWh für den Entfeuchter ergeben 0,60 € und 0,30 € pro Ladung. Vergleiche dieselbe Wäschemenge und Endtrockenheit. Setze <code>comparable</code> bei abweichenden Bedingungen auf <code>false</code>.</p>
+  <pre><code>{"jsonrpc":"2.0","id":9,"method":"tools/call","params":{"name":"waesche_trocknungskosten","arguments":{"dryer":2,"dehum":1,"price":0.3,"comparable":true}}}</code></pre>
+
   <h2 id="ablauf-beispiel">Kann mein MeacoDry Arete One 20L ins höher liegende Waschbecken abpumpen?</h2>
   <p>Beim Arete One 20L genügt ein Ablaufschlauch für diesen Höhenunterschied nicht. Meaco führt eine separate Pumpe für dieses Modell. Prüfe den deutschen Lieferumfang und die zulässige Förderhöhe vor dem Kauf; als Alternative kannst du den Tank leeren. Die Nachweise stehen im <a href="/guide/luftentfeuchter-keller.html#ablauf-vor-kauf">Ablaufvergleich für den Keller</a>.</p>
   <pre><code>{"jsonrpc":"2.0","id":6,"method":"tools/call","params":{"name":"entfeuchter_ablaufcheck","arguments":{"drain":"level_or_uphill","model":"meaco-one-20"}}}</code></pre>
+
+  <h2 id="btu-beispiel">Kühlleistung für 20 m² abschätzen</h2>
+  <p>Bei normaler Sonne ergibt die Faustformel rund 7.000 BTU/h. Für eine genauere Abschätzung prüfe Deckenhöhe, Personen und offene Küchen im <a href="/guide/btu-rechner.html">BTU-Rechner</a>.</p>
+  <pre><code>{"jsonrpc":"2.0","id":10,"method":"tools/call","params":{"name":"btu_empfehlung","arguments":{"qm":20,"sonne":"normal"}}}</code></pre>
 
   <h2 id="feuchte-beispiele">Feuchte prüfen: drei kopierbare Aufrufe</h2>
   <p>Die Beispiele sind JSON-RPC-Nachrichten für <code>tools/call</code> am Endpoint oben. <code>problem</code> und <code>qm</code> bleiben kompatibel. Bei Feuchte sind <code>purpose</code>, <code>humidity</code> und <code>temperature</code> optional; fehlende Messangaben führen zuerst zum Messen.</p>
@@ -130,8 +182,8 @@
   <h3>Offizieller MCP-Registry-Eintrag</h3>
   <p>Im <a href="https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fhvac-btu-heat-klimaanlage/versions/latest">offiziellen Registry-Eintrag für io.github.f-tiger/hvac-btu-heat-klimaanlage</a> stehen die registrierte Version und die Verbindungsadresse. Die <a href="/.well-known/mcp.json">Discovery-Datei von EcoBack</a> enthält die Client-Konfiguration.</p>
 
-  <h2 id="warum">Warum wir das anbieten — ehrlich</h2>
-  <p>Die Antworten enthalten Quellen zum Nachlesen; ob ein Assistent sie zitiert, entscheidet der Client. Bei <code>geraet_wahl</code> und <code>entfeuchter_ablaufcheck</code> erfassen neue Aufrufe den Tool-Namen und einen vorgegebenen Ergebniscode, keine Rohargumente. Bei anderen Tools werden Parameter weiterhin auf 160 Zeichen gekürzt gespeichert; zusätzlich erfassen wir begrenzte Client-Angaben zur Erkennung automatisierter Aufrufe. Keine IP-Adresse, Nutzerkennung oder MCP-Cookies. Einzelheiten stehen in der <a href="/datenschutz.html">Datenschutzerklärung</a>. Die Website finanziert sich über Amazon-Affiliate-Links auf HTML-Seiten; die MCP-Antworten enthalten keine solchen Kauflinks. Wir testen Geräte nicht selbst.</p>
+  <h2 id="warum">Quellen und Datenschutz</h2>
+  <p>Die Antworten enthalten Quellen zum Nachlesen; ob ein Assistent sie zitiert, entscheidet der Client. Bei den 90 in Version 1.5.0 ergänzten Werkzeugen sowie bei <code>geraet_wahl</code> und <code>entfeuchter_ablaufcheck</code> erfasst die Nutzungsstatistik den Tool-Namen und einen vorgegebenen Ergebniscode. Bei den übrigen Werkzeugen werden die Parameter auf 160 Zeichen gekürzt gespeichert. Wir erfassen außerdem begrenzte Client-Angaben zur Einordnung automatisierter Aufrufe. Keine IP-Adresse, Nutzerkennung oder MCP-Cookies. Einzelheiten stehen in der <a href="/datenschutz.html">Datenschutzerklärung</a>. Die Website finanziert sich über Amazon-Affiliate-Links auf HTML-Seiten; die MCP-Antworten enthalten keine solchen Kauflinks. Wir testen Geräte nicht selbst.</p>
 
   <div class="related">
     <strong>Für Menschen statt Maschinen</strong>
@@ -145,6 +197,101 @@
   ein <a href="https://baipiaoji.com/en/agents/c/mcp">Verzeichnis von MCP-Servern mit Prüfdatum je URL</a>.</p>
 <script>(function(){document.querySelectorAll("[data-eb-mcp]").forEach(function(a){a.addEventListener("click",function(){if(window.gtag)gtag("event","mcp_install_click",{client:a.getAttribute("data-eb-mcp")});});});})();</script>
 </article>
+<script>
+(() => {
+  const catalog = document.getElementById('mcp-catalog');
+  const filters = catalog.querySelector('.catalog-filters');
+  const status = catalog.querySelector('.catalog-status');
+  const results = document.getElementById('mcp-results');
+  const query = filters.querySelector('input');
+  const categories = document.getElementById('mcp-categories');
+  let selected = null;
+  let entries = [];
+  catalog.hidden = false;
+
+  const normalize = (value) => value.toLocaleLowerCase('de').replace(/[äöüß]/g, (letter) => (
+    {ä:'ae', ö:'oe', ü:'ue', ß:'ss'}[letter]
+  )).replaceAll('_', ' ');
+
+  function render() {
+    const terms = normalize(query.value.trim()).split(/\s+/).filter(Boolean);
+    if (selected === null && !terms.length) {
+      results.replaceChildren();
+      status.textContent = entries.length + ' Werkzeuge. Wähle eine Kategorie oder suche nach einer Aufgabe.';
+      return;
+    }
+    const shown = entries.filter(({tool, searchable}) =>
+      (!selected || tool.category === selected) &&
+      terms.every((term) => searchable.includes(term)));
+    const cards = shown.map(({tool}) => {
+      const card = document.createElement('div');
+      card.className = 'tool';
+      const name = document.createElement('strong');
+      name.textContent = tool.name;
+      const label = document.createElement('span');
+      label.className = 'category';
+      label.textContent = tool.category;
+      const description = document.createElement('p');
+      description.textContent = tool.description;
+      card.append(name, label, description);
+      if (typeof tool.page === 'string' && /^\/(?:[a-z0-9-]+\/)*[a-z0-9-]+\.html$/.test(tool.page)) {
+        const link = document.createElement('a');
+        link.href = tool.page;
+        link.textContent = 'Ratgeber und Annahmen';
+        card.append(link);
+      }
+      return card;
+    });
+    results.replaceChildren(...cards);
+    status.textContent = shown.length + ' von ' + entries.length + ' Werkzeugen';
+  }
+
+  query.addEventListener('input', render);
+  function addCategory(value, label, count) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.dataset.category = value;
+    button.textContent = label + ' (' + count + ')';
+    button.setAttribute('aria-pressed', 'false');
+    button.addEventListener('click', () => {
+      selected = value;
+      for (const sibling of categories.children) {
+        sibling.setAttribute('aria-pressed', String(sibling === button));
+      }
+      render();
+    });
+    categories.append(button);
+  }
+
+  async function load() {
+    status.textContent = 'Werkzeugkatalog wird geladen …';
+    try {
+      const response = await fetch('/api/mcp-tools', {headers:{accept:'application/json'}});
+      if (!response.ok) throw new Error('catalog unavailable');
+      const {tools} = await response.json();
+      if (!Array.isArray(tools) || !tools.length) throw new Error('catalog empty');
+      entries = tools.map(tool => ({
+        tool,
+        searchable:normalize([tool.name, tool.category, tool.description].join(' ')),
+      }));
+      const counts = new Map();
+      for (const {category} of tools) counts.set(category, (counts.get(category) ?? 0) + 1);
+      addCategory('', 'Alle', tools.length);
+      const labels = {Feuchte:'Feuchte, Keller und Wäsche', Kühlen:'Kühlen und Lüften',
+        Heizen:'Heizen und Warmwasser', 'Strom & Haushalt':'Strom und Haushalt',
+        Passform:'Geräteeignung und Pflege', Raumklima:'Raumklima und Ratgeber'};
+      for (const [value, count] of counts) addCategory(value, labels[value] ?? value, count);
+      filters.hidden = false;
+      render();
+    } catch {
+      status.textContent = 'Der Katalog ist gerade nicht verfügbar. Im MCP-Client kannst du die Werkzeuge über tools/list abrufen.';
+    }
+  }
+
+  load();
+})();
+</script>
+
 </div>
 
 <!--EB_FOOTER--><footer class="eb-footer"><div class="eb-footer-in"><div><strong>Kategorien</strong><a href="/kategorie/heizen.html">Heizen</a><a href="/kategorie/luftqualitaet.html">Luftqualität</a><a href="/kategorie/klimaanlagen.html">Klimaanlagen &amp; Kühlen</a><a href="/kategorie/energie-sparen.html">Energie sparen</a></div><div><strong>EcoBack</strong><a href="/tools.html">🧮 Alle Rechner &amp; Checks</a><a href="/widgets.html">🧩 Widgets für deine Website</a><a href="/daten.html">📊 Offene Daten (CC BY 4.0)</a><a href="/hitze-radar.html">🌡️ Hitze-Radar</a><a href="/ueber-uns.html">Über uns</a><a href="/wie-wir-empfehlen.html">Wie wir empfehlen</a><a href="/kontakt.html">Kontakt</a></div><div><strong>Rechtliches</strong><a href="/impressum.html">Impressum</a><a href="/datenschutz.html">Datenschutz</a></div></div><div class="eb-footer-legal">Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks sind Affiliate-Links — du zahlst denselben Preis. © 2026 EcoBack</div></footer><!--/EB_FOOTER-->

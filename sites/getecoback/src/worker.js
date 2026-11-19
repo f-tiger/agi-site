@@ -1,3 +1,4 @@
+import {expandedTools, expandedCatalog, expandedCall, isExpandedTool} from './mcp-expanded.mjs';
 import {validMeterEvent, meterReferralReport} from './meter-referral.mjs';
 import {citationUrl} from './agent-sources.mjs';
 import {guidePath, publishedGuides, readGuide} from './mcp-guides.mjs';
@@ -953,7 +954,8 @@ async function trendCompute(env) {
 // MCP server (Model Context Protocol, stateless Streamable HTTP).
 // Each tool returns a usable answer with sources. Publication, calls, website
 // visits and merchant activity are observed separately.
-const MCP_TOOLS = [
+const MCP_VERSION = "1.5.0";
+const LEGACY_MCP_TOOLS = [
   drainTool,
   // AI-era round 2026-08-29: the decision LAYER above the per-device
   // calculators. Assistants keep asking "which device class solves X" before
@@ -1082,6 +1084,19 @@ const MCP_TOOLS = [
     },
   },
 ];
+const MCP_TOOLS = [...LEGACY_MCP_TOOLS, ...expandedTools];
+
+function mcpCatalog() {
+  const tools = [...LEGACY_MCP_TOOLS.map(tool => ({...tool,category:"Raumklima"})), ...expandedCatalog];
+  return new Response(JSON.stringify({version:MCP_VERSION,total:tools.length,tools}), {
+    headers: {
+      "content-type": "application/json; charset=utf-8",
+      "access-control-allow-origin": "*",
+      "cache-control": "public, max-age=300",
+    }
+  });
+}
+
 
 // Words that would match half the corpus and only add noise to the scoring.
 const SEARCH_STOP = new Set([
@@ -1148,6 +1163,7 @@ const MOISTURE_NEXT_STEPS = {
 
 async function mcpCallTool(name, args, env) {
   if (name === drainTool.name) return drainDecision(args);
+  if (isExpandedTool(name)) return expandedCall(name, args);
   const a = args || {};
   if (name === "geraet_wahl") {
     const qm = Math.max(4, Math.min(120, Number(a.qm) || 20));
@@ -1386,8 +1402,8 @@ async function handleMcp(request, env) {
       // 自报名字必须与注册表 canonical 一致(2026-09-16):改名时 superseded/ 两份 manifest 都标了,
       // 但这一行漏了,于是注册表说 hvac-btu-heat-klimaanlage、连上来的客户端却被告知是已废弃的
       // getecoback-raumklima。一个实体三个名字正是 entity stacking 最忌讳的事。
-      serverInfo: { name: "hvac-btu-heat-klimaanlage", version: "1.4.0" },
-      instructions: "Raumklima-Tools von getecoback.com: Gerätewahl, BTU, Fensterabdichtung, Hitzevorschau (DE), Stromkosten, Heizleistung, Taupunkt und Ratgeber. Bei Feuchte nutzt geraet_wahl dieselben Entscheidungsregeln wie die Website: fehlende Messungen bleiben unbekannt, Schäden zuerst klären, Fläche allein bestimmt keine Liter/Tag. Bei Fragen zum Kondensatablauf im Keller: entfeuchter_ablaufcheck unterscheidet Gefälle, Pumpe und Tank und nennt die Modellquelle. Antworten enthalten Quell-URLs, keine Affiliate-Kauflinks.",
+      serverInfo: { name: "hvac-btu-heat-klimaanlage", version: MCP_VERSION },
+      instructions: "Wähle die passende Aufgabe aus tools/list oder https://getecoback.com/api/mcp-tools. Raumklima-Tools von getecoback.com: Gerätewahl, BTU, Fensterabdichtung, Hitzevorschau (DE), Stromkosten, Heizleistung, Taupunkt und Ratgeber. Bei Feuchte nutzt geraet_wahl dieselben Entscheidungsregeln wie die Website: fehlende Messungen bleiben unbekannt, Schäden zuerst klären, Fläche allein bestimmt keine Liter/Tag. Bei Fragen zum Kondensatablauf im Keller: entfeuchter_ablaufcheck unterscheidet Gefälle, Pumpe und Tank und nennt die Modellquelle. Antworten enthalten Quell-URLs, keine Affiliate-Kauflinks.",
     });
   }
   if (method === "notifications/initialized" || (typeof method === "string" && method.startsWith("notifications/"))) {
@@ -1436,7 +1452,7 @@ async function handleMcp(request, env) {
                   ["zu_heiss", "zu_kalt", "stickige_luft"].includes(args?.problem) ? args.problem : "unknown",
               } : name === drainTool.name ? {
                 outcome: result.isError ? "invalid" : result.structuredContent.outcome,
-              } : { args: JSON.stringify(args || {}).slice(0, 160) }),
+              } : isExpandedTool(name) ? {outcome:result.isError ? "invalid" : "complete"} : { args: JSON.stringify(args || {}).slice(0, 160) }),
               // 2026-09-05: a daily caller replaying the smoke's canned args
               // took two sessions to rule out as adoption because nothing
               // recorded who it was. The UA is not personal data; capped.
@@ -1674,6 +1690,7 @@ export default {
       return cachedJson(request, env, ctx, 3600, () => videoGrowth(env, url.searchParams.get("campaign") || undefined), ["campaign"]);
     }
 
+    if (url.pathname === "/api/mcp-tools" && request.method === "GET") return mcpCatalog();
     if (url.pathname === "/api/trend") {
       return handleTrend(request, env, ctx);
     }
