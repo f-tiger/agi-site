@@ -1,6 +1,7 @@
 import {validMeterEvent, meterReferralReport} from './meter-referral.mjs';
 import {citationUrl} from './agent-sources.mjs';
 import {guidePath, publishedGuides, readGuide} from './mcp-guides.mjs';
+import {drainTool, drainDecision} from './mcp-drain.mjs';
 import {normalize as normalizeSearch} from '../site/assets/demand-discovery.mjs';
 import {isAnalyticsPath, analyticsResponse} from '../../../tools/fleet-analytics/edge.mjs';
 import {DISTRIBUTION_EVENTS,validDistribution,distributionGrowth} from './distribution-growth.mjs';
@@ -11,7 +12,7 @@ import {videoGrowth} from './video-growth.mjs';
 import {videoEntry} from './video-entry.mjs';
 import {affiliateMetrics} from './affiliate-metrics.mjs';
 import {affiliateAudit} from './affiliate-audit.mjs';
-import {affiliateMeta} from './affiliate-meta.mjs';
+import {affiliateMeta, CELLAR_PAGE, taggedDrainEntry} from './affiliate-meta.mjs';
 // The browser module guards DOM setup with typeof document; its pure decision
 // function is also the MCP contract, so the two surfaces cannot route differently.
 import {decide as decideMoisture} from '../site/assets/moisture-decision.mjs';
@@ -818,13 +819,20 @@ async function handleEvent(request, env, ctx) {
   // enough to reconstruct anyone's browsing.
   let ref = "";
   try { ref = body.r ? new URL(String(body.r)).hostname.slice(0, 100) : ""; } catch { ref = ""; }
-  const meta = name === 'affiliate_click' ? affiliateMeta(body.m)
-    : body.m ? JSON.stringify(body.m).slice(0, 200) : "";
+  const evUa = request.headers.get("user-agent") || "";
+  const evCls = evUaClass(evUa);
+  const drainEntry = taggedDrainEntry(body, request, evCls);
+  let metadata = body.m;
+  if (name === 'page_view' && page === CELLAR_PAGE && (drainEntry || metadata?.mcp_drain_entry !== undefined)) {
+    metadata = {...metadata};
+    delete metadata.mcp_drain_entry;
+    if (drainEntry) metadata.mcp_drain_entry = 1;
+  }
+  const meta = name === 'affiliate_click' ? affiliateMeta(metadata, drainEntry)
+    : metadata ? JSON.stringify(metadata).slice(0, 200) : "";
   const country = meterEvent ? "" : request.headers.get("CF-IPCountry") || "";
   const day = new Date().toISOString().slice(0, 10);
 
-  const evUa = request.headers.get("user-agent") || "";
-  const evCls = evUaClass(evUa);
   if (name === "page_view") auditUa(env, ctx, evUa, evCls);
   try {
     await env.EVENTS.prepare(
@@ -943,13 +951,10 @@ async function trendCompute(env) {
 
 // ---------------------------------------------------------------------------
 // MCP server (Model Context Protocol, stateless Streamable HTTP).
-// The AI-native bet made concrete: AI assistants are moving from citing pages
-// to calling tools, and the site that provides the tool gets cited on every
-// call. These four tools mirror the site's own calculators line for line, so
-// the agent and the page can never disagree — and every result carries its
-// source URL and the site's honesty line ("not self-tested"), which means the
-// disclosure travels with the data. No auth, no state, aggregate-only.
+// Each tool returns a usable answer with sources. Publication, calls, website
+// visits and merchant activity are observed separately.
 const MCP_TOOLS = [
+  drainTool,
   // AI-era round 2026-08-29: the decision LAYER above the per-device
   // calculators. Assistants keep asking "which device class solves X" before
   // any sizing question makes sense; this router answers it with the same
@@ -1142,6 +1147,7 @@ const MOISTURE_NEXT_STEPS = {
 };
 
 async function mcpCallTool(name, args, env) {
+  if (name === drainTool.name) return drainDecision(args);
   const a = args || {};
   if (name === "geraet_wahl") {
     const qm = Math.max(4, Math.min(120, Number(a.qm) || 20));
@@ -1161,6 +1167,9 @@ async function mcpCallTool(name, args, env) {
         return { content: [{ type: "text", text: "Ungültige Auswahl: purpose muss room, laundry oder damage sein; humidity unknown, normal oder high; temperature unknown, warm oder cold. Fehlende Angaben bleiben unbekannt." }], isError: true };
       }
       text = MOISTURE_NEXT_STEPS[outcome] +
+        (outcome === "cold" || outcome === "compare"
+          ? "\nBei Fragen zum Schlauchgefälle, einem höheren Abfluss oder zur Pumpe: entfeuchter_ablaufcheck prüft die Schlauchführung und den Modellbeleg."
+          : "") +
         "\nRaumfläche allein bestimmt weder Liter/Tag noch die richtige Bauart. Nennleistung ist keine Alltagsgarantie; prüfe Herstellerdaten für die tatsächlichen Bedingungen." +
         "\nEntscheidungshilfe und Quellen (der Link enthält keine Eingaben): https://getecoback.com/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice" +
         "\nOrientierung, keine Ferndiagnose. Die Website zeigt vorhandene Vergleichskandidaten für Deutschland; prüfe Modell, Markt und Einsatzbedingungen selbst.";
@@ -1377,8 +1386,8 @@ async function handleMcp(request, env) {
       // 自报名字必须与注册表 canonical 一致(2026-09-16):改名时 superseded/ 两份 manifest 都标了,
       // 但这一行漏了,于是注册表说 hvac-btu-heat-klimaanlage、连上来的客户端却被告知是已废弃的
       // getecoback-raumklima。一个实体三个名字正是 entity stacking 最忌讳的事。
-      serverInfo: { name: "hvac-btu-heat-klimaanlage", version: "1.3.2" },
-      instructions: "Raumklima-Tools von getecoback.com: Gerätewahl, BTU, Fensterabdichtung, Hitzevorschau (DE), Stromkosten, Heizleistung, Taupunkt und Ratgeber. Bei Feuchte nutzt geraet_wahl dieselben Entscheidungsregeln wie die Website: fehlende Messungen bleiben unbekannt, Schäden zuerst klären, Fläche allein bestimmt keine Liter/Tag. Antworten enthalten Quell-URLs, keine Affiliate-Kauflinks.",
+      serverInfo: { name: "hvac-btu-heat-klimaanlage", version: "1.4.0" },
+      instructions: "Raumklima-Tools von getecoback.com: Gerätewahl, BTU, Fensterabdichtung, Hitzevorschau (DE), Stromkosten, Heizleistung, Taupunkt und Ratgeber. Bei Feuchte nutzt geraet_wahl dieselben Entscheidungsregeln wie die Website: fehlende Messungen bleiben unbekannt, Schäden zuerst klären, Fläche allein bestimmt keine Liter/Tag. Bei Fragen zum Kondensatablauf im Keller: entfeuchter_ablaufcheck unterscheidet Gefälle, Pumpe und Tank und nennt die Modellquelle. Antworten enthalten Quell-URLs, keine Affiliate-Kauflinks.",
     });
   }
   if (method === "notifications/initialized" || (typeof method === "string" && method.startsWith("notifications/"))) {
@@ -1425,6 +1434,8 @@ async function handleMcp(request, env) {
               ...(name === "geraet_wahl" ? {
                 outcome: result.isError ? "invalid" : args?.problem === "feucht_schimmel" ? mcpMoistureOutcome(args) :
                   ["zu_heiss", "zu_kalt", "stickige_luft"].includes(args?.problem) ? args.problem : "unknown",
+              } : name === drainTool.name ? {
+                outcome: result.isError ? "invalid" : result.structuredContent.outcome,
               } : { args: JSON.stringify(args || {}).slice(0, 160) }),
               // 2026-09-05: a daily caller replaying the smoke's canned args
               // took two sessions to rule out as adoption because nothing

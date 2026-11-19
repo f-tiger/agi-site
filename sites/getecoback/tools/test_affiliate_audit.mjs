@@ -261,3 +261,25 @@ test('N90 guide rows distinguish exact German tagged product, search and other p
     family:{page_views:0,affiliate_clicks:4,exact_product_clicks:1},
   });
 });
+
+test('tagged cellar cohorts reflect only instrumented complete UTC days and preserve all ordinary counts',async()=>{
+  const script = `import json,sqlite3,sys
+db=sqlite3.connect(':memory:'); db.row_factory=sqlite3.Row
+db.execute('CREATE TABLE ev(day,name,page,ref,ua_class,meta)')
+cellar='/guide/luftentfeuchter-keller.html'
+def add(day,name,page=cellar,ua='human',tag=1):
+ db.execute('INSERT INTO ev VALUES (?,?,?,?,?,?)',(day,name,page,'',ua,json.dumps({'mcp_drain_entry':tag})))
+add('2026-11-19','page_view')
+add('2026-11-20','page_view'); add('2026-11-20','affiliate_click')
+add('2026-11-20','page_view',tag=0); add('2026-11-20','affiliate_click',ua=None)
+add('2026-11-21','affiliate_click',page='/guide/other.html'); add('2026-11-21','page_view',ua='bot')
+sql=sys.stdin.read().replace("date('now'","date('2026-11-22'")
+print(json.dumps([dict(r) for r in db.execute(sql)]))`;
+  const data=spawnSync('python3',['-c',script],{input:AUDIT_SQL,encoding:'utf8'});
+  assert.equal(data.status,0,data.stderr);
+  const audit=await affiliateAudit(dbFor(JSON.parse(data.stdout)),()=>'direct');
+  assert.equal(audit.weeks.at(-2).mcp_drain_entry,null);
+  assert.deepEqual(audit.weeks.at(-1).mcp_drain_entry,{start:'2026-11-20',end_exclusive:'2026-11-22',page_views:1,affiliate_clicks:1});
+  assert.deepEqual(audit.last_three_complete_days.mcp_drain_entry,audit.weeks.at(-1).mcp_drain_entry);
+  assert.deepEqual(audit.weeks.at(-1).cellar_catalog,{page_views:3,affiliate_clicks:2,catalog_product_clicks:0,catalog_search_clicks:0});
+});
