@@ -1,19 +1,22 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {spawnSync} from 'node:child_process';
+import {readFileSync} from 'node:fs';
+import {runInNewContext} from 'node:vm';
 import {affiliateMeta} from '../src/affiliate-meta.mjs';
 import {AFFILIATE_SQL, affiliateMetrics} from '../src/affiliate-metrics.mjs';
 import worker from '../src/worker.js';
 
 const product = 'https://www.amazon.de/dp/B07NC5CP6F?tag=getecoback-21';
-async function record(body) {
+async function record(body, headers = {}) {
   const rows = [];
   const env = {EVENTS: {prepare(sql) {
+    if (sql.startsWith('INSERT INTO ua_audit')) return {bind: () => ({run: async () => {}})};
     assert.match(sql, /^INSERT INTO ev/);
     return {bind(...values) {return {run: async () => {rows.push(values);}};}};
   }}};
   const request = new Request('https://getecoback.com/api/ev', {
-    method: 'POST', headers: {'content-type': 'text/plain', 'user-agent': 'Mozilla/5.0'},
+    method: 'POST', headers: {'content-type': 'text/plain', 'user-agent': 'Mozilla/5.0', ...headers},
     body: JSON.stringify(body),
   });
   const response = await worker.fetch(request, env, {waitUntil() {}});
@@ -110,4 +113,58 @@ print(json.dumps([dict(r) for r in db.execute(sys.stdin.read())]))`;
 test('other event schemas are unchanged', async () => {
   const result = await record({n: 'b2b_intent', p: '/guide/example.html', m: {source: 'existing'}});
   assert.equal(result.rows[0][4], '{"source":"existing"}');
+});
+
+const cellar = '/guide/luftentfeuchter-keller.html';
+const documentURL = 'https://getecoback.com' + cellar + '?utm_source=eco-mcp&utm_medium=referral&utm_campaign=keller-ablauf';
+const drainLink = documentURL + '#ablauf-vor-kauf';
+
+test('one existing view and coalesced click retain only the initial exact tagged cellar entry', async () => {
+  const file = readFileSync(new URL('../site/guide/luftentfeuchter-keller.html', import.meta.url), 'utf8');
+  const track = file.match(/<!--EB_TRACK--><script>([\s\S]*?)<\/script><!--\/EB_TRACK-->/)[1];
+  async function visit(entry) {
+    const events = [], handlers = {};
+    const location = new URL(entry);
+    const scope = {
+      location, document:{referrer:'',addEventListener(){}}, Blob,
+      navigator:{sendBeacon:(url, data) => {assert.equal(url,'/api/ev'); events.push(data.text());}},
+      addEventListener:(type, cb) => {handlers[type]=cb;}, setTimeout:()=>1,clearTimeout(){},
+    };
+    scope.window=scope;
+    runInNewContext(track, scope);
+    location.hash='#modell-meaco-one-20';
+    scope.gtag('event','affiliate_click',{link_url:product});
+    scope.gtag('event','affiliate_click',{source:'models',link_url:product});
+    handlers.pagehide();
+    return (await Promise.all(events)).map(JSON.parse);
+  }
+  for (const entry of [drainLink, documentURL, documentURL+'#other', drainLink.replace('eco-mcp','unknown'),
+    drainLink.replace('/luftentfeuchter-keller.', '/other.'), drainLink.replace('#','&private=secret#')]) {
+    const records = await visit(entry);
+    assert.deepEqual(records.map(x=>x.n), ['page_view','affiliate_click']);
+    assert.deepEqual(records.map(x=>x.mcp_drain_entry),Array(2).fill(entry===drainLink ? true : undefined));
+    assert.equal(records[1].m.source,'models');
+    assert.doesNotMatch(JSON.stringify(records), /private=|utm_|#modell/);
+  }
+});
+
+test('worker verifies the tagged document and human privacy eligibility; ordinary rows keep their dimensions',async () => {
+  const headers={origin:'https://getecoback.com',referer:documentURL,'sec-fetch-site':'same-origin'};
+  for(const name of ['page_view','affiliate_click']) {
+    const body={n:name,p:cellar,r:'https://www.bing.com/',mcp_drain_entry:true,
+      m:name==='affiliate_click'?{source:'models',link_url:product}:null};
+    const row=(await record(body,headers)).rows[0];
+    assert.equal(JSON.parse(row[4]).mcp_drain_entry,1);
+    assert.equal(row[3],'www.bing.com');
+    if(name==='affiliate_click') assert.equal(JSON.parse(row[4]).source,'models');
+    for(const variant of [{referer:''},{referer:documentURL+'&extra=secret'},{referer:documentURL.replace('eco-mcp','x')},
+      {origin:'https://other.test'},{'sec-fetch-site':'cross-site'},{'dnt':'1'},{'sec-gpc':'1'},{'user-agent':'getecoback-ci/1.0'}]) {
+      const result = await record({...body,m:{...body.m,mcp_drain_entry:1}}, {...headers,...variant});
+      assert.equal(JSON.parse(result.rows[0][4]||'{}').mcp_drain_entry,undefined);
+    }
+    for(const variant of [{mcp_drain_entry:false},{p:cellar+'.other'}]) {
+      const result=await record({...body,...variant},headers);
+      assert.equal(JSON.parse(result.rows[0][4]||'{}').mcp_drain_entry,undefined);
+    }
+  }
 });

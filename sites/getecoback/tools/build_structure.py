@@ -4197,11 +4197,18 @@ def inject_explainer(html, slug, en=False):
 # boxes, in-text links) predate per-link gtag handlers, so their clicks were
 # invisible in GA4. One listener per page catches them all, and it stands down
 # whenever another handler on the page already reported the same click.
-TRACK = ('<!--EB_TRACK--><script>(function(){'
+def track_block(cellar=False):
+    # Capture the initial document URL once. Following a model anchor on this
+    # page may change the fragment before the existing click event fires.
+    marker = ('var drainEntry=location.href==="https://getecoback.com/guide/luftentfeuchter-keller.html'
+              '?utm_source=eco-mcp&utm_medium=referral&utm_campaign=keller-ablauf#ablauf-vor-kauf";'
+              if cellar else '')
+    field = 'mcp_drain_entry:(drainEntry&&(n==="page_view"||n==="affiliate_click"))||undefined,' if cellar else ''
+    return ('<!--EB_TRACK--><script>(function(){' + marker +
          # First-party beacon: same-origin, no cookies, no ids. Mirrors every
          # gtag event into our own D1 so the funnel stays measurable without a
          # third-party analytics subscription.
-         'var send=function(n,m){try{var b=JSON.stringify({n:n,p:location.pathname,r:document.referrer,m:m||null});'
+         'var send=function(n,m){try{var b=JSON.stringify({' + field + 'n:n,p:location.pathname,r:document.referrer,m:m||null});'
          'if(navigator.sendBeacon){navigator.sendBeacon("/api/ev",new Blob([b],{type:"text/plain"}));}'
          'else{fetch("/api/ev",{method:"POST",keepalive:true,headers:{"Content-Type":"text/plain"},body:b});}}catch(e){}};'
          # One click, one row. Three independent code paths can report the same
@@ -4270,10 +4277,11 @@ TRACK = ('<!--EB_TRACK--><script>(function(){'
          '});})();</script><!--/EB_TRACK-->')
 
 
-def inject_track(html):
+def inject_track(html, cellar=False):
+    track = track_block(cellar)
     if "<!--EB_TRACK-->" in html:
-        return re.sub(r'<!--EB_TRACK-->.*?<!--/EB_TRACK-->', lambda m: TRACK, html, flags=re.S)
-    return html.replace("</body>", TRACK + "\n</body>", 1)
+        return re.sub(r'<!--EB_TRACK-->.*?<!--/EB_TRACK-->', lambda m: track, html, flags=re.S)
+    return html.replace("</body>", track + "\n</body>", 1)
 
 
 def inject_chrome(html, nav=NAV, footer=FOOTER):
@@ -4639,7 +4647,7 @@ def main():
         new = inject_laundry(html, os.path.basename(path)[:-5])
         new = inject_chrome(new)
         new = inject_search(new)
-        new = inject_track(new)
+        new = inject_track(new, path == os.path.join(GUIDE, "luftentfeuchter-keller.html"))
         if os.path.basename(path) != 'produkte.html':
             new = inject_profile(new)
         new = inject_share(new)

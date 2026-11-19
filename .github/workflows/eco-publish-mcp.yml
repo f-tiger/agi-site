@@ -104,3 +104,8 @@ jobs:
           # Historical names already carry their superseded notice. Their
           # immutable old versions need no repeat publication on every deploy.
           pub mcp/server.json
+
+      - name: Verify latest active canonical registration
+        run: |
+          python3 tools/test_mcp_registry.py
+          python3 tools/check_mcp_registry.py --release

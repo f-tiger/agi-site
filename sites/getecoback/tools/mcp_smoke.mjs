@@ -42,6 +42,7 @@ function textOf(result) {
 // expectations are values computed by hand from the site's own formulas, so a
 // silent change to a formula fails here instead of reaching an assistant.
 const CASES = [
+  ["entfeuchter_ablaufcheck", {drain: "level_or_uphill", model: "meaco-one-20"}, ["Pumpe", "Arete", "https://getecoback.com/guide/luftentfeuchter-keller.html?utm_source=eco-mcp&utm_medium=referral&utm_campaign=keller-ablauf#ablauf-vor-kauf"]],
   // 20 m² × 340 BTU/m² = 6.800, rounded up to the 7.000 the site's own
   // calculator shows — the expectation is the published number, not the raw one.
   // Legacy area-only requests must measure first; area cannot establish litres/day.
@@ -86,6 +87,9 @@ for (const [tool, args, expects] of CASES) {
   try {
     const result = await rpc("tools/call", { name: tool, arguments: args });
     const body = textOf(result);
+    if (tool === 'entfeuchter_ablaufcheck' && result.structuredContent?.outcome !== 'pump_check') {
+      fails.push('Drainage tool did not return the higher-drain outcome for the exact model.');
+    }
     const missing = expects.filter((e) => !body.toLowerCase().includes(String(e).toLowerCase()));
     if (result.isError) {
       fails.push(`${tool}: isError — ${body.slice(0, 120)}`);

@@ -1,3 +1,5 @@
+import {CELLAR_PAGE} from './affiliate-meta.mjs';
+
 // Bounded, aggregate-only history for distinguishing demand/mix changes from
 // telemetry loss. No identifiers, raw paths, referrers or outbound URLs leave
 // this module. Existing /api/trend caches the result for one hour.
@@ -6,12 +8,14 @@ export const AUDIT_SQL = `SELECT day, name, page, ref,
     THEN json_extract(meta,'$.link_url') ELSE NULL END AS link,
   CASE WHEN name='affiliate_click' AND json_valid(meta)
     THEN json_extract(meta,'$.source') ELSE NULL END AS source,
+  CASE WHEN page='${CELLAR_PAGE}' AND ua_class='human' AND json_valid(meta)
+    THEN json_extract(meta,'$.mcp_drain_entry') = 1 ELSE 0 END AS drain_entry,
   COUNT(*) AS n, date('now') AS end_exclusive
 FROM ev
 WHERE name IN ('page_view','affiliate_click')
   AND day >= date('now','-56 days') AND day < date('now')
   AND (ua_class IS NULL OR ua_class='human') AND page NOT LIKE '/__ci%'
-GROUP BY day, name, page, ref, link, source`;
+GROUP BY day, name, page, ref, link, source, drain_entry`;
 
 const GAPS = [
   {day:'2026-09-24',approx_start_utc:'13:00'},
@@ -56,7 +60,13 @@ const buyingPathKeys = new Map([
 ]);
 const section = ()=>({...count(),cohorts:{},cohorts_v2:{},n90_guides:{model:{...count(),exact_product_clicks:0},family:{...count(),exact_product_clicks:0}},cellar_catalog:{...count(),catalog_product_clicks:0,catalog_search_clicks:0},buying_paths:{smart_thermostat:count(),saugwischer:count(),robot:count(),humidifier:count()},channels:{},destinations:{product:0,search:0,prime_trial:0,other:0},surfaces:{},models:{ex105:0,n90:0,other:0}});
 const dayAt = (end,offset)=>new Date(Date.parse(end+'T00:00:00Z')+offset*86400000).toISOString().slice(0,10);
-const range = (start,end)=>({...section(),start,end_exclusive:end});
+// Launch day is partial. Mixed windows expose only the dates actually counted.
+const firstFullDrainDay = '2026-11-20';
+const range = (start,end)=>({...section(),start,end_exclusive:end,
+  mcp_drain_entry: end <= firstFullDrainDay ? null : {
+    start: start < firstFullDrainDay ? firstFullDrainDay : start, end_exclusive:end, ...count(),
+  },
+});
 function destination(link) {
   try {
     const u=new URL(link);
@@ -83,7 +93,10 @@ function add(s,r,channel) {
     route[field] += r.n;
     if (field === 'affiliate_clicks' && n90Product.test(r.link)) route.exact_product_clicks += r.n;
   }
-  const cellar = r.page === '/guide/luftentfeuchter-keller.html';
+  const cellar = r.page === CELLAR_PAGE;
+  if (cellar && s.mcp_drain_entry && r.day >= firstFullDrainDay && r.drain_entry === 1) {
+    s.mcp_drain_entry[field] += r.n;
+  }
   if (cellar) s.cellar_catalog[field] += r.n;
   const group=pageGroup(r.page);
   (s.cohorts[group]??=count())[field]+=r.n;

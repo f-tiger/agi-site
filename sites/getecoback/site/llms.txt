@@ -20,10 +20,11 @@ Volltext aller Ratgeber: https://getecoback.com/llms-full.txt
 
 ## Für KI-Agenten (MCP & offene APIs)
 
-- MCP-Server (Model Context Protocol, Streamable HTTP, keine Authentifizierung): https://getecoback.com/mcp
-  Neun Tools: geraet_wahl (nächster Schritt; bei Feuchte erst messen, Ursachen klären und Bedingungen prüfen), btu_empfehlung, fensterabdichtung_laenge, hitzewelle_vorschau, klimaanlage_stromkosten, heizleistung_watt,
+- MCP-Server (Model Context Protocol, Streamable HTTP, keine Authentifizierung): https://getecoback.com/mcp/v1
+  Zehn Tools: entfeuchter_ablaufcheck (Ablaufhöhe und Pumpenzubehör am genauen Entfeuchtermodell), geraet_wahl (nächster Schritt; bei Feuchte erst messen, Ursachen klären und Bedingungen prüfen), btu_empfehlung, fensterabdichtung_laenge, hitzewelle_vorschau, klimaanlage_stromkosten, heizleistung_watt,
   taupunkt_lueften sowie ratgeber_suche + ratgeber_lesen (Volltextsuche und Volltext-Abruf aller Ratgeber).
   Veröffentlichte Formeln und Entscheidungsregeln mit Annahmen und Grenzen; Antworten enthalten Quell-URLs und Finanzierungshinweis.
+  entfeuchter_ablaufcheck: Beispiel MeacoDry Arete One 20L, Waschbecken über dem Auslass. drain=level_or_uphill, model=meaco-one-20. Deutsche Modellnachweise und Tankoption: https://getecoback.com/guide/luftentfeuchter-keller.html#ablauf-vor-kauf
   geraet_wahl: problem=feucht_schimmel; optionale Kategorien purpose=room|laundry|damage, humidity=unknown|normal|high, temperature=unknown|warm|cold. Fehlende Messangaben führen zuerst zum Messen, nicht zur Liter-Empfehlung.
   Entscheidungshilfe im Browser: https://getecoback.com/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice — MCP-Argumente werden dagegen auf dem Server verarbeitet.
   Offizielles MCP Registry: io.github.f-tiger/hvac-btu-heat-klimaanlage (dort suchbar unter btu, hvac, heat, klima).

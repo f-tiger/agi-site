@@ -1,8 +1,8 @@
 # EcoBack Raumklima — MCP server
 
-<!-- count -->9<!-- /count --> tools for **indoor climate and household energy in Germany/EU**: how many BTU a
+<!-- count -->10<!-- /count --> tools for **indoor climate and household energy in Germany/EU**: how many BTU a
 room needs, how long a portable-AC window seal has to be, whether a heatwave is coming,
-what a device costs to run, dew-point calculations, and what to check before buying
+what a device costs to run, whether a particular dehumidifier can drain uphill, dew-point calculations, and what to check before buying
 a dehumidifier. Plus full-text search and retrieval of the site’s guides.
 
 Listed in the official
@@ -33,6 +33,7 @@ Tool arguments are processed by the server. Setup notes for other clients:
 | Tool | What it answers |
 |---|---|
 <!-- tools:start -->
+| `entfeuchter_ablaufcheck` | Check a German basement dehumidifier’s hose route, pump or tank options and cite evidence for the exact model. |
 | `geraet_wahl` | Choose a next step for heat, damp/mould, cold or stale air. For damp rooms, measure first, investigate damage and compare cold-room or laundry conditions before buying; floor area alone cannot size a dehumidifier. Same decision rules as the website. |
 | `btu_empfehlung` | Recommended cooling capacity in BTU for a room, with the matching device class: how many BTU do I need for X m²? Same formula as the calculator on getecoback.com (340 BTU/m² × sun factor), for Germany and Europe. |
 | `fensterabdichtung_laenge` | Required window-seal length for a portable air conditioner from the sash measurements (perimeter = 2×(width+height)), plus the off-the-shelf size that fits. Covers tilt-and-turn and roof windows. |
@@ -43,6 +44,14 @@ Tool arguments are processed by the server. Setup notes for other clients:
 | `ratgeber_suche` | Searches published guides with a readable Markdown mirror, returning title, canonical URL and task-specific summary. Every result can be passed to ratgeber_lesen. |
 | `ratgeber_lesen` | Reads the cleaned Markdown of a published guide, with reviewed source links, assumptions and limits. Long excerpts are explicitly marked and link the full text. Pass an exact canonical path or URL from ratgeber_suche, without query or fragment. |
 <!-- tools:end -->
+
+## Can a MeacoDry Arete One 20L drain uphill into a sink?
+
+A gravity hose requires a continuous drop. Meaco lists a separate pump for this model. Check the German package contents and the permitted lift before buying, or empty the tank. [German drainage decision and model sources](https://getecoback.com/guide/luftentfeuchter-keller.html#ablauf-vor-kauf).
+
+```json
+{"jsonrpc":"2.0","id":6,"method":"tools/call","params":{"name":"entfeuchter_ablaufcheck","arguments":{"drain":"level_or_uphill","model":"meaco-one-20"}}}
+```
 
 ## Humidity decision example
 
@@ -80,14 +89,14 @@ place to compare a reader's own measured values.
   Humidity decisions share the browser decision rules: measurement, no-purchase,
   cause, cold-room, laundry-cost and comparison branches. Floor area alone does
   not determine dehumidifier capacity. A CI smoke job checks all
-  <!-- count -->9<!-- /count --> tools against production.
+  <!-- count -->10<!-- /count --> tools against production.
 - **Answers include source URLs and a funding disclosure.** The site is funded by
   Amazon affiliate links on its HTML pages. Whether an assistant cites a source
   is determined by that client.
 - **Honest about what it is not.** Product recommendations summarise public tests; nothing
   is lab-tested here, and the tools say so. These are bounded decision aids, not
   remote diagnoses or guarantees of device suitability.
-- **No account or MCP cookies.** New `geraet_wahl` calls store the tool name and
+- **No account or MCP cookies.** New `geraet_wahl` and `entfeuchter_ablaufcheck` calls store the tool name and
   a predefined outcome code instead of raw arguments. Other tools retain arguments
   capped at 160 characters, and limited client metadata supports automation checks.
   No IP address or user ID is stored. Do not supply personal data. See the

@@ -48,9 +48,26 @@ function link(value) {
   } catch { return ''; }
 }
 
-export function affiliateMeta(meta) {
-  if (!meta || typeof meta !== 'object' || Array.isArray(meta)) return '{}';
-  const clean = {};
+export const CELLAR_PAGE = '/guide/luftentfeuchter-keller.html';
+const drainDocumentURL = 'https://getecoback.com' + CELLAR_PAGE +
+  '?utm_source=eco-mcp&utm_medium=referral&utm_campaign=keller-ablauf';
+
+export function taggedDrainEntry(body, request, uaClass) {
+  // Referer on a same-origin beacon is the current document URL, minus its
+  // fragment. The browser separately checked the initial fragment. Neither the
+  // landing query nor any household input is copied into event storage.
+  return body.mcp_drain_entry === true && body.p === CELLAR_PAGE &&
+    (body.n === 'page_view' || body.n === 'affiliate_click') &&
+    uaClass === 'human' && request.headers.get('dnt') !== '1' &&
+    request.headers.get('sec-gpc') !== '1' &&
+    request.headers.get('origin') === 'https://getecoback.com' &&
+    request.headers.get('sec-fetch-site') !== 'cross-site' &&
+    request.headers.get('referer') === drainDocumentURL;
+}
+
+export function affiliateMeta(meta, tagged = false) {
+  if (!meta || typeof meta !== 'object' || Array.isArray(meta)) return tagged ? '{"mcp_drain_entry":1}' : '{}';
+  const clean = tagged ? {mcp_drain_entry: 1} : {};
   for (const [key, value] of [
     ['source', text(meta.source, 48)],
     ['merchant', text(meta.merchant, 32)],

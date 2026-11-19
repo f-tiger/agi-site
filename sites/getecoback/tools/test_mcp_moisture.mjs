@@ -72,7 +72,7 @@ test('invalid optional values are fixed tool errors, never coercion or reflected
 
 test('tool schema keeps legacy inputs optional and documents bounded choices and their limits', async () => {
   const {tools} = await rpc('tools/list');
-  assert.equal(tools.length, 9);
+  assert.equal(tools.length, 10);
   const schema = tools.find(tool => tool.name === 'geraet_wahl').inputSchema;
   assert.deepEqual(schema.required, ['problem']);
   assert.deepEqual(schema.properties.purpose.enum, ['room', 'laundry', 'damage']);
@@ -82,7 +82,7 @@ test('tool schema keeps legacy inputs optional and documents bounded choices and
   assert.ok(schema.properties.temperature.description.includes('keine allgemeine Betriebsgrenze'));
   assert.ok(schema.properties.qm.description.includes('heating/cooling only'));
   const init = await rpc('initialize');
-  assert.equal(init.serverInfo.version, '1.3.2');
+  assert.equal(init.serverInfo.version, '1.4.0');
   assert.ok(init.instructions.includes('keine Affiliate-Kauflinks'));
 });
 

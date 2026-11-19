@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Raumklima-MCP: Feuchte prüfen, BTU und Stromkosten rechnen</title>
-<meta name="description" content="Neun MCP-Tools: Feuchte vor dem Gerätekauf prüfen, BTU und Stromkosten rechnen, Quellen lesen. Für Claude, Cursor und kompatible Clients. Ohne Anmeldung.">
+<meta name="description" content="Luftentfeuchter im Keller: Braucht der Ablauf eine Pumpe? Zehn MCP-Tools prüfen Modell, Gefälle, Feuchte und Stromkosten. Mit Quellen und ohne Anmeldung.">
 <link rel="canonical" href="https://getecoback.com/mcp.html">
 <link rel="alternate" hreflang="de" href="https://getecoback.com/mcp.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Raumklima-MCP-Server — KI-Agenten-Tools von EcoBack">
-<meta property="og:description" content="Neun MCP-Tools für Feuchte-Entscheidungen, BTU, Stromkosten, Fensterabdichtung und zitierfähige Ratgeber. Mit Annahmen, Grenzen und Quell-URLs.">
+<meta property="og:description" content="Zehn MCP-Tools von EcoBack, darunter der Ablaufcheck für Luftentfeuchter. Prüfe am genauen Modell, ob ein Schlauch mit Gefälle genügt oder Pumpenzubehör nötig ist.">
 <meta property="og:url" content="https://getecoback.com/mcp.html">
 <!-- Google Analytics (GA4) -->
 
@@ -40,7 +40,7 @@
   footer { text-align:center; color:#5b6b78; font-size:13px; padding:30px 20px 50px; }
   footer a, a { color:#0f6ba8; }
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebAPI","name":"EcoBack Raumklima MCP Server","description":"Offener Model-Context-Protocol-Server mit neun Raumklima-Tools: Feuchte-Entscheidung vor dem Gerätekauf, BTU-Empfehlung, Fensterabdichtung, Hitzevorschau, Stromkosten, Heizleistung, Taupunkt sowie Ratgeber-Suche und -Abruf. Ohne Anmeldung; Eingaben werden auf dem Server verarbeitet.","documentation":"https://getecoback.com/mcp.html","termsOfService":"https://getecoback.com/datenschutz.html","provider":{"@type":"Organization","@id":"https://getecoback.com/#org","name":"EcoBack","url":"https://getecoback.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebAPI","name":"EcoBack Raumklima MCP Server","description":"Offener Model-Context-Protocol-Server mit zehn Raumklima-Tools: Ablaufcheck am genauen Entfeuchtermodell, Feuchte-Entscheidung vor dem Gerätekauf, BTU-Empfehlung, Fensterabdichtung, Hitzevorschau, Stromkosten, Heizleistung, Taupunkt sowie Ratgeber-Suche und -Abruf. Ohne Anmeldung; Eingaben werden auf dem Server verarbeitet.","documentation":"https://getecoback.com/mcp.html","termsOfService":"https://getecoback.com/datenschutz.html","provider":{"@type":"Organization","@id":"https://getecoback.com/#org","name":"EcoBack","url":"https://getecoback.com/"}}</script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="alternate" type="application/rss+xml" title="EcoBack Ratgeber" href="/feed.xml">
@@ -63,7 +63,7 @@
   <div class="wrap">
     <a href="/">← EcoBack Raumklima-Ratgeber</a>
     <h1>Raumklima-Tools für KI-Agenten (MCP-Server)</h1>
-    <p>Neun Werkzeuge für kompatible MCP-Clients wie Claude oder Cursor. Ohne Anmeldung. Feuchte zuerst einordnen, dann gezielt vergleichen.</p>
+    <p>Zehn Werkzeuge für kompatible MCP-Clients wie Claude oder Cursor. Prüfe Feuchte, Schlauchführung und Pumpenzubehör vor dem Gerätekauf.</p>
   </div>
 </header>
 
@@ -71,7 +71,8 @@
 <article>
   <div class="answer"><strong>Endpoint:</strong> <code>https://getecoback.com/mcp/v1</code> (Model Context Protocol, Streamable HTTP, keine Authentifizierung). Die Tools verwenden veröffentlichte Formeln und Entscheidungsregeln der <a href="/tools.html">Website</a>. Annahmen und Grenzen gehören zum Ergebnis. Antworten nennen Quell-URLs und die Finanzierung über Affiliate-Links auf der Website; wir testen Geräte nicht selbst.</div>
 
-  <h2 id="tools">Die neun Tools</h2>
+  <h2 id="tools">Die zehn Tools</h2>
+  <div class="tool"><strong>entfeuchter_ablaufcheck</strong><p>Liegt der Abfluss höher als der Auslass des Entfeuchters? Prüfe Schlauchgefälle, mögliche Pumpen und Tankbetrieb für dein genaues Modell. <a href="#ablauf-beispiel">Beispiel für den Keller</a></p></div>
   <div class="tool"><strong>geraet_wahl</strong><p>Der nächste Schritt bei Hitze, Feuchte, Kälte oder stickiger Luft. Bei Feuchte nutzt das Tool dieselben sechs Entscheidungszweige wie die Website: erst messen, weiter beobachten, Ursache klären, kalte Räume prüfen, Wäschekosten vergleichen oder gezielt Geräte vergleichen. Eine Raumfläche allein ergibt keine Liter-Empfehlung.</p></div>
   <div class="tool"><strong>btu_empfehlung</strong><p>Empfohlene Kühlleistung (BTU) für einen Raum aus m² und Sonneneinstrahlung, mit passender Geräteklasse. Formel: 340 BTU/m² × Sonnenfaktor.</p></div>
   <div class="tool"><strong>fensterabdichtung_laenge</strong><p>Benötigte Länge einer Fensterabdichtung aus den Flügelmaßen (Umfang = 2 × (Breite + Höhe)), plus passende Konfektionsgröße — für Kipp-, Drehkipp- und Dachfenster.</p></div>
@@ -82,6 +83,10 @@
   <div class="tool"><strong>ratgeber_lesen</strong><p>Liest die bereinigte Markdown-Ansicht mit Bedingungen, Grenzen und geprüften Quellenlinks. Lange Auszüge sind ausdrücklich als gekürzt markiert; der vollständige Text und dessen Originalquellen bleiben verlinkt. Nur exakte veröffentlichte Seitenpfade oder HTTPS-URLs dieser Website, ohne Query oder Fragment.</p></div>
   <div class="tool"><strong>taupunkt_lueften</strong><p>Taupunkt der Außenluft (Magnus-Formel) und die Antwort auf „darf ich jetzt lüften?" für Keller und feuchte Räume — Wände werden 2 °C unter Raumtemperatur gerechnet.</p></div>
 
+
+  <h2 id="ablauf-beispiel">Kann mein MeacoDry Arete One 20L ins höher liegende Waschbecken abpumpen?</h2>
+  <p>Beim Arete One 20L genügt ein Ablaufschlauch für diesen Höhenunterschied nicht. Meaco führt eine separate Pumpe für dieses Modell. Prüfe den deutschen Lieferumfang und die zulässige Förderhöhe vor dem Kauf; als Alternative kannst du den Tank leeren. Die Nachweise stehen im <a href="/guide/luftentfeuchter-keller.html#ablauf-vor-kauf">Ablaufvergleich für den Keller</a>.</p>
+  <pre><code>{"jsonrpc":"2.0","id":6,"method":"tools/call","params":{"name":"entfeuchter_ablaufcheck","arguments":{"drain":"level_or_uphill","model":"meaco-one-20"}}}</code></pre>
 
   <h2 id="feuchte-beispiele">Feuchte prüfen: drei kopierbare Aufrufe</h2>
   <p>Die Beispiele sind JSON-RPC-Nachrichten für <code>tools/call</code> am Endpoint oben. <code>problem</code> und <code>qm</code> bleiben kompatibel. Bei Feuchte sind <code>purpose</code>, <code>humidity</code> und <code>temperature</code> optional; fehlende Messangaben führen zuerst zum Messen.</p>
@@ -107,33 +112,26 @@
   <p><strong>Mit einem Klick</strong> (öffnet den Installationsdialog deines Editors — die Konfiguration darunter
   ist dieselbe, falls dein Client keine Links unterstützt):</p>
   <p style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;">
-    <a href="cursor://anysphere.cursor-deeplink/mcp/install?name=getecoback-raumklima&amp;config=eyJ0eXBlIjoiaHR0cCIsInVybCI6Imh0dHBzOi8vZ2V0ZWNvYmFjay5jb20vbWNwIn0=" data-eb-mcp="cursor" style="display:inline-block;background:#0f6ba8;color:#fff;font-weight:800;padding:10px 16px;border-radius:8px;text-decoration:none;font-size:14px;">In Cursor installieren</a>
-    <a href="vscode:mcp/install?%7B%22name%22%3A%22getecoback-raumklima%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fgetecoback.com%2Fmcp%22%7D" data-eb-mcp="vscode" style="display:inline-block;background:#0f6ba8;color:#fff;font-weight:800;padding:10px 16px;border-radius:8px;text-decoration:none;font-size:14px;">In VS Code installieren</a>
+    <a href="cursor://anysphere.cursor-deeplink/mcp/install?name=getecoback-raumklima&amp;config=eyJ0eXBlIjoiaHR0cCIsInVybCI6Imh0dHBzOi8vZ2V0ZWNvYmFjay5jb20vbWNwL3YxIn0=" data-eb-mcp="cursor" style="display:inline-block;background:#0f6ba8;color:#fff;font-weight:800;padding:10px 16px;border-radius:8px;text-decoration:none;font-size:14px;">In Cursor installieren</a>
+    <a href="vscode:mcp/install?%7B%22name%22%3A%22getecoback-raumklima%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fgetecoback.com%2Fmcp%2Fv1%22%7D" data-eb-mcp="vscode" style="display:inline-block;background:#0f6ba8;color:#fff;font-weight:800;padding:10px 16px;border-radius:8px;text-decoration:none;font-size:14px;">In VS Code installieren</a>
   </p>
 
   <h3>Claude (claude.ai / Desktop) — als Connector</h3>
   <p>Einstellungen → Connectors → „Custom Connector" hinzufügen und diese URL eintragen:</p>
-  <pre><code>https://getecoback.com/mcp</code></pre>
+  <pre><code>https://getecoback.com/mcp/v1</code></pre>
 
-  <h3>Claude Code / Cursor / VS Code (mcp.json)</h3>
-  <pre><code>{
-  "mcpServers": {
-    "getecoback-raumklima": {
-      "type": "streamable-http",
-      "url": "https://getecoback.com/mcp"
-    }
-  }
-}</code></pre>
+  <h3>Claude Code</h3>
+  <pre><code>claude mcp add --transport http getecoback https://getecoback.com/mcp/v1</code></pre>
+  <h3>Cursor</h3>
+  <pre><code>{"mcpServers":{"getecoback":{"url":"https://getecoback.com/mcp/v1"}}}</code></pre>
+  <h3>VS Code</h3>
+  <pre><code>{"servers":{"getecoback":{"type":"http","url":"https://getecoback.com/mcp/v1"}}}</code></pre>
 
   <h3>Offizieller MCP-Registry-Eintrag</h3>
-  <p>Der Server ist im offiziellen MCP Registry als <code>io.github.f-tiger/hvac-btu-heat-klimaanlage</code> gelistet
-  (Suchbegriffe dort: <code>btu</code>, <code>hvac</code>, <code>heat</code>, <code>klima</code>). Der Registry-Eintrag zeigt
-  auf <code>https://getecoback.com/mcp/v1</code> — das ist derselbe Server wie <code>https://getecoback.com/mcp</code>;
-  die zweite Adresse existiert nur, weil das Registry jede Remote-URL global nur einmal vergibt. Discovery-Datei:
-  <code>https://getecoback.com/.well-known/mcp.json</code></p>
+  <p>Im <a href="https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fhvac-btu-heat-klimaanlage/versions/latest">offiziellen Registry-Eintrag für io.github.f-tiger/hvac-btu-heat-klimaanlage</a> stehen die registrierte Version und die Verbindungsadresse. Die <a href="/.well-known/mcp.json">Discovery-Datei von EcoBack</a> enthält die Client-Konfiguration.</p>
 
   <h2 id="warum">Warum wir das anbieten — ehrlich</h2>
-  <p>Die Antworten enthalten Quellen zum Nachlesen; ob ein Assistent sie zitiert, entscheidet der Client. Bei <code>geraet_wahl</code> erfassen neue Aufrufe den Tool-Namen und einen vorgegebenen Ergebniscode, keine Rohargumente. Bei anderen Tools werden Parameter weiterhin auf 160 Zeichen gekürzt gespeichert; zusätzlich erfassen wir begrenzte Client-Angaben zur Erkennung automatisierter Aufrufe. Keine IP-Adresse, Nutzerkennung oder MCP-Cookies. Einzelheiten stehen in der <a href="/datenschutz.html">Datenschutzerklärung</a>. Die Website finanziert sich über Amazon-Affiliate-Links auf HTML-Seiten; die MCP-Antworten enthalten keine solchen Kauflinks. Wir testen Geräte nicht selbst.</p>
+  <p>Die Antworten enthalten Quellen zum Nachlesen; ob ein Assistent sie zitiert, entscheidet der Client. Bei <code>geraet_wahl</code> und <code>entfeuchter_ablaufcheck</code> erfassen neue Aufrufe den Tool-Namen und einen vorgegebenen Ergebniscode, keine Rohargumente. Bei anderen Tools werden Parameter weiterhin auf 160 Zeichen gekürzt gespeichert; zusätzlich erfassen wir begrenzte Client-Angaben zur Erkennung automatisierter Aufrufe. Keine IP-Adresse, Nutzerkennung oder MCP-Cookies. Einzelheiten stehen in der <a href="/datenschutz.html">Datenschutzerklärung</a>. Die Website finanziert sich über Amazon-Affiliate-Links auf HTML-Seiten; die MCP-Antworten enthalten keine solchen Kauflinks. Wir testen Geräte nicht selbst.</p>
 
   <div class="related">
     <strong>Für Menschen statt Maschinen</strong>
