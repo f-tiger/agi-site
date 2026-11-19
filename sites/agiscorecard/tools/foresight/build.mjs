@@ -34,7 +34,7 @@ for(const lang of ['en','zh']){
   return `<section class="evidence-block" id="shorts-budget" aria-labelledby="shorts-budget-title">
    <h2 id="shorts-budget-title">${t('Will one video subscription cover your Shorts?', '做这些短片，一个月的套餐额度够吗？')}</h2>
    <p>${t('Enter how many Shorts you plan to make, how many seconds need AI footage and how many attempts each shot takes. Compare the credits you would need with the monthly allowances for Pika and Runway.', '填入每月计划做几条短片、每条有几秒需要 AI 生成，以及每个镜头要试几次，再对照 Pika 和 Runway 的月度额度。')}</p>
-   <a class="button primary" href="/foresight-assets/shorts-budget-${budgetDate}.xlsx" data-track="budget_sheet" download>${t('Download the free budget worksheet (XLSX)', '免费下载英文预算测算表（XLSX）')}</a>
+   <a class="button primary" href="/worksheets/shorts-budget-${budgetDate}.xlsx" data-track="budget_sheet" download>${t('Download the free budget worksheet (XLSX)', '免费下载英文预算测算表（XLSX）')}</a>
    <p class="meta">${t('Edit on your device. The sheet links to official rates checked on November 19, 2026.', '在自己的设备上填写。表内附官方价格来源，核对日期为 2026 年 11 月 19 日。')}</p>
    <p>${t('Made your decision?', '已经做了选择？')} <a href="${p}/discuss/tool-evidence" data-track="budget_feedback">${t('Share what you chose and whether you finished the video.', '聊聊你最后选了什么、片子有没有做完。')}</a> <span class="meta">${t('Optional. Sign in to reply. Approved replies are public.', '自愿参与，登录后可回复，审核通过后公开。')}</span></p>
   </section>`;
