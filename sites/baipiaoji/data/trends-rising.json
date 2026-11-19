@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-18",
+ "fetched": "2026-11-19",
  "geo": "US",
  "seeds": {
   "deepseek": {
@@ -167,88 +167,112 @@
    "fetched": "2026-11-18"
   },
   "gemini": {
+   "auto": [
+    "gemini",
+    "gemini ai",
+    "gemini neon",
+    "gemini google",
+    "gemini notebook",
+    "gemini dates",
+    "gemini horoscope",
+    "gemini 4 neon",
+    "gemini sign",
+    "gemini zodiac sign"
+   ],
    "rising": [
     {
-     "q": "gemini 4 argon",
-     "v": 24350
+     "q": "gemini ai",
+     "v": "new"
     },
     {
-     "q": "gemini argon",
-     "v": 9450
+     "q": "gemini neon",
+     "v": "new"
     },
     {
-     "q": "gemini 3.8 flash",
-     "v": 8550
+     "q": "gemini google",
+     "v": "new"
     },
     {
-     "q": "google gemini interface changes november",
-     "v": 2650
+     "q": "gemini notebook",
+     "v": "new"
     },
     {
-     "q": "gemini 3.7 flash",
-     "v": 1900
+     "q": "gemini dates",
+     "v": "new"
     },
     {
-     "q": "notebook gemini",
-     "v": 400
+     "q": "gemini horoscope",
+     "v": "new"
     },
     {
-     "q": "gemini 4 carbon",
-     "v": 300
+     "q": "gemini 4 neon",
+     "v": "new"
     },
     {
-     "q": "gemini student offer",
-     "v": 170
+     "q": "gemini sign",
+     "v": "new"
+    },
+    {
+     "q": "gemini zodiac sign",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-11-08"
+   "source": "autocomplete-diff",
+   "fetched": "2026-11-19"
   },
   "perplexity": {
+   "auto": [
+    "perplexity",
+    "perplexity ai",
+    "perplexity computer",
+    "perplexity careers",
+    "perplexity pro",
+    "perplexity app",
+    "perplexity login",
+    "perplexity vs chatgpt",
+    "perplexity valuation",
+    "perplexity vs claude"
+   ],
    "rising": [
     {
-     "q": "best time to visit maldives",
-     "v": 82550
+     "q": "perplexity ai",
+     "v": "new"
     },
     {
-     "q": "top tourist attractions in paris",
-     "v": 79400
+     "q": "perplexity computer",
+     "v": "new"
     },
     {
-     "q": "how to make sushi",
-     "v": 78600
+     "q": "perplexity careers",
+     "v": "new"
     },
     {
-     "q": "cheapest flights to tokyo",
-     "v": 74600
+     "q": "perplexity pro",
+     "v": "new"
     },
     {
-     "q": "chatgpt claude perplexity financial advice",
-     "v": 17050
+     "q": "perplexity app",
+     "v": "new"
     },
     {
-     "q": "how to bake a cake",
-     "v": 15600
+     "q": "perplexity login",
+     "v": "new"
     },
     {
-     "q": "grok bot",
-     "v": 11900
+     "q": "perplexity vs chatgpt",
+     "v": "new"
     },
     {
-     "q": "vanta careers",
-     "v": 10400
+     "q": "perplexity valuation",
+     "v": "new"
     },
     {
-     "q": "vane open source perplexity alternative",
-     "v": 6900
-    },
-    {
-     "q": "best pizza near me",
-     "v": 4750
+     "q": "perplexity vs claude",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-11-08"
+   "source": "autocomplete-diff",
+   "fetched": "2026-11-19"
   },
   "cursor": {
    "auto": [

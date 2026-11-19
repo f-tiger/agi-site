@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-18",
- "radar_fetched": "2026-11-18",
+ "generated": "2026-11-19",
+ "radar_fetched": "2026-11-19",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -13,13 +13,28 @@
  },
  "note": "Derived facts only: no Reddit post text, bodies or permalinks are stored here or published. Themes are normalised request titles used as matching keys; demand = Google Trends rising; supply = PH/HN public feeds.",
  "counts": {
-  "candidates": 6,
+  "candidates": 8,
   "demand_confirmed": 0,
   "recurring": 0,
-  "scout": 6,
-  "supplied": 1
+  "scout": 8,
+  "supplied": 0
  },
  "opportunities": [
+  {
+   "theme": "windows malware removal in bay area",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "ask_hn",
+   "days_seen": [
+    "2026-11-18"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.21,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
   {
    "theme": "what screenshot software allows the user to capture solely a specific window",
    "site": "",
@@ -30,7 +45,7 @@
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.09,
+   "score": 2.14,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -66,6 +81,36 @@
    "fleet_pages": []
   },
   {
+   "theme": "how to set up an isolated environment for c development session with the ability",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "softwarerecs",
+   "days_seen": [
+    "2026-11-12"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.0,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "how to transfer photos from icloud photos to google drive",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "softwarerecs",
+   "days_seen": [
+    "2026-11-19"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.0,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
    "theme": "what software can help manage large volumes of data for long term archiving",
    "site": "",
    "kind": "request-board",
@@ -93,31 +138,6 @@
    "score": 2.0,
    "demand": [],
    "supply": [],
-   "fleet_pages": []
-  },
-  {
-   "theme": "how to set up an isolated environment for c development session with the ability",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "softwarerecs",
-   "days_seen": [
-    "2026-11-12"
-   ],
-   "state": "scout",
-   "supplied": true,
-   "score": 1.0,
-   "demand": [],
-   "supply": [
-    {
-     "title": "Show HN: Backplane – An AI Development Environment for Hardware",
-     "url": "https://backplaneworks.com/",
-     "src": "hn_show",
-     "shared": [
-      "development",
-      "environment"
-     ]
-    }
-   ],
    "fleet_pages": []
   }
  ]
