@@ -62,7 +62,7 @@ test('newest publications lead the default library, including same-day timestamp
 
 test('the budget download and discussion are available on both Runway pages only', () => {
  const site=new URL('../../',import.meta.url);
- const sheet='foresight-assets/shorts-budget-2026-11-19.xlsx';
+ const sheet='worksheets/shorts-budget-2026-11-19.xlsx';
  assert.equal(fs.readFileSync(new URL(sheet,site)).subarray(0,4).toString('hex'),'504b0304');
  for(const prefix of ['', 'zh/']){
   for(const claim of claims){
