@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-18",
+ "checked": "2026-11-19",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -4419,299 +4419,27 @@
    "source_http": 404,
    "repo_http": null,
    "reason": "source HTTP 404"
+  },
+  "endorso-endorso": {
+   "attempts": 1,
+   "first_attempt": "2026-11-19",
+   "last_attempt": "2026-11-19",
+   "attemptedAt": "2026-11-19T07:52:30.561Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "entity0-entity-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-11-19",
+   "last_attempt": "2026-11-19",
+   "attemptedAt": "2026-11-19T07:52:30.561Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
   }
  },
  "admitted": [
-  {
-   "slug": "laddro-career",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "bouldercountydryervent-booking",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "clize-clize",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "rendobar-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "swarm-board-board",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "citadeldb-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "allratestoday-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "altmetric-mcp-altmetric-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "matrajs-matra",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "realworldapis-realworldapis",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "vaaya-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "drillr-drillr",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "homespun-homespun",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "instantclips-instantclips",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "ctxfile-ctxfile",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "westerncontainersales-wcs",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "skillmd-skillmd",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "1102tools-acquisition-gov-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "justdukkan-invoice-intake-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "failecho-failecho",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "gpuquant-infrastructure",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "soumtok-heart",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "resustackapp-resustack",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "aplusz-flight-fares",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "emberverse-emberverse",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "verlon-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "eigma-eigma",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "moltlinestudio-catalog",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "sensefold-sensefold",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "mailtea-mailtea",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "satohub-onchain-agents",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "oddsockets-remote-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "ownerspec-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "mahonia-mahonia",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "getyoutubetranscript-youtube-transcript-and-youtube-search",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "shareseer-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "yachtcharterquotes-site",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "tulimoa-platform",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "sugra-api-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "atagon-kogiqa-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "aieph-aieph",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "alfanestlabs-relay",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "transcriptfetch-youtube-transcripts",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "glbforge-glbforge",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "wingmanprotocol-agent-gateway",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "ambermem-amber",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "marutap-marutap",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "retailreason-intelligence",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "loomascale-ads",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "windsock-windsock",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "discordservers-search",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "algomakers-algomaker",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "triplebooks-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "seomatic-seomatic",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "forcefieldsilicon-mdengine",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "oddsrail-polymarket-kalshi-trading",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "arsentev-contextburn",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "vercel-groundtruth-ruby-groundtruth",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
   {
    "slug": "term-forum",
    "date": "2026-09-22",
@@ -21812,6 +21540,354 @@
   {
    "slug": "emetzor-signal-one",
    "date": "2026-11-18",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "emisorasdecolombia-radio",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "emorahealth-mental-health-care",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "employeecostaustralia-site",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "employeedeskhq-site",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "emplusx-emplusx",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "emprego-jobs",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "empresskorea-kbeauty-agent-commons",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "encirca-domains",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "encompassconfirm-ec360",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "endpointo-site",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "engagemii-citation-watch",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "enhancedint-enhanced-intelligence",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "enhancedint-es-luxury",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "enpso-site",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "enrolvo-site",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "enshapeapp-enshape",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "entalpa-requirements",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "entangleeq-pay-transparency",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "entidex-entidex",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "entitysearchhq-site",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "entrida-mcp",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "entroute-entroute",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "entsoemcp-entsoe-mcp",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "entyrax-entyrax",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "envelopebudget-mcp",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "envloped-mcp",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "eobify-site",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "eorcompass-site",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "epidemicsound-mcp-server",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "epochcalc-epochcalc",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "eposvo-site",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "epovest-ai-visibility",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "epublys-epublys",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "eqiqs-eqiqs",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "equipmentrentalcompare-site",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "equity-rank-api-equity-rank",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "erikbethke-blog",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "erppartnerfinder-partner-finder",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "eruditepay-blockchain-intelligence",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "erzycall-erzycall",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "esimeagle-plans",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "esimker-esim",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "esimoa-esim",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "esimtabby-esimtabby",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "espressosteals-catalog",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "esti-maite-construction-takeoff-estimating",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "etfiq-etfiq",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "euearth-euearth",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "eurc402-eu-compliance",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "eurocollis-eurocollis",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "eurogpsr-eu-ai-act",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "europebeachmap-beachmap",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "eurorackref-eurorack",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "evaboot-evaboot",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "eventescapes-event-escapes",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "eventmatey-mcp-event-discovery",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "eventship-mcp",
+   "date": "2026-11-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "eventsynoptic-go-event-synoptic",
+   "date": "2026-11-19",
    "source_http": 200,
    "repo_http": null
   }

@@ -1,7 +1,7 @@
 {
-  "lastRun": "2026-11-18T07:56:53.072Z",
+  "lastRun": "2026-11-19T07:53:25.983Z",
   "status": "degraded",
-  "checkedSources": 5,
+  "checkedSources": 6,
   "queue": [
     {
       "caseId": "photo-ai",
@@ -163,31 +163,31 @@
       "caseId": "kite",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.devclass.com/development/2022/11/21/kite-ai-coding-pulled-down-to-earth-because-our-500k-developers-would-not-pay-to-use-it-now-open-source/1631387",
-      "lastChecked": "2026-11-05T07:20:29.079Z"
+      "lastChecked": "2026-11-19T07:53:25.983Z"
     },
     {
       "caseId": "coqui",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.linkedin.com/pulse/coqui-shutting-down-josh-meyer-fpsve",
-      "lastChecked": "2026-11-06T07:22:27.980Z"
+      "lastChecked": "2026-11-19T07:53:25.983Z"
     },
     {
       "caseId": "tome-slides",
       "reason": "source-unreachable",
       "sourceUrl": "https://tome.app/help/en/articles/10744234-tome-slides-is-sunsetting-on-april-30th-2025",
-      "lastChecked": "2026-11-06T07:22:27.980Z"
+      "lastChecked": "2026-11-19T07:53:25.983Z"
     },
     {
       "caseId": "humane-ai-pin",
       "reason": "source-unreachable",
       "sourceUrl": "https://support.humane.com/hc/en-us/articles/34243204841997-Ai-Pin-Consumers-FAQ",
-      "lastChecked": "2026-11-06T07:22:27.980Z"
+      "lastChecked": "2026-11-19T07:53:25.983Z"
     },
     {
       "caseId": "humane-ai-pin",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.theverge.com/news/614883/humane-ai-hp-acquisition-pin-shutdown",
-      "lastChecked": "2026-11-06T07:22:27.980Z"
+      "lastChecked": "2026-11-19T07:53:25.983Z"
     },
     {
       "caseId": "neeva-consumer-search",
@@ -673,10 +673,10 @@
     "content-goblin|https://johnathanward.com/im-shutting-down-content-goblin-a-post-mortem/": {
       "caseId": "content-goblin",
       "sourceUrl": "https://johnathanward.com/im-shutting-down-content-goblin-a-post-mortem/",
-      "lastAttempt": "2026-11-05T07:20:29.079Z",
+      "lastAttempt": "2026-11-19T07:53:25.983Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-11-05T07:20:29.079Z",
+      "lastSuccess": "2026-11-19T07:53:25.983Z",
       "lastHash": "c74482f2252ebac0f4a1abe3512df8f43ebb58ab4aac19987fcf21436c026c06",
       "hash": "c74482f2252ebac0f4a1abe3512df8f43ebb58ab4aac19987fcf21436c026c06",
       "simhash": "64fa8c1c8f9ee6af",
@@ -686,7 +686,7 @@
     "kite|https://www.devclass.com/development/2022/11/21/kite-ai-coding-pulled-down-to-earth-because-our-500k-developers-would-not-pay-to-use-it-now-open-source/1631387": {
       "caseId": "kite",
       "sourceUrl": "https://www.devclass.com/development/2022/11/21/kite-ai-coding-pulled-down-to-earth-because-our-500k-developers-would-not-pay-to-use-it-now-open-source/1631387",
-      "lastAttempt": "2026-11-05T07:20:29.079Z",
+      "lastAttempt": "2026-11-19T07:53:25.983Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -694,7 +694,7 @@
     "coqui|https://www.linkedin.com/pulse/coqui-shutting-down-josh-meyer-fpsve": {
       "caseId": "coqui",
       "sourceUrl": "https://www.linkedin.com/pulse/coqui-shutting-down-josh-meyer-fpsve",
-      "lastAttempt": "2026-11-06T07:22:27.980Z",
+      "lastAttempt": "2026-11-19T07:53:25.983Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -702,7 +702,7 @@
     "tome-slides|https://tome.app/help/en/articles/10744234-tome-slides-is-sunsetting-on-april-30th-2025": {
       "caseId": "tome-slides",
       "sourceUrl": "https://tome.app/help/en/articles/10744234-tome-slides-is-sunsetting-on-april-30th-2025",
-      "lastAttempt": "2026-11-06T07:22:27.980Z",
+      "lastAttempt": "2026-11-19T07:53:25.983Z",
       "status": "unreachable",
       "http": 404,
       "consecutiveChange": 0
@@ -710,7 +710,7 @@
     "humane-ai-pin|https://support.humane.com/hc/en-us/articles/34243204841997-Ai-Pin-Consumers-FAQ": {
       "caseId": "humane-ai-pin",
       "sourceUrl": "https://support.humane.com/hc/en-us/articles/34243204841997-Ai-Pin-Consumers-FAQ",
-      "lastAttempt": "2026-11-06T07:22:27.980Z",
+      "lastAttempt": "2026-11-19T07:53:25.983Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -718,7 +718,7 @@
     "humane-ai-pin|https://www.theverge.com/news/614883/humane-ai-hp-acquisition-pin-shutdown": {
       "caseId": "humane-ai-pin",
       "sourceUrl": "https://www.theverge.com/news/614883/humane-ai-hp-acquisition-pin-shutdown",
-      "lastAttempt": "2026-11-06T07:22:27.980Z",
+      "lastAttempt": "2026-11-19T07:53:25.983Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1159,27 +1159,27 @@
       "consecutiveChange": 0
     }
   },
-  "cursor": 29,
+  "cursor": 34,
   "errors": [
     {
-      "caseId": "glean",
-      "sourceUrl": "https://www.glean.com/press/glean-surpasses-200m-in-arr-for-enterprise-ai-doubling-revenue-in-nine-months",
+      "caseId": "kite",
+      "sourceUrl": "https://www.devclass.com/development/2022/11/21/kite-ai-coding-pulled-down-to-earth-because-our-500k-developers-would-not-pay-to-use-it-now-open-source/1631387",
       "reason": "body-limit"
     },
     {
-      "caseId": "harvey",
-      "sourceUrl": "https://www.harvey.ai/blog/harveys-three-year-anniversary",
+      "caseId": "coqui",
+      "sourceUrl": "https://www.linkedin.com/pulse/coqui-shutting-down-josh-meyer-fpsve",
       "reason": "body-limit"
     },
     {
-      "caseId": "fireflies",
-      "sourceUrl": "https://fireflies.ai/blog/fireflies-1-billion-valuation",
-      "reason": "body-limit"
+      "caseId": "humane-ai-pin",
+      "sourceUrl": "https://support.humane.com/hc/en-us/articles/34243204841997-Ai-Pin-Consumers-FAQ",
+      "reason": "network-error"
     },
     {
-      "caseId": "cydoc",
-      "sourceUrl": "https://glassboxmedicine.com/2026/02/21/why-i-shut-down-my-bootstrapped-health-ai-startup-after-7-years-a-founders-postmortem/",
-      "reason": "unsafe-source"
+      "caseId": "humane-ai-pin",
+      "sourceUrl": "https://www.theverge.com/news/614883/humane-ai-hp-acquisition-pin-shutdown",
+      "reason": "body-limit"
     }
   ]
 }

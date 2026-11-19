@@ -1,10 +1,101 @@
 {
-  "generated": "2026-11-18",
+  "generated": "2026-11-19",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 105,
-  "fetched_fail": 22,
+  "fetched_ok": 106,
+  "fetched_fail": 21,
   "pending": 16,
   "items": [
+    {
+      "slug": "codex",
+      "url": "https://developers.openai.com/codex/pricing",
+      "confirmed": "2026-11-19",
+      "first_seen": "2026-11-18",
+      "added": [
+        "$0.10,",
+        "$0.40",
+        "$10",
+        "$2,",
+        "$40",
+        "$8",
+        "1,000credits"
+      ],
+      "removed": [],
+      "checked_then": "2026-09-25"
+    },
+    {
+      "slug": "deepinfra",
+      "url": "https://deepinfra.com",
+      "confirmed": "2026-11-19",
+      "first_seen": "2026-11-18",
+      "added": [
+        "$0.02",
+        "$0.03",
+        "$0.098",
+        "$0.15",
+        "$0.19",
+        "$0.294",
+        "$0.387",
+        "$0.783",
+        "$1.90",
+        "$5.89",
+        "$9.50",
+        "10%"
+      ],
+      "removed": [
+        "$0.018",
+        "$0.075",
+        "$0.105",
+        "$0.25",
+        "$0.43",
+        "$0.75",
+        "$0.87",
+        "$0.95",
+        "$3.50",
+        "$4.89",
+        "13b",
+        "284b"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "v0",
+      "url": "https://v0.app",
+      "confirmed": "2026-11-19",
+      "first_seen": "2026-11-18",
+      "added": [
+        "10.4k"
+      ],
+      "removed": [
+        "10.3k"
+      ],
+      "checked_then": "2026-08-03"
+    },
+    {
+      "slug": "zhipu-glm",
+      "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
+      "confirmed": "2026-11-19",
+      "first_seen": "2026-11-18",
+      "added": [
+        "73b"
+      ],
+      "removed": [
+        "40b"
+      ],
+      "checked_then": "2026-08-01"
+    },
+    {
+      "slug": "hailuo",
+      "url": "https://hailuoai.com/doc/zh/user-agreement.html",
+      "confirmed": "2026-11-19",
+      "first_seen": "2026-11-18",
+      "added": [
+        "11月"
+      ],
+      "removed": [
+        "7月"
+      ],
+      "checked_then": "2026-08-06"
+    },
     {
       "slug": "quark-ai",
       "url": "https://quark.cn",
@@ -69,18 +160,6 @@
       "checked_then": "2026-09-21"
     },
     {
-      "slug": "v0",
-      "url": "https://v0.app",
-      "confirmed": "2026-11-16",
-      "first_seen": "2026-11-15",
-      "added": [
-        "100%",
-        "9%"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-03"
-    },
-    {
       "slug": "ragflow",
       "url": "https://ragflow.io/docs/faq",
       "confirmed": "2026-11-15",
@@ -90,17 +169,6 @@
         "30minutes"
       ],
       "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "zhipu-glm",
-      "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
-      "confirmed": "2026-11-15",
-      "first_seen": "2026-11-14",
-      "added": [],
-      "removed": [
-        "5b"
-      ],
-      "checked_then": "2026-08-01"
     },
     {
       "slug": "framer",
@@ -531,52 +599,6 @@
       ],
       "removed": [
         "15days"
-      ],
-      "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "codex",
-      "url": "https://developers.openai.com/codex/pricing",
-      "confirmed": "2026-10-16",
-      "first_seen": "2026-10-15",
-      "added": [],
-      "removed": [
-        "12.50credits"
-      ],
-      "checked_then": "2026-09-25"
-    },
-    {
-      "slug": "deepinfra",
-      "url": "https://deepinfra.com",
-      "confirmed": "2026-10-10",
-      "first_seen": "2026-10-09",
-      "added": [
-        "$0.003",
-        "$0.004",
-        "$0.042",
-        "$0.105",
-        "$0.125",
-        "$0.14",
-        "$0.28",
-        "$0.42",
-        "$0.43",
-        "$0.563",
-        "$0.834",
-        "$0.87"
-      ],
-      "removed": [
-        "$0.006",
-        "$0.091",
-        "$0.136",
-        "$0.15",
-        "$0.20",
-        "$0.39",
-        "$0.488",
-        "$0.60",
-        "$0.68",
-        "$0.90",
-        "$1.17",
-        "$1.56"
       ],
       "checked_then": "2026-08-04"
     },

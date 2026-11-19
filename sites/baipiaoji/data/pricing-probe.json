@@ -1,19 +1,19 @@
 {
- "generated": "2026-11-18",
+ "generated": "2026-11-19",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "wps-ai",
-  "wujie",
-  "xinghuo",
-  "youdao",
-  "zhihu-zhida",
-  "zhipu-glm",
-  "kimi",
-  "exa"
+  "haiper",
+  "metaso",
+  "quark-ai",
+  "tongyi-wanxiang",
+  "consensus",
+  "mistral",
+  "groq",
+  "quillbot"
  ],
- "cursor": "exa",
+ "cursor": "quillbot",
  "summary": {
   "ready": 43,
   "empty": 35,
@@ -94,7 +94,7 @@
    "name": "Haiper",
    "cat": "video",
    "reach": 10,
-   "probed": "2026-10-29",
+   "probed": "2026-11-19",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -151,8 +151,8 @@
    "slug": "quillbot",
    "name": "QuillBot",
    "cat": "writing",
-   "reach": 9,
-   "probed": "2026-10-29",
+   "reach": 6,
+   "probed": "2026-11-19",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -234,14 +234,14 @@
    "name": "Consensus",
    "cat": "search",
    "reach": 7,
-   "probed": "2026-10-29",
+   "probed": "2026-11-19",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://consensus.app/pricing",
      "status": 200,
-     "bytes": 52771,
+     "bytes": 51534,
      "tokens": 0
     },
     {
@@ -486,8 +486,8 @@
    "slug": "tongyi-wanxiang",
    "name": "通义万相",
    "cat": "image",
-   "reach": 14,
-   "probed": "2026-10-29",
+   "reach": 8,
+   "probed": "2026-11-19",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -649,8 +649,8 @@
    "slug": "groq",
    "name": "Groq",
    "cat": "api",
-   "reach": 4,
-   "probed": "2026-10-30",
+   "reach": 6,
+   "probed": "2026-11-19",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -1985,8 +1985,8 @@
    "slug": "metaso",
    "name": "秘塔 AI 搜索",
    "cat": "search",
-   "reach": 5,
-   "probed": "2026-10-30",
+   "reach": 8,
+   "probed": "2026-11-19",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -2015,8 +2015,8 @@
    "slug": "mistral",
    "name": "Mistral AI",
    "cat": "api",
-   "reach": 3,
-   "probed": "2026-11-08",
+   "reach": 7,
+   "probed": "2026-11-19",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -2457,8 +2457,8 @@
    "slug": "quark-ai",
    "name": "夸克 AI",
    "cat": "search",
-   "reach": 0,
-   "probed": "2026-11-07",
+   "reach": 8,
+   "probed": "2026-11-19",
    "env": "runner",
    "state": "blocked",
    "tried": [

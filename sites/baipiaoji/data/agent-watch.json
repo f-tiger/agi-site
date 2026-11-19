@@ -1,6 +1,6 @@
 {
  "version": "2.0.0",
- "checked": "2026-11-18",
+ "checked": "2026-11-19",
  "policy": {
   "scope": "Publicly discoverable AI agents, MCP servers and agent platforms",
   "verification": "A listing is published only when an official homepage, repository or protocol page is attached; discovery signals are never treated as product claims.",
@@ -1766,7 +1766,7 @@
    "source_url": "https://dspy.ai/",
    "repo_url": "https://github.com/stanfordnlp/dspy",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-10-10",
+   "last_verified": "2026-11-19",
    "status": "verified",
    "transport": "Python SDK",
    "zh_transport": "Python SDK",
@@ -1802,8 +1802,8 @@
     "description": "",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-10-10",
-   "repo_checked": "2026-10-10",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -2624,7 +2624,7 @@
    "source_url": "https://www.cloudwego.io/docs/eino/",
    "repo_url": "https://github.com/cloudwego/eino",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-10-10",
+   "last_verified": "2026-11-19",
    "status": "verified",
    "transport": "Go SDK",
    "zh_transport": "Go SDK",
@@ -2660,8 +2660,8 @@
     "description": "Eino is a Golang-based AI application development framework",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-10-10",
-   "repo_checked": "2026-10-10",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -9524,10 +9524,10 @@
     "description": "Dust connects your company knowledge, tools, and teams so you can create, share, and run agents across real workflows. Use different models for different tasks, with people in control.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-10-10",
+   "source_checked": "2026-11-19",
    "repo_checked": "2026-10-10",
    "source_http": 200,
-   "repo_http": 200
+   "repo_http": 404
   },
   {
    "slug": "openmanus",
@@ -11788,7 +11788,7 @@
    "source_url": "https://elevenlabs.io/conversational-ai",
    "repo_url": null,
    "first_seen": "2026-09-22",
-   "last_verified": "2026-10-10",
+   "last_verified": "2026-11-19",
    "status": "verified",
    "transport": "Hosted API",
    "zh_transport": "托管 API",
@@ -11825,7 +11825,7 @@
     "description": "Learn to deploy human-like Conversational AI. ElevenLabs powers low latency voice and chat interactions in 70+ languages with enterprise-grade security.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-10-10",
+   "source_checked": "2026-11-19",
    "repo_checked": null,
    "source_http": 200,
    "repo_http": null
@@ -13258,7 +13258,7 @@
    "source_url": "https://e2b.dev/",
    "repo_url": "https://github.com/e2b-dev/E2B",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-10-10",
+   "last_verified": "2026-11-19",
    "status": "verified",
    "transport": "Python and TypeScript SDKs",
    "zh_transport": "Python 与 TypeScript SDK",
@@ -13291,8 +13291,8 @@
     "description": "The AI Agent Cloud. An isolated machine for every AI agent: run code, browse, use tools, pause, fork. In our cloud or your AWS or GCP account. 100K+ teams, 1B+ sandboxes started.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-10-10",
-   "repo_checked": "2026-10-10",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -14863,7 +14863,7 @@
    "source_url": "https://ekwo.ai",
    "repo_url": "https://github.com/Ekwo-ai/ekwo-os",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-10-10",
+   "last_verified": "2026-11-19",
    "status": "verified",
    "transport": "Local MCP server (stdio)",
    "zh_transport": "本地 MCP 服务器（stdio）",
@@ -14902,8 +14902,8 @@
     "description": "Free, open source accounting data infrastructure you self-host on PostgreSQL and Supabase: 44 country packs, VAT returns, e-invoicing and an MCP server for AI agents — for businesses and their accountants.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-10-10",
-   "repo_checked": "2026-10-10",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -16752,7 +16752,7 @@
    "source_url": "https://draugr.dev",
    "repo_url": "https://github.com/draugr-dev/draugr",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-10-10",
+   "last_verified": "2026-11-19",
    "status": "verified",
    "transport": "Local MCP server (stdio)",
    "zh_transport": "本地 MCP 服务器（stdio）",
@@ -16791,8 +16791,8 @@
     "description": "Draugr decides which security findings matter in your app. It runs Trivy, Semgrep, Gitleaks and more from one file, then ranks every SAST, SCA, secrets, IaC and container finding by how exposed the service is and what the business loses when it stops, into one pass/fail answer. Open source, runs in…",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-10-10",
-   "repo_checked": "2026-10-10",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -19723,7 +19723,7 @@
    "source_url": "https://dregs.com/manual/ai-agents/",
    "repo_url": "https://github.com/dregs-sdk/dregs-mcp",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-10-10",
+   "last_verified": "2026-11-19",
    "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
@@ -19760,8 +19760,8 @@
     "description": "Connect Claude, ChatGPT, Codex, Cursor, VS Code, and other AI agents to your Dregs account through the Dregs MCP server. Setup steps per client, what agents can do, and how to work safely.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-10-10",
-   "repo_checked": "2026-10-10",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -20485,7 +20485,7 @@
    "source_url": "https://dvt.dev/solutions/mcp-dashboards/",
    "repo_url": "https://github.com/getdvt/dvt-plugin",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-10-10",
+   "last_verified": "2026-11-19",
    "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
@@ -20522,8 +20522,8 @@
     "description": "dvt is an MCP dashboard tool: agents validate, apply with preview, render, diff, comment, and export dashboards through one MCP server, no GUI required.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-10-10",
-   "repo_checked": "2026-10-10",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -23828,7 +23828,7 @@
    "source_url": "https://www.elijahdesent.com",
    "repo_url": "https://github.com/edesent/custom-website-editor",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-10-10",
+   "last_verified": "2026-11-19",
    "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
@@ -23865,8 +23865,8 @@
     "description": "Beautiful custom websites you edit just by chatting with AI. I design your site; you keep it perfect forever by texting ChatGPT or Claude — changes go live in about 30 seconds. Free concept first.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-10-10",
-   "repo_checked": "2026-10-10",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -27537,7 +27537,7 @@
    "source_url": "https://edgegap.com",
    "repo_url": "https://github.com/edgegap/edgegap-mcp",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-10-10",
+   "last_verified": "2026-11-19",
    "status": "verified",
    "transport": "MCP server, local or remote",
    "zh_transport": "MCP 服务器（本地或远程）",
@@ -27576,8 +27576,8 @@
     "description": "Automated game server hosting & orchestration that is easy to integrate & compatible with major engines and game services. 615+ global locations, proven to scale to 14M CCU & 58% latency reduction vs public cloud.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-10-10",
-   "repo_checked": "2026-10-10",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -28502,8 +28502,8 @@
    "source_url": "https://github.com/donnywin85/dex-data-mcp",
    "repo_url": "https://github.com/donnywin85/dex-data-mcp",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "stale",
+   "last_verified": "2026-11-19",
+   "status": "verified",
    "transport": "Local MCP server (stdio)",
    "zh_transport": "本地 MCP 服务器（stdio）",
    "capabilities": [
@@ -28541,10 +28541,10 @@
     "description": "MCP server for live multi-chain DEX market data: token prices, liquidity depth, pool reserves, best execution venue and pre-trade slippage across BNB Chain, Polygon, Arbitrum, Base and Avalanche. Free tier, no API key. - donnywin85/dex-data-mcp",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
-   "source_http": 404,
-   "repo_http": 404
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
+   "source_http": 200,
+   "repo_http": 200
   },
   {
    "slug": "wizeb-ai-native-index",
@@ -30226,7 +30226,7 @@
    "source_url": "https://easygroupflights.com",
    "repo_url": "https://github.com/codeblockssk/easygroupflights-mcp",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-10-10",
+   "last_verified": "2026-11-19",
    "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
@@ -30263,8 +30263,8 @@
     "description": "Group airfare specialists for schools, sports teams, companies and tour operators. IATA accredited, 24/7 support, negotiated group fares 20–40% below retail.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-10-10",
-   "repo_checked": "2026-10-10",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -30630,7 +30630,7 @@
    "source_url": "https://dveracity.com/semantic-api",
    "repo_url": "https://github.com/d-veracity/semantic-mcp",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-10-10",
+   "last_verified": "2026-11-19",
    "status": "verified",
    "transport": "MCP server, local or remote",
    "zh_transport": "MCP 服务器（本地或远程）",
@@ -30669,8 +30669,8 @@
     "description": "Query a verified emissions knowledge graph in natural language. Credit-metered API with machine-readable 402 payment semantics, an MCP server for Claude Code and Cursor, and GLEIF-rooted vLEI verified-agent identity. Open Footprint, asset-knowledge and emissions-measurement data.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-10-10",
-   "repo_checked": "2026-10-10",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -32666,7 +32666,7 @@
    "source_url": "https://github.com/edgedepthhq/edgedepth-research-mcp",
    "repo_url": "https://github.com/edgedepthhq/edgedepth-research-mcp",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-10-10",
+   "last_verified": "2026-11-19",
    "status": "verified",
    "transport": "MCP server, local or remote",
    "zh_transport": "MCP 服务器（本地或远程）",
@@ -32705,8 +32705,8 @@
     "description": "Search recorded crypto and TradFi microstructure through the EdgeDepth Research API as deterministic MCP tools. - edgedepthhq/edgedepth-research-mcp",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-10-10",
-   "repo_checked": "2026-10-10",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -33282,7 +33282,7 @@
    "source_url": "https://drillr.ai/docs/mcp?ref=mp_registry",
    "repo_url": "https://github.com/Little-Grebe-Inc/drillr-mcp-server",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-10-10",
+   "last_verified": "2026-11-19",
    "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
@@ -33319,8 +33319,8 @@
     "description": "Connect Claude Code, Codex, Cursor or Claude Desktop to drillr’s financial data over MCP.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-10-10",
-   "repo_checked": "2026-10-10",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -34049,7 +34049,7 @@
    "source_url": "https://eigma.app",
    "repo_url": "https://github.com/eigma-app/eigma-mcp",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-10-10",
+   "last_verified": "2026-11-19",
    "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
@@ -34086,8 +34086,8 @@
     "description": "Eigma files what you learn into a personal wiki and a living map of your knowledge, then brings it back for review right before you would forget it.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-10-10",
-   "repo_checked": "2026-10-10",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -41925,7 +41925,7 @@
    "source_url": "https://www.elicitly.ai",
    "repo_url": "https://github.com/elicitly/elicitly",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-10-10",
+   "last_verified": "2026-11-19",
    "status": "verified",
    "transport": "Local MCP server (stdio)",
    "zh_transport": "本地 MCP 服务器（stdio）",
@@ -41964,8 +41964,8 @@
     "description": "Your AI has questions. Your users have answers. Elicitly connects them — human-in-the-loop for prompts and Agent Skills over MCP elicitation.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-10-10",
-   "repo_checked": "2026-10-10",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -46983,7 +46983,7 @@
    "source_url": "https://mint.dzgapp.com/docs#cli-mcp",
    "repo_url": "https://github.com/dzg-studio/mcp-server-mint",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-10-10",
+   "last_verified": "2026-11-19",
    "status": "verified",
    "transport": "Local MCP server (stdio)",
    "zh_transport": "本地 MCP 服务器（stdio）",
@@ -47022,8 +47022,8 @@
     "description": "Mint shows what fills your Mac: app leftovers, old backups, downloaded podcasts, AI agent data. You choose what goes, and the scan runs on your Mac.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-10-10",
-   "repo_checked": "2026-10-10",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -50055,7 +50055,7 @@
    "repo_url": "https://github.com/golproductions/exnos",
    "first_seen": "2026-09-24",
    "last_verified": "2026-10-28",
-   "status": "verified",
+   "status": "retired",
    "transport": "Local MCP server (stdio)",
    "zh_transport": "本地 MCP 服务器（stdio）",
    "capabilities": [
@@ -50086,7 +50086,9 @@
     "packages": [
      "npm"
     ],
-    "remotes": false
+    "remotes": false,
+    "status": "deleted",
+    "withdrawnAt": "2026-11-19T07:52:30.561Z"
    },
    "official": {
     "title": "Live browser-state verification for AI coding agents | Exnos",
@@ -50207,7 +50209,7 @@
    "repo_url": "https://github.com/golproductions/envie",
    "first_seen": "2026-09-24",
    "last_verified": "2026-10-28",
-   "status": "verified",
+   "status": "retired",
    "transport": "Local MCP server (stdio)",
    "zh_transport": "本地 MCP 服务器（stdio）",
    "capabilities": [
@@ -50238,7 +50240,9 @@
     "packages": [
      "npm"
     ],
-    "remotes": false
+    "remotes": false,
+    "status": "deleted",
+    "withdrawnAt": "2026-11-19T07:52:30.561Z"
    },
    "official": {
     "title": "AI video, verified | Envie",
@@ -81160,8 +81164,8 @@
    "source_url": "https://parallel.ai",
    "repo_url": "https://github.com/parallel-web/search-mcp",
    "first_seen": "2026-10-11",
-   "last_verified": "2026-10-11",
-   "status": "new",
+   "last_verified": "2026-11-19",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -81197,8 +81201,8 @@
     "description": "",
     "checked": "2026-10-11"
    },
-   "source_checked": "2026-10-11",
-   "repo_checked": "2026-10-11",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -81210,8 +81214,8 @@
    "source_url": "https://parallel.ai",
    "repo_url": "https://github.com/parallel-web/task-mcp",
    "first_seen": "2026-10-11",
-   "last_verified": "2026-10-11",
-   "status": "new",
+   "last_verified": "2026-11-19",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -81247,8 +81251,8 @@
     "description": "",
     "checked": "2026-10-11"
    },
-   "source_checked": "2026-10-11",
-   "repo_checked": "2026-10-11",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -81299,7 +81303,7 @@
     "description": "",
     "checked": "2026-10-11"
    },
-   "source_checked": "2026-10-11",
+   "source_checked": "2026-11-19",
    "repo_checked": null,
    "source_http": 200,
    "repo_http": 404
@@ -81362,8 +81366,8 @@
    "source_url": "https://github.com/PackmindHub/packmind",
    "repo_url": "https://github.com/PackmindHub/packmind",
    "first_seen": "2026-10-11",
-   "last_verified": "2026-10-11",
-   "status": "new",
+   "last_verified": "2026-11-19",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -81399,8 +81403,8 @@
     "description": "",
     "checked": "2026-10-11"
    },
-   "source_checked": "2026-10-11",
-   "repo_checked": "2026-10-11",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -81412,8 +81416,8 @@
    "source_url": "https://github.com/explorium-ai/mcp-explorium",
    "repo_url": "https://github.com/explorium-ai/mcp-explorium",
    "first_seen": "2026-10-11",
-   "last_verified": "2026-10-11",
-   "status": "new",
+   "last_verified": "2026-11-19",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -81449,8 +81453,8 @@
     "description": "",
     "checked": "2026-10-11"
    },
-   "source_checked": "2026-10-11",
-   "repo_checked": "2026-10-11",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -81662,8 +81666,8 @@
    "source_url": "https://github.com/aliengiraffe/spotdb",
    "repo_url": "https://github.com/aliengiraffe/spotdb",
    "first_seen": "2026-10-11",
-   "last_verified": "2026-10-11",
-   "status": "new",
+   "last_verified": "2026-11-19",
+   "status": "verified",
    "transport": "Local MCP server (stdio)",
    "zh_transport": "本地 MCP 服务器（stdio）",
    "capabilities": [
@@ -81701,8 +81705,8 @@
     "description": "",
     "checked": "2026-10-11"
    },
-   "source_checked": "2026-10-11",
-   "repo_checked": "2026-10-11",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -81714,8 +81718,8 @@
    "source_url": "https://www.edgechat.ai/developers",
    "repo_url": "https://github.com/EdgePlat/edgepedia-mcp",
    "first_seen": "2026-10-11",
-   "last_verified": "2026-10-11",
-   "status": "new",
+   "last_verified": "2026-11-19",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -81751,8 +81755,8 @@
     "description": "",
     "checked": "2026-10-11"
    },
-   "source_checked": "2026-10-11",
-   "repo_checked": "2026-10-11",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -81764,8 +81768,8 @@
    "source_url": "https://github.com/Klavis-AI/klavis",
    "repo_url": "https://github.com/Klavis-AI/klavis",
    "first_seen": "2026-10-11",
-   "last_verified": "2026-10-11",
-   "status": "new",
+   "last_verified": "2026-11-19",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -81801,8 +81805,8 @@
     "description": "",
     "checked": "2026-10-11"
    },
-   "source_checked": "2026-10-11",
-   "repo_checked": "2026-10-11",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -81814,8 +81818,8 @@
    "source_url": "https://openswitchboard.ai",
    "repo_url": "https://github.com/openswitchboard-ai/server",
    "first_seen": "2026-10-11",
-   "last_verified": "2026-10-11",
-   "status": "new",
+   "last_verified": "2026-11-19",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -81851,8 +81855,8 @@
     "description": "",
     "checked": "2026-10-11"
    },
-   "source_checked": "2026-10-11",
-   "repo_checked": "2026-10-11",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -81864,8 +81868,8 @@
    "source_url": "https://seshat.papyruslabs.ai",
    "repo_url": "https://github.com/papyruslabs-ai/seshat-mcp",
    "first_seen": "2026-10-11",
-   "last_verified": "2026-10-11",
-   "status": "new",
+   "last_verified": "2026-11-19",
+   "status": "verified",
    "transport": "Local MCP server (stdio)",
    "zh_transport": "本地 MCP 服务器（stdio）",
    "capabilities": [
@@ -81903,8 +81907,8 @@
     "description": "",
     "checked": "2026-10-11"
    },
-   "source_checked": "2026-10-11",
-   "repo_checked": "2026-10-11",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -81916,8 +81920,8 @@
    "source_url": "https://github.com/222wcnm/BiliStalkerMCP",
    "repo_url": "https://github.com/222wcnm/BiliStalkerMCP",
    "first_seen": "2026-10-11",
-   "last_verified": "2026-10-11",
-   "status": "new",
+   "last_verified": "2026-11-19",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -81953,8 +81957,8 @@
     "description": "",
     "checked": "2026-10-11"
    },
-   "source_checked": "2026-10-11",
-   "repo_checked": "2026-10-11",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -81966,8 +81970,8 @@
    "source_url": "https://github.com/Aman-Amith-Shastry/scientific_computation_mcp",
    "repo_url": "https://github.com/Aman-Amith-Shastry/scientific_computation_mcp",
    "first_seen": "2026-10-11",
-   "last_verified": "2026-10-11",
-   "status": "new",
+   "last_verified": "2026-11-19",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -82003,8 +82007,8 @@
     "description": "",
     "checked": "2026-10-11"
    },
-   "source_checked": "2026-10-11",
-   "repo_checked": "2026-10-11",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -82016,8 +82020,8 @@
    "source_url": "https://github.com/Artin0123/gemini-vision-mcp",
    "repo_url": "https://github.com/Artin0123/gemini-vision-mcp",
    "first_seen": "2026-10-11",
-   "last_verified": "2026-10-11",
-   "status": "new",
+   "last_verified": "2026-11-19",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -82053,8 +82057,8 @@
     "description": "",
     "checked": "2026-10-11"
    },
-   "source_checked": "2026-10-11",
-   "repo_checked": "2026-10-11",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -83216,8 +83220,8 @@
    "source_url": "https://github.com/aamangeldi/dad-jokes-mcp",
    "repo_url": "https://github.com/aamangeldi/dad-jokes-mcp",
    "first_seen": "2026-10-11",
-   "last_verified": "2026-10-11",
-   "status": "new",
+   "last_verified": "2026-11-19",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -83253,8 +83257,8 @@
     "description": "",
     "checked": "2026-10-11"
    },
-   "source_checked": "2026-10-11",
-   "repo_checked": "2026-10-11",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -83266,8 +83270,8 @@
    "source_url": "https://github.com/adamamer20/paper-search-mcp-openai",
    "repo_url": "https://github.com/adamamer20/paper-search-mcp-openai",
    "first_seen": "2026-10-11",
-   "last_verified": "2026-10-11",
-   "status": "new",
+   "last_verified": "2026-11-19",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -83303,8 +83307,8 @@
     "description": "",
     "checked": "2026-10-11"
    },
-   "source_checked": "2026-10-11",
-   "repo_checked": "2026-10-11",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -83316,8 +83320,8 @@
    "source_url": "https://github.com/afgong/sqlite-mcp-server",
    "repo_url": "https://github.com/afgong/sqlite-mcp-server",
    "first_seen": "2026-10-11",
-   "last_verified": "2026-10-11",
-   "status": "new",
+   "last_verified": "2026-11-19",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -83353,8 +83357,8 @@
     "description": "",
     "checked": "2026-10-11"
    },
-   "source_checked": "2026-10-11",
-   "repo_checked": "2026-10-11",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -83366,8 +83370,8 @@
    "source_url": "https://github.com/aicastle-school/openai-api-agent-project",
    "repo_url": "https://github.com/aicastle-school/openai-api-agent-project",
    "first_seen": "2026-10-11",
-   "last_verified": "2026-10-11",
-   "status": "new",
+   "last_verified": "2026-11-19",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -83403,8 +83407,8 @@
     "description": "",
     "checked": "2026-10-11"
    },
-   "source_checked": "2026-10-11",
-   "repo_checked": "2026-10-11",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -83416,8 +83420,8 @@
    "source_url": "https://github.com/akilat-spec/leave-manager-mcp",
    "repo_url": "https://github.com/akilat-spec/leave-manager-mcp",
    "first_seen": "2026-10-11",
-   "last_verified": "2026-10-11",
-   "status": "new",
+   "last_verified": "2026-11-19",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -83453,8 +83457,8 @@
     "description": "",
     "checked": "2026-10-11"
    },
-   "source_checked": "2026-10-11",
-   "repo_checked": "2026-10-11",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -83466,8 +83470,8 @@
    "source_url": "https://github.com/alex-llm/attAck-mcp-server",
    "repo_url": "https://github.com/alex-llm/attAck-mcp-server",
    "first_seen": "2026-10-11",
-   "last_verified": "2026-10-11",
-   "status": "new",
+   "last_verified": "2026-11-19",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -83503,8 +83507,8 @@
     "description": "",
     "checked": "2026-10-11"
    },
-   "source_checked": "2026-10-11",
-   "repo_checked": "2026-10-11",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -83516,8 +83520,8 @@
    "source_url": "https://github.com/alphago2580/naramarketmcp",
    "repo_url": "https://github.com/alphago2580/naramarketmcp",
    "first_seen": "2026-10-11",
-   "last_verified": "2026-10-11",
-   "status": "new",
+   "last_verified": "2026-11-19",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -83553,8 +83557,8 @@
     "description": "",
     "checked": "2026-10-11"
    },
-   "source_checked": "2026-10-11",
-   "repo_checked": "2026-10-11",
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
    "source_http": 200,
    "repo_http": 200
   },
@@ -183686,6 +183690,2906 @@
     "checked": "2026-11-18"
    },
    "source_checked": "2026-11-18",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "emisorasdecolombia-radio",
+   "name": "Emisoras de Colombia",
+   "category": "mcp",
+   "description": "264 emisoras de radio colombianas en vivo: busca por ciudad, genero o dial y escuchalas.",
+   "source_url": "https://emisorasdecolombia.com",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.emisorasdecolombia/radio",
+    "version": "1.0.0",
+    "updated": "2026-08-20",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "emorahealth-mental-health-care",
+   "name": "Emora Health",
+   "category": "mcp",
+   "description": "Find kids' and teens' mental health clinicians, check availability, get booking links and costs.",
+   "source_url": "https://www.emorahealth.com",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.emorahealth/mental-health-care",
+    "version": "1.1.0",
+    "updated": "2026-10-11",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "employeecostaustralia-site",
+   "name": "site",
+   "category": "mcp",
+   "description": "Employee Cost Australia: the site's own MCP server — calculator, enquiry (enquiry = a human...",
+   "source_url": "https://employeecostaustralia.com",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.employeecostaustralia/site",
+    "version": "1.0.1",
+    "updated": "2026-10-03",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "employeedeskhq-site",
+   "name": "site",
+   "category": "mcp",
+   "description": "EmployeeDeskHQ: the site's own MCP server — dataset; every answer cites the site.",
+   "source_url": "https://employeedeskhq.com",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.employeedeskhq/site",
+    "version": "1.0.1",
+    "updated": "2026-10-03",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "emplusx-emplusx",
+   "name": "emplusx",
+   "category": "mcp",
+   "description": "Finished, on-brand .pptx and .docx from a brief - quality-gated by an agentic consulting team.",
+   "source_url": "https://emplusx.com",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.emplusx/emplusx",
+    "version": "1.0.0",
+    "updated": "2026-08-12",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "emprego-jobs",
+   "name": "emprego.com job search",
+   "category": "mcp",
+   "description": "Search live job openings in many countries and languages, and read a full job ad.",
+   "source_url": "https://emprego.com",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.emprego/jobs",
+    "version": "1.0.0",
+    "updated": "2026-09-30",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "empresskorea-kbeauty-agent-commons",
+   "name": "K-Beauty Agent Commons",
+   "category": "mcp",
+   "description": "Public K-beauty catalog, product search, and latest-offers tools with canonical product facts.",
+   "source_url": "https://empresskorea.com/kb-agent-network/",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.empresskorea/kbeauty-agent-commons",
+    "version": "0.6.0",
+    "updated": "2026-08-03",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "encirca-domains",
+   "name": "EnCirca Domains",
+   "category": "mcp",
+   "description": "Search, Register , Renew , Transfer and Manage domains",
+   "source_url": "https://www.encirca.com",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.encirca/domains",
+    "version": "1.0.0",
+    "updated": "2026-08-18",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "encompassconfirm-ec360",
+   "name": "ec360",
+   "category": "mcp",
+   "description": "KYC automation from authoritative public sources. Requires an Encompass licence.",
+   "source_url": "https://encompass-mcp.encompassconfirm.com/docs",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.encompassconfirm/ec360",
+    "version": "1.17.1",
+    "updated": "2026-09-18",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "endpointo-site",
+   "name": "site",
+   "category": "mcp",
+   "description": "Endpointo: the site's own MCP server — dataset; every answer cites the site.",
+   "source_url": "https://endpointo.com",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.endpointo/site",
+    "version": "1.0.1",
+    "updated": "2026-10-03",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "engagemii-citation-watch",
+   "name": "Engagemii AI Visibility Data",
+   "category": "mcp",
+   "description": "AI visibility of 82M+ companies: scores, AI crawler reads, full records. Free 500 and 1M datasets.",
+   "source_url": "https://engagemii.com/live",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.engagemii/citation-watch",
+    "version": "1.2.2",
+    "updated": "2026-11-15",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "enhancedint-enhanced-intelligence",
+   "name": "Book Enhanced Intelligence LLC",
+   "category": "mcp",
+   "description": "Book with Enhanced Intelligence LLC: services, prices and open times. No key needed.",
+   "source_url": "https://book.enhancedint.com/enhanced-intelligence",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.enhancedint/enhanced-intelligence",
+    "version": "1.0.0",
+    "updated": "2026-10-05",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "enhancedint-es-luxury",
+   "name": "Book ES Luxury Auto Detailing",
+   "category": "mcp",
+   "description": "Book with ES Luxury Auto Detailing: services, prices and open times. No key needed.",
+   "source_url": "https://book.enhancedint.com/es-luxury",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.enhancedint/es-luxury",
+    "version": "1.0.0",
+    "updated": "2026-10-05",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "enpso-site",
+   "name": "site",
+   "category": "mcp",
+   "description": "Enpso: the site's own MCP server — dataset; every answer cites the site.",
+   "source_url": "https://enpso.com",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.enpso/site",
+    "version": "1.0.1",
+    "updated": "2026-10-03",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "enrolvo-site",
+   "name": "site",
+   "category": "mcp",
+   "description": "Enrolvo: the site's own MCP server — dataset; every answer cites the site.",
+   "source_url": "https://enrolvo.com",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.enrolvo/site",
+    "version": "1.0.1",
+    "updated": "2026-10-03",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "enshapeapp-enshape",
+   "name": "Enshape",
+   "category": "mcp",
+   "description": "Read your private Enshape diary and log meals through scoped account authorization.",
+   "source_url": "https://enshapeapp.com/integrations",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.enshapeapp/enshape",
+    "version": "1.0.0",
+    "updated": "2026-09-29",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "entalpa-requirements",
+   "name": "Entalpa Requirements MCP",
+   "category": "mcp",
+   "description": "Spec-driven development for AI coding agents: live requirements, stories and traceability over MCP",
+   "source_url": "https://entalpa.com",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.entalpa/requirements",
+    "version": "0.1.7",
+    "updated": "2026-11-06",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "entangleeq-pay-transparency",
+   "name": "PariteCK",
+   "category": "mcp",
+   "description": "PariteCK (formerly EntangleEQ): public pay transparency and Egapro data. Public content only.",
+   "source_url": "https://www.pariteck.fr",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.entangleeq/pay-transparency",
+    "version": "1.0.1",
+    "updated": "2026-10-11",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "entidex-entidex",
+   "name": "Entidex — Entity Intelligence & AI Knowledge Correction",
+   "category": "mcp",
+   "description": "Entity intelligence across AI surfaces. Read the verified record and submit corrections.",
+   "source_url": "https://entidex.com",
+   "repo_url": "https://github.com/Entidex/MiloSays",
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage and public repository",
+   "zh_evidence_level": "官方主页与公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-and-repo"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.entidex/entidex",
+    "version": "1.0.1",
+    "updated": "2026-06-15",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "entitysearchhq-site",
+   "name": "site",
+   "category": "mcp",
+   "description": "EntitySearch HQ: the site's own MCP server — dataset, enquiry (enquiry = a human handoff, not a...",
+   "source_url": "https://entitysearchhq.com",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.entitysearchhq/site",
+    "version": "1.0.1",
+    "updated": "2026-10-03",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "entrida-mcp",
+   "name": "Entrida — UK Market Entry",
+   "category": "mcp",
+   "description": "UK market entry tools for SMEs: live tariff lookup, regulatory watch, corridor data",
+   "source_url": "https://www.entrida.com/connect",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.entrida/mcp",
+    "version": "0.3.0",
+    "updated": "2026-07-06",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "entroute-entroute",
+   "name": "EntRoute",
+   "category": "mcp",
+   "description": "Discover and call pay-per-request (x402) APIs, ranked by reliability, latency and price.",
+   "source_url": "https://entroute.com",
+   "repo_url": "https://github.com/entroute/mcp-server",
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage and public repository",
+   "zh_evidence_level": "官方主页与公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-and-repo"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.entroute/entroute",
+    "version": "0.1.0",
+    "updated": "2026-07-25",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "entsoemcp-entsoe-mcp",
+   "name": "entsoe-mcp",
+   "category": "mcp",
+   "description": "European power-market data: day-ahead & balancing prices, load, generation, flows, outages. 47 zones",
+   "source_url": "https://entsoemcp.com",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.entsoemcp/entsoe-mcp",
+    "version": "1.0.0",
+    "updated": "2026-08-29",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "entyrax-entyrax",
+   "name": "Entyrax",
+   "category": "mcp",
+   "description": "PC hardware decision engine for Brazil (pt-BR): compatibility, GPU recommendations, build analysis.",
+   "source_url": "https://www.entyrax.com",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.entyrax/entyrax",
+    "version": "0.11.0",
+    "updated": "2026-07-08",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "envelopebudget-mcp",
+   "name": "EnvelopeBudget",
+   "category": "mcp",
+   "description": "Review EnvelopeBudget data and optionally categorize transactions with explicit scoped permissions.",
+   "source_url": "https://envelopebudget.com/developer/mcp-setup",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.envelopebudget/mcp",
+    "version": "1.2.0",
+    "updated": "2026-08-24",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "envloped-mcp",
+   "name": "Envloped",
+   "category": "mcp",
+   "description": "Send transactional email, verify domains, build contact segments, and draft marketing campaigns.",
+   "source_url": "https://github.com/envloped/cli",
+   "repo_url": "https://github.com/envloped/cli",
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "public repository is the official page",
+   "zh_evidence_level": "公开仓库即官方页面",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "repo-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.envloped/mcp",
+    "version": "1.4.0+ac7dd31",
+    "updated": "2026-11-14",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "eobify-site",
+   "name": "site",
+   "category": "mcp",
+   "description": "Eobify: the site's own MCP server — dataset; every answer cites the site.",
+   "source_url": "https://eobify.com",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.eobify/site",
+    "version": "1.0.1",
+    "updated": "2026-10-03",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "eorcompass-site",
+   "name": "site",
+   "category": "mcp",
+   "description": "EOR Compass: the site's own MCP server — dataset, enquiry (enquiry = a human handoff, not a...",
+   "source_url": "https://eorcompass.com",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.eorcompass/site",
+    "version": "1.0.1",
+    "updated": "2026-10-03",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "epidemicsound-mcp-server",
+   "name": "mcp-server",
+   "category": "mcp",
+   "description": "Cloud-hosted MCP server for Epidemic Sound",
+   "source_url": "https://www.epidemicsound.com",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.epidemicsound/mcp-server",
+    "version": "1.0.1",
+    "updated": "2026-08-17",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "epochcalc-epochcalc",
+   "name": "Epoch Calculator",
+   "category": "mcp",
+   "description": "Unix timestamps, DST-aware time zone conversion, durations, cron schedules, and holiday countdowns",
+   "source_url": "https://epochcalc.com/api",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.epochcalc/epochcalc",
+    "version": "1.0.0",
+    "updated": "2026-09-06",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "eposvo-site",
+   "name": "site",
+   "category": "mcp",
+   "description": "Eposvo: the site's own MCP server — dataset; every answer cites the site.",
+   "source_url": "https://eposvo.com",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.eposvo/site",
+    "version": "1.0.1",
+    "updated": "2026-10-03",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "epovest-ai-visibility",
+   "name": "Epovest",
+   "category": "mcp",
+   "description": "With Epovest, businesses make AIs recommend them.",
+   "source_url": "https://epovest.com",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.epovest/ai-visibility",
+    "version": "1.0.0",
+    "updated": "2026-07-24",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "epublys-epublys",
+   "name": "Epublys",
+   "category": "mcp",
+   "description": "EPUB/PDF tools: merge, split, compress, convert, edit metadata, validate ebooks.",
+   "source_url": "https://epublys.com",
+   "repo_url": "https://github.com/Takyon236/epublys-mcp",
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage and public repository",
+   "zh_evidence_level": "官方主页与公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-and-repo"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.epublys/epublys",
+    "version": "1.0.1",
+    "updated": "2026-06-10",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "eqiqs-eqiqs",
+   "name": "eqiqs",
+   "category": "mcp",
+   "description": "21-framework people intelligence and compatibility scoring for any MCP client.",
+   "source_url": "https://www.eqiqs.com/mcp",
+   "repo_url": "https://github.com/EQIQs/mcp-server",
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage and public repository",
+   "zh_evidence_level": "官方主页与公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-and-repo"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.eqiqs/eqiqs",
+    "version": "1.0.17",
+    "updated": "2026-09-01",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "equipmentrentalcompare-site",
+   "name": "site",
+   "category": "mcp",
+   "description": "Equipment Rental Compare: the site's own MCP server — dataset, enquiry (enquiry = a human...",
+   "source_url": "https://equipmentrentalcompare.com",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.equipmentrentalcompare/site",
+    "version": "1.0.1",
+    "updated": "2026-10-03",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "equity-rank-api-equity-rank",
+   "name": "Equity Rank",
+   "category": "mcp",
+   "description": "Model fair value estimates, margin-of-safety differentials and quality scores for 3,000 U.S. stocks.",
+   "source_url": "https://www.equity-rank.com/developers",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.equity-rank.api/equity-rank",
+    "version": "1.0.0",
+    "updated": "2026-09-08",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "erikbethke-blog",
+   "name": "Erik Bethke's Blog & Knowledge Graph",
+   "category": "mcp",
+   "description": "Search, read, and traverse 3,800+ posts on AI, energy, policy, games, and investing as a graph.",
+   "source_url": "https://erikbethke.com/for-agents",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.erikbethke/blog",
+    "version": "1.1.0",
+    "updated": "2026-07-02",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "erppartnerfinder-partner-finder",
+   "name": "ERP Partner Finder",
+   "category": "mcp",
+   "description": "Search, compare and shortlist Odoo partners in Germany, Austria and Switzerland.",
+   "source_url": "https://erppartnerfinder.com",
+   "repo_url": "https://github.com/KnowlixGmbH/erppartnerfinder-mcp",
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage and public repository",
+   "zh_evidence_level": "官方主页与公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-and-repo"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.erppartnerfinder/partner-finder",
+    "version": "1.0.0",
+    "updated": "2026-10-04",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "eruditepay-blockchain-intelligence",
+   "name": "EruditePay Blockchain Intelligence",
+   "category": "mcp",
+   "description": "168 MCP tools: token prices, whale tracking, DeFi, wallets across Base/Tron/BTC/XRP/Kaspa",
+   "source_url": "https://github.com/EruditeIntelligence/blockchain-intelligence-mcp",
+   "repo_url": "https://github.com/EruditeIntelligence/blockchain-intelligence-mcp",
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "public repository is the official page",
+   "zh_evidence_level": "公开仓库即官方页面",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "repo-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.eruditepay/blockchain-intelligence",
+    "version": "2.1.0",
+    "updated": "2026-03-19",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "erzycall-erzycall",
+   "name": "ErzyCall",
+   "category": "mcp",
+   "description": "ErzyCall lets an agent or app make and take real phone calls through MCP or API.",
+   "source_url": "https://app.erzycall.com/docs/mcp",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.erzycall/erzycall",
+    "version": "1.0.0",
+    "updated": "2026-09-25",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "esimeagle-plans",
+   "name": "eSIM Eagle Plan Finder",
+   "category": "mcp",
+   "description": "Find public eSIM plans by destination, trip length, data needs, currency, and locale.",
+   "source_url": "https://esimeagle.com",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.esimeagle/plans",
+    "version": "1.0.0",
+    "updated": "2026-08-14",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "esimker-esim",
+   "name": "esimker eSIM store",
+   "category": "mcp",
+   "description": "Prepaid travel data eSIMs: checkout links for people, autonomous purchases from a prepaid wallet.",
+   "source_url": "https://esimker.com/agents",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.esimker/esim",
+    "version": "1.0.0",
+    "updated": "2026-09-04",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "esimoa-esim",
+   "name": "esimoa — travel eSIM comparison",
+   "category": "mcp",
+   "description": "Compare travel eSIM plans by country, days and data — live prices and links to buy on esimoa.",
+   "source_url": "https://www.esimoa.com/en/developers/docs/mcp",
+   "repo_url": "https://github.com/nbase-io/esimoa-mcp",
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage and public repository",
+   "zh_evidence_level": "官方主页与公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-and-repo"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.esimoa/esim",
+    "version": "1.1.0",
+    "updated": "2026-10-02",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "esimtabby-esimtabby",
+   "name": "eSIM Tabby",
+   "category": "mcp",
+   "description": "Buy and manage travel eSIM data plans in the conversation. Pay by card (Stripe) or USDC over x402.",
+   "source_url": "https://esimtabby.com",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.esimtabby/esimtabby",
+    "version": "0.1.3",
+    "updated": "2026-08-21",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "espressosteals-catalog",
+   "name": "Espresso Steals",
+   "category": "mcp",
+   "description": "Espresso gear price history: live Amazon prices, 2+ years of daily data, BUY calls at verified lows.",
+   "source_url": "https://espressosteals.com/for-agents",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.espressosteals/catalog",
+    "version": "1.0.0",
+    "updated": "2026-10-04",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "esti-maite-construction-takeoff-estimating",
+   "name": "construction-takeoff-estimating",
+   "category": "mcp",
+   "description": "Construction takeoff and estimating for AI agents. Measure a drawing PDF, export a priced estimate.",
+   "source_url": "https://www.esti-maite.com/mcp",
+   "repo_url": "https://github.com/nickpanagios/estimaite-mcp",
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage and public repository",
+   "zh_evidence_level": "官方主页与公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-and-repo"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.esti-maite/construction-takeoff-estimating",
+    "version": "1.0.0",
+    "updated": "2026-08-05",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "etfiq-etfiq",
+   "name": "ETFIQ",
+   "category": "mcp",
+   "description": "Independent US ETF data for research agents: 33 tools, holdings to risk checks, each dated.",
+   "source_url": "https://etfiq.com",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.etfiq/etfiq",
+    "version": "0.5.0",
+    "updated": "2026-11-14",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "euearth-euearth",
+   "name": "euearth",
+   "category": "mcp",
+   "description": "An agent-first commons: merit crowns each domain's open model; standing is earned, never bought.",
+   "source_url": "https://euearth.com",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.euearth/euearth",
+    "version": "1.1.0",
+    "updated": "2026-07-18",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "eurc402-eu-compliance",
+   "name": "eurc402 — EU compliance (VAT + company data)",
+   "category": "mcp",
+   "description": "Free EU VAT (VIES) + pan-EU company data (10 registers), payable in EURC/USDC via x402.",
+   "source_url": "https://eurc402.com",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.eurc402/eu-compliance",
+    "version": "0.1.3",
+    "updated": "2026-07-15",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "eurocollis-eurocollis",
+   "name": "eurocollis",
+   "category": "mcp",
+   "description": "Read-only logistics data for Morocco-Europe shipping: quotes, couriers, tracking and customs.",
+   "source_url": "https://www.eurocollis.com/developers/mcp-docs",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.eurocollis/eurocollis",
+    "version": "2.1.0",
+    "updated": "2026-09-03",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "eurogpsr-eu-ai-act",
+   "name": "EuroComply EU AI Act",
+   "category": "mcp",
+   "description": "Classify AI systems by EU AI Act risk tier, estimate fines, write Art. 50 notices, list deadlines.",
+   "source_url": "https://eurogpsr.com/mcp",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.eurogpsr/eu-ai-act",
+    "version": "1.1.0",
+    "updated": "2026-10-04",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "europebeachmap-beachmap",
+   "name": "World Beach Map: beaches and sea temperature",
+   "category": "mcp",
+   "description": "Beaches worldwide from Wikidata, each with twelve monthly NOAA sea temperatures. No key.",
+   "source_url": "https://beachmapworld.com/",
+   "repo_url": "https://github.com/Flightmussy/beachmap-mcp",
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage and public repository",
+   "zh_evidence_level": "官方主页与公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-and-repo"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.europebeachmap/beachmap",
+    "version": "1.0.2",
+    "updated": "2026-10-21",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "eurorackref-eurorack",
+   "name": "eurorack",
+   "category": "mcp",
+   "description": "Citation-anchored Eurorack module reference: specs, compatibility, and patch techniques.",
+   "source_url": "https://eurorackref.com",
+   "repo_url": "https://github.com/jallen/eurorack-reference",
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage and public repository",
+   "zh_evidence_level": "官方主页与公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-and-repo"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.eurorackref/eurorack",
+    "version": "0.1.1",
+    "updated": "2026-05-22",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "evaboot-evaboot",
+   "name": "Evaboot",
+   "category": "mcp",
+   "description": "Extract LinkedIn Sales Navigator leads and find or validate their professional emails.",
+   "source_url": "https://evaboot.com/mcp",
+   "repo_url": "https://github.com/evaboot-team/evaboot-mcp",
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage and public repository",
+   "zh_evidence_level": "官方主页与公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-and-repo"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.evaboot/evaboot",
+    "version": "1.0.1",
+    "updated": "2026-10-01",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": "2026-11-19",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "eventescapes-event-escapes",
+   "name": "Event Escapes",
+   "category": "mcp",
+   "description": "Search event travel: F1, MotoGP, soccer, NFL, tennis, concerts. Tickets + hotels + experiences.",
+   "source_url": "https://eventescapes.com",
+   "repo_url": "https://github.com/eventescapes/event-escapes",
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage and public repository",
+   "zh_evidence_level": "官方主页与公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-and-repo"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.eventescapes/event-escapes",
+    "version": "1.5.0",
+    "updated": "2026-05-16",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "eventmatey-mcp-event-discovery",
+   "name": "EventMatey Event Discovery",
+   "category": "mcp",
+   "description": "Find public EventMatey events that organisers have approved for AI discovery.",
+   "source_url": "https://mcp.eventmatey.com/",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.eventmatey.mcp/event-discovery",
+    "version": "1.0.8",
+    "updated": "2026-06-25",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "eventship-mcp",
+   "name": "Eventship",
+   "category": "mcp",
+   "description": "Run in-person events from your AI: create events, manage tickets, attendees, broadcasts.",
+   "source_url": "https://eventship.com",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.eventship/mcp",
+    "version": "1.0.0",
+    "updated": "2026-04-21",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "eventsynoptic-go-event-synoptic",
+   "name": "event-synoptic",
+   "category": "mcp",
+   "description": "Live LA events, ticket price comparison, bars & nightlife with real-time happy hours",
+   "source_url": "https://go.eventsynoptic.com/developers",
+   "repo_url": null,
+   "first_seen": "2026-11-19",
+   "last_verified": "2026-11-19",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.eventsynoptic.go/event-synoptic",
+    "version": "1.0.0",
+    "updated": "2026-07-24",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-11-19"
+   },
+   "source_checked": "2026-11-19",
    "repo_checked": null,
    "source_http": 200,
    "repo_http": null
