@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-18",
+ "fetched": "2026-11-19",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -93,25 +93,17 @@
     "infrarotheizung bild",
     "infrarotheizungen",
     "infrarotheizung test stiftung warentest",
-    "infrarotheizung decke mit licht"
+    "infrarotheizung stromverbrauch"
    ],
    "new_vocabulary": [
-    "infrarotheizung wand",
-    "infrarotheizung decke",
-    "infrarotheizung badezimmer",
-    "infrarotheizung standgerät",
-    "infrarotheizung test",
-    "infrarotheizung bild",
-    "infrarotheizungen",
-    "infrarotheizung test stiftung warentest",
-    "infrarotheizung decke mit licht"
+    "infrarotheizung stromverbrauch"
    ],
    "rising": [],
    "source": "autocomplete-vocabulary",
    "signal_limit": "vocabulary_only_not_growth_or_search_volume",
-   "last_attempt_at": "2026-11-18T13:23:12.350171+00:00",
+   "last_attempt_at": "2026-11-19T13:45:11.986948+00:00",
    "last_attempt_status": "failed",
-   "fetched": "2026-11-18"
+   "fetched": "2026-11-19"
   },
   "luftentfeuchter": {
    "rising": [
@@ -196,46 +188,50 @@
   "kaffeevollautomat": {
    "rising": [
     {
-     "q": "siemens eq.6 plus s700 te657m03de kaffeevollautomat",
-     "v": 12100
-    },
-    {
-     "q": "philips series 5500 kaffeevollautomat ep5547/90",
-     "v": 10550
+     "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
+     "v": 14000
     },
     {
      "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
-     "v": 9750
-    },
-    {
-     "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
-     "v": 7650
+     "v": 6950
     },
     {
      "q": "philips ep2230/10 series 2200 kaffeevollautomat",
-     "v": 7350
+     "v": 6900
+    },
+    {
+     "q": "philips kaffeevollautomat 6000 serie",
+     "v": 6600
     },
     {
      "q": "de'longhi kaffeevollautomat ecam 21.118.b",
-     "v": 6000
+     "v": 2850
     },
     {
-     "q": "de'longhi kaffeevollautomat",
-     "v": 130
+     "q": "black friday kaffeevollautomat",
+     "v": 1050
     },
     {
-     "q": "philips kaffeevollautomat lattego",
-     "v": 50
+     "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
+     "v": 650
     },
     {
-     "q": "philips lattego",
-     "v": 50
+     "q": "siemens eq.6 plus s700 te657m03de kaffeevollautomat",
+     "v": 350
+    },
+    {
+     "q": "krups ea897b evidence ecodesign kaffeevollautomat",
+     "v": 250
+    },
+    {
+     "q": "de'longhi magnifica evo",
+     "v": 190
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-11-11",
+   "fetched": "2026-11-19",
    "polluted": false,
-   "last_attempt_at": "2026-11-11T12:01:24.031843+00:00",
+   "last_attempt_at": "2026-11-19T13:48:13.524044+00:00",
    "last_attempt_status": "ok"
   },
   "akku staubsauger": {
