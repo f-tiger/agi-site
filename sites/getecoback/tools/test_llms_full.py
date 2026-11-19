@@ -14,6 +14,20 @@ MEACO = 'https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-
 
 
 class LlmsFull(unittest.TestCase):
+    def test_n90_guide_and_mirror_keep_acoustic_quantities_and_evidence(self):
+        guide = SITE / 'guide/delonghi-pac-n90-test.html'
+        html = guide.read_text()
+        md = guide.with_suffix('.md').read_text()
+        for content in (html, md):
+            self.assertIn('50–52 dB(A) Schalldruck', content)
+            self.assertIn('64 dB(A) Schallleistung', content)
+            self.assertIn('8004399512351', content)
+            self.assertIn('https://www.delonghi.com/de-de/s/PACN90ECOSILENT', content)
+            self.assertIn('datasheet_delonghi_PAC%20N90ECO.pdf', content)
+            self.assertNotRegex(content, r'50-dB-Schlafgrenze|Silent-Modus unter 50 dB|Leisester Monoblock im Stiftung')
+        self.assertIn('https://www.amazon.de/dp/B07NC5CP6F?tag=getecoback-21', html)
+        self.assertNotIn('amazon.de/', md)
+
     def test_real_final_catalog_tables_keep_headers_and_canonical_fragments(self):
         for slug in ['luftentfeuchter-ratgeber', 'luftentfeuchter-keller', 'waesche-trocknen-wohnung']:
             # Actual generated files, before any renderer can repair them.

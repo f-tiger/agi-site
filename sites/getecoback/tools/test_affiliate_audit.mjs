@@ -246,3 +246,18 @@ test('cellar totals and catalog destinations count only their own page and surfa
     page_views:10, affiliate_clicks:6, catalog_product_clicks:3, catalog_search_clicks:2,
   });
 });
+
+test('N90 guide rows distinguish exact German tagged product, search and other pages',async()=>{
+  const model='/guide/delonghi-pac-n90-test.html',family='/guide/delonghi-pinguino-vergleich.html';
+  const dp='https://www.amazon.de/dp/B07NC5CP6F?tag=getecoback-21';
+  const rows=[
+    [model,'page_view','',3],[model,'affiliate_click',dp,2],[model,'affiliate_click',dp.replace('.de/', '.com/'),1],
+    [family,'affiliate_click',dp.replace('/dp/', '/gp/product/'),1],[family,'affiliate_click','https://www.amazon.de/s?tag=getecoback-21',2],
+    [family,'affiliate_click',dp.replace('getecoback-21','other'),1],['/','affiliate_click',dp,4],
+  ].map(([page,name,link,n])=>({day:'2026-09-30',end_exclusive:'2026-10-01',page,name,link,n,source:'body',ref:''}));
+  const audit=await affiliateAudit(dbFor(rows),()=> 'direct');
+  assert.deepEqual(audit.weeks.at(-1).n90_guides,{
+    model:{page_views:3,affiliate_clicks:3,exact_product_clicks:2},
+    family:{page_views:0,affiliate_clicks:4,exact_product_clicks:1},
+  });
+});
