@@ -6,6 +6,8 @@
 //
 // Runs from CI (the sandbox has no outbound network). Exit 1 on any failure.
 
+import {expandedDefinitions} from "../src/mcp-expanded.mjs";
+
 const BASE = process.env.MCP_URL || "https://getecoback.com/mcp/v1";
 const HEADERS = {
   "content-type": "application/json",
@@ -75,7 +77,7 @@ console.log(`initialize OK — server: ${init?.serverInfo?.name} ${init?.serverI
 const list = await rpc("tools/list", {});
 const names = (list?.tools || []).map((t) => t.name);
 console.log(`tools/list OK — ${names.length} tools: ${names.join(", ")}`);
-const coveredNames = [...new Set(CASES.map(([tool]) => tool))];
+const coveredNames = [...new Set([...CASES.map(([tool]) => tool), ...expandedDefinitions.map(tool => tool.name)])];
 if (names.length !== coveredNames.length) {
   fails.push(`tools/list returned ${names.length} tools, smoke test covers ${coveredNames.length}`);
 }
@@ -108,6 +110,30 @@ for (const [tool, args, expects] of CASES) {
   }
 }
 
+// At most four network calls are in flight during the publication gate.
+for (let offset = 0; offset < expandedDefinitions.length; offset += 4) {
+  await Promise.all(expandedDefinitions.slice(offset, offset + 4).map(async tool => {
+    try {
+      if (!names.includes(tool.name)) throw new Error("missing from tools/list");
+      const result = await rpc("tools/call", {name:tool.name, arguments:tool.example.args});
+      const data = result?.structuredContent;
+      if (result?.isError || data?.citation_url !== "https://getecoback.com" + tool.page) {
+        throw new Error("missing answer or source");
+      }
+      for (const [key,value] of Object.entries(tool.example.expect)) {
+        const actual = data[key];
+        const matches = typeof value === "number"
+          ? typeof actual === "number" && Math.abs(actual - value) <= 1e-8 * Math.max(1,Math.abs(value))
+          : JSON.stringify(actual) === JSON.stringify(value);
+        if (!matches) throw new Error("unexpected " + key);
+      }
+      console.log("✓ " + tool.name);
+    } catch (error) {
+      fails.push(tool.name + ": " + error.message);
+    }
+  }));
+}
+
 const refused = await rpc('tools/call', {name: 'ratgeber_lesen', arguments: {
   pfad: 'https://getecoback.com.evil.test/waeschetrockner-oder-luftentfeuchter.html',
 }});
@@ -118,4 +144,4 @@ if (fails.length) {
   for (const f of fails) console.error(" ✗ " + f);
   process.exit(1);
 }
-console.log(`\nAll ${coveredNames.length} tools answered correctly in ${CASES.length} production checks.`);
+console.log(`\nAll ${coveredNames.length} tools answered correctly in ${CASES.length + expandedDefinitions.length} production checks.`);

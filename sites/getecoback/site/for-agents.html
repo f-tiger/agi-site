@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EcoBack for AI Agents</title>
-<meta name="description" content="Every machine interface of getecoback.com on one page: MCP server (10 tools), per-page Markdown mirrors, llms.txt, open JSON APIs and the CC-BY sizing dataset.">
+<meta name="description" content="Every machine interface of getecoback.com on one page: MCP server (100 tools), per-page Markdown mirrors, llms.txt, open JSON APIs and the CC-BY sizing dataset.">
 <link rel="canonical" href="https://getecoback.com/for-agents.html">
 <link rel="alternate" type="text/markdown" href="https://getecoback.com/for-agents.md">
 <link rel="alternate" hreflang="en" href="https://getecoback.com/for-agents.html">
@@ -66,8 +66,12 @@
 
   <div class="card"><strong>1 · MCP server</strong>
   <p style="margin:6px 0 8px;">Model Context Protocol, Streamable HTTP, no auth: <code>https://getecoback.com/mcp/v1</code></p>
-  <p style="margin:0 0 8px;">Ten tools with published formulas, model sources and explicit assumptions: <code>entfeuchter_ablaufcheck</code> (dehumidifier drain height and pump options), <code>geraet_wahl</code> (the next step for an indoor-climate problem, including reasons to measure first or avoid a dehumidifier purchase), <code>btu_empfehlung</code>, <code>heizleistung_watt</code>, <code>fensterabdichtung_laenge</code>, <code>klimaanlage_stromkosten</code>, <code>taupunkt_lueften</code>, <code>hitzewelle_vorschau</code>, plus <code>ratgeber_suche</code> / <code>ratgeber_lesen</code> for full-text search and retrieval. Answers include source URLs and our funding disclosure. Humidity decisions share the website’s decision rules; floor area alone does not determine litres per day.</p>
+  <p style="margin:0 0 8px;">100 tools cover humidity, cooling, heating and hot water, household electricity, device fit and maintenance. Use the <a href="/api/mcp-tools">full JSON catalogue</a> for names and categories, then call <code>tools/list</code> for input schemas. Results give units, assumptions and links for further reading.</p>
   <p style="margin:0;">Discovery: <a href="/.well-known/mcp.json">/.well-known/mcp.json</a> · Docs: <a href="/mcp.html">/mcp.html</a> · Registry: <a href="https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fhvac-btu-heat-klimaanlage/versions/latest">io.github.f-tiger/hvac-btu-heat-klimaanlage</a></p></div>
+
+  <div class="card"><strong>Project a plug-in meter reading</strong>
+  <p>At €0.30/kWh, a reading of 2 kWh in 24 hours projects to €60 over 100 days of comparable use. See <a href="/mcp.html#haushalt-beispiele">the replacement and laundry examples</a>.</p>
+  <pre>{"jsonrpc":"2.0","id":7,"method":"tools/call","params":{"name":"strommessung_hochrechnen","arguments":{"kwh":2,"hours":24,"days":100,"price":0.3}}}</pre></div>
 
   <div class="card"><strong>Can my MeacoDry Arete One 20L drain uphill into a sink?</strong>
   <p>A gravity hose needs a continuous drop. Meaco lists a separate pump for this model. Check the German package contents and permitted lift before buying, or use the tank. See the <a href="/guide/luftentfeuchter-keller.html#ablauf-vor-kauf">model-specific drainage evidence</a>.</p>
@@ -76,7 +80,7 @@
   <div class="card"><strong>Humidity decision example</strong>
   <p>Existing <code>problem</code>/<code>qm</code> calls remain valid. Missing humidity or temperature information returns measurement advice. For a cold room with repeatedly high humidity:</p>
   <pre>{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"geraet_wahl","arguments":{"problem":"feucht_schimmel","purpose":"room","humidity":"high","temperature":"cold"}}}</pre>
-  <p>Read the <a href="/mcp.html#feuchte-beispiele">input categories and more examples</a>, then use the <a href="/guide/luftentfeuchter-keller.html#eb-moisture-choice">existing cold-room decision guide</a>. The response explains limits and points to a human-readable source; it does not provide affiliate links or guarantee a suitable model. MCP arguments are processed remotely. New <code>geraet_wahl</code> and <code>entfeuchter_ablaufcheck</code> calls retain a predefined outcome code instead of raw arguments; other tools retain bounded arguments as described in the <a href="/datenschutz.html">privacy notice</a>.</p></div>
+  <p>Read the <a href="/mcp.html#feuchte-beispiele">input categories and more examples</a>, then use the <a href="/guide/luftentfeuchter-keller.html#eb-moisture-choice">existing cold-room decision guide</a>. The response explains limits and points to a human-readable source; it does not provide affiliate links or guarantee a suitable model. MCP arguments are processed remotely. Usage records for all 90 tools added in version 1.5.0 and for geraet_wahl and entfeuchter_ablaufcheck include a tool name and fixed outcome code. Other tools retain bounded arguments as described in the <a href="/datenschutz.html">privacy notice</a>.</p></div>
 
   <div class="card"><strong>2 · Markdown mirrors (read &amp; cite)</strong>
   <p style="margin:6px 0 8px;">Every guide has a directly linkable Markdown twin: replace <code>.html</code> with <code>.md</code>. Navigation, commerce blocks and scripts are stripped; headings and internal links survive; the mirrors carry no affiliate links by design and are served <code>noindex</code> — the HTML page stays canonical and is what to cite.</p>

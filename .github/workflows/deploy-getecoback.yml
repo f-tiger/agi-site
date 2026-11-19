@@ -329,7 +329,7 @@ jobs:
           node --test tools/test_affiliate_metrics.mjs
           node --test tools/test_affiliate_audit.mjs
           node --test tools/test_buyer_decision.mjs
-          node --test tools/test_mcp_moisture.mjs tools/test_mcp_drain.mjs tools/test_mcp_drain_rpc.mjs
+          node --test tools/test_mcp_moisture.mjs tools/test_mcp_drain.mjs tools/test_mcp_drain_rpc.mjs tools/test_mcp_expanded.mjs
           node --test tools/test_moisture_check.mjs
           node --test tools/test_demand_tools.mjs
           node --test tools/test_country_scenarios.mjs

@@ -1,18 +1,14 @@
 # EcoBack Raumklima — MCP server
 
-<!-- count -->10<!-- /count --> tools for **indoor climate and household energy in Germany/EU**: how many BTU a
-room needs, how long a portable-AC window seal has to be, whether a heatwave is coming,
-what a device costs to run, whether a particular dehumidifier can drain uphill, dew-point calculations, and what to check before buying
-a dehumidifier. Plus full-text search and retrieval of the site’s guides.
+<!-- count -->100<!-- /count --> tools for indoor climate and household energy in Germany. Use your
+own measurements to compare drying costs, project electricity use, assess cooling or heating, and
+check device fit or maintenance. The service also includes guide search and retrieval.
 
 Listed in the official
-[MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers?search=hvac-btu-heat-klimaanlage)
+[MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fhvac-btu-heat-klimaanlage/versions/latest)
 as `io.github.f-tiger/hvac-btu-heat-klimaanlage`.
 
-This repository is a **mirror**. The single source of truth is
-[getecoback.com](https://getecoback.com) — the tool table below is not hand-written;
-`sync.mjs` rebuilds it from the server’s `tools/list`. The table is a snapshot;
-`tools/list` gives the current interface.
+The [complete live JSON catalogue](https://getecoback.com/api/mcp-tools) groups the tools by task. Ask the server for `tools/list` to get the current input schemas. The table below is a snapshot updated by `sync.mjs`.
 
 ## Connect
 
@@ -44,6 +40,16 @@ Tool arguments are processed by the server. Setup notes for other clients:
 | `ratgeber_suche` | Searches published guides with a readable Markdown mirror, returning title, canonical URL and task-specific summary. Every result can be passed to ratgeber_lesen. |
 | `ratgeber_lesen` | Reads the cleaned Markdown of a published guide, with reviewed source links, assumptions and limits. Long excerpts are explicitly marked and link the full text. Pass an exact canonical path or URL from ratgeber_suche, without query or fragment. |
 <!-- tools:end -->
+
+## Calculate the cost of repeated household use
+
+A meter reading of 2 kWh over 24 hours projects to 200 kWh over 100 comparable days.
+At €0.30/kWh, that is €60. The [three household examples](https://getecoback.com/mcp.html#haushalt-beispiele)
+also cover `geraetewechsel_rechnen` and `waesche_trocknungskosten`.
+
+```json
+{"jsonrpc":"2.0","id":7,"method":"tools/call","params":{"name":"strommessung_hochrechnen","arguments":{"kwh":2,"hours":24,"days":100,"price":0.3}}}
+```
 
 ## Can a MeacoDry Arete One 20L drain uphill into a sink?
 
@@ -89,15 +95,15 @@ place to compare a reader's own measured values.
   Humidity decisions share the browser decision rules: measurement, no-purchase,
   cause, cold-room, laundry-cost and comparison branches. Floor area alone does
   not determine dehumidifier capacity. A CI smoke job checks all
-  <!-- count -->10<!-- /count --> tools against production.
+  <!-- count -->100<!-- /count --> tools against production.
 - **Answers include source URLs and a funding disclosure.** The site is funded by
   Amazon affiliate links on its HTML pages. Whether an assistant cites a source
   is determined by that client.
 - **Honest about what it is not.** Product recommendations summarise public tests; nothing
   is lab-tested here, and the tools say so. These are bounded decision aids, not
   remote diagnoses or guarantees of device suitability.
-- **No account or MCP cookies.** New `geraet_wahl` and `entfeuchter_ablaufcheck` calls store the tool name and
-  a predefined outcome code instead of raw arguments. Other tools retain arguments
+- **No account or MCP cookies.** Usage records for all 90 tools added in hosted version 1.5.0 and for `geraet_wahl`
+  and `entfeuchter_ablaufcheck` include the tool name and a predefined outcome code. Other tools retain arguments
   capped at 160 characters, and limited client metadata supports automation checks.
   No IP address or user ID is stored. Do not supply personal data. See the
   [privacy notice](https://getecoback.com/datenschutz.html). These changes do not
