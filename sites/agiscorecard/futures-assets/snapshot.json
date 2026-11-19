@@ -1,12 +1,12 @@
 {
-  "checkedAt": "2026-11-18T10:46:13Z",
+  "checkedAt": "2026-11-19T10:46:40Z",
   "sources": [
     {
       "id": "openai",
       "company": "OpenAI",
       "url": "https://openai.com/news/rss.xml",
-      "checkedAt": "2026-11-18T10:46:13Z",
-      "lastSuccessAt": "2026-11-18T10:46:13Z",
+      "checkedAt": "2026-11-19T10:46:40Z",
+      "lastSuccessAt": "2026-11-19T10:46:40Z",
       "ok": true,
       "error": null
     },
@@ -14,8 +14,8 @@
       "id": "anthropic",
       "company": "Anthropic",
       "url": "https://www.anthropic.com/news",
-      "checkedAt": "2026-11-18T10:46:13Z",
-      "lastSuccessAt": "2026-11-18T10:46:13Z",
+      "checkedAt": "2026-11-19T10:46:40Z",
+      "lastSuccessAt": "2026-11-19T10:46:40Z",
       "ok": true,
       "error": null
     },
@@ -23,8 +23,8 @@
       "id": "meta",
       "company": "Meta",
       "url": "https://about.fb.com/news/feed/",
-      "checkedAt": "2026-11-18T10:46:13Z",
-      "lastSuccessAt": "2026-11-18T10:46:13Z",
+      "checkedAt": "2026-11-19T10:46:40Z",
+      "lastSuccessAt": "2026-11-19T10:46:40Z",
       "ok": true,
       "error": null
     },
@@ -32,7 +32,7 @@
       "id": "xai",
       "company": "xAI / SpaceX",
       "url": "https://x.ai/news",
-      "checkedAt": "2026-11-18T10:46:13Z",
+      "checkedAt": "2026-11-19T10:46:40Z",
       "lastSuccessAt": "2026-10-31T16:20:44Z",
       "ok": false,
       "error": "http_403"
@@ -41,13 +41,123 @@
       "id": "deepmind",
       "company": "Google DeepMind",
       "url": "https://deepmind.google/blog/rss.xml",
-      "checkedAt": "2026-11-18T10:46:13Z",
-      "lastSuccessAt": "2026-11-18T10:46:13Z",
+      "checkedAt": "2026-11-19T10:46:40Z",
+      "lastSuccessAt": "2026-11-19T10:46:40Z",
       "ok": true,
       "error": null
     }
   ],
   "items": [
+    {
+      "id": "b0c8f01a5bda97bb76aaf229",
+      "company": "Meta",
+      "title": "Forum, a Dedicated App for Facebook Groups, Is Now Available in Indonesia",
+      "url": "https://about.fb.com/news/2026/11/forum-a-dedicated-app-for-facebook-groups-is-now-available-in-indonesia",
+      "publishedAt": "2026-11-19T06:05:13Z",
+      "discoveredAt": "2026-11-19T10:46:40Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "fd9bebbff7e692862dad0cea",
+      "company": "Google DeepMind",
+      "title": "Introducing Gemini 4 Neon",
+      "url": "https://deepmind.google/blog/introducing-gemini-4-neon",
+      "publishedAt": "2026-11-18T21:35:43Z",
+      "discoveredAt": "2026-11-19T10:46:40Z",
+      "signal": "capability",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "ca9ca0837de1673fe7157c5a",
+      "company": "Google DeepMind",
+      "title": "Genie 4 is now available",
+      "url": "https://deepmind.google/blog/genie-4-is-now-available",
+      "publishedAt": "2026-11-18T18:13:42Z",
+      "discoveredAt": "2026-11-19T10:46:40Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "7e7ce1316f11176f53e337b3",
+      "company": "Meta",
+      "title": "Our Approach to Updating Our Commercial Terms of Service",
+      "url": "https://about.fb.com/news/2026/11/our-approach-to-updating-our-commercial-terms-of-service",
+      "publishedAt": "2026-11-18T18:01:47Z",
+      "discoveredAt": "2026-11-19T10:46:40Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "eefdd1b06d858e276d0ea27f",
+      "company": "Meta",
+      "title": "Meta Welcomes Loblaw as First Canadian Retail Partner to Muse",
+      "url": "https://about.fb.com/news/2026/11/meta-welcomes-loblaw-as-first-canadian-retail-partner-to-muse",
+      "publishedAt": "2026-11-18T14:07:00Z",
+      "discoveredAt": "2026-11-19T10:46:40Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "184d931227f2504de1a33beb",
+      "company": "OpenAI",
+      "title": "The Silent Consensus",
+      "url": "https://openai.com/index/the-silent-consensus",
+      "publishedAt": "2026-11-18T10:00:00Z",
+      "discoveredAt": "2026-11-19T10:46:40Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "58da586369f33999eb920dc2",
+      "company": "OpenAI",
+      "title": "Research acceleration: The jagged frontier",
+      "url": "https://openai.com/index/research-acceleration-jagged-frontier",
+      "publishedAt": "2026-11-18T08:00:00Z",
+      "discoveredAt": "2026-11-19T10:46:40Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "67952d9a918d2536a7bf3b37",
+      "company": "OpenAI",
+      "title": "Inside the Codex sandbox",
+      "url": "https://openai.com/index/inside-the-codex-sandbox",
+      "publishedAt": "2026-11-18T08:00:00Z",
+      "discoveredAt": "2026-11-19T10:46:40Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "99be0c0a7e074380d1a5d6cd",
+      "company": "OpenAI",
+      "title": "Managing frontier AI risk: From training to deployment",
+      "url": "https://openai.com/index/managing-frontier-ai-risk",
+      "publishedAt": "2026-11-18T06:00:00Z",
+      "discoveredAt": "2026-11-19T10:46:40Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "68ddb817fe4001c0fc7b7140",
+      "company": "OpenAI",
+      "title": "Advancing chip design with OpenAI models",
+      "url": "https://openai.com/index/advancing-chip-design-with-our-models",
+      "publishedAt": "2026-11-18T00:00:00Z",
+      "discoveredAt": "2026-11-19T10:46:40Z",
+      "signal": "infrastructure",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "76db4fd405ce28bbae37221a",
+      "company": "Anthropic",
+      "title": "Anthropic prices initial public offering",
+      "url": "https://anthropic.com/news/anthropic-prices-initial-public-offering",
+      "publishedAt": "2026-11-18T00:00:00Z",
+      "discoveredAt": "2026-11-19T10:46:40Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
     {
       "id": "a1de396d3910fa2e0f79d5fc",
       "company": "OpenAI",
