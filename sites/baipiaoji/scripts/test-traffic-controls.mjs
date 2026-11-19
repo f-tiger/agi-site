@@ -3,7 +3,7 @@ import {guardTraffic,trafficClass,recordQuality,RULES,qualityEligible,qualityKin
 import {onRequestPost as submit} from '../functions/api/submit.js';
 import {onRequestGet as report} from '../functions/api/traffic-quality.js';
 import {onRequestPost as hit} from '../functions/api/hit.js';
-function db(){const sqlite=new DatabaseSync(':memory:');return {sqlite,prepare(sql){let args=[];const stmt=()=>sqlite.prepare(sql);return {bind(...a){args=a;return this;},async first(){return stmt().get(...args)||null;},async run(){const r=stmt().run(...args);return {meta:{changes:r.changes,last_row_id:r.lastInsertRowid}};},async all(){return {results:stmt().all(...args)};}};}};}
+function db(){const sqlite=new DatabaseSync(':memory:');return {sqlite,prepare(sql){let args=[];const stmt=()=>sqlite.prepare(sql);return {bind(...a){args=a;return this;},async first(){return stmt().get(...args)||null;},async run(){const r=stmt().run(...args);return {meta:{changes:r.changes,last_row_id:r.lastInsertRowid}};},async all(){return {success:true,results:stmt().all(...args)};}};}};}
 const req=(path='/api/submit',body='{}',extra={})=>new Request('https://baipiaoji.com'+path,{method:'POST',headers:{origin:'https://baipiaoji.com','content-type':'application/json','cf-connecting-ip':'192.0.2.1',...extra},body});
 test('bounded targeted protection; atomic concurrent budget, reset and separate identities',async()=>{
  const HITS=db(),now=1800000000000;let passed=0;
@@ -105,4 +105,19 @@ test('vendor repeat attempts produce one inquiry and the sixth request stays out
  const replies=await Promise.all(results.filter(r=>r.ok).map(r=>r.json()));
  assert.equal(replies.filter(r=>r.code==='already').length,4);
  assert.equal(HITS.sqlite.prepare('SELECT count(*) n FROM vendor_inquiries').get().n,1);
+});
+
+test('operator readout counts stored inquiries independently of QA and browser actions',async()=>{
+ const {onRequestGet}=await import('../functions/api/vendor-stats.js');
+ const HITS=db(), secret='x'.repeat(40), env={HITS,ADS_WATCH_SECRET:secret};
+ const load=(key)=>onRequestGet({request:new Request('https://baipiaoji.com/api/vendor-stats',{headers:{authorization:'Bearer '+key}}),env});
+ assert.equal((await load('invalid')).status,401);
+ assert.equal((await load(secret)).status,503);
+ HITS.sqlite.exec("CREATE TABLE hits(d,path,ev,lang); INSERT INTO hits VALUES(date('now'),'/biz/trigger/ad-inquiry','biz','en'),(date('now'),'/biz/trigger/ad-inquiry','biz','ci')");
+ const empty=await (await load(secret)).json();
+ assert.equal(empty.provisioned,false);assert.equal(empty.events[0].n,1);
+ HITS.sqlite.exec("CREATE TABLE vendor_inquiries(created,kind,status,email); INSERT INTO vendor_inquiries VALUES(date('now'),'sponsor','new','private@example.test'),(date('now','-9 days'),'expedite','new','private@example.test')");
+ const result=await (await load(secret)).json();
+ assert.equal(result.intake.length,1);assert.equal(result.intake[0].pending,1);
+ assert.equal(result.intake[0].intent,'sponsor');assert.doesNotMatch(JSON.stringify(result),/private@example/);
 });

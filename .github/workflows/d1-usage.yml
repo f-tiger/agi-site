@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       dataset:
-        description: 'd1, workers or bpj (workers/bpj output is encrypted)'
+        description: 'd1, workers, bpj or bpj-vendors (all except d1 encrypted)'
         required: false
         default: 'd1'
       report_public_key:
@@ -41,7 +41,7 @@ jobs:
       - name: Redaction selftest
         run: node tools/fleet/d1_usage.mjs --selftest
       - name: Rows read by database, hour and query
-        if: inputs.dataset != 'workers' && inputs.dataset != 'bpj'
+        if: inputs.dataset != 'workers' && inputs.dataset != 'bpj' && inputs.dataset != 'bpj-vendors'
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_API_TOKEN_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
@@ -85,5 +85,20 @@ jobs:
         with:
           name: bpj-traffic-diagnosis-encrypted
           path: /tmp/bpj-traffic-diagnosis.enc.json
+          retention-days: 1
+          if-no-files-found: error
+
+      - name: Read BPJ vendor event and intake totals
+        if: inputs.dataset == 'bpj-vendors'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+          WORKERS_REPORT_PUBLIC_KEY: ${{ inputs.report_public_key }}
+        run: node tools/fleet/bpj-vendor-readout.mjs
+      - uses: actions/upload-artifact@v4
+        if: inputs.dataset == 'bpj-vendors'
+        with:
+          name: bpj-vendors-encrypted
+          path: /tmp/bpj-vendors.enc.json
           retention-days: 1
           if-no-files-found: error
