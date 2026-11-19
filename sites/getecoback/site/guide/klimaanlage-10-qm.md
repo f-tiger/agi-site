@@ -42,7 +42,7 @@ Die letzte Zeile ist der am meisten unterschätzte Posten: Ohne dichtes Fenster 
 
 ## Schlafzimmer: Auf die Lautstärke achten
 
-Räume dieser Größe sind meistens Schlafzimmer — und nachts entscheidet nicht die Kühlleistung, sondern der Geräuschpegel. Zum Schlafen gelten rund **50 dB(A)** als Obergrenze; Standard-Monoblocks liegen bei 60 dB und mehr, Silent-Modelle darunter. Zwei Strategien funktionieren: ein leises Gerät im Nachtmodus durchlaufen lassen, oder per Timer vorkühlen und zum Einschlafen abschalten. Mehr dazu: [die leisesten Geräte fürs Schlafzimmer](https://getecoback.com/guide/beste-tragbare-klimaanlage-schlafzimmer.html) und [Schlafen bei Hitze](https://getecoback.com/guide/bei-hitze-schlafen.html).
+Für den Nachtbetrieb zählt, wie laut der Kompressor am Schlafplatz zu hören ist. Ein Schallleistungswert auf dem Energielabel beschreibt das Gerät. Der Schalldruck am Bett hängt auch von Abstand, Aufstellung und Raum ab. [Geräuschangaben des PAC N90 ECO Silent vergleichen](https://getecoback.com/guide/delonghi-pac-n90-test.html#lautstaerke). Wenn das Betriebsgeräusch stört, kühle vor dem Schlafengehen und schalte das Gerät zum Einschlafen aus. Weitere Optionen: [Kühlung im Schlafzimmer planen](https://getecoback.com/guide/beste-tragbare-klimaanlage-schlafzimmer.html) und [Schlafen bei Hitze](https://getecoback.com/guide/bei-hitze-schlafen.html).
 
 ## Für Mieter
 
@@ -62,7 +62,7 @@ Jede tragbare Klimaanlage muss die warme Luft über einen Schlauch nach draußen
 
 **Was kostet eine Nacht Kühlung bei 10 m²?**Rund 1,09 € — 700 W × 8 Stunden × 0,30 €/kWh, mit realem Kompressor-Takt von etwa 65 Prozent. Ohne dichte Fensterabdichtung läuft das Gerät gegen die zurückströmende Warmluft an und die Nacht kostet bis zum Doppelten.
 
-**Wie laut darf eine Klimaanlage im Schlafzimmer sein?**Zum Schlafen gelten rund 50 dB(A) als Grenze — das leiseste Monoblock-Gerät im Stiftung-Warentest-Umfeld (De'Longhi PAC N90 ECO Silent) liegt im Silent-Modus darunter, viele Standardgeräte bei 60 dB und mehr. Alternativ: vorkühlen per Timer und zum Einschlafen ausschalten.
+**Wie laut darf eine Klimaanlage im Schlafzimmer sein?**Beim PAC N90 ECO Silent beschreibt der Hersteller den Geräuschpegel des Geräts. Am Bett hängt der Schalldruck auch von Abstand und Raum ab. Wer beim Einschlafen Ruhe braucht, kann vor dem Schlafengehen kühlen und das Gerät dann ausschalten.
 
 **Passende Klimaanlagen für 10 m² auf Amazon.de ansehen** — nach BTU und Preis filterbar:
 

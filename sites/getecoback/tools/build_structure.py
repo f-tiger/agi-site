@@ -952,7 +952,7 @@ DEVICE_MODELS = {
 
 DEVICE_MODELS_EN = {
  "ac": [
-   ("De'Longhi PAC N90 ECO Silent", "Quietest", "Monoblock test winner at Stiftung Warentest, silent mode, R290 refrigerant.", "check price locally", "De%27Longhi+PAC+N90+ECO+Silent", "ac"),
+   ("De'Longhi PAC N90 ECO Silent", "Silent mode", "Monoblock with Silent mode and R290 refrigerant. Check the acoustic quantity and operating mode when comparing figures.", "check price locally", "De%27Longhi+PAC+N90+ECO+Silent", "ac"),
    ("Comfee MPPH-09CRN7", "Best value", "Affordable for small bedrooms & offices — but clearly audible.", "€€ · approx. €250–320", "Comfee+MPPH-09CRN7", "ac"),
    # This card used to be labelled "MeacoFan / quiet pick" while linking an AEG
    # search — a fan brand standing in for an air conditioner. Named properly now.
@@ -1657,7 +1657,7 @@ def context_entries(slug, en=False):
 # simply gets no line. Keyed by name so the card tuples stay untouched.
 MODEL_PROCON = {
     "De'Longhi Pinguino PAC EX105": ("Starke Kühlung, gute Effizienz", "Groß & schwer"),
-    "De'Longhi PAC N90 ECO Silent": ("Leisester Monoblock im Vergleich", "Teurer als der Preistipp"),
+    "De'Longhi PAC N90 ECO Silent": ('Silent-Modus · <a href="/guide/delonghi-pac-n90-test.html#lautstaerke">Geräuschangaben zum N90 prüfen</a>', "Kompressor im Raum hörbar"),
     "Comfee MPPH-09CRN7": ("Günstig, kompakt", "Deutlich hörbar (~63 dB)"),
     "AEG ChillFlex Pro": ("Sehr leise, gute Ausstattung", "Höherer Preis"),
     "Klarstein Kraftwerk Smart 12K": ("Stärkste Kühlleistung der Runde", "Läuft hörbar"),
@@ -1673,7 +1673,7 @@ MODEL_PROCON = {
 }
 MODEL_PROCON_EN = {
     "De'Longhi Pinguino PAC EX105": ("Strong cooling, good efficiency", "Big & heavy"),
-    "De'Longhi PAC N90 ECO Silent": ("Quietest monoblock in its group", "Pricier than the value pick"),
+    "De'Longhi PAC N90 ECO Silent": ("Selectable Silent mode", "Compressor stays inside the room"),
     "Comfee MPPH-09CRN7": ("Cheap, compact", "Clearly audible (~63 dB)"),
     "AEG ChillFlex Pro": ("Very quiet, well equipped", "Higher price"),
     "Klarstein Kraftwerk Smart 12K": ("Strongest cooling of its group", "Audibly loud"),

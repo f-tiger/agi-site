@@ -93,10 +93,7 @@ def page(e):
          f"gegen die zurückströmende Warmluft an und die Nacht kostet bis zum Doppelten."),
     ] + ([
         (f"Wie laut darf eine Klimaanlage im Schlafzimmer sein?",
-         "Zum Schlafen gelten rund 50 dB(A) als Grenze — das leiseste Monoblock-Gerät im "
-         "Stiftung-Warentest-Umfeld (De'Longhi PAC N90 ECO Silent) liegt im Silent-Modus "
-         "darunter, viele Standardgeräte bei 60 dB und mehr. Alternativ: vorkühlen per Timer "
-         "und zum Einschlafen ausschalten."),
+         "Beim PAC N90 ECO Silent beschreibt der Hersteller den Geräuschpegel des Geräts. Am Bett hängt der Schalldruck auch von Abstand und Raum ab. Wer beim Einschlafen Ruhe braucht, kann vor dem Schlafengehen kühlen und das Gerät dann ausschalten."),
     ] if schlafzimmer else [
         (f"Monoblock oder Split ohne Kernbohrung für {qm} m²?",
          f"Ab dieser Raumgröße lohnt der Vergleich: Ein Quick-Connect-Split wie der Midea "
@@ -122,7 +119,7 @@ def page(e):
     ]
     if schlafzimmer:
         extra_section = f"""  <h2>Schlafzimmer: Auf die Lautstärke achten</h2>
-  <p>Räume dieser Größe sind meistens Schlafzimmer — und nachts entscheidet nicht die Kühlleistung, sondern der Geräuschpegel. Zum Schlafen gelten rund <strong>50 dB(A)</strong> als Obergrenze; Standard-Monoblocks liegen bei 60 dB und mehr, Silent-Modelle darunter. Zwei Strategien funktionieren: ein leises Gerät im Nachtmodus durchlaufen lassen, oder per Timer vorkühlen und zum Einschlafen abschalten. Mehr dazu: <a href="/guide/beste-tragbare-klimaanlage-schlafzimmer.html">die leisesten Geräte fürs Schlafzimmer</a> und <a href="/guide/bei-hitze-schlafen.html">Schlafen bei Hitze</a>.</p>
+  <p>Für den Nachtbetrieb zählt, wie laut der Kompressor am Schlafplatz zu hören ist. Ein Schallleistungswert auf dem Energielabel beschreibt das Gerät. Der Schalldruck am Bett hängt auch von Abstand, Aufstellung und Raum ab. <a href="/guide/delonghi-pac-n90-test.html#lautstaerke">Geräuschangaben des PAC N90 ECO Silent vergleichen</a>. Wenn das Betriebsgeräusch stört, kühle vor dem Schlafengehen und schalte das Gerät zum Einschlafen aus. Weitere Optionen: <a href="/guide/beste-tragbare-klimaanlage-schlafzimmer.html">Kühlung im Schlafzimmer planen</a> und <a href="/guide/bei-hitze-schlafen.html">Schlafen bei Hitze</a>.</p>
 """
     else:
         extra_section = f"""  <h2>Ab {qm} m²: Monoblock oder Split ohne Kernbohrung?</h2>

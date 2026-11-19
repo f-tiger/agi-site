@@ -54,7 +54,7 @@ const buyingPathKeys = new Map([
   ['/guide/saugroboter-kaufberatung.html','robot'],
   ['/guide/luftbefeuchter-ratgeber.html','humidifier'],
 ]);
-const section = ()=>({...count(),cohorts:{},cohorts_v2:{},cellar_catalog:{...count(),catalog_product_clicks:0,catalog_search_clicks:0},buying_paths:{smart_thermostat:count(),saugwischer:count(),robot:count(),humidifier:count()},channels:{},destinations:{product:0,search:0,prime_trial:0,other:0},surfaces:{},models:{ex105:0,n90:0,other:0}});
+const section = ()=>({...count(),cohorts:{},cohorts_v2:{},n90_guides:{model:{...count(),exact_product_clicks:0},family:{...count(),exact_product_clicks:0}},cellar_catalog:{...count(),catalog_product_clicks:0,catalog_search_clicks:0},buying_paths:{smart_thermostat:count(),saugwischer:count(),robot:count(),humidifier:count()},channels:{},destinations:{product:0,search:0,prime_trial:0,other:0},surfaces:{},models:{ex105:0,n90:0,other:0}});
 const dayAt = (end,offset)=>new Date(Date.parse(end+'T00:00:00Z')+offset*86400000).toISOString().slice(0,10);
 const range = (start,end)=>({...section(),start,end_exclusive:end});
 function destination(link) {
@@ -67,9 +67,22 @@ function destination(link) {
     return [dest,model];
   } catch {return ['other','other'];}
 }
+// A subset of clicks from these two German guides to the normalized approved
+// Amazon.de destination. Never join these aggregate events to people or orders.
+const n90Guides = new Map([
+  ['/guide/delonghi-pac-n90-test.html', 'model'],
+  ['/guide/delonghi-pinguino-vergleich.html', 'family'],
+]);
+const n90Product = /^https:\/\/(?:www\.)?amazon\.de\/(?:dp|gp\/product)\/B07NC5CP6F\?tag=getecoback-21$/;
 function add(s,r,channel) {
   const field=r.name==='page_view'?'page_views':'affiliate_clicks';
   s[field]+=r.n;
+  const guide = n90Guides.get(r.page);
+  if (guide) {
+    const route = s.n90_guides[guide];
+    route[field] += r.n;
+    if (field === 'affiliate_clicks' && n90Product.test(r.link)) route.exact_product_clicks += r.n;
+  }
   const cellar = r.page === '/guide/luftentfeuchter-keller.html';
   if (cellar) s.cellar_catalog[field] += r.n;
   const group=pageGroup(r.page);
