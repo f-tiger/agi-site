@@ -2,8 +2,8 @@
  "runs": [
   {
    "changed_urls": [
-    "https://agiscorecard.com/ai-infrastructure.html",
-    "https://agiscorecard.com/zh/ai-infrastructure.html"
+    "https://agiscorecard.com/future-guide/creative-control.html",
+    "https://agiscorecard.com/zh/future-guide/creative-control.html"
    ],
    "counts": {
     "bootstrapped": 0,
@@ -11,8 +11,8 @@
     "covered": 2,
     "demand_terms": 3,
     "gaps": 1,
-    "hot_pages": 5,
-    "lastmod_updated": 2,
+    "hot_pages": 2,
+    "lastmod_updated": 0,
     "offtopic": 0,
     "pages": 359,
     "undatable": 34,
@@ -21,13 +21,12 @@
    "notes": [
     "34 URL(s) left untouched for want of a defensible date",
     "sites/agiscorecard/trends-rising.json: 1 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (ai stocks). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
-    "heat: measured 2026-11-18 (5 pages); no notes"
+    "heat: measured 2026-11-19 (2 pages); no notes"
    ],
    "outcome": "ok",
    "site": "agiscorecard",
-   "today": "2026-11-18",
+   "today": "2026-11-19",
    "wrote": [
-    "sites/agiscorecard/sitemap.xml",
     "data/autopilot/agiscorecard.json",
     "data/autopilot/agiscorecard-demand.json"
    ]
@@ -41,23 +40,23 @@
     "bootstrapped": 0,
     "changed": 2,
     "covered": 0,
-    "demand_terms": 43,
-    "gaps": 0,
+    "demand_terms": 42,
+    "gaps": 1,
     "hot_pages": 0,
     "lastmod_updated": 2,
-    "offtopic": 43,
+    "offtopic": 41,
     "pages": 7,
     "undatable": 0,
     "underserved": 0
    },
    "notes": [
-    "sites/buysomething/site/rising.json: 4 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (aroma diffuser, car refrigerator, robot vacuum replacement parts, rollator walker). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
+    "sites/buysomething/site/rising.json: 4 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (aroma diffuser, car refrigerator, red light therapy mask, rollator walker). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
     "sites/buysomething/site/rising.json: 11 fresh seed(s) used; 20 stale and 0 undated dropped",
-    "heat: measured 2026-11-18 (0 pages); no notes"
+    "heat: measured 2026-11-19 (0 pages); no notes"
    ],
    "outcome": "ok",
    "site": "buysomething",
-   "today": "2026-11-18",
+   "today": "2026-11-19",
    "wrote": [
     "sites/buysomething/site/sitemap.xml",
     "data/autopilot/buysomething.json",
@@ -67,33 +66,37 @@
   {
    "changed_urls": [
     "https://getecoback.com/en/guide/tilt-and-turn-windows-winter-condensation.html",
-    "https://getecoback.com/guide/luftbefeuchter-ratgeber.html",
+    "https://getecoback.com/guide/delonghi-pac-n90-test.html",
+    "https://getecoback.com/guide/delonghi-pinguino-vergleich.html",
+    "https://getecoback.com/guide/klimaanlage-10-qm.html",
+    "https://getecoback.com/guide/klimaanlage-15-qm.html",
+    "https://getecoback.com/guide/klimaanlage-20-qm.html",
+    "https://getecoback.com/guide/klimaanlage-25-qm.html",
     "https://getecoback.com/guide/luftbefeuchter-stromverbrauch.html",
-    "https://getecoback.com/guide/luftbefeuchter-weisser-staub.html",
+    "https://getecoback.com/guide/luftentfeuchter-keller.html",
+    "https://getecoback.com/guide/luftentfeuchter-ratgeber.html",
     "https://getecoback.com/guide/richtig-lueften-im-winter.html",
-    "https://getecoback.com/guide/thermovorhang-ratgeber.html",
-    "https://getecoback.com/guide/trotec-ttk-127-e-betriebskosten.html",
     "https://getecoback.com/strommess-protokoll.html"
    ],
    "counts": {
     "bootstrapped": 0,
-    "changed": 8,
-    "covered": 26,
-    "demand_terms": 67,
-    "gaps": 27,
+    "changed": 12,
+    "covered": 11,
+    "demand_terms": 48,
+    "gaps": 24,
     "hot_pages": 15,
-    "offtopic": 14,
+    "offtopic": 13,
     "pages": 299,
     "undatable": 0,
     "underserved": 0
    },
    "notes": [
     "sitemap owned by this site's own generator — not touched",
-    "heat: measured 2026-11-18 (22 pages); no notes"
+    "heat: measured 2026-11-19 (25 pages); no notes"
    ],
    "outcome": "ok",
    "site": "getecoback",
-   "today": "2026-11-18",
+   "today": "2026-11-19",
    "wrote": [
     "data/autopilot/getecoback.json",
     "data/autopilot/getecoback-demand.json"
@@ -119,7 +122,7 @@
    ],
    "outcome": "ok",
    "site": "goldrush",
-   "today": "2026-11-18",
+   "today": "2026-11-19",
    "wrote": [
     "data/autopilot/goldrush.json",
     "data/autopilot/goldrush-demand.json"
@@ -145,7 +148,7 @@
    ],
    "outcome": "ok",
    "site": "gridlings",
-   "today": "2026-11-18",
+   "today": "2026-11-19",
    "wrote": [
     "data/autopilot/gridlings.json",
     "data/autopilot/gridlings-demand.json"
@@ -155,12 +158,14 @@
    "changed_urls": [
     "https://thedollscout.com/collecting/event-kit.html",
     "https://thedollscout.com/de/collecting/event-kit.html",
+    "https://thedollscout.com/de/for-agents.html",
     "https://thedollscout.com/de/series.html",
-    "https://thedollscout.com/de/series/smiski-birthday.html",
-    "https://thedollscout.com/de/series/smiski-construction.html",
-    "https://thedollscout.com/de/series/smiski-exercising.html",
-    "https://thedollscout.com/de/series/smiski-moving.html",
-    "https://thedollscout.com/de/series/smiski-sunday.html",
+    "https://thedollscout.com/de/series/smiski-bed-series.html",
+    "https://thedollscout.com/de/series/smiski-cheer.html",
+    "https://thedollscout.com/de/series/smiski-dressing.html",
+    "https://thedollscout.com/de/series/smiski-museum.html",
+    "https://thedollscout.com/de/series/smiski-work.html",
+    "https://thedollscout.com/de/series/smiski-yoga-series.html",
     "https://thedollscout.com/de/series/sonny-angel-animal-series-1.html",
     "https://thedollscout.com/de/series/sonny-angel-animal-series-2.html",
     "https://thedollscout.com/de/series/sonny-angel-animal-series-3.html",
@@ -171,14 +176,14 @@
     "https://thedollscout.com/de/series/sonny-angel-snack-series.html",
     "https://thedollscout.com/de/series/sonny-angel-sweets-series.html",
     "https://thedollscout.com/de/series/sonny-angel-vegetable-series.html",
-    "https://thedollscout.com/de/shop/categories/smart-home.html",
-    "https://thedollscout.com/index.html",
+    "https://thedollscout.com/for-agents.html",
     "https://thedollscout.com/series.html",
-    "https://thedollscout.com/series/smiski-birthday.html",
-    "https://thedollscout.com/series/smiski-construction.html",
-    "https://thedollscout.com/series/smiski-exercising.html",
-    "https://thedollscout.com/series/smiski-moving.html",
-    "https://thedollscout.com/series/smiski-sunday.html",
+    "https://thedollscout.com/series/smiski-bed-series.html",
+    "https://thedollscout.com/series/smiski-cheer.html",
+    "https://thedollscout.com/series/smiski-dressing.html",
+    "https://thedollscout.com/series/smiski-museum.html",
+    "https://thedollscout.com/series/smiski-work.html",
+    "https://thedollscout.com/series/smiski-yoga-series.html",
     "https://thedollscout.com/series/sonny-angel-animal-series-1.html",
     "https://thedollscout.com/series/sonny-angel-animal-series-2.html",
     "https://thedollscout.com/series/sonny-angel-animal-series-3.html",
@@ -190,12 +195,14 @@
     "https://thedollscout.com/series/sonny-angel-sweets-series.html",
     "https://thedollscout.com/series/sonny-angel-vegetable-series.html",
     "https://thedollscout.com/zh/collecting/event-kit.html",
+    "https://thedollscout.com/zh/for-agents.html",
     "https://thedollscout.com/zh/series.html",
-    "https://thedollscout.com/zh/series/smiski-birthday.html",
-    "https://thedollscout.com/zh/series/smiski-construction.html",
-    "https://thedollscout.com/zh/series/smiski-exercising.html",
-    "https://thedollscout.com/zh/series/smiski-moving.html",
-    "https://thedollscout.com/zh/series/smiski-sunday.html",
+    "https://thedollscout.com/zh/series/smiski-bed-series.html",
+    "https://thedollscout.com/zh/series/smiski-cheer.html",
+    "https://thedollscout.com/zh/series/smiski-dressing.html",
+    "https://thedollscout.com/zh/series/smiski-museum.html",
+    "https://thedollscout.com/zh/series/smiski-work.html",
+    "https://thedollscout.com/zh/series/smiski-yoga-series.html",
     "https://thedollscout.com/zh/series/sonny-angel-animal-series-1.html",
     "https://thedollscout.com/zh/series/sonny-angel-animal-series-2.html",
     "https://thedollscout.com/zh/series/sonny-angel-animal-series-3.html",
@@ -209,12 +216,12 @@
    ],
    "counts": {
     "bootstrapped": 0,
-    "changed": 53,
+    "changed": 57,
     "covered": 7,
     "demand_terms": 29,
     "gaps": 16,
     "hot_pages": 0,
-    "lastmod_updated": 51,
+    "lastmod_updated": 57,
     "offtopic": 6,
     "pages": 341,
     "undatable": 0,
@@ -227,7 +234,7 @@
    ],
    "outcome": "ok",
    "site": "thedollscout",
-   "today": "2026-11-18",
+   "today": "2026-11-19",
    "wrote": [
     "sites/thedollscout/sitemap.xml",
     "data/autopilot/thedollscout.json",
@@ -235,5 +242,5 @@
    ]
   }
  ],
- "today": "2026-11-18"
+ "today": "2026-11-19"
 }

@@ -3,105 +3,6 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 1.0,
-   "page": "guide/akku-heizluefter.html",
-   "q": "heizlüfter",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-11-10",
-   "v": 151950
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.887,
-   "page": "guide/schimmel-im-keller-entfernen.html",
-   "q": "schimmel mit alkohol entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-11-17",
-   "v": 82200
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.933,
-   "page": "guide/infrarotheizung-gegen-schimmel.html",
-   "q": "infrarotheizung 300 watt",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-11-10",
-   "v": 66250
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.875,
-   "page": "guide/infrarotheizung-standgeraet.html",
-   "q": "infrarotheizung schreibtisch",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-11-10",
-   "v": 51050
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.7,
-   "page": "guide/schimmel-am-fenster.html",
-   "q": "schimmel aus auto entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-11-17",
-   "v": 49700
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.875,
-   "page": "guide/heizung-15-qm.html",
-   "q": "elektrische heizung",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-11-10",
-   "v": 37600
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.667,
-   "page": "guide/infrarotheizung-gegen-schimmel.html",
-   "q": "isopropanol gegen schimmel",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-11-17",
-   "v": 35600
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.8,
-   "page": "guide/stromkosten-rechner.html",
-   "q": "infrarotheizung werkstatt",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-11-10",
-   "v": 31900
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.667,
-   "page": "guide/infrarotheizung-badezimmer.html",
-   "q": "infrarotheizung auf rollen",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-11-10",
-   "v": 30700
-  },
-  {
-   "heat": null,
-   "kind": "value",
    "match": 0.917,
    "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
    "q": "luftentfeuchter fürs auto",
@@ -109,17 +10,6 @@
    "source": "related-queries",
    "stand": "2026-11-15",
    "v": 29600
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.712,
-   "page": "guide/schimmel-am-fenster.html",
-   "q": "schimmel von leder entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-11-17",
-   "v": 28050
   },
   {
    "heat": null,
@@ -230,61 +120,6 @@
    "source": "related-queries",
    "stand": "2026-11-15",
    "v": 80
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.712,
-   "page": "guide/schimmel-kleiderschrank.html",
-   "q": "schimmel aus kleidung entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-11-17",
-   "v": 50
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.75,
-   "page": "guide/schimmel-am-fenster.html",
-   "q": "schimmel in der dusche entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-11-17",
-   "v": 50
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.667,
-   "page": "guide/schimmel-am-fenster.html",
-   "q": "schimmel entfernen wohnung",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-11-17",
-   "v": 50
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.667,
-   "page": "guide/schimmel-am-fenster.html",
-   "q": "dusche schimmel entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-11-17",
-   "v": 40
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.667,
-   "page": "guide/schimmel-am-fenster.html",
-   "q": "schimmel silikonfugen entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-11-17",
-   "v": 40
   }
  ],
  "first_party_demand": {
@@ -304,42 +139,12 @@
   {
    "kind": "value",
    "match": 0.5,
-   "page": "guide/heizkosten-vergleich-rechner.html",
-   "q": "diesel infrarotheizung",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-11-10",
-   "v": 74650
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
    "page": "guide/saugwischer-kaufberatung.html",
    "q": "hyla saugwischer",
    "seed": "saugwischer",
    "source": "related-queries",
    "stand": "2026-11-14",
    "v": 53800
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "guide/heizkosten-vergleich-rechner.html",
-   "q": "toom infrarotheizung",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-11-10",
-   "v": 52500
-  },
-  {
-   "kind": "value",
-   "match": 0.0,
-   "page": null,
-   "q": "konvektorheizung",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-11-10",
-   "v": 39400
   },
   {
    "kind": "value",
@@ -562,9 +367,9 @@
    "v": 50
   }
  ],
- "generated": "2026-11-18",
+ "generated": "2026-11-19",
  "geo": "DE",
- "heat_source": "measured 2026-11-18 (22 pages); no notes",
+ "heat_source": "measured 2026-11-19 (25 pages); no notes",
  "hot_pages": [
   {
    "n7": 24,
@@ -582,7 +387,7 @@
    "page": "/produkte.html"
   },
   {
-   "n7": 10,
+   "n7": 11,
    "p7": 0,
    "page": "/en/guide/tilt-and-turn-windows-winter-condensation.html"
   },
@@ -598,6 +403,11 @@
   },
   {
    "n7": 7,
+   "p7": 8,
+   "page": "/"
+  },
+  {
+   "n7": 7,
    "p7": 0,
    "page": "/agents/compliance.html"
   },
@@ -607,9 +417,9 @@
    "page": "/en/agents/compliance.html"
   },
   {
-   "n7": 6,
-   "p7": 9,
-   "page": "/"
+   "n7": 7,
+   "p7": 5,
+   "page": "/guide/klimaanlage-wann-kaufen.html"
   },
   {
    "n7": 6,
@@ -623,17 +433,12 @@
   },
   {
    "n7": 5,
-   "p7": 5,
-   "page": "/guide/klimaanlage-wann-kaufen.html"
+   "p7": 1,
+   "page": "/guide/luftentfeuchter-keller.html"
   },
   {
    "n7": 4,
-   "p7": 3,
-   "page": "/guide/fensterabdichtung-selber-bauen.html"
-  },
-  {
-   "n7": 4,
-   "p7": 4,
+   "p7": 2,
    "page": "/guide/klimaanlage-wohnmobil.html"
   },
   {
@@ -651,7 +456,6 @@
   "black friday 2026",
   "roborock saros 20",
   "echooria",
-  "wasserstoffperoxid kaufen",
   "daikin stylish",
   "schlafsofa mit bettkasten",
   "beco maxima plus",

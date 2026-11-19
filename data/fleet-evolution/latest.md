@@ -1,39 +1,39 @@
-# Fleet evolution report — 2026-11-18
+# Fleet evolution report — 2026-11-19
 
 Deterministic, aggregate-only report. Missing data remains unknown; no editorial text, payments or membership rights are changed by this job.
 
 ## Fleet counters
 
 - Sites: 14 (healthy probes: 31)
-- Membership ready: 4 · paid members: 0 · active members: 0
-- Opportunity candidates: 7 · stale inputs: 0
+- Membership ready: 0 · paid members: 0 · active members: 0
+- Opportunity candidates: 6 · stale inputs: 0
 
 ## Priority actions
 
 | Priority | Site | Action | Mode | Evidence |
 |---:|---|---|---|---|
-| 70 | agiscorecard | membership_readiness_check | observe | snapshot_date=2026-11-18T10:40:11.368Z |
-| 70 | baipiaoji | membership_readiness_check | observe | snapshot_date=2026-11-18T10:40:11.368Z |
-| 70 | getecoback | membership_readiness_check | observe | snapshot_date=2026-11-18T10:40:11.368Z |
-| 70 | thedollscout | membership_readiness_check | observe | snapshot_date=2026-11-18T10:40:11.368Z |
-| 64 | baipiaoji | membership_demand_review | queue | external_referrer_page_view_events=591; paid_members=0 |
+| 92 | agiscorecard | membership_health | alert | public_ok=True; ready=False |
+| 92 | baipiaoji | membership_health | alert | public_ok=True; ready=False |
+| 92 | getecoback | membership_health | alert | public_ok=True; ready=False |
+| 92 | thedollscout | membership_health | alert | public_ok=True; ready=False |
 | 55 | agiscorecard | content_gap | queue | count=1; query=ai stocks crashing; value=1 |
-| 55 | getecoback | content_gap | queue | count=27; query=vorwerk saugwischer roboter; value=158500 |
+| 55 | buysomething | content_gap | queue | count=1; query=red light therapy mask costco; value=1 |
+| 55 | getecoback | content_gap | queue | count=24; query=vorwerk saugwischer roboter; value=158500 |
 | 55 | thedollscout | content_gap | queue | count=16; query=labubu cat mode; value=73950 |
-| 52 | agiscorecard | improve_hot_page | queue | page=/; n7=2612; p7=1059 |
+| 52 | agiscorecard | improve_hot_page | queue | page=/; n7=2609; p7=1174 |
 | 52 | getecoback | improve_hot_page | queue | page=/guide/luftbefeuchter-ratgeber.html; n7=24; p7=0 |
-| 48 | goldrush | ai_attribution_review | queue | legacy_page_view_events=692; ai_referrer_events=0 |
-| 48 | thedollscout | ai_attribution_review | queue | legacy_page_view_events=1823; ai_referrer_events=0 |
+| 48 | goldrush | ai_attribution_review | queue | legacy_page_view_events=700; ai_referrer_events=0 |
+| 48 | thedollscout | ai_attribution_review | queue | legacy_page_view_events=2025; ai_referrer_events=0 |
 
 ## Input freshness
 
 | Input | Date | Age (days) |
 |---|---|---:|
-| membership | 2026-11-18T10:40:11.368Z | 0 |
-| health | 2026-11-17T17:15:39Z | 1 |
-| ai_referrals | 2026-11-17T17:16:18Z | 1 |
-| opportunities | 2026-11-17 | 1 |
-| autopilot_receipt | 2026-11-18 | 0 |
+| membership | 2026-11-19T10:43:33.712Z | 0 |
+| health | 2026-11-18T16:51:08Z | 1 |
+| ai_referrals | 2026-11-18T16:51:42Z | 1 |
+| opportunities | 2026-11-18 | 1 |
+| autopilot_receipt | 2026-11-19 | 0 |
 
 ## Growth directions
 

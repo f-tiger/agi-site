@@ -15,7 +15,7 @@
     },
     "demand": {
       "has_underserved": false,
-      "has_gaps": false,
+      "has_gaps": true,
       "has_hot_pages": false,
       "top_underserved_page": null,
       "top_hot_page": null
@@ -25,7 +25,19 @@
       "stale_deploy": false
     }
   },
-  "actions": [],
+  "actions": [
+    {
+      "kind": "content_gap",
+      "priority": 55,
+      "reason": "topic-signal overlap has no matching page; apply the buyer, source, country and distribution gates before expansion",
+      "evidence": {
+        "count_band": "1-9",
+        "query": "red light therapy mask costco",
+        "value_band": "1-9"
+      },
+      "mode": "queue"
+    }
+  ],
   "autonomous_changes": [
     "refresh aggregate snapshots",
     "refresh opportunity and demand queues",

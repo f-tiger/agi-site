@@ -1,164 +1,5 @@
 [
   {
-    "as_of": "2026-10-20",
-    "fleet": {
-      "sites": 14,
-      "healthy": 31,
-      "membership_ready": 4,
-      "paid_members": null,
-      "active_members": null,
-      "opportunities": 8,
-      "stale_inputs": 0
-    },
-    "actions": [
-      {
-        "site": "agiscorecard",
-        "kind": "membership_observability",
-        "priority": 68,
-        "reason": "membership aggregate counters are unavailable",
-        "evidence": {
-          "admin_ok": false
-        },
-        "mode": "observe"
-      },
-      {
-        "site": "baipiaoji",
-        "kind": "membership_observability",
-        "priority": 68,
-        "reason": "membership aggregate counters are unavailable",
-        "evidence": {
-          "admin_ok": false
-        },
-        "mode": "observe"
-      },
-      {
-        "site": "getecoback",
-        "kind": "membership_observability",
-        "priority": 68,
-        "reason": "membership aggregate counters are unavailable",
-        "evidence": {
-          "admin_ok": false
-        },
-        "mode": "observe"
-      },
-      {
-        "site": "thedollscout",
-        "kind": "membership_observability",
-        "priority": 68,
-        "reason": "membership aggregate counters are unavailable",
-        "evidence": {
-          "admin_ok": false
-        },
-        "mode": "observe"
-      },
-      {
-        "site": "agiscorecard",
-        "kind": "content_gap",
-        "priority": 55,
-        "reason": "rising demand has no matching page; editorial judgement is required",
-        "evidence": {
-          "count": 4,
-          "query": "jim cramer ai chip stocks",
-          "value": 11450
-        },
-        "mode": "queue"
-      },
-      {
-        "site": "buysomething",
-        "kind": "content_gap",
-        "priority": 55,
-        "reason": "rising demand has no matching page; editorial judgement is required",
-        "evidence": {
-          "count": 1,
-          "query": "refrigerator cost",
-          "value": 80
-        },
-        "mode": "queue"
-      },
-      {
-        "site": "getecoback",
-        "kind": "content_gap",
-        "priority": 55,
-        "reason": "rising demand has no matching page; editorial judgement is required",
-        "evidence": {
-          "count": 27,
-          "query": "infrarotheizung hornbach",
-          "value": 55350
-        },
-        "mode": "queue"
-      },
-      {
-        "site": "thedollscout",
-        "kind": "content_gap",
-        "priority": 55,
-        "reason": "rising demand has no matching page; editorial judgement is required",
-        "evidence": {
-          "count": 3,
-          "query": "sonny angel advent calendar",
-          "value": 650
-        },
-        "mode": "queue"
-      },
-      {
-        "site": "agiscorecard",
-        "kind": "improve_hot_page",
-        "priority": 52,
-        "reason": "prioritize a page with measured reader heat",
-        "evidence": {
-          "page": "/jarvis",
-          "n7": 89,
-          "p7": 33
-        },
-        "mode": "queue"
-      },
-      {
-        "site": "getecoback",
-        "kind": "improve_hot_page",
-        "priority": 52,
-        "reason": "prioritize a page with measured reader heat",
-        "evidence": {
-          "page": "/",
-          "n7": 5,
-          "p7": 8
-        },
-        "mode": "queue"
-      },
-      {
-        "site": "buysomething",
-        "kind": "ai_discovery",
-        "priority": 48,
-        "reason": "referred traffic exists but no AI-assistant referral is measured",
-        "evidence": {
-          "human_pv_28d": 288,
-          "ai_ref_28d": 0
-        },
-        "mode": "queue"
-      },
-      {
-        "site": "goldrush",
-        "kind": "ai_discovery",
-        "priority": 48,
-        "reason": "referred traffic exists but no AI-assistant referral is measured",
-        "evidence": {
-          "human_pv_28d": 208,
-          "ai_ref_28d": 0
-        },
-        "mode": "queue"
-      },
-      {
-        "site": "gridlings",
-        "kind": "ai_discovery",
-        "priority": 48,
-        "reason": "referred traffic exists but no AI-assistant referral is measured",
-        "evidence": {
-          "human_pv_28d": 937,
-          "ai_ref_28d": 0
-        },
-        "mode": "queue"
-      }
-    ]
-  },
-  {
     "as_of": "2026-10-21",
     "fleet": {
       "sites": 14,
@@ -4181,6 +4022,158 @@
         "reason": "check source coverage and useful AI arrivals before expanding discovery work; legacy page views do not establish referred people or citations",
         "evidence": {
           "legacy_page_view_events": 1823,
+          "ai_referrer_events": 0
+        },
+        "mode": "queue"
+      }
+    ]
+  },
+  {
+    "as_of": "2026-11-19",
+    "fleet": {
+      "sites": 14,
+      "healthy": 31,
+      "membership_ready": 0,
+      "paid_members": 0,
+      "active_members": 0,
+      "opportunities": 6,
+      "stale_inputs": 0
+    },
+    "actions": [
+      {
+        "site": "agiscorecard",
+        "kind": "membership_health",
+        "priority": 92,
+        "reason": "recent snapshot reported unavailable checkout; check the live API before recovery",
+        "evidence": {
+          "public_ok": true,
+          "ready": false
+        },
+        "mode": "alert"
+      },
+      {
+        "site": "baipiaoji",
+        "kind": "membership_health",
+        "priority": 92,
+        "reason": "recent snapshot reported unavailable checkout; check the live API before recovery",
+        "evidence": {
+          "public_ok": true,
+          "ready": false
+        },
+        "mode": "alert"
+      },
+      {
+        "site": "getecoback",
+        "kind": "membership_health",
+        "priority": 92,
+        "reason": "recent snapshot reported unavailable checkout; check the live API before recovery",
+        "evidence": {
+          "public_ok": true,
+          "ready": false
+        },
+        "mode": "alert"
+      },
+      {
+        "site": "thedollscout",
+        "kind": "membership_health",
+        "priority": 92,
+        "reason": "recent snapshot reported unavailable checkout; check the live API before recovery",
+        "evidence": {
+          "public_ok": true,
+          "ready": false
+        },
+        "mode": "alert"
+      },
+      {
+        "site": "agiscorecard",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "topic-signal overlap has no matching page; apply the buyer, source, country and distribution gates before expansion",
+        "evidence": {
+          "count": 1,
+          "query": "ai stocks crashing",
+          "value": 1
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "buysomething",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "topic-signal overlap has no matching page; apply the buyer, source, country and distribution gates before expansion",
+        "evidence": {
+          "count": 1,
+          "query": "red light therapy mask costco",
+          "value": 1
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "getecoback",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "topic-signal overlap has no matching page; apply the buyer, source, country and distribution gates before expansion",
+        "evidence": {
+          "count": 24,
+          "query": "vorwerk saugwischer roboter",
+          "value": 158500
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "thedollscout",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "topic-signal overlap has no matching page; apply the buyer, source, country and distribution gates before expansion",
+        "evidence": {
+          "count": 16,
+          "query": "labubu cat mode",
+          "value": 73950
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "agiscorecard",
+        "kind": "improve_hot_page",
+        "priority": 52,
+        "reason": "review observed page-event activity and source quality; activity is not verified people or buying intent",
+        "evidence": {
+          "page": "/",
+          "n7": 2609,
+          "p7": 1174
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "getecoback",
+        "kind": "improve_hot_page",
+        "priority": 52,
+        "reason": "review observed page-event activity and source quality; activity is not verified people or buying intent",
+        "evidence": {
+          "page": "/guide/luftbefeuchter-ratgeber.html",
+          "n7": 24,
+          "p7": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "goldrush",
+        "kind": "ai_attribution_review",
+        "priority": 48,
+        "reason": "check source coverage and useful AI arrivals before expanding discovery work; legacy page views do not establish referred people or citations",
+        "evidence": {
+          "legacy_page_view_events": 700,
+          "ai_referrer_events": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "thedollscout",
+        "kind": "ai_attribution_review",
+        "priority": 48,
+        "reason": "check source coverage and useful AI arrivals before expanding discovery work; legacy page views do not establish referred people or citations",
+        "evidence": {
+          "legacy_page_view_events": 2025,
           "ai_referrer_events": 0
         },
         "mode": "queue"
