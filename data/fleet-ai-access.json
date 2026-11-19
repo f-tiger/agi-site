@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-18T16:51:33Z",
+ "checked": "2026-11-19T16:58:06Z",
  "paths": [
   "/",
   "/llms.txt"
@@ -804,7 +804,7 @@
      "/llms.txt": 200
     },
     "Bingbot": {
-     "/": "0 [Errno 104] Connection reset by peer",
+     "/": 200,
      "/llms.txt": 200
     }
    }
