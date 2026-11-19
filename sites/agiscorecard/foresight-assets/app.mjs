@@ -12,8 +12,22 @@ const status=s=>{clearTimeout(toastTimer);$('status').textContent=s;toastTimer=s
 const el=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e;};
 function event(action){
  const actions=['goal','open','source','video','save','stance','plan','export','import','cloud','newsletter','medium','topic','audio'];
- if(!actions.includes(action)||['ci','__ci','__qa','__probe'].some(k=>params.has(k))||params.get('utm_source')==='verify'||navigator.webdriver||navigator.doNotTrack==='1'||navigator.globalPrivacyControl===true)return;
- try{if(localStorage.getItem('fleet_ga4_choice_v1')!=='granted')return;const mediaEvent={medium:'future_medium',topic:'future_topic',video:'future_video_open',audio:'future_audio_open'}[action];if(mediaEvent){window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:mediaEvent}}));return;}window.gtag?.('event','tool_click',{location:'future_'+lang+'_'+action,label:current?.id||state.goal});}catch{}
+ const budgetAction=action==='budget_sheet'||action==='budget_feedback';
+ if(!budgetAction&&!actions.includes(action))return;
+ if(['ci','__ci','qa','__qa','__probe'].some(k=>params.has(k))||params.get('utm_source')==='verify'||navigator.webdriver||navigator.doNotTrack==='1'||navigator.globalPrivacyControl===true)return;
+ try{
+  const choice=localStorage.getItem('fleet_ga4_choice_v1');
+  if(budgetAction){
+   if(choice==='denied'||current?.id!=='creative-control'||!/^\/(?:zh\/)?future-guide\/creative-control(?:\.html|\/)?$/.test(location.pathname))return;
+   const name=action==='budget_sheet'?'tool_click':'discussion_click';
+   window.gtag?.('event',name,{location:'future_'+lang+'_'+action,label:'creative-control'});
+   return;
+  }
+  if(choice!=='granted')return;
+  const mediaEvent={medium:'future_medium',topic:'future_topic',video:'future_video_open',audio:'future_audio_open'}[action];
+  if(mediaEvent){window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:mediaEvent}}));return;}
+  window.gtag?.('event','tool_click',{location:'future_'+lang+'_'+action,label:current?.id||state.goal});
+ }catch{}
 }
 function capture(){if(!current||!planner)return;const n=state.notes[current.id]||emptyNote();Object.assign(n,planner.read());state.notes[current.id]=n;}
 const record=()=>{capture();return normalize({version:1,product:PRODUCT,values:state});};
