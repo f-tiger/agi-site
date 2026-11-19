@@ -59,3 +59,21 @@ test('newest publications lead the default library, including same-day timestamp
  assert.match(discoveryCards(data,'en',{asOf:'2026-12-01'}),/data-discovery-card="fresh-2"/);
  assert.ok(selectedItems(data,{asOf:'2026-12-01',order:'views'})[0].views.length);
 });
+
+test('the budget download and discussion are available on both Runway pages only', () => {
+ const site=new URL('../../',import.meta.url);
+ const sheet='worksheets/shorts-budget-2026-11-19.xlsx';
+ assert.equal(fs.readFileSync(new URL(sheet,site)).subarray(0,4).toString('hex'),'504b0304');
+ for(const prefix of ['', 'zh/']){
+  for(const claim of claims){
+   const html=fs.readFileSync(new URL(prefix+'future-guide/'+claim.id+'.html',site),'utf8');
+   if(claim.id==='creative-control'){
+    assert.ok(html.includes('href="/'+sheet+'" data-track="budget_sheet" download'));
+    assert.ok(html.includes('href="/'+prefix+'discuss/tool-evidence" data-track="budget_feedback"'));
+   }else{
+    assert.ok(!html.includes('id="shorts-budget"'),claim.id);
+   }
+  }
+  assert.ok(!fs.readFileSync(new URL(prefix+'future-guide.html',site),'utf8').includes('id="shorts-budget"'));
+ }
+});
