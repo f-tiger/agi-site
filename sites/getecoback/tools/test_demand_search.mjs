@@ -21,3 +21,13 @@ test('Navigation measurement admits fixed names only and rejects raw queries/pri
   for(const path of ['/auth/account','/members.html','/en/members.html','/api/x','/?private=1'])assert.equal(ecoPublicBusinessEvent(path,{name}),null);
  }
 });
+
+test('German drainage questions find the cellar guide and the general guide links to its answer',()=>{
+ const path='/guide/luftentfeuchter-keller.html';
+ for(const query of ['Abfluss höher als Luftentfeuchter','Kondenswasserpumpe Keller','Ablaufschlauch Gefälle'])
+  assert.equal(searchEntries(index,query,'de')[0]?.entry.u,path,query);
+ const guide=readFileSync(new URL('../site/guide/luftentfeuchter-ratgeber.html',import.meta.url),'utf8');
+ assert(guide.includes('href="'+path+'#ablauf-vor-kauf">Gefälle oder Pumpe?'));
+ const cellar=readFileSync(new URL('../site'+path,import.meta.url),'utf8');
+ assert.equal(cellar.split('id="ablauf-vor-kauf"').length,2);
+});

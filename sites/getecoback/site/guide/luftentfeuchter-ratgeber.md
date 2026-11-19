@@ -84,7 +84,7 @@ Das Thermometer bleibt also stehen — aber bei 28–30 °C nimmt ein Entfeuchte
 
 ## Pflege: Tank leeren und Filter reinigen
 
-Ein Entfeuchter ist pflegeleicht, aber zwei Handgriffe gehören dazu. Leere den Kondenswassertank regelmäßig — bei vollem Tank schaltet das Gerät automatisch ab; wer das umgehen will, nutzt einen Ablaufschlauch für Dauerbetrieb, sofern das Modell einen Anschluss hat. Reinige außerdem alle paar Wochen den Luftfilter am Ansauggitter: Setzt er sich mit Staub zu, sinkt die Entzugsleistung und der Verbrauch steigt. Der gleiche Grundsatz gilt für mobile Klimaanlagen und Luftkühler — die Anleitung dazu findest du in unserem [Ratgeber zum Reinigen](https://getecoback.com/guide/klimaanlage-reinigen.html). Stelle das Gerät mit etwas Abstand zur Wand, damit die Luft frei zirkulieren kann.
+Leere den Tank nach Anleitung und lass den Tankalarm eingeschaltet. Für den Dauerablauf kommt es darauf an, wohin das Wasser fließen soll. Liegt der Abfluss höher als der Geräteauslass, sagt der Schlauchanschluss allein nichts über eine Pumpe aus. [Gefälle oder Pumpe? Den Wasserweg für dein Modell prüfen](https://getecoback.com/guide/luftentfeuchter-keller.html#ablauf-vor-kauf). Ist der Ablauf ungeklärt, nutze den vorgesehenen Tankbetrieb. Reinige außerdem alle paar Wochen den Luftfilter am Ansauggitter: Setzt er sich mit Staub zu, sinkt die Entzugsleistung und der Verbrauch steigt. Der gleiche Grundsatz gilt für mobile Klimaanlagen und Luftkühler — die Anleitung dazu findest du in unserem [Ratgeber zum Reinigen](https://getecoback.com/guide/klimaanlage-reinigen.html). Stelle das Gerät mit etwas Abstand zur Wand, damit die Luft frei zirkulieren kann.
 
 ## Häufige Fragen
 
