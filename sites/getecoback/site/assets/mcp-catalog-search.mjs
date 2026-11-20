@@ -43,6 +43,10 @@ const taskWords = new Map([
   ['wasch_trocken_saeule_herstellerkombination_beleg', 'waschmaschine trockner miele bosch wtv 501 511 512 t1 classic white chrome stapelsatz verbindungssatz'],
   ['q350_tr_250m3_schallweg_druckpunkte_v0126', 'comfoair zehnder q350 v0126 laut schallleistung kubikmetern stunde pascal zuluftseite abluftseite'],
   ['oekodesign_teilgruppe_rollenweg_de', 'ersatzteil ersatzteile spuelmaschine geschirrspueler waschmaschine ablauffilter pumpe sprueharm reparaturbetrieb verbraucher'],
+  ['dunstabzug_de_modell_set_filter_belegkette', 'bosch dwb66bc50 umluftset dwz1dx1i6 dzz1xx1b6 ersatzfilter starterset filter kompatibilitaet'],
+  ['backofenzubehoer_reinigungsart_exakter_beleg', 'miele h2861bp 2861 flexiclip hfc70 hfc70c pyrolyse backofen reinigung drin'],
+  ['tisken_50400307_zwei_wandfelder_oberflaeche', 'ikea tisken saugnapfhalter saugnapf fliese fliesenspiegel glatt glatten fuge fliesenkante duschhalter'],
+  ['elektrog_kleingeraete_dreifach_mass_anzahl', 'toaster klein elektrohandel altgeraete altgeraet abgeben rueckgabe ruecknahme ohne kauf neukauf drei'],
 ]);
 
 // Group common noun endings while retaining a meaningful root.

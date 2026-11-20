@@ -65,6 +65,16 @@ Das Ende dieser Zeiträume hängt am letzten Inverkehrbringen des Modells. Das K
 
 Die deutschen Datenblätter des UBA nennen auch die jeweilige Verordnung (CELEX 02019R2022-20210501 und 02019R2023-20210501). Gelesen am 20.11.2026. [UBA zu EU 2019/2022, Anhang II Nummer 5](https://www.umweltbundesamt.de/system/files/medien/10592/dokumente/datenblatt_2019-2022_haushaltsgeschirrspueler_final.pdf) · [UBA zu EU 2019/2023, Anhang II Nummer 8](https://www.umweltbundesamt.de/system/files/medien/10592/dokumente/datenblatt_2019-2023_haushaltswaschmaschinen_final.pdf).
 
+## Wann kann der Händler ein altes Elektrogerät annehmen oder mitnehmen?
+
+Halte Sammelweg, Gerätekategorie, Maße und Zahl der Geräte getrennt von der Bestellung fest. § 17 ElektroG nennt für verpflichtete Vertreiber bestimmte Verkaufs- oder Lagerflächen. Dazu zählen ab 400 m² Verkaufsfläche für Elektro- und Elektronikgeräte sowie bestimmte Lebensmittelhändler mit mindestens 800 m² Gesamtverkaufsfläche und wiederholtem oder dauerhaftem Elektroangebot. Im Fernabsatz gelten dafür die im Gesetz benannten Lager- und Versandflächen.
+
+Die 0:1-Rücknahme nennt bis zu drei Altgeräte je Geräteart, wenn keine äußere Abmessung größer als 25 cm ist. Sie ist in diesem Rahmen vom Kauf unabhängig. Für ein vergleichbares neues Gerät knüpft die 1:1-Rücknahme an dieselbe Geräteart und im Wesentlichen dieselben Funktionen an. Bei vereinbarter Lieferung sind Übergabeort, Information und Rücknahmeabsicht getrennt zu dokumentieren. Für den Fernabsatz nennt § 17 die unentgeltliche Abholung für die 1:1-Rücknahme der Kategorien 1, 2 und 4. Für die übrigen benannten Kategorien und die 0:1-Rücknahme verlangt das Gesetz geeignete Rückgabemöglichkeiten in zumutbarer Entfernung. Prüfe die bekannte Gerätekategorie, bevor du den Pfad zuordnest. Kostenpflichtige Zusatzleistungen stehen außerhalb der gesetzlichen Rücknahme unter ihren jeweiligen Bedingungen.
+
+Prüfe zuerst, ob das Gerät weiter genutzt oder sinnvoll weitergegeben werden kann. Wenn Händlerfläche, Geräteart oder Abholung offen sind, frage beim Händler nach oder prüfe eine kommunale Sammelstelle. Eine konkrete Abholvereinbarung gehört zur Bestellung oder zum vom Händler bestätigten Übergabeprotokoll. Das Rücknahmesymbol kennzeichnet eine Information am Sammelpunkt und ersetzt keine dokumentierte Übergabe.
+
+Deutsche Quellen, gelesen am 20.11.2026. [ElektroG § 17 Rücknahme durch Vertreiber](https://www.gesetze-im-internet.de/elektrog_2015/__17.html) · [ElektroG § 2 Kategorien](https://www.gesetze-im-internet.de/elektrog_2015/__2.html) · [ElektroG Anlage 1](https://www.gesetze-im-internet.de/elektrog_2015/anlage_1.html) · [ElektroG § 18a Rücknahmesymbol](https://www.gesetze-im-internet.de/elektrog_2015/__18a.html) · [UBA Wo alte Elektrogeräte hingehören](https://www.umweltbundesamt.de/umwelttipps-fuer-den-alltag/wohin-dem-elektroschrott-alte-elektrogeraete).
+
 ## Weniger kaufen, besser vergleichen
 Vergleiche Energielabel, Geschirrspülen und Duschköpfe. Beispiel öffnen, Land und Entscheidung wählen. Ohne Konto oder persönliche Angaben.
 
