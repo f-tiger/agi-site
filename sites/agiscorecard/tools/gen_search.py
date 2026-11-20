@@ -40,6 +40,8 @@ for f in PAGES:
     url = "/" + (rel[:-5] if rel.endswith(".html") else rel)
     if url == "/index":
         url = "/"
+    if url in ("/agents/index", "/zh/agents/index"):
+        url = url.removesuffix("index")
     if url in ("/404", "/search"):
         continue
     # two-year-scorecard is the one page whose canonical, sitemap entry and internal
