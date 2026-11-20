@@ -51,6 +51,12 @@ const taskWords = new Map([
   ['venta_6060_kompatibilitaetslisten_modellkonflikt', 'venta rollgestell rollwagen lw24 lw25 lw44 lw45 ah530 ah535 ah550 ah555 modelllisten modellkonflikt kompatibilitaet'],
   ['pulsify_artikel_strahlart_techniktabelle_drei_bar', 'hansgrohe pulsify 24121000 24151000 powderrain'],
   ['elektrog_kleingeraete_dreifach_mass_anzahl', 'toaster klein kleinelektro zentimeter elektrohandel haendler altgeraete altgeraet abgeben rueckgabe ruecknahme ohne kauf neukauf drei'],
+  ['induktion_km7464f_de_kochboden_zonenauswahl', 'miele km7464fr km7464 7464 duetto pfanne pfannenboden topfboden boden kochzone vorne hinten links'],
+  ['miele_h7460_bp_betriebswert_genaues_datenblatt', 'miele h7460 7460 11105690 ofen ausgeschaltet auszustand standby wlan netzwerksignal leistungsaufnahme bereitschaft'],
+  ['miele_g7673_spuelanzeige_phase_eco_feedback', 'miele g7673 7673 scvi autodos ecofeedback verbrauchsanzeige striche balken prognose schaetzt messwerte verbrauchte liter wasser energie'],
+  ['spuelgang_ende_marker_und_autoopen_beobachtung', 'geschirrspuelertuer spueler restzeit countdown automatisch autoopen klappe display ende programmende offen oeffnet fertig trocknungsphase spuelgang'],
+  ['philips_hd9945_korb_und_originalteil_beleg', 'philips hd9945 na352 backset zubehoer originalteil korb gross klein'],
+  ['bosch_sks62e32eu_eco50_quellenwerte_rundung', 'bosch sks62e32eu eco50 eco sparprogramm tischgeschirrspueler kompaktgeschirrspueler wasser strom kwh etikett verbrauch spuelgang dauer laufzeit'],
 ]);
 
 // Group common noun endings while retaining a meaningful root.
