@@ -119,6 +119,18 @@ Preise selbst beim Händler eintragen und alle Beträge in derselben Währung ha
 [Gesamtsumme und eigene Sparannahme im Rechner prüfen ↑](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#rechner)
 Die Rechnung bestätigt weder die Ventilpassung noch eine Ersparnis. Mit 0 % Annahme zeigt sie auch den Fall ohne finanziellen Rückfluss.
 
+## Passt tado° X auf mein Oventrop-Ventil mit 30 mm?
+
+Prüfe die genaue Modellbezeichnung und die Gewindesteigung in den Ventilunterlagen. Zwei Oventrop-Ventile mit 30 mm Außendurchmesser können unterschiedliche Gewinde haben.
+
+- **Oventrop UniDH oder UniL mit M30 × 1,0:** Für das Smarte Heizkörper-Thermostat X nennt tado° den Adapter 1011445 (EAN 4026755228717). Er gehört laut Hersteller nicht zum Lieferumfang des Thermostats.
+
+- **Oventrop Vindo TH mit M30 × 1,5:** Für diesen dokumentierten Anschluss nennt die X-Tabelle eine direkte Montage ohne Adapter.
+
+Steht auf dem Kopf nur „Oventrop“ oder hast du nur den Durchmesser gemessen? Behalte den vorhandenen Kopf, bis Ventilmodell und Gewinde geklärt sind. Bei einem manuellen Ventil passt der X-Kopf nicht. Ist das Ventil undicht, lass es vor einem Wechsel fachlich prüfen. [tado°: geeignete Ventiltypen und Zustand prüfen](https://help.tado.com/de/articles/8949334-welche-heizkorperventile-sind-mit-dem-smarten-heizkorper-thermostat-x-von-tado-kompatibel).
+
+Herstellerquellen für Deutschland, geprüft am 20. November 2026: tado°-Leitfaden für das Smarte Heizkörper-Thermostat X, Ausgabe V2 vom Oktober 2026 – [Vindo TH, Seite 6](https://cdn.bfldr.com/607DGEMS/at/hqb8tzxsq4cmchcjxsxtwhh/DE_SRTx_compatibility_Links.pdf#page=6) und [UniDH und UniL, Seite 7](https://cdn.bfldr.com/607DGEMS/at/hqb8tzxsq4cmchcjxsxtwhh/DE_SRTx_compatibility_Links.pdf#page=7). [tado° Deutschland: Adapter im Lieferumfang](https://help.tado.com/de/articles/8949346-brauche-ich-einen-adapter-um-meinen-smarten-heizkorper-thermostat-x-zu-montieren).
+
 ## Erst die Routine, dann die Funktechnik
 Du drehst vor jedem Verlassen der Wohnung bereits herunter und heizt passend zur Nutzung? Dann ist der zusätzliche Spareffekt möglicherweise klein. Vergisst du das regelmäßig, helfen Zeitpläne. Für feste Zeiten reicht oft ein programmierbarer Kopf ohne App. Eine App lohnt sich eher bei wechselnder Anwesenheit oder mehreren gemeinsam gesteuerten Räumen.
 Die Thermostatstufen stehen für eine Zieltemperatur, nicht für eine feste Heizleistung. Laut Verbraucherzentrale sind die Skalen nur Orientierung. Stufe 5 macht einen kalten Raum nicht automatisch schneller warm als eine bereits ausreichend hohe Solltemperatur. Vorhänge und Möbel dürfen den Fühler nicht abschirmen.

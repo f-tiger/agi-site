@@ -12,6 +12,7 @@ const cellar = '/guide/luftentfeuchter-keller.html';
 const toolPaths = new Map([
   ['kellerentfeuchter_pruefpunkt_abgleichen', cellar + '#kalter-keller'],
   ['midea_portasplit_fensterhalterung_pruefen', '/guide/midea-portasplit-ausverkauft-alternativen.html#kaufpruefung'],
+  ['tado_x_oventrop_ventiladapter_pruefen', '/guide/smarte-heizkoerperthermostate-lohnen-sich.html#tado-x-oventrop'],
   ['waesche_trocknungswechsel_kaufschwelle', '/waeschetrockner-oder-luftentfeuchter.html#laundry-check'],
 ]);
 const paths = new Map([
@@ -58,7 +59,7 @@ test('each mapped tool publishes the same exact evidence link after a real tool 
   const advertised = new Map(standard.map(tool => [tool.name, tool]));
   const compact = new Map((await h.catalogue({view:'compact'})).tools.map(tool => [tool.name, tool]));
   const mapped = expandedDefinitions.filter(tool=>paths.has(tool.category) || toolPaths.has(tool.name));
-  assert.equal(mapped.length, 218);
+  assert.equal(mapped.length, 219);
   assert.equal([...compact.values()].filter(tool=>tool.guide_url).length, mapped.length);
 
   for (const {name, category, page, properties, example} of mapped) {
@@ -120,6 +121,48 @@ test('PortaSplit checks the original German EAN, window type and the correct bra
     const result = await h.rpc('tools/call', {name, arguments:{...standard, ...invalid}});
     assert.equal(result.isError, true);
     assert.equal(result.structuredContent, undefined);
+  }
+  h.assertNoWrites();
+});
+
+test('tado X requires proof of the exact Oventrop valve and pitch before an adapter decision', async () => {
+  const h = offlineWorker();
+  const name = 'tado_x_oventrop_ventiladapter_pruefen';
+  const {example} = expandedDefinitions.find(tool => tool.name === name);
+  const call = changes => h.rpc('tools/call', {name, arguments:{...example.args, ...changes}});
+  for (const ventilmodell of ['unidh','unil']) {
+    const result = (await call({ventilmodell})).structuredContent;
+    assert.equal(result.status, 'separater_adapter_erforderlich');
+    assert.equal(result.adapter_artikelnummer, '1011445');
+    assert.equal(result.adapter_ean, '4026755228717');
+    assert.equal(result.adapter_im_x_lieferumfang, false);
+    assert.equal(result.quellenmarkt, 'DE');
+    assert.equal(result.quellen_geprueft_am, '2026-11-20');
+    assert.match(result.quellen_url, /\.pdf#page=7$/);
+  }
+  const direct = (await call({ventilmodell:'vindo_th',gewinde:'m30_1_5'})).structuredContent;
+  assert.equal(direct.status, 'direktmontage_dokumentiert');
+  assert.equal(direct.adapter_artikelnummer, null);
+  assert.equal(direct.adapter_ean, null);
+  assert.match(direct.quellen_url, /\.pdf#page=6$/);
+  for (const [changes,status] of [
+    [{gewinde:'unbekannt'}, 'ventilbeleg_fehlend'],
+    [{ventilmodell:'anders_oder_unbekannt'}, 'ventilbeleg_fehlend'],
+    [{ventilzustand:'unbekannt'}, 'ventilbeleg_fehlend'],
+    [{gewinde:'m30_1_5'}, 'modell_gewinde_widerspruch'],
+    [{ventilzustand:'manuell'}, 'manuelles_ventil_nicht_kompatibel'],
+    [{ventilzustand:'beschaedigt_oder_undicht'}, 'zustand_klaeren'],
+  ]) {
+    const result = (await call(changes)).structuredContent;
+    assert.equal(result.status, status);
+    assert.equal(result.adapter_artikelnummer, null);
+    assert.equal(result.adapter_ean, null);
+    assert.equal(result.adapter_im_x_lieferumfang, null);
+  }
+  for (const changes of [{gewinde:'30mm'},{ventilmodell:'danfoss_ra'},{ventilzustand:true},{produkte:'tado-v3'}]) {
+    const invalid = await call(changes);
+    assert.equal(invalid.isError, true);
+    assert.equal(invalid.structuredContent, undefined);
   }
   h.assertNoWrites();
 });

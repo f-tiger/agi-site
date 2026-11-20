@@ -18,9 +18,9 @@ const names = results => results.map(tool => tool.name);
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 218);
+  assert.equal(withGuides.length, 219);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 14);
+  assert.equal(destinations.size, 15);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);
@@ -49,6 +49,19 @@ test('German condition questions find the cold-cellar evidence and preserve mode
     const response = await catalogue({q:query, view:'compact', limit:'3'});
     assert.equal(response.tools[0]?.name, expected, query);
     assert.equal(findCatalogueTools(compact, {query})[0]?.name, expected, query);
+  }
+});
+
+test('German Oventrop buyer questions route to the X-generation adapter check', async () => {
+  const tool = 'tado_x_oventrop_ventiladapter_pruefen';
+  for (const query of [
+    'Mein Oventrop-Ventil hat 30 mm. Passt tado X ohne Adapter, oder brauche ich für M30 × 1,0 einen anderen?',
+    'Welcher Adapterring passt für tado X auf dem Oventrop UniL?',
+    'Passt der tado X Thermostat direkt am Vindo TH Heizungsventil?',
+  ]) {
+    const response = await catalogue({q:query, view:'compact', limit:'3'});
+    assert.equal(response.tools[0]?.name, tool, query);
+    assert.equal(findCatalogueTools(compact, {query})[0]?.name, tool, query);
   }
 });
 

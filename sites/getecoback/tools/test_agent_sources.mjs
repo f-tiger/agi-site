@@ -100,6 +100,12 @@ test('appliance evidence survives in both the generated mirror and edge fallback
    'https://zehnder.picturepark.com/v/WbAb4h0n/',
    'https://zehnder.picturepark.com/v/dwbRP3uL/',
   ]],
+  ['guide/smarte-heizkoerperthermostate-lohnen-sich', [
+   'https://cdn.bfldr.com/607DGEMS/at/hqb8tzxsq4cmchcjxsxtwhh/DE_SRTx_compatibility_Links.pdf#page=6',
+   'https://cdn.bfldr.com/607DGEMS/at/hqb8tzxsq4cmchcjxsxtwhh/DE_SRTx_compatibility_Links.pdf#page=7',
+   'https://help.tado.com/de/articles/8949346-brauche-ich-einen-adapter-um-meinen-smarten-heizkorper-thermostat-x-zu-montieren',
+   'https://help.tado.com/de/articles/8949334-welche-heizkorperventile-sind-mit-dem-smarten-heizkorper-thermostat-x-von-tado-kompatibel',
+  ]],
   ['guide/midea-portasplit-ausverkauft-alternativen', [
    'https://www.midea.com/de/klimatisieren-heizen/portasplit/produktinfos.portasplit',
    'https://www.midea.com/de/klimatisieren-heizen/portasplit/installation',
