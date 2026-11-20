@@ -89,6 +89,23 @@ test('14 prior German discovery checks remain near the top', async () => {
   }
 });
 
+test('questions about the six new household topics find a matching decision in the top three', async () => {
+  const questions = [
+    ['Ist im Winter im Wohnmobil am Fenster oder hinter dem Polster eher mit Kondenswasser zu rechnen?', 'wohnmobil_lokale_taureserve_fenster_polster_paar'],
+    ['Mein PC wird wärmer. Liegt es an der angesaugten Raumluft oder ist die CPU gegenüber der Ansaugluft deutlich heißer?', 'pc_chip_und_ansaugluft_abstand_zerlegen'],
+    ['Wie viele zusätzliche warme Minuten habe ich beim Arbeiten am Platz durch die Punktwärme bekommen?', 'punktwaerme_zusatzkomfort_nur_neue_minuten'],
+    ['Wo bleibt das Wasser aus dem Tank meines Luftkühlers, wenn ich Rücklauf und aufgefangenes Tropfwasser mitmesse?', 'luftkuehler_tankbilanz_ueber_wasserwege'],
+    ['Meine Wäsche auf dem beheizten Wäscheständer wird nicht leichter. Ist sie schon trocken oder ist das Gewicht nur stehen geblieben?', 'heizwaesche_massenplateau_vor_wirklichem_ziel'],
+    ['Welche Bodenfelder im Pool hat der Poolroboter beim letzten Lauf ausgelassen?', 'poolroboter_bodenraster_unbesuchte_felder'],
+  ];
+  for (const [q, expected] of questions) {
+    const response = await catalogue({q, view:'compact', limit:'3'});
+    const ranked = names(findCatalogueTools(compact, {query:q})).slice(0, 3);
+    assert.deepEqual(names(response.tools), ranked, q);
+    assert.ok(ranked.includes(expected), q);
+  }
+});
+
 test('generic and off-topic requests produce no fallback catalogue matches', async () => {
   for (const q of [
     'Kannst du mir heute bitte helfen?',
