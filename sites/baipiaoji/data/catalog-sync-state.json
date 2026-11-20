@@ -1,19 +1,9 @@
 {
  "version": 1,
  "github": {
-  "queryIndex": 0,
+  "queryIndex": 6,
   "page": 1,
   "pending": [
-   {
-    "repo": "novuhq/novu",
-    "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "Dokploy/dokploy",
-    "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
    {
     "repo": "getzep/graphiti",
     "topic": "agents",
@@ -27,16 +17,6 @@
    {
     "repo": "openai/openai-agents-python",
     "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "imbue-ai/vet",
-    "topic": "coding",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "Th0rgal/sandboxed.sh",
-    "topic": "coding",
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
@@ -620,16 +600,6 @@
     "foundAt": "2026-10-06T06:50:25.349Z"
    },
    {
-    "repo": "mkiol/dsnote",
-    "topic": "audio",
-    "foundAt": "2026-10-06T06:50:25.349Z"
-   },
-   {
-    "repo": "soniqo/speech-swift",
-    "topic": "audio",
-    "foundAt": "2026-10-06T06:50:25.349Z"
-   },
-   {
     "repo": "lobehub/lobe-tts",
     "topic": "audio",
     "foundAt": "2026-10-06T06:50:25.349Z"
@@ -795,11 +765,6 @@
     "foundAt": "2026-10-09T06:38:33.001Z"
    },
    {
-    "repo": "ibrahimqureshae/mdflux",
-    "topic": "knowledge",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
     "repo": "liustack/modlens",
     "topic": "coding",
     "foundAt": "2026-10-09T06:38:33.001Z"
@@ -850,11 +815,6 @@
     "foundAt": "2026-10-09T06:38:33.001Z"
    },
    {
-    "repo": "alainm23/planify",
-    "topic": "everyday",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
     "repo": "OmniNull/OmniWM",
     "topic": "everyday",
     "foundAt": "2026-10-09T06:38:33.001Z"
@@ -882,11 +842,6 @@
    {
     "repo": "theopenco/llmgateway",
     "topic": "coding",
-    "foundAt": "2026-10-10T06:21:21.428Z"
-   },
-   {
-    "repo": "mozilla-ai/any-llm",
-    "topic": "local",
     "foundAt": "2026-10-10T06:21:21.428Z"
    },
    {
@@ -1472,11 +1427,6 @@
    {
     "repo": "Human-Agent-Society/CORAL",
     "topic": "coding",
-    "foundAt": "2026-10-22T05:18:29.886Z"
-   },
-   {
-    "repo": "NiuTrans/NLPBook",
-    "topic": "ai",
     "foundAt": "2026-10-22T05:18:29.886Z"
    },
    {
@@ -2212,11 +2162,6 @@
    {
     "repo": "HUANGCHIHHUNGLeo/claude-real-video",
     "topic": "coding",
-    "foundAt": "2026-11-05T07:19:29.391Z"
-   },
-   {
-    "repo": "scambier/obsidian-omnisearch",
-    "topic": "documents",
     "foundAt": "2026-11-05T07:19:29.391Z"
    },
    {
@@ -2970,11 +2915,6 @@
     "foundAt": "2026-11-19T07:52:30.561Z"
    },
    {
-    "repo": "bytedance/Bernini",
-    "topic": "video",
-    "foundAt": "2026-11-19T07:52:30.561Z"
-   },
-   {
     "repo": "thu-ml/Motus",
     "topic": "video",
     "foundAt": "2026-11-19T07:52:30.561Z"
@@ -3003,6 +2943,21 @@
     "repo": "joeseesun/opus-video-prompts",
     "topic": "coding",
     "foundAt": "2026-11-19T07:52:30.561Z"
+   },
+   {
+    "repo": "ccch1mneyyy/dsh-Go",
+    "topic": "agents",
+    "foundAt": "2026-11-20T07:43:54.087Z"
+   },
+   {
+    "repo": "haydenschmitty/floorplan",
+    "topic": "coding",
+    "foundAt": "2026-11-20T07:43:54.087Z"
+   },
+   {
+    "repo": "Tencent/LoopForge",
+    "topic": "coding",
+    "foundAt": "2026-11-20T07:43:54.087Z"
    }
   ],
   "checked": {
@@ -3191,11 +3146,17 @@
    "gh-deepspeedai-deepspeed-808abe": "2026-11-18T07:56:05.716Z",
    "gh-vllm-project-vllm-omni-1737ff": "2026-11-18T07:56:05.716Z",
    "gh-berriai-litellm-eff325": "2026-11-18T07:56:05.716Z",
-   "gh-ovidijusparsiunas-deep-chat-97d623": "2026-11-18T07:56:05.716Z"
+   "gh-ovidijusparsiunas-deep-chat-97d623": "2026-11-18T07:56:05.716Z",
+   "gh-iofficeai-aionui-a6e6a5": "2026-11-20T07:43:54.087Z",
+   "gh-chaitin-monkeycode-f551d8": "2026-11-20T07:43:54.087Z",
+   "gh-markfulton-nanobananaeditor-f58191": "2026-11-20T07:43:54.087Z",
+   "gh-denizsafak-abogen-297084": "2026-11-20T07:43:54.087Z",
+   "gh-learningcircuit-local-deep-research-fdedb4": "2026-11-20T07:43:54.087Z",
+   "gh-rapidai-rapidocr-14dc3f": "2026-11-20T07:43:54.087Z"
   }
  },
  "mcp": {
-  "cursor": "com.jeromehandywash/site:2.3.0",
+  "cursor": "com.modevc/radar:2.0.2",
   "since": "2026-10-01T15:26:40.958Z",
   "watermark": "2026-10-02T15:26:40.958Z",
   "scanStarted": "2026-11-14T06:58:47.664Z",
@@ -3480,18 +3441,18 @@
    "elicitly-elicitly": "2026-11-19T07:52:30.561Z",
    "elijahdesent-custom-website-editor": "2026-11-19T07:52:30.561Z",
    "eliza": "2026-11-19T07:52:30.561Z",
-   "elopstudio-aiwave-ai-wave": "2026-10-11T06:21:02.155Z",
-   "emberverse-emberverse": "2026-10-11T06:21:02.155Z",
-   "emisar-emisar": "2026-10-11T06:21:02.155Z",
-   "empiriolabs-mcp": "2026-10-11T06:21:02.155Z",
-   "empryo-docs": "2026-10-11T06:21:02.155Z",
-   "enclave402-enclave402": "2026-10-11T06:21:02.155Z",
-   "enconvert-mcp": "2026-10-11T06:21:02.155Z",
-   "energyaisolution-solar-home-incentives": "2026-10-11T06:21:02.155Z",
-   "eveoy-mcp": "2026-10-11T06:21:02.155Z",
-   "evlek-mcp-server": "2026-10-11T06:21:02.155Z",
-   "exa-mcp-server": "2026-10-11T06:21:02.155Z",
-   "exactlane-preflight": "2026-10-11T06:21:02.155Z",
+   "elopstudio-aiwave-ai-wave": "2026-11-20T07:43:54.087Z",
+   "emberverse-emberverse": "2026-11-20T07:43:54.087Z",
+   "emisar-emisar": "2026-11-20T07:43:54.087Z",
+   "empiriolabs-mcp": "2026-11-20T07:43:54.087Z",
+   "empryo-docs": "2026-11-20T07:43:54.087Z",
+   "enclave402-enclave402": "2026-11-20T07:43:54.087Z",
+   "enconvert-mcp": "2026-11-20T07:43:54.087Z",
+   "energyaisolution-solar-home-incentives": "2026-11-20T07:43:54.087Z",
+   "eveoy-mcp": "2026-11-20T07:43:54.087Z",
+   "evlek-mcp-server": "2026-11-20T07:43:54.087Z",
+   "exa-mcp-server": "2026-11-20T07:43:54.087Z",
+   "exactlane-preflight": "2026-11-20T07:43:54.087Z",
    "execbro-execbro": "2026-10-11T06:21:02.155Z",
    "expense-budget-tracker-expense-budget-tracker": "2026-10-11T06:21:02.155Z",
    "extend-extend": "2026-10-11T06:21:02.155Z",
@@ -4839,7 +4800,35 @@
    "smithery-alex-llm-attack-mcp-server": "2026-11-19T07:52:30.561Z",
    "smithery-alphago2580-naramarketmcp": "2026-11-19T07:52:30.561Z",
    "smithery-aman-amith-shastry-scientific-computation-mcp": "2026-11-19T07:52:30.561Z",
-   "smithery-artin0123-gemini-image-mcp-server": "2026-11-19T07:52:30.561Z"
+   "smithery-artin0123-gemini-image-mcp-server": "2026-11-19T07:52:30.561Z",
+   "smithery-badroobot-test-m": "2026-11-20T07:43:54.087Z",
+   "smithery-bigvik193-reddit-ads-mcp": "2026-11-20T07:43:54.087Z",
+   "smithery-bigvik193-reddit-ads-mcp-api": "2026-11-20T07:43:54.087Z",
+   "smithery-bigvik193-reddit-user-mcp": "2026-11-20T07:43:54.087Z",
+   "smithery-bowenxu0126-aistudio-hw3": "2026-11-20T07:43:54.087Z",
+   "smithery-browserbasehq-mcp-browserbase": "2026-11-20T07:43:54.087Z",
+   "smithery-chir24-unreal-mcp": "2026-11-20T07:43:54.087Z",
+   "smithery-cryptocultcurt-appfolio-mcp-server": "2026-11-20T07:43:54.087Z",
+   "smithery-danushkumar-v-mcp-discord": "2026-11-20T07:43:54.087Z",
+   "smithery-felixyifeiwang-felix-mcp-smithery": "2026-11-20T07:43:54.087Z",
+   "smithery-hint-services-obsidian-github-mcp": "2026-11-20T07:43:54.087Z",
+   "smithery-ilyagusev-academia-mcp": "2026-11-20T07:43:54.087Z",
+   "smithery-imronai-mcp-server-browserbase": "2026-11-20T07:43:54.087Z",
+   "smithery-jmoak-chrono-mcp": "2026-11-20T07:43:54.087Z",
+   "smithery-junojunhyun-festival-finder-mcp": "2026-11-20T07:43:54.087Z",
+   "smithery-kim-soung-won-mcp-smithery-exam": "2026-11-20T07:43:54.087Z",
+   "smithery-leghis-smart-thinking": "2026-11-20T07:43:54.087Z",
+   "smithery-linkupplatform-linkup-mcp-server": "2026-11-20T07:43:54.087Z",
+   "smithery-metehangzl-pokemcp": "2026-11-20T07:43:54.087Z",
+   "smithery-mistersandfr-supabase-mcp-selfhosted": "2026-11-20T07:43:54.087Z",
+   "smithery-nekzus-npm-sentinel-mcp": "2026-11-20T07:43:54.087Z",
+   "smithery-pablolec-keyprobe-mcp": "2026-11-20T07:43:54.087Z",
+   "smithery-phionx-mcp-hello-server": "2026-11-20T07:43:54.087Z",
+   "smithery-pixdataorg-coderide": "2026-11-20T07:43:54.087Z",
+   "smithery-ref-tools-ref-tools-mcp": "2026-11-20T07:43:54.087Z",
+   "smithery-scrapegraphai-scrapegraph-mcp": "2026-11-20T07:43:54.087Z",
+   "smithery-takodata-tako-mcp": "2026-11-20T07:43:54.087Z",
+   "tradeit-mcp": "2026-11-20T07:43:54.087Z"
   }
  }
 }

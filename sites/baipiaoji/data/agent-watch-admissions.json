@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-19",
+ "checked": "2026-11-20",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -4437,289 +4437,45 @@
    "source_http": 404,
    "repo_http": 404,
    "reason": "source HTTP 404"
+  },
+  "everydaybudd-decisions": {
+   "attempts": 1,
+   "first_attempt": "2026-11-20",
+   "last_attempt": "2026-11-20",
+   "attemptedAt": "2026-11-20T07:43:54.087Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "exactmods-exactmods": {
+   "attempts": 1,
+   "first_attempt": "2026-11-20",
+   "last_attempt": "2026-11-20",
+   "attemptedAt": "2026-11-20T07:43:54.087Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
+  },
+  "expatriator-immigration": {
+   "attempts": 1,
+   "first_attempt": "2026-11-20",
+   "last_attempt": "2026-11-20",
+   "attemptedAt": "2026-11-20T07:43:54.087Z",
+   "source_http": 402,
+   "repo_http": null,
+   "reason": "source HTTP 402"
+  },
+  "familiartarot-tarot": {
+   "attempts": 1,
+   "first_attempt": "2026-11-20",
+   "last_attempt": "2026-11-20",
+   "attemptedAt": "2026-11-20T07:43:54.087Z",
+   "source_http": 429,
+   "repo_http": null,
+   "reason": "source HTTP 429"
   }
  },
  "admitted": [
-  {
-   "slug": "term-forum",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "knowledgeforagents-knowledge-for-agents",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cardcenteringtool-card-prices",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "exactlane-preflight",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "netmon-demo",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cosvoice-cosvoice",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "imnoo-drawing-converter",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "mentionagent-mentionagent",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "srift-srift",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "seenpaid-seenpaid",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "loopingagent-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cc-basile-basile",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "snapdiff-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "interviewflowai-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "voxodds-voxodds",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "frontiercrown-signer-nostr-signer",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cavyro-cavyro",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "trent-trent",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "okareo-okareo",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "rechtssysteem-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "aikstockdata-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "avidquant-optiondesk",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "dayze-life-context",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "ratchetgate-ratchet",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "igods-gvt",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "kanera-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "loadster-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "theservicemarketingguys-audit",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "churnkey-churnkey",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "de-cronjob-cronjob-de-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "agentsouk-agentsouk",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "sednasystem-genesis",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "reqbeat-hiring-signals",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "marketcheck-api",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cloud-easybits-easybits",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "withtallied-tallied",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "marketcheck-ai-reports",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "tugra-ai-tugra",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "sytecheck-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "mambabuilt-mcp-linkedin-post-engager-capture",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "mambabuilt-mcp-gtm-suite",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "atako-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "aicontentdrop-ai-content-drop",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "riskstate-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "openwebhook-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "paxalabs-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "scopeblind-protect-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "yentaknows-directory",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "inoh-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "thrifle-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "productnow-productnow",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "tabtree-tabtree",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "ag-bureau-search",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "savvly-savvly",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "energyaisolution-solar-home-incentives",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "meshkore-meshkore",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
   {
    "slug": "build-swapi-star-wars",
    "date": "2026-09-22",
@@ -21890,6 +21646,342 @@
    "date": "2026-11-19",
    "source_http": 200,
    "repo_http": null
+  },
+  {
+   "slug": "evergesture-evergesture",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "everlange-mcp",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "evermuse-evermuse",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "everstake-mcp",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "everyhourdeal-shopping",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "evidentagents-reviews",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "exactpdf-mcp",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "examova-mcp",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "excaliclaw-excaliclaw",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "excurvo-site",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "exitcleanly-dissolution",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "exittaxestimator-site",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "exitvaluecalculator-site",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "exitvo-site",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "expandingweb-agentic-commerce-readiness",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "expandingweb-nord-trail-store",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "expatriationtaxcalculator-site",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "exploit-intel-eip-mcp",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "extinvo-site",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "extralingo-extralingo",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "exviv-competitive-intelligence",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ezflipai-ezflipai",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ezoic-setup",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "eztexting-mcp",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "f1laps-mcp",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "f1ow-f1ow",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fabersomniorum-faber-machine-market",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fablerlabs-x402-tools",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "fabtally-slicer",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "faceabot-capability-network",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "factanker-factanker",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "facturacobra-cobra",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fadehost-mcp",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fahaliai-fahali",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "faireplace-public-tools",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "fairoddscalculator-site",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fairvalue-calculator-fair-value",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "fairwhere-fairwhere",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fakeparrot-mcp",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "falazuki-finance-br",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "falconer-mcp",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "falcoscan-mcp",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "faldaro-mcp",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "falkordb-queryweaver",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "familiarvtt-familiar",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "familyfairplay-family-fair-play",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "familyfishin-mcp-site-discovery",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "familyofficeregistry-registry",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fanaura-journey",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "fanlinewire-fanduel-odds",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "faredice-trips",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fareeagle-travel",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fareeqy-fareeqy",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "farmneural-mcp",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fast-surveys-fast-surveys",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fastgstrefund-fast-gst-refund",
+   "date": "2026-11-20",
+   "source_http": 200,
+   "repo_http": 200
   }
  ],
  "note": "Written by scripts/agent-watch-admit.mjs. A slug listed under rejected was NOT admitted (reason + last HTTP status); it is retried on later runs. Candidates that were admitted appear in data/agent-watch.json."

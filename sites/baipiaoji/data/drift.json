@@ -1,10 +1,53 @@
 {
-  "generated": "2026-11-19",
+  "generated": "2026-11-20",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
   "fetched_ok": 106,
   "fetched_fail": 21,
   "pending": 16,
   "items": [
+    {
+      "slug": "framer",
+      "url": "https://framer.com/pricing",
+      "confirmed": "2026-11-20",
+      "first_seen": "2026-11-19",
+      "added": [
+        "$20/mo",
+        "$30",
+        "10,000credits",
+        "100,000credits",
+        "100gb",
+        "20,000credits",
+        "22m",
+        "3,000credits",
+        "30,000credits",
+        "5,000credits",
+        "50,000credits"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-06"
+    },
+    {
+      "slug": "cloudflare-workers-ai",
+      "url": "https://developers.cloudflare.com/workers-ai/platform/pricing",
+      "confirmed": "2026-11-20",
+      "first_seen": "2026-11-19",
+      "added": [
+        "58%"
+      ],
+      "removed": [],
+      "checked_then": "2026-09-16"
+    },
+    {
+      "slug": "recraft",
+      "url": "https://recraft.ai/blog/ownership-and-commercial-use-faq",
+      "confirmed": "2026-11-20",
+      "first_seen": "2026-11-19",
+      "added": [],
+      "removed": [
+        "3image"
+      ],
+      "checked_then": "2026-08-06"
+    },
     {
       "slug": "codex",
       "url": "https://developers.openai.com/codex/pricing",
@@ -169,39 +212,6 @@
         "30minutes"
       ],
       "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "framer",
-      "url": "https://framer.com/pricing",
-      "confirmed": "2026-11-14",
-      "first_seen": "2026-11-13",
-      "added": [],
-      "removed": [
-        "$30"
-      ],
-      "checked_then": "2026-08-06"
-    },
-    {
-      "slug": "cloudflare-workers-ai",
-      "url": "https://developers.cloudflare.com/workers-ai/platform/pricing",
-      "confirmed": "2026-11-14",
-      "first_seen": "2026-11-13",
-      "added": [
-        "$0.0017"
-      ],
-      "removed": [],
-      "checked_then": "2026-09-16"
-    },
-    {
-      "slug": "recraft",
-      "url": "https://recraft.ai/blog/ownership-and-commercial-use-faq",
-      "confirmed": "2026-11-14",
-      "first_seen": "2026-11-13",
-      "added": [
-        "3image"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-06"
     },
     {
       "slug": "elicit",

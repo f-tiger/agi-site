@@ -1,73 +1,73 @@
 {
-  "generated": "2026-11-19",
-  "source_generated_at": "2026-11-19T07:51:13.691Z",
-  "exported_at": "2026-11-19T07:51:13.741Z",
+  "generated": "2026-11-20",
+  "source_generated_at": "2026-11-20T07:42:37.262Z",
+  "exported_at": "2026-11-20T07:42:37.325Z",
   "source": "/api/reach",
   "window_days": 28,
-  "since": "2026-10-22",
-  "until": "2026-11-19",
+  "since": "2026-10-23",
+  "until": "2026-11-20",
   "definition": "ev='' AND ref != '' — client-reported external-referrer page-view events; not verified humans, unique visitors, search-engine clicks or conversions. Direct/no-referrer visits and /__ self-test paths excluded. Historical rows can contain automated visits or repeated loads; no row-level data.",
-  "humans_referred": 585,
-  "per_day": 20.9,
+  "humans_referred": 601,
+  "per_day": 21.5,
   "by_kind": {
-    "tool": 380,
-    "page": 66,
-    "category": 36,
-    "plans": 20,
+    "tool": 385,
+    "page": 69,
+    "category": 38,
+    "plans": 22,
     "upgrade": 34,
     "alternatives": 17,
     "judgement": 14,
-    "vs": 12,
-    "wall": 5,
-    "money": 1
+    "money": 2,
+    "vs": 13,
+    "wall": 7
   },
   "categories": [
     {
       "cat": "chat",
-      "n": 143
-    },
-    {
-      "cat": "image",
-      "n": 65
+      "n": 145
     },
     {
       "cat": "search",
-      "n": 63
+      "n": 64
+    },
+    {
+      "cat": "image",
+      "n": 64
     },
     {
       "cat": "coding",
-      "n": 50
+      "n": 56
     },
     {
       "cat": "video",
-      "n": 50
+      "n": 52
     },
     {
       "cat": "api",
-      "n": 45
+      "n": 42
     },
     {
       "cat": "writing",
       "n": 31
     },
     {
-      "cat": "local",
-      "n": 14
+      "cat": "office",
+      "n": 15
     },
     {
-      "cat": "office",
-      "n": 13
+      "cat": "local",
+      "n": 14
     },
     {
       "cat": "audio",
       "n": 6
     },
     {
-      "cat": "design",
-      "n": 4
+      "cat": "study",
+      "n": 5
     },
     {
-      "cat": "study",
+      "cat": "design",
       "n": 4
     },
     {
@@ -83,7 +83,7 @@
     {
       "slug": "kimi",
       "cat": "chat",
-      "n": 87
+      "n": 89
     },
     {
       "slug": "exa",
@@ -93,25 +93,25 @@
     {
       "slug": "grok",
       "cat": "chat",
-      "n": 24
+      "n": 23
     },
     {
       "slug": "jimeng",
       "cat": "image",
-      "n": 22
+      "n": 21
     },
     {
       "slug": "haiper",
       "cat": "video",
-      "n": 10
-    },
-    {
-      "slug": "metaso",
-      "cat": "search",
-      "n": 8
+      "n": 11
     },
     {
       "slug": "quark-ai",
+      "cat": "search",
+      "n": 9
+    },
+    {
+      "slug": "metaso",
       "cat": "search",
       "n": 8
     },
@@ -141,11 +141,6 @@
       "n": 6
     },
     {
-      "slug": "fireworks",
-      "cat": "api",
-      "n": 6
-    },
-    {
       "slug": "google-flow",
       "cat": "video",
       "n": 6
@@ -163,6 +158,11 @@
     {
       "slug": "qingying",
       "cat": "video",
+      "n": 5
+    },
+    {
+      "slug": "fireworks",
+      "cat": "api",
       "n": 5
     },
     {
@@ -203,6 +203,11 @@
     {
       "slug": "civitai",
       "cat": "image",
+      "n": 3
+    },
+    {
+      "slug": "ima",
+      "cat": "office",
       "n": 3
     },
     {
@@ -251,6 +256,11 @@
       "n": 2
     },
     {
+      "slug": "anythingllm",
+      "cat": "local",
+      "n": 2
+    },
+    {
       "slug": "cherry-studio",
       "cat": "local",
       "n": 2
@@ -268,16 +278,6 @@
     {
       "slug": "comfyui",
       "cat": "local",
-      "n": 2
-    },
-    {
-      "slug": "grammarly",
-      "cat": "writing",
-      "n": 2
-    },
-    {
-      "slug": "liblib",
-      "cat": "image",
       "n": 2
     }
   ],
@@ -330,27 +330,27 @@
   "pages": [
     {
       "path": "kimi",
-      "n": 87
+      "n": 89
     },
     {
       "path": "/",
-      "n": 44
+      "n": 46
     },
     {
       "path": "exa",
       "n": 37
     },
     {
-      "path": "grok",
+      "path": "coding",
       "n": 24
     },
     {
-      "path": "coding",
-      "n": 22
+      "path": "grok",
+      "n": 23
     },
     {
       "path": "jimeng",
-      "n": 22
+      "n": 21
     },
     {
       "path": "/plans/free-video-gen",
@@ -358,18 +358,18 @@
     },
     {
       "path": "haiper",
-      "n": 10
+      "n": 11
     },
     {
       "path": "/upgrade/jimeng",
       "n": 10
     },
     {
-      "path": "metaso",
-      "n": 8
+      "path": "quark-ai",
+      "n": 9
     },
     {
-      "path": "quark-ai",
+      "path": "metaso",
       "n": 8
     },
     {
@@ -397,19 +397,11 @@
       "n": 6
     },
     {
-      "path": "fireworks",
-      "n": 6
-    },
-    {
       "path": "google-flow",
       "n": 6
     },
     {
       "path": "groq",
-      "n": 6
-    },
-    {
-      "path": "/upgrade/lm-studio",
       "n": 6
     },
     {
@@ -425,11 +417,23 @@
       "n": 5
     },
     {
+      "path": "fireworks",
+      "n": 5
+    },
+    {
       "path": "api",
       "n": 5
     },
     {
+      "path": "/upgrade/lm-studio",
+      "n": 5
+    },
+    {
       "path": "chat",
+      "n": 4
+    },
+    {
+      "path": "/plans/free-ask-ai",
       "n": 4
     },
     {
@@ -474,6 +478,10 @@
     },
     {
       "path": "civitai",
+      "n": 3
+    },
+    {
+      "path": "ima",
       "n": 3
     },
     {
@@ -541,58 +549,50 @@
       "n": 2
     },
     {
+      "path": "/image-quota-board",
+      "n": 2
+    },
+    {
       "path": "/is-civitai-still-free",
       "n": 2
     },
     {
-      "path": "/plans/free-ask-ai",
+      "path": "/money/",
+      "n": 2
+    },
+    {
+      "path": "anythingllm",
       "n": 2
     },
     {
       "path": "cherry-studio",
-      "n": 2
-    },
-    {
-      "path": "chuangkit",
-      "n": 2
-    },
-    {
-      "path": "clipchamp",
-      "n": 2
-    },
-    {
-      "path": "comfyui",
-      "n": 2
-    },
-    {
-      "path": "grammarly",
       "n": 2
     }
   ],
   "referrers": [
     {
       "ref": "cn.bing.com",
-      "n": 241
+      "n": 252
     },
     {
       "ref": "www.google.com",
-      "n": 192
+      "n": 196
     },
     {
       "ref": "www.bing.com",
-      "n": 63
+      "n": 62
     },
     {
       "ref": "l.meta.ai",
       "n": 17
     },
     {
-      "ref": "www.doubao.com",
+      "ref": "www.perplexity.ai",
       "n": 11
     },
     {
-      "ref": "www.perplexity.ai",
-      "n": 11
+      "ref": "www.doubao.com",
+      "n": 10
     },
     {
       "ref": "m.baidu.com",
@@ -603,15 +603,19 @@
       "n": 7
     },
     {
+      "ref": "127.0.0.1",
+      "n": 4
+    },
+    {
       "ref": "yandex.com",
       "n": 4
     },
     {
-      "ref": "127.0.0.1",
+      "ref": "bing.com",
       "n": 3
     },
     {
-      "ref": "bing.com",
+      "ref": "www.baidu.com",
       "n": 3
     },
     {
@@ -628,10 +632,6 @@
     },
     {
       "ref": "t.co",
-      "n": 2
-    },
-    {
-      "ref": "www.baidu.com",
       "n": 2
     },
     {
@@ -684,26 +684,26 @@
     }
   ],
   "events": {
-    "manju": 6238,
-    "biz": 732,
-    "sub_view": 433,
-    "go": 235,
-    "home": 229,
-    "gs": 146,
-    "github_tools": 120,
-    "star": 62,
-    "calc": 55,
+    "manju": 6255,
+    "biz": 715,
+    "sub_view": 445,
+    "home": 240,
+    "go": 238,
+    "gs": 158,
+    "github_tools": 108,
+    "calc": 60,
+    "star": 60,
     "quote": 42,
     "ai_solo": 36,
-    "coding_access": 29,
+    "coding_access": 33,
+    "gs_go": 11,
     "video": 11,
-    "gs_go": 10,
     "depth": 7,
     "distribution": 5
   },
   "submissions": {
-    "new": 394,
-    "total": 394
+    "new": 404,
+    "total": 404
   },
   "ads": {},
   "commercial_triggers": {
@@ -715,7 +715,7 @@
       "video_post_export": "2026-10-29"
     },
     "counts": {
-      "vendor-view": 289,
+      "vendor-view": 278,
       "vendor-sponsor": 0,
       "vendor-wait": 49,
       "ad-view": 3,
@@ -737,8 +737,8 @@
   "conversion_stages": {
     "ok": true,
     "window": {
-      "start": "2026-10-22",
-      "end_exclusive": "2026-11-19",
+      "start": "2026-10-23",
+      "end_exclusive": "2026-11-20",
       "complete_days": 28,
       "date_basis": "UTC"
     },
@@ -787,17 +787,17 @@
       "tool_results_demo": 0,
       "tool_download_actions_own": 0,
       "tool_download_actions_demo": 0,
-      "other_calc_events": 39,
-      "directory_outbound_clicks": 234,
+      "other_calc_events": 44,
+      "directory_outbound_clicks": 236,
       "homepage_limit_navigation": 1,
       "video_exports_own": 0,
       "video_exports_demo": 0,
       "account_tool_entries": 16,
-      "coding_access_filters": 16,
+      "coding_access_filters": 19,
       "coding_access_empty_results": 0,
       "coding_access_provider_opens": 6,
       "coding_access_source_opens": 2,
-      "coding_access_selection_copies": 0,
+      "coding_access_selection_copies": 1,
       "coding_access_checklist_copies": 1,
       "coding_access_vendor_entries": 0
     },
@@ -805,7 +805,7 @@
       "by_tool": [
         {
           "slug": "kimi",
-          "clicks": 28
+          "clicks": 29
         },
         {
           "slug": "jimeng",
@@ -844,12 +844,8 @@
           "clicks": 5
         },
         {
-          "slug": "jianying",
-          "clicks": 4
-        },
-        {
           "slug": "vidu",
-          "clicks": 4
+          "clicks": 5
         },
         {
           "slug": "chuangkit",
@@ -869,6 +865,10 @@
         },
         {
           "slug": "immersive-translate",
+          "clicks": 3
+        },
+        {
+          "slug": "jianying",
           "clicks": 3
         },
         {
@@ -900,6 +900,10 @@
           "clicks": 2
         },
         {
+          "slug": "cursor",
+          "clicks": 2
+        },
+        {
           "slug": "deepl",
           "clicks": 2
         },
@@ -917,6 +921,10 @@
         },
         {
           "slug": "google-ai-studio",
+          "clicks": 2
+        },
+        {
+          "slug": "google-flow",
           "clicks": 2
         },
         {
@@ -944,14 +952,6 @@
           "clicks": 2
         },
         {
-          "slug": "pollinations",
-          "clicks": 2
-        },
-        {
-          "slug": "qwen-chat",
-          "clicks": 2
-        },
-        {
           "slug": "runway",
           "clicks": 2
         },
@@ -969,6 +969,14 @@
         },
         {
           "slug": "activepieces",
+          "clicks": 1
+        },
+        {
+          "slug": "aider",
+          "clicks": 1
+        },
+        {
+          "slug": "bolt",
           "clicks": 1
         },
         {
@@ -996,10 +1004,6 @@
           "clicks": 1
         },
         {
-          "slug": "cursor",
-          "clicks": 1
-        },
-        {
           "slug": "dify",
           "clicks": 1
         },
@@ -1021,10 +1025,6 @@
         },
         {
           "slug": "github-models",
-          "clicks": 1
-        },
-        {
-          "slug": "google-flow",
           "clicks": 1
         },
         {
@@ -1084,6 +1084,10 @@
           "clicks": 1
         },
         {
+          "slug": "pollinations",
+          "clicks": 1
+        },
+        {
           "slug": "quillbot",
           "clicks": 1
         },
@@ -1101,6 +1105,10 @@
         },
         {
           "slug": "tongyi",
+          "clicks": 1
+        },
+        {
+          "slug": "tongyi-lingma",
           "clicks": 1
         },
         {
@@ -1160,7 +1168,7 @@
           "clicks": 1
         }
       ],
-      "unattributed_clicks": 1
+      "unattributed_clicks": 0
     },
     "accounts": {
       "created": 13,
@@ -1169,11 +1177,6 @@
       "total_currently_email_verified": 11
     },
     "accounts_daily": [
-      {
-        "date": "2026-10-22",
-        "created": 0,
-        "new_accounts_currently_email_verified": 0
-      },
       {
         "date": "2026-10-23",
         "created": 2,
@@ -1308,6 +1311,11 @@
         "date": "2026-11-18",
         "created": 1,
         "new_accounts_currently_email_verified": 1
+      },
+      {
+        "date": "2026-11-19",
+        "created": 0,
+        "new_accounts_currently_email_verified": 0
       }
     ],
     "account_scope": "fleet_shared_account_pool",
@@ -1334,31 +1342,31 @@
   "homepage_signals": {
     "ok": true,
     "window": {
-      "requested_start": "2026-10-22",
-      "start": "2026-10-22",
-      "until": "2026-11-19",
+      "requested_start": "2026-10-23",
+      "start": "2026-10-23",
+      "until": "2026-11-20",
       "date_basis": "UTC",
       "includes_current_partial_day": true
     },
-    "clicks": 218,
+    "clicks": 230,
     "unclassified_records": 0,
     "by_language": {
-      "zh": 200,
-      "en": 18,
+      "zh": 211,
+      "en": 19,
       "other": 0
     },
     "by_block": [
       {
-        "id": "directory",
-        "n": 64
+        "id": "hero",
+        "n": 69
       },
       {
-        "id": "hero",
-        "n": 62
+        "id": "directory",
+        "n": 68
       },
       {
         "id": "site-header",
-        "n": 39
+        "n": 38
       },
       {
         "id": "other",
@@ -1373,16 +1381,16 @@
         "n": 11
       },
       {
-        "id": "featured-tools",
+        "id": "agents",
         "n": 8
       },
       {
-        "id": "agents",
-        "n": 6
+        "id": "featured-tools",
+        "n": 7
       },
       {
         "id": "task-lanes",
-        "n": 3
+        "n": 4
       },
       {
         "id": "limit-check",
@@ -1392,19 +1400,19 @@
     "by_destination": [
       {
         "id": "tool-category",
-        "n": 65
+        "n": 69
       },
       {
         "id": "other-destination",
-        "n": 39
+        "n": 41
       },
       {
         "id": "tool-directory",
-        "n": 38
+        "n": 41
       },
       {
         "id": "github-tools",
-        "n": 16
+        "n": 17
       },
       {
         "id": "free-account",
@@ -1412,22 +1420,22 @@
       },
       {
         "id": "agents",
-        "n": 8
+        "n": 9
+      },
+      {
+        "id": "agent-directory",
+        "n": 6
       },
       {
         "id": "homepage",
         "n": 6
       },
       {
-        "id": "agent-directory",
-        "n": 5
-      },
-      {
         "id": "tool-profile",
         "n": 5
       },
       {
-        "id": "video-variants",
+        "id": "toolbox",
         "n": 5
       },
       {
@@ -1435,11 +1443,11 @@
         "n": 4
       },
       {
-        "id": "toolbox",
+        "id": "video-hub",
         "n": 4
       },
       {
-        "id": "video-hub",
+        "id": "video-variants",
         "n": 4
       },
       {
@@ -1464,14 +1472,6 @@
       }
     ],
     "daily": [
-      {
-        "date": "2026-10-22",
-        "complete": true,
-        "clicks": 9,
-        "zh": 9,
-        "en": 0,
-        "other": 0
-      },
       {
         "date": "2026-10-23",
         "complete": true,
@@ -1690,9 +1690,17 @@
       },
       {
         "date": "2026-11-19",
+        "complete": true,
+        "clicks": 12,
+        "zh": 11,
+        "en": 1,
+        "other": 0
+      },
+      {
+        "date": "2026-11-20",
         "complete": false,
-        "clicks": 0,
-        "zh": 0,
+        "clicks": 9,
+        "zh": 9,
         "en": 0,
         "other": 0
       }
@@ -1702,19 +1710,19 @@
         "language": "zh",
         "block": "directory",
         "destination": "tool-category",
-        "n": 58
+        "n": 62
       },
       {
         "language": "zh",
         "block": "hero",
         "destination": "tool-directory",
-        "n": 28
+        "n": 32
       },
       {
         "language": "zh",
         "block": "hero",
         "destination": "other-destination",
-        "n": 12
+        "n": 13
       },
       {
         "language": "zh",
@@ -1730,14 +1738,20 @@
       },
       {
         "language": "zh",
-        "block": "github-tools",
+        "block": "site-header",
+        "destination": "free-account",
+        "n": 7
+      },
+      {
+        "language": "zh",
+        "block": "hero",
         "destination": "github-tools",
         "n": 7
       },
       {
         "language": "zh",
-        "block": "site-header",
-        "destination": "free-account",
+        "block": "github-tools",
+        "destination": "github-tools",
         "n": 7
       },
       {
@@ -1748,33 +1762,15 @@
       },
       {
         "language": "zh",
+        "block": "agents",
+        "destination": "agent-directory",
+        "n": 6
+      },
+      {
+        "language": "zh",
         "block": "hero",
         "destination": "agents",
         "n": 6
-      },
-      {
-        "language": "zh",
-        "block": "hero",
-        "destination": "github-tools",
-        "n": 6
-      },
-      {
-        "language": "zh",
-        "block": "featured-tools",
-        "destination": "video-variants",
-        "n": 5
-      },
-      {
-        "language": "zh",
-        "block": "site-header",
-        "destination": "tool-directory",
-        "n": 5
-      },
-      {
-        "language": "zh",
-        "block": "agents",
-        "destination": "agent-directory",
-        "n": 5
       },
       {
         "language": "zh",
@@ -1786,6 +1782,24 @@
         "language": "zh",
         "block": "hero",
         "destination": "tool-profile",
+        "n": 4
+      },
+      {
+        "language": "zh",
+        "block": "featured-tools",
+        "destination": "video-variants",
+        "n": 4
+      },
+      {
+        "language": "zh",
+        "block": "site-header",
+        "destination": "tool-directory",
+        "n": 4
+      },
+      {
+        "language": "zh",
+        "block": "task-lanes",
+        "destination": "other-destination",
         "n": 4
       },
       {
@@ -1804,12 +1818,6 @@
         "language": "zh",
         "block": "site-header",
         "destination": "feature-map",
-        "n": 3
-      },
-      {
-        "language": "zh",
-        "block": "task-lanes",
-        "destination": "other-destination",
         "n": 3
       },
       {
@@ -1855,6 +1863,12 @@
         "n": 2
       },
       {
+        "language": "zh",
+        "block": "hero",
+        "destination": "toolbox",
+        "n": 2
+      },
+      {
         "language": "en",
         "block": "site-header",
         "destination": "tool-directory",
@@ -1882,12 +1896,6 @@
         "language": "zh",
         "block": "hero",
         "destination": "pdf-tools",
-        "n": 1
-      },
-      {
-        "language": "zh",
-        "block": "hero",
-        "destination": "toolbox",
         "n": 1
       },
       {
@@ -1937,49 +1945,15 @@
         "block": "github-tools",
         "destination": "github-tools",
         "n": 1
+      },
+      {
+        "language": "en",
+        "block": "agents",
+        "destination": "agents",
+        "n": 1
       }
     ],
     "daily_entries": [
-      {
-        "date": "2026-10-22",
-        "complete": true,
-        "language": "zh",
-        "block": "directory",
-        "destination": "tool-category",
-        "n": 5
-      },
-      {
-        "date": "2026-10-22",
-        "complete": true,
-        "language": "zh",
-        "block": "featured-tools",
-        "destination": "video-variants",
-        "n": 1
-      },
-      {
-        "date": "2026-10-22",
-        "complete": true,
-        "language": "zh",
-        "block": "github-tools",
-        "destination": "github-tools",
-        "n": 1
-      },
-      {
-        "date": "2026-10-22",
-        "complete": true,
-        "language": "zh",
-        "block": "site-footer",
-        "destination": "other-destination",
-        "n": 1
-      },
-      {
-        "date": "2026-10-22",
-        "complete": true,
-        "language": "zh",
-        "block": "site-header",
-        "destination": "tool-directory",
-        "n": 1
-      },
       {
         "date": "2026-10-23",
         "complete": true,
@@ -3075,6 +3049,102 @@
         "block": "site-header",
         "destination": "ai-tools",
         "n": 1
+      },
+      {
+        "date": "2026-11-19",
+        "complete": true,
+        "language": "en",
+        "block": "agents",
+        "destination": "agents",
+        "n": 1
+      },
+      {
+        "date": "2026-11-19",
+        "complete": true,
+        "language": "zh",
+        "block": "agents",
+        "destination": "agent-directory",
+        "n": 1
+      },
+      {
+        "date": "2026-11-19",
+        "complete": true,
+        "language": "zh",
+        "block": "directory",
+        "destination": "tool-category",
+        "n": 6
+      },
+      {
+        "date": "2026-11-19",
+        "complete": true,
+        "language": "zh",
+        "block": "hero",
+        "destination": "tool-directory",
+        "n": 1
+      },
+      {
+        "date": "2026-11-19",
+        "complete": true,
+        "language": "zh",
+        "block": "hero",
+        "destination": "other-destination",
+        "n": 1
+      },
+      {
+        "date": "2026-11-19",
+        "complete": true,
+        "language": "zh",
+        "block": "hero",
+        "destination": "toolbox",
+        "n": 1
+      },
+      {
+        "date": "2026-11-19",
+        "complete": true,
+        "language": "zh",
+        "block": "task-lanes",
+        "destination": "other-destination",
+        "n": 1
+      },
+      {
+        "date": "2026-11-20",
+        "complete": false,
+        "language": "zh",
+        "block": "directory",
+        "destination": "tool-category",
+        "n": 3
+      },
+      {
+        "date": "2026-11-20",
+        "complete": false,
+        "language": "zh",
+        "block": "github-tools",
+        "destination": "github-tools",
+        "n": 1
+      },
+      {
+        "date": "2026-11-20",
+        "complete": false,
+        "language": "zh",
+        "block": "hero",
+        "destination": "tool-directory",
+        "n": 3
+      },
+      {
+        "date": "2026-11-20",
+        "complete": false,
+        "language": "zh",
+        "block": "hero",
+        "destination": "github-tools",
+        "n": 1
+      },
+      {
+        "date": "2026-11-20",
+        "complete": false,
+        "language": "zh",
+        "block": "site-footer",
+        "destination": "other-destination",
+        "n": 1
       }
     ],
     "definitions": {
@@ -3087,13 +3157,13 @@
   },
   "quote_signals": {
     "ok": true,
-    "since": "2026-10-22",
+    "since": "2026-10-23",
     "includes_current_partial_utc_day": true,
     "actions": {
       "entry_open": 20,
-      "builder_open": 10,
+      "builder_open": 9,
       "client_open": 0,
-      "demo_preview": 11,
+      "demo_preview": 12,
       "demo_start": 1,
       "own_edit": 0,
       "own_ready": 0,
@@ -3107,13 +3177,13 @@
       "tool_share_requested": 0
     },
     "builder_entries": {
-      "direct": 6,
+      "direct": 5,
       "home": 1,
       "video-guide": 3
     },
     "entry_sources": {
-      "direct": 6,
-      "home": 3,
+      "direct": 5,
+      "home": 4,
       "video-category": 5,
       "video-guide": 5,
       "video-tool": 1
@@ -3129,11 +3199,11 @@
   "manju_signals": {
     "schema_version": 1,
     "measurement_version": "manju-cloud-actions-v3",
-    "source_generated_at": "2026-11-19T07:51:13.691Z",
+    "source_generated_at": "2026-11-20T07:42:37.262Z",
     "window": {
       "requested_days": 28,
-      "since": "2026-10-22",
-      "until": "2026-11-19",
+      "since": "2026-10-23",
+      "until": "2026-11-20",
       "timezone": "UTC",
       "includes_current_partial_utc_day": true
     },
@@ -3141,11 +3211,11 @@
     "partial": false,
     "reason": null,
     "actions": {
-      "view": 4592,
-      "filter": 143,
-      "empty": 134,
-      "open": 23,
-      "source": 18,
+      "view": 4643,
+      "filter": 148,
+      "empty": 132,
+      "open": 21,
+      "source": 17,
       "save": 0,
       "unsave": 0,
       "share": 0,
@@ -3156,23 +3226,23 @@
       "inquiry_error": 0,
       "return": 0,
       "preview_open": 0,
-      "rank_sort": 126,
+      "rank_sort": 114,
       "topic_complete": 8,
       "topic_empty": 0,
       "topic_export": 2,
       "search_start": 109,
-      "search_submit": 172,
-      "search_results": 44,
-      "search_empty": 199,
-      "suggest_view": 181,
-      "suggest_select": 7,
+      "search_submit": 168,
+      "search_results": 42,
+      "search_empty": 198,
+      "suggest_view": 175,
+      "suggest_select": 8,
       "recommend_select": 4,
-      "discover_start": 195,
+      "discover_start": 190,
       "discover_found": 46,
-      "discover_empty": 50,
+      "discover_empty": 47,
       "discover_error": 5,
       "discover_limited": 45,
-      "discover_cached": 28,
+      "discover_cached": 26,
       "video_file_ready": 0,
       "video_file_error": 0,
       "video_complete": 0,
@@ -3201,17 +3271,17 @@
     "viewer_depth": {
       "schema_version": 1,
       "source": "depth_signals",
-      "source_generated_at": "2026-11-19T07:51:13.691Z",
+      "source_generated_at": "2026-11-20T07:42:37.262Z",
       "measurement_start": "2026-10-31",
       "first_complete_utc_day": "2026-11-01",
       "window": {
         "start": "2026-10-31",
-        "end_exclusive": "2026-11-19",
+        "end_exclusive": "2026-11-20",
         "timezone": "UTC"
       },
       "complete_window": {
         "start": "2026-11-01",
-        "end_exclusive": "2026-11-19",
+        "end_exclusive": "2026-11-20",
         "timezone": "UTC"
       },
       "ok": true,

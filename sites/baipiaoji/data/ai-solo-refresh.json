@@ -1,7 +1,7 @@
 {
-  "lastRun": "2026-11-19T07:53:25.983Z",
+  "lastRun": "2026-11-20T07:44:43.006Z",
   "status": "degraded",
-  "checkedSources": 6,
+  "checkedSources": 9,
   "queue": [
     {
       "caseId": "photo-ai",
@@ -193,43 +193,43 @@
       "caseId": "neeva-consumer-search",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.searchenginejournal.com/neeva-the-ad-free-search-engine-announces-closure/487414/",
-      "lastChecked": "2026-11-06T07:22:27.980Z"
+      "lastChecked": "2026-11-20T07:44:43.006Z"
     },
     {
       "caseId": "neeva-consumer-search",
       "reason": "source-unreachable",
       "sourceUrl": "https://searchengineland.com/neeva-shutting-down-427384",
-      "lastChecked": "2026-11-06T07:22:27.980Z"
+      "lastChecked": "2026-11-20T07:44:43.006Z"
     },
     {
       "caseId": "artifact",
       "reason": "source-unreachable",
       "sourceUrl": "https://indianexpress.com/article/technology/artificial-intelligence/artifact-ai-news-app-shutting-down-9108918/",
-      "lastChecked": "2026-11-06T07:22:27.980Z"
+      "lastChecked": "2026-11-20T07:44:43.006Z"
     },
     {
       "caseId": "olive-ai",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.fiercehealthcare.com/health-tech/once-high-flying-unicorn-olive-ai-sells-two-key-businesses-winds-down-operations",
-      "lastChecked": "2026-11-07T06:34:03.868Z"
+      "lastChecked": "2026-11-20T07:44:43.006Z"
     },
     {
       "caseId": "builder-ai",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.computerworld.com/article/3991362/microsoft-backed-no-code-ai-startup-files-for-bankruptcy.html",
-      "lastChecked": "2026-11-07T06:34:03.868Z"
+      "lastChecked": "2026-11-20T07:44:43.006Z"
     },
     {
       "caseId": "embodied",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.axios.com/2024/12/10/moxie-kids-robot-shuts-down",
-      "lastChecked": "2026-11-07T06:34:03.868Z"
+      "lastChecked": "2026-11-20T07:44:43.006Z"
     },
     {
       "caseId": "embodied",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.businessinsider.com/moxie-robot-toy-shutting-down-kids-embodied-goodbye-2024-12",
-      "lastChecked": "2026-11-07T06:34:03.868Z"
+      "lastChecked": "2026-11-20T07:44:43.006Z"
     },
     {
       "caseId": "ghost-autonomy",
@@ -726,7 +726,7 @@
     "neeva-consumer-search|https://www.searchenginejournal.com/neeva-the-ad-free-search-engine-announces-closure/487414/": {
       "caseId": "neeva-consumer-search",
       "sourceUrl": "https://www.searchenginejournal.com/neeva-the-ad-free-search-engine-announces-closure/487414/",
-      "lastAttempt": "2026-11-06T07:22:27.980Z",
+      "lastAttempt": "2026-11-20T07:44:43.006Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -734,7 +734,7 @@
     "neeva-consumer-search|https://searchengineland.com/neeva-shutting-down-427384": {
       "caseId": "neeva-consumer-search",
       "sourceUrl": "https://searchengineland.com/neeva-shutting-down-427384",
-      "lastAttempt": "2026-11-06T07:22:27.980Z",
+      "lastAttempt": "2026-11-20T07:44:43.006Z",
       "status": "unreachable",
       "http": 403,
       "consecutiveChange": 0
@@ -742,18 +742,18 @@
     "artifact|https://indianexpress.com/article/technology/artificial-intelligence/artifact-ai-news-app-shutting-down-9108918/": {
       "caseId": "artifact",
       "sourceUrl": "https://indianexpress.com/article/technology/artificial-intelligence/artifact-ai-news-app-shutting-down-9108918/",
-      "lastAttempt": "2026-11-06T07:22:27.980Z",
+      "lastAttempt": "2026-11-20T07:44:43.006Z",
       "status": "unreachable",
-      "http": 403,
+      "http": null,
       "consecutiveChange": 0
     },
     "artifact|https://www.yahooinc.com/press/yahoo-announces-the-acquisition-of-artifact-the-news-discovery-platform-created-by-instagram-cofounders-kevin-systrom-and-mike-krieger": {
       "caseId": "artifact",
       "sourceUrl": "https://www.yahooinc.com/press/yahoo-announces-the-acquisition-of-artifact-the-news-discovery-platform-created-by-instagram-cofounders-kevin-systrom-and-mike-krieger",
-      "lastAttempt": "2026-11-06T07:22:27.980Z",
+      "lastAttempt": "2026-11-20T07:44:43.006Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-11-06T07:22:27.980Z",
+      "lastSuccess": "2026-11-20T07:44:43.006Z",
       "lastHash": "4c48990ce3276c865a49c4ab5ac82087d4595db24f4ab856a2b66b372767de81",
       "hash": "4c48990ce3276c865a49c4ab5ac82087d4595db24f4ab856a2b66b372767de81",
       "simhash": "38d02457d4c0c097",
@@ -763,19 +763,19 @@
     "olive-ai|https://www.fiercehealthcare.com/health-tech/once-high-flying-unicorn-olive-ai-sells-two-key-businesses-winds-down-operations": {
       "caseId": "olive-ai",
       "sourceUrl": "https://www.fiercehealthcare.com/health-tech/once-high-flying-unicorn-olive-ai-sells-two-key-businesses-winds-down-operations",
-      "lastAttempt": "2026-11-07T06:34:03.868Z",
+      "lastAttempt": "2026-11-20T07:44:43.006Z",
       "status": "unreachable",
-      "http": null,
+      "http": 403,
       "consecutiveChange": 0
     },
     "builder-ai|https://www.linkedin.com/posts/builderai_today-engineerai-corporation-known-as-activity-7330581919031521280-w7hu": {
       "caseId": "builder-ai",
       "sourceUrl": "https://www.linkedin.com/posts/builderai_today-engineerai-corporation-known-as-activity-7330581919031521280-w7hu",
-      "lastAttempt": "2026-11-07T06:34:03.868Z",
+      "lastAttempt": "2026-11-20T07:44:43.006Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-11-07T06:34:03.868Z",
-      "lastHash": "16aa6d889ab8f782fcbd589b5306d7340881ddd3541b7485aea38b7f9fdf5025",
+      "lastSuccess": "2026-11-20T07:44:43.006Z",
+      "lastHash": "8b91a8732e18e66a65c511f79d0d1915be50bb55cc061b497f9a2ad410a40d89",
       "hash": "b06ae8125922ad5ab2818846c35f563a05cf1ce3bbdfb271d5cc327c995ec26f",
       "simhash": "6c1135c105eaa258",
       "words": 239,
@@ -784,7 +784,7 @@
     "builder-ai|https://www.computerworld.com/article/3991362/microsoft-backed-no-code-ai-startup-files-for-bankruptcy.html": {
       "caseId": "builder-ai",
       "sourceUrl": "https://www.computerworld.com/article/3991362/microsoft-backed-no-code-ai-startup-files-for-bankruptcy.html",
-      "lastAttempt": "2026-11-07T06:34:03.868Z",
+      "lastAttempt": "2026-11-20T07:44:43.006Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -792,7 +792,7 @@
     "embodied|https://www.axios.com/2024/12/10/moxie-kids-robot-shuts-down": {
       "caseId": "embodied",
       "sourceUrl": "https://www.axios.com/2024/12/10/moxie-kids-robot-shuts-down",
-      "lastAttempt": "2026-11-07T06:34:03.868Z",
+      "lastAttempt": "2026-11-20T07:44:43.006Z",
       "status": "unreachable",
       "http": 403,
       "consecutiveChange": 0
@@ -800,7 +800,7 @@
     "embodied|https://www.businessinsider.com/moxie-robot-toy-shutting-down-kids-embodied-goodbye-2024-12": {
       "caseId": "embodied",
       "sourceUrl": "https://www.businessinsider.com/moxie-robot-toy-shutting-down-kids-embodied-goodbye-2024-12",
-      "lastAttempt": "2026-11-07T06:34:03.868Z",
+      "lastAttempt": "2026-11-20T07:44:43.006Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1159,26 +1159,26 @@
       "consecutiveChange": 0
     }
   },
-  "cursor": 34,
+  "cursor": 39,
   "errors": [
     {
-      "caseId": "kite",
-      "sourceUrl": "https://www.devclass.com/development/2022/11/21/kite-ai-coding-pulled-down-to-earth-because-our-500k-developers-would-not-pay-to-use-it-now-open-source/1631387",
+      "caseId": "neeva-consumer-search",
+      "sourceUrl": "https://www.searchenginejournal.com/neeva-the-ad-free-search-engine-announces-closure/487414/",
       "reason": "body-limit"
     },
     {
-      "caseId": "coqui",
-      "sourceUrl": "https://www.linkedin.com/pulse/coqui-shutting-down-josh-meyer-fpsve",
+      "caseId": "artifact",
+      "sourceUrl": "https://indianexpress.com/article/technology/artificial-intelligence/artifact-ai-news-app-shutting-down-9108918/",
       "reason": "body-limit"
     },
     {
-      "caseId": "humane-ai-pin",
-      "sourceUrl": "https://support.humane.com/hc/en-us/articles/34243204841997-Ai-Pin-Consumers-FAQ",
-      "reason": "network-error"
+      "caseId": "builder-ai",
+      "sourceUrl": "https://www.computerworld.com/article/3991362/microsoft-backed-no-code-ai-startup-files-for-bankruptcy.html",
+      "reason": "unsafe-source"
     },
     {
-      "caseId": "humane-ai-pin",
-      "sourceUrl": "https://www.theverge.com/news/614883/humane-ai-hp-acquisition-pin-shutdown",
+      "caseId": "embodied",
+      "sourceUrl": "https://www.businessinsider.com/moxie-robot-toy-shutting-down-kids-embodied-goodbye-2024-12",
       "reason": "body-limit"
     }
   ]

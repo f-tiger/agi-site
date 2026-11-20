@@ -1,19 +1,19 @@
 {
- "generated": "2026-11-19",
+ "generated": "2026-11-20",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "haiper",
-  "metaso",
-  "quark-ai",
-  "tongyi-wanxiang",
-  "consensus",
-  "mistral",
-  "groq",
-  "quillbot"
+  "tongyi",
+  "qingying",
+  "feishu-miaoji",
+  "google-ai-studio",
+  "immersive-translate",
+  "playground-ai",
+  "wordvice",
+  "ima"
  ],
- "cursor": "quillbot",
+ "cursor": "ima",
  "summary": {
   "ready": 43,
   "empty": 35,
@@ -59,8 +59,8 @@
    "slug": "feishu-miaoji",
    "name": "飞书妙记",
    "cat": "office",
-   "reach": 11,
-   "probed": "2026-10-29",
+   "reach": 4,
+   "probed": "2026-11-20",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -320,29 +320,29 @@
    "name": "Google AI Studio",
    "cat": "api",
    "reach": 4,
-   "probed": "2026-10-30",
+   "probed": "2026-11-20",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://ai.google.dev/gemini-api/docs/pricing",
      "status": 200,
-     "bytes": 241134,
-     "tokens": 83
+     "bytes": 156013,
+     "tokens": 774
     }
    ],
    "best": {
     "url": "https://ai.google.dev/gemini-api/docs/pricing",
-    "tokens": 83,
-    "excerpt": "高效的模型，针对高调用量智能体任务、翻译和简单的数据处理进行了优化。 标准 免费层级 付费层级（美元/100 万个 token） 输入价格 免费 0.30 美元（文本 / 图片 / 视频 / 音频） 输出价格（包括思考 Token） 免费 $2.50 上下文缓存价格 不可用 0.03 美元 1.00 美元/100 万个 token/小时（存储价格） 依托 Google 搜索进行接地 * 不适用 ** 每月 5,000 次免费搜索请求（在所有 Gemini 3 及更新型号之间共享），超出后按每 1,000 次请求 14 美元计费（ 每日上限 为 1,500 次请求）。 依托 Google 地图进行接地 不适用 ** 每月 5,000 个请求（免费，在所有 Gemini 3 及更新的模型中共享），超出后按每 1,000 次搜索查询 14 美元计费。 用于改进 Google 产品 是 否 批量 免费层级 付费层级（美元/100 万个 token） 输入价格 免费 0.15 美元（文本/图片/视频/音频） 输出价格（包括思考 Token） 免费 $1.25 上下文缓存价格 不可用 0.02 美元 1.00 美元/100 万个 token/小时（存储价格） 依托 Google 搜索进行接地 * 不适用 ** 每月 5,000 次免费搜索请求（在所有 Gemini 3 及更新的模型中共享），超出后按每 1,000 次请求 14 美元计费（ 每日上限 为 1,500 次请求）。 依托 Google 地图进行接地 不适用 ** 每月 5,000 个请求（免费，在所有 Gemini 3 及更新的"
+    "tokens": 774,
+    "excerpt": "ugh December 31, 2026. $0.75 starting January 1, 2027. --- * Output price (including thinking tokens) * Not available * $1.875 through December 31, 2026. $3.75 starting January 1, 2027. --- * Context caching price * Not available * $0.0375 through December 31, 2026. $0.075 starting January 1, 2027. $0.50 / 1,000,000 tokens per hour (storage price) through December 31, 2026. $1.00 / 1,000,000 tokens per hour (storage price) starting January 1, 2027. --- * Used to improve our products * [Yes](/docs/terms) * [No](/docs/terms) {% /table %} {% /tab %} {% tab title=&quot;Flex&quot; %} {% table %} * Feature * Free Tier * Paid Tier, per 1M tokens in USD --- * Input price * Not available * $0.375 thr"
    }
   },
   "immersive-translate": {
    "slug": "immersive-translate",
    "name": "沉浸式翻译",
    "cat": "writing",
-   "reach": 5,
-   "probed": "2026-10-30",
+   "reach": 4,
+   "probed": "2026-11-20",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -375,27 +375,27 @@
    "slug": "qingying",
    "name": "智谱清影",
    "cat": "video",
-   "reach": 0,
-   "probed": "2026-10-26",
+   "reach": 5,
+   "probed": "2026-11-20",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://chatglm.cn/pricing",
      "status": 200,
-     "bytes": 4080,
+     "bytes": 2245,
      "tokens": 0
     },
     {
      "url": "https://chatglm.cn/price",
      "status": 200,
-     "bytes": 4080,
+     "bytes": 2245,
      "tokens": 0
     },
     {
      "url": "https://chatglm.cn/plans",
      "status": 200,
-     "bytes": 4080,
+     "bytes": 2245,
      "tokens": 0
     }
    ],
@@ -453,8 +453,8 @@
    "slug": "tongyi",
    "name": "通义千问",
    "cat": "chat",
-   "reach": 3,
-   "probed": "2026-11-08",
+   "reach": 6,
+   "probed": "2026-11-20",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1757,8 +1757,8 @@
    "slug": "ima",
    "name": "腾讯 ima",
    "cat": "office",
-   "reach": 0,
-   "probed": "2026-11-13",
+   "reach": 3,
+   "probed": "2026-11-20",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -2349,22 +2349,22 @@
    "slug": "playground-ai",
    "name": "Playground AI",
    "cat": "image",
-   "reach": 3,
-   "probed": "2026-11-08",
+   "reach": 4,
+   "probed": "2026-11-20",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://playgroundai.com/design/pricing",
      "status": 200,
-     "bytes": 174620,
+     "bytes": 174631,
      "tokens": 10
     }
    ],
    "best": {
     "url": "https://playgroundai.com/design/pricing",
     "tokens": 10,
-    "excerpt": "ting Generate, resize, and AI-extend images up to 2048×2048 Commercial use World-wide, royalty free license Annual -20% $ 15 $ 12 /mo $ 144 will be charged in total annually Upgrade to Pro Pro Plus BEST VALUE For professionals who need the best Unlimited Playground v3 images No 3-hour limit Advanced model access 6,000 monthly credits 25% off top-up credits Buy extra credit packs at a discount whenever you need more Premium templates Unlimited access to the full premium template library Enhanced image editing Precise upscaling from 50 credits, plus upscaling and background removal at 1 credit each Up to 4K AI image editing Generate, resize, and AI-extend images up to 4K portrait Commercial us"
+    "excerpt": "ting Generate, resize, and AI-extend images up to 2048×2048 Commercial use World-wide, royalty free license Annual -20% $ 15 $ 12 /mo $ 144 will be charged in total annually Upgrade to Pro Pro Plus BEST VALUE For professionals who need the best Unlimited Playground v3 images No 3-hour limit Advanced model access 6,000 monthly credits 25% off top-up credits Buy extra credit packs at a discount whenever you need more Premium templates Unlimited access to the full premium template library Enhanced image editing Precise upscaling from 50 credits, plus upscaling and background removal at 1 credit each Up to 4K AI image editing Generate, edit, resize, and AI-extend images up to 4K with GPT Image m"
    }
   },
   "poe": {
@@ -3031,8 +3031,8 @@
    "slug": "wordvice",
    "name": "Wordvice AI",
    "cat": "writing",
-   "reach": 6,
-   "probed": "2026-10-17",
+   "reach": 4,
+   "probed": "2026-11-20",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -3051,7 +3051,7 @@
     {
      "url": "https://wordvice.ai/plans",
      "status": 200,
-     "bytes": 197837,
+     "bytes": 116839,
      "tokens": 20
     }
    ],
