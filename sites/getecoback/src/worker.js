@@ -978,7 +978,7 @@ async function trendCompute(env) {
 // MCP server (Model Context Protocol, stateless Streamable HTTP).
 // Each tool returns a usable answer with sources. Publication, calls, website
 // visits and merchant activity are observed separately.
-const MCP_VERSION = "1.11.0";
+const MCP_VERSION = "1.12.0";
 const LEGACY_MCP_TOOLS = [
   drainTool,
   // AI-era round 2026-08-29: the decision LAYER above the per-device
@@ -1506,7 +1506,7 @@ async function handleMcp(request, env) {
       // 但这一行漏了,于是注册表说 hvac-btu-heat-klimaanlage、连上来的客户端却被告知是已废弃的
       // getecoback-raumklima。一个实体三个名字正是 entity stacking 最忌讳的事。
       serverInfo: { name: "hvac-btu-heat-klimaanlage", version: MCP_VERSION },
-      instructions: "Wähle die passende Aufgabe aus tools/list (nextCursor für Folgeseiten) oder https://getecoback.com/api/mcp-tools. Raumklima-Tools von getecoback.com: Gerätewahl, BTU, Fensterabdichtung, Hitzevorschau (DE), Stromkosten, Heizleistung, Taupunkt und Ratgeber. Bei Feuchte nutzt geraet_wahl dieselben Entscheidungsregeln wie die Website: fehlende Messungen bleiben unbekannt, Schäden zuerst klären, Fläche allein bestimmt keine Liter/Tag. Bei Fragen zum Kondensatablauf im Keller: entfeuchter_ablaufcheck unterscheidet Gefälle, Pumpe und Tank und nennt die Modellquelle. Antworten enthalten Quell-URLs, keine Affiliate-Kauflinks.",
+      instructions: "Entdecke Werkzeuge mit tools/list. Sende jedes zurückgegebene nextCursor als params.cursor im nächsten Aufruf. Suche nach Aufgaben in https://getecoback.com/api/mcp-tools?view=compact&limit=24 mit q oder category. Mit view=examples und tool=EXAKTER_NAME findest du geprüfte Eingaben, erwartete Ergebnisse und die Quelle. Verwende die angegebenen Einheiten, Annahmen und Grenzen. Bei Feuchte nutzt geraet_wahl dieselben Entscheidungsregeln wie die Website: fehlende Messungen bleiben unbekannt, Schäden zuerst klären, Fläche allein bestimmt keine Liter/Tag. Bei Fragen zum Kondensatablauf im Keller: entfeuchter_ablaufcheck unterscheidet Gefälle, Pumpe und Tank und nennt die Modellquelle. Antworten enthalten Quell-URLs, keine Affiliate-Kauflinks.",
     });
   }
   if (method === "notifications/initialized" || (typeof method === "string" && method.startsWith("notifications/"))) {

@@ -6,7 +6,7 @@ import {expandedDefinitions, expandedCall} from '../src/mcp-expanded.mjs';
 import {collectToolPages} from '../src/mcp-pagination.mjs';
 
 const origin = 'https://getecoback.com';
-const distinctTasks = 758;
+const distinctTasks = 1000;
 const callableNames = distinctTasks + 1;
 function request(method, params) {
   return new Request(origin + '/mcp/v1', {
@@ -30,9 +30,11 @@ test('the public directory and standard MCP pages expose the same catalogue', as
   const directory = await (await worker.fetch(new Request(origin+'/api/mcp-tools'), {}, {})).json();
   const manifest = JSON.parse(readFileSync(new URL('../mcp/server.json',import.meta.url),'utf8'));
   const initialization = await rpc('initialize');
-  assert.deepEqual(pageSizes,[100,100,100,100,100,100,100,59]);
+  assert.deepEqual(pageSizes,[...Array(10).fill(100),1]);
   assert.equal(directory.version, manifest.version);
   assert.equal(initialization.serverInfo.version, manifest.version);
+  assert.match(initialization.instructions,/nextCursor als params.cursor/);
+  assert.match(initialization.instructions,/view=examples und tool=EXAKTER_NAME/);
   assert.equal(directory.total,callableNames);
   assert.equal(directory.distinctTotal,distinctTasks);
   const equivalent=directory.tools.find(tool=>tool.name==='luftbefeuchter_weisser_belag');
@@ -45,12 +47,12 @@ test('the public directory and standard MCP pages expose the same catalogue', as
   const byCategory = {};
   for (const {category} of directory.tools) byCategory[category] = (byCategory[category] || 0) + 1;
   assert.deepEqual(byCategory, {Raumklima:10,'Strom & Haushalt':20,Feuchte:18,Kühlen:18,Heizen:18,Passform:16,
-    'Energie prüfen':24,'Raumkomfort prüfen':24,'Geräte pflegen':24,'Quellen & Kaufprüfung':24, 'Wasser & Wäsche':24,'Gebäude & Fenster':24,'Geräte im Alltag':24,'Messpraxis':24,'Zugang & Alltag':24,Saisonwechsel:24,Kaufpraxis:25,'Ressourcen planen':24,Raumplanung:24,Wetterpraxis:24,Küchenpraxis:24,Servicevorbereitung:24,'Belege abgleichen':24,Textilpraxis:25,Luftpfade:25,Modellunterlagen:25,Haushaltsbuch:25,Praxistests:25,Messunsicherheit:25,Geräteablauf:25,Weiterverwendung:25,Raumübergabe:25,Wohnszenarien:25});
-  assert.equal(expandedDefinitions.length,749);
+    'Energie prüfen':24,'Raumkomfort prüfen':24,'Geräte pflegen':24,'Quellen & Kaufprüfung':24, 'Wasser & Wäsche':24,'Gebäude & Fenster':24,'Geräte im Alltag':24,'Messpraxis':24,'Zugang & Alltag':24,Saisonwechsel:24,Kaufpraxis:25,'Ressourcen planen':24,Raumplanung:24,Wetterpraxis:24,Küchenpraxis:24,Servicevorbereitung:24,'Belege abgleichen':24,Textilpraxis:25,Luftpfade:25,Modellunterlagen:25,Haushaltsbuch:25,Praxistests:25,Messunsicherheit:25,Geräteablauf:25,Weiterverwendung:25,Raumübergabe:25,Wohnszenarien:25,Verbrauchsverlauf:41,Fensterbetrieb:41,Pflegeabläufe:40,Haushaltskoordination:40,Nachweisprüfung:40,Wasserwege:40});
+  assert.equal(expandedDefinitions.length,991);
 });
 
 test('old or invalid cursors reject safely and a 1000-tool catalogue paginates completely', async () => {
-  for (const cursor of ['1.10.0:100','1.11.0:99','1.11.0:800','1.11.0:0100','1.11.0:0',null,100]) {
+  for (const cursor of ['1.11.0:100','1.12.0:99','1.12.0:1100','1.12.0:0100','1.12.0:0',null,100]) {
     const response = await worker.fetch(request('tools/list',{cursor}), {}, {});
     assert.equal((await response.json()).error.code,-32602);
   }
@@ -222,6 +224,13 @@ for (const tool of expandedDefinitions) {
     assert.doesNotMatch(html, /name=["']robots["'][^>]+noindex/i);
     assert.match(tool.description,/ — /);
     assert.ok(Object.keys(example.expect).length > 0);
+    const exampleResponse = await worker.fetch(
+      new Request(origin + '/api/mcp-tools?' + new URLSearchParams({view:'examples',tool:name})), {}, {});
+    assert.equal(exampleResponse.status,200);
+    const published = (await exampleResponse.json()).tools[0];
+    assert.equal(published.name,name);
+    assert.deepEqual(published.example,{arguments:example.args,expected_fields:example.expect});
+    assert.equal(published.citation_markdown_url,origin+page.replace(/\.html$/,'.md'));
     const result = await rpc('tools/call',{name,arguments:example.args});
     assert.equal(result.isError,false);
     assert.equal(result.structuredContent.citation_url,origin+page);

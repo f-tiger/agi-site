@@ -42,6 +42,7 @@
   .catalog-filters input { font:inherit; width:100%; padding:6px 8px; border:1px solid #92a9b8; border-radius:6px; background:#fff; color:#1a2733; }
   #mcp-results strong { display:block; overflow-wrap:anywhere; }
   #mcp-results .category { font-size:13px; font-weight:600; }
+  .catalog-links { display:flex; flex-wrap:wrap; gap:4px 16px; margin-top:8px; font-size:14px; }
   #mcp-categories { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; }
   #mcp-categories button { font:inherit; font-weight:600; padding:6px 10px; border:1px solid #92a9b8; border-radius:8px; background:#fff; color:#0a4d7a; cursor:pointer; }
   #mcp-categories button[aria-pressed="true"] { background:#0a4d7a; border-color:#0a4d7a; color:#fff; }
@@ -89,12 +90,13 @@
     <li><strong>Vom Raum zur passenden Kühlung.</strong> Schätze die <a href="#btu-beispiel">Kühlleistung</a> ab und prüfe das Fenster und mögliche Abluftwege im <a href="/guide/fensterabdichtung-klimaanlage.html">Ratgeber zur Fensterabdichtung</a>.</li>
     <li><strong>Von der Modellnummer zur Quelle.</strong> Suche im <a href="/api/mcp-tools?category=Quellen%20%26%20Kaufpr%C3%BCfung">Katalog für Quellen und Kaufprüfung</a> und überprüfe den verlinkten Ratgeber. Prüfe, ob die Quelle dieselbe Modellvariante und dieselben Einsatzbedingungen abdeckt.</li>
   </ul>
-  <p>Der <a href="/api/mcp-tools">vollständige Katalog als JSON</a> enthält Kategorien, Namen und Eingabeschemata. Im Browser wird der Katalog geladen und der Suchtext lokal gefiltert.</p>
+  <p>Der <a href="/api/mcp-tools">vollständige Katalog als JSON</a> enthält Kategorien, Namen und Eingabeschemata. Im Browser wird der Katalog geladen und der Suchtext lokal gefiltert. Der Link „Beispiel und Schema“ öffnet den geprüften Aufruf für das jeweilige Werkzeug.</p>
   <p>Als JSON lassen sich auch einzelne Kategorien öffnen: <a href="/api/mcp-tools?category=Wasser%20%26%20W%C3%A4sche&amp;view=compact">Wasser &amp; Wäsche</a>, <a href="/api/mcp-tools?category=Geb%C3%A4ude%20%26%20Fenster&amp;view=compact">Gebäude &amp; Fenster</a>, <a href="/api/mcp-tools?category=Ger%C3%A4te%20im%20Alltag&amp;view=compact">Geräte im Alltag</a> und <a href="/api/mcp-tools?category=Messpraxis&amp;view=compact">Messpraxis</a>.</p>
   <p>Weitere Aufgaben findest du unter <a href="/api/mcp-tools?category=Zugang%20%26%20Alltag&amp;view=compact">Zugang &amp; Alltag</a>, <a href="/api/mcp-tools?category=Saisonwechsel&amp;view=compact">Saisonwechsel</a>, <a href="/api/mcp-tools?category=Kaufpraxis&amp;view=compact">Kaufpraxis</a> und <a href="/api/mcp-tools?category=Ressourcen%20planen&amp;view=compact">Ressourcen planen</a>.</p>
   <p>Raum und Wetter planen, Geräte im Alltag betreuen und Quellen prüfen. <a href="/api/mcp-tools?category=Raumplanung&amp;view=compact">Raumplanung</a> · <a href="/api/mcp-tools?category=Wetterpraxis&amp;view=compact">Wetterpraxis</a> · <a href="/api/mcp-tools?category=K%C3%BCchenpraxis&amp;view=compact">Küchenpraxis</a> · <a href="/api/mcp-tools?category=Servicevorbereitung&amp;view=compact">Servicevorbereitung</a> · <a href="/api/mcp-tools?category=Belege%20abgleichen&amp;view=compact">Belege abgleichen</a></p>
   <p>Weitere Aufgaben zum Nachschlagen: <a href="/api/mcp-tools?category=Textilpraxis&amp;view=compact">Textilpraxis</a> · <a href="/api/mcp-tools?category=Luftpfade&amp;view=compact">Luftpfade</a> · <a href="/api/mcp-tools?category=Modellunterlagen&amp;view=compact">Modellunterlagen</a> · <a href="/api/mcp-tools?category=Haushaltsbuch&amp;view=compact">Haushaltsbuch</a> · <a href="/api/mcp-tools?category=Praxistests&amp;view=compact">Praxistests</a></p>
   <p>Messwerte, Gerätefolgen und Wohnbedingungen prüfen. <a href="/api/mcp-tools?category=Messunsicherheit&amp;view=compact">Messunsicherheit</a> · <a href="/api/mcp-tools?category=Ger%C3%A4teablauf&amp;view=compact">Geräteablauf</a> · <a href="/api/mcp-tools?category=Weiterverwendung&amp;view=compact">Weiterverwendung</a> · <a href="/api/mcp-tools?category=Raum%C3%BCbergabe&amp;view=compact">Raumübergabe</a> · <a href="/api/mcp-tools?category=Wohnszenarien&amp;view=compact">Wohnszenarien</a></p>
+  <p>Verbrauch und Haushaltsabläufe vertiefen. <a href="/api/mcp-tools?category=Verbrauchsverlauf&amp;view=compact">Verbrauchsverlauf</a> · <a href="/api/mcp-tools?category=Fensterbetrieb&amp;view=compact">Fensterbetrieb</a> · <a href="/api/mcp-tools?category=Pflegeabl%C3%A4ufe&amp;view=compact">Pflegeabläufe</a> · <a href="/api/mcp-tools?category=Haushaltskoordination&amp;view=compact">Haushaltskoordination</a> · <a href="/api/mcp-tools?category=Nachweispr%C3%BCfung&amp;view=compact">Nachweisprüfung</a> · <a href="/api/mcp-tools?category=Wasserwege&amp;view=compact">Wasserwege</a></p>
   <section id="mcp-catalog" aria-label="Interaktiver Werkzeugkatalog" hidden>
     <div class="catalog-filters" hidden>
       <label>Aufgabe oder Werkzeugname <input type="search" autocomplete="off" maxlength="100"></label>
@@ -323,13 +325,21 @@ import {indexCatalogue, findCatalogueTools} from '/assets/mcp-catalog-search.mjs
         equivalent.textContent = 'Gleiche Aufgabe wie ' + tool.equivalent_task + '.';
         card.append(equivalent);
       }
+      const links = document.createElement('div');
+      links.className = 'catalog-links';
+      const example = document.createElement('a');
+      example.href = '/api/mcp-tools?' + new URLSearchParams({view:'examples',tool:tool.name});
+      example.textContent = 'Beispiel und Schema';
+      example.setAttribute('aria-label', 'Beispiel und Schema für ' + tool.name);
+      links.append(example);
       const path = citationPath(tool.citation_url);
       if (path) {
         const link = document.createElement('a');
         link.href = path;
         link.textContent = 'Ratgeber und Annahmen';
-        card.append(link);
+        links.append(link);
       }
+      card.append(links);
       return card;
     });
     results.append(...cards);
