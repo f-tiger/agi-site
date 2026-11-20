@@ -90,7 +90,8 @@ expect('graph-upstream-impact', { ...chain, end: 'c' }, 'upstream', [
 ]);
 rejects('graph-topological-waves', { graph: '{"a":["a"]}' });
 
-example('isbn10-to-isbn13', 'isbn13', '9780306406157');
+expect('swhid-core-components', { value: 'swh:1:dir:' + '0'.repeat(40) }, 'type', 'directory');
+rejects('swhid-core-components', { value: 'swh:1:unknown:' + '0'.repeat(40) });
 expect('gtin-normalize', { value: '96385074' }, 'gtin14', '00000096385074');
 example('issn-check-digit', 'issn', '0378-5955');
 expect('orcid-validate', { value: '0000-0002-1825-0098' }, 'valid', false);

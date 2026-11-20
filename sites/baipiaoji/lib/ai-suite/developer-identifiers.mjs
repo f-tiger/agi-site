@@ -40,20 +40,17 @@ const d = (id, zh, en, cn, desc, example, fn) =>
   define(id, zh, en, cn, desc, [string('value', '输入值', 'Input value', example, 240)], fn);
 export const tools = [
   d(
-    'isbn10-to-isbn13',
-    '旧书号转 ISBN-13',
-    'Convert ISBN-10 to ISBN-13',
-    '验证十位书号的校验位，再生成带 978 前缀的十三位书号。',
-    'Verify the ISBN-10 check digit and calculate its equivalent 978 ISBN-13.',
-    '0-306-40615-2',
+    'swhid-core-components',
+    '解析软件遗产核心标识',
+    'Parse a Software Heritage core identifier',
+    '验证第一版 SWHID 核心标识的对象代码与哈希格式，并说明对象类别。',
+    'Validate a version 1 Software Heritage core identifier and report its archival object type and hexadecimal digest.',
+    'swh:1:cnt:94a9ed024d3859793618152ea559a168bbcbb5e2',
     (text) => {
-      const s = matches(clean(text), /^\d{9}[\dX]$/);
-      check(
-        [...s].reduce((v, n, i) => v + (10 - i) * (n === 'X' ? 10 : Number(n)), 0) % 11 === 0,
-        'Invalid ISBN-10 checksum.',
-      );
-      const body = '978' + s.slice(0, 9);
-      return { isbn13: body + gtinDigit(body) };
+      const match = /^swh:1:(cnt|dir|rev|rel|snp):([0-9a-f]{40})$/.exec(text);
+      check(match, 'Use a version 1 core SWHID with a lowercase 40-hex object ID.');
+      const types = { cnt: 'content', dir: 'directory', rev: 'revision', rel: 'release', snp: 'snapshot' };
+      return { version: 1, type: types[match[1]], digest: match[2] };
     },
   ),
   d(
