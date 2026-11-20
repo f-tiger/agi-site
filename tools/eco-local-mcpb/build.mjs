@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.17.3';
-const revision = 'e82d92b88e4739f4d1e787afe94756512a2451e2';
+const version = '1.17.4';
+const revision = 'b2920a1d5210574c11bff6d3e648be9bbe36e820';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -161,6 +161,36 @@ async function verifyStdio(extracted, manifest) {
   });
 }
 
+async function verifyCompactLaundryComparison(rpc, finder, runner) {
+  const frage = 'Wäschetrockner oder Luftentfeuchter – was kostet das Trocknen pro Ladung?';
+  const citationUrl = 'https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html';
+  const exampleArguments = {dryer:2,dehum:1,price:0.3,comparable:false};
+  const found = await rpc('tools/call',{name:finder,arguments:{frage}});
+  assert.equal(found.isError,false);
+  const first = found.structuredContent.tools[0];
+  assert.equal(first?.name,'waesche_trocknungskosten');
+  assert.equal(first.citation_url,citationUrl);
+  assert.deepEqual(first.example_arguments,exampleArguments);
+
+  const result = await rpc('tools/call',{name:runner,arguments:{name:first.name,eingaben:first.example_arguments}});
+  assert.equal(result.isError,false);
+  const details = result.structuredContent;
+  assert.equal(details.dryer_eur_per_load,0.6);
+  assert.equal(details.dehumidifier_eur_per_load,0.3);
+  assert.equal(details.lower_cost,'unconfirmed');
+  assert.match(details.assumption,/unterschiedlicher Endtrockenheit bleibt der Vergleich offen/);
+  assert.equal(details.citation_url,citationUrl);
+  assert.match(details.disclosure,/gekennzeichnete Affiliate-Links/);
+  assert.deepEqual(JSON.parse(result.content[0].text),details);
+  return {
+    topMatch:first.name,
+    dryerEurPerLoad:details.dryer_eur_per_load,
+    dehumidifierEurPerLoad:details.dehumidifier_eur_per_load,
+    comparison:details.lower_cost,
+    citationUrl:details.citation_url,
+  };
+}
+
 async function verifyCompactStdio(extracted) {
   const finder = 'ecoback_werkzeug_finden';
   const runner = 'ecoback_werkzeug_ausfuehren';
@@ -199,7 +229,11 @@ async function verifyCompactStdio(extracted) {
     const {contents:[resource]} = await rpc('resources/read',{uri:cellarUri});
     assert.deepEqual(buyer.structuredContent.resources,resources);
     assert.deepEqual(buyer.content.filter(part=>part.type==='resource'),[{type:'resource',resource}]);
-    return {tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,liveToolRejected:true,cellarBuyerEvidence:true};
+    const laundryComparison = await verifyCompactLaundryComparison(rpc,finder,runner);
+    return {
+      tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,
+      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,
+    };
   });
 }
 
