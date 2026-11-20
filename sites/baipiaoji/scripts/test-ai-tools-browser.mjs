@@ -11,7 +11,7 @@ await p.goto(origin+pre+'/?__ci=1');
 const suite=p.locator('#ai-tools');
 assert.equal(await suite.locator('[data-suite-keywords] a').count(),100);
 const filter=suite.locator('[data-suite-search]');
-await filter.fill('Convert CSV to JSON objects');
+await filter.fill('csv-to-json');
 const matches=await suite.locator('[data-suite-keywords]:visible').count();
 assert(matches>0&&matches<100);
 await suite.getByRole('link',{name:/CSV 转 JSON 对象|Convert CSV to JSON objects/}).click();

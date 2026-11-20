@@ -125,7 +125,7 @@ export const tools = [
     'text-inspect', '文本长度与字节统计', 'Text length and byte counts',
     '统计 Unicode 码点、UTF-8 字节、行数和非空字段，便于核对输入限制。',
     'Count Unicode code points, UTF-8 bytes, lines and whitespace-delimited fields to check size limits.',
-    [textInput()], { text: '白嫖计 AI\nTool 🎯' },
+    [textInput()], { text: 'BPJ AI\nTool 🎯' },
     ({ text }) => ({
       codePoints: [...text].length,
       utf16Units: text.length,
@@ -139,7 +139,7 @@ export const tools = [
     '把连续的空白合并，按需保留换行。',
     'Collapse repeated whitespace with a choice to preserve line breaks.',
     [textInput(), booleanInput('keepLines', '保留换行', 'Preserve lines')],
-    { text: '  项目  记录 \r\n\t状态： 进行中', keepLines: true },
+    { text: '  Project  notes \r\n\tStatus:  active', keepLines: true },
     ({ text, keepLines }) => ({
       text: keepLines ? lines(text).map(line => line.trim().replace(/\s+/gu, ' ')).join('\n')
         : text.trim().replace(/\s+/gu, ' '),
@@ -149,7 +149,7 @@ export const tools = [
     'deduplicate-lines', '按行去重', 'Remove duplicate lines',
     '清除空行与重复项，保留首次出现的顺序。',
     'Remove blank and repeated lines in first-seen order.',
-    [textInput()], { text: '关键词 A\n关键词 B\n关键词 A\n\n关键词 C' },
+    [textInput()], { text: 'Keyword A\nKeyword B\nKeyword A\n\nKeyword C' },
     ({ text }) => {
       const supplied = nonblankLines(text);
       const distinct = [...new Set(supplied)];
@@ -190,7 +190,7 @@ export const tools = [
     'make-readable-slug', '生成可读的路径短名', 'Generate a readable slug',
     '把标题转换成带连字符的路径短名，支持中文字符。',
     'Convert a title to a hyphen-separated slug with support for Unicode letters.',
-    [stringInput('title', '标题', 'Title', 300)], { title: '  BPJ 工具目录：AI 资料 ' },
+    [stringInput('title', '标题', 'Title', 300)], { title: '  BPJ tools: café planning ' },
     ({ title }) => {
       const sanitized = title.normalize('NFKC').toLowerCase()
         .replace(/[^\p{L}\p{N}\p{M}]+/gu, '-').replace(/^-|-$/gu, '');
@@ -218,7 +218,7 @@ export const tools = [
     '按字面查询词语，返回出现位置和邻近的文本。',
     'Find literal matches and return UTF-16 offsets with neighboring text.',
     [textInput(), stringInput('term', '查询词', 'Search term', 200), integerInput('radius', '前后字符数', 'Context on each side', 0, 80)],
-    { text: '导出完成，第二次导出等待审核。', term: '导出', radius: 6 },
+    { text: 'An export completed. The second export needs review.', term: 'export', radius: 6 },
     ({ text, term, radius }) => {
       if (!term) throw Error('Enter a search term.');
       const matches = [];
@@ -241,7 +241,7 @@ export const tools = [
     'extract-web-links', '提取网页链接', 'Extract web links',
     '从文本中提取并去重 HTTP 和 HTTPS 链接，保留首次出现顺序。',
     'Extract and deduplicate absolute HTTP and HTTPS URLs in first-seen order.',
-    [textInput()], { text: '目录：https://baipiaoji.com/manju/，工具站 https://baipiaoji.com/' },
+    [textInput()], { text: 'Directory: https://baipiaoji.com/manju/; toolbox https://baipiaoji.com/' },
     ({ text }) => {
       const urls = new Set();
       for (const match of text.matchAll(/https?:\/\/[^\s<>"'，。；！？、）】]+/giu)) {
@@ -307,7 +307,7 @@ export const tools = [
     'csv-to-json', 'CSV 转 JSON 对象', 'Convert CSV to JSON objects',
     '用首行作字段名，保留引号内的逗号和换行，单元格按字符串输出。',
     'Use the first row as keys and preserve quoted commas and line breaks. Cells remain strings.',
-    [csvInput()], { csv: 'tool,notes\nBPJ,"Free, includes a directory"\n帧选,作品检索' },
+    [csvInput()], { csv: 'tool,notes\nBPJ,"Free, includes a directory"\nFrame Picks,Drama search' },
     ({ csv }) => {
       const { columns, rows } = readCsv(csv);
       const repeatedKeySize = columns.reduce((sum, name) => sum + JSON.stringify(name).length + 2, 0) * rows.length;
@@ -319,7 +319,7 @@ export const tools = [
     'json-to-csv', 'JSON 对象转 CSV', 'Convert JSON objects to CSV',
     '把对象数组展开为 CSV。单元格须为标量，疑似电子表格公式的文本会转义。',
     'Export scalar fields from an array of objects. Formula-like string cells receive an apostrophe prefix.',
-    [jsonInput()], { json: '[{"tool":"BPJ","count":3},{"tool":"帧选","source":"=imported"}]' },
+    [jsonInput()], { json: '[{"tool":"BPJ","count":3},{"tool":"Frame Picks","source":"=imported"}]' },
     ({ json }) => {
       const { rows, columns } = readRecords(json);
       let escapedCells = 0;
@@ -338,7 +338,7 @@ export const tools = [
     'csv-to-markdown-table', 'CSV 转 Markdown 表格', 'Convert CSV to a Markdown table',
     '用 CSV 的首行作列名，输出适合文档的 Markdown 表格。',
     'Use CSV headers to produce a document-ready Markdown table.',
-    [csvInput()], { csv: '工具,说明\n帧选,作品 | 目录\nBPJ,检索与比较' },
+    [csvInput()], { csv: 'Tool,Description\nFrame Picks,Dramas | Catalogue\nBPJ,Search and compare' },
     ({ csv }) => {
       const { columns, rows } = readCsv(csv);
       const cell = text => text.replace(/\r\n|[\r\n]/gu, ' ')
@@ -397,7 +397,7 @@ export const tools = [
     '筛选某列等于指定值的记录，返回字段与匹配行。',
     'Return the columns and records that match a supplied exact column value.',
     [csvInput(), stringInput('column', '列名', 'Column', 100), stringInput('value', '匹配值', 'Exact value', 300)],
-    { csv: 'tool,status\nBPJ,live\nPrototype,draft\n帧选,live', column: 'status', value: 'live' },
+    { csv: 'tool,status\nBPJ,live\nPrototype,draft\nFrame Picks,live', column: 'status', value: 'live' },
     ({ csv, column, value }) => {
       const { columns, rows } = readCsv(csv);
       const index = requireColumn(columns, column);
@@ -533,7 +533,7 @@ export const tools = [
     'profile-json-records', '识别 JSON 对象数组的字段结构', 'Profile JSON record fields',
     '从样本对象数组统计字段的存在率、空值和类型。',
     'Summarize field presence, missing values, nulls and observed types in a sample of JSON records.',
-    [jsonInput()], { json: '[{"tool":"BPJ","count":15},{"tool":"帧选","count":null,"active":true}]' },
+    [jsonInput()], { json: '[{"tool":"BPJ","count":15},{"tool":"Frame Picks","count":null,"active":true}]' },
     ({ json }) => {
       const { rows, columns } = readRecords(json);
       return {
@@ -557,7 +557,7 @@ export const tools = [
     '逐行检查 JSONL，返回无效行号及有效记录的类型统计。忽略空行。',
     'Validate JSON Lines and report invalid line numbers and valid record types. Blank lines are ignored.',
     [stringInput('jsonl', 'JSONL 文本', 'JSON Lines', 12000, true)],
-    { jsonl: '{"tool":"BPJ"}\n{"broken":}\n{"tool":"帧选","public":true}' },
+    { jsonl: '{"tool":"BPJ"}\n{"broken":}\n{"tool":"Frame Picks","public":true}' },
     ({ jsonl }) => {
       const source = lines(jsonl);
       if (source.length > 500) throw Error('Use at most 500 lines.');

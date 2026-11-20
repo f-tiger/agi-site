@@ -91,7 +91,7 @@ export const tools = [
       integer('titleLimit', '标题字数预算', 'Title character limit', 1, 300),
       integer('descriptionLimit', '摘要字数预算', 'Description character limit', 1, 1500),
     ],
-    example: {title: 'BPJ 创作者工具目录', description: '按实际任务查找免费网络工具。', titleLimit: 35, descriptionLimit: 85},
+    example: {title: 'BPJ creator tools', description: 'Find free tools for a task.', titleLimit: 35, descriptionLimit: 85},
     run({title, description, titleLimit, descriptionLimit}) {
       const measure = (value, limit) => {
         const length = count(text(value));
@@ -249,7 +249,7 @@ export const tools = [
       str('role', '图片角色（decorative、informative、functional）', 'Role (decorative, informative, functional)', 20),
       str('alt', 'alt 属性值（可为空）', 'Alt attribute value (may be blank)', 800),
     ],
-    example: {role: 'functional', alt: '打开产品搜索'},
+    example: {role: 'functional', alt: 'Open product search'},
     run({role, alt}) {
       role = role.trim().toLowerCase();
       if (!['decorative', 'informative', 'functional'].includes(role)) throw Error('Use decorative, informative or functional as the image role.');
@@ -279,7 +279,7 @@ export const tools = [
     title: localized('Markdown 标题层级检查', 'Markdown heading outline'),
     description: localized('提取 ATX 标题层级，跳过代码块并标出跳级。', 'Extract ATX headings outside fenced code and flag skipped levels.'),
     inputs: [str('markdown', 'Markdown 文本', 'Markdown source', 10000, true)],
-    example: {markdown: '# 帮助中心\n\n## 入门\n\n#### 导出记录'},
+    example: {markdown: '# Help centre\n\n## Start here\n\n#### Export records'},
     run({markdown}) {
       const headings = [];
       let fence = null;
@@ -355,7 +355,7 @@ export const tools = [
       bool('visiblyRequired', '界面标为必填', 'Visibly marked as required'),
       bool('programmaticallyRequired', '程序标为必填', 'Programmatically marked as required'),
     ],
-    example: {visible: '电子邮件', accessible: '邮箱', visiblyRequired: true, programmaticallyRequired: true},
+    example: {visible: 'Email address', accessible: 'Email', visiblyRequired: true, programmaticallyRequired: true},
     run({visible, accessible, visiblyRequired, programmaticallyRequired}) {
       const normalize = value => value.normalize('NFKC').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '');
       const label = normalize(visible);
@@ -577,7 +577,7 @@ export const tools = [
       integer('hanPerMinute', '每分钟阅读汉字数', 'Han characters per minute', 1, 2000),
       integer('wordsPerMinute', '每分钟阅读其他词数', 'Other words per minute', 1, 2000),
     ],
-    example: {content: '打开工具后先选择文件。 Export your result after checking the preview.', hanPerMinute: 350, wordsPerMinute: 210},
+    example: {content: 'Open the tool and select a file. Export your result after checking the preview.', hanPerMinute: 350, wordsPerMinute: 210},
     run({content, hanPerMinute, wordsPerMinute}) {
       const han = content.match(/\p{Script=Han}/gu) ?? [];
       const words = content.replace(/\p{Script=Han}/gu, ' ').match(/[\p{L}\p{N}]+(?:['’-][\p{L}\p{N}]+)*/gu) ?? [];
