@@ -87,6 +87,10 @@ The same Markdown is also served on the .html URL via Accept: text/markdown cont
 Look up freezer capacity and site temperature, dishwasher opening clearance, matching washer-dryer stack kits, equivalent airflow and acoustics conditions, and appliance spare-part evidence. The catalogue examples link to the applicable German manuals through the source-backed EcoBack guidance.
 [Search the household tools](https://getecoback.com/mcp.html#werkzeugliste) · [Built-in appliance dimensions](https://getecoback.com/produkte.html#spuelmaschine-einbaumasse) · [Parts evidence](https://getecoback.com/geraete-austausch-rechner.html#ersatzteil-belege).
 
+## Accessory compatibility and evidence
+Check a cooker hood starter kit against its replacement filter, confirm an oven rail or shower accessory by exact product, compare a portable air appliance with its listed mobility accessory, and organise German appliance take-back evidence. Check the exact source, conditions and remaining proof before purchase.
+[Cooker hood evidence](https://getecoback.com/produkte.html#dunstabzug-umluft-zubehoer) · [Shower accessory evidence](https://getecoback.com/guide/duschen-kosten-rechner.html#handbrause-halter-und-durchfluss) · [Retailer take-back evidence](https://getecoback.com/geraete-austausch-rechner.html#altgeraete-ruecknahme).
+
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
