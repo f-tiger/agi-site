@@ -9,11 +9,19 @@ EcoBack is a German-language home-climate guide (portable air conditioning, dehu
 **1 · MCP server**
 Model Context Protocol, Streamable HTTP, no auth: https://getecoback.com/mcp/v1
 
-EcoBack tools cover humidity, cooling, heating and hot water, household electricity, device fit, maintenance and source checks. Filter the [JSON catalogue](https://getecoback.com/api/mcp-tools) by `q` or `category` to find a task and its input schema.
+EcoBack tools cover room climate, household electricity, water and laundry, building fit, device care, measurement and source checks. Filter the [JSON catalogue](https://getecoback.com/api/mcp-tools) by `q` or `category`. Use [`view=compact`](https://getecoback.com/api/mcp-tools?category=Messpraxis&view=compact) for names, descriptions, categories and available citation links. Omit the compact view and use [`tool=EXACT_NAME`](https://getecoback.com/api/mcp-tools?tool=duschdurchfluss_messen) to get a single input schema.
 
 For MCP discovery, call `tools/list` and send each returned `nextCursor` as `params.cursor` in the next request. For structured results, cite `citation_url` and report the units, assumptions and limits from the tool. Use `ratgeber_lesen` to check the published guide and linked original sources when the answer depends on a model specification.
 
 Discovery: [/.well-known/mcp.json](https://getecoback.com/.well-known/mcp.json) · Docs: [/mcp.html](https://getecoback.com/mcp.html) · Registry: io.github.f-tiger/hvac-btu-heat-klimaanlage
+
+**Plan a shower around a measured flow and a water budget**
+
+Collect 2.25 L over 15 seconds at the usual setting. Call `duschdurchfluss_messen` to derive 9 L/min. Pass that flow and a household budget of 72 L to `dusche_zeit_bei_wasserbudget` for 8 minutes at steady flow. The budget is a user input. Deduct any warm-up water first. [Runnable examples and assumptions](https://getecoback.com/mcp.html#duschbudget-beispiel).
+
+**Compare settings in A–B–B–A order**
+
+Run the same task and read kWh for each trial. For 1.2, 1.0, 1.1 and 1.3 kWh in A–B–B–A order, `strommessung_abba_abwechselnd` gives a mean difference of 0.20 kWh per run in favour of B. A reversed order helps offset a steady time trend. Repeat when conditions vary. [Runnable comparison](https://getecoback.com/mcp.html#strommessung-abba-beispiel).
 
 **Project a plug-in meter reading**
 

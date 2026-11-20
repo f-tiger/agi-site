@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MCP-Werkzeuge für Raumklima und Haushalt | EcoBack</title>
-<meta name="description" content="MCP-Werkzeuge für Feuchte, Kühlen, Heizen, Stromkosten und Gerätefragen. Mit Eingabeschemata, Einheiten, Quellen und Beispielen. Ohne Anmeldung.">
+<meta name="description" content="MCP-Werkzeuge für Raumklima, Wasser, Stromkosten und Haushaltsgeräte. Mit Eingabeschemata, Messbeispielen und Quellen. Ohne Anmeldung.">
 <link rel="canonical" href="https://getecoback.com/mcp.html">
 <link rel="alternate" hreflang="de" href="https://getecoback.com/mcp.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Raumklima-MCP-Server — KI-Agenten-Tools von EcoBack">
-<meta property="og:description" content="MCP-Werkzeuge für den Haushalt. Prüfe Feuchte, Kühlung, Heizkosten, Stromverbrauch und Geräteeignung mit nachvollziehbaren Annahmen.">
+<meta property="og:description" content="MCP-Werkzeuge für den Haushalt. Prüfe Raumklima, Energie, Wasser und Geräte mit eigenen Messwerten und nachvollziehbaren Annahmen.">
 <meta property="og:url" content="https://getecoback.com/mcp.html">
 <!-- Google Analytics (GA4) -->
 
@@ -26,7 +26,7 @@
   article h2 { font-size:21px; margin:28px 0 10px; }
   article h3 { font-size:16px; margin:18px 0 6px; }
   article p { margin-bottom:14px; color:#26333d; }
-  article ul { margin:0 0 14px 20px; color:#26333d; }
+  article ul, article ol { margin:0 0 14px 20px; color:#26333d; }
   article li { margin-bottom:8px; }
   pre { background:#0d2438; color:#dbeafe; border-radius:10px; padding:14px 16px; font-size:13px; overflow-x:auto; margin:10px 0 16px; }
   code { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
@@ -51,7 +51,7 @@
   footer { text-align:center; color:#5b6b78; font-size:13px; padding:30px 20px 50px; }
   footer a, a { color:#0f6ba8; }
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebAPI","name":"EcoBack Raumklima MCP Server","description":"Offener Model-Context-Protocol-Server mit Werkzeugen für Raumklima, Haushaltsenergie, Gerätepflege und Quellenprüfung.","documentation":"https://getecoback.com/mcp.html","termsOfService":"https://getecoback.com/datenschutz.html","provider":{"@type":"Organization","@id":"https://getecoback.com/#org","name":"EcoBack","url":"https://getecoback.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebAPI","name":"EcoBack Raumklima MCP Server","description":"Offener Model-Context-Protocol-Server mit Werkzeugen für Raumklima, Haushaltsenergie, Wasser, Gerätepflege und Messpraxis.","documentation":"https://getecoback.com/mcp.html","termsOfService":"https://getecoback.com/datenschutz.html","provider":{"@type":"Organization","@id":"https://getecoback.com/#org","name":"EcoBack","url":"https://getecoback.com/"}}</script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="alternate" type="application/rss+xml" title="EcoBack Ratgeber" href="/feed.xml">
@@ -90,6 +90,7 @@
     <li><strong>Von der Modellnummer zur Quelle.</strong> Suche im <a href="/api/mcp-tools?category=Quellen%20%26%20Kaufpr%C3%BCfung">Katalog für Quellen und Kaufprüfung</a> und überprüfe den verlinkten Ratgeber. Prüfe, ob die Quelle dieselbe Modellvariante und dieselben Einsatzbedingungen abdeckt.</li>
   </ul>
   <p>Der <a href="/api/mcp-tools">vollständige Katalog als JSON</a> enthält Kategorien, Namen und Eingabeschemata. Im Browser wird der Katalog geladen und der Suchtext lokal gefiltert.</p>
+  <p>Als JSON lassen sich auch einzelne Kategorien öffnen: <a href="/api/mcp-tools?category=Wasser%20%26%20W%C3%A4sche&amp;view=compact">Wasser &amp; Wäsche</a>, <a href="/api/mcp-tools?category=Geb%C3%A4ude%20%26%20Fenster&amp;view=compact">Gebäude &amp; Fenster</a>, <a href="/api/mcp-tools?category=Ger%C3%A4te%20im%20Alltag&amp;view=compact">Geräte im Alltag</a> und <a href="/api/mcp-tools?category=Messpraxis&amp;view=compact">Messpraxis</a>.</p>
   <section id="mcp-catalog" aria-label="Interaktiver Werkzeugkatalog" hidden>
     <div class="catalog-filters" hidden>
       <label>Aufgabe oder Werkzeugname <input type="search" autocomplete="off" maxlength="100"></label>
@@ -99,7 +100,13 @@
     <div id="mcp-results"></div>
     <button class="catalog-more" type="button" hidden>Weitere Werkzeuge anzeigen</button>
   </section>
-  <h3>Fünf Fragen zum Ausprobieren</h3>
+  <h3>Vom Messwert zur Entscheidung</h3>
+  <ul>
+    <li><a href="#duschbudget-beispiel">Mit gemessenem Duschdurchfluss ein eigenes Wasserbudget einhalten</a></li>
+    <li><a href="#strommessung-abba-beispiel">Zwei Geräteeinstellungen mit einer gegenläufigen Messfolge vergleichen</a></li>
+  </ul>
+
+  <h3>Weitere Fragen zum Ausprobieren</h3>
   <ul>
     <li><a href="#ablauf-beispiel">Kann mein MeacoDry Arete One 20L in ein höher liegendes Becken abpumpen?</a></li>
     <li><a href="#btu-beispiel">Wie viel Kühlleistung braucht ein 20 m² großes Zimmer bei normaler Sonne?</a></li>
@@ -120,6 +127,23 @@
   <div class="tool"><strong>ratgeber_lesen</strong><p>Liest die bereinigte Markdown-Ansicht mit Bedingungen, Grenzen und geprüften Quellenlinks. Lange Auszüge sind ausdrücklich als gekürzt markiert; der vollständige Text und dessen Originalquellen bleiben verlinkt. Nur exakte veröffentlichte Seitenpfade oder HTTPS-URLs dieser Website, ohne Query oder Fragment.</p></div>
   <div class="tool"><strong>taupunkt_lueften</strong><p>Taupunkt der Außenluft (Magnus-Formel) und die Antwort auf „darf ich jetzt lüften?" für Keller und feuchte Räume — Wände werden 2 °C unter Raumtemperatur gerechnet.</p></div>
 
+
+  <h2 id="duschbudget-beispiel">Duschdurchfluss messen und ein Wasserbudget planen</h2>
+  <ol>
+    <li>Miss bei üblicher Einstellung. Fließen in 15 Sekunden 2,25 Liter in den Messbehälter, ergibt <code>duschdurchfluss_messen</code> einen Durchfluss von 9 l/min.</li>
+    <li>Gib den gemessenen Durchfluss und dein selbst gewähltes Budget in <code>dusche_zeit_bei_wasserbudget</code> ein. Bei 72 Litern sind das rechnerisch 8 Minuten.</li>
+  </ol>
+  <pre><code>{"jsonrpc":"2.0","id":11,"method":"tools/call","params":{"name":"duschdurchfluss_messen","arguments":{"litres":2.25,"seconds":15}}}</code></pre>
+  <pre><code>{"jsonrpc":"2.0","id":12,"method":"tools/call","params":{"name":"dusche_zeit_bei_wasserbudget","arguments":{"budget_l":72,"durchfluss_l_min":9}}}</code></pre>
+  <p>Die Zeit gilt bei konstantem Durchfluss. Zieh Wasser zum Anlaufen separat vom Gesamtbudget ab. Ändert sich die Einstellung, miss erneut. Welche Angaben du für Warmwasserkosten brauchst, zeigt der <a href="/guide/duschen-kosten-rechner.html">Duschkosten-Rechner</a>.</p>
+
+  <h2 id="strommessung-abba-beispiel">Geräteverbrauch mit der Reihenfolge A–B–B–A vergleichen</h2>
+  <ol>
+    <li>Wähle zwei Einstellungen A und B für dieselbe Aufgabe. Miss unter möglichst gleichen Bedingungen in der Reihenfolge A, B, B, A.</li>
+    <li>Übertrage die vier kWh-Werte an <code>strommessung_abba_abwechselnd</code>. Die mittlere Differenz im Beispiel beträgt 0,20 kWh pro Lauf zugunsten von B.</li>
+  </ol>
+  <pre><code>{"jsonrpc":"2.0","id":13,"method":"tools/call","params":{"name":"strommessung_abba_abwechselnd","arguments":{"a_anfang_kwh":1.2,"b_anfang_kwh":1,"b_ende_kwh":1.1,"a_ende_kwh":1.3}}}</code></pre>
+  <p>Die wechselnde Reihenfolge kann einen gleichmäßigen Zeiteffekt ausgleichen. Wiederhole den Vergleich bei schwankenden Bedingungen. Das <a href="/strommess-protokoll.html">Strommess-Protokoll</a> hilft, Messbedingungen festzuhalten.</p>
 
   <h2 id="haushalt-beispiele">Drei kopierbare Aufrufe mit Messwerten</h2>
   <h3 id="strom-beispiel">Strommessung auf 100 vergleichbare Tage hochrechnen</h3>
@@ -181,7 +205,8 @@
 
   <h3 id="werkzeugliste">Werkzeuge programmatisch finden</h3>
   <p><code>tools/list</code> liefert bis zu 100 Werkzeuge pro Seite. Enthält das Ergebnis <code>nextCursor</code>, sende seinen unveränderten Wert im nächsten <code>tools/list</code>-Aufruf als <code>params.cursor</code>. Ohne <code>nextCursor</code> ist die Liste vollständig.</p>
-  <p>Der <a href="/api/mcp-tools">JSON-Katalog</a> unterstützt <code>q</code> für Suchbegriffe und <code>category</code> für Kategorien. <a href="/api/mcp-tools?category=Feuchte&amp;q=entfeuchter">Hier findest du beispielsweise Werkzeuge für Entfeuchter in der Kategorie Feuchte.</a></p>
+  <p>Der <a href="/api/mcp-tools">JSON-Katalog</a> unterstützt <code>q</code> für Suchbegriffe und <code>category</code> für Kategorien. Für eine knappe Übersicht kannst du <code>view=compact</code> ergänzen. Diese Ansicht liefert Namen, Beschreibung, Kategorie und verfügbare Quellenlinks. <a href="/api/mcp-tools?category=Messpraxis&amp;view=compact">Kompakte Liste für Messpraxis</a>.</p>
+  <p>Sobald du den Werkzeugnamen kennst, liefert <code>tool=EXAKTER_NAME</code> ohne den Kompaktmodus das zugehörige Eingabeschema. <a href="/api/mcp-tools?tool=duschdurchfluss_messen">Vertrag für <code>duschdurchfluss_messen</code></a>.</p>
   <p>Nutze bei strukturierten Ergebnissen <code>citation_url</code> als Quelle und übernimm die Einheiten und Annahmen aus dem Ergebnis.</p>
 
   <h3>Offizieller MCP-Registry-Eintrag</h3>
@@ -202,7 +227,9 @@
   ein <a href="https://baipiaoji.com/en/agents/c/mcp">Verzeichnis von MCP-Servern mit Prüfdatum je URL</a>.</p>
 <script>(function(){document.querySelectorAll("[data-eb-mcp]").forEach(function(a){a.addEventListener("click",function(){if(window.gtag)gtag("event","mcp_install_click",{client:a.getAttribute("data-eb-mcp")});});});})();</script>
 </article>
-<script>
+<script type="module">
+import {indexCatalogue, findCatalogueTools} from '/assets/mcp-catalog-search.mjs';
+
 (() => {
   const catalog = document.getElementById('mcp-catalog');
   const filters = catalog.querySelector('.catalog-filters');
@@ -213,33 +240,41 @@
   const more = catalog.querySelector('.catalog-more');
   const pageSize = 24;
   let selected = null;
-  let entries = [];
+  let catalogueIndex = [];
+  let catalogueTotal = 0;
   let matching = [];
   let shown = 0;
   catalog.hidden = false;
 
-  const normalize = (value) => value.toLocaleLowerCase('de').replace(/[äöüß]/g, (letter) => (
-    {ä:'ae', ö:'oe', ü:'ue', ß:'ss'}[letter]
-  )).replaceAll('_', ' ');
-
   function render() {
-    const terms = normalize(query.value.trim()).split(/\s+/).filter(Boolean);
+    const search = query.value.trim();
     results.replaceChildren();
     shown = 0;
-    if (selected === null && !terms.length) {
+    if (selected === null && !search) {
       matching = [];
       more.hidden = true;
-      status.textContent = entries.length + ' Werkzeuge. Wähle eine Kategorie oder suche nach einer Aufgabe.';
+      status.textContent = catalogueTotal + ' Werkzeuge. Wähle eine Kategorie oder suche nach einer Aufgabe.';
       return;
     }
-    matching = entries.filter(({tool, searchable}) =>
-      (!selected || tool.category === selected) &&
-      terms.every((term) => searchable.includes(term)));
+    matching = findCatalogueTools(catalogueIndex, {query:search, category:selected || undefined});
     appendPage();
   }
 
+  function citationPath(value) {
+    if (typeof value !== 'string') return null;
+    try {
+      const origin = 'https://getecoback.com';
+      const url = new URL(value, origin);
+      const canonical = /^\/(?:[a-z0-9-]+\/)*[a-z0-9-]+\.html$/.test(url.pathname);
+      if (url.origin === origin && canonical && !url.search && !url.hash) return url.pathname;
+    } catch {
+      return null;
+    }
+    return null;
+  }
+
   function appendPage(focusFirst = false) {
-    const cards = matching.slice(shown, shown + pageSize).map(({tool}) => {
+    const cards = matching.slice(shown, shown + pageSize).map(tool => {
       const card = document.createElement('div');
       card.className = 'tool';
       const name = document.createElement('strong');
@@ -250,9 +285,10 @@
       const description = document.createElement('p');
       description.textContent = tool.description;
       card.append(name, label, description);
-      if (typeof tool.page === 'string' && /^\/(?:[a-z0-9-]+\/)*[a-z0-9-]+\.html$/.test(tool.page)) {
+      const path = citationPath(tool.citation_url);
+      if (path) {
         const link = document.createElement('a');
-        link.href = tool.page;
+        link.href = path;
         link.textContent = 'Ratgeber und Annahmen';
         card.append(link);
       }
@@ -292,14 +328,12 @@
   async function load() {
     status.textContent = 'Werkzeugkatalog wird geladen …';
     try {
-      const response = await fetch('/api/mcp-tools', {headers:{accept:'application/json'}});
+      const response = await fetch('/api/mcp-tools?view=compact', {headers:{accept:'application/json'}});
       if (!response.ok) throw new Error('catalog unavailable');
       const {tools} = await response.json();
       if (!Array.isArray(tools) || !tools.length) throw new Error('catalog empty');
-      entries = tools.map(tool => ({
-        tool,
-        searchable:normalize([tool.name, tool.category, tool.description].join(' ')),
-      }));
+      catalogueIndex = indexCatalogue(tools);
+      catalogueTotal = tools.length;
       const counts = new Map();
       for (const {category} of tools) counts.set(category, (counts.get(category) ?? 0) + 1);
       addCategory('', 'Alle', tools.length);
