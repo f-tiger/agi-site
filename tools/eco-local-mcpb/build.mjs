@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {execFileSync, spawn} from 'node:child_process';
+import {execFileSync, spawn, spawnSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {mkdir, mkdtemp, readFile, readdir, rm, writeFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
@@ -8,13 +8,13 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.17.0';
-const revision = '0dfbcc52e6e15a790dcdb7032056a54033b15e59';
+const version = '1.17.1';
+const revision = '0604a0dae81b5cea9a27936de7d008d297040ddf';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
 const title = 'EcoBack Local Household Tools';
-const description = 'Local German household decision tools with optional public guide and weather lookup.';
+const description = 'German household tools with offline examples and optional public guide and weather lookup.';
 const sourceUrl = 'https://github.com/' + sourceRepository;
 const oldNames = [
   'btu_empfehlung', 'fensterabdichtung_laenge', 'heizleistung_watt', 'hitzewelle_vorschau',
@@ -25,6 +25,37 @@ const entry = 'src/server.mjs';
 const legacyHelpers = fileURLToPath(new URL('../mcp-registry/local-packages/', import.meta.url));
 const sha256 = buffer => createHash('sha256').update(buffer).digest('hex');
 const writeJson = (path, value) => writeFile(path, JSON.stringify(value, null, 2) + '\n');
+const drainArguments = {drain:'level_or_uphill',model:'meaco-one-20'};
+
+function verifyFinder(extracted, drain) {
+  const find = (...args) => spawnSync(process.execPath, [
+    '--import',join(legacyHelpers,'deny-network.mjs'),join(extracted,'src/find-tools.mjs'),...args,
+  ], {cwd:extracted,encoding:'utf8',timeout:10000});
+  const output = (...args) => {
+    const child = find(...args);
+    assert.equal(child.error,undefined);
+    assert.equal(child.status,0,child.stderr);
+    return JSON.parse(child.stdout);
+  };
+  const drainage = 'entfeuchter_ablaufcheck';
+  const shower = 'dusche_zeit_bei_wasserbudget';
+  const first = output('Kann ich den Abflussschlauch nach oben führen?').tools[0];
+  assert.equal(first.name,drainage);
+  assert.equal(first.citation_url,drain.structuredContent.citation_url);
+  assert.equal(first.guide_url,drain.structuredContent.guide_url);
+  assert.deepEqual(first.example_arguments,drainArguments);
+  assert.deepEqual(output('--example',drainage),{name:drainage,example_arguments:drainArguments,result:drain});
+  const showerResult = output('--example',shower);
+  assert.equal(showerResult.name,shower);
+  assert.equal(showerResult.result.isError,false);
+  assert.equal(showerResult.result.structuredContent.maximale_minuten,8);
+  const rejected = find('--example','hitzewelle_vorschau');
+  assert.equal(rejected.error,undefined);
+  assert.equal(rejected.status,2);
+  assert.equal(rejected.stdout,'');
+  assert.match(rejected.stderr,/reviewed local example/);
+  return {topMatch:first.name,examples:[drainage,shower],liveExampleRejected:true};
+}
 
 async function verifyStdio(extracted, manifest) {
   const {TOOLS} = await import(pathToFileURL(join(extracted,'src/tools.mjs')));
@@ -79,7 +110,7 @@ async function verifyStdio(extracted, manifest) {
     assert.equal(btu.isError,false);
     assert.match(btu.content[0].text,/7\.000 BTU/);
     const drain = await rpc('tools/call',{
-      name:'entfeuchter_ablaufcheck',arguments:{drain:'level_or_uphill',model:'meaco-one-20'},
+      name:'entfeuchter_ablaufcheck',arguments:drainArguments,
     });
     assert.equal(drain.isError,false);
     assert.equal(drain.structuredContent.outcome,'pump_check');
@@ -90,7 +121,7 @@ async function verifyStdio(extracted, manifest) {
     for (const [key,value] of Object.entries(last.example.expect)) {
       assert.deepEqual(result.structuredContent[key],value,`${last.name}.${key}`);
     }
-    return {tools:names.size,pages:sizes.length,firstExamples:['btu_empfehlung','entfeuchter_ablaufcheck'],
+    return {tools:names.size,pages:sizes.length,firstExamples:['btu_empfehlung','entfeuchter_ablaufcheck'],finder:verifyFinder(extracted,drain),
       lastPageExample:last.name,legacyNames:oldNames.length,network:'disabled'};
   } finally {
     output.close();
