@@ -19,12 +19,12 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUNDLE: ecoback-local-tools-1.17.1.mcpb
-  VERSION: '1.17.1'
-  UPSTREAM_SHA: 0604a0dae81b5cea9a27936de7d008d297040ddf
+  BUNDLE: ecoback-local-tools-1.17.2.mcpb
+  VERSION: '1.17.2'
+  UPSTREAM_SHA: a6e2d5ccad808171100385d4c0a6aaca20a2f615
   NAME: io.github.f-tiger/ecoback-local-tools
   RELEASE_TAG: fleet-mcp-registry-2026-10-10
-  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.17.1.mcpb
+  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.17.2.mcpb
   REGISTRY_VERSIONS: https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions
   SOURCE_URL: https://github.com/f-tiger/getecoback-mcp
   MCPB_SCHEMA: https://raw.githubusercontent.com/modelcontextprotocol/mcpb/70fe3b34cd6dff1b3bba046638edc72a6467a4fb/schemas/mcpb-manifest-v0.3.schema.json
@@ -99,7 +99,10 @@ jobs:
             (.lastPageExample != null and (.lastPageExample | length) > 0) and
             .finder.topMatch == "entfeuchter_ablaufcheck" and
             .finder.examples == ["entfeuchter_ablaufcheck","dusche_zeit_bei_wasserbudget"] and
-            .finder.liveExampleRejected == true
+            .finder.liveExampleRejected == true and
+            .compact.tools == ["ecoback_werkzeug_finden","ecoback_werkzeug_ausfuehren"] and
+            .compact.topMatch == "entfeuchter_ablaufcheck" and .compact.exampleOutcome == "pump_check" and
+            .compact.citationsPreserved == true and .compact.liveToolRejected == true
           ' "$root/smoke-results.json"
           printf 'sha=%s\n' "$digest" >> "$GITHUB_OUTPUT"
           printf 'Verified CI artifact %s (SHA-256 %s)\n' "$BUNDLE" "$digest"

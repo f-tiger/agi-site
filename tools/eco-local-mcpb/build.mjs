@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.17.1';
-const revision = '0604a0dae81b5cea9a27936de7d008d297040ddf';
+const version = '1.17.2';
+const revision = 'a6e2d5ccad808171100385d4c0a6aaca20a2f615';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -57,14 +57,9 @@ function verifyFinder(extracted, drain) {
   return {topMatch:first.name,examples:[drainage,shower],liveExampleRejected:true};
 }
 
-async function verifyStdio(extracted, manifest) {
-  const {TOOLS} = await import(pathToFileURL(join(extracted,'src/tools.mjs')));
-  const {expandedDefinitions} = await import(pathToFileURL(join(extracted,'src/eco-suite/src/mcp-expanded.mjs')));
-  const expected = JSON.parse(JSON.stringify(TOOLS));
-  assert.equal(expected.length,2003);
-  assert.deepEqual(manifest.server.mcp_config, {command:'node',args:['${__dirname}/'+entry]});
+async function withStdio(extracted, flags, verify) {
   const child = spawn(process.execPath, [
-    '--import',join(legacyHelpers,'deny-network.mjs'),join(extracted,entry),
+    '--import',join(legacyHelpers,'deny-network.mjs'),join(extracted,entry),...flags,
   ], {cwd:extracted,stdio:['pipe','pipe','inherit'],timeout:30000});
   const output = createInterface({input:child.stdout});
   const lines = output[Symbol.asyncIterator]();
@@ -87,6 +82,21 @@ async function verifyStdio(extracted, manifest) {
     assert.deepEqual(init.serverInfo,{name:'getecoback-raumklima',version});
     assert.ok(init.capabilities.tools);
     child.stdin.write('{"jsonrpc":"2.0","method":"notifications/initialized"}\n');
+    return await verify(rpc,init);
+  } finally {
+    output.close();
+    child.stdin.end();
+    child.kill();
+  }
+}
+
+async function verifyStdio(extracted, manifest) {
+  const {TOOLS} = await import(pathToFileURL(join(extracted,'src/tools.mjs')));
+  const {expandedDefinitions} = await import(pathToFileURL(join(extracted,'src/eco-suite/src/mcp-expanded.mjs')));
+  const expected = JSON.parse(JSON.stringify(TOOLS));
+  assert.equal(expected.length,2003);
+  assert.deepEqual(manifest.server.mcp_config, {command:'node',args:['${__dirname}/'+entry]});
+  return withStdio(extracted,[],async rpc => {
     const listed = [], sizes = [], cursors = new Set();
     let cursor;
     do {
@@ -123,11 +133,40 @@ async function verifyStdio(extracted, manifest) {
     }
     return {tools:names.size,pages:sizes.length,firstExamples:['btu_empfehlung','entfeuchter_ablaufcheck'],finder:verifyFinder(extracted,drain),
       lastPageExample:last.name,legacyNames:oldNames.length,network:'disabled'};
-  } finally {
-    output.close();
-    child.stdin.end();
-    child.kill();
-  }
+  });
+}
+
+async function verifyCompactStdio(extracted) {
+  const finder = 'ecoback_werkzeug_finden';
+  const runner = 'ecoback_werkzeug_ausfuehren';
+  return withStdio(extracted,['--compact'],async (rpc,init) => {
+    assert.ok(init.instructions.includes(finder));
+    assert.ok(init.instructions.includes(runner));
+    const listed = await rpc('tools/list');
+    const tools = listed.tools.map(tool=>tool.name);
+    assert.deepEqual(tools,[finder,runner]);
+    assert.equal(listed.nextCursor,undefined);
+
+    const found = await rpc('tools/call',{name:finder,arguments:{frage:'Kann ich den Abflussschlauch nach oben führen?'}});
+    assert.equal(found.isError,false);
+    const first = found.structuredContent.tools[0];
+    assert.equal(first.name,'entfeuchter_ablaufcheck');
+    assert.equal(first.inputSchema.type,'object');
+    assert.deepEqual(first.example_arguments,drainArguments);
+    const result = await rpc('tools/call',{name:runner,arguments:{name:first.name,eingaben:first.example_arguments}});
+    assert.equal(result.isError,false);
+    const {outcome,citation_url,guide_url} = result.structuredContent;
+    assert.equal(outcome,'pump_check');
+    assert.match(citation_url,/^https:\/\//);
+    assert.match(guide_url,/^https:\/\//);
+    assert.equal(citation_url,first.citation_url);
+    assert.equal(guide_url,first.guide_url);
+
+    const live = await rpc('tools/call',{name:runner,arguments:{name:'hitzewelle_vorschau',eingaben:{}}});
+    assert.equal(live.isError,true);
+    assert.match(live.content[0].text,/lokal nicht verfügbar/);
+    return {tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,liveToolRejected:true};
+  });
 }
 
 const args = process.argv.slice(2);
@@ -173,6 +212,7 @@ try {
   const actualManifest = JSON.parse(await readFile(join(extracted,'manifest.json'),'utf8'));
   assert.deepEqual(actualManifest,manifest);
   const result = await verifyStdio(extracted,actualManifest);
+  result.compact = await verifyCompactStdio(extracted);
   const identifier = `https://github.com/f-tiger/agi-site/releases/download/${releaseTag}/${file}`;
   await writeJson(join(serverDir,id+'.json'),{
     $schema:'https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json',
