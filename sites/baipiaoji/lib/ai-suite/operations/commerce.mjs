@@ -1,4 +1,4 @@
-import { number as n, count as c, percent as p, divide, subset, requireThat, toolBuilder } from './core.mjs';
+import { number as n, count as c, percent as p, divide, subset, requireThat, toolBuilder, decimalIntegers, ceilPositiveRatio, fromDecimalInteger } from './core.mjs';
 const make = toolBuilder({
   sales: n('商品销售额', 'Merchandise sales', 12000),
   refunds: n('已退商品款', 'Refunded merchandise value', 800),
@@ -325,11 +325,13 @@ export default [
     'Find the smallest number of whole add-on items required to cross a basket threshold and quantify the overshoot.',
     'subtotal threshold price',
     (subtotal, threshold, price) => {
-      const units = Math.ceil(Math.max(0, threshold - subtotal) / price);
+      const { values: [basket, target, item], places } = decimalIntegers([subtotal, threshold, price]);
+      const units = basket < target ? ceilPositiveRatio(target - basket, item) : 0n;
+      const revised = basket + units * item;
       return {
-        addOnUnits: units,
-        revisedBasket: subtotal + units * price,
-        thresholdHeadroom: subtotal + units * price - threshold,
+        addOnUnits: Number(units),
+        revisedBasket: fromDecimalInteger(revised, places),
+        thresholdHeadroom: fromDecimalInteger(revised - target, places),
       };
     },
   ),

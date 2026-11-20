@@ -84,6 +84,12 @@ do {
 } while(cursor);
 // Only these two pre-existing published URLs intentionally use names reserved by the account router.
 const legacyGuardedIds=new Set(['invoice-due-date','redirect-map-check']);
+const emptyCsv = runSuiteTool('bpj_json_to_csv',{json:'[{"name":"Tea"},{"name":null}]'});
+assert.deepEqual(emptyCsv,{csv:'name\r\nTea\r\n""',dataRows:2,escapedCells:0});
+assert.deepEqual(runSuiteTool('bpj_csv_to_json',{csv:emptyCsv.csv}),{
+ columns:['name'],rows:[{name:'Tea'},{name:''}],
+});
+
 for(const tool of SUITE_TOOLS){
  if(!legacyGuardedIds.has(tool.id))for(const locale of ['','/en']){
   const path=locale+'/studio/ai/'+tool.id;

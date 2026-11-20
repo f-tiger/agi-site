@@ -1,4 +1,4 @@
-import { number as n, count as c, percent as p, divide, subset, requireThat, toolBuilder } from './core.mjs';
+import { number as n, count as c, percent as p, divide, subset, requireThat, toolBuilder, decimalIntegers, ceilPositiveRatio, fromDecimalInteger } from './core.mjs';
 const make = toolBuilder({
   length: n('包裹长（厘米）', 'Parcel length (cm)', 60, 0.01),
   width: n('宽（厘米）', 'Width (cm)', 40, 0.01),
@@ -79,7 +79,12 @@ export default [
     'length width height divisor weight step',
     (length, width, height, divisor, weight, step) => {
       const dimensional = (length * width * height) / divisor;
-      return { dimensionalKg: dimensional, billableKg: Math.ceil(Math.max(dimensional, weight) / step) * step };
+      const { values: [l, w, h, divisorValue, actual, increment], places } =
+        decimalIntegers([length, width, height, divisor, weight, step]);
+      const dimensionalSteps = ceilPositiveRatio(l * w * h, divisorValue * increment * 10n ** BigInt(places));
+      const actualSteps = ceilPositiveRatio(actual, increment);
+      const billableSteps = dimensionalSteps > actualSteps ? dimensionalSteps : actualSteps;
+      return { dimensionalKg: dimensional, billableKg: fromDecimalInteger(billableSteps * increment, places) };
     },
   ),
   make(
@@ -102,15 +107,17 @@ export default [
     '比较每层统一摆向的两个方向并按限高算可装箱数。',
     'Compare two uniform carton orientations per layer, without overhang or mixed patterns, and stack within the specified cargo height.',
     'palletL palletW stack length width height',
-    (l, w, stack, cl, cw, ch) => {
-      const normal = Math.floor(l / cl) * Math.floor(w / cw),
-        rotated = Math.floor(l / cw) * Math.floor(w / cl),
-        layers = Math.floor(stack / ch);
+    (...dimensions) => {
+      const { values: [l, w, stack, cl, cw, ch] } = decimalIntegers(dimensions);
+      const normal = (l / cl) * (w / cw),
+        rotated = (l / cw) * (w / cl),
+        layers = stack / ch;
+      const cartons = rotated > normal ? rotated : normal;
       return {
-        cartonsPerLayer: Math.max(normal, rotated),
+        cartonsPerLayer: Number(cartons),
         rotateCartons: rotated > normal,
-        layers,
-        totalCartons: Math.max(normal, rotated) * layers,
+        layers: Number(layers),
+        totalCartons: Number(cartons * layers),
       };
     },
   ),

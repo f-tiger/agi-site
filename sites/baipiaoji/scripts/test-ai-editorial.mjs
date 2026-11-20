@@ -161,6 +161,17 @@ assert.equal(
   call('webvtt-to-srt-cues', { text: call('srt-to-webvtt', { text: original }).vtt }).srt,
   original,
 );
+const vttWithMetadata = [
+  'WEBVTT - Field Notes',
+  'STYLE\r\n::cue { color: lime }',
+  'REGION\r\nid:opening\r\nwidth:40%',
+  'NOTE Caption credits\r\nField Notes',
+  'intro\r\n00:01.000 --> 00:02.000 region:opening align:start\r\nHello there\r\nWelcome back',
+].join('\r\n\r\n\r\n');
+assert.equal(
+  call('webvtt-to-srt-cues', { text: vttWithMetadata }).srt,
+  '1\n00:00:01,000 --> 00:00:02,000\nHello there\nWelcome back',
+);
 assert.deepEqual(call('subtitle-silence-intervals', { text: original }).gaps, [
   { fromMs: 3500, toMs: 4000, durationMs: 500 },
 ]);
