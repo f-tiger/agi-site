@@ -4,7 +4,9 @@
   "type": "module",
   "scripts": {
     "verify:local": "node ../scripts/collecting/verify-mcp-client.mjs --local",
-    "verify:live": "node --use-env-proxy ../scripts/collecting/verify-mcp-client.mjs --live"
+    "verify:live": "node --use-env-proxy ../scripts/collecting/verify-mcp-client.mjs --live",
+    "verify:home-local": "node ../scripts/tds-suite/verify-mcp.mjs --local",
+    "verify:home-live": "node --use-env-proxy ../scripts/tds-suite/verify-mcp.mjs --live"
   },
   "devDependencies": {
     "@modelcontextprotocol/sdk": "1.32.2"

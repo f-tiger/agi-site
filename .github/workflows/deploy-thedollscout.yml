@@ -106,6 +106,8 @@ jobs:
           node --test scripts/collecting/market-guides-tests.mjs scripts/collecting/german-default-tests.mjs scripts/collecting/german-measurement-tests.mjs scripts/collecting/category-pages-tests.mjs scripts/collecting/home-catalog-tests.mjs scripts/collecting/amazon-pivot-tests.mjs scripts/traffic-goal-tests.mjs scripts/private-gsc-health-tests.mjs scripts/collecting/shopping-shortlist-tests.mjs scripts/collecting/shopping-report-tests.mjs scripts/collecting/shopping-growth-tests.mjs scripts/collecting/shopping-tests.mjs scripts/collecting/affiliate-tests.mjs scripts/collecting/tests.mjs scripts/collecting/mcp-tests.mjs scripts/collecting/collection-task-tests.mjs scripts/collecting/event-kit-tests.mjs scripts/collecting/event-report-tests.mjs scripts/collecting/planning-tests.mjs scripts/collecting/series-share-tests.mjs scripts/collecting/measurement-tests.mjs scripts/collecting/canonical-host-tests.mjs scripts/collecting/swap-kit-tests.mjs
           npm ci --prefix mcp --ignore-scripts
           node scripts/collecting/verify-mcp-client.mjs --local
+          node --test scripts/collecting/home-mcp-tests.mjs scripts/tds-suite/test-*.mjs
+          npm run --prefix mcp verify:home-local
 
       # 正确性闸门:站内不允许再出现旧站的任何痕迹——成人 meta、年龄门、
       # yourdoll 联盟。发现即失败,防止旧模板被无意识复制回来。
@@ -200,6 +202,8 @@ jobs:
           node scripts/collecting/build.mjs --out dist
           node scripts/collecting/verify.mjs --out dist
           node scripts/collecting/verify-market-guides.mjs --out dist
+          node scripts/tds-suite-pages.mjs --out dist
+          node scripts/verify-tds-suite-pages.mjs --out dist
 
       - name: Configure independent membership secrets
         if: env.OUTCOME_READONLY_RELEASE != 'true'
@@ -280,6 +284,14 @@ jobs:
         run: |
           node scripts/collecting/verify.mjs --live
           node scripts/collecting/verify-market-guides.mjs --live
+
+      - name: Verify live TDS home tool pages and discovery data
+        run: node scripts/tds-suite/verify-pages-live.mjs
+
+      - name: Notify new TDS home tool canonical pages to IndexNow
+        if: ${{ !cancelled() && steps.publish.outcome == 'success' && github.event_name == 'push' && contains(github.event.head_commit.message, '[tds-home-mcp-publish]') }}
+        continue-on-error: true
+        run: node scripts/tds-suite/verify-pages-live.mjs --indexnow
 
       - name: Verify public asset bypass and private page protection
         working-directory: ${{ github.workspace }}
@@ -530,6 +542,48 @@ jobs:
           /tmp/mcp-publisher publish mcp/server.json
       - name: Verify the official registry listing
         run: node scripts/collecting/registry-check.mjs
+
+
+  publish-home-tools-mcp:
+    needs: deploy
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, '[tds-home-mcp-publish]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install jsonschema==4.25.1
+      - name: Check the remote-only server manifest and live tool contract
+        run: |
+          npm ci --prefix sites/thedollscout/mcp --ignore-scripts
+          npm run --prefix sites/thedollscout/mcp verify:home-live
+          python tools/mcp-registry/registry.py validate --manifest-dir sites/thedollscout/mcp/home-tools
+      - name: Install pinned official publisher
+        run: |
+          mkdir -p "$RUNNER_TEMP/tds-home-publisher"
+          curl -4 -fLsS --retry 3 --connect-timeout 10 --max-time 90 https://github.com/modelcontextprotocol/registry/releases/download/v1.8.1/mcp-publisher_linux_amd64.tar.gz -o "$RUNNER_TEMP/tds-home-publisher.tgz"
+          echo "a06c9096dcb9727c13555b6be26c7effa707b01f06a4c561ba7a3635443cf2cc  $RUNNER_TEMP/tds-home-publisher.tgz" | sha256sum -c -
+          tar xzf "$RUNNER_TEMP/tds-home-publisher.tgz" -C "$RUNNER_TEMP/tds-home-publisher" mcp-publisher
+      - name: Publish and read back the exact home-tools registry version
+        run: |
+          publisher="$RUNNER_TEMP/tds-home-publisher/mcp-publisher"
+          "$publisher" login github-oidc
+          python tools/mcp-registry/registry.py publish --publisher "$publisher" --manifest-dir sites/thedollscout/mcp/home-tools --receipt "$RUNNER_TEMP/tds-home-registry.json"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tds-home-mcp-registry-receipt
+          path: ${{ runner.temp }}/tds-home-registry.json
+          if-no-files-found: warn
+          retention-days: 30
 
 concurrency:
   group: deploy-thedollscout
