@@ -2,6 +2,9 @@
 # Access-Control-Allow-Origin: *，但它们指向的这些静态文件此前没有——浏览器侧
 # agent 调完工具再去取源文件会失败。缓存：数据每日重建，TTL 保守；只有分词器
 # 词表是内容固定的常量才配 immutable。
+# The public directory shell is identical across filters. Cap freshness on this URL only.
+/manju/
+  Cache-Control: public, max-age=120, s-maxage=120, must-revalidate
 /limits.json
   Access-Control-Allow-Origin: *
   Cache-Control: public, max-age=3600

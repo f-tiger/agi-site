@@ -41,7 +41,7 @@ jobs:
       - name: Redaction selftest
         run: node tools/fleet/d1_usage.mjs --selftest
       - name: Rows read by database, hour and query
-        if: inputs.dataset != 'bpj-zone-inspect' && inputs.dataset != 'workers' && inputs.dataset != 'bpj' && inputs.dataset != 'bpj-vendors'
+        if: inputs.dataset != 'workers' && inputs.dataset != 'bpj' && inputs.dataset != 'bpj-vendors'
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_API_TOKEN_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
@@ -102,11 +102,3 @@ jobs:
           path: /tmp/bpj-vendors.enc.json
           retention-days: 1
           if-no-files-found: error
-
-      - name: Inspect BPJ cache and rate limiting permissions
-        if: inputs.dataset == 'bpj-zone-inspect'
-        env:
-          CF_PRIMARY: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CF_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
-          CF_OTHER: ${{ secrets.CF_API_TOKEN }}
-        run: node tools/fleet/bpj-home-zone.mjs
