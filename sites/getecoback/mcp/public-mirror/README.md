@@ -102,12 +102,10 @@ place to compare a reader's own measured values.
 - **Honest about what it is not.** Product recommendations summarise public tests; nothing
   is lab-tested here, and the tools say so. These are bounded decision aids, not
   remote diagnoses or guarantees of device suitability.
-- **No account or MCP cookies.** Usage records for tools added from hosted version 1.5.0 onward and for `geraet_wahl`
-  and `entfeuchter_ablaufcheck` include the tool name and a predefined outcome code. Other tools retain arguments
-  capped at 160 characters, and limited client metadata supports automation checks.
-  No IP address or user ID is stored. Do not supply personal data. See the
-  [privacy notice](https://getecoback.com/datenschutz.html). These changes do not
-  claim deletion of historical records.
+- **No account or MCP cookies.** From hosted version 1.11.0, new usage records
+  contain the tool name, a fixed outcome and limited client metadata. Submitted
+  arguments are processed to answer requests and are absent from usage records.
+  See the [privacy notice](https://getecoback.com/datenschutz.html).
 
 ## Also machine-readable
 

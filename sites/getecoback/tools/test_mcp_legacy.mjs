@@ -1,0 +1,194 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import worker from '../src/worker.js';
+import {legacyCatalogueExample} from '../src/mcp-legacy-examples.mjs';
+
+const origin = 'https://getecoback.com';
+const site = new URL('../site/', import.meta.url);
+const env = {ASSETS: {fetch: async request => {
+  const path = new URL(request.url).pathname;
+  try {
+    const body = readFileSync(new URL(path.slice(1), site), 'utf8');
+    return new Response(body, {headers:{'content-type':path.endsWith('.json') ? 'application/json' : 'text/markdown'}});
+  } catch { return new Response('missing', {status:404}); }
+}}};
+const dates = ['2026-11-20', '2026-11-21', '2026-11-22'];
+const weather = (...temps) => Response.json({daily: {temperature_2m_max:temps, time:dates}});
+
+async function rpc(method, params) {
+  const response = await worker.fetch(new Request(origin + '/mcp/v1', {
+    method:'POST',
+    headers:{'content-type':'application/json', 'user-agent':'getecoback-ci/legacy-contract'},
+    body:JSON.stringify({jsonrpc:'2.0', id:1, method, params}),
+  }), env, {});
+  assert.equal(response.status, 200);
+  const message = await response.json();
+  assert.equal(message.error, undefined);
+  return message.result;
+}
+
+const call = (name, args) => rpc('tools/call', {name, arguments:args});
+
+test('all ten legacy names have callable published examples with canonical source mirrors', async t => {
+  t.mock.method(globalThis, 'fetch', async () => weather(19, 21, 23));
+  const {tools} = await rpc('tools/list');
+  const names = tools.slice(0,10).map(tool => tool.name);
+  assert.equal(names.length, 10);
+  for (const name of names) {
+    const expected = legacyCatalogueExample(name);
+    assert.ok(expected, name);
+    const response = await worker.fetch(
+      new Request(origin + '/api/mcp-tools?view=examples&tool=' + name), env, {});
+    assert.equal(response.status, 200);
+    const {tools:[published]} = await response.json();
+    assert.equal(published.name, name);
+    const {example, citation_url, citation_markdown_url} = published;
+    assert.deepEqual({example, citation_url, citation_markdown_url}, expected);
+    const html = readFileSync(new URL(new URL(citation_url).pathname.slice(1), site), 'utf8');
+    const markdown = readFileSync(new URL(new URL(citation_markdown_url).pathname.slice(1), site), 'utf8');
+    assert.ok(html.includes('href="' + citation_url + '"'), citation_url);
+    assert.ok(markdown.includes(citation_url), citation_markdown_url);
+    assert.ok(example.conditions.length > 30, name);
+    const result = await call(name, example.arguments);
+    assert.equal(result.isError, false, name);
+    for (const [key, value] of Object.entries(example.expected_fields ?? {})) {
+      assert.deepEqual(result.structuredContent[key], value, name + ': ' + key);
+    }
+    for (const part of example.expected_text) assert.ok(result.content[0].text.includes(part), name + ': ' + part);
+  }
+  assert.equal(legacyCatalogueExample('unknown'), null);
+});
+
+test('missing Open-Meteo data gives a typed unknown with no invented peak', async t => {
+  t.mock.method(globalThis, 'fetch', async () => new Response('unavailable', {status:503}));
+  const result = await call('hitzewelle_vorschau', {});
+  assert.equal(result.isError, false);
+  const data = result.structuredContent;
+  assert.equal(data.forecast_status, 'unavailable');
+  assert.deepEqual(data.coverage.map(({available_days}) => available_days), [0,0,0]);
+  assert.deepEqual([data.peak_c, data.peak_city, data.peak_date], [null,null,null]);
+  assert.match(result.content[0].text, /Ob 28 °C erreicht werden, ist unbekannt/);
+});
+
+test('partial coverage preserves the observed peak and the unknown locations or days', async t => {
+  t.mock.method(globalThis, 'fetch', async url => {
+    const latitude = new URL(url).searchParams.get('latitude');
+    if (latitude === '52.52') return weather(18, null, 22);
+    if (latitude === '50.11') return weather(17, 19, 26.5);
+    return new Response('unavailable', {status:503});
+  });
+  const result = await call('hitzewelle_vorschau', {});
+  assert.equal(result.isError, false);
+  const data = result.structuredContent;
+  assert.equal(data.forecast_status, 'partial');
+  assert.deepEqual(data.coverage, [
+    {city:'Berlin',available_days:2},
+    {city:'Frankfurt',available_days:3},
+    {city:'München',available_days:0},
+  ]);
+  assert.deepEqual([data.peak_c,data.peak_city,data.peak_date], [26.5,'Frankfurt',dates[2]]);
+  assert.match(result.content[0].text, /Für die fehlenden Tage oder Städte ist die Temperaturlage unbekannt/);
+});
+
+test('complete weather coverage reports the actual regional peak and threshold', async t => {
+  t.mock.method(globalThis, 'fetch', async url => new URL(url).searchParams.get('latitude') === '48.14'
+    ? weather(25, 32, 29) : weather(24, 27, 26));
+  const result = await call('hitzewelle_vorschau', {});
+  assert.equal(result.isError, false);
+  assert.equal(result.structuredContent.forecast_status, 'available');
+  assert.equal(result.structuredContent.peak_c, 32);
+  assert.equal(result.structuredContent.peak_city, 'München');
+  assert.match(result.content[0].text, /Hitzehinweis ab 32 °C/);
+});
+
+test('the browser heat endpoint retains its original warm and cold keys', async t => {
+  t.mock.method(globalThis, 'fetch', async url => new URL(url).searchParams.get('daily') === 'temperature_2m_min'
+    ? Response.json({daily:{temperature_2m_min:[-3,-6,-2],time:dates}})
+    : weather(25, 32, 29));
+  const response = await worker.fetch(new Request(origin + '/api/heat'), env, {});
+  assert.equal(response.status, 200);
+  const {level, region, temp, day, cold, forecast_status, coverage} = await response.json();
+  assert.deepEqual({level,region,temp,day}, {level:2, region:'Berlin', temp:32, day:dates[1]});
+  assert.deepEqual(cold, {level:2, region:'Berlin', temp:-6, day:dates[1]});
+  assert.equal(forecast_status, 'available');
+  assert.deepEqual(coverage.map(({available_days}) => available_days), [3,3,3]);
+});
+
+test('explicit zero hours, tariff, days or duty is preserved in legacy electricity results', async () => {
+  const name = 'klimaanlage_stromkosten';
+  const args = {watt:1000, stunden_pro_tag:8, strompreis_euro_kwh:0.3};
+  for (const key of ['watt', 'stunden_pro_tag', 'strompreis_euro_kwh', 'tage', 'auslastung']) {
+    const result = await call(name, {...args,[key]:0});
+    assert.equal(result.isError, false, key);
+    assert.equal(result.structuredContent.eur_for_period, 0, key);
+  }
+  const heat = await call('heizleistung_watt', {qm:20, strompreis_euro_kwh:0});
+  assert.equal(heat.isError, false);
+  assert.equal(heat.structuredContent.eur_per_full_load_hour, 0);
+});
+
+test('invalid legacy electricity settings return an error rather than using defaults or emitting NaN', async () => {
+  const name = 'klimaanlage_stromkosten';
+  const args = {watt:1000, stunden_pro_tag:8, strompreis_euro_kwh:0.3};
+  for (const [key,value] of [['auslastung','abc'], ['auslastung',1.01], ['strompreis_euro_kwh',null],
+    ['stunden_pro_tag',25], ['tage',-1], ['watt',undefined]]) {
+    const result = await call(name, {...args,[key]:value});
+    assert.equal(result.isError, true, key);
+    assert.doesNotMatch(result.content[0].text, /NaN|abc/);
+  }
+  for (const heat of [{qm:20, strompreis_euro_kwh:'0.30'}, {qm:20, daemmung:'abc'}, {qm:0}]) {
+    assert.equal((await call('heizleistung_watt', heat)).isError, true);
+  }
+  const excessive = await call(name, {...args,watt:Number.MAX_VALUE,strompreis_euro_kwh:Number.MAX_VALUE});
+  assert.equal(excessive.isError, true);
+  assert.doesNotMatch(JSON.stringify(excessive), /NaN|Infinity/);
+  const heatExcessive = await call('heizleistung_watt', {qm:100,strompreis_euro_kwh:Number.MAX_VALUE});
+  assert.equal(heatExcessive.isError, true);
+  assert.doesNotMatch(JSON.stringify(heatExcessive), /NaN|Infinity/);
+});
+
+test('a large BTU scenario does not point to a small-room product', async () => {
+  const result = await call('btu_empfehlung', {qm:120});
+  assert.equal(result.isError, false);
+  assert.match(result.content[0].text, /41\.000 BTU\/h/);
+  assert.match(result.content[0].text, /Kühllastberechnung/);
+  assert.doesNotMatch(result.content[0].text, /Klarstein|klimaanlage-40-qm/);
+  assert.equal((await call('btu_empfehlung', {qm:'20'})).isError, true);
+  for (const qm of [10,15,20,25,30,40,50]) {
+    const example = await call('btu_empfehlung', {qm,sonne:'wenig'});
+    const link = example.content[0].text.match(/https:\/\/getecoback\.com\/guide\/klimaanlage-\d+-qm\.html/);
+    if (link) {
+      const page = new URL(link[0]).pathname.slice(1);
+      const html = readFileSync(new URL(page, site), 'utf8');
+      assert.ok(html.includes('href="' + link[0] + '"'), link[0]);
+    } else {
+      assert.match(example.content[0].text, /Kühllastberechnung/);
+    }
+  }
+});
+
+test('an invalid routing problem does not become stale-air advice', async () => {
+  const result = await call('geraet_wahl', {problem:'bad_value'});
+  assert.equal(result.isError, true);
+  assert.doesNotMatch(result.content[0].text, /bad_value|Luftentfeuchter/);
+});
+
+test('legacy dew point compares estimated surface temperatures without a drying verdict', async () => {
+  const name = 'taupunkt_lueften';
+  const args = {aussen_temp_c:18,aussen_luftfeuchte_prozent:60,innen_temp_c:16};
+  const result = await call(name, args);
+  assert.equal(result.isError, false);
+  assert.match(result.content[0].text, /geschätzten Wandtemperatur von 14,0 °C/);
+  assert.match(result.content[0].text, /keine Aussage, ob Lüften trocknet/);
+  assert.doesNotMatch(result.content[0].text, /Lüften ist jetzt sinnvoll|nichts nieder/);
+  assert.equal((await call(name, {...args,aussen_temp_c:-243.12})).isError, true);
+});
+
+test('the 560 cm stock example remains a candidate for a 540 cm sash', async () => {
+  const result = await call('fensterabdichtung_laenge', {breite_cm:130,hoehe_cm:140});
+  assert.equal(result.isError, false);
+  assert.match(result.content[0].text, /mindestens 5,40 m/);
+  assert.match(result.content[0].text, /Konfektionsgröße zum Prüfen: 560 cm/);
+  assert.match(result.content[0].text, /Messvorgaben des konkreten Sets/);
+});

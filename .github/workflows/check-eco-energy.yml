@@ -53,7 +53,7 @@ jobs:
           # Check committed buyer modules before generators can repair missing markup.
           node --test tools/test_buyer_decision.mjs
           node --test ../../tools/eco-reporting/report.test.mjs
-          node --test tools/test_mcp_moisture.mjs tools/test_mcp_drain.mjs tools/test_mcp_drain_rpc.mjs tools/test_mcp_expanded.mjs
+          node --test tools/test_mcp_moisture.mjs tools/test_mcp_drain.mjs tools/test_mcp_drain_rpc.mjs tools/test_mcp_expanded.mjs tools/test_mcp_legacy.mjs
           node --test tools/test_affiliate_meta.mjs
           python3 tools/test_mcp_registry.py
           node ../../tools/member-studio/test-isolation.mjs

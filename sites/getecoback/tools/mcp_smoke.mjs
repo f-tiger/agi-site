@@ -41,6 +41,21 @@ function textOf(result) {
   return (result?.content || []).map((c) => c.text || "").join("\n");
 }
 
+function verifyForecast(data) {
+  const cities = ["Berlin", "Frankfurt", "München"];
+  if (data?.forecast_source_url !== "https://open-meteo.com/en/docs" || !Array.isArray(data.coverage) ||
+      data.coverage.length !== cities.length) return false;
+  const available = cities.map(city => data.coverage.find(entry => entry.city === city)?.available_days);
+  if (available.some(days => !Number.isInteger(days) || days < 0 || days > 3)) return false;
+  if (available.every(days => days === 0)) {
+    return data.forecast_status === "unavailable" &&
+      data.peak_c === null && data.peak_city === null && data.peak_date === null;
+  }
+  const status = available.every(days => days === 3) ? "available" : "partial";
+  return data.forecast_status === status && Number.isFinite(data.peak_c) &&
+    available[cities.indexOf(data.peak_city)] > 0 && /^\d{4}-\d{2}-\d{2}$/.test(data.peak_date);
+}
+
 // Each case: tool, arguments, and substrings the answer must contain. The
 // expectations are values computed by hand from the site's own formulas, so a
 // silent change to a formula fails here instead of reaching an assistant.
@@ -92,6 +107,9 @@ for (const [tool, args, expects] of CASES) {
     const body = textOf(result);
     if (tool === 'entfeuchter_ablaufcheck' && result.structuredContent?.outcome !== 'pump_check') {
       fails.push('Drainage tool did not return the higher-drain outcome for the exact model.');
+    }
+    if (tool === 'hitzewelle_vorschau' && !verifyForecast(result.structuredContent)) {
+      fails.push('Forecast tool did not return a verified peak and coverage or typed source unavailability.');
     }
     const missing = expects.filter((e) => !body.toLowerCase().includes(String(e).toLowerCase()));
     if (result.isError) {
