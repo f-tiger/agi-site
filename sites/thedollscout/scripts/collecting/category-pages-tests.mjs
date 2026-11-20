@@ -90,7 +90,7 @@ test('all 27 category pages expose usable decisions, comparison anchors and ever
   const displayed=[];
   for(const guide of data.categories){
    const slug='shop/categories/'+guide.id,page=pages.get(route(lang,slug)),d=guide[lang],group=homeCatalogCategories.find(g=>g.id===guide.id);
-   assert.ok(page,lang+'/'+guide.id);assert.equal(page.title,d.title);assert.equal(page.description,d.description);assert.equal(page.modified,d.smartPlugDecision?.checked ?? data.updated);
+   assert.ok(page,lang+'/'+guide.id);assert.equal(page.title,d.title);assert.equal(page.description,d.description);assert.equal(page.modified,[data.updated,d.smartPlugDecision?.checked,...products.filter(p=>group.types.includes(p.category)).map(p=>lang==='de'&&p.deVariant?p.deVariant.checked:p.checked)].filter(Boolean).sort().at(-1));
    assert.equal((page.html.match(/<h1[ >]/g)||[]).length,1);
    assert.ok(page.html.includes(esc(d.answer)));assert.ok(page.html.includes('datetime="'+guide.checked+'"'));
    assert.ok(page.html.includes('<table>'));assert.ok(page.html.includes('id="category-faq"'));
@@ -105,7 +105,7 @@ test('all 27 category pages expose usable decisions, comparison anchors and ever
    for(const link of anchors(page.html).filter(a=>a.attrs.href?.startsWith('#')))assert.ok(ids.has(link.attrs.href.slice(1)),link.attrs.href+' must resolve within its category');
    for(const id of guide.related)assert.ok(anchors(page.html).some(a=>a.attrs.href===route(lang,'shop/categories/'+id)));
   }
-  assert.equal(displayed.length,100,'Category pages partition the same 100 real models');assert.equal(new Set(displayed).size,100);
+  assert.equal(displayed.length,products.length,'Category pages partition the complete catalogue');assert.equal(new Set(displayed).size,products.length);
  }
 });
 
@@ -164,8 +164,8 @@ test('plain-text category mirrors retain decisions, model identity and evidence 
   const guide=data.categories.find(g=>'shop/categories/'+g.id===page.slug),d=guide[page.lang],text=page.text.join('\n');
   assert.doesNotMatch(text,/https?:\/\/(?:www\.)?amazon\.(?:com|de|co\.uk)\b|[?&]tag=/i);
   for(const value of [d.title,d.description,d.answer,...d.decisions.map(x=>x.body),...d.beforeBuying,...d.faq.flatMap(x=>[x.question,x.answer])])assert.ok(text.includes(value),path+' missing visible decision content');
-  for(const card of cards(page.html)){const id=card.attrs['data-home-product'],product=products.find(p=>p.id===id);assert.ok(text.includes(product.name));assert.ok(text.includes(origin+path+'#catalog-item-'+id));}
-  for(const source of guide.sources.filter(s=>!/(^|\.)amazon\./.test(new URL(s.url).hostname)))assert.ok(text.includes(source.url));
+  for(const card of cards(page.html)){const id=card.attrs['data-home-product'],product=products.find(p=>p.id===id);assert.ok(text.includes(page.lang==='de'&&product.deVariant?product.deVariant.name:product.name));assert.ok(text.includes(origin+path+'#catalog-item-'+id));}
+  for(const source of guide.sources.filter(s=>!/(^|\.)amazon\./.test(new URL(s.url).hostname)))assert.ok(text.includes((page.lang==='de'&&products.find(p=>p.sourceUrl===source.url)?.deVariant?.sourceUrl)||source.url));
  }
 });
 
@@ -196,7 +196,7 @@ test('category Amazon exits retain market, exact-model provenance and sanitized 
    assert.equal(german,false);const id=a['data-shopping-item'];assert.equal(id,card.attrs['data-home-product']);assert.ok(Object.hasOwn(SHOPPING_EXACT_ITEMS,id));
    assert.equal(url.pathname,'/dp/'+SHOPPING_EXACT_ITEMS[id].asin);assert.equal(a['data-shopping-placement'],'guide');assert.equal(payload.item,id);assert.equal(payload.placement,'guide');
   }else{
-   const product=products.find(p=>p.id===card.attrs['data-home-product']);assert.equal(url.pathname,'/s');assert.equal(url.searchParams.get('k'),product.brand+' '+product.model);
+   const product=products.find(p=>p.id===card.attrs['data-home-product']);assert.equal(url.pathname,'/s');assert.equal(url.searchParams.get('k'),product.brand+' '+((german&&product.deVariant?.model)||product.model));
    assert.deepEqual(Object.keys(payload).sort(),['e','p','r']);assert.match(link.text,/search|suchen|suche|搜索|搜尋/i);
   }
   assert.doesNotMatch(JSON.stringify(payload),/[?&](?:k|tag)=|\/dp\/|B000KN4DQ4|B07KN5G9CQ/,'Model searches and merchant query parameters stay outside event payloads');
