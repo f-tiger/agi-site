@@ -88,3 +88,16 @@ test('Middleware keeps real account/retirement/analytics protections and identif
  assert.equal(analytics.headers.get('x-fleet-delivery'),'pages-function');
  assert.equal(analytics.headers.get('content-security-policy'),protectAnalyticsResponse(new Response('')).headers.get('content-security-policy'));
 });
+
+test('TDS tool manifests and localized text are public while the MCP endpoint stays dynamic',()=>{
+ const reviewed=['manifest.json','catalog-de.json','catalog-en.json','catalog-zh.json',
+  'text/de/index.txt','text/en/categories/display.txt','text/zh/figure-riser-row.txt']
+  .map(p=>'/collector-assets/tds-suite/'+p);
+ const routes=createRoutes('tds',reviewed);
+ for(const p of reviewed)assert.equal(invokesFunction(routes,p),false);
+ assert.equal(invokesFunction(routes,'/api/home-mcp'),true);
+ assert.equal(invokesFunction(routes,'/de/ai-tools/figure-riser-row'),true);
+ for(const p of ['catalog-fr.json','customer.json','text/de/private/report.txt','text/xx/index.txt','text/de/account.html']){
+  assert.throws(()=>createRoutes('tds',['/collector-assets/tds-suite/'+p]),/Unreviewed|document or hidden/);
+ }
+});

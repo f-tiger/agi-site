@@ -43,13 +43,18 @@ const REVIEWED_DATA={
   ...['LIBERATION','FOXIT'].map(name=>'/document-assets/vendor/standard_fonts/LICENSE_'+name),
   ...['learning-guides','videos','tool-capabilities','brand-guides','series-catalog','manifest'].map(name=>'/collector-assets/'+name+'.json'),
   '/collector-assets/market-manifest.json',
+  '/collector-assets/tds-suite/manifest.json',
+  ...['de','en','zh'].map(lang=>'/collector-assets/tds-suite/catalog-'+lang+'.json'),
   ...['uk/home','uk/storage-boxes','uk/indoor-laundry','uk/smart-plugs','nl/home','nl/opbergboxen','nl/binnenklimaat','nl/slimme-stekkers'].map(name=>'/collector-assets/text/'+name+'.txt'),
  ]),
 };
 function reviewedDirectoryAsset(site,path){
  return DIRECTORY_ASSET.test(path)||REVIEWED_DATA[site].has(path)||
   // These two generator-owned trees intentionally publish article text.
-  (site==='tds'&&/^\/(?:document|collector)-assets\/text\/(?:en|de|zh)\/(?:[a-z0-9-]+\/)*[a-z0-9-]+\.txt$/.test(path));
+  (site==='tds'&&(
+   /^\/(?:document|collector)-assets\/text\/(?:en|de|zh)\/(?:[a-z0-9-]+\/)*[a-z0-9-]+\.txt$/.test(path) ||
+   /^\/collector-assets\/tds-suite\/text\/(?:en|de|zh)\/(?:categories\/)?[a-z0-9-]+\.txt$/.test(path)
+  ));
 }
 
 function files(root,dir=root){
