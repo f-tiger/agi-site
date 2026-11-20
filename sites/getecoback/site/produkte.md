@@ -1335,6 +1335,23 @@ Für wenige Scheiben kann der vorhandene Einwascher mit Abzieher genügen. Kommt
 
 [Kärcher im Gebrauch prüfen](https://getecoback.com/produkte.html#kaercher-fenstersauger-einsatz-und-hinweise) · [Bosch GlassVAC einsetzen und pflegen](https://getecoback.com/produkte.html#bosch-glassvac-einsatz-und-pflege)
 
+### Welche Saugdüse kommt für ein schmales Glasfeld infrage?
+
+Miss die lichte Breite an der engsten Stelle zwischen Rahmen und Sprossen. Ziehe die Reserve ab, die du auf beiden Seiten lassen möchtest. Bei 170 mm Glasbreite und 5 mm Reserve je Seite bleiben 160 mm. Unter den vier dokumentierten Paketen bleibt allein der 133-mm-Saugkopf des Bosch GlassVAC unter dieser Breite.
+
+Dokumentierte Düsen- und Saugkopfbreiten
+
+| Deutsches Paket | Nennbreiten |
+| --- | --- |
+| [Kärcher WV 2 Plus Multi Edition, 1.633-662.0](https://www.karcher.com/de/de/home-and-garden/produkte/wv-2-plus-multi-edition-p16336620) | 280 mm |
+| [Kärcher WV 3 Comfort Precision+ Black, 1.633-698.0](https://www.karcher.com/de/de/home-and-garden/produkte/wv-3-comfort-precision-black-p16336980) | 170 mm / 280 mm |
+| [Kärcher WV 8 Signature Line, 1.633-785.0](https://www.karcher.com/de/de/home-and-garden/produkte/wv-8-signature-line-p16337850) | 170 mm / 280 mm |
+| [Bosch GlassVAC Set, 06008B7000](https://www.bosch-diy.com/de/de/p/glassvac-06008b7000) | 133 mm / 266 mm |
+
+Die Nennbreite dient der Vorauswahl. Prüfe am Fenster auch die tatsächliche Außenbreite von Saugkopf und Gehäuse sowie Hindernisse beim Ansetzen und Kippen. Reicht dein vorhandener Abzieher oder ein Tuch, kannst du es weiterverwenden.
+
+Die Bosch-Maße stehen in der [deutschen Originalanleitung F 016 L81 778 auf Seite 4](https://www.bosch-diy.com/storage/de-de/glassvac-100045834-original-pdf-396340-de-de.pdf). [Lieferumfang des Bosch-Sets prüfen](https://getecoback.com/produkte.html#produkt-bosch-glassvac-set) oder [die vier Pakete vergleichen](https://getecoback.com/produkte.html#modelle-fenstersauger).
+
 ### 170-mm-Abziehlippen am genauen Gerät zuordnen
 
 Die gleiche Breite reicht für die Ersatzteilwahl nicht aus. Prüfe die vollständige Modellkennung am Gerät, die verwendete schmale Originaldüse und die Teilenummer im Angebot.
@@ -1344,8 +1361,6 @@ Die gleiche Breite reicht für die Ersatzteilwahl nicht aus. Prüfe die vollstä
 - Für den Kärcher WV 8 Signature Line (1.633-785.0) führt er die schmale Abziehlippe 2.633-513.0 in der [entsprechenden Kompatibilitätsliste](https://www.karcher.com/de/de/home-and-garden/produkte/wv-4-4-wv-5-ultra-wv-6-wv-7-wv-8-abziehlippen-170-mm-p26335130).
 
 Für die gekreuzten Kombinationen liefern diese Listen keinen Beleg. Stelle die Bestellung zurück, wenn die Originaldüse oder Teilenummer offen ist. Deutsche Herstellerlisten geprüft am 20. November 2026.
-
-[Fenstersauger-Modelle und Lieferumfang vergleichen](https://getecoback.com/produkte.html#modelle-fenstersauger)
 
 ### Kärcher-Fenstersauger vor dem Kauf und beim Einsatz prüfen
 

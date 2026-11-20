@@ -54,7 +54,7 @@ jobs:
           node --test tools/test_buyer_decision.mjs
           node --test ../../tools/eco-reporting/report.test.mjs
           node --test tools/test_mcp_moisture.mjs tools/test_mcp_drain.mjs tools/test_mcp_drain_rpc.mjs tools/test_mcp_expanded.mjs tools/test_mcp_legacy.mjs tools/test_mcp_catalog_search.mjs tools/test_mcp_evidence_guides.mjs
-          node --test tools/test_affiliate_meta.mjs
+          node --test tools/test_affiliate_meta.mjs tools/test_mcp_fenstersauger_kauf.mjs
           python3 tools/test_mcp_registry.py
           node ../../tools/member-studio/test-isolation.mjs
           node ../../tools/member-studio/test-failure.mjs

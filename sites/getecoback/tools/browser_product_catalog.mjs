@@ -3,6 +3,7 @@ import {createRequire} from 'node:module';
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
+import {WINDOW_ENTRY_DOCUMENT, WINDOW_ENTRY_URL} from '../src/fenstersauger-entry.mjs';
 
 const root=path.resolve(process.env.ECO_CATALOG_SITE||new URL('../site/',import.meta.url).pathname);
 const data=JSON.parse(fs.readFileSync(new URL('../data/product-catalog.json',import.meta.url),'utf8'));
@@ -37,6 +38,22 @@ async function setValues(form,values){
   if(await input.evaluate(n=>n.tagName==='SELECT'))await input.selectOption(value);else await input.fill(value);
  }
 }
+function localCatalogue(route,onWrite=()=>{}){
+ const request=route.request(),url=new URL(request.url());
+ if(request.method()!=='GET'){onWrite();return route.abort();}
+ if(url.origin!==origin)return route.abort();
+ if(url.pathname.startsWith('/api/')||url.pathname==='/auth/status')return route.fulfill({contentType:'application/json',body:'{"ok":false,"user":null}'});
+ const file=path.resolve(root,'.'+decodeURIComponent(url.pathname));
+ if(!file.startsWith(root+path.sep)||!fs.existsSync(file)||!fs.statSync(file).isFile())return route.fulfill({status:404,body:'Missing fixture'});
+ const contentType={'.html':'text/html; charset=utf-8','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.png':'image/png'}[path.extname(file)]||'application/octet-stream';
+ return route.fulfill({contentType,body:fs.readFileSync(file)});
+}
+function waitForEvent(page,name){
+ return page.waitForRequest(request=>{
+  if(request.url()!==origin+'/api/ev'||request.method()!=='POST')return false;
+  try{return JSON.parse(request.postData()).n===name;}catch{return false;}
+ });
+}
 const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{}),args:['--no-sandbox']});
 try{
  for(const width of [320,390,1280])for(const javaScriptEnabled of [true,false]){
@@ -48,16 +65,7 @@ try{
    Object.defineProperty(window,'gtag',{configurable:true,get:()=>spy,set(){}});
    Object.defineProperty(navigator,'globalPrivacyControl',{get:()=>true});
   });
-  await context.route('**/*',route=>{
-   const q=route.request(),u=new URL(q.url());
-   if(q.method()!=='GET'){writes++;return route.abort();}
-   if(u.origin!==origin)return route.abort();
-   if(u.pathname.startsWith('/api/')||u.pathname==='/auth/status')return route.fulfill({contentType:'application/json',body:'{"ok":false,"user":null}'});
-   const file=path.resolve(root,'.'+decodeURIComponent(u.pathname));
-   if(!file.startsWith(root+path.sep)||!fs.existsSync(file)||!fs.statSync(file).isFile())return route.fulfill({status:404,body:'Missing fixture'});
-   const contentType={'.html':'text/html; charset=utf-8','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.png':'image/png'}[path.extname(file)]||'application/octet-stream';
-   return route.fulfill({contentType,body:fs.readFileSync(file)});
-  });
+  await context.route('**/*',route=>localCatalogue(route,()=>writes++));
   const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
   assert.equal((await page.goto(origin+'/produkte.html?__probe=1',{waitUntil:'load'})).status(),200);
   assert.equal(await page.locator('[data-product-card]').count(),data.products.length);
@@ -81,6 +89,18 @@ try{
    assert(await card.locator('a[href="'+product.source+'"]').count());
   }
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+  await page.goto(WINDOW_ENTRY_URL);
+  const paneHeading=page.locator('#fenstersauger-duesenbreite');
+  const paneBox=await paneHeading.boundingBox();
+  const fixedNav=await page.locator('nav.eb-nav').boundingBox();
+  assert.ok(paneBox&&paneBox.y>=(fixedNav?fixedNav.y+fixedNav.height:0)&&paneBox.y<450,'Width answer hidden below navigation');
+  assert.equal(await page.locator('head link[rel=canonical]').getAttribute('href'),origin+'/produkte.html');
+  assert.equal(await page.locator('#fenstersauger-belege tbody tr').count(),4);
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+  await page.locator('#fenstersauger-belege a[href="#produkt-bosch-glassvac-set"]').click();
+  await page.waitForURL(url=>url.hash==='#produkt-bosch-glassvac-set');
+  assert.ok(await page.locator('#produkt-bosch-glassvac-set').isVisible());
+  await page.goto(origin+'/produkte.html?__probe=1');
   if(javaScriptEnabled){
    await page.locator('#product-filters').waitFor({state:'visible'});
    const first=data.categories[0],firstProducts=data.products.filter(p=>p.category===first.id);
@@ -221,5 +241,34 @@ try{
   cases.push({width,javaScriptEnabled,products:data.products.length,categories:data.categories.length,merchantSearches:expected.length,blockedWrites:writes,localTools:9,reusedTools:3,defaultSubmissions,independentSubmissions,invalidSubmissions,pass:true});
   await context.close();
  }
- console.log(JSON.stringify({pass:true,cases,productionWrites:0}));
+ const windowEntryCases=[];
+ for(const mode of ['tagged','wrong-fragment','opted-out']){
+  const context=await browser.newContext({viewport:{width:390,height:900},serviceWorkers:'block'});
+  await context.route('**/*',route=>localCatalogue(route));
+  await context.addInitScript(optedOut=>{
+   // Exercise a normal browser's click with all external requests intercepted.
+   Object.defineProperty(navigator,'webdriver',{get:()=>false});
+   if(optedOut&&location.protocol==='https:')localStorage.setItem('fleet_ga4_choice_v1','denied');
+  },mode==='opted-out');
+  const page=await context.newPage();
+  const entry=mode==='wrong-fragment'?WINDOW_ENTRY_DOCUMENT+'#fenstersauger-belege':WINDOW_ENTRY_URL;
+  const view=waitForEvent(page,'page_view');
+  await page.goto(entry);
+  const first=await view;
+  const expectedMarker=mode==='tagged'?true:undefined;
+  assert.equal(JSON.parse(first.postData()).mcp_window_entry,expectedMarker);
+  assert.equal((await first.allHeaders()).referer,WINDOW_ENTRY_DOCUMENT);
+  const modelClickAvailable=expected.some(product=>product.id==='bosch-glassvac-set');
+  if(modelClickAvailable){
+   await page.locator('#fenstersauger-belege a[href="#produkt-bosch-glassvac-set"]').click();
+   const click=waitForEvent(page,'affiliate_click');
+   await page.locator('#produkt-bosch-glassvac-set a[rel~=sponsored]').click();
+   const request=await click;
+   assert.equal(JSON.parse(request.postData()).mcp_window_entry,expectedMarker);
+   assert.equal((await request.allHeaders()).referer,WINDOW_ENTRY_DOCUMENT);
+  }
+  await context.close();
+  windowEntryCases.push({mode,modelClickAvailable});
+ }
+ console.log(JSON.stringify({pass:true,cases,windowEntryCases,productionWrites:0}));
 }finally{await browser.close();}

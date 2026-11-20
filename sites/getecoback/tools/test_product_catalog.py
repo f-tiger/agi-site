@@ -62,6 +62,27 @@ class CatalogTest(unittest.TestCase):
             with self.assertRaises(ValueError):C.validate(broken)
         self.assertEqual(len(Document(html).ids),len(set(Document(html).ids)))
 
+    def test_window_vacuum_width_example_keeps_package_evidence_and_no_purchase_path(self):
+        data=C.load()
+        html=C.render(data,dt.date(2026,11,20))
+        self.assertEqual(Document(html).ids.count('fenstersauger-duesenbreite'),1)
+        answer=html.split('id="fenstersauger-duesenbreite"',1)[1].split('id="fenstersauger-abziehlippen"',1)[0]
+        for package, widths in [('1.633-662.0','280 mm'),('1.633-698.0','170 mm / 280 mm'),
+                                ('1.633-785.0','170 mm / 280 mm'),('06008B7000','133 mm / 266 mm')]:
+            self.assertIn(f'{package}</a></th><td>{widths}</td>',answer)
+        sources=[p['source'] for p in data['products'] if p['category']=='fenstersauger']
+        sources.append('https://www.bosch-diy.com/storage/de-de/glassvac-100045834-original-pdf-396340-de-de.pdf')
+        for href in sources+['#modelle-fenstersauger']:
+            self.assertIn(href,[link.get('href') for link in Document(answer).links])
+        markdown=C.to_markdown(html,C.ROUTE,'de')
+        readable=markdown.split('Welche Saugdüse kommt für ein schmales Glasfeld infrage?',1)[1].split(
+            '170-mm-Abziehlippen am genauen Gerät zuordnen',1)[0]
+        for surface in (answer,readable):
+            for term in ('170 mm Glasbreite','5 mm Reserve je Seite','160 mm','133-mm-Saugkopf',
+                         'tatsächliche Außenbreite','vorhandener Abzieher oder ein Tuch',*sources):
+                self.assertIn(term,surface)
+            self.assertNotIn('amazon.',surface)
+
     def test_freshness_boundaries_keep_facts_but_withdraw_merchant_action(self):
         data=fixture(); p=data['products'][0]
         for day,allowed in [(dt.date(2026,11,12),False),(dt.date(2026,11,13),True),(dt.date(2027,2,11),True),(dt.date(2027,2,12),False)]:
