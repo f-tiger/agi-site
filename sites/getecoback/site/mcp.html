@@ -93,6 +93,7 @@
   <p>Als JSON lassen sich auch einzelne Kategorien öffnen: <a href="/api/mcp-tools?category=Wasser%20%26%20W%C3%A4sche&amp;view=compact">Wasser &amp; Wäsche</a>, <a href="/api/mcp-tools?category=Geb%C3%A4ude%20%26%20Fenster&amp;view=compact">Gebäude &amp; Fenster</a>, <a href="/api/mcp-tools?category=Ger%C3%A4te%20im%20Alltag&amp;view=compact">Geräte im Alltag</a> und <a href="/api/mcp-tools?category=Messpraxis&amp;view=compact">Messpraxis</a>.</p>
   <p>Weitere Aufgaben findest du unter <a href="/api/mcp-tools?category=Zugang%20%26%20Alltag&amp;view=compact">Zugang &amp; Alltag</a>, <a href="/api/mcp-tools?category=Saisonwechsel&amp;view=compact">Saisonwechsel</a>, <a href="/api/mcp-tools?category=Kaufpraxis&amp;view=compact">Kaufpraxis</a> und <a href="/api/mcp-tools?category=Ressourcen%20planen&amp;view=compact">Ressourcen planen</a>.</p>
   <p>Raum und Wetter planen, Geräte im Alltag betreuen und Quellen prüfen. <a href="/api/mcp-tools?category=Raumplanung&amp;view=compact">Raumplanung</a> · <a href="/api/mcp-tools?category=Wetterpraxis&amp;view=compact">Wetterpraxis</a> · <a href="/api/mcp-tools?category=K%C3%BCchenpraxis&amp;view=compact">Küchenpraxis</a> · <a href="/api/mcp-tools?category=Servicevorbereitung&amp;view=compact">Servicevorbereitung</a> · <a href="/api/mcp-tools?category=Belege%20abgleichen&amp;view=compact">Belege abgleichen</a></p>
+  <p>Weitere Aufgaben zum Nachschlagen: <a href="/api/mcp-tools?category=Textilpraxis&amp;view=compact">Textilpraxis</a> · <a href="/api/mcp-tools?category=Luftpfade&amp;view=compact">Luftpfade</a> · <a href="/api/mcp-tools?category=Modellunterlagen&amp;view=compact">Modellunterlagen</a> · <a href="/api/mcp-tools?category=Haushaltsbuch&amp;view=compact">Haushaltsbuch</a> · <a href="/api/mcp-tools?category=Praxistests&amp;view=compact">Praxistests</a></p>
   <section id="mcp-catalog" aria-label="Interaktiver Werkzeugkatalog" hidden>
     <div class="catalog-filters" hidden>
       <label>Aufgabe oder Werkzeugname <input type="search" autocomplete="off" maxlength="100"></label>
@@ -107,6 +108,7 @@
     <li><a href="#duschbudget-beispiel">Mit gemessenem Duschdurchfluss ein eigenes Wasserbudget einhalten</a></li>
     <li><a href="#strommessung-abba-beispiel">Zwei Geräteeinstellungen mit einer gegenläufigen Messfolge vergleichen</a></li>
     <li><a href="#stromfenster-mehrphasen-beispiel">Ein Startfenster für zwei Gerätephasen vergleichen</a></li>
+    <li><a href="#stromrechnung-messfenster-beispiel">Stromrechnung mit dem passenden Messzeitraum vergleichen</a></li>
     <li><a href="#wasserkocher-fuellsplitt-beispiel">Eine größere Wassermenge auf passende Füllungen aufteilen</a></li>
   </ul>
 
@@ -162,6 +164,11 @@
   <p>Trage den gesamten Bedarf und die Füllgrenzen aus der eigenen Anleitung in Millilitern ein. Im Beispiel sind 1.900 ml nötig. Jede Füllung muss zwischen 400 und 1.700 ml liegen. Zwei gleich große Füllungen à 950 ml decken den Bedarf ohne Überschuss.</p>
   <pre><code>{"jsonrpc":"2.0","id":15,"method":"tools/call","params":{"name":"wasserkocher_fuellsplitt_mindestmenge","arguments":{"bedarf_ml":1900,"min_ml":400,"max_ml":1700}}}</code></pre>
   <p><a href="/api/mcp-tools?view=examples&amp;tool=wasserkocher_fuellsplitt_mindestmenge">Eingabeschema und erwartete Felder als JSON</a> · <a href="/produkte.html#entscheidung-wasserkocher">Füllgrenzen und Modelle im Ratgeber</a></p>
+
+  <h2 id="stromrechnung-messfenster-beispiel">Stromrechnung mit dem passenden Messzeitraum vergleichen</h2>
+  <p>Von 240 kWh in 40 Messtagen ziehst du 24 kWh für vier Tage vor dem Abrechnungszeitraum und 36 kWh für sechs Tage danach ab. Für die 30 Tage der Rechnung bleiben 180 kWh. Die Rechnung weist 183 kWh aus. Der Unterschied beträgt 3 kWh. Für den Vergleich müssen Zähler und Stichtage übereinstimmen.</p>
+  <pre><code>{"jsonrpc":"2.0","id":16,"method":"tools/call","params":{"name":"stromrechnung_messfenster_randtage","arguments":{"gesamt_tage":40,"abrechnung_tage":30,"vorlauf_tage":4,"nachlauf_tage":6,"gesamt_kwh":240,"vorlauf_kwh":24,"nachlauf_kwh":36,"rechnung_kwh":183}}}</code></pre>
+  <p><a href="/api/mcp-tools?view=examples&amp;tool=stromrechnung_messfenster_randtage">Eingabeschema und erwartete Felder als JSON</a> · <a href="/strommess-protokoll.html">Strommess-Protokoll</a></p>
 
   <h2 id="haushalt-beispiele">Drei kopierbare Aufrufe mit Messwerten</h2>
   <h3 id="strom-beispiel">Strommessung auf 100 vergleichbare Tage hochrechnen</h3>
@@ -224,7 +231,7 @@
   <h3 id="werkzeugliste">Werkzeuge programmatisch finden</h3>
   <p><code>tools/list</code> liefert bis zu 100 Werkzeuge pro Seite. Enthält das Ergebnis <code>nextCursor</code>, sende seinen unveränderten Wert im nächsten <code>tools/list</code>-Aufruf als <code>params.cursor</code>. Ohne <code>nextCursor</code> ist die Liste vollständig.</p>
   <p>Der <a href="/api/mcp-tools">JSON-Katalog</a> unterstützt <code>q</code> für Suchbegriffe und <code>category</code> für Kategorien. Für eine knappe Übersicht kannst du <code>view=compact</code> ergänzen. Diese Ansicht liefert Namen, Beschreibung, Kategorie und verfügbare Quellenlinks. <a href="/api/mcp-tools?category=Messpraxis&amp;view=compact">Kompakte Liste für Messpraxis</a>.</p>
-  <p>Für kurze Suchlisten ergänze <code>limit=24</code> zum Suchbegriff. Zulässig sind ganze Zahlen von 1 bis 100. <code>total</code> gibt die Zahl aller Treffer an, <code>returned</code> die Zahl der Einträge in der aktuellen Antwort. <code>catalogueTotal</code> zählt die aufrufbaren Namen im gesamten Katalog. <a href="/api/mcp-tools?view=compact&amp;q=Strom&amp;limit=24">Kurze Suche zu Strom</a>.</p>
+  <p>Für kurze Suchlisten ergänze <code>limit=24</code>. Zulässig sind ganze Zahlen von 1 bis 100. Wenn <code>nextOffset</code> zurückkommt, sende diesen Wert als <code>offset</code> mit denselben Suchfiltern und derselben Seitengröße. Ändert sich zwischen den Abrufen <code>version</code>, beginne bei der ersten Seite. Ein <code>offset</code> braucht ein <code>limit</code> und muss eine nichtnegative ganze Zahl sein. <code>total</code> zählt alle Treffer, <code>returned</code> die Einträge auf dieser Seite und <code>catalogueTotal</code> alle aufrufbaren Katalognamen. <a href="/api/mcp-tools?view=compact&amp;q=Strom&amp;limit=24&amp;offset=24">Zweite Seite der Suche zu Strom</a>.</p>
   <p>Sobald du den Werkzeugnamen kennst, liefert <code>tool=EXAKTER_NAME</code> ohne den Kompaktmodus das zugehörige Eingabeschema. <a href="/api/mcp-tools?tool=duschdurchfluss_messen">Vertrag für <code>duschdurchfluss_messen</code></a>.</p>
   <p><code>view=examples</code> zusammen mit <code>tool=EXAKTER_NAME</code> zeigt zu einem Werkzeug das Eingabeschema und, falls vorhanden, <code>example.arguments</code> und <code>example.expected_fields</code>. Sende deine Eingaben dann mit <code>tools/call</code>. <a href="/api/mcp-tools?view=examples&amp;tool=stromfenster_mehrphasen_start">Beispieldaten für das Stromfenster</a>.</p>
   <p>In der vollständigen Liste zählt <code>total</code> die aufrufbaren Namen. <code>distinctTotal</code> zählt die unterschiedlichen Aufgaben. <code>equivalent_task</code> verweist bei einem zusätzlichen Namen auf die gleichwertige Aufgabe.</p>
