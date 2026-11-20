@@ -18,9 +18,9 @@ const names = results => results.map(tool => tool.name);
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 216);
+  assert.equal(withGuides.length, 217);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 12);
+  assert.equal(destinations.size, 13);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);
@@ -285,6 +285,24 @@ test('German buyer and owner questions find the next appliance evidence groups',
   }
 });
 
+test('exact window-vacuum parts and battery actions lead to different tools', async () => {
+  const cases = [
+    ['Passt die 170-mm-Abziehlippe 2.633-104.0 an meinen Kärcher WV 8 Signature Line?',
+      'fenstersauger_170mm_abziehlippe_geraetefamilie'],
+    ['Passt die 170-mm-Abziehlippe 2.633-513.0 an meinen Kärcher WV 3 Comfort Precision+ Black?',
+      'fenstersauger_170mm_abziehlippe_geraetefamilie'],
+    ['Lässt sich der Akku beim WV 8 Signature Line austauschen?',
+      'fenstersauger_wv3_wv8_akkuwechsel_service_oder_reserve'],
+  ];
+  for (const [query, name] of cases) {
+    const local = names(findCatalogueTools(compact,{query}));
+    assert.equal(local[0],name,query);
+    const {tools} = await catalogue({q:query,view:'compact',limit:'3'});
+    assert.deepEqual(names(tools),local.slice(0,3),query);
+    assert.equal(tools[0].guide_url,origin + '/produkte.html#fenstersauger-belege');
+  }
+});
+
 const fenstersaugerQuestions = [
   ["Kann ich mit dem Kärcher WV 2 Plus Multi Edition 30 ml aufsaugen, obwohl der Tank größer ist?", "fenstersauger_kaercher_fluessigkeitsgrenze_und_tank"],
   ["Was bedeutet es beim Kärcher WV 8, wenn alle LEDs zweimal kurz blinken und der Motor aus ist?", "fenstersauger_wv3_wv8_led_muster_einordnen"],
@@ -324,20 +342,14 @@ test('German Fenstersauger questions lead to the right decision and owned eviden
   }
 });
 
-test('exact window-vacuum parts and battery actions lead to different tools', async () => {
-  const cases = [
-    ['Passt die 170-mm-Abziehlippe 2.633-104.0 an meinen Kärcher WV 8 Signature Line?',
-      'fenstersauger_170mm_abziehlippe_geraetefamilie'],
-    ['Passt die 170-mm-Abziehlippe 2.633-513.0 an meinen Kärcher WV 3 Comfort Precision+ Black?',
-      'fenstersauger_170mm_abziehlippe_geraetefamilie'],
-    ['Lässt sich der Akku beim WV 8 Signature Line austauschen?',
-      'fenstersauger_wv3_wv8_akkuwechsel_service_oder_reserve'],
-  ];
-  for (const [query, name] of cases) {
-    const local = names(findCatalogueTools(compact,{query}));
-    assert.equal(local[0],name,query);
-    const {tools} = await catalogue({q:query,view:'compact',limit:'3'});
-    assert.deepEqual(names(tools),local.slice(0,3),query);
-    assert.equal(tools[0].guide_url,origin + '/produkte.html#fenstersauger-belege');
+test('German partial dryer replacement questions lead to the measured seasonal purchase check', async () => {
+  const tool = 'waesche_trocknungswechsel_kaufschwelle';
+  for (const q of ['Lohnt sich ein Luftentfeuchter für Wäsche im Winter, wenn manche Ladungen weiter in den Trockner gehen?',
+    'Wie viele Winter dauert es, bis sich der Kauf eines Luftentfeuchters bezahlt macht, wenn ich nur einen Teil der Waschladungen damit trockne?',
+    'Teils weiter Wäschetrockner nutzen: Amortisation Luftentfeuchter je Saison']) {
+    const [first] = (await catalogue({q, view:'compact', limit:'3'})).tools;
+    assert.equal(first?.name, tool, q);
+    assert.equal(toolGuidePath(first), '/waeschetrockner-oder-luftentfeuchter.html#laundry-check');
+    assert.equal(findCatalogueTools(compact, {query:q})[0]?.name, tool, q);
   }
 });

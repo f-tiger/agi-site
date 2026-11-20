@@ -220,26 +220,11 @@ Prüfe Hindernisse, Einrichtung und Pflege vor dem Kauf. Wähle eine Situation; 
 
 Grundlagen und GrenzenQuellen geprüft: 05.10.2026. Herstellerangaben, keine eigene Produktprüfung.
 
-### Saugroboter & Wohnung
-Globales Hersteller-Referenzbeispiel: Saros 10R, keine Rangliste und keine Modellfreigabe für deine Wohnung. Hersteller nennt bis 3 cm einfache bzw. 4 cm doppelte Schwellen. Geometrie, Bodenhaftung und Firmware beeinflussen das Ergebnis. Die Stationsmaße sind benötigter Freiraum, nicht das Gehäusemaß.
-
 ### Wäsche wird nicht trocken
 Feuchteursachen und notwendige Wohnungslüftung getrennt prüfen. Keine Lüftungsöffnungen verschließen. Ein Entfeuchter repariert keine Undichtigkeit; bei anhaltender Feuchte Ursache klären.
 
-### PortaSplit & Fenster
-Montage-Vorprüfung, keine statische Prüfung oder Mietrechtsberatung. Vermieter-/Gebäudeanforderungen bei Bedarf separat klären. Original-PortaSplit und andere Varianten nicht gleichsetzen.
-
-### Nassreiniger: echte Zeitersparnis
-Zeiten sind frei änderbare Rechenbeispiele, keine Produkttests. Ersparnis kann negativ sein. Strom, Wasser, Reinigungsmittel, Filter und Rollen kommen finanziell hinzu; Zeitersparnis ist keine Geldrendite.
-Rechenweg: 52 × Nutzungen/Woche × (manuell − Gerätenutzung − Pflege) ÷ 60.
-
-- Roborock — Saros 10R threshold limits
-- [Roborock — required dock space](https://support.roborock.com/hc/en-us/articles/43407403865369-Where-should-I-position-Saros-10R)
 - [Meaco — laundry setup](https://blog.meaco.com/the-benefits-of-using-a-dehumidifier-to-dry-your-laundry/)
 - [Meaco — cold-room laundry considerations](https://blog.meaco.com/the-best-dehumidifiers-for-drying-clothes-and-gentle-laundry-drying/)
-- [Midea — PortaSplit installation](https://www.midea.com/de/klimatisieren-heizen/portasplit/installation)
-- Midea — PortaSplit installatie
-- Tineco — Switch S6 care FAQ
 
 ## Dein nächster Schritt
 

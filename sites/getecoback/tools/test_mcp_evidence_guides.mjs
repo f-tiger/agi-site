@@ -11,6 +11,7 @@ const laundry = '/guide/waesche-trocknen-wohnung.html';
 const cellar = '/guide/luftentfeuchter-keller.html';
 const toolPaths = new Map([
   ['midea_portasplit_fensterhalterung_pruefen', '/guide/midea-portasplit-ausverkauft-alternativen.html#kaufpruefung'],
+  ['waesche_trocknungswechsel_kaufschwelle', '/waeschetrockner-oder-luftentfeuchter.html#laundry-check'],
 ]);
 const paths = new Map([
   ['Kaffeemaschinenpflege', `${products}#kaffeevollautomat-pflege-und-kauf`],
@@ -56,7 +57,7 @@ test('each mapped tool publishes the same exact evidence link after a real tool 
   const advertised = new Map(standard.map(tool => [tool.name, tool]));
   const compact = new Map((await h.catalogue({view:'compact'})).tools.map(tool => [tool.name, tool]));
   const mapped = expandedDefinitions.filter(tool=>paths.has(tool.category) || toolPaths.has(tool.name));
-  assert.equal(mapped.length, 216);
+  assert.equal(mapped.length, 217);
   assert.equal([...compact.values()].filter(tool=>tool.guide_url).length, mapped.length);
 
   for (const {name, category, page, properties, example} of mapped) {
@@ -116,6 +117,32 @@ test('PortaSplit checks the original German EAN, window type and the correct bra
   await check({angebot_ean:4048164122424}, {status:'modellnummer_abgleichen',angebot_ean_passt:false,halterung_im_herstellerbeispiel:null});
   for (const invalid of [{angebot_ean:1234},{angebot_ean:4048164116478.5},{fenster:'balkon'}, {standardhalterung:true}]) {
     const result = await h.rpc('tools/call', {name, arguments:{...standard, ...invalid}});
+    assert.equal(result.isError, true);
+    assert.equal(result.structuredContent, undefined);
+  }
+  h.assertNoWrites();
+});
+
+test('laundry purchase payback counts only changed loads and requires complete comparable measurements', async () => {
+  const h = offlineWorker();
+  const name = 'waesche_trocknungswechsel_kaufschwelle';
+  const {example} = expandedDefinitions.find(tool => tool.name === name);
+  const call = input => h.rpc('tools/call', {name, arguments:{...example.args, ...input}});
+  const check = async (input, expected) => {
+    const result = await call(input);
+    assert.equal(result.isError, false);
+    for (const [key,value] of Object.entries(expected)) assert.equal(result.structuredContent[key], value, key);
+  };
+  await check({anschaffung_eur:84}, {kostendeckung_saisons:5, stromersparnis_saison_eur:16.8});
+  await check({anschaffung_eur:0}, {kostendeckung_saisons:0, status:'vorhandene_option_stromguenstiger'});
+  await check({ladungen_ersetzbar:0}, {trocknerladungen_weiter:100, status:'kein_stromkostenvorteil', gemischt_saison_eur:49, kostendeckung_saisons:null});
+  await check({entfeuchter_kwh:1.6}, {status:'kein_stromkostenvorteil', stromersparnis_saison_eur:-4.2, kostendeckung_saisons:null});
+  for (const input of [{ladungen_vergleichbar:false}, {zusatzstrom_erfasst:false}]) {
+    await check(input, {status:'erst_vergleichbar_messen', bisher_saison_eur:null, gemischt_saison_eur:null,
+      stromersparnis_saison_eur:null, kostendeckung_saisons:null});
+  }
+  for (const input of [{ladungen_ersetzbar:101}, {ladungen_ersetzbar:60.5}, {ladungen_saison:100.5}, {tarif_eur_kwh:-1}]) {
+    const result = await call(input);
     assert.equal(result.isError, true);
     assert.equal(result.structuredContent, undefined);
   }
