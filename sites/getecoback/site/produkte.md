@@ -1077,6 +1077,44 @@ Miss für einen vorhandenen Aufbau den vollständigen Bewegungsraum, die tatsäc
 
 Herstellerquellen Deutschland, gelesen am 20.11.2026. [Daikin MC80ZVM deutsche Bedienungsanleitung](https://www.daikin.de/content/dam/document-library/operation-manuals/airp/air-purifiers/mc80z/MC80Z_Operation%20manual_3PDE690982-1_German.pdf) · [Venta 6060 Produktbeschreibung und technische Daten](https://www.venta-air.com/Rollwagen-fuer-Venta-Luftbefeuchter/6060).
 
+## Welche vorhandene Pfanne passt auf welche Induktionszone?
+
+Miss die tatsächlich aufliegende Bodenfläche. Der Nenndurchmesser am oberen Rand und der in der Kochzonentabelle angegebene Bodendurchmesser sind verschiedene Größen. Tefal nennt für die deutsche Duetto-Pfanne A70404 beziehungsweise A7040463 mit 24 cm Nenndurchmesser einen Induktionsboden von 175 mm.
+
+Für das deutsche Miele KM 7464 FR (11022890) nennt die Anleitung M.-Nr. 11 163 871 in der Kochzonentabelle auf Seite 43 vorne links 140–190 mm und hinten links 100–160 mm für runde Böden. Rechts steht für eine einzelne PowerFlex-Zone 150–230 mm, für die verbundene Zone 220–230 mm. Bei rechteckigem Geschirr unterscheidet die Tabelle 150–230 × 150–190 mm und 220–230 × 220–390 mm (Breite × Tiefe). Vergleiche die gemessene Fläche und die tatsächlich gewählte Zone. Die gesamte markierte Kochfläche ist kein Mindestmaß für jedes Geschirr.
+
+Die Miele-Hilfe zur Anzeige u unterscheidet fehlendes, ungeeignetes, zu kleines und auf der Zone nicht richtig platziertes Geschirr. Halte den beobachteten Zustand und die gewählte Bedienart getrennt fest. Zeitwahl, Abschaltfunktion und Booster betreffen verschiedene Vorgänge. Die Anleitung beschreibt auf den Seiten 46 und 55 die zusammengehörigen Zonen und deren Priorisierung. Auf den Seiten 49 und 56 beschreibt sie getrennte Zeitfunktionen und eine maximale Booster-Zeit von 15 Minuten. Ein Maßvergleich belegt keine Wärmeverteilung und keinen Defekt.
+
+Herstellerquellen Deutschland, gelesen am 20.11.2026. [Miele KM 7464 FR](https://www.miele.de/product/11022890/herdunabhangiges-induktionskochfeld-km-7464-fr) · [Miele Anleitung 11 163 871, Kochzonentabelle](https://media.miele.com/downloads/0d/c6/04_C7F12828E3FE1FE0BB8C547A67460DC6.pdf) · [Miele Hilfe zur Anzeige u](https://www.miele.de/support/customer-assistance/kochfelder-1180/alle_kategorien/u_in_der_anzeige-92670027531) · [Tefal Duetto A70404 und Induktionsboden](https://www.tefal.de/bedienungsanleitungen/kochgeschirr/toepfe-und-pfannen-mit-griff-aus-edelstahl/duetto-pfanne-24-cm-a70404/csp/2100120570).
+
+## Was zeigt der Geschirrspüler vor der Wahl und nach Programmende?
+
+Die deutsche Anleitung G7673de-002 für Miele G 7673 SCVi AutoDos E (12338510) beschreibt in EcoFeedback auf den Seiten 43–44 Balken für die Verbrauchsprognose vor dem Start und nach dem abgeschlossenen Programm die angezeigten Verbrauchswerte des Durchgangs. Die Prognose hängt unter anderem an Programm, Extras, Beladung und Bedingungen. Beim Ausschalten werden die angezeigten Ist-Werte des einzelnen Programms gelöscht. Erfasse diese Werte rechtzeitig. Seite 42 führt Betriebsstunden, Zyklen, Gesamtverbrauch, Typenschild und Software getrennt auf. Die Gesamtverbrauchsansicht und eine externe Messung haben eigene Bezugszeiträume. Die Werkseinstellungen und eine vorhandene WLAN-Rücksetzung werden separat behandelt.
+
+Auf Seite 66 beschreibt die Anleitung Ende als Programmmeldung. Ein geschlossenes Gerät kann am Ende langsam optisch blinken. Die Anzeige erlischt später, während ein Trocknungsgebläse noch laufen kann. Schalte Anzeige, Türereignis, Lüfter und dokumentiertes Programmende bei der eigenen Beobachtung nicht gleich. Seite 67 beschreibt das automatische Ausschalten nach 10 Minuten mit Ausnahmen unter anderem für Programm und Fehler.
+
+Die allgemeine AutoOpen-Hilfe nennt Programme, die schon vor Ablauf der Restzeit öffnen. Die separate QuickPowerWash-Hilfe beschreibt einen eigenen Ablauf mit Ende/AutoOpen und nennt eine mögliche Verzögerung bei eingeschaltetem, unberührtem Gerät. Behandele ein beobachtetes Öffnen nur mit genau zugeordnetem Programm und passenden Markern als Evidenz.
+
+Herstellerquellen Deutschland, gelesen am 20.11.2026. [Miele G 7673 SCVi AutoDos E](https://www.miele.de/product/12338510/vollintegrierter-geschirrspueler-g-7673-scvi-autodos-e-obsidianschwarz) · [Miele Anleitung G7673de-002](https://media.miele.com/downloads/c0/11/02_C7F128281BA21FD0A0E8671DD96BC011.pdf) · [Miele AutoOpen erklären](https://www.miele.de/support/customer-assistance/geschirrspuelen-1184/alle_kategorien/tuer_oeffnet_automatisch_bei_programmende-96372666635) · [Miele QuickPowerWash und AutoOpen](https://www.miele.de/support/customer-assistance/geschirrspuelen-1184/alle_kategorien/tuer_oeffnet_nicht_automatisch_quickpowerwash-92939853195).
+
+## Reicht ein Tischgeschirrspüler für die tatsächlich anfallende Ladung?
+
+Das deutsche Datenblatt für Bosch SKS62E32EU nennt sechs Maßgedecke, Klasse F sowie für Eco 50 einen Labelwert von 61 kWh pro 100 Zyklen, 8,0 l je Durchgang und 3 Stunden 55 Minuten. Die deutsche Modellseite nennt 0,613 kWh je Eco-Zyklus. Auf dem Datenblatt steht außerdem 49 dB(A) re 1 pW, Geräuschklasse C. Die Schallleistung am Gerät und der Schalldruck am eigenen Sitzplatz haben unterschiedliche Bezugsgrößen.
+
+Maßgedecke beschreiben eine standardisierte Ladung. Prüfe eigene Teller, Schalen und größere Teile anhand belegter Ladenutzung, einschließlich benötigter weiterer Durchgänge. Die Programmliste und die Optionen VarioSpeed und ExtraTrocknen erlauben weder die Übernahme von Eco-Werten noch die Annahme einer passenden Programm-Option-Kombination. Vergleiche ein vorhandenes und ein mögliches kleineres Gerät bei derselben tatsächlich gereinigten Menge und mit denselben Bewertungsgrenzen.
+
+Herstellerquellen Deutschland, gelesen am 20.11.2026. [Bosch SKS62E32EU deutsches Datenblatt](https://media3.bosch-home.com/Documents/specsheet/de-DE/SKS62E32EU.pdf) · [Bosch SKS62E32EU deutsche Modellseite mit Eco-Einzelwert](https://www.bosch-home.com/de/de/product/SKS62E32EU).
+
+## Passt ein einzelnes Stück oder eine Backform in den richtigen Airfryer-Korb?
+
+Philips Deutschland nennt für den NA352/00 zwei getrennte Körbe mit 6 und 3 l. Die Summe beschreibt den gesamten Stauraum beider Körbe, keinen einzelnen Korb. Synchronisieren betrifft den programmierten Endzeitpunkt. Copy ist eine andere Funktion. Aus einem Timerende folgt kein belegter tatsächlicher Zustand des Inhalts.
+
+Die deutsche Philips-Hilfe führt für die genannten Modelle NA350/351/352 ein maximales rechteckiges äußeres Formmaß von 18 × 9 cm für den kleinen und 17 × 18 cm für den großen Korb sowie eine Höhe von 7 cm auf. Die Form und die frei bleibenden Seiten sind getrennt zu betrachten. Das HD9945-Set nennt die Hilfe für den großen Korb dieser Modelle. Philips führt HD9945/01 in der Unterstützung für den NA352/00 als Form mit neun Silikonförmchen. HD9920/00 ist separat als Grillrost mit fünf Spießen aufgeführt. Daraus ergibt sich keine Korbzuordnung für dieses Zubehör. Die NA35x-Kurzanleitung zeigt die MAX-Markierung jeweils am ausgewählten Korb. Halte Typenschild, Zubehörsuffix, Korbzuordnung und Füllbeobachtung getrennt fest.
+
+Für den HD9875/90 bezeichnet Philips die 8,3 l als Volumen der gesamten Pfanne. Die Angabe von 2 kg bezieht sich in der Produktbeschreibung auf tiefgekühlte Pommes frites. Die Werte unterscheiden sich in Messgröße, Bauteil und Art der Beladung. Eine beobachtete passende Menge für andere Inhalte bleibt eine separate Frage.
+
+Herstellerquellen Deutschland, gelesen am 20.11.2026. [Philips NA352/00 und Korbgrößen](https://www.philips.de/c-p/NA352_00/3000-series-dual-basket-airfryer) · [Philips NA352/00 Zubehör](https://www.philips.de/c-p/NA352_00/3000-series-dual-basket-airfryer/support) · [Philips NA35x Markierung und Timerfunktionen](https://dam.versuni.com/m/11ba80be418a7f33/original/NA35x-Quick-Start-Guide.pdf) · [Philips Hilfe zu Backformen und Modellgruppen](https://www.philips.de/c-f/XC000015318/welche-art-von-backform-kann-ich-im-philips-airfryer-verwenden/1000) · [Philips HD9875/90 Pfannen- und Gewichtsangaben](https://acc.philips.de/c-p/HD9875_90/connected-airfryer-xxl-serie-7000).
+
 ## Was diese Auswahl leistet
 Die Gruppen zeigen unterschiedliche Aufgaben und konkrete Modelle, keine vollständige Marktübersicht. Herstellerdaten und genaue Varianten stehen bei jedem Gerät. Wir haben diese Geräte nicht selbst getestet. Eine Händlersuche bestätigt weder ein bestimmtes Angebot noch Verfügbarkeit oder einen Preis.
 Quellen älter als 90 Tage, zukünftige Prüfdaten oder offene Widersprüche pausieren die Händlersuche. Die zuletzt dokumentierten Fakten bleiben nachvollziehbar. Zubehör, regionale Ausführung und die passende Anleitung am konkreten Angebot prüfen. Ein funktionierendes vorhandenes Gerät muss nicht ersetzt werden.

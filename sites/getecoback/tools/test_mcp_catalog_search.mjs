@@ -150,6 +150,29 @@ test('German accessory and take-back questions find the relevant evidence in the
   }
 });
 
+test('German kitchen and standby questions find the relevant programme and model evidence', async () => {
+  const questions = [
+    ["Die Duetto-Pfanne hat 175 mm Boden. Passt sie am Miele KM 7464 FR vorne oder hinten links?", "induktion_km7464f_de_kochboden_zonenauswahl"],
+    ["Was zieht der Miele H 7460 BP im Aus-Zustand, im Stand-by und in vernetzter Bereitschaft laut Datenblatt?", "miele_h7460_bp_betriebswert_genaues_datenblatt"],
+    ["Beim Miele G 7673 sind im EcoFeedback vor dem Start Balken zu sehen. Ist das schon mein wirklicher Wasserverbrauch?", "miele_g7673_spuelanzeige_phase_eco_feedback"],
+    ["Die Geschirrspülertür öffnet automatisch, aber im Display steht noch eine Restzeit. Ist das Programm wirklich zu Ende?", "spuelgang_ende_marker_und_autoopen_beobachtung"],
+    ["Ist das Philips Backset HD9945/01 für den kleinen oder großen Korb vom NA352/00 vorgesehen?", "philips_hd9945_korb_und_originalteil_beleg"],
+    ["Wie viel Wasser und Strom braucht der Tischgeschirrspüler Bosch SKS62E32EU im Eco-50-Programm und wie lange läuft er?", "bosch_sks62e32eu_eco50_quellenwerte_rundung"],
+    ["Wie hoch ist beim Modell 11105690 die Leistungsaufnahme, wenn der Ofen ausgeschaltet ist oder nur auf ein WLAN-Signal wartet?", "miele_h7460_bp_betriebswert_genaues_datenblatt"],
+    ["Beim Auswählen eines Spülgangs zeigt mein G7673 SCVi AutoDos eine Reihe Striche für Wasser und Energie. Sind das Messwerte oder schätzt die Maschine nur?", "miele_g7673_spuelanzeige_phase_eco_feedback"],
+    ["Vor dem Loslaufen sehe ich beim G 7673 eine grafische Verbrauchsanzeige. Kann ich diese Angaben als tatsächlich verbrauchte Liter behandeln?", "miele_g7673_spuelanzeige_phase_eco_feedback"],
+    ["Der Spüler kippt die Klappe selbst auf, im Fenster läuft der Countdown weiter. Heißt das schon fertig, oder ist das nur die Trocknungsphase?", "spuelgang_ende_marker_und_autoopen_beobachtung"],
+    ["HD9945/01 NA352/00", "philips_hd9945_korb_und_originalteil_beleg"],
+    ["Beim Bosch SKS62E32EU suche ich das Etikett für Sparprogramm 50 Grad: Verbrauch je Spülgang und Dauer in Stunden.", "bosch_sks62e32eu_eco50_quellenwerte_rundung"],
+  ];
+  for (const [q, expected] of questions) {
+    const response = await catalogue({q, view:'compact', limit:'3'});
+    const ranked = names(findCatalogueTools(compact, {query:q})).slice(0, 3);
+    assert.deepEqual(names(response.tools), ranked, q);
+    assert.ok(ranked.includes(expected), q);
+  }
+});
+
 test('generic and off-topic requests produce no fallback catalogue matches', async () => {
   for (const q of [
     'Kannst du mir heute bitte helfen?',
