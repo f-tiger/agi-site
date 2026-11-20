@@ -344,3 +344,39 @@ print(json.dumps([dict(r) for r in db.execute(sql)]))`;
   assert.equal(audit.last_three_complete_days.affiliate_clicks,2);
   assert.doesNotMatch(JSON.stringify(audit),/midea-portasplit-ausverkauft|amazon\.de|\?mcp_entry=/);
 });
+
+
+test('German compact cellar entries require the exact marker and normalized model search; the original drain cohort is independent',async()=>{
+  const script=`import json,sqlite3,sys
+db=sqlite3.connect(':memory:'); db.row_factory=sqlite3.Row
+db.execute('CREATE TABLE ev(day,name,page,ref,ua_class,meta)')
+cellar='/guide/luftentfeuchter-keller.html'
+search='https://www.amazon.de/s?tag=getecoback-21'
+def add(day,name,meta,ua='human',page=cellar):
+ db.execute('INSERT INTO ev VALUES(?,?,?,?,?,?)',(day,name,page,'www.bing.com',ua,meta if isinstance(meta,str) else json.dumps(meta)))
+add('2026-11-21','page_view',{'mcp_drain_entry':1})
+add('2026-11-23','page_view',{'mcp_cellar_entry':1})
+add('2026-11-24','affiliate_click',{'mcp_cellar_entry':1,'link_url':search})
+add('2026-11-24','affiliate_click',{'mcp_drain_entry':1,'link_url':search})
+for invalid in [search.replace('.de','.com'),search.replace('getecoback-21','bad'),search+'&k=other',search.replace('/s?', '/dp/B07NC5CP6F?')]:
+ add('2026-11-23','affiliate_click',{'mcp_cellar_entry':1,'link_url':invalid})
+for marker in [True,'1',0,None]: add('2026-11-24','page_view',{'mcp_cellar_entry':marker})
+add('2026-11-24','page_view','{broken'); add('2026-11-24','page_view',{'mcp_cellar_entry':1},page=cellar+'-copy')
+for ua in [None,'ci','bot','other']: add('2026-11-24','page_view',{'mcp_cellar_entry':1},ua=ua)
+add('2026-11-25','page_view',{'mcp_cellar_entry':1})
+sql=sys.argv[1].replace("date('now'", "date('2026-11-25'")
+print(json.dumps([dict(r) for r in db.execute(sql)]))`;
+  const result=spawnSync('python3',['-c',script,AUDIT_SQL],{encoding:'utf8'});
+  assert.equal(result.status,0,result.stderr);
+  const audit=await affiliateAudit(dbFor(JSON.parse(result.stdout)),()=>'search');
+  const observed={first_recorded_day:'2026-11-23',page_views:1,model_search_clicks:1};
+  assert.deepEqual(audit.weeks.at(-1).mcp_cellar_entry,observed);
+  assert.deepEqual(audit.last_three_complete_days.mcp_cellar_entry,observed);
+  assert.equal(audit.weeks.at(-2).mcp_cellar_entry,null);
+  assert.equal(audit.same_weekdays_previous_week.mcp_cellar_entry,null);
+  assert.equal(audit.weeks.at(-1).mcp_drain_entry.page_views,1);
+  assert.equal(audit.weeks.at(-1).mcp_drain_entry.affiliate_clicks,1);
+  assert.equal(audit.weeks.at(-1).mcp_window_entry,null);
+  assert.equal(audit.weeks.at(-1).mcp_portasplit_entry,null);
+  assert.equal(audit.weeks.at(-1).affiliate_clicks,6);
+});

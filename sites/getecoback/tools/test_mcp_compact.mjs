@@ -11,12 +11,19 @@ const findName = 'ecoback_werkzeug_finden';
 const runName = 'ecoback_werkzeug_ausfuehren';
 const cellarName = 'kellerentfeuchter_pruefpunkt_abgleichen';
 const cellarUri = 'ecoback://evidence/de/kellerentfeuchter';
+const cellarEntry = origin + '/guide/luftentfeuchter-keller.html?mcp_entry=keller-pruefpunkt#modell-meaco-one-20';
 const drainName = 'entfeuchter_ablaufcheck';
 const cellarQuestion = 'Was leisten Comfee MDDF-20DEN7 und Meaco Arete One 20L bei 10 °C und 60 % im Keller?';
 const cellarInputs = {modell:'meaco-one-20',temperatur_c:10,relative_feuchte_pct:60,wiederholt_gemessen:true,befund:'feuchte_auffaellig'};
 const humanUA = 'Mozilla/5.0 (X11; Linux x86_64) Chrome/142.0';
 const ciUA = 'getecoback-ci/compact';
 const {name: registryName,version} = JSON.parse(readFileSync(new URL('../mcp/server.json',import.meta.url),'utf8'));
+
+function withCellarEntry(result) {
+  assert.equal(result.structuredContent.entry_url,undefined);
+  const structuredContent = {...result.structuredContent, entry_url:cellarEntry};
+  return {...result, structuredContent, content:[{type:'text',text:JSON.stringify(structuredContent,null,2)}]};
+}
 
 const outbound = [];
 const originalFetch = globalThis.fetch;
@@ -155,14 +162,14 @@ test('compact execution matches the underlying result and records that fixed too
   const headers = {'user-agent':humanUA};
   const full = await call(fullPath,cellarName,cellarInputs);
   const compact = await call(compactPath,runName,{name:cellarName,eingaben:cellarInputs},headers);
-  assert.deepEqual(compact,full);
+  assert.deepEqual(compact,withCellarEntry(full));
   assert.equal(compact.isError,false);
   assert.equal(compact.structuredContent.status,'hersteller_pruefpunkt');
   assert.equal(writes.length,1);
   const {sql,args:[event,metadata]} = writes[0];
   assert.match(sql,/INSERT INTO ev\b/);
   assert.equal(event,'mcp_call');
-  assert.equal(JSON.parse(metadata).tool,cellarName);
+  assert.deepEqual(JSON.parse(metadata),{tool:cellarName,outcome:'complete',mcp_profile:'compact',mcp_cellar_link:1,ua:humanUA});
   assert.doesNotMatch(metadata,/werkzeug_ausfuehren|modell|relative_feuchte|temperatur_c|meaco-one-20/i);
 
   for (const name of [cellarName,drainName,'not_a_compact_wrapper']) {
@@ -187,13 +194,43 @@ test('compact execution matches the underlying result and records that fixed too
     const {tool,outcome} = JSON.parse(metadata);
     return [event,tool,outcome];
   }), [['mcp_call',cellarName,'complete'],['mcp_call',drainName,'pump_check']]);
+  assert.equal(JSON.parse(writes[1].args[1]).mcp_profile,'compact');
+  assert.equal(JSON.parse(writes[1].args[1]).mcp_cellar_link,undefined);
+});
+
+test('compact offers the model link only for an exact measured Meaco test point and keeps the RPC marker private', async () => {
+  const {call,send,writes} = fixture();
+  const headers = {'user-agent':humanUA};
+  for (const inputs of [{modell:'comfee-mddf20'}, {temperatur_c:15}, {wiederholt_gemessen:false},
+    {befund:'unauffaellig'}, {befund:'wassereintritt_oder_schaden'}]) {
+    const result = await call(compactPath,runName,{name:cellarName,eingaben:{...cellarInputs,...inputs}},headers);
+    assert.equal(result.isError,false);
+    assert.equal(result.structuredContent.entry_url,undefined);
+    const metadata = JSON.parse(writes.at(-1).args[1]);
+    assert.equal(metadata.mcp_profile,'compact');
+    assert.equal(metadata.mcp_cellar_link,undefined);
+  }
+  const warmer = await call(compactPath,runName,{name:cellarName,eingaben:{...cellarInputs,temperatur_c:20}},headers);
+  assert.equal(warmer.structuredContent.entry_url,cellarEntry);
+
+  const invalid = await call(compactPath,runName,{name:cellarName,eingaben:{...cellarInputs,temperatur_c:'10'}},headers);
+  assert.equal(invalid.isError,true);
+  const [event,metadata] = writes.at(-1).args;
+  assert.equal(event,'mcp_probe');
+  assert.equal(JSON.parse(metadata).mcp_profile,undefined);
+  assert.equal(JSON.parse(metadata).mcp_cellar_link,undefined);
+
+  const forged = await send('/api/ev',{method:'POST',headers:{...headers,'content-type':'application/json'},
+    body:JSON.stringify({n:'mcp_call',p:'/mcp',m:{tool:cellarName,mcp_profile:'compact',mcp_cellar_link:1}})});
+  assert.equal(forged.status,200);
+  assert.deepEqual(JSON.parse(writes.at(-1).args[4]),{tool:cellarName});
 });
 
 test('header, query, privacy and CI probes return the same result with zero writes', async () => {
   const {call,writes} = fixture();
   const args = {name:cellarName,eingaben:cellarInputs};
   const headers = {'user-agent':humanUA};
-  const expected = await call(fullPath,cellarName,cellarInputs);
+  const expected = withCellarEntry(await call(fullPath,cellarName,cellarInputs));
   for (const [path,requestHeaders] of [
     [compactPath,{...headers,'x-probe':'1'}],
     [compactPath+'&__probe=1',headers],

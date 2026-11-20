@@ -17,7 +17,9 @@ import {videoGrowth} from './video-growth.mjs';
 import {videoEntry} from './video-entry.mjs';
 import {affiliateMetrics} from './affiliate-metrics.mjs';
 import {affiliateAudit} from './affiliate-audit.mjs';
-import {affiliateMeta, CELLAR_PAGE, taggedDrainEntry, taggedPortaSplitEntry, taggedWindowEntry} from './affiliate-meta.mjs';
+import {affiliateMeta, CELLAR_PAGE, taggedCellarModelEntry, taggedDrainEntry, taggedPortaSplitEntry, taggedWindowEntry} from './affiliate-meta.mjs';
+import {CELLAR_MODEL_ENTRY_URL} from './cellar-entry.mjs';
+import {COMPLETE_MCP_WEEK_SQL, completedMcpReports} from './mcp-adoption.mjs';
 // The browser module guards DOM setup with typeof document; its pure decision
 // function is also the MCP contract, so the two surfaces cannot route differently.
 import {decide as decideMoisture} from '../site/assets/moisture-decision.mjs';
@@ -841,7 +843,13 @@ async function handleEvent(request, env, ctx) {
   const drainEntry = taggedDrainEntry(body, request, evCls);
   const windowEntry = taggedWindowEntry(body, request, evCls);
   const portasplitEntry = taggedPortaSplitEntry(body, request, evCls);
+  const cellarModelEntry = taggedCellarModelEntry(body, request, evCls);
   let metadata = body.m;
+  if (metadata?.mcp_profile !== undefined || metadata?.mcp_cellar_link !== undefined) {
+    metadata = {...metadata};
+    delete metadata.mcp_profile;
+    delete metadata.mcp_cellar_link;
+  }
   if (name === 'page_view' && page === CELLAR_PAGE && (drainEntry || metadata?.mcp_drain_entry !== undefined)) {
     metadata = {...metadata};
     delete metadata.mcp_drain_entry;
@@ -857,7 +865,12 @@ async function handleEvent(request, env, ctx) {
     delete metadata.mcp_portasplit_entry;
     if (portasplitEntry) metadata.mcp_portasplit_entry = 1;
   }
-  const meta = name === 'affiliate_click' ? affiliateMeta(metadata, drainEntry, windowEntry, portasplitEntry)
+  if (name === 'page_view' && (cellarModelEntry || metadata?.mcp_cellar_entry !== undefined)) {
+    metadata = {...metadata};
+    delete metadata.mcp_cellar_entry;
+    if (cellarModelEntry) metadata.mcp_cellar_entry = 1;
+  }
+  const meta = name === 'affiliate_click' ? affiliateMeta(metadata, drainEntry, windowEntry, portasplitEntry, cellarModelEntry)
     : metadata ? JSON.stringify(metadata).slice(0, 200) : "";
   const country = meterEvent ? "" : request.headers.get("CF-IPCountry") || "";
   const day = new Date().toISOString().slice(0, 10);
@@ -968,18 +981,13 @@ async function trendCompute(env) {
       "WHERE name='mcp_call' AND day >= date('now','-28 day') " +
       "GROUP BY tool ORDER BY n DESC LIMIT 10"
     ).all();
-    const recentMcp = await env.EVENTS.prepare(
-      "SELECT date('now','-7 day') AS start, date('now') AS end_exclusive, " +
-      "COUNT(*) AS completed_calls, " +
-      "COUNT(DISTINCT CASE WHEN json_valid(meta) THEN json_extract(meta,'$.tool') END) AS tools_called, " +
-      "COALESCE(SUM(CASE WHEN ua_class='human' THEN 1 ELSE 0 END),0) AS browser_class_calls " +
-      "FROM ev WHERE name='mcp_call' AND page='/mcp' AND day >= date('now','-7 day') " +
-      "AND day < date('now') AND (ua_class IS NULL OR ua_class != 'ci')"
-    ).all();
+    const recentMcp = await env.EVENTS.prepare(COMPLETE_MCP_WEEK_SQL).all();
+    const {completeWeek, compactCompleteWeek} = completedMcpReports(recentMcp.results?.[0]);
     return new Response(JSON.stringify({
       events: ev.results || [], pages: pg.results || [], zero_hits: zh.results || [],
       refs: refs.results || [], mcp: mcp.results || [],
-      mcp_complete_week: recentMcp.results?.[0] || null,
+      mcp_complete_week: completeWeek,
+      mcp_compact_complete_week: compactCompleteWeek,
       affiliate_audit: await affiliateAudit(env.EVENTS, ref => srcBucket(srcHost(ref), 'getecoback.com')),
     }), { headers });
   } catch (e) {
@@ -1558,7 +1566,13 @@ async function handleMcp(request, env, url) {
         name = args.name;
         args = args.eingaben;
       }
-      const result = await mcpCallTool(name, args, env);
+      let result = await mcpCallTool(name, args, env);
+      const cellarLinkOffered = compact && name === "kellerentfeuchter_pruefpunkt_abgleichen" &&
+        args?.modell === "meaco-one-20" && result.structuredContent?.status === "hersteller_pruefpunkt";
+      if (cellarLinkOffered) {
+        const structuredContent = {...result.structuredContent, entry_url:CELLAR_MODEL_ENTRY_URL};
+        result = {...result, structuredContent, content:[{type:"text", text:JSON.stringify(structuredContent,null,2)}]};
+      }
       // Count real agent usage — same pipeline, same no-PII contract. Only
       // successful executions of a tool we actually publish count: the registry
       // validates listings by calling a randomly named tool
@@ -1587,6 +1601,8 @@ async function handleMcp(request, env, url) {
                   : ["zu_heiss", "zu_kalt", "stickige_luft"].includes(args?.problem) ? args.problem : "unknown"
                 : name === drainTool.name ? result.structuredContent.outcome
                 : known ? "complete" : "unknown",
+              ...(compact && !result.isError ? {mcp_profile:"compact"} : {}),
+              ...(cellarLinkOffered ? {mcp_cellar_link:1} : {}),
               ua: mcpUa.slice(0, 80),
             }),
             evUaClass(mcpUa)

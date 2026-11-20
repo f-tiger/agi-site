@@ -12,6 +12,11 @@ export const AUDIT_SQL = `SELECT day, name, page, ref,
     THEN json_extract(meta,'$.source') ELSE NULL END AS source,
   CASE WHEN page='${CELLAR_PAGE}' AND ua_class='human' AND json_valid(meta)
     THEN json_extract(meta,'$.mcp_drain_entry') = 1 ELSE 0 END AS drain_entry,
+  CASE WHEN page='${CELLAR_PAGE}' AND ua_class='human' AND json_valid(meta)
+    THEN COALESCE(json_type(meta,'$.mcp_cellar_entry') = 'integer'
+      AND json_extract(meta,'$.mcp_cellar_entry') = 1
+      AND (name='page_view' OR json_extract(meta,'$.link_url') = 'https://www.amazon.de/s?tag=getecoback-21'),
+      0) ELSE 0 END AS cellar_entry,
   CASE WHEN page='${WINDOW_ENTRY_PAGE}' AND ua_class='human' AND json_valid(meta)
     THEN COALESCE(json_type(meta,'$.mcp_window_entry') = 'integer'
       AND json_extract(meta,'$.mcp_window_entry') = 1,0) ELSE 0 END AS window_entry,
@@ -23,7 +28,7 @@ FROM ev
 WHERE name IN ('page_view','affiliate_click')
   AND day >= date('now','-56 days') AND day < date('now')
   AND (ua_class IS NULL OR ua_class='human') AND page NOT LIKE '/__ci%'
-GROUP BY day, name, page, ref, link, source, drain_entry, window_entry, portasplit_entry`;
+GROUP BY day, name, page, ref, link, source, drain_entry, cellar_entry, window_entry, portasplit_entry`;
 
 const GAPS = [
   {day:'2026-09-24',approx_start_utc:'13:00'},
@@ -72,6 +77,7 @@ const dayAt = (end,offset)=>new Date(Date.parse(end+'T00:00:00Z')+offset*8640000
 const firstFullDrainDay = '2026-11-20';
 const range = (start,end)=>({...section(),start,end_exclusive:end,
   // An empty marker cohort alone cannot establish when coverage started.
+  mcp_cellar_entry:null,
   mcp_window_entry:null,
   mcp_portasplit_entry:null,
   mcp_drain_entry: end <= firstFullDrainDay ? null : {
@@ -96,6 +102,7 @@ const n90Guides = new Map([
 ]);
 const n90Product = /^https:\/\/(?:www\.)?amazon\.de\/(?:dp|gp\/product)\/B07NC5CP6F\?tag=getecoback-21$/;
 const trackedModelPaths = new Map([
+  [CELLAR_PAGE, {column:'cellar_entry', aggregate:'mcp_cellar_entry'}],
   [WINDOW_ENTRY_PAGE, {column:'window_entry', aggregate:'mcp_window_entry'}],
   [PORTASPLIT_ENTRY_PAGE, {column:'portasplit_entry', aggregate:'mcp_portasplit_entry'}],
 ]);

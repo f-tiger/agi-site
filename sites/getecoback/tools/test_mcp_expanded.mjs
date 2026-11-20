@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
+import {spawnSync} from 'node:child_process';
+import {COMPLETE_MCP_WEEK_SQL, completedMcpReports} from '../src/mcp-adoption.mjs';
 import worker from '../src/worker.js';
 import {expandedDefinitions, expandedCall} from '../src/mcp-expanded.mjs';
 import {collectToolPages} from '../src/mcp-pagination.mjs';
@@ -294,6 +296,40 @@ test('adoption summary keeps complete UTC windows separate from the diagnostic l
   assert.equal(summaryQueries,1);
   assert.deepEqual(data.mcp_complete_week,fixture);
   assert.deepEqual(data.mcp,[]);
+});
+
+test('real SQLite retains complete-week totals and separates marked compact executions from offered cellar links', () => {
+  const script = `import json,sqlite3,sys
+db=sqlite3.connect(':memory:'); db.row_factory=sqlite3.Row
+db.execute('CREATE TABLE ev(day,name,page,ua_class,meta)'); db.execute('CREATE INDEX ev_day ON ev(day)')
+sql=sys.argv[1].replace("date('now'", "date('2026-11-27'")
+def read(): return dict(db.execute(sql).fetchone())
+def add(day='2026-11-22', event='mcp_call', page='/mcp', ua='other', meta=None):
+ db.execute('INSERT INTO ev VALUES(?,?,?,?,?)',(day,event,page,ua,meta if isinstance(meta,str) else json.dumps(meta)))
+add(day='2026-11-20', ua=None, meta={'tool':'legacy'})
+add(ua='human',meta='{broken')
+legacy=read()
+compact={'tool':'cellar','mcp_profile':'compact','mcp_cellar_link':1}
+add(meta=compact); add(day='2026-11-24',ua='human',meta={**compact,'mcp_cellar_link':'1'})
+add(day='2026-11-23',meta={**compact,'mcp_cellar_link':True}); add(day='2026-11-26',meta={'tool':'other','mcp_profile':'compact'})
+add(meta={**compact,'mcp_profile':'other'}); add(ua='ci',meta=compact)
+add(ua=None,meta=compact); add(meta={'mcp_profile':'compact','mcp_cellar_link':1})
+add(event='mcp_probe',meta=compact); add(day='2026-11-19',meta=compact)
+add(day='2026-11-27',meta=compact); add(page='/other',meta=compact)
+print(json.dumps([legacy,read(),[row[3] for row in db.execute('EXPLAIN QUERY PLAN '+sql)]]))`;
+  const result = spawnSync('python3',['-c',script,COMPLETE_MCP_WEEK_SQL],{encoding:'utf8'});
+  assert.equal(result.status,0,result.stderr);
+  const [legacy,mixed,plan] = JSON.parse(result.stdout);
+  assert.ok(plan.some(line => line.includes('USING INDEX ev_day')),plan.join(' '));
+  const window={start:'2026-11-20',end_exclusive:'2026-11-27'};
+  assert.deepEqual(completedMcpReports(legacy),{
+    completeWeek:{...window,completed_calls:2,tools_called:1,browser_class_calls:1},compactCompleteWeek:null,
+  });
+  assert.deepEqual(completedMcpReports(mixed),{
+    completeWeek:{...window,completed_calls:9,tools_called:3,browser_class_calls:2},
+    compactCompleteWeek:{...window,first_recorded_day:'2026-11-22',completed_calls:4,cellar_links_offered:1},
+  });
+  assert.deepEqual(completedMcpReports(null),{completeWeek:null,compactCompleteWeek:null});
 });
 
 test('Fenstersauger distinguishes parts, missing evidence, and the same light pattern by phase', async () => {

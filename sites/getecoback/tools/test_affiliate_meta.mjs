@@ -3,8 +3,9 @@ import assert from 'node:assert/strict';
 import {spawnSync} from 'node:child_process';
 import {readFileSync} from 'node:fs';
 import {runInNewContext} from 'node:vm';
-import {affiliateMeta} from '../src/affiliate-meta.mjs';
+import {affiliateMeta, taggedCellarModelEntry} from '../src/affiliate-meta.mjs';
 import {AFFILIATE_SQL, affiliateMetrics} from '../src/affiliate-metrics.mjs';
+import {CELLAR_MODEL_ENTRY_DOCUMENT, CELLAR_MODEL_ENTRY_PAGE, CELLAR_MODEL_ENTRY_URL, CELLAR_MODEL_SEARCH} from '../src/cellar-entry.mjs';
 import {WINDOW_ENTRY_DOCUMENT, WINDOW_ENTRY_PAGE} from '../src/fenstersauger-entry.mjs';
 import {PORTASPLIT_ENTRY_DOCUMENT, PORTASPLIT_ENTRY_PAGE} from '../src/portasplit-entry.mjs';
 import worker from '../src/worker.js';
@@ -237,5 +238,41 @@ test('the PortaSplit marker records an eligible landing and only its approved Ge
   }
   for (const body of [{...view,mcp_portasplit_entry:false},{...view,p:'/guide/other.html'}]) {
     assert.equal((await stored({...body,m:{mcp_portasplit_entry:1}})).mcp_portasplit_entry,undefined);
+  }
+});
+
+test('the cellar model marker requires the exact first-party document and approved click target', () => {
+  const headers = {origin:'https://getecoback.com',referer:CELLAR_MODEL_ENTRY_DOCUMENT,'sec-fetch-site':'same-origin'};
+  const eligible = (body, overrides = {}, uaClass = 'human') => taggedCellarModelEntry(body,
+    new Request('https://getecoback.com/api/ev',{method:'POST',headers:{...headers,...overrides}}),uaClass);
+  const store = (body, overrides, uaClass) => JSON.parse(affiliateMeta(body.m,false,false,false,eligible(body,overrides,uaClass)));
+  const view = {n:'page_view',p:CELLAR_MODEL_ENTRY_PAGE,mcp_cellar_entry:true};
+  const link = 'https://www.amazon.de/s?' + new URLSearchParams({k:CELLAR_MODEL_SEARCH,tag:'getecoback-21'});
+  const click = {...view,n:'affiliate_click',m:{source:'models',link_url:link,private_input:'do not store'}};
+
+  assert.equal(CELLAR_MODEL_ENTRY_DOCUMENT,'https://getecoback.com/guide/luftentfeuchter-keller.html?mcp_entry=keller-pruefpunkt');
+  assert.equal(CELLAR_MODEL_ENTRY_URL,CELLAR_MODEL_ENTRY_DOCUMENT+'#modell-meaco-one-20');
+  assert.equal(CELLAR_MODEL_SEARCH,'MeacoDry Arete One 20L');
+  assert.deepEqual(store(view),{mcp_cellar_entry:1});
+  assert.deepEqual(store(click),{mcp_cellar_entry:1,source:'models',link_url:'https://www.amazon.de/s?tag=getecoback-21'});
+  assert.deepEqual(JSON.parse(affiliateMeta({mcp_cellar_entry:1},true,true,true)),
+    {mcp_drain_entry:1,mcp_window_entry:1,mcp_portasplit_entry:1});
+
+  for (const body of [view,click]) {
+    for (const variant of [{referer:''},{referer:CELLAR_MODEL_ENTRY_URL},{referer:CELLAR_MODEL_ENTRY_DOCUMENT+'&extra=1'},
+      {origin:'https://other.test'},{'sec-fetch-site':'cross-site'},{dnt:'1'},{'sec-gpc':'1'},{'x-probe':'1'}]) {
+      assert.equal(eligible(body,variant),false);
+    }
+    for (const uaClass of ['bot','ci','other','none']) assert.equal(eligible(body,{},uaClass),false);
+  }
+
+  for (const variant of [{n:'b2b_intent'},{p:CELLAR_MODEL_ENTRY_PAGE+'?mcp_entry=keller-pruefpunkt'},
+    {mcp_cellar_entry:false},{mcp_cellar_entry:1},{mcp_cellar_entry:undefined}]) {
+    assert.equal(store({...view,...variant,m:{mcp_cellar_entry:1}}).mcp_cellar_entry,undefined);
+  }
+  for (const link_url of [product,link+'&tag=getecoback-21',link+'&extra=1',link+'#other',
+    link.replace('One+20L','One+25L'),link.replace('getecoback-21','ecoback0d-20'),
+    link.replace('www.amazon.de','amazon.de.evil.test')]) {
+    assert.equal(store({...click,m:{...click.m,link_url,mcp_cellar_entry:1}}).mcp_cellar_entry,undefined,link_url);
   }
 });
