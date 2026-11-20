@@ -40,6 +40,12 @@ Use `resources/list` in an MCP client that supports resources, then read
 Markdown covers cold-cellar performance at stated test conditions, model-specific
 drainage and when to measure or look for the moisture source before buying.
 
+Version 1.17.4 improves discovery for German questions about the cost per load
+of a tumble dryer versus a dehumidifier. The extracted compact package finds
+the measured-cost tool and runs its cited example. At €0.30 per kWh, readings
+of 2 kWh and 1 kWh give €0.60 and €0.30 per load. The comparison remains open
+if the loads reach different levels of dryness.
+
 Build with Node.js 22 or later and Python 3. The builder archives the pinned
 companion commit from the supplied Git checkout and exercises actual MCP
 stdio calls, finder queries and reviewed examples from the extracted artifact

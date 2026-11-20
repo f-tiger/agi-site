@@ -19,12 +19,12 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUNDLE: ecoback-local-tools-1.17.3.mcpb
-  VERSION: '1.17.3'
-  UPSTREAM_SHA: e82d92b88e4739f4d1e787afe94756512a2451e2
+  BUNDLE: ecoback-local-tools-1.17.4.mcpb
+  VERSION: '1.17.4'
+  UPSTREAM_SHA: b2920a1d5210574c11bff6d3e648be9bbe36e820
   NAME: io.github.f-tiger/ecoback-local-tools
   RELEASE_TAG: fleet-mcp-registry-2026-10-10
-  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.17.3.mcpb
+  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.17.4.mcpb
   REGISTRY_VERSIONS: https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions
   SOURCE_URL: https://github.com/f-tiger/getecoback-mcp
   MCPB_SCHEMA: https://raw.githubusercontent.com/modelcontextprotocol/mcpb/70fe3b34cd6dff1b3bba046638edc72a6467a4fb/schemas/mcpb-manifest-v0.3.schema.json
@@ -104,6 +104,10 @@ jobs:
             .compact.topMatch == "entfeuchter_ablaufcheck" and .compact.exampleOutcome == "pump_check" and
             .compact.citationsPreserved == true and .compact.liveToolRejected == true and
             .compact.cellarBuyerEvidence == true and
+            .compact.laundryComparison == {
+              topMatch:"waesche_trocknungskosten", dryerEurPerLoad:0.6, dehumidifierEurPerLoad:0.3,
+              comparison:"unconfirmed", citationUrl:"https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html"
+            } and
             .resource.uri == "ecoback://evidence/de/kellerentfeuchter" and
             .resource.mimeType == "text/markdown" and .resource.missingCode == -32002 and
             (.resource.textSha256 | test("^[a-f0-9]{64}$")) and .compact.resource == .resource
