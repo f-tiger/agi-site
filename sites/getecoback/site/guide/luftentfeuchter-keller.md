@@ -20,7 +20,7 @@ Die Verbraucherzentrale erläutert: Kalte Außenluft kann im Winter beim Lüften
 
 ## 2. Kalter Keller bei 10–15 °C: Kompressor oder Adsorption?
 
-**Bei 10 °C zählt der Prüfwert bei 10 °C.** Meaco Deutschland nennt für den **MeacoDry Arete One 20L** bei jeweils 60 % relativer Luftfeuchte **3,4 l/Tag bei 180 W (10 °C)** und **8,5 l/Tag bei 216 W (20 °C)**. Das sind Hersteller-Prüfwerte. Der Entzug im eigenen Keller hängt von den gemessenen Bedingungen ab.
+**Bei 10 °C zählt der Prüfwert bei 10 °C.** Meaco Deutschland nennt für den **MeacoDry Arete One 20L** bei jeweils 60 % relativer Luftfeuchte **3,4 l/Tag bei 180 W (10 °C)** und **8,5 l/Tag bei 216 W (20 °C)**. Das sind Hersteller-Prüfwerte.
 
 [Temperatur und Feuchte zuerst messen](https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html). Bei nassen Wänden oder Wassereintritt [die Ursache klären](https://getecoback.com/guide/luftentfeuchter-gegen-schimmel.html) und den Kauf zurückstellen. Bei passendem Prüfwert auch [Tank, Gefälle oder Pumpe](https://getecoback.com/guide/luftentfeuchter-keller.html#ablauf-vor-kauf) prüfen.
 
