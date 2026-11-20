@@ -16,6 +16,10 @@ const taskWords = new Map([
   ['saugroboter_kabelroute_vorbereiten','roboter kabel faehrt ueberfaehrt kabelsalat'],
   ['entfeuchter_ablaufcheck','abflussschlauch ablaufschlauch oben hoeher fuehren kondensat'],
   ['luftreiniger_ersatzfilter_zuordnung','passt ersatzfilter luftreinigermodell luftreiniger filternummer'],
+  ['waesche_trockenweg_sortierplan','liegeplaetze leine liegend liegen haengend'],
+  ['textil_masshaltigkeit_vor_nach_pflege','stoff waschen eingelaufen geschrumpft schrumpfung'],
+  ['lueftung_aussenluft_umluftrate_aufteilen','frischluft aussenluftanteil'],
+  ['stromjournal_mehrfachzahlung_kandidat','stromrechnung doppelt zweimal bezahlt doppelzahlung'],
 ]);
 
 export function indexCatalogue(tools) {

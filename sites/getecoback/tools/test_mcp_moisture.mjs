@@ -82,11 +82,11 @@ test('tool schema keeps legacy inputs optional and documents bounded choices and
   assert.ok(schema.properties.temperature.description.includes('keine allgemeine Betriebsgrenze'));
   assert.ok(schema.properties.qm.description.includes('heating/cooling only'));
   const init = await rpc('initialize');
-  assert.equal(init.serverInfo.version, '1.10.0');
+  assert.equal(init.serverInfo.version, '1.11.0');
   assert.ok(init.instructions.includes('keine Affiliate-Kauflinks'));
 });
 
-test('router telemetry stores fixed outcomes only, excludes QA, and leaves other tool audits unchanged', async () => {
+test('router and legacy telemetry store only fixed outcomes and exclude QA', async () => {
   const rows = [];
   const env = {EVENTS: {prepare: () => ({bind: (...args) => ({run: async () => rows.push(args)})})}};
   const args = {problem: 'feucht_schimmel', purpose: 'damage', humidity: 'high', temperature: 'cold', qm: 37,
@@ -104,7 +104,7 @@ test('router telemetry stores fixed outcomes only, excludes QA, and leaves other
   assert.ok(!JSON.stringify(rows).includes('PRIVATE'));
   assert.ok(!JSON.stringify(rows).includes('37'));
   await rpc('tools/call', {name: 'btu_empfehlung', arguments: {qm: 20, sonne: 'normal'}}, env, 'ExampleDesktop/1.0');
-  assert.equal(JSON.parse(rows[3][1]).args, '{"qm":20,"sonne":"normal"}');
+  assert.deepEqual(JSON.parse(rows[3][1]), {tool: 'btu_empfehlung', outcome: 'complete', ua: 'ExampleDesktop/1.0'});
 });
 
 test('heating, cooling and stale-air routes retain their existing calculations and guides', async () => {
