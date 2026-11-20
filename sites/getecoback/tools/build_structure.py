@@ -4201,20 +4201,22 @@ def inject_explainer(html, slug, en=False):
 # boxes, in-text links) predate per-link gtag handlers, so their clicks were
 # invisible in GA4. One listener per page catches them all, and it stands down
 # whenever another handler on the page already reported the same click.
-def track_block(cellar=False, window_fit=False):
+def track_block(cellar=False, window_fit=False, portasplit_url=None):
     # Capture the initial document URL once. Following a model anchor on this
     # page may change the fragment before the existing click event fires.
     marker = ('var drainEntry=location.href==="https://getecoback.com/guide/luftentfeuchter-keller.html'
               '?utm_source=eco-mcp&utm_medium=referral&utm_campaign=keller-ablauf#ablauf-vor-kauf";'
               if cellar else '')
     field = 'mcp_drain_entry:(drainEntry&&(n==="page_view"||n==="affiliate_click"))||undefined,' if cellar else ''
-    if window_fit:
-        marker = ('var windowEntry=location.href==="https://getecoback.com/produkte.html'
-                  '?mcp_entry=fenstersauger-breitencheck#fenstersauger-duesenbreite";'
-                  'var windowMeasure=function(){try{return windowEntry&&!navigator.webdriver&&'
+    if window_fit or portasplit_url:
+        entry_name = "window" if window_fit else "portasplit"
+        entry_url = ("https://getecoback.com/produkte.html?mcp_entry=fenstersauger-breitencheck#fenstersauger-duesenbreite"
+                     if window_fit else portasplit_url)
+        marker = (f'var {entry_name}Entry=location.href==={json.dumps(entry_url)};'
+                  f'var {entry_name}Measure=function(){{try{{return {entry_name}Entry&&!navigator.webdriver&&'
                   'navigator.doNotTrack!=="1"&&window.doNotTrack!=="1"&&!navigator.globalPrivacyControl&&'
                   'localStorage.getItem("fleet_ga4_choice_v1")!=="denied";}catch(e){return false;}};')
-        field = 'mcp_window_entry:((n==="page_view"||n==="affiliate_click")&&windowMeasure())||undefined,'
+        field = f'mcp_{entry_name}_entry:((n==="page_view"||n==="affiliate_click")&&{entry_name}Measure())||undefined,'
     return ('<!--EB_TRACK--><script>(function(){' + marker +
          # First-party beacon: same-origin, no cookies, no ids. Mirrors every
          # gtag event into our own D1 so the funnel stays measurable without a
@@ -4288,8 +4290,8 @@ def track_block(cellar=False, window_fit=False):
          '});})();</script><!--/EB_TRACK-->')
 
 
-def inject_track(html, cellar=False, window_fit=False):
-    track = track_block(cellar, window_fit)
+def inject_track(html, cellar=False, window_fit=False, portasplit_url=None):
+    track = track_block(cellar, window_fit, portasplit_url)
     if "<!--EB_TRACK-->" in html:
         return re.sub(r'<!--EB_TRACK-->.*?<!--/EB_TRACK-->', lambda m: track, html, flags=re.S)
     return html.replace("</body>", track + "\n</body>", 1)
@@ -4650,6 +4652,10 @@ def main():
     print(f"hubs: " + ", ".join(f"{k}({len(arts[k])})" for k, _, _ in CATEGORIES))
 
     processed = 0
+    with open(os.path.join(ROOT, "data", "mcp-portasplit-entry.json"), encoding="utf-8") as handle:
+        portasplit_entry = json.load(handle)
+    portasplit_page = os.path.join(SITE, portasplit_entry["page"].lstrip("/"))
+    portasplit_url = "https://getecoback.com" + portasplit_entry["page"] + portasplit_entry["query"] + portasplit_entry["fragment"]
     targets = ([os.path.join(SITE, f) for f in os.listdir(SITE) if f.endswith(".html") and f != "404.html"]
                + glob.glob(os.path.join(GUIDE, "*.html"))
                + glob.glob(os.path.join(KAT, "*.html")))
@@ -4659,7 +4665,8 @@ def main():
         new = inject_chrome(new)
         new = inject_search(new)
         new = inject_track(new, cellar=path == os.path.join(GUIDE, "luftentfeuchter-keller.html"),
-                           window_fit=path == os.path.join(SITE, "produkte.html"))
+                           window_fit=path == os.path.join(SITE, "produkte.html"),
+                           portasplit_url=portasplit_url if path == portasplit_page else None)
         if os.path.basename(path) != 'produkte.html':
             new = inject_profile(new)
         new = inject_share(new)

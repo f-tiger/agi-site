@@ -7,6 +7,7 @@ import {WINDOW_ENTRY_DOCUMENT, WINDOW_ENTRY_URL} from '../src/fenstersauger-entr
 
 const root=path.resolve(process.env.ECO_CATALOG_SITE||new URL('../site/',import.meta.url).pathname);
 const data=JSON.parse(fs.readFileSync(new URL('../data/product-catalog.json',import.meta.url),'utf8'));
+const portasplitEntry=JSON.parse(fs.readFileSync(new URL('../data/mcp-portasplit-entry.json',import.meta.url),'utf8'));
 const requireTools=createRequire(new URL('../../../tools/revenue-studio/package.json',import.meta.url));
 const {chromium}=requireTools('playwright');
 const origin='https://getecoback.com',today=new Date().toISOString().slice(0,10),cases=[];
@@ -292,5 +293,45 @@ try{
   await context.close();
   windowEntryCases.push({mode,modelClickAvailable});
  }
- console.log(JSON.stringify({pass:true,cases,windowEntryCases,productionWrites:0}));
+ const portasplitEntryCases=[];
+ const portasplitDocument=origin+portasplitEntry.page+portasplitEntry.query;
+ for(const mode of ['tagged','wrong-fragment','untagged','opted-out']){
+  const context=await browser.newContext({viewport:{width:390,height:900},serviceWorkers:'block'});
+  let blockedMerchant=0;
+  await context.route('**/*',route=>{
+   if(new URL(route.request().url()).hostname==='www.amazon.de')blockedMerchant++;
+   return localCatalogue(route);
+  });
+  await context.addInitScript(optedOut=>{
+   Object.defineProperty(navigator,'webdriver',{get:()=>false});
+   if(optedOut&&location.protocol==='https:')localStorage.setItem('fleet_ga4_choice_v1','denied');
+  },mode==='opted-out');
+  const page=await context.newPage();
+  const document=mode==='untagged'?origin+portasplitEntry.page:portasplitDocument;
+  const fragment=mode==='wrong-fragment'?'#option-1-clima-butler':portasplitEntry.fragment;
+  const view=waitForEvent(page,'page_view');
+  await page.goto(document+fragment);
+  const arrival=await view;
+  const expectedMarker=mode==='tagged'?true:undefined;
+  assert.equal(JSON.parse(arrival.postData()).mcp_portasplit_entry,expectedMarker,mode);
+  assert.equal((await arrival.allHeaders()).referer,document);
+
+  const secondFragment=mode==='wrong-fragment'?portasplitEntry.fragment:'#option-2-remko';
+  await page.locator('nav[aria-label="Inhaltsverzeichnis"] a[href="'+secondFragment+'"]').click();
+  await page.waitForURL(url=>url.hash===secondFragment);
+  const click=waitForEvent(page,'affiliate_click');
+  await page.getByRole('link',{name:'Midea PortaSplit auf Amazon.de suchen →',exact:true}).click();
+  const request=await click;
+  const payload=JSON.parse(request.postData());
+  const merchant=new URL(payload.m.link_url);
+  assert.equal(payload.mcp_portasplit_entry,expectedMarker,mode);
+  assert.equal((await request.allHeaders()).referer,document);
+  assert.equal(merchant.origin+merchant.pathname,'https://www.amazon.de/s');
+  assert.equal(merchant.searchParams.get('k'),portasplitEntry.model_search);
+  assert.equal(merchant.searchParams.get('tag'),'getecoback-21');
+  assert.equal(blockedMerchant,1,mode);
+  await context.close();
+  portasplitEntryCases.push({mode,marker:expectedMarker??false});
+ }
+ console.log(JSON.stringify({pass:true,cases,windowEntryCases,portasplitEntryCases,productionWrites:0}));
 }finally{await browser.close();}

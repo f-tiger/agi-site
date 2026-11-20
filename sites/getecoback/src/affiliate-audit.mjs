@@ -1,5 +1,6 @@
 import {CELLAR_PAGE} from './affiliate-meta.mjs';
 import {WINDOW_ENTRY_PAGE} from './fenstersauger-entry.mjs';
+import {PORTASPLIT_ENTRY_PAGE} from './portasplit-entry.mjs';
 
 // Bounded, aggregate-only history for distinguishing demand/mix changes from
 // telemetry loss. No identifiers, raw paths, referrers or outbound URLs leave
@@ -14,12 +15,15 @@ export const AUDIT_SQL = `SELECT day, name, page, ref,
   CASE WHEN page='${WINDOW_ENTRY_PAGE}' AND ua_class='human' AND json_valid(meta)
     THEN COALESCE(json_type(meta,'$.mcp_window_entry') = 'integer'
       AND json_extract(meta,'$.mcp_window_entry') = 1,0) ELSE 0 END AS window_entry,
+  CASE WHEN page='${PORTASPLIT_ENTRY_PAGE}' AND ua_class='human' AND json_valid(meta)
+    THEN COALESCE(json_type(meta,'$.mcp_portasplit_entry') = 'integer'
+      AND json_extract(meta,'$.mcp_portasplit_entry') = 1,0) ELSE 0 END AS portasplit_entry,
   COUNT(*) AS n, date('now') AS end_exclusive
 FROM ev
 WHERE name IN ('page_view','affiliate_click')
   AND day >= date('now','-56 days') AND day < date('now')
   AND (ua_class IS NULL OR ua_class='human') AND page NOT LIKE '/__ci%'
-GROUP BY day, name, page, ref, link, source, drain_entry, window_entry`;
+GROUP BY day, name, page, ref, link, source, drain_entry, window_entry, portasplit_entry`;
 
 const GAPS = [
   {day:'2026-09-24',approx_start_utc:'13:00'},
@@ -69,6 +73,7 @@ const firstFullDrainDay = '2026-11-20';
 const range = (start,end)=>({...section(),start,end_exclusive:end,
   // An empty marker cohort alone cannot establish when coverage started.
   mcp_window_entry:null,
+  mcp_portasplit_entry:null,
   mcp_drain_entry: end <= firstFullDrainDay ? null : {
     start: start < firstFullDrainDay ? firstFullDrainDay : start, end_exclusive:end, ...count(),
   },
@@ -90,6 +95,10 @@ const n90Guides = new Map([
   ['/guide/delonghi-pinguino-vergleich.html', 'family'],
 ]);
 const n90Product = /^https:\/\/(?:www\.)?amazon\.de\/(?:dp|gp\/product)\/B07NC5CP6F\?tag=getecoback-21$/;
+const trackedModelPaths = new Map([
+  [WINDOW_ENTRY_PAGE, {column:'window_entry', aggregate:'mcp_window_entry'}],
+  [PORTASPLIT_ENTRY_PAGE, {column:'portasplit_entry', aggregate:'mcp_portasplit_entry'}],
+]);
 function add(s,r,channel) {
   const field=r.name==='page_view'?'page_views':'affiliate_clicks';
   s[field]+=r.n;
@@ -103,8 +112,9 @@ function add(s,r,channel) {
   if (cellar && s.mcp_drain_entry && r.day >= firstFullDrainDay && r.drain_entry === 1) {
     s.mcp_drain_entry[field] += r.n;
   }
-  if (r.page === WINDOW_ENTRY_PAGE && r.window_entry === 1) {
-    const entry = s.mcp_window_entry ??= {first_recorded_day:r.day,page_views:0,model_search_clicks:0};
+  const modelPath = trackedModelPaths.get(r.page);
+  if (modelPath && r[modelPath.column] === 1) {
+    const entry = s[modelPath.aggregate] ??= {first_recorded_day:r.day,page_views:0,model_search_clicks:0};
     if (r.day < entry.first_recorded_day) entry.first_recorded_day = r.day;
     entry[field === 'page_views' ? field : 'model_search_clicks'] += r.n;
   }

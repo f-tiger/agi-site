@@ -6,6 +6,7 @@ import {runInNewContext} from 'node:vm';
 import {affiliateMeta} from '../src/affiliate-meta.mjs';
 import {AFFILIATE_SQL, affiliateMetrics} from '../src/affiliate-metrics.mjs';
 import {WINDOW_ENTRY_DOCUMENT, WINDOW_ENTRY_PAGE} from '../src/fenstersauger-entry.mjs';
+import {PORTASPLIT_ENTRY_DOCUMENT, PORTASPLIT_ENTRY_PAGE} from '../src/portasplit-entry.mjs';
 import worker from '../src/worker.js';
 
 const product = 'https://www.amazon.de/dp/B07NC5CP6F?tag=getecoback-21';
@@ -201,4 +202,40 @@ test('only approved model search clicks from the exact document carry the window
     assert.equal(ordinary.source,'inline',linkUrl);
   }
   assert.equal((await stored({...view,p:'/other.html',m:{mcp_window_entry:1}})).mcp_window_entry,undefined);
+});
+
+test('the PortaSplit marker records an eligible landing and only its approved German model search', async () => {
+  const headers = {origin:'https://getecoback.com', referer:PORTASPLIT_ENTRY_DOCUMENT, 'sec-fetch-site':'same-origin'};
+  const view = {n:'page_view',p:PORTASPLIT_ENTRY_PAGE,mcp_portasplit_entry:true,r:'https://example.test/?extra=secret'};
+  const link = 'https://www.amazon.de/s?k=Midea+PortaSplit&tag=getecoback-21';
+  const click = {...view,n:'affiliate_click',m:{source:'body',link_url:link,private_input:'secret'}};
+  const stored = async (body, requestHeaders=headers) => {
+    const receipt = await record(body,requestHeaders);
+    assert.equal(receipt.rows.length,1);
+    assert.equal(receipt.rows[0][3],'example.test');
+    return JSON.parse(receipt.rows[0][4] || '{}');
+  };
+  assert.deepEqual(await stored(view),{mcp_portasplit_entry:1});
+  assert.deepEqual(await stored(click),{
+    mcp_portasplit_entry:1,source:'body',link_url:'https://www.amazon.de/s?tag=getecoback-21',
+  });
+  for (const variant of [
+    {referer:''},{referer:PORTASPLIT_ENTRY_DOCUMENT+'&extra=1'},{referer:WINDOW_ENTRY_DOCUMENT},{origin:'https://other.test'},
+    {'sec-fetch-site':'cross-site'},{dnt:'1'},{'sec-gpc':'1'},{'x-probe':'1'},
+    {'user-agent':'getecoback-ci/portasplit'},{'user-agent':'Googlebot'},
+  ]) {
+    for (const body of [view,click]) {
+      assert.equal((await stored({...body,m:{...body.m,mcp_portasplit_entry:1}}, {...headers,...variant})).mcp_portasplit_entry,undefined);
+    }
+  }
+  for (const badLink of [product, link+'&tag=getecoback-21', link+'&extra=1', link+'#other',
+    link.replace('Midea+PortaSplit','Remko+RKL+495+DC'), link.replace('getecoback-21','ecoback0d-20'),
+    link.replace('www.amazon.de','amazon.de.evil.test')]) {
+    const ordinary = await stored({...click,m:{...click.m,link_url:badLink,mcp_portasplit_entry:1}});
+    assert.equal(ordinary.mcp_portasplit_entry,undefined,badLink);
+    assert.equal(ordinary.source,'body');
+  }
+  for (const body of [{...view,mcp_portasplit_entry:false},{...view,p:'/guide/other.html'}]) {
+    assert.equal((await stored({...body,m:{mcp_portasplit_entry:1}})).mcp_portasplit_entry,undefined);
+  }
 });

@@ -16,7 +16,7 @@ import {videoGrowth} from './video-growth.mjs';
 import {videoEntry} from './video-entry.mjs';
 import {affiliateMetrics} from './affiliate-metrics.mjs';
 import {affiliateAudit} from './affiliate-audit.mjs';
-import {affiliateMeta, CELLAR_PAGE, taggedDrainEntry, taggedWindowEntry} from './affiliate-meta.mjs';
+import {affiliateMeta, CELLAR_PAGE, taggedDrainEntry, taggedPortaSplitEntry, taggedWindowEntry} from './affiliate-meta.mjs';
 // The browser module guards DOM setup with typeof document; its pure decision
 // function is also the MCP contract, so the two surfaces cannot route differently.
 import {decide as decideMoisture} from '../site/assets/moisture-decision.mjs';
@@ -839,6 +839,7 @@ async function handleEvent(request, env, ctx) {
   const evCls = evUaClass(evUa);
   const drainEntry = taggedDrainEntry(body, request, evCls);
   const windowEntry = taggedWindowEntry(body, request, evCls);
+  const portasplitEntry = taggedPortaSplitEntry(body, request, evCls);
   let metadata = body.m;
   if (name === 'page_view' && page === CELLAR_PAGE && (drainEntry || metadata?.mcp_drain_entry !== undefined)) {
     metadata = {...metadata};
@@ -850,7 +851,12 @@ async function handleEvent(request, env, ctx) {
     delete metadata.mcp_window_entry;
     if (windowEntry) metadata.mcp_window_entry = 1;
   }
-  const meta = name === 'affiliate_click' ? affiliateMeta(metadata, drainEntry, windowEntry)
+  if (name === 'page_view' && (portasplitEntry || metadata?.mcp_portasplit_entry !== undefined)) {
+    metadata = {...metadata};
+    delete metadata.mcp_portasplit_entry;
+    if (portasplitEntry) metadata.mcp_portasplit_entry = 1;
+  }
+  const meta = name === 'affiliate_click' ? affiliateMeta(metadata, drainEntry, windowEntry, portasplitEntry)
     : metadata ? JSON.stringify(metadata).slice(0, 200) : "";
   const country = meterEvent ? "" : request.headers.get("CF-IPCountry") || "";
   const day = new Date().toISOString().slice(0, 10);

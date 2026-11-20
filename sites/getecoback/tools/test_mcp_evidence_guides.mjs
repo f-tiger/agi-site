@@ -103,6 +103,7 @@ test('PortaSplit checks the original German EAN, window type and the correct bra
     for (const [key,value] of Object.entries(expected)) assert.equal(result.structuredContent[key], value, key);
     assert.match(result.structuredContent.grenze, /Fenstermaße.*Befestigung/);
     assert.equal(result.structuredContent.guide_url, origin + toolPaths.get(name));
+    assert.equal(result.structuredContent.entry_url, origin + '/guide/midea-portasplit-ausverkauft-alternativen.html?mcp_entry=portasplit-fensterhalterung#kaufpruefung');
     assert.equal(result.structuredContent.quellen_geprueft_am, '2026-11-20');
   };
   await check({}, {status:'halterungsbeleg_vorhanden',halterung_im_herstellerbeispiel:'standardhalterung',universalhalterung_ean:null});
