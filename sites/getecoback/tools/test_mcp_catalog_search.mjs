@@ -242,7 +242,7 @@ test('German buyer and owner questions find the next appliance evidence groups',
     ["Welche Anleitung gehört zur Bosch E-Nummer MSM67170/02?", "bosch_ergomixx_e_nummer_ausfuehrung_handbuch"],
     ["Welche Nischenmaße braucht die Bosch BFL524MS0, wenn am Schrank nur 558 Millimeter Breite frei sind?", "bosch_bfl524ms0_nische_geraetemass_unterscheiden"],
     ["Ist die Wiegefläche der Beurer Küchenwaage Artikelnummer 70312 aus Glas oder Edelstahl?", "beurer_ks34_artikelnummer_wiegeoberflaeche"],
-    ["Was ist der Unterschied zwischen TWK8613P/01 und TWK8613P/02 auf der Bosch Service-Seite?", "bosch_twk8613p_enummer_suffix_servicebeleg"],
+    ["Passt irgendein 360 Grad Sockel zum Bosch TWK8613P?", "wasserkocher_twk8613p_360_sockel_originalbasis"],
     ["Hat der Bosch TAT8613 zwei Röstschlitze und belegt die Zahl auch das Innenmaß für dicke Scheiben?", "bosch_tat8613_schlitzanzahl_scheibenmass_abgrenzen"],
   ];
   for (const [query, expected] of cases) {

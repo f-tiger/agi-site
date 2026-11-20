@@ -59,15 +59,6 @@ export const kuechenwaagenBelege=[
       quelle:black,hinweis:'Für die Umrechnung von Volumen in Masse muss die tatsächliche Flüssigkeit berücksichtigt werden.'}),
     {modell_belegt:true,einheit:'fl_oz'},{einheit_waehlbar:false,groesse:'volumen'}),
 
-  info('beurer_ks34_schublade_aufbewahrung_zwei_ausrichtungen',
-    'Äußere Maße der KS 34 70311 gegen lichte Schubladenmaße in beiden Ausrichtungen abgleichen — Screen storage fit in either horizontal orientation.',
-    {modell_belegt:model, laenge_mm:n('Lichte Länge in mm.',2000),breite_mm:n('Lichte Breite in mm.',2000),hoehe_mm:n('Lichte Höhe in mm.',2000)},
-    ({modell_belegt,laenge_mm,breite_mm,hoehe_mm})=>({
-      direkt:modell_belegt?laenge_mm>=200&&breite_mm>=263&&hoehe_mm>=20:null,
-      gedreht:modell_belegt?laenge_mm>=263&&breite_mm>=200&&hoehe_mm>=20:null,
-      quelle:data,hinweis:'Gerätemaße sind keine Garantie gegen Haken, Auszüge oder notwendiges Griffspiel.'}),
-    {modell_belegt:true,laenge_mm:270,breite_mm:204,hoehe_mm:27},{direkt:false,gedreht:true}),
-
   info('beurer_ks34_reinigung_feuchtes_tuch_kein_wasserbad',
     'Eine geplante Reinigung der Küchenwaage mit den Beurer-Vorgaben zu feuchtem Tuch und fließendem Wasser abgleichen — Check the surface-cleaning method against the matching instructions.',
     {anleitung_belegt:doc,methode:pick('Geplante Reinigungsmethode.','feuchtes_tuch','feuchtes_tuch_spuelmittel','abspuelen','eintauchen','unklar')},

@@ -4,12 +4,6 @@ const manual='https://media3.bosch-home.com/Documents/8001267842_A.pdf';
 const sheet='https://media3.bosch-home.com/Documents/specsheet/de-DE/TWK8613P.pdf';
 const catalogue='https://media3.bosch-home.com/Documents/18940060_d_CO51_Bosch_Kleing_2021_Web.pdf';
 const product='https://www.bosch-home.com/de/de/product/fruehstueck/wasserkocher/TWK8613P';
-const related='https://www.bosch-home.com/de/de/productservice/TWK8613-01';
-const services={
-  'TWK8613P/01':'https://www.bosch-home.com/de/de/productservice/TWK8613P-01',
-  'TWK8613P/02':'https://www.bosch-home.com/de/de/productservice/TWK8613P-02',
-  'TWK8613/01':related
-};
 const flag=description=>({type:'boolean',description});
 const choice=(description,...values)=>({type:'string',description,enum:values});
 const status=description=>choice(description,'belegt','ausgeschlossen','offen');
@@ -28,13 +22,6 @@ function handbook(name,description,properties,calculate,args,expect,section,hinw
 }
 
 export const wasserkocherBelege=[
-  tool('bosch_twk8613p_enummer_suffix_servicebeleg',
-    'Ordnet TWK8613P/01, TWK8613P/02 und TWK8613/01 den deutschen Service-Einträgen zu — Identify the documented Bosch support endpoint from the full kettle E-number.',
-    {e_nr:choice('Genau abgelesene E-Nummer vom Kessel.',...Object.keys(services),'TWK8613P_ohne_index','offen')},
-    ({e_nr})=>({service_de:services[e_nr]??null,zuordnung:services[e_nr]?'exakter_serviceeintrag':'volle_e_nummer_abgleichen',beleg:services[e_nr]?source(services[e_nr],'Exakte E-Nummer im Titel'):p,
-      hinweis:'Ein P im Namen und der Index nach dem Schrägstrich gehören zur Ablesung. Eine Service-Seite weist keine automatische Teileaustauschbarkeit aus.'}),
-    {e_nr:'TWK8613P/02'},{service_de:services['TWK8613P/02'],zuordnung:'exakter_serviceeintrag'}),
-
   handbook('wasserkocher_twk8613p_360_sockel_originalbasis',
     'Prüft, ob der angebotene 360-Grad-Sockel für den konkreten Bosch-Wasserkocher tatsächlich als mitgelieferte Basis belegt ist — Check original kettle-base evidence without assuming cross-model interchangeability.',
     {basis:choice('Vorliegende Herkunft der Basis.','mitgelieferte_basis_belegt','anderer_sockel','nicht_vorhanden','offen'),
