@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-19",
+ "fetched": "2026-11-20",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -188,82 +188,100 @@
   "kaffeevollautomat": {
    "rising": [
     {
+     "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
+     "v": 22350
+    },
+    {
      "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
-     "v": 14000
-    },
-    {
-     "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
-     "v": 6950
-    },
-    {
-     "q": "philips ep2230/10 series 2200 kaffeevollautomat",
-     "v": 6900
+     "v": 14200
     },
     {
      "q": "philips kaffeevollautomat 6000 serie",
-     "v": 6600
+     "v": 9650
+    },
+    {
+     "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
+     "v": 7600
     },
     {
      "q": "de'longhi kaffeevollautomat ecam 21.118.b",
-     "v": 2850
+     "v": 6600
+    },
+    {
+     "q": "wmf perfection 840l kaffeevollautomat",
+     "v": 6150
     },
     {
      "q": "black friday kaffeevollautomat",
-     "v": 1050
+     "v": 1250
     },
     {
-     "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
-     "v": 650
+     "q": "siemens kaffeevollautomat eq6 plus s300",
+     "v": 800
     },
     {
-     "q": "siemens eq.6 plus s700 te657m03de kaffeevollautomat",
+     "q": "philips 5500 lattego ep5546/70 kaffeevollautomat",
      "v": 350
     },
     {
-     "q": "krups ea897b evidence ecodesign kaffeevollautomat",
+     "q": "siemens eq.6 plus s700 te657m03de kaffeevollautomat",
      "v": 250
-    },
-    {
-     "q": "de'longhi magnifica evo",
-     "v": 190
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-11-19",
+   "fetched": "2026-11-20",
    "polluted": false,
-   "last_attempt_at": "2026-11-19T13:48:13.524044+00:00",
+   "last_attempt_at": "2026-11-20T13:25:53.260636+00:00",
    "last_attempt_status": "ok"
   },
   "akku staubsauger": {
-   "auto": [
-    "akku staubsauger",
-    "akku staubsauger test",
-    "akku staubsauger testsieger",
-    "akku staubsauger test 2026",
-    "akku staubsauger bosch",
-    "akku staubsauger mit wischfunktion",
-    "akku staubsauger stiftung warentest",
-    "akku staubsauger tierhaare",
-    "akku staubsauger dyson",
-    "akku staubsauger makita"
+   "rising": [
+    {
+     "q": "quicksilver",
+     "v": 10900
+    },
+    {
+     "q": "dripl akku staubsauger",
+     "v": 1650
+    },
+    {
+     "q": "akku staubsauger mit licht",
+     "v": 450
+    },
+    {
+     "q": "sky scanner",
+     "v": 350
+    },
+    {
+     "q": "levoit akku staubsauger lvac 200 max",
+     "v": 250
+    },
+    {
+     "q": "shark powerdetect",
+     "v": 150
+    },
+    {
+     "q": "bissell staubsauger akku",
+     "v": 120
+    },
+    {
+     "q": "shark powerdetect clean & empty",
+     "v": 110
+    },
+    {
+     "q": "shark staubsauger akku",
+     "v": 90
+    },
+    {
+     "q": "shark staubsauger",
+     "v": 90
+    }
    ],
-   "new_vocabulary": [
-    "akku staubsauger test",
-    "akku staubsauger testsieger",
-    "akku staubsauger test 2026",
-    "akku staubsauger bosch",
-    "akku staubsauger mit wischfunktion",
-    "akku staubsauger stiftung warentest",
-    "akku staubsauger tierhaare",
-    "akku staubsauger dyson",
-    "akku staubsauger makita"
-   ],
-   "rising": [],
-   "source": "autocomplete-vocabulary",
-   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
-   "last_attempt_at": "2026-11-12T13:06:35.983706+00:00",
-   "last_attempt_status": "failed",
-   "fetched": "2026-11-12"
+   "source": "related-queries",
+   "fetched": "2026-11-20",
+   "polluted": false,
+   "last_attempt_at": "2026-11-20T13:26:54.393901+00:00",
+   "last_attempt_status": "ok"
   },
   "matratze": {
    "rising": [
