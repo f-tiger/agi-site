@@ -1,7 +1,9 @@
 const german = {ä:'ae', ö:'oe', ü:'ue', ß:'ss'};
 const normalize = value => String(value).toLowerCase()
   .replace(/[äöüß]/g, letter => german[letter]).normalize('NFD').replace(/\p{Diacritic}/gu, '');
-const words = value => normalize(value).match(/[a-z0-9]+/g) || [];
+const words = value => normalize(value)
+  .replace(/\b(\d{3})\.(\d{3})\.(\d{2})\b/g, '$1$2$3')
+  .match(/[a-z0-9]+/g) || [];
 
 const questionWords = new Set((
   'wie was wann wo welche welcher welches welchen welchem wer weswegen wieso weshalb wieviel ' +
@@ -44,9 +46,11 @@ const taskWords = new Map([
   ['q350_tr_250m3_schallweg_druckpunkte_v0126', 'comfoair zehnder q350 v0126 laut schallleistung kubikmetern stunde pascal zuluftseite abluftseite'],
   ['oekodesign_teilgruppe_rollenweg_de', 'ersatzteil ersatzteile spuelmaschine geschirrspueler waschmaschine ablauffilter pumpe sprueharm reparaturbetrieb verbraucher'],
   ['dunstabzug_de_modell_set_filter_belegkette', 'bosch dwb66bc50 umluftset dwz1dx1i6 dzz1xx1b6 ersatzfilter starterset filter kompatibilitaet'],
-  ['backofenzubehoer_reinigungsart_exakter_beleg', 'miele h2861bp 2861 flexiclip hfc70 hfc70c pyrolyse backofen reinigung drin'],
-  ['tisken_50400307_zwei_wandfelder_oberflaeche', 'ikea tisken saugnapfhalter saugnapf fliese fliesenspiegel glatt glatten fuge fliesenkante duschhalter'],
-  ['elektrog_kleingeraete_dreifach_mass_anzahl', 'toaster klein elektrohandel altgeraete altgeraet abgeben rueckgabe ruecknahme ohne kauf neukauf drei'],
+  ['backofenzubehoer_reinigungsart_exakter_beleg', 'miele h2861bp 2861 flexiclip hfc hfc70 hfc70c pyrolyse selbstreinigung selbstreinigungsprogramm schiene backofen reinigung drin'],
+  ['tisken_50400307_zwei_wandfelder_oberflaeche', 'ikea tisken saugnapfhalter saugnapf saugscheibe fliese fliesenspiegel fliesenfuge kacheln glatt glatten fuge fliesenkante naht kontaktflaeche duschhalter'],
+  ['venta_6060_kompatibilitaetslisten_modellkonflikt', 'venta rollgestell rollwagen lw24 lw25 lw44 lw45 ah530 ah535 ah550 ah555 modelllisten modellkonflikt kompatibilitaet'],
+  ['pulsify_artikel_strahlart_techniktabelle_drei_bar', 'hansgrohe pulsify 24121000 24151000 powderrain'],
+  ['elektrog_kleingeraete_dreifach_mass_anzahl', 'toaster klein kleinelektro zentimeter elektrohandel haendler altgeraete altgeraet abgeben rueckgabe ruecknahme ohne kauf neukauf drei'],
 ]);
 
 // Group common noun endings while retaining a meaningful root.
