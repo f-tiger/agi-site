@@ -5,7 +5,7 @@ export function videoEntry(url, method='GET') {
   target.hash = 'kalter-keller';
   target.searchParams.set('utm_source','tiktok');
   target.searchParams.set('utm_medium','social');
-  target.searchParams.set('utm_campaign','eco-dach-cellar-10c-01');
+  target.searchParams.set('utm_campaign','eco-dach-catalog-01');
   if (url.searchParams.has('__ci') || url.searchParams.has('__probe')) target.searchParams.set('__probe','1');
   return new Response(null,{status:302,headers:{location:target.href,'cache-control':'no-store','x-robots-tag':'noindex'}});
  }

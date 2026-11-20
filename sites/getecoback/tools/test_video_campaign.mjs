@@ -148,7 +148,7 @@ test('Cold cellar entry transmits only its allowed campaign and lands on the exa
   assert.equal(target.origin,'https://getecoback.com');
   assert.equal(target.pathname,'/guide/luftentfeuchter-keller.html');
   assert.equal(target.hash,'#kalter-keller');
-  const fields={utm_source:'tiktok',utm_medium:'social',utm_campaign:'eco-dach-cellar-10c-01'};
+  const fields={utm_source:'tiktok',utm_medium:'social',utm_campaign:'eco-dach-catalog-01'};
   assert.deepEqual(Object.fromEntries(target.searchParams),{...fields,__probe:'1'});
   assert.deepEqual(campaignFields(target.searchParams),{campaign_source:'tiktok',campaign_medium:'social',campaign_name:fields.utm_campaign});
  }
