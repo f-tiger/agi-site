@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.17.2';
-const revision = 'a6e2d5ccad808171100385d4c0a6aaca20a2f615';
+const version = '1.17.3';
+const revision = 'e82d92b88e4739f4d1e787afe94756512a2451e2';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -26,6 +26,7 @@ const legacyHelpers = fileURLToPath(new URL('../mcp-registry/local-packages/', i
 const sha256 = buffer => createHash('sha256').update(buffer).digest('hex');
 const writeJson = (path, value) => writeFile(path, JSON.stringify(value, null, 2) + '\n');
 const drainArguments = {drain:'level_or_uphill',model:'meaco-one-20'};
+const cellarUri = 'ecoback://evidence/de/kellerentfeuchter';
 
 function verifyFinder(extracted, drain) {
   const find = (...args) => spawnSync(process.execPath, [
@@ -64,15 +65,20 @@ async function withStdio(extracted, flags, verify) {
   const output = createInterface({input:child.stdout});
   const lines = output[Symbol.asyncIterator]();
   let id = 0;
-  async function rpc(method, params={}) {
+  async function rpc(method, params={}, errorCode) {
     child.stdin.write(JSON.stringify({jsonrpc:'2.0',id:++id,method,params})+'\n');
     const {done,value} = await lines.next();
     assert.ok(!done, `Local MCP closed during ${method}`);
     const message = JSON.parse(value);
     assert.equal(message.jsonrpc,'2.0');
     assert.equal(message.id,id);
-    assert.equal(message.error,undefined,method);
-    return message.result;
+    if (errorCode === undefined) {
+      assert.equal(message.error,undefined,method);
+      return message.result;
+    }
+    assert.equal(message.error?.code,errorCode,method);
+    assert.equal(message.result,undefined,method);
+    return message.error;
   }
 
   try {
@@ -82,12 +88,31 @@ async function withStdio(extracted, flags, verify) {
     assert.deepEqual(init.serverInfo,{name:'getecoback-raumklima',version});
     assert.ok(init.capabilities.tools);
     child.stdin.write('{"jsonrpc":"2.0","method":"notifications/initialized"}\n');
-    return await verify(rpc,init);
+    const resource = await verifyCellarResource(extracted,rpc,init);
+    return {...await verify(rpc,init),resource};
   } finally {
     output.close();
     child.stdin.end();
     child.kill();
   }
+}
+
+async function verifyCellarResource(extracted,rpc,init) {
+  const {CELLAR_RESOURCE,CELLAR_RESOURCE_TEXT} = await import(pathToFileURL(join(extracted,'src/cellar-resource.mjs')));
+  assert.ok(init.capabilities.resources);
+  assert.equal(CELLAR_RESOURCE.uri,cellarUri);
+  assert.equal(CELLAR_RESOURCE.mimeType,'text/markdown');
+  const {resources} = await rpc('resources/list');
+  assert.deepEqual(resources,[CELLAR_RESOURCE]);
+  const {contents} = await rpc('resources/read',{uri:cellarUri});
+  assert.deepEqual(contents,[{uri:cellarUri,mimeType:'text/markdown',text:CELLAR_RESOURCE_TEXT}]);
+  const [{text,mimeType}] = contents;
+  assert.ok(text.includes('| 10 °C | 3,4 L/Tag | 180 W |'));
+  assert.ok(text.includes('| 20 °C | 8,5 L/Tag | 216 W |'));
+  assert.match(text,/Meaco Deutschland,[^\n]+https:\/\/eu\.meaco\.com\/[^\n]+geprüft 2026-11-20\./);
+  assert.match(text,/Comfee MDDF-20DEN7 ohne WF[^\n]+offen[^\n]+https:\/\/www\.feelcomfee\.com\/[^\n]+geprüft 2026-11-06, erneut gelesen 2026-11-20\./);
+  const missing = await rpc('resources/read',{uri:cellarUri+'-unbekannt'},-32002);
+  return {uri:cellarUri,mimeType,textSha256:sha256(Buffer.from(text)),missingCode:missing.code};
 }
 
 async function verifyStdio(extracted, manifest) {
@@ -165,7 +190,16 @@ async function verifyCompactStdio(extracted) {
     const live = await rpc('tools/call',{name:runner,arguments:{name:'hitzewelle_vorschau',eingaben:{}}});
     assert.equal(live.isError,true);
     assert.match(live.content[0].text,/lokal nicht verfügbar/);
-    return {tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,liveToolRejected:true};
+
+    const buyer = await rpc('tools/call',{name:finder,arguments:{
+      frage:'Was leisten Comfee MDDF-20DEN7 und Meaco Arete One 20L bei 10 °C und 60 % im Keller?',
+    }});
+    assert.equal(buyer.isError,false);
+    const {resources} = await rpc('resources/list');
+    const {contents:[resource]} = await rpc('resources/read',{uri:cellarUri});
+    assert.deepEqual(buyer.structuredContent.resources,resources);
+    assert.deepEqual(buyer.content.filter(part=>part.type==='resource'),[{type:'resource',resource}]);
+    return {tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,liveToolRejected:true,cellarBuyerEvidence:true};
   });
 }
 
@@ -213,6 +247,7 @@ try {
   assert.deepEqual(actualManifest,manifest);
   const result = await verifyStdio(extracted,actualManifest);
   result.compact = await verifyCompactStdio(extracted);
+  assert.deepEqual(result.resource,result.compact.resource);
   const identifier = `https://github.com/f-tiger/agi-site/releases/download/${releaseTag}/${file}`;
   await writeJson(join(serverDir,id+'.json'),{
     $schema:'https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json',

@@ -34,12 +34,20 @@ The compact profile lists `ecoback_werkzeug_finden` and
 `ecoback_werkzeug_ausfuehren`. Start with the finder, then pass a result's tool
 name and your inputs to the runner. Compact calls are limited to offline tools.
 
+Version 1.17.3 adds one German-language evidence resource to both profiles.
+Use `resources/list` in an MCP client that supports resources, then read
+`ecoback://evidence/de/kellerentfeuchter` with `resources/read`. The bundled
+Markdown covers cold-cellar performance at stated test conditions, model-specific
+drainage and when to measure or look for the moisture source before buying.
+
 Build with Node.js 22 or later and Python 3. The builder archives the pinned
 companion commit from the supplied Git checkout and exercises actual MCP
 stdio calls, finder queries and reviewed examples from the extracted artifact
 with network disabled. The build receipt includes the compact list, a finder
 result, execution of its reviewed example, retained citations, and rejection of
-a live-only tool.
+a live-only tool. It also verifies identical resource contents in both profiles
+and the compact finder’s relevant answer, plus the error returned for an unknown
+resource URI.
 
 ```sh
 node tools/eco-local-mcpb/build.mjs /path/to/getecoback-mcp /path/to/empty-output
