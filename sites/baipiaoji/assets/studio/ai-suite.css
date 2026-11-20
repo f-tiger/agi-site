@@ -43,3 +43,7 @@
  .suite-search,.suite-categories,.suite-workgrid{grid-template-columns:minmax(0,1fr)}
  .suite-workgrid section + section{border-left:0;border-top:1px solid var(--suite-line)}
 }
+
+.suite-index-header nav{display:flex;gap:.5rem 1rem;flex-wrap:wrap}
+.suite-category-link{display:inline-block;margin:.55rem 1rem}
+.suite-categories:has(>details:only-child){display:block}

@@ -16,9 +16,27 @@ if(!selected.length){console.log('IndexNow: no recent substantive changes; nothi
 const host='baipiaoji.com',keyLocation=`https://${host}/${key}.txt`;
 const response=await fetch(keyLocation,{signal:AbortSignal.timeout(15000)});
 if(response.status!==200||(await response.text()).trim()!==key)throw Error('IndexNow public verification file unavailable or mismatched');
-if(changedOnly||process.argv.includes('--repair-bing-20260919'))for(const url of selected){
- const r=await fetch(url,{signal:AbortSignal.timeout(15000)}),html=await r.text();
- if(r.status!==200||r.url!==url||!html.includes(`rel="canonical" href="${url}"`))throw Error('Repair URL is not live with matching canonical: '+url);
+async function verifyLiveCanonical(url) {
+ const headers={'User-Agent':'bpj-ci-selfcheck/1.0'};
+ for(let attempt=0;attempt<3;attempt++){
+  try {
+   const r=await fetch(url,{headers,signal:AbortSignal.timeout(15000)});
+   if([429,500,502,503,504].includes(r.status)&&attempt<2){
+    await r.body?.cancel();
+    const seconds=Number(r.headers.get('Retry-After'));
+    await new Promise(resolve=>setTimeout(resolve,1000*Math.min(60,Math.max(seconds||0,2**attempt))));
+    continue;
+   }
+   if(r.status!==200||r.url!==url||!(await r.text()).includes(`rel="canonical" href="${url}"`))throw Error('Live canonical mismatch: '+url);
+   return;
+  } catch(error) {
+   if(attempt===2||!(error instanceof TypeError||['TimeoutError','AbortError'].includes(error.name)))throw error;
+   await new Promise(resolve=>setTimeout(resolve,1000*2**attempt));
+  }
+ }
+}
+if(changedOnly||process.argv.includes('--repair-bing-20260919')){
+ for(let i=0;i<selected.length;i+=3)await Promise.all(selected.slice(i,i+3).map(verifyLiveCanonical));
 }
 for(let i=0;i<selected.length;i+=100){
  const batch=selected.slice(i,i+100);
