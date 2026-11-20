@@ -380,3 +380,37 @@ print(json.dumps([dict(r) for r in db.execute(sql)]))`;
   assert.equal(audit.weeks.at(-1).mcp_portasplit_entry,null);
   assert.equal(audit.weeks.at(-1).affiliate_clicks,6);
 });
+
+test('N90 entry counts only human tagged guide views and the exact marked product detail in complete UTC dates', async () => {
+  const script = `import json,sqlite3,sys
+db=sqlite3.connect(':memory:'); db.row_factory=sqlite3.Row
+db.execute('CREATE TABLE ev(day,name,page,ref,meta,ua_class)')
+model='/guide/delonghi-pac-n90-test.html'
+family='/guide/delonghi-pinguino-vergleich.html'
+dp='https://www.amazon.de/dp/B07NC5CP6F?tag=getecoback-21'
+def add(day,name,meta,ua='human',page=model):
+ db.execute('INSERT INTO ev VALUES(?,?,?,?,?,?)',(day,name,page,'',meta if isinstance(meta,str) else json.dumps(meta),ua))
+view={'mcp_n90_entry':1}
+click={**view,'link_url':dp}
+add('2026-11-24','affiliate_click',click); add('2026-11-23','page_view',view)
+add('2026-11-22','page_view',{}); add('2026-11-22','affiliate_click',{'link_url':dp})
+for marker in [0,2,True,'1',None]: add('2026-11-21','page_view',{'mcp_n90_entry':marker})
+for link in [dp.replace('NC5CP6F','KJYD1ZP'),dp.replace('/dp/','/gp/product/'),dp+'&foo=bar','https://www.amazon.de/s?tag=getecoback-21']:
+ add('2026-11-21','affiliate_click',{**click,'link_url':link})
+for ua in [None,'ci','bot','other']: add('2026-11-21','page_view',view,ua=ua)
+add('2026-11-21','page_view','{broken'); add('2026-11-21','affiliate_click',click,page=family)
+add('2026-11-25','page_view',view); add('2026-11-17','affiliate_click',{**click,'mcp_n90_entry':False})
+sql=sys.argv[1].replace("date('now'", "date('2026-11-25'")
+print(json.dumps([dict(row) for row in db.execute(sql)]))`;
+  const fixture=spawnSync('python3',['-c',script,AUDIT_SQL],{encoding:'utf8'});
+  assert.equal(fixture.status,0,fixture.stderr);
+  const audit=await affiliateAudit(dbFor(JSON.parse(fixture.stdout)),()=>'direct');
+  const observed={first_recorded_day:'2026-11-23',page_views:1,exact_product_clicks:1};
+  assert.deepEqual(audit.weeks.at(-1).mcp_n90_entry,observed);
+  assert.deepEqual(audit.last_three_complete_days.mcp_n90_entry,observed);
+  assert.equal(audit.weeks.at(-2).mcp_n90_entry,null);
+  assert.equal(audit.same_weekdays_previous_week.mcp_n90_entry,null);
+  assert.equal(audit.weeks.at(-1).n90_guides.model.exact_product_clicks,3);
+  assert.equal(audit.weeks.at(-1).n90_guides.family.exact_product_clicks,1);
+  assert.equal(audit.weeks.at(-1).mcp_cellar_entry,null);
+});

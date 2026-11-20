@@ -54,7 +54,7 @@ test('the public directory and standard MCP pages expose the same catalogue', as
 });
 
 test('old or invalid cursors reject safely and both catalogue boundaries paginate completely', async () => {
-  for (const cursor of ['1.23.0:100','1.24.0:99','1.24.0:5000','1.24.0:0100','1.24.0:0',null,100]) {
+  for (const cursor of ['1.24.0:100','1.24.1:99','1.24.1:5000','1.24.1:0100','1.24.1:0',null,100]) {
     const response = await worker.fetch(request('tools/list',{cursor}), {}, {});
     assert.equal((await response.json()).error.code,-32602);
   }
@@ -316,20 +316,31 @@ add(meta={**compact,'mcp_profile':'other'}); add(ua='ci',meta=compact)
 add(ua=None,meta=compact); add(meta={'mcp_profile':'compact','mcp_cellar_link':1})
 add(event='mcp_probe',meta=compact); add(day='2026-11-19',meta=compact)
 add(day='2026-11-27',meta=compact); add(page='/other',meta=compact)
-print(json.dumps([legacy,read(),[row[3] for row in db.execute('EXPLAIN QUERY PLAN '+sql)]]))`;
+mixed=read()
+n90={'tool':'pac_n90_energielabel_zu_stromkosten','mcp_profile':'compact','mcp_n90_link':1}
+add(day='2026-11-26',meta=n90); add(day='2026-11-23',meta=n90)
+for marker in [0,2,True,'1',None]: add(meta={**n90,'mcp_n90_link':marker})
+add(meta={**n90,'tool':'another'}); add(meta={**n90,'mcp_profile':'full'})
+add(day='2026-11-19',meta=n90); add(day='2026-11-27',meta=n90)
+add(ua=None,meta=n90); add(ua='ci',meta=n90); add(event='mcp_probe',meta=n90); add(page='/other',meta=n90)
+print(json.dumps([legacy,mixed,read(),[row[3] for row in db.execute('EXPLAIN QUERY PLAN '+sql)]]))`;
   const result = spawnSync('python3',['-c',script,COMPLETE_MCP_WEEK_SQL],{encoding:'utf8'});
   assert.equal(result.status,0,result.stderr);
-  const [legacy,mixed,plan] = JSON.parse(result.stdout);
+  const [legacy,mixed,withN90,plan] = JSON.parse(result.stdout);
   assert.ok(plan.some(line => line.includes('USING INDEX ev_day')),plan.join(' '));
   const window={start:'2026-11-20',end_exclusive:'2026-11-27'};
   assert.deepEqual(completedMcpReports(legacy),{
-    completeWeek:{...window,completed_calls:2,tools_called:1,browser_class_calls:1},compactCompleteWeek:null,
+    completeWeek:{...window,completed_calls:2,tools_called:1,browser_class_calls:1},compactCompleteWeek:null,n90CompactCompleteWeek:null,
   });
   assert.deepEqual(completedMcpReports(mixed),{
     completeWeek:{...window,completed_calls:9,tools_called:3,browser_class_calls:2},
     compactCompleteWeek:{...window,first_recorded_day:'2026-11-22',completed_calls:4,cellar_links_offered:1},
+    n90CompactCompleteWeek:null,
   });
-  assert.deepEqual(completedMcpReports(null),{completeWeek:null,compactCompleteWeek:null});
+  assert.deepEqual(completedMcpReports(withN90).n90CompactCompleteWeek,{
+    ...window,first_recorded_day:'2026-11-23',n90_links_offered:2,
+  });
+  assert.deepEqual(completedMcpReports(null),{completeWeek:null,compactCompleteWeek:null,n90CompactCompleteWeek:null});
 });
 
 test('Fenstersauger distinguishes parts, missing evidence, and the same light pattern by phase', async () => {
