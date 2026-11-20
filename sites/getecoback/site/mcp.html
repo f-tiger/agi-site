@@ -6,6 +6,7 @@
 <title>MCP-Werkzeuge für Raumklima und Haushalt | EcoBack</title>
 <meta name="description" content="MCP-Werkzeuge für Raumklima, Wasser, Stromkosten und Haushaltsgeräte. Mit Eingabeschemata, Messbeispielen und Quellen. Ohne Anmeldung.">
 <link rel="canonical" href="https://getecoback.com/mcp.html">
+<link rel="alternate" type="text/markdown" href="https://getecoback.com/mcp.md">
 <link rel="alternate" hreflang="de" href="https://getecoback.com/mcp.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Raumklima-MCP-Server — KI-Agenten-Tools von EcoBack">
@@ -29,8 +30,9 @@
   article ul, article ol { margin:0 0 14px 20px; color:#26333d; }
   article li { margin-bottom:8px; }
   pre { background:#0d2438; color:#dbeafe; border-radius:10px; padding:14px 16px; font-size:13px; overflow-x:auto; margin:10px 0 16px; }
+  #kompaktprofil { scroll-margin-top:180px; }
   code { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
-  p code, li code { background:#eaf2f7; color:#0a4d7a; padding:1px 6px; border-radius:5px; font-size:13.5px; }
+  p code, li code { background:#eaf2f7; color:#0a4d7a; padding:1px 6px; border-radius:5px; font-size:13.5px; overflow-wrap:anywhere; }
   .answer { background:#eaf6ff; border:1px solid #cfe6fa; border-radius:10px; padding:16px 18px; margin:18px 0; }
   .tool { background:#fff; border:1px solid #e4ebf0; border-radius:12px; padding:14px 16px; margin:10px 0; }
   .tool strong { color:#0a4d7a; }
@@ -219,8 +221,7 @@
 
   <h2 id="einrichten">In deinem Client einrichten</h2>
 
-  <p><strong>Mit einem Klick</strong> (öffnet den Installationsdialog deines Editors — die Konfiguration darunter
-  ist dieselbe, falls dein Client keine Links unterstützt):</p>
+  <p>Der vollständige Katalog bietet direkten Zugriff auf einzelne Werkzeuge, die Ratgebersuche und die Wettervorschau. Öffne den Installationsdialog deines Editors oder trage die Verbindungsadresse manuell ein. Für Clients mit wenigen Werkzeugplätzen gibt es das <a href="#kompaktprofil">Kompaktprofil</a>.</p>
   <p style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;">
     <a href="cursor://anysphere.cursor-deeplink/mcp/install?name=getecoback-raumklima&amp;config=eyJ0eXBlIjoiaHR0cCIsInVybCI6Imh0dHBzOi8vZ2V0ZWNvYmFjay5jb20vbWNwL3YxIn0=" data-eb-mcp="cursor" style="display:inline-block;background:#0f6ba8;color:#fff;font-weight:800;padding:10px 16px;border-radius:8px;text-decoration:none;font-size:14px;">In Cursor installieren</a>
     <a href="vscode:mcp/install?%7B%22name%22%3A%22getecoback-raumklima%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fgetecoback.com%2Fmcp%2Fv1%22%7D" data-eb-mcp="vscode" style="display:inline-block;background:#0f6ba8;color:#fff;font-weight:800;padding:10px 16px;border-radius:8px;text-decoration:none;font-size:14px;">In VS Code installieren</a>
@@ -237,7 +238,19 @@
   <h3>VS Code</h3>
   <pre><code>{"servers":{"getecoback":{"type":"http","url":"https://getecoback.com/mcp/v1"}}}</code></pre>
 
-  <h3 id="werkzeugliste">Werkzeuge programmatisch finden</h3>
+  <h3 id="kompaktprofil">Zwei Werkzeuge für deinen Assistenten</h3>
+  <p>Wähle im MCP-Client „Streamable HTTP“ und kopiere diese Adresse in das URL-Feld. Für die Verbindung brauchst du keine Anmeldung.</p>
+  <pre><code>https://getecoback.com/mcp/v1?profile=compact</code></pre>
+  <p>Für Claude Code kannst du den Anschluss so anlegen:</p>
+  <pre><code>claude mcp add --transport http ecoback-kompakt 'https://getecoback.com/mcp/v1?profile=compact'</code></pre>
+  <p><code>tools/list</code> zeigt zwei Werkzeuge. Übergib deine Frage als <code>frage</code> an <code>ecoback_werkzeug_finden</code>. Der Treffer enthält einen Namen und sein Eingabeschema. Sende diesen Namen als <code>name</code> und deine Werte als <code>eingaben</code> an <code>ecoback_werkzeug_ausfuehren</code>.</p>
+  <h4>Beispiel für einen kalten Keller</h4>
+  <p>„Was schafft der Meaco Arete One 20L bei 10 Grad und 60 Prozent im kalten Keller?“ Der passende Treffer heißt <code>kellerentfeuchter_pruefpunkt_abgleichen</code>. So sieht der zweite Aufruf für wiederholt gemessene Werte und auffällige Feuchte aus:</p>
+  <pre><code>{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"ecoback_werkzeug_ausfuehren","arguments":{"name":"kellerentfeuchter_pruefpunkt_abgleichen","eingaben":{"modell":"meaco-one-20","temperatur_c":10,"relative_feuchte_pct":60,"wiederholt_gemessen":true,"befund":"feuchte_auffaellig"}}}}</code></pre>
+  <p>Für 10 °C und 60 % relative Feuchte nennt Meaco 3,4 Liter pro Tag bei 180 W. Das sind Herstellerwerte für diesen Prüfpunkt. Beim Comfee MDDF-20DEN7 ohne WF stehen die angegebenen 20 Liter pro Tag bei 30 °C und 80 %. Entzugsleistung und Leistungsaufnahme bei den gemessenen Kellerbedingungen bleiben dort offen. <a href="https://eu.meaco.com/products/meacodry-arete-one-20l-luftentfeuchter-luftreiniger">Meaco Deutschland, Leistungstabelle</a> · <a href="https://www.feelcomfee.com/content/dam/comfee-aem/de/produkte/klimatisieren-heizen/mddf-20den7/comfee-MDDF-20DEN7-Datenblatt.pdf#page=2">Comfee Deutschland, Datenblatt Seite 2</a>.</p>
+  <p>Unterstützt dein Client MCP-Ressourcen, öffne mit <code>resources/read</code> die URI <code>ecoback://evidence/de/kellerentfeuchter</code>. Sie bündelt Modellquellen und Hinweise zum Wasserablauf. Miss Temperatur und Luftfeuchte mehrere Tage am selben Ort. Bei unauffälligen Werten kannst du auf einen Kauf verzichten. Bei nassen Wänden zuerst die Ursache klären. <a href="/guide/luftentfeuchter-keller.html#kalter-keller">Kellerbedingungen und Gerätewahl prüfen</a>.</p>
+
+  <h3 id="werkzeugliste">Werkzeuge im vollständigen Katalog finden</h3>
   <p><code>tools/list</code> liefert bis zu 100 Werkzeuge pro Seite. Enthält das Ergebnis <code>nextCursor</code>, sende seinen unveränderten Wert im nächsten <code>tools/list</code>-Aufruf als <code>params.cursor</code>. Ohne <code>nextCursor</code> ist die Liste vollständig.</p>
   <p>Der <a href="/api/mcp-tools">JSON-Katalog</a> unterstützt <code>q</code> für Suchbegriffe und <code>category</code> für Kategorien. Für eine knappe Übersicht kannst du <code>view=compact</code> ergänzen. Diese Ansicht liefert Namen, Beschreibung, Kategorie und verfügbare Quellenlinks. <a href="/api/mcp-tools?category=Messpraxis&amp;view=compact">Kompakte Liste für Messpraxis</a>.</p>
   <p>Für kurze Suchlisten ergänze <code>limit=24</code>. Zulässig sind ganze Zahlen von 1 bis 100. Wenn <code>nextOffset</code> zurückkommt, sende diesen Wert als <code>offset</code> mit denselben Suchfiltern und derselben Seitengröße. Ändert sich zwischen den Abrufen <code>version</code>, beginne bei der ersten Seite. Ein <code>offset</code> braucht ein <code>limit</code> und muss eine nichtnegative ganze Zahl sein. <code>total</code> zählt alle Treffer, <code>returned</code> die Einträge auf dieser Seite und <code>catalogueTotal</code> alle aufrufbaren Katalognamen. <a href="/api/mcp-tools?view=compact&amp;q=Strom&amp;limit=24&amp;offset=24">Zweite Seite der Suche zu Strom</a>.</p>
@@ -250,7 +263,7 @@
   <p>Im <a href="https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fhvac-btu-heat-klimaanlage/versions/latest">offiziellen Registry-Eintrag für io.github.f-tiger/hvac-btu-heat-klimaanlage</a> stehen die registrierte Version und die Verbindungsadresse. Die <a href="/.well-known/mcp.json">Discovery-Datei von EcoBack</a> enthält die Client-Konfiguration.</p>
 
   <h2 id="warum">Quellen und Datenschutz</h2>
-  <p>Die Antworten enthalten Quellen zum Nachlesen; ob ein Assistent sie zitiert, entscheidet der Client. Seit Version 1.11.0 erfasst die Nutzungsstatistik für alle Werkzeuge den Tool-Namen und einen vorgegebenen Ergebniscode. Die übermittelten Eingaben werden für die Antwort verarbeitet und nicht in der Nutzungsstatistik gespeichert. Wir erfassen außerdem begrenzte Client-Angaben zur Einordnung automatisierter Aufrufe. Keine IP-Adresse, Nutzerkennung oder MCP-Cookies. Einzelheiten stehen in der <a href="/datenschutz.html">Datenschutzerklärung</a>. Die Website finanziert sich über Amazon-Affiliate-Links auf HTML-Seiten; die MCP-Antworten enthalten keine solchen Kauflinks. Wir testen Geräte nicht selbst.</p>
+  <p>Die Antworten enthalten Quellen zum Nachlesen; ob ein Assistent sie zitiert, entscheidet der Client. Die Nutzungsstatistik erfasst ausgeführte Fachwerkzeuge mit Werkzeugname und vorgegebenem Ergebniscode. Im Kompaktprofil wird die Ausführung des gewählten Fachwerkzeugs gezählt. Die übermittelten Eingaben werden für die Antwort verarbeitet und nicht in der Nutzungsstatistik gespeichert. Wir erfassen außerdem begrenzte Client-Angaben zur Einordnung automatisierter Aufrufe. Keine IP-Adresse, Nutzerkennung oder MCP-Cookies. Einzelheiten stehen in der <a href="/datenschutz.html">Datenschutzerklärung</a>. Die Website finanziert sich über Amazon-Affiliate-Links auf HTML-Seiten; die MCP-Antworten enthalten keine solchen Kauflinks. Wir testen Geräte nicht selbst.</p>
 
   <div class="related">
     <strong>Für Menschen statt Maschinen</strong>

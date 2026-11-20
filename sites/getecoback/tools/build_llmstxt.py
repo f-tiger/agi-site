@@ -171,6 +171,7 @@ def main():
         "## Für KI-Agenten (MCP & offene APIs)",
         "",
         f"- MCP-Server (Model Context Protocol, Streamable HTTP, keine Authentifizierung): {BASE}/mcp/v1",
+        f"  Optionales Kompaktprofil mit Suche, Ausführung und einer deutschsprachigen Keller-Quellenübersicht: {BASE}/mcp/v1?profile=compact. Einrichtung und Beispiel: {BASE}/mcp.html#kompaktprofil.",
         f"  JSON-Katalog: {BASE}/api/mcp-tools. q und category filtern die Liste. limit=24 liefert eine Seite der Trefferliste. Wenn nextOffset zurückkommt, diesen Wert als offset mit den gleichen Filtern und dem gleichen limit senden. Ein offset braucht ein limit. total zählt alle Treffer, returned die Einträge dieser Seite und catalogueTotal die aufrufbaren Katalognamen. view=compact zeigt Namen, Beschreibungen, Kategorien und verfügbare Quellenlinks. tool=EXAKTER_NAME liefert ohne Kompaktmodus ein einzelnes Eingabeschema.",
         f"  Einzelbeispiel per view=examples und tool=EXAKTER_NAME: {BASE}/api/mcp-tools?view=examples&tool=wasserkocher_fuellsplitt_mindestmenge. Zeigt geprüfte Eingaben, erwartete Ergebnismerkmale und Quellen. Bei Wetter und Ratgebersuche können die Ergebnisse zur Laufzeit abweichen. Den Aufruf sendet der Client mit tools/call.",
         "  Bei tools/list jeden zurückgegebenen nextCursor als params.cursor an den nächsten Aufruf übergeben, bis kein Cursor mehr zurückkommt.",

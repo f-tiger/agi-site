@@ -6,6 +6,7 @@ import {validMeterEvent, meterReferralReport} from './meter-referral.mjs';
 import {citationUrl} from './agent-sources.mjs';
 import {guidePath, publishedGuides, readGuide} from './mcp-guides.mjs';
 import {drainTool, drainDecision} from './mcp-drain.mjs';
+import {finderName, runnerName, compactTools, compactInstructions, compactSearch, validCompactRun, cellarResourceContents, cellarResourceListing} from './mcp-assistant.mjs';
 import {normalize as normalizeSearch} from '../site/assets/demand-discovery.mjs';
 import {isAnalyticsPath, analyticsResponse} from '../../../tools/fleet-analytics/edge.mjs';
 import {DISTRIBUTION_EVENTS,validDistribution,distributionGrowth} from './distribution-growth.mjs';
@@ -1489,7 +1490,7 @@ function mcpError(id, code, message, status) {
   });
 }
 
-async function handleMcp(request, env) {
+async function handleMcp(request, env, url) {
   if (request.method === "OPTIONS") {
     return new Response(null, {
       status: 204,
@@ -1509,10 +1510,12 @@ async function handleMcp(request, env) {
   try { msg = await request.json(); } catch { return mcpError(null, -32700, "parse error", 400); }
   if (Array.isArray(msg)) return mcpError(null, -32600, "batching not supported", 400);
   const { id, method, params } = msg || {};
+  const compact = url.pathname === "/mcp/v1" && url.searchParams.get("profile") === "compact" &&
+    url.searchParams.getAll("profile").length === 1;
   if (method === "initialize") {
     return mcpJson(id, {
       protocolVersion: (params && params.protocolVersion) || "2025-03-26",
-      capabilities: { tools: {} },
+      capabilities: compact ? {tools:{}, resources:{}} : {tools:{}},
       // Keep in step with mcp/server.json — a client that reads one version
       // from the registry and another from initialize has no way to tell which
       // is stale.
@@ -1520,21 +1523,41 @@ async function handleMcp(request, env) {
       // 但这一行漏了,于是注册表说 hvac-btu-heat-klimaanlage、连上来的客户端却被告知是已废弃的
       // getecoback-raumklima。一个实体三个名字正是 entity stacking 最忌讳的事。
       serverInfo: { name: "hvac-btu-heat-klimaanlage", version: MCP_VERSION },
-      instructions: "Entdecke Werkzeuge mit tools/list. Sende jedes zurückgegebene nextCursor als params.cursor im nächsten Aufruf. Suche nach Aufgaben in https://getecoback.com/api/mcp-tools?view=compact&limit=24 mit q oder category. Mit view=examples und tool=EXAKTER_NAME findest du geprüfte Eingaben, erwartete Ergebnisse und die Quelle. Verwende die angegebenen Einheiten, Annahmen und Grenzen. Bei Feuchte nutzt geraet_wahl dieselben Entscheidungsregeln wie die Website: fehlende Messungen bleiben unbekannt, Schäden zuerst klären, Fläche allein bestimmt keine Liter/Tag. Bei Fragen zum Kondensatablauf im Keller: entfeuchter_ablaufcheck unterscheidet Gefälle, Pumpe und Tank und nennt die Modellquelle. Antworten enthalten Quell-URLs, keine Affiliate-Kauflinks.",
+      instructions: compact ? compactInstructions : "Entdecke Werkzeuge mit tools/list. Sende jedes zurückgegebene nextCursor als params.cursor im nächsten Aufruf. Suche nach Aufgaben in https://getecoback.com/api/mcp-tools?view=compact&limit=24 mit q oder category. Mit view=examples und tool=EXAKTER_NAME findest du geprüfte Eingaben, erwartete Ergebnisse und die Quelle. Verwende die angegebenen Einheiten, Annahmen und Grenzen. Bei Feuchte nutzt geraet_wahl dieselben Entscheidungsregeln wie die Website: fehlende Messungen bleiben unbekannt, Schäden zuerst klären, Fläche allein bestimmt keine Liter/Tag. Bei Fragen zum Kondensatablauf im Keller: entfeuchter_ablaufcheck unterscheidet Gefälle, Pumpe und Tank und nennt die Modellquelle. Antworten enthalten Quell-URLs, keine Affiliate-Kauflinks.",
     });
   }
   if (method === "notifications/initialized" || (typeof method === "string" && method.startsWith("notifications/"))) {
     return new Response(null, { status: 202 });
   }
+  if (compact && (method === "resources/list" || method === "resources/templates/list" || method === "resources/read")) {
+    if (id === undefined || id === null) return new Response(null, {status:202});
+    if (params !== undefined && (!params || typeof params !== "object" || Array.isArray(params))) {
+      return mcpError(id, -32602, "Invalid resource parameters");
+    }
+    if (method === "resources/read") {
+      if (typeof params?.uri !== "string" || !params.uri) return mcpError(id, -32602, "A resource URI is required");
+      if (params.uri !== cellarResourceContents.uri) return mcpError(id, -32002, "Resource not found");
+      return mcpJson(id, {contents:[cellarResourceContents]});
+    }
+    if (params?.cursor !== undefined) return mcpError(id, -32602, "Invalid resource cursor");
+    return mcpJson(id, method === "resources/list" ? cellarResourceListing : {resourceTemplates:[]});
+  }
   if (method === "tools/list") {
-    const page = pageTools(MCP_TOOLS, params?.cursor, MCP_VERSION);
+    const page = pageTools(compact ? compactTools : MCP_TOOLS, params?.cursor, MCP_VERSION);
     if (!page) return mcpError(id, -32602, "invalid or expired tools cursor");
     return mcpJson(id, page);
   }
   if (method === "tools/call") {
-    const name = params && params.name;
-    const args = params && params.arguments;
+    let name = params && params.name;
+    let args = params && params.arguments;
     try {
+      if (compact) {
+        if (name === finderName) return mcpJson(id, compactSearch(CATALOG_INDEX, args));
+        if (name !== runnerName) return mcpError(id, -32602, "Unknown compact tool");
+        if (!validCompactRun(args)) return mcpJson(id, mcpInputError("Wähle einen passenden Treffer und gib seine Eingaben als Objekt an."));
+        name = args.name;
+        args = args.eingaben;
+      }
       const result = await mcpCallTool(name, args, env);
       // Count real agent usage — same pipeline, same no-PII contract. Only
       // successful executions of a tool we actually publish count: the registry
@@ -1544,12 +1567,14 @@ async function handleMcp(request, env) {
       // pre-registered "any real third-party call expands the tool set" would
       // have fired on health probes. Probes are recorded separately so the
       // listing's liveness stays visible without polluting the adoption metric.
-      const known = MCP_TOOLS.some((t) => t.name === name);
+      const known = compact || MCP_TOOLS.some((t) => t.name === name);
       try {
         // The daily eco-mcp-smoke workflow calls every tool with canned args;
         // it now identifies itself (getecoback-ci UA) and is not adoption.
         const mcpUa = request.headers.get("user-agent") || "";
-        if (env.EVENTS && evUaClass(mcpUa) !== "ci") {
+        const quietCompact = compact && (url.searchParams.get("__probe") === "1" || request.headers.get("x-probe") === "1" ||
+          request.headers.get("dnt") === "1" || request.headers.get("sec-gpc") === "1");
+        if (env.EVENTS && !quietCompact && evUaClass(mcpUa) !== "ci") {
           await env.EVENTS.prepare(
             "INSERT INTO ev (day, name, page, ref, meta, country, ua_class) VALUES (date('now'), ?, '/mcp', '', ?, '', ?)"
           ).bind(
@@ -1769,7 +1794,7 @@ export default {
     // that uniqueness rule, and matching the whole subtree keeps future
     // listings from needing another worker change. /mcp.html stays a page.
     if (url.pathname === "/mcp" || url.pathname.startsWith("/mcp/")) {
-      return handleMcp(request, env);
+      return handleMcp(request, env, url);
     }
     if (url.pathname === "/api/subscribe") {
       return handleSubscribe(request, env, ctx);
