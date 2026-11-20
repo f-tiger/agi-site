@@ -149,6 +149,35 @@ test('laundry purchase payback counts only changed loads and requires complete c
   h.assertNoWrites();
 });
 
+test('laundry payback uses the measured decimal amounts before presentation rounding', async () => {
+  const h = offlineWorker();
+  const name = 'waesche_trocknungswechsel_kaufschwelle';
+  const {example} = expandedDefinitions.find(tool => tool.name === name);
+  const calculate = async input => {
+    const args = {...example.args, ladungen_ersetzbar:50, tarif_eur_kwh:0.33, ...input};
+    const result = await h.rpc('tools/call', {name, arguments:args});
+    assert.equal(result.isError, false);
+    return result.structuredContent;
+  };
+  // Both readings save exactly €16.665 per season. After six seasons only €99.99 is recovered.
+  for (const [dryer, dehumidifier] of [[1.50, 0.49], [1.41, 0.40]]) {
+    const readings = {trockner_kwh:dryer, entfeuchter_kwh:dehumidifier};
+    const justShort = await calculate({...readings, anschaffung_eur:100});
+    assert.equal(justShort.stromersparnis_saison_eur, 16.67);
+    assert.equal(justShort.kostendeckung_saisons, 7);
+    assert.equal((await calculate({...readings, anschaffung_eur:99.99})).kostendeckung_saisons, 6);
+  }
+  const subCent = await calculate({ladungen_ersetzbar:1, trockner_kwh:0.001, entfeuchter_kwh:0,
+    tarif_eur_kwh:0.5, anschaffung_eur:0.01});
+  assert.equal(subCent.stromersparnis_saison_eur, 0);
+  assert.equal(subCent.kostendeckung_saisons, 20);
+  const outOfRange = await calculate({ladungen_ersetzbar:1, trockner_kwh:5e-324, entfeuchter_kwh:0,
+    tarif_eur_kwh:1e-20, anschaffung_eur:100});
+  assert.equal(outOfRange.status, 'kostendeckung_ausserhalb_zahlenbereich');
+  assert.equal(outOfRange.kostendeckung_saisons, null);
+  h.assertNoWrites();
+});
+
 test('invalid inputs do not include a guide link and unmapped tool results keep their existing shape', async () => {
   const h = offlineWorker();
   const name = 'glassvac_schmutzwassertank_spuelen_oeffnung_ablass';
