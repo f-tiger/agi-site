@@ -37,6 +37,14 @@ Die folgenden Quellen wurden am 4. Oktober 2026 geprüft. Rechenbeispiele sind e
 - [co2online: Sparduschkopf und Durchlauferhitzer](https://www.co2online.de/energie-sparen/wasser-sparen/wasserspartipps/sparduschkopf/)
 - [Verbraucherzentrale: Warmwasser und Hygiene](https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/kosten-fuer-warmwasser-senken-das-koennen-sie-als-hausbesitzer-tun-17755)
 
+## Passt ein Handbrausenhalter an meine Wand und welche Durchflussangabe gilt?
+
+Miss den Kontaktbereich an der gewünschten Stelle, prüfe den Sitz der vorhandenen Handbrause getrennt und halte die erreichbare Bedienhöhe fest. IKEA Deutschland nennt für den TISKEN Handduschenhalter 504.003.07 glatte Oberflächen wie Glas, Spiegel und Fliesen. Der Badezimmerleitfaden in der Ausgabe 06/2026 verlangt, dass Saugnäpfe nicht auf Fugen sitzen. Der Wandkontakt sagt noch nichts über den Sitz der vorhandenen Handbrause oder die Langzeithaftung aus.
+
+Die deutsche hansgrohe-Tabelle zur Pulsify S Handbrause 24121000 nennt für PowderRain maximal 5,7 l/min bei 3 bar. Die EcoSmart+-Information nennt bis zu 6 l/min. Für die Kopfbrause 24151000 weist die technische Tabelle bei 3 bar 7,8 l/min für PowderRain und 7,1 l/min für Intense PowderRain aus. Halte Artikelnummer, Brausenart, Strahlart, Prüfdruck und Messquelle fest. Diese Angaben helfen bei der Auswahl. Deinen tatsächlichen Durchfluss kannst du am vorhandenen Gerät beobachten.
+
+Herstellerquellen Deutschland, gelesen am 20.11.2026. [IKEA TISKEN 504.003.07](https://www.ikea.com/de/de/p/tisken-handduschenhalter-mit-saugnapf-weiss-50400307/) · [IKEA Badezimmerleitfaden 06/2026](https://www.ikea.com/de/de/files/pdf/35/49/35494be2/bf_installation_guide_badezimmer_06-2026_online.pdf) · [hansgrohe 24121000 technische Daten](https://www.hansgrohe.de/articledetail-pulsify-s-handbrause-105-1jet-ecosmart-24121000) · [hansgrohe 24151000 technische Daten](https://www.hansgrohe.de/articledetail-pulsify-s-kopfbrause-260-2jet-ecosmart-mit-wandanschluss-24151000).
+
 ## Weniger kaufen, besser vergleichen
 Vergleiche Energielabel, Geschirrspülen und Duschköpfe. Beispiel öffnen, Land und Entscheidung wählen. Ohne Konto oder persönliche Angaben.
 

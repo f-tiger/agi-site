@@ -124,6 +124,23 @@ test('German buyer questions with both common and exact model terms find manufac
   }
 });
 
+test('German accessory and take-back questions find the relevant evidence in the first three results', async () => {
+  const questions = [
+    ["In meiner Bosch DWB66BC50 steckt das Umluftset DWZ1DX1I6. Passt der Ersatzfilter DZZ1XX1B6 wirklich?", "dunstabzug_de_modell_set_filter_belegkette"],
+    ["Darf der FlexiClip HFC70-C beim Miele H 2861 BP während der Pyrolyse im Backofen bleiben?", "backofenzubehoer_reinigungsart_exakter_beleg"],
+    ["Kann der TISKEN Saugnapfhalter auf einer glatten Fliese sitzen, wenn er über eine Fuge reicht?", "tisken_50400307_zwei_wandfelder_oberflaeche"],
+    ["Wie viel Liter pro Minute liefert die hansgrohe Pulsify 24151000 bei 3 bar im Intense PowderRain?", "pulsify_artikel_strahlart_techniktabelle_drei_bar"],
+    ["Passt der Venta Rollwagen 6060 zum LW24 Plus, wenn das Modell nur in der Tabelle auftaucht?", "venta_6060_kompatibilitaetslisten_modellkonflikt"],
+    ["Kann ich drei alte 25 cm große Toaster derselben Geräteart ohne Neukauf im Elektrohandel abgeben?", "elektrog_kleingeraete_dreifach_mass_anzahl"],
+  ];
+  for (const [q, expected] of questions) {
+    const response = await catalogue({q, view:'compact', limit:'3'});
+    const ranked = names(findCatalogueTools(compact, {query:q})).slice(0, 3);
+    assert.deepEqual(names(response.tools), ranked, q);
+    assert.ok(ranked.includes(expected), q);
+  }
+});
+
 test('generic and off-topic requests produce no fallback catalogue matches', async () => {
   for (const q of [
     'Kannst du mir heute bitte helfen?',
