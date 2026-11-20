@@ -379,7 +379,7 @@ Genaue Variante, Aufgabe und Kaufgrenze im Vergleich
 | [Kärcher WV 2 Plus Multi Edition](https://getecoback.com/produkte.html#produkt-kaercher-wv2-multi) WV 2 Plus Multi Edition · 1.633-662.0 | Glatte Flächen mit separater Sprühflasche vorreinigenDer Hersteller nennt eine 280-mm-Absaugdüse, 100 ml Schmutzwassertank und 35 Minuten Akkulaufzeit. Sprühflasche mit Wischbezug ist in diesem Paket aufgeführt. | Die Ladezeit ist mit 230 Minuten angegeben. Laufzeit und Flächenangabe sind Herstellerwerte; eine schmale Absaugdüse nicht allein aus dem Modellnamen als enthalten annehmen. | [Kärcher Deutschland: Kärcher WV 2 Plus Multi Edition](https://www.karcher.com/de/de/home-and-garden/produkte/wv-2-plus-multi-edition-p16336620) Quellenstand: 2026-11-13 |
 | [Kärcher WV 3 Comfort Precision+ Black](https://getecoback.com/produkte.html#produkt-kaercher-wv3-precision) WV 3 Comfort Precision+ Black · 1.633-698.0 | Schmale Absaugdüse und größerer SchmutzwassertankDer Hersteller nennt einen 200-ml-Tank und führt 280-mm- sowie 170-mm-Absaugdüsen auf. Dieses Paket enthält die schmale Absaugdüse. | 35 Minuten Akkulaufzeit und 170 Minuten Ladezeit sind Herstellerangaben. Die Precision+-Packung enthält andere Zubehörteile als eine andere WV-3-Variante. | [Kärcher Deutschland: Kärcher WV 3 Comfort Precision+ Black](https://www.karcher.com/de/de/home-and-garden/produkte/wv-3-comfort-precision-black-p16336980) Quellenstand: 2026-11-13 |
 | [Kärcher WV 8 Signature Line](https://getecoback.com/produkte.html#produkt-kaercher-wv8-signature) WV 8 Signature Line · 1.633-785.0 | Flexible Abziehlippe und schmale Flächen bearbeitenDer Hersteller nennt eine Xtra!Flex-Silikonlippe, 150 ml Tankkapazität und bis zu 55 Minuten Akkulaufzeit. Eine schmale Absaugdüse gehört zum dokumentierten Paket. | Die technische Tabelle nennt 360 Minuten Ladezeit. Die längere Laufzeit macht den 150-ml-Tank nicht größer; Tankentleerung und Ladepausen für die eigene Fläche einplanen. | [Kärcher Deutschland: Kärcher WV 8 Signature Line](https://www.karcher.com/de/de/home-and-garden/produkte/wv-8-signature-line-p16337850) Quellenstand: 2026-11-13 |
-| [Bosch GlassVAC – Set](https://getecoback.com/produkte.html#produkt-bosch-glassvac-set) GlassVAC Set · 06008B7000 | Großen und kleinen Saugkopf im selben Set nutzenBosch nennt 30 Minuten Betriebszeit und 100 ml Schmutzwassertank. Die ausgewählte Set-Packung enthält einen großen und einen kleinen Saugkopf. | Nicht mit GlassVAC Solo Plus 06008B7200 verwechseln: Der kleinere Saugkopf und der dokumentierte Lieferumfang sind paketabhängig. Die Laufzeit ist keine gemessene Reinigungszeit für dein Zuhause. | [Bosch Deutschland: Bosch GlassVAC – Set](https://www.bosch-diy.com/de/de/p/glassvac-06008b7000) Quellenstand: 2026-11-13 |
+| [Bosch GlassVAC – Set](https://getecoback.com/produkte.html#produkt-bosch-glassvac-set) GlassVAC Set · 06008B7000 | Großen und kleinen Saugkopf im selben Set nutzenBosch nennt 30 Minuten Betriebszeit und 100 ml Schmutzwassertank. Das Set 06008B7000 (EAN 3165140920148) enthält einen großen und einen kleinen Saugkopf. | Beim GlassVAC Solo Plus 06008B7200 (EAN 3165140976374) listet Bosch nur den großen Saugkopf. Bestellnummer und Lieferumfang beim Händler abgleichen. Die Laufzeit ist keine gemessene Reinigungszeit für dein Zuhause. | [Bosch Deutschland: Bosch GlassVAC – Set](https://www.bosch-diy.com/de/de/p/glassvac-06008b7000) Quellenstand: 2026-11-20 |
 
 ### Die zu reinigende Glasfläche planen
 Berechne die Glasfläche gleich großer Scheiben. Für unterschiedliche Größen getrennte Rechnungen verwenden.
@@ -431,11 +431,11 @@ Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue 
 Bosch · GlassVAC Set · 06008B7000
 
 **Aufgabe:** Großen und kleinen Saugkopf im selben Set nutzen
-Bosch nennt 30 Minuten Betriebszeit und 100 ml Schmutzwassertank. Die ausgewählte Set-Packung enthält einen großen und einen kleinen Saugkopf.
+Bosch nennt 30 Minuten Betriebszeit und 100 ml Schmutzwassertank. Das Set 06008B7000 (EAN 3165140920148) enthält einen großen und einen kleinen Saugkopf.
 
-**Vor dem Kauf:** Nicht mit GlassVAC Solo Plus 06008B7200 verwechseln: Der kleinere Saugkopf und der dokumentierte Lieferumfang sind paketabhängig. Die Laufzeit ist keine gemessene Reinigungszeit für dein Zuhause.
+**Vor dem Kauf:** Beim GlassVAC Solo Plus 06008B7200 (EAN 3165140976374) listet Bosch nur den großen Saugkopf. Bestellnummer und Lieferumfang beim Händler abgleichen. Die Laufzeit ist keine gemessene Reinigungszeit für dein Zuhause.
 
-Quelle: [Bosch Deutschland: Bosch GlassVAC – Set](https://www.bosch-diy.com/de/de/p/glassvac-06008b7000) · geprüft am 13.11.2026.
+Quelle: [Bosch Deutschland: Bosch GlassVAC – Set](https://www.bosch-diy.com/de/de/p/glassvac-06008b7000) · geprüft am 20.11.2026.
 
 Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue Variante, Gesamtpreis und Lieferung beim Händler prüfen.
 
@@ -1349,6 +1349,8 @@ Dokumentierte Düsen- und Saugkopfbreiten
 | [Bosch GlassVAC Set, 06008B7000](https://getecoback.com/produkte.html#produkt-bosch-glassvac-set) Quelle: [Bosch GlassVAC Set Produktseite](https://www.bosch-diy.com/de/de/p/glassvac-06008b7000) | 133 mm / 266 mm |
 
 Die Nennbreite dient der Vorauswahl. Prüfe am Fenster auch die tatsächliche Außenbreite von Saugkopf und Gehäuse sowie Hindernisse beim Ansetzen und Kippen. Reicht dein vorhandener Abzieher oder ein Tuch, kannst du es weiterverwenden.
+
+Gleiche beim Bosch-Angebot die Bestellnummer oder EAN ab. Das Set 06008B7000 (EAN 3165140920148) enthält laut Bosch den großen und den kleinen Saugkopf. Beim [GlassVAC Solo Plus 06008B7200](https://www.bosch-diy.com/de/de/p/glassvac-solo-plus-06008b7200) (EAN 3165140976374) listet Bosch im Lieferumfang nur den großen Saugkopf. Ist das Angebot nicht eindeutig, lass dir vor dem Kauf den kleinen Saugkopf bestätigen.
 
 Die Bosch-Maße stehen in der [deutschen Originalanleitung F 016 L81 778 auf Seite 4](https://www.bosch-diy.com/storage/de-de/glassvac-100045834-original-pdf-396340-de-de.pdf). [Fenstersauger-Modelle und Lieferumfang vergleichen](https://getecoback.com/produkte.html#modelle-fenstersauger).
 

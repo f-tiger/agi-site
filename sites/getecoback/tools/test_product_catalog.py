@@ -81,6 +81,7 @@ class CatalogTest(unittest.TestCase):
             self.assertEqual(ids.count(target),1)
         sources=[p['source'] for p in data['products'] if p['category']=='fenstersauger']
         sources.append('https://www.bosch-diy.com/storage/de-de/glassvac-100045834-original-pdf-396340-de-de.pdf')
+        sources.append('https://www.bosch-diy.com/de/de/p/glassvac-solo-plus-06008b7200')
         for href in sources+['#modelle-fenstersauger']:
             self.assertIn(href,answer_links)
         markdown=C.to_markdown(html,C.ROUTE,'de')
@@ -91,9 +92,16 @@ class CatalogTest(unittest.TestCase):
             self.assertIn(f' | {widths} |',readable)
         for surface in (answer,readable):
             for term in ('170 mm Glasbreite','5 mm Reserve je Seite','160 mm','133-mm-Saugkopf',
-                         'tatsächliche Außenbreite','vorhandener Abzieher oder ein Tuch',*sources):
+                         'tatsächliche Außenbreite','vorhandener Abzieher oder ein Tuch',
+                         '06008B7000 (EAN 3165140920148)', 'EAN 3165140976374',
+                         'nur den großen Saugkopf', 'vor dem Kauf den kleinen Saugkopf bestätigen', *sources):
                 self.assertIn(term,surface)
             self.assertNotIn('amazon.',surface)
+        bosch_card=html.split('id="produkt-bosch-glassvac-set"',1)[1].split('</section>',1)[0]
+        for term in ('06008B7000 (EAN 3165140920148)', '06008B7200 (EAN 3165140976374)',
+                     'www.amazon.de/s?k=Bosch+GlassVAC+Set+06008B7000&amp;tag=getecoback-21'):
+            self.assertIn(term,bosch_card)
+        self.assertNotIn('amazon.de/dp/',bosch_card)
 
     def test_freshness_boundaries_keep_facts_but_withdraw_merchant_action(self):
         data=fixture(); p=data['products'][0]
