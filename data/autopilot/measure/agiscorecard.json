@@ -3,27 +3,27 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 19,
+    "n": 20,
     "q": "tool:portfolio_returns"
    },
    {
-    "n": 16,
+    "n": 18,
     "q": "tool:verdicts"
    },
    {
-    "n": 10,
+    "n": 13,
     "q": "tool:thesis_tracker"
    },
    {
-    "n": 10,
-    "q": "tool:claim_ledger https://goldrush.agiscorecard."
-   },
-   {
-    "n": 9,
+    "n": 11,
     "q": "tool:invest_positions"
    },
    {
-    "n": 8,
+    "n": 11,
+    "q": "tool:claim_ledger https://goldrush.agiscorecard."
+   },
+   {
+    "n": 10,
     "q": "tool:sunwatch_ledger"
    },
    {
@@ -44,20 +44,11 @@
    }
   ]
  },
- "fetched": "2026-11-19",
+ "fetched": "2026-11-20",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
- "pages": {
-  "/": {
-   "n7": 2609,
-   "p7": 1174
-  },
-  "/ai-and-your-job": {
-   "n7": 154,
-   "p7": 72
-  }
- },
+ "pages": {},
  "site": "agiscorecard",
  "source": "https://agiscorecard.com/api/trends"
 }

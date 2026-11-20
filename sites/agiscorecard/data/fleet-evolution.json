@@ -3,7 +3,7 @@
   "site": "agiscorecard",
   "signals": {
     "membership": {
-      "ready": false,
+      "ready": true,
       "has_paid_members": false,
       "has_active_members": false
     },
@@ -16,9 +16,9 @@
     "demand": {
       "has_underserved": false,
       "has_gaps": true,
-      "has_hot_pages": true,
+      "has_hot_pages": false,
       "top_underserved_page": null,
-      "top_hot_page": "/"
+      "top_hot_page": null
     },
     "health": {
       "http": "200",
@@ -27,11 +27,11 @@
   },
   "actions": [
     {
-      "kind": "membership_health",
-      "priority": 92,
-      "reason": "recent snapshot reported unavailable checkout; check the live API before recovery",
+      "kind": "membership_readiness_check",
+      "priority": 70,
+      "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
       "evidence": {},
-      "mode": "alert"
+      "mode": "observe"
     },
     {
       "kind": "content_gap",
@@ -41,17 +41,6 @@
         "count_band": "1-9",
         "query": "ai stocks crashing",
         "value_band": "1-9"
-      },
-      "mode": "queue"
-    },
-    {
-      "kind": "improve_hot_page",
-      "priority": 52,
-      "reason": "review observed page-event activity and source quality; activity is not verified people or buying intent",
-      "evidence": {
-        "page": "/",
-        "n7_band": "100+",
-        "p7_band": "100+"
       },
       "mode": "queue"
     }

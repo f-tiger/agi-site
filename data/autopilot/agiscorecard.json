@@ -1,6 +1,6 @@
 {
  "dropped_last_run": [],
- "generated": "2026-11-19",
+ "generated": "2026-11-20",
  "pages": {
   "about.html": {
    "changed": "2026-07-10",
@@ -10,6 +10,11 @@
   "advertise.html": {
    "changed": "2026-07-21",
    "h": "2d20bae6bbc90fb9",
+   "origin": "bootstrap"
+  },
+  "agents/index.html": {
+   "changed": "2026-11-20",
+   "h": "efc07309e988c288",
    "origin": "bootstrap"
   },
   "agi-2027-resolution.html": {
@@ -88,8 +93,8 @@
    "origin": "observed"
   },
   "ai-tools.html": {
-   "changed": "2026-11-01",
-   "h": "b227852333aebbbb",
+   "changed": "2026-11-20",
+   "h": "85c2d60185b46b19",
    "origin": "observed"
   },
   "ai-trading-ledger.html": {
@@ -408,8 +413,8 @@
    "origin": "bootstrap"
   },
   "for-agents.html": {
-   "changed": "2026-10-09",
-   "h": "59d21c75d716531c",
+   "changed": "2026-11-20",
+   "h": "920d81234ad5ebc8",
    "origin": "observed"
   },
   "forecaster-leaderboard.html": {
@@ -1217,6 +1222,11 @@
    "h": "ce7e3fa68fd69b70",
    "origin": "bootstrap"
   },
+  "zh/agents/index.html": {
+   "changed": "2026-11-20",
+   "h": "04b48e69635a343e",
+   "origin": "bootstrap"
+  },
   "zh/agi-test.html": {
    "changed": "2026-10-09",
    "h": "2e4e13b153e4b378",
@@ -1258,8 +1268,8 @@
    "origin": "observed"
   },
   "zh/ai-tools.html": {
-   "changed": "2026-11-01",
-   "h": "f2bb9f70088ca37f",
+   "changed": "2026-11-20",
+   "h": "68ca880ae9f536ae",
    "origin": "observed"
   },
   "zh/ai-vs-human-intelligence.html": {

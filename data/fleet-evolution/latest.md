@@ -1,39 +1,37 @@
-# Fleet evolution report — 2026-11-19
+# Fleet evolution report — 2026-11-20
 
 Deterministic, aggregate-only report. Missing data remains unknown; no editorial text, payments or membership rights are changed by this job.
 
 ## Fleet counters
 
 - Sites: 14 (healthy probes: 31)
-- Membership ready: 0 · paid members: 0 · active members: 0
-- Opportunity candidates: 6 · stale inputs: 0
+- Membership ready: 2 · paid members: 0 · active members: 0
+- Opportunity candidates: 8 · stale inputs: 0
 
 ## Priority actions
 
 | Priority | Site | Action | Mode | Evidence |
 |---:|---|---|---|---|
-| 92 | agiscorecard | membership_health | alert | public_ok=True; ready=False |
 | 92 | baipiaoji | membership_health | alert | public_ok=True; ready=False |
-| 92 | getecoback | membership_health | alert | public_ok=True; ready=False |
 | 92 | thedollscout | membership_health | alert | public_ok=True; ready=False |
+| 70 | agiscorecard | membership_readiness_check | observe | snapshot_date=2026-11-20T10:25:48.781Z |
+| 70 | getecoback | membership_readiness_check | observe | snapshot_date=2026-11-20T10:25:48.781Z |
 | 55 | agiscorecard | content_gap | queue | count=1; query=ai stocks crashing; value=1 |
-| 55 | buysomething | content_gap | queue | count=1; query=red light therapy mask costco; value=1 |
-| 55 | getecoback | content_gap | queue | count=24; query=vorwerk saugwischer roboter; value=158500 |
+| 55 | getecoback | content_gap | queue | count=25; query=vorwerk saugwischer roboter; value=158500 |
 | 55 | thedollscout | content_gap | queue | count=16; query=labubu cat mode; value=73950 |
-| 52 | agiscorecard | improve_hot_page | queue | page=/; n7=2609; p7=1174 |
-| 52 | getecoback | improve_hot_page | queue | page=/guide/luftbefeuchter-ratgeber.html; n7=24; p7=0 |
-| 48 | goldrush | ai_attribution_review | queue | legacy_page_view_events=700; ai_referrer_events=0 |
-| 48 | thedollscout | ai_attribution_review | queue | legacy_page_view_events=2025; ai_referrer_events=0 |
+| 52 | getecoback | improve_hot_page | queue | page=/guide/richtig-lueften-im-winter.html; n7=17; p7=0 |
+| 48 | goldrush | ai_attribution_review | queue | legacy_page_view_events=697; ai_referrer_events=0 |
+| 48 | thedollscout | ai_attribution_review | queue | legacy_page_view_events=2173; ai_referrer_events=0 |
 
 ## Input freshness
 
 | Input | Date | Age (days) |
 |---|---|---:|
-| membership | 2026-11-19T10:43:33.712Z | 0 |
-| health | 2026-11-18T16:51:08Z | 1 |
-| ai_referrals | 2026-11-18T16:51:42Z | 1 |
-| opportunities | 2026-11-18 | 1 |
-| autopilot_receipt | 2026-11-19 | 0 |
+| membership | 2026-11-20T10:25:48.781Z | 0 |
+| health | 2026-11-19T16:57:44Z | 1 |
+| ai_referrals | 2026-11-19T16:58:15Z | 1 |
+| opportunities | 2026-11-19 | 1 |
+| autopilot_receipt | 2026-11-20 | 0 |
 
 ## Growth directions
 
