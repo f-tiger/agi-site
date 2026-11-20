@@ -54,7 +54,7 @@ Die EU-Verordnung 2023/826 gilt seit dem 9. Mai 2025. Der deutsche Stand vom 24.
 
 Beurteile bei eigenen Messungen die passende Betriebsart, die tatsächliche Beobachtungsdauer und den Bedarf an der genutzten Funktion. Ein Gerätevergleich braucht kompatible Zustände. Eine einzelne Haushaltsmessung ist keine Konformitätsprüfung.
 
-Quellen, gelesen am 20.11.2026. [Miele H 7460 BP 11105690](https://www.miele.de/product/11105690/backofen-h-7460-bp-edelstahl-cleansteel) · [Miele deutsches Produktblatt](https://media.miele.com/downloads/e-/de/FS_11105690_DED_DE-de-DE.pdf) · [EU 2023/826, Artikel 2 und Anhänge](https://eur-lex.europa.eu/eli/reg/2023/826/oj/deu/pdf) · [EU 2025/2262, Änderungsverordnung](https://eur-lex.europa.eu/eli/reg/2025/2262/oj/deu/pdf). Konsolidierter Lesestand CELEX 02023R0826-20251124.
+Quellen, gelesen am 20.11.2026. [Miele H 7460 BP 11105690](https://www.miele.de/product/11105690/backofen-h-7460-bp-edelstahl-cleansteel) · [Miele deutsches Produktblatt](https://media.miele.com/downloads/e-/de/FS_11105690_DED_DE-de-DE.pdf) · [EU 2023/826, Artikel 2 und Anhänge](https://eur-lex.europa.eu/eli/reg/2023/826/oj/deu/pdf) · [Deutsches Original als PDF beim EU-Publikationsamt](https://publications.europa.eu/resource/cellar/7ab9b082-dd82-11ed-a05c-01aa75ed71a1.0004.01/DOC_1) · [EU 2025/2262, Änderungsverordnung](https://eur-lex.europa.eu/eli/reg/2025/2262/oj/deu/pdf). Konsolidierter Lesestand CELEX 02023R0826-20251124.
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
