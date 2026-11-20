@@ -6,7 +6,20 @@ export const TARGETS=Object.freeze({
  'agiscorecard.com':['/mcp'],
  'source.agiscorecard.com':['/api/mcp'],
  'web3.agiscorecard.com':['/mcp'],
- 'baipiaoji.com':['/api/mcp'],
+ // These host/path pairs were also observed sending the exact documented UA.
+ // Keep explicit names: neither all subdomains nor all bots are opted out.
+ 'reconcile.agiscorecard.com':['/mcp'],
+ 'evidence.agiscorecard.com':['/mcp'],
+ 'route.agiscorecard.com':['/mcp'],
+ 'protocol.agiscorecard.com':['/mcp'],
+ 'permit.agiscorecard.com':['/mcp'],
+ 'compute.agiscorecard.com':['/mcp'],
+ 'incentives.agiscorecard.com':['/mcp'],
+ 'proof.agiscorecard.com':['/mcp'],
+ 'calls.agiscorecard.com':['/mcp'],
+ 'disclosures.agiscorecard.com':['/mcp'],
+ 'baipiaoji.com':['/api/mcp','/api/ai-mcp','/api/startup-mcp','/api/video-mcp'],
+ 'thedollscout.com':['/mcp'],
  'getecoback.com':['/mcp','/mcp/','/mcp/v1'],
 });
 export function monitorOptOut(request){

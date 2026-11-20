@@ -12,6 +12,7 @@ on:
       - "tools/fleet-analytics/**"
       - "tools/fleet-account/**"
       - "tools/fleet/pages-*"
+      - "tools/fleet/mcp-liveness-optout*"
       - ".github/scripts/deploy-main-guard*"
       - "tools/revenue-studio/**"
       - "tools/member-studio/**"
@@ -79,6 +80,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
+
+      - name: Verify exact MCP monitor opt-out scope
+        working-directory: ${{ github.workspace }}
+        run: node tools/fleet/mcp-liveness-optout.test.mjs
 
       # Native daily expansion: zero LLM calls / new secrets / new cron.
       # Existing 07:20 UTC release does the fetch, commit and deploy itself.

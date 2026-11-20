@@ -19,15 +19,19 @@ test('post-release aggregates query current UTC window separately and redact pat
    return {ok:true,status:200,json:async()=>({success:true,result,data})};
  };
  const out=await inspectWorkers({account:'account',candidates:[{token:'fixture'}],windows,fetcher});
- for(const key of ['currentPaths','currentMcpHours','currentErrorHours']){
+ for(const key of ['currentPaths','currentMcpHours','currentErrorHours','currentMonitorTotals']){
    assert.equal(out[key][0].date,'2026-11-01');assert.equal(out[key][0].complete,false);
    assert.equal(out[key][0].end,windows[1].end);assert.equal(out[key][0].rows[0].dimensions.clientRequestPath,'/api/account/*');
    assert.equal(out[key][0].row_limit,1000);
  }
  assert.equal(out.mcpClients[0].date,'2026-10-31');
  const current=requests.filter(r=>r.q?.query.includes('httpRequestsAdaptiveGroups')&&r.q.variables.s===windows[1].start);
- assert.equal(current.length,3);assert.ok(current.every(r=>r.q.variables.e===windows[1].end));
+ assert.equal(current.length,4);assert.ok(current.every(r=>r.q.variables.e===windows[1].end));
  assert.ok(current.some(r=>/datetimeHour.*userAgent/.test(r.q.query)));
+ const monitors=requests.filter(r=>r.q?.query.includes('userAgent_in:'));
+ assert.equal(monitors.length,2);
+ assert.ok(monitors.every(r=>r.q.query.includes('SentinelOracle/0.1')&&r.q.query.includes('mcpbeat/0.1')&&!r.q.query.includes('datetimeHour')));
+ assert.equal(out.monitorTotals[0].date,windows[0].date);
  assert.doesNotMatch(JSON.stringify(out),/private\?|secret=no|fixture/);
 });
 test('query strings and private route identifiers do not enter aggregate report',()=>{
