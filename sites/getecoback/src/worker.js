@@ -1,3 +1,4 @@
+import {pageTools} from './mcp-pagination.mjs';
 import {expandedTools, expandedCatalog, expandedCall, isExpandedTool} from './mcp-expanded.mjs';
 import {validMeterEvent, meterReferralReport} from './meter-referral.mjs';
 import {citationUrl} from './agent-sources.mjs';
@@ -940,9 +941,18 @@ async function trendCompute(env) {
       "WHERE name='mcp_call' AND day >= date('now','-28 day') " +
       "GROUP BY tool ORDER BY n DESC LIMIT 10"
     ).all();
+    const recentMcp = await env.EVENTS.prepare(
+      "SELECT date('now','-7 day') AS start, date('now') AS end_exclusive, " +
+      "COUNT(*) AS completed_calls, " +
+      "COUNT(DISTINCT CASE WHEN json_valid(meta) THEN json_extract(meta,'$.tool') END) AS tools_called, " +
+      "COALESCE(SUM(CASE WHEN ua_class='human' THEN 1 ELSE 0 END),0) AS browser_class_calls " +
+      "FROM ev WHERE name='mcp_call' AND page='/mcp' AND day >= date('now','-7 day') " +
+      "AND day < date('now') AND (ua_class IS NULL OR ua_class != 'ci')"
+    ).all();
     return new Response(JSON.stringify({
       events: ev.results || [], pages: pg.results || [], zero_hits: zh.results || [],
       refs: refs.results || [], mcp: mcp.results || [],
+      mcp_complete_week: recentMcp.results?.[0] || null,
       affiliate_audit: await affiliateAudit(env.EVENTS, ref => srcBucket(srcHost(ref), 'getecoback.com')),
     }), { headers });
   } catch (e) {
@@ -954,7 +964,7 @@ async function trendCompute(env) {
 // MCP server (Model Context Protocol, stateless Streamable HTTP).
 // Each tool returns a usable answer with sources. Publication, calls, website
 // visits and merchant activity are observed separately.
-const MCP_VERSION = "1.5.0";
+const MCP_VERSION = "1.6.0";
 const LEGACY_MCP_TOOLS = [
   drainTool,
   // AI-era round 2026-08-29: the decision LAYER above the per-device
@@ -1086,17 +1096,30 @@ const LEGACY_MCP_TOOLS = [
 ];
 const MCP_TOOLS = [...LEGACY_MCP_TOOLS, ...expandedTools];
 
-function mcpCatalog() {
-  const tools = [...LEGACY_MCP_TOOLS.map(tool => ({...tool,category:"Raumklima"})), ...expandedCatalog];
-  return new Response(JSON.stringify({version:MCP_VERSION,total:tools.length,tools}), {
+const CATALOG_TOOLS = [...LEGACY_MCP_TOOLS.map(tool => ({...tool,category:"Raumklima"})), ...expandedCatalog];
+const CATALOG_INDEX = CATALOG_TOOLS.map(tool => ({
+  tool,
+  text: normalizeSearch([tool.name,tool.description,tool.category,tool.page].join(" ")),
+}));
+
+function mcpCatalog(url) {
+  const search = url.searchParams.get("q");
+  const category = url.searchParams.get("category");
+  const filtered = search !== null || category !== null;
+  const tokens = normalizeSearch((search || "").slice(0,120)).match(/[a-z0-9]+/g)?.slice(0,8) || [];
+  const tools = filtered ? CATALOG_INDEX.filter(({tool,text}) =>
+    (!category || tool.category === category) && tokens.every(token => text.includes(token))
+  ).map(({tool}) => tool) : CATALOG_TOOLS;
+  const result = {version:MCP_VERSION,total:tools.length,tools};
+  if (filtered) result.catalogueTotal = CATALOG_TOOLS.length;
+  return new Response(JSON.stringify(result), {
     headers: {
       "content-type": "application/json; charset=utf-8",
       "access-control-allow-origin": "*",
-      "cache-control": "public, max-age=300",
+      "cache-control": filtered ? "no-store" : "public, max-age=300",
     }
   });
 }
-
 
 // Words that would match half the corpus and only add noise to the scoring.
 const SEARCH_STOP = new Set([
@@ -1403,14 +1426,16 @@ async function handleMcp(request, env) {
       // 但这一行漏了,于是注册表说 hvac-btu-heat-klimaanlage、连上来的客户端却被告知是已废弃的
       // getecoback-raumklima。一个实体三个名字正是 entity stacking 最忌讳的事。
       serverInfo: { name: "hvac-btu-heat-klimaanlage", version: MCP_VERSION },
-      instructions: "Wähle die passende Aufgabe aus tools/list oder https://getecoback.com/api/mcp-tools. Raumklima-Tools von getecoback.com: Gerätewahl, BTU, Fensterabdichtung, Hitzevorschau (DE), Stromkosten, Heizleistung, Taupunkt und Ratgeber. Bei Feuchte nutzt geraet_wahl dieselben Entscheidungsregeln wie die Website: fehlende Messungen bleiben unbekannt, Schäden zuerst klären, Fläche allein bestimmt keine Liter/Tag. Bei Fragen zum Kondensatablauf im Keller: entfeuchter_ablaufcheck unterscheidet Gefälle, Pumpe und Tank und nennt die Modellquelle. Antworten enthalten Quell-URLs, keine Affiliate-Kauflinks.",
+      instructions: "Wähle die passende Aufgabe aus tools/list (nextCursor für Folgeseiten) oder https://getecoback.com/api/mcp-tools. Raumklima-Tools von getecoback.com: Gerätewahl, BTU, Fensterabdichtung, Hitzevorschau (DE), Stromkosten, Heizleistung, Taupunkt und Ratgeber. Bei Feuchte nutzt geraet_wahl dieselben Entscheidungsregeln wie die Website: fehlende Messungen bleiben unbekannt, Schäden zuerst klären, Fläche allein bestimmt keine Liter/Tag. Bei Fragen zum Kondensatablauf im Keller: entfeuchter_ablaufcheck unterscheidet Gefälle, Pumpe und Tank und nennt die Modellquelle. Antworten enthalten Quell-URLs, keine Affiliate-Kauflinks.",
     });
   }
   if (method === "notifications/initialized" || (typeof method === "string" && method.startsWith("notifications/"))) {
     return new Response(null, { status: 202 });
   }
   if (method === "tools/list") {
-    return mcpJson(id, { tools: MCP_TOOLS });
+    const page = pageTools(MCP_TOOLS, params?.cursor, MCP_VERSION);
+    if (!page) return mcpError(id, -32602, "invalid or expired tools cursor");
+    return mcpJson(id, page);
   }
   if (method === "tools/call") {
     const name = params && params.name;
@@ -1690,7 +1715,7 @@ export default {
       return cachedJson(request, env, ctx, 3600, () => videoGrowth(env, url.searchParams.get("campaign") || undefined), ["campaign"]);
     }
 
-    if (url.pathname === "/api/mcp-tools" && request.method === "GET") return mcpCatalog();
+    if (url.pathname === "/api/mcp-tools" && request.method === "GET") return mcpCatalog(url);
     if (url.pathname === "/api/trend") {
       return handleTrend(request, env, ctx);
     }

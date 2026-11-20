@@ -35,6 +35,10 @@ from agent_sources import citation_url
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
 BASE = "https://getecoback.com"
+CITABLE_ROOT_TOOLS = (
+    "strommess-protokoll.html", "geraete-austausch-rechner.html", "familienwerkstatt.html",
+)
+CITABLE_ROOT_EVIDENCE = ("daten.html", "wie-wir-empfehlen.html")
 
 DISCLOSURE = {
     "nl": "Redactionele keuzehulp, geen eigen apparaattest. De HTML-pagina bevat gewone winkellinks; deze tekstweergave niet.",
@@ -150,6 +154,19 @@ def to_markdown(src_html, path_url, lang):
             body = main.group(1)
             if path_url == '/waeschetrockner-oder-luftentfeuchter.html':
                 body = re.sub(r'<header\b.*?</header>', '', body, flags=re.S)
+            if path_url.lstrip('/') in CITABLE_ROOT_TOOLS:
+                body = re.sub(r'<h1\b[^>]*>.*?</h1>', ' ', body, count=1, flags=re.S)
+                body = re.sub(r'</strong>(?=[^<\s])', '</strong> ', body)
+                body = body.replace('<a href="/tools.html">Alle EcoBack-Rechner</a>', '')
+                body = body.replace('</a><p', '</a> <p').replace('</a>EcoBack', '</a> EcoBack')
+    if path_url == '/familienwerkstatt.html':
+        # Exclude empty result slots and downloads that appear only after a
+        # form submission. Keep the visible manufacturer evidence panels.
+        body = re.sub(r'<div class="fw-result"[^>]*>.*?(?=<details class="fw-evidence">)',
+                      '', body, flags=re.S)
+        body = re.sub(r'<aside class="fw-map"[^>]*>.*?</aside>', '', body, flags=re.S)
+    if path_url.lstrip('/') in CITABLE_ROOT_TOOLS:
+        body = re.sub(r'<summary>(.*?)</summary>', r'<p><strong>\1</strong></p>', body, flags=re.S)
     if path_url == '/guide/smarte-heizkoerperthermostate-lohnen-sich.html':
         # The sourced no-JS table carries the evidence. Interactive selectors
         # would otherwise become a concatenated list of unrelated valve names.
@@ -237,6 +254,8 @@ def to_markdown(src_html, path_url, lang):
             return f"[{text}]({BASE}{href})"
         if href.startswith("#") and href[1:] in retained_ids:
             return f"[{text}]({BASE}{path_url}{href})"
+        if path_url == '/familienwerkstatt.html' and text == 'Herstellergrundlage lesen':
+            return ""
         return text
 
     body = re.sub(r'<a\b[^>]*href="([^"]+)"[^>]*>(.*?)</a>', link, body, flags=re.S)
@@ -385,7 +404,8 @@ def main():
         for fn in sorted(os.listdir(d)):
             if not fn.endswith(".html"):
                 continue
-            if not sub and fn not in ('waeschetrockner-oder-luftentfeuchter.html', 'for-agents.html', 'produkte.html'):
+            if not sub and fn not in ('waeschetrockner-oder-luftentfeuchter.html', 'for-agents.html',
+                                      'produkte.html', *CITABLE_ROOT_TOOLS, *CITABLE_ROOT_EVIDENCE):
                 continue
             if sub == 'en' and fn != 'filter-finder.html':
                 continue

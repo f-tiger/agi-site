@@ -17,21 +17,63 @@ async function rpc(method, params) {
   return (await response.json()).result;
 }
 
-test('MCP and the public tool directory expose the same 100 unique tools', async () => {
-  const {tools} = await rpc('tools/list');
-  const listing = await worker.fetch(new Request(origin+'/api/mcp-tools'), {}, {});
-  const directory = await listing.json();
+test('the public directory and two MCP pages expose the same 196 unique tools', async () => {
+  const first = await rpc('tools/list');
+  const second = await rpc('tools/list',{cursor:first.nextCursor});
+  const directory = await (await worker.fetch(new Request(origin+'/api/mcp-tools'), {}, {})).json();
   const manifest = JSON.parse(readFileSync(new URL('../mcp/server.json',import.meta.url),'utf8'));
   const initialization = await rpc('initialize');
+  assert.equal(first.tools.length,100);
+  assert.equal(second.tools.length,96);
+  assert.equal(second.nextCursor,undefined);
   assert.equal(directory.version, manifest.version);
   assert.equal(initialization.serverInfo.version, manifest.version);
-  assert.equal(directory.total, 100);
-  assert.equal(new Set(tools.map(t=>t.name)).size,100);
-  assert.deepEqual(directory.tools.map(t=>t.name), tools.map(t=>t.name));
+  assert.equal(directory.total,196);
+  const names=[...first.tools,...second.tools].map(t=>t.name);
+  assert.equal(new Set(names).size,196);
+  assert.deepEqual(directory.tools.map(t=>t.name),names);
   const byCategory = {};
   for (const {category} of directory.tools) byCategory[category] = (byCategory[category] || 0) + 1;
-  assert.deepEqual(byCategory, {Raumklima:10,'Strom & Haushalt':20,Feuchte:18,Kühlen:18,Heizen:18,Passform:16});
-  assert.equal(expandedDefinitions.length,90);
+  assert.deepEqual(byCategory, {Raumklima:10,'Strom & Haushalt':20,Feuchte:18,Kühlen:18,Heizen:18,Passform:16,
+    'Energie prüfen':24,'Raumkomfort prüfen':24,'Geräte pflegen':24,'Quellen & Kaufprüfung':24});
+  assert.equal(expandedDefinitions.length,186);
+});
+
+test('old or invalid cursors reject safely and a 1000-tool catalogue paginates completely', async () => {
+  for (const cursor of ['1.5.0:100','1.6.0:99','1.6.0:200','1.6.0:0100','1.6.0:0',null,100]) {
+    const response = await worker.fetch(request('tools/list',{cursor}), {}, {});
+    assert.equal((await response.json()).error.code,-32602);
+  }
+  const {pageTools, collectToolPages} = await import('../src/mcp-pagination.mjs');
+  const expected = Array.from({length:1000}, (_,i)=>({name:'example_'+i}));
+  let calls=0;
+  const seen=await collectToolPages(async cursor=>{
+    const page=pageTools(expected,cursor,'99.0.0');
+    assert.equal(page.tools.length,100);
+    calls++;
+    return page;
+  });
+  assert.equal(calls,10);
+  assert.deepEqual(seen,expected);
+  let repeated=0;
+  await assert.rejects(collectToolPages(async()=>({tools:[{name:'case_'+(++repeated)}],nextCursor:'same'})),
+    /Invalid or repeated/);
+});
+
+test('keyword and category filters narrow the public directory without logging the query', async () => {
+  const get = async path => worker.fetch(new Request(origin+'/api/mcp-tools'+path), {
+    EVENTS:{prepare:()=>{ throw new Error('search tried to use analytics') }},
+  }, {});
+  const response = await get('?q=Abwaerme&category=K%C3%BChlen');
+  const result = await response.json();
+  assert.equal(response.headers.get('cache-control'),'no-store');
+  assert.equal(result.catalogueTotal,196);
+  assert.equal(result.total,1);
+  assert.equal(result.tools[0].name,'arbeitszimmer_abwaerme_vergleich');
+  const noMatch = await (await get('?q=unique-unmatched-string')).json();
+  assert.deepEqual(noMatch.tools,[]);
+  const all = await get('');
+  assert.match(all.headers.get('cache-control'),/public/);
 });
 
 for (const tool of expandedDefinitions) {
@@ -79,4 +121,24 @@ test('new successful tools record the fixed outcome without raw inputs, while QA
   await worker.fetch(ordinary,events,{});
   assert.equal(rows[0][0],'mcp_call');
   assert.deepEqual(JSON.parse(rows[0][1]),{tool:name,outcome:'complete',ua:'LocalClient'});
+});
+
+test('adoption summary keeps complete UTC windows separate from the diagnostic list', async () => {
+  const fixture = {start:'2026-11-13',end_exclusive:'2026-11-20',completed_calls:25,tools_called:8,browser_class_calls:2};
+  let summaryQueries = 0;
+  const env = {EVENTS:{prepare(sql) {
+    return {all:async()=>{
+      if (!sql.includes('AS browser_class_calls')) return {results:[]};
+      summaryQueries++;
+      assert.match(sql, /day < date\('now'\)/);
+      assert.match(sql,/ua_class != 'ci'/);
+      return {results:[fixture]};
+    }};
+  }}};
+  const response=await worker.fetch(new Request(origin+'/api/trend'),env,{waitUntil(){}});
+  assert.equal(response.status,200);
+  const data=await response.json();
+  assert.equal(summaryQueries,1);
+  assert.deepEqual(data.mcp_complete_week,fixture);
+  assert.deepEqual(data.mcp,[]);
 });
