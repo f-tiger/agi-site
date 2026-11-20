@@ -8,14 +8,17 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.17.4';
-const revision = 'b2920a1d5210574c11bff6d3e648be9bbe36e820';
+const version = '1.17.5';
+const revision = '62aa4ea7f759a1be459c10fe262df05cdb444a7b';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
 const title = 'EcoBack Local Household Tools';
 const description = 'German household tools with offline examples and optional public guide and weather lookup.';
 const sourceUrl = 'https://github.com/' + sourceRepository;
+const releaseUrl = `https://github.com/f-tiger/agi-site/releases/download/${releaseTag}`;
+const registryVersionsUrl = `https://registry.modelcontextprotocol.io/v0.1/servers/${encodeURIComponent(name)}/versions`;
+const registryLatestUrl = `${registryVersionsUrl}/latest`;
 const oldNames = [
   'btu_empfehlung', 'fensterabdichtung_laenge', 'heizleistung_watt', 'hitzewelle_vorschau',
   'klimaanlage_stromkosten', 'ratgeber_lesen', 'ratgeber_suche', 'taupunkt_lueften',
@@ -27,6 +30,52 @@ const sha256 = buffer => createHash('sha256').update(buffer).digest('hex');
 const writeJson = (path, value) => writeFile(path, JSON.stringify(value, null, 2) + '\n');
 const drainArguments = {drain:'level_or_uphill',model:'meaco-one-20'};
 const cellarUri = 'ecoback://evidence/de/kellerentfeuchter';
+const laundryComparisonTool = 'waesche_trocknungskosten';
+
+function readmeForExtraction(sourceReadme) {
+  const heading = '\n## Connect\n\n';
+  const terminalDetails = '\n\n<details>\n<summary>Run the downloaded bundle from a terminal</summary>';
+  const sections = sourceReadme.split(heading);
+  assert.equal(sections.length,2,'Expected one Connect section in the source README');
+  const [introduction, connect] = sections;
+  const connectParts = connect.split(terminalDetails);
+  assert.equal(connectParts.length,2,'Expected terminal details after the source download instructions');
+  const [install, remainder] = connectParts;
+  const paragraphs = install.split('\n\n');
+  assert.equal(paragraphs.length,3,'Expected the source download, install and checksum paragraphs');
+  const [download, instructions, receipt] = paragraphs;
+  const previousVersion = download.match(/^\*\*\[EcoBack MCPB (\d+\.\d+\.\d+) herunterladen\]/)?.[1];
+  assert.ok(previousVersion,'Expected a versioned download pointer');
+  const directUrl = `${releaseUrl}/${id}-${previousVersion}.mcpb`;
+  const exactRegistryUrl = `${registryVersionsUrl}/${previousVersion}`;
+  const digest = receipt.match(/`([a-f0-9]{64})`/)?.[1];
+  assert.ok(digest,'Expected a SHA-256 in the source download instructions');
+  assert.equal(download,`**[EcoBack MCPB ${previousVersion} herunterladen](${directUrl})**`);
+  assert.equal(instructions, [
+    'Öffne die heruntergeladene `.mcpb`-Datei über die MCPB-Installation deines Clients.',
+    'Für den lokalen Betrieb brauchst du Node.js 22 oder neuer. Berechnungen laufen',
+    'lokal. Nur auf Anfrage ruft EcoBack Wetterdaten oder ausgewählte Ratgeber ab.',
+  ].join('\n'));
+  assert.equal(receipt, [
+    'SHA-256 der verlinkten Datei',
+    '`' + digest + '`.',
+    `[Registrierte Version ${previousVersion}](${exactRegistryUrl})`,
+    `· [Aktuellste Version im offiziellen MCP Registry](${registryLatestUrl}).`,
+  ].join('\n'));
+
+  const extractedInstructions = [
+    'Starte `node src/server.mjs` im entpackten EcoBack-Ordner. In einem MCP-Client',
+    'kannst du `node` mit dem absoluten Pfad zu `src/server.mjs` als Argument',
+    'eintragen. Der lokale Betrieb benötigt Node.js 22 oder neuer.',
+    '',
+    'Berechnungen laufen lokal. Nur auf Anfrage ruft EcoBack Wetterdaten oder',
+    'ausgewählte Ratgeber ab.',
+    '',
+    `[Aktuellste Version im offiziellen MCP Registry](${registryLatestUrl}).`,
+  ].join('\n');
+  const text = introduction + heading + extractedInstructions + terminalDetails + remainder;
+  return {text, previousVersion, obsoleteInstallPointers:[directUrl,exactRegistryUrl,digest]};
+}
 
 function verifyFinder(extracted, drain) {
   const find = (...args) => spawnSync(process.execPath, [
@@ -168,7 +217,7 @@ async function verifyCompactLaundryComparison(rpc, finder, runner) {
   const found = await rpc('tools/call',{name:finder,arguments:{frage}});
   assert.equal(found.isError,false);
   const first = found.structuredContent.tools[0];
-  assert.equal(first?.name,'waesche_trocknungskosten');
+  assert.equal(first?.name,laundryComparisonTool);
   assert.equal(first.citation_url,citationUrl);
   assert.deepEqual(first.example_arguments,exampleArguments);
 
@@ -189,6 +238,21 @@ async function verifyCompactLaundryComparison(rpc, finder, runner) {
     comparison:details.lower_cost,
     citationUrl:details.citation_url,
   };
+}
+
+async function verifyCompactLaundryPrecision(rpc, finder) {
+  const topMatches = [];
+  for (const frage of [
+    'Was kostet eine Ladung Wäsche, wenn Trockner und Luftentfeuchter gleichzeitig laufen?',
+    'Was kostet es pro Ladung, wenn ich nur den Trockner nutze und den Luftentfeuchter ausgeschaltet lasse?',
+  ]) {
+    const found = await rpc('tools/call',{name:finder,arguments:{frage}});
+    assert.equal(found.isError,false);
+    const topMatch = found.structuredContent.tools[0]?.name ?? null;
+    assert.notEqual(topMatch,laundryComparisonTool,frage);
+    topMatches.push(topMatch);
+  }
+  return topMatches;
 }
 
 async function verifyCompactStdio(extracted) {
@@ -230,9 +294,10 @@ async function verifyCompactStdio(extracted) {
     assert.deepEqual(buyer.structuredContent.resources,resources);
     assert.deepEqual(buyer.content.filter(part=>part.type==='resource'),[{type:'resource',resource}]);
     const laundryComparison = await verifyCompactLaundryComparison(rpc,finder,runner);
+    const laundryPrecision = await verifyCompactLaundryPrecision(rpc,finder);
     return {
       tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,
-      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,
+      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,laundryPrecision,
     };
   });
 }
@@ -251,6 +316,9 @@ try {
   await mkdir(extracted);
   execFileSync('git',['-C',source,'archive','--format=tar','--output='+tar,revision,'LICENSE','README.md','package.json','src']);
   execFileSync('tar',['-xf',tar,'-C',stage]);
+  const license = await readFile(join(stage,'LICENSE'));
+  const readme = readmeForExtraction(await readFile(join(stage,'README.md'),'utf8'));
+  await writeFile(join(stage,'README.md'),readme.text);
   const pkg = JSON.parse(await readFile(join(stage,'package.json'),'utf8'));
   assert.equal(pkg.version,version);
   assert.deepEqual(pkg.bin,{'getecoback-mcp':entry});
@@ -269,7 +337,8 @@ try {
     privacy_policies:['https://getecoback.com/datenschutz.html','https://open-meteo.com/en/terms'],
   };
   await writeJson(join(stage,'manifest.json'),manifest);
-  await writeJson(join(stage,'SOURCE.json'),{repository:sourceRepository,revision});
+  const sourcePin = {repository:sourceRepository,revision};
+  await writeJson(join(stage,'SOURCE.json'),sourcePin);
   const artifactDir = join(output,'artifacts'), serverDir = join(output,'servers');
   await mkdir(artifactDir);
   await mkdir(serverDir);
@@ -279,10 +348,19 @@ try {
   execFileSync('python3',['-m','zipfile','-e',artifact,extracted]);
   const actualManifest = JSON.parse(await readFile(join(extracted,'manifest.json'),'utf8'));
   assert.deepEqual(actualManifest,manifest);
+  assert.deepEqual(JSON.parse(await readFile(join(extracted,'SOURCE.json'),'utf8')),sourcePin);
+  assert.deepEqual(await readFile(join(extracted,'LICENSE')),license);
+  const archivedReadme = await readFile(join(extracted,'README.md'),'utf8');
+  assert.equal(archivedReadme,readme.text);
+  for (const pointer of readme.obsoleteInstallPointers) {
+    assert.ok(!archivedReadme.includes(pointer),'An obsolete install pointer remains in the bundled README');
+  }
+  assert.ok(!archivedReadme.includes(digest),'The bundled README must not embed its own checksum');
   const result = await verifyStdio(extracted,actualManifest);
   result.compact = await verifyCompactStdio(extracted);
   assert.deepEqual(result.resource,result.compact.resource);
-  const identifier = `https://github.com/f-tiger/agi-site/releases/download/${releaseTag}/${file}`;
+  result.archiveReadme = {replacedVersion:readme.previousVersion,registryLatestUrl};
+  const identifier = `${releaseUrl}/${file}`;
   await writeJson(join(serverDir,id+'.json'),{
     $schema:'https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json',
     name,title,description,version,repository:{url:sourceUrl,source:'github'},websiteUrl:sourceUrl,

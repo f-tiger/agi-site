@@ -19,12 +19,12 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUNDLE: ecoback-local-tools-1.17.4.mcpb
-  VERSION: '1.17.4'
-  UPSTREAM_SHA: b2920a1d5210574c11bff6d3e648be9bbe36e820
+  BUNDLE: ecoback-local-tools-1.17.5.mcpb
+  VERSION: '1.17.5'
+  UPSTREAM_SHA: 62aa4ea7f759a1be459c10fe262df05cdb444a7b
   NAME: io.github.f-tiger/ecoback-local-tools
   RELEASE_TAG: fleet-mcp-registry-2026-10-10
-  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.17.4.mcpb
+  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.17.5.mcpb
   REGISTRY_VERSIONS: https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions
   SOURCE_URL: https://github.com/f-tiger/getecoback-mcp
   MCPB_SCHEMA: https://raw.githubusercontent.com/modelcontextprotocol/mcpb/70fe3b34cd6dff1b3bba046638edc72a6467a4fb/schemas/mcpb-manifest-v0.3.schema.json
@@ -92,7 +92,7 @@ jobs:
             .packages[0].identifier == $url and .packages[0].fileSha256 == $sha and
             .packages[0].transport.type == "stdio"
           ' "$root/servers/ecoback-local-tools.json"
-          jq -e --arg name "$NAME" --arg version "$VERSION" --arg revision "$UPSTREAM_SHA" --arg sha "$digest" '
+          jq -e --arg name "$NAME" --arg version "$VERSION" --arg revision "$UPSTREAM_SHA" --arg sha "$digest" --arg latest "$REGISTRY_VERSIONS/latest" '
             .name == $name and .version == $version and .sourceRevision == $revision and
             .fileSha256 == $sha and .tools == 2003 and .pages == 21 and .legacyNames == 8 and
             .network == "disabled" and (.firstExamples | type == "array" and length > 0) and
@@ -108,6 +108,10 @@ jobs:
               topMatch:"waesche_trocknungskosten", dryerEurPerLoad:0.6, dehumidifierEurPerLoad:0.3,
               comparison:"unconfirmed", citationUrl:"https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html"
             } and
+            (.compact.laundryPrecision | type == "array" and length == 2 and
+              all(.[]; . != "waesche_trocknungskosten" and (. == null or (type == "string" and length > 0)))) and
+            (.archiveReadme.replacedVersion | test("^[0-9]+\\.[0-9]+\\.[0-9]+$")) and
+            .archiveReadme.registryLatestUrl == $latest and
             .resource.uri == "ecoback://evidence/de/kellerentfeuchter" and
             .resource.mimeType == "text/markdown" and .resource.missingCode == -32002 and
             (.resource.textSha256 | test("^[a-f0-9]{64}$")) and .compact.resource == .resource
