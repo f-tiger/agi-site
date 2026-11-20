@@ -174,7 +174,8 @@ async function verifyNoScriptBrowse(browser) {
       await link.waitFor({state: 'visible'});
       await link.click();
       await page.waitForURL('**/studio/ai/csv-to-json');
-      assert.equal(await page.locator('[data-suite-tool] fieldset').isDisabled(), true);
+      assert.equal(await page.locator('[data-suite-tool] fieldset[disabled]').count(), 1);
+      assert.equal(await runButton(page).isDisabled(), true);
       const mcpHelp = page.locator('#suite-mcp');
       await mcpHelp.locator('summary').click();
       assert.equal(await mcpHelp.locator('a[href$="/studio/ai/#mcp"]').isVisible(), true);

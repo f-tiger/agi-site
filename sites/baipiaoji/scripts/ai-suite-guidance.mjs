@@ -51,7 +51,7 @@ const guidance = {
   ),
   'gross-margin': entry(
     ['对比同一销售期间内不同批次或产品的毛利润。', 'Compare gross profitability across product lines or batches in the same sales period.'],
-    ['毛利率用营收作分母。加价率用直接成本作分母。直接成本为零时加价率无定义。', 'Margin uses revenue as the denominator. Markup uses direct cost and is undefined when direct cost is zero.'],
+    ['毛利率用营收作分母。加价率用直接成本作分母。直接成本为零时加价率无定义。', 'Margin uses revenue as the denominator. Markup uses direct cost as the denominator. Zero cost leaves the markup field empty.'],
     {cost: ['填对应营收的直接成本，金额单位和营收一致。', 'Enter direct costs for the reported revenue in the same currency.']},
     {grossProfit: ['毛利润', 'Gross profit'], marginPercent: ['毛利率（%）', 'Gross margin (%)'], markupPercent: ['成本加价率（%）', 'Markup on cost (%)']},
     ['break-even-units'],
