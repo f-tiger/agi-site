@@ -106,13 +106,15 @@ test('questions about the six new household topics find a matching decision in t
   }
 });
 
-test('German buyer questions find five manufacturer and repair-evidence tools', async () => {
+test('German buyer questions with both common and exact model terms find manufacturer evidence', async () => {
   const questions = [
     ["Welcher Gefrierschrank packt beim Großeinkauf 20 Kilo in 24 Stunden und hat Platz für 300 Liter?", "gefrierschrank_24h_haushaltsspitze_und_bestandsvolumen"],
     ["Passt der Bosch SBV4EBX00D unter meine Platte und bleibt der Gang frei, wenn die Tür offen steht?", "bosch_sbv4ebx00d_nische_tueroeffnung_abgleichen"],
     ["Passt der Miele WTV 501 zu T1 Classic und einer Waschmaschine W 1000?", "wasch_trocken_saeule_herstellerkombination_beleg"],
     ["Wie laut ist der ComfoAir Q350 TR bei 250 Kubikmetern pro Stunde und 150 Pa auf der Zuluftseite?", "q350_tr_250m3_schallweg_druckpunkte_v0126"],
     ["An wen wende ich mich für Ersatzteile bei der Spülmaschine, wenn ich einen Ablauffilter oder eine Pumpe brauche?", "oekodesign_teilgruppe_rollenweg_de"],
+    ['Passen 19 kg Gefriergut und 200 Liter Vorrat in den Bosch GSN33EWEV?', 'gefrierschrank_24h_haushaltsspitze_und_bestandsvolumen'],
+    ['Bleiben nach der Spülertür bei 90 Grad noch 60 cm Durchgang? Es geht um SBV4EBX00D/48.', 'bosch_sbv4ebx00d_nische_tueroeffnung_abgleichen'],
   ];
   for (const [q, expected] of questions) {
     const response = await catalogue({q, view:'compact', limit:'3'});
