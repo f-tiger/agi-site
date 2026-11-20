@@ -74,6 +74,34 @@ test('edge fallback retains every evidence reference in the three revised winter
  }
 });
 
+test('appliance evidence survives in both the generated mirror and edge fallback', () => {
+ const pages = [
+  ['produkte', [
+   'https://media3.bosch-home.com/Documents/specsheet/de-DE/SBV4EBX00D.pdf',
+   'https://www.miele.de/product/9256130/wasch-trocken-verbindungssatz-wtv-501',
+  ]],
+  ['geraete-austausch-rechner', [
+   'https://media3.bsh-group.com/Documents/eudatasheet/de-DE/GSN58DWDV.pdf',
+   'https://www.umweltbundesamt.de/system/files/medien/10592/dokumente/datenblatt_2019-2023_haushaltswaschmaschinen_final.pdf',
+  ]],
+  ['guide/unterschied-klimaanlage-lueftungsanlage', [
+   'https://zehnder.picturepark.com/v/WbAb4h0n/',
+   'https://zehnder.picturepark.com/v/dwbRP3uL/',
+  ]],
+ ];
+ for (const [path, urls] of pages) {
+  const html = readFileSync(new URL(`../site/${path}.html`, import.meta.url), 'utf8');
+  const file = readFileSync(new URL(`../site/${path}.md`, import.meta.url), 'utf8');
+  const fallback = htmlToMarkdown(html, `/${path}.html`);
+  for (const url of urls) {
+   assert.ok(html.includes(`href="${url}"`), url);
+   assert.ok(file.includes(`](${url})`), url);
+   assert.ok(fallback.includes(`](${url})`), url);
+   assert.equal(citationUrl(url + '?ref=unreviewed'), null);
+  }
+ }
+});
+
 test('negotiated Markdown reuses the built mirror with sourced tables outside the article',async()=>{
  const html=readFileSync(new URL('../site/guide/waesche-trocknen-wohnung.html',import.meta.url),'utf8');
  const source='https://www.verbraucherzentrale.de/';

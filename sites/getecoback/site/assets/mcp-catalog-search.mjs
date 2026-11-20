@@ -38,6 +38,10 @@ const taskWords = new Map([
   ['pc_chip_und_ansaugluft_abstand_zerlegen', 'cpu prozessor pc raumluft ansaugluft angesaugt waermer temperaturabstand'],
   ['luftkuehler_tankbilanz_ueber_wasserwege', 'luftkuehler tank wasser ruecklauf tropfwasser wasserverlust wasserbilanz'],
   ['heizwaesche_massenplateau_vor_wirklichem_ziel', 'waesche heizwaesche beheizt waeschestaender leichter gewicht trocken stehengeblieben plateau trockenziel'],
+  ['gefrierschrank_24h_haushaltsspitze_und_bestandsvolumen', 'gefrierschrank grosseinkauf kilo kilogramm liter stunden gefriervermoegen vorratsvolumen'],
+  ['wasch_trocken_saeule_herstellerkombination_beleg', 'waschmaschine trockner miele bosch wtv 501 511 512 t1 classic white chrome stapelsatz verbindungssatz'],
+  ['q350_tr_250m3_schallweg_druckpunkte_v0126', 'comfoair zehnder q350 v0126 laut schallleistung kubikmetern stunde pascal zuluftseite abluftseite'],
+  ['oekodesign_teilgruppe_rollenweg_de', 'ersatzteil ersatzteile spuelmaschine geschirrspueler waschmaschine ablauffilter pumpe sprueharm reparaturbetrieb verbraucher'],
 ]);
 
 // Group common noun endings while retaining a meaningful root.

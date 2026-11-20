@@ -74,6 +74,16 @@ De'Longhi Pinguino PAC EX105 →
 [Klimaanlage in der Mietwohnung — was ist erlaubt? →](https://getecoback.com/guide/klimaanlage-mietwohnung.html)
 [Richtig lüften bei Hitze →](https://getecoback.com/guide/richtig-lueften-bei-hitze.html)
 
+## Wie vergleiche ich Geräusch und Wartung einer Lüftungsanlage?
+
+Ordne bei einer eigenen Geräuschbeobachtung zuerst den Ort, die Fensterstellung und die Lüftungsstufe zu. Außenlärm, Ventilator und Strömung haben unterschiedliche Wege. Eine Vergleichsmessung am gleichen Ort und unter möglichst ähnlichen Randbedingungen kann eine Geräuschquelle eingrenzen. Die Schallleistung im Datenblatt und der am Sitz- oder Schlafplatz gemessene Schalldruck stehen für verschiedene Messgrößen.
+
+Die technische Spezifikation Zehnder ComfoAir Q350 TR, Dokument V0126, weist auf den Seiten 12–13 bei 250 m³/h und 100, 150 oder 200 Pa drei Messpunkte aus. Druckseitig stehen dort 56,2, 58,4 und 60,7 dB(A) Schallleistung Lw. Saugseitig stehen 43,1, 45,0 und 47,0 dB(A), am Gehäuse 43,1, 45,2 und 47,3 dB(A). Halte bei Vergleichen Modell, Dokumentrevision, Luftmenge, Druck und Messseite fest. Die angegebenen Lw-Werte liefern keinen Schalldruck im eigenen Raum. Für diese drei Punkte nennt das Blatt außerdem 58, 71 und 85 W sowie 0,23, 0,29 und 0,34 Wh/m³.
+
+Die Spezifikation nennt für den Innenaufstellraum 7–40 °C, die Artikelnummern 471502009 und 471502010 und die Filtersets 400502012 und 400502013. Die Werte zur Wärmebereitstellung stehen getrennt nach Prüfregime und Wärmetauscher. Prüfe außerdem, ob der Filterzugang frei bleibt und welches Filterset die passende Bedienungsanleitung nennt. Die Nutzeranleitung der ComfoAir Q unterscheidet den Filterwechsel durch Nutzer und Tätigkeiten für Fachpersonal. Umbau, technische Wartung und Einregulierung richten sich nach dem bestätigten Gerät und dem Fachbetrieb.
+
+Quellen, gelesen am 20.11.2026. [Umweltbundesamt Anforderungen an Lüftungskonzeptionen, Seite 15](https://www.umweltbundesamt.de/system/files/medien/1410/publikationen/fb_anforderungen_an_lueftungskonzeptionen_in_wohngebaeuden_bf.pdf) · [Zehnder Q350 TR technische Spezifikation V0126](https://zehnder.picturepark.com/v/WbAb4h0n/) · [Zehnder ComfoAir Q Nutzeranleitung](https://zehnder.picturepark.com/v/dwbRP3uL/).
+
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp

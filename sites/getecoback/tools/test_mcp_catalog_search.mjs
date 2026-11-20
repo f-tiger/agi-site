@@ -106,6 +106,22 @@ test('questions about the six new household topics find a matching decision in t
   }
 });
 
+test('German buyer questions find five manufacturer and repair-evidence tools', async () => {
+  const questions = [
+    ["Welcher Gefrierschrank packt beim Großeinkauf 20 Kilo in 24 Stunden und hat Platz für 300 Liter?", "gefrierschrank_24h_haushaltsspitze_und_bestandsvolumen"],
+    ["Passt der Bosch SBV4EBX00D unter meine Platte und bleibt der Gang frei, wenn die Tür offen steht?", "bosch_sbv4ebx00d_nische_tueroeffnung_abgleichen"],
+    ["Passt der Miele WTV 501 zu T1 Classic und einer Waschmaschine W 1000?", "wasch_trocken_saeule_herstellerkombination_beleg"],
+    ["Wie laut ist der ComfoAir Q350 TR bei 250 Kubikmetern pro Stunde und 150 Pa auf der Zuluftseite?", "q350_tr_250m3_schallweg_druckpunkte_v0126"],
+    ["An wen wende ich mich für Ersatzteile bei der Spülmaschine, wenn ich einen Ablauffilter oder eine Pumpe brauche?", "oekodesign_teilgruppe_rollenweg_de"],
+  ];
+  for (const [q, expected] of questions) {
+    const response = await catalogue({q, view:'compact', limit:'3'});
+    const ranked = names(findCatalogueTools(compact, {query:q})).slice(0, 3);
+    assert.deepEqual(names(response.tools), ranked, q);
+    assert.ok(ranked.includes(expected), q);
+  }
+});
+
 test('generic and off-topic requests produce no fallback catalogue matches', async () => {
   for (const q of [
     'Kannst du mir heute bitte helfen?',
