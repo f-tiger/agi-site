@@ -20,7 +20,7 @@ for (const index of document.querySelectorAll('[data-suite-index]')) {
       group.hidden=visible===0;
       matches+=visible;
     }
-    count.textContent=matches ? copy(`显示 ${matches} 个工具`,`${matches} tools`) :
+    count.textContent=matches ? copy(`显示 ${matches} 个自研工具`,`${matches} BPJ tools`) :
       copy('未找到工具。换一个关键词试试。','No matching tool. Try a different search.');
   });
   search.closest('[hidden]').hidden=false;

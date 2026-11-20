@@ -9,10 +9,10 @@ export function renderAiIndex({BASE,lang,esc,home=false}) {
   const zh=lang==='zh', t=(cn,en)=>zh?cn:en;
   return `${assets}<section class="suite-index" ${home?'id="ai-tools" data-home-block="ai-tools"':''} data-suite-index>
     ${home?`<header class="suite-index-header"><div><h2>${siteTitle[lang]}</h2><p>${t('在浏览器使用，或通过 MCP 交给你的 AI 调用。','Use a tool in your browser or connect it to your AI via MCP.')}</p></div><a href="${BASE}/studio/ai/#mcp">${t('连接 MCP','Connect MCP')}</a></header>`:''}
-    <div class="suite-search" hidden><label for="suite-search">${t('搜索工具','Search tools')}</label><input type="search" id="suite-search" data-suite-search placeholder="${t('例如 CSV、预算、站点地图','Try CSV, budget, or sitemap')}" autocomplete="off"><span data-suite-count role="status">${t(`共 ${SUITE_TOOLS.length} 个工具`,`${SUITE_TOOLS.length} tools`)}</span></div>
+    <div class="suite-search" hidden><label for="suite-search">${t('搜索工具','Search tools')}</label><input type="search" id="suite-search" data-suite-search placeholder="${t('例如 CSV、预算、站点地图','Try CSV, budget, or sitemap')}" autocomplete="off"><span data-suite-count role="status">${t(`共 ${SUITE_TOOLS.length} 个自研工具`,`${SUITE_TOOLS.length} BPJ tools`)}</span></div>
     <div class="suite-categories">${SUITE_CATEGORIES.map(group=>`<details data-suite-group ${home?'':'open'}>
       <summary><strong>${group.title[lang]}</strong> <span>${group.tools.length}</span></summary>
-      <ul>${group.tools.map(tool=>`<li data-suite-keywords="${esc([tool.title.zh,tool.title.en,tool.description.zh,tool.description.en,tool.id,tool.id.replaceAll('-',' '),group.title[lang]].join(' '))}"><a href="${BASE}${suitePath(tool)}">${esc(tool.title[lang])}</a>${home?'':`<p>${esc(tool.description[lang])}</p>`}</li>`).join('')}</ul>
+      <ul>${group.tools.map(tool=>`<li data-suite-keywords="${esc([tool.title[lang],tool.description[lang],tool.id,tool.id.replaceAll('-',' '),group.title[lang]].join(' '))}"><a href="${BASE}${suitePath(tool)}">${esc(tool.title[lang])}</a>${home?'':`<p>${esc(tool.description[lang])}</p>`}</li>`).join('')}</ul>
     </details>`).join('')}</div>
   </section>${script}`;
 }

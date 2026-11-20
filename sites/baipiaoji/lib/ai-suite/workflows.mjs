@@ -454,7 +454,7 @@ export const tools = [
       string('start', '开始时间（ISO）', 'Start time (ISO)', 40),
       string('created', '生成时间（ISO）', 'Created time (ISO)', 40),
       integer('durationMinutes', '持续时间（分钟）', 'Duration in minutes', 1, 10_080)],
-    { summary: '发布复盘', uid: 'release-review-20261120', start: '2026-11-20T18:00:00+08:00',
+    { summary: 'Release review', uid: 'release-review-20261120', start: '2026-11-20T18:00:00+08:00',
       created: '2026-11-20T08:00:00Z', durationMinutes: 45 },
     ({ summary, uid, start, created, durationMinutes }) => {
       check(summary.trim() && !/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/.test(summary) &&
@@ -525,7 +525,7 @@ export const tools = [
     ['把参数填入相对 API 路径中的占位符，对单个路径段做 URL 编码。', 'Substitute parameters into a relative API route, encoding each inserted path segment.'],
     [string('template', '相对路径模板', 'Relative route template', 300),
       string('parameters', '参数 JSON 对象', 'Parameters as a JSON object', 2500, true)],
-    { template: '/v1/projects/{project}/reports/{month}', parameters: '{"project":"季度报告","month":"2026-11"}' },
+    { template: '/v1/projects/{project}/reports/{month}', parameters: '{"project":"Quarterly reports","month":"2026-11"}' },
     ({ template, parameters }) => interpolateRoute(template, objectJson(parameters))),
 
   entry('build-sql-in-parameters', ['生成 SQL IN 绑定参数', 'Build SQL IN bind parameters'],
