@@ -24,6 +24,13 @@ const cases = [
     guide: '/guide/waesche-trocknen-wohnung.html#waschmittel-automatische-dosierung',
     heading: 'Vor dem Waschen: Dosiertabelle und Automatik prüfen',
   },
+  {
+    question: 'Passt die schwarze 170-mm-Ersatzlippe 2.633-104.0 in meinen WV 8?',
+    tool: 'fenstersauger_170mm_abziehlippe_geraetefamilie',
+    category: 'Fenstersauger',
+    guide: '/produkte.html#fenstersauger-belege',
+    heading: 'Fenstersauger prüfen: Abziehlippen und Gebrauch',
+  },
 ];
 
 function probePath(path) {

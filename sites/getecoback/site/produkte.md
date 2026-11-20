@@ -1329,6 +1329,52 @@ Die Krümelschublade muss für den Betrieb eingesetzt sein. Erst nach vollständ
 
 Deutsche Bosch-Unterlagen 9001690573_A und Produktdaten des TAT8613, geprüft am 20.11.2026.
 
+## Fenstersauger prüfen: Abziehlippen und Gebrauch
+
+Für wenige Scheiben kann der vorhandene Einwascher mit Abzieher genügen. Kommt das Wasser regelmäßig von innen zurück, zuerst [die Feuchtigkeit einordnen](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#einsatzort-waehlen).
+
+[Kärcher im Gebrauch prüfen](https://getecoback.com/produkte.html#kaercher-fenstersauger-einsatz-und-hinweise) · [Bosch GlassVAC einsetzen und pflegen](https://getecoback.com/produkte.html#bosch-glassvac-einsatz-und-pflege)
+
+### 170-mm-Abziehlippen am genauen Gerät zuordnen
+
+Die gleiche Breite reicht für die Ersatzteilwahl nicht aus. Prüfe die vollständige Modellkennung am Gerät, die verwendete schmale Originaldüse und die Teilenummer im Angebot.
+
+- Für den Kärcher WV 3 Comfort Precision+ Black (1.633-698.0) führt der Hersteller die schwarze Abziehlippe 2.633-104.0 in der [deutschen Kompatibilitätsliste](https://www.karcher.com/de/de/home-and-garden/produkte/wv-abziehlippen-schwarz-170-mm-p26331040).
+
+- Für den Kärcher WV 8 Signature Line (1.633-785.0) führt er die schmale Abziehlippe 2.633-513.0 in der [entsprechenden Kompatibilitätsliste](https://www.karcher.com/de/de/home-and-garden/produkte/wv-4-4-wv-5-ultra-wv-6-wv-7-wv-8-abziehlippen-170-mm-p26335130).
+
+Für die gekreuzten Kombinationen liefern diese Listen keinen Beleg. Stelle die Bestellung zurück, wenn die Originaldüse oder Teilenummer offen ist. Deutsche Herstellerlisten geprüft am 20. November 2026.
+
+### Kärcher-Fenstersauger vor dem Kauf und beim Einsatz prüfen
+
+Vergleiche die Artikelnummer am Gerät oder an der Verpackung mit der deutschen Produktseite. Die folgenden Hinweise gehören zu diesen Geräteausführungen und den dort verlinkten Anleitungen. Stand 20.11.2026.
+
+- [WV 2 Plus Multi Edition, 1.633-662.0](https://www.karcher.com/de/de/home-and-garden/produkte/wv-2-plus-multi-edition-p16336620). Der zugeordnete [Sicherheitshinweis, S. 3](https://dp6jru56judg7.cloudfront.net/BTA/000/BTA-5548307-000-05.pdf) nennt höchstens 25 ml Flüssigkeit für die beschriebene Nutzung. Für eine verschüttete Flüssigkeit zuerst ein geeignetes Tuch oder einen Wischer verwenden.
+
+- [WV 3 Comfort Precision+ Black, 1.633-698.0](https://www.karcher.com/de/de/home-and-garden/produkte/wv-3-comfort-precision-black-p16336980) und [WV 8 Signature Line, 1.633-785.0](https://www.karcher.com/de/de/home-and-garden/produkte/wv-8-signature-line-p16337850). Der [gemeinsam verlinkte Sicherheitshinweis, S. 3](https://dp6jru56judg7.cloudfront.net/BTA/000/BTA-6001552-000-02.pdf) nennt 40 ml. Das Tankvolumen ist in den Produktdaten separat aufgeführt.
+
+- **Blinkmuster ablesen.** Blinkfolgen und Betriebszustand gehören zusammen. Beim WV 3 beschreibt die Tabelle bei schnellem Blinken während des Ladens einen Ladevorgang, der gerade nicht möglich ist. Beim WV 8 verweist zweimal kurzes Blinken aller LEDs mit anschließender langer Pause und ausgeschaltetem Motor auf eine zu hohe oder zu niedrige Akkutemperatur. Lass das Gerät auf eine für Wohnräume übliche Temperatur kommen. Bei unklarem Muster die Anleitung oder den Kundendienst nutzen. [Kärcher, LED-Codes auf S. 4–5](https://dp6jru56judg7.cloudfront.net/BTA/000/BTA-6001552-000-02.pdf)
+
+- **Akkutausch einordnen.** Die Produktseiten des WV 3 und WV 8 beschreiben einen Tausch im Servicefall. Wenn ein im Betrieb wechselbarer Reserveakku kaufentscheidend ist, die Freigabe für das genaue Gerät vor dem Kauf separat erfragen.
+
+- **Reiniger und Fläche prüfen.** Die auf den Produktseiten verlinkten Sicherheitshinweise sehen üblichen Glas- beziehungsweise Fensterreiniger vor und schließen Spiritus und Schaumreiniger aus. Beim WV 3 und WV 8 nennt Kärcher außerdem sehr warme, kalte, heiße oder gefrorene Flächen als ungeeignet. Den Mikrofaser-Wischbezug auf empfindlichem Hochglanz zuerst unauffällig ausprobieren. [Kärcher, Hinweise auf S. 2–3](https://dp6jru56judg7.cloudfront.net/BTA/000/BTA-6001552-000-02.pdf)
+
+## Bosch GlassVAC im Haushalt einsetzen und pflegen
+
+Diese Hinweise beziehen sich auf das deutsche Bosch GlassVAC Set 06008B7000 und die zugehörige Originalanleitung F 016 L81 778. Prüfe beim vorhandenen Gerät die Kennzeichnung und die passende Anleitung.
+
+- **Flüssigkeit und Oberfläche.** Der Fenstersauger ist für Flüssigkeit auf glatten, nicht porösen Flächen wie Glas, Spiegeln und Fliesen gedacht. Für trockenen Staub, poröse Flächen sowie heißes Wasser oder brennbare Flüssigkeiten ist dieser Einsatz ausgeschlossen.
+
+- **Temperatur für drei verschiedene Schritte.** Bosch nennt −20 bis +50 °C für die Lagerung. Unter −5 °C das Gerät nicht einschalten. Bei Temperaturen unter 0 °C ist die Leistung eingeschränkt. Für die Ladeumgebung empfiehlt Bosch 0 bis +45 °C.
+
+- **Schmutzwassertank spülen.** Nimm den Saugkopf ab. Fülle sauberes warmes, nicht heißes Wasser bis zur Max-Markierung durch die Öffnung des Saugkopfs ein. Zum Abgießen dient der Ablassverschluss. Tauche das Gerät nicht in Wasser ein.
+
+- **Streifen und sichtbare Schäden.** Bosch nennt bei echten Streifen sowohl eine beschädigte Lippe als auch ungeeigneten Anpressdruck als mögliche Ursachen. Kosmetische Flecken oder Linien am Kunststoff begründen allein keinen Ersatzkauf.
+
+- **Wasseraustritt lokalisieren.** Ist der separate Sprühkopf lose, prüfe ihn anhand der Montageabbildung E. Bei fortbestehendem Austritt am Sauggerät selbst schalte es aus und frage beim Service nach. Das Gehäuse bleibt geschlossen.
+
+Quellen geprüft am 20.11.2026. [Deutsche Bosch-Produktseite zum Set 06008B7000](https://www.bosch-diy.com/de/de/p/glassvac-06008b7000) · [Bosch Originalanleitung F 016 L81 778, S. 3–6 (PDF)](https://www.bosch-diy.com/storage/de-de/glassvac-100045834-original-pdf-396340-de-de.pdf).
+
 ## Was diese Auswahl leistet
 Die Gruppen zeigen unterschiedliche Aufgaben und konkrete Modelle, keine vollständige Marktübersicht. Herstellerdaten und genaue Varianten stehen bei jedem Gerät. Wir haben diese Geräte nicht selbst getestet. Eine Händlersuche bestätigt weder ein bestimmtes Angebot noch Verfügbarkeit oder einen Preis.
 Quellen älter als 90 Tage, zukünftige Prüfdaten oder offene Widersprüche pausieren die Händlersuche. Die zuletzt dokumentierten Fakten bleiben nachvollziehbar. Zubehör, regionale Ausführung und die passende Anleitung am konkreten Angebot prüfen. Ein funktionierendes vorhandenes Gerät muss nicht ersetzt werden.
