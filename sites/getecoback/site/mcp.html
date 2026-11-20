@@ -91,6 +91,7 @@
   </ul>
   <p>Der <a href="/api/mcp-tools">vollständige Katalog als JSON</a> enthält Kategorien, Namen und Eingabeschemata. Im Browser wird der Katalog geladen und der Suchtext lokal gefiltert.</p>
   <p>Als JSON lassen sich auch einzelne Kategorien öffnen: <a href="/api/mcp-tools?category=Wasser%20%26%20W%C3%A4sche&amp;view=compact">Wasser &amp; Wäsche</a>, <a href="/api/mcp-tools?category=Geb%C3%A4ude%20%26%20Fenster&amp;view=compact">Gebäude &amp; Fenster</a>, <a href="/api/mcp-tools?category=Ger%C3%A4te%20im%20Alltag&amp;view=compact">Geräte im Alltag</a> und <a href="/api/mcp-tools?category=Messpraxis&amp;view=compact">Messpraxis</a>.</p>
+  <p>Weitere Aufgaben findest du unter <a href="/api/mcp-tools?category=Zugang%20%26%20Alltag&amp;view=compact">Zugang &amp; Alltag</a>, <a href="/api/mcp-tools?category=Saisonwechsel&amp;view=compact">Saisonwechsel</a>, <a href="/api/mcp-tools?category=Kaufpraxis&amp;view=compact">Kaufpraxis</a> und <a href="/api/mcp-tools?category=Ressourcen%20planen&amp;view=compact">Ressourcen planen</a>.</p>
   <section id="mcp-catalog" aria-label="Interaktiver Werkzeugkatalog" hidden>
     <div class="catalog-filters" hidden>
       <label>Aufgabe oder Werkzeugname <input type="search" autocomplete="off" maxlength="100"></label>
@@ -104,6 +105,7 @@
   <ul>
     <li><a href="#duschbudget-beispiel">Mit gemessenem Duschdurchfluss ein eigenes Wasserbudget einhalten</a></li>
     <li><a href="#strommessung-abba-beispiel">Zwei Geräteeinstellungen mit einer gegenläufigen Messfolge vergleichen</a></li>
+    <li><a href="#stromfenster-mehrphasen-beispiel">Ein Startfenster für zwei Gerätephasen vergleichen</a></li>
   </ul>
 
   <h3>Weitere Fragen zum Ausprobieren</h3>
@@ -144,6 +146,15 @@
   </ol>
   <pre><code>{"jsonrpc":"2.0","id":13,"method":"tools/call","params":{"name":"strommessung_abba_abwechselnd","arguments":{"a_anfang_kwh":1.2,"b_anfang_kwh":1,"b_ende_kwh":1.1,"a_ende_kwh":1.3}}}</code></pre>
   <p>Die wechselnde Reihenfolge kann einen gleichmäßigen Zeiteffekt ausgleichen. Wiederhole den Vergleich bei schwankenden Bedingungen. Das <a href="/strommess-protokoll.html">Strommess-Protokoll</a> hilft, Messbedingungen festzuhalten.</p>
+
+  <h2 id="stromfenster-mehrphasen-beispiel">Ein Startfenster für zwei Gerätephasen vergleichen</h2>
+  <ol>
+    <li>Notiere den tatsächlichen Preis pro kWh für vier aufeinanderfolgende, gleich lange Zeitfenster und den Verbrauch je Gerätephase. Jede Phase belegt ein Fenster.</li>
+    <li>Im Beispiel kosten die Fenster 0,30, 0,20, 0,40 und 0,25 €/kWh. Für die beiden Phasen mit 0,8 und 0,2 kWh ergibt der Start im zweiten Fenster mit 0,24 € die niedrigsten rechnerischen Stromkosten.</li>
+  </ol>
+  <pre><code>{"jsonrpc":"2.0","id":14,"method":"tools/call","params":{"name":"stromfenster_mehrphasen_start","arguments":{"preis_1_eur_kwh":0.3,"preis_2_eur_kwh":0.2,"preis_3_eur_kwh":0.4,"preis_4_eur_kwh":0.25,"phase_1_kwh":0.8,"phase_2_kwh":0.2}}}</code></pre>
+  <p>Die Preise sind Beispielwerte. Nutze den Arbeitspreis für deinen Tarif und prüfe vorab, in welchen Fenstern das Gerät tatsächlich starten kann. Der <a href="/guide/strompreis-radar.html">Strompreis-Radar</a> erklärt den Unterschied zwischen Börsenpreis und Haushaltstarif.</p>
+  <p><a href="/api/mcp-tools?view=examples&amp;tool=stromfenster_mehrphasen_start">Eingabeschema, Beispiel und Quelle als JSON</a>.</p>
 
   <h2 id="haushalt-beispiele">Drei kopierbare Aufrufe mit Messwerten</h2>
   <h3 id="strom-beispiel">Strommessung auf 100 vergleichbare Tage hochrechnen</h3>
@@ -207,7 +218,9 @@
   <p><code>tools/list</code> liefert bis zu 100 Werkzeuge pro Seite. Enthält das Ergebnis <code>nextCursor</code>, sende seinen unveränderten Wert im nächsten <code>tools/list</code>-Aufruf als <code>params.cursor</code>. Ohne <code>nextCursor</code> ist die Liste vollständig.</p>
   <p>Der <a href="/api/mcp-tools">JSON-Katalog</a> unterstützt <code>q</code> für Suchbegriffe und <code>category</code> für Kategorien. Für eine knappe Übersicht kannst du <code>view=compact</code> ergänzen. Diese Ansicht liefert Namen, Beschreibung, Kategorie und verfügbare Quellenlinks. <a href="/api/mcp-tools?category=Messpraxis&amp;view=compact">Kompakte Liste für Messpraxis</a>.</p>
   <p>Sobald du den Werkzeugnamen kennst, liefert <code>tool=EXAKTER_NAME</code> ohne den Kompaktmodus das zugehörige Eingabeschema. <a href="/api/mcp-tools?tool=duschdurchfluss_messen">Vertrag für <code>duschdurchfluss_messen</code></a>.</p>
-  <p>Nutze bei strukturierten Ergebnissen <code>citation_url</code> als Quelle und übernimm die Einheiten und Annahmen aus dem Ergebnis.</p>
+  <p><code>view=examples</code> zusammen mit <code>tool=EXAKTER_NAME</code> zeigt zu einem Werkzeug das Eingabeschema und, falls vorhanden, <code>example.arguments</code> und <code>example.expected_fields</code>. Sende deine Eingaben dann mit <code>tools/call</code>. <a href="/api/mcp-tools?view=examples&amp;tool=stromfenster_mehrphasen_start">Beispieldaten für das Stromfenster</a>.</p>
+  <p>In der vollständigen Liste zählt <code>total</code> die aufrufbaren Namen. <code>distinctTotal</code> zählt die unterschiedlichen Aufgaben. <code>equivalent_task</code> verweist bei einem zusätzlichen Namen auf die gleichwertige Aufgabe.</p>
+  <p>Zitiere die kanonische Seite aus <code>citation_url</code>. Wenn <code>citation_markdown_url</code> vorhanden ist, kannst du darüber die Textfassung lesen. Übernimm die Einheiten und Annahmen aus dem Ergebnis.</p>
 
   <h3>Offizieller MCP-Registry-Eintrag</h3>
   <p>Im <a href="https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fhvac-btu-heat-klimaanlage/versions/latest">offiziellen Registry-Eintrag für io.github.f-tiger/hvac-btu-heat-klimaanlage</a> stehen die registrierte Version und die Verbindungsadresse. Die <a href="/.well-known/mcp.json">Discovery-Datei von EcoBack</a> enthält die Client-Konfiguration.</p>
@@ -242,6 +255,7 @@ import {indexCatalogue, findCatalogueTools} from '/assets/mcp-catalog-search.mjs
   let selected = null;
   let catalogueIndex = [];
   let catalogueTotal = 0;
+  let distinctTasks = 0;
   let matching = [];
   let shown = 0;
   catalog.hidden = false;
@@ -253,7 +267,10 @@ import {indexCatalogue, findCatalogueTools} from '/assets/mcp-catalog-search.mjs
     if (selected === null && !search) {
       matching = [];
       more.hidden = true;
-      status.textContent = catalogueTotal + ' Werkzeuge. Wähle eine Kategorie oder suche nach einer Aufgabe.';
+      const scope = distinctTasks < catalogueTotal
+        ? distinctTasks + ' unterschiedliche Aufgaben in ' + catalogueTotal + ' Katalogeinträgen.'
+        : catalogueTotal + ' Werkzeuge.';
+      status.textContent = scope + ' Wähle eine Kategorie oder suche nach einer Aufgabe.';
       return;
     }
     matching = findCatalogueTools(catalogueIndex, {query:search, category:selected || undefined});
@@ -285,6 +302,11 @@ import {indexCatalogue, findCatalogueTools} from '/assets/mcp-catalog-search.mjs
       const description = document.createElement('p');
       description.textContent = tool.description;
       card.append(name, label, description);
+      if (tool.equivalent_task) {
+        const equivalent = document.createElement('p');
+        equivalent.textContent = 'Gleiche Aufgabe wie ' + tool.equivalent_task + '.';
+        card.append(equivalent);
+      }
       const path = citationPath(tool.citation_url);
       if (path) {
         const link = document.createElement('a');
@@ -330,10 +352,11 @@ import {indexCatalogue, findCatalogueTools} from '/assets/mcp-catalog-search.mjs
     try {
       const response = await fetch('/api/mcp-tools?view=compact', {headers:{accept:'application/json'}});
       if (!response.ok) throw new Error('catalog unavailable');
-      const {tools} = await response.json();
+      const {tools, distinctTotal} = await response.json();
       if (!Array.isArray(tools) || !tools.length) throw new Error('catalog empty');
       catalogueIndex = indexCatalogue(tools);
       catalogueTotal = tools.length;
+      distinctTasks = Number.isInteger(distinctTotal) && distinctTotal > 0 ? distinctTotal : catalogueTotal;
       const counts = new Map();
       for (const {category} of tools) counts.set(category, (counts.get(category) ?? 0) + 1);
       addCategory('', 'Alle', tools.length);

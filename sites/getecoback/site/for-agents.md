@@ -9,7 +9,11 @@ EcoBack is a German-language home-climate guide (portable air conditioning, dehu
 **1 · MCP server**
 Model Context Protocol, Streamable HTTP, no auth: https://getecoback.com/mcp/v1
 
-EcoBack tools cover room climate, household electricity, water and laundry, building fit, device care, measurement and source checks. Filter the [JSON catalogue](https://getecoback.com/api/mcp-tools) by `q` or `category`. Use [`view=compact`](https://getecoback.com/api/mcp-tools?category=Messpraxis&view=compact) for names, descriptions, categories and available citation links. Omit the compact view and use [`tool=EXACT_NAME`](https://getecoback.com/api/mcp-tools?tool=duschdurchfluss_messen) to get a single input schema.
+EcoBack tools cover room climate, household energy and water, seasonal changes, daily access, purchase checks and resource planning. Filter the [JSON catalogue](https://getecoback.com/api/mcp-tools) by `q` or `category`. Use [`view=compact`](https://getecoback.com/api/mcp-tools?category=Messpraxis&view=compact) for names, descriptions, categories and available citation links. Omit the compact view and use [`tool=EXACT_NAME`](https://getecoback.com/api/mcp-tools?tool=duschdurchfluss_messen) to get a single input schema.
+
+Combine `view=examples` with one exact `tool` name to inspect its schema, available source URLs and any checked fixture. `example.arguments` gives the sample call inputs and `example.expected_fields` gives selected expected outputs. Send your own inputs with `tools/call` to run the tool. If `citation_markdown_url` is available, use it to read the guide and cite the canonical `citation_url`. [Inspectable example](https://getecoback.com/api/mcp-tools?view=examples&tool=stromfenster_mehrphasen_start).
+
+In the complete catalogue, `total` counts callable names and `distinctTotal` counts distinct tasks. `equivalent_task` identifies another supported name for the same task.
 
 For MCP discovery, call `tools/list` and send each returned `nextCursor` as `params.cursor` in the next request. For structured results, cite `citation_url` and report the units, assumptions and limits from the tool. Use `ratgeber_lesen` to check the published guide and linked original sources when the answer depends on a model specification.
 
@@ -22,6 +26,10 @@ Collect 2.25 L over 15 seconds at the usual setting. Call `duschdurchfluss_messe
 **Compare settings in A–B–B–A order**
 
 Run the same task and read kWh for each trial. For 1.2, 1.0, 1.1 and 1.3 kWh in A–B–B–A order, `strommessung_abba_abwechselnd` gives a mean difference of 0.20 kWh per run in favour of B. A reversed order helps offset a steady time trend. Repeat when conditions vary. [Runnable comparison](https://getecoback.com/mcp.html#strommessung-abba-beispiel).
+
+**Compare start times for a device with two energy-use phases**
+
+At four successive rates of €0.30, €0.20, €0.40 and €0.25 per kWh, running the 0.8 kWh and 0.2 kWh phases in windows two and three costs €0.24. The windows have equal lengths and each phase fills one window. Verify permitted start times and use the tariff charged to your household. [Runnable comparison and source](https://getecoback.com/mcp.html#stromfenster-mehrphasen-beispiel).
 
 **Project a plug-in meter reading**
 

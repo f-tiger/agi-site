@@ -17,32 +17,39 @@ async function rpc(method, params) {
   return (await response.json()).result;
 }
 
-test('the public directory and three MCP pages expose the same 292 unique tools', async () => {
+test('the public directory and four MCP pages expose the same 389 names and 388 distinct tasks', async () => {
   const first = await rpc('tools/list');
   const second = await rpc('tools/list',{cursor:first.nextCursor});
   const third = await rpc('tools/list',{cursor:second.nextCursor});
+  const fourth = await rpc('tools/list',{cursor:third.nextCursor});
   const directory = await (await worker.fetch(new Request(origin+'/api/mcp-tools'), {}, {})).json();
   const manifest = JSON.parse(readFileSync(new URL('../mcp/server.json',import.meta.url),'utf8'));
   const initialization = await rpc('initialize');
   assert.equal(first.tools.length,100);
   assert.equal(second.tools.length,100);
-  assert.equal(third.tools.length,92);
-  assert.equal(third.nextCursor,undefined);
+  assert.equal(third.tools.length,100);
+  assert.equal(fourth.tools.length,89);
+  assert.equal(fourth.nextCursor,undefined);
   assert.equal(directory.version, manifest.version);
   assert.equal(initialization.serverInfo.version, manifest.version);
-  assert.equal(directory.total,292);
-  const names=[...first.tools,...second.tools,...third.tools].map(t=>t.name);
-  assert.equal(new Set(names).size,292);
+  assert.equal(directory.total,389);
+  assert.equal(directory.distinctTotal,388);
+  const equivalent=directory.tools.find(tool=>tool.name==='luftbefeuchter_weisser_belag');
+  assert.equal(equivalent.equivalent_task,'befeuchter_weissen_belag_einordnen');
+  assert.ok(directory.tools.some(tool=>tool.name===equivalent.equivalent_task));
+
+  const names=[...first.tools,...second.tools,...third.tools,...fourth.tools].map(t=>t.name);
+  assert.equal(new Set(names).size,389);
   assert.deepEqual(directory.tools.map(t=>t.name),names);
   const byCategory = {};
   for (const {category} of directory.tools) byCategory[category] = (byCategory[category] || 0) + 1;
   assert.deepEqual(byCategory, {Raumklima:10,'Strom & Haushalt':20,Feuchte:18,Kühlen:18,Heizen:18,Passform:16,
-    'Energie prüfen':24,'Raumkomfort prüfen':24,'Geräte pflegen':24,'Quellen & Kaufprüfung':24, 'Wasser & Wäsche':24,'Gebäude & Fenster':24,'Geräte im Alltag':24,'Messpraxis':24});
-  assert.equal(expandedDefinitions.length,282);
+    'Energie prüfen':24,'Raumkomfort prüfen':24,'Geräte pflegen':24,'Quellen & Kaufprüfung':24, 'Wasser & Wäsche':24,'Gebäude & Fenster':24,'Geräte im Alltag':24,'Messpraxis':24,'Zugang & Alltag':24,Saisonwechsel:24,Kaufpraxis:25,'Ressourcen planen':24});
+  assert.equal(expandedDefinitions.length,379);
 });
 
 test('old or invalid cursors reject safely and a 1000-tool catalogue paginates completely', async () => {
-  for (const cursor of ['1.6.0:100','1.7.0:99','1.7.0:300','1.7.0:0100','1.7.0:0',null,100]) {
+  for (const cursor of ['1.7.0:100','1.8.0:99','1.8.0:400','1.8.0:0100','1.8.0:0',null,100]) {
     const response = await worker.fetch(request('tools/list',{cursor}), {}, {});
     assert.equal((await response.json()).error.code,-32602);
   }
@@ -69,7 +76,7 @@ test('keyword and category filters narrow the public directory without logging t
   const response = await get('?q=Abwaerme&category=K%C3%BChlen');
   const result = await response.json();
   assert.equal(response.headers.get('cache-control'),'no-store');
-  assert.equal(result.catalogueTotal,292);
+  assert.equal(result.catalogueTotal,389);
   assert.equal(result.total,1);
   assert.equal(result.tools[0].name,'arbeitszimmer_abwaerme_vergleich');
   const noMatch = await (await get('?q=unique-unmatched-string')).json();
@@ -78,6 +85,10 @@ test('keyword and category filters narrow the public directory without logging t
     ['Wie viel BTU brauche ich?','btu_empfehlung'],
     ['Wie finde ich die richtige Fensterabdichtung?','fensterabdichtung_laenge'],
     ['Kann ich einen Entfeuchter in den Keller stellen?','entfeuchter_ablaufcheck'],
+    ['Wie lange darf ich mit 72 Litern duschen?','dusche_zeit_bei_wasserbudget'],
+    ['Was mache ich, wenn mein Saugroboter über das Kabel fährt?','saugroboter_kabelroute_vorbereiten'],
+    ['Kann ich den Abflussschlauch nach oben führen?','entfeuchter_ablaufcheck'],
+    ['Passt der Ersatzfilter in mein Luftreinigermodell?','luftreiniger_ersatzfilter_zuordnung'],
   ]) {
     const response = await (await get('?q='+encodeURIComponent(question))).json();
     assert.ok(response.tools.slice(0,10).some(tool=>tool.name===expected),question);
@@ -90,7 +101,11 @@ test('compact catalogue has linkable summaries and exact names return complete c
   const read=async query=>(await worker.fetch(new Request(origin+'/api/mcp-tools'+query),{},{})).json();
   const complete=await read('');
   const compact=await read('?view=compact');
-  assert.equal(compact.total,292);
+  assert.equal(compact.total,389);
+  assert.equal(compact.distinctTotal,388);
+  assert.equal(compact.tools.find(t=>t.name==='luftbefeuchter_weisser_belag').equivalent_task,
+    'befeuchter_weissen_belag_einordnen');
+
   assert.deepEqual(compact.tools.map(tool=>tool.name),complete.tools.map(tool=>tool.name));
   assert.ok(compact.tools.every(tool=> !Object.hasOwn(tool,'inputSchema')));
   assert.equal(compact.tools.find(t=>t.name==='strommessung_hochrechnen').citation_url,origin+'/strommess-protokoll.html');
@@ -98,9 +113,32 @@ test('compact catalogue has linkable summaries and exact names return complete c
   const [fullMatch,compactMatch]=await Promise.all([read(query),read(query+'&view=compact')]);
   assert.deepEqual(fullMatch.tools.map(t=>t.name),compactMatch.tools.map(t=>t.name));
   const exact=await read('?tool=strommessung_hochrechnen');
-  assert.equal(exact.catalogueTotal,292);
+  assert.equal(exact.catalogueTotal,389);
   assert.deepEqual(exact.tools,[complete.tools.find(t=>t.name==='strommessung_hochrechnen')]);
   assert.deepEqual((await read('?tool=strommessung')).tools,[]);
+});
+
+test('one reviewed example can be fetched without calling the tool or returning all fixtures', async () => {
+  const read=async suffix=>worker.fetch(new Request(origin+'/api/mcp-tools'+suffix),{}, {});
+  for (const suffix of ['?view=examples','?view=examples&tool=']) {
+    assert.equal((await read(suffix)).status,400);
+  }
+  const defaultResult=await (await read('?tool=strommessung_hochrechnen')).json();
+  assert.equal(defaultResult.tools[0].example,undefined);
+  const resp=await read('?view=examples&tool=strommessung_hochrechnen');
+  assert.equal(resp.headers.get('cache-control'),'no-store');
+  const payload=await resp.json();
+  assert.equal(payload.total,1);
+  const [tool]=payload.tools;
+  assert.equal(tool.citation_url,origin+'/strommess-protokoll.html');
+  assert.equal(tool.citation_markdown_url,origin+'/strommess-protokoll.md');
+  assert.ok(tool.inputSchema);
+  assert.equal(tool.example.expected_fields.eur_for_period,60);
+  const outcome=await rpc('tools/call',{name:tool.name,arguments:tool.example.arguments});
+  assert.equal(outcome.structuredContent.eur_for_period,60);
+  const legacy=await (await read('?view=examples&tool=btu_empfehlung')).json();
+  assert.equal(legacy.tools[0].example,null);
+  assert.equal((await (await read('?view=examples&tool=does_not_exist')).json()).total,0);
 });
 
 test('every source page for the deterministic suites has an editorial Markdown mirror', () => {

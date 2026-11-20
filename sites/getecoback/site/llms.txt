@@ -22,10 +22,12 @@ Volltext aller Ratgeber: https://getecoback.com/llms-full.txt
 
 - MCP-Server (Model Context Protocol, Streamable HTTP, keine Authentifizierung): https://getecoback.com/mcp/v1
   JSON-Katalog: https://getecoback.com/api/mcp-tools. q und category filtern die Liste. view=compact zeigt Namen, Beschreibungen, Kategorien und verfügbare Quellenlinks. tool=EXAKTER_NAME liefert ohne Kompaktmodus ein einzelnes Eingabeschema.
+  Einzelbeispiel per view=examples und tool=EXAKTER_NAME: https://getecoback.com/api/mcp-tools?view=examples&tool=stromfenster_mehrphasen_start. Zeigt Eingaben, ausgewählte erwartete Felder und verfügbare Quellen. Den Aufruf sendet der Client mit tools/call.
   Bei tools/list jeden zurückgegebenen nextCursor als params.cursor an den nächsten Aufruf übergeben, bis kein Cursor mehr zurückkommt.
-  Werkzeuge zu Feuchte, Kühlung, Heizung, Strom, Wasser & Wäsche, Gebäude & Fenster, Geräte im Alltag, Messpraxis und Quellenprüfung. citation_url in strukturierten Ergebnissen verweist auf die Quelle. ratgeber_suche und ratgeber_lesen führen zu den Ratgebern.
+  Werkzeuge zu Feuchte, Kühlung, Heizung, Strom, Wasser & Wäsche, Gebäude & Fenster, Geräte im Alltag, Messpraxis, Zugang & Alltag, Saisonwechsel, Kaufpraxis und Ressourcenplanung. citation_url in strukturierten Ergebnissen verweist auf die Quelle. ratgeber_suche und ratgeber_lesen führen zu den Ratgebern.
   Arbeitsablauf zum Duschbudget mit duschdurchfluss_messen und dusche_zeit_bei_wasserbudget: https://getecoback.com/mcp.html#duschbudget-beispiel
   Zwei Geräteeinstellungen mit strommessung_abba_abwechselnd vergleichen: https://getecoback.com/mcp.html#strommessung-abba-beispiel
+  Startfenster für zwei Gerätephasen mit eigenen Strompreisen vergleichen: https://getecoback.com/mcp.html#stromfenster-mehrphasen-beispiel
   Beispielaufrufe für strommessung_hochrechnen, geraetewechsel_rechnen und waesche_trocknungskosten: https://getecoback.com/mcp.html#haushalt-beispiele
   Veröffentlichte Formeln und Entscheidungsregeln mit Annahmen und Grenzen; Antworten enthalten Quell-URLs und Finanzierungshinweis.
   entfeuchter_ablaufcheck: Beispiel MeacoDry Arete One 20L, Waschbecken über dem Auslass. drain=level_or_uphill, model=meaco-one-20. Deutsche Modellnachweise und Tankoption: https://getecoback.com/guide/luftentfeuchter-keller.html#ablauf-vor-kauf
