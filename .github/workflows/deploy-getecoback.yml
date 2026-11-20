@@ -1534,3 +1534,19 @@ jobs:
           path: ${{ runner.temp }}/eco-auto-content/
           if-no-files-found: warn
           retention-days: 14
+
+      - name: Record the effective source of the completed MCP deployment
+        if: ${{ success() && steps.deploy.outcome == 'success' }}
+        working-directory: ${{ github.workspace }}
+        run: |
+          [[ "$DEPLOY_SHA" =~ ^[0-9a-f]{40}$ && "$(git rev-parse HEAD)" == "$DEPLOY_SHA" ]]
+          printf '%s\n' "$DEPLOY_SHA" > "$RUNNER_TEMP/eco-mcp-release.sha"
+
+      - name: Preserve the effective source receipt for MCP follow-up workflows
+        if: ${{ success() && steps.deploy.outcome == 'success' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: eco-mcp-deployed-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/eco-mcp-release.sha
+          if-no-files-found: error
+          retention-days: 7

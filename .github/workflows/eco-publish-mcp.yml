@@ -18,20 +18,40 @@ on:
   workflow_dispatch: {}
 
 permissions:
+  actions: read
   id-token: write
   contents: read
 
 jobs:
   publish:
-    if: ${{ github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == github.repository) }}
+    if: ${{ github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main' && github.event.workflow_run.head_repository.full_name == github.repository) }}
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: sites/getecoback
     steps:
+      - name: Download the effective source receipt from the completed deployment
+        if: github.event_name == 'workflow_run'
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: ${{ github.event.workflow_run.id }}
+          name: eco-mcp-deployed-${{ github.event.workflow_run.id }}-${{ github.event.workflow_run.run_attempt }}
+          path: ${{ runner.temp }}/eco-mcp-release
+
+      - name: Validate the deployed source commit
+        id: effective-release
+        if: github.event_name == 'workflow_run'
+        working-directory: ${{ runner.temp }}
+        run: |
+          sha=$(cat "$RUNNER_TEMP/eco-mcp-release/eco-mcp-release.sha")
+          [[ "$sha" =~ ^[0-9a-f]{40}$ ]]
+          printf 'sha=%s\n' "$sha" >> "$GITHUB_OUTPUT"
+
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          ref: ${{ steps.effective-release.outputs.sha || github.sha }}
 
       - name: Verify the deployed name and version before publishing
         run: |
