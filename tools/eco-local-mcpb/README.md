@@ -46,6 +46,17 @@ the measured-cost tool and runs its cited example. At €0.30 per kWh, readings
 of 2 kWh and 1 kWh give €0.60 and €0.30 per load. The comparison remains open
 if the loads reach different levels of dryness.
 
+Version 1.17.5 keeps that comparison available while avoiding an automatic
+first-place match for questions about both devices running together or using
+only the dryer. The extracted compact package checks both cases.
+
+The builder replaces only the source README's versioned download and checksum
+paragraphs in **Connect** with instructions for running the already extracted
+files and a link to the official Registry's latest record. The remainder of the
+README, the license and the exact source revision are preserved. The build
+checks the extracted archive for the old download URL, exact Registry link and
+checksum so the new archive carries none of those pointers.
+
 Build with Node.js 22 or later and Python 3. The builder archives the pinned
 companion commit from the supplied Git checkout and exercises actual MCP
 stdio calls, finder queries and reviewed examples from the extracted artifact
