@@ -24,7 +24,7 @@ export function searchCatalog(entries, {query = '', category = '', transport = '
       hits.push({entry, score: 0});
       continue;
     }
-    const name = normalize(entry.title + ' ' + entry.id);
+    const name = normalize([entry.title, entry.id, entry.registryId].join(' '));
     const text = normalize([entry.description, entry.note, entry.noteZh, topics[entry.category]].join(' '));
     if (!words.every(word => name.includes(word) || text.includes(word))) continue;
     const score = words.reduce((sum, word) => sum + (name.includes(word) ? 4 : 1), entry.featured ? 1 : 0);

@@ -38,6 +38,8 @@ test('matches task words, both locales and metadata filters', () => {
   assert.deepEqual(searchCatalog(fixture, {query: 'ＳＱＬ'}), [fixture[1], fixture[0]]);
   assert.deepEqual(searchCatalog(fixture, {query: '数据库', transport: 'remote', featured: true}), [fixture[1]]);
   assert.deepEqual(searchCatalog(fixture, {query: 'SQL', category: 'design'}), []);
+  const exactId = {...fixture[0], registryId: 'example.domain/mcp'};
+  assert.deepEqual(searchCatalog([exactId], {query: 'example.domain/mcp'}), [exactId]);
 });
 
 test('worker discovers and searches the shipped snapshot, QA does not write a telemetry row', async () => {
