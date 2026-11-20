@@ -114,3 +114,8 @@
   Referrer-Policy: strict-origin
 /en/ai-solo/*
   Referrer-Policy: strict-origin
+
+/ai-tools.json
+  Access-Control-Allow-Origin: *
+/en/ai-tools.json
+  Access-Control-Allow-Origin: *
