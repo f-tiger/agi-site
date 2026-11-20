@@ -3737,6 +3737,7 @@ for (const L of LOCALES) {
     ...(AGENT_WATCH.agents || []).filter((a) => a.origin !== 'mcp-registry').map((a) => ({ u: `${BASE}/agents/${a.slug}.html`, n: a.name, k: LOCALE.code === 'zh' ? 'Agent' : 'Agent',
       q: `${a.name} ${a.slug} ${LOCALE.code === 'zh' ? a.zh_description : a.description} ${(LOCALE.code === 'zh' ? a.zh_capabilities : a.capabilities || []).join(' ')} ${AGENT_VOCAB.categories[a.category]?.[LOCALE.code === 'zh' ? 'zh' : 'en'] || ''} mcp agent`.toLowerCase() })),
     ...[
+      ['/agents/selected/', LOCALE.code === 'zh' ? 'AI Agent 与 MCP 精选工具' : 'Selected AI agents and MCP tools', LOCALE.code === 'zh' ? 'agents tools MCP AI 工具 精选' : 'selected agents tools MCP AI'],
       ['/earn/', LOCALE.code === 'zh' ? 'AI 赚钱作业包' : 'AI earning packs', 'earn money 赚钱 副业 接单 变现 作业 包 商用 授权 外快 兼职'],
       ['/changes.html', UI('ch_nav', '额度变更记录'), 'changes changelog 变更 更新'],
       ['/upgrade/', UI('up_nav', '该买哪档'), 'upgrade pricing 价格 会员 档位 值不值 涨价 付费'],
@@ -3943,6 +3944,7 @@ ${PERSONAS.map((p) => {
     const outDir = join(dist, L.dir.replace(/^\//, ''));
     mkdirSync(join(outDir, 'agents', 'c'), { recursive: true });
     mkdirSync(join(outDir, 'agents', 'for'), { recursive: true });
+    mkdirSync(join(outDir, 'agents', 'selected'), { recursive: true });
     const r = buildAgentPages({
       layout, railOf, esc, crumbLd, faqLd, BASE, site, NAME, LOCALE, vocab: AGENT_VOCAB, registry: AGENT_WATCH, toolBySlug: bySlug, subscribeOf, serverJson: SERVER_JSON,
       write: (rel, s) => writeFileSync(join(outDir, rel), s),
@@ -7650,7 +7652,7 @@ cpSync(join(root, 'assets/studio'), join(dist, 'studio-assets'), { recursive: tr
 cpSync(join(root, 'lib/ai-suite'), join(dist, 'studio-assets/ai-suite'), { recursive: true, filter: source => !source.endsWith('.test.mjs') });
 buildReleaseCheckAssets(root,dist);
 buildSkillDiscovery(root,dist);
-for(const f of ['dev-buying.js','ai-solo.css','ai-solo.js','github-tools.css','github-tools.js','coding-access.css','coding-access.js','manju.css','manju-home.css','manju-search.js','manju-live-search.js','manju.js','manju-cloud.js','manju-insights.js','video-fit.js','video-fit.css','video-fit-core.mjs','ai-video.css','ai-video.js','ai-video-core.mjs'])cpSync(join(root,'assets',f),join(dist,f));
+for(const f of ['agent-selection.js','dev-buying.js','ai-solo.css','ai-solo.js','github-tools.css','github-tools.js','coding-access.css','coding-access.js','manju.css','manju-home.css','manju-search.js','manju-live-search.js','manju.js','manju-cloud.js','manju-insights.js','video-fit.js','video-fit.css','video-fit-core.mjs','ai-video.css','ai-video.js','ai-video-core.mjs'])cpSync(join(root,'assets',f),join(dist,f));
 cpSync(join(root,'lib/ai-solo-core.mjs'),join(dist,'ai-solo-core.mjs'));
 cpSync(join(root,'lib/github-tools.mjs'),join(dist,'github-tools-core.mjs'));
 for(const f of ['work-plan-distribution.js','work-plan-embed.css'])cpSync(join(root,'assets',f),join(dist,f));
@@ -8153,6 +8155,7 @@ AI code review buying guide: ${site.base_url}/dev-buying/ ; English ${site.base_
 Task-led, manually curated third-party applications, developer frameworks and model repositories, with an AI/LLM focus. Filter by topic (chat, local inference, knowledge, agents, coding, images, audio, video, models, documents), project kind, platform and setup. Official links, three-step guidance, hardware/API/cost boundaries and dated GitHub star snapshots are included. This is not a live trending feed, installation test or security audit. No arbitrary GitHub code runs on BPJ. Chinese: ${site.base_url}/github-tools/ ; English: ${site.base_url}/en/github-tools/ . Structured catalogues: ${site.base_url}/github-tools.json and ${site.base_url}/en/github-tools.json . The existing MCP feature-map resource discovers these pages; it does not install or execute these third-party tools.
 
 ## Agents & MCP directory (${AGENT_N} records)
+Selected tools with official source checks and documented MCP access for registry entries: ${site.base_url}/agents/selected/ (EN: ${site.base_url}/en/agents/selected/). JSON: ${site.base_url}/agents/selected.json (EN: ${site.base_url}/en/agents/selected.json).
 
 ${AGENT_CURATED_N} hand-curated AI agents, coding agents, MCP servers/clients, agent platforms, browser/voice agents, evaluation and memory tools (each with an English and a Chinese one-line description and vocabulary labels) plus listings from the official MCP registry. Every record carries its official source URL, first-seen date, the official page's own title/description as fetched, and the date each URL last answered; nothing is admitted without its official page answering. No star counts, user numbers or prices — those were not verified.
 Doors by reader type: ${AUDIENCES.map((k) => `${site.base_url}/agents/for/${k} (${AGENT_VOCAB.audiences[k].en})`).join(' · ')}
@@ -8240,7 +8243,7 @@ ${licOnly.join('\n')}
     .replace(/\s+/g, ' ').trim();
   // 2026-09-22 加 agents 面：枢纽 / 受众页 / 类目表是被引用的页型（第 18 条：本站的 AI 引荐落在列表/类目页），
   // 记录页 noindex 不镜像——用「页面自己是否 noindex」判，不写死目录名。
-  const MIRROR_DIRS = ['', 'en', 'money', 'plans', 'en/money', 'en/plans', 'agents', 'agents/c', 'agents/for', 'en/agents', 'en/agents/c', 'en/agents/for'];
+  const MIRROR_DIRS = ['', 'en', 'money', 'plans', 'en/money', 'en/plans', 'agents', 'agents/c', 'agents/for', 'agents/selected', 'en/agents', 'en/agents/c', 'en/agents/for', 'en/agents/selected'];
   let mirrored = 0;
   for (const rel of MIRROR_DIRS) {
     const dir = rel ? join(dist, rel) : dist;
