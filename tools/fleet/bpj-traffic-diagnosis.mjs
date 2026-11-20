@@ -28,7 +28,7 @@ async function json(fetchFn,url,options={},label='request'){
 export function cfQuery(dimensions,extra='',limit=2000){
  const safe=['datetimeHour','clientCountryName','clientAsn','clientASNDescription','userAgent','userAgentBrowser','userAgentOS','clientRequestPath','clientRequestHTTPMethodName','edgeResponseStatus','edgeResponseContentTypeName','clientRefererHost','verifiedBotCategory','botScoreBucketBy10','jsDetectionPassed','securityAction','cacheStatus'];
  if(dimensions.some(d=>!safe.includes(d)))fail('unsupported_cf_dimension');
- if(!['',',clientRequestPath_like:"/manju/%"',',clientRequestPath_like:"/manju/%",clientRequestHTTPMethodName:"GET",edgeResponseStatus:200',',clientRequestPath_in:["/analytics-assets/frame","/analytics-assets/frame.html"],clientRequestHTTPMethodName:"GET",edgeResponseStatus:200',POPULAR_FILTER].includes(extra))fail('unsupported_cf_filter');
+ if(![',clientRequestPath:"/manju/",clientRequestHTTPMethodName:"GET",edgeResponseStatus:200','',',clientRequestPath_like:"/manju/%"',',clientRequestPath_like:"/manju/%",clientRequestHTTPMethodName:"GET",edgeResponseStatus:200',',clientRequestPath_in:["/analytics-assets/frame","/analytics-assets/frame.html"],clientRequestHTTPMethodName:"GET",edgeResponseStatus:200',POPULAR_FILTER].includes(extra))fail('unsupported_cf_filter');
  return `query($z:string,$s:Time,$e:Time){viewer{zones(filter:{zoneTag:$z}){httpRequestsAdaptiveGroups(limit:${limit},orderBy:[count_DESC],filter:{datetime_geq:$s,datetime_lt:$e,requestSource:"eyeball",clientRequestHTTPHost:"${HOST}"${extra}}){count dimensions{${dimensions.join(' ')}}}}}}`;
 }
 export async function cloudflare(env,{fetchFn=fetch,days=DAYS,clientsOnly=false,baseline=false}={}){
@@ -66,20 +66,17 @@ export async function cloudflare(env,{fetchFn=fetch,days=DAYS,clientsOnly=false,
   ['popular_manju_clients',['clientCountryName','clientRequestPath','userAgent','verifiedBotCategory'],POPULAR_FILTER],
  ];
  const selected=baseline?sections.filter(([name])=>['site_country','manju_verified_bots','manju_clients','popular_manju_clients','frame_clients'].includes(name)):clientsOnly?sections.filter(([name])=>name.endsWith('_clients')):sections;
- if(baseline && env.BPJ_MANJU_INSPECTION==='1'){
+ const inspection=baseline && env.BPJ_MANJU_INSPECTION==='1';
+ const cutoff=new Date();cutoff.setUTCMinutes(0,0,0);
+ if(inspection){
+   const home=',clientRequestPath:"/manju/",clientRequestHTTPMethodName:"GET",edgeResponseStatus:200';
    selected.splice(0,selected.length,
-     ['paths',['clientRequestPath'],page],
-     ['hour',['datetimeHour'],page],
-     ['hour_types',['datetimeHour','edgeResponseContentTypeName'],page],
-     ['cache',['cacheStatus'],page],
-     ['referrer',['clientRefererHost'],page],
-     ['method_status',['clientRequestHTTPMethodName','edgeResponseStatus'],manju],
-     ['network',['clientASNDescription'],page],
-     ['bots',['verifiedBotCategory'],page]
-   );
+     ['home_hours',['datetimeHour','verifiedBotCategory'],home],
+     ['home_clients',['userAgent','verifiedBotCategory'],home],
+     ['home_countries',['clientCountryName'],home]);
  }
- for(const date of days){
-  const start=date+'T00:00:00.000Z',end=new Date(Date.parse(start)+86400000).toISOString();
+ for(const date of (inspection && cutoff.getUTCHours()>0 ? [...days,cutoff.toISOString().slice(0,10)] : days)){
+   const start=date+'T00:00:00.000Z',end=new Date(Math.min(Date.parse(start)+86400000,inspection?cutoff.getTime():Infinity)).toISOString();
   // Two concurrent bounded aggregates; no retries on a rejected dataset.
   for(let i=0;i<selected.length;i+=2)await Promise.all(selected.slice(i,i+2).map(async([name,dims,extra])=>{
    const item={name,date,start,end,limit:2000};
