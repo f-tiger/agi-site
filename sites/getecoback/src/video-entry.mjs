@@ -1,5 +1,14 @@
-// Fixed, first-party video entry paths. A typed URL is tag-only evidence.
+// Fixed, first-party social entry paths. A typed URL is tag-only evidence.
 export function videoEntry(url, method='GET') {
+ if (url.pathname === '/keller-tiktok' && ['GET','HEAD'].includes(method)) {
+  const target = new URL('/guide/luftentfeuchter-keller.html','https://getecoback.com');
+  target.hash = 'kalter-keller';
+  target.searchParams.set('utm_source','tiktok');
+  target.searchParams.set('utm_medium','social');
+  target.searchParams.set('utm_campaign','eco-dach-cellar-10c-01');
+  if (url.searchParams.has('__ci') || url.searchParams.has('__probe')) target.searchParams.set('__probe','1');
+  return new Response(null,{status:302,headers:{location:target.href,'cache-control':'no-store','x-robots-tag':'noindex'}});
+ }
  const robotSource={'/robot-youtube':'youtube','/robot-tiktok':'tiktok'}[url.pathname];
  if(robotSource && ['GET','HEAD'].includes(method)) {
   const target=new URL('/guide/saugroboter-kaufberatung.html','https://getecoback.com');
