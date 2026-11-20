@@ -14,7 +14,15 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unte
 
 ## Modell und Datenblatt prüfen
 
-Vergleiche die Modellbezeichnung **PAC N90 ECO Silent** und die EAN **8004399512351** mit dem Angebot. Die [deutsche De’Longhi-Supportseite für den PAC N90 ECO Silent](https://www.delonghi.com/de-de/s/PACN90ECOSILENT) führt zur Anleitung für dieses Modell. Die folgenden Zahlen stammen aus dem [deutschsprachigen De’Longhi-Datenblatt bei Sonepar Österreich (PDF)](https://shop.sonepar.at/asset_external/downloads/pim/400901/datasheet_delonghi_PAC%20N90ECO.pdf), eingesehen am 19. November 2026. Lieferumfang und Angebot in Deutschland separat prüfen.
+Vergleiche die Modellbezeichnung **PAC N90 ECO Silent** und die EAN **8004399512351** mit dem Angebot. Die [deutsche De’Longhi-Supportseite für den PAC N90 ECO Silent](https://www.delonghi.com/de-de/s/PACN90ECOSILENT) führt zum Energielabel und Produktdatenblatt für dieses Modell. Die Angaben zu Raum, Abluftschlauch und Geräusch stammen aus dem [deutschsprachigen De’Longhi-Datenblatt bei Sonepar Österreich (PDF)](https://shop.sonepar.at/asset_external/downloads/pim/400901/datasheet_delonghi_PAC%20N90ECO.pdf), eingesehen am 19. November 2026. Lieferumfang und Angebot in Deutschland separat prüfen.
+
+## Was kostet eine Stunde Kühlen mit dem PAC N90 ECO Silent?
+
+Für Deutschland verlinkt De’Longhi im [Support für den PAC N90 ECO Silent](https://www.delonghi.com/de-de/s/PACN90ECOSILENT) das [EU-Energielabel für dieses Modell (PDF, Seite 1)](https://library.delonghigroup.com/assetbank-delonghi/action/directLinkImage?assetId=209150&download=true). Geprüft am 20. November 2026. Das Etikett nennt die Modellbezeichnung. Die EAN 8004399512351 stammt aus dem [Herstellerdatenblatt bei Sonepar Österreich](https://shop.sonepar.at/asset_external/downloads/pim/400901/datasheet_delonghi_PAC%20N90ECO.pdf). Weicht die Nummer im Angebot ab, prüfe zuerst das Etikett dieser Variante.
+
+Auf dem Label stehen **0,9 kWh/60 min** Stromverbrauch unter Prüfbedingungen und **2,5 kW** Kühlleistung. Für eine Kostenrechnung mit dem Label zählt der Verbrauch. Rechenbeispiel mit einem angenommenen Arbeitspreis von 0,30 €/kWh: 0,9 kWh × 0,30 €/kWh = **0,27 € für eine Stunde unter Prüfbedingungen**.
+
+Für die Kosten eines eigenen Laufs brauchst du die am Gerät gemessenen kWh zwischen Start und Ende sowie deinen Tarif. Bei festem Arbeitspreis gilt: gemessene kWh × €/kWh. Teile die Kosten durch die gemessene Laufzeit in Stunden, wenn du den Durchschnitt für diesen Lauf wissen möchtest. Für eine andere Nacht bleiben Verbrauch und Kosten offen.
 
 ## Für welchen Raum reicht er?
 

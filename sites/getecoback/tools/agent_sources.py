@@ -13,9 +13,11 @@ def citation_url(href, rel=''):
         if not re.match(r'^https://[^/?#:@]+/', href):
             return None
         url = urlsplit(href)
-        if url.scheme != 'https' or url.username or url.password or url.port or url.query:
+        if url.scheme != 'https' or url.username or url.password or url.port:
             return None
         exact = href in POLICY['reference_urls']
+        if url.query and (not exact or url.geturl() != href or url.fragment):
+            return None
         # A PDF page fragment identifies a page in the same reviewed document,
         # not a new destination. Preserve only this bounded fragment syntax;
         # other anchors/queries do not inherit the exact-URL allowlist entry.

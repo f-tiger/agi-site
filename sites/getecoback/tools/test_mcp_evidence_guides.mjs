@@ -13,6 +13,7 @@ const toolPaths = new Map([
   ['kellerentfeuchter_pruefpunkt_abgleichen', cellar + '#kalter-keller'],
   ['midea_portasplit_fensterhalterung_pruefen', '/guide/midea-portasplit-ausverkauft-alternativen.html#kaufpruefung'],
   ['tado_x_oventrop_ventiladapter_pruefen', '/guide/smarte-heizkoerperthermostate-lohnen-sich.html#tado-x-oventrop'],
+  ['pac_n90_energielabel_zu_stromkosten', '/guide/delonghi-pac-n90-test.html#n90-energielabel'],
   ['waesche_trocknungswechsel_kaufschwelle', '/waeschetrockner-oder-luftentfeuchter.html#laundry-check'],
 ]);
 const paths = new Map([
@@ -59,7 +60,7 @@ test('each mapped tool publishes the same exact evidence link after a real tool 
   const advertised = new Map(standard.map(tool => [tool.name, tool]));
   const compact = new Map((await h.catalogue({view:'compact'})).tools.map(tool => [tool.name, tool]));
   const mapped = expandedDefinitions.filter(tool=>paths.has(tool.category) || toolPaths.has(tool.name));
-  assert.equal(mapped.length, 219);
+  assert.equal(mapped.length, 220);
   assert.equal([...compact.values()].filter(tool=>tool.guide_url).length, mapped.length);
 
   for (const {name, category, page, properties, example} of mapped) {
@@ -164,6 +165,44 @@ test('tado X requires proof of the exact Oventrop valve and pitch before an adap
     assert.equal(invalid.isError, true);
     assert.equal(invalid.structuredContent, undefined);
   }
+  h.assertNoWrites();
+});
+
+test('N90 costs separate label data from the actual measured electricity and require the exact model', async () => {
+  const h = offlineWorker();
+  const name = 'pac_n90_energielabel_zu_stromkosten';
+  const {example} = expandedDefinitions.find(tool => tool.name === name);
+  const call = changes => h.rpc('tools/call', {name, arguments:{...example.args, ...changes}});
+  const check = async (changes, expected) => {
+    const result = await call(changes);
+    assert.equal(result.isError, false);
+    for (const [key,value] of Object.entries(expected)) assert.equal(result.structuredContent[key], value, key);
+    assert.equal(result.structuredContent.guide_url, origin + toolPaths.get(name));
+    assert.match(result.structuredContent.energielabel_url, /\?assetId=209150&download=true$/);
+    assert.match(result.structuredContent.grenze, /keine Prognose/);
+  };
+  const complete = {messung_vollstaendig:true,messenergie_kwh:1.8,messdauer_min:180,arbeitspreis_eur_kwh:0.35};
+  await check({}, {label_eu_kwh_je_60_min:0.9,label_kuehlleistung_kw:2.5,label_referenz_eur_je_60_min:0.27,messzeitraum_eur:null});
+  await check(complete, {label_referenz_eur_je_60_min:0.32,messung_auswertbar:true,messzeitraum_kwh:1.8,messzeitraum_min:180,
+    messzeitraum_eur:0.63,messwert_eur_je_stunde:0.21});
+  await check({...complete, messenergie_kwh:0}, {messung_auswertbar:true,messzeitraum_eur:0,messwert_eur_je_stunde:0});
+  await check({...complete, messdauer_min:0}, {label_referenz_eur_je_60_min:0.32,messung_auswertbar:false,messzeitraum_eur:null});
+  await check({...complete, messung_vollstaendig:false}, {messung_auswertbar:false,messzeitraum_eur:null});
+  await check({...complete, arbeitspreis_eur_kwh:-1}, {tarif_bekannt:false,label_eu_kwh_je_60_min:0.9,label_referenz_eur_je_60_min:null,
+    messzeitraum_eur:null,messzeitraum_kwh:1.8});
+  for (const [changes,status] of [[{ean:0},'ean_fehlt'],[{ean:8004399512352},'ean_abweicht'],
+    [{modell:'abweichend'},'modellbezeichnung_klaeren'],[{modell:'unbekannt'},'modellbezeichnung_klaeren']]) {
+    await check({...complete, ...changes}, {status,label_eu_kwh_je_60_min:null,label_referenz_eur_je_60_min:null,messzeitraum_eur:null});
+  }
+  for (const changes of [{ean:12345},{ean:8004399512351.5},{arbeitspeis:0.30},{arbeitspreis_eur_kwh:35},
+    {arbeitspreis_eur_kwh:-0.5},{messdauer_min:0.1},{messenergie_kwh:-1}]) {
+    const invalid = await call(changes);
+    assert.equal(invalid.isError, true);
+    assert.equal(invalid.structuredContent, undefined);
+  }
+  const identity = await h.rpc('tools/call', {name:'pac_n90_ean_abgleichen', arguments:{ean:8004399512351,modell:'PAC N90 ECO Silent'}});
+  assert.equal(identity.structuredContent.status, 'modellangaben_passen');
+  assert.equal(identity.structuredContent.label_eu_kwh_je_60_min, undefined);
   h.assertNoWrites();
 });
 
