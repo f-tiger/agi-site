@@ -82,9 +82,13 @@ export const seriesTools = [
   series('histogram','等宽直方图','Equal-width histogram','按输入范围生成等宽区间，最后一个区间包含最大值。','Count observations in equal-width bins, including the maximum in the final bin.',(a,p)=>{
     const lo=Math.min(...a),hi=Math.max(...a);
     if(lo===hi)return [{lower:lo,upper:hi,count:a.length}];
-    const w=(hi-lo)/p.bins;
-    const bins=Array.from({length:p.bins},(_,i)=>({lower:lo+i*w,upper:i===p.bins-1?hi:lo+(i+1)*w,count:0}));
-    for(const x of a)bins[Math.min(p.bins-1,Math.floor((x-lo)/w))].count++;
+    const edges=Array.from({length:p.bins},(_,i)=>lo+(hi-lo)*(i/p.bins));
+    edges.push(hi);
+    const bins=edges.slice(1).map((upper,i)=>({lower:edges[i],upper,count:0}));
+    for(const x of a){
+      const index=x===hi?p.bins-1:bins.findIndex(bin=>x<bin.upper);
+      bins[index].count++;
+    }
     return bins;
   },[number('bins','区间数','Bin count',4,1,64,true)]),
   series('lag-differences','指定滞后差分','Lagged differences','按指定期数计算当前读数与较早读数的差。','Subtract the earlier observation from each value at the requested lag.',(a,p)=>lagged(a,p.lag,(x,y)=>y-x),[lagField]),
@@ -120,8 +124,16 @@ function cov(x,y) {
   const a=average(x),b=average(y);
   return average(x.map((v,i)=>(v-a)*(y[i]-b)));
 }
-const pearson=(x,y)=>divide(cov(x,y),Math.sqrt(variance(x)*variance(y)));
 const dot=(x,y)=>sum(x.map((v,i)=>v*y[i]));
+function centeredUnitVector(values) {
+  const offsets=values.map(v=>v-values[0]);
+  const scale=Math.max(...offsets.map(Math.abs));
+  if(!scale)fail('The result is undefined for a zero denominator.');
+  const scaled=offsets.map(v=>v/scale), mean=average(scaled);
+  const centered=scaled.map(v=>v-mean), norm=Math.hypot(...centered);
+  return centered.map(v=>v/norm);
+}
+const pearson=(x,y)=>Math.max(-1,Math.min(1,dot(centeredUnitVector(x),centeredUnitVector(y))));
 const deltas=(x,y)=>x.map((v,i)=>y[i]-v);
 function fit(x,y) {const slope=divide(cov(x,y),variance(x));return {slope,intercept:average(y)-slope*average(x)};}
 function weights(x,y) {

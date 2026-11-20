@@ -1,6 +1,7 @@
+import {renderSuiteResult} from './ai-suite-result.mjs?v=3';
+
 const zh = document.documentElement.lang.startsWith('zh');
 const copy = (cn,en) => zh?cn:en;
-
 const zhInputErrors = new Map([
   ['Enter valid JSON.', '请输入有效的 JSON，属性名和字符串需用双引号。'],
   ['Enter a nonempty JSON array within the row limit.', '请输入至少包含一行的 JSON 数组，并检查行数上限。'],
@@ -8,111 +9,198 @@ const zhInputErrors = new Map([
   ['Use at most 32 columns.', '表格最多支持 32 列。'],
   ['The result is undefined for a zero denominator.', '分母为零，无法计算。'],
   ['A positive denominator is required.', '分母必须大于零。'],
+  ['Arguments exceed 64 KB.', '输入超过 64 KB，请减少数据行数或缩短文本。'],
   ['Result exceeds 180 KB. Use a smaller input.', '结果超过 180 KB，请减少数据行数或缩短输入。'],
+  ['Result is outside the supported numeric range.', '计算结果超出可表示的数值范围，请缩小输入范围。'],
 ]);
 function inputError(error) {
-  if (!zh) return 'Check the inputs. '+error.message;
-  if (error instanceof SyntaxError) return '请输入有效的 JSON，属性名和字符串需用双引号。';
-  return zhInputErrors.get(error.message) || '请检查输入。 '+error.message;
+  if (error instanceof SyntaxError) {
+    return copy('请输入有效的 JSON，属性名和字符串需用双引号。','Enter valid JSON with double quotes around names and strings.');
+  }
+  return (zh&&zhInputErrors.get(error.message)) || error.message;
 }
 
-for (const index of document.querySelectorAll('[data-suite-index]')) {
-  const search=index.querySelector('[data-suite-search]');
-  const normalize=text=>text.normalize('NFKC').toLowerCase().replace(/[-_]+/g,' ');
-  const groups=[...index.querySelectorAll('[data-suite-group]')].map(group=>({
-    group, initialOpen:group.open, rows:[...group.querySelectorAll('[data-suite-keywords]')].map(row=>{
-      const id=row.querySelector('a').pathname.split('/').pop();
-      return {row, words:normalize([id, row.textContent, row.dataset.suiteKeywords, group.dataset.groupId, group.querySelector('strong').textContent].join(' '))};
-    }),
-  }));
-  const count=index.querySelector('[data-suite-count]');
-  search.addEventListener('input',()=>{
-    const tokens=normalize(search.value).trim().split(/\s+/).filter(Boolean);
-    let matches=0;
-    for(const {group,rows,initialOpen} of groups) {
-      let visible=0;
-      for(const {row,words} of rows) {
-        row.hidden=tokens.some(token=>!words.includes(token));
-        if(!row.hidden) visible++;
-      }
-      group.open=tokens.length?visible>0:initialOpen;
-      group.hidden=visible===0;
-      matches+=visible;
-    }
-    count.textContent=matches ? copy(`显示 ${matches} 个自研工具`,`${matches} BPJ tools`) :
-      copy('未找到工具。换一个关键词试试。','No matching tool. Try a different search.');
-  });
-  search.closest('[hidden]').hidden=false;
+const textOutputKeys = new Set(['text','csv','tsv','markdown','xml','html','yaml','sql','srt','vtt','ics','code','script','command','json','jsonLd','css','md']);
+function primaryText(result) {
+  if (typeof result==='string') return result;
+  if (!result || typeof result!=='object' || Array.isArray(result)) return '';
+  const strings=Object.entries(result).filter(([key,value])=>textOutputKeys.has(key)&&typeof value==='string'&&value.length>0);
+  return strings.length===1?strings[0][1]:'';
 }
 
 const workspace=document.querySelector('[data-suite-tool]');
-if(workspace) {
-  const category=workspace.dataset.suiteCategory;
-  if(!/^[a-z-]+$/.test(category)) throw Error('Invalid tool category.');
-  const [{tools},{executeSuiteTool}]=await Promise.all([
-    import(`./ai-suite/${category}.mjs`), import('./ai-suite/runtime.mjs'),
-  ]);
-  const tool=tools.find(item=>item.id===workspace.dataset.suiteTool);
-  const form=workspace.querySelector('form'), status=workspace.querySelector('[data-suite-status]');
-  const output=workspace.querySelector('[data-suite-output]'), actions=workspace.querySelector('[data-suite-actions]');
+if (workspace) {
+  const find=selector=>workspace.querySelector(selector);
+  const form=find('form'), status=find('[data-suite-status]'), feedback=find('[data-suite-error]');
+  const output=find('[data-suite-output]'), actions=find('[data-suite-actions]');
+  const view=find('[data-suite-result-view]'), format=find('[data-suite-format]');
+  const empty=find('[data-suite-empty]'), source=find('[data-suite-source]');
+  const readable=find('[data-suite-readable]'), raw=find('[data-suite-raw]');
+  const copyText=find('[data-suite-copy-text]');
+  let textResult='';
   const field=input=>form.elements.namedItem(input.key);
-  const setStatus=(message,error=false)=>{
-    status.textContent=message;
-    status.dataset.error=String(error);
+  const labels=JSON.parse(workspace.dataset.suiteLabels);
+  const showFeedback=(message,error=false)=>{
+    feedback.textContent=message;
+    feedback.hidden=!message;
+    feedback.dataset.error=String(error);
   };
+  function showFormat(useReadable) {
+    readable.setAttribute('aria-pressed',String(useReadable));
+    raw.setAttribute('aria-pressed',String(!useReadable));
+    view.hidden=!useReadable;
+    output.hidden=useReadable;
+  }
   function clearResult() {
     output.textContent='';
-    output.hidden=true;
-    actions.hidden=true;
-    setStatus('');
+    textResult='';
+    view.replaceChildren();
+    for (const node of [output,view,format,source,actions]) node.hidden=true;
+    status.textContent='';
+    empty.hidden=false;
   }
-  let example=false;
-  workspace.querySelector('[data-suite-example]').addEventListener('click',()=>{
-    clearResult();
-    example=true;
-    for(const input of tool.inputs) {
-      const element=field(input), value=tool.example[input.key];
-      if(input.type==='boolean') element.checked=value;
-      else element.value=value;
+  const category=workspace.dataset.suiteCategory;
+  try {
+    if (!/^[a-z-]+$/.test(category)) throw Error('Invalid tool category.');
+    const [{tools},{executeSuiteTool}]=await Promise.all([
+      import(`./ai-suite/${category}.mjs`), import('./ai-suite/runtime.mjs?v=3'),
+    ]);
+    const tool=tools.find(item=>item.id===workspace.dataset.suiteTool);
+    if (!tool) throw Error('Unknown tool.');
+    let example=false;
+    let editVersion=0;
+    function edited() {
+      example=false;
+      editVersion++;
+      showFeedback('');
+      clearResult();
     }
-    setStatus(copy('已填入示例。点击运行查看结果。','Example loaded. Select Run to view the result.'));
-  });
-  form.addEventListener('input',()=>{example=false;clearResult();});
-  form.addEventListener('submit',event=>{
-    event.preventDefault();
-    clearResult();
-    try {
-      const args=Object.fromEntries(tool.inputs.map(input=>{
-        const element=field(input);
-        const value=input.type==='boolean'?element.checked:
-          input.type==='string'?element.value:element.valueAsNumber;
-        return [input.key,value];
-      }));
-      output.textContent=JSON.stringify(executeSuiteTool(tool,args),null,2);
-      output.hidden=false;
+    function focusFirstInput() {
+      const first=tool.inputs[0];
+      if (first) field(first).focus();
+    }
+    find('[data-suite-example]').addEventListener('click',()=>{
+      edited();
+      for (const input of tool.inputs) {
+        const control=field(input);
+        const value=tool.example[input.key];
+        if (input.type==='boolean') control.checked=value;
+        else control.value=value;
+      }
+      example=true;
+      showFeedback(copy('示例已填入，可以直接运行。','Example loaded. Run the tool to see the result.'));
+      focusFirstInput();
+    });
+    find('[data-suite-clear]').addEventListener('click',()=>{
+      form.reset();
+      edited();
+      focusFirstInput();
+    });
+    form.addEventListener('input',event=>{
+      if (event.target.type!=='file') edited();
+    });
+    form.addEventListener('keydown',event=>{
+      if (event.key==='Enter'&&(event.ctrlKey||event.metaKey)&&!event.isComposing) {
+        event.preventDefault();
+        form.requestSubmit();
+      }
+    });
+    form.addEventListener('submit',event=>{
+      event.preventDefault();
+      clearResult();
+      showFeedback('');
+      let args;
+      try {
+        args=Object.fromEntries(tool.inputs.map(input=>{
+          const control=field(input);
+          const value=input.type==='boolean'?control.checked:
+            input.type==='string'?control.value:control.valueAsNumber;
+          return [input.key,value];
+        }));
+        output.textContent=JSON.stringify(executeSuiteTool(tool,args),null,2);
+      } catch(error) {
+        showFeedback(inputError(error),true);
+        return;
+      }
+      const result=JSON.parse(output.textContent);
+      let hasView=false;
+      try {
+        hasView=renderSuiteResult(view,result,{lang:zh?'zh':'en',toolId:tool.id,labels});
+      } catch {
+        view.replaceChildren();
+      }
+      textResult=primaryText(result);
+      copyText.hidden=!textResult;
+      showFormat(hasView);
+      format.hidden=!hasView;
       actions.hidden=false;
-      setStatus(copy('结果已生成。','Result ready.'));
+      source.textContent=example?copy('示例输入','Example input'):copy('本次输入','Current input');
+      source.hidden=false;
+      empty.hidden=true;
+      status.textContent=copy('结果已生成。','Result ready.');
+      if (matchMedia('(max-width: 760px)').matches) find('#suite-result-panel').scrollIntoView({block:'start'});
       window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:`ai_suite_result_${example?'demo':'own'}`}}));
-    } catch(error) {
-      setStatus(inputError(error),true);
+    });
+    for (const fileInput of form.querySelectorAll('[data-suite-file]')) {
+      const textarea=form.elements.namedItem(fileInput.dataset.fieldKey);
+      const button=fileInput.previousElementSibling;
+      button.addEventListener('click',()=>fileInput.click());
+      fileInput.addEventListener('change',async()=>{
+        const file=fileInput.files[0];
+        fileInput.value='';
+        if (!file) return;
+        const version=++editVersion;
+        try {
+          if (file.size>textarea.maxLength*4+3) throw Error('length');
+          const text=new TextDecoder('utf-8',{fatal:true}).decode(await file.arrayBuffer());
+          if (text.length>textarea.maxLength) throw Error('length');
+          if (text.includes('\0')) throw Error('encoding');
+          if (version!==editVersion) return;
+          textarea.value=text;
+          edited();
+          textarea.focus();
+          showFeedback(copy('文件已读入，可以运行。','File loaded. Run the tool when ready.'));
+        } catch(error) {
+          if (version!==editVersion) return;
+          showFeedback(error.message==='length'
+            ? copy(`文件超过此字段的 ${textarea.maxLength} 字符上限。`,`This field accepts files of up to ${textarea.maxLength} characters.`)
+            : copy('文件无法读取，请选择 UTF-8 编码的文本文件。','Choose a UTF-8 text file that can be opened.'),true);
+        }
+      });
     }
-  });
-  workspace.querySelector('[data-suite-copy]').addEventListener('click',async()=>{
-    try {
-      await navigator.clipboard.writeText(output.textContent);
-      setStatus(copy('结果已复制。','Result copied.'));
-    } catch {
-      setStatus(copy('无法使用剪贴板。可手动选中结果复制。','Clipboard unavailable. Select the result to copy it.'),true);
+    readable.addEventListener('click',()=>showFormat(true));
+    raw.addEventListener('click',()=>showFormat(false));
+    async function copyResult(text,label) {
+      const json=output.textContent;
+      try {
+        await navigator.clipboard.writeText(text);
+        if (output.textContent===json) status.textContent=label;
+      } catch {
+        if (output.textContent===json) {
+          showFormat(false);
+          output.focus();
+          status.textContent=copy('剪贴板不可用，可选中 JSON 后复制。','Select the JSON and copy it manually.');
+        }
+      }
     }
-  });
-  workspace.querySelector('[data-suite-download]').addEventListener('click',()=>{
-    const url=URL.createObjectURL(new Blob([output.textContent],{type:'application/json'}));
-    const link=document.createElement('a');
-    link.href=url;
-    link.download=tool.id+'.json';
-    link.click();
-    setTimeout(()=>URL.revokeObjectURL(url),1000);
-  });
-  form.querySelector('fieldset').disabled=false;
-  setStatus('');
+    find('[data-suite-copy]').addEventListener('click',()=>copyResult(output.textContent,copy('JSON 已复制。','JSON copied.')));
+    copyText.addEventListener('click',()=>copyResult(textResult,copy('正文已复制。','Text copied.')));
+    find('[data-suite-download]').addEventListener('click',()=>{
+      const url=URL.createObjectURL(new Blob([output.textContent],{type:'application/json'}));
+      const link=document.createElement('a');
+      link.href=url;
+      link.download=tool.id+'.json';
+      link.click();
+      setTimeout(()=>URL.revokeObjectURL(url),1000);
+    });
+    const mcp=find('#suite-mcp');
+    function revealMcp() {
+      if (location.hash==='#suite-mcp') mcp.open=true;
+    }
+    window.addEventListener('hashchange',revealMcp);
+    revealMcp();
+    form.querySelector('fieldset').disabled=false;
+  } catch {
+    status.textContent=copy('工具加载失败。可刷新页面，或使用下方 MCP 调用。','Reload to run this tool, or use the MCP instructions below.');
+  }
 }

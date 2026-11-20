@@ -27,6 +27,9 @@ assert.deepEqual(call('series-midrank-percentiles',values([4,2,2,1])).result,[.8
 close(call('series-gini',values([0,1])).result,.5);
 assert.deepEqual(call('series-empirical-cdf',values([4,2,2,1])).result,[{value:1,probability:.25},{value:2,probability:.75},{value:4,probability:1}]);
 assert.deepEqual(call('series-histogram',{...values([0,1,2]),bins:2}).result.map(b=>b.count),[1,2]);
+const tinyHistogram=call('series-histogram',{...values([0,Number.MIN_VALUE]),bins:4}).result;
+assert.deepEqual(tinyHistogram.map(b=>b.count),[0,0,1,1]);
+assert.equal(tinyHistogram.at(-1).upper,Number.MIN_VALUE);
 assert.deepEqual(call('series-moving-median',{...values([1,5,3,7]),width:3}).result,[3,5]);
 assert.throws(()=>call('series-autocorrelation',{...values([4,4]),lag:1}));
 assert.throws(()=>call('series-lag-differences',{...values([1,2]),lag:2}));
@@ -37,6 +40,8 @@ close(call('pairs-weighted-mean',arrays([1,4],[2,1])).result,2);
 assert.equal(call('pairs-weighted-median',arrays([1,4,9],[2,1,1])).result,1);
 assert.equal(call('pairs-symmetric-error',arrays([0,2],[0,4])).result,100/3);
 assert.throws(()=>call('pairs-pearson',arrays([1,1],[1,2])));
+close(call('pairs-pearson',arrays([1e-160,2e-160,3e-160],[3e-160,2e-160,1e-160])).result,-1);
+close(call('pairs-pearson',arrays([0,Number.MIN_VALUE],[0,Number.MIN_VALUE])).result,1);
 assert.throws(()=>call('pairs-linear-fit',arrays([1,2],[1])));
 assert.deepEqual(call('dq-calendar-dates').failedRows,[2]);
 assert.deepEqual(call('dq-boolean-cells').failedRows,[3,4]);

@@ -26,6 +26,22 @@ export function subset(value, total) {
 }
 export const share = (part, total) => 100 * divide(subset(part, total), total);
 
+// Count increments using the decimal values supplied by the user. Dividing
+// their binary representations can shift an exact fit across a rounding boundary.
+export function decimalIntegers(numbers) {
+  const parts = numbers.map((number) => {
+    const [coefficient, exponent = '0'] = String(number).split('e');
+    const [whole, fraction = ''] = coefficient.split('.');
+    return { significand: BigInt(whole + fraction), exponent: Number(exponent) - fraction.length };
+  });
+  const places = Math.max(0, ...parts.map((part) => -part.exponent));
+  const values = parts.map((part) => part.significand * 10n ** BigInt(places + part.exponent));
+  return { values, places };
+}
+
+export const ceilPositiveRatio = (numerator, denominator) => (numerator + denominator - 1n) / denominator;
+export const fromDecimalInteger = (integer, places) => Number(integer.toString() + 'e-' + places);
+
 export function toolBuilder(fields) {
   return (id, zh, en, zhDescription, enDescription, keys, calculate) => {
     const inputs = [],

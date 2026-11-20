@@ -84,6 +84,24 @@ known('two-part-kit-availability', {}, { completeKits: 40, leftoverA: 20, leftov
 known('periodic-review-order-up-to', {}, { targetUnits: 355, inventoryPosition: 235, orderUnits: 120 });
 invalid('consignment-remittance', { remain: 219 });
 known('carrier-billable-weight', {}, { dimensionalKg: 14.4, billableKg: 14.5 });
+known('carrier-billable-weight', { length: 10, width: 10, height: 10, weight: 2.1, step: 0.3 }, { billableKg: 2.1 });
+known('carrier-billable-weight', { length: 3, width: 7, height: 10, divisor: 100, weight: 0, step: 0.3 }, { billableKg: 2.1 });
+known('carrier-billable-weight', { length: 10, width: 10, height: 10, weight: 2.100001, step: 0.3 }, { billableKg: 2.4 });
+known(
+  'uniform-pallet-layer-plan',
+  { palletL: 0.3, palletW: 0.3, stack: 0.3, length: 0.1, width: 0.1, height: 0.1 },
+  { cartonsPerLayer: 9, rotateCartons: false, layers: 3, totalCartons: 27 },
+);
+known(
+  'minimum-cart-upsell-gap',
+  { subtotal: 100000, threshold: 100000.3, price: 0.1 },
+  { addOnUnits: 3, revisedBasket: 100000.3, thresholdHeadroom: 0 },
+);
+known(
+  'minimum-cart-upsell-gap',
+  { subtotal: 100000, threshold: 100000.31, price: 0.1 },
+  { addOnUnits: 4, revisedBasket: 100000.4, thresholdHeadroom: 0.09 },
+);
 known(
   'balanced-carton-packout',
   { units: 11, capacity: 5 },

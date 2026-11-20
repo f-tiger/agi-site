@@ -323,12 +323,16 @@ export const tools = [
     ({ json }) => {
       const { rows, columns } = readRecords(json);
       let escapedCells = 0;
-      const encodeRow = row => row.map(value => {
-        if (value !== null && typeof value === 'object') throw Error('CSV cells must be strings, numbers, booleans or null.');
-        const { cell, guard } = encodeTableCell(value);
-        if (guard) escapedCells += 1;
-        return cell;
-      }).join(',');
+      const encodeRow = row => {
+        const fields = row.map(value => {
+          if (value !== null && typeof value === 'object') throw Error('CSV cells must be strings, numbers, booleans or null.');
+          const { cell, guard } = encodeTableCell(value);
+          if (guard) escapedCells += 1;
+          return cell;
+        });
+        // A single empty field needs quotes to distinguish the record from a final line break.
+        return fields.length === 1 && !fields[0] ? '""' : fields.join(',');
+      };
       const records = rows.map(row => columns.map(name => Object.hasOwn(row, name) ? row[name] : null));
       if (records.length * columns.length > 2400) throw Error('Use at most 2400 CSV data cells.');
       return { csv: [encodeRow(columns), ...records.map(encodeRow)].join('\r\n'), dataRows: rows.length, escapedCells };

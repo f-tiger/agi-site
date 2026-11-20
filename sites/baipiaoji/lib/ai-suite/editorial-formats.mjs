@@ -43,12 +43,12 @@ function cues(text, format = 'srt') {
   const blocks = text
     .trim()
     .replace(/\r\n?/g, '\n')
-    .split(/\n[ \t]*\n/);
+    .split(/\n(?:[ \t]*\n)+/);
   if (format === 'vtt' && !/^WEBVTT(?:$|[ \t])/.test(blocks.shift() || ''))
     throw Error('Use a WEBVTT header followed by a blank line.');
   const list = [];
   for (const block of blocks) {
-    if (format === 'vtt' && /^NOTE(?:$|[ \t\n])/.test(block)) continue;
+    if (format === 'vtt' && /^(?:NOTE(?:$|[ \t\n])|(?:STYLE|REGION)[ \t]*(?:$|\n))/.test(block)) continue;
     const lines = block.split('\n');
     if (!lines[0].includes('-->')) lines.shift();
     const m = lines.shift()?.match(/^(\S+)\s+-->\s+(\S+)(?:[ \t].*)?$/);
@@ -91,8 +91,8 @@ add(
   'webvtt-to-srt-cues',
   'WebVTT 字幕转 SRT',
   'WebVTT cues to SRT',
-  '转换有时码的 WebVTT 字幕块并生成 SRT 序号，略过 NOTE 注释和位置设置。',
-  'Convert timed WebVTT cues to numbered SRT; omit NOTE blocks and positioning settings.',
+  '转换有时码的 WebVTT 字幕块并生成 SRT 序号，略过注释、样式、区域和位置设置。',
+  'Convert timed WebVTT cues to numbered SRT, omitting comments, styles, regions and positioning settings.',
   [source(vtt)],
   ({ text }) => ({ srt: render(cues(text, 'vtt'), 'srt') }),
 );
