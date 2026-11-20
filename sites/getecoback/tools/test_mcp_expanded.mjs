@@ -17,13 +17,14 @@ async function rpc(method, params) {
   return (await response.json()).result;
 }
 
-test('the public directory and six MCP pages expose the same 509 names and 508 distinct tasks', async () => {
+test('the public directory and seven MCP pages expose the same 634 names and 633 distinct tasks', async () => {
   const first = await rpc('tools/list');
   const second = await rpc('tools/list',{cursor:first.nextCursor});
   const third = await rpc('tools/list',{cursor:second.nextCursor});
   const fourth = await rpc('tools/list',{cursor:third.nextCursor});
   const fifth = await rpc('tools/list',{cursor:fourth.nextCursor});
   const sixth = await rpc('tools/list',{cursor:fifth.nextCursor});
+  const seventh = await rpc('tools/list',{cursor:sixth.nextCursor});
   const directory = await (await worker.fetch(new Request(origin+'/api/mcp-tools'), {}, {})).json();
   const manifest = JSON.parse(readFileSync(new URL('../mcp/server.json',import.meta.url),'utf8'));
   const initialization = await rpc('initialize');
@@ -32,28 +33,29 @@ test('the public directory and six MCP pages expose the same 509 names and 508 d
   assert.equal(third.tools.length,100);
   assert.equal(fourth.tools.length,100);
   assert.equal(fifth.tools.length,100);
-  assert.equal(sixth.tools.length,9);
-  assert.equal(sixth.nextCursor,undefined);
+  assert.equal(sixth.tools.length,100);
+  assert.equal(seventh.tools.length,34);
+  assert.equal(seventh.nextCursor,undefined);
   assert.equal(directory.version, manifest.version);
   assert.equal(initialization.serverInfo.version, manifest.version);
-  assert.equal(directory.total,509);
-  assert.equal(directory.distinctTotal,508);
+  assert.equal(directory.total,634);
+  assert.equal(directory.distinctTotal,633);
   const equivalent=directory.tools.find(tool=>tool.name==='luftbefeuchter_weisser_belag');
   assert.equal(equivalent.equivalent_task,'befeuchter_weissen_belag_einordnen');
   assert.ok(directory.tools.some(tool=>tool.name===equivalent.equivalent_task));
 
-  const names=[...first.tools,...second.tools,...third.tools,...fourth.tools,...fifth.tools,...sixth.tools].map(t=>t.name);
-  assert.equal(new Set(names).size,509);
+  const names=[...first.tools,...second.tools,...third.tools,...fourth.tools,...fifth.tools,...sixth.tools,...seventh.tools].map(t=>t.name);
+  assert.equal(new Set(names).size,634);
   assert.deepEqual(directory.tools.map(t=>t.name),names);
   const byCategory = {};
   for (const {category} of directory.tools) byCategory[category] = (byCategory[category] || 0) + 1;
   assert.deepEqual(byCategory, {Raumklima:10,'Strom & Haushalt':20,Feuchte:18,Kühlen:18,Heizen:18,Passform:16,
-    'Energie prüfen':24,'Raumkomfort prüfen':24,'Geräte pflegen':24,'Quellen & Kaufprüfung':24, 'Wasser & Wäsche':24,'Gebäude & Fenster':24,'Geräte im Alltag':24,'Messpraxis':24,'Zugang & Alltag':24,Saisonwechsel:24,Kaufpraxis:25,'Ressourcen planen':24,Raumplanung:24,Wetterpraxis:24,Küchenpraxis:24,Servicevorbereitung:24,'Belege abgleichen':24});
-  assert.equal(expandedDefinitions.length,499);
+    'Energie prüfen':24,'Raumkomfort prüfen':24,'Geräte pflegen':24,'Quellen & Kaufprüfung':24, 'Wasser & Wäsche':24,'Gebäude & Fenster':24,'Geräte im Alltag':24,'Messpraxis':24,'Zugang & Alltag':24,Saisonwechsel:24,Kaufpraxis:25,'Ressourcen planen':24,Raumplanung:24,Wetterpraxis:24,Küchenpraxis:24,Servicevorbereitung:24,'Belege abgleichen':24,Textilpraxis:25,Luftpfade:25,Modellunterlagen:25,Haushaltsbuch:25,Praxistests:25});
+  assert.equal(expandedDefinitions.length,624);
 });
 
 test('old or invalid cursors reject safely and a 1000-tool catalogue paginates completely', async () => {
-  for (const cursor of ['1.8.0:100','1.9.0:99','1.9.0:600','1.9.0:0100','1.9.0:0',null,100]) {
+  for (const cursor of ['1.9.0:100','1.10.0:99','1.10.0:700','1.10.0:0100','1.10.0:0',null,100]) {
     const response = await worker.fetch(request('tools/list',{cursor}), {}, {});
     assert.equal((await response.json()).error.code,-32602);
   }
@@ -80,7 +82,7 @@ test('keyword and category filters narrow the public directory without logging t
   const response = await get('?q=Abwaerme&category=K%C3%BChlen');
   const result = await response.json();
   assert.equal(response.headers.get('cache-control'),'no-store');
-  assert.equal(result.catalogueTotal,509);
+  assert.equal(result.catalogueTotal,634);
   assert.equal(result.total,1);
   assert.equal(result.tools[0].name,'arbeitszimmer_abwaerme_vergleich');
   const noMatch = await (await get('?q=unique-unmatched-string')).json();
@@ -105,8 +107,8 @@ test('compact catalogue has linkable summaries and exact names return complete c
   const read=async query=>(await worker.fetch(new Request(origin+'/api/mcp-tools'+query),{},{})).json();
   const complete=await read('');
   const compact=await read('?view=compact');
-  assert.equal(compact.total,509);
-  assert.equal(compact.distinctTotal,508);
+  assert.equal(compact.total,634);
+  assert.equal(compact.distinctTotal,633);
   assert.equal(compact.tools.find(t=>t.name==='luftbefeuchter_weisser_belag').equivalent_task,
     'befeuchter_weissen_belag_einordnen');
 
@@ -117,7 +119,7 @@ test('compact catalogue has linkable summaries and exact names return complete c
   const [fullMatch,compactMatch]=await Promise.all([read(query),read(query+'&view=compact')]);
   assert.deepEqual(fullMatch.tools.map(t=>t.name),compactMatch.tools.map(t=>t.name));
   const exact=await read('?tool=strommessung_hochrechnen');
-  assert.equal(exact.catalogueTotal,509);
+  assert.equal(exact.catalogueTotal,634);
   assert.deepEqual(exact.tools,[complete.tools.find(t=>t.name==='strommessung_hochrechnen')]);
   assert.deepEqual((await read('?tool=strommessung')).tools,[]);
 });
@@ -152,12 +154,31 @@ test('a bounded catalogue response keeps the match total and rank order', async 
   const bounded=await (await read(options+'&limit=3')).json();
   assert.equal(bounded.total,full.total);
   assert.equal(bounded.returned,3);
-  assert.equal(bounded.catalogueTotal,509);
-  assert.equal(bounded.distinctTotal,508);
+  assert.equal(bounded.catalogueTotal,634);
+  assert.equal(bounded.distinctTotal,633);
   assert.deepEqual(bounded.tools,full.tools.slice(0,3));
+  assert.equal(bounded.nextOffset,3);
+  const second=await (await read(options+'&limit=3&offset=3')).json();
+  assert.equal(second.total,full.total);
+  assert.equal(second.returned,3);
+  assert.equal(second.nextOffset,6);
+  assert.deepEqual(second.tools,full.tools.slice(3,6));
+  const last=await (await read(options+'&limit=3&offset='+String(full.total-1))).json();
+  assert.equal(last.returned,1);
+  assert.equal(last.nextOffset,undefined);
+  const past=await (await read(options+'&limit=3&offset=1000')).json();
+  assert.equal(past.returned,0);
+  assert.equal(past.nextOffset,undefined);
+  assert.equal(past.total,full.total);
+  for (const invalidQuery of ['?offset=3','?limit=3&offset=-1','?limit=3&offset=2.5','?limit=3&offset=','?limit=3&offset=0002']) {
+    const invalid=await read(invalidQuery);
+    assert.equal(invalid.status,400);
+    assert.equal((await invalid.json()).error,'invalid_offset');
+  }
+
 
   const short=await (await read('?view=compact&limit=24')).json();
-  assert.equal(short.total,509);
+  assert.equal(short.total,634);
   assert.equal(short.returned,24);
   const none=await (await read('?q=zzqqzzxxyyll&limit=3')).json();
   assert.equal(none.total,0);

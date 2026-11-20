@@ -965,7 +965,7 @@ async function trendCompute(env) {
 // MCP server (Model Context Protocol, stateless Streamable HTTP).
 // Each tool returns a usable answer with sources. Publication, calls, website
 // visits and merchant activity are observed separately.
-const MCP_VERSION = "1.9.0";
+const MCP_VERSION = "1.10.0";
 const LEGACY_MCP_TOOLS = [
   drainTool,
   // AI-era round 2026-08-29: the decision LAYER above the per-device
@@ -1118,8 +1118,12 @@ function mcpCatalog(url) {
   const name = url.searchParams.get("tool");
   const view = url.searchParams.get("view");
   const limit = url.searchParams.get("limit");
+  const offset = url.searchParams.get("offset");
   if (limit !== null && !/^(?:[1-9][0-9]?|100)$/.test(limit)) {
     return json({error:"invalid_limit"},400,{"cache-control":"no-store","access-control-allow-origin":"*"});
+  }
+  if (offset !== null && (limit === null || !/^(?:0|[1-9][0-9]{0,6})$/.test(offset))) {
+    return json({error:"invalid_offset"},400,{"cache-control":"no-store","access-control-allow-origin":"*"});
   }
   if (view === "examples" && !name?.trim()) {
     return json({error:"tool_required"},400,{"cache-control":"no-store","access-control-allow-origin":"*"});
@@ -1130,12 +1134,17 @@ function mcpCatalog(url) {
   const matches = filtered
     ? findCatalogueTools(index,{query:search || "",category:category || "",name})
     : index.map(entry => entry.tool);
-  const page = limit === null ? matches : matches.slice(0,Number(limit));
+  const start = Number(offset);
+  const page = limit === null ? matches : matches.slice(start,start + Number(limit));
   const tools = view==="examples"
     ? page.map(tool=>({...tool,...catalogueExample(tool.name)}))
     : page;
   const result = {version:MCP_VERSION,total:matches.length,distinctTotal:DISTINCT_TASK_TOTAL,tools};
-  if (limit !== null) result.returned = tools.length;
+  if (limit !== null) {
+    result.returned = tools.length;
+    const end = start + tools.length;
+    if (end < matches.length) result.nextOffset = end;
+  }
   if (filtered || limit !== null) result.catalogueTotal = CATALOG_TOOLS.length;
   return new Response(JSON.stringify(result), {
     headers: {

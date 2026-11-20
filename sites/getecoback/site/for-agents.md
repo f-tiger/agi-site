@@ -1,6 +1,6 @@
 # EcoBack for AI Agents
 
-> Every machine interface of getecoback.com on one page: MCP tools and a searchable catalogue, per-page Markdown mirrors, llms.txt, open JSON APIs and the CC-BY sizing dataset.
+> EcoBack for AI assistants: searchable MCP tools, source-linked Markdown guides, open sizing data and documented public APIs for German households.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/for-agents.html
 
@@ -9,36 +9,34 @@ EcoBack is a German-language home-climate guide (portable air conditioning, dehu
 **1 · MCP server**
 Model Context Protocol, Streamable HTTP, no auth: https://getecoback.com/mcp/v1
 
-EcoBack tools cover room climate, household energy and water, room planning, weather, kitchen tasks, service preparation and evidence comparison. Filter the [JSON catalogue](https://getecoback.com/api/mcp-tools) by `q` or `category`. Use [`view=compact`](https://getecoback.com/api/mcp-tools?category=Messpraxis&view=compact) for names, descriptions, categories and available citation links. Omit the compact view and use [`tool=EXACT_NAME`](https://getecoback.com/api/mcp-tools?tool=duschdurchfluss_messen) to get a single input schema.
+EcoBack tools cover room climate, household energy and water, room planning, weather, kitchen tasks, service preparation, textiles, air paths, model documentation, household accounts and practical comparisons. Filter the [JSON catalogue](https://getecoback.com/api/mcp-tools) by q or category. Use [view=compact](https://getecoback.com/api/mcp-tools?category=Messpraxis&view=compact) for names, descriptions, categories and available citation links. Omit the compact view and use [tool=EXACT_NAME](https://getecoback.com/api/mcp-tools?tool=duschdurchfluss_messen) to get a single input schema.
 
-Add `limit=24` for a short ranked list. Use an integer from 1 to 100. `total` is the number of matches. `returned` is the number of entries included. `catalogueTotal` counts callable names across the whole catalogue. [Short search example](https://getecoback.com/api/mcp-tools?view=compact&q=Strom&limit=24).
+Add limit=24 for a ranked page. Use an integer from 1 to 100. When the response includes nextOffset, send that value as offset with the same filters and page size. If version changes between requests, start from the first page. An offset requires a limit and accepts a non-negative integer. total counts all matches, returned counts entries on this page and catalogueTotal counts all callable names. [Second page of an electricity search](https://getecoback.com/api/mcp-tools?view=compact&q=Strom&limit=24&offset=24).
 
-Combine `view=examples` with one exact `tool` name to inspect its schema, available source URLs and any checked fixture. `example.arguments` gives the sample call inputs and `example.expected_fields` gives selected expected outputs. Send your own inputs with `tools/call` to run the tool. If `citation_markdown_url` is available, use it to read the guide and cite the canonical `citation_url`. [Inspectable example](https://getecoback.com/api/mcp-tools?view=examples&tool=stromfenster_mehrphasen_start).
+Combine view=examples with one exact tool name to inspect its schema, available source URLs and any checked fixture. example.arguments gives the sample call inputs and example.expected_fields gives selected expected outputs. Send your own inputs with tools/call to run the tool. If citation_markdown_url is available, use it to read the guide and cite the canonical citation_url. [Inspectable example](https://getecoback.com/api/mcp-tools?view=examples&tool=stromfenster_mehrphasen_start).
 
-In the complete catalogue, `total` counts callable names and `distinctTotal` counts distinct tasks. `equivalent_task` identifies another supported name for the same task.
+In the complete catalogue, total counts callable names and distinctTotal counts distinct tasks. equivalent_task identifies another supported name for the same task.
 
-For MCP discovery, call `tools/list` and send each returned `nextCursor` as `params.cursor` in the next request. For structured results, cite `citation_url` and report the units, assumptions and limits from the tool. Use `ratgeber_lesen` to check the published guide and linked original sources when the answer depends on a model specification.
+For MCP discovery, call tools/list and send each returned nextCursor as params.cursor in the next request. For structured results, cite citation_url and report the units, assumptions and limits from the tool. Use ratgeber_lesen to check the published guide and linked original sources when the answer depends on a model specification.
 
 Discovery: [/.well-known/mcp.json](https://getecoback.com/.well-known/mcp.json) · Docs: [/mcp.html](https://getecoback.com/mcp.html) · Registry: io.github.f-tiger/hvac-btu-heat-klimaanlage
 
 **Plan a shower around a measured flow and a water budget**
-
-Collect 2.25 L over 15 seconds at the usual setting. Call `duschdurchfluss_messen` to derive 9 L/min. Pass that flow and a household budget of 72 L to `dusche_zeit_bei_wasserbudget` for 8 minutes at steady flow. The budget is a user input. Deduct any warm-up water first. [Runnable examples and assumptions](https://getecoback.com/mcp.html#duschbudget-beispiel).
+Collect 2.25 L over 15 seconds at the usual setting. Call duschdurchfluss_messen to derive 9 L/min. Pass that flow and a household budget of 72 L to dusche_zeit_bei_wasserbudget for 8 minutes at steady flow. The budget is a user input. Deduct any warm-up water first. [Runnable examples and assumptions](https://getecoback.com/mcp.html#duschbudget-beispiel).
 
 **Compare settings in A–B–B–A order**
-
-Run the same task and read kWh for each trial. For 1.2, 1.0, 1.1 and 1.3 kWh in A–B–B–A order, `strommessung_abba_abwechselnd` gives a mean difference of 0.20 kWh per run in favour of B. A reversed order helps offset a steady time trend. Repeat when conditions vary. [Runnable comparison](https://getecoback.com/mcp.html#strommessung-abba-beispiel).
+Run the same task and read kWh for each trial. For 1.2, 1.0, 1.1 and 1.3 kWh in A–B–B–A order, strommessung_abba_abwechselnd gives a mean difference of 0.20 kWh per run in favour of B. A reversed order helps offset a steady time trend. Repeat when conditions vary. [Runnable comparison](https://getecoback.com/mcp.html#strommessung-abba-beispiel).
 
 **Compare start times for a device with two energy-use phases**
-
 At four successive rates of €0.30, €0.20, €0.40 and €0.25 per kWh, running the 0.8 kWh and 0.2 kWh phases in windows two and three costs €0.24. The windows have equal lengths and each phase fills one window. Verify permitted start times and use the tariff charged to your household. [Runnable comparison and source](https://getecoback.com/mcp.html#stromfenster-mehrphasen-beispiel).
 
 **Plan a kettle fill across several batches**
-
 Enter the total volume and the minimum and maximum fill volumes from your kettle manual. With 1,900 mL needed and 400–1,700 mL allowed per batch, the example returns two fills of 950 mL with no surplus. [Runnable calculation and source](https://getecoback.com/mcp.html#wasserkocher-fuellsplitt-beispiel).
 
-**Project a plug-in meter reading**
+**Match a longer meter reading to a bill window**
+With 240 kWh measured over 40 days, remove 24 kWh measured in the four days before the bill window and 36 kWh measured in the six days after. The remaining 180 kWh matches the 30-day date range. The bill reports 183 kWh, a difference of 3 kWh. Check that the meter and exact dates match. [Inspectable JSON fixture](https://getecoback.com/api/mcp-tools?view=examples&tool=stromrechnung_messfenster_randtage) · [Runnable call and guide](https://getecoback.com/mcp.html#stromrechnung-messfenster-beispiel).
 
+**Project a plug-in meter reading**
 At €0.30/kWh, a reading of 2 kWh in 24 hours projects to €60 over 100 days of comparable use. See [the replacement and laundry examples](https://getecoback.com/mcp.html#haushalt-beispiele).
 
 {"jsonrpc":"2.0","id":7,"method":"tools/call","params":{"name":"strommessung_hochrechnen","arguments":{"kwh":2,"hours":24,"days":100,"price":0.3}}}
@@ -68,7 +66,7 @@ The same Markdown is also served on the .html URL via Accept: text/markdown cont
 
 - [/api/strom](https://getecoback.com/api/strom) — today's German hourly exchange electricity prices (EPEX)
 
-- [/api/top](https://getecoback.com/api/top) — most-read guides · [/api/trend](https://getecoback.com/api/trend) — weekly trends. `mcp_complete_week` covers the last seven complete UTC days and counts completed tool calls, distinct tool names called and calls with a browser-class user agent.
+- [/api/top](https://getecoback.com/api/top) — most-read guides · [/api/trend](https://getecoback.com/api/trend) — weekly trends. mcp_complete_week covers the last seven complete UTC days and counts completed tool calls, distinct tool names called and calls with a browser-class user agent.
 
 - [/search-index.json](https://getecoback.com/search-index.json) — title, description and language of every page
 
