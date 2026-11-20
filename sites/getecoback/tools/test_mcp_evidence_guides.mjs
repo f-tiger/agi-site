@@ -10,6 +10,7 @@ const products = '/produkte.html';
 const laundry = '/guide/waesche-trocknen-wohnung.html';
 const cellar = '/guide/luftentfeuchter-keller.html';
 const toolPaths = new Map([
+  ['kellerentfeuchter_pruefpunkt_abgleichen', cellar + '#kalter-keller'],
   ['midea_portasplit_fensterhalterung_pruefen', '/guide/midea-portasplit-ausverkauft-alternativen.html#kaufpruefung'],
   ['waesche_trocknungswechsel_kaufschwelle', '/waeschetrockner-oder-luftentfeuchter.html#laundry-check'],
 ]);
@@ -57,7 +58,7 @@ test('each mapped tool publishes the same exact evidence link after a real tool 
   const advertised = new Map(standard.map(tool => [tool.name, tool]));
   const compact = new Map((await h.catalogue({view:'compact'})).tools.map(tool => [tool.name, tool]));
   const mapped = expandedDefinitions.filter(tool=>paths.has(tool.category) || toolPaths.has(tool.name));
-  assert.equal(mapped.length, 217);
+  assert.equal(mapped.length, 218);
   assert.equal([...compact.values()].filter(tool=>tool.guide_url).length, mapped.length);
 
   for (const {name, category, page, properties, example} of mapped) {
@@ -120,6 +121,48 @@ test('PortaSplit checks the original German EAN, window type and the correct bra
     assert.equal(result.isError, true);
     assert.equal(result.structuredContent, undefined);
   }
+  h.assertNoWrites();
+});
+
+test('German cellar conditions match only reviewed model test points, with cause and no-purchase exits', async () => {
+  const h = offlineWorker();
+  const name = 'kellerentfeuchter_pruefpunkt_abgleichen';
+  const args = expandedDefinitions.find(tool => tool.name === name).example.args;
+  const call = changes => h.rpc('tools/call', {name, arguments:{...args, ...changes}});
+  for (const [temp, litres, watts] of [[10, 3.4, 180], [20, 8.5, 216]]) {
+    const r = (await call({temperatur_c:temp})).structuredContent;
+    assert.equal(r.status, 'hersteller_pruefpunkt');
+    assert.equal(r.liter_pro_tag, litres);
+    assert.equal(r.leistungsaufnahme_w, watts);
+    assert.equal(r.quellenmarkt, 'DE');
+    assert.equal(r.quellenpruefung, '2026-11-20');
+    assert.equal(r.guide_url, origin + cellar + '#kalter-keller');
+    assert.equal(r.quelle, 'https://eu.meaco.com/products/meacodry-arete-one-20l-luftentfeuchter-luftreiniger');
+    const unknown = (await call({modell:'comfee-mddf20', temperatur_c:temp})).structuredContent;
+    assert.equal(unknown.status, 'wertepaar_offen');
+    assert.equal(unknown.liter_pro_tag, null);
+    assert.equal(unknown.leistungsaufnahme_w, null);
+    assert.match(unknown.quelle, /comfee-MDDF-20DEN7-Datenblatt\.pdf#page=2$/);
+    assert.match(unknown.modell, /ohne WF/);
+  }
+  for (const [changes, status] of [
+    [{temperatur_c:10.01}, 'wertepaar_offen'],
+    [{relative_feuchte_pct:59.9}, 'wertepaar_offen'],
+    [{temperatur_c:30, relative_feuchte_pct:80}, 'wertepaar_offen'],
+    [{wiederholt_gemessen:false}, 'zuerst_messen'],
+    [{befund:'unauffaellig'}, 'kein_kaufbedarf_belegt'],
+    [{befund:'wassereintritt_oder_schaden', wiederholt_gemessen:false}, 'ursache_klaeren'],
+  ]) {
+    const r = (await call(changes)).structuredContent;
+    assert.equal(r.status, status);
+    assert.equal(r.liter_pro_tag, null);
+    assert.equal(r.leistungsaufnahme_w, null);
+  }
+  for (const modell of ['meaco-two-12', 'comfee-mddf20-wf']) {
+    assert.equal((await call({modell})).isError, true);
+  }
+  const legacy = await h.rpc('tools/call', {name:'entfeuchter_kalt_modellbeleg', arguments:{model:'meaco-one-20'}});
+  assert.match(legacy.structuredContent.source_url, /^https:\/\/www\.meaco\.com\/products\//);
   h.assertNoWrites();
 });
 

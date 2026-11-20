@@ -11,6 +11,13 @@ assert(live || ['127.0.0.1', 'localhost'].includes(base.hostname), 'Use the loca
 
 const cases = [
   {
+    question: 'Was schafft der Meaco Arete One 20L bei 10 Grad und 60 Prozent im kalten Keller?',
+    tool: 'kellerentfeuchter_pruefpunkt_abgleichen',
+    category: 'Feuchte',
+    guide: '/guide/luftentfeuchter-keller.html#kalter-keller',
+    heading: '2. Kalter Keller bei 10–15 °C: Kompressor oder Adsorption?',
+  },
+  {
     question: 'Lohnt sich ein Luftentfeuchter für Wäsche im Winter, wenn manche Ladungen weiter in den Trockner gehen?',
     tool: 'waesche_trocknungswechsel_kaufschwelle',
     category: 'Kaufpraxis',

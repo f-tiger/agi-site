@@ -18,9 +18,9 @@ const names = results => results.map(tool => tool.name);
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 217);
+  assert.equal(withGuides.length, 218);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 13);
+  assert.equal(destinations.size, 14);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);
@@ -34,6 +34,22 @@ test('appliance search results link to exact owned evidence and keep canonical m
   assert.equal(example.guide_url, origin + '/produkte.html#wasserkocher-bosch-twk8613p');
   assert.equal(example.citation_url, origin + '/produkte.html');
   assert.equal(example.citation_markdown_url, origin + '/produkte.md');
+});
+
+test('German condition questions find the cold-cellar evidence and preserve model-variant lookup', async () => {
+  const tool = 'kellerentfeuchter_pruefpunkt_abgleichen';
+  const cases = [
+    ['Was schafft der Meaco Arete One 20L bei 10 Grad und 60 Prozent im kalten Keller?', tool],
+    ['Wie viele Liter zieht ein Comfee MDDF-20DEN7 bei 10 °C und 60 % aus meinem Keller?', tool],
+    ['Wie viel Watt braucht der Entfeuchter bei meinen gemessenen 20 °C und 60 Prozent Luftfeuchtigkeit?', tool],
+    ['Wie unterscheiden sich Comfee MDDF-20DEN7 und MDDF-20DEN7-WF?', 'comfee_mddf20_wf_beleggrenze'],
+    ['entfeuchter_kalt_modellbeleg', 'entfeuchter_kalt_modellbeleg'],
+  ];
+  for (const [query, expected] of cases) {
+    const response = await catalogue({q:query, view:'compact', limit:'3'});
+    assert.equal(response.tools[0]?.name, expected, query);
+    assert.equal(findCatalogueTools(compact, {query})[0]?.name, expected, query);
+  }
 });
 
 test('a catalogue record cannot nominate a foreign URL, input query, or unreviewed fragment as its guide', () => {
