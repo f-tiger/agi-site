@@ -1,4 +1,6 @@
 import {catalogStatus} from './catalog-status.mjs';
+import { buildAgentSelectionPages } from './agent-selection-pages.mjs';
+import { selectPremiumAgents } from './agent-premium-selection.mjs';
 // Agents surface (2026-09-22 rebuild, owner: "整体重构下 agents" + "面向不同的用户分类清晰" + "做流量 GEO 优化";
 // third round the same day: "首页不够凸显 agents / 分类样式不够好看、不能突出重点 / 没有搜索").
 // Every page here goes through build.mjs's own layout() — same stylesheet, rail, language switch, footer, beacon —
@@ -109,6 +111,11 @@ export function buildAgentPages(ctx) {
   const datasetLd = () => ({ '@context': 'https://schema.org', '@type': 'Dataset', name: T('Baipiaoji agents and MCP directory', '白嫖计 Agent 与 MCP 目录数据集'), description: T(`${agents.length} AI agents, MCP servers and agent platforms with official source URLs, first-seen dates and per-URL check dates. Own fields are CC BY 4.0; descriptions of registry-origin records are the publishers’ own words.`, `${agents.length} 条 AI Agent、MCP 服务器与 Agent 平台记录，带官方来源 URL、首见日期与每条 URL 的核验日期。本站字段 CC BY 4.0；注册表来源记录的描述为发布者原文。`), url: url('/agents/'), dateModified: registry.checked, isAccessibleForFree: true, creator: { '@type': 'Organization', name: 'Baipiaoji', url: site.base_url }, distribution: [{ '@type': 'DataDownload', encodingFormat: 'application/json', contentUrl: `${site.base_url}${zh ? '' : '/en'}/agents.json` }, { '@type': 'DataDownload', encodingFormat: 'application/json', contentUrl: `${site.base_url}/api/mcp`, name: 'MCP server (monitor_new_agents, get_agent)' }] });
   const doorsNav = (except) => `<p class="coverage aw-doors-inline">${AUDIENCES.filter((x) => x !== except).map((x) => `<a href="${url(`/agents/for/${x}.html`)}">${esc(audLabel(x))} (${byAud.get(x).length})</a>`).join(' · ')}</p>`;
 
+  const selection = selectPremiumAgents(registry);
+  const selected = buildAgentSelectionPages({
+    selection, zh, site, url, vocab, lay, railOf, crumb, ld, esc, nm, L, hasPage, pageOf, tool, write, pushPage,
+  });
+
   // ── hub ───────────────────────────────────────────────────────────────
   {
     const path = '/agents/';
@@ -122,6 +129,7 @@ export function buildAgentPages(ctx) {
     <h1>${esc(h1)}</h1>
     <p class="answer">${esc(answer)}</p>
     ${asOf()}
+    ${selected.count ? `<p><a class="go" href="${url('/agents/selected/')}">${T(`Browse ${n(selected.count)} selected tools →`, `浏览 ${n(selected.count)} 个精选工具 →`)}</a></p>` : ''}
     ${searchBox(true)}
     <dl class="stats">
       <div><dt>${T('Records', '记录')}</dt><dd class="num">${agents.length}</dd></div>

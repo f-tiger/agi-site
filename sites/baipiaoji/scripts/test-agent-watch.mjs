@@ -19,6 +19,7 @@ import { EVENTS } from '../functions/api/hit.js';
 import { applyCheck, pickBatch } from './agent-watch-verify.mjs';
 import { renderFields, validateCandidate, decide, extractOfficial } from './agent-watch-admit.mjs';
 import { slugOf, candidateOf, dedupe } from './agent-watch-registry-pull.mjs';
+import { selectPremiumAgents } from './agent-premium-selection.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 let bad = 0;
@@ -147,6 +148,34 @@ if (process.argv.includes('--dist')) {
     }
   }
   const sm = read('sitemap.xml');
+  const expectedSelection = selectPremiumAgents(reg);
+  for (const lang of ['', 'en/']) {
+    const stem = lang + 'agents/selected';
+    const origin = site.base_url + (lang ? '/en' : '');
+    const hub = read(lang + 'agents/index.html');
+    const data = JSON.parse(read(stem + '.json'));
+    ck(data.count === expectedSelection.selected.length && data.count <= data.target, `${stem}.json must reflect the selected sources`);
+    ck(data.checked === reg.checked && data.agents.length === data.count && data.pageSize === 40, `${stem}.json snapshot or page size mismatch`);
+    ck(data.agents.map(a => a.slug).join(' ') === expectedSelection.selected.map(a => a.slug).join(' '), `${stem}.json ordering or identity mismatch`);
+    ck(data.agents.every(a => a.sourceUrl.startsWith('https://') && a.sourceChecked && a.transportLabel && a.audience.length), `${stem}.json lost source, access or task evidence`);
+    ck(data.agents.filter(a => a.origin === 'mcp-registry').every(a => a.registry?.name && a.registry.version && a.repoChecked), `${stem}.json lost MCP registry or repository evidence`);
+    ck(data.count === 0 || hub.includes(`href="${origin}/agents/selected/"`), `${stem} missing a directory hub link`);
+    const landing = read(stem + '/index.html');
+    ck(has(stem + '/index.md') && landing.includes(`${origin}/agents/selected.json`), `${stem} missing JSON/Markdown discovery`);
+    ck(landing.includes(`<link rel="canonical" href="${origin}/agents/selected/">`) && landing.includes('hreflang="x-default"'), `${stem} canonical and alternates do not match`);
+    ck(sm.includes(`<loc>${origin}/agents/selected/</loc>`), `${stem} missing from the sitemap`);
+    if (lang) ck(!CJK.test(enText(landing)), `${stem} leaked Chinese into the English view`);
+    const slugs = [];
+    for (let page = 1; page <= Math.ceil(data.count / data.pageSize); page++) {
+      const html = page === 1 ? landing : read(`${stem}/page-${page}.html`);
+      const here = Array.from(html.matchAll(/data-selected-slug="([^"]+)"/g), m => m[1]);
+      ck(here.length > 0 && here.length <= data.pageSize, `${stem} page ${page} row count is invalid`);
+      ck(/name="robots" content="noindex,follow"/.test(html) === (page > 1), `${stem} page ${page} indexability mismatch`);
+      if (page > 1) ck(!sm.includes(`<loc>${origin}/agents/selected/page-${page}</loc>`) && !has(`${stem}/page-${page}.md`), `${stem} paginated results should not enter sitemap or Markdown mirrors`);
+      slugs.push(...here);
+    }
+    ck(slugs.join(' ') === data.agents.map(a => a.slug).join(' '), `${stem} static source coverage is incomplete`);
+  }
   for (const pre of [site.base_url, `${site.base_url}/en`]) {
     ck(sm.includes(`<loc>${pre}/agents/</loc>`), `sitemap lacks ${pre}/agents/`);
     for (const k of AUDIENCES) ck(sm.includes(`<loc>${pre}/agents/for/${k}</loc>`), `sitemap lacks ${pre}/agents/for/${k}`);

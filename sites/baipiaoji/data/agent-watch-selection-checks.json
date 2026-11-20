@@ -1,0 +1,14 @@
+{
+  "source": "Read-only editorial recheck of official documentation; two independent GET requests, including the directory verifier user agent.",
+  "sample_checked": "2026-11-20",
+  "sample_size": 14,
+  "sample_reachable": 13,
+  "confirmed_source_failures": [
+    {
+      "slug": "safe4-safe4",
+      "source_url": "https://api.safe4.ai/docs",
+      "checked": "2026-11-20",
+      "http": 404
+    }
+  ]
+}
