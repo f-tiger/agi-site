@@ -1350,7 +1350,7 @@ Dokumentierte Düsen- und Saugkopfbreiten
 
 Die Nennbreite dient der Vorauswahl. Prüfe am Fenster auch die tatsächliche Außenbreite von Saugkopf und Gehäuse sowie Hindernisse beim Ansetzen und Kippen. Reicht dein vorhandener Abzieher oder ein Tuch, kannst du es weiterverwenden.
 
-Die Bosch-Maße stehen in der [deutschen Originalanleitung F 016 L81 778 auf Seite 4](https://www.bosch-diy.com/storage/de-de/glassvac-100045834-original-pdf-396340-de-de.pdf). [Lieferumfang des Bosch-Sets prüfen](https://getecoback.com/produkte.html#produkt-bosch-glassvac-set) oder [die vier Pakete vergleichen](https://getecoback.com/produkte.html#modelle-fenstersauger).
+Die Bosch-Maße stehen in der [deutschen Originalanleitung F 016 L81 778 auf Seite 4](https://www.bosch-diy.com/storage/de-de/glassvac-100045834-original-pdf-396340-de-de.pdf). [Lieferumfang des Bosch-Sets prüfen](https://getecoback.com/produkte.html#produkt-bosch-glassvac-set) oder [Fenstersauger-Modelle und Lieferumfang vergleichen](https://getecoback.com/produkte.html#modelle-fenstersauger).
 
 ### 170-mm-Abziehlippen am genauen Gerät zuordnen
 
