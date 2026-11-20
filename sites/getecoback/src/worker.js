@@ -1,4 +1,4 @@
-import {indexCatalogue, findCatalogueTools, toolGuidePath} from '../site/assets/mcp-catalog-search.mjs';
+import {indexCatalogue, findCatalogueTools} from '../site/assets/mcp-catalog-search.mjs';
 import {pageTools} from './mcp-pagination.mjs';
 import {expandedTools, expandedCatalog, expandedCall, isExpandedTool, catalogueExample} from './mcp-expanded.mjs';
 import {legacyCatalogueExample} from './mcp-legacy-examples.mjs';
@@ -1115,10 +1115,8 @@ const LEGACY_TASK_EQUIVALENTS = new Map([
 ]);
 const CATALOG_TOOLS = [...LEGACY_MCP_TOOLS.map(tool => ({...tool,category:"Raumklima"})), ...expandedCatalog]
   .map(tool => {
-    const section = tool.page && toolGuidePath({citation_url:tool.page,category:tool.category});
     const equivalent = LEGACY_TASK_EQUIVALENTS.get(tool.name);
-    const guide = section?.includes('#') ? {guide_url:"https://getecoback.com" + section} : {};
-    return {...tool, ...guide, ...(equivalent ? {equivalent_task:equivalent} : {})};
+    return equivalent ? {...tool,equivalent_task:equivalent} : tool;
   });
 const DISTINCT_TASK_TOTAL = new Set(CATALOG_TOOLS.map(tool=>tool.equivalent_task || tool.name)).size;
 const CATALOG_INDEX = indexCatalogue(CATALOG_TOOLS);

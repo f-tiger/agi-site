@@ -301,6 +301,7 @@ APPLIANCE_EVIDENCE = '''
     <li>Für den Kärcher WV 8 Signature Line (1.633-785.0) führt er die schmale Abziehlippe 2.633-513.0 in der <a href="https://www.karcher.com/de/de/home-and-garden/produkte/wv-4-4-wv-5-ultra-wv-6-wv-7-wv-8-abziehlippen-170-mm-p26335130">entsprechenden Kompatibilitätsliste</a>.</li>
   </ul>
   <p>Für die gekreuzten Kombinationen liefern diese Listen keinen Beleg. Stelle die Bestellung zurück, wenn die Originaldüse oder Teilenummer offen ist. Deutsche Herstellerlisten geprüft am <time datetime="2026-11-20">20. November 2026</time>.</p>
+  <p><a href="#modelle-fenstersauger">Fenstersauger-Modelle und Lieferumfang vergleichen</a></p>
 </section>
 <section id="kaercher-fenstersauger-einsatz-und-hinweise" class="pc-card" aria-labelledby="kaercher-fenstersauger-einsatz-titel">
   <h3 id="kaercher-fenstersauger-einsatz-titel">Kärcher-Fenstersauger vor dem Kauf und beim Einsatz prüfen</h3>

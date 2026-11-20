@@ -1345,6 +1345,8 @@ Die gleiche Breite reicht für die Ersatzteilwahl nicht aus. Prüfe die vollstä
 
 Für die gekreuzten Kombinationen liefern diese Listen keinen Beleg. Stelle die Bestellung zurück, wenn die Originaldüse oder Teilenummer offen ist. Deutsche Herstellerlisten geprüft am 20. November 2026.
 
+[Fenstersauger-Modelle und Lieferumfang vergleichen](https://getecoback.com/produkte.html#modelle-fenstersauger)
+
 ### Kärcher-Fenstersauger vor dem Kauf und beim Einsatz prüfen
 
 Vergleiche die Artikelnummer am Gerät oder an der Verpackung mit der deutschen Produktseite. Die folgenden Hinweise gehören zu diesen Geräteausführungen und den dort verlinkten Anleitungen. Stand 20.11.2026.
