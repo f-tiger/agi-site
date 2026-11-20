@@ -3,6 +3,7 @@ import datetime as dt
 from html.parser import HTMLParser
 import json
 from pathlib import Path
+import re
 import tempfile
 import unittest
 
@@ -65,18 +66,29 @@ class CatalogTest(unittest.TestCase):
     def test_window_vacuum_width_example_keeps_package_evidence_and_no_purchase_path(self):
         data=C.load()
         html=C.render(data,dt.date(2026,11,20))
-        self.assertEqual(Document(html).ids.count('fenstersauger-duesenbreite'),1)
+        ids=Document(html).ids
+        self.assertEqual(ids.count('fenstersauger-duesenbreite'),1)
         answer=html.split('id="fenstersauger-duesenbreite"',1)[1].split('id="fenstersauger-abziehlippen"',1)[0]
-        for package, widths in [('1.633-662.0','280 mm'),('1.633-698.0','170 mm / 280 mm'),
-                                ('1.633-785.0','170 mm / 280 mm'),('06008B7000','133 mm / 266 mm')]:
-            self.assertIn(f'{package}</a></th><td>{widths}</td>',answer)
+        models=[('kaercher-wv2-multi','1.633-662.0','280 mm'),
+                ('kaercher-wv3-precision','1.633-698.0','170 mm / 280 mm'),
+                ('kaercher-wv8-signature','1.633-785.0','170 mm / 280 mm'),
+                ('bosch-glassvac-set','06008B7000','133 mm / 266 mm')]
+        answer_links=[link.get('href') for link in Document(answer).links]
+        for model, package, widths in models:
+            target='produkt-'+model
+            self.assertRegex(answer,fr'<th scope="row"><a href="#{target}">[^<]+{re.escape(package)}</a><br><small>Quelle: <a [^>]+>[^<]+</a></small></th><td>{widths}</td>')
+            self.assertEqual(answer_links.count('#'+target),1)
+            self.assertEqual(ids.count(target),1)
         sources=[p['source'] for p in data['products'] if p['category']=='fenstersauger']
         sources.append('https://www.bosch-diy.com/storage/de-de/glassvac-100045834-original-pdf-396340-de-de.pdf')
         for href in sources+['#modelle-fenstersauger']:
-            self.assertIn(href,[link.get('href') for link in Document(answer).links])
+            self.assertIn(href,answer_links)
         markdown=C.to_markdown(html,C.ROUTE,'de')
         readable=markdown.split('Welche Saugdüse kommt für ein schmales Glasfeld infrage?',1)[1].split(
             '170-mm-Abziehlippen am genauen Gerät zuordnen',1)[0]
+        for model, package, widths in models:
+            self.assertIn(f'{package}]({C.CANONICAL}#produkt-{model}) Quelle:',readable)
+            self.assertIn(f' | {widths} |',readable)
         for surface in (answer,readable):
             for term in ('170 mm Glasbreite','5 mm Reserve je Seite','160 mm','133-mm-Saugkopf',
                          'tatsächliche Außenbreite','vorhandener Abzieher oder ein Tuch',*sources):

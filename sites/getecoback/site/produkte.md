@@ -1343,14 +1343,14 @@ Dokumentierte Düsen- und Saugkopfbreiten
 
 | Deutsches Paket | Nennbreiten |
 | --- | --- |
-| [Kärcher WV 2 Plus Multi Edition, 1.633-662.0](https://www.karcher.com/de/de/home-and-garden/produkte/wv-2-plus-multi-edition-p16336620) | 280 mm |
-| [Kärcher WV 3 Comfort Precision+ Black, 1.633-698.0](https://www.karcher.com/de/de/home-and-garden/produkte/wv-3-comfort-precision-black-p16336980) | 170 mm / 280 mm |
-| [Kärcher WV 8 Signature Line, 1.633-785.0](https://www.karcher.com/de/de/home-and-garden/produkte/wv-8-signature-line-p16337850) | 170 mm / 280 mm |
-| [Bosch GlassVAC Set, 06008B7000](https://www.bosch-diy.com/de/de/p/glassvac-06008b7000) | 133 mm / 266 mm |
+| [Kärcher WV 2 Plus Multi Edition, 1.633-662.0](https://getecoback.com/produkte.html#produkt-kaercher-wv2-multi) Quelle: [Kärcher WV 2 Produktseite](https://www.karcher.com/de/de/home-and-garden/produkte/wv-2-plus-multi-edition-p16336620) | 280 mm |
+| [Kärcher WV 3 Comfort Precision+ Black, 1.633-698.0](https://getecoback.com/produkte.html#produkt-kaercher-wv3-precision) Quelle: [Kärcher WV 3 Produktseite](https://www.karcher.com/de/de/home-and-garden/produkte/wv-3-comfort-precision-black-p16336980) | 170 mm / 280 mm |
+| [Kärcher WV 8 Signature Line, 1.633-785.0](https://getecoback.com/produkte.html#produkt-kaercher-wv8-signature) Quelle: [Kärcher WV 8 Produktseite](https://www.karcher.com/de/de/home-and-garden/produkte/wv-8-signature-line-p16337850) | 170 mm / 280 mm |
+| [Bosch GlassVAC Set, 06008B7000](https://getecoback.com/produkte.html#produkt-bosch-glassvac-set) Quelle: [Bosch GlassVAC Set Produktseite](https://www.bosch-diy.com/de/de/p/glassvac-06008b7000) | 133 mm / 266 mm |
 
 Die Nennbreite dient der Vorauswahl. Prüfe am Fenster auch die tatsächliche Außenbreite von Saugkopf und Gehäuse sowie Hindernisse beim Ansetzen und Kippen. Reicht dein vorhandener Abzieher oder ein Tuch, kannst du es weiterverwenden.
 
-Die Bosch-Maße stehen in der [deutschen Originalanleitung F 016 L81 778 auf Seite 4](https://www.bosch-diy.com/storage/de-de/glassvac-100045834-original-pdf-396340-de-de.pdf). [Lieferumfang des Bosch-Sets prüfen](https://getecoback.com/produkte.html#produkt-bosch-glassvac-set) oder [Fenstersauger-Modelle und Lieferumfang vergleichen](https://getecoback.com/produkte.html#modelle-fenstersauger).
+Die Bosch-Maße stehen in der [deutschen Originalanleitung F 016 L81 778 auf Seite 4](https://www.bosch-diy.com/storage/de-de/glassvac-100045834-original-pdf-396340-de-de.pdf). [Fenstersauger-Modelle und Lieferumfang vergleichen](https://getecoback.com/produkte.html#modelle-fenstersauger).
 
 ### 170-mm-Abziehlippen am genauen Gerät zuordnen
 

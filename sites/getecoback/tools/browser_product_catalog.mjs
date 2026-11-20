@@ -16,6 +16,12 @@ for(const route of ['index.html','wohnen.html','tools.html']){const html=fs.read
 const executablePath=process.env.CHROMIUM_PATH||process.env.PILOT_CHROMIUM;
 const localTools=['luftreiniger','hygrometer','dampfreiniger','fenstersauger','nass-trockensauger','bodenstaubsauger','wasserkocher','heissluftfritteusen','kontaktgrills'];
 const reusedTools={ventilatoren:'/guide/stromkosten-rechner.html',heizluefter:'/guide/heizluefter-stromverbrauch.html#eb-heater-cost',waeschetrockner:'/waeschetrockner-oder-luftentfeuchter.html#laundry-check'};
+const windowModels=[
+ {id:'kaercher-wv2-multi',model:'Kärcher WV 2 Plus Multi Edition, 1.633-662.0',widths:'280 mm',source:'Kärcher WV 2 Produktseite'},
+ {id:'kaercher-wv3-precision',model:'Kärcher WV 3 Comfort Precision+ Black, 1.633-698.0',widths:'170 mm / 280 mm',source:'Kärcher WV 3 Produktseite'},
+ {id:'kaercher-wv8-signature',model:'Kärcher WV 8 Signature Line, 1.633-785.0',widths:'170 mm / 280 mm',source:'Kärcher WV 8 Produktseite'},
+ {id:'bosch-glassvac-set',model:'Bosch GlassVAC Set, 06008B7000',widths:'133 mm / 266 mm',source:'Bosch GlassVAC Set Produktseite'},
+];
 const ownCases=[
  {category:'luftreiniger',values:{length:'5',width:'4',height:'2.5',changes:'4'},expect:/200 m³\/h/},
  {category:'hygrometer',values:{readingA:'40',readingB:'55'},expect:/15 Prozentpunkte/},
@@ -95,11 +101,27 @@ try{
   const fixedNav=await page.locator('nav.eb-nav').boundingBox();
   assert.ok(paneBox&&paneBox.y>=(fixedNav?fixedNav.y+fixedNav.height:0)&&paneBox.y<450,'Width answer hidden below navigation');
   assert.equal(await page.locator('head link[rel=canonical]').getAttribute('href'),origin+'/produkte.html');
-  assert.equal(await page.locator('#fenstersauger-belege tbody tr').count(),4);
+  const windowTable=page.getByRole('region',{name:'Düsenbreiten der deutschen Fenstersauger-Pakete'});
+  const windowRows=windowTable.locator('tbody tr');
+  assert.equal(await windowRows.count(),4);
+  assert.equal(await windowTable.getAttribute('tabindex'),'0');
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
-  await page.locator('#fenstersauger-belege a[href="#produkt-bosch-glassvac-set"]').click();
-  await page.waitForURL(url=>url.hash==='#produkt-bosch-glassvac-set');
-  assert.ok(await page.locator('#produkt-bosch-glassvac-set').isVisible());
+  for(const {id,model,widths,source} of windowModels){
+   const target='#produkt-'+id;
+   const row=windowRows.filter({has:page.getByRole('link',{name:model,exact:true})});
+   const modelLink=row.getByRole('rowheader').getByRole('link',{name:model,exact:true});
+   assert.equal(await modelLink.getAttribute('href'),target);
+   assert.equal(await row.getByRole('cell',{name:widths,exact:true}).count(),1);
+   assert.equal(await row.getByRole('link',{name:source,exact:true}).getAttribute('href'),data.products.find(p=>p.id===id).source);
+   assert.equal(await page.locator(`#fenstersauger-belege a[href="${target}"]`).count(),1);
+   await modelLink.click();
+   await page.waitForURL(WINDOW_ENTRY_DOCUMENT+target);
+   const card=page.locator(target);
+   assert.ok(await card.isVisible());
+   const cardBox=await card.boundingBox();
+   assert.ok(cardBox&&cardBox.y>=(fixedNav?fixedNav.y+fixedNav.height:0)&&cardBox.y<450,'Model card hidden below navigation: '+id);
+   await page.goto(WINDOW_ENTRY_URL);
+  }
   await page.goto(origin+'/produkte.html?__probe=1');
   if(javaScriptEnabled){
    await page.locator('#product-filters').waitFor({state:'visible'});
@@ -238,7 +260,7 @@ try{
   assert(target.top>=target.nav-1,'Category anchor hidden below fixed navigation');
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
   assert.deepEqual(errors,[]);
-  cases.push({width,javaScriptEnabled,products:data.products.length,categories:data.categories.length,merchantSearches:expected.length,blockedWrites:writes,localTools:9,reusedTools:3,defaultSubmissions,independentSubmissions,invalidSubmissions,pass:true});
+  cases.push({width,javaScriptEnabled,products:data.products.length,categories:data.categories.length,merchantSearches:expected.length,blockedWrites:writes,localTools:9,reusedTools:3,windowModelLinks:windowModels.length,defaultSubmissions,independentSubmissions,invalidSubmissions,pass:true});
   await context.close();
  }
  const windowEntryCases=[];
