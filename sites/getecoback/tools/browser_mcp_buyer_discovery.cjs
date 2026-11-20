@@ -11,6 +11,13 @@ assert(live || ['127.0.0.1', 'localhost'].includes(base.hostname), 'Use the loca
 
 const cases = [
   {
+    question: 'Brauche ich für das Dachfenster bei der originalen Midea PortaSplit eine Universalhalterung, und ist sie im Lieferumfang?',
+    tool: 'midea_portasplit_fensterhalterung_pruefen',
+    category: 'Quellen & Kaufprüfung',
+    guide: '/guide/midea-portasplit-ausverkauft-alternativen.html#kaufpruefung',
+    heading: 'Welche Alternative passt zu deiner Aufstellung?',
+  },
+  {
     question: 'Passt irgendein 360 Grad Sockel zum Bosch TWK8613P?',
     tool: 'wasserkocher_twk8613p_360_sockel_originalbasis',
     category: 'Wasserkocherbelege',

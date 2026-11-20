@@ -22,6 +22,12 @@ Ein ausverkauftes Angebot sagt nichts über andere Händler oder Varianten aus. 
 
 - **Gesamtkosten statt nur Kaufpreis:** Vergleiche Anschaffung und Betrieb mit deinen Werten im [Lösungsrechner](https://getecoback.com/rechner.html). Kühlleistung in kW ist nicht die elektrische Leistungsaufnahme.
 
+### Welche Halterung gehört zur originalen PortaSplit?
+
+Gleiche für Deutschland die EAN **4048164116478** mit dem konkreten Angebot ab. Im [Midea-Modellvergleich](https://www.midea.com/de/klimatisieren-heizen/portasplit) hat die originale PortaSplit eine eigene EAN. Midea zeigt am Dreh-Kippfenster die Standardhalterung. Für die gezeigten Aufbauten am Dachfenster und am französischen Balkon führt Midea die [Universalhalterung mit EAN 4048164118687](https://www.midea.com/content/dam/midea-aem/de/klimatisieren-heizen/portasplit/universalhalterung/PortaSplit-UM-universal-bracket.pdf) als separates Zubehör.
+
+Klär beim konkreten Händler den Lieferumfang oder prüfe die EAN der bereits vorhandenen Halterung. Gleiche Fenstermaße, Befestigung und erforderliche Erlaubnis mit den [Midea-Unterlagen zur Aufstellung](https://www.midea.com/de/klimatisieren-heizen/portasplit/installation) ab. Warte mit dem Kauf, solange der Halterungsbeleg oder die Eignung am Standort offen ist. Herstellerunterlagen geprüft am 20.11.2026.
+
 ## Clima Butler Split 2 CB-3500: genaue Variante prüfen
 
 Der Fischer-Katalog führt den CB-3500 mit 3,5 kW Kühlleistung und R32. Prüfe Halterung, Leitungsführung und Lieferumfang für genau dieses Gerät. Ältere Geräte mit „Climabutler 2“ im Namen sind nicht automatisch dasselbe Modell. Kläre beim Fachhandel, ob das Angebot für dich bestellbar ist und wann es geliefert werden kann.

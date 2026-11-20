@@ -18,9 +18,9 @@ const names = results => results.map(tool => tool.name);
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 215);
+  assert.equal(withGuides.length, 216);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 11);
+  assert.equal(destinations.size, 12);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);
@@ -300,6 +300,18 @@ const fenstersaugerQuestions = [
   ["Sind die 170 mm Gummilippen von WV3 und WV8 gleich?", "fenstersauger_170mm_abziehlippe_geraetefamilie"],
   ["Kann ich dieselbe Gummilippe für WV3 und WV8 nachkaufen?", "fenstersauger_170mm_abziehlippe_geraetefamilie"],
 ];
+
+test('German PortaSplit bracket questions rank the exact original-model check first', async () => {
+  const tool = 'midea_portasplit_fensterhalterung_pruefen';
+  for (const q of ['Universalhalterung', 'Midea PortaSplit Dachfenster Halterung',
+    'Brauche ich für das Dachfenster bei der originalen Midea PortaSplit eine Universalhalterung, und ist sie im Lieferumfang?',
+    'Midea PortaSplit französisches Balkonfenster Halterung']) {
+    const [first] = (await catalogue({q, view:'compact', limit:'3'})).tools;
+    assert.equal(first?.name, tool, q);
+    assert.equal(toolGuidePath(first), '/guide/midea-portasplit-ausverkauft-alternativen.html#kaufpruefung');
+    assert.equal(findCatalogueTools(compact, {query:q})[0]?.name, tool, q);
+  }
+});
 
 test('German Fenstersauger questions lead to the right decision and owned evidence', async () => {
   for (const [question, expected] of fenstersaugerQuestions) {

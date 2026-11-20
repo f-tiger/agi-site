@@ -9,6 +9,9 @@ const origin = 'https://getecoback.com';
 const products = '/produkte.html';
 const laundry = '/guide/waesche-trocknen-wohnung.html';
 const cellar = '/guide/luftentfeuchter-keller.html';
+const toolPaths = new Map([
+  ['midea_portasplit_fensterhalterung_pruefen', '/guide/midea-portasplit-ausverkauft-alternativen.html#kaufpruefung'],
+]);
 const paths = new Map([
   ['Kaffeemaschinenpflege', `${products}#kaffeevollautomat-pflege-und-kauf`],
   ['Waschmitteldosierung', `${laundry}#waschmittel-automatische-dosierung`],
@@ -52,12 +55,12 @@ test('each mapped tool publishes the same exact evidence link after a real tool 
   const standard = await collectToolPages(cursor => h.rpc('tools/list', cursor ? {cursor} : {}));
   const advertised = new Map(standard.map(tool => [tool.name, tool]));
   const compact = new Map((await h.catalogue({view:'compact'})).tools.map(tool => [tool.name, tool]));
-  const mapped = expandedDefinitions.filter(tool=>paths.has(tool.category));
-  assert.equal(mapped.length, 215);
+  const mapped = expandedDefinitions.filter(tool=>paths.has(tool.category) || toolPaths.has(tool.name));
+  assert.equal(mapped.length, 216);
   assert.equal([...compact.values()].filter(tool=>tool.guide_url).length, mapped.length);
 
   for (const {name, category, page, properties, example} of mapped) {
-    const guidePath = paths.get(category);
+    const guidePath = toolPaths.get(name) ?? paths.get(category);
     const guide = origin + guidePath;
     const citation = origin + page;
     const schema = {type:'object', properties, required:Object.keys(properties), additionalProperties:false};
@@ -86,6 +89,34 @@ test('each mapped tool publishes the same exact evidence link after a real tool 
         assert.deepEqual(actual, expected, `${name}.${key}`);
       }
     }
+  }
+  h.assertNoWrites();
+});
+
+test('PortaSplit checks the original German EAN, window type and the correct bracket evidence independently', async () => {
+  const h = offlineWorker();
+  const name = 'midea_portasplit_fensterhalterung_pruefen';
+  const standard = {angebot_ean:4048164116478,fenster:'dreh_kippfenster',standardhalterung:'im_angebot',universalhalterung:'fehlt'};
+  const check = async (input, expected) => {
+    const result = await h.rpc('tools/call', {name, arguments:{...standard, ...input}});
+    assert.equal(result.isError, false);
+    for (const [key,value] of Object.entries(expected)) assert.equal(result.structuredContent[key], value, key);
+    assert.match(result.structuredContent.grenze, /Fenstermaße.*Befestigung/);
+    assert.equal(result.structuredContent.guide_url, origin + toolPaths.get(name));
+    assert.equal(result.structuredContent.quellen_geprueft_am, '2026-11-20');
+  };
+  await check({}, {status:'halterungsbeleg_vorhanden',halterung_im_herstellerbeispiel:'standardhalterung',universalhalterung_ean:null});
+  await check({standardhalterung:'offen',universalhalterung:'ean_im_angebot'}, {status:'lieferumfang_klaeren'});
+  await check({fenster:'dachfenster'}, {status:'passende_halterung_vor_kauf_klaeren',universalhalterung_ean:4048164118687});
+  await check({fenster:'franzoesischer_balkon',universalhalterung:'ean_separat_vorhanden'}, {status:'halterungsbeleg_vorhanden',halterung_im_herstellerbeispiel:'universalhalterung'});
+  await check({fenster:'dachfenster',universalhalterung:'offen'}, {status:'lieferumfang_klaeren'});
+  await check({fenster:'anders_oder_offen'}, {status:'fenstertyp_mit_anleitung_abgleichen',halterung_im_herstellerbeispiel:null});
+  await check({angebot_ean:0}, {status:'modellnummer_abgleichen',angebot_ean_passt:null});
+  await check({angebot_ean:4048164122424}, {status:'modellnummer_abgleichen',angebot_ean_passt:false,halterung_im_herstellerbeispiel:null});
+  for (const invalid of [{angebot_ean:1234},{angebot_ean:4048164116478.5},{fenster:'balkon'}, {standardhalterung:true}]) {
+    const result = await h.rpc('tools/call', {name, arguments:{...standard, ...invalid}});
+    assert.equal(result.isError, true);
+    assert.equal(result.structuredContent, undefined);
   }
   h.assertNoWrites();
 });
