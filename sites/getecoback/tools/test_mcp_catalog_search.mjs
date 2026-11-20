@@ -214,3 +214,20 @@ test('noun inflection and compound edges work on tools without tailored aliases'
   assert.deepEqual(findCatalogueTools(sample, {query:'Dachfensterrahmen Kantenmass'}), [tool]);
   assert.deepEqual(findCatalogueTools(sample, {query:'Pflanzenstirnwurm Dachgeschosstor'}), []);
 });
+
+test('German buyer queries find the sourced product and maintenance task groups', async () => {
+  const cases = [
+    ["Brauche ich für öffentliches Leitungswasser überhaupt eine Filterkanne oder sollte ich zuerst den Versorger fragen?", "leitungswasser_filterkanne_bedarf_oder_abklaerung"],
+    ["Im Waschbottich steht 40, und zwei Balken sind darunter. Wie lese ich die beiden Angaben richtig?", "waschzeichen_grad_balken_ablesen"],
+    ["Zugluft unter Wohnungseingangstür oder Raumtür, welche Funktion zuerst klären?", "tuerzugluft_raumtuer_wohnungseingang_naechster_schritt"],
+    ["Auf dem Tisch liegt der iRobot-Filterpack 4785887. Mein Roomba j7+ hat keinen Combo-Zusatz. Nennt die deutsche Packliste mein Modell?", "roboter_ersatzfilter_exakte_de_zuordnung"],
+    ["Was bedeutet Klimaklasse SN beim Kühlschrank?", "kuehlschrank_klimaklasse_sn_n_st_t_typenschild"],
+    ["Passt meine 52 mm lange GU10 LED mit 50 mm Durchmesser in die Fassung mit nur 48 mm Platz?", "led_ersatzfassung_schnittstelle_geraetehuelle"],
+  ];
+  for (const [query, expected] of cases) {
+    const client = names(findCatalogueTools(compact,{query}));
+    const response = await catalogue({q:query,view:'compact',limit:'24'});
+    assert.deepEqual(names(response.tools),client.slice(0,24),query);
+    assert.ok(client.slice(0,3).includes(expected),query);
+  }
+});

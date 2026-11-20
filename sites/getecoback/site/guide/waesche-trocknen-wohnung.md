@@ -98,6 +98,22 @@ Beachte die Aufstellhinweise des Hygrometers und miss an vergleichbaren Stellen.
 [Luftentfeuchter für 15 qm →](https://getecoback.com/guide/luftentfeuchter-15-qm.html)
 [Direkte Stromkosten je gleich trockener Wäscheladung vergleichen →](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#laundry-check)
 
+## Wasch- und Trockenzeichen am Pflegeetikett lesen
+
+Lies das Etikett am eigenen Stück vollständig, bevor du die nasse Wäsche aufhängst, liegend trocknest oder in den Trockner gibst. Die GINETEX-Symbole geben die maximal zulässige Behandlung an. Die Grundreihe beginnt beim Waschen, gefolgt von Bleichen, Trocknen, Bügeln und professioneller Textilpflege.
+
+- **Waschbottich:** Die Zahl ist die Obergrenze in Grad Celsius. Ein Balken darunter verlangt eine milde, zwei Balken eine sehr milde Behandlung. Normale Handwäsche und schonende Handwäsche bei Umgebungstemperatur haben eigene Zeichen.
+
+- **Trockner:** Das Quadrat mit Kreis steht für Trommeltrocknung. Ein Punkt bezeichnet einen schonenden Prozess, zwei Punkte den normalen. Das durchgestrichene Trommelzeichen verbietet die Trommeltrocknung. Such in diesem Fall eine eigene Angabe zum natürlichen Trocknen.
+
+- **Natürliches Trocknen:** Im Quadrat ohne Trommelkreis bedeutet ein senkrechter Strich Trocknen auf der Leine und ein waagerechter Strich liegendes Trocknen. Zwei gleichgerichtete Striche bezeichnen die jeweilige Methode aus dem tropfnassen Zustand. Eine Diagonale im oberen Eck steht für Trocknen im Schatten.
+
+- **Bleichen, Bügeln und Fachpflege:** Zwei schräge Striche im Bleichdreieck erlauben nur Sauerstoffbleiche. Für genaue Bügeltemperaturen prüfe die zum Zeichen passende Ausgabe der Legende und lies die Dampfmarkierung mit. Im Kreis kennzeichnen P und F professionelle Trockenreinigung, W professionelle Nassreinigung. Das W-Zeichen allein gibt keine Haushaltswäsche frei.
+
+Auf einem Foto mit abgeschnittenem Unterrand bleibt die Balkenzahl offen. Wenn die Shopbeschreibung dem eingenähten Etikett widerspricht, halte beide Angaben fest und lass sie für die genaue Variante klären. Eine Faserangabe wie „100 % Baumwolle“ beantwortet die Frage nach dem Trocknerzeichen nicht.
+
+Quellen, abgerufen am 20. November 2026. [GINETEX Germany zur Pflegekennzeichnung](https://ginetex.de/pflegekennzeichnung/), [GINETEX Germany zu den einzelnen Pflegesymbolen](https://ginetex.de/pflegekennzeichnung/pflegesymbole/), [ISO 3758:2023](https://www.iso.org/standard/74401.html), [§ 4 Textilkennzeichnungsgesetz zur Faserangabe](https://www.gesetze-im-internet.de/textilkennzg_2016/__4.html).
+
 ## Herstellerdaten vor dem Kauf prüfen
 **So vergleichst du die Herstellerdaten**
 Zwei Beispiele aus vorhandenen Ratgebern, kein vollständiger Marktvergleich und kein EcoBack-Produkttest. Verglichen werden Wasserentzug und Betriebsleistung bei derselben Temperatur und relativen Feuchte (RH). Fehlende Angaben bleiben offen; daraus folgt keine Rangfolge.
