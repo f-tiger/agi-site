@@ -3,7 +3,12 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {searchEntries,normalize} from '../site/assets/demand-discovery.mjs';
 import {ecoPublicBusinessEvent} from '../site/assets/public-engagement.mjs';
-const index=JSON.parse(readFileSync(new URL('../site/search-index.json',import.meta.url)));
+const browsingIndex=readFileSync(new URL('../site/assets/search-index.json',import.meta.url));
+const index=JSON.parse(browsingIndex);
+test('Final browser index preserves the public compatibility index byte-for-byte',()=>{
+ const compatibilityIndex=readFileSync(new URL('../site/search-index.json',import.meta.url));
+ assert(browsingIndex.equals(compatibilityIndex),'Built browser and compatibility search indices differ');
+});
 test('Natural needs, umlauts, case and filler words resolve to reviewed tasks',()=>{
  for(const [q,l,path] of [['Wie kann ich kalte Füße','de','/guide/homeoffice-warm-bleiben.html'],['waesche trocknen','de','/waeschetrockner-oder-luftentfeuchter.html'],['dry my clothes','en','/en/guide/heated-airer-vs-dehumidifier.html'],['replacement filter','en','/en/filter-finder.html'],['vocht','nl','/nl/ventilatie-of-luchtontvochtiger.html'],['CBAM','zh-CN','/zh/agents/cbam-supplier-data.html']])assert(searchEntries(index,q,l).some(h=>h.entry.u===path),q);
  assert.equal(normalize('FÜẞE'),normalize('fuesse'));

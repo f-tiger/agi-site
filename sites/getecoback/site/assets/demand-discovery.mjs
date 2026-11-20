@@ -22,7 +22,7 @@ if(typeof document!=='undefined'){
    if(term.length<2){status.textContent=t.searchHint;return;}
    status.textContent=t.searchLoading;
    try{
-    pending??=fetch('/search-index.json').then(r=>{if(!r.ok)throw Error();return r.json();}).then(x=>{if(!Array.isArray(x))throw Error();return x;});
+    pending??=fetch('/assets/search-index.json').then(r=>{if(!r.ok)throw Error();return r.json();}).then(x=>{if(!Array.isArray(x))throw Error();return x;});
     const index=await pending;if(id!==sequence||query.value.trim()!==term)return;
     for(const {entry} of searchEntries(index,term,lang)){
      const li=document.createElement('li'),a=document.createElement('a'),title=document.createElement('strong');

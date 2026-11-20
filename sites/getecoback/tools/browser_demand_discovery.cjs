@@ -2,8 +2,18 @@ const assert=require('node:assert/strict');
 const {chromium}=require(process.env.NODE_PATH?'playwright':'../../../tools/revenue-studio/node_modules/playwright');
 const {spawn}=require('node:child_process');
 const path=require('node:path');
+const searchAsset='/assets/search-index.json';
+function trackIndexRequests(page,origin){
+ const requests=[];
+ page.on('request',request=>{
+  const url=new URL(request.url());
+  if(url.origin===origin&&(url.pathname===searchAsset||url.pathname==='/search-index.json'))requests.push(url.pathname);
+ });
+ return requests;
+}
 (async()=>{
  const base=process.env.BASE_URL||'http://127.0.0.1:8766';
+ const origin=new URL(base).origin;
  const server=process.env.BASE_URL?null:spawn('python3',['-m','http.server','8766','--directory',path.resolve(__dirname,'../site')],{stdio:'ignore'});
  let browser;let checks=0;
  try{
@@ -21,7 +31,9 @@ const path=require('node:path');
    const c=await browser.newContext({viewport:{width,height:900},userAgent:'getecoback-ci'});
    await c.route('**/*',r=>{const u=new URL(r.request().url());if(u.origin!==new URL(base).origin||r.request().method()!=='GET')return r.abort();if(u.pathname.startsWith('/api/'))return r.fulfill({body:'{}'});return r.continue();});
    const page=await c.newPage();
+   const indexRequests=trackIndexRequests(page,origin);
    for(const [route,lang,q] of cases){
+    indexRequests.length=0;
     await page.goto(base+route+'?__ci=1');
     assert.equal(await page.locator('#eco-discovery').count(),1);
     await page.locator('#eb-search-toggle').click();
@@ -31,12 +43,13 @@ const path=require('node:path');
     assert(await page.locator('#eb-search-panel').evaluate(e=>{const b=e.getBoundingClientRect();return b.left>=0&&b.right<=innerWidth+1;}));
     await page.locator('#eb-search-query').fill(q);
     await page.waitForSelector('#eb-search-results a');
+    assert.deepEqual(indexRequests,[searchAsset],`Static search index request for ${lang} at ${width}px`);
     assert(await page.locator('#eb-search-results a').evaluateAll((a,l)=>a.every(x=>x.hreflang===l),lang));
     await page.locator('#eb-search-query').fill('zzznomatchingneedzzz');
     await page.waitForFunction(()=>!document.querySelector('#eb-search-results a'));
     assert(await page.locator('[data-eco-task]').first().isVisible());
     await page.keyboard.press('Escape');assert(await page.locator('#eb-search-panel').isHidden());
-    assert.equal(await page.evaluate(()=>document.activeElement.id),'eb-search-toggle');checks+=8;
+    assert.equal(await page.evaluate(()=>document.activeElement.id),'eb-search-toggle');checks+=9;
    }
    await c.close();
   }
@@ -54,9 +67,19 @@ const path=require('node:path');
   const page=await c.newPage();await page.goto(base+'/?__ci=1');await page.locator('#eb-search-toggle').click();
   assert(await page.locator('[data-eco-task]').first().isVisible());assert(await page.locator('#eb-search-form').isHidden());
   await c.close();checks+=2;
-  const fail=await browser.newContext();await fail.route('**/search-index.json',r=>r.fulfill({status:503,body:'unavailable'}));
-  const f=await fail.newPage();await f.goto(base+'/?__ci=1');await f.locator('#eb-search-toggle').click();await f.locator('#eb-search-query').fill('waesche');await f.waitForFunction(()=>document.querySelector('#eb-search-status').textContent.includes('nicht verfügbar'));
-  assert(await f.locator('[data-eco-task]').first().isVisible());await fail.close();checks++;
-  console.log(`PASS demand discovery: ${checks} checks, 8 locales, 3 widths, no-JS and failed-index fallback`);
+  const fail=await browser.newContext();
+  const staticIndexRequest=url=>url.origin===origin&&url.pathname===searchAsset;
+  await fail.route(staticIndexRequest,r=>r.fulfill({status:503,body:'unavailable'}));
+  const f=await fail.newPage(),failedIndexRequests=trackIndexRequests(f,origin);
+  await f.goto(base+'/?__ci=1');await f.locator('#eb-search-toggle').click();await f.locator('#eb-search-query').fill('waesche trocknen');await f.waitForFunction(()=>document.querySelector('#eb-search-status').textContent.includes('nicht verfügbar'));
+  assert.deepEqual(failedIndexRequests,[searchAsset]);
+  assert(await f.locator('[data-eco-task]').first().isVisible());
+  assert.equal(await f.locator('#eb-search-results a').count(),0);
+  await fail.unroute(staticIndexRequest);
+  await f.locator('#eb-search-query').press('Enter');
+  await f.locator('#eb-search-results a[href="/waeschetrockner-oder-luftentfeuchter.html"]').waitFor({state:'visible'});
+  assert.deepEqual(failedIndexRequests,[searchAsset,searchAsset]);
+  await fail.close();checks+=5;
+  console.log(`PASS demand discovery: ${checks} checks, 8 locales, 3 widths, no-JS and static-index failure/retry`);
  }finally{if(browser)await browser.close();if(server)server.kill();}
 })().catch(e=>{console.error(e);process.exit(1)});
