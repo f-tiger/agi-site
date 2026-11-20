@@ -103,6 +103,7 @@ test('appliance evidence survives in both the generated mirror and edge fallback
   ['strommess-protokoll', [
    'https://media.miele.com/downloads/e-/de/FS_11105690_DED_DE-de-DE.pdf',
    'https://eur-lex.europa.eu/eli/reg/2025/2262/oj/deu/pdf',
+   'https://publications.europa.eu/resource/cellar/7ab9b082-dd82-11ed-a05c-01aa75ed71a1.0004.01/DOC_1',
   ]],
  ];
  for (const [path, urls] of pages) {
