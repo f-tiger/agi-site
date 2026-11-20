@@ -1,6 +1,6 @@
 import {indexCatalogue, findCatalogueTools} from '../site/assets/mcp-catalog-search.mjs';
 import {pageTools} from './mcp-pagination.mjs';
-import {expandedTools, expandedCatalog, expandedCall, isExpandedTool} from './mcp-expanded.mjs';
+import {expandedTools, expandedCatalog, expandedCall, isExpandedTool, catalogueExample} from './mcp-expanded.mjs';
 import {validMeterEvent, meterReferralReport} from './meter-referral.mjs';
 import {citationUrl} from './agent-sources.mjs';
 import {guidePath, publishedGuides, readGuide} from './mcp-guides.mjs';
@@ -965,7 +965,7 @@ async function trendCompute(env) {
 // MCP server (Model Context Protocol, stateless Streamable HTTP).
 // Each tool returns a usable answer with sources. Publication, calls, website
 // visits and merchant activity are observed separately.
-const MCP_VERSION = "1.7.0";
+const MCP_VERSION = "1.8.0";
 const LEGACY_MCP_TOOLS = [
   drainTool,
   // AI-era round 2026-08-29: the decision LAYER above the per-device
@@ -1097,24 +1097,39 @@ const LEGACY_MCP_TOOLS = [
 ];
 const MCP_TOOLS = [...LEGACY_MCP_TOOLS, ...expandedTools];
 
-const CATALOG_TOOLS = [...LEGACY_MCP_TOOLS.map(tool => ({...tool,category:"Raumklima"})), ...expandedCatalog];
+const LEGACY_TASK_EQUIVALENTS = new Map([
+  ["luftbefeuchter_weisser_belag","befeuchter_weissen_belag_einordnen"],
+]);
+const CATALOG_TOOLS = [...LEGACY_MCP_TOOLS.map(tool => ({...tool,category:"Raumklima"})), ...expandedCatalog]
+  .map(tool => LEGACY_TASK_EQUIVALENTS.has(tool.name)
+    ? {...tool,equivalent_task:LEGACY_TASK_EQUIVALENTS.get(tool.name)}
+    : tool);
+const DISTINCT_TASK_TOTAL = new Set(CATALOG_TOOLS.map(tool=>tool.equivalent_task || tool.name)).size;
 const CATALOG_INDEX = indexCatalogue(CATALOG_TOOLS);
 const COMPACT_INDEX = indexCatalogue(CATALOG_TOOLS.map(tool => ({
   name:tool.name, description:tool.description, category:tool.category,
   ...(tool.page ? {citation_url:"https://getecoback.com" + tool.page} : {}),
+  ...(tool.equivalent_task ? {equivalent_task:tool.equivalent_task} : {}),
 })));
 
 function mcpCatalog(url) {
   const search = url.searchParams.get("q");
   const category = url.searchParams.get("category");
   const name = url.searchParams.get("tool");
-  const compact = url.searchParams.get("view") === "compact";
+  const view = url.searchParams.get("view");
+  if (view === "examples" && !name?.trim()) {
+    return json({error:"tool_required"},400,{"cache-control":"no-store","access-control-allow-origin":"*"});
+  }
+  const compact = view === "compact";
   const filtered = search !== null || category !== null || name !== null;
   const index = compact ? COMPACT_INDEX : CATALOG_INDEX;
-  const tools = filtered
+  const matches = filtered
     ? findCatalogueTools(index,{query:search || "",category:category || "",name})
     : index.map(entry => entry.tool);
-  const result = {version:MCP_VERSION,total:tools.length,tools};
+  const tools = view==="examples"
+    ? matches.map(tool=>({...tool,...catalogueExample(tool.name)}))
+    : matches;
+  const result = {version:MCP_VERSION,total:tools.length,distinctTotal:DISTINCT_TASK_TOTAL,tools};
   if (filtered) result.catalogueTotal = CATALOG_TOOLS.length;
   return new Response(JSON.stringify(result), {
     headers: {
