@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-19T16:58:06Z",
+ "checked": "2026-11-20T16:36:58Z",
  "paths": [
   "/",
   "/llms.txt"
@@ -14,50 +14,67 @@
   "Claude-User",
   "Bingbot"
  ],
- "invalid_sites": [],
+ "invalid_sites": [
+  "agiscorecard",
+  "getecoback",
+  "goldrush",
+  "gridlings",
+  "buysomething",
+  "gamesledger",
+  "after35",
+  "learn",
+  "fanzha",
+  "firstjob",
+  "codeword",
+  "powerbill",
+  "localebatch",
+  "agent-delivery-lab",
+  "venture-lab",
+  "web3-studio"
+ ],
  "blocked_sites": [],
  "sites": [
   {
    "site": "agiscorecard",
    "origin": "https://agiscorecard.com",
-   "valid": true,
+   "valid": false,
    "blocked": [],
    "status": {
     "(browser)": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "GPTBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "OAI-SearchBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ChatGPT-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "PerplexityBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Perplexity-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ClaudeBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Claude-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Bingbot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     }
    }
   },
@@ -108,44 +125,44 @@
   {
    "site": "getecoback",
    "origin": "https://getecoback.com",
-   "valid": true,
+   "valid": false,
    "blocked": [],
    "status": {
     "(browser)": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "GPTBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "OAI-SearchBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ChatGPT-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "PerplexityBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Perplexity-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ClaudeBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Claude-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Bingbot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     }
    }
   },
@@ -196,616 +213,616 @@
   {
    "site": "goldrush",
    "origin": "https://goldrush.agiscorecard.com",
-   "valid": true,
+   "valid": false,
    "blocked": [],
    "status": {
     "(browser)": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "GPTBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "OAI-SearchBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ChatGPT-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "PerplexityBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Perplexity-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ClaudeBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Claude-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Bingbot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     }
    }
   },
   {
    "site": "gridlings",
    "origin": "https://play.agiscorecard.com",
-   "valid": true,
+   "valid": false,
    "blocked": [],
    "status": {
     "(browser)": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "GPTBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "OAI-SearchBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ChatGPT-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "PerplexityBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Perplexity-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ClaudeBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Claude-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Bingbot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     }
    }
   },
   {
    "site": "buysomething",
    "origin": "https://source.agiscorecard.com",
-   "valid": true,
+   "valid": false,
    "blocked": [],
    "status": {
     "(browser)": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "GPTBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "OAI-SearchBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ChatGPT-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "PerplexityBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Perplexity-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ClaudeBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Claude-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Bingbot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     }
    }
   },
   {
    "site": "gamesledger",
    "origin": "https://games.agiscorecard.com",
-   "valid": true,
+   "valid": false,
    "blocked": [],
    "status": {
     "(browser)": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "GPTBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "OAI-SearchBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ChatGPT-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "PerplexityBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Perplexity-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ClaudeBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Claude-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Bingbot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     }
    }
   },
   {
    "site": "after35",
    "origin": "https://35.agiscorecard.com",
-   "valid": true,
+   "valid": false,
    "blocked": [],
    "status": {
     "(browser)": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "GPTBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "OAI-SearchBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ChatGPT-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "PerplexityBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Perplexity-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ClaudeBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Claude-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Bingbot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     }
    }
   },
   {
    "site": "learn",
    "origin": "https://learn.agiscorecard.com",
-   "valid": true,
+   "valid": false,
    "blocked": [],
    "status": {
     "(browser)": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "GPTBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "OAI-SearchBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ChatGPT-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "PerplexityBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Perplexity-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ClaudeBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Claude-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Bingbot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     }
    }
   },
   {
    "site": "fanzha",
    "origin": "https://fanzha.agiscorecard.com",
-   "valid": true,
+   "valid": false,
    "blocked": [],
    "status": {
     "(browser)": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "GPTBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "OAI-SearchBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ChatGPT-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "PerplexityBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Perplexity-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ClaudeBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Claude-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Bingbot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     }
    }
   },
   {
    "site": "firstjob",
    "origin": "https://firstjob.agiscorecard.com",
-   "valid": true,
+   "valid": false,
    "blocked": [],
    "status": {
     "(browser)": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "GPTBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "OAI-SearchBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ChatGPT-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "PerplexityBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Perplexity-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ClaudeBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Claude-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Bingbot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     }
    }
   },
   {
    "site": "codeword",
    "origin": "https://codeword.agiscorecard.com",
-   "valid": true,
+   "valid": false,
    "blocked": [],
    "status": {
     "(browser)": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "GPTBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "OAI-SearchBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ChatGPT-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "PerplexityBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Perplexity-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ClaudeBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Claude-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Bingbot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     }
    }
   },
   {
    "site": "powerbill",
    "origin": "https://powerbill.agiscorecard.com",
-   "valid": true,
+   "valid": false,
    "blocked": [],
    "status": {
     "(browser)": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "GPTBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "OAI-SearchBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ChatGPT-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "PerplexityBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Perplexity-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ClaudeBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Claude-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Bingbot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     }
    }
   },
   {
    "site": "localebatch",
    "origin": "https://localebatch.agiscorecard.com",
-   "valid": true,
+   "valid": false,
    "blocked": [],
    "status": {
     "(browser)": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "GPTBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "OAI-SearchBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ChatGPT-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "PerplexityBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Perplexity-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ClaudeBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Claude-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Bingbot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     }
    }
   },
   {
    "site": "agent-delivery-lab",
    "origin": "https://verify.agiscorecard.com",
-   "valid": true,
+   "valid": false,
    "blocked": [],
    "status": {
     "(browser)": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "GPTBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "OAI-SearchBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ChatGPT-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "PerplexityBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Perplexity-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ClaudeBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Claude-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Bingbot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     }
    }
   },
   {
    "site": "venture-lab",
    "origin": "https://rfqdesk.agiscorecard.com",
-   "valid": true,
+   "valid": false,
    "blocked": [],
    "status": {
     "(browser)": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "GPTBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "OAI-SearchBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ChatGPT-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "PerplexityBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Perplexity-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ClaudeBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Claude-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Bingbot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     }
    }
   },
   {
    "site": "web3-studio",
    "origin": "https://web3.agiscorecard.com",
-   "valid": true,
+   "valid": false,
    "blocked": [],
    "status": {
     "(browser)": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "GPTBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "OAI-SearchBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ChatGPT-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "PerplexityBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Perplexity-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "ClaudeBot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Claude-User": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     },
     "Bingbot": {
-     "/": 200,
-     "/llms.txt": 200
+     "/": 429,
+     "/llms.txt": 429
     }
    }
   }
