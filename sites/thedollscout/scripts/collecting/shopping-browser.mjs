@@ -3,12 +3,14 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
 import {fileURLToPath} from 'node:url';
+import {HOME_PATHS} from '../../collector-assets/site-locale.mjs';
 const {chromium} = createRequire(new URL('../../../../tools/revenue-studio/package.json', import.meta.url))('playwright');
 const args = process.argv.slice(2);
 const root = args.includes('--out') ? path.resolve(args[args.indexOf('--out') + 1]) : fileURLToPath(new URL('../../', import.meta.url));
 const artifacts = args.includes('--artifacts') ? path.resolve(args[args.indexOf('--artifacts') + 1]) : '/tmp/tds-shopping-journey';
 fs.mkdirSync(artifacts, {recursive:true});
 const origin = 'https://thedollscout.com';
+const homeByMarket = {'':HOME_PATHS.en,'/de':HOME_PATHS.de,'/zh':HOME_PATHS.zh};
 const categories = ['display-cases', 'storage-transport', 'plush-display', 'collector-gifts'];
 const types = {'.html': 'text/html', '.js': 'application/javascript', '.mjs': 'application/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.jpg': 'image/jpeg', '.png': 'image/png', '.webp': 'image/webp', '.txt': 'text/plain'};
 const browser = await chromium.launch({headless: true, executablePath: process.env.CHROMIUM_PATH || '/usr/bin/chromium', args: ['--no-sandbox']});
@@ -88,6 +90,57 @@ async function checkJourney(page, prefix, slug, width, javascript=true) {
     }
   }
 }
+async function verifyExpandedCatalogue(page, prefix, interactive) {
+  const catalogue = page.locator('[data-home-catalog]');
+  assert.equal(await catalogue.locator('[data-home-product]').count(),1000,'Full catalogue contains 1,000 distinct models');
+  const item = catalogue.locator('[data-home-product]').filter({has:page.locator('[data-catalog-model-guide]')}).first();
+  const id = await item.getAttribute('data-home-product');
+  const category = await item.getAttribute('data-catalog-category');
+  const link = await item.locator('[data-catalog-model-guide]').getAttribute('href');
+  assert.equal(link,prefix+'/shop/categories/'+category+'#catalog-item-'+id);
+  if (interactive) {
+    await catalogue.locator('[data-catalog-filter]').selectOption(category);
+    assert.ok(await item.isVisible(),'New indexed model is reachable by category');
+    assert.equal(await catalogue.locator('[data-home-product]:visible').count(),await catalogue.locator(`[data-catalog-category="${category}"]`).count());
+    const title = await item.locator('h3').textContent();
+    const probe = title.trim().slice(0,32);
+    await catalogue.locator('[data-catalog-query]').fill(probe);
+    assert.ok(await item.isVisible(),'Added model is findable by its title');
+    await catalogue.locator('[data-catalog-query]').fill('missing-brand-881614229');
+    assert.equal(await catalogue.locator('[data-home-product]:visible').count(),0);
+    await catalogue.locator('[data-catalog-reset]').click();
+    assert.equal(await catalogue.locator('[data-home-product]:visible').count(),1000);
+  }
+  return link;
+}
+if (args.includes('--catalogue-only')) {
+  try {
+    for (const javaScriptEnabled of [true,false]) {
+      const context = await browser.newContext({javaScriptEnabled,viewport:{width:390,height:844}});
+      await serve(context);
+      const page = await context.newPage();
+      page.on('pageerror',error=>errors.push(error.message));
+      for (const prefix of ['/de','','/zh']) {
+        await page.goto(origin+prefix+'/shop?__ci=1');
+        assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth),'No horizontal page overflow');
+        const link = await verifyExpandedCatalogue(page,prefix,javaScriptEnabled);
+        await checkMerchants(page,prefix);
+        const destination = new URL(link,origin);
+        destination.searchParams.set('__ci','1');
+        await page.goto(destination.href);
+        assert.equal(await page.locator(destination.hash).count(),1);
+        assert.equal(await page.locator(destination.hash+' [data-catalog-source]').count(),1);
+        assert.ok(await page.locator(destination.hash+' a[data-catalog-link-type]').count());
+      }
+      await context.close();
+    }
+    assert.deepEqual(errors,[]);
+    assert.deepEqual(missing,[]);
+    assert.ok(!apiRequests.includes('/api/ev'));
+    console.log('1,000 products verified in EN, DE and ZH at 390px with and without JavaScript. No production requests.');
+  } finally {await browser.close();}
+  process.exit(0);
+}
 try {
   const context = await browser.newContext({viewport: {width: 390, height: 844}});
   await serve(context);
@@ -97,7 +150,7 @@ try {
     await page.setViewportSize({width, height: width <= 390 ? 844 : 1000});
     for (const prefix of ['', '/de', '/zh']) {
       for (const slug of ['/', '/shop', ...categories.map(id => '/shop/' + id)]) {
-        const pathname = prefix + slug;
+        const pathname = slug === '/' ? homeByMarket[prefix] : prefix + slug;
         await page.goto(origin + pathname + '?__ci=1');
         await page.waitForLoadState('networkidle');
         assert.equal(await page.locator('h1').count(), 1, pathname);
@@ -109,7 +162,7 @@ try {
         assert.ok(await amazon.locator('a[rel~="sponsored"]').count() > 0, 'Primary section has Amazon exits');
         if (slug === '/shop') {
           const catalogue=page.locator('[data-home-catalog]');
-          assert.equal(await catalogue.locator('[data-home-product]').count(),100,'Full catalogue contains 100 models');
+          await verifyExpandedCatalogue(page, prefix, width === 390);
           assert.ok(await catalogue.evaluate(el=>el.getBoundingClientRect().top+scrollY) < await amazon.evaluate(el=>el.getBoundingClientRect().top+scrollY),'Home catalogue precedes collector Amazon guides');
         }
         const supplemental = page.locator('[data-shopping-products]');
@@ -151,9 +204,19 @@ try {
   const staticPage = await nojs.newPage();
   await staticPage.goto(origin + '/shop?__ci=1');
   for (const category of categories) assert.ok(await staticPage.locator(`a[href="/shop/${category}"]`).count() > 0);
+  const staticCatalogue = staticPage.locator('[data-home-catalog]');
+  assert.equal(await staticCatalogue.locator('[data-home-product]').count(),1000);
+  const model = staticCatalogue.locator('[data-home-product]').filter({has:staticPage.locator('[data-catalog-model-guide]')}).first();
+  const card = '#catalog-item-'+await model.getAttribute('data-home-product');
+  const detail = new URL(await model.locator('[data-catalog-model-guide]').getAttribute('href'),origin);
+  detail.searchParams.set('__ci','1');
+  await staticPage.goto(detail.href);
+  assert.equal(await staticPage.locator(card).count(),1,'Expanded model works through its category without JavaScript');
+  assert.ok(await staticPage.locator(card+' [data-catalog-source]').count());
   for (const prefix of ['', '/de', '/zh']) {
     for (const slug of ['/', ...categories.map(id => '/shop/' + id)]) {
-      await staticPage.goto(origin + prefix + slug + '?__ci=1');
+      const pathname = slug === '/' ? homeByMarket[prefix] : prefix + slug;
+      await staticPage.goto(origin + pathname + '?__ci=1');
       await checkJourney(staticPage, prefix, slug, 1280, false);
       await checkMerchants(staticPage, prefix);
     }

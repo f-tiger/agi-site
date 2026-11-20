@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {normalizeCatalogSearch, filterCatalogItems, installHomeCatalog} from '../../collector-assets/home-catalog.mjs';
-import {validateHomeCatalog, loadHomeCatalog, homeCatalogHTML, homeCatalogText, homeCatalogCategories, homeCatalogFeatured} from './home-catalog.mjs';
+import {HOME_CATALOG_COUNT, validateHomeCatalog, loadHomeCatalog, homeCatalogHTML, homeCatalogText, homeCatalogCategories, homeCatalogFeatured} from './home-catalog.mjs';
 import {merchantURL, shoppingCopy, shoppingHomeHTML, shoppingHomeText, buildShopping} from './shopping.mjs';
 import {origin, route, locales} from './content.mjs';
 import {SHOPPING_IDS, SHOPPING_EXACT_ITEMS, shoppingLinkPayload, decodeShoppingRef} from '../../collector-assets/shopping-contract.mjs';
@@ -53,18 +53,18 @@ test('the input limit never truncates model names or purpose words in the search
   const index=cards(html).map(card=>({id:card.attrs['data-home-product'],category:card.attrs['data-catalog-category'],searchText:card.attrs['data-catalog-search']}));
   const suffix={en:'En',de:'De',zh:'Zh'}[lang];
   for(const product of products){
-   for(const query of [product.brand+' '+product.model,product['use'+suffix]])
+   for(const query of [product.brand+' '+((lang==='de'&&product.deVariant?.model)||product.model),product['use'+suffix]])
     assert.ok(filterCatalogItems(index,{query}).some(item=>item.id===product.id),product.id+' '+lang+' must be findable by model and purpose');
   }
  }
 });
 
-test('the published source data contains 100 unique named models with dated evidence and all three language fields',()=>{
+test('the published source data contains 1,000 unique named models with dated evidence and all three language fields',()=>{
  const data=JSON.parse(fs.readFileSync(new URL('../../content/amazon-products.json',import.meta.url),'utf8'));
- assert.equal(data.count,100);assert.equal(data.products.length,100);assert.ok(data.scope&&data.sourcePolicy);
+ assert.equal(data.count,HOME_CATALOG_COUNT);assert.equal(data.products.length,HOME_CATALOG_COUNT);assert.ok(data.scope&&data.sourcePolicy);
  const products=loadHomeCatalog(),fold=value=>value.normalize('NFKC').trim().toLowerCase().replace(/\s+/g,' ');
- assert.equal(new Set(products.map(p=>fold(p.brand)+'|'+fold(p.model))).size,100);
- assert.equal(new Set(products.map(p=>p.sourceUrl)).size,100,'Distinct source pages for the 100 distinct models');
+ assert.equal(new Set(products.map(p=>fold(p.brand)+'|'+fold(p.model))).size,HOME_CATALOG_COUNT);
+ assert.equal(new Set(products.map(p=>p.sourceUrl)).size,HOME_CATALOG_COUNT,'Distinct source pages for the 1,000 distinct models');
  for(const p of products){
   for(const key of ['name','brand','model','sourceEvidence','useEn','checkEn','useDe','checkDe','useZh','checkZh'])assert.ok(typeof p[key]==='string'&&p[key].trim().length>1,p.id+' '+key);
   assert.match(p.useZh+p.checkZh,/\p{Script=Han}/u,p.id+' Chinese copy');
@@ -82,7 +82,7 @@ test('the published source data contains 100 unique named models with dated evid
  assert.deepEqual(products.filter(p=>p.amazonUSAsin).map(p=>p.id).sort(),['niubee-risers','rub-4l']);
 });
 
-test('nine nonempty categories partition all 100 products exactly once and their displayed counts sum to 100',()=>{
+test('nine nonempty categories partition all 1,000 products exactly once and their displayed counts sum to 1,000',()=>{
  const products=loadHomeCatalog();
  assert.deepEqual(homeCatalogCategories.map(c=>c.id),['storage','workspace','lighting','smart-home','electronics','kitchen','home-care','daily-care','creative']);
  for(const p of products)assert.equal(homeCatalogCategories.filter(c=>c.types.includes(p.category)).length,1,p.id+' category');
@@ -98,14 +98,14 @@ test('nine nonempty categories partition all 100 products exactly once and their
    assert.equal(link.attrs.href,route(lang,'shop/categories/'+group.id));
    if(!compact)assert.equal(cards(html).filter(card=>card.attrs['data-catalog-category']===group.id).length,expected);
   }
-  assert.equal(total,100);
+  assert.equal(total,HOME_CATALOG_COUNT);
  }
 });
 
 test('catalogue admission rejects missing, incomplete, duplicate and unverified exact-product data',()=>{
  assert.equal(validateHomeCatalog(fixtures,{expectedCount:2}).length,2);
  assert.equal(validateHomeCatalog({updated:'2026-11-13',products:fixtures},{expectedCount:2}).length,2);
- assert.throws(()=>validateHomeCatalog(fixtures),'Two genuine fixtures cannot masquerade as the published 100-model catalogue');
+ assert.throws(()=>validateHomeCatalog(fixtures),'Two genuine fixtures cannot masquerade as the published 1,000-model catalogue');
  for(const missing of [undefined,null,{},[],{products:[]}])assert.throws(()=>validateHomeCatalog(missing));
  const edited=(index,patch)=>fixtures.map((row,i)=>i===index?{...row,...patch}:{...row});
  for(const patch of [{id:fixtures[0].id},{brand:fixtures[0].brand,model:fixtures[0].model},{category:'unverified-category'},
@@ -115,15 +115,43 @@ test('catalogue admission rejects missing, incomplete, duplicate and unverified 
  assert.throws(()=>validateHomeCatalog(edited(0,{amazonUSAsin:'B000KN4DQ4'}),{expectedCount:2}),'A known ASIN cannot be attached to the wrong fixed item');
 });
 
-test('the actual catalogue renders 100 real models in every language and a bounded homepage selection',()=>{
- const products=loadHomeCatalog();assert.equal(products.length,100);assert.equal(new Set(products.map(item=>item.id)).size,100);
+test('German searches and evidence point to the verified local models',()=>{
+ const products=loadHomeCatalog();
+ const rendered=homeCatalogHTML({lang:'de',route,esc,merchantURL,disclosure:disclosures.de,products});
+ for(const [id,sku,old,host] of [['b01','7602031P7','7602031U7','www.philips-hue.com'],['d03','WP-660EU','WP-660/','www.waterpik.de']]){
+  const card=cards(rendered).find(c=>c.attrs['data-home-product']===id);
+  const links=anchors(card.html);
+  assert.ok(card.html.includes(sku));
+  assert.ok(new URL(links.find(a=>a.attrs['data-catalog-link-type']==='model-search').attrs.href).searchParams.get('k').includes(sku));
+  const source=new URL(links.find(a=>Object.hasOwn(a.attrs,'data-catalog-source')).attrs.href);
+  assert.equal(source.hostname,host);
+  assert.ok(source.pathname.includes(sku));
+  assert.ok(!card.html.includes(old));
+ }
+ const p=products.find(p=>p.deVariant);
+ for(const change of [{model:''},{sourceUrl:'javascript:alert(1)'},{checked:'2026-02-30'}]){
+  assert.throws(()=>validateHomeCatalog([{...p,deVariant:{...p.deVariant,...change}}],{expectedCount:1}));
+ }
+});
+
+test('the actual catalogue renders 1,000 real models in every language and a bounded homepage selection',()=>{
+ const products=loadHomeCatalog();assert.equal(products.length,HOME_CATALOG_COUNT);assert.equal(new Set(products.map(item=>item.id)).size,HOME_CATALOG_COUNT);
  for(const lang of ['en','de','zh']){
   const html=homeCatalogHTML({lang,route,esc,merchantURL,disclosure:disclosures[lang],products});
-  const full=cards(html);assert.equal(full.length,100,lang+' no-JavaScript model count');
+  const full=cards(html);assert.equal(full.length,HOME_CATALOG_COUNT,lang+' no-JavaScript model count');
   assert.deepEqual(full.map(card=>card.attrs['data-home-product']).sort(),products.map(product=>product.id).sort());
   assert.equal((html.match(/id="home-catalog"/g)||[]).length,1);
   assert.match(html,/<noscript>/,'The no-script catalogue remains an intentional path');
-  for(const card of full){assert.equal(Object.hasOwn(card.attrs,'hidden'),false);assert.ok(anchors(card.html).some(link=>(link.attrs.rel||'').split(/\s+/).includes('sponsored')),'Every model has a usable Amazon destination');}
+  const byId=new Map(products.map((product,i)=>[product.id,i]));
+  for(const card of full){
+   assert.equal(Object.hasOwn(card.attrs,'hidden'),false);
+   const id=card.attrs['data-home-product'],links=anchors(card.html);
+   if(byId.get(id)<100)assert.ok(links.some(link=>(link.attrs.rel||'').split(/\s+/).includes('sponsored')));
+   else {
+    const link=links.find(x=>Object.hasOwn(x.attrs,'data-catalog-model-guide'));
+    assert.equal(link?.attrs.href, route(lang,'shop/categories/'+card.attrs['data-catalog-category'])+'#catalog-item-'+id);
+   }
+  }
   const compact=homeCatalogHTML({lang,route,esc,merchantURL,disclosure:disclosures[lang],compact:true,products});
   const featured=cards(compact);assert.ok(featured.length>=8&&featured.length<=12,lang+' homepage selection');
   assert.equal(new Set(featured.map(card=>card.attrs['data-home-product'])).size,featured.length);
@@ -146,12 +174,12 @@ test('actual shopping page generation wires the full no-JavaScript catalogue and
  buildShopping({emit:(lang,slug,title,description,html,text)=>emitted.set(route(lang,slug),{html,text}),route,esc,locales,origin});
  for(const lang of ['en','de','zh']){
   const hub=emitted.get(route(lang,'shop'));assert.ok(hub);
-  assert.equal(cards(hub.html).length,100);
+  assert.equal(cards(hub.html).length,HOME_CATALOG_COUNT);
   for(const id of SHOPPING_IDS)assert.match(hub.html,new RegExp('data-shopping-card[^>]*data-shopping-item="'+id+'"'),'Original shortlist card '+id);
   const home=shoppingHomeHTML({lang,route,esc}),featured=cards(home);
   assert.ok(featured.length>=9&&featured.length<=12);
   assert.deepEqual(featured.map(card=>card.attrs['data-home-product']),homeCatalogFeatured(products,lang).map(p=>p.id));
-  assert.ok(anchors(home).some(link=>link.attrs.href===route(lang,'shop')&&/100/.test(link.text)),'Homepage opens the complete 100-model catalogue');
+  assert.ok(anchors(home).some(link=>link.attrs.href===route(lang,'shop')&&/1[,.]?000/.test(link.text)),'Homepage opens the complete 1,000-model catalogue');
   for(const text of [hub.text,shoppingHomeText(lang,route,origin)])assert.doesNotMatch(text.join('\n'),/https?:\/\/(?:www\.)?amazon\.|[?&]tag=/i);
  }
 });
@@ -162,7 +190,7 @@ test('model searches stay merchant-only while the two verified US exits retain e
   const html=homeCatalogHTML({lang,route,esc,merchantURL,disclosure:disclosures[lang],compact,products});
   const renderedCards=cards(html),byId=new Map(products.map(product=>[product.id,product]));
   const destinations=renderedCards.flatMap(card=>anchors(card.html).filter(link=>(link.attrs.rel||'').split(/\s+/).includes('sponsored')).map(link=>({...link,product:byId.get(card.attrs['data-home-product'])})));
-  assert.equal(destinations.length,cards(html).length,'One primary Amazon action per model');
+  assert.equal(destinations.length,compact?renderedCards.length:100,'One Amazon action per detailed card');
   const p=route(lang,compact?'':'shop'),exact=[];
   for(const link of destinations){
    const a=link.attrs,url=new URL(a.href),german=lang==='de';
@@ -179,7 +207,7 @@ test('model searches stay merchant-only while the two verified US exits retain e
     assert.equal(url.pathname,'/s');assert.ok(url.searchParams.get('k'));assert.ok(Object.hasOwn(a,'data-shopping-merchant'));
     assert.equal(Object.hasOwn(a,'data-shopping-placement'),false);assert.match(link.text,/search|suchen|suche|搜索|搜尋/i);
     assert.deepEqual(Object.keys(payload).sort(),['e','p','r']);assert.doesNotMatch(JSON.stringify(payload),/[?&]k=|[?&]tag=|PRIVATE/);
-    assert.equal(url.searchParams.get('k'),link.product.brand+' '+link.product.model,'A model search must search its actual named brand and model');
+    assert.equal(url.searchParams.get('k'),link.product.brand+' '+((german&&link.product.deVariant?.model)||link.product.model),'A model search must search its actual named brand and model');
     assert.equal(a['data-catalog-link-type'],'model-search');
    }
   }
@@ -192,7 +220,16 @@ test('machine-readable catalogue keeps source-backed reasoning and canonical pro
  for(const lang of ['en','de','zh']){
   const text=homeCatalogText({lang,route,origin,products}).join('\n'),suffix={en:'En',de:'De',zh:'Zh'}[lang];
   assert.equal(/https?:\/\/(?:www\.)?amazon\.(?:com|de|co\.uk)\b|[?&]tag=/i.test(text),false,'The mirror must omit merchant URLs and affiliate parameters');
-  for(const product of products){assert.ok(text.includes(product.name),product.id);assert.ok(text.includes(product['use'+suffix]),product.id+' purpose');assert.ok(text.includes(product['check'+suffix]),product.id+' limit');}
+  for(const [i,product] of products.entries()){
+   assert.ok(text.includes((lang==='de'&&product.deVariant?.name)||product.name),product.id);
+   if(i<100){
+    assert.ok(text.includes(product['use'+suffix]),product.id+' purpose');
+    assert.ok(text.includes(product['check'+suffix]),product.id+' limit');
+   }else{
+    const group=homeCatalogCategories.find(g=>g.types.includes(product.category));
+    assert.ok(text.includes(origin+route(lang,'shop/categories/'+group.id)+'#catalog-item-'+product.id));
+   }
+  }
   assert.ok(text.includes(origin+route(lang,'shop')));
  }
 });
@@ -228,6 +265,8 @@ function interactionFixture(html,effects){
 
 test('actual local-search handlers never send or store the query, inject markup, or emit a business event',()=>{
  const products=loadHomeCatalog(),html=homeCatalogHTML({lang:'en',route,esc,merchantURL,disclosure:disclosures.en,products}),effects=[];
+ const kitchenCount=products.filter(p=>p.category==='kitchen').length;
+ const careCount=products.filter(p=>['personal-care','bath'].includes(p.category)).length;
  const ui=interactionFixture(html,effects),globals={fetch:ui.forbidden('global.fetch'),XMLHttpRequest:ui.forbidden('XMLHttpRequest'),WebSocket:ui.forbidden('WebSocket'),
   navigator:{sendBeacon:ui.forbidden('navigator.sendBeacon')},window:ui.view,document:ui.document};
  ui.view.dispatchEvent=ui.forbidden('business event');
@@ -236,23 +275,23 @@ test('actual local-search handlers never send or store the query, inject markup,
   for(const [name,value]of Object.entries(globals)){previous.set(name,Object.getOwnPropertyDescriptor(globalThis,name));Object.defineProperty(globalThis,name,{value,configurable:true,writable:true});}
   for(const name of ['localStorage','sessionStorage']){previous.set(name,Object.getOwnPropertyDescriptor(globalThis,name));Object.defineProperty(globalThis,name,{get:ui.forbidden('global.'+name),configurable:true});}
   assert.ok(installHomeCatalog(ui.root));assert.equal(installHomeCatalog(ui.root),null,'Repeated initialization cannot attach duplicate handlers');
-  assert.equal(ui.input.listenerCount(),1);assert.equal(ui.visible().length,100);assert.equal(ui.controls.hidden,false);
+  assert.equal(ui.input.listenerCount(),1);assert.equal(ui.visible().length,HOME_CATALOG_COUNT);assert.equal(ui.controls.hidden,false);
   ui.input.value='OXO';ui.input.emit('input');
-  assert.ok(ui.visible().length>0&&ui.visible().length<100);assert.equal(ui.empty.hidden,true);
+  assert.ok(ui.visible().length>0&&ui.visible().length<HOME_CATALOG_COUNT);assert.equal(ui.empty.hidden,true);
   for(const query of ['<img src=x onerror="PRIVATE_EXECUTION()">','<script>PRIVATE_EXECUTION()</script>','[.*]','PRIVATE_QUERY_SENTINEL','PRIVATE'.repeat(100)]){
    ui.input.value=query;ui.input.emit('input');
    assert.equal(ui.visible().length,0);assert.equal(ui.empty.hidden,false);assert.ok(ui.input.value.length<=80);
    assert.doesNotMatch(ui.count.textContent,/PRIVATE|<img|<script|onerror/);
   }
-  ui.select.value='__proto__';ui.input.value='';ui.select.emit('change');assert.equal(ui.select.value,'all');assert.equal(ui.visible().length,100);
-  ui.select.value='kitchen';ui.select.emit('change');assert.equal(ui.visible().length,10);
-  ui.reset.emit('click');assert.equal(ui.visible().length,100);assert.equal(ui.input.value,'');assert.equal(ui.select.value,'all');assert.equal(ui.reset.disabled,true);assert.equal(ui.input.focused,true);
+  ui.select.value='__proto__';ui.input.value='';ui.select.emit('change');assert.equal(ui.select.value,'all');assert.equal(ui.visible().length,HOME_CATALOG_COUNT);
+  ui.select.value='kitchen';ui.select.emit('change');assert.equal(ui.visible().length,kitchenCount);
+  ui.reset.emit('click');assert.equal(ui.visible().length,HOME_CATALOG_COUNT);assert.equal(ui.input.value,'');assert.equal(ui.select.value,'all');assert.equal(ui.reset.disabled,true);assert.equal(ui.input.focused,true);
   const group=ui.categoryLinks.find(link=>link.dataset.catalogCategoryLink==='daily-care');
-  ui.root.emit('click',{button:0,target:{closest:()=>group}});assert.equal(ui.select.value,'all');assert.equal(ui.visible().length,100,'Canonical guide links navigate without changing local filters');
+  ui.root.emit('click',{button:0,target:{closest:()=>group}});assert.equal(ui.select.value,'all');assert.equal(ui.visible().length,HOME_CATALOG_COUNT,'Canonical guide links navigate without changing local filters');
   group.getAttribute=name=>name==='href'?'#catalog-category-daily-care':null;
-  ui.root.emit('click',{button:0,target:{closest:()=>group}});assert.equal(ui.select.value,'daily-care');assert.equal(ui.visible().length,16,'Existing local fragment links still filter');
-  ui.view.location.hash='#catalog-category-kitchen';ui.view.emit('hashchange');assert.equal(ui.select.value,'kitchen');assert.equal(ui.visible().length,10);
-  ui.view.location.hash='#catalog-item-'+products[0].id;ui.view.emit('hashchange');assert.equal(ui.select.value,'all');assert.equal(ui.visible().length,100);
+  ui.root.emit('click',{button:0,target:{closest:()=>group}});assert.equal(ui.select.value,'daily-care');assert.equal(ui.visible().length,careCount,'Existing local fragment links still filter');
+  ui.view.location.hash='#catalog-category-kitchen';ui.view.emit('hashchange');assert.equal(ui.select.value,'kitchen');assert.equal(ui.visible().length,kitchenCount);
+  ui.view.location.hash='#catalog-item-'+products[0].id;ui.view.emit('hashchange');assert.equal(ui.select.value,'all');assert.equal(ui.visible().length,HOME_CATALOG_COUNT);
   assert.deepEqual(effects,[],'Queries stay in the input and local filtering state');
  }finally{
   for(const [name,descriptor]of previous){if(descriptor)Object.defineProperty(globalThis,name,descriptor);else delete globalThis[name];}

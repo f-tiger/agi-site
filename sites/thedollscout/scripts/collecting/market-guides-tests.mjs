@@ -11,8 +11,8 @@ import {loadHomeCatalog} from './home-catalog.mjs';
 import {createRoutes} from '../../../../tools/fleet/pages-static-routes.mjs';
 const data=loadMarketGuides(),files=new Map();
 const records=buildMarketPages({write:(p,s)=>files.set(p,s)});
-test('eight distinct regional pages preserve original 100-model catalogue and local destinations',()=>{
- assert.equal(loadHomeCatalog().length,100);assert.equal(records.length,8);assert.equal(new Set(records.map(r=>r.url)).size,8);
+test('eight distinct regional pages preserve the 1,000-model catalogue and local destinations',()=>{
+ assert.equal(loadHomeCatalog().length,1000);assert.equal(records.length,8);assert.equal(new Set(records.map(r=>r.url)).size,8);
  for(const r of records){const m=data.markets.find(m=>m.id===r.market),p=new URL(r.url).pathname,h=files.get(p.slice(1)+(r.slug?'.html':'index.html'));
   assert.equal((h.match(/<h1>/g)||[]).length,1);assert(h.includes(`<html lang="${m.lang}">`));assert(h.includes(`rel="canonical" href="${r.url}"`));assert(h.includes('data-market-guide'));
   for(const a of r.alternatives){assert(h.includes(`hreflang="${a.lang}" href="${a.url}"`));const other=records.find(x=>x.url===a.url);assert(other.alternatives.some(x=>x.url===r.url));}
