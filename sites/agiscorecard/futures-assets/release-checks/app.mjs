@@ -150,8 +150,9 @@ function addAdvisories(destination, selection) {
     destination.append(line);
     const ranges = node('ul');
     for (const range of advisory.ranges) {
+      const affected = range.affected || t('Affected range unspecified', '未注明影响范围');
       const fixed = range.fixed ? t('Fixed in ', '修复版本 ') + range.fixed : t('Fix version unspecified', '未注明修复版本');
-      ranges.append(node('li', range.affected + ' · ' + fixed));
+      ranges.append(node('li', affected + ' · ' + fixed));
     }
     destination.append(ranges);
   }
@@ -171,7 +172,9 @@ function renderRun(run) {
   }
   const runStatus = run.status === 'complete' ? t('Complete', '核验完成') : t('Incomplete', '核验不完整');
   const model = run.model || t('Model ID unknown', '模型 ID 未核实');
-  summary.append(node('p', [runStatus, run.cliVersion, model, stamp(run.checkedAt)].filter(Boolean).join(' · ')), list);
+  summary.append(node('p', [runStatus, run.cliVersion, stamp(run.checkedAt)].filter(Boolean).join(' · ')));
+  if (run.requestedModel) summary.append(node('p', t('Requested model', '指定模型') + ' · ' + run.requestedModel));
+  summary.append(node('p', t('Client-reported model', '客户端报告的模型') + ' · ' + model), list);
   return summary;
 }
 

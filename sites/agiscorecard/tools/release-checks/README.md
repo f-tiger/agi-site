@@ -18,4 +18,13 @@ A Linux operator with an existing, authorized signed-in CLI can call the local r
 
 Run `node sites/agiscorecard/tools/release-checks/run-checks.mjs --local codex` or use `--local claude-code` after the stable version appears in the publisher snapshot. The default invocation without arguments inventories the public snapshot and makes zero model requests. Unsupported versions or isolation controls stop the local run.
 
-A receipt is reserved per CLI version and suite before the first model call. A normal run executes at most three fixed tasks. A result records the CLI version, fixture outcomes and any model identifier the client attests. Incomplete runs stay incomplete. The operator reviews the minimized receipt before proposing a public result through a normal PR. Leave private profiles, raw answers and credentials on the operator machine.
+To check a separately announced model on an unchanged installed CLI, pass the exact publisher URL from `models.json` and a model ID corresponding to a fully spelled-out name in its headline. For example:
+
+```sh
+node sites/agiscorecard/tools/release-checks/run-checks.mjs --local claude-code \
+  --announcement https://anthropic.com/claude-fable-and-mythos-5-2 --model claude-fable-5-2
+```
+
+The operator opts into each CLI or model selection under the existing account's allowance and billing terms. The runner reads the URL from the inventory without fetching it. A shared or abbreviated model name and an unsupported selector stop before any model request. The CLI receives the selected ID as its `--model` option. If the CLI omits its effective model ID or reports a different ID, the receipt records the request, any client-reported ID and the private CLI fixture outcome. The announced model's result stays unverified and the runner stops.
+
+A receipt is reserved per CLI version and suite before the first model call. Model-specific runs also distinguish the announcement URL and requested model. A normal run executes at most three fixed tasks. A result records the CLI version, fixture outcomes and any model identifier the client attests. Incomplete runs stay incomplete. The operator reviews the minimized receipt before proposing a public result through a normal PR. Leave private profiles, raw answers and credentials on the operator machine.

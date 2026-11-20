@@ -45,6 +45,32 @@ export function officialRelease(snapshot, client, version) {
     row.checks.publicationTime === true) ?? null;
 }
 
+// Match only a complete, independently spelled-out product name in the publisher headline.
+// A shorthand shared version/edition, a marketing alias or a dated ID requires separate evidence.
+export function announcementTarget(snapshot, client, url, model) {
+  const codex = client === 'codex';
+  if ((!codex && client !== 'claude-code') || typeof model !== 'string' || model.length > 75) return null;
+  const vendor = codex ? 'OpenAI' : 'Anthropic';
+  const official = codex ? /^https:\/\/openai\.com\/index\/[a-z0-9-]+$/ :
+    /^https:\/\/anthropic\.com\/(?:news\/|claude-)[a-z0-9-]+$/;
+  if (!official.test(url)) return null;
+  const row = snapshot.models.find(item => item.vendor === vendor && item.url === url);
+  if (!row) return null;
+  const names = row.title.toLowerCase().replace(/^(introducing|announcing|unveiling|meet) /, '')
+    .replace(/[.!]$/, '').replace(/ (?:is|are) now available$/, '').split(/,? and | & |, /);
+  for (const name of names) {
+    const match = codex ?
+      /^gpt[- ](\d+(?:\.\d+)*o?)(?:[- ](astra|sol|terra|luna|mini|nano|pro|codex(?:-max)?|turbo))?$/.exec(name) :
+      /^claude (opus|sonnet|haiku|fable|mythos) (\d+(?:\.\d+)*)$/.exec(name);
+    if (!match) continue;
+    const id = codex ? ['gpt', ...match.slice(1).filter(Boolean)].join('-') :
+      'claude-' + match[1] + '-' + match[2].replaceAll('.', '-');
+    if (model === id) return {trigger: {kind: 'model_announcement', id: row.url, label: row.title, url: row.url},
+      requestedModel: model};
+  }
+  return null;
+}
+
 function readAnswer(client, output) {
   if (client === 'claude-code') {
     const row = JSON.parse(output);
@@ -115,11 +141,13 @@ function execute(binary, args, options, prompt) {
   });
 }
 
-export async function runOnce({client, release, directory, invoke}) {
+export async function runOnce({client, release, directory, invoke, target = null}) {
   const provider = sources[client].provider;
-  const filename = join(directory, client + '-' + release.version + '-suite-' + suiteVersion + '.json');
+  const suffix = target ? '-' + createHash('sha256').update(target.trigger.url + '\n' + target.requestedModel).digest('hex') : '';
+  const filename = join(directory, client + '-' + release.version + '-suite-' + suiteVersion + suffix + '.json');
   const row = {mode: 'installed_cli', provider, cliVersion: release.version, model: null,
-    trigger: {kind: 'cli_release', id: String(release.id), label: release.tag, url: release.url},
+    ...(target ? {requestedModel: target.requestedModel} : {}),
+    trigger: target?.trigger ?? {kind: 'cli_release', id: String(release.id), label: release.tag, url: release.url},
     suiteVersion, checkedAt: new Date().toISOString(), status: 'incomplete',
     cases: cases.map(fixture => ({id: fixture.id, status: 'unverified'}))};
   // Reserve the receipt before inference. A crash or concurrent launch cannot spend twice.
@@ -130,18 +158,21 @@ export async function runOnce({client, release, directory, invoke}) {
     let result;
     try { result = gradeExecution(client, cases[index].id, await invoke(cases[index].prompt)); }
     catch { result = {status: 'unverified', model: null}; }
-    row.cases[index].status = result.status;
+    const identityUnverified = target && result.model !== target.requestedModel;
+    row.cases[index].status = identityUnverified ? 'unverified' : result.status;
+    if (target) row.cases[index].reportedModel = result.model;
+    if (identityUnverified) row.cases[index].cliOutcome = result.status;
     models.add(result.model);
     row.model = models.size === 1 ? result.model : null;
     if (row.cases.every(item => item.status !== 'unverified')) row.status = 'complete';
     await writeFile(filename + '.tmp', JSON.stringify(row, null, 2) + '\n', {mode: 0o600});
     await rename(filename + '.tmp', filename);
-    if (result.status === 'unverified') break;
+    if (row.cases[index].status === 'unverified') break;
   }
   return row.status;
 }
 
-async function local(client, snapshot) {
+async function local(client, snapshot, target = null) {
   if (!Object.hasOwn(sources, client) || process.platform !== 'linux' || process.env.AGI_LOCAL_RELEASE_CHECKS !== 'true') {
     throw Error('isolated_linux_runner_opt_in_required');
   }
@@ -165,7 +196,8 @@ async function local(client, snapshot) {
     const version = stableVersion(client, await call(['--version']));
     const release = officialRelease(snapshot, client, version);
     if (!release) throw Error('installed_version_has_no_verified_stable_release');
-    const args = client === 'codex' ? codexArgs : claudeArgs;
+    const flags = target ? ['--model', target.requestedModel] : [];
+    const args = client === 'codex' ? [...codexArgs.slice(0, -1), ...flags, '-'] : [...claudeArgs, ...flags];
     const help = await call(client === 'codex' ? ['exec', '--help'] : ['--help']);
     if (args.some(arg => arg.startsWith('--') && !help.includes(arg))) throw Error('unsupported_isolation_controls');
     if (client === 'codex') {
@@ -173,7 +205,7 @@ async function local(client, snapshot) {
       const names = new Set(featureList.split('\n').map(line => line.trim().split(/\s+/)[0]));
       if (!codexDisable.every(name => names.has(name))) throw Error('unsupported_isolation_controls');
     }
-    const status = await runOnce({client, release, directory, invoke: prompt => call(args, prompt)});
+    const status = await runOnce({client, release, target, directory, invoke: prompt => call(args, prompt)});
     console.log(client, release.version, status);
   } finally { await rm(cwd, {recursive: true, force: true}); }
 }
@@ -183,6 +215,7 @@ async function main() {
     console.log(`node run-checks.mjs                     Inventory only. Makes zero model calls.
 node run-checks.mjs --local codex        Check the installed official stable Codex CLI once.
 node run-checks.mjs --local claude-code  Check the installed official stable Claude Code once.
+node run-checks.mjs --local CLIENT --announcement URL --model MODEL  Check a separately announced model.
 
 Local mode needs a dedicated, operator-approved, isolated Linux runner and existing CLI sign-in.
 Set AGI_LOCAL_RELEASE_CHECKS=true, AGI_CHECK_BIN to an absolute native executable, and
@@ -190,8 +223,9 @@ AGI_CHECK_BIN_SHA256 to its independently verified SHA-256. Use AGI_CHECK_PROFIL
 dedicated signed-in CLI profile without custom instructions, hooks, plugins, or MCP servers.
 AGI_CHECK_RECEIPTS_DIR names a separate existing private directory for sanitized receipts.
 Both directories must be outside this checkout, owned by the runner user and restricted to it.
-Invoke after an installed CLI upgrade and snapshot refresh. Each observed installed version gets at
-most three fixed fixture invocations per suite and private receipt directory. A partial or completed
+Invoke after an installed CLI upgrade and snapshot refresh, or select the exact published URL and a
+fully named model in its headline. Each distinct CLI version, suite, announcement and requested model
+gets at most three fixed fixture invocations per private receipt directory. A partial or completed
 receipt suppresses retries. Only reviewed, independently verified receipts belong in public runs.json.
 Version and option failures exit before model use. Local inference uses the runner's existing entitlement.
 Model-announcement dates alone cannot identify the model serving a CLI. Codex exec may omit model ID.`);
@@ -201,6 +235,11 @@ Model-announcement dates alone cannot identify the model serving a CLI. Codex ex
     JSON.parse(await readFile(new URL(name + '.json', assets), 'utf8'))));
   const args = process.argv.slice(2);
   if (args.length === 2 && args[0] === '--local') return local(args[1], releases);
+  if (args.length === 6 && args[0] === '--local' && args[2] === '--announcement' && args[4] === '--model') {
+    const target = announcementTarget(models, args[1], args[3], args[5]);
+    if (!target) throw Error('model_not_explicitly_identified_by_recorded_publisher_announcement');
+    return local(args[1], releases, target);
+  }
   if (args.length !== 0) throw Error('usage_run_checks_or_local_client');
   console.log(JSON.stringify({mode:'inventory_only', releases: releases.sources.reduce((n, s) => n + s.releases.length, 0),
     announcements: models.models.length, publishedResults: published.runs.length, modelInvocations: 0}));
