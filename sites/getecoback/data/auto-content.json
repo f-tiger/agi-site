@@ -741,18 +741,32 @@
       "published": "2026-10-27"
     },
     "/guide/trotec-ttk-72-e-betriebskosten.html": {
-      "modified": "2026-10-24",
+      "modified": "2026-11-20",
       "product": {
         "brand": "Trotec",
-        "checked_at": "2026-10-24T08:11:07.280831+00:00",
+        "checked_at": "2026-11-20T11:45:07.967371+00:00",
         "country": "DE",
         "facts": [
           {
+            "context": "bei 30 °C / 80 % r.F. [l/24h]",
+            "key": "extraction_l_per_day",
+            "label": "Entfeuchtung unter Prüfbedingungen",
+            "unit": "L/24h",
+            "value": 20.0
+          },
+          {
             "context": "",
-            "key": "tank_l",
-            "label": "Wasserbehälter",
-            "unit": "L",
-            "value": 5.5
+            "key": "operating_temperature_min_c",
+            "label": "Betriebstemperatur mindestens",
+            "unit": "°C",
+            "value": 5.0
+          },
+          {
+            "context": "",
+            "key": "operating_temperature_max_c",
+            "label": "Betriebstemperatur höchstens",
+            "unit": "°C",
+            "value": 32.0
           },
           {
             "context": "Herstellerangabe; keine gemessene mittlere Nutzung",
@@ -763,43 +777,50 @@
           },
           {
             "context": "",
-            "key": "operating_temperature_max_c",
-            "label": "Betriebstemperatur höchstens",
-            "unit": "°C",
-            "value": 32.0
+            "key": "plug",
+            "label": "Anschlussstecker",
+            "unit": "",
+            "value": "CEE 7/7"
           },
           {
             "context": "",
-            "key": "operating_temperature_min_c",
-            "label": "Betriebstemperatur mindestens",
-            "unit": "°C",
-            "value": 5.0
+            "key": "tank_l",
+            "label": "Wasserbehälter",
+            "unit": "L",
+            "value": 5.5
           },
           {
-            "context": "30 °C / 80 % r.F.",
-            "key": "extraction_l_per_day",
-            "label": "Entfeuchtung unter Prüfbedingungen",
-            "unit": "L/24h",
-            "value": 20.0
-          },
-          {
-            "context": "Abstand 1 m",
+            "context": "Abstand 1 m [dB(A)]",
             "key": "noise_db",
             "label": "Geräuschangabe",
             "unit": "dB(A)",
             "value": 48.0
+          },
+          {
+            "context": "",
+            "key": "weight_kg",
+            "label": "Gewicht ohne Verpackung",
+            "unit": "kg",
+            "value": 13.0
+          },
+          {
+            "context": "ohne Verpackung",
+            "key": "dimensions_mm",
+            "label": "Abmessungen L × B × H",
+            "unit": "mm",
+            "value": "198 × 330 × 570"
           }
         ],
         "language": "de",
         "market": {
           "currency": "EUR",
-          "plug": null
+          "plug": "CEE 7/7"
         },
         "model": "TTK 72 E",
         "name": "Luftentfeuchter TTK 72 E",
         "power_watts": 320.0,
         "product_url": "https://de.trotec.com/shop/luftentfeuchter-ttk-72-e.html",
-        "source_hash": "ee777d728534aa9987bba5d606dd2c3a68cbd582bda2d882b85a8e8354f39946",
+        "source_hash": "c60848fb9debaf2aa799c4cd8ebf67f132e01c8d48d4a9eaf8747b5f377c6665",
         "source_id": "trotec-de:86b785360a11",
         "source_urls": [
           "https://de.trotec.com/shop/luftentfeuchter-ttk-72-e.html"

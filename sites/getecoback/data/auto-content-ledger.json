@@ -125,6 +125,12 @@
       "at": "2026-11-17T11:56:27Z",
       "country": "DE",
       "route": "/guide/trotec-ttk-127-e-betriebskosten.html"
+    },
+    "2026-11-20": {
+      "action": "update",
+      "at": "2026-11-20T11:45:07Z",
+      "country": "DE",
+      "route": "/guide/trotec-ttk-72-e-betriebskosten.html"
     }
   },
   "pages": {
@@ -209,10 +215,10 @@
       "source_id": "trotec-de:a19d32eb9feb"
     },
     "/guide/trotec-ttk-72-e-betriebskosten.html": {
-      "content_hash": "63d0bdec9f2cd57a67326879c25b23550518c1c67aeeb5f7e433656501901780",
+      "content_hash": "c080825a2349f9ad99fa61377adcdacc33fd159015857f6254f9c999efcdc6f3",
       "country": "DE",
       "created_at": "2026-10-24T08:11:07Z",
-      "modified_at": "2026-10-24T08:11:07Z",
+      "modified_at": "2026-11-20T11:45:07Z",
       "name": "Luftentfeuchter TTK 72 E",
       "source_id": "trotec-de:86b785360a11"
     },
