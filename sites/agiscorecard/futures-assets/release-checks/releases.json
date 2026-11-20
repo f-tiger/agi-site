@@ -1,0 +1,324 @@
+{
+  "version": 1,
+  "checkedAt": "2026-11-20T15:21:56Z",
+  "sources": [
+    {
+      "id": "codex",
+      "name": "Codex CLI",
+      "repo": "openai/codex",
+      "sourceUrl": "https://github.com/openai/codex/releases",
+      "checkedAt": "2026-11-20T15:21:56Z",
+      "lastSuccessAt": "2026-11-20T15:21:56Z",
+      "coverageSince": "2026-11-20T15:21:56Z",
+      "releases": [
+        {
+          "id": 452122665,
+          "tag": "rust-v0.171.0",
+          "version": "0.171.0",
+          "publishedAt": "2026-11-20T00:44:47Z",
+          "url": "https://github.com/openai/codex/releases/tag/rust-v0.171.0",
+          "checks": {
+            "officialSource": true,
+            "stableRelease": true,
+            "publicationTime": true
+          }
+        },
+        {
+          "id": 449494076,
+          "tag": "rust-v0.170.0",
+          "version": "0.170.0",
+          "publishedAt": "2026-11-18T03:40:48Z",
+          "url": "https://github.com/openai/codex/releases/tag/rust-v0.170.0",
+          "checks": {
+            "officialSource": true,
+            "stableRelease": true,
+            "publicationTime": true
+          }
+        },
+        {
+          "id": 449266447,
+          "tag": "rust-v0.169.1",
+          "version": "0.169.1",
+          "publishedAt": "2026-11-17T22:21:10Z",
+          "url": "https://github.com/openai/codex/releases/tag/rust-v0.169.1",
+          "checks": {
+            "officialSource": true,
+            "stableRelease": true,
+            "publicationTime": true
+          }
+        },
+        {
+          "id": 443990865,
+          "tag": "rust-v0.169.0",
+          "version": "0.169.0",
+          "publishedAt": "2026-11-13T08:37:05Z",
+          "url": "https://github.com/openai/codex/releases/tag/rust-v0.169.0",
+          "checks": {
+            "officialSource": true,
+            "stableRelease": true,
+            "publicationTime": true
+          }
+        }
+      ],
+      "error": null,
+      "anchorId": 452208402,
+      "status": "ok",
+      "backlog": null
+    },
+    {
+      "id": "claude-code",
+      "name": "Claude Code",
+      "repo": "anthropics/claude-code",
+      "sourceUrl": "https://github.com/anthropics/claude-code/releases",
+      "checkedAt": "2026-11-20T15:21:56Z",
+      "lastSuccessAt": "2026-11-20T15:21:56Z",
+      "coverageSince": "2026-11-20T15:21:56Z",
+      "releases": [
+        {
+          "id": 451777787,
+          "tag": "v2.1.329",
+          "version": "2.1.329",
+          "publishedAt": "2026-11-19T22:14:41Z",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.329",
+          "checks": {
+            "officialSource": true,
+            "stableRelease": true,
+            "publicationTime": true
+          }
+        },
+        {
+          "id": 450696184,
+          "tag": "v2.1.328",
+          "version": "2.1.328",
+          "publishedAt": "2026-11-19T01:14:04Z",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.328",
+          "checks": {
+            "officialSource": true,
+            "stableRelease": true,
+            "publicationTime": true
+          }
+        },
+        {
+          "id": 449173658,
+          "tag": "v2.1.327",
+          "version": "2.1.327",
+          "publishedAt": "2026-11-17T23:17:45Z",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.327",
+          "checks": {
+            "officialSource": true,
+            "stableRelease": true,
+            "publicationTime": true
+          }
+        },
+        {
+          "id": 447444139,
+          "tag": "v2.1.326",
+          "version": "2.1.326",
+          "publishedAt": "2026-11-16T22:11:05Z",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.326",
+          "checks": {
+            "officialSource": true,
+            "stableRelease": true,
+            "publicationTime": true
+          }
+        },
+        {
+          "id": 444686509,
+          "tag": "v2.1.325",
+          "version": "2.1.325",
+          "publishedAt": "2026-11-13T20:40:01Z",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.325",
+          "checks": {
+            "officialSource": true,
+            "stableRelease": true,
+            "publicationTime": true
+          }
+        },
+        {
+          "id": 443483677,
+          "tag": "v2.1.323",
+          "version": "2.1.323",
+          "publishedAt": "2026-11-12T22:12:13Z",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.323",
+          "checks": {
+            "officialSource": true,
+            "stableRelease": true,
+            "publicationTime": true
+          }
+        },
+        {
+          "id": 439863658,
+          "tag": "v2.1.322",
+          "version": "2.1.322",
+          "publishedAt": "2026-11-10T02:29:43Z",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.322",
+          "checks": {
+            "officialSource": true,
+            "stableRelease": true,
+            "publicationTime": true
+          }
+        },
+        {
+          "id": 439536010,
+          "tag": "v2.1.321",
+          "version": "2.1.321",
+          "publishedAt": "2026-11-09T19:22:30Z",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.321",
+          "checks": {
+            "officialSource": true,
+            "stableRelease": true,
+            "publicationTime": true
+          }
+        },
+        {
+          "id": 435952318,
+          "tag": "v2.1.319",
+          "version": "2.1.319",
+          "publishedAt": "2026-11-06T17:04:01Z",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.319",
+          "checks": {
+            "officialSource": true,
+            "stableRelease": true,
+            "publicationTime": true
+          }
+        },
+        {
+          "id": 433257014,
+          "tag": "v2.1.318",
+          "version": "2.1.318",
+          "publishedAt": "2026-11-04T00:01:03Z",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.318",
+          "checks": {
+            "officialSource": true,
+            "stableRelease": true,
+            "publicationTime": true
+          }
+        },
+        {
+          "id": 432094076,
+          "tag": "v2.1.317",
+          "version": "2.1.317",
+          "publishedAt": "2026-11-03T01:25:46Z",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.317",
+          "checks": {
+            "officialSource": true,
+            "stableRelease": true,
+            "publicationTime": true
+          }
+        },
+        {
+          "id": 429617179,
+          "tag": "v2.1.316",
+          "version": "2.1.316",
+          "publishedAt": "2026-10-31T01:01:35Z",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.316",
+          "checks": {
+            "officialSource": true,
+            "stableRelease": true,
+            "publicationTime": true
+          }
+        },
+        {
+          "id": 428518421,
+          "tag": "v2.1.314",
+          "version": "2.1.314",
+          "publishedAt": "2026-10-30T01:06:26Z",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.314",
+          "checks": {
+            "officialSource": true,
+            "stableRelease": true,
+            "publicationTime": true
+          }
+        },
+        {
+          "id": 425846009,
+          "tag": "v2.1.312",
+          "version": "2.1.312",
+          "publishedAt": "2026-10-27T20:24:20Z",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.312",
+          "checks": {
+            "officialSource": true,
+            "stableRelease": true,
+            "publicationTime": true
+          }
+        },
+        {
+          "id": 424682562,
+          "tag": "v2.1.311",
+          "version": "2.1.311",
+          "publishedAt": "2026-10-26T21:51:23Z",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.311",
+          "checks": {
+            "officialSource": true,
+            "stableRelease": true,
+            "publicationTime": true
+          }
+        },
+        {
+          "id": 422315867,
+          "tag": "v2.1.310",
+          "version": "2.1.310",
+          "publishedAt": "2026-10-23T23:39:00Z",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.310",
+          "checks": {
+            "officialSource": true,
+            "stableRelease": true,
+            "publicationTime": true
+          }
+        },
+        {
+          "id": 421170674,
+          "tag": "v2.1.309",
+          "version": "2.1.309",
+          "publishedAt": "2026-10-22T22:18:57Z",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.309",
+          "checks": {
+            "officialSource": true,
+            "stableRelease": true,
+            "publicationTime": true
+          }
+        },
+        {
+          "id": 420299398,
+          "tag": "v2.1.308",
+          "version": "2.1.308",
+          "publishedAt": "2026-10-22T04:34:55Z",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.308",
+          "checks": {
+            "officialSource": true,
+            "stableRelease": true,
+            "publicationTime": true
+          }
+        },
+        {
+          "id": 420041378,
+          "tag": "v2.1.307",
+          "version": "2.1.307",
+          "publishedAt": "2026-10-21T22:17:02Z",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.307",
+          "checks": {
+            "officialSource": true,
+            "stableRelease": true,
+            "publicationTime": true
+          }
+        },
+        {
+          "id": 419073006,
+          "tag": "v2.1.306",
+          "version": "2.1.306",
+          "publishedAt": "2026-10-21T03:16:31Z",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.306",
+          "checks": {
+            "officialSource": true,
+            "stableRelease": true,
+            "publicationTime": true
+          }
+        }
+      ],
+      "error": null,
+      "anchorId": 451777787,
+      "status": "ok",
+      "backlog": null
+    }
+  ]
+}
