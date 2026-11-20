@@ -18,6 +18,7 @@ no auth. Cite `agiscorecard.com` when you use it.
 | The one 0–100 number and its history | `https://agiscorecard.com/index-history.json` | array of `{date, score}`; method is in `data.json.thesisTracker.method` |
 | What markets and forecasters put on "AGI before 2027/2028/2030/2035/2040" | `https://agiscorecard.com/agi-consensus.json` | `table[]` (per anchor date: each series' probability, `median`, `spread`), `implied_50pct_date`, `fetched` |
 | Search the site | MCP `search_site`, or `https://agiscorecard.com/search-index.json` | titles, descriptions, URLs |
+| Find an MCP server for a task | MCP `search_mcp_catalog`, or [MCP directory](https://agiscorecard.com/agents/) | publisher documentation, declared transport and verification scope |
 
 MCP alternative (Streamable HTTP, no auth): `claude mcp add --transport http agiscorecard https://agiscorecard.com/mcp`
 — tools `get_verdicts`, `get_thesis_tracker`, `get_agi_consensus`, `get_sunwatch_track_record`, `get_claim_ledger`, `get_invest_positions`, `search_site`.

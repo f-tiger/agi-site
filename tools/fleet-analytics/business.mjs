@@ -43,6 +43,10 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
   const affiliate = affiliateEvent(host, detail);
   if (affiliate) return affiliate;
   const name = detail.name;
+  if (host === 'agiscorecard.com' && ['/agents/', '/zh/agents/'].includes(pathname) &&
+      ['mcp_catalog_search', 'mcp_catalog_open'].includes(name)) {
+    return {name, tool_id: 'mcp-directory', repeat: name === 'mcp_catalog_open'};
+  }
   const suiteTool = /^\/(?:en\/)?studio\/ai\/([a-z0-9-]{1,60})$/.exec(pathname);
   if(host==='baipiaoji.com' && suiteTool && /^ai_suite_result_(demo|own)$/.test(name))return {name,tool_id:suiteTool[1],repeat:true};
   if (host === 'baipiaoji.com' && /^\/(?:en\/)?tools\/(chatgpt|kimi|qingying)$/.test(pathname) && name === 'catalog_task_open') {

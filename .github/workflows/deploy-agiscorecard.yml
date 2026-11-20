@@ -173,6 +173,7 @@ jobs:
           node --test tools/test_indexnow.mjs
           python3 tools/gen_feed.py
           python3 tools/gen_agent_surfaces.py
+          python3 tools/gen_search.py
           # /changelog was 2 entries behind its own JSON on 2026-09-26 because nothing regenerated it.
           python3 tools/gen_changelog.py
           # the installable skill must survive the mirror pass with its frontmatter intact
@@ -180,6 +181,10 @@ jobs:
           # grader consensus: selftest + committed JSON must equal a recompute from data.json + independent-grades.json
           python3 tools/gen_grader_consensus.py --selftest
           python3 tools/gen_grader_consensus.py --check
+      - name: Validate the published MCP catalog and its search contract
+        run: |
+          node sites/agiscorecard/tools/mcp-directory/build.mjs --validate
+          node --test sites/agiscorecard/tools/mcp-directory/*.test.mjs
       - name: Build and test Earn video project library
         run: |
           node sites/agiscorecard/tools/earn/build.mjs
@@ -270,6 +275,7 @@ jobs:
           node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps chromium --only-shell
           node tools/fleet-analytics/matrix-browser-test.mjs
           node sites/agiscorecard/tools/navigation/browser-test.mjs
+          node sites/agiscorecard/tools/mcp-directory/browser-test.mjs
           node sites/agiscorecard/tools/browser_home_focus.mjs
           node sites/agiscorecard/tools/foresight/home-rotation.browser.mjs
           node sites/agiscorecard/tools/browser_evidence.mjs
@@ -413,6 +419,8 @@ jobs:
           console.log('Outcome release: static surfaces verified; no business POST or aggregate read performed.');
           JS
 
+      - name: Verify production MCP catalog search without recording QA events
+        run: node sites/agiscorecard/tools/mcp-directory/verify-live.mjs
       - name: Verify live shared navigation and destinations
         run: node sites/agiscorecard/tools/navigation/verify.mjs
 

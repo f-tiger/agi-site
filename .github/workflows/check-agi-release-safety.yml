@@ -11,6 +11,8 @@ on:
       - 'sites/agiscorecard/tools/community/**'
       - 'sites/agiscorecard/tools/infrastructure/**'
       - 'sites/agiscorecard/infrastructure-assets/**'
+      - 'sites/agiscorecard/mcp-directory-assets/**'
+      - 'sites/agiscorecard/tools/mcp-directory/**'
       - 'sites/agiscorecard/tools/analytics-worker/thesis-growth.mjs'
 permissions:
   contents: read
@@ -34,6 +36,10 @@ jobs:
           node tools/member-studio/test-isolation.mjs
           node tools/member-studio/test-failure.mjs
           node --test sites/agiscorecard/tools/infrastructure/test.mjs sites/agiscorecard/tools/infrastructure/thesis.test.mjs
+      - name: Validate the published MCP catalog and its search contract
+        run: |
+          node sites/agiscorecard/tools/mcp-directory/build.mjs --validate
+          node --test sites/agiscorecard/tools/mcp-directory/*.test.mjs
       - name: Install pinned browser test dependencies without lifecycle scripts
         run: |
           npm ci --prefix tools/revenue-studio --ignore-scripts --no-audit --no-fund
@@ -50,6 +56,7 @@ jobs:
       - name: Exercise existing local browser regressions
         run: |
           node sites/agiscorecard/tools/create/browser-test.mjs
+          node sites/agiscorecard/tools/mcp-directory/browser-test.mjs
           node sites/agiscorecard/tools/community/browser-test.mjs
           node sites/agiscorecard/tools/mentor/browser-test.mjs
           node sites/agiscorecard/tools/jarvis/browser-test.mjs

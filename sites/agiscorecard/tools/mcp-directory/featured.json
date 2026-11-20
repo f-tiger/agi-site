@@ -1,0 +1,420 @@
+{
+  "io.github.github/github-mcp-server": {
+    "title": "GitHub",
+    "category": "developer",
+    "documentationUrl": "https://github.com/github/github-mcp-server",
+    "note": "Bring repository, issue and pull request context into code review, with a read-only tool mode available.",
+    "noteZh": "在代码审查时读取仓库、议题和拉取请求，可选只读模式。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.github%2Fgithub-mcp-server/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "remote",
+      "local"
+    ],
+    "repoUrl": "https://github.com/github/github-mcp-server",
+    "watchSlug": "github-mcp-server"
+  },
+  "io.github.upstash/context7": {
+    "title": "Context7",
+    "category": "knowledge",
+    "documentationUrl": "https://github.com/upstash/context7",
+    "note": "Look up library-specific documentation and code examples before generating an implementation.",
+    "noteZh": "编写实现前，查找所用代码库的文档和示例。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.upstash%2Fcontext7/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "remote",
+      "local"
+    ],
+    "repoUrl": "https://github.com/upstash/context7",
+    "watchSlug": "context7"
+  },
+  "com.notion/mcp": {
+    "title": "Notion",
+    "category": "productivity",
+    "documentationUrl": "https://developers.notion.com/guides/mcp/mcp-supported-tools",
+    "note": "Find and update authorized workspace pages, databases and other Notion content.",
+    "noteZh": "查找和更新获授权的 Notion 页面、数据库及其他工作区内容。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/com.notion%2Fmcp/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "remote"
+    ]
+  },
+  "com.figma.mcp/mcp": {
+    "title": "Figma",
+    "category": "design",
+    "documentationUrl": "https://github.com/figma/mcp-server-guide",
+    "note": "Bring design context from a Figma frame or selection into an implementation task.",
+    "noteZh": "将 Figma 指定画板或选区的设计上下文用于界面实现。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/com.figma.mcp%2Fmcp/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "remote"
+    ],
+    "repoUrl": "https://github.com/figma/mcp-server-guide"
+  },
+  "app.linear/linear": {
+    "title": "Linear",
+    "category": "productivity",
+    "documentationUrl": "https://linear.app/docs/mcp",
+    "note": "Find issues, projects and documents, and choose the documented read-only or read-write connection.",
+    "noteZh": "查找议题、项目和文档，可按官方说明选择只读或读写连接。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/app.linear%2Flinear/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "remote"
+    ]
+  },
+  "com.atlassian/atlassian-mcp-server": {
+    "title": "Atlassian Rovo",
+    "category": "productivity",
+    "documentationUrl": "https://support.atlassian.com/atlassian-ai-gateway/docs/get-started-with-the-atlassian-remote-mcp-server/",
+    "note": "Search Jira work items and Confluence pages or update work where the connected account permits it.",
+    "noteZh": "搜索 Jira 工作项和 Confluence 页面，并在账号授权范围内更新工作内容。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/com.atlassian%2Fatlassian-mcp-server/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "remote"
+    ],
+    "repoUrl": "https://github.com/atlassian/atlassian-mcp-server"
+  },
+  "com.supabase/mcp": {
+    "title": "Supabase",
+    "category": "data",
+    "documentationUrl": "https://supabase.com/docs/guides/ai-tools/mcp",
+    "note": "Inspect a project schema and run SQL with options to scope the project and enable read-only use.",
+    "noteZh": "检查项目表结构和运行 SQL，可限定项目并启用只读模式。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/com.supabase%2Fmcp/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "remote",
+      "local"
+    ],
+    "repoUrl": "https://github.com/supabase/mcp",
+    "watchSlug": "supabase-mcp"
+  },
+  "io.github.PostHog/mcp": {
+    "title": "PostHog",
+    "category": "data",
+    "documentationUrl": "https://posthog.com/docs/model-context-protocol/tools",
+    "note": "Use the connected PostHog project's product analytics, feature flags and experiment data.",
+    "noteZh": "查看已连接的 PostHog 项目分析数据、功能开关和实验数据。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.PostHog%2Fmcp/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "remote"
+    ],
+    "repoUrl": "https://github.com/PostHog/posthog"
+  },
+  "com.cloudflare.mcp/mcp": {
+    "title": "Cloudflare",
+    "category": "infrastructure",
+    "documentationUrl": "https://developers.cloudflare.com/agents/model-context-protocol/cloudflare/servers-for-cloudflare/",
+    "note": "Pick a Cloudflare server for a specific operational task such as Workers observability or DNS management.",
+    "noteZh": "根据任务选择 Cloudflare 服务，例如检查 Workers 运行情况或管理 DNS。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/com.cloudflare.mcp%2Fmcp/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "remote"
+    ],
+    "repoUrl": "https://github.com/cloudflare/mcp-server-cloudflare"
+  },
+  "io.github.grafana/mcp-grafana": {
+    "title": "Grafana",
+    "category": "infrastructure",
+    "documentationUrl": "https://grafana.com/docs/grafana/latest/ai-tools/mcp/",
+    "note": "Find dashboards and query metrics or logs with the Grafana permissions granted to the connection.",
+    "noteZh": "在连接获得的 Grafana 权限范围内查找仪表盘、查询指标或日志。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.grafana%2Fmcp-grafana/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "remote",
+      "local"
+    ],
+    "repoUrl": "https://github.com/grafana/mcp-grafana",
+    "watchSlug": "grafana-mcp"
+  },
+  "com.airtable/mcp": {
+    "title": "Airtable",
+    "category": "productivity",
+    "documentationUrl": "https://support.airtable.com/articles/9897799762-using-the-airtable-mcp-server",
+    "note": "Find Airtable records and add or update them where the account and integration scopes allow it.",
+    "noteZh": "查找 Airtable 记录，并在账号和集成授权允许时添加或更新记录。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/com.airtable%2Fmcp/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "remote"
+    ]
+  },
+  "io.github.mongodb-js/mongodb-mcp-server": {
+    "title": "MongoDB",
+    "category": "data",
+    "documentationUrl": "https://www.mongodb.com/docs/mcp-server/",
+    "note": "Inspect MongoDB collections and query data using the connection configured for the client.",
+    "noteZh": "使用客户端配置的连接查看 MongoDB 集合并查询数据。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.mongodb-js%2Fmongodb-mcp-server/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "local"
+    ],
+    "repoUrl": "https://github.com/mongodb-js/mongodb-mcp-server",
+    "watchSlug": "mongodb-mcp-server"
+  },
+  "co.huggingface/hf-mcp-server": {
+    "title": "Hugging Face Hub",
+    "category": "knowledge",
+    "documentationUrl": "https://huggingface.co/docs/hub/agents-mcp",
+    "note": "Find models, datasets and papers on the Hub and connect to supported Gradio Spaces.",
+    "noteZh": "在 Hub 查找模型、数据集和论文，并连接支持 MCP 的 Gradio Spaces。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/co.huggingface%2Fhf-mcp-server/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "remote"
+    ]
+  },
+  "io.github.tavily-ai/tavily-mcp": {
+    "title": "Tavily",
+    "category": "search",
+    "documentationUrl": "https://docs.tavily.com/documentation/mcp",
+    "note": "Search the web and extract page content for research using a Tavily connection.",
+    "noteZh": "通过 Tavily 搜索网页并提取页面内容，供研究使用。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.tavily-ai%2Ftavily-mcp/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "local"
+    ],
+    "repoUrl": "https://github.com/tavily-ai/tavily-mcp",
+    "watchSlug": "tavily-mcp"
+  },
+  "io.github.getsentry/sentry-mcp": {
+    "title": "Sentry",
+    "category": "infrastructure",
+    "documentationUrl": "https://mcp.sentry.dev/",
+    "note": "Find Sentry issues and investigate application errors through the connected organization.",
+    "noteZh": "在已连接的 Sentry 组织中查找问题并排查应用错误。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.getsentry%2Fsentry-mcp/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "remote",
+      "local"
+    ],
+    "repoUrl": "https://github.com/getsentry/toolkit",
+    "watchSlug": "sentry-mcp"
+  },
+  "com.microsoft/microsoft-learn-mcp": {
+    "title": "Microsoft Learn",
+    "category": "knowledge",
+    "documentationUrl": "https://learn.microsoft.com/en-us/training/support/mcp",
+    "note": "Search Microsoft Learn documentation, retrieve articles and find official code samples.",
+    "noteZh": "搜索 Microsoft Learn 文档，读取完整文章并查找官方代码示例。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/com.microsoft%2Fmicrosoft-learn-mcp/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "remote"
+    ],
+    "repoUrl": "https://github.com/MicrosoftDocs/mcp"
+  },
+  "com.microsoft/azure": {
+    "title": "Azure",
+    "category": "infrastructure",
+    "documentationUrl": "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/",
+    "note": "Inspect Azure resources and use service-specific tools with the connected account's permissions.",
+    "noteZh": "查看 Azure 资源，并使用已连接账号有权访问的服务工具。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/com.microsoft%2Fazure/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "local"
+    ],
+    "repoUrl": "https://github.com/microsoft/mcp",
+    "watchSlug": "microsoft-mcp"
+  },
+  "com.stripe/mcp": {
+    "title": "Stripe",
+    "category": "other",
+    "documentationUrl": "https://docs.stripe.com/mcp",
+    "note": "Search Stripe documentation and inspect account objects, with credential options and scoped payment actions documented.",
+    "noteZh": "搜索 Stripe 文档并查看账号对象，付款相关操作受所选凭据和权限限制。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/com.stripe%2Fmcp/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "remote"
+    ],
+    "repoUrl": "https://github.com/stripe/agent-toolkit",
+    "watchSlug": "stripe-agent-toolkit"
+  },
+  "io.github.brave/brave-search-mcp-server": {
+    "title": "Brave Search",
+    "category": "search",
+    "documentationUrl": "https://github.com/brave/brave-search-mcp-server",
+    "note": "Use a Brave Search API key to retrieve web, image, video and other search results.",
+    "noteZh": "使用 Brave Search API 密钥检索网页、图片、视频等结果。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.brave%2Fbrave-search-mcp-server/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "local"
+    ],
+    "repoUrl": "https://github.com/brave/brave-search-mcp-server",
+    "watchSlug": "brave-search-mcp"
+  },
+  "ai.perplexity/mcp-server": {
+    "title": "Perplexity",
+    "category": "search",
+    "documentationUrl": "https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server",
+    "note": "Run web searches or request research and reasoning through the Perplexity integration.",
+    "noteZh": "通过 Perplexity 执行网页搜索，或请求研究与推理结果。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/ai.perplexity%2Fmcp-server/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "local"
+    ],
+    "watchSlug": "perplexity-mcp"
+  },
+  "com.zapier/mcp": {
+    "title": "Zapier",
+    "category": "automation",
+    "documentationUrl": "https://docs.zapier.com/mcp/home",
+    "note": "Expose selected Zapier app actions to an assistant for tasks such as creating issues or updating records.",
+    "noteZh": "将选定的 Zapier 应用操作提供给助手，例如创建议题或更新记录。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/com.zapier%2Fmcp/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "remote"
+    ],
+    "repoUrl": "https://github.com/zapier/zapier-mcp",
+    "watchSlug": "zapier-mcp"
+  },
+  "io.elevenlabs/mcp": {
+    "title": "ElevenLabs",
+    "category": "design",
+    "documentationUrl": "https://elevenlabs.io/mcp",
+    "note": "Generate audio and other creative assets or manage voice agents through an authorized ElevenLabs connection.",
+    "noteZh": "通过获授权的 ElevenLabs 连接生成音频等创作素材，或管理语音智能体。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.elevenlabs%2Fmcp/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "remote"
+    ],
+    "repoUrl": "https://github.com/elevenlabs/plugin"
+  },
+  "io.github.microsoft/playwright-mcp": {
+    "title": "Playwright",
+    "category": "developer",
+    "documentationUrl": "https://github.com/microsoft/playwright-mcp",
+    "note": "Drive a browser through accessibility snapshots for browser testing and repeatable page interactions.",
+    "noteZh": "通过无障碍结构快照操作浏览器，用于页面测试和可重复交互。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.microsoft%2Fplaywright-mcp/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "local"
+    ],
+    "repoUrl": "https://github.com/microsoft/playwright-mcp",
+    "watchSlug": "playwright-mcp"
+  },
+  "io.github.hashicorp/terraform-mcp-server": {
+    "title": "Terraform",
+    "category": "infrastructure",
+    "documentationUrl": "https://developer.hashicorp.com/terraform/mcp-server",
+    "note": "Retrieve Terraform provider and module documentation and connect to Terraform workspace workflows.",
+    "noteZh": "查阅 Terraform 提供商和模块文档，并连接 Terraform 工作区流程。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.hashicorp%2Fterraform-mcp-server/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "local"
+    ],
+    "repoUrl": "https://github.com/hashicorp/terraform-mcp-server",
+    "watchSlug": "terraform-mcp-server"
+  },
+  "io.github.firecrawl/firecrawl-mcp-server": {
+    "title": "Firecrawl",
+    "category": "search",
+    "documentationUrl": "https://docs.firecrawl.dev/mcp",
+    "note": "Extract site content or run web searches for research with a Firecrawl account.",
+    "noteZh": "使用 Firecrawl 账号提取站点内容，或开展网页搜索。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.firecrawl%2Ffirecrawl-mcp-server/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "remote",
+      "local"
+    ],
+    "repoUrl": "https://github.com/firecrawl/firecrawl-mcp-server.git",
+    "watchSlug": "firecrawl-mcp-server"
+  },
+  "com.neon/mcp": {
+    "title": "Neon",
+    "category": "data",
+    "documentationUrl": "https://neon.com/docs/ai/neon-mcp-server",
+    "note": "Inspect and query Neon Postgres projects, with ways to scope the project and use read-only access.",
+    "noteZh": "查看和查询 Neon Postgres 项目，可限定项目并使用只读权限。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/com.neon%2Fmcp/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "remote"
+    ],
+    "repoUrl": "https://github.com/neondatabase/mcp-server-neon",
+    "watchSlug": "neon-mcp"
+  },
+  "com.postman/postman-mcp-server": {
+    "title": "Postman",
+    "category": "developer",
+    "documentationUrl": "https://learning.postman.com/docs/reference/postman-api/postman-mcp-server/overview/",
+    "note": "Find Postman workspace resources and choose a tool profile appropriate for the API task.",
+    "noteZh": "查找 Postman 工作区资源，并按 API 任务选择所需工具配置。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/com.postman%2Fpostman-mcp-server/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "remote",
+      "local"
+    ],
+    "repoUrl": "https://github.com/postmanlabs/postman-mcp-server"
+  },
+  "com.circleci/mcp": {
+    "title": "CircleCI",
+    "category": "developer",
+    "documentationUrl": "https://github.com/CircleCI-Public/mcp-server-circleci",
+    "note": "Inspect builds, workflows, test results and artifacts to investigate CI failures.",
+    "noteZh": "查看构建、工作流、测试结果和产物，以定位持续集成失败原因。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/com.circleci%2Fmcp/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "remote"
+    ]
+  },
+  "com.auth0/mcp": {
+    "title": "Auth0",
+    "category": "infrastructure",
+    "documentationUrl": "https://github.com/auth0/auth0-mcp-server",
+    "note": "Inspect applications and logs or manage Auth0 tenant resources, with read-only mode available.",
+    "noteZh": "查看应用和日志，或管理 Auth0 租户资源，可启用只读模式。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/com.auth0%2Fmcp/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "local"
+    ],
+    "repoUrl": "https://github.com/auth0/auth0-mcp-server"
+  },
+  "com.googleapis.developerknowledge/mcp": {
+    "title": "Google Developer Knowledge",
+    "category": "knowledge",
+    "documentationUrl": "https://developers.google.com/knowledge/mcp",
+    "note": "Search and retrieve public Google developer documentation about products and APIs.",
+    "noteZh": "搜索和获取 Google 产品与 API 的公开开发者文档。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/com.googleapis.developerknowledge%2Fmcp/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "remote"
+    ]
+  },
+  "com.googleapis.mapstools/mcp": {
+    "title": "Google Maps Experience Agent Tools",
+    "category": "search",
+    "documentationUrl": "https://developers.google.com/maps/ai/maps-experience-agent-tools",
+    "note": "Use Google Maps geospatial tools to ground a location or travel research task.",
+    "noteZh": "使用 Google Maps 地理数据工具，为地点或出行研究补充依据。",
+    "sourceUrl": "https://registry.modelcontextprotocol.io/v0.1/servers/com.googleapis.mapstools%2Fmcp/versions/latest",
+    "sourceChecked": "2026-11-20",
+    "transports": [
+      "remote"
+    ]
+  }
+}

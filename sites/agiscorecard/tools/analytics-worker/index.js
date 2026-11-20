@@ -15,6 +15,7 @@ import {memberRoute,memberPage,secureMemberPage} from '../../../../tools/member-
 import {aggregateCache} from './aggregate-cache.js';
 import {videoGrowth} from './video-growth.js';
 import {THESIS_EVENTS,cleanThesisEvent,thesisGrowth} from './thesis-growth.mjs';
+import {categories as catalogCategories, searchCatalog} from '../../mcp-directory-assets/query.mjs';
 // First-party analytics for agiscorecard.com. This runs ALONGSIDE GA4, never instead
 // of it (owner rule, 2026-08-05): two independent channels, so either one failing
 // leaves the other still recording. The beacon below wraps gtag() and forwards a copy
@@ -41,6 +42,7 @@ import {THESIS_EVENTS,cleanThesisEvent,thesisGrowth} from './thesis-growth.mjs';
 
 const ALLOWED_EVENTS = new Set([
   ...THESIS_EVENTS,
+  'mcp_catalog_search', 'mcp_catalog_open',
   'focus_entry', 'task_start', 'task_complete', 'result_copy', 'evidence_action', 'share_arrival',
   'discussion_click', 'discussion_home_view',
   'page_view', 'subscribe_click', 'tool_click', 'agi_test_click', 'index_click',
@@ -269,9 +271,17 @@ const fleetWrappedWorker = {
     if(memberPage(new URL(request.url).pathname))return secureMemberPage(await env.ASSETS.fetch(request));
     const url = new URL(request.url);
 
-    // MCP server v0(STRATEGY-2027 E1:agent 分发先手棋)。Streamable HTTP:
-    // POST JSON-RPC(initialize / tools/list / tools/call),三个只读工具,数据全部
-    // 来自站内静态 JSON(ASSETS),零新数据源、零编造。GET 返回 405(不做 SSE)。
+    // Preserve existing directory URLs while serving one canonical page per locale.
+    if (request.method === 'GET' || request.method === 'HEAD') {
+      const directory = /^((?:\/zh)?\/agents)(?:\.html|\/index(?:\.html)?)?$/.exec(url.pathname);
+      if (directory) {
+        url.pathname = directory[1] + '/';
+        return Response.redirect(url, 308);
+      }
+    }
+
+    // Streamable HTTP, JSON-RPC over POST. Tools read public records.
+    // Catalog search reads the shipped snapshot without starting third-party tools.
     if (url.pathname === '/mcp') {
       if (request.method !== 'POST') {
         return new Response(JSON.stringify({ error: 'POST JSON-RPC only; see https://agiscorecard.com/for-agents' }),
@@ -317,6 +327,16 @@ const fleetWrappedWorker = {
             { name: 'get_agi_consensus',
               description: 'The AGI consensus board: what Polymarket, Kalshi, Manifold and Metaculus put on "AGI before 2027/2028/2030/2035/2040", the cross-venue median and spread, each series\' implied 50% date (implied_50pct_date) and resolution basis, and the published recompute formula. Third-party public quotes with as-of times; no bets, no affiliate links. Page: agiscorecard.com/agi-prediction-markets',
               inputSchema: { type: 'object', properties: {} } },
+            { name: 'search_mcp_catalog',
+              description: 'Find MCP servers by task, category or connection type in the AGI directory. Results contain publisher/source links and catalog verification scope. This tool searches public metadata and does not connect to or execute third-party servers.',
+              annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
+              inputSchema: { type: 'object', additionalProperties: false, properties: {
+                query: { type: 'string', maxLength: 120 },
+                category: { type: 'string', enum: catalogCategories },
+                transport: { type: 'string', enum: ['remote', 'local'] },
+                featured: { type: 'boolean', description: 'Filter to entries with reviewed publisher documentation' },
+                limit: { type: 'integer', minimum: 1, maximum: 20, default: 8 }
+              } } },
             { name: 'search_site',
               description: 'Search every page and tool on agiscorecard.com and its invest/compass sub-sites (English and Chinese). Returns titles, descriptions and URLs.',
               inputSchema: { type: 'object', properties: { query: { type: 'string', description: 'Search query' } }, required: ['query'] } },
@@ -337,6 +357,33 @@ const fleetWrappedWorker = {
             ).bind(Date.now(), new Date().toISOString().slice(0, 10), 'site_search', 'mcp', ('tool:' + name).slice(0, 48), '/mcp', 'bot')
               .run().catch(function () {}));
           };
+          if (tool === 'search_mcp_catalog') {
+            const allowed = ['query', 'category', 'transport', 'featured', 'limit'];
+            const input = rpc.params?.arguments === undefined ? {} : rpc.params.arguments;
+            if (!input || Array.isArray(input) || typeof input !== 'object' || Object.keys(input).some(key => !allowed.includes(key))) {
+              return mcpErr(id, -32602, 'Invalid catalog search filters');
+            }
+            const {query, category, transport, featured, limit = 8} = input;
+            if ((query !== undefined && (typeof query !== 'string' || query.length > 120)) ||
+                (category !== undefined && !catalogCategories.includes(category)) ||
+                (transport !== undefined && !['remote', 'local'].includes(transport)) ||
+                (featured !== undefined && typeof featured !== 'boolean') ||
+                !Number.isInteger(limit) || limit < 1 || limit > 20) {
+              return mcpErr(id, -32602, 'Invalid catalog search filters');
+            }
+            const catalog = await asset('/mcp-directory-assets/catalog.json');
+            const matches = searchCatalog(catalog.entries, {query, category, transport, featured});
+            if (!url.searchParams.has('__ci') && request.headers.get('dnt') !== '1' && request.headers.get('sec-gpc') !== '1') {
+              logTool('search_mcp_catalog');
+            }
+            return mcpText(id, {
+              asOf: catalog.asOf,
+              matchCount: matches.length,
+              directory: 'https://agiscorecard.com/agents/',
+              verification: 'Catalog sources checked; featured entries have reviewed publisher documentation. Third-party runtime and account permissions are unverified.',
+              results: matches.slice(0, limit)
+            });
+          }
           if (tool === 'get_portfolio_returns') {
             if (Object.keys(args).some(k=>k!=='include_history') || ('include_history' in args && typeof args.include_history!=='boolean')) return mcpErr(id,-32602,'include_history must be boolean; no other arguments accepted');
             try { const data=await portfolioData(env,{include_history:args.include_history===true});logTool('portfolio_returns');return mcpText(id,data); }
@@ -653,6 +700,15 @@ const fleetWrappedWorker = {
         if (['__ci','__qa','__probe','ci','qa'].some(k=>qaQuery.has(k))) return new Response(null,{status:204,headers:CORS});
         body=cleanThesisEvent(body);
         if (!body) return new Response(null,{status:204,headers:CORS});
+      }
+      if (name === 'mcp_catalog_search' || name === 'mcp_catalog_open') {
+        const locale = body.p === '/agents/' ? 'en' : body.p === '/zh/agents/' ? 'zh' : '';
+        const labels = name === 'mcp_catalog_search' ? ['search'] : ['docs', 'source'];
+        if (!locale || body.l !== 'mcp_catalog_' + locale || !labels.includes(body.b) ||
+            ['__ci', '__qa', '__probe', 'ci', 'qa'].some(key => qaQuery.has(key))) {
+          return new Response(null, {status: 204, headers: CORS});
+        }
+        body = {n: name, p: body.p, l: body.l, b: body.b, g: locale};
       }
       // The assessment accepts fixed action labels only; no grades or free text.
       if (['focus_entry','task_start','task_complete','result_copy','evidence_action','share_arrival'].includes(name) &&
@@ -1273,7 +1329,7 @@ export async function pulseResponse(env, url) {
     let money = null;
     try {
       const m = await env.EVENTS.prepare(
-        `SELECT 'subscribers' AS k, COUNT(*) AS n FROM subscribers WHERE status='stored' UNION ALL SELECT 'ev_'||name||'_28d', COUNT(*) FROM events WHERE day >= date('now','-28 days') AND (ua_class='human' OR ua_class IS NULL) AND name IN ('tool_click','invest_tool_click','subscribe_click','calc_use','pick_ledger') GROUP BY name UNION ALL SELECT 'pv_'||substr(path,2)||'_28d', SUM(hits) FROM pageviews WHERE ua_class='human' AND day >= date('now','-28 days') AND path IN ('/advertise','/audits','/members','/workbench') GROUP BY path`
+        `SELECT 'subscribers' AS k, COUNT(*) AS n FROM subscribers WHERE status='stored' UNION ALL SELECT 'ev_'||name||'_28d', COUNT(*) FROM events WHERE day >= date('now','-28 days') AND (ua_class='human' OR ua_class IS NULL) AND name IN ('tool_click','invest_tool_click','subscribe_click','calc_use','pick_ledger','mcp_catalog_search','mcp_catalog_open') GROUP BY name UNION ALL SELECT 'pv_'||substr(path,2)||'_28d', SUM(hits) FROM pageviews WHERE ua_class='human' AND day >= date('now','-28 days') AND path IN ('/advertise','/audits','/members','/workbench') GROUP BY path`
       ).all();
       money = { days: 28 };
       for (const r of (m.results || [])) money[String(r.k)] = r.n | 0;
