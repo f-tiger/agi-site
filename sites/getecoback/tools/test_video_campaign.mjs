@@ -134,3 +134,23 @@ test('Robot entry is a fixed housing-fit destination with approved campaign and 
  assert.equal(videoEntry(new URL('https://getecoback.com/robot-tiktok'),'POST'),null);
  assert.equal(videoEntry(new URL('https://getecoback.com/robot-unknown')),null);
 });
+
+test('Cold cellar entry transmits only its allowed campaign and lands on the exact answer', async()=>{
+ const {videoEntry}=await import('../src/video-entry.mjs');
+ const {campaignFields}=await import('../../../tools/fleet-analytics/campaign.mjs');
+ const url=new URL('https://getecoback.com/keller-tiktok?utm_campaign=other&next=https://example.com&__ci=1');
+ for (const method of ['GET','HEAD']) {
+  const response=videoEntry(url,method);
+  assert.equal(response.status,302);
+  assert.equal(response.headers.get('cache-control'),'no-store');
+  assert.equal(response.headers.get('x-robots-tag'),'noindex');
+  const target=new URL(response.headers.get('location'));
+  assert.equal(target.origin,'https://getecoback.com');
+  assert.equal(target.pathname,'/guide/luftentfeuchter-keller.html');
+  assert.equal(target.hash,'#kalter-keller');
+  const fields={utm_source:'tiktok',utm_medium:'social',utm_campaign:'eco-dach-catalog-01'};
+  assert.deepEqual(Object.fromEntries(target.searchParams),{...fields,__probe:'1'});
+  assert.deepEqual(campaignFields(target.searchParams),{campaign_source:'tiktok',campaign_medium:'social',campaign_name:fields.utm_campaign});
+ }
+ assert.equal(videoEntry(url,'POST'),null);
+});
