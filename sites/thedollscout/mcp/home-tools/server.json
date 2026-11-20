@@ -1,0 +1,19 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.f-tiger/tds-home-tools",
+  "title": "The Doll Scout Home Tools",
+  "description": "Run 1,000 home and buying tools for sizing, costs, compatibility and product decisions.",
+  "version": "1.0.0",
+  "websiteUrl": "https://thedollscout.com/ai-tools",
+  "repository": {
+    "url": "https://github.com/f-tiger/agi-site",
+    "source": "github",
+    "subfolder": "sites/thedollscout"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://thedollscout.com/api/home-mcp"
+    }
+  ]
+}

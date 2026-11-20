@@ -1,5 +1,7 @@
 # TDS MCP: complete a collection task
 
+The household calculations and buying checks use the separate [Home Tools MCP](home-tools/README.md).
+
 MCP contract: **2.6.0**. Verify that `search_collection_series` and `prepare_collection_checklist` appear in the connected server's tool list before using this workflow. A repository version alone does not establish production availability; release receipts are tracked separately.
 
 TDS lets an MCP-compatible assistant find a source-linked SMISKI or Sonny Angel series and compare names the collector supplies. The result includes owned, not-marked-owned, explicitly wanted and unmatched names, plus copyable Markdown. Existing probability, budget and display tools remain available.

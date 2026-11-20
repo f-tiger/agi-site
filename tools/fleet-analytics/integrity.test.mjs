@@ -124,3 +124,16 @@ test('Laundry bridge is route-bound, opt-out aware and sends no input data',()=>
  assert(hits.every(x=>Object.keys(x.d.detail).join(',')==='name'));
  f.click('denied');const n=f.posts.length;f.emit('fleet:business',{detail:{name:'eco_laundry_compare'}});assert.equal(f.posts.length,n);
 });
+
+test('TDS native tool actions are confined to public tool URLs and have no user data', () => {
+ for (const action of ['tds_suite_complete','tds_suite_example','tds_suite_export']) {
+  const allowedPath = '/de/ai-tools/plan-display-fit';
+  assert.deepEqual(businessEvent('thedollscout.com', allowedPath, {name:action}),
+    {name:action,tool_id:'plan-display-fit',repeat:true});
+  for (const path of ['/de/ai-tools','/api/home-mcp','/ai-tools/room?name=user','/ai-tools/room%2Dfit']) {
+   assert.equal(businessEvent('thedollscout.com',path,{name:action}), null);
+  }
+  assert.equal(businessEvent('thedollscout.com',allowedPath,{name:action,input:'private'}), null);
+  assert.equal(businessEvent('preview.example',allowedPath,{name:action}), null);
+ }
+});

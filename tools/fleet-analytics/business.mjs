@@ -47,6 +47,11 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
       ['mcp_catalog_search', 'mcp_catalog_open'].includes(name)) {
     return {name, tool_id: 'mcp-directory', repeat: name === 'mcp_catalog_open'};
   }
+  const tdsSuiteTool = /^\/(?:de\/|zh\/)?ai-tools\/([a-z0-9]+(?:-[a-z0-9]+)*)$/.exec(pathname);
+  if (host === 'thedollscout.com' && tdsSuiteTool && tdsSuiteTool[1].length <= 64 &&
+      ['tds_suite_complete', 'tds_suite_example', 'tds_suite_export'].includes(name)) {
+    return { name, tool_id: tdsSuiteTool[1], repeat: true };
+  }
   const suiteTool = /^\/(?:en\/)?studio\/ai\/([a-z0-9-]{1,60})$/.exec(pathname);
   if(host==='baipiaoji.com' && suiteTool && /^ai_suite_result_(demo|own)$/.test(name))return {name,tool_id:suiteTool[1],repeat:true};
   if (host === 'baipiaoji.com' && /^\/(?:en\/)?tools\/(chatgpt|kimi|qingying)$/.test(pathname) && name === 'catalog_task_open') {
