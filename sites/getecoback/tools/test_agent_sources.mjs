@@ -79,14 +79,22 @@ test('appliance evidence survives in both the generated mirror and edge fallback
   ['produkte', [
    'https://media3.bosch-home.com/Documents/specsheet/de-DE/SBV4EBX00D.pdf',
    'https://www.miele.de/product/9256130/wasch-trocken-verbindungssatz-wtv-501',
+   'https://media3.bosch-home.com/Documents/specsheet/de-DE/DWB66BC50.pdf',
+   'https://media3.bosch-home.com/Documents/specsheet/de-DE/HEZ638370.pdf',
+   'https://www.venta-air.com/Rollwagen-fuer-Venta-Luftbefeuchter/6060',
   ]],
   ['geraete-austausch-rechner', [
    'https://media3.bsh-group.com/Documents/eudatasheet/de-DE/GSN58DWDV.pdf',
    'https://www.umweltbundesamt.de/system/files/medien/10592/dokumente/datenblatt_2019-2023_haushaltswaschmaschinen_final.pdf',
+   'https://www.gesetze-im-internet.de/elektrog_2015/__17.html',
   ]],
   ['guide/unterschied-klimaanlage-lueftungsanlage', [
    'https://zehnder.picturepark.com/v/WbAb4h0n/',
    'https://zehnder.picturepark.com/v/dwbRP3uL/',
+  ]],
+  ['guide/duschen-kosten-rechner', [
+   'https://www.ikea.com/de/de/p/tisken-handduschenhalter-mit-saugnapf-weiss-50400307/',
+   'https://www.hansgrohe.de/articledetail-pulsify-s-handbrause-105-1jet-ecosmart-24121000',
   ]],
  ];
  for (const [path, urls] of pages) {

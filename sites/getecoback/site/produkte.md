@@ -1037,6 +1037,46 @@ Prüfe den Lieferumfang und die Bezugskanten der Messung. Fehlende Angaben zu Au
 
 Herstellerquellen Deutschland, gelesen am 20.11.2026. [Miele WTV 512](https://www.miele.de/product/9351790/wasch-trocken-verbindungssatz-wtv-512) · [Miele WTV 511](https://www.miele.de/product/9351780/wasch-trocken-verbindungssatz-wtv-511) · [Miele WTV 501](https://www.miele.de/product/9256130/wasch-trocken-verbindungssatz-wtv-501) · [Miele Anleitung für WTV 511 und 512](https://media.miele.com/downloads/c9/e5/00_56D762FF8C918420E10080000AB5C9E5.pdf) · [Bosch WQG241001 Anleitung, Seiten 6, 27 und 48](https://media3.bosch-home.com/Documents/9001984634_A.pdf) · [Bosch WTZ27410](https://www.bosch-home.com/de/de/product/WTZ27410) · [Bosch WTZ27400](https://www.bosch-home.com/de/de/product/WTZ27400).
 
+## Welches Umluftset oder welcher Ersatzfilter gehört zur Dunstabzugshaube?
+
+Notiere die volle E-Nummer, den Aufbau und die Nummer des bereits verbauten Sets. Beim Wechsel von Abluft zu Umluft brauchst du die Angaben zum kompletten Set. Für einen Filterwechsel brauchst du die Angaben zum eingebauten Halter und zum Ersatzfilter. Ein Filter aus dem Zubehörverzeichnis ist noch kein vollständiges Set.
+
+Das deutsche Bosch-Datenblatt zur DWB66BC50 nennt auf höchster Normalstufe 621 m³/h und 69 dB(A) re 1 pW im Abluftbetrieb. Für die angegebene Clean Air Plus-Konfiguration stehen dort 422 m³/h und eine Schallleistung von 74 dB(A) re 1 pW. Die Zahlen gelten für die benannte Betriebsart und Ausstattung. Ein Datenblattwert beschreibt nicht den Schalldruck in deiner Küche.
+
+Das Blatt nennt 600 mm Gerätebreite und 500 mm Tiefe. Es unterscheidet die Gerätehöhe bei Abluft (635–965 mm), die allgemein bezeichnete Umluftzeile (635–1075 mm), Clean Air Plus innen am Kamin (833–1163 mm) und außen (703 mm). Nutze die Zeichnung und miss vom selben Bezugspunkt. Vergleiche die dokumentierten Bedingungen, bevor du eine passende Bauhöhe ableitest.
+
+Der deutsche Bosch-Katalog 2024/25 führt für die DWB66BC50 DWZ1DX1I4 (Clean Air Standard), DWZ1DX1I6 (Clean Air Plus innen) und DWZ1FX5C6 (Clean Air Plus außen). Bosch führt DWZ1DX1I6 unter der Artikelnummer 17004061 mit Filterhalter, Clean Air Plus-Filter, Schlauch, zwei Schellen und Befestigungsmaterial. DZZ0XX0P0 und DZZ1XX1B6 sind als Ersatzfilter aufgeführt. In der jeweiligen Zubehörzuordnung stimmen die Listen für DZZ1XX1B6 und DWZ1DX1I6 nicht vollständig überein. Prüfe die Verbindung über die volle E-Nummer und das tatsächliche Set. Die Angabe zur Spülmaschinenreinigung gehört zum Metallfettfilter. Für DZZ1XX1B6 nennt die Zubehörseite 12–18 Monate.
+
+Miele beschreibt DKF 12-R, Artikel 10271450, als einzelnen regenerierbaren Geruchsfilter. DKF 16-P, Artikel 11762660, umfasst zwei DKF 12-P und ist für die angegebene DA 7006 D dokumentiert. Für DKF 12-R nennt Miele Regeneration im Abstand von sechs Monaten und eine angegebene Nutzungsdauer von drei Jahren. Für DKF 16-P nennt Miele einen Wechselabstand von sechs Monaten. Die Zeitangaben gehören zu den jeweiligen Filtern und Bedingungen. Ein angebotenes Set oder eine allgemeine Empfehlung belegt noch keine Passung.
+
+Herstellerquellen Deutschland, gelesen am 20.11.2026. [Bosch DWB66BC50 Datenblatt](https://media3.bosch-home.com/Documents/specsheet/de-DE/DWB66BC50.pdf) · [Bosch Zubehörkatalog 2024/25](https://media3.bosch-home.com/Documents/25665283_EBG_Handbuch_Linie_2024_2025_150dpi_ePaper.pdf) · [Bosch DWZ1DX1I6](https://www.bosch-home.com/de/de/product/kochen-backen/kochzubehoer-backzubehoer/dunstabzugshauben/startersets-umluftbetrieb/DWZ1DX1I6) · [Bosch DZZ1XX1B6](https://www.bosch-home.com/de/de/product/kochen-backen/kochzubehoer-backzubehoer/dunstabzugshauben/aktivkohlefilter/DZZ1XX1B6) · [Miele DKF 12-R](https://www.miele.de/product/10271450/regenerierbarer-longlife-airclean-geruchsfilter-dkf-12-r) · [Miele DKF 16-P](https://www.miele.de/product/11762660/active-airclean-geruchsfilter-mit-aktivkohle-dkf-16-p).
+
+## Welcher Vollauszug passt zum Backofen und wie viele Paare sind enthalten?
+
+Vergleiche zuerst Modellkennung, Baureihe und die benötigten Ebenen. Halte die bestätigten Zubehörteile und Paarzahlen getrennt von den gewünschten Ebenen fest. Prüfe vor einem Ersatzkauf auch den tatsächlichen Lieferumfang.
+
+Das deutsche Bosch-Datenblatt HEZ638370 nennt fest zugeordnete Vollauszüge auf den Ebenen 1, 2 und 3 für passende 60-cm-Backöfen mit Pyrolyse. Backwagen, Dampfgaren und reine Mikrowellenanwendungen fallen außerhalb der benannten Fälle. Eine zugesagte Gerätekombination setzt die Prüfung der vollständigen E-Nummer voraus.
+
+- Miele HFC 72 (9520670) ist ein Paar für H 6000 und H 7000 Backöfen mit Pyrolyse; die Produktseite benennt PyroFit ausdrücklich.
+
+- Miele HFC 70 (9520650) ist ein Paar für H 6000/H 7000 und DGC 6000/DGC 7000. HFC 70-C (10581490) ist ein Paar für H 2000. Prüfe den Reinigungshinweis der konkreten Kombination. Eine fehlende Angabe lässt die Frage offen.
+
+- Das deutsche Angebot H 2861 BP (12144610) führt ein Paar HFC 70-C, ein Paar Aufnahmegitter und je ein HBB 71, HUBB 71 und Rost auf. Die Anleitung des H 2861 BP schließt auf Seite 101 das Zubehör dieses Geräts, darunter FlexiClip-Auszüge, Aufnahmegitter und Rost, bei der Pyrolyse aus. Für andere Kombinationen gilt die jeweilige Anleitung. Die Seiten 23 und 42 unterscheiden die Position der HFC 70-C von der Ebene des Garguts. Die Tabellen ab Seite 90 kennzeichnen Werte mit und ohne HFC 70-C als +HFC und -HFC.
+
+Für die Platzfrage miss geöffnete Tür, vorstehendes Zubehör und Durchgang am gleichen Bezug. Die Beobachtung ordnet Bewegungsraum ein. Belastbarkeit und Freigaben ergeben sich aus der passenden Anleitung.
+
+Herstellerquellen Deutschland, gelesen am 20.11.2026. [Bosch HEZ638370](https://media3.bosch-home.com/Documents/specsheet/de-DE/HEZ638370.pdf) · [Miele HFC 72](https://www.miele.de/product/9520670/original-miele-flexiclip-vollauszuege-pyrofit-hfc-72) · [Miele HFC 70](https://www.miele.de/product/9520650/original-miele-flexiclip-vollauszuege-hfc-70) · [Miele HFC 70-C](https://www.miele.de/product/10581490/original-miele-flexiclip-vollauszuege-hfc-70-c) · [Miele H 2861 BP und Lieferumfang](https://www.miele.de/product/12144610/backofen-h-2861-bp-edelstahl-cleansteel) · [Miele H 2861 BP Anleitung, Seite 101](https://media.miele.com/downloads/85/93/00_C7F12828C43B1FD0A7F0508AFEC78593.pdf).
+
+## Passt ein Rollensatz oder Rollwagen zum vorhandenen Luftgerät?
+
+Halte Gerätekennung, Zubehörnummer und Lieferumfang getrennt fest. Die deutschsprachige Anleitung 3PDE690982-1 für Daikin MC80ZVM nennt KKS080B41 als separat erhältlichen Satz mit vier Rollen. BAFT501A bezeichnet einen anderen Zubehörtyp. Die Geräteabmessungen 630 × 315 × 315 mm beziehen sich auf die angegebene Geräteausführung. Die Anleitung weist 9,8 kg Gerätegewicht und zwei Tragegriffe aus. Sie liefert an dieser Stelle keine Maße des Geräts mit montierten Rollen.
+
+Venta führt Artikel 6060 (ausgewählte Produktnummer 6060500) als einzelnen separaten Rollwagen. Der Fließtext nennt unter anderem Original Connect AH530, AH535, AH550 und AH555. Die Tabelle nennt stattdessen unter anderem LW24, LW24 Plus, LW44 und LW44 Plus. Die LW25- und LW45-Gruppen kommen in beiden Angaben vor. Wenn deine genaue Modellkennung nur in einem Teil der Seite erscheint, kläre die Passung vor dem Kauf beim Hersteller. Eine Liste ersetzt keinen bestätigten Lieferumfang oder eine Nutzerbeobachtung am konkreten Gerät.
+
+Miss für einen vorhandenen Aufbau den vollständigen Bewegungsraum, die tatsächlich genutzte Fläche und beide Zustände vor und nach der Platzänderung. Dokumentiere Anforderungen an Untergrund, Schlauch und Stromführung nach der Anleitung. Ein Zubehörmaß allein erlaubt kein Urteil über Tragfähigkeit, Kippsicherheit oder Schwellen.
+
+Herstellerquellen Deutschland, gelesen am 20.11.2026. [Daikin MC80ZVM deutsche Bedienungsanleitung](https://www.daikin.de/content/dam/document-library/operation-manuals/airp/air-purifiers/mc80z/MC80Z_Operation%20manual_3PDE690982-1_German.pdf) · [Venta 6060 Produktbeschreibung und technische Daten](https://www.venta-air.com/Rollwagen-fuer-Venta-Luftbefeuchter/6060).
+
 ## Was diese Auswahl leistet
 Die Gruppen zeigen unterschiedliche Aufgaben und konkrete Modelle, keine vollständige Marktübersicht. Herstellerdaten und genaue Varianten stehen bei jedem Gerät. Wir haben diese Geräte nicht selbst getestet. Eine Händlersuche bestätigt weder ein bestimmtes Angebot noch Verfügbarkeit oder einen Preis.
 Quellen älter als 90 Tage, zukünftige Prüfdaten oder offene Widersprüche pausieren die Händlersuche. Die zuletzt dokumentierten Fakten bleiben nachvollziehbar. Zubehör, regionale Ausführung und die passende Anleitung am konkreten Angebot prüfen. Ein funktionierendes vorhandenes Gerät muss nicht ersetzt werden.

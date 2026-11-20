@@ -124,6 +124,32 @@ test('German buyer questions with both common and exact model terms find manufac
   }
 });
 
+test('German accessory and take-back questions find the relevant evidence in the first three results', async () => {
+  const questions = [
+    ["In meiner Bosch DWB66BC50 steckt das Umluftset DWZ1DX1I6. Passt der Ersatzfilter DZZ1XX1B6 wirklich?", "dunstabzug_de_modell_set_filter_belegkette"],
+    ["Darf der FlexiClip HFC70-C beim Miele H 2861 BP während der Pyrolyse im Backofen bleiben?", "backofenzubehoer_reinigungsart_exakter_beleg"],
+    ["Kann der TISKEN Saugnapfhalter auf einer glatten Fliese sitzen, wenn er über eine Fuge reicht?", "tisken_50400307_zwei_wandfelder_oberflaeche"],
+    ["Wie viel Liter pro Minute liefert die hansgrohe Pulsify 24151000 bei 3 bar im Intense PowderRain?", "pulsify_artikel_strahlart_techniktabelle_drei_bar"],
+    ["Passt der Venta Rollwagen 6060 zum LW24 Plus, wenn das Modell nur in der Tabelle auftaucht?", "venta_6060_kompatibilitaetslisten_modellkonflikt"],
+    ["Kann ich drei alte 25 cm große Toaster derselben Geräteart ohne Neukauf im Elektrohandel abgeben?", "elektrog_kleingeraete_dreifach_mass_anzahl"],
+    ["Beim Selbstreinigungsprogramm meines H 2861 BP: den HFC 70-C vorher herausnehmen oder ist die Schiene dafür freigegeben?", "backofenzubehoer_reinigungsart_exakter_beleg"],
+    ["IKEA TISKEN: Die Saugscheibe würde teils auf der Fliesenfuge liegen. Ist dieser Platz laut Hersteller geeignet?", "tisken_50400307_zwei_wandfelder_oberflaeche"],
+    ["Auf den Kacheln der Dusche läuft eine Naht genau unter der Kontaktfläche des TISKEN-Halters. Schließt das den vorgesehenen Platz aus?", "tisken_50400307_zwei_wandfelder_oberflaeche"],
+    ["Beim Rollgestell von Venta finden sich für das Gerät LW24 Plus unterschiedliche Modelllisten. Welche Aussage kann ich daraus überhaupt ableiten?", "venta_6060_kompatibilitaetslisten_modellkonflikt"],
+    ["Der Händler soll drei baugleiche kaputte Toaster annehmen. Sie sind jeweils höchstens 25 Zentimeter lang, breit und hoch, und ich möchte dort nichts bestellen. Fallen sie in die Kleinelektro-Rücknahme?", "elektrog_kleingeraete_dreifach_mass_anzahl"],
+    ["504.003.07", "tisken_50400307_zwei_wandfelder_oberflaeche"],
+    ["24151000", "pulsify_artikel_strahlart_techniktabelle_drei_bar"],
+    ["HFC 70-C Selbstreinigung", "backofenzubehoer_reinigungsart_exakter_beleg"],
+    ["Venta 6060 LW24 Plus", "venta_6060_kompatibilitaetslisten_modellkonflikt"],
+  ];
+  for (const [q, expected] of questions) {
+    const response = await catalogue({q, view:'compact', limit:'3'});
+    const ranked = names(findCatalogueTools(compact, {query:q})).slice(0, 3);
+    assert.deepEqual(names(response.tools), ranked, q);
+    assert.ok(ranked.includes(expected), q);
+  }
+});
+
 test('generic and off-topic requests produce no fallback catalogue matches', async () => {
   for (const q of [
     'Kannst du mir heute bitte helfen?',
@@ -132,6 +158,7 @@ test('generic and off-topic requests produce no fallback catalogue matches', asy
     'Wie bekomme ich Zugluft und Lochkarten in eine PostgreSQL Transaktion?',
     'Entfeuchter-Abfluss im Kafka-Cluster: Schema Registry und Consumer Lag',
     'unique-unmatched-string',
+    '999.888.77',
     'zznonexistentcatalogueentry',
     '???',
     'HTML',
