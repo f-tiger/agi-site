@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "checkedAt": "2026-11-19T10:46:37Z",
+  "checkedAt": "2026-11-20T10:33:43Z",
   "cadence": "daily",
   "retentionDays": 730,
   "maxItems": 3000,
@@ -14,11 +14,11 @@
       "home": "https://www.latent.space/",
       "feed": "https://www.latent.space/feed",
       "aiFocused": true,
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 11,
-      "count": 53
+      "count": 54
     },
     {
       "id": "dwarkesh",
@@ -28,8 +28,8 @@
       "home": "https://www.dwarkesh.com/",
       "feed": "https://www.dwarkesh.com/feed",
       "aiFocused": false,
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 11,
       "count": 14
@@ -42,8 +42,8 @@
       "home": "https://www.lennysnewsletter.com/",
       "feed": "https://www.lennysnewsletter.com/feed",
       "aiFocused": false,
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 15,
       "count": 44
@@ -56,8 +56,8 @@
       "home": "https://lexfridman.com/podcast/",
       "feed": "https://lexfridman.com/feed/podcast/",
       "aiFocused": false,
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 11,
       "count": 11
@@ -70,11 +70,11 @@
       "home": "https://www.youtube.com/@NoPriorsPodcast",
       "feed": "https://feeds.megaphone.fm/nopriors",
       "aiFocused": true,
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
-      "fetchedCount": 97,
-      "count": 97
+      "fetchedCount": 98,
+      "count": 98
     },
     {
       "id": "aiexplained",
@@ -84,11 +84,11 @@
       "home": "https://aiexplainedopodcast.buzzsprout.com/",
       "feed": "https://rss.buzzsprout.com/2418777.rss",
       "aiFocused": true,
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
-      "fetchedCount": 66,
-      "count": 66
+      "fetchedCount": 67,
+      "count": 67
     },
     {
       "id": "twominute",
@@ -98,8 +98,8 @@
       "home": "https://www.youtube.com/channel/UCbfYPyITQ-7l4upoX8nvctg",
       "feed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg",
       "aiFocused": false,
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 14,
       "count": 28
@@ -112,11 +112,11 @@
       "home": "https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA",
       "feed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCsBjURrPoezykLs9EqgamOA",
       "aiFocused": false,
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 12,
-      "count": 25
+      "count": 26
     },
     {
       "id": "sv101",
@@ -126,8 +126,8 @@
       "home": "https://sv101.fireside.fm/",
       "feed": "https://feeds.fireside.fm/sv101/rss",
       "aiFocused": false,
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 36,
       "count": 36
@@ -140,7 +140,7 @@
       "home": "https://www.xiaoyuzhoufm.com/podcast/626b46ea9cbbf0451cf5a962",
       "feed": "https://feed.xyzfm.space/dk4yh3pkpjp3",
       "aiFocused": false,
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
       "lastSuccessAt": "2026-11-18T10:46:12Z",
       "status": "error",
       "errorCode": "ValueError",
@@ -156,11 +156,11 @@
       "aiFocused": true,
       "channelId": "UCxBcwypKK-W3GHd_RZ9FZrQ",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 15,
-      "count": 41
+      "count": 42
     },
     {
       "id": "dwarkesh-video",
@@ -172,8 +172,8 @@
       "aiFocused": false,
       "channelId": "UCXl4i9dYBrFOabk0xGmbkRA",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 3,
       "count": 5
@@ -188,8 +188,8 @@
       "aiFocused": false,
       "channelId": "UC6t1O76G0jYXOAoYCm153dA",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 3,
       "count": 16
@@ -204,8 +204,8 @@
       "aiFocused": false,
       "channelId": "UCSHZKyawb77ixDdsGog4iWA",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 3,
       "count": 5
@@ -220,11 +220,11 @@
       "aiFocused": true,
       "channelId": "UCSI7h9hydQ40K5MJHnCrQvw",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
-      "fetchedCount": 2,
-      "count": 10
+      "fetchedCount": 3,
+      "count": 11
     },
     {
       "id": "aiexplained-video",
@@ -236,11 +236,11 @@
       "aiFocused": true,
       "channelId": "UCNJ1Ymd5yFuUPtn21xtRbbw",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 15,
-      "count": 18
+      "count": 19
     },
     {
       "id": "mattwolfe",
@@ -252,8 +252,8 @@
       "aiFocused": true,
       "channelId": "UChpleBmo18P08aKCIgti38g",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 4,
       "count": 21
@@ -268,11 +268,11 @@
       "aiFocused": true,
       "channelId": "UCawZsQWqfGSbCI5yjkdVkTA",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
-      "fetchedCount": 6,
-      "count": 28
+      "fetchedCount": 7,
+      "count": 30
     },
     {
       "id": "ycombinator",
@@ -284,11 +284,11 @@
       "aiFocused": false,
       "channelId": "UCcefcZRL2oaA_uBNeo5UOWg",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
-      "fetchedCount": 7,
-      "count": 15
+      "fetchedCount": 8,
+      "count": 16
     },
     {
       "id": "a16z",
@@ -300,11 +300,11 @@
       "aiFocused": false,
       "channelId": "UC9cn0TuPq4dnbTY-CBsm8XA",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
-      "fetchedCount": 7,
-      "count": 39
+      "fetchedCount": 6,
+      "count": 40
     },
     {
       "id": "sequoia",
@@ -316,8 +316,8 @@
       "aiFocused": false,
       "channelId": "UCWrF0oN6unbXrWsTN7RctTw",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 3,
       "count": 6
@@ -332,11 +332,11 @@
       "aiFocused": true,
       "channelId": "UChugFTK0KyrES9terTid8vA",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 15,
-      "count": 36
+      "count": 37
     },
     {
       "id": "aiengineer",
@@ -348,8 +348,8 @@
       "aiFocused": true,
       "channelId": "UCLKPca3kwwd-B59HNr-_lvA",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 15,
       "count": 120
@@ -364,11 +364,11 @@
       "aiFocused": true,
       "channelId": "UCP7jMXSY2xbc3KCAE0MHQ-A",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 14,
-      "count": 20
+      "count": 21
     },
     {
       "id": "openai",
@@ -380,11 +380,11 @@
       "aiFocused": true,
       "channelId": "UCXZCJLdBC09xxGZ6gcdrc6A",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
-      "fetchedCount": 12,
-      "count": 115
+      "fetchedCount": 14,
+      "count": 120
     },
     {
       "id": "anthropic",
@@ -396,11 +396,11 @@
       "aiFocused": true,
       "channelId": "UCrDwWp7EBBv4NwvScIpBDOA",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
-      "fetchedCount": 12,
-      "count": 12
+      "fetchedCount": 13,
+      "count": 14
     },
     {
       "id": "karpathy",
@@ -412,8 +412,8 @@
       "aiFocused": true,
       "channelId": "UCXUPKJO5MZQN11PqgIvyuvQ",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 2,
       "count": 2
@@ -428,11 +428,11 @@
       "aiFocused": true,
       "channelId": "UCcIXc5mJsHVYTZR1maL5l9w",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
-      "fetchedCount": 9,
-      "count": 16
+      "fetchedCount": 8,
+      "count": 17
     },
     {
       "id": "huggingface",
@@ -444,11 +444,11 @@
       "aiFocused": true,
       "channelId": "UCHlNU7kIZhRgSbhHvFoy72w",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 12,
-      "count": 32
+      "count": 33
     },
     {
       "id": "wesroth",
@@ -460,8 +460,8 @@
       "aiFocused": true,
       "channelId": "UCqcbQf6yw5KzRoDDcZ_wBSw",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 15,
       "count": 35
@@ -476,8 +476,8 @@
       "aiFocused": true,
       "channelId": "UCHhYXsLBEVVnbvsq57n1MTQ",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 4,
       "count": 17
@@ -492,8 +492,8 @@
       "aiFocused": true,
       "channelId": "UCrXSVX9a1mj8l0CMLwKgMVw",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 15,
       "count": 15
@@ -508,8 +508,8 @@
       "aiFocused": false,
       "channelId": "UCESLZhusAkFfsNsApnjF_Cg",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 4,
       "count": 18
@@ -524,8 +524,8 @@
       "aiFocused": true,
       "channelId": "UCjNRVMBVI30Sak_p6HRWhIA",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 15,
       "count": 41
@@ -540,11 +540,11 @@
       "aiFocused": true,
       "channelId": "UCghJTNTO9kcDeUFXMuSDGLQ",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 11,
-      "count": 23
+      "count": 24
     },
     {
       "id": "nextwave",
@@ -556,8 +556,8 @@
       "aiFocused": true,
       "channelId": "UCuK2Mf5As9OKfWU7XV6yzCg",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 4,
       "count": 4
@@ -572,8 +572,8 @@
       "aiFocused": true,
       "channelId": "UCZHmQk67mSJgfCCTn7xBfew",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 15,
       "count": 15
@@ -588,11 +588,11 @@
       "aiFocused": true,
       "channelId": "UCKelCK4ZaO6HeEI1KQjqzWA",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 15,
-      "count": 56
+      "count": 58
     },
     {
       "id": "sv101-video",
@@ -604,8 +604,8 @@
       "aiFocused": false,
       "channelId": "UCKV2yWPB3wn0RTZh3cTD8YA",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 9,
       "count": 17
@@ -620,8 +620,8 @@
       "aiFocused": false,
       "channelId": "UChnNjLyx_5rk_iDPQ2BQDQA",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 1,
       "count": 4
@@ -636,8 +636,8 @@
       "aiFocused": true,
       "channelId": "UC2ggjtuuWvxrHHHiaDH1dlQ",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 14,
       "count": 14
@@ -652,8 +652,8 @@
       "aiFocused": true,
       "channelId": "UC7kjWIK1H8tfmFlzZO-wHMw",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 15,
       "count": 24
@@ -668,11 +668,11 @@
       "aiFocused": true,
       "channelId": "UCMLtBahI5DMrt0NPvDSoIRQ",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
-      "fetchedCount": 0,
-      "count": 10
+      "fetchedCount": 1,
+      "count": 11
     },
     {
       "id": "aiforgood",
@@ -684,8 +684,8 @@
       "aiFocused": true,
       "channelId": "UC4e35vN3-tSBZMNLE-wm45A",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 10,
       "count": 31
@@ -700,11 +700,11 @@
       "aiFocused": false,
       "channelId": "UCKWaEZ-_VweaEx1j62do_vQ",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 12,
-      "count": 49
+      "count": 51
     },
     {
       "id": "nvidia",
@@ -716,18 +716,532 @@
       "aiFocused": false,
       "channelId": "UCHuiy8bXnmK5nisYHUd1J5g",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-19T10:46:37Z",
-      "lastSuccessAt": "2026-11-19T10:46:37Z",
+      "lastAttemptAt": "2026-11-20T10:33:43Z",
+      "lastSuccessAt": "2026-11-20T10:33:43Z",
       "status": "ok",
       "fetchedCount": 8,
-      "count": 44
+      "count": 45
     }
   ],
   "items": [
     {
+      "id": "1badc4f042231171bea5",
+      "sourceId": "ibmtechnology",
+      "title": "Anthropic goes public, ChatGPT gets a wallet & AI designs new drugs",
+      "url": "https://www.youtube.com/watch?v=Y6npte_lEKU",
+      "publishedAt": "2026-11-20T09:30:19Z",
+      "medium": "video",
+      "goals": [
+        "work",
+        "understand"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Visit Mixture of Experts podcast page to get more AI content → Grand Theft Auto VI and Anthropic's trillion-dollar IPO have one thing in…",
+      "videoId": "Y6npte_lEKU",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "cbebf04252aec8eefece",
+      "sourceId": "openai",
+      "title": "Create and Share a Dashboard in ChatGPT",
+      "url": "https://www.youtube.com/watch?v=OSHSopaYjTw",
+      "publishedAt": "2026-11-20T06:07:50Z",
+      "medium": "video",
+      "goals": [
+        "learn"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Turn your analysis into a dashboard your team can use. Building on the fictional Acme sales example, this walkthrough brings quarterly metrics and customer…",
+      "videoId": "OSHSopaYjTw",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "c8e089348a52d03f0425",
+      "sourceId": "openai",
+      "title": "Ask Questions About Your Data in ChatGPT",
+      "url": "https://www.youtube.com/watch?v=JEgTn37Sk50",
+      "publishedAt": "2026-11-20T06:05:59Z",
+      "medium": "video",
+      "goals": [
+        "work",
+        "earn"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Prepare for a sales meeting by asking ChatGPT what changed in your data and which customers need attention. Using sample data from the fictional…",
+      "videoId": "JEgTn37Sk50",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "ae66397b72a706ecb8ac",
+      "sourceId": "openai",
+      "title": "Connect Your Team’s Data to ChatGPT",
+      "url": "https://www.youtube.com/watch?v=oJIuz3AFfEQ",
+      "publishedAt": "2026-11-20T06:02:57Z",
+      "medium": "video",
+      "goals": [
+        "work"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Connect the data tools your team already uses to ChatGPT. This walkthrough is for workspace admins: enable the Data plugin, choose how teammates can…",
+      "videoId": "oJIuz3AFfEQ",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "418180b4ced5708629f2",
+      "sourceId": "openai",
+      "title": "Meet the Data Agent in ChatGPT",
+      "url": "https://www.youtube.com/watch?v=KrlfehIapEA",
+      "publishedAt": "2026-11-20T05:35:32Z",
+      "medium": "video",
+      "goals": [
+        "work",
+        "learn",
+        "earn"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Get started with the Data plugin in ChatGPT. Take a quick tour of how to ask questions about your data, create visualizations, build dashboards,…",
+      "videoId": "KrlfehIapEA",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "69669f33f1d15cc28e44",
+      "sourceId": "openai",
+      "title": "Create and Share a Report in ChatGPT Space",
+      "url": "https://www.youtube.com/watch?v=3_fayTbZrW8",
+      "publishedAt": "2026-11-20T05:32:52Z",
+      "medium": "video",
+      "goals": [
+        "work",
+        "learn"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Give your team a report they can read, discuss, and work on together. In this walkthrough, turn the fictional Acme sales analysis into a…",
+      "videoId": "3_fayTbZrW8",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "4edc83774b212ead7153",
+      "sourceId": "matthewberman",
+      "title": "Gemini 4 Neon is ridiculous...",
+      "url": "https://www.youtube.com/watch?v=5eON_8rgKzk",
+      "publishedAt": "2026-11-20T02:37:36Z",
+      "medium": "video",
+      "goals": [
+        "understand",
+        "forecast"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Join My Newsletter for Regular AI Updates 👇🏼 Check out Scarlet: My Links 🔗 👉🏻 X: 👉🏻 Forward Future X: 👉🏻 Instagram: 👉🏻 Discord:…",
+      "videoId": "5eON_8rgKzk",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "dfa5bab9ded61353ea3b",
+      "sourceId": "aidaily",
+      "title": "The 10 Biggest Days in AI History",
+      "url": "https://www.youtube.com/watch?v=xskAzAc_0ws",
+      "publishedAt": "2026-11-20T01:59:59Z",
+      "medium": "video",
+      "goals": [
+        "work",
+        "understand"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Anthropic’s first day of trading makes a fitting moment to look back at the biggest days in AI history. NLW counts down ten dates,…",
+      "videoId": "xskAzAc_0ws",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "af7ab104329c0da3e3ca",
+      "sourceId": "latent",
+      "title": "Scaling Linear’s GTM to $100M ARR — Cristina Cordova, COO",
+      "url": "https://latent.space/p/linear-scaling/",
+      "publishedAt": "2026-11-19T23:58:21Z",
+      "medium": "audio",
+      "goals": [
+        "work"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": ">50% of tickets written by agents, the AI budgets behind $100M-in-months ARR, and selling without SDRs or FDEs",
+      "audioUrl": "https://podcasts.beehiiv.com/3967c1f2-cb97-4eb0-a5c0-21a1d2579408/01a15fdf-0e93-7e1a-880d-d73752a1f915/01a1f60c-1b1f-791d-ab17-93dc95925d0f/01a1f60c-1d13-7e51-8f68-58af8c020059.mp3",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "2db91f7e95bf6c07ad0d",
+      "sourceId": "stanfordhai",
+      "title": "AI Goes Mainstream: The Scaling Era and the Rise of Generative AI",
+      "url": "https://www.youtube.com/watch?v=WGjuvTvz90U",
+      "publishedAt": "2026-11-19T22:29:43Z",
+      "medium": "video",
+      "goals": [
+        "work",
+        "understand"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "This talk unpacks key insights from the third AI100 report, \"AI Goes Mainstream: The Scaling Era and the Rise of Generative AI,\" released in…",
+      "videoId": "WGjuvTvz90U",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "c2c49fd22d47da7aba87",
+      "sourceId": "huggingface",
+      "title": "Hugging Face Inference Is Now Powered by OpenRouter",
+      "url": "https://www.youtube.com/watch?v=TmZ4RCXYsTQ",
+      "publishedAt": "2026-11-19T22:15:17Z",
+      "medium": "video",
+      "goals": [
+        "work",
+        "earn",
+        "family",
+        "understand"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Hugging Face inference requests can now route through OpenRouter, giving you access to available providers directly from model pages. This tutorial walks through the…",
+      "videoId": "TmZ4RCXYsTQ",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "fd79a276a74e517a8dba",
+      "sourceId": "anthropic",
+      "title": "The making of Anthropic",
+      "url": "https://www.youtube.com/watch?v=sof3vW4mHTs",
+      "publishedAt": "2026-11-19T21:03:23Z",
+      "medium": "video",
+      "goals": [
+        "work",
+        "learn",
+        "earn"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Anthropic’s co-founders on why they started the company, what they’ve learned, and the work still ahead. Told by Dario Amodei, Daniela Amodei, Tom Brown,…",
+      "videoId": "sof3vW4mHTs",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "b3c561eefc885ef73374",
+      "sourceId": "aiexplained-video",
+      "title": "Anthropic IPOs, GPT 6.2 Astra Arrives, But There’s a Bigger Story",
+      "url": "https://www.youtube.com/watch?v=KGA7B_c_S4s",
+      "publishedAt": "2026-11-19T20:03:10Z",
+      "medium": "video",
+      "goals": [
+        "understand"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "GPT 6.2 Astra is OpenAI’s best model, so for each of the last 4 years this would have been the only headline. But now…",
+      "videoId": "KGA7B_c_S4s",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "3fbe311e4007c1fa3cba",
+      "sourceId": "matthewberman",
+      "title": "What's going on with GPT-6.2?",
+      "url": "https://www.youtube.com/watch?v=nEYuoqqMgyg",
+      "publishedAt": "2026-11-19T20:02:19Z",
+      "medium": "video",
+      "goals": [
+        "understand",
+        "forecast"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Check out Spacesheep: First 1,000 signups get 3 months free Check out Scarlet: Join My Newsletter for Regular AI Updates 👇🏼 My Links 🔗…",
+      "videoId": "nEYuoqqMgyg",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "0050dbe44ac089a880c2",
+      "sourceId": "latent-video",
+      "title": "Scaling Linear's GTM to $100M+ ARR — Cristina Cordova, COO",
+      "url": "https://www.youtube.com/watch?v=x0VSm6IjcDQ",
+      "publishedAt": "2026-11-19T20:01:37Z",
+      "medium": "video",
+      "goals": [
+        "work",
+        "earn"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Over half the issues created in Linear now come from agents instead of people. I sat down with Cristina Cordova (COO at Linear) to…",
+      "videoId": "x0VSm6IjcDQ",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "cd7f6b5aea37f886694c",
+      "sourceId": "aiengineer",
+      "title": "The Sweet Side of the Bitter Lesson — Thariq Shihipar, Independent",
+      "url": "https://www.youtube.com/watch?v=xRJMiaUoD_8",
+      "publishedAt": "2026-11-19T20:00:09Z",
+      "medium": "video",
+      "goals": [
+        "work"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Vibe coding a fighting game left Thariq Shihipar unsure how his own characters worked. At CODE Summit 2026, he revisits the Bitter Lesson, Bash,…",
+      "videoId": "xRJMiaUoD_8",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "69b7d26b4d149a6cf1a0",
+      "sourceId": "nvidia",
+      "title": "Europe’s AI Future With Judith Dada | Pub Conversations",
+      "url": "https://www.youtube.com/watch?v=N5YwZjN4_oI",
+      "publishedAt": "2026-11-19T20:00:07Z",
+      "medium": "video",
+      "goals": [
+        "work",
+        "learn",
+        "earn",
+        "forecast"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "What does Europe need to get right about AI? Langdock Co-CEO Judith Dada joins NVIDIA’s Chris Alexiuk to talk about Europe’s AI future, from…",
+      "videoId": "N5YwZjN4_oI",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "85001f078240fc8182b8",
+      "sourceId": "aiexplained",
+      "title": "Anthropic IPOs, GPT 6.2 Astra Arrives, But There’s a Bigger Story",
+      "url": "https://www.buzzsprout.com/2418777/episodes/20151850-anthropic-ipos-gpt-6-2-astra-arrives-but-there-s-a-bigger-story.mp3",
+      "publishedAt": "2026-11-19T20:00:00Z",
+      "medium": "audio",
+      "goals": [
+        "understand"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "GPT 6.2 Astra is OpenAI’s best model, so for each of the last 4 years this would have been the only headline. But now…",
+      "audioUrl": "https://www.buzzsprout.com/2418777/episodes/20151850-anthropic-ipos-gpt-6-2-astra-arrives-but-there-s-a-bigger-story.mp3",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "67d344be1450c0a297b2",
+      "sourceId": "deepmind",
+      "title": "Gemini and the path to AGI with Koray Kavukcuoglu",
+      "url": "https://www.youtube.com/watch?v=FORdPIWOH5k",
+      "publishedAt": "2026-11-19T19:58:06Z",
+      "medium": "video",
+      "goals": [
+        "understand",
+        "forecast"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Seven years after their last conversation at Google DeepMind’s London office, Professor Hannah Fry reunites with Koray Kavukcuoglu, SVP at Google DeepMind and Chief…",
+      "videoId": "FORdPIWOH5k",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "8e2f61f7b94b1911c065",
+      "sourceId": "deeplearningai",
+      "title": "Full Course: AI Coding Workflows From Cloud to Local",
+      "url": "https://www.youtube.com/watch?v=H2tmNDX9FnQ",
+      "publishedAt": "2026-11-19T18:02:34Z",
+      "medium": "video",
+      "goals": [
+        "work",
+        "learn",
+        "understand"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Coding agents like Claude Code are convenient, but they limit your control over which models you use, what you spend, and where your code…",
+      "videoId": "H2tmNDX9FnQ",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "d623e798567f4673e40a",
+      "sourceId": "fireship",
+      "title": "The only software that didn’t break this week...",
+      "url": "https://www.youtube.com/watch?v=Qxor6jpfSiU",
+      "publishedAt": "2026-11-19T17:40:33Z",
+      "medium": "video",
+      "goals": [
+        "work"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Use all your coding agents side by side in one IDE with JetBrains Air: Solid 2.0 is the framework's first major release in over…",
+      "videoId": "Qxor6jpfSiU",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "c2f9483ac3b5d02bc187",
+      "sourceId": "aiforhumans",
+      "title": "Let's make and break AI games: it's the future, TODAY!",
+      "url": "https://www.youtube.com/watch?v=O-nB4amp_SQ",
+      "publishedAt": "2026-11-19T15:43:51Z",
+      "medium": "video",
+      "goals": [
+        "forecast"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "I'm making extremely dumb, interactive nonsense with AI, and you can play along. Or create your own! * WATCH/CHAT: Witness the chaos and help…",
+      "videoId": "O-nB4amp_SQ",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "e0b534e7007623fcdf54",
+      "sourceId": "a16z",
+      "title": "Why Nick Bostrom Thinks Superintelligence Could End Aging",
+      "url": "https://www.youtube.com/watch?v=gDW9An30_c0",
+      "publishedAt": "2026-11-19T15:30:01Z",
+      "medium": "video",
+      "goals": [
+        "understand",
+        "forecast"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "The question isn’t simply whether humanity should race toward superintelligence or stop. Nick Bostrom argues the harder challenge is preserving the ability to slow…",
+      "videoId": "gDW9An30_c0",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "325eed99f21fe4b21e95",
+      "sourceId": "anthropic",
+      "title": "What we make of this moment, will make this moment.",
+      "url": "https://www.youtube.com/watch?v=JDsFHmq9hlA",
+      "publishedAt": "2026-11-19T15:02:49Z",
+      "medium": "video",
+      "goals": [
+        "understand"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "What we* make of this moment, will make this moment. *a food bank in Texas, a PhD student in Tokyo with a floating cuttlefish…",
+      "videoId": "JDsFHmq9hlA",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "c51551cd2d791f85c79f",
+      "sourceId": "ycombinator",
+      "title": "Jacob Coxon vs. Robin Hanson: Should We Slow Down AI?",
+      "url": "https://www.youtube.com/watch?v=lwfewYL7X0o",
+      "publishedAt": "2026-11-19T15:00:34Z",
+      "medium": "video",
+      "goals": [
+        "understand",
+        "forecast"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Should governments intervene to substantially slow the progress of frontier AI? In the inaugural YC debate, Jacob Coxon, an ex-Anthropic and OpenAI researcher, faces…",
+      "videoId": "lwfewYL7X0o",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "94174923a6200560763e",
+      "sourceId": "mlst",
+      "title": "What a Squirrel Knows That Language Models Skip (Michael Tomasello)",
+      "url": "https://www.youtube.com/watch?v=io7qhEjJoik",
+      "publishedAt": "2026-11-19T14:22:11Z",
+      "medium": "video",
+      "goals": [
+        "earn",
+        "family",
+        "understand"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Michael Tomasello is a developmental psychologist who spent twenty years at the Max Planck Institute in Germany putting children and great apes into the…",
+      "videoId": "io7qhEjJoik",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "5bab6d4e3bbf16736c64",
+      "sourceId": "aiengineer",
+      "title": "What it takes to set intelligence free — Fabian Hedin, CTO, Lovable",
+      "url": "https://www.youtube.com/watch?v=pZWPq_ZAmM4",
+      "publishedAt": "2026-11-19T14:00:14Z",
+      "medium": "video",
+      "goals": [
+        "work",
+        "earn"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Lovable nearly failed after building a sophisticated multi agent framework, Fabian Hedin says. At CODE Summit 2026, its CTO explains what changed: durable agent…",
+      "videoId": "pZWPq_ZAmM4",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "98590b981a919445c665",
+      "sourceId": "aidaily",
+      "title": "Why the AI Kids Hate Astra 6.2",
+      "url": "https://www.youtube.com/watch?v=uSzew8QPRX0",
+      "publishedAt": "2026-11-19T13:50:08Z",
+      "medium": "video",
+      "goals": [
+        "work",
+        "family",
+        "understand"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "OpenAI’s GPT-6.2 Astra and Sol launch drew some of the worst first impressions on record, yet the efficiency numbers tell a different story. NLW…",
+      "videoId": "uSzew8QPRX0",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "98cfff734e61bcfbbecd",
+      "sourceId": "nopriors-video",
+      "title": "Superintelligence Needs the Physical World with CEO and Co-Founder of Arda Bob McGrew",
+      "url": "https://www.youtube.com/watch?v=_wLzJINt9iQ",
+      "publishedAt": "2026-11-19T12:00:19Z",
+      "medium": "video",
+      "goals": [
+        "learn",
+        "earn",
+        "forecast"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Is the AI singularity actually coming? Bob McGrew, former Chief Research Officer at OpenAI, argues that superintelligence won’t arrive without changes in the physical…",
+      "videoId": "_wLzJINt9iQ",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "740e397bf2039b64f406",
+      "sourceId": "ibmtechnology",
+      "title": "4 Types of AI Agent Loops: From Human-Led to Autonomous",
+      "url": "https://www.youtube.com/watch?v=4LINhsEZEDI",
+      "publishedAt": "2026-11-19T12:00:08Z",
+      "medium": "video",
+      "goals": [
+        "work",
+        "learn"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Learn more about Loop Engineering here → Not every AI agent should have the same autonomy. Martin Keen explains four AI agent loops: interactive,…",
+      "videoId": "4LINhsEZEDI",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "e7e105720d95cee1d58a",
+      "sourceId": "nopriors",
+      "title": "Superintelligence Needs the Physical World with CEO and Co-Founder of Arda Bob McGrew",
+      "url": "https://traffic.megaphone.fm/PDP6475704364.mp3",
+      "publishedAt": "2026-11-19T11:44:00Z",
+      "medium": "audio",
+      "goals": [
+        "learn",
+        "earn",
+        "forecast"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Is the AI singularity actually coming? Bob McGrew, former Chief Research Officer at OpenAI, argues that superintelligence won’t arrive without changes in the physical…",
+      "audioUrl": "https://traffic.megaphone.fm/PDP6475704364.mp3",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
+      "id": "cec6dbcd477b97526e71",
+      "sourceId": "openai",
+      "title": "Meet Brian and Beast, the dots at work at Holiday Extras",
+      "url": "https://www.youtube.com/watch?v=ikNf7eW8CHk",
+      "publishedAt": "2026-11-19T11:38:57Z",
+      "medium": "video",
+      "goals": [
+        "work",
+        "earn"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "David Lee, Director of Innovation & Growth at Holiday Extras, calls his dot, Brian, on his morning commute. They talk through the meetings ahead,…",
+      "videoId": "ikNf7eW8CHk",
+      "firstSeenAt": "2026-11-20T10:33:43Z"
+    },
+    {
       "id": "4b80fb9a60437d9f076f",
       "sourceId": "twominute",
-      "title": "DeepMind Just Showed Us What AI Is Really For",
+      "title": "DeepMind Just Released The Best Thing AI Ever Did",
       "url": "https://www.youtube.com/watch?v=Cy7Wz6Z4TWU",
       "publishedAt": "2026-11-19T09:26:19Z",
       "medium": "video",
@@ -735,7 +1249,7 @@
         "earn"
       ],
       "status": "discovered",
-      "publisherExcerpt": "❤️ Check out Lambda here and sign up for their GPU Cloud: 📝 The DeepMind AlphaGenome 2paper is available here: Interview with creator Dr.…",
+      "publisherExcerpt": "❤️ Check out Lambda here and sign up for their GPU Cloud: 📝 The DeepMind AlphaGenome paper is available here: Interview with creator Dr.…",
       "videoId": "Cy7Wz6Z4TWU",
       "firstSeenAt": "2026-11-19T10:46:37Z"
     },
@@ -971,7 +1485,7 @@
     {
       "id": "95f31d3ffc7381363f81",
       "sourceId": "aiengineer",
-      "title": "40x More Merged PRs With 2.7x the Engineers — Walden Yan, Cognition",
+      "title": "40x More Merged PRs With 2.7x the Engineers — Walden Yan, CPO, Cognition",
       "url": "https://www.youtube.com/watch?v=U92J5mCDLMc",
       "publishedAt": "2026-11-18T14:00:01Z",
       "medium": "video",
@@ -8260,40 +8774,6 @@
       "firstSeenAt": "2026-10-27T08:23:45Z"
     },
     {
-      "id": "2806c9aa57ca0da65dbd",
-      "sourceId": "aiengineer",
-      "title": "How to Build an AI Code Review Agent - Daksh Gupta, Greptile",
-      "url": "https://www.youtube.com/watch?v=4UtrRVtUN_g",
-      "publishedAt": "2026-10-26T09:00:23Z",
-      "medium": "video",
-      "goals": [
-        "work",
-        "earn",
-        "understand"
-      ],
-      "status": "discovered",
-      "publisherExcerpt": "Daksh Gupta, co-founder of Greptile, which reviews about 1% of all pull requests on GitHub, shares what Greptile tells companies that want to build…",
-      "videoId": "4UtrRVtUN_g",
-      "firstSeenAt": "2026-10-27T08:23:45Z"
-    },
-    {
-      "id": "62b6c25f9d8da0f1fcc3",
-      "sourceId": "aiengineer",
-      "title": "Build Your Own Team of Managed Agents - Jack Wotherspoon, Google DeepMind",
-      "url": "https://www.youtube.com/watch?v=Y_p3y6zP5QE",
-      "publishedAt": "2026-10-26T08:00:11Z",
-      "medium": "video",
-      "goals": [
-        "work",
-        "learn",
-        "understand"
-      ],
-      "status": "discovered",
-      "publisherExcerpt": "Jack Wotherspoon, developer experience engineer at Google DeepMind, introduces Gemini Managed Agents: coding agents that run in cloud sandboxes from a single API call…",
-      "videoId": "Y_p3y6zP5QE",
-      "firstSeenAt": "2026-10-26T08:08:30Z"
-    },
-    {
       "id": "555f343c57abbc52ba09",
       "sourceId": "nvidia",
       "title": "Jensen Huang’s Keynote Highlights at NVIDIA GTC Berlin 2026",
@@ -15365,22 +15845,6 @@
       "status": "discovered",
       "publisherExcerpt": "Veeral gave GPT-6 Astra a one-line feature request: add routing controls for individual API keys. Astra found the right settings, made the changes, and…",
       "videoId": "p7TjXroM4ak",
-      "firstSeenAt": "2026-10-03T09:00:29Z"
-    },
-    {
-      "id": "158567bcbed3ba4e84a1",
-      "sourceId": "openai",
-      "title": "“A Staff Engineer Collaborator” | Notion’s First Look at GPT-6 Astra",
-      "url": "https://www.youtube.com/watch?v=dtNlpZI86Dk",
-      "publishedAt": "2026-09-21T19:17:35Z",
-      "medium": "video",
-      "goals": [
-        "work",
-        "understand"
-      ],
-      "status": "discovered",
-      "publisherExcerpt": "Don’t sleep on Astra. Quinn Johnson started working with GPT-6 Astra differently in Codex: he shared the goal, added context, and let it tackle…",
-      "videoId": "dtNlpZI86Dk",
       "firstSeenAt": "2026-10-03T09:00:29Z"
     },
     {
