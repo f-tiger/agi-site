@@ -1,42 +1,42 @@
-# Midea PortaSplit kaufen 2026: Lohnt sie sich?
+# Midea PortaSplit kaufen: Passt sie in deine Wohnung?
 
-> Midea PortaSplit kaufen 2026: Warum der Bestseller ohne Installateur oft ausverkauft ist, für wen er sich lohnt — plus Alternativen bei Lieferengpass.
+> Midea PortaSplit in der Mietwohnung: Prüfe vor dem Kauf den Platz für das Außengerät, die passende Halterung und den Liefertermin beim Händler.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/midea-portasplit-kaufen.html
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
 
-Die Midea PortaSplit ist das Klimagerät der Hitzewelle 2026: bei vielen Händlern ausverkauft, gebraucht teils teurer als neu. Der Grund: Sie ist eine echte Split-Klimaanlage — leise und effizient — die du **ohne Installateur** selbst montierst. Hier der ehrliche Check, bevor du kaufst.
+Die mobile Split-Klimaanlage hat ein Innen- und ein Außengerät. Prüfe für die originale PortaSplit die EAN 4048164116478, den Lieferumfang und den Platz an deinem Fenster oder Balkon. Bei offenem Aufstellort oder Liefertermin kannst du mit der Bestellung warten.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
 
 ## Was die PortaSplit besonders macht
 
-- **Split-Bauweise ohne Installateur:** Innen- und Außeneinheit sind mit einem flachen Schlauch verbunden, der durchs gekippte Fenster passt — keine Kernbohrung, kein Kältemitteltechniker, keine 1.000 €+ Montagekosten.
+- **Aufstellung:** Zum Kühlen steht das Außengerät im Freien. Prüfe Leitungsweg und Halterung für deinen Standort. Midea beschreibt die Verbindung als nicht trennbar. Arbeiten am Kältemittelschlauch gehören in fachkundige Hände.
 
-- **Deutlich leiser als Monoblöcke:** Der laute Kompressor hängt draußen — innen bleibt es schlafzimmertauglich leise (~38 dB), während klassische tragbare Geräte 55–65 dB erreichen.
+- **Geräusch im Zimmer:** Für die originale PortaSplit nennt Midea im Silent-Modus 39 dB(A) Schalldruck, gemessen in 1 m Abstand und 1 m Höhe. Der Pegel am eigenen Bett hängt von Aufstellung und Raum ab. [Midea-Produktdaten und Messbedingungen](https://www.midea.com/de/klimatisieren-heizen/portasplit/produktinfos.portasplit).
 
-- **Effizienter:** Split-Technik kühlt mit weniger Strom als Monoblock-Geräte gleicher Leistung. Viele Varianten heizen im Winter auch.
+- **Betriebskosten:** Vergleiche die Energieangaben der konkreten Geräte für dieselbe Betriebsart und rechne mit deinem Stromtarif.
 
-- **Mietwohnungstauglich:** rückstandslos abbaubar, beim Umzug nimmst du sie mit.
+- **Mietwohnung:** Kläre vor dem Kauf, ob die geplante Befestigung am Gebäude erlaubt ist.
 
 ## Für wen lohnt sie sich — und für wen nicht?
 
-**Lohnt sich,** wenn du regelmäßig echte, leise Kühlung willst (Schlafzimmer!), zur Miete wohnst und keinen Installateur beauftragen kannst oder willst. Bei normalem Preis (~900–1.200 €) ist sie günstiger als jede fest installierte Splitanlage inklusive Montage.
+**Die PortaSplit kommt infrage,** wenn du regelmäßig kühlen möchtest und die Aufstellung beider Geräte geklärt ist. Vergleiche das konkrete Angebot einschließlich benötigter Halterung und Lieferung mit anderen Lösungen.
 
-**Lohnt sich nicht,** wenn du nur an einzelnen heißen Tagen Abkühlung brauchst (dann reicht ein Ventilator oder Luftkühler) — oder wenn Wucherpreise aufgerufen werden: **Zahle in der Knappheit keine 2.000 €+ für ein 1.200-€-Gerät.** Nachschub kommt wöchentlich.
+**Lohnt sich nicht,** wenn du nur an einzelnen heißen Tagen Abkühlung brauchst (dann kann ein Ventilator oder Luftkühler für spürbare Luftbewegung genügen). Wenn kein passendes Angebot vorliegt, kannst du warten.
 
 **Verfügbarkeit und aktuellen Preis prüfen:**
 
 Midea PortaSplit auf Amazon.de →
 
-## Ausverkauft? Die besten Alternativen
+## Wenn dein Händler nicht liefern kann
 
 [Aufstellung prüfen und Alternativen oder Warten abwägen](https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html#kaufpruefung).
 
-- **Andere Split-Geräte zur Selbstmontage:** Es gibt inzwischen mehrere „Quick-Connect"-Splitanlagen ähnlicher Bauart. Split-Klimaanlagen ohne Installation →
+- **Andere Split-Geräte:** Prüfe anhand der Anleitung, welche Montage das angebotene Modell erfordert. Split-Klimaanlagen suchen →
 
-- **Klassische tragbare Klimaanlage (ab ~250 €):** lauter und weniger effizient, aber sofort verfügbar und günstiger. Tragbare Klimaanlagen → — passende Größe im [BTU-Ratgeber](https://getecoback.com/guide/wie-viel-btu-brauche-ich.html).
+- **Monoblock:** Prüfe den Abluftweg und vergleiche den Gesamtpreis sowie die Geräuschangaben für das konkrete Gerät. Tragbare Klimaanlagen → — passende Größe im [BTU-Ratgeber](https://getecoback.com/guide/wie-viel-btu-brauche-ich.html).
 
 **Das passende Gerät finden — ehrlich empfohlen**
 
@@ -46,11 +46,11 @@ Konkrete Modelle mit Rolle, aus öffentlichen Testberichten zusammengestellt (ni
 
 ## Häufige Fragen
 
-**Ist die Midea PortaSplit aktuell lieferbar?**Die PortaSplit ist in Deutschland immer wieder ausverkauft. Midea hat die Produktion laut Branchenberichten von 3.000 auf 6.000 Geräte pro Tag verdoppelt, trotzdem ist das Gerät in Hitzephasen häufig vergriffen. Wer nicht warten kann, findet mit dem Clima Butler Split 2 und der Remko RKL-DC-Serie zwei Alternativen nach demselben Prinzip.
+**Ist die Midea PortaSplit aktuell lieferbar?**Prüfe beim konkreten Händler die Modellbezeichnung, den Lieferort und den bestätigten Liefertermin. Für dieses Angebot liegt uns keine Bestandsbestätigung vor. Ist der Termin offen, kannst du Alternativen vergleichen oder warten.
 
-**Braucht die PortaSplit eine Genehmigung vom Vermieter?**Nein, solange nichts gebohrt und nichts fest installiert wird. Innen- und Außeneinheit sind über einen flachen Schlauch verbunden, der durch das gekippte Fenster passt — es gibt keinen Eingriff in die Bausubstanz. Fest installierte Split-Anlagen mit Wanddurchbruch brauchen dagegen die schriftliche Zustimmung des Vermieters.
+**Braucht die PortaSplit eine Genehmigung vom Vermieter?**Prüfe für den geplanten Standort Mietvertrag, Hausordnung und Befestigung. Wenn Fenster, Fassade oder Gemeinschaftsflächen berührt sind oder die Erlaubnis unklar ist, kläre die Aufstellung vor dem Kauf mit Vermieter oder Hausverwaltung.
 
-**Lohnt sich die PortaSplit gegenüber einem Monoblock?**Für Dauerkühler ja: Der Kompressor steht draußen, dadurch ist sie im Raum deutlich leiser und pro Kühlleistung sparsamer als ein Monoblock. Wer nur an wenigen Hitzetagen im Jahr kühlt, fährt mit einem gut abgedichteten Monoblock günstiger.
+**Lohnt sich die PortaSplit gegenüber einem Monoblock?**Die PortaSplit braucht zum Kühlen einen geeigneten Platz für das Außengerät. Beim Monoblock brauchst du einen Abluftweg. Vergleiche Aufstellung, Anschaffungskosten und Energieangaben für deinen tatsächlichen Kühlbedarf.
 
 **Weitere Ratgeber**
 [Wann kaufen? Der ehrliche Kauf-Kalender →](https://getecoback.com/guide/klimaanlage-wann-kaufen.html)
