@@ -137,7 +137,7 @@ export default [
     (lines, pace, hours) => ({ pickLaborHours: lines / pace, pickersRequired: Math.ceil(lines / pace / hours) }),
   ),
   make(
-    'delivery-route-time-budget',
+    'courier-route-time-budget',
     '配送路线时间预算',
     'Delivery Route Time Budget',
     '将路上行驶与停靠服务时间合并，并与可用班次比较。',

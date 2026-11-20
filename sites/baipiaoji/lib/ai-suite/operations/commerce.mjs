@@ -81,7 +81,7 @@ export default [
     },
   ),
   make(
-    'payment-processor-fee-compare',
+    'merchant-processor-fee-compare',
     '支付渠道费率比较',
     'Payment Processor Fee Comparison',
     '结合平均客单、成功笔数、百分比费率和固定单笔费比较两种报价。',

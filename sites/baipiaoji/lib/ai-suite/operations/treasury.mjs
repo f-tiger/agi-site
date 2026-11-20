@@ -212,7 +212,7 @@ export default [
     }),
   ),
   make(
-    'share-issuance-dilution',
+    'equity-issuance-dilution',
     '增发后的持股稀释',
     'Share Issuance Dilution',
     '假设原股东不参与增发，比较持股比例和稀释百分点。',

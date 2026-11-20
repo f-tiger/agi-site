@@ -211,7 +211,7 @@ export default [
     }),
   ),
   make(
-    'payment-retry-recovery',
+    'billing-retry-recovery',
     '失败付款重试回收',
     'Payment Retry Recovery',
     '按两轮连续重试的条件成功率，估算回收笔数及金额。',

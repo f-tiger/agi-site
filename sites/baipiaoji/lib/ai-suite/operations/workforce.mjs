@@ -70,7 +70,7 @@ const make = toolBuilder({
 });
 export default [
   make(
-    'delivery-workload-fte',
+    'courier-workload-fte',
     '工时需求折算全职人数',
     'Delivery Workload FTE',
     '按每周工时与可交付工时占比，换算所需全职当量和最低人数。',

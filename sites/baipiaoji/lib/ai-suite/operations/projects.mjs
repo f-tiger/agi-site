@@ -331,7 +331,7 @@ export default [
     },
   ),
   make(
-    'shared-resource-overbooking',
+    'project-resource-overbooking',
     '跨项目资源超订',
     'Shared Resource Overbooking',
     '合并两项目对同一人员或设备的需求，量化缺口与剩余容量。',

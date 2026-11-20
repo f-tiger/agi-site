@@ -362,7 +362,7 @@ export default [
     },
   ),
   make(
-    'share-of-voice-impression-gap',
+    'brand-impression-share-gap',
     '展示声量份额缺口',
     'Share of Voice Impression Gap',
     '固定竞争对手展示量，计算本品牌达到目标展示份额所需的增量。',
