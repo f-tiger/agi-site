@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {publicReturnPath} from '../../../tools/fleet-account/config.mjs';
 import {appendEvent,restoreLedger,reviewTask,summarize,compareRuns} from '../assets/studio/task-loop-core.mjs';
 import {aiMcp} from '../lib/ai-mcp.mjs';
 import {executeSuiteTool} from '../lib/ai-suite/runtime.mjs';
@@ -81,6 +82,14 @@ do {
   cursors.add(cursor);
  }
 } while(cursor);
+// Only these two pre-existing published URLs intentionally use names reserved by the account router.
+const legacyGuardedIds=new Set(['invoice-due-date','redirect-map-check']);
+for(const tool of SUITE_TOOLS){
+ if(!legacyGuardedIds.has(tool.id))for(const locale of ['','/en']){
+  const path=locale+'/studio/ai/'+tool.id;
+  assert(publicReturnPath(path)&&publicReturnPath(path+'.html'),'Public tool uses a reserved route: '+path);
+ }
+}
 assert.equal(SUITE_TOOLS.length,1000);
 assert.equal(listing.length,1003);
 assert.equal(cursors.size,25);

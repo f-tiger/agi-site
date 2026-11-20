@@ -264,12 +264,12 @@ expect('system-backoff-timeline', { initial: 5, factor: 2, cap: 9, attempts: 4 }
 example('system-origin-transfer', 'originGiB', 120);
 example('system-compression-savings', 'ratio', 4);
 
-example('delivery-semver-bump', 'next', '1.5.0');
-expect('delivery-semver-range', { range: '^0.0.2', versions: '["0.0.2","0.0.3"]' }, 'matching', ['0.0.2']);
-example('delivery-calendar-version', 'version', '2026.11.3');
-expect('delivery-conventional-changelog', { commits: 'bad\nfeat!: change' }, 'unmatched', ['bad']);
-expect('delivery-commit-bump-signal', { commits: 'fix!: rename' }, 'subjectBasedBump', 'major');
-example('delivery-dependency-scope-conflicts', 'conflicts', [
+example('release-semver-bump', 'next', '1.5.0');
+expect('release-semver-range', { range: '^0.0.2', versions: '["0.0.2","0.0.3"]' }, 'matching', ['0.0.2']);
+example('release-calendar-version', 'version', '2026.11.3');
+expect('release-conventional-changelog', { commits: 'bad\nfeat!: change' }, 'unmatched', ['bad']);
+expect('release-commit-bump-signal', { commits: 'fix!: rename' }, 'subjectBasedBump', 'major');
+example('release-dependency-scope-conflicts', 'conflicts', [
   {
     name: 'alpha',
     entries: [
@@ -278,32 +278,32 @@ example('delivery-dependency-scope-conflicts', 'conflicts', [
     ],
   },
 ]);
-expect('delivery-package-exports', { manifest: '{"exports":{".":null}}' }, 'targets', [
+expect('release-package-exports', { manifest: '{"exports":{".":null}}' }, 'targets', [
   { path: ['.'], target: null },
 ]);
-expect('delivery-package-name-shape', { name: 'Bad!' }, 'syntaxValid', false);
-example('delivery-license-notices', 'undeclared', ['docs@2.0.0']);
-example('delivery-test-shards', 'shards', [
+expect('release-package-name-shape', { name: 'Bad!' }, 'syntaxValid', false);
+example('release-license-notices', 'undeclared', ['docs@2.0.0']);
+example('release-test-shards', 'shards', [
   { tests: ['setup'], seconds: 1.1 },
   { tests: ['publish'], seconds: 0.5 },
 ]);
-example('delivery-fail-fast-order', 'expectedSeconds', 29);
-example('delivery-test-history', 'transitions', 3);
+example('release-fail-fast-order', 'expectedSeconds', 29);
+example('release-test-history', 'transitions', 3);
 expect(
-  'delivery-junit-xml',
+  'release-junit-xml',
   { tests: '[{"name":"x&y","status":"fail","seconds":1}]' },
   'xml',
   '<testsuite tests="1" failures="1" skipped="0">\n<testcase name="x&amp;y" time="1"><failure/></testcase>\n</testsuite>',
 );
-expect('delivery-tap-report', { tests: '[]' }, 'tap', 'TAP version 13\n1..0');
-example('delivery-coverage-misses', 'ranges', [
+expect('release-tap-report', { tests: '[]' }, 'tap', 'TAP version 13\n1..0');
+example('release-coverage-misses', 'ranges', [
   { start: 4, end: 5 },
   { start: 8, end: 8 },
 ]);
-expect('delivery-weighted-coverage', { modules: '[{"hit":2,"total":4},{"hit":1,"total":2}]' }, 'fraction', 0.5);
-example('delivery-artifact-matrix', 'expected', 4);
+expect('release-weighted-coverage', { modules: '[{"hit":2,"total":4},{"hit":1,"total":2}]' }, 'fraction', 0.5);
+example('release-artifact-matrix', 'expected', 4);
 expect(
-  'delivery-git-hash-prefix',
+  'release-git-hash-prefix',
   { hashes: JSON.stringify(['a'.repeat(40), 'b'.repeat(40)]), minimum: 3 },
   'abbreviations',
   [
@@ -311,8 +311,8 @@ expect(
     { hash: 'b'.repeat(40), prefix: 'bbb' },
   ],
 );
-example('delivery-api-symbol-change', 'removed', ['load']);
-example('delivery-release-gates', 'blockers', [{ gate: 'smoke', state: 'pending' }]);
+example('release-api-symbol-change', 'removed', ['load']);
+example('release-release-gates', 'blockers', [{ gate: 'smoke', state: 'pending' }]);
 assert.equal(checked.size, registry.size);
 console.log(
   'PASS 180 developer tools, one independent known answer per tool, 180 deterministic examples and 180 invalid field cases.',

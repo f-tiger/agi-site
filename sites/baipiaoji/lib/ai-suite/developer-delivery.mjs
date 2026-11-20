@@ -73,7 +73,7 @@ function conventional(s) {
   const m = /^([a-z]+)(?:\(([^()\r\n]+)\))?(!)?:\s+(.+)$/.exec(s);
   return m ? { type: m[1], scope: m[2] || null, breaking: Boolean(m[3]), description: m[4] } : null;
 }
-const release = (id, zh, en, cn, desc, fields, fn) => d('delivery-' + id, zh, en, cn, desc, fields, fn);
+const release = (id, zh, en, cn, desc, fields, fn) => d('release-' + id, zh, en, cn, desc, fields, fn);
 export const tools = [
   release(
     'semver-bump',
