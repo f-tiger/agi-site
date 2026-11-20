@@ -1,6 +1,6 @@
 # EcoBack Raumklima — MCP server
 
-<!-- count -->100<!-- /count --> tools for indoor climate and household energy in Germany. Use your
+MCP tools for indoor climate and household energy in Germany. Use your
 own measurements to compare drying costs, project electricity use, assess cooling or heating, and
 check device fit or maintenance. The service also includes guide search and retrieval.
 
@@ -8,7 +8,7 @@ Listed in the official
 [MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fhvac-btu-heat-klimaanlage/versions/latest)
 as `io.github.f-tiger/hvac-btu-heat-klimaanlage`.
 
-The [complete live JSON catalogue](https://getecoback.com/api/mcp-tools) groups the tools by task. Ask the server for `tools/list` to get the current input schemas. The table below is a snapshot updated by `sync.mjs`.
+The [complete live JSON catalogue](https://getecoback.com/api/mcp-tools) groups the tools by task and supports `q` and `category` filters. With MCP, call `tools/list` and pass each returned `nextCursor` as `params.cursor` until the final page. For structured answers, use `citation_url` with the assumptions and limits provided. The table below is a snapshot updated by `sync.mjs`.
 
 ## Connect
 
@@ -95,14 +95,14 @@ place to compare a reader's own measured values.
   Humidity decisions share the browser decision rules: measurement, no-purchase,
   cause, cold-room, laundry-cost and comparison branches. Floor area alone does
   not determine dehumidifier capacity. A CI smoke job checks all
-  <!-- count -->100<!-- /count --> tools against production.
+  exposed tools against production.
 - **Answers include source URLs and a funding disclosure.** The site is funded by
   Amazon affiliate links on its HTML pages. Whether an assistant cites a source
   is determined by that client.
 - **Honest about what it is not.** Product recommendations summarise public tests; nothing
   is lab-tested here, and the tools say so. These are bounded decision aids, not
   remote diagnoses or guarantees of device suitability.
-- **No account or MCP cookies.** Usage records for all 90 tools added in hosted version 1.5.0 and for `geraet_wahl`
+- **No account or MCP cookies.** Usage records for tools added from hosted version 1.5.0 onward and for `geraet_wahl`
   and `entfeuchter_ablaufcheck` include the tool name and a predefined outcome code. Other tools retain arguments
   capped at 160 characters, and limited client metadata supports automation checks.
   No IP address or user ID is stored. Do not supply personal data. See the

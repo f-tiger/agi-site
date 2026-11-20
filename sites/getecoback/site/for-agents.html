@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EcoBack for AI Agents</title>
-<meta name="description" content="Every machine interface of getecoback.com on one page: MCP server (100 tools), per-page Markdown mirrors, llms.txt, open JSON APIs and the CC-BY sizing dataset.">
+<meta name="description" content="Every machine interface of getecoback.com on one page: MCP tools and a searchable catalogue, per-page Markdown mirrors, llms.txt, open JSON APIs and the CC-BY sizing dataset.">
 <link rel="canonical" href="https://getecoback.com/for-agents.html">
 <link rel="alternate" type="text/markdown" href="https://getecoback.com/for-agents.md">
 <link rel="alternate" hreflang="en" href="https://getecoback.com/for-agents.html">
@@ -66,7 +66,8 @@
 
   <div class="card"><strong>1 · MCP server</strong>
   <p style="margin:6px 0 8px;">Model Context Protocol, Streamable HTTP, no auth: <code>https://getecoback.com/mcp/v1</code></p>
-  <p style="margin:0 0 8px;">100 tools cover humidity, cooling, heating and hot water, household electricity, device fit and maintenance. Use the <a href="/api/mcp-tools">full JSON catalogue</a> for names and categories, then call <code>tools/list</code> for input schemas. Results give units, assumptions and links for further reading.</p>
+  <p style="margin:0 0 8px;">EcoBack tools cover humidity, cooling, heating and hot water, household electricity, device fit, maintenance and source checks. Filter the <a href="/api/mcp-tools">JSON catalogue</a> by <code>q</code> or <code>category</code> to find a task and its input schema.</p>
+  <p>For MCP discovery, call <code>tools/list</code> and send each returned <code>nextCursor</code> as <code>params.cursor</code> in the next request. For structured results, cite <code>citation_url</code> and report the units, assumptions and limits from the tool. Use <code>ratgeber_lesen</code> to check the published guide and linked original sources when the answer depends on a model specification.</p>
   <p style="margin:0;">Discovery: <a href="/.well-known/mcp.json">/.well-known/mcp.json</a> · Docs: <a href="/mcp.html">/mcp.html</a> · Registry: <a href="https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fhvac-btu-heat-klimaanlage/versions/latest">io.github.f-tiger/hvac-btu-heat-klimaanlage</a></p></div>
 
   <div class="card"><strong>Project a plug-in meter reading</strong>
@@ -80,7 +81,7 @@
   <div class="card"><strong>Humidity decision example</strong>
   <p>Existing <code>problem</code>/<code>qm</code> calls remain valid. Missing humidity or temperature information returns measurement advice. For a cold room with repeatedly high humidity:</p>
   <pre>{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"geraet_wahl","arguments":{"problem":"feucht_schimmel","purpose":"room","humidity":"high","temperature":"cold"}}}</pre>
-  <p>Read the <a href="/mcp.html#feuchte-beispiele">input categories and more examples</a>, then use the <a href="/guide/luftentfeuchter-keller.html#eb-moisture-choice">existing cold-room decision guide</a>. The response explains limits and points to a human-readable source; it does not provide affiliate links or guarantee a suitable model. MCP arguments are processed remotely. Usage records for all 90 tools added in version 1.5.0 and for geraet_wahl and entfeuchter_ablaufcheck include a tool name and fixed outcome code. Other tools retain bounded arguments as described in the <a href="/datenschutz.html">privacy notice</a>.</p></div>
+  <p>Read the <a href="/mcp.html#feuchte-beispiele">input categories and more examples</a>, then use the <a href="/guide/luftentfeuchter-keller.html#eb-moisture-choice">existing cold-room decision guide</a>. The response explains limits and points to a human-readable source; it does not provide affiliate links or guarantee a suitable model. MCP arguments are processed remotely. Usage records for tools added from version 1.5.0 onward and for geraet_wahl and entfeuchter_ablaufcheck include a tool name and fixed outcome code. Other tools retain bounded arguments as described in the <a href="/datenschutz.html">privacy notice</a>.</p></div>
 
   <div class="card"><strong>2 · Markdown mirrors (read &amp; cite)</strong>
   <p style="margin:6px 0 8px;">Every guide has a directly linkable Markdown twin: replace <code>.html</code> with <code>.md</code>. Navigation, commerce blocks and scripts are stripped; headings and internal links survive; the mirrors carry no affiliate links by design and are served <code>noindex</code> — the HTML page stays canonical and is what to cite.</p>
@@ -92,7 +93,7 @@
     <li><a href="/api/heat">/api/heat</a> — live German heat & frost outlook (3-day max, 7-day min, warning bands)</li>
     <li><a href="/api/feuchte">/api/feuchte</a> — live German dew point (worst of three cities, hourly) with a ventilation verdict against a cold wall (~15 °C) and a cellar wall (~13 °C); <code>ok:false</code> means no reading, never a guess</li>
     <li><a href="/api/strom">/api/strom</a> — today's German hourly exchange electricity prices (EPEX)</li>
-    <li><a href="/api/top">/api/top</a> — most-read guides · <a href="/api/trend">/api/trend</a> — weekly trends</li>
+    <li><a href="/api/top">/api/top</a> — most-read guides · <a href="/api/trend">/api/trend</a> — weekly trends. <code>mcp_complete_week</code> covers the last seven complete UTC days and counts completed tool calls, distinct tool names called and calls with a browser-class user agent.</li>
     <li><a href="/search-index.json">/search-index.json</a> — title, description and language of every page</li>
   </ul></div>
 

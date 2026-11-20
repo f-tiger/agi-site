@@ -21,8 +21,9 @@ Volltext aller Ratgeber: https://getecoback.com/llms-full.txt
 ## Für KI-Agenten (MCP & offene APIs)
 
 - MCP-Server (Model Context Protocol, Streamable HTTP, keine Authentifizierung): https://getecoback.com/mcp/v1
-  Vollständiger JSON-Katalog mit 100 Werkzeugen, Kategorien und Eingaben: https://getecoback.com/api/mcp-tools. Das MCP-Verfahren tools/list liefert die aktuellen Eingabeschemata.
-  Themen: Feuchte, Keller und Wäsche, Kühlung und Lüftung, Heizung und Warmwasser, Strommessung und Haushaltskosten sowie Geräteeignung und Pflege. ratgeber_suche und ratgeber_lesen führen zu den Quellen.
+  JSON-Katalog für Kategorien, Namen und Eingabeschemata: https://getecoback.com/api/mcp-tools. Die Filter q und category grenzen die Liste ein.
+  Bei tools/list jeden zurückgegebenen nextCursor als params.cursor an den nächsten Aufruf übergeben, bis kein Cursor mehr zurückkommt.
+  Werkzeuge zu Feuchte, Kühlung, Heizung, Strom, Gerätepflege und Quellenprüfung. citation_url in strukturierten Ergebnissen verweist auf die Quelle. ratgeber_suche und ratgeber_lesen führen zu den Ratgebern.
   Beispielaufrufe für strommessung_hochrechnen, geraetewechsel_rechnen und waesche_trocknungskosten: https://getecoback.com/mcp.html#haushalt-beispiele
   Veröffentlichte Formeln und Entscheidungsregeln mit Annahmen und Grenzen; Antworten enthalten Quell-URLs und Finanzierungshinweis.
   entfeuchter_ablaufcheck: Beispiel MeacoDry Arete One 20L, Waschbecken über dem Auslass. drain=level_or_uphill, model=meaco-one-20. Deutsche Modellnachweise und Tankoption: https://getecoback.com/guide/luftentfeuchter-keller.html#ablauf-vor-kauf

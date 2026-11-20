@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>100 MCP-Tools für Raumklima und Haushalt | EcoBack</title>
-<meta name="description" content="100 MCP-Tools für Feuchte, Kühlen, Heizen, Stromkosten und Gerätefragen. Mit Eingabeschemata, Einheiten, Quellen und Beispielen. Ohne Anmeldung.">
+<title>MCP-Werkzeuge für Raumklima und Haushalt | EcoBack</title>
+<meta name="description" content="MCP-Werkzeuge für Feuchte, Kühlen, Heizen, Stromkosten und Gerätefragen. Mit Eingabeschemata, Einheiten, Quellen und Beispielen. Ohne Anmeldung.">
 <link rel="canonical" href="https://getecoback.com/mcp.html">
 <link rel="alternate" hreflang="de" href="https://getecoback.com/mcp.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Raumklima-MCP-Server — KI-Agenten-Tools von EcoBack">
-<meta property="og:description" content="100 MCP-Tools für den Haushalt. Prüfe Feuchte, Kühlung, Heizkosten, Stromverbrauch und Geräteeignung mit nachvollziehbaren Annahmen.">
+<meta property="og:description" content="MCP-Werkzeuge für den Haushalt. Prüfe Feuchte, Kühlung, Heizkosten, Stromverbrauch und Geräteeignung mit nachvollziehbaren Annahmen.">
 <meta property="og:url" content="https://getecoback.com/mcp.html">
 <!-- Google Analytics (GA4) -->
 
@@ -45,12 +45,13 @@
   #mcp-categories { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; }
   #mcp-categories button { font:inherit; font-weight:600; padding:6px 10px; border:1px solid #92a9b8; border-radius:8px; background:#fff; color:#0a4d7a; cursor:pointer; }
   #mcp-categories button[aria-pressed="true"] { background:#0a4d7a; border-color:#0a4d7a; color:#fff; }
+  .catalog-more { font:inherit; padding:6px 10px; border:1px solid #92a9b8; border-radius:8px; background:#fff; color:#0a4d7a; cursor:pointer; }
   .related { background:#fff; border:1px solid #e4ebf0; border-radius:12px; padding:18px 20px; margin:26px 0; }
   .related a { display:block; margin:6px 0; }
   footer { text-align:center; color:#5b6b78; font-size:13px; padding:30px 20px 50px; }
   footer a, a { color:#0f6ba8; }
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebAPI","name":"EcoBack Raumklima MCP Server","description":"Offener Model-Context-Protocol-Server mit 100 Werkzeugen für Raumklima, Haushaltsenergie und Geräteeignung.","documentation":"https://getecoback.com/mcp.html","termsOfService":"https://getecoback.com/datenschutz.html","provider":{"@type":"Organization","@id":"https://getecoback.com/#org","name":"EcoBack","url":"https://getecoback.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebAPI","name":"EcoBack Raumklima MCP Server","description":"Offener Model-Context-Protocol-Server mit Werkzeugen für Raumklima, Haushaltsenergie, Gerätepflege und Quellenprüfung.","documentation":"https://getecoback.com/mcp.html","termsOfService":"https://getecoback.com/datenschutz.html","provider":{"@type":"Organization","@id":"https://getecoback.com/#org","name":"EcoBack","url":"https://getecoback.com/"}}</script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="alternate" type="application/rss+xml" title="EcoBack Ratgeber" href="/feed.xml">
@@ -72,7 +73,7 @@
 <header>
   <div class="wrap">
     <a href="/">← EcoBack Raumklima-Ratgeber</a>
-    <h1>100 MCP-Tools für Raumklima und Haushalt</h1>
+    <h1>MCP-Werkzeuge für Raumklima und Haushalt</h1>
     <p>Rechne mit eigenen Messwerten, prüfe die Bedingungen vor dem Gerätekauf und vergleiche Alternativen. Verbinde den EcoBack-Server mit einem MCP-Client wie Claude, Cursor oder VS Code.</p>
   </div>
 </header>
@@ -83,14 +84,12 @@
 
   <h2 id="tools">Werkzeuge nach Aufgabe finden</h2>
   <ul>
-    <li><strong>Feuchte, Keller und Wäsche.</strong> Messwerte einordnen, den Kondensatablauf prüfen und gleich trockene Wäsche vergleichen.</li>
-    <li><strong>Kühlen und Lüften.</strong> Fenster, Raum und Betriebsbedingungen prüfen.</li>
-    <li><strong>Heizen und Warmwasser.</strong> Wärmebedarf, Warmwasser und Dämmung mit eigenen Annahmen abschätzen.</li>
-    <li><strong>Strommessung und Haushaltskosten.</strong> Messungen hochrechnen, Tarife vergleichen und Gerätewechsel kalkulieren.</li>
-    <li><strong>Geräteeignung und Pflege.</strong> Maße, Wartung und Kompatibilität vor dem Kauf oder Austausch prüfen.</li>
-    <li><strong>Raumklima und Ratgeber.</strong> Mit einer konkreten Frage passende Entscheidungshilfen und Quellen finden.</li>
+    <li><strong>Vom Messwert zum Geräteeinsatz.</strong> Prüfe zuerst den Standort des Hygrometers. Nutze die Messwerte für die <a href="#feuchte-beispiele">Entscheidung bei Feuchte</a> und prüfe bei Bedarf den <a href="#ablauf-beispiel">Ablauf des genauen Modells</a>.</li>
+    <li><strong>Vom Verbrauch zur Kostenentscheidung.</strong> Rechne eine repräsentative Messung hoch, vergleiche Tarife und prüfe die <a href="#wechsel-beispiel">Kosten des Gerätewechsels</a>.</li>
+    <li><strong>Vom Raum zur passenden Kühlung.</strong> Schätze die <a href="#btu-beispiel">Kühlleistung</a> ab und prüfe das Fenster und mögliche Abluftwege im <a href="/guide/fensterabdichtung-klimaanlage.html">Ratgeber zur Fensterabdichtung</a>.</li>
+    <li><strong>Von der Modellnummer zur Quelle.</strong> Suche im <a href="/api/mcp-tools?category=Quellen%20%26%20Kaufpr%C3%BCfung">Katalog für Quellen und Kaufprüfung</a> und überprüfe den verlinkten Ratgeber. Prüfe, ob die Quelle dieselbe Modellvariante und dieselben Einsatzbedingungen abdeckt.</li>
   </ul>
-  <p>Der <a href="/api/mcp-tools">vollständige Katalog als JSON</a> führt alle 100 Werkzeuge mit Kategorien auf. Im MCP-Client liefert <code>tools/list</code> die Namen und Eingabeschemata.</p>
+  <p>Der <a href="/api/mcp-tools">vollständige Katalog als JSON</a> enthält Kategorien, Namen und Eingabeschemata. Im Browser wird der Katalog geladen und der Suchtext lokal gefiltert.</p>
   <section id="mcp-catalog" aria-label="Interaktiver Werkzeugkatalog" hidden>
     <div class="catalog-filters" hidden>
       <label>Aufgabe oder Werkzeugname <input type="search" autocomplete="off" maxlength="100"></label>
@@ -98,6 +97,7 @@
     </div>
     <p class="catalog-status" role="status"></p>
     <div id="mcp-results"></div>
+    <button class="catalog-more" type="button" hidden>Weitere Werkzeuge anzeigen</button>
   </section>
   <h3>Fünf Fragen zum Ausprobieren</h3>
   <ul>
@@ -179,11 +179,16 @@
   <h3>VS Code</h3>
   <pre><code>{"servers":{"getecoback":{"type":"http","url":"https://getecoback.com/mcp/v1"}}}</code></pre>
 
+  <h3 id="werkzeugliste">Werkzeuge programmatisch finden</h3>
+  <p><code>tools/list</code> liefert bis zu 100 Werkzeuge pro Seite. Enthält das Ergebnis <code>nextCursor</code>, sende seinen unveränderten Wert im nächsten <code>tools/list</code>-Aufruf als <code>params.cursor</code>. Ohne <code>nextCursor</code> ist die Liste vollständig.</p>
+  <p>Der <a href="/api/mcp-tools">JSON-Katalog</a> unterstützt <code>q</code> für Suchbegriffe und <code>category</code> für Kategorien. <a href="/api/mcp-tools?category=Feuchte&amp;q=entfeuchter">Hier findest du beispielsweise Werkzeuge für Entfeuchter in der Kategorie Feuchte.</a></p>
+  <p>Nutze bei strukturierten Ergebnissen <code>citation_url</code> als Quelle und übernimm die Einheiten und Annahmen aus dem Ergebnis.</p>
+
   <h3>Offizieller MCP-Registry-Eintrag</h3>
   <p>Im <a href="https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fhvac-btu-heat-klimaanlage/versions/latest">offiziellen Registry-Eintrag für io.github.f-tiger/hvac-btu-heat-klimaanlage</a> stehen die registrierte Version und die Verbindungsadresse. Die <a href="/.well-known/mcp.json">Discovery-Datei von EcoBack</a> enthält die Client-Konfiguration.</p>
 
   <h2 id="warum">Quellen und Datenschutz</h2>
-  <p>Die Antworten enthalten Quellen zum Nachlesen; ob ein Assistent sie zitiert, entscheidet der Client. Bei den 90 in Version 1.5.0 ergänzten Werkzeugen sowie bei <code>geraet_wahl</code> und <code>entfeuchter_ablaufcheck</code> erfasst die Nutzungsstatistik den Tool-Namen und einen vorgegebenen Ergebniscode. Bei den übrigen Werkzeugen werden die Parameter auf 160 Zeichen gekürzt gespeichert. Wir erfassen außerdem begrenzte Client-Angaben zur Einordnung automatisierter Aufrufe. Keine IP-Adresse, Nutzerkennung oder MCP-Cookies. Einzelheiten stehen in der <a href="/datenschutz.html">Datenschutzerklärung</a>. Die Website finanziert sich über Amazon-Affiliate-Links auf HTML-Seiten; die MCP-Antworten enthalten keine solchen Kauflinks. Wir testen Geräte nicht selbst.</p>
+  <p>Die Antworten enthalten Quellen zum Nachlesen; ob ein Assistent sie zitiert, entscheidet der Client. Bei den ab Version 1.5.0 ergänzten Werkzeugen sowie bei <code>geraet_wahl</code> und <code>entfeuchter_ablaufcheck</code> erfasst die Nutzungsstatistik den Tool-Namen und einen vorgegebenen Ergebniscode. Bei den übrigen Werkzeugen werden die Parameter auf 160 Zeichen gekürzt gespeichert. Wir erfassen außerdem begrenzte Client-Angaben zur Einordnung automatisierter Aufrufe. Keine IP-Adresse, Nutzerkennung oder MCP-Cookies. Einzelheiten stehen in der <a href="/datenschutz.html">Datenschutzerklärung</a>. Die Website finanziert sich über Amazon-Affiliate-Links auf HTML-Seiten; die MCP-Antworten enthalten keine solchen Kauflinks. Wir testen Geräte nicht selbst.</p>
 
   <div class="related">
     <strong>Für Menschen statt Maschinen</strong>
@@ -205,8 +210,12 @@
   const results = document.getElementById('mcp-results');
   const query = filters.querySelector('input');
   const categories = document.getElementById('mcp-categories');
+  const more = catalog.querySelector('.catalog-more');
+  const pageSize = 24;
   let selected = null;
   let entries = [];
+  let matching = [];
+  let shown = 0;
   catalog.hidden = false;
 
   const normalize = (value) => value.toLocaleLowerCase('de').replace(/[äöüß]/g, (letter) => (
@@ -215,15 +224,22 @@
 
   function render() {
     const terms = normalize(query.value.trim()).split(/\s+/).filter(Boolean);
+    results.replaceChildren();
+    shown = 0;
     if (selected === null && !terms.length) {
-      results.replaceChildren();
+      matching = [];
+      more.hidden = true;
       status.textContent = entries.length + ' Werkzeuge. Wähle eine Kategorie oder suche nach einer Aufgabe.';
       return;
     }
-    const shown = entries.filter(({tool, searchable}) =>
+    matching = entries.filter(({tool, searchable}) =>
       (!selected || tool.category === selected) &&
       terms.every((term) => searchable.includes(term)));
-    const cards = shown.map(({tool}) => {
+    appendPage();
+  }
+
+  function appendPage(focusFirst = false) {
+    const cards = matching.slice(shown, shown + pageSize).map(({tool}) => {
       const card = document.createElement('div');
       card.className = 'tool';
       const name = document.createElement('strong');
@@ -242,10 +258,20 @@
       }
       return card;
     });
-    results.replaceChildren(...cards);
-    status.textContent = shown.length + ' von ' + entries.length + ' Werkzeugen';
+    results.append(...cards);
+    shown += cards.length;
+    more.hidden = shown >= matching.length;
+    status.textContent = matching.length
+      ? shown + ' von ' + matching.length + ' Treffern angezeigt'
+      : 'Keine passenden Werkzeuge gefunden.';
+    if (focusFirst && cards.length) {
+      const title = cards[0].querySelector('strong');
+      title.tabIndex = -1;
+      title.focus();
+    }
   }
 
+  more.addEventListener('click', () => appendPage(true));
   query.addEventListener('input', render);
   function addCategory(value, label, count) {
     const button = document.createElement('button');

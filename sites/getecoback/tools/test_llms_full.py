@@ -14,6 +14,34 @@ MEACO = 'https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-
 
 
 class LlmsFull(unittest.TestCase):
+    def test_root_mcp_citations_keep_static_evidence_and_safe_sources(self):
+        evidence = {
+            'strommess-protokoll': ['0,6 kWh pro Tag', '219 kWh und 76,65 €',
+                                   'betriebstage', 'Keine Arbeiten an offenen Leitungen'],
+            'geraete-austausch-rechner': ['7,14 Jahre', 'Behalten 700 €', 'positive jährliche Stromersparnis',
+                                         'https://energy-efficient-products.ec.europa.eu/product-list/dishwashers_en'],
+            'familienwerkstatt': ['Keine allgemeine Treppenfreigabe.', 'Begrenzungsdraht-Installation',
+                                  'https://www.husqvarna.com/us/support/how-to-create-a-passage-in-an-automower-boundary-wire-installation-ka-01710/',
+                                  'https://help.prusa3d.com/filament-material-guide', 'kein geprüftes Ersatzteil'],
+            'daten': ['CC BY 4.0', 'https://getecoback.com/sizing-data.json',
+                      'Die Grundfläche allein bestimmt keine passende Kapazität'],
+            'wie-wir-empfehlen': ['öffentlich verfügbare Quellen', 'Fehlt eine zuverlässige Zuordnung',
+                                   'Ergebnisse hängen von den Eingaben'],
+        }
+        for slug, phrases in evidence.items():
+            with self.subTest(slug=slug):
+                source = SITE / (slug + '.html')
+                mirror = source.with_suffix('.md').read_text()
+                self.assertIn(f'Canonical (HTML, zitierfähig): https://getecoback.com/{slug}.html', mirror)
+                self.assertIn(f'rel="alternate" type="text/markdown" href="https://getecoback.com/{slug}.md"',
+                              source.read_text())
+                for phrase in phrases:
+                    self.assertIn(phrase.lower(), mirror.lower())
+                self.assertNotRegex(mirror, r'https?://[^\s)]*(?:amazon\.|amzn\.)|[?&]tag=|<form|<script|fw-result')
+                if slug == 'familienwerkstatt':
+                    self.assertNotIn('Meine Checkliste herunterladen', mirror)
+                    self.assertEqual(mirror.count('Keine allgemeine Treppenfreigabe.'), 1)
+
     def test_n90_guide_and_mirror_keep_acoustic_quantities_and_evidence(self):
         guide = SITE / 'guide/delonghi-pac-n90-test.html'
         html = guide.read_text()

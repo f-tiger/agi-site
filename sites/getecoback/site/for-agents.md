@@ -1,6 +1,6 @@
 # EcoBack for AI Agents
 
-> Every machine interface of getecoback.com on one page: MCP server (100 tools), per-page Markdown mirrors, llms.txt, open JSON APIs and the CC-BY sizing dataset.
+> Every machine interface of getecoback.com on one page: MCP tools and a searchable catalogue, per-page Markdown mirrors, llms.txt, open JSON APIs and the CC-BY sizing dataset.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/for-agents.html
 
@@ -9,7 +9,9 @@ EcoBack is a German-language home-climate guide (portable air conditioning, dehu
 **1 · MCP server**
 Model Context Protocol, Streamable HTTP, no auth: https://getecoback.com/mcp/v1
 
-100 tools cover humidity, cooling, heating and hot water, household electricity, device fit and maintenance. Use the [full JSON catalogue](https://getecoback.com/api/mcp-tools) for names and categories, then call `tools/list` for input schemas. Results give units, assumptions and links for further reading.
+EcoBack tools cover humidity, cooling, heating and hot water, household electricity, device fit, maintenance and source checks. Filter the [JSON catalogue](https://getecoback.com/api/mcp-tools) by `q` or `category` to find a task and its input schema.
+
+For MCP discovery, call `tools/list` and send each returned `nextCursor` as `params.cursor` in the next request. For structured results, cite `citation_url` and report the units, assumptions and limits from the tool. Use `ratgeber_lesen` to check the published guide and linked original sources when the answer depends on a model specification.
 
 Discovery: [/.well-known/mcp.json](https://getecoback.com/.well-known/mcp.json) · Docs: [/mcp.html](https://getecoback.com/mcp.html) · Registry: io.github.f-tiger/hvac-btu-heat-klimaanlage
 
@@ -28,7 +30,7 @@ A gravity hose needs a continuous drop. Meaco lists a separate pump for this mod
 Existing problem/qm calls remain valid. Missing humidity or temperature information returns measurement advice. For a cold room with repeatedly high humidity:
 
 {"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"geraet_wahl","arguments":{"problem":"feucht_schimmel","purpose":"room","humidity":"high","temperature":"cold"}}}
-Read the [input categories and more examples](https://getecoback.com/mcp.html#feuchte-beispiele), then use the [existing cold-room decision guide](https://getecoback.com/guide/luftentfeuchter-keller.html#eb-moisture-choice). The response explains limits and points to a human-readable source; it does not provide affiliate links or guarantee a suitable model. MCP arguments are processed remotely. Usage records for all 90 tools added in version 1.5.0 and for geraet_wahl and entfeuchter_ablaufcheck include a tool name and fixed outcome code. Other tools retain bounded arguments as described in the [privacy notice](https://getecoback.com/datenschutz.html).
+Read the [input categories and more examples](https://getecoback.com/mcp.html#feuchte-beispiele), then use the [existing cold-room decision guide](https://getecoback.com/guide/luftentfeuchter-keller.html#eb-moisture-choice). The response explains limits and points to a human-readable source; it does not provide affiliate links or guarantee a suitable model. MCP arguments are processed remotely. Usage records for tools added from version 1.5.0 onward and for geraet_wahl and entfeuchter_ablaufcheck include a tool name and fixed outcome code. Other tools retain bounded arguments as described in the [privacy notice](https://getecoback.com/datenschutz.html).
 
 **2 · Markdown mirrors (read & cite)**
 Every guide has a directly linkable Markdown twin: replace .html with .md. Navigation, commerce blocks and scripts are stripped; headings and internal links survive; the mirrors carry no affiliate links by design and are served noindex — the HTML page stays canonical and is what to cite.
@@ -44,7 +46,7 @@ The same Markdown is also served on the .html URL via Accept: text/markdown cont
 
 - [/api/strom](https://getecoback.com/api/strom) — today's German hourly exchange electricity prices (EPEX)
 
-- [/api/top](https://getecoback.com/api/top) — most-read guides · [/api/trend](https://getecoback.com/api/trend) — weekly trends
+- [/api/top](https://getecoback.com/api/top) — most-read guides · [/api/trend](https://getecoback.com/api/trend) — weekly trends. `mcp_complete_week` covers the last seven complete UTC days and counts completed tool calls, distinct tool names called and calls with a browser-class user agent.
 
 - [/search-index.json](https://getecoback.com/search-index.json) — title, description and language of every page
 

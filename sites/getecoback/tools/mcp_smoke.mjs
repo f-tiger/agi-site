@@ -6,6 +6,7 @@
 //
 // Runs from CI (the sandbox has no outbound network). Exit 1 on any failure.
 
+import {collectToolPages} from '../src/mcp-pagination.mjs';
 import {expandedDefinitions} from "../src/mcp-expanded.mjs";
 
 const BASE = process.env.MCP_URL || "https://getecoback.com/mcp/v1";
@@ -74,8 +75,8 @@ const init = await rpc("initialize", {
 });
 console.log(`initialize OK — server: ${init?.serverInfo?.name} ${init?.serverInfo?.version || ""}`);
 
-const list = await rpc("tools/list", {});
-const names = (list?.tools || []).map((t) => t.name);
+const names = (await collectToolPages(cursor => rpc("tools/list",cursor ? {cursor} : {})))
+  .map(tool => tool.name);
 console.log(`tools/list OK — ${names.length} tools: ${names.join(", ")}`);
 const coveredNames = [...new Set([...CASES.map(([tool]) => tool), ...expandedDefinitions.map(tool => tool.name)])];
 if (names.length !== coveredNames.length) {
