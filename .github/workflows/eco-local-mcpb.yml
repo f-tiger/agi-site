@@ -1,0 +1,219 @@
+name: Build and register the EcoBack local MCP bundle
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/eco-local-mcpb.yml
+      - tools/eco-local-mcpb/**
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: eco-local-mcpb-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  BUNDLE: ecoback-local-tools-1.17.0.mcpb
+  VERSION: '1.17.0'
+  UPSTREAM_SHA: 0dfbcc52e6e15a790dcdb7032056a54033b15e59
+  NAME: io.github.f-tiger/ecoback-local-tools
+  RELEASE_TAG: fleet-mcp-registry-2026-10-10
+  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.17.0.mcpb
+  REGISTRY_VERSIONS: https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions
+  SOURCE_URL: https://github.com/f-tiger/getecoback-mcp
+  MCPB_SCHEMA: https://raw.githubusercontent.com/modelcontextprotocol/mcpb/70fe3b34cd6dff1b3bba046638edc72a6467a4fb/schemas/mcpb-manifest-v0.3.schema.json
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      artifact: ${{ steps.identity.outputs.artifact }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: f-tiger/getecoback-mcp
+          ref: ${{ env.UPSTREAM_SHA }}
+          path: eco-mcp-upstream
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build and exercise the pinned package locally
+        run: |
+          test "$(git -C eco-mcp-upstream rev-parse HEAD)" = "$UPSTREAM_SHA"
+          test "$(node -p 'process.versions.node.split(".")[0]')" = '22'
+          node tools/eco-local-mcpb/build.mjs eco-mcp-upstream "$RUNNER_TEMP/eco-local-mcpb"
+      - name: Identify this build artifact
+        id: identity
+        run: printf 'artifact=eco-local-mcpb-%s-%s\n' "$GITHUB_SHA" "$GITHUB_RUN_ATTEMPT" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.identity.outputs.artifact }}
+          path: |
+            ${{ runner.temp }}/eco-local-mcpb/artifacts/ecoback-local-tools-1.17.0.mcpb
+            ${{ runner.temp }}/eco-local-mcpb/artifacts/SHA256SUMS
+            ${{ runner.temp }}/eco-local-mcpb/servers/ecoback-local-tools.json
+            ${{ runner.temp }}/eco-local-mcpb/smoke-results.json
+          if-no-files-found: error
+          retention-days: 14
+
+  verify-artifact:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      artifact: ${{ needs.build.outputs.artifact }}
+      sha: ${{ steps.bundle.outputs.sha }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.build.outputs.artifact }}
+          path: ${{ runner.temp }}/eco-local-mcpb
+      - name: Read back offline CI artifact and exact local manifest
+        id: bundle
+        run: |
+          root="$RUNNER_TEMP/eco-local-mcpb"
+          digest=$(sha256sum "$root/artifacts/$BUNDLE" | cut -d ' ' -f1)
+          test "$(cat "$root/artifacts/SHA256SUMS")" = "$digest  $BUNDLE"
+          jq -e --arg name "$NAME" --arg version "$VERSION" --arg url "$PUBLIC_ASSET" --arg sha "$digest" --arg source "$SOURCE_URL" '
+            .name == $name and .version == $version and ((.remotes // []) == []) and
+            .websiteUrl == $source and .repository.url == $source and .repository.source == "github" and
+            (.packages | length) == 1 and .packages[0].registryType == "mcpb" and
+            .packages[0].identifier == $url and .packages[0].fileSha256 == $sha and
+            .packages[0].transport.type == "stdio"
+          ' "$root/servers/ecoback-local-tools.json"
+          jq -e --arg name "$NAME" --arg version "$VERSION" --arg revision "$UPSTREAM_SHA" --arg sha "$digest" '
+            .name == $name and .version == $version and .sourceRevision == $revision and
+            .fileSha256 == $sha and .tools == 2003 and .pages == 21 and .legacyNames == 8 and
+            .network == "disabled" and (.firstExamples | type == "array" and length > 0) and
+            (.lastPageExample != null and (.lastPageExample | length) > 0)
+          ' "$root/smoke-results.json"
+          printf 'sha=%s\n' "$digest" >> "$GITHUB_OUTPUT"
+          printf 'Verified CI artifact %s (SHA-256 %s)\n' "$BUNDLE" "$digest"
+
+  publish:
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && github.repository == 'f-tiger/agi-site'
+    needs: verify-artifact
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: write
+      id-token: write
+    env:
+      VERIFIED_SHA: ${{ needs.verify-artifact.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.verify-artifact.outputs.artifact }}
+          path: ${{ runner.temp }}/eco-local-mcpb
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate the downloaded bundle and single manifest before publication
+        run: |
+          root="$RUNNER_TEMP/eco-local-mcpb"
+          test "$(sha256sum "$root/artifacts/$BUNDLE" | cut -d ' ' -f1)" = "$VERIFIED_SHA"
+          test "$(cat "$root/artifacts/SHA256SUMS")" = "$VERIFIED_SHA  $BUNDLE"
+          test "$(find "$root/servers" -maxdepth 1 -name '*.json' -type f -printf '%f\n')" = 'ecoback-local-tools.json'
+          jq -e --arg name "$NAME" --arg version "$VERSION" --arg url "$PUBLIC_ASSET" --arg sha "$VERIFIED_SHA" --arg source "$SOURCE_URL" '
+            .name == $name and .version == $version and ((.remotes // []) == []) and
+            .websiteUrl == $source and .repository.url == $source and .repository.source == "github" and
+            (.packages | length) == 1 and .packages[0].registryType == "mcpb" and
+            .packages[0].identifier == $url and .packages[0].fileSha256 == $sha and
+            .packages[0].transport.type == "stdio"
+          ' "$root/servers/ecoback-local-tools.json"
+          python -m pip install jsonschema==4.25.1
+          schema="$RUNNER_TEMP/eco-local-mcpb-schema.json"
+          curl -fLsS --retry 3 --connect-timeout 10 --max-time 30 "$MCPB_SCHEMA" -o "$schema"
+          python - "$root/artifacts/$BUNDLE" "$schema" <<'PY'
+          import json, sys, zipfile
+          from pathlib import Path
+          import jsonschema
+
+          with zipfile.ZipFile(sys.argv[1]) as bundle:
+              manifest = json.loads(bundle.read('manifest.json'))
+          jsonschema.validate(manifest, json.loads(Path(sys.argv[2]).read_text()))
+          PY
+          python tools/mcp-registry/registry.py validate --manifest-dir "$root/servers"
+          python - "$root/servers/ecoback-local-tools.json" <<'PY'
+          import json, runpy, sys
+          from pathlib import Path
+
+          registry = runpy.run_path('tools/mcp-registry/registry.py')
+          manifest = json.loads(Path(sys.argv[1]).read_text())
+          record = registry['request_json'](registry['receipt_url'](manifest), missing_ok=True)
+          if record is not None:
+              registry['verify_receipt'](manifest, record)
+          PY
+      - name: Upload the missing filename to the existing release and verify public bytes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          root="$RUNNER_TEMP/eco-local-mcpb"
+          endpoint="repos/f-tiger/agi-site/releases/tags/$RELEASE_TAG"
+          gh api "$endpoint" > "$RUNNER_TEMP/eco-local-release-before.json"
+          jq -e --arg tag "$RELEASE_TAG" '.tag_name == $tag and .draft == false' "$RUNNER_TEMP/eco-local-release-before.json"
+          count=$(jq --arg filename "$BUNDLE" '[.assets[] | select(.name == $filename)] | length' "$RUNNER_TEMP/eco-local-release-before.json")
+          if [[ "$count" == '0' ]]; then
+            if ! gh release upload "$RELEASE_TAG" "$root/artifacts/$BUNDLE" --repo f-tiger/agi-site; then
+              echo 'Upload response did not confirm success. Rechecking the existing filename and its public digest.'
+            fi
+          else
+            test "$count" = '1'
+          fi
+          gh api "$endpoint" > "$RUNNER_TEMP/eco-local-release-after.json"
+          jq -e --arg tag "$RELEASE_TAG" --arg filename "$BUNDLE" --arg url "$PUBLIC_ASSET" '
+            .tag_name == $tag and .draft == false and
+            ([.assets[] | select(.name == $filename and .browser_download_url == $url and .state == "uploaded")] | length) == 1
+          ' "$RUNNER_TEMP/eco-local-release-after.json"
+          curl -fLsS --retry 3 --connect-timeout 10 --max-time 90 "$PUBLIC_ASSET" -o "$RUNNER_TEMP/eco-local-published.mcpb"
+          printf '%s  %s\n' "$VERIFIED_SHA" "$RUNNER_TEMP/eco-local-published.mcpb" | sha256sum -c -
+          jq -n --arg url "$PUBLIC_ASSET" --arg sha "$VERIFIED_SHA" '{url:$url,sha256:$sha}' > "$RUNNER_TEMP/eco-local-public-asset.json"
+      - name: Install the existing pinned official publisher
+        run: |
+          mkdir -p "$RUNNER_TEMP/eco-local-publisher"
+          archive="$RUNNER_TEMP/eco-local-publisher.tar.gz"
+          curl -4 -fLsS --retry 3 --connect-timeout 10 --max-time 90 https://github.com/modelcontextprotocol/registry/releases/download/v1.8.1/mcp-publisher_linux_amd64.tar.gz -o "$archive"
+          printf '%s  %s\n' a06c9096dcb9727c13555b6be26c7effa707b01f06a4c561ba7a3635443cf2cc "$archive" | sha256sum -c -
+          tar xzf "$archive" -C "$RUNNER_TEMP/eco-local-publisher" mcp-publisher
+      - name: Publish only the verified local manifest with GitHub OIDC
+        run: |
+          publisher="$RUNNER_TEMP/eco-local-publisher/mcp-publisher"
+          "$publisher" login github-oidc
+          python tools/mcp-registry/registry.py publish --publisher "$publisher" --manifest-dir "$RUNNER_TEMP/eco-local-mcpb/servers" --receipt "$RUNNER_TEMP/eco-local-registry-publication.json"
+      - name: Read back the exact and latest active Registry records
+        run: |
+          for version in "$VERSION" latest; do
+            record="$RUNNER_TEMP/eco-local-registry-$version.json"
+            curl -fLsS --retry 3 --connect-timeout 10 --max-time 30 "$REGISTRY_VERSIONS/$version" -o "$record"
+            jq -e --arg name "$NAME" --arg version "$VERSION" --arg url "$PUBLIC_ASSET" --arg sha "$VERIFIED_SHA" '
+              .server.name == $name and .server.version == $version and
+              ((.server.remotes // []) == []) and (.server.packages | length) == 1 and
+              .server.packages[0].registryType == "mcpb" and .server.packages[0].identifier == $url and
+              .server.packages[0].fileSha256 == $sha and .server.packages[0].transport.type == "stdio" and
+              ._meta["io.modelcontextprotocol.registry/official"].status == "active" and
+              ._meta["io.modelcontextprotocol.registry/official"].isLatest == true
+            ' "$record"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eco-local-mcpb-publication-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/eco-local-public-asset.json
+            ${{ runner.temp }}/eco-local-registry-*.json
+          if-no-files-found: warn
+          retention-days: 30
