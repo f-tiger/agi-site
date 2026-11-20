@@ -200,9 +200,9 @@ jobs:
           node scripts/documents/build.mjs --out dist
           node scripts/documents/verify.mjs --out dist
           node scripts/collecting/build.mjs --out dist
+          node scripts/tds-suite-pages.mjs --out dist
           node scripts/collecting/verify.mjs --out dist
           node scripts/collecting/verify-market-guides.mjs --out dist
-          node scripts/tds-suite-pages.mjs --out dist
           node scripts/verify-tds-suite-pages.mjs --out dist
 
       - name: Configure independent membership secrets
