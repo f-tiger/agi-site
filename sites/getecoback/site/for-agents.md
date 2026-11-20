@@ -91,6 +91,10 @@ Look up freezer capacity and site temperature, dishwasher opening clearance, mat
 Check a cooker hood starter kit against its replacement filter, confirm an oven rail or shower accessory by exact product, compare a portable air appliance with its listed mobility accessory, and organise German appliance take-back evidence. Check the exact source, conditions and remaining proof before purchase.
 [Cooker hood evidence](https://getecoback.com/produkte.html#dunstabzug-umluft-zubehoer) · [Shower accessory evidence](https://getecoback.com/guide/duschen-kosten-rechner.html#handbrause-halter-und-durchfluss) · [Retailer take-back evidence](https://getecoback.com/geraete-austausch-rechner.html#altgeraete-ruecknahme).
 
+## Cooking zones, programme observations and power states
+Use documented cookware-base measurements against the selected cooking zone, distinguish dishwasher predictions from completed observations, and check separate air-fryer containers and fittings. The standby tools separate observed operating states and the applicable source conditions.
+[Cookware and programme evidence](https://getecoback.com/produkte.html#induktionsgeschirr-kochzonen) · [Standby source and observation](https://getecoback.com/strommess-protokoll.html#aus-standby-netzwerk-belege).
+
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
