@@ -16,6 +16,11 @@ const server=createServer(async(req,res)=>{
 });
 await new Promise(r=>server.listen(0,'127.0.0.1',r));
 const base='http://127.0.0.1:'+server.address().port;
+const mideaAlternatives='/guide/midea-portasplit-ausverkauft-alternativen.html';
+async function assertAnchorBelowNavigation(page,path,anchor){
+ const rect=await page.locator(anchor).evaluate(node=>({top:node.getBoundingClientRect().top,nav:document.querySelector('.eb-nav').getBoundingClientRect().bottom,viewport:innerHeight}));
+ assert(rect.top>=rect.nav-1&&rect.top<rect.viewport,path+' '+anchor+' exposes its destination below navigation: '+JSON.stringify(rect));
+}
 let browser;
 try{
  browser=await chromium.launch({headless:true});
@@ -46,8 +51,7 @@ try{
     for(const target of ['eb-catalog-reading','eb-models']){
      await entry.locator('a[href="#'+target+'"]').click();
      await page.waitForURL(u=>u.hash==='#'+target);
-     const rect=await page.locator('#'+target).evaluate(node=>({top:node.getBoundingClientRect().top,nav:document.querySelector('.eb-nav').getBoundingClientRect().bottom,viewport:innerHeight}));
-     assert(rect.top>=rect.nav-1&&rect.top<rect.viewport,path+' '+target+' exposes its destination below navigation: '+JSON.stringify(rect));
+     await assertAnchorBelowNavigation(page,path,'#'+target);
     }
    }
    // The daily build rotates in March/June too; winter ordering is a cold-season contract.
@@ -81,6 +85,23 @@ try{
    if(width===390&&js){await mkdir('/tmp/eco-dach-qa',{recursive:true});await page.screenshot({path:'/tmp/eco-dach-qa/'+(path.split('/').pop()||'index.html')+'.png',fullPage:true});}
    checks++;
   }
+  for(const [path,anchor] of [
+   [mideaAlternatives,'#kaufpruefung'],
+   ['/guide/delonghi-pinguino-vergleich.html','#vergleich'],
+  ]){
+   await page.goto(base+path+'?__probe=1');
+   await page.locator('nav[aria-label="Inhaltsverzeichnis"] a[href="'+anchor+'"]').click();
+   await page.waitForURL(u=>u.hash===anchor);
+   await assertAnchorBelowNavigation(page,path,anchor);
+   await page.goto(base+path+'?__probe=1&entry=direct'+anchor);
+   await assertAnchorBelowNavigation(page,path,anchor);
+   checks+=2;
+  }
+  await page.goto(base+'/guide/midea-portasplit-kaufen.html?__probe=1');
+  await page.locator('[data-eb="mpk-avail"] a[href="'+mideaAlternatives+'#kaufpruefung"]').click();
+  await page.waitForURL(u=>u.pathname===mideaAlternatives&&u.hash==='#kaufpruefung');
+  await assertAnchorBelowNavigation(page,mideaAlternatives,'#kaufpruefung');
+  checks++;
   assert.deepEqual(errors,[]);await context.close();
  }
  console.log(JSON.stringify({pass:true,checks,externalTraffic:false}));

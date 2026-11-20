@@ -32,6 +32,8 @@ Midea PortaSplit auf Amazon.de →
 
 ## Ausverkauft? Die besten Alternativen
 
+[Aufstellung prüfen und Alternativen oder Warten abwägen](https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html#kaufpruefung).
+
 - **Andere Split-Geräte zur Selbstmontage:** Es gibt inzwischen mehrere „Quick-Connect"-Splitanlagen ähnlicher Bauart. Split-Klimaanlagen ohne Installation →
 
 - **Klassische tragbare Klimaanlage (ab ~250 €):** lauter und weniger effizient, aber sofort verfügbar und günstiger. Tragbare Klimaanlagen → — passende Größe im [BTU-Ratgeber](https://getecoback.com/guide/wie-viel-btu-brauche-ich.html).
