@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {appendEvent,restoreLedger,reviewTask,summarize,compareRuns} from '../assets/studio/task-loop-core.mjs';
 import {aiMcp} from '../lib/ai-mcp.mjs';
+import {SUITE_TOOLS,runSuiteTool} from '../lib/ai-suite/registry.mjs';
 let n=0;const test=(name,fn)=>{fn();n++;console.log('PASS '+name);};
 let e=appendEvent([],'state',{goal:'Ship signup',acceptance:'Live signup passes',blockers:['Service unavailable']});
 test('blocker before artifact',()=>assert.equal(reviewTask({...e[0].data,artifactCreated:true}).action,'resolve_blocker'));
@@ -36,3 +37,51 @@ for(const [member,status] of [[null,401],[{id:'expired',ends_at:1,suspended:0},4
 }
 assert.equal(compareRuns([{taskId:'x',group:'__proto__',passed:false,cost:0,interventions:0}]).groups.__proto__.runs,1);
 console.log('PASS 5 additional checks: absent, expired, suspended, active paid membership (mock DB), hostile group key.');
+
+const get=await aiMcp({request:new Request('https://baipiaoji.com/api/ai-mcp'),env:{}});
+assert.equal(get.status,405);
+assert.equal(get.headers.get('Allow'),'POST, OPTIONS');
+assert.equal((await get.json()).catalog,'https://baipiaoji.com/ai-tools.json');
+const rpc=async(method,params,paid=false,env={})=>{
+ const headers=paid?{Authorization:'Bearer '+'a'.repeat(64)}:{};
+ const reply=await req({jsonrpc:'2.0',id:42,method,params},headers,paid,env);
+ assert.equal(reply.status,200);
+ assert.equal(reply.headers.get('Cache-Control'),'no-store');
+ const body=await reply.json();
+ assert.equal(body.id,42);
+ assert.equal(body.jsonrpc,'2.0');
+ return body.result;
+};
+const metadata=await rpc('initialize');
+assert.equal(metadata.protocolVersion,'2025-06-18');
+assert.equal(metadata.serverInfo.name,'bpj-ai-tools');
+assert.equal(metadata.serverInfo.version,'0.2.0');
+const listing=(await rpc('tools/list')).tools;
+assert.equal(SUITE_TOOLS.length,100);
+assert.equal(listing.length,102);
+assert.equal(new Set(listing.map(tool=>tool.name)).size,102);
+assert.deepEqual(listing.slice(0,2).map(tool=>tool.name),['list_bpj_ai_tools','review_task_state']);
+assert.deepEqual(new Set(listing.slice(2).map(tool=>tool.name)),new Set(SUITE_TOOLS.map(tool=>tool.name)));
+const discovery=JSON.parse((await rpc('tools/call',{name:'list_bpj_ai_tools'})).content[0].text);
+assert.equal(discovery.tools[0].id,'task-loop');
+assert.equal(discovery.suite.length,100);
+assert.equal(discovery.suite[0].path,'/studio/ai/'+SUITE_TOOLS[0].id);
+assert.equal(discovery.suite[0].freeMcp,SUITE_TOOLS[0].name);
+assert.equal(discovery.paidStatus,'not_launched');
+const paidListing=await rpc('tools/list',{},true,{AI_MCP_PAID_ENABLED:'true',HITS:fakeDb({id:'active',ends_at:Math.floor(Date.now()/1000)+600,suspended:0})});
+assert.deepEqual(paidListing.tools.map(tool=>tool.name),['compare_task_runs']);
+for(const tool of SUITE_TOOLS){
+ const definition=listing.find(item=>item.name===tool.name);
+ assert.equal(definition.inputSchema.type,'object',tool.name);
+ assert.deepEqual([...definition.inputSchema.required].sort(),Object.keys(tool.example).sort(),tool.name);
+ assert.equal(definition.annotations?.readOnlyHint,true,tool.name);
+ const checked=await rpc('tools/call',{name:tool.name,arguments:tool.example});
+ assert.equal(checked.isError,undefined,tool.name);
+ const expected=JSON.parse(JSON.stringify(runSuiteTool(tool.name,tool.example)));
+ assert.deepEqual(checked.structuredContent,expected,tool.name);
+ assert.deepEqual(JSON.parse(checked.content[0].text),expected,tool.name);
+ const invalid=await rpc('tools/call',{name:tool.name,arguments:{...tool.example,bpj_unknown_fixture_property:'private fixture'}});
+ assert.equal(invalid.isError,true,tool.name);
+ assert.doesNotMatch(invalid.content[0].text,/private fixture/);
+}
+console.log('PASS 100 free MCP fixtures and invalid arguments, public catalogue compatibility, paid isolation.');

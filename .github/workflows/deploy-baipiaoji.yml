@@ -628,8 +628,12 @@ jobs:
 
 
       - name: Verify live AI tools and free MCP
-        if: env.OUTCOME_READ_ONLY_RELEASE != 'true'
-        run: node scripts/verify-ai-tools-live.mjs
+        run: |
+          if [[ "$OUTCOME_READ_ONLY_RELEASE" == "true" ]]; then
+            node scripts/verify-ai-tools-live.mjs --metadata-only
+          else
+            node scripts/verify-ai-tools-live.mjs
+          fi
 
       - name: Verify live campaign measurement (QA excluded)
         if: (env.BPJ_RECEIPTS_RECOVERY != 'true') && env.OUTCOME_READ_ONLY_RELEASE != 'true'

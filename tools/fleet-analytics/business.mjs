@@ -43,6 +43,8 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
   const affiliate = affiliateEvent(host, detail);
   if (affiliate) return affiliate;
   const name = detail.name;
+  const suiteTool = /^\/(?:en\/)?studio\/ai\/([a-z0-9-]{1,60})$/.exec(pathname);
+  if(host==='baipiaoji.com' && suiteTool && /^ai_suite_result_(demo|own)$/.test(name))return {name,tool_id:suiteTool[1],repeat:true};
   if (host === 'baipiaoji.com' && /^\/(?:en\/)?tools\/(chatgpt|kimi|qingying)$/.test(pathname) && name === 'catalog_task_open') {
     return {name, tool_id: pathname.split('/').pop(), repeat: true};
   }
