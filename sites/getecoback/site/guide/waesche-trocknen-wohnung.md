@@ -114,6 +114,24 @@ Auf einem Foto mit abgeschnittenem Unterrand bleibt die Balkenzahl offen. Wenn d
 
 Quellen, abgerufen am 20. November 2026. [GINETEX Germany zur Pflegekennzeichnung](https://ginetex.de/pflegekennzeichnung/), [GINETEX Germany zu den einzelnen Pflegesymbolen](https://ginetex.de/pflegekennzeichnung/pflegesymbole/), [ISO 3758:2023](https://www.iso.org/standard/74401.html), [§ 4 Textilkennzeichnungsgesetz zur Faserangabe](https://www.gesetze-im-internet.de/textilkennzg_2016/__4.html).
 
+## Vor dem Waschen: Dosiertabelle und Automatik prüfen
+
+Halte die Angaben zur Wasserhärte am Waschmaschinenanschluss und die Dosiertabelle der aktuellen Packung bereit. Prüfe auch Wäschemenge und Verschmutzung. In Deutschland liegt die Klasse „mittel“ nach § 9 WRMG bei 1,5 bis 2,5 mmol Calciumcarbonat je Liter. Eine belegte Spanne über eine Klassengrenze kann mehrere Tabellenspalten betreffen. Angaben in einer anderen Einheit brauchen einen eigenen Umrechnungsbeleg.
+
+Die folgenden Gerätebeispiele gelten für den Bosch WGB244A40 mit der für die E-Nr. bestätigten deutschen Anleitung 9001735129_F und den Miele WWR 880 WPS mit der deutschen Ausgabe 11 767 692. Prüfe bei ähnlichen Geräten zuerst das Typenschild und die Anleitung.
+
+- **Bosch i-DOS:** Der Basiswert bezieht sich auf 4,5 kg normal verschmutzte Wäsche und die örtliche Härte. Die tatsächlich abgegebene Menge eines einzelnen Waschgangs bleibt damit offen. Bei aktiver Flüssigwaschmittel-Automatik plane kein zweites Hauptwaschmittel in der manuellen Kammer. Die Rücksetzung des Basiswerts beim Wechsel der Rolle von Behälter 2 und die Auswahl eines Behälters bei zwei Flüssigwaschmitteln sind eigene Einstellungen. Beim Nachfüllen unterscheidet die Anleitung dasselbe Produkt vom Produktwechsel.
+
+- **Bosch Vorwäsche, Sportswear und gemeinsame Nutzung:** Mit bestätigter i-DOS-Automatik dosiert das Modell bei aktivierter Vorwäsche für beide Waschphasen. Sportswear begrenzt die Ladung auf 2 kg und sieht keinen Weichspüler vor. Der zuletzt geschaltete i-DOS-Zustand wird gespeichert. Vor einem eigenen Lauf lohnt ein Blick auf die aktuelle Einstellung.
+
+- **Miele TwinDos:** Die Wascheinstellung für den Verschmutzungsgrad kann Dosierung und Spülwassermenge beeinflussen. Bei aktivierter Vorwäsche schließt die Anleitung manuell zugegebenes Flüssigwaschmittel für die Hauptwäsche aus. Die Werte für das originale UltraPhase-1/2-Paar stehen getrennt in der Einrichtungstabelle. Bei Wechsel vom Paar auf ein anderes Mittel löscht das Gerät die Einstellung des Gegenfachs. Eine neue Kartusche und ein am Gerät bestätigter Zählerrücksetzung sind zwei verschiedene Belege.
+
+- **Miele CapDosing und SingleWash:** Normale Waschmittel-Tabs oder -Pods gehören laut Anleitung in die Trommel. Für die eigentliche Cap-Aufnahme ist eine ausgewiesene Miele Cap vorgesehen. Im Programm ist höchstens eine Cap wählbar. Eine Hauptwaschmittel-Cap schaltet TwinDos für diesen Lauf aus, während die Anzeige sichtbar bleibt. Ein kleiner Wasserrest in der gebrauchten Cap ist beschrieben. Bei aktivem SingleWash unter 1 kg nennt Miele Flüssigwaschmittel und maximal die Hälfte des passenden Packungswerts für eine halbe Ladung.
+
+- **Programme und Anzeigen:** Die Miele-Tabelle empfiehlt für Express 20 flüssiges Colorwaschmittel. Wasser Plus hebt den Wasserstand, ein zusätzlich gewählter Spülgang ist eine eigene Option. Die einstellbare Baumwoll-Vorwaschzeit betrifft diese Phase. Blinkendes i-DOS oder „TwinDos leer“ sind dokumentierte Gerätesignale. Füllmenge, tatsächliche Abgabe und Waschergebnis für den einzelnen Lauf bleiben separat zu prüfen.
+
+Quellen, geprüft am 20. November 2026. [§ 9 WRMG zur Gesamthärte](https://www.gesetze-im-internet.de/wrmg/__9.html), [Umweltbundesamt zur Dosierung auf der Verpackung](https://www.umweltbundesamt.de/umwelttipps-fuer-den-alltag/haushalt-wohnen/waesche-waschen-waschmittel), [Bosch WGB244A40, Anleitung 9001735129_F](https://media3.bosch-home.com/Documents/9001735129_F.pdf), [Miele WWR 880 WPS, Anleitung 11 767 692](https://media.miele.com/downloads/10/4b/01_C7F13838F4DC1EEF92E2ED555227104B.pdf).
+
 ## Herstellerdaten vor dem Kauf prüfen
 **So vergleichst du die Herstellerdaten**
 Zwei Beispiele aus vorhandenen Ratgebern, kein vollständiger Marktvergleich und kein EcoBack-Produkttest. Verglichen werden Wasserentzug und Betriebsleistung bei derselben Temperatur und relativen Feuchte (RH). Fehlende Angaben bleiben offen; daraus folgt keine Rangfolge.

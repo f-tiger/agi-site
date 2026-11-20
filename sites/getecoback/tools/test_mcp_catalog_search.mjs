@@ -231,3 +231,24 @@ test('German buyer queries find the sourced product and maintenance task groups'
     assert.ok(client.slice(0,3).includes(expected),query);
   }
 });
+
+test('German buyer and owner questions find the next appliance evidence groups', async () => {
+  const cases = [
+    ["Warum sieht mein mitgelieferter DeLonghi DLSC002 Filter anders aus als der Ersatzfilter?", "delonghi_dlsc002_filter_variante_aussehen_ersatzkauf"],
+    ["Unser Versorger nennt 2,4 bis 2,6 mmol Calciumcarbonat pro Liter. Welche Spalte auf der Waschmittelpackung ist das?", "waschmittel_dosiertabelle_wasserhaerte_intervall"],
+    ["Wasserhärte vom Versorger: Mein Bericht sagt nur »mittel«. Reicht das für die Gerätestufe oder brauche ich den Zahlenwert am Geschirrspüler-Zulauf?", "spueler_haertebereich_versorger_geraetestufe"],
+    ["Auf meinem Miele steht Compact C2, im Angebot für den Ersatzbeutel steht GN. Welche vollständige Modellzeile und welcher HyClean-Beuteltyp passen zusammen?", "miele_hyclean_beutel_vollstaendige_modellzeile"],
+    ["Bedeutet Easy De-Calc im PerfectCare Angebot dasselbe Kalksystem wie Easy De-Calc Plus auf dem PSG7140 Datenblatt?", "philips_buegelgeraet_kalksystem_typenschild_abgleich"],
+    ["Welche Anleitung gehört zur Bosch E-Nummer MSM67170/02?", "bosch_ergomixx_e_nummer_ausfuehrung_handbuch"],
+    ["Welche Nischenmaße braucht die Bosch BFL524MS0, wenn am Schrank nur 558 Millimeter Breite frei sind?", "bosch_bfl524ms0_nische_geraetemass_unterscheiden"],
+    ["Ist die Wiegefläche der Beurer Küchenwaage Artikelnummer 70312 aus Glas oder Edelstahl?", "beurer_ks34_artikelnummer_wiegeoberflaeche"],
+    ["Was ist der Unterschied zwischen TWK8613P/01 und TWK8613P/02 auf der Bosch Service-Seite?", "bosch_twk8613p_enummer_suffix_servicebeleg"],
+    ["Hat der Bosch TAT8613 zwei Röstschlitze und belegt die Zahl auch das Innenmaß für dicke Scheiben?", "bosch_tat8613_schlitzanzahl_scheibenmass_abgrenzen"],
+  ];
+  for (const [query, expected] of cases) {
+    const ranked = names(findCatalogueTools(compact,{query}));
+    const response = await catalogue({q:query,view:'compact',limit:'24'});
+    assert.deepEqual(names(response.tools),ranked.slice(0,24),query);
+    assert.ok(ranked.slice(0,3).includes(expected),query);
+  }
+});
