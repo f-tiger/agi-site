@@ -3,11 +3,10 @@ const triple = (en, de, zh) => ({en,de,zh});
 const whole = (minimum=0, maximum=100000000) => ({type:'integer',minimum,maximum});
 const text = (maxLength=1600) => ({type:'string',maxLength});
 const days = whole(0,730);
-const mm = whole(1,1000000);
-const gap = whole(0,1000000);
+const mm = whole(1,100000);
+const gap = whole(0,100000);
 const money = whole();
 const count = whole(1,10000);
-const ratios = whole(0,10000);
 const date = {type:'string',minLength:10,maxLength:10};
 const rule = (category, title, explanation, inputs, sample, run) =>
   ({category,title,explanation,inputs,sample,run});

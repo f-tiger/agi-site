@@ -55,6 +55,7 @@ test('geometry kernels match hand-derived clearances and reject infeasible bound
   assert.equal(evaluate('load',{ratingG:2599}).withinStatedMass,false);
   assert.equal(evaluate('cartons').cartonsNeeded,1);
   assert.equal(evaluate('cartons',{packedHeightMm:400}).cartonsNeeded,null);
+  assert.throws(()=>evaluate('cartons',{insideLengthMm:100001}),TypeError);
   assert.equal(evaluate('sheets').sheetsNeeded,3);
   assert.equal(evaluate('sheets',{pieceWidthMm:800}).sheetsNeeded,null);
 });
