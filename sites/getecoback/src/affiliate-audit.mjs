@@ -1,4 +1,5 @@
 import {CELLAR_PAGE} from './affiliate-meta.mjs';
+import {WINDOW_ENTRY_PAGE} from './fenstersauger-entry.mjs';
 
 // Bounded, aggregate-only history for distinguishing demand/mix changes from
 // telemetry loss. No identifiers, raw paths, referrers or outbound URLs leave
@@ -10,12 +11,15 @@ export const AUDIT_SQL = `SELECT day, name, page, ref,
     THEN json_extract(meta,'$.source') ELSE NULL END AS source,
   CASE WHEN page='${CELLAR_PAGE}' AND ua_class='human' AND json_valid(meta)
     THEN json_extract(meta,'$.mcp_drain_entry') = 1 ELSE 0 END AS drain_entry,
+  CASE WHEN page='${WINDOW_ENTRY_PAGE}' AND ua_class='human' AND json_valid(meta)
+    THEN COALESCE(json_type(meta,'$.mcp_window_entry') = 'integer'
+      AND json_extract(meta,'$.mcp_window_entry') = 1,0) ELSE 0 END AS window_entry,
   COUNT(*) AS n, date('now') AS end_exclusive
 FROM ev
 WHERE name IN ('page_view','affiliate_click')
   AND day >= date('now','-56 days') AND day < date('now')
   AND (ua_class IS NULL OR ua_class='human') AND page NOT LIKE '/__ci%'
-GROUP BY day, name, page, ref, link, source, drain_entry`;
+GROUP BY day, name, page, ref, link, source, drain_entry, window_entry`;
 
 const GAPS = [
   {day:'2026-09-24',approx_start_utc:'13:00'},
@@ -63,6 +67,8 @@ const dayAt = (end,offset)=>new Date(Date.parse(end+'T00:00:00Z')+offset*8640000
 // Launch day is partial. Mixed windows expose only the dates actually counted.
 const firstFullDrainDay = '2026-11-20';
 const range = (start,end)=>({...section(),start,end_exclusive:end,
+  // An empty marker cohort alone cannot establish when coverage started.
+  mcp_window_entry:null,
   mcp_drain_entry: end <= firstFullDrainDay ? null : {
     start: start < firstFullDrainDay ? firstFullDrainDay : start, end_exclusive:end, ...count(),
   },
@@ -96,6 +102,11 @@ function add(s,r,channel) {
   const cellar = r.page === CELLAR_PAGE;
   if (cellar && s.mcp_drain_entry && r.day >= firstFullDrainDay && r.drain_entry === 1) {
     s.mcp_drain_entry[field] += r.n;
+  }
+  if (r.page === WINDOW_ENTRY_PAGE && r.window_entry === 1) {
+    const entry = s.mcp_window_entry ??= {first_recorded_day:r.day,page_views:0,model_search_clicks:0};
+    if (r.day < entry.first_recorded_day) entry.first_recorded_day = r.day;
+    entry[field === 'page_views' ? field : 'model_search_clicks'] += r.n;
   }
   if (cellar) s.cellar_catalog[field] += r.n;
   const group=pageGroup(r.page);

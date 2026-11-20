@@ -16,7 +16,7 @@ import {videoGrowth} from './video-growth.mjs';
 import {videoEntry} from './video-entry.mjs';
 import {affiliateMetrics} from './affiliate-metrics.mjs';
 import {affiliateAudit} from './affiliate-audit.mjs';
-import {affiliateMeta, CELLAR_PAGE, taggedDrainEntry} from './affiliate-meta.mjs';
+import {affiliateMeta, CELLAR_PAGE, taggedDrainEntry, taggedWindowEntry} from './affiliate-meta.mjs';
 // The browser module guards DOM setup with typeof document; its pure decision
 // function is also the MCP contract, so the two surfaces cannot route differently.
 import {decide as decideMoisture} from '../site/assets/moisture-decision.mjs';
@@ -838,13 +838,19 @@ async function handleEvent(request, env, ctx) {
   const evUa = request.headers.get("user-agent") || "";
   const evCls = evUaClass(evUa);
   const drainEntry = taggedDrainEntry(body, request, evCls);
+  const windowEntry = taggedWindowEntry(body, request, evCls);
   let metadata = body.m;
   if (name === 'page_view' && page === CELLAR_PAGE && (drainEntry || metadata?.mcp_drain_entry !== undefined)) {
     metadata = {...metadata};
     delete metadata.mcp_drain_entry;
     if (drainEntry) metadata.mcp_drain_entry = 1;
   }
-  const meta = name === 'affiliate_click' ? affiliateMeta(metadata, drainEntry)
+  if (name === 'page_view' && (windowEntry || metadata?.mcp_window_entry !== undefined)) {
+    metadata = {...metadata};
+    delete metadata.mcp_window_entry;
+    if (windowEntry) metadata.mcp_window_entry = 1;
+  }
+  const meta = name === 'affiliate_click' ? affiliateMeta(metadata, drainEntry, windowEntry)
     : metadata ? JSON.stringify(metadata).slice(0, 200) : "";
   const country = meterEvent ? "" : request.headers.get("CF-IPCountry") || "";
   const day = new Date().toISOString().slice(0, 10);
@@ -978,7 +984,7 @@ async function trendCompute(env) {
 // MCP server (Model Context Protocol, stateless Streamable HTTP).
 // Each tool returns a usable answer with sources. Publication, calls, website
 // visits and merchant activity are observed separately.
-const MCP_VERSION = "1.20.0";
+const MCP_VERSION = "1.21.0";
 const LEGACY_MCP_TOOLS = [
   drainTool,
   // AI-era round 2026-08-29: the decision LAYER above the per-device

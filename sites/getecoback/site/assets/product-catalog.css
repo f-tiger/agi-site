@@ -7,6 +7,10 @@ body{margin:0;background:#f8fafb;font-family:system-ui,-apple-system,BlinkMacSys
 .pc-comparison{margin:1.5rem 0;padding:1rem;border:1px solid #a9bcc6;border-radius:12px;background:#fff}.pc-table-scroll{overflow-x:auto}.pc-table-scroll:focus-visible{outline:3px solid #236894;outline-offset:3px}.pc-comparison table{border-collapse:collapse;min-width:720px;width:100%;font-size:.95rem}.pc-comparison caption{text-align:left;font-weight:700;padding:.6rem}.pc-comparison th,.pc-comparison td{padding:.75rem;border:1px solid #c9d5db;vertical-align:top;text-align:left}.pc-comparison thead{background:#edf4f7}#airfryer-choice{scroll-margin-top:180px}@media(max-width:680px){#airfryer-choice{scroll-margin-top:260px}}
 
 .pc-categories .pc-guide-jump { border-style: dashed; }
+#fenstersauger-belege table { width: 100%; border-collapse: collapse; }
+#fenstersauger-belege :is(caption, th, td) { padding: .5rem; text-align: left; }
+#fenstersauger-belege :is(th, td) { border: 1px solid #c9d5db; vertical-align: top; }
+#fenstersauger-belege thead { background: #edf4f7; }
 .pc-page :is(section, h3)[id] { scroll-margin-top: 180px; }
 .pc-guides { margin: 32px 0; scroll-margin-top: 180px; }
 .pc-guides ul {
