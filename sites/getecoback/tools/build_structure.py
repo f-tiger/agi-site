@@ -2021,12 +2021,16 @@ def shelf_skipped(slug, ctx):
 
 
 def strip_decision_promotions(html, slug):
-    """These two guides need technical fit/maintenance before any product choice."""
-    if slug not in {"klimaanlage-mit-heizfunktion", "mobile-klimaanlage-ueberwintern"}:
+    """Keep generic promotions off technical checks and the electricity-price fact check."""
+    electricity_fact_check = "treiben-rechenzentren-die-strompreise"
+    if slug not in {"klimaanlage-mit-heizfunktion", "mobile-klimaanlage-ueberwintern", electricity_fact_check}:
         return html
-    for marker in ("EB_MODELS", "EB_TOPPICK", "EB_POPUP", "EB_STICKY", "EB_PROFILE",
-                   "EB_QUICKPICK", "EB_SIZER", "EB_USMARKET", "EB_USTOP",
-                   "EB_USSHELF", "EB_USUNITS", "EB_USSWITCH", "EB_INLINE", "EB_HEATENERGY"):
+    markers = ("EB_MODELS", "EB_TOPPICK", "EB_POPUP", "EB_STICKY", "EB_PROFILE",
+               "EB_QUICKPICK", "EB_SIZER", "EB_USMARKET", "EB_USTOP",
+               "EB_USSHELF", "EB_USUNITS", "EB_USSWITCH", "EB_INLINE", "EB_HEATENERGY")
+    if slug == electricity_fact_check:
+        markers += ("EB_HEATNOW", "EB_EXPLAINER", "EB_CLIMATE", "EB_RADAR")
+    for marker in markers:
         html = re.sub(r'<!--' + marker + r'-->.*?<!--/' + marker + r'-->\n?', '', html, flags=re.S)
     return html
 
