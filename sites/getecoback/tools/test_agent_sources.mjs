@@ -16,7 +16,11 @@ const cases=[
  ['https://www.meaco.com/products/dehumidifier','',false],
  ['https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-air-purifier','',true],
  ['https://www.midea.com/de/klimatisieren-heizen/portasplit/produktinfos.portasplit','',true],
+ ['https://www.midea.com/de/klimatisieren-heizen/portasplit/installation','',true],
  ['https://www.midea.com/de/another-product','',false],
+ ['https://www.remko.de/gewerblich/klimasysteme/lokal/rkl-dc/','',true],
+ ['https://www.remko.de/gewerblich/klimasysteme/lokal/rkl-dc/?ref=example','',false],
+ ['https://www.remko.de/gewerblich/klimasysteme/lokal/','',false],
  ['https://www.idar-oberstein.de/bauen-wohnen-wirtschaft/bauen-und-wohnen/klimaschutz/beratung/250826-ent-heizen-mit-klimaanlage-vzrlp.pdf','',true],
  ['https://www.idar-oberstein.de/bauen-wohnen-wirtschaft/bauen-und-wohnen/klimaschutz/beratung/250826-ent-heizen-mit-klimaanlage-vzrlp.pdf?cid=aj4','',false],
  ['https://www.feelcomfee.com/content/dam/comfee-aem/global/products/heating-cooling/mobile-air-conditioner-mpph-09crn7/PH-Owners-Manual.pdf','',true],
@@ -95,6 +99,11 @@ test('appliance evidence survives in both the generated mirror and edge fallback
   ['guide/unterschied-klimaanlage-lueftungsanlage', [
    'https://zehnder.picturepark.com/v/WbAb4h0n/',
    'https://zehnder.picturepark.com/v/dwbRP3uL/',
+  ]],
+  ['guide/midea-portasplit-ausverkauft-alternativen', [
+   'https://www.midea.com/de/klimatisieren-heizen/portasplit/produktinfos.portasplit',
+   'https://www.midea.com/de/klimatisieren-heizen/portasplit/installation',
+   'https://www.remko.de/gewerblich/klimasysteme/lokal/rkl-dc/',
   ]],
   ['guide/duschen-kosten-rechner', [
    'https://www.ikea.com/de/de/p/tisken-handduschenhalter-mit-saugnapf-weiss-50400307/',

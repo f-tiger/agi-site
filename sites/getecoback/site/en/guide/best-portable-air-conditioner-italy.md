@@ -16,7 +16,7 @@ Ad · Affiliate links. As an Amazon Associate we earn from qualifying purchases.
 - **Hose-based unit:** identify a safe exhaust route, hose connector and suitable window seal. Measure the actual window; do not assume a fabric kit fits every casement.
 - **Outdoor module:** check mounting dimensions, safe support, access and building rules before ordering.
 - **Rental or historic building:** ask about your specific installation. “Portable” is not a blanket exemption from lease, building or local requirements.
-[Measure and compare window seals](https://getecoback.com/en/guide/portable-ac-tilt-and-turn-windows.html) · Midea installation guidance by window type
+[Measure and compare window seals](https://getecoback.com/en/guide/portable-ac-tilt-and-turn-windows.html) · [Midea installation guidance by window type](https://www.midea.com/de/klimatisieren-heizen/portasplit/installation)
 
 ## Match the room, not just the city
 Record room size, ceiling height, sunny glazing, roof exposure and humidity. Hot, humid conditions make evaporative cooling less useful; a refrigerant air conditioner can remove heat and condense moisture. The initial sizing estimate still needs checking against the exact model’s room and installation guidance.
