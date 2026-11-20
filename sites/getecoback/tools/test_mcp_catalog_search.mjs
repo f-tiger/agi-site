@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
 import worker from '../src/worker.js';
-import {findCatalogueTools, indexCatalogue} from '../site/assets/mcp-catalog-search.mjs';
+import {findCatalogueTools, indexCatalogue, toolGuidePath} from '../site/assets/mcp-catalog-search.mjs';
 
 const origin = 'https://getecoback.com';
 let analytics = 0;
@@ -14,6 +15,37 @@ async function catalogue(params = {}) {
 }
 const compact = indexCatalogue((await catalogue({view:'compact'})).tools);
 const names = results => results.map(tool => tool.name);
+
+test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
+  const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
+  assert.equal(withGuides.length, 203);
+  const destinations = new Set(withGuides.map(tool => tool.guide_url));
+  assert.equal(destinations.size, 10);
+  const pages = new Map();
+  for (const tool of withGuides) {
+    const {origin:site, pathname, hash} = new URL(tool.guide_url);
+    assert.equal(site, origin);
+    assert.equal(tool.citation_url, origin + pathname);
+    assert.equal(toolGuidePath(tool), pathname + hash);
+    if (!pages.has(pathname)) pages.set(pathname, await readFile(new URL('../site' + pathname, import.meta.url), 'utf8'));
+    assert.ok(pages.get(pathname).includes(`id="${hash.slice(1)}"`), tool.guide_url);
+  }
+  const [example] = (await catalogue({tool:'wasserkocher_twk8613p_wasser_milch_instant_einfuellen', view:'examples'})).tools;
+  assert.equal(example.guide_url, origin + '/produkte.html#wasserkocher-bosch-twk8613p');
+  assert.equal(example.citation_url, origin + '/produkte.html');
+  assert.equal(example.citation_markdown_url, origin + '/produkte.md');
+});
+
+test('a catalogue record cannot nominate a foreign URL, input query, or unreviewed fragment as its guide', () => {
+  const category = 'Wasserkocherbelege';
+  for (const citation_url of ['https://example.com/produkte.html', '//example.com/produkte.html',
+    'javascript:alert(1)', origin + '/produkte.html?x=1', origin + '/produkte.html#unknown',
+    'https://username@getecoback.com/produkte.html', undefined]) {
+    assert.equal(toolGuidePath({citation_url,category}), null, String(citation_url));
+  }
+  assert.equal(toolGuidePath({citation_url:origin + '/tools.html',category}), '/tools.html');
+  assert.equal(toolGuidePath({citation_url:origin + '/produkte.html',category:'other'}), '/produkte.html');
+});
 
 const audit = [
   ['Wie viel BTU brauche ich?', 'btu_empfehlung'],

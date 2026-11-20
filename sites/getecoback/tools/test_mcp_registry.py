@@ -7,7 +7,7 @@ from unittest import TestCase, main
 from unittest.mock import Mock, patch
 from urllib.error import HTTPError, URLError
 
-from check_mcp_registry import OFFICIAL, check, read_latest
+from check_mcp_registry import OFFICIAL, already_published, check, read_latest
 
 
 MANIFEST = json.loads((Path(__file__).resolve().parents[1] / 'mcp/server.json').read_text())
@@ -62,6 +62,23 @@ class RegistryCheck(TestCase):
         for reader in (Mock(side_effect=URLError('offline')), Mock(return_value={'unexpected': True})):
             self.assertTrue(check(MANIFEST, False, reader, Mock()))
             self.assertFalse(check(MANIFEST, True, reader, Mock()))
+
+    def test_already_published_requires_one_exact_latest_active_read(self):
+        read = Mock(return_value=listing())
+        self.assertTrue(already_published(MANIFEST, read))
+        read.assert_called_once_with('https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fhvac-btu-heat-klimaanlage/versions/latest')
+
+    def test_missing_mismatch_or_failed_read_requires_full_publication(self):
+        prior, wrong_name, wrong_remote, deprecated, stale = (listing() for _ in range(5))
+        prior['server']['version'] = '1.0.0'
+        wrong_name['server']['name'] = 'io.github.f-tiger/other'
+        wrong_remote['server']['remotes'][0]['url'] = 'https://getecoback.com/mcp-old'
+        deprecated['_meta'][OFFICIAL]['status'] = 'deprecated'
+        stale['_meta'][OFFICIAL]['isLatest'] = False
+        for payload in (None, prior, wrong_name, wrong_remote, deprecated, stale, {'unexpected': True}):
+            with self.subTest(payload=payload):
+                self.assertFalse(already_published(MANIFEST, Mock(return_value=payload)))
+        self.assertFalse(already_published(MANIFEST, Mock(side_effect=URLError('offline'))))
 
 
 if __name__ == '__main__':

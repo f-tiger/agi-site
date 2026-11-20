@@ -52,13 +52,26 @@ jobs:
           print('Live MCP name and version match:', info['name'], info['version'])
           PY
 
+      - name: Check whether this exact canonical release is already registered
+        id: registry-state
+        run: |
+          if python3 tools/check_mcp_registry.py --already-published; then
+            echo 'already_published=true' >> "$GITHUB_OUTPUT"
+            echo 'Exact active Registry version already verified. The separate production smoke workflow still runs.'
+          else
+            echo 'already_published=false' >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/setup-node@v4
+        if: steps.registry-state.outputs.already_published != 'true'
         with:
           node-version: '22'
       - name: Verify real tool responses before advertising this release
+        if: steps.registry-state.outputs.already_published != 'true'
         run: node tools/mcp_smoke.mjs
 
       - name: Install mcp-publisher
+        if: steps.registry-state.outputs.already_published != 'true'
         run: |
           # Release assets carry the version in their name, so resolve the
           # linux/amd64 asset from the latest-release API instead of guessing.
@@ -70,6 +83,7 @@ jobs:
           ./mcp-publisher --version || { echo "::error::mcp-publisher binary not found in asset"; exit 1; }
 
       - name: Registry limits (checked here, before the registry rejects them)
+        if: steps.registry-state.outputs.already_published != 'true'
         run: |
           # 注册表对 description 有 100 字符硬限制,超了在 publish 那步 422(2026-09-25 实际发生:
           # 09-16 把品牌写进描述后是 199 字符,1.2.0 因此一直没发出去)。外部硬限制在本地先断言一次。
@@ -88,6 +102,7 @@ jobs:
           PY
 
       - name: Login (GitHub OIDC) and publish
+        if: steps.registry-state.outputs.already_published != 'true'
         run: |
           ./mcp-publisher login github-oidc
           # The registry refuses to overwrite an existing name+version pair, so a

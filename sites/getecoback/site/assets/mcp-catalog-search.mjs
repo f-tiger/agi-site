@@ -5,6 +5,36 @@ const words = value => normalize(value)
   .replace(/\b(\d{3})\.(\d{3})\.(\d{2})\b/g, '$1$2$3')
   .match(/[a-z0-9]+/g) || [];
 
+const productGuide = '/produkte.html';
+const laundryGuide = '/guide/waesche-trocknen-wohnung.html';
+const guideSections = new Map([
+  ['Kaffeemaschinenpflege', [productGuide, 'kaffeevollautomat-pflege-und-kauf']],
+  ['Waschmitteldosierung', [laundryGuide, 'waschmittel-automatische-dosierung']],
+  ['Spülmittel und Wasserhärte', [productGuide, 'geschirrspueler-wasserhaerte-reiniger']],
+  ['Bodenstaubsaugerpflege', [productGuide, 'bodenstaubsauger-belege']],
+  ['Dampfbügelgeräte', [productGuide, 'philips-dampfbuegelgeraete-de-belege']],
+  ['Stabmixer und Zubehör', [productGuide, 'stabmixer-belege']],
+  ['Mikrowellenbelege', [productGuide, 'mikrowelle-bosch-bfl524-belege']],
+  ['Küchenwaagen', [productGuide, 'beurer-kuechenwaagen-gebrauch']],
+  ['Wasserkocherbelege', [productGuide, 'wasserkocher-bosch-twk8613p']],
+  ['Toasterbelege', [productGuide, 'bosch-tat8613-toaster-belege']],
+]);
+
+// Treat the catalogue URL as a canonical citation. Only add a reviewed on-site fragment.
+export function toolGuidePath({citation_url, category}) {
+  if (typeof citation_url !== 'string') return null;
+  try {
+    const origin = 'https://getecoback.com';
+    const url = new URL(citation_url, origin);
+    const canonical = /^\/(?:[a-z0-9-]+\/)*[a-z0-9-]+\.html$/.test(url.pathname);
+    if (url.origin !== origin || !canonical || url.search || url.hash || url.username || url.password) return null;
+    const section = guideSections.get(category);
+    return section?.[0] === url.pathname ? `${url.pathname}#${section[1]}` : url.pathname;
+  } catch {
+    return null;
+  }
+}
+
 const questionWords = new Set((
   'wie was wann wo welche welcher welches welchen welchem wer weswegen wieso weshalb wieviel ' +
   'kann kannst koennen soll sollte ich du er sie es wir ihr uns mir mein meine meinen meiner meinem unseren unserem unsere unser euren ' +
