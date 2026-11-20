@@ -435,6 +435,9 @@ test('single appliances, loads and seasonal purchase questions keep their existi
     ['Was kostet mein Trockner pro Ladung?', undefined, 0],
     ['Was kostet der Luftentfeuchter im Keller pro Tag?', 'kellerentfeuchter_pruefpunkt_abgleichen', 0],
     ['Wäschetrockner oder Luftentfeuchter – was kostet eine Ladung einschließlich Kaufpreis?', 'wasch_trockner_zweiladung_uebergabestau', 0],
+    ['Was kostet eine Ladung Wäsche, wenn Trockner und Luftentfeuchter gleichzeitig laufen?', 'waesche_wochenbedarf_leine_und_trockner', 7],
+    ['Was kostet es pro Ladung, wenn ich nur den Trockner nutze und den Luftentfeuchter ausgeschaltet lasse?', 'wasch_trockner_zweiladung_uebergabestau', 0],
+    ['Was kostet es pro Ladung, wenn ich nur den Trockner nutze und den Luftentfeuchter abgeschaltet lasse?', 'wasch_trockner_zweiladung_uebergabestau', 0],
     ['Lohnt sich ein Luftentfeuchter für Wäsche im Winter, wenn manche Ladungen weiter in den Trockner gehen?', 'waesche_trocknungswechsel_kaufschwelle', 5],
     ['Zwei Waschladungen sind nacheinander fertig. Wie lange wartet die zweite auf den Trockner?', 'wasch_trockner_zweiladung_uebergabestau', 0],
   ];
