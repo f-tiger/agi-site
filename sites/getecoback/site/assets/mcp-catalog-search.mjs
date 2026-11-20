@@ -35,6 +35,9 @@ const taskWords = new Map([
   ['pflege_uebergabe_rueckfrage_zu_geraeteteil', 'rueckmeldung pflegen geraetepflege pflegestatus bestaetigung'],
   ['querlueften_koordination_zwei_bedienfenster', 'gemeinsam gleichzeitig zeitfenster ueberschneidung'],
   ['warmwasser_parallelzapfung_abweichungsprobe', 'dusche zapfstelle wasserhahn gleichzeitig parallelentnahme'],
+  ['pc_chip_und_ansaugluft_abstand_zerlegen', 'cpu prozessor pc raumluft ansaugluft angesaugt waermer temperaturabstand'],
+  ['luftkuehler_tankbilanz_ueber_wasserwege', 'luftkuehler tank wasser ruecklauf tropfwasser wasserverlust wasserbilanz'],
+  ['heizwaesche_massenplateau_vor_wirklichem_ziel', 'waesche heizwaesche beheizt waeschestaender leichter gewicht trocken stehengeblieben plateau trockenziel'],
 ]);
 
 // Group common noun endings while retaining a meaningful root.
