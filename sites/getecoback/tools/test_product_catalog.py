@@ -41,8 +41,15 @@ class CatalogTest(unittest.TestCase):
 
     def test_all_categories_have_source_linked_static_comparisons(self):
         data=C.load(); html=C.render(data,dt.date(2026,11,15))
-        self.assertEqual(html.count('class="pc-comparison"'),12)
-        self.assertEqual(html.count('<th scope="row">'),48)
+        category_comparisons=html.split('class="pc-comparison"')[1:]
+        self.assertEqual(len(category_comparisons),12)
+        comparison_rows=0
+        for section in category_comparisons:
+            table, closing, _=section.partition('</table>')
+            self.assertIn('<table>',table)
+            self.assertTrue(closing)
+            comparison_rows+=table.count('<th scope="row">')
+        self.assertEqual(comparison_rows,48)
         markdown=C.to_markdown(html,C.ROUTE,'de')
         for category in data['categories']:
             if 'buying_guide' not in category:continue

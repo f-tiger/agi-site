@@ -1115,6 +1115,220 @@ Für den HD9875/90 bezeichnet Philips die 8,3 l als Volumen der gesamten Pfanne.
 
 Herstellerquellen Deutschland, gelesen am 20.11.2026. [Philips NA352/00 und Korbgrößen](https://www.philips.de/c-p/NA352_00/3000-series-dual-basket-airfryer) · [Philips NA352/00 Zubehör](https://www.philips.de/c-p/NA352_00/3000-series-dual-basket-airfryer/support) · [Philips NA35x Markierung und Timerfunktionen](https://dam.versuni.com/m/11ba80be418a7f33/original/NA35x-Quick-Start-Guide.pdf) · [Philips Hilfe zu Backformen und Modellgruppen](https://www.philips.de/c-f/XC000015318/welche-art-von-backform-kann-ich-im-philips-airfryer-verwenden/1000) · [Philips HD9875/90 Pfannen- und Gewichtsangaben](https://acc.philips.de/c-p/HD9875_90/connected-airfryer-xxl-serie-7000).
 
+## Milchsystem, Wasserfilter und Pflege bei Kaffeevollautomaten vergleichen
+
+Prüfe vor dem Kauf die volle Modellkennung. Philips EP2231/40 hat einen zweiteiligen LatteGo-Milchbehälter, EP2220/10 einen klassischen Milchaufschäumer. Beim Bosch TIE20301 wird die Milch laut Produktblatt in die Tasse gefüllt. Für hohe Gläser nennt Bosch bis zu 13 cm. Prüfe ein eigenes Glas zusätzlich mit Griff und geradem Einsetzweg. Für beide Philips-Modelle ist eine Doppeltasse Kaffee ausgewiesen. Die Angaben führen keine Doppeltasse Milch auf.
+
+Philips nennt AquaClean bei diesen beiden Geräten im Lieferumfang. Bosch nennt BRITA Intenza TCZ7003 oder TCZ7033 beim TIE20301 als Sonderzubehör. De’Longhi führt DLSC002 für die Magnifica S ECAM22.110.B. Ein bestätigter beigelegter Originalfilter kann anders aussehen als das separat angebotene Teil. Bei Gebrauchtware oder einem Händlerbundle den konkreten Lieferumfang prüfen. Wer keinen optionalen Filterbetrieb wünscht, braucht dafür keinen Filterkauf einzuplanen. Die Pflege nach Herstelleranleitung bleibt Teil des Betriebs.
+
+Orange blinkendes AquaClean kann den Erstgebrauch, einen verbrauchten Filter oder einen Hinweis nach der Entkalkung anzeigen. Blau bestätigt die Aktivierung. Bei fehlender Anzeige und unbekannter Vorgeschichte zuerst die Aktivierungsvoraussetzungen im Handbuch klären. Philips nennt 95 l durch den Filter sowie einen Wechsel spätestens nach drei Monaten. Tassen allein erfassen Spülvorgänge nicht vollständig. De’Longhi nennt für den eingesetzten Filter zwei Monate bei normaler Nutzung und höchstens drei Wochen bei Nichtgebrauch. An der eindeutig identifizierten De’Longhi-Entkalkungsleuchte signalisiert Blinken die Aufforderung, Dauerlicht das gestartete Programm.
+
+Automatisches Spülen der Maschine, Pflegen der Milchteile, Reinigen der Brühgruppe und Entkalken sind eigene Vorgänge. Beim TIE20301 kombiniert Calc’nClean zwei Aufgaben. Die Bosch-Liste führt TCZ8001A für die Reinigung und TCZ8002A zum Entkalken separat. Philips schreibt für die Brühgruppe wöchentliche Wasserpflege und monatlich einen passenden Kaffeefettlöser aus. De’Longhi nennt für die Magnifica S mindestens eine Reinigung pro Monat ohne Reinigungsmittel an der Brühgruppe. Das konkrete Programm und die Pflege der herausnehmbaren Teile im Handbuch prüfen.
+
+Auch die Bedienung kann einen Neukauf überflüssig machen. Die geprüften Philips-2200-Modelle können vorgemahlenen Kaffee einzeln ausgeben und die größte Getränkemengenstufe je Getränk speichern. Beim Philips-Kaffeesatzbehälter kann eine Leerung im ausgeschalteten Zustand die Anzeige stehen lassen. Die Bedienfeldoption für Signaltöne umfasst keine Töne für Ein/Aus und Start/Stopp. Herstellerangaben zum Menü belegen keine tatsächliche Lautstärke, unabhängige Fehlerursache oder passende Benutzung eines anderen Modells.
+
+Herstellerquellen gelesen am 20.11.2026. [De’Longhi ECAM22.110.B Modellservice](https://www.delonghi.com/de-de/s/ECAM22.110.B) · [De’Longhi Bedienungsanleitung, Abschnitte 2.4, 8, 11, 13 und 14](https://dls.delonghigroup.com/files/docs/5/DE-57132C9061.pdf) · [De’Longhi Filterausführungen](https://www.delonghi.com/de-de/faqs/DELONGHI/a/585643) · [Philips Handbuchzugang EP2231/40](https://acc.philips.de/c-p/EP2231_40/series-2200-kaffeevollautomat/support) · [Philips Handbuchzugang EP2220/10](https://acc.philips.de/c-p/EP2220_10/series-2200-kaffeevollautomat/support) · [Philips Datenblatt EP2231/40](https://www.download.p4c.philips.com/files/e/ep2231_40/ep2231_40_pss_deuat.pdf) · [Philips Datenblatt EP2220/10](https://www.documents.philips.com/assets/20210904/3ea44c9845d84f26818ead990053f95e.pdf) · [Bosch Datenblatt TIE20301](https://media3.bsh-group.com/Documents/specsheet/de-DE/TIE20301.pdf).
+
+## Wasserhärte, Salz, Klarspüler und Reiniger für den Geschirrspüler prüfen
+
+Nutze die deutsche Anleitung zur genauen Modellkennung. Wenn der Versorger nur „weich“, „mittel“ oder „hart“ nennt, erfrage die Zahl und Einheit für deine Versorgungszone. Der Härtebereich nach § 9 WRMG hilft bei der Einordnung. Für die Gerätestufe zählt der tatsächliche Zulauf, bei vorhandener zentraler Enthärtung also deren passende Ausgangsseite. [§ 9 WRMG](https://www.gesetze-im-internet.de/wrmg/__9.html) · [Miele G7673de-002, Seiten 25 und 32](https://media.miele.com/downloads/c0/11/02_C7F128281BA21FD0A0E8671DD96BC011.pdf)
+
+### Härtewert und Packungsgrenze prüfen
+
+Beim deutschen Bosch SBV4EBX00D umfasst die höchste gedruckte Härtestufe H07 31–50 °dH oder 5,5–8,9 mmol/l. Beim deutschen SKS62E32EU gilt H:07 für 31–35 °dH oder 5,5–6,2 mmol/l. Lies die Spalte in der Einheit des Belegs. Liegt der Wert zwischen gedruckten Zeilen oder außerhalb, kläre den Modellbezug. Für den Miele G 7673 SCVi AutoDos E nennt die Anleitung bei bestätigten Schwankungen am gleichen Zulauf den höchsten gemeldeten Wert, beispielsweise 15 °dH bei 10–15 °dH. Die Werkseinstellung beträgt 14 °dH und der dokumentierte Enthärterbereich reicht bis 70 °dH. [Bosch SBV4EBX00D, Seiten 24–25](https://media3.bsh-group.com/Documents/9001790760_C.pdf) · [Bosch SKS62E32EU, Seiten 22–23](https://media3.bosch-home.com/Documents/9001707727_A.pdf) · [Miele G7673de-002, Seiten 25–26 und 32](https://media.miele.com/downloads/c0/11/02_C7F128281BA21FD0A0E8671DD96BC011.pdf)
+
+Für einen Kombireiniger mit Salzersatz müssen Packung und Gerätevorgabe denselben Härtewert abdecken. Die beiden Bosch-Anleitungen nennen dafür höchstens 21 °dH. Miele nennt beim G 7673 den Kombireiniger-Fall unter 21 °dH. Ist das konkrete Produkt nur bis 18 °dH beschriftet, liegt ein Zulaufwert von 21 °dH außerhalb des Packungsfalls. Davon getrennt nennen beide Bosch-Geräte 0–6 °dH als eigenen Weichwasserfall ohne Spezialsalz. Miele nennt dafür ständig unter 5 °dH. [Bosch SBV4EBX00D, Seiten 24–26 und 28–29](https://media3.bsh-group.com/Documents/9001790760_C.pdf) · [Bosch SKS62E32EU, Seiten 22–25 und 26–28](https://media3.bosch-home.com/Documents/9001707727_A.pdf) · [Miele G7673de-002, Seiten 26–27 und 60](https://media.miele.com/downloads/c0/11/02_C7F128281BA21FD0A0E8671DD96BC011.pdf)
+
+### Erste Salzfüllung, Fach und Mangelanzeige
+
+Salz, Klarspüler und manuell dosierter Geschirrspülreiniger haben jeweils ihr eigenes Fach. Bei bereits eingefülltem falschem Mittel hilft die Anleitung oder der Kundendienst zum genauen Modell. Der SBV4EBX00D nennt Spezialsalz für Geschirrspüler und schließt Salztabletten und Speisesalz aus. Miele nennt für dieses Modell möglichst grobkörniges Regeneriersalz oder anderes reines Siedesalz. Vor seiner ersten Salzfüllung nennt Miele etwa 1,5 l Wasser im Salzbehälter. Beide Bosch-Anleitungen beschreiben die vollständige Wasserfüllung des Behälters bei der ersten Inbetriebnahme. [Bosch SBV4EBX00D, Seiten 16 und 25–30](https://media3.bsh-group.com/Documents/9001790760_C.pdf) · [Bosch SKS62E32EU, Seiten 15–16 und 23–29](https://media3.bosch-home.com/Documents/9001707727_A.pdf) · [Miele G7673de-002, Seiten 27–29 und 63–64](https://media.miele.com/downloads/c0/11/02_C7F128281BA21FD0A0E8671DD96BC011.pdf)
+
+Beide Bosch-Handbücher ordnen das Salzeinfüllen unmittelbar vor dem Programmstart ein. Miele nennt dagegen nach Salzfüllung oder nach Öffnen des Salzbehälterdeckels sein eigenes Programm „Salz ausspülen“ ohne Spülgut. Beim G 7673 kann die Salzmangelmeldung direkt nach dem Nachfüllen weiter sichtbar sein, wenn die erforderliche Konzentration noch nicht erreicht ist. Bei einem Wechsel zu Solo-Reiniger sind Salz, Klarspüler und die eventuell ausgeblendeten Mangelanzeigen getrennt zu prüfen. Ein stummes Display allein bescheinigt keinen Vorrat. [Bosch SBV4EBX00D, Seite 25](https://media3.bsh-group.com/Documents/9001790760_C.pdf) · [Bosch SKS62E32EU, Seite 23](https://media3.bosch-home.com/Documents/9001707727_A.pdf) · [Miele G7673de-002, Seiten 27–29, 40 und 60](https://media.miele.com/downloads/c0/11/02_C7F128281BA21FD0A0E8671DD96BC011.pdf)
+
+Bei vergleichbaren Läufen nennen die Hersteller weniger Klarspüler als möglichen Prüfweg bei abwischbaren Schlieren und mehr bei Wasserflecken. Leere Vorratsbehälter, Reinigerreste und blockierte Reinigerfächer können weitere Hinweise liefern. Der SBV4EBX00D zeigt Stufen mit r05 als Werkseinstellung und r00 für aus. Der SKS62E32EU zeigt r:04 als Werkseinstellung und r:00 für aus. Beim G 7673 ist die Vorgabe von 0 bis 6 ml einstellbar, ab Werk 3 ml. Die automatische Abgabe kann darüber liegen. Bosch-Stufen und Miele-Sollwerte belegen keine gemessene Abgabemenge. [Bosch SBV4EBX00D, Seiten 26–27 und 49–50](https://media3.bsh-group.com/Documents/9001790760_C.pdf) · [Bosch SKS62E32EU, Seiten 25–26](https://media3.bosch-home.com/Documents/9001707727_A.pdf) · [Miele G7673de-002, Seiten 33 und 99–100](https://media.miele.com/downloads/c0/11/02_C7F128281BA21FD0A0E8671DD96BC011.pdf)
+
+### Packungsdosis, Programm und Dosiervorgang
+
+Halte das Reinigeretikett neben die passende Anleitung. Miele nennt beim manuellen Fach höchstens 50 ml Füllmenge. Bei fehlender anderer Packungsangabe nennt die Anleitung je nach Verschmutzung 20–30 ml oder einen Tab. Bosch nennt beim SBV4EBX00D 20–25 ml bei normaler Verschmutzung und zeigt die Fachmarken 15, 25 und 50 ml. Eine Fachmarke ist keine Dosiermenge. Gramm und Milliliter kannst du ohne belegte Produktspezifikation nicht austauschen. [Miele G7673de-002, Seiten 60 und 63–64](https://media.miele.com/downloads/c0/11/02_C7F128281BA21FD0A0E8671DD96BC011.pdf) · [Bosch SBV4EBX00D, Seiten 28–30](https://media3.bsh-group.com/Documents/9001790760_C.pdf)
+
+Beim Miele G 7673 die aktive automatische PowerDisk-Dosierung und das manuelle Fach nach bestätigtem AutoDos-Zustand unterscheiden. Für die Meldung „PowerDisk leer“ beschreibt die Anleitung Wechsel oder Deaktivierung. Die Dosierung hängt vom Programm ab, in Auto auch von der Verschmutzung. Weniger kann die Disk-Nutzung verlängern und die Reinigungsleistung senken, mehr verkürzt die Disk-Nutzung und kann das Spülergebnis ändern. Daraus ergibt sich keine Zyklenprognose für zu Hause. [Miele G7673de-002, Seiten 25, 33, 61–64 und 95](https://media.miele.com/downloads/c0/11/02_C7F128281BA21FD0A0E8671DD96BC011.pdf)
+
+Wenn nach Programmende ein Tab-Rest sichtbar ist, sammle Hinweise zum verwendeten Programm, zum Zustand des Reinigerfachs und zu erkennbaren Blockaden. Bosch nennt eine mögliche zu kurze Auflösedauer bei verkürzten Programmen. Miele nennt diesen Fall für manche Tabs im QuickPowerWash. Eine separate Tab-Auffangschale nur dort prüfen, wo sie beim konkreten Gerät dokumentiert ist. Beim SBV4EBX00D empfiehlt Bosch Flüssigreiniger für verkürzte Programme ohne Vorspülen und beschreibt dafür die Bedingungen ohne maschinelles Vorspülen und ohne Zeitvorwahl. [Bosch SBV4EBX00D, Seiten 16, 28–31 und 50](https://media3.bsh-group.com/Documents/9001790760_C.pdf) · [Bosch SKS62E32EU, Seiten 27–29 und 42](https://media3.bosch-home.com/Documents/9001707727_A.pdf) · [Miele G7673de-002, Seiten 63–64 und 97](https://media.miele.com/downloads/c0/11/02_C7F128281BA21FD0A0E8671DD96BC011.pdf)
+
+### Spülgut, Beobachtungen und Zusatzverbrauch
+
+Streife grobe Reste ab. Das Vorspülen von Hand unter fließendem Wasser ist laut UBA im Alltag vermeidbar. Bosch beschreibt starkes Vorreinigen als möglichen Einfluss auf das sensorisch gesteuerte Programm. Bei älteren oder empfindlichen Gläsern, Dekor, Holzgriffen oder nicht hitzebeständigem Kunststoff zählen die Materialangabe und die schriftliche Angabe des Geschirrherstellers. Bosch unterscheidet beim kompakten Gerät nachträglich festgestellte Glastrübung und abwischbare Beläge. Miele beschreibt mögliche Kunststoffverfärbungen durch Naturfarbstoffe etwa aus Tomaten und Karotten. Einzelne Beobachtungen ergeben keine sichere Ursache. [UBA, zuletzt aktualisiert 17.04.2026](https://www.umweltbundesamt.de/umwelttipps-fuer-den-alltag/geschirrspueler-im-eco-programm-wasser-strom-sparen) · [Bosch SBV4EBX00D, Seiten 18, 31 und 49](https://media3.bsh-group.com/Documents/9001790760_C.pdf) · [Bosch SKS62E32EU, Seiten 29–30 und 41–45](https://media3.bosch-home.com/Documents/9001707727_A.pdf) · [Miele G7673de-002, Seiten 45–46 und 101](https://media.miele.com/downloads/c0/11/02_C7F128281BA21FD0A0E8671DD96BC011.pdf)
+
+Beim Miele G 7673 bleibt das separat aktivierte zweite Zwischenspülen bis zur Abschaltung wirksam, mit ECO als Ausnahme. Der Hersteller weist auf möglichen Mehrverbrauch ohne Literangabe für diese Einstellung hin. Beim deutschen Bosch SKS62E32EU passen die dokumentierten 8 l in Eco 50 und Werkshärte 13–16 °dH zur Laborzeile mit Regeneration nach fünf Spülgängen. Diese nennt maximal zusätzlich vier Minuten, 2,5 l und 0,03 kWh. Die 9-l-Zeile betrifft eine andere Gerätevariante. Ohne passende Prüfbedingungen gibt es daraus keine Vorhersage für den einzelnen Haushalt. [Miele G7673de-002, Seiten 41 und 75](https://media.miele.com/downloads/c0/11/02_C7F128281BA21FD0A0E8671DD96BC011.pdf) · [Bosch SKS62E32EU, Seiten 24–25](https://media3.bosch-home.com/Documents/9001707727_A.pdf) · [Bosch SKS62E32EU, deutsches Produktdatenblatt](https://media3.bosch-home.com/Documents/specsheet/de-DE/SKS62E32EU.pdf)
+
+Der Blaue Engel DE-UZ 201 betrifft Maschinengeschirrspülmittel einschließlich Klarspüler für den erfassten Einsatz. Gleiche exakten Produktnamen und Anbieter mit dem aktuellen Verzeichnis ab. Die Zertifizierung beantwortet weder die Härte- und Dosisfrage am Zulauf noch die Eignung für ein bestimmtes Gerät. Wenn ein vorhandenes Mittel zu Gerät, Programm und zulässiger Härte passt, braucht es keine Neuanschaffung. [Blauer Engel DE-UZ 201, Ausgabe 2022](https://www.blauer-engel.de/de/produktwelt/maschinengeschirrspuelmittel) · [Vergabekriterien](https://produktinfo.blauer-engel.de/uploads/criteriafile/de/204/DE-UZ%20201-202201-de-Kriterien-V4.pdf) · [Umweltbundesamt, Geschirrspültabs](https://www.umweltbundesamt.de/themen/chemikalien/wasch-reinigungsmittel/umweltbewusst-waschen-reinigen/geschirrspueltabs)
+
+Deutsche Geräteunterlagen, gelesen am 20.11.2026. Miele G 7673 SCVi AutoDos E, Produktnummer 12338510, G7673de-002, M.-Nr. 12 780 570 / 02 / 002. Bosch SBV4EBX00D, 9001790760_C. Bosch SKS62E32EU, 9001707727_A. [Miele Produktseite Deutschland](https://www.miele.de/product/12338510/vollintegrierter-geschirrspueler-g-7673-scvi-autodos-e-obsidianschwarz)
+
+## Miele Bodenstaubsauger: Beutel und Filter am vorhandenen Gerät prüfen
+
+Schreib vor einer Ersatzbestellung die vollständige Modellbezeichnung vom Gerät ab. Notiere separat, welcher Beutel und welcher Filter jetzt eingesetzt sind. Die folgenden Beispiele beziehen sich auf deutsche Herstellerunterlagen, gelesen am 20. November 2026.
+
+### Beuteltyp, Filterstufe und Vorrat
+
+| Modellreihe | Gelisteter Beutel | Gelisteter HEPA-Abluftfilter zur Auswahl |
+| --- | --- | --- |
+| Classic C1 | GN | SF-HA 30-1 |
+| Complete C1 | FJM | SF-HA 30-1 |
+| Complete C2 und C3 | GN | SF-HA 50-1 |
+| Compact C1 und C2 | FJM | SF-HA 50-1 |
+| Guard S1 und L1 | TU | SF-HA 50-1 |
+| Guard M1 | CO | SF-HA 50-1 |
+
+Der Filter in der Tabelle steht als Zubehör in der Herstellerauswahl. Zum Beispiel nennt das deutsche Produktblatt des Guard L1 Nordicblau 12558870 serienmäßig AirClean. Complete C3 12031650 nennt AirClean und Complete C3 Cat & Dog 10653390 Active AirClean. Vergleiche die Materialnummer und lies danach den aktuell eingebauten Typ ab. Für zwei Sauger im Haushalt kann derselbe Beuteltyp zu unterschiedlichen gelisteten Abluftteilen gehören. [Deutsche Miele-Teileauswahl](https://www.miele.de/c/staubsaugerbeutel-und-filter-10520.htm) · [SF-HA 30-1](https://www.miele.de/product/12785370/hepa-airclean-filter-sf-ha-30-1) · [SF-HA 50-1](https://www.miele.de/product/12785390/hepa-airclean-filter-sf-ha-50-1) · [Guard L1 12558870](https://www.miele.de/product/12558870/bodenstaubsauger-mit-beutel-guard-l1-nordicblau) · [Complete C3 12031650](https://media.miele.com/downloads/e-/de/FS_12031650_DED_DE-de-DE.pdf) · [Complete C3 Cat & Dog 10653390](https://media.miele.com/downloads/e-/de/FS_10653390_DED_DE-de-DE.pdf).
+
+GN 12421170 enthält 4 Beutel, 1 Motorschutzfilter und 1 Abluftfilter. Für GN XXL 12498270 sind es 16 Beutel, 4 Motorschutzfilter und 4 Abluftfilter. Die Ablufteinlage aus dem Pack betrifft AirClean, sofern diese Filterstufe am eigenen Gerät verwendet wird. Zähle jeden brauchbaren vorhandenen Teil separat und ermittle dann die Fehlmenge. [GN 12421170](https://www.miele.de/product/12421170/4-staubsaugerbeutel-gn-hyclean-pure) · [GN XXL 12498270](https://www.miele.de/product/12498270/16-staubsaugerbeutel-zum-vorteilspreis-gn-xxl-hyclean-pure) · [FJM 12421180](https://www.miele.de/product/12421180/4-staubsaugerbeutel-fjm-hyclean-pure) · [TU 12557060](https://www.miele.de/product/12557060/4-staubsaugerbeutel-tu-hyclean-pure) · [CO 12557080](https://www.miele.de/product/12557080/4-staubsaugerbeutel-co-hyclean-pure).
+
+### Wechselanzeige, Ursache und Guard L1 HS22
+
+- Die Beutelanzeige reagiert auf Mischstaub. Feiner Staub kann die Poren früh zusetzen. Haare und Fusseln können den Beutel schon prall füllen, bevor die Anzeige reagiert. Für die dokumentierte HS22-Prüfung gehören eine umschaltbare Bodendüse, maximale Saugstufe und eine vom Boden abgehobene Düse zusammen. Prüfe nur bestätigte Bedingungen der passenden Anleitung. [Miele zu frühem Wechselhinweis](https://www.miele.de/support/customer-assistance/bodenstaubsauger_mit_oder_ohne_beutel-1194/alle_kategorien/staubsaugerbeutel_wechselanzeige_zeigt_vollen_staubsaugerbeutel_an-92374394507) · [Miele zu später Beutelanzeige](https://www.miele.de/support/customer-assistance/bodenstaubsauger_mit_oder_ohne_beutel-1194/alle_kategorien/staubsaugerbeutel_wechselanzeige_zeigt_leeren_staubsaugerbeutel_an-92264372107) · [HS22 13 114 040, S. 14–15 und 18](https://media.miele.com/downloads/10/76/00_C7F128282CE91FE199B027081E511076.pdf).
+
+- Am bestätigten HS22 gehört die TU-Halteplatte beidseitig in ihre Führung. Die Sperrklinke muss einrasten. Einen blockierten Deckel nicht erzwingen. Der Lifetime-Motorschutzfilter dieser Anleitung bleibt Teil des Geräts und ist trocken zu pflegen. Dazu die eigene HS22-Ausführung abgleichen, statt den Motorschutz aus einem anderen Beutelpaket zu übernehmen. [HS22 13 114 040, S. 15 und 18–21](https://media.miele.com/downloads/10/76/00_C7F128282CE91FE199B027081E511076.pdf).
+
+- Eine AirClean-Einlage benötigt im hier dokumentierten HS22 das passende Gitter. Eine freigegebene Abluftkassette nimmt dessen Rolle ein. Der Hersteller sieht einen Abluftfilter zur selben Zeit vor. Die Geräte-Wechselanzeige des dokumentierten HS22 erinnert nach ungefähr 50 Betriebsstunden und lässt sich laut Anleitung nur bei leuchtendem Hinweis zurücksetzen. Ein schmaler roter Anfang eines aktivierten timestrip am Filter und ein vollständig roter Filterstreifen sind unterschiedliche Zustände. Benutze den timestrip-Beleg nur für ausgewiesene Ausführungen. [HS22 13 114 040, S. 14–15 und 19–20](https://media.miele.com/downloads/10/76/00_C7F128282CE91FE199B027081E511076.pdf) · [Miele zu Filtern und Zeiten](https://www.miele.de/support/customer-assistance/bodenstaubsauger_mit_oder_ohne_beutel-1194/alle_kategorien/reinigungsleistung_nimmt_ab_staubsauger_mit_beutel-92265764619).
+
+- Die Baureihenübersicht unterscheidet die App-Registrierung für Zubehör und Anleitungen von aktiver Vernetzung mit Wechselmeldungen beim L1 Comfort. Prüfe die genaue Ausführung und die tatsächliche Verbindung. Beim HS22 sind die Aufnahme für Saugpausen auf einer ebenen Fläche und die Aufnahme an der Unterseite zur Aufbewahrung getrennt. Zwei Stellungen der passenden kombinierten Fugen-/Polsterdüse ersparen unter Umständen einen zusätzlichen Aufsatz. Die Anleitung beschreibt die separate Rohrposition des Saugpinsels für den Comfort-Handgriff 2.0. [Miele Guard-Baureihenübersicht](https://www.miele.de/de/m/die-neue-guard-baureihe-auf-einen-blick-7424.htm) · [HS22 13 114 040, S. 16–17](https://media.miele.com/downloads/10/76/00_C7F128282CE91FE199B027081E511076.pdf).
+
+- Bei einem abrupt beobachteten Leistungsverlust nach sperrigem Material den betroffenen Saugweg und ungewöhnliche Gehäusewärme als getrennte Hinweise notieren. Auf dichtem, geeignetem Kurzflor kann die luftgetriebene TurboTeQ STB 305-3 allein dort langsamer werden. Gleiche Symptome an anderen geeigneten Flächen separat dokumentieren. Bei ungewöhnlicher Wärme oder beschädigten Teilen nicht weiter testen. [Miele Fehlersuche zum Luftweg und zur Saugwirkung](https://www.miele.de/support/customer-assistance/bodenstaubsauger_mit_oder_ohne_beutel-1194/alle_kategorien/reinigungsleistung_nimmt_ab_staubsauger_mit_beutel-92265764619) · [TurboTeQ STB 305-3, Originalanleitung](https://media.miele.com/downloads/48/7a/04_C7F12828660B1FD09CBB7CF230ED487A.pdf).
+
+### Boost CX1 Cat & Dog PowerLine 11602420: beutelloses System
+
+Bei diesem deutschen Boost CX1 zählt die sichtbare Max-Markierung am Staubbehälter. Laut Anleitung HS20 12 837 480 sind Feinstaubfilter CX FSF, seine aufliegende Filtermatte, Vorfilter, Filterrahmen und Abluftfilter SF-HA 60 unterschiedliche Teile. Beim Feinstaubfilter und der Matte gilt für die Nasspflege an den dokumentierten Flächen kaltes Wasser ohne Spülmittel oder Spülbürste und mindestens 24 Stunden Trocknung für beide. Die trockene Matte hat ihre weiche Seite oben und eine sichtbare Entnahmeöse. Für den Vorfilter oder Filtereinsatz nennt die Anleitung ein Reinigungswerkzeug und für Rahmen beziehungsweise Seitenklappe ein leicht feuchtes Tuch mit mildem Spülmittel bei Bedarf. Bei der passenden umschaltbaren Bodendüse kann ein eindeutig abgenutzter Fadenheber separat ersetzt werden. [Boost CX1 11602420](https://www.miele.de/product/11602420/bodenstaubsauger-ohne-beutel-boost-cx1-cat-und-dog-powerline-obsidianschwarz) · [HS20 12 837 480, S. 16–19](https://media.miele.com/downloads/0a/3d/00_C7F12828EA7E1FD083C4AF3F279F0A3D.pdf).
+
+Arbeite bei Sichtkontrollen nach dem Abschalten und Trennen vom Netz an den vom Hersteller vorgesehenen zugänglichen Teilen. Wenn Modell, Zustand oder Teil nicht eindeutig sind, halte die fehlende Information fest, bevor du etwas bestellst.
+
+## Philips Azur DST7040/80 und PerfectCare PSG7140/70: Dampf, Wasser und Pflege
+
+Geprüft am 20. November 2026. Vergleiche die vollständige Kennung am Gerät und bei Ersatzteilen die aufgedruckte Artikelnummer. Die deutsche Produktseite und das mehrsprachige Handbuch behandeln unterschiedliche Teile des Vergleichs.
+
+### Azur DST7040/80: Wasser und Quick Calc Release
+
+- Das Datenblatt zur Variante /80 nennt 300 ml Nenn-Tankvolumen, bis zu 50 g/min kontinuierlichen Dampf, einen Dampfstoß bis 250 g und die Tropfstopp-Funktion. Die MAX-Markierung am eigenen Tank ist ein gesonderter Füllbezug. Das Wasser im Behälter, die Dampfmenge und eine beobachtete Arbeitszeit sind verschiedene Angaben.
+
+- Die deutsche DST7040-Anleitung nennt Leitungswasser. Bei hartem Wasser empfiehlt sie gleiche Mengen Leitungswasser und destilliertes oder demineralisiertes Wasser. Parfüm, Trocknerkondensat, Essig, Stärke, Entkalkungsmittel, Bügelzusätze und chemisch enthärtetes Wasser sind ausgeschlossen. Bei ungeklärter Herkunft die Flüssigkeit zuerst eindeutig bestimmen.
+
+- Wasserspray und Dampfstoß haben unterschiedliche Bedienelemente. Dauerhaftes Halten des Dampfstoßauslösers in senkrechter Position erzeugt laut Anleitung keinen gleichmäßigen Dampf. Bei Inaktivität nennt die Anleitung eine automatische Abschaltung nach mehr als 30 Sekunden auf der Bügelsohle beziehungsweise acht Minuten auf der Standfläche. Restwärme und der Zustand des Exemplars müssen unabhängig davon beurteilt werden.
+
+- Die Anleitung empfiehlt für Quick Calc Release ein Intervall von einem bis drei Monaten und nennt braune Flecken oder braunes Wasser als gesonderten Anlass zur Kontrolle. Bei hartem Wasser empfiehlt sie häufigere Pflege ohne eigenen Zahlenwert. Für die Sohle nennt sie ein feuchtes Tuch und schließt Scheuerschwämme, Essig sowie andere Chemikalien aus. Der Aufbewahrungsabschnitt nennt außerdem das Entleeren von verbleibendem Wasser.
+
+### PerfectCare PSG7140/70: Wassertank, Handteil, Anzeige und Teileliste
+
+- Der abnehmbare 1.800-ml-Tank ist laut deutscher Produktseite während des Gebrauchs nachfüllbar. Philips nennt bis zu zwei Stunden Verwendung. Gemessene Nettozeiten und eigene Nachfüllvorgänge beantworten gesondert, wie lange ein eigener Durchgang dauert. Die dokumentierte Möglichkeit zum Nachfüllen sagt nichts über einen ununterbrochenen Dampfausstoß dabei aus.
+
+- Die technischen Daten nennen bis zu 120 g/min gleichmäßigen Dampf, bis zu 600 g Dampfstoß und maximal 8,0 bar. Für das Handteil stehen dort 0,8 kg, für Handteil und Basis 3,85 kg und für das Gesamtgewicht mit Verpackung 5,3 kg. Die Gesamtlänge des Schlauchs beträgt 1,7 m. Die freie Nutzlänge am eigenen Arbeitsplatz ist gesondert festzustellen.
+
+- Der Bewegungssensor ist Teil des beschriebenen automatischen Dampfausstoßes. Die Produktseite führt eine Trageverriegelung, eine Wasserstandsanzeige und die Entkalkungserinnerung auf. Der Kurzname Easy De-Calc steht im Produkttext, Easy De-Calc Plus in den technischen Daten desselben Geräts. Für PSG7140/70 listet Philips den abnehmbaren Tank CP2030/02 und die Auffangkappe CP2029/05. Bei Gebrauchtangeboten und Ersatzteilen Zustand, Zuordnung und Lieferumfang des einzelnen Angebots prüfen.
+
+- Die Fußnote von Philips ordnet die beworbenen bis zu 30 Prozent Energieeinsparung dem Normalmodus gegenüber MAX desselben Geräts unter dem genannten Bezug IEC 60331-1 zu. Eigene Stromkosten brauchen eigene Verbrauchsdaten.
+
+- Falls die verlinkte westeuropäische Handbuchrevision dem konkreten Gerät zugeordnet ist, führt sie das dauerhaft leuchtende Bereitschaftssignal getrennt von der Meldung bei niedrigem Wasserstand auf. Für die Aufbewahrung unterscheidet sie das Schlauchfach vom Klettverschluss am Kabel. Für eine andere Revision die Geräteunterlagen beim Hersteller abgleichen.
+
+### Herstellerunterlagen
+
+- [Versuni Deutschland: Geräteunterlagen zu DST7040](https://www.home.id/de-DE/DST7040)
+
+- Philips DST7000 Bedienungsanleitung mit DST7040 im deutschen Abschnitt
+
+- [Philips Datenblatt zur Variante DST7040/80 (englisch)](https://www.documents.philips.com/assets/20221203/953954635d7d47f9b150af600125d8d2.pdf)
+
+- [Philips Deutschland: PSG7140/70 mit Spezifikationen und Zubehörliste](https://www.philips.de/p-p/PSG7140_70/perfectcare-7000-series-dampfbuegelstation)
+
+- [Versuni Deutschland: Geräteunterlagen zu PSG7140](https://www.home.id/de-DE/PSG7140)
+
+- [Philips PerfectCare 7000 Bedienungsanleitung, westeuropäische Ausgabe](https://dam.versuni.com/m/4466b01bbea5bd6/original/PerfectCare-7000-series_WEU_-17993-_user-manual.pdf)
+
+## Stabmixer-Zubehör prüfen: Kupplung, Becher, Mengen und Reinigung
+
+**Vor einem Nachkauf das Typenschild und den konkreten Aufsatz abgleichen.** Beim Bosch ErgoMixx gehört der Index hinter dem Schrägstrich zur E-Nr. Bei Braun können zwei 500-ml-Zerkleinerer unterschiedliche Kupplungen und Messer haben. Ein passender Anschluss beantwortet weder die Mengenfrage noch die Frage nach der richtigen Reinigung.
+
+### Bosch ErgoMixx: Set, Mixfuß und Frischhaltezubehör
+
+- Die deutsche [Bosch Service-Seite für MSM67170/02](https://www.bosch-home.com/de/de/productservice/MSM67170-02) ordnet Geräte- und Zubehörunterlagen zu. Das [deutsche MSM67170-Datenblatt](https://media3.bsh-group.com/Documents/specsheet/de-DE/MSM67170.pdf) führt Universalzerkleinerer, Ice-Crush-Messer und Schneebesen als Setbestandteile. Das [Zubehörhandbuch zum MSM6](https://media3.bsh-group.com/Documents/8001152528_B.pdf) beschreibt das Eis-Crush-Messer für den Zerkleinerer L. Als optimale Portion nennt es 4–6 Würfel mit höchstens 100 g insgesamt. XL mit Vario-Zubehör hat eine eigene Anleitung.
+
+- Die [Bosch Service-Seite für MS6CA4150/02](https://www.bosch-home.com/de/de/productservice/MS6CA4150-02) verweist auf die passende Anleitung. Das [deutsche MS6CA4150-Datenblatt](https://media3.bsh-group.com/Documents/specsheet/de-DE/MS6CA4150.pdf) nennt einen Mix-/Messbecher mit 600 ml, Zerkleinerer mit 500 ml Nutzvolumen, Schneebesen und zwei Deckel. Diese beiden Gefäßrollen bleiben getrennt. Gebrauchtes Zubehör anhand seines tatsächlichen Inhalts prüfen.
+
+- Die [Bosch Service-Seite für MS6CB61V1/01](https://www.bosch-home.com/de/de/productservice/MS6CB61V1-01) ordnet das [Fresh-Zubehörhandbuch](https://media3.bsh-group.com/Documents/8001160141_A.pdf) zu. Das [deutsche MS6CB61V1-Datenblatt](https://media3.bsh-group.com/Documents/specsheet/de-DE/MS6CB61V1.pdf) nennt die mitgelieferte rechteckige Vakuumbox mit 1,2 l in der Lieferliste und die Frischhaltedose mit 1,0 l auf Seite 2. Vor einer Kapazitätsentscheidung die Kennzeichnung der konkreten Box prüfen. Für die VitaMaxx Flasche MMZV0BT1 und die runden Behälter MMZV0SB0, MMZV0SB1 und MMZV0SB2 nennt Bosch die Kompatibilität ausdrücklich.
+
+Die [Bosch Geräteanleitung zum MSM6](https://media3.bsh-group.com/Documents/8001057006_B.pdf) und die [Geräteanleitung zum MS6](https://media3.bsh-group.com/Documents/8001159548_B.pdf) trennen Pürieren von gekochtem Gemüse und Hacken von rohen Zwiebeln, Knoblauch oder Kräutern. Für andere geeignete hohe Mixgefäße gilt ein ebener Boden, der Zerkleinerertopf ist für den Mixfuß ausgeschlossen. Zuvor kochende Zutaten auf 80 °C oder weniger abkühlen lassen und einen Topf vorher von der Kochstelle nehmen. Nach dem Reinigen den Mixfuß in der genannten Abtropfposition trocknen lassen. Zur Abschaltung bei der Nutzung des MSM67170 nennt Bosch ungefähr eine Stunde Abkühlen. Wiederholte Störungen mit dem Hersteller klären.
+
+Beim Fresh-Behälter beschreibt Bosch die sich nach innen wölbende Anzeige. Beim Zip-Beutel beschreibt es, wie er sich an den Inhalt legt, und verweist bei austretender Flüssigkeit auf die Max-Linie. Daraus folgt keine Haltbarkeitsangabe. Nach rohem Fleisch, Fisch oder Geflügel rät Bosch davon ab, den Zip-Beutel wiederzuverwenden. Andere zur Wiederverwendung vorgesehene Originalbeutel sorgfältig reinigen und vollständig trocknen lassen.
+
+### Braun MultiQuick: 500 ml allein belegt weder Kupplung noch Eis-Eignung
+
+Genau zugeordnete Braun Unterlagen, geprüft am 20. November 2026
+
+| Deutsche Anleitung | 500-ml-Zerkleinerer | Eis laut Abschnitt C |
+| --- | --- | --- |
+| [MultiQuick 5 Vario MQ 5235 WH](https://www.braunhousehold.com/de-de/s/4191-MQ5235WH) | ca, EasyClick und Wellenschnitt | Nur bc mit eigenem Eismesser. Das Familienhandbuch belegt keinen Kit-Lieferumfang. |
+| [MultiQuick 7 MQ 7035 XBI](https://www.braunhousehold.com/de-de/s/MQ7035XBI) | mc, EasyClick Plus und gerader Anschluss | mc mit eigenem Eismesser. |
+
+Der [deutsche Braun Zubehörkatalog](https://www.braunhousehold.com/de-de/c/essenszubereitung/stabmixer/stabmixeraufsatze-und--zubehor) nennt Wellenschnitt für MQ30BK und MQ30WH. MQS230BK ist für geradlinige Motoreinheiten. Für ca im MQ-5235-WH-Handbuch und mc im MQ-7035-XBI-Handbuch zeigt Abschnitt C höchstens 60 Sekunden Laufzeit und 180 Sekunden Pause. Die Zutatenzeile und die Max-Markierung gelten zusätzlich. Bei starker Vibration oder sinkender Drehzahl den Betrieb unterbrechen. Braun zeigt ein durchgestrichenes Mikrowellensymbol beim Zerkleinerertopf.
+
+Die mc-Tabelle für den MQ 7035 XBI nennt für Parmesan und Karotten je 200 g mit der gezeigten Stückgröße von 2 cm, für Kräuter 30 g. Die Markierung am eigenen Behälter zusätzlich beachten. Abschnitt A zeigt einen eingetauchten Pürierfuß und 70 °C. Eine allgemeine Mindestmenge in Millilitern steht dort nicht. Die Abbildung hilft beim Einordnen einer kleinen Portion im zugehörigen Becher.
+
+Abschnitt B beschreibt den Doppelrührbesen des MQ 7035 XBI für leichte Rühraufgaben und Kartoffelpüree. Schwere Knetaufgaben und der mitgelieferte Becher Nr. 5 sind dafür ausgeschlossen. Braun zeigt unterschiedliche runde und sechskantige Markierungen an der Aufnahme.
+
+### Reinigung und Wechsel nach dem Gebrauch
+
+Den Aufsatz nach vollständigem Stillstand und Netztrennung entsprechend der Anleitung wechseln. Bosch nennt für Motor- und Getriebeteile feuchtes Abwischen. Bei Braun unterscheiden sich der Getriebedeckel von ca oder mc und der einfache hc-Deckel: Die Piktogramme in Abschnitt F beim MQ 5235 WH und Abschnitt D beim MQ 7035 XBI zeigen für den Getriebedeckel Handreinigung unter fließendem Wasser und schließen den Geschirrspüler aus. Schüssel sowie zugeordneter Deckel ohne Getriebe stehen in der Gruppe mit Geschirrspülersymbol. Antriebs- und Rührgetriebe feucht abwischen. Für andere Ausführungen die eigene Anleitung lesen.
+
+Herstellerangaben für die verlinkten deutschen Ausführungen und Anleitungen, geprüft am 20. November 2026. EcoBack hat die Geräte nicht selbst getestet. Für eine schon vorhandene passende Ausführung reicht oft die Prüfung des Zubehörs. Wenn Modell, Kupplung, Gefäßrolle oder Beleg unklar sind, die Auswahl zurückstellen.
+
+## Einbau-Mikrowelle: Platz, Leistung und Geschirr getrennt prüfen
+
+Das deutsche Datenblatt der Bosch BFL524MS0 nennt 382 × 594 × 317 mm für das Gerät, 201 × 308 × 282 mm für den Garraum und 365 × 560 × 300 mm für die Nische (H × B × T). Die technische Zeichnung bleibt maßgeblich. Für ein Gefäß auch Türdurchlass, Stellhöhe und freien Drehraum mit Deckel und Griffen prüfen. Die 25,5 cm Glas-Drehteller sind eine Zubehörgröße. Bei rechteckiger Außenform ist der Abstand von gegenüberliegenden Ecken eine konservative Drehhülle um die Mitte.
+
+BFL524MS0 ist eine Solo-Mikrowelle. Bosch führt die ähnliche BEL524MS0 mit Grill getrennt. Vor einer Ersatzteilbestellung am vorhandenen Gerät die vollständige E-Nr einschließlich Index prüfen. Ein Teller mit demselben Durchmesser belegt noch keine passende Aufnahme.
+
+800 W Mikrowellenleistung und 1.270 W elektrischer Anschlusswert bezeichnen verschiedene Größen. Das Datenblatt nennt bei längerem Betrieb eine Reduzierung bis auf 600 W ohne einen genauen Zeitpunkt. In der Anleitung 9001610906_F stehen maximal einstellbare 30 Minuten bei 800 W, 60 Minuten bei 600 W und 99 Minuten bei 90, 180 oder 360 W. Verbrauch beim Gebrauch anhand tatsächlicher Messwerte beurteilen.
+
+AutoPilot kennt vier Auftau- und drei Garprogramme. Das Handbuch ordnet jeder Kombination eine Lebensmittelgruppe und einen Gewichtsbereich zu. Die Garprogramme sehen einen Deckel vor, die Auftauprogramme offenes Geschirr. Gerundete Anzeige und gewogene Portion getrennt festhalten. Das Memory speichert nur eine manuelle Stufe und kein Automatikprogramm. Ein Zwischensignal kann eine Handlung während des Programms ankündigen; der Kühllüfter kann nach Ablauf nachlaufen. Ein Demo-Modus kann Anzeige und Tasten bedienbar erscheinen lassen, ohne zu garen.
+
+Die Anleitung unterscheidet die Zwischenreinigung leichter Rückstände von den Pflegehinweisen für Garraum, Gerätefront, Türscheibe und Bedienfeld. Bei ungeklärtem sichtbarem Türschaden, fehlendem oder beschädigtem Drehteller die Nutzung vorerst pausieren und die passende Anleitung oder den Service prüfen. Kondenswasser nach Gebrauch von Feuchte an unbekannter Stelle unterscheiden. Bei Geschirr die Freigabe für Korpus, Deckel und Dekor getrennt belegen.
+
+Primärquellen Deutschland, gelesen am 20.11.2026. [Bosch BFL524MS0 Datenblatt](https://media3.bosch-home.com/Documents/specsheet/de-DE/BFL524MS0.pdf) · [Bosch Anleitung 9001610906_F](https://media3.bsh-group.com/Documents/9001610906_F.pdf) · [Bosch BFL524MS0/11 Service und Ersatzteile](https://www.bosch-home.com/de/de/productservice/BFL524MS0-11) · [Bosch BEL524MS0 Grillmodell](https://www.bosch-home.com/de/de/product/kundensortimente/BEL524MS0)
+
+## Küchenwaage: Messbereich, Tara und Anzeige richtig einordnen
+
+Die Beurer KS 34 XL Black (70311) hat eine Glaswiegefläche; die 70312 ist eine getrennt dokumentierte Edelstahlausführung. Für die 70311 nennt Beurer 15 kg Tragkraft, 1 g Einteilung und g, kg, oz und lb:oz als Einheiten. Die verlinkte Anleitung nennt 5 bis 15.000 g als Wiegebereich. Die Einteilung ist kein Nachweis absoluter Messgenauigkeit. Beim Tarieren bleibt die Masse des Gefäßes als Last auf der Waage.
+
+Hold hält einen abgewogenen Wert sichtbar, wenn ein größerer Gegenstand das Display verdeckt. Die deutsche Produktseite nennt keinen Messwertspeicher und keine Kalibrierfunktion. Das Magic-LED-Display erscheint bei Messung. Ob eine Lagerung passt, anhand der lichten Schubladenmaße und der Außenmaße von 20 × 26,3 × 2 cm prüfen.
+
+Die Anleitung nennt ein feuchtes Tuch, gegebenenfalls mit etwas Spülmittel. Abspülen und Eintauchen sind ausgeschlossen. Bei unsteten Anzeigen festen, ebenen Stand und ein mögliches starkes elektromagnetisches Umfeld getrennt erfassen. Für die 70311 nennt das deutsche Datenblatt vier AAA-Zellen mit 1,5 V. Vermeide einen gemischten Batteriesatz und beachte die Herstellergrenzen für die Aufbewahrung. Die Anleitung nennt keinen gewerblichen Einsatz.
+
+Verpacktes und unverpacktes Gewicht getrennt lesen. Die aktuelle 70311-Seite nennt 1.007 g verpackt und 779 g ohne Verpackung; das ältere Datenblatt nennt ungefähr 725 g Produktgewicht. Bei knapper Gewichtsgrenze das konkrete Gerät selbst wiegen.
+
+Herstellerquellen Deutschland, gelesen am 20.11.2026. [Beurer KS 34 XL Black 70311](https://www.beurer.com/de/p/70311/) · [Beurer KS 34 Stainless Steel](https://www.beurer.com/de/p/70312/) · [Beurer 703.11 Datenblatt](https://pim.beurer.com/images/attribut/703.11_KS34_2018-09-05_02_DS_DE_BEU.pdf) · [Beurer KS 34 Gebrauchsanleitung 07](https://res.cloudinary.com/beurer/image/upload/v1785412383/stibo-live/70311-13_KS34_2026-07-21_07_IM1_BEU.pdf).
+
+## Bosch TWK8613P im Haushalt prüfen
+
+Bosch nennt beim TWK8613P 1,5 l Nennvolumen und Stufen für 70, 80, 90 °C und kochendes Wasser. Vor Gebrauch die ablesbaren MIN- und MAX-Markierungen, das eingesetzte Kalksieb und den geschlossenen Deckel prüfen. Die Anleitung beschreibt frisches, kaltes, stilles Wasser als Kanneninhalt. Der Kessel gehört auf seine zugeordnete Basis. Die gleiche 360-Grad-Beschreibung reicht für die Zuordnung einer anderen Basis nicht aus. Den Service anhand der vollständigen E-Nummer mit Suffix aufrufen.
+
+In der zugeordneten TWK86-Anleitung blinkt beim Heizen die eingestellte Temperatur, während eine erreichte Stufe leuchtet. Ein höherer Sollwert lässt sich während des Heizens wählen. Beim Abheben und Zurückstellen setzt der bisherige Heizvorgang laut Anleitung nicht automatisch fort. Keep Warm muss vor dem automatischen Heizende gewählt werden und hält im aktivierten Modus 30 Minuten. Die Anzeige belegt keine gemessene Temperatur im Wasser.
+
+Die Anleitung nennt beaufsichtigten Betrieb, eine Höhenlage bis 2000 m, Belüftung, keinen Betrieb im Schrank und mindestens fünf Minuten Abkühlen nach jedem Gebrauch. Bei täglicher Verwendung empfiehlt Bosch Entkalken in kürzeren Abständen. Eine feste Tageszahl ist dort nicht angegeben. Kanne, Basis und Leitung gehören nicht in die Spülmaschine. Die Anleitung beschreibt Kondenswasser an der Basis. Wasserstelle, Verschütten und sichtbaren Schaden getrennt abklären. Das doppelwandige Gehäuse steht für reduzierte Außentemperatur, konkrete Temperaturen an berührten Stellen bleiben von diesem Merkmal offen.
+
+Herstellerquellen gelesen am 20.11.2026. [Deutsches Datenblatt Bosch TWK8613P](https://media3.bosch-home.com/Documents/specsheet/de-DE/TWK8613P.pdf) · [Bosch-Modellseite](https://www.bosch-home.com/de/de/product/fruehstueck/wasserkocher/TWK8613P) · [TWK86 Gebrauchsanleitung, deutscher Abschnitt S. 6–9](https://media3.bosch-home.com/Documents/8001267842_A.pdf) · [Modellservice TWK8613P/01](https://www.bosch-home.com/de/de/productservice/TWK8613P-01) · [Modellservice TWK8613P/02](https://www.bosch-home.com/de/de/productservice/TWK8613P-02) · [Bosch-Katalog, Nennvolumen auf S. 33](https://media3.bosch-home.com/Documents/18940060_d_CO51_Bosch_Kleing_2021_Web.pdf).
+
+## Bosch TAT8613: Röstschlitze, Brötchenaufsatz und Bedienung prüfen
+
+Bosch listet für den deutschen TAT8613 zwei Röstschlitze und einen integrierten, versenkbaren Brötchenaufsatz. Die Zahl der Schlitze belegt keine Innenmaße für dicke Brotscheiben. Für lose Ersatzteile zählt die vollständige E-Nummer vom Typenschild und eine dazu passende Herstellerzuordnung. Die Geräteausstattung allein belegt keinen losen Aufsatz als passendes Ersatzteil. [Bosch Produktseite Deutschland](https://www.bosch-home.com/de/de/product/TAT8613) · [Bosch Service für TAT8613/01](https://www.bosch-home.com/de/de/productservice/TAT8613-01) · [Bosch Datenblatt TAT8613](https://media3.bosch-home.com/Documents/specsheet/de-DE/TAT8613.pdf)
+
+Für Brötchen nennt die Anleitung den ausgefahrenen Aufsatz und maximal Stufe 2, angezeigt durch 1 und 3. Sie schließt gleichzeitiges Toasten im Schacht, Alufolie auf dem Aufsatz und tropfendes Aufbackgut aus. Der Aufsatz ist für die dokumentierte normale Benutzung vorgesehen. [Bosch Gebrauchsanleitung TAT861, 9001690573_A, deutsche Seiten 2–5](https://media3.bosch-home.com/Documents/9001690573_A.pdf)
+
+Für kaltes Brot oder Toast zum bloßen Wiederaufwärmen gibt es das Aufwärmsymbol. Bei gefrorenem Toast nennt Bosch die gewünschte Stufe zusammen mit der Auftautaste. Die Anleitung gruppiert trockenes Toastbrot bei Stufen 1–5, feuchteres Grau- und Vollkornbrot bei 6–7 und dickes Schwarzbrot bei 8–9. Für eine statt zwei Scheiben nennt sie einen kleineren Röstgrad und rät zu goldgelber Bräunung. Die Stufen sagen kein konkretes Ergebnis oder Minutenwert voraus. [Bosch Gebrauchsanleitung, deutsche Seiten 4–5](https://media3.bosch-home.com/Documents/9001690573_A.pdf)
+
+In der Einstellanzeige stehen benachbarte ungerade Zahlen für ihre Zwischenstufe, etwa 3 und 5 für Stufe 4. Im laufenden Betrieb zeigen die Ziffern Fortschritt. Die Auswahl kann nach Ausschalten, Ausstecken und Stromausfall gespeichert bleiben. Automatisches Anheben kennzeichnet das Ende, STOP den manuellen Abbruch und High Lift hilft bei der Entnahme kleiner Scheiben. [Bosch Gebrauchsanleitung, deutsche Seite 4](https://media3.bosch-home.com/Documents/9001690573_A.pdf)
+
+Die Krümelschublade muss für den Betrieb eingesetzt sein. Erst nach vollständigem Abkühlen und Ziehen des Netzsteckers die herausgenommene Schublade abwischen, Krümel unter dem Aufsatz gemäß Anleitung mit einem harten Pinsel entfernen und das Außengehäuse feucht abwischen. Die Anleitung schließt Eintauchen, Spülmaschine, Dampfreiniger und Grill- oder Backofenspray aus. Bei einem gebrauchten Gerät zuerst die Ausstattung prüfen und vorhandenes, passendes Zubehör weiter verwenden. [Bosch Gebrauchsanleitung, deutsche Seiten 2 und 4–5](https://media3.bosch-home.com/Documents/9001690573_A.pdf)
+
+Deutsche Bosch-Unterlagen 9001690573_A und Produktdaten des TAT8613, geprüft am 20.11.2026.
+
 ## Was diese Auswahl leistet
 Die Gruppen zeigen unterschiedliche Aufgaben und konkrete Modelle, keine vollständige Marktübersicht. Herstellerdaten und genaue Varianten stehen bei jedem Gerät. Wir haben diese Geräte nicht selbst getestet. Eine Händlersuche bestätigt weder ein bestimmtes Angebot noch Verfügbarkeit oder einen Preis.
 Quellen älter als 90 Tage, zukünftige Prüfdaten oder offene Widersprüche pausieren die Händlersuche. Die zuletzt dokumentierten Fakten bleiben nachvollziehbar. Zubehör, regionale Ausführung und die passende Anleitung am konkreten Angebot prüfen. Ein funktionierendes vorhandenes Gerät muss nicht ersetzt werden.
