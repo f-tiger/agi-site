@@ -82,7 +82,8 @@ function matchWeight(term, root, entry) {
   const alias = wordMatch(term, root, entry.aliases, false);
   if (identifier || alias) return Math.max(identifier ? identifier + 4 : 0, alias ? alias + 3 : 0);
   const body = wordMatch(term, root, entry.description, true);
-  return body || (wordMatch(term, root, entry.reference, true) ? 1 : 0);
+  const reference = wordMatch(term, root, entry.reference, true);
+  return Math.max(body, Math.min(reference, 2));
 }
 
 export function findCatalogueTools(index, {query='', category='', name=null}={}) {
@@ -123,7 +124,9 @@ export function findCatalogueTools(index, {query='', category='', name=null}={})
   for (const {tool, weights, matched} of matches) {
     const strong = weights.filter(weight => weight >= 5).length;
     const distinctive = weights.some((weight, i) => weight >= 5 && terms[i].strongFrequency <= rareLimit);
-    const ordinary = matched >= required && (termCount === 1 || strong > 0 || matched >= 3);
+    // A single term needs a full word or an identifier match, not a weak compound fragment.
+    const ordinary = termCount === 1 ? weights[0] >= 2 :
+      matched >= required && (strong > 0 || matched >= 3);
     const concise = termCount === 3 && matched >= 2 && strong >= 2 && distinctive;
     // Extra context must still contain several corroborating terms, including a rare tool term.
     const contextual = termCount >= 4 && matched >= Math.max(3, Math.ceil(termCount / 5)) && strong >= 2 && distinctive;

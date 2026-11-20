@@ -549,20 +549,24 @@ export const kuechenressourcen=[
     },{gemessen_tiefe_cm:25,gemessen_breite_cm:21,einsatz_tiefe_cm:24,einsatz_breite_cm:20.8,geprueftes_spiel_cm:0.3},
     {fehlende_tiefe_cm:0,fehlende_breite_cm:0.4}),
 
-  tool('spuelbecken_wasserzaehler_weitere_nutzung',
-    'Küchenanteil aus einer gemeinsamen Wasserablesung nur eingrenzen, wenn weitere Nutzung getrennt beziffert wurde — Bound kitchen water when the same meter includes a declared overlapping household use.',
+  tool('spuelbecken_kaltfuellung_stufenwechsel_zeitpunkt',
+    'Bei zwei vermessenen Kaltwasserstufen bestimmen, in welchem beobachteten Abschnitt die geplante Beckenfüllung erreicht wurde — Locate a basin fill mark within a measured two-rate cold-water sequence.',
     water,{
-      zaehlerabschnitt_l:n('Gemessene Gesamtmenge desselben Wasserzählers in Litern.',10000),
-      fremd_min_l:n('Dokumentierte Mindestmenge der weiteren Nutzung.',10000),
-      fremd_max_l:n('Dokumentierte Höchstmenge der weiteren Nutzung.',10000),
-      nur_diese_quellen:yn('Nur diese Küchenaufgabe und die protokollierte weitere Nutzung liefen während der Messung.'),
-    },({zaehlerabschnitt_l,fremd_min_l,fremd_max_l,nur_diese_quellen})=>{
-      if(fremd_min_l>fremd_max_l||fremd_min_l>zaehlerabschnitt_l) throw new RangeError();
-      return {kuechenanteil_untergrenze_l:nur_diese_quellen?r(positive(zaehlerabschnitt_l-fremd_max_l)):null,
-        kuechenanteil_obergrenze_l:nur_diese_quellen?r(zaehlerabschnitt_l-fremd_min_l):null,
-        hinweis:'Gleiche Zeitgrenzen für alle Angaben. Weitere ungemessene Nutzung oder Anlauffluss außerhalb des Intervalls bleibt unbestimmt.'};
-    },{zaehlerabschnitt_l:36,fremd_min_l:11,fremd_max_l:14,nur_diese_quellen:true},
-    {kuechenanteil_untergrenze_l:22,kuechenanteil_obergrenze_l:25}),
+      ziel_l:n('Eigene Zielmenge in Litern bis zum vorgesehenen Füllstrich.',100),
+      erste_fuellung_l:n('Menge beim Wechsel von der ersten auf die zweite beobachtete Stufe.',100),
+      erste_dauer_s:n('Gemessene Dauer bis zum Stufenwechsel in Sekunden.',3600),
+      zweite_rate_l_min:n('Separat bei derselben Stufe gemessene Liter pro Minute.',150),
+      zweite_dauer_s:n('Bis zum Ende tatsächlich erfasste Dauer der zweiten Stufe in Sekunden.',3600),
+    },({ziel_l,erste_fuellung_l,erste_dauer_s,zweite_rate_l_min,zweite_dauer_s})=>{
+      if(!ziel_l||!erste_dauer_s||!zweite_rate_l_min) throw new RangeError();
+      const rest=ziel_l-erste_fuellung_l, zweiteMenge=zweite_rate_l_min*zweite_dauer_s/60;
+      const phase=rest<=0?'erste Stufe':rest<=zweiteMenge?'zweite Stufe':null;
+      return {fuellstrich_beobachteter_abschnitt:phase,
+        sekunde_ab_start_fuer_zweite_stufe:phase==='zweite Stufe'?r(erste_dauer_s+60*rest/zweite_rate_l_min):null,
+        noch_unter_fuellstrich_l:r(positive(rest-zweiteMenge)),
+        hinweis:'Konstanter gemessener Durchfluss nur für die zweite Stufe. Für die erste Stufe ist kein genauer Zwischenzeitpunkt ableitbar.'};
+    },{ziel_l:7,erste_fuellung_l:3,erste_dauer_s:26,zweite_rate_l_min:9,zweite_dauer_s:45},
+    {fuellstrich_beobachteter_abschnitt:'zweite Stufe',sekunde_ab_start_fuer_zweite_stufe:52.67,noch_unter_fuellstrich_l:0}),
 
   tool('kochplatten_leerplatz_geschirrwechsel_uebersicht',
     'Mit zwei passenden vorhandenen Gefäßen prüfen, welches davon eine kalte Zwischenablage belegt und welches die Fläche freihält — Track cold-vessel availability through a staged cleanup.',

@@ -412,23 +412,22 @@ export const mehrgeraetebetrieb = [
     },{a_nur_ausgefallen:4,a_verlagerbar:6,b_eigenbelegung_min:40,b_verfuegbar_min:100,dauer_uebernahme_min:22},
     {uebernehmbar:2,uebertragbar_aber_offen:4,ausschliesslich_ausgefallen_offen:4,fehlende_eigenzeit_min:0}),
 
-  task('geraetegruppe_ersatzteile_mengenreservierung',
-    'Ein kompatibles gemeinsames Ersatzteil für zwei anstehende Wartungen reservieren, wenn nur eine Wartung eine modellgebundene Alternative hat — Preserve the scarce shared part for the device with no verified substitute.',
+  task('geraetegruppe_zubehoer_symptom_wandert',
+    'Mit einem bereits dokumentierten freigegebenen Tausch zweier Zubehörteile prüfen, ob ein Befund mit dem Teil oder Gerät verbunden blieb — Classify a recorded cross-swap without assuming it proves a component defect.',
     purifier,{
-      a_bedarf:n('Anzahl der aktuell benötigten Teile für Gerät A.'),
-      b_bedarf:n('Anzahl der aktuell benötigten Teile für Gerät B.'),
-      gemeinsam_vorrat:n('Auf Lager, für beide Geräte einzeln freigegeben.'),
-      alternative_a:n('Auf Lager, als separate gleichartige Alternative ausschließlich für A freigegeben.'),
-      freigaben_geprueft:yes('Sind Modellvarianten und die Freigaben der Teile anhand der Unterlagen geprüft?'),
-    },({a_bedarf,b_bedarf,gemeinsam_vorrat,alternative_a,freigaben_geprueft})=>{
-      whole(a_bedarf,b_bedarf,gemeinsam_vorrat,alternative_a);
-      if (!freigaben_geprueft) return {b_fehlend:null,a_fehlend:null};
-      const fromSharedB=Math.min(b_bedarf,gemeinsam_vorrat);
-      return {b_fehlend:b_bedarf-fromSharedB,a_fehlend:max0(a_bedarf-alternative_a-(gemeinsam_vorrat-fromSharedB)),
-        gemeinsam_fuer_b:fromSharedB,
-        hinweis:'Setzt Vorrang für das Gerät ohne bestätigte Alternative. Modell- und Wartungsunterlagen haben Vorrang.'};
-    },{a_bedarf:2,b_bedarf:2,gemeinsam_vorrat:2,alternative_a:1,freigaben_geprueft:true},
-    {b_fehlend:0,a_fehlend:1,gemeinsam_fuer_b:2}),
+      a_vorher_auffaellig:yes('War Gerät A ursprünglich mit seinem eigenen Zubehörteil auffällig?'),
+      b_vorher_auffaellig:yes('War Gerät B ursprünglich mit seinem eigenen Zubehörteil auffällig?'),
+      a_nachher_auffaellig:yes('War A nach dem dokumentierten Tausch mit dem früheren Teil von B auffällig?'),
+      b_nachher_auffaellig:yes('War B nach dem dokumentierten Tausch mit dem früheren Teil von A auffällig?'),
+      vergleich_bestaetigt:yes('Sind Zubehör für beide Geräte freigegeben, vollständiger Tausch, gleiche Aufgabe und dasselbe Befundkriterium belegt?'),
+    },({a_vorher_auffaellig,b_vorher_auffaellig,a_nachher_auffaellig,b_nachher_auffaellig,vergleich_bestaetigt})=>{
+      if (!vergleich_bestaetigt||a_vorher_auffaellig===b_vorher_auffaellig) return {befund:'vergleich_offen'};
+      if (a_nachher_auffaellig===b_nachher_auffaellig) return {befund:'nach_tausch_nicht_eindeutig'};
+      return {befund:a_nachher_auffaellig===a_vorher_auffaellig?'bleibt_am_geraet':'wandert_mit_zubehoer',
+        urspruenglich_auffaellig:a_vorher_auffaellig?'A':'B',
+        hinweis:'Beschreibt den beobachteten Verlauf. Kein Defektnachweis und keine Anleitung zum Umbau oder Austausch.'};
+    },{a_vorher_auffaellig:true,b_vorher_auffaellig:false,a_nachher_auffaellig:false,b_nachher_auffaellig:true,vergleich_bestaetigt:true},
+    {befund:'wandert_mit_zubehoer',urspruenglich_auffaellig:'A'}),
 
   task('heizgruppe_gemeinsame_waerme_laufmittel',
     'Zwei gleichzeitig arbeitende Wärmequellen als gemeinsam gemessene Wärme pro Eingangsenergie auswerten — Combine unequal input energies and outputs without averaging two individual ratios.',
@@ -481,11 +480,13 @@ export const mehrgeraetebetrieb = [
       if (!raster_gleich) return {maxima_gleichzeitig:null,delta_zur_summe_einzelmaxima_w:null};
       const aligned=a_max_index===b_max_index;
       const delta=a_max_w+b_max_w-summenmaximum_w;
-      return {maxima_gleichzeitig:aligned,delta_zur_summe_einzelmaxima_w:r(delta),
-        auffaellig:delta< -1e-9||summenmaximum_w+1e-9<Math.max(a_max_w,b_max_w)||(aligned&&Math.abs(delta)>1e-9),
-        hinweis:'Vorausgesetzt werden nichtnegative Einzellasten, identische Mittelungsfenster und keine zusätzlichen Lasten. Keine elektrische Freigabe.'};
-    },{a_max_w:600,b_max_w:450,a_max_index:4,b_max_index:7,summenmaximum_w:900,raster_gleich:true},
-    {maxima_gleichzeitig:false,delta_zur_summe_einzelmaxima_w:150,auffaellig:false}),
+      const gleiche_spitze=Math.abs(delta)<=1e-9;
+      const auffaellig=delta< -1e-9||summenmaximum_w+1e-9<Math.max(a_max_w,b_max_w)||(aligned&&!gleiche_spitze);
+      return {maxima_gleichzeitig:auffaellig?null:gleiche_spitze,angegebene_maxstellen_gleich:aligned,
+        delta_zur_summe_einzelmaxima_w:r(delta),auffaellig,
+        hinweis:'Für dieselben Messintervalle und nichtnegative Einzellasten ohne weitere Lasten. Unterschiedliche markierte Intervalle lassen gemeinsame Höchstwerte bei Plateaus zu. Messauflösung separat prüfen. Keine elektrische Freigabe.'};
+    },{a_max_w:700,b_max_w:500,a_max_index:0,b_max_index:1,summenmaximum_w:1200,raster_gleich:true},
+    {maxima_gleichzeitig:true,angegebene_maxstellen_gleich:false,delta_zur_summe_einzelmaxima_w:0,auffaellig:false}),
 
   task('gruppenbetrieb_doppelbelegung_stueckverdraengung',
     'Bei einem gemeinsamen Arbeitsbereich dokumentierte Doppelstarts von gleichzeitig tatsächlich nutzbaren Arbeitsplätzen unterscheiden — Measure output lost to overlapping equipment occupancy while respecting confirmed work positions.',
@@ -591,7 +592,7 @@ export const mehrgeraetebetrieb = [
 
   task('haushaltsablaeufe_ressourcen_dominanz_beobachtet',
     'Zwei vollständige Mehrgeräteabläufe auf einen echten Zielkonflikt zwischen Energie, Wasser und Zeit prüfen — Detect resource dominance without imposing a preference or price on remaining trade-offs.',
-    workshop,{
+    '/waeschetrockner-oder-luftentfeuchter.html',{
       a_wh:n('Gesamte gemessene Wh des vollständigen Ablaufs A.'), b_wh:n('Entsprechend gemessene Wh von B.'),
       a_l:n('Gesamtwasser A in Litern.'), b_l:n('Gesamtwasser B in Litern.'),
       a_min:duration('Verstrichene Gesamtzeit A.'), b_min:duration('Verstrichene Gesamtzeit B.'),

@@ -39,21 +39,20 @@ export const raumakustik = [
       hinweis:'Angaben zum Gesamtsystem oder anderen Bauteil dürfen nicht dem Zielteil zugeschrieben werden. Messgröße und Prüfbedingungen separat lesen.'
     }), {zielteil:'innenteil',berichtsteil:'aussenteil',genaue_geraetevariante:true}, {belegstatus:'anderer_bezug'}),
 
-  tool('schallangaben_rundungsbereiche_ordnung',
-    'Prüft, ob die dokumentierte Rundung zwei bereits vergleichbare Geräuschangaben unterschiedlich erscheinen lässt — Check whether rounding intervals allow ordering two otherwise comparable noise figures.',
-    DATA, {
-      a_db:db('Erste gerundete Angabe'), b_db:db('Zweite gerundete Angabe'),
-      schritt_a_db:num('Dokumentierte Rundung von A auf den nächsten Schritt in dB.',0,20),
-      schritt_b_db:num('Dokumentierter Rundungsschritt von B in dB.',0,20),
-      bedingungen_gleich:yes('Gleiche Messgröße, Gewichtung und vergleichbare Bedingungen bestätigt?')
-    }, ({a_db,b_db,schritt_a_db,schritt_b_db,bedingungen_gleich}) => {
-      const a=[a_db-schritt_a_db/2,a_db+schritt_a_db/2];
-      const b=[b_db-schritt_b_db/2,b_db+schritt_b_db/2];
-      return {bereich_a_db:a.map(x=>round(x)),bereich_b_db:b.map(x=>round(x)),
-        reihenfolge:!bedingungen_gleich?null:a[1]<b[0]?'a_unter_b':b[1]<a[0]?'b_unter_a':'nicht_eindeutig',
-        hinweis:'Nur Rundungsbreite berücksichtigt. Messunsicherheit und Raumverhalten können darüber hinaus abweichen.'};
-    }, {a_db:44,b_db:45,schritt_a_db:1,schritt_b_db:1,bedingungen_gleich:true},
-    {bereich_a_db:[43.5,44.5],bereich_b_db:[44.5,45.5],reihenfolge:'nicht_eindeutig'}),
+  tool('geraeteton_schmalband_spitze_gegen_nachbarbaender',
+    'Vergleicht eine beobachtete Frequenzspitze mit den beiden angrenzenden gleich breiten Spektralbändern — Compare an observed spectral peak against equally wide adjacent frequency bins.',
+    NOISE, {
+      band_mitte_db:db('Anzeigepegel des untersuchten Frequenzbands'),
+      band_darunter_db:db('Anzeigepegel des direkt darunterliegenden Bands'),
+      band_darueber_db:db('Anzeigepegel des direkt darüberliegenden Bands'),
+      gleiche_auswertung:yes('Gleich breite benachbarte Bänder mit derselben Skalierung und demselben Aufnahmeintervall?')
+    }, ({band_mitte_db,band_darunter_db,band_darueber_db,gleiche_auswertung}) => {
+      const referenz=(energy(band_darunter_db)+energy(band_darueber_db))/2;
+      return {mittenband_ueber_nachbarn:gleiche_auswertung?band_mitte_db>Math.max(band_darunter_db,band_darueber_db):null,
+        mittenband_gegen_nachbarmittel_db:gleiche_auswertung?level(energy(band_mitte_db)/referenz):null,
+        hinweis:'Vergleich innerhalb einer vorhandenen Spektrumanzeige. Er liefert keine normgerechte Tonhaltigkeitskennzahl und identifiziert weder Geräteteil noch Ursache.'};
+    }, {band_mitte_db:45,band_darunter_db:35,band_darueber_db:39,gleiche_auswertung:true},
+    {mittenband_ueber_nachbarn:true,mittenband_gegen_nachbarmittel_db:7.55}),
 
   tool('schallreport_gesamtwert_teilstichproben_widerspruch',
     'Prüft einen berichteten Gesamtmittelwert gegen die Spanne vollständiger Teilmittelwerte — Check a reported equivalent sound level against the range of complete subinterval means.',
@@ -72,12 +71,13 @@ export const raumakustik = [
 
   tool('schallmessung_a_c_gewichtung_gleichzeitige_spreizung',
     'Berechnet den Unterschied zeitgleich gemessener C- und A-gewichteter Mittelwerte — Calculate the simultaneous LCeq minus LAeq difference.',
-    DATA, {
-      lceq_db:db('C-gewichteter äquivalenter Pegel LCeq'), laeq_db:db('A-gewichteter äquivalenter Pegel LAeq'),
+    NOISE, {
+      lceq_db:db('Selbst gemessener C-gewichteter äquivalenter Pegel LCeq'),
+      laeq_db:db('Selbst gemessener A-gewichteter äquivalenter Pegel LAeq'),
       gleichzeitige_messung:yes('Gleicher Zeitraum, Messort und vergleichbare Instrumenteneinstellung?')
     }, ({lceq_db,laeq_db,gleichzeitige_messung}) => ({
       lc_minus_la_db:gleichzeitige_messung?round(lceq_db-laeq_db):null,
-      hinweis:'Unterschied zwischen Frequenzgewichtungen. Daraus lassen sich weder genaue Tonfrequenzen noch Geräuschursache oder Gefühl ableiten.'
+      hinweis:'Vergleich eigener Messwerte. Der Ratgeber stellt keinen C-bewerteten Gerätewert bereit. Aus der Differenz folgen weder genaue Frequenzen noch Geräuschursache oder Empfinden.'
     }), {lceq_db:53,laeq_db:45,gleichzeitige_messung:true}, {lc_minus_la_db:8}),
 
   tool('geraeuschaufnahme_pegel_von_wiedergabe_trennen',
@@ -377,20 +377,18 @@ export const raumakustik = [
     }, {gesamt_sek:120,a_sek:60,b_sek:40,beide_sek:30},
     {bei_unabhaengiger_zeitlage_sek:20,beobachtet_minus_referenz_sek:10}),
 
-  tool('kurzgeraeusch_zeitanteil_energieanteil',
-    'Vergleicht Daueranteil und Anteil an der Schallenergie einer kurzen beobachteten Phase — Compare a brief sound interval’s duration share with its acoustic-energy share.',
+  tool('kurzgeraeusch_abtastluecke_im_pegelprotokoll',
+    'Prüft, ob ein beobachteter kurzer Klang vollständig zwischen zwei Einzelablesungen liegen kann — Check whether a recorded brief sound could fall wholly between instantaneous samples.',
     NIGHT, {
-      kurz_sek:sec('Dauer des kurzen Abschnitts'), rest_sek:sec('Dauer der vollständig beobachteten Restphase'),
-      kurz_laeq_db:db('LAeq über den kurzen Abschnitt'), rest_laeq_db:db('LAeq über die Restphase'),
-      gleiche_messbasis:yes('Gleicher Messort und A-Gewichtung belegt, ohne Zeitüberlappung?')
-    }, ({kurz_sek,rest_sek,kurz_laeq_db,rest_laeq_db,gleiche_messbasis}) => {
-      const kurz=kurz_sek*energy(kurz_laeq_db);
-      const rest=rest_sek*energy(rest_laeq_db);
-      return {zeitanteil_kurz_prozent:kurz_sek+rest_sek>0?round(100*kurz_sek/(kurz_sek+rest_sek)):null,
-        energieanteil_kurz_prozent:gleiche_messbasis&&kurz+rest>0?round(100*kurz/(kurz+rest)):null,
-        hinweis:'Der relative Energieanteil des Messblocks ist kein Maß für subjektive Störung oder gesundheitliche Wirkung.'};
-    }, {kurz_sek:10,rest_sek:90,kurz_laeq_db:50,rest_laeq_db:40,gleiche_messbasis:true},
-    {zeitanteil_kurz_prozent:10,energieanteil_kurz_prozent:52.63}),
+      ereignis_ms:num('Dauer des kurzen Geräuschs aus einer feineren vorhandenen Aufzeichnung in ms.',1,60000),
+      abstand_ms:num('Dokumentierter gleichmäßiger Abstand zwischen Einzelablesungen in ms.',1,60000),
+      punktabtastung_belegt:yes('Sind die vorhandenen Ausgabewerte periodische Momentaufnahmen ohne Intervallmittel oder Spitzenhaltung?')
+    }, ({ereignis_ms,abstand_ms,punktabtastung_belegt}) => ({
+      kann_zwischen_ablesungen_liegen:punktabtastung_belegt?ereignis_ms<abstand_ms:null,
+      verfehlter_phasenanteil_im_modell_prozent:punktabtastung_belegt?round(100*Math.max(0,1-ereignis_ms/abstand_ms)):null,
+      hinweis:'Rechenmodell mit gleichmäßig verteiltem Ereignisbeginn zwischen zwei lückenlosen Ablesungen. Ein zeitlicher Treffer belegt keinen korrekt erfassten Spitzenpegel. Nicht auf Intervallmittel anwenden.'
+    }), {ereignis_ms:200,abstand_ms:1000,punktabtastung_belegt:true},
+    {kann_zwischen_ablesungen_liegen:true,verfehlter_phasenanteil_im_modell_prozent:80}),
 
   tool('schallmessung_zwei_aufstellungen_eigener_hintergrund',
     'Vergleicht zwei Aufstellungen, nachdem für jede der separat gemessene eigene Hintergrund berücksichtigt wurde — Compare two placements using their own measured background levels.',

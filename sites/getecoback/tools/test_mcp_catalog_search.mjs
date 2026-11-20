@@ -97,6 +97,7 @@ test('generic and off-topic requests produce no fallback catalogue matches', asy
     'Wie bekomme ich Zugluft und Lochkarten in eine PostgreSQL Transaktion?',
     'Entfeuchter-Abfluss im Kafka-Cluster: Schema Registry und Consumer Lag',
     'unique-unmatched-string',
+    'zznonexistentcatalogueentry',
     '???',
     'HTML',
   ]) {
@@ -124,6 +125,7 @@ test('noun inflection and compound edges work on tools without tailored aliases'
   const unrelated = {name:'drehmoment_pruefen', description:'Angaben im Maschinenhandbuch abgleichen', category:'Bauprobe'};
   const sample = indexCatalogue([tool, unrelated]);
   assert.deepEqual(findCatalogueTools(sample, {query:'Dachfensters Stirnkanten'}), [tool]);
+  assert.deepEqual(findCatalogueTools(sample, {query:'Bauprobe'}), [tool, unrelated]);
   assert.deepEqual(findCatalogueTools(sample, {query:'Dachfensterrahmen Kantenmass'}), [tool]);
   assert.deepEqual(findCatalogueTools(sample, {query:'Pflanzenstirnwurm Dachgeschosstor'}), []);
 });
