@@ -82,6 +82,10 @@ test('appliance evidence survives in both the generated mirror and edge fallback
    'https://media3.bosch-home.com/Documents/specsheet/de-DE/DWB66BC50.pdf',
    'https://media3.bosch-home.com/Documents/specsheet/de-DE/HEZ638370.pdf',
    'https://www.venta-air.com/Rollwagen-fuer-Venta-Luftbefeuchter/6060',
+   'https://media.miele.com/downloads/0d/c6/04_C7F12828E3FE1FE0BB8C547A67460DC6.pdf',
+   'https://media.miele.com/downloads/c0/11/02_C7F128281BA21FD0A0E8671DD96BC011.pdf',
+   'https://media3.bosch-home.com/Documents/specsheet/de-DE/SKS62E32EU.pdf',
+   'https://dam.versuni.com/m/11ba80be418a7f33/original/NA35x-Quick-Start-Guide.pdf',
   ]],
   ['geraete-austausch-rechner', [
    'https://media3.bsh-group.com/Documents/eudatasheet/de-DE/GSN58DWDV.pdf',
@@ -95,6 +99,11 @@ test('appliance evidence survives in both the generated mirror and edge fallback
   ['guide/duschen-kosten-rechner', [
    'https://www.ikea.com/de/de/p/tisken-handduschenhalter-mit-saugnapf-weiss-50400307/',
    'https://www.hansgrohe.de/articledetail-pulsify-s-handbrause-105-1jet-ecosmart-24121000',
+  ]],
+  ['strommess-protokoll', [
+   'https://media.miele.com/downloads/e-/de/FS_11105690_DED_DE-de-DE.pdf',
+   'https://eur-lex.europa.eu/eli/reg/2025/2262/oj/deu/pdf',
+   'https://publications.europa.eu/resource/cellar/7ab9b082-dd82-11ed-a05c-01aa75ed71a1.0004.01/DOC_1',
   ]],
  ];
  for (const [path, urls] of pages) {

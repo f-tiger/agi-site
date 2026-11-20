@@ -44,6 +44,18 @@ Ein hoher Verbrauch ist ein Anlass zum Prüfen, kein automatischer Kaufgrund. Er
 ## Dein nächster Schritt
 [Zur Haushaltswerkstatt](https://getecoback.com/wohnkosten-werkstatt.html) · [Wie wir empfehlen](https://getecoback.com/wie-wir-empfehlen.html)
 
+## Welcher Messwert gehört zu Aus, Bereitschaft oder vernetzter Bereitschaft?
+
+Halte Uhrzeit, Anzeige, Hauptfunktion, laufende Abkühlung und nachgewiesene Netzwerkreaktivierung getrennt fest. Eine einfache Statusleuchte kann etwas anderes bedeuten als eine ständig angezeigte Uhr. Ein WLAN-Symbol allein belegt keine Reaktivierung über ein externes Netzwerksignal. Ein noch laufender Hauptvorgang gehört zu einer eigenen Beobachtung.
+
+Das deutsche Herstellerblatt für Miele H 7460 BP Edelstahl/CleanSteel (11105690) nennt 0,3 W für Aus, 0,8 W für Bereitschaft und 2 W für vernetzte Bereitschaft. Es nennt drei zugehörige automatische Umschaltangaben von jeweils 20 Minuten. Diese Werte sind Ausgangspunkte zur Zuordnung eines beobachteten Zustands. Die drei Zeitangaben sind keine aufeinanderfolgenden Abschnitte.
+
+Die EU-Verordnung 2023/826 gilt seit dem 9. Mai 2025. Der deutsche Stand vom 24. November 2025 unterscheidet in Artikel 2 und den Anhängen die Zustände und Produktgruppen. Für erfasste Geräte nennt Anhang III für Aus 0,50 W und ab dem 9. Mai 2027 0,30 W, für einfache Reaktivierungsbereitschaft 0,50 W, für kontinuierliche Informations- oder Statusanzeige 0,80 W und für vernetzte Bereitschaft ohne HiNA 2,00 W. Für bestimmte HiNA-Geräte gelten andere Zeilen. Nicht vernetzte Kaffeemaschinen haben nach Art der Kanne oder Gerätegruppe besondere Umschaltzeiten von 5, 40 oder 30 Minuten. Prüfe dafür den exakten Geltungsfall. Haushaltsgeschirrspüler und Wäschegeräte unter eigenen Ökodesign-Regeln brauchen ihre jeweils passende Grundlage.
+
+Beurteile bei eigenen Messungen die passende Betriebsart, die tatsächliche Beobachtungsdauer und den Bedarf an der genutzten Funktion. Ein Gerätevergleich braucht kompatible Zustände. Eine einzelne Haushaltsmessung ist keine Konformitätsprüfung.
+
+Quellen, gelesen am 20.11.2026. [Miele H 7460 BP 11105690](https://www.miele.de/product/11105690/backofen-h-7460-bp-edelstahl-cleansteel) · [Miele deutsches Produktblatt](https://media.miele.com/downloads/e-/de/FS_11105690_DED_DE-de-DE.pdf) · [EU 2023/826, Artikel 2 und Anhänge](https://eur-lex.europa.eu/eli/reg/2023/826/oj/deu/pdf) · [Deutsches Original als PDF beim EU-Publikationsamt](https://publications.europa.eu/resource/cellar/7ab9b082-dd82-11ed-a05c-01aa75ed71a1.0004.01/DOC_1) · [EU 2025/2262, Änderungsverordnung](https://eur-lex.europa.eu/eli/reg/2025/2262/oj/deu/pdf). Konsolidierter Lesestand CELEX 02023R0826-20251124.
+
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
