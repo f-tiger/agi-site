@@ -11,7 +11,7 @@ Canonical (HTML, zitierfähig): https://getecoback.com/produkte.html
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Händlersuchen sind als Anzeige gekennzeichnet. Keine eigenen Gerätetests; Herstellerangaben sind keine Leistungszusage für dein Zuhause.
 
-Veröffentlicht: 13.11.2026 · Inhalt geändert: 18.11.2026. Der Quellenstand steht an jedem Modell.
+Veröffentlicht: 13.11.2026 · Inhalt geändert: 20.11.2026. Der Quellenstand steht an jedem Modell.
 
 48 Modelle in 12 Produktgruppen.
 
@@ -1010,6 +1010,32 @@ Der Hersteller nennt sieben Automatikprogramme plus ein manuelles Grillprogramm 
 Quelle: [SEVERIN Deutschland: KG 2395 Kontaktgrill SEVINI Pro](https://severin.com/de-de/grillen-geselligkeit/grillen/kontaktgrill/kg-2395-kontaktgrill-sevini-pro/) · geprüft am 13.11.2026.
 
 Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue Variante, Gesamtpreis und Lieferung beim Händler prüfen.
+
+## Passt ein Einbaugeschirrspüler auch bei geöffneter Tür?
+
+Miss die Nische an mehreren Stellen und notiere den kleinsten nutzbaren Querschnitt. Halte die Gerätefront, die 90° geöffnete Tür und eine zusätzlich ausgezogene Schublade getrennt fest. Vergleiche Tiefen vom selben Bezugspunkt und notiere Vorsprünge, gegenüberliegende Schranktüren und den verbleibenden Durchgang.
+
+Das deutsche Datenblatt für Bosch SBV4EBX00D nennt 865 × 598 × 550 mm (H × B × T) als Gerätemaße, 865–925 × 600 × 550 mm als Nischenmaß und 1.200 mm Tiefe bei 90° geöffneter Tür. Bosch führt das Modell als nicht mehr verfügbar. Diese Daten helfen bei der Bestandsprüfung oder bei einem Gebrauchtangebot mit passender Kennung.
+
+Die Anleitung für SBV4EBX00D/48 zeigt verschiedene Montagesituationen. Gleiche die vollständige Modellkennung, die Bezugskante und die passende Zeichnung für Front und Sockel ab. Fehlt diese Zuordnung, bleibt der Platzbedarf offen. Maße allein klären keine Anschlüsse oder Montage.
+
+Herstellerquellen Deutschland, gelesen am 20.11.2026. [Bosch Datenblatt SBV4EBX00D](https://media3.bosch-home.com/Documents/specsheet/de-DE/SBV4EBX00D.pdf) · [Bosch Modellseite](https://www.bosch-home.com/de/de/product/SBV4EBX00D) · [Bosch Service SBV4EBX00D/48](https://www.bosch-home.com/de/de/productservice/SBV4EBX00D-48) · [Montagezeichnung 9001902376_A](https://media3.bsh-group.com/Documents/9001902376_A.pdf).
+
+## Welcher Verbindungssatz passt zu Waschmaschine und Trockner?
+
+Prüfe zuerst die Modellkennungen, Baureihen und den genauen Verbindungssatz. Miss die verfügbare Höhe an der niedrigsten Stelle und halte den Platz für eine geöffnete Tür oder eine ausgezogene Ablage fest. Die Außenmaße eines Zubehörs und die endgültige Einbauhöhe stehen in unterschiedlichen Unterlagen.
+
+- Miele WTV 512 (9351790) misst 120 mm und gehört zur T1 White Edition. WTV 511 (9351780) misst 120 mm und wird für T1 Chrome Edition oder T1 Classic angegeben. Beide haben eine Schublade. Die jeweiligen Miele-Seiten nennen WTZH und WTW als Ausnahmen bei den Waschmaschinen.
+
+- Miele WTV 501 (9256130) misst 25 mm und wird für T1 Chrome Edition oder T1 Classic angegeben. Die Produktseite schließt W 1000 und WTZH aus. W 3000, W 5000 und W Classic werden mit gerader Blende angegeben. Die Anleitung der WTV 511 und 512 behandelt auf Seite 13 den Zustand der Abdeckung nach der Demontage. Prüfe beim Gebrauchtkauf, welche Teile tatsächlich vorliegen.
+
+- Die Bosch-Anleitung für WQG241001 nennt WTZ27410 und WTZ27400 mit ausziehbarer Arbeitsplatte, eine geeignete Waschmaschine desselben Herstellers mit gleicher Breite und Tiefe sowie den Ausschluss eines Podests für die Säule. Die Zubehörseiten nennen eine Waschmaschinen-Arbeitsplattentiefe über 55 cm. WTZ27410 wird mit 35 × 593 × 556 mm angegeben, WTZ27400 mit 42 × 595 × 574 mm (H × B × T).
+
+- Die Anleitung nennt für WQG241001 einen Gerätekörper von 842 × 598 × 613 mm, eine Tiefe von 648 mm bei geschlossener und 1.096 mm bei geöffneter Tür. Dieselbe Anleitung führt WTZ1110 separat als Zubehör für den Kondensatablauf auf.
+
+Prüfe den Lieferumfang und die Bezugskanten der Messung. Fehlende Angaben zu Auszug, Belastung oder Kombination bleiben offen. Bei unklarer Kombination kommen getrennte Aufstellung oder Rückfrage beim Hersteller in Frage.
+
+Herstellerquellen Deutschland, gelesen am 20.11.2026. [Miele WTV 512](https://www.miele.de/product/9351790/wasch-trocken-verbindungssatz-wtv-512) · [Miele WTV 511](https://www.miele.de/product/9351780/wasch-trocken-verbindungssatz-wtv-511) · [Miele WTV 501](https://www.miele.de/product/9256130/wasch-trocken-verbindungssatz-wtv-501) · [Miele Anleitung für WTV 511 und 512](https://media.miele.com/downloads/c9/e5/00_56D762FF8C918420E10080000AB5C9E5.pdf) · [Bosch WQG241001 Anleitung, Seiten 6, 27 und 48](https://media3.bosch-home.com/Documents/9001984634_A.pdf) · [Bosch WTZ27410](https://www.bosch-home.com/de/de/product/WTZ27410) · [Bosch WTZ27400](https://www.bosch-home.com/de/de/product/WTZ27400).
 
 ## Was diese Auswahl leistet
 Die Gruppen zeigen unterschiedliche Aufgaben und konkrete Modelle, keine vollständige Marktübersicht. Herstellerdaten und genaue Varianten stehen bei jedem Gerät. Wir haben diese Geräte nicht selbst getestet. Eine Händlersuche bestätigt weder ein bestimmtes Angebot noch Verfügbarkeit oder einen Preis.

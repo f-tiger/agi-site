@@ -55,6 +55,28 @@ SPECIALIST_GUIDES = (
      'Wischsauger Nasswischen Bodenfreigabe Parkett Tineco S7 FlashDry Dreame H14 Pro Roborock F25 XT'),
 )
 
+APPLIANCE_EVIDENCE = '''
+<section class="pc-method" id="spuelmaschine-einbaumasse">
+<h2>Passt ein Einbaugeschirrspüler auch bei geöffneter Tür?</h2>
+<p>Miss die Nische an mehreren Stellen und notiere den kleinsten nutzbaren Querschnitt. Halte die Gerätefront, die 90° geöffnete Tür und eine zusätzlich ausgezogene Schublade getrennt fest. Vergleiche Tiefen vom selben Bezugspunkt und notiere Vorsprünge, gegenüberliegende Schranktüren und den verbleibenden Durchgang.</p>
+<p>Das deutsche Datenblatt für Bosch SBV4EBX00D nennt 865 × 598 × 550 mm (H × B × T) als Gerätemaße, 865–925 × 600 × 550 mm als Nischenmaß und 1.200 mm Tiefe bei 90° geöffneter Tür. Bosch führt das Modell als nicht mehr verfügbar. Diese Daten helfen bei der Bestandsprüfung oder bei einem Gebrauchtangebot mit passender Kennung.</p>
+<p>Die Anleitung für SBV4EBX00D/48 zeigt verschiedene Montagesituationen. Gleiche die vollständige Modellkennung, die Bezugskante und die passende Zeichnung für Front und Sockel ab. Fehlt diese Zuordnung, bleibt der Platzbedarf offen. Maße allein klären keine Anschlüsse oder Montage.</p>
+<p>Herstellerquellen Deutschland, gelesen am <time datetime="2026-11-20">20.11.2026</time>. <a href="https://media3.bosch-home.com/Documents/specsheet/de-DE/SBV4EBX00D.pdf">Bosch Datenblatt SBV4EBX00D</a> · <a href="https://www.bosch-home.com/de/de/product/SBV4EBX00D">Bosch Modellseite</a> · <a href="https://www.bosch-home.com/de/de/productservice/SBV4EBX00D-48">Bosch Service SBV4EBX00D/48</a> · <a href="https://media3.bsh-group.com/Documents/9001902376_A.pdf">Montagezeichnung 9001902376_A</a>.</p>
+</section>
+<section class="pc-method" id="waeschesaeule-zubehoer">
+<h2>Welcher Verbindungssatz passt zu Waschmaschine und Trockner?</h2>
+<p>Prüfe zuerst die Modellkennungen, Baureihen und den genauen Verbindungssatz. Miss die verfügbare Höhe an der niedrigsten Stelle und halte den Platz für eine geöffnete Tür oder eine ausgezogene Ablage fest. Die Außenmaße eines Zubehörs und die endgültige Einbauhöhe stehen in unterschiedlichen Unterlagen.</p>
+<ul>
+<li>Miele WTV 512 (9351790) misst 120 mm und gehört zur T1 White Edition. WTV 511 (9351780) misst 120 mm und wird für T1 Chrome Edition oder T1 Classic angegeben. Beide haben eine Schublade. Die jeweiligen Miele-Seiten nennen WTZH und WTW als Ausnahmen bei den Waschmaschinen.</li>
+<li>Miele WTV 501 (9256130) misst 25 mm und wird für T1 Chrome Edition oder T1 Classic angegeben. Die Produktseite schließt W 1000 und WTZH aus. W 3000, W 5000 und W Classic werden mit gerader Blende angegeben. Die Anleitung der WTV 511 und 512 behandelt auf Seite 13 den Zustand der Abdeckung nach der Demontage. Prüfe beim Gebrauchtkauf, welche Teile tatsächlich vorliegen.</li>
+<li>Die Bosch-Anleitung für WQG241001 nennt WTZ27410 und WTZ27400 mit ausziehbarer Arbeitsplatte, eine geeignete Waschmaschine desselben Herstellers mit gleicher Breite und Tiefe sowie den Ausschluss eines Podests für die Säule. Die Zubehörseiten nennen eine Waschmaschinen-Arbeitsplattentiefe über 55 cm. WTZ27410 wird mit 35 × 593 × 556 mm angegeben, WTZ27400 mit 42 × 595 × 574 mm (H × B × T).</li>
+<li>Die Anleitung nennt für WQG241001 einen Gerätekörper von 842 × 598 × 613 mm, eine Tiefe von 648 mm bei geschlossener und 1.096 mm bei geöffneter Tür. Dieselbe Anleitung führt WTZ1110 separat als Zubehör für den Kondensatablauf auf.</li>
+</ul>
+<p>Prüfe den Lieferumfang und die Bezugskanten der Messung. Fehlende Angaben zu Auszug, Belastung oder Kombination bleiben offen. Bei unklarer Kombination kommen getrennte Aufstellung oder Rückfrage beim Hersteller in Frage.</p>
+<p>Herstellerquellen Deutschland, gelesen am <time datetime="2026-11-20">20.11.2026</time>. <a href="https://www.miele.de/product/9351790/wasch-trocken-verbindungssatz-wtv-512">Miele WTV 512</a> · <a href="https://www.miele.de/product/9351780/wasch-trocken-verbindungssatz-wtv-511">Miele WTV 511</a> · <a href="https://www.miele.de/product/9256130/wasch-trocken-verbindungssatz-wtv-501">Miele WTV 501</a> · <a href="https://media.miele.com/downloads/c9/e5/00_56D762FF8C918420E10080000AB5C9E5.pdf">Miele Anleitung für WTV 511 und 512</a> · <a href="https://media3.bosch-home.com/Documents/9001984634_A.pdf">Bosch WQG241001 Anleitung, Seiten 6, 27 und 48</a> · <a href="https://www.bosch-home.com/de/de/product/WTZ27410">Bosch WTZ27410</a> · <a href="https://www.bosch-home.com/de/de/product/WTZ27400">Bosch WTZ27400</a>.</p>
+</section>
+'''
+
 
 def date(value):
     if not isinstance(value, str) or not re.fullmatch(r'\d{4}-\d{2}-\d{2}', value):
@@ -204,6 +226,7 @@ def render(data, today=None):
 <h2 id="pc-guides-heading">Kaufhilfen für Raumklima, Heizung und Böden</h2>
 <ul>{guide_items}</ul></section>
 {''.join(groups)}
+{APPLIANCE_EVIDENCE}
 <section class="pc-method" id="auswahlmethode"><h2>Was diese Auswahl leistet</h2><p>Die Gruppen zeigen unterschiedliche Aufgaben und konkrete Modelle, keine vollständige Marktübersicht. Herstellerdaten und genaue Varianten stehen bei jedem Gerät. Wir haben diese Geräte nicht selbst getestet. Eine Händlersuche bestätigt weder ein bestimmtes Angebot noch Verfügbarkeit oder einen Preis.</p><p>Quellen älter als 90 Tage, zukünftige Prüfdaten oder offene Widersprüche pausieren die Händlersuche. Die zuletzt dokumentierten Fakten bleiben nachvollziehbar. Zubehör, regionale Ausführung und die passende Anleitung am konkreten Angebot prüfen. Ein funktionierendes vorhandenes Gerät muss nicht ersetzt werden.</p></section>
 </article></main><footer class="pc-footer"><a href="/wie-wir-empfehlen.html">Unsere Methode</a> · <a href="/datenschutz.html">Datenschutz</a> · <a href="/impressum.html">Impressum</a></footer></body></html>\n'''
 

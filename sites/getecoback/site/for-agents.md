@@ -83,6 +83,10 @@ The same Markdown is also served on the .html URL via Accept: text/markdown cont
 
 - We are funded by Amazon affiliate links on the HTML pages only; the machine surfaces above deliberately carry none. We do not test devices ourselves — picks summarise public tests, and answers say so.
 
+## Appliance evidence for Germany
+Look up freezer capacity and site temperature, dishwasher opening clearance, matching washer-dryer stack kits, equivalent airflow and acoustics conditions, and appliance spare-part evidence. The catalogue examples link to the applicable German manuals through the source-backed EcoBack guidance.
+[Search the household tools](https://getecoback.com/mcp.html#werkzeugliste) · [Built-in appliance dimensions](https://getecoback.com/produkte.html#spuelmaschine-einbaumasse) · [Parts evidence](https://getecoback.com/geraete-austausch-rechner.html#ersatzteil-belege).
+
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp

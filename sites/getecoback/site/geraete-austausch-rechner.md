@@ -41,6 +41,30 @@ Für zwei Trocknungsverfahren statt zweier Geräte: [Wäschekosten vergleichen](
 ## Dein nächster Schritt
 [Zur Haushaltswerkstatt](https://getecoback.com/wohnkosten-werkstatt.html) · [Wie wir empfehlen](https://getecoback.com/wie-wir-empfehlen.html)
 
+## Gefrierschrank für Vorrat, Großeinkauf und kalten Standort prüfen
+
+Der Fachinhalt beschreibt das ausgewiesene Volumen. Das Gefriervermögen beschreibt die Masse für 24 Stunden. Halte den dauerhaften Platzbedarf und die schwerste Folge an frischer Zuladung in einem zusammenhängenden 24-Stunden-Zeitraum getrennt fest. Den Platz für Schubladen, Behälter und die offene Tür kannst du vor Ort nachmessen.
+
+- Bosch GSN33EWEV weist im deutschen EU-Produktdatenblatt 225 l im Vier-Sterne-Fach, 19,0 kg Gefriervermögen je 24 h und 229 kWh pro Jahr aus. Die Modellseite nennt 9 h Lagerzeit bei Störung.
+
+- Bosch GSN58DWDV weist 366 l, 20,8 kg je 24 h und 222 kWh pro Jahr aus. Die Modellseite nennt 12 h Lagerzeit bei Störung. Beide EU-Datenblätter vom 27.08.2026 nennen 10 bis 43 °C geeignete Umgebung und keine Winterschaltung. Ihre ausgewiesene Schallleistung beträgt 39 beziehungsweise 38 dB(A) re 1 pW, jeweils Klasse C.
+
+Ein Datenblattwert für den Jahresverbrauch ist ein Vergleichswert aus dem Prüfverfahren. Für deine Kosten hilft zusätzlich ein eigenes Messprotokoll unter beschriebenen Nutzungsbedingungen. Bei einem Stromausfall bleiben Zeitpunkt des Ausfalls, Türöffnung und letzter gemessener Temperaturwert getrennte Beobachtungen. Die Lagerzeit bei Störung erlaubt kein Urteil über einzelne Lebensmittel. Ein funktionierendes Gerät kann weiter genutzt werden, wenn Maße, Aufstellbedingungen und Bedarf passen.
+
+Herstellerquellen Deutschland, gelesen am 20.11.2026. [Bosch EU-Datenblatt GSN33EWEV](https://media3.bsh-group.com/Documents/eudatasheet/de-DE/GSN33EWEV.pdf) · [Bosch EU-Datenblatt GSN58DWDV](https://media3.bsh-group.com/Documents/eudatasheet/de-DE/GSN58DWDV.pdf) · [Bosch Modellseite GSN33EWEV](https://www.bosch-home.com/de/de/product/kuehlen-gefrieren/gefrierschraenke/gefrierschraenke-freistehend/GSN33EWEV) · [Bosch Modellseite GSN58DWDV](https://www.bosch-home.com/de/de/product/kundensortimente/GSN58DWDV) · [Bosch Hinweis zur Lagerzeit bei Störung](https://media3.bosch-home.com/Documents/9001556820/de-DE/8098480779.html).
+
+## Welche Informationen helfen bei der Ersatzteilsuche?
+
+Notiere die Modellkennung, den exakten Bauteilnamen und die Teile- oder Explosionsnummer aus der passenden Herstellerunterlage. Prüfe vor einem Neukauf, welche Informationen zur Reparatur und Bestellung verfügbar sind. Die EU-Vorgaben unterscheiden Teilelisten und Zugangswege. Die hier angeführten Ersatzteilanforderungen gelten seit 01.03.2021.
+
+- Für Haushaltsgeschirrspüler nennt Anhang II Nummer 5 der Verordnung (EU) 2019/2022 je nach aufgeführtem Bauteil mindestens sieben oder zehn Jahre ab dem Inverkehrbringen des letzten Exemplars des Modells. Zu den für Endnutzer aufgeführten Teilen gehören etwa Sprüharme, Ablauffilter und Körbe. Für bestimmte weitere Teile kann der Hersteller einen fachlich kompetenten registrierten Reparaturbetrieb verlangen.
+
+- Für Haushaltswaschmaschinen und Haushaltswaschtrockner unterscheidet Anhang II Nummer 8 der Verordnung (EU) 2019/2023 die Teilelisten und nennt jeweils mindestens zehn Jahre. Zu den für Endnutzer aufgeführten Teilen gehören unter anderem Tür, Türscharnier, Dichtungen, Türverriegelung und der Waschmittelspender aus Kunststoff.
+
+Das Ende dieser Zeiträume hängt am letzten Inverkehrbringen des Modells. Das Kaufdatum eines einzelnen Haushalts belegt es nicht. Die Abschnitte nennen für erfasste Bestellungen höchstens 15 Arbeitstage ab Bestellungseingang im anwendbaren Zeitraum. Für eine Einordnung sind Regelungsstand, Teil, Gerätemodell, Rolle, Zeitpunkt und dokumentierter Bestelleingang relevant. Die öffentliche Teileliste hat eigene Fristen ab dem ersten Inverkehrbringen. Herstellerzugang zu Reparaturinformationen und Bestellungseingang sind verschiedene Vorgänge. Verfügbarkeit, Kompatibilität und konkrete Ansprüche bleiben gegenüber Lieferant oder Fachstelle zu klären.
+
+Die deutschen Datenblätter des UBA nennen auch die jeweilige Verordnung (CELEX 02019R2022-20210501 und 02019R2023-20210501). Gelesen am 20.11.2026. [UBA zu EU 2019/2022, Anhang II Nummer 5](https://www.umweltbundesamt.de/system/files/medien/10592/dokumente/datenblatt_2019-2022_haushaltsgeschirrspueler_final.pdf) · [UBA zu EU 2019/2023, Anhang II Nummer 8](https://www.umweltbundesamt.de/system/files/medien/10592/dokumente/datenblatt_2019-2023_haushaltswaschmaschinen_final.pdf).
+
 ## Weniger kaufen, besser vergleichen
 Vergleiche Energielabel, Geschirrspülen und Duschköpfe. Beispiel öffnen, Land und Entscheidung wählen. Ohne Konto oder persönliche Angaben.
 
