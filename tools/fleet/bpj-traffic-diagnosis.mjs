@@ -26,7 +26,7 @@ async function json(fetchFn,url,options={},label='request'){
  try{return await r.json();}catch{fail(label+'_invalid_json');}
 }
 export function cfQuery(dimensions,extra='',limit=2000){
- const safe=['datetimeHour','clientCountryName','clientAsn','clientASNDescription','userAgent','userAgentBrowser','userAgentOS','clientRequestPath','clientRequestHTTPMethodName','edgeResponseStatus','edgeResponseContentTypeName','clientRefererHost','verifiedBotCategory','botScoreBucketBy10','jsDetectionPassed','securityAction'];
+ const safe=['datetimeHour','clientCountryName','clientAsn','clientASNDescription','userAgent','userAgentBrowser','userAgentOS','clientRequestPath','clientRequestHTTPMethodName','edgeResponseStatus','edgeResponseContentTypeName','clientRefererHost','verifiedBotCategory','botScoreBucketBy10','jsDetectionPassed','securityAction','cacheStatus'];
  if(dimensions.some(d=>!safe.includes(d)))fail('unsupported_cf_dimension');
  if(!['',',clientRequestPath_like:"/manju/%"',',clientRequestPath_like:"/manju/%",clientRequestHTTPMethodName:"GET",edgeResponseStatus:200',',clientRequestPath_in:["/analytics-assets/frame","/analytics-assets/frame.html"],clientRequestHTTPMethodName:"GET",edgeResponseStatus:200',POPULAR_FILTER].includes(extra))fail('unsupported_cf_filter');
  return `query($z:string,$s:Time,$e:Time){viewer{zones(filter:{zoneTag:$z}){httpRequestsAdaptiveGroups(limit:${limit},orderBy:[count_DESC],filter:{datetime_geq:$s,datetime_lt:$e,requestSource:"eyeball",clientRequestHTTPHost:"${HOST}"${extra}}){count dimensions{${dimensions.join(' ')}}}}}}`;
@@ -66,6 +66,18 @@ export async function cloudflare(env,{fetchFn=fetch,days=DAYS,clientsOnly=false,
   ['popular_manju_clients',['clientCountryName','clientRequestPath','userAgent','verifiedBotCategory'],POPULAR_FILTER],
  ];
  const selected=baseline?sections.filter(([name])=>['site_country','manju_verified_bots','manju_clients','popular_manju_clients','frame_clients'].includes(name)):clientsOnly?sections.filter(([name])=>name.endsWith('_clients')):sections;
+ if(baseline && env.BPJ_MANJU_INSPECTION==='1'){
+   selected.splice(0,selected.length,
+     ['paths',['clientRequestPath'],page],
+     ['hour',['datetimeHour'],page],
+     ['hour_types',['datetimeHour','edgeResponseContentTypeName'],page],
+     ['cache',['cacheStatus'],page],
+     ['referrer',['clientRefererHost'],page],
+     ['method_status',['clientRequestHTTPMethodName','edgeResponseStatus'],manju],
+     ['network',['clientASNDescription'],page],
+     ['bots',['verifiedBotCategory'],page]
+   );
+ }
  for(const date of days){
   const start=date+'T00:00:00.000Z',end=new Date(Date.parse(start)+86400000).toISOString();
   // Two concurrent bounded aggregates; no retries on a rejected dataset.
