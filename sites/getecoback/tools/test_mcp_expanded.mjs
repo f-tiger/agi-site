@@ -17,30 +17,32 @@ async function rpc(method, params) {
   return (await response.json()).result;
 }
 
-test('the public directory and two MCP pages expose the same 196 unique tools', async () => {
+test('the public directory and three MCP pages expose the same 292 unique tools', async () => {
   const first = await rpc('tools/list');
   const second = await rpc('tools/list',{cursor:first.nextCursor});
+  const third = await rpc('tools/list',{cursor:second.nextCursor});
   const directory = await (await worker.fetch(new Request(origin+'/api/mcp-tools'), {}, {})).json();
   const manifest = JSON.parse(readFileSync(new URL('../mcp/server.json',import.meta.url),'utf8'));
   const initialization = await rpc('initialize');
   assert.equal(first.tools.length,100);
-  assert.equal(second.tools.length,96);
-  assert.equal(second.nextCursor,undefined);
+  assert.equal(second.tools.length,100);
+  assert.equal(third.tools.length,92);
+  assert.equal(third.nextCursor,undefined);
   assert.equal(directory.version, manifest.version);
   assert.equal(initialization.serverInfo.version, manifest.version);
-  assert.equal(directory.total,196);
-  const names=[...first.tools,...second.tools].map(t=>t.name);
-  assert.equal(new Set(names).size,196);
+  assert.equal(directory.total,292);
+  const names=[...first.tools,...second.tools,...third.tools].map(t=>t.name);
+  assert.equal(new Set(names).size,292);
   assert.deepEqual(directory.tools.map(t=>t.name),names);
   const byCategory = {};
   for (const {category} of directory.tools) byCategory[category] = (byCategory[category] || 0) + 1;
   assert.deepEqual(byCategory, {Raumklima:10,'Strom & Haushalt':20,Feuchte:18,Kühlen:18,Heizen:18,Passform:16,
-    'Energie prüfen':24,'Raumkomfort prüfen':24,'Geräte pflegen':24,'Quellen & Kaufprüfung':24});
-  assert.equal(expandedDefinitions.length,186);
+    'Energie prüfen':24,'Raumkomfort prüfen':24,'Geräte pflegen':24,'Quellen & Kaufprüfung':24, 'Wasser & Wäsche':24,'Gebäude & Fenster':24,'Geräte im Alltag':24,'Messpraxis':24});
+  assert.equal(expandedDefinitions.length,282);
 });
 
 test('old or invalid cursors reject safely and a 1000-tool catalogue paginates completely', async () => {
-  for (const cursor of ['1.5.0:100','1.6.0:99','1.6.0:200','1.6.0:0100','1.6.0:0',null,100]) {
+  for (const cursor of ['1.6.0:100','1.7.0:99','1.7.0:300','1.7.0:0100','1.7.0:0',null,100]) {
     const response = await worker.fetch(request('tools/list',{cursor}), {}, {});
     assert.equal((await response.json()).error.code,-32602);
   }
@@ -67,13 +69,47 @@ test('keyword and category filters narrow the public directory without logging t
   const response = await get('?q=Abwaerme&category=K%C3%BChlen');
   const result = await response.json();
   assert.equal(response.headers.get('cache-control'),'no-store');
-  assert.equal(result.catalogueTotal,196);
+  assert.equal(result.catalogueTotal,292);
   assert.equal(result.total,1);
   assert.equal(result.tools[0].name,'arbeitszimmer_abwaerme_vergleich');
   const noMatch = await (await get('?q=unique-unmatched-string')).json();
   assert.deepEqual(noMatch.tools,[]);
+  for (const [question,expected] of [
+    ['Wie viel BTU brauche ich?','btu_empfehlung'],
+    ['Wie finde ich die richtige Fensterabdichtung?','fensterabdichtung_laenge'],
+    ['Kann ich einen Entfeuchter in den Keller stellen?','entfeuchter_ablaufcheck'],
+  ]) {
+    const response = await (await get('?q='+encodeURIComponent(question))).json();
+    assert.ok(response.tools.slice(0,10).some(tool=>tool.name===expected),question);
+  }
   const all = await get('');
   assert.match(all.headers.get('cache-control'),/public/);
+});
+
+test('compact catalogue has linkable summaries and exact names return complete contracts', async () => {
+  const read=async query=>(await worker.fetch(new Request(origin+'/api/mcp-tools'+query),{},{})).json();
+  const complete=await read('');
+  const compact=await read('?view=compact');
+  assert.equal(compact.total,292);
+  assert.deepEqual(compact.tools.map(tool=>tool.name),complete.tools.map(tool=>tool.name));
+  assert.ok(compact.tools.every(tool=> !Object.hasOwn(tool,'inputSchema')));
+  assert.equal(compact.tools.find(t=>t.name==='strommessung_hochrechnen').citation_url,origin+'/strommess-protokoll.html');
+  const query='?q='+encodeURIComponent('Kann ich einen Entfeuchter in den Keller stellen?');
+  const [fullMatch,compactMatch]=await Promise.all([read(query),read(query+'&view=compact')]);
+  assert.deepEqual(fullMatch.tools.map(t=>t.name),compactMatch.tools.map(t=>t.name));
+  const exact=await read('?tool=strommessung_hochrechnen');
+  assert.equal(exact.catalogueTotal,292);
+  assert.deepEqual(exact.tools,[complete.tools.find(t=>t.name==='strommessung_hochrechnen')]);
+  assert.deepEqual((await read('?tool=strommessung')).tools,[]);
+});
+
+test('every source page for the deterministic suites has an editorial Markdown mirror', () => {
+  for (const page of new Set(expandedDefinitions.map(tool=>tool.page))) {
+    const path = '../site' + page.replace(/\.html$/,'.md');
+    const markdown = readFileSync(new URL(path,import.meta.url),'utf8');
+    assert.ok(markdown.includes(origin + page),page);
+    assert.doesNotMatch(markdown,/https?:\/\/[^\s")<>]*(?:amazon\.|amzn\.)|[?&]tag=|getecoback-21/i,page);
+  }
 });
 
 for (const tool of expandedDefinitions) {

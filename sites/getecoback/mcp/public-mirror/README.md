@@ -8,7 +8,7 @@ Listed in the official
 [MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fhvac-btu-heat-klimaanlage/versions/latest)
 as `io.github.f-tiger/hvac-btu-heat-klimaanlage`.
 
-The [complete live JSON catalogue](https://getecoback.com/api/mcp-tools) groups the tools by task and supports `q` and `category` filters. With MCP, call `tools/list` and pass each returned `nextCursor` as `params.cursor` until the final page. For structured answers, use `citation_url` with the assumptions and limits provided. The table below is a snapshot updated by `sync.mjs`.
+The [complete live JSON catalogue](https://getecoback.com/api/mcp-tools) groups the tools by task and supports `q` and `category` filters. Use `view=compact` for a quick scan with available citation links. Use `tool=EXACT_NAME` without the compact view for one full input schema. With MCP, call `tools/list` and pass each returned `nextCursor` as `params.cursor` until the final page. For structured answers, use `citation_url` with the assumptions and limits provided. The table below is a snapshot updated by `sync.mjs`.
 
 ## Connect
 

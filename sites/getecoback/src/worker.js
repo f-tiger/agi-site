@@ -1,3 +1,4 @@
+import {indexCatalogue, findCatalogueTools} from '../site/assets/mcp-catalog-search.mjs';
 import {pageTools} from './mcp-pagination.mjs';
 import {expandedTools, expandedCatalog, expandedCall, isExpandedTool} from './mcp-expanded.mjs';
 import {validMeterEvent, meterReferralReport} from './meter-referral.mjs';
@@ -964,7 +965,7 @@ async function trendCompute(env) {
 // MCP server (Model Context Protocol, stateless Streamable HTTP).
 // Each tool returns a usable answer with sources. Publication, calls, website
 // visits and merchant activity are observed separately.
-const MCP_VERSION = "1.6.0";
+const MCP_VERSION = "1.7.0";
 const LEGACY_MCP_TOOLS = [
   drainTool,
   // AI-era round 2026-08-29: the decision LAYER above the per-device
@@ -1097,19 +1098,22 @@ const LEGACY_MCP_TOOLS = [
 const MCP_TOOLS = [...LEGACY_MCP_TOOLS, ...expandedTools];
 
 const CATALOG_TOOLS = [...LEGACY_MCP_TOOLS.map(tool => ({...tool,category:"Raumklima"})), ...expandedCatalog];
-const CATALOG_INDEX = CATALOG_TOOLS.map(tool => ({
-  tool,
-  text: normalizeSearch([tool.name,tool.description,tool.category,tool.page].join(" ")),
-}));
+const CATALOG_INDEX = indexCatalogue(CATALOG_TOOLS);
+const COMPACT_INDEX = indexCatalogue(CATALOG_TOOLS.map(tool => ({
+  name:tool.name, description:tool.description, category:tool.category,
+  ...(tool.page ? {citation_url:"https://getecoback.com" + tool.page} : {}),
+})));
 
 function mcpCatalog(url) {
   const search = url.searchParams.get("q");
   const category = url.searchParams.get("category");
-  const filtered = search !== null || category !== null;
-  const tokens = normalizeSearch((search || "").slice(0,120)).match(/[a-z0-9]+/g)?.slice(0,8) || [];
-  const tools = filtered ? CATALOG_INDEX.filter(({tool,text}) =>
-    (!category || tool.category === category) && tokens.every(token => text.includes(token))
-  ).map(({tool}) => tool) : CATALOG_TOOLS;
+  const name = url.searchParams.get("tool");
+  const compact = url.searchParams.get("view") === "compact";
+  const filtered = search !== null || category !== null || name !== null;
+  const index = compact ? COMPACT_INDEX : CATALOG_INDEX;
+  const tools = filtered
+    ? findCatalogueTools(index,{query:search || "",category:category || "",name})
+    : index.map(entry => entry.tool);
   const result = {version:MCP_VERSION,total:tools.length,tools};
   if (filtered) result.catalogueTotal = CATALOG_TOOLS.length;
   return new Response(JSON.stringify(result), {
