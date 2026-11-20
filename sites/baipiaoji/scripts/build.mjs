@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import {renderAiIndex,FREE_SUITE_MCP} from './ai-suite-pages.mjs';
+import {renderAiIndex,FREE_SUITE_MCP,suiteCount} from './ai-suite-pages.mjs';
 import {categoryGuidance,categoryGuideModel,categoryGuideHTML,categoryGuideMarkdown} from './category-guides.mjs';
 import {catalogTaskLink} from './catalog-task-link.mjs';
 import {kimiTaskPanel} from './depth-pages.mjs';
@@ -7647,7 +7647,7 @@ useLocale(LOCALES[0]);
 writeFileSync(join(dist, 'style.css'), readFileSync(join(root, 'assets/style.css'), 'utf8') + '\n' + readFileSync(join(root, 'assets/studio/studio.css'), 'utf8'));
 for(const f of ['site-shell.css','site-shell.js','account.css','account.js','depth.js','depth.css','catalog-task.js']) cpSync(join(root,'assets',f),join(dist,f));
 cpSync(join(root, 'assets/studio'), join(dist, 'studio-assets'), { recursive: true });
-cpSync(join(root, 'lib/ai-suite'), join(dist, 'studio-assets/ai-suite'), { recursive: true });
+cpSync(join(root, 'lib/ai-suite'), join(dist, 'studio-assets/ai-suite'), { recursive: true, filter: source => !source.endsWith('.test.mjs') });
 buildReleaseCheckAssets(root,dist);
 buildSkillDiscovery(root,dist);
 for(const f of ['dev-buying.js','ai-solo.css','ai-solo.js','github-tools.css','github-tools.js','coding-access.css','coding-access.js','manju.css','manju-home.css','manju-search.js','manju-live-search.js','manju.js','manju-cloud.js','manju-insights.js','video-fit.js','video-fit.css','video-fit-core.mjs','ai-video.css','ai-video.js','ai-video-core.mjs'])cpSync(join(root,'assets',f),join(dist,f));
@@ -7784,7 +7784,7 @@ writeFileSync(join(dist, '.well-known', 'mcp.json'), JSON.stringify({
   resources: ['baipiaoji://limits', 'baipiaoji://directory', 'baipiaoji://quotas', 'baipiaoji://myths',
     'baipiaoji://workflows', 'baipiaoji://changes', 'baipiaoji://no-source', 'baipiaoji://insights', 'baipiaoji://agents', 'baipiaoji://dataset', 'baipiaoji://site-journeys'],
   prompts: ['audit-my-ai-stack', 'pick-a-free-tier', 'fact-check-a-free-tier-claim', 'watch-my-free-tiers'],
-  firstPartyTools:{endpoint:FREE_SUITE_MCP,transport:'streamable-http',authentication:'none',catalog:`${site.base_url}/ai-tools.json`,web:`${site.base_url}/studio/ai/`},
+  firstPartyTools:{count:suiteCount,searchTool:'list_bpj_ai_tools',runTool:'run_bpj_ai_tool',endpoint:FREE_SUITE_MCP,transport:'streamable-http',authentication:'none',catalog:`${site.base_url}/ai-tools.json`,web:`${site.base_url}/studio/ai/`},
   rest_api: `${site.base_url}/api/tools`,
   openapi: `${site.base_url}/openapi.json`,
   docs: `${site.base_url}/developers.html`,
@@ -7976,7 +7976,7 @@ writeFileSync(join(dist, 'llms.txt'), pubText(`# ${site.name} / Baipiaoji (baipi
 ## BPJ first-party AI workflow tools
 - AI table rewrite review: https://baipiaoji.com/en/studio/table-review . Compare original and rewritten CSV by unique ID; restore locked strings and retain allowed edits. Free local checking and export, no account or model call. Not semantic or factual verification.
 - Listing pack: https://baipiaoji.com/en/studio/listing-pack . Free local CSV checks, external AI handoff, draft review and ZIP export. Not automatic translation, platform publishing or semantic verification. Optional assistance inquiry is not an order or payment.
-- 100 BPJ tools for text, data, planning, publishing and development: https://baipiaoji.com/en/studio/ai/ (Chinese: https://baipiaoji.com/studio/ai/). Browser tools run locally; the public Streamable HTTP MCP server lists and executes the same tools with tools/list and tools/call.
+- ${suiteCount} BPJ tools for editing, tables, statistics, engineering, operations and software: https://baipiaoji.com/en/studio/ai/ (Chinese: https://baipiaoji.com/studio/ai/). Browser tools run locally; the public Streamable HTTP MCP server supports paginated tools/list, keyword discovery with list_bpj_ai_tools and execution with tools/call.
 - Kimi task steps: https://baipiaoji.com/tools/kimi#kimi-task . Free local self-check steps and prompt templates; no AI execution or document upload to BPJ. Account sync saves the tool only, not these steps.
 - Task Loop: https://baipiaoji.com/en/studio/task-loop
 - Tool names, input schemas and examples: https://baipiaoji.com/en/ai-tools.json . Markdown index: https://baipiaoji.com/en/studio/ai/index.md
@@ -8194,7 +8194,7 @@ Markdown mirrors: every content page (site root, /en/, /money/, /plans/) is also
   writeFileSync(join(dist, 'llms-full.txt'), pubText(`# ${site.name} / Baipiaoji (baipiaoji.com)
 
 ## BPJ first-party AI workflow tools
-- 100 BPJ tools for text, data, planning, publishing and development: https://baipiaoji.com/en/studio/ai/ (Chinese: https://baipiaoji.com/studio/ai/). Browser tools run locally; the public Streamable HTTP MCP server lists and executes the same tools with tools/list and tools/call.
+- ${suiteCount} BPJ tools for editing, tables, statistics, engineering, operations and software: https://baipiaoji.com/en/studio/ai/ (Chinese: https://baipiaoji.com/studio/ai/). Browser tools run locally; the public Streamable HTTP MCP server supports paginated tools/list, keyword discovery with list_bpj_ai_tools and execution with tools/call.
 - Kimi task steps: https://baipiaoji.com/tools/kimi#kimi-task . Free local self-check steps and prompt templates; no AI execution or document upload to BPJ. Account sync saves the tool only, not these steps.
 - Task Loop: https://baipiaoji.com/en/studio/task-loop
 - Tool names, input schemas and examples: https://baipiaoji.com/en/ai-tools.json . Markdown index: https://baipiaoji.com/en/studio/ai/index.md

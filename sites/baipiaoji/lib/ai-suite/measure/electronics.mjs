@@ -1,0 +1,73 @@
+import {calc, num as n, count, requireValue} from './common.mjs';
+
+const device=(id,...args)=>calc('bench-'+id,...args);
+const r=n('resistance','电阻（欧姆）','Resistance (ohm)',1000);
+const cap=n('capacitance','电容量（微法）','Capacitance (uF)',10);
+const volts=n('voltage','电压（伏）','Voltage (V)',5);
+const frequency=n('frequency','频率（赫兹）','Frequency (Hz)',1000);
+const sampleRate=n('sampleRate','采样率（赫兹）','Sample rate (Hz)',48000,1,1e9);
+const cells=count('series','串联节数','Series cells',3,1,1000);
+const bits=count('bits','有效位数','Bit depth',12,1,32);
+const pi=Math.PI;
+export const tools=[
+  device('ohmic-load','直流电阻负载','DC resistive load','给定电阻和其两端直流电压，求电流与耗散功率。','Calculate steady current and dissipated power of an ideal resistor at a specified DC voltage.',
+    [volts,r],(v,R)=>({currentA:v/R,dissipatedW:v*v/R})),
+  device('voltage-divider','空载分压器','Unloaded voltage divider','根据电源电压与上下两只分压电阻求空载输出和戴维南等效电阻。','Compute no-load output and Thevenin resistance of a two-resistor DC divider.',
+    [volts,n('upper','上臂电阻（欧姆）','Upper resistance (ohm)',10000),n('lower','下臂电阻（欧姆）','Lower resistance (ohm)',5000)],(v,a,b)=>({outputV:v*b/(a+b),theveninOhms:a*b/(a+b)})),
+  device('loaded-divider','有负载的分压器','Loaded divider voltage drop','把负载并入下臂，量化输出电压相对空载的降幅。','Find loaded divider output and percentage drop when a specified load bridges the lower resistor.',
+    [volts,n('upper','上臂电阻（欧姆）','Upper resistance (ohm)',10000),n('lower','下臂电阻（欧姆）','Lower resistance (ohm)',5000),n('load','负载电阻（欧姆）','Load resistance (ohm)',10000)],(v,a,b,l)=>{const eq=b*l/(b+l),out=v*eq/(a+eq),open=v*b/(a+b);return {loadedV:out,noLoadV:open,dropPercent:100*(1-out/open)};}),
+  device('series-led-drop','低压指示灯限流','Low-voltage indicator resistor','输入小信号直流电源、指示灯压降和目标电流，求理想串联电阻与其功耗。','Calculate an ideal series resistor and its dissipation for a low-voltage DC indicator LED.',
+    [n('supply','直流电源（伏）','DC supply (V)',5,.01,24),n('forward','指示灯正向压降（伏）','LED forward drop (V)',2,.1,10),n('current','目标电流（毫安）','Target LED current (mA)',10,.01,30)],(s,f,i)=>{requireValue(s>f,'The supply voltage must exceed the LED forward drop.');return {resistanceOhms:1000*(s-f)/i,dissipationMilliwatts:(s-f)*i};}),
+  device('wire-drop','直流双线压降','DC two-wire voltage drop','由单程距离、导体截面、电阻率和电流计算往返导线压降。','Estimate drop and loss in equal outgoing and return conductors using the supplied resistivity.',
+    [n('length','单程长度（米）','One-way length (m)',10),n('section','导体截面（平方毫米）','Conductor section (mm2)',1.5),n('rho','电阻率（欧姆·平方毫米/米）','Resistivity (ohm mm2/m)',.0175),n('current','电流（安）','Current (A)',2,0)],(l,a,p,i)=>{const R=2*l*p/a;return {loopOhms:R,dropV:i*R,wireLossW:i*i*R};}),
+  device('resistor-tolerance','电阻容差区间','Resistor tolerance bounds','以标称阻值和对称制造公差计算最小与最大可能阻值。','Find lower and upper resistance for a nominal value with a symmetric tolerance.',
+    [r,n('tolerance','容差（%）','Tolerance (%)',5,0,100)],(R,t)=>({minimumOhms:R*(1-t/100),maximumOhms:R*(1+t/100)})),
+  device('rc-settling','RC 阶跃稳定时间','RC step settling time','按一阶 RC 模型与给定允许误差求时间常数及阶跃稳定时间。','Find the time constant and time to settle within a given relative error for a first-order RC step.',
+    [r,cap,n('error','允许剩余误差（%）','Allowed residual error (%)',1,.000001,99.999999)],(R,c,e)=>({tauMs:R*c/1000,settlingMs:-R*c/1000*Math.log(e/100)})),
+  device('rc-response','一阶低通幅相响应','RC low-pass gain and phase','输入电阻、电容量和正弦频率，计算低通响应的增益和相位。','Find sinusoidal gain and phase of an unloaded first-order RC low-pass at a chosen frequency.',
+    [r,cap,frequency],(R,c,f)=>{const x=2*pi*f*R*c/1e6;return {gain:1/Math.hypot(1,x),gainDb:-20*Math.log10(Math.hypot(1,x)),phaseDeg:-180/pi*Math.atan(x)};}),
+  device('rl-transient','RL 电流阶跃','RL current step','用理想串联电阻、电感和经过时间求直流阶跃后的电流。','Compute current after a DC voltage step into a series resistor and initially unenergized ideal inductor.',
+    [volts,r,n('inductance','电感（毫亨）','Inductance (mH)',20),n('time','经过时间（毫秒）','Elapsed time (ms)',.1,0)],(v,R,l,t)=>{const tau=l/R;return {tauMs:tau,steadyA:v/R,currentA:v/R*(-Math.expm1(-t/tau))};}),
+  device('lc-resonance','LC 理想谐振频率','Ideal LC resonance','按理想电感和电容计算无损谐振频率及特征阻抗。','Calculate lossless resonant frequency and characteristic impedance from inductance and capacitance.',
+    [n('inductance','电感（微亨）','Inductance (uH)',100),n('capacitance','电容（纳法）','Capacitance (nF)',100)],(l,c)=>({resonantHz:1/(2*pi*Math.sqrt(l*c*1e-15)),characteristicOhms:Math.sqrt(1000*l/c)})),
+  device('capacitor-hold-up','电容恒流保持时间','Capacitor hold-up time','按电容、初末电压和恒定负载电流估算放电维持时间。','Estimate capacitor hold-up under constant load current between given high and low voltages.',
+    [cap,n('high','初始电压（伏）','Initial voltage (V)',5),n('low','截止电压（伏）','Cutoff voltage (V)',3,0),n('load','恒定负载（毫安）','Constant load (mA)',2)],(c,h,l,i)=>{requireValue(h>l,'Initial voltage must exceed cutoff.');return {holdUpMs:c*(h-l)/i,deliveredMicrojoules:c*(h*h-l*l)/2};}),
+  device('battery-pack-rating','电池组标称参数','Battery pack nominal rating','按同规格电芯的串并联数量汇总标称电压、容量与能量。','Calculate nominal pack voltage, capacity, and watt-hours for identical cells in series and parallel.',
+    [n('cellV','单节标称电压（伏）','Cell nominal voltage (V)',3.7),n('cellAh','单节容量（安时）','Cell capacity (Ah)',2.5),cells,count('parallel','并联节数','Cells in parallel',2,1,1000)],(v,a,s,p)=>({cells:s*p,nominalV:v*s,capacityAh:a*p,energyWh:v*a*s*p})),
+  device('battery-runtime','电池负载续航','Battery runtime at constant load','根据标称能量、可用比例、转换效率和恒定负载，估算供电时间。','Estimate runtime for a constant-power load after usable-depth and conversion-efficiency allowances.',
+    [n('energy','标称能量（瓦时）','Nominal energy (Wh)',100),n('usable','可用容量（%）','Usable fraction (%)',80,.01,100),n('efficiency','转换效率（%）','Conversion efficiency (%)',90,.01,100),n('load','负载功率（瓦）','Load (W)',12)],(w,u,e,l)=>({deliveredWh:w*u*e/10000,runtimeHours:w*u*e/(10000*l)})),
+  device('pwm-average','PWM 电阻负载平均值','PWM resistive load averages','由矩形波高电平、零低电平、占空比和电阻求平均电压、有效值及功率。','Find average voltage, RMS, and power for a resistive load driven between zero and a positive PWM level.',
+    [volts,n('duty','占空比（%）','Duty cycle (%)',25,0,100),r],(v,d,R)=>({averageV:v*d/100,rmsV:v*Math.sqrt(d/100),averageW:v*v*d/(100*R)})),
+  device('sine-rms','正弦波电平','Sine peak-to-peak and RMS','由峰峰值与直流偏置计算纯交流有效值、总有效值和极值。','Compute AC-only RMS, total RMS, and signal extrema of a sine with DC offset.',
+    [n('vpp','峰峰值（伏）','Peak-to-peak (V)',2),n('offset','直流偏置（伏）','DC offset (V)',1,-1e6)],(p,o)=>({acRmsV:p/(2*Math.SQRT2),totalRmsV:Math.hypot(p/(2*Math.SQRT2),o),minV:o-p/2,maxV:o+p/2})),
+  device('adc-quantizer','理想 ADC 编码','Ideal unipolar ADC code','将单极输入映射到等宽量化区间，最高参考电压映射为满量程码。','Map a unipolar input into uniform ideal ADC bins, clipping the upper endpoint to the highest code.',
+    [bits,n('ref','满量程参考电压（伏）','Full-scale reference (V)',3.3),n('input','输入电压（伏）','Input voltage (V)',1.65,0)],(b,v,x)=>{requireValue(x<=v,'Input must be within the reference range.');const levels=2**b;return {code:Math.min(levels-1,Math.floor(x/v*levels)),lsbV:v/levels,maxCode:levels-1};}),
+  device('dac-reconstruction','理想 DAC 输出','Ideal unipolar DAC output','按以参考电压除以码数为步距的无增益 DAC 模型求给定码值的输出。','Reconstruct a straight-binary unipolar DAC output with an LSB of reference divided by two to the bit depth.',
+    [bits,n('ref','参考电压（伏）','Reference voltage (V)',3.3),count('code','无符号码值','Unsigned code',2048,0,4294967295)],(b,v,c)=>{const levels=2**b;requireValue(c<levels,'Code exceeds the selected bit depth.');return {outputV:v*c/levels,lsbV:v/levels,fullCodeOutputV:v*(levels-1)/levels};}),
+  device('fft-bin-grid','FFT 频点定位','FFT bin location','由采样率、变换长度和目标频率找到最近的实信号单边频谱频点。','Find the nearest one-sided FFT bin to a frequency for a real input block at the given sample rate.',
+    [sampleRate,count('size','变换长度','FFT length',1024,2,1000000),n('target','目标频率（赫兹）','Target frequency (Hz)',1000,0)],(f,N,t)=>{requireValue(t<=f/2,'Frequency exceeds Nyquist.');const spacing=f/N,k=Math.min(Math.floor(N/2),Math.round(t/spacing));return {bin:k,spacingHz:spacing,binHz:k*spacing,errorHz:k*spacing-t};}),
+  device('sample-alias','采样混叠频率','Sampled tone alias','将输入纯音频率折叠到给定实数采样率的第一奈奎斯特区间。','Fold a sinusoidal input into the first Nyquist band for the indicated real-valued sample rate.',
+    [sampleRate,frequency],(s,f)=>{const x=f%s;return {aliasHz:Math.min(x,s-x),nyquistHz:s/2};}),
+  device('audio-buffer-latency','音频缓冲延时','Audio buffer latency','按队列中的等长音频块、每块帧数与采样率估算纯缓冲延时。','Estimate buffering delay from queued equal-sized blocks and sampling rate, excluding driver and conversion delay.',
+    [sampleRate,count('frames','每块采样帧数','Frames per block',256),count('blocks','队列缓冲块数','Queued blocks',2,1,4096)],(f,n,b)=>({blockMs:1000*n/f,queuedMs:1000*n*b/f})),
+  device('pcm-storage','PCM 录音存储量','PCM recording storage','按采样率、每声道存储位数、声道数和时长计算未压缩音频载荷。','Calculate uncompressed interleaved PCM payload size from stored bits per sample, sample rate, channels, and duration.',
+    [sampleRate,count('storedBits','每个样本的存储位数（8 的倍数）','Stored sample bits (multiple of 8)',24,8,64),count('channels','声道数','Channels',2,1,128),n('seconds','录音秒数','Duration (s)',60)],(f,b,c,t)=>{requireValue(b%8===0,'Use the stored container width in whole bytes per sample.');const frames=Math.ceil(f*t);return {frames,payloadBytes:frames*c*(b/8),bitRate:f*b*c};}),
+  device('oscilloscope-record','示波器采集窗口','Oscilloscope record window','用采样率、有效记录点数和水平格数求总窗口、每格时间及样点间隔。','Calculate time span between first and last acquired sample, horizontal time per division, and sample interval.',
+    [sampleRate,count('points','记录点数','Record samples',48001,2,100000000),count('divs','水平格数','Horizontal divisions',10,1,100)],(s,p,d)=>({spanSeconds:(p-1)/s,secondsPerDivision:(p-1)/(s*d),sampleSpacingSeconds:1/s})),
+  device('clock-drift','时钟漂移预算','Clock drift budget','由时钟频偏的百万分比和运行时间估算累计时间误差幅度。','Estimate accumulated timing error magnitude from an oscillator’s frequency tolerance and elapsed days.',
+    [n('ppm','频偏上限（ppm）','Frequency tolerance (ppm)',20,0,1e5),n('days','经过天数','Elapsed days',7)],(p,d)=>({maxErrorSeconds:86400*d*p/1e6,maxErrorMinutes:1440*d*p/1e6})),
+  device('counter-rollover','循环计数器溢出时间','Counter rollover interval','给定位宽、计数频率和当前计数值，求到回绕时间及完整周期。','Find wrap period and time remaining for an unsigned binary counter ticking at a fixed rate.',
+    [bits,frequency,count('present','当前计数值','Current count',512,0,4294967295)],(b,f,p)=>{const m=2**b;requireValue(p<m,'Count exceeds the chosen width.');return {fullPeriodSeconds:m/f,untilWrapSeconds:(m-p)/f};}),
+  device('uart-wire-time','串口帧传输用时','UART frame time','根据起始位、数据位、校验位、停止位和波特率求传输指定字节数的时间。','Estimate UART wire time including one start bit, selected data width, parity, and stop bits per frame.',
+    [n('baud','波特率','Baud rate',115200,1),count('data','数据位','Data bits',8,5,9),count('parity','校验位数','Parity bits',0,0,1),count('stop','停止位','Stop bits',1,1,2),count('frames','数据帧数','Frame count',100)],(b,d,p,s,f)=>({bitsPerFrame:1+d+p+s,wireMs:1000*f*(1+d+p+s)/b,dataBitsPerSecond:b*d/(1+d+p+s)})),
+  device('display-refresh-budget','扫描显示像素时钟','Display timing pixel clock','输入含消隐的水平、垂直总数与刷新率，求像素时钟和行频。','Compute required pixel clock and line frequency from total timing counts including blanking intervals.',
+    [count('hTotal','每行总像素时钟数','Total pixel clocks per line',2200),count('vTotal','每帧总行数','Total lines per frame',1125),n('refresh','刷新率（赫兹）','Refresh rate (Hz)',60,.1,10000)],(h,v,f)=>({pixelClockMHz:h*v*f/1e6,lineRateKHz:v*f/1000})),
+  device('sensor-linear-scale','线性传感器两点标定','Two-point sensor calibration','由两个标定点的原始读数和工程量计算斜率、偏移与新读数换算值。','Calibrate a linear sensor with two raw/reference pairs and transform a third raw reading.',
+    [n('rawA','第一原始读数','First raw reading',100,-1e9),n('refA','第一工程量','First reference value',0,-1e9),n('rawB','第二原始读数','Second raw reading',900,-1e9),n('refB','第二工程量','Second reference value',80,-1e9),n('reading','待换算读数','New raw reading',500,-1e9)],(a,x,b,y,r)=>{requireValue(b!==a,'Calibration raw readings must differ.');const k=(y-x)/(b-a);return {slope:k,offset:x-a*k,calibrated:x+(r-a)*k,extrapolated:r<Math.min(a,b)||r>Math.max(a,b)};}),
+  device('thermistor-beta','NTC 温度估算','NTC beta temperature','由热敏电阻读数、参考电阻与温度和材料 B 值估算温度。','Estimate NTC temperature using the single-beta model with a known resistance at a reference temperature.',
+    [r,n('referenceR','参考电阻（欧姆）','Reference resistance (ohm)',1000),n('referenceT','参考温度（摄氏度）','Reference temperature (C)',25,-100,250),n('beta','B 值（开尔文）','Beta (K)',3950,500,10000)],(R,r0,t,b)=>{const inv=1/(t+273.15)+Math.log(R/r0)/b;requireValue(inv>0,'Resistance lies outside this model’s physical range.');return {temperatureC:1/inv-273.15};}),
+  device('opamp-noninverting','同相放大器闭环增益','Non-inverting amplifier gain','用理想同相运放的反馈及接地电阻求闭环增益与小信号输出。','Compute ideal closed-loop voltage gain and unsaturated small-signal output for a non-inverting amplifier.',
+    [n('feedback','反馈电阻（欧姆）','Feedback resistance (ohm)',10000),n('ground','接地电阻（欧姆）','Ground resistance (ohm)',1000),n('input','输入电压（伏）','Input voltage (V)',.1,-1000,1000)],(a,b,v)=>({gain:1+a/b,gainDb:20*Math.log10(1+a/b),idealOutputV:v*(1+a/b)})),
+  device('stereo-mid-side','立体声中侧声道','Stereo mid-side sample encoder','将归一化左右样本按半和与半差变换，返回可逆的中侧分量。','Encode one normalized left/right stereo sample into reversible half-sum mid and half-difference side components.',
+    [n('left','左声道样本','Left sample',.8,-1,1),n('right','右声道样本','Right sample',.4,-1,1)],(l,r)=>({mid:(l+r)/2,side:(l-r)/2})),
+];

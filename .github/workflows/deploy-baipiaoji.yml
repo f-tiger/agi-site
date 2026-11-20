@@ -406,6 +406,11 @@ jobs:
           node ../../tools/quote-page-lab/verify.mjs --dist
           node ../../tools/quote-page-lab/test-growth.mjs --dist
           node scripts/test-ai-tools.mjs
+          node scripts/test-ai-tables.mjs
+          node scripts/test-ai-measurement.mjs
+          node scripts/test-ai-editorial.mjs
+          node scripts/test-ai-developer.mjs
+          node scripts/test-ai-operations.mjs
           node scripts/test-tool-evidence.mjs
           node scripts/test-category-guides.mjs
           node scripts/test-cursor-plan-split.mjs
