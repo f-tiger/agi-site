@@ -965,7 +965,7 @@ async function trendCompute(env) {
 // MCP server (Model Context Protocol, stateless Streamable HTTP).
 // Each tool returns a usable answer with sources. Publication, calls, website
 // visits and merchant activity are observed separately.
-const MCP_VERSION = "1.8.0";
+const MCP_VERSION = "1.9.0";
 const LEGACY_MCP_TOOLS = [
   drainTool,
   // AI-era round 2026-08-29: the decision LAYER above the per-device
@@ -1117,6 +1117,10 @@ function mcpCatalog(url) {
   const category = url.searchParams.get("category");
   const name = url.searchParams.get("tool");
   const view = url.searchParams.get("view");
+  const limit = url.searchParams.get("limit");
+  if (limit !== null && !/^(?:[1-9][0-9]?|100)$/.test(limit)) {
+    return json({error:"invalid_limit"},400,{"cache-control":"no-store","access-control-allow-origin":"*"});
+  }
   if (view === "examples" && !name?.trim()) {
     return json({error:"tool_required"},400,{"cache-control":"no-store","access-control-allow-origin":"*"});
   }
@@ -1126,11 +1130,13 @@ function mcpCatalog(url) {
   const matches = filtered
     ? findCatalogueTools(index,{query:search || "",category:category || "",name})
     : index.map(entry => entry.tool);
+  const page = limit === null ? matches : matches.slice(0,Number(limit));
   const tools = view==="examples"
-    ? matches.map(tool=>({...tool,...catalogueExample(tool.name)}))
-    : matches;
-  const result = {version:MCP_VERSION,total:tools.length,distinctTotal:DISTINCT_TASK_TOTAL,tools};
-  if (filtered) result.catalogueTotal = CATALOG_TOOLS.length;
+    ? page.map(tool=>({...tool,...catalogueExample(tool.name)}))
+    : page;
+  const result = {version:MCP_VERSION,total:matches.length,distinctTotal:DISTINCT_TASK_TOTAL,tools};
+  if (limit !== null) result.returned = tools.length;
+  if (filtered || limit !== null) result.catalogueTotal = CATALOG_TOOLS.length;
   return new Response(JSON.stringify(result), {
     headers: {
       "content-type": "application/json; charset=utf-8",

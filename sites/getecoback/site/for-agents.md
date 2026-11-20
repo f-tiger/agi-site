@@ -9,7 +9,9 @@ EcoBack is a German-language home-climate guide (portable air conditioning, dehu
 **1 · MCP server**
 Model Context Protocol, Streamable HTTP, no auth: https://getecoback.com/mcp/v1
 
-EcoBack tools cover room climate, household energy and water, seasonal changes, daily access, purchase checks and resource planning. Filter the [JSON catalogue](https://getecoback.com/api/mcp-tools) by `q` or `category`. Use [`view=compact`](https://getecoback.com/api/mcp-tools?category=Messpraxis&view=compact) for names, descriptions, categories and available citation links. Omit the compact view and use [`tool=EXACT_NAME`](https://getecoback.com/api/mcp-tools?tool=duschdurchfluss_messen) to get a single input schema.
+EcoBack tools cover room climate, household energy and water, room planning, weather, kitchen tasks, service preparation and evidence comparison. Filter the [JSON catalogue](https://getecoback.com/api/mcp-tools) by `q` or `category`. Use [`view=compact`](https://getecoback.com/api/mcp-tools?category=Messpraxis&view=compact) for names, descriptions, categories and available citation links. Omit the compact view and use [`tool=EXACT_NAME`](https://getecoback.com/api/mcp-tools?tool=duschdurchfluss_messen) to get a single input schema.
+
+Add `limit=24` for a short ranked list. Use an integer from 1 to 100. `total` is the number of matches. `returned` is the number of entries included. `catalogueTotal` counts callable names across the whole catalogue. [Short search example](https://getecoback.com/api/mcp-tools?view=compact&q=Strom&limit=24).
 
 Combine `view=examples` with one exact `tool` name to inspect its schema, available source URLs and any checked fixture. `example.arguments` gives the sample call inputs and `example.expected_fields` gives selected expected outputs. Send your own inputs with `tools/call` to run the tool. If `citation_markdown_url` is available, use it to read the guide and cite the canonical `citation_url`. [Inspectable example](https://getecoback.com/api/mcp-tools?view=examples&tool=stromfenster_mehrphasen_start).
 
@@ -30,6 +32,10 @@ Run the same task and read kWh for each trial. For 1.2, 1.0, 1.1 and 1.3 kWh in 
 **Compare start times for a device with two energy-use phases**
 
 At four successive rates of €0.30, €0.20, €0.40 and €0.25 per kWh, running the 0.8 kWh and 0.2 kWh phases in windows two and three costs €0.24. The windows have equal lengths and each phase fills one window. Verify permitted start times and use the tariff charged to your household. [Runnable comparison and source](https://getecoback.com/mcp.html#stromfenster-mehrphasen-beispiel).
+
+**Plan a kettle fill across several batches**
+
+Enter the total volume and the minimum and maximum fill volumes from your kettle manual. With 1,900 mL needed and 400–1,700 mL allowed per batch, the example returns two fills of 950 mL with no surplus. [Runnable calculation and source](https://getecoback.com/mcp.html#wasserkocher-fuellsplitt-beispiel).
 
 **Project a plug-in meter reading**
 
