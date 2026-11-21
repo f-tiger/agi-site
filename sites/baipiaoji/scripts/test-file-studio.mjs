@@ -1,3 +1,4 @@
+import './test-file-studio-limits.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync,existsSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -27,3 +28,4 @@ if(process.argv.includes('--dist')){
   await test('All modules and pinned dependencies are shipped without upload endpoints',()=>{for(const file of ['file-app.mjs','file-core.mjs','file-engine.mjs','file-copy.mjs','file-view.mjs','file-tools.css','vendor/pdf-lib-1.17.1.mjs','vendor/fflate-0.8.2.mjs'])assert.ok(existsSync(new URL('../dist/studio-assets/'+file,import.meta.url)));const app=read('studio-assets/file-app.mjs');assert.ok(!/fetch\(|XMLHttpRequest/.test(app));assert.ok(app.includes("has('__ci')")&&app.includes("has('__probe')"));});
 }
 console.log(`BPJ file studio: ${count} checks passed; synthetic fixtures are not market evidence.`);
+
