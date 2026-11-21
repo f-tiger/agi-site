@@ -107,7 +107,8 @@
   overflow-wrap:anywhere;
 }
 .suite-index .suite-directory-description { margin:.25rem 0 0;color:var(--suite-muted);font-size:.9rem;line-height:1.55; }
-.suite-index-home .suite-categories .suite-index .suite-directory-description { display:none; }
+.suite-home-tasks { display:flex;flex-wrap:wrap;gap:.4rem 1rem;margin:.75rem 0 0; }
+.suite-home-tasks a { font-weight:650; }
 .suite-search-results ul {
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));

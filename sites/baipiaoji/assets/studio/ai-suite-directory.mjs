@@ -17,6 +17,34 @@ function relevance({titles,alias,description},query,words) {
   return words.every(word=>text.includes(word))?1:0;
 }
 
+function searchRow({path,title,alternate,description},groupTitle,groupId) {
+  const url=new URL(path,location.origin);
+  return {
+    url,title,description,groupTitle,groupId,
+    searchable:{
+      titles:[normalize(title),normalize(alternate)],
+      alias:normalize(url.pathname.split('/').pop()),
+      description:normalize(description+' '+groupTitle),
+    },
+  };
+}
+
+function resultItem({url,title,description,groupTitle}) {
+  const row=document.createElement('li');
+  row.setAttribute('data-suite-keywords','');
+  const tag=document.createElement('span');
+  tag.className='suite-search-category';
+  tag.textContent=groupTitle;
+  const link=document.createElement('a');
+  link.href=url.href;
+  link.textContent=title;
+  const detail=document.createElement('p');
+  detail.className='suite-directory-description';
+  detail.textContent=description;
+  row.append(tag,link,detail);
+  return row;
+}
+
 function initDirectory(index) {
   const lang=document.documentElement.lang;
   const zh=lang.startsWith('zh');
@@ -28,83 +56,95 @@ function initDirectory(index) {
   const counter=index.querySelector('[data-suite-count]');
   const reset=index.querySelector('[data-suite-clear]');
   const empty=index.querySelector('[data-suite-empty]');
+  const unavailable=index.querySelector('[data-suite-unavailable]');
   const browse=index.querySelector('[data-suite-browse]');
   const results=index.querySelector('[data-suite-results]');
   const list=results.querySelector('[data-suite-result-list]');
   const more=results.querySelector('[data-suite-more]');
 
-  // Index the static links on first use. Movable results reuse their original link nodes.
-  let rows;
+  // The homepage loads its search data only after a query; tool hubs index their HTML links.
+  let rowsPromise;
   function indexRows() {
+    const source=index.dataset.suiteSource;
+    if(source){
+      return fetch(source).then(response=>{
+        if(!response.ok) throw Error('AI suite search index unavailable');
+        return response.json();
+      }).then(groups=>groups.flatMap(group=>group.tools.map(tool=>searchRow(tool,group.title,group.id))));
+    }
     return [...index.querySelectorAll('[data-suite-group]')].flatMap(group=>{
       const groupTitle=group.querySelector('strong').textContent;
       return [...group.querySelectorAll('[data-suite-keywords]')].map(row=>{
         const link=row.querySelector('a');
-        return {
-          row, link, groupTitle, groupId:group.dataset.groupId,
-          titles:[normalize(link.textContent),normalize(row.dataset.suiteAlt)],
-          alias:normalize(link.pathname.split('/').pop()),
-          description:normalize(row.querySelector('.suite-directory-description').textContent+' '+groupTitle),
-        };
+        return searchRow({
+          path:link.href,
+          title:link.textContent,
+          alternate:row.dataset.suiteAlt,
+          description:row.querySelector('.suite-directory-description').textContent,
+        },groupTitle,group.dataset.groupId);
       });
     });
   }
 
-  const total=browse.querySelectorAll('[data-suite-keywords]').length;
+  const total=Number(index.dataset.suiteTotal);
   let matches=[];
-  let moved=[];
-
-  function restoreRows() {
-    for (const {row,parent,next,tag} of moved.reverse()) {
-      tag.remove();
-      parent.insertBefore(row,next);
-    }
-    moved=[];
-  }
+  let generation=0;
 
   function showMore({focus=false}={}) {
     const fragment=document.createDocumentFragment();
-    const start=moved.length;
+    const start=list.childElementCount;
     const page=matches.slice(start,start+PAGE_SIZE);
-    for(const {row,groupTitle} of page) {
-      const tag=document.createElement('span');
-      tag.className='suite-search-category';
-      tag.textContent=groupTitle;
-      row.prepend(tag);
-      moved.push({row,parent:row.parentNode,next:row.nextSibling,tag});
-      fragment.append(row);
-    }
+    for(const row of page) fragment.append(resultItem(row));
     list.append(fragment);
-    more.hidden=moved.length>=matches.length;
+    more.hidden=list.childElementCount>=matches.length;
     const n=format.format(matches.length);
-    const shown=format.format(moved.length);
+    const shown=format.format(list.childElementCount);
     counter.textContent=t(`${n} 项结果，已显示 ${shown} 项`,`Showing ${shown} of ${n} matches`);
-    if(focus) page[0]?.link.focus();
+    if(focus) list.children[start]?.querySelector('a').focus();
   }
 
-  function refresh() {
-    restoreRows();
+  async function refresh() {
+    const request=++generation;
+    list.replaceChildren();
     const typed=search.value.trim();
     const query=normalize(typed).replace(/^bpj (?=\S)/,'');
     const groupId=select?.value || '';
     const active=Boolean(typed || groupId);
     browse.hidden=active;
     reset.hidden=!active;
+    results.hidden=true;
+    empty.hidden=true;
+    if(unavailable) unavailable.hidden=true;
+    matches=[];
     if(!active) {
-      matches=[];
-      results.hidden=true;
-      empty.hidden=true;
       counter.textContent=t(`共 ${format.format(total)} 个工具`,`${format.format(total)} BPJ tools`);
       return;
     }
 
-    rows??=indexRows();
+    let rows;
+    try {
+      if(!rowsPromise){
+        if(index.dataset.suiteSource) counter.textContent=t('正在载入工具搜索…','Loading tools…');
+        rowsPromise=Promise.resolve(indexRows()).catch(error=>{
+          rowsPromise=null;
+          throw error;
+        });
+      }
+      rows=await rowsPromise;
+    } catch {
+      if(request!==generation) return;
+      counter.textContent='';
+      browse.hidden=false;
+      if(unavailable) unavailable.hidden=false;
+      return;
+    }
+    if(request!==generation) return;
     const scoped=groupId?rows.filter(row=>row.groupId===groupId):rows;
     if(typed && !query) {
       matches=[];
     } else if(query) {
       const words=query.split(' ');
-      matches=scoped.map(row=>({row,score:relevance(row,query,words)}))
+      matches=scoped.map(row=>({row,score:relevance(row.searchable,query,words)}))
         .filter(item=>item.score>0).sort((a,b)=>b.score-a.score).map(item=>item.row);
     } else {
       matches=scoped;
@@ -126,7 +166,7 @@ function initDirectory(index) {
   more.addEventListener('click',()=>showMore({focus:true}));
   search.form.addEventListener('submit',event=>{
     event.preventDefault();
-    matches[0]?.link.focus();
+    list.querySelector('a')?.focus();
   });
   refresh();
   controls.hidden=false;

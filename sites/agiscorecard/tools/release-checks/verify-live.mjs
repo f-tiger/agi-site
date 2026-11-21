@@ -27,8 +27,14 @@ async function check() {
   for (const path of ['/ai-tools', '/zh/ai-tools']) {
     const html = await (await read(path)).text();
     for (const fragment of ['id="release-checks"', '/futures-assets/release-checks/app.mjs',
+      'class="rc-advisory"', 'class="rc-datasets"',
       'data-ga4-id="G-FZXLMBB5QB"', 'href="' + origin + path + '"']) {
       assert.ok(html.includes(fragment), path + ' ' + fragment);
+    }
+    const releases = JSON.parse(await readFile(new URL('releases.json', assetDir)));
+    for (const source of releases.sources) {
+      const latest = source.releases[0];
+      if (latest) assert.ok(html.includes('href="' + latest.url + '"'), path + ' ' + latest.version);
     }
   }
 }

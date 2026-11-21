@@ -7973,10 +7973,14 @@ for (const t of RAW_TOOLS.filter((x) => x.last_verified)) {
 writeFileSync(join(dist, 'pricing.md'), pricingMarkdown({name:site.name,baseUrl:site.base_url,
   affiliateEnabled:RAW_TOOLS.some(tool=>Boolean(tool.affiliate))}));
 
+const aiEvaluationBrief = `- [AI answer citation coverage](https://baipiaoji.com/en/studio/ai/answer-citation-coverage) (中文: https://baipiaoji.com/studio/ai/answer-citation-coverage): supply structured claims and source IDs. Coverage measures how many claims have a known citation. Consult the original source for support.
+- [AI output JSON contract check](https://baipiaoji.com/en/studio/ai/ai-json-output-contract) (中文: https://baipiaoji.com/studio/ai/ai-json-output-contract): check sample JSON outputs against required paths and value types. The browser tools process inputs locally, and the pages provide worked examples and MCP call instructions.`;
+
 writeFileSync(join(dist, 'llms.txt'), pubText(`# ${site.name} / Baipiaoji (baipiaoji.com)
 
 ## BPJ first-party AI workflow tools
 - AI table rewrite review: https://baipiaoji.com/en/studio/table-review . Compare original and rewritten CSV by unique ID; restore locked strings and retain allowed edits. Free local checking and export, no account or model call. Not semantic or factual verification.
+${aiEvaluationBrief}
 - Listing pack: https://baipiaoji.com/en/studio/listing-pack . Free local CSV checks, external AI handoff, draft review and ZIP export. Not automatic translation, platform publishing or semantic verification. Optional assistance inquiry is not an order or payment.
 - ${suiteCount} BPJ tools for editing, tables, statistics, engineering, operations and software: https://baipiaoji.com/en/studio/ai/ (Chinese: https://baipiaoji.com/studio/ai/). Browser tools run locally; the public Streamable HTTP MCP server supports paginated tools/list, keyword discovery with list_bpj_ai_tools and execution with tools/call.
 - Kimi task steps: https://baipiaoji.com/tools/kimi#kimi-task . Free local self-check steps and prompt templates; no AI execution or document upload to BPJ. Account sync saves the tool only, not these steps.
@@ -8198,6 +8202,7 @@ Markdown mirrors: every content page (site root, /en/, /money/, /plans/) is also
 
 ## BPJ first-party AI workflow tools
 - ${suiteCount} BPJ tools for editing, tables, statistics, engineering, operations and software: https://baipiaoji.com/en/studio/ai/ (Chinese: https://baipiaoji.com/studio/ai/). Browser tools run locally; the public Streamable HTTP MCP server supports paginated tools/list, keyword discovery with list_bpj_ai_tools and execution with tools/call.
+${aiEvaluationBrief}
 - Kimi task steps: https://baipiaoji.com/tools/kimi#kimi-task . Free local self-check steps and prompt templates; no AI execution or document upload to BPJ. Account sync saves the tool only, not these steps.
 - Task Loop: https://baipiaoji.com/en/studio/task-loop
 - Tool names, input schemas and examples: https://baipiaoji.com/en/ai-tools.json . Markdown index: https://baipiaoji.com/en/studio/ai/index.md
