@@ -104,7 +104,7 @@ async function assertToolLinks(suite, locale) {
   const toolLinks = await suite.locator('[data-suite-group] [data-suite-keywords] a').evaluateAll(links =>
     links.map(anchor => new URL(anchor.href).pathname)
   );
-  assert.equal(toolLinks.length, 1000);
+  assert.equal(toolLinks.length, SUITE_TOOLS.length);
   assert.deepEqual(new Set(toolLinks), new Set(SUITE_TOOLS.map(tool => locale + toolPath(tool.id))));
   assert.equal(await suite.locator('[data-suite-group]').count(), SUITE_CATEGORIES.length);
 }
@@ -381,7 +381,7 @@ try {
   }
   await verifyNoScriptBrowse(browser);
   assert.deepEqual(errors, []);
-  console.log('PASS EN/ZH: Task Loop, 1,000 crawlable tools, ranked search and filters, readable results, input recovery, JSON transfer and every tool example.');
+  console.log(`PASS EN/ZH: Task Loop, ${SUITE_TOOLS.length} crawlable tools, ranked search and filters, readable results, input recovery, JSON transfer and every tool example.`);
 } finally {
   await browser?.close();
   server.close();
