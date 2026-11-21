@@ -8,6 +8,7 @@ import {tools as tables} from './tables.mjs';
 import {tools as operations} from './operations.mjs';
 import {tools as editorial} from './editorial.mjs';
 import {tools as developer} from './developer.mjs';
+import {tools as evaluation} from './ai-evaluation.mjs';
 import {executeSuiteTool,toolInputSchema} from './runtime.mjs';
 
 export {inputSpec,toolInputSchema} from './runtime.mjs';
@@ -22,6 +23,7 @@ export const SUITE_CATEGORIES = [
   {id:'operations',title:{zh:'运营与财务',en:'Operations & finance'},tools:operations},
   {id:'editorial',title:{zh:'编辑与内容质量',en:'Editing & content quality'},tools:editorial},
   {id:'developer',title:{zh:'软件与数据格式',en:'Software & data formats'},tools:developer},
+  {id:'ai-evaluation',title:{zh:'AI 评测与交付',en:'AI evaluation & delivery'},tools:evaluation},
 ];
 
 export const SUITE_TOOLS = SUITE_CATEGORIES.flatMap(group => group.tools.map(tool => ({
