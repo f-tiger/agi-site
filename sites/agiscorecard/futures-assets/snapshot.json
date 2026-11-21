@@ -1,12 +1,12 @@
 {
-  "checkedAt": "2026-11-20T10:33:45Z",
+  "checkedAt": "2026-11-21T10:15:06Z",
   "sources": [
     {
       "id": "openai",
       "company": "OpenAI",
       "url": "https://openai.com/news/rss.xml",
-      "checkedAt": "2026-11-20T10:33:45Z",
-      "lastSuccessAt": "2026-11-20T10:33:45Z",
+      "checkedAt": "2026-11-21T10:15:06Z",
+      "lastSuccessAt": "2026-11-21T10:15:06Z",
       "ok": true,
       "error": null
     },
@@ -14,8 +14,8 @@
       "id": "anthropic",
       "company": "Anthropic",
       "url": "https://www.anthropic.com/news",
-      "checkedAt": "2026-11-20T10:33:45Z",
-      "lastSuccessAt": "2026-11-20T10:33:45Z",
+      "checkedAt": "2026-11-21T10:15:06Z",
+      "lastSuccessAt": "2026-11-21T10:15:06Z",
       "ok": true,
       "error": null
     },
@@ -23,8 +23,8 @@
       "id": "meta",
       "company": "Meta",
       "url": "https://about.fb.com/news/feed/",
-      "checkedAt": "2026-11-20T10:33:45Z",
-      "lastSuccessAt": "2026-11-20T10:33:45Z",
+      "checkedAt": "2026-11-21T10:15:06Z",
+      "lastSuccessAt": "2026-11-21T10:15:06Z",
       "ok": true,
       "error": null
     },
@@ -32,7 +32,7 @@
       "id": "xai",
       "company": "xAI / SpaceX",
       "url": "https://x.ai/news",
-      "checkedAt": "2026-11-20T10:33:45Z",
+      "checkedAt": "2026-11-21T10:15:06Z",
       "lastSuccessAt": "2026-10-31T16:20:44Z",
       "ok": false,
       "error": "http_403"
@@ -41,13 +41,53 @@
       "id": "deepmind",
       "company": "Google DeepMind",
       "url": "https://deepmind.google/blog/rss.xml",
-      "checkedAt": "2026-11-20T10:33:45Z",
-      "lastSuccessAt": "2026-11-20T10:33:45Z",
+      "checkedAt": "2026-11-21T10:15:06Z",
+      "lastSuccessAt": "2026-11-21T10:15:06Z",
       "ok": true,
       "error": null
     }
   ],
   "items": [
+    {
+      "id": "585b84b1937546daaf84b13d",
+      "company": "Meta",
+      "title": "Advancing Science Together: Highlights From the Open Source AI For Science Summit",
+      "url": "https://about.fb.com/news/2026/11/advancing-science-together-highlights-from-the-open-source-ai-for-science-summit",
+      "publishedAt": "2026-11-20T18:30:45Z",
+      "discoveredAt": "2026-11-21T10:15:06Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "7ad44f990f0c53ef2e2a5377",
+      "company": "OpenAI",
+      "title": "Combatting adversarial distillation",
+      "url": "https://openai.com/index/combatting-adversarial-distillation",
+      "publishedAt": "2026-11-20T10:00:00Z",
+      "discoveredAt": "2026-11-21T10:15:06Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "c1a2af93db54bfcf7c217cb7",
+      "company": "OpenAI",
+      "title": "Can AI help scientists identify promising drug candidates?",
+      "url": "https://openai.com/index/introducing-medchembench",
+      "publishedAt": "2026-11-20T00:00:00Z",
+      "discoveredAt": "2026-11-21T10:15:06Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "e621a2a9dfa1d8d95e405183",
+      "company": "Anthropic",
+      "title": "Anthropic announces closing of initial public offering, including full exercise of underwriters’ option to purchase additional shares, and closing of concurrent private placement",
+      "url": "https://anthropic.com/news/ipo-close",
+      "publishedAt": "2026-11-20T00:00:00Z",
+      "discoveredAt": "2026-11-21T10:15:06Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
     {
       "id": "e01a20f96234118e20a9fd36",
       "company": "Meta",
