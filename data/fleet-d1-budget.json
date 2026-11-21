@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-20T16:36:58Z",
+ "generated": "2026-11-21T15:50:04Z",
  "status": "ok",
  "plan": "workers-free",
  "limit": 5000000,
@@ -10,67 +10,11 @@
  },
  "token_env": "CLOUDFLARE_API_TOKEN",
  "yesterday": {
-  "date": "2026-11-19",
-  "rows_read": 2159949,
-  "rows_written": 36081,
-  "read_queries": 20973,
-  "pct_of_limit": 43.2,
-  "by_db": {
-   "agiscorecard-events": {
-    "rows_read": 915064,
-    "rows_written": 20296,
-    "read_queries": 3824
-   },
-   "ecoback-events": {
-    "rows_read": 557510,
-    "rows_written": 1838,
-    "read_queries": 507
-   },
-   "baipiaoji-hits": {
-    "rows_read": 430299,
-    "rows_written": 10092,
-    "read_queries": 14486
-   },
-   "after35-events": {
-    "rows_read": 104016,
-    "rows_written": 920,
-    "read_queries": 1805
-   },
-   "dollscout-events": {
-    "rows_read": 85347,
-    "rows_written": 823,
-    "read_queries": 322
-   },
-   "gridlings-events": {
-    "rows_read": 30836,
-    "rows_written": 1170,
-    "read_queries": 3
-   },
-   "goldrush-events": {
-    "rows_read": 13198,
-    "rows_written": 226,
-    "read_queries": 4
-   },
-   "gamesledger-events": {
-    "rows_read": 12180,
-    "rows_written": 353,
-    "read_queries": 3
-   },
-   "sourceradar-events": {
-    "rows_read": 11499,
-    "rows_written": 363,
-    "read_queries": 19
-   }
-  }
- },
- "today": {
   "date": "2026-11-20",
-  "hours_elapsed": 16.62,
-  "rows_read_so_far": 2539638,
-  "rows_written_so_far": 31744,
-  "read_queries_so_far": 17167,
-  "pace_rows_read": 3668206,
-  "pct_of_limit_at_pace": 73.4,
+  "rows_read": 2539638,
+  "rows_written": 31744,
+  "read_queries": 17167,
+  "pct_of_limit": 50.8,
   "by_db": {
    "ecoback-events": {
     "rows_read": 1088737,
@@ -119,23 +63,79 @@
    }
   }
  },
+ "today": {
+  "date": "2026-11-21",
+  "hours_elapsed": 15.83,
+  "rows_read_so_far": 1357516,
+  "rows_written_so_far": 54291,
+  "read_queries_so_far": 12154,
+  "pace_rows_read": 2057564,
+  "pct_of_limit_at_pace": 41.2,
+  "by_db": {
+   "baipiaoji-hits": {
+    "rows_read": 499734,
+    "rows_written": 6513,
+    "read_queries": 6990
+   },
+   "agiscorecard-events": {
+    "rows_read": 420271,
+    "rows_written": 17115,
+    "read_queries": 2616
+   },
+   "ecoback-events": {
+    "rows_read": 239206,
+    "rows_written": 1004,
+    "read_queries": 667
+   },
+   "dollscout-events": {
+    "rows_read": 99018,
+    "rows_written": 27702,
+    "read_queries": 615
+   },
+   "after35-events": {
+    "rows_read": 55034,
+    "rows_written": 622,
+    "read_queries": 1245
+   },
+   "goldrush-events": {
+    "rows_read": 17543,
+    "rows_written": 136,
+    "read_queries": 6
+   },
+   "gridlings-events": {
+    "rows_read": 10210,
+    "rows_written": 796,
+    "read_queries": 1
+   },
+   "sourceradar-events": {
+    "rows_read": 8487,
+    "rows_written": 214,
+    "read_queries": 12
+   },
+   "gamesledger-events": {
+    "rows_read": 8013,
+    "rows_written": 189,
+    "read_queries": 2
+   }
+  }
+ },
  "top3": [
   {
-   "db": "agiscorecard-events",
-   "rows_read_yesterday": 915064,
-   "rows_read_today": 943419
+   "db": "ecoback-events",
+   "rows_read_yesterday": 1088737,
+   "rows_read_today": 239206
   },
   {
-   "db": "ecoback-events",
-   "rows_read_yesterday": 557510,
-   "rows_read_today": 1088737
+   "db": "agiscorecard-events",
+   "rows_read_yesterday": 943419,
+   "rows_read_today": 420271
   },
   {
    "db": "baipiaoji-hits",
-   "rows_read_yesterday": 430299,
-   "rows_read_today": 283455
+   "rows_read_yesterday": 283455,
+   "rows_read_today": 499734
   }
  ],
  "unknown_database_ids": [],
- "verdict": "error"
+ "verdict": "warning"
 }
