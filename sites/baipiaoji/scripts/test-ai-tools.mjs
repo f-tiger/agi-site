@@ -227,5 +227,9 @@ for(const [id,verify,invalid,error] of evaluationFixtures){
  verify(runSuiteTool(tool.name,tool.example));
  assert.throws(()=>runSuiteTool(tool.name,{...tool.example,...invalid}),error,id);
 }
-console.log('PASS 9 independent evaluation answers and domain errors.');
+const billing = SUITE_TOOLS.find(tool=>tool.id==='llm-token-billing');
+assert.throws(()=>runSuiteTool(billing.name,{...billing.example,
+ inputTokens:1,cachedInputTokens:0,unpricedInputTokens:0,billedOutputTokens:0,uncachedInputRate:Number.MIN_VALUE,
+}),/below supported numeric precision/);
+console.log('PASS 9 independent evaluation answers, domain errors and token-cost underflow.');
 console.log('PASS '+SUITE_TOOLS.length+' free MCP fixtures and invalid arguments, paginated schemas, multilingual discovery and paid isolation.');

@@ -44,16 +44,21 @@ function tokenBilling({
   const cached = BigInt(cachedInputTokens) * rates[1];
   const output = BigInt(billedOutputTokens) * rates[2];
   const perMillionPlaces = places + 6;
+  function charge(value) {
+    const amount = fromDecimalInteger(value, perMillionPlaces);
+    if (amount === 0 && value > 0n) throw Error('Token charge is below supported numeric precision.');
+    return amount;
+  }
   return {
     currency: code,
     uncachedInputTokens,
     cachedInputTokens,
     unpricedInputTokens,
     billedOutputTokens,
-    uncachedInputCharge: fromDecimalInteger(uncached, perMillionPlaces),
-    cachedInputCharge: fromDecimalInteger(cached, perMillionPlaces),
-    outputCharge: fromDecimalInteger(output, perMillionPlaces),
-    estimatedTotal: fromDecimalInteger(uncached + cached + output, perMillionPlaces),
+    uncachedInputCharge: charge(uncached),
+    cachedInputCharge: charge(cached),
+    outputCharge: charge(output),
+    estimatedTotal: charge(uncached + cached + output),
     partialEstimate: unpricedInputTokens > 0,
   };
 }
