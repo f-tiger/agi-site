@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-20",
+ "fetched": "2026-11-21",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -235,102 +235,66 @@
    "last_attempt_status": "ok"
   },
   "akku staubsauger": {
-   "rising": [
-    {
-     "q": "quicksilver",
-     "v": 10900
-    },
-    {
-     "q": "dripl akku staubsauger",
-     "v": 1650
-    },
-    {
-     "q": "akku staubsauger mit licht",
-     "v": 450
-    },
-    {
-     "q": "sky scanner",
-     "v": 350
-    },
-    {
-     "q": "levoit akku staubsauger lvac 200 max",
-     "v": 250
-    },
-    {
-     "q": "shark powerdetect",
-     "v": 150
-    },
-    {
-     "q": "bissell staubsauger akku",
-     "v": 120
-    },
-    {
-     "q": "shark powerdetect clean & empty",
-     "v": 110
-    },
-    {
-     "q": "shark staubsauger akku",
-     "v": 90
-    },
-    {
-     "q": "shark staubsauger",
-     "v": 90
-    }
+   "auto": [
+    "akku staubsauger",
+    "akku staubsauger test",
+    "akku staubsauger testsieger",
+    "akku staubsauger bosch",
+    "akku staubsauger mit wischfunktion",
+    "akku staubsauger stiftung warentest",
+    "akku staubsauger dyson",
+    "akku staubsauger tierhaare",
+    "akku staubsauger makita",
+    "akku staubsauger shark"
    ],
-   "source": "related-queries",
-   "fetched": "2026-11-20",
-   "polluted": false,
-   "last_attempt_at": "2026-11-20T13:26:54.393901+00:00",
-   "last_attempt_status": "ok"
+   "new_vocabulary": [
+    "akku staubsauger test",
+    "akku staubsauger testsieger",
+    "akku staubsauger bosch",
+    "akku staubsauger mit wischfunktion",
+    "akku staubsauger stiftung warentest",
+    "akku staubsauger dyson",
+    "akku staubsauger tierhaare",
+    "akku staubsauger makita",
+    "akku staubsauger shark"
+   ],
+   "rising": [],
+   "source": "autocomplete-vocabulary",
+   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
+   "last_attempt_at": "2026-11-21T12:56:27.322507+00:00",
+   "last_attempt_status": "failed",
+   "fetched": "2026-11-21"
   },
   "matratze": {
-   "rising": [
-    {
-     "q": "schlafsofa mit bettkasten",
-     "v": 140
-    },
-    {
-     "q": "emma original pro matratze",
-     "v": 140
-    },
-    {
-     "q": "beco maxima plus",
-     "v": 130
-    },
-    {
-     "q": "emma flip matratze",
-     "v": 110
-    },
-    {
-     "q": "jysk online",
-     "v": 90
-    },
-    {
-     "q": "emma original matratze",
-     "v": 80
-    },
-    {
-     "q": "emma performance matratze",
-     "v": 80
-    },
-    {
-     "q": "alvi matratze",
-     "v": 70
-    },
-    {
-     "q": "bett 120x200 mit matratze und lattenrost",
-     "v": 70
-    },
-    {
-     "q": "encasing matratze",
-     "v": 60
-    }
+   "auto": [
+    "matratzen concord",
+    "matratze 140x200",
+    "matratze",
+    "matratze 90x200",
+    "matratze 180x200",
+    "matratzen",
+    "matratze 160x200",
+    "matratze 120x200",
+    "matratzenschoner",
+    "matratzen topper"
    ],
-   "source": "related-queries",
-   "fetched": "2026-11-13",
-   "polluted": false,
-   "last_attempt_at": "2026-11-13T12:28:51.015321+00:00",
-   "last_attempt_status": "ok"
+   "new_vocabulary": [
+    "matratzen concord",
+    "matratze 140x200",
+    "matratze 90x200",
+    "matratze 180x200",
+    "matratzen",
+    "matratze 160x200",
+    "matratze 120x200",
+    "matratzenschoner",
+    "matratzen topper"
+   ],
+   "rising": [],
+   "source": "autocomplete-vocabulary",
+   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
+   "last_attempt_at": "2026-11-21T12:59:27.440013+00:00",
+   "last_attempt_status": "failed",
+   "fetched": "2026-11-21"
   },
   "saugwischer": {
    "rising": [
