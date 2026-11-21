@@ -135,6 +135,7 @@ export function buildAiSuite({layout,esc,BASE,LOCALE,write,pushPage}) {
   return SUITE_TOOLS.map(tool=>({
     id:tool.id,name:tool.title,description:tool.description,path:suitePath(tool),url:BASE+suitePath(tool),
     category:tool.category,mcpTool:tool.name,inputSchema:toolInputSchema(tool),example:tool.example,
+    ...(tool.outputSchema ? {outputSchema:tool.outputSchema} : {}),
     execution:'deterministic',isAccessibleForFree:true,
   }));
 }

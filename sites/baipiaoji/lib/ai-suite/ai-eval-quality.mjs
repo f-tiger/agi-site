@@ -130,7 +130,7 @@ export const tools = [
         scope: 'Declared pointers only; integer means safe integer. Extra fields and output meaning are not validated. At most 8 violation details are shown per sample.' };
     },
   ),
-  define(
+  { ...define(
     'ai-paired-pass-regression',
     '固定测试集前后版本回退核对',
     'Paired pass regression on a fixed test set',
@@ -173,7 +173,7 @@ export const tools = [
         regressionCount: regressionIds.length, improvementCount: improvementIds.length, regressionIds, improvementIds, paired,
         scope: 'Pass rates use paired expected samples only. Missing and unexpected samples are excluded, never silently counted as failures. Use identical grading criteria in both runs.' };
     },
-  ),
+  ), searchAliases:['release rollback check','AI 回退检查','回滚前评测'] },
   define(
     'ai-multiclass-confusion',
     '多分类标签混淆与一致性统计',

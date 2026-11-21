@@ -37,6 +37,7 @@ export function suiteToolDefinitions() {
   return SUITE_TOOLS.map(tool => ({
     name:tool.name, title:tool.title.en, description:tool.description.en,
     inputSchema:toolInputSchema(tool),
+    ...(tool.outputSchema ? {outputSchema:tool.outputSchema} : {}),
     annotations:{readOnlyHint:true,destructiveHint:false,idempotentHint:true,openWorldHint:false},
   }));
 }

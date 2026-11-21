@@ -1,7 +1,7 @@
 import {SUITE_CATEGORIES,SUITE_TOOLS,suitePath} from '../lib/ai-suite/registry.mjs';
 
 const assets = '<link rel="stylesheet" href="/studio-assets/ai-suite-directory.css?v=2">';
-const script = '<script type="module" src="/studio-assets/ai-suite-directory.mjs?v=2"></script>';
+const script = '<script type="module" src="/studio-assets/ai-suite-directory.mjs?v=3"></script>';
 
 export const suiteCount = SUITE_TOOLS.length;
 export const categoryPath = group => '/studio/ai/categories/'+group.id;
@@ -26,6 +26,7 @@ export function aiSuiteSearchIndex(lang, base) {
       path:prefix+suitePath(tool),
       title:tool.title[lang],
       alternate:tool.title[alternate],
+      ...(tool.searchAliases ? {aliases:tool.searchAliases} : {}),
       description:tool.description[lang],
     })),
   }));
@@ -37,7 +38,7 @@ export function renderAiIndex({BASE,lang,esc,home=false,category}) {
   const alternate=zh?'en':'zh';
   // Alternate-language labels are search metadata. Character references preserve the
   // exact alias in the browser without putting translated words in English page copy.
-  const alias=tool=>esc(tool.title[alternate]).replace(/\p{Script=Han}/gu,char=>'&#'+char.codePointAt(0)+';');
+  const searchAttribute=value=>esc(value).replace(/\p{Script=Han}/gu,char=>'&#'+char.codePointAt(0)+';');
   const groups=category?[category]:SUITE_CATEGORIES;
   const total=category?category.tools.length:suiteCount;
   const homeIntro=`<header class="suite-index-header"><div>
@@ -65,7 +66,7 @@ export function renderAiIndex({BASE,lang,esc,home=false,category}) {
     return `<details data-suite-group data-group-id="${group.id}" ${category?'open':''}>
     <summary><strong>${esc(group.title[lang])}</strong><span>${group.tools.length}</span></summary>
     ${category?'':`<a class="suite-category-link" href="${BASE}${categoryPath(group)}">${t('浏览此分类','Browse category')}</a>`}
-    <ul>${shown.map(tool=>`<li data-suite-keywords data-suite-alt="${alias(tool)}">
+    <ul>${shown.map(tool=>`<li data-suite-keywords data-suite-alt="${searchAttribute(tool.title[alternate])}" ${tool.searchAliases ? `data-suite-aliases="${searchAttribute(JSON.stringify(tool.searchAliases))}"` : ''}>
       <a href="${BASE}${suitePath(tool)}">${esc(tool.title[lang])}</a>
       <p class="suite-directory-description">${esc(tool.description[lang])}</p>
     </li>`).join('')}</ul>
