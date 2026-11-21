@@ -220,7 +220,7 @@ export const tools = [
         macroF1Percent: round(macroF1), macroF1LabelCount: observedClasses.length,
         cohenKappa: kappaDenominator ? round((agreementCount * rows.size - expectedNumerator) / kappaDenominator) : null,
         mismatchIds,
-        scope: 'Exact case-sensitive labels. Macro F1 excludes classes absent from both actual and predicted labels. Null means an undefined denominator; agreement is not verified real-world accuracy.' };
+        scope: 'Exact case-sensitive labels. Macro F1 excludes classes absent from both actual and predicted labels. A zero denominator returns null. Agreement uses the supplied reference labels.' };
     },
   ),
 ];
