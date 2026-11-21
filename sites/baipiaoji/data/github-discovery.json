@@ -1,6 +1,6 @@
 {
  "version": 1,
- "checkedAt": "2026-11-20T07:43:54.087Z",
+ "checkedAt": "2026-11-21T07:41:14.489Z",
  "tools": [
   {
    "id": "gh-affaan-m-ecc-0658d7",
@@ -6035,10 +6035,11 @@
    "pushedAt": "2026-05-24T19:31:46Z",
    "license": "NOASSERTION",
    "homepage": "https://www.cs.cmu.edu/~custom-diffusion",
-   "checkedAt": "2026-10-19T05:13:57.229Z",
+   "checkedAt": "2026-11-21T07:41:14.489Z",
    "discoveredAt": "2026-10-19T05:13:57.229Z",
    "active": true,
-   "readmeCheckedAt": "2026-10-19T05:13:57.229Z"
+   "readmeCheckedAt": "2026-10-19T05:13:57.229Z",
+   "archived": false
   },
   {
    "id": "gh-omnivore-app-omnivore-ffe256",
@@ -6055,14 +6056,15 @@
     "reading"
    ],
    "description": "Omnivore is a complete, open source read-it-later solution for people who like reading.",
-   "stars": 16284,
-   "pushedAt": "2026-10-18T21:35:54Z",
+   "stars": 16420,
+   "pushedAt": "2026-11-18T15:22:55Z",
    "license": "AGPL-3.0",
    "homepage": "",
-   "checkedAt": "2026-10-19T05:13:57.229Z",
+   "checkedAt": "2026-11-21T07:41:14.489Z",
    "discoveredAt": "2026-10-19T05:13:57.229Z",
    "active": true,
-   "readmeCheckedAt": "2026-10-19T05:13:57.229Z"
+   "readmeCheckedAt": "2026-10-19T05:13:57.229Z",
+   "archived": false
   },
   {
    "id": "gh-hpcaitech-colossalai-99df99",
@@ -6084,14 +6086,15 @@
     "pipeline-parallelism"
    ],
    "description": "Making large AI models cheaper, faster and more accessible",
-   "stars": 41431,
-   "pushedAt": "2026-10-15T12:13:52Z",
+   "stars": 41420,
+   "pushedAt": "2026-11-19T08:56:20Z",
    "license": "Apache-2.0",
    "homepage": "https://www.colossalai.org",
-   "checkedAt": "2026-10-19T05:13:57.229Z",
+   "checkedAt": "2026-11-21T07:41:14.489Z",
    "discoveredAt": "2026-10-19T05:13:57.229Z",
    "active": true,
-   "readmeCheckedAt": "2026-10-19T05:13:57.229Z"
+   "readmeCheckedAt": "2026-10-19T05:13:57.229Z",
+   "archived": false
   },
   {
    "id": "gh-ath-maas-pixelle-video-536988",
@@ -6106,14 +6109,15 @@
     "video-generation"
    ],
    "description": "🚀 AI 全自动短视频引擎 | AI Fully Automated Short Video Engine",
-   "stars": 29143,
+   "stars": 30397,
    "pushedAt": "2026-06-14T12:40:58Z",
    "license": "Apache-2.0",
    "homepage": "https://aidc-ai.github.io/Pixelle-Video/zh",
-   "checkedAt": "2026-10-19T05:13:57.229Z",
+   "checkedAt": "2026-11-21T07:41:14.489Z",
    "discoveredAt": "2026-10-19T05:13:57.229Z",
    "active": true,
-   "readmeCheckedAt": "2026-10-19T05:13:57.229Z"
+   "readmeCheckedAt": "2026-10-19T05:13:57.229Z",
+   "archived": false
   },
   {
    "id": "gh-toon-format-toon-0da9a6",
@@ -6127,14 +6131,15 @@
     "tokenization"
    ],
    "description": "🎒 Token-Oriented Object Notation (TOON) – compact, human-readable serialization of JSON data for LLM prompts. TypeScript SDK, CLI, benchmarks.",
-   "stars": 25514,
-   "pushedAt": "2026-10-09T07:07:33Z",
+   "stars": 25642,
+   "pushedAt": "2026-11-11T13:52:44Z",
    "license": "MIT",
    "homepage": "https://toonformat.dev",
-   "checkedAt": "2026-10-19T05:13:57.229Z",
+   "checkedAt": "2026-11-21T07:41:14.489Z",
    "discoveredAt": "2026-10-19T05:13:57.229Z",
    "active": true,
-   "readmeCheckedAt": "2026-10-19T05:13:57.229Z"
+   "readmeCheckedAt": "2026-10-19T05:13:57.229Z",
+   "archived": false
   },
   {
    "id": "gh-koishijs-koishi-74159f",
@@ -6153,17 +6158,20 @@
     "line",
     "mail",
     "matrix",
-    "onebot"
+    "onebot",
+    "sdk",
+    "telegram"
    ],
    "description": "Cross-platform chatbot framework made with love",
-   "stars": 6257,
+   "stars": 6350,
    "pushedAt": "2026-10-08T12:13:06Z",
    "license": "MIT",
    "homepage": "https://koishi.chat",
-   "checkedAt": "2026-10-19T05:13:57.229Z",
+   "checkedAt": "2026-11-21T07:41:14.489Z",
    "discoveredAt": "2026-10-19T05:13:57.229Z",
    "active": true,
-   "readmeCheckedAt": "2026-10-19T05:13:57.229Z"
+   "readmeCheckedAt": "2026-10-19T05:13:57.229Z",
+   "archived": false
   },
   {
    "id": "gh-feder-cr-invisible-playwright-mcp-8330dd",
@@ -16200,6 +16208,292 @@
    "discoveredAt": "2026-11-20T07:43:54.087Z",
    "active": true,
    "readmeCheckedAt": "2026-11-20T07:43:54.087Z"
+  },
+  {
+   "id": "gh-getzep-graphiti-472ecb",
+   "name": "graphiti",
+   "repo": "getzep/graphiti",
+   "topic": "agents",
+   "topics": [
+    "agents",
+    "graph",
+    "llms",
+    "rag"
+   ],
+   "description": "Build Real-Time Knowledge Graphs for AI Agents",
+   "stars": 32972,
+   "pushedAt": "2026-11-20T17:36:25Z",
+   "license": "Apache-2.0",
+   "homepage": "https://help.getzep.com/graphiti",
+   "checkedAt": "2026-11-21T07:41:14.489Z",
+   "discoveredAt": "2026-11-21T07:41:14.489Z",
+   "active": true,
+   "readmeCheckedAt": "2026-11-21T07:41:14.489Z"
+  },
+  {
+   "id": "gh-op7418-guizang-social-card-skill-9c3417",
+   "name": "guizang-social-card-skill",
+   "repo": "op7418/guizang-social-card-skill",
+   "topic": "coding",
+   "topics": [
+    "agent-skill",
+    "ai-agent",
+    "anthropic",
+    "claude-code",
+    "claude-skill",
+    "codex",
+    "editorial-design",
+    "html-template",
+    "image-generation",
+    "playwright",
+    "rednote",
+    "social-cards"
+   ],
+   "description": "🪧 Claude Code / Codex skill — generate Xiaohongshu carousels & WeChat 21:9+1:1 cover pairs. Editorial × Swiss visual systems, 28 layouts, 10 themes, single-file HTML → PNG. 小红书图文 + 公众号封面对",
+   "stars": 8204,
+   "pushedAt": "2026-10-30T12:48:55Z",
+   "license": "AGPL-3.0",
+   "homepage": "https://github.com/op7418/guizang-social-card-skill",
+   "checkedAt": "2026-11-21T07:41:14.489Z",
+   "discoveredAt": "2026-11-21T07:41:14.489Z",
+   "active": true,
+   "readmeCheckedAt": "2026-11-21T07:41:14.489Z"
+  },
+  {
+   "id": "gh-lobehub-lobe-tts-a3ce23",
+   "name": "lobe-tts",
+   "repo": "lobehub/lobe-tts",
+   "topic": "audio",
+   "topics": [
+    "auzre",
+    "bun",
+    "edge",
+    "lobehub",
+    "microsoft-speech-api",
+    "nodejs",
+    "opeanai",
+    "react",
+    "speech-recognition",
+    "speech-to-text",
+    "stt",
+    "text-to-speech"
+   ],
+   "description": "🎤 Lobe TTS - A high-quality & reliable TTS/STT library for Server and Browser",
+   "stars": 810,
+   "pushedAt": "2026-11-12T13:21:51Z",
+   "license": "MIT",
+   "homepage": "https://tts.lobehub.com",
+   "checkedAt": "2026-11-21T07:41:14.489Z",
+   "discoveredAt": "2026-11-21T07:41:14.489Z",
+   "active": true,
+   "readmeCheckedAt": "2026-11-21T07:41:14.489Z"
+  },
+  {
+   "id": "gh-omninull-omniwm-9db4e4",
+   "name": "OmniWM",
+   "repo": "OmniNull/OmniWM",
+   "topic": "everyday",
+   "topics": [
+    "aerospace",
+    "desktop-environment",
+    "dwindle-layout",
+    "hyprland",
+    "mac",
+    "macos",
+    "niri",
+    "paperwm",
+    "productivity",
+    "swift",
+    "tiling",
+    "tiling-window-manager"
+   ],
+   "description": "Free, open-source tiling window manager for Apple Silicon Macs, with Niri-style scrolling containers and Hyprland-style Dwindle BSP.",
+   "stars": 3671,
+   "pushedAt": "2026-11-20T20:58:10Z",
+   "license": "GPL-2.0",
+   "homepage": "https://omniwm.app",
+   "checkedAt": "2026-11-21T07:41:14.489Z",
+   "discoveredAt": "2026-11-21T07:41:14.489Z",
+   "active": true,
+   "readmeCheckedAt": "2026-11-21T07:41:14.489Z"
+  },
+  {
+   "id": "gh-kaito-project-aikit-61fe82",
+   "name": "aikit",
+   "repo": "kaito-project/aikit",
+   "topic": "local",
+   "topics": [
+    "ai",
+    "buildkit",
+    "chatgpt",
+    "docker",
+    "fine-tuning",
+    "finetuning",
+    "gemma",
+    "gpt",
+    "inference",
+    "kubernetes",
+    "large-language-models",
+    "llama"
+   ],
+   "description": "🏗️ Fine-tune, build, and deploy open-source LLMs easily!",
+   "stars": 544,
+   "pushedAt": "2026-11-16T02:36:38Z",
+   "license": "MIT",
+   "homepage": "https://kaito-project.github.io/aikit/",
+   "checkedAt": "2026-11-21T07:41:14.489Z",
+   "discoveredAt": "2026-11-21T07:41:14.489Z",
+   "active": true,
+   "readmeCheckedAt": "2026-11-21T07:41:14.489Z"
+  },
+  {
+   "id": "gh-alexsjones-llmfit-761823",
+   "name": "llmfit",
+   "repo": "AlexsJones/llmfit",
+   "topic": "ai",
+   "topics": [
+    "gguf",
+    "llm",
+    "localai",
+    "mlx",
+    "skill",
+    "unsloth"
+   ],
+   "description": "Hundreds of models & providers. One command to find what runs on your hardware.",
+   "stars": 39159,
+   "pushedAt": "2026-11-18T14:59:42Z",
+   "license": "MIT",
+   "homepage": "",
+   "checkedAt": "2026-11-21T07:41:14.489Z",
+   "discoveredAt": "2026-11-21T07:41:14.489Z",
+   "active": true,
+   "readmeCheckedAt": "2026-11-21T07:41:14.489Z"
+  },
+  {
+   "id": "gh-sirfz-tesserocr-0eb27f",
+   "name": "tesserocr",
+   "repo": "sirfz/tesserocr",
+   "topic": "documents",
+   "topics": [
+    "cython",
+    "ocr",
+    "optical-character-recognition",
+    "python-library",
+    "tesseract"
+   ],
+   "description": "A Python wrapper for the tesseract-ocr API",
+   "stars": 2181,
+   "pushedAt": "2026-11-12T08:35:21Z",
+   "license": "MIT",
+   "homepage": "",
+   "checkedAt": "2026-11-21T07:41:14.489Z",
+   "discoveredAt": "2026-11-21T07:41:14.489Z",
+   "active": true,
+   "readmeCheckedAt": "2026-11-21T07:41:14.489Z"
+  },
+  {
+   "id": "gh-thu-ml-motus-8714b9",
+   "name": "Motus",
+   "repo": "thu-ml/Motus",
+   "topic": "video",
+   "topics": [
+    "diffusion-model",
+    "robotic-manipulation",
+    "robotics",
+    "unidiffuser",
+    "video-generation",
+    "vision-language-action-model",
+    "world-model"
+   ],
+   "description": "Official code of Motus: A Unified Latent Action World Model",
+   "stars": 1321,
+   "pushedAt": "2026-10-09T16:42:59Z",
+   "license": "Apache-2.0",
+   "homepage": "https://motus-robotics.github.io/motus",
+   "checkedAt": "2026-11-21T07:41:14.489Z",
+   "discoveredAt": "2026-11-21T07:41:14.489Z",
+   "active": true,
+   "readmeCheckedAt": "2026-11-21T07:41:14.489Z"
+  },
+  {
+   "id": "gh-composiohq-composio-dfba16",
+   "name": "composio",
+   "repo": "ComposioHQ/composio",
+   "topic": "agents",
+   "topics": [
+    "agentic-ai",
+    "agents",
+    "ai",
+    "ai-agents",
+    "aiagents",
+    "developer-tools",
+    "function-calling",
+    "gpt-4",
+    "javascript",
+    "js",
+    "llm",
+    "llmops"
+   ],
+   "description": "Composio powers 1000+ toolkits, tool search, context management, authentication, and a sandboxed workbench to help you build AI agents that turn intent into action.",
+   "stars": 31217,
+   "pushedAt": "2026-11-21T06:26:41Z",
+   "license": "MIT",
+   "homepage": "https://docs.composio.dev",
+   "checkedAt": "2026-11-21T07:41:14.489Z",
+   "discoveredAt": "2026-11-21T07:41:14.489Z",
+   "active": true,
+   "readmeCheckedAt": "2026-11-21T07:41:14.489Z"
+  },
+  {
+   "id": "gh-s1dashu-ip-as-logo-skill-269c21",
+   "name": "ip-as-logo-skill",
+   "repo": "s1dashu/ip-as-logo-skill",
+   "topic": "coding",
+   "topics": [
+    "codex",
+    "codex-skill",
+    "image-generation",
+    "logo-design",
+    "mascot-design"
+   ],
+   "description": "A compact Agent Skill for highly simplified, rounded, subtly neo-skeuomorphic IP mascot logos.",
+   "stars": 6660,
+   "pushedAt": "2026-11-06T17:50:39Z",
+   "license": "MIT",
+   "homepage": "https://visualskills.dev/ip-as-logo",
+   "checkedAt": "2026-11-21T07:41:14.489Z",
+   "discoveredAt": "2026-11-21T07:41:14.489Z",
+   "active": true,
+   "readmeCheckedAt": "2026-11-21T07:41:14.489Z"
+  },
+  {
+   "id": "gh-lukaszliniewicz-pandrator-e377fd",
+   "name": "Pandrator",
+   "repo": "lukaszliniewicz/Pandrator",
+   "topic": "audio",
+   "topics": [
+    "audiobook",
+    "audiobook-creator",
+    "audiobook-maker",
+    "chatterbox",
+    "dubbing",
+    "dubbing-ai",
+    "kokoro",
+    "pdf-to-audio",
+    "rvc",
+    "silero",
+    "subtitle-to-speech",
+    "subtitle-to-voice"
+   ],
+   "description": "Turn PDFs and EPUBs into audiobooks; subtitles or videos into dubbed videos (including translation), and more. For free. Pandrator uses local models, including voice-cloning (instant, RVC-enhanced, XTTS fine-tuning) and LLM processing. It aspires to be a user-friendly app with a GUI, an installer and all-in-one packages.",
+   "stars": 649,
+   "pushedAt": "2026-11-21T04:52:01Z",
+   "license": "MIT",
+   "homepage": "https://pandrator.liniewicz.eu/",
+   "checkedAt": "2026-11-21T07:41:14.489Z",
+   "discoveredAt": "2026-11-21T07:41:14.489Z",
+   "active": true,
+   "readmeCheckedAt": "2026-11-21T07:41:14.489Z"
   }
  ]
 }

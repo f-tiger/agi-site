@@ -1,6 +1,16 @@
 {
   "items": [
     {
+      "name": "I made an audio-to-MIDI model 60x more efficient",
+      "url": "https://kobi.music/research/dettato",
+      "host": "kobi.music",
+      "src": "https://news.ycombinator.com/item?id=50526023",
+      "points": 272,
+      "comments": 57,
+      "found": "2026-11-21",
+      "status": "candidate"
+    },
+    {
       "name": "TrnRT – An open-source LLM inference engine for AWS Trainium",
       "url": "https://github.com/RunanywhereAI/trnrt",
       "host": "github.com",
@@ -341,5 +351,5 @@
       "status": "candidate"
     }
   ],
-  "updated": "2026-11-20"
+  "updated": "2026-11-21"
 }
