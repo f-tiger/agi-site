@@ -109,11 +109,29 @@ async function assertToolLinks(suite, locale) {
   assert.equal(await suite.locator('[data-suite-group]').count(), SUITE_CATEGORIES.length);
 }
 
+async function assertHomeDiscovery(suite,locale) {
+  const browse=suite.locator('[data-suite-browse]');
+  assert.equal(await browse.locator('[data-suite-group]').count(),SUITE_CATEGORIES.length);
+  assert.equal(await browse.locator('[data-suite-keywords]').count(),2*SUITE_CATEGORIES.length);
+  assert.deepEqual(await browse.locator('.suite-category-link').evaluateAll(links=>links.map(link=>link.pathname)),
+    SUITE_CATEGORIES.map(group=>locale+'/studio/ai/categories/'+group.id));
+  for(const route of ['/studio/ai/','/studio/table-review',toolPath('answer-citation-coverage'),toolPath('ai-json-output-contract')]){
+    assert.equal(await suite.locator('a[href="'+origin+locale+route+'"]').first().isVisible(),true,route);
+  }
+}
+
 async function verifyDirectory(page, locale) {
+  const searchIndexRequests=[];
+  const noteIndexRead=request=>{
+    if(new URL(request.url()).pathname===locale+'/studio/ai/search-index.json') searchIndexRequests.push(request.url());
+  };
+  page.on('request',noteIndexRead);
   await visit(page, locale, '/');
   const suite = page.locator('#ai-tools');
-  await assertToolLinks(suite, locale);
+  await assertHomeDiscovery(suite,locale);
   const search = suite.locator('[data-suite-search]');
+  await search.waitFor({state:'visible'});
+  assert.equal(searchIndexRequests.length,0,'Homepage fetched search data before any interaction');
   const results = suite.locator('[data-suite-results]');
   const resultLinks = results.locator('[data-suite-keywords] a');
   await search.fill('no-result-73261');
@@ -135,6 +153,8 @@ async function verifyDirectory(page, locale) {
   const csv = toolById.get('csv-to-json');
   await search.fill(locale ? csv.title.en : csv.title.zh);
   assert.equal(await resultLinks.first().getAttribute('href'), origin + locale + toolPath(csv.id));
+  await search.fill(locale ? csv.title.zh : csv.title.en);
+  assert.equal(await resultLinks.first().getAttribute('href'), origin + locale + toolPath(csv.id));
 
   await search.fill('');
   const filter = suite.locator('[data-suite-filter]');
@@ -154,9 +174,30 @@ async function verifyDirectory(page, locale) {
 
   await suite.locator('[data-suite-clear]').click();
   assert.equal(await filter.inputValue(), '');
-  await search.fill('csv-to-json');
+  // The tool is absent from the homepage preview but available in the full index.
+  const workflow = toolById.get('ai-json-output-contract');
+  assert.equal(await suite.locator('[data-suite-group] a[href="'+origin+locale+toolPath(workflow.id)+'"]').count(),0);
+  await search.fill(workflow.name);
+  assert.equal(await resultLinks.first().getAttribute('href'),origin+locale+toolPath(workflow.id));
   await resultLinks.first().click();
-  await page.waitForURL('**/studio/ai/csv-to-json');
+  await page.waitForURL('**/studio/ai/'+workflow.id);
+  assert.equal(searchIndexRequests.length,1,'Repeated searches refetched the index');
+  page.off('request',noteIndexRead);
+
+  const indexUrl=origin+locale+'/studio/ai/search-index.json';
+  await page.route(indexUrl,route=>route.fulfill({status:503,body:'Temporarily unavailable'}));
+  try {
+    await visit(page,locale,'/');
+    await search.fill('csv-to-json');
+    const fallback=suite.locator('[data-suite-unavailable] a');
+    await fallback.waitFor({state:'visible'});
+    assert.equal(await suite.locator('[data-suite-group]:visible').count(),SUITE_CATEGORIES.length);
+    await fallback.click();
+    await page.waitForURL('**/studio/ai/');
+    await assertToolLinks(page.locator('[data-suite-index]'),locale);
+  } finally {
+    await page.unroute(indexUrl);
+  }
 }
 
 async function verifyNoScriptBrowse(browser) {
@@ -166,11 +207,13 @@ async function verifyNoScriptBrowse(browser) {
     for (const locale of ['', '/en']) {
       await visit(page, locale, '/');
       const suite = page.locator('#ai-tools');
-      await assertToolLinks(suite, locale);
+      await assertHomeDiscovery(suite,locale);
       assert.equal(await suite.locator('[data-suite-search]').isVisible(), false);
-      const group = suite.locator('[data-group-id="text-data"]');
-      await group.locator('summary').click();
-      const link = group.locator('a[href$="/csv-to-json"]');
+      await suite.locator('a[href="'+origin+locale+'/studio/ai/"]').first().click();
+      await page.waitForURL('**/studio/ai/');
+      await assertToolLinks(page.locator('[data-suite-index]'), locale);
+      await page.locator('[data-suite-index] [data-group-id="text-data"] summary').click();
+      const link = page.locator('[data-suite-index] [data-group-id="text-data"] a[href$="/csv-to-json"]');
       await link.waitFor({state: 'visible'});
       await link.click();
       await page.waitForURL('**/studio/ai/csv-to-json');

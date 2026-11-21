@@ -45,7 +45,9 @@
         <h2 id="browse-title" tabindex="-1">Browse MCP servers</h2>
         <p>Each entry is a server that can expose several tools. For selected entries, we reviewed the publisher’s documentation. Registry entries report the publisher’s declared setup.</p>
       </div>
-      <p class="directory-date" id="catalog-date" hidden>Snapshot as of <time></time></p>
+      <p class="directory-date" id="catalog-date">Snapshot as of <!-- catalog-date:start -->
+<time datetime="2026-11-20">2026-11-20</time>
+<!-- catalog-date:end --></p>
     </div>
     <form class="directory-filters" id="catalog-filters" hidden>
       <label class="directory-query">
@@ -87,9 +89,20 @@
         <button type="reset">Clear filters</button>
       </div>
     </form>
-    <p class="directory-status" id="catalog-status" role="status"></p>
+    <p class="directory-status" id="catalog-status" role="status"><!-- catalog-summary:start -->
+1,000 servers in the snapshot, including 31 with publisher docs reviewed.
+<!-- catalog-summary:end --></p>
     <noscript><p>Filtering requires JavaScript. The catalog and setup guide are available through these links.</p></noscript>
-    <ul class="directory-results" id="catalog-results"></ul>
+    <ul class="directory-results" id="catalog-results">
+<!-- catalog-evidence:start -->
+<li class="directory-result"><h3>ElevenLabs</h3><p>Generate audio and other creative assets or manage voice agents through an authorized ElevenLabs connection.</p><p>Hosted</p><p class="directory-links"><a href="https://elevenlabs.io/mcp" rel="noreferrer" data-catalog-action="docs">Publisher setup guide</a><a href="https://registry.modelcontextprotocol.io/v0.1/servers/io.elevenlabs%2Fmcp/versions/latest" rel="noreferrer" data-catalog-action="source">Registry source</a></p></li>
+<li class="directory-result"><h3>PostHog</h3><p>Use the connected PostHog project&#x27;s product analytics, feature flags and experiment data.</p><p>Hosted</p><p class="directory-links"><a href="https://posthog.com/docs/model-context-protocol/tools" rel="noreferrer" data-catalog-action="docs">Publisher setup guide</a><a href="https://registry.modelcontextprotocol.io/v0.1/servers/io.github.PostHog%2Fmcp/versions/latest" rel="noreferrer" data-catalog-action="source">Registry source</a></p></li>
+<li class="directory-result"><h3>Auth0</h3><p>Inspect applications and logs or manage Auth0 tenant resources, with read-only mode available.</p><p>Local installation</p><p class="directory-links"><a href="https://github.com/auth0/auth0-mcp-server" rel="noreferrer" data-catalog-action="docs">Publisher setup guide</a><a href="https://registry.modelcontextprotocol.io/v0.1/servers/com.auth0%2Fmcp/versions/latest" rel="noreferrer" data-catalog-action="source">Registry source</a></p></li>
+<li class="directory-result"><h3>Microsoft Learn</h3><p>Search Microsoft Learn documentation, retrieve articles and find official code samples.</p><p>Hosted</p><p class="directory-links"><a href="https://learn.microsoft.com/en-us/training/support/mcp" rel="noreferrer" data-catalog-action="docs">Publisher setup guide</a><a href="https://registry.modelcontextprotocol.io/v0.1/servers/com.microsoft%2Fmicrosoft-learn-mcp/versions/latest" rel="noreferrer" data-catalog-action="source">Registry source</a></p></li>
+<li class="directory-result"><h3>Cloudflare</h3><p>Pick a Cloudflare server for a specific operational task such as Workers observability or DNS management.</p><p>Hosted</p><p class="directory-links"><a href="https://developers.cloudflare.com/agents/model-context-protocol/cloudflare/servers-for-cloudflare/" rel="noreferrer" data-catalog-action="docs">Publisher setup guide</a><a href="https://registry.modelcontextprotocol.io/v0.1/servers/com.cloudflare.mcp%2Fmcp/versions/latest" rel="noreferrer" data-catalog-action="source">Registry source</a></p></li>
+<li class="directory-result"><h3>Figma</h3><p>Bring design context from a Figma frame or selection into an implementation task.</p><p>Hosted</p><p class="directory-links"><a href="https://github.com/figma/mcp-server-guide" rel="noreferrer" data-catalog-action="docs">Publisher setup guide</a><a href="https://registry.modelcontextprotocol.io/v0.1/servers/com.figma.mcp%2Fmcp/versions/latest" rel="noreferrer" data-catalog-action="source">Registry source</a></p></li>
+<!-- catalog-evidence:end -->
+    </ul>
     <nav class="directory-pages" id="catalog-pages" aria-label="Catalog pages" hidden>
       <button type="button" id="catalog-previous">Previous</button>
       <span id="catalog-page"></span>

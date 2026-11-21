@@ -45,7 +45,9 @@
         <h2 id="browse-title" tabindex="-1">浏览 MCP 服务</h2>
         <p>每条记录对应一个 MCP 服务，可以包含多个工具。部分条目已人工核对发布方文档，其余条目展示发布方登记的接入方式。</p>
       </div>
-      <p class="directory-date" id="catalog-date" hidden>快照日期 <time></time></p>
+      <p class="directory-date" id="catalog-date">快照日期 <!-- catalog-date:start -->
+<time datetime="2026-11-20">2026-11-20</time>
+<!-- catalog-date:end --></p>
     </div>
     <form class="directory-filters" id="catalog-filters" hidden>
       <label class="directory-query">
@@ -87,9 +89,20 @@
         <button type="reset">清空筛选</button>
       </div>
     </form>
-    <p class="directory-status" id="catalog-status" role="status"></p>
+    <p class="directory-status" id="catalog-status" role="status"><!-- catalog-summary:start -->
+共收录 1,000 个服务，已核对 31 个发布方的文档。
+<!-- catalog-summary:end --></p>
     <noscript><p>筛选需要 JavaScript。仍可通过这里的链接查看目录和接入说明。</p></noscript>
-    <ul class="directory-results" id="catalog-results"></ul>
+    <ul class="directory-results" id="catalog-results">
+<!-- catalog-evidence:start -->
+<li class="directory-result"><h3>ElevenLabs</h3><p>通过获授权的 ElevenLabs 连接生成音频等创作素材，或管理语音智能体。</p><p>远程托管</p><p class="directory-links"><a href="https://elevenlabs.io/mcp" rel="noreferrer" data-catalog-action="docs">发布方接入文档</a><a href="https://registry.modelcontextprotocol.io/v0.1/servers/io.elevenlabs%2Fmcp/versions/latest" rel="noreferrer" data-catalog-action="source">条目来源</a></p></li>
+<li class="directory-result"><h3>PostHog</h3><p>查看已连接的 PostHog 项目分析数据、功能开关和实验数据。</p><p>远程托管</p><p class="directory-links"><a href="https://posthog.com/docs/model-context-protocol/tools" rel="noreferrer" data-catalog-action="docs">发布方接入文档</a><a href="https://registry.modelcontextprotocol.io/v0.1/servers/io.github.PostHog%2Fmcp/versions/latest" rel="noreferrer" data-catalog-action="source">条目来源</a></p></li>
+<li class="directory-result"><h3>Auth0</h3><p>查看应用和日志，或管理 Auth0 租户资源，可启用只读模式。</p><p>本地安装</p><p class="directory-links"><a href="https://github.com/auth0/auth0-mcp-server" rel="noreferrer" data-catalog-action="docs">发布方接入文档</a><a href="https://registry.modelcontextprotocol.io/v0.1/servers/com.auth0%2Fmcp/versions/latest" rel="noreferrer" data-catalog-action="source">条目来源</a></p></li>
+<li class="directory-result"><h3>Microsoft Learn</h3><p>搜索 Microsoft Learn 文档，读取完整文章并查找官方代码示例。</p><p>远程托管</p><p class="directory-links"><a href="https://learn.microsoft.com/en-us/training/support/mcp" rel="noreferrer" data-catalog-action="docs">发布方接入文档</a><a href="https://registry.modelcontextprotocol.io/v0.1/servers/com.microsoft%2Fmicrosoft-learn-mcp/versions/latest" rel="noreferrer" data-catalog-action="source">条目来源</a></p></li>
+<li class="directory-result"><h3>Cloudflare</h3><p>根据任务选择 Cloudflare 服务，例如检查 Workers 运行情况或管理 DNS。</p><p>远程托管</p><p class="directory-links"><a href="https://developers.cloudflare.com/agents/model-context-protocol/cloudflare/servers-for-cloudflare/" rel="noreferrer" data-catalog-action="docs">发布方接入文档</a><a href="https://registry.modelcontextprotocol.io/v0.1/servers/com.cloudflare.mcp%2Fmcp/versions/latest" rel="noreferrer" data-catalog-action="source">条目来源</a></p></li>
+<li class="directory-result"><h3>Figma</h3><p>将 Figma 指定画板或选区的设计上下文用于界面实现。</p><p>远程托管</p><p class="directory-links"><a href="https://github.com/figma/mcp-server-guide" rel="noreferrer" data-catalog-action="docs">发布方接入文档</a><a href="https://registry.modelcontextprotocol.io/v0.1/servers/com.figma.mcp%2Fmcp/versions/latest" rel="noreferrer" data-catalog-action="source">条目来源</a></p></li>
+<!-- catalog-evidence:end -->
+    </ul>
     <nav class="directory-pages" id="catalog-pages" aria-label="目录分页" hidden>
       <button type="button" id="catalog-previous">上一页</button>
       <span id="catalog-page"></span>

@@ -1,5 +1,5 @@
 import {SUITE_CATEGORIES,SUITE_TOOLS,inputSpec,toolInputSchema,runSuiteTool,suitePath} from '../lib/ai-suite/registry.mjs';
-import {renderAiIndex,categoryPath} from './ai-suite-directory.mjs';
+import {renderAiIndex,categoryPath,aiSuiteSearchIndex,searchIndexPath} from './ai-suite-directory.mjs';
 import {suiteGuidance} from './ai-suite-guidance.mjs';
 
 export {renderAiIndex,suiteCount} from './ai-suite-directory.mjs';
@@ -131,6 +131,7 @@ export function buildAiSuite({layout,esc,BASE,LOCALE,write,pushPage}) {
     write('studio/ai/'+tool.id+'.html',layout({title:title+' · BPJ',description,path,body,wide:true,schema:[schema,breadcrumbs]}));
     pushPage(BASE+path+'.html','0.7');
   }
+  write(searchIndexPath.slice(1),JSON.stringify(aiSuiteSearchIndex(lang,BASE)));
   return SUITE_TOOLS.map(tool=>({
     id:tool.id,name:tool.title,description:tool.description,path:suitePath(tool),url:BASE+suitePath(tool),
     category:tool.category,mcpTool:tool.name,inputSchema:toolInputSchema(tool),example:tool.example,
