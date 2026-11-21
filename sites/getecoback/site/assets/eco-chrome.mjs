@@ -17,7 +17,7 @@ if (data) {
     if (term.length < 2) { status.textContent = t.searchHint; return; }
     status.textContent = t.searchLoading;
     try {
-      indexPromise ??= fetch('/search-index.json').then(response => {
+      indexPromise ??= fetch('/assets/search-index.json').then(response => {
         if (!response.ok) throw Error('Search unavailable');
         return response.json();
       }).then(index => { if (!Array.isArray(index)) throw Error('Invalid index'); return index; });

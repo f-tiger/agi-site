@@ -18,3 +18,9 @@ for page in root.rglob("*.html"):
 assert not errors, "Non-cooling buying sheets link to BTU: " + ", ".join(errors)
 assert checked, "No purchase sheets checked"
 print(f"PASS: {checked} purchase sheets; no non-cooling BTU detours")
+
+fact_check = (root / "guide/treiben-rechenzentren-die-strompreise.html").read_text()
+for marker in ("EB_MODELS", "EB_TOPPICK", "EB_POPUP", "EB_STICKY", "EB_QUICKPICK", "EB_SIZER",
+               "EB_HEATNOW", "EB_HEATENERGY", "EB_EXPLAINER", "EB_CLIMATE", "EB_RADAR"):
+    assert f"<!--{marker}-->" not in fact_check, f"Unrelated promotion on the electricity fact check: {marker}"
+assert '<a href="/guide/heizkosten-vergleich-rechner.html"' in fact_check, "Keep the relevant household calculator link"

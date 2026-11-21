@@ -28,7 +28,7 @@ Der Fischer-Katalog führt den CB-3500 mit 3,5 kW Kühlleistung und R32. Prüfe 
 
 ## Remko RKL 495 DC: andere Leistung und Aufstellung
 
-REMKO nennt für den RKL 495 DC 4,3 kW Kühlleistung und eine insgesamt 3 m lange Kältemittelleitung. Prüfe deren nutzbaren Weg und die Aufstellung in der Anleitung. Die höhere Nennleistung allein belegt weder einen leiseren Betrieb noch eine passende Lösung für dein Zimmer. Bestand und Preis sind hier nicht bestätigt.
+[REMKO nennt für den RKL 495 DC](https://www.remko.de/gewerblich/klimasysteme/lokal/rkl-dc/) 4,3 kW Kühlleistung und eine insgesamt 3 m lange Kältemittelleitung. Prüfe deren nutzbaren Weg und die Aufstellung in der Anleitung. Die höhere Nennleistung allein belegt weder einen leiseren Betrieb noch eine passende Lösung für dein Zimmer. Bestand und Preis sind hier nicht bestätigt.
 
 **Passendes Angebot prüfen**Wähle erst die geeignete Bauart. Vergleiche dann genaue Modellbezeichnung, Lieferdatum, Zubehör, Verkäufer und Rückgabebedingungen.
 
@@ -48,7 +48,7 @@ Wenn du aktuell keine Kühlung brauchst oder die Aufstellung ungeklärt ist, ist
 
 ## Quellen und Prüfstand
 
-Technische Angaben zuletzt am 02.10.2026 geprüft: [Midea Produktdaten](https://www.midea.com/de/klimatisieren-heizen/portasplit/produktinfos.portasplit), Midea Aufstellung, Fischer CB-3500 und REMKO RKL DC. Herstellerwerte sind keine vergleichende Messung unter gleichen Bedingungen.
+Technische Angaben zuletzt am 02.10.2026 geprüft: [Midea Produktdaten](https://www.midea.com/de/klimatisieren-heizen/portasplit/produktinfos.portasplit), [Midea Aufstellung](https://www.midea.com/de/klimatisieren-heizen/portasplit/installation), Fischer CB-3500 und [REMKO RKL DC](https://www.remko.de/gewerblich/klimasysteme/lokal/rkl-dc/). Herstellerwerte sind keine vergleichende Messung unter gleichen Bedingungen.
 
 ## Häufige Fragen
 
