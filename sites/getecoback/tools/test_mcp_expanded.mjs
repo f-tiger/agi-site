@@ -57,14 +57,14 @@ test('old or invalid cursors reject safely and both catalogue boundaries paginat
     assert.equal((await response.json()).error.code,-32602);
   }
   const {pageTools} = await import('../src/mcp-pagination.mjs');
-  for (const size of [1000,2001]) {
+  for (const size of [1000,2001,2101]) {
     const expected = Array.from({length:size}, (_,i)=>({name:'example_'+i}));
     const sizes = [];
     const seen = await collectToolPages(async cursor => {
       const page = pageTools(expected,cursor,'99.0.0');
       sizes.push(page.tools.length);
       return page;
-    });
+    }, {maxPages:Math.ceil(size/100)});
     const remainder = size % 100;
     assert.deepEqual(sizes,[...Array(Math.floor(size / 100)).fill(100),...(remainder ? [remainder] : [])]);
     assert.deepEqual(seen,expected);
