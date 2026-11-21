@@ -17,12 +17,12 @@ function relevance({titles,alias,description},query,words) {
   return words.every(word=>text.includes(word))?1:0;
 }
 
-function searchRow({path,title,alternate,description},groupTitle,groupId) {
+function searchRow({path,title,alternate,aliases=[],description},groupTitle,groupId) {
   const url=new URL(path,location.origin);
   return {
     url,title,description,groupTitle,groupId,
     searchable:{
-      titles:[normalize(title),normalize(alternate)],
+      titles:[title,alternate,...aliases].map(normalize),
       alias:normalize(url.pathname.split('/').pop()),
       description:normalize(description+' '+groupTitle),
     },
@@ -80,6 +80,7 @@ function initDirectory(index) {
           path:link.href,
           title:link.textContent,
           alternate:row.dataset.suiteAlt,
+          aliases:JSON.parse(row.dataset.suiteAliases || '[]'),
           description:row.querySelector('.suite-directory-description').textContent,
         },groupTitle,group.dataset.groupId);
       });

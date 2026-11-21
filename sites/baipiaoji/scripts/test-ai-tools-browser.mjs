@@ -156,6 +156,11 @@ async function verifyDirectory(page, locale) {
   await search.fill(locale ? csv.title.zh : csv.title.en);
   assert.equal(await resultLinks.first().getAttribute('href'), origin + locale + toolPath(csv.id));
 
+  await search.fill(locale ? 'release rollback check' : 'AI 回退检查');
+  assert.equal(await resultLinks.first().getAttribute('href'), origin + locale + toolPath('ai-paired-pass-regression'));
+  await search.fill('compare Promptfoo eval exports');
+  assert.equal(await resultLinks.first().getAttribute('href'), origin + locale + toolPath('ai-eval-export-pair'));
+
   await search.fill('');
   const filter = suite.locator('[data-suite-filter]');
   await filter.selectOption('tables');
@@ -195,6 +200,10 @@ async function verifyDirectory(page, locale) {
     await fallback.click();
     await page.waitForURL('**/studio/ai/');
     await assertToolLinks(page.locator('[data-suite-index]'),locale);
+    const completeDirectory=page.locator('[data-suite-index]');
+    await completeDirectory.locator('[data-suite-search]').fill(locale ? 'release rollback check' : 'AI 回退检查');
+    assert.equal(await completeDirectory.locator('[data-suite-results] a').first().getAttribute('href'),
+      origin + locale + toolPath('ai-paired-pass-regression'));
   } finally {
     await page.unroute(indexUrl);
   }

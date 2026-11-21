@@ -5,6 +5,25 @@ const entry = (useCase, note, fieldHints, resultLabels, relatedIds) => ({
 // Tool-specific guidance follows the existing input contract and result keys.
 // The original schema, example, and calculation still come from the registry.
 const guidance = {
+  'ai-eval-export-pair': entry(
+    ['用两次已有评测找出新版回退的样本。', 'Find sample regressions in two existing evaluations.'],
+    ['固定编号适用于同一测试与评分规则。存在执行错误、无评分或缺项时，比较仅覆盖成功配对的样本。交接处于 ready 时，把 nextCall 直接传给 MCP tools/call。若清单外的样本缺少评分，先复查原报告。', 'Use stable IDs and the same samples and grading rules. An incomplete run can be compared on graded pairs only. Pass nextCall to MCP tools/call when handoffState is ready. Review ungraded samples outside the expected cohort before continuing.'],
+    {format: ['CSV 要有编号列和 verdict，填 true、false、error 或 unscored。Promptfoo 使用 JSON v3 导出。', 'CSV needs a sample column and verdict (true, false, error or unscored). Promptfoo uses the v3 JSON export.'],
+      sampleKey: ['Promptfoo 的编号来自 vars 中明确提供的键。使用 case-001 等代号，保留两份文件的同一映射。', 'For Promptfoo, use an explicit key in vars. Prefer aliases such as case-001 and keep the same mapping across both files.'],
+      expectedIds: ['填固定测试集的全部编号，包括本次未执行的样本。', 'Include the complete intended cohort, including samples absent from both exports.'],
+      beforeExport: ['每份文件最多 24,000 字符。保留编号与评测判定，无关原文可以去掉。', 'Up to 24,000 characters. Keep identifiers and verdicts and omit unrelated source content where possible.'],
+      afterExport: ['两次运行须使用相同测试和评分规则。', 'Use the same test items and grading rules in both runs.']},
+    {expectedCount: ['预期样本数', 'Expected samples'], exactTestSetInBothRuns: ['两次结果均完整', 'Both runs complete'], missingIds: ['缺少结果的编号', 'Missing sample IDs'],
+      skipped: ['无有效评分的记录', 'Ungraded rows'], unexpectedIds: ['额外样本', 'Unexpected samples'], nextCall: ['配对回退检查参数', 'Paired regression call']},
+    ['ai-paired-pass-regression', 'ai-human-review-queue'],
+  ),
+  'ai-human-review-queue': entry(
+    ['把多人审核结果交给同伴复核。', 'Triage independent review results before adjudication.'],
+    ['有相反结论的样本进入分歧队列，并保留未评人员。全员给出同一判定才有一致结果。', 'Opposite verdicts go to disagreements with any missing reviewers preserved. A unanimous result requires matching verdicts from everyone.'],
+    {reviewerIdsJson: ['使用评审编号代替邮箱或姓名。', 'Use reviewer aliases in place of emails or names.']},
+    {disagreements: ['有分歧', 'Disagreements'], incomplete: ['漏评', 'Incomplete'], agreements: ['全员一致', 'Unanimous']},
+    ['ai-eval-export-pair','ai-multiclass-confusion'],
+  ),
   'csv-to-json': entry(
     ['把电子表格导出的名单转成可交给脚本或 AI 处理的对象数组。', 'Turn a spreadsheet export into a record array for a script or AI workflow.'],
     ['编号 001 会保留为字符串，适合处理有前导零的标识。', 'An identifier such as 001 stays a string and keeps its leading zeros.'],
