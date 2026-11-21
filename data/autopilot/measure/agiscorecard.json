@@ -3,20 +3,16 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 20,
-    "q": "tool:portfolio_returns"
-   },
-   {
     "n": 18,
     "q": "tool:verdicts"
    },
    {
-    "n": 13,
-    "q": "tool:thesis_tracker"
+    "n": 17,
+    "q": "tool:portfolio_returns"
    },
    {
-    "n": 11,
-    "q": "tool:invest_positions"
+    "n": 12,
+    "q": "tool:thesis_tracker"
    },
    {
     "n": 11,
@@ -24,27 +20,31 @@
    },
    {
     "n": 10,
+    "q": "tool:invest_positions"
+   },
+   {
+    "n": 9,
     "q": "tool:sunwatch_ledger"
    },
    {
-    "n": 6,
+    "n": 7,
     "q": "github"
    },
    {
-    "n": 5,
+    "n": 4,
     "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
    },
    {
     "n": 2,
-    "q": "tool:agi_consensus rokmcp-collector/0.2 (+h"
+    "q": "tool:search_mcp_catalog"
    },
    {
-    "n": 1,
-    "q": "巴菲特"
+    "n": 2,
+    "q": "tool:agi_consensus rokmcp-collector/0.2 (+h"
    }
   ]
  },
- "fetched": "2026-11-20",
+ "fetched": "2026-11-21",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
