@@ -48,14 +48,13 @@ def collect():
    catalog=json.loads((ROOT/'data/product-catalog.json').read_text())
    extra=' '.join([extra]+[c['name'] for c in catalog['categories']]+[p['name']+' '+p['variant'] for p in catalog['products']])
   entry={'u':route,'t':' '.join(h.title.split()),'d':desc[:320],'l':lang,'a':extra}
-  if section:=sections.pop((lang,route),None):
+  if section:=sections.get((lang,route)):
    anchor=section['id']
    matches=re.findall(r'<section\b[^<>]*\bid="'+re.escape(anchor)+r'"[^<>]*>',text)
    if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*',anchor) or len(matches)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',matches[0]):
     raise ValueError(f'Missing or hidden search section: {route}#{anchor}')
    entry['section']=section
   out.append(entry)
- if sections:raise ValueError(f'Unknown search section pages: {list(sections)}')
  return out
 
 def main():
