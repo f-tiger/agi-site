@@ -1120,6 +1120,7 @@ test('Miele bag selection separates one model’s replacement from sharing stock
     ['Welcher Staubsaugerbeutel passt in den Miele Compact C2: GN oder FJM?',one],
     ['Passen die Beutel vom Miele Guard S1 auch in den Guard L1, oder muss ich andere kaufen?',pair],
     ['Passen meine Beutel vom Miele Complete C3 auch in den neuen Guard M1?',pair],
+    ['Gemeinsamer Vorrat für Miele Guard M1 und Complete C3: CO oder GN und Abluftfilter?',pair],
     ['Haben Miele Complete C2 und Compact C2 denselben Beuteltyp?',pair],
     ['Können Guard S1 und L1 die gleichen Staubbeutel nutzen?',pair],
   ]){

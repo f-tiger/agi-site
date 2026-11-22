@@ -18,10 +18,10 @@ export function mieleBagTask(query) {
   const labels = new Set([...query.matchAll(/\b([clms])[ -]*([123])\b/g)].map(match => match[1] + match[2]));
   if (!models.size && !labels.size) return null;
   const familyCount = Math.max(models.size, labels.size);
-  if (/\b(?:abluftfilter|hepa[a-z]*|sf[ -]?ha|airclean)\b/.test(query) &&
-      (!/\b[a-z]*beutel(?:s|n)?\b/.test(query) || familyCount < 2)) return null;
-  const correctsModel = /\b(?:sondern|korrektur|ich meine|ich meinte)\b/.test(query);
   const sharedStock = /\b(?:beide|dieselb[a-z]*|gleich[a-z]*|gemeinsam[a-z]*|teilen|vorrat)\b/.test(query);
+  const namesBags = /\b[a-z]*beutel(?:s|n)?\b/.test(query) || (sharedStock && /\b(?:gn|fjm|tu|co)\b/.test(query));
+  if (/\b(?:abluftfilter|hepa[a-z]*|sf[ -]?ha|airclean)\b/.test(query) && (!namesBags || familyCount < 2)) return null;
+  const correctsModel = /\b(?:sondern|korrektur|ich meine|ich meinte)\b/.test(query);
   const namesAlternatives = matches.some((match,index) => index > 0 &&
     /\boder\b/.test(query.slice(matches[index-1].index+matches[index-1][0].length,match.index)));
   const incompleteLabel = /\bnur\s+c[ -]*[12]\b/.test(query);

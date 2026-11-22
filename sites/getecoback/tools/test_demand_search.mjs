@@ -422,6 +422,7 @@ test('Miele HyClean one-device and shared-stock questions reach a single German 
     'Auf dem Schild steht nur C2. Compact C2 oder Complete C2, welchen Staubsaugerbeutel brauche ich?',
     'Passen die Beutel vom Miele Guard S1 auch in den Guard L1, oder muss ich andere kaufen?',
     'Passen meine Beutel vom Miele Complete C3 auch in den neuen Guard M1?',
+    'Gemeinsamer Vorrat für Miele Guard M1 und Complete C3: CO oder GN und Abluftfilter?',
     'Haben Miele Complete C2 und Compact C2 denselben Beuteltyp?',
   ]){
     const hits=searchEntries(index,q,'de');
