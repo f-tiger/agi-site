@@ -111,6 +111,26 @@ test('GlassVAC charging decisions require measured temperature and the matched s
   assert.deepEqual(writes,[]);
 });
 
+test('corrected Kärcher LED questions keep the actual model and observed state separate', async () => {
+  const {call,writes} = fixture();
+  const name='fenstersauger_wv3_wv8_led_muster_einordnen';
+  const guide=origin+'/produkte.html#kaercher-fenstersauger-einsatz-und-hinweise';
+  const led=await call(compactPath,findName,{frage:'Bosch GlassVAC war im Frost. Korrektur: Mein Kärcher WV 8 blinkt zweimal kurz, der Motor ist aus. Was bedeutet das?'});
+  assert.equal(led.structuredContent.tools[0]?.name,name);
+  assert.equal(led.structuredContent.tools[0].guide_url,guide);
+  const unknown=await call(compactPath,findName,{frage:'Der Bosch GlassVAC war bei Frost in der Garage. Kann ich stattdessen den Kärcher WV 8 laden?'});
+  assert.deepEqual(unknown.structuredContent.tools,[]);
+  const observed={artikel:'1.633-785.0',sicherheitsblatt_bestaetigt:true,
+    muster:'alle_leds_zweimal_kurz_dann_lange_pause',zustand:'motor_aus'};
+  const result=await call(fullPath,name,observed);
+  assert.equal(result.structuredContent.tabellenbedeutung,'akkutemperatur_zu_hoch_oder_zu_tief');
+  assert.equal(result.structuredContent.guide_url,guide);
+  assert.equal(Object.hasOwn(result.structuredContent,'im_empfohlenen_ladebereich'),false);
+  const different=await call(compactPath,runName,{name,eingaben:{...observed,zustand:'waehrend_laden'}});
+  assert.equal(different.structuredContent.tabellenbedeutung,null);
+  assert.deepEqual(writes,[]);
+});
+
 test('only the exact compact profile changes the HTTP tool list and adds resources', async () => {
   const {result,rpc,call,writes} = fixture();
   const protocolVersion = '2025-06-18';
