@@ -29,7 +29,7 @@ test('appliance search results link to exact owned evidence and keep canonical m
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
   assert.equal(withGuides.length, 228);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 25);
+  assert.equal(destinations.size, 26);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);
