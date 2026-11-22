@@ -1,5 +1,6 @@
 import copy
 import datetime as dt
+from html import unescape
 from html.parser import HTMLParser
 import json
 from pathlib import Path
@@ -81,8 +82,16 @@ class CatalogTest(unittest.TestCase):
         self.assertEqual(share['rel'], 'noreferrer')
         self.assertEqual(parse_qs(urlsplit(share['href']).query), {
             'url': [f'{C.CANONICAL}#{anchor}'],
-            'title': [title],
+            'title': ['Miele C2: Compact braucht FJM, Complete GN'],
         })
+        snippet = re.search(r'<textarea id="miele-c2-share-text" rows="6" readonly>(.*?)</textarea>', answer, re.S)
+        self.assertIsNotNone(snippet)
+        self.assertEqual(unescape(snippet[1]),
+                         'Miele C2: Compact braucht FJM, Complete GN. Wenn nur „C2“ bekannt ist, prüfe zuerst das Typenschild und warte mit der Bestellung.\n\n'
+                         'Modelltabelle und Miele-Quellen bei EcoBack (Seite enthält Affiliate-Links):\n'
+                         f'{C.CANONICAL}#{anchor}')
+        self.assertLess(answer.index('C2-Kurzantwort teilen'), answer.index('<table>'))
+        self.assertNotIn('C2-Kurzantwort teilen', mirror)
         self.assertNotIn('reddit.com/submit', mirror)
         self.assertNotIn('amazon.', answer)
 
