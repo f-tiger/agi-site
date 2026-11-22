@@ -1,13 +1,24 @@
+import {WINDOW_CONDENSATION_URL} from '../site/assets/fenster-taucheck.mjs';
+
+const WINDOW_TIKTOK_ENTRY = '/fenster-tiktok';
+const CATALOG_TIKTOK_DESTINATIONS = new Map([
+ ['/keller-tiktok','/guide/luftentfeuchter-keller.html#kalter-keller'],
+ [WINDOW_TIKTOK_ENTRY,WINDOW_CONDENSATION_URL],
+]);
+
 // Fixed, first-party social entry paths. A typed URL is tag-only evidence.
 export function videoEntry(url, method='GET') {
- if (url.pathname === '/keller-tiktok' && ['GET','HEAD'].includes(method)) {
-  const target = new URL('/guide/luftentfeuchter-keller.html','https://getecoback.com');
-  target.hash = 'kalter-keller';
+ const catalogDestination = CATALOG_TIKTOK_DESTINATIONS.get(url.pathname);
+ if (catalogDestination && ['GET','HEAD'].includes(method)) {
+  const target = new URL(catalogDestination,'https://getecoback.com');
   target.searchParams.set('utm_source','tiktok');
   target.searchParams.set('utm_medium','social');
   target.searchParams.set('utm_campaign','eco-dach-catalog-01');
   if (url.searchParams.has('__ci') || url.searchParams.has('__probe')) target.searchParams.set('__probe','1');
   return new Response(null,{status:302,headers:{location:target.href,'cache-control':'no-store','x-robots-tag':'noindex'}});
+ }
+ if (url.pathname === WINDOW_TIKTOK_ENTRY) {
+  return new Response(null,{status:405,headers:{allow:'GET, HEAD','cache-control':'no-store','x-robots-tag':'noindex'}});
  }
  const robotSource={'/robot-youtube':'youtube','/robot-tiktok':'tiktok'}[url.pathname];
  if(robotSource && ['GET','HEAD'].includes(method)) {

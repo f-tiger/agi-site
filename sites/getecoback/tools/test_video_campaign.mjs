@@ -154,3 +154,41 @@ test('Cold cellar entry transmits only its allowed campaign and lands on the exa
  }
  assert.equal(videoEntry(url,'POST'),null);
 });
+
+test('Window TikTok entry is a fixed read-only redirect to the measured condensation answer',async()=>{
+ const {default:worker}=await import('../src/cached-worker.mjs');
+ const {campaignFields}=await import('../../../tools/fleet-analytics/campaign.mjs');
+ const entry='https://getecoback.com/fenster-tiktok';
+ const target='https://getecoback.com/guide/fenster-beschlagen-innen.html';
+ const fields={utm_source:'tiktok',utm_medium:'social',utm_campaign:'eco-dach-catalog-01'};
+ const hostile='next=https://evil.invalid&email=private&tag=unapproved&utm_source=email&utm_campaign=other&utm_content=unreviewed';
+ const env={
+  EVENTS:{prepare(){assert.fail('A redirect is not a recorded visit');}},
+  ASSETS:{fetch(){assert.fail('The exact route must be Worker-first');}},
+ };
+ const ctx={waitUntil(){assert.fail('The redirect has no background actions');}};
+ for(const [path,probe] of [[hostile,false],[hostile+'&__probe=999',true],[hostile+'&__ci=1',true]]){
+  for(const method of ['GET','HEAD']){
+   const response=await worker.fetch(new Request(entry+'?'+path,{method}),env,ctx);
+   assert.equal(response.status,302);
+   assert.equal(response.headers.get('cache-control'),'no-store');
+   assert.equal(response.headers.get('x-robots-tag'),'noindex');
+   assert.equal(await response.text(),'');
+   const destination=new URL(response.headers.get('location'));
+   assert.equal(destination.origin+destination.pathname,target);
+   assert.equal(destination.hash,'#fenstersauger-gegen-kondenswasser');
+   assert.deepEqual([...destination.searchParams],Object.entries(probe?{...fields,__probe:'1'}:fields));
+   assert.deepEqual(campaignFields(destination.searchParams),{
+    campaign_source:'tiktok',campaign_medium:'social',campaign_name:'eco-dach-catalog-01',
+   });
+  }
+ }
+ for(const method of ['POST','DELETE','OPTIONS']){
+  const response=await worker.fetch(new Request(entry+'?'+hostile,{method}),env,ctx);
+  assert.equal(response.status,405);
+  assert.equal(response.headers.get('allow'),'GET, HEAD');
+  assert.equal(response.headers.get('cache-control'),'no-store');
+  assert.equal(response.headers.get('x-robots-tag'),'noindex');
+  assert.equal(response.headers.has('location'),false);
+ }
+});
