@@ -1,6 +1,6 @@
 # Luftfeuchtigkeit richtig messen: Ort & Protokoll | EcoBack
 
-> Wo steht ein Hygrometer richtig? Vergleiche Temperatur, Feuchte und Lüftung mit einem einfachen Protokoll, bevor du einen Luftentfeuchter kaufst.
+> Wo steht ein Hygrometer richtig? Ordne 55 % und 60 % bei zwei Geräten ein und beobachte Temperatur, Luftfeuchte und Lüftung mit einem einfachen Protokoll.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html
 
@@ -8,9 +8,21 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftfeuchtigkeit-ri
 
 # Luftfeuchtigkeit messen, ohne vorschnell ein Gerät zu kaufen
 Ein Hygrometer ist ein guter Anfang. Aussagekräftig wird es mit einem festen Messort und etwas Kontext: Wie warm war der Raum, wurde gerade geduscht, gelüftet oder Wäsche aufgehängt?
-Kostenlose Ratgeber · EUR · Redaktion geprüft · 2026-10-01
+[Direkt zum Vergleich: 55 % und 60 %](https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html#hygrometer-vergleichen)
+Kostenlose Ratgeber · EUR · Redaktion geprüft · 2026-11-22
 
 **Kurzentscheidung**Nutze einen festen, repräsentativen Platz im Raum und beobachte den Verlauf. Eine Messung direkt an der kalten Fensterbank beschreibt einen anderen Ort als eine Messung neben der Heizung. Ein einzelner Wert entscheidet nicht, ob ein Entfeuchter nötig ist.
+
+## Zwei Hygrometer zeigen 55 % und 60 % – passt das zur Toleranz?
+
+Ja, sofern für beide Messungen jeweils ±3 Prozentpunkte laut Anleitung gelten. Bei 55 % Anzeige reicht der rechnerische Bereich von 52–58 % relativer Feuchte, bei 60 % von 57–63 %. Die Bereiche überlappen bei 57–58 % relativer Feuchte.
+
+- Stelle beide Geräte am selben Ort auf gleicher Höhe nebeneinander. Für einen Vergleich der Raumluft wähle einen repräsentativen Platz abseits von Fenster, Heizung und kalter Außenwand. Lass beide Geräte sich bei gleicher Temperatur ausreichend akklimatisieren und lies sie bei stabilen Anzeigen gleichzeitig ab.
+- Lies die Genauigkeitsangabe für jedes Gerät in seiner Anleitung nach. Berücksichtige den Feuchte- und Temperaturbereich, für den sie angegeben ist. Bei fehlenden oder hier nicht anwendbaren Angaben lässt sich die Differenz mit dieser Rechnung nicht beurteilen.
+
+Die Überlappung zeigt, dass die zwei Anzeigen mit den angenommenen Toleranzen vereinbar sind. Sie bestimmt weder den wahren Raumwert noch das genauere Gerät und ersetzt keine Kalibrierung. Kaufe allein wegen der fünf Prozentpunkte kein neues Gerät. Bleibt die Differenz unter gleichen Bedingungen außerhalb der anwendbaren Toleranzen, prüfe die Anleitungen und ziehe ein geeignetes Referenzgerät oder den Hersteller hinzu.
+
+[TFA Dostmann: FAQ zur Messgenauigkeit](https://www.tfa-dostmann.de/service/faq/) · Abgerufen am 2026-11-22
 
 ## 1. Einen Messort wählen, der sich vergleichen lässt
 Stadler Form empfiehlt einen möglichst zentralen Platz, entfernt von Heizung, Fenster und Zugluft; eine kalte Außenwand eignet sich nicht als repräsentativer Raum-Messort. Beachte auch die Eingewöhnungszeit in der Geräteanleitung.

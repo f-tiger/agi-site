@@ -5,3 +5,11 @@
 body{overflow-wrap:anywhere}h1,h2,h3{hyphens:auto}
 .need-cards.need-cards--four{grid-template-columns:repeat(2,minmax(0,1fr))}@media(max-width:760px){.need-cards.need-cards--four{grid-template-columns:1fr}}
 .need-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:0 0 24px}.need-cards a{display:flex;flex-direction:column;gap:12px;padding:20px;border:1px solid var(--line);border-radius:8px;text-decoration:none;background:var(--wash)}.need-cards strong{font-size:20px}.need-cards span{font-size:15px;color:var(--ink)}.need-cards span:last-child{margin-top:auto;color:var(--blue);font-weight:700}.need-cards a:hover{border-color:var(--blue)}.laundry-routes details{border-top:1px solid var(--line);padding:16px 0}.laundry-routes details:first-of-type{margin-top:20px}.laundry-routes summary{cursor:pointer;font-weight:700;min-height:44px}.laundry-routes summary:focus-visible{outline:3px solid #bd5500;outline-offset:4px}.laundry-routes details[open] summary{margin-bottom:12px}@media(max-width:760px){.need-cards{grid-template-columns:1fr}}@media print{.need-cards{display:none}}
+
+.intro-jump a,#hygrometer-vergleichen a[href^="https://www.reddit.com/submit?"]{display:inline-flex;align-items:center;min-height:44px}
+.intro-jump a{font-weight:700}
+#hygrometer-vergleichen,#hygrometer-comparison-title{scroll-margin-top:90px}
+#hygrometer-vergleichen h2{margin-top:0}
+#hygrometer-vergleichen ol{padding-left:22px}
+#hygrometer-vergleichen .source-note{font-size:14px;color:var(--muted)}
+@media(max-width:760px){#hygrometer-vergleichen,#hygrometer-comparison-title{scroll-margin-top:180px}}
