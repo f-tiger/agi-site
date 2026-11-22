@@ -540,7 +540,7 @@ ${shellHeader({lang:LOCALE.code,path:pub(path),alternates:(path.startsWith('/tra
 ${GATED_TOOLS.has(path)?body.replace(/(<main\b[^>]*>)/, '$1'+gateOf(path)):body}
 ${shellRelated(LOCALE.code,pub(path))}
 ${!noindex && !/unsubscribe|release-check|advertise|submit/.test(path) ? shellShare(LOCALE.code,canonical,title) : ''}
-${shellFooter(LOCALE.code)}
+${shellFooter(LOCALE.code,{homepage:pub(path)==='/'})}
 ${growthNotice(new URL(canonical).pathname) ? `<p class="disclosure">${growthNotice(new URL(canonical).pathname)}</p>` : ''}
 ${subJs()}
 <footer class="site-footer">
