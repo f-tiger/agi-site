@@ -34,12 +34,13 @@ Ein Messwert in der Raummitte beschreibt nicht die Bedingungen an einer kalten W
 
 Ein Luftentfeuchter entzieht der Raumluft Wasser und kann die Trocknung unterstützen. Wie lange eine Ladung braucht, hängt unter anderem von Gerät, Wäschemenge, Restwasser, Luftbewegung, Temperatur und Feuchte ab. Daraus lässt sich weder eine feste Trockenzeit noch ein Schutz vor Kondenswasser ableiten.
 
-Manche Geräte haben einen eigenen **Wäschetrocknen-Modus** (auch „Laundry-Modus"). Timer, Hygrostat und Kompressorsteuerung unterscheiden sich je nach Modell und Modus. Prüfe die Bedienungsanleitung und den tatsächlichen Trocknungsgrad der Wäsche; ein abgelaufener Timer oder gefüllter Tank beweist keine fertige Ladung. Ein passendes Gerät mit Laundry-Funktion findest du hier: Luftentfeuchter mit Wäschetrocknen-Modus.
+Manche Geräte haben einen eigenen **Wäschetrocknen-Modus** (auch „Laundry-Modus“). Timer, Hygrostat und Kompressorsteuerung unterscheiden sich je nach Modell und Modus. Prüfe die Bedienungsanleitung und den tatsächlichen Trocknungsgrad der Wäsche. Ein abgelaufener Timer oder gefüllter Tank sagt dir noch nicht, ob die Ladung trocken ist.
+
+- **Du hast schon ein Gerät.** [Stromverbrauch einer ganzen Ladung messen](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#lc-measurement), bevor du über einen Neukauf entscheidest.
+
+- **Du suchst gezielt einen Wäschemodus.** Prüfe die Herstellerangaben zum [Bosch Dry 4000 D4000-EU](https://getecoback.com/guide/waesche-trocknen-wohnung.html#modell-bosch-d4000-eu) (Auto, Nacht, Wäsche) und zum [Stadler Form Lukas L-031E](https://getecoback.com/guide/waesche-trocknen-wohnung.html#modell-stadler-lukas) (Schwenkfunktion und Wäschemodus). Die Angaben zum Modus sagen nicht, wie viel Strom eine Ladung bei dir braucht.
 
 Welche Entfeuchter-Größe zu deinem Raum passt und worauf du beim Kauf achten solltest, erklärt unser [großer Luftentfeuchter-Ratgeber](https://getecoback.com/guide/luftentfeuchter-ratgeber.html). Für kleine Räume lohnt sich der Blick in die Empfehlung [Luftentfeuchter für 15 qm](https://getecoback.com/guide/luftentfeuchter-15-qm.html).
-
-**Wäschetrocknen-Modus prüfen: Laufzeit, Verbrauch und Bedingungen bleiben modell- und raumabhängig.**
-Luftentfeuchter auf Amazon.de ansehen →
 
 ## Heizen oder Luftentfeuchter — was ist günstiger?
 

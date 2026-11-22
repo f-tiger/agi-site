@@ -163,6 +163,36 @@ async function cards(root,lang,label){
    assert.deepEqual(f.errors,[],pathname+' '+mode+' page errors');assert.deepEqual(f.merchants,[]);checks+=2;
    await f.context.close();
   }
+  for(const javaScriptEnabled of [true,false]){
+   const f=await fixture(browser,{javaScriptEnabled}),{page}=f;
+   await page.setViewportSize({width:320,height:844});
+   const laundry='/guide/waesche-trocknen-wohnung.html';
+   const lesson='/waeschetrockner-oder-luftentfeuchter.html';
+   for(const [model,name] of [['bosch-d4000-eu','D4000-EU'],['stadler-lukas','L-031E']]){
+    const anchor='#modell-'+model;
+    await page.goto(origin+laundry+'?__probe=1');
+    await page.locator('[data-laundry-model-routes] a[href="'+anchor+'"]').click();
+    await page.waitForURL(url=>url.pathname===laundry&&url.hash===anchor);
+    const heading=page.locator(anchor);
+    const card=page.locator('.dc-card').filter({has:heading});
+    const bounds=await heading.boundingBox();
+    check(bounds&&bounds.y>=0&&bounds.y+bounds.height<=844,anchor+' heading in mobile viewport');
+    check(await card.isVisible()&&(await card.innerText()).includes(name),anchor+' exact model on arrival');
+    const merchant=new URL(await card.locator('a[rel~=sponsored]').getAttribute('href'));
+    check(merchant.hostname==='www.amazon.de'&&merchant.pathname==='/s'&&
+      merchant.searchParams.get('k').includes(name)&&merchant.searchParams.get('tag')==='getecoback-21',
+      anchor+' original exact-model merchant search');
+    await layout(page,anchor+' 320px');
+   }
+   await page.locator('[data-laundry-model-routes] a[href$="#lc-measurement"]').click();
+   await page.waitForURL(origin+lesson+'#lc-measurement');
+   const checklist=page.locator('#lc-measurement');
+   if(await checklist.getAttribute('open')===null)await checklist.locator('summary').click();
+   check(await checklist.locator('ol').isVisible(),'measurement checklist opens without requiring a purchase');
+   assert.deepEqual(f.merchants,[],'no merchant navigation for the decision links');
+   assert.deepEqual(f.errors,[],'no runtime errors for the laundry routes');checks+=2;
+   await f.context.close();
+  }
   fs.writeFileSync(path.join(dir,'buyer-decision-browser.json'),JSON.stringify({pass:true,checks,scenarios:report,failureModes:pages.length*2},null,2));
   console.log(JSON.stringify({pass:true,checks,pages:pages.length,viewports:[320,390,1280],failureModes:pages.length*2}));
  }finally{await browser.close();}
