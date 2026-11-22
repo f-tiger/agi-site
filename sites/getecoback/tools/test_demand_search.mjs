@@ -87,3 +87,37 @@ test('German ventilation decisions lead to the measured cellar check while gener
    'Fenster beschlagen im Schlafzimmer: Soll ich lüften?',
  ]) assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u===anchor),q);
 });
+
+test('German replacement filter lookups reach one exact owned model and no near variant',()=>{
+ const page='/ersatzfilter.html';
+ const routes=[
+  ['Welcher Ersatzfilter passt zu meinem Beurer LR 401? Auf der Packung steht 69309.','beurer-lr401'],
+  ['Hat der Filter 69309 für meinen LR401 die richtige Nummer?','beurer-lr401'],
+  ['Welchen Filter brauche ich für meinen Levoit Core 300S ohne Pro?','levoit-core-300s'],
+  ['Welcher Standardfilter passt in meinen Core 300S?','levoit-core-300s'],
+ ];
+ for(const [q,id] of routes){
+  const hits=searchEntries(index,q,'de');
+  assert.equal(hits[0]?.entry.u,page+'#'+id,q);
+  assert.equal(hits.filter(hit=>hit.entry.u.split('#')[0]===page).length,1);
+  assert.ok(!searchEntries(index,q,'en').some(hit=>hit.entry.u.startsWith(page)));
+ }
+ assert.equal(index.filter(e=>e.u===page).length,1);
+ for(const q of [
+  'Welcher Filter passt zu meinem Levoit Core 300S Pro?',
+   'Wie wechsle ich den Filter von meinem Levoit Core 300S?',
+   'Passt der Filter für den LR 401 auch in den LR 410?',
+  'Welcher Filter passt zum Levoit Core 300S-P?',
+  'Ich will für den Core 300S keinen Standardfilter.',
+  'Passt 69309 bei Beurer LR401 oder LR405?',
+  'Welche Filterkosten hat der Beurer LR 401 pro Jahr?',
+  'Was kostet der Ersatzfilter für den Beurer LR 401?',
+  'Wie reinige ich den Filter vom Beurer LR401?',
+  'Kann ich den Filter vom Core 300S auswaschen?',
+  'Passt LR 401 auch in meinen Philips Luftreiniger?',
+  'Welcher Ersatzfilter passt in den Bosch LR 401?',
+  'Ersatzfilter für Xiaomi Core 300S',
+  'Welcher Ersatzfilter passt zum Beurer LR 401 Plus?',
+  'Welcher Ersatzfilter passt zum Levoit Core 300S Plus?',
+ ]) assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u.startsWith(page+'#')),q);
+});

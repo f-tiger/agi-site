@@ -28,6 +28,16 @@ Inhalt geprüft: 2026-11-15
 
 Die Zuordnung beruht auf Herstellerangaben, nicht auf einem eigenen Passform- oder Leistungstest. Ein fehlendes Modell bedeutet „hier nicht dokumentiert“. [Zur Geräteübersicht](https://getecoback.com/produkte.html#kategorie-luftreiniger) · [US model finder (English)](https://getecoback.com/en/filter-finder.html)
 
+### Levoit Core 300S ohne Pro-Zusatz
+Steht **Core 300S** auf dem Typenschild, prüfe in der deutschen Herstellerquelle die Option **Standardfilter**. Bei einem Pro-Zusatz verwende die Unterlagen der dort angegebenen Variante.
+[Herstellerzuordnung und Prüfdatum](https://getecoback.com/ersatzfilter.html#quelle-levoit-core-300s)
+
+### Beurer LR 401
+Für den Geräteaufdruck **LR 401** gleiche die Filterartikelnummer **69309** in der deutschen Herstellerquelle und auf dem Angebot ab.
+[Herstellerzuordnung und Prüfdatum](https://getecoback.com/ersatzfilter.html#quelle-beurer-lr401)
+
+Ist der Aufdruck unlesbar, weicht die Modellkennung ab oder steht eine erneute Quellenprüfung aus, kläre die Zuordnung mit dem Hersteller und warte mit der Bestellung.
+
 Gerätemodell, genauer Filter, Herstellerquelle und letzter Quellencheck
 
 | Genaues Gerät | Ersatzfilter | Quelle und Grenzen | Quellencheck |

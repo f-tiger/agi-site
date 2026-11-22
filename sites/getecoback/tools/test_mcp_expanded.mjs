@@ -22,6 +22,38 @@ async function rpc(method, params) {
   return (await response.json()).result;
 }
 
+test('German replacement-filter evidence returns a public exact-model anchor without inferring adjacent variants', async ({mock}) => {
+  mock.timers.enable({apis:['Date'],now:new Date('2026-11-22T12:00:00Z')});
+  const name='luftreiniger_ersatzfilter_zuordnung';
+  const page=origin+'/ersatzfilter.html';
+  const call=model=>rpc('tools/call',{name,arguments:{model}});
+  for (const [model,exact,part,source] of [
+    ['beurer-lr401','LR 401','69309','https://www.beurer.com/de/p/69309/'],
+    ['levoit-core-300s','Core 300S',null,'https://levoit.de/products/levoit-core-300-und-core-300s-ersatzfilter-hepa-filter'],
+  ]) {
+    const result=await call(model);
+    assert.equal(result.isError,false);
+    assert.equal(result.structuredContent.status,'documented_variant');
+    assert.equal(result.structuredContent.exact_model,exact);
+    assert.equal(result.structuredContent.part_number,part);
+    assert.equal(result.structuredContent.manufacturer_source,source);
+    assert.equal(result.structuredContent.citation_url,page);
+    assert.equal(result.structuredContent.guide_url,page+'#finder');
+    assert.equal(result.structuredContent.model_guide_url,page+'#'+model);
+    assert.doesNotMatch(JSON.stringify(result),/amazon\.|amzn\.|[?&]tag=/i);
+  }
+  const unknown=await call('unknown');
+  assert.equal(unknown.structuredContent.status,'identify_model');
+  assert.equal(unknown.structuredContent.model_guide_url,undefined);
+  for (const model of ['levoit-core-300s-pro','beurer-lr405']) assert.equal((await call(model)).isError,true);
+  mock.timers.setTime(new Date('2026-12-31T12:00:00Z').getTime());
+  const stale=(await call('beurer-lr401')).structuredContent;
+  assert.equal(stale.status,'source_recheck');
+  assert.equal(stale.filter_name,null);
+  assert.equal(stale.part_number,null);
+  assert.equal(stale.model_guide_url,page+'#beurer-lr401');
+});
+
 test('the public directory and standard MCP pages expose the same catalogue', async () => {
   const pageSizes = [];
   const listed = await collectToolPages(async cursor => {

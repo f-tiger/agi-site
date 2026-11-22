@@ -67,28 +67,38 @@ try{
     const s=await stale.newPage();await s.goto(origin+route+'?__qa=1#beurer-lr401');await s.locator('.filter-name').waitFor();
     assert.equal(await s.locator('.affiliate-link').count(),0);assert.equal(await s.locator('.source-link').count(),1);await stale.close();
   }
-  for(const width of [320,390]){
-    const nojs=await context({javaScriptEnabled:false,viewport:{width,height:844},reducedMotion:'reduce'});
-    const n=await nojs.newPage();
+  for(const width of [320,390]) for(const javaScriptEnabled of [false,true]){
+    const direct=await context({javaScriptEnabled,viewport:{width,height:844},reducedMotion:'reduce'});
+    const n=await direct.newPage();
     for(const item of items){
       const fragment=route+'#'+item.id;
       await n.goto(origin+'/produkte.html?__qa=1#produkt-'+item.id);
       await n.locator('#produkt-'+item.id+' a[href="'+fragment+'"]').click();
       await n.waitForURL(origin+fragment);
+      if(javaScriptEnabled)await n.locator('#model-result .filter-name').waitFor();
       await n.waitForFunction(id=>{
         const anchor=document.getElementById(id);
-        const navBottom=document.querySelector('nav.eb-nav')?.getBoundingClientRect().bottom||0;
-        const top=anchor?.closest('th')?.getBoundingClientRect().top;
-        return scrollY>0&&top>=navBottom&&top<innerHeight;
+        const header=document.querySelector('.site-header');
+        const navBottom=header&&['sticky','fixed'].includes(getComputedStyle(header).position)
+          ? Math.max(0,header.getBoundingClientRect().bottom):0;
+        const heading=anchor?.querySelector('h3')?.getBoundingClientRect();
+        return scrollY>0&&heading&&heading.top>=navBottom&&heading.bottom<innerHeight;
       },item.id);
       const row=n.locator('#quelle-'+item.id);
-      assert.equal(await row.locator('#'+item.id).count(),1);
+      const answer=n.locator('section#'+item.id);
+      assert.equal(await n.locator('#'+item.id).count(),1);
+      assert.equal(await answer.getByRole('link',{name:'Herstellerzuordnung und Prüfdatum'}).getAttribute('href'),'#quelle-'+item.id);
       assert.equal(await row.getByRole('link',{name:'Deutsche Herstellerquelle'}).getAttribute('href'),item.source_url);
-      assert.equal(await n.locator('a[href^="https://www.amazon."]').count(),0);
+      const share=new URL(await answer.getByRole('link',{name:'Auf Reddit teilen',exact:true}).getAttribute('href'));
+      assert.equal(share.origin+share.pathname,'https://www.reddit.com/submit');
+      assert.deepEqual([...share.searchParams.keys()].sort(),['title','url']);
+      assert.equal(share.searchParams.get('url'),origin+fragment);
+      assert.equal(share.searchParams.get('title'),`Welcher Ersatzfilter passt zum ${item.brand} ${item.models[0]}?`);
+      if(!javaScriptEnabled)assert.equal(await n.locator('a[href^="https://www.amazon."]').count(),0);
     }
     assert.equal(await n.locator('#model-table tbody tr').count(),2);
-    assert.match(await n.locator('.finder-panel noscript').innerText(),/Herstellerzuordnungen/);
-    await nojs.close();
+    if(!javaScriptEnabled)assert.match(await n.locator('.finder-panel noscript').innerText(),/Herstellerzuordnungen/);
+    await direct.close();
   }
   const html=fs.readFileSync(path.join(root,route),'utf8'),md=fs.readFileSync(path.join(root,'ersatzfilter.md'),'utf8');
   assert(html.includes('data-ga4-id="G-E2V0Q9SJ9V"'));assert(html.includes('/auth/account'));
