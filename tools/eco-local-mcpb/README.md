@@ -125,6 +125,13 @@ from measured average power and run time. Both MCP modes verify the separate
 inputs, the German guide link, and continued availability of the
 two-method comparison.
 
+Version 1.22.8 checks the documented Danfoss adapters for the German
+FRITZ!Smart Thermo 302 package, article 20003120. Both offline MCP modes
+distinguish the included RA adapter, the RAV adapter with pin, and the
+separate RAVL adapter. Unresolved model or valve information stays open.
+The existing thermostat checker keeps FRITZ!, Bosch and tado authorities
+separate.
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the
