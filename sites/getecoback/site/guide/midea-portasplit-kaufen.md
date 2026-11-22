@@ -32,6 +32,8 @@ Midea PortaSplit auf Amazon.de →
 
 ## Ausverkauft? Die besten Alternativen
 
+[Aufstellung prüfen und Alternativen oder Warten abwägen](https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html#kaufpruefung).
+
 - **Andere Split-Geräte zur Selbstmontage:** Es gibt inzwischen mehrere „Quick-Connect"-Splitanlagen ähnlicher Bauart. Split-Klimaanlagen ohne Installation →
 
 - **Klassische tragbare Klimaanlage (ab ~250 €):** lauter und weniger effizient, aber sofort verfügbar und günstiger. Tragbare Klimaanlagen → — passende Größe im [BTU-Ratgeber](https://getecoback.com/guide/wie-viel-btu-brauche-ich.html).
@@ -78,7 +80,7 @@ Rechenweg: 52 × Nutzungen/Woche × (manuell − Gerätenutzung − Pflege) ÷ 6
 - [Roborock — required dock space](https://support.roborock.com/hc/en-us/articles/43407403865369-Where-should-I-position-Saros-10R)
 - [Meaco — laundry setup](https://blog.meaco.com/the-benefits-of-using-a-dehumidifier-to-dry-your-laundry/)
 - [Meaco — cold-room laundry considerations](https://blog.meaco.com/the-best-dehumidifiers-for-drying-clothes-and-gentle-laundry-drying/)
-- Midea — PortaSplit installation
+- [Midea — PortaSplit installation](https://www.midea.com/de/klimatisieren-heizen/portasplit/installation)
 - Midea — PortaSplit installatie
 - Tineco — Switch S6 care FAQ
 

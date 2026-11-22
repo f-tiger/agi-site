@@ -29,8 +29,10 @@ try{
   await p.locator('#produkt-beurer-lr401 a[href="/ersatzfilter.html#beurer-lr401"]').click();
   await p.locator('#model-result .filter-name').waitFor();
   assert.match(await p.locator('#model-result').innerText(),/69309/);
-  const current=await p.locator('#filter-care-data').textContent();
-  if(availability(JSON.parse(current).items.find(i=>i.id==='beurer-lr401')).active){
+  const {items}=JSON.parse(await p.locator('#filter-care-data').textContent());
+  const beurer=items.find(item=>item.id==='beurer-lr401');
+  assert.equal(await p.locator('#model-result .source-link').getAttribute('href'),beurer.source_url);
+  if(availability(beurer).active){
     const href=await p.locator('.affiliate-link').getAttribute('href');
     assert.equal(new URL(href).hostname,'www.amazon.de');assert.equal(new URL(href).searchParams.get('tag'),'getecoback-21');
   }else{assert.equal(await p.locator('.affiliate-link').count(),0);assert.equal(await p.locator('.source-link').count(),1);}
@@ -65,10 +67,29 @@ try{
     const s=await stale.newPage();await s.goto(origin+route+'?__qa=1#beurer-lr401');await s.locator('.filter-name').waitFor();
     assert.equal(await s.locator('.affiliate-link').count(),0);assert.equal(await s.locator('.source-link').count(),1);await stale.close();
   }
-  const nojs=await context({javaScriptEnabled:false}),n=await nojs.newPage();await n.goto(origin+route+'?__qa=1');
-  assert.equal(await n.locator('#model-table tbody tr').count(),2);
-  assert.equal(await n.locator('a[href^="https://www.amazon."]').count(),0);
-  assert.match(await n.locator('noscript').innerText(),/Herstellerzuordnungen/);await nojs.close();
+  for(const width of [320,390]){
+    const nojs=await context({javaScriptEnabled:false,viewport:{width,height:844},reducedMotion:'reduce'});
+    const n=await nojs.newPage();
+    for(const item of items){
+      const fragment=route+'#'+item.id;
+      await n.goto(origin+'/produkte.html?__qa=1#produkt-'+item.id);
+      await n.locator('#produkt-'+item.id+' a[href="'+fragment+'"]').click();
+      await n.waitForURL(origin+fragment);
+      await n.waitForFunction(id=>{
+        const anchor=document.getElementById(id);
+        const navBottom=document.querySelector('nav.eb-nav')?.getBoundingClientRect().bottom||0;
+        const top=anchor?.closest('th')?.getBoundingClientRect().top;
+        return scrollY>0&&top>=navBottom&&top<innerHeight;
+      },item.id);
+      const row=n.locator('#quelle-'+item.id);
+      assert.equal(await row.locator('#'+item.id).count(),1);
+      assert.equal(await row.getByRole('link',{name:'Deutsche Herstellerquelle'}).getAttribute('href'),item.source_url);
+      assert.equal(await n.locator('a[href^="https://www.amazon."]').count(),0);
+    }
+    assert.equal(await n.locator('#model-table tbody tr').count(),2);
+    assert.match(await n.locator('.finder-panel noscript').innerText(),/Herstellerzuordnungen/);
+    await nojs.close();
+  }
   const html=fs.readFileSync(path.join(root,route),'utf8'),md=fs.readFileSync(path.join(root,'ersatzfilter.md'),'utf8');
   assert(html.includes('data-ga4-id="G-E2V0Q9SJ9V"'));assert(html.includes('/auth/account'));
   assert(md.includes('69309')&&md.includes('https://www.beurer.com/de/p/69309/'));

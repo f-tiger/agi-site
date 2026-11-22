@@ -50,7 +50,13 @@ def collect():
  return out
 
 def main():
- entries=collect();payload=json.dumps(entries,ensure_ascii=False,separators=(',',':'));p=SITE/'search-index.json'
- if not p.exists() or p.read_text()!=payload:p.write_text(payload)
+ entries = collect()
+ payload = json.dumps(entries, ensure_ascii=False, separators=(',', ':'))
+ # Publish identical bytes for existing clients and for browser search via the
+ # Worker-free static asset route.
+ for path in (SITE / 'search-index.json', SITE / 'assets' / 'search-index.json'):
+  if not path.exists() or path.read_text(encoding='utf-8') != payload:
+   path.parent.mkdir(parents=True, exist_ok=True)
+   path.write_text(payload, encoding='utf-8')
  print(f'search-index.json: {len(entries)} public canonical pages; search terms stay local')
 if __name__=='__main__':main()
