@@ -67,7 +67,7 @@ const rpc=async(method,params,paid=false,env={})=>{
 const metadata=await rpc('initialize');
 assert.equal(metadata.protocolVersion,'2025-06-18');
 assert.equal(metadata.serverInfo.name,'bpj-ai-tools');
-assert.equal(metadata.serverInfo.version,'0.5.0');
+assert.equal(metadata.serverInfo.version,'0.5.1');
 const listing=[];
 const cursors=new Set();
 let cursor;
@@ -96,11 +96,11 @@ for(const tool of SUITE_TOOLS){
   assert(publicReturnPath(path)&&publicReturnPath(path+'.html'),'Public tool uses a reserved route: '+path);
  }
 }
-assert.equal(SUITE_TOOLS.length,1011);
-assert.equal(listing.length,1014);
+assert.equal(SUITE_TOOLS.length,1013);
+assert.equal(listing.length,1016);
 assert.equal(cursors.size,25);
 assert.equal(new Set(listing.map(tool=>tool.name)).size,listing.length);
-for(const cursor of [false,null,'','!!!','x'.repeat(128),btoa('bpj/0.4.0/free/40'),btoa('bpj/0.5.0/free/1'),btoa('bpj/0.5.0/free/10000')]){
+for(const cursor of [false,null,'','!!!','x'.repeat(128),btoa('bpj/0.5.0/free/40'),btoa('bpj/0.5.1/free/1'),btoa('bpj/0.5.1/free/10000')]){
  const response=await req({jsonrpc:'2.0',id:42,method:'tools/list',params:{cursor}});
  assert.equal((await response.json()).error.code,-32602);
 }
@@ -112,16 +112,16 @@ assert.equal(discovery.suite.length,100);
 assert.equal(discovery.suite[0].path,'/studio/ai/'+SUITE_TOOLS[0].id);
 assert.equal(discovery.suite[0].freeMcp,SUITE_TOOLS[0].name);
 assert.equal(discovery.paidStatus,'not_launched');
-assert.equal(discovery.total,1011);
-assert.equal(discovery.matched,1011);
+assert.equal(discovery.total,1013);
+assert.equal(discovery.matched,1013);
 assert.equal(discovery.nextOffset,100);
 assert.deepEqual(discovery.categories.map(x=>x.id),SUITE_CATEGORIES.map(x=>x.id));
-assert.equal(discovery.categories.reduce((sum,group)=>sum+group.count,0),1011);
+assert.equal(discovery.categories.reduce((sum,group)=>sum+group.count,0),1013);
 const searchCall=async(args)=>rpc('tools/call',{name:'list_bpj_ai_tools',arguments:args});
 const search=async(args)=>JSON.parse((await searchCall(args)).content[0].text);
 const lastLegacy=await search({offset:99,limit:2});
 assert.deepEqual(lastLegacy.suite.map(x=>x.freeMcp),SUITE_TOOLS.slice(99,101).map(x=>x.name));
-const lastPage=await search({offset:1010,limit:10});
+const lastPage=await search({offset:1012,limit:10});
 assert.equal(lastPage.suite.length,1);
 assert.equal(lastPage.nextOffset,null);
 for(const group of SUITE_CATEGORIES){

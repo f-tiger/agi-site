@@ -3,6 +3,7 @@ import {renderAiIndex,categoryPath,aiSuiteSearchIndex,searchIndexPath} from './a
 import {suiteGuidance} from './ai-suite-guidance.mjs';
 import {aiSuiteFeaturedTool} from './ai-suite-featured.mjs';
 import {shellToolShare} from './site-shell.mjs';
+import {TRADE_PATH,tradeTitle,tradeCategoryGuide} from './trade-pages.mjs';
 
 export {renderAiIndex,suiteCount} from './ai-suite-directory.mjs';
 export const FREE_SUITE_MCP = 'https://baipiaoji.com/api/ai-mcp';
@@ -70,7 +71,8 @@ export function buildAiSuite({layout,esc,BASE,LOCALE,write,pushPage}) {
     const examples=group.tools.slice(0,3).map(tool=>tool.title[lang]).join(t('、',', '));
     const description=t(`此分类包含 ${group.tools.length} 个自研工具，包括${examples}。可在浏览器运行，也可通过 MCP 调用。`,
       `Explore ${group.tools.length} BPJ tools including ${examples}. Run them in your browser or via MCP.`);
-    const body=`${assets}<main class="stage suite-workspace"><nav class="crumb" aria-label="${t('面包屑导航','Breadcrumb')}"><a href="${BASE}/studio/ai/">${siteTitle[lang]}</a></nav><header><h1>${esc(title)}</h1><p>${esc(description)}</p></header>${renderAiIndex({BASE,lang,esc,category:group})}</main>`;
+    const guide=group.id==='trade'?tradeCategoryGuide(BASE,lang):'';
+    const body=`${assets}<main class="stage suite-workspace"><nav class="crumb" aria-label="${t('面包屑导航','Breadcrumb')}"><a href="${BASE}/studio/ai/">${siteTitle[lang]}</a></nav><header><h1>${esc(title)}</h1><p>${esc(description)}</p></header>${renderAiIndex({BASE,lang,esc,category:group})}${guide}</main>`;
     write(path.slice(1)+'.html',layout({title:title+' · BPJ',description,path,body,wide:true,
       schema:[{'@context':'https://schema.org','@type':'CollectionPage',name:title,url:BASE+path,description,inLanguage:lang}]}));
     pushPage(BASE+path+'.html','0.8');
@@ -91,7 +93,7 @@ export function buildAiSuite({layout,esc,BASE,LOCALE,write,pushPage}) {
     const body=`${assets}${resultStyles}<main class="stage suite-workspace" data-suite-tool="${tool.id}" data-suite-category="${tool.category}" data-suite-labels="${esc(JSON.stringify(guidance.resultLabels||{}))}">
       <nav class="suite-crumb" aria-label="${t('面包屑导航','Breadcrumb')}"><a href="${BASE}/studio/ai/">${siteTitle[lang]}</a><span aria-hidden="true">/</span><a href="${BASE}${categoryPath(category)}">${esc(category.title[lang])}</a></nav>
       <header class="suite-tool-heading"><div><h1>${esc(title)}</h1><p>${esc(description)}</p></div><a href="#suite-mcp">${t('MCP 调用说明','MCP instructions')}</a></header>${aiSuiteFeaturedTool(path) ? shellToolShare(lang,BASE+path,title) : ''}
-      ${guidance.useCase?`<p class="suite-use-case">${esc(guidance.useCase)}</p>`:''}
+      ${guidance.useCase?`<p class="suite-use-case">${esc(guidance.useCase)}</p>`:''}${tool.category==='trade'?`<p><a href="${BASE+TRADE_PATH}">${tradeTitle[lang]}</a></p>`:''}
       <div class="suite-workgrid">
         <section class="suite-input-pane" aria-labelledby="suite-inputs">
           <div class="suite-pane-heading"><h2 id="suite-inputs">${t('输入','Inputs')}</h2><p>${t('在当前浏览器中处理','Processed in your browser')}</p></div>

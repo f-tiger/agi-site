@@ -14,10 +14,16 @@ import {buildVideo} from './video-pages.mjs';
 import {buildFileStudio} from './file-pages.mjs';
 import {buildListingPack} from './listing-pages.mjs';
 import {buildTableReview} from './table-review-pages.mjs';
+import {buildTradePages,TRADE_PATH,tradeTitle} from './trade-pages.mjs';
 import {aiSuiteFeaturedCss, aiSuiteFeaturedTool, aiSuiteTaskLinks, renderAiFeatured} from './ai-suite-featured.mjs';
 
 // This registry is deliberately separate from data/tools.json (third-party listings).
 export const STUDIO_TOOLS=[
+  {featured:true,path:TRADE_PATH,zh:tradeTitle.zh,en:tradeTitle.en,
+    zhDesc:'查公开进口商和采购公告，把买家线索排优先级，再算出口最低报价。',
+    enDesc:'Find public importer and tender records, prioritize leads, and calculate the export price floor.',
+    zhOutput:'加拿大进口商 · 欧盟采购 · 出口报价',enOutput:'Canadian importers · EU tenders · export quotes',
+    search:'外贸 客源 进口商 找客户 出口 采购 客户线索 跨境报价 export buyer importer leads sourcing TED FOB CIF'},
   {featured:true,path:'/studio/table-review',zh:'AI 表格改写验收',en:'AI table rewrite review',zhDesc:'指定可改写列，核对 AI 返回的 CSV；恢复锁定字段，保留允许的改写。',enDesc:'Choose editable columns, check an AI-rewritten CSV and restore locked values while keeping allowed edits.',zhOutput:'差异报告 · 锁定值修复 · CSV 导出',enOutput:'Change report · locked-value repair · CSV export',search:'ai csv table rewrite translation compare repair 表格 改写 翻译 核对 数字 修复'},
   {featured:true,path:'/studio/listing-pack',zh:'跨境商品上新包',en:'Cross-border listing pack',zhDesc:'检查商品事实，交接 AI 英文草稿，逐项核对后导出上新资料包。',enDesc:'Check product facts, hand off English AI drafts and export a reviewed listing worksheet.',zhOutput:'商品事实 · 英文草稿 · 核对清单 · ZIP',enOutput:'Source facts · English drafts · review checklist · ZIP',search:'listing sku product ecommerce cross border catalog csv 商品 跨境 上新 英文 校验'},
   {featured:true,path:'/studio/testimonial-kit',zh:'客户评价素材台',en:'Customer quote studio',zhDesc:'把已授权的真实评价制作成网站展示页和图片，会员可导出去品牌交付包。',enDesc:'Turn permissioned customer quotes into a website wall and image; members can export an unbranded package.',zhOutput:'HTML 展示页 · SVG 图片 · 项目备份',enOutput:'HTML wall · SVG image · project backup',search:'testimonial customer review social proof wall quote 评价 客户 证言 营销 素材'},
@@ -74,4 +80,5 @@ export function buildStudio({layout,railOf,esc,crumbLd,faqLd,BASE,NAME,LOCALE,si
   buildFileStudio({layout,railOf,esc,crumbLd,faqLd,BASE,NAME,LOCALE,site,write,pushPage});
   buildListingPack({layout,railOf,esc,crumbLd,faqLd,BASE,NAME,LOCALE,site,write,pushPage});
   buildTableReview({layout,railOf,esc,crumbLd,faqLd,BASE,NAME,LOCALE,site,write,pushPage});
+  buildTradePages({layout,esc,BASE,LOCALE,write,pushPage});
 }

@@ -5,6 +5,31 @@ const entry = (useCase, note, fieldHints, resultLabels, relatedIds) => ({
 // Tool-specific guidance follows the existing input contract and result keys.
 // The original schema, example, and calculation still come from the registry.
 const guidance = {
+  'trade-lead-priority': entry(
+    ['把进口商名录或采购公告整理成下一批跟进名单。', 'Turn importer records and procurement notices into a shortlist you can work through.'],
+    ['follow_up 为可跟进，verify 为待核验，low_fit 为低匹配。来源复核状态使用你的记录。历史进口记录可先选 directory，确认当期采购和企业身份后再更新。', 'Follow_up marks leads to follow up, verify marks leads that need checks, and low_fit marks weaker matches. Source-review status comes from your records. Label historical imports as directory and update them when you confirm current demand.'],
+    {targetCountry: ['填两位国家代码，如加拿大 CA、德国 DE。','Enter a two-letter country code, such as CA or DE.'],
+      targetProduct: ['使用与你的线索一致的品类标签。','Use the same product label as your lead records.'],
+      asOf: ['使用 YYYY-MM-DD 格式。','Use YYYY-MM-DD.'],
+      leads: ['粘贴或导入 CSV 或 JSON。必填 company、country、product。可增加 signal、source_url、source_reviewed、requested_units、response_by。','Paste or import CSV or JSON. Include company, country and product. Optional columns are signal, source_url, source_reviewed, requested_units and response_by.']},
+    {priority: ['跟进优先级','Priority'], score: ['匹配分','Score'], reasons: ['判断依据','Reasons'],
+      sourceUrl: ['公开出处','Public source'], sourceReview: ['出处复核状态','Source review'],
+      requestedUnits: ['买方数量','Requested quantity'], responseBy: ['回复日期','Response date'],
+      sourceRows: ['原始记录行','Source rows'], inputRows: ['输入记录','Input rows'], uniqueCompanies: ['去重公司数','Unique companies'],
+      duplicateRows: ['重复记录数','Duplicates']},
+    ['trade-export-quote'],
+  ),
+  'trade-export-quote': entry(
+    ['拿到询价后，用你实际承担的费用和目标毛利求出最低单价。','Use your seller costs and target margin to price a buyer inquiry.'],
+    ['EXW、FOB 或 CIF 用于标记本次方案。填入该方案下的卖方费用，工具按报价币种的最小单位向上计算底价。佣金和收款费按成交金额与所填比例估算。','Select EXW, FOB or CIF to label the scenario. Enter the seller costs for that scenario. The floor rounds up to the quote currency’s minor unit. Commission and payment fees are estimated from the order value at the entered rates.'],
+    {quotePerCostUnit: ['每 1 单位成本币可换多少报价币。例如 1 CNY = 0.14 USD，填 0.14。','Enter quote currency per unit of cost currency. For 1 CNY = 0.14 USD, enter 0.14.'],
+      sellerFees: ['每笔订单的费用用 JSON 数组填入，每项含 name、amount、currency。无额外费用填 []。','Use a JSON array of per-order fee lines with name, amount and currency. Enter [] for no additional fees.'],
+      quotedUnitPrice: ['已有报价可填入试算利润。只求报价底线时填 0。','Enter a proposed price to estimate profit. Enter 0 to calculate the floor only.']},
+    {sellerCost: ['卖方总成本','Seller cost'], minimumOrderTotal: ['最低整单金额','Minimum order total'],
+      minimumUnitPrice: ['最低可报单价','Minimum unit price'], orderTotalAtMinimumUnitPrice: ['按最低单价的总额','Total at minimum unit price'],
+      profit: ['估算利润','Estimated profit'], marginPercent: ['估算利润率','Estimated margin percent'], meetsTarget: ['达到目标','Meets target']},
+    ['trade-lead-priority'],
+  ),
   'ai-eval-export-pair': entry(
     ['用两次已有评测找出新版回退的样本。', 'Find sample regressions in two existing evaluations.'],
     ['固定编号适用于同一测试与评分规则。存在执行错误、无评分或缺项时，比较仅覆盖成功配对的样本。交接处于 ready 时，把 nextCall 直接传给 MCP tools/call。若清单外的样本缺少评分，先复查原报告。', 'Use stable IDs and the same samples and grading rules. An incomplete run can be compared on graded pairs only. Pass nextCall to MCP tools/call when handoffState is ready. Review ungraded samples outside the expected cohort before continuing.'],
