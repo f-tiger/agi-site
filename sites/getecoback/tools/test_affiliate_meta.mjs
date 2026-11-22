@@ -8,6 +8,7 @@ import {AFFILIATE_SQL, affiliateMetrics} from '../src/affiliate-metrics.mjs';
 import {CELLAR_MODEL_ENTRY_DOCUMENT, CELLAR_MODEL_ENTRY_PAGE, CELLAR_MODEL_ENTRY_URL, CELLAR_MODEL_SEARCH} from '../src/cellar-entry.mjs';
 import {WINDOW_ENTRY_DOCUMENT, WINDOW_ENTRY_PAGE} from '../src/fenstersauger-entry.mjs';
 import {PORTASPLIT_ENTRY_DOCUMENT, PORTASPLIT_ENTRY_PAGE} from '../src/portasplit-entry.mjs';
+import {N90_ENTRY_DOCUMENT, N90_ENTRY_PAGE, N90_PRODUCT_URL} from '../src/n90-entry.mjs';
 import worker from '../src/worker.js';
 
 const product = 'https://www.amazon.de/dp/B07NC5CP6F?tag=getecoback-21';
@@ -274,5 +275,36 @@ test('the cellar model marker requires the exact first-party document and approv
     link.replace('One+20L','One+25L'),link.replace('getecoback-21','ecoback0d-20'),
     link.replace('www.amazon.de','amazon.de.evil.test')]) {
     assert.equal(store({...click,m:{...click.m,link_url,mcp_cellar_entry:1}}).mcp_cellar_entry,undefined,link_url);
+  }
+});
+
+test('N90 markers are issued for the exact first-party arrival and approved German product detail', async () => {
+  const headers = {origin:'https://getecoback.com', referer:N90_ENTRY_DOCUMENT, 'sec-fetch-site':'same-origin'};
+  const view = {n:'page_view', p:N90_ENTRY_PAGE, mcp_n90_entry:true, r:'https://example.test/?private=secret'};
+  const click = {...view, n:'affiliate_click', m:{source:'body', link_url:N90_PRODUCT_URL, messenergie_kwh:1.8}};
+  const stored = async (body, overrides={}) => {
+    const result = await record(body, {...headers, ...overrides});
+    assert.equal(result.rows.length, 1);
+    assert.equal(result.rows[0][3], 'example.test');
+    return JSON.parse(result.rows[0][4] || '{}');
+  };
+  assert.deepEqual(await stored({...view, m:{messdauer_min:180, arbeitspreis_eur_kwh:0.35, mcp_n90_entry:1}}), {mcp_n90_entry:1});
+  assert.deepEqual(await stored(click), {mcp_n90_entry:1, source:'body', link_url:N90_PRODUCT_URL});
+  for (const overrides of [{referer:''},{referer:N90_ENTRY_DOCUMENT + '&extra=1'},{referer:N90_ENTRY_DOCUMENT + '#n90-energielabel'},
+    {referer:'https://getecoback.com' + N90_ENTRY_PAGE},{origin:'https://example.test'},{'sec-fetch-site':'cross-site'},
+    {dnt:'1'},{'sec-gpc':'1'},{'x-probe':'1'},{'user-agent':'getecoback-ci/n90'},{'user-agent':'Googlebot'}]) {
+    for (const event of [view,click]) {
+      const data = await stored({...event, m:{...event.m, mcp_n90_entry:1, mcp_n90_link:1}}, overrides);
+      assert.equal(data.mcp_n90_entry, undefined);
+      assert.equal(data.mcp_n90_link, undefined);
+    }
+  }
+  for (const link_url of [N90_PRODUCT_URL + '&x=1', N90_PRODUCT_URL + '#other', N90_PRODUCT_URL.replace('/dp/','/gp/product/'),
+    N90_PRODUCT_URL.replace('B07NC5CP6F','B07KJYD1ZP'), N90_PRODUCT_URL.replace('tag=getecoback-21','tag=unknown-21'),
+    'https://www.amazon.de/s?k=PAC+N90&tag=getecoback-21',N90_PRODUCT_URL.replace('www.amazon.de','amazon.de.evil.test')]) {
+    assert.equal((await stored({...click, m:{...click.m, link_url, mcp_n90_entry:1}})).mcp_n90_entry, undefined, link_url);
+  }
+  for (const candidate of [{...view, p:'/guide/delonghi-pinguino-vergleich.html'}, {...view, mcp_n90_entry:1}, {...view, mcp_n90_entry:false}]) {
+    assert.equal((await stored({...candidate, m:{mcp_n90_entry:1}})).mcp_n90_entry, undefined);
   }
 });

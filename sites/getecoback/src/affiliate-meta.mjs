@@ -2,6 +2,7 @@ import productCatalog from '../data/product-catalog.json' with {type:'json'};
 import {WINDOW_ENTRY_DOCUMENT, WINDOW_ENTRY_PAGE} from './fenstersauger-entry.mjs';
 import {PORTASPLIT_ENTRY_DOCUMENT, PORTASPLIT_ENTRY_PAGE, PORTASPLIT_MODEL_SEARCH} from './portasplit-entry.mjs';
 import {CELLAR_MODEL_ENTRY_DOCUMENT, CELLAR_MODEL_ENTRY_PAGE, CELLAR_MODEL_SEARCH} from './cellar-entry.mjs';
+import {N90_ENTRY_DOCUMENT, N90_ENTRY_PAGE, N90_PRODUCT_URL} from './n90-entry.mjs';
 
 // Only whitelisted affiliate dimensions. Never slice JSON: one long destination
 // used to corrupt every field, including the source merged by the click tracker.
@@ -90,9 +91,9 @@ function isGermanModelSearch(value, modelSearches) {
   }
 }
 
-function eligibleModelEntry(body, request, uaClass, path, documentUrl, modelSearches) {
+function eligibleModelEntry(body, request, uaClass, path, documentUrl, matchesMerchant) {
   return body.p === path &&
-    (body.n === 'page_view' || (body.n === 'affiliate_click' && isGermanModelSearch(body.m?.link_url, modelSearches))) &&
+    (body.n === 'page_view' || (body.n === 'affiliate_click' && matchesMerchant(body.m?.link_url))) &&
     uaClass === 'human' && request.headers.get('dnt') !== '1' &&
     request.headers.get('sec-gpc') !== '1' && request.headers.get('x-probe') !== '1' &&
     request.headers.get('origin') === 'https://getecoback.com' &&
@@ -102,25 +103,31 @@ function eligibleModelEntry(body, request, uaClass, path, documentUrl, modelSear
 
 export function taggedWindowEntry(body, request, uaClass) {
   return body.mcp_window_entry === true && eligibleModelEntry(body, request, uaClass,
-    WINDOW_ENTRY_PAGE, WINDOW_ENTRY_DOCUMENT, windowModelSearches);
+    WINDOW_ENTRY_PAGE, WINDOW_ENTRY_DOCUMENT, link => isGermanModelSearch(link, windowModelSearches));
 }
 
 export function taggedPortaSplitEntry(body, request, uaClass) {
   return body.mcp_portasplit_entry === true && eligibleModelEntry(body, request, uaClass,
-    PORTASPLIT_ENTRY_PAGE, PORTASPLIT_ENTRY_DOCUMENT, portasplitModelSearches);
+    PORTASPLIT_ENTRY_PAGE, PORTASPLIT_ENTRY_DOCUMENT, link => isGermanModelSearch(link, portasplitModelSearches));
 }
 
 export function taggedCellarModelEntry(body, request, uaClass) {
   return body.mcp_cellar_entry === true && eligibleModelEntry(body, request, uaClass,
-    CELLAR_MODEL_ENTRY_PAGE, CELLAR_MODEL_ENTRY_DOCUMENT, cellarModelSearches);
+    CELLAR_MODEL_ENTRY_PAGE, CELLAR_MODEL_ENTRY_DOCUMENT, link => isGermanModelSearch(link, cellarModelSearches));
 }
 
-export function affiliateMeta(meta, taggedDrain = false, taggedWindow = false, taggedPortaSplit = false, taggedCellar = false) {
+export function taggedN90ModelEntry(body, request, uaClass) {
+  return body.mcp_n90_entry === true && eligibleModelEntry(body, request, uaClass,
+    N90_ENTRY_PAGE, N90_ENTRY_DOCUMENT, link => link === N90_PRODUCT_URL);
+}
+
+export function affiliateMeta(meta, taggedDrain = false, taggedWindow = false, taggedPortaSplit = false, taggedCellar = false, taggedN90 = false) {
   const clean = {};
   if (taggedDrain) clean.mcp_drain_entry = 1;
   if (taggedWindow) clean.mcp_window_entry = 1;
   if (taggedPortaSplit) clean.mcp_portasplit_entry = 1;
   if (taggedCellar) clean.mcp_cellar_entry = 1;
+  if (taggedN90) clean.mcp_n90_entry = 1;
   if (!meta || typeof meta !== 'object' || Array.isArray(meta)) return JSON.stringify(clean);
   for (const [key, value] of [
     ['source', text(meta.source, 48)],

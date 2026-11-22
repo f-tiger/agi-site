@@ -3,6 +3,7 @@ import {readFileSync} from 'node:fs';
 import test from 'node:test';
 import worker from '../src/cached-worker.mjs';
 import {collectToolPages, MCP_PAGE_SIZE} from '../src/mcp-pagination.mjs';
+import {N90_ENTRY_URL, N90_TOOL_NAME} from '../src/n90-entry.mjs';
 
 const origin = 'https://getecoback.com';
 const fullPath = '/mcp/v1';
@@ -241,6 +242,50 @@ test('header, query, privacy and CI probes return the same result with zero writ
     assert.deepEqual(await call(path,runName,args,requestHeaders),expected);
     assert.deepEqual(writes,[]);
   }
+});
+
+test('only successful exact N90 compact answers offer the fixed owned entry without exposing inputs to telemetry', async () => {
+  const {call,send,writes} = fixture();
+  const headers = {'user-agent':humanUA};
+  const inputs = {ean:8004399512351,modell:'PAC N90 ECO Silent',arbeitspreis_eur_kwh:0.35,
+    messung_vollstaendig:true,messenergie_kwh:1.8,messdauer_min:180};
+  const run = (changes={}, requestHeaders=headers, path=compactPath) => call(path,runName,
+    {name:N90_TOOL_NAME,eingaben:{...inputs,...changes}},requestHeaders);
+  const full = await call(fullPath,N90_TOOL_NAME,inputs);
+  assert.equal(full.structuredContent.entry_url,undefined);
+  const compact = await run();
+  assert.equal(compact.isError,false);
+  assert.equal(compact.structuredContent.entry_url,N90_ENTRY_URL);
+  assert.equal(compact.structuredContent.citation_url,full.structuredContent.citation_url);
+  assert.equal(compact.structuredContent.guide_url,full.structuredContent.guide_url);
+  assert.deepEqual(JSON.parse(compact.content[0].text),compact.structuredContent);
+  assert.doesNotMatch(JSON.stringify(compact.structuredContent),/amazon\.de|tag=getecoback-21/);
+  assert.equal(writes.length,1);
+  assert.deepEqual(JSON.parse(writes[0].args[1]),{
+    tool:N90_TOOL_NAME,outcome:'complete',mcp_profile:'compact',mcp_n90_link:1,ua:humanUA,
+  });
+  for (const change of [{ean:0},{ean:8004399512352},{modell:'abweichend'},{ean:'8004399512351'}]) {
+    const result = await run(change);
+    assert.equal(result.structuredContent?.entry_url,undefined);
+    assert.equal(JSON.parse(writes.at(-1).args[1]).mcp_n90_link,undefined);
+  }
+  // The link is an evidence path. Matching the equipment does not require a tariff or measured energy.
+  const unknownTariff = await run({arbeitspreis_eur_kwh:-1,messung_vollstaendig:false,messenergie_kwh:0,messdauer_min:0});
+  assert.equal(unknownTariff.structuredContent.entry_url,N90_ENTRY_URL);
+  assert.equal(unknownTariff.structuredContent.label_referenz_eur_je_60_min,null);
+
+  writes.length = 0;
+  for (const quiet of [{'x-probe':'1'},{dnt:'1'},{'sec-gpc':'1'},{'user-agent':ciUA}]) {
+    const probe = await run({}, {...headers,...quiet});
+    assert.equal(probe.structuredContent.entry_url,N90_ENTRY_URL);
+  }
+  assert.equal((await run({},headers,compactPath+'&__probe=1')).structuredContent.entry_url,N90_ENTRY_URL);
+  assert.deepEqual(writes,[]);
+
+  const forged = await send('/api/ev',{method:'POST',headers:{...headers,'content-type':'application/json'},
+    body:JSON.stringify({n:'mcp_call',p:'/mcp',m:{tool:N90_TOOL_NAME,mcp_profile:'compact',mcp_n90_link:1,mcp_n90_entry:1}})});
+  assert.equal(forged.status,200);
+  assert.deepEqual(JSON.parse(writes[0].args[4]),{tool:N90_TOOL_NAME});
 });
 
 test('compact HTTP preserves CORS preflight, method rejection, notifications and ping', async () => {

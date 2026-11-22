@@ -1,6 +1,7 @@
 import {CELLAR_PAGE} from './affiliate-meta.mjs';
 import {WINDOW_ENTRY_PAGE} from './fenstersauger-entry.mjs';
 import {PORTASPLIT_ENTRY_PAGE} from './portasplit-entry.mjs';
+import {N90_ENTRY_PAGE, N90_PRODUCT_URL} from './n90-entry.mjs';
 
 // Bounded, aggregate-only history for distinguishing demand/mix changes from
 // telemetry loss. No identifiers, raw paths, referrers or outbound URLs leave
@@ -23,12 +24,17 @@ export const AUDIT_SQL = `SELECT day, name, page, ref,
   CASE WHEN page='${PORTASPLIT_ENTRY_PAGE}' AND ua_class='human' AND json_valid(meta)
     THEN COALESCE(json_type(meta,'$.mcp_portasplit_entry') = 'integer'
       AND json_extract(meta,'$.mcp_portasplit_entry') = 1,0) ELSE 0 END AS portasplit_entry,
+  CASE WHEN page='${N90_ENTRY_PAGE}' AND ua_class='human' AND json_valid(meta)
+    THEN COALESCE(json_type(meta,'$.mcp_n90_entry') = 'integer'
+      AND json_extract(meta,'$.mcp_n90_entry') = 1
+      AND (name='page_view' OR (name='affiliate_click' AND json_extract(meta,'$.link_url')='${N90_PRODUCT_URL}')),0)
+    ELSE 0 END AS n90_entry,
   COUNT(*) AS n, date('now') AS end_exclusive
 FROM ev
 WHERE name IN ('page_view','affiliate_click')
   AND day >= date('now','-56 days') AND day < date('now')
   AND (ua_class IS NULL OR ua_class='human') AND page NOT LIKE '/__ci%'
-GROUP BY day, name, page, ref, link, source, drain_entry, cellar_entry, window_entry, portasplit_entry`;
+GROUP BY day, name, page, ref, link, source, drain_entry, cellar_entry, window_entry, portasplit_entry, n90_entry`;
 
 const GAPS = [
   {day:'2026-09-24',approx_start_utc:'13:00'},
@@ -78,6 +84,7 @@ const firstFullDrainDay = '2026-11-20';
 const range = (start,end)=>({...section(),start,end_exclusive:end,
   // An empty marker cohort alone cannot establish when coverage started.
   mcp_cellar_entry:null,
+  mcp_n90_entry:null,
   mcp_window_entry:null,
   mcp_portasplit_entry:null,
   mcp_drain_entry: end <= firstFullDrainDay ? null : {
@@ -97,12 +104,13 @@ function destination(link) {
 // A subset of clicks from these two German guides to the normalized approved
 // Amazon.de destination. Never join these aggregate events to people or orders.
 const n90Guides = new Map([
-  ['/guide/delonghi-pac-n90-test.html', 'model'],
+  [N90_ENTRY_PAGE, 'model'],
   ['/guide/delonghi-pinguino-vergleich.html', 'family'],
 ]);
 const n90Product = /^https:\/\/(?:www\.)?amazon\.de\/(?:dp|gp\/product)\/B07NC5CP6F\?tag=getecoback-21$/;
 const trackedModelPaths = new Map([
   [CELLAR_PAGE, {column:'cellar_entry', aggregate:'mcp_cellar_entry'}],
+  [N90_ENTRY_PAGE, {column:'n90_entry', aggregate:'mcp_n90_entry', clickField:'exact_product_clicks'}],
   [WINDOW_ENTRY_PAGE, {column:'window_entry', aggregate:'mcp_window_entry'}],
   [PORTASPLIT_ENTRY_PAGE, {column:'portasplit_entry', aggregate:'mcp_portasplit_entry'}],
 ]);
@@ -121,9 +129,10 @@ function add(s,r,channel) {
   }
   const modelPath = trackedModelPaths.get(r.page);
   if (modelPath && r[modelPath.column] === 1) {
-    const entry = s[modelPath.aggregate] ??= {first_recorded_day:r.day,page_views:0,model_search_clicks:0};
+    const clickField = modelPath.clickField ?? 'model_search_clicks';
+    const entry = s[modelPath.aggregate] ??= {first_recorded_day:r.day,page_views:0,[clickField]:0};
     if (r.day < entry.first_recorded_day) entry.first_recorded_day = r.day;
-    entry[field === 'page_views' ? field : 'model_search_clicks'] += r.n;
+    entry[field === 'page_views' ? field : clickField] += r.n;
   }
   if (cellar) s.cellar_catalog[field] += r.n;
   const group=pageGroup(r.page);

@@ -8,6 +8,7 @@ import {WINDOW_ENTRY_DOCUMENT, WINDOW_ENTRY_URL} from '../src/fenstersauger-entr
 const root=path.resolve(process.env.ECO_CATALOG_SITE||new URL('../site/',import.meta.url).pathname);
 const data=JSON.parse(fs.readFileSync(new URL('../data/product-catalog.json',import.meta.url),'utf8'));
 const portasplitEntry=JSON.parse(fs.readFileSync(new URL('../data/mcp-portasplit-entry.json',import.meta.url),'utf8'));
+const n90Entry=JSON.parse(fs.readFileSync(new URL('../data/mcp-n90-entry.json',import.meta.url),'utf8'));
 const requireTools=createRequire(new URL('../../../tools/revenue-studio/package.json',import.meta.url));
 const {chromium}=requireTools('playwright');
 const origin='https://getecoback.com',today=new Date().toISOString().slice(0,10),cases=[];
@@ -115,7 +116,7 @@ async function checkCellarEntry(browser) {
   const merchantCard=mode==='other-model'?page.locator('.dc-card').filter({has:page.locator(otherHash)}):firstModel;
   const click=noScript?null:waitForEvent(page,'affiliate_click');
   const expectedMerchant=mode==='other-model'?otherSearch:modelSearch;
-  const outgoing=context.waitForEvent('request',request=>request.url()===expectedMerchant);
+  const outgoing=context.waitForEvent('requestfailed',{predicate:request=>request.url()===expectedMerchant,timeout:10000});
   await merchantCard.locator('a[rel~=sponsored]').click();
   await outgoing;
   if(click){
@@ -133,8 +134,74 @@ async function checkCellarEntry(browser) {
  return cases;
 }
 
-const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{}),args:['--no-sandbox']});
-try{
+async function checkN90Entry(browser) {
+ const cases=[];
+ const otherModel='https://www.amazon.de/s?k=AEG+ChillFlex+Pro&tag=getecoback-21';
+ for(const mode of ['tagged','other-model','untagged','wrong-fragment','extra-query','opted-out','revoked','dnt','gpc','webdriver','no-script']){
+  const noScript=mode==='no-script';
+  const context=await browser.newContext({viewport:{width:390,height:844},javaScriptEnabled:!noScript,serviceWorkers:'block'});
+  const merchants=[];
+  let eventRequests=0;
+  await context.route('**/*',route=>{
+   const request=route.request();
+   if(new URL(request.url()).hostname==='www.amazon.de')merchants.push(request.url());
+   if(request.url()===origin+'/api/ev'&&request.method()==='POST')eventRequests++;
+   return localCatalogue(route);
+  });
+  await context.addInitScript(mode=>{
+   Object.defineProperty(navigator,'webdriver',{get:()=>mode==='webdriver'});
+   Object.defineProperty(navigator,'doNotTrack',{get:()=>mode==='dnt'?'1':null});
+   Object.defineProperty(navigator,'globalPrivacyControl',{get:()=>mode==='gpc'});
+   if(mode==='opted-out')localStorage.setItem('fleet_ga4_choice_v1','denied');
+  },mode);
+  const page=await context.newPage();
+  const documentURL=origin+n90Entry.page+(mode==='untagged'?'':n90Entry.query)+(mode==='extra-query'?'&extra=1':'');
+  const initialFragment=mode==='wrong-fragment'?'#alternativen':n90Entry.fragment;
+  const arrival=noScript?null:waitForEvent(page,'page_view');
+  await page.goto(documentURL+initialFragment);
+  assert.equal(await page.locator(n90Entry.fragment).count(),1);
+  if(arrival){
+   const request=await arrival,body=JSON.parse(request.postData());
+   const marked=['tagged','other-model','revoked'].includes(mode);
+   assert.equal(body.mcp_n90_entry,marked?true:undefined,mode+' arrival');
+   assert.equal(body.p,n90Entry.page);
+   assert.equal((await request.allHeaders()).referer,documentURL);
+   assert.ok(!JSON.stringify(body).includes('mcp_entry='),mode+' landing query in payload');
+  }
+  if(mode==='tagged'){
+   const unrelated=waitForEvent(page,'guide_action');
+   await page.evaluate(()=>window.ebSend('guide_action'));
+   assert.equal(JSON.parse((await unrelated).postData()).mcp_n90_entry,undefined);
+  }
+  if(mode==='revoked')await page.evaluate(()=>localStorage.setItem('fleet_ga4_choice_v1','denied'));
+  const laterFragment=mode==='wrong-fragment'?n90Entry.fragment:'#alternativen';
+  await page.locator('a[href="'+laterFragment+'"]').first().click();
+  await page.waitForURL(documentURL+laterFragment);
+  const product=mode==='other-model'?otherModel:n90Entry.product_url;
+  const link=mode==='other-model'?page.locator('table a[href="'+otherModel+'"]'):page.locator('.cta-box a[href="'+product+'"]');
+  assert.equal(await link.count(),1);
+  const click=noScript?null:waitForEvent(page,'affiliate_click');
+  const merchant=context.waitForEvent('requestfailed',{predicate:request=>request.url()===product,timeout:10000});
+  await link.click();
+  await merchant;
+  if(click){
+   const request=await click,body=JSON.parse(request.postData());
+   assert.equal(body.mcp_n90_entry,mode==='tagged'?true:undefined,mode+' click');
+   assert.equal(body.p,n90Entry.page);
+   assert.equal(body.m.link_url,product);
+   assert.equal((await request.allHeaders()).referer,documentURL);
+   assert.ok(!JSON.stringify(body).includes('mcp_entry='),mode+' click query in payload');
+  }else{
+   assert.equal(eventRequests,0,'N90 no-script emitted a beacon');
+  }
+  assert.deepEqual(merchants,[product]);
+  cases.push(mode);
+  await context.close();
+ }
+ return cases;
+}
+
+async function checkCatalog(browser){
  for(const width of [320,390,1280])for(const javaScriptEnabled of [true,false]){
   const context=await browser.newContext({viewport:{width,height:900},javaScriptEnabled,serviceWorkers:'block',userAgent:'getecoback-ci/1.0 product-catalog',extraHTTPHeaders:{DNT:'1'}});
   let writes=0;const errors=[];
@@ -406,5 +473,12 @@ try{
   portasplitEntryCases.push({mode,marker:expectedMarker??false});
  }
  const cellarEntryCases=await checkCellarEntry(browser);
- console.log(JSON.stringify({pass:true,cases,windowEntryCases,portasplitEntryCases,cellarEntryCases,productionWrites:0}));
+ return {cases,windowEntryCases,portasplitEntryCases,cellarEntryCases};
+}
+
+const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{}),args:['--no-sandbox','--host-resolver-rules=MAP * ~NOTFOUND']});
+try{
+ const catalog=process.argv.includes('--n90-entry')?{}:await checkCatalog(browser);
+ const n90EntryCases=await checkN90Entry(browser);
+ console.log(JSON.stringify({pass:true,...catalog,n90EntryCases,productionWrites:0}));
 }finally{await browser.close();}

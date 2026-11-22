@@ -4218,7 +4218,7 @@ def inject_explainer(html, slug, en=False):
 # boxes, in-text links) predate per-link gtag handlers, so their clicks were
 # invisible in GA4. One listener per page catches them all, and it stands down
 # whenever another handler on the page already reported the same click.
-def track_block(cellar=False, window_fit=False, portasplit_url=None, cellar_model=None):
+def track_block(cellar=False, window_fit=False, portasplit_url=None, cellar_model=None, n90_model=None):
     # Capture the initial document URL once. Following a model anchor on this
     # page may change the fragment before the existing click event fires.
     marker = ('var drainEntry=location.href==="https://getecoback.com/guide/luftentfeuchter-keller.html'
@@ -4226,9 +4226,9 @@ def track_block(cellar=False, window_fit=False, portasplit_url=None, cellar_mode
               if cellar else '')
     field = 'mcp_drain_entry:(drainEntry&&(n==="page_view"||n==="affiliate_click"))||undefined,' if cellar else ''
     click = 'n==="affiliate_click"'
-    if cellar_model:
-        entry_name = "cellar"
-        entry_url, merchant_url = cellar_model
+    if cellar_model or n90_model:
+        entry_name = "n90" if n90_model else "cellar"
+        entry_url, merchant_url = n90_model or cellar_model
         click = f'(n==="affiliate_click"&&m&&m.link_url==={json.dumps(merchant_url)})'
     elif window_fit:
         entry_name = "window"
@@ -4314,8 +4314,8 @@ def track_block(cellar=False, window_fit=False, portasplit_url=None, cellar_mode
          '});})();</script><!--/EB_TRACK-->')
 
 
-def inject_track(html, cellar=False, window_fit=False, portasplit_url=None, cellar_model=None):
-    track = track_block(cellar, window_fit, portasplit_url, cellar_model)
+def inject_track(html, cellar=False, window_fit=False, portasplit_url=None, cellar_model=None, n90_model=None):
+    track = track_block(cellar, window_fit, portasplit_url, cellar_model, n90_model)
     if "<!--EB_TRACK-->" in html:
         return re.sub(r'<!--EB_TRACK-->.*?<!--/EB_TRACK-->', lambda m: track, html, flags=re.S)
     return html.replace("</body>", track + "\n</body>", 1)
@@ -4657,12 +4657,12 @@ def storage_guard():
                          + "\n  ".join(bad))
 
 
-def model_entry_target(filename):
+def model_entry_target(filename, target_field="model_search"):
     with open(os.path.join(ROOT, "data", filename), encoding="utf-8") as handle:
         entry = json.load(handle)
     page = os.path.join(SITE, entry["page"].lstrip("/"))
     url = "https://getecoback.com" + entry["page"] + entry["query"] + entry["fragment"]
-    return page, url, entry["model_search"]
+    return page, url, entry[target_field]
 
 
 def main():
@@ -4687,6 +4687,7 @@ def main():
     portasplit_page, portasplit_url, _ = model_entry_target("mcp-portasplit-entry.json")
     cellar_page, cellar_url, cellar_search = model_entry_target("mcp-cellar-entry.json")
     cellar_merchant = "https://www.amazon.de/s?" + urllib.parse.urlencode({"k": cellar_search, "tag": "getecoback-21"})
+    n90_page, n90_url, n90_merchant = model_entry_target("mcp-n90-entry.json", "product_url")
     targets = ([os.path.join(SITE, f) for f in os.listdir(SITE) if f.endswith(".html") and f != "404.html"]
                + glob.glob(os.path.join(GUIDE, "*.html"))
                + glob.glob(os.path.join(KAT, "*.html")))
@@ -4698,7 +4699,8 @@ def main():
         new = inject_track(new, cellar=path == cellar_page,
                            window_fit=path == os.path.join(SITE, "produkte.html"),
                            portasplit_url=portasplit_url if path == portasplit_page else None,
-                           cellar_model=(cellar_url, cellar_merchant) if path == cellar_page else None)
+                           cellar_model=(cellar_url, cellar_merchant) if path == cellar_page else None,
+                           n90_model=(n90_url, n90_merchant) if path == n90_page else None)
         if os.path.basename(path) != 'produkte.html':
             new = inject_profile(new)
         new = inject_share(new)
