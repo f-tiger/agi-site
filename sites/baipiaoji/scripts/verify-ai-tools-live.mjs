@@ -1,6 +1,10 @@
 import assert from 'node:assert/strict';
 import {setTimeout as wait} from 'node:timers/promises';
 import {SUITE_TOOLS,runSuiteTool,suiteToolDefinitions} from '../lib/ai-suite/registry.mjs';
+import {FREE_MCP_VERSION} from '../lib/ai-tool-discovery.mjs';
+import {AI_FREE_TOOLS} from '../lib/ai-tool-registry.mjs';
+
+const expectedDefinitions=AI_FREE_TOOLS.length+SUITE_TOOLS.length;
 
 const origin='https://baipiaoji.com';
 const protocolVersion='2025-06-18';
@@ -52,7 +56,7 @@ const rpc=async(method,params)=>{
 };
 const meta=await rpc('initialize',{protocolVersion,capabilities:{},clientInfo:{name:'bpj-ci',version:'1'}});
 assert.equal(meta.protocolVersion,protocolVersion);
-assert.deepEqual(meta.serverInfo,{name:'bpj-ai-tools',version:'0.3.0'});
+assert.deepEqual(meta.serverInfo,{name:'bpj-ai-tools',version:FREE_MCP_VERSION});
 const listed=[];
 const cursors=new Set();
 let cursor;
@@ -66,9 +70,9 @@ do{
   assert(!cursors.has(cursor),'MCP list cursor repeated');
   cursors.add(cursor);
  }
- assert(listed.length<=1003,'More MCP tools than advertised');
+ assert(listed.length<=expectedDefinitions,'More MCP tools than advertised');
 } while(cursor);
-assert.equal(listed.length,1003);
+assert.equal(listed.length,expectedDefinitions);
 assert.deepEqual(listed.slice(0,3).map(x=>x.name),['list_bpj_ai_tools','review_task_state','run_bpj_ai_tool']);
 assert.deepEqual(listed.slice(3),suiteToolDefinitions());
 console.log('PASS live free MCP initialize and '+listed.length+' definitions across '+(cursors.size+1)+' pages.');
@@ -88,7 +92,7 @@ if(!metadataOnly){
  assert.equal(JSON.parse(checked.content[0].text).action,'resolve_blocker');
  const sampleSearch=await rpc('tools/call',{name:'list_bpj_ai_tools',arguments:{query:'bpj_csv_to_json',limit:1,includeSchema:true}});
  const search=JSON.parse(sampleSearch.content[0].text);
- assert.equal(search.total,1000);
+ assert.equal(search.total,SUITE_TOOLS.length);
  assert.equal(search.suite[0].freeMcp,'bpj_csv_to_json');
  assert.deepEqual(search.suite[0].inputSchema,listed.find(x=>x.name==='bpj_csv_to_json').inputSchema);
  const last=SUITE_TOOLS.at(-1);

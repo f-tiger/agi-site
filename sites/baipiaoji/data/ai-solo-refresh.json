@@ -1,7 +1,7 @@
 {
-  "lastRun": "2026-11-20T07:44:43.006Z",
+  "lastRun": "2026-11-21T07:42:45.361Z",
   "status": "degraded",
-  "checkedSources": 9,
+  "checkedSources": 8,
   "queue": [
     {
       "caseId": "photo-ai",
@@ -235,37 +235,31 @@
       "caseId": "ghost-autonomy",
       "reason": "source-unreachable",
       "sourceUrl": "https://autotechinsight.ihsmarkit.com/main/news/view/printer-friendly?id=5275319",
-      "lastChecked": "2026-11-07T06:34:03.868Z"
+      "lastChecked": "2026-11-21T07:42:45.361Z"
     },
     {
       "caseId": "argo-ai",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.euronews.com/next/2022/11/01/ford-motor-autonomous-argo",
-      "lastChecked": "2026-11-07T06:34:03.868Z"
+      "lastChecked": "2026-11-21T07:42:45.361Z"
     },
     {
       "caseId": "argo-ai",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.investing.com/news/stock-market-news/ford-withdraws-petition-seeking-us-approval-to-deploy-selfdriving-vehicles-3045478",
-      "lastChecked": "2026-11-07T06:34:03.868Z"
-    },
-    {
-      "caseId": "cruise-robotaxi",
-      "reason": "source-unreachable",
-      "sourceUrl": "https://investor.gm.com/news-releases/news-release-details/gm-refocus-autonomous-driving-development-personal-vehicles/",
-      "lastChecked": "2026-11-08T06:40:41.344Z"
+      "lastChecked": "2026-11-21T07:42:45.361Z"
     },
     {
       "caseId": "cruise-robotaxi",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1467858/000146785826000013/gm-20251231.htm",
-      "lastChecked": "2026-11-08T06:40:41.344Z"
+      "lastChecked": "2026-11-21T07:42:45.361Z"
     },
     {
       "caseId": "poppy",
       "reason": "source-unreachable",
       "sourceUrl": "https://getpoppy.app/blog/sunset",
-      "lastChecked": "2026-11-08T06:40:41.344Z"
+      "lastChecked": "2026-11-21T07:42:45.361Z"
     },
     {
       "caseId": "yara-ai",
@@ -808,7 +802,7 @@
     "ghost-autonomy|https://autotechinsight.ihsmarkit.com/main/news/view/printer-friendly?id=5275319": {
       "caseId": "ghost-autonomy",
       "sourceUrl": "https://autotechinsight.ihsmarkit.com/main/news/view/printer-friendly?id=5275319",
-      "lastAttempt": "2026-11-07T06:34:03.868Z",
+      "lastAttempt": "2026-11-21T07:42:45.361Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -816,7 +810,7 @@
     "argo-ai|https://www.euronews.com/next/2022/11/01/ford-motor-autonomous-argo": {
       "caseId": "argo-ai",
       "sourceUrl": "https://www.euronews.com/next/2022/11/01/ford-motor-autonomous-argo",
-      "lastAttempt": "2026-11-07T06:34:03.868Z",
+      "lastAttempt": "2026-11-21T07:42:45.361Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -824,7 +818,7 @@
     "argo-ai|https://www.investing.com/news/stock-market-news/ford-withdraws-petition-seeking-us-approval-to-deploy-selfdriving-vehicles-3045478": {
       "caseId": "argo-ai",
       "sourceUrl": "https://www.investing.com/news/stock-market-news/ford-withdraws-petition-seeking-us-approval-to-deploy-selfdriving-vehicles-3045478",
-      "lastAttempt": "2026-11-07T06:34:03.868Z",
+      "lastAttempt": "2026-11-21T07:42:45.361Z",
       "status": "unreachable",
       "http": 403,
       "consecutiveChange": 0
@@ -832,15 +826,20 @@
     "cruise-robotaxi|https://investor.gm.com/news-releases/news-release-details/gm-refocus-autonomous-driving-development-personal-vehicles/": {
       "caseId": "cruise-robotaxi",
       "sourceUrl": "https://investor.gm.com/news-releases/news-release-details/gm-refocus-autonomous-driving-development-personal-vehicles/",
-      "lastAttempt": "2026-11-08T06:40:41.344Z",
-      "status": "unreachable",
-      "http": 403,
-      "consecutiveChange": 0
+      "lastAttempt": "2026-11-21T07:42:45.361Z",
+      "status": "baseline",
+      "http": 200,
+      "consecutiveChange": 0,
+      "lastSuccess": "2026-11-21T07:42:45.361Z",
+      "lastHash": "caa3b14260b461030b9fb85bbe3b5b2bd409f17f67a173f0b860ad759c618a17",
+      "hash": "caa3b14260b461030b9fb85bbe3b5b2bd409f17f67a173f0b860ad759c618a17",
+      "simhash": "a4d2915ff7f4a504",
+      "words": 1259
     },
     "cruise-robotaxi|https://www.sec.gov/Archives/edgar/data/1467858/000146785826000013/gm-20251231.htm": {
       "caseId": "cruise-robotaxi",
       "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1467858/000146785826000013/gm-20251231.htm",
-      "lastAttempt": "2026-11-08T06:40:41.344Z",
+      "lastAttempt": "2026-11-21T07:42:45.361Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -848,7 +847,7 @@
     "poppy|https://getpoppy.app/blog/sunset": {
       "caseId": "poppy",
       "sourceUrl": "https://getpoppy.app/blog/sunset",
-      "lastAttempt": "2026-11-08T06:40:41.344Z",
+      "lastAttempt": "2026-11-21T07:42:45.361Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -856,10 +855,10 @@
     "poppy|https://www.juyoungkim.net/posts/poppy-second-nature": {
       "caseId": "poppy",
       "sourceUrl": "https://www.juyoungkim.net/posts/poppy-second-nature",
-      "lastAttempt": "2026-11-08T06:40:41.344Z",
+      "lastAttempt": "2026-11-21T07:42:45.361Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-11-08T06:40:41.344Z",
+      "lastSuccess": "2026-11-21T07:42:45.361Z",
       "lastHash": "f884c00e6ca3bd46dbd438b37dc5225c3b8129fd79c2bfb25c7818bb6d9897d0",
       "hash": "f884c00e6ca3bd46dbd438b37dc5225c3b8129fd79c2bfb25c7818bb6d9897d0",
       "simhash": "227630541f4ce077",
@@ -869,15 +868,15 @@
     "super-ai|https://gravity.fast/blog/super-ai-postmortem/": {
       "caseId": "super-ai",
       "sourceUrl": "https://gravity.fast/blog/super-ai-postmortem/",
-      "lastAttempt": "2026-11-08T06:40:41.344Z",
-      "status": "available",
+      "lastAttempt": "2026-11-21T07:42:45.361Z",
+      "status": "change-pending",
       "http": 200,
-      "lastSuccess": "2026-11-08T06:40:41.344Z",
-      "lastHash": "9a8550c4047745d1b9fe0d52d74c30c38ac17b562bf2f99689a1f22ee6842f4a",
+      "lastSuccess": "2026-11-21T07:42:45.361Z",
+      "lastHash": "eac42892f271c4acbb09488d9178fafebc33759acc31a8480862593de449f8e9",
       "hash": "2a038809a3773a17c88b265e3b0d112c42444aaf22ee824a9bfdd71fb8e87fe4",
       "simhash": "be02d0295cfd039f",
       "words": 1873,
-      "consecutiveChange": 0
+      "consecutiveChange": 1
     },
     "vibe-ai|https://gravity.fast/blog/vibe-ai-postmortem/": {
       "caseId": "vibe-ai",
@@ -1159,27 +1158,27 @@
       "consecutiveChange": 0
     }
   },
-  "cursor": 39,
+  "cursor": 44,
   "errors": [
     {
-      "caseId": "neeva-consumer-search",
-      "sourceUrl": "https://www.searchenginejournal.com/neeva-the-ad-free-search-engine-announces-closure/487414/",
-      "reason": "body-limit"
-    },
-    {
-      "caseId": "artifact",
-      "sourceUrl": "https://indianexpress.com/article/technology/artificial-intelligence/artifact-ai-news-app-shutting-down-9108918/",
-      "reason": "body-limit"
-    },
-    {
-      "caseId": "builder-ai",
-      "sourceUrl": "https://www.computerworld.com/article/3991362/microsoft-backed-no-code-ai-startup-files-for-bankruptcy.html",
+      "caseId": "ghost-autonomy",
+      "sourceUrl": "https://autotechinsight.ihsmarkit.com/main/news/view/printer-friendly?id=5275319",
       "reason": "unsafe-source"
     },
     {
-      "caseId": "embodied",
-      "sourceUrl": "https://www.businessinsider.com/moxie-robot-toy-shutting-down-kids-embodied-goodbye-2024-12",
+      "caseId": "argo-ai",
+      "sourceUrl": "https://www.euronews.com/next/2022/11/01/ford-motor-autonomous-argo",
       "reason": "body-limit"
+    },
+    {
+      "caseId": "cruise-robotaxi",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1467858/000146785826000013/gm-20251231.htm",
+      "reason": "body-limit"
+    },
+    {
+      "caseId": "poppy",
+      "sourceUrl": "https://getpoppy.app/blog/sunset",
+      "reason": "network-error"
     }
   ]
 }

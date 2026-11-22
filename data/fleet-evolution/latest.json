@@ -1,34 +1,34 @@
 {
   "schema_version": 1,
-  "as_of": "2026-11-20",
+  "as_of": "2026-11-21",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
-    "healthy": 31,
-    "membership_ready": 2,
+    "healthy": 2,
+    "membership_ready": 0,
     "paid_members": 0,
     "active_members": 0,
-    "opportunities": 8,
+    "opportunities": 7,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-11-20T10:25:48.781Z",
-    "health": "2026-11-19T16:57:44Z",
+    "membership": "2026-11-21T10:09:30.233Z",
+    "health": "2026-11-20T16:32:12Z",
     "ai_referrals": "2026-11-19T16:58:15Z",
-    "opportunities": "2026-11-19",
-    "autopilot_receipt": "2026-11-20"
+    "opportunities": "2026-11-20",
+    "autopilot_receipt": "2026-11-21"
   },
   "input_ages_days": {
     "membership": 0,
     "health": 1,
-    "ai_referrals": 1,
+    "ai_referrals": 2,
     "opportunities": 1,
     "autopilot_receipt": 0
   },
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-11-20T10:25:48.781Z",
+    "generated": "2026-11-21T10:09:30.233Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
     "ok": false,
@@ -60,7 +60,7 @@
         "origin": "https://agiscorecard.com",
         "public": {
           "ok": true,
-          "ready": true,
+          "ready": false,
           "site": "agi",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -81,7 +81,7 @@
         "origin": "https://getecoback.com",
         "public": {
           "ok": true,
-          "ready": true,
+          "ready": false,
           "site": "eco",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -140,7 +140,16 @@
       "theme": "what screenshot software allows the user to capture solely a specific window",
       "site": null,
       "state": "scout",
-      "score": 2.14,
+      "score": 2.19,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "what software can help me organize and manage personal files stored across multi",
+      "site": null,
+      "state": "scout",
+      "score": 2.05,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -164,15 +173,6 @@
       "supply": 0
     },
     {
-      "theme": "how to set up an isolated environment for c development session with the ability",
-      "site": null,
-      "state": "scout",
-      "score": 2.0,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
       "theme": "how to transfer photos from icloud photos to google drive",
       "site": null,
       "state": "scout",
@@ -183,15 +183,6 @@
     },
     {
       "theme": "what software can help manage large volumes of data for long term archiving",
-      "site": null,
-      "state": "scout",
-      "score": 2.0,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
-      "theme": "what software can help me organize and manage personal files stored across multi",
       "site": null,
       "state": "scout",
       "score": 2.0,
@@ -317,7 +308,149 @@
   ],
   "actions": [
     {
+      "site": "after35",
+      "kind": "site_health",
+      "priority": 100,
+      "reason": "live probe is not HTTP 200",
+      "evidence": {
+        "http": "429"
+      },
+      "mode": "alert"
+    },
+    {
+      "site": "agiscorecard",
+      "kind": "site_health",
+      "priority": 100,
+      "reason": "live probe is not HTTP 200",
+      "evidence": {
+        "http": "429"
+      },
+      "mode": "alert"
+    },
+    {
+      "site": "buysomething",
+      "kind": "site_health",
+      "priority": 100,
+      "reason": "live probe is not HTTP 200",
+      "evidence": {
+        "http": "429"
+      },
+      "mode": "alert"
+    },
+    {
+      "site": "codeword",
+      "kind": "site_health",
+      "priority": 100,
+      "reason": "live probe is not HTTP 200",
+      "evidence": {
+        "http": "429"
+      },
+      "mode": "alert"
+    },
+    {
+      "site": "fanzha",
+      "kind": "site_health",
+      "priority": 100,
+      "reason": "live probe is not HTTP 200",
+      "evidence": {
+        "http": "429"
+      },
+      "mode": "alert"
+    },
+    {
+      "site": "firstjob",
+      "kind": "site_health",
+      "priority": 100,
+      "reason": "live probe is not HTTP 200",
+      "evidence": {
+        "http": "429"
+      },
+      "mode": "alert"
+    },
+    {
+      "site": "gamesledger",
+      "kind": "site_health",
+      "priority": 100,
+      "reason": "live probe is not HTTP 200",
+      "evidence": {
+        "http": "429"
+      },
+      "mode": "alert"
+    },
+    {
+      "site": "getecoback",
+      "kind": "site_health",
+      "priority": 100,
+      "reason": "live probe is not HTTP 200",
+      "evidence": {
+        "http": "429"
+      },
+      "mode": "alert"
+    },
+    {
+      "site": "goldrush",
+      "kind": "site_health",
+      "priority": 100,
+      "reason": "live probe is not HTTP 200",
+      "evidence": {
+        "http": "429"
+      },
+      "mode": "alert"
+    },
+    {
+      "site": "gridlings",
+      "kind": "site_health",
+      "priority": 100,
+      "reason": "live probe is not HTTP 200",
+      "evidence": {
+        "http": "429"
+      },
+      "mode": "alert"
+    },
+    {
+      "site": "learn",
+      "kind": "site_health",
+      "priority": 100,
+      "reason": "live probe is not HTTP 200",
+      "evidence": {
+        "http": "429"
+      },
+      "mode": "alert"
+    },
+    {
+      "site": "powerbill",
+      "kind": "site_health",
+      "priority": 100,
+      "reason": "live probe is not HTTP 200",
+      "evidence": {
+        "http": "429"
+      },
+      "mode": "alert"
+    },
+    {
+      "site": "agiscorecard",
+      "kind": "membership_health",
+      "priority": 92,
+      "reason": "recent snapshot reported unavailable checkout; check the live API before recovery",
+      "evidence": {
+        "public_ok": true,
+        "ready": false
+      },
+      "mode": "alert"
+    },
+    {
       "site": "baipiaoji",
+      "kind": "membership_health",
+      "priority": 92,
+      "reason": "recent snapshot reported unavailable checkout; check the live API before recovery",
+      "evidence": {
+        "public_ok": true,
+        "ready": false
+      },
+      "mode": "alert"
+    },
+    {
+      "site": "getecoback",
       "kind": "membership_health",
       "priority": 92,
       "reason": "recent snapshot reported unavailable checkout; check the live API before recovery",
@@ -339,44 +472,12 @@
       "mode": "alert"
     },
     {
-      "site": "agiscorecard",
-      "kind": "membership_readiness_check",
-      "priority": 70,
-      "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
-      "evidence": {
-        "snapshot_date": "2026-11-20T10:25:48.781Z"
-      },
-      "mode": "observe"
-    },
-    {
-      "site": "getecoback",
-      "kind": "membership_readiness_check",
-      "priority": 70,
-      "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
-      "evidence": {
-        "snapshot_date": "2026-11-20T10:25:48.781Z"
-      },
-      "mode": "observe"
-    },
-    {
-      "site": "agiscorecard",
-      "kind": "content_gap",
-      "priority": 55,
-      "reason": "topic-signal overlap has no matching page; apply the buyer, source, country and distribution gates before expansion",
-      "evidence": {
-        "count": 1,
-        "query": "ai stocks crashing",
-        "value": 1
-      },
-      "mode": "queue"
-    },
-    {
       "site": "getecoback",
       "kind": "content_gap",
       "priority": 55,
       "reason": "topic-signal overlap has no matching page; apply the buyer, source, country and distribution gates before expansion",
       "evidence": {
-        "count": 25,
+        "count": 32,
         "query": "vorwerk saugwischer roboter",
         "value": 158500
       },
@@ -440,7 +541,7 @@
     },
     "getecoback": {
       "path": "sites/getecoback/data/fleet-evolution.json",
-      "action_count": 3
+      "action_count": 4
     },
     "thedollscout": {
       "path": "sites/thedollscout/data/fleet-evolution.json",
@@ -448,43 +549,43 @@
     },
     "buysomething": {
       "path": "sites/buysomething/data/fleet-evolution.json",
-      "action_count": 0
+      "action_count": 1
     },
     "goldrush": {
       "path": "sites/goldrush/data/fleet-evolution.json",
-      "action_count": 1
+      "action_count": 2
     },
     "gridlings": {
       "path": "sites/gridlings/data/fleet-evolution.json",
-      "action_count": 0
+      "action_count": 1
     },
     "gamesledger": {
       "path": "sites/gamesledger/data/fleet-evolution.json",
-      "action_count": 0
+      "action_count": 1
     },
     "after35": {
       "path": "sites/after35/data/fleet-evolution.json",
-      "action_count": 0
+      "action_count": 1
     },
     "learn": {
       "path": "sites/learn/data/fleet-evolution.json",
-      "action_count": 0
+      "action_count": 1
     },
     "fanzha": {
       "path": "sites/fanzha/data/fleet-evolution.json",
-      "action_count": 0
+      "action_count": 1
     },
     "firstjob": {
       "path": "sites/firstjob/data/fleet-evolution.json",
-      "action_count": 0
+      "action_count": 1
     },
     "codeword": {
       "path": "sites/codeword/data/fleet-evolution.json",
-      "action_count": 0
+      "action_count": 1
     },
     "powerbill": {
       "path": "sites/powerbill/data/fleet-evolution.json",
-      "action_count": 0
+      "action_count": 1
     }
   },
   "growth_policy": {

@@ -113,16 +113,18 @@ function collectorCorner({lang,route,esc,compact=false}){const c=shoppingCopy[la
 const powerGuideSlug = 'shop/categories/smart-home';
 const powerGuideAnchor = '#strommessung';
 const powerGuideLabel = 'Tapo P110 und P110M vergleichen';
+const dachToolLabel = 'Messsteckdose nach Land und App auswählen';
+const dachToolPath = '/de/ai-tools/dach-meter-fit';
 export function shoppingHomeHTML({lang,route,esc}){
  const c=shoppingCopy[lang],h=homeCatalogCopy(lang);
  const catalogue = route(lang,'shop');
  const actions = lang === 'de'
-  ? `<a class="button primary" href="${route(lang,powerGuideSlug)}${powerGuideAnchor}">${powerGuideLabel}</a><a class="button" href="${catalogue}">Alle 1.000 Modelle ansehen</a>`
+  ? `<a class="button primary" href="${dachToolPath}">${dachToolLabel}</a><a class="button" href="${route(lang,powerGuideSlug)}${powerGuideAnchor}">${powerGuideLabel}</a><a class="button" href="${catalogue}">Alle 1.000 Modelle ansehen</a>`
   : `<a class="button primary" href="${catalogue}">${h.browse}</a><a class="button" href="#collector-corner">${h.collector}</a>`;
  const hero = `<section class="shop-hero shop-shopping-intro"><div><h1>${h.homeTitle}</h1><p class="shop-lead">${h.homeIntro}</p><div class="actions">${actions}</div></div></section>`;
  return `${hero}${marketShortcuts(lang,route)}${lang==='de'?marketBridgeHTML(lang):''}${homeTasksHTML(lang,route,esc)}${homeCatalogHTML({lang,route,esc,merchantURL,disclosure:c.disclosure,compact:true})}${collectorCorner({lang,route,esc,compact:true})}<section class="shop-home-check"><h2>${c.checks}</h2><p>${c.methodBody}</p><a href="${route(lang,'series')}">${c.tools}</a></section>`;
 }
-export function shoppingHomeText(lang,route,origin){const c=shoppingCopy[lang],h=homeCatalogCopy(lang);return [c.title,h.homeTitle,h.homeIntro,...(lang==='de'?[powerGuideLabel+': '+origin+route(lang,powerGuideSlug)+powerGuideAnchor,...marketBridgeText()]:[]),...homeTasksText(lang,route,origin),...homeCatalogText({lang,route,origin,compact:true}),c.disclosure,h.collector,h.collectorIntro,...guides.map(g=>g[lang].title+': '+origin+route(lang,'shop/'+g.slug)),...amazonShoppingText({lang,guides}),...amazonSupplementText(lang),...(lang==='en'?[englishComparisonLink+': '+origin+route(lang,'shop')+'#collector-corner']:shoppingProductsText({lang,route,origin,compact:true})),c.methodBody,countryCopy[lang].title,...['us','de','uk'].map((code,i)=>countryCopy[lang].names[i]+': '+origin+route(lang,'shop')+'#country-'+code)];}
+export function shoppingHomeText(lang,route,origin){const c=shoppingCopy[lang],h=homeCatalogCopy(lang);return [c.title,h.homeTitle,h.homeIntro,...(lang==='de'?[dachToolLabel+': '+origin+dachToolPath,powerGuideLabel+': '+origin+route(lang,powerGuideSlug)+powerGuideAnchor,...marketBridgeText()]:[]),...homeTasksText(lang,route,origin),...homeCatalogText({lang,route,origin,compact:true}),c.disclosure,h.collector,h.collectorIntro,...guides.map(g=>g[lang].title+': '+origin+route(lang,'shop/'+g.slug)),...amazonShoppingText({lang,guides}),...amazonSupplementText(lang),...(lang==='en'?[englishComparisonLink+': '+origin+route(lang,'shop')+'#collector-corner']:shoppingProductsText({lang,route,origin,compact:true})),c.methodBody,countryCopy[lang].title,...['us','de','uk'].map((code,i)=>countryCopy[lang].names[i]+': '+origin+route(lang,'shop')+'#country-'+code)];}
 export function buildShopping({emit,route,esc,locales,origin}){
  for(const lang of Object.keys(locales)){const c=shoppingCopy[lang],h=homeCatalogCopy(lang);
   const hub=`<nav class="breadcrumb"><a href="${route(lang)}">${c.home}</a><span>/</span><span>${c.nav}</span></nav><section class="shop-hub-intro"><h1>${h.hubTitle}</h1><p class="shop-lead">${h.hubIntro}</p><p class="home-collector-shortcut"><a href="#collector-corner">${h.collector} →</a></p></section>${marketShortcuts(lang,route)}${homeCatalogHTML({lang,route,esc,merchantURL,disclosure:c.disclosure})}${collectorCorner({lang,route,esc})}${countryHubHTML({lang,route,esc})}<section class="shop-method"><h2>${c.method}</h2><p>${c.methodBody}</p><ol>${c.steps.map(x=>`<li>${x}</li>`).join('')}</ol></section>${references({lang,esc})}`;

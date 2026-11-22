@@ -1,0 +1,55 @@
+#release-checks {
+  margin: 1.6rem 0 2rem;
+  padding: clamp(1rem, 3vw, 1.5rem);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--accent2);
+  border-radius: 12px;
+  background: var(--bg2);
+  color: var(--text);
+  scroll-margin-top: 5rem;
+}
+#release-checks h2 { margin: 0 0 .35rem; font-size: clamp(1.25rem, 3vw, 1.55rem); }
+#release-checks h3 { font-size: 1rem; margin: 0 0 .25rem; font-weight: 650; }
+#release-checks p { margin: 0 0 .6rem; }
+#release-checks a { color: var(--text); text-decoration: underline; text-underline-offset: .2em; }
+#release-checks .rc-clients {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem;
+}
+#release-checks .rc-clients { margin: .85rem 0; }
+#release-checks .rc-client {
+  padding: .8rem; min-width: 0; border: 1px solid var(--border);
+  border-radius: 8px; background: var(--bg);
+}
+#release-checks .rc-latest { font-family: ui-monospace, monospace; font-size: 1rem; overflow-wrap: anywhere; }
+#release-checks .rc-freshness, #release-checks .rc-client a, #release-checks #rc-feed-status, #rc-copy-state {
+  color: var(--muted); font-size: .85rem;
+}
+#release-checks p:empty { display: none; }
+#release-checks details { border-top: 1px solid var(--border); padding: .55rem 0; }
+#release-checks summary { cursor: pointer; font-weight: 650; }
+#release-checks details[open] > summary { margin-bottom: .65rem; }
+#release-checks details p, #release-checks li { font-size: .92rem; overflow-wrap: anywhere; }
+#release-checks ul { padding-inline-start: 1.25rem; margin: .2rem 0 .9rem; }
+#release-checks details h3 { margin-top: .75rem; }
+#release-checks label { display: block; margin: .65rem 0 .25rem; font-size: .9rem; font-weight: 650; }
+#release-checks textarea, #release-checks select, #release-checks button {
+  color: var(--text); background: var(--bg); border: 1px solid var(--muted); border-radius: 6px;
+  font: inherit; font-size: .92rem; padding: .45rem .6rem;
+}
+#release-checks textarea, #release-checks select { display: block; width: 100%; }
+#release-checks textarea { font-family: ui-monospace, monospace; resize: vertical; }
+#release-checks button { margin: .45rem 0; cursor: pointer; }
+#release-checks button:disabled { opacity: .6; cursor: default; }
+#release-checks #rc-evaluate { background: var(--text); color: var(--bg); font-weight: 600; }
+#release-checks #rc-note { margin-top: .4rem; color: var(--muted); }
+#release-checks #rc-result { font-weight: 600; margin-top: .45rem; }
+#release-checks :is(a, button, textarea, summary, select):focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+@media(max-width: 38rem) {
+  #release-checks .rc-client { padding: .6rem; }
+}
+#release-checks #rc-version { margin-bottom: .65rem; }
+#release-checks .rc-client > p:last-child { margin: .5rem 0 0; line-height: 1.4; font-size: .88rem; }
+#release-checks #rc-selected-evidence:not(:empty) {
+  margin: .8rem 0; border-inline-start: 2px solid var(--accent2); padding-inline-start: .85rem;
+}
+#release-checks #rc-selected-evidence p { font-size: .92rem; }

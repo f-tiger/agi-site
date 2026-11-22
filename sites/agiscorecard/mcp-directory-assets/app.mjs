@@ -17,7 +17,7 @@ const catalogUrl = '/mcp-directory-assets/catalog.json';
 
 const text = zh ? {
   loading: '正在加载目录…',
-  unavailable: '目录暂时无法加载。你可以打开 JSON 目录，或通过官方注册表继续查找。',
+  unavailable: '筛选暂不可用。可浏览下方已有文档的条目，或打开完整 JSON 目录。',
   noMatch: '没有匹配项。试试更短的关键词、英文产品名称，或清空筛选。',
   pagination: (page, total) => `第 ${showNumber(page)} 页，共 ${showNumber(total)} 页`,
   match: (start, end, count) => `显示第 ${showNumber(start)}–${showNumber(end)} 条，共 ${showNumber(count)} 条匹配`,
@@ -31,7 +31,7 @@ const text = zh ? {
   copied: '已复制'
 } : {
   loading: 'Loading the catalog…',
-  unavailable: 'The directory is temporarily unavailable. Open the JSON catalog or browse the MCP Registry.',
+  unavailable: 'Filters are temporarily unavailable. Browse the documented entries below or open the full JSON catalog.',
   noMatch: 'No matching servers. Try a shorter keyword or clear a filter.',
   pagination: (page, total) => `Page ${showNumber(page)} of ${showNumber(total)}`,
   match: (start, end, count) => `Showing ${showNumber(start)}–${showNumber(end)} of ${showNumber(count)} matches`,

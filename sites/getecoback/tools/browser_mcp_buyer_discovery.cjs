@@ -25,7 +25,7 @@ const cases = [
     heading: 'Vor dem Waschen: Dosiertabelle und Automatik prüfen',
   },
   {
-    question: 'Passt die schwarze 170-mm-Ersatzlippe 2.633-104.0 in meinen WV 8?',
+    question: 'Passt die 170-mm-Abziehlippe 2.633-104.0 an meinen Kärcher WV 8 Signature Line?',
     tool: 'fenstersauger_170mm_abziehlippe_geraetefamilie',
     category: 'Fenstersauger',
     guide: '/produkte.html#fenstersauger-belege',

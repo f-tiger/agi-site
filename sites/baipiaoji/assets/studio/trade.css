@@ -1,0 +1,74 @@
+.bpj-trade {
+  --trade-ink:#15334a;
+  --trade-action:#12536b;
+  --trade-muted:#415a66;
+  --trade-line:#b8cbd1;
+  --trade-mist:#edf4f5;
+  --trade-paper:#fff;
+  max-width:1150px;
+  margin-inline:auto;
+  padding:clamp(1rem,3vw,2.75rem);
+  color:var(--trade-ink);
+  font-family:system-ui,"Noto Sans CJK SC","PingFang SC",sans-serif;
+}
+.bpj-trade .bpj-trade-heading {
+  margin-block:1.25rem 1.9rem;
+  padding:1.3rem 0 1.4rem;
+  border-block-start:3px solid var(--trade-ink);
+  border-block-end:1px solid var(--trade-line);
+  background:transparent;
+}
+.bpj-trade h1 { margin:0;font-size:clamp(1.9rem,4.1vw,3.35rem);line-height:1.12;letter-spacing:-.035em; }
+.bpj-trade h2 { margin:0 0 .85rem;font-size:clamp(1.25rem,2.5vw,1.5rem); }
+.bpj-trade h3 { margin:0 0 .25rem;font-size:1.13rem; }
+.bpj-trade .bpj-trade-quick { display:none; }
+.bpj-trade p { margin:.4rem 0 .65rem;max-width:66ch;color:var(--trade-muted);line-height:1.55;overflow-wrap:anywhere; }
+.bpj-trade :is(a,button,input):focus-visible { outline:3px solid #207795;outline-offset:2px; }
+.bpj-trade a { color:var(--trade-action);text-decoration:underline;text-underline-offset:.2em; }
+.bpj-trade-layout { display:grid;grid-template-columns:minmax(0,1.7fr) minmax(15rem,1fr);gap:clamp(1.15rem,4vw,3rem);align-items:start; }
+.bpj-trade .bpj-trade-source {
+  margin:0;
+  padding:1rem 0 1.2rem;
+  border:0;
+  border-block-start:1px solid var(--trade-line);
+  border-radius:0;
+  background:transparent;
+}
+.bpj-trade-source-links { display:flex;flex-wrap:wrap;gap:.4rem 1rem;margin-top:.65rem;font-size:.92rem; }
+.bpj-trade form { margin:.8rem 0 .35rem; }
+.bpj-trade form label { display:block;margin:0 0 .35rem;font-size:.92rem;font-weight:650; }
+.bpj-trade-fields { display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.5rem; }
+.bpj-shell main.bpj-trade .bpj-trade-fields input {
+  min-width:0;width:100%;min-height:44px;margin:0;padding:.5rem .65rem;border:1px solid #71929e;border-radius:5px;background:#fff;color:var(--trade-ink);
+  font:inherit;
+}
+.bpj-trade input[inputmode=numeric] { font-variant-numeric:tabular-nums; }
+.bpj-shell main.bpj-trade button {
+  min-height:44px;margin:0;padding:.45rem .7rem;border:1px solid var(--trade-action);border-radius:5px;
+  background:var(--trade-action);color:#fff;font:inherit;font-weight:650;cursor:pointer;
+}
+.bpj-shell main.bpj-trade button:disabled { opacity:.66;cursor:wait; }
+.bpj-trade .bpj-trade-tools {
+  min-width:0;margin:0;padding:1rem;border:1px solid var(--trade-line);border-block-start:3px solid var(--trade-action);background:var(--trade-mist);color:var(--trade-ink);
+}
+.bpj-trade-tools a { display:block;padding:.85rem 0;border-block-start:1px solid var(--trade-line);text-decoration:none; }
+.bpj-trade-tools a strong { text-decoration:underline;text-underline-offset:.2em; }
+.bpj-trade-tools a span { display:block;margin-top:.22rem;color:var(--trade-muted);font-size:.92rem;line-height:1.5; }
+.bpj-trade-tools p { padding-top:.7rem;border-block-start:1px solid var(--trade-line);font-size:.87rem; }
+.bpj-trade [hidden],.bpj-trade [role=status]:empty { display:none; }
+.bpj-trade [role=status] { font-size:.89rem; }
+.bpj-trade [data-trade-results] { list-style:none;margin:.75rem 0;padding:0;border:1px solid var(--trade-line); }
+.bpj-trade [data-trade-results] li { margin:0;padding:.72rem;border:0;background:var(--trade-paper); }
+.bpj-trade [data-trade-results] li+li { border-block-start:1px solid var(--trade-line); }
+.bpj-trade [data-trade-results] li a { font-weight:650;overflow-wrap:anywhere; }
+.bpj-trade [data-trade-results] li p { font-size:.87rem; }
+.bpj-shell main.bpj-trade .bpj-trade-copy { color:var(--trade-action);background:var(--trade-paper);border-color:var(--trade-line);font-size:.88rem; }
+.bpj-trade textarea { width:100%;display:block; }
+@media(max-width:760px) {
+  .bpj-trade-layout { grid-template-columns:minmax(0,1fr); }
+  .bpj-trade .bpj-trade-quick { display:flex;flex-wrap:wrap;gap:.2rem 1rem;margin-top:.35rem;font-weight:650; }
+  .bpj-trade-quick a { display:inline-flex;align-items:center;min-height:44px; }
+}
+@media(max-width:390px) {
+  .bpj-trade-fields { grid-template-columns:minmax(0,1fr); }
+}

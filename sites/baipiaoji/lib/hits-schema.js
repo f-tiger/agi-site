@@ -15,6 +15,14 @@
 //   3. 爬虫记录不再进 hits，只进 bot_daily（按 天×爬虫×路径×国家 计数），真人统计永远不碰它。
 export const HUMAN_REFERRED = "ev = '' AND ref IS NOT NULL AND ref != ''";
 export const HUMAN = `${HUMAN_REFERRED} AND ref NOT LIKE '%baipiaoji%' AND path NOT LIKE '/\\_\\_%' ESCAPE '\\'`;
+// Keep HUMAN stable for legacy report fields. The complete-day count applies these
+// additional filters in the same indexed aggregate over existing rows.
+export const NON_LOCAL_REFERRAL = `COALESCE(lang, '') != 'ci'
+  AND LOWER(RTRIM(ref, '.')) NOT IN ('localhost', '0.0.0.0', '[::1]')
+  AND LOWER(RTRIM(ref, '.')) NOT LIKE '%.localhost'
+  AND LOWER(ref) NOT LIKE '%.pages.dev'
+  AND NOT (ref GLOB '127.[0-9]*.[0-9]*.[0-9]*' AND ref NOT GLOB '*[^0-9.]*')`;
+export const REFERRED_PAGEVIEW_DEFINITION = 'Client-reported external-referrer page-view events from complete UTC days, excluding marked CI, preview hosts and common loopback or local test referrers. Browser automation and repeated loads may remain. No direct arrivals, user identities, verified search clicks or conversions.';
 export const EVENT_ROWS = "ev != ''";
 
 export const HITS_INDEXES = [

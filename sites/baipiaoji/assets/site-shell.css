@@ -54,3 +54,18 @@ body.bpj-shell .bpj-quick a:focus-visible{outline:3px solid var(--plan);outline-
 @media(max-width:370px){body.bpj-shell .bpj-home .bpj-quick a{font-size:13px;padding:10px 6px}}
 /* Category cards answer a task question before linking to the full directory. */
 .bpj-directory-grid a{flex-direction:column;align-items:flex-start;gap:8px;min-width:0;overflow-wrap:anywhere}.bpj-directory-grid a span{font-size:13px;line-height:1.5;color:var(--ink-2)}
+
+.bpj-tool-share { margin:0 0 1rem; }
+.bpj-tool-share-compact { margin:0; }
+.bpj-tool-share-actions { display:flex;flex-wrap:wrap;gap:.45rem; }
+.bpj-shell main .bpj-tool-share button {
+  display:inline-flex;align-items:center;min-height:44px;margin:0;padding:.3rem .65rem;
+  border:1px solid #8caeaa;border-radius:5px;background:#fff;color:#185c4e;
+  font:inherit;font-size:.85rem;font-weight:650;text-align:start;cursor:pointer;
+}
+.bpj-shell main .bpj-tool-share button[hidden] { display:none; }
+.bpj-shell main .bpj-tool-share button:hover { border-color:#1b6d5c;background:#f0f8f4; }
+.bpj-shell main .bpj-tool-share button:focus-visible { outline:3px solid #1b6d5c;outline-offset:3px; }
+.bpj-tool-share .bpj-share-status { min-height:0;margin:.2rem 0 0;color:#435a64;font-size:.82rem;line-height:1.4; }
+.bpj-tool-share .bpj-share-status:empty { display:none; }
+.bpj-tool-share .bpj-share-status input { display:block;min-width:0;width:100%;max-width:30rem; }

@@ -1,6 +1,6 @@
-# Verifies the live name, version and complete paginated catalogue after every
-# deployment. Run every example daily, on demand, or for an unconfirmed version.
-# A deployment of an already registered version exercises representative calls.
+# Verify the live name, version, entire catalogue and representative calls
+# after deployment. Run all examples daily or on demand. The publisher also
+# runs all examples before registering an exact release for the first time.
 name: MCP production smoke test
 # ── 迁入公开 monorepo f-tiger/agi-site(2026-08-19,owner 决定)──
 # 原仓 .github 为历史档案。公开仓 Actions 分钟免费。
@@ -59,20 +59,10 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Check whether this exact canonical release is already registered
-        id: registry-state
+      - name: Verify the deployed MCP catalogue and representative calls
         if: github.event_name == 'workflow_run'
-        run: |
-          if python3 tools/check_mcp_registry.py --already-published; then
-            echo 'already_published=true' >> "$GITHUB_OUTPUT"
-          fi
+        run: node tools/mcp_smoke.mjs --bounded
 
-      - name: Exercise the deployed MCP catalogue and examples
-        env:
-          ECO_MCP_ALREADY_PUBLISHED: ${{ steps.registry-state.outputs.already_published }}
-        run: |
-          if [[ "$ECO_MCP_ALREADY_PUBLISHED" == true ]]; then
-            node tools/mcp_smoke.mjs --bounded
-          else
-            node tools/mcp_smoke.mjs
-          fi
+      - name: Verify every reviewed MCP example
+        if: github.event_name != 'workflow_run'
+        run: node tools/mcp_smoke.mjs

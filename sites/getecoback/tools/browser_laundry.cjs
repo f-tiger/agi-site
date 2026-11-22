@@ -4,6 +4,9 @@ async function laundryShareRecovery(page,lang,p){
  let checks=0;const verify=Object.assign((...args)=>{checks++;return assert(...args);},{match:(...args)=>{checks++;return assert.match(...args);},equal:(...args)=>{checks++;return assert.equal(...args);}});
  const root=page.locator('#laundry-check'),form=root.locator('form'),submit=root.locator('[type=submit]'),panel=page.locator('#eco-tool-experience');
  const prepare=panel.locator(':scope > .eco-actions').last().locator('button').first(),preview=panel.locator('.eco-preview');
+ const scenarioLink=lang==='de'
+  ? panel.getByRole('link',{name:'Szenario-Link (enthält Werte)',exact:true})
+  : panel.locator('.eco-fallback');
  const field=name=>root.locator(`[name="${name}"]`),mode=value=>field('method').selectOption(value);
  const cost=async(dryer,dehum)=>{verify.match(await root.locator('[data-cost=dryer]').innerText(),dryer);verify.match(await root.locator('[data-cost=dehum]').innerText(),dehum);};
  const validShare=async()=>{verify(await form.evaluate(e=>e.checkValidity()));await page.waitForFunction(()=>!document.querySelector('#eco-tool-experience > .eco-actions:last-of-type button').disabled);verify(await preview.isVisible());verify.equal((await page.evaluate(()=>window.__qaBusiness)).length,0);};
@@ -20,7 +23,7 @@ async function laundryShareRecovery(page,lang,p){
  await mode('measured');await field('dehum').fill('-1');await invalid();
  await mode('estimate');await submit.click();await validShare();await cost(/0[,.]60/,/1[,.]44/);
  verify.equal(await field('dehum').inputValue(),'-1');verify(await field('dehum').isDisabled());
- await prepare.click();const estimateLink=new URL(await panel.locator('.eco-fallback').getAttribute('href'));
+ await prepare.click();const estimateLink=new URL(await scenarioLink.getAttribute('href'));
  const estimate=JSON.parse(decodeURIComponent(estimateLink.hash.slice(8))).values;
  verify(!Object.hasOwn(estimate,'dehum'));verify.equal(estimate.watts,'600');verify.equal(estimate.hours,'8');verify.equal(estimate.currency,'GBP');
  verify(!(await panel.locator('textarea').inputValue()).includes(lang==='en'?'Metered energy per run':'Gemessene Energie je Durchgang'));
@@ -28,7 +31,7 @@ async function laundryShareRecovery(page,lang,p){
  await mode('measured');verify.equal(await field('dehum').inputValue(),'-1');await invalid();await field('dehum').fill('1');await submit.click();await validShare();await cost(/0[,.]60/,/0[,.]30/);
  await mode('estimate');await field('hours').fill('');await invalid();
  await mode('measured');await submit.click();await validShare();await cost(/0[,.]60/,/0[,.]30/);verify.equal(await field('hours').inputValue(),'');
- await prepare.click();const measuredLink=new URL(await panel.locator('.eco-fallback').getAttribute('href'));
+ await prepare.click();const measuredLink=new URL(await scenarioLink.getAttribute('href'));
  const measured=JSON.parse(decodeURIComponent(measuredLink.hash.slice(8))).values;
  verify(!Object.hasOwn(measured,'watts'));verify(!Object.hasOwn(measured,'hours'));verify.equal(measured.dehum,'1');
  const draft=await panel.locator('textarea').inputValue();verify(!draft.includes(lang==='en'?'Average power (W)':'Mittlere Leistung (W)'));verify(!draft.includes('undefined'));
@@ -46,6 +49,60 @@ async function laundryShareRecovery(page,lang,p){
  const legacyEstimate={...estimate,dehum:'-1'};await page.goto(route('#eco-v1='+encodeURIComponent(JSON.stringify({path:p,values:legacyEstimate}))));await restored('estimate',1.44);verify.equal(await field('dehum').inputValue(),'1');
  await mode('measured');await field('dehum').fill('1');await submit.click();await validShare();await mode('estimate');await submit.click();await validShare();
  for(const width of [320,390]){await page.setViewportSize({width,height:844});verify(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await submit.click();await validShare();await cost(/0[,.]60/,/1[,.]44/);}
+ if(lang==='de'){
+  const canonical='https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#laundry-check';
+  const platforms=[
+   {name:'Reddit',endpoint:'https://www.reddit.com/submit',caption:'title'},
+   {name:'X',endpoint:'https://x.com/intent/post',caption:'text'},
+  ];
+  const socialTargets=async()=>{
+   const captions=[];
+   for(const {name,endpoint,caption} of platforms){
+    const href=await panel.getByRole('link',{name,exact:true}).getAttribute('href');
+    const target=new URL(href);
+    verify.equal(target.origin+target.pathname,endpoint);
+    verify.equal(target.searchParams.get('url'),canonical);
+    verify.equal([...target.searchParams.keys()].sort().join(','),[caption,'url'].sort().join(','));
+    verify(target.searchParams.get(caption)?.trim().length>0);
+    verify.equal(target.hash,'');
+    captions.push(target.searchParams.get(caption));
+   }
+   return captions;
+  };
+  await panel.getByRole('button',{name:'Dieses Tool teilen',exact:true}).click();
+  const staticCaptions=await socialTargets();
+  if(await details.getAttribute('open')===null)await details.locator('summary').click();
+  await field('currency').selectOption('EUR');
+  await mode('measured');
+  await field('dryerBasis').selectOption('cycle');
+  await field('dryer').fill('10');
+  await field('dehum').fill('1.2');
+  await field('price').fill('0.309');
+  await field('comparable').uncheck();
+  await submit.click();
+  await validShare();
+  await cost(/3,09/,/0,37/);
+  verify.match(await root.locator('[data-formula]').innerText(),/0,309/);
+  await prepare.click();
+  const text=await panel.locator('textarea').inputValue();
+  verify.match(text,/10\s*kWh/);
+  verify.match(text,/0,309/);
+  verify.match(text,/3,09\s*€/);
+  verify.match(text,/0,37\s*€/);
+  verify.match(text,/Endtrockenheit nicht als gleich bestätigt/);
+  verify.match(text,/Keine Aussage, welches Verfahren bei gleicher Trocknung günstiger ist/);
+  verify(text.includes(canonical));
+  verify(!text.includes('#eco-v1')&&!text.includes('utm_'));
+  verify(!text.includes('Ladungen pro Woche')&&!text.includes('Zusätzlicher Kaufpreis'));
+  const resultCaptions=await socialTargets();
+  for(const [index,caption] of resultCaptions.entries())verify.equal(caption,staticCaptions[index]);
+  const explicit=new URL(await scenarioLink.getAttribute('href'));
+  verify(explicit.hash.startsWith('#eco-v1='));
+  const shareValues=JSON.parse(decodeURIComponent(explicit.hash.slice(8))).values;
+  verify.equal(shareValues.price,'0.309');
+  verify.equal(shareValues.comparable,false);
+  verify.equal((await page.evaluate(()=>window.__qaBusiness)).length,0);
+ }
  return checks;
 }
 

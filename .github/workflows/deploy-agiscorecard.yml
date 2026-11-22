@@ -52,7 +52,7 @@ jobs:
     name: Discover interviews, creator videos and AI company updates
     if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.refresh_future == true) }}
     runs-on: ubuntu-24.04 # Pinned Playwright browser runtime; ubuntu-latest may be unsupported
-    timeout-minutes: 5
+    timeout-minutes: 8
     permissions:
       contents: write
     steps:
@@ -71,11 +71,18 @@ jobs:
         run: |
           python3 tools/futures/test_refresh.py
           python3 tools/futures/refresh.py
+      - name: Refresh public AI releases and published package advisories
+        working-directory: sites/agiscorecard
+        run: |
+          python3 tools/release-checks/refresh.py
+          python3 tools/release-checks/models.py
+          python3 tools/release-checks/advisories.py
       - name: Preserve the current snapshot and visible source status
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add sites/agiscorecard/foresight-assets/discovery.json sites/agiscorecard/futures-assets/snapshot.json
+          git add sites/agiscorecard/futures-assets/release-checks/{releases,models,advisories}.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'chore(agi): refresh public interview and company source health'
           git pull --rebase origin main
@@ -181,6 +188,12 @@ jobs:
           # grader consensus: selftest + committed JSON must equal a recompute from data.json + independent-grades.json
           python3 tools/gen_grader_consensus.py --selftest
           python3 tools/gen_grader_consensus.py --check
+      - name: Validate the public AI release checks
+        working-directory: sites/agiscorecard
+        run: |
+          python3 -m unittest discover -s tools/release-checks -p 'test_*.py'
+          node --test tools/release-checks/*.test.mjs
+          node tools/release-checks/run-checks.mjs
       - name: Validate the published MCP catalog and its search contract
         run: |
           node sites/agiscorecard/tools/mcp-directory/build.mjs --validate
@@ -419,6 +432,8 @@ jobs:
           console.log('Outcome release: static surfaces verified; no business POST or aggregate read performed.');
           JS
 
+      - name: Verify bilingual AI release checks and published snapshots
+        run: node sites/agiscorecard/tools/release-checks/verify-live.mjs
       - name: Verify production MCP catalog search without recording QA events
         run: node sites/agiscorecard/tools/mcp-directory/verify-live.mjs
       - name: Verify live shared navigation and destinations

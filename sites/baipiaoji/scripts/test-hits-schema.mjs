@@ -86,7 +86,8 @@ ok(MIGRATION.replace(/\s+/g, ' ').includes(BOT_DAILY_TABLE.replace('CREATE TABLE
   '迁移文件里的 bot_daily 与代码里的建表语句一致');
 
 // ── 2. 迁移前后 /api/reach 的 hits 统计逐字相同 ──
-const pick = (r) => ({ humans_referred: r.humans_referred, paths: r.paths, referrers: r.referrers, ai_referrals: r.ai_referrals,
+const pick = (r) => ({ humans_referred: r.humans_referred, referred_pageviews_complete_utc: r.referred_pageviews_complete_utc,
+  paths: r.paths, referrers: r.referrers, ai_referrals: r.ai_referrals,
   events: r.events, countries: r.countries, commercial_triggers: r.commercial_triggers });
 async function reachOf(sql, days, log) {
   const res = await computeReach({ HITS: d1(sql, log) }, days);
@@ -118,6 +119,28 @@ ok(JSON.stringify(idx) === JSON.stringify(['hits_events', 'hits_referred', 'idx_
 const log = [];
 const r7b = pick(await reachOf(after, 7, log)), r28b = pick(await reachOf(after, 28, log)), r90b = pick(await reachOf(after, 90, log));
 assert.deepEqual(r7b, r7a); assert.deepEqual(r28b, r28a); assert.deepEqual(r90b, r90a); n += 3;
+
+{
+  const sql = new DatabaseSync(':memory:');
+  for (const statement of [...LIVE_HITS, ...HITS_INDEXES]) sql.exec(statement);
+  const add = sql.prepare("INSERT INTO hits (d, path, lang, ref, ev) VALUES (?, ?, ?, ?, '')");
+  for (const ref of ['127.0.0.1', '127.12.0.42', 'dev.localhost.', 'localhost', '[::1]', '0.0.0.0', 'preview.pages.dev']) {
+    add.run(day(1), '/tools/grok', 'en', ref);
+  }
+  add.run(day(1), '/tools/grok', 'ci', 'www.google.com');
+  add.run(day(0), '/tools/grok', 'en', 'www.google.com');
+  add.run(day(1), '/tools/grok', 'en', 'www.google.com');
+  add.run(day(7), '/tools/grok', 'en', '127.example.com');
+  add.run(day(8), '/tools/grok', 'en', 'www.google.com');
+  add.run(day(1), '/__ci/beacon', 'en', 'www.google.com');
+  const report = await reachOf(sql, 7);
+  assert.equal(report.humans_referred, 11, 'legacy total keeps its original basis');
+  assert.equal(report.referred_pageviews_complete_utc.count, 2);
+  assert.deepEqual(report.referred_pageviews_complete_utc.window,
+    { start: day(7), end_exclusive: day(0), complete_days: 7, date_basis: 'UTC' });
+  assert.equal(sql.prepare('SELECT count(*) n FROM hits').get().n, 13, 'report preserves stored rows');
+  n += 4;
+}
 
 // ── 3. /api/reach 实际发出的每条 hits 查询都走部分索引 ──
 // 真人线必须走 hits_referred；其余查询可以走 hits_events 或按路径等值查 idx_hits_path。

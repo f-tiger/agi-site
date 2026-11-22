@@ -1,3 +1,4 @@
+import { TDS_HOME_SERVER, TDS_HOME_TOOL_COUNT, TDS_HOME_PAGE_SIZE } from '../../collector-assets/tds-suite/service.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { onRequest } from '../../functions/api/home-mcp.js';
@@ -18,12 +19,12 @@ async function rpc(method, params, id = 1, headers = { 'x-probe': 'test' }, env,
   return response.json();
 }
 
-test('the shared suite exposes 1,000 valid, distinct tools whose examples produce structured outputs', () => {
-  assert.equal(TDS_TOOLS.length, 1000);
+test('the shared suite exposes the expected valid, distinct tools whose examples produce structured outputs', () => {
+  assert.equal(TDS_TOOLS.length, TDS_HOME_TOOL_COUNT);
   assert.equal(WORKFLOW_TOOLS.length, 200);
   assert.equal(HOME_TOOLS.length, 800);
-  assert.equal(new Set(TDS_TOOLS.map(tool => tool.name)).size, 1000);
-  assert.equal(new Set(TDS_TOOLS.map(tool => tool.slug)).size, 1000);
+  assert.equal(new Set(TDS_TOOLS.map(tool => tool.name)).size, TDS_HOME_TOOL_COUNT);
+  assert.equal(new Set(TDS_TOOLS.map(tool => tool.slug)).size, TDS_HOME_TOOL_COUNT);
   for (const tool of TDS_TOOLS) {
     for (const language of ['de','en','zh']) {
       assert.equal(typeof tool.title[language], 'string', tool.name);
@@ -45,14 +46,14 @@ test('the shared suite exposes 1,000 valid, distinct tools whose examples produc
 
 test('GET discovery, protocol negotiation, acknowledgement, origin and body bound', async () => {
   const discovery = await (await request('GET')).json();
-  assert.equal(discovery.toolCount, 1000);
+  assert.equal(discovery.toolCount, TDS_HOME_TOOL_COUNT);
   assert.equal(discovery.documentation, 'https://thedollscout.com/ai-tools');
   assert.equal((await request('HEAD')).status, 200);
   assert.equal((await request('GET', {headers:{ accept:'text/event-stream' }})).status, 405);
   assert.equal((await request('GET', {headers:{ origin:'https://unrelated.example' }})).status, 403);
   assert.equal((await request('OPTIONS', {headers:{ origin:'https://chatgpt.com' }})).headers.get('access-control-allow-origin'), 'https://chatgpt.com');
   assert.equal((await rpc('initialize', { protocolVersion: '2025-03-26' })).result.protocolVersion, '2025-03-26');
-  assert.equal((await rpc('initialize', { protocolVersion: 'unknown' })).result.serverInfo.version, '1.0.0');
+  assert.equal((await rpc('initialize', { protocolVersion: 'unknown' })).result.serverInfo.version, TDS_HOME_SERVER.version);
   const initialized = await request('POST', {body:'{"jsonrpc":"2.0","method":"notifications/initialized"}'});
   assert.equal(initialized.status, 202);
   assert.equal((await request('POST', {body:'x'.repeat(33000)})).status, 413);
@@ -60,13 +61,13 @@ test('GET discovery, protocol negotiation, acknowledgement, origin and body boun
   assert.equal((await (await request('POST', {body:'{'})).json()).error.code, -32700);
 });
 
-test('pagination exposes exactly 25 bounded pages in order and rejects invalid cursors', async () => {
+test('pagination exposes exactly bounded pages in order and rejects invalid cursors', async () => {
   const found = [];
   let nextCursor;
   let count = 0;
   do {
     const response = await rpc('tools/list', nextCursor ? { cursor: nextCursor } : {});
-    assert.equal(response.result.tools.length, 40);
+    assert.equal(response.result.tools.length, Math.min(TDS_HOME_PAGE_SIZE, TDS_HOME_TOOL_COUNT - count * TDS_HOME_PAGE_SIZE));
     for (const tool of response.result.tools) {
       assert.equal(tool.annotations.readOnlyHint, true);
       assert.ok(tool._meta.documentation.startsWith('https://thedollscout.com/ai-tools/'));
@@ -74,11 +75,11 @@ test('pagination exposes exactly 25 bounded pages in order and rejects invalid c
     found.push(...response.result.tools.map(t => t.name));
     nextCursor = response.result.nextCursor;
     count++;
-    assert.ok(count <= 25);
+    assert.ok(count <= Math.ceil(TDS_HOME_TOOL_COUNT / TDS_HOME_PAGE_SIZE));
   } while (nextCursor);
-  assert.equal(count, 25);
+  assert.equal(count, Math.ceil(TDS_HOME_TOOL_COUNT / TDS_HOME_PAGE_SIZE));
   assert.deepEqual(found, TDS_TOOLS.map(tool => tool.name));
-  for (const cursor of ['invalid',btoa('tds-home-tools-v1:0'),btoa('tds-home-tools-v1:39'),btoa('tds-home-tools-v1:1000')]) {
+  for (const cursor of ['invalid',btoa('tds-home-tools-v1:0'),btoa('tds-home-tools-v1:39'),btoa('tds-home-tools-v1:1040')]) {
     assert.equal((await rpc('tools/list', { cursor })).error.code, -32602);
   }
 });

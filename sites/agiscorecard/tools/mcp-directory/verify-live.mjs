@@ -29,11 +29,15 @@ const [english, chinese, snapshot, rpc] = await Promise.all([
   }).then(r => r.json()),
 ]);
 assert.equal(sha256(Buffer.from(snapshot)), sha256(expected), 'Catalog bytes do not match the deployed source');
+const data = JSON.parse(expected);
 for (const [html,path] of [[english,'/agents/'],[chinese,'/zh/agents/']]) {
   assert.ok(html.includes('rel="canonical" href="' + origin + path + '"'));
   assert.match(html, /\/mcp-directory-assets\/app\.mjs/);
+  const documented = html.match(/<!-- catalog-evidence:start -->([\s\S]+?)<!-- catalog-evidence:end -->/)?.[1] || '';
+  assert.equal((documented.match(/<li class="directory-result">/g) || []).length,
+    Math.min(6, data.entries.filter(entry => entry.featured).length), path + ' initial HTML catalog entries');
+  assert.ok(html.includes('<time datetime="' + data.asOf + '">'), path + ' snapshot date');
 }
-const data = JSON.parse(expected);
 assert.ok(rpc.result && !rpc.result.isError);
 const result = JSON.parse(rpc.result.content[0].text);
 assert.equal(result.asOf, data.asOf);

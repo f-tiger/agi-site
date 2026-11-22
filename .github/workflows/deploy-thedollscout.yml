@@ -291,7 +291,14 @@ jobs:
       - name: Notify new TDS home tool canonical pages to IndexNow
         if: ${{ !cancelled() && steps.publish.outcome == 'success' && github.event_name == 'push' && contains(github.event.head_commit.message, '[tds-home-mcp-publish]') }}
         continue-on-error: true
-        run: node scripts/tds-suite/verify-pages-live.mjs --indexnow
+        env:
+          REGIONAL_TOOLS_RELEASE: ${{ contains(github.event.head_commit.message, '[tds-regional-tools]') }}
+        run: |
+          if [[ "$REGIONAL_TOOLS_RELEASE" == true ]]; then
+            node scripts/tds-suite/verify-pages-live.mjs --regional-indexnow
+          else
+            node scripts/tds-suite/verify-pages-live.mjs --indexnow
+          fi
 
       - name: Verify public asset bypass and private page protection
         working-directory: ${{ github.workspace }}

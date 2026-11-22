@@ -1,25 +1,11 @@
 #!/usr/bin/env python3
-"""Fleet-wide AI-crawler reachability probe (zero AI, stdlib only).
+"""Compare public responses from the runner with browser and crawler user agents.
 
-Why this exists (2026-09-12, docs/ai-era-site-2026-09-12.md):
-  * robots.txt allowing GPTBot is not the same as GPTBot getting a 200. Cloudflare's
-    Bot Fight Mode / "Block AI Scrapers" / Pay-Per-Crawl defaults sit *above* robots and
-    *below* the app, so a blocked crawler leaves no trace in any site's D1.
-  * baipiaoji has had this probe since 08-xx (scripts/ai-crawler-probe.mjs) but the other
-    seven sites had nothing, while the fleet manual literally promised "09-15 后若
-    heartbeat 看到 GPTBot… 被 403,先解封" — heartbeat never looked. Now it does.
-
-Contract:
-  * For each site, fetch "/" and "/llms.txt" with each AI agent UA plus one ordinary
-    browser UA (the control). Every request carries ?__probe=1 so edge middleware that
-    honours it (baipiaoji) does not count us; workers that don't honour it classify these
-    hits as `bot` anyway (all agent tokens are in tools/fleet/bot_ua.txt), so the known,
-    constant noise is ≤1 bot row per agent per site per day at 08:00 UTC.
-  * A site is only judged when its control UA got 200 on both paths (otherwise the site is
-    down or the runner's egress is broken — heartbeat's own 200-probe already owns that).
-  * BLOCKED = control 200 but an AI agent got 401/403/429/503 on any path.
-  * Writes data/fleet-ai-access.json; exit 1 iff any site blocks any agent. Never writes
-    guesses: a request that errors is recorded as status 0 with the error text.
+Fetch both browser controls before sending crawler-UA probes. If either control
+fails, record the crawler requests as untested and leave availability diagnosis
+to heartbeat. Preserve the existing blocked_sites field for 401/403/429/503
+responses where both controls worked. These are observations from the runner's
+IP. Real crawler access, indexing and citation require separate evidence.
 
 Usage: python3 tools/fleet/ai_access_probe.py [--selftest] [--only=site,site]
 """
@@ -75,7 +61,13 @@ BLOCK_CODES = {401, 403, 429, 503}
 
 def fetch(url, ua, timeout=20):
     # TDS bot logging excludes this header; query markers alone are insufficient.
-    req = urllib.request.Request(url, headers={"User-Agent": ua, "Accept": "text/html,text/plain,*/*", "X-Probe": "fleet-ai-access"})
+    req = urllib.request.Request(url, headers={
+        "User-Agent": ua,
+        "Accept": "text/html,text/plain,*/*",
+        "X-Probe": "fleet-ai-access",
+        "DNT": "1",
+        "Sec-GPC": "1",
+    })
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
             r.read(4096)
@@ -95,18 +87,24 @@ def probe_url(origin, path):
     # day that all 18 sites return the identical status with and without ci=1,
     # and a block happens at the edge before the worker sees the query anyway.
     sep = "&" if "?" in path else "?"
-    return f"{origin}{path}{sep}ci=1&__probe=1"
+    return f"{origin}{path}{sep}ci=1&__probe=1&__ci=1"
 
 
 def probe_site(name, origin, fetcher=fetch):
-    rows = {}
-    for agent, ua in [CONTROL] + AGENTS:
-        rows[agent] = {p: fetcher(probe_url(origin, p), ua) for p in PATHS}
+    control_name, control_ua = CONTROL
+    control_rows = {path: fetcher(probe_url(origin, path), control_ua) for path in PATHS}
+    rows = {control_name: control_rows}
+    can_compare = all(result.get("status") == 200 for result in control_rows.values())
+    for agent, ua in AGENTS:
+        rows[agent] = {
+            path: fetcher(probe_url(origin, path), ua) if can_compare else {"status": None}
+            for path in PATHS
+        }
     return {"site": name, "origin": origin, "agents": rows}
 
 
 def classify(site_result):
-    """Pure: returns (valid, blocked_list) for one site's raw rows."""
+    """Return whether controls worked and the sampled access failures."""
     rows = site_result["agents"]
     ctrl = rows.get(CONTROL[0], {})
     valid = all(ctrl.get(p, {}).get("status") == 200 for p in PATHS)
@@ -120,6 +118,11 @@ def classify(site_result):
     return valid, blocked
 
 
+def reported_status(result):
+    status = result["status"]
+    return "0 " + result.get("error", "") if status == 0 else status
+
+
 def selftest():
     def mk(ctrl, agent_status, agent="GPTBot", path="/"):
         rows = {CONTROL[0]: {p: {"status": ctrl} for p in PATHS}}
@@ -127,6 +130,13 @@ def selftest():
             rows[a] = {p: {"status": 200} for p in PATHS}
         rows[agent][path] = {"status": agent_status}
         return {"site": "x", "origin": "https://x", "agents": rows}
+    attempts = []
+
+    def unhealthy_control(url, ua):
+        attempts.append((url, ua))
+        return {"status": 429 if "/llms.txt?" in url else 200}
+
+    incomplete = probe_site("x", "https://example.com", unhealthy_control)
     checks = [
         ("all 200 → valid, none blocked", classify(mk(200, 200)) == (True, [])),
         ("agent 403 → blocked", classify(mk(200, 403)) == (True, [{"agent": "GPTBot", "path": "/", "status": 403}])),
@@ -134,8 +144,10 @@ def selftest():
         ("control not 200 → invalid, not judged", classify(mk(403, 403)) == (False, [])),
         ("agent 404 is not a block", classify(mk(200, 404)) == (True, [])),
         ("agent network error (0) is not a block", classify(mk(200, 0)) == (True, [])),
-        ("goldrush root gets ci=1", probe_url("https://goldrush.agiscorecard.com", "/") == "https://goldrush.agiscorecard.com/?ci=1&__probe=1"),
-        ("every site gets ci=1 too, so the control is never a human page_view", probe_url("https://learn.agiscorecard.com", "/llms.txt") == "https://learn.agiscorecard.com/llms.txt?ci=1&__probe=1"),
+        ("QA query markers", probe_url("https://goldrush.agiscorecard.com", "/") == "https://goldrush.agiscorecard.com/?ci=1&__probe=1&__ci=1"),
+        ("failed control sends only the two control GETs", len(attempts) == len(PATHS) and all(ua == CONTROL[1] for _, ua in attempts)),
+        ("skipped user agents retain a null status", all(reported_status(result) is None for agent, _ in AGENTS for result in incomplete["agents"][agent].values())),
+        ("network error preserves its reason", reported_status({"status": 0, "error": "timeout"}) == "0 timeout"),
     ]
     bad = [n for n, ok in checks if not ok]
     for n, ok in checks:
@@ -159,16 +171,18 @@ def main(argv):
         any_blocked |= bool(blocked)
         if not valid:
             invalid.append(r["site"])
-        # keep the error text for status 0 — "0" alone cannot distinguish DNS from a proxy refusing CONNECT
-        flat = {a: {p: (r["agents"][a][p].get("status") or ("0 " + r["agents"][a][p].get("error", ""))) for p in PATHS}
-                for a in r["agents"]}
-        out_sites.append({"site": r["site"], "origin": r["origin"], "valid": valid, "blocked": blocked, "status": flat})
+        flat = {agent: {path: reported_status(result) for path, result in paths.items()}
+                for agent, paths in r["agents"].items()}
+        out_sites.append({"site": r["site"], "origin": r["origin"], "valid": valid, "blocked": blocked,
+                          "crawler_user_agents_tested": valid, "status": flat})
         mark = "⚠️ " if not valid else ("🚫" if blocked else "✅")
-        print(f"{mark} {r['site']:<13} control={flat[CONTROL[0]]}  " + (f"BLOCKED {blocked}" if blocked else ""))
+        detail = "crawler user agents untested" if not valid else f"access failures: {blocked}"
+        print(f"{mark} {r['site']:<13} control={flat[CONTROL[0]]} {detail}")
     snap = {
         "checked": dt.datetime.now(dt.timezone.utc).replace(microsecond=0, tzinfo=None).isoformat() + "Z",
         "paths": PATHS,
         "agents": [a for a, _ in AGENTS],
+        "scope": "Synthetic user agents from this runner. A null status was not tested. A 200 does not establish real crawler access, indexing or citation.",
         "invalid_sites": invalid,
         "blocked_sites": [s["site"] for s in out_sites if s["blocked"]],
         "sites": out_sites,
@@ -177,12 +191,10 @@ def main(argv):
     open(OUT, "w", encoding="utf-8").write(json.dumps(snap, ensure_ascii=False, indent=1) + "\n")
     print(f"wrote {os.path.relpath(OUT, ROOT)}")
     if invalid:
-        print(f"::warning::probe invalid for {', '.join(invalid)} — control UA did not get 200 on both paths; not judged")
+        print(f"::warning::Crawler user agents untested for {', '.join(invalid)} because a browser control failed")
     if any_blocked:
-        print("::error::AI crawlers blocked on: " + ", ".join(snap["blocked_sites"])
-              + " — robots.txt allows them but the edge does not. Cloudflare dashboard → Security → Bots:"
-              " turn off Bot Fight Mode / Block AI Scrapers (Pay-Per-Crawl default since 2026-09-15) for that zone."
-              " While this is red, no AI assistant can cite the site, whatever the content says.")
+        print("::error::Crawler user-agent requests failed while the browser controls passed on: "
+              + ", ".join(snap["blocked_sites"]))
         return 1
     return 0
 
