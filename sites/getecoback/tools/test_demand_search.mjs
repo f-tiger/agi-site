@@ -78,6 +78,9 @@ test('German ventilation decisions lead to the measured cellar check while gener
  for(const q of [
    'Wie lange muss ich meinen Keller lüften?',
    'Soll ich wegen Radon im Keller lüften?',
+   'Wie soll ich bei erhöhtem CO₂ im Keller lüften?',
+   'Wie soll ich bei erhöhtem CO2 im Keller lüften?',
+   'Kann ich verschimmelte Kartons im Keller durch Lüften trocknen?',
    'Wie messe ich Luftfeuchtigkeit im Keller?',
    'MeacoDry Arete One 20L im kalten Keller bei 10 Grad',
    'Wie prüfe ich im Keller den Abfluss für meinen Entfeuchter?',

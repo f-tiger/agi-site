@@ -701,5 +701,10 @@ test('paired German cellar air and wall questions find the measured check in pub
     assert.equal((await catalogue({q,view:'compact'})).tools[0]?.name,previous,q);
     assert.equal(findCatalogueTools(compact,{query:q})[0]?.name,previous,q);
   }
+  for (const q of ['Wie soll ich bei erhöhtem CO₂ im Keller lüften?', 'Wie soll ich bei erhöhtem CO2 im Keller lüften?',
+    'Kann ich verschimmelte Kartons im Keller durch Lüften trocknen?']) {
+    assert.notEqual((await catalogue({q,view:'compact'})).tools[0]?.name,name,q);
+    assert.notEqual(findCatalogueTools(compact,{query:q})[0]?.name,name,q);
+  }
   assert.equal(analytics,0);
 });

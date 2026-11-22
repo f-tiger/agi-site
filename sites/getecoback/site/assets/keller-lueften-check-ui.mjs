@@ -50,6 +50,7 @@ button.addEventListener('click', () => {
 
   const probe = new URLSearchParams(location.search).has('__probe');
   if (!probe && navigator.doNotTrack !== '1' && !navigator.globalPrivacyControl && !window.__ecoToolExample) {
+    try { if (localStorage.getItem('fleet_ga4_choice_v1') === 'denied') return; } catch { return; }
     window.gtag?.('event', 'taupunkt_check', {source:'keller-lueften'});
   }
 });
