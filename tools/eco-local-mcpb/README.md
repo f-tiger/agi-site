@@ -92,6 +92,13 @@ bundle links to the guide section on comparing output and power. It leaves
 ml/Wh unknown for independent test points. A separate calculation with both
 readings from the same setting and conditions verifies the numeric result.
 
+Version 1.22.3 helps GlassVAC owners find the Bosch charging, startup and
+storage guidance after a cold night. The archive checks model 06008B7000
+with its manual and the current measured ambient temperature. At −8 °C
+storage is within range, startup is outside its range, and charging falls
+outside the recommended range. At +2 °C all three temperature checks pass.
+The tool requests the current temperature before returning a result.
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the
