@@ -39,6 +39,8 @@ test('published window-width table and browser branches agree with the existing 
     [170,5,0,false,'kein_kauf'], [170,5,0,true,'vergleich'], [170,5,133,true,'vorhanden'],
     [142,5,0,true,'kein_treffer'], [180,5,0,true,'vergleich'], [286,10,0,true,'vergleich'],
     [99,100,0,true,'kein_treffer'], [143.5,5.25,0,true,'vergleich'],
+    [143.7,5.2,133.3,true,'vorhanden'], [256.4,61.7,0,true,'vergleich'],
+    [256.39999,61.7,0,true,'kein_treffer'],
   ];
   for(const [lichte_breite_mm,spiel_pro_seite_mm,vorhandene_duese_mm,kauf_geplant,state] of cases) {
     const args={lichte_breite_mm,spiel_pro_seite_mm,vorhandene_duese_mm,kauf_geplant};

@@ -1,4 +1,6 @@
-/* Category-specific planning only. Inputs remain local; no model matching or prices. */
+/* Local category tools. Width comparisons use documented dimensions and never rank models. */
+import {headFitsWindow, usableWindowWidth} from './window-width-math.mjs';
+
 const nf = new Intl.NumberFormat('de-DE', {maximumFractionDigits: 3});
 export class InputError extends Error {}
 function number(values, key, min, max, integer=false) {
@@ -98,13 +100,13 @@ export function initCategoryTools(root) {
 }
 
 export function windowWidthFit(values, packages) {
-  const net = Math.max(0, number(values, 'lichte_breite_mm', 1, 5000) -
-    2 * number(values, 'spiel_pro_seite_mm', 0, 1000));
+  const net = usableWindowWidth(number(values, 'lichte_breite_mm', 1, 5000),
+    number(values, 'spiel_pro_seite_mm', 0, 1000));
   const existing = values.vorhandene_duese_mm === '' ? 0 :
     number(values, 'vorhandene_duese_mm', 0, 3000);
-  if (existing > 0 && existing <= net) return {net, state:'vorhanden', options:[]};
+  if (headFitsWindow(existing, net)) return {net, state:'vorhanden', options:[]};
   if (!values.kauf_geplant) return {net, state:'kein_kauf', options:[]};
-  const options = packages.map(item => ({...item, widths:item.widths.filter(width => width <= net)}))
+  const options = packages.map(item => ({...item, widths:item.widths.filter(width => headFitsWindow(width, net))}))
     .filter(item => item.widths.length);
   return {net, state:options.length ? 'vergleich' : 'kein_treffer', options};
 }

@@ -56,11 +56,11 @@ function localCatalogue(route,onWrite=()=>{}){
  const contentType={'.html':'text/html; charset=utf-8','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.png':'image/png'}[path.extname(file)]||'application/octet-stream';
  return route.fulfill({contentType,body:fs.readFileSync(file)});
 }
-function isLegacyWindowGuidePageView(request){
+function isLegacyWindowJourneyPageView(request){
  if(request.method()!=='POST'||request.url()!==origin+'/api/ev')return false;
  try{
   const event=JSON.parse(request.postData());
-  return event.n==='page_view'&&event.p==='/guide/fenster-beschlagen-innen.html';
+  return event.n==='page_view'&&['/guide/fenster-beschlagen-innen.html','/produkte.html'].includes(event.p);
  }catch{return false;}
 }
 function waitForEvent(page,name){
@@ -258,8 +258,11 @@ async function checkWindowWidthJourney(page,javaScriptEnabled){
  await setValues(form,{lichte_breite_mm:'142',vorhandene_duese_mm:''});
  await expectResult('kein_treffer',[]);
 
- await setValues(form,{lichte_breite_mm:'170'});
+ await setValues(form,{lichte_breite_mm:'143.7',spiel_pro_seite_mm:'5.2',vorhandene_duese_mm:'133.3'});
+ await expectResult('vorhanden',[]);
+ await setValues(form,{lichte_breite_mm:'256.4',spiel_pro_seite_mm:'61.7',vorhandene_duese_mm:''});
  await expectResult('vergleich',[bosch]);
+ assert.match(await status.innerText(),/133[\s\u00a0]*mm/);
  await options.first().focus();
  await page.keyboard.press('Enter');
  await page.waitForURL(origin+'/produkte.html'+bosch);
@@ -330,8 +333,8 @@ async function checkCatalog(browser){
   }
   const writesBeforeWidthJourney=blockedWrites.length;
   const windowWidthJourney=width<=390?await checkWindowWidthJourney(page,javaScriptEnabled):undefined;
-  // The older guide may attempt a page-view beacon. The fixture aborts it too.
-  const unexpectedWrites=blockedWrites.slice(writesBeforeWidthJourney).filter(request=>!isLegacyWindowGuidePageView(request));
+  // The older page trackers may attempt page-view beacons. The fixture aborts them too.
+  const unexpectedWrites=blockedWrites.slice(writesBeforeWidthJourney).filter(request=>!isLegacyWindowJourneyPageView(request));
   assert.deepEqual(unexpectedWrites.map(request=>[request.method(),request.url()]),[],'The width QA journey must not trigger a business write');
   await page.goto(origin+'/produkte.html?__probe=1');
   if(javaScriptEnabled){
