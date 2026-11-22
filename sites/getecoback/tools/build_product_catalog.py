@@ -55,6 +55,19 @@ SPECIALIST_GUIDES = (
      'Wischsauger Nasswischen Bodenfreigabe Parkett Tineco S7 FlashDry Dreame H14 Pro Roborock F25 XT'),
 )
 
+PART_GUIDES = (
+    ('Miele-Staubsaugerbeutel', '#miele-staubsaugerbeutel', 'bodenstaubsauger',
+     'Staubbeutel Staubsaugerbeutel HyClean GN FJM TU CO 12421170 12421180 12557060 12557080 Guard S1 L1 M1 Classic Compact Complete C1 C2 C3'),
+    ('Kärcher-Saugdüse 170 mm', '#kaercher-170mm-saugduese', 'fenstersauger',
+     'Absaugdüse WV 2 3 4-4 5 6 8 WV2 WV3 WV4-4 WV5 WV6 WV8 2.633-112.0 2.633-605.0 2.633-512.0 2.633-532.0 26331120 26336050 26335120 26335320'),
+    ('Kaffeevollautomat-Wasserfilter', '#kaffee-wasserfilter', '',
+     'Ersatzfilter Philips EP2220/10 EP2231/40 AquaClean CA6903/10 Bosch VeroCafe TIE20301 Intenza TCZ7003 TCZ7033 DeLonghi Magnifica S ECAM22.110.B DLSC002'),
+    ('Trotec TTK 70 HEPA-Filter', '/guide/trotec-luftentfeuchter-test.html#ttk70-hepa-filter', '',
+     'Ersatzfilter HEPA Plus 7710000024 7710000077 7710000080'),
+    ('Ersatzfilter für Luftreiniger', '/ersatzfilter.html#finder', 'luftreiniger',
+     'Beurer LR 401 69309 Levoit Core 300S Originalfilter'),
+)
+
 APPLIANCE_EVIDENCE = '''
 <section class="pc-method" id="spuelmaschine-einbaumasse">
 <h2>Passt ein Einbaugeschirrspüler auch bei geöffneter Tür?</h2>
@@ -507,6 +520,11 @@ def render(data, today=None):
         f'<a href="{esc(target)}">{esc(name)}</a> <p>{esc(question)}</p></li>'
         for name, target, question, keywords in SPECIALIST_GUIDES
     )
+    part_links = ''.join(
+        f'<li><a href="{esc(target)}" data-part-guide data-category="{esc(category)}" data-search-terms="{esc(terms)}">'
+        f'{esc(name)}</a></li>'
+        for name, target, category, terms in PART_GUIDES
+    )
     options = ''.join(f'<option value="{esc(c["id"])}">{esc(c["name"])}</option>' for c in data['categories'])
     css_version = hashlib.sha256((ROOT / 'site/assets/product-catalog.css').read_bytes()).hexdigest()[:12]
     script_version = hashlib.sha256((ROOT / 'site/assets/product-catalog.mjs').read_bytes()).hexdigest()[:12]
@@ -531,12 +549,17 @@ def render(data, today=None):
 <h1>Haushaltsgeräte: konkrete Modelle für deine Aufgabe</h1><p class="pc-lead">{count} konkrete Modelle in {len(data['categories'])} Produktgruppen. Vergleiche Einsatz, genaue Variante und Grenzen anhand der Herstellerquellen — ohne Testnoten oder Preisrangliste.</p>
 <p class="pc-disclosure">Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Händlersuchen sind als Anzeige gekennzeichnet. Keine eigenen Gerätetests; Herstellerangaben sind keine Leistungszusage für dein Zuhause.</p>
 <p class="pc-dates">Veröffentlicht: <time datetime="{published}">{date(published).strftime('%d.%m.%Y')}</time> · Inhalt geändert: <time datetime="{modified}">{date(modified).strftime('%d.%m.%Y')}</time>. Der Quellenstand steht an jedem Modell.</p></header>
+<section id="ersatzteile-pruefen" class="pc-part-guides" aria-labelledby="pc-part-guides-heading">
+<h2 id="pc-part-guides-heading">Ersatzteile nach Modell prüfen</h2>
+<p>Halte die vollständige Modellnummer vom Typenschild oder die Teilenummer bereit.</p>
+<ul class="pc-part-links">{part_links}</ul></section>
 <nav class="pc-categories" aria-label="Produktgruppen und Kaufhilfen">{nav}<a class="pc-guide-jump" href="#kaufhilfen">Zu den {len(SPECIALIST_GUIDES)} Kaufhilfen ↓</a></nav>
 <form class="pc-filters" id="product-filters" role="search" hidden><label for="product-query">Modelle und Kaufhilfen durchsuchen<input id="product-query" type="search" maxlength="100" autocomplete="off" placeholder="Zum Beispiel: Luftbefeuchter, Bosch, Parkett"></label>
 <label for="product-category">Produktgruppe<select id="product-category"><option value="">Alle Produktgruppen</option>{options}</select></label><button type="reset">Filter zurücksetzen</button>
 <p class="pc-filter-note">Die Suche läuft nur in diesem Browser. Dein Suchtext wird nicht übertragen.</p>
 <p id="product-filter-empty" hidden>Keine passenden Modelle oder Kaufhilfen gefunden. Ändere die Suche oder setze die Filter zurück.</p></form>
 <p id="product-filter-status" role="status" aria-live="polite">{count} Modelle in {len(data['categories'])} Produktgruppen.</p>
+<ul class="pc-part-links" data-part-results aria-label="Passende Ersatzteil-Hinweise" hidden></ul>
 <section class="pc-guides" id="kaufhilfen" data-specialist-guides aria-labelledby="pc-guides-heading">
 <h2 id="pc-guides-heading">Kaufhilfen für Raumklima, Heizung und Böden</h2>
 <ul>{guide_items}</ul></section>

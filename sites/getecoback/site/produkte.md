@@ -13,6 +13,16 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Händlersuchen si
 
 Veröffentlicht: 13.11.2026 · Inhalt geändert: 22.11.2026. Der Quellenstand steht an jedem Modell.
 
+## Ersatzteile nach Modell prüfen
+
+Halte die vollständige Modellnummer vom Typenschild oder die Teilenummer bereit.
+
+- [Miele-Staubsaugerbeutel](https://getecoback.com/produkte.html#miele-staubsaugerbeutel)
+- [Kärcher-Saugdüse 170 mm](https://getecoback.com/produkte.html#kaercher-170mm-saugduese)
+- [Kaffeevollautomat-Wasserfilter](https://getecoback.com/produkte.html#kaffee-wasserfilter)
+- [Trotec TTK 70 HEPA-Filter](https://getecoback.com/guide/trotec-luftentfeuchter-test.html#ttk70-hepa-filter)
+- [Ersatzfilter für Luftreiniger](https://getecoback.com/ersatzfilter.html#finder)
+
 48 Modelle in 12 Produktgruppen.
 
 ## Kaufhilfen für Raumklima, Heizung und Böden

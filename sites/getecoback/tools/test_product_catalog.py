@@ -27,6 +27,35 @@ def fixture():
 
 
 class CatalogTest(unittest.TestCase):
+    def test_focused_parts_are_static_readable_and_reached_from_catalogue_entries(self):
+        from link_product_catalog import inject
+        route = C.ROUTE
+        data = C.load()
+        page = (C.ROOT / 'site' / route.lstrip('/')).read_text()
+        markdown = (C.ROOT / 'site' / route.lstrip('/')).with_suffix('.md').read_text()
+        self.assertEqual(Document(page).ids.count('ersatzteile-pruefen'), 1)
+        self.assertLess(page.index('id="ersatzteile-pruefen"'), page.index('id="product-query"'))
+        section = re.search(r'<section id="ersatzteile-pruefen"[^>]*>.*?</section>', page, re.S)
+        self.assertIsNotNone(section)
+        links = Document(section[0]).links
+        expected = [
+            '/produkte.html#miele-staubsaugerbeutel', '/produkte.html#kaercher-170mm-saugduese',
+            '/produkte.html#kaffee-wasserfilter', '/guide/trotec-luftentfeuchter-test.html#ttk70-hepa-filter',
+            '/ersatzfilter.html#finder',
+        ]
+        self.assertEqual([route+href if href.startswith('#') else href for href in (link['href'] for link in links)], expected)
+        self.assertIn('Typenschild', section[0])
+        self.assertNotIn('hidden', section[0])
+        for target in expected:
+            path, fragment = target.split('#', 1)
+            file = (C.ROOT / 'site' / path.lstrip('/')).read_text()
+            self.assertEqual(Document(file).ids.count(fragment), 1, target)
+            self.assertIn('https://getecoback.com' + target, markdown)
+        for entry in ('index.html', 'tools.html', 'wohnen.html'):
+            authored = (C.ROOT / 'site' / entry).read_text()
+            self.assertEqual(inject(authored, data), authored)
+            self.assertEqual(sum(link.get('href') == route+'#ersatzteile-pruefen' for link in Document(authored).links), 1)
+
     def test_miele_bag_packs_keep_exact_model_filter_roles_and_native_share(self):
         html = C.render(C.load(), dt.date(2026, 11, 22))
         anchor = 'miele-staubsaugerbeutel'
