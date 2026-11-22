@@ -18,20 +18,40 @@ on:
   workflow_dispatch: {}
 
 permissions:
+  actions: read
   id-token: write
   contents: read
 
 jobs:
   publish:
-    if: ${{ github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == github.repository) }}
+    if: ${{ github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main' && github.event.workflow_run.head_repository.full_name == github.repository) }}
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: sites/getecoback
     steps:
+      - name: Download the effective source receipt from the completed deployment
+        if: github.event_name == 'workflow_run'
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: ${{ github.event.workflow_run.id }}
+          name: eco-mcp-deployed-${{ github.event.workflow_run.id }}-${{ github.event.workflow_run.run_attempt }}
+          path: ${{ runner.temp }}/eco-mcp-release
+
+      - name: Validate the deployed source commit
+        id: effective-release
+        if: github.event_name == 'workflow_run'
+        working-directory: ${{ runner.temp }}
+        run: |
+          sha=$(cat "$RUNNER_TEMP/eco-mcp-release/eco-mcp-release.sha")
+          [[ "$sha" =~ ^[0-9a-f]{40}$ ]]
+          printf 'sha=%s\n' "$sha" >> "$GITHUB_OUTPUT"
+
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          ref: ${{ steps.effective-release.outputs.sha || github.sha }}
 
       - name: Verify the deployed name and version before publishing
         run: |
@@ -52,13 +72,26 @@ jobs:
           print('Live MCP name and version match:', info['name'], info['version'])
           PY
 
+      - name: Check whether this exact canonical release is already registered
+        id: registry-state
+        run: |
+          if python3 tools/check_mcp_registry.py --already-published; then
+            echo 'already_published=true' >> "$GITHUB_OUTPUT"
+            echo 'Exact active Registry version already verified. The separate production smoke workflow still runs.'
+          else
+            echo 'already_published=false' >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/setup-node@v4
+        if: steps.registry-state.outputs.already_published != 'true'
         with:
           node-version: '22'
       - name: Verify real tool responses before advertising this release
+        if: steps.registry-state.outputs.already_published != 'true'
         run: node tools/mcp_smoke.mjs
 
       - name: Install mcp-publisher
+        if: steps.registry-state.outputs.already_published != 'true'
         run: |
           # Release assets carry the version in their name, so resolve the
           # linux/amd64 asset from the latest-release API instead of guessing.
@@ -70,6 +103,7 @@ jobs:
           ./mcp-publisher --version || { echo "::error::mcp-publisher binary not found in asset"; exit 1; }
 
       - name: Registry limits (checked here, before the registry rejects them)
+        if: steps.registry-state.outputs.already_published != 'true'
         run: |
           # 注册表对 description 有 100 字符硬限制,超了在 publish 那步 422(2026-09-25 实际发生:
           # 09-16 把品牌写进描述后是 199 字符,1.2.0 因此一直没发出去)。外部硬限制在本地先断言一次。
@@ -88,6 +122,7 @@ jobs:
           PY
 
       - name: Login (GitHub OIDC) and publish
+        if: steps.registry-state.outputs.already_published != 'true'
         run: |
           ./mcp-publisher login github-oidc
           # The registry refuses to overwrite an existing name+version pair, so a

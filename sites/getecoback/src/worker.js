@@ -1,4 +1,4 @@
-import {indexCatalogue, findCatalogueTools} from '../site/assets/mcp-catalog-search.mjs';
+import {indexCatalogue, findCatalogueTools, toolGuidePath} from '../site/assets/mcp-catalog-search.mjs';
 import {pageTools} from './mcp-pagination.mjs';
 import {expandedTools, expandedCatalog, expandedCall, isExpandedTool, catalogueExample} from './mcp-expanded.mjs';
 import {legacyCatalogueExample} from './mcp-legacy-examples.mjs';
@@ -1114,14 +1114,18 @@ const LEGACY_TASK_EQUIVALENTS = new Map([
   ["luftbefeuchter_weisser_belag","befeuchter_weissen_belag_einordnen"],
 ]);
 const CATALOG_TOOLS = [...LEGACY_MCP_TOOLS.map(tool => ({...tool,category:"Raumklima"})), ...expandedCatalog]
-  .map(tool => LEGACY_TASK_EQUIVALENTS.has(tool.name)
-    ? {...tool,equivalent_task:LEGACY_TASK_EQUIVALENTS.get(tool.name)}
-    : tool);
+  .map(tool => {
+    const section = tool.page && toolGuidePath({citation_url:tool.page,category:tool.category});
+    const equivalent = LEGACY_TASK_EQUIVALENTS.get(tool.name);
+    const guide = section?.includes('#') ? {guide_url:"https://getecoback.com" + section} : {};
+    return {...tool, ...guide, ...(equivalent ? {equivalent_task:equivalent} : {})};
+  });
 const DISTINCT_TASK_TOTAL = new Set(CATALOG_TOOLS.map(tool=>tool.equivalent_task || tool.name)).size;
 const CATALOG_INDEX = indexCatalogue(CATALOG_TOOLS);
 const COMPACT_INDEX = indexCatalogue(CATALOG_TOOLS.map(tool => ({
   name:tool.name, description:tool.description, category:tool.category,
   ...(tool.page ? {citation_url:"https://getecoback.com" + tool.page} : {}),
+  ...(tool.guide_url ? {guide_url:tool.guide_url} : {}),
   ...(tool.equivalent_task ? {equivalent_task:tool.equivalent_task} : {}),
 })));
 

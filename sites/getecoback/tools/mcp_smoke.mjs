@@ -1,41 +1,23 @@
 #!/usr/bin/env node
-// End-to-end check of the live MCP server: initialize, tools/list, then one
-// real call per tool, asserting the answer actually contains the number or
-// text it promises. The deploy workflow only proves /mcp responds at all —
-// this proves the tools work, which is what a directory listing claims.
-//
-// Runs from CI (the sandbox has no outbound network). Exit 1 on any failure.
+// Check live identity, the complete standard catalogue, and reviewed tool answers.
+// Full checks cover every fixture. Routine deployed checks can sample each category.
 
-import {collectToolPages} from '../src/mcp-pagination.mjs';
-import {expandedDefinitions} from "../src/mcp-expanded.mjs";
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {pathToFileURL} from 'node:url';
+import {collectToolPages, MCP_PAGE_SIZE} from '../src/mcp-pagination.mjs';
+import {expandedDefinitions, expandedTools} from '../src/mcp-expanded.mjs';
 
-const BASE = process.env.MCP_URL || "https://getecoback.com/mcp/v1";
+const MANIFEST = JSON.parse(readFileSync(new URL('../mcp/server.json', import.meta.url), 'utf8'));
 const HEADERS = {
   "content-type": "application/json",
   accept: "application/json, text/event-stream",
   // self-identify so the worker's telemetry can exclude CI from adoption
   "user-agent": "getecoback-ci/1.0",
+  "x-probe": "1",
 };
 
-let id = 0;
-async function rpc(method, params) {
-  const res = await fetch(BASE, {
-    method: "POST",
-    headers: HEADERS,
-    body: JSON.stringify({ jsonrpc: "2.0", id: ++id, method, params }),
-  });
-  const text = await res.text();
-  if (!res.ok) throw new Error(`HTTP ${res.status}: ${text.slice(0, 200)}`);
-  // Streamable HTTP may answer as SSE; take the last data: line if so.
-  let payload = text;
-  if (/^\s*event:|^\s*data:/m.test(text)) {
-    const lines = text.split("\n").filter((l) => l.startsWith("data:"));
-    payload = lines.length ? lines[lines.length - 1].slice(5).trim() : text;
-  }
-  const json = JSON.parse(payload);
-  if (json.error) throw new Error(`RPC error: ${JSON.stringify(json.error)}`);
-  return json.result;
-}
+class RateLimitError extends Error {}
 
 function textOf(result) {
   return (result?.content || []).map((c) => c.text || "").join("\n");
@@ -81,86 +63,142 @@ const CASES = [
   ["ratgeber_lesen", { pfad: "/fr/calculateur.html" }, ["Canonical: https://getecoback.com/fr/calculateur.html"]],
 ];
 
-const fails = [];
-
-const init = await rpc("initialize", {
-  protocolVersion: "2025-06-18",
-  capabilities: {},
-  clientInfo: { name: "getecoback-smoke", version: "1.0.0" },
-});
-console.log(`initialize OK — server: ${init?.serverInfo?.name} ${init?.serverInfo?.version || ""}`);
-
-const names = (await collectToolPages(cursor => rpc("tools/list",cursor ? {cursor} : {})))
-  .map(tool => tool.name);
-console.log(`tools/list OK — ${names.length} tools: ${names.join(", ")}`);
-const coveredNames = [...new Set([...CASES.map(([tool]) => tool), ...expandedDefinitions.map(tool => tool.name)])];
-if (names.length !== coveredNames.length) {
-  fails.push(`tools/list returned ${names.length} tools, smoke test covers ${coveredNames.length}`);
-}
-for (const [tool] of CASES) {
-  if (!names.includes(tool)) fails.push(`tool missing from tools/list: ${tool}`);
+function sampleCategories(definitions) {
+  const seen = new Set();
+  return definitions.filter(({category}) => {
+    if (seen.has(category)) return false;
+    seen.add(category);
+    return true;
+  });
 }
 
-for (const [tool, args, expects] of CASES) {
-  try {
-    const result = await rpc("tools/call", { name: tool, arguments: args });
-    const body = textOf(result);
-    if (tool === 'entfeuchter_ablaufcheck' && result.structuredContent?.outcome !== 'pump_check') {
-      fails.push('Drainage tool did not return the higher-drain outcome for the exact model.');
+export async function runSmoke({
+  mode = 'full',
+  send = globalThis.fetch,
+  log = console.log,
+  base = MANIFEST.remotes[0].url,
+  manifest = MANIFEST,
+} = {}) {
+  assert.ok(mode === 'full' || mode === 'bounded', 'MCP smoke mode must be full or bounded');
+  let id = 0;
+  async function rpc(method, params) {
+    const response = await send(base, {
+      method: 'POST',
+      headers: HEADERS,
+      signal: AbortSignal.timeout(20_000),
+      body: JSON.stringify({jsonrpc:'2.0', id:++id, method, params}),
+    });
+    if (response.status === 429) {
+      await response.body?.cancel().catch(() => {});
+      throw new RateLimitError('HTTP 429: MCP production check stopped at the request limit');
     }
-    if (tool === 'hitzewelle_vorschau' && !verifyForecast(result.structuredContent)) {
-      fails.push('Forecast tool did not return a verified peak and coverage or typed source unavailability.');
-    }
-    const missing = expects.filter((e) => !body.toLowerCase().includes(String(e).toLowerCase()));
-    if (result.isError) {
-      fails.push(`${tool}: isError — ${body.slice(0, 120)}`);
-    } else if (missing.length) {
-      fails.push(`${tool}: missing ${JSON.stringify(missing)} in answer — ${body.slice(0, 160)}`);
-    } else {
-      console.log(`✓ ${tool} — ${body.split("\n")[0].slice(0, 96)}`);
-    }
-    // Every answer must name its source and disclose the affiliate funding;
-    // that promise is what makes the server safe to cite.
-    if (!/getecoback\.com/.test(body)) fails.push(`${tool}: answer has no source URL`);
-    if (!/Affiliate/i.test(body)) fails.push(`${tool}: answer has no affiliate disclosure`);
-    if (/https?:\/\/[^\s]*(?:amazon\.|amzn\.)|[?&]tag=/i.test(body)) fails.push(`${tool}: answer exposes a merchant/affiliate URL`);
-  } catch (e) {
-    fails.push(`${tool}: threw — ${e.message}`);
+    const text = await response.text();
+    if (!response.ok) throw new Error(`HTTP ${response.status}: ${text.slice(0, 200)}`);
+    // Streamable HTTP may answer as SSE. Read the last data event.
+    const events = text.split('\n').filter(line => line.startsWith('data:'));
+    const payload = JSON.parse(events.length ? events.at(-1).slice(5).trim() : text);
+    if (payload.error) throw new Error(`RPC error: ${JSON.stringify(payload.error)}`);
+    return payload.result;
   }
-}
 
-// At most four network calls are in flight during the publication gate.
-for (let offset = 0; offset < expandedDefinitions.length; offset += 4) {
-  await Promise.all(expandedDefinitions.slice(offset, offset + 4).map(async tool => {
+  const init = await rpc('initialize', {
+    protocolVersion: '2025-06-18',
+    capabilities: {},
+    clientInfo: {name:'getecoback-smoke', version:'1.0.0'},
+  });
+  const expectedName = manifest.name.split('/').at(-1);
+  assert.equal(init?.serverInfo?.name, expectedName, 'Live MCP name differs from manifest');
+  assert.equal(init?.serverInfo?.version, manifest.version, 'Live MCP version differs from manifest');
+  log(`initialize OK — server: ${expectedName} ${manifest.version}`);
+
+  const expected = new Set([...CASES.map(([name]) => name), ...expandedDefinitions.map(tool => tool.name)]);
+  const pageLimit = Math.ceil(expected.size / MCP_PAGE_SIZE);
+  let pages = 0;
+  let listed = 0;
+  const tools = await collectToolPages(async cursor => {
+    const page = await rpc('tools/list', cursor ? {cursor} : {});
+    assert.equal(page?.tools?.length, Math.min(MCP_PAGE_SIZE, expected.size - listed), 'Unexpected tools/list page size');
+    pages++;
+    listed += page.tools.length;
+    assert.equal(page.nextCursor !== undefined, listed < expected.size, 'Unexpected tools/list continuation');
+    return page;
+  }, {maxPages:pageLimit});
+  const catalogue = new Map(tools.map(tool => [tool.name, tool]));
+  const missing = [...expected].filter(name => !catalogue.has(name));
+  const unexpected = [...catalogue.keys()].filter(name => !expected.has(name));
+  assert.ok(!missing.length && !unexpected.length,
+    `Unexpected tools/list names. Missing: ${missing.slice(0, 5).join(', ')}. Unexpected: ${unexpected.slice(0, 5).join(', ')}`);
+  for (const tool of expandedTools) {
+    assert.deepEqual(catalogue.get(tool.name), tool, `Live tool contract differs for ${tool.name}`);
+  }
+  log(`tools/list OK — ${catalogue.size} tools across ${pages} pages`);
+
+  const fails = [];
+  for (const [tool, args, expects] of CASES) {
     try {
-      if (!names.includes(tool.name)) throw new Error("missing from tools/list");
-      const result = await rpc("tools/call", {name:tool.name, arguments:tool.example.args});
-      const data = result?.structuredContent;
-      if (result?.isError || data?.citation_url !== "https://getecoback.com" + tool.page) {
-        throw new Error("missing answer or source");
+      const result = await rpc('tools/call', {name:tool, arguments:args});
+      const body = textOf(result);
+      if (tool === 'entfeuchter_ablaufcheck' && result.structuredContent?.outcome !== 'pump_check') {
+        fails.push('Drainage tool did not return the higher-drain outcome for the exact model.');
       }
-      for (const [key,value] of Object.entries(tool.example.expect)) {
-        const actual = data[key];
-        const matches = typeof value === "number"
-          ? typeof actual === "number" && Math.abs(actual - value) <= 1e-8 * Math.max(1,Math.abs(value))
-          : JSON.stringify(actual) === JSON.stringify(value);
-        if (!matches) throw new Error("unexpected " + key);
+      if (tool === 'hitzewelle_vorschau' && !verifyForecast(result.structuredContent)) {
+        fails.push('Forecast tool did not return a verified peak and coverage or typed source unavailability.');
       }
-      console.log("✓ " + tool.name);
+      const missingText = expects.filter(value => !body.toLowerCase().includes(value.toLowerCase()));
+      if (result.isError) {
+        fails.push(`${tool}: isError — ${body.slice(0, 120)}`);
+      } else if (missingText.length) {
+        fails.push(`${tool}: missing ${JSON.stringify(missingText)} in answer — ${body.slice(0, 160)}`);
+      } else {
+        log(`✓ ${tool} — ${body.split('\n')[0].slice(0, 96)}`);
+      }
+      // Every answer must name its source and disclose the affiliate funding.
+      if (!/getecoback\.com/.test(body)) fails.push(`${tool}: answer has no source URL`);
+      if (!/Affiliate/i.test(body)) fails.push(`${tool}: answer has no affiliate disclosure`);
+      if (/https?:\/\/[^\s]*(?:amazon\.|amzn\.)|[?&]tag=/i.test(body)) fails.push(`${tool}: answer exposes a merchant/affiliate URL`);
     } catch (error) {
-      fails.push(tool.name + ": " + error.message);
+      if (error instanceof RateLimitError) throw error;
+      fails.push(`${tool}: threw — ${error.message}`);
     }
-  }));
+  }
+
+  const fixtures = mode === 'bounded' ? sampleCategories(expandedDefinitions) : expandedDefinitions;
+  for (let offset = 0; offset < fixtures.length; offset += 4) {
+    await Promise.all(fixtures.slice(offset, offset + 4).map(async tool => {
+      try {
+        const result = await rpc('tools/call', {name:tool.name, arguments:tool.example.args});
+        const data = result?.structuredContent;
+        if (result?.isError || data?.citation_url !== 'https://getecoback.com' + tool.page) {
+          throw new Error('missing answer or source');
+        }
+        for (const [key,value] of Object.entries(tool.example.expect)) {
+          const actual = data[key];
+          const matches = typeof value === 'number'
+            ? typeof actual === 'number' && Math.abs(actual - value) <= 1e-8 * Math.max(1,Math.abs(value))
+            : JSON.stringify(actual) === JSON.stringify(value);
+          if (!matches) throw new Error('unexpected ' + key);
+        }
+        log('✓ ' + tool.name);
+      } catch (error) {
+        if (error instanceof RateLimitError) throw error;
+        fails.push(tool.name + ': ' + error.message);
+      }
+    }));
+  }
+
+  const refused = await rpc('tools/call', {name:'ratgeber_lesen', arguments:{
+    pfad:'https://getecoback.com.evil.test/waeschetrockner-oder-luftentfeuchter.html',
+  }});
+  if (!refused.isError) fails.push('ratgeber_lesen accepted a noncanonical origin');
+  if (fails.length) throw new Error('MCP production check failed:\n' + fails.join('\n'));
+  const checked = CASES.length + fixtures.length + 1;
+  log(`MCP ${mode} check passed: ${catalogue.size} listed tools, ${checked} tool calls.`);
+  return {mode, pages, discovered:catalogue.size, checked};
 }
 
-const refused = await rpc('tools/call', {name: 'ratgeber_lesen', arguments: {
-  pfad: 'https://getecoback.com.evil.test/waeschetrockner-oder-luftentfeuchter.html',
-}});
-if (!refused.isError) fails.push('ratgeber_lesen accepted a noncanonical origin');
-
-if (fails.length) {
-  console.error("\nFAILURES:");
-  for (const f of fails) console.error(" ✗ " + f);
-  process.exit(1);
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  const args = process.argv.slice(2);
+  assert.ok(args.length === 0 || (args.length === 1 && args[0] === '--bounded'),
+    'Usage: node tools/mcp_smoke.mjs [--bounded]');
+  await runSmoke({mode:args.length ? 'bounded' : 'full', base:process.env.MCP_URL || undefined});
 }
-console.log(`\nAll ${coveredNames.length} tools answered correctly in ${CASES.length + expandedDefinitions.length} production checks.`);

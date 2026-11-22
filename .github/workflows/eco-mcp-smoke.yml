@@ -1,8 +1,6 @@
-# Verifies the live MCP server end to end: initialize, tools/list, and one real
-# call per tool with expected values. The deploy workflow only asserts that
-# /mcp responds; this asserts the answers are right. Runs on demand, after
-# every deploy of the worker, and daily — a directory listing points third
-# parties at this endpoint, so silent breakage is worse than a red build.
+# Verifies the live name, version and complete paginated catalogue after every
+# deployment. Run every example daily, on demand, or for an unconfirmed version.
+# A deployment of an already registered version exercises representative calls.
 name: MCP production smoke test
 # ── 迁入公开 monorepo f-tiger/agi-site(2026-08-19,owner 决定)──
 # 原仓 .github 为历史档案。公开仓 Actions 分钟免费。
@@ -21,19 +19,60 @@ on:
   schedule:
      - cron: "17 6 * * *"
 
+permissions:
+  actions: read
+  contents: read
+
 jobs:
   smoke:
     # Only smoke a deploy that succeeded; a failed/cancelled deploy already
     # reported itself. Manual and scheduled runs always go.
-    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name != 'workflow_run' }}
+    if: ${{ github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main' && github.event.workflow_run.head_repository.full_name == github.repository) }}
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: sites/getecoback
     steps:
+      - name: Download the effective source receipt from the completed deployment
+        if: github.event_name == 'workflow_run'
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: ${{ github.event.workflow_run.id }}
+          name: eco-mcp-deployed-${{ github.event.workflow_run.id }}-${{ github.event.workflow_run.run_attempt }}
+          path: ${{ runner.temp }}/eco-mcp-release
+
+      - name: Validate the deployed source commit
+        id: effective-release
+        if: github.event_name == 'workflow_run'
+        working-directory: ${{ runner.temp }}
+        run: |
+          sha=$(cat "$RUNNER_TEMP/eco-mcp-release/eco-mcp-release.sha")
+          [[ "$sha" =~ ^[0-9a-f]{40}$ ]]
+          printf 'sha=%s\n' "$sha" >> "$GITHUB_OUTPUT"
+
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.effective-release.outputs.sha || github.sha }}
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - name: Call every tool on the live server
-        run: node tools/mcp_smoke.mjs
+
+      - name: Check whether this exact canonical release is already registered
+        id: registry-state
+        if: github.event_name == 'workflow_run'
+        run: |
+          if python3 tools/check_mcp_registry.py --already-published; then
+            echo 'already_published=true' >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Exercise the deployed MCP catalogue and examples
+        env:
+          ECO_MCP_ALREADY_PUBLISHED: ${{ steps.registry-state.outputs.already_published }}
+        run: |
+          if [[ "$ECO_MCP_ALREADY_PUBLISHED" == true ]]; then
+            node tools/mcp_smoke.mjs --bounded
+          else
+            node tools/mcp_smoke.mjs
+          fi
