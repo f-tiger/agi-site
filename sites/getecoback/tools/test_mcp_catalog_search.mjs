@@ -27,9 +27,9 @@ test('the browser loads the current catalogue search module', async () => {
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 232);
+  assert.equal(withGuides.length, 233);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 30);
+  assert.equal(destinations.size, 31);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);
@@ -909,4 +909,36 @@ test('original PortaSplit lip sizes reach the measurement tool without borrowing
  assert.ok(!(await catalogue({q:'Fensterabdichtung für meinen Monoblock mit Dichtung messen',view:'compact'})).tools.some(tool=>tool.name===name));
  assert.equal((await catalogue({q:name,view:'compact'})).tools[0]?.name,name);
  assert.equal(analytics,0);
+});
+
+test('German window-seal decisions do not route to a door-floor profile', async()=>{
+  const name='tesamoll_fensterdichtung_profil_pruefen';
+  const door='tesa_tuerbodenprofil_belag_groesster_spalt';
+  const guide='/guide/fenster-zugluft-mietwohnung.html#dichtungsprofil';
+  for(const q of [
+    'Mein altes Fenster zieht. Der Spalt ist 4 mm breit – welches tesamoll-Profil brauche ich: E, P oder D?',
+    'Ich messe am alten Holzfenster 4 mm Spalt. P-Profil oder D-Profil von tesamoll, welches soll ich kaufen?',
+    'Im Rahmen meines alten Fensters steckt eine Gummidichtung in einer Nut. Kann ich bei 4 mm Spalt ein tesamoll D-Profil darüberkleben?',
+    'Fensterdichtung im Altbau: E- oder P-Dichtung wählen?',
+    'Welches tesamoll E-, P- oder D-Profil passt bei 4 mm Spalt?',
+    'D-Profil vs P-Profil für mein Holzfenster bei 4 mm',
+  ]){
+    const results=(await catalogue({q,view:'compact',limit:'5'})).tools;
+    assert.equal(results[0]?.name,name,q);
+    assert.equal(findCatalogueTools(compact,{query:q})[0]?.name,name,q);
+    assert.equal(toolGuidePath(results[0]),guide,q);
+    assert.ok(!results.some(tool=>tool.name===door),q);
+  }
+  for(const q of [
+    'tesamoll Türbodendichtung auf glatten Fliesen',
+    'Fensterdichtung E-Profil eines anderen Herstellers bei 4 mm Spalt',
+    'Midea PortaSplit Fensterfalz mit Dichtung bei 60 mm',
+    'Duschdichtung mit D-Profil bei 4 mm',
+    'tesamoll Silikonprofil für 4 mm Fensterdichtung',
+    'Meine Haustür mit tesamoll E- oder P-Profil bei 4 mm abdichten?',
+    'Fensterdichtung P oder D, aber nicht tesamoll',
+    'Mein Fenster zieht. Wie prüfe ich die Ursache?',
+  ]) assert.ok(!(await catalogue({q,view:'compact',limit:'5'})).tools.some(tool=>tool.name===name),q);
+  assert.equal((await catalogue({q:name,view:'compact'})).tools[0]?.name,name);
+  assert.equal(analytics,0);
 });

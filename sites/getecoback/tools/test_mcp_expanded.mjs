@@ -8,7 +8,7 @@ import {expandedDefinitions, expandedCall} from '../src/mcp-expanded.mjs';
 import {collectToolPages} from '../src/mcp-pagination.mjs';
 
 const origin = 'https://getecoback.com';
-const distinctTasks = 2025;
+const distinctTasks = 2026;
 const callableNames = distinctTasks + 1;
 function request(method, params) {
   return new Request(origin + '/mcp/v1', {
@@ -263,8 +263,40 @@ test('the public directory and standard MCP pages expose the same catalogue', as
   const byCategory = {};
   for (const {category} of directory.tools) byCategory[category] = (byCategory[category] || 0) + 1;
   assert.deepEqual(byCategory, {Raumklima:10,'Strom & Haushalt':21,Feuchte:19,Kühlen:18,Heizen:19,Passform:17,
-    'Energie prüfen':24,'Raumkomfort prüfen':24,'Geräte pflegen':24,'Quellen & Kaufprüfung':30, 'Wasser & Wäsche':24,'Gebäude & Fenster':24,'Geräte im Alltag':24,'Messpraxis':24,'Zugang & Alltag':24,Saisonwechsel:24,Kaufpraxis:26,'Ressourcen planen':24,Raumplanung:24,Wetterpraxis:24,Küchenpraxis:24,Servicevorbereitung:24,'Belege abgleichen':24,Textilpraxis:25,Luftpfade:25,Modellunterlagen:25,Haushaltsbuch:25,Praxistests:25,Messunsicherheit:25,Geräteablauf:25,Weiterverwendung:25,Raumübergabe:25,Wohnszenarien:25,Verbrauchsverlauf:41,Fensterbetrieb:41,Pflegeabläufe:40,Haushaltskoordination:40,Nachweisprüfung:40,Wasserwege:40,Raumakustik:40,Mehrgerätebetrieb:40,Gebrauchtgeräte:40,Küchenressourcen:40,Klimaverlauf:40,Wohnmobil:30,'Arbeitsplatz-Messpraxis':30,'Lokale Wärme':30,Luftkühler:30,'Wäsche mit Wärme':30,Gartenalltag:30, Gefrierpraxis:18,'Geschirrspüler-Einbau':24,Wäschesäule:17,Lüftungskauf:24,Ersatzteilnachweis:20,Dunstabzug:17,Backofenzubehör:18,Brausenzubehör:23,Rollenzubehör:18,'Altgeräte-Rücknahme':20,Induktionsgeschirr:18,Betriebszustände:21,Spülstatus:24,'Airfryer-Behälter':17,Kompaktspülen:17,"Filterkannen":22,"Textilzeichen":20,"Türbodenspalt":21,"Roboterpflege":24,"Kühlgerätekauf":20,"LED-Kaufprüfung":16,"Kaffeemaschinenpflege":22,"Waschmitteldosierung":23,"Spülmittel und Wasserhärte":25,"Bodenstaubsaugerpflege":22,"Dampfbügelgeräte":24,"Stabmixer und Zubehör":25,"Mikrowellenbelege":23,"Küchenwaagen":13,"Wasserkocherbelege":16,"Toasterbelege":10,"Fenstersauger":12});
-  assert.equal(expandedDefinitions.length,2016);
+    'Energie prüfen':24,'Raumkomfort prüfen':24,'Geräte pflegen':24,'Quellen & Kaufprüfung':31, 'Wasser & Wäsche':24,'Gebäude & Fenster':24,'Geräte im Alltag':24,'Messpraxis':24,'Zugang & Alltag':24,Saisonwechsel:24,Kaufpraxis:26,'Ressourcen planen':24,Raumplanung:24,Wetterpraxis:24,Küchenpraxis:24,Servicevorbereitung:24,'Belege abgleichen':24,Textilpraxis:25,Luftpfade:25,Modellunterlagen:25,Haushaltsbuch:25,Praxistests:25,Messunsicherheit:25,Geräteablauf:25,Weiterverwendung:25,Raumübergabe:25,Wohnszenarien:25,Verbrauchsverlauf:41,Fensterbetrieb:41,Pflegeabläufe:40,Haushaltskoordination:40,Nachweisprüfung:40,Wasserwege:40,Raumakustik:40,Mehrgerätebetrieb:40,Gebrauchtgeräte:40,Küchenressourcen:40,Klimaverlauf:40,Wohnmobil:30,'Arbeitsplatz-Messpraxis':30,'Lokale Wärme':30,Luftkühler:30,'Wäsche mit Wärme':30,Gartenalltag:30, Gefrierpraxis:18,'Geschirrspüler-Einbau':24,Wäschesäule:17,Lüftungskauf:24,Ersatzteilnachweis:20,Dunstabzug:17,Backofenzubehör:18,Brausenzubehör:23,Rollenzubehör:18,'Altgeräte-Rücknahme':20,Induktionsgeschirr:18,Betriebszustände:21,Spülstatus:24,'Airfryer-Behälter':17,Kompaktspülen:17,"Filterkannen":22,"Textilzeichen":20,"Türbodenspalt":21,"Roboterpflege":24,"Kühlgerätekauf":20,"LED-Kaufprüfung":16,"Kaffeemaschinenpflege":22,"Waschmitteldosierung":23,"Spülmittel und Wasserhärte":25,"Bodenstaubsaugerpflege":22,"Dampfbügelgeräte":24,"Stabmixer und Zubehör":25,"Mikrowellenbelege":23,"Küchenwaagen":13,"Wasserkocherbelege":16,"Toasterbelege":10,"Fenstersauger":12});
+  assert.equal(expandedDefinitions.length,2017);
+});
+
+test('tesamoll clearance must fit the entire measured range and never substitutes a different seal', async () => {
+  const name = 'tesamoll_fensterdichtung_profil_pruefen';
+  const guide = 'https://getecoback.com/guide/fenster-zugluft-mietwohnung.html#dichtungsprofil';
+  const catalogue = 'https://www.tesa.com/de-de/files/download/11555752%2C4%2Ctesa-consumerkatalog-2024-online.pdf';
+  for (const [dichtungsart, spalt_min_mm, spalt_max_mm, status, matching] of [
+    ['tesamoll_klebeprofil',4,4,'abmessungen_passender_profile',['P','D']],
+    ['tesamoll_klebeprofil',1,1,'abmessungen_passender_profile',['E']],
+    ['tesamoll_klebeprofil',3,3.5,'abmessungen_passender_profile',['E','P','D']],
+    ['tesamoll_klebeprofil',2,6,'kein_dokumentiertes_profil',[]],
+    ['tesamoll_klebeprofil',3,7,'abmessungen_passender_profile',['D']],
+    ['tesamoll_klebeprofil',4,7.01,'kein_dokumentiertes_profil',[]],
+    ['tesamoll_klebeprofil',0,4,'messwerte_klaeren',[]],
+    ['tesamoll_klebeprofil',5,4,'messwerte_klaeren',[]],
+    ['nutdichtung',4,4,'fenstersystem_klaeren',[]],
+    ['zusatzdichtung',4,4,'fenstersystem_klaeren',[]],
+    ['unbekannt',4,4,'fenstersystem_klaeren',[]],
+  ]) {
+    const arguments_ = {dichtungsart, spalt_min_mm, spalt_max_mm};
+    const response = await worker.fetch(request('tools/call', {name, arguments:arguments_}), {}, {});
+    const {result} = await response.json();
+    assert.equal(result.isError,false);
+    const data = result.structuredContent;
+    assert.equal(data.status,status);
+    assert.deepEqual(data.passende_profile,matching);
+    assert.deepEqual(data.dokumentierte_spaltbereiche_mm,{E:[1,3.5],P:[2,5],D:[3,7]});
+    assert.equal(data.guide_url,guide);
+    assert.equal(data.hersteller_katalog_url,catalogue);
+    assert.equal(data.katalog_druckseite,28);
+    assert.match(data.grenze,/Entwässerungsöffnungen/);
+  }
 });
 
 test('old or invalid cursors reject safely and both catalogue boundaries paginate completely', async () => {

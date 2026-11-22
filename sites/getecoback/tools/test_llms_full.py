@@ -103,6 +103,27 @@ class LlmsFull(unittest.TestCase):
         })
         self.assertNotIn('reddit.com/submit', md)
 
+    def test_tesamoll_static_overlap_keeps_sources_and_clean_share(self):
+        route = '/guide/fenster-zugluft-mietwohnung.html'
+        guide = SITE / route.lstrip('/')
+        page = guide.read_text()
+        md = guide.with_suffix('.md').read_text()
+        section = re.search(r'<section class="tesamoll-profile"[^>]*>(.*?)</section>', page, re.S)
+        self.assertIsNotNone(section)
+        self.assertEqual(page.count('id="dichtungsprofil"'), 1)
+        for phrase in ('Bei 4 mm liegen P und D', '1–3,5 mm', '2–5 mm', '3–7 mm',
+                       'Nutdichtung', 'Entwässerungsöffnungen', 'Lüftungsöffnungen',
+                       '/fensterdichtung-erneuern.html', '/11555752%2C4%2Ctesa-consumerkatalog-2024-online.pdf'):
+            self.assertIn(phrase, section[1])
+            self.assertIn(phrase, md)
+        share = re.search(r'href="(https://www\.reddit\.com/submit\?[^"]+)" rel="noreferrer"', section[1])
+        self.assertIsNotNone(share)
+        self.assertEqual(parse_qs(urlsplit(html.unescape(share[1])).query), {
+            'url': [f'https://getecoback.com{route}#dichtungsprofil'],
+            'title': ['Welche tesamoll-Dichtung passt bei 4 mm Spalt?'],
+        })
+        self.assertNotIn('reddit.com/submit', md)
+
     def test_real_final_catalog_tables_keep_headers_and_canonical_fragments(self):
         for slug in ['luftentfeuchter-ratgeber', 'luftentfeuchter-keller', 'waesche-trocknen-wohnung']:
             # Actual generated files, before any renderer can repair them.
