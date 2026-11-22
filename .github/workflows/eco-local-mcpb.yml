@@ -19,12 +19,12 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUNDLE: ecoback-local-tools-1.22.23.mcpb
-  VERSION: '1.22.23'
-  UPSTREAM_SHA: d3c413696a3f9f7837e16335a4b8749b49942cd1
+  BUNDLE: ecoback-local-tools-1.22.24.mcpb
+  VERSION: '1.22.24'
+  UPSTREAM_SHA: 5aa52426b8cca258abad7e29ed28cb9cc91dc8b1
   NAME: io.github.f-tiger/ecoback-local-tools
   RELEASE_TAG: fleet-mcp-registry-2026-10-10
-  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.23.mcpb
+  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.24.mcpb
   REGISTRY_VERSIONS: https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions
   SOURCE_URL: https://github.com/f-tiger/getecoback-mcp
   MCPB_SCHEMA: https://raw.githubusercontent.com/modelcontextprotocol/mcpb/70fe3b34cd6dff1b3bba046638edc72a6467a4fb/schemas/mcpb-manifest-v0.3.schema.json
@@ -295,6 +295,13 @@ jobs:
               ],
               rejected:3
             } and .compact.mieleBags == .mieleBags and
+            .portaSplitLookup == {
+              ean:4048164116478,
+              name:"midea_portasplit_fensterfalz_pruefen",
+              citation:"https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html",
+              guide:"https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html#fensterfalz",
+              excludedEans:[4048164122424,4048164122301]
+            } and .compact.portaSplitLookup == .portaSplitLookup and
             .compact.cellarBuyerEvidence == true and
             .compact.laundryComparison == {
               topMatch:"waesche_trocknungskosten", dryerEurPerLoad:0.6, dehumidifierEurPerLoad:0.3,

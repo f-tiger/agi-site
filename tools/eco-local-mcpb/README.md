@@ -208,6 +208,11 @@ Version 1.22.23 improves discovery for the German Miele HyClean lookups.
 Both profiles show the documented original pack contents for an exact model
 and compare shared bag and HEPA filter compatibility independently.
 
+Version 1.22.24 finds the original Midea PortaSplit window-lip check from
+the German EAN 4048164116478. Both offline modes verify the existing guide
+link and exclude the E and Cool variants from the original model's checks.
+The tool still requires the buyer's own measurements and window details.
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the
