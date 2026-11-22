@@ -1,4 +1,5 @@
 import test from 'node:test';import assert from 'node:assert/strict';
+import worker from '../src/worker.js';
 import {example,calculate,normalize,encode,decode,parseCSV} from '../site/assets/energy-tariff-model.mjs';
 const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-7,`${a} != ${b}`);
 test('DE: first-year, recurring and two-year costs stay separate',()=>{const r=calculate(example('de'));near(r.firstSaving,124);near(r.recurringSaving,24);near(r.twoYearSaving,148);});
@@ -31,4 +32,69 @@ test('CSV: input, row, field and aggregate limits still apply',()=>{
  for(const csv of ['kwh1\n1000000,1','kwh1\n600000,5\n400000','kwh1\n'+'1\n'.repeat(367),'kwh1\n'+'1'.repeat(100000)])assert.throws(()=>parseCSV(csv,'de'));
  assert.throws(()=>parseCSV('kwh1;kwh2\n600000,5;1\n400000;2','fr'));
  assert.throws(()=>parseCSV('kwh1\n1','toString'));
+});
+
+const hourMs = 3_600_000;
+const stromRequest = () => worker.fetch(new Request('https://example.test/api/strom'), {}, {});
+const asUrl = input => new URL(input instanceof Request ? input.url : input);
+const jsonResponse = body => new Response(JSON.stringify(body), {headers:{'content-type':'application/json'}});
+
+for (const [description, now, startIso, endIso, hourCount] of [
+  ['Sunday evening', '2026-11-22T19:04:19.427Z', '2026-11-21T23:00:00Z', '2026-11-22T23:00:00Z', 24],
+  ['start of summer time', '2026-03-29T18:35:19.427Z', '2026-03-28T23:00:00Z', '2026-03-29T22:00:00Z', 23],
+  ['end of summer time', '2026-10-25T19:35:19.427Z', '2026-10-24T22:00:00Z', '2026-10-25T23:00:00Z', 25],
+]) {
+  test('electricity prices request the exact Berlin calendar day on ' + description, async t => {
+    t.mock.timers.enable({apis:['Date'], now:Date.parse(now)});
+    const start = Date.parse(startIso), end = Date.parse(endIso);
+    const requests = [];
+    const rows = Array.from({length:hourCount + 2}, (_, i) => ({
+      start_timestamp:start + (i - 1) * hourMs, marketprice:10 * (i - 1),
+    }));
+    t.mock.method(globalThis, 'fetch', async input => {
+      const url = asUrl(input);
+      requests.push(url);
+      return url.hostname === 'api.awattar.de' ? jsonResponse({data:rows}) : new Response(null, {status:503});
+    });
+    const result = await (await stromRequest()).json();
+    assert.equal(requests.length, 1);
+    assert.equal(requests[0].hostname, 'api.awattar.de');
+    assert.equal(requests[0].searchParams.get('start'), String(start));
+    assert.equal(requests[0].searchParams.get('end'), String(end));
+    assert.equal(result.ok, true);
+    assert.equal(result.src, 'aWATTar/EPEX');
+    assert.deepEqual(result.hours, rows.slice(1, -1).map((row, i) => ({
+      h:new Date(row.start_timestamp).getUTCHours(), ct:i,
+    })));
+  });
+}
+
+test('SMARD selects the week containing Sunday even after the next trading week was published', async t => {
+  t.mock.timers.enable({apis:['Date'], now:Date.parse('2026-11-22T19:04:19.427Z')});
+  const sunday = Date.parse('2026-11-21T23:00:00Z');
+  const monday = Date.parse('2026-11-22T23:00:00Z');
+  const currentWeek = monday - 7 * 24 * hourMs;
+  const blocks = [];
+  t.mock.method(globalThis, 'fetch', async input => {
+    const url = asUrl(input);
+    if (url.hostname === 'api.awattar.de') {
+      // The provider's default sliding response has only four prices left today.
+      const data = Array.from({length:24}, (_, i) => ({start_timestamp:monday + (i - 4) * hourMs, marketprice:999}));
+      return jsonResponse({data});
+    }
+    if (url.hostname !== 'www.smard.de') return new Response(null, {status:404});
+    if (url.pathname.endsWith('index_hour.json')) return jsonResponse({timestamps:[currentWeek, monday]});
+    blocks.push(url.pathname);
+    if (url.pathname.endsWith('4169_DE_hour_' + currentWeek + '.json')) {
+      return jsonResponse({series:Array.from({length:168}, (_, i) => [currentWeek + i * hourMs, i * 10])});
+    }
+    return jsonResponse({series:[[monday, 999]]});
+  });
+  const result = await (await stromRequest()).json();
+  assert.equal(result.ok, true);
+  assert.equal(result.src, 'SMARD/Bundesnetzagentur');
+  assert.deepEqual(blocks, ['/app/chart_data/4169/DE/4169_DE_hour_' + currentWeek + '.json']);
+  assert.deepEqual(result.hours, Array.from({length:24}, (_, i) => ({
+    h:new Date(sunday + i * hourMs).getUTCHours(), ct:144 + i,
+  })));
 });

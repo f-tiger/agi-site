@@ -724,18 +724,25 @@ function stromHoursFromAwattar(d, t0, t1) {
   return out;
 }
 
-async function stromReading() {
-  // Day boundary in German local time — the reader's "today", not UTC's.
-  const now = new Date();
-  const berlin = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Berlin" }));
-  const offset = berlin.getTime() - now.getTime();
-  const midnight = new Date(berlin);
-  midnight.setHours(0, 0, 0, 0);
-  const t0 = midnight.getTime() - offset;
-  const t1 = t0 + 86400000;
+function berlinDayBounds(now) {
+  const timeZone = "Europe/Berlin";
+  const calendar = new Intl.DateTimeFormat("en-GB", {
+    timeZone, year: "numeric", month: "numeric", day: "numeric",
+  });
+  const { year, month, day } = Object.fromEntries(
+    calendar.formatToParts(now).map(({ type, value }) => [type, Number(value)]),
+  );
+  const berlinHour = new Intl.DateTimeFormat("en-GB", {
+    timeZone, hour: "numeric", hourCycle: "h23",
+  });
+  // Berlin changes offsets after local midnight. Use each date's own offset.
+  const localMidnight = (utcMidnight) => utcMidnight - Number(berlinHour.format(utcMidnight)) * 3600000;
+  return [localMidnight(Date.UTC(year, month - 1, day)), localMidnight(Date.UTC(year, month - 1, day + 1))];
+}
 
+async function stromReading(t0, t1) {
   try {
-    const r = await fetch("https://api.awattar.de/v1/marketdata", {
+    const r = await fetch(`https://api.awattar.de/v1/marketdata?start=${t0}&end=${t1}`, {
       signal: AbortSignal.timeout(6000),
       headers: { accept: "application/json" },
     });
@@ -750,18 +757,20 @@ async function stromReading() {
       { signal: AbortSignal.timeout(6000) });
     if (idxR.ok) {
       const idx = await idxR.json();
-      const ts = idx.timestamps[idx.timestamps.length - 1];
-      const dR = await fetch(`https://www.smard.de/app/chart_data/4169/DE/4169_DE_hour_${ts}.json`,
-        { signal: AbortSignal.timeout(6000) });
-      if (dR.ok) {
-        const d = await dR.json();
-        const hours = [];
-        for (const s of d.series || []) {
-          if (s[0] >= t0 && s[0] < t1 && s[1] !== null) {
-            hours.push({ h: new Date(s[0]).getUTCHours(), ct: s[1] / 10 });
+      const ts = idx.timestamps.findLast((start) => start <= t0);
+      if (ts !== undefined) {
+        const dR = await fetch(`https://www.smard.de/app/chart_data/4169/DE/4169_DE_hour_${ts}.json`,
+          { signal: AbortSignal.timeout(6000) });
+        if (dR.ok) {
+          const d = await dR.json();
+          const hours = [];
+          for (const s of d.series || []) {
+            if (s[0] >= t0 && s[0] < t1 && s[1] !== null) {
+              hours.push({ h: new Date(s[0]).getUTCHours(), ct: s[1] / 10 });
+            }
           }
+          if (hours.length >= 6) return { ok: true, src: "SMARD/Bundesnetzagentur", hours };
         }
-        if (hours.length >= 6) return { ok: true, src: "SMARD/Bundesnetzagentur", hours };
       }
     }
   } catch (e) { /* both sources down */ }
@@ -770,7 +779,9 @@ async function stromReading() {
 }
 
 async function handleStrom() {
-  const cacheKey = new Request("https://getecoback.com/__strom");
+  const now = new Date();
+  const [t0, t1] = berlinDayBounds(new Date());
+  const cacheKey = new Request(`https://getecoback.com/__strom?day=${t0}`);
   let cache = null;
   try {
     cache = caches.default;
@@ -779,11 +790,13 @@ async function handleStrom() {
   } catch (e) {
     cache = null;
   }
-  const data = await stromReading();
+  const data = await stromReading(t0, t1);
   // Day-ahead prices are fixed once published, so half an hour of edge cache
   // costs nothing in accuracy and keeps the upstreams unbothered.
-  const resp = json(data, 200, { "cache-control": "public, max-age=1800" });
-  if (cache && data.ok) {
+  const remainingSeconds = Math.max(0, Math.floor((t1 - Date.now()) / 1000));
+  const maxAge = Math.min(1800, remainingSeconds);
+  const resp = json(data, 200, { "cache-control": `public, max-age=${maxAge}` });
+  if (cache && data.ok && maxAge > 0) {
     try { await cache.put(cacheKey, resp.clone()); } catch (e) { /* cache is optional */ }
   }
   return resp;
