@@ -4,7 +4,8 @@ import { TDS_HOME_SERVER, TDS_HOME_REGISTRY_NAME, TDS_HOME_TOOL_COUNT } from '..
 
 const origin = 'https://thedollscout.com';
 const manifestPath = '/collector-assets/tds-suite/manifest.json';
-const submit = process.argv[2] === '--indexnow';
+const regional = process.argv[2] === '--regional-indexnow';
+const submit = regional || process.argv[2] === '--indexnow';
 assert.ok(process.argv.length === (submit ? 3 : 2), 'Expected no arguments or --indexnow.');
 const hubs = ['/ai-tools', '/de/ai-tools', '/zh/ai-tools'];
 const headers = {
@@ -47,18 +48,25 @@ assert.equal(entry.endpoint, descriptor.remotes[0].url);
 assert.equal(entry.version, descriptor.version);
 assert.equal(entry.toolCount, manifest.count);
 assert.equal(entry.catalog, discovery.catalog);
-const indexable = [...new Set(manifest.indexable)];
+const indexable = [...new Set(regional ? manifest.regionalIndexable : manifest.indexable)];
+const regionalExisting = new Set(['/', '/de/shop/categories/smart-home', '/uk/indoor-laundry']);
+if (regional) {
+  assert.ok(indexable.length >= 9 && indexable.length <= 20);
+  for (const p of regionalExisting) assert.ok(indexable.includes(origin + p));
+}
 assert.ok(indexable.length >= hubs.length && indexable.length <= 3100);
 for (const raw of indexable) {
   const url = new URL(raw);
   assert.equal(url.origin, origin);
   assert.equal(url.href, raw);
-  assert.ok(pathPattern.test(url.pathname) && !url.search && !url.hash, 'Invalid suite page ' + raw);
+  assert.ok((pathPattern.test(url.pathname) || (regional && regionalExisting.has(url.pathname))) && !url.search && !url.hash, 'Invalid suite page ' + raw);
 }
 for (const hub of hubs) assert.ok(indexable.includes(origin + hub));
 await Promise.all(hubs.flatMap(hub => [
   canonicalPage(origin + hub),
   canonicalPage(origin + hub + '/purchase-a04', true),
+  canonicalPage(origin + hub + '/dach-meter-fit'),
+  canonicalPage(origin + hub + '/uk-laundry-session'),
 ]));
 console.log(JSON.stringify({ verified: 'tds-home-pages', tools: manifest.count, locales: hubs.length, samplePages: hubs.length, indexable: indexable.length }));
 if (submit) {

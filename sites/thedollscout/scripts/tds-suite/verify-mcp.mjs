@@ -5,7 +5,7 @@ import { createRequire } from 'node:module';
 import { readFile } from 'node:fs/promises';
 import { TDS_TOOLS, runTdsTool } from '../../collector-assets/tds-suite/index.mjs';
 import { SERVER as COLLECTOR_SERVER, TOOLS as COLLECTOR_TOOLS } from '../../collector-assets/mcp-contract.mjs';
-import { TDS_HOME_SERVER, TDS_HOME_PROTOCOL, TDS_HOME_REGISTRY_NAME, TDS_HOME_TOOL_COUNT } from '../../collector-assets/tds-suite/service.mjs';
+import { TDS_HOME_SERVER, TDS_HOME_PROTOCOL, TDS_HOME_REGISTRY_NAME, TDS_HOME_TOOL_COUNT, TDS_HOME_PAGE_SIZE } from '../../collector-assets/tds-suite/service.mjs';
 
 const root = new URL('../../', import.meta.url);
 const require = createRequire(new URL('mcp/package.json', root));
@@ -101,9 +101,9 @@ async function verifyToolPages(client) {
   let cursor;
   let pages = 0;
   do {
-    assert.ok(++pages <= 25, 'Unexpected tools/list pagination.');
+    assert.ok(++pages <= Math.ceil(expected.size / TDS_HOME_PAGE_SIZE), 'Unexpected tools/list pagination.');
     const page = await client.listTools(cursor ? { cursor } : {}, deadline);
-    assert.equal(page.tools.length, 40);
+    assert.equal(page.tools.length, Math.min(TDS_HOME_PAGE_SIZE, expected.size - (pages - 1) * TDS_HOME_PAGE_SIZE));
     for (const tool of page.tools) {
       const definition = expected.get(tool.name);
       assert.ok(definition, 'Unexpected native tool: ' + tool.name);
@@ -118,7 +118,7 @@ async function verifyToolPages(client) {
       cursors.add(cursor);
     }
   } while (cursor);
-  assert.equal(pages, 25);
+  assert.equal(pages, Math.ceil(expected.size / TDS_HOME_PAGE_SIZE));
   assert.equal(received.size, expected.size);
   return pages;
 }
@@ -129,7 +129,8 @@ async function verifyHome() {
     assert.deepEqual(info, TDS_HOME_SERVER);
     const pages = await verifyToolPages(client);
     // The same first-party, public examples also run independently in the browser.
-    for (const [position, locale] of [[0, 'en'], [500, 'de'], [999, 'zh']]) {
+    const examplesToVerify = [[0, 'en'], [500, 'de'], [999, 'zh'], [TDS_TOOLS.length - 2, 'de'], [TDS_TOOLS.length - 1, 'en']];
+    for (const [position, locale] of examplesToVerify) {
       const { name, examples, example } = TDS_TOOLS[position];
       const input = examples?.[locale] ?? example;
       assert.ok(input && typeof input === 'object', 'Expected a working example for ' + name);
@@ -139,7 +140,7 @@ async function verifyHome() {
       assert.notEqual(result.isError, true, name);
       assert.deepEqual(result.structuredContent, await runTdsTool(name, input, locale));
     }
-    return { tools: expected.size, pages, examples: 3 };
+    return { tools: expected.size, pages, examples: examplesToVerify.length };
   });
 }
 
