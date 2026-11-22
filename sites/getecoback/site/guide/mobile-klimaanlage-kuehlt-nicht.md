@@ -66,7 +66,7 @@ Comfee MPPH-09CRN7 →
 **Weitere Ratgeber**
 [Klimaanlage reinigen — Filter, Wärmetauscher & Gehäuse →](https://getecoback.com/guide/klimaanlage-reinigen.html)
 [Klimaanlage am Kippfenster richtig abdichten →](https://getecoback.com/guide/klimaanlage-kippfenster.html)
-[Abluftschlauch verlängern — so geht's ohne Leistungsverlust →](https://getecoback.com/guide/abluftschlauch-verlaengern.html)
+[Abluftweg und Schlauchlänge vor dem Kauf prüfen →](https://getecoback.com/guide/abluftschlauch-verlaengern.html)
 [Wie viel BTU brauche ich? Tabelle nach Raumgröße →](https://getecoback.com/guide/wie-viel-btu-brauche-ich.html)
 
 ---
