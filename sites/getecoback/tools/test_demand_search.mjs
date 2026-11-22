@@ -181,6 +181,8 @@ test('German same-place hygrometer comparisons open the numerical example',()=>{
    'Das eine Hygrometer zeigt 54 %, das andere 59 %. Liegt der Unterschied noch in der Toleranz?',
    'Zwei Hygrometer am gleichen Ort zeigen unterschiedliche Werte. Welches stimmt?',
    'Hygrometer A zeigt 55 % und Hygrometer B 60 % bei gleicher Höhe. Wie vergleiche ich die Werte?',
+   'Zwei Hygrometer unterscheiden sich am selben Ort um 5 Prozentpunkte.',
+   'Zwei Hygrometer haben am gleichen Standort eine Differenz von 5 Prozentpunkten.',
  ]) {
    const hits=searchEntries(index,q,'de');
    assert.equal(hits[0]?.entry.u,page+'#hygrometer-vergleichen',q);
