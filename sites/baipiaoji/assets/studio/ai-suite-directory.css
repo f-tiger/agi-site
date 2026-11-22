@@ -143,6 +143,8 @@
 }
 .suite-featured-copy a:hover { text-decoration-color:currentColor; }
 .suite-featured-copy > p { margin:.4rem 0 .3rem;color:#435a64;font-size:.92rem;line-height:1.55; }
+.suite-trade-entry { margin:.65rem 0;color:var(--suite-muted); }
+.suite-trade-entry a { font-weight:650;text-decoration:underline; }
 .suite-featured-example {
   min-width:0;
   padding:.65rem .8rem;

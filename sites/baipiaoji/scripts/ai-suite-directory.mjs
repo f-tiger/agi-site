@@ -1,5 +1,6 @@
 import {SUITE_CATEGORIES,SUITE_TOOLS,suitePath} from '../lib/ai-suite/registry.mjs';
 import {aiSuiteFeaturedCss, renderAiFeatured} from './ai-suite-featured.mjs';
+import {TRADE_PATH,tradeTitle} from './trade-pages.mjs';
 
 const script = '<script type="module" src="/studio-assets/ai-suite-directory.mjs?v=3"></script>';
 
@@ -39,6 +40,7 @@ export function renderAiIndex({BASE,lang,esc,home=false,category}) {
       <a href="${BASE}/studio/ai/#mcp">${t('连接 MCP','Connect MCP')}</a>
     </nav></header>`;
   const tasks = category ? '' : renderAiFeatured({BASE, lang, esc, heading: home ? 'h3' : 'h2'});
+  const trade = category && category.id !== 'trade' ? '' : `<p class="suite-trade-entry"><a href="${BASE+TRADE_PATH}">${tradeTitle[lang]}</a>${t(' · 查公开进口商与采购机会',' · Search public importers and procurement opportunities')}</p>`;
   const groupSelect=category?'':`<label class="suite-search-scope" for="suite-search-scope">
       <span>${t('分类','Category')}</span>
       <select id="suite-search-scope" data-suite-filter>
@@ -61,7 +63,7 @@ export function renderAiIndex({BASE,lang,esc,home=false,category}) {
     </details>`;
   }).join('');
   return `${aiSuiteFeaturedCss}<section class="suite-index${home?' suite-index-home':''}${category?' suite-index-category':''}" ${home?`id="ai-tools" data-home-block="ai-tools" data-suite-source="${BASE}${searchIndexPath}"`:''} data-suite-index data-suite-total="${total}">
-    ${home?homeIntro:''}${tasks}
+    ${home?homeIntro:''}${tasks}${trade}
     <div class="suite-search" data-suite-controls hidden>
       <form data-suite-search-form role="search" aria-label="${t('搜索自研 AI 工具','Search BPJ AI tools')}">
         <label class="suite-search-query" for="suite-search">
