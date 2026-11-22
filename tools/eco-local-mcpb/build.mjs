@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.22.5';
-const revision = '1a3d16aa006743c2c88cc50948dffc0f5273bcf4';
+const version = '1.22.6';
+const revision = '8da400420505071a11e4f403ee8b9e4b460d0af0';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -35,6 +35,8 @@ const laundryComparisonTool = 'waesche_trocknungskosten';
 const windowBladeTool = 'fenstersauger_170mm_abziehlippe_geraetefamilie';
 const windowGuide = 'https://getecoback.com/produkte.html';
 const windowEvidence = windowGuide + '#fenstersauger-belege';
+const windowWidthTool = 'fenstersauger_sprossenfenster_duesenbreite';
+const windowWidthEntry = windowGuide + '?mcp_entry=fenstersauger-breitencheck#fenstersauger-duesenbreite';
 const glassvacTemperatureTool = 'glassvac_kalt_lagern_einschalten_laden_getrennt';
 const glassvacTemperatureGuide = windowGuide + '#bosch-glassvac-einsatz-und-pflege';
 const kaercherLedTool = 'fenstersauger_wv3_wv8_led_muster_einordnen';
@@ -204,6 +206,44 @@ async function verifyWindowCondensation(call) {
   return {name:condensationTool,shareUrl:condensationGuide,measurements,missingSurfaceRejected:true};
 }
 
+async function verifyDecimalWindowWidth(call) {
+  const cases = [
+    {
+      args:{lichte_breite_mm:143.7,spiel_pro_seite_mm:5.2,vorhandene_duese_mm:133.3,kauf_geplant:true},
+      usable:133.3, fits:true, offers:['06008B7000'],
+      step:'vorhandene_duese_zuerst_probesetzen',
+    },
+    {
+      args:{lichte_breite_mm:256.4,spiel_pro_seite_mm:61.7,vorhandene_duese_mm:0,kauf_geplant:true},
+      usable:133, fits:null, offers:['06008B7000'], entry:windowWidthEntry,
+      step:'genaues_originalpaket_und_platzbedarf_pruefen',
+    },
+    {
+      args:{lichte_breite_mm:256.39999,spiel_pro_seite_mm:61.7,vorhandene_duese_mm:0,kauf_geplant:true},
+      usable:132.99999, fits:null, offers:[],
+      step:'vorhandenen_einwascher_oder_abzieher_pruefen',
+    },
+  ];
+  const outcomes = [];
+  for (const {args,usable,fits,offers,entry:destination,step} of cases) {
+    const result = await call(args);
+    assert.equal(result.isError,false);
+    const data = result.structuredContent;
+    assert.ok(Math.abs(data.nutzbreite_mm - usable) < 1e-9);
+    assert.equal(data.citation_url,windowGuide);
+    assert.equal(data.vorhandene_duese_nominell_passend,fits);
+    assert.deepEqual(data.nominell_passende_originalpakete.map(item => item.artikel),offers);
+    assert.equal(data.folgeschritt,step);
+    assert.equal(data.entry_url,destination);
+    assert.equal(Object.hasOwn(data,'entry_url'),Boolean(destination));
+    assert.doesNotMatch(result.content[0].text,/https?:\/\/[^"\s]*(?:amazon\.|amzn\.)|[?&]tag=/i);
+    outcomes.push({existingFits:data.vorhandene_duese_nominell_passend,
+      candidates:data.nominell_passende_originalpakete.map(item=>item.artikel),
+      nextStep:data.folgeschritt,entryUrl:data.entry_url ?? null});
+  }
+  return outcomes;
+}
+
 async function verifyStdio(extracted, manifest) {
   const {TOOLS} = await import(pathToFileURL(join(extracted,'src/tools.mjs')));
   const {expandedDefinitions} = await import(pathToFileURL(join(extracted,'src/eco-suite/src/mcp-expanded.mjs')));
@@ -264,7 +304,9 @@ async function verifyStdio(extracted, manifest) {
     }
     const windowCondensation = await verifyWindowCondensation(args =>
       rpc('tools/call',{name:condensationTool,arguments:args}));
-    return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,windowCondensation,
+    const decimalWindowWidth = await verifyDecimalWindowWidth(args =>
+      rpc('tools/call',{name:windowWidthTool,arguments:args}));
+    return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,windowCondensation,decimalWindowWidth,
       firstExamples:['btu_empfehlung','entfeuchter_ablaufcheck'],finder:verifyFinder(extracted,drain),
       lastPageExample:last.name,legacyNames:oldNames.length,network:'disabled'};
   });
@@ -546,7 +588,7 @@ async function verifyCompactWindowWidth(rpc, finder, runner) {
   const found = await rpc('tools/call',{name:finder,arguments:{frage}});
   assert.equal(found.isError,false);
   const name = found.structuredContent.tools[0]?.name;
-  assert.equal(name,'fenstersauger_sprossenfenster_duesenbreite');
+  assert.equal(name,windowWidthTool);
   const input = {lichte_breite_mm:170,spiel_pro_seite_mm:5,vorhandene_duese_mm:0,kauf_geplant:true};
   const call = async values => {
     const result = await rpc('tools/call',{name:runner,arguments:{name,eingaben:values}});
@@ -556,7 +598,7 @@ async function verifyCompactWindowWidth(rpc, finder, runner) {
   };
   const purchase = await call(input);
   assert.equal(purchase.nutzbreite_mm,160);
-  assert.equal(purchase.entry_url,windowGuide+'?mcp_entry=fenstersauger-breitencheck#fenstersauger-duesenbreite');
+  assert.equal(purchase.entry_url,windowWidthEntry);
   const packages = purchase.nominell_passende_originalpakete;
   assert.deepEqual(packages.map(item=>item.artikel),['06008B7000']);
   assert.equal(packages[0].quelle,'https://www.bosch-diy.com/de/de/p/glassvac-06008b7000');
@@ -727,11 +769,14 @@ async function verifyCompactStdio(extracted) {
     const tadoOventrop = await verifyCompactTadoOventrop(rpc,finder,runner);
     const householdDecisions = await verifyCompactHouseholdDecisions(rpc,runner);
     const windowWidth = await verifyCompactWindowWidth(rpc,finder,runner);
+    const decimalWindowWidth = await verifyDecimalWindowWidth(eingaben =>
+      rpc('tools/call',{name:runner,arguments:{name:windowWidthTool,eingaben}}));
     const windowBlade = await verifyCompactWindowBlade(rpc,finder,runner);
     const windowLookup = await verifyCompactWindowLookup(rpc,finder);
     return {
       tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,
-      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,laundryPrecision,windowBlade,windowLookup,windowWidth,householdDecisions,tadoOventrop,n90Costs,humidifierEfficiency,glassvacTemperature,windowSubject,windowCondensation,
+      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,laundryPrecision,windowBlade,windowLookup,
+      windowWidth,decimalWindowWidth,householdDecisions,tadoOventrop,n90Costs,humidifierEfficiency,glassvacTemperature,windowSubject,windowCondensation,
     };
   });
 }
@@ -793,6 +838,7 @@ try {
   const result = await verifyStdio(extracted,actualManifest);
   result.compact = await verifyCompactStdio(extracted);
   assert.deepEqual(result.windowCondensation,result.compact.windowCondensation);
+  assert.deepEqual(result.decimalWindowWidth,result.compact.decimalWindowWidth);
   assert.deepEqual(result.resource,result.compact.resource);
   result.archiveReadme = {replacedVersion:readme.previousVersion,registryLatestUrl};
   const identifier = `${releaseUrl}/${file}`;

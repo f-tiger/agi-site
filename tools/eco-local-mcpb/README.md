@@ -112,6 +112,13 @@ near and above the dew point, including both boundaries of the 1 °C
 orientation band. A missing surface reading returns an input error. The share
 link contains no household measurements or affiliate parameters.
 
+Version 1.22.6 keeps the nominal fit checks consistent at exact decimal window
+widths. An already-owned nozzle that fits still suppresses the purchase link.
+An exact 133 mm opening after clearance keeps the matching Bosch package in
+the shortlist when comparison is requested. A genuinely narrower opening
+stays out of that branch. The checks still require actual head clearance
+and package confirmation.
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the
