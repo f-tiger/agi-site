@@ -1,4 +1,4 @@
-/* Local directory filtering only. No network calls, storage, URL queries or telemetry. */
+/* Local directory filtering and answer copying. No network calls, storage, URL queries or telemetry. */
 const normalize=value=>String(value).normalize('NFKD').replace(/\p{M}/gu,'').toLocaleLowerCase('de').replace(/ß/g,'ss').replace(/\s+/g,' ').trim();
 function searchText(value){
  const umlauts={ä:'ae',ö:'oe',ü:'ue'};
@@ -69,4 +69,22 @@ if(root){
  }));
  window.addEventListener('hashchange',followFragment);
  form.hidden=false;render();followFragment();
+
+ const share = root.querySelector('[data-product-share]');
+ if (share) {
+  const text = share.querySelector('textarea');
+  const copy = share.querySelector('[data-product-share-copy]');
+  const notice = share.querySelector('[role="status"]');
+  copy.addEventListener('click', async () => {
+   try {
+    await navigator.clipboard.writeText(text.value);
+    notice.textContent = 'Antwort kopiert.';
+   } catch {
+    text.focus();
+    text.select();
+    notice.textContent = 'Der Text ist markiert. Bitte manuell kopieren.';
+   }
+  });
+  copy.hidden = false;
+ }
 }

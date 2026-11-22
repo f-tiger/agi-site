@@ -68,7 +68,18 @@ PART_GUIDES = (
      'Beurer LR 401 69309 Levoit Core 300S Originalfilter'),
 )
 
-APPLIANCE_EVIDENCE = '''
+MIELE_BAG_ANSWER_URL = CANONICAL + '#miele-staubsaugerbeutel'
+MIELE_C2_SHARE_TITLE = 'Miele C2: Compact braucht FJM, Complete GN'
+MIELE_C2_SHARE_TEXT = (
+    MIELE_C2_SHARE_TITLE + '. Wenn nur „C2“ bekannt ist, prüfe zuerst das Typenschild und warte mit der Bestellung.\n\n'
+    'Modelltabelle und Miele-Quellen bei EcoBack (Seite enthält Affiliate-Links):\n'
+    + MIELE_BAG_ANSWER_URL
+)
+MIELE_C2_REDDIT = 'https://www.reddit.com/submit?' + urlencode({
+    'url': MIELE_BAG_ANSWER_URL, 'title': MIELE_C2_SHARE_TITLE,
+})
+
+APPLIANCE_EVIDENCE = f'''
 <section class="pc-method" id="spuelmaschine-einbaumasse">
 <h2>Passt ein Einbaugeschirrspüler auch bei geöffneter Tür?</h2>
 <p>Miss die Nische an mehreren Stellen und notiere den kleinsten nutzbaren Querschnitt. Halte die Gerätefront, die 90° geöffnete Tür und eine zusätzlich ausgezogene Schublade getrennt fest. Vergleiche Tiefen vom selben Bezugspunkt und notiere Vorsprünge, gegenüberliegende Schranktüren und den verbleibenden Durchgang.</p>
@@ -195,6 +206,16 @@ APPLIANCE_EVIDENCE = '''
 
   <h3 id="miele-staubsaugerbeutel" style="scroll-margin-top:210px">Welcher Staubsaugerbeutel passt zu meinem Miele?</h3>
   <p><strong>Compact C2 braucht FJM, Complete C2 braucht GN.</strong> Steht im Angebot oder auf deiner Notiz nur „C2“, prüfe die vollständige Modellbezeichnung am Typenschild und warte bis dahin mit der Bestellung. Bei Guard S1 und L1 nennt Miele TU, bei Guard M1 CO.</p>
+  <!--EB_MIELE_BAG_SHARE--><details class="pc-answer-share" data-product-share>
+    <summary>C2-Kurzantwort teilen</summary>
+    <label for="miele-c2-share-text">Text zum Kopieren</label>
+    <textarea id="miele-c2-share-text" rows="6" readonly>{escape(MIELE_C2_SHARE_TEXT)}</textarea>
+    <div class="pc-answer-share-actions">
+      <button type="button" data-product-share-copy hidden>Antwort kopieren</button>
+      <a href="{escape(MIELE_C2_REDDIT)}" rel="noreferrer">Auf Reddit teilen</a>
+    </div>
+    <p role="status"></p>
+  </details><!--/EB_MIELE_BAG_SHARE-->
   <table>
     <thead><tr><th scope="col">Modellreihe</th><th scope="col">Gelisteter Beutel</th><th scope="col">Gelisteter HEPA-Abluftfilter zur Auswahl</th></tr></thead>
     <tbody>
@@ -216,7 +237,6 @@ APPLIANCE_EVIDENCE = '''
   </ul>
   <p><a href="https://www.miele.de/product/12498270/16-staubsaugerbeutel-zum-vorteilspreis-gn-xxl-hyclean-pure">GN XXL 12498270</a> enthält 16 Beutel, 4 Motorschutzfilter und 4 Abluftfilter. Eine beiliegende Ablufteinlage und die separat in der Tabelle gelistete HEPA-Kassette sind unterschiedliche Teile. Prüfe den eingebauten Abluftfilter und die vorgesehene Halterung, bevor du ein Teil austauschst.</p>
   <p>Wenn dein Vorrat an passenden, unbenutzten und unbeschädigten Beuteln reicht, brauchst du keinen Nachkauf. Entleere volle Einwegbeutel nicht zur weiteren Nutzung. Zähle passende Filter getrennt, bevor du eine Packung bestellst. Herstellerangaben für Deutschland geprüft am <time datetime="2026-11-22">22. November 2026</time>. <a href="https://media.miele.com/downloads/10/76/00_C7F128282CE91FE199B027081E511076.pdf">Beutelhinweise im dokumentierten Guard L1 HS22</a>.</p>
-  <!--EB_MIELE_BAG_SHARE--><p><a href="https://www.reddit.com/submit?url=https%3A%2F%2Fgetecoback.com%2Fprodukte.html%23miele-staubsaugerbeutel&amp;title=Welcher%20Staubsaugerbeutel%20passt%20zu%20meinem%20Miele%3F" rel="noreferrer" style="display:inline-flex;align-items:center;min-height:44px">Auf Reddit teilen</a></p><!--/EB_MIELE_BAG_SHARE-->
 
   <h3>Wechselanzeige, Ursache und Guard L1 HS22</h3>
   <ul>

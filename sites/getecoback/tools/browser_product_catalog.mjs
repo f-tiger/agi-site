@@ -343,17 +343,93 @@ async function checkWindowWidthJourney(page,javaScriptEnabled){
  return {cleanEntry:true,results:['kein_kauf','vergleich','vorhanden','kein_treffer'],modelReached:true};
 }
 
+async function checkMieleC2Share(page,javaScriptEnabled,width){
+ const originalURL=page.url(),canonical=origin+'/produkte.html#miele-staubsaugerbeutel';
+ const title='Miele C2: Compact braucht FJM, Complete GN';
+ const expectedText=title+'. Wenn nur „C2“ bekannt ist, prüfe zuerst das Typenschild und warte mit der Bestellung.\n\n'+
+  'Modelltabelle und Miele-Quellen bei EcoBack (Seite enthält Affiliate-Links):\n'+canonical;
+ const share=page.locator('details[data-product-share]');
+ const summary=share.locator('summary');
+ const answer=page.getByRole('textbox',{name:'Text zum Kopieren'});
+ const copy=share.locator('button[data-product-share-copy]');
+ const reddit=share.getByRole('link',{name:'Auf Reddit teilen'});
+ const status=share.getByRole('status');
+ const assertTargetFits=async(target)=>{
+  const box=await target.boundingBox();
+  assert(box&&box.height>=44&&box.x>=0&&box.x+box.width<=width,'Share controls fit the mobile viewport with a 44 px touch target');
+ };
+ const assertSelected=async()=>{
+  assert.deepEqual(await answer.evaluate(field=>[document.activeElement===field,field.selectionStart,field.selectionEnd]),
+   [true,0,expectedText.length],'The full readonly answer is selected for manual copy');
+ };
+ assert.equal(await summary.textContent(),'C2-Kurzantwort teilen');
+ assert.equal(await share.evaluate(node=>node.open),false);
+ await assertTargetFits(summary);
+ await summary.focus();
+ await page.keyboard.press('Enter');
+ assert.equal(await share.evaluate(node=>node.open),true);
+ assert.equal(await answer.getAttribute('readonly'),'');
+ assert.equal(await answer.inputValue(),expectedText);
+ const compose=new URL(await reddit.getAttribute('href'));
+ assert.equal(compose.origin+compose.pathname,'https://www.reddit.com/submit');
+ assert.deepEqual([...compose.searchParams].sort(),[['title',title],['url',canonical]]);
+ assert.equal(await reddit.getAttribute('rel'),'noreferrer');
+ await assertTargetFits(answer);
+ await assertTargetFits(reddit);
+ await page.keyboard.press('Tab');
+ await page.keyboard.press('Control+a');
+ await assertSelected();
+
+ if(javaScriptEnabled){
+  await copy.waitFor({state:'visible'});
+  await assertTargetFits(copy);
+  await page.keyboard.press('Tab');
+  assert(await copy.evaluate(button=>document.activeElement===button));
+  await page.keyboard.press('Enter');
+  await page.waitForFunction(()=>document.querySelector('[data-product-share] [role="status"]').textContent==='Antwort kopiert.');
+  assert.deepEqual(await page.evaluate(()=>window.__catalogClipboard.attempts),[expectedText]);
+  await page.evaluate(()=>{window.__catalogClipboard.reject=true;});
+  await page.keyboard.press('Enter');
+  await page.waitForFunction(()=>document.querySelector('[data-product-share] [role="status"]').textContent==='Der Text ist markiert. Bitte manuell kopieren.');
+  assert(await status.isVisible());
+  assert.deepEqual(await page.evaluate(()=>window.__catalogClipboard.attempts),[expectedText,expectedText]);
+  await assertSelected();
+ }else{
+  assert(await copy.isHidden(),'The enhanced copy action stays hidden without JavaScript');
+ }
+
+ await summary.focus();
+ await page.keyboard.press('Space');
+ assert.equal(await share.evaluate(node=>node.open),false);
+ assert.equal(page.url(),originalURL,'Opening and copying the answer preserves the current URL');
+ return javaScriptEnabled?{keyboard:true,clipboard:true,manualFallback:true}:{keyboard:true,manualSelection:true};
+}
+
 async function checkCatalog(browser){
  for(const width of [320,390,1280])for(const javaScriptEnabled of [true,false]){
   const context=await browser.newContext({viewport:{width,height:900},javaScriptEnabled,serviceWorkers:'block',userAgent:'getecoback-ci/1.0 product-catalog',extraHTTPHeaders:{DNT:'1'}});
-  const blockedWrites=[],errors=[];
+  const blockedWrites=[],errors=[],shareRequests=[];
   await context.addInitScript(()=>{
    window.__probe=true;window.__catalogToolEvents=[];
    const spy=(...args)=>{if(args[0]==='event'&&args[1]==='tool_complete')window.__catalogToolEvents.push(args);};
    Object.defineProperty(window,'gtag',{configurable:true,get:()=>spy,set(){}});
    Object.defineProperty(navigator,'globalPrivacyControl',{get:()=>true});
   });
-  await context.route('**/*',route=>localCatalogue(route,request=>blockedWrites.push(request)));
+  if(width<=390&&javaScriptEnabled){
+   await context.addInitScript(()=>{
+    const clipboard=window.__catalogClipboard={attempts:[],reject:false};
+    Object.defineProperty(navigator,'clipboard',{value:{async writeText(value){
+     clipboard.attempts.push(value);
+     if(clipboard.reject)throw new Error('Clipboard unavailable');
+    }}});
+   });
+  }
+  let checkingShare=false;
+  await context.route('**/*',route=>{
+   const request=route.request();
+   if(checkingShare)shareRequests.push([request.method(),request.url()]);
+   return localCatalogue(route,write=>blockedWrites.push(write));
+  });
   const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
   assert.equal((await page.goto(origin+'/produkte.html?__probe=1',{waitUntil:'load'})).status(),200);
   assert.equal(await page.locator('[data-product-card]').count(),data.products.length);
@@ -476,6 +552,10 @@ async function checkCatalog(browser){
   await page.keyboard.press('Enter');
   await page.waitForURL(origin+'/produkte.html?__probe=1#miele-staubsaugerbeutel');
   assert(await page.locator('#miele-staubsaugerbeutel').isVisible());
+  checkingShare=true;
+  const mieleC2Share=width<=390?await checkMieleC2Share(page,javaScriptEnabled,width):undefined;
+  checkingShare=false;
+  assert.deepEqual(shareRequests,[],'Opening, copying, and selecting the answer make no requests');
   await page.goto(origin+'/produkte.html?__probe=1');
   // Follow an actual buying-guide result by keyboard in both script modes.
   await humidifierLink.focus();
@@ -575,7 +655,7 @@ async function checkCatalog(browser){
   assert(target.top>=target.nav-1,'Category anchor hidden below fixed navigation');
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
   assert.deepEqual(errors,[]);
-  cases.push({width,javaScriptEnabled,products:data.products.length,categories:data.categories.length,merchantSearches:expected.length,blockedWrites:blockedWrites.length,localTools:9,reusedTools:3,windowModelLinks:windowModels.length,windowWidthJourney,defaultSubmissions,independentSubmissions,invalidSubmissions,pass:true});
+  cases.push({width,javaScriptEnabled,products:data.products.length,categories:data.categories.length,merchantSearches:expected.length,blockedWrites:blockedWrites.length,localTools:9,reusedTools:3,windowModelLinks:windowModels.length,windowWidthJourney,mieleC2Share,defaultSubmissions,independentSubmissions,invalidSubmissions,pass:true});
   await context.close();
  }
  const windowEntryCases=[];
