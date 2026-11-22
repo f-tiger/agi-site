@@ -107,6 +107,24 @@ class CatalogTest(unittest.TestCase):
                 self.assertIn('die passende Pumpe und den deutschen Lieferumfang', surface)
             self.assertNotIn('getecoback-21', mirror)
 
+    def test_laundry_handoff_on_final_files(self):
+        site = C.DATA.parent.parent / 'site'
+        guide = site / 'guide/waesche-trocknen-wohnung.html'
+        html = guide.read_text()
+        mirror = guide.with_suffix('.md').read_text()
+        routes, = Document(html).root.find(attr='data-laundry-model-routes')
+        calculator = '/waeschetrockner-oder-luftentfeuchter.html#lc-measurement'
+        targets = ['#modell-bosch-d4000-eu', '#modell-stadler-lukas']
+        self.assertEqual([link.attrs['href'] for link in routes.find('a')], [calculator, *targets])
+        self.assertNotIn('s?k=luftentfeuchter+waeschetrocknen', html)
+        self.assertIn('id="lc-measurement"', (site / calculator.lstrip('/').split('#')[0]).read_text())
+        for target in targets:
+            self.assertEqual(html.count(f'id="{target[1:]}"'), 1)
+            self.assertIn(f'https://getecoback.com/guide/{guide.name}{target}', mirror)
+        self.assertIn(f'https://getecoback.com{calculator}', mirror)
+        self.assertIn('Die Angaben zum Modus sagen nicht, wie viel Strom eine Ladung bei dir braucht.', mirror)
+        self.assertNotIn('getecoback-21', mirror)
+
     def test_scoped_routes_and_source_identity(self):
         d=C.load()
         self.assertEqual(len(d['products']),6)
