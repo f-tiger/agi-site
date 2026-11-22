@@ -31,6 +31,15 @@ test('filters exact German original packages with symmetric side clearance', () 
     [['1.633-662.0',[280]],['1.633-698.0',[170,280]],['1.633-785.0',[170,280]],['06008B7000',[133,266]]]);
 });
 
+test('treats rounded decimal equality as nominal fit and still excludes a genuinely wider head', () => {
+  const existing = result({lichte_breite_mm:143.7,spiel_pro_seite_mm:5.2,vorhandene_duese_mm:133.3,kauf_geplant:true});
+  assert.equal(existing.vorhandene_duese_nominell_passend,true);
+  assert.equal(existing.folgeschritt,'vorhandene_duese_zuerst_probesetzen');
+  assert.equal(Object.hasOwn(existing,'entry_url'),false);
+  assert.deepEqual(passes(result({lichte_breite_mm:256.4,spiel_pro_seite_mm:61.7})), [['06008B7000',[133]]]);
+  assert.deepEqual(passes(result({lichte_breite_mm:256.39999,spiel_pro_seite_mm:61.7})), []);
+});
+
 test('only a planned purchase with an evidence-backed shortlist and no usable nozzle returns the entry', () => {
   for (const args of [
     {kauf_geplant:false},

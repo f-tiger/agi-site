@@ -12,7 +12,7 @@ Diese Seite erklärt Bauphysik und Messwerte — sie ersetzt bei Bauschäden ode
 
 ## Hilft ein Fenstersauger gegen Kondenswasser?
 
-**Wasser an der zugänglichen Innenscheibe mit einem sauberen Tuch abwischen.** Bei mehreren nassen Scheiben kann ein dafür geeigneter Fenstersauger die Arbeit erleichtern. Kärcher nennt das Aufsaugen von Kondenswasser auf Glas als Einsatz und für das genaue Gerät gilt die jeweilige Anleitung. Bei häufiger Nutzung kannst du [Modelle und Einsatzgrenzen prüfen](https://getecoback.com/produkte.html#fenstersauger-belege).
+**Wasser an der zugänglichen Innenscheibe mit einem sauberen Tuch abwischen.** Bei mehreren nassen Scheiben kann ein dafür geeigneter Fenstersauger die Arbeit erleichtern. Kärcher nennt das Aufsaugen von Kondenswasser auf Glas als Einsatz und für das genaue Gerät gilt die jeweilige Anleitung. Wenn du bei häufiger Nutzung ein Set vergleichen willst, miss die engste Stelle am Glas. [Düsenbreite und passende Sets prüfen](https://getecoback.com/produkte.html#fenstersauger-duesenbreite).
 
 Wird dieselbe Stelle regelmäßig nass, halte Zeitpunkt, Stelle und Messwerte fest. **Feuchte zwischen den Scheiben** vom Fensterbetrieb prüfen lassen. Bei **wiederholt nassen Wänden, sichtbarem Schimmel oder möglichem Wassereintritt** die Ursache fachlich prüfen lassen. In der Mietwohnung der Hausverwaltung Bescheid geben.
 

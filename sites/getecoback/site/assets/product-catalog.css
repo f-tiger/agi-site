@@ -13,6 +13,15 @@ body{margin:0;background:#f8fafb;font-family:system-ui,-apple-system,BlinkMacSys
 #fenstersauger-belege thead { background: #edf4f7; }
 .pc-page :is(section, h3)[id] { scroll-margin-top: 180px; }
 .pc-guides { margin: 32px 0; scroll-margin-top: 180px; }
+.pc-window-width { padding: 16px; margin: 16px 0; background: #eaf3f7; border: 1px solid #c4dce6; border-radius: 12px; }
+.pc-window-measurements { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr)); gap: 12px; }
+.pc-window-measurements label { display: grid; gap: 6px; align-content: start; }
+.pc-window-measurements input { box-sizing: border-box; width: 100%; min-height: 44px; padding: 8px; border: 1px solid #7894a4; border-radius: 6px; color: #203642; font: inherit; }
+.pc-window-opt { display: flex; align-items: baseline; gap: 8px; padding: 12px 0; line-height: 1.45; }
+.pc-window-opt input { flex: none; }
+.pc-window-width button { min-height: 44px; padding: 8px 13px; border: 1px solid #075f88; border-radius: 6px; color: #fff; background: #075f88; font: inherit; cursor: pointer; }
+.pc-window-width [data-window-width-status]:empty { margin: 0; }
+.pc-window-width [data-window-width-options] li { margin-bottom: 8px; }
 .pc-guides ul {
   list-style: none;
   display: grid;

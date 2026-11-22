@@ -1,4 +1,6 @@
-/* Category-specific planning only. Inputs remain local; no model matching or prices. */
+/* Local category tools. Width comparisons use documented dimensions and never rank models. */
+import {headFitsWindow, usableWindowWidth} from './window-width-math.mjs';
+
 const nf = new Intl.NumberFormat('de-DE', {maximumFractionDigits: 3});
 export class InputError extends Error {}
 function number(values, key, min, max, integer=false) {
@@ -96,4 +98,75 @@ export function initCategoryTools(root) {
     form.hidden=false;
   }
 }
-if(typeof document!=='undefined')initCategoryTools(document);
+
+export function windowWidthFit(values, packages) {
+  const net = usableWindowWidth(number(values, 'lichte_breite_mm', 1, 5000),
+    number(values, 'spiel_pro_seite_mm', 0, 1000));
+  const existing = values.vorhandene_duese_mm === '' ? 0 :
+    number(values, 'vorhandene_duese_mm', 0, 3000);
+  if (headFitsWindow(existing, net)) return {net, state:'vorhanden', options:[]};
+  if (!values.kauf_geplant) return {net, state:'kein_kauf', options:[]};
+  const options = packages.map(item => ({...item, widths:item.widths.filter(width => headFitsWindow(width, net))}))
+    .filter(item => item.widths.length);
+  return {net, state:options.length ? 'vergleich' : 'kein_treffer', options};
+}
+
+function initWindowWidthCheck(root) {
+  const form = root.querySelector('[data-window-width-check]');
+  const table = root.querySelector('[data-window-width-table]');
+  if (!form || !table) return;
+  const packages = [...table.querySelectorAll('tbody tr')].map(row => {
+    const link = row.querySelector('th a');
+    return { href:link.getAttribute('href'), title:link.textContent,
+      widths:[...row.cells[1].textContent.matchAll(/(\d+) mm/g)].map(match => Number(match[1])) };
+  });
+  const status = form.querySelector('[data-window-width-status]');
+  const options = form.querySelector('[data-window-width-options]');
+  const message = {
+    vorhanden:'Deine vorhandene Düse kommt nach Nennbreite infrage. Setze sie zuerst am ausgeschalteten Gerät trocken an.',
+    kein_kauf:'Prüfe zuerst den vorhandenen Abzieher oder ein Tuch.',
+    kein_treffer:'Keines der vier dokumentierten Sets hat hier eine schmale genug bemessene Düse. Prüfe einen Abzieher oder ein Tuch.',
+    vergleich:'Diese Sets kommen nach Nennbreite infrage. Prüfe Kopfmaße, Fensterbank und genauen Lieferumfang vor dem Kauf.',
+  };
+  const clear = () => {
+    status.textContent = '';
+    delete status.dataset.state;
+    options.hidden = true;
+    options.replaceChildren();
+  };
+  form.addEventListener('input', clear);
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    clear();
+    if (!form.reportValidity()) return;
+    const values = Object.fromEntries(new FormData(form));
+    let result;
+    try {
+      result = windowWidthFit(values, packages);
+    } catch (error) {
+      if (!(error instanceof InputError)) throw error;
+      status.textContent = error.message;
+      return;
+    }
+    status.dataset.state = result.state;
+    status.textContent = `Nutzbreite: ${nf.format(result.net)} mm. ${message[result.state]}`;
+    for (const item of result.options) {
+      const li = root.createElement('li');
+      const link = root.createElement('a');
+      link.href = item.href;
+      link.textContent = item.title;
+      li.append(link, ' · ' + item.widths.map(width => nf.format(width) + ' mm').join(' / '));
+      options.append(li);
+    }
+    options.hidden = result.options.length === 0;
+    if (event.isTrusted) window.dispatchEvent(new CustomEvent('fleet:business', {
+      detail:{name:'eco_window_width_check'},
+    }));
+  });
+  form.hidden = false;
+}
+
+if(typeof document!=='undefined') {
+  initCategoryTools(document);
+  initWindowWidthCheck(document);
+}

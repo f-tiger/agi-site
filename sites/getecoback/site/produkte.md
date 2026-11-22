@@ -11,7 +11,7 @@ Canonical (HTML, zitierfähig): https://getecoback.com/produkte.html
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Händlersuchen sind als Anzeige gekennzeichnet. Keine eigenen Gerätetests; Herstellerangaben sind keine Leistungszusage für dein Zuhause.
 
-Veröffentlicht: 13.11.2026 · Inhalt geändert: 20.11.2026. Der Quellenstand steht an jedem Modell.
+Veröffentlicht: 13.11.2026 · Inhalt geändert: 22.11.2026. Der Quellenstand steht an jedem Modell.
 
 48 Modelle in 12 Produktgruppen.
 
@@ -1331,7 +1331,7 @@ Deutsche Bosch-Unterlagen 9001690573_A und Produktdaten des TAT8613, geprüft am
 
 ## Fenstersauger prüfen: Abziehlippen und Gebrauch
 
-Für wenige Scheiben kann der vorhandene Einwascher mit Abzieher genügen. Kommt das Wasser regelmäßig von innen zurück, zuerst [die Feuchtigkeit einordnen](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#einsatzort-waehlen).
+Für wenige Scheiben kann der vorhandene Einwascher mit Abzieher genügen. Kommt das Wasser regelmäßig von innen zurück, zuerst [Raumluft und Innenscheibe messen](https://getecoback.com/guide/fenster-beschlagen-innen.html#fenstersauger-gegen-kondenswasser).
 
 [Kärcher im Gebrauch prüfen](https://getecoback.com/produkte.html#kaercher-fenstersauger-einsatz-und-hinweise) · [Bosch GlassVAC einsetzen und pflegen](https://getecoback.com/produkte.html#bosch-glassvac-einsatz-und-pflege)
 
@@ -1349,6 +1349,8 @@ Dokumentierte Düsen- und Saugkopfbreiten
 | [Bosch GlassVAC Set, 06008B7000](https://getecoback.com/produkte.html#produkt-bosch-glassvac-set) Quelle: [Bosch GlassVAC Set Produktseite](https://www.bosch-diy.com/de/de/p/glassvac-06008b7000) | 133 mm / 266 mm |
 
 Die Nennbreite dient der Vorauswahl. Prüfe am Fenster auch die tatsächliche Außenbreite von Saugkopf und Gehäuse sowie Hindernisse beim Ansetzen und Kippen. Reicht dein vorhandener Abzieher oder ein Tuch, kannst du es weiterverwenden.
+
+**Wasser bleibt an der Unterkante?** Setze ein vorhandenes, ausgeschaltetes Gerät trocken an. Prüfe, ob der Kopf bis unten am Glas anliegt oder ob Gehäuse und Fensterbank zuerst anstoßen. Für die verbleibenden Tropfen am Rand genügt ein sauberes Tuch. Bei einem neuen Set vor dem Kauf die tatsächlichen Kopfmaße und den Platz zum Ansetzen klären.
 
 Gleiche beim Bosch-Angebot die Bestellnummer oder EAN ab. Das Set 06008B7000 (EAN 3165140920148) enthält laut Bosch den großen und den kleinen Saugkopf. Beim [GlassVAC Solo Plus 06008B7200](https://www.bosch-diy.com/de/de/p/glassvac-solo-plus-06008b7200) (EAN 3165140976374) listet Bosch im Lieferumfang nur den großen Saugkopf. Ist das Angebot nicht eindeutig, lass dir vor dem Kauf den kleinen Saugkopf bestätigen.
 
