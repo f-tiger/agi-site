@@ -1,3 +1,4 @@
+import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion} from './kaercher-saugduese-intent.mjs';
 import {asksForCoffeeWaterFilterMatch} from './kaffee-wasserfilter-intent.mjs';
@@ -58,6 +59,8 @@ export function searchEntries(index,term,lang){
    targetPage='/produkte.html'; targetId='fenstersauger-duesenbreite';
  } else if(lang==='de' && asksForNarrowKaercherNozzle(focusWindowVacQuestion(query)?.query ?? '')) {
    targetPage='/produkte.html'; targetId='kaercher-170mm-saugduese';
+ } else if(lang==='de' && mieleBagTask(query)) {
+   targetPage='/produkte.html'; targetId='miele-staubsaugerbeutel';
  } else if(lang==='de' && asksForCoffeeWaterFilterMatch(query)) {
    targetPage='/produkte.html'; targetId='kaffee-wasserfilter';
  } else if(lang==='de' && asksForTrotecTtk70Filter(query)) {

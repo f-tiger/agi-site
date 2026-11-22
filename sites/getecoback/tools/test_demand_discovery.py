@@ -10,7 +10,7 @@ index=json.loads((SITE/'search-index.json').read_text())
 assert index==collect() and len({r['u'] for r in index})==len(rows)
 assert all('#' not in entry['u'] for entry in index),'Search sections must not become canonical index entries'
 product_index=next(row for row in index if row['u']=='/produkte.html')
-assert [row['id'] for row in product_index['model_sections']]==['kaercher-170mm-saugduese','fenstersauger-duesenbreite']
+assert [row['id'] for row in product_index['model_sections']]==['miele-staubsaugerbeutel','kaercher-170mm-saugduese','fenstersauger-duesenbreite']
 trotec_index=next(row for row in index if row['u']=='/guide/trotec-luftentfeuchter-test.html')
 assert [row['id'] for row in trotec_index['model_sections']]==['ttk70-hepa-filter']
 focused=[entry for entry in index if entry.get('section')]

@@ -777,3 +777,54 @@ test('Trotec TTK 70 HEPA keeps conflicting December and later part listings unre
     assert.equal((await rpc('tools/call',{name,arguments:{...valid,...changes}})).isError,true);
   }
 });
+
+test('Miele exact and two-device bag checks preserve distinct guide and purchase boundaries', async () => {
+  const single = 'miele_hyclean_beutel_vollstaendige_modellzeile';
+  const pair = 'miele_zwei_sauger_vorrat_beutel_abluftfilter_getrennt';
+  const products = origin + '/produkte.html';
+  const guide = products + '#miele-staubsaugerbeutel';
+  const supported = 'gleich_mit_de_herstellerliste';
+  const mismatch = 'typ_weicht_von_de_herstellerliste_ab';
+  async function check(name, arguments_) {
+    const result = await rpc('tools/call',{name,arguments:arguments_});
+    assert.equal(result.isError,false);
+    assert.equal(result.structuredContent.guide_url,guide);
+    assert.equal(result.structuredContent.citation_url,products);
+    assert.doesNotMatch(JSON.stringify(result.structuredContent),/amazon\.|[?&]tag=/i);
+    return result.structuredContent;
+  }
+  for (const [modellfamilie,beutel_am_angebot,bag,status] of [
+    ['guard_s1','TU','TU',supported],
+    ['guard_l1','CO','TU',mismatch],
+    ['guard_m1','CO','CO',supported],
+    ['compact_c2','GN','FJM',mismatch],
+    ['complete_c2','GN','GN',supported],
+    ['complete_c3','FJM','GN',mismatch],
+    ['nur_c2','FJM',null,'vollstaendigen_modellnamen_pruefen'],
+  ]){
+    const data = await check(single,{modellfamilie,beutel_am_angebot});
+    assert.deepEqual([data.dokumentierter_beuteltyp,data.status],[bag,status]);
+    assert.equal(Boolean(data.beleg_zum_passenden_originalpack),Boolean(bag));
+    const codes={GN:['12421170',1],FJM:['12421180',1],TU:['12557060',0],CO:['12557080',0]};
+    if (bag === null) assert.equal(data.dokumentierter_de_originalpack,null);
+    else {
+      const [code, motor] = codes[bag];
+      const pack = data.dokumentierter_de_originalpack;
+      assert.deepEqual([pack.artikelnummer,pack.beutel,pack.motorschutzfilter,pack.abluftfilter,pack.geprueft_am],
+        [code,4,motor,1,'2026-11-22']);
+      assert.equal(pack.abluftfilter_art,motor === 0 ? 'AirClean' : undefined);
+      assert.match(data.beleg_zum_passenden_originalpack,new RegExp('/product/'+code+'/'));
+    }
+  }
+  for (const [erstes_modell,zweites_modell,vorrat_soll_hepa_serie_abdecken,bag,shared,filter] of [
+    ['guard_s1','guard_l1',false,'TU',true,null],
+    ['complete_c3','guard_m1',true,null,false,'SF-HA 50-1'],
+    ['classic_c1','complete_c3',true,'GN',true,null],
+    ['nur_c2','guard_m1',true,null,null,null],
+  ]){
+    const data = await check(pair,{erstes_modell,zweites_modell,vorrat_soll_hepa_serie_abdecken});
+    assert.deepEqual([data.gemeinsamer_beuteltyp,data.beleg_geteilter_beuteltyp,data.gemeinsamer_gelisteter_hepa_filter],[bag,shared,filter]);
+  }
+  const invalid = await rpc('tools/call',{name:single,arguments:{modellfamilie:'C2',beutel_am_angebot:'FJM'}});
+  assert.equal(invalid.isError,true);
+});

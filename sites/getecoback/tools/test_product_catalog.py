@@ -27,6 +27,36 @@ def fixture():
 
 
 class CatalogTest(unittest.TestCase):
+    def test_miele_bag_packs_keep_exact_model_filter_roles_and_native_share(self):
+        html = C.render(C.load(), dt.date(2026, 11, 22))
+        anchor = 'miele-staubsaugerbeutel'
+        self.assertEqual(Document(html).ids.count(anchor), 1)
+        title = 'Welcher Staubsaugerbeutel passt zu meinem Miele?'
+        end = 'Wechselanzeige, Ursache und Guard L1 HS22'
+        answer = html.split(f'id="{anchor}"', 1)[1].split(end, 1)[0]
+        md = C.to_markdown(html, C.ROUTE, 'de')
+        mirror = md.split(title, 1)[1].split(end, 1)[0]
+        for phrase in (
+            'Compact C2 braucht FJM, Complete C2 braucht GN', 'nur „C2“', 'warte bis dahin',
+            'GN HyClean Pure 12421170', 'FJM HyClean Pure 12421180',
+            'TU HyClean Pure 12557060', 'CO HyClean Pure 12557080',
+            '4 Beutel, 1 Motorschutzfilter und 1 Abluftfilter',
+            '4 Beutel und 1 AirClean Abluftfilter', '16 Beutel, 4 Motorschutzfilter und 4 Abluftfilter',
+            'separat in der Tabelle gelistete HEPA-Kassette',
+            'passenden, unbenutzten und unbeschädigten Beuteln',
+        ):
+            self.assertIn(phrase, answer)
+            self.assertIn(phrase, mirror)
+        share = next(link for link in Document(answer).links
+                     if link.get('href', '').startswith('https://www.reddit.com/submit?'))
+        self.assertEqual(share['rel'], 'noreferrer')
+        self.assertEqual(parse_qs(urlsplit(share['href']).query), {
+            'url': [f'{C.CANONICAL}#{anchor}'],
+            'title': [title],
+        })
+        self.assertNotIn('reddit.com/submit', mirror)
+        self.assertNotIn('amazon.', answer)
+
     def test_kaercher_nozzle_matches_exact_german_labels_and_clean_share(self):
         html = C.render(C.load(), dt.date(2026, 11, 22))
         anchor = 'kaercher-170mm-saugduese'

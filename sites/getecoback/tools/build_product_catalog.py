@@ -180,7 +180,8 @@ APPLIANCE_EVIDENCE = '''
   <h2 id="bodenstaubsauger-belege-titel">Miele Bodenstaubsauger: Beutel und Filter am vorhandenen Gerät prüfen</h2>
   <p>Schreib vor einer Ersatzbestellung die vollständige Modellbezeichnung vom Gerät ab. Notiere separat, welcher Beutel und welcher Filter jetzt eingesetzt sind. Die folgenden Beispiele beziehen sich auf deutsche Herstellerunterlagen, gelesen am 20. November 2026.</p>
 
-  <h3>Beuteltyp, Filterstufe und Vorrat</h3>
+  <h3 id="miele-staubsaugerbeutel" style="scroll-margin-top:210px">Welcher Staubsaugerbeutel passt zu meinem Miele?</h3>
+  <p><strong>Compact C2 braucht FJM, Complete C2 braucht GN.</strong> Steht im Angebot oder auf deiner Notiz nur „C2“, prüfe die vollständige Modellbezeichnung am Typenschild und warte bis dahin mit der Bestellung. Bei Guard S1 und L1 nennt Miele TU, bei Guard M1 CO.</p>
   <table>
     <thead><tr><th scope="col">Modellreihe</th><th scope="col">Gelisteter Beutel</th><th scope="col">Gelisteter HEPA-Abluftfilter zur Auswahl</th></tr></thead>
     <tbody>
@@ -193,7 +194,16 @@ APPLIANCE_EVIDENCE = '''
     </tbody>
   </table>
   <p>Der Filter in der Tabelle steht als Zubehör in der Herstellerauswahl. Zum Beispiel nennt das deutsche Produktblatt des Guard L1 Nordicblau 12558870 serienmäßig AirClean. Complete C3 12031650 nennt AirClean und Complete C3 Cat &amp; Dog 10653390 Active AirClean. Vergleiche die Materialnummer und lies danach den aktuell eingebauten Typ ab. Für zwei Sauger im Haushalt kann derselbe Beuteltyp zu unterschiedlichen gelisteten Abluftteilen gehören. <a href="https://www.miele.de/c/staubsaugerbeutel-und-filter-10520.htm">Deutsche Miele-Teileauswahl</a> · <a href="https://www.miele.de/product/12785370/hepa-airclean-filter-sf-ha-30-1">SF-HA 30-1</a> · <a href="https://www.miele.de/product/12785390/hepa-airclean-filter-sf-ha-50-1">SF-HA 50-1</a> · <a href="https://www.miele.de/product/12558870/bodenstaubsauger-mit-beutel-guard-l1-nordicblau">Guard L1 12558870</a> · <a href="https://media.miele.com/downloads/e-/de/FS_12031650_DED_DE-de-DE.pdf">Complete C3 12031650</a> · <a href="https://media.miele.com/downloads/e-/de/FS_10653390_DED_DE-de-DE.pdf">Complete C3 Cat &amp; Dog 10653390</a>.</p>
-  <p>GN 12421170 enthält 4 Beutel, 1 Motorschutzfilter und 1 Abluftfilter. Für GN XXL 12498270 sind es 16 Beutel, 4 Motorschutzfilter und 4 Abluftfilter. Die Ablufteinlage aus dem Pack betrifft AirClean, sofern diese Filterstufe am eigenen Gerät verwendet wird. Zähle jeden brauchbaren vorhandenen Teil separat und ermittle dann die Fehlmenge. <a href="https://www.miele.de/product/12421170/4-staubsaugerbeutel-gn-hyclean-pure">GN 12421170</a> · <a href="https://www.miele.de/product/12498270/16-staubsaugerbeutel-zum-vorteilspreis-gn-xxl-hyclean-pure">GN XXL 12498270</a> · <a href="https://www.miele.de/product/12421180/4-staubsaugerbeutel-fjm-hyclean-pure">FJM 12421180</a> · <a href="https://www.miele.de/product/12557060/4-staubsaugerbeutel-tu-hyclean-pure">TU 12557060</a> · <a href="https://www.miele.de/product/12557080/4-staubsaugerbeutel-co-hyclean-pure">CO 12557080</a>.</p>
+  <p>Gleiche bei einer 4er-Packung die genaue Miele-Materialnummer und den angegebenen Inhalt ab. Die deutschen Produktseiten führen folgende Beispiele auf:</p>
+  <ul>
+    <li><a href="https://www.miele.de/product/12421170/4-staubsaugerbeutel-gn-hyclean-pure">GN HyClean Pure 12421170</a> für Complete C2, Complete C3 und Classic C1. Miele nennt 4 Beutel, 1 Motorschutzfilter und 1 Abluftfilter.</li>
+    <li><a href="https://www.miele.de/product/12421180/4-staubsaugerbeutel-fjm-hyclean-pure">FJM HyClean Pure 12421180</a> für Complete C1, Compact C1 und Compact C2. Miele nennt 4 Beutel, 1 Motorschutzfilter und 1 Abluftfilter.</li>
+    <li><a href="https://www.miele.de/product/12557060/4-staubsaugerbeutel-tu-hyclean-pure">TU HyClean Pure 12557060</a> für Guard S1 und Guard L1. Miele nennt 4 Beutel und 1 AirClean Abluftfilter.</li>
+    <li><a href="https://www.miele.de/product/12557080/4-staubsaugerbeutel-co-hyclean-pure">CO HyClean Pure 12557080</a> für Guard M1. Miele nennt 4 Beutel und 1 AirClean Abluftfilter.</li>
+  </ul>
+  <p><a href="https://www.miele.de/product/12498270/16-staubsaugerbeutel-zum-vorteilspreis-gn-xxl-hyclean-pure">GN XXL 12498270</a> enthält 16 Beutel, 4 Motorschutzfilter und 4 Abluftfilter. Eine beiliegende Ablufteinlage und die separat in der Tabelle gelistete HEPA-Kassette sind unterschiedliche Teile. Prüfe den eingebauten Abluftfilter und die vorgesehene Halterung, bevor du ein Teil austauschst.</p>
+  <p>Wenn dein Vorrat an passenden, unbenutzten und unbeschädigten Beuteln reicht, brauchst du keinen Nachkauf. Entleere volle Einwegbeutel nicht zur weiteren Nutzung. Zähle passende Filter getrennt, bevor du eine Packung bestellst. Herstellerangaben für Deutschland geprüft am <time datetime="2026-11-22">22. November 2026</time>. <a href="https://media.miele.com/downloads/10/76/00_C7F128282CE91FE199B027081E511076.pdf">Beutelhinweise im dokumentierten Guard L1 HS22</a>.</p>
+  <!--EB_MIELE_BAG_SHARE--><p><a href="https://www.reddit.com/submit?url=https%3A%2F%2Fgetecoback.com%2Fprodukte.html%23miele-staubsaugerbeutel&amp;title=Welcher%20Staubsaugerbeutel%20passt%20zu%20meinem%20Miele%3F" rel="noreferrer" style="display:inline-flex;align-items:center;min-height:44px">Auf Reddit teilen</a></p><!--/EB_MIELE_BAG_SHARE-->
 
   <h3>Wechselanzeige, Ursache und Guard L1 HS22</h3>
   <ul>
