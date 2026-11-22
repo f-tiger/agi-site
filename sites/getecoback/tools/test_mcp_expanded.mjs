@@ -8,7 +8,7 @@ import {expandedDefinitions, expandedCall} from '../src/mcp-expanded.mjs';
 import {collectToolPages} from '../src/mcp-pagination.mjs';
 
 const origin = 'https://getecoback.com';
-const distinctTasks = 2023;
+const distinctTasks = 2024;
 const callableNames = distinctTasks + 1;
 function request(method, params) {
   return new Request(origin + '/mcp/v1', {
@@ -95,6 +95,33 @@ test('Philips humidifier checks require exact type plate and filter suffixes', a
   assert.equal(stale.model_guide_url,guide+'#philips-hu2716-10');
 });
 
+test('blanket cost uses the browser math with confirmed inputs in both profiles', async () => {
+  const name='heizdecke_stromkosten_nennleistung';
+  const guide=origin+'/guide/heizdecke-stromverbrauch.html';
+  const args={nennleistung_w:110,laufzeit_h:2,arbeitspreis_kwh:0.35};
+  const native=(await rpc('tools/call',{name,arguments:args})).structuredContent;
+  assert.deepEqual([native.energie_kwh_pro_nutzung,native.kosten_pro_nutzung,native.kosten_gesamt,native.waehrung,native.nutzungstage],[0.22,0.077,0.077,'EUR',1]);
+  assert.equal(native.berechnungsart,'nennleistung_schaetzung');
+  assert.equal(native.guide_url,guide+'#waerme-rechner');
+  assert.equal(native.guidance_source,'https://verbraucherzentrale-energieberatung.de/energie-sparen/allgemeines/stromverbrauch-messen/');
+  assert.match(native.hinweis,/Geräteanleitung.*tatsächliche Kosten/);
+  assert.doesNotMatch(JSON.stringify(native),/amazon\.|amzn\.|[?&]tag=/i);
+  const monthly={...args,nutzungstage:30,waehrung:'CHF'};
+  const expected=await rpc('tools/call',{name,arguments:monthly});
+  const response=await worker.fetch(new Request(origin+'/mcp/v1?profile=compact',{
+    method:'POST',headers:{'content-type':'application/json','user-agent':'getecoback-ci/expanded'},
+    body:JSON.stringify({jsonrpc:'2.0',id:1,method:'tools/call',params:{
+      name:'ecoback_werkzeug_ausfuehren',arguments:{name,eingaben:monthly},
+    }}),
+  }),{},{});
+  assert.equal(response.status,200);
+  assert.deepEqual((await response.json()).result,expected);
+  assert.deepEqual([expected.structuredContent.energie_kwh_gesamt,expected.structuredContent.kosten_gesamt,expected.structuredContent.waehrung],[6.6,2.31,'CHF']);
+  for (const invalid of [{laufzeit_h:2,arbeitspreis_kwh:0.35},{...args,arbeitspreis_kwh:35},{...args,nutzungstage:1.5},{...args,laufzeit_h:25},{...args,nennleistung_w:501},{...args,waehrung:'USD'},{...args,abschaltung_h:3}]) {
+    assert.equal((await rpc('tools/call',{name,arguments:invalid})).isError,true);
+  }
+});
+
 test('the public directory and standard MCP pages expose the same catalogue', async () => {
   const pageSizes = [];
   const listed = await collectToolPages(async cursor => {
@@ -121,9 +148,9 @@ test('the public directory and standard MCP pages expose the same catalogue', as
   assert.deepEqual(directory.tools.map(t=>t.name),names);
   const byCategory = {};
   for (const {category} of directory.tools) byCategory[category] = (byCategory[category] || 0) + 1;
-  assert.deepEqual(byCategory, {Raumklima:10,'Strom & Haushalt':21,Feuchte:19,Kühlen:18,Heizen:18,Passform:17,
+  assert.deepEqual(byCategory, {Raumklima:10,'Strom & Haushalt':21,Feuchte:19,Kühlen:18,Heizen:19,Passform:17,
     'Energie prüfen':24,'Raumkomfort prüfen':24,'Geräte pflegen':24,'Quellen & Kaufprüfung':29, 'Wasser & Wäsche':24,'Gebäude & Fenster':24,'Geräte im Alltag':24,'Messpraxis':24,'Zugang & Alltag':24,Saisonwechsel:24,Kaufpraxis:26,'Ressourcen planen':24,Raumplanung:24,Wetterpraxis:24,Küchenpraxis:24,Servicevorbereitung:24,'Belege abgleichen':24,Textilpraxis:25,Luftpfade:25,Modellunterlagen:25,Haushaltsbuch:25,Praxistests:25,Messunsicherheit:25,Geräteablauf:25,Weiterverwendung:25,Raumübergabe:25,Wohnszenarien:25,Verbrauchsverlauf:41,Fensterbetrieb:41,Pflegeabläufe:40,Haushaltskoordination:40,Nachweisprüfung:40,Wasserwege:40,Raumakustik:40,Mehrgerätebetrieb:40,Gebrauchtgeräte:40,Küchenressourcen:40,Klimaverlauf:40,Wohnmobil:30,'Arbeitsplatz-Messpraxis':30,'Lokale Wärme':30,Luftkühler:30,'Wäsche mit Wärme':30,Gartenalltag:30, Gefrierpraxis:18,'Geschirrspüler-Einbau':24,Wäschesäule:17,Lüftungskauf:24,Ersatzteilnachweis:20,Dunstabzug:17,Backofenzubehör:18,Brausenzubehör:23,Rollenzubehör:18,'Altgeräte-Rücknahme':20,Induktionsgeschirr:18,Betriebszustände:21,Spülstatus:24,'Airfryer-Behälter':17,Kompaktspülen:17,"Filterkannen":22,"Textilzeichen":20,"Türbodenspalt":21,"Roboterpflege":24,"Kühlgerätekauf":20,"LED-Kaufprüfung":16,"Kaffeemaschinenpflege":22,"Waschmitteldosierung":23,"Spülmittel und Wasserhärte":25,"Bodenstaubsaugerpflege":22,"Dampfbügelgeräte":24,"Stabmixer und Zubehör":25,"Mikrowellenbelege":23,"Küchenwaagen":13,"Wasserkocherbelege":16,"Toasterbelege":10,"Fenstersauger":12});
-  assert.equal(expandedDefinitions.length,2014);
+  assert.equal(expandedDefinitions.length,2015);
 });
 
 test('old or invalid cursors reject safely and both catalogue boundaries paginate completely', async () => {

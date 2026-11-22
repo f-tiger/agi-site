@@ -39,6 +39,9 @@ def collect():
  sections[('de','/guide/luftentfeuchter-keller.html')]={
   'id':'ablauf-vor-kauf','title':'Kann der Entfeuchterschlauch bergauf verlaufen?',
   'description':'Prüfe den gesamten Schlauchweg, eine für dein Modell geeignete Pumpe oder den Tankbetrieb.'}
+ sections[('de','/guide/heizdecke-stromverbrauch.html')]={
+  'id':'waerme-rechner','title':'Was kostet meine Heizdecke pro Nutzung?',
+  'description':'Beispiel: 110 W × 2 h bei 0,35 €/kWh ergeben 0,22 kWh und rund 0,08 €. Mit deinem Tarif nachrechnen.'}
  out=[]
  for path,route,lang,h in public_pages():
   if not h.title.strip():raise ValueError(f'Missing title: {route}')

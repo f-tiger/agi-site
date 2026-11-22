@@ -27,9 +27,9 @@ test('the browser loads the current catalogue search module', async () => {
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 228);
+  assert.equal(withGuides.length, 229);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 26);
+  assert.equal(destinations.size, 27);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);
@@ -762,6 +762,39 @@ test('German Philips replacement queries find the type-plate check rather than g
  ]) {
   assert.ok(!(await catalogue({q,view:'compact'})).tools.some(tool=>tool.name===name),q);
  }
+ assert.equal((await catalogue({q:name,view:'compact'})).tools[0]?.name,name);
+ assert.equal(analytics,0);
+});
+
+test('an electric blanket cost question no longer recommends an air conditioner', async()=>{
+ const name='heizdecke_stromkosten_nennleistung';
+ const cooling='pac_n90_energielabel_zu_stromkosten';
+ const path='/guide/heizdecke-stromverbrauch.html#waerme-rechner';
+ for(const q of [
+   'Was kostet eine Heizdecke mit 110 Watt für zwei Stunden auf dem Sofa bei 35 Cent pro kWh?',
+   'Was kostet ein Abend mit meiner Beurer HD 75? Ich zahle 0,35 Euro pro kWh und nutze sie zwei Stunden auf dem Sofa.',
+   'Meine Beurer HD 75 schaltet nach drei Stunden ab. Wieviel kostet ein Abend bei 0,35 Euro pro Kilowattstunde?',
+   'Was kostet eine Heizdecke für zwei Stunden?',
+   'Stromverbrauch einer Wärmezudecke',
+ ]) {
+   const results=(await catalogue({q,view:'compact',limit:'5'})).tools;
+   assert.equal(results[0]?.name,name,q);
+   assert.equal(findCatalogueTools(compact,{query:q})[0]?.name,name,q);
+   assert.equal(toolGuidePath(results[0]),path,q);
+   assert.ok(!results.some(tool=>tool.name===cooling),q);
+ }
+ for(const q of [
+   'Was kostet die Beurer HD 75 im Angebot bei Amazon?',
+   'Darf ich mit der Heizdecke schlafen und wie viel Strom kostet es?',
+   'Wie lange läuft die Heizdecke bis zur Abschaltautomatik?',
+   'Wieviel spare ich mit der Heizdecke statt Gasheizung?',
+   'Was kosten gemessene 0,15 kWh einer Heizdecke?',
+   'Was kostet das Wärmeunterbett im Vergleich zur Heizdecke?',
+ ]) {
+   assert.ok(!(await catalogue({q,view:'compact'})).tools.some(tool=>tool.name===name),q);
+ }
+ const n90=(await catalogue({q:'DeLonghi Pinguino PAC N90 8004399512351 Stromverbrauch bei 0,35 Euro',view:'compact'})).tools;
+ assert.equal(n90[0]?.name,cooling);
  assert.equal((await catalogue({q:name,view:'compact'})).tools[0]?.name,name);
  assert.equal(analytics,0);
 });

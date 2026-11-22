@@ -200,6 +200,10 @@
   <p>Die deutsche Philips-Tabelle ordnet dem HU4803/01 den FY2401/30 und dem HU2716/10 den FY3446/30 zu. Prüfe die vollständige Modellnummer einschließlich Schrägstrich am Typenschild. Der <a href="/guide/luftbefeuchter-ratgeber.html#philips-verdunsterfilter">Filterabgleich mit Herstellerquellen</a> zeigt beide Fälle und die Grenzen der Zuordnung.</p>
   <pre><code>{"jsonrpc":"2.0","id":12,"method":"tools/call","params":{"name":"philips_verdunsterfilter_zuordnung","arguments":{"model":"HU2716/10","candidate":"FY2401/30"}}}</code></pre>
 
+  <h3 id="heizdecke-stromkosten-beispiel">Was kostet eine Heizdecke für zwei Stunden?</h3>
+  <p>Bei angenommenen 110 W über zwei Stunden und 0,35 €/kWh ergeben sich 0,22 kWh und rund 0,08 €. Verwende deine eigene Leistung und erlaubte Laufzeit. Im <a href="/guide/heizdecke-stromverbrauch.html#waerme-rechner">Heizdecken-Rechner</a> findest du auch die Messmethode für den tatsächlichen Verbrauch.</p>
+  <pre><code>{"jsonrpc":"2.0","id":13,"method":"tools/call","params":{"name":"heizdecke_stromkosten_nennleistung","arguments":{"nennleistung_w":110,"laufzeit_h":2,"arbeitspreis_kwh":0.35}}}</code></pre>
+
   <h2 id="keller-lueften-beispiel">Kann die Außenluft meinen Keller trocknen?</h2>
   <p>Bei 28 °C und 60 % draußen liegt der Taupunkt bei 19,5 °C. Im Keller ergeben 17 °C und 65 % einen Taupunkt von 10,4 °C. An der gemessenen 15 °C kalten Wand kann die Außenluft kondensieren. Der <a href="/guide/keller-lueften-sommer.html#taupunkt">Taupunkt-Check mit eigenen Messwerten</a> prüft den Feuchtevergleich und die Wandtemperatur zusammen.</p>
   <pre><code>{"jsonrpc":"2.0","id":10,"method":"tools/call","params":{"name":"keller_lueften_taupunkt_messwerte","arguments":{"aussen_c":28,"aussen_rh_prozent":60,"innen_c":17,"innen_rh_prozent":65,"wand_c":15}}}</code></pre>
@@ -293,7 +297,7 @@
 <section aria-labelledby="mcp-geraetebelege"><h2 id="mcp-geraetebelege">Haushaltsgeräte im Gebrauch und beim Kauf</h2><p><a href="/api/mcp-tools?category=Kaffeemaschinenpflege&amp;view=compact">Kaffeemaschinenpflege</a> · <a href="/api/mcp-tools?category=Waschmitteldosierung&amp;view=compact">Waschmitteldosierung</a> · <a href="/api/mcp-tools?category=Sp%C3%BClmittel%20und%20Wasserh%C3%A4rte&amp;view=compact">Spülmittel und Wasserhärte</a> · <a href="/api/mcp-tools?category=Bodenstaubsaugerpflege&amp;view=compact">Bodenstaubsaugerpflege</a> · <a href="/api/mcp-tools?category=Dampfb%C3%BCgelger%C3%A4te&amp;view=compact">Dampfbügelgeräte</a> · <a href="/api/mcp-tools?category=Stabmixer%20und%20Zubeh%C3%B6r&amp;view=compact">Stabmixer und Zubehör</a> · <a href="/api/mcp-tools?category=Mikrowellenbelege&amp;view=compact">Mikrowellenbelege</a> · <a href="/api/mcp-tools?category=K%C3%BCchenwaagen&amp;view=compact">Küchenwaagen</a> · <a href="/api/mcp-tools?category=Wasserkocherbelege&amp;view=compact">Wasserkocherbelege</a> · <a href="/api/mcp-tools?category=Toasterbelege&amp;view=compact">Toasterbelege</a> · <a href="/api/mcp-tools?category=Fenstersauger&amp;view=compact">Fenstersauger</a></p></section>
 </article>
 <script type="module">
-import {indexCatalogue, findCatalogueTools, toolGuidePath} from '/assets/mcp-catalog-search.mjs?v=d278286dd232';
+import {indexCatalogue, findCatalogueTools, toolGuidePath} from '/assets/mcp-catalog-search.mjs?v=dad623cfee93';
 
 (() => {
   const catalog = document.getElementById('mcp-catalog');

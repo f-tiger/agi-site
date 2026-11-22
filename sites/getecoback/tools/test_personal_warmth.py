@@ -1,9 +1,11 @@
 from pathlib import Path
 import hashlib
+import html
 import json
 import re
 import unittest
-from personal_warmth import inject, FAQ
+from urllib.parse import parse_qs, urlsplit
+from personal_warmth import CHECKED, FAQ, METER_SOURCE, SHARE_TARGET, SHARE_TITLE, inject
 from build_agent_md import to_markdown
 from demand_tools import inject as inject_demand
 
@@ -27,6 +29,8 @@ class WarmthSurfaceTest(unittest.TestCase):
         nodes=[node for item in schema for node in item.get('@graph',[item])]
         faq=next(node for node in nodes if node.get('@type')=='FAQPage')
         self.assertEqual([q['acceptedAnswer']['text'] for q in faq['mainEntity']],[a for _,a in FAQ])
+        article=next(node for node in nodes if node.get('@type')=='Article')
+        self.assertEqual(article['dateModified'], CHECKED)
         restored=first.replace('</body>','<!--EB_POPUP-->zum Einschlafen gemacht<!--/EB_POPUP--></body>')
         self.assertEqual(first,inject(restored))
 
@@ -37,6 +41,21 @@ class WarmthSurfaceTest(unittest.TestCase):
             self.assertIn(evidence,md)
         self.assertNotIn('amazon.de',md)
         self.assertNotIn('tag=getecoback',md)
+        self.assertNotIn('reddit.com/submit',md)
         self.assertNotIn('<form',md)
         self.assertIn('https://getecoback.com/guide/homeoffice-warm-bleiben.html',md)
+        for evidence in (METER_SOURCE, 'vor dem Einschalten', 'einschließlich Aufheizen',
+                         'Anfangsstand vom Endstand ab', 'gemessenen kWh mit deinem Arbeitspreis'):
+            self.assertIn(evidence, md)
+
+    def test_static_answer_and_reddit_composer_use_canonical_fragment(self):
+        markup = (SITE / 'guide/heizdecke-stromverbrauch.html').read_text()
+        tool = markup.split('id="waerme-rechner"', 1)[1].split('</section>', 1)[0]
+        self.assertLess(tool.index('220 Wh = 0,22 kWh'), tool.index('<form hidden>'))
+        self.assertIn('rel="noopener noreferrer">Auf Reddit teilen</a>', tool)
+        share = re.search(r'href="(https://www.reddit.com/submit\?[^"]+)"', tool)[1]
+        url = urlsplit(html.unescape(share))
+        self.assertEqual((url.scheme, url.netloc, url.path), ('https', 'www.reddit.com', '/submit'))
+        self.assertEqual(parse_qs(url.query), {'url': [SHARE_TARGET], 'title': [SHARE_TITLE]})
+
 if __name__=='__main__':unittest.main()
