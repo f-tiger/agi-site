@@ -1,4 +1,4 @@
-import {laundry} from './laundry-math.mjs';
+import {laundry,laundryTariff} from './laundry-math.mjs?v=20261122';
 // Only fixed action names cross into the optional GA4 frame; never input values.
 export function laundryAction(name,m){
  if(name==='laundry_view'&&m.action==='view')return 'eco_laundry_view';
@@ -41,7 +41,8 @@ if(typeof document!=='undefined'){
  const annual=t(`Bei ${fmt(x.loads)} Ladungen pro Woche: Trockner ${m(r.annualDryer)}, Entfeuchter ${m(r.annualDehum)} pro Jahr.`,`At ${fmt(x.loads)} loads per week: dryer ${m(r.annualDryer)}, dehumidifier ${m(r.annualDehum)} per year.`);
  const threshold=r.breakEvenHours===null?'':t(`Strom-Gleichstand bei ${fmt(r.breakEvenHours)} Stunden mit ${fmt(x.watts)} W mittlerer Leistung. Nur bei gleicher Trocknung und demselben Tarif.`,`Energy break-even: ${fmt(r.breakEvenHours)} hours at ${fmt(x.watts)} W average power. Only with equivalent drying and the same tariff.`);
  const payback=x.purchase===0?t('Kein zusätzlicher Kaufpreis angesetzt. Das bedeutet nicht, dass ein neues Gerät kostenlos ist.','No extra purchase cost entered. This does not mean a new device is free.'):r.payback===null?t('Kein belastbarer Rückfluss des zusätzlichen Kaufpreises aus diesem Stromvergleich.','No supported payback for the extra purchase cost from this comparison.'):t(`Rechnerischer Rückfluss des zusätzlichen Kaufpreises: ${fmt(r.payback)} Jahre. Unveränderte Nutzung und Tarife vorausgesetzt; Lebensdauer nicht geprüft.`,`Simple payback of extra purchase cost: ${fmt(r.payback)} years. Assumes unchanged use and tariffs; service life is unknown.`);
- const formula=t(`Trockner ${fmt(r.dryer,4)} kWh × ${m(x.price)}/kWh. Entfeuchter ${fmt(r.dehum,4)} kWh × ${m(x.price)}/kWh. Jahreswerte werden vor der Rundung berechnet.`,`Dryer ${fmt(r.dryer,4)} kWh × ${m(x.price)}/kWh. Dehumidifier ${fmt(r.dehum,4)} kWh × ${m(x.price)}/kWh. Annual values use unrounded costs.`);
+ const tariff=laundryTariff(x.price,x.currency,en?'en-GB':'de-DE');
+ const formula=t(`Trockner ${fmt(r.dryer,4)} kWh × ${tariff}/kWh. Entfeuchter ${fmt(r.dehum,4)} kWh × ${tariff}/kWh. Jahreswerte werden vor der Rundung berechnet.`,`Dryer ${fmt(r.dryer,4)} kWh × ${tariff}/kWh. Dehumidifier ${fmt(r.dehum,4)} kWh × ${tariff}/kWh. Annual values use unrounded costs.`);
  for(const [attr,text] of Object.entries({provenance,verdict,annual,breakeven:threshold,payback,formula}))q('[data-'+attr+']').textContent=text;
  latest={x,r,provenance,verdict,annual,threshold,payback,formula};results.hidden=false;if(!window.__ecoToolExample)results.focus();q('[data-export-status]').textContent='';emit('laundry_compare','compare',x);
  }catch{q('[data-error]').textContent=t('Bitte gültige Werte prüfen. Trockner maximal 20 kWh je Ladung.','Check the values. Dryer consumption must not exceed 20 kWh per load.');}
