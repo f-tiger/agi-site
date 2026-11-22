@@ -19,12 +19,12 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUNDLE: ecoback-local-tools-1.22.1.mcpb
-  VERSION: '1.22.1'
-  UPSTREAM_SHA: 85eb695f96c0f79ef20ba9e1acaea213d4752c7a
+  BUNDLE: ecoback-local-tools-1.22.2.mcpb
+  VERSION: '1.22.2'
+  UPSTREAM_SHA: bbaed3c0c48bb93917b6327cc7a107e7be5a46c9
   NAME: io.github.f-tiger/ecoback-local-tools
   RELEASE_TAG: fleet-mcp-registry-2026-10-10
-  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.1.mcpb
+  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.2.mcpb
   REGISTRY_VERSIONS: https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions
   SOURCE_URL: https://github.com/f-tiger/getecoback-mcp
   MCPB_SCHEMA: https://raw.githubusercontent.com/modelcontextprotocol/mcpb/70fe3b34cd6dff1b3bba046638edc72a6467a4fb/schemas/mcpb-manifest-v0.3.schema.json
@@ -115,6 +115,12 @@ jobs:
             } and
             (.compact.laundryPrecision | type == "array" and length == 2 and
               all(.[]; . != "waesche_trocknungskosten" and (. == null or (type == "string" and length > 0)))) and
+            .compact.humidifierEfficiency == {
+              name:"befeuchter_nennwatt_abgabeleistung_bezug",
+              citationUrl:"https://getecoback.com/guide/luftbefeuchter-stromverbrauch.html",
+              guideUrl:"https://getecoback.com/guide/luftbefeuchter-stromverbrauch.html#effizienz-vergleichen",
+              independentMlPerWh:null, matchedExampleMlPerWh:3
+            } and
             .compact.n90Costs == {
               name:"pac_n90_energielabel_zu_stromkosten", ean:8004399512351, labelKwhPer60Min:0.9, coolingKw:2.5,
               labelEurPer60Min:0.27, measuredRunEur:0.36, measuredEurPerHour:0.24, unknownTariffEur:null
