@@ -19,12 +19,12 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUNDLE: ecoback-local-tools-1.22.19.mcpb
-  VERSION: '1.22.19'
-  UPSTREAM_SHA: 57aecd99509b3cec4b890a2eb7adabd6dec6a86c
+  BUNDLE: ecoback-local-tools-1.22.20.mcpb
+  VERSION: '1.22.20'
+  UPSTREAM_SHA: c7327447288e0e0727d9bf0d0c01a5b6faa103ca
   NAME: io.github.f-tiger/ecoback-local-tools
   RELEASE_TAG: fleet-mcp-registry-2026-10-10
-  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.19.mcpb
+  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.20.mcpb
   REGISTRY_VERSIONS: https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions
   SOURCE_URL: https://github.com/f-tiger/getecoback-mcp
   MCPB_SCHEMA: https://raw.githubusercontent.com/modelcontextprotocol/mcpb/70fe3b34cd6dff1b3bba046638edc72a6467a4fb/schemas/mcpb-manifest-v0.3.schema.json
@@ -227,6 +227,23 @@ jobs:
               ],
               rejected:3
             } and .compact.ttk75Point == .ttk75Point and
+            .coffeeFilter == {
+              name:"kaffeevollautomat_intenza_aquaclean_filterfamilie_modellpruefung",
+              guide:"https://getecoback.com/produkte.html#kaffee-wasserfilter",
+              exactPackSource:"https://acc.philips.de/c-p/CA6903_10/kalk-und-wasserfilter",
+              records:[
+                ["in_unterlagen_belegt",["AquaClean"]],
+                ["brita_fuer_dieses_geraet_ausgeschlossen",["AquaClean"]],
+                ["in_unterlagen_belegt",["TCZ7003","TCZ7033"]],
+                ["in_unterlagen_belegt",["TCZ7003","TCZ7033"]],
+                ["in_unterlagen_belegt",["DLSC002"]],
+                ["zuordnung_offen",null],
+                ["in_unterlagen_belegt",["AquaClean"]],
+                ["in_unterlagen_belegt",["AquaClean"]],
+                ["durch_gelesene_quellen_nicht_belegt",["TCZ7003","TCZ7033"]]
+              ],
+              rejected:3
+            } and .compact.coffeeFilter == .coffeeFilter and
             .compact.cellarBuyerEvidence == true and
             .compact.laundryComparison == {
               topMatch:"waesche_trocknungskosten", dryerEurPerLoad:0.6, dehumidifierEurPerLoad:0.3,
