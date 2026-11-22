@@ -19,12 +19,12 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUNDLE: ecoback-local-tools-1.22.4.mcpb
-  VERSION: '1.22.4'
-  UPSTREAM_SHA: f5253d90b058b18c77c93d2d0c1dc5130fb8a4fa
+  BUNDLE: ecoback-local-tools-1.22.5.mcpb
+  VERSION: '1.22.5'
+  UPSTREAM_SHA: 1a3d16aa006743c2c88cc50948dffc0f5273bcf4
   NAME: io.github.f-tiger/ecoback-local-tools
   RELEASE_TAG: fleet-mcp-registry-2026-10-10
-  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.4.mcpb
+  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.5.mcpb
   REGISTRY_VERSIONS: https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions
   SOURCE_URL: https://github.com/f-tiger/getecoback-mcp
   MCPB_SCHEMA: https://raw.githubusercontent.com/modelcontextprotocol/mcpb/70fe3b34cd6dff1b3bba046638edc72a6467a4fb/schemas/mcpb-manifest-v0.3.schema.json
@@ -123,6 +123,13 @@ jobs:
               unsupportedMatches:0, ambiguousMatches:0,
               exactMeaning:"akkutemperatur_zu_hoch_oder_zu_tief", unconfirmedMeaning:null
             } and
+            .windowCondensation == {
+              name:"fenster_oberflaeche_taucheck",
+              shareUrl:"https://getecoback.com/guide/fenster-beschlagen-innen.html#fenstersauger-gegen-kondenswasser",
+              measurements:[[12,-2,true,"unter_taupunkt"],[12,0,false,"nahe_am_taupunkt"],
+                [12,2,false,"ueber_taupunkt"],[23,-1,true,"nahe_am_taupunkt"],[23,1,false,"nahe_am_taupunkt"]],
+              missingSurfaceRejected:true
+            } and .compact.windowCondensation == .windowCondensation and
             .compact.glassvacTemperature == {
               name:"glassvac_kalt_lagern_einschalten_laden_getrennt",
               guideUrl:"https://getecoback.com/produkte.html#bosch-glassvac-einsatz-und-pflege",

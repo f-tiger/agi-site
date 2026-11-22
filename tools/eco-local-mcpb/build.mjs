@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.22.4';
-const revision = 'f5253d90b058b18c77c93d2d0c1dc5130fb8a4fa';
+const version = '1.22.5';
+const revision = '1a3d16aa006743c2c88cc50948dffc0f5273bcf4';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -24,7 +24,7 @@ const oldNames = [
   'klimaanlage_stromkosten', 'ratgeber_lesen', 'ratgeber_suche', 'taupunkt_lueften',
 ];
 const featureNames = ['entfeuchter_ablaufcheck', 'btu_empfehlung', 'fensterabdichtung_laenge',
-  'taupunkt_lueften', 'fenstersauger_170mm_abziehlippe_geraetefamilie'];
+  'taupunkt_lueften', 'fenstersauger_170mm_abziehlippe_geraetefamilie', 'fenster_oberflaeche_taucheck'];
 const entry = 'src/server.mjs';
 const legacyHelpers = fileURLToPath(new URL('../mcp-registry/local-packages/', import.meta.url));
 const sha256 = buffer => createHash('sha256').update(buffer).digest('hex');
@@ -39,6 +39,9 @@ const glassvacTemperatureTool = 'glassvac_kalt_lagern_einschalten_laden_getrennt
 const glassvacTemperatureGuide = windowGuide + '#bosch-glassvac-einsatz-und-pflege';
 const kaercherLedTool = 'fenstersauger_wv3_wv8_led_muster_einordnen';
 const kaercherLedGuide = windowGuide + '#kaercher-fenstersauger-einsatz-und-hinweise';
+const condensationTool = 'fenster_oberflaeche_taucheck';
+const condensationCitation = 'https://getecoback.com/guide/fenster-beschlagen-innen.html';
+const condensationGuide = condensationCitation + '#fenstersauger-gegen-kondenswasser';
 
 function readmeForExtraction(sourceReadme) {
   const heading = '\n## Connect\n\n';
@@ -172,6 +175,35 @@ async function verifyCellarResource(extracted,rpc,init) {
   return {uri:cellarUri,mimeType,textSha256:sha256(Buffer.from(text)),missingCode:missing.code};
 }
 
+async function verifyWindowCondensation(call) {
+  const room = {room_c:20,room_rh_pct:60};
+  const saturated = {room_c:23,room_rh_pct:100};
+  const cases = [
+    [{...room,surface_c:10},12,-2,true,'unter_taupunkt'],
+    [{...room,surface_c:12},12,0,false,'nahe_am_taupunkt'],
+    [{...room,surface_c:14},12,2,false,'ueber_taupunkt'],
+    [{...saturated,surface_c:22},23,-1,true,'nahe_am_taupunkt'],
+    [{...saturated,surface_c:24},23,1,false,'nahe_am_taupunkt'],
+  ];
+  const measurements = [];
+  for (const [args, dew, margin, possible, interpretation] of cases) {
+    const result = await call(args);
+    assert.equal(result.isError,false);
+    const data = result.structuredContent;
+    const values = [data.dew_point_c,data.surface_margin_c,data.condensation_possible,data.messlage];
+    assert.deepEqual(values,[dew,margin,possible,interpretation]);
+    assert.equal(data.citation_url,condensationCitation);
+    assert.equal(data.guide_url,condensationGuide);
+    assert.equal(data.share_url,condensationGuide);
+    assert.doesNotMatch(result.content[0].text,/https?:\/\/[^"\s]*(?:amazon\.|amzn\.)|[?&]tag=/i);
+    measurements.push(values);
+  }
+  const missingSurface = await call(room);
+  assert.equal(missingSurface.isError,true);
+  assert.equal(missingSurface.structuredContent,undefined);
+  return {name:condensationTool,shareUrl:condensationGuide,measurements,missingSurfaceRejected:true};
+}
+
 async function verifyStdio(extracted, manifest) {
   const {TOOLS} = await import(pathToFileURL(join(extracted,'src/tools.mjs')));
   const {expandedDefinitions} = await import(pathToFileURL(join(extracted,'src/eco-suite/src/mcp-expanded.mjs')));
@@ -230,7 +262,9 @@ async function verifyStdio(extracted, manifest) {
       const expectedGuide = exactWindowGuides.get(tool.name) ?? windowEvidence;
       assert.equal(example.structuredContent.guide_url, expectedGuide, tool.name);
     }
-    return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,
+    const windowCondensation = await verifyWindowCondensation(args =>
+      rpc('tools/call',{name:condensationTool,arguments:args}));
+    return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,windowCondensation,
       firstExamples:['btu_empfehlung','entfeuchter_ablaufcheck'],finder:verifyFinder(extracted,drain),
       lastPageExample:last.name,legacyNames:oldNames.length,network:'disabled'};
   });
@@ -679,6 +713,16 @@ async function verifyCompactStdio(extracted) {
     const humidifierEfficiency = await verifyCompactHumidifierEfficiency(rpc,finder,runner);
     const glassvacTemperature = await verifyCompactGlassvacTemperature(rpc,finder,runner);
     const windowSubject = await verifyCompactWindowSubject(rpc,finder,runner);
+    const condensation = await rpc('tools/call',{
+      name:finder,arguments:{frage:'Fenstersauger gegen Kondenswasser'},
+    });
+    assert.equal(condensation.isError,false);
+    const [match] = condensation.structuredContent.tools;
+    assert.equal(match?.name,condensationTool);
+    assert.equal(match.citation_url,condensationCitation);
+    assert.equal(match.guide_url,condensationGuide);
+    const windowCondensation = await verifyWindowCondensation(eingaben =>
+      rpc('tools/call',{name:runner,arguments:{name:condensationTool,eingaben}}));
     const n90Costs = await verifyCompactN90Costs(rpc,finder,runner);
     const tadoOventrop = await verifyCompactTadoOventrop(rpc,finder,runner);
     const householdDecisions = await verifyCompactHouseholdDecisions(rpc,runner);
@@ -687,7 +731,7 @@ async function verifyCompactStdio(extracted) {
     const windowLookup = await verifyCompactWindowLookup(rpc,finder);
     return {
       tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,
-      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,laundryPrecision,windowBlade,windowLookup,windowWidth,householdDecisions,tadoOventrop,n90Costs,humidifierEfficiency,glassvacTemperature,windowSubject,
+      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,laundryPrecision,windowBlade,windowLookup,windowWidth,householdDecisions,tadoOventrop,n90Costs,humidifierEfficiency,glassvacTemperature,windowSubject,windowCondensation,
     };
   });
 }
@@ -748,6 +792,7 @@ try {
   assert.ok(!archivedReadme.includes(digest),'The bundled README must not embed its own checksum');
   const result = await verifyStdio(extracted,actualManifest);
   result.compact = await verifyCompactStdio(extracted);
+  assert.deepEqual(result.windowCondensation,result.compact.windowCondensation);
   assert.deepEqual(result.resource,result.compact.resource);
   result.archiveReadme = {replacedVersion:readme.previousVersion,registryLatestUrl};
   const identifier = `${releaseUrl}/${file}`;
