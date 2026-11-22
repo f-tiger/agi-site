@@ -92,6 +92,51 @@ const root=path.resolve(__dirname,'../site'),origin='https://getecoback.com',rou
   assert(await boschPage.evaluate(()=>window.fixedEvents.filter(event=>event.name.startsWith('eco_valve')).every(event=>Object.keys(event).join(',')==='name')));
   checks+=2;
   await boschContext.close();
+  const fritzContext=await context({viewport:{width:390,height:844}});
+  const fritzPage=await fritzContext.newPage();
+  const fritzShare=origin+routePath+'#ventilcheck=fritz-302:danfoss-ravl';
+  await fritzPage.goto(fritzShare);
+  await fritzPage.locator('[data-valve-check][data-ready=true]').waitFor();
+  const fritzModel=fritzPage.locator('[name=valve-model]'),fritzValve=fritzPage.locator('[name=valve-connection]');
+  const fritzResult=fritzPage.locator('[data-valve-result]');
+  assert.equal(await fritzModel.inputValue(),'fritz-302');
+  assert.equal(await fritzValve.inputValue(),'danfoss-ravl');
+  assert.deepEqual(await fritzPage.evaluate(()=>window.fixedEvents.filter(event=>event.name.startsWith('eco_valve'))),[]);
+  checks+=3;
+  async function assertFritzSource(){
+   const manufacturer=new URL(await fritzResult.locator('a[data-valve-official]').getAttribute('href'));
+   assert.equal(manufacturer.protocol,'https:');
+   assert.match(manufacturer.hostname,/(^|\.)(?:avm\.de|fritz\.com)$/);checks+=2;
+  }
+  for(const selected of ['danfoss-ravl','danfoss-ra','danfoss-rav']){
+   await fritzValve.selectOption(selected);
+   const copy=await fritzResult.innerText();
+   assert.equal(await fritzResult.getAttribute('data-status'),'adapter');checks++;
+   await assertFritzSource();
+   if(selected==='danfoss-ra'){
+    assert.match(copy,/liegt bei|enthalten|beiliegend|mitgeliefert/i);checks++;
+   }else{
+    assert.match(copy,/separat|nicht im Lieferumfang|nicht mitgeliefert/i);
+    assert.deepEqual((copy.match(/\b\d{8,14}\b/g)||[]).filter(number=>number!=='20003120'),[]);checks+=2;
+   }
+   if(selected==='danfoss-rav'){assert.match(copy,/Stift|Verlängerung|Stößel|\bPin\b/i);checks++;}
+  }
+  for(const selected of ['unknown','heimeier-m30']){
+   await fritzValve.selectOption(selected);
+   assert.equal(await fritzResult.getAttribute('data-status'),'unverified');
+   assert.doesNotMatch(await fritzResult.innerText(),/8750002600|4062321692636/);checks+=2;
+   await assertFritzSource();
+  }
+  await fritzValve.selectOption('danfoss-ravl');
+  await fritzPage.locator('[data-valve-share]').click();
+  assert.deepEqual(await fritzPage.evaluate(()=>window.copied),[fritzShare]);
+  await fritzModel.selectOption('bosch-ii-m');
+  assert.equal(await fritzValve.inputValue(),'danfoss-ravl');
+  assert.match(await fritzResult.innerText(),/liegt bei|enthalten|beiliegend|mitgeliefert/i);
+  assert.match(new URL(await fritzResult.locator('a[data-valve-official]').getAttribute('href')).hostname,/(^|\.)bosch-smarthome\.com$/);
+  assert(await fritzPage.evaluate(()=>window.fixedEvents.filter(event=>event.name.startsWith('eco_valve')).every(event=>Object.keys(event).join(',')==='name')));
+  checks+=5;
+  await fritzContext.close();
   const nojs=await context({javaScriptEnabled:false,viewport:{width:320,height:844}}),fallback=await nojs.newPage();await fallback.goto(origin+routePath);
   assert.notEqual(await fallback.locator('[data-valve-check] details').getAttribute('open'),null);assert(await fallback.locator('[data-valve-check] details tbody th,[data-valve-check] details tbody td').evaluateAll(cells=>cells.every(cell=>{const r=cell.getBoundingClientRect();return r.width>0&&r.left>=0&&r.right<=innerWidth;})));checks+=2;assert.equal(await fallback.locator('[data-valve-controls]').isVisible(),false);assert.equal(await fallback.locator('[data-winter-tool=thermostat] form').isVisible(),false);checks++;assert.equal(await fallback.locator('[data-valve-check] details table tbody tr').count(),6);assert.match(await fallback.locator('[data-valve-check]').innerText(),/Keine eigenen Montage/);assert(await fallback.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));checks+=4;
   const boschAnchor='#bosch-ii-m-danfoss-adapter';
@@ -109,6 +154,22 @@ const root=path.resolve(__dirname,'../site'),origin='https://getecoback.com',rou
   assert((composer.searchParams.get('title')||'').trim());
   assert(await fallback.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
   checks+=16;
+  const fritzAnchor='#fritz-302-danfoss-adapter';
+  await fallback.goto(origin+routePath+fritzAnchor);
+  const fritzAnswer=fallback.locator(fritzAnchor);
+  assert(await fritzAnswer.getByRole('heading').first().isVisible());
+  const fritzText=await fritzAnswer.innerText();
+  for(const evidence of [/20003120/,/FRITZ!DECT\s*302/,/Danfoss RA\b/,/Danfoss RAV\b/,/Danfoss RAVL\b/,/Stift|Verlängerung|Stößel|\bPin\b/])assert.match(fritzText,evidence);
+  assert.doesNotMatch(fritzText,/8750002600|4062321692636/);
+  const fritzReddit=fritzAnswer.locator('a[href^="https://www.reddit.com/submit?"]');
+  assert(await fritzReddit.isVisible());
+  const fritzComposer=new URL(await fritzReddit.getAttribute('href'));
+  assert.equal(fritzComposer.origin+fritzComposer.pathname,'https://www.reddit.com/submit');
+  assert.equal(fritzComposer.searchParams.get('url'),origin+routePath+fritzAnchor);
+  assert.deepEqual([...fritzComposer.searchParams.keys()].sort(),['title','url']);
+  assert((fritzComposer.searchParams.get('title')||'').trim());
+  assert(await fallback.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+  checks+=14;
   await nojs.close();
   console.log(`PASS thermostat fit: ${checks} browser checks; sourced branches, preserved payback, no-input selectors, copy success/failure, opt-out, no payloads, no-JS, 320/390/1280px.`);
  }finally{await browser.close();}

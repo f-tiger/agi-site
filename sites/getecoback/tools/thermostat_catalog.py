@@ -44,7 +44,7 @@ def buyer_start():
             '<li><a href="#eb-thermostat-products"><strong>Ich kenne mein vorhandenes System</strong>'
             ' <span>tado° X, Bosch II [+M] oder FRITZ! 302 samt benötigter Zentrale vergleichen.</span></a></li>'
             '<li><a href="#ventilcheck"><strong>Ich bin beim Ventil unsicher</strong>'
-            ' <span>Modell und Anschluss klären. tado° V3+ und Bosch II [+M] nach ihren jeweiligen Herstellerunterlagen prüfen.</span></a></li>'
+            ' <span>Modell und Anschluss klären. Prüfe tado° V3+, Bosch II [+M] und FRITZ! 302 anhand der jeweiligen Herstellerunterlagen.</span></a></li>'
             '<li><a href="#thermostat-paketkosten"><strong>Ich möchte die Gesamtkosten prüfen</strong>'
             ' <span>Köpfe, fehlende Zentrale und Adapter zählen; danach mit eigener Sparannahme rechnen.</span></a></li>'
             '<li><a href="#thermostat-behalten"><strong>Mein bisheriger Kopf reicht vielleicht</strong>'
@@ -60,6 +60,10 @@ def render(today=None, data=None):
     age = ((today or dt.datetime.now(dt.timezone.utc).date()) - dt.date.fromisoformat(data['checked'])).days
     fresh = 0 <= age <= data['max_age_days']
     rows, cards = [], []
+    adapter_checks = {
+        'bosch-ii-m': '<p><a href="#bosch-ii-m-danfoss-adapter">Für Bosch II [+M]: Danfoss RA, RAV und RAVL abgleichen</a></p>',
+        'fritz-302': '<p><a href="#fritz-302-danfoss-adapter">Für FRITZ! 302: Danfoss-Adapter und Lieferumfang prüfen</a></p>',
+    }
     for item in data['products']:
         target = 'thermostat-' + item['id']
         rows.append(f'<tr><th scope="row"><a href="#{target}">{e(item["name"])}</a></th><td>{e(item["role"])}</td><td>{e(item["system"])}</td></tr>')
@@ -70,8 +74,7 @@ def render(today=None, data=None):
         if fresh and item['status'] == 'verified':
             href = 'https://www.amazon.de/s?k=' + quote_plus(item['query']) + '&tag=getecoback-21'
             action = f'<p class="tc-commerce"><small>Anzeige · Modellsuche, kein geprüftes Einzelangebot.</small><a data-winter-shop href="{e(href, quote=True)}" target="_blank" rel="sponsored nofollow noopener">{e(item["name"])} bei Amazon.de suchen →</a></p>'
-        adapter_check = ('<p><a href="#bosch-ii-m-danfoss-adapter">Für Bosch II [+M]: Danfoss RA, RAV und RAVL abgleichen</a></p>'
-                         if item['id'] == 'bosch-ii-m' else '')
+        adapter_check = adapter_checks.get(item['id'], '')
         cards.append(f'<section class="tc-card" id="{target}" aria-labelledby="{target}-title"><h3 id="{target}-title">{e(item["name"])}</h3>'
                      f'<p class="tc-role">{e(item["role"])}</p><dl><dt><strong>System: </strong></dt><dd><p> {e(item["system"])}</p></dd>'
                      f'<dt><strong>Paket und Zusatzkauf: </strong></dt><dd><p> {e(item["package"])}</p></dd><dt><strong>Betrieb und Funktionen: </strong></dt><dd><p> {e(item["care"])}</p></dd></dl>'

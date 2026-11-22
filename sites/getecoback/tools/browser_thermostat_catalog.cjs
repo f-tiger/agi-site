@@ -25,7 +25,7 @@ const routePath = '/guide/smarte-heizkoerperthermostate-lohnen-sich.html';
       await page.goto(origin + routePath + '#eb-thermostat-products');
       const start = page.locator('#thermostat-start');
       assert.equal(await start.locator('.tc-routes a').count(),4);
-      assert.match(await start.innerText(), /tado° V3\+ und Bosch II \[\+M\] nach ihren jeweiligen Herstellerunterlagen/);
+      assert.match(await start.innerText(), /tado° V3\+, Bosch II \[\+M\] und FRITZ! 302 anhand der jeweiligen Herstellerunterlagen/);
       for (const width of [320,390]) {
         await page.setViewportSize({width,height:844});
         for (const target of ['eb-thermostat-products','ventilcheck','thermostat-paketkosten','thermostat-behalten']) {
@@ -41,13 +41,19 @@ const routePath = '/guide/smarte-heizkoerperthermostate-lohnen-sich.html';
       const catalog = page.locator('#eb-thermostat-products');
       assert(await catalog.isVisible());
       assert.equal(await catalog.locator('.tc-card').count(),3);
-      await catalog.locator('#thermostat-bosch-ii-m a[href="#bosch-ii-m-danfoss-adapter"]').click();
-      await page.waitForTimeout(600);
-      assert.equal(new URL(page.url()).hash,'#bosch-ii-m-danfoss-adapter');
-      const detailBox=await page.locator('#bosch-ii-m-danfoss-adapter').boundingBox();
-      const navBox=await page.locator('nav.eb-nav').boundingBox();
-      assert(detailBox && navBox && detailBox.y>=navBox.y+navBox.height+8 && detailBox.y<400,
-             'Bosch adapter heading obscured on mobile: '+JSON.stringify({detailBox,navBox}));
+      for(const width of [320,390]){
+        await page.setViewportSize({width,height:844});
+        for(const [card,section] of [['bosch-ii-m','bosch-ii-m-danfoss-adapter'],['fritz-302','fritz-302-danfoss-adapter']]){
+          const target='#'+section;
+          await catalog.locator('#thermostat-'+card+' a[href="'+target+'"]').click();
+          assert.equal(new URL(page.url()).hash,target);
+          await page.waitForFunction(target=>{
+            const heading=document.querySelector(target+' h3')?.getBoundingClientRect();
+            const nav=document.querySelector('nav.eb-nav')?.getBoundingClientRect();
+            return !!heading&&!!nav&&heading.top>=nav.bottom+8&&heading.bottom<=innerHeight;
+          },target);
+        }
+      }
       eligibleSearches=await assertCatalogCommerce(catalog,thermostatSpec,data,today);
       assert.match(await catalog.innerText(), /V3\+.*nicht miteinander kompatibel/);
       assert.match(await catalog.innerText(), /vorhandene Köpfe weiter nutzen/);

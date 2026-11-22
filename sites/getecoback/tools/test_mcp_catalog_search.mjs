@@ -27,9 +27,9 @@ test('the browser loads the current catalogue search module', async () => {
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 223);
+  assert.equal(withGuides.length, 224);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 21);
+  assert.equal(destinations.size, 22);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);
@@ -598,5 +598,41 @@ test('individual laundry dehumidifier costs match the buyer question on the web 
     assert.deepEqual((await catalogue({q,tool:name})).tools,[],q);
     assert.ok(!names(findCatalogueTools(compact,{query:q})).includes(name),q);
   }
+  assert.equal(analytics,0);
+});
+
+test('FRITZ! 302 Danfoss valve questions reach the German adapter table and keep firmware and other heads separate',async()=>{
+  const name='fritz_302_danfoss_adapter';
+  const guide='/guide/smarte-heizkoerperthermostate-lohnen-sich.html#fritz-302-danfoss-adapter';
+  for (const q of [
+    'Welcher Adapter liegt meinem FRITZ!Smart Thermo 302 für ein Danfoss RA Ventil bei?',
+    'Passt der beiliegende RA-Adapter meines FRITZ!Smart Thermo 302 an ein Danfoss RAV oder RAVL?',
+    'Ich habe den FRITZ!DECT 302. Welchen Adapter brauche ich? Ich erkenne mein Ventil nicht.',
+    'FRITZ Thermostat 302: Ist mein RAVL mit 25,5 mm dabei?',
+    'Artikel 20003120 am RAV: Ist der Pin im Paket enthalten?',
+    'FRITZ!DECT 302 mit Ventil von Danfoss RAV, was muss separat zum Gerät gekauft werden?',
+  ]) {
+    const {tools}=await catalogue({q,view:'compact',limit:'3'});
+    assert.equal(tools[0]?.name,name,q);
+    assert.equal(findCatalogueTools(compact,{query:q})[0]?.name,name,q);
+    assert.equal(toolGuidePath(tools[0]),guide);
+    assert.ok(!names(tools).some(result=>['fritz_302_router_firmware_mindeststand','tado_x_oventrop_ventiladapter_pruefen'].includes(result)),q);
+    assert.deepEqual((await catalogue({q,category:'Raumklima',tool:name})).tools,[],q);
+  }
+  for (const q of [
+    'Welche Firmware benötigt meine FRITZ!Box mit dem FRITZ!Smart Thermo 302?',
+    'Welcher Adapter passt für mein Bosch Heizkörperthermostat II auf Danfoss RAVL?',
+    'Tado X auf Danfoss RAV, welcher Adapter ist nötig?',
+    'FRITZ!DECT 301 oder FRITZ!DECT 302 – welcher Danfoss-Adapter gilt für beide?',
+    'Welchen USB-Adapter braucht die FRITZ!DECT 302?',
+    'Welche Batterien braucht mein FRITZ!Smart Thermo 302 an Danfoss RA?',
+    'Wie programmiere ich einen Zeitplan am FRITZ!Smart Thermo 302 mit Danfoss RA?',
+    'Danfoss RAV und RAVL: Welche Heizthermostate kann ich anbauen?',
+  ]) {
+    assert.deepEqual((await catalogue({q,tool:name})).tools,[],q);
+    assert.ok(!names(findCatalogueTools(compact,{query:q})).includes(name),q);
+  }
+  const firmware='Welche Firmware benötigt meine FRITZ!Box mit dem FRITZ!Smart Thermo 302?';
+  assert.equal((await catalogue({q:firmware,view:'compact'})).tools[0]?.name,'fritz_302_router_firmware_mindeststand');
   assert.equal(analytics,0);
 });

@@ -73,6 +73,8 @@ class CatalogTests(unittest.TestCase):
         self.assertIn('8750002861', md)
         self.assertIn('4062321692636', md)
         self.assertIn('#bosch-ii-m-danfoss-adapter', md)
+        self.assertIn('#fritz-302-danfoss-adapter', md)
+        self.assertIn('?market=de-de', md)
         self.assertNotIn('SystemBridge', md)
         self.assertNotIn('amazon.de/', md)
         self.assertNotIn('getecoback-21', md)
@@ -82,7 +84,7 @@ class CatalogTests(unittest.TestCase):
         html = (catalog.ROOT / 'site/guide' / (catalog.SLUG + '.html')).read_text()
         self.assertEqual(html.count('id="eb-thermostat-products"'), 1)
         self.assertLess(html.index('id="thermostat-start"'), html.index('id="ventilcheck"'))
-        for target in ['eb-thermostat-products', 'ventilcheck', 'thermostat-paketkosten', 'thermostat-behalten', 'bosch-ii-m-danfoss-adapter']:
+        for target in ['eb-thermostat-products', 'ventilcheck', 'thermostat-paketkosten', 'thermostat-behalten', 'bosch-ii-m-danfoss-adapter', 'fritz-302-danfoss-adapter']:
             self.assertIn('href="#' + target + '"', html)
             self.assertEqual(html.count('id="' + target + '"'), 1)
         for p in catalog.load()['products']:
