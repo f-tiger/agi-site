@@ -27,7 +27,7 @@ import {readQuoteSignals} from '../../lib/quote-signals.js';
 // 口径与 scripts/traffic-truth.mjs 的真人线 A 一致:ev='' 且来源域非空 = 可归因真人;
 // 无来源的直接访问不计（那是本站被扫描的主要形态）,/__ 开头的自测路径不计。
 import {readCommercialTriggers} from '../../lib/commercial-triggers.js';
-import {HUMAN, EVENT_ROWS} from '../../lib/hits-schema.js';
+import {HUMAN, EVENT_ROWS, NON_LOCAL_REFERRAL, REFERRED_PAGEVIEW_DEFINITION} from '../../lib/hits-schema.js';
 import {createReachCache} from '../../lib/reach-cache.js';
 import {readConversionStages} from '../../lib/conversion-stages.js';
 export const K_COUNTRY = 5;
@@ -79,12 +79,14 @@ export async function onRequestGet(ctx) {
 // 真人线 A 的公共谓词 HUMAN 在 lib/hits-schema.js:它的前三项必须与 hits_referred 部分索引逐字相同,
 // 否则 SQLite 不用那个索引、退回整表扫描。ref 已是 hostname;自家域在 hit.js 入库时就清空了,谓词里再挡一次。
 export async function computeReach(env, days) {
-  const since = new Date(Date.now() - days * 86400000).toISOString().slice(0, 10);
-  const today = new Date().toISOString().slice(0, 10);
+  const now = Date.now();
+  const since = new Date(now - days * 86400000).toISOString().slice(0, 10);
+  const today = new Date(now).toISOString().slice(0, 10);
   try {
     const q = (sql, ...params) => env.HITS.prepare(sql).bind(...params).all().then((r) => (r && r.results) || []);
     const [total, paths, referrers, aiRefs, events, subsNew, subsAll, adsRows, countryRows, subsByStatus, checkoutByState, web3Rows, watchRows, wbOrderRows, videoOrders, proofkitOrders, claimRows, attRows] = await Promise.all([
-      q(`SELECT count(*) n FROM hits WHERE d >= ? AND ${HUMAN}`, since),
+      q(`SELECT count(*) n, count(*) FILTER (WHERE d < ? AND ${NON_LOCAL_REFERRAL}) complete_referred
+        FROM hits WHERE d >= ? AND ${HUMAN}`, today, since),
       q(`SELECT path, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} GROUP BY path ORDER BY n DESC, path LIMIT 400`, since),
       q(`SELECT ref, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} GROUP BY ref ORDER BY n DESC, ref LIMIT 30`, since),
       // AI 助手引流:雷达里「AI 引用第一次转化为点击」那条信号的数据源（原来指向一个从未存在的快照文件）
@@ -127,8 +129,13 @@ export async function computeReach(env, days) {
       window_days: days, since, until: today,
       definition: "ev='' AND ref != '' — client-reported external-referrer page-view events; not verified humans, unique visitors, search-engine clicks or conversions. Direct/no-referrer visits and /__ self-test paths excluded. Historical rows can contain automated visits or repeated loads; no row-level data.",
       crawler_measurement: crawlerMeasurement,
-      measurement_note: 'Legacy humans_referred is an event count, not a person count. The since/until dates include the current partial UTC day. GSC uses a different reporting time zone and settled-date window; do not divide these counts to claim channel conversion rates.',
+      measurement_note: 'Legacy humans_referred and the path/referrer/country breakdowns include the current partial UTC day and may include historical local test referrers. For date-aligned comparison use referred_pageviews_complete_utc. GSC uses a different reporting time zone and settled-date window.',
       humans_referred: (total[0] && total[0].n) || 0,
+      referred_pageviews_complete_utc: {
+        count: total[0]?.complete_referred ?? null,
+        window: { start: since, end_exclusive: today, complete_days: days, date_basis: 'UTC' },
+        definition: REFERRED_PAGEVIEW_DEFINITION,
+      },
       paths, referrers, ai_referrals: aiRefs,
       events: Object.fromEntries(events.map((r) => [r.ev, r.n])),
       submissions: { new: subsNew[0] ? subsNew[0].n : null, total: subsAll[0] ? subsAll[0].n : null },

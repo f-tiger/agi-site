@@ -1,10 +1,49 @@
 {
-  "generated": "2026-11-20",
+  "generated": "2026-11-21",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 106,
-  "fetched_fail": 21,
-  "pending": 16,
+  "fetched_ok": 107,
+  "fetched_fail": 20,
+  "pending": 14,
   "items": [
+    {
+      "slug": "exa",
+      "url": "https://exa.ai/pricing",
+      "confirmed": "2026-11-21",
+      "first_seen": "2026-11-20",
+      "added": [
+        "$15,000",
+        "100s",
+        "1b",
+        "500s",
+        "70m"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-13"
+    },
+    {
+      "slug": "bolt",
+      "url": "https://support.bolt.new",
+      "confirmed": "2026-11-21",
+      "first_seen": "2026-11-20",
+      "added": [
+        "236b",
+        "6b"
+      ],
+      "removed": [],
+      "checked_then": "2026-09-21"
+    },
+    {
+      "slug": "pixverse",
+      "url": "https://pixverse.ai",
+      "confirmed": "2026-11-21",
+      "first_seen": "2026-11-20",
+      "added": [
+        "10月",
+        "9月"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-02"
+    },
     {
       "slug": "framer",
       "url": "https://framer.com/pricing",
@@ -263,18 +302,6 @@
       "checked_then": "2026-08-03"
     },
     {
-      "slug": "bolt",
-      "url": "https://support.bolt.new",
-      "confirmed": "2026-11-13",
-      "first_seen": "2026-11-12",
-      "added": [],
-      "removed": [
-        "5432b",
-        "616b"
-      ],
-      "checked_then": "2026-09-21"
-    },
-    {
       "slug": "continue",
       "url": "https://github.com/continuedev/continue",
       "confirmed": "2026-11-12",
@@ -405,17 +432,6 @@
       ],
       "removed": [],
       "checked_then": "2026-09-25"
-    },
-    {
-      "slug": "exa",
-      "url": "https://exa.ai/pricing",
-      "confirmed": "2026-11-06",
-      "first_seen": "2026-11-05",
-      "added": [
-        "$12,000"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-13"
     },
     {
       "slug": "gaoding",

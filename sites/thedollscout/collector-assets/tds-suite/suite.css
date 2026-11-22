@@ -30,3 +30,5 @@
   .tds-suite-head .tds-suite-note { width: fit-content; }
   .tds-suite-workspace, .tds-suite-directory form { grid-template-columns: minmax(0,1fr); }
 }
+
+[data-tds-buyer-guide][hidden] { display: none; }

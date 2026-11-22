@@ -1,0 +1,374 @@
+import assert from 'node:assert/strict';
+import {execFileSync, spawn, spawnSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import {mkdir, mkdtemp, readFile, readdir, rm, writeFile} from 'node:fs/promises';
+import {tmpdir} from 'node:os';
+import {join, resolve} from 'node:path';
+import {createInterface} from 'node:readline';
+import {fileURLToPath, pathToFileURL} from 'node:url';
+
+const id = 'ecoback-local-tools';
+const version = '1.17.5';
+const revision = '62aa4ea7f759a1be459c10fe262df05cdb444a7b';
+const sourceRepository = 'f-tiger/getecoback-mcp';
+const releaseTag = 'fleet-mcp-registry-2026-10-10';
+const name = 'io.github.f-tiger/' + id;
+const title = 'EcoBack Local Household Tools';
+const description = 'German household tools with offline examples and optional public guide and weather lookup.';
+const sourceUrl = 'https://github.com/' + sourceRepository;
+const releaseUrl = `https://github.com/f-tiger/agi-site/releases/download/${releaseTag}`;
+const registryVersionsUrl = `https://registry.modelcontextprotocol.io/v0.1/servers/${encodeURIComponent(name)}/versions`;
+const registryLatestUrl = `${registryVersionsUrl}/latest`;
+const oldNames = [
+  'btu_empfehlung', 'fensterabdichtung_laenge', 'heizleistung_watt', 'hitzewelle_vorschau',
+  'klimaanlage_stromkosten', 'ratgeber_lesen', 'ratgeber_suche', 'taupunkt_lueften',
+];
+const featureNames = ['entfeuchter_ablaufcheck', 'btu_empfehlung', 'fensterabdichtung_laenge', 'taupunkt_lueften'];
+const entry = 'src/server.mjs';
+const legacyHelpers = fileURLToPath(new URL('../mcp-registry/local-packages/', import.meta.url));
+const sha256 = buffer => createHash('sha256').update(buffer).digest('hex');
+const writeJson = (path, value) => writeFile(path, JSON.stringify(value, null, 2) + '\n');
+const drainArguments = {drain:'level_or_uphill',model:'meaco-one-20'};
+const cellarUri = 'ecoback://evidence/de/kellerentfeuchter';
+const laundryComparisonTool = 'waesche_trocknungskosten';
+
+function readmeForExtraction(sourceReadme) {
+  const heading = '\n## Connect\n\n';
+  const terminalDetails = '\n\n<details>\n<summary>Run the downloaded bundle from a terminal</summary>';
+  const sections = sourceReadme.split(heading);
+  assert.equal(sections.length,2,'Expected one Connect section in the source README');
+  const [introduction, connect] = sections;
+  const connectParts = connect.split(terminalDetails);
+  assert.equal(connectParts.length,2,'Expected terminal details after the source download instructions');
+  const [install, remainder] = connectParts;
+  const paragraphs = install.split('\n\n');
+  assert.equal(paragraphs.length,3,'Expected the source download, install and checksum paragraphs');
+  const [download, instructions, receipt] = paragraphs;
+  const previousVersion = download.match(/^\*\*\[EcoBack MCPB (\d+\.\d+\.\d+) herunterladen\]/)?.[1];
+  assert.ok(previousVersion,'Expected a versioned download pointer');
+  const directUrl = `${releaseUrl}/${id}-${previousVersion}.mcpb`;
+  const exactRegistryUrl = `${registryVersionsUrl}/${previousVersion}`;
+  const digest = receipt.match(/`([a-f0-9]{64})`/)?.[1];
+  assert.ok(digest,'Expected a SHA-256 in the source download instructions');
+  assert.equal(download,`**[EcoBack MCPB ${previousVersion} herunterladen](${directUrl})**`);
+  assert.equal(instructions, [
+    'Öffne die heruntergeladene `.mcpb`-Datei über die MCPB-Installation deines Clients.',
+    'Für den lokalen Betrieb brauchst du Node.js 22 oder neuer. Berechnungen laufen',
+    'lokal. Nur auf Anfrage ruft EcoBack Wetterdaten oder ausgewählte Ratgeber ab.',
+  ].join('\n'));
+  assert.equal(receipt, [
+    'SHA-256 der verlinkten Datei',
+    '`' + digest + '`.',
+    `[Registrierte Version ${previousVersion}](${exactRegistryUrl})`,
+    `· [Aktuellste Version im offiziellen MCP Registry](${registryLatestUrl}).`,
+  ].join('\n'));
+
+  const extractedInstructions = [
+    'Starte `node src/server.mjs` im entpackten EcoBack-Ordner. In einem MCP-Client',
+    'kannst du `node` mit dem absoluten Pfad zu `src/server.mjs` als Argument',
+    'eintragen. Der lokale Betrieb benötigt Node.js 22 oder neuer.',
+    '',
+    'Berechnungen laufen lokal. Nur auf Anfrage ruft EcoBack Wetterdaten oder',
+    'ausgewählte Ratgeber ab.',
+    '',
+    `[Aktuellste Version im offiziellen MCP Registry](${registryLatestUrl}).`,
+  ].join('\n');
+  const text = introduction + heading + extractedInstructions + terminalDetails + remainder;
+  return {text, previousVersion, obsoleteInstallPointers:[directUrl,exactRegistryUrl,digest]};
+}
+
+function verifyFinder(extracted, drain) {
+  const find = (...args) => spawnSync(process.execPath, [
+    '--import',join(legacyHelpers,'deny-network.mjs'),join(extracted,'src/find-tools.mjs'),...args,
+  ], {cwd:extracted,encoding:'utf8',timeout:10000});
+  const output = (...args) => {
+    const child = find(...args);
+    assert.equal(child.error,undefined);
+    assert.equal(child.status,0,child.stderr);
+    return JSON.parse(child.stdout);
+  };
+  const drainage = 'entfeuchter_ablaufcheck';
+  const shower = 'dusche_zeit_bei_wasserbudget';
+  const first = output('Kann ich den Abflussschlauch nach oben führen?').tools[0];
+  assert.equal(first.name,drainage);
+  assert.equal(first.citation_url,drain.structuredContent.citation_url);
+  assert.equal(first.guide_url,drain.structuredContent.guide_url);
+  assert.deepEqual(first.example_arguments,drainArguments);
+  assert.deepEqual(output('--example',drainage),{name:drainage,example_arguments:drainArguments,result:drain});
+  const showerResult = output('--example',shower);
+  assert.equal(showerResult.name,shower);
+  assert.equal(showerResult.result.isError,false);
+  assert.equal(showerResult.result.structuredContent.maximale_minuten,8);
+  const rejected = find('--example','hitzewelle_vorschau');
+  assert.equal(rejected.error,undefined);
+  assert.equal(rejected.status,2);
+  assert.equal(rejected.stdout,'');
+  assert.match(rejected.stderr,/reviewed local example/);
+  return {topMatch:first.name,examples:[drainage,shower],liveExampleRejected:true};
+}
+
+async function withStdio(extracted, flags, verify) {
+  const child = spawn(process.execPath, [
+    '--import',join(legacyHelpers,'deny-network.mjs'),join(extracted,entry),...flags,
+  ], {cwd:extracted,stdio:['pipe','pipe','inherit'],timeout:30000});
+  const output = createInterface({input:child.stdout});
+  const lines = output[Symbol.asyncIterator]();
+  let id = 0;
+  async function rpc(method, params={}, errorCode) {
+    child.stdin.write(JSON.stringify({jsonrpc:'2.0',id:++id,method,params})+'\n');
+    const {done,value} = await lines.next();
+    assert.ok(!done, `Local MCP closed during ${method}`);
+    const message = JSON.parse(value);
+    assert.equal(message.jsonrpc,'2.0');
+    assert.equal(message.id,id);
+    if (errorCode === undefined) {
+      assert.equal(message.error,undefined,method);
+      return message.result;
+    }
+    assert.equal(message.error?.code,errorCode,method);
+    assert.equal(message.result,undefined,method);
+    return message.error;
+  }
+
+  try {
+    const init = await rpc('initialize',{
+      protocolVersion:'2025-06-18',capabilities:{},clientInfo:{name:'ecoback-bundle-check',version:'1'},
+    });
+    assert.deepEqual(init.serverInfo,{name:'getecoback-raumklima',version});
+    assert.ok(init.capabilities.tools);
+    child.stdin.write('{"jsonrpc":"2.0","method":"notifications/initialized"}\n');
+    const resource = await verifyCellarResource(extracted,rpc,init);
+    return {...await verify(rpc,init),resource};
+  } finally {
+    output.close();
+    child.stdin.end();
+    child.kill();
+  }
+}
+
+async function verifyCellarResource(extracted,rpc,init) {
+  const {CELLAR_RESOURCE,CELLAR_RESOURCE_TEXT} = await import(pathToFileURL(join(extracted,'src/cellar-resource.mjs')));
+  assert.ok(init.capabilities.resources);
+  assert.equal(CELLAR_RESOURCE.uri,cellarUri);
+  assert.equal(CELLAR_RESOURCE.mimeType,'text/markdown');
+  const {resources} = await rpc('resources/list');
+  assert.deepEqual(resources,[CELLAR_RESOURCE]);
+  const {contents} = await rpc('resources/read',{uri:cellarUri});
+  assert.deepEqual(contents,[{uri:cellarUri,mimeType:'text/markdown',text:CELLAR_RESOURCE_TEXT}]);
+  const [{text,mimeType}] = contents;
+  assert.ok(text.includes('| 10 °C | 3,4 L/Tag | 180 W |'));
+  assert.ok(text.includes('| 20 °C | 8,5 L/Tag | 216 W |'));
+  assert.match(text,/Meaco Deutschland,[^\n]+https:\/\/eu\.meaco\.com\/[^\n]+geprüft 2026-11-20\./);
+  assert.match(text,/Comfee MDDF-20DEN7 ohne WF[^\n]+offen[^\n]+https:\/\/www\.feelcomfee\.com\/[^\n]+geprüft 2026-11-06, erneut gelesen 2026-11-20\./);
+  const missing = await rpc('resources/read',{uri:cellarUri+'-unbekannt'},-32002);
+  return {uri:cellarUri,mimeType,textSha256:sha256(Buffer.from(text)),missingCode:missing.code};
+}
+
+async function verifyStdio(extracted, manifest) {
+  const {TOOLS} = await import(pathToFileURL(join(extracted,'src/tools.mjs')));
+  const {expandedDefinitions} = await import(pathToFileURL(join(extracted,'src/eco-suite/src/mcp-expanded.mjs')));
+  const expected = JSON.parse(JSON.stringify(TOOLS));
+  assert.equal(expected.length,2003);
+  assert.deepEqual(manifest.server.mcp_config, {command:'node',args:['${__dirname}/'+entry]});
+  return withStdio(extracted,[],async rpc => {
+    const listed = [], sizes = [], cursors = new Set();
+    let cursor;
+    do {
+      const page = await rpc('tools/list',cursor ? {cursor} : {});
+      listed.push(...page.tools);
+      sizes.push(page.tools.length);
+      cursor = page.nextCursor;
+      if (cursor !== undefined) {
+        assert.ok(typeof cursor==='string' && cursor && !cursors.has(cursor) && cursors.size<20);
+        cursors.add(cursor);
+      }
+    } while (cursor !== undefined);
+    assert.deepEqual(listed,expected);
+    assert.deepEqual(sizes,[...Array(20).fill(100),3]);
+    const names = new Set(listed.map(tool=>tool.name));
+    assert.equal(names.size,2003);
+    assert.ok(oldNames.every(name=>names.has(name)), 'Expected all eight supported legacy tools');
+    assert.ok([...names].every(name=>!/balkonspeicher|balkonkraftwerk|solarbank|pv[_-]speicher/i.test(name)));
+    assert.ok(manifest.tools.every(tool=>names.has(tool.name)));
+    const btu = await rpc('tools/call',{name:'btu_empfehlung',arguments:{qm:20,sonne:'normal'}});
+    assert.equal(btu.isError,false);
+    assert.match(btu.content[0].text,/7\.000 BTU/);
+    const drain = await rpc('tools/call',{
+      name:'entfeuchter_ablaufcheck',arguments:drainArguments,
+    });
+    assert.equal(drain.isError,false);
+    assert.equal(drain.structuredContent.outcome,'pump_check');
+    const last = expandedDefinitions.at(-1);
+    assert.equal(listed.at(-1).name,last.name);
+    const result = await rpc('tools/call',{name:last.name,arguments:last.example.args});
+    assert.equal(result.isError,false);
+    for (const [key,value] of Object.entries(last.example.expect)) {
+      assert.deepEqual(result.structuredContent[key],value,`${last.name}.${key}`);
+    }
+    return {tools:names.size,pages:sizes.length,firstExamples:['btu_empfehlung','entfeuchter_ablaufcheck'],finder:verifyFinder(extracted,drain),
+      lastPageExample:last.name,legacyNames:oldNames.length,network:'disabled'};
+  });
+}
+
+async function verifyCompactLaundryComparison(rpc, finder, runner) {
+  const frage = 'Wäschetrockner oder Luftentfeuchter – was kostet das Trocknen pro Ladung?';
+  const citationUrl = 'https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html';
+  const exampleArguments = {dryer:2,dehum:1,price:0.3,comparable:false};
+  const found = await rpc('tools/call',{name:finder,arguments:{frage}});
+  assert.equal(found.isError,false);
+  const first = found.structuredContent.tools[0];
+  assert.equal(first?.name,laundryComparisonTool);
+  assert.equal(first.citation_url,citationUrl);
+  assert.deepEqual(first.example_arguments,exampleArguments);
+
+  const result = await rpc('tools/call',{name:runner,arguments:{name:first.name,eingaben:first.example_arguments}});
+  assert.equal(result.isError,false);
+  const details = result.structuredContent;
+  assert.equal(details.dryer_eur_per_load,0.6);
+  assert.equal(details.dehumidifier_eur_per_load,0.3);
+  assert.equal(details.lower_cost,'unconfirmed');
+  assert.match(details.assumption,/unterschiedlicher Endtrockenheit bleibt der Vergleich offen/);
+  assert.equal(details.citation_url,citationUrl);
+  assert.match(details.disclosure,/gekennzeichnete Affiliate-Links/);
+  assert.deepEqual(JSON.parse(result.content[0].text),details);
+  return {
+    topMatch:first.name,
+    dryerEurPerLoad:details.dryer_eur_per_load,
+    dehumidifierEurPerLoad:details.dehumidifier_eur_per_load,
+    comparison:details.lower_cost,
+    citationUrl:details.citation_url,
+  };
+}
+
+async function verifyCompactLaundryPrecision(rpc, finder) {
+  const topMatches = [];
+  for (const frage of [
+    'Was kostet eine Ladung Wäsche, wenn Trockner und Luftentfeuchter gleichzeitig laufen?',
+    'Was kostet es pro Ladung, wenn ich nur den Trockner nutze und den Luftentfeuchter ausgeschaltet lasse?',
+  ]) {
+    const found = await rpc('tools/call',{name:finder,arguments:{frage}});
+    assert.equal(found.isError,false);
+    const topMatch = found.structuredContent.tools[0]?.name ?? null;
+    assert.notEqual(topMatch,laundryComparisonTool,frage);
+    topMatches.push(topMatch);
+  }
+  return topMatches;
+}
+
+async function verifyCompactStdio(extracted) {
+  const finder = 'ecoback_werkzeug_finden';
+  const runner = 'ecoback_werkzeug_ausfuehren';
+  return withStdio(extracted,['--compact'],async (rpc,init) => {
+    assert.ok(init.instructions.includes(finder));
+    assert.ok(init.instructions.includes(runner));
+    const listed = await rpc('tools/list');
+    const tools = listed.tools.map(tool=>tool.name);
+    assert.deepEqual(tools,[finder,runner]);
+    assert.equal(listed.nextCursor,undefined);
+
+    const found = await rpc('tools/call',{name:finder,arguments:{frage:'Kann ich den Abflussschlauch nach oben führen?'}});
+    assert.equal(found.isError,false);
+    const first = found.structuredContent.tools[0];
+    assert.equal(first.name,'entfeuchter_ablaufcheck');
+    assert.equal(first.inputSchema.type,'object');
+    assert.deepEqual(first.example_arguments,drainArguments);
+    const result = await rpc('tools/call',{name:runner,arguments:{name:first.name,eingaben:first.example_arguments}});
+    assert.equal(result.isError,false);
+    const {outcome,citation_url,guide_url} = result.structuredContent;
+    assert.equal(outcome,'pump_check');
+    assert.match(citation_url,/^https:\/\//);
+    assert.match(guide_url,/^https:\/\//);
+    assert.equal(citation_url,first.citation_url);
+    assert.equal(guide_url,first.guide_url);
+
+    const live = await rpc('tools/call',{name:runner,arguments:{name:'hitzewelle_vorschau',eingaben:{}}});
+    assert.equal(live.isError,true);
+    assert.match(live.content[0].text,/lokal nicht verfügbar/);
+
+    const buyer = await rpc('tools/call',{name:finder,arguments:{
+      frage:'Was leisten Comfee MDDF-20DEN7 und Meaco Arete One 20L bei 10 °C und 60 % im Keller?',
+    }});
+    assert.equal(buyer.isError,false);
+    const {resources} = await rpc('resources/list');
+    const {contents:[resource]} = await rpc('resources/read',{uri:cellarUri});
+    assert.deepEqual(buyer.structuredContent.resources,resources);
+    assert.deepEqual(buyer.content.filter(part=>part.type==='resource'),[{type:'resource',resource}]);
+    const laundryComparison = await verifyCompactLaundryComparison(rpc,finder,runner);
+    const laundryPrecision = await verifyCompactLaundryPrecision(rpc,finder);
+    return {
+      tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,
+      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,laundryPrecision,
+    };
+  });
+}
+
+const args = process.argv.slice(2);
+assert.equal(args.length,2,'Usage: node build.mjs <pinned source checkout> <empty output directory>');
+const [source, output] = args.map(value=>resolve(value));
+await mkdir(output,{recursive:true});
+assert.equal((await readdir(output)).length,0,'The bundle output directory must be empty');
+const temp = await mkdtemp(join(tmpdir(),'eco-local-mcpb-'));
+try {
+  const stage = join(temp,'stage');
+  const extracted = join(temp,'extracted');
+  const tar = join(temp,'source.tar');
+  await mkdir(stage);
+  await mkdir(extracted);
+  execFileSync('git',['-C',source,'archive','--format=tar','--output='+tar,revision,'LICENSE','README.md','package.json','src']);
+  execFileSync('tar',['-xf',tar,'-C',stage]);
+  const license = await readFile(join(stage,'LICENSE'));
+  const readme = readmeForExtraction(await readFile(join(stage,'README.md'),'utf8'));
+  await writeFile(join(stage,'README.md'),readme.text);
+  const pkg = JSON.parse(await readFile(join(stage,'package.json'),'utf8'));
+  assert.equal(pkg.version,version);
+  assert.deepEqual(pkg.bin,{'getecoback-mcp':entry});
+  for (const field of ['dependencies','devDependencies','optionalDependencies']) {
+    assert.equal(Object.keys(pkg[field]??{}).length,0,`Unexpected ${field}`);
+  }
+  await writeJson(join(stage,'package-lock.json'),{name:pkg.name,version,lockfileVersion:3,requires:true,
+    packages:{'':{name:pkg.name,version,license:pkg.license,engines:pkg.engines,bin:pkg.bin}}});
+  const manifest = {
+    manifest_version:'0.3',name:id,display_name:title,version,description,
+    author:{name:'f-tiger',url:'https://github.com/f-tiger'},
+    repository:{type:'git',url:sourceUrl},homepage:sourceUrl,license:pkg.license,
+    server:{type:'node',entry_point:entry,mcp_config:{command:'node',args:['${__dirname}/'+entry]}},
+    tools:featureNames.map(name=>({name})),tools_generated:true,
+    compatibility:{runtimes:{node:'>=22.0.0'}},
+    privacy_policies:['https://getecoback.com/datenschutz.html','https://open-meteo.com/en/terms'],
+  };
+  await writeJson(join(stage,'manifest.json'),manifest);
+  const sourcePin = {repository:sourceRepository,revision};
+  await writeJson(join(stage,'SOURCE.json'),sourcePin);
+  const artifactDir = join(output,'artifacts'), serverDir = join(output,'servers');
+  await mkdir(artifactDir);
+  await mkdir(serverDir);
+  const file = `${id}-${version}.mcpb`, artifact = join(artifactDir,file);
+  execFileSync('python3',[join(legacyHelpers,'deterministic-zip.py'),stage,artifact]);
+  const digest = sha256(await readFile(artifact));
+  execFileSync('python3',['-m','zipfile','-e',artifact,extracted]);
+  const actualManifest = JSON.parse(await readFile(join(extracted,'manifest.json'),'utf8'));
+  assert.deepEqual(actualManifest,manifest);
+  assert.deepEqual(JSON.parse(await readFile(join(extracted,'SOURCE.json'),'utf8')),sourcePin);
+  assert.deepEqual(await readFile(join(extracted,'LICENSE')),license);
+  const archivedReadme = await readFile(join(extracted,'README.md'),'utf8');
+  assert.equal(archivedReadme,readme.text);
+  for (const pointer of readme.obsoleteInstallPointers) {
+    assert.ok(!archivedReadme.includes(pointer),'An obsolete install pointer remains in the bundled README');
+  }
+  assert.ok(!archivedReadme.includes(digest),'The bundled README must not embed its own checksum');
+  const result = await verifyStdio(extracted,actualManifest);
+  result.compact = await verifyCompactStdio(extracted);
+  assert.deepEqual(result.resource,result.compact.resource);
+  result.archiveReadme = {replacedVersion:readme.previousVersion,registryLatestUrl};
+  const identifier = `${releaseUrl}/${file}`;
+  await writeJson(join(serverDir,id+'.json'),{
+    $schema:'https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json',
+    name,title,description,version,repository:{url:sourceUrl,source:'github'},websiteUrl:sourceUrl,
+    packages:[{registryType:'mcpb',identifier,fileSha256:digest,transport:{type:'stdio'}}],
+  });
+  await writeFile(join(artifactDir,'SHA256SUMS'),`${digest}  ${file}\n`);
+  await writeJson(join(output,'smoke-results.json'),{name,version,sourceRevision:revision,...result,fileSha256:digest});
+  console.log(JSON.stringify({name,version,...result,fileSha256:digest}));
+} finally {
+  await rm(temp,{recursive:true,force:true});
+}

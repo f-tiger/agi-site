@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-20",
+ "fetched": "2026-11-21",
  "geo": "US",
  "seeds": {
   "artificial general intelligence": {
@@ -37,51 +37,60 @@
    "fetched": "2026-11-20"
   },
   "13f filings": {
-   "auto": [
-    "13f filings",
-    "13f filings search",
-    "13f filings of top investors",
-    "13f filings whalewisdom",
-    "13f filings berkshire hathaway",
-    "13f filings dates",
-    "13f filings sec",
-    "13f filings meaning",
-    "13f filings list",
-    "13f filings deadline"
-   ],
-   "rising": [],
-   "source": "autocomplete-diff",
-   "fetched": "2026-11-10"
-  },
-  "ai stocks": {
-   "auto": [
-    "ai stocks",
-    "ai stocks to buy",
-    "ai stocks crashing",
-    "ai stocks today",
-    "ai stocks to invest in",
-    "ai stocks to buy now",
-    "ai stocks news",
-    "ai stocks list",
-    "ai stocks to watch",
-    "ai stocks to invest in now"
-   ],
    "rising": [
     {
-     "q": "ai stocks crashing",
-     "v": "new"
-    },
-    {
-     "q": "ai stocks news",
-     "v": "new"
-    },
-    {
-     "q": "ai stocks to invest in now",
-     "v": "new"
+     "q": "when are 13f filings due",
+     "v": 420250
     }
    ],
-   "source": "autocomplete-diff",
-   "fetched": "2026-11-10"
+   "source": "related-queries",
+   "fetched": "2026-11-21"
+  },
+  "ai stocks": {
+   "rising": [
+    {
+     "q": "top tourist attractions in paris",
+     "v": 45100
+    },
+    {
+     "q": "how to bake a cake",
+     "v": 37350
+    },
+    {
+     "q": "cheapest flights to tokyo",
+     "v": 33850
+    },
+    {
+     "q": "how to make sushi",
+     "v": 32800
+    },
+    {
+     "q": "best time to visit maldives",
+     "v": 30150
+    },
+    {
+     "q": "rzai stock",
+     "v": 17900
+    },
+    {
+     "q": "ai boom top stocks nvidia tsmc",
+     "v": 16500
+    },
+    {
+     "q": "energy fuels stock",
+     "v": 10700
+    },
+    {
+     "q": "spacex ai infrastructure spending stocks",
+     "v": 10200
+    },
+    {
+     "q": "ai growth stocks sell off",
+     "v": 3300
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-11-21"
   }
  }
 }

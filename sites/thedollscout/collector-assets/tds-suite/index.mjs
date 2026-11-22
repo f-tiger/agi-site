@@ -1,3 +1,5 @@
+import { DACH_METER_TOOL, runDachMeterTool } from './regional-dach-meter.mjs';
+import { UK_LAUNDRY_TOOL, runUkLaundryTool } from './regional-uk-laundry.mjs';
 import { HOME_TOOLS, runHomeTool } from './home-purchase.mjs';
 import { WORKFLOW_TOOLS, runWorkflowTool } from './collector-workflows.mjs';
 import { matchesInputSchema } from './input-schema.mjs';
@@ -21,9 +23,13 @@ function registerGroup(definitions, execute) {
   });
 }
 
+export const REGIONAL_TDS_TOOLS = Object.freeze([DACH_METER_TOOL, UK_LAUNDRY_TOOL]);
+
 export const TDS_TOOLS = Object.freeze([
   ...registerGroup(WORKFLOW_TOOLS, runWorkflowTool),
   ...registerGroup(HOME_TOOLS, runHomeTool),
+  ...registerGroup([DACH_METER_TOOL], (_name, args, locale) => runDachMeterTool(args, locale)),
+  ...registerGroup([UK_LAUNDRY_TOOL], (_name, args, locale) => runUkLaundryTool(args, locale)),
 ]);
 if (TDS_TOOLS.length !== TDS_HOME_TOOL_COUNT) throw new Error('Invalid TDS tool count');
 

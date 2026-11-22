@@ -1,19 +1,9 @@
 {
  "version": 1,
  "github": {
-  "queryIndex": 6,
+  "queryIndex": 12,
   "page": 1,
   "pending": [
-   {
-    "repo": "getzep/graphiti",
-    "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "ComposioHQ/composio",
-    "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
    {
     "repo": "openai/openai-agents-python",
     "topic": "agents",
@@ -22,16 +12,6 @@
    {
     "repo": "helloianneo/ian-xiaohei-illustrations",
     "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "op7418/guizang-social-card-skill",
-    "topic": "coding",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "s1dashu/ip-as-logo-skill",
-    "topic": "coding",
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
@@ -600,18 +580,8 @@
     "foundAt": "2026-10-06T06:50:25.349Z"
    },
    {
-    "repo": "lobehub/lobe-tts",
-    "topic": "audio",
-    "foundAt": "2026-10-06T06:50:25.349Z"
-   },
-   {
     "repo": "PatterAI/Patter",
     "topic": "agents",
-    "foundAt": "2026-10-06T06:50:25.349Z"
-   },
-   {
-    "repo": "lukaszliniewicz/Pandrator",
-    "topic": "audio",
     "foundAt": "2026-10-06T06:50:25.349Z"
    },
    {
@@ -785,11 +755,6 @@
     "foundAt": "2026-10-09T06:38:33.001Z"
    },
    {
-    "repo": "IntelLabs/RAG-FiT",
-    "topic": "knowledge",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
     "repo": "lancedb/vectordb-recipes",
     "topic": "agents",
     "foundAt": "2026-10-09T06:38:33.001Z"
@@ -815,11 +780,6 @@
     "foundAt": "2026-10-09T06:38:33.001Z"
    },
    {
-    "repo": "OmniNull/OmniWM",
-    "topic": "everyday",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
     "repo": "iwe-org/iwe",
     "topic": "agents",
     "foundAt": "2026-10-09T06:38:33.001Z"
@@ -842,11 +802,6 @@
    {
     "repo": "theopenco/llmgateway",
     "topic": "coding",
-    "foundAt": "2026-10-10T06:21:21.428Z"
-   },
-   {
-    "repo": "kaito-project/aikit",
-    "topic": "local",
     "foundAt": "2026-10-10T06:21:21.428Z"
    },
    {
@@ -1433,11 +1388,6 @@
     "repo": "macro-inc/macro",
     "topic": "agents",
     "foundAt": "2026-10-22T05:18:29.886Z"
-   },
-   {
-    "repo": "AlexsJones/llmfit",
-    "topic": "ai",
-    "foundAt": "2026-10-23T05:17:52.922Z"
    },
    {
     "repo": "Ebony-Vinyl/dsh-our-free-model",
@@ -2162,11 +2112,6 @@
    {
     "repo": "HUANGCHIHHUNGLeo/claude-real-video",
     "topic": "coding",
-    "foundAt": "2026-11-05T07:19:29.391Z"
-   },
-   {
-    "repo": "sirfz/tesserocr",
-    "topic": "documents",
     "foundAt": "2026-11-05T07:19:29.391Z"
    },
    {
@@ -2915,11 +2860,6 @@
     "foundAt": "2026-11-19T07:52:30.561Z"
    },
    {
-    "repo": "thu-ml/Motus",
-    "topic": "video",
-    "foundAt": "2026-11-19T07:52:30.561Z"
-   },
-   {
     "repo": "XiaoyeCodes/code-animation-prompts",
     "topic": "coding",
     "foundAt": "2026-11-19T07:52:30.561Z"
@@ -2958,6 +2898,36 @@
     "repo": "Tencent/LoopForge",
     "topic": "coding",
     "foundAt": "2026-11-20T07:43:54.087Z"
+   },
+   {
+    "repo": "simplexai-labs/linger",
+    "topic": "local",
+    "foundAt": "2026-11-21T07:41:14.489Z"
+   },
+   {
+    "repo": "video-db/Director",
+    "topic": "agents",
+    "foundAt": "2026-11-21T07:41:14.489Z"
+   },
+   {
+    "repo": "Keys-Wasserman/Imagination-Studio-by-keys-Wasserman",
+    "topic": "video",
+    "foundAt": "2026-11-21T07:41:14.489Z"
+   },
+   {
+    "repo": "datalab-to/marker",
+    "topic": "documents",
+    "foundAt": "2026-11-21T07:41:14.489Z"
+   },
+   {
+    "repo": "JaidedAI/EasyOCR",
+    "topic": "documents",
+    "foundAt": "2026-11-21T07:41:14.489Z"
+   },
+   {
+    "repo": "datalab-to/surya",
+    "topic": "documents",
+    "foundAt": "2026-11-21T07:41:14.489Z"
    }
   ],
   "checked": {
@@ -3152,11 +3122,17 @@
    "gh-markfulton-nanobananaeditor-f58191": "2026-11-20T07:43:54.087Z",
    "gh-denizsafak-abogen-297084": "2026-11-20T07:43:54.087Z",
    "gh-learningcircuit-local-deep-research-fdedb4": "2026-11-20T07:43:54.087Z",
-   "gh-rapidai-rapidocr-14dc3f": "2026-11-20T07:43:54.087Z"
+   "gh-rapidai-rapidocr-14dc3f": "2026-11-20T07:43:54.087Z",
+   "gh-adobe-research-custom-diffusion-122c96": "2026-11-21T07:41:14.489Z",
+   "gh-omnivore-app-omnivore-ffe256": "2026-11-21T07:41:14.489Z",
+   "gh-hpcaitech-colossalai-99df99": "2026-11-21T07:41:14.489Z",
+   "gh-ath-maas-pixelle-video-536988": "2026-11-21T07:41:14.489Z",
+   "gh-toon-format-toon-0da9a6": "2026-11-21T07:41:14.489Z",
+   "gh-koishijs-koishi-74159f": "2026-11-21T07:41:14.489Z"
   }
  },
  "mcp": {
-  "cursor": "com.modevc/radar:2.0.2",
+  "cursor": "com.publishbuddy/publishbuddy:1.0.0",
   "since": "2026-10-01T15:26:40.958Z",
   "watermark": "2026-10-02T15:26:40.958Z",
   "scanStarted": "2026-11-14T06:58:47.664Z",
@@ -3453,34 +3429,34 @@
    "evlek-mcp-server": "2026-11-20T07:43:54.087Z",
    "exa-mcp-server": "2026-11-20T07:43:54.087Z",
    "exactlane-preflight": "2026-11-20T07:43:54.087Z",
-   "execbro-execbro": "2026-10-11T06:21:02.155Z",
-   "expense-budget-tracker-expense-budget-tracker": "2026-10-11T06:21:02.155Z",
-   "extend-extend": "2026-10-11T06:21:02.155Z",
-   "extentos-mcp-server": "2026-10-11T06:21:02.155Z",
-   "factory-droids": "2026-10-11T06:21:02.155Z",
-   "failecho-failecho": "2026-10-11T06:21:02.155Z",
-   "fairmind-project-context": "2026-10-11T06:21:02.155Z",
-   "familyofficeknowledgegraph-fo-kg": "2026-10-11T06:21:02.155Z",
-   "fast-agent": "2026-10-11T06:21:02.155Z",
-   "fastgpt": "2026-10-11T06:21:02.155Z",
-   "fastmcp": "2026-10-11T06:21:02.155Z",
-   "feeless402-nano-pay": "2026-10-11T06:21:02.155Z",
-   "fellou": "2026-10-11T06:21:02.155Z",
-   "fgac-fgac": "2026-10-11T06:21:02.155Z",
-   "fiatdock-mcp": "2026-10-11T06:21:02.155Z",
-   "figma-context-mcp": "2026-10-11T06:21:02.155Z",
-   "files-python-mcp": "2026-10-11T06:21:02.155Z",
-   "fillfolio-mcp": "2026-10-11T06:21:02.155Z",
-   "fin": "2026-10-11T06:21:02.155Z",
-   "findmetool-lookup": "2026-10-11T06:21:02.155Z",
-   "firecrawl": "2026-10-11T06:21:02.155Z",
-   "firecrawl-mcp-server": "2026-10-11T06:21:02.155Z",
-   "flashmemorize-flash": "2026-10-11T06:21:02.155Z",
-   "flightpowers-booking": "2026-10-11T06:21:02.155Z",
-   "flowise": "2026-10-11T06:21:02.155Z",
-   "fluttergo-remote": "2026-10-11T06:21:02.155Z",
+   "execbro-execbro": "2026-11-21T07:41:14.489Z",
+   "expense-budget-tracker-expense-budget-tracker": "2026-11-21T07:41:14.489Z",
+   "extend-extend": "2026-11-21T07:41:14.489Z",
+   "extentos-mcp-server": "2026-11-21T07:41:14.489Z",
+   "factory-droids": "2026-11-21T07:41:14.489Z",
+   "failecho-failecho": "2026-11-21T07:41:14.489Z",
+   "fairmind-project-context": "2026-11-21T07:41:14.489Z",
+   "familyofficeknowledgegraph-fo-kg": "2026-11-21T07:41:14.489Z",
+   "fast-agent": "2026-11-21T07:41:14.489Z",
+   "fastgpt": "2026-11-21T07:41:14.489Z",
+   "fastmcp": "2026-11-21T07:41:14.489Z",
+   "feeless402-nano-pay": "2026-11-21T07:41:14.489Z",
+   "fellou": "2026-11-21T07:41:14.489Z",
+   "fgac-fgac": "2026-11-21T07:41:14.489Z",
+   "fiatdock-mcp": "2026-11-21T07:41:14.489Z",
+   "figma-context-mcp": "2026-11-21T07:41:14.489Z",
+   "files-python-mcp": "2026-11-21T07:41:14.489Z",
+   "fillfolio-mcp": "2026-11-21T07:41:14.489Z",
+   "fin": "2026-11-21T07:41:14.489Z",
+   "findmetool-lookup": "2026-11-21T07:41:14.489Z",
+   "firecrawl": "2026-11-21T07:41:14.489Z",
+   "firecrawl-mcp-server": "2026-11-21T07:41:14.489Z",
+   "flashmemorize-flash": "2026-11-21T07:41:14.489Z",
+   "flightpowers-booking": "2026-11-21T07:41:14.489Z",
+   "flowise": "2026-11-21T07:41:14.489Z",
+   "fluttergo-remote": "2026-11-21T07:41:14.489Z",
    "flyvolo-knowledge": "2026-10-11T06:21:02.155Z",
-   "foldlaboratories-art": "2026-10-11T06:21:02.155Z",
+   "foldlaboratories-art": "2026-11-21T07:41:14.489Z",
    "followontours-cricket-travel": "2026-10-12T06:28:11.186Z",
    "forcefieldsilicon-mdengine": "2026-10-12T06:28:11.186Z",
    "forestrie-resolve": "2026-10-12T06:28:11.186Z",
@@ -4828,7 +4804,20 @@
    "smithery-ref-tools-ref-tools-mcp": "2026-11-20T07:43:54.087Z",
    "smithery-scrapegraphai-scrapegraph-mcp": "2026-11-20T07:43:54.087Z",
    "smithery-takodata-tako-mcp": "2026-11-20T07:43:54.087Z",
-   "tradeit-mcp": "2026-11-20T07:43:54.087Z"
+   "tradeit-mcp": "2026-11-20T07:43:54.087Z",
+   "smithery-anirbanbasu-frankfurtermcp": "2026-11-21T07:41:14.489Z",
+   "smithery-anirbanbasu-pymcp": "2026-11-21T07:41:14.489Z",
+   "smithery-arjunkmrm-perplexity-search": "2026-11-21T07:41:14.489Z",
+   "smithery-aryankeluskar-poke-video-mcp": "2026-11-21T07:41:14.489Z",
+   "smithery-bergeramit-bergeramit-hw3-tech": "2026-11-21T07:41:14.489Z",
+   "smithery-bhushangitfull-file-mcp-smith": "2026-11-21T07:41:14.489Z",
+   "smithery-bielacki-igdb-mcp-server": "2026-11-21T07:41:14.489Z",
+   "smithery-blacklotusdev8-test-m": "2026-11-21T07:41:14.489Z",
+   "smithery-blbl147-xhs-mcp": "2026-11-21T07:41:14.489Z",
+   "smithery-callmybot-cookbook-mcp-server": "2026-11-21T07:41:14.489Z",
+   "smithery-callmybot-domoticz": "2026-11-21T07:41:14.489Z",
+   "smithery-callmybot-hello-mcp-server": "2026-11-21T07:41:14.489Z",
+   "smithery-cc25a-openai-api-agent-project123123123": "2026-11-21T07:41:14.489Z"
   }
  }
 }

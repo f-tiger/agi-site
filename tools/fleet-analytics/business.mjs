@@ -43,6 +43,10 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
   const affiliate = affiliateEvent(host, detail);
   if (affiliate) return affiliate;
   const name = detail.name;
+  if (host === 'thedollscout.com' && /^\/(?:de\/|zh\/)?ai-tools\/(?:dach-meter-fit|uk-laundry-session)$/.test(pathname) &&
+      ['tds_regional_result', 'tds_regional_handoff'].includes(name)) {
+    return {name, tool_id: pathname.split('/').pop(), repeat: true};
+  }
   if (host === 'agiscorecard.com' && ['/agents/', '/zh/agents/'].includes(pathname) &&
       ['mcp_catalog_search', 'mcp_catalog_open'].includes(name)) {
     return {name, tool_id: 'mcp-directory', repeat: name === 'mcp_catalog_open'};

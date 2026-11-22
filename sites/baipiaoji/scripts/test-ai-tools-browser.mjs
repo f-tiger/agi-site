@@ -104,16 +104,60 @@ async function assertToolLinks(suite, locale) {
   const toolLinks = await suite.locator('[data-suite-group] [data-suite-keywords] a').evaluateAll(links =>
     links.map(anchor => new URL(anchor.href).pathname)
   );
-  assert.equal(toolLinks.length, 1000);
+  assert.equal(toolLinks.length, SUITE_TOOLS.length);
   assert.deepEqual(new Set(toolLinks), new Set(SUITE_TOOLS.map(tool => locale + toolPath(tool.id))));
   assert.equal(await suite.locator('[data-suite-group]').count(), SUITE_CATEGORIES.length);
 }
 
+const featuredIds = [
+  'ai-eval-export-pair', 'table-review', 'answer-citation-coverage',
+  'ai-human-review-queue', 'ai-json-output-contract',
+];
+
+async function assertFeatured(page, locale) {
+  const featured = page.locator('[data-suite-featured]');
+  const cards = featured.locator('[data-suite-featured-tool]');
+  assert.deepEqual(await cards.evaluateAll(items => items.map(card => card.dataset.suiteFeaturedTool)), featuredIds);
+  const routes = featuredIds.map(id => id === 'table-review' ? '/studio/table-review' : toolPath(id));
+  assert.deepEqual(await cards.locator('h3 a, h4 a').evaluateAll(links => links.map(link => link.pathname)),
+    routes.map(route => locale + route));
+  assert.equal(await cards.locator('[data-bpj-share="copy"]').count(), featuredIds.length);
+}
+
+async function assertHomeDiscovery(suite,locale) {
+  const browse=suite.locator('[data-suite-browse]');
+  assert.equal(await browse.locator('[data-suite-group]').count(),SUITE_CATEGORIES.length);
+  assert.equal(await browse.locator('[data-suite-keywords]').count(),2*SUITE_CATEGORIES.length);
+  assert.deepEqual(await browse.locator('.suite-category-link').evaluateAll(links=>links.map(link=>link.pathname)),
+    SUITE_CATEGORIES.map(group=>locale+'/studio/ai/categories/'+group.id));
+  for(const route of ['/studio/ai/','/studio/table-review',toolPath('answer-citation-coverage'),toolPath('ai-json-output-contract')]){
+    assert.equal(await suite.locator('a[href="'+origin+locale+route+'"]').first().isVisible(),true,route);
+  }
+}
+
 async function verifyDirectory(page, locale) {
+  const searchIndexRequests=[];
+  const noteIndexRead=request=>{
+    if(new URL(request.url()).pathname===locale+'/studio/ai/search-index.json') searchIndexRequests.push(request.url());
+  };
+  page.on('request',noteIndexRead);
   await visit(page, locale, '/');
   const suite = page.locator('#ai-tools');
-  await assertToolLinks(suite, locale);
+  await assertFeatured(page, locale);
+  const leadCard = page.locator('[data-suite-featured-tool="ai-eval-export-pair"]');
+  await leadCard.locator('[data-bpj-share="copy"]').click();
+  await leadCard.locator('[role="status"]:not(:empty)').waitFor();
+  const shared = new URL(await page.evaluate(() => navigator.clipboard.readText()));
+  assert.equal(shared.origin, origin);
+  assert.equal(shared.pathname, locale + toolPath('ai-eval-export-pair'));
+  assert.equal(shared.hash, '');
+  assert.deepEqual(Object.fromEntries(shared.searchParams), {
+    utm_source: 'reader_share', utm_medium: 'share', utm_campaign: 'free-tools',
+  });
+  await assertHomeDiscovery(suite,locale);
   const search = suite.locator('[data-suite-search]');
+  await search.waitFor({state:'visible'});
+  assert.equal(searchIndexRequests.length,0,'Homepage fetched search data before any interaction');
   const results = suite.locator('[data-suite-results]');
   const resultLinks = results.locator('[data-suite-keywords] a');
   await search.fill('no-result-73261');
@@ -135,6 +179,13 @@ async function verifyDirectory(page, locale) {
   const csv = toolById.get('csv-to-json');
   await search.fill(locale ? csv.title.en : csv.title.zh);
   assert.equal(await resultLinks.first().getAttribute('href'), origin + locale + toolPath(csv.id));
+  await search.fill(locale ? csv.title.zh : csv.title.en);
+  assert.equal(await resultLinks.first().getAttribute('href'), origin + locale + toolPath(csv.id));
+
+  await search.fill(locale ? 'release rollback check' : 'AI 回退检查');
+  assert.equal(await resultLinks.first().getAttribute('href'), origin + locale + toolPath('ai-paired-pass-regression'));
+  await search.fill('compare Promptfoo eval exports');
+  assert.equal(await resultLinks.first().getAttribute('href'), origin + locale + toolPath('ai-eval-export-pair'));
 
   await search.fill('');
   const filter = suite.locator('[data-suite-filter]');
@@ -154,9 +205,35 @@ async function verifyDirectory(page, locale) {
 
   await suite.locator('[data-suite-clear]').click();
   assert.equal(await filter.inputValue(), '');
-  await search.fill('csv-to-json');
+  // The tool is absent from the homepage preview but available in the full index.
+  const workflow = toolById.get('ai-json-output-contract');
+  assert.equal(await suite.locator('[data-suite-group] a[href="'+origin+locale+toolPath(workflow.id)+'"]').count(),0);
+  await search.fill(workflow.name);
+  assert.equal(await resultLinks.first().getAttribute('href'),origin+locale+toolPath(workflow.id));
   await resultLinks.first().click();
-  await page.waitForURL('**/studio/ai/csv-to-json');
+  await page.waitForURL('**/studio/ai/'+workflow.id);
+  assert.equal(searchIndexRequests.length,1,'Repeated searches refetched the index');
+  page.off('request',noteIndexRead);
+
+  const indexUrl=origin+locale+'/studio/ai/search-index.json';
+  await page.route(indexUrl,route=>route.fulfill({status:503,body:'Temporarily unavailable'}));
+  try {
+    await visit(page,locale,'/');
+    await search.fill('csv-to-json');
+    const fallback=suite.locator('[data-suite-unavailable] a');
+    await fallback.waitFor({state:'visible'});
+    assert.equal(await suite.locator('[data-suite-group]:visible').count(),SUITE_CATEGORIES.length);
+    await fallback.click();
+    await page.waitForURL('**/studio/ai/');
+    await assertFeatured(page, locale);
+    await assertToolLinks(page.locator('[data-suite-index]'),locale);
+    const completeDirectory=page.locator('[data-suite-index]');
+    await completeDirectory.locator('[data-suite-search]').fill(locale ? 'release rollback check' : 'AI 回退检查');
+    assert.equal(await completeDirectory.locator('[data-suite-results] a').first().getAttribute('href'),
+      origin + locale + toolPath('ai-paired-pass-regression'));
+  } finally {
+    await page.unroute(indexUrl);
+  }
 }
 
 async function verifyNoScriptBrowse(browser) {
@@ -166,11 +243,13 @@ async function verifyNoScriptBrowse(browser) {
     for (const locale of ['', '/en']) {
       await visit(page, locale, '/');
       const suite = page.locator('#ai-tools');
-      await assertToolLinks(suite, locale);
+      await assertHomeDiscovery(suite,locale);
       assert.equal(await suite.locator('[data-suite-search]').isVisible(), false);
-      const group = suite.locator('[data-group-id="text-data"]');
-      await group.locator('summary').click();
-      const link = group.locator('a[href$="/csv-to-json"]');
+      await suite.locator('a[href="'+origin+locale+'/studio/ai/"]').first().click();
+      await page.waitForURL('**/studio/ai/');
+      await assertToolLinks(page.locator('[data-suite-index]'), locale);
+      await page.locator('[data-suite-index] [data-group-id="text-data"] summary').click();
+      const link = page.locator('[data-suite-index] [data-group-id="text-data"] a[href$="/csv-to-json"]');
       await link.waitFor({state: 'visible'});
       await link.click();
       await page.waitForURL('**/studio/ai/csv-to-json');
@@ -381,7 +460,7 @@ try {
   }
   await verifyNoScriptBrowse(browser);
   assert.deepEqual(errors, []);
-  console.log('PASS EN/ZH: Task Loop, 1,000 crawlable tools, ranked search and filters, readable results, input recovery, JSON transfer and every tool example.');
+  console.log(`PASS EN/ZH: Task Loop, ${SUITE_TOOLS.length} crawlable tools, ranked search and filters, readable results, input recovery, JSON transfer and every tool example.`);
 } finally {
   await browser?.close();
   server.close();

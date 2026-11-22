@@ -406,6 +406,7 @@ jobs:
           node ../../tools/quote-page-lab/verify.mjs --dist
           node ../../tools/quote-page-lab/test-growth.mjs --dist
           node scripts/test-ai-tools.mjs
+          node --test lib/ai-suite/trade-lead.test.mjs lib/ai-suite/trade-quote.test.mjs scripts/test-trade-opportunities.mjs
           node scripts/test-ai-tables.mjs
           node scripts/test-ai-measurement.mjs
           node scripts/test-ai-editorial.mjs

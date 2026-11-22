@@ -1,7 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';
 import {spawnSync} from 'node:child_process';
 import {runInNewContext} from 'node:vm';
-import {laundry} from '../site/assets/laundry-math.mjs';import {acquisition,laundryAction} from '../site/assets/laundry-check.mjs';import {LAUNDRY_PATHS,validLaundryEvent} from '../src/laundry-events.mjs';import {videoEntry} from '../src/video-entry.mjs';import worker from '../src/worker.js';
+import {LAUNDRY_SHARE_URL,laundry,laundryShareText} from '../site/assets/laundry-math.mjs';import {acquisition,laundryAction} from '../site/assets/laundry-check.mjs';import {LAUNDRY_PATHS,validLaundryEvent} from '../src/laundry-events.mjs';import {videoEntry} from '../src/video-entry.mjs';import worker from '../src/worker.js';
 
 test('German TikTok photo campaign keeps social attribution bounded to its landing',()=>{
  const target=videoEntry(new URL('https://getecoback.com/waesche-tiktok')).headers.get('location');
@@ -12,6 +12,19 @@ test('German TikTok photo campaign keeps social attribution bounded to its landi
  for(const changed of [target.replace('eco-laundry-03','unknown'),target.replace('utm_source=tiktok','utm_source=youtube'),target.replace('/waeschetrockner-oder-luftentfeuchter.html','/en/guide/dehumidifier-drying-clothes-cost.html'),target.replace('utm_medium=social','utm_medium=paid')]) assert.deepEqual(acquisition(changed),{source:'onsite',evidence:'none'});
 });
 const x={dryer:1.5,dryerBasis:'cycle',method:'estimate',watts:250,hours:8,dehum:2,price:.35,loads:3,purchase:200,currency:'EUR',comparable:true};
+test('German share notes preserve the tariff, input basis and comparable-dryness boundary',()=>{
+ const text=laundryShareText({...x,dryer:10,method:'measured',dehum:1.2,price:0.309,comparable:false});
+ assert.match(text,/10 kWh × 0,309\s€\/kWh = 3,09\s€/);
+ assert.match(text,/1,2 kWh × 0,309\s€\/kWh = 0,37\s€/);
+ assert.match(text,/Wäschemenge oder Endtrockenheit nicht als gleich bestätigt/);
+ assert.equal(text.split('\n').at(-1),`Rechenweg bei EcoBack: ${LAUNDRY_SHARE_URL}`);
+ assert.doesNotMatch(text,/#eco-v1|utm_|200\s?€/);
+ const scenario=laundryShareText({...x,dryerBasis:'hundred',dryer:150},'shared');
+ assert.match(scenario,/Werte aus einem geteilten Szenario.*Labelwert.*geschätzt/);
+ assert.match(scenario,/Gleiche Wäschemenge und Endtrockenheit sind für den Vergleich vorausgesetzt/);
+ assert.match(laundryShareText(x,'example'),/Rechenbeispiel/);
+ assert.match(laundryShareText(x,'example'),/1,5 kWh × 0,35\s€\/kWh = 0,53\s€/);
+});
 test('same dry load: low watts can lose, shorter runtime can win, labels normalize exactly',()=>{let r=laundry(x);assert.equal(r.dehum,2);assert.equal(r.winner,'dryer');assert.equal(r.breakEvenHours,6);assert.equal(r.payback,null);r=laundry({...x,hours:4});assert.equal(r.winner,'dehum');assert.ok(Math.abs(r.annualDifference-27.3)<1e-10);assert.ok(Math.abs(r.payback-200/27.3)<1e-10);assert.deepEqual(laundry({...x,dryer:150,dryerBasis:'hundred'}),laundry(x));assert.equal(laundry({...x,hours:6}).winner,'tie');});
 test('measured kWh takes precedence; unmatched drying never returns a winner or payback',()=>{const r=laundry({...x,method:'measured',dehum:.8,watts:NaN,hours:NaN});assert.equal(r.dehum,.8);assert.equal(r.breakEvenHours,null);for(const hours of [0,4,8]){const a=laundry({...x,hours,comparable:false});assert.equal(a.winner,'unconfirmed');assert.equal(a.payback,null);}assert.equal(laundry({...x,hours:4,loads:0}).payback,null);assert.equal(laundry({...x,price:0}).winner,'tie');for(const change of [{price:-1},{dryer:Infinity},{dryer:21},{currency:'JPY'},{method:'bad'},{hours:NaN}])assert.throws(()=>laundry({...x,...change}),RangeError);});
 test('fixed channel links preserve probes, never accept arbitrary destinations or attribution',()=>{for(const source of ['youtube','tiktok']){const res=videoEntry(new URL('https://getecoback.com/dry-'+source+'?next=https://evil.test&__probe=1'));const u=new URL(res.headers.get('location'));assert.equal(u.pathname,LAUNDRY_PATHS[1]);assert.equal(u.hash,'#laundry-check');assert.equal(u.searchParams.get('__probe'),'1');assert(!u.searchParams.has('next'));assert.deepEqual(acquisition(u.href),{source,evidence:'tag_only'});assert.equal(acquisition(u.href,'https://'+source+'.com/watch').evidence,'referrer');assert.equal(acquisition(u.href,'https://'+source+'.com.evil.test/').evidence,'other');assert.equal(acquisition(u.href.replace('eco-laundry-03','other')).source,'onsite');}assert.equal(videoEntry(new URL('https://getecoback.com/dry-tiktok'),'POST'),null);});

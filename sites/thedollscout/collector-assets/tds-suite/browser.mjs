@@ -1,3 +1,5 @@
+import { approvedBuyingGuide } from './regional-buying-links.mjs';
+import { recordRegionalAction } from './regional-measurement.mjs';
 const one = (selector, root = document) => root.querySelector(selector);
 const data = (selector) => {
   const entry = one(selector);
@@ -43,6 +45,18 @@ if (form) {
   const sample = one('[data-tds-example]', form);
   const copy = one('[data-tds-copy]');
   const save = one('[data-tds-export]');
+  const buyerGuide = one('[data-tds-buyer-guide]');
+  let inputRevision = 0;
+  function clearGuide() {
+    if (!buyerGuide) return;
+    buyerGuide.hidden = true;
+    buyerGuide.removeAttribute('href');
+  }
+  buyerGuide?.addEventListener('click', event => {
+    if (event.isTrusted && !buyerGuide.hidden && buyerGuide.hasAttribute('href')) {
+      recordRegionalAction('tds_regional_handoff');
+    }
+  });
   let resultText = '';
   let exportText = '';
   let exampleLoaded = false;
@@ -75,14 +89,21 @@ if (form) {
   run.disabled = false;
   sample.disabled = false;
   sample.addEventListener('click', () => {
+    clearGuide();
+    inputRevision++;
     setInputs(example);
     exampleLoaded = true;
   });
-  form.addEventListener('input', () => { exampleLoaded = false; });
+  form.addEventListener('input', () => {
+    exampleLoaded = false;
+    inputRevision++;
+    clearGuide();
+  });
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (running || !form.reportValidity()) return;
     running = true;
+    clearGuide();
     run.disabled = true;
     sample.disabled = true;
     status.textContent = ui.process;
@@ -96,9 +117,18 @@ if (form) {
     try {
       const args = readInputs();
       const wasExample = exampleLoaded;
+      const revision = inputRevision;
       const { runTdsTool } = await import('./index.mjs');
       const value = await runTdsTool(name, args, locale);
       if (value === undefined) throw Error('Missing execution result');
+      if (revision !== inputRevision) {
+        status.textContent = '';
+        return;
+      }
+      if (value?.status === 'invalid_input') {
+        status.textContent = value.message || ui.failed;
+        return;
+      }
       exportText = JSON.stringify(value, null, 2);
       resultText = typeof value === 'string' ? value : exportText;
       result.textContent = resultText;
@@ -110,6 +140,14 @@ if (form) {
       save.disabled = false;
       exampleResult = wasExample;
       message(wasExample ? 'tds_suite_example' : 'tds_suite_complete');
+      if (buyerGuide && !wasExample && event.isTrusted) {
+        recordRegionalAction('tds_regional_result');
+        if (approvedBuyingGuide(name, value?.buyerGuide)) {
+          buyerGuide.href = value.buyerGuide.url;
+          buyerGuide.textContent = value.buyerGuide.label;
+          buyerGuide.hidden = false;
+        }
+      }
     } catch {
       status.textContent = ui.failed;
     } finally {

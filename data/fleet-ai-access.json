@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-19T16:58:06Z",
+ "checked": "2026-11-21T15:50:04Z",
  "paths": [
   "/",
   "/llms.txt"
@@ -14,6 +14,7 @@
   "Claude-User",
   "Bingbot"
  ],
+ "scope": "Synthetic user agents from this runner. A null status was not tested. A 200 does not establish real crawler access, indexing or citation.",
  "invalid_sites": [],
  "blocked_sites": [],
  "sites": [
@@ -22,6 +23,7 @@
    "origin": "https://agiscorecard.com",
    "valid": true,
    "blocked": [],
+   "crawler_user_agents_tested": true,
    "status": {
     "(browser)": {
      "/": 200,
@@ -66,6 +68,7 @@
    "origin": "https://baipiaoji.com",
    "valid": true,
    "blocked": [],
+   "crawler_user_agents_tested": true,
    "status": {
     "(browser)": {
      "/": 200,
@@ -110,6 +113,7 @@
    "origin": "https://getecoback.com",
    "valid": true,
    "blocked": [],
+   "crawler_user_agents_tested": true,
    "status": {
     "(browser)": {
      "/": 200,
@@ -154,6 +158,7 @@
    "origin": "https://thedollscout.com",
    "valid": true,
    "blocked": [],
+   "crawler_user_agents_tested": true,
    "status": {
     "(browser)": {
      "/": 200,
@@ -198,6 +203,7 @@
    "origin": "https://goldrush.agiscorecard.com",
    "valid": true,
    "blocked": [],
+   "crawler_user_agents_tested": true,
    "status": {
     "(browser)": {
      "/": 200,
@@ -242,6 +248,7 @@
    "origin": "https://play.agiscorecard.com",
    "valid": true,
    "blocked": [],
+   "crawler_user_agents_tested": true,
    "status": {
     "(browser)": {
      "/": 200,
@@ -286,6 +293,7 @@
    "origin": "https://source.agiscorecard.com",
    "valid": true,
    "blocked": [],
+   "crawler_user_agents_tested": true,
    "status": {
     "(browser)": {
      "/": 200,
@@ -330,6 +338,7 @@
    "origin": "https://games.agiscorecard.com",
    "valid": true,
    "blocked": [],
+   "crawler_user_agents_tested": true,
    "status": {
     "(browser)": {
      "/": 200,
@@ -374,6 +383,7 @@
    "origin": "https://35.agiscorecard.com",
    "valid": true,
    "blocked": [],
+   "crawler_user_agents_tested": true,
    "status": {
     "(browser)": {
      "/": 200,
@@ -418,6 +428,7 @@
    "origin": "https://learn.agiscorecard.com",
    "valid": true,
    "blocked": [],
+   "crawler_user_agents_tested": true,
    "status": {
     "(browser)": {
      "/": 200,
@@ -462,6 +473,7 @@
    "origin": "https://fanzha.agiscorecard.com",
    "valid": true,
    "blocked": [],
+   "crawler_user_agents_tested": true,
    "status": {
     "(browser)": {
      "/": 200,
@@ -506,6 +518,7 @@
    "origin": "https://firstjob.agiscorecard.com",
    "valid": true,
    "blocked": [],
+   "crawler_user_agents_tested": true,
    "status": {
     "(browser)": {
      "/": 200,
@@ -550,6 +563,7 @@
    "origin": "https://codeword.agiscorecard.com",
    "valid": true,
    "blocked": [],
+   "crawler_user_agents_tested": true,
    "status": {
     "(browser)": {
      "/": 200,
@@ -594,6 +608,7 @@
    "origin": "https://powerbill.agiscorecard.com",
    "valid": true,
    "blocked": [],
+   "crawler_user_agents_tested": true,
    "status": {
     "(browser)": {
      "/": 200,
@@ -638,6 +653,7 @@
    "origin": "https://localebatch.agiscorecard.com",
    "valid": true,
    "blocked": [],
+   "crawler_user_agents_tested": true,
    "status": {
     "(browser)": {
      "/": 200,
@@ -682,6 +698,7 @@
    "origin": "https://verify.agiscorecard.com",
    "valid": true,
    "blocked": [],
+   "crawler_user_agents_tested": true,
    "status": {
     "(browser)": {
      "/": 200,
@@ -726,6 +743,7 @@
    "origin": "https://rfqdesk.agiscorecard.com",
    "valid": true,
    "blocked": [],
+   "crawler_user_agents_tested": true,
    "status": {
     "(browser)": {
      "/": 200,
@@ -770,6 +788,7 @@
    "origin": "https://web3.agiscorecard.com",
    "valid": true,
    "blocked": [],
+   "crawler_user_agents_tested": true,
    "status": {
     "(browser)": {
      "/": 200,

@@ -30,6 +30,7 @@ const household=document.querySelector('[data-household]');if(household)adapter=
 const country=document.querySelector('#country-form');if(country)adapter={form:country,result:document.querySelector('#result'),error:document.querySelector('#form-error'),anchor:country.closest('.workspace')};
 const tariff=document.querySelector('#tariff-form');if(tariff)adapter={form:tariff,result:document.querySelector('#results'),error:document.querySelector('#status'),anchor:tariff.closest('.workspace')||tariff};
 const laundry=document.querySelector('#laundry-check');if(laundry)adapter={form:laundry.querySelector('form'),result:laundry.querySelector('[data-results]'),error:laundry.querySelector('[data-error]'),anchor:laundry.querySelector('form')};
+const cleanLaundryShare=laundry&&lang==='de'?await import('./laundry-math.mjs?v=20261122'):null;
 if(adapter?.form)adapter.fields=[...adapter.form.querySelectorAll('input,select')].filter(e=>['number','range','checkbox','select-one'].includes(e.type));
 if(adapter)adapter.fields=[...new Set(adapter.fields)].filter(Boolean);
 const panel=node('section',null,'eco-experience');panel.id='eco-tool-experience';panel.setAttribute('aria-label',t[0]);
@@ -79,14 +80,23 @@ function shareURL(values,channel){const u=new URL(canonical);u.search='';u.hash=
 function openShare(withResult){
  if(withResult&&!snapshot)return;
  const s=withResult?snapshot:null,url=shareURL(s?.values,'copy'),provenance=s?(s.kind==='example'?t[4]:s.kind==='shared'?t[15]:t[5]):'';
- const lines=[title,provenance,s?.text||'',...(s?['',t[3]+':',...fieldsFor(s.values).filter(e=>key(e)!=='own').map(e=>label(e)+': '+s.values[key(e)])]:[]),'',t[18],t[17]+': '+url].filter(Boolean);
- const text=lines.join('\n');genericDraft.replaceChildren(node('h3',t[19]),node('p',t[10],'eco-note'));
+ let text;
+ if(cleanLaundryShare){
+  const numeric=['dryer','dehum','watts','hours','price','loads','purchase'];
+  const input=s&&Object.fromEntries(Object.entries(s.values).map(([key,value])=>[key,numeric.includes(key)?Number(value):value]));
+  text=s?cleanLaundryShare.laundryShareText(input,s.kind==='edited'?'entered':s.kind):`Trocknungskosten je Ladung vergleichen\n${cleanLaundryShare.LAUNDRY_SHARE_URL}`;
+ }else{
+  text=[title,provenance,s?.text||'',...(s?['',t[3]+':',...fieldsFor(s.values).filter(e=>key(e)!=='own').map(e=>label(e)+': '+s.values[key(e)])]:[]),'',t[18],t[17]+': '+url].filter(Boolean).join('\n');
+ }
+ const note=cleanLaundryShare?'Der Text kann deine Rechenwerte enthalten. Reddit und X erhalten über diese Schaltflächen nur den Rechnerlink und einen festen Titel. Beschreibe deine Situation in eigenen Worten und beachte die Regeln der Community.':t[10];
+ genericDraft.replaceChildren(node('h3',t[19]),node('p',note,'eco-note'));
  const area=node('textarea');area.value=text;area.readOnly=true;area.setAttribute('aria-label',t[19]);genericDraft.append(area);
  const links=node('div',null,'eco-links');
- for(const platform of ['reddit','x']){const u=shareURL(s?.values,platform),target=new URL(platform==='reddit'?'https://www.reddit.com/submit':'https://x.com/intent/post');target.searchParams.set('url',u);target.searchParams.set(platform==='reddit'?'title':'text',platform==='reddit'?title.slice(0,180)+(provenance?' · '+provenance:''):[title.slice(0,65),provenance,s?clean(s.text).slice(0,85):t[18]].filter(Boolean).join(' · ').slice(0,210));const a=node('a',platform==='reddit'?'Reddit':'X');a.href=target.href;a.target='_blank';a.rel='noopener noreferrer';a.addEventListener('click',()=>emit('share_'+platform));links.append(a);}
+ for(const platform of ['reddit','x']){const u=cleanLaundryShare?.LAUNDRY_SHARE_URL??shareURL(s?.values,platform),target=new URL(platform==='reddit'?'https://www.reddit.com/submit':'https://x.com/intent/post');target.searchParams.set('url',u);target.searchParams.set(platform==='reddit'?'title':'text',cleanLaundryShare?'Trocknungskosten je Ladung vergleichen':platform==='reddit'?title.slice(0,180)+(provenance?' · '+provenance:''):[title.slice(0,65),provenance,s?clean(s.text).slice(0,85):t[18]].filter(Boolean).join(' · ').slice(0,210));const a=node('a',platform==='reddit'?'Reddit':'X');a.href=target.href;a.target='_blank';a.rel='noopener noreferrer';a.addEventListener('click',()=>emit('share_'+platform));links.append(a);}
  links.append(button(t[8],async()=>{try{await navigator.clipboard.writeText(text);status.textContent=t[12];emit('copy');}catch{area.focus();area.select();status.textContent=t[13];}}));
  if(s)links.append(button(t[9],()=>downloadCard(s,provenance)));
- const fallback=node('a',t[11],'eco-fallback');fallback.href=url;fallback.setAttribute('aria-label',t[11]);genericDraft.append(links,fallback);genericDraft.hidden=false;emit(withResult?'share_prepare':'tool_share');
+ const fallbackLabel=cleanLaundryShare?(s?'Szenario-Link (enthält Werte)':'Rechner-Link'):t[11];
+ const fallback=node('a',fallbackLabel,'eco-fallback');fallback.href=!s&&cleanLaundryShare?cleanLaundryShare.LAUNDRY_SHARE_URL:url;fallback.setAttribute('aria-label',fallbackLabel);genericDraft.append(links,fallback);genericDraft.hidden=false;emit(withResult?'share_prepare':'tool_share');
 }
 function downloadCard(s,provenance){
  const canvas=document.createElement('canvas');canvas.width=1200;canvas.height=1200+fieldsFor(s.values).length*36;const c=canvas.getContext('2d');c.fillStyle='#edf5f8';c.fillRect(0,0,1200,canvas.height);c.fillStyle='#0a4d7a';c.fillRect(0,0,1200,18);let y=65;
