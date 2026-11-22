@@ -19,12 +19,12 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUNDLE: ecoback-local-tools-1.17.5.mcpb
-  VERSION: '1.17.5'
-  UPSTREAM_SHA: 62aa4ea7f759a1be459c10fe262df05cdb444a7b
+  BUNDLE: ecoback-local-tools-1.18.0.mcpb
+  VERSION: '1.18.0'
+  UPSTREAM_SHA: 0239b9711d072b72761520850e38dc5fa9b7d2a6
   NAME: io.github.f-tiger/ecoback-local-tools
   RELEASE_TAG: fleet-mcp-registry-2026-10-10
-  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.17.5.mcpb
+  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.18.0.mcpb
   REGISTRY_VERSIONS: https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions
   SOURCE_URL: https://github.com/f-tiger/getecoback-mcp
   MCPB_SCHEMA: https://raw.githubusercontent.com/modelcontextprotocol/mcpb/70fe3b34cd6dff1b3bba046638edc72a6467a4fb/schemas/mcpb-manifest-v0.3.schema.json
@@ -87,6 +87,8 @@ jobs:
           test "$(cat "$root/artifacts/SHA256SUMS")" = "$digest  $BUNDLE"
           jq -e --arg name "$NAME" --arg version "$VERSION" --arg url "$PUBLIC_ASSET" --arg sha "$digest" --arg source "$SOURCE_URL" '
             .name == $name and .version == $version and ((.remotes // []) == []) and
+            .title == "EcoBack – Haushaltshilfen für Deutschland" and
+            .description == "Fenstersauger, Kellerfeuchte und Trocknungskosten offline prüfen. Ratgeber und Wetter auf Wunsch." and
             .websiteUrl == $source and .repository.url == $source and .repository.source == "github" and
             (.packages | length) == 1 and .packages[0].registryType == "mcpb" and
             .packages[0].identifier == $url and .packages[0].fileSha256 == $sha and
@@ -94,7 +96,7 @@ jobs:
           ' "$root/servers/ecoback-local-tools.json"
           jq -e --arg name "$NAME" --arg version "$VERSION" --arg revision "$UPSTREAM_SHA" --arg sha "$digest" --arg latest "$REGISTRY_VERSIONS/latest" '
             .name == $name and .version == $version and .sourceRevision == $revision and
-            .fileSha256 == $sha and .tools == 2003 and .pages == 21 and .legacyNames == 8 and
+            .fileSha256 == $sha and .tools == 2014 and .pages == 21 and .legacyNames == 8 and .windowExamples == 11 and
             .network == "disabled" and (.firstExamples | type == "array" and length > 0) and
             (.lastPageExample != null and (.lastPageExample | length) > 0) and
             .finder.topMatch == "entfeuchter_ablaufcheck" and
@@ -110,6 +112,12 @@ jobs:
             } and
             (.compact.laundryPrecision | type == "array" and length == 2 and
               all(.[]; . != "waesche_trocknungskosten" and (. == null or (type == "string" and length > 0)))) and
+            .compact.windowBlade == {
+              topMatch:"fenstersauger_170mm_abziehlippe_geraetefamilie",
+              guideUrl:"https://getecoback.com/produkte.html#fenstersauger-belege",
+              statuses:["kombination_nicht_aufgelistet","offen","herstellerliste_bestaetigt"]
+            } and
+            .compact.windowLookup == ["fenstersauger_kaercher_fluessigkeitsgrenze_und_tank","fenstersauger_wv3_wv8_led_muster_einordnen"] and
             (.archiveReadme.replacedVersion | test("^[0-9]+\\.[0-9]+\\.[0-9]+$")) and
             .archiveReadme.registryLatestUrl == $latest and
             .resource.uri == "ecoback://evidence/de/kellerentfeuchter" and
@@ -217,8 +225,10 @@ jobs:
           for version in "$VERSION" latest; do
             record="$RUNNER_TEMP/eco-local-registry-$version.json"
             curl -fLsS --retry 3 --connect-timeout 10 --max-time 30 "$REGISTRY_VERSIONS/$version" -o "$record"
-            jq -e --arg name "$NAME" --arg version "$VERSION" --arg url "$PUBLIC_ASSET" --arg sha "$VERIFIED_SHA" '
+            jq -e --arg name "$NAME" --arg version "$VERSION" --arg url "$PUBLIC_ASSET" --arg sha "$VERIFIED_SHA" \
+              --slurpfile manifest "$RUNNER_TEMP/eco-local-mcpb/servers/ecoback-local-tools.json" '
               .server.name == $name and .server.version == $version and
+              .server.title == $manifest[0].title and .server.description == $manifest[0].description and
               ((.server.remotes // []) == []) and (.server.packages | length) == 1 and
               .server.packages[0].registryType == "mcpb" and .server.packages[0].identifier == $url and
               .server.packages[0].fileSha256 == $sha and .server.packages[0].transport.type == "stdio" and
