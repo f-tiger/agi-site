@@ -8,7 +8,7 @@ import {expandedDefinitions, expandedCall} from '../src/mcp-expanded.mjs';
 import {collectToolPages} from '../src/mcp-pagination.mjs';
 
 const origin = 'https://getecoback.com';
-const distinctTasks = 2028;
+const distinctTasks = 2029;
 const callableNames = distinctTasks + 1;
 function request(method, params) {
   return new Request(origin + '/mcp/v1', {
@@ -263,8 +263,8 @@ test('the public directory and standard MCP pages expose the same catalogue', as
   const byCategory = {};
   for (const {category} of directory.tools) byCategory[category] = (byCategory[category] || 0) + 1;
   assert.deepEqual(byCategory, {Raumklima:10,'Strom & Haushalt':21,Feuchte:19,Kühlen:18,Heizen:19,Passform:17,
-    'Energie prüfen':24,'Raumkomfort prüfen':24,'Geräte pflegen':24,'Quellen & Kaufprüfung':32, 'Wasser & Wäsche':24,'Gebäude & Fenster':24,'Geräte im Alltag':24,'Messpraxis':24,'Zugang & Alltag':24,Saisonwechsel:24,Kaufpraxis:26,'Ressourcen planen':24,Raumplanung:24,Wetterpraxis:24,Küchenpraxis:24,Servicevorbereitung:24,'Belege abgleichen':24,Textilpraxis:25,Luftpfade:25,Modellunterlagen:25,Haushaltsbuch:25,Praxistests:25,Messunsicherheit:25,Geräteablauf:25,Weiterverwendung:25,Raumübergabe:25,Wohnszenarien:25,Verbrauchsverlauf:41,Fensterbetrieb:41,Pflegeabläufe:40,Haushaltskoordination:40,Nachweisprüfung:40,Wasserwege:40,Raumakustik:40,Mehrgerätebetrieb:40,Gebrauchtgeräte:40,Küchenressourcen:40,Klimaverlauf:40,Wohnmobil:30,'Arbeitsplatz-Messpraxis':30,'Lokale Wärme':30,Luftkühler:30,'Wäsche mit Wärme':30,Gartenalltag:30, Gefrierpraxis:18,'Geschirrspüler-Einbau':24,Wäschesäule:17,Lüftungskauf:24,Ersatzteilnachweis:20,Dunstabzug:17,Backofenzubehör:18,Brausenzubehör:23,Rollenzubehör:18,'Altgeräte-Rücknahme':20,Induktionsgeschirr:18,Betriebszustände:21,Spülstatus:24,'Airfryer-Behälter':17,Kompaktspülen:17,"Filterkannen":22,"Textilzeichen":20,"Türbodenspalt":21,"Roboterpflege":24,"Kühlgerätekauf":20,"LED-Kaufprüfung":16,"Kaffeemaschinenpflege":22,"Waschmitteldosierung":23,"Spülmittel und Wasserhärte":25,"Bodenstaubsaugerpflege":22,"Dampfbügelgeräte":24,"Stabmixer und Zubehör":25,"Mikrowellenbelege":23,"Küchenwaagen":13,"Wasserkocherbelege":16,"Toasterbelege":10,"Fenstersauger":13});
-  assert.equal(expandedDefinitions.length,2019);
+    'Energie prüfen':24,'Raumkomfort prüfen':24,'Geräte pflegen':24,'Quellen & Kaufprüfung':33, 'Wasser & Wäsche':24,'Gebäude & Fenster':24,'Geräte im Alltag':24,'Messpraxis':24,'Zugang & Alltag':24,Saisonwechsel:24,Kaufpraxis:26,'Ressourcen planen':24,Raumplanung:24,Wetterpraxis:24,Küchenpraxis:24,Servicevorbereitung:24,'Belege abgleichen':24,Textilpraxis:25,Luftpfade:25,Modellunterlagen:25,Haushaltsbuch:25,Praxistests:25,Messunsicherheit:25,Geräteablauf:25,Weiterverwendung:25,Raumübergabe:25,Wohnszenarien:25,Verbrauchsverlauf:41,Fensterbetrieb:41,Pflegeabläufe:40,Haushaltskoordination:40,Nachweisprüfung:40,Wasserwege:40,Raumakustik:40,Mehrgerätebetrieb:40,Gebrauchtgeräte:40,Küchenressourcen:40,Klimaverlauf:40,Wohnmobil:30,'Arbeitsplatz-Messpraxis':30,'Lokale Wärme':30,Luftkühler:30,'Wäsche mit Wärme':30,Gartenalltag:30, Gefrierpraxis:18,'Geschirrspüler-Einbau':24,Wäschesäule:17,Lüftungskauf:24,Ersatzteilnachweis:20,Dunstabzug:17,Backofenzubehör:18,Brausenzubehör:23,Rollenzubehör:18,'Altgeräte-Rücknahme':20,Induktionsgeschirr:18,Betriebszustände:21,Spülstatus:24,'Airfryer-Behälter':17,Kompaktspülen:17,"Filterkannen":22,"Textilzeichen":20,"Türbodenspalt":21,"Roboterpflege":24,"Kühlgerätekauf":20,"LED-Kaufprüfung":16,"Kaffeemaschinenpflege":22,"Waschmitteldosierung":23,"Spülmittel und Wasserhärte":25,"Bodenstaubsaugerpflege":22,"Dampfbügelgeräte":24,"Stabmixer und Zubehör":25,"Mikrowellenbelege":23,"Küchenwaagen":13,"Wasserkocherbelege":16,"Toasterbelege":10,"Fenstersauger":13});
+  assert.equal(expandedDefinitions.length,2020);
 });
 
 test('tesamoll clearance must fit the entire measured range and never substitutes a different seal', async () => {
@@ -732,5 +732,48 @@ test('Kärcher 170-mm complete nozzles match exact German variants and preserve 
       name, arguments:{geraet:'WV 6 Plus', teilenummer:white, angebotsart:complete, ...updates},
     });
     assert.equal(invalid.isError, true);
+  }
+});
+
+test('Trotec TTK 70 HEPA keeps conflicting December and later part listings unresolved', async () => {
+  const name = 'trotec_ttk70_hepa_filter_generation';
+  const older = 'TTK 70 HEPA';
+  const plus = 'TTK 70 HEPA Plus';
+  const early = 'vor_dezember_2023';
+  const dec = 'dezember_2023';
+  const later = 'nach_dezember_2023';
+  const oldPart = '7710000024';
+  const disputed = '7710000077';
+  const dust = '7710000080';
+  const unknown = 'unbekannt';
+  const guide = 'https://getecoback.com/guide/trotec-luftentfeuchter-test.html';
+  for (const [modell,bauzeit,angebot_kennung,status,compatible] of [
+    [older,early,oldPart,'aelterer_hepa_filter_belegt',oldPart],
+    [older,early,disputed,'angebot_kennung_abgleichen',oldPart],
+    [older,early,unknown,'angebot_kennung_abgleichen',oldPart],
+    [plus,early,oldPart,'modell_und_bauzeit_abgleichen',null],
+    [older,dec,oldPart,'uebergangsmonat_offen',null],
+    [plus,dec,disputed,'uebergangsmonat_offen',null],
+    [plus,later,disputed,'herstellerangaben_widerspruechlich',null],
+    [older,later,oldPart,'herstellerangaben_widerspruechlich',null],
+    [plus,later,dust,'separater_staubluftfilter',null],
+    [older,early,dust,'separater_staubluftfilter',null],
+    [unknown,early,oldPart,'typenschild_pruefen',null],
+    [older,unknown,oldPart,'typenschild_pruefen',null],
+  ]){
+    const result = await rpc('tools/call',{name,arguments:{modell,bauzeit,angebot_kennung}});
+    assert.equal(result.isError,false);
+    const data = result.structuredContent;
+    assert.deepEqual([data.status,data.dokumentierter_hepa_filter,data.markt],[status,compatible,'Deutschland']);
+    assert.equal(data.guide_url,guide+'#ttk70-hepa-filter');
+    assert.equal(data.citation_url,guide);
+    assert.match(data.quellen[1].fundstelle,/ab Baujahr 12\/2023.*bis Baujahr 12\/2023/);
+    assert.deepEqual(data.quellen.map(x=>x.artikelnummer),[oldPart,disputed,dust]);
+    assert.equal(data.quellen_geprueft_am,'2026-11-22');
+    assert.doesNotMatch(JSON.stringify(data),/amazon\.|[?&]tag=/i);
+  }
+  const valid = {modell:older,bauzeit:early,angebot_kennung:oldPart};
+  for (const changes of [{modell:'TTK 75 ECO'},{bauzeit:'2023'},{angebot_kennung:7710000077}]) {
+    assert.equal((await rpc('tools/call',{name,arguments:{...valid,...changes}})).isError,true);
   }
 });

@@ -151,6 +151,32 @@ class LlmsFull(unittest.TestCase):
         })
         self.assertNotIn('reddit.com/submit', md)
 
+    def test_trotec_hepa_generation_holds_for_contradictory_manufacturer_dates(self):
+        route = '/guide/trotec-luftentfeuchter-test.html'
+        guide = SITE / route.lstrip('/')
+        page = guide.read_text()
+        md = guide.with_suffix('.md').read_text()
+        heading = 'Trotec TTK 70 HEPA: Welcher Ersatzfilter passt?'
+        section = re.search(r'<section[^>]* id="ttk70-hepa-filter"[^>]*>(.*?)</section>', page, re.S)
+        self.assertIsNotNone(section)
+        self.assertEqual(page.count('id="ttk70-hepa-filter"'), 1)
+        self.assertIn('href="#ttk70-hepa-filter">Ersatzfilter für die genaue Gerätevariante prüfen</a>', page)
+        mirror = re.search(r'## ' + re.escape(heading) + r'.*?(?=\n## )', md, re.S)
+        self.assertIsNotNone(mirror)
+        for fact in ('vor Dezember 2023', '7710000024', '7710000077', '7710000080', 'im Titel „ab“ Dezember 2023',
+                     'in der Merkmalliste aber „bis“', 'Warte mit dem Kauf', 'Typenschild',
+                     'hepa-filter-fuer-ttk-70-hepa.html', 'hepa-filter-fuer-ttk-70-hepa-plus-ab-bj-12-23.html',
+                     'luftfilter-fuer-ttk-70-hepa-plus-ab-bj-12-23.html'):
+            self.assertIn(fact, section[1])
+            self.assertIn(fact, mirror[0])
+        share = re.search(r'href="(https://www\.reddit\.com/submit\?[^"]+)" rel="noreferrer"', section[1])
+        self.assertIsNotNone(share)
+        self.assertEqual(parse_qs(urlsplit(html.unescape(share[1])).query), {
+            'url': [f'https://getecoback.com{route}#ttk70-hepa-filter'],
+            'title': [heading],
+        })
+        self.assertNotRegex(mirror[0], r'reddit[.]com/submit|[?&]tag=')
+
     def test_tesamoll_static_overlap_keeps_sources_and_clean_share(self):
         route = '/guide/fenster-zugluft-mietwohnung.html'
         guide = SITE / route.lstrip('/')

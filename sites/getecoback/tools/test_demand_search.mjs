@@ -381,3 +381,34 @@ test('German complete 170-mm Kärcher nozzle offers reach the dedicated section 
     'Beim Kärcher WV 3: Passt der Saugkopf 2.633-605.0 zwischen meine Sprossen mit 170 mm Glasbreite?',
   ]) assert.equal(searchEntries(index,q,'de')[0]?.entry.u,page+'#fenstersauger-duesenbreite',q);
 });
+
+test('German Trotec HEPA filter purchase and generation queries retain the existing single canonical guide',()=>{
+  const page='/guide/trotec-luftentfeuchter-test.html';
+  const anchor=page+'#ttk70-hepa-filter';
+  for(const q of [
+    'Welcher HEPA-Ersatzfilter passt zu meinem Trotec TTK 70 HEPA? Auf dem Typenschild steht Dezember 2023.',
+    'Mein Trotec TTK 70 HEPA Plus ist Baujahr 2024. Passt 7710000024 oder 7710000077?',
+    'TTK70HEPA: Ist 7710000080 ein Ersatz für den HEPA-Filter 7710000077?',
+    'Welcher Filter für TTK70HEPAPlus?', '7710000024', 'Trotec 7.710.000.077',
+  ]){
+    const hits=searchEntries(index,q,'de');
+    assert.equal(hits[0]?.entry.u,anchor,q);
+    assert.equal(hits.filter(hit=>hit.entry.u.split('#')[0]===page).length,1,q);
+    assert.ok(searchEntries(index,q,'en').every(hit=>hit.entry.u!==anchor),q);
+  }
+  for(const q of [
+    'Wie oft muss ich den Filter in meinem Trotec TTK 70 HEPA reinigen?',
+    'Muss ich beim TTK 70 HEPA den Filter alle sechs Monate wechseln?', 'Wie lange hält der Filter im TTK 70 HEPA?',
+    'Wann muss ich meinen Filter im TTK 70 HEPA wechseln?', 'TTK 70 HEPA: Filterwechsel alle zwei Monate?',
+    'Wie viel Strom braucht der TTK 70 HEPA mit Filter?', 'TTK 70 HEPA Plus: Staubvorfilter 7710000080',
+    'Trotec 77100000240', 'A7710000077', 'Welcher Filter für Philips HU2716/10?',
+    'Passt 7710000024 in den TTK 72 E?', 'Welcher Filter für den TTK 70 HEPA Pro?',
+    'Vorher hatte ich einen TTK 70 HEPA, jetzt habe ich einen Meaco Arete One. Passt 7710000077?',
+    'Früher Trotec TTK 70 HEPA, jetzt Comfee MDDF. Ist 7710000024 der richtige Filter?',
+    'Welcher Filter passt zum TTK 70 HEPA Deluxe? Angebot 7710000077.',
+    'Passt 7710000077 für den TTK 70 HEPA Plus 2.0?', 'TTK 70 HEPA Plus Deluxe mit 7710000077?',
+    'Für meinen Trotec TTK 70 HEPA Plus brauche ich nur einen Staub-Filter als Ersatzfilter.',
+    'Trotec TTK 75 ECO, ist dieser Filter gleich wie beim TTK 70 HEPA?',
+  ]) assert.ok(searchEntries(index,q,'de').every(hit=>hit.entry.u!==anchor),q);
+  assert.equal(searchEntries(index,'TTK 75 ECO 10 Grad 60 Prozent Keller Liter pro Tag','de')[0]?.entry.u,page+'#ttk75-pruefpunkt');
+});

@@ -111,6 +111,13 @@ def collect():
     targets=re.findall(r'<h[23]\b[^<>]*\sid="'+re.escape(anchor)+r'"[^<>]*>',text)
     if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*',anchor) or len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
      raise ValueError(f'Missing or ambiguous Philips filter destination: {route}#{anchor}')
+  if lang=='de' and route=='/guide/trotec-luftentfeuchter-test.html':
+   anchor='ttk70-hepa-filter'
+   targets=re.findall(r'<(?:section|h[23])\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)
+   if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
+    raise ValueError(f'Missing or hidden search section: {route}#{anchor}')
+   entry['model_sections']=[{'id':anchor,'title':'Welcher HEPA-Ersatzfilter passt zum Trotec TTK 70?',
+    'description':'Filterkennung und Bauzeit abgleichen. Widersprüchliche Angaben zur Umstellung ab Dezember 2023 vor dem Kauf klären.'}]
   if lang=='de' and route=='/guide/delonghi-pac-n90-test.html':
    anchor='lautstaerke'
    targets=re.findall(r'<h2\b[^<>]*\sid="lautstaerke"[^<>]*>',text)
