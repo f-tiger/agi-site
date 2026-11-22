@@ -1,3 +1,4 @@
+import {asksForCoolingNoiseComparison} from './cooling-noise-intent.mjs';
 import {asksForTesamollWindowProfile} from './tesamoll-profile-intent.mjs';
 import {exactGermanFilterModel} from './exact-filter-intent.mjs';
 import {philipsHumidifierFilterSection} from './philips-humidifier-filter-intent.mjs';
@@ -41,6 +42,8 @@ export function searchEntries(index,term,lang){
    targetPage='/guide/heizdecke-stromverbrauch.html'; targetId='waerme-rechner';
  } else if(lang==='de' && asksForHygrometerComparison(query)) {
    targetPage='/guide/luftfeuchtigkeit-richtig-messen.html'; targetId='hygrometer-vergleichen';
+ } else if(lang==='de' && asksForCoolingNoiseComparison(query)) {
+   targetPage='/guide/delonghi-pac-n90-test.html'; targetId='lautstaerke';
  } else if(lang==='de' && asksForN90ModelIdentity(query)) {
    targetPage='/guide/delonghi-pac-n90-test.html'; targetId='testlage';
  } else if(lang==='de' && asksForTesamollWindowProfile(query)) {
@@ -55,7 +58,7 @@ export function searchEntries(index,term,lang){
    targetPage=laundryPage; targetId=singleLaundryId;
  }
  const candidate=targetPage && pages.find(e=>e.u===targetPage);
- const section=(filterModel||philipsFilter)?candidate?.model_sections?.find(row=>row.id===targetId):candidate?.section;
+ const section=candidate?.model_sections?.find(row=>row.id===targetId) ?? candidate?.section;
  const focused=section?.id===targetId && typeof section?.title==='string' && typeof section?.description==='string' ? candidate : null;
  const ranked=pages.filter(e=>!focused||e.u!==targetPage)
  .map(e=>{const title=normalize(e.t),desc=normalize(e.d||''),alias=normalize(e.a||'');const scores=words.map(w=>title.includes(w)?4:alias.includes(w)?3:desc.includes(w)?1:0);return {entry:e,score:scores.every(Boolean)?scores.reduce((a,b)=>a+b,0):0};})

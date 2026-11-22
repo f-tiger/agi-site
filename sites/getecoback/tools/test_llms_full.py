@@ -57,6 +57,28 @@ class LlmsFull(unittest.TestCase):
         self.assertIn('https://www.amazon.de/dp/B07NC5CP6F?tag=getecoback-21', html)
         self.assertNotIn('amazon.de/', md)
 
+    def test_n90_portasplit_noise_comparison_keeps_metrics_and_sources(self):
+        route = '/guide/delonghi-pac-n90-test.html'
+        guide = SITE / route.lstrip('/')
+        page = guide.read_text()
+        md = guide.with_suffix('.md').read_text()
+        section = re.search(r'<section class="n90-noise-comparison" aria-labelledby="lautstaerke">(.*?)</section>',
+                            page, re.S)
+        self.assertIsNotNone(section)
+        self.assertEqual(page.count('id="lautstaerke"'), 1)
+        for phrase in ('kein Unterschied von 25 dB am Bett', 'Silent-Modus innen 39 dB(A)',
+                       '1 m Abstand und 1 m Höhe', 'Schallleistung', '59 dB innen', '64 dB',
+                       'Sonepar Österreich', 'ohne Angabe eines Messabstands', 'Fiche-1917520-de.pdf'):
+            self.assertIn(phrase, section[1])
+            self.assertIn(phrase, md)
+        share = re.search(r'href="(https://www\.reddit\.com/submit\?[^"]+)" rel="noreferrer"', section[1])
+        self.assertIsNotNone(share)
+        self.assertEqual(parse_qs(urlsplit(html.unescape(share[1])).query), {
+            'url': [f'https://getecoback.com{route}#lautstaerke'],
+            'title': ['Midea PortaSplit 39 dB(A) und PAC N90 64 dB: Was ist vergleichbar?'],
+        })
+        self.assertNotIn('reddit.com/submit', md)
+
     def test_n90_offer_identity_has_a_static_answer_and_clean_share(self):
         guide = SITE / 'guide/delonghi-pac-n90-test.html'
         page = guide.read_text()

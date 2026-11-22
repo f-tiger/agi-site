@@ -40,7 +40,15 @@ Das Datenblatt führt 2,5 kW Kühlleistung bei 35 °C und 40 % relativer Feuchte
 
 Für die Aufstellung nennt das Blatt einen 1,20 m langen Abluftschlauch. Prüfe den geplanten Weg zum Fenster und die [passende Fensterabdichtung](https://getecoback.com/guide/fensterabdichtung-klimaanlage.html), bevor du bestellst. Die maximale Leistungsaufnahme von 940 W beschreibt keine gemessene Nacht. Für die [Stromkosten](https://getecoback.com/guide/klimaanlage-stromkosten.html) zählen die tatsächlich verbrauchten kWh und dein Tarif.
 
-## Wie leise ist er wirklich?
+## Midea PortaSplit 39 dB(A) und PAC N90 64 dB: Was ist vergleichbar?
+
+**Aus 39 dB(A) und 64 dB lässt sich kein Unterschied von 25 dB am Bett ableiten.** Die 39 dB(A) bei Midea beschreiben den Schalldruck am Messort. Die 64 dB auf dem De’Longhi-Energielabel beschreiben die Schallleistung, also die Schallabgabe des Geräts.
+
+- **Schalldruck am Messort:** Bei der originalen PortaSplit nennt [Midea Deutschland für den Silent-Modus innen 39 dB(A)](https://www.midea.com/de/klimatisieren-heizen/portasplit/produktinfos.portasplit), gemessen in 1 m Abstand und 1 m Höhe in Anlehnung an JIS C9612. Für den PAC N90 ECO Silent mit EAN 8004399512351 nennt das [De’Longhi-Datenblatt bei Sonepar Österreich](https://shop.sonepar.at/asset_external/downloads/pim/400901/datasheet_delonghi_PAC%20N90ECO.pdf) 50–52 dB(A) Schalldruck ohne Angabe eines Messabstands. Für einen Vergleich der beiden Schalldruckwerte fehlen Angaben zu gleichen Messbedingungen.
+
+- **Schallleistung in den EU-Unterlagen:** Für den Kühlbetrieb führt das [Midea-Produktdatenblatt](https://www.midea.com/content/dam/midea-aem/de/klimatisieren-heizen/portasplit/Fiche-1917520-de.pdf) 59 dB innen auf. Das [vom deutschen De’Longhi-Support verlinkte Energielabel](https://library.delonghigroup.com/assetbank-delonghi/action/directLinkImage?assetId=209150&download=true) nennt für den PAC N90 ECO Silent 64 dB. Für den Gerätevergleich dieselbe Kennzahl und passende Betriebs- und Prüfbedingungen heranziehen.
+
+Ob ein Gerät am Schlafplatz stört, hängt auch von Abstand, Raum und Betriebsgeräuschen ab. EcoBack hat am Bett keinen Pegel gemessen. Probiere bei einem vorhandenen Gerät, ob Vorkühlen reicht. Vor einem Neukauf beim Anbieter vergleichbare Schalldruckwerte für den geplanten Betrieb erfragen. Midea-Unterlagen geprüft am 22. November 2026, De’Longhi-Energielabel am 20. November 2026.
 
 | Wert im Datenblatt | Was du vergleichen kannst |
 | --- | --- |

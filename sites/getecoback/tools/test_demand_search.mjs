@@ -271,3 +271,32 @@ test('window-seal profile questions lead to the exact German buyer guidance',()=
     assert.ok(searchEntries(index,q,'de').every(hit=>hit.entry.u!==route),q);
   }
 });
+
+test('German noise comparisons reach the loudness section while keeping other buyer intents',()=>{
+  const page='/guide/delonghi-pac-n90-test.html';
+  const anchor=page+'#lautstaerke';
+  const exact=[
+    'Midea PortaSplit 39 dB und DeLonghi PAC N90 ECO Silent 64 dB – ist die Midea im Schlafzimmer 25 dB leiser?',
+    'Welche Klimaanlage ist am Bett leiser: die PortaSplit mit 39 dB Schalldruck oder der PAC N90 mit 64 dB Schallleistung?',
+    'Kann ich beim Klimakauf 39 dB Schalldruck im Silent-Modus mit 64 dB Schallleistung auf dem Energielabel vergleichen?',
+    'Klimagerät 39/64 dB, Schalldruck vs Schallleistung',
+    'PAC N90 50–52 dB Schalldruck gegen 64 dB Schallleistung vergleichen?',
+    'Midea PortaSplit 39 dB und De’Longhi Pinguino N90 64 dB im Schlafzimmer vergleichen',
+    'Sind 39 und 64 Dezibel bei Midea PortaSplit und PAC N90 vergleichbar?',
+    'PortaSplit 39 dB und PAC N90 64 dB: sind die Pegel gleich laut?',
+  ];
+  for(const q of exact){
+    const hits=searchEntries(index,q,'de');
+    assert.equal(hits[0]?.entry.u,anchor,q);
+    assert.equal(hits.filter(hit=>hit.entry.u.split('#')[0]===page).length,1,q);
+    assert.ok(searchEntries(index,q,'en').every(hit=>hit.entry.u!==anchor),q);
+  }
+  for(const q of [
+    'Wie laut ist die Midea PortaSplit nachts?',
+    'PAC N90 Stromkosten pro Stunde bei 35 Cent pro kWh',
+    'Meine Klimaanlage rattert bei 39 dB Schalldruck und 64 dB Schallleistung. Ist sie defekt?',
+    'Ist die PortaSplit Lite mit 39 dB am Bett oder der N90 mit 64 dB leiser?',
+    'Midea PortaSplit: 60 mm Fensterfalz, zähle ich die Gummidichtung mit?',
+  ]) assert.ok(searchEntries(index,q,'de').every(hit=>hit.entry.u!==anchor),q);
+  assert.equal(searchEntries(index,'Welcher PAC N90 ECO Silent? Typenschild EAN 8004399512351','de')[0]?.entry.u,page+'#testlage');
+});

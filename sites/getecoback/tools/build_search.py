@@ -93,6 +93,13 @@ def collect():
     targets=re.findall(r'<h[23]\b[^<>]*\sid="'+re.escape(anchor)+r'"[^<>]*>',text)
     if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*',anchor) or len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
      raise ValueError(f'Missing or ambiguous Philips filter destination: {route}#{anchor}')
+  if lang=='de' and route=='/guide/delonghi-pac-n90-test.html':
+   anchor='lautstaerke'
+   targets=re.findall(r'<h2\b[^<>]*\sid="lautstaerke"[^<>]*>',text)
+   if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
+    raise ValueError(f'Missing or hidden search section: {route}#{anchor}')
+   entry['model_sections']=[{'id':anchor,'title':'PortaSplit und PAC N90: 39 und 64 dB richtig vergleichen',
+    'description':'Midea nennt Schalldruck im Silent-Modus, das N90-Label Schallleistung. Vergleiche Größe und Messbedingungen.'}]
   if section:=sections.get((lang,route)):
    anchor=section['id']
    matches=re.findall(r'<(?:section|h2)\b[^<>]*\sid="'+re.escape(anchor)+r'"[^<>]*>',text)
