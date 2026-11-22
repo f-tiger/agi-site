@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.22.7';
-const revision = '5b4e4ad2eda57444824781bd14fec4be7b3f69d1';
+const version = '1.22.8';
+const revision = '786bb81d724c9d6ca31f352bbc030b23d6de2fc3';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -25,7 +25,7 @@ const oldNames = [
 ];
 const featureNames = ['entfeuchter_ablaufcheck', 'btu_empfehlung', 'fensterabdichtung_laenge',
   'taupunkt_lueften', 'fenstersauger_170mm_abziehlippe_geraetefamilie', 'fenster_oberflaeche_taucheck',
-  'luftentfeuchter_waesche_einzelkosten'];
+  'luftentfeuchter_waesche_einzelkosten', 'fritz_302_danfoss_adapter'];
 const entry = 'src/server.mjs';
 const legacyHelpers = fileURLToPath(new URL('../mcp-registry/local-packages/', import.meta.url));
 const sha256 = buffer => createHash('sha256').update(buffer).digest('hex');
@@ -36,6 +36,9 @@ const laundryComparisonTool = 'waesche_trocknungskosten';
 const singleLaundryTool = 'luftentfeuchter_waesche_einzelkosten';
 const singleLaundryCitation = 'https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html';
 const singleLaundryGuide = singleLaundryCitation + '#luftentfeuchter-waesche-kosten';
+const fritzValveTool = 'fritz_302_danfoss_adapter';
+const valveCitation = 'https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html';
+const fritzValveGuide = valveCitation + '#fritz-302-danfoss-adapter';
 const windowBladeTool = 'fenstersauger_170mm_abziehlippe_geraetefamilie';
 const windowGuide = 'https://getecoback.com/produkte.html';
 const windowEvidence = windowGuide + '#fenstersauger-belege';
@@ -275,11 +278,54 @@ async function verifySingleLaundry(call) {
     outcomes,rejected:invalid.length};
 }
 
+async function verifyFritzValve(call) {
+  const cases = [
+    ['20003120','danfoss-ra','adapter_im_lieferumfang',true,null],
+    ['20003120','danfoss-rav','adapter_separat',false,true],
+    ['20003120','danfoss-ravl','adapter_separat',false,null],
+    ['20003120','anders_oder_unbekannt','modell_oder_ventil_klaeren',null,null],
+    ['andere_oder_unbekannt','danfoss-ra','modell_oder_ventil_klaeren',null,null],
+  ];
+  const outcomes = [];
+  for (const [artikelnummer,ventil,status,included,pin] of cases) {
+    const result = await call(fritzValveTool,{artikelnummer,ventil});
+    assert.equal(result.isError,false);
+    const data = result.structuredContent;
+    const actual = [data.status,data.adapter_im_lieferumfang,data.adapter_mit_pin_dokumentiert];
+    assert.deepEqual(actual,[status,included,pin]);
+    assert.equal(data.citation_url,valveCitation);
+    assert.equal(data.guide_url,fritzValveGuide);
+    assert.equal(data.quellenmarkt,'DE');
+    assert.equal(data.quellen_geprueft_am,'2026-11-22');
+    assert.match(data.quellen_url,/^https:\/\/fritz\.com\/apps\/knowledge-base\/fritz-dect-302\/3376_/);
+    assert.equal(data.produkt_url,'https://fritz.com/products/fritz-smart-thermo-302-20003120');
+    assert.doesNotMatch(result.content[0].text,/https?:\/\/[^"\s]*(?:amazon\.|amzn\.)|[?&]tag=/i);
+    outcomes.push(actual);
+  }
+  const diameterOnly = await call(fritzValveTool,{artikelnummer:'20003120',ventil:'34 mm'});
+  assert.equal(diameterOnly.isError,true);
+  assert.equal(diameterOnly.structuredContent,undefined);
+  const providers = [];
+  for (const [model,valve,host,reviewed] of [
+    ['fritz-302','danfoss-ravl','fritz.com','2026-11-22'],
+    ['bosch-ii-m','danfoss-ravl','www.bosch-smarthome.com','2026-11-22'],
+    ['tado-v3','heimeier-m30','cdn.brandfolder.io','2026-10-31'],
+  ]) {
+    const result = await call('thermostat_ventilabgleich',{model,valve});
+    assert.equal(result.isError,false);
+    const data = result.structuredContent;
+    assert.equal(data.reviewed_on,reviewed);
+    assert.equal(new URL(data.manufacturer_or_guidance_url).hostname,host);
+    providers.push({model,host,reviewed});
+  }
+  return {name:fritzValveTool,guide:fritzValveGuide,outcomes,diameterRejected:true,providers};
+}
+
 async function verifyStdio(extracted, manifest) {
   const {TOOLS} = await import(pathToFileURL(join(extracted,'src/tools.mjs')));
   const {expandedDefinitions} = await import(pathToFileURL(join(extracted,'src/eco-suite/src/mcp-expanded.mjs')));
   const expected = JSON.parse(JSON.stringify(TOOLS));
-  assert.equal(expected.length,2021);
+  assert.equal(expected.length,2022);
   assert.deepEqual(manifest.server.mcp_config, {command:'node',args:['${__dirname}/'+entry]});
   return withStdio(extracted,[],async rpc => {
     const listed = [], sizes = [], cursors = new Set();
@@ -295,9 +341,9 @@ async function verifyStdio(extracted, manifest) {
       }
     } while (cursor !== undefined);
     assert.deepEqual(listed,expected);
-    assert.deepEqual(sizes,[...Array(20).fill(100),21]);
+    assert.deepEqual(sizes,[...Array(20).fill(100),22]);
     const names = new Set(listed.map(tool=>tool.name));
-    assert.equal(names.size,2021);
+    assert.equal(names.size,2022);
     assert.ok(oldNames.every(name=>names.has(name)), 'Expected all eight supported legacy tools');
     assert.ok([...names].every(name=>!/balkonspeicher|balkonkraftwerk|solarbank|pv[_-]speicher/i.test(name)));
     assert.ok(manifest.tools.every(tool=>names.has(tool.name)));
@@ -339,7 +385,9 @@ async function verifyStdio(extracted, manifest) {
       rpc('tools/call',{name:windowWidthTool,arguments:args}));
     const singleLaundry = await verifySingleLaundry(args =>
       rpc('tools/call',{name:singleLaundryTool,arguments:args}));
-    return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,windowCondensation,decimalWindowWidth,singleLaundry,
+    const fritzValve = await verifyFritzValve((name,args) =>
+      rpc('tools/call',{name,arguments:args}));
+    return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,windowCondensation,decimalWindowWidth,singleLaundry,fritzValve,
       firstExamples:['btu_empfehlung','entfeuchter_ablaufcheck'],finder:verifyFinder(extracted,drain),
       lastPageExample:last.name,legacyNames:oldNames.length,network:'disabled'};
   });
@@ -795,6 +843,16 @@ async function verifyCompactStdio(extracted) {
     assert.equal(singleMatch.inputSchema.oneOf.length,2);
     const singleLaundry = await verifySingleLaundry(eingaben =>
       rpc('tools/call',{name:runner,arguments:{name:singleLaundryTool,eingaben}}));
+    const fritzLookup = await rpc('tools/call',{
+      name:finder,arguments:{frage:'Welchen Adapter brauche ich für das unbekannte Ventil am FRITZ!Smart Thermo 302?'},
+    });
+    assert.equal(fritzLookup.isError,false);
+    const [fritzMatch] = fritzLookup.structuredContent.tools;
+    assert.equal(fritzMatch?.name,fritzValveTool);
+    assert.equal(fritzMatch.guide_url,fritzValveGuide);
+    assert.deepEqual(fritzMatch.inputSchema.required,['artikelnummer','ventil']);
+    const fritzValve = await verifyFritzValve((name,eingaben) =>
+      rpc('tools/call',{name:runner,arguments:{name,eingaben}}));
     const laundryPrecision = await verifyCompactLaundryPrecision(rpc,finder);
     const humidifierEfficiency = await verifyCompactHumidifierEfficiency(rpc,finder,runner);
     const glassvacTemperature = await verifyCompactGlassvacTemperature(rpc,finder,runner);
@@ -819,7 +877,7 @@ async function verifyCompactStdio(extracted) {
     const windowLookup = await verifyCompactWindowLookup(rpc,finder);
     return {
       tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,
-      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,singleLaundry,laundryPrecision,windowBlade,windowLookup,
+      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,singleLaundry,fritzValve,laundryPrecision,windowBlade,windowLookup,
       windowWidth,decimalWindowWidth,householdDecisions,tadoOventrop,n90Costs,humidifierEfficiency,glassvacTemperature,windowSubject,windowCondensation,
     };
   });
@@ -884,6 +942,7 @@ try {
   assert.deepEqual(result.windowCondensation,result.compact.windowCondensation);
   assert.deepEqual(result.decimalWindowWidth,result.compact.decimalWindowWidth);
   assert.deepEqual(result.singleLaundry,result.compact.singleLaundry);
+  assert.deepEqual(result.fritzValve,result.compact.fritzValve);
   assert.deepEqual(result.resource,result.compact.resource);
   result.archiveReadme = {replacedVersion:readme.previousVersion,registryLatestUrl};
   const identifier = `${releaseUrl}/${file}`;

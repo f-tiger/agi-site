@@ -19,12 +19,12 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUNDLE: ecoback-local-tools-1.22.7.mcpb
-  VERSION: '1.22.7'
-  UPSTREAM_SHA: 5b4e4ad2eda57444824781bd14fec4be7b3f69d1
+  BUNDLE: ecoback-local-tools-1.22.8.mcpb
+  VERSION: '1.22.8'
+  UPSTREAM_SHA: 786bb81d724c9d6ca31f352bbc030b23d6de2fc3
   NAME: io.github.f-tiger/ecoback-local-tools
   RELEASE_TAG: fleet-mcp-registry-2026-10-10
-  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.7.mcpb
+  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.8.mcpb
   REGISTRY_VERSIONS: https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions
   SOURCE_URL: https://github.com/f-tiger/getecoback-mcp
   MCPB_SCHEMA: https://raw.githubusercontent.com/modelcontextprotocol/mcpb/70fe3b34cd6dff1b3bba046638edc72a6467a4fb/schemas/mcpb-manifest-v0.3.schema.json
@@ -96,7 +96,7 @@ jobs:
           ' "$root/servers/ecoback-local-tools.json"
           jq -e --arg name "$NAME" --arg version "$VERSION" --arg revision "$UPSTREAM_SHA" --arg sha "$digest" --arg latest "$REGISTRY_VERSIONS/latest" '
             .name == $name and .version == $version and .sourceRevision == $revision and
-            .fileSha256 == $sha and .tools == 2021 and .pages == 21 and .legacyNames == 8 and .windowExamples == 12 and
+            .fileSha256 == $sha and .tools == 2022 and .pages == 21 and .legacyNames == 8 and .windowExamples == 12 and
             .network == "disabled" and (.firstExamples | type == "array" and length > 0) and
             (.lastPageExample != null and (.lastPageExample | length) > 0) and
             .finder.topMatch == "entfeuchter_ablaufcheck" and
@@ -120,6 +120,16 @@ jobs:
               outcomes:[{kwh:1.8,cost:0.63,basis:"measured"},{kwh:1.2,cost:0.42,basis:"estimate"}],
               rejected:3
             } and .compact.singleLaundry == .singleLaundry and
+            .fritzValve == {
+              name:"fritz_302_danfoss_adapter",
+              guide:"https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#fritz-302-danfoss-adapter",
+              outcomes:[["adapter_im_lieferumfang",true,null],["adapter_separat",false,true],["adapter_separat",false,null],
+                ["modell_oder_ventil_klaeren",null,null],["modell_oder_ventil_klaeren",null,null]],
+              diameterRejected:true,
+              providers:[{model:"fritz-302",host:"fritz.com",reviewed:"2026-11-22"},
+                {model:"bosch-ii-m",host:"www.bosch-smarthome.com",reviewed:"2026-11-22"},
+                {model:"tado-v3",host:"cdn.brandfolder.io",reviewed:"2026-10-31"}]
+            } and .compact.fritzValve == .fritzValve and
             (.compact.laundryPrecision | type == "array" and length == 2 and
               all(.[]; . != "waesche_trocknungskosten" and (. == null or (type == "string" and length > 0)))) and
             .compact.windowSubject == {
