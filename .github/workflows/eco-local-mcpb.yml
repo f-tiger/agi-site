@@ -19,12 +19,12 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUNDLE: ecoback-local-tools-1.22.13.mcpb
-  VERSION: '1.22.13'
-  UPSTREAM_SHA: b7f7f5888a73c18886e09bf4e2daa83a0da18eb7
+  BUNDLE: ecoback-local-tools-1.22.14.mcpb
+  VERSION: '1.22.14'
+  UPSTREAM_SHA: 1d91d3990fe4aa1f989ae5b3752b936b4cb7ddf0
   NAME: io.github.f-tiger/ecoback-local-tools
   RELEASE_TAG: fleet-mcp-registry-2026-10-10
-  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.13.mcpb
+  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.14.mcpb
   REGISTRY_VERSIONS: https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions
   SOURCE_URL: https://github.com/f-tiger/getecoback-mcp
   MCPB_SCHEMA: https://raw.githubusercontent.com/modelcontextprotocol/mcpb/70fe3b34cd6dff1b3bba046638edc72a6467a4fb/schemas/mcpb-manifest-v0.3.schema.json
@@ -153,6 +153,15 @@ jobs:
                 [0.22,0.077,6.6,2.31,"CHF",30]],
               rejected:6
             } and .compact.warmthCost == .warmthCost and
+            .hygrometerComparison == {
+              name:"hygrometer_messbereiche",
+              guide:"https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html#hygrometer-vergleichen",
+              records:[[5,true,[52,58],[57,63],[57,58]],
+                [5.1,true,[52.6,57.6],[57.6,62.8],[57.6,57.6]],
+                [5.1,true,[57.6,62.8],[52.6,57.6],[57.6,57.6]],
+                [98,false,[0,4],[96,100],null]],
+              rejected:3
+            } and .compact.hygrometerComparison == .hygrometerComparison and
             .compact.cellarBuyerEvidence == true and
             .compact.laundryComparison == {
               topMatch:"waesche_trocknungskosten", dryerEurPerLoad:0.6, dehumidifierEurPerLoad:0.3,

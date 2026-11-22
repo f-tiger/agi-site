@@ -160,6 +160,11 @@ Both offline profiles verify usage and period totals, leave the supplied
 currency intact and reject incomplete inputs. The estimate neither measures
 consumption nor determines allowable use.
 
+Version 1.22.14 calculates the two stated hygrometer tolerance intervals
+and their precise intersection. Both profiles verify overlap, contact at
+one decimal value, clipping to 0–100 % and rejection of incomplete inputs.
+The guide explains colocated measurements and the limits of the comparison.
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the
