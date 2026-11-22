@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.22.0';
-const revision = '6f511730bc8063c96b4c0b7b3c61a367b1be0f05';
+const version = '1.22.1';
+const revision = '85eb695f96c0f79ef20ba9e1acaea213d4752c7a';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -248,7 +248,31 @@ async function verifyCompactLaundryComparison(rpc, finder, runner) {
   assert.equal(details.citation_url,citationUrl);
   assert.match(details.disclosure,/gekennzeichnete Affiliate-Links/);
   assert.deepEqual(JSON.parse(result.content[0].text),details);
+
+  const shareUrl = citationUrl+'#laundry-check';
+  const uncertainty = 'Keine Aussage, welches Verfahren bei gleicher Trocknung günstiger ist.';
+  assert.equal(details.share_url,shareUrl);
+  assert.ok(details.share_text_de.includes(uncertainty));
+  assert.ok(details.share_text_de.includes('Eingegebene Werte.'));
+  assert.ok(details.share_text_de.endsWith('Rechenweg bei EcoBack: '+shareUrl));
+
+  const halfCent = await rpc('tools/call',{name:runner,arguments:{name:first.name,
+    eingaben:{dryer:1.4,dehum:1,price:0.025,comparable:true}}});
+  assert.equal(halfCent.isError,false);
+  const values = halfCent.structuredContent;
+  assert.deepEqual(JSON.parse(halfCent.content[0].text),values);
+  const dryerLine = values.share_text_de.replaceAll('\u00a0',' ').split('\n').find(line=>line.startsWith('Trockner: '));
+  assert.equal(dryerLine,'Trockner: 1,4 kWh × 0,025 €/kWh = 0,04 €');
+  assert.equal(values.lower_cost,'dehum');
+  assert.ok(values.share_text_de.includes('Gleiche Wäschemenge und Endtrockenheit sind für den Vergleich vorausgesetzt.'));
+  for (const answer of [details,values]) {
+    assert.equal(answer.share_url,shareUrl);
+    assert.deepEqual(answer.share_text_de.match(/https?:\/\/[^\s]+/g),[shareUrl]);
+  }
+  const omitted = await rpc('tools/call',{name:runner,arguments:{name:first.name,eingaben:{dryer:1.4,dehum:1,price:0.025}}});
+  assert.equal(omitted.isError,true);
   return {
+    shareUrl,unconfirmedNote:uncertainty,halfCentDryerLine:dryerLine,
     topMatch:first.name,
     dryerEurPerLoad:details.dryer_eur_per_load,
     dehumidifierEurPerLoad:details.dehumidifier_eur_per_load,

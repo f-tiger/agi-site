@@ -19,12 +19,12 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUNDLE: ecoback-local-tools-1.22.0.mcpb
-  VERSION: '1.22.0'
-  UPSTREAM_SHA: 6f511730bc8063c96b4c0b7b3c61a367b1be0f05
+  BUNDLE: ecoback-local-tools-1.22.1.mcpb
+  VERSION: '1.22.1'
+  UPSTREAM_SHA: 85eb695f96c0f79ef20ba9e1acaea213d4752c7a
   NAME: io.github.f-tiger/ecoback-local-tools
   RELEASE_TAG: fleet-mcp-registry-2026-10-10
-  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.0.mcpb
+  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.1.mcpb
   REGISTRY_VERSIONS: https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions
   SOURCE_URL: https://github.com/f-tiger/getecoback-mcp
   MCPB_SCHEMA: https://raw.githubusercontent.com/modelcontextprotocol/mcpb/70fe3b34cd6dff1b3bba046638edc72a6467a4fb/schemas/mcpb-manifest-v0.3.schema.json
@@ -108,7 +108,10 @@ jobs:
             .compact.cellarBuyerEvidence == true and
             .compact.laundryComparison == {
               topMatch:"waesche_trocknungskosten", dryerEurPerLoad:0.6, dehumidifierEurPerLoad:0.3,
-              comparison:"unconfirmed", citationUrl:"https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html"
+              comparison:"unconfirmed", citationUrl:"https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html",
+              shareUrl:"https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#laundry-check",
+              unconfirmedNote:"Keine Aussage, welches Verfahren bei gleicher Trocknung günstiger ist.",
+              halfCentDryerLine:"Trockner: 1,4 kWh × 0,025 €/kWh = 0,04 €"
             } and
             (.compact.laundryPrecision | type == "array" and length == 2 and
               all(.[]; . != "waesche_trocknungskosten" and (. == null or (type == "string" and length > 0)))) and
