@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.18.0';
-const revision = '0239b9711d072b72761520850e38dc5fa9b7d2a6';
+const version = '1.19.0';
+const revision = '1d081a3367831d64f4e08294983313ae58e91a72';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -172,7 +172,7 @@ async function verifyStdio(extracted, manifest) {
   const {TOOLS} = await import(pathToFileURL(join(extracted,'src/tools.mjs')));
   const {expandedDefinitions} = await import(pathToFileURL(join(extracted,'src/eco-suite/src/mcp-expanded.mjs')));
   const expected = JSON.parse(JSON.stringify(TOOLS));
-  assert.equal(expected.length,2014);
+  assert.equal(expected.length,2015);
   assert.deepEqual(manifest.server.mcp_config, {command:'node',args:['${__dirname}/'+entry]});
   return withStdio(extracted,[],async rpc => {
     const listed = [], sizes = [], cursors = new Set();
@@ -188,9 +188,9 @@ async function verifyStdio(extracted, manifest) {
       }
     } while (cursor !== undefined);
     assert.deepEqual(listed,expected);
-    assert.deepEqual(sizes,[...Array(20).fill(100),14]);
+    assert.deepEqual(sizes,[...Array(20).fill(100),15]);
     const names = new Set(listed.map(tool=>tool.name));
-    assert.equal(names.size,2014);
+    assert.equal(names.size,2015);
     assert.ok(oldNames.every(name=>names.has(name)), 'Expected all eight supported legacy tools');
     assert.ok([...names].every(name=>!/balkonspeicher|balkonkraftwerk|solarbank|pv[_-]speicher/i.test(name)));
     assert.ok(manifest.tools.every(tool=>names.has(tool.name)));
@@ -210,7 +210,7 @@ async function verifyStdio(extracted, manifest) {
       assert.deepEqual(result.structuredContent[key],value,`${last.name}.${key}`);
     }
     const windowTools = expandedDefinitions.filter(tool => tool.category === 'Fenstersauger');
-    assert.equal(windowTools.length,11);
+    assert.equal(windowTools.length,12);
     for (const tool of windowTools) {
       assert.ok(names.has(tool.name));
       const example = await rpc('tools/call',{name:tool.name,arguments:tool.example.args});
@@ -270,6 +270,39 @@ async function verifyCompactLaundryPrecision(rpc, finder) {
     topMatches.push(topMatch);
   }
   return topMatches;
+}
+
+async function verifyCompactWindowWidth(rpc, finder, runner) {
+  const frage = 'Welche Düsenbreite passt in ein schmales Sprossenfenster?';
+  const found = await rpc('tools/call',{name:finder,arguments:{frage}});
+  assert.equal(found.isError,false);
+  const name = found.structuredContent.tools[0]?.name;
+  assert.equal(name,'fenstersauger_sprossenfenster_duesenbreite');
+  const input = {lichte_breite_mm:170,spiel_pro_seite_mm:5,vorhandene_duese_mm:0,kauf_geplant:true};
+  const call = async values => {
+    const result = await rpc('tools/call',{name:runner,arguments:{name,eingaben:values}});
+    assert.equal(result.isError,false);
+    assert.equal(result.structuredContent.citation_url,windowGuide);
+    return result.structuredContent;
+  };
+  const purchase = await call(input);
+  assert.equal(purchase.nutzbreite_mm,160);
+  assert.equal(purchase.entry_url,windowGuide+'?mcp_entry=fenstersauger-breitencheck#fenstersauger-duesenbreite');
+  const packages = purchase.nominell_passende_originalpakete;
+  assert.deepEqual(packages.map(item=>item.artikel),['06008B7000']);
+  assert.equal(packages[0].quelle,'https://www.bosch-diy.com/de/de/p/glassvac-06008b7000');
+  const alternatives = [
+    [{kauf_geplant:false},'vorhandenen_einwascher_oder_abzieher_pruefen'],
+    [{vorhandene_duese_mm:130},'vorhandene_duese_zuerst_probesetzen'],
+    [{lichte_breite_mm:0},'erst_lichte_breite_messen'],
+  ];
+  for (const [change,outcome] of alternatives) {
+    const result = await call({...input,...change});
+    assert.equal(result.folgeschritt,outcome);
+    assert.equal(Object.hasOwn(result,'entry_url'),false);
+  }
+  return {topMatch:name,usableWidthMm:purchase.nutzbreite_mm,packageArticle:packages[0].artikel,
+    entryUrl:purchase.entry_url,alternativesWithoutEntry:alternatives.length};
 }
 
 async function verifyCompactWindowBlade(rpc, finder, runner) {
@@ -364,11 +397,12 @@ async function verifyCompactStdio(extracted) {
     assert.deepEqual(buyer.content.filter(part=>part.type==='resource'),[{type:'resource',resource}]);
     const laundryComparison = await verifyCompactLaundryComparison(rpc,finder,runner);
     const laundryPrecision = await verifyCompactLaundryPrecision(rpc,finder);
+    const windowWidth = await verifyCompactWindowWidth(rpc,finder,runner);
     const windowBlade = await verifyCompactWindowBlade(rpc,finder,runner);
     const windowLookup = await verifyCompactWindowLookup(rpc,finder);
     return {
       tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,
-      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,laundryPrecision,windowBlade,windowLookup,
+      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,laundryPrecision,windowBlade,windowLookup,windowWidth,
     };
   });
 }

@@ -58,6 +58,11 @@ running the check. Equal blade widths alone do not establish compatibility.
 The archive test runs all 11 reviewed examples, then checks the three possible
 decisions for the WV 8 in compact mode with the German manufacturer's sources.
 
+Version 1.19.0 adds a pane-width comparison for German window vacuum packages.
+A 170 mm pane with 5 mm clearance per side leaves 160 mm for a nozzle. The
+extracted package checks the matching Bosch article, an existing nozzle, an
+unmeasured pane and a household that plans to keep its current equipment.
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the
