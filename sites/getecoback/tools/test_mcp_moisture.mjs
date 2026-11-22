@@ -158,6 +158,7 @@ test('basement ventilation requires both measured dew points and a genuinely mea
     assert.ok(value.share_text_de.includes(`ca. ${String(dew).replace('.', ',')} °C`));
     assert.ok(value.share_text_de.endsWith(value.share_url));
     assert.match(value.share_text_de,/Bei sichtbarer Nässe zuerst die Ursache klären/);
+    assert.match(value.share_text_de,/EcoBack-Ratgeber \(enthält Affiliate-Links\)/);
     assert.doesNotMatch(value.share_text_de,/utm_|#eco-v1=/i);
     assert.match(value.quellen_url,/^https:\/\/www\.umweltbundesamt\.de\//);
     assert.match(value.verbraucherzentrale_url,/^https:\/\/www\.verbraucherzentrale\.de\//);

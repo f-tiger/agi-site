@@ -63,7 +63,7 @@ const tadoXOventrop = new Map([
 export const evidenceNext = [
   {
     name:'keller_lueften_taupunkt_messwerte',
-    description:'Keller lüften? Innen und außen Temperatur und relative Luftfeuchte messen, die kälteste Wand eintragen und Trocknung und Kondensation prüfen — Compare paired indoor/outdoor dew points and the coldest measured wall to assess basement drying and condensation.',
+    description:'Keller lüften? Innen und außen Temperatur und relative Luftfeuchte messen, die kälteste Wand eintragen und Trocknung und Kondensation prüfen. Liefert eine deutsche Kurzantwort und einen Rechnerlink zum Teilen — Compare indoor and outdoor dew points and the coldest measured wall. Returns a shareable German summary and the calculator link.',
     page:CELLAR_VENTILATION_PAGE,
     guide_url:'https://getecoback.com' + CELLAR_VENTILATION_PAGE + CELLAR_VENTILATION_ANCHOR,
     properties:{
@@ -84,7 +84,7 @@ export const evidenceNext = [
         hinweis:'Der Taupunktvergleich ist eine Näherung bei ähnlichem Luftdruck. Im 1-°C-Orientierungsband noch einmal messen und die Genauigkeit der eigenen Fühler beachten. Bei sichtbarer Nässe oder wiederkehrendem Schimmel die Ursache vor dem Gerätekauf klären. Notwendige Lüftung bleibt separat.',
       };
     },
-    example:{args:{aussen_c:28,aussen_rh_prozent:60,innen_c:17,innen_rh_prozent:65,wand_c:15},expect:{status:'kondensationsrisiko',aussen_taupunkt_c:19.5,innen_taupunkt_c:10.4}},
+    example:{args:{aussen_c:28,aussen_rh_prozent:60,innen_c:17,innen_rh_prozent:65,wand_c:15},expect:{status:'kondensationsrisiko',aussen_taupunkt_c:19.5,innen_taupunkt_c:10.4,share_url:CELLAR_SHARE_URL}},
   },
   {
     name:'geraet_testzitat_einordnen',

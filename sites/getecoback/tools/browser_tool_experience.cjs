@@ -50,8 +50,12 @@ if(plainCellarShare){
   assert.equal(new URL(await anchor.getAttribute('href')).searchParams.get('url'),origin+url+'#taupunkt');
   assert.match(await section.innerText(),/6,7 °C/);assert.match(await section.innerText(),/Umweltbundesamt/);
   assert.equal(await page.locator('meta[property="og:image"]').getAttribute('content'),origin+'/assets/social/keller-lueften-taupunkt-v1.png');
+  assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'),origin+url);
+  assert.equal(await page.locator('a[rel~="sponsored"]').count(),1,'Only the existing manual measurement CTA belongs on this decision page');
+  assert.match(await page.locator('a[rel~="sponsored"]').getAttribute('href'),/^https:\/\/www\.amazon\.de\/s\?k=hygrometer\+innen\+aussen\+taupunkt&tag=getecoback-21$/);
+  assert.equal(await page.locator('script[data-ga4-id="G-E2V0Q9SJ9V"]').count(),1);
  }finally{await noScript.close();}
- checks+=12;
+ checks+=16;
 }
 const result=await preview.locator('p').innerText();await p.goto(link+'&ignored'); // Malformed fragments must fail closed, never break the page.
 await p.waitForSelector('#eco-tool-experience[data-ready]');assert.deepEqual(errors,[]);checks++;

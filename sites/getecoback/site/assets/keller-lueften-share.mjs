@@ -28,6 +28,6 @@ export function cellarVentilationShareText(values, provenance = 'entered') {
     `Außen ${outdoor} → Taupunkt ca. ${number.format(check.aussen_taupunkt_c)} °C. Innen ${indoor} → ca. ${number.format(check.innen_taupunkt_c)} °C. Kälteste geprüfte Wand: ${wall}.`,
     `${check.antwort.replace(/\.$/, '')}. ${advice[check.status]}${condensation}`,
     'Bei sichtbarer Nässe zuerst die Ursache klären. Notwendige Lüftung für die Luftqualität bleibt separat.',
-    `Rechenweg und Quellen (EcoBack): ${CELLAR_SHARE_URL}`,
+    `Rechenweg und Quellen im EcoBack-Ratgeber (enthält Affiliate-Links): ${CELLAR_SHARE_URL}`,
   ].join('\n');
 }

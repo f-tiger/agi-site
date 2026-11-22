@@ -89,6 +89,14 @@ full Markdown URL and original references. Missing text fails closed; no
 arbitrary URL or HTML fallback is fetched. The browser calculator remains the
 place to compare a reader's own measured values.
 
+## Compare basement ventilation and share the result
+
+`keller_lueften_taupunkt_messwerte` compares dew points from paired indoor and
+outdoor readings and checks the coldest measured wall. `share_text_de` contains
+the entered values and the next step in German. `share_url` points to the
+[calculator, worked examples and sources](https://getecoback.com/guide/keller-lueften-sommer.html#taupunkt)
+without including the measurements.
+
 ## What makes the answers safe to quote
 
 - **Published rules and explicit limits.** Calculations state their assumptions.
