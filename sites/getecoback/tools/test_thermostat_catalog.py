@@ -49,7 +49,7 @@ class CatalogTests(unittest.TestCase):
         self.assertIn('keinen Schweizer Händler', html)
         self.assertIn('0 %', html)
         self.assertIn('12. November 2026', html)
-        self.assertIn('"dateModified": "2026-11-20"', html)
+        self.assertIn('"dateModified": "2026-11-22"', html)
         self.assertEqual(html.count('id="tado-x-oventrop"'), 1)
         self.assertIn('4026755228717', html)
         self.assertEqual(html, page(catalog.SLUG, PAGES[catalog.SLUG]))
@@ -70,6 +70,9 @@ class CatalogTests(unittest.TestCase):
         self.assertIn('**System:**', md)
         self.assertIn('**Paket und Zusatzkauf:**', md)
         self.assertIn('Lohnt sich ein smartes Heizkörperthermostat für mich?', md)
+        self.assertIn('8750002861', md)
+        self.assertIn('4062321692636', md)
+        self.assertIn('#bosch-ii-m-danfoss-adapter', md)
         self.assertNotIn('SystemBridge', md)
         self.assertNotIn('amazon.de/', md)
         self.assertNotIn('getecoback-21', md)
@@ -79,7 +82,7 @@ class CatalogTests(unittest.TestCase):
         html = (catalog.ROOT / 'site/guide' / (catalog.SLUG + '.html')).read_text()
         self.assertEqual(html.count('id="eb-thermostat-products"'), 1)
         self.assertLess(html.index('id="thermostat-start"'), html.index('id="ventilcheck"'))
-        for target in ['eb-thermostat-products', 'ventilcheck', 'thermostat-paketkosten', 'thermostat-behalten']:
+        for target in ['eb-thermostat-products', 'ventilcheck', 'thermostat-paketkosten', 'thermostat-behalten', 'bosch-ii-m-danfoss-adapter']:
             self.assertIn('href="#' + target + '"', html)
             self.assertEqual(html.count('id="' + target + '"'), 1)
         for p in catalog.load()['products']:
