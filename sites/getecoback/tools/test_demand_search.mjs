@@ -417,6 +417,8 @@ test('Miele HyClean one-device and shared-stock questions reach a single German 
   const page='/produkte.html', target=page+'#miele-staubsaugerbeutel';
   for(const q of [
     'Welcher Beutel für Miele Guard L1: TU oder CO?',
+    'Ist 12557080 das richtige Originalpaket für den Miele Guard M1, und was ist drin?',
+    'Ist bei der Originalpackung TU 12557060 für Miele Guard L1 auch der AirClean Abluftfilter drin?',
     'Ich habe einen Miele Guard M1 Parquet Flex. Passen meine alten GN-Beutel oder brauche ich CO oder TU?',
     'Auf meinem Miele steht nur C2. Kann ich GN oder FJM bestellen?',
     'Auf dem Schild steht nur C2. Compact C2 oder Complete C2, welchen Staubsaugerbeutel brauche ich?',

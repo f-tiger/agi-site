@@ -1112,6 +1112,8 @@ test('Miele bag selection separates one model’s replacement from sharing stock
   const pair='miele_zwei_sauger_vorrat_beutel_abluftfilter_getrennt';
   for(const [q,expected] of [
     ['Welcher Beutel für Miele Guard L1: TU oder CO?',one],
+    ['Ist 12557080 das richtige Originalpaket für den Miele Guard M1, und was ist drin?',one],
+    ['Ist bei der Originalpackung TU 12557060 für Miele Guard L1 auch der AirClean Abluftfilter drin?',one],
     ['Ich habe einen Miele Guard M1 Parquet Flex. Passen meine alten GN-Beutel oder brauche ich CO oder TU?',one],
     ['Auf meinem Miele steht nur C2. Kann ich GN oder FJM bestellen?',one],
     ['Auf dem Schild steht nur C2. Compact C2 oder Complete C2, welchen Staubsaugerbeutel brauche ich?',one],
