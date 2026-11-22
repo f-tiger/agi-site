@@ -1,12 +1,11 @@
 import { TDS_TOOLS, TDS_TOOL_LANGUAGES, lookupTdsTool, runTdsTool } from '../../collector-assets/tds-suite/index.mjs';
 import { measurableRequest } from '../../lib/collector-measurement.js';
-import { TDS_HOME_PROTOCOL as PROTOCOL, TDS_HOME_SERVER as SERVER } from '../../collector-assets/tds-suite/service.mjs';
+import { TDS_HOME_PROTOCOL as PROTOCOL, TDS_HOME_SERVER as SERVER, TDS_HOME_PAGE_SIZE as PAGE_SIZE } from '../../collector-assets/tds-suite/service.mjs';
 
 const SUPPORTED = new Set(['2024-11-05', '2025-03-26', PROTOCOL]);
 const CANONICAL = 'https://thedollscout.com';
 const ORIGINS = new Set([CANONICAL, 'https://chatgpt.com', 'https://claude.ai', 'https://www.perplexity.ai']);
 const LIMIT = 32 * 1024;
-const PAGE_SIZE = 40;
 const CURSOR_PREFIX = 'tds-home-tools-v1:';
 const NO_STORE = { 'cache-control': 'no-store', 'x-content-type-options': 'nosniff', 'x-robots-tag': 'noindex', vary: 'Origin' };
 const TRANSIENT_INPUT_ERROR = 'Use the tool schema and provide values in the documented format and range.';

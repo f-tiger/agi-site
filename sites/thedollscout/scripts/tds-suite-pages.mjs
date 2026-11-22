@@ -1,10 +1,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { TDS_TOOLS } from '../collector-assets/tds-suite/index.mjs';
+import { REGIONAL_TDS_TOOLS, TDS_TOOLS } from '../collector-assets/tds-suite/index.mjs';
+import { REGIONAL_GUIDE_PATHS } from '../collector-assets/tds-suite/regional-buying-links.mjs';
 import { locales, origin, route } from './collecting/content.mjs';
 
-const updated = '2026-11-20';
+const updated = '2026-11-22';
+const initialRelease = '2026-11-20';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const output = path.resolve(process.argv.includes('--out') ? process.argv[process.argv.indexOf('--out') + 1] : root);
 const write = (name, value) => {
@@ -83,7 +85,10 @@ for (const tool of TDS_TOOLS) {
   if (!groups.has(tool.category)) groups.set(tool.category, []);
   groups.get(tool.category).push(tool);
 }
-const catalogOrder = [...TDS_TOOLS].sort((a,b) => Number(featured(b)) - Number(featured(a)));
+const regionalSlugs = new Set(REGIONAL_TDS_TOOLS.map(tool => tool.slug));
+const regionalCategories = new Set(REGIONAL_TDS_TOOLS.map(tool => tool.category));
+const catalogOrder = [...TDS_TOOLS].sort((a,b) =>
+  Number(regionalSlugs.has(b.slug)) - Number(regionalSlugs.has(a.slug)) || Number(featured(b)) - Number(featured(a)));
 const toolRoute = (lang, tool) => route(lang, slugPath(tool.slug));
 const categoryRoute = (lang, key) => route(lang, slugPath('categories/' + key));
 const fileFor = (publicRoute) => publicRoute.replace(/^\//, '') + '.html';
@@ -93,11 +98,11 @@ const alt = (slug) => Object.entries(locales).map(([lang, item]) => `<link rel="
 const nameFor = (lang, tool) => lc(lang, tool.title);
 const examplesFor = (lang,tool) => tool.examples?.[lang] ?? tool.example;
 const evidenceFor = (lang,tool) => tool.evidenceByLocale?.[lang] ?? tool.evidence;
-function page({ lang, slug, title, description, content, graph, discover = true }) {
+function page({ lang, slug, title, description, content, graph, discover = true, shoppingPath }) {
   const c = words[lang];
   const full = origin + route(lang, slug);
   const machine = `${assets}/text/${lang}/${slug.replace(/^ai-tools\/?/, '') || 'index'}.txt`;
-  const body = `<!doctype html><html lang="${locales[lang].tag}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#e4002b"><title>${esc(title)} | The Doll Scout</title><meta name="description" content="${esc(description)}"><meta name="robots" content="${discover ? 'index,follow,max-image-preview:large' : 'noindex,follow'}"><link rel="canonical" href="${full}">${alt(slug)}<link rel="alternate" type="text/plain" href="${origin+machine}"><link rel="alternate" type="application/json" href="${origin+datasetUrl(lang)}"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${full}"><link rel="stylesheet" href="/document-assets/style.css"><link rel="stylesheet" href="${assets}/suite.css"><script type="application/ld+json">${json({'@context':'https://schema.org','@graph':graph})}</script></head><body><a class="skip" href="#main">${esc(c.catalog)}</a><header class="site-header"><div class="wrap header-inner"><a class="brand" href="${route(lang)}"><img width="34" height="34" src="/collector-assets/icon.svg" alt=""><span>The Doll Scout</span></a><nav class="main-nav" aria-label="${esc(c.nav)}"><a href="${route(lang,'shop')}">${esc(c.buying)}</a><a href="${route(lang,slugPath())}" aria-current="page">${esc(c.suite)}</a></nav><nav class="languages" aria-label="Language">${Object.entries(locales).map(([key, value]) => `<a href="${route(key, slug)}" lang="${value.tag}"${key === lang ? ' aria-current="page"' : ''}>${value.label}</a>`).join('')}</nav></div></header><main id="main" class="wrap tds-suite">${content}</main><footer class="site-footer"><div class="wrap"><a href="${route(lang)}">The Doll Scout</a> · <a href="${route(lang,'document-privacy')}">${esc(c.privacyLink)}</a></div></footer><script type="module" src="${assets}/browser.mjs"></script></body></html>`;
+  const body = `<!doctype html><html lang="${locales[lang].tag}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#e4002b"><title>${esc(title)} | The Doll Scout</title><meta name="description" content="${esc(description)}"><meta name="robots" content="${discover ? 'index,follow,max-image-preview:large' : 'noindex,follow'}"><link rel="canonical" href="${full}">${alt(slug)}<link rel="alternate" type="text/plain" href="${origin+machine}"><link rel="alternate" type="application/json" href="${origin+datasetUrl(lang)}"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${full}"><link rel="stylesheet" href="/document-assets/style.css"><link rel="stylesheet" href="${assets}/suite.css"><script type="application/ld+json">${json({'@context':'https://schema.org','@graph':graph})}</script></head><body><a class="skip" href="#main">${esc(c.catalog)}</a><header class="site-header"><div class="wrap header-inner"><a class="brand" href="${route(lang)}"><img width="34" height="34" src="/collector-assets/icon.svg" alt=""><span>The Doll Scout</span></a><nav class="main-nav" aria-label="${esc(c.nav)}"><a href="${shoppingPath ?? route(lang,'shop')}">${esc(c.buying)}</a><a href="${route(lang,slugPath())}" aria-current="page">${esc(c.suite)}</a></nav><nav class="languages" aria-label="Language">${Object.entries(locales).map(([key, value]) => `<a href="${route(key, slug)}" lang="${value.tag}"${key === lang ? ' aria-current="page"' : ''}>${value.label}</a>`).join('')}</nav></div></header><main id="main" class="wrap tds-suite">${content}</main><footer class="site-footer"><div class="wrap"><a href="${route(lang)}">The Doll Scout</a> · <a href="${route(lang,'document-privacy')}">${esc(c.privacyLink)}</a></div></footer><script type="module" src="${assets}/browser.mjs"></script></body></html>`;
   write(fileFor(route(lang,slug)),body);
   if (discover) discovery.push(full);
   allRecords.push({lang, slug, url:full, machine, title, discover});
@@ -105,8 +110,9 @@ function page({ lang, slug, title, description, content, graph, discover = true 
 }
 function summaryGraph(lang, slug, title, description, list = []) {
   const url = origin + route(lang, slug);
+  const modified = slug === slugPath() || regionalCategories.has(slug.split('/').at(-1)) ? updated : initialRelease;
   return [
-    {'@type':'CollectionPage', '@id':url + '#page', name:title, description, url, inLanguage:locales[lang].tag, dateModified:updated},
+    {'@type':'CollectionPage', '@id':url + '#page', name:title, description, url, inLanguage:locales[lang].tag, dateModified:modified},
     {'@type':'ItemList', '@id':url + '#tools', name:title, numberOfItems:list.length, itemListElement:list.slice(0,36).map((tool,i) => ({'@type':'ListItem', position:i+1, name:nameFor(lang,tool), url:origin+toolRoute(lang,tool)}))}
   ];
 }
@@ -125,7 +131,7 @@ const inputField = (lang, tool, key, schema) => {
   const title = lc(lang, tool.fieldTitles?.[key]) || key.replace(/([a-z])([A-Z])/g, '$1 $2');
   const numeric = ['number','integer'].includes(schema.type);
   const numericAttr = (attribute, value) => Number.isFinite(value) ? ` ${attribute}="${value}"` : '';
-  const field = schema.enum ? `<select id="${id}" name="${inputName}"${required}><option value=""></option>${schema.enum.map(v => `<option value="${esc(v)}">${esc(v)}</option>`).join('')}</select>`
+  const field = schema.enum ? `<select id="${id}" name="${inputName}"${required}><option value=""></option>${schema.enum.map(v => `<option value="${esc(v)}">${esc(tool.enumLabels?.[key]?.[v]?.[lang] ?? v)}</option>`).join('')}</select>`
     : schema.type === 'boolean' ? `<input id="${id}" name="${inputName}" type="checkbox">`
     : numeric ? `<input id="${id}" name="${inputName}" type="number" inputmode="decimal" step="${schema.type === 'integer' ? '1' : 'any'}"${numericAttr('min',schema.minimum)}${numericAttr('max',schema.maximum)}${required}>`
     : `<textarea rows="${schema.maxLength > 160 ? 4 : 1}" id="${id}" name="${inputName}"${numericAttr('maxlength',schema.maxLength)}${required}></textarea>`;
@@ -158,15 +164,16 @@ for (const [lang,c] of Object.entries(words)) {
     const slug = slugPath(tool.slug);
     const title = nameFor(lang,tool);
     const description = lc(lang,tool.description);
+    const shoppingPath = REGIONAL_GUIDE_PATHS[tool.slug];
     const metadata = { name:tool.name, locale:lang, inputSchema:tool.inputSchema, example:examplesFor(lang,tool), ui:c };
     const evidence = evidenceFor(lang,tool);
     const checked = evidence?.checked ? ` <time datetime="${esc(evidence.checked)}">${esc(evidence.checked)}</time>` : '';
     const source = evidence?.url?.startsWith('https://') ? `<section class="section"><h2>${esc(c.evidence)}</h2><p><a href="${esc(evidence.url)}" rel="noopener noreferrer">${esc(new URL(evidence.url).hostname)}</a>${checked}</p><p>${esc(c.scope)}</p></section>` : '';
     const category = { href:categoryRoute(lang,tool.category), label:categoryLabel(lang,tool.category) };
-    const content = `${crumb(lang,title,category)}<header class="tds-suite-head"><div><h1>${esc(title)}</h1><p>${esc(description)}</p></div><p class="tds-suite-note">${esc(c.local)}</p></header><div class="tds-suite-workspace"><section class="work-panel" aria-labelledby="tds-tool-heading"><h2 id="tds-tool-heading">${esc(c.input)}</h2><p class="tds-suite-meta">${esc(c.required)}</p><form data-tds-tool>${Object.entries(tool.inputSchema.properties).map(([key,schema]) => inputField(lang,tool,key,schema)).join('')}<div class="actions"><button class="primary" type="submit" disabled>${esc(c.execute)}</button><button type="button" data-tds-example disabled>${esc(c.examples)}</button></div></form><noscript><p>${esc(c.noscript)}</p></noscript><p class="tds-suite-meta">${esc(c.privacy)}</p><p role="status" aria-live="polite" data-tds-status></p></section><section class="work-panel tds-suite-result" aria-labelledby="tds-result-heading"><h2 id="tds-result-heading">${esc(c.result)}</h2><p class="tds-suite-result-summary" data-tds-summary hidden></p><pre data-tds-result tabindex="0"></pre><div class="actions"><button type="button" data-tds-copy disabled>${esc(c.copy)}</button><button type="button" data-tds-export disabled>${esc(c.download)}</button></div></section></div>${source}${mcpDocs(lang,tool)}<script type="application/json" data-tds-config>${json(metadata)}</script>`;
+    const content = `${crumb(lang,title,category)}<header class="tds-suite-head"><div><h1>${esc(title)}</h1><p>${esc(description)}</p></div><p class="tds-suite-note">${esc(c.local)}</p></header><div class="tds-suite-workspace"><section class="work-panel" aria-labelledby="tds-tool-heading"><h2 id="tds-tool-heading">${esc(c.input)}</h2><p class="tds-suite-meta">${esc(c.required)}</p><form data-tds-tool>${Object.entries(tool.inputSchema.properties).map(([key,schema]) => inputField(lang,tool,key,schema)).join('')}<div class="actions"><button class="primary" type="submit" disabled>${esc(c.execute)}</button><button type="button" data-tds-example disabled>${esc(c.examples)}</button></div></form><noscript><p>${esc(c.noscript)}</p></noscript><p class="tds-suite-meta">${esc(c.privacy)}</p><p role="status" aria-live="polite" data-tds-status></p></section><section class="work-panel tds-suite-result" aria-labelledby="tds-result-heading"><h2 id="tds-result-heading">${esc(c.result)}</h2><p class="tds-suite-result-summary" data-tds-summary hidden></p>${shoppingPath ? '<p><a class="button primary" data-tds-buyer-guide hidden></a></p>' : ''}<pre data-tds-result tabindex="0"></pre><div class="actions"><button type="button" data-tds-copy disabled>${esc(c.copy)}</button><button type="button" data-tds-export disabled>${esc(c.download)}</button></div></section></div>${source}${mcpDocs(lang,tool)}<script type="application/json" data-tds-config>${json(metadata)}</script>`;
     const url = origin + toolRoute(lang,tool);
     const graph = [{'@type':'WebApplication', name:title, description, url, inLanguage:locales[lang].tag, applicationCategory:'UtilitiesApplication', operatingSystem:'Web browser', browserRequirements:'Requires JavaScript', isAccessibleForFree:true, offers:{'@type':'Offer', price:0, priceCurrency:'USD'}}];
-    const machine = page({lang,slug,title,description,content,graph,discover:featured(tool)});
+    const machine = page({lang,slug,title,description,content,graph,discover:featured(tool),shoppingPath});
     write(machine.slice(1), `# ${title}\n\n${url}\n\n${description}\n\n${c.privacy}\n\n${c.endpoint} ${endpoint}\nMCP tool name ${tool.name}\n\n${JSON.stringify(tool.inputSchema,null,2)}\n`+(evidence?.url?`\n${c.evidence} ${evidence.url} ${updateLabel[lang]} ${evidence.checked}\n`:''));
   }
 }
@@ -174,17 +181,28 @@ for (const [lang,c] of Object.entries(words)) {
 const sitemapFile = path.join(output,'sitemap.xml');
 let xml = fs.existsSync(sitemapFile) ? fs.readFileSync(sitemapFile,'utf8') : '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>';
 xml = xml.replace(/<url>\s*<loc>https:\/\/thedollscout\.com\/(?:de\/|zh\/)?ai-tools(?:\/[^<]*)?<\/loc>[\s\S]*?<\/url>\n?/g,'');
-xml = xml.replace('</urlset>',discovery.map(url=>`<url><loc>${url}</loc><lastmod>${updated}</lastmod></url>`).join('\n')+'\n</urlset>');
+const regionalIndexable = [...new Set([
+  ...Object.keys(locales).flatMap(lang => [
+    origin + route(lang,slugPath()),
+    ...REGIONAL_TDS_TOOLS.map(tool => origin + toolRoute(lang,tool)),
+    ...REGIONAL_TDS_TOOLS.map(tool => origin + categoryRoute(lang,tool.category)),
+  ]),
+  ...Object.values(REGIONAL_GUIDE_PATHS).map(path => origin + path),
+  origin + '/',
+])];
+const touched = new Set(regionalIndexable);
+xml = xml.replace('</urlset>',discovery.map(url=>`<url><loc>${url}</loc><lastmod>${touched.has(url) ? updated : initialRelease}</lastmod></url>`).join('\n')+'\n</urlset>');
 write('sitemap.xml',xml);
 const discoveryBody = '\n<!-- tds-suite:start -->\n## TDS AI and MCP tools\n\n' +
   Object.entries(words).map(([lang,c]) => `- ${c.hub} ${origin+route(lang,slugPath())} · ${c.catalogData} ${origin+datasetUrl(lang)}`).join('\n') +
+  Object.keys(locales).flatMap(lang=>REGIONAL_TDS_TOOLS.map(tool=>`\n- ${nameFor(lang,tool)} ${origin+toolRoute(lang,tool)}`)).join('') +
   `\n- MCP endpoint ${endpoint}\n- ${TDS_TOOLS.length} executable tool definitions. Browser execution processes form input on the user's device. MCP execution processes request arguments on the server.\n<!-- tds-suite:end -->\n`;
 for (const filename of ['llms.txt','llms-full.txt']) {
   const file = path.join(output,filename);
   const before = fs.existsSync(file) ? fs.readFileSync(file,'utf8') : '# The Doll Scout\n';
   write(filename,before.replace(/\n?<!-- tds-suite:start -->[\s\S]*?<!-- tds-suite:end -->\n?/g,'') + discoveryBody);
 }
-write('collector-assets/tds-suite/manifest.json',json({updated,count:TDS_TOOLS.length,indexable:discovery,pages:allRecords})+'\n');
+write('collector-assets/tds-suite/manifest.json',json({updated,count:TDS_TOOLS.length,indexable:discovery,regionalIndexable,pages:allRecords})+'\n');
 
 for (const [lang,c] of Object.entries(words)) {
   for (const target of [route(lang), route(lang,'document-tools')]) {
