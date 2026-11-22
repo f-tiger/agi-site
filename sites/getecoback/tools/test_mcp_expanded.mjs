@@ -157,6 +157,43 @@ test('hygrometer ranges include the decimal touching point in both profiles', as
   }
 });
 
+test('N90 identity verifies the offered variant, never infers a missing identifier or stock', async () => {
+  const name='pac_n90_ean_abgleichen';
+  const guide=origin+'/guide/delonghi-pac-n90-test.html';
+  for (const [ean,modell,status] of [
+    [8004399512351,'PAC N90 ECO Silent','modellangaben_passen'],
+    [8004399512351,'abweichend','modellbezeichnung_klaeren'],
+    [8004399512351,'unbekannt','modellbezeichnung_klaeren'],
+    [8004399512352,'PAC N90 ECO Silent','ean_abweicht'],
+    [0,'PAC N90 ECO Silent','ean_fehlt'],
+    [0,'abweichend','ean_fehlt'],
+  ]) {
+    const args={ean,modell};
+    const native=await rpc('tools/call',{name,arguments:args});
+    const response=await worker.fetch(new Request(origin+'/mcp/v1?profile=compact',{
+      method:'POST',headers:{'content-type':'application/json','user-agent':'getecoback-ci/expanded'},
+      body:JSON.stringify({jsonrpc:'2.0',id:1,method:'tools/call',params:{
+        name:'ecoback_werkzeug_ausfuehren',arguments:{name,eingaben:args},
+      }}),
+    }),{},{});
+    assert.equal(response.status,200);
+    assert.deepEqual((await response.json()).result,native);
+    assert.equal(native.isError,false);
+    const data=native.structuredContent;
+    assert.deepEqual([data.status,data.referenz_ean,data.referenz_modell],[status,8004399512351,'PAC N90 ECO Silent']);
+    assert.equal(data.citation_url,guide);
+    assert.equal(data.guide_url,guide+'#testlage');
+    assert.equal(data.hersteller_url,'https://www.delonghi.com/de-de/s/PACN90ECOSILENT');
+    assert.match(data.datenblatt_url,/^https:\/\/shop\.sonepar\.at\//);
+    assert.match(data.datenblatt_hinweis,/österreichischen.*deutschen/);
+    assert.match(data.naechster_schritt,status==='modellangaben_passen'?/Abluftweg/:/vor einer Bestellung/i);
+    assert.doesNotMatch(JSON.stringify(data),/amazon\.|amzn\.|[?&]tag=/i);
+  }
+  for (const ean of [-1,1234,8004399512351.5,'8004399512351']) {
+    assert.equal((await rpc('tools/call',{name,arguments:{ean,modell:'PAC N90 ECO Silent'}})).isError,true);
+  }
+});
+
 test('the public directory and standard MCP pages expose the same catalogue', async () => {
   const pageSizes = [];
   const listed = await collectToolPages(async cursor => {

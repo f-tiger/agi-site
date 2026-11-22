@@ -1,6 +1,6 @@
 # De'Longhi PAC N90 ECO Silent: Wie laut ist er im Schlafzimmer?
 
-> PAC N90 ECO Silent: Was 50–52 dB(A) Schalldruck und maximal 64 dB(A) Schallleistung bedeuten. Modell, Fenster und Nachtbetrieb vor dem Kauf prüfen.
+> De’Longhi PAC N90 ECO Silent: EAN 8004399512351 und das Modell im Angebot abgleichen. Abluftweg und Geräuschwerte fürs Schlafzimmer prüfen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/delonghi-pac-n90-test.html
 
@@ -10,11 +10,21 @@ Wie laut kommt der PAC N90 ECO Silent am Bett an? In den technischen Daten stehe
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
 
+## De’Longhi PAC N90 ECO Silent: Welche EAN passt?
+
+Gleiche die vollständige Modellbezeichnung **De’Longhi PAC N90 ECO Silent** und die **EAN 8004399512351** mit dem Angebot ab.
+
+- **Beides stimmt überein.** Prüfe den Lieferumfang und ob die Abluft ins Freie geführt werden kann. Wenn beides geklärt ist, kannst du zum [deutschen Angebot](https://getecoback.com/guide/delonghi-pac-n90-test.html#n90-angebot) springen.
+
+- **EAN fehlt oder „PAC N90“ steht allein.** Bitte den Händler um die vollständige Modellbezeichnung und ein Foto der EAN am Karton. Warte mit der Bestellung, bis beide Angaben bestätigt sind.
+
+- **EAN oder Modell weicht ab.** Frage nach Datenblatt, Energieetikett und Lieferumfang der angebotenen Variante. Warte mit der Bestellung, bis die Abweichung geklärt ist.
+
+Wenn du die [Abluft nicht sicher nach draußen führen](https://getecoback.com/guide/delonghi-pac-n90-test.html#raumgroesse) kannst oder Verschattung und Lüften in kühlen Stunden reichen, lass den Kauf erst einmal weg.
+
+Der [deutsche De’Longhi-Support](https://www.delonghi.com/de-de/s/PACN90ECOSILENT) führt dieses Modell und sein Energielabel. Die EAN sowie Angaben zu Raumgröße, Schlauch und Geräusch stammen aus dem [De’Longhi-Datenblatt beim Händler Sonepar Österreich (PDF)](https://shop.sonepar.at/asset_external/downloads/pim/400901/datasheet_delonghi_PAC%20N90ECO.pdf), eingesehen am 19. November 2026. Lieferumfang und Angebot in Deutschland separat prüfen.
+
 **Kurzantwort:** Für den PAC N90 ECO Silent nennt das Datenblatt 50–52 dB(A) Schalldruck und maximal 64 dB(A) Schallleistung. Der Abstand zum Mikrofon fehlt. Ob dich der Kompressor am Bett stört, lässt sich daraus nicht ableiten. Brauchst du nachts Ruhe, prüfe zuerst, ob Verschattung und Lüften bei kühlerer Außenluft ausreichen.
-
-## Modell und Datenblatt prüfen
-
-Vergleiche die Modellbezeichnung **PAC N90 ECO Silent** und die EAN **8004399512351** mit dem Angebot. Die [deutsche De’Longhi-Supportseite für den PAC N90 ECO Silent](https://www.delonghi.com/de-de/s/PACN90ECOSILENT) führt zum Energielabel und Produktdatenblatt für dieses Modell. Die Angaben zu Raum, Abluftschlauch und Geräusch stammen aus dem [deutschsprachigen De’Longhi-Datenblatt bei Sonepar Österreich (PDF)](https://shop.sonepar.at/asset_external/downloads/pim/400901/datasheet_delonghi_PAC%20N90ECO.pdf), eingesehen am 19. November 2026. Lieferumfang und Angebot in Deutschland separat prüfen.
 
 ## Was kostet eine Stunde Kühlen mit dem PAC N90 ECO Silent?
 
