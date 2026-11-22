@@ -54,7 +54,7 @@ test('the public directory and standard MCP pages expose the same catalogue', as
 });
 
 test('old or invalid cursors reject safely and both catalogue boundaries paginate completely', async () => {
-  for (const cursor of ['1.24.1:100','1.24.2:99','1.24.2:5000','1.24.2:0100','1.24.2:0',null,100]) {
+  for (const cursor of ['1.24.2:100','1.24.3:99','1.24.3:5000','1.24.3:0100','1.24.3:0',null,100]) {
     const response = await worker.fetch(request('tools/list',{cursor}), {}, {});
     assert.equal((await response.json()).error.code,-32602);
   }

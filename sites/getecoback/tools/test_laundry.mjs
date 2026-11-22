@@ -25,6 +25,35 @@ test('German share notes preserve the tariff, input basis and comparable-dryness
  assert.match(laundryShareText(x,'example'),/Rechenbeispiel/);
  assert.match(laundryShareText(x,'example'),/1,5 kWh × 0,35\s€\/kWh = 0,53\s€/);
 });
+test('MCP presents the same share note for local German measured values',async()=>{
+ let writes=0;
+ const env={EVENTS:{prepare(){writes++;throw new Error('MCP probe writes an event');}}};
+ async function call(args){
+  const request=new Request('https://getecoback.com/mcp/v1?__probe=1',{
+   method:'POST',headers:{'content-type':'application/json','user-agent':'getecoback-ci/laundry-share','x-probe':'1'},
+   body:JSON.stringify({jsonrpc:'2.0',id:1,method:'tools/call',params:{name:'waesche_trocknungskosten',arguments:args}}),
+  });
+  const response=await worker.fetch(request,env,{});
+  assert.equal(response.status,200);
+  return (await response.json()).result;
+ }
+ const args={dryer:10,dehum:1.2,price:0.309,comparable:false};
+ for(const [patch,winner] of [[{},'unconfirmed'],[{comparable:true},'dehum'],[{comparable:true,price:0},'tie']]){
+  const values={...args,...patch};
+  const reply=await call(values);
+  assert.equal(reply.isError,false);
+  assert.equal(reply.structuredContent.lower_cost,winner);
+  assert.equal(reply.structuredContent.share_url,LAUNDRY_SHARE_URL);
+  assert.equal(reply.structuredContent.share_text_de,laundryShareText({...values,
+   dryerBasis:'cycle',method:'measured',currency:'EUR',loads:0,purchase:0,
+  }));
+  assert.deepEqual(JSON.parse(reply.content[0].text),reply.structuredContent);
+ }
+ const invalid=await call({...args,provenance:'example'});
+ assert.equal(invalid.isError,true);
+ assert.equal(invalid.structuredContent,undefined);
+ assert.equal(writes,0);
+});
 test('same dry load: low watts can lose, shorter runtime can win, labels normalize exactly',()=>{let r=laundry(x);assert.equal(r.dehum,2);assert.equal(r.winner,'dryer');assert.equal(r.breakEvenHours,6);assert.equal(r.payback,null);r=laundry({...x,hours:4});assert.equal(r.winner,'dehum');assert.ok(Math.abs(r.annualDifference-27.3)<1e-10);assert.ok(Math.abs(r.payback-200/27.3)<1e-10);assert.deepEqual(laundry({...x,dryer:150,dryerBasis:'hundred'}),laundry(x));assert.equal(laundry({...x,hours:6}).winner,'tie');});
 test('measured kWh takes precedence; unmatched drying never returns a winner or payback',()=>{const r=laundry({...x,method:'measured',dehum:.8,watts:NaN,hours:NaN});assert.equal(r.dehum,.8);assert.equal(r.breakEvenHours,null);for(const hours of [0,4,8]){const a=laundry({...x,hours,comparable:false});assert.equal(a.winner,'unconfirmed');assert.equal(a.payback,null);}assert.equal(laundry({...x,hours:4,loads:0}).payback,null);assert.equal(laundry({...x,price:0}).winner,'tie');for(const change of [{price:-1},{dryer:Infinity},{dryer:21},{currency:'JPY'},{method:'bad'},{hours:NaN}])assert.throws(()=>laundry({...x,...change}),RangeError);});
 test('fixed channel links preserve probes, never accept arbitrary destinations or attribution',()=>{for(const source of ['youtube','tiktok']){const res=videoEntry(new URL('https://getecoback.com/dry-'+source+'?next=https://evil.test&__probe=1'));const u=new URL(res.headers.get('location'));assert.equal(u.pathname,LAUNDRY_PATHS[1]);assert.equal(u.hash,'#laundry-check');assert.equal(u.searchParams.get('__probe'),'1');assert(!u.searchParams.has('next'));assert.deepEqual(acquisition(u.href),{source,evidence:'tag_only'});assert.equal(acquisition(u.href,'https://'+source+'.com/watch').evidence,'referrer');assert.equal(acquisition(u.href,'https://'+source+'.com.evil.test/').evidence,'other');assert.equal(acquisition(u.href.replace('eco-laundry-03','other')).source,'onsite');}assert.equal(videoEntry(new URL('https://getecoback.com/dry-tiktok'),'POST'),null);});
