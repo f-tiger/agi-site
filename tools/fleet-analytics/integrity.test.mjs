@@ -112,6 +112,10 @@ test('New visitors start automatically without a consent panel or stored choice'
 
 test('Laundry bridge is route-bound, opt-out aware and sends no input data',()=>{
  const path='/en/guide/dehumidifier-drying-clothes-cost.html';
+ const germanPath='/waeschetrockner-oder-luftentfeuchter.html';
+ assert.deepEqual(businessEvent('getecoback.com',germanPath,{name:'eco_laundry_single_calculate'}),{name:'laundry_single_calculate',tool_id:'laundry-single-cost',repeat:true});
+ assert.equal(businessEvent('getecoback.com',path,{name:'eco_laundry_single_calculate'}),null);
+ assert.equal(businessEvent('getecoback.com',germanPath,{name:'eco_laundry_single_calculate',kwh:1.8}),null);
  assert.deepEqual(businessEvent('getecoback.com',path,{name:'eco_laundry_compare'}),{name:'laundry_compare',tool_id:'laundry-cost',repeat:true});
  assert.equal(businessEvent('getecoback.com','/members.html',{name:'eco_laundry_compare'}),null);
  assert.equal(businessEvent('getecoback.com',path,{name:'eco_laundry_compare',kwh:123}),null);

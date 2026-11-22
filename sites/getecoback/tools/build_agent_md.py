@@ -204,6 +204,9 @@ def to_markdown(src_html, path_url, lang):
                 combined_label = re.search(r'<section\b[^>]*\bid="waschtrockner-label"[^>]*>(.*?)</section>', laundry.group(1), re.S)
                 if combined_label:
                     body += combined_label.group()
+                single_drying = re.search(r'<section\b[^>]*\bid="luftentfeuchter-waesche-kosten"[^>]*>.*?</section>', laundry.group(1), re.S)
+                if single_drying:
+                    body += single_drying.group()
                 body += '<h2>Eine Ladung fair vergleichen</h2><p>kWh für den ganzen Durchgang × Arbeitspreis. Vorbelegte Zahlen sind Rechenbeispiele, keine Produktmessungen. Gleiche Wäschemenge und gleicher Trocknungsgrad sind Voraussetzung. PNG und CSV werden lokal erstellt; Eingaben werden nicht hochgeladen.</p>' + protocol.group(1)
                 sharing = re.search(r'<p\b[^>]*data-laundry-share-note>(.*?)</p>', laundry.group(1), re.S)
                 if sharing:

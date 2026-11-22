@@ -1,37 +1,43 @@
 const {chromium}=require('playwright'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const base=process.env.BASE_URL||'http://127.0.0.1:8765',dir=process.env.QA_DIR||'/tmp/eco-laundry-qa',launch=process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH,args:['--no-sandbox','--disable-dev-shm-usage','--no-zygote','--use-angle=swiftshader','--enable-unsafe-swiftshader']}:{};
+async function openLaundryFixture(browser,{javaScriptEnabled,analyticsDenied=false}){
+ const localOrigin=new URL(base).origin;
+ const page=await browser.newPage({javaScriptEnabled,viewport:{width:320,height:844},serviceWorkers:'block'});
+ const writes=[],downloads=[],external=[],errors=[];
+ await page.addInitScript(analyticsDenied=>{
+  Object.defineProperty(navigator,'webdriver',{get:()=>false});
+  Object.defineProperty(navigator,'doNotTrack',{get:()=> '0'});
+  Object.defineProperty(navigator,'globalPrivacyControl',{get:()=>false});
+  if(analyticsDenied)localStorage.setItem('fleet_ga4_choice_v1','denied');
+  window.__laundryActions=[];
+  window.addEventListener('fleet:business',event=>window.__laundryActions.push(event.detail));
+ },analyticsDenied);
+ await page.route('**/*',route=>{
+  const request=route.request(),url=new URL(request.url());
+  if(url.origin!==localOrigin){external.push(url.href);return route.abort();}
+  if(request.method()!=='GET'){
+   let event;
+   try{event=JSON.parse(request.postData());}catch{}
+   writes.push({path:url.pathname,event});
+   return route.fulfill({status:204});
+  }
+  if(url.pathname.startsWith('/api/'))return route.fulfill({body:'{"ok":true}',contentType:'application/json'});
+  return route.continue();
+ });
+ page.on('download',download=>downloads.push(download.suggestedFilename()));
+ page.on('pageerror',error=>errors.push(error.message));
+ return {page,writes,downloads,external,errors};
+}
+
 async function checkCombinedLabelDecision(browser){
  const route='/waeschetrockner-oder-luftentfeuchter.html';
  const answer='#waschtrockner-label';
  const permalink='https://getecoback.com'+route+answer;
- const localOrigin=new URL(base).origin;
  let checks=0;
  const check=(value,message)=>{assert.ok(value,message);checks++;};
  const equal=(actual,expected,message)=>{assert.deepEqual(actual,expected,message);checks++;};
  for(const javaScriptEnabled of [true,false]){
-  const page=await browser.newPage({javaScriptEnabled,viewport:{width:320,height:844},serviceWorkers:'block'});
-  const writes=[],downloads=[],external=[],errors=[];
-  await page.addInitScript(()=>{
-   Object.defineProperty(navigator,'webdriver',{get:()=>false});
-   Object.defineProperty(navigator,'doNotTrack',{get:()=> '0'});
-   Object.defineProperty(navigator,'globalPrivacyControl',{get:()=>false});
-   window.__laundryActions=[];
-   window.addEventListener('fleet:business',event=>window.__laundryActions.push(event.detail));
-  });
-  await page.route('**/*',route=>{
-   const request=route.request(),url=new URL(request.url());
-   if(url.origin!==localOrigin){external.push(url.href);return route.abort();}
-   if(request.method()!=='GET'){
-    let event;
-    try{event=JSON.parse(request.postData());}catch{}
-    writes.push({path:url.pathname,event});
-    return route.fulfill({status:204});
-   }
-   if(url.pathname.startsWith('/api/'))return route.fulfill({body:'{"ok":true}',contentType:'application/json'});
-   return route.continue();
-  });
-  page.on('download',download=>downloads.push(download.suggestedFilename()));
-  page.on('pageerror',error=>errors.push(error.message));
+  const {page,writes,downloads,external,errors}=await openLaundryFixture(browser,{javaScriptEnabled});
   await page.goto(base+route+answer);
   const section=page.locator(answer),root=page.locator('#laundry-check');
   const form=root.locator('form'),results=root.locator('[data-results]');
@@ -115,6 +121,82 @@ async function checkCombinedLabelDecision(browser){
   check(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'The answer and calculator fit on a 320px viewport');
   check(!external.some(url=>new URL(url).hostname==='www.reddit.com'),'The composer is not opened automatically');
   equal(errors,[],'The page has no JavaScript exception');
+  await page.close();
+ }
+ return checks;
+}
+
+async function checkSingleDryingCost(browser){
+ const route='/waeschetrockner-oder-luftentfeuchter.html';
+ const answer='#luftentfeuchter-waesche-kosten';
+ const permalink='https://getecoback.com'+route+answer;
+ const action={name:'eco_laundry_single_calculate'};
+ let checks=0;
+ const check=(value,message)=>{assert.ok(value,message);checks++;};
+ const equal=(actual,expected,message)=>{assert.deepEqual(actual,expected,message);checks++;};
+ for(const scenario of ['normal','probe','opt-out','no-script']){
+  const javaScriptEnabled=scenario!=='no-script';
+  const {page,writes,downloads,external,errors}=await openLaundryFixture(browser,{javaScriptEnabled,analyticsDenied:scenario==='opt-out'});
+  const original=base+route+(scenario==='probe'?'?__probe=1':'')+answer;
+  await page.goto(original);
+  const section=page.locator(answer),form=section.locator('form[data-laundry-single]');
+  const result=section.locator('[data-single-result][role=status]');
+  check(await section.getByRole('heading',{name:/Wäschetrocknen.*Luftentfeuchter/i}).isVisible(),'Distinct answer is readable at its canonical fragment');
+  check(/0,63\s*€/.test(await section.innerText()),'Static answer includes a usable measured example');
+  const reddit=section.locator('a[href^="https://www.reddit.com/submit?"]');
+  check(await reddit.isVisible(),'Readers can share the separate answer voluntarily');
+  const href=await reddit.getAttribute('href'),composer=new URL(href);
+  equal(composer.origin+composer.pathname,'https://www.reddit.com/submit');
+  equal([...composer.searchParams.keys()].sort(),['title','url'],'Share uses only static fields');
+  equal(composer.searchParams.get('url'),permalink,'Share URL carries no measurements or tracking');
+  check((composer.searchParams.get('title')||'').trim().length>0,'Fixed sharing title present');
+  equal(await section.locator('[data-verdict],[data-csv],[data-card]').count(),0,'No comparison verdict or export controls');
+  equal(await page.locator('#laundry-check [data-csv],#laundry-check [data-card]').count(),2,'Original comparison exports remain present');
+
+  if(javaScriptEnabled){
+   await form.waitFor({state:'visible'});
+   const field=name=>form.locator('[name="'+name+'"]');
+   const mode=field('method'),submit=form.locator('[type=submit]');
+   const actions=()=>page.evaluate(name=>window.__laundryActions.filter(event=>event.name===name),action.name);
+   equal(await mode.inputValue(),'measured','Reader starts with measured energy');
+   equal(await field('dehum').inputValue(),'','No energy measurement is assumed');
+   equal(await field('price').inputValue(),'','No tariff is assumed');
+   check(await field('watts').isDisabled()&&await field('hours').isDisabled(),'Inactive estimated fields cannot submit');
+   await form.evaluate(form=>form.requestSubmit());
+   equal(await actions(),[],'Incomplete input emits no completion');
+   check(!(await result.textContent()).trim(),'Incomplete input yields no result');
+
+   await field('dehum').fill('1.8');
+   await field('price').fill('0.35');
+   await submit.click();
+   const measured=await result.innerText();
+   check(/0,63\s*€/.test(measured),'1.8 kWh at €0.35/kWh produces €0.63');
+   check(/gemessen|Messwert/i.test(measured),'The result identifies the energy measurement');
+   check(!/Sieger|kostet weniger|günstiger|Gewinner/i.test(measured),'A single device has no comparison verdict');
+   equal(await actions(),scenario==='normal'?[action]:[],'A measured result emits only the fixed allowed action');
+
+   await mode.selectOption('estimate');
+   check(await field('dehum').isDisabled()&&await field('watts').isEnabled()&&await field('hours').isEnabled(),'Estimate uses only its active fields');
+   check(!(await result.textContent()).trim(),'Switching methods clears the prior result');
+   await field('watts').fill('400');
+   await field('hours').fill('6');
+   await submit.click();
+   const estimate=await result.innerText();
+   check(/0,84\s*€/.test(estimate),'400 W over six hours at €0.35/kWh produces €0.84');
+   check(/Schätzung|geschätzt/i.test(estimate),'Power and duration yield an explicitly marked estimate');
+   check(!/Sieger|kostet weniger|günstiger|Gewinner/i.test(estimate),'The estimate has no comparison verdict');
+   equal(await actions(),scenario==='normal'?[action,action]:[],'Both paths emit the same fixed payload without values');
+   equal(page.url(),original,'Calculation leaves the initial URL and fragment untouched');
+   equal(await reddit.getAttribute('href'),href,'Private inputs never enter the sharing link');
+   equal(writes.filter(({event})=>!['page_view','laundry_view'].includes(event?.n)),[],'No calculation data, comparison completion or export goes to the browser API');
+  }else{
+   check(await form.isHidden(),'No-script readers cannot submit input data');
+   equal(writes,[],'No-script answer sends no write');
+  }
+  equal(downloads,[],'The single-method calculator causes no download');
+  check(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'The answer fits on a 320px viewport');
+  check(!external.some(url=>new URL(url).hostname==='www.reddit.com'),'Reddit is not contacted automatically');
+  equal(errors,[],'No JavaScript exception');
   await page.close();
  }
  return checks;
@@ -226,4 +308,4 @@ async function laundryShareRecovery(page,lang,p){
  return checks;
 }
 
-(async()=>{fs.mkdirSync(dir,{recursive:true});const browser=await chromium.launch({headless:true,...launch});let checks=0;try{for(const [lang,p]of [['de','/waeschetrockner-oder-luftentfeuchter.html'],['en','/en/guide/dehumidifier-drying-clothes-cost.html']]){const page=await browser.newPage({viewport:{width:390,height:844}}),errors=[],events=[];await page.addInitScript(()=>{window.__qaBusiness=[];window.addEventListener('fleet:business',e=>window.__qaBusiness.push(e.detail));});page.on('pageerror',e=>errors.push(e.message));await page.route('**/*',r=>{const u=new URL(r.request().url());if(u.origin!==new URL(base).origin)return r.abort();if(u.pathname.startsWith('/api/')){try{events.push(JSON.parse(r.request().postData()));}catch{}return r.fulfill({body:'{"ok":true}',contentType:'application/json'});}return r.continue();});await page.goto(base+p+'?__probe=1');const root=page.locator('#laundry-check'),submit=root.locator('[type=submit]');await root.locator('[data-example]').click();assert.match(await root.locator('[data-provenance]').innerText(),lang==='en'?/Fictional/i:/Rechenbeispiel/i);checks++;assert.match(await root.locator('[data-verdict]').innerText(),lang==='en'?/dryer costs less/:/Trockner verursacht/);checks++;await root.locator('[name=hours]').fill('4');assert.equal(await root.locator('[data-results]').isVisible(),false);checks++;await submit.click();assert.match(await root.locator('[data-provenance]').innerText(),lang==='en'?/edited/i:/geänderten/i);assert.match(await root.locator('[data-verdict]').innerText(),lang==='en'?/dehumidifier costs less/:/Entfeuchter verursacht/);checks+=2;await root.locator('[name=comparable]').uncheck();await submit.click();assert.match(await root.locator('[data-verdict]').innerText(),lang==='en'?/Confirm/:/bestätigen/);checks++;await root.locator('[name=method]').selectOption('measured');assert.equal(await root.locator('[name=hours]').isVisible(),false);await root.locator('[name=dehum]').fill('1');await root.locator('[name=dryerBasis]').selectOption('hundred');await root.locator('[name=dryer]').fill('150');await root.locator('[name=comparable]').check();await submit.click();assert.match(await root.locator('[data-cost=dryer]').innerText(),/0[,.]53/);checks+=2;for(const [sel,ext]of [['[data-csv]','csv'],['[data-card]','png']]){const promise=page.waitForEvent('download');await root.locator(sel).click();const d=await promise,dest=path.join(dir,'laundry-'+lang+'.'+ext);await d.saveAs(dest);assert(fs.statSync(dest).size>200);if(ext==='csv'){const csv=fs.readFileSync(dest,'utf8');assert(csv.includes('"dryer_input_basis","hundred"'));assert(csv.includes('"dehumidifier_kwh_per_run","1"'));}checks++;}await root.locator('[data-share]').click();assert.match(await root.locator('[data-share-url]').innerText(),/#laundry-check$/);assert(!(await root.locator('[data-share-url]').innerText()).includes('__probe'));checks++;checks+=await laundryShareRecovery(page,lang,p);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);checks++;await root.screenshot({path:path.join(dir,'laundry-'+lang+'-mobile.png')});await page.setViewportSize({width:1280,height:900});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);checks++;assert.deepEqual(errors,[]);assert.equal(events.filter(e=>e?.n?.startsWith('laundry_')).length,0);checks+=2;await page.close();}checks+=await checkCombinedLabelDecision(browser);console.log(JSON.stringify({pass:true,checks}));}finally{await browser.close();}})().catch(e=>{console.error(e);process.exit(1)});
+(async()=>{fs.mkdirSync(dir,{recursive:true});const browser=await chromium.launch({headless:true,...launch});let checks=0;try{for(const [lang,p]of [['de','/waeschetrockner-oder-luftentfeuchter.html'],['en','/en/guide/dehumidifier-drying-clothes-cost.html']]){const page=await browser.newPage({viewport:{width:390,height:844}}),errors=[],events=[];await page.addInitScript(()=>{window.__qaBusiness=[];window.addEventListener('fleet:business',e=>window.__qaBusiness.push(e.detail));});page.on('pageerror',e=>errors.push(e.message));await page.route('**/*',r=>{const u=new URL(r.request().url());if(u.origin!==new URL(base).origin)return r.abort();if(u.pathname.startsWith('/api/')){try{events.push(JSON.parse(r.request().postData()));}catch{}return r.fulfill({body:'{"ok":true}',contentType:'application/json'});}return r.continue();});await page.goto(base+p+'?__probe=1');const root=page.locator('#laundry-check'),submit=root.locator('[type=submit]');await root.locator('[data-example]').click();assert.match(await root.locator('[data-provenance]').innerText(),lang==='en'?/Fictional/i:/Rechenbeispiel/i);checks++;assert.match(await root.locator('[data-verdict]').innerText(),lang==='en'?/dryer costs less/:/Trockner verursacht/);checks++;await root.locator('[name=hours]').fill('4');assert.equal(await root.locator('[data-results]').isVisible(),false);checks++;await submit.click();assert.match(await root.locator('[data-provenance]').innerText(),lang==='en'?/edited/i:/geänderten/i);assert.match(await root.locator('[data-verdict]').innerText(),lang==='en'?/dehumidifier costs less/:/Entfeuchter verursacht/);checks+=2;await root.locator('[name=comparable]').uncheck();await submit.click();assert.match(await root.locator('[data-verdict]').innerText(),lang==='en'?/Confirm/:/bestätigen/);checks++;await root.locator('[name=method]').selectOption('measured');assert.equal(await root.locator('[name=hours]').isVisible(),false);await root.locator('[name=dehum]').fill('1');await root.locator('[name=dryerBasis]').selectOption('hundred');await root.locator('[name=dryer]').fill('150');await root.locator('[name=comparable]').check();await submit.click();assert.match(await root.locator('[data-cost=dryer]').innerText(),/0[,.]53/);checks+=2;for(const [sel,ext]of [['[data-csv]','csv'],['[data-card]','png']]){const promise=page.waitForEvent('download');await root.locator(sel).click();const d=await promise,dest=path.join(dir,'laundry-'+lang+'.'+ext);await d.saveAs(dest);assert(fs.statSync(dest).size>200);if(ext==='csv'){const csv=fs.readFileSync(dest,'utf8');assert(csv.includes('"dryer_input_basis","hundred"'));assert(csv.includes('"dehumidifier_kwh_per_run","1"'));}checks++;}await root.locator('[data-share]').click();assert.match(await root.locator('[data-share-url]').innerText(),/#laundry-check$/);assert(!(await root.locator('[data-share-url]').innerText()).includes('__probe'));checks++;checks+=await laundryShareRecovery(page,lang,p);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);checks++;await root.screenshot({path:path.join(dir,'laundry-'+lang+'-mobile.png')});await page.setViewportSize({width:1280,height:900});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);checks++;assert.deepEqual(errors,[]);assert.equal(events.filter(e=>e?.n?.startsWith('laundry_')).length,0);checks+=2;await page.close();}checks+=await checkCombinedLabelDecision(browser);checks+=await checkSingleDryingCost(browser);console.log(JSON.stringify({pass:true,checks}));}finally{await browser.close();}})().catch(e=>{console.error(e);process.exit(1)});
