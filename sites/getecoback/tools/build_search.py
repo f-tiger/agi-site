@@ -48,6 +48,9 @@ def collect():
  sections[('de','/guide/delonghi-pac-n90-test.html')]={
   'id':'testlage','title':'De’Longhi PAC N90 ECO Silent: Modell und EAN prüfen',
   'description':'Vergleiche vollständigen Modellnamen und EAN 8004399512351 mit dem konkreten Angebot oder Typenschild.'}
+ sections[('de','/guide/trotec-luftentfeuchter-test.html')]={
+  'id':'ttk75-pruefpunkt','title':'Trotec TTK 75 ECO: Was ist bei 10 °C im Keller belegt?',
+  'description':'20 l/24 h sind bei 30 °C und 80 % dokumentiert. Der Betriebsbereich allein belegt keine Entzugsleistung bei 10 °C.'}
  sections[('de','/guide/fenster-zugluft-mietwohnung.html')]={
   'id':'dichtungsprofil','title':'Fensterdichtung bei 4 mm: tesamoll E, P oder D?',
   'description':'Bei 4 mm liegen P und D im Herstellerbereich. Miss an mehreren Stellen und kläre eine vorhandene Nut vor dem Kauf.'}

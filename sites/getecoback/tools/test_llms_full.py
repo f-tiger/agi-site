@@ -125,6 +125,32 @@ class LlmsFull(unittest.TestCase):
         })
         self.assertNotIn('reddit.com/submit', md)
 
+    def test_trotec_test_point_separates_rating_range_and_supplier_data(self):
+        route = '/guide/trotec-luftentfeuchter-test.html'
+        guide = SITE / route.lstrip('/')
+        page = guide.read_text()
+        md = guide.with_suffix('.md').read_text()
+        section = re.search(r'<section class="ttk75-pruefpunkt tldr" aria-labelledby="ttk75-pruefpunkt">(.*?)</section>',
+                            page, re.S)
+        self.assertIsNotNone(section)
+        self.assertEqual(page.count('id="ttk75-pruefpunkt"'), 1)
+        for phrase in ('10 °C und 60 %', 'keine Literleistung', '20 l/24 h bei 30 °C und 80 %',
+                       'maximal 21 l/24 h', '5 bis 32 °C', '30 bis 90 %', '6,4 l/24 h bei 20 °C und 60 %',
+                       'Das ist eine Händlerangabe', 'Originalbetriebsanleitung TTK 75 ECO',
+                       '/TRT-BA-TTK75ECO-TC-010-DE.pdf',
+                       'https://www.baushop-express.com/trotec-kondensationsentfeuchter-ttk-eco.html'):
+            self.assertIn(phrase, section[1])
+            self.assertIn(phrase, md)
+        for artifact in (page, md):
+            self.assertNotRegex(artifact, r'440\s*W|Arbeitstier|Vergleichssieger|165–190|nur halb so hoch')
+        share = re.search(r'href="(https://www\.reddit\.com/submit\?[^"]+)" rel="noreferrer"', section[1])
+        self.assertIsNotNone(share)
+        self.assertEqual(parse_qs(urlsplit(html.unescape(share[1])).query), {
+            'url': [f'https://getecoback.com{route}#ttk75-pruefpunkt'],
+            'title': ['Trotec TTK 75 ECO bei 10 °C im Keller: Was sagt das Datenblatt?'],
+        })
+        self.assertNotIn('reddit.com/submit', md)
+
     def test_tesamoll_static_overlap_keeps_sources_and_clean_share(self):
         route = '/guide/fenster-zugluft-mietwohnung.html'
         guide = SITE / route.lstrip('/')

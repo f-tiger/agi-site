@@ -300,3 +300,29 @@ test('German noise comparisons reach the loudness section while keeping other bu
   ]) assert.ok(searchEntries(index,q,'de').every(hit=>hit.entry.u!==anchor),q);
   assert.equal(searchEntries(index,'Welcher PAC N90 ECO Silent? Typenschild EAN 8004399512351','de')[0]?.entry.u,page+'#testlage');
 });
+
+test('the Trotec ECO window stays separate from the TTK 75 E and unrelated intents',()=>{
+  const page='/guide/trotec-luftentfeuchter-test.html';
+  const anchor=page+'#ttk75-pruefpunkt';
+  for(const q of [
+    'Wie viele Liter zieht ein Trotec TTK 75 ECO im kalten Keller bei 10 °C und 60 % Luftfeuchte und wie viel Strom?',
+    'Was schafft der Trotec TTK 75 ECO bei 20 Grad und 60 Prozent? Sind 21 Liter am Tag auch im Keller realistisch?',
+    'TTK75 Eco bei 30°C und 80 Prozent: Entfeuchtungsleistung?',
+    'Kann ein TTK-75-ECO bei 5 Grad im Keller laufen?',
+    'Schafft der Trotec TTK 75 ECO 20 l pro Tag laut Anleitung?',
+    'TTK 75 ECO 20 l/24 h: stimmt die Angabe?',
+  ]){
+    const hits=searchEntries(index,q,'de');
+    assert.equal(hits[0]?.entry.u,anchor,q);
+    assert.equal(hits.filter(hit=>hit.entry.u.split('#')[0]===page).length,1,q);
+    assert.ok(searchEntries(index,q,'en').every(hit=>hit.entry.u!==anchor),q);
+  }
+  for(const q of [
+    'Trotec TTK 75 E bei 30 °C und 80 % Liter pro Tag',
+    'TTK 75 ECO Pro Entfeuchtungsleistung bei 10 °C',
+    'Nicht TTK 75 ECO, sondern Trotec TTK 75 E: wie viel Wasser zieht der bei 30 °C und 80 %?',
+    'Trotec TTK 75 ECO Schlauch und Ablauf für den Keller',
+    'Trotec TTK 75 ECO Filter reinigen',
+    'Stromkosten des TTK 75 ECO bei 440 Watt',
+  ]) assert.ok(searchEntries(index,q,'de').every(hit=>hit.entry.u!==anchor),q);
+});

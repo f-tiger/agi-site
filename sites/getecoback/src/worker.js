@@ -1018,7 +1018,7 @@ async function trendCompute(env) {
 // MCP server (Model Context Protocol, stateless Streamable HTTP).
 // Each tool returns a usable answer with sources. Publication, calls, website
 // visits and merchant activity are observed separately.
-const MCP_VERSION = "1.24.20";
+const MCP_VERSION = "1.24.21";
 const LEGACY_MCP_TOOLS = [
   drainTool,
   // AI-era round 2026-08-29: the decision LAYER above the per-device

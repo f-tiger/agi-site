@@ -8,7 +8,7 @@ import {expandedDefinitions, expandedCall} from '../src/mcp-expanded.mjs';
 import {collectToolPages} from '../src/mcp-pagination.mjs';
 
 const origin = 'https://getecoback.com';
-const distinctTasks = 2026;
+const distinctTasks = 2027;
 const callableNames = distinctTasks + 1;
 function request(method, params) {
   return new Request(origin + '/mcp/v1', {
@@ -263,8 +263,8 @@ test('the public directory and standard MCP pages expose the same catalogue', as
   const byCategory = {};
   for (const {category} of directory.tools) byCategory[category] = (byCategory[category] || 0) + 1;
   assert.deepEqual(byCategory, {Raumklima:10,'Strom & Haushalt':21,Feuchte:19,Kühlen:18,Heizen:19,Passform:17,
-    'Energie prüfen':24,'Raumkomfort prüfen':24,'Geräte pflegen':24,'Quellen & Kaufprüfung':31, 'Wasser & Wäsche':24,'Gebäude & Fenster':24,'Geräte im Alltag':24,'Messpraxis':24,'Zugang & Alltag':24,Saisonwechsel:24,Kaufpraxis:26,'Ressourcen planen':24,Raumplanung:24,Wetterpraxis:24,Küchenpraxis:24,Servicevorbereitung:24,'Belege abgleichen':24,Textilpraxis:25,Luftpfade:25,Modellunterlagen:25,Haushaltsbuch:25,Praxistests:25,Messunsicherheit:25,Geräteablauf:25,Weiterverwendung:25,Raumübergabe:25,Wohnszenarien:25,Verbrauchsverlauf:41,Fensterbetrieb:41,Pflegeabläufe:40,Haushaltskoordination:40,Nachweisprüfung:40,Wasserwege:40,Raumakustik:40,Mehrgerätebetrieb:40,Gebrauchtgeräte:40,Küchenressourcen:40,Klimaverlauf:40,Wohnmobil:30,'Arbeitsplatz-Messpraxis':30,'Lokale Wärme':30,Luftkühler:30,'Wäsche mit Wärme':30,Gartenalltag:30, Gefrierpraxis:18,'Geschirrspüler-Einbau':24,Wäschesäule:17,Lüftungskauf:24,Ersatzteilnachweis:20,Dunstabzug:17,Backofenzubehör:18,Brausenzubehör:23,Rollenzubehör:18,'Altgeräte-Rücknahme':20,Induktionsgeschirr:18,Betriebszustände:21,Spülstatus:24,'Airfryer-Behälter':17,Kompaktspülen:17,"Filterkannen":22,"Textilzeichen":20,"Türbodenspalt":21,"Roboterpflege":24,"Kühlgerätekauf":20,"LED-Kaufprüfung":16,"Kaffeemaschinenpflege":22,"Waschmitteldosierung":23,"Spülmittel und Wasserhärte":25,"Bodenstaubsaugerpflege":22,"Dampfbügelgeräte":24,"Stabmixer und Zubehör":25,"Mikrowellenbelege":23,"Küchenwaagen":13,"Wasserkocherbelege":16,"Toasterbelege":10,"Fenstersauger":12});
-  assert.equal(expandedDefinitions.length,2017);
+    'Energie prüfen':24,'Raumkomfort prüfen':24,'Geräte pflegen':24,'Quellen & Kaufprüfung':32, 'Wasser & Wäsche':24,'Gebäude & Fenster':24,'Geräte im Alltag':24,'Messpraxis':24,'Zugang & Alltag':24,Saisonwechsel:24,Kaufpraxis:26,'Ressourcen planen':24,Raumplanung:24,Wetterpraxis:24,Küchenpraxis:24,Servicevorbereitung:24,'Belege abgleichen':24,Textilpraxis:25,Luftpfade:25,Modellunterlagen:25,Haushaltsbuch:25,Praxistests:25,Messunsicherheit:25,Geräteablauf:25,Weiterverwendung:25,Raumübergabe:25,Wohnszenarien:25,Verbrauchsverlauf:41,Fensterbetrieb:41,Pflegeabläufe:40,Haushaltskoordination:40,Nachweisprüfung:40,Wasserwege:40,Raumakustik:40,Mehrgerätebetrieb:40,Gebrauchtgeräte:40,Küchenressourcen:40,Klimaverlauf:40,Wohnmobil:30,'Arbeitsplatz-Messpraxis':30,'Lokale Wärme':30,Luftkühler:30,'Wäsche mit Wärme':30,Gartenalltag:30, Gefrierpraxis:18,'Geschirrspüler-Einbau':24,Wäschesäule:17,Lüftungskauf:24,Ersatzteilnachweis:20,Dunstabzug:17,Backofenzubehör:18,Brausenzubehör:23,Rollenzubehör:18,'Altgeräte-Rücknahme':20,Induktionsgeschirr:18,Betriebszustände:21,Spülstatus:24,'Airfryer-Behälter':17,Kompaktspülen:17,"Filterkannen":22,"Textilzeichen":20,"Türbodenspalt":21,"Roboterpflege":24,"Kühlgerätekauf":20,"LED-Kaufprüfung":16,"Kaffeemaschinenpflege":22,"Waschmitteldosierung":23,"Spülmittel und Wasserhärte":25,"Bodenstaubsaugerpflege":22,"Dampfbügelgeräte":24,"Stabmixer und Zubehör":25,"Mikrowellenbelege":23,"Küchenwaagen":13,"Wasserkocherbelege":16,"Toasterbelege":10,"Fenstersauger":12});
+  assert.equal(expandedDefinitions.length,2018);
 });
 
 test('tesamoll clearance must fit the entire measured range and never substitutes a different seal', async () => {
@@ -317,6 +317,35 @@ test('the cooling noise result and guide preserve comparability for all existing
     assert.equal(result.structuredContent.citation_url,url);
     assert.equal(result.structuredContent.guide_url,url+'#lautstaerke');
     assert.match(result.structuredContent.hinweis,/Messort/);
+  }
+});
+
+test('the Trotec TTK 75 ECO check qualifies exact published points and does not estimate cold output',async()=>{
+  const name='trotec_ttk75_eco_pruefpunkt';
+  const url='https://getecoback.com/guide/trotec-luftentfeuchter-test.html';
+  for(const [modell,temperatur_c,luftfeuchte_prozent,status,manufacturer,supplier] of [
+    ['ttk_75_eco',30,80,'hersteller_pruefpunkt',20,null],
+    ['ttk_75_eco',20,60,'lieferantenwert_abgleichen',null,6.4],
+    ['ttk_75_eco',10,60,'kein_pruefpunkt',null,null],
+    ['ttk_75_eco',30.01,80,'kein_pruefpunkt',null,null],
+    ['ttk_75_eco',5,30,'kein_pruefpunkt',null,null],
+    ['ttk_75_eco',32,90,'kein_pruefpunkt',null,null],
+    ['ttk_75_eco',4,60,'ausserhalb_betriebsbereich',null,null],
+    ['ttk_75_eco',10,91,'ausserhalb_betriebsbereich',null,null],
+    ['abweichend_oder_offen',30,80,'modell_klaeren',null,null],
+  ]){
+    const response=await worker.fetch(request('tools/call',{name,arguments:{modell,temperatur_c,luftfeuchte_prozent}}),{},{});
+    const {result}=await response.json();
+    assert.equal(result.isError,false);
+    const data=result.structuredContent;
+    assert.equal(data.status,status);
+    assert.equal(data.dokumentierter_entzug_l_24h,manufacturer);
+    assert.equal(data.lieferantenwert_l_24h,supplier);
+    assert.deepEqual(data.betriebsbereich,modell==='ttk_75_eco'?{temperatur_c:[5,32],luftfeuchte_prozent:[30,90]}:null);
+    assert.equal(data.guide_url,url+'#ttk75-pruefpunkt');
+    assert.equal(data.citation_url,url);
+    assert.equal(data.druckseite,14);
+    assert.match(data.grenze,/keine Liter- oder Verbrauchsprognose/);
   }
 });
 
