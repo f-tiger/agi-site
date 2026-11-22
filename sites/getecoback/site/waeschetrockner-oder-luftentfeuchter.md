@@ -44,6 +44,7 @@ kWh für den ganzen Durchgang × Arbeitspreis. Vorbelegte Zahlen sind Rechenbeis
 - Notiere Start- und Endstand eines passenden Strommessgeräts sowie die Laufzeit. Beachte Anleitung und elektrische Belastbarkeit.
 - Nutze die kWh-Differenz des ganzen Durchgangs. Typenschild-Watt ist keine gemessene mittlere Leistung.
 - Bei einem Label je 100 Zyklen: durch 100 teilen. Das Labelprogramm kann von deiner eigenen Nutzung abweichen.
+Für eine Diskussion reichen die kWh des ganzen Durchgangs, dein Arbeitspreis und die Angabe, ob Wäschemenge und Endtrockenheit vergleichbar waren. Fehlt eine Messung, teile die bekannte Zahl als Einzelwert. Der öffentliche Rechnerlink enthält keine Eingaben.
 
 ## Dein nächster Schritt
 
