@@ -3,8 +3,10 @@
 
 Requires Pillow and DejaVu Sans. Committed PNGs are verified, not re-rendered,
 in CI; no browser, remote image, customer input or paid service is involved.
-Run after editing data/social-previews.json, then inspect all four images.
+Pass card keys to update just those illustrations after editing the data.
+Without keys, render all illustrations maintained by this script.
 """
+import argparse
 from pathlib import Path
 import json
 import math
@@ -152,12 +154,67 @@ def draw_laundry(c):
     c.text((787, 516), "kWh", 25, BLUE, True)
 
 
+def draw_n90_model(c):
+    c.box((64, 229, 702, 544), WHITE, LIGHT, radius=24)
+    c.box((91, 255, 675, 518), BG, BLUE, radius=14)
+    c.text((121, 278), "Typenschild", 27, BLUE, True)
+    c.text((117, 326), "PAC N90 ECO Silent", 43, bold=True)
+    c.line([(121, 395), (644, 395)], LIGHT, 3)
+    c.text((121, 432), "EAN", 28, BLUE, True)
+    c.text((206, 418), "8004399512351", 45, bold=True)
+
+    c.box((738, 229, 1136, 544), "#fff4e3", radius=24)
+    c.line([(779, 305), (779, 466)], AMBER, 8)
+    c.text((808, 331), "Bei Abweichung", 31, bold=True)
+    c.text((808, 376), "oder Unklarheit", 31, bold=True)
+    c.text((808, 421), "warten", 31, bold=True)
+
+
+def draw_portasplit_window(c):
+    c.box((64, 222, 1136, 510), WHITE, LIGHT, radius=24)
+    c.text((89, 247), "Klemmstelle", 28, BLUE, True)
+    c.text((89, 289), "Fenster öffnet", 24)
+    c.text((89, 322), "nach innen", 24)
+    c.text((89, 384), "Standardhalterung", 23, BLUE, True)
+
+    left, right, top, base = 391, 685, 346, 443
+    c.polygon([(322, base), (left, base), (left, top), (right, top),
+               (right, base), (787, base), (787, 483), (322, 483)], LIGHT, INK, 4)
+
+    width_y = 319
+    c.line([(left, top), (left, width_y-10)], BLUE, 3)
+    c.line([(right, top), (right, width_y-10)], BLUE, 3)
+    c.arrow(left+9, width_y, right-9, width_y)
+    c.arrow(right-9, width_y, left+9, width_y)
+    c.text((400, 258), "≤ 45 mm", 39, bold=True)
+    c.text((620, 272), "Falzbreite", 23, BLUE, True)
+
+    height_x = 742
+    c.line([(right, top), (height_x+12, top)], GREEN, 3)
+    c.line([(right, base), (height_x+12, base)], GREEN, 3)
+    c.arrow(height_x, top+9, height_x, base-9, GREEN)
+    c.arrow(height_x, base-9, height_x, top+9, GREEN)
+    c.text((768, 351), "≥ 20 mm", 40, bold=True)
+    c.text((768, 405), "Falzhöhe", 26, GREEN, True)
+
+    c.box((64, 526, 1136, 578), "#fff4e3", radius=12)
+    c.text((89, 535), "Bei unklarer Passung warten", 28, bold=True)
+
+
 DRAW = {"climate": draw_climate, "comparison": draw_comparison,
-        "cellar": draw_cellar, "laundry": draw_laundry}
+        "cellar": draw_cellar, "laundry": draw_laundry,
+        "n90-model": draw_n90_model, "portasplit-window": draw_portasplit_window}
 
 
 def main():
-    for key, card in DATA["cards"].items():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("keys", metavar="CARD", nargs="*", help="card keys to render")
+    keys = parser.parse_args().keys or [key for key in DATA["cards"] if key in DRAW]
+    for key in keys:
+        if key not in DRAW or key not in DATA["cards"]:
+            parser.error(f"No renderer and card configuration for {key!r}")
+    for key in keys:
+        card = DATA["cards"][key]
         c = Canvas()
         c.box((0, 0, 1200, 12), BLUE, radius=0)
         c.text((64, 37), "EcoBack", 24, BLUE, True)

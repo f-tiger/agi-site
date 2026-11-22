@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Attach original topic-specific previews to five existing acquisition routes.
+"""Attach original topic-specific previews to existing acquisition routes.
 
 Run after page generators. This pass changes head metadata only: it neither
 updates editorial dates nor adds a page, tracking call or visible download.
@@ -55,6 +55,9 @@ def load_config(path=CONFIG):
             raise ValueError("Preview must use a local versioned PNG")
         if not card.get("alt"):
             raise ValueError("Preview needs a meaningful text alternative")
+        for field in ("social_title", "social_description"):
+            if field in card and (not isinstance(card[field], str) or not card[field].strip()):
+                raise ValueError(f"Preview {field} must be nonempty text")
     return config
 
 
@@ -104,10 +107,16 @@ def transform(source, route, card):
     head = re.sub(r"\n?<!--EB_SOCIAL_PREVIEW-->.*?<!--/EB_SOCIAL_PREVIEW-->\n?",
                   "", head, flags=re.S)
 
+    social_text = {}
+    for field in ("title", "description"):
+        if value := card.get(f"social_{field}"):
+            social_text[f"og:{field}"] = ("property", value)
+            social_text[f"twitter:{field}"] = ("name", value)
+
     def remove_owned(match):
         attrs = Tag(match.group()).attrs
         name = (attrs.get("property") or attrs.get("name") or "").lower()
-        if name in OWNED:
+        if name in OWNED or name in social_text:
             return ""
         if name == "robots":
             return ""
@@ -138,6 +147,8 @@ def transform(source, route, card):
     block = "\n".join([
         START,
         f'<meta name="robots" content="{escape(", ".join(directives), quote=True)}">',
+        *(f'<meta {attribute}="{name}" content="{escape(value, quote=True)}">'
+          for name, (attribute, value) in social_text.items()),
         f'<meta property="og:image" content="{url}">',
         '<meta property="og:image:width" content="1200">',
         '<meta property="og:image:height" content="630">',
