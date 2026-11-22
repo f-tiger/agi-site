@@ -81,6 +81,11 @@ with EAN 8004399512351. At €0.30/kWh its 0.9 kWh EU label reference costs
 that run. The archive checks both figures and the answers when identification,
 tariff or full-run measurements are missing.
 
+Version 1.22.1 adds copyable German results to the laundry-cost tool. Its
+public calculator link carries no input values. The extracted archive checks
+the wording when the loads are not confirmed comparable and the rounding of
+1.4 kWh at €0.025/kWh to €0.04.
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the
