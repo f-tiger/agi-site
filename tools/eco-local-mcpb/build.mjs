@@ -8,13 +8,13 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.17.5';
-const revision = '62aa4ea7f759a1be459c10fe262df05cdb444a7b';
+const version = '1.18.0';
+const revision = '0239b9711d072b72761520850e38dc5fa9b7d2a6';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
-const title = 'EcoBack Local Household Tools';
-const description = 'German household tools with offline examples and optional public guide and weather lookup.';
+const title = 'EcoBack – Haushaltshilfen für Deutschland';
+const description = 'Fenstersauger, Kellerfeuchte und Trocknungskosten offline prüfen. Ratgeber und Wetter auf Wunsch.';
 const sourceUrl = 'https://github.com/' + sourceRepository;
 const releaseUrl = `https://github.com/f-tiger/agi-site/releases/download/${releaseTag}`;
 const registryVersionsUrl = `https://registry.modelcontextprotocol.io/v0.1/servers/${encodeURIComponent(name)}/versions`;
@@ -23,7 +23,8 @@ const oldNames = [
   'btu_empfehlung', 'fensterabdichtung_laenge', 'heizleistung_watt', 'hitzewelle_vorschau',
   'klimaanlage_stromkosten', 'ratgeber_lesen', 'ratgeber_suche', 'taupunkt_lueften',
 ];
-const featureNames = ['entfeuchter_ablaufcheck', 'btu_empfehlung', 'fensterabdichtung_laenge', 'taupunkt_lueften'];
+const featureNames = ['entfeuchter_ablaufcheck', 'btu_empfehlung', 'fensterabdichtung_laenge',
+  'taupunkt_lueften', 'fenstersauger_170mm_abziehlippe_geraetefamilie'];
 const entry = 'src/server.mjs';
 const legacyHelpers = fileURLToPath(new URL('../mcp-registry/local-packages/', import.meta.url));
 const sha256 = buffer => createHash('sha256').update(buffer).digest('hex');
@@ -31,6 +32,9 @@ const writeJson = (path, value) => writeFile(path, JSON.stringify(value, null, 2
 const drainArguments = {drain:'level_or_uphill',model:'meaco-one-20'};
 const cellarUri = 'ecoback://evidence/de/kellerentfeuchter';
 const laundryComparisonTool = 'waesche_trocknungskosten';
+const windowBladeTool = 'fenstersauger_170mm_abziehlippe_geraetefamilie';
+const windowGuide = 'https://getecoback.com/produkte.html';
+const windowEvidence = windowGuide + '#fenstersauger-belege';
 
 function readmeForExtraction(sourceReadme) {
   const heading = '\n## Connect\n\n';
@@ -168,7 +172,7 @@ async function verifyStdio(extracted, manifest) {
   const {TOOLS} = await import(pathToFileURL(join(extracted,'src/tools.mjs')));
   const {expandedDefinitions} = await import(pathToFileURL(join(extracted,'src/eco-suite/src/mcp-expanded.mjs')));
   const expected = JSON.parse(JSON.stringify(TOOLS));
-  assert.equal(expected.length,2003);
+  assert.equal(expected.length,2014);
   assert.deepEqual(manifest.server.mcp_config, {command:'node',args:['${__dirname}/'+entry]});
   return withStdio(extracted,[],async rpc => {
     const listed = [], sizes = [], cursors = new Set();
@@ -184,9 +188,9 @@ async function verifyStdio(extracted, manifest) {
       }
     } while (cursor !== undefined);
     assert.deepEqual(listed,expected);
-    assert.deepEqual(sizes,[...Array(20).fill(100),3]);
+    assert.deepEqual(sizes,[...Array(20).fill(100),14]);
     const names = new Set(listed.map(tool=>tool.name));
-    assert.equal(names.size,2003);
+    assert.equal(names.size,2014);
     assert.ok(oldNames.every(name=>names.has(name)), 'Expected all eight supported legacy tools');
     assert.ok([...names].every(name=>!/balkonspeicher|balkonkraftwerk|solarbank|pv[_-]speicher/i.test(name)));
     assert.ok(manifest.tools.every(tool=>names.has(tool.name)));
@@ -205,7 +209,20 @@ async function verifyStdio(extracted, manifest) {
     for (const [key,value] of Object.entries(last.example.expect)) {
       assert.deepEqual(result.structuredContent[key],value,`${last.name}.${key}`);
     }
-    return {tools:names.size,pages:sizes.length,firstExamples:['btu_empfehlung','entfeuchter_ablaufcheck'],finder:verifyFinder(extracted,drain),
+    const windowTools = expandedDefinitions.filter(tool => tool.category === 'Fenstersauger');
+    assert.equal(windowTools.length,11);
+    for (const tool of windowTools) {
+      assert.ok(names.has(tool.name));
+      const example = await rpc('tools/call',{name:tool.name,arguments:tool.example.args});
+      assert.equal(example.isError,false,tool.name);
+      for (const [key,value] of Object.entries(tool.example.expect)) {
+        assert.deepEqual(example.structuredContent[key],value,`${tool.name}.${key}`);
+      }
+      assert.equal(example.structuredContent.citation_url,windowGuide);
+      assert.equal(example.structuredContent.guide_url,windowEvidence);
+    }
+    return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,
+      firstExamples:['btu_empfehlung','entfeuchter_ablaufcheck'],finder:verifyFinder(extracted,drain),
       lastPageExample:last.name,legacyNames:oldNames.length,network:'disabled'};
   });
 }
@@ -255,6 +272,58 @@ async function verifyCompactLaundryPrecision(rpc, finder) {
   return topMatches;
 }
 
+async function verifyCompactWindowBlade(rpc, finder, runner) {
+  const frage = 'Passt die 170-mm-Abziehlippe 2.633-104.0 an meinen Kärcher WV 8 Signature Line?';
+  const found = await rpc('tools/call',{name:finder,arguments:{frage}});
+  assert.equal(found.isError,false);
+  const first = found.structuredContent.tools[0];
+  assert.equal(first?.name,windowBladeTool);
+  assert.equal(first.guide_url,windowEvidence);
+  assert.deepEqual(first.inputSchema.required,['geraet','schmale_originalduese','teilenummer']);
+
+  const cases = [
+    {confirmed:true, part:'26331040', status:'kombination_nicht_aufgelistet',
+      source:'wv-abziehlippen-schwarz-170-mm-p26331040'},
+    {confirmed:false, part:'26335130', status:'offen',
+      source:'wv-4-4-wv-5-ultra-wv-6-wv-7-wv-8-abziehlippen-170-mm-p26335130'},
+    {confirmed:true, part:'26335130', status:'herstellerliste_bestaetigt',
+      source:'wv-4-4-wv-5-ultra-wv-6-wv-7-wv-8-abziehlippen-170-mm-p26335130'},
+  ];
+  for (const {confirmed,part,status,source} of cases) {
+    const result = await rpc('tools/call',{name:runner,arguments:{name:first.name,eingaben:{
+      geraet:'wv8_signature_16337850',schmale_originalduese:confirmed,teilenummer:part,
+    }}});
+    assert.equal(result.isError,false);
+    const details = result.structuredContent;
+    assert.equal(details.status,status);
+    assert.equal(details.vor_kauf,status === 'herstellerliste_bestaetigt'
+      ? 'teilenummer_am_konkreten_angebot_erneut_abgleichen'
+      : 'kauf_zurueckstellen_und_zuordnung_klaeren');
+    assert.equal(details.beleg.url,`https://www.karcher.com/de/de/home-and-garden/produkte/${source}`);
+    assert.equal(details.beleg.geprueft_am,'2026-11-20');
+    assert.equal(details.citation_url,windowGuide);
+    assert.equal(details.guide_url,windowEvidence);
+    assert.match(details.disclosure,/gekennzeichnete Affiliate-Links/);
+    assert.deepEqual(JSON.parse(result.content[0].text),details);
+  }
+  return {topMatch:first.name,guideUrl:windowEvidence,statuses:cases.map(({status})=>status)};
+}
+
+async function verifyCompactWindowLookup(rpc, finder) {
+  const examples = [
+    ['Kann ich mit dem Kärcher WV 2 Plus Multi Edition 30 ml aufsaugen, obwohl der Tank größer ist?',
+      'fenstersauger_kaercher_fluessigkeitsgrenze_und_tank'],
+    ['Mein Kärcher WV 8 blinkt bei ausgeschaltetem Motor zweimal kurz, dann lange Pause. Was bedeutet das?',
+      'fenstersauger_wv3_wv8_led_muster_einordnen'],
+  ];
+  for (const [frage,name] of examples) {
+    const result = await rpc('tools/call',{name:finder,arguments:{frage}});
+    assert.equal(result.isError,false);
+    assert.equal(result.structuredContent.tools[0]?.name,name,frage);
+  }
+  return examples.map(([,name])=>name);
+}
+
 async function verifyCompactStdio(extracted) {
   const finder = 'ecoback_werkzeug_finden';
   const runner = 'ecoback_werkzeug_ausfuehren';
@@ -295,9 +364,11 @@ async function verifyCompactStdio(extracted) {
     assert.deepEqual(buyer.content.filter(part=>part.type==='resource'),[{type:'resource',resource}]);
     const laundryComparison = await verifyCompactLaundryComparison(rpc,finder,runner);
     const laundryPrecision = await verifyCompactLaundryPrecision(rpc,finder);
+    const windowBlade = await verifyCompactWindowBlade(rpc,finder,runner);
+    const windowLookup = await verifyCompactWindowLookup(rpc,finder);
     return {
       tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,
-      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,laundryPrecision,
+      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,laundryPrecision,windowBlade,windowLookup,
     };
   });
 }

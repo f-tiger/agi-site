@@ -50,6 +50,14 @@ Version 1.17.5 keeps that comparison available while avoiding an automatic
 first-place match for questions about both devices running together or using
 only the dryer. The extracted compact package checks both cases.
 
+Version 1.18.0 adds 11 checks for named German Kärcher and Bosch GlassVAC
+models and brings the full catalogue to 2,014 callable names. Start with
+“Passt die 170-mm-Abziehlippe 2.633-104.0 an meinen Kärcher WV 8 Signature
+Line?” Use the actual model, nozzle and part number from the offer when
+running the check. Equal blade widths alone do not establish compatibility.
+The archive test runs all 11 reviewed examples, then checks the three possible
+decisions for the WV 8 in compact mode with the German manufacturer's sources.
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the
