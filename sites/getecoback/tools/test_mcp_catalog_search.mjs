@@ -123,6 +123,8 @@ test('GlassVAC cold charging questions find the measured-temperature decision', 
   for (const q of [
     'Welches USB-Kabel passt zum Bosch GlassVAC 06008B7000?',
     'Bosch GlassVAC 06008B7000: Welchen Ladeanschluss zeigt das Foto aus der kalten Garage?',
+    'Die LED an meinem GlassVAC blinkt beim Laden nach Frost. Ist der Akku defekt?',
+    'Mein Bosch GlassVAC ist nach Frost im Schuppen kaputt, die LED blinkt beim Laden. Wie kann ich den Fehler finden?',
     'Wie lädt man den Kärcher WV 8 bei −3 °C in der Garage?',
     'Bosch GlassVAC 06008B7000: Ist auf dem Angebotsfoto der kleine Saugkopf dabei?',
   ]) {
