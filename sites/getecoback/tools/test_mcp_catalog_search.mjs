@@ -29,7 +29,7 @@ test('appliance search results link to exact owned evidence and keep canonical m
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
   assert.equal(withGuides.length, 221);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 18);
+  assert.equal(destinations.size, 19);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);
@@ -72,6 +72,35 @@ test('German Oventrop buyer questions route to the X-generation adapter check', 
     assert.equal(response.tools[0]?.name, tool, query);
     assert.equal(findCatalogueTools(compact, {query})[0]?.name, tool, query);
   }
+});
+
+test('an explicit window-vac correction ranks only the selected device and preserves uncertainty', async () => {
+  const bosch = 'glassvac_kalt_lagern_einschalten_laden_getrennt';
+  const led = 'fenstersauger_wv3_wv8_led_muster_einordnen';
+  const checks = [
+    ['Der Bosch GlassVAC war über Nacht bei Frost in der Garage. Kann ich stattdessen meinen Kärcher WV 8 laden?', undefined],
+    ['Mein Bosch GlassVAC lag bei Frost in der Garage. Korrektur: Es ist ein Kärcher WV 8. Darf er jetzt an die Steckdose?', undefined],
+    ['Früher hatte ich den Bosch GlassVAC. Jetzt blinkt beim Laden nach Frost am Kärcher WV 8 die LED zweimal kurz, der Motor ist aus. Was bedeutet das?', led],
+    ['Den Bosch GlassVAC wollte ich nach Frost laden. Jetzt geht es um meinen Kärcher WV 8: Alle LEDs blinken zweimal kurz und machen dann eine lange Pause, der Motor ist schon aus. Was bedeutet das?', led],
+    ['Mein Kärcher WV 8 hat defekte LEDs. Korrektur: Ich meine meinen Bosch GlassVAC 06008B7000. Darf ich ihn nach einer Frostnacht in der Garage gleich ans Ladegerät?', bosch],
+    ['Ich vergleiche Bosch GlassVAC und Kärcher WV 8. Darf ich beide Fenstersauger bei minus 3 Grad aufladen?', undefined],
+    ['Beim Bosch GlassVAC habe ich im Schuppen minus 3 Grad gemessen. Den Kärcher WV 8 lade ich drinnen, dort habe ich nicht gemessen. Darf ich ihn jetzt laden?', undefined],
+    ['Beim Laden blinkt mein Kärcher WV 8 zweimal kurz. Was bedeutet das?', led],
+  ];
+  for (const [q,expected] of checks) {
+    const {tools} = await catalogue({q,view:'compact',limit:'5'});
+    assert.deepEqual(names(tools),names(findCatalogueTools(compact,{query:q})).slice(0,5),q);
+    assert.equal(tools[0]?.name,expected,q);
+    if (expected === led) {
+      assert.equal(toolGuidePath(tools[0]),'/produkte.html#kaercher-fenstersauger-einsatz-und-hinweise',q);
+      assert.deepEqual((await catalogue({q,tool:bosch})).tools,[],q);
+    }
+    if (expected === bosch) {
+      assert.equal(toolGuidePath(tools[0]),'/produkte.html#bosch-glassvac-einsatz-und-pflege',q);
+      assert.deepEqual((await catalogue({q,category:'Feuchte'})).tools,[],q);
+    }
+  }
+  assert.equal(analytics,0);
 });
 
 test('German humidifier efficiency questions reach the comparable measurement check and evidence', async () => {
@@ -446,14 +475,17 @@ test('German PortaSplit bracket questions rank the exact original-model check fi
 });
 
 test('German Fenstersauger questions lead to the right decision and owned evidence', async () => {
+  const sections = {
+    glassvac_kalt_lagern_einschalten_laden_getrennt:'bosch-glassvac-einsatz-und-pflege',
+    fenstersauger_wv3_wv8_led_muster_einordnen:'kaercher-fenstersauger-einsatz-und-hinweise',
+  };
   for (const [question, expected] of fenstersaugerQuestions) {
     const client = names(findCatalogueTools(compact, {query:question})).slice(0, 3);
     const {tools} = await catalogue({q:question, view:'compact', limit:'3'});
     assert.deepEqual(names(tools), client, question);
     const matching = tools.find(tool => tool.name === expected);
     assert.ok(matching, question);
-    const section = expected === 'glassvac_kalt_lagern_einschalten_laden_getrennt'
-      ? 'bosch-glassvac-einsatz-und-pflege' : 'fenstersauger-belege';
+    const section = sections[expected] ?? 'fenstersauger-belege';
     assert.equal(matching.guide_url, origin + '/produkte.html#' + section);
   }
 });

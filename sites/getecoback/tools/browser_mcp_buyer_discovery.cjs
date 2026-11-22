@@ -11,6 +11,13 @@ assert(live || ['127.0.0.1', 'localhost'].includes(base.hostname), 'Use the loca
 
 const cases = [
   {
+    question: 'Den Bosch GlassVAC wollte ich nach Frost laden. Jetzt geht es um meinen Kärcher WV 8: Alle LEDs blinken zweimal kurz und machen dann eine lange Pause, der Motor ist schon aus. Was bedeutet das?',
+    tool: 'fenstersauger_wv3_wv8_led_muster_einordnen',
+    category: 'Fenstersauger',
+    guide: '/produkte.html#kaercher-fenstersauger-einsatz-und-hinweise',
+    heading: 'Kärcher-Fenstersauger vor dem Kauf und beim Einsatz prüfen',
+  },
+  {
     question: 'Mein Bosch GlassVAC lag nachts bei Frost in der Garage. Kann ich ihn dort gleich an die Steckdose hängen?',
     tool: 'glassvac_kalt_lagern_einschalten_laden_getrennt',
     category: 'Fenstersauger',
