@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.22.3';
-const revision = '868840389e44c75cc125f0cecf20e6ddc6e8186c';
+const version = '1.22.4';
+const revision = 'f5253d90b058b18c77c93d2d0c1dc5130fb8a4fa';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -37,6 +37,8 @@ const windowGuide = 'https://getecoback.com/produkte.html';
 const windowEvidence = windowGuide + '#fenstersauger-belege';
 const glassvacTemperatureTool = 'glassvac_kalt_lagern_einschalten_laden_getrennt';
 const glassvacTemperatureGuide = windowGuide + '#bosch-glassvac-einsatz-und-pflege';
+const kaercherLedTool = 'fenstersauger_wv3_wv8_led_muster_einordnen';
+const kaercherLedGuide = windowGuide + '#kaercher-fenstersauger-einsatz-und-hinweise';
 
 function readmeForExtraction(sourceReadme) {
   const heading = '\n## Connect\n\n';
@@ -211,6 +213,10 @@ async function verifyStdio(extracted, manifest) {
     for (const [key,value] of Object.entries(last.example.expect)) {
       assert.deepEqual(result.structuredContent[key],value,`${last.name}.${key}`);
     }
+    const exactWindowGuides = new Map([
+      [glassvacTemperatureTool, glassvacTemperatureGuide],
+      [kaercherLedTool, kaercherLedGuide],
+    ]);
     const windowTools = expandedDefinitions.filter(tool => tool.category === 'Fenstersauger');
     assert.equal(windowTools.length,12);
     for (const tool of windowTools) {
@@ -221,7 +227,7 @@ async function verifyStdio(extracted, manifest) {
         assert.deepEqual(example.structuredContent[key],value,`${tool.name}.${key}`);
       }
       assert.equal(example.structuredContent.citation_url,windowGuide);
-      const expectedGuide = tool.name === glassvacTemperatureTool ? glassvacTemperatureGuide : windowEvidence;
+      const expectedGuide = exactWindowGuides.get(tool.name) ?? windowEvidence;
       assert.equal(example.structuredContent.guide_url, expectedGuide, tool.name);
     }
     return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,
@@ -571,6 +577,50 @@ async function verifyCompactWindowBlade(rpc, finder, runner) {
   return {topMatch:first.name,guideUrl:windowEvidence,statuses:cases.map(({status})=>status)};
 }
 
+async function verifyCompactWindowSubject(rpc, finder, runner) {
+  async function find(frage) {
+    const result = await rpc('tools/call', {name:finder, arguments:{frage}});
+    assert.equal(result.isError, false);
+    return result.structuredContent.tools;
+  }
+  const kaercherHits = await find('Den Bosch GlassVAC wollte ich nach Frost laden. Jetzt geht es um meinen Kärcher WV 8: Alle LEDs blinken zweimal kurz und machen dann eine lange Pause, der Motor ist schon aus. Was bedeutet das?');
+  const [kaercher] = kaercherHits;
+  assert.ok(!kaercherHits.some(tool => tool.name === glassvacTemperatureTool));
+  assert.equal(kaercher?.name, kaercherLedTool);
+  assert.equal(kaercher.citation_url, windowGuide);
+  assert.equal(kaercher.guide_url, kaercherLedGuide);
+  const boschHits = await find('Zuvor hatte ich den Kärcher WV 8. Jetzt nutze ich den Bosch GlassVAC 06008B7000. Darf ich ihn nach Frost bei minus 3 Grad aufladen?');
+  const [bosch] = boschHits;
+  assert.ok(!boschHits.some(tool => tool.name === kaercherLedTool));
+  assert.equal(bosch?.name, glassvacTemperatureTool);
+  assert.equal(bosch.citation_url, windowGuide);
+  assert.equal(bosch.guide_url, glassvacTemperatureGuide);
+  const correctedFault = await find('Mein Kärcher WV 8 hat defekte LEDs. Korrektur: Ich meine meinen Bosch GlassVAC 06008B7000. Darf ich ihn nach einer Frostnacht in der Garage gleich ans Ladegerät?');
+  assert.equal(correctedFault[0]?.name, glassvacTemperatureTool);
+  assert.equal(correctedFault[0].guide_url, glassvacTemperatureGuide);
+  const unsupported = await find('Mein Bosch GlassVAC lag bei Frost in der Garage. Korrektur: Es ist ein Kärcher WV 8. Darf er jetzt an die Steckdose?');
+  const ambiguous = await find('Ich vergleiche Bosch GlassVAC und Kärcher WV 8. Darf ich beide Fenstersauger bei minus 3 Grad aufladen?');
+  assert.deepEqual(unsupported, []);
+  assert.deepEqual(ambiguous, []);
+
+  async function ledMeaning(muster, zustand) {
+    const eingaben = {artikel:'1.633-785.0', sicherheitsblatt_bestaetigt:true, muster, zustand};
+    const result = await rpc('tools/call', {name:runner, arguments:{name:kaercherLedTool, eingaben}});
+    assert.equal(result.isError, false);
+    assert.equal(result.structuredContent.citation_url, windowGuide);
+    assert.equal(result.structuredContent.guide_url, kaercherLedGuide);
+    return result.structuredContent.tabellenbedeutung;
+  }
+  const pattern = 'alle_leds_zweimal_kurz_dann_lange_pause';
+  const exactMeaning = await ledMeaning(pattern, 'motor_aus');
+  const unconfirmedMeaning = await ledMeaning(pattern, 'offen');
+  assert.equal(exactMeaning, 'akkutemperatur_zu_hoch_oder_zu_tief');
+  assert.equal(unconfirmedMeaning, null);
+  return {kaercherTool:kaercher.name, kaercherGuide:kaercher.guide_url, boschTool:bosch.name,
+    boschGuide:bosch.guide_url, unsupportedMatches:unsupported.length, ambiguousMatches:ambiguous.length,
+    exactMeaning, unconfirmedMeaning};
+}
+
 async function verifyCompactWindowLookup(rpc, finder) {
   const examples = [
     ['Kann ich mit dem Kärcher WV 2 Plus Multi Edition 30 ml aufsaugen, obwohl der Tank größer ist?',
@@ -628,6 +678,7 @@ async function verifyCompactStdio(extracted) {
     const laundryPrecision = await verifyCompactLaundryPrecision(rpc,finder);
     const humidifierEfficiency = await verifyCompactHumidifierEfficiency(rpc,finder,runner);
     const glassvacTemperature = await verifyCompactGlassvacTemperature(rpc,finder,runner);
+    const windowSubject = await verifyCompactWindowSubject(rpc,finder,runner);
     const n90Costs = await verifyCompactN90Costs(rpc,finder,runner);
     const tadoOventrop = await verifyCompactTadoOventrop(rpc,finder,runner);
     const householdDecisions = await verifyCompactHouseholdDecisions(rpc,runner);
@@ -636,7 +687,7 @@ async function verifyCompactStdio(extracted) {
     const windowLookup = await verifyCompactWindowLookup(rpc,finder);
     return {
       tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,
-      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,laundryPrecision,windowBlade,windowLookup,windowWidth,householdDecisions,tadoOventrop,n90Costs,humidifierEfficiency,glassvacTemperature,
+      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,laundryPrecision,windowBlade,windowLookup,windowWidth,householdDecisions,tadoOventrop,n90Costs,humidifierEfficiency,glassvacTemperature,windowSubject,
     };
   });
 }

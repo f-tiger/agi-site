@@ -99,6 +99,12 @@ storage is within range, startup is outside its range, and charging falls
 outside the recommended range. At +2 °C all three temperature checks pass.
 The tool requests the current temperature before returning a result.
 
+Version 1.22.4 follows explicit model corrections in German questions about
+the Bosch GlassVAC and Kärcher WV 8. The archive checks both directions,
+including the Kärcher LED table with a confirmed blink pattern and motor
+state. A generic cold-charging question about the WV 8 and a question about
+both machines leave the finder result empty.
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the
