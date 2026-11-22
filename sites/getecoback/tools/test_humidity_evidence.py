@@ -37,6 +37,48 @@ def graph(source):
 
 
 class HumidityEvidence(unittest.TestCase):
+    def test_regional_dewpoint_band_links_to_measurements_on_the_generated_pages(self):
+        marker = '<!--EB_FEUCHTENOW-->'
+        end = '<!--/EB_FEUCHTENOW-->'
+        target = '/guide/keller-lueften-sommer.html#taupunkt'
+        observed = {}
+        for page in SITE.rglob('*.html'):
+            source = page.read_text()
+            if marker not in source:
+                continue
+            name = page.relative_to(SITE).as_posix()
+            with self.subTest(page=name):
+                self.assertEqual(source.count(marker), 1)
+                self.assertEqual(source.count(end), 1)
+            block = source.split(marker, 1)[1].partition(end)[0]
+            observed[name] = block
+
+        self.assertTrue({'guide/luftentfeuchter-keller.html', 'guide/luftentfeuchter-gegen-schimmel.html'} <= observed.keys())
+        self.assertNotIn('guide/keller-lueften-sommer.html', observed)
+        self.assertIn('id="taupunkt"', read('keller-lueften-sommer'))
+        for block in set(observed.values()):
+            with self.subTest(example_page=next(name for name, html in observed.items() if html == block)):
+                self.assertIn('/api/feuchte', block)
+                self.assertRegex(block, r'(?i)open[- ]meteo')
+                self.assertIn('d.region', block)
+                self.assertIn('d.dew', block)
+                for city in ('Berlin', 'Frankfurt', 'München'):
+                    self.assertIn(city, block)
+                self.assertRegex(block, r'(?i)(?:Innen|drinnen)')
+                self.assertRegex(block, r'(?i)(?:Wand|Oberfläche)')
+                markup = block.partition('<script>')[0]
+                self.assertIn('href="' + target + '" data-eb-f="tool"', markup)
+                self.assertRegex(markup, r'<strong\b[^>]*data-outdoor-dew[^>]*\bhidden\b[^>]*>\s*</strong>')
+                self.assertRegex(block, r'(?i)(?:Außen|draußen)')
+                guide_urls = re.findall(r'/guide/[a-z0-9-]+\.html(?:#[a-z0-9-]+)?', block)
+                self.assertEqual(set(guide_urls), {target})
+                self.assertNotRegex(block, r'(?i)amazon\.|tag=getecoback|data-eb-f="guide"')
+                for claim in ('Wohnraum ja, Keller nein', 'Gutes Lüftungsfenster',
+                              'Lüften trocknet gerade nicht', 'Wasser rausholen kann jetzt nur',
+                              'über jeder kalten Wand', 'Trockener als jede kalte Wand'):
+                    self.assertNotIn(claim, block)
+                self.assertNotRegex(block, r'd\.(?:wall_ref|cellar_ref)\b')
+
     def test_winter_ventilation_examples_survive_in_both_editions(self):
         # A humid but warmer outdoor sample can add moisture even in winter.
         # Check each example in the published text, including its direction.

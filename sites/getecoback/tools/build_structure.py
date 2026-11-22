@@ -3454,25 +3454,8 @@ def inject_share(html):
     return html
 
 
-# Autumn live number (2026-08-31). The site's one "a chat answer cannot hold
-# this" hook is EB_HEATNOW, which renders only from 28 °C and sits on 11 of the
-# 12 top-earning pages — so it goes dark for eight months exactly as the
-# humidity season opens, and luftentfeuchter-40-qm (the best autumn converter)
-# never had a live number at all.
-#
-# What makes this citable rather than decorative: the verdict FLIPS on today's
-# dew point, and it flips against the COLD SURFACE, not the room air. An
-# assistant can state the rule; only this page can state today's number. And on
-# level 3 the dehumidifier is not an upsell — airing genuinely cannot remove
-# water any more, which is the honest reason the link is there.
-#
-# No Amazon link in this block on purpose: it routes to the site's own guide.
-# A weather-triggered band that pointed straight at a product would read as
-# engineered, and the physics is the asset here.
-# Mould and cellar pages the dew-point band belongs on even though device_of()
-# does not call them dehumidifier pages — the reader's question there IS the
-# ventilation question. keller-lueften-sommer is the classic case this site
-# already documents: airing a cellar on a mild damp day makes it wetter.
+# Outdoor weather context for humidity and mould guides. Local conditions and
+# actual surface temperatures belong in the reader's separate measured check.
 FEUCHTE_EXTRA = {
     "schimmel-im-keller-entfernen",
     "mobile-klimaanlage-stinkt-schimmel",
@@ -3481,41 +3464,34 @@ FEUCHTE_EXTRA = {
 }
 
 
-FEUCHTENOW = ('<!--EB_FEUCHTENOW--><div id="eb-feuchtenow"></div>\n<script>(function(){'
-              'var h=document.getElementById("eb-feuchtenow");if(!h)return;'
-              'fetch("/api/feuchte").then(function(r){return r.json();}).then(function(d){'
-              'if(!d||!d.ok||d.dew===null||d.dew===undefined)return;'
-              'var L=d.level,dew=d.dew;'
-              'var bg=L===3?"#eaf3fb":L===2?"#fff8ec":"#eefaf1";'
-              'var bd=L===3?"#c3dcef":L===2?"#f3ddc0":"#cbe9d5";'
-              'var fg=L===3?"#0f5c8a":L===2?"#8a6410":"#1c6b41";'
-              'var head=L===3?("💧 Lüften trocknet gerade nicht: Taupunkt draußen "+dew+" °C")'
-              ':L===2?("🌬️ Wohnraum ja, Keller nein: Taupunkt draußen "+dew+" °C")'
-              ':("🌬️ Gutes Lüftungsfenster: Taupunkt draußen "+dew+" °C");'
-              'var sub=L===3?("Das liegt über jeder kalten Wand (~"+d.wall_ref+" °C) — feuchte Luft von draußen '
-              'schlägt sich dort nieder. Wasser rausholen kann jetzt nur ein Entfeuchter.")'
-              ':L===2?("Für eine kalte Kellerwand (~"+d.cellar_ref+" °C) ist das zu feucht — im geheizten Zimmer '
-              '(kalte Ecke ~"+d.wall_ref+" °C) trocknet Lüften noch.")'
-              ':("Trockener als jede kalte Wand im Haus — jetzt bringt Querlüften am meisten.");'
-              'var link=L===3?\'<a href="/guide/luftentfeuchter-40-qm.html" data-eb-f="guide" '
-              'style="color:#0f6ba8;font-weight:700;text-decoration:none;">Entfeuchter nach Raumgröße →</a>\':'
-              '\'<a href="/guide/luftentfeuchter-40-qm.html" data-eb-f="guide" '
-              'style="color:#0f6ba8;font-weight:700;text-decoration:none;">Entfeuchter nach Raumgröße →</a>\';'
-              'h.innerHTML=\'<div style="background:\'+bg+\';border-bottom:1px solid \'+bd+\';">\'+'
-              '\'<div style="max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;gap:8px 14px;'
-              'align-items:center;flex-wrap:wrap;font-size:13.5px;">\'+'
-              '\'<strong style="color:\'+fg+\';">\'+head+\'</strong>\'+'
-              '\'<span style="color:#4a5a67;">\'+sub+\'</span>\'+link+'
-              '\'<a href="/guide/keller-lueften-sommer.html#taupunkt" data-eb-f="tool" '
-              'style="color:#0f6ba8;font-weight:700;text-decoration:none;">Eigene Wand messen →</a>\'+'
-              '\'<span style="color:#7a8b98;font-size:12px;flex-basis:100%;">Quelle: open-meteo, stündlich, '
-              'ungünstigster von drei Orten (\'+d.region+\', \'+Math.round(d.temp)+\' °C / \'+Math.round(d.rh)+\' % rF). '
-              'Annahme: kalte Zimmerecke ~\'+d.wall_ref+\' °C, Kellerwand ~\'+d.cellar_ref+\' °C — '
-              'deine eigene Wand misst du selbst.</span>\'+'
-              '\'</div></div>\';'
-              'if(window.gtag)gtag("event","feuchte_now",{level:L,dew:dew,region:d.region});'
-              '}).catch(function(){});'
-              '})();</script><!--/EB_FEUCHTENOW-->\n')
+FEUCHTENOW = (
+    '<!--EB_FEUCHTENOW--><div id="eb-feuchtenow" style="background:#f2f7fa;border-bottom:1px solid #cfe0ea;">'
+    '<div style="max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;gap:8px 14px;'
+    'align-items:center;flex-wrap:wrap;font-size:13.5px;">'
+    '<strong data-outdoor-dew hidden style="color:#0a4d7a;"></strong>'
+    '<span style="color:#4a5a67;">Miss Temperatur und Luftfeuchte drinnen und draußen sowie die kälteste erreichbare Wandstelle.</span>'
+    '<a href="/guide/keller-lueften-sommer.html#taupunkt" data-eb-f="tool" '
+    'style="color:#0f6ba8;font-weight:700;">Eigene Messwerte vergleichen →</a>'
+    '<span data-outdoor-source hidden style="color:#486572;font-size:12px;flex-basis:100%;">'
+    'Open-Meteo · stündlicher Wetterwert, höchster verfügbarer Außentaupunkt aus Berlin, Frankfurt und München.'
+    '</span></div></div>\n'
+    '<script>(function(){'
+    'var h=document.getElementById("eb-feuchtenow");if(!h)return;'
+    'fetch("/api/feuchte").then(function(r){if(r.ok)return r.json();}).then(function(d){'
+    'if(!d||!d.ok)return;'
+    'var city=d.region,dew=d.dew;'
+    'if(["Berlin","Frankfurt","München"].indexOf(city)<0||!Number.isFinite(dew))return;'
+    'var heading=h.querySelector("[data-outdoor-dew]");'
+    'heading.textContent="Außentaupunkt in "+city+" "+new Intl.NumberFormat("de-DE",{maximumFractionDigits:1}).format(dew)+" °C";'
+    'heading.hidden=false;h.querySelector("[data-outdoor-source]").hidden=false;'
+    'var q=new URLSearchParams(location.search);'
+    'if(!window.gtag||window.__probe||navigator.webdriver||navigator.doNotTrack==="1"||navigator.globalPrivacyControl===true||'
+    '["__probe","__ci","ci","qa","__qa"].some(function(k){return q.has(k);})||q.get("utm_source")==="verify")return;'
+    'try{if(localStorage.getItem("fleet_ga4_choice_v1")==="denied")return;}catch(e){return;}'
+    'gtag("event","feuchte_now",{level:d.level,dew:dew,region:city});'
+    '}).catch(function(){});'
+    '})();</script><!--/EB_FEUCHTENOW-->\n'
+)
 
 
 def strip_feuchtenow(html):
