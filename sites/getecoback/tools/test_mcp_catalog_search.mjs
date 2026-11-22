@@ -27,9 +27,9 @@ test('the browser loads the current catalogue search module', async () => {
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 220);
+  assert.equal(withGuides.length, 221);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 16);
+  assert.equal(destinations.size, 17);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);
@@ -72,6 +72,38 @@ test('German Oventrop buyer questions route to the X-generation adapter check', 
     assert.equal(response.tools[0]?.name, tool, query);
     assert.equal(findCatalogueTools(compact, {query})[0]?.name, tool, query);
   }
+});
+
+test('German humidifier efficiency questions reach the comparable measurement check and evidence', async () => {
+  const name = 'befeuchter_nennwatt_abgabeleistung_bezug';
+  const evidence = '/guide/luftbefeuchter-stromverbrauch.html#effizienz-vergleichen';
+  for (const q of [
+    'Welcher befeuchtet effizienter: der Beurer LB 55 mit 365 Watt oder Oskar mit 6 bis 18 Watt?',
+    'Sind 365 Watt beim LB-55 effizienter als 18 Watt beim Oskar?',
+    'Gibt der LB 55 mit 365 W mehr Wasser an die Raumluft ab als ein Oskar mit 18 W?',
+    'Wie vergleiche ich beim Luftbefeuchter Wasserabgabe und Leistungsaufnahme?',
+  ]) {
+    const browser = names(findCatalogueTools(compact,{query:q})).slice(0,5);
+    const {tools} = await catalogue({q,view:'compact',limit:'5'});
+    assert.equal(tools[0]?.name,name,q);
+    assert.deepEqual(names(tools),browser,q);
+    assert.equal(toolGuidePath(tools[0]),evidence,q);
+    assert.deepEqual((await catalogue({q,category:'Feuchte',tool:name})).tools,[],q);
+  }
+  for (const q of [
+    'Was kostet der LB 55 bei 8 Stunden pro Tag an Strom?',
+    'Wie entkalke ich den Beurer LB 55?',
+    'Welcher Tank fasst mehr Wasser, der Oskar mit 18 Watt oder der LB 55 mit 365 Watt?',
+    'Braucht der LB 55 mit 365 W mehr Wasser zum Nachfüllen als der Oskar mit 18 W?',
+    'Wie effizient ist die Klimaanlage bei 900 Watt?',
+  ]) {
+    const {tools} = await catalogue({q,view:'compact',limit:'5'});
+    assert.notEqual(tools[0]?.name,name,q);
+    assert.deepEqual(names(tools),names(findCatalogueTools(compact,{query:q})).slice(0,5),q);
+  }
+  const filter = 'Wann muss ich den Filter von meinem Oskar wechseln?';
+  assert.equal((await catalogue({q:filter,view:'compact'})).tools[0]?.name,'oskar_filtermatten_gemeinsamer_vorrat');
+  assert.equal(analytics,0);
 });
 
 test('German N90 cost questions find the exact label and metered comparison tool', async () => {

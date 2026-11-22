@@ -11,6 +11,13 @@ assert(live || ['127.0.0.1', 'localhost'].includes(base.hostname), 'Use the loca
 
 const cases = [
   {
+    question: 'Welcher befeuchtet effizienter: der Beurer LB 55 mit 365 Watt oder Oskar mit 6 bis 18 Watt?',
+    tool: 'befeuchter_nennwatt_abgabeleistung_bezug',
+    category: 'Modellunterlagen',
+    guide: '/guide/luftbefeuchter-stromverbrauch.html#effizienz-vergleichen',
+    heading: 'Beurer LB 55 oder Oskar: Was sagen die Wattzahlen?',
+  },
+  {
     question: 'Was schafft der Meaco Arete One 20L bei 10 Grad und 60 Prozent im kalten Keller?',
     tool: 'kellerentfeuchter_pruefpunkt_abgleichen',
     category: 'Feuchte',
@@ -67,12 +74,13 @@ async function assertGuideVisible(page, item) {
   await heading.waitFor();
   assert.equal(await page.locator(guide.hash).count(), 1, `Unique evidence target ${guide.hash}`);
   await page.evaluate(() => document.fonts.ready);
-  const layout = await heading.evaluate(element => {
-    const box = element.getBoundingClientRect();
-    return { top: box.top, bottom: box.bottom, navBottom: document.querySelector('.eb-nav').getBoundingClientRect().bottom, height: innerHeight };
-  });
-  assert(layout.top >= Math.max(0, layout.navBottom) - 1 && layout.bottom <= layout.height,
-    `Guide heading is clipped at ${guide.hash}: ${JSON.stringify(layout)}`);
+  // An authored guide can animate fragment navigation. Wait for the actual
+  // heading to enter the viewport without letting the test scroll it there.
+  await page.waitForFunction(target => {
+    const box = document.querySelector(target).getBoundingClientRect();
+    const navBottom = document.querySelector('.eb-nav').getBoundingClientRect().bottom;
+    return box.top >= Math.max(0, navBottom) - 1 && box.bottom <= innerHeight;
+  }, guide.hash, { timeout: 4000 });
   if (item.tool === 'waesche_trocknungswechsel_kaufschwelle') {
     await page.getByText('Ich habe bereits einen Trockner', {exact:true}).click();
     assert(await page.getByText(/16,80 € Ersparnis pro Saison/).isVisible());
