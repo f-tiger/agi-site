@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.19.0';
-const revision = '1d081a3367831d64f4e08294983313ae58e91a72';
+const version = '1.20.0';
+const revision = 'c9598b35b19a3f6be925e2746f77d29d08ea0baa';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -172,7 +172,7 @@ async function verifyStdio(extracted, manifest) {
   const {TOOLS} = await import(pathToFileURL(join(extracted,'src/tools.mjs')));
   const {expandedDefinitions} = await import(pathToFileURL(join(extracted,'src/eco-suite/src/mcp-expanded.mjs')));
   const expected = JSON.parse(JSON.stringify(TOOLS));
-  assert.equal(expected.length,2015);
+  assert.equal(expected.length,2018);
   assert.deepEqual(manifest.server.mcp_config, {command:'node',args:['${__dirname}/'+entry]});
   return withStdio(extracted,[],async rpc => {
     const listed = [], sizes = [], cursors = new Set();
@@ -188,9 +188,9 @@ async function verifyStdio(extracted, manifest) {
       }
     } while (cursor !== undefined);
     assert.deepEqual(listed,expected);
-    assert.deepEqual(sizes,[...Array(20).fill(100),15]);
+    assert.deepEqual(sizes,[...Array(20).fill(100),18]);
     const names = new Set(listed.map(tool=>tool.name));
-    assert.equal(names.size,2015);
+    assert.equal(names.size,2018);
     assert.ok(oldNames.every(name=>names.has(name)), 'Expected all eight supported legacy tools');
     assert.ok([...names].every(name=>!/balkonspeicher|balkonkraftwerk|solarbank|pv[_-]speicher/i.test(name)));
     assert.ok(manifest.tools.every(tool=>names.has(tool.name)));
@@ -270,6 +270,47 @@ async function verifyCompactLaundryPrecision(rpc, finder) {
     topMatches.push(topMatch);
   }
   return topMatches;
+}
+
+async function verifyCompactHouseholdDecisions(rpc, runner) {
+  const run = async (name, eingaben) => {
+    const result = await rpc('tools/call',{name:runner,arguments:{name,eingaben}});
+    assert.equal(result.isError,false,name);
+    return result.structuredContent;
+  };
+
+  const bracketTool = 'midea_portasplit_fensterhalterung_pruefen';
+  const roof = {angebot_ean:4048164116478,fenster:'dachfenster',standardhalterung:'im_angebot',universalhalterung:'fehlt'};
+  const bracket = await run(bracketTool,roof);
+  const bracketEntry = 'https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html?mcp_entry=portasplit-fensterhalterung#kaufpruefung';
+  assert.equal(bracket.status,'passende_halterung_vor_kauf_klaeren');
+  assert.equal(bracket.universalhalterung_ean,4048164118687);
+  assert.equal(bracket.entry_url,bracketEntry);
+  assert.equal((await run(bracketTool,{...roof,angebot_ean:0})).status,'modellnummer_abgleichen');
+
+  const seasonTool = 'waesche_trocknungswechsel_kaufschwelle';
+  const season = {ladungen_saison:100,ladungen_ersetzbar:60,trockner_kwh:1.4,entfeuchter_kwh:0.6,
+    tarif_eur_kwh:0.35,anschaffung_eur:100,ladungen_vergleichbar:true,zusatzstrom_erfasst:true};
+  const cost = await run(seasonTool,season);
+  assert.equal(cost.status,'rechnerische_kostendeckung');
+  assert.deepEqual([cost.trocknerladungen_weiter,cost.stromersparnis_saison_eur,cost.kostendeckung_saisons],[40,16.8,6]);
+  const unknown = await run(seasonTool,{...season,zusatzstrom_erfasst:false});
+  assert.equal(unknown.status,'erst_vergleichbar_messen');
+  assert.equal(unknown.kostendeckung_saisons,null);
+
+  const cellarTool = 'kellerentfeuchter_pruefpunkt_abgleichen';
+  const cellar = {modell:'meaco-one-20',temperatur_c:10,relative_feuchte_pct:60,wiederholt_gemessen:true,befund:'feuchte_auffaellig'};
+  const ten = await run(cellarTool,cellar);
+  const twenty = await run(cellarTool,{...cellar,temperatur_c:20});
+  const comfee = await run(cellarTool,{...cellar,modell:'comfee-mddf20'});
+  assert.deepEqual([ten.status,ten.liter_pro_tag,ten.leistungsaufnahme_w],['hersteller_pruefpunkt',3.4,180]);
+  assert.deepEqual([twenty.status,twenty.liter_pro_tag,twenty.leistungsaufnahme_w],['hersteller_pruefpunkt',8.5,216]);
+  assert.deepEqual([comfee.status,comfee.liter_pro_tag,comfee.leistungsaufnahme_w],['wertepaar_offen',null,null]);
+  assert.equal(ten.guide_url,'https://getecoback.com/guide/luftentfeuchter-keller.html#kalter-keller');
+  assert.equal(Object.hasOwn(ten,'entry_url'),false);
+  return {roofBracket:bracket.status,universalEan:bracket.universalhalterung_ean,
+    seasonalSavingsEur:cost.stromersparnis_saison_eur,breakEvenSeasons:cost.kostendeckung_saisons,
+    insufficientData:unknown.status,meacoWatts:[ten.leistungsaufnahme_w,twenty.leistungsaufnahme_w],comfee:comfee.status};
 }
 
 async function verifyCompactWindowWidth(rpc, finder, runner) {
@@ -397,12 +438,13 @@ async function verifyCompactStdio(extracted) {
     assert.deepEqual(buyer.content.filter(part=>part.type==='resource'),[{type:'resource',resource}]);
     const laundryComparison = await verifyCompactLaundryComparison(rpc,finder,runner);
     const laundryPrecision = await verifyCompactLaundryPrecision(rpc,finder);
+    const householdDecisions = await verifyCompactHouseholdDecisions(rpc,runner);
     const windowWidth = await verifyCompactWindowWidth(rpc,finder,runner);
     const windowBlade = await verifyCompactWindowBlade(rpc,finder,runner);
     const windowLookup = await verifyCompactWindowLookup(rpc,finder);
     return {
       tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,
-      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,laundryPrecision,windowBlade,windowLookup,windowWidth,
+      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,laundryPrecision,windowBlade,windowLookup,windowWidth,householdDecisions,
     };
   });
 }
