@@ -48,13 +48,20 @@ async function setValues(form,values){
 }
 function localCatalogue(route,onWrite=()=>{}){
  const request=route.request(),url=new URL(request.url());
- if(request.method()!=='GET'){onWrite();return route.abort();}
+ if(request.method()!=='GET'){onWrite(request);return route.abort();}
  if(url.origin!==origin)return route.abort();
  if(url.pathname.startsWith('/api/')||url.pathname==='/auth/status')return route.fulfill({contentType:'application/json',body:'{"ok":false,"user":null}'});
  const file=path.resolve(root,'.'+decodeURIComponent(url.pathname));
  if(!file.startsWith(root+path.sep)||!fs.existsSync(file)||!fs.statSync(file).isFile())return route.fulfill({status:404,body:'Missing fixture'});
  const contentType={'.html':'text/html; charset=utf-8','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.png':'image/png'}[path.extname(file)]||'application/octet-stream';
  return route.fulfill({contentType,body:fs.readFileSync(file)});
+}
+function isLegacyWindowGuidePageView(request){
+ if(request.method()!=='POST'||request.url()!==origin+'/api/ev')return false;
+ try{
+  const event=JSON.parse(request.postData());
+  return event.n==='page_view'&&event.p==='/guide/fenster-beschlagen-innen.html';
+ }catch{return false;}
 }
 function waitForEvent(page,name){
  return page.waitForRequest(request=>{
@@ -201,17 +208,76 @@ async function checkN90Entry(browser) {
  return cases;
 }
 
+async function checkWindowWidthJourney(page,javaScriptEnabled){
+ const guide='/guide/fenster-beschlagen-innen.html#fenstersauger-gegen-kondenswasser';
+ const product='/produkte.html#fenstersauger-duesenbreite';
+ const bosch='#produkt-bosch-glassvac-set';
+ assert.equal((await page.goto(origin+guide)).status(),200);
+ const entry=page.locator('[data-window-width-open]');
+ assert.equal(await entry.getAttribute('href'),product,'The editorial guide links to the untracked width comparison');
+ await entry.focus();
+ await page.keyboard.press('Enter');
+ await page.waitForURL(origin+product);
+ const form=page.locator('form[data-window-width-check]');
+ const status=page.locator('[data-window-width-status]');
+ const options=page.locator('[data-window-width-options] a:visible');
+ const table=page.getByRole('region',{name:'Düsenbreiten der deutschen Fenstersauger-Pakete'});
+ assert(await table.isVisible(),'The static manufacturer width table stays available');
+ assert.equal(await table.locator('tbody tr').count(),4);
+ assert.equal(await table.getByRole('link',{name:'Bosch GlassVAC Set Produktseite',exact:true}).getAttribute('href'),data.products.find(p=>p.id==='bosch-glassvac-set').source);
+
+ if(!javaScriptEnabled){
+  assert(await form.isHidden(),'Without JavaScript the width form cannot send missing inputs');
+  assert.equal(await options.count(),0);
+  return {staticFallback:true,cleanEntry:true};
+ }
+
+ await form.waitFor({state:'visible'});
+ assert.equal(await status.getAttribute('role'),'status','The result is announced as a status');
+ const purchase=form.locator('[name=kauf_geplant]');
+ const submit=form.locator('[type=submit]');
+ const expectResult=async(state,modelLinks)=>{
+  await submit.click();
+  await page.waitForFunction(expected=>document.querySelector('[data-window-width-status]')?.dataset.state===expected,state);
+  assert(await status.isVisible(),state+' result visible');
+  assert.deepEqual(await options.evaluateAll(links=>links.map(link=>link.getAttribute('href'))),modelLinks,state+' model references');
+  assert.equal(page.url(),origin+product,'The calculation does not navigate or put measurements into the URL');
+ };
+
+ await setValues(form,{lichte_breite_mm:'170',spiel_pro_seite_mm:'5',vorhandene_duese_mm:''});
+ assert.equal(await purchase.isChecked(),false,'Comparing products starts as an explicit choice');
+ await expectResult('kein_kauf',[]);
+ await purchase.check();
+ await expectResult('vergleich',[bosch]);
+ assert.match(await status.innerText(),/160[\s\u00a0]*mm/);
+ assert.match(await options.first().locator('..').innerText(),/133[\s\u00a0]*mm/);
+
+ await setValues(form,{vorhandene_duese_mm:'133'});
+ assert.equal(await options.count(),0,'Changing an input clears the previous product result');
+ await expectResult('vorhanden',[]);
+ await setValues(form,{lichte_breite_mm:'142',vorhandene_duese_mm:''});
+ await expectResult('kein_treffer',[]);
+
+ await setValues(form,{lichte_breite_mm:'170'});
+ await expectResult('vergleich',[bosch]);
+ await options.first().focus();
+ await page.keyboard.press('Enter');
+ await page.waitForURL(origin+'/produkte.html'+bosch);
+ assert(await page.locator(bosch).isVisible(),'The comparison leads to the precise model card');
+ return {cleanEntry:true,results:['kein_kauf','vergleich','vorhanden','kein_treffer'],modelReached:true};
+}
+
 async function checkCatalog(browser){
  for(const width of [320,390,1280])for(const javaScriptEnabled of [true,false]){
   const context=await browser.newContext({viewport:{width,height:900},javaScriptEnabled,serviceWorkers:'block',userAgent:'getecoback-ci/1.0 product-catalog',extraHTTPHeaders:{DNT:'1'}});
-  let writes=0;const errors=[];
+  const blockedWrites=[],errors=[];
   await context.addInitScript(()=>{
    window.__probe=true;window.__catalogToolEvents=[];
    const spy=(...args)=>{if(args[0]==='event'&&args[1]==='tool_complete')window.__catalogToolEvents.push(args);};
    Object.defineProperty(window,'gtag',{configurable:true,get:()=>spy,set(){}});
    Object.defineProperty(navigator,'globalPrivacyControl',{get:()=>true});
   });
-  await context.route('**/*',route=>localCatalogue(route,()=>writes++));
+  await context.route('**/*',route=>localCatalogue(route,request=>blockedWrites.push(request)));
   const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
   assert.equal((await page.goto(origin+'/produkte.html?__probe=1',{waitUntil:'load'})).status(),200);
   assert.equal(await page.locator('[data-product-card]').count(),data.products.length);
@@ -262,6 +328,11 @@ async function checkCatalog(browser){
    assert.ok(cardBox&&cardBox.y>=(fixedNav?fixedNav.y+fixedNav.height:0)&&cardBox.y<450,'Model card hidden below navigation: '+id);
    await page.goto(WINDOW_ENTRY_URL);
   }
+  const writesBeforeWidthJourney=blockedWrites.length;
+  const windowWidthJourney=width<=390?await checkWindowWidthJourney(page,javaScriptEnabled):undefined;
+  // The older guide may attempt a page-view beacon. The fixture aborts it too.
+  const unexpectedWrites=blockedWrites.slice(writesBeforeWidthJourney).filter(request=>!isLegacyWindowGuidePageView(request));
+  assert.deepEqual(unexpectedWrites.map(request=>[request.method(),request.url()]),[],'The width QA journey must not trigger a business write');
   await page.goto(origin+'/produkte.html?__probe=1');
   if(javaScriptEnabled){
    await page.locator('#product-filters').waitFor({state:'visible'});
@@ -400,7 +471,7 @@ async function checkCatalog(browser){
   assert(target.top>=target.nav-1,'Category anchor hidden below fixed navigation');
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
   assert.deepEqual(errors,[]);
-  cases.push({width,javaScriptEnabled,products:data.products.length,categories:data.categories.length,merchantSearches:expected.length,blockedWrites:writes,localTools:9,reusedTools:3,windowModelLinks:windowModels.length,defaultSubmissions,independentSubmissions,invalidSubmissions,pass:true});
+  cases.push({width,javaScriptEnabled,products:data.products.length,categories:data.categories.length,merchantSearches:expected.length,blockedWrites:blockedWrites.length,localTools:9,reusedTools:3,windowModelLinks:windowModels.length,windowWidthJourney,defaultSubmissions,independentSubmissions,invalidSubmissions,pass:true});
   await context.close();
  }
  const windowEntryCases=[];

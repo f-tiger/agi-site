@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {calculate as run,InputError} from '../site/assets/product-category-tools.mjs';
+import {readFileSync} from 'node:fs';
+import {calculate as run,InputError,windowWidthFit} from '../site/assets/product-category-tools.mjs';
+import {fenstersaugerSprossenKauf} from '../src/mcp-fenstersauger-kauf.mjs';
 
 test('air planning is volume times the chosen air-change assumption, not room floor area',()=>{
   const r=run('luftreiniger',{length:'4',width:'5',height:'2.5',changes:'3'});
@@ -25,6 +27,35 @@ test('glass area counts panes and sides without claiming battery time',()=>{
   const r=run('fenstersauger',{width:'.8',height:'1.2',panes:'6',sides:'2'});
   assert.ok(Math.abs(r.area-11.52)<1e-10);assert.match(r.lines.join(' '),/keine Akkulaufzeit/);
   assert.throws(()=>run('fenstersauger',{width:'1',height:'1',panes:'1.5',sides:'2'}),InputError);
+});
+
+test('published window-width table and browser branches agree with the existing MCP package check',()=>{
+  const page = readFileSync(new URL('../site/produkte.html', import.meta.url),'utf8');
+  const table = page.split('<table data-window-width-table>')[1].split('</table>')[0];
+  const packages = [...table.matchAll(/<tr><th scope="row"><a href="(#[^"]+)">([^<]+)<\/a>.*?<td>([^<]+)<\/td><\/tr>/g)]
+    .map(([,href,title,cell]) => ({href,title,widths:[...cell.matchAll(/(\d+) mm/g)].map(m=>Number(m[1]))}));
+  assert.equal(packages.length,4);
+  const cases = [
+    [170,5,0,false,'kein_kauf'], [170,5,0,true,'vergleich'], [170,5,133,true,'vorhanden'],
+    [142,5,0,true,'kein_treffer'], [180,5,0,true,'vergleich'], [286,10,0,true,'vergleich'],
+    [99,100,0,true,'kein_treffer'], [143.5,5.25,0,true,'vergleich'],
+  ];
+  for(const [lichte_breite_mm,spiel_pro_seite_mm,vorhandene_duese_mm,kauf_geplant,state] of cases) {
+    const args={lichte_breite_mm,spiel_pro_seite_mm,vorhandene_duese_mm,kauf_geplant};
+    const actual=windowWidthFit(args,packages);
+    const expected=fenstersaugerSprossenKauf.calculate(args);
+    assert.equal(actual.net,expected.nutzbreite_mm);
+    assert.equal(actual.state,state);
+    assert.deepEqual(actual.options.map(item=>[item.title,item.widths]),expected.entry_url ?
+      expected.nominell_passende_originalpakete.map(item=>[
+        item.modell+', '+item.artikel,item.passende_arbeitsbreiten_mm,
+      ]) : []);
+  }
+  const args={lichte_breite_mm:'170',spiel_pro_seite_mm:'5',vorhandene_duese_mm:''};
+  assert.equal(windowWidthFit(args,packages).state,'kein_kauf');
+  for(const invalid of ['', '0', 'Infinity', '5001', '-1']){
+    assert.throws(()=>windowWidthFit({...args,lichte_breite_mm:invalid},packages),InputError);
+  }
 });
 test('consumable budget respects pack units, including zero consumables',()=>{
   const r=run('bodenstaubsauger',{bagPackPrice:'20',bagsPerPack:'4',bagsPerYear:'8',filterPrice:'15',filterChanges:'1'});

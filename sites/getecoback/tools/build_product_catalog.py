@@ -292,12 +292,23 @@ APPLIANCE_EVIDENCE = '''
 </section>
 <section class="pc-method" id="fenstersauger-belege" aria-labelledby="fenstersauger-belege-title">
   <h2 id="fenstersauger-belege-title">Fenstersauger prüfen: Abziehlippen und Gebrauch</h2>
-  <p>Für wenige Scheiben kann der vorhandene Einwascher mit Abzieher genügen. Kommt das Wasser regelmäßig von innen zurück, zuerst <a href="/guide/luftentfeuchter-ratgeber.html#einsatzort-waehlen">die Feuchtigkeit einordnen</a>.</p>
+  <p>Für wenige Scheiben kann der vorhandene Einwascher mit Abzieher genügen. Kommt das Wasser regelmäßig von innen zurück, zuerst <a href="/guide/fenster-beschlagen-innen.html#fenstersauger-gegen-kondenswasser">Raumluft und Innenscheibe messen</a>.</p>
   <p><a href="#kaercher-fenstersauger-einsatz-und-hinweise">Kärcher im Gebrauch prüfen</a> · <a href="#bosch-glassvac-einsatz-und-pflege">Bosch GlassVAC einsetzen und pflegen</a></p>
   <h3 id="fenstersauger-duesenbreite">Welche Saugdüse kommt für ein schmales Glasfeld infrage?</h3>
   <p>Miss die lichte Breite an der engsten Stelle zwischen Rahmen und Sprossen. Ziehe die Reserve ab, die du auf beiden Seiten lassen möchtest. Bei 170 mm Glasbreite und 5 mm Reserve je Seite bleiben 160 mm. Unter den vier dokumentierten Paketen bleibt allein der 133-mm-Saugkopf des Bosch GlassVAC unter dieser Breite.</p>
+  <form class="pc-window-width" data-window-width-check hidden>
+    <div class="pc-window-measurements">
+      <label>Engste freie Glasbreite (mm)<input name="lichte_breite_mm" type="number" inputmode="decimal" min="1" max="5000" step="any" required></label>
+      <label>Reserve je Seite (mm)<input name="spiel_pro_seite_mm" type="number" inputmode="decimal" min="0" max="1000" step="any" value="0" required></label>
+      <label>Vorhandene kompatible Düse (mm, optional)<input name="vorhandene_duese_mm" type="number" inputmode="decimal" min="0" max="3000" step="any"></label>
+    </div>
+    <label class="pc-window-opt"><input name="kauf_geplant" type="checkbox"> Ich möchte neue Sets vergleichen, wenn meine vorhandene Düse nicht infrage kommt.</label>
+    <button type="submit">Düsenbreite prüfen</button>
+    <p data-window-width-status role="status"></p>
+    <ul data-window-width-options hidden></ul>
+  </form>
   <div class="pc-table-scroll" role="region" aria-label="Düsenbreiten der deutschen Fenstersauger-Pakete" tabindex="0">
-    <table>
+    <table data-window-width-table>
       <caption>Dokumentierte Düsen- und Saugkopfbreiten</caption>
       <thead><tr><th scope="col">Deutsches Paket</th><th scope="col">Nennbreiten</th></tr></thead>
       <tbody>
@@ -309,6 +320,7 @@ APPLIANCE_EVIDENCE = '''
     </table>
   </div>
   <p>Die Nennbreite dient der Vorauswahl. Prüfe am Fenster auch die tatsächliche Außenbreite von Saugkopf und Gehäuse sowie Hindernisse beim Ansetzen und Kippen. Reicht dein vorhandener Abzieher oder ein Tuch, kannst du es weiterverwenden.</p>
+  <p><strong>Wasser bleibt an der Unterkante?</strong> Setze ein vorhandenes, ausgeschaltetes Gerät trocken an. Prüfe, ob der Kopf bis unten am Glas anliegt oder ob Gehäuse und Fensterbank zuerst anstoßen. Für die verbleibenden Tropfen am Rand genügt ein sauberes Tuch. Bei einem neuen Set vor dem Kauf die tatsächlichen Kopfmaße und den Platz zum Ansetzen klären.</p>
   <p>Gleiche beim Bosch-Angebot die Bestellnummer oder EAN ab. Das Set 06008B7000 (EAN 3165140920148) enthält laut Bosch den großen und den kleinen Saugkopf. Beim <a href="https://www.bosch-diy.com/de/de/p/glassvac-solo-plus-06008b7200">GlassVAC Solo Plus 06008B7200</a> (EAN 3165140976374) listet Bosch im Lieferumfang nur den großen Saugkopf. Ist das Angebot nicht eindeutig, lass dir vor dem Kauf den kleinen Saugkopf bestätigen.</p>
   <p>Die Bosch-Maße stehen in der <a href="https://www.bosch-diy.com/storage/de-de/glassvac-100045834-original-pdf-396340-de-de.pdf">deutschen Originalanleitung F 016 L81 778 auf Seite 4</a>. <a href="#modelle-fenstersauger">Fenstersauger-Modelle und Lieferumfang vergleichen</a>.</p>
   <h3 id="fenstersauger-abziehlippen">170-mm-Abziehlippen am genauen Gerät zuordnen</h3>

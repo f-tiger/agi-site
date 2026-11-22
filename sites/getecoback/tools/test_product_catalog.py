@@ -69,6 +69,8 @@ class CatalogTest(unittest.TestCase):
         ids=Document(html).ids
         self.assertEqual(ids.count('fenstersauger-duesenbreite'),1)
         answer=html.split('id="fenstersauger-duesenbreite"',1)[1].split('id="fenstersauger-abziehlippen"',1)[0]
+        self.assertEqual(answer.count('data-window-width-table'),1)
+        self.assertIn('data-window-width-check hidden',answer)
         models=[('kaercher-wv2-multi','1.633-662.0','280 mm'),
                 ('kaercher-wv3-precision','1.633-698.0','170 mm / 280 mm'),
                 ('kaercher-wv8-signature','1.633-785.0','170 mm / 280 mm'),
@@ -94,9 +96,11 @@ class CatalogTest(unittest.TestCase):
             for term in ('170 mm Glasbreite','5 mm Reserve je Seite','160 mm','133-mm-Saugkopf',
                          'tatsächliche Außenbreite','vorhandener Abzieher oder ein Tuch',
                          '06008B7000 (EAN 3165140920148)', 'EAN 3165140976374',
-                         'nur den großen Saugkopf', 'vor dem Kauf den kleinen Saugkopf bestätigen', *sources):
+                         'nur den großen Saugkopf', 'vor dem Kauf den kleinen Saugkopf bestätigen',
+                         'ausgeschaltetes Gerät trocken an', 'Gehäuse und Fensterbank zuerst anstoßen', *sources):
                 self.assertIn(term,surface)
             self.assertNotIn('amazon.',surface)
+        self.assertNotIn('Ich möchte neue Sets vergleichen',readable)
         bosch_card=html.split('id="produkt-bosch-glassvac-set"',1)[1].split('</section>',1)[0]
         for term in ('06008B7000 (EAN 3165140920148)', '06008B7200 (EAN 3165140976374)',
                      'www.amazon.de/s?k=Bosch+GlassVAC+Set+06008B7000&amp;tag=getecoback-21'):

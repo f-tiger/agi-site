@@ -43,7 +43,8 @@ export function ecoPublicBusinessEvent(pathname, detail) {
     '/guide/heizdecke-stromverbrauch.html': {tool_id:'eco-personal-warmth', names:['eco_warmth_example','eco_warmth_calculate','eco_warmth_share']},
     '/guide/smarte-heizkoerperthermostate-lohnen-sich.html': {tool_id:'eco-valve-fit', names:['eco_valve_result','eco_valve_official','eco_valve_share']},
     '/guide/richtig-lueften-im-winter.html': {tool_id:'eco-wall-moisture', names:['eco_dewpoint_example','eco_dewpoint_check']},
-    '/guide/fenster-beschlagen-innen.html': {tool_id:'eco-window-condensation', names:['eco_window_condensation_check']}
+    '/guide/fenster-beschlagen-innen.html': {tool_id:'eco-window-condensation', names:['eco_window_condensation_check','eco_window_width_open']},
+    '/produkte.html': {tool_id:'eco-window-width', names:['eco_window_width_check']}
   };
   if (!Object.hasOwn(routes, pathname) || !routes[pathname].names.includes(detail.name)) return null;
   return {name:detail.name, tool_id:routes[pathname].tool_id};
@@ -75,6 +76,13 @@ export function installPublicEngagement() {
     document.addEventListener('click', event => {
       if (event.isTrusted && event.target.closest?.('.dc-drain-paths a[href^="#modell-"]')) {
         window.dispatchEvent(new CustomEvent('fleet:business', {detail:{name:'eco_cellar_model_open'}}));
+      }
+    });
+  }
+  if (page.pathname === '/guide/fenster-beschlagen-innen.html') {
+    document.addEventListener('click', event => {
+      if (event.isTrusted && event.target.closest?.('a[data-window-width-open]')) {
+        window.dispatchEvent(new CustomEvent('fleet:business', {detail:{name:'eco_window_width_open'}}));
       }
     });
   }
