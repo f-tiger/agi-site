@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.22.9';
-const revision = '95991c925b38950b6a2e76edf87d4cd374f90b3b';
+const version = '1.22.10';
+const revision = 'd76dc1a488c326f59d56e1abed53460ed20247ea';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -25,7 +25,7 @@ const oldNames = [
 ];
 const featureNames = ['entfeuchter_ablaufcheck', 'btu_empfehlung', 'fensterabdichtung_laenge',
   'taupunkt_lueften', 'fenstersauger_170mm_abziehlippe_geraetefamilie', 'fenster_oberflaeche_taucheck',
-  'luftentfeuchter_waesche_einzelkosten', 'fritz_302_danfoss_adapter'];
+  'luftentfeuchter_waesche_einzelkosten', 'fritz_302_danfoss_adapter', 'keller_lueften_taupunkt_messwerte'];
 const entry = 'src/server.mjs';
 const legacyHelpers = fileURLToPath(new URL('../mcp-registry/local-packages/', import.meta.url));
 const sha256 = buffer => createHash('sha256').update(buffer).digest('hex');
@@ -36,6 +36,10 @@ const drainQuestion = 'Kellerentfeuchter: Mein Kondensatschlauch muss kurz über
 const drainCitation = 'https://getecoback.com/guide/luftentfeuchter-keller.html';
 const drainGuide = drainCitation+'?utm_source=eco-mcp&utm_medium=referral&utm_campaign=keller-ablauf#ablauf-vor-kauf';
 const drainAccessory = 'https://www.meaco.de/produkt/meaco-dry-arete-one-pumpe/';
+const ventilationTool = 'keller_lueften_taupunkt_messwerte';
+const ventilationQuestion = 'Soll ich meinen Keller jetzt lüften? Draußen 28 °C und 60 %, drinnen 17 °C und 65 %, Wand 15 °C.';
+const ventilationCitation = 'https://getecoback.com/guide/keller-lueften-sommer.html';
+const ventilationGuide = ventilationCitation + '#taupunkt';
 const cellarUri = 'ecoback://evidence/de/kellerentfeuchter';
 const laundryComparisonTool = 'waesche_trocknungskosten';
 const singleLaundryTool = 'luftentfeuchter_waesche_einzelkosten';
@@ -362,11 +366,49 @@ async function verifyDrainRoute(call) {
   return {name:drainTool,guide:drainGuide,source:drainAccessory,outcomes};
 }
 
+async function verifyMeasuredVentilation(call) {
+  const indoors = {innen_c:17,innen_rh_prozent:65};
+  const summer = {aussen_c:28,aussen_rh_prozent:60};
+  const cool = {aussen_c:10,aussen_rh_prozent:80};
+  const cases = [
+    [{...summer,...indoors,wand_c:15},['kondensationsrisiko',19.5,10.4,-4.5,-9.1,false]],
+    [{...cool,...indoors,wand_c:15},['probeweise_lueften',6.7,10.4,8.3,3.7,false]],
+    [{...cool,...indoors,wand_c:7},['grenzbereich_nachmessen',6.7,10.4,0.3,3.7,true]],
+    [{aussen_c:20,aussen_rh_prozent:70,...indoors,wand_c:16},['keine_trocknung',14.4,10.4,1.6,-4,false]],
+    [{aussen_c:10,aussen_rh_prozent:100,innen_c:20,innen_rh_prozent:65,wand_c:11},['grenzbereich_nachmessen',10,13.2,1,3.2,true]],
+  ];
+  const casesChecked = [];
+  for (const [args,expected] of cases) {
+    const result = await call(ventilationTool,args);
+    assert.equal(result.isError,false);
+    const data = result.structuredContent;
+    const observed = [data.status,data.aussen_taupunkt_c,data.innen_taupunkt_c,data.abstand_wand_aussentaupunkt_c,
+      data.abstand_innen_aussentaupunkt_c,data.kondensation_innen_moeglich];
+    assert.deepEqual(observed,expected);
+    assert.equal(data.citation_url,ventilationCitation);
+    assert.equal(data.guide_url,ventilationGuide);
+    assert.equal(data.quellen_geprueft_am,'2026-11-22');
+    assert.equal(new URL(data.quellen_url).hostname,'www.umweltbundesamt.de');
+    assert.equal(new URL(data.verbraucherzentrale_url).hostname,'www.verbraucherzentrale.de');
+    assert.doesNotMatch(result.content[0].text,/https?:\/\/[^"\s]*(?:amazon\.|amzn\.)|[?&]tag=/i);
+    casesChecked.push(observed);
+  }
+  const invalid = await call(ventilationTool,{...cool,innen_c:17,wand_c:15});
+  assert.equal(invalid.isError,true);
+  assert.equal(invalid.structuredContent,undefined);
+  const legacy = await call('taupunkt_lueften',{aussen_temp_c:18,aussen_luftfeuchte_prozent:60,innen_temp_c:16});
+  assert.equal(legacy.isError,false);
+  assert.equal(legacy.structuredContent,undefined);
+  assert.match(legacy.content[0].text,/Außenluft: 10,1 °C/);
+  assert.match(legacy.content[0].text,/geschätzten Wandtemperatur von 14,0 °C/);
+  return {name:ventilationTool,guide:ventilationGuide,cases:casesChecked,missingRejected:true,legacyPreserved:true};
+}
+
 async function verifyStdio(extracted, manifest) {
   const {TOOLS} = await import(pathToFileURL(join(extracted,'src/tools.mjs')));
   const {expandedDefinitions} = await import(pathToFileURL(join(extracted,'src/eco-suite/src/mcp-expanded.mjs')));
   const expected = JSON.parse(JSON.stringify(TOOLS));
-  assert.equal(expected.length,2022);
+  assert.equal(expected.length,2023);
   assert.deepEqual(manifest.server.mcp_config, {command:'node',args:['${__dirname}/'+entry]});
   return withStdio(extracted,[],async rpc => {
     const listed = [], sizes = [], cursors = new Set();
@@ -382,9 +424,9 @@ async function verifyStdio(extracted, manifest) {
       }
     } while (cursor !== undefined);
     assert.deepEqual(listed,expected);
-    assert.deepEqual(sizes,[...Array(20).fill(100),22]);
+    assert.deepEqual(sizes,[...Array(20).fill(100),23]);
     const names = new Set(listed.map(tool=>tool.name));
-    assert.equal(names.size,2022);
+    assert.equal(names.size,2023);
     assert.ok(oldNames.every(name=>names.has(name)), 'Expected all eight supported legacy tools');
     assert.ok([...names].every(name=>!/balkonspeicher|balkonkraftwerk|solarbank|pv[_-]speicher/i.test(name)));
     assert.ok(manifest.tools.every(tool=>names.has(tool.name)));
@@ -430,7 +472,10 @@ async function verifyStdio(extracted, manifest) {
       rpc('tools/call',{name,arguments:args}));
     const drainRoute = await verifyDrainRoute(args =>
       rpc('tools/call',{name:drainTool,arguments:args}));
-    return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,windowCondensation,decimalWindowWidth,singleLaundry,fritzValve,drainRoute,
+    const measuredVentilation = await verifyMeasuredVentilation((name,args) =>
+      rpc('tools/call',{name,arguments:args}));
+    return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,windowCondensation,decimalWindowWidth,
+      singleLaundry,fritzValve,drainRoute,measuredVentilation,
       firstExamples:['btu_empfehlung','entfeuchter_ablaufcheck'],finder:verifyFinder(extracted,drain),
       lastPageExample:last.name,legacyNames:oldNames.length,network:'disabled'};
   });
@@ -905,6 +950,15 @@ async function verifyCompactStdio(extracted) {
     assert.deepEqual(routeMatch.inputSchema.required,['drain']);
     const drainRoute = await verifyDrainRoute(eingaben =>
       rpc('tools/call',{name:runner,arguments:{name:drainTool,eingaben}}));
+    const ventilationLookup = await rpc('tools/call',{name:finder,arguments:{frage:ventilationQuestion}});
+    assert.equal(ventilationLookup.isError,false);
+    const [ventilationMatch] = ventilationLookup.structuredContent.tools;
+    assert.equal(ventilationMatch?.name,ventilationTool);
+    assert.equal(ventilationMatch.guide_url,ventilationGuide);
+    assert.deepEqual(ventilationMatch.inputSchema.required,
+      ['aussen_c','aussen_rh_prozent','innen_c','innen_rh_prozent','wand_c']);
+    const measuredVentilation = await verifyMeasuredVentilation((name,eingaben) =>
+      rpc('tools/call',{name:runner,arguments:{name,eingaben}}));
     const laundryPrecision = await verifyCompactLaundryPrecision(rpc,finder);
     const humidifierEfficiency = await verifyCompactHumidifierEfficiency(rpc,finder,runner);
     const glassvacTemperature = await verifyCompactGlassvacTemperature(rpc,finder,runner);
@@ -929,7 +983,8 @@ async function verifyCompactStdio(extracted) {
     const windowLookup = await verifyCompactWindowLookup(rpc,finder);
     return {
       tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,
-      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,singleLaundry,fritzValve,drainRoute,laundryPrecision,windowBlade,windowLookup,
+      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,singleLaundry,fritzValve,drainRoute,
+      measuredVentilation,laundryPrecision,windowBlade,windowLookup,
       windowWidth,decimalWindowWidth,householdDecisions,tadoOventrop,n90Costs,humidifierEfficiency,glassvacTemperature,windowSubject,windowCondensation,
     };
   });
@@ -996,6 +1051,7 @@ try {
   assert.deepEqual(result.singleLaundry,result.compact.singleLaundry);
   assert.deepEqual(result.fritzValve,result.compact.fritzValve);
   assert.deepEqual(result.drainRoute,result.compact.drainRoute);
+  assert.deepEqual(result.measuredVentilation,result.compact.measuredVentilation);
   assert.deepEqual(result.resource,result.compact.resource);
   result.archiveReadme = {replacedVersion:readme.previousVersion,registryLatestUrl};
   const identifier = `${releaseUrl}/${file}`;
