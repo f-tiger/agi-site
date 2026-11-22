@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.22.2';
-const revision = 'bbaed3c0c48bb93917b6327cc7a107e7be5a46c9';
+const version = '1.22.3';
+const revision = '868840389e44c75cc125f0cecf20e6ddc6e8186c';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -35,6 +35,8 @@ const laundryComparisonTool = 'waesche_trocknungskosten';
 const windowBladeTool = 'fenstersauger_170mm_abziehlippe_geraetefamilie';
 const windowGuide = 'https://getecoback.com/produkte.html';
 const windowEvidence = windowGuide + '#fenstersauger-belege';
+const glassvacTemperatureTool = 'glassvac_kalt_lagern_einschalten_laden_getrennt';
+const glassvacTemperatureGuide = windowGuide + '#bosch-glassvac-einsatz-und-pflege';
 
 function readmeForExtraction(sourceReadme) {
   const heading = '\n## Connect\n\n';
@@ -219,7 +221,8 @@ async function verifyStdio(extracted, manifest) {
         assert.deepEqual(example.structuredContent[key],value,`${tool.name}.${key}`);
       }
       assert.equal(example.structuredContent.citation_url,windowGuide);
-      assert.equal(example.structuredContent.guide_url,windowEvidence);
+      const expectedGuide = tool.name === glassvacTemperatureTool ? glassvacTemperatureGuide : windowEvidence;
+      assert.equal(example.structuredContent.guide_url, expectedGuide, tool.name);
     }
     return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,
       firstExamples:['btu_empfehlung','entfeuchter_ablaufcheck'],finder:verifyFinder(extracted,drain),
@@ -294,6 +297,46 @@ async function verifyCompactLaundryPrecision(rpc, finder) {
     topMatches.push(topMatch);
   }
   return topMatches;
+}
+
+async function verifyCompactGlassvacTemperature(rpc, finder, runner) {
+  const frage = 'Mein Bosch GlassVAC lag nachts bei Frost in der Garage. Kann ich ihn dort gleich an die Steckdose hängen?';
+  const lookup = await rpc('tools/call', {name:finder, arguments:{frage}});
+  assert.equal(lookup.isError, false);
+  const name = glassvacTemperatureTool;
+  const first = lookup.structuredContent.tools[0];
+  const guideUrl = glassvacTemperatureGuide;
+  assert.equal(first?.name, name);
+  assert.equal(first.citation_url, windowGuide);
+  assert.equal(first.guide_url, guideUrl);
+
+  const fault = await rpc('tools/call', {name:finder, arguments:{
+    frage:'Die LED an meinem GlassVAC blinkt beim Laden nach Frost. Ist der Akku defekt?',
+  }});
+  assert.equal(fault.isError, false);
+  const faultPromoted = fault.structuredContent.tools[0]?.name === name;
+  assert.equal(faultPromoted, false);
+
+  const model = {paketkennung:'06008B7000', handbuch_zugeordnet:true};
+  const call = eingaben => rpc('tools/call', {name:runner, arguments:{name,eingaben}});
+  const missing = await call(model);
+  assert.equal(missing.isError, true);
+  assert.equal(missing.structuredContent, undefined);
+
+  async function atTemperature(umgebung_c) {
+    const result = await call({...model, umgebung_c});
+    assert.equal(result.isError, false);
+    const evidence = result.structuredContent;
+    assert.equal(evidence.citation_url, windowGuide);
+    assert.equal(evidence.guide_url, guideUrl);
+    return {storage:evidence.im_lagerbereich, startup:evidence.einschalten_im_temperaturbereich,
+      recommendedCharging:evidence.im_empfohlenen_ladebereich};
+  }
+  const minusEight = await atTemperature(-8);
+  const plusTwo = await atTemperature(2);
+  assert.deepEqual(minusEight, {storage:true, startup:false, recommendedCharging:false});
+  assert.deepEqual(plusTwo, {storage:true, startup:true, recommendedCharging:true});
+  return {name, guideUrl, minusEight, plusTwo, missingMeasurementRejected:missing.isError, faultPromoted};
 }
 
 async function verifyCompactHumidifierEfficiency(rpc, finder, runner) {
@@ -584,6 +627,7 @@ async function verifyCompactStdio(extracted) {
     const laundryComparison = await verifyCompactLaundryComparison(rpc,finder,runner);
     const laundryPrecision = await verifyCompactLaundryPrecision(rpc,finder);
     const humidifierEfficiency = await verifyCompactHumidifierEfficiency(rpc,finder,runner);
+    const glassvacTemperature = await verifyCompactGlassvacTemperature(rpc,finder,runner);
     const n90Costs = await verifyCompactN90Costs(rpc,finder,runner);
     const tadoOventrop = await verifyCompactTadoOventrop(rpc,finder,runner);
     const householdDecisions = await verifyCompactHouseholdDecisions(rpc,runner);
@@ -592,7 +636,7 @@ async function verifyCompactStdio(extracted) {
     const windowLookup = await verifyCompactWindowLookup(rpc,finder);
     return {
       tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,
-      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,laundryPrecision,windowBlade,windowLookup,windowWidth,householdDecisions,tadoOventrop,n90Costs,humidifierEfficiency,
+      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,laundryPrecision,windowBlade,windowLookup,windowWidth,householdDecisions,tadoOventrop,n90Costs,humidifierEfficiency,glassvacTemperature,
     };
   });
 }
