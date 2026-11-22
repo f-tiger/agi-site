@@ -16,6 +16,7 @@ assert [(entry['l'],entry['u'],entry['section']['id']) for entry in focused]==[
     ('de','/guide/keller-lueften-sommer.html','taupunkt'),
     ('de','/guide/luftentfeuchter-keller.html','ablauf-vor-kauf'),
     ('de','/guide/luftfeuchtigkeit-richtig-messen.html','hygrometer-vergleichen'),
+    ('de','/guide/midea-portasplit-ausverkauft-alternativen.html','fensterfalz'),
     ('de','/waeschetrockner-oder-luftentfeuchter.html','luftentfeuchter-waesche-kosten')]
 assert (SITE/'search-index.json').read_bytes()==(SITE/'assets/search-index.json').read_bytes()
 for p,r,l,h in rows:

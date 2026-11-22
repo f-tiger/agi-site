@@ -225,3 +225,29 @@ test('German exact N90 offer identity searches reach the existing model evidence
    'PAC N90 mit EAN 8004399512351: Leistungsaufnahme in W?',
  ]) assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u===page+'#testlage'),q);
 });
+
+test('German original PortaSplit lip questions open the existing guide measurement answer',()=>{
+ const page='/guide/midea-portasplit-ausverkauft-alternativen.html';
+ for(const q of [
+   'Mein Fensterfalz ist 6 cm breit. Muss ich bei der Midea PortaSplit die Gummidichtung beim Messen mitzählen?',
+   'Muss ich beim Ausmessen des Fensterrahmens für die PortaSplit die Dichtung zusammendrücken oder mitmessen?',
+   'Die PortaSplit passt nicht ans Fenster, wo muss ich die Rahmendicke messen?',
+   'Meine originale Midea PortaSplit hat einen 60 mm breiten Fensterfalz. Passt die mitgelieferte Standardhalterung?',
+   'Midea PortaSplit Standardhalterung passt an einen Falz mit 45 mm Breite und 20 mm Höhe?',
+ ]) {
+   const hits=searchEntries(index,q,'de');
+   assert.equal(hits[0]?.entry.u,page+'#fensterfalz',q);
+   assert.equal(hits.filter(hit=>hit.entry.u.split('#')[0]===page).length,1,q);
+   assert.ok(!searchEntries(index,q,'en').some(hit=>hit.entry.u.startsWith(page+'#')),q);
+ }
+ for(const q of [
+   'Midea PortaSplit Dachfenster Universalhalterung',
+   'Midea PortaSplit Pro Fensterfalz 60 mm',
+   'PortaSplit Cool Fensterfalz messen',
+   'Midea PortaSplit außen öffnendes Fenster mit 60 mm Fensterfalz',
+   'PortaSplit 2 Fensterfalz messen',
+   'PortaSplit II Fensterfalz messen',
+   'PortaSplit E Fensterrahmen 45 mm',
+   'Fensterabdichtung für Monoblock mit Dichtung ausmessen',
+ ]) assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u===page+'#fensterfalz'),q);
+});

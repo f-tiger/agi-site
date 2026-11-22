@@ -27,9 +27,9 @@ test('the browser loads the current catalogue search module', async () => {
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 231);
+  assert.equal(withGuides.length, 232);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 29);
+  assert.equal(destinations.size, 30);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);
@@ -874,5 +874,39 @@ test('German N90 offer identity and label-cost requests reach different verified
  ]) assert.ok(!(await catalogue({q,view:'compact'})).tools.some(tool=>tool.name===energy),q);
  assert.ok(!(await catalogue({q:'PAC N90 mit EAN 8004399512351: Leistungsaufnahme in W?',view:'compact'})).tools.some(tool=>tool.name===identity));
  assert.equal((await catalogue({q:identity,view:'compact'})).tools[0]?.name,identity);
+ assert.equal(analytics,0);
+});
+
+test('original PortaSplit lip sizes reach the measurement tool without borrowing other bracket scopes',async()=>{
+ const name='midea_portasplit_fensterfalz_pruefen';
+ const bracket='midea_portasplit_fensterhalterung_pruefen';
+ const page='/guide/midea-portasplit-ausverkauft-alternativen.html';
+ for(const q of [
+   'Mein Fensterfalz ist 6 cm breit. Muss ich bei der Midea PortaSplit die Gummidichtung beim Messen mitzählen?',
+   'Muss ich beim Ausmessen des Fensterrahmens für die PortaSplit die Dichtung zusammendrücken oder mitmessen?',
+   'Die PortaSplit passt nicht ans Fenster, wo muss ich die Rahmendicke messen?',
+   'Meine originale Midea PortaSplit hat einen 60 mm breiten Fensterfalz. Passt die mitgelieferte Standardhalterung?',
+   'Midea PortaSplit Standardhalterung passt an einen Falz mit 45 mm Breite und 20 mm Höhe?',
+   'Fensterfalzbreite für EAN 4048164116478 prüfen',
+ ]) {
+   const results=(await catalogue({q,view:'compact',limit:'5'})).tools;
+   assert.equal(results[0]?.name,name,q);
+   assert.equal(findCatalogueTools(compact,{query:q})[0]?.name,name,q);
+   assert.equal(toolGuidePath(results[0]),page+'#fensterfalz',q);
+ }
+ const roof=(await catalogue({q:'Midea PortaSplit Dachfenster Universalhalterung',view:'compact'})).tools;
+ assert.equal(roof[0]?.name,bracket);
+ assert.equal(toolGuidePath(roof[0]),page+'#kaufpruefung');
+ for(const q of [
+  'Passt der 60 mm breite Fensterfalz zur Standardhalterung meiner Midea PortaSplit Pro?',
+   'PortaSplit 2 Fensterfalz messen',
+   'PortaSplit II Fensterfalz messen',
+  'Midea PortaSplit Lite am Dachfenster mit Universalhalterung',
+  'PortaSplit Cool Falzbreite der Standardhalterung messen',
+  'Midea PortaSplit E Fensterrahmen 45 mm messen',
+ ]) assert.ok(!(await catalogue({q,view:'compact'})).tools.some(tool=>[name,bracket].includes(tool.name)),q);
+ assert.ok(!(await catalogue({q:'Midea PortaSplit außen öffnendes Fenster mit 60 mm Fensterfalz',view:'compact'})).tools.some(tool=>tool.name===name));
+ assert.ok(!(await catalogue({q:'Fensterabdichtung für meinen Monoblock mit Dichtung messen',view:'compact'})).tools.some(tool=>tool.name===name));
+ assert.equal((await catalogue({q:name,view:'compact'})).tools[0]?.name,name);
  assert.equal(analytics,0);
 });
