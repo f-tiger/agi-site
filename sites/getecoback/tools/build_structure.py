@@ -3475,7 +3475,6 @@ def inject_share(html):
 # already documents: airing a cellar on a mild damp day makes it wetter.
 FEUCHTE_EXTRA = {
     "schimmel-im-keller-entfernen",
-    "keller-lueften-sommer",
     "mobile-klimaanlage-stinkt-schimmel",
     "richtig-lueften-bei-hitze",
     "waesche-trocknen-wohnung",
@@ -4778,7 +4777,10 @@ def main():
             # device_of() reads "klimaanlage"/"hitze" first, so some of the mould
             # pages come back as ac and would have ended up with both bands —
             # caught in the build, not in review.
-            if (device_of(slug) == "dehum" or slug in FEUCHTE_EXTRA) and "<!--EB_HEATNOW-->" not in new:
+            if slug == "keller-lueften-sommer":
+                # The measured inputs on this guide determine its answer.
+                new = strip_feuchtenow(new)
+            elif (device_of(slug) == "dehum" or slug in FEUCHTE_EXTRA) and "<!--EB_HEATNOW-->" not in new:
                 new = inject_feuchtenow(new)
             else:
                 new = strip_feuchtenow(new)

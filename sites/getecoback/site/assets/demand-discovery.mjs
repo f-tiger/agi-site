@@ -1,3 +1,4 @@
+import {asksForCellarVentilationCheck} from './cellar-ventilation-intent.mjs';
 import {asksForDehumidifierDrainRoute} from './dehumidifier-drain-intent.mjs';
 
 // Queries stay in memory. Only fixed navigation actions reach the existing bridge.
@@ -25,6 +26,8 @@ export function searchEntries(index,term,lang){
  let targetPage, targetId;
  if(lang==='de' && asksForDehumidifierDrainRoute(query)) {
    targetPage='/guide/luftentfeuchter-keller.html'; targetId='ablauf-vor-kauf';
+ } else if(lang==='de' && asksForCellarVentilationCheck(query)) {
+   targetPage='/guide/keller-lueften-sommer.html'; targetId='taupunkt';
  } else if(lang==='de' && asksForOneDehumidifierRun(query)) {
    targetPage=laundryPage; targetId=singleLaundryId;
  }

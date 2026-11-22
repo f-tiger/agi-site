@@ -124,7 +124,11 @@ if(adapter){
  // Existing reset/import controls can invalidate output without dispatching input.
  const watch=new MutationObserver(()=>{if(!snapshot||inRun)return;try{if(adapter.result.hidden||getComputedStyle(adapter.result).display==='none'||adapter.error?.textContent.trim()||JSON.stringify(checked(read()))!==JSON.stringify(snapshot.values))invalidate();}catch{invalidate();}});
  watch.observe(adapter.result,{attributes:true,attributeFilter:['hidden','style'],childList:true,subtree:true,characterData:true});if(adapter.error)watch.observe(adapter.error,{childList:true,subtree:true,characterData:true});
- adapter.anchor.before(panel);
+ if(location.pathname==='/guide/keller-lueften-sommer.html'&&adapter.anchor.id==='taupunkt'){
+  adapter.anchor.after(panel);
+ }else{
+  adapter.anchor.before(panel);
+ }
  function loadScenario(){let incoming=null,bad=false;if(location.hash.startsWith('#eco-v1=')){try{if(location.hash.length>8000)throw Error();const parsed=JSON.parse(decodeURIComponent(location.hash.slice(8)));if(parsed.path!==location.pathname)throw Error();incoming=checked(parsed.values);}catch{bad=true;}}
  run(incoming||original,incoming?'shared':'example');if(bad)status.textContent=t[16];}
  if(!earlyInput)loadScenario();else{kind='edited';status.textContent=t[14];}window.addEventListener('hashchange',()=>{if(location.hash.startsWith('#eco-v1='))loadScenario();});

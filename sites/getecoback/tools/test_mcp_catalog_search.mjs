@@ -27,9 +27,9 @@ test('the browser loads the current catalogue search module', async () => {
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 225);
+  assert.equal(withGuides.length, 226);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 23);
+  assert.equal(destinations.size, 24);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);
@@ -663,6 +663,48 @@ test('a rise anywhere in a dehumidifier hose reaches its drainage check and leav
   ]) {
     assert.equal((await catalogue({q,view:'compact'})).tools[0]?.name,expected,q);
     assert.equal(findCatalogueTools(compact,{query:q})[0]?.name,expected,q);
+  }
+  assert.equal(analytics,0);
+});
+
+test('paired German cellar air and wall questions find the measured check in public and compact search', async()=>{
+  const name='keller_lueften_taupunkt_messwerte';
+  const page='/guide/keller-lueften-sommer.html';
+  for(const q of [
+    'Soll ich meinen Keller lüften? Innen 16 °C und 75 %, draußen 8 °C und 90 %, die kälteste Wand hat 12 °C.',
+    'Mein Keller hat 16 Grad und 75 % Feuchte, draußen 8 Grad und 90 %. Wird er trotz höherer Außenfeuchte beim Lüften trockener?',
+    'Keller lüften: Innen 17 Grad, 65 Prozent Luftfeuchte. Draußen 28 Grad bei 60 Prozent. Wand ist 15 Grad kalt. Fenster auf?',
+    'Soll ich meinen Keller jetzt lüften? Meine Wandtemperatur kenne ich nicht.',
+    'Drinnen 70 %, außen 80 %: Würde Lüften den Keller trockener machen?',
+    'Kellerfenster öffnen?',
+    'Kann ich das Kellerfenster jetzt öffnen, draußen 10 °C und 80 %, innen 17 °C und 65 %, die Wand 15 °C?',
+  ]) {
+    const full=await catalogue({q,limit:'3'});
+    const listed=(await catalogue({q,view:'compact',limit:'3'})).tools;
+    assert.equal(full.tools[0]?.name,name,q);
+    assert.equal(listed[0]?.name,name,q);
+    assert.equal(findCatalogueTools(compact,{query:q})[0]?.name,name,q);
+    assert.equal(listed[0].citation_url,origin+page);
+    assert.equal(toolGuidePath(listed[0]),page+'#taupunkt');
+    assert.deepEqual((await catalogue({q,category:'Kühlen',tool:name})).tools,[],q);
+  }
+  for(const [q,previous] of [
+    ['Wie messe ich Luftfeuchtigkeit im Keller?','keller_hygrometer_anzeige_obere_messgrenze'],
+    ['Bei welchem Feuchtewert außen liegt der Taupunkt zwei Grad unter meiner Kellerwand?','keller_aussen_hygrometer_zielwert_oberflaechenreserve'],
+    ['Wie lange soll ich meinen Keller lüften?','keller_sommer_lueften_messfenster'],
+    ['Was schafft Meaco Arete One 20L bei 10 Grad und 60 Prozent im Keller?','kellerentfeuchter_pruefpunkt_abgleichen'],
+    ['Mein Kellerentfeuchter muss bergauf zum Waschbecken entwässern, wie geht das?','entfeuchter_ablaufcheck'],
+    ['Wie oft den Keller zur Frischluftversorgung lüften?',undefined],
+    ['Relative humidity inside the basement and outside: should I ventilate?',undefined],
+    ['taupunkt_lueften','taupunkt_lueften'],
+  ]) {
+    assert.equal((await catalogue({q,view:'compact'})).tools[0]?.name,previous,q);
+    assert.equal(findCatalogueTools(compact,{query:q})[0]?.name,previous,q);
+  }
+  for (const q of ['Wie soll ich bei erhöhtem CO₂ im Keller lüften?', 'Wie soll ich bei erhöhtem CO2 im Keller lüften?',
+    'Kann ich verschimmelte Kartons im Keller durch Lüften trocknen?']) {
+    assert.notEqual((await catalogue({q,view:'compact'})).tools[0]?.name,name,q);
+    assert.notEqual(findCatalogueTools(compact,{query:q})[0]?.name,name,q);
   }
   assert.equal(analytics,0);
 });
