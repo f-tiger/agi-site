@@ -45,6 +45,9 @@ def collect():
  sections[('de','/guide/luftfeuchtigkeit-richtig-messen.html')]={
   'id':'hygrometer-vergleichen','title':'Zwei Hygrometer zeigen unterschiedliche Werte',
   'description':'Prüfe zuerst Messort, Temperatur, Angleichzeit und die angegebene Toleranz. Zwei Beispielbereiche im Vergleich.'}
+ sections[('de','/guide/delonghi-pac-n90-test.html')]={
+  'id':'testlage','title':'De’Longhi PAC N90 ECO Silent: Modell und EAN prüfen',
+  'description':'Vergleiche vollständigen Modellnamen und EAN 8004399512351 mit dem konkreten Angebot oder Typenschild.'}
  out=[]
  for path,route,lang,h in public_pages():
   if not h.title.strip():raise ValueError(f'Missing title: {route}')
@@ -86,7 +89,7 @@ def collect():
      raise ValueError(f'Missing or ambiguous Philips filter destination: {route}#{anchor}')
   if section:=sections.get((lang,route)):
    anchor=section['id']
-   matches=re.findall(r'<section\b[^<>]*\bid="'+re.escape(anchor)+r'"[^<>]*>',text)
+   matches=re.findall(r'<(?:section|h2)\b[^<>]*\sid="'+re.escape(anchor)+r'"[^<>]*>',text)
    if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*',anchor) or len(matches)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',matches[0]):
     raise ValueError(f'Missing or hidden search section: {route}#{anchor}')
    entry['section']=section

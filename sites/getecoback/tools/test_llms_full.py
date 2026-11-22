@@ -5,6 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
+from urllib.parse import parse_qs, urlsplit
 
 import build_agent_md as AGENT
 import build_llmstxt as FULL
@@ -55,6 +56,28 @@ class LlmsFull(unittest.TestCase):
             self.assertNotRegex(content, r'50-dB-Schlafgrenze|Silent-Modus unter 50 dB|Leisester Monoblock im Stiftung')
         self.assertIn('https://www.amazon.de/dp/B07NC5CP6F?tag=getecoback-21', html)
         self.assertNotIn('amazon.de/', md)
+
+    def test_n90_offer_identity_has_a_static_answer_and_clean_share(self):
+        guide = SITE / 'guide/delonghi-pac-n90-test.html'
+        page = guide.read_text()
+        md = guide.with_suffix('.md').read_text()
+        section = re.search(r'<section class="n90-identity" aria-labelledby="testlage">(.*?)</section>', page, re.S)
+        self.assertIsNotNone(section)
+        self.assertEqual(page.count('id="testlage"'), 1)
+        for phrase in ('8004399512351', 'Beides stimmt überein', 'EAN fehlt oder „PAC N90“ steht allein',
+                       'EAN oder Modell weicht ab', 'Warte mit der Bestellung', 'Sonepar Österreich'):
+            self.assertIn(phrase, section[1])
+            self.assertIn(phrase, md)
+        self.assertIn('href="#n90-angebot"', section[1])
+        self.assertIn('<div class="cta-box" id="n90-angebot">', page)
+        share = re.search(r'href="(https://www\.reddit\.com/submit\?[^\"]+)" rel="noreferrer"', section[1])
+        self.assertIsNotNone(share)
+        query = parse_qs(urlsplit(html.unescape(share[1])).query)
+        self.assertEqual(query, {
+            'url': ['https://getecoback.com/guide/delonghi-pac-n90-test.html#testlage'],
+            'title': ['De’Longhi PAC N90 ECO Silent: Welche EAN passt?'],
+        })
+        self.assertNotIn('reddit.com/submit', md)
 
     def test_real_final_catalog_tables_keep_headers_and_canonical_fragments(self):
         for slug in ['luftentfeuchter-ratgeber', 'luftentfeuchter-keller', 'waesche-trocknen-wohnung']:

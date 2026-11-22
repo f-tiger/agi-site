@@ -196,3 +196,28 @@ test('German same-place hygrometer comparisons open the numerical example',()=>{
    'Hygrometer mit zwei externen Referenzpunkten kalibrieren',
  ]) assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u.startsWith(page+'#')),q);
 });
+
+test('German exact N90 offer identity searches reach the existing model evidence',()=>{
+ const page='/guide/delonghi-pac-n90-test.html';
+ for(const q of [
+   'Ich möchte den PAC N90 ECO Silent kaufen. Welche EAN muss auf dem Typenschild stehen?',
+   'Die EAN 8004399512351 steht im Angebot für den DeLonghi Pinguino. Ist das der PAC N90 ECO Silent?',
+   'Verkäufer nennt DeLonghi PAC N90, das Etikett sagt EX105. Kann ich das für dieselbe Variante halten?',
+   'Auf dem Typenschild meines De’Longhi N90 ist die Nummer unleserlich.',
+   'Ist der PAC N90 ECO Silent dasselbe Modell wie im Angebot?',
+   'Ist die Artikel-Nr. des Pinguino N90 für Deutschland identisch?',
+   'Kann ich beim PAC N90 ohne vollständige Modellbezeichnung bestellen?',
+   '8004399512351',
+ ]) {
+   const hits=searchEntries(index,q,'de');
+   assert.equal(hits[0]?.entry.u,page+'#testlage',q);
+   assert.equal(hits.filter(hit=>hit.entry.u.split('#')[0]===page).length,1,q);
+   assert.ok(!searchEntries(index,q,'en').some(hit=>hit.entry.u.startsWith(page+'#')),q);
+ }
+ for(const q of [
+   'Was kostet der N90 ECO Silent bei 35 Cent pro kWh laut Energielabel?',
+   'Was kostet der PAC N90 ECO Silent?',
+   'Welche EAN passt zum DeLonghi PAC EX105?',
+   'Passt die Halterung zur Midea PortaSplit EAN 4048164116478?',
+ ]) assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u===page+'#testlage'),q);
+});
