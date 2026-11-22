@@ -201,6 +201,9 @@ def to_markdown(src_html, path_url, lang):
             if lang == 'de':
                 decisions = re.search(r'<div class="lc-evidence" id="waesche-entscheidung">(.*?)</div>', laundry.group(1), re.S)
                 body += re.sub(r'<summary>(.*?)</summary>', r'<p><strong>\1</strong></p>', decisions.group(1), flags=re.S) if decisions else ''
+                combined_label = re.search(r'<section\b[^>]*\bid="waschtrockner-label"[^>]*>(.*?)</section>', laundry.group(1), re.S)
+                if combined_label:
+                    body += combined_label.group()
                 body += '<h2>Eine Ladung fair vergleichen</h2><p>kWh für den ganzen Durchgang × Arbeitspreis. Vorbelegte Zahlen sind Rechenbeispiele, keine Produktmessungen. Gleiche Wäschemenge und gleicher Trocknungsgrad sind Voraussetzung. PNG und CSV werden lokal erstellt; Eingaben werden nicht hochgeladen.</p>' + protocol.group(1)
                 sharing = re.search(r'<p\b[^>]*data-laundry-share-note>(.*?)</p>', laundry.group(1), re.S)
                 if sharing:

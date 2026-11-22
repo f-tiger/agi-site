@@ -20,18 +20,32 @@ if(typeof document!=='undefined'){
  const root=document.querySelector('#laundry-check');
  if(root){
  const en=root.dataset.lang==='en',t=(de,english)=>en?english:de,form=root.querySelector('form'),q=s=>root.querySelector(s),results=q('[data-results]'),seen=new Set();let latest=null;
+ const dryerBasis=form.elements.dryerBasis,combinedWarning=q('[data-combined-warning]');
+ const usesCombinedLabel=()=>dryerBasis.value==='combined';
  const values=()=>{const d=new FormData(form),number=n=>Number(d.get(n));return {dryer:number('dryer'),dryerBasis:d.get('dryerBasis'),method:d.get('method'),watts:number('watts'),hours:number('hours'),dehum:number('dehum'),price:number('price'),loads:number('loads'),purchase:number('purchase'),currency:d.get('currency'),comparable:d.has('comparable')};};
  const signature=x=>JSON.stringify({...x,comparable:false,watts:x.method==='estimate'?x.watts:0,hours:x.method==='estimate'?x.hours:0,dehum:x.method==='measured'?x.dehum:0});let initial;
  const inputKind=x=>signature(x)===initial?'example':'edited';
  const privacy=()=>navigator.doNotTrack==='1'||navigator.globalPrivacyControl||navigator.webdriver||/[?&]__(probe|ci|qa)(=|&|$)/.test(location.search);
  const emit=(name,action,x=values())=>{if(privacy()||window.__ecoToolExample)return;const m={lang:en?'en':'de',input:inputKind(x),method:x.method,equal:x.comparable?'yes':'no',action,...acquisition(location.href,document.referrer)},key=name+JSON.stringify(m);if(seen.has(key))return;seen.add(key);const fixed=laundryAction(name,m);if(fixed)window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:fixed}}));try{fetch('/api/ev',{method:'POST',keepalive:true,credentials:'omit',headers:{'content-type':'application/json'},body:JSON.stringify({n:name,p:location.pathname,r:document.referrer,m})}).catch(()=>{});}catch{}};
  const invalidate=()=>{latest=null;results.hidden=true;q('[data-error]').textContent='';};
- const mode=()=>{const measured=form.elements.method.value==='measured';q('[data-measured]').hidden=!measured;q('[data-estimate]').hidden=measured;form.elements.dehum.disabled=!measured;form.elements.watts.disabled=measured;form.elements.hours.disabled=measured;};
+ const mode=()=>{
+ const measured=form.elements.method.value==='measured';
+ q('[data-measured]').hidden=!measured;q('[data-estimate]').hidden=measured;
+ form.elements.dehum.disabled=!measured;form.elements.watts.disabled=measured;form.elements.hours.disabled=measured;
+ if(combinedWarning){
+   const combined=usesCombinedLabel();
+   combinedWarning.hidden=!combined;
+   form.elements.dryer.disabled=combined;
+   form.querySelector('[type="submit"]').disabled=combined;
+   if(combined) dryerBasis.setAttribute('aria-describedby',combinedWarning.id);
+   else dryerBasis.removeAttribute('aria-describedby');
+ }
+ };
  const fmt=(n,d=2)=>n.toLocaleString(en?'en-GB':'de-DE',{maximumFractionDigits:d});
  const money=(n,c)=>Number(n.toFixed(10)).toLocaleString(en?'en-GB':'de-DE',{style:'currency',currency:c});
  form.addEventListener('input',invalidate);form.addEventListener('change',()=>{invalidate();mode();});mode();
  const run=()=>{
- invalidate();if(!form.reportValidity())return;
+ invalidate();if(usesCombinedLabel()||!form.reportValidity())return;
  try{
  const x=values(),r=laundry(x),m=n=>money(n,x.currency),max=Math.max(r.dryerCost,r.dehumCost,.00001);
  q('[data-cost=dryer]').textContent=m(r.dryerCost);q('[data-cost=dehum]').textContent=m(r.dehumCost);

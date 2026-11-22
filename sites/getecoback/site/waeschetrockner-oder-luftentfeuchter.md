@@ -9,7 +9,7 @@ Canonical (HTML, zitierfähig): https://getecoback.com/waeschetrockner-oder-luft
 ## So wird der Vergleich fair
 
 - Nimm für beide Varianten gleich viel Wäsche aus demselben Schleuderprogramm. Vergleiche den gleichen gewünschten Trocknungsgrad.
-- Lies beim Trockner die kWh je Ladung ab. Bei einem Label mit kWh je 100 Zyklen teilst du durch 100. Ein tatsächlicher Messwert passt besser zu deinem Programm als ein abweichender Prüfzyklus.
+- Lies beim Trockner die kWh je Ladung ab. Den Labelwert eines separaten Trockners in kWh je 100 Zyklen teilst du durch 100. Bei einem [Waschtrockner gelten andere Labelwerte](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#waschtrockner-label). Ein tatsächlicher Messwert passt besser zu deinem Programm als ein abweichender Prüfzyklus.
 - Miss beim Entfeuchter die gesamte Energie bis zum gleichen Trocknungsgrad. Im Rechner kannst du die gemessenen kWh direkt eingeben. Typenschild-Watt allein kann den Vergleich verzerren.
 
 ## Der Rechenweg
@@ -39,13 +39,27 @@ Prüfe zuerst Platz für einen Wäscheständer, Luftaustausch und den gewünscht
 Ein günstiger Trocknungsdurchgang erklärt die Feuchteursache nicht. Beobachte, wann und wo Feuchte auftritt, und kläre mögliche bauliche Ursachen oder Leckagen mit der zuständigen Fachperson beziehungsweise Hausverwaltung. Nicht vorschnell ein größeres Gerät kaufen.
 [Feuchteursache und nächsten Schritt prüfen](https://getecoback.com/guide/luftfeuchtigkeit-senken.html)
 
+### Waschtrockner-Energielabel: Welche Zahl beschreibt das Trocknen?
+
+- **Eigene Messung.** Verwende für deine Rechnung die kWh eines vollständigen, separat gemessenen Trocknungsgangs. Bei einem Kombigerät zuerst prüfen, ob die Anleitung ein eigenes Trocknungsprogramm für diese Wäschemenge vorsieht.
+
+- **Eigenständiger Wäschetrockner.** Steht auf seinem Energielabel „kWh je 100 Trocknungen“, teile den Wert durch 100. Das ergibt den standardisierten Verbrauch pro Trocknung. Prüfe für deinen Vergleich auch Wäschemenge und Endtrockenheit.
+
+- **Waschtrockner mit zwei Labelspalten.** Links steht der vollständige Zyklus aus Waschen und Trocknen, rechts der reine Waschzyklus. Die Energieangabe in jeder Spalte gilt für 100 Zyklen des jeweiligen Tests. Auch die zwei Füllmengen in kg gehören zu ihren jeweiligen Spalten.
+
+**Frei gewähltes Beispiel:** Links stehen **300 kWh je 100 kombinierte Zyklen** und **5 kg Nennkapazität**, rechts **50 kWh je 100 Waschzyklen** und **8 kg Nennkapazität**. Geteilt durch 100 sind das **3,0 kWh je kombiniertem Normzyklus** und **0,50 kWh je Wasch-Normzyklus**. Beim Abziehen der beiden Zahlen verrechnest du unterschiedlich gewichtete Normzyklen und Beladungen. Ermittle den Trocknungsstrom mit einer eigenen Messung des vollständigen Trocknungsgangs.
+
+Hast du im Beispiel die vollen **8 kg** gewaschen, prüfe in der Anleitung die zulässige Menge für das gewählte Trocknungsprogramm. Bei einer Grenze von **5 kg** teile die Wäsche vor dem Trocknen auf oder hänge einen Teil auf.
+
+Quellen geprüft am 22.11.2026. [EU-Verordnung 2019/2014 zum Energielabel, Anhang III B und Anhang IV](https://eur-lex.europa.eu/legal-content/DE/TXT/PDF/?uri=CELEX%3A02019R2014-20210501) · [Verbraucherzentrale zum Waschtrockner-Label](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/waschtrockner-kombigeraete-sind-platzsparende-stromfresser-37060).
+
 ## Eine Ladung fair vergleichen
 kWh für den ganzen Durchgang × Arbeitspreis. Vorbelegte Zahlen sind Rechenbeispiele, keine Produktmessungen. Gleiche Wäschemenge und gleicher Trocknungsgrad sind Voraussetzung. PNG und CSV werden lokal erstellt; Eingaben werden nicht hochgeladen.
 
 - Vergleiche Wäsche mit gleicher Masse, Schleuderdrehzahl und gewünschter Restfeuchte.
 - Notiere Start- und Endstand eines passenden Strommessgeräts sowie die Laufzeit. Beachte Anleitung und elektrische Belastbarkeit.
 - Nutze die kWh-Differenz des ganzen Durchgangs. Typenschild-Watt ist keine gemessene mittlere Leistung.
-- Bei einem Label je 100 Zyklen: durch 100 teilen. Das Labelprogramm kann von deiner eigenen Nutzung abweichen.
+- Beim Label eines eigenständigen Trockners für 100 Trocknungen: durch 100 teilen. Das Labelprogramm kann von deiner eigenen Nutzung abweichen.
 Für eine Diskussion reichen die kWh des ganzen Durchgangs, dein Arbeitspreis und die Angabe, ob Wäschemenge und Endtrockenheit vergleichbar waren. Fehlt eine Messung, teile die bekannte Zahl als Einzelwert. Der öffentliche Rechnerlink enthält keine Eingaben.
 
 ## Dein nächster Schritt
