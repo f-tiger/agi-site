@@ -63,6 +63,13 @@ A 170 mm pane with 5 mm clearance per side leaves 160 mm for a nozzle. The
 extracted package checks the matching Bosch article, an existing nozzle, an
 unmeasured pane and a household that plans to keep its current equipment.
 
+Version 1.20.0 adds three German household decisions. The archive verifies
+the PortaSplit bracket for a roof window, the number of winter drying seasons
+needed to recover a purchase, and the published Meaco Arete One 20L test
+points at 10 °C and 20 °C with 60% relative humidity. It also checks the
+answers for an unconfirmed model, incomplete electricity measurements and
+unavailable Comfee test-point data.
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the
