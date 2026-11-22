@@ -185,6 +185,11 @@ air-conditioner noise comparison. Both profiles separate sound power from
 sound pressure and give a difference only for matching quantities under
 comparable conditions.
 
+Version 1.22.19 adds the documented Trotec TTK 75 ECO condition check.
+Both offline profiles distinguish the exact manufacturer rating, a
+separately cited supplier figure, and conditions with no published point.
+The operating range does not imply extraction or electricity use.
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the
