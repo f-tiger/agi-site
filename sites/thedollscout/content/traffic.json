@@ -2,10 +2,10 @@
   "source": "Cloudflare GraphQL Analytics API (edge-measured)",
   "note": "Counted at the edge, so unaffected by ad blockers, privacy browsers or network-level blocking of Google. Includes bot and crawler traffic, which on a new site is most of it — read it as a floor, not as humans.",
   "zone": "thedollscout.com",
-  "updated": "2026-11-21",
+  "updated": "2026-11-22",
   "window": {
     "since": "2026-07-26",
-    "until": "2026-11-20"
+    "until": "2026-11-21"
   },
   "days": {
     "2026-07-26": {
@@ -6893,6 +6893,73 @@
         "BE": 389,
         "GB": 385,
         "FI": 372
+      }
+    },
+    "2026-11-21": {
+      "date": "2026-11-21",
+      "requests": 20410,
+      "pageViews": 6136,
+      "uniques": 1975,
+      "byIpType": {
+        "noRecord": 12118,
+        "unknown": 7659,
+        "searchEngine": 559,
+        "allowlist": 74
+      },
+      "byBrowser": {
+        "Unknown": 4245,
+        "Chrome": 846,
+        "Curl": 572,
+        "BingBot": 287,
+        "MobileSafari": 57,
+        "YandexBot": 44,
+        "Edge": 23,
+        "Firefox": 18,
+        "AppleBot": 16,
+        "ChromeMobile": 10,
+        "GoogleBot": 9,
+        "Safari": 6,
+        "ChromeMobileWebview": 3
+      },
+      "byContentType": {
+        "html": 8004,
+        "json": 4703,
+        "txt": 2673,
+        "js": 2250,
+        "empty": 2217,
+        "css": 330,
+        "xml": 76,
+        "unknown": 61,
+        "pdf": 36,
+        "svg": 35,
+        "png": 19,
+        "zip": 6
+      },
+      "byStatus": {
+        "200": 16014,
+        "202": 960,
+        "204": 331,
+        "301": 1063,
+        "303": 84,
+        "304": 48,
+        "308": 154,
+        "400": 54,
+        "401": 3,
+        "403": 27,
+        "404": 1464,
+        "405": 121,
+        "410": 82,
+        "499": 5
+      },
+      "topCountries": {
+        "US": 11240,
+        "DE": 1442,
+        "FI": 1396,
+        "FR": 1167,
+        "BE": 949,
+        "SG": 929,
+        "CA": 539,
+        "NL": 496
       }
     }
   }
