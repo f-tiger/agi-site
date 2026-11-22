@@ -68,6 +68,7 @@ test('German ventilation decisions lead to the measured cellar check while gener
    'Wird mein Keller trotz höherer Luftfeuchte draußen beim Lüften trockener?',
    'Soll ich meinen Keller lüften? Die Wandtemperatur habe ich nicht gemessen.',
    'Kellerfenster öffnen?',
+   'Kann ich das Kellerfenster jetzt öffnen, draußen 10 °C und 80 %, innen 17 °C und 65 %, die Wand 15 °C?',
  ]){
    const hits=searchEntries(index,q,'de');
    assert.equal(hits[0]?.entry.u,anchor,q);

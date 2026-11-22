@@ -677,6 +677,7 @@ test('paired German cellar air and wall questions find the measured check in pub
     'Soll ich meinen Keller jetzt lüften? Meine Wandtemperatur kenne ich nicht.',
     'Drinnen 70 %, außen 80 %: Würde Lüften den Keller trockener machen?',
     'Kellerfenster öffnen?',
+    'Kann ich das Kellerfenster jetzt öffnen, draußen 10 °C und 80 %, innen 17 °C und 65 %, die Wand 15 °C?',
   ]) {
     const full=await catalogue({q,limit:'3'});
     const listed=(await catalogue({q,view:'compact',limit:'3'})).tools;
