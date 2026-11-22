@@ -32,11 +32,18 @@
           "waesche-trocknen-wohnung",
           "luftentfeuchter-dauerbetrieb-stromkosten"
         ],
-        "tool": {
-          "href": "/waeschetrockner-oder-luftentfeuchter.html#laundry-check",
-          "label": "Trockner und Entfeuchter durchrechnen",
-          "why": "Mit eigenen Werten je gleich trockener Ladung."
-        }
+        "tools": [
+          {
+            "href": "/waeschetrockner-oder-luftentfeuchter.html#luftentfeuchter-waesche-kosten",
+            "label": "Luftentfeuchter: Stromkosten pro Wäscheladung berechnen",
+            "why": "Nur den Entfeuchter gemessen? Nutze die kWh des ganzen Durchgangs und deinen Strompreis pro kWh."
+          },
+          {
+            "href": "/waeschetrockner-oder-luftentfeuchter.html#laundry-check",
+            "label": "Trockner und Entfeuchter je Ladung vergleichen",
+            "why": "Beide Geräte gemessen? Vergleiche dieselbe Wäschemenge bei gleicher Endtrockenheit."
+          }
+        ]
       },
       {
         "id": "geraet-pruefen",

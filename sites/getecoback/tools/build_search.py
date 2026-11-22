@@ -2,6 +2,7 @@
 """Index all public canonical pages; searches stay in the visitor's browser."""
 from pathlib import Path
 import json
+import re
 from build_language_nav import Head, local
 ROOT=Path(__file__).resolve().parents[1]
 SITE=ROOT/'site'
@@ -31,13 +32,13 @@ def public_pages():
 def collect():
  tasks=json.loads((ROOT/'data/demand-discovery.json').read_text())
  aliases={(l,t['url']):t['label']+' '+t['aliases'] for l,g in tasks.items() for t in g['tasks']}
+ sections={(l,t['url']):t['section'] for l,g in tasks.items() for t in g['tasks'] if 'section' in t}
  out=[]
  for path,route,lang,h in public_pages():
   if not h.title.strip():raise ValueError(f'Missing title: {route}')
   desc=' '.join(h.description.split())
   text=path.read_text()
   if 'id="home-fit-config"' in text:
-   import re
    match=re.search(r'<script id="home-fit-config" type="application/json">(.*?)</script>',text,re.S)
    fit=json.loads(match[1])['text'];desc=' · '.join(fit[k] for k in ['robot','laundry','ac','floor'])+'. '+desc
   extra=aliases.get((lang,route),'')
@@ -46,7 +47,15 @@ def collect():
   if route=='/produkte.html':
    catalog=json.loads((ROOT/'data/product-catalog.json').read_text())
    extra=' '.join([extra]+[c['name'] for c in catalog['categories']]+[p['name']+' '+p['variant'] for p in catalog['products']])
-  out.append({'u':route,'t':' '.join(h.title.split()),'d':desc[:320],'l':lang,'a':extra})
+  entry={'u':route,'t':' '.join(h.title.split()),'d':desc[:320],'l':lang,'a':extra}
+  if section:=sections.pop((lang,route),None):
+   anchor=section['id']
+   matches=re.findall(r'<section\b[^<>]*\bid="'+re.escape(anchor)+r'"[^<>]*>',text)
+   if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*',anchor) or len(matches)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',matches[0]):
+    raise ValueError(f'Missing or hidden search section: {route}#{anchor}')
+   entry['section']=section
+  out.append(entry)
+ if sections:raise ValueError(f'Unknown search section pages: {list(sections)}')
  return out
 
 def main():

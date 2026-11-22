@@ -98,6 +98,19 @@ class MoistureJourneys(unittest.TestCase):
             self.assertNotRegex(match.group(1), r'\d+\s*(?:L|Liter)/Tag')
             self.assertIn('Die Fläche allein', match.group(1))
 
+    def test_laundry_group_offers_one_measured_method_and_two_method_comparison(self):
+        page = '/waeschetrockner-oder-luftentfeuchter.html'
+        anchors = ['luftentfeuchter-waesche-kosten', 'laundry-check']
+        category = build_structure.hub_page('luftqualitaet', self.articles)
+        group = re.search(r'<section[^>]* id="waesche-und-betrieb".*?</section>', category, re.S).group(0)
+        choices = re.search(r'<div class="eco-journey-tool">.*?</div>', group, re.S).group(0)
+        self.assertEqual(Document(choices).links, [page + '#' + anchor for anchor in anchors])
+        self.assertIn('Nur den Entfeuchter gemessen?', choices)
+        self.assertIn('Beide Geräte gemessen?', choices)
+        target = Document((SITE / page.lstrip('/')).read_text())
+        for anchor in anchors:
+            self.assertEqual(target.ids.count(anchor), 1)
+
     def test_native_task_jumps_target_existing_sections_before_first_cards(self):
         navigation = re.search(r'<nav class="eco-journey-nav".*?</nav>', self.output, re.S).group(0)
         self.assertIn('aria-label="Direkt zur Aufgabe"', navigation)

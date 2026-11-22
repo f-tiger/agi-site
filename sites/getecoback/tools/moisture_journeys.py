@@ -141,10 +141,13 @@ def category_content(articles: Iterable[Mapping[str, str]]) -> str:
         title_id = f'{group["id"]}-title'
         content = ''.join(_card(article) for article in selected)
         tool = ""
-        if action := group.get("tool"):
-            tool = (f'<p class="eco-journey-tool"><a class="eco-journey-action" '
-                    f'href="{escape(action["href"], quote=True)}">{escape(action["label"])} →</a>'
-                    f'<br>{escape(action["why"])}</p>')
+        if actions := group.get("tools"):
+            choices = ''.join(
+                f'<p><a class="eco-journey-action" href="{escape(action["href"], quote=True)}">'
+                f'{escape(action["label"])} →</a><br>{escape(action["why"])}</p>'
+                for action in actions
+            )
+            tool = f'<div class="eco-journey-tool">{choices}</div>'
         sections.append(
             f'<section class="eco-journey-group" id="{group["id"]}" aria-labelledby="{title_id}">'
             f'<h2 id="{title_id}">{escape(group["title"])}</h2>'

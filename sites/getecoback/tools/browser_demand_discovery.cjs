@@ -11,6 +11,82 @@ function trackIndexRequests(page,origin){
  });
  return requests;
 }
+
+async function checkGermanLaundryDiscovery(browser,base){
+ const destination='/waeschetrockner-oder-luftentfeuchter.html#luftentfeuchter-waesche-kosten';
+ const positive=['Was kostet eine Ladung Wäsche nur mit meinem Luftentfeuchter?','Stromkosten Luftentfeuchter Wäsche'];
+ const ordinary=[
+  ['Trockner oder Luftentfeuchter Stromkosten Wäsche','/waeschetrockner-oder-luftentfeuchter.html'],
+  ['Luftentfeuchter Keller','/guide/luftentfeuchter-keller.html'],
+  ['Stromtarif','/stromtarif-werkstatt.html'],
+  ['Wäsche trocknen','/waeschetrockner-oder-luftentfeuchter.html'],
+  ['Was kostet ein Luftentfeuchter im Keller zum Wäschetrocknen?'],
+  ['Welcher Stromtarif passt zum Wäschetrocknen mit Luftentfeuchter?'],
+ ];
+ let checks=0;
+ const check=(value,message)=>{assert.ok(value,message);checks++;};
+ const equal=(actual,expected,message)=>{assert.deepEqual(actual,expected,message);checks++;};
+ for(const width of [320,390]){
+  const context=await browser.newContext({viewport:{width,height:900}});
+  const page=await context.newPage();
+  await page.goto(base+'/tools.html?__ci=1');
+  await page.locator('#eb-search-toggle').click();
+  const input=page.locator('#eb-search-query'),results=page.locator('#eb-search-results a');
+  await input.waitFor({state:'visible'});
+  const requests=[];
+  page.on('request',request=>requests.push({method:request.method(),url:request.url(),body:request.postData()}));
+  const search=async query=>{
+   await input.fill('');
+   await input.press('Enter');
+   await page.waitForFunction(()=>{
+    const copy=JSON.parse(document.getElementById('eco-chrome-copy').textContent);
+    return document.getElementById('eb-search-status').textContent===copy.searchHint;
+   });
+   await input.fill(query);
+   await input.press('Enter');
+   await page.waitForFunction(()=>{
+    const copy=JSON.parse(document.getElementById('eco-chrome-copy').textContent);
+    const status=document.getElementById('eb-search-status').textContent;
+    return status===copy.searchEmpty||!!document.querySelector('#eb-search-results a');
+   });
+   return results.evaluateAll(links=>links.map(link=>({href:link.getAttribute('href'),language:link.hreflang})));
+  };
+  for(const query of positive){
+   const matches=await search(query);
+   equal(matches[0],{href:destination,language:'de'},'The first result opens the German single-method answer');
+  }
+  for(const [query,previousDestination] of ordinary){
+   const matches=await search(query);
+   check(matches.every(match=>match.href!==destination),'A different buying or information intent does not lead to the single-method tool: '+query);
+   if(previousDestination)equal(matches[0]?.href,previousDestination,'Existing searches keep their first destination: '+query);
+  }
+  await search('eco-local-privacy-marker-6381');
+  equal(await results.count(),0,'An arbitrary private phrase yields no result');
+  await search(positive[1]);
+  equal(requests,[{method:'GET',url:base+searchAsset,body:null}],'Typing searches only the static local index and makes no request with the terms');
+  await results.first().focus();
+  await page.keyboard.press('Enter');
+  await page.waitForURL(base+destination);
+  check(await page.locator('#luftentfeuchter-waesche-kosten').getByRole('heading').isVisible(),'Keyboard navigation reaches the actual answer');
+  await context.close();
+ }
+
+ const context=await browser.newContext({javaScriptEnabled:false,viewport:{width:320,height:900}});
+ const page=await context.newPage();
+ for(const route of ['/tools.html','/guide/waesche-trocknen-wohnung.html']){
+  await page.goto(base+route+'?__ci=1');
+  const link=page.locator('a[href="'+destination+'"]:visible').first();
+  check(await link.isVisible(),'A reader can find the task with JavaScript disabled on '+route);
+  await link.focus();
+  await page.keyboard.press('Enter');
+  await page.waitForURL(base+destination);
+  check(await page.locator('#luftentfeuchter-waesche-kosten').getByRole('heading').isVisible(),'The clean static link reaches the same section');
+  check(await page.locator('#luftentfeuchter-waesche-kosten form').isHidden(),'The no-script reader does not submit a form');
+ }
+ await context.close();
+ return checks;
+}
+
 (async()=>{
  const base=process.env.BASE_URL||'http://127.0.0.1:8766';
  const origin=new URL(base).origin;
@@ -87,6 +163,7 @@ function trackIndexRequests(page,origin){
   await f.locator('#eb-search-results a[href="/waeschetrockner-oder-luftentfeuchter.html"]').waitFor({state:'visible'});
   assert.deepEqual(failedIndexRequests,[searchAsset,searchAsset]);
   await fail.close();checks+=5;
+  checks+=await checkGermanLaundryDiscovery(browser,base);
   console.log(`PASS demand discovery: ${checks} checks, 8 locales, 3 widths, no-JS and static-index failure/retry`);
  }finally{if(browser)await browser.close();if(server)server.kill();}
 })().catch(e=>{console.error(e);process.exit(1)});

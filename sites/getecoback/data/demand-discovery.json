@@ -10,7 +10,12 @@
       {
         "label": "Wäsche in der Wohnung trocknen",
         "url": "/waeschetrockner-oder-luftentfeuchter.html",
-        "aliases": "waesche trocken trocknen entfeuchter trockner"
+        "aliases": "waesche trocken trocknen entfeuchter trockner",
+        "section": {
+          "id": "luftentfeuchter-waesche-kosten",
+          "title": "Stromkosten je Wäscheladung mit Luftentfeuchter",
+          "description": "Berechne einen Durchgang aus gemessenen kWh oder aus mittlerer Leistung und Laufzeit."
+        }
       },
       {
         "label": "Am Schreibtisch warm bleiben",
