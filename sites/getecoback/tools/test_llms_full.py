@@ -79,6 +79,30 @@ class LlmsFull(unittest.TestCase):
         })
         self.assertNotIn('reddit.com/submit', md)
 
+    def test_portasplit_window_fit_keeps_original_manual_and_cautious_decision(self):
+        route = '/guide/midea-portasplit-ausverkauft-alternativen.html'
+        guide = SITE / route.lstrip('/')
+        page = guide.read_text()
+        md = guide.with_suffix('.md').read_text()
+        section = re.search(r'<section class="portasplit-window-fit" id="fensterfalz"[^>]*>(.*?)</section>',
+                            page, re.S)
+        self.assertIsNotNone(section)
+        self.assertEqual(page.count('id="fensterfalz"'), 1)
+        self.assertEqual(page.count('id="kaufpruefung"'), 1)
+        self.assertIn('class="portasplit-fit-jump" href="#fensterfalz"', page)
+        for phrase in ('60 mm Falzbreite liegen außerhalb', '4048164116478', '45 mm Falzbreite', '20 mm Falzhöhe',
+                       'Klemmstelle, Dichtung oder genaue Modellvariante unklar', 'Tragfähigkeit',
+                       'Seite 15', '/portasplit/PortaSplit-Gebrauchsanweisung-DE.pdf'):
+            self.assertIn(phrase, section[1])
+            self.assertIn(phrase, md)
+        share = re.search(r'href="(https://www\.reddit\.com/submit\?[^"]+)" rel="noreferrer"', section[1])
+        self.assertIsNotNone(share)
+        self.assertEqual(parse_qs(urlsplit(html.unescape(share[1])).query), {
+            'url': [f'https://getecoback.com{route}#fensterfalz'],
+            'title': ['Passt die Midea PortaSplit an einen 60-mm-Fensterfalz?'],
+        })
+        self.assertNotIn('reddit.com/submit', md)
+
     def test_real_final_catalog_tables_keep_headers_and_canonical_fragments(self):
         for slug in ['luftentfeuchter-ratgeber', 'luftentfeuchter-keller', 'waesche-trocknen-wohnung']:
             # Actual generated files, before any renderer can repair them.

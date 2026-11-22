@@ -1,6 +1,6 @@
 # PortaSplit ausverkauft? Alternativen ohne Bohren 2026
 
-> PortaSplit nicht verfügbar? Vergleiche mobile Split-Geräte und Monoblock nach Fenster, Aufstellung und Kühlleistung. Bestand beim Händler prüfen.
+> Passt die Midea PortaSplit an dein Fenster? Miss den Fensterfalz für die Standardhalterung. Prüfe danach Aufstellung, Alternativen und das konkrete Angebot.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html
 
@@ -9,6 +9,20 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 **Kurzantwort:** Wenn dein Händler die PortaSplit nicht liefern kann, sind **Clima Butler Split 2 CB-3500** und **Remko RKL 495 DC** Vergleichskandidaten. Sie sind kein automatisch passender Ersatz: Aufstellung, Leitungsweg und Kühlleistung müssen zu deinem Raum passen. Ohne Platz für ein Außenteil kommt ein Monoblock mit sicherem Abluftweg infrage. **Diese Seite bestätigt keine aktuelle Lieferbarkeit.** Prüfe Modell, Verkäufer und Lieferdatum direkt beim Händler.
 
 Herstellerangaben geprüft am 02.10.2026. Kein eigener Produkttest, kein vollständiger Marktvergleich und keine Live-Bestandsabfrage. Amazon-Links sind Partnerlinks: Als Amazon-Partner verdienen wir an qualifizierten Verkäufen.
+
+## Passt die Midea PortaSplit an einen 60-mm-Fensterfalz?
+
+**60 mm Falzbreite liegen außerhalb des Bereichs für die Standardhalterung.** Für die originale Midea PortaSplit (EAN 4048164116478) nennt Midea für nach innen öffnende Fenster höchstens **45 mm Falzbreite** und mindestens **20 mm Falzhöhe**.
+
+Öffne das Fenster und vergleiche den unteren Absatz am Rahmen mit der Zeichnung. Miss Breite und Höhe am **Fensterfalz an der vorgesehenen Klemmstelle**. Die lichte Fensteröffnung und die Tiefe der Fensterbank sind andere Maße.
+
+- **Breite über 45 mm oder Höhe unter 20 mm:** Die Stelle liegt außerhalb der Herstellermaße für die Standardhalterung. Warte mit dem Kauf für diese Aufstellung.
+
+- **Klemmstelle, Dichtung oder genaue Modellvariante unklar:** Halte Maße und ein Foto des Rahmenprofils fest und frage Midea oder einen Fachbetrieb. Lass die Eignung der vorgesehenen Stelle vor dem Kauf klären.
+
+- **Beide Maße liegen im Bereich:** Prüfe [Lieferumfang und Aufstellung](https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html#kaufpruefung) als Nächstes. Aus den Maßen allein folgt keine Freigabe für Befestigung, Tragfähigkeit oder Sicherung des Außengeräts.
+
+Die Maße zeigt die [Midea Gebrauchsanweisung für die originale PortaSplit (PDF), Seite 15, Zeichnung zum Fensterfalz](https://www.midea.com/content/dam/midea-aem/de/klimatisieren-heizen/portasplit/PortaSplit-Gebrauchsanweisung-DE.pdf). Die EAN steht im [Midea-Modellvergleich für Deutschland](https://www.midea.com/de/klimatisieren-heizen/portasplit). Geprüft am 22. November 2026.
 
 ## Welche Alternative passt zu deiner Aufstellung?
 
@@ -26,7 +40,7 @@ Ein ausverkauftes Angebot sagt nichts über andere Händler oder Varianten aus. 
 
 Gleiche für Deutschland die EAN **4048164116478** mit dem konkreten Angebot ab. Im [Midea-Modellvergleich](https://www.midea.com/de/klimatisieren-heizen/portasplit) hat die originale PortaSplit eine eigene EAN. Midea zeigt am Dreh-Kippfenster die Standardhalterung. Für die gezeigten Aufbauten am Dachfenster und am französischen Balkon führt Midea die [Universalhalterung mit EAN 4048164118687](https://www.midea.com/content/dam/midea-aem/de/klimatisieren-heizen/portasplit/universalhalterung/PortaSplit-UM-universal-bracket.pdf) als separates Zubehör.
 
-Klär beim konkreten Händler den Lieferumfang oder prüfe die EAN der bereits vorhandenen Halterung. Gleiche Fenstermaße, Befestigung und erforderliche Erlaubnis mit den [Midea-Unterlagen zur Aufstellung](https://www.midea.com/de/klimatisieren-heizen/portasplit/installation) ab. Warte mit dem Kauf, solange der Halterungsbeleg oder die Eignung am Standort offen ist. Herstellerunterlagen geprüft am 20.11.2026.
+Klär beim konkreten Händler den Lieferumfang oder prüfe die EAN der bereits vorhandenen Halterung. [Vergleiche die beiden Maße am Fensterfalz](https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html#fensterfalz). Gleiche Befestigung und erforderliche Erlaubnis mit den [Midea-Unterlagen zur Aufstellung](https://www.midea.com/de/klimatisieren-heizen/portasplit/installation) ab. Warte mit dem Kauf, solange der Halterungsbeleg oder die Eignung am Standort offen ist. Herstellerunterlagen zur Modellwahl geprüft am 20.11.2026.
 
 ## Clima Butler Split 2 CB-3500: genaue Variante prüfen
 
