@@ -4,15 +4,10 @@
 import argparse
 import html
 import json
-import re
 from pathlib import Path
 
 SITE = Path(__file__).resolve().parents[1]
 ORIGIN = "https://agiscorecard.com"
-RECIPIENT_PATTERN = re.compile(
-    r"[a-zA-Z0-9._+-]{1,64}@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,63}",
-    re.ASCII,
-)
 PROJECTS = {
     "AGI": "AGI Scorecard",
     "BPJ": "BPJ / 白嫖计",
@@ -23,28 +18,35 @@ LOCALES = {
     "en": {
         "prefix": "", "home": "/", "privacy": "/privacy", "lang_name": "English",
         "title": "Investment and partnerships",
-        "description": "Prepare an investment or partnership email for AGI Scorecard, BPJ, EcoBack or The Doll Scout.",
+        "description": "Contact the teams behind AGI Scorecard, BPJ, EcoBack and The Doll Scout about investment and partnerships.",
         "language_navigation": "Languages",
         "instructions": "Choose the project you want to discuss. Tell us who you are and what you have in mind.",
-        "local": "Your fields stay in this browser. Send the draft from your own email app when it is ready.",
+        "privacy_note": "Sending forwards your form and reply email to the project team so they can follow up.",
         "project": "Project",
         "type": "Interest",
         "types": {"INVESTMENT": "Investment", "PARTNERSHIP": "Partnership"},
         "name": "Your name or organization",
+        "reply_email": "Email for replies",
         "proposal": "What would you like to discuss?",
         "proposal_hint": "A short outline of your investment interest or partnership idea is enough.",
         "website": "Public website (optional)",
         "timing": "Preferred timing (optional)",
         "sitePrivacy": "Privacy",
-        "draft": "Open email draft",
+        "send": "Send inquiry",
+        "check": "Check sending again",
         "copy": "Copy email template",
-        "draft_opened": "Draft requested. Review it in your email app and send it there.",
+        "checking": "Checking whether inquiries can be sent…",
+        "check_failed": "Could not check email availability. Check again to enable sending.",
+        "unavailable": "Email forwarding is temporarily unavailable. You can keep editing and check again.",
+        "sending": "Submitting your inquiry…",
+        "accepted": "Your inquiry was accepted for email forwarding.",
+        "invalid_submission": "Check the form fields and try again.",
+        "rate_limited": "Too many attempts. Please wait before trying again.",
+        "unconfirmed": "Email forwarding could not be confirmed. Your form is still here so you can retry.",
         "copied": "Email template copied.",
         "manual": "Select and copy the template below.",
-        "empty_recipient": "The contact address is awaiting confirmation. You can copy the template to keep it ready.",
-        "recipient_label": "Contact address",
-        "noscript": "Use the outline below to prepare your email. Enable JavaScript to prefill a draft from the form.",
-        "outline": "Use AGIFLEETINVESTV1 in the subject, followed by the project code [AGI], [BPJ], [ECO] or [TDS] and the interest [INVESTMENT] or [PARTNERSHIP]. Include your name or organization and your proposal. A public website and preferred timing are optional.",
+        "noscript": "Enable JavaScript to submit an inquiry online. The template below shows what to prepare.",
+        "outline": "Prepare your name or organization, reply email and proposal. A public website and preferred timing are optional.",
         "preview": "Email template",
         "greeting": "Hello,",
         "thanks": "Thank you.",
@@ -55,28 +57,35 @@ LOCALES = {
     "zh": {
         "prefix": "/zh", "home": "/cn", "privacy": "/privacy", "lang_name": "中文",
         "title": "投资与合作",
-        "description": "为 AGI Scorecard、BPJ 白嫖计、EcoBack 或 The Doll Scout 准备投资或合作邮件。",
+        "description": "联系 AGI Scorecard、BPJ 白嫖计、EcoBack 或 The Doll Scout 团队，提交投资或合作意向。",
         "language_navigation": "语言",
         "instructions": "先选择你想洽谈的项目，再简单介绍自己和你的意向。",
-        "local": "你填写的内容保留在当前浏览器。草稿准备好后，由你在自己的邮件应用中发送。",
+        "privacy_note": "发送时，表单内容和回复邮箱会通过邮件转交项目团队，方便后续联系。",
         "project": "意向项目",
         "type": "意向类型",
         "types": {"INVESTMENT": "投资", "PARTNERSHIP": "合作"},
         "name": "姓名或机构",
+        "reply_email": "回复邮箱",
         "proposal": "你想谈什么？",
         "proposal_hint": "简单说说你的投资意向或合作想法即可。",
         "website": "公开官网（选填）",
         "timing": "期望沟通时间（选填）",
         "sitePrivacy": "隐私政策",
-        "draft": "打开邮件草稿",
+        "send": "发送意向",
+        "check": "重新检查发送状态",
         "copy": "复制邮件模板",
-        "draft_opened": "已请求打开邮件草稿。请在邮件应用中核对后发送。",
+        "checking": "正在检查能否发送意向…",
+        "check_failed": "暂时无法检查邮件服务。请重新检查以启用发送。",
+        "unavailable": "邮件转送暂时不可用。你可以继续填写，并重新检查发送状态。",
+        "sending": "正在提交意向…",
+        "accepted": "你的意向已受理，将通过邮件转送。",
+        "invalid_submission": "请核对表单内容后重试。",
+        "rate_limited": "操作过于频繁。请稍后重试。",
+        "unconfirmed": "暂时无法确认邮件转送。填写内容已保留，你可以重试。",
         "copied": "已复制邮件模板。",
         "manual": "请选中并复制下方模板。",
-        "empty_recipient": "收件地址待确认。你可以先复制邮件模板。",
-        "recipient_label": "收件地址",
-        "noscript": "可以按下方提纲准备邮件。启用 JavaScript 后可从表单直接填好草稿。",
-        "outline": "邮件主题以 AGIFLEETINVESTV1 开头，再加项目代码 [AGI]、[BPJ]、[ECO] 或 [TDS]，以及意向 [INVESTMENT] 或 [PARTNERSHIP]。正文写明姓名或机构和意向简述。公开官网与期望沟通时间选填。",
+        "noscript": "在线提交需要 JavaScript。你仍可查看下方模板，先准备相关信息。",
+        "outline": "请准备姓名或机构、回复邮箱和意向简述。公开官网和期望沟通时间可选填。",
         "preview": "邮件模板",
         "greeting": "你好！",
         "thanks": "谢谢。",
@@ -87,28 +96,35 @@ LOCALES = {
     "de": {
         "prefix": "/de", "home": "/", "privacy": "/privacy", "lang_name": "Deutsch",
         "title": "Investitionen und Partnerschaften",
-        "description": "Bereiten Sie eine E-Mail zu Investitionen oder Partnerschaften mit AGI Scorecard, BPJ, EcoBack oder The Doll Scout vor.",
+        "description": "Kontaktieren Sie die Teams von AGI Scorecard, BPJ, EcoBack oder The Doll Scout zu Investitionen oder Partnerschaften.",
         "language_navigation": "Sprachen",
         "instructions": "Wählen Sie ein Projekt und beschreiben Sie kurz, wer Sie sind und worüber Sie sprechen möchten.",
-        "local": "Ihre Eingaben bleiben in diesem Browser. Senden Sie den Entwurf anschließend über Ihr eigenes E-Mail-Programm.",
+        "privacy_note": "Beim Senden erhält das Projektteam Ihre Angaben und Ihre E-Mail-Adresse zur Kontaktaufnahme.",
         "project": "Projekt",
         "type": "Interesse",
         "types": {"INVESTMENT": "Investition", "PARTNERSHIP": "Partnerschaft"},
         "name": "Ihr Name oder Ihre Organisation",
+        "reply_email": "E-Mail-Adresse für die Antwort",
         "proposal": "Worüber möchten Sie sprechen?",
         "proposal_hint": "Eine kurze Beschreibung Ihres Interesses oder Ihrer Partnerschaftsidee genügt.",
         "website": "Öffentliche Website (optional)",
         "timing": "Bevorzugter Zeitpunkt (optional)",
         "sitePrivacy": "Datenschutz",
-        "draft": "E-Mail-Entwurf öffnen",
+        "send": "Anfrage senden",
+        "check": "Versand erneut prüfen",
         "copy": "E-Mail-Vorlage kopieren",
-        "draft_opened": "Der Entwurf wurde angefordert. Prüfen und senden Sie ihn in Ihrem E-Mail-Programm.",
+        "checking": "Der Versandstatus wird geprüft…",
+        "check_failed": "Der Versandstatus konnte nicht geprüft werden. Starten Sie die Prüfung erneut.",
+        "unavailable": "Die Weiterleitung ist vorübergehend nicht verfügbar. Sie können das Formular weiter ausfüllen und den Status erneut prüfen.",
+        "sending": "Ihre Anfrage wird übermittelt…",
+        "accepted": "Ihre Anfrage wurde zur Weiterleitung per E-Mail angenommen.",
+        "invalid_submission": "Prüfen Sie die Angaben im Formular und versuchen Sie es erneut.",
+        "rate_limited": "Zu viele Versuche. Warten Sie bitte, bevor Sie es erneut versuchen.",
+        "unconfirmed": "Die Weiterleitung konnte nicht bestätigt werden. Ihre Eingaben bleiben erhalten und Sie können es erneut versuchen.",
         "copied": "E-Mail-Vorlage kopiert.",
         "manual": "Markieren und kopieren Sie die Vorlage unten.",
-        "empty_recipient": "Die Kontaktadresse wird noch bestätigt. Sie können die Vorlage bereits kopieren.",
-        "recipient_label": "Kontaktadresse",
-        "noscript": "Nutzen Sie die untenstehende Anleitung. Aktivieren Sie JavaScript, um mit dem Formular einen Entwurf zu öffnen.",
-        "outline": "Beginnen Sie den Betreff mit AGIFLEETINVESTV1, gefolgt vom Projektcode [AGI], [BPJ], [ECO] oder [TDS] und dem Interesse [INVESTMENT] oder [PARTNERSHIP]. Nennen Sie Ihren Namen oder Ihre Organisation und beschreiben Sie Ihr Vorhaben. Website und Zeitpunkt sind optional.",
+        "noscript": "Für eine Online-Anfrage benötigen Sie JavaScript. Die Vorlage zeigt, welche Angaben Sie vorbereiten können.",
+        "outline": "Halten Sie Ihren Namen oder Ihre Organisation, Ihre Antwortadresse und eine kurze Beschreibung bereit. Website und Zeitpunkt sind optional.",
         "preview": "E-Mail-Vorlage",
         "greeting": "Guten Tag,",
         "thanks": "Vielen Dank.",
@@ -127,25 +143,7 @@ def path(locale):
     return LOCALES[locale]["prefix"] + "/investment-contact"
 
 
-def load_recipient():
-    config = json.loads((SITE / "tools" / "investment_contact_settings.json").read_text(encoding="utf-8"))
-    if not isinstance(config, dict) or set(config) != {"recipient"}:
-        raise ValueError("The contact settings require only a recipient field.")
-    recipient = config["recipient"]
-    if not isinstance(recipient, str):
-        raise ValueError("The contact recipient must be text.")
-    if recipient and (
-        len(recipient) > 254
-        or not RECIPIENT_PATTERN.fullmatch(recipient)
-        or ".." in recipient.split("@", 1)[0]
-        or recipient.startswith(".")
-        or ".@" in recipient
-    ):
-        raise ValueError("The contact recipient must be one valid email address.")
-    return recipient
-
-
-def build(locale, recipient):
+def build(locale):
     t = {key: esc(value) for key, value in LOCALES[locale].items() if isinstance(value, str)}
     title = t["title"] + " | AGI Scorecard"
     canonical = ORIGIN + path(locale)
@@ -169,13 +167,10 @@ def build(locale, recipient):
         "inLanguage": locale,
         "isPartOf": {"@type": "WebSite", "name": "AGI Scorecard", "url": ORIGIN},
     }, ensure_ascii=False).replace("<", "\\u003c")
-    contact_info = (
-        f'<p class="contact-recipient">{t["recipient_label"]}<br><span>{esc(recipient)}</span></p>'
-        if recipient else f'<p class="contact-recipient">{t["empty_recipient"]}</p>'
-    )
     static_template = "\n\n".join([
         t["subject_label"] + "\nAGIFLEETINVESTV1 [PROJECT] [INTEREST]",
-        t["greeting"], t["name"] + "\n…", t["project"] + "\n…", t["type"] + "\n…",
+        t["greeting"], t["name"] + "\n…", t["reply_email"] + "\n…",
+        t["project"] + "\n…", t["type"] + "\n…",
         t["proposal"] + "\n…", t["website"] + "\n…", t["timing"] + "\n…", t["thanks"],
     ])
     return f"""<!doctype html>
@@ -207,14 +202,17 @@ def build(locale, recipient):
   <section class="contact-brief">
     <h1>{t['title']}</h1>
     <p>{t['instructions']}</p>
-    <p class="contact-note">{t['local']}</p>
-    {contact_info}
+    <p class="contact-note">{t['privacy_note']}</p>
   </section>
   <section class="contact-letter" aria-label="{t['preview']}">
-    <form id="contact-form" method="post" data-recipient="{esc(recipient)}"
+    <form id="contact-form" action="/api/investment-contact" method="post" hidden
       data-greeting="{t['greeting']}" data-thanks="{t['thanks']}"
       data-subject-label="{t['subject_label']}" data-copied="{t['copied']}"
-      data-manual="{t['manual']}" data-draft-opened="{t['draft_opened']}"
+      data-manual="{t['manual']}" data-checking="{t['checking']}"
+      data-check-failed="{t['check_failed']}" data-unavailable="{t['unavailable']}"
+      data-sending="{t['sending']}" data-accepted="{t['accepted']}"
+      data-invalid-submission="{t['invalid_submission']}" data-rate-limited="{t['rate_limited']}"
+      data-unconfirmed="{t['unconfirmed']}"
       data-invalid-url="{t['invalid_url']}" data-invalid-text="{t['invalid_text']}">
       <fieldset disabled>
         <legend class="sr-only">{t['preview']}</legend>
@@ -233,6 +231,13 @@ def build(locale, recipient):
           <input id="contact-name" type="text" required maxlength="100" autocomplete="organization">
         </div>
         <div>
+          <label for="contact-reply-email">{t['reply_email']}</label>
+          <input id="contact-reply-email" type="email" required maxlength="254" autocomplete="email">
+        </div>
+        <div hidden aria-hidden="true">
+          <input id="contact-website-check" name="websiteCheck" type="text" maxlength="180" autocomplete="off" tabindex="-1">
+        </div>
+        <div>
           <label for="contact-proposal">{t['proposal']}</label>
           <textarea id="contact-proposal" required maxlength="600" rows="4" aria-describedby="contact-proposal-hint"></textarea>
           <p id="contact-proposal-hint" class="contact-note">{t['proposal_hint']}</p>
@@ -248,10 +253,12 @@ def build(locale, recipient):
           </div>
         </div>
         <div class="contact-actions">
-          {f'<button type="submit">{t["draft"]}</button>' if recipient else ""}
+          <button type="submit" id="contact-send" disabled>{t['send']}</button>
           <button type="button" id="contact-copy" class="contact-copy">{t['copy']}</button>
+          <button type="button" id="contact-check" class="contact-copy" hidden>{t['check']}</button>
         </div>
       </fieldset>
+      <p id="contact-availability" class="contact-note" role="status" hidden></p>
       <p id="contact-status" role="status" hidden></p>
       <div id="contact-preview" hidden>
         <label for="contact-template">{t['preview']}</label>
@@ -280,14 +287,10 @@ def build(locale, recipient):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true")
-    parser.add_argument("--require-recipient", action="store_true")
     args = parser.parse_args()
-    recipient = load_recipient()
-    if args.require_recipient and not recipient:
-        raise SystemExit("Confirm and configure an approved public contact recipient before deployment.")
     for locale in LOCALES:
         target = SITE / (path(locale).lstrip("/") + ".html")
-        page = build(locale, recipient)
+        page = build(locale)
         existing = target.read_text(encoding="utf-8") if target.is_file() else ""
         if page == existing:
             continue

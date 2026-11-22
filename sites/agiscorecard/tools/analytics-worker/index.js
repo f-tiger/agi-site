@@ -11,6 +11,7 @@ import {mentorRoute} from '../mentor/server.mjs';
 import {jarvisRoute} from '../jarvis/server.mjs';
 import {isJarvisPage,secureJarvisPage} from '../jarvis/security.mjs';
 import {communityRoute} from '../community/server.mjs';
+import {handleInvestmentContact} from '../investment-contact/server.mjs';
 import {memberRoute,memberPage,secureMemberPage} from '../../../../tools/member-studio/server.mjs';
 import {aggregateCache} from './aggregate-cache.js';
 import {videoGrowth} from './video-growth.js';
@@ -259,6 +260,8 @@ const srcBucket = (host, self) => {
 
 const fleetWrappedWorker = {
   async fetch(request, env, ctx) {
+    const url = new URL(request.url);
+    if (url.pathname === '/api/investment-contact') return handleInvestmentContact(request, env);
     const capitalRadarResponse=await capitalRadarRoute(request,env);if(capitalRadarResponse)return capitalRadarResponse;
     const jarvisResponse=await jarvisRoute(request,env,ctx);if(jarvisResponse)return jarvisResponse;
     const portfolioResponse=await portfolioRoute(request,env);if(portfolioResponse)return portfolioResponse;
@@ -268,8 +271,7 @@ const fleetWrappedWorker = {
     const communityResponse=await communityRoute(request,env);if(communityResponse)return communityResponse;
     const evidenceResponse=await evidenceFunnelRoute(request,env);if(evidenceResponse)return evidenceResponse;
     const memberResponse=await memberRoute(request,env,'agi');if(memberResponse)return memberResponse;
-    if(memberPage(new URL(request.url).pathname))return secureMemberPage(await env.ASSETS.fetch(request));
-    const url = new URL(request.url);
+    if(memberPage(url.pathname))return secureMemberPage(await env.ASSETS.fetch(request));
 
     // Preserve existing directory URLs while serving one canonical page per locale.
     if (request.method === 'GET' || request.method === 'HEAD') {

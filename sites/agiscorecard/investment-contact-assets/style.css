@@ -94,22 +94,16 @@ a { color: var(--accent); text-underline-offset: .24em; }
 }
 .contact-brief h1 {
   margin: 0 0 .85rem;
-  max-width: 12ch;
+  max-width: 16ch;
   font-size: clamp(2.1rem, 5vw, 3.65rem);
   line-height: 1.06;
   letter-spacing: -.044em;
+  text-wrap: balance;
 }
 html[lang="zh"] .contact-brief h1 { max-width: none; }
 html[lang="de"] .contact-brief h1 { max-width: 16ch; overflow-wrap: anywhere; }
 .contact-brief p { max-width: 40ch; margin: 0 0 .8rem; }
 .contact-note { color: var(--muted); font-size: .92rem; }
-.contact-recipient {
-  padding-top: .8rem;
-  border-top: 1px solid var(--line);
-  overflow-wrap: anywhere;
-  font-size: .9rem;
-}
-.contact-recipient span { font-weight: 700; }
 
 .contact-letter {
   min-width: 0;
@@ -127,7 +121,6 @@ html[lang="de"] .contact-brief h1 { max-width: 16ch; overflow-wrap: anywhere; }
   min-width: 0;
   border: 0;
 }
-#contact-form:has(fieldset:disabled) { display: none; }
 .contact-pair {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -178,6 +171,7 @@ html[lang="de"] .contact-brief h1 { max-width: 16ch; overflow-wrap: anywhere; }
   background: var(--bg);
 }
 .contact-actions button:hover { border-color: var(--accent); }
+.contact-actions button:disabled { cursor: not-allowed; opacity: .64; }
 #contact-status { color: var(--accent); font-weight: 580; }
 .contact-outline {
   margin-top: 1rem;
@@ -200,4 +194,7 @@ html[lang="de"] .contact-brief h1 { max-width: 16ch; overflow-wrap: anywhere; }
 }
 @media (max-width: 460px) {
   .contact-final-pair { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 370px) {
+  .contact-pair { grid-template-columns: minmax(0, 1fr); }
 }
