@@ -46,6 +46,7 @@ function assertDocumentedAnswer(text) {
   assert.match(text, /näheren Standort|andere Aufstellung/i);
   assert.match(text, /de-de\/Brosch%C3%BCre_GesundesWohnen_April2021\.pdf/);
   assert.match(text, /delonghi\.com\/de-de\/faqs\/[^\s)">]*\/a\/1726/);
+  assert.match(text, /delonghi\.com\/en\/p\/[^\s)">]+\?pid=0151400003/);
 }
 
 test('German guide serves the exact sourced answer and form, with clean voluntary Reddit sharing', () => {

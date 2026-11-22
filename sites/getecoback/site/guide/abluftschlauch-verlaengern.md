@@ -12,7 +12,7 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Prüfe auch bei 1,20 m oder weniger den tatsächlichen Verlauf mit den vorgesehenen Bögen, Endstücken und Geräteabständen. Sind Modell oder Schlauchkonfiguration unklar, prüfe vor der Bestellung die Anleitung für das genaue Gerät.
 
-Quellen für Deutschland, geprüft am 22.11.2026. [De’Longhi-Katalog, technische Daten zum exakten Modell (April 2021, PDF)](https://digital.delonghigroup.com/lib/dl/de-de/Brosch%C3%BCre_GesundesWohnen_April2021.pdf) · [De’Longhi-FAQ zur Abluftschlauchverlängerung](https://www.delonghi.com/de-de/faqs/Kann-ich-den-Schlauch-meiner-tragbaren-Klimaanlage-verl%C3%A4ngern/a/1726).
+Quellen geprüft am 22.11.2026. [Deutscher De’Longhi-Katalog zum exakten Modell (April 2021, PDF)](https://digital.delonghigroup.com/lib/dl/de-de/Brosch%C3%BCre_GesundesWohnen_April2021.pdf) · [Deutsche De’Longhi-FAQ zur Abluftschlauchverlängerung](https://www.delonghi.com/de-de/faqs/Kann-ich-den-Schlauch-meiner-tragbaren-Klimaanlage-verl%C3%A4ngern/a/1726) · [Herstellerdaten für dieselbe Artikelnummer 0151400003 (englisch)](https://www.delonghi.com/en/p/portable-air-conditioners-pacn90ecosilent-pinguino-portable-air-conditioner/PACN90ECOSILENT.html?pid=0151400003).
 
 ## Was du vor dem Kauf brauchst
 
