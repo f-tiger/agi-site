@@ -72,12 +72,17 @@ test('German home gives German shopping and useful local task entry points befor
  const marketLinks = anchors(market[1]);
  assert.equal(marketLinks[0].attrs.href, '/de/shop#home-catalog', 'Germany is first, rather than the US destination');
  assert.ok(marketLinks.some(a => a.attrs.href === '/shop#home-catalog'), 'US context remains an explicit alternative');
+ const localTool = '/de/ai-tools/dach-meter-fit';
  const localGuide = '/de/shop/categories/smart-home#strommessung';
- const primary = anchors(body)[0];
- assert.equal(primary.attrs.href, localGuide, 'First shopping action opens the local comparison');
- assert.ok(primary.text.includes('P110M'));
+ const [primary, comparison] = anchors(body);
+ assert.equal(primary.attrs.href, localTool, 'First shopping action opens the regional selection tool');
+ assert.ok(primary.text.includes('Messsteckdose'));
+ assert.equal(comparison.attrs.href, localGuide, 'Direct access to the model comparison remains available');
+ assert.ok(comparison.text.includes('P110M'));
  assert.ok(body.indexOf('class="market-bridge"') > body.indexOf('href="' + localGuide + '"'));
- assert.ok(shoppingHomeText('de', route, origin).includes('Tapo P110 und P110M vergleichen: ' + origin + localGuide));
+ const mirror = shoppingHomeText('de', route, origin);
+ assert.ok(mirror.includes('Messsteckdose nach Land und App auswählen: ' + origin + localTool));
+ assert.ok(mirror.includes('Tapo P110 und P110M vergleichen: ' + origin + localGuide));
  const catalogue = body.indexOf('id="home-catalog"');
  for (const id of ['storage', 'smart-home', 'home-care']) {
   const destination = route('de', 'shop/categories/' + id);
