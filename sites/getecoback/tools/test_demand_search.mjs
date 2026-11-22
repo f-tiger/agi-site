@@ -115,5 +115,9 @@ test('German replacement filter lookups reach one exact owned model and no near 
   'Wie reinige ich den Filter vom Beurer LR401?',
   'Kann ich den Filter vom Core 300S auswaschen?',
   'Passt LR 401 auch in meinen Philips Luftreiniger?',
+  'Welcher Ersatzfilter passt in den Bosch LR 401?',
+  'Ersatzfilter für Xiaomi Core 300S',
+  'Welcher Ersatzfilter passt zum Beurer LR 401 Plus?',
+  'Welcher Ersatzfilter passt zum Levoit Core 300S Plus?',
  ]) assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u.startsWith(page+'#')),q);
 });

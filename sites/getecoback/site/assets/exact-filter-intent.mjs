@@ -1,7 +1,9 @@
 // Input is normalized German text. Return a catalogue model only for an exact filter lookup.
 export function exactGermanFilterModel(query) {
   if (!/\b(?:[a-z]*filter(?:s|nummer|modell)?|69309)\b/.test(query)) return null;
-  if (/\b(?:philips|wasch[a-z]*|auswasch[a-z]*|abwasch[a-z]*|reinig[a-z]*|gereinigt|wie\s+(?:wechsle|wechsel[a-z]*|tausche)|filterwechselanzeige|pflege|filteranzeige|filterlicht|leucht[a-z]*|reset[a-z]*|zuruecksetzen|wechselintervall|wie\s+(?:oft|lange)|wann|(?:filter)?kosten[a-z]*|kostet|preis[a-z]*|beschaedigt[a-z]*|kaputt|schimmel[a-z]*)\b/.test(query)) return null;
+  if (/\b(?:philips|bosch|xiaomi|dyson|rowenta|winix|sharp|honeywell|coway|blueair|miele|samsung|trotec)\b/.test(query)) return null;
+  if (/\b(?:wasch[a-z]*|auswasch[a-z]*|abwasch[a-z]*|reinig[a-z]*|gereinigt|wie\s+(?:wechsle|wechsel[a-z]*|tausche)|filterwechselanzeige|pflege|filteranzeige|filterlicht|leucht[a-z]*|reset[a-z]*|zuruecksetzen|wechselintervall|wie\s+(?:oft|lange)|wann|(?:filter)?kosten[a-z]*|kostet|preis[a-z]*|beschaedigt[a-z]*|kaputt|schimmel[a-z]*)\b/.test(query)) return null;
+  if (/\b(?:lr[ -]*401|core[ -]*300[ -]*s)\b\s+(?:plus|max|ultra|premium)\b/.test(query)) return null;
   const beurer = /\blr[ -]*401\b/.test(query);
   const levoit = /\bcore[ -]*300[ -]*s\b/.test(query);
   if (beurer === levoit) return null;

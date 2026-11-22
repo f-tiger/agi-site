@@ -730,6 +730,10 @@ test('exact German Beurer and Levoit replacement questions find the documented m
    'Ist der Beurer Filter 69309 für meinen LR 405 oder LR 500 geeignet?',
    'Kann ich den Filter vom Core 300S unter Wasser auswaschen?',
    'Was kostet mich der Filter für den Beurer LR 401 im Jahr bei zwei Wechseln?',
+   'Welcher Ersatzfilter passt in den Bosch LR 401?',
+   'Ersatzfilter für Xiaomi Core 300S',
+   'Welcher Ersatzfilter passt zum Beurer LR 401 Plus?',
+   'Welcher Ersatzfilter passt zum Levoit Core 300S Plus?',
  ]) assert.notEqual((await catalogue({q,view:'compact'})).tools[0]?.name,name,q);
  assert.equal((await catalogue({q:name,view:'compact'})).tools[0]?.name,name);
  assert.equal(analytics,0);
