@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.22.12';
-const revision = 'd2a3d8d23ee327241227ccf3a6d2428359082931';
+const version = '1.22.13';
+const revision = 'b7f7f5888a73c18886e09bf4e2daa83a0da18eb7';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -26,7 +26,7 @@ const oldNames = [
 const featureNames = ['entfeuchter_ablaufcheck', 'btu_empfehlung', 'fensterabdichtung_laenge',
   'taupunkt_lueften', 'fenstersauger_170mm_abziehlippe_geraetefamilie', 'fenster_oberflaeche_taucheck',
   'luftentfeuchter_waesche_einzelkosten', 'fritz_302_danfoss_adapter', 'keller_lueften_taupunkt_messwerte',
-  'luftreiniger_ersatzfilter_zuordnung', 'philips_verdunsterfilter_zuordnung'];
+  'luftreiniger_ersatzfilter_zuordnung', 'philips_verdunsterfilter_zuordnung', 'heizdecke_stromkosten_nennleistung'];
 const entry = 'src/server.mjs';
 const legacyHelpers = fileURLToPath(new URL('../mcp-registry/local-packages/', import.meta.url));
 const sha256 = buffer => createHash('sha256').update(buffer).digest('hex');
@@ -47,6 +47,9 @@ const filterGuide = filterCitation + '#finder';
 const philipsFilterTool = 'philips_verdunsterfilter_zuordnung';
 const philipsFilterCitation = 'https://getecoback.com/guide/luftbefeuchter-ratgeber.html';
 const philipsFilterGuide = philipsFilterCitation + '#philips-verdunsterfilter';
+const warmthTool = 'heizdecke_stromkosten_nennleistung';
+const warmthCitation = 'https://getecoback.com/guide/heizdecke-stromverbrauch.html';
+const warmthGuide = warmthCitation + '#waerme-rechner';
 const cellarUri = 'ecoback://evidence/de/kellerentfeuchter';
 const laundryComparisonTool = 'waesche_trocknungskosten';
 const singleLaundryTool = 'luftentfeuchter_waesche_einzelkosten';
@@ -485,11 +488,46 @@ async function verifyPhilipsFilter(call) {
   return {name:philipsFilterTool,guide:philipsFilterGuide,records,rejected:3};
 }
 
+async function verifyWarmthCost(call) {
+  const base = {nennleistung_w:110,laufzeit_h:2,arbeitspreis_kwh:0.35};
+  const cases = [
+    [{...base,nutzungstage:30},[0.22,0.077,6.6,2.31,'EUR',30]],
+    [base,[0.22,0.077,0.22,0.077,'EUR',1]],
+    [{...base,nutzungstage:30,waehrung:'CHF'},[0.22,0.077,6.6,2.31,'CHF',30]],
+  ];
+  const records = [];
+  for (const [args,expected] of cases) {
+    const result = await call(args);
+    assert.equal(result.isError,false);
+    const data = result.structuredContent;
+    assert.equal(data.berechnungsart,'nennleistung_schaetzung');
+    const observed = [data.energie_kwh_pro_nutzung,data.kosten_pro_nutzung,data.energie_kwh_gesamt,
+      data.kosten_gesamt,data.waehrung,data.nutzungstage];
+    assert.deepEqual(observed,expected);
+    assert.equal(data.citation_url,warmthCitation);
+    assert.equal(data.guide_url,warmthGuide);
+    assert.equal(data.guidance_source,'https://verbraucherzentrale-energieberatung.de/energie-sparen/allgemeines/stromverbrauch-messen/');
+    assert.match(data.hinweis,/Geräteanleitung/);
+    assert.doesNotMatch(result.content[0].text,/https?:\/\/[^"\s]*(?:amazon\.|amzn\.)|[?&]tag=/i);
+    records.push(observed);
+  }
+  const badInputs = [
+    {},{nennleistung_w:110,laufzeit_h:2},{...base,arbeitspreis_kwh:35},
+    {...base,laufzeit_h:25},{...base,nutzungstage:3.5},{...base,waehrung:'GBP'},
+  ];
+  for (const args of badInputs) {
+    const result = await call(args);
+    assert.equal(result.isError,true);
+    assert.equal(result.structuredContent,undefined);
+  }
+  return {name:warmthTool,guide:warmthGuide,records,rejected:badInputs.length};
+}
+
 async function verifyStdio(extracted, manifest) {
   const {TOOLS} = await import(pathToFileURL(join(extracted,'src/tools.mjs')));
   const {expandedDefinitions} = await import(pathToFileURL(join(extracted,'src/eco-suite/src/mcp-expanded.mjs')));
   const expected = JSON.parse(JSON.stringify(TOOLS));
-  assert.equal(expected.length,2024);
+  assert.equal(expected.length,2025);
   assert.deepEqual(manifest.server.mcp_config, {command:'node',args:['${__dirname}/'+entry]});
   return withStdio(extracted,[],async rpc => {
     const listed = [], sizes = [], cursors = new Set();
@@ -505,9 +543,9 @@ async function verifyStdio(extracted, manifest) {
       }
     } while (cursor !== undefined);
     assert.deepEqual(listed,expected);
-    assert.deepEqual(sizes,[...Array(20).fill(100),24]);
+    assert.deepEqual(sizes,[...Array(20).fill(100),25]);
     const names = new Set(listed.map(tool=>tool.name));
-    assert.equal(names.size,2024);
+    assert.equal(names.size,2025);
     assert.ok(oldNames.every(name=>names.has(name)), 'Expected all eight supported legacy tools');
     assert.ok([...names].every(name=>!/balkonspeicher|balkonkraftwerk|solarbank|pv[_-]speicher/i.test(name)));
     assert.ok(manifest.tools.every(tool=>names.has(tool.name)));
@@ -559,8 +597,10 @@ async function verifyStdio(extracted, manifest) {
       rpc('tools/call',{name:exactFilterTool,arguments:args}));
     const philipsFilter = await verifyPhilipsFilter(args =>
       rpc('tools/call',{name:philipsFilterTool,arguments:args}));
+    const warmthCost = await verifyWarmthCost(args =>
+      rpc('tools/call',{name:warmthTool,arguments:args}));
     return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,windowCondensation,decimalWindowWidth,
-      singleLaundry,fritzValve,drainRoute,measuredVentilation,exactFilter,philipsFilter,
+      singleLaundry,fritzValve,drainRoute,measuredVentilation,exactFilter,philipsFilter,warmthCost,
       firstExamples:['btu_empfehlung','entfeuchter_ablaufcheck'],finder:verifyFinder(extracted,drain),
       lastPageExample:last.name,legacyNames:oldNames.length,network:'disabled'};
   });
@@ -1071,6 +1111,16 @@ async function verifyCompactStdio(extracted) {
     assert.equal(philipsLookup.structuredContent.tools[0]?.guide_url,philipsFilterGuide);
     const philipsFilter = await verifyPhilipsFilter(eingaben =>
       rpc('tools/call',{name:runner,arguments:{name:philipsFilterTool,eingaben}}));
+    const warmthLookup = await rpc('tools/call',{
+      name:finder,arguments:{frage:'Was kostet eine Heizdecke mit 110 Watt für 2 Stunden bei 35 Cent pro kWh?'},
+    });
+    assert.equal(warmthLookup.isError,false);
+    const warmthMatch = warmthLookup.structuredContent.tools[0];
+    assert.equal(warmthMatch?.name,warmthTool);
+    assert.equal(warmthMatch.guide_url,warmthGuide);
+    assert.deepEqual(warmthMatch.inputSchema.required,['nennleistung_w','laufzeit_h','arbeitspreis_kwh']);
+    const warmthCost = await verifyWarmthCost(eingaben =>
+      rpc('tools/call',{name:runner,arguments:{name:warmthTool,eingaben}}));
     const laundryPrecision = await verifyCompactLaundryPrecision(rpc,finder);
     const humidifierEfficiency = await verifyCompactHumidifierEfficiency(rpc,finder,runner);
     const glassvacTemperature = await verifyCompactGlassvacTemperature(rpc,finder,runner);
@@ -1096,7 +1146,7 @@ async function verifyCompactStdio(extracted) {
     return {
       tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,
       liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,singleLaundry,fritzValve,drainRoute,
-      measuredVentilation,exactFilter,philipsFilter,laundryPrecision,windowBlade,windowLookup,
+      measuredVentilation,exactFilter,philipsFilter,warmthCost,laundryPrecision,windowBlade,windowLookup,
       windowWidth,decimalWindowWidth,householdDecisions,tadoOventrop,n90Costs,humidifierEfficiency,glassvacTemperature,windowSubject,windowCondensation,
     };
   });
@@ -1166,6 +1216,7 @@ try {
   assert.deepEqual(result.measuredVentilation,result.compact.measuredVentilation);
   assert.deepEqual(result.exactFilter,result.compact.exactFilter);
   assert.deepEqual(result.philipsFilter,result.compact.philipsFilter);
+  assert.deepEqual(result.warmthCost,result.compact.warmthCost);
   assert.deepEqual(result.resource,result.compact.resource);
   result.archiveReadme = {replacedVersion:readme.previousVersion,registryLatestUrl};
   const identifier = `${releaseUrl}/${file}`;
