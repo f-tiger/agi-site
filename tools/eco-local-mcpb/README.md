@@ -105,6 +105,13 @@ including the Kärcher LED table with a confirmed blink pattern and motor
 state. A generic cold-charging question about the WV 8 and a question about
 both machines leave the finder result empty.
 
+Version 1.22.5 finds the window dew-point calculator for
+“Fenstersauger gegen Kondenswasser” and links to the answer section. The
+archive checks standard and compact results for a measured inner surface below,
+near and above the dew point, including both boundaries of the 1 °C
+orientation band. A missing surface reading returns an input error. The share
+link contains no household measurements or affiliate parameters.
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the
