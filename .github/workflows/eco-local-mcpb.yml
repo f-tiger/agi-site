@@ -19,12 +19,12 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUNDLE: ecoback-local-tools-1.22.6.mcpb
-  VERSION: '1.22.6'
-  UPSTREAM_SHA: 8da400420505071a11e4f403ee8b9e4b460d0af0
+  BUNDLE: ecoback-local-tools-1.22.7.mcpb
+  VERSION: '1.22.7'
+  UPSTREAM_SHA: 5b4e4ad2eda57444824781bd14fec4be7b3f69d1
   NAME: io.github.f-tiger/ecoback-local-tools
   RELEASE_TAG: fleet-mcp-registry-2026-10-10
-  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.6.mcpb
+  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.7.mcpb
   REGISTRY_VERSIONS: https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions
   SOURCE_URL: https://github.com/f-tiger/getecoback-mcp
   MCPB_SCHEMA: https://raw.githubusercontent.com/modelcontextprotocol/mcpb/70fe3b34cd6dff1b3bba046638edc72a6467a4fb/schemas/mcpb-manifest-v0.3.schema.json
@@ -96,7 +96,7 @@ jobs:
           ' "$root/servers/ecoback-local-tools.json"
           jq -e --arg name "$NAME" --arg version "$VERSION" --arg revision "$UPSTREAM_SHA" --arg sha "$digest" --arg latest "$REGISTRY_VERSIONS/latest" '
             .name == $name and .version == $version and .sourceRevision == $revision and
-            .fileSha256 == $sha and .tools == 2020 and .pages == 21 and .legacyNames == 8 and .windowExamples == 12 and
+            .fileSha256 == $sha and .tools == 2021 and .pages == 21 and .legacyNames == 8 and .windowExamples == 12 and
             .network == "disabled" and (.firstExamples | type == "array" and length > 0) and
             (.lastPageExample != null and (.lastPageExample | length) > 0) and
             .finder.topMatch == "entfeuchter_ablaufcheck" and
@@ -113,6 +113,13 @@ jobs:
               unconfirmedNote:"Keine Aussage, welches Verfahren bei gleicher Trocknung günstiger ist.",
               halfCentDryerLine:"Trockner: 1,4 kWh × 0,025 €/kWh = 0,04 €"
             } and
+            .singleLaundry == {
+              name:"luftentfeuchter_waesche_einzelkosten",
+              citation:"https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html",
+              shareUrl:"https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#luftentfeuchter-waesche-kosten",
+              outcomes:[{kwh:1.8,cost:0.63,basis:"measured"},{kwh:1.2,cost:0.42,basis:"estimate"}],
+              rejected:3
+            } and .compact.singleLaundry == .singleLaundry and
             (.compact.laundryPrecision | type == "array" and length == 2 and
               all(.[]; . != "waesche_trocknungskosten" and (. == null or (type == "string" and length > 0)))) and
             .compact.windowSubject == {

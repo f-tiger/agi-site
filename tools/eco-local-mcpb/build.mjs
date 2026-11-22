@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.22.6';
-const revision = '8da400420505071a11e4f403ee8b9e4b460d0af0';
+const version = '1.22.7';
+const revision = '5b4e4ad2eda57444824781bd14fec4be7b3f69d1';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -24,7 +24,8 @@ const oldNames = [
   'klimaanlage_stromkosten', 'ratgeber_lesen', 'ratgeber_suche', 'taupunkt_lueften',
 ];
 const featureNames = ['entfeuchter_ablaufcheck', 'btu_empfehlung', 'fensterabdichtung_laenge',
-  'taupunkt_lueften', 'fenstersauger_170mm_abziehlippe_geraetefamilie', 'fenster_oberflaeche_taucheck'];
+  'taupunkt_lueften', 'fenstersauger_170mm_abziehlippe_geraetefamilie', 'fenster_oberflaeche_taucheck',
+  'luftentfeuchter_waesche_einzelkosten'];
 const entry = 'src/server.mjs';
 const legacyHelpers = fileURLToPath(new URL('../mcp-registry/local-packages/', import.meta.url));
 const sha256 = buffer => createHash('sha256').update(buffer).digest('hex');
@@ -32,6 +33,9 @@ const writeJson = (path, value) => writeFile(path, JSON.stringify(value, null, 2
 const drainArguments = {drain:'level_or_uphill',model:'meaco-one-20'};
 const cellarUri = 'ecoback://evidence/de/kellerentfeuchter';
 const laundryComparisonTool = 'waesche_trocknungskosten';
+const singleLaundryTool = 'luftentfeuchter_waesche_einzelkosten';
+const singleLaundryCitation = 'https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html';
+const singleLaundryGuide = singleLaundryCitation + '#luftentfeuchter-waesche-kosten';
 const windowBladeTool = 'fenstersauger_170mm_abziehlippe_geraetefamilie';
 const windowGuide = 'https://getecoback.com/produkte.html';
 const windowEvidence = windowGuide + '#fenstersauger-belege';
@@ -244,11 +248,38 @@ async function verifyDecimalWindowWidth(call) {
   return outcomes;
 }
 
+async function verifySingleLaundry(call) {
+  const measured = {method:'measured',dehum:1.8,price:0.35};
+  const estimated = {method:'estimate',watts:200,hours:6,price:0.35};
+  const outcomes = [];
+  for (const [input,kwh,cost] of [[measured,1.8,0.63],[estimated,1.2,0.42]]) {
+    const result = await call(input);
+    assert.equal(result.isError,false);
+    const data = result.structuredContent;
+    assert.deepEqual([data.kwh,data.cost,data.basis],[kwh,cost,input.method]);
+    assert.equal(data.citation_url,singleLaundryCitation);
+    assert.equal(data.guide_url,singleLaundryGuide);
+    assert.equal(data.share_url,singleLaundryGuide);
+    assert.ok(data.share_text_de.includes(singleLaundryGuide));
+    assert.equal(Object.hasOwn(data,'lower_cost'),false);
+    assert.doesNotMatch(result.content[0].text,/https?:\/\/[^"\s]*(?:amazon\.|amzn\.)|[?&]tag=/i);
+    outcomes.push({kwh:data.kwh,cost:data.cost,basis:data.basis});
+  }
+  const invalid = [{...measured,watts:200},{method:'estimate',watts:200,price:0.35},{...estimated,dehum:1.8}];
+  for (const input of invalid) {
+    const result = await call(input);
+    assert.equal(result.isError,true);
+    assert.equal(result.structuredContent,undefined);
+  }
+  return {name:singleLaundryTool,citation:singleLaundryCitation,shareUrl:singleLaundryGuide,
+    outcomes,rejected:invalid.length};
+}
+
 async function verifyStdio(extracted, manifest) {
   const {TOOLS} = await import(pathToFileURL(join(extracted,'src/tools.mjs')));
   const {expandedDefinitions} = await import(pathToFileURL(join(extracted,'src/eco-suite/src/mcp-expanded.mjs')));
   const expected = JSON.parse(JSON.stringify(TOOLS));
-  assert.equal(expected.length,2020);
+  assert.equal(expected.length,2021);
   assert.deepEqual(manifest.server.mcp_config, {command:'node',args:['${__dirname}/'+entry]});
   return withStdio(extracted,[],async rpc => {
     const listed = [], sizes = [], cursors = new Set();
@@ -264,9 +295,9 @@ async function verifyStdio(extracted, manifest) {
       }
     } while (cursor !== undefined);
     assert.deepEqual(listed,expected);
-    assert.deepEqual(sizes,[...Array(20).fill(100),20]);
+    assert.deepEqual(sizes,[...Array(20).fill(100),21]);
     const names = new Set(listed.map(tool=>tool.name));
-    assert.equal(names.size,2020);
+    assert.equal(names.size,2021);
     assert.ok(oldNames.every(name=>names.has(name)), 'Expected all eight supported legacy tools');
     assert.ok([...names].every(name=>!/balkonspeicher|balkonkraftwerk|solarbank|pv[_-]speicher/i.test(name)));
     assert.ok(manifest.tools.every(tool=>names.has(tool.name)));
@@ -306,7 +337,9 @@ async function verifyStdio(extracted, manifest) {
       rpc('tools/call',{name:condensationTool,arguments:args}));
     const decimalWindowWidth = await verifyDecimalWindowWidth(args =>
       rpc('tools/call',{name:windowWidthTool,arguments:args}));
-    return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,windowCondensation,decimalWindowWidth,
+    const singleLaundry = await verifySingleLaundry(args =>
+      rpc('tools/call',{name:singleLaundryTool,arguments:args}));
+    return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,windowCondensation,decimalWindowWidth,singleLaundry,
       firstExamples:['btu_empfehlung','entfeuchter_ablaufcheck'],finder:verifyFinder(extracted,drain),
       lastPageExample:last.name,legacyNames:oldNames.length,network:'disabled'};
   });
@@ -751,6 +784,17 @@ async function verifyCompactStdio(extracted) {
     assert.deepEqual(buyer.structuredContent.resources,resources);
     assert.deepEqual(buyer.content.filter(part=>part.type==='resource'),[{type:'resource',resource}]);
     const laundryComparison = await verifyCompactLaundryComparison(rpc,finder,runner);
+    const singleLaundryLookup = await rpc('tools/call',{
+      name:finder,arguments:{frage:'Was kostet mich die Wäsche mit Entfeuchter, durchschnittlich 200 Watt über 6 Stunden?'},
+    });
+    assert.equal(singleLaundryLookup.isError,false);
+    const [singleMatch] = singleLaundryLookup.structuredContent.tools;
+    assert.equal(singleMatch?.name,singleLaundryTool);
+    assert.equal(singleMatch.guide_url,singleLaundryGuide);
+    assert.deepEqual(singleMatch.inputSchema.required,['method','price']);
+    assert.equal(singleMatch.inputSchema.oneOf.length,2);
+    const singleLaundry = await verifySingleLaundry(eingaben =>
+      rpc('tools/call',{name:runner,arguments:{name:singleLaundryTool,eingaben}}));
     const laundryPrecision = await verifyCompactLaundryPrecision(rpc,finder);
     const humidifierEfficiency = await verifyCompactHumidifierEfficiency(rpc,finder,runner);
     const glassvacTemperature = await verifyCompactGlassvacTemperature(rpc,finder,runner);
@@ -775,7 +819,7 @@ async function verifyCompactStdio(extracted) {
     const windowLookup = await verifyCompactWindowLookup(rpc,finder);
     return {
       tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,
-      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,laundryPrecision,windowBlade,windowLookup,
+      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,singleLaundry,laundryPrecision,windowBlade,windowLookup,
       windowWidth,decimalWindowWidth,householdDecisions,tadoOventrop,n90Costs,humidifierEfficiency,glassvacTemperature,windowSubject,windowCondensation,
     };
   });
@@ -839,6 +883,7 @@ try {
   result.compact = await verifyCompactStdio(extracted);
   assert.deepEqual(result.windowCondensation,result.compact.windowCondensation);
   assert.deepEqual(result.decimalWindowWidth,result.compact.decimalWindowWidth);
+  assert.deepEqual(result.singleLaundry,result.compact.singleLaundry);
   assert.deepEqual(result.resource,result.compact.resource);
   result.archiveReadme = {replacedVersion:readme.previousVersion,registryLatestUrl};
   const identifier = `${releaseUrl}/${file}`;
