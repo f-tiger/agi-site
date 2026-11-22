@@ -1,21 +1,11 @@
 import {SUITE_CATEGORIES,SUITE_TOOLS,suitePath} from '../lib/ai-suite/registry.mjs';
+import {aiSuiteFeaturedCss, renderAiFeatured} from './ai-suite-featured.mjs';
 
-const assets = '<link rel="stylesheet" href="/studio-assets/ai-suite-directory.css?v=2">';
 const script = '<script type="module" src="/studio-assets/ai-suite-directory.mjs?v=3"></script>';
 
 export const suiteCount = SUITE_TOOLS.length;
 export const categoryPath = group => '/studio/ai/categories/'+group.id;
 export const searchIndexPath = '/studio/ai/search-index.json';
-const featuredTasks=[
-  ['/studio/table-review','按编号核对改写后的 CSV','Review a rewritten CSV by ID'],
-  ['/studio/ai/answer-citation-coverage','检查 AI 回答的引用覆盖','Check citation coverage in AI answers'],
-  ['/studio/ai/ai-json-output-contract','检查 AI 输出是否符合 JSON 约定','Validate an AI output against a JSON contract'],
-];
-
-export function aiSuiteTaskLinks(base,lang) {
-  return featuredTasks.map(([path,zh,en])=>({href:base+path,label:lang==='zh'?zh:en}));
-}
-
 export function aiSuiteSearchIndex(lang, base) {
   const alternate=lang==='zh'?'en':'zh';
   const prefix=new URL(base).pathname.replace(/\/$/,'');
@@ -43,14 +33,12 @@ export function renderAiIndex({BASE,lang,esc,home=false,category}) {
   const total=category?category.tools.length:suiteCount;
   const homeIntro=`<header class="suite-index-header"><div>
     <h2>${t('BPJ 自研 AI 工具','BPJ AI tools')}</h2>
-    <p>${t(`在浏览器里核对 AI 改写的 CSV、检查回答引用或验证 JSON 输出。选用 ${total.toLocaleString('zh-CN')} 个自研工具，也可以通过 MCP 接入 AI。`,`Review AI-rewritten CSVs, check answer citations, or validate JSON in your browser. Browse ${total.toLocaleString('en-US')} BPJ tools, also available through MCP.`)}</p>
+    <p>${t(`用浏览器中的工具完成 AI 评测与复核。工具目录中的 ${total.toLocaleString('zh-CN')} 项也可通过 MCP 调用。`,`Evaluate and review AI outputs in your browser. The directory's ${total.toLocaleString('en-US')} tools are also available through MCP.`)}</p>
     </div><nav aria-label="${t('工具目录入口','Tool directory links')}">
       <a href="${BASE}/studio/ai/">${t('完整工具目录','Full directory')}</a>
       <a href="${BASE}/studio/ai/#mcp">${t('连接 MCP','Connect MCP')}</a>
     </nav></header>`;
-  const tasks=!category?`<nav class="suite-home-tasks" aria-label="${t('常用 AI 工具任务','Common AI tool tasks')}">
-    ${aiSuiteTaskLinks(BASE,lang).map(({href,label})=>`<a href="${href}">${esc(label)}</a>`).join('')}
-  </nav>`:'';
+  const tasks = category ? '' : renderAiFeatured({BASE, lang, esc, heading: home ? 'h3' : 'h2'});
   const groupSelect=category?'':`<label class="suite-search-scope" for="suite-search-scope">
       <span>${t('分类','Category')}</span>
       <select id="suite-search-scope" data-suite-filter>
@@ -72,7 +60,7 @@ export function renderAiIndex({BASE,lang,esc,home=false,category}) {
     </li>`).join('')}</ul>
     </details>`;
   }).join('');
-  return `${assets}<section class="suite-index${home?' suite-index-home':''}${category?' suite-index-category':''}" ${home?`id="ai-tools" data-home-block="ai-tools" data-suite-source="${BASE}${searchIndexPath}"`:''} data-suite-index data-suite-total="${total}">
+  return `${aiSuiteFeaturedCss}<section class="suite-index${home?' suite-index-home':''}${category?' suite-index-category':''}" ${home?`id="ai-tools" data-home-block="ai-tools" data-suite-source="${BASE}${searchIndexPath}"`:''} data-suite-index data-suite-total="${total}">
     ${home?homeIntro:''}${tasks}
     <div class="suite-search" data-suite-controls hidden>
       <form data-suite-search-form role="search" aria-label="${t('搜索自研 AI 工具','Search BPJ AI tools')}">
