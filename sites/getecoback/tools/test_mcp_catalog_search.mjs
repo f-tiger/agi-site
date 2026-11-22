@@ -953,6 +953,9 @@ test('German noise comparisons prefer the noise check and retain cost, noise fau
     'Kann ich beim Klimakauf 39 dB Schalldruck im Silent-Modus mit 64 dB Schallleistung auf dem Energielabel vergleichen?',
     'Klimagerät 39/64 dB, Schalldruck vs Schallleistung',
     'PAC N90 50–52 dB Schalldruck gegen 64 dB Schallleistung vergleichen?',
+    'Midea PortaSplit 39 dB und De’Longhi Pinguino N90 64 dB im Schlafzimmer vergleichen',
+    'Sind 39 und 64 Dezibel bei Midea PortaSplit und PAC N90 vergleichbar?',
+    'PortaSplit 39 dB und PAC N90 64 dB: sind die Pegel gleich laut?',
   ];
   for(const q of exact){
     const hits=(await catalogue({q,view:'compact',limit:'5'})).tools;
