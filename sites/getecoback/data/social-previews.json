@@ -20,6 +20,12 @@
       "description": "Die Literzahl allein reicht nicht.",
       "alt": "Schematischer Keller mit Thermometer und Datenblatt: Temperatur und Betriebsgrenzen vor der Gerätewahl prüfen."
     },
+    "window-condensation": {
+      "image": "/assets/social/fenster-kondenswasser-v1.png",
+      "heading": "Kondenswasser am Fenster",
+      "description": "Wasser abwischen. Dann die Ursache prüfen.",
+      "alt": "Schematische Innenscheibe mit Wassertropfen und Thermometer zum Prüfen der Scheibentemperatur."
+    },
     "laundry": {
       "image": "/assets/social/waesche-kosten-v1.png",
       "heading": "Wäsche drinnen trocknen.",
@@ -55,6 +61,7 @@
     "/": "climate",
     "/guide/luftentfeuchter-ratgeber.html": "comparison",
     "/guide/luftentfeuchter-keller.html": "cellar",
+    "/guide/fenster-beschlagen-innen.html": "window-condensation",
     "/guide/waesche-trocknen-wohnung.html": "laundry",
     "/waeschetrockner-oder-luftentfeuchter.html": "laundry",
     "/guide/smarte-heizkoerperthermostate-lohnen-sich.html": "thermostat",

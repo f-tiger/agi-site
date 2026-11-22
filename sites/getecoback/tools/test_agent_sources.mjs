@@ -11,6 +11,9 @@ const labelEndpoint='https://library.delonghigroup.com/assetbank-delonghi/action
 const n90Label=labelEndpoint+'?assetId=209150&download=true';
 
 const cases=[
+ ['https://www.adac.de/rund-ums-haus/wohnen/haushalt/kondenswasser-am-fenster/','',true],
+ ['https://www.kaercher.com/de/de/home-and-garden/produkte/akku-fensterreiniger-c36','',true],
+ ['https://www.kaercher.com/de/de/home-and-garden/produkte/akku-fensterreiniger-c36?tag=example','',false],
  [n90Label,'',true],
  [n90Label,'sponsored nofollow',false],
  [labelEndpoint+'?download=true&assetId=209150','',false],
