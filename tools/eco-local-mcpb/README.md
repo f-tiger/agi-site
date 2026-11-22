@@ -149,6 +149,11 @@ verify the model evidence link, the missing Levoit part number, and
 rejection of unsupported model suffixes. Expired evidence still
 withholds a filter name and part number.
 
+Version 1.22.12 adds an offline German Philips humidifier filter check. Both
+profiles verify HU4803/01 with FY2401/30, HU2716/10 with FY3446/30, and the
+distinction between a documented part, an unverified candidate and an
+unknown device. Expired evidence withholds the part number.
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the

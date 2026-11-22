@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.22.11';
-const revision = '8e69e1278106176ea2f67ccb39e1e89ac181dffd';
+const version = '1.22.12';
+const revision = 'd2a3d8d23ee327241227ccf3a6d2428359082931';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -26,7 +26,7 @@ const oldNames = [
 const featureNames = ['entfeuchter_ablaufcheck', 'btu_empfehlung', 'fensterabdichtung_laenge',
   'taupunkt_lueften', 'fenstersauger_170mm_abziehlippe_geraetefamilie', 'fenster_oberflaeche_taucheck',
   'luftentfeuchter_waesche_einzelkosten', 'fritz_302_danfoss_adapter', 'keller_lueften_taupunkt_messwerte',
-  'luftreiniger_ersatzfilter_zuordnung'];
+  'luftreiniger_ersatzfilter_zuordnung', 'philips_verdunsterfilter_zuordnung'];
 const entry = 'src/server.mjs';
 const legacyHelpers = fileURLToPath(new URL('../mcp-registry/local-packages/', import.meta.url));
 const sha256 = buffer => createHash('sha256').update(buffer).digest('hex');
@@ -44,6 +44,9 @@ const ventilationGuide = ventilationCitation + '#taupunkt';
 const exactFilterTool = 'luftreiniger_ersatzfilter_zuordnung';
 const filterCitation = 'https://getecoback.com/ersatzfilter.html';
 const filterGuide = filterCitation + '#finder';
+const philipsFilterTool = 'philips_verdunsterfilter_zuordnung';
+const philipsFilterCitation = 'https://getecoback.com/guide/luftbefeuchter-ratgeber.html';
+const philipsFilterGuide = philipsFilterCitation + '#philips-verdunsterfilter';
 const cellarUri = 'ecoback://evidence/de/kellerentfeuchter';
 const laundryComparisonTool = 'waesche_trocknungskosten';
 const singleLaundryTool = 'luftentfeuchter_waesche_einzelkosten';
@@ -449,11 +452,44 @@ async function verifyExactFilter(call) {
   return {tool:exactFilterTool,guide:filterGuide,records,unresolved:true,unsupportedRejected:4};
 }
 
+async function verifyPhilipsFilter(call) {
+  const cases = [
+    [{model:'HU4803/01'},'documented_variant','FY2401/30','#philips-hu4803-01'],
+    [{model:'HU2716/10',candidate:'fy3446/30'},'documented_variant','FY3446/30','#philips-hu2716-10'],
+    [{model:'HU2716/10',candidate:'FY2401/30'},'candidate_not_documented','FY3446/30','#philips-hu2716-10'],
+    [{model:'unknown',candidate:'FY2401/30'},'identify_model',null,null],
+  ];
+  const now = new Date();
+  const age = (Date.UTC(now.getUTCFullYear(),now.getUTCMonth(),now.getUTCDate()) - Date.parse('2026-11-22')) / 86400000;
+  const fresh = age >= 0 && age <= 90;
+  const records = [];
+  for (const [args,status,part,anchor] of cases) {
+    const result = await call(args);
+    assert.equal(result.isError,false);
+    const data = result.structuredContent;
+    assert.deepEqual([data.citation_url,data.guide_url,data.market,data.source_checked],
+      [philipsFilterCitation,philipsFilterGuide,'DE','2026-11-22']);
+    assert.equal(data.manufacturer_source,'https://acc.philips.de/c-e/ho/luftreiniger-und-luftbefeuchter/air-purifier-filter-replacement');
+    assert.equal(data.status,!anchor || fresh ? status : 'source_recheck');
+    assert.equal(data.part_number,fresh ? part : null);
+    assert.equal(data.model_guide_url,anchor ? philipsFilterCitation+anchor : undefined);
+    if (anchor) assert.equal(new URL(data.manufacturer_datasheet).hostname,'www.documents.philips.com');
+    assert.doesNotMatch(result.content[0].text,/https?:\/\/[^"\s]*(?:amazon\.|amzn\.)|[?&]tag=/i);
+    records.push([data.status,data.part_number,data.model_guide_url ?? null]);
+  }
+  for (const args of [{model:'HU4803/03'},{model:'AC2889'},{model:'HU4803/01',candidate:'X'.repeat(25)}]) {
+    const result = await call(args);
+    assert.equal(result.isError,true);
+    assert.equal(result.structuredContent,undefined);
+  }
+  return {name:philipsFilterTool,guide:philipsFilterGuide,records,rejected:3};
+}
+
 async function verifyStdio(extracted, manifest) {
   const {TOOLS} = await import(pathToFileURL(join(extracted,'src/tools.mjs')));
   const {expandedDefinitions} = await import(pathToFileURL(join(extracted,'src/eco-suite/src/mcp-expanded.mjs')));
   const expected = JSON.parse(JSON.stringify(TOOLS));
-  assert.equal(expected.length,2023);
+  assert.equal(expected.length,2024);
   assert.deepEqual(manifest.server.mcp_config, {command:'node',args:['${__dirname}/'+entry]});
   return withStdio(extracted,[],async rpc => {
     const listed = [], sizes = [], cursors = new Set();
@@ -469,9 +505,9 @@ async function verifyStdio(extracted, manifest) {
       }
     } while (cursor !== undefined);
     assert.deepEqual(listed,expected);
-    assert.deepEqual(sizes,[...Array(20).fill(100),23]);
+    assert.deepEqual(sizes,[...Array(20).fill(100),24]);
     const names = new Set(listed.map(tool=>tool.name));
-    assert.equal(names.size,2023);
+    assert.equal(names.size,2024);
     assert.ok(oldNames.every(name=>names.has(name)), 'Expected all eight supported legacy tools');
     assert.ok([...names].every(name=>!/balkonspeicher|balkonkraftwerk|solarbank|pv[_-]speicher/i.test(name)));
     assert.ok(manifest.tools.every(tool=>names.has(tool.name)));
@@ -521,8 +557,10 @@ async function verifyStdio(extracted, manifest) {
       rpc('tools/call',{name,arguments:args}));
     const exactFilter = await verifyExactFilter(args =>
       rpc('tools/call',{name:exactFilterTool,arguments:args}));
+    const philipsFilter = await verifyPhilipsFilter(args =>
+      rpc('tools/call',{name:philipsFilterTool,arguments:args}));
     return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,windowCondensation,decimalWindowWidth,
-      singleLaundry,fritzValve,drainRoute,measuredVentilation,exactFilter,
+      singleLaundry,fritzValve,drainRoute,measuredVentilation,exactFilter,philipsFilter,
       firstExamples:['btu_empfehlung','entfeuchter_ablaufcheck'],finder:verifyFinder(extracted,drain),
       lastPageExample:last.name,legacyNames:oldNames.length,network:'disabled'};
   });
@@ -1025,6 +1063,14 @@ async function verifyCompactStdio(extracted) {
     }
     const exactFilter = await verifyExactFilter(eingaben =>
       rpc('tools/call',{name:runner,arguments:{name:exactFilterTool,eingaben}}));
+    const philipsLookup = await rpc('tools/call',{
+      name:finder,arguments:{frage:'Welcher Ersatzfilter passt zum Philips HU4803/01?'},
+    });
+    assert.equal(philipsLookup.isError,false);
+    assert.equal(philipsLookup.structuredContent.tools[0]?.name,philipsFilterTool);
+    assert.equal(philipsLookup.structuredContent.tools[0]?.guide_url,philipsFilterGuide);
+    const philipsFilter = await verifyPhilipsFilter(eingaben =>
+      rpc('tools/call',{name:runner,arguments:{name:philipsFilterTool,eingaben}}));
     const laundryPrecision = await verifyCompactLaundryPrecision(rpc,finder);
     const humidifierEfficiency = await verifyCompactHumidifierEfficiency(rpc,finder,runner);
     const glassvacTemperature = await verifyCompactGlassvacTemperature(rpc,finder,runner);
@@ -1050,7 +1096,7 @@ async function verifyCompactStdio(extracted) {
     return {
       tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,
       liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,singleLaundry,fritzValve,drainRoute,
-      measuredVentilation,exactFilter,laundryPrecision,windowBlade,windowLookup,
+      measuredVentilation,exactFilter,philipsFilter,laundryPrecision,windowBlade,windowLookup,
       windowWidth,decimalWindowWidth,householdDecisions,tadoOventrop,n90Costs,humidifierEfficiency,glassvacTemperature,windowSubject,windowCondensation,
     };
   });
@@ -1119,6 +1165,7 @@ try {
   assert.deepEqual(result.drainRoute,result.compact.drainRoute);
   assert.deepEqual(result.measuredVentilation,result.compact.measuredVentilation);
   assert.deepEqual(result.exactFilter,result.compact.exactFilter);
+  assert.deepEqual(result.philipsFilter,result.compact.philipsFilter);
   assert.deepEqual(result.resource,result.compact.resource);
   result.archiveReadme = {replacedVersion:readme.previousVersion,registryLatestUrl};
   const identifier = `${releaseUrl}/${file}`;
