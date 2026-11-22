@@ -144,6 +144,17 @@ class HumidifierTests(unittest.TestCase):
                     for key in p['sources']:self.assertIn(self.data['sources'][key]['url'],md)
                 self.assertIn(self.data['sources']['uba']['url'],md)
 
+    def test_humidifier_efficiency_section_is_published_with_both_operating_limits(self):
+        path = catalog.ROOT / 'site/guide' / f'{guide.ENERGY}.html'
+        html, md = path.read_text(), path.with_suffix('.md').read_text()
+        self.assertEqual(html.count('id="effizienz-vergleichen"'), 1)
+        for text in (html, md):
+            self.assertIn('365 W Nennleistung', text)
+            self.assertIn('Eine separate Leistungsaufnahme für jede Stufe nennt sie dort nicht.', text)
+            self.assertIn('Stufe I 6 W und bis zu 200 g/h, für Stufe II 18 W und bis zu 370 g/h', text)
+            for source in ('oskar_manual', 'lb55_manual'):
+                self.assertIn(self.data['sources'][source]['url'], text)
+
     def test_published_accessory_lookup_keeps_model_to_part_matches(self):
         base = catalog.ROOT / 'site/guide'
         html = (base / f'{guide.MAIN}.html').read_text()

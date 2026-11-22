@@ -66,6 +66,24 @@ function fixture() {
   return {writes,send,rpc,result,call};
 }
 
+test('compact humidifier results keep a nominal wattage from being treated as a measured efficiency', async () => {
+  const {call,writes} = fixture();
+  const name = 'befeuchter_nennwatt_abgabeleistung_bezug';
+  const evidence = origin+'/guide/luftbefeuchter-stromverbrauch.html';
+  const found = await call(compactPath,findName,{frage:'Beurer LB55 oder Oskar mit 18 W: Welcher ist bei 365 Watt effizienter?'});
+  assert.equal(found.structuredContent.tools[0]?.name,name);
+  assert.equal(found.structuredContent.tools[0].citation_url,evidence);
+  assert.equal(found.structuredContent.tools[0].guide_url,evidence+'#effizienz-vergleichen');
+  const inputs = {gemessene_wasserabgabe_ml_h:400,elektrische_leistung_w:365,gleiche_stufe_bedingung:false};
+  const unknown = await call(compactPath,runName,{name,eingaben:inputs});
+  assert.equal(unknown.structuredContent.ml_pro_wh,null);
+  assert.equal(unknown.structuredContent.citation_url,evidence);
+  assert.equal(unknown.structuredContent.guide_url,evidence+'#effizienz-vergleichen');
+  const comparable = await call(fullPath,name,{...inputs,gleiche_stufe_bedingung:true});
+  assert.equal(comparable.structuredContent.ml_pro_wh,1.1);
+  assert.deepEqual(writes,[]);
+});
+
 test('only the exact compact profile changes the HTTP tool list and adds resources', async () => {
   const {result,rpc,call,writes} = fixture();
   const protocolVersion = '2025-06-18';
