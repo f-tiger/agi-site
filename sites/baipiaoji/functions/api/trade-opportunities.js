@@ -113,7 +113,7 @@ export async function handleTradeOpportunities({request, waitUntil}, {
         limit: RESULT_LIMIT,
         onlyLatestVersions: true,
       }),
-      redirect: 'error',
+      redirect: 'manual',
       signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
     });
     if ([429, 503, 504].includes(response.status)) return unavailable(503);

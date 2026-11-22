@@ -1,12 +1,12 @@
 const zh = document.documentElement.lang.startsWith('zh');
 const t = (cn,en) => zh ? cn : en;
 const form = document.querySelector('[data-trade-ted]');
-const query = form.querySelector('input');
+const query = form.querySelector('input[type=search]');
 const submit = form.querySelector('button');
 const status = document.querySelector('[data-trade-status]');
 const results = document.querySelector('[data-trade-results]');
+const official = document.querySelector('[data-trade-ted-fallback]');
 const qa = ['__ci','__probe','__qa','qa','ci'].some(key => new URLSearchParams(location.search).has(key));
-submit.disabled = false;
 
 function track(source) {
   if (qa || navigator.webdriver || navigator.doNotTrack === '1' || navigator.globalPrivacyControl === true) return;
@@ -79,6 +79,9 @@ form.addEventListener('submit', async event => {
     status.textContent = t('请输入至少 2 个字符的产品关键词。','Enter at least two characters.');
     return;
   }
+  const officialResults = new URL(form.action);
+  officialResults.search = new URLSearchParams({FT:product,'search-scope':'ACTIVE'});
+  official.href = officialResults.href;
   submit.disabled = true;
   query.readOnly = true;
   status.textContent = t('正在搜索 TED…','Searching TED…');
