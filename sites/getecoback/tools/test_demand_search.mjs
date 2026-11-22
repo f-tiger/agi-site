@@ -207,6 +207,8 @@ test('German exact N90 offer identity searches reach the existing model evidence
    'Ist der PAC N90 ECO Silent dasselbe Modell wie im Angebot?',
    'Ist die Artikel-Nr. des Pinguino N90 für Deutschland identisch?',
    'Kann ich beim PAC N90 ohne vollständige Modellbezeichnung bestellen?',
+   'Ist das Angebot mit 8004399512351 auch die ECO-Silent-Version?',
+   'Stimmt die Typenbezeichnung De’Longhi PAC N90 im deutschen Angebot ohne ECO Silent?',
    '8004399512351',
  ]) {
    const hits=searchEntries(index,q,'de');
@@ -219,5 +221,7 @@ test('German exact N90 offer identity searches reach the existing model evidence
    'Was kostet der PAC N90 ECO Silent?',
    'Welche EAN passt zum DeLonghi PAC EX105?',
    'Passt die Halterung zur Midea PortaSplit EAN 4048164116478?',
+   'Was verbraucht das PAC N90 ECO Silent laut EAN 8004399512351 im Betrieb?',
+   'PAC N90 mit EAN 8004399512351: Leistungsaufnahme in W?',
  ]) assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u===page+'#testlage'),q);
 });

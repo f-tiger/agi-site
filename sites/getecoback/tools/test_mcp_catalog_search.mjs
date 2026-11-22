@@ -845,6 +845,8 @@ test('German N90 offer identity and label-cost requests reach different verified
    'Ist der PAC N90 ECO Silent dasselbe Modell wie im Angebot?',
    'Ist die Artikel-Nr. des Pinguino N90 für Deutschland identisch?',
    'Kann ich beim PAC N90 ohne vollständige Modellbezeichnung bestellen?',
+   'Ist das Angebot mit 8004399512351 auch die ECO-Silent-Version?',
+   'Stimmt die Typenbezeichnung De’Longhi PAC N90 im deutschen Angebot ohne ECO Silent?',
    '8004399512351',
  ]) {
    const results=(await catalogue({q,view:'compact',limit:'5'})).tools;
@@ -856,6 +858,7 @@ test('German N90 offer identity and label-cost requests reach different verified
  for(const q of [
    'Was kostet eine Stunde mit dem PAC N90 ECO Silent bei 35 Cent pro kWh laut EU-Label?',
    'DeLonghi Pinguino PAC N90 EAN 8004399512351 – Strom-Kosten bei 35 Cent pro kWh?',
+   'Was verbraucht das PAC N90 ECO Silent laut EAN 8004399512351 im Betrieb?',
  ]) {
    const [first]=(await catalogue({q,view:'compact'})).tools;
    assert.equal(first?.name,energy,q);
@@ -865,6 +868,11 @@ test('German N90 offer identity and label-cost requests reach different verified
   'Welche EAN passt zum DeLonghi PAC EX105?',
   'Welche Halterung gehört zur Midea PortaSplit mit EAN 4048164116478?',
  ]) assert.notEqual((await catalogue({q,view:'compact'})).tools[0]?.name,identity,q);
+ for(const q of [
+  'DeLonghi PAC EX105 Energielabel Stromkosten',
+  'DeLonghi PAC EX105 Energieetikett und Preis pro Stunde',
+ ]) assert.ok(!(await catalogue({q,view:'compact'})).tools.some(tool=>tool.name===energy),q);
+ assert.ok(!(await catalogue({q:'PAC N90 mit EAN 8004399512351: Leistungsaufnahme in W?',view:'compact'})).tools.some(tool=>tool.name===identity));
  assert.equal((await catalogue({q:identity,view:'compact'})).tools[0]?.name,identity);
  assert.equal(analytics,0);
 });

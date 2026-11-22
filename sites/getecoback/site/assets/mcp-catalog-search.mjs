@@ -2,7 +2,7 @@ import {exactGermanFilterModel} from './exact-filter-intent.mjs';
 import {philipsHumidifierFilterSection} from './philips-humidifier-filter-intent.mjs';
 import {asksForElectricBlanketCost, isElectricBlanketQuestion} from './electric-blanket-cost-intent.mjs';
 import {asksForHygrometerComparison} from './hygrometer-comparison-intent.mjs';
-import {asksForN90ModelIdentity} from './n90-model-intent.mjs';
+import {asksForN90ModelIdentity, namesAnotherPacWithoutN90} from './n90-model-intent.mjs';
 import {asksForCellarVentilationCheck} from './cellar-ventilation-intent.mjs';
 import {asksForDehumidifierDrainRoute} from './dehumidifier-drain-intent.mjs';
 
@@ -337,6 +337,7 @@ export function findCatalogueTools(index, {query='', category='', name=null}={})
   const hygrometerComparison = asksForHygrometerComparison(focus.query);
   const hygrometerComparisonTool = 'hygrometer_messbereiche';
   const n90Identity = asksForN90ModelIdentity(focus.query);
+  const otherPacModel = namesAnotherPacWithoutN90(focus.query);
   const n90IdentityTool = 'pac_n90_ean_abgleichen';
   const singleLaundry = asksForSingleLaundryCost(focus.query);
   const fritzValve = asksForFritzValveAdapter(focus.query);
@@ -348,7 +349,7 @@ export function findCatalogueTools(index, {query='', category='', name=null}={})
     if (entry.tool.name === blanketCostTool && !blanketCost) continue;
     if (entry.tool.name === 'hygrometer_zweipunkt_referenz_abgleich' && hygrometerComparison) continue;
     if (entry.tool.name === n90IdentityTool && !n90Identity) continue;
-    if (entry.tool.name === 'pac_n90_energielabel_zu_stromkosten' && (blanketQuestion || n90Identity)) continue;
+    if (entry.tool.name === 'pac_n90_energielabel_zu_stromkosten' && (blanketQuestion || n90Identity || otherPacModel)) continue;
     if (entry.tool.name === fritzValveTool && !fritzValve) continue;
     if (fritzValve && (entry.tool.name === 'fritz_302_router_firmware_mindeststand' ||
         entry.tool.name === 'tado_x_oventrop_ventiladapter_pruefen')) continue;
