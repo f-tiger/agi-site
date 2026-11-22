@@ -213,6 +213,11 @@ the German EAN 4048164116478. Both offline modes verify the existing guide
 link and exclude the E and Cool variants from the original model's checks.
 The tool still requires the buyer's own measurements and window details.
 
+Version 1.22.25 adds the German share text and calculator link to the existing
+basement ventilation check. Both extracted modes verify the same text for
+airing, waiting, remeasurement and condensation risk. The calculator URL
+contains no measurements. The text contains the values entered for that call.
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the
