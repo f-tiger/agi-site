@@ -39,6 +39,10 @@ Halte die vollständige Modellnummer vom Typenschild oder die Teilenummer bereit
 
 - [Saugwischer](https://getecoback.com/guide/saugwischer-kaufberatung.html#modelle-vergleichen) Willst du Hartboden von Hand saugen und wischen? Prüfe die Freigabe für feuchte Reinigung und plane Zeit für Tank und Walze ein.
 
+- [De’Longhi PAC N90 ECO Silent: Modell prüfen](https://getecoback.com/guide/delonghi-pac-n90-test.html#testlage) Gleiche die vollständige Gerätekennung und die EAN 8004399512351 mit dem Angebot ab.
+
+- [Midea PortaSplit: Fensterfalz prüfen](https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html#fensterfalz) Gleiche zuerst die EAN 4048164116478 ab. Miss dann Breite und Höhe am Fensterfalz für die Standardhalterung.
+
 ## Luftreiniger 4 Modelle
 
 Vor der Auswahl Filtertyp, Bedienung und Verbrauchsmaterial des genauen Modells abgleichen. Die Herstellerfunktionen sind keine eigenen Produkttests und keine medizinische Wirkungsaussage.
