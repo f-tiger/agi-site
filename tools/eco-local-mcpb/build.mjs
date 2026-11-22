@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.22.10';
-const revision = 'd76dc1a488c326f59d56e1abed53460ed20247ea';
+const version = '1.22.11';
+const revision = '8e69e1278106176ea2f67ccb39e1e89ac181dffd';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -25,7 +25,8 @@ const oldNames = [
 ];
 const featureNames = ['entfeuchter_ablaufcheck', 'btu_empfehlung', 'fensterabdichtung_laenge',
   'taupunkt_lueften', 'fenstersauger_170mm_abziehlippe_geraetefamilie', 'fenster_oberflaeche_taucheck',
-  'luftentfeuchter_waesche_einzelkosten', 'fritz_302_danfoss_adapter', 'keller_lueften_taupunkt_messwerte'];
+  'luftentfeuchter_waesche_einzelkosten', 'fritz_302_danfoss_adapter', 'keller_lueften_taupunkt_messwerte',
+  'luftreiniger_ersatzfilter_zuordnung'];
 const entry = 'src/server.mjs';
 const legacyHelpers = fileURLToPath(new URL('../mcp-registry/local-packages/', import.meta.url));
 const sha256 = buffer => createHash('sha256').update(buffer).digest('hex');
@@ -40,6 +41,9 @@ const ventilationTool = 'keller_lueften_taupunkt_messwerte';
 const ventilationQuestion = 'Soll ich meinen Keller jetzt lüften? Draußen 28 °C und 60 %, drinnen 17 °C und 65 %, Wand 15 °C.';
 const ventilationCitation = 'https://getecoback.com/guide/keller-lueften-sommer.html';
 const ventilationGuide = ventilationCitation + '#taupunkt';
+const exactFilterTool = 'luftreiniger_ersatzfilter_zuordnung';
+const filterCitation = 'https://getecoback.com/ersatzfilter.html';
+const filterGuide = filterCitation + '#finder';
 const cellarUri = 'ecoback://evidence/de/kellerentfeuchter';
 const laundryComparisonTool = 'waesche_trocknungskosten';
 const singleLaundryTool = 'luftentfeuchter_waesche_einzelkosten';
@@ -404,6 +408,47 @@ async function verifyMeasuredVentilation(call) {
   return {name:ventilationTool,guide:ventilationGuide,cases:casesChecked,missingRejected:true,legacyPreserved:true};
 }
 
+async function verifyExactFilter(call) {
+  const cases = [
+    ['beurer-lr401','LR 401','69309','https://www.beurer.com/de/p/69309/'],
+    ['levoit-core-300s','Core 300S',null,'https://levoit.de/products/levoit-core-300-und-core-300s-ersatzfilter-hepa-filter'],
+  ];
+  const date = new Date();
+  const days = (Date.UTC(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate()) - Date.parse('2026-11-15')) / 86400000;
+  const evidenceCurrent = days >= 0 && days <= 30;
+  const records = [];
+  for (const [model,label,part,source] of cases) {
+    const result = await call({model});
+    assert.equal(result.isError,false);
+    const data = result.structuredContent;
+    assert.equal(data.status,evidenceCurrent?'documented_variant':'source_recheck');
+    assert.equal(data.exact_model,label);
+    assert.equal(data.part_number,evidenceCurrent?part:null);
+    assert.equal(data.manufacturer_source,source);
+    assert.equal(data.source_checked,'2026-11-15');
+    assert.equal(data.citation_url,filterCitation);
+    assert.equal(data.guide_url,filterGuide);
+    assert.equal(data.model_guide_url,filterCitation+'#'+model);
+    if (!evidenceCurrent) assert.equal(data.filter_name,null);
+    assert.doesNotMatch(result.content[0].text,/https?:\/\/[^"\s]*(?:amazon\.|amzn\.)|[?&]tag=/i);
+    records.push({model,guide:data.model_guide_url,source:data.manufacturer_source,
+      partNumber:data.part_number,status:data.status});
+  }
+  const unresolved = await call({model:'unknown'});
+  assert.equal(unresolved.isError,false);
+  assert.equal(unresolved.structuredContent.status,'identify_model');
+  assert.equal(unresolved.structuredContent.guide_url,filterGuide);
+  for (const field of ['model_guide_url','manufacturer_source','part_number']) {
+    assert.equal(Object.hasOwn(unresolved.structuredContent,field),false);
+  }
+  for (const model of ['levoit-core-300s-pro','levoit-core-300s-p','philips-ac2889','beurer-lr405']) {
+    const result = await call({model});
+    assert.equal(result.isError,true);
+    assert.equal(result.structuredContent,undefined);
+  }
+  return {tool:exactFilterTool,guide:filterGuide,records,unresolved:true,unsupportedRejected:4};
+}
+
 async function verifyStdio(extracted, manifest) {
   const {TOOLS} = await import(pathToFileURL(join(extracted,'src/tools.mjs')));
   const {expandedDefinitions} = await import(pathToFileURL(join(extracted,'src/eco-suite/src/mcp-expanded.mjs')));
@@ -474,8 +519,10 @@ async function verifyStdio(extracted, manifest) {
       rpc('tools/call',{name:drainTool,arguments:args}));
     const measuredVentilation = await verifyMeasuredVentilation((name,args) =>
       rpc('tools/call',{name,arguments:args}));
+    const exactFilter = await verifyExactFilter(args =>
+      rpc('tools/call',{name:exactFilterTool,arguments:args}));
     return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,windowCondensation,decimalWindowWidth,
-      singleLaundry,fritzValve,drainRoute,measuredVentilation,
+      singleLaundry,fritzValve,drainRoute,measuredVentilation,exactFilter,
       firstExamples:['btu_empfehlung','entfeuchter_ablaufcheck'],finder:verifyFinder(extracted,drain),
       lastPageExample:last.name,legacyNames:oldNames.length,network:'disabled'};
   });
@@ -959,6 +1006,25 @@ async function verifyCompactStdio(extracted) {
       ['aussen_c','aussen_rh_prozent','innen_c','innen_rh_prozent','wand_c']);
     const measuredVentilation = await verifyMeasuredVentilation((name,eingaben) =>
       rpc('tools/call',{name:runner,arguments:{name,eingaben}}));
+    for (const frage of [
+      'Welcher Ersatzfilter passt in meinen Beurer LR 401?',
+      'Ich brauche einen neuen Filter für den Levoit Core 300S ohne Pro. Welche Variante passt?',
+    ]) {
+      const match = await rpc('tools/call',{name:finder,arguments:{frage}});
+      assert.equal(match.isError,false);
+      assert.equal(match.structuredContent.tools[0]?.name,exactFilterTool);
+      assert.equal(match.structuredContent.tools[0]?.guide_url,filterGuide);
+    }
+    for (const frage of [
+      'Welcher Ersatzfilter passt in den Xiaomi LR 401?',
+      'Welcher Ersatzfilter passt in den Levoit Core 300S Plus?',
+    ]) {
+      const match = await rpc('tools/call',{name:finder,arguments:{frage}});
+      assert.equal(match.isError,false);
+      assert.ok(!match.structuredContent.tools.some(tool=>tool.name===exactFilterTool));
+    }
+    const exactFilter = await verifyExactFilter(eingaben =>
+      rpc('tools/call',{name:runner,arguments:{name:exactFilterTool,eingaben}}));
     const laundryPrecision = await verifyCompactLaundryPrecision(rpc,finder);
     const humidifierEfficiency = await verifyCompactHumidifierEfficiency(rpc,finder,runner);
     const glassvacTemperature = await verifyCompactGlassvacTemperature(rpc,finder,runner);
@@ -984,7 +1050,7 @@ async function verifyCompactStdio(extracted) {
     return {
       tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,
       liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,singleLaundry,fritzValve,drainRoute,
-      measuredVentilation,laundryPrecision,windowBlade,windowLookup,
+      measuredVentilation,exactFilter,laundryPrecision,windowBlade,windowLookup,
       windowWidth,decimalWindowWidth,householdDecisions,tadoOventrop,n90Costs,humidifierEfficiency,glassvacTemperature,windowSubject,windowCondensation,
     };
   });
@@ -1052,6 +1118,7 @@ try {
   assert.deepEqual(result.fritzValve,result.compact.fritzValve);
   assert.deepEqual(result.drainRoute,result.compact.drainRoute);
   assert.deepEqual(result.measuredVentilation,result.compact.measuredVentilation);
+  assert.deepEqual(result.exactFilter,result.compact.exactFilter);
   assert.deepEqual(result.resource,result.compact.resource);
   result.archiveReadme = {replacedVersion:readme.previousVersion,registryLatestUrl};
   const identifier = `${releaseUrl}/${file}`;
