@@ -17,7 +17,10 @@ import {videoGrowth} from './video-growth.mjs';
 import {videoEntry} from './video-entry.mjs';
 import {affiliateMetrics} from './affiliate-metrics.mjs';
 import {affiliateAudit} from './affiliate-audit.mjs';
-import {affiliateMeta, CELLAR_PAGE, taggedCellarModelEntry, taggedDrainEntry, taggedN90ModelEntry, taggedPortaSplitEntry, taggedWindowEntry} from './affiliate-meta.mjs';
+import {
+  affiliateMeta, CELLAR_PAGE, taggedCellarModelEntry, taggedDrainEntry, taggedN90ModelEntry,
+  taggedPortaSplitEntry, taggedWindowEntry, taggedWindowTikTokEntry, WINDOW_TIKTOK_WIDTH_EVENT,
+} from './affiliate-meta.mjs';
 import {CELLAR_MODEL_ENTRY_URL} from './cellar-entry.mjs';
 import {N90_ENTRY_URL, N90_TOOL_NAME} from './n90-entry.mjs';
 import {COMPLETE_MCP_WEEK_SQL, completedMcpReports} from './mcp-adoption.mjs';
@@ -429,6 +432,7 @@ const EV_NAMES = new Set([
   ...LAUNDRY_EVENTS,
   "crawl",
   "tool_complete", // Local category tools; path and empty-metadata gate below.
+  "eco_window_width_check",
   "page_view", "affiliate_click", "b2b_intent", "lead_intent", "outbound_choice", "cold_now", "strom_now",
   "feuchte_now",
   "embed_copy", "share", "video_play", "btu_calc", "hitze_check", "heat_check",
@@ -843,17 +847,24 @@ async function handleEvent(request, env, ctx) {
   const evCls = evUaClass(evUa);
   const drainEntry = taggedDrainEntry(body, request, evCls);
   const windowEntry = taggedWindowEntry(body, request, evCls);
+  const windowTikTokEntry = taggedWindowTikTokEntry(body, request, evCls);
+  const windowTikTokWidth = name === WINDOW_TIKTOK_WIDTH_EVENT;
+  if (windowTikTokWidth && !windowTikTokEntry) {
+    return json({ok:false,error:'invalid_window_tiktok_event'},400,cors);
+  }
   const portasplitEntry = taggedPortaSplitEntry(body, request, evCls);
   const cellarModelEntry = taggedCellarModelEntry(body, request, evCls);
   const n90Entry = taggedN90ModelEntry(body, request, evCls);
   let metadata = body.m;
   if (metadata?.mcp_profile !== undefined || metadata?.mcp_cellar_link !== undefined ||
-      metadata?.mcp_n90_link !== undefined || metadata?.mcp_n90_entry !== undefined) {
+      metadata?.mcp_n90_link !== undefined || metadata?.mcp_n90_entry !== undefined ||
+      metadata?.window_tiktok_entry !== undefined) {
     metadata = {...metadata};
     delete metadata.mcp_profile;
     delete metadata.mcp_cellar_link;
     delete metadata.mcp_n90_link;
     delete metadata.mcp_n90_entry;
+    delete metadata.window_tiktok_entry;
   }
   if (name === 'page_view' && page === CELLAR_PAGE && (drainEntry || metadata?.mcp_drain_entry !== undefined)) {
     metadata = {...metadata};
@@ -876,9 +887,10 @@ async function handleEvent(request, env, ctx) {
     if (cellarModelEntry) metadata.mcp_cellar_entry = 1;
   }
   if (name === 'page_view' && n90Entry) metadata = {mcp_n90_entry:1};
-  const meta = name === 'affiliate_click' ? affiliateMeta(metadata, drainEntry, windowEntry, portasplitEntry, cellarModelEntry, n90Entry)
+  if (windowTikTokEntry && name !== 'affiliate_click') metadata = {window_tiktok_entry:1};
+  const meta = name === 'affiliate_click' ? affiliateMeta(metadata, drainEntry, windowEntry, portasplitEntry, cellarModelEntry, n90Entry, windowTikTokEntry)
     : metadata ? JSON.stringify(metadata).slice(0, 200) : "";
-  const country = meterEvent ? "" : request.headers.get("CF-IPCountry") || "";
+  const country = meterEvent || windowTikTokWidth ? "" : request.headers.get("CF-IPCountry") || "";
   const day = new Date().toISOString().slice(0, 10);
 
   if (name === "page_view") auditUa(env, ctx, evUa, evCls);

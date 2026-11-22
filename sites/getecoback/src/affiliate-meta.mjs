@@ -1,4 +1,5 @@
 import productCatalog from '../data/product-catalog.json' with {type:'json'};
+import {WINDOW_CONDENSATION_PAGE} from '../site/assets/fenster-taucheck.mjs';
 import {WINDOW_ENTRY_DOCUMENT, WINDOW_ENTRY_PAGE} from './fenstersauger-entry.mjs';
 import {PORTASPLIT_ENTRY_DOCUMENT, PORTASPLIT_ENTRY_PAGE, PORTASPLIT_MODEL_SEARCH} from './portasplit-entry.mjs';
 import {CELLAR_MODEL_ENTRY_DOCUMENT, CELLAR_MODEL_ENTRY_PAGE, CELLAR_MODEL_SEARCH} from './cellar-entry.mjs';
@@ -55,6 +56,11 @@ function link(value) {
 }
 
 export const CELLAR_PAGE = '/guide/luftentfeuchter-keller.html';
+const ecoOrigin = 'https://getecoback.com';
+export const WINDOW_TIKTOK_GUIDE_PAGE = WINDOW_CONDENSATION_PAGE;
+export const WINDOW_TIKTOK_GUIDE_DOCUMENT = ecoOrigin + WINDOW_TIKTOK_GUIDE_PAGE +
+  '?utm_source=tiktok&utm_medium=social&utm_campaign=eco-dach-catalog-01';
+export const WINDOW_TIKTOK_WIDTH_EVENT = 'eco_window_width_check';
 const drainDocumentURL = 'https://getecoback.com' + CELLAR_PAGE +
   '?utm_source=eco-mcp&utm_medium=referral&utm_campaign=keller-ablauf';
 
@@ -106,6 +112,29 @@ export function taggedWindowEntry(body, request, uaClass) {
     WINDOW_ENTRY_PAGE, WINDOW_ENTRY_DOCUMENT, link => isGermanModelSearch(link, windowModelSearches));
 }
 
+export function taggedWindowTikTokEntry(body, request, uaClass) {
+  const headers = request.headers;
+  const fetchSite = headers.get('sec-fetch-site');
+  if (body.window_tiktok_entry !== true || uaClass !== 'human' ||
+      headers.get('origin') !== ecoOrigin || (fetchSite && fetchSite !== 'same-origin') ||
+      ['dnt', 'sec-gpc', 'x-probe'].some(name => headers.get(name) === '1')) return false;
+
+  const documentUrl = headers.get('referer');
+  // Same-origin requests omit fragments. The browser checks the entry section.
+  if (body.n === 'page_view') {
+    return body.p === WINDOW_TIKTOK_GUIDE_PAGE && documentUrl === WINDOW_TIKTOK_GUIDE_DOCUMENT;
+  }
+  if (body.p !== WINDOW_ENTRY_PAGE || documentUrl !== ecoOrigin + WINDOW_ENTRY_PAGE ||
+      body.r !== WINDOW_TIKTOK_GUIDE_DOCUMENT) return false;
+
+  if (body.n === WINDOW_TIKTOK_WIDTH_EVENT) {
+    const fields = ['n', 'p', 'r', 'm', 'window_tiktok_entry'];
+    return Object.keys(body).every(key => fields.includes(key)) &&
+      (body.m == null || (typeof body.m === 'object' && !Array.isArray(body.m) && !Object.keys(body.m).length));
+  }
+  return body.n === 'affiliate_click' && isGermanModelSearch(body.m?.link_url, windowModelSearches);
+}
+
 export function taggedPortaSplitEntry(body, request, uaClass) {
   return body.mcp_portasplit_entry === true && eligibleModelEntry(body, request, uaClass,
     PORTASPLIT_ENTRY_PAGE, PORTASPLIT_ENTRY_DOCUMENT, link => isGermanModelSearch(link, portasplitModelSearches));
@@ -121,13 +150,14 @@ export function taggedN90ModelEntry(body, request, uaClass) {
     N90_ENTRY_PAGE, N90_ENTRY_DOCUMENT, link => link === N90_PRODUCT_URL);
 }
 
-export function affiliateMeta(meta, taggedDrain = false, taggedWindow = false, taggedPortaSplit = false, taggedCellar = false, taggedN90 = false) {
+export function affiliateMeta(meta, taggedDrain = false, taggedWindow = false, taggedPortaSplit = false, taggedCellar = false, taggedN90 = false, taggedWindowTikTok = false) {
   const clean = {};
   if (taggedDrain) clean.mcp_drain_entry = 1;
   if (taggedWindow) clean.mcp_window_entry = 1;
   if (taggedPortaSplit) clean.mcp_portasplit_entry = 1;
   if (taggedCellar) clean.mcp_cellar_entry = 1;
   if (taggedN90) clean.mcp_n90_entry = 1;
+  if (taggedWindowTikTok) clean.window_tiktok_entry = 1;
   if (!meta || typeof meta !== 'object' || Array.isArray(meta)) return JSON.stringify(clean);
   for (const [key, value] of [
     ['source', text(meta.source, 48)],

@@ -1,4 +1,4 @@
-import {CELLAR_PAGE} from './affiliate-meta.mjs';
+import {CELLAR_PAGE, WINDOW_TIKTOK_GUIDE_PAGE} from './affiliate-meta.mjs';
 import {WINDOW_ENTRY_PAGE} from './fenstersauger-entry.mjs';
 import {PORTASPLIT_ENTRY_PAGE} from './portasplit-entry.mjs';
 import {N90_ENTRY_PAGE, N90_PRODUCT_URL} from './n90-entry.mjs';
@@ -21,6 +21,13 @@ export const AUDIT_SQL = `SELECT day, name, page, ref,
   CASE WHEN page='${WINDOW_ENTRY_PAGE}' AND ua_class='human' AND json_valid(meta)
     THEN COALESCE(json_type(meta,'$.mcp_window_entry') = 'integer'
       AND json_extract(meta,'$.mcp_window_entry') = 1,0) ELSE 0 END AS window_entry,
+  CASE WHEN ua_class='human' AND json_valid(meta)
+    THEN COALESCE(json_type(meta,'$.window_tiktok_entry') = 'integer'
+      AND json_extract(meta,'$.window_tiktok_entry') = 1
+      AND ((page='${WINDOW_TIKTOK_GUIDE_PAGE}' AND name='page_view')
+        OR (page='${WINDOW_ENTRY_PAGE}' AND (name='eco_window_width_check'
+          OR (name='affiliate_click' AND json_extract(meta,'$.link_url')='https://www.amazon.de/s?tag=getecoback-21')))),0)
+    ELSE 0 END AS window_tiktok_entry,
   CASE WHEN page='${PORTASPLIT_ENTRY_PAGE}' AND ua_class='human' AND json_valid(meta)
     THEN COALESCE(json_type(meta,'$.mcp_portasplit_entry') = 'integer'
       AND json_extract(meta,'$.mcp_portasplit_entry') = 1,0) ELSE 0 END AS portasplit_entry,
@@ -31,10 +38,11 @@ export const AUDIT_SQL = `SELECT day, name, page, ref,
     ELSE 0 END AS n90_entry,
   COUNT(*) AS n, date('now') AS end_exclusive
 FROM ev
-WHERE name IN ('page_view','affiliate_click')
+WHERE (name IN ('page_view','affiliate_click')
+    OR (name='eco_window_width_check' AND page='${WINDOW_ENTRY_PAGE}' AND ua_class='human'))
   AND day >= date('now','-56 days') AND day < date('now')
   AND (ua_class IS NULL OR ua_class='human') AND page NOT LIKE '/__ci%'
-GROUP BY day, name, page, ref, link, source, drain_entry, cellar_entry, window_entry, portasplit_entry, n90_entry`;
+GROUP BY day, name, page, ref, link, source, drain_entry, cellar_entry, window_entry, window_tiktok_entry, portasplit_entry, n90_entry`;
 
 const GAPS = [
   {day:'2026-09-24',approx_start_utc:'13:00'},
@@ -81,12 +89,14 @@ const section = ()=>({...count(),cohorts:{},cohorts_v2:{},n90_guides:{model:{...
 const dayAt = (end,offset)=>new Date(Date.parse(end+'T00:00:00Z')+offset*86400000).toISOString().slice(0,10);
 // Launch day is partial. Mixed windows expose only the dates actually counted.
 const firstFullDrainDay = '2026-11-20';
+const firstFullWindowTikTokDay = '2026-11-23';
 const range = (start,end)=>({...section(),start,end_exclusive:end,
   // An empty marker cohort alone cannot establish when coverage started.
   mcp_cellar_entry:null,
   mcp_n90_entry:null,
   mcp_window_entry:null,
   mcp_portasplit_entry:null,
+  window_tiktok:null,
   mcp_drain_entry: end <= firstFullDrainDay ? null : {
     start: start < firstFullDrainDay ? firstFullDrainDay : start, end_exclusive:end, ...count(),
   },
@@ -114,6 +124,25 @@ const trackedModelPaths = new Map([
   [WINDOW_ENTRY_PAGE, {column:'window_entry', aggregate:'mcp_window_entry'}],
   [PORTASPLIT_ENTRY_PAGE, {column:'portasplit_entry', aggregate:'mcp_portasplit_entry'}],
 ]);
+function addWindowTikTok(section, row) {
+  if (row.window_tiktok_entry !== 1 || row.n === 0 || row.day < firstFullWindowTikTokDay) return;
+  let key;
+  if (row.page === WINDOW_TIKTOK_GUIDE_PAGE && row.name === 'page_view') key = 'tagged_landing_views';
+  else if (row.page === WINDOW_ENTRY_PAGE && row.name === 'eco_window_width_check') key = 'width_checks';
+  else if (row.page === WINDOW_ENTRY_PAGE && row.name === 'affiliate_click' &&
+           row.link === 'https://www.amazon.de/s?tag=getecoback-21') key = 'model_search_clicks';
+  if (!key) return;
+  const evidence = section.window_tiktok ??= {
+    start:section.start < firstFullWindowTikTokDay ? firstFullWindowTikTokDay : section.start,
+    end_exclusive:section.end_exclusive,
+    first_recorded_day:row.day,
+    tagged_landing_views:null,
+    width_checks:null,
+    model_search_clicks:null,
+  };
+  if (row.day < evidence.first_recorded_day) evidence.first_recorded_day = row.day;
+  evidence[key] = (evidence[key] ?? 0) + row.n;
+}
 function add(s,r,channel) {
   const field=r.name==='page_view'?'page_views':'affiliate_clicks';
   s[field]+=r.n;
@@ -162,18 +191,25 @@ export async function affiliateAudit(db,classifyRef,now=new Date()) {
   const weeks=Array.from({length:8},(_,i)=>range(dayAt(start,i*7),dayAt(start,(i+1)*7)));
   const recentThree=range(dayAt(end,-3),end),previousThree=range(dayAt(end,-10),dayAt(end,-7));
   for(const r of rows) {
-    if(!Number.isSafeInteger(r.n)||r.n<0||!byDay.has(r.day)||!['page_view','affiliate_click'].includes(r.name)) throw Error('affiliate_audit_invalid');
+    if(!Number.isSafeInteger(r.n)||r.n<0||!byDay.has(r.day)||!['page_view','affiliate_click','eco_window_width_check'].includes(r.name)) throw Error('affiliate_audit_invalid');
+    const wi=Math.floor((Date.parse(r.day)-Date.parse(start))/86400000/7);
+    const recent=r.day>=recentThree.start;
+    const previous=r.day>=previousThree.start&&r.day<previousThree.end_exclusive;
+    addWindowTikTok(weeks[wi],r);
+    if (recent) addWindowTikTok(recentThree,r);
+    if (previous) addWindowTikTok(previousThree,r);
+    if (r.name==='eco_window_width_check') continue;
     byDay.get(r.day)[r.name==='page_view'?'page_views':'affiliate_clicks']+=r.n;
     const channel=classifyRef(r.ref);
     if(!['search','ai','fleet','social','self','direct','other'].includes(channel)) throw Error('affiliate_audit_channel');
-    const wi=Math.floor((Date.parse(r.day)-Date.parse(start))/86400000/7);
     add(weeks[wi],r,channel);
-    if(r.day>=recentThree.start) add(recentThree,r,channel);
-    if(r.day>=previousThree.start&&r.day<previousThree.end_exclusive) add(previousThree,r,channel);
+    if(recent) add(recentThree,r,channel);
+    if(previous) add(previousThree,r,channel);
   }
   return {
     metric:'recorded_events_not_users_or_orders',timezone:'UTC',start,end_exclusive:end,
     cohorts_v2_version:COHORTS_V2_VERSION,
+    window_tiktok_note:'Complete UTC days start 2026-11-23. The fixed tags and same-site handoff mark three independent event counts. Unobserved stages are null. A shared or typed link can carry the fixed tags.',
     known_collection_gaps:GAPS.filter(x=>x.day>=start&&x.day<end),
     note:'Missing events are not reconstructed. Gaps are known incidents, not an exhaustive uptime audit. Clicks / page views is an event ratio, not buyer conversion. Cohorts are fixed path rules, not randomized controls. Channel belongs to each event referrer, not session acquisition.',
     daily,weeks,last_three_complete_days:recentThree,same_weekdays_previous_week:previousThree,
