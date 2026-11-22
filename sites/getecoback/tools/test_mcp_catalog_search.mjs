@@ -27,9 +27,9 @@ test('the browser loads the current catalogue search module', async () => {
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 221);
+  assert.equal(withGuides.length, 222);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 19);
+  assert.equal(destinations.size, 20);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);
@@ -43,6 +43,25 @@ test('appliance search results link to exact owned evidence and keep canonical m
   assert.equal(example.guide_url, origin + '/produkte.html#wasserkocher-bosch-twk8613p');
   assert.equal(example.citation_url, origin + '/produkte.html');
   assert.equal(example.citation_markdown_url, origin + '/produkte.md');
+});
+
+test('the German window condensation question finds the measured check and fixed share answer', async () => {
+  const name = 'fenster_oberflaeche_taucheck';
+  const page = '/guide/fenster-beschlagen-innen.html';
+  const guide = origin + page + '#fenstersauger-gegen-kondenswasser';
+  for (const query of [
+    'Fenstersauger gegen Kondenswasser',
+    'Hilft ein Fenstersauger gegen Kondenswasser am Fenster oder reicht ein Tuch?',
+    '20 Grad 60 % Luftfeuchtigkeit und Scheibe 10 Grad: Ist Kondenswasser am Fenster plausibel?',
+  ]) {
+    const [first] = (await catalogue({q:query, view:'compact', limit:'3'})).tools;
+    assert.equal(first?.name, name, query);
+    assert.equal(first.guide_url, guide, query);
+    assert.equal(first.citation_url, origin + page, query);
+    assert.equal(findCatalogueTools(compact,{query})[0]?.name, name, query);
+  }
+  const question = 'Kondenswasser zwischen den Scheiben, was tun?';
+  assert.notEqual(findCatalogueTools(compact,{query:question})[0]?.name, name, question);
 });
 
 test('German condition questions find the cold-cellar evidence and preserve model-variant lookup', async () => {

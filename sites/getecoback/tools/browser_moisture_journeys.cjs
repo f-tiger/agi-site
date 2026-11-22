@@ -237,15 +237,72 @@ async function noJavaScript(browser){
  check(!await root.locator('form').isVisible(),'no-JS cannot submit incomplete questionnaire');
  await layout(page,'no-JS direct reading');await complete(f,'no-JS direct reading');
 }
+async function windowCondensation(browser,javaScriptEnabled){
+ const width=javaScriptEnabled?390:320;
+ const article='/guide/fenster-beschlagen-innen.html',fragment='#fenstersauger-gegen-kondenswasser';
+ const f=await fixture(browser,{width,javaScriptEnabled});
+ await f.goto(article+fragment);
+ const {page}=f,answer=page.locator(fragment),calculator=page.locator('#fenster-taucheck');
+ const canonical=origin+article,shareUrl=canonical+fragment;
+ equal(new URL(page.url()).hash,fragment,'the link opens the precise answer');
+ equal(await page.locator('link[rel=canonical]').getAttribute('href'),canonical,'main article remains canonical');
+ check(await answer.getByRole('heading',{level:2}).isVisible(),'the condensation answer has a visible heading');
+ const visibleAnswer=await answer.innerText();
+ check(/Kondenswasser/i.test(visibleAnswer)&&/Tuch/i.test(visibleAnswer)&&/Taupunkt/i.test(visibleAnswer),'the answer explains wiping and dew point without requiring the interactive tool');
+ check(visibleAnswer.includes('20')&&visibleAnswer.includes('60')&&visibleAnswer.includes('12'),'a worked measurement example is available without the interactive tool');
+ const permalink=answer.locator('a:not([href*="reddit.com"])');
+ const staticLinks=await permalink.evaluateAll(links=>links.map(link=>link.href));
+ check(staticLinks.includes(shareUrl),'the answer has a clean, copyable section URL');
+ destination(shareUrl,'window condensation answer');
+ const reddit=answer.locator('a[href^="https://www.reddit.com/submit?"]');
+ check(await reddit.isVisible(),'the optional Reddit composer link is visible');
+ const composerHref=await reddit.getAttribute('href'),composer=new URL(composerHref);
+ equal(composer.origin+composer.pathname,'https://www.reddit.com/submit','Reddit link opens the composer');
+ equal(composer.searchParams.get('url'),shareUrl,'Reddit includes only the fixed answer URL');
+ equal([...composer.searchParams.keys()].sort(),['title','url'],'Reddit URL has no additional fields');
+ equal(composer.searchParams.get('title'),'Kondenswasser am Innenfenster: abwischen und mit drei Messwerten prüfen','Reddit uses a fixed topic title');
+ equal(composer.hash,'','no encoded measurements or tracking in the Reddit fragment');
+
+ if(javaScriptEnabled){
+  const form=calculator.locator('form'),result=calculator.locator('[role=status][data-result]');
+  await form.waitFor({state:'visible'});
+  const before=f.navigations.slice(),pageUrl=page.url();
+  await form.locator('[name=room_c]').fill('20');
+  await form.locator('[name=room_rh_pct]').fill('60');
+  const surface=form.locator('[name=surface_c]'),submit=form.locator('[type=submit]');
+  await surface.fill('');
+  check(!(await form.evaluate(node=>node.checkValidity())),'the calculator requires a measured inside surface temperature');
+  for(const [temperature,state] of [[10,'unter_taupunkt'],[12,'nahe_am_taupunkt'],[14,'ueber_taupunkt']]){
+   await surface.fill(String(temperature));
+   await submit.click();
+   equal(await result.getAttribute('data-messlage'),state,'measured glass at '+temperature+' °C gives the correct outcome');
+   check(/12(?:[,.]0)?\s*°\s*C/.test(await result.innerText()),'the browser reports an indoor dew point of about 12 °C');
+  }
+  equal(f.navigations,before,'calculations leave both the guide and the external composer untouched');
+  equal(page.url(),pageUrl,'calculations do not add measurements to the page URL');
+  equal(await reddit.getAttribute('href'),composerHref,'calculations never alter the static sharing payload');
+  const completions=await page.evaluate(()=>window.__journeyCompletions.filter(event=>event.name==='eco_window_condensation_check'));
+  equal(completions,Array.from({length:3},()=>({name:'eco_window_condensation_check'})),'only the fixed completion name is emitted, without measurement inputs');
+ }else{
+  check(!await calculator.locator('form').isVisible(),'no-JavaScript readers cannot submit the local form');
+ }
+ check(!f.navigations.some(url=>new URL(url).hostname.endsWith('reddit.com')),'the fixture never visits the Reddit composer');
+ equal(f.events.filter(event=>event?.n!=='page_view'),[],'QA did not send business actions');
+ equal(f.google.filter(([name])=>name==='eco_window_condensation_check'),[],'QA did not relay the completion to GA4');
+ await layout(page,'window condensation '+width);
+ report.push({page:article,width,javaScriptEnabled,shareUrl});
+ await complete(f,'window condensation '+width);
+}
 (async()=>{
  fs.mkdirSync(dir,{recursive:true});const browser=await chromium.launch({headless:true,...launch,args:['--no-sandbox','--disable-dev-shm-usage']});
  try{
   for(const width of [390,1280]){await home(browser,width);await category(browser,width);await directComparison(browser,'/guide/luftentfeuchter-ratgeber.html','de',width);await directComparison(browser,'/en/guide/dehumidifier-20-sqm.html','en',width);}
   await editorialRoutes(browser);await coldAndMeasure(browser);await noJavaScript(browser);
+  for(const javaScriptEnabled of [true,false])await windowCondensation(browser,javaScriptEnabled);
   for(const width of [390,1280])await acquisitionPath(browser,width);
   for(const mode of ['denied','dnt','gpc','qa','webdriver'])await directComparison(browser,'/guide/luftentfeuchter-ratgeber.html','de',390,mode);
   fs.writeFileSync(path.join(dir,'moisture-journeys-browser.json'),JSON.stringify({pass:true,checks,fixtureRoot:site,scenarios:report},null,2));
-  console.log(JSON.stringify({pass:true,checks,viewports:[390,1280],scenarios:report.length}));
+  console.log(JSON.stringify({pass:true,checks,viewports:[320,390,1280],scenarios:report.length}));
  }finally{await browser.close();}
 })().catch(error=>{
  fs.mkdirSync(dir,{recursive:true});

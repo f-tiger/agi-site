@@ -1,61 +1,79 @@
-# Fenster beschlagen von innen: 3 Ursachen, 1 Diagnose
+# Fenster beschlagen von innen: Messen, abwischen oder Ursache prüfen
 
-> Morgens nasse Scheiben? Nicht immer ist Lüften die Lösung. Der 3-Ursachen-Check zeigt, ob es an Feuchte, Lüftung oder kalter Scheibe liegt.
+> Kondenswasser am Innenfenster einordnen: Taupunkt mit drei Messwerten prüfen, Wasser abwischen und entscheiden, wann die Ursache geprüft werden sollte.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/fenster-beschlagen-innen.html
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
 
-**Kurzantwort:** Die Scheibe beschlägt, weil die Raumluft an ihr unter den **Taupunkt** abkühlt. Dahinter stecken drei verschiedene Ursachen mit drei verschiedenen Lösungen: **1)** zu viel Feuchte im Raum (Schlafende, Wäsche, Pflanzen) → Feuchtequelle reduzieren oder entfeuchten; **2)** zu wenig Luftwechsel → morgens und abends 5–10 Minuten stoßlüften, nicht kippen; **3)** zu kalte Scheibe (alte Verglasung, Wärmebrücke) → das ist ein bauliches Problem, dagegen hilft kein Entfeuchter. Der Diagnose-Ablauf unten trennt die drei Fälle in zwei Minuten.
+**Kurzantwort:** Nasses Glas zunächst trockenwischen. Ob es erneut beschlägt, hängt von der Raumluft und der Temperatur an der Scheibe ab. Die drei Messwerte unten helfen beim Einordnen. Bei wiederholt nassen Wänden, möglichem Wassereintritt oder sichtbarem Schimmel die Ursache vor Ort klären.
 
 Diese Seite erklärt Bauphysik und Messwerte — sie ersetzt bei Bauschäden oder bestehendem Schimmelbefall keine Fachbegutachtung. Amazon-Links sind Partnerlinks; sie finanzieren diese Seite, ohne dass du mehr zahlst.
 
+## Hilft ein Fenstersauger gegen Kondenswasser?
+
+**Wasser an der zugänglichen Innenscheibe mit einem sauberen Tuch abwischen.** Bei mehreren nassen Scheiben kann ein dafür geeigneter Fenstersauger die Arbeit erleichtern. Kärcher nennt das Aufsaugen von Kondenswasser auf Glas als Einsatz und für das genaue Gerät gilt die jeweilige Anleitung. Bei häufiger Nutzung kannst du [Modelle und Einsatzgrenzen prüfen](https://getecoback.com/produkte.html#fenstersauger-belege).
+
+Wird dieselbe Stelle regelmäßig nass, halte Zeitpunkt, Stelle und Messwerte fest. **Feuchte zwischen den Scheiben** vom Fensterbetrieb prüfen lassen. Bei **wiederholt nassen Wänden, sichtbarem Schimmel oder möglichem Wassereintritt** die Ursache fachlich prüfen lassen. In der Mietwohnung der Hausverwaltung Bescheid geben.
+
+### Drei Messwerte vom selben Zeitpunkt
+
+- Miss **Raumtemperatur** und **relative Luftfeuchte** im genutzten Raum, mit Abstand zu Fenster und Heizung.
+
+- Miss zur gleichen Zeit die **Temperatur an der betroffenen Innenscheibe**. Bei wiederkehrender Nässe auch bei vergleichbaren Bedingungen erneut messen.
+
+- Vergleiche die Scheibentemperatur mit dem aus beiden Raumwerten berechneten **Taupunkt**. Ohne verlässlichen Scheibenwert bleibt der Vergleich offen.
+
+**Rechenbeispiel:** Bei **20 °C und 60 %** relativer Luftfeuchte liegt der Taupunkt bei **rund 12 °C**. Eine **10 °C** kalte Innenscheibe passt zu Kondensation. Bei **14 °C** erklärt diese Messung vorhandenes Wasser an der Stelle nicht. Prüfe Messort, Messzeit und andere Feuchtequellen.
+
+Der Check nutzt die Magnus-Näherung und rechnet Scheibentemperatur minus Taupunkt. Liegt der Unterschied innerhalb von **±1 °C**, miss erneut. Dieser Bereich dient zur Orientierung. Wie genau deine Geräte messen, kann der Check nicht bestimmen.
+
+Quellen geprüft am 22.11.2026. [ADAC zu Fensterkondensat](https://www.adac.de/rund-ums-haus/wohnen/haushalt/kondenswasser-am-fenster/) · [Umweltbundesamt zu Lüften und Raumfeuchte](https://www.umweltbundesamt.de/themen/gesundheit/umwelteinfluesse-auf-den-menschen/schimmel/wie-luefte-ich-richtig-tipps-tricks-zur) · [Kärcher zum vorgesehenen Einsatz](https://www.kaercher.com/de/de/home-and-garden/produkte/akku-fensterreiniger-c36).
+
 ## Warum ausgerechnet nachts im Schlafzimmer?
 
-💧 **Die Feuchtequelle liegt im Bett:** Fachportale nennen je nach Rechenweg **rund 1 bis 2 Liter** Wasser, die ein Mensch pro Nacht über Atem und Haut an die Raumluft abgibt (inventer.de); für einen 3–4-Personen-Haushalt summieren sich alle Quellen zusammen auf **10–15 Liter pro Tag**. Zu zweit im geschlossenen Schlafzimmer heißt das: mehrere Liter Wasserdampf, acht Stunden lang, ohne jeden Luftwechsel.
+Beim Atmen und Schwitzen gelangt Wasserdampf in die Raumluft. In einem kühleren Schlafzimmer kann die relative Feuchte bei gleicher Wasserdampfmenge höher sein als in einem wärmeren Raum. Ob sich Wasser auf dem Glas sammelt, hängt dabei von der Temperatur an genau dieser Stelle ab.
 
-Dazu kommt: Das Schlafzimmer ist meist der kühlste Raum der Wohnung. Kalte Luft kann weniger Wasser halten — dieselbe Wassermenge ergibt dort also eine höhere relative Luftfeuchte als im geheizten Wohnzimmer. Und die Fensterscheibe ist die kälteste Fläche im Raum. Deshalb schlägt sich das Wasser dort zuerst nieder, noch bevor irgendjemand ein Feuchteproblem vermutet.
+## Drei Hinweise auf die Ursache
 
-## Der 3-Ursachen-Check
+Miss an mehreren vergleichbaren Morgen und lege jeweils die Werte aus Zimmer und betroffener Stelle nebeneinander. Die Ursachen können zusammenspielen.
 
-Miss morgens direkt nach dem Aufstehen die Luftfeuchte im Schlafzimmer — dann ist der Wert am höchsten. Danach ordnest du dich hier ein:
+Beobachtungen und nächste Messung bei nassen Fenstern
 
-| Beobachtung | Wahrscheinliche Ursache | Was wirkt |
-| --- | --- | --- |
-| Morgens über 60 % Luftfeuchte, Scheibe großflächig nass | **Zu viel Feuchte** | Feuchtequellen reduzieren (Wäsche raus, Türen zum Bad zu) und entfeuchten |
-| Feuchte tagsüber normal, morgens hoch, Fenster nachts zu | **Zu wenig Luftwechsel** | Morgens und abends 5–10 Minuten stoßlüften, quer wenn möglich |
-| Feuchte unter 55 %, aber Scheibe trotzdem nass — oder nur Rahmen/Ecken | **Zu kalte Fläche** (Einfachglas, Wärmebrücke) | Baulich: Verglasung, Dämmung, ggf. Fachbetrieb. Kein Entfeuchter-Fall. |
+| Beobachtung | Nächster Schritt |
+| --- | --- |
+| Die Raumfeuchte steigt nach Duschen oder Wäschetrocknen | Feuchtequelle und Zeitpunkt notieren. Wasserdampf nach draußen abführen, wenn die Außenbedingungen dafür passen. |
+| Morgens ist es regelmäßig feuchter als abends | Vor und nach bedarfsgerechtem Stoßlüften erneut am selben Ort messen. Die Raumtemperatur mitnotieren. |
+| Vor allem ein kalter Glasrand, Rahmen oder eine Ecke wird wiederholt nass | Die örtliche Oberflächentemperatur messen und die Stelle dokumentieren. Bei anhaltender Nässe die Ursache prüfen lassen. |
 
-**Warum diese Unterscheidung zählt:** Wer bei Ursache 3 einen Entfeuchter kauft, hat Strom bezahlt und das Problem nicht gelöst. Wer bei Ursache 1 nur lüftet, bekommt es im Winter nicht in den Griff, weil das Lüftungsfenster zu kurz ist. Und wer bei Ursache 2 die Fenster dauerhaft kippt, kühlt die Laibung aus und produziert genau dort neuen Schimmel.
-
-**Zuerst messen: Hygrometer fürs Schlafzimmer**
-Ohne Messwert ist jede Maßnahme geraten. Ein einfaches Hygrometer zeigt, ob du über oder unter 60 % liegst — Modelle mit Min/Max-Speicher halten den Morgenwert fest, auch wenn du erst später hinschaust. Wir haben die Geräte nicht selbst getestet.
+**Zuerst ein vorhandenes Thermohygrometer nutzen**
+Miss damit Temperatur und relative Feuchte der Raumluft. Für das Glas brauchst du einen tatsächlichen Oberflächenwert. Wenn dir ein Raum-Messgerät fehlt, kannst du Messbereich und Genauigkeitsangaben vergleichen. Wir haben die Geräte nicht selbst getestet.
 
 Hygrometer auf Amazon ansehen →
 
-## Die Taupunkt-Rechnung: Wann genau beschlägt die Scheibe?
+## Wann kann sich Kondenswasser am Glas bilden?
 
-Es gibt eine harte Grenze, ab der Kondensat entsteht: Sinkt die Oberflächentemperatur der Scheibe unter den Taupunkt der Raumluft, fällt Wasser aus. Bei **20 °C und 60 % Luftfeuchte** liegt der Taupunkt bei rund **12 °C** — eine alte Einfachverglasung liegt bei Frost locker darunter, ein modernes Dreifachglas meist darüber. Genau dieselbe Physik steckt hinter dem Sommer-Problem im Keller: Unser [Taupunkt-Check](https://getecoback.com/guide/keller-lueften-sommer.html) rechnet dir den Wert für deine Zahlen aus — statt Raumluft und Kellerwand trägst du einfach Raumluft und geschätzte Scheibentemperatur ein.
+Erreicht die Luft unmittelbar an der Scheibe ihren Taupunkt, kann Wasserdampf kondensieren. Auch wenn der Raumwert unauffällig aussieht, kann das Glas am Rand kalt genug sein. Ein einzelner Luftfeuchtewert verrät daher nicht, warum es an genau dieser Stelle nass ist. [Messwerte und Rechenbeispiel ansehen](https://getecoback.com/guide/fenster-beschlagen-innen.html#fenstersauger-gegen-kondenswasser).
 
-## Was dauerhaft hilft — in dieser Reihenfolge
+## Was bei wiederkehrender Nässe hilft
 
-- **Feuchtequellen ausschalten:** Wäsche nicht im Schlafzimmer trocknen (das ist die größte vermeidbare Einzelquelle — Details unter [Wäsche in der Wohnung trocknen](https://getecoback.com/guide/waesche-trocknen-wohnung.html)), Badezimmertür beim Duschen schließen, viele Pflanzen aus dem Schlafraum.
+- **Feuchteeintrag erfassen.** Beobachte, wann geduscht, gekocht oder [Wäsche getrocknet](https://getecoback.com/guide/waesche-trocknen-wohnung.html) wird. Feuchte aus Bad und Küche direkt nach draußen abführen, soweit möglich.
 
-- **Richtig lüften statt viel lüften:** Zweimal täglich 5–10 Minuten weit auf, idealerweise quer. Dauerkipp bringt wenig Luftwechsel, kühlt aber die Wandflächen aus.
+- **Stoßlüften und nachmessen.** Das Umweltbundesamt empfiehlt für Schlafzimmer weit geöffnete Fenster vor dem Schlafen und nach dem Aufstehen. Dauer und Häufigkeit hängen von Wetter, Raumnutzung und Gebäudesituation ab.
 
-- **Schlafzimmer nicht auskühlen lassen:** Unter etwa 16 °C wird die relative Feuchte auch ohne zusätzliche Quelle kritisch. Kühl schlafen ja — aber nicht ungeheizt. Und übertreib in der Frostperiode nicht in die andere Richtung: Zeigt das Hygrometer dauerhaft unter 40 %, bist du beim umgekehrten Problem — dann hilft unsere Rechnung zum [Luftbefeuchter-Stromverbrauch](https://getecoback.com/guide/luftbefeuchter-stromverbrauch.html).
-
-- **Entfeuchten, wenn die drei Schritte nicht reichen:** Ein Gerät mit Hygrostat hält die Feuchte automatisch unter 60 % und arbeitet nachts weiter, wenn Lüften nicht geht. Welche Entzugsleistung dein Raum braucht, steht im [Luftentfeuchter-Ratgeber](https://getecoback.com/guide/luftentfeuchter-ratgeber.html); wie das gegen Schimmel wirkt (und wo die Grenze liegt), erklärt [Luftentfeuchter gegen Schimmel](https://getecoback.com/guide/luftentfeuchter-gegen-schimmel.html).
+- **Kalte oder nasse Stellen gesondert prüfen.** Fotos und vergleichbare Messwerte helfen bei wiederkehrenden Auffälligkeiten. Bleibt die Raumluft nach geeigneten Maßnahmen nachweislich zu feucht, zuerst die Ursachen klären. Danach lässt sich prüfen, [ob Entfeuchten im konkreten Fall helfen kann](https://getecoback.com/guide/luftentfeuchter-gegen-schimmel.html).
 
 ## Häufige Fragen
 
-**Warum beschlagen die Fenster im Schlafzimmer morgens von innen?**Weil die feuchte Raumluft über Nacht an der kalten Scheibe unter ihren Taupunkt abkühlt und das Wasser dort auskondensiert. Schlafende geben laut Fachportalen je nach Quelle rund einen bis zwei Liter Wasser pro Person und Nacht an die Raumluft ab, gleichzeitig wird nachts nicht gelüftet und das Schlafzimmer ist meist der kühlste Raum. Die Scheibe ist dabei nur der Ort, an dem das Problem sichtbar wird, nicht die Ursache.
+**Warum beschlagen die Fenster im Schlafzimmer morgens von innen?**Atem und andere Feuchtequellen können die Raumluft über Nacht feuchter machen. Kühlt die Luft direkt am Glas bis zu ihrem Taupunkt ab, kann dort Kondenswasser entstehen. Kühle Scheiben, Feuchteeintrag und Luftwechsel können zusammenwirken.
 
-**Ist beschlagenes Fenster ein Zeichen für schlechte Fenster?**Nicht unbedingt. Kondensat innen an der Scheibe zeigt vor allem, dass die Glasoberfläche kälter ist als der Taupunkt der Raumluft. Bei alten Einfachverglasungen passiert das schon bei normaler Luftfeuchte. Bei modernen Fenstern ist das Glas wärmer — beschlägt es dort trotzdem, ist fast immer die Luftfeuchte im Raum zu hoch. Beschlägt nur der Rahmen oder die Ecke, deutet das auf eine Wärmebrücke hin.
+**Ist beschlagenes Fenster ein Zeichen für schlechte Fenster?**Beschlag allein beweist keinen Fensterdefekt. Miss Raumtemperatur, Luftfeuchte und Temperatur an der betroffenen Scheibenstelle. Feuchte, die zwischen den Scheiben sitzt, sollte ein Fensterbetrieb prüfen.
 
-**Hilft ein Luftentfeuchter gegen beschlagene Fenster?**Ja, wenn die Ursache zu hohe Luftfeuchte ist — er senkt die relative Feuchte unter die Schwelle, ab der die Scheibe beschlägt, und arbeitet auch nachts, wenn man nicht lüften kann. Er hilft dagegen nicht, wenn die Scheibe wegen einer Wärmebrücke oder einer alten Einfachverglasung deutlich kälter ist als der Rest des Raums. Dann ist es ein bauliches Problem, kein Luftproblem.
+**Hilft ein Fenstersauger gegen Kondenswasser?**Ein für Kondenswasser geeigneter Fenstersauger kann Wasser von zugänglichem glattem Glas aufnehmen. Ein Tuch genügt oft. Beide entfernen sichtbares Wasser. Wenn die Scheiben oder Wände regelmäßig nass werden, muss die Ursache geprüft werden.
 
-**Welche Luftfeuchtigkeit sollte das Schlafzimmer haben?**Als Richtwert gelten 40 bis 60 Prozent relative Luftfeuchte. Bleibt der Wert morgens dauerhaft über 60 Prozent, ist das der beste Frühwarnwert für Schimmel — deutlich zuverlässiger als der Blick auf die Scheibe, weil Schimmel auch an kalten Außenwandecken entsteht, lange bevor jemand ihn sieht.
+**Hilft ein Luftentfeuchter gegen beschlagene Fenster?**Er kann den Wasserdampfgehalt der Raumluft senken. Ob das hier hilft, hängt unter anderem von Raumfeuchte und Temperatur an der betroffenen Oberfläche ab. Bei wiederholt nassen Wänden, möglichem Wassereintritt oder sichtbarem Schimmel zuerst die Ursache klären.
+
+**Welche Luftfeuchtigkeit sollte das Schlafzimmer haben?**Das Umweltbundesamt nennt für die Raumluft 40 bis 60 Prozent als Orientierung zur Schimmelvorbeugung. Der Wert ist keine Diagnose für eine Scheibe oder Wandecke. Dort zählt zusätzlich die örtliche Oberflächentemperatur.
 
 **Weiterlesen**
 [Luftentfeuchter gegen Schimmel: Was er kann — und was nicht →](https://getecoback.com/guide/luftentfeuchter-gegen-schimmel.html)

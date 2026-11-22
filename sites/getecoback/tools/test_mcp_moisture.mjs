@@ -82,8 +82,49 @@ test('tool schema keeps legacy inputs optional and documents bounded choices and
   assert.ok(schema.properties.temperature.description.includes('keine allgemeine Betriebsgrenze'));
   assert.ok(schema.properties.qm.description.includes('heating/cooling only'));
   const init = await rpc('initialize');
-  assert.equal(init.serverInfo.version, '1.24.6');
+  assert.equal(init.serverInfo.version, '1.24.7');
   assert.ok(init.instructions.includes('keine Affiliate-Kauflinks'));
+});
+
+test('the window dew-point tool keeps its earlier result and adds a shareable, conservative interpretation', async () => {
+  const name = 'fenster_oberflaeche_taucheck';
+  const callWindow = args => rpc('tools/call', {name, arguments: args});
+  const guide = 'https://getecoback.com/guide/fenster-beschlagen-innen.html';
+  const inputs = {room_c: 20, room_rh_pct: 60};
+
+  for (const [surface_c, surface_margin_c, condensation_possible, messlage] of [
+    [10, -2, true, 'unter_taupunkt'],
+    [12, 0, false, 'nahe_am_taupunkt'],
+    [14, 2, false, 'ueber_taupunkt'],
+  ]) {
+    const result = await callWindow({...inputs, surface_c});
+    assert.equal(result.isError, false);
+    const {
+      dew_point_c, surface_margin_c: margin, condensation_possible: possible,
+      messlage: interpretation, citation_url, share_url,
+    } = result.structuredContent;
+    assert.equal(dew_point_c, 12);
+    assert.equal(margin, surface_margin_c);
+    assert.equal(possible, condensation_possible);
+    assert.equal(interpretation, messlage);
+    assert.equal(citation_url, guide);
+    assert.equal(share_url, guide + '#fenstersauger-gegen-kondenswasser');
+    assert.doesNotMatch(body(result), /https?:\/\/[^\s"]*(?:amazon\.|amzn\.)|[?&]tag=/i);
+  }
+
+  for (const args of [
+    {room_c:23, room_rh_pct:100, surface_c:22},
+    {room_c:1, room_rh_pct:100, surface_c:2},
+  ]) {
+    const boundary = await callWindow(args);
+    assert.equal(boundary.isError, false);
+    assert.equal(Math.abs(boundary.structuredContent.surface_margin_c), 1);
+    assert.equal(boundary.structuredContent.messlage, 'nahe_am_taupunkt');
+  }
+
+  const missing = await callWindow(inputs);
+  assert.equal(missing.isError, true);
+  assert.equal(missing.structuredContent, undefined);
 });
 
 test('router and legacy telemetry store only fixed outcomes and exclude QA', async () => {
