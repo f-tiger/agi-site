@@ -7,7 +7,19 @@ import {readFileSync} from 'node:fs';
 import {citationUrl} from '../src/agent-sources.mjs';
 import worker, {htmlToMarkdown} from '../src/worker.js';
 
+const labelEndpoint='https://library.delonghigroup.com/assetbank-delonghi/action/directLinkImage';
+const n90Label=labelEndpoint+'?assetId=209150&download=true';
+
 const cases=[
+ [n90Label,'',true],
+ [n90Label,'sponsored nofollow',false],
+ [labelEndpoint+'?download=true&assetId=209150','',false],
+ [n90Label+'&lang=de','',false],
+ [n90Label+'#page=1','',false],
+ [n90Label.replace('209150','209151'),'',false],
+ [n90Label.replace('https://','https://user@'),'',false],
+ [n90Label.replace('library.delonghigroup.com','example.org'),'',false],
+ [labelEndpoint,'',false],
  ['https://www.umweltbundesamt.de/themen/gesundheit','',true],
  ['https://www.gov.uk/government/publications/damp-and-mould','',true],
  ['https://www.milieucentraal.nl/energie-besparen/','',true],
@@ -100,6 +112,11 @@ test('appliance evidence survives in both the generated mirror and edge fallback
    'https://zehnder.picturepark.com/v/WbAb4h0n/',
    'https://zehnder.picturepark.com/v/dwbRP3uL/',
   ]],
+  ['guide/delonghi-pac-n90-test', [
+   'https://www.delonghi.com/de-de/s/PACN90ECOSILENT',
+   'https://shop.sonepar.at/asset_external/downloads/pim/400901/datasheet_delonghi_PAC%20N90ECO.pdf',
+   n90Label,
+  ]],
   ['guide/smarte-heizkoerperthermostate-lohnen-sich', [
    'https://cdn.bfldr.com/607DGEMS/at/hqb8tzxsq4cmchcjxsxtwhh/DE_SRTx_compatibility_Links.pdf#page=6',
    'https://cdn.bfldr.com/607DGEMS/at/hqb8tzxsq4cmchcjxsxtwhh/DE_SRTx_compatibility_Links.pdf#page=7',
@@ -128,7 +145,7 @@ test('appliance evidence survives in both the generated mirror and edge fallback
   const file = readFileSync(new URL(`../site/${path}.md`, import.meta.url), 'utf8');
   const fallback = htmlToMarkdown(html, `/${path}.html`);
   for (const url of urls) {
-   assert.ok(html.includes(`href="${url}"`), url);
+   assert.ok(html.includes(`href="${url.replaceAll('&', '&amp;')}"`), url);
    assert.ok(file.includes(`](${url})`), url);
    assert.ok(fallback.includes(`](${url})`), url);
    assert.equal(citationUrl(url + '?ref=unreviewed'), null);

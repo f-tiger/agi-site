@@ -18,9 +18,9 @@ const names = results => results.map(tool => tool.name);
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 219);
+  assert.equal(withGuides.length, 220);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 15);
+  assert.equal(destinations.size, 16);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);
@@ -63,6 +63,21 @@ test('German Oventrop buyer questions route to the X-generation adapter check', 
     assert.equal(response.tools[0]?.name, tool, query);
     assert.equal(findCatalogueTools(compact, {query})[0]?.name, tool, query);
   }
+});
+
+test('German N90 cost questions find the exact label and metered comparison tool', async () => {
+  const tool = 'pac_n90_energielabel_zu_stromkosten';
+  for (const query of [
+    'Was kostet eine Stunde mit dem PAC N90 ECO Silent bei 35 Cent pro kWh laut EU-Label?',
+    'Sind 2,5 kW Kühlleistung beim DeLonghi Pinguino N90 der Stromverbrauch?',
+    'Mein Zwischenzähler am N90 zeigt 1,8 kWh in drei Stunden. Was kostet der gemessene Lauf?',
+  ]) {
+    const response = await catalogue({q:query, view:'compact', limit:'3'});
+    assert.equal(response.tools[0]?.name, tool, query);
+    assert.equal(findCatalogueTools(compact, {query})[0]?.name, tool, query);
+  }
+  const identity = 'pac_n90_ean_abgleichen';
+  assert.equal((await catalogue({q:identity, view:'compact'})).tools[0]?.name, identity);
 });
 
 test('a catalogue record cannot nominate a foreign URL, input query, or unreviewed fragment as its guide', () => {
