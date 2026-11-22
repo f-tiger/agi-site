@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.22.14';
-const revision = '1d91d3990fe4aa1f989ae5b3752b936b4cb7ddf0';
+const version = '1.22.15';
+const revision = '049eec255e64bfec254698b25a12e3b7facee4c7';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -27,7 +27,7 @@ const featureNames = ['entfeuchter_ablaufcheck', 'btu_empfehlung', 'fensterabdic
   'taupunkt_lueften', 'fenstersauger_170mm_abziehlippe_geraetefamilie', 'fenster_oberflaeche_taucheck',
   'luftentfeuchter_waesche_einzelkosten', 'fritz_302_danfoss_adapter', 'keller_lueften_taupunkt_messwerte',
   'luftreiniger_ersatzfilter_zuordnung', 'philips_verdunsterfilter_zuordnung', 'heizdecke_stromkosten_nennleistung',
-  'hygrometer_messbereiche'];
+  'hygrometer_messbereiche', 'pac_n90_ean_abgleichen'];
 const entry = 'src/server.mjs';
 const legacyHelpers = fileURLToPath(new URL('../mcp-registry/local-packages/', import.meta.url));
 const sha256 = buffer => createHash('sha256').update(buffer).digest('hex');
@@ -54,6 +54,9 @@ const warmthGuide = warmthCitation + '#waerme-rechner';
 const hygrometerTool = 'hygrometer_messbereiche';
 const hygrometerCitation = 'https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html';
 const hygrometerGuide = hygrometerCitation + '#hygrometer-vergleichen';
+const n90IdentityTool = 'pac_n90_ean_abgleichen';
+const n90Citation = 'https://getecoback.com/guide/delonghi-pac-n90-test.html';
+const n90IdentityGuide = n90Citation + '#testlage';
 const cellarUri = 'ecoback://evidence/de/kellerentfeuchter';
 const laundryComparisonTool = 'waesche_trocknungskosten';
 const singleLaundryTool = 'luftentfeuchter_waesche_einzelkosten';
@@ -561,6 +564,42 @@ async function verifyHygrometerComparison(call) {
   return {name:hygrometerTool,guide:hygrometerGuide,records,rejected:invalid.length};
 }
 
+async function verifyN90Identity(call) {
+  const ean = 8004399512351;
+  const model = 'PAC N90 ECO Silent';
+  const manufacturer = 'https://www.delonghi.com/de-de/s/PACN90ECOSILENT';
+  const sheet = 'https://shop.sonepar.at/asset_external/downloads/pim/400901/datasheet_delonghi_PAC%20N90ECO.pdf';
+  const cases = [
+    [ean,model,'modellangaben_passen'],
+    [ean,'abweichend','modellbezeichnung_klaeren'],
+    [ean,'unbekannt','modellbezeichnung_klaeren'],
+    [ean+1,model,'ean_abweicht'],
+    [0,model,'ean_fehlt'],
+  ];
+  const statuses = [];
+  for (const [inputEan, modell, status] of cases) {
+    const result = await call({ean:inputEan,modell});
+    assert.equal(result.isError,false);
+    const data = result.structuredContent;
+    assert.deepEqual([data.referenz_ean,data.referenz_modell,data.status],[ean,model,status]);
+    assert.equal(data.citation_url,n90Citation);
+    assert.equal(data.guide_url,n90IdentityGuide);
+    assert.equal(data.hersteller_url,manufacturer);
+    assert.equal(data.datenblatt_url,sheet);
+    assert.match(data.datenblatt_hinweis,/österreichischen.*Lieferumfang.*Bestand/);
+    assert.match(data.naechster_schritt,status === 'modellangaben_passen' ? /Abluftweg/ : /Typenschild/);
+    statuses.push(data.status);
+  }
+  const invalid = [{ean}, {ean:ean+0.5,modell:model}, {ean:123456789012,modell:model},
+    {ean,modell:'PAC N90 ECO'}];
+  for (const args of invalid) {
+    const result = await call(args);
+    assert.equal(result.isError,true);
+    assert.equal(result.structuredContent,undefined);
+  }
+  return {name:n90IdentityTool,guide:n90IdentityGuide,ean,model,manufacturer,sheet,statuses,rejected:invalid.length};
+}
+
 async function verifyStdio(extracted, manifest) {
   const {TOOLS} = await import(pathToFileURL(join(extracted,'src/tools.mjs')));
   const {expandedDefinitions} = await import(pathToFileURL(join(extracted,'src/eco-suite/src/mcp-expanded.mjs')));
@@ -639,8 +678,10 @@ async function verifyStdio(extracted, manifest) {
       rpc('tools/call',{name:warmthTool,arguments:args}));
     const hygrometerComparison = await verifyHygrometerComparison(args =>
       rpc('tools/call',{name:hygrometerTool,arguments:args}));
+    const n90Identity = await verifyN90Identity(args =>
+      rpc('tools/call',{name:n90IdentityTool,arguments:args}));
     return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,windowCondensation,decimalWindowWidth,
-      singleLaundry,fritzValve,drainRoute,measuredVentilation,exactFilter,philipsFilter,warmthCost,hygrometerComparison,
+      singleLaundry,fritzValve,drainRoute,measuredVentilation,exactFilter,philipsFilter,warmthCost,hygrometerComparison,n90Identity,
       firstExamples:['btu_empfehlung','entfeuchter_ablaufcheck'],finder:verifyFinder(extracted,drain),
       lastPageExample:last.name,legacyNames:oldNames.length,network:'disabled'};
   });
@@ -1187,6 +1228,16 @@ async function verifyCompactStdio(extracted) {
     const windowCondensation = await verifyWindowCondensation(eingaben =>
       rpc('tools/call',{name:runner,arguments:{name:condensationTool,eingaben}}));
     const n90Costs = await verifyCompactN90Costs(rpc,finder,runner);
+    const n90Lookup = await rpc('tools/call',{
+      name:finder,arguments:{frage:'8004399512351'},
+    });
+    assert.equal(n90Lookup.isError,false);
+    const n90Match = n90Lookup.structuredContent.tools[0];
+    assert.equal(n90Match?.name,n90IdentityTool);
+    assert.equal(n90Match.guide_url,n90IdentityGuide);
+    assert.deepEqual(n90Match.inputSchema.required,['ean','modell']);
+    const n90Identity = await verifyN90Identity(eingaben =>
+      rpc('tools/call',{name:runner,arguments:{name:n90IdentityTool,eingaben}}));
     const tadoOventrop = await verifyCompactTadoOventrop(rpc,finder,runner);
     const householdDecisions = await verifyCompactHouseholdDecisions(rpc,runner);
     const windowWidth = await verifyCompactWindowWidth(rpc,finder,runner);
@@ -1198,7 +1249,7 @@ async function verifyCompactStdio(extracted) {
       tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,
       liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,singleLaundry,fritzValve,drainRoute,
       measuredVentilation,exactFilter,philipsFilter,warmthCost,hygrometerComparison,laundryPrecision,windowBlade,windowLookup,
-      windowWidth,decimalWindowWidth,householdDecisions,tadoOventrop,n90Costs,humidifierEfficiency,glassvacTemperature,windowSubject,windowCondensation,
+      windowWidth,decimalWindowWidth,householdDecisions,tadoOventrop,n90Costs,n90Identity,humidifierEfficiency,glassvacTemperature,windowSubject,windowCondensation,
     };
   });
 }
@@ -1269,6 +1320,7 @@ try {
   assert.deepEqual(result.philipsFilter,result.compact.philipsFilter);
   assert.deepEqual(result.warmthCost,result.compact.warmthCost);
   assert.deepEqual(result.hygrometerComparison,result.compact.hygrometerComparison);
+  assert.deepEqual(result.n90Identity,result.compact.n90Identity);
   assert.deepEqual(result.resource,result.compact.resource);
   result.archiveReadme = {replacedVersion:readme.previousVersion,registryLatestUrl};
   const identifier = `${releaseUrl}/${file}`;
