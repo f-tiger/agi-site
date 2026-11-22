@@ -3,6 +3,7 @@ import datetime as dt
 from html.parser import HTMLParser
 import json
 from pathlib import Path
+import re
 import tempfile
 import unittest
 
@@ -61,6 +62,46 @@ class CatalogTest(unittest.TestCase):
             broken=copy.deepcopy(data);broken['categories'][0]['buying_guide']['steps']=bad
             with self.assertRaises(ValueError):C.validate(broken)
         self.assertEqual(len(Document(html).ids),len(set(Document(html).ids)))
+
+    def test_window_vacuum_width_example_keeps_package_evidence_and_no_purchase_path(self):
+        data=C.load()
+        html=C.render(data,dt.date(2026,11,20))
+        ids=Document(html).ids
+        self.assertEqual(ids.count('fenstersauger-duesenbreite'),1)
+        answer=html.split('id="fenstersauger-duesenbreite"',1)[1].split('id="fenstersauger-abziehlippen"',1)[0]
+        models=[('kaercher-wv2-multi','1.633-662.0','280 mm'),
+                ('kaercher-wv3-precision','1.633-698.0','170 mm / 280 mm'),
+                ('kaercher-wv8-signature','1.633-785.0','170 mm / 280 mm'),
+                ('bosch-glassvac-set','06008B7000','133 mm / 266 mm')]
+        answer_links=[link.get('href') for link in Document(answer).links]
+        for model, package, widths in models:
+            target='produkt-'+model
+            self.assertRegex(answer,fr'<th scope="row"><a href="#{target}">[^<]+{re.escape(package)}</a><br><small>Quelle: <a [^>]+>[^<]+</a></small></th><td>{widths}</td>')
+            self.assertEqual(answer_links.count('#'+target),1)
+            self.assertEqual(ids.count(target),1)
+        sources=[p['source'] for p in data['products'] if p['category']=='fenstersauger']
+        sources.append('https://www.bosch-diy.com/storage/de-de/glassvac-100045834-original-pdf-396340-de-de.pdf')
+        sources.append('https://www.bosch-diy.com/de/de/p/glassvac-solo-plus-06008b7200')
+        for href in sources+['#modelle-fenstersauger']:
+            self.assertIn(href,answer_links)
+        markdown=C.to_markdown(html,C.ROUTE,'de')
+        readable=markdown.split('Welche Saugdüse kommt für ein schmales Glasfeld infrage?',1)[1].split(
+            '170-mm-Abziehlippen am genauen Gerät zuordnen',1)[0]
+        for model, package, widths in models:
+            self.assertIn(f'{package}]({C.CANONICAL}#produkt-{model}) Quelle:',readable)
+            self.assertIn(f' | {widths} |',readable)
+        for surface in (answer,readable):
+            for term in ('170 mm Glasbreite','5 mm Reserve je Seite','160 mm','133-mm-Saugkopf',
+                         'tatsächliche Außenbreite','vorhandener Abzieher oder ein Tuch',
+                         '06008B7000 (EAN 3165140920148)', 'EAN 3165140976374',
+                         'nur den großen Saugkopf', 'vor dem Kauf den kleinen Saugkopf bestätigen', *sources):
+                self.assertIn(term,surface)
+            self.assertNotIn('amazon.',surface)
+        bosch_card=html.split('id="produkt-bosch-glassvac-set"',1)[1].split('</section>',1)[0]
+        for term in ('06008B7000 (EAN 3165140920148)', '06008B7200 (EAN 3165140976374)',
+                     'www.amazon.de/s?k=Bosch+GlassVAC+Set+06008B7000&amp;tag=getecoback-21'):
+            self.assertIn(term,bosch_card)
+        self.assertNotIn('amazon.de/dp/',bosch_card)
 
     def test_freshness_boundaries_keep_facts_but_withdraw_merchant_action(self):
         data=fixture(); p=data['products'][0]

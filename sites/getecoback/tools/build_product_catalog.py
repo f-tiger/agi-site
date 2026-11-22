@@ -294,6 +294,23 @@ APPLIANCE_EVIDENCE = '''
   <h2 id="fenstersauger-belege-title">Fenstersauger prüfen: Abziehlippen und Gebrauch</h2>
   <p>Für wenige Scheiben kann der vorhandene Einwascher mit Abzieher genügen. Kommt das Wasser regelmäßig von innen zurück, zuerst <a href="/guide/luftentfeuchter-ratgeber.html#einsatzort-waehlen">die Feuchtigkeit einordnen</a>.</p>
   <p><a href="#kaercher-fenstersauger-einsatz-und-hinweise">Kärcher im Gebrauch prüfen</a> · <a href="#bosch-glassvac-einsatz-und-pflege">Bosch GlassVAC einsetzen und pflegen</a></p>
+  <h3 id="fenstersauger-duesenbreite">Welche Saugdüse kommt für ein schmales Glasfeld infrage?</h3>
+  <p>Miss die lichte Breite an der engsten Stelle zwischen Rahmen und Sprossen. Ziehe die Reserve ab, die du auf beiden Seiten lassen möchtest. Bei 170 mm Glasbreite und 5 mm Reserve je Seite bleiben 160 mm. Unter den vier dokumentierten Paketen bleibt allein der 133-mm-Saugkopf des Bosch GlassVAC unter dieser Breite.</p>
+  <div class="pc-table-scroll" role="region" aria-label="Düsenbreiten der deutschen Fenstersauger-Pakete" tabindex="0">
+    <table>
+      <caption>Dokumentierte Düsen- und Saugkopfbreiten</caption>
+      <thead><tr><th scope="col">Deutsches Paket</th><th scope="col">Nennbreiten</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><a href="#produkt-kaercher-wv2-multi">Kärcher WV 2 Plus Multi Edition, 1.633-662.0</a><br><small>Quelle: <a href="https://www.karcher.com/de/de/home-and-garden/produkte/wv-2-plus-multi-edition-p16336620">Kärcher WV 2 Produktseite</a></small></th><td>280 mm</td></tr>
+        <tr><th scope="row"><a href="#produkt-kaercher-wv3-precision">Kärcher WV 3 Comfort Precision+ Black, 1.633-698.0</a><br><small>Quelle: <a href="https://www.karcher.com/de/de/home-and-garden/produkte/wv-3-comfort-precision-black-p16336980">Kärcher WV 3 Produktseite</a></small></th><td>170 mm / 280 mm</td></tr>
+        <tr><th scope="row"><a href="#produkt-kaercher-wv8-signature">Kärcher WV 8 Signature Line, 1.633-785.0</a><br><small>Quelle: <a href="https://www.karcher.com/de/de/home-and-garden/produkte/wv-8-signature-line-p16337850">Kärcher WV 8 Produktseite</a></small></th><td>170 mm / 280 mm</td></tr>
+        <tr><th scope="row"><a href="#produkt-bosch-glassvac-set">Bosch GlassVAC Set, 06008B7000</a><br><small>Quelle: <a href="https://www.bosch-diy.com/de/de/p/glassvac-06008b7000">Bosch GlassVAC Set Produktseite</a></small></th><td>133 mm / 266 mm</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Die Nennbreite dient der Vorauswahl. Prüfe am Fenster auch die tatsächliche Außenbreite von Saugkopf und Gehäuse sowie Hindernisse beim Ansetzen und Kippen. Reicht dein vorhandener Abzieher oder ein Tuch, kannst du es weiterverwenden.</p>
+  <p>Gleiche beim Bosch-Angebot die Bestellnummer oder EAN ab. Das Set 06008B7000 (EAN 3165140920148) enthält laut Bosch den großen und den kleinen Saugkopf. Beim <a href="https://www.bosch-diy.com/de/de/p/glassvac-solo-plus-06008b7200">GlassVAC Solo Plus 06008B7200</a> (EAN 3165140976374) listet Bosch im Lieferumfang nur den großen Saugkopf. Ist das Angebot nicht eindeutig, lass dir vor dem Kauf den kleinen Saugkopf bestätigen.</p>
+  <p>Die Bosch-Maße stehen in der <a href="https://www.bosch-diy.com/storage/de-de/glassvac-100045834-original-pdf-396340-de-de.pdf">deutschen Originalanleitung F 016 L81 778 auf Seite 4</a>. <a href="#modelle-fenstersauger">Fenstersauger-Modelle und Lieferumfang vergleichen</a>.</p>
   <h3 id="fenstersauger-abziehlippen">170-mm-Abziehlippen am genauen Gerät zuordnen</h3>
   <p>Die gleiche Breite reicht für die Ersatzteilwahl nicht aus. Prüfe die vollständige Modellkennung am Gerät, die verwendete schmale Originaldüse und die Teilenummer im Angebot.</p>
   <ul>
@@ -301,7 +318,6 @@ APPLIANCE_EVIDENCE = '''
     <li>Für den Kärcher WV 8 Signature Line (1.633-785.0) führt er die schmale Abziehlippe 2.633-513.0 in der <a href="https://www.karcher.com/de/de/home-and-garden/produkte/wv-4-4-wv-5-ultra-wv-6-wv-7-wv-8-abziehlippen-170-mm-p26335130">entsprechenden Kompatibilitätsliste</a>.</li>
   </ul>
   <p>Für die gekreuzten Kombinationen liefern diese Listen keinen Beleg. Stelle die Bestellung zurück, wenn die Originaldüse oder Teilenummer offen ist. Deutsche Herstellerlisten geprüft am <time datetime="2026-11-20">20. November 2026</time>.</p>
-  <p><a href="#modelle-fenstersauger">Fenstersauger-Modelle und Lieferumfang vergleichen</a></p>
 </section>
 <section id="kaercher-fenstersauger-einsatz-und-hinweise" class="pc-card" aria-labelledby="kaercher-fenstersauger-einsatz-titel">
   <h3 id="kaercher-fenstersauger-einsatz-titel">Kärcher-Fenstersauger vor dem Kauf und beim Einsatz prüfen</h3>

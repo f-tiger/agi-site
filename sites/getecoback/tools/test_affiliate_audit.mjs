@@ -283,3 +283,30 @@ print(json.dumps([dict(r) for r in db.execute(sql)]))`;
   assert.deepEqual(audit.last_three_complete_days.mcp_drain_entry,audit.weeks.at(-1).mcp_drain_entry);
   assert.deepEqual(audit.weeks.at(-1).cellar_catalog,{page_views:3,affiliate_clicks:2,catalog_product_clicks:0,catalog_search_clicks:0});
 });
+
+test('window evidence counts fixed recorded events without inferring evidence for empty periods',async()=>{
+  const fixture = `import json,sqlite3,sys
+db=sqlite3.connect(':memory:'); db.row_factory=sqlite3.Row
+db.execute('CREATE TABLE ev(day,name,page,ref,ua_class,meta)')
+def add(day,name,marker,page='/produkte.html',ua='human'):
+ db.execute('INSERT INTO ev VALUES (?,?,?,?,?,?)',(day,name,page,'',ua,json.dumps({'mcp_window_entry':marker})))
+add('2026-11-21','page_view',1)
+add('2026-11-22','affiliate_click',1)
+add('2026-11-22','page_view',True)
+add('2026-11-22','page_view','1')
+add('2026-11-22','page_view',1,page='/guide/other.html')
+add('2026-11-22','page_view',1,ua=None)
+add('2026-11-23','page_view',1)
+sql=sys.stdin.read().replace("date('now'","date('2026-11-23'")
+print(json.dumps([dict(r) for r in db.execute(sql)]))`;
+  const result=spawnSync('python3',['-c',fixture],{input:AUDIT_SQL,encoding:'utf8'});
+  assert.equal(result.status,0,result.stderr);
+  const audit=await affiliateAudit(dbFor(JSON.parse(result.stdout).reverse()),()=>'direct');
+  assert.deepEqual(audit.last_three_complete_days.mcp_window_entry,{
+    first_recorded_day:'2026-11-21',page_views:1,model_search_clicks:1,
+  });
+  assert.equal(audit.last_three_complete_days.page_views,5);
+  assert.equal(audit.weeks.at(-2).mcp_window_entry,null);
+  assert.equal(audit.same_weekdays_previous_week.mcp_window_entry,null);
+  assert.doesNotMatch(JSON.stringify(audit),/produkte\.html|eco-mcp|amazon\.de/);
+});

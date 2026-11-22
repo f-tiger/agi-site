@@ -3,6 +3,7 @@ import {createRequire} from 'node:module';
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
+import {WINDOW_ENTRY_DOCUMENT, WINDOW_ENTRY_URL} from '../src/fenstersauger-entry.mjs';
 
 const root=path.resolve(process.env.ECO_CATALOG_SITE||new URL('../site/',import.meta.url).pathname);
 const data=JSON.parse(fs.readFileSync(new URL('../data/product-catalog.json',import.meta.url),'utf8'));
@@ -15,6 +16,12 @@ for(const route of ['index.html','wohnen.html','tools.html']){const html=fs.read
 const executablePath=process.env.CHROMIUM_PATH||process.env.PILOT_CHROMIUM;
 const localTools=['luftreiniger','hygrometer','dampfreiniger','fenstersauger','nass-trockensauger','bodenstaubsauger','wasserkocher','heissluftfritteusen','kontaktgrills'];
 const reusedTools={ventilatoren:'/guide/stromkosten-rechner.html',heizluefter:'/guide/heizluefter-stromverbrauch.html#eb-heater-cost',waeschetrockner:'/waeschetrockner-oder-luftentfeuchter.html#laundry-check'};
+const windowModels=[
+ {id:'kaercher-wv2-multi',model:'Kärcher WV 2 Plus Multi Edition, 1.633-662.0',widths:'280 mm',source:'Kärcher WV 2 Produktseite'},
+ {id:'kaercher-wv3-precision',model:'Kärcher WV 3 Comfort Precision+ Black, 1.633-698.0',widths:'170 mm / 280 mm',source:'Kärcher WV 3 Produktseite'},
+ {id:'kaercher-wv8-signature',model:'Kärcher WV 8 Signature Line, 1.633-785.0',widths:'170 mm / 280 mm',source:'Kärcher WV 8 Produktseite'},
+ {id:'bosch-glassvac-set',model:'Bosch GlassVAC Set, 06008B7000',widths:'133 mm / 266 mm',source:'Bosch GlassVAC Set Produktseite'},
+];
 const ownCases=[
  {category:'luftreiniger',values:{length:'5',width:'4',height:'2.5',changes:'4'},expect:/200 m³\/h/},
  {category:'hygrometer',values:{readingA:'40',readingB:'55'},expect:/15 Prozentpunkte/},
@@ -37,6 +44,22 @@ async function setValues(form,values){
   if(await input.evaluate(n=>n.tagName==='SELECT'))await input.selectOption(value);else await input.fill(value);
  }
 }
+function localCatalogue(route,onWrite=()=>{}){
+ const request=route.request(),url=new URL(request.url());
+ if(request.method()!=='GET'){onWrite();return route.abort();}
+ if(url.origin!==origin)return route.abort();
+ if(url.pathname.startsWith('/api/')||url.pathname==='/auth/status')return route.fulfill({contentType:'application/json',body:'{"ok":false,"user":null}'});
+ const file=path.resolve(root,'.'+decodeURIComponent(url.pathname));
+ if(!file.startsWith(root+path.sep)||!fs.existsSync(file)||!fs.statSync(file).isFile())return route.fulfill({status:404,body:'Missing fixture'});
+ const contentType={'.html':'text/html; charset=utf-8','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.png':'image/png'}[path.extname(file)]||'application/octet-stream';
+ return route.fulfill({contentType,body:fs.readFileSync(file)});
+}
+function waitForEvent(page,name){
+ return page.waitForRequest(request=>{
+  if(request.url()!==origin+'/api/ev'||request.method()!=='POST')return false;
+  try{return JSON.parse(request.postData()).n===name;}catch{return false;}
+ });
+}
 const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{}),args:['--no-sandbox']});
 try{
  for(const width of [320,390,1280])for(const javaScriptEnabled of [true,false]){
@@ -48,16 +71,7 @@ try{
    Object.defineProperty(window,'gtag',{configurable:true,get:()=>spy,set(){}});
    Object.defineProperty(navigator,'globalPrivacyControl',{get:()=>true});
   });
-  await context.route('**/*',route=>{
-   const q=route.request(),u=new URL(q.url());
-   if(q.method()!=='GET'){writes++;return route.abort();}
-   if(u.origin!==origin)return route.abort();
-   if(u.pathname.startsWith('/api/')||u.pathname==='/auth/status')return route.fulfill({contentType:'application/json',body:'{"ok":false,"user":null}'});
-   const file=path.resolve(root,'.'+decodeURIComponent(u.pathname));
-   if(!file.startsWith(root+path.sep)||!fs.existsSync(file)||!fs.statSync(file).isFile())return route.fulfill({status:404,body:'Missing fixture'});
-   const contentType={'.html':'text/html; charset=utf-8','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.png':'image/png'}[path.extname(file)]||'application/octet-stream';
-   return route.fulfill({contentType,body:fs.readFileSync(file)});
-  });
+  await context.route('**/*',route=>localCatalogue(route,()=>writes++));
   const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
   assert.equal((await page.goto(origin+'/produkte.html?__probe=1',{waitUntil:'load'})).status(),200);
   assert.equal(await page.locator('[data-product-card]').count(),data.products.length);
@@ -81,6 +95,34 @@ try{
    assert(await card.locator('a[href="'+product.source+'"]').count());
   }
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+  await page.goto(WINDOW_ENTRY_URL);
+  const paneHeading=page.locator('#fenstersauger-duesenbreite');
+  const paneBox=await paneHeading.boundingBox();
+  const fixedNav=await page.locator('nav.eb-nav').boundingBox();
+  assert.ok(paneBox&&paneBox.y>=(fixedNav?fixedNav.y+fixedNav.height:0)&&paneBox.y<450,'Width answer hidden below navigation');
+  assert.equal(await page.locator('head link[rel=canonical]').getAttribute('href'),origin+'/produkte.html');
+  const windowTable=page.getByRole('region',{name:'Düsenbreiten der deutschen Fenstersauger-Pakete'});
+  const windowRows=windowTable.locator('tbody tr');
+  assert.equal(await windowRows.count(),4);
+  assert.equal(await windowTable.getAttribute('tabindex'),'0');
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+  for(const {id,model,widths,source} of windowModels){
+   const target='#produkt-'+id;
+   const row=windowRows.filter({has:page.getByRole('link',{name:model,exact:true})});
+   const modelLink=row.getByRole('rowheader').getByRole('link',{name:model,exact:true});
+   assert.equal(await modelLink.getAttribute('href'),target);
+   assert.equal(await row.getByRole('cell',{name:widths,exact:true}).count(),1);
+   assert.equal(await row.getByRole('link',{name:source,exact:true}).getAttribute('href'),data.products.find(p=>p.id===id).source);
+   assert.equal(await page.locator(`#fenstersauger-belege a[href="${target}"]`).count(),1);
+   await modelLink.click();
+   await page.waitForURL(WINDOW_ENTRY_DOCUMENT+target);
+   const card=page.locator(target);
+   assert.ok(await card.isVisible());
+   const cardBox=await card.boundingBox();
+   assert.ok(cardBox&&cardBox.y>=(fixedNav?fixedNav.y+fixedNav.height:0)&&cardBox.y<450,'Model card hidden below navigation: '+id);
+   await page.goto(WINDOW_ENTRY_URL);
+  }
+  await page.goto(origin+'/produkte.html?__probe=1');
   if(javaScriptEnabled){
    await page.locator('#product-filters').waitFor({state:'visible'});
    const first=data.categories[0],firstProducts=data.products.filter(p=>p.category===first.id);
@@ -218,8 +260,37 @@ try{
   assert(target.top>=target.nav-1,'Category anchor hidden below fixed navigation');
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
   assert.deepEqual(errors,[]);
-  cases.push({width,javaScriptEnabled,products:data.products.length,categories:data.categories.length,merchantSearches:expected.length,blockedWrites:writes,localTools:9,reusedTools:3,defaultSubmissions,independentSubmissions,invalidSubmissions,pass:true});
+  cases.push({width,javaScriptEnabled,products:data.products.length,categories:data.categories.length,merchantSearches:expected.length,blockedWrites:writes,localTools:9,reusedTools:3,windowModelLinks:windowModels.length,defaultSubmissions,independentSubmissions,invalidSubmissions,pass:true});
   await context.close();
  }
- console.log(JSON.stringify({pass:true,cases,productionWrites:0}));
+ const windowEntryCases=[];
+ for(const mode of ['tagged','wrong-fragment','opted-out']){
+  const context=await browser.newContext({viewport:{width:390,height:900},serviceWorkers:'block'});
+  await context.route('**/*',route=>localCatalogue(route));
+  await context.addInitScript(optedOut=>{
+   // Exercise a normal browser's click with all external requests intercepted.
+   Object.defineProperty(navigator,'webdriver',{get:()=>false});
+   if(optedOut&&location.protocol==='https:')localStorage.setItem('fleet_ga4_choice_v1','denied');
+  },mode==='opted-out');
+  const page=await context.newPage();
+  const entry=mode==='wrong-fragment'?WINDOW_ENTRY_DOCUMENT+'#fenstersauger-belege':WINDOW_ENTRY_URL;
+  const view=waitForEvent(page,'page_view');
+  await page.goto(entry);
+  const first=await view;
+  const expectedMarker=mode==='tagged'?true:undefined;
+  assert.equal(JSON.parse(first.postData()).mcp_window_entry,expectedMarker);
+  assert.equal((await first.allHeaders()).referer,WINDOW_ENTRY_DOCUMENT);
+  const modelClickAvailable=expected.some(product=>product.id==='bosch-glassvac-set');
+  if(modelClickAvailable){
+   await page.locator('#fenstersauger-belege a[href="#produkt-bosch-glassvac-set"]').click();
+   const click=waitForEvent(page,'affiliate_click');
+   await page.locator('#produkt-bosch-glassvac-set a[rel~=sponsored]').click();
+   const request=await click;
+   assert.equal(JSON.parse(request.postData()).mcp_window_entry,expectedMarker);
+   assert.equal((await request.allHeaders()).referer,WINDOW_ENTRY_DOCUMENT);
+  }
+  await context.close();
+  windowEntryCases.push({mode,modelClickAvailable});
+ }
+ console.log(JSON.stringify({pass:true,cases,windowEntryCases,productionWrites:0}));
 }finally{await browser.close();}

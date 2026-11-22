@@ -18,7 +18,7 @@ const names = results => results.map(tool => tool.name);
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 214);
+  assert.equal(withGuides.length, 215);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
   assert.equal(destinations.size, 11);
   const pages = new Map();

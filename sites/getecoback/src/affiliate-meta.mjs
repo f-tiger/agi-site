@@ -1,4 +1,7 @@
-// Only existing affiliate dimensions. Never slice JSON: one long destination
+import productCatalog from '../data/product-catalog.json' with {type:'json'};
+import {WINDOW_ENTRY_DOCUMENT, WINDOW_ENTRY_PAGE} from './fenstersauger-entry.mjs';
+
+// Only whitelisted affiliate dimensions. Never slice JSON: one long destination
 // used to corrupt every field, including the source merged by the click tracker.
 // Limits include JSON escaping and UTF-8 bytes; the complete object is < 768 B.
 const encoder = new TextEncoder();
@@ -65,9 +68,38 @@ export function taggedDrainEntry(body, request, uaClass) {
     request.headers.get('referer') === drainDocumentURL;
 }
 
-export function affiliateMeta(meta, tagged = false) {
-  if (!meta || typeof meta !== 'object' || Array.isArray(meta)) return tagged ? '{"mcp_drain_entry":1}' : '{}';
-  const clean = tagged ? {mcp_drain_entry: 1} : {};
+const windowModelSearches = new Set(productCatalog.products
+  .filter(item => item.category === 'fenstersauger' && item.status === 'verified')
+  .map(item => item.query));
+
+function isWindowModelSearch(value) {
+  if (typeof value !== 'string') return false;
+  try {
+    const url = new URL(value);
+    return url.origin === 'https://www.amazon.de' && url.pathname === '/s' &&
+      !url.username && !url.password && !url.hash && url.searchParams.size === 2 &&
+      url.searchParams.get('tag') === 'getecoback-21' &&
+      windowModelSearches.has(url.searchParams.get('k'));
+  } catch {
+    return false;
+  }
+}
+
+export function taggedWindowEntry(body, request, uaClass) {
+  return body.mcp_window_entry === true && body.p === WINDOW_ENTRY_PAGE &&
+    (body.n === 'page_view' || (body.n === 'affiliate_click' && isWindowModelSearch(body.m?.link_url))) &&
+    uaClass === 'human' && request.headers.get('dnt') !== '1' &&
+    request.headers.get('sec-gpc') !== '1' && request.headers.get('x-probe') !== '1' &&
+    request.headers.get('origin') === 'https://getecoback.com' &&
+    request.headers.get('sec-fetch-site') !== 'cross-site' &&
+    request.headers.get('referer') === WINDOW_ENTRY_DOCUMENT;
+}
+
+export function affiliateMeta(meta, taggedDrain = false, taggedWindow = false) {
+  const clean = {};
+  if (taggedDrain) clean.mcp_drain_entry = 1;
+  if (taggedWindow) clean.mcp_window_entry = 1;
+  if (!meta || typeof meta !== 'object' || Array.isArray(meta)) return JSON.stringify(clean);
   for (const [key, value] of [
     ['source', text(meta.source, 48)],
     ['merchant', text(meta.merchant, 32)],
