@@ -1,8 +1,18 @@
 # Fenster zieht: Zugluft in der Mietwohnung prüfen | EcoBack
 
-> Zugluft am Fenster eingrenzen: Dichtung, Beschlag oder kalte Scheibe? Mietwohnung sinnvoll abdichten, Schäden melden und Lüftungsöffnungen freihalten.
+> Zugluft in der Mietwohnung? Prüfe bei 4 mm Spalt tesamoll E-, P- und D-Profil, Fensteraufbau und wann du vor einer neuen Dichtung abwarten solltest.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/fenster-zugluft-mietwohnung.html
+
+## Welche tesamoll-Dichtung passt bei 4 mm Spalt?
+
+**Bei 4 mm liegen P und D im angegebenen Bereich.** Für diese selbstklebenden tesamoll-Gummidichtungen nennt tesa beim E-Profil **1–3,5 mm**, beim P-Profil **2–5 mm** und beim D-Profil **3–7 mm**. Ein 4-mm-Spalt liegt über der Herstellerangabe für das E-Profil. Die Werte gelten für diese tesa-Produkte.
+
+Bestimme das Spaltmaß an der vorgesehenen Dichtlinie bei geschlossenem Flügel an mehreren Stellen. Der Papier-Klemmtest zeigt den Anpressdruck grob an. Für die Größenwahl brauchst du das gemessene Spaltmaß. Wenn der Flügel schon schwer schließt, lass den Beschlag prüfen.
+
+**Originale Nutdichtung, geplante zusätzliche Dichtung oder unklarer Aufbau?** Kläre zuerst Fensterprofil und vorgesehene Dichtung mit dem Hersteller oder Fachbetrieb. In der Mietwohnung Zuständigkeit und nötige Erlaubnis klären. Warte bis dahin mit dem Kauf. Entwässerungsöffnungen und vorgesehene Lüftungsöffnungen bleiben frei.
+
+Herstellerangaben für Deutschland, geprüft am 22. November 2026. [tesa: Spaltmaße für E- und P-Profil](https://www.tesa.com/de-de/buero-und-zuhause/do-it-yourself-magazin/fensterdichtung-erneuern.html) · [tesa Verbraucherkatalog 2024: E-, P- und D-Profil (PDF, Seite 28)](https://www.tesa.com/de-de/files/download/11555752%2C4%2Ctesa-consumerkatalog-2024-online.pdf).
 
 ## Fuge oder kalte Oberfläche?
 Gehe bei geschlossenem Fenster mit der Hand entlang der Fugen. Ein leichter Papierstreifen kann Bewegung anzeigen; verwende keine offene Flamme. Der Papier-Klemmtest liefert nur einen Hinweis auf den Anpressdruck, keine vollständige Dichtheitsprüfung. Notiere, ob der Zug an einer bestimmten Stelle auftritt oder entlang der gesamten Scheibe nach unten fällt.

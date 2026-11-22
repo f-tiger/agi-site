@@ -251,3 +251,23 @@ test('German original PortaSplit lip questions open the existing guide measureme
    'Fensterabdichtung für Monoblock mit Dichtung ausmessen',
  ]) assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u===page+'#fensterfalz'),q);
 });
+
+test('window-seal profile questions lead to the exact German buyer guidance',()=>{
+  const route='/guide/fenster-zugluft-mietwohnung.html#dichtungsprofil';
+  for(const q of [
+    'Mein altes Fenster zieht. Der Spalt ist 4 mm breit – welches tesamoll-Profil brauche ich: E, P oder D?',
+    'Holzfenster: P-Profil oder D-Profil von tesamoll bei 4 mm Spalt?',
+    'Altes Fenster: Nutdichtung vorhanden, tesamoll D-Profil drüber?',
+    'Fensterdichtung im Altbau: E- oder P-Dichtung wählen?',
+    'Welches tesamoll E-, P- oder D-Profil passt bei 4 mm Spalt?',
+    'D-Profil vs P-Profil für mein Holzfenster bei 4 mm',
+  ]){
+    const results=searchEntries(index,q,'de');
+    assert.equal(results[0]?.entry.u,route,q);
+    assert.equal(results.filter(hit=>hit.entry.u.split('#')[0]===route.split('#')[0]).length,1,q);
+    assert.ok(searchEntries(index,q,'en').every(hit=>hit.entry.u!==route),q);
+  }
+  for(const q of ['tesamoll Türbodendichtung','Fensterdichtung E-Profil eines anderen Herstellers','PortaSplit Fensterfalz mit Dichtung','Duschdichtung D-Profil']){
+    assert.ok(searchEntries(index,q,'de').every(hit=>hit.entry.u!==route),q);
+  }
+});

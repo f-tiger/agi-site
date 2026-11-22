@@ -1,3 +1,4 @@
+import {asksForTesamollWindowProfile} from './tesamoll-profile-intent.mjs';
 import {exactGermanFilterModel} from './exact-filter-intent.mjs';
 import {philipsHumidifierFilterSection} from './philips-humidifier-filter-intent.mjs';
 import {asksForElectricBlanketCost} from './electric-blanket-cost-intent.mjs';
@@ -42,6 +43,8 @@ export function searchEntries(index,term,lang){
    targetPage='/guide/luftfeuchtigkeit-richtig-messen.html'; targetId='hygrometer-vergleichen';
  } else if(lang==='de' && asksForN90ModelIdentity(query)) {
    targetPage='/guide/delonghi-pac-n90-test.html'; targetId='testlage';
+ } else if(lang==='de' && asksForTesamollWindowProfile(query)) {
+   targetPage='/guide/fenster-zugluft-mietwohnung.html'; targetId='dichtungsprofil';
  } else if(lang==='de' && asksForPortaSplitWindowLip(query)) {
    targetPage='/guide/midea-portasplit-ausverkauft-alternativen.html'; targetId='fensterfalz';
  } else if(lang==='de' && asksForDehumidifierDrainRoute(query)) {

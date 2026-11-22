@@ -12,6 +12,7 @@ assert all('#' not in entry['u'] for entry in index),'Search sections must not b
 focused=[entry for entry in index if entry.get('section')]
 assert [(entry['l'],entry['u'],entry['section']['id']) for entry in focused]==[
     ('de','/guide/delonghi-pac-n90-test.html','testlage'),
+    ('de','/guide/fenster-zugluft-mietwohnung.html','dichtungsprofil'),
     ('de','/guide/heizdecke-stromverbrauch.html','waerme-rechner'),
     ('de','/guide/keller-lueften-sommer.html','taupunkt'),
     ('de','/guide/luftentfeuchter-keller.html','ablauf-vor-kauf'),
