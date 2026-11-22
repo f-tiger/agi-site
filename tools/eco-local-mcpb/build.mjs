@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.22.21';
-const revision = '799ada1d2f1bc4b26d2c880399be77ff1148f4b8';
+const version = '1.22.22';
+const revision = '3b24374dce3d9e109bf3925c66428a1428329449';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -29,7 +29,8 @@ const featureNames = ['entfeuchter_ablaufcheck', 'btu_empfehlung', 'fensterabdic
   'luftreiniger_ersatzfilter_zuordnung', 'philips_verdunsterfilter_zuordnung', 'heizdecke_stromkosten_nennleistung',
   'hygrometer_messbereiche', 'pac_n90_ean_abgleichen', 'midea_portasplit_fensterfalz_pruefen',
   'tesamoll_fensterdichtung_profil_pruefen', 'klimaanlage_geraeusch_vergleich', 'trotec_ttk75_eco_pruefpunkt',
-  'kaffeevollautomat_intenza_aquaclean_filterfamilie_modellpruefung', 'fenstersauger_170mm_saugduese_geraetezuordnung'];
+  'kaffeevollautomat_intenza_aquaclean_filterfamilie_modellpruefung', 'fenstersauger_170mm_saugduese_geraetezuordnung',
+  'trotec_ttk70_hepa_filter_generation'];
 const entry = 'src/server.mjs';
 const legacyHelpers = fileURLToPath(new URL('../mcp-registry/local-packages/', import.meta.url));
 const sha256 = buffer => createHash('sha256').update(buffer).digest('hex');
@@ -70,6 +71,8 @@ const coffeeFilterGuide = coffeeCitation + '#kaffee-wasserfilter';
 const kaercherNozzleTool = 'fenstersauger_170mm_saugduese_geraetezuordnung';
 const kaercherNozzleCitation = 'https://getecoback.com/produkte.html';
 const kaercherNozzleGuide = kaercherNozzleCitation + '#kaercher-170mm-saugduese';
+const ttk70FilterTool = 'trotec_ttk70_hepa_filter_generation';
+const ttk70FilterGuide = ttk75Citation + '#ttk70-hepa-filter';
 const portaSplitLipTool = 'midea_portasplit_fensterfalz_pruefen';
 const portaSplitCitation = 'https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html';
 const portaSplitLipGuide = portaSplitCitation + '#fensterfalz';
@@ -845,11 +848,59 @@ async function verifyKaercherNozzle(call) {
   return {name:kaercherNozzleTool,guide:kaercherNozzleGuide,records,rejected:invalid.length};
 }
 
+async function verifyTtk70Filter(call) {
+  const articles = ['7710000024','7710000077','7710000080'];
+  const [old, later, dust] = articles;
+  const sources = [
+    'https://de.trotec.com/shop/hepa-filter-fuer-ttk-70-hepa.html',
+    'https://de.trotec.com/shop/hepa-filter-fuer-ttk-70-hepa-plus-ab-bj-12-23.html',
+    'https://de.trotec.com/shop/luftfilter-fuer-ttk-70-hepa-plus-ab-bj-12-23.html',
+  ];
+  const model = 'TTK 70 HEPA', plus = 'TTK 70 HEPA Plus';
+  const before = 'vor_dezember_2023', december = 'dezember_2023', after = 'nach_dezember_2023';
+  const cases = [
+    [model,before,old,['aelterer_hepa_filter_belegt',old]],
+    [model,before,later,['angebot_kennung_abgleichen',old]],
+    [model,december,old,['uebergangsmonat_offen',null]],
+    [plus,after,later,['herstellerangaben_widerspruechlich',null]],
+    [plus,before,old,['modell_und_bauzeit_abgleichen',null]],
+    [model,'unbekannt',old,['typenschild_pruefen',null]],
+    [model,before,dust,['separater_staubluftfilter',null]],
+  ];
+  const records = [];
+  for (const [modell, bauzeit, angebot_kennung, expected] of cases) {
+    const result = await call({modell,bauzeit,angebot_kennung});
+    assert.equal(result.isError,false);
+    const data = result.structuredContent;
+    const observed = [data.status,data.dokumentierter_hepa_filter];
+    assert.deepEqual(observed,expected);
+    assert.deepEqual([data.markt,data.citation_url,data.guide_url,data.quellen_geprueft_am],
+      ['Deutschland',ttk75Citation,ttk70FilterGuide,'2026-11-22']);
+    assert.deepEqual(data.quellen.map(item=>item.artikelnummer),articles);
+    assert.deepEqual(data.quellen.map(item=>item.url),sources);
+    assert.match(data.quellen[1].fundstelle,/ab Baujahr.*bis Baujahr/);
+    assert.match(data.hinweis,/Kaufmonat bestimmt die Generation nicht/);
+    assert.doesNotMatch(result.content[0].text,/https?:\/\/[^"\s]*(?:amazon\.|amzn\.)|[?&]tag=/i);
+    records.push(observed);
+  }
+  const invalid = [
+    {modell:'TTK 70 HEPA Pro',bauzeit:before,angebot_kennung:old},
+    {modell:model,bauzeit:'2023',angebot_kennung:old},
+    {modell:model,bauzeit:before,angebot_kennung:7710000024},
+  ];
+  for (const input of invalid) {
+    const result = await call(input);
+    assert.equal(result.isError,true);
+    assert.equal(result.structuredContent,undefined);
+  }
+  return {name:ttk70FilterTool,guide:ttk70FilterGuide,articles,records,rejected:invalid.length};
+}
+
 async function verifyStdio(extracted, manifest) {
   const {TOOLS} = await import(pathToFileURL(join(extracted,'src/tools.mjs')));
   const {expandedDefinitions} = await import(pathToFileURL(join(extracted,'src/eco-suite/src/mcp-expanded.mjs')));
   const expected = JSON.parse(JSON.stringify(TOOLS));
-  assert.equal(expected.length,2029);
+  assert.equal(expected.length,2030);
   assert.deepEqual(manifest.server.mcp_config, {command:'node',args:['${__dirname}/'+entry]});
   return withStdio(extracted,[],async rpc => {
     const listed = [], sizes = [], cursors = new Set();
@@ -865,9 +916,9 @@ async function verifyStdio(extracted, manifest) {
       }
     } while (cursor !== undefined);
     assert.deepEqual(listed,expected);
-    assert.deepEqual(sizes,[...Array(20).fill(100),29]);
+    assert.deepEqual(sizes,[...Array(20).fill(100),30]);
     const names = new Set(listed.map(tool=>tool.name));
-    assert.equal(names.size,2029);
+    assert.equal(names.size,2030);
     assert.ok(oldNames.every(name=>names.has(name)), 'Expected all eight supported legacy tools');
     assert.ok([...names].every(name=>!/balkonspeicher|balkonkraftwerk|solarbank|pv[_-]speicher/i.test(name)));
     assert.ok(manifest.tools.every(tool=>names.has(tool.name)));
@@ -938,9 +989,11 @@ async function verifyStdio(extracted, manifest) {
       rpc('tools/call',{name:coffeeFilterTool,arguments:args}));
     const kaercherNozzle = await verifyKaercherNozzle(args =>
       rpc('tools/call',{name:kaercherNozzleTool,arguments:args}));
+    const ttk70Filter = await verifyTtk70Filter(args =>
+      rpc('tools/call',{name:ttk70FilterTool,arguments:args}));
     return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,windowCondensation,decimalWindowWidth,
       singleLaundry,fritzValve,drainRoute,measuredVentilation,exactFilter,philipsFilter,warmthCost,hygrometerComparison,n90Identity,
-      portaSplitWindowLip,tesamollProfiles,coolingNoise,ttk75Point,coffeeFilter,kaercherNozzle,
+      portaSplitWindowLip,tesamollProfiles,coolingNoise,ttk75Point,coffeeFilter,kaercherNozzle,ttk70Filter,
       firstExamples:['btu_empfehlung','entfeuchter_ablaufcheck'],finder:verifyFinder(extracted,drain),
       lastPageExample:last.name,legacyNames:oldNames.length,network:'disabled'};
   });
@@ -1558,6 +1611,16 @@ async function verifyCompactStdio(extracted) {
     assert.deepEqual(nozzleMatch.inputSchema.required,['geraet','teilenummer','angebotsart']);
     const kaercherNozzle = await verifyKaercherNozzle(eingaben =>
       rpc('tools/call',{name:runner,arguments:{name:kaercherNozzleTool,eingaben}}));
+    const ttk70Lookup = await rpc('tools/call',{
+      name:finder,arguments:{frage:'Mein Trotec TTK 70 HEPA Plus ist Baujahr 2024. Passt 7710000024 oder 7710000077?'},
+    });
+    assert.equal(ttk70Lookup.isError,false);
+    const ttk70Match = ttk70Lookup.structuredContent.tools[0];
+    assert.equal(ttk70Match?.name,ttk70FilterTool);
+    assert.equal(ttk70Match.guide_url,ttk70FilterGuide);
+    assert.deepEqual(ttk70Match.inputSchema.required,['modell','bauzeit','angebot_kennung']);
+    const ttk70Filter = await verifyTtk70Filter(eingaben =>
+      rpc('tools/call',{name:runner,arguments:{name:ttk70FilterTool,eingaben}}));
     const tadoOventrop = await verifyCompactTadoOventrop(rpc,finder,runner);
     const householdDecisions = await verifyCompactHouseholdDecisions(rpc,runner);
     const windowWidth = await verifyCompactWindowWidth(rpc,finder,runner);
@@ -1570,7 +1633,7 @@ async function verifyCompactStdio(extracted) {
       liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,singleLaundry,fritzValve,drainRoute,
       measuredVentilation,exactFilter,philipsFilter,warmthCost,hygrometerComparison,laundryPrecision,windowBlade,windowLookup,
       windowWidth,decimalWindowWidth,householdDecisions,tadoOventrop,n90Costs,n90Identity,portaSplitWindowLip,
-      tesamollProfiles,coolingNoise,ttk75Point,coffeeFilter,kaercherNozzle,
+      tesamollProfiles,coolingNoise,ttk75Point,coffeeFilter,kaercherNozzle,ttk70Filter,
       humidifierEfficiency,glassvacTemperature,windowSubject,windowCondensation,
     };
   });
@@ -1649,6 +1712,7 @@ try {
   assert.deepEqual(result.ttk75Point,result.compact.ttk75Point);
   assert.deepEqual(result.coffeeFilter,result.compact.coffeeFilter);
   assert.deepEqual(result.kaercherNozzle,result.compact.kaercherNozzle);
+  assert.deepEqual(result.ttk70Filter,result.compact.ttk70Filter);
   assert.deepEqual(result.resource,result.compact.resource);
   result.archiveReadme = {replacedVersion:readme.previousVersion,registryLatestUrl};
   const identifier = `${releaseUrl}/${file}`;

@@ -19,12 +19,12 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUNDLE: ecoback-local-tools-1.22.21.mcpb
-  VERSION: '1.22.21'
-  UPSTREAM_SHA: 799ada1d2f1bc4b26d2c880399be77ff1148f4b8
+  BUNDLE: ecoback-local-tools-1.22.22.mcpb
+  VERSION: '1.22.22'
+  UPSTREAM_SHA: 3b24374dce3d9e109bf3925c66428a1428329449
   NAME: io.github.f-tiger/ecoback-local-tools
   RELEASE_TAG: fleet-mcp-registry-2026-10-10
-  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.21.mcpb
+  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.22.mcpb
   REGISTRY_VERSIONS: https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions
   SOURCE_URL: https://github.com/f-tiger/getecoback-mcp
   MCPB_SCHEMA: https://raw.githubusercontent.com/modelcontextprotocol/mcpb/70fe3b34cd6dff1b3bba046638edc72a6467a4fb/schemas/mcpb-manifest-v0.3.schema.json
@@ -96,7 +96,7 @@ jobs:
           ' "$root/servers/ecoback-local-tools.json"
           jq -e --arg name "$NAME" --arg version "$VERSION" --arg revision "$UPSTREAM_SHA" --arg sha "$digest" --arg latest "$REGISTRY_VERSIONS/latest" '
             .name == $name and .version == $version and .sourceRevision == $revision and
-            .fileSha256 == $sha and .tools == 2029 and .pages == 21 and .legacyNames == 8 and .windowExamples == 13 and
+            .fileSha256 == $sha and .tools == 2030 and .pages == 21 and .legacyNames == 8 and .windowExamples == 13 and
             .network == "disabled" and (.firstExamples | type == "array" and length > 0) and
             (.lastPageExample != null and (.lastPageExample | length) > 0) and
             .finder.topMatch == "entfeuchter_ablaufcheck" and
@@ -258,6 +258,21 @@ jobs:
               ],
               rejected:3
             } and .compact.kaercherNozzle == .kaercherNozzle and
+            .ttk70Filter == {
+              name:"trotec_ttk70_hepa_filter_generation",
+              guide:"https://getecoback.com/guide/trotec-luftentfeuchter-test.html#ttk70-hepa-filter",
+              articles:["7710000024","7710000077","7710000080"],
+              records:[
+                ["aelterer_hepa_filter_belegt","7710000024"],
+                ["angebot_kennung_abgleichen","7710000024"],
+                ["uebergangsmonat_offen",null],
+                ["herstellerangaben_widerspruechlich",null],
+                ["modell_und_bauzeit_abgleichen",null],
+                ["typenschild_pruefen",null],
+                ["separater_staubluftfilter",null]
+              ],
+              rejected:3
+            } and .compact.ttk70Filter == .ttk70Filter and
             .compact.cellarBuyerEvidence == true and
             .compact.laundryComparison == {
               topMatch:"waesche_trocknungskosten", dryerEurPerLoad:0.6, dehumidifierEurPerLoad:0.3,

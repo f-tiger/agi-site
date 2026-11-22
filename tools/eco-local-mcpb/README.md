@@ -199,6 +199,11 @@ Kärcher 170 mm suction nozzle. Both profiles separate the accessory
 article from a replacement lip and retain separate measured glass-width,
 charging and support routes.
 
+Version 1.22.22 adds the Trotec TTK 70 HEPA filter generation check.
+Both profiles distinguish the documented original filter, a later
+manufacturer listing with conflicting production-date information, and
+the separate dust air filter.
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the
