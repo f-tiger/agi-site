@@ -1,12 +1,36 @@
 // Queries stay in memory. Only fixed navigation actions reach the existing bridge.
 export const normalize=value=>String(value).toLowerCase().replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss').normalize('NFD').replace(/\p{Diacritic}/gu,'');
 const stop=new Set('wie kann ich meine mein der die das und im in am zu fuer what how do i my the a an and for to can de la le les un une el los las il lo una di het een ik'.split(' '));
+const laundryPage='/waeschetrockner-oder-luftentfeuchter.html';
+const singleLaundryId='luftentfeuchter-waesche-kosten';
+const dryer='(?:waesche|waermepumpen|kondens|abluft)?trockner';
+const explicitlyNoDryer=new RegExp(`\\b(?:ohne|kein(?:e[nsrm]?)?) (?:einen )?${dryer}\\b`,'g');
+const mentionsDryer=new RegExp(`\\b${dryer}(?:s|n)?\\b`);
+function asksForOneDehumidifierRun(question) {
+ const withDevices=question.replace(/\s+/g,' ').replace(explicitlyNoDryer,'');
+ const laundry=/\b(?:waesch|waschladung)\w*/.test(withDevices)||
+   (/\bladung(?:en)?\b/.test(withDevices)&&/\btrock\w*/.test(withDevices));
+ return laundry &&
+   /\b(?:luft)?entfeuchter(?:s|n)?\b/.test(withDevices) &&
+   /\b(?:kost\w*|strom\w*|verbrauch\w*|kwh|eur|euro)\b/.test(withDevices) &&
+   !mentionsDryer.test(withDevices) &&
+   !/\b(?:oder|vs|versus|vergleich\w*|erspar\w*|guenstig\w*|billig\w*|amorti\w*|lohnt|keller\w*|stromtarif\w*|tarifwechsel\w*)\b/.test(withDevices);
+}
 export function searchEntries(index,term,lang){
- const words=normalize(term).match(/[\p{L}\p{N}]+/gu)?.filter(w=>!stop.has(w))||[];
+ const query=normalize(term),words=query.match(/[\p{L}\p{N}]+/gu)?.filter(w=>!stop.has(w))||[];
  if(!words.length)return [];
- return index.filter(e=>e.l===lang&&typeof e.t==='string'&&/^\/(?!\/)[^?#\\]*$/.test(e.u)&&!/^\/(auth|api|account|members|widgets)(\/|\.|$)/.test(e.u))
+ const pages=index.filter(e=>e.l===lang&&typeof e.t==='string'&&/^\/(?!\/)[^?#\\]*$/.test(e.u)&&!/^\/(auth|api|account|members|widgets)(\/|\.|$)/.test(e.u));
+ const focused=lang==='de'&&asksForOneDehumidifierRun(query)?
+   pages.find(e=>e.u===laundryPage&&e.section?.id===singleLaundryId&&typeof e.section.title==='string'&&typeof e.section.description==='string'):
+   undefined;
+ const ranked=pages.filter(e=>!focused||e.u!==laundryPage)
  .map(e=>{const title=normalize(e.t),desc=normalize(e.d||''),alias=normalize(e.a||'');const scores=words.map(w=>title.includes(w)?4:alias.includes(w)?3:desc.includes(w)?1:0);return {entry:e,score:scores.every(Boolean)?scores.reduce((a,b)=>a+b,0):0};})
- .filter(h=>h.score>0).sort((a,b)=>b.score-a.score||a.entry.u.localeCompare(b.entry.u)).slice(0,6);
+ .filter(h=>h.score>0).sort((a,b)=>b.score-a.score||a.entry.u.localeCompare(b.entry.u));
+ if(focused){
+   const {title,description}=focused.section;
+   ranked.unshift({entry:{...focused,t:title,d:description,u:laundryPage+'#'+singleLaundryId},score:1+4*words.length});
+ }
+ return ranked.slice(0,6);
 }
 if(typeof document!=='undefined'){
  const root=document.getElementById('eco-discovery');

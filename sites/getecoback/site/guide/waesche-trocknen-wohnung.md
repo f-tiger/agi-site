@@ -58,7 +58,7 @@ Die Formel ist dieselbe wie bei jedem Gerät: **Watt ÷ 1.000 × Stunden × Stro
 | Übliches Kompressorgerät | 300 W | 9,0 ct | 0,54 € | 6,48 € |
 | Großes Gerät / Wäschemodus | 500 W | 15,0 ct | 0,90 € | 10,80 € |
 
-Diese Beträge sind keine Obergrenzen für eine trockene Ladung. Leistung, Laufzeit und Abschaltungen hängen von Gerät, Modus und Bedingungen ab; der tatsächliche Gesamtverbrauch kann niedriger oder höher ausfallen. Miss die kWh bis zum gewünschten Trocknungsgrad und multipliziere sie mit deinem Strompreis. Mit deinen eigenen Zahlen rechnest du es im [Stromkosten-Rechner](https://getecoback.com/guide/stromkosten-rechner.html) nach.
+Diese Beträge sind keine Obergrenzen für eine trockene Ladung. Leistung, Laufzeit und Abschaltungen hängen von Gerät, Modus und Bedingungen ab; der tatsächliche Gesamtverbrauch kann niedriger oder höher ausfallen. Miss die kWh bis zum gewünschten Trocknungsgrad und multipliziere sie mit deinem Strompreis. Im [Rechner für Luftentfeuchter-Stromkosten je Wäscheladung](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#luftentfeuchter-waesche-kosten) kannst du die gemessenen kWh oder die mittlere Leistung und Laufzeit eingeben.
 
 ## Luftentfeuchter oder Wäschetrockner — was ist günstiger?
 

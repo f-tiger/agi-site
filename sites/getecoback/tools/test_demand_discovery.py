@@ -8,6 +8,11 @@ build()
 assert all(p.read_bytes()==b for p,b in before.items()),'Discovery generation must be byte-stable'
 index=json.loads((SITE/'search-index.json').read_text())
 assert index==collect() and len({r['u'] for r in index})==len(rows)
+assert all('#' not in entry['u'] for entry in index),'Search sections must not become canonical index entries'
+focused=[entry for entry in index if entry.get('section')]
+assert [(entry['l'],entry['u'],entry['section']['id']) for entry in focused]==[
+    ('de','/waeschetrockner-oder-luftentfeuchter.html','luftentfeuchter-waesche-kosten')]
+assert (SITE/'search-index.json').read_bytes()==(SITE/'assets/search-index.json').read_bytes()
 for p,r,l,h in rows:
  s=p.read_text()
  for marker in ['id="eco-discovery"','id="eb-search-toggle"','id="eb-search-query"','id="eco-chrome-copy"']:
