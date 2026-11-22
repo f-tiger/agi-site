@@ -170,6 +170,11 @@ German catalogue lookup. Both modes distinguish an exact pair, an unclear
 model suffix, a different EAN and a missing EAN. The German support page and
 Austrian distributor data sheet remain separate from the offer contents.
 
+Version 1.22.16 adds the original Midea PortaSplit's window-lip dimension
+check. Both modes confirm the German manual's width and height limits for
+the original standard bracket on an inward-opening window. A fit within
+those dimensions still requires a separate mounting and securing check.
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the

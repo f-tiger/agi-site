@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.22.15';
-const revision = '049eec255e64bfec254698b25a12e3b7facee4c7';
+const version = '1.22.16';
+const revision = '94bcc3eebcbfbe60e30c5a8481178ba38cd45b6a';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -27,7 +27,7 @@ const featureNames = ['entfeuchter_ablaufcheck', 'btu_empfehlung', 'fensterabdic
   'taupunkt_lueften', 'fenstersauger_170mm_abziehlippe_geraetefamilie', 'fenster_oberflaeche_taucheck',
   'luftentfeuchter_waesche_einzelkosten', 'fritz_302_danfoss_adapter', 'keller_lueften_taupunkt_messwerte',
   'luftreiniger_ersatzfilter_zuordnung', 'philips_verdunsterfilter_zuordnung', 'heizdecke_stromkosten_nennleistung',
-  'hygrometer_messbereiche', 'pac_n90_ean_abgleichen'];
+  'hygrometer_messbereiche', 'pac_n90_ean_abgleichen', 'midea_portasplit_fensterfalz_pruefen'];
 const entry = 'src/server.mjs';
 const legacyHelpers = fileURLToPath(new URL('../mcp-registry/local-packages/', import.meta.url));
 const sha256 = buffer => createHash('sha256').update(buffer).digest('hex');
@@ -57,6 +57,9 @@ const hygrometerGuide = hygrometerCitation + '#hygrometer-vergleichen';
 const n90IdentityTool = 'pac_n90_ean_abgleichen';
 const n90Citation = 'https://getecoback.com/guide/delonghi-pac-n90-test.html';
 const n90IdentityGuide = n90Citation + '#testlage';
+const portaSplitLipTool = 'midea_portasplit_fensterfalz_pruefen';
+const portaSplitCitation = 'https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html';
+const portaSplitLipGuide = portaSplitCitation + '#fensterfalz';
 const cellarUri = 'ecoback://evidence/de/kellerentfeuchter';
 const laundryComparisonTool = 'waesche_trocknungskosten';
 const singleLaundryTool = 'luftentfeuchter_waesche_einzelkosten';
@@ -600,11 +603,46 @@ async function verifyN90Identity(call) {
   return {name:n90IdentityTool,guide:n90IdentityGuide,ean,model,manufacturer,sheet,statuses,rejected:invalid.length};
 }
 
+async function verifyPortaSplitLip(call) {
+  const ean = 4048164116478;
+  const manual = 'https://www.midea.com/content/dam/midea-aem/de/klimatisieren-heizen/portasplit/PortaSplit-Gebrauchsanweisung-DE.pdf';
+  const printedPage = 15;
+  const args = {angebot_ean:ean,halterung:'original_standard',fenster:'nach_innen_oeffnend',
+    messbezug:'falz_nach_zeichnung',falzbreite_mm:45,falzhoehe_mm:20};
+  const cases = [
+    [{falzbreite_mm:60,falzhoehe_mm:0},['ausserhalb_dokumentierter_masse',45,20,-15,null]],
+    [{},['masse_im_dokumentierten_rahmen',45,20,0,0]],
+    [{messbezug:'dichtung_oder_unklar'},['messpunkt_oder_masse_klaeren',45,20,null,null]],
+    [{angebot_ean:0},['modell_klaeren',null,null,null,null]],
+    [{fenster:'anders_oder_offen'},['halterung_oder_fenster_klaeren',null,null,null,null]],
+  ];
+  const records = [];
+  for (const [change, expected] of cases) {
+    const result = await call({...args,...change});
+    assert.equal(result.isError,false);
+    const data = result.structuredContent;
+    const observed = [data.status,data.breite_max_mm,data.hoehe_min_mm,data.breite_unter_max_mm,data.hoehe_ueber_min_mm];
+    assert.deepEqual(observed,expected);
+    assert.deepEqual([data.referenz_ean,data.citation_url,data.guide_url,data.hersteller_anleitung_url,data.druckseite],
+      [ean,portaSplitCitation,portaSplitLipGuide,manual,printedPage]);
+    assert.match(data.grenze,/noch keine Aufstellung oder Befestigung/);
+    assert.doesNotMatch(result.content[0].text,/https?:\/\/[^"\s]*(?:amazon\.|amzn\.)|[?&]tag=/i);
+    records.push(observed);
+  }
+  const invalid = [{...args,angebot_ean:ean+0.5},{...args,falzbreite_mm:-1},{...args,falzhoehe_mm:undefined}];
+  for (const inputs of invalid) {
+    const result = await call(inputs);
+    assert.equal(result.isError,true);
+    assert.equal(result.structuredContent,undefined);
+  }
+  return {name:portaSplitLipTool,guide:portaSplitLipGuide,ean,manual,printedPage,records,rejected:invalid.length};
+}
+
 async function verifyStdio(extracted, manifest) {
   const {TOOLS} = await import(pathToFileURL(join(extracted,'src/tools.mjs')));
   const {expandedDefinitions} = await import(pathToFileURL(join(extracted,'src/eco-suite/src/mcp-expanded.mjs')));
   const expected = JSON.parse(JSON.stringify(TOOLS));
-  assert.equal(expected.length,2025);
+  assert.equal(expected.length,2026);
   assert.deepEqual(manifest.server.mcp_config, {command:'node',args:['${__dirname}/'+entry]});
   return withStdio(extracted,[],async rpc => {
     const listed = [], sizes = [], cursors = new Set();
@@ -620,9 +658,9 @@ async function verifyStdio(extracted, manifest) {
       }
     } while (cursor !== undefined);
     assert.deepEqual(listed,expected);
-    assert.deepEqual(sizes,[...Array(20).fill(100),25]);
+    assert.deepEqual(sizes,[...Array(20).fill(100),26]);
     const names = new Set(listed.map(tool=>tool.name));
-    assert.equal(names.size,2025);
+    assert.equal(names.size,2026);
     assert.ok(oldNames.every(name=>names.has(name)), 'Expected all eight supported legacy tools');
     assert.ok([...names].every(name=>!/balkonspeicher|balkonkraftwerk|solarbank|pv[_-]speicher/i.test(name)));
     assert.ok(manifest.tools.every(tool=>names.has(tool.name)));
@@ -680,8 +718,11 @@ async function verifyStdio(extracted, manifest) {
       rpc('tools/call',{name:hygrometerTool,arguments:args}));
     const n90Identity = await verifyN90Identity(args =>
       rpc('tools/call',{name:n90IdentityTool,arguments:args}));
+    const portaSplitWindowLip = await verifyPortaSplitLip(args =>
+      rpc('tools/call',{name:portaSplitLipTool,arguments:args}));
     return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,windowCondensation,decimalWindowWidth,
       singleLaundry,fritzValve,drainRoute,measuredVentilation,exactFilter,philipsFilter,warmthCost,hygrometerComparison,n90Identity,
+      portaSplitWindowLip,
       firstExamples:['btu_empfehlung','entfeuchter_ablaufcheck'],finder:verifyFinder(extracted,drain),
       lastPageExample:last.name,legacyNames:oldNames.length,network:'disabled'};
   });
@@ -1238,6 +1279,17 @@ async function verifyCompactStdio(extracted) {
     assert.deepEqual(n90Match.inputSchema.required,['ean','modell']);
     const n90Identity = await verifyN90Identity(eingaben =>
       rpc('tools/call',{name:runner,arguments:{name:n90IdentityTool,eingaben}}));
+    const lipLookup = await rpc('tools/call',{
+      name:finder,arguments:{frage:'Midea PortaSplit Fensterfalz 60 mm breit, reicht die Standardhalterung?'},
+    });
+    assert.equal(lipLookup.isError,false);
+    const lipMatch = lipLookup.structuredContent.tools[0];
+    assert.equal(lipMatch?.name,portaSplitLipTool);
+    assert.equal(lipMatch.guide_url,portaSplitLipGuide);
+    assert.deepEqual(lipMatch.inputSchema.required,
+      ['angebot_ean','halterung','fenster','messbezug','falzbreite_mm','falzhoehe_mm']);
+    const portaSplitWindowLip = await verifyPortaSplitLip(eingaben =>
+      rpc('tools/call',{name:runner,arguments:{name:portaSplitLipTool,eingaben}}));
     const tadoOventrop = await verifyCompactTadoOventrop(rpc,finder,runner);
     const householdDecisions = await verifyCompactHouseholdDecisions(rpc,runner);
     const windowWidth = await verifyCompactWindowWidth(rpc,finder,runner);
@@ -1249,7 +1301,8 @@ async function verifyCompactStdio(extracted) {
       tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,
       liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,singleLaundry,fritzValve,drainRoute,
       measuredVentilation,exactFilter,philipsFilter,warmthCost,hygrometerComparison,laundryPrecision,windowBlade,windowLookup,
-      windowWidth,decimalWindowWidth,householdDecisions,tadoOventrop,n90Costs,n90Identity,humidifierEfficiency,glassvacTemperature,windowSubject,windowCondensation,
+      windowWidth,decimalWindowWidth,householdDecisions,tadoOventrop,n90Costs,n90Identity,portaSplitWindowLip,
+      humidifierEfficiency,glassvacTemperature,windowSubject,windowCondensation,
     };
   });
 }
@@ -1321,6 +1374,7 @@ try {
   assert.deepEqual(result.warmthCost,result.compact.warmthCost);
   assert.deepEqual(result.hygrometerComparison,result.compact.hygrometerComparison);
   assert.deepEqual(result.n90Identity,result.compact.n90Identity);
+  assert.deepEqual(result.portaSplitWindowLip,result.compact.portaSplitWindowLip);
   assert.deepEqual(result.resource,result.compact.resource);
   result.archiveReadme = {replacedVersion:readme.previousVersion,registryLatestUrl};
   const identifier = `${releaseUrl}/${file}`;
