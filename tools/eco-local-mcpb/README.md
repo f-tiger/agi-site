@@ -190,6 +190,10 @@ Both offline profiles distinguish the exact manufacturer rating, a
 separately cited supplier figure, and conditions with no published point.
 The operating range does not imply extraction or electricity use.
 
+Version 1.22.20 helps both offline modes find the existing coffee-machine
+water filter check by the documented German model and offered filter
+designation. Model compatibility and maintenance remain separate queries.
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the
