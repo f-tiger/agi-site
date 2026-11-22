@@ -442,13 +442,41 @@ async function checkCatalog(browser){
     assert(await accessoryLink.isVisible());
     assert(await page.locator('#product-filter-empty').isHidden());
    }
+   const partResults=page.locator('[data-part-results]');
+   for(const [part,target] of Object.entries({
+    'GN FJM':'/produkte.html#miele-staubsaugerbeutel',
+    '2.633-605.0':'/produkte.html#kaercher-170mm-saugduese',
+    'TCZ7033':'/produkte.html#kaffee-wasserfilter',
+    'DLSC002':'/produkte.html#kaffee-wasserfilter',
+    'TTK 70 HEPA':'/guide/trotec-luftentfeuchter-test.html#ttk70-hepa-filter',
+    '69309':'/ersatzfilter.html#finder',
+   })){
+    await page.locator('#product-query').fill(part);
+    assert(await partResults.isVisible(),part);
+    const hrefs=await partResults.locator('a').evaluateAll(links=>links.map(link=>link.getAttribute('href')));
+    assert.deepEqual(hrefs.map(href=>href.startsWith('#')?'/produkte.html'+href:href),[target],part);
+    assert(await page.locator('#product-filter-empty').isHidden(),part);
+   }
+   await page.locator('#product-category').selectOption('fenstersauger');
+   await page.locator('#product-query').fill('2.633-605.0');
+   assert(await partResults.getByRole('link',{name:'Kärcher-Saugdüse 170 mm'}).isVisible());
    await page.locator('#product-filters button[type=reset]').click();
+   assert(await partResults.isHidden());
    assert.equal(await page.locator('[data-product-card]:visible').count(),data.products.length);
    assert.equal(await page.locator('[data-specialist-guide]:visible').count(),6);
    const example=data.products[0];await page.locator('#product-query').fill(example.name);
    assert(await page.locator('#produkt-'+example.id).isVisible());
    await page.locator('#product-filters button[type=reset]').click();
   }else{assert(await page.locator('#product-filters').isHidden());assert.equal(await page.locator('[data-product-card]:visible').count(),data.products.length);}
+  const shortcuts=page.locator('#ersatzteile-pruefen');
+  assert(await shortcuts.isVisible());
+  assert.equal(await shortcuts.getByRole('link').count(),5);
+  const bagGuide=shortcuts.getByRole('link',{name:'Miele-Staubsaugerbeutel'});
+  await bagGuide.focus();
+  await page.keyboard.press('Enter');
+  await page.waitForURL(origin+'/produkte.html?__probe=1#miele-staubsaugerbeutel');
+  assert(await page.locator('#miele-staubsaugerbeutel').isVisible());
+  await page.goto(origin+'/produkte.html?__probe=1');
   // Follow an actual buying-guide result by keyboard in both script modes.
   await humidifierLink.focus();
   await page.keyboard.press('Enter');

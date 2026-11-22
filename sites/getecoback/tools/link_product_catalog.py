@@ -10,7 +10,9 @@ def inject(text, data):
     count, categories = len(data['products']), len(data['categories'])
     block = (f'<!--{MARKER}--><p data-product-catalog-entry style="padding:12px 16px;border-radius:10px;background:#f2f7fa;color:#173f5f;line-height:1.6">'
              f'<a href="/produkte.html" style="color:#124f75;font-weight:700">{count} Haushaltsgeräte in {categories} Kategorien ansehen →</a> '
-             f'Mit passenden Auswahlhilfen, genauen Varianten und Herstellerquellen.</p><!--/{MARKER}-->')
+             'Mit passenden Auswahlhilfen, genauen Varianten und Herstellerquellen. '
+             '<a href="/produkte.html#ersatzteile-pruefen" style="color:#124f75;font-weight:700">Ersatzteile nach Modell prüfen →</a>'
+             f'</p><!--/{MARKER}-->')
     h1 = re.search(r'</h1>', clean, re.I)
     if h1 is None:
         raise ValueError('Product discovery requires an authored heading')

@@ -20,6 +20,11 @@ if(root){
   node,
   text:searchText(node.textContent+' '+(node.dataset.searchTerms||''))
  }));
+ const partResults=root.querySelector('[data-part-results]');
+ const partGuides=[...root.querySelectorAll('[data-part-guide]')].map(node=>({
+  node, category:node.dataset.category,
+  text:searchText(node.textContent+' '+node.dataset.searchTerms)
+ }));
  const render=()=>{
   const terms=normalize(query.value).split(' ').filter(Boolean),selected=category.value;let count=0,groupCount=0;
   const matches=text=>terms.every(term=>text.includes(term));
@@ -31,7 +36,13 @@ if(root){
    if(!guide.node.hidden)guideCount++;
   }
   if(guideSection)guideSection.hidden=guideCount===0;
-  const guideStatus=selected?'':` · ${guideCount} ${guideCount===1?'Kaufhilfe':'Kaufhilfen'}`;
+  if(partResults){
+   const parts=terms.length ? partGuides.filter(part=>(!selected||part.category===selected)&&matches(part.text)) : [];
+   partResults.replaceChildren(...parts.map(({node})=>node.parentElement.cloneNode(true)));
+   partResults.hidden=parts.length===0;
+   guideCount+=parts.length;
+  }
+  const guideStatus=selected&&!guideCount?'':` · ${guideCount} ${guideCount===1?'Kaufhilfe':'Kaufhilfen'}`;
   status.textContent=`${count} von ${cards.length} Modellen · ${groupCount} ${groupCount===1?'Produktgruppe':'Produktgruppen'}${guideStatus}.`;
   empty.hidden=count+guideCount>0;
  };
@@ -41,9 +52,11 @@ if(root){
   let id;try{id=decodeURIComponent(location.hash.slice(1));}catch{return;}
   if(!id){query.value='';category.value='';render();return;}
   const target=document.getElementById(id),group=target?.closest('[data-product-category]');
-  if(!target||!root.contains(target)||(!group&&target!==guideSection))return;
-  query.value='';category.value=group?.dataset.productCategory||'';render();
-  // Reveal before scrolling: a previous local filter may have hidden this model.
+  if(!target||!root.contains(target))return;
+  if(group||target===guideSection){
+   query.value='';category.value=group?.dataset.productCategory||'';render();
+  }
+  // Reveal filtered model targets before scrolling and preserve same-page history.
   requestAnimationFrame(()=>target.scrollIntoView({block:'start'}));
  };
  form.addEventListener('submit',event=>{event.preventDefault();filter();});
