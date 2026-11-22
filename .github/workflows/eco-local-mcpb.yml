@@ -19,12 +19,12 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUNDLE: ecoback-local-tools-1.22.17.mcpb
-  VERSION: '1.22.17'
-  UPSTREAM_SHA: 66b14b9cac37f46d47a2378c9bb0b48a39f89e74
+  BUNDLE: ecoback-local-tools-1.22.18.mcpb
+  VERSION: '1.22.18'
+  UPSTREAM_SHA: 11304c4f7ac614ad01b945180a80e1d3320a5173
   NAME: io.github.f-tiger/ecoback-local-tools
   RELEASE_TAG: fleet-mcp-registry-2026-10-10
-  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.17.mcpb
+  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.18.mcpb
   REGISTRY_VERSIONS: https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions
   SOURCE_URL: https://github.com/f-tiger/getecoback-mcp
   MCPB_SCHEMA: https://raw.githubusercontent.com/modelcontextprotocol/mcpb/70fe3b34cd6dff1b3bba046638edc72a6467a4fb/schemas/mcpb-manifest-v0.3.schema.json
@@ -204,6 +204,12 @@ jobs:
               ],
               rejected:3
             } and .compact.tesamollProfiles == .tesamollProfiles and
+            .coolingNoise == {
+              name:"klimaanlage_geraeusch_vergleich",
+              guide:"https://getecoback.com/guide/delonghi-pac-n90-test.html#lautstaerke",
+              records:[[false,null],[true,12],[false,null],[true,-4.1],[false,null],[true,0]],
+              rejected:3
+            } and .compact.coolingNoise == .coolingNoise and
             .compact.cellarBuyerEvidence == true and
             .compact.laundryComparison == {
               topMatch:"waesche_trocknungskosten", dryerEurPerLoad:0.6, dehumidifierEurPerLoad:0.3,

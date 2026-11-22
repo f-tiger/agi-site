@@ -180,6 +180,11 @@ Both offline modes test the whole measured span against each documented
 range. Shared fits remain possible, with separate results when measurements
 or the window's sealing system need clarification.
 
+Version 1.22.18 improves discovery and citations for the existing
+air-conditioner noise comparison. Both profiles separate sound power from
+sound pressure and give a difference only for matching quantities under
+comparable conditions.
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the
