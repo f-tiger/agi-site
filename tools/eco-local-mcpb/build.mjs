@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.20.0';
-const revision = 'c9598b35b19a3f6be925e2746f77d29d08ea0baa';
+const version = '1.21.0';
+const revision = '02cd77f2c9716d0bb62c670a945c6cdf85386d4c';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -172,7 +172,7 @@ async function verifyStdio(extracted, manifest) {
   const {TOOLS} = await import(pathToFileURL(join(extracted,'src/tools.mjs')));
   const {expandedDefinitions} = await import(pathToFileURL(join(extracted,'src/eco-suite/src/mcp-expanded.mjs')));
   const expected = JSON.parse(JSON.stringify(TOOLS));
-  assert.equal(expected.length,2018);
+  assert.equal(expected.length,2019);
   assert.deepEqual(manifest.server.mcp_config, {command:'node',args:['${__dirname}/'+entry]});
   return withStdio(extracted,[],async rpc => {
     const listed = [], sizes = [], cursors = new Set();
@@ -188,9 +188,9 @@ async function verifyStdio(extracted, manifest) {
       }
     } while (cursor !== undefined);
     assert.deepEqual(listed,expected);
-    assert.deepEqual(sizes,[...Array(20).fill(100),18]);
+    assert.deepEqual(sizes,[...Array(20).fill(100),19]);
     const names = new Set(listed.map(tool=>tool.name));
-    assert.equal(names.size,2018);
+    assert.equal(names.size,2019);
     assert.ok(oldNames.every(name=>names.has(name)), 'Expected all eight supported legacy tools');
     assert.ok([...names].every(name=>!/balkonspeicher|balkonkraftwerk|solarbank|pv[_-]speicher/i.test(name)));
     assert.ok(manifest.tools.every(tool=>names.has(tool.name)));
@@ -270,6 +270,56 @@ async function verifyCompactLaundryPrecision(rpc, finder) {
     topMatches.push(topMatch);
   }
   return topMatches;
+}
+
+async function verifyCompactTadoOventrop(rpc, finder, runner) {
+  const frage = 'tado X Oventrop UniDH M30 Adapter 1011445';
+  const found = await rpc('tools/call',{name:finder,arguments:{frage}});
+  assert.equal(found.isError,false);
+  const name = found.structuredContent.tools[0]?.name;
+  assert.equal(name,'tado_x_oventrop_ventiladapter_pruefen');
+  const guide = 'https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#tado-x-oventrop';
+  const pdf = 'https://cdn.bfldr.com/607DGEMS/at/hqb8tzxsq4cmchcjxsxtwhh/DE_SRTx_compatibility_Links.pdf';
+  const input = {ventilmodell:'unidh',gewinde:'m30_1_0',ventilzustand:'thermostatisch_unauffaellig'};
+  const decide = async changes => {
+    const reply = await rpc('tools/call',{name:runner,arguments:{name,eingaben:{...input,...changes}}});
+    assert.equal(reply.isError,false);
+    const result = reply.structuredContent;
+    assert.equal(result.guide_url,guide);
+    assert.equal(result.quellenmarkt,'DE');
+    assert.equal(result.quellen_geprueft_am,'2026-11-20');
+    return result;
+  };
+  for (const ventilmodell of ['unidh','unil']) {
+    const result = await decide({ventilmodell});
+    assert.equal(result.status,'separater_adapter_erforderlich');
+    assert.equal(result.adapter_artikelnummer,'1011445');
+    assert.equal(result.adapter_ean,'4026755228717');
+    assert.equal(result.adapter_im_x_lieferumfang,false);
+    assert.equal(result.quellen_url,pdf+'#page=7');
+  }
+  const direct = await decide({ventilmodell:'vindo_th',gewinde:'m30_1_5'});
+  assert.equal(direct.status,'direktmontage_dokumentiert');
+  assert.equal(direct.adapter_artikelnummer,null);
+  assert.equal(direct.adapter_ean,null);
+  assert.equal(direct.quellen_url,pdf+'#page=6');
+
+  const deferred = [
+    [{gewinde:'m30_1_5'},'modell_gewinde_widerspruch'],
+    [{gewinde:'unbekannt'},'ventilbeleg_fehlend'],
+    [{ventilmodell:'anders_oder_unbekannt'},'ventilbeleg_fehlend'],
+    [{ventilzustand:'unbekannt'},'ventilbeleg_fehlend'],
+    [{ventilzustand:'manuell'},'manuelles_ventil_nicht_kompatibel'],
+    [{ventilzustand:'beschaedigt_oder_undicht'},'zustand_klaeren'],
+  ];
+  for (const [changes,status] of deferred) {
+    const result = await decide(changes);
+    assert.equal(result.status,status);
+    assert.equal(result.adapter_artikelnummer,null);
+    assert.equal(result.adapter_ean,null);
+    assert.equal(result.adapter_im_x_lieferumfang,null);
+  }
+  return {tool:name,separateAdapter:'1011445',ean:'4026755228717',direct:direct.status,deferred:deferred.length};
 }
 
 async function verifyCompactHouseholdDecisions(rpc, runner) {
@@ -438,13 +488,14 @@ async function verifyCompactStdio(extracted) {
     assert.deepEqual(buyer.content.filter(part=>part.type==='resource'),[{type:'resource',resource}]);
     const laundryComparison = await verifyCompactLaundryComparison(rpc,finder,runner);
     const laundryPrecision = await verifyCompactLaundryPrecision(rpc,finder);
+    const tadoOventrop = await verifyCompactTadoOventrop(rpc,finder,runner);
     const householdDecisions = await verifyCompactHouseholdDecisions(rpc,runner);
     const windowWidth = await verifyCompactWindowWidth(rpc,finder,runner);
     const windowBlade = await verifyCompactWindowBlade(rpc,finder,runner);
     const windowLookup = await verifyCompactWindowLookup(rpc,finder);
     return {
       tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,
-      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,laundryPrecision,windowBlade,windowLookup,windowWidth,householdDecisions,
+      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,laundryPrecision,windowBlade,windowLookup,windowWidth,householdDecisions,tadoOventrop,
     };
   });
 }

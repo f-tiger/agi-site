@@ -70,6 +70,11 @@ points at 10 °C and 20 °C with 60% relative humidity. It also checks the
 answers for an unconfirmed model, incomplete electricity measurements and
 unavailable Comfee test-point data.
 
+Version 1.21.0 checks the exact Oventrop radiator valve and pitch against
+tado° X documentation. The archive exercises the separate adapter for UniDH
+and UniL, direct mounting for Vindo TH, and the advice to defer a purchase
+when the valve identification, pitch or condition needs clarification.
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the
