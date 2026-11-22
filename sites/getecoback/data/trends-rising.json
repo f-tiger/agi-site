@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-21",
+ "fetched": "2026-11-22",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -266,83 +266,101 @@
    "fetched": "2026-11-21"
   },
   "matratze": {
-   "auto": [
-    "matratzen concord",
-    "matratze 140x200",
-    "matratze",
-    "matratze 90x200",
-    "matratze 180x200",
-    "matratzen",
-    "matratze 160x200",
-    "matratze 120x200",
-    "matratzenschoner",
-    "matratzen topper"
+   "rising": [
+    {
+     "q": "emma flip matratze",
+     "v": 140
+    },
+    {
+     "q": "beco maxima plus",
+     "v": 140
+    },
+    {
+     "q": "betten 180x200 mit matratze und lattenrost",
+     "v": 120
+    },
+    {
+     "q": "emma original pro matratze",
+     "v": 90
+    },
+    {
+     "q": "bett 120x200 mit matratze und lattenrost",
+     "v": 90
+    },
+    {
+     "q": "tempur matratze 180x200",
+     "v": 80
+    },
+    {
+     "q": "boxspringbett 140x200 mit matratze und topper",
+     "v": 80
+    },
+    {
+     "q": "encasing matratze",
+     "v": 70
+    },
+    {
+     "q": "emma one matratze 180x200",
+     "v": 70
+    },
+    {
+     "q": "emma original matratze",
+     "v": 70
+    }
    ],
-   "new_vocabulary": [
-    "matratzen concord",
-    "matratze 140x200",
-    "matratze 90x200",
-    "matratze 180x200",
-    "matratzen",
-    "matratze 160x200",
-    "matratze 120x200",
-    "matratzenschoner",
-    "matratzen topper"
-   ],
-   "rising": [],
-   "source": "autocomplete-vocabulary",
-   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
-   "last_attempt_at": "2026-11-21T12:59:27.440013+00:00",
-   "last_attempt_status": "failed",
-   "fetched": "2026-11-21"
+   "source": "related-queries",
+   "fetched": "2026-11-22",
+   "polluted": false,
+   "last_attempt_at": "2026-11-22T12:46:04.205842+00:00",
+   "last_attempt_status": "ok"
   },
   "saugwischer": {
    "rising": [
     {
-     "q": "vorwerk saugwischer roboter",
-     "v": 158500
+     "q": "tineco floor one s7 pro",
+     "v": 81850
     },
     {
-     "q": "leifheit bodenwischer",
-     "v": 55400
-    },
-    {
-     "q": "hyla saugwischer",
-     "v": 53800
-    },
-    {
-     "q": "kobold sp600 saugwischer",
-     "v": 38650
-    },
-    {
-     "q": "wischmopp",
-     "v": 32300
+     "q": "saugroboter mit wischfunktion",
+     "v": 62750
     },
     {
      "q": "roborock saros 20",
-     "v": 10400
+     "v": 41450
+    },
+    {
+     "q": "roborock f25 ultra",
+     "v": 13750
     },
     {
      "q": "tineco saugwischer",
-     "v": 120
+     "v": 160
     },
     {
      "q": "tineco",
-     "v": 100
+     "v": 120
     },
     {
      "q": "vorwerk akku saugwischer",
      "v": 80
     },
     {
-     "q": "vorwerk kobold",
-     "v": 50
+     "q": "vorwerk kobold saugwischer",
+     "v": 80
+    },
+    {
+     "q": "kobold vk7",
+     "v": 70
+    },
+    {
+     "q": "vorwerk staubsauger",
+     "v": 70
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-11-14",
-   "polluted": false,
-   "last_attempt_at": "2026-11-14T11:40:24.223471+00:00",
+   "fetched": "2026-11-22",
+   "polluted": true,
+   "last_attempt_at": "2026-11-22T12:47:04.986761+00:00",
    "last_attempt_status": "ok"
   }
  }
