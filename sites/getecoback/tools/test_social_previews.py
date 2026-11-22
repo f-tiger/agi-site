@@ -15,6 +15,10 @@ class Head(HTMLParser):
     def __init__(self, source):
         super().__init__()
         self.meta = defaultdict(list)
+        self.properties = defaultdict(list)
+        self.names = defaultdict(list)
+        self.titles = []
+        self.title_parts = None
         self.links = defaultdict(list)
         self.schemas = []
         self.in_schema = False
@@ -24,7 +28,14 @@ class Head(HTMLParser):
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
         if tag == "meta":
-            self.meta[attrs.get("name") or attrs.get("property")].append(attrs.get("content"))
+            content = attrs.get("content")
+            self.meta[attrs.get("name") or attrs.get("property")].append(content)
+            if "property" in attrs:
+                self.properties[attrs["property"]].append(content)
+            if "name" in attrs:
+                self.names[attrs["name"]].append(content)
+        elif tag == "title":
+            self.title_parts = []
         elif tag == "link":
             self.links[attrs.get("rel")].append(attrs.get("href"))
         elif tag == "script" and attrs.get("type") == "application/ld+json":
@@ -32,10 +43,15 @@ class Head(HTMLParser):
             self.buffer = ""
 
     def handle_data(self, data):
+        if self.title_parts is not None:
+            self.title_parts.append(data)
         if self.in_schema:
             self.buffer += data
 
     def handle_endtag(self, tag):
+        if tag == "title" and self.title_parts is not None:
+            self.titles.append("".join(self.title_parts))
+            self.title_parts = None
         if tag == "script" and self.in_schema:
             self.schemas.append(json.loads(self.buffer))
             self.in_schema = False
@@ -76,6 +92,7 @@ class PreviewContracts(unittest.TestCase):
                 self.assertEqual(head.meta["og:image:alt"], [card["alt"]])
                 self.assertEqual(head.meta["twitter:image:alt"], [card["alt"]])
                 self.assertEqual(head.meta["twitter:card"], ["summary_large_image"])
+                self.assertEqual(head.titles, before.titles)
                 self.assertEqual(head.meta["description"], before.meta["description"])
                 self.assertEqual(result.split("</head>", 1)[1], original.split("</head>", 1)[1])
                 self.assertEqual(preview.transform(result, route, card), result)
@@ -89,6 +106,61 @@ class PreviewContracts(unittest.TestCase):
                 self.assertEqual(after_dates, before_dates)
                 if route in ("/", "/waeschetrockner-oder-luftentfeuchter.html"):
                     self.assertEqual(articles, [], "Tools/home must not become fake Articles")
+
+    def test_cooling_guide_routes_have_their_own_social_copy_and_card(self):
+        routes = ("/guide/delonghi-pac-n90-test.html",
+                  "/guide/midea-portasplit-ausverkauft-alternativen.html")
+        images = []
+        for route in routes:
+            with self.subTest(route=route):
+                self.assertIn(route, self.config["pages"])
+                card = self.config["cards"][self.config["pages"][route]]
+                images.append(card["image"])
+                source = (preview.ROOT / "site" / route.lstrip("/")).read_text()
+                before = Head(source)
+                after = Head(preview.transform(source, route, card))
+
+                self.assertEqual(after.links["canonical"], ["https://getecoback.com" + route])
+                self.assertEqual(after.properties["og:url"], after.links["canonical"])
+                self.assertEqual(after.titles, before.titles)
+                self.assertEqual(after.names["description"], before.names["description"])
+                for suffix in ("title", "description"):
+                    copy = card["social_" + suffix]
+                    self.assertTrue(copy.strip())
+                    og, twitter = "og:" + suffix, "twitter:" + suffix
+                    self.assertEqual(after.properties[og], [copy])
+                    self.assertEqual(after.names[twitter], [copy])
+                    self.assertEqual(after.meta[og], [copy])
+                    self.assertEqual(after.meta[twitter], [copy])
+        self.assertEqual(len(set(images)), len(routes))
+
+    def test_social_fields_only_replace_the_corresponding_platform_tags(self):
+        source = """<html><head><link rel="canonical" href="https://getecoback.com/">
+        <title>Original for search &amp; browsers</title>
+        <meta name="description" content="Original search description">
+        <meta property="og:title" content="Inherited Open Graph title">
+        <meta property="og:description" content="Inherited Open Graph description">
+        <meta name="twitter:title" content="Inherited Twitter title">
+        <meta name="twitter:description" content="Inherited Twitter description">
+        </head><body>Keep me</body></html>"""
+        card = self.config["cards"]["climate"]
+        before = Head(source)
+        social_title = 'Passt es & bleibt die "Messung" korrekt?'
+        social_description = 'Vergleiche "Original" & Zubehör für <dein Modell>.'
+        for overrides in ({}, {"social_title": social_title}, {"social_description": social_description},
+                          {"social_title": social_title, "social_description": social_description}):
+            with self.subTest(overrides=overrides):
+                result = preview.transform(source, "/", {**card, **overrides})
+                after = Head(result)
+                self.assertEqual(after.titles, ["Original for search & browsers"])
+                self.assertEqual(after.names["description"], ["Original search description"])
+                for suffix in ("title", "description"):
+                    key = "social_" + suffix
+                    for prefix in ("og:", "twitter:"):
+                        field = prefix + suffix
+                        expected = [overrides[key]] if key in overrides else before.meta[field]
+                        self.assertEqual(after.meta[field], expected)
+                self.assertEqual(preview.transform(result, "/", {**card, **overrides}), result)
 
     def test_preserves_robot_restrictions_after_repeated_builds(self):
         source = """<html><head><link rel='canonical' href='https://getecoback.com/'>
