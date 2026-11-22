@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
 import worker from '../src/worker.js';
 import {findCatalogueTools, indexCatalogue, toolGuidePath} from '../site/assets/mcp-catalog-search.mjs';
 
@@ -15,6 +16,14 @@ async function catalogue(params = {}) {
 }
 const compact = indexCatalogue((await catalogue({view:'compact'})).tools);
 const names = results => results.map(tool => tool.name);
+
+test('the browser loads the current catalogue search module', async () => {
+  const module = await readFile(new URL('../site/assets/mcp-catalog-search.mjs', import.meta.url));
+  const version = createHash('sha256').update(module).digest('hex').slice(0, 12);
+  const html = await readFile(new URL('../site/mcp.html', import.meta.url), 'utf8');
+  const imports = [...html.matchAll(/from '([^']*mcp-catalog-search\.mjs[^']*)'/g)];
+  assert.deepEqual(imports.map(match => match[1]), [`/assets/mcp-catalog-search.mjs?v=${version}`]);
+});
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
