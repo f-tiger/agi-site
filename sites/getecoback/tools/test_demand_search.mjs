@@ -121,3 +121,33 @@ test('German replacement filter lookups reach one exact owned model and no near 
   'Welcher Ersatzfilter passt zum Levoit Core 300S Plus?',
  ]) assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u.startsWith(page+'#')),q);
 });
+
+test('Philips humidifier filter searches keep model and series destinations distinct',()=>{
+ const guide='/guide/luftbefeuchter-ratgeber.html';
+ const common='philips-verdunsterfilter';
+ for(const [q,id] of [
+  ['Passt der Filter FY2401/30 in meinen Philips HU2716/10?','philips-hu2716-10'],
+  ['Welcher Ersatzfilter passt zum Philips HU4803/01?','philips-hu4803-01'],
+  ['Welchen Verdunsterfilter braucht mein Philips HU 4803 / 01?','philips-hu4803-01'],
+  ['HU2716/11 Ersatzfilter',common],
+  ['HU2716/10A Ersatzfilter',common],
+  ['HU2716/10-Plus Ersatzfilter',common],
+  ['HU2716/10 Plus Ersatzfilter',common],
+  ['Philips Series 2000 Filter',common],
+  ['Passt einer der Filter zu HU4803/01 oder HU2716/10?',common],
+  ['Mein Philips trägt Series 2000: Brauche ich FY2401/30 oder FY3446/30?',common],
+  ['Welcher Filter passt zu meinem Philips Luftbefeuchter Series 2000?',common],
+  ['FY3446/30',common],
+ ]) {
+  const hits=searchEntries(index,q,'de');
+  assert.equal(hits[0]?.entry.u,guide+'#'+id,q);
+  assert.equal(hits.filter(hit=>hit.entry.u.split('#')[0]===guide).length,1,q);
+  assert.ok(!searchEntries(index,q,'en').some(hit=>hit.entry.u.startsWith(guide+'#')),q);
+ }
+ assert.equal(index.filter(entry=>entry.u===guide).length,1);
+ for(const q of ['Wie oft soll ich den Filter vom Philips HU2716/10 reinigen?',
+  'Ersatzfilter für Philips Series 2000 AC2887 Luftreiniger','FY3446/30 Vergleich mit Venta Filter',
+  'Welcher Ersatzfilter passt zum Bosch HU4803/01?']) {
+  assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u.startsWith(guide+'#')),q);
+ }
+});

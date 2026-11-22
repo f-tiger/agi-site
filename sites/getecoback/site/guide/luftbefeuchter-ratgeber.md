@@ -1,12 +1,12 @@
 # Luftbefeuchter wählen: Bedarf, Pflege und vier genaue Modelle
 
-> Luftbefeuchter vergleichen: Oskar oder Oskar little, Beurer LB 200 und LB 55 nach Regelung, Pflege und Filterkosten für DE, AT und CH prüfen.
+> Luftbefeuchter nach Feuchte, Pflege und Kosten vergleichen. Philips Series 2000 am Typenschild prüfen und FY2401/30 oder FY3446/30 zuordnen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftbefeuchter-ratgeber.html
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
 
-Redaktionell aktualisiert am 18. November 2026 · Redaktionelle Kauf- und Nutzungshilfe, kein eigener Gerätetest.
+Redaktionell aktualisiert am 22. November 2026 · Redaktionelle Kauf- und Nutzungshilfe, kein eigener Gerätetest.
 **Die kurze Entscheidung**Ohne nachvollziehbaren Bedarf brauchst du kein neues Gerät. Bei wiederholt trockener Raumluft zuerst Messung und Nutzung prüfen. Wenn Befeuchtung sinnvoll bleibt, sind passende Regelung, Wasserart und eine Pflege, die du zuverlässig erledigst, wichtiger als ein pauschaler Testsieger.
 
 ## Erst messen: Vielleicht ist kein Kauf nötig
@@ -91,6 +91,17 @@ Lies Modell und Artikelnummer auf dem Typenschild ab und vergleiche sie mit den 
 - **Beurer LB 200** – [Beurer: Ersatzfilter 110005](https://www.beurer.com/de/p/110005/). Geräteartikel 10069. Die Anleitung schreibt die Filternummer als 110.005.
 - **Beurer LB 55** – [Beurer: Kalkpads 163141](https://www.beurer.com/de/p/163141/). Geräteartikel 68605. Für dieses Dampfgerät sind Kalkpads vorgesehen. Prüfe die Stückzahl auf der konkreten Packung.
 Abgleich mit den deutschen Zubehörseiten der Hersteller am 18. November 2026. Beim LB 55 weichen die Mengenangaben auf der Zubehörseite voneinander ab.
+
+## Welcher Philips-Verdunsterfilter passt zu Series 2000?
+Philips führt mehrere Geräte unter „Series 2000“. Lies die vollständige Modellnummer mit Suffix auf dem Typenschild und vergleiche sie mit einer der Herstellerzuordnungen.
+
+### Philips HU4803/01
+Die deutsche Philips-Übersicht ordnet dem **HU4803/01** das Befeuchtungselement **FY2401/30** zu. [Philips Datenblatt für FY2401/30](https://www.documents.philips.com/assets/20210905/91037a0820b34b43a068ad9a00af98a4.pdf).
+
+### Philips HU2716/10
+Die deutsche Philips-Übersicht ordnet dem **HU2716/10** das Befeuchtungselement **FY3446/30** zu. [Philips Datenblatt für FY3446/30](https://www.documents.philips.com/assets/20220208/0ddd8e50b11a4e5a9161ae3601001daf.pdf).
+Siehst du nur den Seriennamen, fehlt der Suffix oder steht ein anderes Modell auf dem Typenschild? Kläre die Teilenummer mit Philips und warte mit der Bestellung. Bei Kondenswasser oder feuchten Stellen pausiere die Befeuchtung und prüfe zuerst die Ursache.
+[Philips Kompatibilitätsübersicht für Deutschland](https://acc.philips.de/c-e/ho/luftreiniger-und-luftbefeuchter/air-purifier-filter-replacement) · geprüft am 22.11.2026.
 
 ## Kaufpreis plus Pflege: mit deinen Preisen rechnen
 

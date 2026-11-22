@@ -6,6 +6,7 @@ from html import escape as esc
 import json
 import math
 from pathlib import Path
+from urllib.parse import quote, urlencode
 
 import humidifier_catalog as catalog
 
@@ -13,11 +14,12 @@ ROOT = catalog.ROOT
 MAIN = catalog.SLUG
 ENERGY = 'luftbefeuchter-stromverbrauch'
 DUST = 'luftbefeuchter-weisser-staub'
+PHILIPS_FILTERS = ROOT / 'data/humidifier-philips-filters-de.json'
 PAGES = {
     MAIN: {
-        'modified':'2026-11-18',
+        'modified':'2026-11-22',
         'title':'Luftbefeuchter wählen: Bedarf, Pflege und vier genaue Modelle',
-        'description':'Luftbefeuchter vergleichen: Oskar oder Oskar little, Beurer LB 200 und LB 55 nach Regelung, Pflege und Filterkosten für DE, AT und CH prüfen.',
+        'description':'Luftbefeuchter nach Feuchte, Pflege und Kosten vergleichen. Philips Series 2000 am Typenschild prüfen und FY2401/30 oder FY3446/30 zuordnen.',
         'published':'2026-09-15',
         'intro':'Erst die Raumfeuchte verstehen, dann die Technik wählen. Hier vergleichst du vier genaue Modelle samt Pflege und passenden Ersatzteilen.',
         'faq':[
@@ -84,13 +86,50 @@ def accessory_guide(data):
     )
 
 
+def philips_filter_guide():
+    data = json.loads(PHILIPS_FILTERS.read_text())
+    checked = dt.date.fromisoformat(data['checked'])
+    page_url = 'https://getecoback.com/guide/luftbefeuchter-ratgeber.html'
+    answers = []
+    for model in data['models']:
+        device = esc(model['device'])
+        part = esc(model['part'])
+        anchor = esc(model['anchor'])
+        source = esc(model['source'])
+        target = f'{page_url}#{model["anchor"]}'
+        title = f'Welcher Verdunsterfilter passt zum Philips {model["device"]}?'
+        reddit = 'https://www.reddit.com/submit?' + urlencode({'url': target, 'title': title}, quote_via=quote)
+        answers.append(
+            f'<h3 id="{anchor}">Philips {device}</h3>'
+            f'<p>Die deutsche Philips-Übersicht ordnet dem <strong>{device}</strong> '
+            f'das Befeuchtungselement <strong>{part}</strong> zu. '
+            f'<a href="{source}">Philips Datenblatt für {part}</a>.</p>'
+            f'<nav aria-label="Philips {device} teilen"><a href="{esc(target)}">Direktlink</a> · '
+            f'<a href="{esc(reddit)}" target="_blank" rel="noopener noreferrer">Auf Reddit teilen</a></nav>'
+        )
+
+    source = esc(data['manufacturer_source'])
+    return (
+        '<section aria-labelledby="philips-verdunsterfilter">'
+        '<h2 id="philips-verdunsterfilter">Welcher Philips-Verdunsterfilter passt zu Series 2000?</h2>'
+        '<p>Philips führt mehrere Geräte unter „Series 2000“. Lies die vollständige Modellnummer '
+        'mit Suffix auf dem Typenschild und vergleiche sie mit einer der Herstellerzuordnungen.</p>'
+        + ''.join(answers) +
+        '<p>Siehst du nur den Seriennamen, fehlt der Suffix oder steht ein anderes Modell auf dem '
+        'Typenschild? Kläre die Teilenummer mit Philips und warte mit der Bestellung. '
+        'Bei Kondenswasser oder feuchten Stellen pausiere die Befeuchtung und prüfe zuerst die Ursache.</p>'
+        f'<p class="hc-source"><a href="{source}">Philips Kompatibilitätsübersicht für Deutschland</a> · '
+        f'geprüft am <time datetime="{checked.isoformat()}">{checked:%d.%m.%Y}</time>.</p></section>'
+    )
+
+
 def main_body(d, today=None):
-    return '''<div class="hc-answer"><strong>Die kurze Entscheidung</strong><p>Ohne nachvollziehbaren Bedarf brauchst du kein neues Gerät. Bei wiederholt trockener Raumluft zuerst Messung und Nutzung prüfen. Wenn Befeuchtung sinnvoll bleibt, sind passende Regelung, Wasserart und eine Pflege, die du zuverlässig erledigst, wichtiger als ein pauschaler Testsieger.</p><nav aria-label="Luftbefeuchter auswählen"><a href="#bedarf-pruefen">1. Bedarf prüfen</a> · <a href="#technik-waehlen">2. Technik verstehen</a> · <a href="#modelle-vergleichen">3. Modelle vergleichen</a> · <a href="#ersatzteile-zuordnen">Ersatzteil fürs vorhandene Gerät finden</a></nav></div>
+    return '''<div class="hc-answer"><strong>Die kurze Entscheidung</strong><p>Ohne nachvollziehbaren Bedarf brauchst du kein neues Gerät. Bei wiederholt trockener Raumluft zuerst Messung und Nutzung prüfen. Wenn Befeuchtung sinnvoll bleibt, sind passende Regelung, Wasserart und eine Pflege, die du zuverlässig erledigst, wichtiger als ein pauschaler Testsieger.</p><nav aria-label="Luftbefeuchter auswählen"><a href="#bedarf-pruefen">1. Bedarf prüfen</a> · <a href="#technik-waehlen">2. Technik verstehen</a> · <a href="#modelle-vergleichen">3. Modelle vergleichen</a> · <a href="#ersatzteile-zuordnen">Ersatzteil fürs vorhandene Gerät finden</a> · <a href="#philips-verdunsterfilter">Philips-Filter nach Modell abgleichen</a></nav></div>
 <h2 id="bedarf-pruefen">Erst messen: Vielleicht ist kein Kauf nötig</h2>
 <div class="hc-steps"><section><h3>Mehrere Tage beobachten</h3><p>Notiere Temperatur und relative Feuchte zu verschiedenen Tageszeiten. Stelle das Messgerät nicht direkt an Heizung, Fenster oder Nebelauslass. Ein Einzelwert unter 40 % begründet für sich keine Kaufempfehlung.</p><a href="/guide/luftfeuchtigkeit-richtig-messen.html">Messort und Vergleichsmessung prüfen →</a></section><section><h3>Kalte Flächen beachten</h3><p>Bei Kondenswasser oder feuchten Stellen zusätzliche Befeuchtung pausieren und Ursachen klären. Für schlecht gedämmte Wohnungen empfiehlt das Umweltbundesamt im Winter als Faustregel unter 50 % Raumfeuchte; das ist keine universelle Zielzahl für jedes Gebäude.</p></section><section><h3>Vorhandene Lösung reicht</h3><p>Wenn der Raum keinen zusätzlichen Feuchteeintrag braucht oder du die notwendige Pflege nicht übernehmen kannst, kaufe vorerst nichts. Ein vorhandenes Gerät erst nach seiner Anleitung prüfen, statt es allein wegen eines Belags zu ersetzen.</p></section></div>''' + ref(['uba'],d) + '''
 <h2 id="technik-waehlen">Verdunster, Ultraschall und Dampf sind verschiedene Aufgabenpakete</h2>
 <div class="hc-table" role="region" aria-label="Befeuchtungstechniken, horizontal scrollbar" tabindex="0"><table><caption>Technik wählen, ohne Pflege auszublenden</caption><thead><tr><th scope="col">Technik</th><th scope="col">Worauf du achten solltest</th><th scope="col">Kaufgrenze</th></tr></thead><tbody><tr><th scope="row">Verdunstung</th><td>Luft strömt über feuchtes Material; Filter und Tank müssen gepflegt werden.</td><td>Kein sichtbarer Nebel ist kein Beweis für einen Defekt. Hygrostat und Raumkontrolle bleiben wichtig.</td></tr><tr><th scope="row">Ultraschall</th><td>Wasser wird vernebelt. Mineralien können mitverteilt werden; Anleitung zur Wasserart prüfen.</td><td>Bei hartem Wasser zuerst den <a href="/guide/luftbefeuchter-weisser-staub.html">Weißer-Staub-Check</a> nutzen. Hier ist kein Ultraschallmodell ausgewählt.</td></tr><tr><th scope="row">Dampf</th><td>Wasser wird elektrisch erhitzt. Heiße Teile, Wasser und Dampf sowie Entkalkung mitdenken.</td><td>Der LB 55 ist eine bewusste Alternative, keine allgemeine Empfehlung für Kinderzimmer.</td></tr></tbody></table></div>
-<p>Ein Gerät, das als „Luftwäscher“ beworben wird, ist nicht allein deshalb ein nachgewiesen wirksamer Luftreiniger. Diese Kaufhilfe bewertet Befeuchtung, keine Partikelreinigung oder gesundheitliche Wirkung.</p>''' + ref(['epa'],d) + catalog.render(today,d) + accessory_guide(d) + '''
+<p>Ein Gerät, das als „Luftwäscher“ beworben wird, ist nicht allein deshalb ein nachgewiesen wirksamer Luftreiniger. Diese Kaufhilfe bewertet Befeuchtung, keine Partikelreinigung oder gesundheitliche Wirkung.</p>''' + ref(['epa'],d) + catalog.render(today,d) + accessory_guide(d) + philips_filter_guide() + '''
 <h2 id="gesamtkosten">Kaufpreis plus Pflege: mit deinen Preisen rechnen</h2>
 <p>Trage aktuelle Händlerpreise selbst in eine Notiz ein und bleibe bei derselben Währung. Für einen Vergleich brauchst du dieselbe Nutzungsdauer und dieselbe Aufgabe.</p>
 <ol><li><strong>Anschaffung:</strong> Gerät + wirklich fehlendes Zubehör. Bereits beiliegende Filter oder Pads nicht doppelt addieren.</li><li><strong>Verbrauchsmaterial:</strong> Preis je passendem Ersatzteil × geplante zusätzliche Wechsel. Nutze die Anzahl der Filter pro Wechsel für dein genaues Modell. Beim LB 200 die kürzere Frist aus sechs Monaten und tatsächlichem Zustand beachten.</li><li><strong>Wasser und Reinigung:</strong> freigegebene Wasserart, Wasserhärte und Reinigungsmittel einplanen. Unbekannte Preise bleiben offen, nicht null.</li><li><strong>Strom:</strong> gemessene kWh × eigener Tarif; für eine erste Schätzung Nennleistung und Laufzeit klar als Annahmen markieren.</li></ol>
