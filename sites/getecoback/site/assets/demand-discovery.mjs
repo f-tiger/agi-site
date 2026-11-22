@@ -1,3 +1,5 @@
+import {asksForDehumidifierDrainRoute} from './dehumidifier-drain-intent.mjs';
+
 // Queries stay in memory. Only fixed navigation actions reach the existing bridge.
 export const normalize=value=>String(value).toLowerCase().replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss').normalize('NFD').replace(/\p{Diacritic}/gu,'');
 const stop=new Set('wie kann ich meine mein der die das und im in am zu fuer what how do i my the a an and for to can de la le les un une el los las il lo una di het een ik'.split(' '));
@@ -20,15 +22,19 @@ export function searchEntries(index,term,lang){
  const query=normalize(term),words=query.match(/[\p{L}\p{N}]+/gu)?.filter(w=>!stop.has(w))||[];
  if(!words.length)return [];
  const pages=index.filter(e=>e.l===lang&&typeof e.t==='string'&&/^\/(?!\/)[^?#\\]*$/.test(e.u)&&!/^\/(auth|api|account|members|widgets)(\/|\.|$)/.test(e.u));
- const focused=lang==='de'&&asksForOneDehumidifierRun(query)?
-   pages.find(e=>e.u===laundryPage&&e.section?.id===singleLaundryId&&typeof e.section.title==='string'&&typeof e.section.description==='string'):
-   undefined;
- const ranked=pages.filter(e=>!focused||e.u!==laundryPage)
+ let targetPage, targetId;
+ if(lang==='de' && asksForDehumidifierDrainRoute(query)) {
+   targetPage='/guide/luftentfeuchter-keller.html'; targetId='ablauf-vor-kauf';
+ } else if(lang==='de' && asksForOneDehumidifierRun(query)) {
+   targetPage=laundryPage; targetId=singleLaundryId;
+ }
+ const focused=targetPage && pages.find(e=>e.u===targetPage&&e.section?.id===targetId&&typeof e.section.title==='string'&&typeof e.section.description==='string');
+ const ranked=pages.filter(e=>!focused||e.u!==targetPage)
  .map(e=>{const title=normalize(e.t),desc=normalize(e.d||''),alias=normalize(e.a||'');const scores=words.map(w=>title.includes(w)?4:alias.includes(w)?3:desc.includes(w)?1:0);return {entry:e,score:scores.every(Boolean)?scores.reduce((a,b)=>a+b,0):0};})
  .filter(h=>h.score>0).sort((a,b)=>b.score-a.score||a.entry.u.localeCompare(b.entry.u));
  if(focused){
    const {title,description}=focused.section;
-   ranked.unshift({entry:{...focused,t:title,d:description,u:laundryPage+'#'+singleLaundryId},score:1+4*words.length});
+   ranked.unshift({entry:{...focused,t:title,d:description,u:targetPage+'#'+targetId},score:1+4*words.length});
  }
  return ranked.slice(0,6);
 }

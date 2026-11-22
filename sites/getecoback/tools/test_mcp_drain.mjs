@@ -18,6 +18,7 @@ test('the hose route determines the next check without a model or purchase assum
     assert.equal(result.isError, false);
     assert.equal(result.structuredContent.outcome, outcome);
     assert.match(result.structuredContent.answer, advice);
+    if (drain === 'level_or_uphill') assert.match(result.structuredContent.answer, /kurze Schwelle.*Zielablauf tiefer/);
     assert.equal(result.structuredContent.model_evidence, null);
     assert.equal(result.structuredContent.citation_url, expectedCitation);
     assert.ok(result.content[0].text.split('\n\n').includes('EcoBack-Ratgeber zitieren: ' + expectedCitation));
@@ -34,7 +35,7 @@ test('selected exact variant and evidence market qualify any pump or hose exampl
     const evidence = drainDecision({drain: 'level_or_uphill', model: product.id}).structuredContent.model_evidence;
     assert.equal(evidence.name, product.name);
     assert.equal(evidence.variant, product.variant);
-    assert.equal(evidence.source_url, product.source);
+    if (product.id !== 'meaco-one-20') assert.equal(evidence.source_url, product.source);
     assert.match(evidence.checked, /^\d{4}-\d{2}-\d{2}$/);
   }
   const read = model => drainDecision({drain: 'level_or_uphill', model}).structuredContent.model_evidence;
@@ -43,9 +44,13 @@ test('selected exact variant and evidence market qualify any pump or hose exampl
   assert.match(lukas.note, /100-cm-Schlauch/);
   assert.match(lukas.note, /Ende muss tiefer liegen/);
   const one = read('meaco-one-20');
-  assert.equal(one.source_market, 'UK');
+  assert.equal(one.source_market, 'DE');
+  assert.equal(one.source_url, 'https://www.meaco.de/produkt/meaco-dry-arete-one-pumpe/');
+  assert.equal(one.checked, '2026-11-22');
   assert.match(one.note, /separat erhältliche Pumpe/);
-  assert.match(one.note, /genaue deutsche Ausführung/);
+  assert.match(one.note, /bis zu 2,5 m Förderhöhe.*mitgelieferten 3-m-Schlauch/);
+  assert.match(one.note, /6 m am Boden und weiteren 1,5 m Anstieg ist damit nicht bestätigt/);
+  assert.match(one.note, /Lieferumfang des Grundgeräts separat klären/);
   const two = read('meaco-two-12');
   assert.equal(two.source_market, 'DE');
   assert.match(two.note, /keine Eignung für diese 12-Liter-Variante/);

@@ -27,9 +27,9 @@ test('the browser loads the current catalogue search module', async () => {
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 224);
+  assert.equal(withGuides.length, 225);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 22);
+  assert.equal(destinations.size, 23);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);
@@ -634,5 +634,35 @@ test('FRITZ! 302 Danfoss valve questions reach the German adapter table and keep
   }
   const firmware='Welche Firmware benötigt meine FRITZ!Box mit dem FRITZ!Smart Thermo 302?';
   assert.equal((await catalogue({q:firmware,view:'compact'})).tools[0]?.name,'fritz_302_router_firmware_mindeststand');
+  assert.equal(analytics,0);
+});
+
+test('a rise anywhere in a dehumidifier hose reaches its drainage check and leaves cold-output and other appliance queries intact',async()=>{
+  const name='entfeuchter_ablaufcheck';
+  const page='/guide/luftentfeuchter-keller.html';
+  for (const q of [
+    'Kann ich den Schlauch vom MeacoDry Arete One 20L nach oben in das Waschbecken legen?',
+    'Geht der Ablauf beim Comfee MDDF-20DEN7 auch bergauf bis zum Waschbecken?',
+    'Mein Entfeuchter hat einen Ablaufschlauch, der Bodenablauf liegt niedriger, aber der Schlauch geht zwischendurch über eine Schwelle. Funktioniert das ohne Pumpe?',
+    'Beim Kellerentfeuchter läuft der Schlauch erst über die Türschwelle und dann nach unten. Geht das?',
+  ]) {
+    const full=await catalogue({q,limit:'3'});
+    const listed=(await catalogue({q,view:'compact',limit:'3'})).tools;
+    assert.equal(full.tools[0]?.name,name,q);
+    assert.equal(findCatalogueTools(compact,{query:q})[0]?.name,name,q);
+    assert.equal(listed[0]?.name,name,q);
+    assert.equal(listed[0].citation_url,origin+page);
+    assert.equal(toolGuidePath(listed[0]),page+'#ablauf-vor-kauf');
+    assert.deepEqual((await catalogue({q,category:'Kühlen',tool:name})).tools,[],q);
+  }
+  for (const [q,expected] of [
+    ['Was leistet der MeacoDry Arete One 20L bei 10 °C und 60 % im Keller?','kellerentfeuchter_pruefpunkt_abgleichen'],
+    ['Braucht der Comfee MDDF-20DEN7-WF einen WLAN-Zugang?','comfee_mddf20_wf_beleggrenze'],
+    ['Hat meine Waschmaschine genügend Förderhöhe für einen höheren Ablauf?','spuelmaschine_ablaufweg_anleitung'],
+    ['Which adapter do I need for my dehumidifier hose?',undefined],
+  ]) {
+    assert.equal((await catalogue({q,view:'compact'})).tools[0]?.name,expected,q);
+    assert.equal(findCatalogueTools(compact,{query:q})[0]?.name,expected,q);
+  }
   assert.equal(analytics,0);
 });

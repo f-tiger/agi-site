@@ -94,6 +94,7 @@ class CatalogTest(unittest.TestCase):
             page = (site / f'{slug}.html').read_text()
             if slug != 'luftentfeuchter-keller':
                 self.assertNotIn('<nav class="dc-drain-paths"', page)
+                self.assertNotIn('id="schlauch-ueber-schwelle"', page)
                 continue
             self.assertIn('<a href="#ablauf-vor-kauf">Schlauch mit Gefälle', page)
             choices = re.search(r'<nav class="dc-drain-paths".*?</nav>', page, re.S)[0]
@@ -105,6 +106,24 @@ class CatalogTest(unittest.TestCase):
             for surface in (page, mirror):
                 self.assertIn('Sein Ende muss tiefer liegen als der Anfang.', surface)
                 self.assertIn('die passende Pumpe und den deutschen Lieferumfang', surface)
+                for phrase in ('Abfluss unten, Schlauch über eine Schwelle?',
+                               'auch wenn der Zielablauf tiefer liegt',
+                               '6 m waagerechtem Weg und 1,5 m Anstieg', '2,5 m Förderhöhe',
+                               'mitgelieferten Schlauch von 3 m', 'keine Eignung einer Verlängerung',
+                               'Tankbetrieb', 'Feuchteursache klären',
+                               'https://www.meaco.de/produkt/meaco-dry-arete-one-pumpe/',
+                               'https://www.meaco.de/produkt/luftentfeuchter-meaco-arete-one-20-l-pumpe/'):
+                    self.assertIn(phrase, surface)
+            self.assertEqual(page.count('id="schlauch-ueber-schwelle"'), 1)
+            share = re.search(r'<nav aria-label="Hinweis teilen".*?</nav>', page, re.S)[0]
+            direct, reddit = map(unescape, re.findall(r'href="([^"]+)"', share))
+            self.assertEqual(direct, 'https://getecoback.com/guide/luftentfeuchter-keller.html#ablauf-vor-kauf')
+            parsed = urlsplit(reddit)
+            self.assertEqual((parsed.scheme, parsed.netloc, parsed.path, parsed.fragment),
+                             ('https', 'www.reddit.com', '/submit', ''))
+            self.assertEqual(parse_qs(parsed.query),
+                             {'url': [direct], 'title': ['Kellerentfeuchter: Schlauch über eine Schwelle oder Tankbetrieb?']})
+            self.assertNotIn('reddit.com/submit', mirror)
             self.assertNotIn('getecoback-21', mirror)
 
     def test_laundry_handoff_on_final_files(self):

@@ -60,6 +60,8 @@ async function checkGermanLaundryDiscovery(browser,base){
    check(matches.every(match=>match.href!==destination),'A different buying or information intent does not lead to the single-method tool: '+query);
    if(previousDestination)equal(matches[0]?.href,previousDestination,'Existing searches keep their first destination: '+query);
   }
+  const hose='Kann ich den Schlauch vom MeacoDry Arete One 20L nach oben in das Waschbecken legen?';
+  equal((await search(hose))[0],{href:'/guide/luftentfeuchter-keller.html#ablauf-vor-kauf',language:'de'},'A higher sink leads to the German drainage section');
   await search('eco-local-privacy-marker-6381');
   equal(await results.count(),0,'An arbitrary private phrase yields no result');
   await search(positive[1]);

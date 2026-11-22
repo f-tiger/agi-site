@@ -1018,7 +1018,7 @@ async function trendCompute(env) {
 // MCP server (Model Context Protocol, stateless Streamable HTTP).
 // Each tool returns a usable answer with sources. Publication, calls, website
 // visits and merchant activity are observed separately.
-const MCP_VERSION = "1.24.10";
+const MCP_VERSION = "1.24.11";
 const LEGACY_MCP_TOOLS = [
   drainTool,
   // AI-era round 2026-08-29: the decision LAYER above the per-device
@@ -1155,6 +1155,10 @@ const LEGACY_TASK_EQUIVALENTS = new Map([
 ]);
 const CATALOG_TOOLS = [...LEGACY_MCP_TOOLS.map(tool => ({...tool,category:"Raumklima"})), ...expandedCatalog]
   .map(tool => {
+    if (tool.name === drainTool.name) {
+      const {citation_url} = legacyCatalogueExample(tool.name);
+      return {...tool, page:new URL(citation_url).pathname, guide_url:citation_url + "#ablauf-vor-kauf"};
+    }
     const equivalent = LEGACY_TASK_EQUIVALENTS.get(tool.name);
     return equivalent ? {...tool,equivalent_task:equivalent} : tool;
   });
