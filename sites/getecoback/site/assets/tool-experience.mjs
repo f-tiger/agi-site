@@ -51,7 +51,7 @@ function read(){const raw=Object.fromEntries(adapter.fields.map(e=>[key(e),e.typ
 function label(e){const l=e.labels?.[0];if(!l)return key(e);const c=l.cloneNode(true);c.querySelectorAll('input,select,button').forEach(x=>x.remove());return clean(c.textContent)||key(e);}
 function checked(raw){
  if(!raw||typeof raw!=='object'||Array.isArray(raw))throw Error('schema');
- if(laundry&&!['estimate','measured'].includes(raw.method))throw Error('enum');
+ if(laundry&&(!['estimate','measured'].includes(raw.method)||!['cycle','hundred'].includes(raw.dryerBasis)))throw Error('enum');
  const fields=fieldsFor(raw),keys=Object.keys(raw);
  // Existing laundry links included every field. Read that exact old shape,
  // discard bounded inactive strings, and emit the active-only shape thereafter.
