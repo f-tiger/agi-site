@@ -42,6 +42,9 @@ def collect():
  sections[('de','/guide/heizdecke-stromverbrauch.html')]={
   'id':'waerme-rechner','title':'Was kostet meine Heizdecke pro Nutzung?',
   'description':'Beispiel: 110 W × 2 h bei 0,35 €/kWh ergeben 0,22 kWh und rund 0,08 €. Mit deinem Tarif nachrechnen.'}
+ sections[('de','/guide/luftfeuchtigkeit-richtig-messen.html')]={
+  'id':'hygrometer-vergleichen','title':'Zwei Hygrometer zeigen unterschiedliche Werte',
+  'description':'Prüfe zuerst Messort, Temperatur, Angleichzeit und die angegebene Toleranz. Zwei Beispielbereiche im Vergleich.'}
  out=[]
  for path,route,lang,h in public_pages():
   if not h.title.strip():raise ValueError(f'Missing title: {route}')

@@ -27,9 +27,9 @@ test('the browser loads the current catalogue search module', async () => {
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 229);
+  assert.equal(withGuides.length, 230);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 27);
+  assert.equal(destinations.size, 28);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);
@@ -798,6 +798,35 @@ test('an electric blanket cost question no longer recommends an air conditioner'
  }
  const n90=(await catalogue({q:'DeLonghi Pinguino PAC N90 8004399512351 Stromverbrauch bei 0,35 Euro',view:'compact'})).tools;
  assert.equal(n90[0]?.name,cooling);
+ assert.equal((await catalogue({q:name,view:'compact'})).tools[0]?.name,name);
+ assert.equal(analytics,0);
+});
+
+test('two hygrometers at the same place route to tolerance instead of reference calibration',async()=>{
+ const name='hygrometer_messbereiche';
+ const calibration='hygrometer_zweipunkt_referenz_abgleich';
+ const path='/guide/luftfeuchtigkeit-richtig-messen.html#hygrometer-vergleichen';
+ for(const q of [
+   'Meine zwei Hygrometer zeigen nebeneinander 55 und 60 Prozent an. Beide haben ±3 Prozentpunkte Genauigkeit. Muss ich eines ersetzen?',
+   'Das eine Hygrometer zeigt 54 %, das andere 59 %. Liegt der Unterschied noch in der Toleranz?',
+   'Zwei Hygrometer am gleichen Ort zeigen unterschiedliche Werte. Welches stimmt?',
+   'Hygrometer A zeigt 55 % und Hygrometer B 60 % bei gleicher Höhe. Wie vergleiche ich die Werte?',
+ ]) {
+   const results=(await catalogue({q,view:'compact',limit:'5'})).tools;
+   assert.equal(results[0]?.name,name,q);
+   assert.equal(findCatalogueTools(compact,{query:q})[0]?.name,name,q);
+   assert.equal(toolGuidePath(results[0]),path,q);
+   assert.ok(!results.some(tool=>tool.name===calibration),q);
+ }
+ for(const q of [
+   'Wie kann ich mein Hygrometer zwischen zwei externen Referenzpunkten abgleichen?',
+   'Ich will ein Hygrometer mit zwei extern belegten Referenzwerten kalibrieren, nicht zwei Geräte vergleichen.',
+ ]) assert.equal((await catalogue({q,view:'compact'})).tools[0]?.name,calibration,q);
+ for(const q of [
+   'Zwei Hygrometer zeigen an der Fensterbank und am Heizkörper unterschiedliche Werte.',
+   'Mein Hygrometer zeigt vor dem Lüften 60 Prozent und nach dem Lüften 55 Prozent.',
+   'Zwei Hygrometer zeigen unterschiedliche Werte – welches stimmt?',
+ ]) assert.notEqual((await catalogue({q,view:'compact'})).tools[0]?.name,name,q);
  assert.equal((await catalogue({q:name,view:'compact'})).tools[0]?.name,name);
  assert.equal(analytics,0);
 });

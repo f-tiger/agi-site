@@ -173,3 +173,24 @@ test('German blanket operating-cost questions go to the existing safe calculatio
    assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u.startsWith(page+'#')),q);
  }
 });
+
+test('German same-place hygrometer comparisons open the numerical example',()=>{
+ const page='/guide/luftfeuchtigkeit-richtig-messen.html';
+ for(const q of [
+   'Meine zwei Hygrometer zeigen nebeneinander 55 und 60 Prozent an. Beide haben ±3 Prozentpunkte Genauigkeit. Muss ich eines ersetzen?',
+   'Das eine Hygrometer zeigt 54 %, das andere 59 %. Liegt der Unterschied noch in der Toleranz?',
+   'Zwei Hygrometer am gleichen Ort zeigen unterschiedliche Werte. Welches stimmt?',
+   'Hygrometer A zeigt 55 % und Hygrometer B 60 % bei gleicher Höhe. Wie vergleiche ich die Werte?',
+ ]) {
+   const hits=searchEntries(index,q,'de');
+   assert.equal(hits[0]?.entry.u,page+'#hygrometer-vergleichen',q);
+   assert.equal(hits.filter(hit=>hit.entry.u.split('#')[0]===page).length,1,q);
+   assert.ok(!searchEntries(index,q,'en').some(hit=>hit.entry.u.startsWith(page+'#')),q);
+ }
+ for(const q of [
+   'Zwei Hygrometer zeigen an der Fensterbank und am Heizkörper unterschiedliche Werte.',
+   'Hygrometer vor dem Lüften 60 Prozent und nach dem Lüften 55 Prozent.',
+   'Zwei Hygrometer zeigen unterschiedliche Werte – welches stimmt?',
+   'Hygrometer mit zwei externen Referenzpunkten kalibrieren',
+ ]) assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u.startsWith(page+'#')),q);
+});

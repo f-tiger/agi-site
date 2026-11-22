@@ -10,7 +10,7 @@ import html
 import json
 import re
 from pathlib import Path
-from urllib.parse import urlencode
+from urllib.parse import quote, urlencode
 from moisture_journeys import render_next_steps
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -18,6 +18,7 @@ SITE = ROOT / 'site'
 BASE = 'https://getecoback.com'
 DATE = '2026-10-01'
 DATA = json.loads((ROOT / 'data/country-categories.json').read_text())
+HYGROMETER_COMPARISON = 'hygrometer-vergleichen'
 
 
 def esc(value):
@@ -58,6 +59,9 @@ def shell(c, page, content, hub=False):
     sources = ''.join(f'<li><a href="{esc(s[1])}">{esc(s[0])}</a></li>' for s in c['sources'])
     css_version = hashlib.sha256((SITE / 'assets/country-categories.css').read_bytes()).hexdigest()[:12]
     js_version = hashlib.sha256((SITE / 'assets/country-categories.js').read_bytes()).hexdigest()[:12]
+    comparison = page.get('hygrometer_comparison')
+    intro_jump = (f'<p class="intro-jump"><a href="#{HYGROMETER_COMPARISON}">{esc(comparison["jump_label"])}</a></p>'
+                  if comparison else '')
     return f'''<!doctype html>
 <html lang="{c['lang']}"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -73,7 +77,7 @@ def shell(c, page, content, hub=False):
 <a class="skip" href="#main">{esc(c['skip'])}</a>
 <header class="site-header"><a class="wordmark" href="/">EcoBack<span>home & energy</span></a><nav aria-label="{esc(c['country_label'])}">{nav}</nav></header>
 <main id="main"><article>
-<header class="intro"><p class="eyebrow">{crumbs}</p><h1>{esc(heading)}</h1><p class="lede">{esc(intro)}</p><p class="edition">{esc(c['edition'])} · <time datetime="{modified}">{modified}</time></p></header>
+<header class="intro"><p class="eyebrow">{crumbs}</p><h1>{esc(heading)}</h1><p class="lede">{esc(intro)}</p>{intro_jump}<p class="edition">{esc(c['edition'])} · <time datetime="{modified}">{modified}</time></p></header>
 {content}
 <section class="sources" id="sources"><h2>{esc(c['sources_label'])}</h2><p>{esc(c['method'])}</p><ul>{sources}</ul></section>
 </article></main>
@@ -120,6 +124,8 @@ def hub_body(c):
 def guide_body(c):
     g = c['guide']
     body = f'<aside class="decision-note"><strong>{esc(g["answer_title"])}</strong><p>{esc(g["answer"])}</p></aside>'
+    if g.get('hygrometer_comparison'):
+        body += hygrometer_comparison(g)
     if g.get('scenarios'):
         scenarios = g['scenarios']
         body += f'<section class="decision-note laundry-routes" id="{esc(scenarios["id"])}"><h2>{esc(scenarios["title"])}</h2><p>{esc(scenarios["intro"])}</p>'
@@ -149,6 +155,24 @@ def guide_body(c):
         body += f'<section class="guide-section"><h2>{esc(c["next_label"])}</h2><ul class="reading">'
         body += ''.join('<li>' + internal(p, label) + '</li>' for label, p in g['related']) + '</ul></section>'
     return body
+
+
+def hygrometer_comparison(guide):
+    comparison = guide['hygrometer_comparison']
+    source_label, source_url = comparison['source']
+    checked = comparison['source_checked']
+    steps = ''.join(f'<li>{esc(step)}</li>' for step in comparison['steps'])
+    target = f'{BASE}{guide["path"]}#{HYGROMETER_COMPARISON}'
+    reddit = 'https://www.reddit.com/submit?' + urlencode(
+        {'url': target, 'title': comparison['title']}, quote_via=quote)
+    return f'''<section class="guide-section decision-note" id="{HYGROMETER_COMPARISON}" aria-labelledby="hygrometer-comparison-title">
+<h2 id="hygrometer-comparison-title">{esc(comparison['title'])}</h2>
+<p>{esc(comparison['example'])}</p>
+<ol>{steps}</ol>
+<p>{esc(comparison['decision'])}</p>
+<p class="source-note"><a href="{esc(source_url)}">{esc(source_label)}</a> · Abgerufen am <time datetime="{esc(checked)}">{esc(checked)}</time></p>
+<!--EB_HYGROMETER_SHARE--><p><a href="{esc(reddit)}" rel="noreferrer">Auf Reddit teilen</a></p><!--/EB_HYGROMETER_SHARE-->
+</section>'''
 
 
 def write_page(path, content):

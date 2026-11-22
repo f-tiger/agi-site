@@ -122,6 +122,41 @@ test('blanket cost uses the browser math with confirmed inputs in both profiles'
   }
 });
 
+test('hygrometer ranges include the decimal touching point in both profiles', async () => {
+  const name='hygrometer_messbereiche';
+  const guide=origin+'/guide/luftfeuchtigkeit-richtig-messen.html';
+  for (const [a,ta,b,tb,first,second,overlap,delta] of [
+    [55,3,60,3,[52,58],[57,63],[57,58],5],
+    [55.1,2.5,60.2,2.6,[52.6,57.6],[57.6,62.8],[57.6,57.6],5.1],
+    [60.2,2.6,55.1,2.5,[57.6,62.8],[52.6,57.6],[57.6,57.6],5.1],
+    [55.1,2.5,60.2000001,2.6,[52.6,57.6],[57.6000001,62.8000001],null,5.1],
+    [1,3,99,3,[0,4],[96,100],null,98],
+    [50,0,50,0,[50,50],[50,50],[50,50],0],
+  ]) {
+    const arguments_={reading_a_pct:a,accuracy_a_pp:ta,reading_b_pct:b,accuracy_b_pp:tb};
+    const native=await rpc('tools/call',{name,arguments:arguments_});
+    const response=await worker.fetch(new Request(origin+'/mcp/v1?profile=compact',{
+      method:'POST',headers:{'content-type':'application/json','user-agent':'getecoback-ci/expanded'},
+      body:JSON.stringify({jsonrpc:'2.0',id:1,method:'tools/call',params:{
+        name:'ecoback_werkzeug_ausfuehren',arguments:{name,eingaben:arguments_},
+      }}),
+    }),{},{});
+    assert.equal(response.status,200);
+    assert.deepEqual((await response.json()).result,native);
+    assert.equal(native.isError,false);
+    const data=native.structuredContent;
+    assert.deepEqual([data.difference_pp,data.stated_ranges_overlap,data.range_a_pct,data.range_b_pct,data.overlap_range_pct],[delta,overlap!==null,first,second,overlap]);
+    assert.equal(data.citation_url,guide);
+    assert.equal(data.guide_url,guide+'#hygrometer-vergleichen');
+    assert.equal(data.guidance_source,'https://www.tfa-dostmann.de/service/faq/');
+    assert.match(data.assumption,/Kalibrierung.*wahren Wert.*Defekt/);
+    assert.doesNotMatch(JSON.stringify(data),/amazon\.|amzn\.|[?&]tag=/i);
+  }
+  for (const args of [{reading_a_pct:55,reading_b_pct:60}, {reading_a_pct:55,accuracy_a_pp:-3,reading_b_pct:60,accuracy_b_pp:3}]) {
+    assert.equal((await rpc('tools/call',{name,arguments:args})).isError,true);
+  }
+});
+
 test('the public directory and standard MCP pages expose the same catalogue', async () => {
   const pageSizes = [];
   const listed = await collectToolPages(async cursor => {

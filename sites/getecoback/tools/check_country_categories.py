@@ -8,6 +8,25 @@ from urllib.parse import urlsplit, parse_qs
 from build_country_categories import DATA, SITE, BASE
 
 
+def check_hygrometer_comparison():
+    guide = next(c['guide'] for c in DATA['countries'] if c['market'] == 'DE')
+    comparison = guide['hygrometer_comparison']
+    page = SITE / guide['path'].lstrip('/')
+    body = page.read_text()
+    mirror = page.with_suffix('.md').read_text()
+    section = re.search(r'<section\b[^>]*id="hygrometer-vergleichen"[^>]*>(.*?)</section>', body, re.S)
+    assert section, 'Missing static hygrometer comparison'
+    assert 'href="#hygrometer-vergleichen"' in body
+    for phrase in (comparison['example'], *comparison['steps'], comparison['decision'], comparison['source'][1]):
+        assert phrase in html.unescape(section.group(1)) and phrase in mirror, phrase
+    share = re.search(r'<a href="(https://www\.reddit\.com/submit\?[^\"]+)" rel="noreferrer">', section.group(1))
+    assert share and 'reddit.com/submit' not in mirror
+    assert parse_qs(urlsplit(html.unescape(share[1])).query) == {
+        'url': [BASE + guide['path'] + '#hygrometer-vergleichen'],
+        'title': [comparison['title']],
+    }
+
+
 def main():
     index = json.loads((SITE / 'search-index.json').read_text())
     sitemap = (SITE / 'sitemap.xml').read_text()
@@ -52,6 +71,7 @@ def main():
             assert 'api.web3forms.com' not in text and 'name="access_key"' not in text, 'Legacy form credentials must not be republished'
             assert 'Balkon-Solar' not in text, 'Withdrawn topic in publisher metadata'
             assert 'radar.html#radar-form' in text, 'Use the existing consent-based signup surface'
+    check_hygrometer_comparison()
     print(f'country categories: {count} pages, correct locales/shops/tags, internal paths and discovery')
 
 
