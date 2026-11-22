@@ -19,6 +19,41 @@ test('identified valves preserve adapter and safety distinctions',()=>{
   assert.match(decision(data,'tado-v3','oventrop-uni-lv').detail,/30,5-mm-Klemme/);
   assert.equal(decision(data,'tado-v3','manual-rtl').status,'stop');
 });
+
+test('the German Bosch II [+M] distinguishes two included Danfoss adapters and the separate RAV accessory',()=>{
+  const model='bosch-ii-m';
+  assert.equal(data.bosch.reviewed,'2026-11-22');
+  assert.equal(data.bosch.model,'8750002861');
+  for(const valve of ['danfoss-ra','danfoss-ravl','danfoss-rav']){
+    const value=decision(data,model,valve);
+    assert.equal(value.status,'adapter',valve);
+    const text=value.title+' '+value.detail;
+    const manufacturer=new URL(data.sources[value.source].url);
+    assert.equal(manufacturer.protocol,'https:');
+    assert.match(manufacturer.hostname,/(^|\.)bosch-smarthome\.com$/);
+    if(valve==='danfoss-rav'){
+      assert.match(text,/separat|Zubehör/i);
+      assert.match(text,/8750002600/);
+      assert.match(text,/4062321692636/);
+    }else{
+      assert.match(text,/liegt bei|enthalten|beiliegend|mitgeliefert/i);
+      assert.doesNotMatch(text,/8750002600|4062321692636/);
+    }
+  }
+  for(const valve of ['unknown','heimeier-m30','herz-m28','oventrop-uni-l']){
+    const value=decision(data,model,valve);
+    assert.equal(value.status,'unverified',valve);
+    assert.doesNotMatch(value.title+' '+value.detail,/8750002600|4062321692636/);
+  }
+  assert.equal(decision(data,'tado-v3','danfoss-ra').source,'ra');
+  assert.doesNotMatch(decision(data,'tado-v3','danfoss-ra').detail,/8750002600/);
+  const hash='#ventilcheck=bosch-ii-m:danfoss-ravl';
+  const expected={model,valve:'danfoss-ravl'};
+  assert.deepEqual(selectionFromHash(hash,data),expected);
+  assert.equal(new URL(selectionLink(model,expected.valve,data)).hash,hash);
+  assert.equal(selectionFromHash(hash+'&input=23',data),null);
+});
+
 test('share fragments are exact enum pairs and cannot retain arbitrary input or URLs',()=>{
   for(const model of data.models) for(const valve of ['unknown',...data.cases.map(x=>x.id)]){
     const link=selectionLink(model.id,valve,data);

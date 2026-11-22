@@ -48,12 +48,68 @@ const root=path.resolve(__dirname,'../site'),origin='https://getecoback.com',rou
   // Existing amortisation remains functional and separate from compatibility.
   await page.locator('[data-winter-tool="thermostat"] button[type=submit]').click();assert.match(await page.locator('[data-winter-tool] [data-result]').innerText(),/7,5/);checks++;
   await reference.locator('summary').click();assert.notEqual(await reference.getAttribute('open'),null);checks++;
-  for(const width of [320,390,1280]){await page.setViewportSize({width,height:900});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));checks++;if(width<620){assert(await page.locator('[data-valve-check] tbody th,[data-valve-check] tbody td').evaluateAll(cells=>cells.every(cell=>{const r=cell.getBoundingClientRect();return r.width>0&&r.left>=0&&r.right<=innerWidth;})));checks++;}}
+  for(const width of [320,390,1280]){await page.setViewportSize({width,height:900});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));checks++;if(width<620){assert(await page.locator('[data-valve-check] details tbody th,[data-valve-check] details tbody td').evaluateAll(cells=>cells.every(cell=>{const r=cell.getBoundingClientRect();return r.width>0&&r.left>=0&&r.right<=innerWidth;})));checks++;}}
   assert.deepEqual(errors,[]);checks++;await ctx.close();
   const sharedContext=await context({viewport:{width:390,height:844}}),sharedPage=await sharedContext.newPage();await sharedPage.goto(share);await sharedPage.locator('[data-valve-check][data-ready=true]').waitFor();
   assert.equal(await sharedPage.inputValue('[name=valve-connection]'),'heimeier-m30');assert.equal(await sharedPage.evaluate(()=>window.fixedEvents.filter(x=>x.name.startsWith('eco_valve')).length),0);checks+=2;await sharedContext.close();
+  const boschContext=await context({viewport:{width:390,height:844}});
+  const boschPage=await boschContext.newPage();
+  const boschShare=origin+routePath+'#ventilcheck=bosch-ii-m:danfoss-ravl';
+  await boschPage.goto(boschShare);
+  await boschPage.locator('[data-valve-check][data-ready=true]').waitFor();
+  const model=boschPage.locator('[name=valve-model]'),valve=boschPage.locator('[name=valve-connection]');
+  const boschResult=boschPage.locator('[data-valve-result]');
+  assert.equal(await model.inputValue(),'bosch-ii-m');
+  assert.equal(await valve.inputValue(),'danfoss-ravl');
+  assert.deepEqual(await boschPage.evaluate(()=>window.fixedEvents.filter(event=>event.name.startsWith('eco_valve'))),[]);
+  checks+=3;
+  for(const selected of ['danfoss-ravl','danfoss-ra','danfoss-rav']){
+   await valve.selectOption(selected);
+   assert.equal(await boschResult.getAttribute('data-status'),'adapter');
+   const text=await boschResult.innerText();
+   const manufacturer=new URL(await boschResult.locator('a[data-valve-official]').getAttribute('href'));
+   assert.equal(manufacturer.protocol,'https:');
+   assert.match(manufacturer.hostname,/(^|\.)bosch-smarthome\.com$/);
+   if(selected==='danfoss-rav'){
+    assert.match(text,/separat|Zubehör/i);
+    assert.match(text,/8750002600/);
+    assert.match(text,/4062321692636/);checks+=3;
+   }else{
+    assert.match(text,/liegt bei|enthalten|beiliegend|mitgeliefert/i);
+    assert.doesNotMatch(text,/8750002600|4062321692636/);checks+=2;
+   }
+   checks+=3;
+  }
+  for(const selected of ['unknown','heimeier-m30']){
+   await valve.selectOption(selected);
+   assert.equal(await boschResult.getAttribute('data-status'),'unverified');
+   assert.doesNotMatch(await boschResult.innerText(),/8750002600|4062321692636/);
+   checks+=2;
+  }
+  await valve.selectOption('danfoss-ravl');
+  await boschPage.locator('[data-valve-share]').click();
+  assert.deepEqual(await boschPage.evaluate(()=>window.copied),[boschShare]);
+  assert(await boschPage.evaluate(()=>window.fixedEvents.filter(event=>event.name.startsWith('eco_valve')).every(event=>Object.keys(event).join(',')==='name')));
+  checks+=2;
+  await boschContext.close();
   const nojs=await context({javaScriptEnabled:false,viewport:{width:320,height:844}}),fallback=await nojs.newPage();await fallback.goto(origin+routePath);
-  assert.notEqual(await fallback.locator('[data-valve-check] details').getAttribute('open'),null);assert(await fallback.locator('[data-valve-check] tbody th,[data-valve-check] tbody td').evaluateAll(cells=>cells.every(cell=>{const r=cell.getBoundingClientRect();return r.width>0&&r.left>=0&&r.right<=innerWidth;})));checks+=2;assert.equal(await fallback.locator('[data-valve-controls]').isVisible(),false);assert.equal(await fallback.locator('[data-winter-tool=thermostat] form').isVisible(),false);checks++;assert.equal(await fallback.locator('[data-valve-check] table tbody tr').count(),6);assert.match(await fallback.locator('[data-valve-check]').innerText(),/Keine eigenen Montage/);assert(await fallback.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));checks+=4;await nojs.close();
+  assert.notEqual(await fallback.locator('[data-valve-check] details').getAttribute('open'),null);assert(await fallback.locator('[data-valve-check] details tbody th,[data-valve-check] details tbody td').evaluateAll(cells=>cells.every(cell=>{const r=cell.getBoundingClientRect();return r.width>0&&r.left>=0&&r.right<=innerWidth;})));checks+=2;assert.equal(await fallback.locator('[data-valve-controls]').isVisible(),false);assert.equal(await fallback.locator('[data-winter-tool=thermostat] form').isVisible(),false);checks++;assert.equal(await fallback.locator('[data-valve-check] details table tbody tr').count(),6);assert.match(await fallback.locator('[data-valve-check]').innerText(),/Keine eigenen Montage/);assert(await fallback.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));checks+=4;
+  const boschAnchor='#bosch-ii-m-danfoss-adapter';
+  await fallback.goto(origin+routePath+boschAnchor);
+  const staticAnswer=fallback.locator(boschAnchor);
+  assert(await staticAnswer.getByRole('heading').first().isVisible());
+  const staticText=await staticAnswer.innerText();
+  for(const evidence of [/8750002861/,/8750002600/,/4062321692636/,/Danfoss RA\b/,/Danfoss RAVL\b/,/Danfoss RAV\b/,/25,5 mm/,/34 mm/,/Maße als Hinweis/])assert.match(staticText,evidence);
+  const reddit=staticAnswer.locator('a[href^="https://www.reddit.com/submit?"]');
+  assert(await reddit.isVisible());
+  const composer=new URL(await reddit.getAttribute('href'));
+  assert.equal(composer.origin+composer.pathname,'https://www.reddit.com/submit');
+  assert.equal(composer.searchParams.get('url'),origin+routePath+boschAnchor);
+  assert.deepEqual([...composer.searchParams.keys()].sort(),['title','url']);
+  assert((composer.searchParams.get('title')||'').trim());
+  assert(await fallback.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+  checks+=16;
+  await nojs.close();
   console.log(`PASS thermostat fit: ${checks} browser checks; sourced branches, preserved payback, no-input selectors, copy success/failure, opt-out, no payloads, no-JS, 320/390/1280px.`);
  }finally{await browser.close();}
 })().catch(error=>{console.error(error);process.exit(1);});

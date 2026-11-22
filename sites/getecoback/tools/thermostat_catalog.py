@@ -44,7 +44,7 @@ def buyer_start():
             '<li><a href="#eb-thermostat-products"><strong>Ich kenne mein vorhandenes System</strong>'
             ' <span>tado° X, Bosch II [+M] oder FRITZ! 302 samt benötigter Zentrale vergleichen.</span></a></li>'
             '<li><a href="#ventilcheck"><strong>Ich bin beim Ventil unsicher</strong>'
-            ' <span>Modell und Anschluss klären. Der belegte V3+-Check bestätigt keine Passung für X, Bosch oder FRITZ!.</span></a></li>'
+            ' <span>Modell und Anschluss klären. tado° V3+ und Bosch II [+M] nach ihren jeweiligen Herstellerunterlagen prüfen.</span></a></li>'
             '<li><a href="#thermostat-paketkosten"><strong>Ich möchte die Gesamtkosten prüfen</strong>'
             ' <span>Köpfe, fehlende Zentrale und Adapter zählen; danach mit eigener Sparannahme rechnen.</span></a></li>'
             '<li><a href="#thermostat-behalten"><strong>Mein bisheriger Kopf reicht vielleicht</strong>'
@@ -70,10 +70,12 @@ def render(today=None, data=None):
         if fresh and item['status'] == 'verified':
             href = 'https://www.amazon.de/s?k=' + quote_plus(item['query']) + '&tag=getecoback-21'
             action = f'<p class="tc-commerce"><small>Anzeige · Modellsuche, kein geprüftes Einzelangebot.</small><a data-winter-shop href="{e(href, quote=True)}" target="_blank" rel="sponsored nofollow noopener">{e(item["name"])} bei Amazon.de suchen →</a></p>'
+        adapter_check = ('<p><a href="#bosch-ii-m-danfoss-adapter">Für Bosch II [+M]: Danfoss RA, RAV und RAVL abgleichen</a></p>'
+                         if item['id'] == 'bosch-ii-m' else '')
         cards.append(f'<section class="tc-card" id="{target}" aria-labelledby="{target}-title"><h3 id="{target}-title">{e(item["name"])}</h3>'
                      f'<p class="tc-role">{e(item["role"])}</p><dl><dt><strong>System: </strong></dt><dd><p> {e(item["system"])}</p></dd>'
                      f'<dt><strong>Paket und Zusatzkauf: </strong></dt><dd><p> {e(item["package"])}</p></dd><dt><strong>Betrieb und Funktionen: </strong></dt><dd><p> {e(item["care"])}</p></dd></dl>'
-                     f'<p class="tc-limit"><strong>Vor der Bestellung:</strong> {e(item["limit"])}</p><p class="tc-source">{sources}</p>{action}</section>')
+                     f'<p class="tc-limit"><strong>Vor der Bestellung:</strong> {e(item["limit"])}</p>{adapter_check}<p class="tc-source">{sources}</p>{action}</section>')
     return ('<section class="thermostat-catalog" id="eb-thermostat-products" aria-labelledby="tc-title">'
             '<h2 id="tc-title">Welches System und welches Paket passt zu dir?</h2>'
             '<p>Drei konkrete Modelle für unterschiedliche vorhandene Systeme. Die Auswahl ist keine Rangliste und kein eigener Produkttest. '

@@ -1,17 +1,55 @@
 """Narrow, sourced valve decision surface; shared data powers JS and no-JS table."""
+from datetime import date
 from pathlib import Path
 from html import escape as e
+from urllib.parse import quote, urlencode
 import hashlib
 import json
 
 ASSETS = Path(__file__).resolve().parents[1] / 'site' / 'assets'
 
 
+def render_bosch(data):
+    bosch = data.get('bosch')
+    if not bosch:
+        return ''
+    sources = data['sources']
+    rows = []
+    for case in bosch['cases']:
+        source = sources[case['source']]
+        references = f'<a data-valve-official href="{e(source["url"])}">{e(source["title"])}</a>'
+        if case.get('page'):
+            guide_url = f'{sources["bosch-guide"]["url"]}#page={case["page"]}'
+            references += f' · <a data-valve-official href="{e(guide_url)}">Ventilbilder, Seite {case["page"]}</a>'
+        rows.append(f'<tr><th scope="row">{e(case["label"])}</th>'
+                    f'<td><strong>{e(case["title"])}</strong><p>{e(case["detail"])}</p></td>'
+                    f'<td>{references}</td></tr>')
+    source_links = ' · '.join(f'<a data-valve-official href="{e(sources[key]["url"])}">{e(sources[key]["title"])}</a>'
+                              for key in ('bosch-product', 'bosch-adapter', 'bosch-guide'))
+    reviewed = date.fromisoformat(bosch['reviewed']).strftime('%d.%m.%Y')
+    target = 'https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#bosch-ii-m-danfoss-adapter'
+    title = 'Bosch Heizkörper-Thermostat II [+M] an Danfoss RA, RAV oder RAVL prüfen'
+    reddit = 'https://www.reddit.com/submit?' + urlencode({'url':target, 'title':title}, quote_via=quote)
+    return f'''<section id="bosch-ii-m-danfoss-adapter" aria-labelledby="bosch-ii-m-danfoss-title">
+<h3 id="bosch-ii-m-danfoss-title">Welcher Danfoss-Adapter passt zum Bosch II [+M]?</h3>
+<p>Diese Zuordnung gilt für das deutsche Bosch Smart Home Heizkörper-Thermostat II [+M], Gerätenummer <strong>{e(bosch['model'])}</strong>. Prüfe die genaue Variante an der Verpackung oder in den Geräteunterlagen.</p>
+<p>Bosch zeigt bei <strong>Danfoss RAV 34 mm</strong> und bei <strong>Danfoss RAVL 25,5 mm</strong> am Anschluss. Beide haben vier Kerben. Nutze die Maße als Hinweis und vergleiche die Kennzeichnung am vorhandenen Ventil und die Abbildungen in der Bosch-Übersicht.</p>
+<div class="winter-table"><table><caption>Danfoss-Anschlüsse am Bosch II [+M], geprüft am {reviewed}</caption><thead><tr><th scope="col">Identifiziertes Ventil</th><th scope="col">Nächster Prüfschritt</th><th scope="col">Bosch-Quelle</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div>
+<p>Bei bestätigtem RAV führt Bosch den separaten Adapter mit der Gerätenummer <strong>8750002600</strong> und EAN <strong>4062321692636</strong>. Bei RA oder RAVL prüfe den passenden beiliegenden Adapter in der genauen Packung. Ist die Kennzeichnung offen, warte mit der Bestellung. Am wasserführenden Ventilkörper nichts lösen. Bei Unsicherheit einen Fachbetrieb fragen.</p>
+<p class="winter-note">{source_links}.</p>
+<nav aria-label="Hinweis teilen"><a href="{e(target)}">Direktlink zu dieser Zuordnung</a> · <a href="{e(reddit)}" target="_blank" rel="noopener noreferrer">Auf Reddit teilen</a></nav>
+</section>'''
+
+
 def render():
     data = json.loads((ASSETS / 'thermostat-fit-data.json').read_text())
     models = ''.join(f'<option value="{e(x["id"])}">{e(x["label"])}</option>' for x in data['models'])
-    valves = '<option value="unknown">Ventil unbekannt / nicht aufgeführt</option>' + ''.join(
-        f'<option value="{e(x["id"])}">{e(x["label"])}</option>' for x in data['cases'])
+    valve_labels = {'unknown': 'Ventil unbekannt / nicht aufgeführt'}
+    for case in data['cases'] + data.get('bosch', {}).get('cases', []):
+        valve_labels.setdefault(case['id'], case['label'])
+    if data.get('bosch'):
+        valve_labels['danfoss-ra'] = 'Danfoss RA'
+    valves = ''.join(f'<option value="{e(value)}">{e(label)}</option>' for value, label in valve_labels.items())
     rows = ''.join(f'<tr role="row"><th role="rowheader" scope="row">{e(x["label"])}</th><td role="cell"><strong>{e(x["title"])}</strong><p>{e(x["detail"])}</p></td><td role="cell"><a data-valve-official href="{e(data["sources"][x["source"]]["url"])}">Herstellerangabe</a>; Bildabgleich in der <a data-valve-official href="{e(data["sources"]["guide"]["url"])}#page={x["page"]}">Ventilliste, Seite {x["page"]}</a></td></tr>' for x in data['cases'])
     encoded = json.dumps(data, ensure_ascii=False).replace('<', '\\u003c')
     return f'''<section id="ventilcheck" class="valve-check" data-valve-check aria-labelledby="valve-title">
@@ -22,6 +60,7 @@ def render():
 <p data-valve-share-row hidden><button type="button" data-valve-share>Prüfschritt-Link kopieren</button><span data-valve-share-status role="status"></span></p>
 <p class="winter-note">Der Link enthält nur diese beiden festen Auswahlkategorien, keine Fotos, Adresse oder Heizkosten. Geteilt wird ein Prüfschritt, kein bestätigter Kompatibilitätsnachweis.</p>
 <details open><summary>Geprüfte Orientierung ohne JavaScript</summary><p><strong>Nur tado° V3+ und frühere Generationen.</strong> Nicht auf tado° X, TP-Link oder andere Thermostatköpfe übertragen. Bei unklarer Generation gibt es hier keine Zuordnung.</p><div class="winter-table"><table role="table"><caption>Begrenzte Auswahl aus Herstellerunterlagen, geprüft am 31. Oktober 2026</caption><thead role="rowgroup"><tr role="row"><th role="columnheader">Identifiziertes Ventil</th><th role="columnheader">Nächster Prüfschritt</th><th role="columnheader">Quelle / Abbildung</th></tr></thead><tbody role="rowgroup">{rows}</tbody></table></div></details>
+{render_bosch(data)}
 <h3>Ventil noch unbekannt?</h3><ol><li>Modellbezeichnung auf dem bisherigen Kopf, Unterlagen und vorhandene Kennzeichnungen vergleichen. Bei Unsicherheit Fotos nach Herstelleranleitung für dessen Support oder den Fachbetrieb vorbereiten; hier ist kein Upload nötig.</li><li>Gewinde, Klemmanschluss und genaue Variante zusammen prüfen. Uni L und Uni LV oder RA, RAV und RAVL sind nicht austauschbare Bezeichnungen.</li><li>Den wasserführenden Ventilkörper nicht lösen. Bei Leckage, festsitzenden Teilen oder unklarer Zuständigkeit stoppen und einen Fachbetrieb beziehungsweise die Hausverwaltung einbeziehen.</li></ol>
 <p><a data-valve-official href="{e(data['sources']['overview']['url'])}">tado°: vollständige Herstellerübersicht öffnen</a> · <a data-valve-official href="{e(data['sources']['x']['url'])}">Separate Hilfe für tado° X</a></p>
 <p class="winter-note">Stand der Prüfung: 31. Oktober 2026. Die verlinkte Ventilliste trägt Version 2.0, September 2021 und wird weiterhin von der Herstellerhilfe verlinkt. Die Liste ist indikativ und unvollständig. Neuere Modellunterlagen und Herstellerbestätigung gehen vor. Keine eigenen Montage- oder Produkttests; die Herstellerlinks sind keine Affiliate-Links.</p>

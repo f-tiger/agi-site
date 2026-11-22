@@ -1,6 +1,6 @@
 # Smarte Heizkörperthermostate: Ventil prüfen, Kosten rechnen | EcoBack
 
-> tado° X, Bosch oder FRITZ!: System, Ventil und vollständiges Paket vergleichen. Mit V3+-Ventilcheck und Rechner für eigene Kosten statt Sparversprechen.
+> tado° X, Bosch oder FRITZ!: Thermostat, Ventil und Paket vergleichen. Danfoss-Adapter für Bosch II [+M] prüfen und eigene Kosten rechnen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html
 
@@ -8,7 +8,7 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/smarte-heizkoerpert
 **Ein smarter Kopf lohnt sich eher, wenn ein Zeitplan deine bisherige Heizroutine verbessert.** Wer schon passend herunterregelt, hat möglicherweise wenig zusätzlichen Nutzen. Vor dem Kauf müssen Ventil, vorhandene Zentrale und vollständiges Paket zusammenpassen. Eine feste Ersparnis ist nicht garantiert.
 
 - [Ich kenne mein vorhandenes System tado° X, Bosch II [+M] oder FRITZ! 302 samt benötigter Zentrale vergleichen.](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#eb-thermostat-products)
-- [Ich bin beim Ventil unsicher Modell und Anschluss klären. Der belegte V3+-Check bestätigt keine Passung für X, Bosch oder FRITZ!.](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#ventilcheck)
+- [Ich bin beim Ventil unsicher Modell und Anschluss klären. tado° V3+ und Bosch II [+M] nach ihren jeweiligen Herstellerunterlagen prüfen.](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#ventilcheck)
 - [Ich möchte die Gesamtkosten prüfen Köpfe, fehlende Zentrale und Adapter zählen; danach mit eigener Sparannahme rechnen.](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-paketkosten)
 - [Mein bisheriger Kopf reicht vielleicht Weiterverwenden oder einen einfachen Zeitplan prüfen, bevor du ein Funk-System kaufst.](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-behalten)
 Grundlage: [Verbraucherzentrale zur Thermostatregelung](https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizkosten-sparen-thermostat-richtig-einstellen-und-wechseln-7940) (Quellenstand 4. Oktober 2026). Modell- und Paketquellen vom 12. November 2026 stehen bei den jeweiligen Geräten. Redaktionelle Entscheidungshilfe, kein eigener Produkttest.
@@ -37,6 +37,24 @@ Begrenzte Auswahl aus Herstellerunterlagen, geprüft am 31. Oktober 2026
 | Oventrop Uni L / Uni DH · M30 × 1,0 | **Separaten M30 × 1,0-Adapter einplanen** Diese Gewindesteigung ist nicht M30 × 1,5. Laut Herstellerhilfe ist der benötigte Adapter nicht im tado°-Lieferumfang enthalten. Exakte Ausführung vor Bestellung abgleichen. | [Herstellerangabe](https://support.tado.com/de/articles/3405491); Bildabgleich in der Ventilliste, Seite 7 |
 | Oventrop Uni LV · 30,5-mm-Klemme | **Uni LV ist kein Uni L: andere Adapterfamilie** Die Herstellerliste führt Uni LV mit einer 30,5-mm-Klemme und einem separat zu beschaffenden Adapter. Nicht den M30 × 1,0-Adapter für Uni L übernehmen. | Herstellerangabe; Bildabgleich in der Ventilliste, Seite 6 |
 | Manuelles Ventil oder RTL-Begrenzer | **Kein passender Anwendungsfall für diesen Thermostatkopf** Die tado°-Unterlagen schließen manuelle Ventile und Rücklauftemperaturbegrenzer aus. Ein Kopfwechsel ist keine Umrüstung des Ventils; Fachbetrieb und Zuständigkeit klären. | Herstellerangabe; Bildabgleich in der Ventilliste, Seite 1 |
+
+### Welcher Danfoss-Adapter passt zum Bosch II [+M]?
+
+Diese Zuordnung gilt für das deutsche Bosch Smart Home Heizkörper-Thermostat II [+M], Gerätenummer **8750002861**. Prüfe die genaue Variante an der Verpackung oder in den Geräteunterlagen.
+
+Bosch zeigt bei **Danfoss RAV 34 mm** und bei **Danfoss RAVL 25,5 mm** am Anschluss. Beide haben vier Kerben. Nutze die Maße als Hinweis und vergleiche die Kennzeichnung am vorhandenen Ventil und die Abbildungen in der Bosch-Übersicht.
+
+Danfoss-Anschlüsse am Bosch II [+M], geprüft am 22.11.2026
+
+| Identifiziertes Ventil | Nächster Prüfschritt | Bosch-Quelle |
+| --- | --- | --- |
+| Danfoss RA | **Danfoss RA: Der Adapter liegt bei** Gleiche die Ventilkennzeichnung mit den RA-Abbildungen in der Bosch-Ventilliste ab. Hast du RA bestätigt, kannst du den mitgelieferten Adapter des Bosch II [+M] verwenden. | [Bosch: Lieferumfang des Heizkörper-Thermostats II [+M]](https://www.bosch-smarthome.com/de/de/produkte/heizung/heizkoerper-thermostat/) · [Ventilbilder, Seite 9](https://www.bosch-smarthome.com/res/web/produkt/heizkoerper-thermostat2/pdf/8-750-002-943_V001_Valve_adapter_recommendations_ML_20240808.pdf#page=9) |
+| Danfoss RAVL | **Danfoss RAVL: Der Adapter liegt bei** Bosch zeigt für RAVL 25,5 mm mit vier Kerben. Bestätige den Ventiltyp anhand der Kennzeichnung und der Abbildungen, bevor du den mitgelieferten RAVL-Adapter auswählst. | [Bosch: Lieferumfang des Heizkörper-Thermostats II [+M]](https://www.bosch-smarthome.com/de/de/produkte/heizung/heizkoerper-thermostat/) · [Ventilbilder, Seite 10](https://www.bosch-smarthome.com/res/web/produkt/heizkoerper-thermostat2/pdf/8-750-002-943_V001_Valve_adapter_recommendations_ML_20240808.pdf#page=10) |
+| Danfoss RAV | **Danfoss RAV: Separaten Adapter einplanen** Bosch zeigt für RAV 34 mm mit vier Kerben. Prüfe die Modellkennzeichnung und die Abbildungen. Für bestätigtes RAV führt Bosch ein separates Zubehör: 2er-Pack 8750002600, EAN 4062321692636. | [Bosch: Danfoss-RAV-Adapter, Gerätenummer und EAN](https://www.bosch-smarthome.com/de/de/produkte/zubehoer-und-ersatzteile/ventiladapter/) · [Ventilbilder, Seite 9](https://www.bosch-smarthome.com/res/web/produkt/heizkoerper-thermostat2/pdf/8-750-002-943_V001_Valve_adapter_recommendations_ML_20240808.pdf#page=9) |
+
+Bei bestätigtem RAV führt Bosch den separaten Adapter mit der Gerätenummer **8750002600** und EAN **4062321692636**. Bei RA oder RAVL prüfe den passenden beiliegenden Adapter in der genauen Packung. Ist die Kennzeichnung offen, warte mit der Bestellung. Am wasserführenden Ventilkörper nichts lösen. Bei Unsicherheit einen Fachbetrieb fragen.
+
+[Bosch: Lieferumfang des Heizkörper-Thermostats II [+M]](https://www.bosch-smarthome.com/de/de/produkte/heizung/heizkoerper-thermostat/) · [Bosch: Danfoss-RAV-Adapter, Gerätenummer und EAN](https://www.bosch-smarthome.com/de/de/produkte/zubehoer-und-ersatzteile/ventiladapter/) · [Bosch: Ventilbilder und Adapterempfehlungen](https://www.bosch-smarthome.com/res/web/produkt/heizkoerper-thermostat2/pdf/8-750-002-943_V001_Valve_adapter_recommendations_ML_20240808.pdf).
 
 ### Ventil noch unbekannt?
 
@@ -94,6 +112,7 @@ Vorhandenes Bosch-System oder geprüftes Matter-System nutzen
 **Paket und Zusatzkauf:** Die [+M]-Variante gezielt prüfen. Heizkörper-Thermostat II ohne [+M] wird nicht auf dieselbe Weise direkt in ein Matter-System eingebunden. Einen benötigten Controller separat zum Kopf kalkulieren.
 **Betrieb und Funktionen:** Batterien und gegebenenfalls separate Fensterkontakte mit einplanen. Funktionen unterscheiden sich zwischen dem Bosch-System und der direkten Matter-Einbindung; die Funktionsübersicht des Herstellers abgleichen.
 **Vor der Bestellung:** Matter bedeutet hier nicht Betrieb ohne passende Zentrale. Den Ventilanschluss anhand der Bosch-Anleitung prüfen; die tado°-Zuordnungen gelten nicht für dieses Modell.
+[Für Bosch II [+M]: Danfoss RA, RAV und RAVL abgleichen](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#bosch-ii-m-danfoss-adapter)
 [Bosch: Modellvarianten und Systemfunktionen](https://www.bosch-smarthome.com/de/de/produkte/heizung/heizkoerper-thermostat/) · [Bosch: Anleitung II [+M], Matter-/Thread-Anforderungen](https://www.bosch-smarthome.com/res/web/produkt/heizkoerper-thermostat2/pdf/8-750-002-924_BTH-RAD_OM_11L.pdf)
 Anzeige · Modellsuche, kein geprüftes Einzelangebot.Bosch Heizkörper-Thermostat II [+M] bei Amazon.de suchen →
 

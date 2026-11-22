@@ -15,6 +15,10 @@
       "label": "tado° X"
     },
     {
+      "id": "bosch-ii-m",
+      "label": "Bosch Heizkörper-Thermostat II [+M] · 8750002861"
+    },
+    {
       "id": "other",
       "label": "Andere Marke / Modell unklar"
     }
@@ -44,10 +48,55 @@
       "title": "tado° X: eigene Kompatibilität prüfen",
       "url": "https://help.tado.com/de/"
     },
+    "bosch-product": {
+      "title": "Bosch: Lieferumfang des Heizkörper-Thermostats II [+M]",
+      "url": "https://www.bosch-smarthome.com/de/de/produkte/heizung/heizkoerper-thermostat/"
+    },
+    "bosch-adapter": {
+      "title": "Bosch: Danfoss-RAV-Adapter, Gerätenummer und EAN",
+      "url": "https://www.bosch-smarthome.com/de/de/produkte/zubehoer-und-ersatzteile/ventiladapter/"
+    },
+    "bosch-guide": {
+      "title": "Bosch: Ventilbilder und Adapterempfehlungen",
+      "url": "https://www.bosch-smarthome.com/res/web/produkt/heizkoerper-thermostat2/pdf/8-750-002-943_V001_Valve_adapter_recommendations_ML_20240808.pdf"
+    },
     "routine": {
       "title": "Verbraucherzentrale: Thermostat einstellen und wechseln",
       "url": "https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizkosten-sparen-thermostat-richtig-einstellen-und-wechseln-7940"
     }
+  },
+  "bosch": {
+    "reviewed": "2026-11-22",
+    "model": "8750002861",
+    "cases": [
+      {
+        "id": "danfoss-ra",
+        "label": "Danfoss RA",
+        "status": "adapter",
+        "title": "Danfoss RA: Der Adapter liegt bei",
+        "detail": "Gleiche die Ventilkennzeichnung mit den RA-Abbildungen in der Bosch-Ventilliste ab. Hast du RA bestätigt, kannst du den mitgelieferten Adapter des Bosch II [+M] verwenden.",
+        "source": "bosch-product",
+        "page": 9
+      },
+      {
+        "id": "danfoss-ravl",
+        "label": "Danfoss RAVL",
+        "status": "adapter",
+        "title": "Danfoss RAVL: Der Adapter liegt bei",
+        "detail": "Bosch zeigt für RAVL 25,5 mm mit vier Kerben. Bestätige den Ventiltyp anhand der Kennzeichnung und der Abbildungen, bevor du den mitgelieferten RAVL-Adapter auswählst.",
+        "source": "bosch-product",
+        "page": 10
+      },
+      {
+        "id": "danfoss-rav",
+        "label": "Danfoss RAV",
+        "status": "adapter",
+        "title": "Danfoss RAV: Separaten Adapter einplanen",
+        "detail": "Bosch zeigt für RAV 34 mm mit vier Kerben. Prüfe die Modellkennzeichnung und die Abbildungen. Für bestätigtes RAV führt Bosch ein separates Zubehör: 2er-Pack 8750002600, EAN 4062321692636.",
+        "source": "bosch-adapter",
+        "page": 9
+      }
+    ]
   },
   "cases": [
     {
