@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.22.13';
-const revision = 'b7f7f5888a73c18886e09bf4e2daa83a0da18eb7';
+const version = '1.22.14';
+const revision = '1d91d3990fe4aa1f989ae5b3752b936b4cb7ddf0';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -26,7 +26,8 @@ const oldNames = [
 const featureNames = ['entfeuchter_ablaufcheck', 'btu_empfehlung', 'fensterabdichtung_laenge',
   'taupunkt_lueften', 'fenstersauger_170mm_abziehlippe_geraetefamilie', 'fenster_oberflaeche_taucheck',
   'luftentfeuchter_waesche_einzelkosten', 'fritz_302_danfoss_adapter', 'keller_lueften_taupunkt_messwerte',
-  'luftreiniger_ersatzfilter_zuordnung', 'philips_verdunsterfilter_zuordnung', 'heizdecke_stromkosten_nennleistung'];
+  'luftreiniger_ersatzfilter_zuordnung', 'philips_verdunsterfilter_zuordnung', 'heizdecke_stromkosten_nennleistung',
+  'hygrometer_messbereiche'];
 const entry = 'src/server.mjs';
 const legacyHelpers = fileURLToPath(new URL('../mcp-registry/local-packages/', import.meta.url));
 const sha256 = buffer => createHash('sha256').update(buffer).digest('hex');
@@ -50,6 +51,9 @@ const philipsFilterGuide = philipsFilterCitation + '#philips-verdunsterfilter';
 const warmthTool = 'heizdecke_stromkosten_nennleistung';
 const warmthCitation = 'https://getecoback.com/guide/heizdecke-stromverbrauch.html';
 const warmthGuide = warmthCitation + '#waerme-rechner';
+const hygrometerTool = 'hygrometer_messbereiche';
+const hygrometerCitation = 'https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html';
+const hygrometerGuide = hygrometerCitation + '#hygrometer-vergleichen';
 const cellarUri = 'ecoback://evidence/de/kellerentfeuchter';
 const laundryComparisonTool = 'waesche_trocknungskosten';
 const singleLaundryTool = 'luftentfeuchter_waesche_einzelkosten';
@@ -523,6 +527,40 @@ async function verifyWarmthCost(call) {
   return {name:warmthTool,guide:warmthGuide,records,rejected:badInputs.length};
 }
 
+async function verifyHygrometerComparison(call) {
+  const inputs = (a, da, b, db) => ({
+    reading_a_pct:a, accuracy_a_pp:da, reading_b_pct:b, accuracy_b_pp:db,
+  });
+  const cases = [
+    [inputs(55,3,60,3),[5,true,[52,58],[57,63],[57,58]]],
+    [inputs(55.1,2.5,60.2,2.6),[5.1,true,[52.6,57.6],[57.6,62.8],[57.6,57.6]]],
+    [inputs(60.2,2.6,55.1,2.5),[5.1,true,[57.6,62.8],[52.6,57.6],[57.6,57.6]]],
+    [inputs(1,3,99,3),[98,false,[0,4],[96,100],null]],
+  ];
+  const records = [];
+  for (const [args, expected] of cases) {
+    const result = await call(args);
+    assert.equal(result.isError,false);
+    const data = result.structuredContent;
+    const observed = [data.difference_pp,data.stated_ranges_overlap,data.range_a_pct,
+      data.range_b_pct,data.overlap_range_pct];
+    assert.deepEqual(observed,expected);
+    assert.equal(data.citation_url,hygrometerCitation);
+    assert.equal(data.guide_url,hygrometerGuide);
+    assert.equal(data.guidance_source,'https://www.tfa-dostmann.de/service/faq/');
+    assert.match(data.assumption,/keine Kalibrierungsfrage/);
+    records.push(observed);
+  }
+  const invalid = [{reading_a_pct:55,accuracy_a_pp:3,reading_b_pct:60},
+    inputs(55,-0.1,60,3),inputs(55,3,100.01,3)];
+  for (const args of invalid) {
+    const result = await call(args);
+    assert.equal(result.isError,true);
+    assert.equal(result.structuredContent,undefined);
+  }
+  return {name:hygrometerTool,guide:hygrometerGuide,records,rejected:invalid.length};
+}
+
 async function verifyStdio(extracted, manifest) {
   const {TOOLS} = await import(pathToFileURL(join(extracted,'src/tools.mjs')));
   const {expandedDefinitions} = await import(pathToFileURL(join(extracted,'src/eco-suite/src/mcp-expanded.mjs')));
@@ -599,8 +637,10 @@ async function verifyStdio(extracted, manifest) {
       rpc('tools/call',{name:philipsFilterTool,arguments:args}));
     const warmthCost = await verifyWarmthCost(args =>
       rpc('tools/call',{name:warmthTool,arguments:args}));
+    const hygrometerComparison = await verifyHygrometerComparison(args =>
+      rpc('tools/call',{name:hygrometerTool,arguments:args}));
     return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,windowCondensation,decimalWindowWidth,
-      singleLaundry,fritzValve,drainRoute,measuredVentilation,exactFilter,philipsFilter,warmthCost,
+      singleLaundry,fritzValve,drainRoute,measuredVentilation,exactFilter,philipsFilter,warmthCost,hygrometerComparison,
       firstExamples:['btu_empfehlung','entfeuchter_ablaufcheck'],finder:verifyFinder(extracted,drain),
       lastPageExample:last.name,legacyNames:oldNames.length,network:'disabled'};
   });
@@ -1121,6 +1161,17 @@ async function verifyCompactStdio(extracted) {
     assert.deepEqual(warmthMatch.inputSchema.required,['nennleistung_w','laufzeit_h','arbeitspreis_kwh']);
     const warmthCost = await verifyWarmthCost(eingaben =>
       rpc('tools/call',{name:runner,arguments:{name:warmthTool,eingaben}}));
+    const hygrometerLookup = await rpc('tools/call',{
+      name:finder,arguments:{frage:'Zwei Hygrometer nebeneinander zeigen 55 und 60 Prozent, beide ±3 Prozentpunkte.'},
+    });
+    assert.equal(hygrometerLookup.isError,false);
+    const hygrometerMatch = hygrometerLookup.structuredContent.tools[0];
+    assert.equal(hygrometerMatch?.name,hygrometerTool);
+    assert.equal(hygrometerMatch.guide_url,hygrometerGuide);
+    assert.deepEqual(hygrometerMatch.inputSchema.required,
+      ['reading_a_pct','accuracy_a_pp','reading_b_pct','accuracy_b_pp']);
+    const hygrometerComparison = await verifyHygrometerComparison(eingaben =>
+      rpc('tools/call',{name:runner,arguments:{name:hygrometerTool,eingaben}}));
     const laundryPrecision = await verifyCompactLaundryPrecision(rpc,finder);
     const humidifierEfficiency = await verifyCompactHumidifierEfficiency(rpc,finder,runner);
     const glassvacTemperature = await verifyCompactGlassvacTemperature(rpc,finder,runner);
@@ -1146,7 +1197,7 @@ async function verifyCompactStdio(extracted) {
     return {
       tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,
       liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,singleLaundry,fritzValve,drainRoute,
-      measuredVentilation,exactFilter,philipsFilter,warmthCost,laundryPrecision,windowBlade,windowLookup,
+      measuredVentilation,exactFilter,philipsFilter,warmthCost,hygrometerComparison,laundryPrecision,windowBlade,windowLookup,
       windowWidth,decimalWindowWidth,householdDecisions,tadoOventrop,n90Costs,humidifierEfficiency,glassvacTemperature,windowSubject,windowCondensation,
     };
   });
@@ -1217,6 +1268,7 @@ try {
   assert.deepEqual(result.exactFilter,result.compact.exactFilter);
   assert.deepEqual(result.philipsFilter,result.compact.philipsFilter);
   assert.deepEqual(result.warmthCost,result.compact.warmthCost);
+  assert.deepEqual(result.hygrometerComparison,result.compact.hygrometerComparison);
   assert.deepEqual(result.resource,result.compact.resource);
   result.archiveReadme = {replacedVersion:readme.previousVersion,registryLatestUrl};
   const identifier = `${releaseUrl}/${file}`;
