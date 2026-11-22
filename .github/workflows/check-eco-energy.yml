@@ -222,6 +222,7 @@ jobs:
           node ../../tools/fleet/worker-budget-routing.mjs --site=getecoback --write
           node ../../tools/fleet/worker-budget-routing.mjs --site=getecoback
           node ../../tools/fleet/worker-budget-routing.test.mjs
+          python3 tools/check_dehum_catalog_live.py --site-dir site
       - name: Exercise five languages, mobile, files and privacy
         run: |
           python3 -m http.server 8765 --directory site > /tmp/eco-preview.log 2>&1 &

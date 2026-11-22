@@ -26,6 +26,14 @@ Die Verbraucherzentrale erläutert: Kalte Außenluft kann im Winter beim Lüften
 
 [Herstellerdaten für Deutschland · MeacoDry Arete One 20L](https://eu.meaco.com/products/meacodry-arete-one-20l-luftentfeuchter-luftreiniger) · geprüft am 20.11.2026.
 
+### Bei 10 °C und 60 %: Modelle mit veröffentlichten Prüfwerten
+
+- [MeacoDry Arete One 20L](https://getecoback.com/guide/luftentfeuchter-keller.html#modell-meaco-one-20) · 3,4 L/Tag bei 180 W. [Meaco DE, Herstellerdaten](https://eu.meaco.com/products/meacodry-arete-one-20l-luftentfeuchter-luftreiniger).
+
+- [MeacoDry Arete Two 12L](https://getecoback.com/guide/luftentfeuchter-keller.html#modell-meaco-two-12) · 1,97 L/Tag bei 111 W. [AirSain Deutschland, Anbietertabelle](https://www.meaco.de/produkt/luftentfeuchter-meaco-arete-two-12-l/).
+
+Prüfwerte geprüft am 22.11.2026. Die Quellen geben dieselbe Lufttemperatur und Feuchte an. Prüfablauf und Laufzeit zu Hause können abweichen. Für Bosch D4000-EU und Comfee MDDF-20DEN7 sind diese konkreten Werte in unserer Auswahl offen. Prüfe die [Tank-, Gefälle- oder Pumpenlösung](https://getecoback.com/guide/luftentfeuchter-keller.html#ablauf-vor-kauf) getrennt. Bei ungeklärter Nässe erst die [Ursache klären](https://getecoback.com/guide/luftentfeuchter-gegen-schimmel.html).
+
 Die Bauart ist ein erster Filter, keine Kaufgarantie. Stiftung Warentest beschreibt die unterschiedliche Temperaturabhängigkeit der Verfahren. Entscheidend bleibt die Anleitung des konkreten Modells. Eine zulässige Mindesttemperatur sagt noch nicht, wie viel Wasser das Gerät dort pro Tag entzieht.
 
 | Situation | Vor dem Kauf vergleichen | Nicht daraus ableiten |
@@ -170,7 +178,7 @@ Quelle: [Bosch Deutschland: D4000-EU](https://www.bosch-homecomfort.com/de/de/oc
 ### MeacoDry Arete Two 12L
 **App-Steuerung und kleinerer Tank**
 Arete Two 12L · nicht One oder Two 20L
-App, 2,5-Liter-Tank und kontinuierlicher Ablauf. Die verlinkte deutsche Anbieterseite nennt 5,40 L/Tag und 136 W bei 20 °C / 60 % RH.
+App, 2,5-Liter-Tank und kontinuierlicher Ablauf. Die deutsche Anbietertabelle (geprüft am 22.11.2026) nennt 1,97 L/Tag bei 111 W (10 °C / 60 % RH) und 5,40 L/Tag bei 136 W (20 °C / 60 % RH).
 **Vor dem Kauf:** Am 12.11.2026 war dieses Modell dort als ausverkauft markiert. Das sagt nichts über andere Händler aus. Liefertermin, Stecker und genaue Modellvariante prüfen; keine Energie-Rangliste aus unterschiedlichen Quellen.
 Quelle: [Meaco.de: deutsche Anbieter- und Datenseite](https://www.meaco.de/produkt/luftentfeuchter-meaco-arete-two-12-l/)
 

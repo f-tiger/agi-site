@@ -184,7 +184,7 @@ Quelle: [Bosch Deutschland: D4000-EU](https://www.bosch-homecomfort.com/de/de/oc
 ### MeacoDry Arete Two 12L
 **App-Steuerung und kleinerer Tank**
 Arete Two 12L · nicht One oder Two 20L
-App, 2,5-Liter-Tank und kontinuierlicher Ablauf. Die verlinkte deutsche Anbieterseite nennt 5,40 L/Tag und 136 W bei 20 °C / 60 % RH.
+App, 2,5-Liter-Tank und kontinuierlicher Ablauf. Die deutsche Anbietertabelle (geprüft am 22.11.2026) nennt 1,97 L/Tag bei 111 W (10 °C / 60 % RH) und 5,40 L/Tag bei 136 W (20 °C / 60 % RH).
 **Vor dem Kauf:** Am 12.11.2026 war dieses Modell dort als ausverkauft markiert. Das sagt nichts über andere Händler aus. Liefertermin, Stecker und genaue Modellvariante prüfen; keine Energie-Rangliste aus unterschiedlichen Quellen.
 Quelle: [Meaco.de: deutsche Anbieter- und Datenseite](https://www.meaco.de/produkt/luftentfeuchter-meaco-arete-two-12-l/)
 

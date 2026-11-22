@@ -127,7 +127,7 @@ function downloadCard(s,provenance){
  const a=node('a');a.href=canvas.toDataURL('image/png');a.download='ecoback-scenario.png';a.click();emit('image');
 }
 if(adapter){
- panel.append(node('p',t[1]));const choices=node('div',null,'eco-actions');let original=read();if(Object.hasOwn(original,'own'))original.own=false;
+ panel.append(node('p',cellarShare?'Vergleiche zwei Rechenbeispiele. Eigene Werte kannst du im Taupunkt-Check darüber eingeben.':t[1]));const choices=node('div',null,'eco-actions');let original=read();if(Object.hasOwn(original,'own'))original.own=false;
  const presets=[{name:t[2],values:original}];const add=(name,patch)=>presets.push({name,values:{...original,...Object.fromEntries(Object.entries(patch).map(([k,v])=>[k,String(v)]))}});
  const k=Object.keys(original);const price=k.find(x=>['price','rate','hk-price','sv-price','cents1'].includes(x));
  if(cellarShare){add('Draußen 10 °C / 80 %',{ta:10,rh:80,tk:17,rhin:65,wall:15});}
