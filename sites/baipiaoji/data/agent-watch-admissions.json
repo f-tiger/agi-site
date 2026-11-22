@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-21",
+ "checked": "2026-11-22",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -4545,284 +4545,54 @@
    "source_http": null,
    "repo_http": null,
    "reason": "timeout"
+  },
+  "firsthandapi-mcp-server": {
+   "attempts": 1,
+   "first_attempt": "2026-11-22",
+   "last_attempt": "2026-11-22",
+   "attemptedAt": "2026-11-22T07:23:47.874Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "flightqueue-flightqueue": {
+   "attempts": 1,
+   "first_attempt": "2026-11-22",
+   "last_attempt": "2026-11-22",
+   "attemptedAt": "2026-11-22T07:23:47.874Z",
+   "source_http": 404,
+   "repo_http": 200,
+   "reason": "source HTTP 404"
+  },
+  "footdigest-footdigest": {
+   "attempts": 1,
+   "first_attempt": "2026-11-22",
+   "last_attempt": "2026-11-22",
+   "attemptedAt": "2026-11-22T07:23:47.874Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
+  },
+  "forgeorbital-agent-gate": {
+   "attempts": 1,
+   "first_attempt": "2026-11-22",
+   "last_attempt": "2026-11-22",
+   "attemptedAt": "2026-11-22T07:23:47.874Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "forgetreasury-treasury": {
+   "attempts": 1,
+   "first_attempt": "2026-11-22",
+   "last_attempt": "2026-11-22",
+   "attemptedAt": "2026-11-22T07:23:47.874Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
   }
  },
  "admitted": [
-  {
-   "slug": "getengram-engram",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "memcell-memcell",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "verticalflows-agent-gateway",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "leafwright-leafwright",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "tryperspect-perspect",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "blockscout-mcp-server",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "gregbenza-openhouse",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "anywaypossible-agent-utilities",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cotal-cotal",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "archi-den-den-archi-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "ca-ccpcrate-ccpcrate",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "3dassets-catalogue",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "volunteerreminder-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "feeless402-nano-pay",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "tripyana-london-chauffeur",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "fruitstand-fund-returns",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "elicitly-elicitly",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "altorank-altorank",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "svgrid-svgrid",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "toolyour-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "vruum-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "agentfilings-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "wellnessproject-wellness-project",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cc-servelink-serve",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "foldlaboratories-art",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "usememra-memra",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "snopekgames-godai",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "club-worldorder-cube-playground",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "goodbarber-public-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "calibrd-agent",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "ch-prospex-swissco",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "primaxiom-memory-reasongraph",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "mailyond-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "tetrees-ex-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "mightys-cairn",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "beyondfolder-directories",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "intodns-scanner",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "creatordb-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "fivexer-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "runx-runx",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "orangepro-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "ontoramp-graph-query",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "opensolr-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "sprixen-sprixen",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "eveoy-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "knowall-reverie",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "borealhost-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "gemina-gemina",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "contracko-contracko",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "getadloop-adloop",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "creatica-backgrounds",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "vexa-vexa",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "docs2mcp-docs2mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "chibitek-mochii",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "chibitek-nexus",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
   {
    "slug": "hatchloop-sms-whatsapp-messaging",
    "date": "2026-09-22",
@@ -22104,6 +21874,336 @@
   {
    "slug": "first-dollar-test-first-dollar-test",
    "date": "2026-11-21",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fitiny-moissanite-tools",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "fitmycall-pricing",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fitmysoft-pricing",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fitnito-fitnito",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fitouto-site",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fixidu-mcp-server",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "fjordgull-mcp",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "flat-hunt-mcp",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "flatratebook-site",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "flautoquotes-quote-exchange",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "flevy-flevy",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "flexonthejob-mcp",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "flightdelayhq-site",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "flightseatmap-flightseatmap",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "flingflyers-flingflyers",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "flipnem-flipnem",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "flitlink-flit",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "flockfs-flockfs",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "floot-floot",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "floridahvacreplacementcost-site",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "floridaroofreplacementcost-site",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "floridasolarcostcalculator-site",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "floridawaterdamagecost-site",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "flowaiapi-agent-bus",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "flownato-mcp",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "fluentedi-tools",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fluidrecall-mcp",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fluidvip-fluidtalk",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fluxdots-mcp",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "flywhereto-mcp",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fmlane-site",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fnlowl-fnlowl",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "focusgts-aep",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "focusvo-site",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "focxle-afos",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "focxle-b2b-agent-negotiation-governance",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "focxle-hire-ai-agents",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "foldlaundry-fold-laundry",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "foliofact-foliofact",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "folionomiq-folionomiq",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "footballagentindex-site",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "footfally-site",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "forcedalpha-supply-chain",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fordycecg-my-fordyce",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "formaportal-mcp",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "formasty-form-builder",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "formbuilder-formbuilder",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "formcarry-formcarry",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "formester-mcp",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "formgong-mcp",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "formpaste-formpaste",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "formsbystate-formsbystate",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "formslist-mcp",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "formulasignal-record",
+   "date": "2026-11-22",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fortrabbit-mcp",
+   "date": "2026-11-22",
    "source_http": 200,
    "repo_http": null
   }

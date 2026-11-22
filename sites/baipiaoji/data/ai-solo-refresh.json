@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-11-21T07:42:45.361Z",
+  "lastRun": "2026-11-22T07:24:35.170Z",
   "status": "degraded",
   "checkedSources": 8,
   "queue": [
@@ -265,7 +265,7 @@
       "caseId": "yara-ai",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.linkedin.com/posts/joebraidwood_after-a-year-of-building-yara-ai-its-time-activity-7394436184648736769-T_Z1/",
-      "lastChecked": "2026-11-08T06:40:41.344Z"
+      "lastChecked": "2026-11-22T07:24:35.170Z"
     },
     {
       "caseId": "windsurf",
@@ -881,11 +881,11 @@
     "vibe-ai|https://gravity.fast/blog/vibe-ai-postmortem/": {
       "caseId": "vibe-ai",
       "sourceUrl": "https://gravity.fast/blog/vibe-ai-postmortem/",
-      "lastAttempt": "2026-11-08T06:40:41.344Z",
+      "lastAttempt": "2026-11-22T07:24:35.170Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-11-08T06:40:41.344Z",
-      "lastHash": "7eb55e9b5b1bd5750d503d907528ce5a76793602228845b0230d034b7e500d41",
+      "lastSuccess": "2026-11-22T07:24:35.170Z",
+      "lastHash": "6cc4c541ae2ab901d7bc1d7eb520c03fe337340e3188176914363b24a022c8bc",
       "hash": "b93f7e1d5d4ee6b40b12ba45c3dfac55ef74a68d2359db423d84b11bcc8d6174",
       "simhash": "a412d97a8edc039e",
       "words": 1817,
@@ -894,10 +894,10 @@
     "yara-ai|https://www.meetyara.com/privacy": {
       "caseId": "yara-ai",
       "sourceUrl": "https://www.meetyara.com/privacy",
-      "lastAttempt": "2026-11-08T06:40:41.344Z",
+      "lastAttempt": "2026-11-22T07:24:35.170Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-11-08T06:40:41.344Z",
+      "lastSuccess": "2026-11-22T07:24:35.170Z",
       "lastHash": "5e6975e6bdabb2a423b170160fa14be847e9ba23dddc59556ffb3c70e1211364",
       "hash": "5e6975e6bdabb2a423b170160fa14be847e9ba23dddc59556ffb3c70e1211364",
       "simhash": "6827315ae4e4d68c",
@@ -907,7 +907,7 @@
     "yara-ai|https://www.linkedin.com/posts/joebraidwood_after-a-year-of-building-yara-ai-its-time-activity-7394436184648736769-T_Z1/": {
       "caseId": "yara-ai",
       "sourceUrl": "https://www.linkedin.com/posts/joebraidwood_after-a-year-of-building-yara-ai-its-time-activity-7394436184648736769-T_Z1/",
-      "lastAttempt": "2026-11-08T06:40:41.344Z",
+      "lastAttempt": "2026-11-22T07:24:35.170Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -915,10 +915,10 @@
     "brainstory|https://cassidoo.co/post/getting-paid-is-weird/": {
       "caseId": "brainstory",
       "sourceUrl": "https://cassidoo.co/post/getting-paid-is-weird/",
-      "lastAttempt": "2026-11-09T07:08:06.967Z",
+      "lastAttempt": "2026-11-22T07:24:35.170Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-11-09T07:08:06.967Z",
+      "lastSuccess": "2026-11-22T07:24:35.170Z",
       "lastHash": "281689e2a2109dc4bca3c73d863039e29e99e7d412714f03d526304b6a7d0953",
       "hash": "281689e2a2109dc4bca3c73d863039e29e99e7d412714f03d526304b6a7d0953",
       "simhash": "b4163553cd7da715",
@@ -928,10 +928,10 @@
     "brainstory|https://cassidoo.co/post/adios-2024/": {
       "caseId": "brainstory",
       "sourceUrl": "https://cassidoo.co/post/adios-2024/",
-      "lastAttempt": "2026-11-09T07:08:06.967Z",
+      "lastAttempt": "2026-11-22T07:24:35.170Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-11-09T07:08:06.967Z",
+      "lastSuccess": "2026-11-22T07:24:35.170Z",
       "lastHash": "1d58247358c85afa9918da94473bc8c2cc73fbcd0857ff829b6b835c6e58c6f3",
       "hash": "1d58247358c85afa9918da94473bc8c2cc73fbcd0857ff829b6b835c6e58c6f3",
       "simhash": "e2d23450c5f4a79d",
@@ -941,10 +941,10 @@
     "contenda-studio|https://dev.to/contenda/lessons-in-pivoting-from-studio-to-brainstory-cli": {
       "caseId": "contenda-studio",
       "sourceUrl": "https://dev.to/contenda/lessons-in-pivoting-from-studio-to-brainstory-cli",
-      "lastAttempt": "2026-11-09T07:08:06.967Z",
+      "lastAttempt": "2026-11-22T07:24:35.170Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-11-09T07:08:06.967Z",
+      "lastSuccess": "2026-11-22T07:24:35.170Z",
       "lastHash": "3a18d776d2421a445b564a26c9b00463d1dd9bafc2a0b7a24b4e2414c285d722",
       "hash": "76d043d18d305a9a11c8fec9ab8de85f0c1b3ff302a7aec8b53525185f8bf97c",
       "simhash": "286e88152c5aa317",
@@ -954,10 +954,10 @@
     "contenda-studio|https://cassidoo.co/post/bye-bye-2023/": {
       "caseId": "contenda-studio",
       "sourceUrl": "https://cassidoo.co/post/bye-bye-2023/",
-      "lastAttempt": "2026-11-09T07:08:06.967Z",
+      "lastAttempt": "2026-11-22T07:24:35.170Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-11-09T07:08:06.967Z",
+      "lastSuccess": "2026-11-22T07:24:35.170Z",
       "lastHash": "f88f5aefef56b4d5ece23b25d0f96b5669a7d589c37a1da889e8aae166f3b98e",
       "hash": "f88f5aefef56b4d5ece23b25d0f96b5669a7d589c37a1da889e8aae166f3b98e",
       "simhash": "a24a26d04c34853f",
@@ -967,15 +967,15 @@
     "otter-ai|https://otter.ai/blog/otter-ai-breaks-100m-arr-barrier-and-transforms-business-meetings-launching-industry-first-ai-meeting-agent-suite": {
       "caseId": "otter-ai",
       "sourceUrl": "https://otter.ai/blog/otter-ai-breaks-100m-arr-barrier-and-transforms-business-meetings-launching-industry-first-ai-meeting-agent-suite",
-      "lastAttempt": "2026-11-09T07:08:06.967Z",
-      "status": "change-pending",
+      "lastAttempt": "2026-11-22T07:24:35.170Z",
+      "status": "available",
       "http": 200,
-      "lastSuccess": "2026-11-09T07:08:06.967Z",
-      "lastHash": "b02cf6e1ded4b548750c3b0c4406f9ae4926531fa3d068f027515dbe67d26b47",
+      "lastSuccess": "2026-11-22T07:24:35.170Z",
+      "lastHash": "111e12d0a42a0fe2af6cfcba7881fbc1eed94276222ed234cd342d8d47550bfd",
       "hash": "dd7e913edc1229f76ee72ced886e8700b872712073767af5fb19ec27c5505cb7",
       "simhash": "b27b3118eed2839d",
       "words": 1065,
-      "consecutiveChange": 1
+      "consecutiveChange": 0
     },
     "windsurf|https://cognition.com/blog/windsurf": {
       "caseId": "windsurf",
@@ -1158,27 +1158,12 @@
       "consecutiveChange": 0
     }
   },
-  "cursor": 44,
+  "cursor": 49,
   "errors": [
     {
-      "caseId": "ghost-autonomy",
-      "sourceUrl": "https://autotechinsight.ihsmarkit.com/main/news/view/printer-friendly?id=5275319",
-      "reason": "unsafe-source"
-    },
-    {
-      "caseId": "argo-ai",
-      "sourceUrl": "https://www.euronews.com/next/2022/11/01/ford-motor-autonomous-argo",
+      "caseId": "yara-ai",
+      "sourceUrl": "https://www.linkedin.com/posts/joebraidwood_after-a-year-of-building-yara-ai-its-time-activity-7394436184648736769-T_Z1/",
       "reason": "body-limit"
-    },
-    {
-      "caseId": "cruise-robotaxi",
-      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1467858/000146785826000013/gm-20251231.htm",
-      "reason": "body-limit"
-    },
-    {
-      "caseId": "poppy",
-      "sourceUrl": "https://getpoppy.app/blog/sunset",
-      "reason": "network-error"
     }
   ]
 }

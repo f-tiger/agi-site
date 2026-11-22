@@ -1,10 +1,140 @@
 {
-  "generated": "2026-11-21",
+  "generated": "2026-11-22",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
   "fetched_ok": 107,
   "fetched_fail": 20,
-  "pending": 14,
+  "pending": 7,
   "items": [
+    {
+      "slug": "deepl",
+      "url": "https://www.deepl.com/pricing",
+      "confirmed": "2026-11-22",
+      "first_seen": "2026-11-21",
+      "added": [],
+      "removed": [
+        "2k",
+        "5b"
+      ],
+      "checked_then": "2026-09-21"
+    },
+    {
+      "slug": "ollama",
+      "url": "https://github.com/ollama/ollama",
+      "confirmed": "2026-11-22",
+      "first_seen": "2026-11-21",
+      "added": [
+        "187.8k",
+        "188k",
+        "19.1k",
+        "2.1k",
+        "2.7k"
+      ],
+      "removed": [
+        "1.6k",
+        "18.1k",
+        "182.1k",
+        "182k",
+        "2.5k"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "immersive-translate",
+      "url": "https://immersivetranslate.com",
+      "confirmed": "2026-11-22",
+      "first_seen": "2026-11-21",
+      "added": [],
+      "removed": [
+        "07b"
+      ],
+      "checked_then": "2026-08-03"
+    },
+    {
+      "slug": "civitai",
+      "url": "https://education.civitai.com/guide-to-licensing-options-on-civitai",
+      "confirmed": "2026-11-22",
+      "first_seen": "2026-11-21",
+      "added": [
+        "32images"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-06"
+    },
+    {
+      "slug": "v0",
+      "url": "https://v0.app",
+      "confirmed": "2026-11-22",
+      "first_seen": "2026-11-21",
+      "added": [
+        "3.7k"
+      ],
+      "removed": [
+        "1.1k",
+        "100%",
+        "3.6k",
+        "9%"
+      ],
+      "checked_then": "2026-08-03"
+    },
+    {
+      "slug": "elevenlabs",
+      "url": "https://elevenlabs.io/pricing",
+      "confirmed": "2026-11-22",
+      "first_seen": "2026-11-21",
+      "added": [
+        "0.5credit",
+        "0.5credits",
+        "0026video",
+        "10000credits",
+        "1000characters",
+        "1000credits",
+        "100minutes",
+        "100words",
+        "10minutes",
+        "11,000minutes",
+        "11minutes",
+        "12,500seconds"
+      ],
+      "removed": [
+        "$1.",
+        "$18",
+        "$19",
+        "$2",
+        "$21",
+        "$23",
+        "$24",
+        "$25",
+        "$26",
+        "$27",
+        "$28",
+        "$3"
+      ],
+      "checked_then": "2026-08-02"
+    },
+    {
+      "slug": "windsurf",
+      "url": "https://windsurf.com",
+      "confirmed": "2026-11-22",
+      "first_seen": "2026-11-21",
+      "added": [
+        "$41",
+        "$48",
+        "$80",
+        "$97"
+      ],
+      "removed": [
+        "$3",
+        "$40/mo",
+        "$47",
+        "$49",
+        "$80/mo",
+        "41b",
+        "6,m",
+        "8b",
+        "9b"
+      ],
+      "checked_then": "2026-08-03"
+    },
     {
       "slug": "exa",
       "url": "https://exa.ai/pricing",
@@ -140,19 +270,6 @@
       "checked_then": "2026-08-04"
     },
     {
-      "slug": "v0",
-      "url": "https://v0.app",
-      "confirmed": "2026-11-19",
-      "first_seen": "2026-11-18",
-      "added": [
-        "10.4k"
-      ],
-      "removed": [
-        "10.3k"
-      ],
-      "checked_then": "2026-08-03"
-    },
-    {
       "slug": "zhipu-glm",
       "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
       "confirmed": "2026-11-19",
@@ -216,32 +333,6 @@
       "checked_then": "2026-08-13"
     },
     {
-      "slug": "deepl",
-      "url": "https://www.deepl.com/pricing",
-      "confirmed": "2026-11-17",
-      "first_seen": "2026-11-16",
-      "added": [
-        "0m",
-        "10次",
-        "1b",
-        "1m",
-        "1次",
-        "2b",
-        "2k",
-        "30分钟",
-        "3m",
-        "4m",
-        "5b",
-        "5k"
-      ],
-      "removed": [
-        "100个",
-        "20个",
-        "3个"
-      ],
-      "checked_then": "2026-09-21"
-    },
-    {
       "slug": "ragflow",
       "url": "https://ragflow.io/docs/faq",
       "confirmed": "2026-11-15",
@@ -288,18 +379,6 @@
         "160k"
       ],
       "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "immersive-translate",
-      "url": "https://immersivetranslate.com",
-      "confirmed": "2026-11-13",
-      "first_seen": "2026-11-12",
-      "added": [],
-      "removed": [
-        "79222b",
-        "8655b"
-      ],
-      "checked_then": "2026-08-03"
     },
     {
       "slug": "continue",
@@ -351,23 +430,6 @@
       "checked_then": "2026-08-03"
     },
     {
-      "slug": "windsurf",
-      "url": "https://windsurf.com",
-      "confirmed": "2026-11-12",
-      "first_seen": "2026-11-11",
-      "added": [
-        "$47",
-        "$49"
-      ],
-      "removed": [
-        "$31",
-        "$58",
-        "02b",
-        "76k"
-      ],
-      "checked_then": "2026-08-03"
-    },
-    {
       "slug": "fastgpt",
       "url": "https://fastgpt.cn/price",
       "confirmed": "2026-11-11",
@@ -377,32 +439,6 @@
       ],
       "removed": [],
       "checked_then": "2026-09-21"
-    },
-    {
-      "slug": "elevenlabs",
-      "url": "https://elevenlabs.io/pricing",
-      "confirmed": "2026-11-08",
-      "first_seen": "2026-11-07",
-      "added": [
-        "$0/mo",
-        "$1.",
-        "$19",
-        "$21",
-        "$23",
-        "$299/mo",
-        "$99/mo",
-        "$990/mo",
-        "00m"
-      ],
-      "removed": [
-        "$17",
-        "$29",
-        "$55",
-        "$56",
-        "50%",
-        "83%"
-      ],
-      "checked_then": "2026-08-02"
     },
     {
       "slug": "bailian",
@@ -576,19 +612,6 @@
       "checked_then": "2026-08-13"
     },
     {
-      "slug": "civitai",
-      "url": "https://education.civitai.com/guide-to-licensing-options-on-civitai",
-      "confirmed": "2026-10-28",
-      "first_seen": "2026-10-27",
-      "added": [
-        "3min"
-      ],
-      "removed": [
-        "2min"
-      ],
-      "checked_then": "2026-08-06"
-    },
-    {
       "slug": "vidu",
       "url": "https://platform.vidu.com/docs/terms-of-use",
       "confirmed": "2026-10-27",
@@ -641,22 +664,6 @@
         "$0.10,"
       ],
       "checked_then": "2026-08-05"
-    },
-    {
-      "slug": "ollama",
-      "url": "https://github.com/ollama/ollama",
-      "confirmed": "2026-10-04",
-      "first_seen": "2026-10-03",
-      "added": [
-        "18.1k",
-        "182.1k"
-      ],
-      "removed": [
-        "18.0k",
-        "181.7k",
-        "18k"
-      ],
-      "checked_then": "2026-08-04"
     },
     {
       "slug": "cerebras",
