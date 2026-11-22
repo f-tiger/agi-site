@@ -76,11 +76,11 @@ async function assertGuideVisible(page, item) {
   await page.evaluate(() => document.fonts.ready);
   // An authored guide can animate fragment navigation. Wait for the actual
   // heading to enter the viewport without letting the test scroll it there.
-  await page.waitForFunction(target => {
-    const box = document.querySelector(target).getBoundingClientRect();
+  await page.waitForFunction(element => {
+    const box = element.getBoundingClientRect();
     const navBottom = document.querySelector('.eb-nav').getBoundingClientRect().bottom;
     return box.top >= Math.max(0, navBottom) - 1 && box.bottom <= innerHeight;
-  }, guide.hash, { timeout: 4000 });
+  }, await heading.elementHandle(), { timeout: 4000 });
   if (item.tool === 'waesche_trocknungswechsel_kaufschwelle') {
     await page.getByText('Ich habe bereits einen Trockner', {exact:true}).click();
     assert(await page.getByText(/16,80 € Ersparnis pro Saison/).isVisible());
