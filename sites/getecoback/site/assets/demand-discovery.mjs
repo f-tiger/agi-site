@@ -1,4 +1,5 @@
 import {exactGermanFilterModel} from './exact-filter-intent.mjs';
+import {philipsHumidifierFilterSection} from './philips-humidifier-filter-intent.mjs';
 import {asksForCellarVentilationCheck} from './cellar-ventilation-intent.mjs';
 import {asksForDehumidifierDrainRoute} from './dehumidifier-drain-intent.mjs';
 
@@ -26,8 +27,11 @@ export function searchEntries(index,term,lang){
  const pages=index.filter(e=>e.l===lang&&typeof e.t==='string'&&/^\/(?!\/)[^?#\\]*$/.test(e.u)&&!/^\/(auth|api|account|members|widgets)(\/|\.|$)/.test(e.u));
  let targetPage, targetId;
  const filterModel=lang==='de' && exactGermanFilterModel(query);
+ const philipsFilter=lang==='de' && philipsHumidifierFilterSection(query);
  if(filterModel) {
    targetPage='/ersatzfilter.html'; targetId=filterModel;
+ } else if(philipsFilter) {
+   targetPage='/guide/luftbefeuchter-ratgeber.html'; targetId=philipsFilter;
  } else if(lang==='de' && asksForDehumidifierDrainRoute(query)) {
    targetPage='/guide/luftentfeuchter-keller.html'; targetId='ablauf-vor-kauf';
  } else if(lang==='de' && asksForCellarVentilationCheck(query)) {
@@ -36,7 +40,7 @@ export function searchEntries(index,term,lang){
    targetPage=laundryPage; targetId=singleLaundryId;
  }
  const candidate=targetPage && pages.find(e=>e.u===targetPage);
- const section=filterModel?candidate?.model_sections?.find(row=>row.id===targetId):candidate?.section;
+ const section=(filterModel||philipsFilter)?candidate?.model_sections?.find(row=>row.id===targetId):candidate?.section;
  const focused=section?.id===targetId && typeof section?.title==='string' && typeof section?.description==='string' ? candidate : null;
  const ranked=pages.filter(e=>!focused||e.u!==targetPage)
  .map(e=>{const title=normalize(e.t),desc=normalize(e.d||''),alias=normalize(e.a||'');const scores=words.map(w=>title.includes(w)?4:alias.includes(w)?3:desc.includes(w)?1:0);return {entry:e,score:scores.every(Boolean)?scores.reduce((a,b)=>a+b,0):0};})

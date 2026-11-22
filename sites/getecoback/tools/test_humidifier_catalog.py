@@ -186,6 +186,44 @@ class HumidifierTests(unittest.TestCase):
             self.assertIn('Mengenangaben', lookup)
             self.assertNotIn('amazon.de/', lookup)
 
+    def test_philips_filter_sources_and_canonical_share_targets(self):
+        from build_agent_md import to_markdown
+
+        path = catalog.ROOT / 'site/guide' / f'{guide.MAIN}.html'
+        html = path.read_text()
+        md = to_markdown(html, f'/guide/{guide.MAIN}.html', 'de')
+        data = json.loads(guide.PHILIPS_FILTERS.read_text())
+        self.assertEqual(html.count('id="philips-verdunsterfilter"'), 1)
+        section = html.split('<section aria-labelledby="philips-verdunsterfilter">', 1)[1].split('</section>', 1)[0]
+        self.assertIn('href="#philips-verdunsterfilter"', html)
+        parser = PageParser()
+        parser.feed(section)
+        base = f'https://getecoback.com/guide/{guide.MAIN}.html'
+        self.assertNotIn('reddit.com/submit', md)
+        self.assertNotIn('amazon.de/', section)
+        self.assertIn(data['manufacturer_source'], md)
+        self.assertIn('warte mit der Bestellung', md)
+        self.assertIn('pausiere die Befeuchtung', md)
+        for device, part, anchor in (
+            ('HU4803/01', 'FY2401/30', 'philips-hu4803-01'),
+            ('HU2716/10', 'FY3446/30', 'philips-hu2716-10'),
+        ):
+            with self.subTest(device=device):
+                self.assertEqual(parser.ids.count(anchor), 1)
+                model = next(row for row in data['models'] if row['device'] == device)
+                target = f'{base}#{anchor}'
+                self.assertIn(target, parser.links)
+                share = next(url for url in parser.links if device in parse_qs(urlsplit(url).query).get('title', [''])[0])
+                share_url = urlsplit(share)
+                self.assertEqual((share_url.scheme, share_url.netloc, share_url.path),
+                                 ('https', 'www.reddit.com', '/submit'))
+                self.assertEqual(parse_qs(share_url.query), {
+                    'url': [target], 'title': [f'Welcher Verdunsterfilter passt zum Philips {device}?'],
+                })
+                answer = md.split(f'### Philips {device}', 1)[1].split('\n### ', 1)[0]
+                self.assertIn(part, answer)
+                self.assertIn(model['source'], answer)
+
     def test_final_artifacts_keep_catalog_and_support_separation(self):
         for slug in guide.PAGES:
             html=(catalog.ROOT/'site/guide'/f'{slug}.html').read_text()

@@ -63,6 +63,21 @@ def collect():
      raise ValueError(f'Missing or ambiguous filter model destination: {route}#{identifier}')
     entry['model_sections'].append({'id':identifier,'title':item['brand']+' '+item['models'][0]+': Ersatzfilter prüfen',
                                    'description':item['note']})
+  if lang=='de' and route=='/guide/luftbefeuchter-ratgeber.html':
+   models=json.loads((ROOT/'data/humidifier-philips-filters-de.json').read_text())['models']
+   entry['model_sections']=[
+    {'id':'philips-verdunsterfilter','title':'Philips Series 2000: Verdunsterfilter prüfen',
+     'description':'Die vollständige HU-Gerätenummer vom Typenschild entscheidet. Eine Serienangabe allein reicht nicht.'}
+   ]+[
+    {'id':item['anchor'],'title':f"Philips {item['device']}: Originalfilter prüfen",
+     'description':'Die deutsche Philips-Zuordnung und die Endung der Filternummer abgleichen.'}
+    for item in models
+   ]
+   for row in entry['model_sections']:
+    anchor=row['id']
+    targets=re.findall(r'<h[23]\b[^<>]*\sid="'+re.escape(anchor)+r'"[^<>]*>',text)
+    if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*',anchor) or len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
+     raise ValueError(f'Missing or ambiguous Philips filter destination: {route}#{anchor}')
   if section:=sections.get((lang,route)):
    anchor=section['id']
    matches=re.findall(r'<section\b[^<>]*\bid="'+re.escape(anchor)+r'"[^<>]*>',text)

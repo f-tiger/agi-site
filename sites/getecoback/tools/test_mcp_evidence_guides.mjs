@@ -11,6 +11,7 @@ const laundry = '/guide/waesche-trocknen-wohnung.html';
 const cellar = '/guide/luftentfeuchter-keller.html';
 const toolPaths = new Map([
   ['luftreiniger_ersatzfilter_zuordnung', '/ersatzfilter.html#finder'],
+  ['philips_verdunsterfilter_zuordnung', '/guide/luftbefeuchter-ratgeber.html#philips-verdunsterfilter'],
   ['luftentfeuchter_waesche_einzelkosten', '/waeschetrockner-oder-luftentfeuchter.html#luftentfeuchter-waesche-kosten'],
   ['keller_lueften_taupunkt_messwerte', '/guide/keller-lueften-sommer.html#taupunkt'],
   ['kellerentfeuchter_pruefpunkt_abgleichen', cellar + '#kalter-keller'],
@@ -68,7 +69,7 @@ test('each mapped tool publishes the same exact evidence link after a real tool 
   const advertised = new Map(standard.map(tool => [tool.name, tool]));
   const compact = new Map((await h.catalogue({view:'compact'})).tools.map(tool => [tool.name, tool]));
   const mapped = expandedDefinitions.filter(tool=>paths.has(tool.category) || toolPaths.has(tool.name));
-  assert.equal(mapped.length, 226);
+  assert.equal(mapped.length, 227);
   assert.equal([...compact.values()].filter(tool=>tool.guide_url && tool.name!=='entfeuchter_ablaufcheck').length, mapped.length);
 
   for (const {name, category, page, properties, required, oneOf, example} of mapped) {

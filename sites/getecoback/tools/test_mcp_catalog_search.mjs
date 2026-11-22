@@ -27,7 +27,7 @@ test('the browser loads the current catalogue search module', async () => {
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 227);
+  assert.equal(withGuides.length, 228);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
   assert.equal(destinations.size, 25);
   const pages = new Map();
@@ -735,6 +735,33 @@ test('exact German Beurer and Levoit replacement questions find the documented m
    'Welcher Ersatzfilter passt zum Beurer LR 401 Plus?',
    'Welcher Ersatzfilter passt zum Levoit Core 300S Plus?',
  ]) assert.notEqual((await catalogue({q,view:'compact'})).tools[0]?.name,name,q);
+ assert.equal((await catalogue({q:name,view:'compact'})).tools[0]?.name,name);
+ assert.equal(analytics,0);
+});
+
+test('German Philips replacement queries find the type-plate check rather than generic maintenance', async()=>{
+ const name='philips_verdunsterfilter_zuordnung';
+ for(const q of [
+  'Passt der Filter FY2401/30 in meinen Philips HU2716/10?',
+  'Welcher Ersatzfilter passt zum Philips HU4803/01?',
+  'Mein Philips trägt Series 2000: Brauche ich FY2401/30 oder FY3446/30?',
+  'Welcher Filter passt zu meinem Philips Luftbefeuchter Series 2000?',
+  'HU2716/11 Ersatzfilter',
+  'FY 3446/30',
+ ]) {
+  const results=(await catalogue({q,view:'compact',limit:'3'})).tools;
+  assert.equal(results[0]?.name,name,q);
+  assert.equal(findCatalogueTools(compact,{query:q})[0]?.name,name,q);
+  assert.equal(toolGuidePath(results[0]),'/guide/luftbefeuchter-ratgeber.html#philips-verdunsterfilter');
+ }
+ for(const q of [
+  'Wie oft soll ich den Filter vom Philips HU2716/10 reinigen?',
+  'Ersatzfilter für Philips Series 2000 AC2887 Luftreiniger',
+  'Welcher Ersatzfilter passt zu meinem Beurer LR 401?',
+  'FY3446/30 Vergleich mit Venta Filter',
+ ]) {
+  assert.ok(!(await catalogue({q,view:'compact'})).tools.some(tool=>tool.name===name),q);
+ }
  assert.equal((await catalogue({q:name,view:'compact'})).tools[0]?.name,name);
  assert.equal(analytics,0);
 });
