@@ -175,6 +175,11 @@ check. Both modes confirm the German manual's width and height limits for
 the original standard bracket on an inward-opening window. A fit within
 those dimensions still requires a separate mounting and securing check.
 
+Version 1.22.17 adds the German tesamoll E, P and D adhesive seal check.
+Both offline modes test the whole measured span against each documented
+range. Shared fits remain possible, with separate results when measurements
+or the window's sealing system need clarification.
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the

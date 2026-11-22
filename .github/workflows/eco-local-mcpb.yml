@@ -19,12 +19,12 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUNDLE: ecoback-local-tools-1.22.16.mcpb
-  VERSION: '1.22.16'
-  UPSTREAM_SHA: 94bcc3eebcbfbe60e30c5a8481178ba38cd45b6a
+  BUNDLE: ecoback-local-tools-1.22.17.mcpb
+  VERSION: '1.22.17'
+  UPSTREAM_SHA: 66b14b9cac37f46d47a2378c9bb0b48a39f89e74
   NAME: io.github.f-tiger/ecoback-local-tools
   RELEASE_TAG: fleet-mcp-registry-2026-10-10
-  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.16.mcpb
+  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.17.mcpb
   REGISTRY_VERSIONS: https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions
   SOURCE_URL: https://github.com/f-tiger/getecoback-mcp
   MCPB_SCHEMA: https://raw.githubusercontent.com/modelcontextprotocol/mcpb/70fe3b34cd6dff1b3bba046638edc72a6467a4fb/schemas/mcpb-manifest-v0.3.schema.json
@@ -96,7 +96,7 @@ jobs:
           ' "$root/servers/ecoback-local-tools.json"
           jq -e --arg name "$NAME" --arg version "$VERSION" --arg revision "$UPSTREAM_SHA" --arg sha "$digest" --arg latest "$REGISTRY_VERSIONS/latest" '
             .name == $name and .version == $version and .sourceRevision == $revision and
-            .fileSha256 == $sha and .tools == 2026 and .pages == 21 and .legacyNames == 8 and .windowExamples == 12 and
+            .fileSha256 == $sha and .tools == 2027 and .pages == 21 and .legacyNames == 8 and .windowExamples == 12 and
             .network == "disabled" and (.firstExamples | type == "array" and length > 0) and
             (.lastPageExample != null and (.lastPageExample | length) > 0) and
             .finder.topMatch == "entfeuchter_ablaufcheck" and
@@ -187,6 +187,23 @@ jobs:
               ],
               rejected:3
             } and .compact.portaSplitWindowLip == .portaSplitWindowLip and
+            .tesamollProfiles == {
+              name:"tesamoll_fensterdichtung_profil_pruefen",
+              guide:"https://getecoback.com/guide/fenster-zugluft-mietwohnung.html#dichtungsprofil",
+              catalog:"https://www.tesa.com/de-de/files/download/11555752%2C4%2Ctesa-consumerkatalog-2024-online.pdf",
+              printedPage:28,
+              ranges:{E:[1,3.5],P:[2,5],D:[3,7]},
+              records:[
+                ["abmessungen_passender_profile",["P","D"]],
+                ["abmessungen_passender_profile",["E"]],
+                ["abmessungen_passender_profile",["E","P","D"]],
+                ["kein_dokumentiertes_profil",[]],
+                ["messwerte_klaeren",[]],
+                ["fenstersystem_klaeren",[]],
+                ["fenstersystem_klaeren",[]]
+              ],
+              rejected:3
+            } and .compact.tesamollProfiles == .tesamollProfiles and
             .compact.cellarBuyerEvidence == true and
             .compact.laundryComparison == {
               topMatch:"waesche_trocknungskosten", dryerEurPerLoad:0.6, dehumidifierEurPerLoad:0.3,

@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.22.16';
-const revision = '94bcc3eebcbfbe60e30c5a8481178ba38cd45b6a';
+const version = '1.22.17';
+const revision = '66b14b9cac37f46d47a2378c9bb0b48a39f89e74';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -27,7 +27,8 @@ const featureNames = ['entfeuchter_ablaufcheck', 'btu_empfehlung', 'fensterabdic
   'taupunkt_lueften', 'fenstersauger_170mm_abziehlippe_geraetefamilie', 'fenster_oberflaeche_taucheck',
   'luftentfeuchter_waesche_einzelkosten', 'fritz_302_danfoss_adapter', 'keller_lueften_taupunkt_messwerte',
   'luftreiniger_ersatzfilter_zuordnung', 'philips_verdunsterfilter_zuordnung', 'heizdecke_stromkosten_nennleistung',
-  'hygrometer_messbereiche', 'pac_n90_ean_abgleichen', 'midea_portasplit_fensterfalz_pruefen'];
+  'hygrometer_messbereiche', 'pac_n90_ean_abgleichen', 'midea_portasplit_fensterfalz_pruefen',
+  'tesamoll_fensterdichtung_profil_pruefen'];
 const entry = 'src/server.mjs';
 const legacyHelpers = fileURLToPath(new URL('../mcp-registry/local-packages/', import.meta.url));
 const sha256 = buffer => createHash('sha256').update(buffer).digest('hex');
@@ -60,6 +61,9 @@ const n90IdentityGuide = n90Citation + '#testlage';
 const portaSplitLipTool = 'midea_portasplit_fensterfalz_pruefen';
 const portaSplitCitation = 'https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html';
 const portaSplitLipGuide = portaSplitCitation + '#fensterfalz';
+const tesamollTool = 'tesamoll_fensterdichtung_profil_pruefen';
+const tesamollCitation = 'https://getecoback.com/guide/fenster-zugluft-mietwohnung.html';
+const tesamollGuide = tesamollCitation + '#dichtungsprofil';
 const cellarUri = 'ecoback://evidence/de/kellerentfeuchter';
 const laundryComparisonTool = 'waesche_trocknungskosten';
 const singleLaundryTool = 'luftentfeuchter_waesche_einzelkosten';
@@ -638,11 +642,52 @@ async function verifyPortaSplitLip(call) {
   return {name:portaSplitLipTool,guide:portaSplitLipGuide,ean,manual,printedPage,records,rejected:invalid.length};
 }
 
+async function verifyTesamollProfiles(call) {
+  const catalog = 'https://www.tesa.com/de-de/files/download/11555752%2C4%2Ctesa-consumerkatalog-2024-online.pdf';
+  const instructions = 'https://www.tesa.com/de-de/buero-und-zuhause/do-it-yourself-magazin/fensterdichtung-erneuern.html';
+  const printedPage = 28;
+  const ranges = {E:[1,3.5],P:[2,5],D:[3,7]};
+  const args = {dichtungsart:'tesamoll_klebeprofil',spalt_min_mm:4,spalt_max_mm:4};
+  const fit = 'abmessungen_passender_profile';
+  const clarification = 'fenstersystem_klaeren';
+  const cases = [
+    [{},[fit,['P','D']]],
+    [{spalt_min_mm:1,spalt_max_mm:1},[fit,['E']]],
+    [{spalt_min_mm:3,spalt_max_mm:3.5},[fit,['E','P','D']]],
+    [{spalt_min_mm:1,spalt_max_mm:7},['kein_dokumentiertes_profil',[]]],
+    [{spalt_min_mm:0},['messwerte_klaeren',[]]],
+    [{dichtungsart:'nutdichtung'},[clarification,[]]],
+    [{dichtungsart:'zusatzdichtung'},[clarification,[]]],
+  ];
+  const records = [];
+  for (const [change, expected] of cases) {
+    const result = await call({...args,...change});
+    assert.equal(result.isError,false);
+    const data = result.structuredContent;
+    const observed = [data.status,data.passende_profile];
+    assert.deepEqual(observed,expected);
+    assert.deepEqual([data.citation_url,data.guide_url,data.hersteller_katalog_url,data.hersteller_anleitung_url],
+      [tesamollCitation,tesamollGuide,catalog,instructions]);
+    assert.equal(data.katalog_druckseite,printedPage);
+    assert.deepEqual(data.dokumentierte_spaltbereiche_mm,ranges);
+    assert.match(data.grenze,/Entwässerungsöffnungen und vorgesehene Lüftung frei lassen/);
+    assert.doesNotMatch(result.content[0].text,/https?:\/\/[^"\s]*(?:amazon\.|amzn\.)|[?&]tag=/i);
+    records.push(observed);
+  }
+  const invalid = [{...args,dichtungsart:'silikon'},{...args,spalt_min_mm:-1},{...args,spalt_max_mm:undefined}];
+  for (const inputs of invalid) {
+    const result = await call(inputs);
+    assert.equal(result.isError,true);
+    assert.equal(result.structuredContent,undefined);
+  }
+  return {name:tesamollTool,guide:tesamollGuide,catalog,printedPage,ranges,records,rejected:invalid.length};
+}
+
 async function verifyStdio(extracted, manifest) {
   const {TOOLS} = await import(pathToFileURL(join(extracted,'src/tools.mjs')));
   const {expandedDefinitions} = await import(pathToFileURL(join(extracted,'src/eco-suite/src/mcp-expanded.mjs')));
   const expected = JSON.parse(JSON.stringify(TOOLS));
-  assert.equal(expected.length,2026);
+  assert.equal(expected.length,2027);
   assert.deepEqual(manifest.server.mcp_config, {command:'node',args:['${__dirname}/'+entry]});
   return withStdio(extracted,[],async rpc => {
     const listed = [], sizes = [], cursors = new Set();
@@ -658,9 +703,9 @@ async function verifyStdio(extracted, manifest) {
       }
     } while (cursor !== undefined);
     assert.deepEqual(listed,expected);
-    assert.deepEqual(sizes,[...Array(20).fill(100),26]);
+    assert.deepEqual(sizes,[...Array(20).fill(100),27]);
     const names = new Set(listed.map(tool=>tool.name));
-    assert.equal(names.size,2026);
+    assert.equal(names.size,2027);
     assert.ok(oldNames.every(name=>names.has(name)), 'Expected all eight supported legacy tools');
     assert.ok([...names].every(name=>!/balkonspeicher|balkonkraftwerk|solarbank|pv[_-]speicher/i.test(name)));
     assert.ok(manifest.tools.every(tool=>names.has(tool.name)));
@@ -720,9 +765,11 @@ async function verifyStdio(extracted, manifest) {
       rpc('tools/call',{name:n90IdentityTool,arguments:args}));
     const portaSplitWindowLip = await verifyPortaSplitLip(args =>
       rpc('tools/call',{name:portaSplitLipTool,arguments:args}));
+    const tesamollProfiles = await verifyTesamollProfiles(args =>
+      rpc('tools/call',{name:tesamollTool,arguments:args}));
     return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,windowCondensation,decimalWindowWidth,
       singleLaundry,fritzValve,drainRoute,measuredVentilation,exactFilter,philipsFilter,warmthCost,hygrometerComparison,n90Identity,
-      portaSplitWindowLip,
+      portaSplitWindowLip,tesamollProfiles,
       firstExamples:['btu_empfehlung','entfeuchter_ablaufcheck'],finder:verifyFinder(extracted,drain),
       lastPageExample:last.name,legacyNames:oldNames.length,network:'disabled'};
   });
@@ -1290,6 +1337,16 @@ async function verifyCompactStdio(extracted) {
       ['angebot_ean','halterung','fenster','messbezug','falzbreite_mm','falzhoehe_mm']);
     const portaSplitWindowLip = await verifyPortaSplitLip(eingaben =>
       rpc('tools/call',{name:runner,arguments:{name:portaSplitLipTool,eingaben}}));
+    const tesamollLookup = await rpc('tools/call',{
+      name:finder,arguments:{frage:'Welches tesamoll E-, P- oder D-Profil passt bei 4 mm Spalt?'},
+    });
+    assert.equal(tesamollLookup.isError,false);
+    const tesamollMatch = tesamollLookup.structuredContent.tools[0];
+    assert.equal(tesamollMatch?.name,tesamollTool);
+    assert.equal(tesamollMatch.guide_url,tesamollGuide);
+    assert.deepEqual(tesamollMatch.inputSchema.required,['dichtungsart','spalt_min_mm','spalt_max_mm']);
+    const tesamollProfiles = await verifyTesamollProfiles(eingaben =>
+      rpc('tools/call',{name:runner,arguments:{name:tesamollTool,eingaben}}));
     const tadoOventrop = await verifyCompactTadoOventrop(rpc,finder,runner);
     const householdDecisions = await verifyCompactHouseholdDecisions(rpc,runner);
     const windowWidth = await verifyCompactWindowWidth(rpc,finder,runner);
@@ -1301,7 +1358,7 @@ async function verifyCompactStdio(extracted) {
       tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,
       liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,singleLaundry,fritzValve,drainRoute,
       measuredVentilation,exactFilter,philipsFilter,warmthCost,hygrometerComparison,laundryPrecision,windowBlade,windowLookup,
-      windowWidth,decimalWindowWidth,householdDecisions,tadoOventrop,n90Costs,n90Identity,portaSplitWindowLip,
+      windowWidth,decimalWindowWidth,householdDecisions,tadoOventrop,n90Costs,n90Identity,portaSplitWindowLip,tesamollProfiles,
       humidifierEfficiency,glassvacTemperature,windowSubject,windowCondensation,
     };
   });
@@ -1375,6 +1432,7 @@ try {
   assert.deepEqual(result.hygrometerComparison,result.compact.hygrometerComparison);
   assert.deepEqual(result.n90Identity,result.compact.n90Identity);
   assert.deepEqual(result.portaSplitWindowLip,result.compact.portaSplitWindowLip);
+  assert.deepEqual(result.tesamollProfiles,result.compact.tesamollProfiles);
   assert.deepEqual(result.resource,result.compact.resource);
   result.archiveReadme = {replacedVersion:readme.previousVersion,registryLatestUrl};
   const identifier = `${releaseUrl}/${file}`;
