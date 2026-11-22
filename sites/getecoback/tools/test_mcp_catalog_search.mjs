@@ -27,9 +27,9 @@ test('the browser loads the current catalogue search module', async () => {
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 233);
+  assert.equal(withGuides.length, 234);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 31);
+  assert.equal(destinations.size, 32);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);
@@ -939,6 +939,40 @@ test('German window-seal decisions do not route to a door-floor profile', async(
     'Fensterdichtung P oder D, aber nicht tesamoll',
     'Mein Fenster zieht. Wie prüfe ich die Ursache?',
   ]) assert.ok(!(await catalogue({q,view:'compact',limit:'5'})).tools.some(tool=>tool.name===name),q);
+  assert.equal((await catalogue({q:name,view:'compact'})).tools[0]?.name,name);
+  assert.equal(analytics,0);
+});
+
+test('German noise comparisons prefer the noise check and retain cost, noise fault and bracket intent',async()=>{
+  const name='klimaanlage_geraeusch_vergleich';
+  const energy='pac_n90_energielabel_zu_stromkosten';
+  const page='/guide/delonghi-pac-n90-test.html#lautstaerke';
+  const exact=[
+    'Midea PortaSplit 39 dB und DeLonghi PAC N90 ECO Silent 64 dB – ist die Midea im Schlafzimmer 25 dB leiser?',
+    'Welche Klimaanlage ist am Bett leiser: die PortaSplit mit 39 dB Schalldruck oder der PAC N90 mit 64 dB Schallleistung?',
+    'Kann ich beim Klimakauf 39 dB Schalldruck im Silent-Modus mit 64 dB Schallleistung auf dem Energielabel vergleichen?',
+    'Klimagerät 39/64 dB, Schalldruck vs Schallleistung',
+    'PAC N90 50–52 dB Schalldruck gegen 64 dB Schallleistung vergleichen?',
+  ];
+  for(const q of exact){
+    const hits=(await catalogue({q,view:'compact',limit:'5'})).tools;
+    assert.equal(hits[0]?.name,name,q);
+    assert.equal(findCatalogueTools(compact,{query:q})[0]?.name,name,q);
+    assert.equal(toolGuidePath(hits[0]),page,q);
+    assert.ok(hits.every(tool=>tool.name!==energy),q);
+  }
+  for(const [q,expected] of [
+    ['PAC N90 Stromkosten pro Stunde bei 35 Cent pro kWh',energy],
+    ['Klimaanlage klackert und rattert. Wie dokumentiere ich das Geräusch für den Service?','klima_geraeuschmeldung_ausschnitt_abdeckung'],
+    ['Midea PortaSplit: 60 mm Fensterfalz, zähle ich die Gummidichtung mit?','midea_portasplit_fensterfalz_pruefen'],
+  ]){
+    const [first]=(await catalogue({q,view:'compact',limit:'3'})).tools;
+    assert.equal(first?.name,expected,q);
+  }
+  for(const q of [
+    'Wie laut ist die Midea PortaSplit nachts?',
+    'Ist die PortaSplit Lite mit 39 dB oder der N90 mit 64 dB leiser?',
+  ]) assert.notEqual((await catalogue({q,view:'compact',limit:'3'})).tools[0]?.name,name,q);
   assert.equal((await catalogue({q:name,view:'compact'})).tools[0]?.name,name);
   assert.equal(analytics,0);
 });

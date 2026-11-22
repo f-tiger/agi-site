@@ -299,6 +299,27 @@ test('tesamoll clearance must fit the entire measured range and never substitute
   }
 });
 
+test('the cooling noise result and guide preserve comparability for all existing input paths',async()=>{
+  const name='klimaanlage_geraeusch_vergleich';
+  const url='https://getecoback.com/guide/delonghi-pac-n90-test.html';
+  for(const [pegel_a_dba,pegel_b_dba,groesse_a,groesse_b,gleiche_bedingungen,difference] of [
+    [39,64,'schalldruck','schallleistung',true,null],
+    [39,64,'unbekannt','unbekannt',true,null],
+    [41,44,'schalldruck','schalldruck',false,null],
+    [44,41,'schalldruck','schalldruck',true,-3],
+    [64,64,'schallleistung','schallleistung',true,0],
+  ]){
+    const response=await worker.fetch(request('tools/call',{name,arguments:{pegel_a_dba,pegel_b_dba,groesse_a,groesse_b,gleiche_bedingungen}}),{},{});
+    const {result}=await response.json();
+    assert.equal(result.isError,false);
+    assert.equal(result.structuredContent.vergleichbar,difference!==null);
+    assert.equal(result.structuredContent.differenz_b_minus_a_db,difference);
+    assert.equal(result.structuredContent.citation_url,url);
+    assert.equal(result.structuredContent.guide_url,url+'#lautstaerke');
+    assert.match(result.structuredContent.hinweis,/Messort/);
+  }
+});
+
 test('old or invalid cursors reject safely and both catalogue boundaries paginate completely', async () => {
   for (const cursor of ['1.24.2:100','1.24.3:99','1.24.3:5000','1.24.3:0100','1.24.3:0',null,100]) {
     const response = await worker.fetch(request('tools/list',{cursor}), {}, {});

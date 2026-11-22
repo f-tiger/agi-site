@@ -24,6 +24,7 @@ const toolPaths = new Map([
   ['tado_x_oventrop_ventiladapter_pruefen', '/guide/smarte-heizkoerperthermostate-lohnen-sich.html#tado-x-oventrop'],
   ['pac_n90_energielabel_zu_stromkosten', '/guide/delonghi-pac-n90-test.html#n90-energielabel'],
   ['pac_n90_ean_abgleichen', '/guide/delonghi-pac-n90-test.html#testlage'],
+  ['klimaanlage_geraeusch_vergleich', '/guide/delonghi-pac-n90-test.html#lautstaerke'],
   ['waesche_trocknungswechsel_kaufschwelle', '/waeschetrockner-oder-luftentfeuchter.html#laundry-check'],
   ['befeuchter_nennwatt_abgabeleistung_bezug', '/guide/luftbefeuchter-stromverbrauch.html#effizienz-vergleichen'],
   ['glassvac_kalt_lagern_einschalten_laden_getrennt', products + '#bosch-glassvac-einsatz-und-pflege'],
@@ -74,7 +75,7 @@ test('each mapped tool publishes the same exact evidence link after a real tool 
   const advertised = new Map(standard.map(tool => [tool.name, tool]));
   const compact = new Map((await h.catalogue({view:'compact'})).tools.map(tool => [tool.name, tool]));
   const mapped = expandedDefinitions.filter(tool=>paths.has(tool.category) || toolPaths.has(tool.name));
-  assert.equal(mapped.length, 232);
+  assert.equal(mapped.length, 233);
   assert.equal([...compact.values()].filter(tool=>tool.guide_url && tool.name!=='entfeuchter_ablaufcheck').length, mapped.length);
 
   for (const {name, category, page, properties, required, oneOf, example} of mapped) {
