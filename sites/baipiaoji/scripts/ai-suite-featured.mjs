@@ -68,7 +68,7 @@ export function renderAiFeatured({BASE, lang, esc, heading = 'h2'}) {
         const url = BASE + tool.path;
         return `<article class="suite-featured-card${index === 0 ? ' suite-featured-lead' : ''}" data-suite-featured-tool="${tool.id}">
           <div class="suite-featured-copy">
-            <${cardHeading}><a href="${url}">${esc(tool.title[lang])} <span aria-hidden="true">↗</span></a></${cardHeading}>
+            <${cardHeading}><a href="${url}">${esc(tool.title[lang])}</a></${cardHeading}>
             <p>${esc(tool.description[lang])}</p>
             ${shellToolShare(lang, url, tool.title[lang], {compact: true})}
           </div>
