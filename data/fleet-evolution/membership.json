@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated": "2026-11-21T10:09:30.233Z",
+  "generated": "2026-11-22T10:14:26.801Z",
   "source": "same-origin /api/member and /api/member-admin stats",
   "privacy": "aggregate counters only; no member, order, support, token or wallet data",
   "ok": false,
@@ -53,7 +53,7 @@
       "origin": "https://getecoback.com",
       "public": {
         "ok": true,
-        "ready": false,
+        "ready": true,
         "site": "eco",
         "auto_renew": false,
         "plan_price_units": 9000000,
