@@ -124,6 +124,7 @@ jobs:
           FREE_ACCOUNT_RUNTIME_MODULES=/tmp/bpj-account-runtime/node_modules node scripts/test-google-account.mjs --workerd
           FREE_ACCOUNT_RUNTIME_MODULES=/tmp/bpj-account-runtime/node_modules node scripts/test-account-email-runtime.mjs
           FREE_ACCOUNT_RUNTIME_MODULES=/tmp/bpj-account-runtime/node_modules node ../../tools/fleet-account/runtime-test.mjs
+          TRADE_RUNTIME_MODULES=/tmp/bpj-account-runtime/node_modules node --test scripts/test-trade-opportunities.mjs
 
       - name: Verify tool links & refresh dates (scheduled runs only)
         if: (github.event_name != 'push') && env.OUTCOME_READ_ONLY_RELEASE != 'true'

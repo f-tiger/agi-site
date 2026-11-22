@@ -3,6 +3,7 @@ export const TRADE_PATH = '/studio/trade/';
 const canadaSearch = 'https://ised-isde.canada.ca/app/ixb/cid-bdic/searchProduct.html';
 const canadaReport = 'https://ised-isde.canada.ca/app/ixb/cid-bdic/productReport.html';
 const euSearch = 'https://ted.europa.eu/en/advanced-search';
+const euResults = 'https://ted.europa.eu/en/search/result';
 const usSearch = 'https://sam.gov/opportunities';
 const leadPath = '/studio/ai/trade-lead-priority';
 const quotePath = '/studio/ai/trade-export-quote';
@@ -60,16 +61,17 @@ export function buildTradePages({layout,esc,BASE,LOCALE,write,pushPage}) {
         <section class="bpj-trade-source">
           <h3>${t('欧盟采购公告','EU public tenders')}</h3>
           <p>${t('用产品关键词搜索欧盟 TED 公告，查看发布买家与最晚分标截止日。请在原公告核对对应分标、截止时间和投标资格。','Search EU TED notices by product keyword for the contracting buyer and latest lot deadline. Check the original notice for the relevant lot, exact deadline and eligibility.')}</p>
-          <form data-trade-ted>
+          <form action="${euResults}" method="get" target="_blank" rel="noopener noreferrer" data-trade-ted>
             <label for="trade-ted-query">${t('产品关键词（英文或当地语言）','Product keywords (English or local language)')}</label>
             <div class="bpj-trade-fields">
-              <input id="trade-ted-query" type="search" maxlength="64" minlength="2" required placeholder="furniture" autocomplete="off">
-              <button type="submit" disabled>${t('搜索欧盟采购','Search EU tenders')}</button>
+              <input id="trade-ted-query" name="FT" type="search" maxlength="64" minlength="2" required placeholder="furniture" autocomplete="off">
+              <input type="hidden" name="search-scope" value="ACTIVE">
+              <button type="submit">${t('搜索欧盟采购','Search EU tenders')}</button>
             </div>
           </form>
           <p data-trade-status role="status"></p>
           <ul data-trade-results hidden></ul>
-          ${external(euSearch,t('打开 TED 官方搜索','Open the official TED search'))}
+          <a href="${euSearch}" target="_blank" rel="noopener noreferrer" data-trade-ted-fallback>${t('打开 TED 官方搜索','Open the official TED search')}</a>
         </section>
         <section class="bpj-trade-source bpj-trade-source-last">
           <h3>${t('美国政府采购','US government procurement')}</h3>
@@ -85,7 +87,7 @@ export function buildTradePages({layout,esc,BASE,LOCALE,write,pushPage}) {
         <p>${t('网页筛选和报价在浏览器本地运行。搜索欧盟公告时，产品关键词会发送至 TED。','Lead ranking and quote calculations run locally in your browser. EU tender searches send the product keywords to TED.')}</p>
       </aside>
     </div>
-  </main><script type="module" src="/studio-assets/trade.mjs?v=1"></script>`;
+  </main><script type="module" src="/studio-assets/trade.mjs?v=2"></script>`;
   const itemList = links.map(([path,label],index) => ({
     '@type':'ListItem', position:index+1, name:label, url:BASE+path,
   }));

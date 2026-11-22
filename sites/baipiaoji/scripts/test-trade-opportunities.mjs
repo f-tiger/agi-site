@@ -37,7 +37,7 @@ test('queries the fixed TED route and returns only a public notice summary', asy
     fetcher: async (url, options) => {
       assert.equal(url, 'https://api.ted.europa.eu/v3/notices/search');
       assert.equal(options.method, 'POST');
-      assert.equal(options.redirect, 'error');
+      assert.equal(options.redirect, 'manual');
       assert(options.signal instanceof AbortSignal);
       const body = JSON.parse(options.body);
       assert.equal(body.query, 'FT ~ "children’s furniture" AND deadline-receipt-tender-date-lot >= 20261123 AND notice-type = cn-standard SORT BY publication-date DESC');
@@ -108,6 +108,7 @@ test('malformed, throttled and timed-out sources fail explicitly without cache w
   };
   for (const [fetcher, code] of [
     [async () => Response.json({notices: 'invalid'}), 502],
+    [async () => Response.redirect('https://example.com/untrusted-hop', 302), 502],
     [async () => new Response('rate limit', {status: 429}), 503],
     [async () => Response.json({timedOut: true, notices: []}), 503],
     [async () => { throw new DOMException('timed out', 'TimeoutError'); }, 503],
@@ -119,3 +120,53 @@ test('malformed, throttled and timed-out sources fail explicitly without cache w
     assert.deepEqual(await response.json(), {error: 'temporarily_unavailable'});
   }
 });
+
+if (process.env.TRADE_RUNTIME_MODULES) {
+  test('actual workerd reaches the fixed TED host and refuses an upstream redirect', {timeout: 20000}, async () => {
+    const {fileURLToPath, pathToFileURL} = await import('node:url');
+    const {dirname, resolve} = await import('node:path');
+    const modules = process.env.TRADE_RUNTIME_MODULES;
+    const dependency = file => import(pathToFileURL(resolve(modules, file)).href);
+    const {build} = await dependency('esbuild/lib/main.js');
+    const {Miniflare, convertV4MiniflareOptions} = await dependency('miniflare/dist/src/index.js');
+    const path = fileURLToPath(new URL('../functions/api/trade-opportunities.js', import.meta.url));
+    const bundled = await build({
+      stdin: {
+        contents: `import {onRequest} from ${JSON.stringify(path)};
+          export default {fetch(request, env, ctx) {
+            return onRequest({request, env, waitUntil: ctx.waitUntil.bind(ctx)});
+          }};`,
+        resolveDir: dirname(path),
+      },
+      bundle: true, write: false, format: 'esm', platform: 'neutral',
+    });
+    const outbound = [];
+    const deadline = new Date(Date.now() + 14 * 86400000).toISOString().slice(0, 10);
+    const options = {
+      name: 'trade-opportunities-test', modules: true, script: bundled.outputFiles[0].text,
+      compatibilityDate: '2026-09-01', compatibilityFlags: ['nodejs_compat'],
+      outboundService: async request => {
+        outbound.push(new URL(request.url).href);
+        if (outbound.at(-1) !== 'https://api.ted.europa.eu/v3/notices/search') {
+          return new Response('Unexpected host', {status: 500});
+        }
+        const {query} = await request.json();
+        if (query.startsWith('FT ~ "chairs"')) return Response.redirect('https://example.com/untrusted-hop', 302);
+        return upstream([notice({'deadline-receipt-tender-date-lot': [deadline + '+01:00']})]);
+      },
+    };
+    const worker = new Miniflare(convertV4MiniflareOptions ? convertV4MiniflareOptions(options) : options);
+    try {
+      const response = await worker.dispatchFetch(endpoint + '?q=furniture');
+      const result = await response.json();
+      assert.equal(response.status, 200, JSON.stringify(result));
+      assert.equal(result.opportunities[0].id, '808493-2026');
+      const redirect = await worker.dispatchFetch(endpoint + '?q=chairs');
+      assert.equal(redirect.status, 502);
+      assert.deepEqual(await redirect.json(), {error: 'temporarily_unavailable'});
+      assert.deepEqual(outbound, Array(2).fill('https://api.ted.europa.eu/v3/notices/search'));
+    } finally {
+      await worker.dispose();
+    }
+  });
+}
