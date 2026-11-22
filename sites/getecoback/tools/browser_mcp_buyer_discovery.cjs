@@ -219,7 +219,11 @@ async function run() {
           assert(await page.locator('#wasserkocher-fuellsplitt-beispiel').isVisible(), 'Static worked example survives');
           assert.equal(catalogueReads, 0, 'No-script page must not fetch the interactive catalogue');
           for (const item of cases) {
-            assert.equal((await page.goto(probePath(item.guide).href)).status(), 200);
+            const target = probePath(item.guide);
+            // Two evidence sections can share the same document. Load that
+            // document anew so this also checks its HTTP response each time.
+            if (new URL(page.url()).pathname === target.pathname) await page.goto('about:blank');
+            assert.equal((await page.goto(target.href)).status(), 200);
             await assertGuideVisible(page, item);
           }
         }
