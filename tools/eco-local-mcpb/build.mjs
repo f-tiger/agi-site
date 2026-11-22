@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.22.17';
-const revision = '66b14b9cac37f46d47a2378c9bb0b48a39f89e74';
+const version = '1.22.18';
+const revision = '11304c4f7ac614ad01b945180a80e1d3320a5173';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -28,7 +28,7 @@ const featureNames = ['entfeuchter_ablaufcheck', 'btu_empfehlung', 'fensterabdic
   'luftentfeuchter_waesche_einzelkosten', 'fritz_302_danfoss_adapter', 'keller_lueften_taupunkt_messwerte',
   'luftreiniger_ersatzfilter_zuordnung', 'philips_verdunsterfilter_zuordnung', 'heizdecke_stromkosten_nennleistung',
   'hygrometer_messbereiche', 'pac_n90_ean_abgleichen', 'midea_portasplit_fensterfalz_pruefen',
-  'tesamoll_fensterdichtung_profil_pruefen'];
+  'tesamoll_fensterdichtung_profil_pruefen', 'klimaanlage_geraeusch_vergleich'];
 const entry = 'src/server.mjs';
 const legacyHelpers = fileURLToPath(new URL('../mcp-registry/local-packages/', import.meta.url));
 const sha256 = buffer => createHash('sha256').update(buffer).digest('hex');
@@ -58,6 +58,8 @@ const hygrometerGuide = hygrometerCitation + '#hygrometer-vergleichen';
 const n90IdentityTool = 'pac_n90_ean_abgleichen';
 const n90Citation = 'https://getecoback.com/guide/delonghi-pac-n90-test.html';
 const n90IdentityGuide = n90Citation + '#testlage';
+const coolingNoiseTool = 'klimaanlage_geraeusch_vergleich';
+const coolingNoiseGuide = n90Citation + '#lautstaerke';
 const portaSplitLipTool = 'midea_portasplit_fensterfalz_pruefen';
 const portaSplitCitation = 'https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html';
 const portaSplitLipGuide = portaSplitCitation + '#fensterfalz';
@@ -683,6 +685,38 @@ async function verifyTesamollProfiles(call) {
   return {name:tesamollTool,guide:tesamollGuide,catalog,printedPage,ranges,records,rejected:invalid.length};
 }
 
+async function verifyCoolingNoiseComparison(call) {
+  const args = {pegel_a_dba:52,pegel_b_dba:64,groesse_a:'schalldruck',
+    groesse_b:'schallleistung',gleiche_bedingungen:true};
+  const cases = [
+    [{},[false,null]],
+    [{groesse_a:'schallleistung'},[true,12]],
+    [{groesse_b:'schalldruck',gleiche_bedingungen:false},[false,null]],
+    [{groesse_b:'schalldruck',pegel_a_dba:51.2,pegel_b_dba:47.1},[true,-4.1]],
+    [{groesse_a:'unbekannt',groesse_b:'unbekannt'},[false,null]],
+    [{groesse_b:'schalldruck',pegel_b_dba:52},[true,0]],
+  ];
+  const records = [];
+  for (const [change, expected] of cases) {
+    const result = await call({...args,...change});
+    assert.equal(result.isError,false);
+    const data = result.structuredContent;
+    const observed = [data.vergleichbar,data.differenz_b_minus_a_db];
+    assert.deepEqual(observed,expected);
+    assert.deepEqual([data.citation_url,data.guide_url],[n90Citation,coolingNoiseGuide]);
+    assert.match(data.hinweis,/Schallleistung beschreibt die Quelle.*Schalldruck gilt am Messort/);
+    assert.doesNotMatch(result.content[0].text,/https?:\/\/[^"\s]*(?:amazon\.|amzn\.)|[?&]tag=/i);
+    records.push(observed);
+  }
+  const invalid = [{...args,pegel_a_dba:-1},{...args,groesse_b:'lautstaerke'},{...args,gleiche_bedingungen:undefined}];
+  for (const inputs of invalid) {
+    const result = await call(inputs);
+    assert.equal(result.isError,true);
+    assert.equal(result.structuredContent,undefined);
+  }
+  return {name:coolingNoiseTool,guide:coolingNoiseGuide,records,rejected:invalid.length};
+}
+
 async function verifyStdio(extracted, manifest) {
   const {TOOLS} = await import(pathToFileURL(join(extracted,'src/tools.mjs')));
   const {expandedDefinitions} = await import(pathToFileURL(join(extracted,'src/eco-suite/src/mcp-expanded.mjs')));
@@ -767,9 +801,11 @@ async function verifyStdio(extracted, manifest) {
       rpc('tools/call',{name:portaSplitLipTool,arguments:args}));
     const tesamollProfiles = await verifyTesamollProfiles(args =>
       rpc('tools/call',{name:tesamollTool,arguments:args}));
+    const coolingNoise = await verifyCoolingNoiseComparison(args =>
+      rpc('tools/call',{name:coolingNoiseTool,arguments:args}));
     return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,windowCondensation,decimalWindowWidth,
       singleLaundry,fritzValve,drainRoute,measuredVentilation,exactFilter,philipsFilter,warmthCost,hygrometerComparison,n90Identity,
-      portaSplitWindowLip,tesamollProfiles,
+      portaSplitWindowLip,tesamollProfiles,coolingNoise,
       firstExamples:['btu_empfehlung','entfeuchter_ablaufcheck'],finder:verifyFinder(extracted,drain),
       lastPageExample:last.name,legacyNames:oldNames.length,network:'disabled'};
   });
@@ -1347,6 +1383,16 @@ async function verifyCompactStdio(extracted) {
     assert.deepEqual(tesamollMatch.inputSchema.required,['dichtungsart','spalt_min_mm','spalt_max_mm']);
     const tesamollProfiles = await verifyTesamollProfiles(eingaben =>
       rpc('tools/call',{name:runner,arguments:{name:tesamollTool,eingaben}}));
+    const noiseLookup = await rpc('tools/call',{
+      name:finder,arguments:{frage:'Midea PortaSplit 39 dB(A) oder PAC N90 64 dB(A): Welche ist leiser im Schlafzimmer?'},
+    });
+    assert.equal(noiseLookup.isError,false);
+    const noiseMatch = noiseLookup.structuredContent.tools[0];
+    assert.equal(noiseMatch?.name,coolingNoiseTool);
+    assert.equal(noiseMatch.guide_url,coolingNoiseGuide);
+    assert.deepEqual(noiseMatch.inputSchema.required,['pegel_a_dba','pegel_b_dba','groesse_a','groesse_b','gleiche_bedingungen']);
+    const coolingNoise = await verifyCoolingNoiseComparison(eingaben =>
+      rpc('tools/call',{name:runner,arguments:{name:coolingNoiseTool,eingaben}}));
     const tadoOventrop = await verifyCompactTadoOventrop(rpc,finder,runner);
     const householdDecisions = await verifyCompactHouseholdDecisions(rpc,runner);
     const windowWidth = await verifyCompactWindowWidth(rpc,finder,runner);
@@ -1358,7 +1404,7 @@ async function verifyCompactStdio(extracted) {
       tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,
       liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,singleLaundry,fritzValve,drainRoute,
       measuredVentilation,exactFilter,philipsFilter,warmthCost,hygrometerComparison,laundryPrecision,windowBlade,windowLookup,
-      windowWidth,decimalWindowWidth,householdDecisions,tadoOventrop,n90Costs,n90Identity,portaSplitWindowLip,tesamollProfiles,
+      windowWidth,decimalWindowWidth,householdDecisions,tadoOventrop,n90Costs,n90Identity,portaSplitWindowLip,tesamollProfiles,coolingNoise,
       humidifierEfficiency,glassvacTemperature,windowSubject,windowCondensation,
     };
   });
@@ -1433,6 +1479,7 @@ try {
   assert.deepEqual(result.n90Identity,result.compact.n90Identity);
   assert.deepEqual(result.portaSplitWindowLip,result.compact.portaSplitWindowLip);
   assert.deepEqual(result.tesamollProfiles,result.compact.tesamollProfiles);
+  assert.deepEqual(result.coolingNoise,result.compact.coolingNoise);
   assert.deepEqual(result.resource,result.compact.resource);
   result.archiveReadme = {replacedVersion:readme.previousVersion,registryLatestUrl};
   const identifier = `${releaseUrl}/${file}`;
