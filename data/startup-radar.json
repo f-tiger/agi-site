@@ -1,9 +1,21 @@
 {
- "fetched": "2026-11-21",
+ "fetched": "2026-11-22",
  "sources": {
   "softwarerecs": {
    "ok": true,
    "items": [
+    {
+     "title": "What small technical task do you find yourself doing repeatedly, and which tool saves you the most time?",
+     "url": "https://softwarerecs.stackexchange.com/questions/95828/what-small-technical-task-do-you-find-yourself-doing-repeatedly-and-which-tool",
+     "points": -1,
+     "comments": 0,
+     "sub": "softwarerecs",
+     "tags": [
+      "web-apps",
+      "web-development"
+     ],
+     "published": "2026-11-21"
+    },
     {
      "title": "Looking for the Best Battery App",
      "url": "https://softwarerecs.stackexchange.com/questions/95817/looking-for-the-best-battery-app",
@@ -52,17 +64,6 @@
       "screenshot"
      ],
      "published": "2026-11-17"
-    },
-    {
-     "title": "What software can help manage large volumes of data for long-term archiving?",
-     "url": "https://softwarerecs.stackexchange.com/questions/95787/what-software-can-help-manage-large-volumes-of-data-for-long-term-archiving",
-     "points": 0,
-     "comments": 1,
-     "sub": "softwarerecs",
-     "tags": [
-      "cloud-storage"
-     ],
-     "published": "2026-11-13"
     }
    ]
   },
@@ -80,57 +81,159 @@
    "ok": true,
    "items": [
     {
-     "title": "SuperMailbox",
-     "url": "https://www.producthunt.com/products/supermailbox",
-     "blurb": "<p> Your email in one inbox, ready for AI </p> <p> <a href=\"https://www.producthunt.com/products/supermailbox?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=producthun",
-     "published": "2026-11-14"
-    },
-    {
-     "title": "Glassmail",
-     "url": "https://www.producthunt.com/products/glassmail",
-     "blurb": "<p> A fast Mac email app with AI that never leaves your Mac </p> <p> <a href=\"https://www.producthunt.com/products/glassmail?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_so",
-     "published": "2026-11-14"
-    },
-    {
-     "title": "Hollr",
-     "url": "https://www.producthunt.com/products/hollr-3",
-     "blurb": "<p> Push-to-talk for your family, on iPhone and Apple Watch </p> <p> <a href=\"https://www.producthunt.com/products/hollr-3?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_sour",
+     "title": "MeshLive",
+     "url": "https://www.producthunt.com/products/meshlive",
+     "blurb": "<p> Offline video calls and livestreams over Bluetooth mesh </p> <p> <a href=\"https://www.producthunt.com/products/meshlive?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_sou",
      "published": "2026-11-17"
     },
     {
-     "title": "WaitFeed",
-     "url": "https://www.producthunt.com/products/waitfeed-2",
-     "blurb": "<p> Tech feed inside agent wait time </p> <p> <a href=\"https://www.producthunt.com/products/waitfeed-2?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=producthunt-atom-",
-     "published": "2026-11-20"
+     "title": "Wispim",
+     "url": "https://www.producthunt.com/products/wispim-online-teleprompter",
+     "blurb": "<p> The teleprompter that follows your voice </p> <p> <a href=\"https://www.producthunt.com/products/wispim-online-teleprompter?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_",
+     "published": "2026-11-05"
     },
     {
-     "title": "Alter Contacts",
-     "url": "https://www.producthunt.com/products/alter-contacts-ai-client-relationships",
-     "blurb": "<p> AI client relationship assistant that thinks and does ahead </p> <p> <a href=\"https://www.producthunt.com/products/alter-contacts-ai-client-relationships?utm_campaign=producthunt-atom-posts-feed&a",
+     "title": "Leapdeck",
+     "url": "https://www.producthunt.com/products/leapdeck",
+     "blurb": "<p> Leap to any Mac Space from a key or your iPhone </p> <p> <a href=\"https://www.producthunt.com/products/leapdeck?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=prod",
+     "published": "2026-11-16"
+    },
+    {
+     "title": "DeNotch",
+     "url": "https://www.producthunt.com/products/denotch",
+     "blurb": "<p> Hide the MacBook notch and tame your menu bar </p> <p> <a href=\"https://www.producthunt.com/products/denotch?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=product",
+     "published": "2026-11-18"
+    },
+    {
+     "title": "Webless Agents",
+     "url": "https://www.producthunt.com/products/webless",
+     "blurb": "<p> Agents you want to put in front of customers </p> <p> <a href=\"https://www.producthunt.com/products/webless?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=producth",
+     "published": "2026-11-06"
+    },
+    {
+     "title": "Daymaker",
+     "url": "https://www.producthunt.com/products/daymaker",
+     "blurb": "<p> Gifts so personal, your prospects take the meeting. </p> <p> <a href=\"https://www.producthunt.com/products/daymaker?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=",
+     "published": "2026-10-19"
+    },
+    {
+     "title": "Mockreel",
+     "url": "https://www.producthunt.com/products/mockreel",
+     "blurb": "<p> your screen recording, but in a 3D phone. free, no signup </p> <p> <a href=\"https://www.producthunt.com/products/mockreel?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_s",
+     "published": "2026-11-19"
+    },
+    {
+     "title": "oovi",
+     "url": "https://www.producthunt.com/products/oovi",
+     "blurb": "<p> Your own team of AI on your desktop </p> <p> <a href=\"https://www.producthunt.com/products/oovi?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=producthunt-atom-pos",
+     "published": "2026-11-21"
+    },
+    {
+     "title": "Omi CLI",
+     "url": "https://www.producthunt.com/products/omi-cli",
+     "blurb": "<p> An AI coding agent in your terminal, on 13 models </p> <p> <a href=\"https://www.producthunt.com/products/omi-cli?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=pro",
+     "published": "2026-11-21"
+    },
+    {
+     "title": "Resurf",
+     "url": "https://www.producthunt.com/products/resurf-2",
+     "blurb": "<p> Personal Knowledge Base & Bookmark Manager for Mac </p> <p> <a href=\"https://www.producthunt.com/products/resurf-2?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=p",
+     "published": "2026-11-21"
+    },
+    {
+     "title": "Yoroll",
+     "url": "https://www.producthunt.com/products/yoroll",
+     "blurb": "<p> Build playable stories without a game engine </p> <p> <a href=\"https://www.producthunt.com/products/yoroll?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=producthu",
+     "published": "2026-11-05"
+    },
+    {
+     "title": "Squint",
+     "url": "https://www.producthunt.com/products/squint",
+     "blurb": "<p> Explains whatever you're looking at, now on Mac </p> <p> <a href=\"https://www.producthunt.com/products/squint?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=produc",
+     "published": "2026-11-10"
+    },
+    {
+     "title": "Ulika",
+     "url": "https://www.producthunt.com/products/ulika",
+     "blurb": "<p> Visual editor for sites built with Claude, Cursor, or Codex </p> <p> <a href=\"https://www.producthunt.com/products/ulika?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_so",
      "published": "2026-11-17"
     },
     {
-     "title": "AI Context Flow MCP",
-     "url": "https://www.producthunt.com/products/ai-context-flow",
-     "blurb": "<p> Memory you control, synced to every agent, tool and team </p> <p> <a href=\"https://www.producthunt.com/products/ai-context-flow?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp",
+     "title": "Slotify",
+     "url": "https://www.producthunt.com/products/slotify-2",
+     "blurb": "<p> Schedule game nights without leaving Discord </p> <p> <a href=\"https://www.producthunt.com/products/slotify-2?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=produc",
      "published": "2026-11-09"
     },
     {
-     "title": "Smorza",
-     "url": "https://www.producthunt.com/products/smorza",
-     "blurb": "<p> Every Mac app gets its own volume and output </p> <p> <a href=\"https://www.producthunt.com/products/smorza?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=producthu",
+     "title": "Copy Haste",
+     "url": "https://www.producthunt.com/products/copy-haste",
+     "blurb": "<p> Your clipboard, sorted into Text, Code, Links, Media & more </p> <p> <a href=\"https://www.producthunt.com/products/copy-haste?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;u",
+     "published": "2026-11-15"
+    },
+    {
+     "title": "Creavit Studio 4.0",
+     "url": "https://www.producthunt.com/products/creavit-studio",
+     "blurb": "<p> Screen recording, iPhone camera and cinematic demos for Mac </p> <p> <a href=\"https://www.producthunt.com/products/creavit-studio?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&a",
      "published": "2026-11-20"
     },
     {
-     "title": "AnyProfile",
-     "url": "https://www.producthunt.com/products/anyprofile",
-     "blurb": "<p> Free open-source antidetect browser for Mac & Windows </p> <p> <a href=\"https://www.producthunt.com/products/anyprofile?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_sou",
-     "published": "2026-11-14"
+     "title": "Pushback",
+     "url": "https://www.producthunt.com/products/pushback-flight-tracker",
+     "blurb": "<p> The flight tracker that knows which lounge you can use </p> <p> <a href=\"https://www.producthunt.com/products/pushback-flight-tracker?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-fe",
+     "published": "2026-11-19"
+    },
+    {
+     "title": "TeaserKit",
+     "url": "https://www.producthunt.com/products/teaserkit",
+     "blurb": "<p> your coding agent directs your launch video </p> <p> <a href=\"https://www.producthunt.com/products/teaserkit?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=product",
+     "published": "2026-11-19"
+    },
+    {
+     "title": "Raccoon Kids",
+     "url": "https://www.producthunt.com/products/raccoon-kids",
+     "blurb": "<p> Gamify Chores for Kids: no more nagging, just a cute raccoon </p> <p> <a href=\"https://www.producthunt.com/products/raccoon-kids?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&am",
+     "published": "2026-11-19"
+    },
+    {
+     "title": "Verge: Corner Controls",
+     "url": "https://www.producthunt.com/products/verge-corner-controls",
+     "blurb": "<p> Swipe a screen corner to set brightness, volume and more </p> <p> <a href=\"https://www.producthunt.com/products/verge-corner-controls?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-fe",
+     "published": "2026-11-21"
+    },
+    {
+     "title": "Zapyso",
+     "url": "https://www.producthunt.com/products/zapyso",
+     "blurb": "<p> Free meeting notes and dictation that stay on your Mac </p> <p> <a href=\"https://www.producthunt.com/products/zapyso?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source",
+     "published": "2026-11-17"
+    },
+    {
+     "title": "Do It For Them Wallpaper Maker",
+     "url": "https://www.producthunt.com/products/do-it-for-them-wallpaper-maker",
+     "blurb": "<p> Photo wallpapers for the people you do it for </p> <p> <a href=\"https://www.producthunt.com/products/do-it-for-them-wallpaper-maker?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed",
+     "published": "2026-11-17"
+    },
+    {
+     "title": "30yr-uptime",
+     "url": "https://www.producthunt.com/products/30yr-uptime",
+     "blurb": "<p> Claude Code mod for taking care of your body </p> <p> <a href=\"https://www.producthunt.com/products/30yr-uptime?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=prod",
+     "published": "2026-11-20"
+    },
+    {
+     "title": "Rankhog",
+     "url": "https://www.producthunt.com/products/rankhog",
+     "blurb": "<p> Get customers from Reddit on autopilot </p> <p> <a href=\"https://www.producthunt.com/products/rankhog?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=producthunt-at",
+     "published": "2026-11-19"
     },
     {
      "title": "Stitch Loop",
      "url": "https://www.producthunt.com/products/stitch-loop",
      "blurb": "<p> Google’s AI agent that ships fixes and watches the metric </p> <p> <a href=\"https://www.producthunt.com/products/stitch-loop?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;ut",
+     "published": "2026-11-20"
+    },
+    {
+     "title": "WaitFeed",
+     "url": "https://www.producthunt.com/products/waitfeed-2",
+     "blurb": "<p> Tech feed inside agent wait time </p> <p> <a href=\"https://www.producthunt.com/products/waitfeed-2?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=producthunt-atom-",
      "published": "2026-11-20"
     },
     {
@@ -140,10 +243,10 @@
      "published": "2026-11-14"
     },
     {
-     "title": "LoudFlow",
-     "url": "https://www.producthunt.com/products/loudflow",
-     "blurb": "<p> We taught text to speech to think </p> <p> <a href=\"https://www.producthunt.com/products/loudflow?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=producthunt-atom-p",
-     "published": "2026-11-06"
+     "title": "Shipyard",
+     "url": "https://www.producthunt.com/products/shipyard",
+     "blurb": "<p> MCP for Claude, Cursor and Codex to Automate Integrations </p> <p> <a href=\"https://www.producthunt.com/products/shipyard?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_s",
+     "published": "2026-11-16"
     },
     {
      "title": "Publicit",
@@ -152,112 +255,10 @@
      "published": "2026-11-18"
     },
     {
-     "title": "Exa Websets V2",
-     "url": "https://www.producthunt.com/products/exa-ai",
-     "blurb": "<p> Build custom datasets from the live web, 4x faster </p> <p> <a href=\"https://www.producthunt.com/products/exa-ai?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=pro",
-     "published": "2026-11-18"
-    },
-    {
-     "title": "OpenVorld",
-     "url": "https://www.producthunt.com/products/openvorld",
-     "blurb": "<p> Give your AI agents a home you can see </p> <p> <a href=\"https://www.producthunt.com/products/openvorld?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=producthunt-",
-     "published": "2026-11-16"
-    },
-    {
-     "title": "Shipyard",
-     "url": "https://www.producthunt.com/products/shipyard",
-     "blurb": "<p> MCP for Claude, Cursor and Codex to Automate Integrations </p> <p> <a href=\"https://www.producthunt.com/products/shipyard?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_s",
-     "published": "2026-11-16"
-    },
-    {
-     "title": "Codemany",
-     "url": "https://www.producthunt.com/products/codemany",
-     "blurb": "<p> Run GitHub Actions 3x faster </p> <p> <a href=\"https://www.producthunt.com/products/codemany?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=producthunt-atom-posts-",
-     "published": "2026-11-14"
-    },
-    {
-     "title": "Backspin",
-     "url": "https://www.producthunt.com/products/backspin",
-     "blurb": "<p> Learn to DJ in your browser, on real vinyl decks </p> <p> <a href=\"https://www.producthunt.com/products/backspin?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=pro",
-     "published": "2026-11-18"
-    },
-    {
-     "title": "Doddle",
-     "url": "https://www.producthunt.com/products/doddle-3",
-     "blurb": "<p> Draw on what your videos for 3D effects </p> <p> <a href=\"https://www.producthunt.com/products/doddle-3?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=producthunt-",
-     "published": "2026-11-18"
-    },
-    {
-     "title": "gitroots",
-     "url": "https://www.producthunt.com/products/gitroots",
-     "blurb": "<p> Path-level GitHub access for developers and AI agents </p> <p> <a href=\"https://www.producthunt.com/products/gitroots?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_sourc",
-     "published": "2026-11-20"
-    },
-    {
-     "title": "Prompt Puncher",
-     "url": "https://www.producthunt.com/products/prompt-puncher",
-     "blurb": "<p> The AI CEO Fighting Game </p> <p> <a href=\"https://www.producthunt.com/products/prompt-puncher?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=producthunt-atom-post",
+     "title": "AlterContacts",
+     "url": "https://www.producthunt.com/products/alter-contacts-ai-client-relationships",
+     "blurb": "<p> AI client relationship assistant that thinks and does ahead </p> <p> <a href=\"https://www.producthunt.com/products/alter-contacts-ai-client-relationships?utm_campaign=producthunt-atom-posts-feed&a",
      "published": "2026-11-17"
-    },
-    {
-     "title": "CROON",
-     "url": "https://www.producthunt.com/products/croon",
-     "blurb": "<p> Live dubbing for whatever's playing on your iPhone </p> <p> <a href=\"https://www.producthunt.com/products/croon?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=prod",
-     "published": "2026-11-18"
-    },
-    {
-     "title": "greatai Review",
-     "url": "https://www.producthunt.com/products/greatai-review",
-     "blurb": "<p> Free AI + human code review for open source & nonprofits </p> <p> <a href=\"https://www.producthunt.com/products/greatai-review?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;",
-     "published": "2026-11-19"
-    },
-    {
-     "title": "HelpCard",
-     "url": "https://www.producthunt.com/products/helpcard",
-     "blurb": "<p> a free emergency QR card </p> <p> <a href=\"https://www.producthunt.com/products/helpcard?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=producthunt-atom-posts-feed",
-     "published": "2026-11-19"
-    },
-    {
-     "title": "Fack’d",
-     "url": "https://www.producthunt.com/products/fack-d",
-     "blurb": "<p> Fact checks right on YouTube as it plays, with sources </p> <p> <a href=\"https://www.producthunt.com/products/fack-d?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source",
-     "published": "2026-11-19"
-    },
-    {
-     "title": "Stormi",
-     "url": "https://www.producthunt.com/products/stormi",
-     "blurb": "<p> An AI team on your iPhone that does real work </p> <p> <a href=\"https://www.producthunt.com/products/stormi?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=producth",
-     "published": "2026-11-19"
-    },
-    {
-     "title": "Compass OS",
-     "url": "https://www.producthunt.com/products/compassos-dev",
-     "blurb": "<p> Your career, ready before you need it </p> <p> <a href=\"https://www.producthunt.com/products/compassos-dev?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=producthu",
-     "published": "2026-10-28"
-    },
-    {
-     "title": "Dozy",
-     "url": "https://www.producthunt.com/products/dozy",
-     "blurb": "<p> Turns your sleep data into one thing to do today </p> <p> <a href=\"https://www.producthunt.com/products/dozy?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=product",
-     "published": "2026-11-19"
-    },
-    {
-     "title": "Salus",
-     "url": "https://www.producthunt.com/products/salus",
-     "blurb": "<p> Discover benefits and public support in the Czech Republic </p> <p> <a href=\"https://www.producthunt.com/products/salus?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_sou",
-     "published": "2026-11-16"
-    },
-    {
-     "title": "Mailpipe",
-     "url": "https://www.producthunt.com/products/mailpipe-2",
-     "blurb": "<p> Draft Apple Mail replies with your local AI agent CLI </p> <p> <a href=\"https://www.producthunt.com/products/mailpipe-2?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_sou",
-     "published": "2026-11-19"
-    },
-    {
-     "title": "FFMPA Kids News",
-     "url": "https://www.producthunt.com/products/ffmpa-kids-news",
-     "blurb": "<p> Calm, fact-checked news for kids 5 to 15 </p> <p> <a href=\"https://www.producthunt.com/products/ffmpa-kids-news?utm_campaign=producthunt-atom-posts-feed&amp;utm_medium=rss-feed&amp;utm_source=prod",
-     "published": "2026-11-12"
     }
    ]
   },
@@ -288,14 +289,6 @@
      "published": "2026-11-16"
     },
     {
-     "title": "Is there a way to use Gemini API Keys with Antigravity?",
-     "url": "https://news.ycombinator.com/item?id=50499317",
-     "points": 2,
-     "comments": 0,
-     "sub": "ask_hn",
-     "published": "2026-11-14"
-    },
-    {
      "title": "Windows malware removal in Bay Area",
      "url": "https://news.ycombinator.com/item?id=50551096",
      "points": 3,
@@ -309,110 +302,134 @@
    "ok": true,
    "items": [
     {
-     "title": "Show HN: OpenComputer – an open source alternative to Devin",
-     "url": "https://github.com/diggerhq/opencomputer",
-     "points": 107,
-     "comments": 32
+     "title": "Show HN: Zero C# – C# without a runtime or GC",
+     "url": "https://onurgumus.github.io/zero-csharp/index.html",
+     "points": 162,
+     "comments": 112
     },
     {
-     "title": "Show HN: Drive around my village in 3D",
-     "url": "https://cherwellvalleymotorclub.app",
-     "points": 11,
-     "comments": 13
+     "title": "Show HN: The Riemann Proof Handbook",
+     "url": "https://github.com/tamnd/riemann-handbook",
+     "points": 58,
+     "comments": 26
     },
     {
-     "title": "Show HN: How deep is the Riemann hypothesis? An interactive explainer",
-     "url": "https://shayon.work/riemann",
-     "points": 9,
-     "comments": 4
+     "title": "Show HN: I made a PS1 style racing game",
+     "url": "https://outpostracer.com",
+     "points": 33,
+     "comments": 25
     },
     {
-     "title": "Show HN: Reaktiv Workbook – A spreadsheet where every cell is Python",
-     "url": "https://workbook.bui.app/",
-     "points": 8,
-     "comments": 5
-    },
-    {
-     "title": "Show HN: A browser game about trying to join a meeting",
-     "url": "https://a.drien.com/games/ceci-nest-pas-du-travail/",
-     "points": 6,
-     "comments": 1
-    },
-    {
-     "title": "Show HN: Musset, open-source Scrivener alternative with an AI that never writes",
-     "url": "https://github.com/Musset-App/musset",
-     "points": 5,
-     "comments": 1
-    },
-    {
-     "title": "Show HN: Katamaran - Open-source Docker and Linux runtime for Apple Silicon",
-     "url": "https://katamaran.rs/",
-     "points": 5,
-     "comments": 1
-    },
-    {
-     "title": "Show HN: BSWorld – AI agents can now test Bluetooth code without hardware",
-     "url": "https://github.com/XiaoMi/bsworld",
-     "points": 5,
-     "comments": 1
-    },
-    {
-     "title": "Show HN: Trichroma, a Platformer of Light",
-     "url": "https://trichroma.namirsab.dev/",
-     "points": 5,
+     "title": "Show HN: agent-mcts – Monte Carlo tree search on top of Claude Code",
+     "url": "https://github.com/natsu0529/agent-mcts",
+     "points": 15,
      "comments": 0
-    },
-    {
-     "title": "Show HN: Pug.sh – open-source product analytics",
-     "url": "https://github.com/pug-sh/pug",
-     "points": 5,
-     "comments": 0
-    },
-    {
-     "title": "Show HN: Park – save and recall work context across repos and machines",
-     "url": "https://svandragt.github.io/park/",
-     "points": 4,
-     "comments": 3
-    },
-    {
-     "title": "Show HN: XSquads– Set a mission, agents work on it autonomously in your harness",
-     "url": "https://xsquads.ai",
-     "points": 4,
-     "comments": 2
     },
     {
      "title": "Show HN: ClawVet – Offline AST scanner and rug-pull diff for AI agent skills",
      "url": "https://clawvet.vercel.app/",
-     "points": 4,
+     "points": 8,
+     "comments": 1
+    },
+    {
+     "title": "Show HN: Open-Source Vulnerability Scanner",
+     "url": "https://waffuru.ai/products/pantry",
+     "points": 6,
+     "comments": 1
+    },
+    {
+     "title": "Show HN: Direct weight edits turn a 0.5B model into an expert species classifier",
+     "url": "https://andrewxhill.com/frontier-model-weight-edits/",
+     "points": 6,
      "comments": 1
     },
     {
      "title": "Show HN: Tab – a browser engine from scratch in Rust, with a demo to install",
      "url": "https://gettab.dev/",
+     "points": 6,
+     "comments": 0
+    },
+    {
+     "title": "Show HN: Lightweight FUSE-based encrypted, compressed filesystem for Linux",
+     "url": "https://github.com/tgaloppo/obfusecate",
+     "points": 6,
+     "comments": 0
+    },
+    {
+     "title": "Show HN: Stop applying to jobs using AI-generated resume",
+     "url": "https://unmark.grandimam.com/",
+     "points": 5,
+     "comments": 3
+    },
+    {
+     "title": "Show HN: It's now easy to install Linux on an Android Phone – Android2linux",
+     "url": "https://github.com/android2linux/android2linux",
+     "points": 5,
+     "comments": 2
+    },
+    {
+     "title": "Show HN: RMRFBench – How often AI agents wreck a server when asked to rm a file",
+     "url": "https://www.rmrfbench.com/",
+     "points": 5,
+     "comments": 2
+    },
+    {
+     "title": "Show HN: Musset, open-source Scrivener alternative with an AI that never writes",
+     "url": "https://github.com/Musset-App/musset",
+     "points": 5,
+     "comments": 2
+    },
+    {
+     "title": "Show HN: ILoveNotch 2.0 – an open-source Mac notch app with a teleprompter",
+     "url": "https://github.com/niyamvora/ILoveNotch",
+     "points": 5,
+     "comments": 1
+    },
+    {
+     "title": "Show HN: Open-source shared memory, rules and Git blame plugin for agents",
+     "url": "https://github.com/keepplain/keepplain-plugin",
+     "points": 4,
+     "comments": 2
+    },
+    {
+     "title": "Show HN: PocketTransfer – iPhone to PC/Mac file transfer in the browser",
+     "url": "https://pockettransfer.app/",
+     "points": 4,
+     "comments": 2
+    },
+    {
+     "title": "Show HN: HomeBrain – Your private cloud box, local agent. Data stays on Device",
+     "url": "https://www.homebrain.house",
+     "points": 4,
+     "comments": 1
+    },
+    {
+     "title": "Show HN: Pantry an open source scanner that checks what your coding agents run",
+     "url": "https://waffuru.ai/products/pantry",
+     "points": 4,
+     "comments": 1
+    },
+    {
+     "title": "Show HN: I made my visual resume after 10 years",
+     "url": "https://www.n10l.com/",
+     "points": 4,
+     "comments": 1
+    },
+    {
+     "title": "Show HN: The Yang–Mills Mass Gap on Pure R^4 as a Zugzwang (Lean 4, 224 Checks)",
+     "url": "https://github.com/Dr-Logvinovich/round-square",
      "points": 4,
      "comments": 0
     },
     {
-     "title": "Show HN: Bellripple – a quiet Korean temple garden in the browser",
-     "url": "https://bellripple.com/",
+     "title": "Show HN: Agent Doctor – let domain experts tune your agent without code changes",
+     "url": "https://theagentdoctor.com/",
      "points": 4,
      "comments": 0
     },
     {
-     "title": "Show HN: Make dark PDFs printer-friendly in the browser, without rasterizing",
-     "url": "https://github.com/alexadam/printer-friendly",
-     "points": 4,
-     "comments": 0
-    },
-    {
-     "title": "Show HN: Free mastering in the browser, your audio never leaves your machine",
-     "url": "https://synthcamp.net/mastering",
-     "points": 4,
-     "comments": 0
-    },
-    {
-     "title": "Show HN: CompMD – Markdown with components that still reads as plain Markdown",
-     "url": "https://compmd.dev",
+     "title": "Show HN: Pstview – read-only PST/OST viewer",
+     "url": "https://github.com/publicarray/pstview",
      "points": 4,
      "comments": 0
     },
@@ -420,71 +437,47 @@
      "title": "Show HN: MuGlobe – Explore the world's music by place on a globe",
      "url": "https://muglobe.com/",
      "points": 3,
-     "comments": 2
+     "comments": 4
     },
     {
-     "title": "Show HN: Build a trading bot in 10 seconds",
-     "url": "https://board.blink.cash/",
+     "title": "Show HN: NitroView",
+     "url": "https://github.com/gereoffy/jpeg-nitro",
      "points": 3,
      "comments": 2
     },
     {
-     "title": "Show HN: LarpLess, open-source study tracker detecting distractions locally",
-     "url": "https://larpless.app/",
-     "points": 3,
-     "comments": 2
-    },
-    {
-     "title": "Show HN: SaturnSQL Context, telling AI tools what the database means",
-     "url": "https://saturnsql.com/context-layer",
+     "title": "Show HN: Hearthen, an app for building and keeping strong relationships",
+     "url": "https://hearthenapp.com",
      "points": 3,
      "comments": 1
     },
     {
-     "title": "Show HN: Real-time clicker running on Elixir and a Raspberry Pi at home",
-     "url": "https://tugofwar.vibeapps.cc",
+     "title": "Show HN: AGI: Robots Awake – a browser maze shooter",
+     "url": "https://marcvscouto.itch.io/agi-robots-awake",
      "points": 3,
      "comments": 1
     },
     {
-     "title": "Show HN: Prove what your AI agent did – sign actions, verify in the browser",
-     "url": "https://agentproofchain.com/try/",
+     "title": "Show HN: Ember, a journal that keeps a page for each person you write about",
+     "url": "https://ember.mov/",
      "points": 3,
      "comments": 1
     },
     {
-     "title": "Show HN: ILoveNotch 2.0 – an open-source Mac notch app with a teleprompter",
-     "url": "https://github.com/niyamvora/ILoveNotch",
+     "title": "Show HN: RealEditPDF – 100% client-side PDF editor with zero server uploads",
+     "url": "https://realeditpdf.com/",
      "points": 3,
      "comments": 0
     },
     {
-     "title": "Show HN: AbcTab – Native Swift 6 macOS ⌘-Tab Switcher Without Screen Recording",
-     "url": "https://solocraft.app/abctab",
+     "title": "Show HN: GitHub Plays Linux",
+     "url": "https://github.com/seg6",
      "points": 3,
      "comments": 0
     },
     {
-     "title": "Show HN: Pstview – read-only PST/OST viewer",
-     "url": "https://github.com/publicarray/pstview",
-     "points": 3,
-     "comments": 0
-    },
-    {
-     "title": "Show HN: Luminol: see what AI evidence a Windows PC holds and when it expires",
-     "url": "https://github.com/adilshadowaiforensics/luminol/releases/tag/v0.1.1",
-     "points": 3,
-     "comments": 0
-    },
-    {
-     "title": "Show HN: I stole a game interaction and brought it to macOS",
-     "url": "https://peek.zone",
-     "points": 3,
-     "comments": 0
-    },
-    {
-     "title": "Show HN: Minard's 1869 map of Napoleon's Russian campaign, animated day by day",
-     "url": "https://minard1812.org/",
+     "title": "Show HN: System 1.5 Model – Inkling-2-Mini Decision",
+     "url": "https://huggingface.co/eltokh7/inkling-2-mini-decision",
      "points": 3,
      "comments": 0
     }
@@ -494,16 +487,22 @@
    "ok": true,
    "items": [
     {
-     "title": "Restricting AI agents in mobile operating systems platforms from capturing data",
-     "url": "https://signal.org/blog/protecting-your-privacy/",
-     "points": 556,
-     "comments": 324
+     "title": "87% of the Anthropic power will come from gas and 11% from coal in 2028",
+     "url": "https://betterdatacenterproject.com/2026/11/16/how-ai-is-powered-a-breakdown-of-byop-and-grid-power/",
+     "points": 179,
+     "comments": 247
     },
     {
-     "title": "Nasdaq erases all 2026 gains as AI sell-off dampens Anthropic’s second day",
-     "url": "https://www.theguardian.com/business/2026/nov/20/global-stock-markets-slump-anthropic-ipo-ai-sell-off",
-     "points": 331,
-     "comments": 614
+     "title": "ClawDOS – An AI coding agent for DOS",
+     "url": "http://ricapar.net/ClawDOS/",
+     "points": 166,
+     "comments": 52
+    },
+    {
+     "title": "Pandex – Official European Law for AI Agents, over MCP",
+     "url": "https://www.pandex.io",
+     "points": 101,
+     "comments": 24
     }
    ]
   }
@@ -511,25 +510,21 @@
  "reddit_access": "public-json",
  "niche_hits": {
   "agiscorecard": [
-   "WaitFeed",
-   "AI Context Flow MCP",
+   "Webless Agents",
+   "Omi CLI",
+   "Ulika",
+   "TeaserKit",
+   "30yr-uptime",
    "Stitch Loop",
-   "Publicit",
-   "OpenVorld",
+   "WaitFeed",
    "Shipyard",
-   "gitroots",
-   "Mailpipe",
-   "Is there a way to use Gemini API Keys with Antigravity?",
-   "Show HN: BSWorld – AI agents can now test Bluetooth code without hardware"
-  ],
-  "baipiaoji": [
-   "Is there a way to use Gemini API Keys with Antigravity?",
-   "Show HN: SaturnSQL Context, telling AI tools what the database means"
+   "Publicit",
+   "Show HN: agent-mcts – Monte Carlo tree search on top of Claude Code"
   ],
   "gridlings": [
-   "Prompt Puncher",
-   "Show HN: A browser game about trying to join a meeting",
-   "Show HN: I stole a game interaction and brought it to macOS"
+   "Yoroll",
+   "Slotify",
+   "Show HN: I made a PS1 style racing game"
   ]
  },
  "reddit_recurring": {},
@@ -557,7 +552,7 @@
    "url": "https://www.ycombinator.com/rfs",
    "status": 200,
    "type": "text/html; charset=utf-8",
-   "bytes": 97219
+   "bytes": 97218
   },
   "reddit_rss_public": {
    "url": "https://www.reddit.com/r/SomebodyMakeThis/new.rss",
@@ -599,51 +594,11 @@
    "url": "https://lemmy.world/api/v3/search?q=is%20there%20a%20tool&type_=Posts&sort=New&limit=1",
    "status": 200,
    "type": "application/json",
-   "bytes": 8889
+   "bytes": 6120
   }
  },
  "watchlist_updated": "2026-09-13",
  "history": [
-  {
-   "d": "2026-11-07",
-   "ph_titles": [
-    "kayet",
-    "Deal Pilot",
-    "PacerTrip",
-    "LiveReview",
-    "Google Omni 1.2 Flash",
-    "The Writer's Quarter",
-    "GPT‑6 Cyber",
-    "Standflow",
-    "Muse Realtime Avatar",
-    "Sequence Tool",
-    "Sendoff",
-    "seam",
-    "Trace by Context.dev",
-    "Duly",
-    "Capnot",
-    "Exa Monitors v2",
-    "Quest",
-    "ChatGPT Images 2.6",
-    "Dino Kids",
-    "Switchy",
-    "Fleeep",
-    "Instagram Edits for Desktop",
-    "ClarifierAI for Chrome",
-    "Rex (Beta)",
-    "Translucent AI",
-    "Any Video to Text",
-    "Releasebeam",
-    "Textwhisk",
-    "Codiclens",
-    "Pauta"
-   ],
-   "reddit_titles": [
-    "Can the WhatsApp Business Calling API initiate calls using a Canadian business phone number?"
-   ],
-   "vertical": [],
-   "boards": {}
-  },
   {
    "d": "2026-11-08",
    "ph_titles": [
@@ -1249,6 +1204,50 @@
     "What software can help me organize and manage personal files stored across multiple cloud storage services?",
     "What screenshot software allows the user to capture solely a specific window?",
     "What software can help manage large volumes of data for long-term archiving?"
+   ],
+   "vertical": [],
+   "boards": {}
+  },
+  {
+   "d": "2026-11-22",
+   "ph_titles": [
+    "MeshLive",
+    "Wispim",
+    "Leapdeck",
+    "DeNotch",
+    "Webless Agents",
+    "Daymaker",
+    "Mockreel",
+    "oovi",
+    "Omi CLI",
+    "Resurf",
+    "Yoroll",
+    "Squint",
+    "Ulika",
+    "Slotify",
+    "Copy Haste",
+    "Creavit Studio 4.0",
+    "Pushback",
+    "TeaserKit",
+    "Raccoon Kids",
+    "Verge: Corner Controls",
+    "Zapyso",
+    "Do It For Them Wallpaper Maker",
+    "30yr-uptime",
+    "Rankhog",
+    "Stitch Loop",
+    "WaitFeed",
+    "Beat Watcher",
+    "Shipyard",
+    "Publicit",
+    "AlterContacts"
+   ],
+   "reddit_titles": [
+    "What small technical task do you find yourself doing repeatedly, and which tool saves you the most time?",
+    "Looking for the Best Battery App",
+    "How to Transfer Photos from iCloud Photos to Google Drive",
+    "What software can help me organize and manage personal files stored across multiple cloud storage services?",
+    "What screenshot software allows the user to capture solely a specific window?"
    ],
    "vertical": [],
    "boards": {}
