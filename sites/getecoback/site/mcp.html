@@ -218,6 +218,9 @@
   <h3 id="kaffee-wasserfilter-beispiel">Passt AquaClean CA6903/10 zur EP2220/10?</h3>
   <p>Der Check gleicht den vollständigen Modellnamen und die genaue Filterpackung ab. Für Bosch TIE20301 und De’Longhi ECAM22.110.B gelten eigene Kennungen. <a href="/produkte.html#kaffee-wasserfilter">Wasserfilter und Originalquellen vergleichen</a>.</p>
   <pre><code>{"jsonrpc":"2.0","id":20,"method":"tools/call","params":{"name":"kaffeevollautomat_intenza_aquaclean_filterfamilie_modellpruefung","arguments":{"modell":"EP2220/10","filter":"CA6903/10"}}}</code></pre>
+  <h3 id="miele-staubsaugerbeutel-beispiel">Passt ein gemeinsamer Beutel für Miele Guard S1 und L1?</h3>
+  <p>Für die beiden genannten Modellreihen ist TU gelistet. Der Guard M1 führt CO. <a href="/produkte.html#miele-staubsaugerbeutel">Den Beuteltyp am eigenen Modell und vorhandenen Vorrat prüfen</a>.</p>
+  <pre><code>{"jsonrpc":"2.0","id":23,"method":"tools/call","params":{"name":"miele_zwei_sauger_vorrat_beutel_abluftfilter_getrennt","arguments":{"erstes_modell":"guard_s1","zweites_modell":"guard_l1","vorrat_soll_hepa_serie_abdecken":false}}}</code></pre>
   <h3 id="trotec-ttk70-hepa-beispiel">Welcher HEPA-Ersatzfilter gehört zum Trotec TTK 70 HEPA Plus?</h3>
   <p>Beim Artikel 7710000077 widersprechen sich Überschrift und Merkmalliste zur Bauzeit. Lass den Filter für das konkrete Typenschild vom Hersteller bestätigen. <a href="/guide/trotec-luftentfeuchter-test.html#ttk70-hepa-filter">Beide Angaben und den Staubfilter prüfen</a>.</p>
   <pre><code>{"jsonrpc":"2.0","id":22,"method":"tools/call","params":{"name":"trotec_ttk70_hepa_filter_generation","arguments":{"modell":"TTK 70 HEPA Plus","bauzeit":"nach_dezember_2023","angebot_kennung":"7710000077"}}}</code></pre>
@@ -327,7 +330,7 @@
 <section aria-labelledby="mcp-geraetebelege"><h2 id="mcp-geraetebelege">Haushaltsgeräte im Gebrauch und beim Kauf</h2><p><a href="/api/mcp-tools?category=Kaffeemaschinenpflege&amp;view=compact">Kaffeemaschinenpflege</a> · <a href="/api/mcp-tools?category=Waschmitteldosierung&amp;view=compact">Waschmitteldosierung</a> · <a href="/api/mcp-tools?category=Sp%C3%BClmittel%20und%20Wasserh%C3%A4rte&amp;view=compact">Spülmittel und Wasserhärte</a> · <a href="/api/mcp-tools?category=Bodenstaubsaugerpflege&amp;view=compact">Bodenstaubsaugerpflege</a> · <a href="/api/mcp-tools?category=Dampfb%C3%BCgelger%C3%A4te&amp;view=compact">Dampfbügelgeräte</a> · <a href="/api/mcp-tools?category=Stabmixer%20und%20Zubeh%C3%B6r&amp;view=compact">Stabmixer und Zubehör</a> · <a href="/api/mcp-tools?category=Mikrowellenbelege&amp;view=compact">Mikrowellenbelege</a> · <a href="/api/mcp-tools?category=K%C3%BCchenwaagen&amp;view=compact">Küchenwaagen</a> · <a href="/api/mcp-tools?category=Wasserkocherbelege&amp;view=compact">Wasserkocherbelege</a> · <a href="/api/mcp-tools?category=Toasterbelege&amp;view=compact">Toasterbelege</a> · <a href="/api/mcp-tools?category=Fenstersauger&amp;view=compact">Fenstersauger</a></p></section>
 </article>
 <script type="module">
-import {indexCatalogue, findCatalogueTools, toolGuidePath} from '/assets/mcp-catalog-search.mjs?v=434c679e2850';
+import {indexCatalogue, findCatalogueTools, toolGuidePath} from '/assets/mcp-catalog-search.mjs?v=f3a042c9b77d';
 
 (() => {
   const catalog = document.getElementById('mcp-catalog');

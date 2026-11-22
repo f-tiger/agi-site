@@ -29,7 +29,7 @@ test('appliance search results link to exact owned evidence and keep canonical m
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
   assert.equal(withGuides.length, 237);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 36);
+  assert.equal(destinations.size, 37);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);
@@ -1105,4 +1105,33 @@ test('Trotec TTK 70 main filter matches only its exact replacement question and 
     'Wie viele Liter zieht der TTK 75 ECO im kalten Keller bei 10 Grad?',
   ]) assert.ok((await catalogue({q,view:'compact',limit:'4'})).tools.every(tool=>tool.name!==name),q);
   assert.equal((await catalogue({q:name,view:'compact',limit:'1'})).tools[0]?.name,name);
+});
+
+test('Miele bag selection separates one model’s replacement from sharing stock between two machines',async()=>{
+  const one='miele_hyclean_beutel_vollstaendige_modellzeile';
+  const pair='miele_zwei_sauger_vorrat_beutel_abluftfilter_getrennt';
+  for(const [q,expected] of [
+    ['Welcher Beutel für Miele Guard L1: TU oder CO?',one],
+    ['Ist 12557080 das richtige Originalpaket für den Miele Guard M1, und was ist drin?',one],
+    ['Ist bei der Originalpackung TU 12557060 für Miele Guard L1 auch der AirClean Abluftfilter drin?',one],
+    ['Ich habe einen Miele Guard M1 Parquet Flex. Passen meine alten GN-Beutel oder brauche ich CO oder TU?',one],
+    ['Auf meinem Miele steht nur C2. Kann ich GN oder FJM bestellen?',one],
+    ['Auf dem Schild steht nur C2. Compact C2 oder Complete C2, welchen Staubsaugerbeutel brauche ich?',one],
+    ['Ich weiß nicht, ob ich Compact C2 oder Complete C2 habe. Welcher Miele-Staubsaugerbeutel passt?',one],
+    ['Ich möchte denselben Beutel für Complete C2 und Compact C2 kaufen. GN oder FJM?',pair],
+    ['Welcher Staubsaugerbeutel passt in den Miele Compact C2: GN oder FJM?',one],
+    ['Passen die Beutel vom Miele Guard S1 auch in den Guard L1, oder muss ich andere kaufen?',pair],
+    ['Passen meine Beutel vom Miele Complete C3 auch in den neuen Guard M1?',pair],
+    ['Gemeinsamer Vorrat für Miele Guard M1 und Complete C3: CO oder GN und Abluftfilter?',pair],
+    ['Haben Miele Complete C2 und Compact C2 denselben Beuteltyp?',pair],
+    ['Können Guard S1 und L1 die gleichen Staubbeutel nutzen?',pair],
+  ]){
+    const [tool]=(await catalogue({q,view:'compact',limit:'3'})).tools;
+    assert.equal(tool?.name,expected,q);
+    assert.equal(findCatalogueTools(compact,{query:q})[0]?.name,expected,q);
+    assert.equal(toolGuidePath(tool),'/produkte.html#miele-staubsaugerbeutel',q);
+  }
+  const reset='Miele Guard L1: Die Abluftfilteranzeige leuchtet. Wie setze ich sie nach dem Filterwechsel zurück?';
+  assert.equal((await catalogue({q:reset,view:'compact',limit:'1'})).tools[0]?.name,'miele_guard_l1_abluftanzeige_reset_vor_wechsel');
+  for(const name of [one,pair]) assert.equal((await catalogue({q:name,view:'compact',limit:'1'})).tools[0]?.name,name);
 });

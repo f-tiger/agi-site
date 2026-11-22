@@ -31,6 +31,8 @@ const toolPaths = new Map([
   ['waesche_trocknungswechsel_kaufschwelle', '/waeschetrockner-oder-luftentfeuchter.html#laundry-check'],
   ['befeuchter_nennwatt_abgabeleistung_bezug', '/guide/luftbefeuchter-stromverbrauch.html#effizienz-vergleichen'],
   ['glassvac_kalt_lagern_einschalten_laden_getrennt', products + '#bosch-glassvac-einsatz-und-pflege'],
+  ['miele_hyclean_beutel_vollstaendige_modellzeile', products + '#miele-staubsaugerbeutel'],
+  ['miele_zwei_sauger_vorrat_beutel_abluftfilter_getrennt', products + '#miele-staubsaugerbeutel'],
   ['fenstersauger_170mm_saugduese_geraetezuordnung', products + '#kaercher-170mm-saugduese'],
   ['fenstersauger_wv3_wv8_led_muster_einordnen', products + '#kaercher-fenstersauger-einsatz-und-hinweise'],
   ['fenster_oberflaeche_taucheck', '/guide/fenster-beschlagen-innen.html#fenstersauger-gegen-kondenswasser'],

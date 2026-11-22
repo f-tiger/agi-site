@@ -412,3 +412,33 @@ test('German Trotec HEPA filter purchase and generation queries retain the exist
   ]) assert.ok(searchEntries(index,q,'de').every(hit=>hit.entry.u!==anchor),q);
   assert.equal(searchEntries(index,'TTK 75 ECO 10 Grad 60 Prozent Keller Liter pro Tag','de')[0]?.entry.u,page+'#ttk75-pruefpunkt');
 });
+
+test('Miele HyClean one-device and shared-stock questions reach a single German catalogue section',()=>{
+  const page='/produkte.html', target=page+'#miele-staubsaugerbeutel';
+  for(const q of [
+    'Welcher Beutel für Miele Guard L1: TU oder CO?',
+    'Ist 12557080 das richtige Originalpaket für den Miele Guard M1, und was ist drin?',
+    'Ist bei der Originalpackung TU 12557060 für Miele Guard L1 auch der AirClean Abluftfilter drin?',
+    'Ich habe einen Miele Guard M1 Parquet Flex. Passen meine alten GN-Beutel oder brauche ich CO oder TU?',
+    'Auf meinem Miele steht nur C2. Kann ich GN oder FJM bestellen?',
+    'Auf dem Schild steht nur C2. Compact C2 oder Complete C2, welchen Staubsaugerbeutel brauche ich?',
+    'Passen die Beutel vom Miele Guard S1 auch in den Guard L1, oder muss ich andere kaufen?',
+    'Passen meine Beutel vom Miele Complete C3 auch in den neuen Guard M1?',
+    'Gemeinsamer Vorrat für Miele Guard M1 und Complete C3: CO oder GN und Abluftfilter?',
+    'Haben Miele Complete C2 und Compact C2 denselben Beuteltyp?',
+  ]){
+    const hits=searchEntries(index,q,'de');
+    assert.equal(hits[0]?.entry.u,target,q);
+    assert.equal(hits.filter(hit=>hit.entry.u.split('#')[0]===page).length,1,q);
+    assert.ok(searchEntries(index,q,'en').every(hit=>hit.entry.u!==target),q);
+  }
+  for(const q of [
+    'Miele Guard L1: Beutelanzeige leuchtet rot, obwohl der Beutel kaum voll ist.',
+    'Miele Guard L1: Filterwechselanzeige nach dem Wechsel zurücksetzen',
+    'Welcher HEPA-Abluftfilter passt beim Miele Compact C2?',
+    'Wie viele Beutel und Filter sind im Miele GN XXL 12498270?',
+    'Wie wechsle ich den Beutel beim Miele Guard M1?', 'Wann muss ich den Beutel für Guard M1 wechseln?',
+    'Mein Miele Guard L1 hat einen neuen TU-Beutel, aber der Deckel schließt nicht.',
+    'Welcher Beutel passt auf einen Bosch Staubsauger?', 'TU oder CO?', 'Miele Boost CX1 Beutel kaufen?',
+  ]) assert.ok(searchEntries(index,q,'de').every(hit=>hit.entry.u!==target),q);
+});

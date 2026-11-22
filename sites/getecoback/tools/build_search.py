@@ -77,6 +77,8 @@ def collect():
   entry={'u':route,'t':' '.join(h.title.split()),'d':desc[:320],'l':lang,'a':extra}
   if lang=='de' and route=='/produkte.html':
    model_sections=[
+    {'id':'miele-staubsaugerbeutel','title':'Welcher Staubsaugerbeutel passt zu meinem Miele?',
+     'description':'GN, FJM, TU und CO anhand der vollständigen Modellreihe prüfen. Vorhandene Beutel für zwei Geräte abgleichen.'},
     {'id':'kaercher-170mm-saugduese','title':'Welche schmale Kärcher-Absaugdüse passt zu meinem WV?',
      'description':'Die 170-mm-Absaugdüse anhand von Gerätevariante, Lieferumfang und Zubehörnummer von der Gummilippe unterscheiden.'},
     {'id':'fenstersauger-duesenbreite','title':'Welche Saugdüse passt zwischen die Sprossen?',
