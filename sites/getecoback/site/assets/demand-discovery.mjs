@@ -3,14 +3,14 @@ import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion} from './kaercher-saugduese-intent.mjs';
 import {asksForCoffeeWaterFilterMatch} from './kaffee-wasserfilter-intent.mjs';
 import {asksForTrotecTtk75EcoConditions} from './trotec-ttk75-eco-intent.mjs';
-import {asksForCoolingNoiseComparison} from './cooling-noise-intent.mjs';
+import {asksForCoolingNoiseComparison} from './cooling-noise-intent.mjs?v=f0bcc0785943';
 import {asksForTesamollWindowProfile} from './tesamoll-profile-intent.mjs';
 import {exactGermanFilterModel} from './exact-filter-intent.mjs';
 import {philipsHumidifierFilterSection} from './philips-humidifier-filter-intent.mjs';
 import {asksForElectricBlanketCost} from './electric-blanket-cost-intent.mjs';
 import {asksForHygrometerComparison} from './hygrometer-comparison-intent.mjs';
 import {asksForN90ModelIdentity} from './n90-model-intent.mjs';
-import {asksForPortaSplitWindowLip} from './portasplit-fensterfalz-intent.mjs';
+import {asksForPortaSplitWindowLip, namesOriginalPortaSplitExactly} from './portasplit-fensterfalz-intent.mjs?v=66ae5fbd590d';
 import {asksForCellarVentilationCheck} from './cellar-ventilation-intent.mjs';
 import {asksForDehumidifierDrainRoute} from './dehumidifier-drain-intent.mjs';
 
@@ -19,22 +19,14 @@ export const normalize=value=>String(value).toLowerCase().replace(/ä/g,'ae').re
 const stop=new Set('wie kann ich meine mein der die das und im in am zu fuer what how do i my the a an and for to can de la le les un une el los las il lo una di het een ik'.split(' '));
 const n90ExactName=/^(?:de['’ -]?longhi[ -]+)?(?:pinguino[ -]+)?pac[ -]*n[ -]*90[ -]+eco[ -]+silent(?:[ -]+(?:ean[ -]+)?8004399512351)?$/;
 const n90ExactEan=/^(?:ean[ -]+)?8004399512351$/;
-const portaSplitOriginalName=/^(?:midea[ -]+)?porta[ -]*split[ -]+original$/;
-const portaSplitOriginalEan=/^(?:(?:midea[ -]+)?porta[ -]*split(?:[ -]+original)?[ -]+)?(?:ean[ -]+)?4048164116478$/;
 
 export function exactGermanCoolingGuide(normalizedQuery) {
  const query=normalizedQuery.trim().replace(/\s+/g,' ');
  if(n90ExactName.test(query)||n90ExactEan.test(query))
    return {path:'/guide/delonghi-pac-n90-test.html',id:'testlage'};
- if(portaSplitOriginalName.test(query)||portaSplitOriginalEan.test(query))
+ if(namesOriginalPortaSplitExactly(query))
    return {path:'/guide/midea-portasplit-ausverkauft-alternativen.html',id:'fensterfalz'};
  return null;
-}
-
-function asksForOriginalPortaSplit(query) {
- // A measured fit question can still name a different version by its EAN alone.
- const eans=query.match(/\b\d{13}\b/g)||[];
- return eans.every(ean=>ean==='4048164116478')&&asksForPortaSplitWindowLip(query);
 }
 
 const laundryPage='/waeschetrockner-oder-luftentfeuchter.html';
@@ -74,7 +66,7 @@ export function searchEntries(index,term,lang){
    targetPage='/guide/delonghi-pac-n90-test.html'; targetId='testlage';
  } else if(lang==='de' && asksForTesamollWindowProfile(query)) {
    targetPage='/guide/fenster-zugluft-mietwohnung.html'; targetId='dichtungsprofil';
- } else if(lang==='de' && (exactCooling?.id==='fensterfalz'||asksForOriginalPortaSplit(query))) {
+ } else if(lang==='de' && (exactCooling?.id==='fensterfalz'||asksForPortaSplitWindowLip(query))) {
    targetPage='/guide/midea-portasplit-ausverkauft-alternativen.html'; targetId='fensterfalz';
  } else if(lang==='de' && asksForWindowVacClearance(focusWindowVacQuestion(query)?.query ?? '')) {
    targetPage='/produkte.html'; targetId='fenstersauger-duesenbreite';
