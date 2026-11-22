@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.22.1';
-const revision = '85eb695f96c0f79ef20ba9e1acaea213d4752c7a';
+const version = '1.22.2';
+const revision = 'bbaed3c0c48bb93917b6327cc7a107e7be5a46c9';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -296,6 +296,33 @@ async function verifyCompactLaundryPrecision(rpc, finder) {
   return topMatches;
 }
 
+async function verifyCompactHumidifierEfficiency(rpc, finder, runner) {
+  const frage = 'Welcher befeuchtet effizienter: der Beurer LB 55 mit 365 Watt oder Oskar mit 6 bis 18 Watt?';
+  const lookup = await rpc('tools/call', {name:finder, arguments:{frage}});
+  assert.equal(lookup.isError, false);
+  const first = lookup.structuredContent.tools[0];
+  const name = 'befeuchter_nennwatt_abgabeleistung_bezug';
+  const citationUrl = 'https://getecoback.com/guide/luftbefeuchter-stromverbrauch.html';
+  const guideUrl = citationUrl + '#effizienz-vergleichen';
+  assert.equal(first?.name, name);
+  assert.equal(first.citation_url, citationUrl);
+  assert.equal(first.guide_url, guideUrl);
+
+  async function calculate(output, watts, sameConditions) {
+    const eingaben = {gemessene_wasserabgabe_ml_h:output, elektrische_leistung_w:watts, gleiche_stufe_bedingung:sameConditions};
+    const result = await rpc('tools/call', {name:runner, arguments:{name,eingaben}});
+    assert.equal(result.isError, false);
+    assert.equal(result.structuredContent.citation_url, citationUrl);
+    assert.equal(result.structuredContent.guide_url, guideUrl);
+    return result.structuredContent.ml_pro_wh;
+  }
+  const independentMlPerWh = await calculate(400, 365, false);
+  const matchedExampleMlPerWh = await calculate(120, 40, true);
+  assert.equal(independentMlPerWh, null);
+  assert.equal(matchedExampleMlPerWh, 3);
+  return {name, citationUrl, guideUrl, independentMlPerWh, matchedExampleMlPerWh};
+}
+
 async function verifyCompactN90Costs(rpc, finder, runner) {
   const frage = 'DeLonghi PAC N90 ECO Silent Energielabel Stromkosten 8004399512351';
   const lookup = await rpc('tools/call',{name:finder,arguments:{frage}});
@@ -556,6 +583,7 @@ async function verifyCompactStdio(extracted) {
     assert.deepEqual(buyer.content.filter(part=>part.type==='resource'),[{type:'resource',resource}]);
     const laundryComparison = await verifyCompactLaundryComparison(rpc,finder,runner);
     const laundryPrecision = await verifyCompactLaundryPrecision(rpc,finder);
+    const humidifierEfficiency = await verifyCompactHumidifierEfficiency(rpc,finder,runner);
     const n90Costs = await verifyCompactN90Costs(rpc,finder,runner);
     const tadoOventrop = await verifyCompactTadoOventrop(rpc,finder,runner);
     const householdDecisions = await verifyCompactHouseholdDecisions(rpc,runner);
@@ -564,7 +592,7 @@ async function verifyCompactStdio(extracted) {
     const windowLookup = await verifyCompactWindowLookup(rpc,finder);
     return {
       tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,
-      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,laundryPrecision,windowBlade,windowLookup,windowWidth,householdDecisions,tadoOventrop,n90Costs,
+      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,laundryPrecision,windowBlade,windowLookup,windowWidth,householdDecisions,tadoOventrop,n90Costs,humidifierEfficiency,
     };
   });
 }
