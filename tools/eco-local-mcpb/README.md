@@ -204,6 +204,10 @@ Both profiles distinguish the documented original filter, a later
 manufacturer listing with conflicting production-date information, and
 the separate dust air filter.
 
+Version 1.22.23 improves discovery for the German Miele HyClean lookups.
+Both profiles show the documented original pack contents for an exact model
+and compare shared bag and HEPA filter compatibility independently.
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the

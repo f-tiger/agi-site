@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.22.22';
-const revision = '3b24374dce3d9e109bf3925c66428a1428329449';
+const version = '1.22.23';
+const revision = 'd3c413696a3f9f7837e16335a4b8749b49942cd1';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -30,7 +30,8 @@ const featureNames = ['entfeuchter_ablaufcheck', 'btu_empfehlung', 'fensterabdic
   'hygrometer_messbereiche', 'pac_n90_ean_abgleichen', 'midea_portasplit_fensterfalz_pruefen',
   'tesamoll_fensterdichtung_profil_pruefen', 'klimaanlage_geraeusch_vergleich', 'trotec_ttk75_eco_pruefpunkt',
   'kaffeevollautomat_intenza_aquaclean_filterfamilie_modellpruefung', 'fenstersauger_170mm_saugduese_geraetezuordnung',
-  'trotec_ttk70_hepa_filter_generation'];
+  'trotec_ttk70_hepa_filter_generation', 'miele_hyclean_beutel_vollstaendige_modellzeile',
+  'miele_zwei_sauger_vorrat_beutel_abluftfilter_getrennt'];
 const entry = 'src/server.mjs';
 const legacyHelpers = fileURLToPath(new URL('../mcp-registry/local-packages/', import.meta.url));
 const sha256 = buffer => createHash('sha256').update(buffer).digest('hex');
@@ -73,6 +74,9 @@ const kaercherNozzleCitation = 'https://getecoback.com/produkte.html';
 const kaercherNozzleGuide = kaercherNozzleCitation + '#kaercher-170mm-saugduese';
 const ttk70FilterTool = 'trotec_ttk70_hepa_filter_generation';
 const ttk70FilterGuide = ttk75Citation + '#ttk70-hepa-filter';
+const mieleBagTool = 'miele_hyclean_beutel_vollstaendige_modellzeile';
+const mieleSharedTool = 'miele_zwei_sauger_vorrat_beutel_abluftfilter_getrennt';
+const mieleGuide = coffeeCitation + '#miele-staubsaugerbeutel';
 const portaSplitLipTool = 'midea_portasplit_fensterfalz_pruefen';
 const portaSplitCitation = 'https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html';
 const portaSplitLipGuide = portaSplitCitation + '#fensterfalz';
@@ -896,6 +900,68 @@ async function verifyTtk70Filter(call) {
   return {name:ttk70FilterTool,guide:ttk70FilterGuide,articles,records,rejected:invalid.length};
 }
 
+async function verifyMieleBags(call) {
+  const source = 'https://www.miele.de/c/staubsaugerbeutel-und-filter-10520.htm';
+  const match = 'gleich_mit_de_herstellerliste', differs = 'typ_weicht_von_de_herstellerliste_ab';
+  const bags = [
+    ['guard_s1','TU',['TU',match,'12557060',4,0,1,'AirClean']],
+    ['guard_l1','TU',['TU',match,'12557060',4,0,1,'AirClean']],
+    ['guard_m1','GN',['CO',differs,'12557080',4,0,1,'AirClean']],
+    ['compact_c2','GN',['FJM',differs,'12421180',4,1,1,null]],
+    ['complete_c2','GN',['GN',match,'12421170',4,1,1,null]],
+    ['nur_c2','FJM',[null,'vollstaendigen_modellnamen_pruefen',null,null,null,null,null]],
+  ];
+  const pairs = [
+    ['guard_s1','guard_l1',true,['TU',true,'SF-HA 50-1',true]],
+    ['guard_s1','guard_l1',false,['TU',true,null,null]],
+    ['classic_c1','complete_c3',true,['GN',true,null,false]],
+    ['guard_l1','guard_m1',true,[null,false,'SF-HA 50-1',true]],
+    ['nur_c2','guard_l1',true,[null,null,null,null]],
+  ];
+  function verified(result) {
+    assert.equal(result.isError,false);
+    const data = result.structuredContent;
+    assert.deepEqual([data.citation_url,data.guide_url,data.herstellerquelle,data.quellen_geprueft],
+      [coffeeCitation,mieleGuide,source,'2026-11-20']);
+    assert.doesNotMatch(result.content[0].text,/https?:\/\/[^"\s]*(?:amazon\.|amzn\.)|[?&]tag=/i);
+    return data;
+  }
+  const bagRecords = [];
+  for (const [modellfamilie,beutel_am_angebot,expected] of bags) {
+    const data = verified(await call(mieleBagTool,{modellfamilie,beutel_am_angebot}));
+    const pack = data.dokumentierter_de_originalpack;
+    const [type,,article] = expected;
+    const observed = [data.dokumentierter_beuteltyp,data.status,pack?.artikelnummer??null,
+      pack?.beutel??null,pack?.motorschutzfilter??null,pack?.abluftfilter??null,pack?.abluftfilter_art??null];
+    assert.deepEqual(observed,expected);
+    assert.equal(data.beleg_zum_passenden_originalpack,article ?
+      `https://www.miele.de/product/${article}/4-staubsaugerbeutel-${type.toLowerCase()}-hyclean-pure` : null);
+    assert.equal(pack?.geprueft_am??null,article?'2026-11-22':null);
+    assert.match(data.grenze,/Kürzel wie C1 oder C2 reicht allein nicht/);
+    bagRecords.push(observed);
+  }
+  const sharedRecords = [];
+  for (const [erstes_modell,zweites_modell,vorrat_soll_hepa_serie_abdecken,expected] of pairs) {
+    const data = verified(await call(mieleSharedTool,{erstes_modell,zweites_modell,vorrat_soll_hepa_serie_abdecken}));
+    const observed = [data.gemeinsamer_beuteltyp,data.beleg_geteilter_beuteltyp,
+      data.gemeinsamer_gelisteter_hepa_filter,data.beleg_geteilter_hepa_filter];
+    assert.deepEqual(observed,expected);
+    assert.match(data.grenze,/keinen gemeinsamen Abluftfilter/);
+    sharedRecords.push(observed);
+  }
+  const invalid = [
+    [mieleBagTool,{modellfamilie:'miele_guard_s1',beutel_am_angebot:'TU'}],
+    [mieleBagTool,{modellfamilie:'guard_s1',beutel_am_angebot:'CO/TU'}],
+    [mieleSharedTool,{erstes_modell:'guard_s1',zweites_modell:'guard_l1',vorrat_soll_hepa_serie_abdecken:'true'}],
+  ];
+  for (const [name,input] of invalid) {
+    const result = await call(name,input);
+    assert.equal(result.isError,true);
+    assert.equal(result.structuredContent,undefined);
+  }
+  return {bagTool:mieleBagTool,sharedTool:mieleSharedTool,guide:mieleGuide,source,bagRecords,sharedRecords,rejected:invalid.length};
+}
+
 async function verifyStdio(extracted, manifest) {
   const {TOOLS} = await import(pathToFileURL(join(extracted,'src/tools.mjs')));
   const {expandedDefinitions} = await import(pathToFileURL(join(extracted,'src/eco-suite/src/mcp-expanded.mjs')));
@@ -991,9 +1057,10 @@ async function verifyStdio(extracted, manifest) {
       rpc('tools/call',{name:kaercherNozzleTool,arguments:args}));
     const ttk70Filter = await verifyTtk70Filter(args =>
       rpc('tools/call',{name:ttk70FilterTool,arguments:args}));
+    const mieleBags = await verifyMieleBags((name,args) => rpc('tools/call',{name,arguments:args}));
     return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,windowCondensation,decimalWindowWidth,
       singleLaundry,fritzValve,drainRoute,measuredVentilation,exactFilter,philipsFilter,warmthCost,hygrometerComparison,n90Identity,
-      portaSplitWindowLip,tesamollProfiles,coolingNoise,ttk75Point,coffeeFilter,kaercherNozzle,ttk70Filter,
+      portaSplitWindowLip,tesamollProfiles,coolingNoise,ttk75Point,coffeeFilter,kaercherNozzle,ttk70Filter,mieleBags,
       firstExamples:['btu_empfehlung','entfeuchter_ablaufcheck'],finder:verifyFinder(extracted,drain),
       lastPageExample:last.name,legacyNames:oldNames.length,network:'disabled'};
   });
@@ -1621,6 +1688,20 @@ async function verifyCompactStdio(extracted) {
     assert.deepEqual(ttk70Match.inputSchema.required,['modell','bauzeit','angebot_kennung']);
     const ttk70Filter = await verifyTtk70Filter(eingaben =>
       rpc('tools/call',{name:runner,arguments:{name:ttk70FilterTool,eingaben}}));
+    for (const [frage,name,required] of [
+      ['Ist 12557080 das richtige Originalpaket für den Miele Guard M1, und was ist drin?',mieleBagTool,
+        ['modellfamilie','beutel_am_angebot']],
+      ['Gemeinsamer Vorrat für Miele Guard M1 und Complete C3: CO oder GN und Abluftfilter?',mieleSharedTool,
+        ['erstes_modell','zweites_modell','vorrat_soll_hepa_serie_abdecken']],
+    ]) {
+      const result = await rpc('tools/call',{name:finder,arguments:{frage}});
+      assert.equal(result.isError,false);
+      const match = result.structuredContent.tools[0];
+      assert.equal(match?.name,name);
+      assert.equal(match.guide_url,mieleGuide);
+      assert.deepEqual(match.inputSchema.required,required);
+    }
+    const mieleBags = await verifyMieleBags((name,eingaben) => rpc('tools/call',{name:runner,arguments:{name,eingaben}}));
     const tadoOventrop = await verifyCompactTadoOventrop(rpc,finder,runner);
     const householdDecisions = await verifyCompactHouseholdDecisions(rpc,runner);
     const windowWidth = await verifyCompactWindowWidth(rpc,finder,runner);
@@ -1633,7 +1714,7 @@ async function verifyCompactStdio(extracted) {
       liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,singleLaundry,fritzValve,drainRoute,
       measuredVentilation,exactFilter,philipsFilter,warmthCost,hygrometerComparison,laundryPrecision,windowBlade,windowLookup,
       windowWidth,decimalWindowWidth,householdDecisions,tadoOventrop,n90Costs,n90Identity,portaSplitWindowLip,
-      tesamollProfiles,coolingNoise,ttk75Point,coffeeFilter,kaercherNozzle,ttk70Filter,
+      tesamollProfiles,coolingNoise,ttk75Point,coffeeFilter,kaercherNozzle,ttk70Filter,mieleBags,
       humidifierEfficiency,glassvacTemperature,windowSubject,windowCondensation,
     };
   });
@@ -1713,6 +1794,7 @@ try {
   assert.deepEqual(result.coffeeFilter,result.compact.coffeeFilter);
   assert.deepEqual(result.kaercherNozzle,result.compact.kaercherNozzle);
   assert.deepEqual(result.ttk70Filter,result.compact.ttk70Filter);
+  assert.deepEqual(result.mieleBags,result.compact.mieleBags);
   assert.deepEqual(result.resource,result.compact.resource);
   result.archiveReadme = {replacedVersion:readme.previousVersion,registryLatestUrl};
   const identifier = `${releaseUrl}/${file}`;
