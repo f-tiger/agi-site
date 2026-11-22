@@ -129,6 +129,9 @@ jobs:
           node tools/revenue-studio/build.mjs --site agi --out sites/agiscorecard
           (cd sites/agiscorecard && python3 tools/add_breadcrumbs.py --apply)
 
+      - name: Build investment and partnerships contact pages
+        run: python3 sites/agiscorecard/tools/build_investment_contact.py --require-recipient
+
       - name: Build Tianya validation and preserve the dated research archive
         run: |
           node sites/agiscorecard/tools/tianya/build.mjs
