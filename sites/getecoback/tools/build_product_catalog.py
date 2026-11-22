@@ -55,6 +55,17 @@ SPECIALIST_GUIDES = (
      'Wischsauger Nasswischen Bodenfreigabe Parkett Tineco S7 FlashDry Dreame H14 Pro Roborock F25 XT'),
 )
 
+# These named models have their own evidence pages. Keep nearby variants from
+# matching a short token inside the title or measurement instructions.
+MODEL_GUIDES = (
+    ('De’Longhi PAC N90 ECO Silent: Modell prüfen', '/guide/delonghi-pac-n90-test.html#testlage',
+     'Gleiche die vollständige Gerätekennung und die EAN 8004399512351 mit dem Angebot ab.',
+     'DeLonghi Pinguino PACN90 0151400003'),
+    ('Midea PortaSplit: Fensterfalz prüfen', '/guide/midea-portasplit-ausverkauft-alternativen.html#fensterfalz',
+     'Gleiche zuerst die EAN 4048164116478 ab. Miss dann Breite und Höhe am Fensterfalz für die Standardhalterung.',
+     'Porta Split Porta-Split Original'),
+)
+
 PART_GUIDES = (
     ('Miele-Staubsaugerbeutel', '#miele-staubsaugerbeutel', 'bodenstaubsauger',
      'Staubbeutel Staubsaugerbeutel HyClean GN FJM TU CO 12421170 12421180 12557060 12557080 Guard S1 L1 M1 Classic Compact Complete C1 C2 C3'),
@@ -535,11 +546,11 @@ def render(data, today=None):
 <p class="pc-buyer-routes"><a href="#modelle-{esc(category['id'])}">Direkt die {len(cards)} Modelle vergleichen ↓</a> <a href="#pc-tool-{esc(category['id'])}">Erst die passende Auswahlhilfe nutzen ↓</a></p>
 {comparison}{tool}<h3 class="pc-model-heading" id="modelle-{esc(category['id'])}">{esc(category['name'])}: Modelle und Kaufgrenzen</h3><div class="pc-grid">{''.join(cards)}</div></section>''')
     nav = ''.join(f'<a href="#kategorie-{esc(c["id"])}" data-category-link="{esc(c["id"])}">{esc(c["name"])}</a>' for c in data['categories'])
-    guide_items = ''.join(
-        f'<li data-specialist-guide data-search-terms="{esc(keywords)}">'
-        f'<a href="{esc(target)}">{esc(name)}</a> <p>{esc(question)}</p></li>'
-        for name, target, question, keywords in SPECIALIST_GUIDES
-    )
+    guide_items = []
+    for guides, attribute in ((SPECIALIST_GUIDES, ''), (MODEL_GUIDES, ' data-exact-guide-terms')):
+        for name, target, question, keywords in guides:
+            guide_items.append(f'<li data-specialist-guide{attribute} data-search-terms="{esc(keywords)}">'
+                               f'<a href="{esc(target)}">{esc(name)}</a> <p>{esc(question)}</p></li>')
     part_links = ''.join(
         f'<li><a href="{esc(target)}" data-part-guide data-category="{esc(category)}" data-search-terms="{esc(terms)}">'
         f'{esc(name)}</a></li>'
@@ -573,7 +584,7 @@ def render(data, today=None):
 <h2 id="pc-part-guides-heading">Ersatzteile nach Modell prüfen</h2>
 <p>Halte die vollständige Modellnummer vom Typenschild oder die Teilenummer bereit.</p>
 <ul class="pc-part-links">{part_links}</ul></section>
-<nav class="pc-categories" aria-label="Produktgruppen und Kaufhilfen">{nav}<a class="pc-guide-jump" href="#kaufhilfen">Zu den {len(SPECIALIST_GUIDES)} Kaufhilfen ↓</a></nav>
+<nav class="pc-categories" aria-label="Produktgruppen und Kaufhilfen">{nav}<a class="pc-guide-jump" href="#kaufhilfen">Zu den {len(guide_items)} Kaufhilfen ↓</a></nav>
 <form class="pc-filters" id="product-filters" role="search" hidden><label for="product-query">Modelle und Kaufhilfen durchsuchen<input id="product-query" type="search" maxlength="100" autocomplete="off" placeholder="Zum Beispiel: Luftbefeuchter, Bosch, Parkett"></label>
 <label for="product-category">Produktgruppe<select id="product-category"><option value="">Alle Produktgruppen</option>{options}</select></label><button type="reset">Filter zurücksetzen</button>
 <p class="pc-filter-note">Die Suche läuft nur in diesem Browser. Dein Suchtext wird nicht übertragen.</p>
@@ -582,7 +593,7 @@ def render(data, today=None):
 <ul class="pc-part-links" data-part-results aria-label="Passende Ersatzteil-Hinweise" hidden></ul>
 <section class="pc-guides" id="kaufhilfen" data-specialist-guides aria-labelledby="pc-guides-heading">
 <h2 id="pc-guides-heading">Kaufhilfen für Raumklima, Heizung und Böden</h2>
-<ul>{guide_items}</ul></section>
+<ul>{''.join(guide_items)}</ul></section>
 {''.join(groups)}
 {APPLIANCE_EVIDENCE}
 <section class="pc-method" id="auswahlmethode"><h2>Was diese Auswahl leistet</h2><p>Die Gruppen zeigen unterschiedliche Aufgaben und konkrete Modelle, keine vollständige Marktübersicht. Herstellerdaten und genaue Varianten stehen bei jedem Gerät. Wir haben diese Geräte nicht selbst getestet. Eine Händlersuche bestätigt weder ein bestimmtes Angebot noch Verfügbarkeit oder einen Preis.</p><p>Quellen älter als 90 Tage, zukünftige Prüfdaten oder offene Widersprüche pausieren die Händlersuche. Die zuletzt dokumentierten Fakten bleiben nachvollziehbar. Zubehör, regionale Ausführung und die passende Anleitung am konkreten Angebot prüfen. Ein funktionierendes vorhandenes Gerät muss nicht ersetzt werden.</p></section>

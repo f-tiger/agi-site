@@ -18,6 +18,11 @@ for(const route of ['index.html','wohnen.html','tools.html']){const html=fs.read
 const executablePath=process.env.CHROMIUM_PATH||process.env.PILOT_CHROMIUM;
 const localTools=['luftreiniger','hygrometer','dampfreiniger','fenstersauger','nass-trockensauger','bodenstaubsauger','wasserkocher','heissluftfritteusen','kontaktgrills'];
 const reusedTools={ventilatoren:'/guide/stromkosten-rechner.html',heizluefter:'/guide/heizluefter-stromverbrauch.html#eb-heater-cost',waeschetrockner:'/waeschetrockner-oder-luftentfeuchter.html#laundry-check'};
+const coolingGuides=[
+ {href:'/guide/delonghi-pac-n90-test.html#testlage',queries:['PAC N90','PACN90','DeLonghi PAC N90 ECO Silent','8004399512351']},
+ {href:'/guide/midea-portasplit-ausverkauft-alternativen.html#fensterfalz',queries:['Midea PortaSplit','Porta Split','Porta-Split','Midea PortaSplit Original','4048164116478']},
+];
+const otherCoolingModels=['Midea PortaSplit E','Midea PortaSplit Cool','4048164122424','4048164122301','Midea PortaSplit Pro','DeLonghi PAC EX105'];
 const windowModels=[
  {id:'kaercher-wv2-multi',model:'Kärcher WV 2 Plus Multi Edition, 1.633-662.0',widths:'280 mm',source:'Kärcher WV 2 Produktseite'},
  {id:'kaercher-wv3-precision',model:'Kärcher WV 3 Comfort Precision+ Black, 1.633-698.0',widths:'170 mm / 280 mm',source:'Kärcher WV 3 Produktseite'},
@@ -437,8 +442,11 @@ async function checkCatalog(browser){
   assert.equal(await page.locator('.pc-comparison tbody tr').count(),48);
 
   const guideLinks=page.locator('[data-specialist-guide] a');
-  assert.equal(await guideLinks.count(),6);
-  assert.equal(await page.locator('[data-specialist-guide]:visible').count(),6);
+  assert.equal(await guideLinks.count(),8);
+  assert.equal(await page.locator('[data-specialist-guide]:visible').count(),8);
+  const exactCoolingLinks=page.locator('[data-specialist-guide][data-exact-guide-terms] a');
+  assert.equal(await exactCoolingLinks.count(),coolingGuides.length);
+  for(const {href} of coolingGuides)assert(await exactCoolingLinks.and(page.locator('a[href="'+href+'"]')).isVisible(),href);
   const humidifierLink=guideLinks.filter({hasText:/^Luftbefeuchter$/i});
   assert.equal(await humidifierLink.count(),1);
   const humidifierPath=await humidifierLink.getAttribute('href');
@@ -518,6 +526,18 @@ async function checkCatalog(browser){
     assert(await accessoryLink.isVisible());
     assert(await page.locator('#product-filter-empty').isHidden());
    }
+   for(const {href,queries} of coolingGuides){
+    const link=exactCoolingLinks.and(page.locator('a[href="'+href+'"]'));
+    for(const query of queries){
+     await page.locator('#product-query').fill(query);
+     assert(await link.isVisible(),query+' must reach '+href);
+     assert(await page.locator('#product-filter-empty').isHidden(),query);
+    }
+   }
+   for(const query of otherCoolingModels){
+    await page.locator('#product-query').fill(query);
+    assert.equal(await exactCoolingLinks.filter({visible:true}).count(),0,query+' names a different model');
+   }
    const partResults=page.locator('[data-part-results]');
    for(const [part,target] of Object.entries({
     'GN FJM':'/produkte.html#miele-staubsaugerbeutel',
@@ -539,7 +559,7 @@ async function checkCatalog(browser){
    await page.locator('#product-filters button[type=reset]').click();
    assert(await partResults.isHidden());
    assert.equal(await page.locator('[data-product-card]:visible').count(),data.products.length);
-   assert.equal(await page.locator('[data-specialist-guide]:visible').count(),6);
+   assert.equal(await page.locator('[data-specialist-guide]:visible').count(),8);
    const example=data.products[0];await page.locator('#product-query').fill(example.name);
    assert(await page.locator('#produkt-'+example.id).isVisible());
    await page.locator('#product-filters button[type=reset]').click();

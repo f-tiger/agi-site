@@ -5,6 +5,7 @@ function searchText(value){
  const alternative=value.replace(/[äöü]/gi,letter=>umlauts[letter.toLocaleLowerCase('de')]);
  return normalize(alternative===value?value:value+' '+alternative);
 }
+const words=value=>value.match(/[\p{L}\p{N}]+/gu)||[];
 const root=document.querySelector('[data-product-directory]');
 if(root){
  const form=root.querySelector('#product-filters'),query=root.querySelector('#product-query'),category=root.querySelector('#product-category'),status=root.querySelector('#product-filter-status'),empty=root.querySelector('#product-filter-empty');
@@ -16,23 +17,28 @@ if(root){
   category:node.dataset.category
  }));
  const guideSection=root.querySelector('[data-specialist-guides]');
- const guides=[...root.querySelectorAll('[data-specialist-guide]')].map(node=>({
-  node,
-  text:searchText(node.textContent+' '+(node.dataset.searchTerms||''))
- }));
+ const guides=[...root.querySelectorAll('[data-specialist-guide]')].map(node=>{
+  const text=searchText(node.textContent+' '+(node.dataset.searchTerms||''));
+  const exactTerms=node.hasAttribute('data-exact-guide-terms')?new Set(words(text)):null;
+  return {node,text,exactTerms};
+ });
  const partResults=root.querySelector('[data-part-results]');
  const partGuides=[...root.querySelectorAll('[data-part-guide]')].map(node=>({
   node, category:node.dataset.category,
   text:searchText(node.textContent+' '+node.dataset.searchTerms)
  }));
  const render=()=>{
-  const terms=normalize(query.value).split(' ').filter(Boolean),selected=category.value;let count=0,groupCount=0;
+  const input=normalize(query.value),terms=input.split(' ').filter(Boolean),modelTerms=words(input);
+  const selected=category.value;let count=0,groupCount=0;
   const matches=text=>terms.every(term=>text.includes(term));
   for(const card of cards){const visible=(!selected||card.category===selected)&&matches(card.text);card.node.hidden=!visible;if(visible)count++;}
   for(const group of groups){const has=cards.some(card=>card.category===group.dataset.productCategory&&!card.node.hidden);group.hidden=!has;if(has)groupCount++;}
   let guideCount=0;
   for(const guide of guides){
-   guide.node.hidden=Boolean(selected)||!matches(guide.text);
+   const match=guide.exactTerms
+    ? !input||(modelTerms.length>0&&modelTerms.every(term=>guide.exactTerms.has(term)))
+    : matches(guide.text);
+   guide.node.hidden=Boolean(selected)||!match;
    if(!guide.node.hidden)guideCount++;
   }
   if(guideSection)guideSection.hidden=guideCount===0;
