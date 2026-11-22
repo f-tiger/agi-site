@@ -11,6 +11,13 @@ assert(live || ['127.0.0.1', 'localhost'].includes(base.hostname), 'Use the loca
 
 const cases = [
   {
+    question: 'Mein Bosch GlassVAC lag nachts bei Frost in der Garage. Kann ich ihn dort gleich an die Steckdose hängen?',
+    tool: 'glassvac_kalt_lagern_einschalten_laden_getrennt',
+    category: 'Fenstersauger',
+    guide: '/produkte.html#bosch-glassvac-einsatz-und-pflege',
+    heading: 'Bosch GlassVAC im Haushalt einsetzen und pflegen',
+  },
+  {
     question: 'Welcher befeuchtet effizienter: der Beurer LB 55 mit 365 Watt oder Oskar mit 6 bis 18 Watt?',
     tool: 'befeuchter_nennwatt_abgabeleistung_bezug',
     category: 'Modellunterlagen',
@@ -93,7 +100,7 @@ async function assertGuideVisible(page, item) {
     await page.getByText('Ich habe bereits einen Trockner', {exact:true}).click();
     assert(await page.getByText(/16,80 € Ersparnis pro Saison/).isVisible());
   }
-  if (item.category === 'Fenstersauger') {
+  if (item.guide.endsWith('#fenstersauger-belege')) {
     await page.getByRole('link', {name:'Fenstersauger-Modelle und Lieferumfang vergleichen'}).click();
     await page.waitForURL(url => url.hash === '#modelle-fenstersauger');
     await page.getByRole('heading', {name:'Fenstersauger: Modelle und Kaufgrenzen'}).waitFor();

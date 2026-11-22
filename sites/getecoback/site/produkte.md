@@ -1384,7 +1384,7 @@ Diese Hinweise beziehen sich auf das deutsche Bosch GlassVAC Set 06008B7000 und 
 
 - **Flüssigkeit und Oberfläche.** Der Fenstersauger ist für Flüssigkeit auf glatten, nicht porösen Flächen wie Glas, Spiegeln und Fliesen gedacht. Für trockenen Staub, poröse Flächen sowie heißes Wasser oder brennbare Flüssigkeiten ist dieser Einsatz ausgeschlossen.
 
-- **Temperatur für drei verschiedene Schritte.** Bosch nennt −20 bis +50 °C für die Lagerung. Unter −5 °C das Gerät nicht einschalten. Bei Temperaturen unter 0 °C ist die Leistung eingeschränkt. Für die Ladeumgebung empfiehlt Bosch 0 bis +45 °C.
+- **Nach Frost zuerst die Temperatur am Ladeort messen.** Bosch empfiehlt 0 bis +45 °C als Umgebungstemperatur beim Laden. Eine frostige Nacht sagt dir nicht, welche Temperatur jetzt am Ladeort herrscht. Für die Lagerung nennt Bosch −20 bis +50 °C. Unter −5 °C das Gerät nicht einschalten. Bei Temperaturen unter 0 °C ist die Leistung eingeschränkt.
 
 - **Schmutzwassertank spülen.** Nimm den Saugkopf ab. Fülle sauberes warmes, nicht heißes Wasser bis zur Max-Markierung durch die Öffnung des Saugkopfs ein. Zum Abgießen dient der Ablassverschluss. Tauche das Gerät nicht in Wasser ein.
 

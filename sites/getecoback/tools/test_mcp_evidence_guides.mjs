@@ -16,6 +16,7 @@ const toolPaths = new Map([
   ['pac_n90_energielabel_zu_stromkosten', '/guide/delonghi-pac-n90-test.html#n90-energielabel'],
   ['waesche_trocknungswechsel_kaufschwelle', '/waeschetrockner-oder-luftentfeuchter.html#laundry-check'],
   ['befeuchter_nennwatt_abgabeleistung_bezug', '/guide/luftbefeuchter-stromverbrauch.html#effizienz-vergleichen'],
+  ['glassvac_kalt_lagern_einschalten_laden_getrennt', products + '#bosch-glassvac-einsatz-und-pflege'],
 ]);
 const paths = new Map([
   ['Kaffeemaschinenpflege', `${products}#kaffeevollautomat-pflege-und-kauf`],

@@ -84,6 +84,33 @@ test('compact humidifier results keep a nominal wattage from being treated as a 
   assert.deepEqual(writes,[]);
 });
 
+test('GlassVAC charging decisions require measured temperature and the matched set manual', async () => {
+  const {call,writes} = fixture();
+  const name = 'glassvac_kalt_lagern_einschalten_laden_getrennt';
+  const product = origin+'/produkte.html';
+  const found = await call(compactPath,findName,
+    {frage:'Bosch GlassVAC stand im Frost. Darf ich ihn dort an die Steckdose hängen?'});
+  assert.equal(found.structuredContent.tools[0]?.name,name);
+  assert.equal(found.structuredContent.tools[0].citation_url,product);
+  assert.equal(found.structuredContent.tools[0].guide_url,product+'#bosch-glassvac-einsatz-und-pflege');
+  const known = {paketkennung:'06008B7000',handbuch_zugeordnet:true};
+  const invoke = args => call(compactPath,runName,{name,eingaben:{...known,...args}});
+  const missing = await invoke({});
+  assert.equal(missing.isError,true);
+  assert.equal(missing.structuredContent,undefined);
+  for (const [umgebung_c,start,charge] of [[-8,false,false],[-5,true,false],[2,true,true]]) {
+    const result = (await invoke({umgebung_c})).structuredContent;
+    assert.equal(result.im_lagerbereich,true);
+    assert.equal(result.einschalten_im_temperaturbereich,start);
+    assert.equal(result.im_empfohlenen_ladebereich,charge);
+    assert.equal(result.guide_url,product+'#bosch-glassvac-einsatz-und-pflege');
+  }
+  const other = (await invoke({umgebung_c:2,paketkennung:'06008B7200'})).structuredContent;
+  assert.equal(other.status,'modell_oder_handbuch_offen');
+  assert.equal(other.beleg,null);
+  assert.deepEqual(writes,[]);
+});
+
 test('only the exact compact profile changes the HTTP tool list and adds resources', async () => {
   const {result,rpc,call,writes} = fixture();
   const protocolVersion = '2025-06-18';

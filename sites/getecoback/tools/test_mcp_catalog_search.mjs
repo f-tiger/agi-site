@@ -29,7 +29,7 @@ test('appliance search results link to exact owned evidence and keep canonical m
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
   assert.equal(withGuides.length, 221);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 17);
+  assert.equal(destinations.size, 18);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);
@@ -103,6 +103,33 @@ test('German humidifier efficiency questions reach the comparable measurement ch
   }
   const filter = 'Wann muss ich den Filter von meinem Oskar wechseln?';
   assert.equal((await catalogue({q:filter,view:'compact'})).tools[0]?.name,'oskar_filtermatten_gemeinsamer_vorrat');
+  assert.equal(analytics,0);
+});
+
+test('GlassVAC cold charging questions find the measured-temperature decision', async () => {
+  const name = 'glassvac_kalt_lagern_einschalten_laden_getrennt';
+  for (const q of [
+    'Mein Bosch GlassVAC lag nachts bei Frost in der Garage. Kann ich ihn dort gleich an die Steckdose hängen?',
+    'Der Bosch GlassVAC 06008B7000 liegt im unbeheizten Schuppen. Darf ich den Akku dort bei minus 3 Grad aufladen?',
+    'Mein Bosch-Fenstersauger 06008B7000 stand über Nacht bei Frost in der Garage. Kann er gleich ans Ladegerät?',
+    'Kann ich meinen Glass-Vac bei −5 °C im Auto am USB-Kabel laden oder muss er erst ins Warme?',
+  ]) {
+    const {tools} = await catalogue({q,view:'compact',limit:'5'});
+    assert.equal(tools[0]?.name,name,q);
+    assert.deepEqual(names(tools),names(findCatalogueTools(compact,{query:q})).slice(0,5),q);
+    assert.equal(toolGuidePath(tools[0]),'/produkte.html#bosch-glassvac-einsatz-und-pflege',q);
+    assert.deepEqual((await catalogue({q,category:'Feuchte',tool:name})).tools,[],q);
+  }
+  for (const q of [
+    'Welches USB-Kabel passt zum Bosch GlassVAC 06008B7000?',
+    'Bosch GlassVAC 06008B7000: Welchen Ladeanschluss zeigt das Foto aus der kalten Garage?',
+    'Wie lädt man den Kärcher WV 8 bei −3 °C in der Garage?',
+    'Bosch GlassVAC 06008B7000: Ist auf dem Angebotsfoto der kleine Saugkopf dabei?',
+  ]) {
+    const {tools} = await catalogue({q,view:'compact',limit:'5'});
+    assert.notEqual(tools[0]?.name,name,q);
+    assert.deepEqual(names(tools),names(findCatalogueTools(compact,{query:q})).slice(0,5),q);
+  }
   assert.equal(analytics,0);
 });
 
@@ -423,7 +450,9 @@ test('German Fenstersauger questions lead to the right decision and owned eviden
     assert.deepEqual(names(tools), client, question);
     const matching = tools.find(tool => tool.name === expected);
     assert.ok(matching, question);
-    assert.equal(matching.guide_url, origin + '/produkte.html#fenstersauger-belege');
+    const section = expected === 'glassvac_kalt_lagern_einschalten_laden_getrennt'
+      ? 'bosch-glassvac-einsatz-und-pflege' : 'fenstersauger-belege';
+    assert.equal(matching.guide_url, origin + '/produkte.html#' + section);
   }
 });
 
