@@ -19,12 +19,12 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUNDLE: ecoback-local-tools-1.22.24.mcpb
-  VERSION: '1.22.24'
-  UPSTREAM_SHA: 5aa52426b8cca258abad7e29ed28cb9cc91dc8b1
+  BUNDLE: ecoback-local-tools-1.22.25.mcpb
+  VERSION: '1.22.25'
+  UPSTREAM_SHA: 5c005eeaa4d525fa6092e1569b6787554906d453
   NAME: io.github.f-tiger/ecoback-local-tools
   RELEASE_TAG: fleet-mcp-registry-2026-10-10
-  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.24.mcpb
+  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.25.mcpb
   REGISTRY_VERSIONS: https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions
   SOURCE_URL: https://github.com/f-tiger/getecoback-mcp
   MCPB_SCHEMA: https://raw.githubusercontent.com/modelcontextprotocol/mcpb/70fe3b34cd6dff1b3bba046638edc72a6467a4fb/schemas/mcpb-manifest-v0.3.schema.json
@@ -111,14 +111,17 @@ jobs:
               source:"https://www.meaco.de/produkt/meaco-dry-arete-one-pumpe/",
               outcomes:["pump_check","pump_check","gravity_check","tank","inspect_route"]
             } and .compact.drainRoute == .drainRoute and
-            .measuredVentilation == {
+            (.measuredVentilation | del(.shareDigests)) == {
               name:"keller_lueften_taupunkt_messwerte",
               guide:"https://getecoback.com/guide/keller-lueften-sommer.html#taupunkt",
+              shareUrl:"https://getecoback.com/guide/keller-lueften-sommer.html#taupunkt",
               cases:[["kondensationsrisiko",19.5,10.4,-4.5,-9.1,false],["probeweise_lueften",6.7,10.4,8.3,3.7,false],
                 ["grenzbereich_nachmessen",6.7,10.4,0.3,3.7,true],["keine_trocknung",14.4,10.4,1.6,-4,false],
                 ["grenzbereich_nachmessen",10,13.2,1,3.2,true]],
               missingRejected:true,legacyPreserved:true
-            } and .compact.measuredVentilation == .measuredVentilation and
+            } and (.measuredVentilation.shareDigests | length == 5 and (unique | length == 5)) and
+            all(.measuredVentilation.shareDigests[]; test("^[a-f0-9]{64}$")) and
+            .compact.measuredVentilation == .measuredVentilation and
             .exactFilter.tool == "luftreiniger_ersatzfilter_zuordnung" and
             .exactFilter.guide == "https://getecoback.com/ersatzfilter.html#finder" and
             .exactFilter.unresolved == true and .exactFilter.unsupportedRejected == 4 and

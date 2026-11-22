@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.22.24';
-const revision = '5aa52426b8cca258abad7e29ed28cb9cc91dc8b1';
+const version = '1.22.25';
+const revision = '5c005eeaa4d525fa6092e1569b6787554906d453';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -426,6 +426,14 @@ async function verifyMeasuredVentilation(call) {
     [{aussen_c:10,aussen_rh_prozent:100,innen_c:20,innen_rh_prozent:65,wand_c:11},['grenzbereich_nachmessen',10,13.2,1,3.2,true]],
   ];
   const casesChecked = [];
+  const shareDigests = [];
+  const nextStep = {
+    kondensationsrisiko:'Für die Trocknung auf andere Außenbedingungen warten.',
+    probeweise_lueften:'Kurz probeweise lüften und anschließend erneut messen.',
+    grenzbereich_nachmessen:'Innen, außen und an der kältesten Wand zeitgleich nachmessen.',
+    keine_trocknung:'Für die Trocknung auf einen niedrigeren Außentaupunkt warten.',
+  };
+  const de = value => String(value).replace('.', ',');
   for (const [args,expected] of cases) {
     const result = await call(ventilationTool,args);
     assert.equal(result.isError,false);
@@ -435,6 +443,16 @@ async function verifyMeasuredVentilation(call) {
     assert.deepEqual(observed,expected);
     assert.equal(data.citation_url,ventilationCitation);
     assert.equal(data.guide_url,ventilationGuide);
+    assert.equal(data.share_url,ventilationGuide);
+    const [status,outdoorDew,indoorDew,,,wallRisk] = expected;
+    assert.equal(data.share_text_de, [
+      'Keller lüften · Eingegebene Werte, nicht unabhängig geprüft',
+      `Außen ${de(args.aussen_c)} °C / ${de(args.aussen_rh_prozent)} % r. F. → Taupunkt ca. ${de(outdoorDew)} °C. Innen ${de(args.innen_c)} °C / ${de(args.innen_rh_prozent)} % r. F. → ca. ${de(indoorDew)} °C. Kälteste geprüfte Wand: ${de(args.wand_c)} °C.`,
+      `${data.antwort.replace(/\.$/, '')}. ${nextStep[status]}${wallRisk?' Auch vorhandene Kellerluft kann an dieser Wand kondensieren.':''}`,
+      'Bei sichtbarer Nässe zuerst die Ursache klären. Notwendige Lüftung für die Luftqualität bleibt separat.',
+      `Rechenweg und Quellen im EcoBack-Ratgeber (enthält Affiliate-Links): ${ventilationGuide}`,
+    ].join('\n'));
+    shareDigests.push(sha256(data.share_text_de));
     assert.equal(data.quellen_geprueft_am,'2026-11-22');
     assert.equal(new URL(data.quellen_url).hostname,'www.umweltbundesamt.de');
     assert.equal(new URL(data.verbraucherzentrale_url).hostname,'www.verbraucherzentrale.de');
@@ -449,7 +467,8 @@ async function verifyMeasuredVentilation(call) {
   assert.equal(legacy.structuredContent,undefined);
   assert.match(legacy.content[0].text,/Außenluft: 10,1 °C/);
   assert.match(legacy.content[0].text,/geschätzten Wandtemperatur von 14,0 °C/);
-  return {name:ventilationTool,guide:ventilationGuide,cases:casesChecked,missingRejected:true,legacyPreserved:true};
+  return {name:ventilationTool,guide:ventilationGuide,cases:casesChecked,shareUrl:ventilationGuide,
+    shareDigests,missingRejected:true,legacyPreserved:true};
 }
 
 async function verifyExactFilter(call) {
