@@ -194,6 +194,11 @@ Version 1.22.20 helps both offline modes find the existing coffee-machine
 water filter check by the documented German model and offered filter
 designation. Model compatibility and maintenance remain separate queries.
 
+Version 1.22.21 adds the exact German compatibility check for a complete
+Kärcher 170 mm suction nozzle. Both profiles separate the accessory
+article from a replacement lip and retain separate measured glass-width,
+charging and support routes.
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the

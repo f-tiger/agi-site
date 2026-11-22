@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.22.20';
-const revision = 'c7327447288e0e0727d9bf0d0c01a5b6faa103ca';
+const version = '1.22.21';
+const revision = '799ada1d2f1bc4b26d2c880399be77ff1148f4b8';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -29,7 +29,7 @@ const featureNames = ['entfeuchter_ablaufcheck', 'btu_empfehlung', 'fensterabdic
   'luftreiniger_ersatzfilter_zuordnung', 'philips_verdunsterfilter_zuordnung', 'heizdecke_stromkosten_nennleistung',
   'hygrometer_messbereiche', 'pac_n90_ean_abgleichen', 'midea_portasplit_fensterfalz_pruefen',
   'tesamoll_fensterdichtung_profil_pruefen', 'klimaanlage_geraeusch_vergleich', 'trotec_ttk75_eco_pruefpunkt',
-  'kaffeevollautomat_intenza_aquaclean_filterfamilie_modellpruefung'];
+  'kaffeevollautomat_intenza_aquaclean_filterfamilie_modellpruefung', 'fenstersauger_170mm_saugduese_geraetezuordnung'];
 const entry = 'src/server.mjs';
 const legacyHelpers = fileURLToPath(new URL('../mcp-registry/local-packages/', import.meta.url));
 const sha256 = buffer => createHash('sha256').update(buffer).digest('hex');
@@ -67,6 +67,9 @@ const ttk75Guide = ttk75Citation + '#ttk75-pruefpunkt';
 const coffeeFilterTool = 'kaffeevollautomat_intenza_aquaclean_filterfamilie_modellpruefung';
 const coffeeCitation = 'https://getecoback.com/produkte.html';
 const coffeeFilterGuide = coffeeCitation + '#kaffee-wasserfilter';
+const kaercherNozzleTool = 'fenstersauger_170mm_saugduese_geraetezuordnung';
+const kaercherNozzleCitation = 'https://getecoback.com/produkte.html';
+const kaercherNozzleGuide = kaercherNozzleCitation + '#kaercher-170mm-saugduese';
 const portaSplitLipTool = 'midea_portasplit_fensterfalz_pruefen';
 const portaSplitCitation = 'https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html';
 const portaSplitLipGuide = portaSplitCitation + '#fensterfalz';
@@ -803,11 +806,50 @@ async function verifyCoffeeFilterCompatibility(call) {
   return {name:coffeeFilterTool,guide:coffeeFilterGuide,exactPackSource,records,rejected:invalid.length};
 }
 
+async function verifyKaercherNozzle(call) {
+  const complete = 'komplette_saugduese';
+  const confirmed = 'herstellerliste_bestaetigt';
+  const cases = [
+    ['WV 2 Plus Multi Edition','2.633-112.0',complete,[confirmed,['2.633-112.0'],['2.633-112.0']]],
+    ['WV 3 Comfort Precision+ Black','2.633-605.0',complete,[confirmed,['2.633-605.0'],['2.633-605.0']]],
+    ['WV 6 Plus','2.633-512.0',complete,[confirmed,['2.633-512.0','2.633-532.0'],['2.633-512.0','2.633-532.0']]],
+    ['WV 8 Signature Line','2.633-532.0',complete,[confirmed,['2.633-532.0'],['2.633-532.0']]],
+    ['WV 8 Signature Line','2.633-112.0',complete,['kombination_nicht_belegt',['2.633-532.0'],['2.633-112.0','2.633-532.0']]],
+    ['unbekannt','2.633-532.0',complete,['zuordnung_offen',[],['2.633-532.0']]],
+    ['WV 8 Signature Line','unbekannt','nur_abziehlippe',['nur_abziehlippe',['2.633-532.0'],['2.633-532.0']]],
+  ];
+  const records = [];
+  for (const [geraet, teilenummer, angebotsart, expected] of cases) {
+    const result = await call({geraet,teilenummer,angebotsart});
+    assert.equal(result.isError,false);
+    const data = result.structuredContent;
+    const observed = [data.status,data.dokumentierte_duesen,data.belege.map(item=>item.teilenummer)];
+    assert.deepEqual(observed,expected);
+    assert.deepEqual([data.markt,data.citation_url,data.guide_url],['Deutschland',kaercherNozzleCitation,kaercherNozzleGuide]);
+    assert.ok(data.belege.every(item=>new URL(item.url).hostname === 'www.karcher.com' &&
+      item.url.endsWith('p'+item.teilenummer.replace(/\D/g,'')) && item.geprueft_am === '2026-11-22'));
+    assert.match(data.hinweis,/170 mm.*Nennbreite/);
+    assert.doesNotMatch(result.content[0].text,/https?:\/\/[^"\s]*(?:amazon\.|amzn\.)|[?&]tag=/i);
+    records.push(observed);
+  }
+  const invalid = [
+    {geraet:'WV 3',teilenummer:'2.633-605.0',angebotsart:complete},
+    {geraet:'WV 8 Signature Line',teilenummer:'2.633-513.0',angebotsart:'nur_abziehlippe'},
+    {geraet:'WV 8 Signature Line',teilenummer:'2.633-532.0'},
+  ];
+  for (const input of invalid) {
+    const result = await call(input);
+    assert.equal(result.isError,true);
+    assert.equal(result.structuredContent,undefined);
+  }
+  return {name:kaercherNozzleTool,guide:kaercherNozzleGuide,records,rejected:invalid.length};
+}
+
 async function verifyStdio(extracted, manifest) {
   const {TOOLS} = await import(pathToFileURL(join(extracted,'src/tools.mjs')));
   const {expandedDefinitions} = await import(pathToFileURL(join(extracted,'src/eco-suite/src/mcp-expanded.mjs')));
   const expected = JSON.parse(JSON.stringify(TOOLS));
-  assert.equal(expected.length,2028);
+  assert.equal(expected.length,2029);
   assert.deepEqual(manifest.server.mcp_config, {command:'node',args:['${__dirname}/'+entry]});
   return withStdio(extracted,[],async rpc => {
     const listed = [], sizes = [], cursors = new Set();
@@ -823,9 +865,9 @@ async function verifyStdio(extracted, manifest) {
       }
     } while (cursor !== undefined);
     assert.deepEqual(listed,expected);
-    assert.deepEqual(sizes,[...Array(20).fill(100),28]);
+    assert.deepEqual(sizes,[...Array(20).fill(100),29]);
     const names = new Set(listed.map(tool=>tool.name));
-    assert.equal(names.size,2028);
+    assert.equal(names.size,2029);
     assert.ok(oldNames.every(name=>names.has(name)), 'Expected all eight supported legacy tools');
     assert.ok([...names].every(name=>!/balkonspeicher|balkonkraftwerk|solarbank|pv[_-]speicher/i.test(name)));
     assert.ok(manifest.tools.every(tool=>names.has(tool.name)));
@@ -847,9 +889,10 @@ async function verifyStdio(extracted, manifest) {
     const exactWindowGuides = new Map([
       [glassvacTemperatureTool, glassvacTemperatureGuide],
       [kaercherLedTool, kaercherLedGuide],
+      [kaercherNozzleTool, kaercherNozzleGuide],
     ]);
     const windowTools = expandedDefinitions.filter(tool => tool.category === 'Fenstersauger');
-    assert.equal(windowTools.length,12);
+    assert.equal(windowTools.length,13);
     for (const tool of windowTools) {
       assert.ok(names.has(tool.name));
       const example = await rpc('tools/call',{name:tool.name,arguments:tool.example.args});
@@ -893,9 +936,11 @@ async function verifyStdio(extracted, manifest) {
       rpc('tools/call',{name:ttk75Tool,arguments:args}));
     const coffeeFilter = await verifyCoffeeFilterCompatibility(args =>
       rpc('tools/call',{name:coffeeFilterTool,arguments:args}));
+    const kaercherNozzle = await verifyKaercherNozzle(args =>
+      rpc('tools/call',{name:kaercherNozzleTool,arguments:args}));
     return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,windowCondensation,decimalWindowWidth,
       singleLaundry,fritzValve,drainRoute,measuredVentilation,exactFilter,philipsFilter,warmthCost,hygrometerComparison,n90Identity,
-      portaSplitWindowLip,tesamollProfiles,coolingNoise,ttk75Point,coffeeFilter,
+      portaSplitWindowLip,tesamollProfiles,coolingNoise,ttk75Point,coffeeFilter,kaercherNozzle,
       firstExamples:['btu_empfehlung','entfeuchter_ablaufcheck'],finder:verifyFinder(extracted,drain),
       lastPageExample:last.name,legacyNames:oldNames.length,network:'disabled'};
   });
@@ -1503,6 +1548,16 @@ async function verifyCompactStdio(extracted) {
     assert.deepEqual(coffeeMatch.inputSchema.required,['modell','filter']);
     const coffeeFilter = await verifyCoffeeFilterCompatibility(eingaben =>
       rpc('tools/call',{name:runner,arguments:{name:coffeeFilterTool,eingaben}}));
+    const nozzleLookup = await rpc('tools/call',{
+      name:finder,arguments:{frage:'Passt die komplette 2.633-605.0 Saugdüse an den Kärcher WV 3 Comfort Precision+ Black?'},
+    });
+    assert.equal(nozzleLookup.isError,false);
+    const nozzleMatch = nozzleLookup.structuredContent.tools[0];
+    assert.equal(nozzleMatch?.name,kaercherNozzleTool);
+    assert.equal(nozzleMatch.guide_url,kaercherNozzleGuide);
+    assert.deepEqual(nozzleMatch.inputSchema.required,['geraet','teilenummer','angebotsart']);
+    const kaercherNozzle = await verifyKaercherNozzle(eingaben =>
+      rpc('tools/call',{name:runner,arguments:{name:kaercherNozzleTool,eingaben}}));
     const tadoOventrop = await verifyCompactTadoOventrop(rpc,finder,runner);
     const householdDecisions = await verifyCompactHouseholdDecisions(rpc,runner);
     const windowWidth = await verifyCompactWindowWidth(rpc,finder,runner);
@@ -1514,7 +1569,8 @@ async function verifyCompactStdio(extracted) {
       tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,
       liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,singleLaundry,fritzValve,drainRoute,
       measuredVentilation,exactFilter,philipsFilter,warmthCost,hygrometerComparison,laundryPrecision,windowBlade,windowLookup,
-      windowWidth,decimalWindowWidth,householdDecisions,tadoOventrop,n90Costs,n90Identity,portaSplitWindowLip,tesamollProfiles,coolingNoise,ttk75Point,coffeeFilter,
+      windowWidth,decimalWindowWidth,householdDecisions,tadoOventrop,n90Costs,n90Identity,portaSplitWindowLip,
+      tesamollProfiles,coolingNoise,ttk75Point,coffeeFilter,kaercherNozzle,
       humidifierEfficiency,glassvacTemperature,windowSubject,windowCondensation,
     };
   });
@@ -1592,6 +1648,7 @@ try {
   assert.deepEqual(result.coolingNoise,result.compact.coolingNoise);
   assert.deepEqual(result.ttk75Point,result.compact.ttk75Point);
   assert.deepEqual(result.coffeeFilter,result.compact.coffeeFilter);
+  assert.deepEqual(result.kaercherNozzle,result.compact.kaercherNozzle);
   assert.deepEqual(result.resource,result.compact.resource);
   result.archiveReadme = {replacedVersion:readme.previousVersion,registryLatestUrl};
   const identifier = `${releaseUrl}/${file}`;
