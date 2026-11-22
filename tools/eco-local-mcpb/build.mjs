@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.21.0';
-const revision = '02cd77f2c9716d0bb62c670a945c6cdf85386d4c';
+const version = '1.22.0';
+const revision = '6f511730bc8063c96b4c0b7b3c61a367b1be0f05';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -172,7 +172,7 @@ async function verifyStdio(extracted, manifest) {
   const {TOOLS} = await import(pathToFileURL(join(extracted,'src/tools.mjs')));
   const {expandedDefinitions} = await import(pathToFileURL(join(extracted,'src/eco-suite/src/mcp-expanded.mjs')));
   const expected = JSON.parse(JSON.stringify(TOOLS));
-  assert.equal(expected.length,2019);
+  assert.equal(expected.length,2020);
   assert.deepEqual(manifest.server.mcp_config, {command:'node',args:['${__dirname}/'+entry]});
   return withStdio(extracted,[],async rpc => {
     const listed = [], sizes = [], cursors = new Set();
@@ -188,9 +188,9 @@ async function verifyStdio(extracted, manifest) {
       }
     } while (cursor !== undefined);
     assert.deepEqual(listed,expected);
-    assert.deepEqual(sizes,[...Array(20).fill(100),19]);
+    assert.deepEqual(sizes,[...Array(20).fill(100),20]);
     const names = new Set(listed.map(tool=>tool.name));
-    assert.equal(names.size,2019);
+    assert.equal(names.size,2020);
     assert.ok(oldNames.every(name=>names.has(name)), 'Expected all eight supported legacy tools');
     assert.ok([...names].every(name=>!/balkonspeicher|balkonkraftwerk|solarbank|pv[_-]speicher/i.test(name)));
     assert.ok(manifest.tools.every(tool=>names.has(tool.name)));
@@ -270,6 +270,50 @@ async function verifyCompactLaundryPrecision(rpc, finder) {
     topMatches.push(topMatch);
   }
   return topMatches;
+}
+
+async function verifyCompactN90Costs(rpc, finder, runner) {
+  const frage = 'DeLonghi PAC N90 ECO Silent Energielabel Stromkosten 8004399512351';
+  const lookup = await rpc('tools/call',{name:finder,arguments:{frage}});
+  assert.equal(lookup.isError,false);
+  const name = lookup.structuredContent.tools[0]?.name;
+  assert.equal(name,'pac_n90_energielabel_zu_stromkosten');
+  const inputs = {ean:8004399512351,modell:'PAC N90 ECO Silent',arbeitspreis_eur_kwh:0.30,
+    messung_vollstaendig:true,messenergie_kwh:1.2,messdauer_min:90};
+  const call = changes => rpc('tools/call',{name:runner,arguments:{name,eingaben:{...inputs,...changes}}});
+  const checked = async changes => {
+    const reply = await call(changes);
+    assert.equal(reply.isError,false);
+    return reply.structuredContent;
+  };
+  const exact = await checked({});
+  assert.equal(exact.status,'modellangaben_passen');
+  assert.equal(exact.label_eu_kwh_je_60_min,0.9);
+  assert.equal(exact.label_kuehlleistung_kw,2.5);
+  assert.equal(exact.label_referenz_eur_je_60_min,0.27);
+  assert.equal(exact.messzeitraum_eur,0.36);
+  assert.equal(exact.messwert_eur_je_stunde,0.24);
+  assert.equal(exact.energielabel_url,'https://library.delonghigroup.com/assetbank-delonghi/action/directLinkImage?assetId=209150&download=true');
+  assert.equal(exact.guide_url,'https://getecoback.com/guide/delonghi-pac-n90-test.html#n90-energielabel');
+
+  for (const [ean,status] of [[0,'ean_fehlt'],[8004399512352,'ean_abweicht']]) {
+    const other = await checked({ean});
+    assert.equal(other.status,status);
+    assert.deepEqual([other.label_eu_kwh_je_60_min,other.label_referenz_eur_je_60_min,other.messzeitraum_eur],[null,null,null]);
+  }
+  const unknownTariff = await checked({arbeitspreis_eur_kwh:-1});
+  assert.equal(unknownTariff.tarif_bekannt,false);
+  assert.equal(unknownTariff.label_eu_kwh_je_60_min,0.9);
+  assert.deepEqual([unknownTariff.label_referenz_eur_je_60_min,unknownTariff.messzeitraum_eur],[null,null]);
+  const free = await checked({arbeitspreis_eur_kwh:0});
+  assert.deepEqual([free.tarif_bekannt,free.label_referenz_eur_je_60_min,free.messzeitraum_eur],[true,0,0]);
+  assert.equal((await call({arbeitspreis_eur_kwh:-0.5})).isError,true);
+  const incomplete = await checked({messung_vollstaendig:false});
+  assert.equal(incomplete.label_referenz_eur_je_60_min,0.27);
+  assert.deepEqual([incomplete.messung_auswertbar,incomplete.messzeitraum_eur],[false,null]);
+  return {name,ean:inputs.ean,labelKwhPer60Min:exact.label_eu_kwh_je_60_min,coolingKw:exact.label_kuehlleistung_kw,
+    labelEurPer60Min:exact.label_referenz_eur_je_60_min,measuredRunEur:exact.messzeitraum_eur,
+    measuredEurPerHour:exact.messwert_eur_je_stunde,unknownTariffEur:unknownTariff.messzeitraum_eur};
 }
 
 async function verifyCompactTadoOventrop(rpc, finder, runner) {
@@ -488,6 +532,7 @@ async function verifyCompactStdio(extracted) {
     assert.deepEqual(buyer.content.filter(part=>part.type==='resource'),[{type:'resource',resource}]);
     const laundryComparison = await verifyCompactLaundryComparison(rpc,finder,runner);
     const laundryPrecision = await verifyCompactLaundryPrecision(rpc,finder);
+    const n90Costs = await verifyCompactN90Costs(rpc,finder,runner);
     const tadoOventrop = await verifyCompactTadoOventrop(rpc,finder,runner);
     const householdDecisions = await verifyCompactHouseholdDecisions(rpc,runner);
     const windowWidth = await verifyCompactWindowWidth(rpc,finder,runner);
@@ -495,7 +540,7 @@ async function verifyCompactStdio(extracted) {
     const windowLookup = await verifyCompactWindowLookup(rpc,finder);
     return {
       tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,
-      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,laundryPrecision,windowBlade,windowLookup,windowWidth,householdDecisions,tadoOventrop,
+      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,laundryPrecision,windowBlade,windowLookup,windowWidth,householdDecisions,tadoOventrop,n90Costs,
     };
   });
 }

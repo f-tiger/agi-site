@@ -19,12 +19,12 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUNDLE: ecoback-local-tools-1.21.0.mcpb
-  VERSION: '1.21.0'
-  UPSTREAM_SHA: 02cd77f2c9716d0bb62c670a945c6cdf85386d4c
+  BUNDLE: ecoback-local-tools-1.22.0.mcpb
+  VERSION: '1.22.0'
+  UPSTREAM_SHA: 6f511730bc8063c96b4c0b7b3c61a367b1be0f05
   NAME: io.github.f-tiger/ecoback-local-tools
   RELEASE_TAG: fleet-mcp-registry-2026-10-10
-  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.21.0.mcpb
+  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.0.mcpb
   REGISTRY_VERSIONS: https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions
   SOURCE_URL: https://github.com/f-tiger/getecoback-mcp
   MCPB_SCHEMA: https://raw.githubusercontent.com/modelcontextprotocol/mcpb/70fe3b34cd6dff1b3bba046638edc72a6467a4fb/schemas/mcpb-manifest-v0.3.schema.json
@@ -96,7 +96,7 @@ jobs:
           ' "$root/servers/ecoback-local-tools.json"
           jq -e --arg name "$NAME" --arg version "$VERSION" --arg revision "$UPSTREAM_SHA" --arg sha "$digest" --arg latest "$REGISTRY_VERSIONS/latest" '
             .name == $name and .version == $version and .sourceRevision == $revision and
-            .fileSha256 == $sha and .tools == 2019 and .pages == 21 and .legacyNames == 8 and .windowExamples == 12 and
+            .fileSha256 == $sha and .tools == 2020 and .pages == 21 and .legacyNames == 8 and .windowExamples == 12 and
             .network == "disabled" and (.firstExamples | type == "array" and length > 0) and
             (.lastPageExample != null and (.lastPageExample | length) > 0) and
             .finder.topMatch == "entfeuchter_ablaufcheck" and
@@ -112,6 +112,10 @@ jobs:
             } and
             (.compact.laundryPrecision | type == "array" and length == 2 and
               all(.[]; . != "waesche_trocknungskosten" and (. == null or (type == "string" and length > 0)))) and
+            .compact.n90Costs == {
+              name:"pac_n90_energielabel_zu_stromkosten", ean:8004399512351, labelKwhPer60Min:0.9, coolingKw:2.5,
+              labelEurPer60Min:0.27, measuredRunEur:0.36, measuredEurPerHour:0.24, unknownTariffEur:null
+            } and
             .compact.tadoOventrop == {
               tool:"tado_x_oventrop_ventiladapter_pruefen", separateAdapter:"1011445", ean:"4026755228717",
               direct:"direktmontage_dokumentiert", deferred:6

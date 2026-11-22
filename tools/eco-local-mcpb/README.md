@@ -75,6 +75,12 @@ tado° X documentation. The archive exercises the separate adapter for UniDH
 and UniL, direct mounting for Vindo TH, and the advice to defer a purchase
 when the valve identification, pitch or condition needs clarification.
 
+Version 1.22.0 adds a German cost check for the De’Longhi PAC N90 ECO Silent
+with EAN 8004399512351. At €0.30/kWh its 0.9 kWh EU label reference costs
+€0.27 per standard hour. A measured 1.2 kWh over 90 minutes costs €0.36 for
+that run. The archive checks both figures and the answers when identification,
+tariff or full-run measurements are missing.
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the
