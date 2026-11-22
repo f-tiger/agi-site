@@ -3,8 +3,8 @@ import assert from 'node:assert/strict';
 import worker from '../src/worker.js';
 import {decide} from '../site/assets/moisture-decision.mjs';
 
-async function rpc(method, params = {}, env = {}, ua = 'getecoback-ci/1.0') {
-  const response = await worker.fetch(new Request('https://getecoback.com/mcp/v1', {
+async function rpc(method, params = {}, env = {}, ua = 'getecoback-ci/1.0', path = '/mcp/v1') {
+  const response = await worker.fetch(new Request('https://getecoback.com' + path, {
     method: 'POST', headers: {'content-type': 'application/json', 'user-agent': ua},
     body: JSON.stringify({jsonrpc: '2.0', id: 1, method, params}),
   }), env, {});
@@ -82,7 +82,7 @@ test('tool schema keeps legacy inputs optional and documents bounded choices and
   assert.ok(schema.properties.temperature.description.includes('keine allgemeine Betriebsgrenze'));
   assert.ok(schema.properties.qm.description.includes('heating/cooling only'));
   const init = await rpc('initialize');
-  assert.equal(init.serverInfo.version, '1.24.11');
+  assert.equal(init.serverInfo.version, '1.24.12');
   assert.ok(init.instructions.includes('keine Affiliate-Kauflinks'));
 });
 
@@ -125,6 +125,42 @@ test('the window dew-point tool keeps its earlier result and adds a shareable, c
   const missing = await callWindow(inputs);
   assert.equal(missing.isError, true);
   assert.equal(missing.structuredContent, undefined);
+});
+
+test('basement ventilation requires both measured dew points and a genuinely measured cold wall', async () => {
+  const name = 'keller_lueften_taupunkt_messwerte';
+  const guide = 'https://getecoback.com/guide/keller-lueften-sommer.html';
+  const indoors = {innen_c:17, innen_rh_prozent:65, wand_c:15};
+  const outside = {aussen_c:10, aussen_rh_prozent:80};
+  const native = args => rpc('tools/call', {name, arguments:args});
+  const compact = args => rpc('tools/call', {name:'ecoback_werkzeug_ausfuehren', arguments:{name,eingaben:args}},
+    {}, 'getecoback-ci/1.0', '/mcp/v1?profile=compact');
+  for (const [override, status, dew] of [
+    [{aussen_c:28,aussen_rh_prozent:60},'kondensationsrisiko',19.5],
+    [{aussen_c:28,aussen_rh_prozent:60,wand_c:25},'keine_trocknung',19.5],
+    [{},'probeweise_lueften',6.7],
+    [{wand_c:7},'grenzbereich_nachmessen',6.7],
+    [{aussen_rh_prozent:100,wand_c:11},'grenzbereich_nachmessen',10],
+    [{innen_c:10,innen_rh_prozent:80},'grenzbereich_nachmessen',6.7],
+  ]) {
+    const args = {...indoors,...outside,...override};
+    const result = await native(args);
+    assert.equal(result.isError,false);
+    const value = result.structuredContent;
+    assert.deepEqual(value,(await compact(args)).structuredContent);
+    assert.equal(value.status,status);
+    assert.equal(value.aussen_taupunkt_c,dew);
+    assert.equal(value.citation_url,guide);
+    assert.equal(value.guide_url,guide+'#taupunkt');
+    assert.match(value.quellen_url,/^https:\/\/www\.umweltbundesamt\.de\//);
+    assert.match(value.verbraucherzentrale_url,/^https:\/\/www\.verbraucherzentrale\.de\//);
+    assert.doesNotMatch(body(result),/amazon\.|amzn\.|[?&]tag=/i);
+  }
+  for (const invalid of [{wand_c:undefined},{wand_c:null},{innen_rh_prozent:''},{aussen_rh_prozent:101}]) {
+    const result = await native({...indoors,...outside,...invalid});
+    assert.equal(result.isError,true);
+    assert.equal(result.structuredContent,undefined);
+  }
 });
 
 test('router and legacy telemetry store only fixed outcomes and exclude QA', async () => {

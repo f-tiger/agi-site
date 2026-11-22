@@ -192,6 +192,10 @@
   <p>2 kWh für den Trockner und 1 kWh für den Entfeuchter ergeben 0,60 € und 0,30 € pro Ladung. Vergleiche dieselbe Wäschemenge und Endtrockenheit. Setze <code>comparable</code> bei abweichenden Bedingungen auf <code>false</code>.</p>
   <pre><code>{"jsonrpc":"2.0","id":9,"method":"tools/call","params":{"name":"waesche_trocknungskosten","arguments":{"dryer":2,"dehum":1,"price":0.3,"comparable":true}}}</code></pre>
 
+  <h2 id="keller-lueften-beispiel">Kann die Außenluft meinen Keller trocknen?</h2>
+  <p>Bei 28 °C und 60 % draußen liegt der Taupunkt bei 19,5 °C. Im Keller ergeben 17 °C und 65 % einen Taupunkt von 10,4 °C. An der gemessenen 15 °C kalten Wand kann die Außenluft kondensieren. Der <a href="/guide/keller-lueften-sommer.html#taupunkt">Taupunkt-Check mit eigenen Messwerten</a> prüft den Feuchtevergleich und die Wandtemperatur zusammen.</p>
+  <pre><code>{"jsonrpc":"2.0","id":10,"method":"tools/call","params":{"name":"keller_lueften_taupunkt_messwerte","arguments":{"aussen_c":28,"aussen_rh_prozent":60,"innen_c":17,"innen_rh_prozent":65,"wand_c":15}}}</code></pre>
+
   <h2 id="ablauf-beispiel">Kann mein MeacoDry Arete One 20L ins höher liegende Waschbecken abpumpen?</h2>
   <p>Für eine Schlauchstrecke bergauf brauchst du eine passende Pumpe oder einen anderen Wasserweg. Auch eine kurze Schwelle unterbricht das Gefälle zum tieferen Abfluss. Für das separat angebotene Arete One Pumpenzubehör nennt der deutsche Meaco-Vertrieb bis zu 2,5 m Förderhöhe und einen mitgelieferten 3-m-Schlauch. Prüfe den ganzen Wasserweg vor dem Kauf oder nutze den vorgesehenen Tank. Die Nachweise stehen im <a href="/guide/luftentfeuchter-keller.html#ablauf-vor-kauf">Ablaufvergleich für den Keller</a>.</p>
   <pre><code>{"jsonrpc":"2.0","id":6,"method":"tools/call","params":{"name":"entfeuchter_ablaufcheck","arguments":{"drain":"level_or_uphill","model":"meaco-one-20"}}}</code></pre>
@@ -281,7 +285,7 @@
 <section aria-labelledby="mcp-geraetebelege"><h2 id="mcp-geraetebelege">Haushaltsgeräte im Gebrauch und beim Kauf</h2><p><a href="/api/mcp-tools?category=Kaffeemaschinenpflege&amp;view=compact">Kaffeemaschinenpflege</a> · <a href="/api/mcp-tools?category=Waschmitteldosierung&amp;view=compact">Waschmitteldosierung</a> · <a href="/api/mcp-tools?category=Sp%C3%BClmittel%20und%20Wasserh%C3%A4rte&amp;view=compact">Spülmittel und Wasserhärte</a> · <a href="/api/mcp-tools?category=Bodenstaubsaugerpflege&amp;view=compact">Bodenstaubsaugerpflege</a> · <a href="/api/mcp-tools?category=Dampfb%C3%BCgelger%C3%A4te&amp;view=compact">Dampfbügelgeräte</a> · <a href="/api/mcp-tools?category=Stabmixer%20und%20Zubeh%C3%B6r&amp;view=compact">Stabmixer und Zubehör</a> · <a href="/api/mcp-tools?category=Mikrowellenbelege&amp;view=compact">Mikrowellenbelege</a> · <a href="/api/mcp-tools?category=K%C3%BCchenwaagen&amp;view=compact">Küchenwaagen</a> · <a href="/api/mcp-tools?category=Wasserkocherbelege&amp;view=compact">Wasserkocherbelege</a> · <a href="/api/mcp-tools?category=Toasterbelege&amp;view=compact">Toasterbelege</a> · <a href="/api/mcp-tools?category=Fenstersauger&amp;view=compact">Fenstersauger</a></p></section>
 </article>
 <script type="module">
-import {indexCatalogue, findCatalogueTools, toolGuidePath} from '/assets/mcp-catalog-search.mjs?v=20bccb2de8ac';
+import {indexCatalogue, findCatalogueTools, toolGuidePath} from '/assets/mcp-catalog-search.mjs?v=7e47e648719c';
 
 (() => {
   const catalog = document.getElementById('mcp-catalog');

@@ -59,3 +59,27 @@ test('German dehumidifier hose questions reach the existing drainage section wit
    'Entfeuchter mit Schlauch: Produziere ich bei höherer Luftfeuchtigkeit mehr Wasser?',
  ]) assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u===anchor),q);
 });
+
+test('German ventilation decisions lead to the measured cellar check while general humidity stays separate',()=>{
+ const page='/guide/keller-lueften-sommer.html';
+ const anchor=page+'#taupunkt';
+ for(const q of [
+   'Soll ich meinen Keller lüften? Innen 16 °C und 75 %, draußen 8 °C und 90 %, Wand 12 °C.',
+   'Wird mein Keller trotz höherer Luftfeuchte draußen beim Lüften trockener?',
+   'Soll ich meinen Keller lüften? Die Wandtemperatur habe ich nicht gemessen.',
+   'Kellerfenster öffnen?',
+ ]){
+   const hits=searchEntries(index,q,'de');
+   assert.equal(hits[0]?.entry.u,anchor,q);
+   assert.equal(hits.filter(hit=>hit.entry.u.split('#')[0]===page).length,1);
+   assert.ok(!searchEntries(index,q,'en').some(hit=>hit.entry.u===anchor));
+ }
+ for(const q of [
+   'Wie lange muss ich meinen Keller lüften?',
+   'Soll ich wegen Radon im Keller lüften?',
+   'Wie messe ich Luftfeuchtigkeit im Keller?',
+   'MeacoDry Arete One 20L im kalten Keller bei 10 Grad',
+   'Wie prüfe ich im Keller den Abfluss für meinen Entfeuchter?',
+   'Fenster beschlagen im Schlafzimmer: Soll ich lüften?',
+ ]) assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u===anchor),q);
+});

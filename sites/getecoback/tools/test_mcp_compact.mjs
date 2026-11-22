@@ -447,3 +447,18 @@ test('the FRITZ! 302 Danfoss check keeps package contents and unknown valves sep
   }
   assert.deepEqual(writes,[]);
 });
+
+test('the compact finder routes paired cellar conditions to the existing German calculator section',async()=>{
+  const {call,writes}=fixture();
+  const name='keller_lueften_taupunkt_messwerte';
+  const page=origin+'/guide/keller-lueften-sommer.html';
+  const ask=async frage=>(await call(compactPath,findName,{frage})).structuredContent.tools[0];
+  const best=await ask('Mein Keller hat 16 Grad und 75 %, draußen sind es 8 Grad und 90 %. Soll ich lüften?');
+  assert.equal(best.name,name);
+  assert.equal(best.citation_url,page);
+  assert.equal(best.guide_url,page+'#taupunkt');
+  assert.deepEqual(new Set(best.inputSchema.required),new Set(['innen_c','innen_rh_prozent','aussen_c','aussen_rh_prozent','wand_c']));
+  assert.equal((await ask('taupunkt_lueften')).name,'taupunkt_lueften');
+  assert.equal((await ask('Wie messe ich Luftfeuchtigkeit im Keller?')).name,'keller_hygrometer_anzeige_obere_messgrenze');
+  assert.deepEqual(writes,[]);
+});
