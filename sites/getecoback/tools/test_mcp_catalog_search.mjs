@@ -776,6 +776,9 @@ test('an electric blanket cost question no longer recommends an air conditioner'
    'Meine Beurer HD 75 schaltet nach drei Stunden ab. Wieviel kostet ein Abend bei 0,35 Euro pro Kilowattstunde?',
    'Was kostet eine Heizdecke für zwei Stunden?',
    'Stromverbrauch einer Wärmezudecke',
+   'Was kostet eine Heizdecke an Strom?',
+   'Wie viel Strom braucht eine Heizdecke pro Abend?',
+   'Heizdeckenstromkosten bei 100 Watt',
  ]) {
    const results=(await catalogue({q,view:'compact',limit:'5'})).tools;
    assert.equal(results[0]?.name,name,q);

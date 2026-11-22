@@ -159,6 +159,9 @@ test('German blanket operating-cost questions go to the existing safe calculatio
    'Meine Beurer HD 75 schaltet nach drei Stunden ab. Wieviel kostet ein Abend bei 0,35 Euro pro Kilowattstunde?',
    'Was kostet eine Heizdecke für zwei Stunden?',
    'Stromverbrauch einer Wärmezudecke',
+   'Was kostet eine Heizdecke an Strom?',
+   'Wie viel Strom braucht eine Heizdecke pro Abend?',
+   'Heizdeckenstromkosten pro Abend',
  ]) {
    const results=searchEntries(index,q,'de');
    assert.equal(results[0]?.entry.u,page+'#waerme-rechner',q);
