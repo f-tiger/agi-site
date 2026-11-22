@@ -153,6 +153,17 @@ class CatalogTest(unittest.TestCase):
             data['products'].append(second)
             with self.assertRaises(ValueError):C.validate(data)
 
+    def test_glassvac_temperature_evidence_is_present_in_both_final_formats(self):
+        page = C.ROOT / 'site/produkte.html'
+        html, markdown = page.read_text(), page.with_suffix('.md').read_text()
+        self.assertEqual(html.count('id="bosch-glassvac-einsatz-und-pflege"'),1)
+        for content in (html, markdown):
+            self.assertIn('Nach Frost zuerst die Temperatur am Ladeort messen.',content)
+            self.assertIn('Bosch empfiehlt 0 bis +45 °C als Umgebungstemperatur beim Laden.',content)
+            self.assertIn('Für die Lagerung nennt Bosch −20 bis +50 °C.',content)
+            self.assertIn('Unter −5 °C das Gerät nicht einschalten.',content)
+            self.assertIn('glassvac-100045834-original-pdf-396340-de-de.pdf',content)
+
     def test_escaped_content_idempotent_build_and_no_commerce_in_markdown(self):
         data=fixture();data['products'][0]['facts']='Text <img src=x onerror=alert(1)> bleibt Text.'
         html=C.render(data,dt.date(2026,11,13));self.assertNotIn('<img src=x',html);self.assertIn('&lt;img',html)
