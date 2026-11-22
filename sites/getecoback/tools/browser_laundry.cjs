@@ -53,6 +53,8 @@ async function checkCombinedLabelDecision(browser){
    const prepare=panel.locator(':scope > .eco-actions').last().locator('button').first();
    await panel.waitFor({state:'visible'});
    await page.waitForSelector('#eco-tool-experience[data-ready]');
+   const details=form.locator('details');
+   if(await details.getAttribute('open')===null)await details.locator('summary').click();
    await basis.selectOption('hundred');
    await dryer.fill('150');
    await field('currency').selectOption('EUR');
@@ -74,6 +76,7 @@ async function checkCombinedLabelDecision(browser){
    check(await warning.isVisible(),'Selecting the combined label shows a blocking message');
    check(/Waschtrockner|Kombilabel|Waschen.*Trocknen/i.test(await warning.innerText()),'The German message identifies the combined washing and drying input');
    equal(await warning.getAttribute('id'),'laundry-combined-warning','The blocker has a stable accessible target');
+   check((await basis.getAttribute('aria-describedby')||'').split(/\s+/).includes('laundry-combined-warning'),'The selected basis points to its explanation');
    check(await dryer.isDisabled(),'The combined-label number cannot be entered as a drying-only value');
    check(await submit.isDisabled(),'The normal calculation is blocked');
    check(!await results.isVisible(),'There is no stale cost output');
