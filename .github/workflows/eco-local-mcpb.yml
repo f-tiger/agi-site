@@ -19,12 +19,12 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUNDLE: ecoback-local-tools-1.22.5.mcpb
-  VERSION: '1.22.5'
-  UPSTREAM_SHA: 1a3d16aa006743c2c88cc50948dffc0f5273bcf4
+  BUNDLE: ecoback-local-tools-1.22.6.mcpb
+  VERSION: '1.22.6'
+  UPSTREAM_SHA: 8da400420505071a11e4f403ee8b9e4b460d0af0
   NAME: io.github.f-tiger/ecoback-local-tools
   RELEASE_TAG: fleet-mcp-registry-2026-10-10
-  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.5.mcpb
+  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.6.mcpb
   REGISTRY_VERSIONS: https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions
   SOURCE_URL: https://github.com/f-tiger/getecoback-mcp
   MCPB_SCHEMA: https://raw.githubusercontent.com/modelcontextprotocol/mcpb/70fe3b34cd6dff1b3bba046638edc72a6467a4fb/schemas/mcpb-manifest-v0.3.schema.json
@@ -161,6 +161,12 @@ jobs:
               entryUrl:"https://getecoback.com/produkte.html?mcp_entry=fenstersauger-breitencheck#fenstersauger-duesenbreite",
               alternativesWithoutEntry:3
             } and
+            .decimalWindowWidth == [
+              {existingFits:true,candidates:["06008B7000"],nextStep:"vorhandene_duese_zuerst_probesetzen",entryUrl:null},
+              {existingFits:null,candidates:["06008B7000"],nextStep:"genaues_originalpaket_und_platzbedarf_pruefen",
+                entryUrl:"https://getecoback.com/produkte.html?mcp_entry=fenstersauger-breitencheck#fenstersauger-duesenbreite"},
+              {existingFits:null,candidates:[],nextStep:"vorhandenen_einwascher_oder_abzieher_pruefen",entryUrl:null}
+            ] and .compact.decimalWindowWidth == .decimalWindowWidth and
             .compact.windowBlade == {
               topMatch:"fenstersauger_170mm_abziehlippe_geraetefamilie",
               guideUrl:"https://getecoback.com/produkte.html#fenstersauger-belege",
