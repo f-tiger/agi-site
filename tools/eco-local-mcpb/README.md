@@ -138,6 +138,11 @@ profiles retain the established gravity, pump, tank and inspection branches.
 The pump accessory evidence links to the German supplier for the exact
 Arete One 20L. It does not transfer to the Arete Two 12L.
 
+Version 1.22.10 adds the measured basement ventilation decision. Both offline
+MCP modes need paired indoor and outdoor air readings and a measured cold
+wall. They verify condensation risk, possible drying, uncertain readings and
+no drying, and keep the original wall-estimate tool available.
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the
