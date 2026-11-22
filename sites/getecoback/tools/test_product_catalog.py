@@ -6,6 +6,7 @@ from pathlib import Path
 import re
 import tempfile
 import unittest
+from urllib.parse import parse_qs, urlsplit
 
 import build_product_catalog as C
 
@@ -26,6 +27,30 @@ def fixture():
 
 
 class CatalogTest(unittest.TestCase):
+    def test_focal_coffee_filter_offer_keeps_exact_parts_and_clean_share(self):
+        route = 'site/produkte.html'
+        rendered = (C.ROOT / route).read_text()
+        authored = C.render(C.load(), dt.date(2026, 11, 22))
+        section = r'<section id="kaffeevollautomat-pflege-und-kauf"[^>]*>.*?</section>'
+        answer = re.search(section, rendered, re.S)[0]
+        self.assertEqual(answer, re.search(section, authored, re.S)[0])
+        self.assertEqual(Document(rendered).ids.count('kaffee-wasserfilter'), 1)
+        md = (C.ROOT / route).with_suffix('.md').read_text()
+        for value in ('EP2220/10', 'CA6903/10', 'TIE20301', 'TCZ7003', 'TCZ7033',
+                      'ECAM22.110.B', 'DLSC002', 'Wasserhärte', 'Filtermodus',
+                      'Dafür brauchst du keinen Ersatzfilter',
+                      'https://acc.philips.de/c-p/CA6903_10/kalk-und-wasserfilter'):
+            self.assertIn(value, answer)
+            self.assertIn(value, md)
+        share = next(link for link in Document(answer).links
+                     if link.get('href', '').startswith('https://www.reddit.com/submit?'))
+        self.assertEqual(share['rel'], 'noreferrer')
+        self.assertEqual(parse_qs(urlsplit(share['href']).query), {
+            'url': ['https://getecoback.com/produkte.html#kaffee-wasserfilter'],
+            'title': ['Welcher Wasserfilter passt zu meinem Kaffeevollautomaten?'],
+        })
+        self.assertNotIn('reddit.com/submit', md)
+
     def test_final_airfryer_evidence_survives_all_generators(self):
         from html import unescape
         html=(C.ROOT/'site/produkte.html').read_text()

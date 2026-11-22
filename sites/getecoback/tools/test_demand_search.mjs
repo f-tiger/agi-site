@@ -326,3 +326,31 @@ test('the Trotec ECO window stays separate from the TTK 75 E and unrelated inten
     'Stromkosten des TTK 75 ECO bei 440 Watt',
   ]) assert.ok(searchEntries(index,q,'de').every(hit=>hit.entry.u!==anchor),q);
 });
+
+test('coffee filter purchases lead to exact model evidence without replacing other filter routes',()=>{
+  const page='/produkte.html';
+  const anchor=page+'#kaffee-wasserfilter';
+  for(const q of [
+    'Mein Philips EP2220/10 braucht einen neuen Wasserfilter. Welche Patrone soll ich bestellen?',
+    'Für die Bosch VeroCafe TIE20301: Passt der Wasserfilter TCZ7033 oder muss ich TCZ7003 kaufen?',
+    'Ich habe eine DeLonghi Magnifica S ECAM22.110.B. Welchen Ersatzfilter für den Wassertank brauche ich?',
+    'Passt der DLSC002 in meine DeLonghi ECAM22.110.B?',
+    'EP2231/40 AquaClean: passt die Patrone CA6903/10?',
+    'Bosch TIE20301. Welcher Wasserfilter?',
+  ]){
+    const hits=searchEntries(index,q,'de');
+    assert.equal(hits[0]?.entry.u,anchor,q);
+    assert.equal(hits.filter(hit=>hit.entry.u.split('#')[0]===page).length,1,q);
+    assert.ok(searchEntries(index,q,'en').every(hit=>hit.entry.u!==anchor),q);
+  }
+  for(const q of [
+    'Philips EP2220/10 AquaClean blinkt orange: Filter kaufen?',
+    'DeLonghi ECAM22.110.B seit drei Wochen nicht benutzt: Wasserfilter wechseln?',
+    'Welcher Wasserfilter für EP2220 ohne Suffix?',
+    'Mein Bosch TIE20301/02 braucht einen neuen Wasserfilter.',
+    'DeLonghi ECAM22.110.SB Ersatz-Wasserfilter kaufen',
+    'Nicht die Philips EP2220/10, sondern EP2220/12: passt AquaClean CA6903/10?',
+    'Passt der Filter in den Philips EP2220/10 oder Bosch TIE20301?',
+  ]) assert.ok(searchEntries(index,q,'de').every(hit=>hit.entry.u!==anchor),q);
+  assert.equal(searchEntries(index,'Welchen Ersatzfilter brauche ich für mein Levoit Core 300S ohne Pro?','de')[0]?.entry.u,'/ersatzfilter.html#levoit-core-300s');
+});

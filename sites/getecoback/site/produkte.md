@@ -1117,6 +1117,20 @@ Herstellerquellen Deutschland, gelesen am 20.11.2026. [Philips NA352/00 und Korb
 
 ## Milchsystem, Wasserfilter und Pflege bei Kaffeevollautomaten vergleichen
 
+### Welcher Wasserfilter passt zu meinem Kaffeevollautomaten?
+
+- **Philips EP2220/10 und EP2231/40:** Die Modellblätter für [EP2220/10](https://www.documents.philips.com/assets/20210904/3ea44c9845d84f26818ead990053f95e.pdf) und [EP2231/40](https://www.download.p4c.philips.com/files/e/ep2231_40/ep2231_40_pss_deuat.pdf) nennen AquaClean. Philips führt [AquaClean CA6903/10](https://acc.philips.de/c-p/CA6903_10/kalk-und-wasserfilter) für die Serie 2200.
+
+- **Bosch VeroCafe TIE20301:** Das [Bosch-Datenblatt](https://media3.bsh-group.com/Documents/specsheet/de-DE/TIE20301.pdf) führt BRITA Intenza **TCZ7003** oder **TCZ7033** als Sonderzubehör. Prüfe Artikelnummer und Stückzahl im Angebot.
+
+- **De’Longhi Magnifica S ECAM22.110.B:** Der [De’Longhi-Modellservice](https://www.delonghi.com/de-de/s/ECAM22.110.B) führt **DLSC002**. Die [deutsche Anleitung](https://dls.delonghigroup.com/files/docs/5/DE-57132C9061.pdf) beschreibt die Filterverwendung in Abschnitt 8.
+
+Vergleiche Typenschild und Artikelnummer auf der Packung. Bei unbekannter Modellendung, einer anderen Filterkennung oder einer widersprüchlichen Händlerangabe warte mit dem Kauf und prüfe die Angaben beim Hersteller. Diese Modellzuordnungen gelten für den deutschen Markt.
+
+Die Modellzuordnung klärt den passenden Artikel. Ob der Filter eingesetzt und aktiviert ist, prüfst du separat am Gerät. Passe die Wasserhärte und gegebenenfalls den Filtermodus nach der Anleitung an. Wenn du ohne optionalen Filter arbeiten möchtest, richte die Maschine dafür nach Anleitung ein und halte die Pflegehinweise ein. Dafür brauchst du keinen Ersatzfilter.
+
+Herstellerangaben für Deutschland geprüft am 22.11.2026.
+
 Prüfe vor dem Kauf die volle Modellkennung. Philips EP2231/40 hat einen zweiteiligen LatteGo-Milchbehälter, EP2220/10 einen klassischen Milchaufschäumer. Beim Bosch TIE20301 wird die Milch laut Produktblatt in die Tasse gefüllt. Für hohe Gläser nennt Bosch bis zu 13 cm. Prüfe ein eigenes Glas zusätzlich mit Griff und geradem Einsetzweg. Für beide Philips-Modelle ist eine Doppeltasse Kaffee ausgewiesen. Die Angaben führen keine Doppeltasse Milch auf.
 
 Philips nennt AquaClean bei diesen beiden Geräten im Lieferumfang. Bosch nennt BRITA Intenza TCZ7003 oder TCZ7033 beim TIE20301 als Sonderzubehör. De’Longhi führt DLSC002 für die Magnifica S ECAM22.110.B. Ein bestätigter beigelegter Originalfilter kann anders aussehen als das separat angebotene Teil. Bei Gebrauchtware oder einem Händlerbundle den konkreten Lieferumfang prüfen. Wer keinen optionalen Filterbetrieb wünscht, braucht dafür keinen Filterkauf einzuplanen. Die Pflege nach Herstelleranleitung bleibt Teil des Betriebs.

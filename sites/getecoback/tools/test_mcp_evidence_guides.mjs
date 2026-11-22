@@ -18,6 +18,7 @@ const toolPaths = new Map([
   ['keller_lueften_taupunkt_messwerte', '/guide/keller-lueften-sommer.html#taupunkt'],
   ['kellerentfeuchter_pruefpunkt_abgleichen', cellar + '#kalter-keller'],
   ['midea_portasplit_fensterhalterung_pruefen', '/guide/midea-portasplit-ausverkauft-alternativen.html#kaufpruefung'],
+  ['kaffeevollautomat_intenza_aquaclean_filterfamilie_modellpruefung', products + '#kaffee-wasserfilter'],
   ['trotec_ttk75_eco_pruefpunkt', '/guide/trotec-luftentfeuchter-test.html#ttk75-pruefpunkt'],
   ['tesamoll_fensterdichtung_profil_pruefen', '/guide/fenster-zugluft-mietwohnung.html#dichtungsprofil'],
   ['midea_portasplit_fensterfalz_pruefen', '/guide/midea-portasplit-ausverkauft-alternativen.html#fensterfalz'],

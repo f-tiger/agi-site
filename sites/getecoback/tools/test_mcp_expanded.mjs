@@ -349,6 +349,35 @@ test('the Trotec TTK 75 ECO check qualifies exact published points and does not 
   }
 });
 
+test('coffee filters distinguish a documented Philips pack, model and uncertain offer',async()=>{
+  const name='kaffeevollautomat_intenza_aquaclean_filterfamilie_modellpruefung';
+  const guide='https://getecoback.com/produkte.html#kaffee-wasserfilter';
+  const pack='https://acc.philips.de/c-p/CA6903_10/kalk-und-wasserfilter';
+  for(const [modell,filter,status,allowed,citesPack] of [
+    ['EP2220/10','CA6903/10','in_unterlagen_belegt',['AquaClean'],true],
+    ['EP2231/40','CA6903/10','in_unterlagen_belegt',['AquaClean'],true],
+    ['EP2220/10','AquaClean','in_unterlagen_belegt',['AquaClean'],false],
+    ['EP2231/40','TCZ7003','brita_fuer_dieses_geraet_ausgeschlossen',['AquaClean'],false],
+    ['EP2220/10','andere_kennung','durch_gelesene_quellen_nicht_belegt',['AquaClean'],false],
+    ['TIE20301','TCZ7003','in_unterlagen_belegt',['TCZ7003','TCZ7033'],false],
+    ['TIE20301','TCZ7033','in_unterlagen_belegt',['TCZ7003','TCZ7033'],false],
+    ['TIE20301','CA6903/10','durch_gelesene_quellen_nicht_belegt',['TCZ7003','TCZ7033'],false],
+    ['ECAM22.110.B','DLSC002','in_unterlagen_belegt',['DLSC002'],false],
+    ['offen','CA6903/10','zuordnung_offen',null,false],
+  ]){
+    const response=await worker.fetch(request('tools/call',{name,arguments:{modell,filter}}),{},{});
+    const {result}=await response.json();
+    assert.equal(result.isError,false);
+    const data=result.structuredContent;
+    assert.equal(data.angebotszuordnung,status);
+    assert.deepEqual(data.ausgewiesene_kennung_oder_familie,allowed);
+    assert.equal(data.citation_url,'https://getecoback.com/produkte.html');
+    assert.equal(data.guide_url,guide);
+    const sources=Array.isArray(data.beleg)?data.beleg:[data.beleg];
+    assert.equal(sources.some(source=>source?.quelle===pack),citesPack);
+  }
+});
+
 test('old or invalid cursors reject safely and both catalogue boundaries paginate completely', async () => {
   for (const cursor of ['1.24.2:100','1.24.3:99','1.24.3:5000','1.24.3:0100','1.24.3:0',null,100]) {
     const response = await worker.fetch(request('tools/list',{cursor}), {}, {});

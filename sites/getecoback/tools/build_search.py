@@ -51,6 +51,9 @@ def collect():
  sections[('de','/guide/trotec-luftentfeuchter-test.html')]={
   'id':'ttk75-pruefpunkt','title':'Trotec TTK 75 ECO: Was ist bei 10 °C im Keller belegt?',
   'description':'20 l/24 h sind bei 30 °C und 80 % dokumentiert. Der Betriebsbereich allein belegt keine Entzugsleistung bei 10 °C.'}
+ sections[('de','/produkte.html')]={
+  'id':'kaffee-wasserfilter','title':'Welcher Wasserfilter passt zu deinem Kaffeevollautomaten?',
+  'description':'EP2220/10 und EP2231/40: AquaClean. TIE20301: TCZ7003 oder TCZ7033. ECAM22.110.B: DLSC002. Modell und Packung prüfen.'}
  sections[('de','/guide/fenster-zugluft-mietwohnung.html')]={
   'id':'dichtungsprofil','title':'Fensterdichtung bei 4 mm: tesamoll E, P oder D?',
   'description':'Bei 4 mm liegen P und D im Herstellerbereich. Miss an mehreren Stellen und kläre eine vorhandene Nut vor dem Kauf.'}
@@ -105,7 +108,7 @@ def collect():
     'description':'Midea nennt Schalldruck im Silent-Modus, das N90-Label Schallleistung. Vergleiche Größe und Messbedingungen.'}]
   if section:=sections.get((lang,route)):
    anchor=section['id']
-   matches=re.findall(r'<(?:section|h2)\b[^<>]*\sid="'+re.escape(anchor)+r'"[^<>]*>',text)
+   matches=re.findall(r'<(?:section|h[23])\b[^<>]*\sid="'+re.escape(anchor)+r'"[^<>]*>',text)
    if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*',anchor) or len(matches)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',matches[0]):
     raise ValueError(f'Missing or hidden search section: {route}#{anchor}')
    entry['section']=section
