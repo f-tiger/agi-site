@@ -7,7 +7,7 @@ import {citationUrl} from './agent-sources.mjs';
 import {guidePath, publishedGuides, readGuide} from './mcp-guides.mjs';
 import {drainTool, drainDecision} from './mcp-drain.mjs';
 import {finderName, runnerName, compactTools, compactInstructions, compactSearch, validCompactRun, cellarResourceContents, cellarResourceListing} from './mcp-assistant.mjs';
-import {normalize as normalizeSearch} from '../site/assets/demand-discovery.mjs';
+import {exactGermanCoolingGuide, normalize as normalizeSearch} from '../site/assets/demand-discovery.mjs';
 import {isAnalyticsPath, analyticsResponse} from '../../../tools/fleet-analytics/edge.mjs';
 import {DISTRIBUTION_EVENTS,validDistribution,distributionGrowth} from './distribution-growth.mjs';
 import {LAUNDRY_EVENTS,validLaundryEvent} from './laundry-events.mjs';
@@ -1480,9 +1480,18 @@ async function mcpCallTool(name, args, env) {
     const phrase = normalizeSearch(a.frage || "").trim();
     const max = Math.max(1, Math.min(10, Number(a.max) || 5));
     const lang = ["de", "en", "fr", "es", "it"].includes(a.sprache) ? a.sprache : null;
+    const exact = (a.sprache === undefined || lang === "de") && exactGermanCoolingGuide(phrase);
     const hits = index
       .filter((e) => e && e.u && (!lang || e.l === lang))
-      .map((e) => ({ e, s: scoreEntry(e, tokens, phrase) }))
+      .map((e) => {
+        const section = e.section;
+        if (exact && e.u === exact.path && e.l === "de" && section?.id === exact.id &&
+            typeof section.title === "string" && section.title.trim() &&
+            typeof section.description === "string" && section.description.trim()) {
+          return { e: { ...e, t: section.title, d: section.description }, s: Infinity };
+        }
+        return { e, s: scoreEntry(e, tokens, phrase) };
+      })
       .filter((x) => x.s > 0)
       .sort((x, y) => y.s - x.s)
       .slice(0, max);
