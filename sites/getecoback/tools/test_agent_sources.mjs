@@ -103,6 +103,8 @@ test('appliance evidence survives in both the generated mirror and edge fallback
   ['guide/midea-portasplit-ausverkauft-alternativen', [
    'https://www.midea.com/de/klimatisieren-heizen/portasplit/produktinfos.portasplit',
    'https://www.midea.com/de/klimatisieren-heizen/portasplit/installation',
+   'https://www.midea.com/de/klimatisieren-heizen/portasplit',
+   'https://www.midea.com/content/dam/midea-aem/de/klimatisieren-heizen/portasplit/universalhalterung/PortaSplit-UM-universal-bracket.pdf',
    'https://www.remko.de/gewerblich/klimasysteme/lokal/rkl-dc/',
   ]],
   ['guide/duschen-kosten-rechner', [

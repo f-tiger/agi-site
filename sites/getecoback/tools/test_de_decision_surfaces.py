@@ -16,7 +16,7 @@ class DecisionSurfaceTest(unittest.TestCase):
    self.assertNotIn(noise,md)
   self.assertNotIn('amazon.de',md)
  def test_examples_and_no_purchase_paths_survive_without_affiliate_links(self):
-  cases=[('guide/heizluefter-stromverbrauch.html',heat_inject,['20 Minuten','0,27 €','keine garantierte Thermostat-Ersparnis']),('waeschetrockner-oder-luftentfeuchter.html',laundry_inject,['bereits einen Trockner','wenig Platz','dauerhaft feucht','Eine Ladung fair vergleichen'])]
+  cases=[('guide/heizluefter-stromverbrauch.html',heat_inject,['20 Minuten','0,27 €','keine garantierte Thermostat-Ersparnis']),('waeschetrockner-oder-luftentfeuchter.html',laundry_inject,['bereits einen Trockner','wenig Platz','dauerhaft feucht','Eine Ladung fair vergleichen','60 von 100 Ladungen','16,80 € Ersparnis pro Saison','sechs volle Saisons'])]
   for route,inject,phrases in cases:
    path=SITE/route
    html=inject(path.read_text(),path.stem,False)

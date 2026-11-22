@@ -1,5 +1,7 @@
 import productCatalog from '../data/product-catalog.json' with {type:'json'};
 import {WINDOW_ENTRY_DOCUMENT, WINDOW_ENTRY_PAGE} from './fenstersauger-entry.mjs';
+import {PORTASPLIT_ENTRY_DOCUMENT, PORTASPLIT_ENTRY_PAGE, PORTASPLIT_MODEL_SEARCH} from './portasplit-entry.mjs';
+import {CELLAR_MODEL_ENTRY_DOCUMENT, CELLAR_MODEL_ENTRY_PAGE, CELLAR_MODEL_SEARCH} from './cellar-entry.mjs';
 
 // Only whitelisted affiliate dimensions. Never slice JSON: one long destination
 // used to corrupt every field, including the source merged by the click tracker.
@@ -72,33 +74,53 @@ const windowModelSearches = new Set(productCatalog.products
   .filter(item => item.category === 'fenstersauger' && item.status === 'verified')
   .map(item => item.query));
 
-function isWindowModelSearch(value) {
+const portasplitModelSearches = new Set([PORTASPLIT_MODEL_SEARCH]);
+const cellarModelSearches = new Set([CELLAR_MODEL_SEARCH]);
+
+function isGermanModelSearch(value, modelSearches) {
   if (typeof value !== 'string') return false;
   try {
     const url = new URL(value);
     return url.origin === 'https://www.amazon.de' && url.pathname === '/s' &&
       !url.username && !url.password && !url.hash && url.searchParams.size === 2 &&
       url.searchParams.get('tag') === 'getecoback-21' &&
-      windowModelSearches.has(url.searchParams.get('k'));
+      modelSearches.has(url.searchParams.get('k'));
   } catch {
     return false;
   }
 }
 
-export function taggedWindowEntry(body, request, uaClass) {
-  return body.mcp_window_entry === true && body.p === WINDOW_ENTRY_PAGE &&
-    (body.n === 'page_view' || (body.n === 'affiliate_click' && isWindowModelSearch(body.m?.link_url))) &&
+function eligibleModelEntry(body, request, uaClass, path, documentUrl, modelSearches) {
+  return body.p === path &&
+    (body.n === 'page_view' || (body.n === 'affiliate_click' && isGermanModelSearch(body.m?.link_url, modelSearches))) &&
     uaClass === 'human' && request.headers.get('dnt') !== '1' &&
     request.headers.get('sec-gpc') !== '1' && request.headers.get('x-probe') !== '1' &&
     request.headers.get('origin') === 'https://getecoback.com' &&
     request.headers.get('sec-fetch-site') !== 'cross-site' &&
-    request.headers.get('referer') === WINDOW_ENTRY_DOCUMENT;
+    request.headers.get('referer') === documentUrl;
 }
 
-export function affiliateMeta(meta, taggedDrain = false, taggedWindow = false) {
+export function taggedWindowEntry(body, request, uaClass) {
+  return body.mcp_window_entry === true && eligibleModelEntry(body, request, uaClass,
+    WINDOW_ENTRY_PAGE, WINDOW_ENTRY_DOCUMENT, windowModelSearches);
+}
+
+export function taggedPortaSplitEntry(body, request, uaClass) {
+  return body.mcp_portasplit_entry === true && eligibleModelEntry(body, request, uaClass,
+    PORTASPLIT_ENTRY_PAGE, PORTASPLIT_ENTRY_DOCUMENT, portasplitModelSearches);
+}
+
+export function taggedCellarModelEntry(body, request, uaClass) {
+  return body.mcp_cellar_entry === true && eligibleModelEntry(body, request, uaClass,
+    CELLAR_MODEL_ENTRY_PAGE, CELLAR_MODEL_ENTRY_DOCUMENT, cellarModelSearches);
+}
+
+export function affiliateMeta(meta, taggedDrain = false, taggedWindow = false, taggedPortaSplit = false, taggedCellar = false) {
   const clean = {};
   if (taggedDrain) clean.mcp_drain_entry = 1;
   if (taggedWindow) clean.mcp_window_entry = 1;
+  if (taggedPortaSplit) clean.mcp_portasplit_entry = 1;
+  if (taggedCellar) clean.mcp_cellar_entry = 1;
   if (!meta || typeof meta !== 'object' || Array.isArray(meta)) return JSON.stringify(clean);
   for (const [key, value] of [
     ['source', text(meta.source, 48)],

@@ -11,6 +11,27 @@ assert(live || ['127.0.0.1', 'localhost'].includes(base.hostname), 'Use the loca
 
 const cases = [
   {
+    question: 'Was schafft der Meaco Arete One 20L bei 10 Grad und 60 Prozent im kalten Keller?',
+    tool: 'kellerentfeuchter_pruefpunkt_abgleichen',
+    category: 'Feuchte',
+    guide: '/guide/luftentfeuchter-keller.html#kalter-keller',
+    heading: '2. Kalter Keller bei 10–15 °C: Kompressor oder Adsorption?',
+  },
+  {
+    question: 'Lohnt sich ein Luftentfeuchter für Wäsche im Winter, wenn manche Ladungen weiter in den Trockner gehen?',
+    tool: 'waesche_trocknungswechsel_kaufschwelle',
+    category: 'Kaufpraxis',
+    guide: '/waeschetrockner-oder-luftentfeuchter.html#laundry-check',
+    heading: 'Trocknungskosten pro Ladung vergleichen',
+  },
+  {
+    question: 'Brauche ich für das Dachfenster bei der originalen Midea PortaSplit eine Universalhalterung, und ist sie im Lieferumfang?',
+    tool: 'midea_portasplit_fensterhalterung_pruefen',
+    category: 'Quellen & Kaufprüfung',
+    guide: '/guide/midea-portasplit-ausverkauft-alternativen.html#kaufpruefung',
+    heading: 'Welche Alternative passt zu deiner Aufstellung?',
+  },
+  {
     question: 'Passt irgendein 360 Grad Sockel zum Bosch TWK8613P?',
     tool: 'wasserkocher_twk8613p_360_sockel_originalbasis',
     category: 'Wasserkocherbelege',
@@ -52,6 +73,10 @@ async function assertGuideVisible(page, item) {
   });
   assert(layout.top >= Math.max(0, layout.navBottom) - 1 && layout.bottom <= layout.height,
     `Guide heading is clipped at ${guide.hash}: ${JSON.stringify(layout)}`);
+  if (item.tool === 'waesche_trocknungswechsel_kaufschwelle') {
+    await page.getByText('Ich habe bereits einen Trockner', {exact:true}).click();
+    assert(await page.getByText(/16,80 € Ersparnis pro Saison/).isVisible());
+  }
   if (item.category === 'Fenstersauger') {
     await page.getByRole('link', {name:'Fenstersauger-Modelle und Lieferumfang vergleichen'}).click();
     await page.waitForURL(url => url.hash === '#modelle-fenstersauger');
@@ -77,7 +102,9 @@ async function run() {
     if (preview) {
       let ready = false;
       for (let attempt = 0; attempt < 25 && !ready && preview.exitCode === null; attempt++) {
-        ready = await fetch(probePath('/mcp.html')).then(response => response.ok, () => false);
+        // The preview only needs to confirm readiness without streaming the catalog HTML.
+        ready = await fetch(probePath('/mcp.html'), {method:'HEAD', signal:AbortSignal.timeout(1000)})
+          .then(response => response.ok, () => false);
         if (!ready) await delay(100);
       }
       assert(ready, 'Local static preview did not start');

@@ -17,7 +17,14 @@ function trackIndexRequests(page,origin){
  const server=process.env.BASE_URL?null:spawn('python3',['-m','http.server','8766','--directory',path.resolve(__dirname,'../site')],{stdio:'ignore'});
  let browser;let checks=0;
  try{
-  for(let i=0;i<30;i++){try{await fetch(base);break;}catch{await new Promise(r=>setTimeout(r,100));}}
+  let ready = false;
+  for (let attempt = 0; attempt < 30 && !ready; attempt++) {
+   // Read response headers only. The full HTML is checked by Chromium below.
+   ready = await fetch(base, {method: 'HEAD', signal: AbortSignal.timeout(1000)})
+    .then(response => response.ok, () => false);
+   if (!ready) await new Promise(resolve => setTimeout(resolve, 100));
+  }
+  assert(ready, 'Search preview did not start');
   browser=await chromium.launch({headless:true});
   const createContext=browser.newContext.bind(browser);
   browser.newContext=async options=>{

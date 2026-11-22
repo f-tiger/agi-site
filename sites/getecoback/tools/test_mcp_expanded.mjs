@@ -1,12 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
+import {spawnSync} from 'node:child_process';
+import {COMPLETE_MCP_WEEK_SQL, completedMcpReports} from '../src/mcp-adoption.mjs';
 import worker from '../src/worker.js';
 import {expandedDefinitions, expandedCall} from '../src/mcp-expanded.mjs';
 import {collectToolPages} from '../src/mcp-pagination.mjs';
 
 const origin = 'https://getecoback.com';
-const distinctTasks = 2014;
+const distinctTasks = 2017;
 const callableNames = distinctTasks + 1;
 function request(method, params) {
   return new Request(origin + '/mcp/v1', {
@@ -46,13 +48,13 @@ test('the public directory and standard MCP pages expose the same catalogue', as
   assert.deepEqual(directory.tools.map(t=>t.name),names);
   const byCategory = {};
   for (const {category} of directory.tools) byCategory[category] = (byCategory[category] || 0) + 1;
-  assert.deepEqual(byCategory, {Raumklima:10,'Strom & Haushalt':20,Feuchte:18,Kühlen:18,Heizen:18,Passform:16,
-    'Energie prüfen':24,'Raumkomfort prüfen':24,'Geräte pflegen':24,'Quellen & Kaufprüfung':24, 'Wasser & Wäsche':24,'Gebäude & Fenster':24,'Geräte im Alltag':24,'Messpraxis':24,'Zugang & Alltag':24,Saisonwechsel:24,Kaufpraxis:25,'Ressourcen planen':24,Raumplanung:24,Wetterpraxis:24,Küchenpraxis:24,Servicevorbereitung:24,'Belege abgleichen':24,Textilpraxis:25,Luftpfade:25,Modellunterlagen:25,Haushaltsbuch:25,Praxistests:25,Messunsicherheit:25,Geräteablauf:25,Weiterverwendung:25,Raumübergabe:25,Wohnszenarien:25,Verbrauchsverlauf:41,Fensterbetrieb:41,Pflegeabläufe:40,Haushaltskoordination:40,Nachweisprüfung:40,Wasserwege:40,Raumakustik:40,Mehrgerätebetrieb:40,Gebrauchtgeräte:40,Küchenressourcen:40,Klimaverlauf:40,Wohnmobil:30,'Arbeitsplatz-Messpraxis':30,'Lokale Wärme':30,Luftkühler:30,'Wäsche mit Wärme':30,Gartenalltag:30, Gefrierpraxis:18,'Geschirrspüler-Einbau':24,Wäschesäule:17,Lüftungskauf:24,Ersatzteilnachweis:20,Dunstabzug:17,Backofenzubehör:18,Brausenzubehör:23,Rollenzubehör:18,'Altgeräte-Rücknahme':20,Induktionsgeschirr:18,Betriebszustände:21,Spülstatus:24,'Airfryer-Behälter':17,Kompaktspülen:17,"Filterkannen":22,"Textilzeichen":20,"Türbodenspalt":21,"Roboterpflege":24,"Kühlgerätekauf":20,"LED-Kaufprüfung":16,"Kaffeemaschinenpflege":22,"Waschmitteldosierung":23,"Spülmittel und Wasserhärte":25,"Bodenstaubsaugerpflege":22,"Dampfbügelgeräte":24,"Stabmixer und Zubehör":25,"Mikrowellenbelege":23,"Küchenwaagen":13,"Wasserkocherbelege":16,"Toasterbelege":10,"Fenstersauger":12});
-  assert.equal(expandedDefinitions.length,2005);
+  assert.deepEqual(byCategory, {Raumklima:10,'Strom & Haushalt':20,Feuchte:19,Kühlen:18,Heizen:18,Passform:16,
+    'Energie prüfen':24,'Raumkomfort prüfen':24,'Geräte pflegen':24,'Quellen & Kaufprüfung':25, 'Wasser & Wäsche':24,'Gebäude & Fenster':24,'Geräte im Alltag':24,'Messpraxis':24,'Zugang & Alltag':24,Saisonwechsel:24,Kaufpraxis:26,'Ressourcen planen':24,Raumplanung:24,Wetterpraxis:24,Küchenpraxis:24,Servicevorbereitung:24,'Belege abgleichen':24,Textilpraxis:25,Luftpfade:25,Modellunterlagen:25,Haushaltsbuch:25,Praxistests:25,Messunsicherheit:25,Geräteablauf:25,Weiterverwendung:25,Raumübergabe:25,Wohnszenarien:25,Verbrauchsverlauf:41,Fensterbetrieb:41,Pflegeabläufe:40,Haushaltskoordination:40,Nachweisprüfung:40,Wasserwege:40,Raumakustik:40,Mehrgerätebetrieb:40,Gebrauchtgeräte:40,Küchenressourcen:40,Klimaverlauf:40,Wohnmobil:30,'Arbeitsplatz-Messpraxis':30,'Lokale Wärme':30,Luftkühler:30,'Wäsche mit Wärme':30,Gartenalltag:30, Gefrierpraxis:18,'Geschirrspüler-Einbau':24,Wäschesäule:17,Lüftungskauf:24,Ersatzteilnachweis:20,Dunstabzug:17,Backofenzubehör:18,Brausenzubehör:23,Rollenzubehör:18,'Altgeräte-Rücknahme':20,Induktionsgeschirr:18,Betriebszustände:21,Spülstatus:24,'Airfryer-Behälter':17,Kompaktspülen:17,"Filterkannen":22,"Textilzeichen":20,"Türbodenspalt":21,"Roboterpflege":24,"Kühlgerätekauf":20,"LED-Kaufprüfung":16,"Kaffeemaschinenpflege":22,"Waschmitteldosierung":23,"Spülmittel und Wasserhärte":25,"Bodenstaubsaugerpflege":22,"Dampfbügelgeräte":24,"Stabmixer und Zubehör":25,"Mikrowellenbelege":23,"Küchenwaagen":13,"Wasserkocherbelege":16,"Toasterbelege":10,"Fenstersauger":12});
+  assert.equal(expandedDefinitions.length,2008);
 });
 
 test('old or invalid cursors reject safely and both catalogue boundaries paginate completely', async () => {
-  for (const cursor of ['1.20.0:100','1.21.0:99','1.21.0:5000','1.21.0:0100','1.21.0:0',null,100]) {
+  for (const cursor of ['1.21.0:100','1.22.0:99','1.22.0:5000','1.22.0:0100','1.22.0:0',null,100]) {
     const response = await worker.fetch(request('tools/list',{cursor}), {}, {});
     assert.equal((await response.json()).error.code,-32602);
   }
@@ -294,6 +296,40 @@ test('adoption summary keeps complete UTC windows separate from the diagnostic l
   assert.equal(summaryQueries,1);
   assert.deepEqual(data.mcp_complete_week,fixture);
   assert.deepEqual(data.mcp,[]);
+});
+
+test('real SQLite retains complete-week totals and separates marked compact executions from offered cellar links', () => {
+  const script = `import json,sqlite3,sys
+db=sqlite3.connect(':memory:'); db.row_factory=sqlite3.Row
+db.execute('CREATE TABLE ev(day,name,page,ua_class,meta)'); db.execute('CREATE INDEX ev_day ON ev(day)')
+sql=sys.argv[1].replace("date('now'", "date('2026-11-27'")
+def read(): return dict(db.execute(sql).fetchone())
+def add(day='2026-11-22', event='mcp_call', page='/mcp', ua='other', meta=None):
+ db.execute('INSERT INTO ev VALUES(?,?,?,?,?)',(day,event,page,ua,meta if isinstance(meta,str) else json.dumps(meta)))
+add(day='2026-11-20', ua=None, meta={'tool':'legacy'})
+add(ua='human',meta='{broken')
+legacy=read()
+compact={'tool':'cellar','mcp_profile':'compact','mcp_cellar_link':1}
+add(meta=compact); add(day='2026-11-24',ua='human',meta={**compact,'mcp_cellar_link':'1'})
+add(day='2026-11-23',meta={**compact,'mcp_cellar_link':True}); add(day='2026-11-26',meta={'tool':'other','mcp_profile':'compact'})
+add(meta={**compact,'mcp_profile':'other'}); add(ua='ci',meta=compact)
+add(ua=None,meta=compact); add(meta={'mcp_profile':'compact','mcp_cellar_link':1})
+add(event='mcp_probe',meta=compact); add(day='2026-11-19',meta=compact)
+add(day='2026-11-27',meta=compact); add(page='/other',meta=compact)
+print(json.dumps([legacy,read(),[row[3] for row in db.execute('EXPLAIN QUERY PLAN '+sql)]]))`;
+  const result = spawnSync('python3',['-c',script,COMPLETE_MCP_WEEK_SQL],{encoding:'utf8'});
+  assert.equal(result.status,0,result.stderr);
+  const [legacy,mixed,plan] = JSON.parse(result.stdout);
+  assert.ok(plan.some(line => line.includes('USING INDEX ev_day')),plan.join(' '));
+  const window={start:'2026-11-20',end_exclusive:'2026-11-27'};
+  assert.deepEqual(completedMcpReports(legacy),{
+    completeWeek:{...window,completed_calls:2,tools_called:1,browser_class_calls:1},compactCompleteWeek:null,
+  });
+  assert.deepEqual(completedMcpReports(mixed),{
+    completeWeek:{...window,completed_calls:9,tools_called:3,browser_class_calls:2},
+    compactCompleteWeek:{...window,first_recorded_day:'2026-11-22',completed_calls:4,cellar_links_offered:1},
+  });
+  assert.deepEqual(completedMcpReports(null),{completeWeek:null,compactCompleteWeek:null});
 });
 
 test('Fenstersauger distinguishes parts, missing evidence, and the same light pattern by phase', async () => {

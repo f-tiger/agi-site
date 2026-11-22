@@ -47,6 +47,43 @@ test('German laundry guide keeps illustrative runtimes separate from measured dr
   for(const value of ['200 W','300 W','500 W','0,36 €','0,54 €','0,90 €','4,32 €','6,48 €','10,80 €'])assert(h.includes(value));
 });
 
+test('German laundry guide exposes only laundry home-fit evidence in HTML and AI Markdown',()=>{
+  const read=path=>readFileSync(new URL(path,import.meta.url),'utf8');
+  const {text:{de},sources}=JSON.parse(read('../data/home-fit.json'));
+  const guide='../site/guide/waesche-trocknen-wohnung';
+  const html=read(guide+'.html');
+  const markdown=read(guide+'.md');
+  const fallback=html.match(/<details class="hf-reference">(.*?)<\/details>/s)?.[1];
+  const sectionStart=markdown.indexOf(`## ${de.title}\n`);
+  assert.ok(fallback);
+  assert.ok(sectionStart>=0);
+  const sectionEnd=markdown.indexOf('\n## ',sectionStart+1);
+  assert.ok(sectionEnd>sectionStart);
+  const evidence=markdown.slice(sectionStart,sectionEnd);
+  assert.deepEqual([...fallback.matchAll(/<h3>(.*?)<\/h3>/g)].map(([,heading])=>heading),[de.laundry]);
+  assert.deepEqual([...evidence.matchAll(/^### (.+)$/gm)].map(([,heading])=>heading),[de.laundry]);
+  for(const surface of [fallback,evidence]){
+    assert.ok(surface.includes(de.laundryLimit));
+    assert.ok(surface.includes(de.reviewed));
+    assert.ok(!surface.includes(de.method));
+    for(const [title,url] of sources.laundry){
+      assert.ok(surface.includes(title));
+      assert.ok(surface.includes(url));
+    }
+    for(const mode of ['robot','ac','floor']){
+      for(const [title] of sources[mode])assert.ok(!surface.includes(title));
+    }
+  }
+  const config=JSON.parse(html.match(/<script id="home-fit-config" type="application\/json">(.*?)<\/script>/s)[1]);
+  assert.equal(config.mode,'laundry');
+  assert.deepEqual(config.sources,sources);
+  const calculator=read('../site/rechner.html').match(/<details class="hf-reference">(.*?)<\/details>/s)?.[1];
+  assert.ok(calculator);
+  const calculatorHeadings=[...calculator.matchAll(/<h3>(.*?)<\/h3>/g)].map(([,heading])=>heading.replaceAll('&amp;','&'));
+  assert.deepEqual(calculatorHeadings,Object.keys(sources).map(mode=>de[mode]));
+  assert.ok(calculator.includes(de.method));
+});
+
 // Exercise the shipped sharing adapter's pure schema functions without a DOM.
 // Browser coverage below the same CI validates native validity and restoration.
 function shareSchema(isLaundry=true){

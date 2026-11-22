@@ -9,6 +9,11 @@ const origin = 'https://getecoback.com';
 const products = '/produkte.html';
 const laundry = '/guide/waesche-trocknen-wohnung.html';
 const cellar = '/guide/luftentfeuchter-keller.html';
+const toolPaths = new Map([
+  ['kellerentfeuchter_pruefpunkt_abgleichen', cellar + '#kalter-keller'],
+  ['midea_portasplit_fensterhalterung_pruefen', '/guide/midea-portasplit-ausverkauft-alternativen.html#kaufpruefung'],
+  ['waesche_trocknungswechsel_kaufschwelle', '/waeschetrockner-oder-luftentfeuchter.html#laundry-check'],
+]);
 const paths = new Map([
   ['Kaffeemaschinenpflege', `${products}#kaffeevollautomat-pflege-und-kauf`],
   ['Waschmitteldosierung', `${laundry}#waschmittel-automatische-dosierung`],
@@ -52,12 +57,12 @@ test('each mapped tool publishes the same exact evidence link after a real tool 
   const standard = await collectToolPages(cursor => h.rpc('tools/list', cursor ? {cursor} : {}));
   const advertised = new Map(standard.map(tool => [tool.name, tool]));
   const compact = new Map((await h.catalogue({view:'compact'})).tools.map(tool => [tool.name, tool]));
-  const mapped = expandedDefinitions.filter(tool=>paths.has(tool.category));
-  assert.equal(mapped.length, 215);
+  const mapped = expandedDefinitions.filter(tool=>paths.has(tool.category) || toolPaths.has(tool.name));
+  assert.equal(mapped.length, 218);
   assert.equal([...compact.values()].filter(tool=>tool.guide_url).length, mapped.length);
 
   for (const {name, category, page, properties, example} of mapped) {
-    const guidePath = paths.get(category);
+    const guidePath = toolPaths.get(name) ?? paths.get(category);
     const guide = origin + guidePath;
     const citation = origin + page;
     const schema = {type:'object', properties, required:Object.keys(properties), additionalProperties:false};
@@ -87,6 +92,132 @@ test('each mapped tool publishes the same exact evidence link after a real tool 
       }
     }
   }
+  h.assertNoWrites();
+});
+
+test('PortaSplit checks the original German EAN, window type and the correct bracket evidence independently', async () => {
+  const h = offlineWorker();
+  const name = 'midea_portasplit_fensterhalterung_pruefen';
+  const standard = {angebot_ean:4048164116478,fenster:'dreh_kippfenster',standardhalterung:'im_angebot',universalhalterung:'fehlt'};
+  const check = async (input, expected) => {
+    const result = await h.rpc('tools/call', {name, arguments:{...standard, ...input}});
+    assert.equal(result.isError, false);
+    for (const [key,value] of Object.entries(expected)) assert.equal(result.structuredContent[key], value, key);
+    assert.match(result.structuredContent.grenze, /Fenstermaße.*Befestigung/);
+    assert.equal(result.structuredContent.guide_url, origin + toolPaths.get(name));
+    assert.equal(result.structuredContent.entry_url, origin + '/guide/midea-portasplit-ausverkauft-alternativen.html?mcp_entry=portasplit-fensterhalterung#kaufpruefung');
+    assert.equal(result.structuredContent.quellen_geprueft_am, '2026-11-20');
+  };
+  await check({}, {status:'halterungsbeleg_vorhanden',halterung_im_herstellerbeispiel:'standardhalterung',universalhalterung_ean:null});
+  await check({standardhalterung:'offen',universalhalterung:'ean_im_angebot'}, {status:'lieferumfang_klaeren'});
+  await check({fenster:'dachfenster'}, {status:'passende_halterung_vor_kauf_klaeren',universalhalterung_ean:4048164118687});
+  await check({fenster:'franzoesischer_balkon',universalhalterung:'ean_separat_vorhanden'}, {status:'halterungsbeleg_vorhanden',halterung_im_herstellerbeispiel:'universalhalterung'});
+  await check({fenster:'dachfenster',universalhalterung:'offen'}, {status:'lieferumfang_klaeren'});
+  await check({fenster:'anders_oder_offen'}, {status:'fenstertyp_mit_anleitung_abgleichen',halterung_im_herstellerbeispiel:null});
+  await check({angebot_ean:0}, {status:'modellnummer_abgleichen',angebot_ean_passt:null});
+  await check({angebot_ean:4048164122424}, {status:'modellnummer_abgleichen',angebot_ean_passt:false,halterung_im_herstellerbeispiel:null});
+  for (const invalid of [{angebot_ean:1234},{angebot_ean:4048164116478.5},{fenster:'balkon'}, {standardhalterung:true}]) {
+    const result = await h.rpc('tools/call', {name, arguments:{...standard, ...invalid}});
+    assert.equal(result.isError, true);
+    assert.equal(result.structuredContent, undefined);
+  }
+  h.assertNoWrites();
+});
+
+test('German cellar conditions match only reviewed model test points, with cause and no-purchase exits', async () => {
+  const h = offlineWorker();
+  const name = 'kellerentfeuchter_pruefpunkt_abgleichen';
+  const args = expandedDefinitions.find(tool => tool.name === name).example.args;
+  const call = changes => h.rpc('tools/call', {name, arguments:{...args, ...changes}});
+  for (const [temp, litres, watts] of [[10, 3.4, 180], [20, 8.5, 216]]) {
+    const r = (await call({temperatur_c:temp})).structuredContent;
+    assert.equal(r.status, 'hersteller_pruefpunkt');
+    assert.equal(r.liter_pro_tag, litres);
+    assert.equal(r.leistungsaufnahme_w, watts);
+    assert.equal(r.quellenmarkt, 'DE');
+    assert.equal(r.quellenpruefung, '2026-11-20');
+    assert.equal(r.guide_url, origin + cellar + '#kalter-keller');
+    assert.equal(r.quelle, 'https://eu.meaco.com/products/meacodry-arete-one-20l-luftentfeuchter-luftreiniger');
+    const unknown = (await call({modell:'comfee-mddf20', temperatur_c:temp})).structuredContent;
+    assert.equal(unknown.status, 'wertepaar_offen');
+    assert.equal(unknown.liter_pro_tag, null);
+    assert.equal(unknown.leistungsaufnahme_w, null);
+    assert.match(unknown.quelle, /comfee-MDDF-20DEN7-Datenblatt\.pdf#page=2$/);
+    assert.match(unknown.modell, /ohne WF/);
+  }
+  for (const [changes, status] of [
+    [{temperatur_c:10.01}, 'wertepaar_offen'],
+    [{relative_feuchte_pct:59.9}, 'wertepaar_offen'],
+    [{temperatur_c:30, relative_feuchte_pct:80}, 'wertepaar_offen'],
+    [{wiederholt_gemessen:false}, 'zuerst_messen'],
+    [{befund:'unauffaellig'}, 'kein_kaufbedarf_belegt'],
+    [{befund:'wassereintritt_oder_schaden', wiederholt_gemessen:false}, 'ursache_klaeren'],
+  ]) {
+    const r = (await call(changes)).structuredContent;
+    assert.equal(r.status, status);
+    assert.equal(r.liter_pro_tag, null);
+    assert.equal(r.leistungsaufnahme_w, null);
+  }
+  for (const modell of ['meaco-two-12', 'comfee-mddf20-wf']) {
+    assert.equal((await call({modell})).isError, true);
+  }
+  const legacy = await h.rpc('tools/call', {name:'entfeuchter_kalt_modellbeleg', arguments:{model:'meaco-one-20'}});
+  assert.match(legacy.structuredContent.source_url, /^https:\/\/www\.meaco\.com\/products\//);
+  h.assertNoWrites();
+});
+
+test('laundry purchase payback counts only changed loads and requires complete comparable measurements', async () => {
+  const h = offlineWorker();
+  const name = 'waesche_trocknungswechsel_kaufschwelle';
+  const {example} = expandedDefinitions.find(tool => tool.name === name);
+  const call = input => h.rpc('tools/call', {name, arguments:{...example.args, ...input}});
+  const check = async (input, expected) => {
+    const result = await call(input);
+    assert.equal(result.isError, false);
+    for (const [key,value] of Object.entries(expected)) assert.equal(result.structuredContent[key], value, key);
+  };
+  await check({anschaffung_eur:84}, {kostendeckung_saisons:5, stromersparnis_saison_eur:16.8});
+  await check({anschaffung_eur:0}, {kostendeckung_saisons:0, status:'vorhandene_option_stromguenstiger'});
+  await check({ladungen_ersetzbar:0}, {trocknerladungen_weiter:100, status:'kein_stromkostenvorteil', gemischt_saison_eur:49, kostendeckung_saisons:null});
+  await check({entfeuchter_kwh:1.6}, {status:'kein_stromkostenvorteil', stromersparnis_saison_eur:-4.2, kostendeckung_saisons:null});
+  for (const input of [{ladungen_vergleichbar:false}, {zusatzstrom_erfasst:false}]) {
+    await check(input, {status:'erst_vergleichbar_messen', bisher_saison_eur:null, gemischt_saison_eur:null,
+      stromersparnis_saison_eur:null, kostendeckung_saisons:null});
+  }
+  for (const input of [{ladungen_ersetzbar:101}, {ladungen_ersetzbar:60.5}, {ladungen_saison:100.5}, {tarif_eur_kwh:-1}]) {
+    const result = await call(input);
+    assert.equal(result.isError, true);
+    assert.equal(result.structuredContent, undefined);
+  }
+  h.assertNoWrites();
+});
+
+test('laundry payback uses the measured decimal amounts before presentation rounding', async () => {
+  const h = offlineWorker();
+  const name = 'waesche_trocknungswechsel_kaufschwelle';
+  const {example} = expandedDefinitions.find(tool => tool.name === name);
+  const calculate = async input => {
+    const args = {...example.args, ladungen_ersetzbar:50, tarif_eur_kwh:0.33, ...input};
+    const result = await h.rpc('tools/call', {name, arguments:args});
+    assert.equal(result.isError, false);
+    return result.structuredContent;
+  };
+  // Both readings save exactly €16.665 per season. After six seasons only €99.99 is recovered.
+  for (const [dryer, dehumidifier] of [[1.50, 0.49], [1.41, 0.40]]) {
+    const readings = {trockner_kwh:dryer, entfeuchter_kwh:dehumidifier};
+    const justShort = await calculate({...readings, anschaffung_eur:100});
+    assert.equal(justShort.stromersparnis_saison_eur, 16.67);
+    assert.equal(justShort.kostendeckung_saisons, 7);
+    assert.equal((await calculate({...readings, anschaffung_eur:99.99})).kostendeckung_saisons, 6);
+  }
+  const subCent = await calculate({ladungen_ersetzbar:1, trockner_kwh:0.001, entfeuchter_kwh:0,
+    tarif_eur_kwh:0.5, anschaffung_eur:0.01});
+  assert.equal(subCent.stromersparnis_saison_eur, 0);
+  assert.equal(subCent.kostendeckung_saisons, 20);
+  const outOfRange = await calculate({ladungen_ersetzbar:1, trockner_kwh:5e-324, entfeuchter_kwh:0,
+    tarif_eur_kwh:1e-20, anschaffung_eur:100});
+  assert.equal(outOfRange.status, 'kostendeckung_ausserhalb_zahlenbereich');
+  assert.equal(outOfRange.kostendeckung_saisons, null);
   h.assertNoWrites();
 });
 

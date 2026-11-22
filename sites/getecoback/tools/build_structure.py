@@ -4201,20 +4201,29 @@ def inject_explainer(html, slug, en=False):
 # boxes, in-text links) predate per-link gtag handlers, so their clicks were
 # invisible in GA4. One listener per page catches them all, and it stands down
 # whenever another handler on the page already reported the same click.
-def track_block(cellar=False, window_fit=False):
+def track_block(cellar=False, window_fit=False, portasplit_url=None, cellar_model=None):
     # Capture the initial document URL once. Following a model anchor on this
     # page may change the fragment before the existing click event fires.
     marker = ('var drainEntry=location.href==="https://getecoback.com/guide/luftentfeuchter-keller.html'
               '?utm_source=eco-mcp&utm_medium=referral&utm_campaign=keller-ablauf#ablauf-vor-kauf";'
               if cellar else '')
     field = 'mcp_drain_entry:(drainEntry&&(n==="page_view"||n==="affiliate_click"))||undefined,' if cellar else ''
-    if window_fit:
-        marker = ('var windowEntry=location.href==="https://getecoback.com/produkte.html'
-                  '?mcp_entry=fenstersauger-breitencheck#fenstersauger-duesenbreite";'
-                  'var windowMeasure=function(){try{return windowEntry&&!navigator.webdriver&&'
-                  'navigator.doNotTrack!=="1"&&window.doNotTrack!=="1"&&!navigator.globalPrivacyControl&&'
-                  'localStorage.getItem("fleet_ga4_choice_v1")!=="denied";}catch(e){return false;}};')
-        field = 'mcp_window_entry:((n==="page_view"||n==="affiliate_click")&&windowMeasure())||undefined,'
+    click = 'n==="affiliate_click"'
+    if cellar_model:
+        entry_name = "cellar"
+        entry_url, merchant_url = cellar_model
+        click = f'(n==="affiliate_click"&&m&&m.link_url==={json.dumps(merchant_url)})'
+    elif window_fit:
+        entry_name = "window"
+        entry_url = "https://getecoback.com/produkte.html?mcp_entry=fenstersauger-breitencheck#fenstersauger-duesenbreite"
+    else:
+        entry_name, entry_url = "portasplit", portasplit_url
+    if entry_url:
+        marker += (f'var {entry_name}Entry=location.href==={json.dumps(entry_url)};'
+                   f'var {entry_name}Measure=function(){{try{{return {entry_name}Entry&&!navigator.webdriver&&'
+                   'navigator.doNotTrack!=="1"&&window.doNotTrack!=="1"&&!navigator.globalPrivacyControl&&'
+                   'localStorage.getItem("fleet_ga4_choice_v1")!=="denied";}catch(e){return false;}};')
+        field += f'mcp_{entry_name}_entry:((n==="page_view"||{click})&&{entry_name}Measure())||undefined,'
     return ('<!--EB_TRACK--><script>(function(){' + marker +
          # First-party beacon: same-origin, no cookies, no ids. Mirrors every
          # gtag event into our own D1 so the funnel stays measurable without a
@@ -4288,8 +4297,8 @@ def track_block(cellar=False, window_fit=False):
          '});})();</script><!--/EB_TRACK-->')
 
 
-def inject_track(html, cellar=False, window_fit=False):
-    track = track_block(cellar, window_fit)
+def inject_track(html, cellar=False, window_fit=False, portasplit_url=None, cellar_model=None):
+    track = track_block(cellar, window_fit, portasplit_url, cellar_model)
     if "<!--EB_TRACK-->" in html:
         return re.sub(r'<!--EB_TRACK-->.*?<!--/EB_TRACK-->', lambda m: track, html, flags=re.S)
     return html.replace("</body>", track + "\n</body>", 1)
@@ -4631,6 +4640,14 @@ def storage_guard():
                          + "\n  ".join(bad))
 
 
+def model_entry_target(filename):
+    with open(os.path.join(ROOT, "data", filename), encoding="utf-8") as handle:
+        entry = json.load(handle)
+    page = os.path.join(SITE, entry["page"].lstrip("/"))
+    url = "https://getecoback.com" + entry["page"] + entry["query"] + entry["fragment"]
+    return page, url, entry["model_search"]
+
+
 def main():
     # This menu is a final build layer. Legacy chrome injectors target the first
     # </nav>; leaving last build's menu here would nest content inside it and
@@ -4650,6 +4667,9 @@ def main():
     print(f"hubs: " + ", ".join(f"{k}({len(arts[k])})" for k, _, _ in CATEGORIES))
 
     processed = 0
+    portasplit_page, portasplit_url, _ = model_entry_target("mcp-portasplit-entry.json")
+    cellar_page, cellar_url, cellar_search = model_entry_target("mcp-cellar-entry.json")
+    cellar_merchant = "https://www.amazon.de/s?" + urllib.parse.urlencode({"k": cellar_search, "tag": "getecoback-21"})
     targets = ([os.path.join(SITE, f) for f in os.listdir(SITE) if f.endswith(".html") and f != "404.html"]
                + glob.glob(os.path.join(GUIDE, "*.html"))
                + glob.glob(os.path.join(KAT, "*.html")))
@@ -4658,8 +4678,10 @@ def main():
         new = inject_laundry(html, os.path.basename(path)[:-5])
         new = inject_chrome(new)
         new = inject_search(new)
-        new = inject_track(new, cellar=path == os.path.join(GUIDE, "luftentfeuchter-keller.html"),
-                           window_fit=path == os.path.join(SITE, "produkte.html"))
+        new = inject_track(new, cellar=path == cellar_page,
+                           window_fit=path == os.path.join(SITE, "produkte.html"),
+                           portasplit_url=portasplit_url if path == portasplit_page else None,
+                           cellar_model=(cellar_url, cellar_merchant) if path == cellar_page else None)
         if os.path.basename(path) != 'produkte.html':
             new = inject_profile(new)
         new = inject_share(new)

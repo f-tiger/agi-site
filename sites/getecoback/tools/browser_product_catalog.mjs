@@ -7,6 +7,7 @@ import {WINDOW_ENTRY_DOCUMENT, WINDOW_ENTRY_URL} from '../src/fenstersauger-entr
 
 const root=path.resolve(process.env.ECO_CATALOG_SITE||new URL('../site/',import.meta.url).pathname);
 const data=JSON.parse(fs.readFileSync(new URL('../data/product-catalog.json',import.meta.url),'utf8'));
+const portasplitEntry=JSON.parse(fs.readFileSync(new URL('../data/mcp-portasplit-entry.json',import.meta.url),'utf8'));
 const requireTools=createRequire(new URL('../../../tools/revenue-studio/package.json',import.meta.url));
 const {chromium}=requireTools('playwright');
 const origin='https://getecoback.com',today=new Date().toISOString().slice(0,10),cases=[];
@@ -60,6 +61,78 @@ function waitForEvent(page,name){
   try{return JSON.parse(request.postData()).n===name;}catch{return false;}
  });
 }
+async function checkCellarEntry(browser) {
+ const pagePath='/guide/luftentfeuchter-keller.html';
+ const modelHash='#modell-meaco-one-20';
+ const otherHash='#modell-meaco-one-25';
+ const markerQuery='?mcp_entry=keller-pruefpunkt';
+ const modelSearch='https://www.amazon.de/s?k=MeacoDry+Arete+One+20L&tag=getecoback-21';
+ const otherSearch='https://www.amazon.de/s?k=MeacoDry+Arete+One+25L&tag=getecoback-21';
+ const cases=[];
+ for(const mode of ['tagged','untagged','wrong-fragment','extra-query','opted-out','probe','other-model','no-script']){
+  const noScript=mode==='no-script';
+  const context=await browser.newContext({viewport:{width:390,height:844},javaScriptEnabled:!noScript,serviceWorkers:'block'});
+  const merchants=[];
+  let eventRequests=0;
+  await context.route('**/*',route=>{
+   const request=route.request();
+   if(new URL(request.url()).hostname==='www.amazon.de')merchants.push(request.url());
+   if(request.url()===origin+'/api/ev'&&request.method()==='POST')eventRequests++;
+   return localCatalogue(route);
+  });
+  if(!noScript)await context.addInitScript(mode=>{
+   Object.defineProperty(navigator,'webdriver',{get:()=>mode==='probe'});
+   if(mode==='opted-out'&&location.protocol==='https:')localStorage.setItem('fleet_ga4_choice_v1','denied');
+  },mode);
+
+  const page=await context.newPage();
+  const query=mode==='untagged'?'':mode==='extra-query'?markerQuery+'&extra=1':markerQuery;
+  const documentURL=origin+pagePath+query;
+  const arrivalURL=documentURL+(mode==='wrong-fragment'?otherHash:modelHash);
+  const isTagged=['tagged','other-model'].includes(mode);
+  const view=noScript?null:waitForEvent(page,'page_view');
+  await page.goto(arrivalURL);
+  const firstModel=page.locator('.dc-card').filter({has:page.locator(modelHash)});
+  if(noScript){
+   const visibleHeading=await page.locator(modelHash).evaluate(heading=>{
+    const box=heading.getBoundingClientRect();
+    const nav=document.querySelector('.eb-nav').getBoundingClientRect();
+    return box.top>=nav.bottom && box.bottom<=window.innerHeight;
+   });
+   assert(visibleHeading,'Mobile arrival hides the selected model behind navigation');
+  }
+  assert(await firstModel.locator('a[rel~=sponsored]').isVisible(),mode);
+  assert.equal(await firstModel.locator('a[rel~=sponsored]').getAttribute('href'),modelSearch,mode);
+  if(view){
+   const request=await view;
+   assert.equal(JSON.parse(request.postData()).mcp_cellar_entry,isTagged?true:undefined,mode+' arrival');
+   assert.equal((await request.allHeaders()).referer,documentURL);
+  }
+  // Move within the same document to test the original entry fragment, not the current one.
+  const destination=mode==='wrong-fragment'?modelHash:otherHash;
+  await page.locator('#eb-models a[href="'+destination+'"]').first().click();
+  await page.waitForURL(documentURL+destination);
+  const merchantCard=mode==='other-model'?page.locator('.dc-card').filter({has:page.locator(otherHash)}):firstModel;
+  const click=noScript?null:waitForEvent(page,'affiliate_click');
+  const expectedMerchant=mode==='other-model'?otherSearch:modelSearch;
+  const outgoing=context.waitForEvent('request',request=>request.url()===expectedMerchant);
+  await merchantCard.locator('a[rel~=sponsored]').click();
+  await outgoing;
+  if(click){
+   const request=await click,body=JSON.parse(request.postData());
+   assert.equal(body.mcp_cellar_entry,mode==='tagged'?true:undefined,mode+' merchant click');
+   assert.equal(body.m.link_url,expectedMerchant);
+   assert.equal((await request.allHeaders()).referer,documentURL);
+  }else{
+   assert.equal(eventRequests,0,'No-script navigation emitted an event');
+  }
+  assert.deepEqual(merchants,[expectedMerchant],mode+' merchant intercepted');
+  cases.push({mode,markedArrival:isTagged,markedClick:mode==='tagged',intercepted:merchants.length});
+  await context.close();
+ }
+ return cases;
+}
+
 const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{}),args:['--no-sandbox']});
 try{
  for(const width of [320,390,1280])for(const javaScriptEnabled of [true,false]){
@@ -292,5 +365,46 @@ try{
   await context.close();
   windowEntryCases.push({mode,modelClickAvailable});
  }
- console.log(JSON.stringify({pass:true,cases,windowEntryCases,productionWrites:0}));
+ const portasplitEntryCases=[];
+ const portasplitDocument=origin+portasplitEntry.page+portasplitEntry.query;
+ for(const mode of ['tagged','wrong-fragment','untagged','opted-out']){
+  const context=await browser.newContext({viewport:{width:390,height:900},serviceWorkers:'block'});
+  let blockedMerchant=0;
+  await context.route('**/*',route=>{
+   if(new URL(route.request().url()).hostname==='www.amazon.de')blockedMerchant++;
+   return localCatalogue(route);
+  });
+  await context.addInitScript(optedOut=>{
+   Object.defineProperty(navigator,'webdriver',{get:()=>false});
+   if(optedOut&&location.protocol==='https:')localStorage.setItem('fleet_ga4_choice_v1','denied');
+  },mode==='opted-out');
+  const page=await context.newPage();
+  const document=mode==='untagged'?origin+portasplitEntry.page:portasplitDocument;
+  const fragment=mode==='wrong-fragment'?'#option-1-clima-butler':portasplitEntry.fragment;
+  const view=waitForEvent(page,'page_view');
+  await page.goto(document+fragment);
+  const arrival=await view;
+  const expectedMarker=mode==='tagged'?true:undefined;
+  assert.equal(JSON.parse(arrival.postData()).mcp_portasplit_entry,expectedMarker,mode);
+  assert.equal((await arrival.allHeaders()).referer,document);
+
+  const secondFragment=mode==='wrong-fragment'?portasplitEntry.fragment:'#option-2-remko';
+  await page.locator('nav[aria-label="Inhaltsverzeichnis"] a[href="'+secondFragment+'"]').click();
+  await page.waitForURL(url=>url.hash===secondFragment);
+  const click=waitForEvent(page,'affiliate_click');
+  await page.getByRole('link',{name:'Midea PortaSplit auf Amazon.de suchen →',exact:true}).click();
+  const request=await click;
+  const payload=JSON.parse(request.postData());
+  const merchant=new URL(payload.m.link_url);
+  assert.equal(payload.mcp_portasplit_entry,expectedMarker,mode);
+  assert.equal((await request.allHeaders()).referer,document);
+  assert.equal(merchant.origin+merchant.pathname,'https://www.amazon.de/s');
+  assert.equal(merchant.searchParams.get('k'),portasplitEntry.model_search);
+  assert.equal(merchant.searchParams.get('tag'),'getecoback-21');
+  assert.equal(blockedMerchant,1,mode);
+  await context.close();
+  portasplitEntryCases.push({mode,marker:expectedMarker??false});
+ }
+ const cellarEntryCases=await checkCellarEntry(browser);
+ console.log(JSON.stringify({pass:true,cases,windowEntryCases,portasplitEntryCases,cellarEntryCases,productionWrites:0}));
 }finally{await browser.close();}

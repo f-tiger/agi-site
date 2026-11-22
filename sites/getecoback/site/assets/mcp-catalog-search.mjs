@@ -125,6 +125,7 @@ const taskWords = new Map([
   ["brita_maxtra_kanne_eingangswasser_quellenrahmen", "kannenanleitung kaltes wasser oeffentliches versorgungsnetz brunnenwasser eigene quelle oeffentlichen netz vorgewaermt eingangswasser"],
   ['dusche_zeit_bei_wasserbudget', 'duschen litern liter wasserbudget duschdauer lange'],
   ['saugroboter_kabelroute_vorbereiten', 'roboter kabel faehrt ueberfaehrt kabelsalat'],
+  ['kellerentfeuchter_pruefpunkt_abgleichen', 'prueftemperatur entfeuchtungsleistung entzieht liter watt grad luftfeuchtigkeit prozent pruefbedingungen'],
   ['entfeuchter_ablaufcheck', 'abflussschlauch ablaufschlauch abfluss auslass keller oben hoeher fuehren ableiten kondensat'],
   ['luftreiniger_ersatzfilter_zuordnung', 'passt ersatzfilter luftreinigermodell luftreiniger filternummer'],
   ['waesche_trockenweg_sortierplan', 'liegeplaetze leine liegend liegen haengend'],

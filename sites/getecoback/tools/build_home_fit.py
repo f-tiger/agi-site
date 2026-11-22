@@ -3,7 +3,8 @@
 import hashlib,html,json,re
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];SITE=ROOT/'site';DATA=json.loads((ROOT/'data/home-fit.json').read_text())
-PAGES={'rechner.html':('de','robot'),'en/solution-calculator.html':('en','laundry'),'nl/wonen.html':('nl','robot'),'fr/calculateur.html':('fr','floor'),'guide/midea-portasplit-kaufen.html':('de','ac'),'guide/waesche-trocknen-wohnung.html':('de','laundry'),'en/guide/dehumidifier-drying-clothes-cost.html':('en','laundry')}
+DE_LAUNDRY_GUIDE='guide/waesche-trocknen-wohnung.html'
+PAGES={'rechner.html':('de','robot'),'en/solution-calculator.html':('en','laundry'),'nl/wonen.html':('nl','robot'),'fr/calculateur.html':('fr','floor'),'guide/midea-portasplit-kaufen.html':('de','ac'),DE_LAUNDRY_GUIDE:('de','laundry'),'en/guide/dehumidifier-drying-clothes-cost.html':('en','laundry')}
 ESC=lambda s:html.escape(str(s),quote=True)
 VERSION=hashlib.sha256(''.join((SITE/'assets'/p).read_text() for p in ['home-fit.mjs','home-fit-model.mjs','home-fit.css']).encode()).hexdigest()[:12]
 def replace(text,name,body,anchor):
@@ -12,11 +13,15 @@ def replace(text,name,body,anchor):
  return text.replace(anchor,f'\n<!--{name}-->{body}<!--/{name}-->\n'+anchor,1)
 for path,(lang,mode) in PAGES.items():
  p=SITE/path;t=DATA['text'][lang];text=p.read_text()
- # Readable factual fallback is also available to search/AI crawlers without JS.
- fallback=''.join('<h3>'+ESC(t[m])+'</h3><p>'+ESC(t[m+'Limit'])+'</p>' for m in ['robot','laundry','ac','floor'])
- sourcehtml=''.join('<li><a href="'+ESC(url)+'">'+ESC(title)+'</a></li>' for refs in DATA['sources'].values() for title,url in refs)
+ # Keep this guide's static evidence focused on its default task. Interactive tabs
+ # still have their own limits and sources in the configuration below.
+ fallback_modes = (mode,) if path == DE_LAUNDRY_GUIDE else ('robot','laundry','ac','floor')
+ fallback=''.join('<h3>'+ESC(t[m])+'</h3><p>'+ESC(t[m+'Limit'])+'</p>' for m in fallback_modes)
+ if 'floor' in fallback_modes:
+  fallback += '<p>'+ESC(t['method'])+'</p>'
+ sourcehtml=''.join('<li><a href="'+ESC(url)+'">'+ESC(title)+'</a></li>' for m in fallback_modes for title,url in DATA['sources'][m])
  config={'text':t,'sources':DATA['sources'],'mode':mode}
- body=f'<section id="home-fit" aria-labelledby="hf-heading"><span id="home-fit-floor"></span><span id="home-fit-robot"></span><h2 id="hf-heading">{ESC(t["title"])}</h2><p>{ESC(t["intro"])}</p><div data-hf-mount></div><details class="hf-reference"><summary>{ESC(t["sources"])}</summary><p>{ESC(t["reviewed"])}</p>{fallback}<p>{ESC(t["method"])}</p><ul>{sourcehtml}</ul></details></section>'
+ body=f'<section id="home-fit" aria-labelledby="hf-heading"><span id="home-fit-floor"></span><span id="home-fit-robot"></span><h2 id="hf-heading">{ESC(t["title"])}</h2><p>{ESC(t["intro"])}</p><div data-hf-mount></div><details class="hf-reference"><summary>{ESC(t["sources"])}</summary><p>{ESC(t["reviewed"])}</p>{fallback}<ul>{sourcehtml}</ul></details></section>'
  body+='<script id="home-fit-config" type="application/json">'+json.dumps(config,ensure_ascii=False).replace('<','\\u003c')+'</script>'
  body+=f'<link rel="stylesheet" href="/assets/home-fit.css?v={VERSION}"><script type="module" src="/assets/home-fit.mjs?v={VERSION}"></script>'
  text=replace(text,'EB_HOME_FIT',body,'</article>' if '</article>' in text else '</main>')

@@ -30,6 +30,8 @@ Frei gewähltes Beispiel, keine Produktmessung: 250 W × 8 h ÷ 1.000 = 2 kWh; b
 ### Welche Situation passt zu dir?
 **Ich habe bereits einen Trockner**
 Vergleiche zuerst einen vollständigen Durchgang deines vorhandenen Geräts. Ein neuer Entfeuchter muss zusätzlich angeschafft werden; ein niedriger Wattwert allein rechtfertigt den Kauf nicht. Das Rechenbeispiel unten zeigt, wie eine lange Laufzeit den Vorteil umkehren kann.
+Wenn du im Winter nur einen Teil der Ladungen anders trocknest, rechne die Ersparnis nur für diese Ladungen. Multipliziere die gemessene Stromdifferenz je gleich trockener Ladung mit deinem Arbeitspreis und der Anzahl ersetzbarer Ladungen je Saison. Teile die Anschaffungskosten durch die positive Saisonersparnis. Ist die Saisonersparnis null oder negativ, bezahlt sich der Kauf nicht über den Strom.
+Frei gewähltes Beispiel: 60 von 100 Ladungen wechseln von 1,4 kWh auf 0,6 kWh je Ladung inklusive Zusatzstrom. Bei 0,35 € je kWh sind das 16,80 € Ersparnis pro Saison. Für 100 € Anschaffung braucht es sechs volle Saisons mit denselben Annahmen. Miss zuerst, wenn Wäschemenge, Trocknungsgrad oder Zusatzstrom noch offen sind.
 **Ich habe wenig Platz und keinen Trockner**
 Prüfe zuerst Platz für einen Wäscheständer, Luftaustausch und den gewünschten Trocknungszeitpunkt. Eine Wäscheleine braucht keinen direkten Gerätestrom; mögliche zusätzliche Heiz- und Lüftungsenergie ist damit nicht berechnet. Ein Entfeuchter ersetzt weder Luftaustausch noch Stellfläche für die Wäsche.
 [Lüften und Trocknen in der Wohnung einordnen](https://getecoback.com/guide/waesche-trocknen-wohnung.html)
