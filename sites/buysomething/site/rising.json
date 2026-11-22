@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-21",
+ "fetched": "2026-11-22",
  "seeds": {
   "electric spin scrubber": {
    "rising": [
@@ -701,38 +701,40 @@
    "fetched": "2026-11-21"
   },
   "self cleaning litter box": {
-   "auto": [
-    "self cleaning litter box",
-    "self cleaning litter box for multiple cats",
-    "self cleaning litter box for large cats",
-    "self cleaning litter boxes for cats",
-    "self cleaning litter box near me",
-    "self cleaning litter box nearby",
-    "self cleaning litter box amazon",
-    "self cleaning litter box reviews",
-    "self cleaning litter box reddit",
-    "self cleaning litter box walmart"
+   "rising": [
+    {
+     "q": "black friday self cleaning litter box",
+     "v": 66450
+    },
+    {
+     "q": "whisker litter robot 4",
+     "v": 12550
+    },
+    {
+     "q": "catgenie self cleaning litter box",
+     "v": 2750
+    },
+    {
+     "q": "moonbox litter box",
+     "v": 2300
+    },
+    {
+     "q": "best litter box for cats",
+     "v": 40
+    }
    ],
-   "rising": [],
-   "source": "autocomplete-diff",
-   "fetched": "2026-11-21"
+   "source": "related-queries",
+   "fetched": "2026-11-22"
   },
   "robot pet companion": {
-   "auto": [
-    "robot pet companion",
-    "robot dog companion",
-    "robot dog companion for elderly",
-    "robot dog companion warframe",
-    "robot dog companion fallout 4",
-    "robot animal companion",
-    "robot dog companion new vegas",
-    "robot dog companion nms",
-    "robot dog companion fallout",
-    "robot dog companion starfield"
+   "rising": [
+    {
+     "q": "joy for all companion pet",
+     "v": 140
+    }
    ],
-   "rising": [],
-   "source": "autocomplete-diff",
-   "fetched": "2026-10-23"
+   "source": "related-queries",
+   "fetched": "2026-11-22"
   },
   "balkonkraftwerk speicher": {
    "rising": [
