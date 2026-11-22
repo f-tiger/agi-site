@@ -311,3 +311,21 @@ test('German Fenstersauger questions lead to the right decision and owned eviden
     assert.equal(matching.guide_url, origin + '/produkte.html#fenstersauger-belege');
   }
 });
+
+test('exact window-vacuum parts and battery actions lead to different tools', async () => {
+  const cases = [
+    ['Passt die 170-mm-Abziehlippe 2.633-104.0 an meinen Kärcher WV 8 Signature Line?',
+      'fenstersauger_170mm_abziehlippe_geraetefamilie'],
+    ['Passt die 170-mm-Abziehlippe 2.633-513.0 an meinen Kärcher WV 3 Comfort Precision+ Black?',
+      'fenstersauger_170mm_abziehlippe_geraetefamilie'],
+    ['Lässt sich der Akku beim WV 8 Signature Line austauschen?',
+      'fenstersauger_wv3_wv8_akkuwechsel_service_oder_reserve'],
+  ];
+  for (const [query, name] of cases) {
+    const local = names(findCatalogueTools(compact,{query}));
+    assert.equal(local[0],name,query);
+    const {tools} = await catalogue({q:query,view:'compact',limit:'3'});
+    assert.deepEqual(names(tools),local.slice(0,3),query);
+    assert.equal(tools[0].guide_url,origin + '/produkte.html#fenstersauger-belege');
+  }
+});

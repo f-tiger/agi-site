@@ -21,11 +21,21 @@
       "top_hot_page": null
     },
     "health": {
-      "http": "200",
+      "http": "429",
       "stale_deploy": false
     }
   },
-  "actions": [],
+  "actions": [
+    {
+      "kind": "site_health",
+      "priority": 100,
+      "reason": "live probe is not HTTP 200",
+      "evidence": {
+        "http": "429"
+      },
+      "mode": "alert"
+    }
+  ],
   "autonomous_changes": [
     "refresh aggregate snapshots",
     "refresh opportunity and demand queues",

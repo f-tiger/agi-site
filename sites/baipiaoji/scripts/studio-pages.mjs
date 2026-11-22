@@ -14,9 +14,16 @@ import {buildVideo} from './video-pages.mjs';
 import {buildFileStudio} from './file-pages.mjs';
 import {buildListingPack} from './listing-pages.mjs';
 import {buildTableReview} from './table-review-pages.mjs';
+import {buildTradePages,TRADE_PATH,tradeTitle} from './trade-pages.mjs';
+import {aiSuiteFeaturedCss, aiSuiteFeaturedTool, aiSuiteTaskLinks, renderAiFeatured} from './ai-suite-featured.mjs';
 
 // This registry is deliberately separate from data/tools.json (third-party listings).
 export const STUDIO_TOOLS=[
+  {featured:true,path:TRADE_PATH,zh:tradeTitle.zh,en:tradeTitle.en,
+    zhDesc:'查公开进口商和采购公告，把买家线索排优先级，再算出口最低报价。',
+    enDesc:'Find public importer and tender records, prioritize leads, and calculate the export price floor.',
+    zhOutput:'加拿大进口商 · 欧盟采购 · 出口报价',enOutput:'Canadian importers · EU tenders · export quotes',
+    search:'外贸 客源 进口商 找客户 出口 采购 客户线索 跨境报价 export buyer importer leads sourcing TED FOB CIF'},
   {featured:true,path:'/studio/table-review',zh:'AI 表格改写验收',en:'AI table rewrite review',zhDesc:'指定可改写列，核对 AI 返回的 CSV；恢复锁定字段，保留允许的改写。',enDesc:'Choose editable columns, check an AI-rewritten CSV and restore locked values while keeping allowed edits.',zhOutput:'差异报告 · 锁定值修复 · CSV 导出',enOutput:'Change report · locked-value repair · CSV export',search:'ai csv table rewrite translation compare repair 表格 改写 翻译 核对 数字 修复'},
   {featured:true,path:'/studio/listing-pack',zh:'跨境商品上新包',en:'Cross-border listing pack',zhDesc:'检查商品事实，交接 AI 英文草稿，逐项核对后导出上新资料包。',enDesc:'Check product facts, hand off English AI drafts and export a reviewed listing worksheet.',zhOutput:'商品事实 · 英文草稿 · 核对清单 · ZIP',enOutput:'Source facts · English drafts · review checklist · ZIP',search:'listing sku product ecommerce cross border catalog csv 商品 跨境 上新 英文 校验'},
   {featured:true,path:'/studio/testimonial-kit',zh:'客户评价素材台',en:'Customer quote studio',zhDesc:'把已授权的真实评价制作成网站展示页和图片，会员可导出去品牌交付包。',enDesc:'Turn permissioned customer quotes into a website wall and image; members can export an unbranded package.',zhOutput:'HTML 展示页 · SVG 图片 · 项目备份',enOutput:'HTML wall · SVG image · project backup',search:'testimonial customer review social proof wall quote 评价 客户 证言 营销 素材'},
@@ -44,16 +51,18 @@ export function buildStudio({layout,railOf,esc,crumbLd,faqLd,BASE,NAME,LOCALE,si
   buildToolkit({layout,railOf,esc,crumbLd,BASE,NAME,LOCALE,site,write,pushPage});
   const zh=LOCALE.code==='zh',lang=zh?'zh':'en',L=COPY[lang];
   const hub=BASE+'/studio/',asset=site.base_url+'/studio-assets';
-  const tools=STUDIO_TOOLS.map(t=>({...t,title:zh?t.zh:t.en,desc:zh?t.zhDesc:t.enDesc}));
+  const tools=STUDIO_TOOLS.filter(t=>!aiSuiteFeaturedTool(t.path)).map(t=>({...t,title:zh?t.zh:t.en,desc:zh?t.zhDesc:t.enDesc}));
+  const toolLinks=[...aiSuiteTaskLinks(BASE,lang),...tools.map(t=>({label:t.title,href:BASE+t.path}))];
   const title=zh?'为你的实际工作做的工具':'Tools built for your actual work';
   const description=zh?'BPJ 自研工具：从岗位 AI 方案、报价比较到商品视频、PDF 和商品图处理，输入实际工作要求，核对、计算并导出结果。':'First-party BPJ tools: plan AI work, compare quotes, create product videos, assemble PDFs and batch product images using your own requirements, with inspectable calculations and exports.';
   const ownership=zh?'BPJ 自主设计与开发':'Designed and built by BPJ';
   const body=`${railOf()}<link rel="stylesheet" href="${asset}/studio.css?v=${EDITION}"><main class="stage studio-main" id="main-content"><nav class="crumb"><a href="${BASE}/">${esc(NAME)}</a><i>/</i><span>${L.back}</span></nav>
     <header class="studio-hero"><span class="studio-sign">${ownership}</span><h1>${title}</h1><p>${description}</p><p>${zh?'这里的工具由 BPJ 开发与维护，可以直接完成具体任务。第三方产品的收录与评测，请看':'These tools are developed and maintained by BPJ to complete specific tasks. For listings and reviews of third-party products, visit the'} <a href="${BASE}/#chat">${zh?'外部工具目录':'external tool directory'}</a>${zh?'。':'.'}</p></header>
+    ${aiSuiteFeaturedCss}${renderAiFeatured({BASE,lang,esc})}
     ${efficiencyEntry(BASE,zh)}${pilotEntry(BASE,zh,'studio')}${videoEntry(BASE,zh,'studio')}<div class="studio-rows">${tools.filter(t=>t.featured).map(t=>`<article class="studio-product"><span class="studio-meta">${zh?'BPJ 自研 · 浏览器工具':'BPJ original · browser tool'}</span><h2><a href="${BASE}${t.path}">${esc(t.title)}</a></h2><p>${esc(t.desc)}</p><p class="quote-note">${esc(zh?t.zhOutput:t.enOutput)}</p><a class="studio-button primary" href="${BASE}${t.path}">${zh?'打开工具':'Open tool'}</a></article>`).join('')}</div>
     <section class="studio-tools"><h2>${zh?'更多自研工具':'More tools built by BPJ'}</h2><ul>${tools.filter(t=>!t.featured).map(t=>`<li><a href="${BASE}${t.path}">${esc(t.title)}</a><p>${esc(t.desc)}</p></li>`).join('')}</ul></section>
     <section class="studio-info"><h2>${zh?'先完成工作，再决定是否需要进阶服务':'Finish a task, then decide what else you need'}</h2><p>${zh?'岗位方案计算、报价比较、商品视频、PDF 和商品图处理与导出均可免费使用。岗位规划器和视频项目可通过现有 BPJ 会员保存到云端并保留版本；报价比较台目前提供免费本机保存。各工具会在操作前说明是否需要注册或会员。':'Work-plan calculations, quote comparison, product videos, PDF assembly, image processing and exports are free. The planner and video projects support cloud saving and version history through existing BPJ membership; the quote tool currently offers free local drafts. Individual tools explain registration or membership requirements before use.'}</p><p>${zh?'自研表示工具的开发归属，不表示背书任何第三方产品，也不保证工作收入。':'First-party identifies who develops the tool. It does not endorse a third-party vendor or guarantee earnings.'}</p></section></main>`;
-  write('studio/index.html',layout({title:`${zh?'BPJ 自研工具':'Built by BPJ'} - ${NAME}`,description,path:'/studio/',body,wide:true,schema:[crumbLd([{name:NAME,url:BASE+'/'},{name:L.back,url:hub}]),{'@context':'https://schema.org','@type':'CollectionPage',name:title,url:hub,description,mainEntity:{'@type':'ItemList',itemListElement:tools.map((t,i)=>({'@type':'ListItem',position:i+1,name:t.title,url:BASE+t.path}))}}]}));
+  write('studio/index.html',layout({title:`${zh?'BPJ 自研工具':'Built by BPJ'} - ${NAME}`,description,path:'/studio/',body,wide:true,schema:[crumbLd([{name:NAME,url:BASE+'/'},{name:L.back,url:hub}]),{'@context':'https://schema.org','@type':'CollectionPage',name:title,url:hub,description,mainEntity:{'@type':'ItemList',itemListElement:toolLinks.map((t,i)=>({'@type':'ListItem',position:i+1,name:t.label,url:t.href}))}}]}));
   pushPage(hub,'0.9');
   const FAQ=[{q:L.scopeTitle,a:L.scope},{q:L.methodTitle,a:L.method},{q:L.freeTitle,a:L.free}];
   const qpath='/studio/quote-compare',url=BASE+qpath;
@@ -71,4 +80,5 @@ export function buildStudio({layout,railOf,esc,crumbLd,faqLd,BASE,NAME,LOCALE,si
   buildFileStudio({layout,railOf,esc,crumbLd,faqLd,BASE,NAME,LOCALE,site,write,pushPage});
   buildListingPack({layout,railOf,esc,crumbLd,faqLd,BASE,NAME,LOCALE,site,write,pushPage});
   buildTableReview({layout,railOf,esc,crumbLd,faqLd,BASE,NAME,LOCALE,site,write,pushPage});
+  buildTradePages({layout,esc,BASE,LOCALE,write,pushPage});
 }

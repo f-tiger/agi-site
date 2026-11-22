@@ -45,6 +45,8 @@ test('matches task words, both locales and metadata filters', () => {
 test('worker discovers and searches the shipped snapshot, QA does not write a telemetry row', async () => {
   const {response: list} = await rpc('tools/list');
   assert.ok(list.result.tools.some(tool => tool.name === 'search_mcp_catalog' && tool.annotations.readOnlyHint));
+  const guide = await readFile(new URL('../../for-agents.html', import.meta.url), 'utf8');
+  for (const tool of list.result.tools) assert.ok(guide.includes('<code>' + tool.name + '</code>'), tool.name);
   const args = {query: 'GitHub', limit: 2};
   const params = {name: 'search_mcp_catalog', arguments: args};
   const {response, writes} = await rpc('tools/call', params);

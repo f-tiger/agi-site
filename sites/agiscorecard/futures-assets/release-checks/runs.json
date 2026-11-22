@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "suiteVersion": "1.0.0",
+  "providers": [
+    {"id": "openai", "status": "disabled"},
+    {"id": "anthropic", "status": "disabled"}
+  ],
+  "runs": []
+}

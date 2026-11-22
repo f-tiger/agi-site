@@ -106,14 +106,26 @@ try {
   unavailable = true;
   await page.goto(origin + '/agents/?__ci=1');
   await page.locator('#catalog-status').filter({hasText: /unavailable|could not|try again/i}).waitFor();
-  assert.equal(await results.count(), 0);
+  const documented = snapshot.entries.filter(entry => entry.featured).slice(0, 6);
+  assert.equal(await results.count(), documented.length);
   assert.equal(await page.locator('#native-endpoint').textContent(), origin + '/mcp');
   const basic = await browser.newContext({javaScriptEnabled: false});
   await basic.route('**/*', fixture);
   const basicPage = await basic.newPage();
-  await basicPage.goto(origin + '/agents/?__ci=1');
-  assert.ok(await basicPage.locator('a[href="/mcp-directory-assets/catalog.json"]').isVisible(), 'JSON link remains visible without scripts');
-  assert.ok(await basicPage.locator('a[href="/for-agents"]').first().isVisible(), 'connection guide remains visible without scripts');
+  for (const [route, field] of [['/agents/', 'note'], ['/zh/agents/', 'noteZh']]) {
+    await basicPage.goto(origin + route + '?__ci=1');
+    const staticRows = basicPage.locator('#catalog-results > li');
+    assert.equal(await staticRows.count(), documented.length);
+    assert.equal(await basicPage.locator('#catalog-date time').textContent(), snapshot.asOf);
+    for (const [i, entry] of documented.entries()) {
+      const row = staticRows.nth(i);
+      assert.ok((await row.innerText()).includes(entry[field]));
+      assert.deepEqual(await row.getByRole('link').evaluateAll(links => links.map(link => link.getAttribute('href'))),
+        [entry.documentationUrl, entry.sourceUrl]);
+    }
+    assert.ok(await basicPage.locator('a[href="/mcp-directory-assets/catalog.json"]').isVisible(), 'JSON link remains visible without scripts');
+    assert.ok(await basicPage.locator('a[href="/for-agents"]').first().isVisible(), 'connection guide remains visible without scripts');
+  }
   await basic.close();
   assert.deepEqual(errors, [], 'browser completed interactions without script errors');
   assert.ok(!posts.some(body => /mcp_catalog_(search|open)/.test(body)), 'QA excluded from app event collector');

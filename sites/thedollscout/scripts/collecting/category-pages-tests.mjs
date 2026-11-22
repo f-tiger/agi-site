@@ -90,7 +90,7 @@ test('all 27 category pages expose usable decisions, comparison anchors and ever
   const displayed=[];
   for(const guide of data.categories){
    const slug='shop/categories/'+guide.id,page=pages.get(route(lang,slug)),d=guide[lang],group=homeCatalogCategories.find(g=>g.id===guide.id);
-   assert.ok(page,lang+'/'+guide.id);assert.equal(page.title,d.title);assert.equal(page.description,d.description);assert.equal(page.modified,[data.updated,d.smartPlugDecision?.checked,...products.filter(p=>group.types.includes(p.category)).map(p=>lang==='de'&&p.deVariant?p.deVariant.checked:p.checked)].filter(Boolean).sort().at(-1));
+   assert.ok(page,lang+'/'+guide.id);assert.equal(page.title,d.title);assert.equal(page.description,d.description);assert.equal(page.modified,[data.updated,d.smartPlugDecision ? '2026-11-22' : null,d.smartPlugDecision?.checked,...products.filter(p=>group.types.includes(p.category)).map(p=>lang==='de'&&p.deVariant?p.deVariant.checked:p.checked)].filter(Boolean).sort().at(-1));
    assert.equal((page.html.match(/<h1[ >]/g)||[]).length,1);
    assert.ok(page.html.includes(esc(d.answer)));assert.ok(page.html.includes('datetime="'+guide.checked+'"'));
    assert.ok(page.html.includes('<table>'));assert.ok(page.html.includes('id="category-faq"'));

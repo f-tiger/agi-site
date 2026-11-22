@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-20",
- "radar_fetched": "2026-11-20",
+ "generated": "2026-11-21",
+ "radar_fetched": "2026-11-21",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -21,6 +21,21 @@
  },
  "opportunities": [
   {
+   "theme": "what screenshot software allows the user to capture solely a specific window",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "softwarerecs",
+   "days_seen": [
+    "2026-11-17"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.21,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
    "theme": "windows malware removal in bay area",
    "site": "",
    "kind": "request-board",
@@ -36,16 +51,16 @@
    "fleet_pages": []
   },
   {
-   "theme": "what screenshot software allows the user to capture solely a specific window",
+   "theme": "what software can help manage large volumes of data for long term archiving",
    "site": "",
    "kind": "request-board",
    "subreddit": "softwarerecs",
    "days_seen": [
-    "2026-11-17"
+    "2026-11-13"
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.19,
+   "score": 2.05,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -102,21 +117,6 @@
    "subreddit": "softwarerecs",
    "days_seen": [
     "2026-11-19"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.0,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
-   "theme": "what software can help manage large volumes of data for long term archiving",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "softwarerecs",
-   "days_seen": [
-    "2026-11-13"
    ],
    "state": "scout",
    "supplied": false,

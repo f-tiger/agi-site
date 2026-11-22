@@ -1,7 +1,7 @@
 {
- "generated": "2026-11-19",
+ "generated": "2026-11-21",
  "window_days": 365,
- "since": "2025-11-19",
+ "since": "2025-11-21",
  "sources": {
   "cpsc": "https://www.saferproducts.gov/RestWebServices/Recall (official CPSC API)",
   "eu_safety_gate": "not wired: probed URL serves HTML, JSON endpoint unconfirmed (2026-09-13)"
@@ -48,9 +48,16 @@
    "stale": false
   },
   "robot-pet": {
-   "n": 2,
-   "latest": "2026-01-29",
+   "n": 3,
+   "latest": "2026-11-19",
    "items": [
+    {
+     "id": 11068,
+     "date": "2026-11-19",
+     "title": "CHE-US Recalls Magnetic Robot Toys Due to Risk of Serious Injury or Death from Magnet Ingestion; Violate Mandatory Standard for Toys",
+     "hazard": "The recalled magnetic stick figures violate the mandatory standard for toys because when pulled apart, the figures’ arms",
+     "url": "https://www.cpsc.gov/Recalls/2027/CHE-US-Recalls-Magnetic-Robot-Toys-Due-to-Risk-of-Serious-Injury-or-Death-from-Magnet-Ingestion-Violate-Mandatory-Standard-for-Toys"
+    },
     {
      "id": 10584,
      "date": "2026-01-29",
