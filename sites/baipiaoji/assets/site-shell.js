@@ -1,4 +1,4 @@
-(()=>{const zh=document.documentElement.lang.startsWith('zh'),qa=['__ci','__probe','qa','ci'].some(k=>new URLSearchParams(location.search).has(k));
+(()=>{const zh=document.documentElement.lang.startsWith('zh'),qa=['__ci','__probe','__qa','qa','ci'].some(k=>new URLSearchParams(location.search).has(k));
 const main=document.querySelector('main');if(main&&!document.getElementById('bpj-main')){const anchor=document.createElement('span');anchor.id='bpj-main';anchor.tabIndex=-1;main.prepend(anchor);}
 const emit=(a)=>{if(!qa&&window.bpjEv)window.bpjEv('home','/discovery/'+a);};
 document.querySelectorAll('[data-bpj-next]').forEach(a=>a.addEventListener('click',()=>emit('next'+new URL(a.href).pathname)));
@@ -27,9 +27,9 @@ document.querySelectorAll('[data-bpj-share]').forEach(button => {
       else await navigator.clipboard.writeText(mode === 'cite' ? `[${title}](${url}) — BPJ` : url);
       if (toolShare) {
         status.textContent = native ? (zh ? '已调用系统分享。' : 'Opened system sharing.') : (zh ? '分享链接已复制。' : 'Share link copied.');
-        if (!qa) window.dispatchEvent(new CustomEvent('fleet:business', {
-          detail: {name: native ? 'bpj_tool_share_native' : 'bpj_tool_share_copy'},
-        }));
+        if (!navigator.webdriver && navigator.doNotTrack !== '1' && navigator.globalPrivacyControl !== true) {
+          emit('share/ai-featured/' + (native ? 'native' : 'copy'));
+        }
       } else {
         status.textContent = zh ? '已完成。分享的是公开页面链接，不包含你的文件或项目内容。' : 'Done. Only the public page link is shared, without your files or project contents.';
         emit('share/' + mode);
