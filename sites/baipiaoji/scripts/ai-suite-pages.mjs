@@ -1,6 +1,8 @@
 import {SUITE_CATEGORIES,SUITE_TOOLS,inputSpec,toolInputSchema,runSuiteTool,suitePath} from '../lib/ai-suite/registry.mjs';
 import {renderAiIndex,categoryPath,aiSuiteSearchIndex,searchIndexPath} from './ai-suite-directory.mjs';
 import {suiteGuidance} from './ai-suite-guidance.mjs';
+import {aiSuiteFeaturedTool} from './ai-suite-featured.mjs';
+import {shellToolShare} from './site-shell.mjs';
 
 export {renderAiIndex,suiteCount} from './ai-suite-directory.mjs';
 export const FREE_SUITE_MCP = 'https://baipiaoji.com/api/ai-mcp';
@@ -88,7 +90,7 @@ export function buildAiSuite({layout,esc,BASE,LOCALE,write,pushPage}) {
     ].map(([name,link],index)=>({'@type':'ListItem',position:index+1,name,item:BASE+link}))};
     const body=`${assets}${resultStyles}<main class="stage suite-workspace" data-suite-tool="${tool.id}" data-suite-category="${tool.category}" data-suite-labels="${esc(JSON.stringify(guidance.resultLabels||{}))}">
       <nav class="suite-crumb" aria-label="${t('面包屑导航','Breadcrumb')}"><a href="${BASE}/studio/ai/">${siteTitle[lang]}</a><span aria-hidden="true">/</span><a href="${BASE}${categoryPath(category)}">${esc(category.title[lang])}</a></nav>
-      <header class="suite-tool-heading"><div><h1>${esc(title)}</h1><p>${esc(description)}</p></div><a href="#suite-mcp">${t('MCP 调用说明','MCP instructions')}</a></header>
+      <header class="suite-tool-heading"><div><h1>${esc(title)}</h1><p>${esc(description)}</p></div><a href="#suite-mcp">${t('MCP 调用说明','MCP instructions')}</a></header>${aiSuiteFeaturedTool(path) ? shellToolShare(lang,BASE+path,title) : ''}
       ${guidance.useCase?`<p class="suite-use-case">${esc(guidance.useCase)}</p>`:''}
       <div class="suite-workgrid">
         <section class="suite-input-pane" aria-labelledby="suite-inputs">

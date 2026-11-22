@@ -3,6 +3,46 @@ import assert from 'node:assert/strict';
 import {products,sites} from '../revenue-studio/catalog.mjs';
 import {businessEvent} from './business.mjs';
 
+test('BPJ public tool sharing sends only a fixed action and the current page tool ID', () => {
+ const routes = {
+  '/':'bpj-home', '/en/':'bpj-home', '/en':'bpj-home',
+  '/studio/':'bpj-studio', '/en/studio/':'bpj-studio',
+  '/studio/ai/':'ai-suite-catalog', '/en/studio/ai':'ai-suite-catalog',
+  '/studio/table-review':'table-review', '/en/studio/table-review':'table-review'
+ };
+ for (const id of ['ai-eval-export-pair','answer-citation-coverage','ai-human-review-queue','ai-json-output-contract'])
+  for (const prefix of ['', '/en']) routes[prefix+'/studio/ai/'+id]=id;
+ for (const [path,tool_id] of Object.entries(routes)) for (const action of ['copy','native']) {
+  const name = 'bpj_tool_share_' + action;
+  assert.deepEqual(businessEvent('baipiaoji.com',path,{name}),{name,tool_id,repeat:true});
+  for (const field of ['url','title','tool_id','input','result','filename','email','recipient'])
+   assert.equal(businessEvent('baipiaoji.com',path,{name,[field]:'SECRET'}),null);
+  for (const suffix of ['?email=SECRET','#SECRET','/private'])
+   assert.equal(businessEvent('baipiaoji.com',path+suffix,{name}),null);
+  for (const host of ['getecoback.com','preview.pages.dev','baipiaoji.com.evil.test'])
+   assert.equal(businessEvent(host,path,{name}),null);
+ }
+ for (const path of ['/discover/','/studio/ai/categories','/studio/ai/categories/ai-evaluation','/studio/ai/ai-paired-pass-regression','/studio/ai/search-index.json','/studio/ai/%61i-tool','/account','/members','/api/ai-mcp','/studio/listing-pack'])
+  assert.equal(businessEvent('baipiaoji.com',path,{name:'bpj_tool_share_copy'}),null);
+ for (const action of ['cite','published','delivered','recipient','viral','purchase','error','cancel'])
+  assert.equal(businessEvent('baipiaoji.com','/studio/ai/ai-eval-export-pair',{name:'bpj_tool_share_'+action}),null);
+});
+
+test('BPJ existing local results and CSV stages keep demo and own inputs separate without payloads', () => {
+ for (const mode of ['demo','own']) {
+  const suiteName = 'ai_suite_result_' + mode;
+  assert.deepEqual(businessEvent('baipiaoji.com','/en/studio/ai/ai-paired-pass-regression',{name:suiteName}),{name:suiteName,tool_id:'ai-paired-pass-regression',repeat:true});
+  for (const action of ['import','handoff','check','blocked','preview','report','export']) {
+   const name = 'table_review_' + action + '_' + mode;
+   for (const path of ['/studio/table-review','/en/studio/table-review']) {
+    assert.deepEqual(businessEvent('baipiaoji.com',path,{name}),{name,tool_id:'table-review',repeat:true});
+    assert.equal(businessEvent('baipiaoji.com',path,{name,filename:'SECRET.csv'}),null);
+   }
+   assert.equal(businessEvent('baipiaoji.com','/studio/ai/table-review',{name}),null);
+  }
+ }
+});
+
 test('autonomous product tools keep scenarios out of analytics and distinguish example actions', () => {
  for (const path of ['/guide/trotec-ttk-66-e-betriebskosten.html','/en/guide/meaco-arete-two-12l-running-cost.html']) {
   for (const action of ['view','example','calculate','share']) {

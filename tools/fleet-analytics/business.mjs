@@ -54,6 +54,16 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
   }
   const suiteTool = /^\/(?:en\/)?studio\/ai\/([a-z0-9-]{1,60})$/.exec(pathname);
   if(host==='baipiaoji.com' && suiteTool && /^ai_suite_result_(demo|own)$/.test(name))return {name,tool_id:suiteTool[1],repeat:true};
+  // Sharing records a completed UI action, never publication or a recipient.
+  // Featured cards use the current entry page ID, not their target URL.
+  if (host === 'baipiaoji.com' && publicAccountEntryPath(pathname) && /^bpj_tool_share_(copy|native)$/.test(name)) {
+    const tool_id = ['/', '/en', '/en/'].includes(pathname) ? 'bpj-home'
+      : /^\/(?:en\/)?studio\/?$/.test(pathname) ? 'bpj-studio'
+      : /^\/(?:en\/)?studio\/ai\/?$/.test(pathname) ? 'ai-suite-catalog'
+      : /^\/(?:en\/)?studio\/table-review$/.test(pathname) ? 'table-review'
+      : suiteTool && ['ai-eval-export-pair','answer-citation-coverage','ai-human-review-queue','ai-json-output-contract'].includes(suiteTool[1]) ? suiteTool[1] : null;
+    if (tool_id) return {name, tool_id, repeat:true};
+  }
   if (host === 'baipiaoji.com' && /^\/(?:en\/)?tools\/(chatgpt|kimi|qingying)$/.test(pathname) && name === 'catalog_task_open') {
     return {name, tool_id: pathname.split('/').pop(), repeat: true};
   }

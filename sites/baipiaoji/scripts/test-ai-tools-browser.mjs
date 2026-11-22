@@ -109,6 +109,21 @@ async function assertToolLinks(suite, locale) {
   assert.equal(await suite.locator('[data-suite-group]').count(), SUITE_CATEGORIES.length);
 }
 
+const featuredIds = [
+  'ai-eval-export-pair', 'table-review', 'answer-citation-coverage',
+  'ai-human-review-queue', 'ai-json-output-contract',
+];
+
+async function assertFeatured(page, locale) {
+  const featured = page.locator('[data-suite-featured]');
+  const cards = featured.locator('[data-suite-featured-tool]');
+  assert.deepEqual(await cards.evaluateAll(items => items.map(card => card.dataset.suiteFeaturedTool)), featuredIds);
+  const routes = featuredIds.map(id => id === 'table-review' ? '/studio/table-review' : toolPath(id));
+  assert.deepEqual(await cards.locator('h3 a, h4 a').evaluateAll(links => links.map(link => link.pathname)),
+    routes.map(route => locale + route));
+  assert.equal(await cards.locator('[data-bpj-share="copy"]').count(), featuredIds.length);
+}
+
 async function assertHomeDiscovery(suite,locale) {
   const browse=suite.locator('[data-suite-browse]');
   assert.equal(await browse.locator('[data-suite-group]').count(),SUITE_CATEGORIES.length);
@@ -128,6 +143,17 @@ async function verifyDirectory(page, locale) {
   page.on('request',noteIndexRead);
   await visit(page, locale, '/');
   const suite = page.locator('#ai-tools');
+  await assertFeatured(page, locale);
+  const leadCard = page.locator('[data-suite-featured-tool="ai-eval-export-pair"]');
+  await leadCard.locator('[data-bpj-share="copy"]').click();
+  await leadCard.locator('[role="status"]:not(:empty)').waitFor();
+  const shared = new URL(await page.evaluate(() => navigator.clipboard.readText()));
+  assert.equal(shared.origin, origin);
+  assert.equal(shared.pathname, locale + toolPath('ai-eval-export-pair'));
+  assert.equal(shared.hash, '');
+  assert.deepEqual(Object.fromEntries(shared.searchParams), {
+    utm_source: 'reader_share', utm_medium: 'share', utm_campaign: 'free-tools',
+  });
   await assertHomeDiscovery(suite,locale);
   const search = suite.locator('[data-suite-search]');
   await search.waitFor({state:'visible'});
@@ -199,6 +225,7 @@ async function verifyDirectory(page, locale) {
     assert.equal(await suite.locator('[data-suite-group]:visible').count(),SUITE_CATEGORIES.length);
     await fallback.click();
     await page.waitForURL('**/studio/ai/');
+    await assertFeatured(page, locale);
     await assertToolLinks(page.locator('[data-suite-index]'),locale);
     const completeDirectory=page.locator('[data-suite-index]');
     await completeDirectory.locator('[data-suite-search]').fill(locale ? 'release rollback check' : 'AI 回退检查');

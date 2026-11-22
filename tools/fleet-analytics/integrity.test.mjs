@@ -16,6 +16,9 @@ test('Only registered campaign fields survive, including inside the frame',()=>{
  assert.deepEqual(validatedCampaign({campaign_source:'PRIVATE_EMAIL'}),{});
  assert.deepEqual(campaignFields('?utm_source=tiktok&utm_medium=social&utm_campaign=eco-dach-catalog-01'),{campaign_source:'tiktok',campaign_medium:'social',campaign_name:'eco-dach-catalog-01'});
  assert.deepEqual(campaignFields('?utm_source=tiktok&utm_medium=social&utm_campaign=eco-dach-thermostat-01'),{campaign_source:'tiktok',campaign_medium:'social',campaign_name:'eco-dach-thermostat-01'});
+ const readerShare={campaign_source:'reader_share',campaign_medium:'share',campaign_name:'free-tools'};
+ assert.deepEqual(campaignFields('?utm_source=reader_share&utm_medium=share&utm_campaign=free-tools&email=SECRET&utm_content=SECRET'),readerShare);
+ assert.deepEqual(validatedCampaign({...readerShare,recipient:'SECRET'}),readerShare);
 });
 test('One merchant click classification, no raw URLs, arbitrary merchants or purchase events',()=>{
  const action=affiliateAction('https://www.amazon.de/s?k=SECRET&tag=getecoback-21','home-herbst');
@@ -52,6 +55,45 @@ function fixture({choice='',query='',privacy={},host='getecoback.com',path='/',t
  };
  return {window,posts,cookies,store,frame,click,handshake,affiliateClick,accountClick,firstParty,emit,elements};
 }
+test('BPJ reader sharing reaches the isolated collector with fixed campaign and no shared content',()=>{
+ const host='baipiaoji.com',path='/en/studio/ai/ai-eval-export-pair';
+ const f=fixture({host,path,query:'?utm_source=reader_share&utm_medium=share&utm_campaign=free-tools&email=SECRET#SECRET'});
+ f.emit('fleet:business',{detail:{name:'bpj_tool_share_copy'}});
+ f.emit('fleet:business',{detail:{name:'bpj_tool_share_copy',url:'SECRET'}});
+ f.handshake();
+ f.emit('fleet:business',{detail:{name:'bpj_tool_share_native'}});
+ f.emit('fleet:business',{detail:{name:'bpj_tool_share_copy'}});
+ const posts=f.posts.filter(x=>x.d.type==='fleet-ga4-business');
+ assert.deepEqual(posts.map(x=>x.d.detail.name),['bpj_tool_share_copy','bpj_tool_share_native','bpj_tool_share_copy']);
+ assert(posts.every(x=>Object.keys(x.d.detail).join(',')==='name'));
+ assert(!JSON.stringify(f.posts).includes('SECRET'));
+ const page=f.posts.find(x=>x.d.type==='fleet-ga4-page').d.data;
+ assert.deepEqual({...page.campaign},{campaign_source:'reader_share',campaign_medium:'share',campaign_name:'free-tools'});
+ assert.equal(page.page,'https://'+host+path);
+
+ // Run the real collector offline: no tag or analytics request leaves this test.
+ const listeners={},tags=[],parent={location:{hostname:host},postMessage(){}};
+ const window={parent,addEventListener:(name,fn)=>{listeners[name]=fn;}};
+ const document={createElement:()=>({}),head:{append:tag=>tags.push(tag)}};
+ const source=fs.readFileSync(new URL('./collector.mjs',import.meta.url),'utf8').replace(/^const \{[^}]+\} = await import\([^\n]+\);\n/gm,'');
+ vm.runInNewContext(source,{window,document,location:new URL('https://'+host+'/analytics-assets/frame.html'),URL,Set,businessEvent,allowed,validatedCampaign});
+ const send=data=>listeners.message({source:parent,origin:'https://'+host,data});
+ for(const post of f.posts)send(post.d);
+ send({type:'fleet-ga4-business',detail:{name:'bpj_tool_share_copy',result:'SECRET'}});
+ const hits=window.dataLayer.filter(args=>args[0]==='event'&&args[1].startsWith('bpj_tool_share_'));
+ assert.deepEqual(Array.from(hits,args=>args[1]),['bpj_tool_share_copy','bpj_tool_share_native','bpj_tool_share_copy']);
+ for(const args of hits)assert.deepEqual({...args[2]},{send_to:allowed[host],tool_id:'ai-eval-export-pair',page_location:'https://'+host+path,page_title:'Public title',page_referrer:'https://www.google.com/'});
+ assert.equal(tags.length,1);assert(!JSON.stringify(window.dataLayer).includes('SECRET'));
+ f.click('denied');const count=f.posts.length;
+ f.emit('fleet:business',{detail:{name:'bpj_tool_share_copy'}});assert.equal(f.posts.length,count);
+});
+test('BPJ sharing respects stored refusal, QA and browser privacy exclusions',()=>{
+ for(const config of [{choice:'denied'},{query:'?__ci=1'},{query:'?__probe=1'},{query:'?qa=1'},{privacy:{webdriver:true}},{privacy:{doNotTrack:'1'}},{privacy:{globalPrivacyControl:true}}]) {
+  const f=fixture({host:'baipiaoji.com',path:'/studio/ai/',...config});
+  f.emit('fleet:business',{detail:{name:'bpj_tool_share_copy'}});
+  assert.equal(f.posts.length,0);assert.equal(f.frame(),undefined);
+ }
+});
 test('Shared and native account links emit one fixed entry action per trusted click without context',()=>{
  const f=fixture({host:'agiscorecard.com',query:'?private=SECRET_QUERY'});f.handshake();
  f.accountClick();f.accountClick({native:true});
