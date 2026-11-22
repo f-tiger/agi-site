@@ -121,6 +121,7 @@ test('appliance evidence survives in both the generated mirror and edge fallback
    n90Label,
   ]],
   ['guide/smarte-heizkoerperthermostate-lohnen-sich', [
+   'https://fritz.com/apps/knowledge-base/fritz-dect-302/3376_An-welchen-Heizungsventilen-kann-der-FRITZ-Heizkorperregler-eingesetzt-werden?market=de-de',
    'https://www.bosch-smarthome.com/de/de/produkte/zubehoer-und-ersatzteile/ventiladapter/',
    'https://www.bosch-smarthome.com/res/web/produkt/heizkoerper-thermostat2/pdf/8-750-002-943_V001_Valve_adapter_recommendations_ML_20240808.pdf#page=9',
    'https://www.bosch-smarthome.com/res/web/produkt/heizkoerper-thermostat2/pdf/8-750-002-943_V001_Valve_adapter_recommendations_ML_20240808.pdf#page=10',

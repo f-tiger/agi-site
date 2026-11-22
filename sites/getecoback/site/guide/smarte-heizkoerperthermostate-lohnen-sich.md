@@ -1,6 +1,6 @@
 # Smarte Heizkörperthermostate: Ventil prüfen, Kosten rechnen | EcoBack
 
-> tado° X, Bosch oder FRITZ!: Thermostat, Ventil und Paket vergleichen. Danfoss-Adapter für Bosch II [+M] prüfen und eigene Kosten rechnen.
+> Thermostat, Ventil und Paket vergleichen. Danfoss-Adapter für Bosch II [+M] und FRITZ! 302 prüfen und eigene Heizkosten rechnen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html
 
@@ -8,7 +8,7 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/smarte-heizkoerpert
 **Ein smarter Kopf lohnt sich eher, wenn ein Zeitplan deine bisherige Heizroutine verbessert.** Wer schon passend herunterregelt, hat möglicherweise wenig zusätzlichen Nutzen. Vor dem Kauf müssen Ventil, vorhandene Zentrale und vollständiges Paket zusammenpassen. Eine feste Ersparnis ist nicht garantiert.
 
 - [Ich kenne mein vorhandenes System tado° X, Bosch II [+M] oder FRITZ! 302 samt benötigter Zentrale vergleichen.](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#eb-thermostat-products)
-- [Ich bin beim Ventil unsicher Modell und Anschluss klären. tado° V3+ und Bosch II [+M] nach ihren jeweiligen Herstellerunterlagen prüfen.](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#ventilcheck)
+- [Ich bin beim Ventil unsicher Modell und Anschluss klären. Prüfe tado° V3+, Bosch II [+M] und FRITZ! 302 anhand der jeweiligen Herstellerunterlagen.](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#ventilcheck)
 - [Ich möchte die Gesamtkosten prüfen Köpfe, fehlende Zentrale und Adapter zählen; danach mit eigener Sparannahme rechnen.](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-paketkosten)
 - [Mein bisheriger Kopf reicht vielleicht Weiterverwenden oder einen einfachen Zeitplan prüfen, bevor du ein Funk-System kaufst.](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-behalten)
 Grundlage: [Verbraucherzentrale zur Thermostatregelung](https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizkosten-sparen-thermostat-richtig-einstellen-und-wechseln-7940) (Quellenstand 4. Oktober 2026). Modell- und Paketquellen vom 12. November 2026 stehen bei den jeweiligen Geräten. Redaktionelle Entscheidungshilfe, kein eigener Produkttest.
@@ -55,6 +55,24 @@ Danfoss-Anschlüsse am Bosch II [+M], geprüft am 22.11.2026
 Bei bestätigtem RAV führt Bosch den separaten Adapter mit der Gerätenummer **8750002600** und EAN **4062321692636**. Bei RA oder RAVL prüfe den passenden beiliegenden Adapter in der genauen Packung. Ist die Kennzeichnung offen, warte mit der Bestellung. Am wasserführenden Ventilkörper nichts lösen. Bei Unsicherheit einen Fachbetrieb fragen.
 
 [Bosch: Lieferumfang des Heizkörper-Thermostats II [+M]](https://www.bosch-smarthome.com/de/de/produkte/heizung/heizkoerper-thermostat/) · [Bosch: Danfoss-RAV-Adapter, Gerätenummer und EAN](https://www.bosch-smarthome.com/de/de/produkte/zubehoer-und-ersatzteile/ventiladapter/) · [Bosch: Ventilbilder und Adapterempfehlungen](https://www.bosch-smarthome.com/res/web/produkt/heizkoerper-thermostat2/pdf/8-750-002-943_V001_Valve_adapter_recommendations_ML_20240808.pdf).
+
+### Welcher Danfoss-Adapter passt zum FRITZ!Smart Thermo 302?
+
+Diese Zuordnung gilt für das deutsche **FRITZ!Smart Thermo 302**, auch als **FRITZ!DECT 302** dokumentiert, Artikelnummer **20003120**. Prüfe die genaue Variante an der Verpackung oder in den Geräteunterlagen.
+
+FRITZ! nennt **34 mm für Danfoss RAV** und **25,5 mm für Danfoss RAVL**. Nutze die Maße als Hinweis und gleiche die Kennzeichnung am vorhandenen Ventil mit der Herstellerübersicht ab.
+
+Danfoss-Anschlüsse am FRITZ!Smart Thermo 302, geprüft am 22.11.2026
+
+| Identifiziertes Ventil | Nächster Prüfschritt | FRITZ!-Quelle |
+| --- | --- | --- |
+| Danfoss RA | **Danfoss RA: Den mitgelieferten Adapter nutzen** Der FRITZ!Smart Thermo 302 enthält einen RA-Adapter. Bestätige in den Ventilunterlagen, dass dein Anschluss dem in der FRITZ!-Liste genannten Danfoss RA mit Anschlussgewinde entspricht. | [FRITZ!DECT 302: Heizungsventile und passende Adapter](https://fritz.com/apps/knowledge-base/fritz-dect-302/3376_An-welchen-Heizungsventilen-kann-der-FRITZ-Heizkorperregler-eingesetzt-werden?market=de-de) |
+| Danfoss RAV | **Danfoss RAV: Separaten Adapter mit Pin einplanen** FRITZ! nennt für RAV 34 mm. Bestätige den Ventiltyp anhand der Modellkennzeichnung oder der Ventilunterlagen. Für diesen Anschluss brauchst du einen RAV-Adapter mit Pin aus dem Fachhandel. | [FRITZ!DECT 302: Heizungsventile und passende Adapter](https://fritz.com/apps/knowledge-base/fritz-dect-302/3376_An-welchen-Heizungsventilen-kann-der-FRITZ-Heizkorperregler-eingesetzt-werden?market=de-de) |
+| Danfoss RAVL | **Danfoss RAVL: Separaten Adapter einplanen** Für das bestätigte RAVL-Ventil mit 25,5 mm führt FRITZ! einen gesonderten RAVL-Adapter aus dem Fachhandel auf. Gleiche vor der Auswahl Ventilbezeichnung und Maß ab. | [FRITZ!DECT 302: Heizungsventile und passende Adapter](https://fritz.com/apps/knowledge-base/fritz-dect-302/3376_An-welchen-Heizungsventilen-kann-der-FRITZ-Heizkorperregler-eingesetzt-werden?market=de-de) |
+
+Ist die Kennzeichnung offen, warte mit der Bestellung und kläre den Anschluss mit dem Hersteller oder einem Fachbetrieb. Am wasserführenden Ventilkörper nichts lösen.
+
+[FRITZ!Smart Thermo 302: Lieferumfang für Artikel 20003120](https://fritz.com/products/fritz-smart-thermo-302-20003120) · [FRITZ!DECT 302: Heizungsventile und passende Adapter](https://fritz.com/apps/knowledge-base/fritz-dect-302/3376_An-welchen-Heizungsventilen-kann-der-FRITZ-Heizkorperregler-eingesetzt-werden?market=de-de).
 
 ### Ventil noch unbekannt?
 
@@ -122,6 +140,7 @@ Passende FRITZ!Box mit DECT bereits vorhanden
 **Paket und Zusatzkauf:** Der Hersteller nennt einen Thermo 302, drei AA-Batterien und einen Danfoss-RA-Adapter. Keine FRITZ!Box enthalten. Andere Ventiltypen separat in der Montagehilfe prüfen.
 **Betrieb und Funktionen:** Betrieb mit drei AA-Batterien und DECT-ULE. Der Hersteller schließt Nass- und Feuchträume aus. Das Gerät ist kein Ersatz für eine passende Zentrale.
 **Vor der Bestellung:** Artikelnummer 20003120 und Paketinhalt abgleichen. Nicht allein aus dem Namen FRITZ! oder einem M30-Anschluss auf System- oder Ventilkompatibilität schließen.
+[Für FRITZ! 302: Danfoss-Adapter und Lieferumfang prüfen](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#fritz-302-danfoss-adapter)
 [FRITZ!: Thermo 302, Voraussetzungen und Lieferumfang](https://fritz.com/products/fritz-smart-thermo-302-20003120)
 Anzeige · Modellsuche, kein geprüftes Einzelangebot.FRITZ!Smart Thermo 302 · Artikel 20003120 bei Amazon.de suchen →
 

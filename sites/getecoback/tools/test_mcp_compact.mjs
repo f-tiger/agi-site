@@ -411,3 +411,39 @@ test('single-dehumidifier laundry costs disclose measurement or estimate in the 
   }
   assert.deepEqual(writes,[]);
 });
+
+test('the FRITZ! 302 Danfoss check keeps package contents and unknown valves separate across both profiles',async()=>{
+  const {call,writes}=fixture();
+  const name='fritz_302_danfoss_adapter';
+  const page=origin+'/guide/smarte-heizkoerperthermostate-lohnen-sich.html';
+  const found=await call(compactPath,findName,{frage:'Passt der RA-Adapter beim FRITZ!DECT 302 auch auf RAV oder RAVL?'});
+  assert.equal(found.structuredContent.tools[0]?.name,name);
+  for (const [artikelnummer,ventil,status,included,pin] of [
+    ['20003120','danfoss-ra','adapter_im_lieferumfang',true,null],
+    ['20003120','danfoss-rav','adapter_separat',false,true],
+    ['20003120','danfoss-ravl','adapter_separat',false,null],
+    ['20003120','anders_oder_unbekannt','modell_oder_ventil_klaeren',null,null],
+    ['andere_oder_unbekannt','danfoss-ra','modell_oder_ventil_klaeren',null,null],
+  ]) {
+    const args={artikelnummer,ventil};
+    const result=await call(fullPath,name,args);
+    assert.equal(result.isError,false);
+    assert.deepEqual(await call(compactPath,runName,{name,eingaben:args}),result);
+    const row=result.structuredContent;
+    assert.equal(row.status,status);
+    assert.equal(row.adapter_im_lieferumfang,included);
+    assert.equal(row.adapter_mit_pin_dokumentiert,pin);
+    assert.equal(row.quellenmarkt,'DE');
+    assert.equal(row.quellen_geprueft_am,'2026-11-22');
+    assert.equal(row.citation_url,page);
+    assert.equal(row.guide_url,page+'#fritz-302-danfoss-adapter');
+    assert.match(row.quellen_url,/^https:\/\/fritz\.com\/apps\/knowledge-base\/fritz-dect-302\/3376_.+\?market=de-de$/);
+    assert.equal(row.produkt_url,'https://fritz.com/products/fritz-smart-thermo-302-20003120');
+    if(included===null) assert.match(row.naechster_schritt,/Keinen Adapter/);
+    assert.doesNotMatch(JSON.stringify(row),/amazon\.de|tag=getecoback-21/);
+  }
+  for (const args of [{ventil:'danfoss-ra'},{artikelnummer:'20003120',ventil:'34_mm'},{artikelnummer:'20003121',ventil:'danfoss-ra'}]) {
+    assert.equal((await call(fullPath,name,args)).isError,true);
+  }
+  assert.deepEqual(writes,[]);
+});

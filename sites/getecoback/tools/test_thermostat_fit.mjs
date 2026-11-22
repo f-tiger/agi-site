@@ -54,6 +54,44 @@ test('the German Bosch II [+M] distinguishes two included Danfoss adapters and t
   assert.equal(selectionFromHash(hash+'&input=23',data),null);
 });
 
+test('the German FRITZ! 302 keeps its Danfoss adapters separate from Bosch and tado',()=>{
+  const model='fritz-302';
+  assert.equal(data.fritz.reviewed,'2026-11-22');
+  assert.equal(data.fritz.model,'20003120');
+  const copy=value=>value.title+' '+value.detail;
+  const manufacturer=value=>{
+    const source=new URL(data.sources[value.source].url);
+    assert.equal(source.protocol,'https:');
+    assert.match(source.hostname,/(^|\.)(?:avm\.de|fritz\.com)$/);
+  };
+  for(const valve of ['danfoss-ra','danfoss-rav','danfoss-ravl']){
+    const value=decision(data,model,valve);
+    assert.equal(value.status,'adapter',valve);
+    manufacturer(value);
+    const text=copy(value);
+    if(valve==='danfoss-ra'){
+      assert.match(text,/liegt bei|enthalten|beiliegend|mitgeliefert/i);
+    }else{
+      assert.match(text,/separat|nicht im Lieferumfang|nicht mitgeliefert/i);
+      assert.deepEqual((text.match(/\b\d{8,14}\b/g)||[]).filter(number=>number!=='20003120'),[]);
+    }
+    if(valve==='danfoss-rav')assert.match(text,/Stift|Verlängerung|Stößel|\bPin\b/i);
+  }
+  for(const valve of ['unknown','heimeier-m30','herz-m28','oventrop-uni-l']){
+    const value=decision(data,model,valve);
+    assert.equal(value.status,'unverified',valve);
+    manufacturer(value);
+    assert.doesNotMatch(copy(value),/8750002600|4062321692636/);
+  }
+  assert.match(copy(decision(data,'bosch-ii-m','danfoss-ravl')),/liegt bei|enthalten|beiliegend|mitgeliefert/i);
+  assert.equal(decision(data,'tado-v3','danfoss-ra').source,'ra');
+  const hash='#ventilcheck=fritz-302:danfoss-ravl';
+  const selected={model,valve:'danfoss-ravl'};
+  assert.deepEqual(selectionFromHash(hash,data),selected);
+  assert.equal(new URL(selectionLink(model,selected.valve,data)).hash,hash);
+  assert.equal(selectionFromHash(hash+'&width=25.5',data),null);
+});
+
 test('share fragments are exact enum pairs and cannot retain arbitrary input or URLs',()=>{
   for(const model of data.models) for(const valve of ['unknown',...data.cases.map(x=>x.id)]){
     const link=selectionLink(model.id,valve,data);
