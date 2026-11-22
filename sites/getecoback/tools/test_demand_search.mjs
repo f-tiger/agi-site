@@ -29,10 +29,33 @@ test('Navigation measurement admits fixed names only and rejects raw queries/pri
 
 test('German drainage questions find the cellar guide and the general guide links to its answer',()=>{
  const path='/guide/luftentfeuchter-keller.html';
- for(const query of ['Abfluss höher als Luftentfeuchter','Kondenswasserpumpe Keller','Ablaufschlauch Gefälle'])
+ assert.equal(searchEntries(index,'Abfluss höher als Luftentfeuchter','de')[0]?.entry.u,path+'#ablauf-vor-kauf');
+ for(const query of ['Kondenswasserpumpe Keller','Ablaufschlauch Gefälle'])
   assert.equal(searchEntries(index,query,'de')[0]?.entry.u,path,query);
  const guide=readFileSync(new URL('../site/guide/luftentfeuchter-ratgeber.html',import.meta.url),'utf8');
  assert(guide.includes('href="'+path+'#ablauf-vor-kauf">Gefälle oder Pumpe?'));
  const cellar=readFileSync(new URL('../site'+path,import.meta.url),'utf8');
  assert.equal(cellar.split('id="ablauf-vor-kauf"').length,2);
+});
+
+test('German dehumidifier hose questions reach the existing drainage section without changing unrelated or foreign routes',()=>{
+ const page='/guide/luftentfeuchter-keller.html';
+ const anchor=page+'#ablauf-vor-kauf';
+ for(const q of [
+   'Kann ich den Schlauch vom MeacoDry Arete One 20L nach oben in das Waschbecken legen?',
+   'Geht der Ablauf beim Comfee MDDF-20DEN7 auch bergauf bis zum Waschbecken?',
+   'Der Ablaufschlauch von meinem Entfeuchter geht über eine Schwelle. Reicht der tiefere Bodenablauf?',
+ ]){
+   const hits=searchEntries(index,q,'de');
+   assert.equal(hits[0]?.entry.u,anchor,q);
+   assert.equal(hits.filter(hit=>hit.entry.u.split('#')[0]===page).length,1);
+   assert.ok(!searchEntries(index,q,'en').some(hit=>hit.entry.u===anchor));
+ }
+ for(const q of [
+   'MeacoDry Arete One 20L im kalten Keller bei 10 Grad',
+   'Ablaufschlauch der Waschmaschine am Waschbecken bergauf legen',
+   'Geht der Schlauch im Aquarium über eine Schwelle?',
+   'Hoher Stromverbrauch bei meinem Entfeuchter im Keller',
+   'Entfeuchter mit Schlauch: Produziere ich bei höherer Luftfeuchtigkeit mehr Wasser?',
+ ]) assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u===anchor),q);
 });

@@ -4,7 +4,7 @@ import json
 import re
 from html import escape as e
 from pathlib import Path
-from urllib.parse import quote_plus
+from urllib.parse import quote, quote_plus, urlencode
 from agent_sources import citation_url
 
 DATA = Path(__file__).resolve().parents[1] / 'data/dehum-catalog.json'
@@ -21,6 +21,34 @@ def load():
         if p.get('asin') and (p['id'] != 'comfee-mddf20' or p['asin'] != 'B07KJX6RDK'):
             raise ValueError('No newly guessed ASINs')
     return data
+
+def cellar_drain_route():
+    target = 'https://getecoback.com/guide/luftentfeuchter-keller.html#ablauf-vor-kauf'
+    title = 'Kellerentfeuchter: Schlauch über eine Schwelle oder Tankbetrieb?'
+    reddit = 'https://www.reddit.com/submit?' + urlencode({'url':target, 'title':title}, quote_via=quote)
+    return (
+        '<h4 id="schlauch-ueber-schwelle">Abfluss unten, Schlauch über eine Schwelle?</h4>'
+        '<p>Beim vorgesehenen Schwerkraftablauf zählt der ganze Schlauchweg. '
+        'Steigt der Schlauch an einer Türschwelle kurz an, fehlt dort das nötige Gefälle, auch wenn der Zielablauf tiefer liegt. '
+        'Prüfe einen anderen, durchgehend fallenden Weg nach Anleitung. Sonst nutze den vorgesehenen Tankbetrieb '
+        'mit aktivem Tankalarm oder lass dir eine passende Pumpenlösung für dein genaues Modell bestätigen.</p>'
+        '<p><strong>Beispiel mit 6 m waagerechtem Weg und 1,5 m Anstieg.</strong> '
+        'Für die separate Kondensatpumpe zum MeacoDry Arete One 20L nennt das deutsche Angebot bis zu 2,5 m Förderhöhe '
+        'und einen mitgelieferten Schlauch von 3 m. Der Anstieg liegt im Beispiel unter der genannten Förderhöhe. '
+        'Schon das waagerechte Teilstück ist länger als der mitgelieferte Schlauch. '
+        'Kläre für diese Strecke zulässigen Schlauch, Länge, Anschlüsse und Förderleistung gemeinsam mit dem Anbieter. '
+        'Die beiden Angaben belegen keine Eignung einer Verlängerung. Bis zur Klärung Tankbetrieb oder einen anderen Standort prüfen.</p>'
+        '<p>Quellen geprüft am <time datetime="2026-11-22">22.11.2026</time>. '
+        'Deutscher Meaco-Vertrieb (AirSain). '
+        '<a href="https://www.meaco.de/produkt/meaco-dry-arete-one-pumpe/">Separate Kondensatpumpe für Arete One 20L und 25L</a> · '
+        '<a href="https://www.meaco.de/produkt/luftentfeuchter-meaco-arete-one-20-l-pumpe/">Arete One 20L in der Variante mit Pumpe</a>. '
+        'Den Lieferumfang des eigenen Pakets separat prüfen.</p>'
+        '<p>Reicht der vorhandene Tankbetrieb, kannst du ihn weiter nutzen. Bei nassen Wänden, möglichem Wassereintritt oder '
+        'sichtbarem Schimmel zuerst <a href="/guide/luftentfeuchter-gegen-schimmel.html">die Feuchteursache klären</a>.</p>'
+        f'<nav aria-label="Hinweis teilen"><a href="{e(target)}">Direktlink zum Ablauf-Check</a> · '
+        f'<a href="{e(reddit)}" target="_blank" rel="noopener noreferrer">Auf Reddit teilen</a></nav>'
+    )
+
 
 def block(slug, today=None, data=None):
     data = load() if data is None else data
@@ -60,7 +88,10 @@ def block(slug, today=None, data=None):
         else:
             action = '<p data-catalog-commerce>Quellenprüfung ausstehend. Prüfe die verlinkten Unterlagen vor einer Kaufentscheidung.</p>'
         cards.append(f'<div class="dc-card">{evidence}{action}</div>')
-    drain_style = '.dc-drain-paths a{display:flex;align-items:center;min-height:44px;width:fit-content;margin:6px 0;font-weight:700}' if cellar else ''
+    drain_style = (
+        '.dc-drain h4{scroll-margin-top:180px}'
+        '.dc-drain-paths a{display:flex;align-items:center;min-height:44px;width:fit-content;margin:6px 0;font-weight:700}'
+    ) if cellar else ''
     drain_choices = (
         '<nav class="dc-drain-paths" aria-label="Modell nach Wasserweg prüfen">'
         '<a href="#modell-stadler-lukas">Ablauf mit Gefälle: Schlauch beim Lukas L-031E prüfen</a>'
@@ -114,6 +145,7 @@ def block(slug, today=None, data=None):
             '<p>Quelle: <a href="https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-air-purifier">'
             'Meaco UK: Arete One 20L, Ablauf und separates Pumpenzubehör</a> · geprüft am 13.11.2026. '
             'Bei ungeklärter Feuchte bleibt Messen und Ursachenklärung der erste Schritt; ein Neukauf ist dann noch nicht begründet.</p>'
+            f'{cellar_drain_route() if cellar else ""}'
             f'{drain_choices}</section>'
             '<div class="dc-table" role="region" aria-label="Modellübersicht, horizontal scrollbar" tabindex="0"><table>'
             '<caption>Kaufgründe und genaue Varianten</caption>\n<thead><tr><th scope="col">Modell</th><th scope="col">Prüfen, wenn dir dies wichtig ist</th><th scope="col">Variante</th></tr></thead>'

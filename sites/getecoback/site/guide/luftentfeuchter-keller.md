@@ -143,6 +143,12 @@ Hersteller-/Anbieterquellen geprüft: 2026-11-12. Keine Live-Preise oder garanti
 **Konkretes Beispiel: MeacoDry Arete One 20L.** Die UK-Herstellerseite nennt einen Schlauchadapter, keinen mitgelieferten Schlauch und eine separat verkaufte Pumpe für Entwässerung nach oben. Das bestätigt weder den deutschen Lieferumfang noch die Eignung der Arete Two 12L. Vor Bestellung die genaue deutsche Variante und ihre Anleitung abgleichen.
 Quelle: [Meaco UK: Arete One 20L, Ablauf und separates Pumpenzubehör](https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-air-purifier) · geprüft am 13.11.2026. Bei ungeklärter Feuchte bleibt Messen und Ursachenklärung der erste Schritt; ein Neukauf ist dann noch nicht begründet.
 
+#### Abfluss unten, Schlauch über eine Schwelle?
+Beim vorgesehenen Schwerkraftablauf zählt der ganze Schlauchweg. Steigt der Schlauch an einer Türschwelle kurz an, fehlt dort das nötige Gefälle, auch wenn der Zielablauf tiefer liegt. Prüfe einen anderen, durchgehend fallenden Weg nach Anleitung. Sonst nutze den vorgesehenen Tankbetrieb mit aktivem Tankalarm oder lass dir eine passende Pumpenlösung für dein genaues Modell bestätigen.
+**Beispiel mit 6 m waagerechtem Weg und 1,5 m Anstieg.** Für die separate Kondensatpumpe zum MeacoDry Arete One 20L nennt das deutsche Angebot bis zu 2,5 m Förderhöhe und einen mitgelieferten Schlauch von 3 m. Der Anstieg liegt im Beispiel unter der genannten Förderhöhe. Schon das waagerechte Teilstück ist länger als der mitgelieferte Schlauch. Kläre für diese Strecke zulässigen Schlauch, Länge, Anschlüsse und Förderleistung gemeinsam mit dem Anbieter. Die beiden Angaben belegen keine Eignung einer Verlängerung. Bis zur Klärung Tankbetrieb oder einen anderen Standort prüfen.
+Quellen geprüft am 22.11.2026. Deutscher Meaco-Vertrieb (AirSain). [Separate Kondensatpumpe für Arete One 20L und 25L](https://www.meaco.de/produkt/meaco-dry-arete-one-pumpe/) · [Arete One 20L in der Variante mit Pumpe](https://www.meaco.de/produkt/luftentfeuchter-meaco-arete-one-20-l-pumpe/). Den Lieferumfang des eigenen Pakets separat prüfen.
+Reicht der vorhandene Tankbetrieb, kannst du ihn weiter nutzen. Bei nassen Wänden, möglichem Wassereintritt oder sichtbarem Schimmel zuerst [die Feuchteursache klären](https://getecoback.com/guide/luftentfeuchter-gegen-schimmel.html).
+
 Kaufgründe und genaue Varianten
 
 | Modell | Prüfen, wenn dir dies wichtig ist | Variante |
