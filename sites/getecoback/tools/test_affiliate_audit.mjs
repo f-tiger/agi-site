@@ -56,6 +56,49 @@ test('missing DB results reject; valid empty days remain zero without claiming r
   assert.equal(d.known_collection_gaps.length,3);
 });
 
+test('the marked window TikTok evidence uses only complete post-launch dates and preserves legacy totals',async()=>{
+  const script=`import json,sqlite3,sys
+db=sqlite3.connect(':memory:');db.row_factory=sqlite3.Row
+db.execute('CREATE TABLE ev(day,name,page,ref,ua_class,meta)')
+db.execute('CREATE INDEX ev_day ON ev(day)')
+guide='/guide/fenster-beschlagen-innen.html'
+products='/produkte.html'
+def add(day,name,page,marker=None,link=None,ua='human',mcp=None):
+ meta={k:v for k,v in dict(window_tiktok_entry=marker,link_url=link,mcp_window_entry=mcp).items() if v is not None}
+ db.execute('INSERT INTO ev VALUES(?,?,?,?,?,?)',(day,name,page,'example.test',ua,json.dumps(meta)))
+add('2026-11-22','page_view',guide,1)
+add('2026-11-23','page_view',guide,1)
+add('2026-11-23','page_view',guide,1)
+add('2026-11-23','page_view',guide,'1')
+add('2026-11-23','page_view',guide,1,ua='bot')
+add('2026-11-24','eco_window_width_check',products,1)
+add('2026-11-24','eco_window_width_check',products,True)
+add('2026-11-24','eco_window_width_check',guide,1)
+add('2026-11-24','page_view',products,mcp=1)
+add('2026-11-24','affiliate_click',products,1,'https://www.amazon.de/s?tag=getecoback-21')
+add('2026-11-24','affiliate_click',products,1,'https://amazon.de.evil.test/s')
+add('2026-11-25','page_view',guide,1)
+q=sys.stdin.read().replace("date('now'","date('2026-11-25'")
+print(json.dumps([dict(r) for r in db.execute(q)]))`;
+  const fixture=spawnSync('python3',['-c',script],{input:AUDIT_SQL,encoding:'utf8'});
+  assert.equal(fixture.status,0,fixture.stderr);
+  const rows=JSON.parse(fixture.stdout).reverse();
+  const result=await affiliateAudit(dbFor(rows),()=> 'self');
+  const expected={start:'2026-11-23',end_exclusive:'2026-11-25',first_recorded_day:'2026-11-23',
+    tagged_landing_views:2,width_checks:1,model_search_clicks:1};
+  assert.deepEqual(result.weeks.at(-1).window_tiktok,expected);
+  assert.deepEqual(result.last_three_complete_days.window_tiktok,expected);
+  assert.equal(result.weeks.at(-2).window_tiktok,null);
+  assert.equal(result.weeks.at(-1).page_views,5);
+  assert.equal(result.weeks.at(-1).affiliate_clicks,2);
+  assert.deepEqual(result.weeks.at(-1).channels.self,{page_views:5,affiliate_clicks:2});
+  assert.deepEqual(result.weeks.at(-1).mcp_window_entry,{first_recorded_day:'2026-11-24',page_views:1,model_search_clicks:0});
+  assert.equal(result.amazon_orders,null);
+  const missing=await affiliateAudit(dbFor(rows.filter(r=>r.name!=='affiliate_click')),()=> 'self');
+  assert.equal(missing.weeks.at(-1).window_tiktok.model_search_clicks,null);
+  assert.doesNotMatch(JSON.stringify(result),/example\.test|amazon\.|window_tiktok_entry|getecoback-21/);
+});
+
 test('cohorts keep summer repair distinct from winter demand and retired storage',()=>{
   assert.equal(pageGroup('/guide/mobile-klimaanlage-stinkt-schimmel.html'),'cooling_other');
   assert.equal(pageGroup('/guide/luftentfeuchter-stinkt.html'),'humidity');

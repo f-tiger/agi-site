@@ -3,7 +3,10 @@ import assert from 'node:assert/strict';
 import {spawnSync} from 'node:child_process';
 import {readFileSync} from 'node:fs';
 import {runInNewContext} from 'node:vm';
-import {affiliateMeta, taggedCellarModelEntry} from '../src/affiliate-meta.mjs';
+import {
+  affiliateMeta, taggedCellarModelEntry, WINDOW_TIKTOK_GUIDE_DOCUMENT, WINDOW_TIKTOK_GUIDE_PAGE,
+  WINDOW_TIKTOK_WIDTH_EVENT,
+} from '../src/affiliate-meta.mjs';
 import {AFFILIATE_SQL, affiliateMetrics} from '../src/affiliate-metrics.mjs';
 import {CELLAR_MODEL_ENTRY_DOCUMENT, CELLAR_MODEL_ENTRY_PAGE, CELLAR_MODEL_ENTRY_URL, CELLAR_MODEL_SEARCH} from '../src/cellar-entry.mjs';
 import {WINDOW_ENTRY_DOCUMENT, WINDOW_ENTRY_PAGE} from '../src/fenstersauger-entry.mjs';
@@ -204,6 +207,80 @@ test('only approved model search clicks from the exact document carry the window
     assert.equal(ordinary.source,'inline',linkUrl);
   }
   assert.equal((await stored({...view,p:'/other.html',m:{mcp_window_entry:1}})).mcp_window_entry,undefined);
+});
+
+test('window TikTok landing, width completion and approved search are separate fixed D1 evidence', async () => {
+  assert.equal(WINDOW_TIKTOK_GUIDE_DOCUMENT, 'https://getecoback.com/guide/fenster-beschlagen-innen.html?utm_source=tiktok&utm_medium=social&utm_campaign=eco-dach-catalog-01');
+  const headers = {origin:'https://getecoback.com', 'sec-fetch-site':'same-origin'};
+  const guideHeaders = {...headers, referer:WINDOW_TIKTOK_GUIDE_DOCUMENT};
+  const productHeaders = {...headers, referer:'https://getecoback.com/produkte.html', 'cf-ipcountry':'DE'};
+  const view = {n:'page_view',p:WINDOW_TIKTOK_GUIDE_PAGE,window_tiktok_entry:true,r:'https://www.tiktok.com/@profile/photo/private?value=private'};
+  const width = {n:WINDOW_TIKTOK_WIDTH_EVENT,p:WINDOW_ENTRY_PAGE,window_tiktok_entry:true,r:WINDOW_TIKTOK_GUIDE_DOCUMENT};
+  const click = {...width,n:'affiliate_click',m:{source:'inline',link_url:windowModel,private_width:170,window_tiktok_entry:9}};
+  const stored = async (candidate, requestHeaders) => {
+    const result = await record(candidate,requestHeaders);
+    assert.equal(result.body.ok,true);
+    assert.equal(result.rows.length,1);
+    const [,name,path,ref,metadata,country,ua] = result.rows[0];
+    assert.equal(name,candidate.n);
+    assert.equal(path,candidate.p);
+    assert.equal(ua,'human');
+    assert.doesNotMatch(JSON.stringify(result.rows[0]),/private|utm_source|06008B7000/);
+    return {ref, metadata:JSON.parse(metadata || '{}'), country};
+  };
+  assert.deepEqual(await stored(view,guideHeaders),{ref:'www.tiktok.com',metadata:{window_tiktok_entry:1},country:''});
+  for (const m of [undefined,null,{}]) {
+    assert.deepEqual(await stored({...width,m},productHeaders),{ref:'getecoback.com',metadata:{window_tiktok_entry:1},country:''});
+  }
+  assert.deepEqual(await stored(click,productHeaders),{ref:'getecoback.com',country:'DE',metadata:{
+    window_tiktok_entry:1,source:'inline',link_url:'https://www.amazon.de/s?tag=getecoback-21',
+  }});
+
+  const forbiddenHeaders = [
+    {origin:''},{origin:'https://other.test'},{'sec-fetch-site':'cross-site'},
+    {'sec-fetch-site':'same-site'},{dnt:'1'},{'sec-gpc':'1'},{'x-probe':'1'},
+    {'user-agent':'getecoback-ci/window'},{'user-agent':'Googlebot'},
+  ];
+  for (const override of forbiddenHeaders) {
+    for (const [candidate, requestHeaders] of [[view,guideHeaders],[click,productHeaders]]) {
+      const result = await record({...candidate,m:{...candidate.m,window_tiktok_entry:1}}, {...requestHeaders,...override});
+      assert.equal(result.rows.length,1);
+      assert.equal(JSON.parse(result.rows[0][4] || '{}').window_tiktok_entry,undefined);
+    }
+    const rejected = await record(width,{...productHeaders,...override});
+    assert.equal(rejected.status,400);
+    assert.equal(rejected.body.error,'invalid_window_tiktok_event');
+    assert.deepEqual(rejected.rows,[]);
+  }
+
+  const wrongSources = ['',WINDOW_TIKTOK_GUIDE_DOCUMENT+'&extra=1',WINDOW_TIKTOK_GUIDE_DOCUMENT+'#fenstersauger-gegen-kondenswasser',
+    WINDOW_TIKTOK_GUIDE_DOCUMENT.replace('tiktok','reddit')];
+  for (const referer of wrongSources) {
+    const ordinary = await stored({...view,m:{window_tiktok_entry:1}},{...guideHeaders,referer});
+    assert.equal(ordinary.metadata.window_tiktok_entry,undefined);
+  }
+  for (const link_url of [product,windowModel+'&extra=1',windowModel+'#extra',
+    windowModel.replace('06008B7000','06008B7200'),windowModel.replace('getecoback-21','unknown-21')]) {
+    const ordinary = await stored({...click,m:{source:'inline',link_url,window_tiktok_entry:1}},productHeaders);
+    assert.equal(ordinary.metadata.window_tiktok_entry,undefined);
+    assert.equal(ordinary.metadata.source,'inline');
+  }
+  for (const wrong of [{email:'private'}, {m:{room_c:20}}, {m:{window_tiktok_entry:1}},
+    {m:[]}, {m:'private'}, {p:'/produkte.html?extra=1'}, {window_tiktok_entry:1},
+    {window_tiktok_entry:undefined}, ...wrongSources.map(r=>({r}))]) {
+    const rejected = await record({...width,...wrong},productHeaders);
+    assert.equal(rejected.status,400);
+    assert.deepEqual(rejected.rows,[]);
+  }
+  for (const referer of ['',WINDOW_TIKTOK_GUIDE_DOCUMENT,WINDOW_ENTRY_DOCUMENT,'https://getecoback.com/produkte.html?extra=1']) {
+    assert.deepEqual((await record(width,{...productHeaders,referer})).rows,[]);
+  }
+  assert.equal((await stored({...width,n:'page_view',m:{window_tiktok_entry:1}},productHeaders)).metadata.window_tiktok_entry,undefined);
+  assert.equal((await stored({...click,window_tiktok_entry:false},productHeaders)).metadata.window_tiktok_entry,undefined);
+  const old = await record({n:'affiliate_click',p:WINDOW_ENTRY_PAGE,mcp_window_entry:true,m:click.m},
+    {...productHeaders,referer:WINDOW_ENTRY_DOCUMENT});
+  assert.equal(JSON.parse(old.rows[0][4]).mcp_window_entry,1);
+  assert.equal(JSON.parse(old.rows[0][4]).window_tiktok_entry,undefined);
 });
 
 test('the PortaSplit marker records an eligible landing and only its approved German model search', async () => {

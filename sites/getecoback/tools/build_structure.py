@@ -4218,7 +4218,8 @@ def inject_explainer(html, slug, en=False):
 # boxes, in-text links) predate per-link gtag handlers, so their clicks were
 # invisible in GA4. One listener per page catches them all, and it stands down
 # whenever another handler on the page already reported the same click.
-def track_block(cellar=False, window_fit=False, portasplit_url=None, cellar_model=None, n90_model=None):
+def track_block(cellar=False, window_fit=False, portasplit_url=None, cellar_model=None, n90_model=None,
+                window_tiktok_guide=False):
     # Capture the initial document URL once. Following a model anchor on this
     # page may change the fragment before the existing click event fires.
     marker = ('var drainEntry=location.href==="https://getecoback.com/guide/luftentfeuchter-keller.html'
@@ -4241,6 +4242,38 @@ def track_block(cellar=False, window_fit=False, portasplit_url=None, cellar_mode
                    'navigator.doNotTrack!=="1"&&window.doNotTrack!=="1"&&!navigator.globalPrivacyControl&&'
                    'localStorage.getItem("fleet_ga4_choice_v1")!=="denied";}catch(e){return false;}};')
         field += f'mcp_{entry_name}_entry:((n==="page_view"||{click})&&{entry_name}Measure())||undefined,'
+    width_event = ''
+    if window_tiktok_guide or window_fit:
+        guide_url = ('https://getecoback.com/guide/fenster-beschlagen-innen.html'
+                     '?utm_source=tiktok&utm_medium=social&utm_campaign=eco-dach-catalog-01')
+        if window_tiktok_guide:
+            entry_check = f'location.href==={json.dumps(guide_url + "#fenstersauger-gegen-kondenswasser")}'
+            event_check = 'n==="page_view"'
+        else:
+            product_url = 'https://getecoback.com/produkte.html#fenstersauger-duesenbreite'
+            entry_check = f'location.href==={json.dumps(product_url)}&&document.referrer==={json.dumps(guide_url)}'
+            event_check = 'n==="affiliate_click"||(n==="eco_window_width_check"&&windowWidthSuccess)'
+            marker += 'var windowWidthSuccess=false;'
+            # The custom event is synthetic by design. Only accept it while the
+            # trusted form submit that completed the calculation is dispatching.
+            width_event = (
+                'if(windowTikTokEntry){var windowWidthSubmit=null,windowWidthSent=false;'
+                'document.addEventListener("submit",function(e){'
+                'if(e.isTrusted&&e.target.matches("form[data-window-width-check]"))windowWidthSubmit=e;},true);'
+                'window.addEventListener("fleet:business",function(e){'
+                'if(windowWidthSent||!windowWidthSubmit||windowWidthSubmit.eventPhase===0||'
+                '!e.detail||e.detail.name!=="eco_window_width_check"||!windowTikTokMeasure())return;'
+                'windowWidthSent=true;windowWidthSuccess=true;raw("eco_window_width_check");windowWidthSuccess=false;'
+                '});}'
+            )
+        marker += (
+            f'var windowTikTokEntry={entry_check};'
+            'var windowTikTokMeasure=function(){try{return windowTikTokEntry&&!window.__probe&&'
+            '!navigator.webdriver&&!/getecoback-ci/i.test(navigator.userAgent)&&'
+            'navigator.doNotTrack!=="1"&&window.doNotTrack!=="1"&&!navigator.globalPrivacyControl&&'
+            'localStorage.getItem("fleet_ga4_choice_v1")!=="denied";}catch(e){return false;}};'
+        )
+        field += f'window_tiktok_entry:(({event_check})&&windowTikTokMeasure())||undefined,'
     return ('<!--EB_TRACK--><script>(function(){' + marker +
          # First-party beacon: same-origin, no cookies, no ids. Mirrors every
          # gtag event into our own D1 so the funnel stays measurable without a
@@ -4292,7 +4325,7 @@ def track_block(cellar=False, window_fit=False, portasplit_url=None, cellar_mode
          'if(pt)clearTimeout(pt);pt=setTimeout(flush,700);};'
          'window.addEventListener("pagehide",flush);'
          'document.addEventListener("visibilitychange",function(){if(document.hidden)flush();});'
-         'window.ebSend=send;raw("page_view");var lastAff=0;'
+         'window.ebSend=send;raw("page_view");var lastAff=0;' + width_event +
          'var g=window.gtag;window.gtag=function(){try{if(g)g.apply(null,arguments);}catch(e){}'
          'if(arguments[0]==="event"){if(arguments[1]==="affiliate_click")lastAff=+new Date();'
          'send(arguments[1],arguments[2]);}};'
@@ -4314,8 +4347,9 @@ def track_block(cellar=False, window_fit=False, portasplit_url=None, cellar_mode
          '});})();</script><!--/EB_TRACK-->')
 
 
-def inject_track(html, cellar=False, window_fit=False, portasplit_url=None, cellar_model=None, n90_model=None):
-    track = track_block(cellar, window_fit, portasplit_url, cellar_model, n90_model)
+def inject_track(html, cellar=False, window_fit=False, portasplit_url=None, cellar_model=None, n90_model=None,
+                 window_tiktok_guide=False):
+    track = track_block(cellar, window_fit, portasplit_url, cellar_model, n90_model, window_tiktok_guide)
     if "<!--EB_TRACK-->" in html:
         return re.sub(r'<!--EB_TRACK-->.*?<!--/EB_TRACK-->', lambda m: track, html, flags=re.S)
     return html.replace("</body>", track + "\n</body>", 1)
@@ -4700,7 +4734,8 @@ def main():
                            window_fit=path == os.path.join(SITE, "produkte.html"),
                            portasplit_url=portasplit_url if path == portasplit_page else None,
                            cellar_model=(cellar_url, cellar_merchant) if path == cellar_page else None,
-                           n90_model=(n90_url, n90_merchant) if path == n90_page else None)
+                           n90_model=(n90_url, n90_merchant) if path == n90_page else None,
+                           window_tiktok_guide=path == os.path.join(GUIDE, "fenster-beschlagen-innen.html"))
         if os.path.basename(path) != 'produkte.html':
             new = inject_profile(new)
         new = inject_share(new)

@@ -69,6 +69,79 @@ function waitForEvent(page,name){
   try{return JSON.parse(request.postData()).n===name;}catch{return false;}
  });
 }
+async function checkWindowTikTokCampaign(browser){
+ const guide='/guide/fenster-beschlagen-innen.html';
+ const campaign='?utm_source=tiktok&utm_medium=social&utm_campaign=eco-dach-catalog-01';
+ const answer='#fenstersauger-gegen-kondenswasser';
+ const product='/produkte.html#fenstersauger-duesenbreite';
+ const cases=[];
+ for(const mode of ['tagged','untagged','opted-out','probe','dnt','gpc','no-script']){
+  const noScript=mode==='no-script';
+  const context=await browser.newContext({viewport:{width:390,height:900},javaScriptEnabled:!noScript,serviceWorkers:'block'});
+  const events=[];
+  await context.route('**/*',route=>localCatalogue(route,request=>{
+   if(request.url()===origin+'/api/ev')events.push(JSON.parse(request.postData()));
+  }));
+  await context.addInitScript(mode=>{
+   Object.defineProperty(navigator,'webdriver',{get:()=>false});
+   Object.defineProperty(navigator,'doNotTrack',{get:()=>mode==='dnt'?'1':'0'});
+   Object.defineProperty(navigator,'globalPrivacyControl',{get:()=>mode==='gpc'});
+   if(mode==='opted-out')localStorage.setItem('fleet_ga4_choice_v1','denied');
+  },mode);
+  const page=await context.newPage();
+  const query=mode==='untagged'?'':campaign+(mode==='probe'?'&__probe=1':'');
+  const guideView=noScript?null:waitForEvent(page,'page_view');
+  await page.goto(origin+guide+query+answer);
+  if(guideView){
+   const request=await guideView;
+   assert.equal(JSON.parse(request.postData()).window_tiktok_entry,mode==='tagged'?true:undefined);
+   assert.equal((await request.allHeaders()).referer,origin+guide+query);
+  }
+  const productView=noScript?null:waitForEvent(page,'page_view');
+  const entry=page.locator('[data-window-width-open]');
+  assert.equal(await entry.getAttribute('href'),product);
+  await entry.click();
+  await page.waitForURL(origin+product);
+  if(productView){
+   const view=JSON.parse((await productView).postData());
+   assert.equal(view.r,origin+guide+query,mode+' uses the exact browser referrer without the fragment');
+   assert.equal(view.window_tiktok_entry,undefined,'No marked duplicate product-page view');
+   const form=page.locator('form[data-window-width-check]');
+   await form.waitFor({state:'visible'});
+   await page.evaluate(()=>window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:'eco_window_width_check'}})));
+   await setValues(form,{lichte_breite_mm:'170',spiel_pro_seite_mm:'5',vorhandene_duese_mm:''});
+   const completion=mode==='tagged'?waitForEvent(page,'eco_window_width_check'):null;
+   await form.locator('[type=submit]').click();
+   if(completion){
+    const request=await completion;
+    assert.deepEqual(JSON.parse(request.postData()),{
+     n:'eco_window_width_check',p:'/produkte.html',r:origin+guide+campaign,m:null,window_tiktok_entry:true,
+    });
+    assert.equal((await request.allHeaders()).referer,origin+'/produkte.html');
+   }
+   await form.locator('[type=submit]').click();
+   if((mode==='tagged'||mode==='untagged')&&expected.some(item=>item.id==='bosch-glassvac-set')){
+    await page.locator('a[href="#produkt-bosch-glassvac-set"]').first().click();
+    const merchant=waitForEvent(page,'affiliate_click');
+    await page.locator('#produkt-bosch-glassvac-set a[rel~=sponsored]').click();
+    const request=await merchant;
+    assert.equal(JSON.parse(request.postData()).window_tiktok_entry,mode==='tagged'?true:undefined);
+    assert.equal((await request.allHeaders()).referer,origin+'/produkte.html');
+   }
+   await page.waitForTimeout(100);
+   assert.equal(events.filter(event=>event.n==='eco_window_width_check').length,mode==='tagged'?1:0);
+   assert.equal(events.filter(event=>event.n==='page_view').length,2);
+  }else{
+   assert(await page.getByRole('region',{name:'Düsenbreiten der deutschen Fenstersauger-Pakete'}).isVisible());
+   assert.deepEqual(events,[]);
+  }
+  cases.push({mode,view:events.some(event=>event.n==='page_view'&&event.window_tiktok_entry===true),
+   completion:events.some(event=>event.n==='eco_window_width_check'&&event.window_tiktok_entry===true),
+   merchant:events.some(event=>event.n==='affiliate_click'&&event.window_tiktok_entry===true)});
+  await context.close();
+ }
+ return cases;
+}
 async function checkCellarEntry(browser) {
  const pagePath='/guide/luftentfeuchter-keller.html';
  const modelHash='#modell-meaco-one-20';
@@ -554,5 +627,6 @@ const browser=await chromium.launch({headless:true,...(executablePath?{executabl
 try{
  const catalog=process.argv.includes('--n90-entry')?{}:await checkCatalog(browser);
  const n90EntryCases=await checkN90Entry(browser);
- console.log(JSON.stringify({pass:true,...catalog,n90EntryCases,productionWrites:0}));
+ const windowTikTokCampaignCases=process.argv.includes('--n90-entry')?[]:await checkWindowTikTokCampaign(browser);
+ console.log(JSON.stringify({pass:true,...catalog,n90EntryCases,windowTikTokCampaignCases,productionWrites:0}));
 }finally{await browser.close();}
