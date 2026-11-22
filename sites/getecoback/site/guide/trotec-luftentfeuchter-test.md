@@ -34,10 +34,22 @@ Diese Übersicht dient als Ausgangspunkt für den Vergleich. Prüfe beim Händle
 | --- | --- | --- |
 | **TTK 52 E** | Datenblatt für Temperaturbereich und Entnahme beim eigenen Messpunkt prüfen. | Amazon → |
 | **TTK 72 E** | Bei Wäsche oder regelmäßigem Betrieb den eigenen Bedarf und die Laufzeit prüfen. | Amazon → |
-| **TTK 70 HEPA** | Filterausstattung und Ersatzfilter für die genaue Gerätevariante prüfen. | Amazon → |
+| **TTK 70 HEPA** | Filterausstattung und [Ersatzfilter für die genaue Gerätevariante prüfen](https://getecoback.com/guide/trotec-luftentfeuchter-test.html#ttk70-hepa-filter). | Amazon → |
 | **TTK 75 ECO** | Für einen kalten Keller den dokumentierten Arbeitsbereich und die Prüfbedingungen abgleichen. | Amazon → |
 
 Anzeige · Affiliate-Links — du zahlst denselben Preis. Nicht selbst getestet; Auswahl fasst öffentliche Quellen zusammen.
+
+## Trotec TTK 70 HEPA: Welcher Ersatzfilter passt?
+
+Für den TTK 70 HEPA vor Dezember 2023 ist 7710000024 dokumentiert. Bei Dezember 2023, späterer Bauzeit oder unklarer Geräteausführung zuerst Typenschild lesen und den Filter von Trotec bestätigen lassen.
+
+- **TTK 70 HEPA vor Dezember 2023:** Trotec führt den [HEPA-Filter 7710000024](https://de.trotec.com/shop/hepa-filter-fuer-ttk-70-hepa.html) mit der Angabe „bis Bj. 12/2023“. Das ist der dokumentierte Artikel für die entsprechend identifizierte ältere Ausführung.
+
+- **Spätere Ausführung oder TTK 70 HEPA Plus:** Die deutsche Seite für [HEPA-Filter 7710000077](https://de.trotec.com/shop/hepa-filter-fuer-ttk-70-hepa-plus-ab-bj-12-23.html) nennt im Titel „ab“ Dezember 2023, in der Merkmalliste aber „bis“. Lass dir für dein genaues Gerät bestätigen, welche Angabe gilt. Warte mit dem Kauf, solange der Widerspruch offen ist.
+
+- **Normaler Luftfilter:** Trotec bietet [7710000080](https://de.trotec.com/shop/luftfilter-fuer-ttk-70-hepa-plus-ab-bj-12-23.html) separat als Luftfilter für TTK 70 HEPA (Plus) ab Dezember 2023 an. Prüfe zuerst, welchen Filter du ersetzen willst. Es handelt sich um ein eigenes Bauteil neben dem HEPA-Filter.
+
+Für die Rückfrage fotografiere, soweit vorhanden, Typenschild und Kennzeichnung des vorhandenen Filters. Bei einem intakten Filter halte dich an die Pflegeanleitung deines Geräts und tausche ihn erst, wenn es nötig ist. Deutsche Trotec-Produktangaben geprüft am 22. November 2026.
 
 ## Datenblätter und Testbedingungen vergleichen
 

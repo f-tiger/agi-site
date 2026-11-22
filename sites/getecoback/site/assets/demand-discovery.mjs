@@ -1,3 +1,4 @@
+import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion} from './kaercher-saugduese-intent.mjs';
 import {asksForCoffeeWaterFilterMatch} from './kaffee-wasserfilter-intent.mjs';
 import {asksForTrotecTtk75EcoConditions} from './trotec-ttk75-eco-intent.mjs';
@@ -59,6 +60,8 @@ export function searchEntries(index,term,lang){
    targetPage='/produkte.html'; targetId='kaercher-170mm-saugduese';
  } else if(lang==='de' && asksForCoffeeWaterFilterMatch(query)) {
    targetPage='/produkte.html'; targetId='kaffee-wasserfilter';
+ } else if(lang==='de' && asksForTrotecTtk70Filter(query)) {
+   targetPage='/guide/trotec-luftentfeuchter-test.html'; targetId='ttk70-hepa-filter';
  } else if(lang==='de' && asksForTrotecTtk75EcoConditions(query)) {
    targetPage='/guide/trotec-luftentfeuchter-test.html'; targetId='ttk75-pruefpunkt';
  } else if(lang==='de' && asksForDehumidifierDrainRoute(query)) {
