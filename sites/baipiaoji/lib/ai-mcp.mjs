@@ -53,7 +53,7 @@ export async function aiMcp({request,env},paid=false){
   }
   if(name==='list_bpj_ai_tools'){
    const out=discoverSuite(args,env.AI_MCP_PAID_ENABLED==='true');
-   return rpc({content:[{type:'text',text:JSON.stringify(out)}]});
+   return rpc({structuredContent:out,content:[{type:'text',text:JSON.stringify(out)}]});
   }
   const out=paid?compareRuns(args.runs):reviewTask(args);
   return rpc({content:[{type:'text',text:JSON.stringify(out)}]});

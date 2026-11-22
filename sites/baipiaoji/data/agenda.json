@@ -1,8 +1,8 @@
 {
-  "generated": "2026-11-20",
+  "generated": "2026-11-21",
   "note": "由 scripts/trend-radar.mjs 每日聚合五路站内信号生成。只排队不写事实；核实动作按硬规则执行。分数是领先指标的相对排序，不是预测。",
   "counts": {
-    "candidate": 34,
+    "candidate": 35,
     "category_hot": 0,
     "stale": 5,
     "demand": 0
@@ -28,18 +28,54 @@
     {
       "id": "aiflow:first",
       "type": "ai_referral",
-      "title": "AI 助手引流出现：www.perplexity.ai×11、kagi.com×2",
+      "title": "AI 助手引流出现：www.perplexity.ai×10、kagi.com×2",
       "why": "这是 AI 引用第一次转化为点击——哪些页面被引用、答的是什么问题，决定下一批内容怎么写",
       "action": "查快照中这些 ref 的落地页；把被引用页的模式（问题形、数据形、日期形）复制到同类页面",
       "refs": [
         "/en/plans/free-video-gen",
         "/en/tools/ante",
+        "/en/c/chat",
         "/c/image",
         "/en/",
-        "/en/c/api",
-        "/en/c/chat"
+        "/en/c/api"
       ],
       "score": 70
+    },
+    {
+      "id": "drift:exa",
+      "type": "source_drift",
+      "title": "来源页变动：Exa（2026-11-21 确认）",
+      "why": "官方来源页的数字令牌变了——新增 $15,000 / 100s / 1b / 500s；消失 无。本站条目仍是 2026-08-13 的版本",
+      "action": "打开 https://exa.ai/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "exa",
+        "https://exa.ai/pricing"
+      ],
+      "score": 65
+    },
+    {
+      "id": "drift:bolt",
+      "type": "source_drift",
+      "title": "来源页变动：Bolt.new（2026-11-21 确认）",
+      "why": "官方来源页的数字令牌变了——新增 236b / 6b；消失 无。本站条目仍是 2026-09-21 的版本",
+      "action": "打开 https://support.bolt.new 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "bolt",
+        "https://support.bolt.new"
+      ],
+      "score": 65
+    },
+    {
+      "id": "drift:pixverse",
+      "type": "source_drift",
+      "title": "来源页变动：PixVerse（爱诗科技）（2026-11-21 确认）",
+      "why": "官方来源页的数字令牌变了——新增 10月 / 9月；消失 无。本站条目仍是 2026-08-02 的版本",
+      "action": "打开 https://pixverse.ai 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "pixverse",
+        "https://pixverse.ai"
+      ],
+      "score": 65
     },
     {
       "id": "drift:framer",
@@ -74,42 +110,6 @@
       "refs": [
         "recraft",
         "https://recraft.ai/blog/ownership-and-commercial-use-faq"
-      ],
-      "score": 65
-    },
-    {
-      "id": "drift:codex",
-      "type": "source_drift",
-      "title": "来源页变动：OpenAI Codex（2026-11-19 确认）",
-      "why": "官方来源页的数字令牌变了——新增 $0.10, / $0.40 / $10 / $2,；消失 无。本站条目仍是 2026-09-25 的版本",
-      "action": "打开 https://developers.openai.com/codex/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "codex",
-        "https://developers.openai.com/codex/pricing"
-      ],
-      "score": 65
-    },
-    {
-      "id": "drift:deepinfra",
-      "type": "source_drift",
-      "title": "来源页变动：DeepInfra（2026-11-19 确认）",
-      "why": "官方来源页的数字令牌变了——新增 $0.02 / $0.03 / $0.098 / $0.15；消失 $0.018 / $0.075 / $0.105 / $0.25。本站条目仍是 2026-08-04 的版本",
-      "action": "打开 https://deepinfra.com 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "deepinfra",
-        "https://deepinfra.com"
-      ],
-      "score": 65
-    },
-    {
-      "id": "drift:v0",
-      "type": "source_drift",
-      "title": "来源页变动：v0（Vercel）（2026-11-19 确认）",
-      "why": "官方来源页的数字令牌变了——新增 10.4k；消失 10.3k。本站条目仍是 2026-08-03 的版本",
-      "action": "打开 https://v0.app 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "v0",
-        "https://v0.app"
       ],
       "score": 65
     },
@@ -152,7 +152,7 @@
     {
       "id": "paidgap:kimi",
       "type": "paid_gap",
-      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 89 次，无付费档）",
+      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 86 次，无付费档）",
       "why": "有需求、无判定页：is-kimi-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
       "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
       "refs": [
@@ -163,7 +163,7 @@
     {
       "id": "paidgap:exa",
       "type": "paid_gap",
-      "title": "补付费档：Exa（工具页 28 天带来源真人 37 次，无付费档）",
+      "title": "补付费档：Exa（工具页 28 天带来源真人 38 次，无付费档）",
       "why": "有需求、无判定页：is-exa-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
       "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
       "refs": [

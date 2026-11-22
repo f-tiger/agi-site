@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { TDS_HOME_TOOL_COUNT } from '../collector-assets/tds-suite/service.mjs';
 import { TDS_TOOLS, runTdsTool } from '../collector-assets/tds-suite/index.mjs';
 
 const output = path.resolve(process.argv.includes('--out') ? process.argv[process.argv.indexOf('--out') + 1] : path.join(path.dirname(fileURLToPath(import.meta.url)),'..'));
@@ -13,7 +14,7 @@ const m = JSON.parse(read(assets+'/manifest.json'));
 const all = new Set(m.pages.map(page => page.url));
 const sitemap = read('/sitemap.xml');
 const llms = read('/llms.txt');
-assert.equal(m.count,1000);
+assert.equal(m.count,TDS_HOME_TOOL_COUNT);
 assert.equal(all.size,m.pages.length);
 const discover = new Set(m.indexable);
 assert.equal(discover.size,m.indexable.length);
@@ -63,4 +64,4 @@ for (const [lang,prefix] of Object.entries(locales)) {
   assert.ok(llms.includes(origin+prefix+'/ai-tools'));
   assert.ok(llms.includes(origin+'/'+assets+'/catalog-'+lang+'.json'));
 }
-console.log(`TDS suite verified: ${m.count} distinct browser/MCP definitions, ${m.pages.length} localized pages, all 3,000 rendered examples execute, and ${discover.size} indexable pages.`);
+console.log(`TDS suite verified: ${m.count} distinct browser/MCP definitions, ${m.pages.length} localized pages, all ${TDS_HOME_TOOL_COUNT * Object.keys(locales).length} rendered examples execute, and ${discover.size} indexable pages.`);

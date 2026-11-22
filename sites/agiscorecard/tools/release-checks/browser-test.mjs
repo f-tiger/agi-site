@@ -13,6 +13,7 @@ const origin = 'https://agiscorecard.com';
 const testReleaseUrl = 'https://github.com/openai/codex/releases/tag/rust-v1.0.0';
 const marker = 'fictional-local-only-answer';
 const observedRequests = [];
+const snapshot = JSON.parse(await readFile(path.join(root, 'futures-assets/release-checks/releases.json'), 'utf8'));
 
 async function intercept(route) {
   const request = route.request();
@@ -50,6 +51,9 @@ try {
     const page = await context.newPage();
     await page.goto(origin + routePath + '?__ci=1#release-checks');
     await page.locator('#rc-version').selectOption(testReleaseUrl);
+    const latest = page.locator('[data-repo=codex] .rc-latest a');
+    assert.equal(await latest.count(), 1);
+    assert.equal(await latest.getAttribute('href'), testReleaseUrl);
     const evidence = page.locator('#rc-selected-evidence');
     assert.match(await evidence.innerText(), /TEST-ID/);
     assert.match(await evidence.innerText(), /1\.0\.1/);
@@ -73,6 +77,17 @@ try {
       element.scrollWidth <= element.clientWidth + 1);
     assert.ok(fits);
     await context.close();
+    const basic = await browser.newContext({javaScriptEnabled: false, viewport:{width,height:850}});
+    await basic.route('**/*', intercept);
+    const basicPage = await basic.newPage();
+    await basicPage.goto(origin + routePath + '?__ci=1#release-checks');
+    for (const source of snapshot.sources) {
+      const card = basicPage.locator('.rc-client[data-repo="' + source.id + '"]');
+      assert.equal(await card.locator('.rc-latest a').getAttribute('href'), source.releases[0].url);
+      assert.ok(await card.locator('.rc-freshness').isVisible());
+      assert.ok(await card.locator('.rc-advisory a').isVisible());
+    }
+    await basic.close();
   }
   assert.ok(observedRequests.every(request => !request.includes(marker)));
   console.log('Bilingual release checks passed with isolated advisory/run fixtures and private local scoring.');

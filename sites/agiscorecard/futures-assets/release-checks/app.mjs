@@ -50,6 +50,7 @@ function renderReleases(data) {
     const card = document.querySelector('#release-checks [data-repo="' +
       (source.id === 'codex' ? 'codex' : 'claude-code') + '"]');
     const latest = source.releases[0];
+    const versionSummary = card.querySelector('.rc-latest');
     const freshness = card.querySelector('.rc-freshness');
     const checked = stamp(source.checkedAt);
     const status = source.status === 'ok' ? t('Source checked', '已核对来源') :
@@ -60,13 +61,18 @@ function renderReleases(data) {
       freshness.append(node('br'), t('Last successful read', '上次成功核对') + ' · ' + stamp(source.lastSuccessAt));
     }
     if (!latest) {
-      card.querySelector('.rc-latest').textContent = t('Version unknown', '版本未知');
+      versionSummary.textContent = t('Version unknown', '版本未知');
       continue;
     }
-    card.querySelector('.rc-latest').append(sourceLink(latest.version, latest.url));
-    card.querySelector('.rc-latest').append(node('br'), latest.publishedAt.slice(0, 10) + ' UTC');
+    versionSummary.replaceChildren(sourceLink(latest.version, latest.url), node('br'), latest.publishedAt.slice(0, 10) + ' UTC');
     const advice = advisoryStatus(source.id, latest.version);
-    card.append(node('p', advice.label));
+    const advisory = card.querySelector('.rc-advisory') || card.appendChild(node('p'));
+    if (advice.source) {
+      advisory.replaceChildren(sourceLink(t('Publisher security advisories', '发布方安全公告'), advice.source.sourceUrl),
+        ' · ' + advice.label + ' · ' + stamp(advice.source.checkedAt));
+    } else {
+      advisory.append(' · ' + t('Interactive report unavailable', '交互报告暂不可读'));
+    }
     const releaseCount = source.releases.length;
     const advisoryCount = advice.source?.advisories.length;
     const counts = t(releaseCount + ' stable releases tracked', '已记录 ' + releaseCount + ' 个稳定版本');

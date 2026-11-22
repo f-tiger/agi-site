@@ -5,6 +5,7 @@ import {readFileSync} from 'node:fs';
 import {runInNewContext} from 'node:vm';
 import {affiliateMeta} from '../src/affiliate-meta.mjs';
 import {AFFILIATE_SQL, affiliateMetrics} from '../src/affiliate-metrics.mjs';
+import {WINDOW_ENTRY_DOCUMENT, WINDOW_ENTRY_PAGE} from '../src/fenstersauger-entry.mjs';
 import worker from '../src/worker.js';
 
 const product = 'https://www.amazon.de/dp/B07NC5CP6F?tag=getecoback-21';
@@ -167,4 +168,37 @@ test('worker verifies the tagged document and human privacy eligibility; ordinar
       assert.equal(JSON.parse(result.rows[0][4]||'{}').mcp_drain_entry,undefined);
     }
   }
+});
+
+const windowModel = 'https://www.amazon.de/s?' + new URLSearchParams({
+  k:'Bosch GlassVAC Set 06008B7000', tag:'getecoback-21',
+});
+
+test('only approved model search clicks from the exact document carry the window marker', async () => {
+  const headers = {origin:'https://getecoback.com', referer:WINDOW_ENTRY_DOCUMENT, 'sec-fetch-site':'same-origin'};
+  const view = {n:'page_view',p:WINDOW_ENTRY_PAGE,mcp_window_entry:true};
+  const click = {...view,n:'affiliate_click',m:{source:'inline',link_url:windowModel,private_width:170}};
+  const stored = async (body, requestHeaders=headers) =>
+    JSON.parse((await record(body,requestHeaders)).rows[0][4] || '{}');
+  assert.deepEqual(await stored(view),{mcp_window_entry:1});
+  assert.deepEqual(await stored(click),{
+    mcp_window_entry:1,source:'inline',link_url:'https://www.amazon.de/s?tag=getecoback-21',
+  });
+  for (const variant of [
+    {referer:''},{referer:WINDOW_ENTRY_DOCUMENT+'&extra=1'},{origin:'https://other.test'},
+    {'sec-fetch-site':'cross-site'},{dnt:'1'},{'sec-gpc':'1'},{'x-probe':'1'},
+    {'user-agent':'getecoback-ci/window'},
+  ]) {
+    for (const body of [view,click]) {
+      assert.equal((await stored({...body,m:{...body.m,mcp_window_entry:1}}, {...headers,...variant})).mcp_window_entry,undefined);
+    }
+  }
+  for (const linkUrl of [product, windowModel+'&tag=getecoback-21', windowModel+'&private=1',
+    windowModel.replace('06008B7000','06008B7200'), windowModel.replace('www.amazon.de','amazon.de.evil.test'),
+    windowModel.replace('getecoback-21','other'), windowModel+'#different']) {
+    const ordinary = await stored({...click,m:{...click.m,link_url:linkUrl,mcp_window_entry:1}});
+    assert.equal(ordinary.mcp_window_entry,undefined,linkUrl);
+    assert.equal(ordinary.source,'inline',linkUrl);
+  }
+  assert.equal((await stored({...view,p:'/other.html',m:{mcp_window_entry:1}})).mcp_window_entry,undefined);
 });

@@ -16,7 +16,7 @@ import {videoGrowth} from './video-growth.mjs';
 import {videoEntry} from './video-entry.mjs';
 import {affiliateMetrics} from './affiliate-metrics.mjs';
 import {affiliateAudit} from './affiliate-audit.mjs';
-import {affiliateMeta, CELLAR_PAGE, taggedDrainEntry} from './affiliate-meta.mjs';
+import {affiliateMeta, CELLAR_PAGE, taggedDrainEntry, taggedWindowEntry} from './affiliate-meta.mjs';
 // The browser module guards DOM setup with typeof document; its pure decision
 // function is also the MCP contract, so the two surfaces cannot route differently.
 import {decide as decideMoisture} from '../site/assets/moisture-decision.mjs';
@@ -838,13 +838,19 @@ async function handleEvent(request, env, ctx) {
   const evUa = request.headers.get("user-agent") || "";
   const evCls = evUaClass(evUa);
   const drainEntry = taggedDrainEntry(body, request, evCls);
+  const windowEntry = taggedWindowEntry(body, request, evCls);
   let metadata = body.m;
   if (name === 'page_view' && page === CELLAR_PAGE && (drainEntry || metadata?.mcp_drain_entry !== undefined)) {
     metadata = {...metadata};
     delete metadata.mcp_drain_entry;
     if (drainEntry) metadata.mcp_drain_entry = 1;
   }
-  const meta = name === 'affiliate_click' ? affiliateMeta(metadata, drainEntry)
+  if (name === 'page_view' && (windowEntry || metadata?.mcp_window_entry !== undefined)) {
+    metadata = {...metadata};
+    delete metadata.mcp_window_entry;
+    if (windowEntry) metadata.mcp_window_entry = 1;
+  }
+  const meta = name === 'affiliate_click' ? affiliateMeta(metadata, drainEntry, windowEntry)
     : metadata ? JSON.stringify(metadata).slice(0, 200) : "";
   const country = meterEvent ? "" : request.headers.get("CF-IPCountry") || "";
   const day = new Date().toISOString().slice(0, 10);
@@ -978,7 +984,7 @@ async function trendCompute(env) {
 // MCP server (Model Context Protocol, stateless Streamable HTTP).
 // Each tool returns a usable answer with sources. Publication, calls, website
 // visits and merchant activity are observed separately.
-const MCP_VERSION = "1.19.0";
+const MCP_VERSION = "1.21.0";
 const LEGACY_MCP_TOOLS = [
   drainTool,
   // AI-era round 2026-08-29: the decision LAYER above the per-device
@@ -1114,14 +1120,16 @@ const LEGACY_TASK_EQUIVALENTS = new Map([
   ["luftbefeuchter_weisser_belag","befeuchter_weissen_belag_einordnen"],
 ]);
 const CATALOG_TOOLS = [...LEGACY_MCP_TOOLS.map(tool => ({...tool,category:"Raumklima"})), ...expandedCatalog]
-  .map(tool => LEGACY_TASK_EQUIVALENTS.has(tool.name)
-    ? {...tool,equivalent_task:LEGACY_TASK_EQUIVALENTS.get(tool.name)}
-    : tool);
+  .map(tool => {
+    const equivalent = LEGACY_TASK_EQUIVALENTS.get(tool.name);
+    return equivalent ? {...tool,equivalent_task:equivalent} : tool;
+  });
 const DISTINCT_TASK_TOTAL = new Set(CATALOG_TOOLS.map(tool=>tool.equivalent_task || tool.name)).size;
 const CATALOG_INDEX = indexCatalogue(CATALOG_TOOLS);
 const COMPACT_INDEX = indexCatalogue(CATALOG_TOOLS.map(tool => ({
   name:tool.name, description:tool.description, category:tool.category,
   ...(tool.page ? {citation_url:"https://getecoback.com" + tool.page} : {}),
+  ...(tool.guide_url ? {guide_url:tool.guide_url} : {}),
   ...(tool.equivalent_task ? {equivalent_task:tool.equivalent_task} : {}),
 })));
 

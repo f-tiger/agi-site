@@ -68,7 +68,7 @@ function smartPlugDecisionHTML(decision,esc){
  if(!decision)return '';
  const disclosure=shoppingCopy.de.disclosure;
  const models=decision.models.map(({name,use,detail,source})=>`
-  <div class="home-product-card">
+  <div class="home-product-card" id="tapo-${name.endsWith('P110M') ? 'p110m' : 'p110'}">
    <h3>${esc(name)}</h3>
    <p class="home-product-use"><strong>${esc(use)}</strong></p>
    <p>${esc(detail)}</p>
@@ -78,15 +78,16 @@ function smartPlugDecisionHTML(decision,esc){
   </div>`).join('');
  return `<section id="strommessung" class="category-models" aria-labelledby="strommessung-titel">
   <header><h2 id="strommessung-titel">${esc(decision.title)}</h2><p>${esc(decision.answer)}</p></header>
+  <p><a class="button" href="/de/ai-tools/dach-meter-fit">Messsteckdose nach Land und App auswählen</a></p>
   <div class="home-product-grid">${models}<aside class="home-product-card"><h3>Welche Last ist zulässig?</h3><p>${esc(decision.load)}</p></aside></div>
   <p>${esc(decision.example)}</p>
   <p class="shop-source-date">Herstellerangaben zu den deutschen Steckdosen geprüft am <time datetime="${esc(decision.checked)}">${esc(decision.checked)}</time>.</p>
  </section>`;
 }
 
-function smartPlugDecisionText(decision){
+function smartPlugDecisionText(decision,origin){
  if(!decision)return [];
- return [decision.title,decision.answer,...decision.models.flatMap(({name,use,detail,source})=>[
+ return [decision.title,decision.answer,'Messsteckdose nach Land und App auswählen: '+origin+'/de/ai-tools/dach-meter-fit',...decision.models.flatMap(({name,use,detail,source})=>[
   name,use,detail,'Herstellerangaben zum '+name+': '+source,shoppingCopy.de.disclosure,name+' auf Amazon.de suchen',
  ]),'Welche Last ist zulässig?',decision.load,decision.example,'Herstellerangaben zu den deutschen Steckdosen geprüft am '+decision.checked+'.'];
 }
@@ -99,7 +100,7 @@ export function categoryPageHTML({record,updated,lang,route,esc,products=loadHom
 
 export function categoryPageText({record,updated,lang,route,origin,products=loadHomeCatalog()}){
  const c=copy[lang],d=record[lang],selected=categoryProducts(record,products,lang),byId=new Map(selected.map(p=>[p.id,p])),slug='shop/categories/'+record.id;
- return[d.title,d.description,d.answer,c.updated+': '+updated,c.checked+': '+record.checked,...smartPlugDecisionText(d.smartPlugDecision),c.decisions,...d.decisions.flatMap(x=>[x.title,x.body]),c.comparison,...d.comparisons.flatMap(x=>[x.need,x.consider,x.check,...x.productIds.map(id=>byId.get(id).name+': '+origin+route(lang,slug)+'#catalog-item-'+id)]),c.before,...d.beforeBuying,c.models,homeCatalogCopy(lang).notice,shoppingCopy[lang].disclosure,...homeCatalogProductText({lang,route,origin,slug,products:selected}),c.faq,...d.faq.flatMap(q=>[q.question,q.answer]),c.sources,c.method,c.sourceMethod,...categorySources(record,products,lang).map(s=>s.label+(amazonSource(s.url)?' — '+c.sourceAmazon:': '+s.url)),c.related,...record.related.map(id=>homeCatalogCategories.find(g=>g.id===id)[lang]+': '+origin+route(lang,'shop/categories/'+id)),c.filtered+': '+origin+route(lang,'shop')+'#catalog-category-'+record.id,c.all+': '+origin+route(lang,'shop')];
+ return[d.title,d.description,d.answer,c.updated+': '+updated,c.checked+': '+record.checked,...smartPlugDecisionText(d.smartPlugDecision,origin),c.decisions,...d.decisions.flatMap(x=>[x.title,x.body]),c.comparison,...d.comparisons.flatMap(x=>[x.need,x.consider,x.check,...x.productIds.map(id=>byId.get(id).name+': '+origin+route(lang,slug)+'#catalog-item-'+id)]),c.before,...d.beforeBuying,c.models,homeCatalogCopy(lang).notice,shoppingCopy[lang].disclosure,...homeCatalogProductText({lang,route,origin,slug,products:selected}),c.faq,...d.faq.flatMap(q=>[q.question,q.answer]),c.sources,c.method,c.sourceMethod,...categorySources(record,products,lang).map(s=>s.label+(amazonSource(s.url)?' — '+c.sourceAmazon:': '+s.url)),c.related,...record.related.map(id=>homeCatalogCategories.find(g=>g.id===id)[lang]+': '+origin+route(lang,'shop/categories/'+id)),c.filtered+': '+origin+route(lang,'shop')+'#catalog-category-'+record.id,c.all+': '+origin+route(lang,'shop')];
 }
 
 export function categoryPageSchema({record,lang,route,origin,products=loadHomeCatalog()}){
@@ -113,7 +114,7 @@ export function buildCategoryPages({emit,route,esc,locales,origin,products=loadH
  validateCategoryGuides(guides,products);
  for(const lang of Object.keys(locales))for(const category of homeCatalogCategories){
   const record=guides.categories.find(c=>c.id===category.id),d=record[lang];
-  const updated=[guides.updated,d.smartPlugDecision?.checked,...categoryProducts(record,products,lang).map(p=>p.checked)].filter(Boolean).sort().at(-1);
+  const updated=[guides.updated,d.smartPlugDecision ? '2026-11-22' : null,d.smartPlugDecision?.checked,...categoryProducts(record,products,lang).map(p=>p.checked)].filter(Boolean).sort().at(-1);
   const args={record,updated,lang,route,esc,origin,products};
   emit(lang,'shop/categories/'+record.id,d.title,d.description,categoryPageHTML(args),categoryPageText(args),categoryPageSchema(args),updated);
  }

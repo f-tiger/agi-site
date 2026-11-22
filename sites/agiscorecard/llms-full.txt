@@ -104,6 +104,52 @@ A: Because every verdict has a published flip condition tied to observable evide
 
 ---
 
+## AI MCP Server Directory | AGI Scorecard
+
+URL: https://agiscorecard.com/agents/
+
+Search MCP servers by task and connection type. Find original setup instructions and connect to the free AGI Scorecard MCP server.
+
+## MCP directory source records
+
+Snapshot as of 2026-11-20
+
+1,000 servers in the snapshot, including 31 with publisher docs reviewed.
+
+- ElevenLabs Generate audio and other creative assets or manage voice agents through an authorized ElevenLabs connection. Hosted Publisher setup guide (https://elevenlabs.io/mcp)Registry source (https://registry.modelcontextprotocol.io/v0.1/servers/io.elevenlabs%2Fmcp/versions/latest)
+- PostHog Use the connected PostHog project's product analytics, feature flags and experiment data. Hosted Publisher setup guide (https://posthog.com/docs/model-context-protocol/tools)Registry source (https://registry.modelcontextprotocol.io/v0.1/servers/io.github.PostHog%2Fmcp/versions/latest)
+- Auth0 Inspect applications and logs or manage Auth0 tenant resources, with read-only mode available. Local installation Publisher setup guide (https://github.com/auth0/auth0-mcp-server)Registry source (https://registry.modelcontextprotocol.io/v0.1/servers/com.auth0%2Fmcp/versions/latest)
+- Microsoft Learn Search Microsoft Learn documentation, retrieve articles and find official code samples. Hosted Publisher setup guide (https://learn.microsoft.com/en-us/training/support/mcp)Registry source (https://registry.modelcontextprotocol.io/v0.1/servers/com.microsoft%2Fmicrosoft-learn-mcp/versions/latest)
+- Cloudflare Pick a Cloudflare server for a specific operational task such as Workers observability or DNS management. Hosted Publisher setup guide (https://developers.cloudflare.com/agents/model-context-protocol/cloudflare/servers-for-cloudflare/)Registry source (https://registry.modelcontextprotocol.io/v0.1/servers/com.cloudflare.mcp%2Fmcp/versions/latest)
+- Figma Bring design context from a Figma frame or selection into an implementation task. Hosted Publisher setup guide (https://github.com/figma/mcp-server-guide)Registry source (https://registry.modelcontextprotocol.io/v0.1/servers/com.figma.mcp%2Fmcp/versions/latest)
+
+Open the JSON catalog (https://agiscorecard.com/mcp-directory-assets/catalog.json) MCP Registry source (https://registry.modelcontextprotocol.io/)
+
+---
+
+## AI MCP 工具目录｜AGI 记分牌
+
+URL: https://agiscorecard.com/zh/agents/
+
+按任务和连接方式查找 MCP 服务，查看发布方接入文档，也可连接 AGI 记分牌的免费 MCP。
+
+## MCP 工具目录来源
+
+快照日期 2026-11-20
+
+共收录 1,000 个服务，已核对 31 个发布方的文档。
+
+- ElevenLabs 通过获授权的 ElevenLabs 连接生成音频等创作素材，或管理语音智能体。 远程托管 发布方接入文档 (https://elevenlabs.io/mcp)条目来源 (https://registry.modelcontextprotocol.io/v0.1/servers/io.elevenlabs%2Fmcp/versions/latest)
+- PostHog 查看已连接的 PostHog 项目分析数据、功能开关和实验数据。 远程托管 发布方接入文档 (https://posthog.com/docs/model-context-protocol/tools)条目来源 (https://registry.modelcontextprotocol.io/v0.1/servers/io.github.PostHog%2Fmcp/versions/latest)
+- Auth0 查看应用和日志，或管理 Auth0 租户资源，可启用只读模式。 本地安装 发布方接入文档 (https://github.com/auth0/auth0-mcp-server)条目来源 (https://registry.modelcontextprotocol.io/v0.1/servers/com.auth0%2Fmcp/versions/latest)
+- Microsoft Learn 搜索 Microsoft Learn 文档，读取完整文章并查找官方代码示例。 远程托管 发布方接入文档 (https://learn.microsoft.com/en-us/training/support/mcp)条目来源 (https://registry.modelcontextprotocol.io/v0.1/servers/com.microsoft%2Fmicrosoft-learn-mcp/versions/latest)
+- Cloudflare 根据任务选择 Cloudflare 服务，例如检查 Workers 运行情况或管理 DNS。 远程托管 发布方接入文档 (https://developers.cloudflare.com/agents/model-context-protocol/cloudflare/servers-for-cloudflare/)条目来源 (https://registry.modelcontextprotocol.io/v0.1/servers/com.cloudflare.mcp%2Fmcp/versions/latest)
+- Figma 将 Figma 指定画板或选区的设计上下文用于界面实现。 远程托管 发布方接入文档 (https://github.com/figma/mcp-server-guide)条目来源 (https://registry.modelcontextprotocol.io/v0.1/servers/com.figma.mcp%2Fmcp/versions/latest)
+
+打开 JSON 目录 (https://agiscorecard.com/mcp-directory-assets/catalog.json) MCP 官方注册表 (https://registry.modelcontextprotocol.io/)
+
+---
+
 ## AGI Scorecard Data for AI Agents: JSON, Feed, llms.txt
 
 URL: https://agiscorecard.com/for-agents
@@ -122,6 +168,12 @@ A: Point any scheduled agent at /data.json and diff the verdicts between runs (t
 
 Q: Is AI crawling allowed on this site?
 A: Yes — robots.txt explicitly allows GPTBot, OAI-SearchBot, ClaudeBot, Claude-SearchBot, PerplexityBot, Google-Extended and other AI crawlers. The site is built to be cited.
+
+## Native MCP
+
+Agents that speak the Model Context Protocol can skip fetching files entirely: https://agiscorecard.com/mcp is a Streamable-HTTP MCP endpoint (POST JSON-RPC, no auth, free tier) exposing nine read-only tools: get_portfolio_returns (dated twelve-stock returns versus SPY, QQQ and TQQQ; October 2 close baseline; source freshness and optional daily history), get_thesis_tracker (score + full history), get_verdicts (all 8 predictions with evidence, sources and — where one is written — the flip condition, plus independent_grades: how independent public graders scored the same predictions, quoted verbatim), get_agi_consensus (the cross-venue AGI consensus board: Polymarket, Kalshi, Manifold, Metaculus on "AGI before year Y", median, spread, recompute formula), get_invest_positions (the Invest dataset), get_claim_ledger (the AI Gold Rush ledger of graded money claims — and a validator/reader for any site's /claimledger.json per the Claim Ledger Protocol), get_sunwatch_track_record (the SunWatch market-call ledger — editorial market judgments with outcome labels and an evidence audit; not a verified prospective trading-return record), search_mcp_catalog (search the public MCP directory by task and connection type), and search_site (every page on this site and its invest/compass sub-sites). The server is listed in the official MCP Registry (https://registry.modelcontextprotocol.io/v0/servers?search=agiscorecard) as com.agiscorecard/agi-scorecard. Add it to Claude Code with:
+
+Explore the MCP directory (https://agiscorecard.com/agents/) or read its JSON snapshot (https://agiscorecard.com/mcp-directory-assets/catalog.json). Catalog search returns publisher links and the scope of verification. Use those links to connect to the publisher directly.
 
 ---
 
@@ -1519,7 +1571,48 @@ A: It's ranked by how soon each forecaster says AGI arrives — soonest date fir
 
 URL: https://agiscorecard.com/ai-tools
 
-Start with a concrete question. Each tool states its source, assumptions and limits. Local practice is free; optional membership adds cloud records on supported tools. Calculations are not guarantees of future outcomes.
+Start with a concrete question: examine prediction evidence, change AI development assumptions or practise a work task. Each tool identifies its own data and limits. Trackers use published verdicts; the future simulator combines company sources with explicit model assumptions. Simulation frequencies are not calibrated future probabilities. Local records and exports are free; optional AGI membership adds cloud storage and version history.
+
+## AI coding assistant release checks
+
+Check which published security advisories apply to Codex CLI and Claude Code, then test a model response using a fictional task.
+
+Codex CLI Newest stable version in snapshot 0.171.0 (https://github.com/openai/codex/releases/tag/rust-v0.171.0) · 2026-11-20 00:44:47 UTC Release source unavailable · 2026-11-21 10:15:08 UTC Last successful read · 2026-11-20 15:21:56 UTC Publisher security advisories (https://github.com/openai/codex/security/advisories) · latest read unavailable, applicability unknown · 2026-11-21 10:15:08 UTC Official releases (https://github.com/openai/codex/releases)
+
+Claude Code Newest stable version in snapshot 2.1.329 (https://github.com/anthropics/claude-code/releases/tag/v2.1.329) · 2026-11-19 22:14:41 UTC Release source unavailable · 2026-11-21 10:15:08 UTC Last successful read · 2026-11-20 15:21:56 UTC Publisher security advisories (https://github.com/anthropics/claude-code/security/advisories) · latest read unavailable, applicability unknown · 2026-11-21 10:15:08 UTC Official releases (https://github.com/anthropics/claude-code/releases)
+
+Source records: stable releases (https://agiscorecard.com/futures-assets/release-checks/releases.json), package advisories (https://agiscorecard.com/futures-assets/release-checks/advisories.json), model announcements (https://agiscorecard.com/futures-assets/release-checks/models.json) and public run evidence (https://agiscorecard.com/futures-assets/release-checks/runs.json).
+
+---
+
+## 免费 AI 工具合集：研究、情景推演与工作实操
+
+URL: https://agiscorecard.com/zh/ai-tools
+工具合集更新：2026 年 11 月 21 日。部分工具可选云端会员。
+
+从具体问题开始：核对预测证据、调整 AI 发展假设，或练习工作任务。各工具标明自己的数据、方法与限制；预测追踪器使用 公开判定数据 ，未来推演使用公开公司来源和明确的模型假设。推演路径比例不代表未来真实概率。本机记录与导出免费；需要跨设备保留版本时可选择现有 AGI 云端会员。
+
+Q: 这些 AI 工具真的免费吗？
+A: 本页列出的主站研究工具可免费体验，推演、本机保存与导出不要求注册。部分工具提供可选云端会员；注册本身不获得付费权益。独立子站请查看其自身的免费范围。
+
+Q: 我可以把这些工具嵌到自己的网站或公众号页面吗？
+A: 可以嵌入表中标注支持的工具。AI 未来推演等工具支持?embed=1 ；在对应工具页查看嵌入代码和适用边界。
+
+Q: 工具背后的数据来自哪里？
+A: 各工具在页面内说明来源。预测追踪器使用 公开判定 ；未来推演采用公司公开来源、人工证据快照及可调整的模型假设，自动发现的新闻不等于已核实结论。
+
+Q: 工具能告诉我 AGI 到底哪一年到来吗？
+A: 不能，任何诚实的工具都做不到。它们做的是另一件更有用的事：把你的判断放到真实预言者的坐标上（马斯克约 2026、阿申布伦纳 2027、哈萨比斯约 2030、Metaculus 约 2033），并告诉你哪些证据变化才会让其中某一方成立。
+
+## AI 编程助手版本核验
+
+按版本核对 Codex CLI 和 Claude Code 适用的公开安全公告，再用虚构任务检验模型回答。
+
+Codex CLI 快照中的最新稳定版 0.171.0 (https://github.com/openai/codex/releases/tag/rust-v0.171.0) · 2026-11-20 00:44:47 UTC 版本来源暂不可读 · 2026-11-21 10:15:08 UTC 上次成功读取 · 2026-11-20 15:21:56 UTC 发布方安全公告 (https://github.com/openai/codex/security/advisories) · 本次读取不可用，适用性未知 · 2026-11-21 10:15:08 UTC 官方发布记录 (https://github.com/openai/codex/releases)
+
+Claude Code 快照中的最新稳定版 2.1.329 (https://github.com/anthropics/claude-code/releases/tag/v2.1.329) · 2026-11-19 22:14:41 UTC 版本来源暂不可读 · 2026-11-21 10:15:08 UTC 上次成功读取 · 2026-11-20 15:21:56 UTC 发布方安全公告 (https://github.com/anthropics/claude-code/security/advisories) · 本次读取不可用，适用性未知 · 2026-11-21 10:15:08 UTC 官方发布记录 (https://github.com/anthropics/claude-code/releases)
+
+来源数据：稳定版本 (https://agiscorecard.com/futures-assets/release-checks/releases.json)、公开安全公告 (https://agiscorecard.com/futures-assets/release-checks/advisories.json)、模型发布 (https://agiscorecard.com/futures-assets/release-checks/models.json)、公开实测 (https://agiscorecard.com/futures-assets/release-checks/runs.json)。
 
 ---
 

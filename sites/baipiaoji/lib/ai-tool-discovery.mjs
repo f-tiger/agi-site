@@ -1,7 +1,7 @@
 import {AI_FREE_TOOLS, AI_PAID_TOOLS, AI_TOOLS} from './ai-tool-registry.mjs';
 import {SUITE_CATEGORIES, SUITE_TOOLS, suitePath, suiteToolDefinitions, toolInputSchema} from './ai-suite/registry.mjs';
 
-export const FREE_MCP_VERSION = '0.3.0';
+export const FREE_MCP_VERSION = '0.5.1';
 export const CATALOG_URL = 'https://baipiaoji.com/ai-tools.json';
 const LIST_PAGE_SIZE = 40;
 let freeDefinitions;
@@ -33,7 +33,7 @@ function normalize(text) {
 }
 
 function searchable(tool) {
-  const names = [tool.id, tool.title.en, tool.title.zh].map(normalize);
+  const names = [tool.id, tool.title.en, tool.title.zh, ...(tool.searchAliases ?? [])].map(normalize);
   return {tool, names, content: normalize([...names, tool.category, tool.description.en, tool.description.zh].join(' '))};
 }
 
@@ -73,7 +73,8 @@ export function discoverSuite(args, paidEnabled) {
   }
   const suite = matches.slice(offset, offset + limit).map(({tool}) => ({
     id: tool.id, path: suitePath(tool), name: tool.title, category: tool.category, freeMcp: tool.name,
-    ...(includeSchema ? {description: tool.description, inputSchema: toolInputSchema(tool), example: tool.example} : {}),
+    ...(includeSchema ? {description: tool.description, inputSchema: toolInputSchema(tool), example: tool.example,
+      ...(tool.outputSchema ? {outputSchema:tool.outputSchema} : {})} : {}),
   }));
   return {
     tools: AI_TOOLS, suite, catalog: CATALOG_URL,

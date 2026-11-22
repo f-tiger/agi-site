@@ -25,27 +25,44 @@ def read_latest(url):
         raise
 
 
+def latest_url(name):
+    return 'https://registry.modelcontextprotocol.io/v0.1/servers/' + quote(name, safe='') + '/versions/latest'
+
+
+def listing_issue(manifest, listing, release):
+    if listing is None:
+        return 'canonical listing not found'
+    server = listing['server']
+    official = listing['_meta'][OFFICIAL]
+    if server['name'] != manifest['name'] or official['status'] != 'active' or official['isLatest'] is not True:
+        return 'identity or active/latest metadata does not match'
+    if server['remotes'] != manifest['remotes']:
+        return 'canonical remote does not match'
+    if release and server['version'] != manifest['version']:
+        return 'latest version is ' + server['version'] + ', expected ' + manifest['version']
+    return None
+
+
+def already_published(manifest, read=read_latest):
+    """Only a positive exact readback makes a publication run redundant."""
+    try:
+        listing = read(latest_url(manifest['name']))
+        return listing_issue(manifest, listing, release=True) is None
+    except (OSError, ValueError, KeyError, TypeError):
+        return False
+
+
 def check(manifest, release, read=read_latest, pause=time.sleep):
     name = manifest['name']
-    url = 'https://registry.modelcontextprotocol.io/v0.1/servers/' + quote(name, safe='') + '/versions/latest'
+    url = latest_url(name)
     confirmed_issue = None
     for attempt in range(3):
         try:
             listing = read(url)
-            if listing is None:
-                issue = 'canonical listing not found'
-            else:
-                server = listing['server']
-                official = listing['_meta'][OFFICIAL]
-                if server['name'] != name or official['status'] != 'active' or official['isLatest'] is not True:
-                    issue = 'identity or active/latest metadata does not match'
-                elif server['remotes'] != manifest['remotes']:
-                    issue = 'canonical remote does not match'
-                elif release and server['version'] != manifest['version']:
-                    issue = 'latest version is ' + server['version'] + ', expected ' + manifest['version']
-                else:
-                    print('OK registry listing present:', name, server['version'], url)
-                    return True
+            issue = listing_issue(manifest, listing, release)
+            if issue is None:
+                print('OK registry listing present:', name, listing['server']['version'], url)
+                return True
             confirmed_issue = issue
         except (OSError, ValueError, KeyError, TypeError) as error:
             issue = 'registry unavailable or returned an unrecognized response: ' + str(error)
@@ -58,7 +75,11 @@ def check(manifest, release, read=read_latest, pause=time.sleep):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--release', action='store_true', help='Require positive confirmation of this release version.')
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument('--release', action='store_true', help='Require positive confirmation of this release version.')
+    mode.add_argument('--already-published', action='store_true', help='Require one exact positive readback before skipping publication.')
     args = parser.parse_args()
     manifest = json.loads((Path(__file__).resolve().parents[1] / 'mcp/server.json').read_text())
+    if args.already_published:
+        raise SystemExit(0 if already_published(manifest) else 1)
     raise SystemExit(0 if check(manifest, args.release) else 1)

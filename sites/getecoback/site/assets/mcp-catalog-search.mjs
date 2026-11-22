@@ -5,6 +5,29 @@ const words = value => normalize(value)
   .replace(/\b(\d{3})\.(\d{3})\.(\d{2})\b/g, '$1$2$3')
   .match(/[a-z0-9]+/g) || [];
 
+function ownedGuide(value) {
+  if (typeof value !== 'string') return null;
+  try {
+    const origin = 'https://getecoback.com';
+    const url = new URL(value, origin);
+    const canonical = /^\/(?:[a-z0-9-]+\/)*[a-z0-9-]+\.html$/.test(url.pathname);
+    return url.origin === origin && canonical && !url.search && !url.username && !url.password ? url : null;
+  } catch {
+    return null;
+  }
+}
+
+// Keep catalogue navigation on the canonical guide, optionally at its supplied section.
+export function toolGuidePath({citation_url, guide_url}) {
+  const citation = ownedGuide(citation_url);
+  if (!citation || citation.hash) return null;
+  const guide = ownedGuide(guide_url);
+  if (guide?.pathname === citation.pathname && /^#[a-z0-9-]{1,100}$/.test(guide.hash)) {
+    return guide.pathname + guide.hash;
+  }
+  return citation.pathname;
+}
+
 const questionWords = new Set((
   'wie was wann wo welche welcher welches welchen welchem wer weswegen wieso weshalb wieviel ' +
   'kann kannst koennen soll sollte ich du er sie es wir ihr uns mir mein meine meinen meiner meinem unseren unserem unsere unser euren ' +
@@ -19,6 +42,11 @@ const questionWords = new Set((
 
 // Common words for tools whose formal identifiers differ from everyday German.
 const taskWords = new Map([
+  ["fenstersauger_kaercher_fluessigkeitsgrenze_und_tank", "multi edition aufsaugen tank fuellstand tankvolumen tankgroesse pfuetze verschuettet verschuettete fluessigkeit 25ml 40ml mengenobergrenze"],
+  ["fenstersauger_wv3_wv8_led_muster_einordnen", "blinkfolge blinkt blinken leds zweimal kurz blitz motor kontrollleuchte untere lampe ladevorgang"],
+  ["fenstersauger_wv3_wv8_akkuwechsel_service_oder_reserve", "comfort signature austauschen zweiten zweiter zweitakku reserveakku akkupack einsetzen waehrend fensterputzen akku austauschbar"],
+  ["fenstersauger_kaercher_glasreiniger_schaum_spiritus", "fensterreiniger schaumreiniger glasreiniger reinigungsmittel detergent zusatz"],
+  ["fenstersauger_wv3_wv8_hochglanz_glas_temperatur_probe", "mikrofaserbezug wischbezug hochglanzflaeche empfindlich probestelle gefroren heisse scheibe oberflaechentemperatur"],
   ["waschmittel_dosiertabelle_wasserhaerte_intervall", "versorger versorgungsgebiet calciumcarbonat mmol gesamthaerte wasserhaerte haertebereich dosiertabelle dosierspalte schwankung grenzwert spalte"],
   ["miele_wwr880_twindos_verschmutzung_und_spuelmenge", "verschmutzt verschmutzungsgrad verschmutzung stark normal leicht spuelwasser spuelwassermenge dosiermenge waesche"],
   ["waschmaschine_idos_twindos_nachfuellanzeige_lesen", "idos twindos symbol leuchtet blinkt blinkendes mindestfuellstand fuellstand wenige waschgaenge restmenge nachfuellhinweis milliliter"],

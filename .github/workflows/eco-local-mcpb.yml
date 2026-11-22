@@ -19,12 +19,12 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUNDLE: ecoback-local-tools-1.17.0.mcpb
-  VERSION: '1.17.0'
-  UPSTREAM_SHA: 0dfbcc52e6e15a790dcdb7032056a54033b15e59
+  BUNDLE: ecoback-local-tools-1.19.0.mcpb
+  VERSION: '1.19.0'
+  UPSTREAM_SHA: 1d081a3367831d64f4e08294983313ae58e91a72
   NAME: io.github.f-tiger/ecoback-local-tools
   RELEASE_TAG: fleet-mcp-registry-2026-10-10
-  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.17.0.mcpb
+  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.19.0.mcpb
   REGISTRY_VERSIONS: https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions
   SOURCE_URL: https://github.com/f-tiger/getecoback-mcp
   MCPB_SCHEMA: https://raw.githubusercontent.com/modelcontextprotocol/mcpb/70fe3b34cd6dff1b3bba046638edc72a6467a4fb/schemas/mcpb-manifest-v0.3.schema.json
@@ -60,7 +60,7 @@ jobs:
         with:
           name: ${{ steps.identity.outputs.artifact }}
           path: |
-            ${{ runner.temp }}/eco-local-mcpb/artifacts/ecoback-local-tools-1.17.0.mcpb
+            ${{ runner.temp }}/eco-local-mcpb/artifacts/${{ env.BUNDLE }}
             ${{ runner.temp }}/eco-local-mcpb/artifacts/SHA256SUMS
             ${{ runner.temp }}/eco-local-mcpb/servers/ecoback-local-tools.json
             ${{ runner.temp }}/eco-local-mcpb/smoke-results.json
@@ -87,16 +87,47 @@ jobs:
           test "$(cat "$root/artifacts/SHA256SUMS")" = "$digest  $BUNDLE"
           jq -e --arg name "$NAME" --arg version "$VERSION" --arg url "$PUBLIC_ASSET" --arg sha "$digest" --arg source "$SOURCE_URL" '
             .name == $name and .version == $version and ((.remotes // []) == []) and
+            .title == "EcoBack – Haushaltshilfen für Deutschland" and
+            .description == "Fenstersauger, Kellerfeuchte und Trocknungskosten offline prüfen. Ratgeber und Wetter auf Wunsch." and
             .websiteUrl == $source and .repository.url == $source and .repository.source == "github" and
             (.packages | length) == 1 and .packages[0].registryType == "mcpb" and
             .packages[0].identifier == $url and .packages[0].fileSha256 == $sha and
             .packages[0].transport.type == "stdio"
           ' "$root/servers/ecoback-local-tools.json"
-          jq -e --arg name "$NAME" --arg version "$VERSION" --arg revision "$UPSTREAM_SHA" --arg sha "$digest" '
+          jq -e --arg name "$NAME" --arg version "$VERSION" --arg revision "$UPSTREAM_SHA" --arg sha "$digest" --arg latest "$REGISTRY_VERSIONS/latest" '
             .name == $name and .version == $version and .sourceRevision == $revision and
-            .fileSha256 == $sha and .tools == 2003 and .pages == 21 and .legacyNames == 8 and
+            .fileSha256 == $sha and .tools == 2015 and .pages == 21 and .legacyNames == 8 and .windowExamples == 12 and
             .network == "disabled" and (.firstExamples | type == "array" and length > 0) and
-            (.lastPageExample != null and (.lastPageExample | length) > 0)
+            (.lastPageExample != null and (.lastPageExample | length) > 0) and
+            .finder.topMatch == "entfeuchter_ablaufcheck" and
+            .finder.examples == ["entfeuchter_ablaufcheck","dusche_zeit_bei_wasserbudget"] and
+            .finder.liveExampleRejected == true and
+            .compact.tools == ["ecoback_werkzeug_finden","ecoback_werkzeug_ausfuehren"] and
+            .compact.topMatch == "entfeuchter_ablaufcheck" and .compact.exampleOutcome == "pump_check" and
+            .compact.citationsPreserved == true and .compact.liveToolRejected == true and
+            .compact.cellarBuyerEvidence == true and
+            .compact.laundryComparison == {
+              topMatch:"waesche_trocknungskosten", dryerEurPerLoad:0.6, dehumidifierEurPerLoad:0.3,
+              comparison:"unconfirmed", citationUrl:"https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html"
+            } and
+            (.compact.laundryPrecision | type == "array" and length == 2 and
+              all(.[]; . != "waesche_trocknungskosten" and (. == null or (type == "string" and length > 0)))) and
+            .compact.windowWidth == {
+              topMatch:"fenstersauger_sprossenfenster_duesenbreite", usableWidthMm:160, packageArticle:"06008B7000",
+              entryUrl:"https://getecoback.com/produkte.html?mcp_entry=fenstersauger-breitencheck#fenstersauger-duesenbreite",
+              alternativesWithoutEntry:3
+            } and
+            .compact.windowBlade == {
+              topMatch:"fenstersauger_170mm_abziehlippe_geraetefamilie",
+              guideUrl:"https://getecoback.com/produkte.html#fenstersauger-belege",
+              statuses:["kombination_nicht_aufgelistet","offen","herstellerliste_bestaetigt"]
+            } and
+            .compact.windowLookup == ["fenstersauger_kaercher_fluessigkeitsgrenze_und_tank","fenstersauger_wv3_wv8_led_muster_einordnen"] and
+            (.archiveReadme.replacedVersion | test("^[0-9]+\\.[0-9]+\\.[0-9]+$")) and
+            .archiveReadme.registryLatestUrl == $latest and
+            .resource.uri == "ecoback://evidence/de/kellerentfeuchter" and
+            .resource.mimeType == "text/markdown" and .resource.missingCode == -32002 and
+            (.resource.textSha256 | test("^[a-f0-9]{64}$")) and .compact.resource == .resource
           ' "$root/smoke-results.json"
           printf 'sha=%s\n' "$digest" >> "$GITHUB_OUTPUT"
           printf 'Verified CI artifact %s (SHA-256 %s)\n' "$BUNDLE" "$digest"
@@ -199,8 +230,10 @@ jobs:
           for version in "$VERSION" latest; do
             record="$RUNNER_TEMP/eco-local-registry-$version.json"
             curl -fLsS --retry 3 --connect-timeout 10 --max-time 30 "$REGISTRY_VERSIONS/$version" -o "$record"
-            jq -e --arg name "$NAME" --arg version "$VERSION" --arg url "$PUBLIC_ASSET" --arg sha "$VERIFIED_SHA" '
+            jq -e --arg name "$NAME" --arg version "$VERSION" --arg url "$PUBLIC_ASSET" --arg sha "$VERIFIED_SHA" \
+              --slurpfile manifest "$RUNNER_TEMP/eco-local-mcpb/servers/ecoback-local-tools.json" '
               .server.name == $name and .server.version == $version and
+              .server.title == $manifest[0].title and .server.description == $manifest[0].description and
               ((.server.remotes // []) == []) and (.server.packages | length) == 1 and
               .server.packages[0].registryType == "mcpb" and .server.packages[0].identifier == $url and
               .server.packages[0].fileSha256 == $sha and .server.packages[0].transport.type == "stdio" and

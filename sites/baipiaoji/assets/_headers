@@ -26,6 +26,12 @@
 /llms-full.txt
   Access-Control-Allow-Origin: *
   Content-Type: text/plain; charset=utf-8
+/studio/ai/search-index.json
+  Cache-Control: public, max-age=600
+  X-Robots-Tag: noindex
+/en/studio/ai/search-index.json
+  Cache-Control: public, max-age=600
+  X-Robots-Tag: noindex
 /.well-known/mcp.json
   Access-Control-Allow-Origin: *
   Content-Type: application/json; charset=utf-8

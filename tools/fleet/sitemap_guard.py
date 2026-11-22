@@ -1,24 +1,21 @@
 #!/usr/bin/env python3
-"""sitemap 里的 URL 必须是终点,不能是跳板(2026-09-15「舰队相互学习」)。
+"""Validate sampled fleet sitemap destinations with one marked GET each.
 
-起因(实测,不是理论):baipiaoji 的 **1558 条 sitemap URL 全部 308 跳转**——
-sitemap 写 `/vs/x.html`,Cloudflare Pages 把它 308 到 `/vs/x`;更糟的是每页的
-`canonical` 也写着 `.html`,**即 canonical 指向一个非 200 的地址**。同日抽样,
-舰队另外 13 个站的 sitemap 重定向 = 0,只有它全中,而它恰好是页数最多(1558)、
-且唯一有真实 Google 引荐(157/28d)的站。
+Redirects, missing destinations and explicit noindex directives are errors.
+Canonical anomalies are warnings because an alias may be intentional.
+Temporary outages and inconclusive reads are warnings with the observed status.
 
-这类缺陷不会自己冒出来:站是 200 的、sitemap 是 200 的(跟随跳转之后),
-只有**不跟随跳转**去看才看得见。所以要有一条常驻断言。
-
-判定:
-  * 抽样 URL 直接返回 3xx → **红**(明确的缺陷,无歧义)。
-  * 页面 canonical 与被抓取的 URL 不一致 → **warning**(有正当情形,如聚合到枢纽页)。
-  * 取不到(网络/超时)→ warning,不红。舰队纪律:抖动不许阻断。
-挂 fleet-heartbeat;零外部副作用(只打自家站),每次 ~42 个请求。
-
-用法: python3 tools/fleet/sitemap_guard.py [--sample N] [--selftest]
+Usage: python3 tools/fleet/sitemap_guard.py [--sample N] [--only HOST ...] [--selftest]
 """
-import json, re, sys, urllib.error, urllib.request
+import argparse
+from html.parser import HTMLParser
+import re
+import sys
+import urllib.error
+import urllib.request
+from urllib.parse import urljoin, urlsplit, urlunsplit
+from xml.etree import ElementTree
+
 
 HOSTS = ["agiscorecard.com", "baipiaoji.com", "getecoback.com", "thedollscout.com",
          "play.agiscorecard.com", "source.agiscorecard.com", "games.agiscorecard.com",
@@ -34,111 +31,190 @@ HOSTS = ["agiscorecard.com", "baipiaoji.com", "getecoback.com", "thedollscout.co
          "compute.agiscorecard.com", "incentives.agiscorecard.com", "proof.agiscorecard.com",
          "calls.agiscorecard.com", "disclosures.agiscorecard.com",
          "localebatch.agiscorecard.com"]
+
 UA = "fleet-heartbeat/sitemap_guard (+https://github.com/f-tiger/agi-site)"
 SAMPLE = 4
 
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):
-    def redirect_request(self, *a, **k):
+    def redirect_request(self, *args, **kwargs):
         return None
 
 
-def fetch(url, follow=True, timeout=20):
-    op = urllib.request.build_opener() if follow else urllib.request.build_opener(NoRedirect)
-    req = urllib.request.Request(url, headers={"User-Agent": UA})
+def probe_url(url):
+    parts = urlsplit(url)
+    query = "&".join(filter(None, (parts.query, "ci=1&__ci=1&__probe=1")))
+    return urlunsplit(parts._replace(query=query, fragment=""))
+
+
+def fetch(url, timeout=20):
+    req = urllib.request.Request(probe_url(url), headers={
+        "User-Agent": UA,
+        "DNT": "1",
+        "Sec-GPC": "1",
+        "X-Probe": "fleet-sitemap-guard",
+    })
     try:
-        with op.open(req, timeout=timeout) as r:
-            return r.status, r.read().decode("utf-8", "replace"), r.headers.get("location")
+        with urllib.request.build_opener(NoRedirect).open(req, timeout=timeout) as response:
+            return response.status, response.read(), response.headers
     except urllib.error.HTTPError as e:
-        return e.code, "", e.headers.get("location")
+        return e.code, b"", e.headers
 
 
 def pick(locs, n):
-    """确定性抽样:首尾各一条 + 中间均匀铺开,不用随机(红了要能复现)。"""
     if len(locs) <= n:
         return list(locs)
-    idx = sorted({0, len(locs) - 1} | {round(i * (len(locs) - 1) / (n - 1)) for i in range(n)})
-    return [locs[i] for i in idx][:n]
+    if n == 1:
+        return locs[:1]
+    return [locs[round(i * (len(locs) - 1) / (n - 1))] for i in range(n)]
 
 
-def canonical_of(html):
-    m = re.search(r'<link[^>]+rel=["\']canonical["\'][^>]+href=["\']([^"\']+)["\']', html, re.I)
-    if not m:
-        m = re.search(r'<link[^>]+href=["\']([^"\']+)["\'][^>]+rel=["\']canonical["\']', html, re.I)
-    return m.group(1) if m else None
+def noindex(value):
+    return bool(re.search(r"(?:^|[\s,:])(?:noindex|none)(?:$|[\s,])", value, re.I))
 
 
-def check(host, n):
+class IndexMetadata(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.canonicals = []
+        self.noindex = False
+
+    def handle_starttag(self, tag, attrs):
+        attrs = {name: value or "" for name, value in attrs}
+        if tag == "link" and "canonical" in attrs.get("rel", "").lower().split():
+            self.canonicals.append(attrs.get("href", "").strip())
+        if tag == "meta" and attrs.get("name", "").lower() in {"robots", "googlebot", "bingbot"}:
+            self.noindex |= noindex(attrs.get("content", ""))
+
+
+def inspect_destination(url, fetcher):
+    try:
+        status, body, headers = fetcher(url)
+    except (OSError, ValueError) as e:
+        return "warning", f"{url}: request failed ({str(e)[:80]})"
+    if 300 <= status < 400:
+        return "error", f"{url}: HTTP {status} redirects to {headers.get('Location') or '?'}"
+    if status != 200:
+        severity = "error" if status in {404, 410} else "warning"
+        return severity, f"{url}: HTTP {status}"
+    if any(noindex(value) for value in headers.get_all("X-Robots-Tag", [])):
+        return "error", f"{url}: X-Robots-Tag prevents indexing"
+    if headers.get_content_type() not in {"text/html", "application/xhtml+xml"}:
+        return None, None
+
+    metadata = IndexMetadata()
+    metadata.feed(body.decode("utf-8", "replace"))
+    if metadata.noindex:
+        return "error", f"{url}: robots metadata prevents indexing"
+    if len(metadata.canonicals) != 1 or not metadata.canonicals[0]:
+        return "warning", f"{url}: expected one usable HTML canonical"
+    try:
+        canonical = urljoin(url, metadata.canonicals[0])
+    except ValueError:
+        return "warning", f"{url}: invalid HTML canonical"
+    if canonical != url:
+        return "warning", f"{url}: HTML canonical points to {canonical}"
+    return None, None
+
+
+def check(host, n, fetcher=fetch):
     bad, warn = [], []
     try:
-        st, xml, _ = fetch(f"https://{host}/sitemap.xml")
-    except Exception as e:
-        return [], [f"{host}: sitemap 取不到({str(e)[:60]})"], 0
-    if st != 200 or "<loc>" not in xml:
-        return [], [f"{host}: sitemap HTTP {st}"], 0
-    locs = re.findall(r"<loc>([^<]+)</loc>", xml)
-    for u in pick(locs, n):
+        status, xml, _ = fetcher(f"https://{host}/sitemap.xml")
+        if status != 200:
+            return [], [f"{host}: sitemap HTTP {status}"], 0
+        root = ElementTree.fromstring(xml)
+    except (OSError, ValueError, ElementTree.ParseError) as e:
+        return [], [f"{host}: sitemap could not be read ({str(e)[:80]})"], 0
+    kind = root.tag.split("}")[-1]
+    if kind != "urlset":
+        return [], [f"{host}: expected a sitemap urlset, found {kind}"], 0
+
+    locs = [node.text.strip() for node in root.findall("{*}url/{*}loc") if node.text and node.text.strip()]
+    unique_locs = list(dict.fromkeys(locs))
+    if not locs:
+        warn.append(f"{host}: sitemap urlset is empty")
+    if len(unique_locs) != len(locs):
+        warn.append(f"{host}: sitemap has duplicate destinations")
+    for url in pick(unique_locs, n):
         try:
-            code, _, loc = fetch(u, follow=False)
-        except Exception as e:
-            warn.append(f"{host}: {u} 取不到({str(e)[:40]})")
+            parts = urlsplit(url)
+        except ValueError:
+            warn.append(f"{host}: invalid sitemap destination {url}")
             continue
-        if 300 <= code < 400:
-            bad.append(f"{u} → HTTP {code} → {loc or '?'}")
+        if parts.scheme != "https" or parts.netloc != host or parts.fragment:
+            warn.append(f"{url}: expected an HTTPS destination on {host} without a fragment")
             continue
-        if code != 200:
-            warn.append(f"{host}: {u} → HTTP {code}")
-            continue
-        try:
-            _, html, _ = fetch(u)
-        except Exception:
-            continue
-        c = canonical_of(html)
-        if c and c.rstrip("/") != u.rstrip("/"):
-            warn.append(f"{host}: canonical 与 sitemap 不一致 — sitemap {u} vs canonical {c}")
-    return bad, warn, len(locs)
+        severity, message = inspect_destination(url, fetcher)
+        if severity == "error":
+            bad.append(message)
+        elif severity == "warning":
+            warn.append(message)
+    return bad, warn, len(unique_locs)
 
 
 def selftest():
-    ok = True
+    from email.message import Message
+
+    home = "https://example.com/"
+    other = "https://example.com/other"
+    calls = []
+    headers = Message()
+    headers["Content-Type"] = "text/html"
+
+    def fake(url):
+        calls.append(url)
+        if url.endswith("sitemap.xml"):
+            xml = f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>{home}</loc></url><url><loc>{other}</loc></url></urlset>'
+            return 200, xml.encode(), headers
+        if url == home:
+            return 200, b"<link href='/' rel='CANONICAL'>", headers
+        return 200, b"<meta content='index, noindex' name='robots'>", headers
+
+    errors, warnings, count = check("example.com", 4, fake)
+    index_header = Message()
+    index_header["X-Robots-Tag"] = "noindex"
     cases = [
-        ("首尾必取", pick(list(range(100)), 4)[0] == 0 and pick(list(range(100)), 4)[-1] == 99),
-        ("少于样本量时全取", pick([1, 2], 4) == [1, 2]),
-        ("确定性", pick(list(range(50)), 4) == pick(list(range(50)), 4)),
-        ("canonical 解析(rel 在前)", canonical_of('<link rel="canonical" href="https://a/b">') == "https://a/b"),
-        ("canonical 解析(href 在前)", canonical_of('<link href="https://a/b" rel="canonical">') == "https://a/b"),
-        ("没有 canonical 返回 None", canonical_of("<html></html>") is None),
-        # 不写死站数(手册 2026-09-17:写死数量的断言迟早退化成只会误报的噪音);
-        # 断言的是形状:无重复、全是舰队自己的域、没有协议前缀或路径。
-        ("主机名单无重复", len(set(HOSTS)) == len(HOSTS)),
-        ("主机名单全是舰队域且是裸主机名",
-         all(re.fullmatch(r"([a-z0-9-]+\.)?(agiscorecard|baipiaoji|getecoback|thedollscout)\.com", h) for h in HOSTS)),
+        ("deterministic first/last sample", pick(list(range(100)), 4) == [0, 33, 66, 99]),
+        ("single sample", pick([home, other], 1) == [home]),
+        ("one GET per sitemap and destination", calls == [home + "sitemap.xml", home, other]),
+        ("relative canonical accepted and meta noindex reported", count == 2 and not warnings and len(errors) == 1 and errors[0].startswith(other)),
+        ("HTML without a canonical warns", inspect_destination(home, lambda _: (200, b"<html></html>", headers))[0] == "warning"),
+        ("canonical alias warns", inspect_destination(other, lambda _: (200, b'<link rel="canonical" href="/">', headers))[0] == "warning"),
+        ("header noindex works without HTML", inspect_destination(home, lambda _: (200, b"", index_header))[0] == "error"),
+        ("HTTP 429 is an inconclusive read", inspect_destination(home, lambda _: (429, b"", headers))[0] == "warning"),
+        ("HTTP 308 flags redirects", inspect_destination(home, lambda _: (308, b"", headers))[0] == "error"),
+        ("HTTP 404 flags a missing destination", inspect_destination(home, lambda _: (404, b"", headers))[0] == "error"),
+        ("robot directives use token matching", noindex("googlebot: noindex, follow") and noindex("none") and not noindex("noindex-other")),
+        ("QA markers preserve an existing query", probe_url(home + "?a=1") == home + "?a=1&ci=1&__ci=1&__probe=1"),
+        ("fleet hostnames are unique", len(set(HOSTS)) == len(HOSTS)),
+        ("only fleet hostnames", all(re.fullmatch(r"([a-z0-9-]+\.)?(agiscorecard|baipiaoji|getecoback|thedollscout)\.com", host) for host in HOSTS)),
     ]
-    for label, cond in cases:
-        print(("ok   " if cond else "FAIL ") + label)
-        ok = ok and bool(cond)
-    print("selftest:", "ok" if ok else "FAILED")
-    return 0 if ok else 1
+    for label, passed in cases:
+        print(("ok   " if passed else "FAIL ") + label)
+    return 0 if all(passed for _, passed in cases) else 1
 
 
 def main(argv):
-    if "--selftest" in argv:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--selftest", action="store_true")
+    parser.add_argument("--sample", type=int, default=SAMPLE)
+    parser.add_argument("--only", choices=HOSTS, nargs="+")
+    args = parser.parse_args(argv)
+    if args.selftest:
         return selftest()
-    n = SAMPLE
-    if "--sample" in argv:
-        n = int(argv[argv.index("--sample") + 1])
+    if args.sample < 1:
+        parser.error("--sample must be at least 1")
     red = 0
-    for host in HOSTS:
-        bad, warn, total = check(host, n)
+    for host in args.only or HOSTS:
+        bad, warn, total = check(host, args.sample)
         flag = "::error::" if bad else ""
-        print(f"{flag}{host}: {total} 条 loc,抽 {n} 条 → 重定向 {len(bad)}")
-        for b in bad:
-            print(f"    {b}")
+        print(f"{flag}{host}: {total} sitemap URLs, sampled up to {args.sample}, {len(bad)} errors")
+        for entry in bad:
+            print(f"    {entry}")
             red = 1
-        for w in warn:
-            print(f"::warning::{w}")
-    if red:
-        print("::error::sitemap 里有 URL 是跳板不是终点 —— canonical/IndexNow/爬虫预算三处同时受损")
+        for entry in warn:
+            print(f"::warning::{entry}")
     return red
 
 

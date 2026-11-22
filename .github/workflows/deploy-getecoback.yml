@@ -30,7 +30,12 @@ on:
       - "sites/getecoback/wrangler.jsonc"
       - ".github/workflows/deploy-getecoback.yml"
       - ".github/scripts/deploy-main-guard*"
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      reviewed_sha:
+        description: 'Reviewed main commit SHA for a release without new content or price refresh'
+        required: false
+        type: string
   # Daily self-deploy: the season rotator, freshness badges and structure
   # injectors only run at deploy time, so without this the site could not turn
   # autumn on September 1st unless someone happened to push that day. The
@@ -72,8 +77,19 @@ jobs:
       - name: Guard — prepare current main and record the effective release
         id: release
         working-directory: ${{ github.workspace }}
+        env:
+          REVIEWED_SHA: ${{ github.event_name == 'push' && github.sha || inputs.reviewed_sha }}
         run: |
+          if [[ -n "$REVIEWED_SHA" && ! "$REVIEWED_SHA" =~ ^[0-9a-f]{40}$ ]]; then
+            echo '::error::Expected a full reviewed commit SHA'
+            exit 1
+          fi
           bash .github/scripts/deploy-main-guard.sh prepare
+          effective_sha=$(git rev-parse HEAD)
+          if [[ -n "$REVIEWED_SHA" && "$effective_sha" != "$REVIEWED_SHA" ]]; then
+            echo "::error::Main no longer matches the reviewed source (reviewed=$REVIEWED_SHA main=$effective_sha)"
+            exit 1
+          fi
           echo "DEPLOY_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
 
       - name: Test rollback prevention with isolated Git fixtures
@@ -102,7 +118,7 @@ jobs:
 
       - name: Discover and expand source-backed content within the daily allowance
         id: auto_content
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.reviewed_sha == '')
         run: python3 tools/auto_content.py --apply --receipts-dir "$RUNNER_TEMP/eco-auto-content"
 
       - name: Rotate homepage to current season (year-round positioning; idempotent)
@@ -116,7 +132,7 @@ jobs:
       # as --dry-run so the owner can prove the credentials before opening the
       # gate, without writing anything. No secret is ever echoed.
       - name: Refresh live prices from PA-API (gated; dry-run on manual dispatch)
-        if: ${{ vars.PAAPI_ENABLED == '1' || github.event_name == 'workflow_dispatch' }}
+        if: ${{ inputs.reviewed_sha == '' && (vars.PAAPI_ENABLED == '1' || github.event_name == 'workflow_dispatch') }}
         env:
           PAAPI_ACCESS_KEY: ${{ secrets.PAAPI_ACCESS_KEY }}
           PAAPI_SECRET_KEY: ${{ secrets.PAAPI_SECRET_KEY }}
@@ -325,7 +341,7 @@ jobs:
 
       - name: Check affiliate windows and unavailable-data reporting
         run: |
-          node --test tools/test_affiliate_meta.mjs
+          node --test tools/test_affiliate_meta.mjs tools/test_mcp_fenstersauger_kauf.mjs
           node --test tools/test_affiliate_metrics.mjs
           node --test tools/test_affiliate_audit.mjs
           node --test tools/test_buyer_decision.mjs
@@ -458,6 +474,7 @@ jobs:
           python3 sites/getecoback/tools/build_demand_discovery.py
           python3 sites/getecoback/tools/test_demand_discovery.py
           python3 sites/getecoback/tools/build_mcp_guides.py
+          node sites/getecoback/tools/build_mcp_catalogue.mjs
           node --test sites/getecoback/tools/test_mcp_guides.mjs
           node --test sites/getecoback/tools/test_demand_search.mjs
           node tools/revenue-studio/verify.mjs --site eco --out sites/getecoback/site
@@ -542,6 +559,7 @@ jobs:
             "mcr.microsoft.com/playwright:v${playwright_version}-noble" \
             bash -euo pipefail -c '
               node sites/getecoback/tools/browser_demand_discovery.cjs
+              node sites/getecoback/tools/browser_mcp_buyer_discovery.cjs
               node sites/getecoback/tools/browser_dach_growth.mjs
               node sites/getecoback/tools/browser_product_catalog.mjs
               node sites/getecoback/tools/browser_filter_care.mjs
@@ -557,7 +575,7 @@ jobs:
 
       - name: Persist the validated automatic content batch without rebasing
         id: auto_commit
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.reviewed_sha == '')
         run: python3 tools/commit_auto_content.py --receipt "$RUNNER_TEMP/eco-auto-content/publication.json"
 
       - name: Validate public asset routing and preserve response headers
@@ -1532,3 +1550,19 @@ jobs:
           path: ${{ runner.temp }}/eco-auto-content/
           if-no-files-found: warn
           retention-days: 14
+
+      - name: Record the effective source of the completed MCP deployment
+        if: ${{ success() && steps.deploy.outcome == 'success' }}
+        working-directory: ${{ github.workspace }}
+        run: |
+          [[ "$DEPLOY_SHA" =~ ^[0-9a-f]{40}$ && "$(git rev-parse HEAD)" == "$DEPLOY_SHA" ]]
+          printf '%s\n' "$DEPLOY_SHA" > "$RUNNER_TEMP/eco-mcp-release.sha"
+
+      - name: Preserve the effective source receipt for MCP follow-up workflows
+        if: ${{ success() && steps.deploy.outcome == 'success' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: eco-mcp-deployed-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/eco-mcp-release.sha
+          if-no-files-found: error
+          retention-days: 7

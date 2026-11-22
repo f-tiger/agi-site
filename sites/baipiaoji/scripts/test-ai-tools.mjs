@@ -67,7 +67,7 @@ const rpc=async(method,params,paid=false,env={})=>{
 const metadata=await rpc('initialize');
 assert.equal(metadata.protocolVersion,'2025-06-18');
 assert.equal(metadata.serverInfo.name,'bpj-ai-tools');
-assert.equal(metadata.serverInfo.version,'0.3.0');
+assert.equal(metadata.serverInfo.version,'0.5.1');
 const listing=[];
 const cursors=new Set();
 let cursor;
@@ -96,11 +96,11 @@ for(const tool of SUITE_TOOLS){
   assert(publicReturnPath(path)&&publicReturnPath(path+'.html'),'Public tool uses a reserved route: '+path);
  }
 }
-assert.equal(SUITE_TOOLS.length,1000);
-assert.equal(listing.length,1003);
+assert.equal(SUITE_TOOLS.length,1013);
+assert.equal(listing.length,1016);
 assert.equal(cursors.size,25);
 assert.equal(new Set(listing.map(tool=>tool.name)).size,listing.length);
-for(const cursor of [false,null,'','!!!','x'.repeat(128),btoa('bpj/0.2.0/free/40'),btoa('bpj/0.3.0/free/1'),btoa('bpj/0.3.0/free/10000')]){
+for(const cursor of [false,null,'','!!!','x'.repeat(128),btoa('bpj/0.5.0/free/40'),btoa('bpj/0.5.1/free/1'),btoa('bpj/0.5.1/free/10000')]){
  const response=await req({jsonrpc:'2.0',id:42,method:'tools/list',params:{cursor}});
  assert.equal((await response.json()).error.code,-32602);
 }
@@ -112,16 +112,16 @@ assert.equal(discovery.suite.length,100);
 assert.equal(discovery.suite[0].path,'/studio/ai/'+SUITE_TOOLS[0].id);
 assert.equal(discovery.suite[0].freeMcp,SUITE_TOOLS[0].name);
 assert.equal(discovery.paidStatus,'not_launched');
-assert.equal(discovery.total,1000);
-assert.equal(discovery.matched,1000);
+assert.equal(discovery.total,1013);
+assert.equal(discovery.matched,1013);
 assert.equal(discovery.nextOffset,100);
 assert.deepEqual(discovery.categories.map(x=>x.id),SUITE_CATEGORIES.map(x=>x.id));
-assert.equal(discovery.categories.reduce((sum,group)=>sum+group.count,0),1000);
+assert.equal(discovery.categories.reduce((sum,group)=>sum+group.count,0),1013);
 const searchCall=async(args)=>rpc('tools/call',{name:'list_bpj_ai_tools',arguments:args});
 const search=async(args)=>JSON.parse((await searchCall(args)).content[0].text);
 const lastLegacy=await search({offset:99,limit:2});
 assert.deepEqual(lastLegacy.suite.map(x=>x.freeMcp),SUITE_TOOLS.slice(99,101).map(x=>x.name));
-const lastPage=await search({offset:999,limit:10});
+const lastPage=await search({offset:1012,limit:10});
 assert.equal(lastPage.suite.length,1);
 assert.equal(lastPage.nextOffset,null);
 for(const group of SUITE_CATEGORIES){
@@ -138,6 +138,86 @@ for(const group of SUITE_CATEGORIES){
   assert.deepEqual(hit.example,tool.example);
  }
 }
+const importToolName='bpj_ai_eval_export_pair';
+const foundImport=await searchCall({query:'compare Promptfoo eval exports',includeSchema:true});
+assert.deepEqual(foundImport.structuredContent,JSON.parse(foundImport.content[0].text));
+const importer=foundImport.structuredContent.suite[0];
+assert.equal(importer.freeMcp,importToolName);
+assert.equal(importer.outputSchema.properties.nextCall.anyOf[0].properties.name.const,'bpj_ai_paired_pass_regression');
+assert.deepEqual(importer.outputSchema,listing.find(x=>x.name===importToolName).outputSchema);
+for(const query of ['release rollback check','AI 回退检查']){
+ assert.equal((await search({query,limit:1})).suite[0].freeMcp,'bpj_ai_paired_pass_regression');
+}
+const importPair=async args=>rpc('tools/call',{name:importToolName,arguments:{...importer.example,...args}});
+const csvPair=await importPair({});
+const handoff=csvPair.structuredContent.nextCall;
+assert.deepEqual(csvPair.structuredContent.after,{
+ receivedCount:4,gradedCount:3,missingIds:['003'],unexpectedIds:['099'],skipped:[{id:'004',reason:'execution_error'}],
+});
+assert.deepEqual(JSON.parse(handoff.arguments.before)[1],{id:'002',pass:false});
+const paired=await rpc('tools/call',handoff);
+assert.equal(paired.structuredContent.pairedCount,2);
+assert.deepEqual(paired.structuredContent.regressionIds,['001']);
+assert.deepEqual(paired.structuredContent.improvementIds,['002']);
+assert.deepEqual(paired.structuredContent.missingAfter,['003','004']);
+
+const privateContent='LOCAL FIXTURE TEXT SHOULD NOT APPEAR';
+const fooRow=(id,promptIdx,success,failureReason,output=privateContent)=>({
+ id:'RUN-LOCAL',testIdx:0,promptIdx,vars:{sample_id:id,comment:privateContent},
+ success,failureReason,response:{output},error:success?null:privateContent,
+ gradingResult:{pass:success,componentResults:[{pass:success}]},
+});
+const foo=rows=>JSON.stringify({results:{version:3,prompts:[{},{}],results:rows},config:{metadata:privateContent}});
+const promptfooPair=await importPair({
+ format:'promptfoo',expectedIds:'["001","002","003"]',beforePromptIndex:0,afterPromptIndex:1,
+ beforeExport:foo([fooRow('002',0,false,1),fooRow('001',0,true,0),fooRow('003',0,true,0)]),
+ afterExport:foo([fooRow('003',1,true,0,null),fooRow('001',0,true,0),fooRow('002',1,false,2),fooRow('001',1,false,1)]),
+});
+assert.doesNotMatch(JSON.stringify(promptfooPair),/LOCAL FIXTURE TEXT/);
+assert.deepEqual(promptfooPair.structuredContent.after.skipped,
+ [{id:'003',reason:'missing_output'},{id:'002',reason:'execution_error'}]);
+assert.deepEqual(JSON.parse(promptfooPair.structuredContent.nextCall.arguments.after),[{id:'001',pass:false}]);
+const promptfooRegression=await rpc('tools/call',promptfooPair.structuredContent.nextCall);
+assert.deepEqual(promptfooRegression.structuredContent.regressionIds,['001']);
+const leaf = fooRow('001',0,false,1,'');
+leaf.gradingResult={pass:false,assertion:{type:'equals'}};
+const noAssertion = fooRow('002',0,true,0,false);
+noAssertion.gradingResult={pass:true,componentResults:[]};
+const leafComparison=await importPair({
+ format:'promptfoo',expectedIds:'["001","002"]',
+ beforeExport:foo([leaf,noAssertion]),afterExport:foo([leaf,noAssertion]),
+});
+assert.deepEqual(JSON.parse(leafComparison.structuredContent.nextCall.arguments.after),[{id:'001',pass:false}]);
+assert.deepEqual(leafComparison.structuredContent.after.skipped,[{id:'002',reason:'unscored'}]);
+const blockedHandoff=await importPair({
+ expectedIds:'["001"]',beforeExport:'sample_id,verdict\n001,true',
+ afterExport:'sample_id,verdict\n001,true\n099,error',
+});
+assert.equal(blockedHandoff.structuredContent.exactTestSetInBothRuns,false);
+assert.equal(blockedHandoff.structuredContent.handoffState,'review_ungraded_outside_ids');
+assert.equal(blockedHandoff.structuredContent.nextCall,null);
+for(const bad of [
+ {format:'other'}, {sampleKey:'unavailable'}, {expectedIds:'["001","001"]'},
+ {afterExport:'sample_id,verdict\n001,false\n001,true'},
+ {afterExport:'sample_id,verdict\n001,1'},
+ {afterExport:'sample_id,verdict\nprivate@example.test,true'},
+ {format:'promptfoo',beforeExport:'{"results":{"version":9,"results":[]}}'},
+]){
+ const result=await importPair(bad);
+ assert.equal(result.isError,true);
+ assert.equal(result.structuredContent,undefined);
+}
+const longIds=Array.from({length:200},(_,i)=>'界'.repeat(30)+i.toString().padStart(3,'0'));
+const longCsv='sample_id,verdict\n'+longIds.map(id=>id+',true').join('\n');
+assert.throws(()=>runSuiteTool(importToolName,{
+ ...importer.example,expectedIds:JSON.stringify(longIds),beforeExport:longCsv,afterExport:longCsv,
+}),/Paired regression arguments exceed 64 KB/);
+const humanReview=SUITE_TOOLS.find(tool=>tool.id==='ai-human-review-queue');
+const human=await rpc('tools/call',{name:humanReview.name,arguments:humanReview.example});
+assert.deepEqual(human.structuredContent.disagreements[0].missingReviewerIds,['reviewer-a']);
+assert.equal(human.structuredContent.agreements[0].unanimousVerdict,false);
+assert.equal(human.structuredContent.incomplete.length,2);
+console.log('PASS bilingual agent discovery, CSV and Promptfoo handoff, missing grades, request limits and review queues.');
 assert.deepEqual((await search({query:'unlikely nonexistent term 9028351'})).suite,[]);
 for(const args of [{category:'unknown!'},{query:2},{query:'a'.repeat(121)},{offset:-1},{limit:0},{limit:101},{includeSchema:true,limit:11},{includeSchema:1},{extra:'no'}]){
  assert.equal((await searchCall(args)).isError,true,JSON.stringify(args));
@@ -173,4 +253,63 @@ for(const tool of SUITE_TOOLS){
  assert.equal(invalid.isError,true,tool.name);
  assert.doesNotMatch(invalid.content[0].text,/private fixture/);
 }
+// Independently worked answers and domain errors for the evaluation batch.
+const evaluationFixtures = [
+ ['rag-retrieval-scorecard', result => {
+   assert.equal(result.macroRecallAtK, 1 / 4);
+   assert.equal(result.mrrAtK, 1 / 4);
+   assert.equal(result.queries[1].firstRelevantRank, 3);
+ }, {queries:'[{"id":"q","relevant":["A"],"ranked":["A","A"]}]'}, /duplicate/i],
+ ['answer-citation-coverage', result => {
+   assert.equal(result.coverage, 1 / 3);
+   assert.equal(result.uncitedClaims, 1);
+   assert.equal(result.claimsWithUnknownIds, 2);
+ }, {sourceIds:'["A","A"]'}, /duplicate/i],
+ ['evidence-quote-verifier', result => {
+   assert.equal(result.matchedCount, 2);
+   assert.deepEqual(result.excerpts.map(row=>row.status),
+     ['exact','whitespace-match','not-found','unknown-source']);
+ }, {mode:'fuzzy'}, /choose exact/i],
+ ['ai-json-output-contract', result => {
+   assert.equal(result.contractPassedCount, 1);
+   assert.equal(result.invalidOrUnsupportedJsonCount, 1);
+   assert.equal(result.results[1].violations[0].actualType, 'null');
+ }, {contract:'[{"pointer":"/x~3","type":"object","required":true}]'}, /pointer/i],
+ ['ai-paired-pass-regression', result => {
+   assert.deepEqual(result.regressionIds, ['case-1']);
+   assert.deepEqual(result.improvementIds, ['case-2']);
+   assert.deepEqual(result.missingAfter, ['case-3']);
+   assert.equal(result.afterPassPercent, 50);
+ }, {after:'[{"id":"case-1","pass":"false"}]'}, /boolean/i],
+ ['ai-multiclass-confusion', result => {
+   assert.deepEqual(result.matrix, [[1,1,0],[0,0,1],[0,0,1]]);
+   assert.equal(result.accuracyPercent, 50);
+ }, {samples:'[{"id":"x","actual":"neutral","predicted":"other"}]'}, /label/i],
+ ['llm-token-billing', result => {
+   assert.equal(result.estimatedTotal, 2.225);
+   assert.equal(result.uncachedInputTokens, 650000);
+   assert.equal(result.partialEstimate, true);
+ }, {cachedInputTokens:900001}, /sum cannot exceed/i],
+ ['llm-route-delivery-cost', result => {
+   assert.equal(result.routes[0].costPerPassedMinor, 6);
+   assert.equal(result.routes[0].eligible, false);
+   assert.deepEqual(result.lowestCostRoutes, ['route-b']);
+ }, {routesJson:'[{"route":"a","samples":[{"id":"x","passed":true,"costMinor":3}]},{"route":"b","samples":[{"id":"y","passed":true,"costMinor":3}]}]'}, /same sample IDs/i],
+ ['llm-context-budget', result => {
+   assert.equal(result.remainingTokens, 772);
+   assert.deepEqual(result.includedIds, ['policy','example']);
+   assert.deepEqual(result.duplicateIds, ['policy']);
+ }, {reservedTokens:4097}, /cannot exceed/i],
+];
+for(const [id,verify,invalid,error] of evaluationFixtures){
+ const tool=SUITE_TOOLS.find(item=>item.id===id);
+ assert.equal(tool.category,'ai-evaluation',id);
+ verify(runSuiteTool(tool.name,tool.example));
+ assert.throws(()=>runSuiteTool(tool.name,{...tool.example,...invalid}),error,id);
+}
+const billing = SUITE_TOOLS.find(tool=>tool.id==='llm-token-billing');
+assert.throws(()=>runSuiteTool(billing.name,{...billing.example,
+ inputTokens:1,cachedInputTokens:0,unpricedInputTokens:0,billedOutputTokens:0,uncachedInputRate:Number.MIN_VALUE,
+}),/below supported numeric precision/);
+console.log('PASS 9 independent evaluation answers, domain errors and token-cost underflow.');
 console.log('PASS '+SUITE_TOOLS.length+' free MCP fixtures and invalid arguments, paginated schemas, multilingual discovery and paid isolation.');

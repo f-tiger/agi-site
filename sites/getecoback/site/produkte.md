@@ -379,7 +379,7 @@ Genaue Variante, Aufgabe und Kaufgrenze im Vergleich
 | [Kärcher WV 2 Plus Multi Edition](https://getecoback.com/produkte.html#produkt-kaercher-wv2-multi) WV 2 Plus Multi Edition · 1.633-662.0 | Glatte Flächen mit separater Sprühflasche vorreinigenDer Hersteller nennt eine 280-mm-Absaugdüse, 100 ml Schmutzwassertank und 35 Minuten Akkulaufzeit. Sprühflasche mit Wischbezug ist in diesem Paket aufgeführt. | Die Ladezeit ist mit 230 Minuten angegeben. Laufzeit und Flächenangabe sind Herstellerwerte; eine schmale Absaugdüse nicht allein aus dem Modellnamen als enthalten annehmen. | [Kärcher Deutschland: Kärcher WV 2 Plus Multi Edition](https://www.karcher.com/de/de/home-and-garden/produkte/wv-2-plus-multi-edition-p16336620) Quellenstand: 2026-11-13 |
 | [Kärcher WV 3 Comfort Precision+ Black](https://getecoback.com/produkte.html#produkt-kaercher-wv3-precision) WV 3 Comfort Precision+ Black · 1.633-698.0 | Schmale Absaugdüse und größerer SchmutzwassertankDer Hersteller nennt einen 200-ml-Tank und führt 280-mm- sowie 170-mm-Absaugdüsen auf. Dieses Paket enthält die schmale Absaugdüse. | 35 Minuten Akkulaufzeit und 170 Minuten Ladezeit sind Herstellerangaben. Die Precision+-Packung enthält andere Zubehörteile als eine andere WV-3-Variante. | [Kärcher Deutschland: Kärcher WV 3 Comfort Precision+ Black](https://www.karcher.com/de/de/home-and-garden/produkte/wv-3-comfort-precision-black-p16336980) Quellenstand: 2026-11-13 |
 | [Kärcher WV 8 Signature Line](https://getecoback.com/produkte.html#produkt-kaercher-wv8-signature) WV 8 Signature Line · 1.633-785.0 | Flexible Abziehlippe und schmale Flächen bearbeitenDer Hersteller nennt eine Xtra!Flex-Silikonlippe, 150 ml Tankkapazität und bis zu 55 Minuten Akkulaufzeit. Eine schmale Absaugdüse gehört zum dokumentierten Paket. | Die technische Tabelle nennt 360 Minuten Ladezeit. Die längere Laufzeit macht den 150-ml-Tank nicht größer; Tankentleerung und Ladepausen für die eigene Fläche einplanen. | [Kärcher Deutschland: Kärcher WV 8 Signature Line](https://www.karcher.com/de/de/home-and-garden/produkte/wv-8-signature-line-p16337850) Quellenstand: 2026-11-13 |
-| [Bosch GlassVAC – Set](https://getecoback.com/produkte.html#produkt-bosch-glassvac-set) GlassVAC Set · 06008B7000 | Großen und kleinen Saugkopf im selben Set nutzenBosch nennt 30 Minuten Betriebszeit und 100 ml Schmutzwassertank. Die ausgewählte Set-Packung enthält einen großen und einen kleinen Saugkopf. | Nicht mit GlassVAC Solo Plus 06008B7200 verwechseln: Der kleinere Saugkopf und der dokumentierte Lieferumfang sind paketabhängig. Die Laufzeit ist keine gemessene Reinigungszeit für dein Zuhause. | [Bosch Deutschland: Bosch GlassVAC – Set](https://www.bosch-diy.com/de/de/p/glassvac-06008b7000) Quellenstand: 2026-11-13 |
+| [Bosch GlassVAC – Set](https://getecoback.com/produkte.html#produkt-bosch-glassvac-set) GlassVAC Set · 06008B7000 | Großen und kleinen Saugkopf im selben Set nutzenBosch nennt 30 Minuten Betriebszeit und 100 ml Schmutzwassertank. Das Set 06008B7000 (EAN 3165140920148) enthält einen großen und einen kleinen Saugkopf. | Beim GlassVAC Solo Plus 06008B7200 (EAN 3165140976374) listet Bosch nur den großen Saugkopf. Bestellnummer und Lieferumfang beim Händler abgleichen. Die Laufzeit ist keine gemessene Reinigungszeit für dein Zuhause. | [Bosch Deutschland: Bosch GlassVAC – Set](https://www.bosch-diy.com/de/de/p/glassvac-06008b7000) Quellenstand: 2026-11-20 |
 
 ### Die zu reinigende Glasfläche planen
 Berechne die Glasfläche gleich großer Scheiben. Für unterschiedliche Größen getrennte Rechnungen verwenden.
@@ -431,11 +431,11 @@ Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue 
 Bosch · GlassVAC Set · 06008B7000
 
 **Aufgabe:** Großen und kleinen Saugkopf im selben Set nutzen
-Bosch nennt 30 Minuten Betriebszeit und 100 ml Schmutzwassertank. Die ausgewählte Set-Packung enthält einen großen und einen kleinen Saugkopf.
+Bosch nennt 30 Minuten Betriebszeit und 100 ml Schmutzwassertank. Das Set 06008B7000 (EAN 3165140920148) enthält einen großen und einen kleinen Saugkopf.
 
-**Vor dem Kauf:** Nicht mit GlassVAC Solo Plus 06008B7200 verwechseln: Der kleinere Saugkopf und der dokumentierte Lieferumfang sind paketabhängig. Die Laufzeit ist keine gemessene Reinigungszeit für dein Zuhause.
+**Vor dem Kauf:** Beim GlassVAC Solo Plus 06008B7200 (EAN 3165140976374) listet Bosch nur den großen Saugkopf. Bestellnummer und Lieferumfang beim Händler abgleichen. Die Laufzeit ist keine gemessene Reinigungszeit für dein Zuhause.
 
-Quelle: [Bosch Deutschland: Bosch GlassVAC – Set](https://www.bosch-diy.com/de/de/p/glassvac-06008b7000) · geprüft am 13.11.2026.
+Quelle: [Bosch Deutschland: Bosch GlassVAC – Set](https://www.bosch-diy.com/de/de/p/glassvac-06008b7000) · geprüft am 20.11.2026.
 
 Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue Variante, Gesamtpreis und Lieferung beim Händler prüfen.
 
@@ -1328,6 +1328,71 @@ In der Einstellanzeige stehen benachbarte ungerade Zahlen für ihre Zwischenstuf
 Die Krümelschublade muss für den Betrieb eingesetzt sein. Erst nach vollständigem Abkühlen und Ziehen des Netzsteckers die herausgenommene Schublade abwischen, Krümel unter dem Aufsatz gemäß Anleitung mit einem harten Pinsel entfernen und das Außengehäuse feucht abwischen. Die Anleitung schließt Eintauchen, Spülmaschine, Dampfreiniger und Grill- oder Backofenspray aus. Bei einem gebrauchten Gerät zuerst die Ausstattung prüfen und vorhandenes, passendes Zubehör weiter verwenden. [Bosch Gebrauchsanleitung, deutsche Seiten 2 und 4–5](https://media3.bosch-home.com/Documents/9001690573_A.pdf)
 
 Deutsche Bosch-Unterlagen 9001690573_A und Produktdaten des TAT8613, geprüft am 20.11.2026.
+
+## Fenstersauger prüfen: Abziehlippen und Gebrauch
+
+Für wenige Scheiben kann der vorhandene Einwascher mit Abzieher genügen. Kommt das Wasser regelmäßig von innen zurück, zuerst [die Feuchtigkeit einordnen](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#einsatzort-waehlen).
+
+[Kärcher im Gebrauch prüfen](https://getecoback.com/produkte.html#kaercher-fenstersauger-einsatz-und-hinweise) · [Bosch GlassVAC einsetzen und pflegen](https://getecoback.com/produkte.html#bosch-glassvac-einsatz-und-pflege)
+
+### Welche Saugdüse kommt für ein schmales Glasfeld infrage?
+
+Miss die lichte Breite an der engsten Stelle zwischen Rahmen und Sprossen. Ziehe die Reserve ab, die du auf beiden Seiten lassen möchtest. Bei 170 mm Glasbreite und 5 mm Reserve je Seite bleiben 160 mm. Unter den vier dokumentierten Paketen bleibt allein der 133-mm-Saugkopf des Bosch GlassVAC unter dieser Breite.
+
+Dokumentierte Düsen- und Saugkopfbreiten
+
+| Deutsches Paket | Nennbreiten |
+| --- | --- |
+| [Kärcher WV 2 Plus Multi Edition, 1.633-662.0](https://getecoback.com/produkte.html#produkt-kaercher-wv2-multi) Quelle: [Kärcher WV 2 Produktseite](https://www.karcher.com/de/de/home-and-garden/produkte/wv-2-plus-multi-edition-p16336620) | 280 mm |
+| [Kärcher WV 3 Comfort Precision+ Black, 1.633-698.0](https://getecoback.com/produkte.html#produkt-kaercher-wv3-precision) Quelle: [Kärcher WV 3 Produktseite](https://www.karcher.com/de/de/home-and-garden/produkte/wv-3-comfort-precision-black-p16336980) | 170 mm / 280 mm |
+| [Kärcher WV 8 Signature Line, 1.633-785.0](https://getecoback.com/produkte.html#produkt-kaercher-wv8-signature) Quelle: [Kärcher WV 8 Produktseite](https://www.karcher.com/de/de/home-and-garden/produkte/wv-8-signature-line-p16337850) | 170 mm / 280 mm |
+| [Bosch GlassVAC Set, 06008B7000](https://getecoback.com/produkte.html#produkt-bosch-glassvac-set) Quelle: [Bosch GlassVAC Set Produktseite](https://www.bosch-diy.com/de/de/p/glassvac-06008b7000) | 133 mm / 266 mm |
+
+Die Nennbreite dient der Vorauswahl. Prüfe am Fenster auch die tatsächliche Außenbreite von Saugkopf und Gehäuse sowie Hindernisse beim Ansetzen und Kippen. Reicht dein vorhandener Abzieher oder ein Tuch, kannst du es weiterverwenden.
+
+Gleiche beim Bosch-Angebot die Bestellnummer oder EAN ab. Das Set 06008B7000 (EAN 3165140920148) enthält laut Bosch den großen und den kleinen Saugkopf. Beim [GlassVAC Solo Plus 06008B7200](https://www.bosch-diy.com/de/de/p/glassvac-solo-plus-06008b7200) (EAN 3165140976374) listet Bosch im Lieferumfang nur den großen Saugkopf. Ist das Angebot nicht eindeutig, lass dir vor dem Kauf den kleinen Saugkopf bestätigen.
+
+Die Bosch-Maße stehen in der [deutschen Originalanleitung F 016 L81 778 auf Seite 4](https://www.bosch-diy.com/storage/de-de/glassvac-100045834-original-pdf-396340-de-de.pdf). [Fenstersauger-Modelle und Lieferumfang vergleichen](https://getecoback.com/produkte.html#modelle-fenstersauger).
+
+### 170-mm-Abziehlippen am genauen Gerät zuordnen
+
+Die gleiche Breite reicht für die Ersatzteilwahl nicht aus. Prüfe die vollständige Modellkennung am Gerät, die verwendete schmale Originaldüse und die Teilenummer im Angebot.
+
+- Für den Kärcher WV 3 Comfort Precision+ Black (1.633-698.0) führt der Hersteller die schwarze Abziehlippe 2.633-104.0 in der [deutschen Kompatibilitätsliste](https://www.karcher.com/de/de/home-and-garden/produkte/wv-abziehlippen-schwarz-170-mm-p26331040).
+
+- Für den Kärcher WV 8 Signature Line (1.633-785.0) führt er die schmale Abziehlippe 2.633-513.0 in der [entsprechenden Kompatibilitätsliste](https://www.karcher.com/de/de/home-and-garden/produkte/wv-4-4-wv-5-ultra-wv-6-wv-7-wv-8-abziehlippen-170-mm-p26335130).
+
+Für die gekreuzten Kombinationen liefern diese Listen keinen Beleg. Stelle die Bestellung zurück, wenn die Originaldüse oder Teilenummer offen ist. Deutsche Herstellerlisten geprüft am 20. November 2026.
+
+### Kärcher-Fenstersauger vor dem Kauf und beim Einsatz prüfen
+
+Vergleiche die Artikelnummer am Gerät oder an der Verpackung mit der deutschen Produktseite. Die folgenden Hinweise gehören zu diesen Geräteausführungen und den dort verlinkten Anleitungen. Stand 20.11.2026.
+
+- [WV 2 Plus Multi Edition, 1.633-662.0](https://www.karcher.com/de/de/home-and-garden/produkte/wv-2-plus-multi-edition-p16336620). Der zugeordnete [Sicherheitshinweis, S. 3](https://dp6jru56judg7.cloudfront.net/BTA/000/BTA-5548307-000-05.pdf) nennt höchstens 25 ml Flüssigkeit für die beschriebene Nutzung. Für eine verschüttete Flüssigkeit zuerst ein geeignetes Tuch oder einen Wischer verwenden.
+
+- [WV 3 Comfort Precision+ Black, 1.633-698.0](https://www.karcher.com/de/de/home-and-garden/produkte/wv-3-comfort-precision-black-p16336980) und [WV 8 Signature Line, 1.633-785.0](https://www.karcher.com/de/de/home-and-garden/produkte/wv-8-signature-line-p16337850). Der [gemeinsam verlinkte Sicherheitshinweis, S. 3](https://dp6jru56judg7.cloudfront.net/BTA/000/BTA-6001552-000-02.pdf) nennt 40 ml. Das Tankvolumen ist in den Produktdaten separat aufgeführt.
+
+- **Blinkmuster ablesen.** Blinkfolgen und Betriebszustand gehören zusammen. Beim WV 3 beschreibt die Tabelle bei schnellem Blinken während des Ladens einen Ladevorgang, der gerade nicht möglich ist. Beim WV 8 verweist zweimal kurzes Blinken aller LEDs mit anschließender langer Pause und ausgeschaltetem Motor auf eine zu hohe oder zu niedrige Akkutemperatur. Lass das Gerät auf eine für Wohnräume übliche Temperatur kommen. Bei unklarem Muster die Anleitung oder den Kundendienst nutzen. [Kärcher, LED-Codes auf S. 4–5](https://dp6jru56judg7.cloudfront.net/BTA/000/BTA-6001552-000-02.pdf)
+
+- **Akkutausch einordnen.** Die Produktseiten des WV 3 und WV 8 beschreiben einen Tausch im Servicefall. Wenn ein im Betrieb wechselbarer Reserveakku kaufentscheidend ist, die Freigabe für das genaue Gerät vor dem Kauf separat erfragen.
+
+- **Reiniger und Fläche prüfen.** Die auf den Produktseiten verlinkten Sicherheitshinweise sehen üblichen Glas- beziehungsweise Fensterreiniger vor und schließen Spiritus und Schaumreiniger aus. Beim WV 3 und WV 8 nennt Kärcher außerdem sehr warme, kalte, heiße oder gefrorene Flächen als ungeeignet. Den Mikrofaser-Wischbezug auf empfindlichem Hochglanz zuerst unauffällig ausprobieren. [Kärcher, Hinweise auf S. 2–3](https://dp6jru56judg7.cloudfront.net/BTA/000/BTA-6001552-000-02.pdf)
+
+## Bosch GlassVAC im Haushalt einsetzen und pflegen
+
+Diese Hinweise beziehen sich auf das deutsche Bosch GlassVAC Set 06008B7000 und die zugehörige Originalanleitung F 016 L81 778. Prüfe beim vorhandenen Gerät die Kennzeichnung und die passende Anleitung.
+
+- **Flüssigkeit und Oberfläche.** Der Fenstersauger ist für Flüssigkeit auf glatten, nicht porösen Flächen wie Glas, Spiegeln und Fliesen gedacht. Für trockenen Staub, poröse Flächen sowie heißes Wasser oder brennbare Flüssigkeiten ist dieser Einsatz ausgeschlossen.
+
+- **Temperatur für drei verschiedene Schritte.** Bosch nennt −20 bis +50 °C für die Lagerung. Unter −5 °C das Gerät nicht einschalten. Bei Temperaturen unter 0 °C ist die Leistung eingeschränkt. Für die Ladeumgebung empfiehlt Bosch 0 bis +45 °C.
+
+- **Schmutzwassertank spülen.** Nimm den Saugkopf ab. Fülle sauberes warmes, nicht heißes Wasser bis zur Max-Markierung durch die Öffnung des Saugkopfs ein. Zum Abgießen dient der Ablassverschluss. Tauche das Gerät nicht in Wasser ein.
+
+- **Streifen und sichtbare Schäden.** Bosch nennt bei echten Streifen sowohl eine beschädigte Lippe als auch ungeeigneten Anpressdruck als mögliche Ursachen. Kosmetische Flecken oder Linien am Kunststoff begründen allein keinen Ersatzkauf.
+
+- **Wasseraustritt lokalisieren.** Ist der separate Sprühkopf lose, prüfe ihn anhand der Montageabbildung E. Bei fortbestehendem Austritt am Sauggerät selbst schalte es aus und frage beim Service nach. Das Gehäuse bleibt geschlossen.
+
+Quellen geprüft am 20.11.2026. [Deutsche Bosch-Produktseite zum Set 06008B7000](https://www.bosch-diy.com/de/de/p/glassvac-06008b7000) · [Bosch Originalanleitung F 016 L81 778, S. 3–6 (PDF)](https://www.bosch-diy.com/storage/de-de/glassvac-100045834-original-pdf-396340-de-de.pdf).
 
 ## Was diese Auswahl leistet
 Die Gruppen zeigen unterschiedliche Aufgaben und konkrete Modelle, keine vollständige Marktübersicht. Herstellerdaten und genaue Varianten stehen bei jedem Gerät. Wir haben diese Geräte nicht selbst getestet. Eine Händlersuche bestätigt weder ein bestimmtes Angebot noch Verfügbarkeit oder einen Preis.

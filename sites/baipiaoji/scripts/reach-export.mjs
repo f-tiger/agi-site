@@ -11,6 +11,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { MANJU_ACTIONS, MANJU_MEASUREMENT_VERSION, VIDEO_TASK_ACTIONS } from '../lib/manju.mjs';
+import { REFERRED_PAGEVIEW_DEFINITION } from '../lib/hits-schema.js';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(root, 'data/reach.json');
@@ -53,6 +54,20 @@ function calendarDate(value) {
   if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return null;
   const parsed = new Date(`${value}T00:00:00Z`);
   return Number.isFinite(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value ? value : null;
+}
+
+function completeReferredPageviews(api) {
+  const { count, window } = api.referred_pageviews_complete_utc || {};
+  const start = calendarDate(window?.start), end = calendarDate(window?.end_exclusive);
+  if (!Number.isSafeInteger(count) || count < 0 || !start || !end || start !== api.since ||
+      end !== api.until || end !== sourceTimestamp(api.generated)?.slice(0, 10) ||
+      window.date_basis !== 'UTC' || window.complete_days !== api.window_days ||
+      Date.parse(end) - Date.parse(start) !== window.complete_days * 86400000) return null;
+  return {
+    count,
+    window: { start, end_exclusive: end, complete_days: window.complete_days, date_basis: 'UTC' },
+    definition: REFERRED_PAGEVIEW_DEFINITION,
+  };
 }
 
 // This is a projection of the already-read API result, not another query.
@@ -153,6 +168,7 @@ function summarise(api, exportedAt = new Date().toISOString()) {
     source: '/api/reach', window_days: days, since: api.since, until: api.until,
     definition: api.definition,
     humans_referred: api.humans_referred || 0,
+    referred_pageviews_complete_utc: completeReferredPageviews(api),
     per_day: Math.round(((api.humans_referred || 0) / days) * 10) / 10,
     by_kind: byKind,
     categories: desc(byCat).map(([cat, n]) => ({ cat, n })),
@@ -203,6 +219,14 @@ if (SELFTEST) {
   assert(s.homepage_signals.entries[0].n===2 && !s.homepage_signals.daily[0].complete,'首页明细与部分日标记进入快照');
   assert(summarise({...fixture,homepage_signals:null}).homepage_signals.clicks===null,'首页数据缺失不能当零');
   assert(s.per_day === 0.4, 'per_day 应四舍五入到一位小数');
+  assert(s.referred_pageviews_complete_utc === null, '历史源没有完整 UTC 日引荐计数');
+  const referred = {
+    count: 0,
+    window: { start: fixture.since, end_exclusive: fixture.until, complete_days: 28, date_basis: 'UTC' },
+  };
+  const referredSnapshot = summarise({...fixture, referred_pageviews_complete_utc: referred}).referred_pageviews_complete_utc;
+  assert(referredSnapshot?.count === 0 && referredSnapshot.window.start === fixture.since, '成功读取的完整日零值原样保留');
+  assert(summarise({...fixture, referred_pageviews_complete_utc: {...referred, window:{...referred.window,end_exclusive:'2026-09-10'}}}).referred_pageviews_complete_utc === null, '错误 UTC 窗口保留未知');
   assert(s.manju_signals.actions.video_complete===2 && s.manju_signals.actions.official_open===0 && !s.manju_signals.partial, '帧选完整聚合和真实零必须保存');
   assert(s.manju_signals.measurement_version===MANJU_MEASUREMENT_VERSION && s.manju_signals.actions.video_start===0, '只有来源明确支持 v2 才标新口径，保留真实零');
   const legacy=summarise({...fixture,manju_signals:{...fixture.manju_signals,measurement_version:undefined,actions:Object.fromEntries(MANJU_ACTIONS.filter(k=>!VIDEO_TASK_ACTIONS.includes(k)).map(k=>[k,0]))}}).manju_signals;

@@ -1,19 +1,19 @@
 {
- "generated": "2026-11-20",
+ "generated": "2026-11-21",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "tongyi",
-  "qingying",
-  "feishu-miaoji",
-  "google-ai-studio",
-  "immersive-translate",
-  "playground-ai",
-  "wordvice",
-  "ima"
+  "liblib",
+  "marscode",
+  "ms-copilot",
+  "yige",
+  "ante",
+  "ai360",
+  "aider",
+  "aippt"
  ],
- "cursor": "ima",
+ "cursor": "aippt",
  "summary": {
   "ready": 43,
   "empty": 35,
@@ -713,27 +713,27 @@
    "slug": "ms-copilot",
    "name": "微软 Copilot",
    "cat": "chat",
-   "reach": 5,
-   "probed": "2026-10-30",
+   "reach": 3,
+   "probed": "2026-11-21",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://copilot.microsoft.com/pricing",
      "status": 200,
-     "bytes": 38545,
+     "bytes": 352880,
      "tokens": 0
     },
     {
      "url": "https://copilot.microsoft.com/price",
      "status": 200,
-     "bytes": 36822,
+     "bytes": 353079,
      "tokens": 0
     },
     {
      "url": "https://copilot.microsoft.com/plans",
      "status": 200,
-     "bytes": 38544,
+     "bytes": 353051,
      "tokens": 0
     }
    ],
@@ -770,7 +770,7 @@
    "name": "360 AI 搜索",
    "cat": "search",
    "reach": 0,
-   "probed": "2026-11-09",
+   "probed": "2026-11-21",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -804,7 +804,7 @@
    "name": "Aider",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-11-09",
+   "probed": "2026-11-21",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -834,7 +834,7 @@
    "name": "AiPPT",
    "cat": "office",
    "reach": 0,
-   "probed": "2026-11-09",
+   "probed": "2026-11-21",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -847,7 +847,7 @@
     {
      "url": "https://www.aippt.cn/price",
      "status": 200,
-     "bytes": 58813,
+     "bytes": 58737,
      "tokens": 0
     },
     {
@@ -867,8 +867,8 @@
    "slug": "ante",
    "name": "Ante",
    "cat": "coding",
-   "reach": 0,
-   "probed": "2026-11-09",
+   "reach": 2,
+   "probed": "2026-11-21",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -1951,8 +1951,8 @@
    "slug": "marscode",
    "name": "MarsCode（字节）",
    "cat": "coding",
-   "reach": 0,
-   "probed": "2026-11-14",
+   "reach": 3,
+   "probed": "2026-11-21",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -2865,27 +2865,27 @@
    "slug": "yige",
    "name": "文心一格（百度）",
    "cat": "image",
-   "reach": 0,
-   "probed": "2026-10-28",
+   "reach": 3,
+   "probed": "2026-11-21",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://yige.baidu.com/pricing",
      "status": 200,
-     "bytes": 11140,
+     "bytes": 10997,
      "tokens": 0
     },
     {
      "url": "https://yige.baidu.com/price",
      "status": 200,
-     "bytes": 11080,
+     "bytes": 11009,
      "tokens": 0
     },
     {
      "url": "https://yige.baidu.com/plans",
      "status": 200,
-     "bytes": 11128,
+     "bytes": 11003,
      "tokens": 0
     }
    ],
@@ -2967,8 +2967,8 @@
    "slug": "liblib",
    "name": "LiblibAI 哩布哩布",
    "cat": "image",
-   "reach": 5,
-   "probed": "2026-10-30",
+   "reach": 3,
+   "probed": "2026-11-21",
    "env": "runner",
    "state": "blocked",
    "tried": [
