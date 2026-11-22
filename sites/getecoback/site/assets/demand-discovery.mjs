@@ -1,3 +1,4 @@
+import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion} from './kaercher-saugduese-intent.mjs';
 import {asksForCoffeeWaterFilterMatch} from './kaffee-wasserfilter-intent.mjs';
 import {asksForTrotecTtk75EcoConditions} from './trotec-ttk75-eco-intent.mjs';
 import {asksForCoolingNoiseComparison} from './cooling-noise-intent.mjs';
@@ -52,6 +53,10 @@ export function searchEntries(index,term,lang){
    targetPage='/guide/fenster-zugluft-mietwohnung.html'; targetId='dichtungsprofil';
  } else if(lang==='de' && asksForPortaSplitWindowLip(query)) {
    targetPage='/guide/midea-portasplit-ausverkauft-alternativen.html'; targetId='fensterfalz';
+ } else if(lang==='de' && asksForWindowVacClearance(focusWindowVacQuestion(query)?.query ?? '')) {
+   targetPage='/produkte.html'; targetId='fenstersauger-duesenbreite';
+ } else if(lang==='de' && asksForNarrowKaercherNozzle(focusWindowVacQuestion(query)?.query ?? '')) {
+   targetPage='/produkte.html'; targetId='kaercher-170mm-saugduese';
  } else if(lang==='de' && asksForCoffeeWaterFilterMatch(query)) {
    targetPage='/produkte.html'; targetId='kaffee-wasserfilter';
  } else if(lang==='de' && asksForTrotecTtk75EcoConditions(query)) {

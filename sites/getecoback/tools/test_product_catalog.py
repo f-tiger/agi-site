@@ -27,6 +27,44 @@ def fixture():
 
 
 class CatalogTest(unittest.TestCase):
+    def test_kaercher_nozzle_matches_exact_german_labels_and_clean_share(self):
+        html = C.render(C.load(), dt.date(2026, 11, 22))
+        anchor = 'kaercher-170mm-saugduese'
+        self.assertEqual(Document(html).ids.count(anchor), 1)
+        answer = html.split(f'id="{anchor}"', 1)[1].split('id="fenstersauger-abziehlippen"', 1)[0]
+        md = C.to_markdown(html, C.ROUTE, 'de')
+        title = 'Welche 170-mm-Saugdüse passt zu meinem Kärcher Fenstersauger?'
+        mirror = md.split(title, 1)[1].split('170-mm-Abziehlippen am genauen Gerät zuordnen', 1)[0]
+        expected = {
+            'WV 2 Plus Multi Edition': ['2.633-112.0'],
+            'WV 3 Comfort Precision+ Black': ['2.633-605.0'],
+            'WV 4-4 Plus': ['2.633-512.0'],
+            'WV 5 Ultra Care': ['2.633-532.0'],
+            'WV 6 Plus': ['2.633-512.0', '2.633-532.0'],
+            'WV 6 + KV 4': ['2.633-512.0'],
+            'WV 6 + KV 4 Premium': ['2.633-532.0'],
+            'WV 8 Signature Line': ['2.633-532.0'],
+        }
+        for row, parts in expected.items():
+            line = re.search(rf'<li><strong>{re.escape(row)}:</strong>(.*?)</li>', answer)
+            self.assertIsNotNone(line, row)
+            self.assertEqual(re.findall(r'2\.633-\d{3}\.0', line[1]), parts)
+            self.assertIn(row, mirror)
+        for phrase in ('weißen Düse steht WV 4-4 Plus nicht', 'Lieferumfang separat bestätigen',
+                       'die Abziehlippe für die vorhandene Originaldüse', 'Warte mit dem Kauf',
+                       'p26331120', 'p26336050', 'p26335120', 'p26335320'):
+            self.assertIn(phrase, answer)
+            self.assertIn(phrase, mirror)
+        share = next(link for link in Document(answer).links
+                     if link.get('href', '').startswith('https://www.reddit.com/submit?'))
+        self.assertEqual(share['rel'], 'noreferrer')
+        self.assertEqual(parse_qs(urlsplit(share['href']).query), {
+            'url': [f'{C.CANONICAL}#{anchor}'],
+            'title': [title],
+        })
+        self.assertNotIn('reddit.com/submit', mirror)
+        self.assertNotIn('amazon.', answer)
+
     def test_focal_coffee_filter_offer_keeps_exact_parts_and_clean_share(self):
         route = 'site/produkte.html'
         rendered = (C.ROOT / route).read_text()
@@ -93,7 +131,7 @@ class CatalogTest(unittest.TestCase):
         html=C.render(data,dt.date(2026,11,20))
         ids=Document(html).ids
         self.assertEqual(ids.count('fenstersauger-duesenbreite'),1)
-        answer=html.split('id="fenstersauger-duesenbreite"',1)[1].split('id="fenstersauger-abziehlippen"',1)[0]
+        answer=html.split('id="fenstersauger-duesenbreite"',1)[1].split('id="kaercher-170mm-saugduese"',1)[0]
         self.assertEqual(answer.count('data-window-width-table'),1)
         self.assertIn('data-window-width-check hidden',answer)
         models=[('kaercher-wv2-multi','1.633-662.0','280 mm'),
@@ -113,7 +151,7 @@ class CatalogTest(unittest.TestCase):
             self.assertIn(href,answer_links)
         markdown=C.to_markdown(html,C.ROUTE,'de')
         readable=markdown.split('Welche Saugdüse kommt für ein schmales Glasfeld infrage?',1)[1].split(
-            '170-mm-Abziehlippen am genauen Gerät zuordnen',1)[0]
+            'Welche 170-mm-Saugdüse passt zu meinem Kärcher Fenstersauger?',1)[0]
         for model, package, widths in models:
             self.assertIn(f'{package}]({C.CANONICAL}#produkt-{model}) Quelle:',readable)
             self.assertIn(f' | {widths} |',readable)

@@ -333,6 +333,22 @@ APPLIANCE_EVIDENCE = '''
   <p><strong>Wasser bleibt an der Unterkante?</strong> Setze ein vorhandenes, ausgeschaltetes Gerät trocken an. Prüfe, ob der Kopf bis unten am Glas anliegt oder ob Gehäuse und Fensterbank zuerst anstoßen. Für die verbleibenden Tropfen am Rand genügt ein sauberes Tuch. Bei einem neuen Set vor dem Kauf die tatsächlichen Kopfmaße und den Platz zum Ansetzen klären.</p>
   <p>Gleiche beim Bosch-Angebot die Bestellnummer oder EAN ab. Das Set 06008B7000 (EAN 3165140920148) enthält laut Bosch den großen und den kleinen Saugkopf. Beim <a href="https://www.bosch-diy.com/de/de/p/glassvac-solo-plus-06008b7200">GlassVAC Solo Plus 06008B7200</a> (EAN 3165140976374) listet Bosch im Lieferumfang nur den großen Saugkopf. Ist das Angebot nicht eindeutig, lass dir vor dem Kauf den kleinen Saugkopf bestätigen.</p>
   <p>Die Bosch-Maße stehen in der <a href="https://www.bosch-diy.com/storage/de-de/glassvac-100045834-original-pdf-396340-de-de.pdf">deutschen Originalanleitung F 016 L81 778 auf Seite 4</a>. <a href="#modelle-fenstersauger">Fenstersauger-Modelle und Lieferumfang vergleichen</a>.</p>
+  <h3 id="kaercher-170mm-saugduese" style="scroll-margin-top:210px">Welche 170-mm-Saugdüse passt zu meinem Kärcher Fenstersauger?</h3>
+  <p>Entscheidend sind die genaue Geräteausführung und die Teilenummer der vollständigen Saugdüse. Kärcher führt für diese Düsen dieselbe Nennbreite von 170 mm und unterschiedliche Kompatibilitätslisten für Deutschland.</p>
+  <ul>
+    <li><strong>WV 2 Plus Multi Edition:</strong> <strong>2.633-112.0</strong>.</li>
+    <li><strong>WV 3 Comfort Precision+ Black:</strong> <strong>2.633-605.0</strong>.</li>
+    <li><strong>WV 4-4 Plus:</strong> <strong>2.633-512.0</strong> (gelb). Der Titel der weißen Düse enthält „WV 4-4“. In der konkreten Geräteliste der weißen Düse steht WV 4-4 Plus nicht. Lass diese Zuordnung bei Bedarf vor dem Kauf bestätigen.</li>
+    <li><strong>WV 5 Ultra Care:</strong> <strong>2.633-532.0</strong> (weiß).</li>
+    <li><strong>WV 6 Plus:</strong> <strong>2.633-512.0</strong> (gelb) und <strong>2.633-532.0</strong> (weiß) sind gelistet.</li>
+    <li><strong>WV 6 + KV 4:</strong> <strong>2.633-512.0</strong> (gelb).</li>
+    <li><strong>WV 6 + KV 4 Premium:</strong> <strong>2.633-532.0</strong> (weiß).</li>
+    <li><strong>WV 8 Signature Line:</strong> <strong>2.633-532.0</strong> (weiß).</li>
+  </ul>
+  <p>Steht im Angebot nur „WV 6“ oder ist das Set anders benannt, lies die genaue Kennung am Gerät ab. Prüfe die Teilenummer am Angebot und lass den Lieferumfang separat bestätigen. Die Kompatibilitätsliste sagt, welche ganze Düse zugeordnet ist. Ob eine schmale Düse oder lose Ersatzlippen in einem konkreten Set beiliegen, hängt vom Lieferumfang ab.</p>
+  <p>Wenn nur die Lippe abgenutzt ist, prüfe zuerst <a href="#fenstersauger-abziehlippen">die Abziehlippe für die vorhandene Originaldüse</a>. Warte mit dem Kauf, solange Geräteausführung, Düse oder Teilenummer offen sind. Reicht die vorhandene Düse, ein Abzieher oder ein Tuch, kannst du es weiterverwenden.</p>
+  <p>Deutsche Kärcher-Listen geprüft am <time datetime="2026-11-22">22. November 2026</time>. <a href="https://www.karcher.com/de/de/home-and-garden/produkte/absaugduese-schmal-fuer-wv-2-wv-5-p26331120">Saugdüse 2.633-112.0</a> · <a href="https://www.karcher.com/de/de/home-and-garden/produkte/schmale-absaugduese-170-mm-wv-1-go-wv-1-compact-wv-2-universal-wv-3-comfort-p26336050">Saugdüse 2.633-605.0</a> · <a href="https://www.karcher.com/de/de/home-and-garden/produkte/absaugduese-schmal-170-mm-gelb-fuer-wv-6-p26335120">Saugdüse 2.633-512.0</a> · <a href="https://www.karcher.com/de/de/home-and-garden/produkte/absaugduese-schmal-170-mm-weiss-fuer-wv-4-4-wv-5-ultra-wv-6-wv-7-wv-8-p26335320">Saugdüse 2.633-532.0</a>.</p>
+  <!--EB_NOZZLE_SHARE--><p><a href="https://www.reddit.com/submit?url=https%3A%2F%2Fgetecoback.com%2Fprodukte.html%23kaercher-170mm-saugduese&amp;title=Welche%20170-mm-Saugd%C3%BCse%20passt%20zu%20meinem%20K%C3%A4rcher%20Fenstersauger%3F" rel="noreferrer" style="display:inline-flex;align-items:center;min-height:44px">Auf Reddit teilen</a></p><!--/EB_NOZZLE_SHARE-->
   <h3 id="fenstersauger-abziehlippen">170-mm-Abziehlippen am genauen Gerät zuordnen</h3>
   <p>Die gleiche Breite reicht für die Ersatzteilwahl nicht aus. Prüfe die vollständige Modellkennung am Gerät, die verwendete schmale Originaldüse und die Teilenummer im Angebot.</p>
   <ul>

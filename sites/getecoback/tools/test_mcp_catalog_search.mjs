@@ -27,9 +27,9 @@ test('the browser loads the current catalogue search module', async () => {
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 235);
+  assert.equal(withGuides.length, 236);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 34);
+  assert.equal(destinations.size, 35);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);
@@ -1043,4 +1043,36 @@ test('exact German coffee models and part codes reach the existing compatibility
   assert.ok(maintenance.every(tool=>tool.name!==name));
   assert.equal((await catalogue({q:name,view:'compact'})).tools[0]?.name,name);
   assert.equal(analytics,0);
+});
+
+test('German complete narrow nozzle offers stay separate from rubber, sizing and faults',async()=>{
+  const name='fenstersauger_170mm_saugduese_geraetezuordnung';
+  for(const q of [
+    'Welche komplette schmale 170-mm-Absaugdüse passt für meinen Kärcher WV 8 Signature Line?',
+    'Passt die schmale 17-cm-Saugdüse aus dem Angebot an meinen WV 3 Comfort Precision+ Black? Ich brauche den ganzen Kopf, nicht nur die Gummilippe.',
+    'Galaxus: Passt die 2.633-512.0 auf meinen Kärcher WV 6 + KV 4?',
+    'Kärcher 26335320', '2 633 112 0', '26335120', 'Passt 2.633-605.0 an den WV 3 Comfort Precision+ Black?',
+    'Früher hatte ich den Bosch GlassVAC, jetzt nutze ich den Kärcher WV 8. Welche schmale Absaugdüse brauche ich?',
+    'Früher hatte ich den Bosch GlassVAC, jetzt nutze ich den Kärcher WV 6 Plus. Welche schmale Absaugdüse passt?',
+  ]){
+    const tools=(await catalogue({q,view:'compact',limit:'3'})).tools;
+    assert.equal(tools[0]?.name,name,q);
+    assert.equal(findCatalogueTools(compact,{query:q})[0]?.name,name,q);
+    assert.equal(toolGuidePath(tools[0]),'/produkte.html#kaercher-170mm-saugduese',q);
+  }
+  for(const q of [
+    '170 mm', 'Welcher Kärcher WV 3 passt zum 170-mm-Sprossenfenster?',
+    'Passt die 170-mm-Abziehlippe 2.633-104.0 an den WV 8?',
+    'Im Händlerangebot für meinen WV 8 steht 2.633-513.0. Ist das die ganze schmale Absaugdüse oder nur die Abziehlippe?',
+    'Mein Kärcher WV 8 mit 170-mm-Düse hinterlässt Streifen. Muss ich die Gummilippe wechseln?',
+    'Kärcher WV 8 170 mm Düse: LED blinkt nach dem Laden.',
+    'Wie breit darf die Düse beim WV 3 für mein 170 mm breites Sprossenfenster sein?',
+    'Früher hatte ich den WV 8 mit schmaler Absaugdüse, jetzt nutze ich Bosch GlassVAC. Welche schmale Düse passt?',
+    'Passt die schmale Düse an meinen Kärcher Staubsauger?',
+  ]) assert.ok((await catalogue({q,view:'compact',limit:'3'})).tools.every(tool=>tool.name!==name),q);
+  for(const q of [
+    'Meine Scheibe ist 170 mm breit, beim WV 8 sind links und rechts je 5 mm Luft nötig. Passt die schmale Saugdüse?',
+    'Beim Kärcher WV 3: Passt der Saugkopf 2.633-605.0 zwischen meine Sprossen mit 170 mm Glasbreite?',
+  ]) assert.equal((await catalogue({q,view:'compact',limit:'3'})).tools[0]?.name,'fenstersauger_sprossenfenster_duesenbreite',q);
+  assert.equal((await catalogue({q:name,view:'compact'})).tools[0]?.name,name);
 });
