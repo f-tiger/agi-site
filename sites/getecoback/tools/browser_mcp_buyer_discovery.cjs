@@ -154,6 +154,16 @@ async function run() {
           const searchTop = await search.evaluate(element => element.getBoundingClientRect().top);
           assert(searchTop < 844, `Tool search starts below the first mobile viewport at ${width}px (${searchTop})`);
 
+          await search.fill('Wäschetrockner oder Luftentfeuchter – was kostet das Trocknen pro Ladung?');
+          const comparison = catalog.locator('#mcp-results .tool').first();
+          await comparison.getByText('waesche_trocknungskosten', {exact:true}).waitFor();
+          assert.equal(await comparison.getByRole('link', {name:'Ratgeber und Annahmen'}).getAttribute('href'),
+            '/waeschetrockner-oder-luftentfeuchter.html');
+          const example = new URL(await comparison.getByRole('link', {name:/Beispiel und Schema/}).getAttribute('href'), base);
+          assert.equal(example.pathname, '/api/mcp-tools');
+          assert.equal(example.searchParams.get('tool'), 'waesche_trocknungskosten');
+          assert.equal(example.searchParams.get('view'), 'examples');
+
           for (const item of cases) {
             await search.fill(item.question);
             const cards = catalog.locator('#mcp-results .tool');

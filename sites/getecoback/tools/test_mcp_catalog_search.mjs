@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
 import worker from '../src/worker.js';
 import {findCatalogueTools, indexCatalogue, toolGuidePath} from '../site/assets/mcp-catalog-search.mjs';
 
@@ -15,6 +16,14 @@ async function catalogue(params = {}) {
 }
 const compact = indexCatalogue((await catalogue({view:'compact'})).tools);
 const names = results => results.map(tool => tool.name);
+
+test('the browser loads the current catalogue search module', async () => {
+  const module = await readFile(new URL('../site/assets/mcp-catalog-search.mjs', import.meta.url));
+  const version = createHash('sha256').update(module).digest('hex').slice(0, 12);
+  const html = await readFile(new URL('../site/mcp.html', import.meta.url), 'utf8');
+  const imports = [...html.matchAll(/from '([^']*mcp-catalog-search\.mjs[^']*)'/g)];
+  assert.deepEqual(imports.map(match => match[1]), [`/assets/mcp-catalog-search.mjs?v=${version}`]);
+});
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
@@ -395,5 +404,57 @@ test('German partial dryer replacement questions lead to the measured seasonal p
     assert.equal(first?.name, tool, q);
     assert.equal(toolGuidePath(first), '/waeschetrockner-oder-luftentfeuchter.html#laundry-check');
     assert.equal(findCatalogueTools(compact, {query:q})[0]?.name, tool, q);
+  }
+});
+
+test('German per-load cost comparisons rank the measured tool first in the browser and API', async () => {
+  const name = 'waesche_trocknungskosten';
+  const questions = [
+    'Wäschetrockner oder Luftentfeuchter – was kostet das Trocknen pro Ladung?',
+    'Was kostet mich das Trocknen pro Waschladung mit dem Trockner oder Entfeuchter?',
+    'Trockner oder Luftentfeuchter: Wie viel Stromgeld kostet mich eine gleich trockene Ladung Wäsche?',
+    'Waeschetrockner gegen Luftentfeuchter: Welcher Trocknungsweg kostet bei gleicher Ladung weniger Euro?',
+    'Ich habe die kWh für den Trockner und den Entfeuchter gemessen. Was kostet eine Ladung Wäsche jeweils?',
+  ];
+  for (const q of questions) {
+    const browser = names(findCatalogueTools(compact, {query:q}));
+    const api = await catalogue({q, view:'compact', limit:'5'});
+    assert.equal(browser[0], name, q);
+    assert.deepEqual(names(api.tools), browser.slice(0,5), q);
+    assert.equal(browser.filter(value => value === name).length, 1, q);
+  }
+  const query = questions[0];
+  assert.deepEqual(names((await catalogue({q:query, tool:name})).tools), [name]);
+  assert.equal(findCatalogueTools(compact, {query, name, category:'Strom & Haushalt'})[0]?.name, name);
+  assert.deepEqual(findCatalogueTools(compact, {query, name, category:'Feuchte'}), []);
+  assert.deepEqual((await catalogue({q:query, tool:name, category:'Feuchte'})).tools, []);
+  assert.deepEqual(findCatalogueTools(compact, {query, name:'btu_empfehlung'}), []);
+  assert.deepEqual((await catalogue({q:query, tool:'btu_empfehlung'})).tools, []);
+  assert.equal(analytics, 0);
+});
+
+test('single appliances, loads and seasonal purchase questions keep their existing rankings', async () => {
+  const costTool = 'waesche_trocknungskosten';
+  // The per-load comparison can occur organically lower in broad matches.
+  // Preserve both the first result and its previous one-based rank (zero if absent).
+  const cases = [
+    ['Luftentfeuchter', 'entfeuchter_ablaufcheck', 42],
+    ['Wäschetrockner', 'pflegeetikett_naturweg_bei_trocknerverbot', 2],
+    ['Ladung', 'spuelmaschine_ladung_entnahme_stationen', 0],
+    ['Was kostet mein Trockner pro Ladung?', undefined, 0],
+    ['Was kostet der Luftentfeuchter im Keller pro Tag?', 'kellerentfeuchter_pruefpunkt_abgleichen', 0],
+    ['Wäschetrockner oder Luftentfeuchter – was kostet eine Ladung einschließlich Kaufpreis?', 'wasch_trockner_zweiladung_uebergabestau', 0],
+    ['Was kostet eine Ladung Wäsche, wenn Trockner und Luftentfeuchter gleichzeitig laufen?', 'waesche_wochenbedarf_leine_und_trockner', 7],
+    ['Was kostet es pro Ladung, wenn ich nur den Trockner nutze und den Luftentfeuchter ausgeschaltet lasse?', 'wasch_trockner_zweiladung_uebergabestau', 0],
+    ['Was kostet es pro Ladung, wenn ich nur den Trockner nutze und den Luftentfeuchter abgeschaltet lasse?', 'wasch_trockner_zweiladung_uebergabestau', 0],
+    ['Lohnt sich ein Luftentfeuchter für Wäsche im Winter, wenn manche Ladungen weiter in den Trockner gehen?', 'waesche_trocknungswechsel_kaufschwelle', 5],
+    ['Zwei Waschladungen sind nacheinander fertig. Wie lange wartet die zweite auf den Trockner?', 'wasch_trockner_zweiladung_uebergabestau', 0],
+  ];
+  for (const [query, first, rank] of cases) {
+    const browser = names(findCatalogueTools(compact, {query}));
+    const api = await catalogue({q:query, view:'compact'});
+    assert.equal(browser[0], first, query);
+    assert.equal(browser.indexOf(costTool) + 1, rank, query);
+    assert.deepEqual(names(api.tools), browser, query);
   }
 });
