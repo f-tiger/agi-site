@@ -86,9 +86,11 @@ jobs:
         if: steps.registry-state.outputs.already_published != 'true'
         with:
           node-version: '22'
-      - name: Verify real tool responses before advertising this release
+      # The local Worker CI replays every reviewed example. Check the live
+      # catalogue and representative answers within the site's request quota.
+      - name: Verify the live MCP catalogue and representative answers before publishing
         if: steps.registry-state.outputs.already_published != 'true'
-        run: node tools/mcp_smoke.mjs
+        run: node tools/mcp_smoke.mjs --bounded
 
       - name: Install mcp-publisher
         if: steps.registry-state.outputs.already_published != 'true'
