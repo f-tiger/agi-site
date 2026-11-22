@@ -55,6 +55,22 @@
       "heading": "Befeuchten? Erst messen.",
       "description": "Bauart, Wasser und laufende Pflege vergleichen.",
       "alt": "Schematischer Luftfeuchtemesser, Wasserbehälter und Filter als Schritte vor dem Luftbefeuchterkauf."
+    },
+    "n90-model": {
+      "image": "/assets/social/n90-modell-v1.png",
+      "heading": "PAC N90: Modell prüfen",
+      "description": "Typenschild und EAN vergleichen",
+      "alt": "Modell- und EAN-Prüfung für den PAC N90 ECO Silent mit der EAN 8004399512351. Bei Abweichung oder fehlender EAN den Händler fragen.",
+      "social_title": "De’Longhi PAC N90 ECO Silent: Welche EAN passt?",
+      "social_description": "Gleiche Modell und EAN 8004399512351 mit dem Angebot ab. Fehlt die EAN oder weicht das Modell ab, warte mit dem Kauf und frage beim Händler nach."
+    },
+    "portasplit-window": {
+      "image": "/assets/social/portasplit-fensterfalz-v1.png",
+      "heading": "PortaSplit: Fensterfalz messen",
+      "description": "Original: EAN 4048164116478",
+      "alt": "Skizze der Klemmstelle für die originale PortaSplit: Falzbreite höchstens 45 mm und Falzhöhe mindestens 20 mm. Bei unklarer Passung warten.",
+      "social_title": "Midea PortaSplit: Passt die Halterung an einen 60-mm-Falz?",
+      "social_description": "Standardhalterung der originalen PortaSplit am nach innen öffnenden Fenster: Falz max. 45 mm breit, min. 20 mm hoch. 60 mm sind zu breit."
     }
   },
   "pages": {
@@ -68,6 +84,8 @@
     "/guide/saugwischer-kaufberatung.html": "floorcare",
     "/guide/saugroboter-kaufberatung.html": "robot",
     "/guide/luftbefeuchter-ratgeber.html": "humidifier",
+    "/guide/delonghi-pac-n90-test.html": "n90-model",
+    "/guide/midea-portasplit-ausverkauft-alternativen.html": "portasplit-window",
     "/guide/meacodry-arete-one-test.html": "comparison",
     "/produkte.html": "climate"
   }

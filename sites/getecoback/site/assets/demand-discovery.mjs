@@ -3,20 +3,32 @@ import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion} from './kaercher-saugduese-intent.mjs';
 import {asksForCoffeeWaterFilterMatch} from './kaffee-wasserfilter-intent.mjs';
 import {asksForTrotecTtk75EcoConditions} from './trotec-ttk75-eco-intent.mjs';
-import {asksForCoolingNoiseComparison} from './cooling-noise-intent.mjs';
+import {asksForCoolingNoiseComparison} from './cooling-noise-intent.mjs?v=f0bcc0785943';
 import {asksForTesamollWindowProfile} from './tesamoll-profile-intent.mjs';
 import {exactGermanFilterModel} from './exact-filter-intent.mjs';
 import {philipsHumidifierFilterSection} from './philips-humidifier-filter-intent.mjs';
 import {asksForElectricBlanketCost} from './electric-blanket-cost-intent.mjs';
 import {asksForHygrometerComparison} from './hygrometer-comparison-intent.mjs';
 import {asksForN90ModelIdentity} from './n90-model-intent.mjs';
-import {asksForPortaSplitWindowLip} from './portasplit-fensterfalz-intent.mjs';
+import {asksForPortaSplitWindowLip, namesOriginalPortaSplitExactly} from './portasplit-fensterfalz-intent.mjs?v=66ae5fbd590d';
 import {asksForCellarVentilationCheck} from './cellar-ventilation-intent.mjs';
 import {asksForDehumidifierDrainRoute} from './dehumidifier-drain-intent.mjs';
 
 // Queries stay in memory. Only fixed navigation actions reach the existing bridge.
 export const normalize=value=>String(value).toLowerCase().replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss').normalize('NFD').replace(/\p{Diacritic}/gu,'');
 const stop=new Set('wie kann ich meine mein der die das und im in am zu fuer what how do i my the a an and for to can de la le les un une el los las il lo una di het een ik'.split(' '));
+const n90ExactName=/^(?:de['’ -]?longhi[ -]+)?(?:pinguino[ -]+)?pac[ -]*n[ -]*90[ -]+eco[ -]+silent(?:[ -]+(?:ean[ -]+)?8004399512351)?$/;
+const n90ExactEan=/^(?:ean[ -]+)?8004399512351$/;
+
+export function exactGermanCoolingGuide(normalizedQuery) {
+ const query=normalizedQuery.trim().replace(/\s+/g,' ');
+ if(n90ExactName.test(query)||n90ExactEan.test(query))
+   return {path:'/guide/delonghi-pac-n90-test.html',id:'testlage'};
+ if(namesOriginalPortaSplitExactly(query))
+   return {path:'/guide/midea-portasplit-ausverkauft-alternativen.html',id:'fensterfalz'};
+ return null;
+}
+
 const laundryPage='/waeschetrockner-oder-luftentfeuchter.html';
 const singleLaundryId='luftentfeuchter-waesche-kosten';
 const dryer='(?:waesche|waermepumpen|kondens|abluft)?trockner';
@@ -35,6 +47,7 @@ function asksForOneDehumidifierRun(question) {
 export function searchEntries(index,term,lang){
  const query=normalize(term),words=query.match(/[\p{L}\p{N}]+/gu)?.filter(w=>!stop.has(w))||[];
  if(!words.length)return [];
+ const exactCooling=lang==='de' && exactGermanCoolingGuide(query);
  const pages=index.filter(e=>e.l===lang&&typeof e.t==='string'&&/^\/(?!\/)[^?#\\]*$/.test(e.u)&&!/^\/(auth|api|account|members|widgets)(\/|\.|$)/.test(e.u));
  let targetPage, targetId;
  const filterModel=lang==='de' && exactGermanFilterModel(query);
@@ -49,11 +62,11 @@ export function searchEntries(index,term,lang){
    targetPage='/guide/luftfeuchtigkeit-richtig-messen.html'; targetId='hygrometer-vergleichen';
  } else if(lang==='de' && asksForCoolingNoiseComparison(query)) {
    targetPage='/guide/delonghi-pac-n90-test.html'; targetId='lautstaerke';
- } else if(lang==='de' && asksForN90ModelIdentity(query)) {
+ } else if(lang==='de' && (exactCooling?.id==='testlage'||asksForN90ModelIdentity(query))) {
    targetPage='/guide/delonghi-pac-n90-test.html'; targetId='testlage';
  } else if(lang==='de' && asksForTesamollWindowProfile(query)) {
    targetPage='/guide/fenster-zugluft-mietwohnung.html'; targetId='dichtungsprofil';
- } else if(lang==='de' && asksForPortaSplitWindowLip(query)) {
+ } else if(lang==='de' && (exactCooling?.id==='fensterfalz'||asksForPortaSplitWindowLip(query))) {
    targetPage='/guide/midea-portasplit-ausverkauft-alternativen.html'; targetId='fensterfalz';
  } else if(lang==='de' && asksForWindowVacClearance(focusWindowVacQuestion(query)?.query ?? '')) {
    targetPage='/produkte.html'; targetId='fenstersauger-duesenbreite';

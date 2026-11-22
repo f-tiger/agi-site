@@ -58,8 +58,8 @@ def collect():
   'id':'dichtungsprofil','title':'Fensterdichtung bei 4 mm: tesamoll E, P oder D?',
   'description':'Bei 4 mm liegen P und D im Herstellerbereich. Miss an mehreren Stellen und kläre eine vorhandene Nut vor dem Kauf.'}
  sections[('de','/guide/midea-portasplit-ausverkauft-alternativen.html')]={
-  'id':'fensterfalz','title':'Midea PortaSplit: Fensterfalz für die Standardhalterung prüfen',
-  'description':'Miss Breite und Höhe am Falz nach der Zeichnung. Beim Original gelten höchstens 45 mm Breite und mindestens 20 mm Höhe.'}
+  'id':'fensterfalz','title':'Midea PortaSplit Original: EAN und Fensterfalz prüfen',
+  'description':'EAN 4048164116478 abgleichen. Breite und Höhe am Falz für die Standardhalterung messen. Bei unklarer Passung warten.'}
  out=[]
  for path,route,lang,h in public_pages():
   if not h.title.strip():raise ValueError(f'Missing title: {route}')

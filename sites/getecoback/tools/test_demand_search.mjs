@@ -200,6 +200,10 @@ test('German same-place hygrometer comparisons open the numerical example',()=>{
 test('German exact N90 offer identity searches reach the existing model evidence',()=>{
  const page='/guide/delonghi-pac-n90-test.html';
  for(const q of [
+   'DeLonghi PAC N90 ECO Silent',
+   'De’Longhi Pinguino PAC N90 ECO Silent',
+   "De'Longhi PAC-N90 ECO Silent",
+   'PACN90 ECO Silent',
    'Ich möchte den PAC N90 ECO Silent kaufen. Welche EAN muss auf dem Typenschild stehen?',
    'Die EAN 8004399512351 steht im Angebot für den DeLonghi Pinguino. Ist das der PAC N90 ECO Silent?',
    'Verkäufer nennt DeLonghi PAC N90, das Etikett sagt EX105. Kann ich das für dieselbe Variante halten?',
@@ -217,6 +221,10 @@ test('German exact N90 offer identity searches reach the existing model evidence
    assert.ok(!searchEntries(index,q,'en').some(hit=>hit.entry.u.startsWith(page+'#')),q);
  }
  for(const q of [
+   'PAC N90',
+   'PAC N90 ECO Silent 8004399512352',
+   'DeLonghi PAC N90 ECO Silent Abluftschlauch zu kurz',
+   'DeLonghi PAC N90 ECO Silent 64 dB',
    'Was kostet der N90 ECO Silent bei 35 Cent pro kWh laut Energielabel?',
    'Was kostet der PAC N90 ECO Silent?',
    'Welche EAN passt zum DeLonghi PAC EX105?',
@@ -229,6 +237,10 @@ test('German exact N90 offer identity searches reach the existing model evidence
 test('German original PortaSplit lip questions open the existing guide measurement answer',()=>{
  const page='/guide/midea-portasplit-ausverkauft-alternativen.html';
  for(const q of [
+   '4048164116478',
+   'EAN 4048164116478',
+   'Midea PortaSplit Original',
+   'Midea Porta-Split EAN 4048164116478',
    'Mein Fensterfalz ist 6 cm breit. Muss ich bei der Midea PortaSplit die Gummidichtung beim Messen mitzählen?',
    'Muss ich beim Ausmessen des Fensterrahmens für die PortaSplit die Dichtung zusammendrücken oder mitmessen?',
    'Die PortaSplit passt nicht ans Fenster, wo muss ich die Rahmendicke messen?',
@@ -237,10 +249,19 @@ test('German original PortaSplit lip questions open the existing guide measureme
  ]) {
    const hits=searchEntries(index,q,'de');
    assert.equal(hits[0]?.entry.u,page+'#fensterfalz',q);
+   assert.match(hits[0].entry.d,/4048164116478/,q);
    assert.equal(hits.filter(hit=>hit.entry.u.split('#')[0]===page).length,1,q);
    assert.ok(!searchEntries(index,q,'en').some(hit=>hit.entry.u.startsWith(page+'#')),q);
  }
  for(const q of [
+   'Midea PortaSplit',
+   '4048164122424',
+   '4048164122301',
+   'Midea PortaSplit E 4048164116478',
+   'Midea PortaSplit Cool 4048164116478',
+   'PortaSplit 4048164122424 Fensterfalz',
+   'PortaSplit 4048164122301 Fensterfalz',
+   'Midea PortaSplit Fensterfalz 4048164116478 oder 4048164122424',
    'Midea PortaSplit Dachfenster Universalhalterung',
    'Midea PortaSplit Pro Fensterfalz 60 mm',
    'PortaSplit Cool Fensterfalz messen',

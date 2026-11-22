@@ -66,6 +66,23 @@ async function checkGermanLaundryDiscovery(browser,base){
   equal((await search(ventilation))[0],{href:'/guide/keller-lueften-sommer.html#taupunkt',language:'de'},'Paired cellar readings lead to the measured ventilation check');
   const hose='Kann ich den Schlauch vom MeacoDry Arete One 20L nach oben in das Waschbecken legen?';
   equal((await search(hose))[0],{href:'/guide/luftentfeuchter-keller.html#ablauf-vor-kauf',language:'de'},'A higher sink leads to the German drainage section');
+  const n90='/guide/delonghi-pac-n90-test.html#testlage';
+  const portaSplit='/guide/midea-portasplit-ausverkauft-alternativen.html#fensterfalz';
+  for(const [query,href] of [
+   ['DeLonghi PAC N90 ECO Silent',n90],['PACN90 ECO Silent',n90],
+   ['4048164116478',portaSplit],['Midea PortaSplit Original',portaSplit],
+  ]){
+   const matches=await search(query);
+   equal(matches[0],{href,language:'de'},'The exact cooling model reaches its German answer: '+query);
+  }
+  for(const [query,excluded] of [
+   ['PortaSplit 4048164122424 Fensterfalz',portaSplit],['PortaSplit 4048164122301 Fensterfalz',portaSplit],
+   ['Midea PortaSplit E 4048164116478 Fensterfalz',portaSplit],['Midea PortaSplit Cool 4048164116478 Fensterfalz',portaSplit],
+   ['Wie viel Strom verbraucht der DeLonghi PAC N90 ECO Silent?',n90],
+  ]){
+   const matches=await search(query);
+   check(matches.every(match=>match.href!==excluded),'Different variants and questions avoid the original buying answer: '+query);
+  }
   await search('eco-local-privacy-marker-6381');
   equal(await results.count(),0,'An arbitrary private phrase yields no result');
   await search(positive[1]);
