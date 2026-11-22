@@ -19,6 +19,7 @@ assert [(entry['l'],entry['u'],entry['section']['id']) for entry in focused]==[
     ('de','/guide/luftfeuchtigkeit-richtig-messen.html','hygrometer-vergleichen'),
     ('de','/guide/midea-portasplit-ausverkauft-alternativen.html','fensterfalz'),
     ('de','/guide/trotec-luftentfeuchter-test.html','ttk75-pruefpunkt'),
+    ('de','/produkte.html','kaffee-wasserfilter'),
     ('de','/waeschetrockner-oder-luftentfeuchter.html','luftentfeuchter-waesche-kosten')]
 assert (SITE/'search-index.json').read_bytes()==(SITE/'assets/search-index.json').read_bytes()
 for p,r,l,h in rows:

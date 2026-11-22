@@ -212,6 +212,9 @@
   <p>Gleiche den vollständigen Namen PAC N90 ECO Silent und die EAN 8004399512351 mit Händlerangaben und Typenschild ab. Bei fehlender oder widersprüchlicher Kennung führt der <a href="/guide/delonghi-pac-n90-test.html#testlage">Modellabgleich</a> zuerst zu den Herstellerunterlagen.</p>
   <pre><code>{"jsonrpc":"2.0","id":15,"method":"tools/call","params":{"name":"pac_n90_ean_abgleichen","arguments":{"ean":8004399512351,"modell":"PAC N90 ECO Silent"}}}</code></pre>
 
+  <h3 id="kaffee-wasserfilter-beispiel">Passt AquaClean CA6903/10 zur EP2220/10?</h3>
+  <p>Der Check gleicht den vollständigen Modellnamen und die genaue Filterpackung ab. Für Bosch TIE20301 und De’Longhi ECAM22.110.B gelten eigene Kennungen. <a href="/produkte.html#kaffee-wasserfilter">Wasserfilter und Originalquellen vergleichen</a>.</p>
+  <pre><code>{"jsonrpc":"2.0","id":20,"method":"tools/call","params":{"name":"kaffeevollautomat_intenza_aquaclean_filterfamilie_modellpruefung","arguments":{"modell":"EP2220/10","filter":"CA6903/10"}}}</code></pre>
   <h3 id="trotec-ttk75-eco-kalter-keller">Wie viel schafft der Trotec TTK 75 ECO bei 10 °C?</h3>
   <p>20 l/24 h stehen in der Trotec-Anleitung bei 30 °C und 80 %. Bei 10 °C und 60 % liefert der Betriebsbereich allein keinen Literwert. <a href="/guide/trotec-luftentfeuchter-test.html#ttk75-pruefpunkt">Prüfpunkte, Anbieterangabe und Kaufgrenze ansehen</a>.</p>
   <pre><code>{"jsonrpc":"2.0","id":19,"method":"tools/call","params":{"name":"trotec_ttk75_eco_pruefpunkt","arguments":{"modell":"ttk_75_eco","temperatur_c":10,"luftfeuchte_prozent":60}}}</code></pre>
@@ -318,7 +321,7 @@
 <section aria-labelledby="mcp-geraetebelege"><h2 id="mcp-geraetebelege">Haushaltsgeräte im Gebrauch und beim Kauf</h2><p><a href="/api/mcp-tools?category=Kaffeemaschinenpflege&amp;view=compact">Kaffeemaschinenpflege</a> · <a href="/api/mcp-tools?category=Waschmitteldosierung&amp;view=compact">Waschmitteldosierung</a> · <a href="/api/mcp-tools?category=Sp%C3%BClmittel%20und%20Wasserh%C3%A4rte&amp;view=compact">Spülmittel und Wasserhärte</a> · <a href="/api/mcp-tools?category=Bodenstaubsaugerpflege&amp;view=compact">Bodenstaubsaugerpflege</a> · <a href="/api/mcp-tools?category=Dampfb%C3%BCgelger%C3%A4te&amp;view=compact">Dampfbügelgeräte</a> · <a href="/api/mcp-tools?category=Stabmixer%20und%20Zubeh%C3%B6r&amp;view=compact">Stabmixer und Zubehör</a> · <a href="/api/mcp-tools?category=Mikrowellenbelege&amp;view=compact">Mikrowellenbelege</a> · <a href="/api/mcp-tools?category=K%C3%BCchenwaagen&amp;view=compact">Küchenwaagen</a> · <a href="/api/mcp-tools?category=Wasserkocherbelege&amp;view=compact">Wasserkocherbelege</a> · <a href="/api/mcp-tools?category=Toasterbelege&amp;view=compact">Toasterbelege</a> · <a href="/api/mcp-tools?category=Fenstersauger&amp;view=compact">Fenstersauger</a></p></section>
 </article>
 <script type="module">
-import {indexCatalogue, findCatalogueTools, toolGuidePath} from '/assets/mcp-catalog-search.mjs?v=262094667560';
+import {indexCatalogue, findCatalogueTools, toolGuidePath} from '/assets/mcp-catalog-search.mjs?v=f9cc4c709338';
 
 (() => {
   const catalog = document.getElementById('mcp-catalog');

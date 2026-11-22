@@ -29,7 +29,7 @@ test('appliance search results link to exact owned evidence and keep canonical m
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
   assert.equal(withGuides.length, 235);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 33);
+  assert.equal(destinations.size, 34);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);
@@ -1008,6 +1008,39 @@ test('exact ECO test-point queries cannot pick other fixed-model cellar or elect
   ]) assert.ok(!(await catalogue({q,view:'compact',limit:'5'})).tools.some(tool=>tool.name===name),q);
   const preserved=(await catalogue({q:'Was leistet der MeacoDry Arete One 20L bei 10 °C und 60 % im Keller?',view:'compact',limit:'3'})).tools;
   assert.equal(preserved[0]?.name,'kellerentfeuchter_pruefpunkt_abgleichen');
+  assert.equal((await catalogue({q:name,view:'compact'})).tools[0]?.name,name);
+  assert.equal(analytics,0);
+});
+
+test('exact German coffee models and part codes reach the existing compatibility check',async()=>{
+  const name='kaffeevollautomat_intenza_aquaclean_filterfamilie_modellpruefung';
+  const oldIdle='delonghi_magnifica_filter_stillstand_drei_wochen';
+  const oldLight='philips_aquaclean_orange_blinkt_blau_filteranzeige';
+  for(const q of [
+    'Mein Philips EP2220/10 braucht einen neuen Wasserfilter. Welche Patrone soll ich bestellen?',
+    'Für die Bosch VeroCafe TIE20301: Passt der Wasserfilter TCZ7033 oder muss ich TCZ7003 kaufen?',
+    'Ich habe eine DeLonghi Magnifica S ECAM22.110.B. Welchen Ersatzfilter für den Wassertank brauche ich?',
+    'Passt der DLSC002 in meine DeLonghi ECAM22.110.B?',
+    'EP2231/40 AquaClean: passt die Patrone CA6903/10?',
+    'Bosch TIE20301. Welcher Wasserfilter?',
+    'Passt BRITA Intenza TCZ7003 statt AquaClean im Philips EP2231/40?',
+  ]){
+    const hits=(await catalogue({q,view:'compact',limit:'5'})).tools;
+    assert.equal(hits[0]?.name,name,q);
+    assert.equal(findCatalogueTools(compact,{query:q})[0]?.name,name,q);
+    assert.equal(toolGuidePath(hits[0]),'/produkte.html#kaffee-wasserfilter',q);
+    assert.ok(hits.every(tool=>tool.name!==oldIdle),q);
+  }
+  for(const [q,tool] of [
+    ['Philips EP2220/10 AquaClean blinkt orange: Filter kaufen?',oldLight],
+    ['DeLonghi ECAM22.110.B seit drei Wochen nicht benutzt: Wasserfilter wechseln?',oldIdle],
+    ['Welchen Ersatzfilter brauche ich für mein Levoit Core 300S ohne Pro?','luftreiniger_ersatzfilter_zuordnung'],
+  ]){
+    const [first]=(await catalogue({q,view:'compact',limit:'3'})).tools;
+    assert.equal(first?.name,tool,q);
+  }
+  const maintenance=(await catalogue({q:'Wie wechsle ich den AquaClean Filter beim Philips EP2231/40 und setze die Anzeige zurück?',view:'compact',limit:'5'})).tools;
+  assert.ok(maintenance.every(tool=>tool.name!==name));
   assert.equal((await catalogue({q:name,view:'compact'})).tools[0]?.name,name);
   assert.equal(analytics,0);
 });
