@@ -84,6 +84,7 @@ test('an explicit window-vac correction ranks only the selected device and prese
     ['Den Bosch GlassVAC wollte ich nach Frost laden. Jetzt geht es um meinen Kärcher WV 8: Alle LEDs blinken zweimal kurz und machen dann eine lange Pause, der Motor ist schon aus. Was bedeutet das?', led],
     ['Mein Kärcher WV 8 hat defekte LEDs. Korrektur: Ich meine meinen Bosch GlassVAC 06008B7000. Darf ich ihn nach einer Frostnacht in der Garage gleich ans Ladegerät?', bosch],
     ['Ich vergleiche Bosch GlassVAC und Kärcher WV 8. Darf ich beide Fenstersauger bei minus 3 Grad aufladen?', undefined],
+    ['Ich vergleiche beide Geräte: Darf ich beim Bosch GlassVAC und Kärcher WV 8 jeweils im unbeheizten Schuppen laden?', undefined],
     ['Beim Bosch GlassVAC habe ich im Schuppen minus 3 Grad gemessen. Den Kärcher WV 8 lade ich drinnen, dort habe ich nicht gemessen. Darf ich ihn jetzt laden?', undefined],
     ['Beim Laden blinkt mein Kärcher WV 8 zweimal kurz. Was bedeutet das?', led],
   ];

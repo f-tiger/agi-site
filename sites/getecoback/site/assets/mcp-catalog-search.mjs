@@ -236,11 +236,11 @@ function asksForHumidifierEfficiency(query) {
 const glassvacTemperatureTool = 'glassvac_kalt_lagern_einschalten_laden_getrennt';
 const glassvacModel = /\b(?:glass[ -]?vac|06008b7000)\b/;
 const kaercherWindowVac = /\b(?:wv[ -]*[238]|kaercher[ -]+fenstersauger)\b/;
+const windowVacCharging = /\b(?:laden|aufladen|aufzuladen|aufladung|einstecken|ladenetzteil|ans\s+ladegeraet|(?:in|an)\s+die\s+steckdose)\b/;
 
 function asksForGlassvacTemperature(query) {
   const cold = /\b(?:frost[a-z]*|bodenfrost|gefroren[a-z]*|gefrier[a-z]*|minus[a-z]*|kaelte|unter\s+null)\b|[−-]\s*\d+(?:[,.]\d+)?\s*(?:°\s*c|grad)\b/.test(query);
-  const charging = /\b(?:laden|aufladen|aufzuladen|aufladung|einstecken|ladenetzteil|ans\s+ladegeraet|(?:in|an)\s+die\s+steckdose)\b/.test(query);
-  return glassvacModel.test(query) && cold && charging;
+  return glassvacModel.test(query) && cold && windowVacCharging.test(query);
 }
 
 function asksForGlassvacConnectorPhoto(query) {
@@ -268,8 +268,8 @@ function focusWindowVacQuestion(query) {
     if (kaercher && glassvacModel.test(previous)) return {query:current, omitPrefix:'glassvac_'};
     if (bosch && kaercherWindowVac.test(previous)) return {query:current, omitPrefix:'fenstersauger_wv'};
   }
-  // A Bosch charging limit cannot answer a question about both devices.
-  return asksForGlassvacTemperature(query) ? null : {query};
+  // A charging question with two possible subjects has no single model limit.
+  return windowVacCharging.test(query) ? null : {query};
 }
 
 export function findCatalogueTools(index, {query='', category='', name=null}={}) {
