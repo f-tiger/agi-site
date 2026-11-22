@@ -27,9 +27,9 @@ test('the browser loads the current catalogue search module', async () => {
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 234);
+  assert.equal(withGuides.length, 235);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 32);
+  assert.equal(destinations.size, 33);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);
@@ -976,6 +976,38 @@ test('German noise comparisons prefer the noise check and retain cost, noise fau
     'Wie laut ist die Midea PortaSplit nachts?',
     'Ist die PortaSplit Lite mit 39 dB oder der N90 mit 64 dB leiser?',
   ]) assert.notEqual((await catalogue({q,view:'compact',limit:'3'})).tools[0]?.name,name,q);
+  assert.equal((await catalogue({q:name,view:'compact'})).tools[0]?.name,name);
+  assert.equal(analytics,0);
+});
+
+test('exact ECO test-point queries cannot pick other fixed-model cellar or electricity data',async()=>{
+  const name='trotec_ttk75_eco_pruefpunkt';
+  const guide='/guide/trotec-luftentfeuchter-test.html#ttk75-pruefpunkt';
+  const otherTools=['kellerentfeuchter_pruefpunkt_abgleichen','pac_n90_energielabel_zu_stromkosten'];
+  for(const q of [
+    'Wie viele Liter zieht ein Trotec TTK 75 ECO im kalten Keller bei 10 °C und 60 % Luftfeuchte und wie viel Strom?',
+    'Was schafft der Trotec TTK 75 ECO bei 20 Grad und 60 Prozent? Sind 21 Liter am Tag auch im Keller realistisch?',
+    'TTK75 Eco bei 30°C und 80 Prozent: Entfeuchtungsleistung?',
+    'Kann ein TTK-75-ECO bei 5 Grad im Keller laufen?',
+    'Schafft der Trotec TTK 75 ECO 20 l pro Tag laut Anleitung?',
+    'TTK 75 ECO 20 l/24 h: stimmt die Angabe?',
+  ]){
+    const hits=(await catalogue({q,view:'compact',limit:'5'})).tools;
+    assert.equal(hits[0]?.name,name,q);
+    assert.equal(findCatalogueTools(compact,{query:q})[0]?.name,name,q);
+    assert.equal(toolGuidePath(hits[0]),guide,q);
+    assert.ok(hits.every(tool=>!otherTools.includes(tool.name)),q);
+  }
+  for(const q of [
+    'Trotec TTK 75 E bei 30 °C und 80 % Liter pro Tag',
+    'TTK 75 ECO Pro Entfeuchtungsleistung bei 10 °C',
+    'Nicht TTK 75 ECO, sondern Trotec TTK 75 E: wie viel Wasser zieht der bei 30 °C und 80 %?',
+    'Trotec TTK 75 ECO Schlauch und Ablauf für den Keller',
+    'Trotec TTK 75 ECO Filter reinigen',
+    'Stromkosten des TTK 75 ECO bei 440 Watt',
+  ]) assert.ok(!(await catalogue({q,view:'compact',limit:'5'})).tools.some(tool=>tool.name===name),q);
+  const preserved=(await catalogue({q:'Was leistet der MeacoDry Arete One 20L bei 10 °C und 60 % im Keller?',view:'compact',limit:'3'})).tools;
+  assert.equal(preserved[0]?.name,'kellerentfeuchter_pruefpunkt_abgleichen');
   assert.equal((await catalogue({q:name,view:'compact'})).tools[0]?.name,name);
   assert.equal(analytics,0);
 });

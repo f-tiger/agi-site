@@ -1,3 +1,4 @@
+import {asksForTrotecTtk75EcoConditions} from './trotec-ttk75-eco-intent.mjs';
 import {asksForCoolingNoiseComparison} from './cooling-noise-intent.mjs';
 import {asksForTesamollWindowProfile} from './tesamoll-profile-intent.mjs';
 import {exactGermanFilterModel} from './exact-filter-intent.mjs';
@@ -50,6 +51,8 @@ export function searchEntries(index,term,lang){
    targetPage='/guide/fenster-zugluft-mietwohnung.html'; targetId='dichtungsprofil';
  } else if(lang==='de' && asksForPortaSplitWindowLip(query)) {
    targetPage='/guide/midea-portasplit-ausverkauft-alternativen.html'; targetId='fensterfalz';
+ } else if(lang==='de' && asksForTrotecTtk75EcoConditions(query)) {
+   targetPage='/guide/trotec-luftentfeuchter-test.html'; targetId='ttk75-pruefpunkt';
  } else if(lang==='de' && asksForDehumidifierDrainRoute(query)) {
    targetPage='/guide/luftentfeuchter-keller.html'; targetId='ablauf-vor-kauf';
  } else if(lang==='de' && asksForCellarVentilationCheck(query)) {
