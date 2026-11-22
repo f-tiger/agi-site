@@ -102,7 +102,9 @@ async function run() {
     if (preview) {
       let ready = false;
       for (let attempt = 0; attempt < 25 && !ready && preview.exitCode === null; attempt++) {
-        ready = await fetch(probePath('/mcp.html')).then(response => response.ok, () => false);
+        // The preview only needs to confirm readiness without streaming the catalog HTML.
+        ready = await fetch(probePath('/mcp.html'), {method:'HEAD', signal:AbortSignal.timeout(1000)})
+          .then(response => response.ok, () => false);
         if (!ready) await delay(100);
       }
       assert(ready, 'Local static preview did not start');
