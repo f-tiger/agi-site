@@ -19,12 +19,12 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUNDLE: ecoback-local-tools-1.22.14.mcpb
-  VERSION: '1.22.14'
-  UPSTREAM_SHA: 1d91d3990fe4aa1f989ae5b3752b936b4cb7ddf0
+  BUNDLE: ecoback-local-tools-1.22.15.mcpb
+  VERSION: '1.22.15'
+  UPSTREAM_SHA: 049eec255e64bfec254698b25a12e3b7facee4c7
   NAME: io.github.f-tiger/ecoback-local-tools
   RELEASE_TAG: fleet-mcp-registry-2026-10-10
-  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.14.mcpb
+  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.15.mcpb
   REGISTRY_VERSIONS: https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions
   SOURCE_URL: https://github.com/f-tiger/getecoback-mcp
   MCPB_SCHEMA: https://raw.githubusercontent.com/modelcontextprotocol/mcpb/70fe3b34cd6dff1b3bba046638edc72a6467a4fb/schemas/mcpb-manifest-v0.3.schema.json
@@ -162,6 +162,16 @@ jobs:
                 [98,false,[0,4],[96,100],null]],
               rejected:3
             } and .compact.hygrometerComparison == .hygrometerComparison and
+            .n90Identity == {
+              name:"pac_n90_ean_abgleichen",
+              guide:"https://getecoback.com/guide/delonghi-pac-n90-test.html#testlage",
+              ean:8004399512351,
+              model:"PAC N90 ECO Silent",
+              manufacturer:"https://www.delonghi.com/de-de/s/PACN90ECOSILENT",
+              sheet:"https://shop.sonepar.at/asset_external/downloads/pim/400901/datasheet_delonghi_PAC%20N90ECO.pdf",
+              statuses:["modellangaben_passen","modellbezeichnung_klaeren","modellbezeichnung_klaeren","ean_abweicht","ean_fehlt"],
+              rejected:4
+            } and .compact.n90Identity == .n90Identity and
             .compact.cellarBuyerEvidence == true and
             .compact.laundryComparison == {
               topMatch:"waesche_trocknungskosten", dryerEurPerLoad:0.6, dehumidifierEurPerLoad:0.3,

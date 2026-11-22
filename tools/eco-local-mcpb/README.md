@@ -165,6 +165,11 @@ and their precise intersection. Both profiles verify overlap, contact at
 one decimal value, clipping to 0–100 % and rejection of incomplete inputs.
 The guide explains colocated measurements and the limits of the comparison.
 
+Version 1.22.15 improves the PAC N90 ECO Silent identity check and its
+German catalogue lookup. Both modes distinguish an exact pair, an unclear
+model suffix, a different EAN and a missing EAN. The German support page and
+Austrian distributor data sheet remain separate from the offer contents.
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the
