@@ -1182,9 +1182,19 @@ CONTEXT_MODELS = {
     "3,4 kW, R32, Montagematerial im Lieferumfang. Achte beim Kauf auf die Variante — von diesem Modell stehen mehrere Angebote nebeneinander.",
     "€€€ · Preis vor Ort prüfen", "KESSER+Split+Klimaanlage+Quick+Connect+12000+BTU", "ac"),
  ] for slug in ("split-klimaanlage-ohne-kernbohrung",
-                "portasplit-vs-monoblock",
                 "midea-portasplit-kaufen")},
 
+ "portasplit-vs-monoblock": [
+   ("TCL BreezeIn Quick Connect 9.000 BTU", "9.000-BTU-Variante",
+    "Prüfe die genaue Typnummer und die Geräuschwerte für Innen- und Außengerät im zugehörigen Datenblatt.",
+    "Preis beim Händler prüfen", "TCL+BreezeIn+Quick+Connect+9000+BTU", "ac"),
+   ("TCL BreezeIn Quick Connect 12.000 BTU", "12.000-BTU-Variante",
+    "Gleiche die Kühlleistung mit deinem Raum ab und prüfe, welche Montagekosten zum Händlerpreis hinzukommen.",
+    "Preis beim Händler prüfen", "TCL+BreezeIn+Quick+Connect+12000+BTU", "ac"),
+   ("KESSER Split Quick Connect 12.000 BTU", "Lieferumfang prüfen",
+    "Prüfe beim angebotenen Set die Bezeichnungen beider Geräte, das Zubehör und die Montagevoraussetzungen.",
+    "Preis beim Händler prüfen", "KESSER+Split+Klimaanlage+Quick+Connect+12000+BTU", "ac"),
+ ],
 
  # Mieter-Winterlinie (2026-08-28). The site's audience is 79 % renter-leaning by
  # landing-page intent (money line 19:1), and until today every one of its 33
@@ -2675,36 +2685,42 @@ def embed_box(slug):
 HEATENERGY_SKIP = {"strompreis-radar", "klimaanlage-stromkosten",
                    "stromkosten-rechner", "stromvergleich-check"}
 
-HEATENERGY_BOX = (
-    '<!--EB_HEATENERGY--><section style="max-width:1000px;margin:18px auto 0;padding:0 20px;">'
-    '<div style="background:#fff8ec;border:1px solid #f3ddc0;border-radius:12px;padding:16px 18px;'
-    'display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap;">'
-    '<div style="font-size:26px;line-height:1;">☀️</div>'
-    '<div style="flex:1 1 300px;"><strong style="font-size:15px;display:block;margin-bottom:4px;">'
-    'Kühlen ist mittags am billigsten</strong>'
-    '<span style="font-size:13.5px;color:#5a5340;">Genau bei Hitze steckt am meisten Solarstrom im Netz — '
-    'die Börsenpreise sind dann typischerweise am niedrigsten und abends am höchsten. Wer die Wohnung '
-    '<strong>mittags vorkühlt</strong> statt abends gegenzuhalten, verschiebt den Verbrauch in die '
-    'günstige Stunde. Ein Klimagerät ist damit genau der steuerbare Verbraucher, an dem sich ein '
-    'dynamischer Tarif überhaupt erst rechnet.</span>'
-    '<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">'
-    '<a href="/guide/strompreis-radar.html" style="background:#e08c05;color:#1a2733;font-weight:800;'
-    'padding:8px 13px;border-radius:8px;text-decoration:none;font-size:13px;">Aktuelle Preiskurve →</a>'
-    '<a href="/guide/stromkosten-rechner.html" style="background:#fff;color:#8a6410;border:1px solid #f0cf9a;'
-    'font-weight:700;padding:8px 13px;border-radius:8px;text-decoration:none;font-size:13px;">Was kostet mein Gerät? →</a>'
-    '</div>'
-    # Twenty-one pages advise pre-cooling on a timer; none of the cooling
-    # cluster linked the accessory that does it. With the honest catch stated:
-    # a smart plug only works if the unit powers back on by itself.
-    # Werbekennzeichnung at the ad itself (check_adlabel.py, denylist since
-    # 2026-09-04 — this block shipped 69 pages without one).
-    f'<p style="margin:10px 0 0;font-size:11px;color:#8a99a6;">{AD_LABEL[False]}</p>'
-    '<p style="margin:4px 0 0;font-size:12.5px;color:#5a5340;">Vorkühlen automatisieren: eine '
-    '<a href="https://www.amazon.de/s?k=wlan+steckdose+zeitschaltuhr&amp;tag=getecoback-21" target="_blank" '
-    'rel="sponsored noopener" style="color:#0f6ba8;font-weight:700;">WLAN-Steckdose mit Timer</a> (ab ~10&nbsp;€) '
-    'schaltet das Gerät mittags ein — <strong>funktioniert nur, wenn dein Gerät nach Stromzufuhr von selbst '
-    'wieder anläuft</strong> (Auto-Restart, steht im Handbuch).</p>'
-    '</div></div></section><!--/EB_HEATENERGY-->\n')
+def heatenergy_box(compare_offers):
+    if compare_offers:
+        title = "Was kostet eine Stunde Kühlung?"
+        detail = ("Bei einem festen Arbeitspreis ändern sich die Kosten je kWh im Tagesverlauf nicht. "
+                  "Bei einem dynamischen Tarif zählt dein konkreter Preis im Nutzungszeitraum. "
+                  "Rechne mit gemessenen kWh und deinem Stromtarif.")
+        price_note = " (Preis beim Händler prüfen)"
+    else:
+        title = "Kühlen ist mittags am billigsten"
+        detail = ('Genau bei Hitze steckt am meisten Solarstrom im Netz — die Börsenpreise sind dann typischerweise am niedrigsten und abends am höchsten. Wer die Wohnung <strong>mittags vorkühlt</strong> statt abends gegenzuhalten, verschiebt den Verbrauch in die günstige Stunde. Ein Klimagerät ist damit genau der steuerbare Verbraucher, an dem sich ein dynamischer Tarif überhaupt erst rechnet.')
+        price_note = " (ab ~10&nbsp;€)"
+    return (
+        '<!--EB_HEATENERGY--><section style="max-width:1000px;margin:18px auto 0;padding:0 20px;">'
+        '<div style="background:#fff8ec;border:1px solid #f3ddc0;border-radius:12px;padding:16px 18px;'
+        'display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap;">'
+        '<div style="font-size:26px;line-height:1;">☀️</div>'
+        '<div style="flex:1 1 300px;"><strong style="font-size:15px;display:block;margin-bottom:4px;">'
+        f'{title}</strong><span style="font-size:13.5px;color:#5a5340;">{detail}</span>'
+        '<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">'
+        '<a href="/guide/strompreis-radar.html" style="background:#e08c05;color:#1a2733;font-weight:800;'
+        'padding:8px 13px;border-radius:8px;text-decoration:none;font-size:13px;">Aktuelle Preiskurve →</a>'
+        '<a href="/guide/stromkosten-rechner.html" style="background:#fff;color:#8a6410;border:1px solid #f0cf9a;'
+        'font-weight:700;padding:8px 13px;border-radius:8px;text-decoration:none;font-size:13px;">Was kostet mein Gerät? →</a>'
+        '</div>'
+        # Twenty-one pages advise pre-cooling on a timer; none of the cooling
+        # cluster linked the accessory that does it. With the honest catch stated:
+        # a smart plug only works if the unit powers back on by itself.
+        # Werbekennzeichnung at the ad itself (check_adlabel.py, denylist since
+        # 2026-09-04 — this block shipped 69 pages without one).
+        f'<p style="margin:10px 0 0;font-size:11px;color:#8a99a6;">{AD_LABEL[False]}</p>'
+        '<p style="margin:4px 0 0;font-size:12.5px;color:#5a5340;">Vorkühlen automatisieren: eine '
+        '<a href="https://www.amazon.de/s?k=wlan+steckdose+zeitschaltuhr&amp;tag=getecoback-21" target="_blank" '
+        f'rel="sponsored noopener" style="color:#0f6ba8;font-weight:700;">WLAN-Steckdose mit Timer</a>{price_note} '
+        'schaltet das Gerät mittags ein — <strong>funktioniert nur, wenn dein Gerät nach Stromzufuhr von selbst '
+        'wieder anläuft</strong> (Auto-Restart, steht im Handbuch).</p>'
+        '</div></div></section><!--/EB_HEATENERGY-->\n')
 
 
 # A shop answers "which one do I need?" with faceted navigation. This site cannot
@@ -3998,11 +4014,12 @@ def inject_heatenergy(html, slug):
     """Idempotently connect the cooling cluster to the energy cluster."""
     if device_of(slug) != "ac" or slug in HEATENERGY_SKIP:
         return re.sub(r'<!--EB_HEATENERGY-->.*?<!--/EB_HEATENERGY-->\n?', '', html, flags=re.S)
+    box = heatenergy_box(slug == "portasplit-vs-monoblock")
     if "<!--EB_HEATENERGY-->" in html:
         return re.sub(r'<!--EB_HEATENERGY-->.*?<!--/EB_HEATENERGY-->\n?',
-                      lambda m: HEATENERGY_BOX, html, flags=re.S)
+                      lambda m: box, html, flags=re.S)
     if "<!--EB_FOOTER-->" in html:
-        return html.replace("<!--EB_FOOTER-->", HEATENERGY_BOX + "<!--EB_FOOTER-->", 1)
+        return html.replace("<!--EB_FOOTER-->", box + "<!--EB_FOOTER-->", 1)
     return html
 
 
