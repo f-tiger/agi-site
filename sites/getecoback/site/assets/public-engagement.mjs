@@ -27,8 +27,12 @@ export function countryScenarioEvent(pathname, detail) {
 
 // Eco-only additions: an exact public route and a fixed action, never values,
 // selected products, household answers or a share URL. Each is once per page.
+const mcpSetupPages = new Set(['/mcp.html', '/for-agents.html']);
+const mcpSetupAction = 'eco_mcpb_setup_open';
 export function ecoPublicBusinessEvent(pathname, detail) {
   if (!detail || typeof detail !== 'object' || !Object.hasOwn(detail,'name') || Object.keys(detail).length !== 1 || typeof detail.name !== 'string') return null;
+  if (mcpSetupPages.has(pathname) && detail.name === mcpSetupAction)
+    return {name:detail.name, tool_id:'eco-offline-mcpb'};
   if (pathname === '/strommess-protokoll.html' && ['eco_meter_from_guide','eco_meter_guide_view','eco_meter_guide_click'].includes(detail.name))
     return {name:detail.name, tool_id:'eco-meter-guide'};
   if (/^\/(?:[a-z0-9-]+\/)*(?:[a-z0-9-]+\.html)?$/.test(pathname) &&
@@ -72,6 +76,15 @@ export function installPublicEngagement() {
     return !!frame?.isConnected && !frame.contentWindow['ga-disable-' + id];
   };
   const actionsSent = new Set();
+  const recordAction = detail => {
+    const action = ecoPublicBusinessEvent(page.pathname, detail);
+    if (!action || !permitted() || actionsSent.has(action.name)) return;
+    actionsSent.add(action.name);
+    // No replay of actions before the existing analytics frame was enabled.
+    (function () { frame.contentWindow.dataLayer.push(arguments); })('event', action.name, {
+      ...fields, tool_id:action.tool_id, transport_type:'beacon'
+    });
+  };
   if (page.pathname === '/guide/luftentfeuchter-keller.html') {
     document.addEventListener('click', event => {
       if (event.isTrusted && event.target.closest?.('.dc-drain-paths a[href^="#modell-"]')) {
@@ -86,14 +99,15 @@ export function installPublicEngagement() {
       }
     });
   }
-  window.addEventListener('fleet:business', event => {
-    const action = ecoPublicBusinessEvent(page.pathname, event.detail);
-    if (!action || !permitted() || actionsSent.has(action.name)) return;
-    actionsSent.add(action.name);
-    // No replay of actions before the existing analytics frame was enabled.
-    (function () { frame.contentWindow.dataLayer.push(arguments); })('event', action.name, {
-      ...fields, tool_id:action.tool_id, transport_type:'beacon'
+  if (mcpSetupPages.has(page.pathname)) {
+    document.addEventListener('click', event => {
+      if (event.isTrusted && event.target.closest?.('a[data-eco-mcpb-setup-open][href="https://github.com/f-tiger/getecoback-mcp#connect"]')) {
+        recordAction({name:mcpSetupAction});
+      }
     });
+  }
+  window.addEventListener('fleet:business', event => {
+    if (event.detail?.name !== mcpSetupAction) recordAction(event.detail);
   });
   const stop = () => { clearInterval(timer); timer = undefined; frame = undefined; clock.reset(); };
   const active = () => document.visibilityState === 'visible' && document.hasFocus();

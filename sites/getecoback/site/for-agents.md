@@ -21,6 +21,12 @@ For MCP discovery, call tools/list and send each returned nextCursor as params.c
 
 Discovery: [/.well-known/mcp.json](https://getecoback.com/.well-known/mcp.json) · Docs: [/mcp.html](https://getecoback.com/mcp.html) · Registry: io.github.f-tiger/hvac-btu-heat-klimaanlage
 
+## Local MCPB package (stdio)
+
+Run EcoBack in a client that supports MCPB, with Node.js 22 or later. Calculations run on your device. In full mode, weather and online guides use the network only when requested. Starting with --compact exposes a local finder and runner.
+
+[Download and installation instructions](https://github.com/f-tiger/getecoback-mcp#connect) · Official Registry record for the local package · [German setup and example](https://getecoback.com/mcp.html#offline-installation)
+
 **Plan a shower around a measured flow and a water budget**
 Collect 2.25 L over 15 seconds at the usual setting. Call duschdurchfluss_messen to derive 9 L/min. Pass that flow and a household budget of 72 L to dusche_zeit_bei_wasserbudget for 8 minutes at steady flow. The budget is a user input. Deduct any warm-up water first. [Runnable examples and assumptions](https://getecoback.com/mcp.html#duschbudget-beispiel).
 
