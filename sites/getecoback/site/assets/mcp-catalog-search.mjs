@@ -5,34 +5,27 @@ const words = value => normalize(value)
   .replace(/\b(\d{3})\.(\d{3})\.(\d{2})\b/g, '$1$2$3')
   .match(/[a-z0-9]+/g) || [];
 
-const productGuide = '/produkte.html';
-const laundryGuide = '/guide/waesche-trocknen-wohnung.html';
-const guideSections = new Map([
-  ['Kaffeemaschinenpflege', [productGuide, 'kaffeevollautomat-pflege-und-kauf']],
-  ['Waschmitteldosierung', [laundryGuide, 'waschmittel-automatische-dosierung']],
-  ['Spülmittel und Wasserhärte', [productGuide, 'geschirrspueler-wasserhaerte-reiniger']],
-  ['Bodenstaubsaugerpflege', [productGuide, 'bodenstaubsauger-belege']],
-  ['Dampfbügelgeräte', [productGuide, 'philips-dampfbuegelgeraete-de-belege']],
-  ['Stabmixer und Zubehör', [productGuide, 'stabmixer-belege']],
-  ['Mikrowellenbelege', [productGuide, 'mikrowelle-bosch-bfl524-belege']],
-  ['Küchenwaagen', [productGuide, 'beurer-kuechenwaagen-gebrauch']],
-  ['Wasserkocherbelege', [productGuide, 'wasserkocher-bosch-twk8613p']],
-  ['Toasterbelege', [productGuide, 'bosch-tat8613-toaster-belege']],
-]);
-
-// Treat the catalogue URL as a canonical citation. Only add a reviewed on-site fragment.
-export function toolGuidePath({citation_url, category}) {
-  if (typeof citation_url !== 'string') return null;
+function ownedGuide(value) {
+  if (typeof value !== 'string') return null;
   try {
     const origin = 'https://getecoback.com';
-    const url = new URL(citation_url, origin);
+    const url = new URL(value, origin);
     const canonical = /^\/(?:[a-z0-9-]+\/)*[a-z0-9-]+\.html$/.test(url.pathname);
-    if (url.origin !== origin || !canonical || url.search || url.hash || url.username || url.password) return null;
-    const section = guideSections.get(category);
-    return section?.[0] === url.pathname ? `${url.pathname}#${section[1]}` : url.pathname;
+    return url.origin === origin && canonical && !url.search && !url.username && !url.password ? url : null;
   } catch {
     return null;
   }
+}
+
+// Keep catalogue navigation on the canonical guide, optionally at its supplied section.
+export function toolGuidePath({citation_url, guide_url}) {
+  const citation = ownedGuide(citation_url);
+  if (!citation || citation.hash) return null;
+  const guide = ownedGuide(guide_url);
+  if (guide?.pathname === citation.pathname && /^#[a-z0-9-]{1,100}$/.test(guide.hash)) {
+    return guide.pathname + guide.hash;
+  }
+  return citation.pathname;
 }
 
 const questionWords = new Set((
@@ -49,6 +42,11 @@ const questionWords = new Set((
 
 // Common words for tools whose formal identifiers differ from everyday German.
 const taskWords = new Map([
+  ["fenstersauger_kaercher_fluessigkeitsgrenze_und_tank", "multi edition aufsaugen tank fuellstand tankvolumen tankgroesse pfuetze verschuettet verschuettete fluessigkeit 25ml 40ml mengenobergrenze"],
+  ["fenstersauger_wv3_wv8_led_muster_einordnen", "blinkfolge blinkt blinken leds zweimal kurz blitz motor kontrollleuchte untere lampe ladevorgang"],
+  ["fenstersauger_wv3_wv8_akkuwechsel_service_oder_reserve", "comfort signature austauschen zweiten zweiter zweitakku reserveakku akkupack einsetzen waehrend fensterputzen akku austauschbar"],
+  ["fenstersauger_kaercher_glasreiniger_schaum_spiritus", "fensterreiniger schaumreiniger glasreiniger reinigungsmittel detergent zusatz"],
+  ["fenstersauger_wv3_wv8_hochglanz_glas_temperatur_probe", "mikrofaserbezug wischbezug hochglanzflaeche empfindlich probestelle gefroren heisse scheibe oberflaechentemperatur"],
   ["waschmittel_dosiertabelle_wasserhaerte_intervall", "versorger versorgungsgebiet calciumcarbonat mmol gesamthaerte wasserhaerte haertebereich dosiertabelle dosierspalte schwankung grenzwert spalte"],
   ["miele_wwr880_twindos_verschmutzung_und_spuelmenge", "verschmutzt verschmutzungsgrad verschmutzung stark normal leicht spuelwasser spuelwassermenge dosiermenge waesche"],
   ["waschmaschine_idos_twindos_nachfuellanzeige_lesen", "idos twindos symbol leuchtet blinkt blinkendes mindestfuellstand fuellstand wenige waschgaenge restmenge nachfuellhinweis milliliter"],

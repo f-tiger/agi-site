@@ -24,6 +24,13 @@ const cases = [
     guide: '/guide/waesche-trocknen-wohnung.html#waschmittel-automatische-dosierung',
     heading: 'Vor dem Waschen: Dosiertabelle und Automatik prüfen',
   },
+  {
+    question: 'Passt die 170-mm-Abziehlippe 2.633-104.0 an meinen Kärcher WV 8 Signature Line?',
+    tool: 'fenstersauger_170mm_abziehlippe_geraetefamilie',
+    category: 'Fenstersauger',
+    guide: '/produkte.html#fenstersauger-belege',
+    heading: 'Fenstersauger prüfen: Abziehlippen und Gebrauch',
+  },
 ];
 
 function probePath(path) {
@@ -45,6 +52,21 @@ async function assertGuideVisible(page, item) {
   });
   assert(layout.top >= Math.max(0, layout.navBottom) - 1 && layout.bottom <= layout.height,
     `Guide heading is clipped at ${guide.hash}: ${JSON.stringify(layout)}`);
+  if (item.category === 'Fenstersauger') {
+    await page.getByRole('link', {name:'Fenstersauger-Modelle und Lieferumfang vergleichen'}).click();
+    await page.waitForURL(url => url.hash === '#modelle-fenstersauger');
+    await page.getByRole('heading', {name:'Fenstersauger: Modelle und Kaufgrenzen'}).waitFor();
+    const modelCards = page.locator('[data-product-card][data-category="fenstersauger"]');
+    const targets = await modelCards.locator('a[rel~="sponsored"]').evaluateAll(links => links.map(link => link.href));
+    assert.equal(await modelCards.count(), 4);
+    assert.equal(targets.length, 4);
+    for (const target of targets) {
+      const url = new URL(target);
+      assert.equal(url.origin, 'https://www.amazon.de');
+      assert.equal(url.pathname, '/s');
+      assert.equal(url.searchParams.get('tag'), 'getecoback-21');
+    }
+  }
 }
 
 async function run() {

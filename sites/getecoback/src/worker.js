@@ -1,4 +1,4 @@
-import {indexCatalogue, findCatalogueTools, toolGuidePath} from '../site/assets/mcp-catalog-search.mjs';
+import {indexCatalogue, findCatalogueTools} from '../site/assets/mcp-catalog-search.mjs';
 import {pageTools} from './mcp-pagination.mjs';
 import {expandedTools, expandedCatalog, expandedCall, isExpandedTool, catalogueExample} from './mcp-expanded.mjs';
 import {legacyCatalogueExample} from './mcp-legacy-examples.mjs';
@@ -978,7 +978,7 @@ async function trendCompute(env) {
 // MCP server (Model Context Protocol, stateless Streamable HTTP).
 // Each tool returns a usable answer with sources. Publication, calls, website
 // visits and merchant activity are observed separately.
-const MCP_VERSION = "1.19.0";
+const MCP_VERSION = "1.20.0";
 const LEGACY_MCP_TOOLS = [
   drainTool,
   // AI-era round 2026-08-29: the decision LAYER above the per-device
@@ -1115,10 +1115,8 @@ const LEGACY_TASK_EQUIVALENTS = new Map([
 ]);
 const CATALOG_TOOLS = [...LEGACY_MCP_TOOLS.map(tool => ({...tool,category:"Raumklima"})), ...expandedCatalog]
   .map(tool => {
-    const section = tool.page && toolGuidePath({citation_url:tool.page,category:tool.category});
     const equivalent = LEGACY_TASK_EQUIVALENTS.get(tool.name);
-    const guide = section?.includes('#') ? {guide_url:"https://getecoback.com" + section} : {};
-    return {...tool, ...guide, ...(equivalent ? {equivalent_task:equivalent} : {})};
+    return equivalent ? {...tool,equivalent_task:equivalent} : tool;
   });
 const DISTINCT_TASK_TOTAL = new Set(CATALOG_TOOLS.map(tool=>tool.equivalent_task || tool.name)).size;
 const CATALOG_INDEX = indexCatalogue(CATALOG_TOOLS);

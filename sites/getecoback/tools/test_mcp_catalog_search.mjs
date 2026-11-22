@@ -18,9 +18,9 @@ const names = results => results.map(tool => tool.name);
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 203);
+  assert.equal(withGuides.length, 214);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 10);
+  assert.equal(destinations.size, 11);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);
@@ -282,5 +282,50 @@ test('German buyer and owner questions find the next appliance evidence groups',
     const response = await catalogue({q:query,view:'compact',limit:'24'});
     assert.deepEqual(names(response.tools),ranked.slice(0,24),query);
     assert.ok(ranked.slice(0,3).includes(expected),query);
+  }
+});
+
+const fenstersaugerQuestions = [
+  ["Kann ich mit dem Kärcher WV 2 Plus Multi Edition 30 ml aufsaugen, obwohl der Tank größer ist?", "fenstersauger_kaercher_fluessigkeitsgrenze_und_tank"],
+  ["Was bedeutet es beim Kärcher WV 8, wenn alle LEDs zweimal kurz blinken und der Motor aus ist?", "fenstersauger_wv3_wv8_led_muster_einordnen"],
+  ["Kann ich beim WV 3 Comfort Precision+ Black einen zweiten Akku während des Fensterputzens einsetzen?", "fenstersauger_wv3_wv8_akkuwechsel_service_oder_reserve"],
+  ["Darf ich beim Kärcher WV 8 Schaumreiniger statt Glasreiniger nehmen?", "fenstersauger_kaercher_glasreiniger_schaum_spiritus"],
+  ["Brauche ich eine Probe mit dem Mikrofaserbezug, bevor ich mit dem Kärcher WV 3 eine Hochglanzfläche reinige?", "fenstersauger_wv3_wv8_hochglanz_glas_temperatur_probe"],
+  ["Kann ich mit dem Bosch GlassVAC Wasser von einem porösen Holzbrett aufsaugen?", "glassvac_aufnahme_glatte_nicht_poroese_flaeche"],
+  ["Auf dem Balkon sind es minus acht Grad. Darf ich den GlassVAC dort einschalten, lagern oder laden?", "glassvac_kalt_lagern_einschalten_laden_getrennt"],
+  ["Wo fülle ich beim GlassVAC Wasser zum Ausspülen des Schmutzwassertanks ein, durch den Auslass oder beim abgezogenen Saugkopf?", "glassvac_schmutzwassertank_spuelen_oeffnung_ablass"],
+  ["Ich sehe Linien auf dem Kunststoff am GlassVAC, aber keine Streifen auf der Scheibe. Muss das Wischblatt deswegen neu?", "glassvac_streifen_auf_glas_wischblatt_sichtbefund"],
+  ["Beim GlassVAC tropft Wasser direkt an der Sprühflasche und der Sprühkopf sitzt locker. Was soll ich zuerst prüfen?", "glassvac_spruehapplikator_tropft_montage_ursache"],
+  ["Passt die schwarze 170-mm-Ersatzlippe 2.633-104.0 in meinen WV 8?", "fenstersauger_170mm_abziehlippe_geraetefamilie"],
+  ["Sind die 170 mm Gummilippen von WV3 und WV8 gleich?", "fenstersauger_170mm_abziehlippe_geraetefamilie"],
+  ["Kann ich dieselbe Gummilippe für WV3 und WV8 nachkaufen?", "fenstersauger_170mm_abziehlippe_geraetefamilie"],
+];
+
+test('German Fenstersauger questions lead to the right decision and owned evidence', async () => {
+  for (const [question, expected] of fenstersaugerQuestions) {
+    const client = names(findCatalogueTools(compact, {query:question})).slice(0, 3);
+    const {tools} = await catalogue({q:question, view:'compact', limit:'3'});
+    assert.deepEqual(names(tools), client, question);
+    const matching = tools.find(tool => tool.name === expected);
+    assert.ok(matching, question);
+    assert.equal(matching.guide_url, origin + '/produkte.html#fenstersauger-belege');
+  }
+});
+
+test('exact window-vacuum parts and battery actions lead to different tools', async () => {
+  const cases = [
+    ['Passt die 170-mm-Abziehlippe 2.633-104.0 an meinen Kärcher WV 8 Signature Line?',
+      'fenstersauger_170mm_abziehlippe_geraetefamilie'],
+    ['Passt die 170-mm-Abziehlippe 2.633-513.0 an meinen Kärcher WV 3 Comfort Precision+ Black?',
+      'fenstersauger_170mm_abziehlippe_geraetefamilie'],
+    ['Lässt sich der Akku beim WV 8 Signature Line austauschen?',
+      'fenstersauger_wv3_wv8_akkuwechsel_service_oder_reserve'],
+  ];
+  for (const [query, name] of cases) {
+    const local = names(findCatalogueTools(compact,{query}));
+    assert.equal(local[0],name,query);
+    const {tools} = await catalogue({q:query,view:'compact',limit:'3'});
+    assert.deepEqual(names(tools),local.slice(0,3),query);
+    assert.equal(tools[0].guide_url,origin + '/produkte.html#fenstersauger-belege');
   }
 });
