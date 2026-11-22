@@ -119,6 +119,12 @@ the shortlist when comparison is requested. A genuinely narrower opening
 stays out of that branch. The checks still require actual head clearance
 and package confirmation.
 
+Version 1.22.7 adds an offline calculator for the direct electricity cost of
+one drying run with a dehumidifier. It accepts measured kWh or an estimate
+from measured average power and run time. Both MCP modes verify the separate
+inputs, the German guide link, and continued availability of the
+two-method comparison.
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the
