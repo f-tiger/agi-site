@@ -10,6 +10,7 @@ const products = '/produkte.html';
 const laundry = '/guide/waesche-trocknen-wohnung.html';
 const cellar = '/guide/luftentfeuchter-keller.html';
 const toolPaths = new Map([
+  ['luftentfeuchter_waesche_einzelkosten', '/waeschetrockner-oder-luftentfeuchter.html#luftentfeuchter-waesche-kosten'],
   ['kellerentfeuchter_pruefpunkt_abgleichen', cellar + '#kalter-keller'],
   ['midea_portasplit_fensterhalterung_pruefen', '/guide/midea-portasplit-ausverkauft-alternativen.html#kaufpruefung'],
   ['tado_x_oventrop_ventiladapter_pruefen', '/guide/smarte-heizkoerperthermostate-lohnen-sich.html#tado-x-oventrop'],
@@ -64,14 +65,14 @@ test('each mapped tool publishes the same exact evidence link after a real tool 
   const advertised = new Map(standard.map(tool => [tool.name, tool]));
   const compact = new Map((await h.catalogue({view:'compact'})).tools.map(tool => [tool.name, tool]));
   const mapped = expandedDefinitions.filter(tool=>paths.has(tool.category) || toolPaths.has(tool.name));
-  assert.equal(mapped.length, 222);
+  assert.equal(mapped.length, 223);
   assert.equal([...compact.values()].filter(tool=>tool.guide_url).length, mapped.length);
 
-  for (const {name, category, page, properties, example} of mapped) {
+  for (const {name, category, page, properties, required, oneOf, example} of mapped) {
     const guidePath = toolPaths.get(name) ?? paths.get(category);
     const guide = origin + guidePath;
     const citation = origin + page;
-    const schema = {type:'object', properties, required:Object.keys(properties), additionalProperties:false};
+    const schema = {type:'object', properties, required:required ?? Object.keys(properties), additionalProperties:false, ...(oneOf ? {oneOf} : {})};
     assert.deepEqual(advertised.get(name).inputSchema, schema, name);
     assert.equal(Object.hasOwn(advertised.get(name), 'guide_url'), false, name);
     assert.equal(compact.get(name).guide_url, guide, name);

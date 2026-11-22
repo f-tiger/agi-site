@@ -13,7 +13,7 @@ Canonical (HTML, zitierfähig): https://getecoback.com/waeschetrockner-oder-luft
 - Miss beim Entfeuchter die gesamte Energie bis zum gleichen Trocknungsgrad. Im Rechner kannst du die gemessenen kWh direkt eingeben. Typenschild-Watt allein kann den Vergleich verzerren.
 
 ## Der Rechenweg
-Entfeuchter: Watt × Stunden ÷ 1.000. Kosten je Ladung: kWh × €/kWh. Jahreskosten: Kosten je Ladung × Ladungen je Woche × 52. Reine Wäscheleine ohne elektrisches Gerät hat keine direkten Gerätestromkosten; zusätzliche Heiz- und Lüftungsenergie ist damit nicht erfasst.
+Entfeuchter: Watt × Stunden ÷ 1.000. Kosten je Ladung: kWh × €/kWh. Wenn du nur einen Luftentfeuchter nutzt, kannst du [den Strom für einen einzelnen Trocknungsgang berechnen](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#luftentfeuchter-waesche-kosten). Jahreskosten: Kosten je Ladung × Ladungen je Woche × 52. Reine Wäscheleine ohne elektrisches Gerät hat keine direkten Gerätestromkosten; zusätzliche Heiz- und Lüftungsenergie ist damit nicht erfasst.
 
 ## Was das Ergebnis nicht abdeckt
 Ein Entfeuchter kann auch Feuchte aus dem Raum aufnehmen. Wie viel davon aus der Wäsche stammt, weiß der Rechner nicht. Unterschiedliche Restfeuchte, Raumerwärmung, Anschaffung, Platzbedarf und deine Zeit fehlen im Kostenwert. Deshalb gibt es hier keinen pauschalen Sieger.
@@ -52,6 +52,18 @@ Ein günstiger Trocknungsdurchgang erklärt die Feuchteursache nicht. Beobachte,
 Hast du im Beispiel die vollen **8 kg** gewaschen, prüfe in der Anleitung die zulässige Menge für das gewählte Trocknungsprogramm. Bei einer Grenze von **5 kg** teile die Wäsche vor dem Trocknen auf oder hänge einen Teil auf.
 
 Quellen geprüft am 22.11.2026. [EU-Verordnung 2019/2014 zum Energielabel, Anhang III B und Anhang IV](https://eur-lex.europa.eu/legal-content/DE/TXT/PDF/?uri=CELEX%3A02019R2014-20210501) · [Verbraucherzentrale zum Waschtrockner-Label](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/waschtrockner-kombigeraete-sind-platzsparende-stromfresser-37060).
+
+### Was kostet das Wäschetrocknen mit einem Luftentfeuchter?
+
+Der Rechner zeigt den direkten Stromverbrauch und die Stromkosten für einen Durchgang mit deinem Luftentfeuchter. Nutze den kWh-Wert eines vollständigen Durchgangs oder schätze ihn aus der mittleren Leistung und der Laufzeit.
+
+- **Mit Strommessgerät:** Ziehe den Startstand vom Endstand ab. Frei gewähltes Beispiel: 1,8 kWh × 0,35 €/kWh = 0,63 €.
+
+- **Mit mittlerer Leistung:** Watt × Stunden ÷ 1.000 ergibt kWh. Schätzbeispiel: 200 W im Mittel × 6 Stunden ÷ 1.000 = 1,2 kWh. Bei 0,35 €/kWh sind das 0,42 €. Die Nennleistung auf dem Typenschild gibt den Durchschnitt über einen Durchgang nicht an.
+
+Raumheizung, Lüftungswärme und Anschaffung bleiben außen vor. Für einen Kostenvergleich brauchst du auch den Verbrauch des zweiten Verfahrens sowie eine vergleichbare Wäschemenge und Endtrockenheit.
+
+Zur Messung kannst du ein geeignetes Strommessgerät zwischen Steckdose und Gerät stecken. [Hinweise der Verbraucherzentrale zum Strommessen](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/strom-sparen-im-haushalt-einfache-tipps-10734).
 
 ## Eine Ladung fair vergleichen
 kWh für den ganzen Durchgang × Arbeitspreis. Vorbelegte Zahlen sind Rechenbeispiele, keine Produktmessungen. Gleiche Wäschemenge und gleicher Trocknungsgrad sind Voraussetzung. PNG und CSV werden lokal erstellt; Eingaben werden nicht hochgeladen.

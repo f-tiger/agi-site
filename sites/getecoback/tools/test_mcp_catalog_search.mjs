@@ -27,9 +27,9 @@ test('the browser loads the current catalogue search module', async () => {
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 222);
+  assert.equal(withGuides.length, 223);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 20);
+  assert.equal(destinations.size, 21);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);
@@ -572,4 +572,31 @@ test('single appliances, loads and seasonal purchase questions keep their existi
     assert.equal(browser.indexOf(costTool) + 1, rank, query);
     assert.deepEqual(names(api.tools), browser, query);
   }
+});
+
+test('individual laundry dehumidifier costs match the buyer question on the web and the public directory',async()=>{
+  const name='luftentfeuchter_waesche_einzelkosten';
+  for (const q of [
+    'Ich habe keinen Wäschetrockner. Mein Entfeuchter hat für eine trockene Ladung 1,8 kWh verbraucht. Was kostet das bei 35 Cent/kWh?',
+    'Ich habe nur den Entfeuchter gemessen. Kann ich die Stromkosten je Wäscheladung teilen, ohne den Trockner zu schätzen?',
+    'Was kostet eine Ladung Wäsche nur mit meinem Luftentfeuchter?',
+    'Was kostet mein Luftentfeuchter bei gemessenen durchschnittlich 400 W über sechs Stunden für eine Wäscheladung?',
+  ]) {
+    const {tools}=await catalogue({q,view:'compact',limit:'3'});
+    assert.equal(tools[0]?.name,name,q);
+    assert.equal(findCatalogueTools(compact,{query:q})[0]?.name,name,q);
+    assert.equal(toolGuidePath(tools[0]),'/waeschetrockner-oder-luftentfeuchter.html#luftentfeuchter-waesche-kosten');
+  }
+  for (const q of [
+    'Wäschetrockner oder Luftentfeuchter – was kostet das Trocknen pro Ladung?',
+    'Was kostet es, wenn Luftentfeuchter und Trockner gleichzeitig für eine Ladung laufen?',
+    'Rechnet sich der Kaufpreis für einen Luftentfeuchter im Winter bei meinen Kosten pro Ladung?',
+    'Mein Luftentfeuchter hat laut Typenschild 400 Watt. Was kostet eine Ladung Wäsche?',
+    'Wie viel kostet mein Entfeuchter im Keller pro Monat?',
+    'Was kostet eine Ladung nur im Wäschetrockner bei meinem Stromtarif?',
+  ]) {
+    assert.deepEqual((await catalogue({q,tool:name})).tools,[],q);
+    assert.ok(!names(findCatalogueTools(compact,{query:q})).includes(name),q);
+  }
+  assert.equal(analytics,0);
 });

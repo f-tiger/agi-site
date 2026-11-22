@@ -372,3 +372,42 @@ test('compact HTTP preserves CORS preflight, method rejection, notifications and
   }
   assert.deepEqual(writes,[]);
 });
+
+test('single-dehumidifier laundry costs disclose measurement or estimate in the full and compact profile',async()=>{
+  const {call,writes}=fixture();
+  const name='luftentfeuchter_waesche_einzelkosten';
+  const citation=origin+'/waeschetrockner-oder-luftentfeuchter.html';
+  const guide=citation+'#luftentfeuchter-waesche-kosten';
+  const found=await call(compactPath,findName,{frage:'Was kostet eine Ladung Wäsche nur mit meinem Luftentfeuchter?'});
+  assert.equal(found.structuredContent.tools[0]?.name,name);
+  for(const [inputs,kwh,cost,provenance,display] of [
+    [{method:'measured',dehum:1.8,price:.35},1.8,.63,/Messwert/,/0,63/],
+    [{method:'estimate',watts:400,hours:6,price:.35},2.4,.84,/Schätzung/,/0,84/],
+  ]){
+    const full=await call(fullPath,name,inputs);
+    assert.equal(full.isError,false);
+    assert.deepEqual(await call(compactPath,runName,{name,eingaben:inputs}),full);
+    const answer=full.structuredContent;
+    assert.equal(answer.kwh,kwh);
+    assert.ok(Math.abs(answer.cost-cost)<1e-12);
+    assert.equal(answer.basis,inputs.method);
+    assert.equal(answer.citation_url,citation);
+    assert.equal(answer.guide_url,guide);
+    assert.equal(answer.share_url,guide);
+    assert.match(answer.share_text_de,provenance);
+    assert.match(answer.share_text_de,display);
+    assert.doesNotMatch(answer.share_text_de,/amazon|utm_|gewinner|günstiger/i);
+  }
+  for(const inputs of [
+    {method:'measured',price:.35}, {method:'estimate',watts:400,price:.35},
+    {method:'estimate',hours:6,dehum:1.8,watts:400,price:.35},
+    {method:'measured',dehum:1.8,watts:400,price:.35},
+    {method:'measured',dehum:1.8,dryer:2,price:.35},
+    {method:'nameplate',watts:400,hours:6,price:.35},
+    {method:'estimate',watts:'400',hours:6,price:.35},
+  ]){
+    assert.equal((await call(fullPath,name,inputs)).isError,true);
+    assert.equal((await call(compactPath,runName,{name,eingaben:inputs})).isError,true);
+  }
+  assert.deepEqual(writes,[]);
+});
