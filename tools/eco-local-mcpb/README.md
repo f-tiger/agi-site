@@ -143,6 +143,12 @@ MCP modes need paired indoor and outdoor air readings and a measured cold
 wall. They verify condensation risk, possible drying, uncertain readings and
 no drying, and keep the original wall-estimate tool available.
 
+Version 1.22.11 ranks the German Beurer LR 401 and Levoit Core 300S
+replacement-filter questions on the existing tool. Both offline modes
+verify the model evidence link, the missing Levoit part number, and
+rejection of unsupported model suffixes. Expired evidence still
+withholds a filter name and part number.
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the
