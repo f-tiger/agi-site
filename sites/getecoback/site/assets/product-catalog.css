@@ -12,6 +12,7 @@ body{margin:0;background:#f8fafb;font-family:system-ui,-apple-system,BlinkMacSys
 #fenstersauger-belege :is(th, td) { border: 1px solid #c9d5db; vertical-align: top; }
 #fenstersauger-belege thead { background: #edf4f7; }
 .pc-page :is(section, h3)[id] { scroll-margin-top: 180px; }
+#spuelmaschine-einbaumasse > h2 { overflow-wrap: anywhere; }
 .pc-guides { margin: 32px 0; scroll-margin-top: 180px; }
 .pc-window-width { padding: 16px; margin: 16px 0; background: #eaf3f7; border: 1px solid #c4dce6; border-radius: 12px; }
 .pc-window-measurements { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr)); gap: 12px; }

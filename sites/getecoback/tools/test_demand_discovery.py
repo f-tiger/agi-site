@@ -9,6 +9,8 @@ assert all(p.read_bytes()==b for p,b in before.items()),'Discovery generation mu
 index=json.loads((SITE/'search-index.json').read_text())
 assert index==collect() and len({r['u'] for r in index})==len(rows)
 assert all('#' not in entry['u'] for entry in index),'Search sections must not become canonical index entries'
+product_index=next(row for row in index if row['u']=='/produkte.html')
+assert [row['id'] for row in product_index['model_sections']]==['kaercher-170mm-saugduese','fenstersauger-duesenbreite']
 focused=[entry for entry in index if entry.get('section')]
 assert [(entry['l'],entry['u'],entry['section']['id']) for entry in focused]==[
     ('de','/guide/delonghi-pac-n90-test.html','testlage'),

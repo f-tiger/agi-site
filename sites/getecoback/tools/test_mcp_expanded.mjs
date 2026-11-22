@@ -8,7 +8,7 @@ import {expandedDefinitions, expandedCall} from '../src/mcp-expanded.mjs';
 import {collectToolPages} from '../src/mcp-pagination.mjs';
 
 const origin = 'https://getecoback.com';
-const distinctTasks = 2027;
+const distinctTasks = 2028;
 const callableNames = distinctTasks + 1;
 function request(method, params) {
   return new Request(origin + '/mcp/v1', {
@@ -263,8 +263,8 @@ test('the public directory and standard MCP pages expose the same catalogue', as
   const byCategory = {};
   for (const {category} of directory.tools) byCategory[category] = (byCategory[category] || 0) + 1;
   assert.deepEqual(byCategory, {Raumklima:10,'Strom & Haushalt':21,Feuchte:19,Kühlen:18,Heizen:19,Passform:17,
-    'Energie prüfen':24,'Raumkomfort prüfen':24,'Geräte pflegen':24,'Quellen & Kaufprüfung':32, 'Wasser & Wäsche':24,'Gebäude & Fenster':24,'Geräte im Alltag':24,'Messpraxis':24,'Zugang & Alltag':24,Saisonwechsel:24,Kaufpraxis:26,'Ressourcen planen':24,Raumplanung:24,Wetterpraxis:24,Küchenpraxis:24,Servicevorbereitung:24,'Belege abgleichen':24,Textilpraxis:25,Luftpfade:25,Modellunterlagen:25,Haushaltsbuch:25,Praxistests:25,Messunsicherheit:25,Geräteablauf:25,Weiterverwendung:25,Raumübergabe:25,Wohnszenarien:25,Verbrauchsverlauf:41,Fensterbetrieb:41,Pflegeabläufe:40,Haushaltskoordination:40,Nachweisprüfung:40,Wasserwege:40,Raumakustik:40,Mehrgerätebetrieb:40,Gebrauchtgeräte:40,Küchenressourcen:40,Klimaverlauf:40,Wohnmobil:30,'Arbeitsplatz-Messpraxis':30,'Lokale Wärme':30,Luftkühler:30,'Wäsche mit Wärme':30,Gartenalltag:30, Gefrierpraxis:18,'Geschirrspüler-Einbau':24,Wäschesäule:17,Lüftungskauf:24,Ersatzteilnachweis:20,Dunstabzug:17,Backofenzubehör:18,Brausenzubehör:23,Rollenzubehör:18,'Altgeräte-Rücknahme':20,Induktionsgeschirr:18,Betriebszustände:21,Spülstatus:24,'Airfryer-Behälter':17,Kompaktspülen:17,"Filterkannen":22,"Textilzeichen":20,"Türbodenspalt":21,"Roboterpflege":24,"Kühlgerätekauf":20,"LED-Kaufprüfung":16,"Kaffeemaschinenpflege":22,"Waschmitteldosierung":23,"Spülmittel und Wasserhärte":25,"Bodenstaubsaugerpflege":22,"Dampfbügelgeräte":24,"Stabmixer und Zubehör":25,"Mikrowellenbelege":23,"Küchenwaagen":13,"Wasserkocherbelege":16,"Toasterbelege":10,"Fenstersauger":12});
-  assert.equal(expandedDefinitions.length,2018);
+    'Energie prüfen':24,'Raumkomfort prüfen':24,'Geräte pflegen':24,'Quellen & Kaufprüfung':32, 'Wasser & Wäsche':24,'Gebäude & Fenster':24,'Geräte im Alltag':24,'Messpraxis':24,'Zugang & Alltag':24,Saisonwechsel:24,Kaufpraxis:26,'Ressourcen planen':24,Raumplanung:24,Wetterpraxis:24,Küchenpraxis:24,Servicevorbereitung:24,'Belege abgleichen':24,Textilpraxis:25,Luftpfade:25,Modellunterlagen:25,Haushaltsbuch:25,Praxistests:25,Messunsicherheit:25,Geräteablauf:25,Weiterverwendung:25,Raumübergabe:25,Wohnszenarien:25,Verbrauchsverlauf:41,Fensterbetrieb:41,Pflegeabläufe:40,Haushaltskoordination:40,Nachweisprüfung:40,Wasserwege:40,Raumakustik:40,Mehrgerätebetrieb:40,Gebrauchtgeräte:40,Küchenressourcen:40,Klimaverlauf:40,Wohnmobil:30,'Arbeitsplatz-Messpraxis':30,'Lokale Wärme':30,Luftkühler:30,'Wäsche mit Wärme':30,Gartenalltag:30, Gefrierpraxis:18,'Geschirrspüler-Einbau':24,Wäschesäule:17,Lüftungskauf:24,Ersatzteilnachweis:20,Dunstabzug:17,Backofenzubehör:18,Brausenzubehör:23,Rollenzubehör:18,'Altgeräte-Rücknahme':20,Induktionsgeschirr:18,Betriebszustände:21,Spülstatus:24,'Airfryer-Behälter':17,Kompaktspülen:17,"Filterkannen":22,"Textilzeichen":20,"Türbodenspalt":21,"Roboterpflege":24,"Kühlgerätekauf":20,"LED-Kaufprüfung":16,"Kaffeemaschinenpflege":22,"Waschmitteldosierung":23,"Spülmittel und Wasserhärte":25,"Bodenstaubsaugerpflege":22,"Dampfbügelgeräte":24,"Stabmixer und Zubehör":25,"Mikrowellenbelege":23,"Küchenwaagen":13,"Wasserkocherbelege":16,"Toasterbelege":10,"Fenstersauger":13});
+  assert.equal(expandedDefinitions.length,2019);
 });
 
 test('tesamoll clearance must fit the entire measured range and never substitutes a different seal', async () => {
@@ -686,4 +686,51 @@ test('Fenstersauger distinguishes parts, missing evidence, and the same light pa
   assert.equal(await currentPhase('waehrend_laden'), 'laden_nicht_moeglich');
   assert.equal(await currentPhase('waehrend_betrieb'), 'turbine_ueberhitzt_oder_blockiert_laut_tabelle');
   assert.equal(await currentPhase('offen'), null);
+});
+
+test('Kärcher 170-mm complete nozzles match exact German variants and preserve unresolved offers', async () => {
+  const name = 'fenstersauger_170mm_saugduese_geraetezuordnung';
+  const yellow = '2.633-512.0';
+  const white = '2.633-532.0';
+  const older = '2.633-112.0';
+  const complete = 'komplette_saugduese';
+  const matched = 'herstellerliste_bestaetigt';
+  const unlisted = 'kombination_nicht_belegt';
+  const unclear = 'zuordnung_offen';
+  const cases = [
+    ['WV 2 Plus Multi Edition',older,complete,matched,[older]],
+    ['WV 3 Comfort Precision+ Black','2.633-605.0',complete,matched,['2.633-605.0']],
+    ['WV 3 Comfort Precision+ Black',older,complete,unlisted,['2.633-605.0']],
+    ['WV 4-4 Plus',white,complete,unlisted,[yellow]],
+    ['WV 5 Ultra Care',older,complete,unlisted,[white]],
+    ['WV 5 Ultra Care',white,complete,matched,[white]],
+    ['WV 6 + KV 4',yellow,complete,matched,[yellow]],
+    ['WV 6 + KV 4 Premium',yellow,complete,unlisted,[white]],
+    ['WV 6 + KV 4 Premium',white,complete,matched,[white]],
+    ['WV 6 Plus',yellow,complete,matched,[yellow,white]],
+    ['WV 6 Plus',white,complete,matched,[yellow,white]],
+    ['WV 6 Plus','unbekannt',complete,unclear,[yellow,white]],
+    ['WV 8 Signature Line',white,'nur_abziehlippe','nur_abziehlippe',[white]],
+    ['WV 8 Signature Line',white,'unbekannt',unclear,[white]],
+    ['unbekannt',white,complete,unclear,[]],
+    ['unbekannt','unbekannt','unbekannt',unclear,[]],
+  ];
+  for (const [geraet, teilenummer, angebotsart, status, documented] of cases) {
+    const result = await rpc('tools/call', {name, arguments:{geraet, teilenummer, angebotsart}});
+    assert.equal(result.isError, false);
+    const data = result.structuredContent;
+    assert.equal(data.status, status);
+    assert.equal(data.markt, 'Deutschland');
+    assert.deepEqual(data.dokumentierte_duesen, documented);
+    assert.equal(data.guide_url, 'https://getecoback.com/produkte.html#kaercher-170mm-saugduese');
+    assert.equal(data.citation_url, 'https://getecoback.com/produkte.html');
+    assert.deepEqual(data.belege.map(({teilenummer}) => teilenummer), teilenummer === 'unbekannt' ? documented : [...new Set([teilenummer,...documented])]);
+    assert.ok(data.belege.every(({url, geprueft_am}) => url.startsWith('https://www.karcher.com/de/de/') && geprueft_am === '2026-11-22'));
+  }
+  for (const updates of [{geraet:'WV 6'}, {teilenummer:'2.633-513.0'}, {angebotsart:'Düse?'}]) {
+    const invalid = await rpc('tools/call', {
+      name, arguments:{geraet:'WV 6 Plus', teilenummer:white, angebotsart:complete, ...updates},
+    });
+    assert.equal(invalid.isError, true);
+  }
 });

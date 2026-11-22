@@ -354,3 +354,30 @@ test('coffee filter purchases lead to exact model evidence without replacing oth
   ]) assert.ok(searchEntries(index,q,'de').every(hit=>hit.entry.u!==anchor),q);
   assert.equal(searchEntries(index,'Welchen Ersatzfilter brauche ich für mein Levoit Core 300S ohne Pro?','de')[0]?.entry.u,'/ersatzfilter.html#levoit-core-300s');
 });
+
+test('German complete 170-mm Kärcher nozzle offers reach the dedicated section of the product catalogue',()=>{
+  const page='/produkte.html';
+  const anchor=page+'#kaercher-170mm-saugduese';
+  for(const q of [
+    'Ich möchte für meinen Kärcher WV 8 Signature Line eine komplette schmale Absaugdüse mit 170 mm nachkaufen. Welche Artikelnummer passt?',
+    'Passt die schmale 17-cm-Saugdüse an den WV 3 Comfort Precision+ Black? Ich brauche den ganzen Kopf, nicht nur die Gummilippe.',
+    'Passt eine Absaugdüse 2.633-512.0 an mein WV 6 + KV 4 Set?', '2.633-112.0', 'Kärcher 26335320', 'Passt 26336050 an meinen WV 3?',
+    'Früher hatte ich den Bosch GlassVAC, jetzt nutze ich den Kärcher WV 8. Welche schmale Absaugdüse brauche ich?',
+    'Früher hatte ich den Bosch GlassVAC, jetzt nutze ich den Kärcher WV 6 Plus. Welche schmale Absaugdüse passt?',
+  ]){
+    const hits=searchEntries(index,q,'de');
+    assert.equal(hits[0]?.entry.u,anchor,q);
+    assert.equal(hits.filter(hit=>hit.entry.u.split('#')[0]===page).length,1,q);
+    assert.ok(searchEntries(index,q,'en').every(hit=>hit.entry.u!==anchor),q);
+  }
+  for(const q of [
+    '170 mm', 'Wie breit darf die Düse beim WV 3 für mein 170 mm breites Sprossenfenster sein?',
+    'WV 3: Passt die 170-mm-Lippe 2.633-104.0?', 'Ist die Abziehlippe 2.633-513.0 die schmale Düse?',
+    'Mein WV 8 zieht mit der 170-mm-Düse Streifen', 'Die LED an meinem WV 3 mit schmaler Saugdüse blinkt.',
+    'Früher hatte ich den WV 8 mit schmaler Absaugdüse, jetzt nutze ich Bosch GlassVAC. Welche schmale Düse passt?',
+  ]) assert.ok(searchEntries(index,q,'de').every(hit=>hit.entry.u!==anchor),q);
+  for(const q of [
+    'Meine Scheibe ist 170 mm breit, beim WV 8 sind links und rechts je 5 mm Luft nötig. Passt die schmale Saugdüse?',
+    'Beim Kärcher WV 3: Passt der Saugkopf 2.633-605.0 zwischen meine Sprossen mit 170 mm Glasbreite?',
+  ]) assert.equal(searchEntries(index,q,'de')[0]?.entry.u,page+'#fenstersauger-duesenbreite',q);
+});

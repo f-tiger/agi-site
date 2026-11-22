@@ -1370,6 +1370,32 @@ Gleiche beim Bosch-Angebot die Bestellnummer oder EAN ab. Das Set 06008B7000 (EA
 
 Die Bosch-Maße stehen in der [deutschen Originalanleitung F 016 L81 778 auf Seite 4](https://www.bosch-diy.com/storage/de-de/glassvac-100045834-original-pdf-396340-de-de.pdf). [Fenstersauger-Modelle und Lieferumfang vergleichen](https://getecoback.com/produkte.html#modelle-fenstersauger).
 
+### Welche 170-mm-Saugdüse passt zu meinem Kärcher Fenstersauger?
+
+Entscheidend sind die genaue Geräteausführung und die Teilenummer der vollständigen Saugdüse. Kärcher führt für diese Düsen dieselbe Nennbreite von 170 mm und unterschiedliche Kompatibilitätslisten für Deutschland.
+
+- **WV 2 Plus Multi Edition:** **2.633-112.0**.
+
+- **WV 3 Comfort Precision+ Black:** **2.633-605.0**.
+
+- **WV 4-4 Plus:** **2.633-512.0** (gelb). Der Titel der weißen Düse enthält „WV 4-4“. In der konkreten Geräteliste der weißen Düse steht WV 4-4 Plus nicht. Lass diese Zuordnung bei Bedarf vor dem Kauf bestätigen.
+
+- **WV 5 Ultra Care:** **2.633-532.0** (weiß).
+
+- **WV 6 Plus:** **2.633-512.0** (gelb) und **2.633-532.0** (weiß) sind gelistet.
+
+- **WV 6 + KV 4:** **2.633-512.0** (gelb).
+
+- **WV 6 + KV 4 Premium:** **2.633-532.0** (weiß).
+
+- **WV 8 Signature Line:** **2.633-532.0** (weiß).
+
+Steht im Angebot nur „WV 6“ oder ist das Set anders benannt, lies die genaue Kennung am Gerät ab. Prüfe die Teilenummer am Angebot und lass den Lieferumfang separat bestätigen. Die Kompatibilitätsliste sagt, welche ganze Düse zugeordnet ist. Ob eine schmale Düse oder lose Ersatzlippen in einem konkreten Set beiliegen, hängt vom Lieferumfang ab.
+
+Wenn nur die Lippe abgenutzt ist, prüfe zuerst [die Abziehlippe für die vorhandene Originaldüse](https://getecoback.com/produkte.html#fenstersauger-abziehlippen). Warte mit dem Kauf, solange Geräteausführung, Düse oder Teilenummer offen sind. Reicht die vorhandene Düse, ein Abzieher oder ein Tuch, kannst du es weiterverwenden.
+
+Deutsche Kärcher-Listen geprüft am 22. November 2026. [Saugdüse 2.633-112.0](https://www.karcher.com/de/de/home-and-garden/produkte/absaugduese-schmal-fuer-wv-2-wv-5-p26331120) · [Saugdüse 2.633-605.0](https://www.karcher.com/de/de/home-and-garden/produkte/schmale-absaugduese-170-mm-wv-1-go-wv-1-compact-wv-2-universal-wv-3-comfort-p26336050) · [Saugdüse 2.633-512.0](https://www.karcher.com/de/de/home-and-garden/produkte/absaugduese-schmal-170-mm-gelb-fuer-wv-6-p26335120) · [Saugdüse 2.633-532.0](https://www.karcher.com/de/de/home-and-garden/produkte/absaugduese-schmal-170-mm-weiss-fuer-wv-4-4-wv-5-ultra-wv-6-wv-7-wv-8-p26335320).
+
 ### 170-mm-Abziehlippen am genauen Gerät zuordnen
 
 Die gleiche Breite reicht für die Ersatzteilwahl nicht aus. Prüfe die vollständige Modellkennung am Gerät, die verwendete schmale Originaldüse und die Teilenummer im Angebot.

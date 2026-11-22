@@ -75,6 +75,18 @@ def collect():
    catalog=json.loads((ROOT/'data/product-catalog.json').read_text())
    extra=' '.join([extra]+[c['name'] for c in catalog['categories']]+[p['name']+' '+p['variant'] for p in catalog['products']])
   entry={'u':route,'t':' '.join(h.title.split()),'d':desc[:320],'l':lang,'a':extra}
+  if lang=='de' and route=='/produkte.html':
+   model_sections=[
+    {'id':'kaercher-170mm-saugduese','title':'Welche schmale Kärcher-Absaugdüse passt zu meinem WV?',
+     'description':'Die 170-mm-Absaugdüse anhand von Gerätevariante, Lieferumfang und Zubehörnummer von der Gummilippe unterscheiden.'},
+    {'id':'fenstersauger-duesenbreite','title':'Welche Saugdüse passt zwischen die Sprossen?',
+     'description':'Miss die lichte Glasbreite und prüfe den Spielraum für Saugkopf und Gehäuse.'}]
+   for section in model_sections:
+    anchor=section['id']
+    targets=re.findall(r'<h[23]\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)
+    if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
+     raise ValueError(f'Missing or hidden search section: {route}#{anchor}')
+   entry['model_sections']=model_sections
   if lang=='de' and route=='/ersatzfilter.html':
    items=json.loads((ROOT/'data/filter-finder-de.json').read_text())['items']
    entry['model_sections']=[]
