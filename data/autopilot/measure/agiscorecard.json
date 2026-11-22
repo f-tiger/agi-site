@@ -3,52 +3,57 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 18,
-    "q": "tool:verdicts"
-   },
-   {
     "n": 17,
     "q": "tool:portfolio_returns"
+   },
+   {
+    "n": 16,
+    "q": "tool:verdicts"
    },
    {
     "n": 12,
     "q": "tool:thesis_tracker"
    },
    {
-    "n": 11,
-    "q": "tool:claim_ledger https://goldrush.agiscorecard."
-   },
-   {
     "n": 10,
-    "q": "tool:invest_positions"
+    "q": "tool:claim_ledger https://goldrush.agiscorecard."
    },
    {
     "n": 9,
     "q": "tool:sunwatch_ledger"
    },
    {
+    "n": 9,
+    "q": "tool:invest_positions"
+   },
+   {
     "n": 7,
     "q": "github"
    },
    {
-    "n": 4,
+    "n": 5,
     "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
    },
    {
-    "n": 2,
+    "n": 3,
     "q": "tool:search_mcp_catalog"
    },
    {
-    "n": 2,
-    "q": "tool:agi_consensus rokmcp-collector/0.2 (+h"
+    "n": 1,
+    "q": "巴菲特"
    }
   ]
  },
- "fetched": "2026-11-21",
+ "fetched": "2026-11-22",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
- "pages": {},
+ "pages": {
+  "/agents/": {
+   "n7": 119,
+   "p7": 57
+  }
+ },
  "site": "agiscorecard",
  "source": "https://agiscorecard.com/api/trends"
 }

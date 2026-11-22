@@ -3,7 +3,7 @@
   "site": "getecoback",
   "signals": {
     "membership": {
-      "ready": false,
+      "ready": true,
       "has_paid_members": false,
       "has_active_members": false
     },
@@ -21,26 +21,17 @@
       "top_hot_page": "/guide/richtig-lueften-im-winter.html"
     },
     "health": {
-      "http": "429",
+      "http": "200",
       "stale_deploy": false
     }
   },
   "actions": [
     {
-      "kind": "site_health",
-      "priority": 100,
-      "reason": "live probe is not HTTP 200",
-      "evidence": {
-        "http": "429"
-      },
-      "mode": "alert"
-    },
-    {
-      "kind": "membership_health",
-      "priority": 92,
-      "reason": "recent snapshot reported unavailable checkout; check the live API before recovery",
+      "kind": "membership_readiness_check",
+      "priority": 70,
+      "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
       "evidence": {},
-      "mode": "alert"
+      "mode": "observe"
     },
     {
       "kind": "content_gap",

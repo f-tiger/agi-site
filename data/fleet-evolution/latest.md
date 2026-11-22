@@ -1,47 +1,39 @@
-# Fleet evolution report — 2026-11-21
+# Fleet evolution report — 2026-11-22
 
 Deterministic, aggregate-only report. Missing data remains unknown; no editorial text, payments or membership rights are changed by this job.
 
 ## Fleet counters
 
-- Sites: 14 (healthy probes: 2)
-- Membership ready: 0 · paid members: 0 · active members: 0
+- Sites: 14 (healthy probes: 31)
+- Membership ready: 1 · paid members: 0 · active members: 0
 - Opportunity candidates: 7 · stale inputs: 0
 
 ## Priority actions
 
 | Priority | Site | Action | Mode | Evidence |
 |---:|---|---|---|---|
-| 100 | after35 | site_health | alert | http=429 |
-| 100 | agiscorecard | site_health | alert | http=429 |
-| 100 | buysomething | site_health | alert | http=429 |
-| 100 | codeword | site_health | alert | http=429 |
-| 100 | fanzha | site_health | alert | http=429 |
-| 100 | firstjob | site_health | alert | http=429 |
-| 100 | gamesledger | site_health | alert | http=429 |
-| 100 | getecoback | site_health | alert | http=429 |
-| 100 | goldrush | site_health | alert | http=429 |
-| 100 | gridlings | site_health | alert | http=429 |
-| 100 | learn | site_health | alert | http=429 |
-| 100 | powerbill | site_health | alert | http=429 |
 | 92 | agiscorecard | membership_health | alert | public_ok=True; ready=False |
 | 92 | baipiaoji | membership_health | alert | public_ok=True; ready=False |
-| 92 | getecoback | membership_health | alert | public_ok=True; ready=False |
 | 92 | thedollscout | membership_health | alert | public_ok=True; ready=False |
-| 55 | getecoback | content_gap | queue | count=32; query=vorwerk saugwischer roboter; value=158500 |
-| 55 | thedollscout | content_gap | queue | count=16; query=labubu cat mode; value=73950 |
+| 80 | agiscorecard | optimize_existing_page | queue | count=2; query=when are 13f filings due; page=ai-stock-exposure.html; value=420250 |
+| 70 | getecoback | membership_readiness_check | observe | snapshot_date=2026-11-22T10:14:26.801Z |
+| 55 | agiscorecard | content_gap | queue | count=4; query=rzai stock; value=17900 |
+| 55 | getecoback | content_gap | queue | count=19; query=vorwerk saugwischer roboter; value=158500 |
+| 55 | thedollscout | content_gap | queue | count=3; query=sonny angels near me; value=1 |
+| 52 | agiscorecard | improve_hot_page | queue | page=/agents/; n7=119; p7=57 |
 | 52 | getecoback | improve_hot_page | queue | page=/guide/richtig-lueften-im-winter.html; n7=17; p7=0 |
-| 48 | goldrush | ai_attribution_review | queue | legacy_page_view_events=697; ai_referrer_events=0 |
+| 48 | goldrush | ai_attribution_review | queue | legacy_page_view_events=726; ai_referrer_events=0 |
+| 48 | thedollscout | ai_attribution_review | queue | legacy_page_view_events=2431; ai_referrer_events=0 |
 
 ## Input freshness
 
 | Input | Date | Age (days) |
 |---|---|---:|
-| membership | 2026-11-21T10:09:30.233Z | 0 |
-| health | 2026-11-20T16:32:12Z | 1 |
-| ai_referrals | 2026-11-19T16:58:15Z | 2 |
-| opportunities | 2026-11-20 | 1 |
-| autopilot_receipt | 2026-11-21 | 0 |
+| membership | 2026-11-22T10:14:26.801Z | 0 |
+| health | 2026-11-21T15:49:48Z | 1 |
+| ai_referrals | 2026-11-21T15:50:12Z | 1 |
+| opportunities | 2026-11-21 | 1 |
+| autopilot_receipt | 2026-11-22 | 0 |
 
 ## Growth directions
 
