@@ -5,6 +5,7 @@ import robots from '../data/robot-catalog.json' with {type:'json'};
 import humidifiers from '../data/humidifier-catalog.json' with {type:'json'};
 import {PORTASPLIT_ENTRY_PAGE, PORTASPLIT_ENTRY_URL, PORTASPLIT_GUIDE_URL} from './portasplit-entry.mjs';
 import {CELLAR_VENTILATION_ANCHOR, CELLAR_VENTILATION_BOUNDS, CELLAR_VENTILATION_PAGE, checkCellarVentilation} from '../site/assets/keller-lueften-check.mjs';
+import {CELLAR_SHARE_URL, cellarVentilationShareText} from '../site/assets/keller-lueften-share.mjs';
 
 const method = '/wie-wir-empfehlen.html';
 const cold = '/guide/luftentfeuchter-keller.html';
@@ -75,6 +76,8 @@ export const evidenceNext = [
     calculate(values) {
       return {
         ...checkCellarVentilation(values),
+        share_text_de:cellarVentilationShareText(values),
+        share_url:CELLAR_SHARE_URL,
         quellen_url:'https://www.umweltbundesamt.de/themen/gesundheit/umwelteinfluesse-auf-den-menschen/schimmel/wie-luefte-ich-richtig-tipps-tricks-zur',
         verbraucherzentrale_url:'https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426',
         quellen_geprueft_am:'2026-11-22',

@@ -7,6 +7,8 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/keller-lueften-somm
 **Kurzantwort:** Zum Trocknen sollte der **Außentaupunkt unter dem Innentaupunkt** liegen. Prüfe zusätzlich die kälteste gemessene Wand: Erreicht der Außentaupunkt ihre Temperatur oder liegt er darüber, kann einströmende Luft dort kondensieren. Morgens kann ein guter Messzeitpunkt sein. Prüfe die Werte vor Ort und berücksichtige die nötige Grundlüftung für die Luftqualität.
 
 **Taupunkt-Check für deinen Keller**
+**Draußen 80 %, drinnen 65 % — trotzdem lüften?** Das kann zum Trocknen helfen, wenn der Außentaupunkt unter dem Innentaupunkt und unter der Temperatur der kältesten gemessenen Wand liegt. Die Prozentwerte allein reichen nicht.
+
 Zwei Rechenbeispiele für denselben Keller: innen **17 °C und 65 %** relative Feuchte, Taupunkt rund **10,4 °C**. Die kälteste gemessene Wand hat **15 °C**.
 
 - **Draußen 28 °C und 60 %:** Der Außentaupunkt liegt bei etwa **19,5 °C**. Trotz der niedrigeren Prozentzahl kann die Außenluft Feuchte eintragen und an der kalten Wand kondensieren.
@@ -20,6 +22,12 @@ Luftfeuchte draußen (%)
 Temperatur im Keller (°C)
 Gemessene Luftfeuchte im Keller (%)Kälteste gemessene Wandtemperatur (°C)Vorgefüllte Werte sind Beispiele. Ohne eigene Messwerte ist dies keine Empfehlung für deinen Keller.
 Prüfen →
+
+Nach dem Rechnen kannst du die Kurzantwort mit Messwerten und Rechenweg kopieren. Der Reddit-Link öffnet den Rechner ohne deine Werte.
+
+**Rechenweg:** Aus Temperatur und relativer Feuchte berechnen wir mit der Magnus-Näherung den Taupunkt für innen und außen. Liegt der Außentaupunkt höchstens etwa 1 °C unter einem der Vergleichswerte, miss zeitgleich nach. Dieses Orientierungsband beschreibt keine Messgerätegenauigkeit.
+
+Quellen geprüft am 22.11.2026. [Umweltbundesamt zur Kellerlüftung](https://www.umweltbundesamt.de/themen/gesundheit/umwelteinfluesse-auf-den-menschen/schimmel/wie-luefte-ich-richtig-tipps-tricks-zur) · [Verbraucherzentrale zu Luftfeuchte und Luftaustausch](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426).
 
 Der Check vergleicht Innen- und Außentaupunkt und prüft die gemessene Wandtemperatur. Er ersetzt keine Bauwerksdiagnose. Amazon-Links sind Partnerlinks — sie finanzieren diese Seite, ohne dass du mehr zahlst.
 
@@ -36,8 +44,6 @@ Vergleiche den Außen- mit dem Innentaupunkt für die Richtung des Feuchtetransp
 - **Ein passendes Zeitfenster prüfen.** Nachts und früh morgens ist eine Messung oft sinnvoll. Die Uhrzeit allein sagt nichts über den Feuchtetransport. Bei günstigem Außentaupunkt kannst du kurz lüften und den Verlauf anschließend am selben Ort nachmessen.
 
 - **Grundlüftung einplanen.** Berücksichtige den nötigen Luftaustausch für die Luftqualität, insbesondere bei genutzten Kellerräumen. Die Trocknungsfrage beurteilt nur den Feuchtetransport unter den gerade gemessenen Bedingungen.
-
-Quellen geprüft am 22.11.2026. [Umweltbundesamt zur Kellerlüftung](https://www.umweltbundesamt.de/themen/gesundheit/umwelteinfluesse-auf-den-menschen/schimmel/wie-luefte-ich-richtig-tipps-tricks-zur) · [Verbraucherzentrale zu Luftfeuchte und Luftaustausch](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426).
 
 **Ein vorhandenes Thermohygrometer zuerst nutzen**
 Erfasse Temperatur und Feuchte drinnen und draußen separat. Für die Wand brauchst du einen Oberflächenmesswert. Wenn dir ein Messgerät fehlt, prüfe die Angaben zu Messbereich und Genauigkeit.

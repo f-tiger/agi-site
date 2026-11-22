@@ -201,8 +201,21 @@ def draw_portasplit_window(c):
     c.text((89, 535), "Bei unklarer Passung warten", 28, bold=True)
 
 
+def draw_cellar_ventilation(c):
+    c.text((64, 228), "Rechenbeispiel: draußen 10 °C / 80 %, drinnen 17 °C / 65 %", 26, BLUE, True)
+    for x, label, value in ((64, "Taupunkt außen", "6,7 °C"),
+                            (436, "Taupunkt innen", "10,4 °C"),
+                            (808, "Kälteste Wand", "15 °C")):
+        c.box((x, 299, x + 328, 473), LIGHT, radius=20)
+        c.text((x + 25, 322), label, 25)
+        c.text((x + 25, 370), value, 47, bold=True)
+    c.box((64, 515, 1136, 575), "#e6f4ed", radius=12)
+    c.text((88, 527), "Kurz probeweise lüften, dann erneut messen.", 28, bold=True)
+
+
 DRAW = {"climate": draw_climate, "comparison": draw_comparison,
         "cellar": draw_cellar, "laundry": draw_laundry,
+        "cellar-ventilation": draw_cellar_ventilation,
         "n90-model": draw_n90_model, "portasplit-window": draw_portasplit_window}
 
 

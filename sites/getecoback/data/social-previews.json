@@ -26,6 +26,14 @@
       "description": "Wasser abwischen. Dann die Ursache prüfen.",
       "alt": "Schematische Innenscheibe mit Wassertropfen und Thermometer zum Prüfen der Scheibentemperatur."
     },
+    "cellar-ventilation": {
+      "image": "/assets/social/keller-lueften-taupunkt-v1.png",
+      "heading": "Keller lüften bei 80 % draußen?",
+      "description": "Vergleiche Taupunkte und die kälteste gemessene Wand.",
+      "alt": "Rechenbeispiel: Außentaupunkt 6,7 °C, Innentaupunkt 10,4 °C, Wandtemperatur 15 °C. Kurz probeweise lüften und danach erneut messen.",
+      "social_title": "Keller lüften? Taupunkte und kalte Wand vergleichen",
+      "social_description": "80 % draußen, 65 % im Keller: Zwei Rechenbeispiele zeigen, wann die Außenluft trocknen kann und wann an der kalten Wand Kondenswasser entsteht."
+    },
     "laundry": {
       "image": "/assets/social/waesche-kosten-v1.png",
       "heading": "Wäsche drinnen trocknen.",
@@ -77,6 +85,7 @@
     "/": "climate",
     "/guide/luftentfeuchter-ratgeber.html": "comparison",
     "/guide/luftentfeuchter-keller.html": "cellar",
+    "/guide/keller-lueften-sommer.html": "cellar-ventilation",
     "/guide/fenster-beschlagen-innen.html": "window-condensation",
     "/guide/waesche-trocknen-wohnung.html": "laundry",
     "/waeschetrockner-oder-luftentfeuchter.html": "laundry",
