@@ -74,13 +74,21 @@ async function assertGuideVisible(page, item) {
   await heading.waitFor();
   assert.equal(await page.locator(guide.hash).count(), 1, `Unique evidence target ${guide.hash}`);
   await page.evaluate(() => document.fonts.ready);
-  // An authored guide can animate fragment navigation. Wait for the actual
-  // heading to enter the viewport without letting the test scroll it there.
-  await page.waitForFunction(element => {
-    const box = element.getBoundingClientRect();
-    const navBottom = document.querySelector('.eb-nav').getBoundingClientRect().bottom;
-    return box.top >= Math.max(0, navBottom) - 1 && box.bottom <= innerHeight;
-  }, await heading.elementHandle(), { timeout: 4000 });
+  // A guide can animate fragment navigation even with page scripts disabled.
+  // Observe the heading on the test runner's clock without scrolling the page.
+  let layout;
+  const deadline = Date.now() + 4000;
+  do {
+    layout = await heading.evaluate(element => {
+      const box = element.getBoundingClientRect();
+      const navBottom = document.querySelector('.eb-nav').getBoundingClientRect().bottom;
+      return { top: box.top, bottom: box.bottom, navBottom, height: innerHeight };
+    });
+    if (layout.top >= Math.max(0, layout.navBottom) - 1 && layout.bottom <= layout.height) break;
+    await delay(50);
+  } while (Date.now() < deadline);
+  assert(layout.top >= Math.max(0, layout.navBottom) - 1 && layout.bottom <= layout.height,
+    `Guide heading is clipped at ${guide.hash}: ${JSON.stringify(layout)}`);
   if (item.tool === 'waesche_trocknungswechsel_kaufschwelle') {
     await page.getByText('Ich habe bereits einen Trockner', {exact:true}).click();
     assert(await page.getByText(/16,80 € Ersparnis pro Saison/).isVisible());
