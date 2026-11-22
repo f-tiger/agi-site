@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.22.23';
-const revision = 'd3c413696a3f9f7837e16335a4b8749b49942cd1';
+const version = '1.22.24';
+const revision = '5aa52426b8cca258abad7e29ed28cb9cc91dc8b1';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -149,7 +149,7 @@ function readmeForExtraction(sourceReadme) {
   return {text, previousVersion, obsoleteInstallPointers:[directUrl,exactRegistryUrl,digest]};
 }
 
-function verifyFinder(extracted, drain) {
+function extractedFinder(extracted) {
   const find = (...args) => spawnSync(process.execPath, [
     '--import',join(legacyHelpers,'deny-network.mjs'),join(extracted,'src/find-tools.mjs'),...args,
   ], {cwd:extracted,encoding:'utf8',timeout:10000});
@@ -159,6 +159,11 @@ function verifyFinder(extracted, drain) {
     assert.equal(child.status,0,child.stderr);
     return JSON.parse(child.stdout);
   };
+  return {find,output};
+}
+
+function verifyFinder(extracted, drain) {
+  const {find,output} = extractedFinder(extracted);
   const drainage = 'entfeuchter_ablaufcheck';
   const shower = 'dusche_zeit_bei_wasserbudget';
   const first = output('Kann ich den Abflussschlauch nach oben führen?').tools[0];
@@ -626,6 +631,25 @@ async function verifyN90Identity(call) {
   return {name:n90IdentityTool,guide:n90IdentityGuide,ean,model,manufacturer,sheet,statuses,rejected:invalid.length};
 }
 
+async function verifyPortaSplitLookup(search) {
+  const ean = 4048164116478;
+  const {tools:[first]} = await search(String(ean));
+  assert.equal(first?.name,portaSplitLipTool);
+  assert.equal(first.citation_url,portaSplitCitation);
+  assert.equal(first.guide_url,portaSplitLipGuide);
+  const variants = [
+    ['E',4048164122424],
+    ['Cool',4048164122301],
+  ];
+  for (const [model, alternate] of variants) {
+    const query = `Midea PortaSplit ${model}, EAN ${alternate}: Passt ein 60 mm breiter Fensterfalz?`;
+    const {tools} = await search(query);
+    assert.ok(tools.every(tool=>tool.name!==portaSplitLipTool), query);
+  }
+  return {ean,name:first.name,citation:first.citation_url,guide:first.guide_url,
+    excludedEans:variants.map(([,alternate])=>alternate)};
+}
+
 async function verifyPortaSplitLip(call) {
   const ean = 4048164116478;
   const manual = 'https://www.midea.com/content/dam/midea-aem/de/klimatisieren-heizen/portasplit/PortaSplit-Gebrauchsanweisung-DE.pdf';
@@ -1043,8 +1067,9 @@ async function verifyStdio(extracted, manifest) {
       rpc('tools/call',{name:hygrometerTool,arguments:args}));
     const n90Identity = await verifyN90Identity(args =>
       rpc('tools/call',{name:n90IdentityTool,arguments:args}));
+    const portaSplitLookup = await verifyPortaSplitLookup(extractedFinder(extracted).output);
     const portaSplitWindowLip = await verifyPortaSplitLip(args =>
-      rpc('tools/call',{name:portaSplitLipTool,arguments:args}));
+      rpc('tools/call',{name:portaSplitLookup.name,arguments:args}));
     const tesamollProfiles = await verifyTesamollProfiles(args =>
       rpc('tools/call',{name:tesamollTool,arguments:args}));
     const coolingNoise = await verifyCoolingNoiseComparison(args =>
@@ -1060,7 +1085,7 @@ async function verifyStdio(extracted, manifest) {
     const mieleBags = await verifyMieleBags((name,args) => rpc('tools/call',{name,arguments:args}));
     return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,windowCondensation,decimalWindowWidth,
       singleLaundry,fritzValve,drainRoute,measuredVentilation,exactFilter,philipsFilter,warmthCost,hygrometerComparison,n90Identity,
-      portaSplitWindowLip,tesamollProfiles,coolingNoise,ttk75Point,coffeeFilter,kaercherNozzle,ttk70Filter,mieleBags,
+      portaSplitLookup,portaSplitWindowLip,tesamollProfiles,coolingNoise,ttk75Point,coffeeFilter,kaercherNozzle,ttk70Filter,mieleBags,
       firstExamples:['btu_empfehlung','entfeuchter_ablaufcheck'],finder:verifyFinder(extracted,drain),
       lastPageExample:last.name,legacyNames:oldNames.length,network:'disabled'};
   });
@@ -1626,8 +1651,13 @@ async function verifyCompactStdio(extracted) {
     assert.equal(lipMatch.guide_url,portaSplitLipGuide);
     assert.deepEqual(lipMatch.inputSchema.required,
       ['angebot_ean','halterung','fenster','messbezug','falzbreite_mm','falzhoehe_mm']);
+    const portaSplitLookup = await verifyPortaSplitLookup(async frage => {
+      const result = await rpc('tools/call',{name:finder,arguments:{frage}});
+      assert.equal(result.isError,false,frage);
+      return result.structuredContent;
+    });
     const portaSplitWindowLip = await verifyPortaSplitLip(eingaben =>
-      rpc('tools/call',{name:runner,arguments:{name:portaSplitLipTool,eingaben}}));
+      rpc('tools/call',{name:runner,arguments:{name:portaSplitLookup.name,eingaben}}));
     const tesamollLookup = await rpc('tools/call',{
       name:finder,arguments:{frage:'Welches tesamoll E-, P- oder D-Profil passt bei 4 mm Spalt?'},
     });
@@ -1713,7 +1743,7 @@ async function verifyCompactStdio(extracted) {
       tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,
       liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,singleLaundry,fritzValve,drainRoute,
       measuredVentilation,exactFilter,philipsFilter,warmthCost,hygrometerComparison,laundryPrecision,windowBlade,windowLookup,
-      windowWidth,decimalWindowWidth,householdDecisions,tadoOventrop,n90Costs,n90Identity,portaSplitWindowLip,
+      windowWidth,decimalWindowWidth,householdDecisions,tadoOventrop,n90Costs,n90Identity,portaSplitLookup,portaSplitWindowLip,
       tesamollProfiles,coolingNoise,ttk75Point,coffeeFilter,kaercherNozzle,ttk70Filter,mieleBags,
       humidifierEfficiency,glassvacTemperature,windowSubject,windowCondensation,
     };
@@ -1787,6 +1817,7 @@ try {
   assert.deepEqual(result.warmthCost,result.compact.warmthCost);
   assert.deepEqual(result.hygrometerComparison,result.compact.hygrometerComparison);
   assert.deepEqual(result.n90Identity,result.compact.n90Identity);
+  assert.deepEqual(result.portaSplitLookup,result.compact.portaSplitLookup);
   assert.deepEqual(result.portaSplitWindowLip,result.compact.portaSplitWindowLip);
   assert.deepEqual(result.tesamollProfiles,result.compact.tesamollProfiles);
   assert.deepEqual(result.coolingNoise,result.compact.coolingNoise);
