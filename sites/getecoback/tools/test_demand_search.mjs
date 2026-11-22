@@ -151,3 +151,25 @@ test('Philips humidifier filter searches keep model and series destinations dist
   assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u.startsWith(guide+'#')),q);
  }
 });
+
+test('German blanket operating-cost questions go to the existing safe calculation',()=>{
+ const page='/guide/heizdecke-stromverbrauch.html';
+ for(const q of [
+   'Was kostet eine Heizdecke mit 110 Watt für zwei Stunden auf dem Sofa bei 35 Cent pro kWh?',
+   'Meine Beurer HD 75 schaltet nach drei Stunden ab. Wieviel kostet ein Abend bei 0,35 Euro pro Kilowattstunde?',
+   'Was kostet eine Heizdecke für zwei Stunden?',
+   'Stromverbrauch einer Wärmezudecke',
+   'Was kostet eine Heizdecke an Strom?',
+   'Wie viel Strom braucht eine Heizdecke pro Abend?',
+   'Heizdeckenstromkosten pro Abend',
+ ]) {
+   const results=searchEntries(index,q,'de');
+   assert.equal(results[0]?.entry.u,page+'#waerme-rechner',q);
+   assert.equal(results.filter(hit=>hit.entry.u.split('#')[0]===page).length,1,q);
+   assert.ok(!searchEntries(index,q,'en').some(hit=>hit.entry.u.startsWith(page+'#')),q);
+ }
+ for(const q of ['Wo kann ich die Heizdecke kaufen?', 'Darf ich mit meiner Heizdecke nachts schlafen und wie viel Strom kostet es?',
+  'Meine Heizdecke mit Zwischenzähler messen', 'Stromkosten Heizdecke versus Wärmeunterbett']) {
+   assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u.startsWith(page+'#')),q);
+ }
+});

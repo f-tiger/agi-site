@@ -1,5 +1,6 @@
 import {exactGermanFilterModel} from './exact-filter-intent.mjs';
 import {philipsHumidifierFilterSection} from './philips-humidifier-filter-intent.mjs';
+import {asksForElectricBlanketCost} from './electric-blanket-cost-intent.mjs';
 import {asksForCellarVentilationCheck} from './cellar-ventilation-intent.mjs';
 import {asksForDehumidifierDrainRoute} from './dehumidifier-drain-intent.mjs';
 
@@ -32,6 +33,8 @@ export function searchEntries(index,term,lang){
    targetPage='/ersatzfilter.html'; targetId=filterModel;
  } else if(philipsFilter) {
    targetPage='/guide/luftbefeuchter-ratgeber.html'; targetId=philipsFilter;
+ } else if(lang==='de' && asksForElectricBlanketCost(query)) {
+   targetPage='/guide/heizdecke-stromverbrauch.html'; targetId='waerme-rechner';
  } else if(lang==='de' && asksForDehumidifierDrainRoute(query)) {
    targetPage='/guide/luftentfeuchter-keller.html'; targetId='ablauf-vor-kauf';
  } else if(lang==='de' && asksForCellarVentilationCheck(query)) {

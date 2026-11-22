@@ -8,12 +8,20 @@ import hashlib
 import html
 import json
 import re
+from urllib.parse import quote, urlencode
 
 SITE = Path(__file__).resolve().parents[1] / 'site'
 SLUG = 'heizdecke-stromverbrauch'
 TITLE = 'Heizdecke: Stromkosten für Sofa und Homeoffice berechnen'
 DESC = 'Heizdecken-Stromkosten ohne Pflichtangaben: Beispiele für Sofa und Homeoffice, eigener Tarif in EUR oder CHF, Abschaltzeit und sichere Auswahl prüfen.'
 URL = 'https://getecoback.com/guide/' + SLUG + '.html'
+CHECKED = '2026-11-22'
+METER_SOURCE = 'https://verbraucherzentrale-energieberatung.de/energie-sparen/allgemeines/stromverbrauch-messen/'
+SHARE_TARGET = URL + '#waerme-rechner'
+SHARE_TITLE = 'Was kostet eine Heizdecke mit 110 W für zwei Stunden bei 35 ct/kWh?'
+REDDIT_COMPOSER = 'https://www.reddit.com/submit?' + urlencode(
+    {'url': SHARE_TARGET, 'title': SHARE_TITLE}, quote_via=quote
+)
 FAQ = [
     ('Was kostet eine Heizdecke für zwei Stunden?', 'Bei angenommenen 110 W durchgehender Leistung und 0,35 EUR/kWh ergeben zwei Stunden 0,22 kWh und 0,077 EUR, gerundet 0,08 EUR. Das ist ein Rechenbeispiel, kein gemessener Verbrauch oder aktueller Durchschnittstarif.'),
     ('Kann ich acht Stunden über Nacht rechnen?', 'Eine Rechnung ist keine Betriebserlaubnis. Zulässige Nutzung und Abschaltzeit stehen in der Anleitung des konkreten Geräts. Beim Herstellerbeispiel Beurer HD 75 schaltet die Decke nach etwa drei Stunden ab. Acht Stunden ohne Unterbrechung wären dafür kein passendes Standardszenario.'),
@@ -21,9 +29,10 @@ FAQ = [
     ('Gelten die Beispiele für Deutschland, Österreich und die Schweiz?', 'Der Rechenweg gilt in allen drei Ländern. Deutschland und Österreich werden in EUR, die Schweiz in CHF angezeigt. 0,35 pro kWh ist in jeder Währung nur eine frei gewählte Rechenannahme, kein Landesdurchschnitt und keine Währungsumrechnung. Lieferbarkeit, Stecker und Rückgabe sind separat zu prüfen.'),
 ]
 
-TOOL = '''<section id="waerme-rechner" class="warmth-tool" aria-labelledby="warmth-title">
+TOOL = f'''<section id="waerme-rechner" class="warmth-tool" aria-labelledby="warmth-title">
 <h2 id="warmth-title">Deine Wärme-Pause: Kosten sofort sehen</h2>
 <p>Du musst nichts eingeben. Wähle eine Dauer; alle Beispiele rechnen mit <strong>110 W durchgehend und 0,35 €/kWh</strong>. Das ist weder ein aktueller Tarif noch eine Messung.</p>
+<p data-warmth-result aria-live="polite">Rechenbeispiel · 220 Wh = 0,22 kWh pro Nutzung · 0,08 €. Durchgehende Nennleistung; keine Verbrauchsmessung.</p>
 <div class="warmth-examples" aria-label="Beispiel wählen">
 <button type="button" data-warmth-example="short" aria-pressed="false" disabled>Kurze Pause · 30 Minuten</button>
 <button type="button" data-warmth-example="sofa" aria-pressed="true" disabled>Sofa · 2 Stunden</button>
@@ -39,10 +48,18 @@ TOOL = '''<section id="waerme-rechner" class="warmth-tool" aria-labelledby="warm
 <label>Anzahl Nutzungstage<input name="days" type="number" min="1" max="366" step="1" required value="1"></label>
 </div><p>Die Länderwahl ändert nur die Währung, nicht den Tarif und nicht den Händler. 0,35 ist auch in CHF nur eine Rechenannahme; es erfolgt keine Währungsumrechnung. Verwende den Arbeitspreis einschließlich variabler Abgaben aus deiner Rechnung.</p>
 </details><button type="submit">Mit diesen Annahmen berechnen</button></form>
-<p data-warmth-result aria-live="polite">Rechenbeispiel · 220 Wh = 0,22 kWh pro Nutzung · 0,08 €. Durchgehende Nennleistung; keine Verbrauchsmessung.</p>
 <p><strong>Die Grenze:</strong> Gerechnet wird Watt × Stunden ÷ 1.000 × Arbeitspreis × Nutzungstage. Regelung und Abschaltung können den tatsächlichen Verbrauch verringern; das ist hier nicht als feste Ersparnis eingerechnet. Ein längerer Zeitraum ist nur zulässig, wenn die Anleitung des eigenen Geräts dies erlaubt. Standby, Kaufpreis und Raumheizung fehlen.</p>
+<h3>Eigene Wärme-Pause messen</h3>
+<ol><li>Lies die Wattangabe am Typenschild für die Schätzung ab. Die automatische Abschaltung begrenzt beim jeweiligen Modell die Heizdauer. Wie viel Energie die Decke bis dahin aufnimmt, ermittelst du über die Messung.</li>
+<li>Prüfe in den Anleitungen, ob das Strommessgerät für die Decke geeignet ist. Notiere den kWh-Stand vor dem Einschalten und nach deiner vollständigen Nutzung einschließlich Aufheizen sowie die verwendete Stufe.</li>
+<li>Ziehe den Anfangsstand vom Endstand ab und multipliziere die gemessenen kWh mit deinem Arbeitspreis.</li></ol>
+<p><a href="{html.escape(METER_SOURCE)}">Verbraucherzentrale Energieberatung zur Strommessung</a> · geprüft am <time datetime="{CHECKED}">22.11.2026</time>.</p>
 <button type="button" data-warmth-copy disabled>Ergebnis für Reddit, X oder eine Nachricht kopieren</button>
 <small>Du teilst selbst. Der Text enthält deine Rechenannahmen und Grenzen, keine Anmeldung oder automatisch veröffentlichten Beiträge. Eingaben bleiben in diesem Browser.</small>
+<nav class="warmth-share" aria-label="Rechenbeispiel teilen">
+<a href="{html.escape(SHARE_TARGET)}">Direktlink zum Rechenbeispiel</a>
+<a href="{html.escape(REDDIT_COMPOSER)}" target="_blank" rel="noopener noreferrer">Auf Reddit teilen</a>
+</nav>
 <p data-warmth-status role="status"></p><textarea data-warmth-fallback readonly hidden aria-label="Ergebnis zum manuellen Kopieren"></textarea>
 <noscript><p>Die Tabelle und Auswahlhilfe bleiben ohne JavaScript nutzbar. Für eigene Berechnung und Kopierhilfe JavaScript aktivieren.</p></noscript>
 </section>'''
@@ -57,6 +74,7 @@ def article():
 <h2 id="modell-und-abschaltung">Ein konkretes Herstellerbeispiel statt pauschaler Wattzahlen</h2>
 <p>Im <a href="https://www.beurer.com/web/flippingbook/beurer-produktkatalog-2025-DE/62-63/">Beurer-Katalog 2025, Seiten 62–63</a> sind für die dort aufgeführte HD-75-Variante mit Art.-Nr. 424.00 <strong>100–110 W</strong> und eine Abschaltung nach etwa drei Stunden angegeben. Deshalb verwenden wir 110 W als obere Nennleistung dieses Rechenbeispiels. Die <a href="https://www.beurer.com/de/p/42400/">aktuelle Produktseite zur HD 75 Taupe</a> nennt ebenfalls drei Stunden bis zur Sicherheitsabschaltung. Das ist keine Messung der gewählten Heizstufe und keine Freigabe für andere Modelle.</p>
 <p>Ein Zwei-Stunden-Beispiel passt rechnerisch in dieses Zeitfenster. Drei Stunden liegen an der angegebenen Abschaltzeit. Acht Stunden ohne Unterbrechung rechnen wir nicht als Standardnacht. Die Abschaltung nicht überbrücken; Anleitung, genaue Artikelnummer und Eignung für die Person gehen vor.</p>
+<p><small>Beurer-Katalog und Produktseite zum Modell HD 75 Taupe erneut geprüft am <time datetime="2026-11-22">22.11.2026</time>.</small></p>
 <h2 id="zweck-pruefen">Sofa, Schreibtisch oder Bett: nicht dasselbe Produkt</h2>
 <ul><li><strong>Auf dem Sofa:</strong> Eine Wärmezudecke nur so verwenden, wie die Anleitung es vorsieht. Nicht beschädigt, nass oder entgegen der Anleitung gefaltet betreiben.</li><li><strong>Am Schreibtisch:</strong> Erst Zugluft, Sitzposition und kalten Boden prüfen. Ein Fußwärmer ist eine andere Bauart mit eigener Leistung und Abschaltzeit. Das 110-W-Beispiel ist kein Fußwärmer-Test. <a href="/guide/homeoffice-warm-bleiben.html">Homeoffice-Schritte im Zusammenhang ansehen</a>.</li><li><strong>Im Bett:</strong> Wärmezudecke und Wärmeunterbett nicht verwechseln. Eine Abschaltautomatik allein erlaubt weder Schlafbetrieb noch die Nutzung unter dem Körper. Nur die ausdrücklichen Anwendungsvorgaben des konkreten Geräts verwenden.</li><li><strong>Ohne Neukauf:</strong> Eine vorhandene ungeheizte Decke verursacht keinen zusätzlichen Gerätestrom. Bei ausgefallener Heizung oder dauerhaft kalten, feuchten Räumen die Ursache lösen.</li></ul>
 <h2 id="raum-und-feuchte">Warum daraus keine pauschale Heizkostenersparnis folgt</h2>
@@ -91,7 +109,7 @@ def inject(source):
         changed = False
         for node in nodes:
             if node.get('@type') == 'Article':
-                node.update(headline=TITLE, description=DESC, dateModified='2026-10-31')
+                node.update(headline=TITLE, description=DESC, dateModified=CHECKED)
                 changed = True
             elif node.get('@type') == 'FAQPage':
                 node['mainEntity'] = [{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in FAQ]

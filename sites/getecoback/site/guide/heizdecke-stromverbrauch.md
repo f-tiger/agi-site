@@ -14,6 +14,8 @@ Für kalte Füße am Schreibtisch oder einen Abend auf dem Sofa zählt zuerst di
 
 Du musst nichts eingeben. Wähle eine Dauer; alle Beispiele rechnen mit **110 W durchgehend und 0,35 €/kWh**. Das ist weder ein aktueller Tarif noch eine Messung.
 
+Rechenbeispiel · 220 Wh = 0,22 kWh pro Nutzung · 0,08 €. Durchgehende Nennleistung; keine Verbrauchsmessung.
+
 Kurze Pause · 30 Minuten
 Sofa · 2 Stunden
 Homeoffice-Block · 3 Stunden
@@ -26,9 +28,17 @@ Statische Beispiele bei 110 W und 0,35 €/kWh – auch ohne JavaScript lesbar
 | 2 Stunden | 220 Wh / 0,22 kWh | 0,08 € |
 | 3 Stunden | 330 Wh / 0,33 kWh | 0,12 € |
 
-Rechenbeispiel · 220 Wh = 0,22 kWh pro Nutzung · 0,08 €. Durchgehende Nennleistung; keine Verbrauchsmessung.
-
 **Die Grenze:** Gerechnet wird Watt × Stunden ÷ 1.000 × Arbeitspreis × Nutzungstage. Regelung und Abschaltung können den tatsächlichen Verbrauch verringern; das ist hier nicht als feste Ersparnis eingerechnet. Ein längerer Zeitraum ist nur zulässig, wenn die Anleitung des eigenen Geräts dies erlaubt. Standby, Kaufpreis und Raumheizung fehlen.
+
+### Eigene Wärme-Pause messen
+
+- Lies die Wattangabe am Typenschild für die Schätzung ab. Die automatische Abschaltung begrenzt beim jeweiligen Modell die Heizdauer. Wie viel Energie die Decke bis dahin aufnimmt, ermittelst du über die Messung.
+
+- Prüfe in den Anleitungen, ob das Strommessgerät für die Decke geeignet ist. Notiere den kWh-Stand vor dem Einschalten und nach deiner vollständigen Nutzung einschließlich Aufheizen sowie die verwendete Stufe.
+
+- Ziehe den Anfangsstand vom Endstand ab und multipliziere die gemessenen kWh mit deinem Arbeitspreis.
+
+[Verbraucherzentrale Energieberatung zur Strommessung](https://verbraucherzentrale-energieberatung.de/energie-sparen/allgemeines/stromverbrauch-messen/) · geprüft am 22.11.2026.
 
 Ergebnis für Reddit, X oder eine Nachricht kopieren
 Du teilst selbst. Der Text enthält deine Rechenannahmen und Grenzen, keine Anmeldung oder automatisch veröffentlichten Beiträge. Eingaben bleiben in diesem Browser.
@@ -37,9 +47,11 @@ Die Tabelle und Auswahlhilfe bleiben ohne JavaScript nutzbar. Für eigene Berech
 
 ## Ein konkretes Herstellerbeispiel statt pauschaler Wattzahlen
 
-Im Beurer-Katalog 2025, Seiten 62–63 sind für die dort aufgeführte HD-75-Variante mit Art.-Nr. 424.00 **100–110 W** und eine Abschaltung nach etwa drei Stunden angegeben. Deshalb verwenden wir 110 W als obere Nennleistung dieses Rechenbeispiels. Die aktuelle Produktseite zur HD 75 Taupe nennt ebenfalls drei Stunden bis zur Sicherheitsabschaltung. Das ist keine Messung der gewählten Heizstufe und keine Freigabe für andere Modelle.
+Im [Beurer-Katalog 2025, Seiten 62–63](https://www.beurer.com/web/flippingbook/beurer-produktkatalog-2025-DE/62-63/) sind für die dort aufgeführte HD-75-Variante mit Art.-Nr. 424.00 **100–110 W** und eine Abschaltung nach etwa drei Stunden angegeben. Deshalb verwenden wir 110 W als obere Nennleistung dieses Rechenbeispiels. Die [aktuelle Produktseite zur HD 75 Taupe](https://www.beurer.com/de/p/42400/) nennt ebenfalls drei Stunden bis zur Sicherheitsabschaltung. Das ist keine Messung der gewählten Heizstufe und keine Freigabe für andere Modelle.
 
 Ein Zwei-Stunden-Beispiel passt rechnerisch in dieses Zeitfenster. Drei Stunden liegen an der angegebenen Abschaltzeit. Acht Stunden ohne Unterbrechung rechnen wir nicht als Standardnacht. Die Abschaltung nicht überbrücken; Anleitung, genaue Artikelnummer und Eignung für die Person gehen vor.
+
+Beurer-Katalog und Produktseite zum Modell HD 75 Taupe erneut geprüft am 22.11.2026.
 
 ## Sofa, Schreibtisch oder Bett: nicht dasselbe Produkt
 
