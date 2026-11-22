@@ -1104,6 +1104,7 @@ SKIP_MODELS = {"saugroboter-kaufberatung", "luftbefeuchter-ratgeber", "luftbefeu
                # cards (and the AC popup) would sell past the reader's intent.
                "fensterabdichtung-klimaanlage", "window-seal-portable-ac",
                "fensterabdichtung-selber-bauen",
+               "abluftschlauch-verlaengern",
                "auto-bei-hitze-kuehlen", "haustier-hitze-kuehlen",
                "ventilator-mit-eis", "richtig-lueften-bei-hitze", "pc-ueberhitzt-sommer",
                # UK decision pages (2026-09-17). These three answer "which kind
@@ -1261,11 +1262,6 @@ CONTEXT_MODELS = {
    ("Hohlkammerplatte zum Zuschneiden", "Das Grundmaterial", "Leicht, stabil, mit Cutter zu schneiden — die Basis der selbstgebauten Platte.", "Preis vor Ort prüfen", "hohlkammerplatte+zuschnitt", "shade"),
    ("Magnetband, selbstklebend", "Abnehmbar befestigen", "Hält die Platte im Rahmen und lässt sie zum Lüften in Sekunden abnehmen.", "Preis vor Ort prüfen", "magnetband+selbstklebend", "shade"),
    ("Schaumstoff-Dichtungsband", "Gegen die Restspalte", "Schließt die Fuge zwischen Platte und Rahmen — dort geht sonst die meiste Kühlleistung verloren.", "Preis vor Ort prüfen", "fensterdichtung+schaumstoffband", "shade"),
- ],
- "abluftschlauch-verlaengern": [
-   ("Abluftschlauch-Verlängerung", "Mehr Länge", "Passende Verlängerung statt Eigenbau — Durchmesser vorher am Gerät messen.", "Preis vor Ort prüfen", "abluftschlauch+verl%C3%A4ngerung+klimaanlage", "ac"),
-   ("Adapter / Verbinder", "Zwei Schläuche koppeln", "Verbindet zwei Schläuche dicht miteinander; ohne Adapter zieht die Kopplung warme Luft.", "Preis vor Ort prüfen", "abluftschlauch+adapter+verbinder", "ac"),
-   ("Schlauch-Isolierung", "Gegen Rückwärme", "Der lange Schlauch heizt den Raum, den er kühlen soll — Isolierung ist bei Verlängerung Pflicht.", "Preis vor Ort prüfen", "isolierschlauch+mobile+klimaanlage", "shade"),
  ],
  "mobile-klimaanlage-tropft-wasser": [
    ("Kondensat-Ablaufschlauch", "Dauerablauf statt Eimer", "Führt das Kondensat kontinuierlich ab, statt dass der Tank überläuft.", "Preis vor Ort prüfen", "kondensatschlauch+mobile+klimaanlage", "dehum"),
@@ -1523,8 +1519,6 @@ CONTEXT_SUB = {
                                    "die halbe Kühlleistung. Nicht selbst getestet. Symbolbilder."),
  "fensterabdichtung-selber-bauen": ("Die Materialliste zur Anleitung oben — drei Teile, alle im Baumarkt-Format. "
                                     "Nicht selbst getestet. Symbolbilder."),
- "abluftschlauch-verlaengern": ("Verlängern heißt: Adapter und Isolierung mitdenken, sonst heizt der Schlauch "
-                                "zurück. Nicht selbst getestet. Symbolbilder."),
  "mobile-klimaanlage-tropft-wasser": ("Erst die Ursache eingrenzen, dann kaufen — die Wasserwaage kostet am "
                                       "wenigsten und klärt am meisten. Nicht selbst getestet. Symbolbilder."),
  "mobile-klimaanlage-kuehlt-nicht": ("Nach den häufigsten Ursachen sortiert: In den meisten Fällen fehlt "
@@ -3822,20 +3816,24 @@ def inject_sealfit(html, slug, en=False):
     return html
 
 
-# The exhaust-hose pages are the same shape of problem as the window seal, and
-# the D1 funnel put one of them at the top of the site: five visits, eight Amazon
-# links, zero clicks. The page explains the 2 m rule in prose and then sends
-# people to a generic search — but the two things a buyer has to know before
-# clicking are how many metres they actually need and which diameter fits their
-# unit, and the word "Länge" did not appear on the page once. This turns the rule
-# into an answer for the reader's own room and hands over a diameter-matched
-# search instead of a mixed results page. Pure arithmetic, no invented specs.
-HOSEFIT_DE = ("Wie viel Schlauch brauchst du wirklich?",
-              "Miss vom <strong>Anschluss am Gerät</strong> bis zur Fensteröffnung — dort, wo der Schlauch später "
-              "wirklich langläuft, nicht Luftlinie.",
-              "Abstand Gerät → Fenster (cm)", "Vorhandener Schlauch (cm)", "Durchmesser",
-              [("150", "150 mm (häufigster)"), ("130", "130 mm"), ("?", "Weiß ich nicht")],
-              "Länge berechnen")
+HOSEFIT_DE = '''<!--EB_HOSEFIT--><section data-exhaust-route id="abluftweg-pruefen" aria-labelledby="abluftweg-title" style="margin:24px 0;padding:16px;border:1px solid #b3cbd9;border-radius:12px;">
+<h3 id="abluftweg-title">Abluftweg am eigenen Gerät prüfen</h3>
+<p>Miss die Strecke vom Gerät bis zum Außenanschluss entlang der geplanten Führung. Wenn die Geräteunterlagen keine Länge nennen, lass das zweite Feld frei.</p>
+<form hidden>
+<div style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%, 220px),1fr));">
+<label>Geplante Schlauchstrecke (cm)<input name="routeCm" type="number" min="1" max="1000" step="any" inputmode="decimal" required style="display:block;width:100%;min-height:44px;box-sizing:border-box;"></label>
+<label>Verfügbare Schlauchlänge laut Anleitung (cm)<input name="availableCm" type="number" min="1" max="1000" step="any" inputmode="decimal" style="display:block;width:100%;min-height:44px;box-sizing:border-box;"></label>
+<label>Ist dieser Schlauch fürs Modell vorgesehen?
+<select name="approval" style="display:block;width:100%;min-height:44px;"><option value="unbekannt">Unklar</option><option value="ja">Ja</option><option value="nein">Nein</option></select></label>
+<label>Verläuft der Weg ohne Knick oder Quetschung?
+<select name="kinkFree" required style="display:block;width:100%;min-height:44px;"><option value="">Bitte auswählen</option><option value="ja">Ja</option><option value="nein">Nein</option></select></label>
+</div>
+<button type="submit" style="min-height:44px;margin-top:12px;padding:8px 14px;border:0;border-radius:6px;background:#0e5e87;color:#fff;font:inherit;font-weight:700;cursor:pointer;">Abluftweg prüfen</button>
+<p role="status" tabindex="-1" data-exhaust-result hidden></p>
+</form>
+<noscript><p>Vergleiche beide Längen von Hand. Fehlt die Freigabe oder die passende Anleitung, kläre zuerst das Modell. Ist der Weg zu lang oder geknickt, prüfe einen näheren Standort.</p></noscript>
+</section><script type="module" src="/assets/exhaust-route.mjs"></script><!--/EB_HOSEFIT-->
+'''
 HOSEFIT_EN = ("How much hose do you actually need?",
               "Measure from the <strong>outlet on the unit</strong> to the window opening — along the path the hose "
               "will really take, not in a straight line.",
@@ -3845,7 +3843,9 @@ HOSEFIT_EN = ("How much hose do you actually need?",
 
 
 def hosefit_block(en=False):
-    t = HOSEFIT_EN if en else HOSEFIT_DE
+    if not en:
+        return HOSEFIT_DE
+    t = HOSEFIT_EN
     opts = "".join(f'<option value="{v}">{lbl}</option>' for v, lbl in t[5])
     return ('<!--EB_HOSEFIT--><section style="max-width:1000px;margin:18px auto 0;padding:0 20px;">'
             '<div style="background:#fff;border:2px solid #0f6ba8;border-radius:14px;padding:18px 20px;">'
@@ -3958,7 +3958,7 @@ def inject_quickpick(html, slug, en=False):
         return re.sub(r'<!--EB_QUICKPICK-->.*?<!--/EB_QUICKPICK-->\n?', '', html, flags=re.S)
     # Someone whose unit leaks or smells already owns one, and a page about coping
     # without a unit should not be answered with "here is how to pick one".
-    if any(k in slug for k in ("tropft", "stinkt", "zu-laut", "kuehlt-nicht", "reinigen",
+    if slug == "abluftschlauch-verlaengern" or any(k in slug for k in ("tropft", "stinkt", "zu-laut", "kuehlt-nicht", "reinigen",
                                "saugt-nicht",
                                "leaking", "not-cooling", "smells-musty", "how-to-clean",
                                "without-ac", "ohne-klimaanlage", "mit-eis",
@@ -4092,7 +4092,6 @@ def explainer_block(dev, en=False):
 VIDEOS = {
  "klimaanlage-kippfenster": ("DqjrdUiaftc", "Fensterabdichtung für die mobile Klimaanlage anbringen (Anleitung)"),
  "klimaanlage-dachfenster": ("DqjrdUiaftc", "Abluftschlauch am Fenster abdichten — Schritt-für-Schritt (Video)"),
- "abluftschlauch-verlaengern": ("DqjrdUiaftc", "Abluftschlauch & Fensterabdichtung richtig anbringen (Video)"),
  "beste-tragbare-klimaanlage-hitzewelle": ("l8z9FzMbpj8", "Die beste mobile Klimaanlage 2026? De'Longhi Pinguino PAC EX105 im Video-Test", "Unabhängiger Test im Video"),
  "beste-tragbare-klimaanlage-schlafzimmer": ("7sooX2zoH0c", "De'Longhi Pinguino PAC EX105 im Test: Wie leise ist sie wirklich?", "Unabhängiger Test im Video"),
  "ventilator-kaufen-ratgeber": ("zIZ1kfab3LQ", "Ventilator-Test: MeacoFan 1056, Midea & Rowenta im Vergleich", "Unabhängiger Test im Video"),
