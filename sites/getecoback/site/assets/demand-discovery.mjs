@@ -17,6 +17,17 @@ import {asksForDehumidifierDrainRoute} from './dehumidifier-drain-intent.mjs';
 // Queries stay in memory. Only fixed navigation actions reach the existing bridge.
 export const normalize=value=>String(value).toLowerCase().replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss').normalize('NFD').replace(/\p{Diacritic}/gu,'');
 const stop=new Set('wie kann ich meine mein der die das und im in am zu fuer what how do i my the a an and for to can de la le les un une el los las il lo una di het een ik'.split(' '));
+const n90ExactName=/^(?:de['’ -]?longhi[ -]+)?(?:pinguino[ -]+)?pac[ -]*n[ -]*90[ -]+eco[ -]+silent$/;
+const portaSplitOriginalName=/^(?:midea[ -]+)?porta[ -]*split[ -]+original$/;
+const portaSplitOriginalEan=/^(?:(?:midea[ -]+)?porta[ -]*split(?:[ -]+original)?[ -]+)?(?:ean[ -]+)?4048164116478$/;
+
+function asksForOriginalPortaSplit(query, modelLookup) {
+ if(portaSplitOriginalName.test(modelLookup)||portaSplitOriginalEan.test(modelLookup))return true;
+ // A measured fit question can still name a different version by its EAN alone.
+ const eans=query.match(/\b\d{13}\b/g)||[];
+ return eans.every(ean=>ean==='4048164116478')&&asksForPortaSplitWindowLip(query);
+}
+
 const laundryPage='/waeschetrockner-oder-luftentfeuchter.html';
 const singleLaundryId='luftentfeuchter-waesche-kosten';
 const dryer='(?:waesche|waermepumpen|kondens|abluft)?trockner';
@@ -35,6 +46,7 @@ function asksForOneDehumidifierRun(question) {
 export function searchEntries(index,term,lang){
  const query=normalize(term),words=query.match(/[\p{L}\p{N}]+/gu)?.filter(w=>!stop.has(w))||[];
  if(!words.length)return [];
+ const modelLookup=query.trim().replace(/\s+/g,' ');
  const pages=index.filter(e=>e.l===lang&&typeof e.t==='string'&&/^\/(?!\/)[^?#\\]*$/.test(e.u)&&!/^\/(auth|api|account|members|widgets)(\/|\.|$)/.test(e.u));
  let targetPage, targetId;
  const filterModel=lang==='de' && exactGermanFilterModel(query);
@@ -49,11 +61,11 @@ export function searchEntries(index,term,lang){
    targetPage='/guide/luftfeuchtigkeit-richtig-messen.html'; targetId='hygrometer-vergleichen';
  } else if(lang==='de' && asksForCoolingNoiseComparison(query)) {
    targetPage='/guide/delonghi-pac-n90-test.html'; targetId='lautstaerke';
- } else if(lang==='de' && asksForN90ModelIdentity(query)) {
+ } else if(lang==='de' && (n90ExactName.test(modelLookup)||asksForN90ModelIdentity(query))) {
    targetPage='/guide/delonghi-pac-n90-test.html'; targetId='testlage';
  } else if(lang==='de' && asksForTesamollWindowProfile(query)) {
    targetPage='/guide/fenster-zugluft-mietwohnung.html'; targetId='dichtungsprofil';
- } else if(lang==='de' && asksForPortaSplitWindowLip(query)) {
+ } else if(lang==='de' && asksForOriginalPortaSplit(query,modelLookup)) {
    targetPage='/guide/midea-portasplit-ausverkauft-alternativen.html'; targetId='fensterfalz';
  } else if(lang==='de' && asksForWindowVacClearance(focusWindowVacQuestion(query)?.query ?? '')) {
    targetPage='/produkte.html'; targetId='fenstersauger-duesenbreite';
