@@ -1,3 +1,4 @@
+import {exactGermanFilterModel} from './exact-filter-intent.mjs';
 import {asksForCellarVentilationCheck} from './cellar-ventilation-intent.mjs';
 import {asksForDehumidifierDrainRoute} from './dehumidifier-drain-intent.mjs';
 
@@ -24,19 +25,24 @@ export function searchEntries(index,term,lang){
  if(!words.length)return [];
  const pages=index.filter(e=>e.l===lang&&typeof e.t==='string'&&/^\/(?!\/)[^?#\\]*$/.test(e.u)&&!/^\/(auth|api|account|members|widgets)(\/|\.|$)/.test(e.u));
  let targetPage, targetId;
- if(lang==='de' && asksForDehumidifierDrainRoute(query)) {
+ const filterModel=lang==='de' && exactGermanFilterModel(query);
+ if(filterModel) {
+   targetPage='/ersatzfilter.html'; targetId=filterModel;
+ } else if(lang==='de' && asksForDehumidifierDrainRoute(query)) {
    targetPage='/guide/luftentfeuchter-keller.html'; targetId='ablauf-vor-kauf';
  } else if(lang==='de' && asksForCellarVentilationCheck(query)) {
    targetPage='/guide/keller-lueften-sommer.html'; targetId='taupunkt';
  } else if(lang==='de' && asksForOneDehumidifierRun(query)) {
    targetPage=laundryPage; targetId=singleLaundryId;
  }
- const focused=targetPage && pages.find(e=>e.u===targetPage&&e.section?.id===targetId&&typeof e.section.title==='string'&&typeof e.section.description==='string');
+ const candidate=targetPage && pages.find(e=>e.u===targetPage);
+ const section=filterModel?candidate?.model_sections?.find(row=>row.id===targetId):candidate?.section;
+ const focused=section?.id===targetId && typeof section?.title==='string' && typeof section?.description==='string' ? candidate : null;
  const ranked=pages.filter(e=>!focused||e.u!==targetPage)
  .map(e=>{const title=normalize(e.t),desc=normalize(e.d||''),alias=normalize(e.a||'');const scores=words.map(w=>title.includes(w)?4:alias.includes(w)?3:desc.includes(w)?1:0);return {entry:e,score:scores.every(Boolean)?scores.reduce((a,b)=>a+b,0):0};})
  .filter(h=>h.score>0).sort((a,b)=>b.score-a.score||a.entry.u.localeCompare(b.entry.u));
  if(focused){
-   const {title,description}=focused.section;
+   const {title,description}=section;
    ranked.unshift({entry:{...focused,t:title,d:description,u:targetPage+'#'+targetId},score:1+4*words.length});
  }
  return ranked.slice(0,6);

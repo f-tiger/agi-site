@@ -27,9 +27,9 @@ test('the browser loads the current catalogue search module', async () => {
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 226);
+  assert.equal(withGuides.length, 227);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 24);
+  assert.equal(destinations.size, 25);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);
@@ -707,4 +707,30 @@ test('paired German cellar air and wall questions find the measured check in pub
     assert.notEqual(findCatalogueTools(compact,{query:q})[0]?.name,name,q);
   }
   assert.equal(analytics,0);
+});
+
+test('exact German Beurer and Levoit replacement questions find the documented model lookup', async()=>{
+ const name='luftreiniger_ersatzfilter_zuordnung';
+ for(const q of [
+   'Welcher Ersatzfilter passt zu meinem Beurer LR 401? Auf der Packung steht 69309.',
+   'Hat der Filter 69309 für meinen LR401 die richtige Nummer?',
+   'Welchen Filter brauche ich für meinen Levoit Core 300S ohne Pro?',
+   'Welcher Standardfilter passt in meinen Core 300S?',
+ ]) {
+   const results=(await catalogue({q,view:'compact',limit:'3'})).tools;
+   assert.equal(results[0]?.name,name,q);
+   assert.equal(findCatalogueTools(compact,{query:q})[0]?.name,name,q);
+   assert.equal(toolGuidePath(results[0]),'/ersatzfilter.html#finder',q);
+   assert.deepEqual((await catalogue({q,tool:name,category:'Heizen'})).tools,[],q);
+ }
+ for(const q of [
+   'Welcher Filter passt zu meinem Levoit Core 300S Pro?',
+   'Wie wechsle ich den Filter von meinem Levoit Core 300S?',
+   'Passt der Filter für den LR 401 auch in den LR 410?',
+   'Ist der Beurer Filter 69309 für meinen LR 405 oder LR 500 geeignet?',
+   'Kann ich den Filter vom Core 300S unter Wasser auswaschen?',
+   'Was kostet mich der Filter für den Beurer LR 401 im Jahr bei zwei Wechseln?',
+ ]) assert.notEqual((await catalogue({q,view:'compact'})).tools[0]?.name,name,q);
+ assert.equal((await catalogue({q:name,view:'compact'})).tools[0]?.name,name);
+ assert.equal(analytics,0);
 });

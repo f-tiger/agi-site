@@ -60,6 +60,8 @@ async function checkGermanLaundryDiscovery(browser,base){
    check(matches.every(match=>match.href!==destination),'A different buying or information intent does not lead to the single-method tool: '+query);
    if(previousDestination)equal(matches[0]?.href,previousDestination,'Existing searches keep their first destination: '+query);
   }
+  equal((await search('Welcher Ersatzfilter passt in meinen Beurer LR 401?'))[0],{href:'/ersatzfilter.html#beurer-lr401',language:'de'},'Beurer model reaches the audited exact filter');
+  equal((await search('Welchen Filter brauche ich für meinen Levoit Core 300S ohne Pro?'))[0],{href:'/ersatzfilter.html#levoit-core-300s',language:'de'},'Core 300S reaches its exact standard filter');
   const ventilation='Soll ich meinen Keller lüften? Innen 16 °C und 75 %, draußen 8 °C und 90 %, Wand 12 °C.';
   equal((await search(ventilation))[0],{href:'/guide/keller-lueften-sommer.html#taupunkt',language:'de'},'Paired cellar readings lead to the measured ventilation check');
   const hose='Kann ich den Schlauch vom MeacoDry Arete One 20L nach oben in das Waschbecken legen?';

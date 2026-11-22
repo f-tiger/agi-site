@@ -54,6 +54,15 @@ def collect():
    catalog=json.loads((ROOT/'data/product-catalog.json').read_text())
    extra=' '.join([extra]+[c['name'] for c in catalog['categories']]+[p['name']+' '+p['variant'] for p in catalog['products']])
   entry={'u':route,'t':' '.join(h.title.split()),'d':desc[:320],'l':lang,'a':extra}
+  if lang=='de' and route=='/ersatzfilter.html':
+   items=json.loads((ROOT/'data/filter-finder-de.json').read_text())['items']
+   entry['model_sections']=[]
+   for item in items:
+    identifier=item['id']
+    if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*',identifier) or text.count(f' id="quelle-{identifier}"')!=1 or text.count(f' id="{identifier}"')!=1:
+     raise ValueError(f'Missing or ambiguous filter model destination: {route}#{identifier}')
+    entry['model_sections'].append({'id':identifier,'title':item['brand']+' '+item['models'][0]+': Ersatzfilter prüfen',
+                                   'description':item['note']})
   if section:=sections.get((lang,route)):
    anchor=section['id']
    matches=re.findall(r'<section\b[^<>]*\bid="'+re.escape(anchor)+r'"[^<>]*>',text)
