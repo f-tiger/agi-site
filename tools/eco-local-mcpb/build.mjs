@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.22.18';
-const revision = '11304c4f7ac614ad01b945180a80e1d3320a5173';
+const version = '1.22.19';
+const revision = '57aecd99509b3cec4b890a2eb7adabd6dec6a86c';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -28,7 +28,7 @@ const featureNames = ['entfeuchter_ablaufcheck', 'btu_empfehlung', 'fensterabdic
   'luftentfeuchter_waesche_einzelkosten', 'fritz_302_danfoss_adapter', 'keller_lueften_taupunkt_messwerte',
   'luftreiniger_ersatzfilter_zuordnung', 'philips_verdunsterfilter_zuordnung', 'heizdecke_stromkosten_nennleistung',
   'hygrometer_messbereiche', 'pac_n90_ean_abgleichen', 'midea_portasplit_fensterfalz_pruefen',
-  'tesamoll_fensterdichtung_profil_pruefen', 'klimaanlage_geraeusch_vergleich'];
+  'tesamoll_fensterdichtung_profil_pruefen', 'klimaanlage_geraeusch_vergleich', 'trotec_ttk75_eco_pruefpunkt'];
 const entry = 'src/server.mjs';
 const legacyHelpers = fileURLToPath(new URL('../mcp-registry/local-packages/', import.meta.url));
 const sha256 = buffer => createHash('sha256').update(buffer).digest('hex');
@@ -60,6 +60,9 @@ const n90Citation = 'https://getecoback.com/guide/delonghi-pac-n90-test.html';
 const n90IdentityGuide = n90Citation + '#testlage';
 const coolingNoiseTool = 'klimaanlage_geraeusch_vergleich';
 const coolingNoiseGuide = n90Citation + '#lautstaerke';
+const ttk75Tool = 'trotec_ttk75_eco_pruefpunkt';
+const ttk75Citation = 'https://getecoback.com/guide/trotec-luftentfeuchter-test.html';
+const ttk75Guide = ttk75Citation + '#ttk75-pruefpunkt';
 const portaSplitLipTool = 'midea_portasplit_fensterfalz_pruefen';
 const portaSplitCitation = 'https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html';
 const portaSplitLipGuide = portaSplitCitation + '#fensterfalz';
@@ -717,11 +720,49 @@ async function verifyCoolingNoiseComparison(call) {
   return {name:coolingNoiseTool,guide:coolingNoiseGuide,records,rejected:invalid.length};
 }
 
+async function verifyTtk75Point(call) {
+  const manual = 'https://de.trotec.com/fileadmin/downloads/Entfeuchtung/TTK75ECO/TRT-BA-TTK75ECO-TC-010-DE.pdf';
+  const supplier = 'https://www.baushop-express.com/trotec-kondensationsentfeuchter-ttk-eco.html';
+  const printedPage = 14;
+  const operatingRange = {temperatur_c:[5,32],luftfeuchte_prozent:[30,90]};
+  const args = {modell:'ttk_75_eco',temperatur_c:30,luftfeuchte_prozent:80};
+  const cases = [
+    [{},['hersteller_pruefpunkt',20,null]],
+    [{temperatur_c:20,luftfeuchte_prozent:60},['lieferantenwert_abgleichen',null,6.4]],
+    [{temperatur_c:10,luftfeuchte_prozent:60},['kein_pruefpunkt',null,null]],
+    [{temperatur_c:29.999},['kein_pruefpunkt',null,null]],
+    [{temperatur_c:4.99},['ausserhalb_betriebsbereich',null,null]],
+    [{modell:'abweichend_oder_offen'},['modell_klaeren',null,null]],
+  ];
+  const records = [];
+  for (const [change, expected] of cases) {
+    const result = await call({...args,...change});
+    assert.equal(result.isError,false);
+    const data = result.structuredContent;
+    const observed = [data.status,data.dokumentierter_entzug_l_24h,data.lieferantenwert_l_24h];
+    assert.deepEqual(observed,expected);
+    assert.deepEqual([data.citation_url,data.guide_url,data.hersteller_anleitung_url,data.druckseite,data.lieferantenquelle_url],
+      [ttk75Citation,ttk75Guide,manual,printedPage,supplier]);
+    assert.deepEqual(data.betriebsbereich,data.status === 'modell_klaeren' ? null : operatingRange);
+    assert.match(data.grenze,/21 l\/24 h.*separat als Maximalwert/);
+    assert.ok(!Object.keys(data).some(key=>/watt|leistungsaufnahme|_w$|stromkosten|kwh/i.test(key)));
+    assert.doesNotMatch(result.content[0].text,/https?:\/\/[^"\s]*(?:amazon\.|amzn\.)|[?&]tag=/i);
+    records.push(observed);
+  }
+  const invalid = [{...args,modell:'ttk_75_e'},{...args,temperatur_c:undefined},{...args,luftfeuchte_prozent:101}];
+  for (const inputs of invalid) {
+    const result = await call(inputs);
+    assert.equal(result.isError,true);
+    assert.equal(result.structuredContent,undefined);
+  }
+  return {name:ttk75Tool,guide:ttk75Guide,manual,printedPage,supplier,operatingRange,records,rejected:invalid.length};
+}
+
 async function verifyStdio(extracted, manifest) {
   const {TOOLS} = await import(pathToFileURL(join(extracted,'src/tools.mjs')));
   const {expandedDefinitions} = await import(pathToFileURL(join(extracted,'src/eco-suite/src/mcp-expanded.mjs')));
   const expected = JSON.parse(JSON.stringify(TOOLS));
-  assert.equal(expected.length,2027);
+  assert.equal(expected.length,2028);
   assert.deepEqual(manifest.server.mcp_config, {command:'node',args:['${__dirname}/'+entry]});
   return withStdio(extracted,[],async rpc => {
     const listed = [], sizes = [], cursors = new Set();
@@ -737,9 +778,9 @@ async function verifyStdio(extracted, manifest) {
       }
     } while (cursor !== undefined);
     assert.deepEqual(listed,expected);
-    assert.deepEqual(sizes,[...Array(20).fill(100),27]);
+    assert.deepEqual(sizes,[...Array(20).fill(100),28]);
     const names = new Set(listed.map(tool=>tool.name));
-    assert.equal(names.size,2027);
+    assert.equal(names.size,2028);
     assert.ok(oldNames.every(name=>names.has(name)), 'Expected all eight supported legacy tools');
     assert.ok([...names].every(name=>!/balkonspeicher|balkonkraftwerk|solarbank|pv[_-]speicher/i.test(name)));
     assert.ok(manifest.tools.every(tool=>names.has(tool.name)));
@@ -803,9 +844,11 @@ async function verifyStdio(extracted, manifest) {
       rpc('tools/call',{name:tesamollTool,arguments:args}));
     const coolingNoise = await verifyCoolingNoiseComparison(args =>
       rpc('tools/call',{name:coolingNoiseTool,arguments:args}));
+    const ttk75Point = await verifyTtk75Point(args =>
+      rpc('tools/call',{name:ttk75Tool,arguments:args}));
     return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,windowCondensation,decimalWindowWidth,
       singleLaundry,fritzValve,drainRoute,measuredVentilation,exactFilter,philipsFilter,warmthCost,hygrometerComparison,n90Identity,
-      portaSplitWindowLip,tesamollProfiles,coolingNoise,
+      portaSplitWindowLip,tesamollProfiles,coolingNoise,ttk75Point,
       firstExamples:['btu_empfehlung','entfeuchter_ablaufcheck'],finder:verifyFinder(extracted,drain),
       lastPageExample:last.name,legacyNames:oldNames.length,network:'disabled'};
   });
@@ -1393,6 +1436,16 @@ async function verifyCompactStdio(extracted) {
     assert.deepEqual(noiseMatch.inputSchema.required,['pegel_a_dba','pegel_b_dba','groesse_a','groesse_b','gleiche_bedingungen']);
     const coolingNoise = await verifyCoolingNoiseComparison(eingaben =>
       rpc('tools/call',{name:runner,arguments:{name:coolingNoiseTool,eingaben}}));
+    const ttk75Lookup = await rpc('tools/call',{
+      name:finder,arguments:{frage:'Bringt der Trotec TTK 75 ECO bei 10 Grad und 60 Prozent Luftfeuchte im Keller auch 21 Liter am Tag?'},
+    });
+    assert.equal(ttk75Lookup.isError,false);
+    const ttk75Match = ttk75Lookup.structuredContent.tools[0];
+    assert.equal(ttk75Match?.name,ttk75Tool);
+    assert.equal(ttk75Match.guide_url,ttk75Guide);
+    assert.deepEqual(ttk75Match.inputSchema.required,['modell','temperatur_c','luftfeuchte_prozent']);
+    const ttk75Point = await verifyTtk75Point(eingaben =>
+      rpc('tools/call',{name:runner,arguments:{name:ttk75Tool,eingaben}}));
     const tadoOventrop = await verifyCompactTadoOventrop(rpc,finder,runner);
     const householdDecisions = await verifyCompactHouseholdDecisions(rpc,runner);
     const windowWidth = await verifyCompactWindowWidth(rpc,finder,runner);
@@ -1404,7 +1457,7 @@ async function verifyCompactStdio(extracted) {
       tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,
       liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,singleLaundry,fritzValve,drainRoute,
       measuredVentilation,exactFilter,philipsFilter,warmthCost,hygrometerComparison,laundryPrecision,windowBlade,windowLookup,
-      windowWidth,decimalWindowWidth,householdDecisions,tadoOventrop,n90Costs,n90Identity,portaSplitWindowLip,tesamollProfiles,coolingNoise,
+      windowWidth,decimalWindowWidth,householdDecisions,tadoOventrop,n90Costs,n90Identity,portaSplitWindowLip,tesamollProfiles,coolingNoise,ttk75Point,
       humidifierEfficiency,glassvacTemperature,windowSubject,windowCondensation,
     };
   });
@@ -1480,6 +1533,7 @@ try {
   assert.deepEqual(result.portaSplitWindowLip,result.compact.portaSplitWindowLip);
   assert.deepEqual(result.tesamollProfiles,result.compact.tesamollProfiles);
   assert.deepEqual(result.coolingNoise,result.compact.coolingNoise);
+  assert.deepEqual(result.ttk75Point,result.compact.ttk75Point);
   assert.deepEqual(result.resource,result.compact.resource);
   result.archiveReadme = {replacedVersion:readme.previousVersion,registryLatestUrl};
   const identifier = `${releaseUrl}/${file}`;
