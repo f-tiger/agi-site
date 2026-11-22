@@ -132,6 +132,12 @@ separate RAVL adapter. Unresolved model or valve information stays open.
 The existing thermostat checker keeps FRITZ!, Bosch and tado authorities
 separate.
 
+Version 1.22.9 recognizes questions about a condensate hose that briefly
+rises over a threshold before reaching a lower drain. Both offline MCP
+profiles retain the established gravity, pump, tank and inspection branches.
+The pump accessory evidence links to the German supplier for the exact
+Arete One 20L. It does not transfer to the Arete Two 12L.
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the

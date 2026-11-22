@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.22.8';
-const revision = '786bb81d724c9d6ca31f352bbc030b23d6de2fc3';
+const version = '1.22.9';
+const revision = '95991c925b38950b6a2e76edf87d4cd374f90b3b';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -31,6 +31,11 @@ const legacyHelpers = fileURLToPath(new URL('../mcp-registry/local-packages/', i
 const sha256 = buffer => createHash('sha256').update(buffer).digest('hex');
 const writeJson = (path, value) => writeFile(path, JSON.stringify(value, null, 2) + '\n');
 const drainArguments = {drain:'level_or_uphill',model:'meaco-one-20'};
+const drainTool = 'entfeuchter_ablaufcheck';
+const drainQuestion = 'Kellerentfeuchter: Mein Kondensatschlauch muss kurz über eine Türschwelle, aber der Abfluss liegt tiefer. Läuft das Wasser trotzdem ab?';
+const drainCitation = 'https://getecoback.com/guide/luftentfeuchter-keller.html';
+const drainGuide = drainCitation+'?utm_source=eco-mcp&utm_medium=referral&utm_campaign=keller-ablauf#ablauf-vor-kauf';
+const drainAccessory = 'https://www.meaco.de/produkt/meaco-dry-arete-one-pumpe/';
 const cellarUri = 'ecoback://evidence/de/kellerentfeuchter';
 const laundryComparisonTool = 'waesche_trocknungskosten';
 const singleLaundryTool = 'luftentfeuchter_waesche_einzelkosten';
@@ -180,6 +185,8 @@ async function verifyCellarResource(extracted,rpc,init) {
   assert.ok(text.includes('| 20 °C | 8,5 L/Tag | 216 W |'));
   assert.match(text,/Meaco Deutschland,[^\n]+https:\/\/eu\.meaco\.com\/[^\n]+geprüft 2026-11-20\./);
   assert.match(text,/Comfee MDDF-20DEN7 ohne WF[^\n]+offen[^\n]+https:\/\/www\.feelcomfee\.com\/[^\n]+geprüft 2026-11-06, erneut gelesen 2026-11-20\./);
+  assert.match(text,/kurze Schwelle.*tiefer liegendem Zielablauf/i);
+  assert.match(text,/https:\/\/www\.meaco\.de\/produkt\/meaco-dry-arete-one-pumpe\/\).*DE, geprüft 2026-11-22/);
   const missing = await rpc('resources/read',{uri:cellarUri+'-unbekannt'},-32002);
   return {uri:cellarUri,mimeType,textSha256:sha256(Buffer.from(text)),missingCode:missing.code};
 }
@@ -321,6 +328,40 @@ async function verifyFritzValve(call) {
   return {name:fritzValveTool,guide:fritzValveGuide,outcomes,diameterRejected:true,providers};
 }
 
+async function verifyDrainRoute(call) {
+  const cases = [
+    [drainArguments,'pump_check',drainAccessory],
+    [{drain:'level_or_uphill',model:'meaco-two-12',moisture:'normal'},'pump_check'],
+    [{drain:'downhill',model:'stadler-lukas'},'gravity_check'],
+    [{drain:'no_drain'},'tank'],
+    [{drain:'unknown',moisture:'damage'},'inspect_route'],
+  ];
+  const outcomes = [];
+  for (const [args,outcome,source] of cases) {
+    const result = await call(args);
+    assert.equal(result.isError,false);
+    const data = result.structuredContent;
+    assert.equal(data.outcome,outcome);
+    assert.equal(data.citation_url,drainCitation);
+    assert.equal(data.guide_url,drainGuide);
+    if (source) {
+      assert.equal(data.model_evidence.source_url,source);
+      assert.equal(data.model_evidence.source_market,'DE');
+      assert.equal(data.model_evidence.checked,'2026-11-22');
+      assert.match(data.model_evidence.note,/2[,.]5\s*m\b/);
+      assert.match(data.model_evidence.note,/3(?:\s+|-)m\b/);
+      assert.match(data.model_evidence.note,/6\s*m.+1[,.]5\s*m.+nicht bestätigt/);
+      assert.match(data.answer,/Schwelle/i);
+      assert.match(data.answer,/tiefer/i);
+    } else {
+      assert.notEqual(data.model_evidence?.source_url,drainAccessory);
+    }
+    assert.doesNotMatch(result.content[0].text,/https?:\/\/[^"\s]*(?:amazon\.|amzn\.)|[?&]tag=/i);
+    outcomes.push(data.outcome);
+  }
+  return {name:drainTool,guide:drainGuide,source:drainAccessory,outcomes};
+}
+
 async function verifyStdio(extracted, manifest) {
   const {TOOLS} = await import(pathToFileURL(join(extracted,'src/tools.mjs')));
   const {expandedDefinitions} = await import(pathToFileURL(join(extracted,'src/eco-suite/src/mcp-expanded.mjs')));
@@ -387,7 +428,9 @@ async function verifyStdio(extracted, manifest) {
       rpc('tools/call',{name:singleLaundryTool,arguments:args}));
     const fritzValve = await verifyFritzValve((name,args) =>
       rpc('tools/call',{name,arguments:args}));
-    return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,windowCondensation,decimalWindowWidth,singleLaundry,fritzValve,
+    const drainRoute = await verifyDrainRoute(args =>
+      rpc('tools/call',{name:drainTool,arguments:args}));
+    return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,windowCondensation,decimalWindowWidth,singleLaundry,fritzValve,drainRoute,
       firstExamples:['btu_empfehlung','entfeuchter_ablaufcheck'],finder:verifyFinder(extracted,drain),
       lastPageExample:last.name,legacyNames:oldNames.length,network:'disabled'};
   });
@@ -853,6 +896,15 @@ async function verifyCompactStdio(extracted) {
     assert.deepEqual(fritzMatch.inputSchema.required,['artikelnummer','ventil']);
     const fritzValve = await verifyFritzValve((name,eingaben) =>
       rpc('tools/call',{name:runner,arguments:{name,eingaben}}));
+    const routeLookup = await rpc('tools/call',{name:finder,arguments:{frage:drainQuestion}});
+    assert.equal(routeLookup.isError,false);
+    const [routeMatch] = routeLookup.structuredContent.tools;
+    assert.equal(routeMatch?.name,drainTool);
+    assert.equal(routeMatch.citation_url,drainCitation);
+    assert.equal(routeMatch.guide_url,drainGuide);
+    assert.deepEqual(routeMatch.inputSchema.required,['drain']);
+    const drainRoute = await verifyDrainRoute(eingaben =>
+      rpc('tools/call',{name:runner,arguments:{name:drainTool,eingaben}}));
     const laundryPrecision = await verifyCompactLaundryPrecision(rpc,finder);
     const humidifierEfficiency = await verifyCompactHumidifierEfficiency(rpc,finder,runner);
     const glassvacTemperature = await verifyCompactGlassvacTemperature(rpc,finder,runner);
@@ -877,7 +929,7 @@ async function verifyCompactStdio(extracted) {
     const windowLookup = await verifyCompactWindowLookup(rpc,finder);
     return {
       tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,
-      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,singleLaundry,fritzValve,laundryPrecision,windowBlade,windowLookup,
+      liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,singleLaundry,fritzValve,drainRoute,laundryPrecision,windowBlade,windowLookup,
       windowWidth,decimalWindowWidth,householdDecisions,tadoOventrop,n90Costs,humidifierEfficiency,glassvacTemperature,windowSubject,windowCondensation,
     };
   });
@@ -943,6 +995,7 @@ try {
   assert.deepEqual(result.decimalWindowWidth,result.compact.decimalWindowWidth);
   assert.deepEqual(result.singleLaundry,result.compact.singleLaundry);
   assert.deepEqual(result.fritzValve,result.compact.fritzValve);
+  assert.deepEqual(result.drainRoute,result.compact.drainRoute);
   assert.deepEqual(result.resource,result.compact.resource);
   result.archiveReadme = {replacedVersion:readme.previousVersion,registryLatestUrl};
   const identifier = `${releaseUrl}/${file}`;

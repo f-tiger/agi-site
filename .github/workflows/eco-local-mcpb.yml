@@ -19,12 +19,12 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUNDLE: ecoback-local-tools-1.22.8.mcpb
-  VERSION: '1.22.8'
-  UPSTREAM_SHA: 786bb81d724c9d6ca31f352bbc030b23d6de2fc3
+  BUNDLE: ecoback-local-tools-1.22.9.mcpb
+  VERSION: '1.22.9'
+  UPSTREAM_SHA: 95991c925b38950b6a2e76edf87d4cd374f90b3b
   NAME: io.github.f-tiger/ecoback-local-tools
   RELEASE_TAG: fleet-mcp-registry-2026-10-10
-  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.8.mcpb
+  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.9.mcpb
   REGISTRY_VERSIONS: https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions
   SOURCE_URL: https://github.com/f-tiger/getecoback-mcp
   MCPB_SCHEMA: https://raw.githubusercontent.com/modelcontextprotocol/mcpb/70fe3b34cd6dff1b3bba046638edc72a6467a4fb/schemas/mcpb-manifest-v0.3.schema.json
@@ -105,6 +105,12 @@ jobs:
             .compact.tools == ["ecoback_werkzeug_finden","ecoback_werkzeug_ausfuehren"] and
             .compact.topMatch == "entfeuchter_ablaufcheck" and .compact.exampleOutcome == "pump_check" and
             .compact.citationsPreserved == true and .compact.liveToolRejected == true and
+            .drainRoute == {
+              name:"entfeuchter_ablaufcheck",
+              guide:"https://getecoback.com/guide/luftentfeuchter-keller.html?utm_source=eco-mcp&utm_medium=referral&utm_campaign=keller-ablauf#ablauf-vor-kauf",
+              source:"https://www.meaco.de/produkt/meaco-dry-arete-one-pumpe/",
+              outcomes:["pump_check","pump_check","gravity_check","tank","inspect_route"]
+            } and .compact.drainRoute == .drainRoute and
             .compact.cellarBuyerEvidence == true and
             .compact.laundryComparison == {
               topMatch:"waesche_trocknungskosten", dryerEurPerLoad:0.6, dehumidifierEurPerLoad:0.3,
