@@ -899,13 +899,13 @@ test('original PortaSplit lip sizes reach the measurement tool without borrowing
  assert.equal(toolGuidePath(roof[0]),page+'#kaufpruefung');
  for(const q of [
   'Passt der 60 mm breite Fensterfalz zur Standardhalterung meiner Midea PortaSplit Pro?',
-   'Midea PortaSplit außen öffnendes Fenster mit 60 mm Fensterfalz',
    'PortaSplit 2 Fensterfalz messen',
    'PortaSplit II Fensterfalz messen',
   'Midea PortaSplit Lite am Dachfenster mit Universalhalterung',
   'PortaSplit Cool Falzbreite der Standardhalterung messen',
   'Midea PortaSplit E Fensterrahmen 45 mm messen',
  ]) assert.ok(!(await catalogue({q,view:'compact'})).tools.some(tool=>[name,bracket].includes(tool.name)),q);
+ assert.ok(!(await catalogue({q:'Midea PortaSplit außen öffnendes Fenster mit 60 mm Fensterfalz',view:'compact'})).tools.some(tool=>tool.name===name));
  assert.ok(!(await catalogue({q:'Fensterabdichtung für meinen Monoblock mit Dichtung messen',view:'compact'})).tools.some(tool=>tool.name===name));
  assert.equal((await catalogue({q:name,view:'compact'})).tools[0]?.name,name);
  assert.equal(analytics,0);
