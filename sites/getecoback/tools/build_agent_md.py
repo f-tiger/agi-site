@@ -39,6 +39,10 @@ CITABLE_ROOT_TOOLS = (
     "strommess-protokoll.html", "geraete-austausch-rechner.html", "familienwerkstatt.html",
 )
 CITABLE_ROOT_EVIDENCE = ("daten.html", "wie-wir-empfehlen.html")
+LAUNDRY_TOOL_HANDOFFS = {
+    '/waeschetrockner-oder-luftentfeuchter.html': 'https://thedollscout.com/de/ai-tools/dach-meter-fit#messgeraet-ausleihen-oder-kaufen',
+    '/en/guide/heated-airer-vs-dehumidifier.html': 'https://thedollscout.com/ai-tools/uk-laundry-session',
+}
 
 DISCLOSURE = {
     "nl": "Redactionele keuzehulp, geen eigen apparaattest. De HTML-pagina bevat gewone winkellinks; deze tekstweergave niet.",
@@ -262,6 +266,8 @@ def to_markdown(src_html, path_url, lang):
         source = citation_url(H.unescape(href), rel.group(1) if rel else '')
         if source:
             return f"[{text}]({source})"
+        if href == LAUNDRY_TOOL_HANDOFFS.get(path_url) and (not rel or 'sponsored' not in rel[1].lower().split()):
+            return f"[{text}]({href})"
         if re.match(r"^/(?!/)", href):
             return f"[{text}]({BASE}{href})"
         if href.startswith("#") and href[1:] in retained_ids:

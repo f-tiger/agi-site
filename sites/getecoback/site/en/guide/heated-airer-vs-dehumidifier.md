@@ -67,6 +67,8 @@ Unit rate only, standing charge excluded — that is a daily fixed cost you pay 
 
 Use the figure on your own airer's plate as an estimate, or measure whole-run kWh. Include the electricity used by any dehumidifier or other powered moisture removal. Compare the same laundry mass and final dryness, with the washing spin, room conditions and actual running hours recorded. A low-wattage appliance running longer can use more energy; the table cannot establish a cheapest method for your home. Space, fabric-care needs and whether you already own a dryer also matter.
 
+Have two whole-load readings? [Compare your measured drying costs in pounds at The Doll Scout](https://thedollscout.com/ai-tools/uk-laundry-session). Use your own unit rate and only compare loads with similar conditions and final dryness.
+
 ## The three ways to deal with the moisture
 
 - **Ventilate briefly and fully.** Free. Cold outside air is dry air once it warms up indoors, so opening up properly for a few minutes exchanges the humid air for air that has capacity. The [mechanism and the routine](https://getecoback.com/en/guide/tilt-and-turn-windows-winter-condensation.html) are on our condensation page. A window left ajar all day is the one thing that does not work — it chills the surfaces without exchanging much air.

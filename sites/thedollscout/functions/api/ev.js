@@ -1,5 +1,5 @@
 import {MARKET_EVENTS,marketMeasurement} from '../../collector-assets/market-contract.mjs';
-import {REGIONAL_ACTIONS,regionalMeasurement} from '../../collector-assets/tds-suite/regional-measurement.mjs';
+import {REGIONAL_ACTIONS,REGIONAL_TOOL_PATHS,regionalMeasurement,regionalPageview} from '../../collector-assets/tds-suite/regional-measurement.mjs';
 // Client beacon endpoint (added 2026-08-19): the real-reader line. A row here
 // means JavaScript actually ran, which no crawler in the server-side log does.
 // Privacy: no cookies, people identifiers or IP. Referrers are reduced to their
@@ -32,6 +32,7 @@ export async function onRequestPost(ctx) {
     try { ref = body.r ? new URL(body.r).hostname.slice(0, 60) : ''; } catch (e) {}
     if(MARKET_EVENTS.includes(body.e)){const metric=marketMeasurement(body);if(!metric)return new Response(null,{status:204});ref=metric.ref;}
     if(REGIONAL_ACTIONS.includes(body.e)&&!regionalMeasurement(body))return new Response(null,{status:204});
+    if(!body.e && REGIONAL_TOOL_PATHS.includes(path) && !regionalPageview(body)) return new Response(null,{status:204});
     const shopping = ['shopping_official_click', 'shopping_compare'].includes(body.e) || Object.hasOwn(body, 'item') || Object.hasOwn(body, 'placement');
     if (shopping) {
       const metadata = shoppingMeasurement(body);
