@@ -3,7 +3,7 @@
   "site": "getecoback",
   "signals": {
     "membership": {
-      "ready": true,
+      "ready": false,
       "has_paid_members": false,
       "has_active_members": false
     },
@@ -18,7 +18,7 @@
       "has_gaps": true,
       "has_hot_pages": true,
       "top_underserved_page": null,
-      "top_hot_page": "/guide/richtig-lueften-im-winter.html"
+      "top_hot_page": "/waeschetrockner-oder-luftentfeuchter.html"
     },
     "health": {
       "http": "200",
@@ -27,11 +27,11 @@
   },
   "actions": [
     {
-      "kind": "membership_readiness_check",
-      "priority": 70,
-      "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
+      "kind": "membership_health",
+      "priority": 92,
+      "reason": "recent snapshot reported unavailable checkout; check the live API before recovery",
       "evidence": {},
-      "mode": "observe"
+      "mode": "alert"
     },
     {
       "kind": "content_gap",
@@ -39,7 +39,7 @@
       "reason": "topic-signal overlap has no matching page; apply the buyer, source, country and distribution gates before expansion",
       "evidence": {
         "count_band": "10-99",
-        "query": "vorwerk saugwischer roboter",
+        "query": "pingi luftentfeuchter",
         "value_band": "100+"
       },
       "mode": "queue"
@@ -49,9 +49,9 @@
       "priority": 52,
       "reason": "review observed page-event activity and source quality; activity is not verified people or buying intent",
       "evidence": {
-        "page": "/guide/richtig-lueften-im-winter.html",
+        "page": "/waeschetrockner-oder-luftentfeuchter.html",
         "n7_band": "10-99",
-        "p7_band": "0"
+        "p7_band": "1-9"
       },
       "mode": "queue"
     }

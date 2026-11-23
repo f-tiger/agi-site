@@ -91,18 +91,7 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.875,
-   "page": "guide/saugwischer-kaufberatung.html",
-   "q": "tineco saugwischer",
-   "seed": "saugwischer",
-   "source": "related-queries",
-   "stand": "2026-11-14",
-   "v": 120
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.8,
+   "match": 0.775,
    "page": "guide/schimmel-kleiderschrank.html",
    "q": "luftentfeuchter nachfüllpack",
    "seed": "luftentfeuchter",
@@ -126,36 +115,6 @@
   "zero_hit_records": 0
  },
  "gaps": [
-  {
-   "kind": "value",
-   "match": 0.533,
-   "page": "guide/saugroboter-kaufberatung.html",
-   "q": "vorwerk saugwischer roboter",
-   "seed": "saugwischer",
-   "source": "related-queries",
-   "stand": "2026-11-14",
-   "v": 158500
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "guide/saugwischer-kaufberatung.html",
-   "q": "hyla saugwischer",
-   "seed": "saugwischer",
-   "source": "related-queries",
-   "stand": "2026-11-14",
-   "v": 53800
-  },
-  {
-   "kind": "value",
-   "match": 0.333,
-   "page": "guide/saugwischer-kaufberatung.html",
-   "q": "kobold sp600 saugwischer",
-   "seed": "saugwischer",
-   "source": "related-queries",
-   "stand": "2026-11-14",
-   "v": 38650
-  },
   {
    "kind": "value",
    "match": 0.5,
@@ -188,8 +147,8 @@
   },
   {
    "kind": "value",
-   "match": 0.188,
-   "page": "guide/schmidbauer-infrarotheizung-test.html",
+   "match": 0.225,
+   "page": "guide/luftbefeuchter-ratgeber.html",
    "q": "philips kaffeevollautomat 6000 serie",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
@@ -278,8 +237,8 @@
   },
   {
    "kind": "value",
-   "match": 0.0,
-   "page": null,
+   "match": 0.18,
+   "page": "guide/luftbefeuchter-ratgeber.html",
    "q": "philips 5500 lattego ep5546/70 kaffeevollautomat",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
@@ -308,28 +267,108 @@
   },
   {
    "kind": "value",
-   "match": 0.333,
-   "page": "guide/akku-heizluefter.html",
-   "q": "vorwerk akku saugwischer",
-   "seed": "saugwischer",
+   "match": 0.0,
+   "page": null,
+   "q": "emma flip matratze",
+   "seed": "matratze",
    "source": "related-queries",
-   "stand": "2026-11-14",
-   "v": 80
-  }
- ],
- "generated": "2026-11-22",
- "geo": "DE",
- "heat_source": "measured 2026-11-22 (25 pages); no notes",
- "hot_pages": [
-  {
-   "n7": 17,
-   "p7": 0,
-   "page": "/guide/richtig-lueften-im-winter.html"
+   "stand": "2026-11-22",
+   "v": 140
   },
   {
-   "n7": 15,
+   "kind": "value",
+   "match": 0.333,
+   "page": "index.html",
+   "q": "betten 180x200 mit matratze und lattenrost",
+   "seed": "matratze",
+   "source": "related-queries",
+   "stand": "2026-11-22",
+   "v": 120
+  },
+  {
+   "kind": "value",
+   "match": 0.25,
+   "page": "guide/aeg-chillflex-pro-test.html",
+   "q": "emma original pro matratze",
+   "seed": "matratze",
+   "source": "related-queries",
+   "stand": "2026-11-22",
+   "v": 90
+  },
+  {
+   "kind": "value",
+   "match": 0.467,
+   "page": "guide/delonghi-pac-n90-test.html",
+   "q": "bett 120x200 mit matratze und lattenrost",
+   "seed": "matratze",
+   "source": "related-queries",
+   "stand": "2026-11-22",
+   "v": 90
+  },
+  {
+   "kind": "value",
+   "match": 0.0,
+   "page": null,
+   "q": "tempur matratze 180x200",
+   "seed": "matratze",
+   "source": "related-queries",
+   "stand": "2026-11-22",
+   "v": 80
+  },
+  {
+   "kind": "value",
+   "match": 0.333,
+   "page": "index.html",
+   "q": "boxspringbett 140x200 mit matratze und topper",
+   "seed": "matratze",
+   "source": "related-queries",
+   "stand": "2026-11-22",
+   "v": 80
+  },
+  {
+   "kind": "value",
+   "match": 0.0,
+   "page": null,
+   "q": "encasing matratze",
+   "seed": "matratze",
+   "source": "related-queries",
+   "stand": "2026-11-22",
+   "v": 70
+  },
+  {
+   "kind": "value",
+   "match": 0.25,
+   "page": "guide/meacodry-arete-one-test.html",
+   "q": "emma one matratze 180x200",
+   "seed": "matratze",
+   "source": "related-queries",
+   "stand": "2026-11-22",
+   "v": 70
+  },
+  {
+   "kind": "value",
+   "match": 0.333,
+   "page": "en/filter-finder.html",
+   "q": "emma original matratze",
+   "seed": "matratze",
+   "source": "related-queries",
+   "stand": "2026-11-22",
+   "v": 70
+  }
+ ],
+ "generated": "2026-11-23",
+ "geo": "DE",
+ "heat_source": "measured 2026-11-23 (25 pages); no notes",
+ "hot_pages": [
+  {
+   "n7": 23,
+   "p7": 4,
+   "page": "/waeschetrockner-oder-luftentfeuchter.html"
+  },
+  {
+   "n7": 16,
    "p7": 1,
-   "page": "/produkte.html"
+   "page": "/guide/richtig-lueften-im-winter.html"
   },
   {
    "n7": 13,
@@ -338,18 +377,13 @@
   },
   {
    "n7": 9,
-   "p7": 5,
-   "page": "/"
-  },
-  {
-   "n7": 9,
    "p7": 2,
    "page": "/en/guide/tilt-and-turn-windows-winter-condensation.html"
   },
   {
-   "n7": 9,
-   "p7": 3,
-   "page": "/waeschetrockner-oder-luftentfeuchter.html"
+   "n7": 8,
+   "p7": 4,
+   "page": "/"
   },
   {
    "n7": 8,
@@ -357,13 +391,13 @@
    "page": "/guide/luftbefeuchter-stromverbrauch.html"
   },
   {
-   "n7": 6,
-   "p7": 5,
-   "page": "/guide/klimaanlage-wann-kaufen.html"
+   "n7": 7,
+   "p7": 11,
+   "page": "/produkte.html"
   },
   {
    "n7": 6,
-   "p7": 1,
+   "p7": 0,
    "page": "/guide/luftentfeuchter-ratgeber.html"
   },
   {
@@ -373,13 +407,18 @@
   },
   {
    "n7": 5,
+   "p7": 5,
+   "page": "/guide/klimaanlage-wann-kaufen.html"
+  },
+  {
+   "n7": 5,
    "p7": 0,
    "page": "/guide/luftentfeuchter-keller.html"
   },
   {
-   "n7": 4,
-   "p7": 0,
-   "page": "/en/guide/heated-airer-vs-dehumidifier.html"
+   "n7": 5,
+   "p7": 2,
+   "page": "/guide/midea-portasplit-ausverkauft-alternativen.html"
   },
   {
    "n7": 4,
@@ -387,28 +426,24 @@
    "page": "/guide/heizluefter-stromsparend.html"
   },
   {
-   "n7": 4,
-   "p7": 2,
-   "page": "/guide/midea-portasplit-ausverkauft-alternativen.html"
+   "n7": 3,
+   "p7": 0,
+   "page": "/en/guide/evaporative-cooler-vs-fan.html"
   },
   {
    "n7": 3,
-   "p7": 0,
-   "page": "/en/guide/cheapest-way-to-cool-a-room-without-installation.html"
+   "p7": 1,
+   "page": "/en/guide/heated-airer-vs-dehumidifier.html"
   }
  ],
  "how_to_read": "Research candidates only; token matching is not an editorial or market decision. Relative growth is not search volume, and autocomplete is vocabulary evidence only. Underserved requires an observed zero in the matching measurement window; missing page measurements are unknown, and zero arrivals do not establish a title or internal-link cause. First-party evidence contains only aggregate zero-hit record counts, never raw search terms. Freshness, country, independent evidence and the reviewed page catalog must pass tools/eco_evolution.py before prioritising an existing page. This research queue does not publish. The separate getecoback scheduled deployment runs tools/auto_content.py to discover official product specifications, validate evidence and publish at most one substantive guide change per UTC day.",
  "note": "选题输入,不是选题依据。任何由它引出的页面仍要过本站三门与硬内容规则。本文件由 tools/autopilot 每日确定性生成,零 AI、零编造。",
  "offtopic_dropped": [
-  "leifheit bodenwischer",
-  "wischmopp",
   "meacodry arete one 10l",
   "black friday 2026",
-  "roborock saros 20",
   "echooria",
   "daikin stylish",
-  "tineco",
-  "vorwerk kobold"
+  "beco maxima plus"
  ],
  "site": "getecoback",
  "source_notes": [],

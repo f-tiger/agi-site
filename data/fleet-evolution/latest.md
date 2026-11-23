@@ -1,12 +1,12 @@
-# Fleet evolution report — 2026-11-22
+# Fleet evolution report — 2026-11-23
 
 Deterministic, aggregate-only report. Missing data remains unknown; no editorial text, payments or membership rights are changed by this job.
 
 ## Fleet counters
 
 - Sites: 14 (healthy probes: 31)
-- Membership ready: 1 · paid members: 0 · active members: 0
-- Opportunity candidates: 7 · stale inputs: 0
+- Membership ready: 0 · paid members: 0 · active members: 0
+- Opportunity candidates: 6 · stale inputs: 0
 
 ## Priority actions
 
@@ -14,26 +14,26 @@ Deterministic, aggregate-only report. Missing data remains unknown; no editorial
 |---:|---|---|---|---|
 | 92 | agiscorecard | membership_health | alert | public_ok=True; ready=False |
 | 92 | baipiaoji | membership_health | alert | public_ok=True; ready=False |
+| 92 | getecoback | membership_health | alert | public_ok=True; ready=False |
 | 92 | thedollscout | membership_health | alert | public_ok=True; ready=False |
 | 80 | agiscorecard | optimize_existing_page | queue | count=2; query=when are 13f filings due; page=ai-stock-exposure.html; value=420250 |
-| 70 | getecoback | membership_readiness_check | observe | snapshot_date=2026-11-22T10:14:26.801Z |
 | 55 | agiscorecard | content_gap | queue | count=4; query=rzai stock; value=17900 |
-| 55 | getecoback | content_gap | queue | count=19; query=vorwerk saugwischer roboter; value=158500 |
-| 55 | thedollscout | content_gap | queue | count=3; query=sonny angels near me; value=1 |
-| 52 | agiscorecard | improve_hot_page | queue | page=/agents/; n7=119; p7=57 |
-| 52 | getecoback | improve_hot_page | queue | page=/guide/richtig-lueften-im-winter.html; n7=17; p7=0 |
-| 48 | goldrush | ai_attribution_review | queue | legacy_page_view_events=726; ai_referrer_events=0 |
-| 48 | thedollscout | ai_attribution_review | queue | legacy_page_view_events=2431; ai_referrer_events=0 |
+| 55 | getecoback | content_gap | queue | count=24; query=pingi luftentfeuchter; value=27500 |
+| 55 | thedollscout | content_gap | queue | count=14; query=cat mode labubu; value=86750 |
+| 52 | agiscorecard | improve_hot_page | queue | page=/agents/; n7=141; p7=54 |
+| 52 | getecoback | improve_hot_page | queue | page=/waeschetrockner-oder-luftentfeuchter.html; n7=23; p7=4 |
+| 48 | goldrush | ai_attribution_review | queue | legacy_page_view_events=688; ai_referrer_events=0 |
+| 48 | thedollscout | ai_attribution_review | queue | legacy_page_view_events=2609; ai_referrer_events=0 |
 
 ## Input freshness
 
 | Input | Date | Age (days) |
 |---|---|---:|
-| membership | 2026-11-22T10:14:26.801Z | 0 |
-| health | 2026-11-21T15:49:48Z | 1 |
-| ai_referrals | 2026-11-21T15:50:12Z | 1 |
-| opportunities | 2026-11-21 | 1 |
-| autopilot_receipt | 2026-11-22 | 0 |
+| membership | 2026-11-23T11:12:00.859Z | 0 |
+| health | 2026-11-22T15:48:53Z | 1 |
+| ai_referrals | 2026-11-22T15:49:18Z | 1 |
+| opportunities | 2026-11-22 | 1 |
+| autopilot_receipt | 2026-11-23 | 0 |
 
 ## Growth directions
 

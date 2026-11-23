@@ -14,15 +14,15 @@
     "p7": 0
    },
    "cold_now": {
-    "n7": 56,
-    "p7": 46
+    "n7": 59,
+    "p7": 41
    },
    "feuchte_now": {
-    "n7": 53,
-    "p7": 17
+    "n7": 49,
+    "p7": 20
    },
    "laundry_view": {
-    "n7": 4,
+    "n7": 6,
     "p7": 1
    },
    "md_serve": {
@@ -30,8 +30,8 @@
     "p7": 0
    },
    "page_view": {
-    "n7": 199,
-    "p7": 106
+    "n7": 200,
+    "p7": 120
    },
    "popup_click": {
     "n7": 2,
@@ -39,15 +39,15 @@
    },
    "popup_close": {
     "n7": 7,
-    "p7": 9
+    "p7": 6
    },
    "popup_view": {
-    "n7": 17,
-    "p7": 22
+    "n7": 19,
+    "p7": 18
    },
    "strom_now": {
     "n7": 15,
-    "p7": 6
+    "p7": 8
    },
    "strompreis_api": {
     "n7": 0,
@@ -60,17 +60,17 @@
   },
   "zero_hit_records": 0
  },
- "fetched": "2026-11-22",
+ "fetched": "2026-11-23",
  "kind": "eco-trend",
  "notes": [],
  "ok": true,
  "pages": {
   "/": {
-   "n7": 9,
-   "p7": 5
+   "n7": 8,
+   "p7": 4
   },
-  "/en/guide/cheapest-way-to-cool-a-room-without-installation.html": {
-   "n7": 3,
+  "/en/guide/dehumidifier-drying-clothes-cost.html": {
+   "n7": 2,
    "p7": 0
   },
   "/en/guide/evaporative-cooler-vs-fan.html": {
@@ -78,7 +78,15 @@
    "p7": 0
   },
   "/en/guide/heated-airer-vs-dehumidifier.html": {
-   "n7": 4,
+   "n7": 3,
+   "p7": 1
+  },
+  "/en/guide/how-to-clean-portable-air-conditioner.html": {
+   "n7": 2,
+   "p7": 0
+  },
+  "/en/guide/portable-ac-skylight-roof-window.html": {
+   "n7": 2,
    "p7": 0
   },
   "/en/guide/portable-ac-smells-musty.html": {
@@ -97,25 +105,17 @@
    "n7": 4,
    "p7": 0
   },
-  "/guide/heizung-10-qm.html": {
-   "n7": 2,
-   "p7": 1
-  },
-  "/guide/homeoffice-warm-bleiben.html": {
-   "n7": 2,
-   "p7": 0
-  },
   "/guide/klimaanlage-50-qm.html": {
    "n7": 2,
    "p7": 1
   },
   "/guide/klimaanlage-wann-kaufen.html": {
-   "n7": 6,
+   "n7": 5,
    "p7": 5
   },
   "/guide/klimaanlage-wohnmobil.html": {
    "n7": 2,
-   "p7": 5
+   "p7": 4
   },
   "/guide/luftbefeuchter-ratgeber.html": {
    "n7": 13,
@@ -131,15 +131,19 @@
   },
   "/guide/luftentfeuchter-ratgeber.html": {
    "n7": 6,
-   "p7": 1
+   "p7": 0
   },
   "/guide/midea-portasplit-ausverkauft-alternativen.html": {
-   "n7": 4,
+   "n7": 5,
+   "p7": 2
+  },
+  "/guide/mobile-klimaanlage-ueberwintern.html": {
+   "n7": 2,
    "p7": 2
   },
   "/guide/richtig-lueften-im-winter.html": {
-   "n7": 17,
-   "p7": 0
+   "n7": 16,
+   "p7": 1
   },
   "/guide/thermovorhang-ratgeber.html": {
    "n7": 6,
@@ -149,21 +153,17 @@
    "n7": 2,
    "p7": 4
   },
-  "/guide/wohnmobil-feuchtigkeit-winter.html": {
-   "n7": 2,
-   "p7": 3
-  },
   "/mcp.html": {
    "n7": 3,
    "p7": 1
   },
   "/produkte.html": {
-   "n7": 15,
-   "p7": 1
+   "n7": 7,
+   "p7": 11
   },
   "/waeschetrockner-oder-luftentfeuchter.html": {
-   "n7": 9,
-   "p7": 3
+   "n7": 23,
+   "p7": 4
   }
  },
  "site": "getecoback",

@@ -3,35 +3,35 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 17,
-    "q": "tool:portfolio_returns"
-   },
-   {
     "n": 16,
     "q": "tool:verdicts"
    },
    {
-    "n": 12,
-    "q": "tool:thesis_tracker"
+    "n": 16,
+    "q": "tool:portfolio_returns"
    },
    {
-    "n": 10,
+    "n": 11,
     "q": "tool:claim_ledger https://goldrush.agiscorecard."
    },
    {
-    "n": 9,
-    "q": "tool:sunwatch_ledger"
+    "n": 10,
+    "q": "tool:thesis_tracker"
    },
    {
-    "n": 9,
-    "q": "tool:invest_positions"
-   },
-   {
-    "n": 7,
+    "n": 8,
     "q": "github"
    },
    {
-    "n": 5,
+    "n": 7,
+    "q": "tool:sunwatch_ledger"
+   },
+   {
+    "n": 7,
+    "q": "tool:invest_positions"
+   },
+   {
+    "n": 4,
     "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
    },
    {
@@ -44,14 +44,14 @@
    }
   ]
  },
- "fetched": "2026-11-22",
+ "fetched": "2026-11-23",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
   "/agents/": {
-   "n7": 119,
-   "p7": 57
+   "n7": 141,
+   "p7": 54
   }
  },
  "site": "agiscorecard",
