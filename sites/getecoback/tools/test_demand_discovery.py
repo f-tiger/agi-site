@@ -19,6 +19,7 @@ assert [(entry['l'],entry['u'],entry['section']['id']) for entry in focused]==[
     ('de','/guide/fenster-zugluft-mietwohnung.html','dichtungsprofil'),
     ('de','/guide/heizdecke-stromverbrauch.html','waerme-rechner'),
     ('de','/guide/keller-lueften-sommer.html','taupunkt'),
+    ('de','/guide/klimaanlage-fenster-einbruchschutz.html','fenster-verschluss-pruefen'),
     ('de','/guide/luftentfeuchter-keller.html','ablauf-vor-kauf'),
     ('de','/guide/luftfeuchtigkeit-richtig-messen.html','hygrometer-vergleichen'),
     ('de','/guide/midea-portasplit-ausverkauft-alternativen.html','fensterfalz'),
