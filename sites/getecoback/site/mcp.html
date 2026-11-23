@@ -30,7 +30,7 @@
   article ul, article ol { margin:0 0 14px 20px; color:#26333d; }
   article li { margin-bottom:8px; }
   pre { background:#0d2438; color:#dbeafe; border-radius:10px; padding:14px 16px; font-size:13px; overflow-x:auto; margin:10px 0 16px; }
-  #kompaktprofil, #offline-installation { scroll-margin-top:180px; }
+  #kompaktprofil, #offline-installation, #offline-erster-check { scroll-margin-top:180px; }
   code { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
   p code, li code { background:#eaf2f7; color:#0a4d7a; padding:1px 6px; border-radius:5px; font-size:13.5px; overflow-wrap:anywhere; }
   .answer { background:#eaf6ff; border:1px solid #cfe6fa; border-radius:10px; padding:16px 18px; margin:18px 0; }
@@ -290,9 +290,15 @@
 
   <section class="answer" aria-labelledby="offline-installation">
     <h3 id="offline-installation">EcoBack lokal installieren (MCPB)</h3>
-    <p>Öffne die MCPB-Datei in einem Client, der dieses Format unterstützt. Das Paket benötigt Node.js 22 oder neuer und rechnet auf deinem Gerät. Live-Wetter und Online-Ratgeber werden im vollständigen Modus nur bei einem entsprechenden Werkzeugaufruf abgerufen.</p>
-    <p>Beim manuellen Start zeigt <code>--compact</code> nur die lokale Werkzeugsuche und -ausführung. Suche dort nach EAN <code>4048164116478</code>, um die <a href="/guide/midea-portasplit-ausverkauft-alternativen.html#fensterfalz">Fensterfalzprüfung für die originale Midea PortaSplit</a> zu finden.</p>
-    <p><a href="https://github.com/f-tiger/getecoback-mcp#connect" data-eco-mcpb-setup-open>Download und Installationsanleitung</a> · <a href="https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions/latest">Offizieller Registry-Eintrag für das lokale Paket</a></p>
+    <p><a href="https://github.com/f-tiger/getecoback-mcp#connect" data-eco-mcpb-setup-open>Downloadseite und Installationsanleitung öffnen</a> · <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.f-tiger%2Fecoback-local-tools&amp;version=latest">Aktuelle Version im offiziellen MCP Registry</a></p>
+    <p>Öffne die heruntergeladene MCPB-Datei in einem Client, der dieses Format unterstützt. Das Paket benötigt Node.js 22 oder neuer und rechnet auf deinem Gerät. Live-Wetter und Online-Ratgeber werden im vollständigen Modus nur bei einem entsprechenden Werkzeugaufruf abgerufen.</p>
+
+    <h4 id="offline-erster-check">Erste Rechnung ohne Internet</h4>
+    <p>Starte im entpackten Ordner das geprüfte Beispiel für die Taupunktprüfung:</p>
+    <pre><code>node src/find-tools.mjs --example fenster_oberflaeche_taucheck</code></pre>
+    <p>Bei <strong>20 °C Raumtemperatur, 60 % relativer Luftfeuchte und 10 °C an der Innenscheibe</strong> gibt das Beispiel einen Taupunkt von <strong>rund 12 °C</strong> aus. Die Scheibe liegt 2 °C darunter, sodass Kondenswasser möglich ist. Für dein Fenster brauchst du die drei Messwerte vom selben Zeitpunkt. <a href="/guide/fenster-beschlagen-innen.html#fenstersauger-gegen-kondenswasser">Messwerte prüfen und die Anleitung teilen</a>.</p>
+    <p>Im lokalen Kompaktmodus mit <code>--compact</code> kannst du dieselbe Aufgabe suchen. Sende die Frage „Im Schlafzimmer sind 20 Grad bei 60 % Luftfeuchtigkeit. Morgens hat die Innenscheibe 10 Grad. Warum wird sie nass?“ an <code>ecoback_werkzeug_finden</code>. Der Treffer <code>fenster_oberflaeche_taucheck</code> zeigt die drei benötigten Eingaben.</p>
+    <p>Für ein anderes Beispiel suche nach EAN <code>4048164116478</code>, um die <a href="/guide/midea-portasplit-ausverkauft-alternativen.html#fensterfalz">Fensterfalzprüfung für die originale Midea PortaSplit</a> zu finden.</p>
   </section>
 
   <h3 id="kompaktprofil">Zwei Werkzeuge für deinen Assistenten</h3>

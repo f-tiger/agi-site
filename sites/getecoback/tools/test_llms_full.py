@@ -15,6 +15,35 @@ MEACO = 'https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-
 
 
 class LlmsFull(unittest.TestCase):
+    def test_offline_setup_uses_the_reviewed_release_entry_and_real_first_example(self):
+        setup = 'https://github.com/f-tiger/getecoback-mcp#connect'
+        registry = ('https://registry.modelcontextprotocol.io/v0.1/servers'
+                    '?search=io.github.f-tiger%2Fecoback-local-tools&version=latest')
+        example = 'node src/find-tools.mjs --example fenster_oberflaeche_taucheck'
+        guide = '/guide/fenster-beschlagen-innen.html#fenstersauger-gegen-kondenswasser'
+        for page, aid in [('mcp','offline-installation'), ('for-agents','local-mcpb')]:
+            with self.subTest(page=page):
+                source = (SITE / (page + '.html')).read_text()
+                mirror = (SITE / (page + '.md')).read_text()
+                section = re.search(rf'<section[^>]*aria-labelledby="{aid}".*?</section>', source, re.S)
+                self.assertIsNotNone(section)
+                self.assertEqual(source.count(f'id="{aid}"'), 1)
+                self.assertEqual(re.findall(r'<a href="([^"]+)" data-eco-mcpb-setup-open>', section[0]), [setup])
+                self.assertTrue(re.search(r'</h[23]>\s*<p><a href="'+re.escape(setup), section[0]))
+                self.assertIn(html.escape(registry), section[0])
+                self.assertIn('](' + setup + ')', mirror)
+                self.assertIn('](' + registry + ')', mirror)
+                self.assertNotRegex(section[0], r'/releases/download/|[?&](?:utm_source|tag)=')
+                if page == 'mcp':
+                    self.assertEqual(source.count('id="offline-erster-check"'), 1)
+                    for phrase in (example, 'rund 12 °C', 'die drei Messwerte vom selben Zeitpunkt',
+                                   'ecoback_werkzeug_finden', guide):
+                        self.assertIn(phrase, section[0])
+                        self.assertIn(phrase, mirror)
+                else:
+                    self.assertIn('href="/mcp.html#offline-erster-check"', section[0])
+                    self.assertIn('https://getecoback.com/mcp.html#offline-erster-check', mirror)
+
     def test_indoor_condensation_guide_answers_before_merchant_choices(self):
         route = '/guide/fenster-beschlagen-innen.html'
         guide = SITE / route.lstrip('/')
