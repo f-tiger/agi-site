@@ -82,7 +82,7 @@ test('tool schema keeps legacy inputs optional and documents bounded choices and
   assert.ok(schema.properties.temperature.description.includes('keine allgemeine Betriebsgrenze'));
   assert.ok(schema.properties.qm.description.includes('heating/cooling only'));
   const init = await rpc('initialize');
-  assert.equal(init.serverInfo.version, '1.24.25');
+  assert.equal(init.serverInfo.version, '1.24.26');
   assert.ok(init.instructions.includes('keine Affiliate-Kauflinks'));
 });
 
@@ -152,6 +152,14 @@ test('basement ventilation requires both measured dew points and a genuinely mea
     assert.equal(value.aussen_taupunkt_c,dew);
     assert.equal(value.citation_url,guide);
     assert.equal(value.guide_url,guide+'#taupunkt');
+    assert.equal(value.share_url,value.guide_url);
+    assert.match(value.share_text_de,/Eingegebene Werte, nicht unabhängig geprüft/);
+    assert.ok(value.share_text_de.includes(value.antwort));
+    assert.ok(value.share_text_de.includes(`ca. ${String(dew).replace('.', ',')} °C`));
+    assert.ok(value.share_text_de.endsWith(value.share_url));
+    assert.match(value.share_text_de,/Bei sichtbarer Nässe zuerst die Ursache klären/);
+    assert.match(value.share_text_de,/EcoBack-Ratgeber \(enthält Affiliate-Links\)/);
+    assert.doesNotMatch(value.share_text_de,/utm_|#eco-v1=/i);
     assert.match(value.quellen_url,/^https:\/\/www\.umweltbundesamt\.de\//);
     assert.match(value.verbraucherzentrale_url,/^https:\/\/www\.verbraucherzentrale\.de\//);
     assert.doesNotMatch(body(result),/amazon\.|amzn\.|[?&]tag=/i);

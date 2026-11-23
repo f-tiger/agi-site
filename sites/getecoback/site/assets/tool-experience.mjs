@@ -19,7 +19,7 @@ let earlyInput=false;const noticeInput=e=>{if(e.isTrusted)earlyInput=true;};docu
 
 // Await the existing calculators' top-level imports before submitting any example.
 // The load event can precede completion of an asynchronously evaluated module.
-await Promise.all([...document.querySelectorAll('script[type=module][src]')].filter(s=>/\/(winter-tools|au-cooling|household|energy-workbench|laundry-check)\.mjs(?:\?|$)/.test(s.src)).map(s=>import(s.src)));
+await Promise.all([...document.querySelectorAll('script[type=module][src]')].filter(s=>/\/(winter-tools|au-cooling|household|energy-workbench|laundry-check|keller-lueften-check-ui)\.mjs(?:\?|$)/.test(s.src)).map(s=>import(s.src)));
 
 let adapter=null;
 const guard=document.querySelector('script[src*="/assets/legacy-tool-guard.mjs"]');
@@ -31,6 +31,8 @@ const country=document.querySelector('#country-form');if(country)adapter={form:c
 const tariff=document.querySelector('#tariff-form');if(tariff)adapter={form:tariff,result:document.querySelector('#results'),error:document.querySelector('#status'),anchor:tariff.closest('.workspace')||tariff};
 const laundry=document.querySelector('#laundry-check');if(laundry)adapter={form:laundry.querySelector('form'),result:laundry.querySelector('[data-results]'),error:laundry.querySelector('[data-error]'),anchor:laundry.querySelector('form')};
 const cleanLaundryShare=laundry&&lang==='de'?await import('./laundry-math.mjs?v=20261122'):null;
+const cellarShare=location.pathname==='/guide/keller-lueften-sommer.html'
+ ?await import('./keller-lueften-share.mjs'):null;
 if(adapter?.form)adapter.fields=[...adapter.form.querySelectorAll('input,select')].filter(e=>['number','range','checkbox','select-one'].includes(e.type));
 if(adapter)adapter.fields=[...new Set(adapter.fields)].filter(Boolean);
 const panel=node('section',null,'eco-experience');panel.id='eco-tool-experience';panel.setAttribute('aria-label',t[0]);
@@ -41,7 +43,7 @@ const status=node('p',null,'eco-note');status.setAttribute('role','status');
 let snapshot=null,kind='example',inRun=false;
 const preview=node('div',null,'eco-preview');preview.setAttribute('aria-live','polite');preview.hidden=true;
 const assumptionBox=node('details',null,'eco-assumptions'),assumptions=node('dl');assumptionBox.append(node('summary',t[3]),assumptions);
-const resultShare=button(t[6],()=>openShare(true));resultShare.disabled=true;
+const resultShare=button(cellarShare?'Kurzantwort zum Teilen':t[6],()=>openShare(true));resultShare.disabled=true;
 function key(e){return e.name||e.id;}
 // Laundry has mutually exclusive energy inputs. Keep inactive edits in the
 // form, but never validate, describe or share them as calculation assumptions.
@@ -76,26 +78,46 @@ function run(raw,source){
  finally{window.__ecoToolExample=false;inRun=false;history.replaceState(null,'',originalURL);window.scrollTo(x,y);}
  if(!snapshot){resultShare.disabled=true;preview.hidden=true;status.textContent=t[20];}
 }
-function shareURL(values,channel){const u=new URL(canonical);u.search='';u.hash='';u.searchParams.set('utm_source',channel);u.searchParams.set('utm_medium','community');u.searchParams.set('utm_campaign','eco-tools');if(values)u.hash='eco-v1='+encodeURIComponent(JSON.stringify({path:location.pathname,values}));return u.href;}
+function shareURL(values,channel){
+ const u=new URL(cellarShare?.CELLAR_SHARE_URL??canonical);
+ if(!cellarShare){u.search='';u.hash='';u.searchParams.set('utm_source',channel);u.searchParams.set('utm_medium','community');u.searchParams.set('utm_campaign','eco-tools');}
+ if(values)u.hash='eco-v1='+encodeURIComponent(JSON.stringify({path:location.pathname,values}));
+ return u.href;
+}
 function openShare(withResult){
  if(withResult&&!snapshot)return;
  const s=withResult?snapshot:null,url=shareURL(s?.values,'copy'),provenance=s?(s.kind==='example'?t[4]:s.kind==='shared'?t[15]:t[5]):'';
  let text;
- if(cleanLaundryShare){
+ if(cellarShare){
+  const values=s?.values;
+  text=values?cellarShare.cellarVentilationShareText({
+   aussen_c:Number(values.ta),aussen_rh_prozent:Number(values.rh),
+   innen_c:Number(values.tk),innen_rh_prozent:Number(values.rhin),wand_c:Number(values.wall),
+  },s.kind==='edited'?'entered':s.kind):`${cellarShare.CELLAR_SHARE_TITLE}\n${cellarShare.CELLAR_SHARE_URL}`;
+ }else if(cleanLaundryShare){
   const numeric=['dryer','dehum','watts','hours','price','loads','purchase'];
   const input=s&&Object.fromEntries(Object.entries(s.values).map(([key,value])=>[key,numeric.includes(key)?Number(value):value]));
   text=s?cleanLaundryShare.laundryShareText(input,s.kind==='edited'?'entered':s.kind):`Trocknungskosten je Ladung vergleichen\n${cleanLaundryShare.LAUNDRY_SHARE_URL}`;
  }else{
   text=[title,provenance,s?.text||'',...(s?['',t[3]+':',...fieldsFor(s.values).filter(e=>key(e)!=='own').map(e=>label(e)+': '+s.values[key(e)])]:[]),'',t[18],t[17]+': '+url].filter(Boolean).join('\n');
  }
- const note=cleanLaundryShare?'Der Text kann deine Rechenwerte enthalten. Reddit und X erhalten über diese Schaltflächen nur den Rechnerlink und einen festen Titel. Beschreibe deine Situation in eigenen Worten und beachte die Regeln der Community.':t[10];
+ const note=cellarShare||cleanLaundryShare?'Der Text kann deine Rechenwerte enthalten. Reddit und X erhalten über diese Schaltflächen nur den Rechnerlink und einen festen Titel. Beschreibe deine Situation in eigenen Worten und beachte die Regeln der Community.':t[10];
  genericDraft.replaceChildren(node('h3',t[19]),node('p',note,'eco-note'));
  const area=node('textarea');area.value=text;area.readOnly=true;area.setAttribute('aria-label',t[19]);genericDraft.append(area);
  const links=node('div',null,'eco-links');
- for(const platform of ['reddit','x']){const u=cleanLaundryShare?.LAUNDRY_SHARE_URL??shareURL(s?.values,platform),target=new URL(platform==='reddit'?'https://www.reddit.com/submit':'https://x.com/intent/post');target.searchParams.set('url',u);target.searchParams.set(platform==='reddit'?'title':'text',cleanLaundryShare?'Trocknungskosten je Ladung vergleichen':platform==='reddit'?title.slice(0,180)+(provenance?' · '+provenance:''):[title.slice(0,65),provenance,s?clean(s.text).slice(0,85):t[18]].filter(Boolean).join(' · ').slice(0,210));const a=node('a',platform==='reddit'?'Reddit':'X');a.href=target.href;a.target='_blank';a.rel='noopener noreferrer';a.addEventListener('click',()=>emit('share_'+platform));links.append(a);}
+ for(const platform of ['reddit','x']){
+  const u=cellarShare?.CELLAR_SHARE_URL??cleanLaundryShare?.LAUNDRY_SHARE_URL??shareURL(s?.values,platform);
+  const shareTitle=cellarShare?.CELLAR_SHARE_TITLE??(cleanLaundryShare?'Trocknungskosten je Ladung vergleichen'
+   :platform==='reddit'?title.slice(0,180)+(provenance?' · '+provenance:'')
+   :[title.slice(0,65),provenance,s?clean(s.text).slice(0,85):t[18]].filter(Boolean).join(' · ').slice(0,210));
+  const target=new URL(platform==='reddit'?'https://www.reddit.com/submit':'https://x.com/intent/post');
+  target.searchParams.set('url',u);target.searchParams.set(platform==='reddit'?'title':'text',shareTitle);
+  const a=node('a',platform==='reddit'?'Reddit':'X');a.href=target.href;a.target='_blank';a.rel='noopener noreferrer';
+  a.addEventListener('click',()=>emit('share_'+platform));links.append(a);
+ }
  links.append(button(t[8],async()=>{try{await navigator.clipboard.writeText(text);status.textContent=t[12];emit('copy');}catch{area.focus();area.select();status.textContent=t[13];}}));
  if(s)links.append(button(t[9],()=>downloadCard(s,provenance)));
- const fallbackLabel=cleanLaundryShare?(s?'Szenario-Link (enthält Werte)':'Rechner-Link'):t[11];
+ const fallbackLabel=cellarShare||cleanLaundryShare?(s?'Szenario-Link (enthält Werte)':'Rechner-Link'):t[11];
  const fallback=node('a',fallbackLabel,'eco-fallback');fallback.href=!s&&cleanLaundryShare?cleanLaundryShare.LAUNDRY_SHARE_URL:url;fallback.setAttribute('aria-label',fallbackLabel);genericDraft.append(links,fallback);genericDraft.hidden=false;emit(withResult?'share_prepare':'tool_share');
 }
 function downloadCard(s,provenance){
@@ -105,10 +127,11 @@ function downloadCard(s,provenance){
  const a=node('a');a.href=canvas.toDataURL('image/png');a.download='ecoback-scenario.png';a.click();emit('image');
 }
 if(adapter){
- panel.append(node('p',t[1]));const choices=node('div',null,'eco-actions');let original=read();if(Object.hasOwn(original,'own'))original.own=false;
+ panel.append(node('p',cellarShare?'Vergleiche zwei Rechenbeispiele. Eigene Werte kannst du im Taupunkt-Check darüber eingeben.':t[1]));const choices=node('div',null,'eco-actions');let original=read();if(Object.hasOwn(original,'own'))original.own=false;
  const presets=[{name:t[2],values:original}];const add=(name,patch)=>presets.push({name,values:{...original,...Object.fromEntries(Object.entries(patch).map(([k,v])=>[k,String(v)]))}});
  const k=Object.keys(original);const price=k.find(x=>['price','rate','hk-price','sv-price','cents1'].includes(x));
- if(k.includes('rhin')){add('20 °C / 30 % · 17 °C / 20 %',{ta:20,rh:30,tk:17,rhin:20,wall:15});add('20 °C / 30 % · 17 °C / 70 %',{ta:20,rh:30,tk:17,rhin:70,wall:15});}
+ if(cellarShare){add('Draußen 10 °C / 80 %',{ta:10,rh:80,tk:17,rhin:65,wall:15});}
+ else if(k.includes('rhin')){add('20 °C / 30 % · 17 °C / 20 %',{ta:20,rh:30,tk:17,rhin:20,wall:15});add('20 °C / 30 % · 17 °C / 70 %',{ta:20,rh:30,tk:17,rhin:70,wall:15});}
  else if(k.includes('tw')){add('20 °C / 65 % · 24 °C',{tr:20,rh:65,tw:24});add('20 °C / 65 % · 10 °C',{tr:20,rh:65,tw:10});}
  else if(k.includes('qm')){add('20 m²',{qm:20});add('40 m²',{qm:40});}
  else if(k.includes('saving')&&k.includes('base')){add('0 %',{saving:0});add('10 %',{saving:10});}
@@ -134,7 +157,7 @@ if(adapter){
  if(!earlyInput)loadScenario();else{kind='edited';status.textContent=t[14];}window.addEventListener('hashchange',()=>{if(location.hash.startsWith('#eco-v1='))loadScenario();});
  panel.dataset.quick='true';
 }else{const h=document.querySelector('main h1,article h1,h1');if(h)h.after(panel);}
-shareArea.append(button(t[7],()=>openShare(false)));panel.append(shareArea,genericDraft,status);panel.dataset.ready='true';document.removeEventListener('input',noticeInput,true);document.removeEventListener('change',noticeInput,true);
+shareArea.append(button(cellarShare?'Nur Rechnerlink teilen':t[7],()=>openShare(false)));panel.append(shareArea,genericDraft,status);panel.dataset.ready='true';document.removeEventListener('input',noticeInput,true);document.removeEventListener('change',noticeInput,true);
 
 }
 init();
