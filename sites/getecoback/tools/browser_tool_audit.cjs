@@ -19,8 +19,14 @@ try{for(const url of Object.keys(inventory)){
 const ctx=await browser.newContext();await ctx.route('**/*',async route=>{const u=new URL(route.request().url());if(u.origin!==origin)return route.abort();if(u.pathname.startsWith('/api/'))return route.fulfill({contentType:'application/json',body:'{"ok":false}'});let f=path.join(root,u.pathname);return fs.existsSync(f)?route.fulfill({contentType:f.endsWith('.html')?'text/html':f.endsWith('.css')?'text/css':'text/javascript',body:fs.readFileSync(f)}):route.fulfill({status:404});});let page=await ctx.newPage();
 await page.goto(origin+'/guide/stromkosten-rechner.html?__probe=1');await page.locator('[data-validation-ready]').waitFor();await page.fill('#price','0');await page.click('#calcBtn');assert((await page.locator('#result').innerText()).includes('0,00 €'));assert.equal(await page.locator('#result a[href*="amazon."]').count(),0);checks+=2;
 const costPath='/guide/heizkosten-vergleich-rechner.html';
-await page.goto(origin+costPath+'?__probe=1');
+await page.setViewportSize({width:320,height:844});
+await page.goto(origin+'/guide/klimaanlage-mit-heizfunktion.html?__probe=1');
+await page.locator('article a[href="'+costPath+'#eb-hk-calc"]').first().click();
 await page.waitForSelector('#eco-tool-experience[data-ready=true]');
+const costHeading=await page.locator('#eb-hk-calc h2').boundingBox();
+const costNav=await page.locator('.eb-nav').boundingBox();
+assert(costHeading&&costNav&&costHeading.y>=costNav.y+costNav.height&&costHeading.y+costHeading.height<=844,
+ 'the guide opens the calculator above its optional shared examples');checks++;
 const costInput=page.locator('#hk-cop'),costGo=page.locator('#hk-go'),costResult=page.locator('#hk-res');
 await costInput.fill('2');await costGo.click();
 assert.match(await costResult.innerText(),/COP 2 · 600 kWh Strom · 222 €/);checks++;

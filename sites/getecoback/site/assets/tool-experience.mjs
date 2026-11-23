@@ -156,7 +156,7 @@ if(adapter){
  // Existing reset/import controls can invalidate output without dispatching input.
  const watch=new MutationObserver(()=>{if(!snapshot||inRun)return;try{if(adapter.result.hidden||getComputedStyle(adapter.result).display==='none'||adapter.error?.textContent.trim()||JSON.stringify(checked(read()))!==JSON.stringify(snapshot.values))invalidate();}catch{invalidate();}});
  watch.observe(adapter.result,{attributes:true,attributeFilter:['hidden','style'],childList:true,subtree:true,characterData:true});if(adapter.error)watch.observe(adapter.error,{childList:true,subtree:true,characterData:true});
- if(location.pathname==='/guide/keller-lueften-sommer.html'&&adapter.anchor.id==='taupunkt'){
+ if(heatCost||(location.pathname==='/guide/keller-lueften-sommer.html'&&adapter.anchor.id==='taupunkt')){
   adapter.anchor.after(panel);
  }else{
   adapter.anchor.before(panel);
