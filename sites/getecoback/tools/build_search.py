@@ -63,6 +63,9 @@ def collect():
  sections[('de','/guide/klimaanlage-fenster-einbruchschutz.html')]={
   'id':'fenster-verschluss-pruefen','title':'Klimaanlage am Fenster: Schließen und Verriegeln prüfen',
   'description':'Prüfe am konkreten Fenster, ob es mit der Leitung normal verriegelt. Bei unklarem Ergebnis den Kauf zurückstellen.'}
+ sections[('de','/guide/fenster-beschlagen-innen.html')]={
+  'id':'fenstersauger-gegen-kondenswasser','title':'Fenster morgens von innen nass: erst abwischen und messen',
+  'description':'Raumtemperatur, Luftfeuchte und Temperatur an der Innenscheibe gleichzeitig messen. Bei anhaltender Nässe die Ursache prüfen.'}
  out=[]
  for path,route,lang,h in public_pages():
   if not h.title.strip():raise ValueError(f'Missing title: {route}')

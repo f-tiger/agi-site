@@ -38,7 +38,17 @@ function asksForCoolingWindowClosure(query) {
  return lock.test(query)||completeClosure.test(query)||(absence.test(query)&&windowState.test(query));
 }
 
-export function exactGermanCoolingGuide(normalizedQuery) {
+function asksAboutIndoorWindowCondensation(query) {
+ const window=/\b(?:[a-z]*fenster\w*|(?:innen)?scheib\w*|glas)\b/;
+ const inside=/\b(?:innen(?:seite|scheiben?|fenster)?|raumseit(?:e|ig)|wohnungsseite)\b/;
+ const moisture=/\b(?:beschla(?:g|eg)\w*|kondens(?:wasser|at|ation)\w*|wasser\w*|tropfen\w*|nass\w*|feucht\w*)\b|\blaeu(?:ft|fen|fst)\b[^.!?]{0,70}\ban(?=\s*(?:[,.!?]|$))/;
+ const anotherLocation=/\b(?:aussen\w*|draussen|randverbund|(?:scheiben)?zwischenraum|zwischen\s+(?:(?:den|beiden|zwei|drei)\s+){0,2}(?:\w*scheiben|glaesern))\b/;
+ const otherIntent=/\b(?:auto\w*|windschutzscheib\w*|pkw|fahrzeug\w*|wohnmobil\w*|kaercher|fenstersaug\w*|duese\w*|klimaanlag\w*|abluftschlauch|ablaufschlauch)\b/;
+ return window.test(query)&&inside.test(query)&&moisture.test(query)&&
+    !anotherLocation.test(query)&&!otherIntent.test(query);
+}
+
+export function exactGermanGuide(normalizedQuery) {
  const query=normalizedQuery.trim().replace(/\s+/g,' ');
  if(n90ExactName.test(query)||n90ExactEan.test(query))
    return {path:'/guide/delonghi-pac-n90-test.html',id:'testlage'};
@@ -46,6 +56,8 @@ export function exactGermanCoolingGuide(normalizedQuery) {
    return {path:'/guide/midea-portasplit-ausverkauft-alternativen.html',id:'fensterfalz'};
  if(asksForCoolingWindowClosure(query))
    return {path:'/guide/klimaanlage-fenster-einbruchschutz.html',id:'fenster-verschluss-pruefen'};
+ if(asksAboutIndoorWindowCondensation(query))
+   return {path:'/guide/fenster-beschlagen-innen.html',id:'fenstersauger-gegen-kondenswasser'};
  return null;
 }
 
@@ -67,7 +79,7 @@ function asksForOneDehumidifierRun(question) {
 export function searchEntries(index,term,lang){
  const query=normalize(term),words=query.match(/[\p{L}\p{N}]+/gu)?.filter(w=>!stop.has(w))||[];
  if(!words.length)return [];
- const exactCooling=lang==='de' && exactGermanCoolingGuide(query);
+ const exactGuide=lang==='de' && exactGermanGuide(query);
  const pages=index.filter(e=>e.l===lang&&typeof e.t==='string'&&/^\/(?!\/)[^?#\\]*$/.test(e.u)&&!/^\/(auth|api|account|members|widgets)(\/|\.|$)/.test(e.u));
  let targetPage, targetId;
  const filterModel=lang==='de' && exactGermanFilterModel(query);
@@ -82,8 +94,8 @@ export function searchEntries(index,term,lang){
    targetPage='/guide/luftfeuchtigkeit-richtig-messen.html'; targetId='hygrometer-vergleichen';
  } else if(lang==='de' && asksForCoolingNoiseComparison(query)) {
    targetPage='/guide/delonghi-pac-n90-test.html'; targetId='lautstaerke';
- } else if(exactCooling) {
-   ({path:targetPage,id:targetId}=exactCooling);
+ } else if(exactGuide) {
+   ({path:targetPage,id:targetId}=exactGuide);
  } else if(lang==='de' && asksForN90ModelIdentity(query)) {
    targetPage='/guide/delonghi-pac-n90-test.html'; targetId='testlage';
  } else if(lang==='de' && asksForTesamollWindowProfile(query)) {

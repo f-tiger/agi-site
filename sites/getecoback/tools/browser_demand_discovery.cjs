@@ -86,6 +86,11 @@ async function checkGermanFocusedDiscovery(browser,base){
   const closure='/guide/klimaanlage-fenster-einbruchschutz.html#fenster-verschluss-pruefen';
   const closureQuery='Kann ich mein Kippfenster mit der PortaSplit beim Verlassen der Wohnung verriegeln?';
   equal((await search(closureQuery))[0],{href:closure,language:'de'},'A complete German window-lock question reaches the decision answer');
+  const condensation='/guide/fenster-beschlagen-innen.html#fenstersauger-gegen-kondenswasser';
+  const condensationQuery='Warum beschlägt das geschlossene Fenster morgens innen?';
+  equal((await search(condensationQuery))[0],{href:condensation,language:'de'},'Indoor condensation reaches the measurement answer');
+  check((await search('Mein Fenster beschlägt morgens von außen und innen ist es trocken.')).every(match=>match.href!==condensation),
+   'Outdoor condensation avoids the indoor answer');
   await search('eco-local-privacy-marker-6381');
   equal(await results.count(),0,'An arbitrary private phrase yields no result');
   await search(positive[1]);
@@ -100,6 +105,12 @@ async function checkGermanFocusedDiscovery(browser,base){
   await results.first().click();
   await page.waitForURL(base+closure);
   check(await page.locator('#fenster-verschluss-pruefen').isVisible(),'The window-lock result navigates to the actual answer');
+  await page.locator('#eb-search-toggle').click();
+  await input.waitFor({state:'visible'});
+  await search(condensationQuery);
+  await results.first().click();
+  await page.waitForURL(base+condensation);
+  check(await page.locator('#fenster-check-titel').isVisible(),'The condensation result reaches the same public answer');
   await context.close();
  }
 

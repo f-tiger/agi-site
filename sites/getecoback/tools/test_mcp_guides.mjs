@@ -84,7 +84,7 @@ test('laundry search stays on task and every search result can be read through t
   }
 });
 
-const coolingLookups = [
+const focusedLookups = [
   {
     path: '/guide/delonghi-pac-n90-test.html', section: 'testlage',
     queries: ['DeLonghi PAC N90 ECO Silent', 'PACN90 ECO Silent', '8004399512351', 'EAN 8004399512351'],
@@ -104,10 +104,20 @@ const coolingLookups = [
     evidence: ['Ein gekipptes Fenster gilt als offen.', 'den Kauf zurückstellen',
       'www.k-einbruch.de/sicherheitstipps/verhaltenstipps', 'transkript-portasplit-fensterabdichtung1'],
   },
+  {
+    path: '/guide/fenster-beschlagen-innen.html', section: 'fenstersauger-gegen-kondenswasser',
+    queries: ['Warum beschlägt das geschlossene Fenster morgens innen?',
+      'Jeden Morgen sind die Fensterscheiben im Schlafzimmer von innen nass. Was soll ich zuerst messen?',
+      'Nach dem Schlafen ist die Innenscheibe nass, obwohl das Fenster zu war. Woran liegt das?'],
+    evidence: ['Prüfe zuerst, auf welcher Seite das Wasser sitzt.', 'Drei Messwerte vom selben Zeitpunkt',
+      'unauffälligen Messwert in der Raummitte', '20 °C und 60 %', 'Beschlag zwischen den Scheiben',
+      'www.adac.de/rund-ums-haus/wohnen/haushalt/kondenswasser-am-fenster',
+      'www.umweltbundesamt.de/themen/gesundheit/umwelteinfluesse-auf-den-menschen/schimmel/'],
+  },
 ];
 
-test('exact German cooling searches prefer reviewed section copy and pass a readable canonical URL', async () => {
-  for (const {path, section, queries, evidence = []} of coolingLookups) {
+test('exact German guide searches prefer reviewed section copy and pass a readable canonical URL', async () => {
+  for (const {path, section, queries, evidence = []} of focusedLookups) {
     const guide = corpus.find(entry => entry.u === path);
     assert.equal(guide?.section?.id, section, path);
     const {title, description} = guide.section;
@@ -135,7 +145,7 @@ test('exact German cooling searches prefer reviewed section copy and pass a read
 });
 
 test('ambiguous cooling models, conflicting identifiers and other languages are not promoted', async () => {
-  const vetted = coolingLookups.map(({path}) => corpus.find(entry => entry.u === path).section);
+  const vetted = focusedLookups.map(({path}) => corpus.find(entry => entry.u === path).section);
   for (const [frage, sprache] of [
     ['Midea PortaSplit', 'de'], ['Midea PortaSplit E', 'de'], ['Midea PortaSplit Cool', 'de'],
     ['Midea PortaSplit Pro', 'de'], ['Midea PortaSplit E 4048164116478', 'de'],
@@ -143,7 +153,12 @@ test('ambiguous cooling models, conflicting identifiers and other languages are 
     ['Kann ich das Fenster mit der PortaSplit verriegeln?', 'en'],
     ['Ist das Fenster mit der PortaSplit E abschließbar?', 'de'],
     ['Wie viel Strom braucht die Klimaanlage nachts, wenn das Fenster ganz geschlossen ist?', 'de'],
-    ['Warum beschlägt das geschlossene Fenster morgens innen?', 'de'],
+    ['Mein Fenster beschlägt morgens von außen und innen ist es trocken.', 'de'],
+    ['Zwischen den Scheiben ist es beschlagen. Innen ist das Fenster trocken.', 'de'],
+    ['Meine Fensterscheibe beschlägt morgens. Innen oder außen kann ich nicht erkennen.', 'de'],
+    ['Warum beschlägt die Windschutzscheibe meines Autos morgens von innen?', 'de'],
+    ['Passt die schmale 170-mm-Düse für Kondenswasser zu meinem Kärcher WV 6?', 'de'],
+    ['Warum beschlägt das geschlossene Fenster morgens innen?', 'en'],
     ['Muss ich den 60 mm breiten Fensterfalz für die PortaSplit-Halterung bei verriegeltem oder offenem Fenster messen?', 'de'],
     ['Wie viel Strom verbraucht meine Klimaanlage bei verriegeltem Fenster?', 'de'],
     ['Wie laut ist die Klimaanlage bei verriegeltem Fenster?', 'de'],
@@ -165,7 +180,7 @@ test('ambiguous cooling models, conflicting identifiers and other languages are 
 });
 
 test('missing or malformed optional cooling section leaves normal guide search available', async () => {
-  const [{path, queries}] = coolingLookups;
+  const [{path, queries}] = focusedLookups;
   const {section, ...guide} = corpus.find(entry => entry.u === path);
   const baseline = {...guide, t: 'DeLonghi PAC N90 ECO Silent', d: 'Allgemeine Hinweise zum bestehenden Ratgeber.'};
   for (const fallback of [
