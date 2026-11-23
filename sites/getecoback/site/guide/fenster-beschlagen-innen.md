@@ -26,9 +26,22 @@ Wird dieselbe Stelle regelmäßig nass, halte Zeitpunkt, Stelle und Messwerte fe
 
 - Vergleiche die Scheibentemperatur mit dem aus beiden Raumwerten berechneten **Taupunkt**. Ohne verlässlichen Scheibenwert bleibt der Vergleich offen.
 
+**Fehlt ein verlässlicher Scheibenwert?** Lass die Einordnung offen. Mit einem vorhandenen, geeigneten Oberflächenfühler kannst du direkt an der betroffenen Innenscheibe messen. Prüfe bei einem Infrarotgerät in seiner Anleitung die Einstellung für die Glasoberfläche (Emissionsgrad) und den Messabstand. Der Messfleck muss vollständig auf der betroffenen Glasstelle liegen. Verwende die Raumtemperatur nicht als Ersatz. [Bosch zur Materialeinstellung](https://www.bosch-diy.com/storage/diy/zip-manuals/ptd-1-100033618-zip-359451/de-DE/2210275595.html) und [Dostmann zum Messfleck](https://dostmann-electronic.de/download/699-5020-0485_Manual.pdf), geprüft am 23.11.2026.
+
 **Rechenbeispiel:** Bei **20 °C und 60 %** relativer Luftfeuchte liegt der Taupunkt bei **rund 12 °C**. Eine **10 °C** kalte Innenscheibe passt zu Kondensation. Bei **14 °C** erklärt diese Messung vorhandenes Wasser an der Stelle nicht. Prüfe Messort, Messzeit und andere Feuchtequellen.
 
 Der Check nutzt die Magnus-Näherung und rechnet Scheibentemperatur minus Taupunkt. Liegt der Unterschied innerhalb von **±1 °C**, miss erneut. Dieser Bereich dient zur Orientierung. Wie genau deine Geräte messen, kann der Check nicht bestimmen.
+
+Taupunkt ohne Rechner nachschlagen
+Die Tabelle zeigt berechnete Taupunkte in °C für genau diese Raumwerte. Vergleiche den passenden Wert mit der gemessenen Innenscheibe. Liegt die Scheibentemperatur darunter, ist Kondenswasser möglich. Innerhalb von ±1 °C erneut messen.
+
+| Raum | 40 % | 50 % | 60 % |
+| --- | --- | --- | --- |
+| 18 °C | 4,2 | 7,4 | 10,1 |
+| 20 °C | 6,0 | 9,3 | 12,0 |
+| 22 °C | 7,8 | 11,1 | 13,9 |
+
+Beispiel: Bei 18 °C und 50 % liegt der Taupunkt bei 7,4 °C. Eine 9 °C warme Innenscheibe liegt damit 1,6 °C darüber. Bei anderen Raumwerten nutze den Rechner oben oder [den lokalen MCP-Check](https://getecoback.com/mcp.html#offline-erster-check) mit deinen drei Messwerten. Übernimm keinen Nachbarwert als Ersatz.
 
 Quellen geprüft am 22.11.2026. [ADAC zu Fensterkondensat](https://www.adac.de/rund-ums-haus/wohnen/haushalt/kondenswasser-am-fenster/) · [Umweltbundesamt zu Lüften und Raumfeuchte](https://www.umweltbundesamt.de/themen/gesundheit/umwelteinfluesse-auf-den-menschen/schimmel/wie-luefte-ich-richtig-tipps-tricks-zur) · [Kärcher zum vorgesehenen Einsatz](https://www.kaercher.com/de/de/home-and-garden/produkte/akku-fensterreiniger-c36).
 

@@ -4,6 +4,7 @@
 // that the fixture proves server-side analytics receipt or real conversion lift.
 const {chromium}=require(process.env.NODE_PATH?'playwright':'../../../tools/revenue-studio/node_modules/playwright');
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const {pathToFileURL}=require('node:url');
 const origin='https://getecoback.com';
 const site=path.resolve(process.env.ECO_SITE_DIR||path.join(__dirname,'../site'));
 const data=JSON.parse(fs.readFileSync(process.env.ECO_JOURNEY_DATA||path.join(__dirname,'../data/moisture-journeys.json'),'utf8'));
@@ -305,6 +306,18 @@ async function windowCondensation(browser,javaScriptEnabled){
   equal(completions,Array.from({length:3},()=>({name:'eco_window_condensation_check'})),'only the fixed completion name is emitted, without measurement inputs');
  }else{
   check(!await calculator.locator('form').isVisible(),'no-JavaScript readers cannot submit the local form');
+  const lookup=answer.locator('#fenster-taupunkt-tabelle'),table=lookup.locator('table');
+  check(!await table.isVisible(),'the optional reference table starts collapsed');
+  await lookup.locator('summary').click();
+  check(await table.isVisible(),'the native reference table opens without JavaScript');
+  equal(await table.locator('th[scope=col]').allTextContents(),['Raum','40 %','50 %','60 %'],'the lookup keeps its humidity headers');
+  equal(await table.locator('th[scope=row]').allTextContents(),['18 °C','20 °C','22 °C'],'the lookup keeps its temperature headers');
+  const {dewPoint}=await import(pathToFileURL(path.join(site,'assets/fenster-taucheck.mjs')).href);
+  const readings=[18,20,22].flatMap(room=>[40,50,60].map(humidity=>dewPoint(room,humidity).toFixed(1).replace('.',',')));
+  equal(await table.locator('td').allTextContents(),readings,'all nine published values agree with the interactive calculation');
+  const offlineCheck=await lookup.locator('a').getAttribute('href');
+  destination(offlineCheck,'offline alternative for other measured values');
+  check((await lookup.innerText()).includes('Übernimm keinen Nachbarwert als Ersatz.'),'the lookup applies only to matching conditions');
  }
  check(!f.navigations.some(url=>new URL(url).hostname.endsWith('reddit.com')),'the fixture never visits the Reddit composer');
  equal(f.events.filter(event=>event?.n!=='page_view'),[],'QA did not send business actions');

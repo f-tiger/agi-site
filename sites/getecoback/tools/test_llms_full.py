@@ -69,6 +69,24 @@ class LlmsFull(unittest.TestCase):
         })
         self.assertNotRegex(mirror, r'reddit\.com/submit|https?://[^\s")]*amazon\.')
 
+    def test_window_condensation_keeps_the_static_lookup_and_measuring_sources(self):
+        guide = SITE / 'guide/fenster-beschlagen-innen.html'
+        source = guide.read_text()
+        mirror = guide.with_suffix('.md').read_text()
+        for document in (source, mirror):
+            for phrase in ('Fehlt ein verlässlicher Scheibenwert?', 'Verwende die Raumtemperatur nicht als Ersatz.',
+                           'Taupunkt ohne Rechner nachschlagen', 'für genau diese Raumwerte',
+                           'Innerhalb von ±1 °C erneut messen.', 'liegt damit 1,6 °C darüber',
+                           'Übernimm keinen Nachbarwert als Ersatz.', '/mcp.html#offline-erster-check',
+                           'https://www.bosch-diy.com/storage/diy/zip-manuals/ptd-1-100033618-zip-359451/de-DE/2210275595.html',
+                           'https://dostmann-electronic.de/download/699-5020-0485_Manual.pdf'):
+                self.assertIn(phrase, document)
+        for row in ('| Raum | 40 % | 50 % | 60 % |', '| 18 °C | 4,2 | 7,4 | 10,1 |',
+                    '| 20 °C | 6,0 | 9,3 | 12,0 |', '| 22 °C | 7,8 | 11,1 | 13,9 |'):
+            self.assertIn(row, mirror)
+        for source_label in ('Bosch zur Materialeinstellung', 'Dostmann zum Messfleck'):
+            self.assertIn('[' + source_label + '](https://', mirror)
+
     def test_window_closure_final_guide_keeps_police_and_manufacturer_conditions(self):
         route = '/guide/klimaanlage-fenster-einbruchschutz.html'
         guide = SITE / route.lstrip('/')
