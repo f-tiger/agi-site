@@ -10,7 +10,7 @@ import {philipsHumidifierFilterSection} from './philips-humidifier-filter-intent
 import {asksForElectricBlanketCost} from './electric-blanket-cost-intent.mjs';
 import {asksForHygrometerComparison} from './hygrometer-comparison-intent.mjs';
 import {asksForN90ModelIdentity} from './n90-model-intent.mjs';
-import {asksForPortaSplitWindowLip, namesOriginalPortaSplitExactly} from './portasplit-fensterfalz-intent.mjs?v=66ae5fbd590d';
+import {asksForPortaSplitWindowLip, namesDifferentPortaSplit, namesOriginalPortaSplitExactly} from './portasplit-fensterfalz-intent.mjs?v=66ae5fbd590d';
 import {asksForCellarVentilationCheck} from './cellar-ventilation-intent.mjs';
 import {asksForDehumidifierDrainRoute} from './dehumidifier-drain-intent.mjs';
 
@@ -20,12 +20,29 @@ const stop=new Set('wie kann ich meine mein der die das und im in am zu fuer wha
 const n90ExactName=/^(?:de['’ -]?longhi[ -]+)?(?:pinguino[ -]+)?pac[ -]*n[ -]*90[ -]+eco[ -]+silent(?:[ -]+(?:ean[ -]+)?8004399512351)?$/;
 const n90ExactEan=/^(?:ean[ -]+)?8004399512351$/;
 
+function asksForCoolingWindowClosure(query) {
+ const activeDevices=query.replace(/\bohne\s+(?:(?:eine?|die|meine)\s+)?(?:klimaanlage|klimageraet|monoblock|(?:midea[ -]+)?porta[ -]*split)\b/g,'');
+ if(!/\b(?:klimaanlag\w*|klimageraet\w*|monoblock\w*|porta[ -]*split|4048164116478)\b/.test(activeDevices)||
+    !/\b[a-z]*fenster\w*\b/.test(query)||namesDifferentPortaSplit(query)||
+    /\b(?!4048164116478\b)\d{13}\b/.test(query))return false;
+ const lock=/\b(?:verriegel\w*|abschliess\w*|abgeschloss\w*)\b|\bschliess\w*\b[^.!?]{0,70}\bab(?=\s*(?:[,.!?]|$)|\s+(?:wenn|bevor)\b)/.test(query);
+ const completeClosure=/\b(?:ganz|komplett|vollstaendig)\s+(?:zu\b|geschloss\w*|schliess\w*)/.test(query);
+ if(lock)return true;
+ if(/\b(?:strom\w*|verbrauch\w*|kwh|laut\w*|dezibel|db|kosten)\b/.test(query))return false;
+ if(completeClosure)return true;
+ const absent=/\b(?:abwesenheit|unbeaufsichtigt|weggeh\w*|ausser haus)\b|\b(?:wohnung|haus)\b[^.!?]{0,25}\bverlass\w*\b|\bverlass\w*\b[^.!?]{0,25}\b(?:wohnung|haus)\b/.test(query);
+ const windowState=/\b(?:schliess\w*|geschlossen|offen|gekippt|auf kipp|zumachen|zu bleiben)\b/.test(query);
+ return absent&&windowState;
+}
+
 export function exactGermanCoolingGuide(normalizedQuery) {
  const query=normalizedQuery.trim().replace(/\s+/g,' ');
  if(n90ExactName.test(query)||n90ExactEan.test(query))
    return {path:'/guide/delonghi-pac-n90-test.html',id:'testlage'};
  if(namesOriginalPortaSplitExactly(query))
    return {path:'/guide/midea-portasplit-ausverkauft-alternativen.html',id:'fensterfalz'};
+ if(asksForCoolingWindowClosure(query))
+   return {path:'/guide/klimaanlage-fenster-einbruchschutz.html',id:'fenster-verschluss-pruefen'};
  return null;
 }
 
@@ -62,11 +79,13 @@ export function searchEntries(index,term,lang){
    targetPage='/guide/luftfeuchtigkeit-richtig-messen.html'; targetId='hygrometer-vergleichen';
  } else if(lang==='de' && asksForCoolingNoiseComparison(query)) {
    targetPage='/guide/delonghi-pac-n90-test.html'; targetId='lautstaerke';
- } else if(lang==='de' && (exactCooling?.id==='testlage'||asksForN90ModelIdentity(query))) {
+ } else if(exactCooling) {
+   ({path:targetPage,id:targetId}=exactCooling);
+ } else if(lang==='de' && asksForN90ModelIdentity(query)) {
    targetPage='/guide/delonghi-pac-n90-test.html'; targetId='testlage';
  } else if(lang==='de' && asksForTesamollWindowProfile(query)) {
    targetPage='/guide/fenster-zugluft-mietwohnung.html'; targetId='dichtungsprofil';
- } else if(lang==='de' && (exactCooling?.id==='fensterfalz'||asksForPortaSplitWindowLip(query))) {
+ } else if(lang==='de' && asksForPortaSplitWindowLip(query)) {
    targetPage='/guide/midea-portasplit-ausverkauft-alternativen.html'; targetId='fensterfalz';
  } else if(lang==='de' && asksForWindowVacClearance(focusWindowVacQuestion(query)?.query ?? '')) {
    targetPage='/produkte.html'; targetId='fenstersauger-duesenbreite';

@@ -94,10 +94,19 @@ const coolingLookups = [
     queries: ['Midea PortaSplit Original', 'Midea Porta Split Original', 'Midea Porta-Split Original',
       '4048164116478', 'EAN 4048164116478'],
   },
+  {
+    path: '/guide/klimaanlage-fenster-einbruchschutz.html', section: 'fenster-verschluss-pruefen',
+    queries: ['Kann ich das Kippfenster mit der PortaSplit beim Verlassen der Wohnung verriegeln?',
+      'PortaSplit Fenster abschließen und Wohnung verlassen',
+      'Klimaanlage Kippfenster nachts geschlossen sicher verriegeln',
+      'Kann ich die Wohnung verlassen, wenn das Fenster für die Klimaanlage gekippt bleibt?'],
+    evidence: ['Ein gekipptes Fenster gilt als offen.', 'den Kauf zurückstellen',
+      'www.k-einbruch.de/sicherheitstipps/verhaltenstipps', 'transkript-portasplit-fensterabdichtung1'],
+  },
 ];
 
 test('exact German cooling searches prefer reviewed section copy and pass a readable canonical URL', async () => {
-  for (const {path, section, queries} of coolingLookups) {
+  for (const {path, section, queries, evidence = []} of coolingLookups) {
     const guide = corpus.find(entry => entry.u === path);
     assert.equal(guide?.section?.id, section, path);
     const {title, description} = guide.section;
@@ -116,6 +125,7 @@ test('exact German cooling searches prefer reviewed section copy and pass a read
 
       const reading = await call('ratgeber_lesen', {pfad: first[1].trim()}, env);
       assert.equal(reading.isError, false, frage + ': ' + textOf(reading));
+      for (const phrase of evidence) assert.ok(textOf(reading).includes(phrase), phrase);
       assert.ok(textOf(reading).startsWith('Quelle: https://getecoback.com' + path + '\n'), frage);
       assert.deepEqual(requests.map(request => new URL(request.url).pathname),
         ['/mcp-guides.json', '/mcp-guides.json', guide.m]);
@@ -129,6 +139,10 @@ test('ambiguous cooling models, conflicting identifiers and other languages are 
     ['Midea PortaSplit', 'de'], ['Midea PortaSplit E', 'de'], ['Midea PortaSplit Cool', 'de'],
     ['Midea PortaSplit Pro', 'de'], ['Midea PortaSplit E 4048164116478', 'de'],
     ['Midea PortaSplit Original 4048164122301', 'de'], ['DeLonghi PAC N90 ECO Silent 4048164116478', 'de'],
+    ['Kann ich das Fenster mit der PortaSplit verriegeln?', 'en'],
+    ['Ist das Fenster mit der PortaSplit E abschließbar?', 'de'],
+    ['Wie viel Strom braucht die Klimaanlage nachts, wenn das Fenster ganz geschlossen ist?', 'de'],
+    ['Warum beschlägt das geschlossene Fenster morgens innen?', 'de'],
     ['DeLonghi PAC N90 ECO Silent', 'en'], ['Midea Porta-Split Original', 'fr'],
     ['Midea Porta-Split Original', 'nl'],
   ]) {
