@@ -129,6 +129,12 @@ jobs:
           node tools/revenue-studio/build.mjs --site agi --out sites/agiscorecard
           (cd sites/agiscorecard && python3 tools/add_breadcrumbs.py --apply)
 
+      - name: Build investment and partnerships contact pages
+        run: |
+          python3 sites/agiscorecard/tools/build_investment_contact.py
+          python3 sites/agiscorecard/tools/build_investment_contact.py --check
+          node --test sites/agiscorecard/tools/investment-contact/server.test.mjs
+
       - name: Build Tianya validation and preserve the dated research archive
         run: |
           node sites/agiscorecard/tools/tianya/build.mjs
@@ -377,6 +383,21 @@ jobs:
 
       - name: Verify Capital Radar live privacy boundary and homepage entry
         run: node sites/agiscorecard/tools/capital-radar/verify-live.mjs
+
+      - name: Verify private investment contact readiness
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[fleet-investment-release]')
+        run: |
+          node --input-type=module <<'JS'
+          const res = await fetch('https://agiscorecard.com/api/investment-contact?__ci=1', {
+            headers: {'User-Agent':'AGI-Fleet-Investment-QA','DNT':'1'},
+            signal: AbortSignal.timeout(15000),
+          });
+          const status = await res.json();
+          if (!res.ok || status.ready !== true || Object.keys(status).length !== 1) {
+            throw Error('Private investment contact delivery is not configured.');
+          }
+          console.log('Private investment contact configuration is ready.');
+          JS
 
       # Push readiness must not process orders, delete expired data or refresh health.
       # Existing readiness is not a fresh chain probe, payment or watch-key check.

@@ -14,6 +14,13 @@
   "name": "agiscorecard",
   "main": "tools/analytics-worker/index.js",
   "compatibility_date": "2026-08-01",
+  "ratelimits": [
+    {
+      "name": "INVESTMENT_CONTACT_RATE_LIMITER",
+      "namespace_id": "8511086",
+      "simple": {"limit": 6, "period": 60}
+    }
+  ],
   "assets": {
     "directory": "./",
     "binding": "ASSETS",
