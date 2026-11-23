@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.22.25';
-const revision = '5c005eeaa4d525fa6092e1569b6787554906d453';
+const version = '1.22.26';
+const revision = '160ac4d8169d0f679deec5f993e0f69cea654eca';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -84,6 +84,10 @@ const tesamollTool = 'tesamoll_fensterdichtung_profil_pruefen';
 const tesamollCitation = 'https://getecoback.com/guide/fenster-zugluft-mietwohnung.html';
 const tesamollGuide = tesamollCitation + '#dichtungsprofil';
 const cellarUri = 'ecoback://evidence/de/kellerentfeuchter';
+const cellarPoint = 'kellerentfeuchter_pruefpunkt_abgleichen';
+const cellarLookup = 'entfeuchter_kalt_modellbeleg';
+const twoModelSource = 'https://eu.meaco.com/products/meacodry-arete-two-12l-luftentfeuchter-luftreiniger';
+const twoModelGuide = drainCitation + '#modell-meaco-two-12';
 const laundryComparisonTool = 'waesche_trocknungskosten';
 const singleLaundryTool = 'luftentfeuchter_waesche_einzelkosten';
 const singleLaundryCitation = 'https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html';
@@ -235,12 +239,52 @@ async function verifyCellarResource(extracted,rpc,init) {
   const [{text,mimeType}] = contents;
   assert.ok(text.includes('| 10 °C | 3,4 L/Tag | 180 W |'));
   assert.ok(text.includes('| 20 °C | 8,5 L/Tag | 216 W |'));
-  assert.match(text,/Meaco Deutschland,[^\n]+https:\/\/eu\.meaco\.com\/[^\n]+geprüft 2026-11-20\./);
+  assert.ok(text.includes('| MeacoDry Arete Two 12L | 10 °C | 1,97 L/Tag | 111 W |'));
+  assert.ok(text.includes('| MeacoDry Arete Two 12L | 20 °C | 5,4 L/Tag | 136 W |'));
+  assert.ok(text.split('\n').some(line => line.includes(twoModelSource) && line.includes('geprüft 2026-11-23')));
+  assert.match(text,/12,5 mm Innendurchmesser/);
+  assert.match(text,/Der Two 12L steht nicht auf der Liste/);
   assert.match(text,/Comfee MDDF-20DEN7 ohne WF[^\n]+offen[^\n]+https:\/\/www\.feelcomfee\.com\/[^\n]+geprüft 2026-11-06, erneut gelesen 2026-11-20\./);
   assert.match(text,/kurze Schwelle.*tiefer liegendem Zielablauf/i);
   assert.match(text,/https:\/\/www\.meaco\.de\/produkt\/meaco-dry-arete-one-pumpe\/\).*DE, geprüft 2026-11-22/);
   const missing = await rpc('resources/read',{uri:cellarUri+'-unbekannt'},-32002);
   return {uri:cellarUri,mimeType,textSha256:sha256(Buffer.from(text)),missingCode:missing.code};
+}
+
+async function verifyColdCellar(call) {
+  const measured = {modell:'meaco-two-12',temperatur_c:10,relative_feuchte_pct:60,
+    wiederholt_gemessen:true,befund:'feuchte_auffaellig'};
+  const cases = [
+    [{},'hersteller_pruefpunkt',1.97,111],
+    [{temperatur_c:20},'hersteller_pruefpunkt',5.4,136],
+    [{temperatur_c:10.01},'wertepaar_offen',null,null],
+    [{relative_feuchte_pct:61},'wertepaar_offen',null,null],
+    [{wiederholt_gemessen:false},'zuerst_messen',null,null],
+    [{befund:'unauffaellig'},'kein_kaufbedarf_belegt',null,null],
+    [{wiederholt_gemessen:false,befund:'wassereintritt_oder_schaden'},'ursache_klaeren',null,null],
+  ];
+  const readings = [];
+  for (const [changes,status,litres,watts] of cases) {
+    const result = await call(cellarPoint,{...measured,...changes});
+    assert.equal(result.isError,false);
+    const facts = result.structuredContent;
+    assert.deepEqual([facts.status,facts.liter_pro_tag,facts.leistungsaufnahme_w],[status,litres,watts]);
+    assert.deepEqual([facts.quelle,facts.quellenmarkt,facts.quellenpruefung],[twoModelSource,'DE','2026-11-23']);
+    assert.equal(facts.model_guide_url,litres === null ? undefined : twoModelGuide);
+    assert.equal(facts.guide_url,drainCitation+'#kalter-keller');
+    assert.equal(facts.entry_url,undefined);
+    assert.doesNotMatch(result.content[0].text,/amazon\.|amzn\.|[?&]tag=/i);
+    readings.push([status,litres,watts]);
+  }
+  const wrong = await call(cellarPoint,{...measured,modell:'meaco-two-20'});
+  assert.equal(wrong.isError,true);
+  assert.equal(wrong.structuredContent,undefined);
+  const lookup = await call(cellarLookup,{model:'meaco-two-12'});
+  assert.equal(lookup.isError,false);
+  assert.equal(lookup.structuredContent.source_url,twoModelSource);
+  assert.match(lookup.structuredContent.cold_evidence,/1,97 L\/Tag bei 111 W.*5,4 L\/Tag bei 136 W/);
+  assert.equal(lookup.structuredContent.model_guide_url,twoModelGuide);
+  return {tool:cellarPoint,guide:twoModelGuide,source:twoModelSource,readings,wrongVariantRejected:true};
 }
 
 async function verifyWindowCondensation(call) {
@@ -1076,6 +1120,8 @@ async function verifyStdio(extracted, manifest) {
       rpc('tools/call',{name:drainTool,arguments:args}));
     const measuredVentilation = await verifyMeasuredVentilation((name,args) =>
       rpc('tools/call',{name,arguments:args}));
+    const coldCellar = await verifyColdCellar((name,args) =>
+      rpc('tools/call',{name,arguments:args}));
     const exactFilter = await verifyExactFilter(args =>
       rpc('tools/call',{name:exactFilterTool,arguments:args}));
     const philipsFilter = await verifyPhilipsFilter(args =>
@@ -1103,7 +1149,7 @@ async function verifyStdio(extracted, manifest) {
       rpc('tools/call',{name:ttk70FilterTool,arguments:args}));
     const mieleBags = await verifyMieleBags((name,args) => rpc('tools/call',{name,arguments:args}));
     return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,windowCondensation,decimalWindowWidth,
-      singleLaundry,fritzValve,drainRoute,measuredVentilation,exactFilter,philipsFilter,warmthCost,hygrometerComparison,n90Identity,
+      singleLaundry,fritzValve,drainRoute,measuredVentilation,coldCellar,exactFilter,philipsFilter,warmthCost,hygrometerComparison,n90Identity,
       portaSplitLookup,portaSplitWindowLip,tesamollProfiles,coolingNoise,ttk75Point,coffeeFilter,kaercherNozzle,ttk70Filter,mieleBags,
       firstExamples:['btu_empfehlung','entfeuchter_ablaufcheck'],finder:verifyFinder(extracted,drain),
       lastPageExample:last.name,legacyNames:oldNames.length,network:'disabled'};
@@ -1588,6 +1634,13 @@ async function verifyCompactStdio(extracted) {
       ['aussen_c','aussen_rh_prozent','innen_c','innen_rh_prozent','wand_c']);
     const measuredVentilation = await verifyMeasuredVentilation((name,eingaben) =>
       rpc('tools/call',{name:runner,arguments:{name,eingaben}}));
+    const coldLookup = await rpc('tools/call',{name:finder,arguments:{
+      frage:'Was leistet der Arete Two 12L bei 10 °C und 60 %?',
+    }});
+    assert.equal(coldLookup.structuredContent.tools[0]?.name,cellarPoint);
+    assert.equal(coldLookup.structuredContent.resources[0]?.uri,cellarUri);
+    const coldCellar = await verifyColdCellar((name,eingaben) =>
+      rpc('tools/call',{name:runner,arguments:{name,eingaben}}));
     for (const frage of [
       'Welcher Ersatzfilter passt in meinen Beurer LR 401?',
       'Ich brauche einen neuen Filter für den Levoit Core 300S ohne Pro. Welche Variante passt?',
@@ -1761,7 +1814,7 @@ async function verifyCompactStdio(extracted) {
     return {
       tools,topMatch:first.name,exampleOutcome:outcome,citationsPreserved:true,
       liveToolRejected:true,cellarBuyerEvidence:true,laundryComparison,singleLaundry,fritzValve,drainRoute,
-      measuredVentilation,exactFilter,philipsFilter,warmthCost,hygrometerComparison,laundryPrecision,windowBlade,windowLookup,
+      measuredVentilation,coldCellar,exactFilter,philipsFilter,warmthCost,hygrometerComparison,laundryPrecision,windowBlade,windowLookup,
       windowWidth,decimalWindowWidth,householdDecisions,tadoOventrop,n90Costs,n90Identity,portaSplitLookup,portaSplitWindowLip,
       tesamollProfiles,coolingNoise,ttk75Point,coffeeFilter,kaercherNozzle,ttk70Filter,mieleBags,
       humidifierEfficiency,glassvacTemperature,windowSubject,windowCondensation,
@@ -1831,6 +1884,7 @@ try {
   assert.deepEqual(result.fritzValve,result.compact.fritzValve);
   assert.deepEqual(result.drainRoute,result.compact.drainRoute);
   assert.deepEqual(result.measuredVentilation,result.compact.measuredVentilation);
+  assert.deepEqual(result.coldCellar,result.compact.coldCellar);
   assert.deepEqual(result.exactFilter,result.compact.exactFilter);
   assert.deepEqual(result.philipsFilter,result.compact.philipsFilter);
   assert.deepEqual(result.warmthCost,result.compact.warmthCost);
