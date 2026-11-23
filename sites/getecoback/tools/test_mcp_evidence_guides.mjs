@@ -238,7 +238,7 @@ test('German cellar conditions match only reviewed model test points, with cause
     assert.equal(r.liter_pro_tag, litres);
     assert.equal(r.leistungsaufnahme_w, watts);
     assert.equal(r.quellenmarkt, 'DE');
-    assert.equal(r.quellenpruefung, '2026-11-20');
+    assert.equal(r.quellenpruefung, '2026-11-23');
     assert.equal(r.guide_url, origin + cellar + '#kalter-keller');
     assert.equal(r.quelle, 'https://eu.meaco.com/products/meacodry-arete-one-20l-luftentfeuchter-luftreiniger');
     const unknown = (await call({modell:'comfee-mddf20', temperatur_c:temp})).structuredContent;
@@ -261,11 +261,38 @@ test('German cellar conditions match only reviewed model test points, with cause
     assert.equal(r.liter_pro_tag, null);
     assert.equal(r.leistungsaufnahme_w, null);
   }
-  for (const modell of ['meaco-two-12', 'comfee-mddf20-wf']) {
-    assert.equal((await call({modell})).isError, true);
+  const twoSource = 'https://eu.meaco.com/products/meacodry-arete-two-12l-luftentfeuchter-luftreiniger';
+  for (const [temperatur_c, litres, watts] of [[10, 1.97, 111], [20, 5.4, 136]]) {
+    const exact = (await call({modell:'meaco-two-12', temperatur_c})).structuredContent;
+    assert.equal(exact.status, 'hersteller_pruefpunkt');
+    assert.equal(exact.liter_pro_tag, litres);
+    assert.equal(exact.leistungsaufnahme_w, watts);
+    assert.equal(exact.quelle, twoSource);
+    assert.equal(exact.model_guide_url, origin + cellar + '#modell-meaco-two-12');
   }
-  const legacy = await h.rpc('tools/call', {name:'entfeuchter_kalt_modellbeleg', arguments:{model:'meaco-one-20'}});
-  assert.match(legacy.structuredContent.source_url, /^https:\/\/www\.meaco\.com\/products\//);
+  for (const [changes, status] of [
+    [{relative_feuchte_pct:61}, 'wertepaar_offen'],
+    [{wiederholt_gemessen:false}, 'zuerst_messen'],
+    [{befund:'unauffaellig'}, 'kein_kaufbedarf_belegt'],
+    [{befund:'wassereintritt_oder_schaden'}, 'ursache_klaeren'],
+  ]) {
+    const result = (await call({modell:'meaco-two-12', ...changes})).structuredContent;
+    assert.equal(result.status, status);
+    assert.equal(result.liter_pro_tag, null);
+    assert.equal(result.model_guide_url, undefined);
+  }
+  assert.equal((await call({modell:'comfee-mddf20-wf'})).isError, true);
+  const lookup = async model => (await h.rpc('tools/call', {
+    name:'entfeuchter_kalt_modellbeleg', arguments:{model},
+  })).structuredContent;
+  const one = await lookup('meaco-one-20');
+  assert.match(one.source_url, /^https:\/\/eu\.meaco\.com\/products\/.*one-20l/);
+  assert.match(one.cold_evidence, /10 °C und 60 % relative Feuchte: 3,4 L\/Tag bei 180 W/);
+  const two = await lookup('meaco-two-12');
+  assert.equal(two.source_url, twoSource);
+  assert.equal(two.source_checked, '2026-11-23');
+  assert.match(two.cold_evidence, /10 °C und 60 % relative Feuchte: 1,97 L\/Tag bei 111 W/);
+  assert.equal(two.model_guide_url, origin + cellar + '#modell-meaco-two-12');
   h.assertNoWrites();
 });
 
