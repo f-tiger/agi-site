@@ -30,9 +30,11 @@ Die Verbraucherzentrale erläutert: Kalte Außenluft kann im Winter beim Lüften
 
 - [MeacoDry Arete One 20L](https://getecoback.com/guide/luftentfeuchter-keller.html#modell-meaco-one-20) · 3,4 L/Tag bei 180 W. [Meaco DE, Herstellerdaten](https://eu.meaco.com/products/meacodry-arete-one-20l-luftentfeuchter-luftreiniger).
 
-- [MeacoDry Arete Two 12L](https://getecoback.com/guide/luftentfeuchter-keller.html#modell-meaco-two-12) · 1,97 L/Tag bei 111 W. [AirSain Deutschland, Anbietertabelle](https://www.meaco.de/produkt/luftentfeuchter-meaco-arete-two-12-l/).
+- [MeacoDry Arete Two 12L](https://getecoback.com/guide/luftentfeuchter-keller.html#modell-meaco-two-12) · 1,97 L/Tag bei 111 W. [Meaco DE, Herstellerdaten](https://eu.meaco.com/products/meacodry-arete-two-12l-luftentfeuchter-luftreiniger).
 
-Prüfwerte geprüft am 22.11.2026. Die Quellen geben dieselbe Lufttemperatur und Feuchte an. Prüfablauf und Laufzeit zu Hause können abweichen. Für Bosch D4000-EU und Comfee MDDF-20DEN7 sind diese konkreten Werte in unserer Auswahl offen. Prüfe die [Tank-, Gefälle- oder Pumpenlösung](https://getecoback.com/guide/luftentfeuchter-keller.html#ablauf-vor-kauf) getrennt. Bei ungeklärter Nässe erst die [Ursache klären](https://getecoback.com/guide/luftentfeuchter-gegen-schimmel.html).
+Ein separater Prüfpunkt für den Arete Two 12L bei 20 °C und 60 % nennt 5,4 L/Tag bei 136 W. Werte verschiedener Temperaturen getrennt vergleichen.
+
+Prüfwerte geprüft am 23.11.2026. Die Quellen geben dieselbe Lufttemperatur und Feuchte an. Prüfablauf und Laufzeit zu Hause können abweichen. Für Bosch D4000-EU und Comfee MDDF-20DEN7 sind diese konkreten Werte in unserer Auswahl offen. Prüfe die [Tank-, Gefälle- oder Pumpenlösung](https://getecoback.com/guide/luftentfeuchter-keller.html#ablauf-vor-kauf) getrennt. Bei ungeklärter Nässe erst die [Ursache klären](https://getecoback.com/guide/luftentfeuchter-gegen-schimmel.html).
 
 Die Bauart ist ein erster Filter, keine Kaufgarantie. Stiftung Warentest beschreibt die unterschiedliche Temperaturabhängigkeit der Verfahren. Entscheidend bleibt die Anleitung des konkreten Modells. Eine zulässige Mindesttemperatur sagt noch nicht, wie viel Wasser das Gerät dort pro Tag entzieht.
 
@@ -74,15 +76,19 @@ Rechne deinen Tarif im [Stromkosten-Rechner](https://getecoback.com/guide/stromk
 
 ## 5. Kaufen in Deutschland, Österreich und der Schweiz
 
-- **Deutschland:** Die gekennzeichnete Produktsuche unten führt zu Amazon.de. Lies dort das Datenblatt der genauen Modellvariante.
+- **Deutschland:** Vergleiche zuerst die freigegebene Aufstellung und das Datenblatt der genauen Variante. Gekennzeichnete Händlerlinks stehen bei den einzelnen Modellen.
 - **Österreich:** Lieferadresse, Gesamtkosten, Rückgabe und angebotene Variante beim Händler prüfen. Die [Energieberatung Niederösterreich erklärt richtiges Lüften](https://www.energie-noe.at/richtig-lueften); diese lokale Orientierung ersetzt keine Gebäudeprüfung.
 - **Schweiz:** Die [Topten-Liste für Luftentfeuchter auf dem Schweizer Markt](https://www.topten.ch/de/products/dehumidifiers) hilft bei der Datenrecherche. Angebot in CHF, lokale Ausführung, Anschluss und Lieferbedingungen separat prüfen.
 
 Die deutschen Kauflinks sind keine Zusage für Lieferung nach Österreich oder in die Schweiz. Die beiden lokalen Quellenlinks sind keine EcoBack-Affiliate-Links. Wir vergeben keinen eigenen Testsieger.
 
-**Messwerte und Datenblatt liegen vor?** Vergleiche erst dann passende Modelle. Prüfe Temperaturbereich, Ablauf und Gesamtpreis.
-Anzeige · Affiliate-Produktsuche bei Amazon.de · keine geprüfte Modell-Empfehlung
-Keller-Luftentfeuchter auf Amazon.de vergleichen →
+### Vom Messwert zum passenden Modell
+
+- **Dein Messwert liegt bei 10 °C und 60 %:** [Entzug und Watt unter denselben Bedingungen vergleichen](https://getecoback.com/guide/luftentfeuchter-keller.html#kaelte-pruefwerte). Dort gelangst du zur Karte der genauen Variante.
+
+- **Der Abfluss liegt höher oder der Schlauch muss über eine Schwelle:** [Erst Wasserweg, passendes Zubehör und Tankbetrieb prüfen](https://getecoback.com/guide/luftentfeuchter-keller.html#ablauf-vor-kauf).
+
+- **Andere Bedingungen oder noch keine Messreihe:** [Nach passenden Prüfwerten fragen](https://getecoback.com/guide/luftentfeuchter-keller.html#datenblatt) oder [mehrere Tage messen](https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html). Bei Wassereintritt oder nassen Wänden [zuerst die Ursache klären](https://getecoback.com/guide/luftentfeuchter-gegen-schimmel.html) und den Kauf verschieben.
 
 ## Checkliste zum Mitnehmen
 
@@ -150,6 +156,11 @@ Hersteller-/Anbieterquellen geprüft: 2026-11-12. Keine Live-Preise oder garanti
 - **Lieferumfang klären:** Schlauch, Adapter und Pumpe getrennt prüfen. Ohne bestätigte Schlauch- oder Pumpenlösung den vorgesehenen Tankbetrieb oder einen anderen geeigneten Standort prüfen; zuerst vorhandene Möglichkeiten prüfen.
 **Konkretes Beispiel: MeacoDry Arete One 20L.** Die UK-Herstellerseite nennt einen Schlauchadapter, keinen mitgelieferten Schlauch und eine separat verkaufte Pumpe für Entwässerung nach oben. Das bestätigt weder den deutschen Lieferumfang noch die Eignung der Arete Two 12L. Vor Bestellung die genaue deutsche Variante und ihre Anleitung abgleichen.
 Quelle: [Meaco UK: Arete One 20L, Ablauf und separates Pumpenzubehör](https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-air-purifier) · geprüft am 13.11.2026. Bei ungeklärter Feuchte bleibt Messen und Ursachenklärung der erste Schritt; ein Neukauf ist dann noch nicht begründet.
+
+#### Arete One 20L und Two 12L: Welcher Schlauch passt?
+Beide deutschen Anleitungen nennen für den Schwerkraftablauf einen Standard-Gartenschlauch mit **12,5 mm Innendurchmesser**. Der rechtwinklige Adapter sitzt im Tankdeckel. Den Schlauch separat einplanen und durchgehend abwärts ohne Knicke oder Blockaden verlegen.
+Die [deutsche Meaco-Produktseite zur Arete-Pumpe](https://eu.meaco.com/products/meacodry-arete%C2%AE-pumpe-fur-alle-modelle) führt Arete One und Two in 20 L und 25 L auf. Die Arete Two 12L steht nicht auf dieser Liste. Für einen höheren Abfluss bei der Two 12L deshalb Tankbetrieb oder einen anderen Standort prüfen, bis der Hersteller eine passende Lösung bestätigt.
+[Meaco-Anleitung One 20/25L (DE, S. 13)](https://www.meaco.de/atlantis-media/files/german-meacodry-arete-one-20l-and-25l_1.pdf) · [Meaco-Anleitung Two 10/12L (DE, S. 14)](https://www.meaco.de/atlantis-media/files/aretetwo-10l12l-manual-de02-160424_1.pdf) · geprüft am 23.11.2026.
 
 #### Abfluss unten, Schlauch über eine Schwelle?
 Beim vorgesehenen Schwerkraftablauf zählt der ganze Schlauchweg. Steigt der Schlauch an einer Türschwelle kurz an, fehlt dort das nötige Gefälle, auch wenn der Zielablauf tiefer liegt. Prüfe einen anderen, durchgehend fallenden Weg nach Anleitung. Sonst nutze den vorgesehenen Tankbetrieb mit aktivem Tankalarm oder lass dir eine passende Pumpenlösung für dein genaues Modell bestätigen.

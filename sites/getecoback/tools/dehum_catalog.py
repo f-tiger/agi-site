@@ -27,6 +27,16 @@ def cellar_drain_route():
     title = 'Kellerentfeuchter: Schlauch über eine Schwelle oder Tankbetrieb?'
     reddit = 'https://www.reddit.com/submit?' + urlencode({'url':target, 'title':title}, quote_via=quote)
     return (
+        '<h4 id="arete-schlauchmass">Arete One 20L und Two 12L: Welcher Schlauch passt?</h4>'
+        '<p>Beide deutschen Anleitungen nennen für den Schwerkraftablauf einen Standard-Gartenschlauch mit '
+        '<strong>12,5 mm Innendurchmesser</strong>. Der rechtwinklige Adapter sitzt im Tankdeckel. '
+        'Den Schlauch separat einplanen und durchgehend abwärts ohne Knicke oder Blockaden verlegen.</p>'
+        '<p>Die <a href="https://eu.meaco.com/products/meacodry-arete%C2%AE-pumpe-fur-alle-modelle">deutsche Meaco-Produktseite zur Arete-Pumpe</a> '
+        'führt Arete One und Two in 20 L und 25 L auf. Die Arete Two 12L steht nicht auf dieser Liste. '
+        'Für einen höheren Abfluss bei der Two 12L deshalb Tankbetrieb oder einen anderen Standort prüfen, bis der Hersteller eine passende Lösung bestätigt.</p>'
+        '<p><a href="https://www.meaco.de/atlantis-media/files/german-meacodry-arete-one-20l-and-25l_1.pdf">Meaco-Anleitung One 20/25L (DE, S. 13)</a> · '
+        '<a href="https://www.meaco.de/atlantis-media/files/aretetwo-10l12l-manual-de02-160424_1.pdf">Meaco-Anleitung Two 10/12L (DE, S. 14)</a> · '
+        'geprüft am <time datetime="2026-11-23">23.11.2026</time>.</p>'
         '<h4 id="schlauch-ueber-schwelle">Abfluss unten, Schlauch über eine Schwelle?</h4>'
         '<p>Beim vorgesehenen Schwerkraftablauf zählt der ganze Schlauchweg. '
         'Steigt der Schlauch an einer Türschwelle kurz an, fehlt dort das nötige Gefälle, auch wenn der Zielablauf tiefer liegt. '

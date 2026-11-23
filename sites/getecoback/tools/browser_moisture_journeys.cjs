@@ -237,6 +237,26 @@ async function noJavaScript(browser){
  check(!await root.locator('form').isVisible(),'no-JS cannot submit incomplete questionnaire');
  await layout(page,'no-JS direct reading');await complete(f,'no-JS direct reading');
 }
+async function cellarModelRoute(browser,javaScriptEnabled){
+ const width=javaScriptEnabled?390:320;
+ const pathname='/guide/luftentfeuchter-keller.html';
+ const f=await fixture(browser,{width,javaScriptEnabled});
+ await f.goto(pathname+'#modellwahl-de');
+ const {page}=f,station=page.locator('#modellwahl-de');
+ check(await station.getByRole('heading').isVisible(),'German model choice is visible');
+ equal(await station.locator('a[rel~=sponsored]').count(),0,'decision stays on the guide');
+ await station.locator('a[href="#kaelte-pruefwerte"]').click();
+ await page.waitForURL(u=>u.hash==='#kaelte-pruefwerte');
+ await page.locator('#kaelte-pruefwerte + ul a[href="#modell-meaco-two-12"]').click();
+ await page.waitForURL(u=>u.hash==='#modell-meaco-two-12');
+ check(await page.locator('#modell-meaco-two-12').isVisible(),'German Two 12L model card reached');
+ await station.locator('a[href="#ablauf-vor-kauf"]').click();
+ await page.waitForURL(u=>u.hash==='#ablauf-vor-kauf');
+ check((await page.locator('#ablauf-vor-kauf').innerText()).includes('12,5 mm Innendurchmesser'),'drain evidence can be read at the destination');
+ await layout(page,'German cellar model route '+width);
+ report.push({page:pathname,width,javaScriptEnabled,model:'meaco-two-12'});
+ await complete(f,'German cellar model route '+width);
+}
 async function windowCondensation(browser,javaScriptEnabled){
  const width=javaScriptEnabled?390:320;
  const article='/guide/fenster-beschlagen-innen.html',fragment='#fenstersauger-gegen-kondenswasser';
@@ -298,7 +318,7 @@ async function windowCondensation(browser,javaScriptEnabled){
  try{
   for(const width of [390,1280]){await home(browser,width);await category(browser,width);await directComparison(browser,'/guide/luftentfeuchter-ratgeber.html','de',width);await directComparison(browser,'/en/guide/dehumidifier-20-sqm.html','en',width);}
   await editorialRoutes(browser);await coldAndMeasure(browser);await noJavaScript(browser);
-  for(const javaScriptEnabled of [true,false])await windowCondensation(browser,javaScriptEnabled);
+  for(const javaScriptEnabled of [true,false]){await windowCondensation(browser,javaScriptEnabled);await cellarModelRoute(browser,javaScriptEnabled);}
   for(const width of [390,1280])await acquisitionPath(browser,width);
   for(const mode of ['denied','dnt','gpc','qa','webdriver'])await directComparison(browser,'/guide/luftentfeuchter-ratgeber.html','de',390,mode);
   fs.writeFileSync(path.join(dir,'moisture-journeys-browser.json'),JSON.stringify({pass:true,checks,fixtureRoot:site,scenarios:report},null,2));

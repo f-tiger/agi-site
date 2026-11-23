@@ -44,8 +44,21 @@ def check(slug, read_page=None):
                 for surface in (match[1], md):
                     assert 'Sein Ende muss tiefer liegen als der Anfang.' in surface
                     assert '1,97 L/Tag bei 111 W' in surface, 'Cold-condition Arete Two data missing'
-                assert 'id="kaelte-pruefwerte"' in html
+                station = re.search(r'<section\b[^>]* id="modellwahl-de".*?</section>', html, re.S)
+                assert station, 'German model decision missing'
+                for target in ('kaelte-pruefwerte', 'ablauf-vor-kauf', 'datenblatt'):
+                    assert html.count(f'id="{target}"') == 1
+                    assert f'href="#{target}"' in station[0], target
+                assert 'sponsored' not in station[0] and 'amazon.' not in station[0]
+                assert not re.search(r'amazon\.de/s\?k=luftentfeuchter\+(?:keller|mit\+schlauch)', html, re.I)
+                assert 'Vom Messwert zum passenden Modell' in md and 'den Kauf verschieben' in md
+                for surface in (match[1], md):
+                    assert '12,5 mm Innendurchmesser' in surface, 'German hose dimension missing'
+                    assert 'Die Arete Two 12L steht nicht auf dieser Liste.' in surface
+                    assert 'german-meacodry-arete-one-20l-and-25l_1.pdf' in surface
+                    assert 'aretetwo-10l12l-manual-de02-160424_1.pdf' in surface
                 assert '3,4 L/Tag bei 180 W' in md and 'Meaco DE, Herstellerdaten' in md
+                assert '5,4 L/Tag bei 136 W' in md and 'meacodry-arete-two-12l-luftentfeuchter-luftreiniger' in md
             for product in DATA['products']:
                 for surface in [match[1], md]:
                     assert product['name'] in surface and product['source'] in surface, slug + ': evidence missing'
