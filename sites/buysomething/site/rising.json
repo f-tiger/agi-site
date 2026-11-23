@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-22",
+ "fetched": "2026-11-23",
  "seeds": {
   "electric spin scrubber": {
    "rising": [
@@ -727,28 +727,112 @@
    "fetched": "2026-11-22"
   },
   "robot pet companion": {
-   "rising": [
-    {
-     "q": "joy for all companion pet",
-     "v": 140
-    }
+   "auto": [
+    "robot pet companion",
+    "robot dog companion",
+    "robot dog companion for elderly",
+    "robot dog companion fallout 4",
+    "robot dog companion warframe",
+    "robot animal companion",
+    "robot dog companion new vegas",
+    "robot dog companion fallout",
+    "ai robot pet companion",
+    "best robot pet companion"
    ],
-   "source": "related-queries",
-   "fetched": "2026-11-22"
-  },
-  "balkonkraftwerk speicher": {
    "rising": [
     {
-     "q": "aldi balkonkraftwerk mit speicher",
-     "v": 648700
+     "q": "robot dog companion",
+     "v": "new"
     },
     {
-     "q": "how to make sushi",
-     "v": 58500
+     "q": "robot dog companion for elderly",
+     "v": "new"
+    },
+    {
+     "q": "robot dog companion fallout 4",
+     "v": "new"
+    },
+    {
+     "q": "robot dog companion warframe",
+     "v": "new"
+    },
+    {
+     "q": "robot animal companion",
+     "v": "new"
+    },
+    {
+     "q": "robot dog companion new vegas",
+     "v": "new"
+    },
+    {
+     "q": "robot dog companion fallout",
+     "v": "new"
+    },
+    {
+     "q": "ai robot pet companion",
+     "v": "new"
+    },
+    {
+     "q": "best robot pet companion",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-10-24"
+   "source": "autocomplete-diff",
+   "fetched": "2026-11-23"
+  },
+  "balkonkraftwerk speicher": {
+   "auto": [
+    "balkonkraftwerk speicher",
+    "balkonkraftwerk speicher nachrüsten",
+    "balkonkraftwerk speicher test",
+    "balkonkraftwerk speicher 5 kw",
+    "balkonkraftwerk speicher mit integriertem wechselrichter",
+    "balkonkraftwerk speicher mit notstromfunktion",
+    "balkonkraftwerk speicher für 4 module",
+    "balkonkraftwerk speicher anmelden",
+    "balkonkraftwerk speicher gerichtsurteil",
+    "balkonkraftwerk speicher 2 kwh"
+   ],
+   "rising": [
+    {
+     "q": "balkonkraftwerk speicher nachrüsten",
+     "v": "new"
+    },
+    {
+     "q": "balkonkraftwerk speicher test",
+     "v": "new"
+    },
+    {
+     "q": "balkonkraftwerk speicher 5 kw",
+     "v": "new"
+    },
+    {
+     "q": "balkonkraftwerk speicher mit integriertem wechselrichter",
+     "v": "new"
+    },
+    {
+     "q": "balkonkraftwerk speicher mit notstromfunktion",
+     "v": "new"
+    },
+    {
+     "q": "balkonkraftwerk speicher für 4 module",
+     "v": "new"
+    },
+    {
+     "q": "balkonkraftwerk speicher anmelden",
+     "v": "new"
+    },
+    {
+     "q": "balkonkraftwerk speicher gerichtsurteil",
+     "v": "new"
+    },
+    {
+     "q": "balkonkraftwerk speicher 2 kwh",
+     "v": "new"
+    }
+   ],
+   "source": "autocomplete-diff",
+   "fetched": "2026-11-23"
   },
   "energy monitoring smart plug": {
    "auto": [
