@@ -119,26 +119,24 @@ test('all three interfaces retain GBP, safe local next steps and the same source
   } finally {globalThis.fetch = previous;}
 });
 
-test('the UK laundry guide exposes the native tool after advice and before models, with parity in its text mirror', () => {
+test('the UK laundry guide exposes the native tool before navigation and models, with parity in its text mirror', () => {
   const files = new Map(), data = loadMarketGuides();
   const records = buildMarketPages({write: (path, html) => files.set(path, html), data});
   const uk = files.get('uk/indoor-laundry.html');
   const toolHref = 'href="/ai-tools/uk-laundry-session"';
   assert.equal(uk.split(toolHref).length - 1, 1);
-  assert.ok(uk.indexOf('id="before"') < uk.indexOf(toolHref));
+  assert.ok(uk.indexOf(toolHref) < uk.indexOf('class="market-links"'));
   assert.ok(uk.indexOf(toolHref) < uk.indexOf('id="models"'));
-  assert.match(uk, /pence per kWh/);
-  assert.match(uk, /costs in GBP/);
-  assert.match(uk, /same|similar loads, conditions and final dryness/);
-  assert.match(uk, /not a TDS performance test/);
+  assert.match(uk, /Electricity cost per load \(£\).*p\/kWh/);
+  assert.match(uk, /Compare similar load sizes, room conditions and final dryness/);
+  assert.match(uk, /TDS has not tested drying speed/);
   assert.match(uk, /Editorial sources checked: <time datetime="2026-11-15">/);
   const graph = JSON.parse(/<script type="application\/ld\+json">(.*?)<\/script>/s.exec(uk)[1]);
-  assert.equal(graph['@graph'].find(node => node['@type'] === 'WebPage').dateModified, '2026-11-22');
-  assert.equal(records.find(row => row.url.endsWith('/uk/indoor-laundry')).modified, '2026-11-22');
-  assert.ok(records.filter(row => !row.url.endsWith('/uk/indoor-laundry')).every(row => row.modified === data.updated));
+  assert.equal(graph['@graph'].find(node => node['@type'] === 'WebPage').dateModified, '2026-11-23');
+  assert.equal(records.find(row => row.url.endsWith('/uk/indoor-laundry')).modified, '2026-11-23');
   assert.match(files.get('collector-assets/text/uk/indoor-laundry.txt'), /https:\/\/thedollscout\.com\/ai-tools\/uk-laundry-session/);
   for (const [path, html] of files) {
-    if (path.endsWith('.html') && path !== 'uk/indoor-laundry.html') assert.ok(!html.includes(toolHref), path + ': do not add the UK calculator to a different market or task');
+    if (path.endsWith('.html') && !['uk/indoor-laundry.html', 'uk/index.html'].includes(path)) assert.ok(!html.includes(toolHref), path + ': do not add the UK calculator to a different market or task');
   }
   assert.doesNotMatch(uk, /tag=|rel="sponsored|B000KN4DQ4|amazon\.de\//);
 });

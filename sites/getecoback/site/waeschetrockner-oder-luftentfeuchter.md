@@ -85,6 +85,8 @@ kWh für den ganzen Durchgang × Arbeitspreis. Vorbelegte Zahlen sind Rechenbeis
 - Vergleiche Wäsche mit gleicher Masse, Schleuderdrehzahl und gewünschter Restfeuchte.
 - Notiere Start- und Endstand eines passenden Strommessgeräts sowie die Laufzeit. Beachte Anleitung und elektrische Belastbarkeit.
 - Nutze die kWh-Differenz des ganzen Durchgangs. Typenschild-Watt ist keine gemessene mittlere Leistung.
+
+Noch kein geeignetes Messgerät? TDS hilft dir, [zwischen vorhandenem, geliehenem und neuem Strommessgerät zu wählen](https://thedollscout.com/de/ai-tools/dach-meter-fit#messgeraet-ausleihen-oder-kaufen). Prüfe dabei, welche Messung der Hersteller deines Geräts erlaubt.
 - Beim Label eines eigenständigen Trockners für 100 Trocknungen: durch 100 teilen. Das Labelprogramm kann von deiner eigenen Nutzung abweichen.
 
 ### Sind beide Ladungen gleich trocken?

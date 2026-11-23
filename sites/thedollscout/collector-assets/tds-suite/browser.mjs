@@ -1,5 +1,5 @@
 import { approvedBuyingGuide } from './regional-buying-links.mjs';
-import { recordRegionalAction } from './regional-measurement.mjs';
+import { recordRegionalAction, recordRegionalPageview } from './regional-measurement.mjs?v=20261123';
 const one = (selector, root = document) => root.querySelector(selector);
 const data = (selector) => {
   const entry = one(selector);
@@ -37,6 +37,7 @@ if (mcp) {
 }
 const form = one('[data-tds-tool]');
 if (form) {
+  recordRegionalPageview();
   const {name, locale, inputSchema, example, ui} = data('[data-tds-config]');
   const status = one('[data-tds-status]');
   const result = one('[data-tds-result]');

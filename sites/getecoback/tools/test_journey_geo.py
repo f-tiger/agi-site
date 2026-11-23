@@ -57,6 +57,21 @@ class JourneyGeo(unittest.TestCase):
             self.assertNotIn('amazon.', result)
             self.assertNotIn('data-country-action', result)
 
+    def test_laundry_handoffs_keep_only_the_two_reviewed_noncommercial_targets(self):
+        examples = [
+            ('/waeschetrockner-oder-luftentfeuchter.html', 'de', 'https://thedollscout.com/de/ai-tools/dach-meter-fit#messgeraet-ausleihen-oder-kaufen'),
+            ('/en/guide/heated-airer-vs-dehumidifier.html', 'en', 'https://thedollscout.com/ai-tools/uk-laundry-session'),
+        ]
+        for route, lang, href in examples:
+            html = (f'<article><p><a href="{href}">Compare</a> '
+                    f'<a href="{href}?source=unknown">Other</a> '
+                    f'<a href="{href}" rel="sponsored">Paid</a></p></article>')
+            result = to_markdown(html, route, lang)
+            self.assertIn(f'[Compare]({href})', result)
+            self.assertNotIn('[Other](', result)
+            self.assertNotIn('[Paid](', result)
+            self.assertNotIn(href, to_markdown(html, '/other.html', lang))
+
     def test_absent_or_generic_navigation_is_not_invented_or_kept(self):
         source = '<html><title>Task</title><article>Answer<!--EB_RELATED--><nav>UNRELATED_LINKS</nav><!--/EB_RELATED--></article></html>'
         result = to_markdown(source, '/guide/luftfeuchtigkeit-senken.html', 'de')

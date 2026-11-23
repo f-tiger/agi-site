@@ -22,6 +22,27 @@ test('eight distinct regional pages preserve the 1,000-model catalogue and local
   assert(h.includes('market-guides.mjs?v=20261115.uknl1'));
  }
 });
+test('UK laundry guide and hub surface the calculator and explain the cost of a whole load',()=>{
+ const tool='/ai-tools/uk-laundry-session',source='https://www.ofgem.gov.uk/your-energy-supply/your-energy-bill/energy-price-cap-unit-rates-and-standing-charges';
+ const guide=files.get('uk/indoor-laundry.html'),guideText=files.get('collector-assets/text/uk/indoor-laundry.txt');
+ const hub=files.get('uk/index.html'),hubText=files.get('collector-assets/text/uk/home.txt');
+ assert(guide.indexOf(`href="${tool}"`)>=0&&guide.indexOf(`href="${tool}"`)<guide.indexOf('class="market-links"'));
+ assert(hub.indexOf(`href="${tool}"`)>=0&&hub.indexOf(`href="${tool}"`)<hub.indexOf('class="market-grid"'));
+ for(const output of [guide,guideText]){
+  assert(output.includes('whole-session kWh × your unit rate (p/kWh) ÷ 100'));
+  assert(output.includes('Illustrative example at 27.5p/kWh'));
+  assert(output.includes('1.20 kWh costs £0.33')&&output.includes('0.80 kWh costs £0.22')&&output.includes('£0.11 per load'));
+  assert(output.includes(source));
+ }
+ assert(guideText.includes('https://thedollscout.com'+tool)&&hubText.includes('https://thedollscout.com'+tool));
+ const changed=records.filter(r=>r.modified!==data.updated);
+ assert.deepEqual(changed.map(r=>new URL(r.url).pathname),['/uk/','/uk/indoor-laundry']);
+ for(const html of [guide,hub])assert(html.includes('"dateModified":"2026-11-23"'));
+ for(const r of records.filter(r=>r.market==='nl')){
+  const html=files.get(new URL(r.url).pathname.slice(1)+(r.slug?'.html':'index.html'));
+  assert(!html.includes(tool)&&!html.includes(source));
+ }
+});
 test('bad country routes, source URLs and incomplete original guidance cannot publish',()=>{
  for(const edit of [d=>d.markets[1].id='uk',d=>d.markets[0].merchant='amazon.com',d=>d.markets[0].guides[0].slug='unknown',d=>d.markets[0].guides[0].sources[0].url='https://evil.test/',d=>d.markets[0].guides[0].models[0].url+='?tag=wrong',d=>d.markets[0].guides[0].comparisons=[]]){const d=structuredClone(data);edit(d);assert.throws(()=>validateMarketGuides(d));}
 });

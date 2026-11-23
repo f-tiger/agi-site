@@ -64,4 +64,26 @@ for (const [lang,prefix] of Object.entries(locales)) {
   assert.ok(llms.includes(origin+prefix+'/ai-tools'));
   assert.ok(llms.includes(origin+'/'+assets+'/catalog-'+lang+'.json'));
 }
+const germanMeter = '/de/ai-tools/dach-meter-fit';
+const germanMeterHtml = read(germanMeter+'.html');
+const germanMeterText = read(`${assets}/text/de/dach-meter-fit.txt`);
+const adviceAnchor = 'id="messgeraet-ausleihen-oder-kaufen"';
+assert.ok(germanMeterHtml.includes(adviceAnchor));
+assert.ok(germanMeterHtml.indexOf(adviceAnchor) < germanMeterHtml.indexOf('data-tds-tool'));
+assert.ok(germanMeterHtml.includes('href="#messplan"') && germanMeterHtml.includes('id="messplan"'));
+for (const fragment of [
+  'Strommessgerät ausleihen oder kaufen?',
+  'Einen Kühlschrank im normalen Alltag sieben Tage messen.',
+  'Für einen Trockner zählt ein vollständiger Durchgang.',
+  'Tapo P110 und P110M kommen hier nur für andere, bestätigte Anwendungen infrage.',
+  'https://www.verbraucherzentrale.nrw/strommessgeraete',
+  'https://www.tp-link.com/de/support/faq/3816/',
+]) {
+  assert.ok(germanMeterHtml.includes(fragment), fragment);
+  assert.ok(germanMeterText.includes(fragment), fragment);
+}
+assert.ok(sitemap.includes(`<loc>${origin+germanMeter}</loc><lastmod>2026-11-23</lastmod>`));
+for (const translated of ['/ai-tools/dach-meter-fit', '/zh/ai-tools/dach-meter-fit']) {
+  assert.ok(!read(translated+'.html').includes(adviceAnchor), translated);
+}
 console.log(`TDS suite verified: ${m.count} distinct browser/MCP definitions, ${m.pages.length} localized pages, all ${TDS_HOME_TOOL_COUNT * Object.keys(locales).length} rendered examples execute, and ${discover.size} indexable pages.`);

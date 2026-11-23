@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
-import {REGIONAL_ACTIONS, REGIONAL_TOOL_PATHS, regionalMeasurement, recordRegionalAction} from '../../collector-assets/tds-suite/regional-measurement.mjs';
+import {REGIONAL_ACTIONS, REGIONAL_TOOL_PATHS, regionalMeasurement, recordRegionalAction, recordRegionalPageview} from '../../collector-assets/tds-suite/regional-measurement.mjs';
 import {onRequestPost} from '../../functions/api/ev.js';
 import {regionalWindow, regionalReport, aggregateRegional, onRequestGet} from '../../functions/api/regional-tool-growth.js';
 import {businessEvent} from '../../../../tools/fleet-analytics/business.mjs';
@@ -31,6 +31,22 @@ test('six exact regional routes emit only fixed actions and canonical paths thro
   }
 });
 
+test('regional pageviews use the anonymous pageview channel with only a canonical path and immediate origin', () => {
+  for (const path of REGIONAL_TOOL_PATHS) {
+    const {win, sent, events} = browser(path);
+    win.document.referrer = 'https://getecoback.com/private-measurement?value=DO_NOT_SEND#DO_NOT_SEND';
+    assert.equal(recordRegionalPageview(win), true);
+    assert.deepEqual(sent.map(row => ({url: row.url, body: row.body, keepalive: row.keepalive})),
+      [{url: '/api/ev', body: {p: path, e: '', r: 'https://getecoback.com'}, keepalive: true}]);
+    assert.equal(events.length, 0, 'GA4 already records its own pageview');
+    assert.doesNotMatch(JSON.stringify(sent), /DO_NOT_SEND|private-measurement/);
+  }
+  for (const referrer of ['', 'bad', 'file:///private', 'data:text/plain,private', 'blob:https://private.example/id']) {
+    const {win, sent} = browser();win.document.referrer = referrer;
+    assert.equal(recordRegionalPageview(win), true);assert.equal(sent[0].body.r, '');
+  }
+});
+
 test('browser gate excludes QA, privacy opt-outs, automation, previews, frames and wrong canonicals', () => {
   const edits = [
     ...['ci', '__ci', '__probe', 'qa', '__qa'].map(key => win => {win.location.search = '?' + key;}),
@@ -46,10 +62,12 @@ test('browser gate excludes QA, privacy opt-outs, automation, previews, frames a
   ];
   for (const edit of edits) {
     const {win, sent, events} = browser();edit(win);
-    assert.equal(recordRegionalAction('tds_regional_result', win), false);assert.equal(sent.length, 0);assert.equal(events.length, 0);
+    assert.equal(recordRegionalAction('tds_regional_result', win), false);
+    assert.equal(recordRegionalPageview(win), false);assert.equal(sent.length, 0);assert.equal(events.length, 0);
   }
   for (const path of ['/ai-tools/private', '/ai-tools/categories/dach-meter-fit', '/en/ai-tools/dach-meter-fit', '/uk/indoor-laundry', '/de/ai-tools/dach-meter-fit/']) {
-    const {win, sent} = browser(path);assert.equal(recordRegionalAction('tds_regional_handoff', win), false);assert.equal(sent.length, 0);
+    const {win, sent} = browser(path);assert.equal(recordRegionalAction('tds_regional_handoff', win), false);
+    assert.equal(recordRegionalPageview(win), false);assert.equal(sent.length, 0);
     assert.equal(businessEvent('thedollscout.com', path, {name: 'tds_regional_result'}), null);
   }
   const ui = browser();assert.equal(recordRegionalAction('affiliate_click', ui.win), false);
@@ -94,6 +112,20 @@ test('server admits only route-bound regional labels and drops extra fields or Q
   assert.equal((await record(valid, {}, 'https://thedollscout.com/api/ev?__probe=1')).length, 0);
 });
 
+test('regional pageviews preserve only hostname and reject attached values without affecting existing pageviews', async () => {
+  const valid = {p: '/de/ai-tools/dach-meter-fit', e: '', r: 'https://www.getecoback.com'};
+  assert.deepEqual((await record(valid))[0].slice(1), ['/de/ai-tools/dach-meter-fit', 'de', '', 'www.getecoback.com', '']);
+  for (const body of [
+    {...valid, r: 'https://getecoback.com/private'}, {...valid, r: 'https://getecoback.com?value=DO_NOT_SEND'},
+    {...valid, r: 'https://getecoback.com/#value=DO_NOT_SEND'}, {...valid, r: false}, {p: valid.p, e: ''},
+    {...valid, p: valid.p + '?value=DO_NOT_SEND'}, {...valid, item: 'DO_NOT_SEND'},
+  ]) assert.equal((await record(body)).length, 0);
+  for (const headers of [{dnt: '1'}, {'sec-gpc': '1'}, {'x-probe': 'test'}, {cookie: 'tds_analytics_choice_v1=denied'}])
+    assert.equal((await record(valid, headers)).length, 0);
+  const existing = {p: '/de/shop/categories/smart-home', e: '', r: 'https://getecoback.com/old-path'};
+  assert.equal((await record(existing))[0][4], 'getecoback.com');
+});
+
 function database({index = true} = {}) {
   const db = new DatabaseSync(':memory:');
   db.exec('CREATE TABLE hits(d TEXT,path TEXT,lang TEXT,country TEXT,ref TEXT,ev TEXT)');
@@ -111,6 +143,12 @@ test('report excludes release and incomplete days; tool and existing guide count
     fixture.add('2026-11-23', '/de/ai-tools/dach-meter-fit', 'tds_regional_result');
     fixture.add('2026-11-23', '/de/ai-tools/dach-meter-fit', 'tds_regional_result');
     fixture.add('2026-11-23', '/de/ai-tools/dach-meter-fit', 'tds_regional_handoff');
+    fixture.add('2026-11-23', '/de/ai-tools/dach-meter-fit', '', 'getecoback.com'); // Partial pageview release day.
+    fixture.add('2026-11-24', '/de/ai-tools/dach-meter-fit', '', 'getecoback.com');
+    fixture.add('2026-11-24', '/de/ai-tools/dach-meter-fit', '', 'www.getecoback.com');
+    fixture.add('2026-11-24', '/de/ai-tools/dach-meter-fit', '', 'getecoback.com.example');
+    fixture.add('2026-11-24', '/de/ai-tools/dach-meter-fit', '', 'direct');
+    fixture.add('2026-11-24', '/zh/ai-tools/uk-laundry-session', '', 'google.com');
     fixture.add('2026-11-24', '/zh/ai-tools/uk-laundry-session', 'tds_regional_result');
     fixture.add('2026-11-24', '/zh/ai-tools/uk-laundry-session', 'tds_regional_handoff');
     fixture.add('2026-11-24', '/de/shop/categories/smart-home', '');
@@ -121,26 +159,42 @@ test('report excludes release and incomplete days; tool and existing guide count
     fixture.add('2026-11-24', '/uk/indoor-laundry', 'market_source_click', 'www.meaco.com');
     fixture.add('2026-11-24', '/ai-tools/unrelated', 'tds_regional_result');
     fixture.add('2026-11-25', '/ai-tools/uk-laundry-session', 'tds_regional_result');
+    fixture.add('2026-11-25', '/ai-tools/uk-laundry-session', '', 'getecoback.com');
     const report = await regionalReport(fixture.read, new Date('2026-11-25T10:00:00Z'));
     assert.deepEqual(report.measuredWindow, {start: '2026-11-23', end_exclusive: '2026-11-25'});
-    assert.equal(report.coveredDays, 2);assert.deepEqual(report.counts, {result_events: 3, guide_handoff_clicks: 2});
-    assert.deepEqual(report.tools.map(tool => tool.counts), [{result_events: 2, guide_handoff_clicks: 1}, {result_events: 1, guide_handoff_clicks: 1}]);
+    assert.deepEqual(report.pageviewMeasuredWindow, {start: '2026-11-24', end_exclusive: '2026-11-25'});
+    assert.equal(report.coveredDays, 2);
+    assert.deepEqual(report.counts, {result_events: 3, guide_handoff_clicks: 2, pageviews: 5, eco_referred_pageviews: 2});
+    assert.deepEqual(report.tools.map(tool => tool.counts), [
+      {result_events: 2, guide_handoff_clicks: 1, pageviews: 4, eco_referred_pageviews: 2},
+      {result_events: 1, guide_handoff_clicks: 1, pageviews: 1, eco_referred_pageviews: 0},
+    ]);
+    assert.deepEqual(report.tools[0].daily.filter(row => /pageview/.test(row.event)), [
+      {date: '2026-11-24', path: '/de/ai-tools/dach-meter-fit', event: 'eco_referred_pageview', n: 2},
+      {date: '2026-11-24', path: '/de/ai-tools/dach-meter-fit', event: 'pageview', n: 4},
+    ]);
     assert.deepEqual(report.guides.map(guide => guide.counts), [
       {pageviews: 1, amazon_de_affiliate_clicks: 1, amazon_uk_ordinary_shop_clicks: null, official_source_clicks: null},
       {pageviews: 1, amazon_de_affiliate_clicks: null, amazon_uk_ordinary_shop_clicks: 1, official_source_clicks: 1},
     ]);
     assert.match(report.notes, /not a joined funnel/);assert.match(report.notes, /no confirmed affiliate tag/);
     assert.ok(fixture.calls.some(call => call.sql.startsWith('EXPLAIN QUERY PLAN ')));
-    assert.doesNotMatch(JSON.stringify(report), /amazon\.com|unrelated/);
+    assert.doesNotMatch(JSON.stringify(report), /amazon\.com|unrelated|getecoback\.com|google\.com/);
   } finally {fixture.db.close();}
 });
 
 test('pending coverage, unavailable data and a successfully queried zero have distinct states', async () => {
   const pending = await regionalReport(async () => assert.fail('No pre-coverage database query'), new Date('2026-11-23T23:59:00Z'));
-  assert.equal(pending.coverage, 'pending_first_complete_day');assert.equal(pending.counts, null);
+  assert.equal(pending.coverage, 'pending_first_complete_day');assert.equal(pending.counts, null);assert.equal(pending.pageviewMeasuredWindow, null);
   assert.ok(pending.tools.every(tool => tool.counts === null));assert.ok(pending.guides.every(guide => guide.counts === null));
   const fixture = database();
-  try {const zero = await regionalReport(fixture.read, new Date('2026-11-24T10:00:00Z'));assert.deepEqual(zero.counts, {result_events: 0, guide_handoff_clicks: 0});}
+  try {
+    const partial = await regionalReport(fixture.read, new Date('2026-11-24T10:00:00Z'));
+    assert.equal(partial.pageviewMeasuredWindow, null);
+    assert.deepEqual(partial.counts, {result_events: 0, guide_handoff_clicks: 0, pageviews: null, eco_referred_pageviews: null});
+    const zero = await regionalReport(fixture.read, new Date('2026-11-25T10:00:00Z'));
+    assert.deepEqual(zero.counts, {result_events: 0, guide_handoff_clicks: 0, pageviews: 0, eco_referred_pageviews: 0});
+  }
   finally {fixture.db.close();}
   const unindexed = database({index: false});
   try {await assert.rejects(regionalReport(unindexed.read, new Date('2026-11-24T10:00:00Z')), /date index/);}
@@ -151,5 +205,7 @@ test('pending coverage, unavailable data and a successfully queried zero have di
   assert.deepEqual(await response.json(), {ok: false, error: 'no_db', counts: null});
   const window = regionalWindow(new Date('2026-12-30T10:00:00Z'));
   assert.equal(window.coveredDays, 28);
-  assert.throws(() => aggregateRegional([{d: '2026-12-20', path: '/ai-tools/dach-meter-fit', ev: 'tds_regional_result', merchant: '', n: 'DO_NOT_SEND'}], window));
+  const row = {d: '2026-12-20', path: '/ai-tools/dach-meter-fit', ev: '', merchant: '', n: 1, eco_n: 1};
+  for (const invalid of [{n: 'DO_NOT_SEND'}, {eco_n: null}, {eco_n: 2}, {eco_n: -1}, {ev: 'tds_regional_result'}])
+    assert.throws(() => aggregateRegional([{...row, ...invalid}], window), /Invalid aggregate/);
 });
