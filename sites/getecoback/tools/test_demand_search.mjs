@@ -234,6 +234,34 @@ test('German exact N90 offer identity searches reach the existing model evidence
  ]) assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u===page+'#testlage'),q);
 });
 
+test('German indoor window condensation queries find the existing measurement answer',()=>{
+ const page='/guide/fenster-beschlagen-innen.html';
+ const destination=page+'#fenstersauger-gegen-kondenswasser';
+ for(const q of [
+  'Warum beschlägt das geschlossene Fenster morgens innen?',
+  'Jeden Morgen sind die Fensterscheiben im Schlafzimmer von innen nass. Was soll ich zuerst messen?',
+  'Nach dem Schlafen ist die Innenscheibe nass, obwohl das Fenster zu war. Woran liegt das?',
+  'Wieso läuft mein Schlafzimmerfenster innen morgens an?',
+  'Kann das Fenster bei 20 Grad, 60 Prozent Luftfeuchte und 10 Grad am Glas von innen beschlagen?',
+ ]) {
+  const hits=searchEntries(index,q,'de');
+  assert.equal(hits[0]?.entry.u,destination,q);
+  assert.match(hits[0].entry.d,/Temperatur an der Innenscheibe gleichzeitig messen/,q);
+  assert.equal(hits.filter(hit=>hit.entry.u.split('#')[0]===page).length,1,q);
+  assert.ok(!searchEntries(index,q,'en').some(hit=>hit.entry.u===destination),q);
+ }
+ for(const q of [
+  'Mein Fenster beschlägt morgens von außen und innen ist es trocken.',
+  'Meine Doppelverglasung ist zwischen den Scheiben beschlagen, innen und außen lässt sich nichts wegwischen.',
+  'Meine Fensterscheibe beschlägt morgens. Innen oder außen kann ich nicht erkennen.',
+  'Warum beschlägt die Windschutzscheibe meines Autos morgens von innen?',
+  'Passt die schmale 170-mm-Düse für Kondenswasser zu meinem Kärcher WV 6?',
+  'Von innen nasses Fenster am Schlauch meiner mobilen Klimaanlage.',
+ ]) assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u===destination),q);
+ assert.equal(searchEntries(index,'Passt die schmale 170-mm-Düse für Kondenswasser zu meinem Kärcher WV 6?','de')[0]?.entry.u,
+   '/produkte.html#kaercher-170mm-saugduese');
+});
+
 test('German cooling window-closure questions find the static decision answer',()=>{
  const page='/guide/klimaanlage-fenster-einbruchschutz.html';
  const destination=page+'#fenster-verschluss-pruefen';

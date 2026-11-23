@@ -10,11 +10,13 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Diese Seite erklärt Bauphysik und Messwerte — sie ersetzt bei Bauschäden oder bestehendem Schimmelbefall keine Fachbegutachtung. Amazon-Links sind Partnerlinks; sie finanzieren diese Seite, ohne dass du mehr zahlst.
 
-## Hilft ein Fenstersauger gegen Kondenswasser?
+## Fenster morgens von innen nass: erst abwischen und messen
 
-**Wasser an der zugänglichen Innenscheibe mit einem sauberen Tuch abwischen.** Bei mehreren nassen Scheiben kann ein dafür geeigneter Fenstersauger die Arbeit erleichtern. Kärcher nennt das Aufsaugen von Kondenswasser auf Glas als Einsatz und für das genaue Gerät gilt die jeweilige Anleitung. Wenn du bei häufiger Nutzung ein Set vergleichen willst, miss die engste Stelle am Glas. [Düsenbreite und passende Sets prüfen](https://getecoback.com/produkte.html#fenstersauger-duesenbreite).
+**Prüfe zuerst, auf welcher Seite das Wasser sitzt.** Wische Wasser an der zugänglichen Innenscheibe mit einem sauberen Tuch ab. Ist nur die Außenseite nass, [Außenbeschlag getrennt einordnen](https://getecoback.com/guide/fenster-beschlagen-aussen.html). Sitzt der Beschlag zwischen den Scheiben und lässt sich auf keiner Seite abwischen, das Glas von einem Fensterbetrieb prüfen lassen.
 
-Wird dieselbe Stelle regelmäßig nass, halte Zeitpunkt, Stelle und Messwerte fest. **Feuchte zwischen den Scheiben** vom Fensterbetrieb prüfen lassen. Bei **wiederholt nassen Wänden, sichtbarem Schimmel oder möglichem Wassereintritt** die Ursache fachlich prüfen lassen. In der Mietwohnung der Hausverwaltung Bescheid geben.
+Beim Atmen gelangt über Nacht Feuchtigkeit in die Raumluft. Kühlt die Luft an der Scheibe bis zum Taupunkt ab, kann sich dort Wasser bilden. Auch bei einem unauffälligen Messwert in der Raummitte kann ein Glasrand kalt genug sein. Prüfe die betroffene Stelle.
+
+Wird dieselbe Stelle regelmäßig nass, halte Zeitpunkt, Stelle und Messwerte fest. Bei **wiederholt nassen Wänden, sichtbarem Schimmel oder möglichem Wassereintritt** die Ursache fachlich prüfen lassen. In der Mietwohnung der Hausverwaltung Bescheid geben.
 
 ### Drei Messwerte vom selben Zeitpunkt
 
@@ -29,6 +31,8 @@ Wird dieselbe Stelle regelmäßig nass, halte Zeitpunkt, Stelle und Messwerte fe
 Der Check nutzt die Magnus-Näherung und rechnet Scheibentemperatur minus Taupunkt. Liegt der Unterschied innerhalb von **±1 °C**, miss erneut. Dieser Bereich dient zur Orientierung. Wie genau deine Geräte messen, kann der Check nicht bestimmen.
 
 Quellen geprüft am 22.11.2026. [ADAC zu Fensterkondensat](https://www.adac.de/rund-ums-haus/wohnen/haushalt/kondenswasser-am-fenster/) · [Umweltbundesamt zu Lüften und Raumfeuchte](https://www.umweltbundesamt.de/themen/gesundheit/umwelteinfluesse-auf-den-menschen/schimmel/wie-luefte-ich-richtig-tipps-tricks-zur) · [Kärcher zum vorgesehenen Einsatz](https://www.kaercher.com/de/de/home-and-garden/produkte/akku-fensterreiniger-c36).
+
+Bei mehreren nassen Scheiben kann ein dafür geeigneter Fenstersauger die Arbeit erleichtern. Kärcher nennt das Aufsaugen von Kondenswasser auf Glas als Einsatz und für das genaue Gerät gilt die jeweilige Anleitung. Wenn du bei häufiger Nutzung ein Set vergleichen willst, miss die engste Stelle am Glas. [Düsenbreite und passende Sets prüfen](https://getecoback.com/produkte.html#fenstersauger-duesenbreite).
 
 ## Warum ausgerechnet nachts im Schlafzimmer?
 

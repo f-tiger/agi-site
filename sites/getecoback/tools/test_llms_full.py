@@ -15,6 +15,31 @@ MEACO = 'https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-
 
 
 class LlmsFull(unittest.TestCase):
+    def test_indoor_condensation_guide_answers_before_merchant_choices(self):
+        route = '/guide/fenster-beschlagen-innen.html'
+        guide = SITE / route.lstrip('/')
+        page = guide.read_text()
+        mirror = guide.with_suffix('.md').read_text()
+        aid = 'fenstersauger-gegen-kondenswasser'
+        section = re.search(rf'<section id="{aid}".*?</section>', page, re.S)
+        self.assertIsNotNone(section)
+        self.assertEqual(page.count(f'id="{aid}"'), 1)
+        for phrase in ('Prüfe zuerst, auf welcher Seite das Wasser sitzt.', 'sauberen Tuch ab',
+                       'fenster-beschlagen-aussen.html', 'unauffälligen Messwert in der Raummitte',
+                       'Drei Messwerte vom selben Zeitpunkt', '20 °C und 60 %', '±1 °C',
+                       'wiederholt nassen Wänden', 'www.adac.de/rund-ums-haus/wohnen/haushalt/kondenswasser-am-fenster/',
+                       'www.umweltbundesamt.de/themen/gesundheit/umwelteinfluesse-auf-den-menschen/schimmel/'):
+            for document in (section[0], mirror):
+                self.assertIn(phrase, document)
+        self.assertLess(section[0].index('Drei Messwerte'), section[0].index('data-window-width-open'))
+        share = re.search(r'href="(https://www\.reddit\.com/submit\?[^"]+)"', section[0])
+        self.assertIsNotNone(share)
+        self.assertEqual(parse_qs(urlsplit(html.unescape(share[1])).query), {
+            'url': [f'https://getecoback.com{route}#{aid}'],
+            'title': ['Kondenswasser am Innenfenster: abwischen und mit drei Messwerten prüfen'],
+        })
+        self.assertNotRegex(mirror, r'reddit\.com/submit|https?://[^\s")]*amazon\.')
+
     def test_window_closure_final_guide_keeps_police_and_manufacturer_conditions(self):
         route = '/guide/klimaanlage-fenster-einbruchschutz.html'
         guide = SITE / route.lstrip('/')

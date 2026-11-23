@@ -16,6 +16,7 @@ assert [row['id'] for row in trotec_index['model_sections']]==['ttk70-hepa-filte
 focused=[entry for entry in index if entry.get('section')]
 assert [(entry['l'],entry['u'],entry['section']['id']) for entry in focused]==[
     ('de','/guide/delonghi-pac-n90-test.html','testlage'),
+    ('de','/guide/fenster-beschlagen-innen.html','fenstersauger-gegen-kondenswasser'),
     ('de','/guide/fenster-zugluft-mietwohnung.html','dichtungsprofil'),
     ('de','/guide/heizdecke-stromverbrauch.html','waerme-rechner'),
     ('de','/guide/keller-lueften-sommer.html','taupunkt'),
