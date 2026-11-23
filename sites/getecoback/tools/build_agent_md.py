@@ -204,6 +204,9 @@ def to_markdown(src_html, path_url, lang):
                 combined_label = re.search(r'<section\b[^>]*\bid="waschtrockner-label"[^>]*>(.*?)</section>', laundry.group(1), re.S)
                 if combined_label:
                     body += combined_label.group()
+                dryer_load = re.search(r'<section\b[^>]*\bid="trockner-teilbeladung"[^>]*>.*?</section>', laundry.group(1), re.S)
+                if dryer_load:
+                    body += dryer_load.group()
                 single_drying = re.search(r'<section\b[^>]*\bid="luftentfeuchter-waesche-kosten"[^>]*>.*?</section>', laundry.group(1), re.S)
                 if single_drying:
                     body += single_drying.group()

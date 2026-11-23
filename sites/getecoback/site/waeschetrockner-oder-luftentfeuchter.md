@@ -53,6 +53,20 @@ Hast du im Beispiel die vollen **8 kg** gewaschen, prüfe in der Anleitung die z
 
 Quellen geprüft am 22.11.2026. [EU-Verordnung 2019/2014 zum Energielabel, Anhang III B und Anhang IV](https://eur-lex.europa.eu/legal-content/DE/TXT/PDF/?uri=CELEX%3A02019R2014-20210501) · [Verbraucherzentrale zum Waschtrockner-Label](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/waschtrockner-kombigeraete-sind-platzsparende-stromfresser-37060).
 
+### Bosch WQG241031: Wie viel Strom braucht eine halbe Eco-Ladung?
+
+Die deutsche Anleitung nennt bei 1.000 U/min Schleuderdrehzahl, 60 % Anfangsfeuchte und 0 % Endfeuchte diese Eco-Programmwerte.
+
+- **9,0 kg:** 1,93 kWh in 3:50 h.
+
+- **4,5 kg:** 1,08 kWh in 2:12 h.
+
+Bei einem beispielhaften Arbeitspreis von 0,35 €/kWh sind das rund 0,68 € für die volle und 0,38 € für die halbe Ladung. Zwei gleich trockene halbe Ladungen mit zusammen 9 kg ergeben im Beispiel 2,16 kWh und rund 0,76 €.
+
+Das Energielabel nennt 128 kWh je 100 Trocknungen. Die daraus berechneten 1,28 kWh pro Normzyklus dienen dem standardisierten Vergleich. Für deine Rechnung zählen die eigene Beladung, das Programm und die gemessenen kWh bis zur gleichen Endtrockenheit. Beim Kauf die vollständige E-Nr. und die zugehörige Anleitung prüfen.
+
+Geprüft am 23.11.2026. [Bosch-Anleitung WQG241031, Abschnitt 19, S. 38–39](https://media3.bsh-group.com/Documents/9001984619_B.pdf) · [Bosch EU-Energielabel für Deutschland](https://media3.bosch-home.com/Documents/energylabel/de-DE/WQG241031.pdf).
+
 ### Was kostet das Wäschetrocknen mit einem Luftentfeuchter?
 
 Der Rechner zeigt den direkten Stromverbrauch und die Stromkosten für einen Durchgang mit deinem Luftentfeuchter. Nutze den kWh-Wert eines vollständigen Durchgangs oder schätze ihn aus der mittleren Leistung und der Laufzeit.
