@@ -8,8 +8,8 @@ import {createInterface} from 'node:readline';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const id = 'ecoback-local-tools';
-const version = '1.22.26';
-const revision = '160ac4d8169d0f679deec5f993e0f69cea654eca';
+const version = '1.22.27';
+const revision = '45d8fc488770be8fe3ea97785875585159adf7e8';
 const sourceRepository = 'f-tiger/getecoback-mcp';
 const releaseTag = 'fleet-mcp-registry-2026-10-10';
 const name = 'io.github.f-tiger/' + id;
@@ -285,6 +285,34 @@ async function verifyColdCellar(call) {
   assert.match(lookup.structuredContent.cold_evidence,/1,97 L\/Tag bei 111 W.*5,4 L\/Tag bei 136 W/);
   assert.equal(lookup.structuredContent.model_guide_url,twoModelGuide);
   return {tool:cellarPoint,guide:twoModelGuide,source:twoModelSource,readings,wrongVariantRejected:true};
+}
+
+async function verifyWindowCondensationDiscovery(find) {
+  const measured = [
+    'Fenstersauger gegen Kondenswasser',
+    'Im Schlafzimmer sind 20 Grad bei 60 % Luftfeuchtigkeit. Morgens hat die Innenscheibe 10 Grad. Warum wird sie nass?',
+    'Ich messe am Glas 9 Grad. Innen sind es 21 Grad und 55 Prozent Luftfeuchte. Ist Tauwasser auf der Innenseite möglich?',
+    'Im Schlafzimmer sind 20 Grad bei 60 % Luftfeuchte. Die Innenscheibe hat 10 Grad und ist nass. Die Außenseite ist trocken. Liegt die Innenscheibe unter dem Taupunkt?',
+  ];
+  const excluded = [
+    'Warum beschlägt das geschlossene Fenster morgens innen?',
+    'Morgens ist die Innenscheibe nass. Die Scheibe hat 10 Grad, abends 15 Grad, die Luftfeuchtigkeit liegt bei 60 Prozent. Die Raumtemperatur kenne ich nicht. Warum wird sie nass?',
+    'Das Schlafzimmer hat 20 °C. Die Innenscheibe hat 10 °C. Mein Luftentfeuchter läuft auf 60 Prozent Leistung, die Luftfeuchte habe ich nicht gemessen. Weshalb wird es nachts innen nass?',
+    'Kondensat zwischen den Scheiben, Raumtemperatur 20 °C und 60 % Luftfeuchte. Die Scheibe hat 10 °C.',
+  ];
+  for (const question of measured) {
+    const [first] = (await find(question)).tools;
+    assert.equal(first?.name,condensationTool,question);
+    assert.equal(first.citation_url,condensationCitation);
+    assert.equal(first.guide_url,condensationGuide);
+    assert.deepEqual([...first.inputSchema.required].sort(),['room_c','room_rh_pct','surface_c']);
+    assert.deepEqual(first.example_arguments,{room_c:20,room_rh_pct:60,surface_c:10});
+  }
+  for (const question of excluded) {
+    const {tools} = await find(question);
+    assert.ok(!tools.some(tool => tool.name === condensationTool),question);
+  }
+  return {name:condensationTool,measuredFirst:measured.length,excluded:excluded.length};
 }
 
 async function verifyWindowCondensation(call) {
@@ -1132,6 +1160,7 @@ async function verifyStdio(extracted, manifest) {
       rpc('tools/call',{name:hygrometerTool,arguments:args}));
     const n90Identity = await verifyN90Identity(args =>
       rpc('tools/call',{name:n90IdentityTool,arguments:args}));
+    const windowCondensationDiscovery = await verifyWindowCondensationDiscovery(extractedFinder(extracted).output);
     const portaSplitLookup = await verifyPortaSplitLookup(extractedFinder(extracted).output);
     const portaSplitWindowLip = await verifyPortaSplitLip(args =>
       rpc('tools/call',{name:portaSplitLookup.name,arguments:args}));
@@ -1148,7 +1177,7 @@ async function verifyStdio(extracted, manifest) {
     const ttk70Filter = await verifyTtk70Filter(args =>
       rpc('tools/call',{name:ttk70FilterTool,arguments:args}));
     const mieleBags = await verifyMieleBags((name,args) => rpc('tools/call',{name,arguments:args}));
-    return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,windowCondensation,decimalWindowWidth,
+    return {tools:names.size,pages:sizes.length,windowExamples:windowTools.length,windowCondensation,windowCondensationDiscovery,decimalWindowWidth,
       singleLaundry,fritzValve,drainRoute,measuredVentilation,coldCellar,exactFilter,philipsFilter,warmthCost,hygrometerComparison,n90Identity,
       portaSplitLookup,portaSplitWindowLip,tesamollProfiles,coolingNoise,ttk75Point,coffeeFilter,kaercherNozzle,ttk70Filter,mieleBags,
       firstExamples:['btu_empfehlung','entfeuchter_ablaufcheck'],finder:verifyFinder(extracted,drain),
@@ -1693,14 +1722,11 @@ async function verifyCompactStdio(extracted) {
     const humidifierEfficiency = await verifyCompactHumidifierEfficiency(rpc,finder,runner);
     const glassvacTemperature = await verifyCompactGlassvacTemperature(rpc,finder,runner);
     const windowSubject = await verifyCompactWindowSubject(rpc,finder,runner);
-    const condensation = await rpc('tools/call',{
-      name:finder,arguments:{frage:'Fenstersauger gegen Kondenswasser'},
+    const windowCondensationDiscovery = await verifyWindowCondensationDiscovery(async frage => {
+      const found = await rpc('tools/call',{name:finder,arguments:{frage}});
+      assert.equal(found.isError,false,frage);
+      return found.structuredContent;
     });
-    assert.equal(condensation.isError,false);
-    const [match] = condensation.structuredContent.tools;
-    assert.equal(match?.name,condensationTool);
-    assert.equal(match.citation_url,condensationCitation);
-    assert.equal(match.guide_url,condensationGuide);
     const windowCondensation = await verifyWindowCondensation(eingaben =>
       rpc('tools/call',{name:runner,arguments:{name:condensationTool,eingaben}}));
     const n90Costs = await verifyCompactN90Costs(rpc,finder,runner);
@@ -1817,7 +1843,7 @@ async function verifyCompactStdio(extracted) {
       measuredVentilation,coldCellar,exactFilter,philipsFilter,warmthCost,hygrometerComparison,laundryPrecision,windowBlade,windowLookup,
       windowWidth,decimalWindowWidth,householdDecisions,tadoOventrop,n90Costs,n90Identity,portaSplitLookup,portaSplitWindowLip,
       tesamollProfiles,coolingNoise,ttk75Point,coffeeFilter,kaercherNozzle,ttk70Filter,mieleBags,
-      humidifierEfficiency,glassvacTemperature,windowSubject,windowCondensation,
+      humidifierEfficiency,glassvacTemperature,windowSubject,windowCondensation,windowCondensationDiscovery,
     };
   });
 }
@@ -1879,6 +1905,7 @@ try {
   const result = await verifyStdio(extracted,actualManifest);
   result.compact = await verifyCompactStdio(extracted);
   assert.deepEqual(result.windowCondensation,result.compact.windowCondensation);
+  assert.deepEqual(result.windowCondensationDiscovery,result.compact.windowCondensationDiscovery);
   assert.deepEqual(result.decimalWindowWidth,result.compact.decimalWindowWidth);
   assert.deepEqual(result.singleLaundry,result.compact.singleLaundry);
   assert.deepEqual(result.fritzValve,result.compact.fritzValve);
