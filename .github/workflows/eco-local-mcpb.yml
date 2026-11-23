@@ -19,12 +19,12 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUNDLE: ecoback-local-tools-1.22.25.mcpb
-  VERSION: '1.22.25'
-  UPSTREAM_SHA: 5c005eeaa4d525fa6092e1569b6787554906d453
+  BUNDLE: ecoback-local-tools-1.22.26.mcpb
+  VERSION: '1.22.26'
+  UPSTREAM_SHA: 160ac4d8169d0f679deec5f993e0f69cea654eca
   NAME: io.github.f-tiger/ecoback-local-tools
   RELEASE_TAG: fleet-mcp-registry-2026-10-10
-  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.25.mcpb
+  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.26.mcpb
   REGISTRY_VERSIONS: https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions
   SOURCE_URL: https://github.com/f-tiger/getecoback-mcp
   MCPB_SCHEMA: https://raw.githubusercontent.com/modelcontextprotocol/mcpb/70fe3b34cd6dff1b3bba046638edc72a6467a4fb/schemas/mcpb-manifest-v0.3.schema.json
@@ -122,6 +122,15 @@ jobs:
             } and (.measuredVentilation.shareDigests | length == 5 and (unique | length == 5)) and
             all(.measuredVentilation.shareDigests[]; test("^[a-f0-9]{64}$")) and
             .compact.measuredVentilation == .measuredVentilation and
+            .coldCellar == {
+              tool:"kellerentfeuchter_pruefpunkt_abgleichen",
+              guide:"https://getecoback.com/guide/luftentfeuchter-keller.html#modell-meaco-two-12",
+              source:"https://eu.meaco.com/products/meacodry-arete-two-12l-luftentfeuchter-luftreiniger",
+              readings:[["hersteller_pruefpunkt",1.97,111],["hersteller_pruefpunkt",5.4,136],["wertepaar_offen",null,null],
+                ["wertepaar_offen",null,null],["zuerst_messen",null,null],["kein_kaufbedarf_belegt",null,null],
+                ["ursache_klaeren",null,null]],
+              wrongVariantRejected:true
+            } and .compact.coldCellar == .coldCellar and
             .exactFilter.tool == "luftreiniger_ersatzfilter_zuordnung" and
             .exactFilter.guide == "https://getecoback.com/ersatzfilter.html#finder" and
             .exactFilter.unresolved == true and .exactFilter.unsupportedRejected == 4 and

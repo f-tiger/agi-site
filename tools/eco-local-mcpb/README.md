@@ -218,6 +218,12 @@ basement ventilation check. Both extracted modes verify the same text for
 airing, waiting, remeasurement and condensation risk. The calculator URL
 contains no measurements. The text contains the values entered for that call.
 
+Version 1.22.26 updates the German Arete One 20L and Two 12L evidence in the
+offline tools and the cellar reference. Both stdio modes exercise the documented
+Two 12L conditions, the exact-model guide link and the measure-first,
+water-damage and no-purchase decisions. The reference distinguishes the 12.5 mm
+downhill hose from the optional pump and links the German manuals.
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the
