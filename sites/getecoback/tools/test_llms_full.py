@@ -15,6 +15,37 @@ MEACO = 'https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-
 
 
 class LlmsFull(unittest.TestCase):
+    def test_window_closure_final_guide_keeps_police_and_manufacturer_conditions(self):
+        route = '/guide/klimaanlage-fenster-einbruchschutz.html'
+        guide = SITE / route.lstrip('/')
+        page = guide.read_text()
+        mirror = guide.with_suffix('.md').read_text()
+        section = re.search(r'<section id="fenster-verschluss-pruefen".*?</section>', page, re.S)
+        self.assertIsNotNone(section)
+        self.assertEqual(page.count('id="fenster-verschluss-pruefen"'), 1)
+        for phrase in ('möglichst weit', 'seine normale Verriegelung', 'den Kauf zurückstellen',
+                       'PortaSplit-Gebrauchsanweisung-DE.pdf',
+                       'transkript-portasplit-fensterabdichtung1',
+                       'https://www.k-einbruch.de/sicherheitstipps/verhaltenstipps',
+                       '/guide/midea-portasplit-kaufen.html'):
+            self.assertIn(phrase, section[0])
+            self.assertIn(phrase, mirror)
+        for document in (page, mirror):
+            self.assertIn('Ein gekipptes Fenster gilt als offen.', document)
+            self.assertIn('bevor du einschläfst oder die Wohnung verlässt', document)
+            self.assertNotRegex(document, r'normal verriegelbar|FKS208|FO400|https?://[^\s")]*amazon\.')
+        self.assertNotRegex(page, r'<!--EB_(?:TOPPICK|MODELS|POPUP|STICKY|QUICKPICK|SIZER|USTOP|USMARKET)-->')
+        self.assertNotIn('reddit.com/submit', mirror)
+        share = re.search(r'href="(https://www\.reddit\.com/submit\?[^"]+)"', section[0])
+        self.assertIsNotNone(share)
+        self.assertEqual(parse_qs(urlsplit(html.unescape(share[1])).query), {
+            'url': [f'https://getecoback.com{route}#fenster-verschluss-pruefen'],
+            'title': ['Klimaanlage am Fenster: Lässt sich das Fenster wirklich verriegeln?'],
+        })
+        adjacent = (SITE / 'guide/klimaanlage-kippfenster.html').read_text()
+        self.assertIsNotNone(re.search(
+            rf'<a href="{re.escape(route)}"[^>]*>Fensterstellung beim Klimabetrieb prüfen', adjacent))
+
     def test_room50_final_page_keeps_original_portasplit_conditions_and_share(self):
         route = '/guide/klimaanlage-50-qm.html'
         guide = SITE / route.lstrip('/')
