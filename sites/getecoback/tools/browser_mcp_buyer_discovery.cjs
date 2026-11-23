@@ -11,6 +11,13 @@ assert(live || ['127.0.0.1', 'localhost'].includes(base.hostname), 'Use the loca
 
 const cases = [
   {
+    question: 'Morgens beschlägt mein Fenster innen. Im Schlafzimmer sind 20 °C und 60 Prozent Luftfeuchte, die Scheibe hat 10 °C. Kann sich dort Tauwasser bilden?',
+    tool: 'fenster_oberflaeche_taucheck',
+    category: 'Feuchte',
+    guide: '/guide/fenster-beschlagen-innen.html#fenstersauger-gegen-kondenswasser',
+    heading: 'Fenster morgens von innen nass: erst abwischen und messen',
+  },
+  {
     question: 'Den Bosch GlassVAC wollte ich nach Frost laden. Jetzt geht es um meinen Kärcher WV 8: Alle LEDs blinken zweimal kurz und machen dann eine lange Pause, der Motor ist schon aus. Was bedeutet das?',
     tool: 'fenstersauger_wv3_wv8_led_muster_einordnen',
     category: 'Fenstersauger',
