@@ -3,3 +3,7 @@
 .eb-laundry .lc-fields{border:0;padding:0;margin:0;background:transparent}.eb-laundry button:disabled{opacity:.55;cursor:default}.eb-laundry #lc-measurement,.eb-laundry #waschtrockner-label{scroll-margin-top:90px}
 .eb-laundry [data-laundry-single] :is([role=alert],[role=status]):empty{margin:0;}
 .eb-laundry [data-single-copy-fallback] textarea{display:block;width:100%;padding:10px;font:inherit;}
+
+.eb-laundry[data-lang="de"],
+.eb-laundry[data-lang="de"] :is(#lc-measurement,#waschtrockner-label,#trockner-teilbeladung,#lc-endtrockenheit),
+#luftentfeuchter-waesche-kosten {scroll-margin-top:180px}

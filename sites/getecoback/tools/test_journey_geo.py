@@ -1,5 +1,8 @@
 """Only the published reasoned next step survives generic chrome removal."""
 import unittest
+import re
+from html import unescape
+from urllib.parse import parse_qs, urlsplit
 from build_agent_md import to_markdown
 from moisture_journeys import GUIDE_NEXT, render_next_steps
 from laundry_decision import block, inject
@@ -14,13 +17,33 @@ class JourneyGeo(unittest.TestCase):
             self.assertIn('data-laundry-fields disabled', rendered)
             self.assertIn('data-example disabled', rendered)
             self.assertIn('data-share disabled', rendered)
-            for html in (rendered, rendered.replace('<details id="lc-measurement">', '<details>')):
+            for html in (rendered, rendered.replace(' id="lc-measurement"', '')):
                 md = to_markdown(html, '/' + slug + '.html', 'en' if en else 'de')
                 self.assertIn('0.525' if en else '0,525', md)
                 self.assertIn('Record start/end energy readings' if en else 'Notiere Start- und Endstand', md)
                 self.assertIn('not a product measurement' if en else 'keine Produktmessung', md)
                 self.assertNotIn('data-laundry-fields', md)
                 self.assertNotIn('amazon.', md)
+
+    def test_german_end_dryness_method_keeps_both_sources_and_clean_share(self):
+        route = '/waeschetrockner-oder-luftentfeuchter.html'
+        anchor = '#lc-endtrockenheit'
+        rendered = '<html><title>Costs</title><article>' + block(False) + '</article></html>'
+        mirror = to_markdown(rendered, route, 'de')
+        self.assertIn('<details id="lc-measurement" open>', rendered)
+        self.assertNotIn(anchor, block(True))
+        for page in (rendered, mirror):
+            for phrase in ('dieselben geeigneten Textilien', 'Gewicht des leeren Korbs',
+                           'dicke Nähte und Taschen', 'kWh pro Durchgang getrennt',
+                           'keine normgerechte Restfeuchte in Prozent',
+                           'https://www.testfakta.com/de/test/testfaktas-test-of-tumble-dryers',
+                           'https://entfeuchter-test.de/luftentfeuchter-waesche-trocknen/'):
+                self.assertIn(phrase, page)
+        section = re.search(r'<section[^>]*aria-labelledby="lc-endtrockenheit".*?</section>', rendered, re.S)[0]
+        query = urlsplit(unescape(re.search(r'href="(https://www.reddit.com/submit[^"]+)"', section)[1])).query
+        self.assertEqual(parse_qs(query), {'url': ['https://getecoback.com' + route + anchor],
+                                          'title': ['Wäsche gleich trocken? So vergleichst du die Stromkosten fair']})
+        self.assertNotRegex(mirror, r'reddit\.com/submit|https?://[^\s\)"]*amazon\.')
 
     def test_reviewed_handoff_retains_reason_and_exact_destination_without_commerce(self):
         for route in ['/guide/luftfeuchtigkeit-senken.html', '/en/guide/dehumidifier-20-sqm.html']:
