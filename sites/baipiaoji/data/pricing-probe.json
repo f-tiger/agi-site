@@ -1,23 +1,23 @@
 {
- "generated": "2026-11-22",
+ "generated": "2026-11-23",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "bing-image",
-  "caiyun",
-  "canva",
-  "cerebras",
-  "character-ai",
-  "chatgpt",
-  "codebuddy",
-  "cody"
+  "cohere",
+  "comate",
+  "continue",
+  "coze",
+  "d-id",
+  "devv",
+  "dify",
+  "doubao-aixue"
  ],
- "cursor": "cody",
+ "cursor": "doubao-aixue",
  "summary": {
   "ready": 43,
-  "empty": 35,
-  "blocked": 30,
+  "empty": 36,
+  "blocked": 29,
   "probed_total": 108
  },
  "tools": {
@@ -1077,22 +1077,22 @@
    "slug": "cohere",
    "name": "Cohere",
    "cat": "api",
-   "reach": 2,
-   "probed": "2026-11-08",
+   "reach": 0,
+   "probed": "2026-11-23",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://cohere.com/pricing",
      "status": 200,
-     "bytes": 597149,
+     "bytes": 523433,
      "tokens": 45
     }
    ],
    "best": {
     "url": "https://cohere.com/pricing",
     "tokens": 45,
-    "excerpt": "will be billed on a pay-as-you-go basis. Your bill will be issued at the end of every calendar month or when you reach $250 in outstanding balances. The endpoint I’m using is billed by token. What is a token? Language models understand “tokens” rather than characters or bytes. The number of tokens per word depends on the complexity of the text. Simple text may approach 1 token per word on average, while complex texts may use less common words that require 3-4 tokens per word on average. For more details on tokens, refer to this page . Where do I find pricing for our legacy models? For existing customers: Command pricing is $1.00/1M tokens for input and $2.00/1M tokens for output Command-ligh"
+    "excerpt": "is $0.30/1M tokens for input and $0.60/1M tokens for output Command R 03-2024 pricing is $0.50/1M tokens for input and $1.50/1M tokens for output Command R+ 04-2024 pricing is $3.00/1M tokens for input and $15.00/1M tokens for output Command R+ 08-2024 pricing is $2.50/1M tokens for input and $10.00/1M tokens for output What is the cost for accessing the research Aya models via the API? Aya Expanse models (8B and 32B) on the API are charged at $0.50/1M tokens for input and $1.50/1M tokens for output. Find more information about the Aya models here . How is a “search” defined for Rerank pricing? A single search unit is defined as one query with up to 100 documents to be ranked. If any documen"
    }
   },
   "comate": {
@@ -1100,16 +1100,15 @@
    "name": "文心快码 Comate（百度）",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-11-10",
+   "probed": "2026-11-23",
    "env": "runner",
-   "state": "blocked",
+   "state": "empty",
    "tried": [
     {
      "url": "https://comate.baidu.com/pricing",
-     "status": 0,
-     "bytes": 0,
-     "tokens": 0,
-     "error": "UND_ERR_CONNECT_TIMEOUT"
+     "status": 200,
+     "bytes": 13995,
+     "tokens": 0
     },
     {
      "url": "https://comate.baidu.com/price",
@@ -1124,14 +1123,18 @@
      "tokens": 0
     }
    ],
-   "best": null
+   "best": {
+    "url": "https://comate.baidu.com/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
   },
   "continue": {
    "slug": "continue",
    "name": "Continue",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-11-10",
+   "probed": "2026-11-23",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1161,7 +1164,7 @@
    "name": "扣子 Coze（字节）",
    "cat": "agent",
    "reach": 0,
-   "probed": "2026-11-10",
+   "probed": "2026-11-23",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -1195,20 +1198,20 @@
    "name": "D-ID",
    "cat": "video",
    "reach": 0,
-   "probed": "2026-11-11",
+   "probed": "2026-11-23",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://d-id.com/pricing/studio",
      "status": 200,
-     "bytes": 160658,
+     "bytes": 158677,
      "tokens": 0
     },
     {
      "url": "https://www.d-id.com/pricing",
      "status": 200,
-     "bytes": 160658,
+     "bytes": 158677,
      "tokens": 0
     },
     {
@@ -1229,7 +1232,7 @@
    "name": "Devv AI",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-11-11",
+   "probed": "2026-11-23",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -1263,14 +1266,14 @@
    "name": "Dify",
    "cat": "agent",
    "reach": 0,
-   "probed": "2026-11-11",
+   "probed": "2026-11-23",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://dify.ai/pricing",
      "status": 200,
-     "bytes": 140703,
+     "bytes": 145976,
      "tokens": 6
     }
    ],
@@ -1285,26 +1288,26 @@
    "name": "豆包爱学",
    "cat": "study",
    "reach": 0,
-   "probed": "2026-11-11",
+   "probed": "2026-11-23",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://www.doubao.com/pricing",
      "status": 200,
-     "bytes": 180806,
+     "bytes": 186805,
      "tokens": 0
     },
     {
      "url": "https://www.doubao.com/price",
      "status": 200,
-     "bytes": 180806,
+     "bytes": 186805,
      "tokens": 0
     },
     {
      "url": "https://www.doubao.com/plans",
      "status": 200,
-     "bytes": 180806,
+     "bytes": 186805,
      "tokens": 0
     }
    ],

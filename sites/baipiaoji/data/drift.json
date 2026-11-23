@@ -1,10 +1,54 @@
 {
-  "generated": "2026-11-22",
+  "generated": "2026-11-23",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
   "fetched_ok": 107,
   "fetched_fail": 20,
   "pending": 7,
   "items": [
+    {
+      "slug": "fireworks",
+      "url": "https://docs.fireworks.ai/faq-new/billing-pricing/how-much-does-fireworks-cost",
+      "confirmed": "2026-11-23",
+      "first_seen": "2026-11-22",
+      "added": [
+        "0%",
+        "0.15s",
+        "0.7s",
+        "0026s",
+        "100%",
+        "21b",
+        "2b",
+        "38b",
+        "4b",
+        "55%",
+        "5856b",
+        "5b"
+      ],
+      "removed": [],
+      "checked_then": "2026-09-12"
+    },
+    {
+      "slug": "lovable",
+      "url": "https://docs.lovable.dev",
+      "confirmed": "2026-11-23",
+      "first_seen": "2026-11-22",
+      "added": [
+        "0026s",
+        "100%",
+        "2b",
+        "2m",
+        "2seconds",
+        "30day",
+        "30minutes",
+        "319b",
+        "31days",
+        "365days",
+        "366days",
+        "3hours"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-03"
+    },
     {
       "slug": "deepl",
       "url": "https://www.deepl.com/pricing",
@@ -490,20 +534,6 @@
         "12个"
       ],
       "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "lovable",
-      "url": "https://docs.lovable.dev",
-      "confirmed": "2026-11-06",
-      "first_seen": "2026-11-05",
-      "added": [],
-      "removed": [
-        "0026s",
-        "1b",
-        "64b",
-        "89b"
-      ],
-      "checked_then": "2026-08-03"
     },
     {
       "slug": "anythingllm",

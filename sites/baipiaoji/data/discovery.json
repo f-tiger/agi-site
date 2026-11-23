@@ -1,6 +1,16 @@
 {
   "items": [
     {
+      "name": "I built a game where you are an LLM's subagent",
+      "url": "https://github.com/gulivan/worker755",
+      "host": "github.com",
+      "src": "https://news.ycombinator.com/item?id=50599762",
+      "points": 310,
+      "comments": 74,
+      "found": "2026-11-23",
+      "status": "candidate"
+    },
+    {
       "name": "I made an audio-to-MIDI model 60x more efficient",
       "url": "https://kobi.music/research/dettato",
       "host": "kobi.music",
@@ -299,27 +309,7 @@
       "comments": 174,
       "found": "2026-10-10",
       "status": "candidate"
-    },
-    {
-      "name": "Free open source Adobe Lightroom alternative, completely local with AI",
-      "url": "https://github.com/thesnarkitecht/rembrandt",
-      "host": "github.com",
-      "src": "https://news.ycombinator.com/item?id=50012199",
-      "points": 43,
-      "comments": 51,
-      "found": "2026-10-09",
-      "status": "candidate"
-    },
-    {
-      "name": "Jevman – AI decision models play Pac-Man",
-      "url": "https://opper.ai/jevman-benchmark/",
-      "host": "opper.ai",
-      "src": "https://news.ycombinator.com/item?id=50007993",
-      "points": 58,
-      "comments": 10,
-      "found": "2026-10-09",
-      "status": "candidate"
     }
   ],
-  "updated": "2026-11-22"
+  "updated": "2026-11-23"
 }

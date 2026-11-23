@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-22",
+ "checked": "2026-11-23",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -4590,269 +4590,81 @@
    "source_http": 404,
    "repo_http": 404,
    "reason": "source HTTP 404"
+  },
+  "freshypenguin-ao-page-watch": {
+   "attempts": 1,
+   "first_attempt": "2026-11-23",
+   "last_attempt": "2026-11-23",
+   "attemptedAt": "2026-11-23T08:07:39.108Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "freshypenguin-ao-payload-rescue": {
+   "attempts": 1,
+   "first_attempt": "2026-11-23",
+   "last_attempt": "2026-11-23",
+   "attemptedAt": "2026-11-23T08:07:39.108Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "fronesislabs-dcl-trust-oracle": {
+   "attempts": 1,
+   "first_attempt": "2026-11-23",
+   "last_attempt": "2026-11-23",
+   "attemptedAt": "2026-11-23T08:07:39.108Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "timeout"
+  },
+  "fwozen-fwozen": {
+   "attempts": 1,
+   "first_attempt": "2026-11-23",
+   "last_attempt": "2026-11-23",
+   "attemptedAt": "2026-11-23T08:07:39.108Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "gallandigital-marketplace": {
+   "attempts": 1,
+   "first_attempt": "2026-11-23",
+   "last_attempt": "2026-11-23",
+   "attemptedAt": "2026-11-23T08:07:39.108Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "galleyrender-galley-render": {
+   "attempts": 1,
+   "first_attempt": "2026-11-23",
+   "last_attempt": "2026-11-23",
+   "attemptedAt": "2026-11-23T08:07:39.108Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
+  },
+  "gameindustrylibrary-gil": {
+   "attempts": 1,
+   "first_attempt": "2026-11-23",
+   "last_attempt": "2026-11-23",
+   "attemptedAt": "2026-11-23T08:07:39.108Z",
+   "source_http": 403,
+   "repo_http": 200,
+   "reason": "source HTTP 403"
+  },
+  "gangwaze-cruise": {
+   "attempts": 1,
+   "first_attempt": "2026-11-23",
+   "last_attempt": "2026-11-23",
+   "attemptedAt": "2026-11-23T08:07:39.108Z",
+   "source_http": 403,
+   "repo_http": null,
+   "reason": "source HTTP 403"
   }
  },
  "admitted": [
-  {
-   "slug": "hatchloop-sms-whatsapp-messaging",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cloud-agenteconomy-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "gumballtools-equation-steps",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "trailweights-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "empryo-docs",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "smartmemory-stratum-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "inite-visibility",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "snipzr-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "countersignatory-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "ca-honkio-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "lbrain-lbrain",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "br-bridgeaibrasil-bridgeai",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "kymaapi-kyma",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "verirouteintel-lookup",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "countlink-countdown",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hemmabo-mcp-server",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "ontarioprotocol-ontario-protocol",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "bizmoon-regulatory",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "scriptmasterlabs-x402-gateway",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "bot-ttrpg-grimoire",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "weftly-weftly",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "ratevert-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "nooticr-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "move-studios-staff-ops",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "giveradar-charity-registry",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "aicommander-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "milewiseai-milewise",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "novence-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "extentos-mcp-server",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "physea-liminality",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cn-pianam-mcp-devtools-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "youspot-youspot",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hythe-hythe",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "rapidly-rapidly",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "agentworkpad-workpad",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "parkerfawcett-rebuild-dossier",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cn-pianam-mcp-fuel-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "oliverkiss-agentic-endpoints",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cn-pianam-mcp-stock-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "nd-x-ndex-pricing",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cn-pianam-mcp-calendar-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "aureum-tech-website",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "darkfunnels-docs",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "duami-intent-exchange",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "asterwise-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "monopoly-gold-planner-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "fillfolio-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "vercel-ora-x402-gateway-sensations-mergulho",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "crixin-voice",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "symvanta-code-graph",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "statable-analytics",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "naibul-board-game-hall",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
   {
    "slug": "hiddencontent-mcp",
    "date": "2026-09-22",
@@ -22206,6 +22018,318 @@
    "date": "2026-11-22",
    "source_http": 200,
    "repo_http": null
+  },
+  {
+   "slug": "fortvision-fortvision",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fostay-hotels",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "found17-found17",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "foundry-mcp-foundry",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "foundry-mcp-foundry-code",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "foundryims-foundry-ims",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fourmemeclaw-kuro-mcp",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fplcopilot-fpl-copilot",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fractionalteams-portal",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "framekeep-public",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "framesail-framesail",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "frankponcelet-profile",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "frazzlecrm-frazzlecrm",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "free-sign-signing",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "freebatteryfactory-docs",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "freedailypro-tools",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "freeelatech-oneda",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "freelanceclearing-marketplace",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "freerateupdate-mortgage-home-equity",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "freightforwarderfinder-site",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "freightinsurancecost-site",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "frisian-mcp-django",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "fromerica-api-trade-data",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fromtocargo-mcp",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "frontdeskreview-front-desk-review-data",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "fronterasignal-frontera-signal",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "frontofgoal-odds-api",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "frontstat-visibility",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "frunklab-wraps",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fuelazores-fuel-prices",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fulfiller-agentic-commerce-api",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "funding-radar-radar",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "funnelvo-site",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "furrowforms-furrow-forms",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "furrsati-mcp",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fxapis-mt5",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gachi-tokusuru-japan-data-api",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "gameanalytics-analytics-docs",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gamedevoutsourcing-directory",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "gamerspilot-steam",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gameshopenter-shop",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gammainfra-mcp-server",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "gankdat-gankdat",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gaplessly-booking",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "garminmcp-garmin",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gatecoreai-marketplace",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "gateroam-mcp",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gatewayinformationgroup-agent-tip-jar",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gaussian-beam-diffbeam",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "gc-airporttransfers-booking",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "gccbrokers-market-data",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gccdomestic-gccdomestic",
+   "date": "2026-11-23",
+   "source_http": 200,
+   "repo_http": 200
   }
  ],
  "note": "Written by scripts/agent-watch-admit.mjs. A slug listed under rejected was NOT admitted (reason + last HTTP status); it is retried on later runs. Candidates that were admitted appear in data/agent-watch.json."
