@@ -18,6 +18,26 @@ try{for(const url of Object.keys(inventory)){
 // Decision failures that a successful button click alone would miss.
 const ctx=await browser.newContext();await ctx.route('**/*',async route=>{const u=new URL(route.request().url());if(u.origin!==origin)return route.abort();if(u.pathname.startsWith('/api/'))return route.fulfill({contentType:'application/json',body:'{"ok":false}'});let f=path.join(root,u.pathname);return fs.existsSync(f)?route.fulfill({contentType:f.endsWith('.html')?'text/html':f.endsWith('.css')?'text/css':'text/javascript',body:fs.readFileSync(f)}):route.fulfill({status:404});});let page=await ctx.newPage();
 await page.goto(origin+'/guide/stromkosten-rechner.html?__probe=1');await page.locator('[data-validation-ready]').waitFor();await page.fill('#price','0');await page.click('#calcBtn');assert((await page.locator('#result').innerText()).includes('0,00 €'));assert.equal(await page.locator('#result a[href*="amazon."]').count(),0);checks+=2;
+const costPath='/guide/heizkosten-vergleich-rechner.html';
+await page.goto(origin+costPath+'?__probe=1');
+await page.waitForSelector('#eco-tool-experience[data-ready=true]');
+const costInput=page.locator('#hk-cop'),costGo=page.locator('#hk-go'),costResult=page.locator('#hk-res');
+await costInput.fill('2');await costGo.click();
+assert.match(await costResult.innerText(),/COP 2 · 600 kWh Strom · 222 €/);checks++;
+await costInput.fill('1');await costGo.click();
+assert.match(await costResult.innerText(),/COP 1 · 1[.\s]?200 kWh Strom · 444 €/);checks++;
+await costInput.fill('');await costGo.click();assert(!await costResult.isVisible());checks++;
+await costInput.fill('0');await costGo.click();assert(!await costResult.isVisible());checks++;
+const justPrice=encodeURIComponent(JSON.stringify({path:costPath,values:{'hk-price':'40'}}));
+await page.goto(origin+costPath+'?__probe=1#eco-v1='+justPrice);
+await costResult.getByText('COP 3 · 400 kWh Strom · 160 €',{exact:false}).waitFor();checks++;
+const prices=encodeURIComponent(JSON.stringify({path:costPath,values:{'hk-price':'30','hk-cop':'2','hk-qm':'1000','hk-h':'2'}}));
+await page.goto(origin+costPath+'?__probe=1#eco-v1='+prices);
+await costResult.getByText('COP 2 · 150 kWh Strom · 45 €',{exact:false}).waitFor();checks++;
+await page.getByRole('button',{name:'Ergebnis zum Teilen vorbereiten',exact:true}).click();
+const redditCostUrl=new URL(await page.locator('#eco-tool-experience .eco-draft a[href^="https://www.reddit.com/submit?"]').getAttribute('href'));
+assert.equal(redditCostUrl.searchParams.get('url'),origin+costPath+'#eb-hk-calc');
+assert.equal(redditCostUrl.searchParams.get('title'),'Heizkosten vergleichen: Was ändert der COP bei gleicher Wärmemenge?');checks+=2;
 await page.goto(origin+'/guide/keller-lueften-sommer.html?__probe=1');await page.locator('[data-validation-ready]').waitFor();for(const [id,v]of Object.entries({ta:20,rh:30,tk:17,rhin:20,wall:15}))await page.fill('#'+id,String(v));await page.click('#go');assert((await page.locator('#verdict').innerText()).includes('Keine Trocknung'));await page.fill('#rhin','70');await page.click('#go');assert((await page.locator('#verdict').innerText()).includes('kann Feuchte abführen'));await page.fill('#wall','-5');await page.click('#go');assert((await page.locator('#verdict').innerText()).includes('Kondensationsrisiko'));checks+=3;
 await page.goto(origin+'/guide/infrarotheizung-gegen-schimmel.html?__probe=1');await page.locator('[data-validation-ready]').waitFor();await page.fill('#rh','65');await page.fill('#tw','24');await page.click('#go');const t=await page.locator('#out').innerText();assert(t.includes('51 %'),t);assert(!t.includes('kann nicht wärmer'));checks+=2;
 await page.goto(origin+'/en/guide/desiccant-vs-compressor-dehumidifier.html?__probe=1');await page.locator('[data-validation-ready]').waitFor();await page.fill('#ta','10');await page.fill('#rh','60');await page.click('#go');assert((await page.locator('#out').innerText()).includes('not necessarily below freezing'));checks++;

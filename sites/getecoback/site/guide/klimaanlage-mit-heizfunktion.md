@@ -50,7 +50,7 @@ Die folgende Tabelle ist reine **Szenariorechnung mit angenommenen 0,30 €/kWh 
 
 Für einen Gasvergleich gilt auf derselben Nutzwärmebasis: **Gasarbeitspreis ÷ Nutzungsgrad**. Beispielannahmen: 0,12 €/kWh Gas und 90 % Nutzungsgrad ergeben rund 0,133 €/kWh Wärme. Bei 0,30 €/kWh Strom müsste die Wärmepumpe für niedrigere reine Energiekosten über COP 2,25 liegen. Grundpreise, Anschaffung, Montage und Wartung sind dabei noch nicht enthalten. Ein niedrigerer Arbeitspreis allein beweist keine Amortisation.
 
-Für ein vorhandenes Gerät kannst du den elektrischen Verbrauch mit unserem [Strommess-Protokoll](https://getecoback.com/strommess-protokoll.html) dokumentieren. Der [Heizkosten-Vergleichsrechner](https://getecoback.com/guide/heizkosten-vergleich-rechner.html) zeigt ergänzend ein vereinfachtes COP-3-Szenario; er ist keine Prognose für dein konkretes Wärmepumpenmodell.
+Für ein vorhandenes Gerät kannst du den elektrischen Verbrauch mit unserem [Strommess-Protokoll](https://getecoback.com/strommess-protokoll.html) dokumentieren. Der [Heizkosten-Vergleichsrechner](https://getecoback.com/guide/heizkosten-vergleich-rechner.html#eb-hk-calc) vergleicht die Stromkosten für dieselbe Wärmemenge. Du kannst den COP einstellen oder mit dem gekennzeichneten COP-3-Szenario beginnen.
 
 ## Übergangszeit und Frost: Es gibt keine allgemeine −5-Grad-Grenze
 
@@ -102,7 +102,7 @@ Kläre zuerst den Einbauweg und hole bei festem Split oder einem Heizungstausch 
 
 **Mit deinen Angaben weiterarbeiten**
 [Elektrischen Verbrauch dokumentieren →](https://getecoback.com/strommess-protokoll.html)
-[Vereinfachten Heizkostenvergleich verstehen (COP-3-Szenario) →](https://getecoback.com/guide/heizkosten-vergleich-rechner.html)
+[Heizstrom mit einem eigenen COP vergleichen →](https://getecoback.com/guide/heizkosten-vergleich-rechner.html#eb-hk-calc)
 [Feste und mobile Split-Montage unterscheiden →](https://getecoback.com/guide/split-klimaanlage-ohne-kernbohrung.html)
 
 ---
