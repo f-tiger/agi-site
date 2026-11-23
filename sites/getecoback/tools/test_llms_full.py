@@ -15,6 +15,35 @@ MEACO = 'https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-
 
 
 class LlmsFull(unittest.TestCase):
+    def test_room50_final_page_keeps_original_portasplit_conditions_and_share(self):
+        route = '/guide/klimaanlage-50-qm.html'
+        guide = SITE / route.lstrip('/')
+        page = guide.read_text()
+        mirror = guide.with_suffix('.md').read_text()
+        section = re.search(r'<section class="rec" id="portasplit-50-qm".*?</section>', page, re.S)
+        self.assertIsNotNone(section)
+        self.assertEqual(page.count('id="portasplit-50-qm"'), 1)
+        for phrase in ('42 m² / 105 m³', '3,5 kW Kälteleistung', '12.000 BTU/h',
+                       'laut Anleitung 2 m lang', 'den Kauf zurückstellen',
+                       'https://www.midea.com/de/klimatisieren-heizen/portasplit',
+                       'PortaSplit-Gebrauchsanweisung-DE.pdf',
+                       '/guide/midea-portasplit-kaufen.html'):
+            self.assertIn(phrase, section[0])
+            self.assertIn(phrase, mirror)
+        self.assertIn('125 m³', page)
+        self.assertIn('125 m³', mirror)
+        self.assertNotIn('bis ×2', page)
+        self.assertNotIn('16.000+', page)
+        self.assertNotRegex(page, r'href="https?://(?:www\.)?amazon\.')
+        self.assertNotRegex(page, r'<!--EB_(?:TOPPICK|MODELS|POPUP|STICKY|SIZER)-->')
+        self.assertNotIn('reddit.com/submit', mirror)
+        link = re.search(r'href="(https://www\.reddit\.com/submit\?[^"]+)"', section[0])
+        self.assertIsNotNone(link)
+        self.assertEqual(parse_qs(urlsplit(html.unescape(link[1])).query), {
+            'url': [f'https://getecoback.com{route}#portasplit-50-qm'],
+            'title': ['Midea PortaSplit für 50 m²: Kühlbedarf und Aufstellung prüfen'],
+        })
+
     def test_heated_rack_final_page_offers_measurement_and_conditioned_model_comparison(self):
         route = 'guide/beheizter-waeschestaender'
         comparison = '/guide/waesche-trocknen-wohnung.html'

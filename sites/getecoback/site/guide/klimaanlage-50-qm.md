@@ -1,72 +1,62 @@
-# Klimaanlage für 50 m²: BTU, Modell-Tipps & Stromkosten 2026
+# Klimaanlage für 50 m²: PortaSplit, Raumbedarf und Aufstellung
 
-> Welche Klimaanlage für 50 m²? Empfohlen: 16.000+ (oder zwei Zonen) BTU. Mit Modell-Tipp, Stromkosten & Kauf-Checkliste (Ratgeber 2026).
+> Klimaanlage für 50 m² prüfen: ein offener Raum oder mehrere Zimmer? Midea PortaSplit mit Herstellergrenze, Außenplatz und Stromkosten vergleichen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/klimaanlage-50-qm.html
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
 
-Du suchst eine tragbare Klimaanlage für einen Raum mit rund 50 m²? Die wichtigste Frage ist die richtige Kühlleistung (BTU): zu wenig, und das Gerät kommt nie hinterher; zu viel ist rausgeworfenes Geld und unnötig laut. Hier die konkrete Empfehlung für 50 m².
+Entscheide zuerst, was kühl werden soll. Ein offener Wohnraum mit 50 m² stellt eine andere Aufgabe als eine 50-m²-Wohnung mit mehreren Zimmern und Türen.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
+**Kurz gesagt:** Midea gibt für die originale PortaSplit bis zu **42 m² / 105 m³** und **3,5 kW Kühlleistung (12.000 BTU/h)** an. Willst du alle 50 m² kühlen, prüfe die Kühllast und die Aufteilung in Räume, bevor du ein Gerät auswählst.
 
-**Kurz gesagt:** Für 50 m² solltest du eine Klimaanlage mit **16.000+ (oder zwei Zonen) BTU** wählen. Ein häufig empfohlenes Modell dieser Klasse ist **Midea PortaSplit**. Rechne mit rund 0,60 € Stromkosten pro Stunde bzw. ~94 € im Hitzemonat.
+## Wie viel Kühlleistung brauchen deine 50 m²?
 
-## Wie viel BTU für 50 m²?
+- **Ein offener Raum:** Bei 2,5 m Deckenhöhe ergeben 50 m² ein Raumvolumen von 125 m³. Das liegt über den von Midea genannten 105 m³. Prüfe auch Sonne, Dachlage, Dämmung und Wärmequellen.
 
-50 m² sind die realistische Obergrenze für mobile Geräte: entweder ein sehr starkes Monoblock (16.000+ BTU), besser ein Split-ähnliches Gerät wie der Midea PortaSplit — oder zwei Geräte für zwei Zonen. Als Orientierung gelten für 50 m² **16.000+ (oder zwei Zonen) BTU**. Aufschlagen solltest du bei starker Sonneneinstrahlung (Süd-/Westfenster), hohen Decken oder Dachgeschoss-Lage. Die vollständige Tabelle findest du im [BTU-Ratgeber nach Raumgröße](https://getecoback.com/guide/wie-viel-btu-brauche-ich.html).
+- **Mehrere Zimmer:** Miss zuerst den Raum, in dem du Kühlung brauchst. Rechne für getrennte Bereiche separat. Bleiben Türen geschlossen, plane keine gleichmäßige Kühlung durch ein einzelnes Gerät im Flur ein.
 
-## Empfohlenes Modell für 50 m²
+[Den Kühlbedarf für den Zielraum abschätzen](https://getecoback.com/guide/btu-rechner.html) · [Verbraucherzentrale zu Gebäude, Aufstellung und Klimaanlagentypen](https://www.verbraucherzentrale.de/wissen/energie/energetische-sanierung/klimaanlage-installieren-was-ist-zu-beachten-10525).
 
-Offene Wohnbereiche / Loft · 16.000+ (oder zwei Zonen) BTU
-**Midea PortaSplit** — passend dimensioniert für ein offener Wohn-/Essbereich oder Loft. Wird in unabhängigen deutschen Tests und Amazon-Bestsellern regelmäßig genannt. Wir testen nicht selbst; die Auswahl fasst öffentliche Tests zusammen.
+## Passt die originale PortaSplit?
 
-✓ Richtig dimensioniert für 50 m²   ✓ Ohne Installation   ✕ Abluftschlauch/Fensterabdichtung nötig
+**Herstellerangaben für die originale PortaSplit:** 3,5 kW Kälteleistung bei Standardbedingungen, 12.000 BTU/h, bis zu 42 m² / 105 m³. Eine kleinere Fläche allein garantiert keine ausreichende Kühlung.
 
-Preis auf Amazon.de ansehen →
+- **Außenplatz:** Beim Kühlen muss das Außengerät laut Anleitung im Freien stehen. Prüfe eine erlaubte Aufstellung oder die vorgesehene Befestigung für dein konkretes Fenster.
 
-## Was kostet die Kühlung von 50 m²?
+- **Leitungsweg:** Die feste Kältemittelleitung ist laut Anleitung 2 m lang. Prüfe den ganzen Weg mit Durchgang und Bögen. Die Leitung kann nicht verlängert werden. Arbeiten daran gehören zum Fachbetrieb.
 
-Ein für 50 m² passendes Gerät zieht ca. 2000 W. Bei 0,30 €/kWh (Rechenbasis — setze deinen Tarif ein) sind das rund **0,60 € pro Stunde**. Über einen Hitzemonat (ca. 8 Std./Nacht, Kompressor taktet herunter) liegst du real bei etwa **94 €**. Spartipps im [Stromkosten-Ratgeber](https://getecoback.com/guide/klimaanlage-stromkosten.html).
+- **Erst dann das Angebot prüfen:** Wenn Zielraum, Leistung und Aufstellung passen, [die genaue Variante und das passende Zubehör abgleichen](https://getecoback.com/guide/midea-portasplit-kaufen.html). Bei offener Kühllast oder fehlendem Außenplatz den Kauf zurückstellen.
 
-### Die Kosten im Überblick
+Quellen geprüft am 23.11.2026. [Midea Deutschland, Vergleichstabelle mit eigener Spalte für das Original](https://www.midea.com/de/klimatisieren-heizen/portasplit) · [Originale Midea-Gebrauchsanweisung auf Deutsch](https://www.midea.com/content/dam/midea-aem/de/klimatisieren-heizen/portasplit/PortaSplit-Gebrauchsanweisung-DE.pdf).
 
-| Zeitraum | Rechnung (2000 W, 0,30 €/kWh, ~65 % Takt) | Kosten |
-| --- | --- | --- |
-| 1 Stunde Volllast | 2000 W ÷ 1.000 × 0,30 € | **0,60 €** |
-| 1 Nacht (8 h) | × 8 h × 0,65 | **3,12 €** |
-| 1 Hitzemonat (30 Nächte) | × 30 | **~94 €** |
-| Ohne Fensterabdichtung | Warmluft strömt zurück, Gerät taktet kaum | **bis ×2** |
+## Was kostet Kühlung bei deinem Tarif?
 
-Die letzte Zeile ist der am meisten unterschätzte Posten: Ohne dichtes Fenster kühlt das Gerät gegen die eigene Abwärme an. Mit dynamischem Stromtarif lässt sich zusätzlich [mittags billig vorkühlen](https://getecoback.com/guide/strompreis-radar.html).
+Multipliziere die gemessenen kWh für den ganzen Betrieb mit deinem Arbeitspreis. Frei gewähltes Beispiel für ein Gerät mit 2,0 kW elektrischer Aufnahme: Eine Stunde mit gleichbleibender Aufnahme ergibt 2,0 kWh. Bei 0,30 €/kWh sind das 0,60 €. Die elektrische Aufnahme und die Laufzeit hängen vom Modell und vom Einsatz ab.
 
-## Ab 50 m²: Monoblock oder Split ohne Kernbohrung?
+[Mit deinem Tarif rechnen](https://getecoback.com/guide/klimaanlage-stromkosten.html). Für die PortaSplit beschreibt 3,5 kW die Kühlleistung.
 
-Je größer der Raum, desto eher lohnt der Blick auf Quick-Connect-Splits wie den Midea PortaSplit: Kompressor draußen heißt **deutlich leiser drinnen und spürbar effizienter** — bei höherem Preis und nötigem Stellplatz vor dem Fenster. Für gelegentliche Hitzewellen bleibt der Monoblock die flexible Wahl, für den ganzen Sommer im offener Wohn-/Essbereich oder Loft rechnet sich der Split schneller. Der ehrliche Vergleich: [PortaSplit vs. Monoblock](https://getecoback.com/guide/portasplit-vs-monoblock.html) und [Split ohne Kernbohrung](https://getecoback.com/guide/split-klimaanlage-ohne-kernbohrung.html).
+## Monoblock oder mobiles Splitgerät?
+
+Ein Monoblock braucht einen Weg für die warme Abluft. Die originale PortaSplit gibt Wärme über das Außengerät ab. Prüfe bei beiden zuerst den gewünschten Kühlbereich und die passende Aufstellung. [Die Bauarten und die Fensterbedingungen im Detail vergleichen](https://getecoback.com/guide/portasplit-vs-monoblock.html).
 
 ## Für Mieter
 
-Ein Monoblock braucht weder Bohrung noch Außeneinheit — aufstellen, Schlauch ins Fenster, fertig. Damit ist er in der Mietwohnung in aller Regel [ohne Zustimmung des Vermieters](https://getecoback.com/guide/klimaanlage-mietwohnung.html) nutzbar; erst ein Split-Gerät mit Wandmontage braucht eine Erlaubnis.
+Prüfe vor einer Befestigung die Montageanleitung und kläre die Erlaubnis, wenn eine bauliche Änderung oder eine Befestigung an Gemeinschaftseigentum nötig ist. [Aufstellung in der Mietwohnung prüfen](https://getecoback.com/guide/klimaanlage-mietwohnung.html).
 
-## Nicht vergessen: Fensterabdichtung
+## Fensteröffnung und Leitungsweg prüfen
 
-Jede tragbare Klimaanlage muss die warme Luft über einen Schlauch nach draußen leiten. Bei deutschen Dreh-Kipp-Fenstern brauchst du eine passende Fensterabdichtung — sonst strömt warme Luft zurück und das Gerät läuft doppelt so lange. Details: [Klimaanlage am Kippfenster abdichten](https://getecoback.com/guide/klimaanlage-kippfenster.html).
+Prüfe mit der Anleitung des konkreten Geräts, wie die Öffnung ausgeführt wird. [Fensterabdichtung für einen Monoblock](https://getecoback.com/guide/klimaanlage-kippfenster.html) und [Fensterfalz für die originale PortaSplit](https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html#fensterfalz) betreffen verschiedene Aufstellungen.
 
 ## Häufige Fragen
 
-**Wie viel BTU brauche ich für 50 m²?**Als Faustregel 16.000+ (oder zwei Zonen) BTU. Bei viel Sonneneinstrahlung, hoher Decke oder Dachlage eher am oberen Ende planen.
+**Reicht die originale Midea PortaSplit für 50 m²?**Midea nennt bis zu 42 m² oder 105 m³ für das Original mit 3,5 kW Kühlleistung. Alle 50 m² liegen über der Flächenangabe. Prüfe den tatsächlichen Zielraum, die Kühllast und den Weg zum Außengerät.
 
-**Was kostet der Betrieb bei 50 m² an Strom?**Ein passendes Gerät zieht ca. 2000 W, das sind rund 0,60 € pro Stunde (bei 0,30 €/kWh). Real liegst du bei ~94 € im Hitzemonat, weil der Kompressor bei erreichter Temperatur heruntertaktet.
+**Kann ein Gerät im Wohnzimmer auch Schlafzimmer kühlen?**Plane zuerst die Zimmer, die tatsächlich kühl werden sollen. Türen, Grundriss und Luftaustausch beeinflussen, wie viel Kälte im Nebenraum ankommt. Berechne den Bedarf für getrennte Zonen separat.
 
-**Welches Modell passt für 50 m²?**Für ein offener Wohn-/Essbereich oder Loft wird Midea PortaSplit häufig empfohlen. 50 m² sind die realistische Obergrenze für mobile Geräte: entweder ein sehr starkes Monoblock (16.000+ BTU), besser ein Split-ähnliches Gerät wie der Midea PortaSplit — oder zwei Geräte für zwei Zonen.
+**Braucht die PortaSplit einen Abluftschlauch wie ein Monoblock?**Die originale PortaSplit leitet Wärme über ein Außengerät ab. Die feste Kältemittelleitung verbindet Innen- und Außengerät. Laut Anleitung ist sie 2 m lang und kann nicht verlängert werden. Prüfe den ganzen Leitungsweg, die Aufstellung und die Befestigung.
 
-**Was kostet eine Nacht Kühlung bei 50 m²?**Rund 3,12 € — 2000 W × 8 Stunden × 0,30 €/kWh, mit realem Kompressor-Takt von etwa 65 Prozent. Ohne dichte Fensterabdichtung läuft das Gerät gegen die zurückströmende Warmluft an und die Nacht kostet bis zum Doppelten.
-
-**Monoblock oder Split ohne Kernbohrung für 50 m²?**Ab dieser Raumgröße lohnt der Vergleich: Ein Quick-Connect-Split wie der Midea PortaSplit kostet mehr, ist aber drinnen deutlich leiser und effizienter, weil der Kompressor draußen hängt. Der Monoblock bleibt die günstigere und flexiblere Wahl für gelegentliche Hitzewellen.
-
-**Passende Klimaanlagen für 50 m² auf Amazon.de ansehen** — nach BTU und Preis filterbar:
-
-Klimaanlagen vergleichen →
+**Was sagt die Kühlleistung über die Stromkosten aus?**Für Stromkosten zählt die elektrische Leistungsaufnahme oder der gemessene Verbrauch in kWh. Multipliziere die kWh mit deinem Arbeitspreis. Aus den 3,5 kW Kühlleistung lässt sich der Stromverbrauch nicht direkt berechnen.
 
 **Weitere Ratgeber**
 [Wie viel BTU brauche ich? →](https://getecoback.com/guide/wie-viel-btu-brauche-ich.html)
