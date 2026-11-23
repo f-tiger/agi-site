@@ -19,12 +19,12 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUNDLE: ecoback-local-tools-1.22.26.mcpb
-  VERSION: '1.22.26'
-  UPSTREAM_SHA: 160ac4d8169d0f679deec5f993e0f69cea654eca
+  BUNDLE: ecoback-local-tools-1.22.27.mcpb
+  VERSION: '1.22.27'
+  UPSTREAM_SHA: 45d8fc488770be8fe3ea97785875585159adf7e8
   NAME: io.github.f-tiger/ecoback-local-tools
   RELEASE_TAG: fleet-mcp-registry-2026-10-10
-  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.26.mcpb
+  PUBLIC_ASSET: https://github.com/f-tiger/agi-site/releases/download/fleet-mcp-registry-2026-10-10/ecoback-local-tools-1.22.27.mcpb
   REGISTRY_VERSIONS: https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions
   SOURCE_URL: https://github.com/f-tiger/getecoback-mcp
   MCPB_SCHEMA: https://raw.githubusercontent.com/modelcontextprotocol/mcpb/70fe3b34cd6dff1b3bba046638edc72a6467a4fb/schemas/mcpb-manifest-v0.3.schema.json
@@ -356,6 +356,9 @@ jobs:
                 [12,2,false,"ueber_taupunkt"],[23,-1,true,"nahe_am_taupunkt"],[23,1,false,"nahe_am_taupunkt"]],
               missingSurfaceRejected:true
             } and .compact.windowCondensation == .windowCondensation and
+            .windowCondensationDiscovery == {
+              name:"fenster_oberflaeche_taucheck", measuredFirst:4, excluded:4
+            } and .compact.windowCondensationDiscovery == .windowCondensationDiscovery and
             .compact.glassvacTemperature == {
               name:"glassvac_kalt_lagern_einschalten_laden_getrennt",
               guideUrl:"https://getecoback.com/produkte.html#bosch-glassvac-einsatz-und-pflege",

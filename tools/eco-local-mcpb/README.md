@@ -224,6 +224,13 @@ Two 12L conditions, the exact-model guide link and the measure-first,
 water-damage and no-purchase decisions. The reference distinguishes the 12.5 mm
 downhill hose from the optional pump and links the German manuals.
 
+Version 1.22.27 synchronizes the German tool finder with the reviewed hosted
+catalogue. Natural descriptions with separate room temperature, humidity and
+surface temperature locate the existing dew-point check. The extracted CLI
+and compact profile verify the same ranking, required inputs, example and
+share link. An absent indoor value or a different condensation location keeps
+its own search path. [Reviewed hosted source](https://github.com/f-tiger/agi-site/pull/507#issuecomment-7091520298)
+
 The builder replaces only the source README's versioned download and checksum
 paragraphs in **Connect** with instructions for running the already extracted
 files and a link to the official Registry's latest record. The remainder of the
