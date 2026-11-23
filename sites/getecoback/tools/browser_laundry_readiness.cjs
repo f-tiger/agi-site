@@ -82,8 +82,17 @@ let checks=0;const check=(ok,message)=>{assert.ok(ok,message);checks++;};
      await fallback.locator('a').focus();await page.keyboard.press('Enter');
      await page.waitForURL('**#lc-measurement');
      check(new URL(page.url()).hash==='#lc-measurement',`${lang}/${failure}: measurement handoff`);
-     await root.locator('#lc-measurement summary').click();
-     check(await root.locator('#lc-measurement ol').isVisible(),`${lang}/${failure}: checklist readable`);
+     const checklist=root.locator('#lc-measurement');
+     if(lang==='de'){
+      check(await checklist.getAttribute('open')!==null,`${lang}/${failure}: checklist opens by default`);
+      check(await checklist.locator('#lc-endtrockenheit').isVisible(),`${lang}/${failure}: same-dryness protocol is visible`);
+      const box=await checklist.locator('summary').boundingBox();
+      const nav=await page.locator('.eb-nav').boundingBox();
+      check(box&&nav&&box.y>=nav.y+nav.height,`${lang}/${failure}: sticky navigation does not cover the checklist`);
+     }else{
+      await checklist.locator('summary').click();
+     }
+     check(await checklist.locator(':scope > ol').isVisible(),`${lang}/${failure}: checklist readable`);
     }
     check(navigations.length===1,`${lang}/${failure}: no native GET navigation`);
     check(navigations.every(href=>new URL(href).search==='?__probe=1'),`${lang}/${failure}: no input values in URL`);

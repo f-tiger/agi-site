@@ -86,6 +86,19 @@ kWh für den ganzen Durchgang × Arbeitspreis. Vorbelegte Zahlen sind Rechenbeis
 - Notiere Start- und Endstand eines passenden Strommessgeräts sowie die Laufzeit. Beachte Anleitung und elektrische Belastbarkeit.
 - Nutze die kWh-Differenz des ganzen Durchgangs. Typenschild-Watt ist keine gemessene mittlere Leistung.
 - Beim Label eines eigenständigen Trockners für 100 Trocknungen: durch 100 teilen. Das Labelprogramm kann von deiner eigenen Nutzung abweichen.
+
+### Sind beide Ladungen gleich trocken?
+
+- Nimm für beide Durchgänge dieselben geeigneten Textilien und dasselbe Schleuderprogramm. Wiege die Wäsche unmittelbar vor dem Trocknen. Bei deutlich unterschiedlichem Startgewicht wiederhole den Versuch oder bewerte die Durchgänge getrennt.
+
+- Wähle für beide dasselbe Ziel, etwa Wäsche zum Einräumen. Prüfe auch dicke Nähte und Taschen auf Restfeuchte. Wiege die Wäsche danach unter vergleichbaren Bedingungen mit derselben Waage. Ziehe das Gewicht des leeren Korbs ab.
+
+- Sind Gewicht oder Feuchtegefühl am Ende deutlich verschieden, notiere die kWh pro Durchgang getrennt. Lass im Kostenrechner die Bestätigung für gleichen Trocknungsgrad frei.
+
+Das Wiegen zu Hause ist eine grobe Kontrolle. Es liefert keine normgerechte Restfeuchte in Prozent. Auch die Raumluftfeuchte, die Wassermenge im Tank oder ein fester Timer zeigen nicht, ob die Wäsche gleich trocken ist.
+
+Zur Methode: [Testfakta ermittelt die Restfeuchte durch Wiegen](https://www.testfakta.com/de/test/testfaktas-test-of-tumble-dryers). [Entfeuchter Test misst Feuchteverlust nach drei Stunden](https://entfeuchter-test.de/luftentfeuchter-waesche-trocknen/) und leitet daraus keine Schranktrockenheit ab. Geprüft am 23.11.2026.
+
 Für eine Diskussion reichen die kWh des ganzen Durchgangs, dein Arbeitspreis und die Angabe, ob Wäschemenge und Endtrockenheit vergleichbar waren. Fehlt eine Messung, teile die bekannte Zahl als Einzelwert. Der öffentliche Rechnerlink enthält keine Eingaben.
 
 ## Dein nächster Schritt

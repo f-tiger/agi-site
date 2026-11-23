@@ -188,7 +188,7 @@ async function cards(root,lang,label){
    await page.waitForURL(origin+lesson+'#lc-measurement');
    const checklist=page.locator('#lc-measurement');
    if(await checklist.getAttribute('open')===null)await checklist.locator('summary').click();
-   check(await checklist.locator('ol').isVisible(),'measurement checklist opens without requiring a purchase');
+   check(await checklist.locator(':scope > ol').isVisible(),'measurement checklist opens without requiring a purchase');
    assert.deepEqual(f.merchants,[],'no merchant navigation for the decision links');
    assert.deepEqual(f.errors,[],'no runtime errors for the laundry routes');checks+=2;
    await f.context.close();
