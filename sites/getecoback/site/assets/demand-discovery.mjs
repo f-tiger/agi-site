@@ -21,18 +21,21 @@ const n90ExactName=/^(?:de['’ -]?longhi[ -]+)?(?:pinguino[ -]+)?pac[ -]*n[ -]*
 const n90ExactEan=/^(?:ean[ -]+)?8004399512351$/;
 
 function asksForCoolingWindowClosure(query) {
- const activeDevices=query.replace(/\bohne\s+(?:(?:eine?|die|meine)\s+)?(?:klimaanlage|klimageraet|monoblock|(?:midea[ -]+)?porta[ -]*split)\b/g,'');
- if(!/\b(?:klimaanlag\w*|klimageraet\w*|monoblock\w*|porta[ -]*split|4048164116478)\b/.test(activeDevices)||
-    !/\b[a-z]*fenster\w*\b/.test(query)||namesDifferentPortaSplit(query)||
+ const excludedDevices=/\bohne\s+(?:(?:eine?|die|meine)\s+)?(?:(?:mobil|tragbar)\w*\s+)?(?:klimaanlage|klimageraet|monoblock|(?:midea[ -]+)?porta[ -]*split)\b/g;
+ const activeDevices=query.replace(excludedDevices,'');
+ const cooling=/\b(?:klimaanlag\w*|klimageraet\w*|monoblock\w*|porta[ -]*split|4048164116478)\b/;
+ const window=/\b[a-z]*fenster\w*\b/;
+ if(!cooling.test(activeDevices)||!window.test(query)||namesDifferentPortaSplit(query)||
     /\b(?!4048164116478\b)\d{13}\b/.test(query))return false;
- const lock=/\b(?:verriegel\w*|abschliess\w*|abgeschloss\w*)\b|\bschliess\w*\b[^.!?]{0,70}\bab(?=\s*(?:[,.!?]|$)|\s+(?:wenn|bevor)\b)/.test(query);
- const completeClosure=/\b(?:ganz|komplett|vollstaendig)\s+(?:zu\b|geschloss\w*|schliess\w*)/.test(query);
- if(lock)return true;
- if(/\b(?:strom\w*|verbrauch\w*|kwh|laut\w*|dezibel|db|kosten)\b/.test(query))return false;
- if(completeClosure)return true;
- const absent=/\b(?:abwesenheit|unbeaufsichtigt|weggeh\w*|ausser haus)\b|\b(?:wohnung|haus)\b[^.!?]{0,25}\bverlass\w*\b|\bverlass\w*\b[^.!?]{0,25}\b(?:wohnung|haus)\b/.test(query);
- const windowState=/\b(?:schliess\w*|geschlossen|offen|gekippt|auf kipp|zumachen|zu bleiben)\b/.test(query);
- return absent&&windowState;
+
+ const otherIntent=/\b(?:strom\w*|verbrauch\w*|kwh|lautstaerk\w*|wie (?:laut|leise)|geraeusch\w*|dezibel|db|kosten|kostet|fernbedienung|kindersicherung|tastensperre)\b/;
+ if(otherIntent.test(query)||asksForPortaSplitWindowLip(query))return false;
+
+ const lock=/\b(?:verriegel(?:n|e|t|st|ungen?)|abschliess(?:en|e|t|st|bar)|abgeschlossen)\b|\bschliess\w*\b[^.!?]{0,70}\bab(?=\s*(?:[,.!?]|$)|\s+(?:wenn|bevor)\b)/;
+ const completeClosure=/\b(?:ganz|komplett|vollstaendig|normal|richtig)\s+(?:zu\b|geschloss\w*|schliess\w*)/;
+ const absence=/\b(?:abwesenheit|unbeaufsichtigt|weggeh\w*|ausser haus)\b|\b(?:wohnung|haus)\b[^.!?]{0,25}\bverlass\w*\b|\bverlass\w*\b[^.!?]{0,25}\b(?:wohnung|haus)\b/;
+ const windowState=/\b(?:schliess\w*|geschlossen|offen|gekippt|auf kipp|zumachen|zu bleiben)\b/;
+ return lock.test(query)||completeClosure.test(query)||(absence.test(query)&&windowState.test(query));
 }
 
 export function exactGermanCoolingGuide(normalizedQuery) {
