@@ -6,6 +6,7 @@ import {COMPLETE_MCP_WEEK_SQL, completedMcpReports} from '../src/mcp-adoption.mj
 import worker from '../src/worker.js';
 import {expandedDefinitions, expandedCall} from '../src/mcp-expanded.mjs';
 import {collectToolPages} from '../src/mcp-pagination.mjs';
+import filterCatalogue from '../data/filter-finder-de.json' with {type:'json'};
 
 const origin = 'https://getecoback.com';
 const distinctTasks = 2029;
@@ -23,7 +24,8 @@ async function rpc(method, params) {
 }
 
 test('German replacement-filter evidence returns a public exact-model anchor without inferring adjacent variants', async ({mock}) => {
-  mock.timers.enable({apis:['Date'],now:new Date('2026-11-22T12:00:00Z')});
+  const checkedAt = model => Date.parse(filterCatalogue.items.find(item => item.id === model).checked_at + 'T12:00:00Z');
+  mock.timers.enable({apis:['Date'],now:checkedAt('beurer-lr401')});
   const name='luftreiniger_ersatzfilter_zuordnung';
   const page=origin+'/ersatzfilter.html';
   const call=model=>rpc('tools/call',{name,arguments:{model}});
@@ -31,6 +33,7 @@ test('German replacement-filter evidence returns a public exact-model anchor wit
     ['beurer-lr401','LR 401','69309','https://www.beurer.com/de/p/69309/'],
     ['levoit-core-300s','Core 300S',null,'https://levoit.de/products/levoit-core-300-und-core-300s-ersatzfilter-hepa-filter'],
   ]) {
+    mock.timers.setTime(checkedAt(model));
     const result=await call(model);
     assert.equal(result.isError,false);
     assert.equal(result.structuredContent.status,'documented_variant');
@@ -46,7 +49,11 @@ test('German replacement-filter evidence returns a public exact-model anchor wit
   assert.equal(unknown.structuredContent.status,'identify_model');
   assert.equal(unknown.structuredContent.model_guide_url,undefined);
   for (const model of ['levoit-core-300s-pro','beurer-lr405']) assert.equal((await call(model)).isError,true);
-  mock.timers.setTime(new Date('2026-12-31T12:00:00Z').getTime());
+  const checked = checkedAt('beurer-lr401');
+  const dayMs = 86_400_000;
+  mock.timers.setTime(checked + 30 * dayMs);
+  assert.equal((await call('beurer-lr401')).structuredContent.status,'documented_variant');
+  mock.timers.setTime(checked + 31 * dayMs);
   const stale=(await call('beurer-lr401')).structuredContent;
   assert.equal(stale.status,'source_recheck');
   assert.equal(stale.filter_name,null);
