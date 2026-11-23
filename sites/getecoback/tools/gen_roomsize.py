@@ -2,10 +2,12 @@
 """Programmatic page generator: "Welche Klimaanlage für X m²?"
 
 Reads tools/content_roomsize.json and emits one fully-templated guide page per
-room size into site/guide/klimaanlage-<qm>-qm.html — each with GA4, affiliate
+template-managed room size into site/guide/klimaanlage-<qm>-qm.html — each with GA4, affiliate
 links (tag=getecoback-21), click tracking, TL;DR, FAQ and Article+BreadcrumbList
 +FAQPage JSON-LD. This is the automation for category expansion: add an entry to
 the JSON (or add a whole new *.json + a sibling generator) and re-run.
+
+Editorial entries use the maintained pages in site/guide.
 
 Every amazon.de link is model-keyed (search by model name) — no fabricated ASINs,
 resilient to stock changes. Cooling figures are honest rules of thumb, marked "ca."
@@ -227,6 +229,8 @@ def main():
     outdir = os.path.join(SITE, "guide")
     made = []
     for e in data["entries"]:
+        if e.get("editorial"):
+            continue
         slug, html = page(e)
         # validate embedded JSON-LD before writing
         m = re.search(r'<script type="application/ld\+json">(.*?)</script>', html, re.S)
