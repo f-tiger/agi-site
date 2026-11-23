@@ -64,6 +64,34 @@ test('the German window condensation question finds the measured check and fixed
   assert.notEqual(findCatalogueTools(compact,{query:question})[0]?.name, name, question);
 });
 
+test('everyday measured glass and wall questions keep the same dew-point calculation', async () => {
+  const name = 'fenster_oberflaeche_taucheck';
+  const canonical = origin + '/guide/fenster-beschlagen-innen.html';
+  for (const query of [
+    'Morgens beschlägt mein Fenster innen. Im Schlafzimmer sind 20 °C und 60 Prozent Luftfeuchte, die Scheibe hat 10 °C. Kann sich dort Tauwasser bilden?',
+    'Im Schlafzimmer sind 20 Grad bei 60 % Luftfeuchtigkeit. Morgens hat die Innenscheibe 10 Grad. Warum wird sie nass?',
+    'Ich messe am Glas 9 Grad. Innen sind es 21 Grad und 55 Prozent Luftfeuchte. Ist Tauwasser auf der Innenseite möglich?',
+    'Kann sich an der Außenwand innen bei 14 °C Tauwasser bilden, wenn im Zimmer 20 °C und 60 % relative Feuchte sind?',
+  ]) {
+    const [first] = (await catalogue({q:query, view:'compact', limit:'3'})).tools;
+    assert.equal(first?.name, name, query);
+    assert.equal(first.citation_url, canonical);
+    assert.equal(first.guide_url, canonical + '#fenstersauger-gegen-kondenswasser');
+    assert.equal(findCatalogueTools(compact,{query})[0]?.name, name, query);
+    assert.notEqual(findCatalogueTools(compact,{query,category:'Fensterbetrieb'})[0]?.name, name, query);
+  }
+  for (const query of [
+    'Warum beschlägt das geschlossene Fenster morgens innen?',
+    'Reicht im Schlafzimmer mit 20 °C und 60 % Luftfeuchte der Raumwert? Die Innenscheibe habe ich noch nicht gemessen.',
+    'Beschlag außen: drinnen 20 Grad und 60 Prozent Luftfeuchte, die Außenscheibe hat 10 Grad.',
+    'Kondensat zwischen den Scheiben, Raumtemperatur 20 °C und 60 % Luftfeuchte. Die Scheibe hat 10 °C.',
+    'Windschutzscheibe innen: 20 °C und 60 % im Auto, Glas 10 °C. Ist das Kondenswasser?',
+  ]) {
+    assert.ok(!(await catalogue({q:query,view:'compact',limit:'5'})).tools.some(tool => tool.name === name), query);
+    assert.ok(!findCatalogueTools(compact,{query}).some(tool => tool.name === name), query);
+  }
+});
+
 test('German condition questions find the cold-cellar evidence and preserve model-variant lookup', async () => {
   const tool = 'kellerentfeuchter_pruefpunkt_abgleichen';
   const cases = [

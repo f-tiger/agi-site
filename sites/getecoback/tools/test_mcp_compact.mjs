@@ -66,6 +66,28 @@ function fixture() {
   return {writes,send,rpc,result,call};
 }
 
+test('compact routes an everyday measured window report to the shareable dew-point check', async () => {
+  const {call,writes} = fixture();
+  const name = 'fenster_oberflaeche_taucheck';
+  const guide = origin + '/guide/fenster-beschlagen-innen.html';
+  const found = await call(compactPath,findName,{frage:'Morgens beschlägt mein Fenster innen. Im Schlafzimmer sind 20 °C und 60 Prozent Luftfeuchte, die Scheibe hat 10 °C. Kann sich dort Tauwasser bilden?'});
+  const first = found.structuredContent.tools[0];
+  assert.equal(first.name,name);
+  assert.equal(first.citation_url,guide);
+  assert.equal(first.guide_url,guide+'#fenstersauger-gegen-kondenswasser');
+  assert.deepEqual(first.inputSchema.required.toSorted(), ['room_c','room_rh_pct','surface_c']);
+  const room = {room_c:20,room_rh_pct:60};
+  const missing = await call(compactPath,runName,{name,eingaben:room});
+  assert.equal(missing.isError,true);
+  assert.equal(missing.structuredContent,undefined);
+  const value = await call(compactPath,runName,{name,eingaben:{...room,surface_c:10}});
+  assert.equal(value.isError,false);
+  assert.equal(value.structuredContent.dew_point_c,12);
+  assert.equal(value.structuredContent.surface_margin_c,-2);
+  assert.equal(value.structuredContent.share_url,first.guide_url);
+  assert.deepEqual(writes,[]);
+});
+
 test('compact humidifier results keep a nominal wattage from being treated as a measured efficiency', async () => {
   const {call,writes} = fixture();
   const name = 'befeuchter_nennwatt_abgabeleistung_bezug';
