@@ -227,11 +227,20 @@ claude mcp add --transport http getecoback https://getecoback.com/mcp/v1
 
 ### EcoBack lokal installieren (MCPB)
 
-Öffne die MCPB-Datei in einem Client, der dieses Format unterstützt. Das Paket benötigt Node.js 22 oder neuer und rechnet auf deinem Gerät. Live-Wetter und Online-Ratgeber werden im vollständigen Modus nur bei einem entsprechenden Werkzeugaufruf abgerufen.
+[Downloadseite und Installationsanleitung öffnen](https://github.com/f-tiger/getecoback-mcp#connect) · [Aktuelle Version im offiziellen MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.f-tiger%2Fecoback-local-tools&version=latest)
 
-Beim manuellen Start zeigt --compact nur die lokale Werkzeugsuche und -ausführung. Suche dort nach EAN 4048164116478, um die [Fensterfalzprüfung für die originale Midea PortaSplit](https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html#fensterfalz) zu finden.
+Öffne die heruntergeladene MCPB-Datei in einem Client, der dieses Format unterstützt. Das Paket benötigt Node.js 22 oder neuer und rechnet auf deinem Gerät. Live-Wetter und Online-Ratgeber werden im vollständigen Modus nur bei einem entsprechenden Werkzeugaufruf abgerufen.
 
-[Download und Installationsanleitung](https://github.com/f-tiger/getecoback-mcp#connect) · Offizieller Registry-Eintrag für das lokale Paket
+#### Erste Rechnung ohne Internet
+
+Starte im entpackten Ordner das geprüfte Beispiel für die Taupunktprüfung:
+
+node src/find-tools.mjs --example fenster_oberflaeche_taucheck
+Bei **20 °C Raumtemperatur, 60 % relativer Luftfeuchte und 10 °C an der Innenscheibe** gibt das Beispiel einen Taupunkt von **rund 12 °C** aus. Die Scheibe liegt 2 °C darunter, sodass Kondenswasser möglich ist. Für dein Fenster brauchst du die drei Messwerte vom selben Zeitpunkt. [Messwerte prüfen und die Anleitung teilen](https://getecoback.com/guide/fenster-beschlagen-innen.html#fenstersauger-gegen-kondenswasser).
+
+Im lokalen Kompaktmodus mit --compact kannst du dieselbe Aufgabe suchen. Sende die Frage „Im Schlafzimmer sind 20 Grad bei 60 % Luftfeuchtigkeit. Morgens hat die Innenscheibe 10 Grad. Warum wird sie nass?“ an ecoback_werkzeug_finden. Der Treffer fenster_oberflaeche_taucheck zeigt die drei benötigten Eingaben.
+
+Für ein anderes Beispiel suche nach EAN 4048164116478, um die [Fensterfalzprüfung für die originale Midea PortaSplit](https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html#fensterfalz) zu finden.
 
 ### Zwei Werkzeuge für deinen Assistenten
 
