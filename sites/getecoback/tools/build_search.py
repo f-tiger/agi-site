@@ -60,6 +60,9 @@ def collect():
  sections[('de','/guide/midea-portasplit-ausverkauft-alternativen.html')]={
   'id':'fensterfalz','title':'Midea PortaSplit Original: EAN und Fensterfalz prüfen',
   'description':'EAN 4048164116478 abgleichen. Breite und Höhe am Falz für die Standardhalterung messen. Bei unklarer Passung warten.'}
+ sections[('de','/guide/klimaanlage-fenster-einbruchschutz.html')]={
+  'id':'fenster-verschluss-pruefen','title':'Klimaanlage am Fenster: Schließen und Verriegeln prüfen',
+  'description':'Prüfe am konkreten Fenster, ob es mit der Leitung normal verriegelt. Bei unklarem Ergebnis den Kauf zurückstellen.'}
  out=[]
  for path,route,lang,h in public_pages():
   if not h.title.strip():raise ValueError(f'Missing title: {route}')

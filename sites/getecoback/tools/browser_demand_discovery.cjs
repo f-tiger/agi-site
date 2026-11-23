@@ -12,7 +12,7 @@ function trackIndexRequests(page,origin){
  return requests;
 }
 
-async function checkGermanLaundryDiscovery(browser,base){
+async function checkGermanFocusedDiscovery(browser,base){
  const destination='/waeschetrockner-oder-luftentfeuchter.html#luftentfeuchter-waesche-kosten';
  const positive=['Was kostet eine Ladung Wäsche nur mit meinem Luftentfeuchter?','Stromkosten Luftentfeuchter Wäsche'];
  const ordinary=[
@@ -83,6 +83,9 @@ async function checkGermanLaundryDiscovery(browser,base){
    const matches=await search(query);
    check(matches.every(match=>match.href!==excluded),'Different variants and questions avoid the original buying answer: '+query);
   }
+  const closure='/guide/klimaanlage-fenster-einbruchschutz.html#fenster-verschluss-pruefen';
+  const closureQuery='Kann ich mein Kippfenster mit der PortaSplit beim Verlassen der Wohnung verriegeln?';
+  equal((await search(closureQuery))[0],{href:closure,language:'de'},'A complete German window-lock question reaches the decision answer');
   await search('eco-local-privacy-marker-6381');
   equal(await results.count(),0,'An arbitrary private phrase yields no result');
   await search(positive[1]);
@@ -91,6 +94,12 @@ async function checkGermanLaundryDiscovery(browser,base){
   await page.keyboard.press('Enter');
   await page.waitForURL(base+destination);
   check(await page.locator('#luftentfeuchter-waesche-kosten').getByRole('heading').isVisible(),'Keyboard navigation reaches the actual answer');
+  await page.locator('#eb-search-toggle').click();
+  await input.waitFor({state:'visible'});
+  await search(closureQuery);
+  await results.first().click();
+  await page.waitForURL(base+closure);
+  check(await page.locator('#fenster-verschluss-pruefen').isVisible(),'The window-lock result navigates to the actual answer');
   await context.close();
  }
 
@@ -186,7 +195,7 @@ async function checkGermanLaundryDiscovery(browser,base){
   await f.locator('#eb-search-results a[href="/waeschetrockner-oder-luftentfeuchter.html"]').waitFor({state:'visible'});
   assert.deepEqual(failedIndexRequests,[searchAsset,searchAsset]);
   await fail.close();checks+=5;
-  checks+=await checkGermanLaundryDiscovery(browser,base);
+  checks+=await checkGermanFocusedDiscovery(browser,base);
   console.log(`PASS demand discovery: ${checks} checks, 8 locales, 3 widths, no-JS and static-index failure/retry`);
  }finally{if(browser)await browser.close();if(server)server.kill();}
 })().catch(e=>{console.error(e);process.exit(1)});

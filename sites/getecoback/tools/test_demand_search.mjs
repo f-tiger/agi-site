@@ -234,6 +234,42 @@ test('German exact N90 offer identity searches reach the existing model evidence
  ]) assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u===page+'#testlage'),q);
 });
 
+test('German cooling window-closure questions find the static decision answer',()=>{
+ const page='/guide/klimaanlage-fenster-einbruchschutz.html';
+ const destination=page+'#fenster-verschluss-pruefen';
+ for(const q of [
+   'Kann ich das Kippfenster mit der PortaSplit beim Verlassen der Wohnung verriegeln?',
+   'PortaSplit Fenster abschließen und Wohnung verlassen',
+   'Klimaanlage Kippfenster nachts geschlossen sicher verriegeln',
+   'Kann ich das Fenster mit der Midea Porta-Split ganz schließen?',
+   'Lässt sich mein Fenster mit der Leitung der PortaSplit noch richtig schließen?',
+   'Lässt sich das Fenster laut Anleitung mit der PortaSplit noch verriegeln?',
+   'Schließe ich das Fenster mit meinem Monoblock wirklich ab?',
+   'Kann ich die Wohnung verlassen, wenn das Fenster für die Klimaanlage gekippt bleibt?',
+ ]) {
+   const hits=searchEntries(index,q,'de');
+   assert.equal(hits[0]?.entry.u,destination,q);
+   assert.match(hits[0].entry.d,/den Kauf zurückstellen/,q);
+   assert.equal(hits.filter(hit=>hit.entry.u.split('#')[0]===page).length,1,q);
+   assert.ok(!searchEntries(index,q,'en').some(hit=>hit.entry.u===destination),q);
+ }
+ for(const q of [
+   'Midea PortaSplit E: Kann ich das Fenster verriegeln?',
+   'PortaSplit 4048164122301 Fenster abschließen',
+   'Passt die PortaSplit-Halterung bei 60 mm Fensterfalz und geschlossenem Fenster?',
+   'Wie dichtet man das Kippfenster für einen Monoblock ab?',
+   'Wie viel Strom braucht die Klimaanlage nachts, wenn das Fenster ganz geschlossen ist?',
+   'Wie laut ist die PortaSplit nachts im Schlafzimmer?',
+   'Wie viel Strom verbraucht meine Klimaanlage bei verriegeltem Fenster?',
+   'Wie laut ist die Klimaanlage bei verriegeltem Fenster?',
+   'Meine PortaSplit läuft am Fenster. Wie verriegele ich die Fernbedienung für Kinder?',
+   'Kann ich ohne mobile Klimaanlage die Wohnung verlassen, wenn das Fenster gekippt bleibt?',
+   'Warum beschlägt das geschlossene Fenster morgens innen?',
+   'Kann ich ohne Klimaanlage beim Verlassen der Wohnung das Fenster gekippt lassen?',
+   'Die Lamellen meiner Klimaanlage schließen nicht mehr',
+ ]) assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u===destination),q);
+});
+
 test('German original PortaSplit lip questions open the existing guide measurement answer',()=>{
  const page='/guide/midea-portasplit-ausverkauft-alternativen.html';
  for(const q of [
@@ -242,6 +278,7 @@ test('German original PortaSplit lip questions open the existing guide measureme
    'Midea PortaSplit Original',
    'Midea Porta-Split EAN 4048164116478',
    'Mein Fensterfalz ist 6 cm breit. Muss ich bei der Midea PortaSplit die Gummidichtung beim Messen mitzählen?',
+   'Muss ich den 60 mm breiten Fensterfalz für die PortaSplit-Halterung bei verriegeltem oder offenem Fenster messen?',
    'Muss ich beim Ausmessen des Fensterrahmens für die PortaSplit die Dichtung zusammendrücken oder mitmessen?',
    'Die PortaSplit passt nicht ans Fenster, wo muss ich die Rahmendicke messen?',
    'Meine originale Midea PortaSplit hat einen 60 mm breiten Fensterfalz. Passt die mitgelieferte Standardhalterung?',
