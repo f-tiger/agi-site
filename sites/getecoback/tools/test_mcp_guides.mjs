@@ -84,6 +84,85 @@ test('laundry search stays on task and every search result can be read through t
   }
 });
 
+const coolingLookups = [
+  {
+    path: '/guide/delonghi-pac-n90-test.html', section: 'testlage',
+    queries: ['DeLonghi PAC N90 ECO Silent', 'PACN90 ECO Silent', '8004399512351', 'EAN 8004399512351'],
+  },
+  {
+    path: '/guide/midea-portasplit-ausverkauft-alternativen.html', section: 'fensterfalz',
+    queries: ['Midea PortaSplit Original', 'Midea Porta Split Original', 'Midea Porta-Split Original',
+      '4048164116478', 'EAN 4048164116478'],
+  },
+];
+
+test('exact German cooling searches prefer reviewed section copy and pass a readable canonical URL', async () => {
+  for (const {path, section, queries} of coolingLookups) {
+    const guide = corpus.find(entry => entry.u === path);
+    assert.equal(guide?.section?.id, section, path);
+    const {title, description} = guide.section;
+    assert.ok(title && description);
+    assert.notEqual(title, guide.t);
+    assert.notEqual(description, guide.d);
+
+    for (const [position, frage] of queries.entries()) {
+      const {env, requests} = assetEnv();
+      const language = position === 1 ? {} : {sprache: 'de'};
+      const result = await call('ratgeber_suche', {frage, ...language, max: 3}, env);
+      assert.equal(result.isError, false, frage);
+      const first = textOf(result).split('\n').slice(1, 4);
+      assert.deepEqual(first, ['- ' + title, '  https://getecoback.com' + path, '  ' + description], frage);
+      assert.deepEqual(requests.map(request => new URL(request.url).pathname), ['/mcp-guides.json']);
+
+      const reading = await call('ratgeber_lesen', {pfad: first[1].trim()}, env);
+      assert.equal(reading.isError, false, frage + ': ' + textOf(reading));
+      assert.ok(textOf(reading).startsWith('Quelle: https://getecoback.com' + path + '\n'), frage);
+      assert.deepEqual(requests.map(request => new URL(request.url).pathname),
+        ['/mcp-guides.json', '/mcp-guides.json', guide.m]);
+    }
+  }
+});
+
+test('ambiguous cooling models, conflicting identifiers and other languages are not promoted', async () => {
+  const vetted = coolingLookups.map(({path}) => corpus.find(entry => entry.u === path).section);
+  for (const [frage, sprache] of [
+    ['Midea PortaSplit', 'de'], ['Midea PortaSplit E', 'de'], ['Midea PortaSplit Cool', 'de'],
+    ['Midea PortaSplit Pro', 'de'], ['Midea PortaSplit E 4048164116478', 'de'],
+    ['Midea PortaSplit Original 4048164122301', 'de'], ['DeLonghi PAC N90 ECO Silent 4048164116478', 'de'],
+    ['DeLonghi PAC N90 ECO Silent', 'en'], ['Midea Porta-Split Original', 'fr'],
+    ['Midea Porta-Split Original', 'nl'],
+  ]) {
+    const {env, requests} = assetEnv();
+    const result = await call('ratgeber_suche', {frage, sprache, max: 5}, env);
+    assert.equal(result.isError, false, frage);
+    const text = textOf(result);
+    for (const {title, description} of vetted) {
+      assert.ok(!text.includes('\n- ' + title + '\n'), frage);
+      assert.ok(!text.includes('\n  ' + description + '\n'), frage);
+    }
+    assert.deepEqual(requests.map(request => new URL(request.url).pathname), ['/mcp-guides.json']);
+  }
+});
+
+test('missing or malformed optional cooling section leaves normal guide search available', async () => {
+  const [{path, queries}] = coolingLookups;
+  const {section, ...guide} = corpus.find(entry => entry.u === path);
+  const baseline = {...guide, t: 'DeLonghi PAC N90 ECO Silent', d: 'Allgemeine Hinweise zum bestehenden Ratgeber.'};
+  for (const fallback of [
+    baseline,
+    {...baseline, section: {...section, title: null}},
+    {...baseline, section: {...section, description: ''}},
+    {...baseline, section: {...section, id: 'not-reviewed'}},
+  ]) {
+    const {env, requests} = assetEnv(new Map([['/mcp-guides.json', () => Response.json([fallback])]]));
+    const result = await call('ratgeber_suche', {frage: queries[0], sprache: 'de', max: 1}, env);
+    assert.equal(result.isError, false);
+    assert.deepEqual(textOf(result).split('\n').slice(1, 4),
+      ['- ' + baseline.t, '  https://getecoback.com' + path, '  ' + baseline.d]);
+    assert.deepEqual(requests.map(request => new URL(request.url).pathname), ['/mcp-guides.json']);
+  }
+});
+
 test('root-level laundry reading preserves measured-condition limits and trusted original sources', async () => {
   const {env} = assetEnv();
   const relative = await call('ratgeber_lesen', {pfad: laundry}, env);

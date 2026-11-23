@@ -90,3 +90,84 @@ test('cellar model navigation is page-scoped and carries no model or household d
   assert.equal(ecoPublicBusinessEvent('/guide/luftentfeuchter-ratgeber.html', detail), null);
   assert.equal(ecoPublicBusinessEvent(page, {...detail, model:'private'}), null);
 });
+
+test('Offline MCPB install action accepts only exact public routes and a fixed name', () => {
+  const detail = {name:'eco_mcpb_setup_open'};
+  for (const path of ['/mcp.html','/for-agents.html']) {
+    assert.deepEqual(ecoPublicBusinessEvent(path,detail),{...detail,tool_id:'eco-offline-mcpb'});
+    for (const key of ['href','url','query','tool_id','version','email']) {
+      assert.equal(ecoPublicBusinessEvent(path,{...detail,[key]:'PRIVATE'}),null,key);
+    }
+    assert.equal(ecoPublicBusinessEvent(path,Object.create(detail)),null);
+  }
+  for (const path of ['/','/mcp','/for-agents.md','/tools.html','/mcp.html?query=PRIVATE','/for-agents.html#offline','/account']) {
+    assert.equal(ecoPublicBusinessEvent(path,detail),null,path);
+  }
+});
+
+test('Offline MCPB install action runs once from a trusted marked link, without carrying link information', () => {
+  const source = readFileSync(new URL('../site/assets/public-engagement.mjs',import.meta.url),'utf8').replaceAll('export function','function');
+  const origin = 'https://getecoback.com';
+  const id = 'G-E2V0Q9SJ9V';
+  const name = 'eco_mcpb_setup_open';
+  const target = 'https://github.com/f-tiger/getecoback-mcp#connect';
+  const marker = 'a[data-eco-mcpb-setup-open]';
+
+  function install(pathname, search = '?query=PRIVATE', denied = false) {
+    const listeners = {};
+    const docListeners = {};
+    const dataLayer = [['config',id]];
+    const frame = {src:origin+'/analytics-assets/frame.html',hidden:true,isConnected:true,contentWindow:{dataLayer}};
+    const loader = {dataset:{ga4Id:id,ga4Host:'getecoback.com',ga4Page:origin+pathname,ga4Title:'MCP setup'}};
+    const window = {
+      addEventListener:(type,listener)=>{listeners[type]=listener;},
+      dispatchEvent:event=>listeners[event.type]?.(event),
+    };
+    window.top=window.self=window;
+    const document = {
+      body:{},referrer:'https://example.test/private?query=PRIVATE',visibilityState:'visible',hasFocus:()=>true,
+      addEventListener:(type,listener)=>{docListeners[type]=listener;},
+      querySelector:selector=>selector.startsWith('script')?loader:frame,
+    };
+    vm.runInNewContext(source,{
+      window,document,URL,URLSearchParams,Set,performance:{now:()=>0},navigator:{},
+      location:{hostname:'getecoback.com',origin,pathname,search},
+      localStorage:{getItem:()=>denied?'denied':null},setInterval:()=>1,clearInterval:()=>{},
+      MutationObserver:class{observe(){}},
+      CustomEvent:class{constructor(type,{detail}){this.type=type;this.detail=detail;}},
+    });
+    return {
+      dataLayer,
+      forged:()=>window.dispatchEvent({type:'fleet:business',detail:{name}}),
+      click:(isTrusted,marked,href=target)=>docListeners.click?.({
+        isTrusted,button:0,
+        target:{closest:selector=>marked&&[marker,marker+`[href="${href}"]`].includes(selector)
+          ? {href,dataset:{private:'PRIVATE'},getAttribute:attr=>attr==='href'?href:null} : null},
+      }),
+    };
+  }
+
+  for (const path of ['/mcp.html','/for-agents.html']) {
+    const {dataLayer,forged,click} = install(path);
+    forged();
+    click(false,true);
+    click(true,false);
+    click(true,true,'https://example.test/unrelated');
+    assert.equal(dataLayer.length,1,'No synthetic or unrelated action on '+path);
+    click(true,true);
+    click(true,true);
+    assert.equal(dataLayer.length,2,'At most one real opening per page on '+path);
+    assert.equal(dataLayer[1][0],'event');
+    assert.equal(dataLayer[1][1],name);
+    assert.deepEqual({...dataLayer[1][2]},{
+      send_to:id,page_location:origin+path,page_title:'MCP setup',page_referrer:'https://example.test/',
+      tool_id:'eco-offline-mcpb',transport_type:'beacon',
+    });
+  }
+
+  for (const testCase of [['/tools.html'],['/mcp.html','?__probe=1'],['/for-agents.html','',true]]) {
+    const {dataLayer,click} = install(...testCase);
+    click(true,true);
+    assert.equal(dataLayer.length,1,'Scope and privacy exclusions: '+testCase.join(' '));
+  }
+});

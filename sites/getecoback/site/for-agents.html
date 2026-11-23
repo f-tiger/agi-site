@@ -73,6 +73,12 @@
   <p>For MCP discovery, call <code>tools/list</code> and send each returned <code>nextCursor</code> as <code>params.cursor</code> in the next request. For structured results, cite <code>citation_url</code> and report the units, assumptions and limits from the tool. Use <code>ratgeber_lesen</code> to check the published guide and linked original sources when the answer depends on a model specification.</p>
   <p style="margin:0;">Discovery: <a href="/.well-known/mcp.json">/.well-known/mcp.json</a> · Docs: <a href="/mcp.html">/mcp.html</a> · Registry: <a href="https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fhvac-btu-heat-klimaanlage/versions/latest">io.github.f-tiger/hvac-btu-heat-klimaanlage</a></p></div>
 
+  <section class="card" aria-labelledby="local-mcpb">
+  <h2 id="local-mcpb">Local MCPB package (stdio)</h2>
+  <p>Run EcoBack in a client that supports MCPB, with Node.js 22 or later. Calculations run on your device. In full mode, weather and online guides use the network only when requested. Starting with <code>--compact</code> exposes a local finder and runner.</p>
+  <p><a href="https://github.com/f-tiger/getecoback-mcp#connect" data-eco-mcpb-setup-open>Download and installation instructions</a> · <a href="https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions/latest">Official Registry record for the local package</a> · <a href="/mcp.html#offline-installation">German setup and example</a></p>
+  </section>
+
   <div class="card"><strong>Plan a shower around a measured flow and a water budget</strong>
   <p>Collect 2.25 L over 15 seconds at the usual setting. Call <code>duschdurchfluss_messen</code> to derive 9 L/min. Pass that flow and a household budget of 72 L to <code>dusche_zeit_bei_wasserbudget</code> for 8 minutes at steady flow. The budget is a user input. Deduct any warm-up water first. <a href="/mcp.html#duschbudget-beispiel">Runnable examples and assumptions</a>.</p></div>
 

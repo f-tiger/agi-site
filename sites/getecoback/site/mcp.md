@@ -4,6 +4,8 @@
 
 Canonical (HTML, zitierfähig): https://getecoback.com/mcp.html
 
+[Online verbinden](https://getecoback.com/mcp.html#einrichten) · [EcoBack lokal installieren](https://getecoback.com/mcp.html#offline-installation)
+
 ## Werkzeuge nach Aufgabe finden
 
 Aufgabe oder Werkzeugname
@@ -222,6 +224,14 @@ claude mcp add --transport http getecoback https://getecoback.com/mcp/v1
 ### VS Code
 
 {"servers":{"getecoback":{"type":"http","url":"https://getecoback.com/mcp/v1"}}}
+
+### EcoBack lokal installieren (MCPB)
+
+Öffne die MCPB-Datei in einem Client, der dieses Format unterstützt. Das Paket benötigt Node.js 22 oder neuer und rechnet auf deinem Gerät. Live-Wetter und Online-Ratgeber werden im vollständigen Modus nur bei einem entsprechenden Werkzeugaufruf abgerufen.
+
+Beim manuellen Start zeigt --compact nur die lokale Werkzeugsuche und -ausführung. Suche dort nach EAN 4048164116478, um die [Fensterfalzprüfung für die originale Midea PortaSplit](https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html#fensterfalz) zu finden.
+
+[Download und Installationsanleitung](https://github.com/f-tiger/getecoback-mcp#connect) · Offizieller Registry-Eintrag für das lokale Paket
 
 ### Zwei Werkzeuge für deinen Assistenten
 

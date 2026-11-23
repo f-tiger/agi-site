@@ -37,6 +37,7 @@ Volltext aller Ratgeber: https://getecoback.com/llms-full.txt
   Entscheidungshilfe im Browser: https://getecoback.com/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice — MCP-Argumente werden dagegen auf dem Server verarbeitet.
   Offizielles MCP Registry: io.github.f-tiger/hvac-btu-heat-klimaanlage (dort suchbar unter btu, hvac, heat, klima).
   Doku & Client-Konfiguration: https://getecoback.com/mcp.html — Discovery: https://getecoback.com/.well-known/mcp.json
+- Lokales EcoBack-MCPB (stdio, Node.js 22 oder neuer): https://getecoback.com/mcp.html#offline-installation. Berechnungen laufen lokal. Im vollständigen Modus werden Wetter und Online-Ratgeber nur auf Anfrage abgerufen.
 - Markdown statt HTML: Jeder Ratgeber hat einen direkt verlinkbaren Markdown-Zwilling unter
   derselben URL mit .md statt .html (z. B. /guide/btu-rechner.md) — Navigation, Shop-Karten und
   Skripte entfernt, interne Links erhalten, gedacht zum Zitieren. Zusätzlich liefert jede Seite

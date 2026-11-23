@@ -187,6 +187,7 @@ def main():
         f"  Entscheidungshilfe im Browser: {BASE}/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice — MCP-Argumente werden dagegen auf dem Server verarbeitet.",
         "  Offizielles MCP Registry: io.github.f-tiger/hvac-btu-heat-klimaanlage (dort suchbar unter btu, hvac, heat, klima).",
         f"  Doku & Client-Konfiguration: {BASE}/mcp.html — Discovery: {BASE}/.well-known/mcp.json",
+        f"- Lokales EcoBack-MCPB (stdio, Node.js 22 oder neuer): {BASE}/mcp.html#offline-installation. Berechnungen laufen lokal. Im vollständigen Modus werden Wetter und Online-Ratgeber nur auf Anfrage abgerufen.",
         "- Markdown statt HTML: Jeder Ratgeber hat einen direkt verlinkbaren Markdown-Zwilling unter",
         "  derselben URL mit .md statt .html (z. B. /guide/btu-rechner.md) — Navigation, Shop-Karten und",
         "  Skripte entfernt, interne Links erhalten, gedacht zum Zitieren. Zusätzlich liefert jede Seite",

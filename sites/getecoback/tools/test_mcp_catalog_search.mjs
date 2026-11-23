@@ -894,6 +894,17 @@ test('original PortaSplit lip sizes reach the measurement tool without borrowing
    assert.equal(findCatalogueTools(compact,{query:q})[0]?.name,name,q);
    assert.equal(toolGuidePath(results[0]),page+'#fensterfalz',q);
  }
+ const category='Quellen & Kaufprüfung';
+ for(const q of ['4048164116478','EAN 4048164116478','Midea Porta-Split Original']){
+   const result=await catalogue({q,category,view:'compact',limit:'5'});
+   const client=findCatalogueTools(compact,{query:q,category});
+   assert.deepEqual(names(result.tools),names(client).slice(0,5),q);
+   assert.equal(result.tools[0]?.name,name,q);
+   assert.equal(toolGuidePath(result.tools[0]),page+'#fensterfalz',q);
+   assert.ok(result.tools.every(tool=>tool.category===category),q);
+   assert.ok(['q','query','frage'].every(key=>!Object.hasOwn(result,key)),q);
+   assert.deepEqual((await catalogue({q,category:'Feuchte',tool:name,view:'compact'})).tools,[],q);
+ }
  const roof=(await catalogue({q:'Midea PortaSplit Dachfenster Universalhalterung',view:'compact'})).tools;
  assert.equal(roof[0]?.name,bracket);
  assert.equal(toolGuidePath(roof[0]),page+'#kaufpruefung');
@@ -905,6 +916,18 @@ test('original PortaSplit lip sizes reach the measurement tool without borrowing
   'PortaSplit Cool Falzbreite der Standardhalterung messen',
   'Midea PortaSplit E Fensterrahmen 45 mm messen',
  ]) assert.ok(!(await catalogue({q,view:'compact'})).tools.some(tool=>[name,bracket].includes(tool.name)),q);
+ for(const q of [
+   'Midea PortaSplit', 'Midea PortaSplit E', 'Midea PortaSplit Cool', 'Midea PortaSplit Pro',
+   'PortaSplit 4048164122424 Fensterfalz', 'PortaSplit 4048164122301 Fensterfalz',
+   'PortaSplit 4048164116478 oder 4048164122424 Fensterfalz',
+   'Midea PortaSplit Cool 4048164116478 Fensterfalz',
+   'Wie laut ist die Midea PortaSplit Original 4048164116478 im Betrieb?',
+   'Midea PortaSplit Original 4048164116478 nach außen öffnendes Fenster, 60 mm Fensterfalz',
+ ]){
+   const result=await catalogue({q,category,view:'compact'});
+   assert.deepEqual(names(result.tools),names(findCatalogueTools(compact,{query:q,category})),q);
+   assert.ok(result.tools.every(tool=>tool.name!==name),q);
+ }
  assert.ok(!(await catalogue({q:'Midea PortaSplit außen öffnendes Fenster mit 60 mm Fensterfalz',view:'compact'})).tools.some(tool=>tool.name===name));
  assert.ok(!(await catalogue({q:'Fensterabdichtung für meinen Monoblock mit Dichtung messen',view:'compact'})).tools.some(tool=>tool.name===name));
  assert.equal((await catalogue({q:name,view:'compact'})).tools[0]?.name,name);
@@ -956,6 +979,7 @@ test('German noise comparisons prefer the noise check and retain cost, noise fau
     'Midea PortaSplit 39 dB und De’Longhi Pinguino N90 64 dB im Schlafzimmer vergleichen',
     'Sind 39 und 64 Dezibel bei Midea PortaSplit und PAC N90 vergleichbar?',
     'PortaSplit 39 dB und PAC N90 64 dB: sind die Pegel gleich laut?',
+    'Midea PortaSplit EAN 4048164116478 mit 39 dB Schalldruck und PAC N90 EAN 8004399512351 mit 64 dB Schallleistung vergleichen',
   ];
   for(const q of exact){
     const hits=(await catalogue({q,view:'compact',limit:'5'})).tools;
@@ -976,6 +1000,10 @@ test('German noise comparisons prefer the noise check and retain cost, noise fau
     'Wie laut ist die Midea PortaSplit nachts?',
     'Ist die PortaSplit Lite mit 39 dB oder der N90 mit 64 dB leiser?',
   ]) assert.notEqual((await catalogue({q,view:'compact',limit:'3'})).tools[0]?.name,name,q);
+  const otherEan='Midea PortaSplit EAN 4048164122301 mit 39 dB Schalldruck und PAC N90 EAN 8004399512351 mit 64 dB Schallleistung vergleichen';
+  const otherTools=(await catalogue({q:otherEan,view:'compact'})).tools;
+  assert.ok(otherTools.every(tool=>tool.name!==name),otherEan);
+  assert.ok(findCatalogueTools(compact,{query:otherEan}).every(tool=>tool.name!==name),otherEan);
   assert.equal((await catalogue({q:name,view:'compact'})).tools[0]?.name,name);
   assert.equal(analytics,0);
 });
