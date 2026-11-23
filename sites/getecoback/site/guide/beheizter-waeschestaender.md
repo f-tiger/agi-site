@@ -30,6 +30,15 @@ Idealisierte Luftkapazität bei konstanter Temperatur; keine Aussage über siche
 Materialien nehmen Feuchte auf und geben sie ab, Luft wird ausgetauscht und die Temperatur verändert sich. Deshalb kondensiert nicht zwangsläufig jedes Gramm oberhalb der berechneten Luftkapazität. Umgekehrt kann eine kalte Oberfläche bereits unter den Taupunkt fallen, bevor die gesamte Raumluft gesättigt ist.
 
 ## Feuchte tatsächlich abführen
+
+**Vor dem Kauf eine Ladung beobachten.** Temperatur und Luftfeuchte am selben Ort vor, während und nach dem Trocknen messen. Kalte Fenster und Wände zusätzlich beobachten.
+
+- **Die Feuchte lässt sich durch geeignetes Lüften abführen:** Den vorhandenen Ständer weiterverwenden. Bei wiederkehrender Nässe erst die Feuchteursache klären.
+
+- **Die Feuchte bleibt nach dem Lüften erhöht:** Erst [die Messung wiederholen](https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html). Wenn ein Entfeuchter für den Raum infrage kommt, [die konkreten Wäscheprogramme vergleichen](https://getecoback.com/guide/waesche-trocknen-wohnung.html#wie-ein-luftentfeuchter-schneller-trocknet-und-die-wohnung-s).
+
+- **Wäschetrockner als Alternative:** [Vollständige Durchgänge mit gleicher Wäschemenge und Endtrockenheit vergleichen](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#laundry-check).
+
 Geeignete Lüftung kann Wasserdampf nach außen transportieren; ihre Wirkung hängt von Innen- und Außenbedingungen ab und sie kann Heizwärme kosten. Ein Entfeuchter sammelt Wasser, ersetzt aber keine notwendige Frischluftzufuhr oder Reparatur. Auch mit einem Gerät muss die Feuchteentwicklung kontrolliert werden.
 Verwende eine Abdeckhaube nur wie vom Hersteller vorgesehen. Ob sie schneller trocknet, hängt vom Gerät und der Beladung ab. Freie Luftwege, zugelassene Aufstellung und ein sinnvoller Abschaltzeitpunkt gehören zum Vergleich.
 

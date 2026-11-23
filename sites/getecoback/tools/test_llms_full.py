@@ -15,6 +15,45 @@ MEACO = 'https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-
 
 
 class LlmsFull(unittest.TestCase):
+    def test_heated_rack_final_page_offers_measurement_and_conditioned_model_comparison(self):
+        route = 'guide/beheizter-waeschestaender'
+        comparison = '/guide/waesche-trocknen-wohnung.html'
+        anchor = '#wie-ein-luftentfeuchter-schneller-trocknet-und-die-wohnung-s'
+        page = (SITE / (route + '.html')).read_text()
+        mirror = (SITE / (route + '.md')).read_text()
+        self.assertEqual(page.count('id="feuchte-beim-waeschetrocknen-entscheiden"'), 1)
+        self.assertNotRegex(page, r'luftentfeuchter\+w%C3%A4schetrocknen|sonst landet es an Fenster und Wand')
+        self.assertNotIn('<!--EB_QUICKPICK-->', page)
+        self.assertIn(f'href="{comparison}{anchor}"', page)
+        self.assertIn(f'https://getecoback.com{comparison}{anchor}', mirror)
+        self.assertIn(f'id="{anchor[1:]}"', (SITE / comparison.lstrip('/')).read_text())
+        self.assertIn('Den vorhandenen Ständer weiterverwenden', mirror)
+        self.assertNotRegex(mirror, r'https?://[^\s)]*(?:amazon\.|amzn\.)|[?&]tag=')
+
+    def test_bosch_eco_load_keeps_exact_conditions_sources_and_clean_share(self):
+        route = '/waeschetrockner-oder-luftentfeuchter.html'
+        guide = SITE / route.lstrip('/')
+        page = guide.read_text()
+        mirror = guide.with_suffix('.md').read_text()
+        section = re.search(r'<section id="trockner-teilbeladung".*?</section>', page, re.S)
+        self.assertIsNotNone(section)
+        self.assertEqual(page.count('id="trockner-teilbeladung"'), 1)
+        for phrase in ('Bosch WQG241031', '1.000 U/min', '60 % Anfangsfeuchte',
+                       '0 % Endfeuchte', '1,93 kWh in 3:50 h', '1,08 kWh in 2:12 h',
+                       '2,16 kWh', '128 kWh je 100 Trocknungen', '1,28 kWh pro Normzyklus',
+                       'https://media3.bsh-group.com/Documents/9001984619_B.pdf',
+                       'energylabel/de-DE/WQG241031.pdf', 'vollständige E-Nr.'):
+            self.assertIn(phrase, section[0])
+            self.assertIn(phrase, mirror)
+        share = re.search(r'href="(https://www\.reddit\.com/submit\?[^"]+)"', section[0])
+        self.assertIsNotNone(share)
+        self.assertEqual(parse_qs(urlsplit(html.unescape(share[1])).query), {
+            'url': [f'https://getecoback.com{route}#trockner-teilbeladung'],
+            'title': ['Bosch WQG241031: Was kostet eine halbe Eco-Ladung?'],
+        })
+        self.assertNotIn('reddit.com/submit', mirror)
+        self.assertNotRegex(mirror, r'https?://[^\s)]*(?:amazon\.|amzn\.)|[?&]tag=')
+
     def test_root_mcp_citations_keep_static_evidence_and_safe_sources(self):
         evidence = {
             'strommess-protokoll': ['0,6 kWh pro Tag', '219 kWh und 76,65 €',

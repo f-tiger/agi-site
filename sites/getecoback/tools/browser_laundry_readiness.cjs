@@ -50,6 +50,14 @@ let checks=0;const check=(ok,message)=>{assert.ok(ok,message);checks++;};
      check(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`${lang}/${failure}/${width}: no horizontal overflow`);
     }
     await page.setViewportSize({width:390,height:844});
+    if(failure==='no-js'&&lang==='de'){
+     const example=root.locator('#trockner-teilbeladung');
+     check(await example.isVisible(),'exact Bosch example can be read without JavaScript');
+     check((await example.innerText()).includes('1,08 kWh in 2:12 h'),'the half-load value is readable');
+     const share=new URL(await example.locator('a[href^="https://www.reddit.com/submit?"]').getAttribute('href'));
+     check(share.searchParams.get('url')===origin+pathname+'#trockner-teilbeladung','Reddit points to the fixed evidence section');
+     check([...share.searchParams.keys()].sort().join(',')==='title,url','the share passes no reader values');
+    }
     if(failure==='no-js')await root.screenshot({path:path.join(dir,`laundry-${lang}-fallback.png`)});
     }
     if(failure==='delayed'||failure==='legacy'){

@@ -1476,9 +1476,8 @@ CONTEXT_MODELS = {
  # Expansion queue batch 1 (2026-09-24). Both shelves are what each page's own
  # text tells the reader to do, in the page's order — no new selection judgement.
  "beheizter-waeschestaender": [
-   ("Beheizter Wäscheständer mit Timer", "Mit Abschaltung", "Die Stäbe wärmen die Wäsche direkt — der Timer verhindert, dass er vergessen den ganzen Tag läuft.", "Preis vor Ort prüfen", "beheizter+w%C3%A4schest%C3%A4nder+timer", "shade"),
-   ("Luftentfeuchter fürs Wäschetrocknen", "Nimmt das Wasser aus der Luft", "Der Ständer bringt das Wasser in den Raum, der Entfeuchter holt es wieder heraus — sonst landet es an Fenster und Wand.", "Preis vor Ort prüfen", "luftentfeuchter+w%C3%A4schetrocknen", "dehum"),
-   ("Hygrometer", "Erst messen", "Zeigt, ob der Raum die Wäsche verkraftet — über 60 % Luftfeuchte wird es an kalten Wänden kritisch.", "Preis vor Ort prüfen", "hygrometer+innen", "purifier"),
+   ("Hygrometer", "Falls kein Messgerät vorhanden", "Temperatur und Luftfeuchte am selben Ort vor, während und nach dem Trocknen notieren. Kalte Oberflächen getrennt beurteilen.", "Preis vor Ort prüfen", "hygrometer+innen", "purifier"),
+   ("Beheizter Wäscheständer mit Timer", "Bei geplantem Kauf", "Die Stäbe wärmen die Wäsche. Prüfe in der Anleitung Timer, zugelassene Aufstellung und ob eine Abdeckung vorgesehen ist.", "Preis vor Ort prüfen", "beheizter+w%C3%A4schest%C3%A4nder+timer", "shade"),
  ],
  # Expansion 2026-09-27 (Trends: "akku heizlüfter" peak 1,7 in November, winter
  # 2,3x September). The page's answer is that a battery heats a body, not a
@@ -1572,8 +1571,8 @@ CONTEXT_SUB = {
                                    "dann ein anderes Gerät. Nicht selbst getestet. Symbolbilder."),
  "luftentfeuchter-stinkt": ("Reinigen statt ersetzen: Bürste fürs Register, Ablaufschlauch gegen stehendes Wasser — was nie "
                             "in den Tank gehört, steht oben. Nicht selbst getestet. Symbolbilder."),
- "beheizter-waeschestaender": ("In der Reihenfolge der Seite: trocknen, das Wasser wieder aus der Luft holen, "
-                               "messen. Nicht selbst getestet. Symbolbilder."),
+ "beheizter-waeschestaender": ("Erst prüfen, wie die Feuchte aus dem Raum gelangt. "
+                               "Diese optionalen Produktsuchen dienen der Messung und Ausstattung. Symbolbilder."),
  "akku-heizluefter": ("In der Reihenfolge der Seite: Wärme an den Körper, dann der Sitzplatz, und das Netzgerät nur, "
                       "wo eine Steckdose ist. Nicht selbst getestet. Symbolbilder."),
  "infrarotheizung-thermostat": ("Die zwei Bauarten, die ohne Installation gehen, und das Messgerät, das zeigt, was "
@@ -3958,7 +3957,7 @@ def inject_quickpick(html, slug, en=False):
         return re.sub(r'<!--EB_QUICKPICK-->.*?<!--/EB_QUICKPICK-->\n?', '', html, flags=re.S)
     # Someone whose unit leaks or smells already owns one, and a page about coping
     # without a unit should not be answered with "here is how to pick one".
-    if slug == "abluftschlauch-verlaengern" or any(k in slug for k in ("tropft", "stinkt", "zu-laut", "kuehlt-nicht", "reinigen",
+    if slug in ("abluftschlauch-verlaengern", "beheizter-waeschestaender") or any(k in slug for k in ("tropft", "stinkt", "zu-laut", "kuehlt-nicht", "reinigen",
                                "saugt-nicht",
                                "leaking", "not-cooling", "smells-musty", "how-to-clean",
                                "without-ac", "ohne-klimaanlage", "mit-eis",
