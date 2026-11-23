@@ -2,7 +2,7 @@
   "ok": true,
   "since": "2026-09-25",
   "days": 28,
-  "generated": "2026-11-22T14:19:31.653Z",
+  "generated": "2026-11-23T17:43:06.585Z",
   "cache_seconds": 300,
   "unit": "Anonymous action counts, deduplicated per event per page load in the browser. Not unique users; not verified buyers. Bots, CI and samples are excluded from task completion. Open endpoint counts can be spoofed. Public aggregates may be cached for 5 minutes.",
   "events": {
@@ -158,15 +158,11 @@
   "crawler_fetches": [
     {
       "path": "/document-sitemap.xml",
-      "n": 216
+      "n": 204
     },
     {
       "path": "/llms.txt",
       "n": 11
-    },
-    {
-      "path": "/de/delivery-evidence",
-      "n": 9
     },
     {
       "path": "/delivery-evidence",
@@ -175,6 +171,10 @@
     {
       "path": "/llms-full.txt",
       "n": 9
+    },
+    {
+      "path": "/de/delivery-evidence",
+      "n": 8
     },
     {
       "path": "/zh/delivery-evidence",
@@ -333,14 +333,6 @@
       "n": 2
     },
     {
-      "path": "/document-assets/text/de/compare-pdf-text.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/de/delivery-evidence.txt",
-      "n": 2
-    },
-    {
       "path": "/document-assets/text/de/learn/pdf-accessibility-checklist.txt",
       "n": 2
     },
@@ -349,19 +341,7 @@
       "n": 2
     },
     {
-      "path": "/document-assets/text/de/open-source/audacity.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/de/pdf-accessibility-checker.txt",
-      "n": 2
-    },
-    {
       "path": "/document-assets/text/de/pdf-to-text.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/de/verify-file.txt",
       "n": 2
     },
     {
@@ -370,10 +350,6 @@
     },
     {
       "path": "/document-assets/text/en/open-source/obs.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/en/open-source/shotcut.txt",
       "n": 2
     },
     {
@@ -585,15 +561,7 @@
       "n": 1
     },
     {
-      "path": "/document-assets/text/de/open-source/obs.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/de/open-source/ollama.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/de/open-source/shotcut.txt",
+      "path": "/document-assets/text/de/open-source/audacity.txt",
       "n": 1
     },
     {
@@ -601,7 +569,7 @@
       "n": 1
     },
     {
-      "path": "/document-assets/text/de/open-source/whisper.txt",
+      "path": "/document-assets/text/de/pdf-accessibility-checker.txt",
       "n": 1
     },
     {
@@ -609,19 +577,7 @@
       "n": 1
     },
     {
-      "path": "/document-assets/text/de/videos.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/de/videos/audacity.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/de/videos/shotcut.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/de/videos/upscayl.txt",
+      "path": "/document-assets/text/de/verify-file.txt",
       "n": 1
     },
     {
@@ -642,6 +598,10 @@
     },
     {
       "path": "/document-assets/text/en/open-source.txt",
+      "n": 1
+    },
+    {
+      "path": "/document-assets/text/en/open-source/shotcut.txt",
       "n": 1
     },
     {
@@ -669,75 +629,7 @@
       "n": 1
     },
     {
-      "path": "/document-assets/text/zh/compare-pdf-text.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/zh/delivery-evidence.txt",
-      "n": 1
-    },
-    {
       "path": "/document-assets/text/zh/learn/pdf-accessibility-checklist.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/zh/learn/pdf-reading-order.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/zh/learn/scanned-pdf-vs-text-pdf.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/zh/open-source.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/zh/open-source/audacity.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/zh/open-source/obs.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/zh/open-source/ollama.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/zh/open-source/shotcut.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/zh/open-source/upscayl.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/zh/open-source/whisper.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/zh/pdf-accessibility-checker.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/zh/pdf-batch-audit.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/zh/pdf-to-text.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/zh/verify-file.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/zh/videos.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/zh/videos/upscayl.txt",
       "n": 1
     },
     {
@@ -752,23 +644,23 @@
   "crawler_agents": [
     {
       "claimed_agent": "ClaudeBot",
-      "n": 278
+      "n": 266
     },
     {
       "claimed_agent": "GPTBot",
       "n": 124
     },
     {
-      "claimed_agent": "Meta-ExternalAgent",
-      "n": 43
-    },
-    {
       "claimed_agent": "Amazonbot",
-      "n": 39
+      "n": 35
     },
     {
       "claimed_agent": "YandexBot",
       "n": 14
+    },
+    {
+      "claimed_agent": "Meta-ExternalAgent",
+      "n": 13
     },
     {
       "claimed_agent": "Googlebot",
@@ -863,5 +755,5 @@
   "homepage_scope": "Homepage selections are fixed tool-link actions introduced on 2026-09-27, not completed tasks or unique visitors. Homepage views include historical document homepages and the current /document-tools directory; collector page views use a separate event stream. Legacy tool_views includes homepage views; dedicated_tool_views does not.",
   "attribution_scope": "Per-action observed referrer, not session attribution or a conversion rate. Missing referrers are unknown; Google AI search is not distinguishable from ordinary Google referrals. Crawler identities are user-agent claims, not verified IPs or citations.",
   "tool_views": 35,
-  "query_rows_read": 11249
+  "query_rows_read": 11227
 }
