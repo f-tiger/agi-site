@@ -183,6 +183,17 @@ EN_FOOTER = ("<!--EB_FOOTER--><footer class=\"eb-footer\"><div class=\"eb-footer
              "from qualifying purchases. Product links are affiliate links — you pay the "
              "same price. © 2026 EcoBack</div></footer><!--/EB_FOOTER-->")
 
+def investment_footer(en=False):
+    if en:
+        footer = EN_FOOTER
+        marker = '<a href="/">Deutsche Version</a>'
+        link = '<a href="https://agiscorecard.com/investment-contact?site=eco">Investment and partnerships</a>'
+    else:
+        footer = FOOTER
+        marker = '<a href="/kontakt.html">Kontakt</a>'
+        link = '<a href="https://agiscorecard.com/de/investment-contact?site=eco">Investition und Partnerschaft</a>'
+    return footer.replace(marker, marker + link, 1)
+
 # Resource hints for the only render-path third party (GA4 gtag): warm up the
 # DNS + TCP + TLS handshake early so the analytics script — and anything it
 # gates — connects faster. Pure connection-setup win, no effect on data capture.
@@ -4701,7 +4712,9 @@ def main():
     for path in targets:
         html = open(path, encoding="utf-8").read()
         new = inject_laundry(html, os.path.basename(path)[:-5])
-        new = inject_chrome(new)
+        homepage = path == os.path.join(SITE, "index.html")
+        contact = path == os.path.join(SITE, "kontakt.html")
+        new = inject_chrome(new, footer=investment_footer() if homepage or contact else FOOTER)
         new = inject_search(new)
         new = inject_track(new, cellar=path == cellar_page,
                            window_fit=path == os.path.join(SITE, "produkte.html"),
@@ -4712,7 +4725,7 @@ def main():
         if os.path.basename(path) != 'produkte.html':
             new = inject_profile(new)
         new = inject_share(new)
-        if os.path.basename(path) == "index.html" and os.path.dirname(path) == SITE:
+        if homepage:
             new = inject_heatnow(new)
             new = inject_home_toppick(new)
             new = inject_home_tool(new)
@@ -4799,7 +4812,8 @@ def main():
     en_targets = glob.glob(os.path.join(SITE, "en", "*.html")) + glob.glob(os.path.join(SITE, "en", "guide", "*.html"))
     for path in en_targets:
         html = open(path, encoding="utf-8").read()
-        new = inject_chrome(html, nav=EN_NAV, footer=EN_FOOTER)
+        footer = investment_footer(en=True) if path == os.path.join(SITE, "en", "index.html") else EN_FOOTER
+        new = inject_chrome(html, nav=EN_NAV, footer=footer)
         new = inject_search(new)
         new = inject_track(new)
         new = inject_profile(new)
