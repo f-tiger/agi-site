@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-22T15:49:21Z",
+ "generated": "2026-11-23T19:42:07Z",
  "window_days": 28,
  "rule": "demand caller = >=10 argument-bearing calls, >=5 distinct days, argument variety >= 1/4 of those calls; ci/operator/indexer never count. Pre-registered 2026-09-24, before anything qualified.",
  "sites": [
@@ -9,11 +9,11 @@
    "exposed": true,
    "missing": [],
    "days": 28,
-   "calls": 143,
+   "calls": 145,
    "ci": 0,
    "operator": 0,
    "indexer": 65,
-   "other": 78,
+   "other": 80,
    "with_args": 11,
    "callers": 11,
    "demand_callers": 0,
@@ -34,18 +34,18 @@
     "demand_callers"
    ],
    "days": 28,
-   "calls": 507,
+   "calls": 513,
    "by_tool": {
     "geraet_wahl": 156,
-    "hitzewelle_vorschau": 83,
-    "fensterabdichtung_laenge": 72,
-    "btu_empfehlung": 72,
-    "taupunkt_lueften": 33,
-    "klimaanlage_stromkosten": 33,
-    "heizleistung_watt": 33,
-    "entfeuchter_kalt_modellbeleg": 13,
-    "mobile_klima_einlagern_check": 6,
-    "klimaanlage_filterpflege_check": 6
+    "hitzewelle_vorschau": 80,
+    "fensterabdichtung_laenge": 70,
+    "btu_empfehlung": 70,
+    "taupunkt_lueften": 32,
+    "klimaanlage_stromkosten": 32,
+    "heizleistung_watt": 32,
+    "entfeuchter_kalt_modellbeleg": 17,
+    "mobile_klima_einlagern_check": 12,
+    "klimaanlage_filterpflege_check": 12
    },
    "ci": 0,
    "ci_note": "the worker already refuses to log its own smoke UA, so these are non-CI calls",
@@ -61,7 +61,7 @@
   }
  ],
  "fleet": {
-  "calls_28d": 650,
+  "calls_28d": 658,
   "demand_callers": 0,
   "demand_measurable_on": [
    "buysomething"
