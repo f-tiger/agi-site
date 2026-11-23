@@ -117,7 +117,7 @@ XREF = {
         ("/guide/klimaanlage-oder-ventilator.html", "Klimaanlage oder Ventilator — was lohnt sich?"),
     ],
     "guide/klimaanlage-kippfenster.html": [
-        ("/guide/klimaanlage-fenster-einbruchschutz.html", "Fenster abdichten ohne Einbruchrisiko"),
+        ("/guide/klimaanlage-fenster-einbruchschutz.html", "Fensterstellung beim Klimabetrieb prüfen"),
         ("/guide/klimaanlage-zubehoer-guenstig.html", "Zubehör günstig: Amazon oder Direktimport?"),
     ],
     "guide/abluftschlauch-verlaengern.html": [
