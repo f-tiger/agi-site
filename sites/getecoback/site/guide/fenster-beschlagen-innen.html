@@ -43,6 +43,10 @@
   .fenster-messwerte input { width: 100%; margin-top: 4px; padding: 8px; min-height: 44px; border: 1px solid #7895a4; border-radius: 6px; font: inherit; }
   #fenster-taucheck button { min-height: 44px; padding: 8px 14px; border: 0; border-radius: 6px; background: #0a4d7a; color: #fff; font: inherit; cursor: pointer; }
   #fenster-taucheck [data-result]:not(:empty) { margin: 12px 0 0; }
+  #fenster-taupunkt-tabelle { margin: 16px 0; }
+  #fenster-taupunkt-tabelle summary { min-height: 44px; padding: 10px 0; cursor: pointer; font-weight: 700; }
+  #fenster-taupunkt-tabelle table { margin: 8px 0 12px; }
+  #fenster-taupunkt-tabelle th, #fenster-taupunkt-tabelle td { padding: 6px; }
   .fenster-teilen { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 18px; }
   .fenster-teilen a { display: inline-flex; align-items: center; min-height: 44px; }
   .related { background:#fff; border:1px solid #e4ebf0; border-radius:12px; padding:18px 20px; margin: 26px 0; }
@@ -116,6 +120,7 @@
         <li>Miss zur gleichen Zeit die <strong>Temperatur an der betroffenen Innenscheibe</strong>. Bei wiederkehrender Nässe auch bei vergleichbaren Bedingungen erneut messen.</li>
         <li>Vergleiche die Scheibentemperatur mit dem aus beiden Raumwerten berechneten <strong>Taupunkt</strong>. Ohne verlässlichen Scheibenwert bleibt der Vergleich offen.</li>
       </ol>
+      <p><strong>Fehlt ein verlässlicher Scheibenwert?</strong> Lass die Einordnung offen. Mit einem vorhandenen, geeigneten Oberflächenfühler kannst du direkt an der betroffenen Innenscheibe messen. Prüfe bei einem Infrarotgerät in seiner Anleitung die Einstellung für die Glasoberfläche (Emissionsgrad) und den Messabstand. Der Messfleck muss vollständig auf der betroffenen Glasstelle liegen. Verwende die Raumtemperatur nicht als Ersatz. <a href="https://www.bosch-diy.com/storage/diy/zip-manuals/ptd-1-100033618-zip-359451/de-DE/2210275595.html">Bosch zur Materialeinstellung</a> und <a href="https://dostmann-electronic.de/download/699-5020-0485_Manual.pdf">Dostmann zum Messfleck</a>, geprüft am <time datetime="2026-11-23">23.11.2026</time>.</p>
       <p><strong>Rechenbeispiel:</strong> Bei <strong>20 °C und 60 %</strong> relativer Luftfeuchte liegt der Taupunkt bei <strong>rund 12 °C</strong>. Eine <strong>10 °C</strong> kalte Innenscheibe passt zu Kondensation. Bei <strong>14 °C</strong> erklärt diese Messung vorhandenes Wasser an der Stelle nicht. Prüfe Messort, Messzeit und andere Feuchtequellen.</p>
       <p>Der Check nutzt die Magnus-Näherung und rechnet Scheibentemperatur minus Taupunkt. Liegt der Unterschied innerhalb von <strong>±1 °C</strong>, miss erneut. Dieser Bereich dient zur Orientierung. Wie genau deine Geräte messen, kann der Check nicht bestimmen.</p>
       <div id="fenster-taucheck" hidden>
@@ -129,6 +134,19 @@
           <p role="status" data-result></p>
         </form>
       </div>
+      <details id="fenster-taupunkt-tabelle">
+        <summary>Taupunkt ohne Rechner nachschlagen</summary>
+        <p>Die Tabelle zeigt berechnete Taupunkte in °C für genau diese Raumwerte. Vergleiche den passenden Wert mit der gemessenen Innenscheibe. Liegt die Scheibentemperatur darunter, ist Kondenswasser möglich. Innerhalb von ±1 °C erneut messen.</p>
+        <table aria-label="Berechneter Taupunkt in Grad Celsius nach Raumtemperatur und relativer Luftfeuchte">
+          <thead><tr><th scope="col">Raum</th><th scope="col">40 %</th><th scope="col">50 %</th><th scope="col">60 %</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">18 °C</th><td>4,2</td><td>7,4</td><td>10,1</td></tr>
+            <tr><th scope="row">20 °C</th><td>6,0</td><td>9,3</td><td>12,0</td></tr>
+            <tr><th scope="row">22 °C</th><td>7,8</td><td>11,1</td><td>13,9</td></tr>
+          </tbody>
+        </table>
+        <p>Beispiel: Bei 18 °C und 50 % liegt der Taupunkt bei 7,4 °C. Eine 9 °C warme Innenscheibe liegt damit 1,6 °C darüber. Bei anderen Raumwerten nutze den Rechner oben oder <a href="/mcp.html#offline-erster-check">den lokalen MCP-Check</a> mit deinen drei Messwerten. Übernimm keinen Nachbarwert als Ersatz.</p>
+      </details>
       <p>Quellen geprüft am <time datetime="2026-11-22">22.11.2026</time>. <a href="https://www.adac.de/rund-ums-haus/wohnen/haushalt/kondenswasser-am-fenster/">ADAC zu Fensterkondensat</a> · <a href="https://www.umweltbundesamt.de/themen/gesundheit/umwelteinfluesse-auf-den-menschen/schimmel/wie-luefte-ich-richtig-tipps-tricks-zur">Umweltbundesamt zu Lüften und Raumfeuchte</a> · <a href="https://www.kaercher.com/de/de/home-and-garden/produkte/akku-fensterreiniger-c36">Kärcher zum vorgesehenen Einsatz</a>.</p>
       <nav class="fenster-teilen" aria-label="Antwort teilen"><a href="https://getecoback.com/guide/fenster-beschlagen-innen.html#fenstersauger-gegen-kondenswasser">Direktlink zu diesem Abschnitt</a><a href="https://www.reddit.com/submit?url=https%3A%2F%2Fgetecoback.com%2Fguide%2Ffenster-beschlagen-innen.html%23fenstersauger-gegen-kondenswasser&amp;title=Kondenswasser%20am%20Innenfenster%3A%20abwischen%20und%20mit%20drei%20Messwerten%20pr%C3%BCfen" target="_blank" rel="noopener noreferrer">Auf Reddit teilen</a></nav>
       <p>Bei mehreren nassen Scheiben kann ein dafür geeigneter Fenstersauger die Arbeit erleichtern. Kärcher nennt das Aufsaugen von Kondenswasser auf Glas als Einsatz und für das genaue Gerät gilt die jeweilige Anleitung. Wenn du bei häufiger Nutzung ein Set vergleichen willst, miss die engste Stelle am Glas. <a href="/produkte.html#fenstersauger-duesenbreite" data-window-width-open>Düsenbreite und passende Sets prüfen</a>.</p>
