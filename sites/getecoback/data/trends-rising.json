@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-23",
+ "fetched": "2026-11-24",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -108,82 +108,100 @@
   "luftentfeuchter": {
    "rising": [
     {
-     "q": "amazon verliert 40 satelliten",
-     "v": 59350
+     "q": "ukraine krim brücke",
+     "v": 66850
     },
     {
      "q": "mogelpackung",
-     "v": 51900
+     "v": 58650
     },
     {
-     "q": "avreno",
-     "v": 49800
+     "q": "amazon verliert 40 satelliten",
+     "v": 58200
     },
     {
      "q": "christian lell privatinsolvenz",
-     "v": 47550
+     "v": 50900
     },
     {
      "q": "rentennachzahlung",
-     "v": 42550
+     "v": 41350
+    },
+    {
+     "q": "avreno",
+     "v": 38300
     },
     {
      "q": "biermösl blosn gestorben",
-     "v": 42250
-    },
-    {
-     "q": "pingi luftentfeuchter",
-     "v": 34650
+     "v": 36350
     },
     {
      "q": "luftentfeuchter kissen auto",
-     "v": 34000
+     "v": 33700
     },
     {
-     "q": "unwetter",
-     "v": 26900
+     "q": "luftentfeuchter fürs auto",
+     "v": 33250
     },
     {
-     "q": "kinocharts",
-     "v": 24800
+     "q": "absodry luftentfeuchter",
+     "v": 30250
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-11-23",
+   "fetched": "2026-11-24",
    "polluted": true,
-   "last_attempt_at": "2026-11-23T15:09:47.210745+00:00",
+   "last_attempt_at": "2026-11-24T15:06:47.371637+00:00",
    "last_attempt_status": "ok"
   },
   "heizlüfter": {
-   "auto": [
-    "heizlüfter",
-    "heizlüfter test",
-    "heizlüfter bad",
-    "heizlüfter auto",
-    "heizlüfter camping",
-    "heizlüfter media markt",
-    "heizlüfter testsieger",
-    "heizlüfter test stiftung warentest",
-    "heizlüfter mit akku",
-    "heizlüfter energiesparend"
+   "rising": [
+    {
+     "q": "auto heizlüfter mit akku",
+     "v": 112350
+    },
+    {
+     "q": "tronic heizlüfter",
+     "v": 62800
+    },
+    {
+     "q": "heizlüfter oder infrarotheizung",
+     "v": 59850
+    },
+    {
+     "q": "heizlüfter mit zeitschaltuhr",
+     "v": 57450
+    },
+    {
+     "q": "radiator",
+     "v": 54850
+    },
+    {
+     "q": "kaufland heizlüfter",
+     "v": 52450
+    },
+    {
+     "q": "akku heizlüfter makita",
+     "v": 51500
+    },
+    {
+     "q": "heizlüfter garage",
+     "v": 48750
+    },
+    {
+     "q": "aeg heizlüfter",
+     "v": 46200
+    },
+    {
+     "q": "9kw heizlüfter",
+     "v": 46050
+    }
    ],
-   "new_vocabulary": [
-    "heizlüfter test",
-    "heizlüfter bad",
-    "heizlüfter auto",
-    "heizlüfter camping",
-    "heizlüfter media markt",
-    "heizlüfter testsieger",
-    "heizlüfter test stiftung warentest",
-    "heizlüfter mit akku",
-    "heizlüfter energiesparend"
-   ],
-   "rising": [],
-   "source": "autocomplete-vocabulary",
-   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
-   "last_attempt_at": "2026-11-16T13:04:05.672829+00:00",
-   "last_attempt_status": "failed",
-   "fetched": "2026-11-16"
+   "source": "related-queries",
+   "fetched": "2026-11-24",
+   "polluted": false,
+   "last_attempt_at": "2026-11-24T15:07:48.403057+00:00",
+   "last_attempt_status": "ok"
   },
   "kaffeevollautomat": {
    "rising": [
