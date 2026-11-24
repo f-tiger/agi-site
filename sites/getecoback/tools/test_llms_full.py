@@ -57,6 +57,7 @@ class LlmsFull(unittest.TestCase):
         for phrase in ('Prüfe zuerst, auf welcher Seite das Wasser sitzt.', 'sauberen Tuch ab',
                        'fenster-beschlagen-aussen.html', 'unauffälligen Messwert in der Raummitte',
                        'Drei Messwerte vom selben Zeitpunkt', '20 °C und 60 %', '±1 °C',
+                       'Zwei Raumwerte genügen, um den Taupunkt zu berechnen', 'rund 9,3 °C',
                        'wiederholt nassen Wänden', 'www.adac.de/rund-ums-haus/wohnen/haushalt/kondenswasser-am-fenster/',
                        'www.umweltbundesamt.de/themen/gesundheit/umwelteinfluesse-auf-den-menschen/schimmel/'):
             for document in (section[0], mirror):

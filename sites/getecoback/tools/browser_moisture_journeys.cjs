@@ -292,7 +292,13 @@ async function windowCondensation(browser,javaScriptEnabled){
   await form.locator('[name=room_rh_pct]').fill('60');
   const surface=form.locator('[name=surface_c]'),submit=form.locator('[type=submit]');
   await surface.fill('');
-  check(!(await form.evaluate(node=>node.checkValidity())),'the calculator requires a measured inside surface temperature');
+  await form.locator('[name=room_rh_pct]').fill('50');
+  await submit.click();
+  equal(await result.getAttribute('data-messlage'),'scheibentemperatur_fehlt','missing glass reading keeps the surface comparison open');
+  check(/9,3\s*°\s*C/.test(await result.innerText())&&/offen/.test(await result.innerText()),'two readings give the dew point without a glass verdict');
+  await surface.fill('56');
+  check(!(await form.evaluate(node=>node.checkValidity())),'a supplied glass reading must be in range');
+  await form.locator('[name=room_rh_pct]').fill('60');
   for(const [temperature,state] of [[10,'unter_taupunkt'],[12,'nahe_am_taupunkt'],[14,'ueber_taupunkt']]){
    await surface.fill(String(temperature));
    await submit.click();
@@ -304,6 +310,8 @@ async function windowCondensation(browser,javaScriptEnabled){
   equal(await reddit.getAttribute('href'),composerHref,'calculations never alter the static sharing payload');
   const completions=await page.evaluate(()=>window.__journeyCompletions.filter(event=>event.name==='eco_window_condensation_check'));
   equal(completions,Array.from({length:3},()=>({name:'eco_window_condensation_check'})),'only the fixed completion name is emitted, without measurement inputs');
+  const estimates=await page.evaluate(()=>window.__journeyCompletions.filter(event=>event.name==='eco_window_dewpoint_calculate'));
+  equal(estimates,[{name:'eco_window_dewpoint_calculate'}],'the room-only calculation has its own fixed event, without inputs');
  }else{
   check(!await calculator.locator('form').isVisible(),'no-JavaScript readers cannot submit the local form');
   const lookup=answer.locator('#fenster-taupunkt-tabelle'),table=lookup.locator('table');
@@ -322,6 +330,7 @@ async function windowCondensation(browser,javaScriptEnabled){
  check(!f.navigations.some(url=>new URL(url).hostname.endsWith('reddit.com')),'the fixture never visits the Reddit composer');
  equal(f.events.filter(event=>event?.n!=='page_view'),[],'QA did not send business actions');
  equal(f.google.filter(([name])=>name==='eco_window_condensation_check'),[],'QA did not relay the completion to GA4');
+ equal(f.google.filter(([name])=>name==='eco_window_dewpoint_calculate'),[],'QA did not relay the room-only calculation to GA4');
  await layout(page,'window condensation '+width);
  report.push({page:article,width,javaScriptEnabled,shareUrl});
  await complete(f,'window condensation '+width);

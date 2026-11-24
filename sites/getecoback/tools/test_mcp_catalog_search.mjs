@@ -53,6 +53,10 @@ test('the German window condensation question finds the measured check and fixed
     'Fenstersauger gegen Kondenswasser',
     'Hilft ein Fenstersauger gegen Kondenswasser am Fenster oder reicht ein Tuch?',
     '20 Grad 60 % Luftfeuchtigkeit und Scheibe 10 Grad: Ist Kondenswasser am Fenster plausibel?',
+    'Ab welcher Temperatur beschlägt meine Innenscheibe bei 20 °C Raumtemperatur und 50 % Luftfeuchte?',
+    'Mein Zimmer hat 20 Grad und 50 Prozent Luftfeuchte. Wie hoch ist mein Taupunkt am Fenster?',
+    'Zimmer 20 Grad, 50 % Luftfeuchte: Wie hoch ist mein Taupunkt?',
+    'Ab welcher Temperatur beschlägt die Scheibe? Im Zimmer sind es 20 Grad bei 50 Prozent Luftfeuchtigkeit.',
   ]) {
     const [first] = (await catalogue({q:query, view:'compact', limit:'3'})).tools;
     assert.equal(first?.name, name, query);
@@ -62,6 +66,8 @@ test('the German window condensation question finds the measured check and fixed
   }
   const question = 'Kondenswasser zwischen den Scheiben, was tun?';
   assert.notEqual(findCatalogueTools(compact,{query:question})[0]?.name, name, question);
+  const ventilate = 'Ab welcher Temperatur soll ich mein Fenster öffnen? Raumtemperatur 20 °C, Luftfeuchte 50 %.';
+  assert.notEqual(findCatalogueTools(compact,{query:ventilate})[0]?.name, name, ventilate);
 });
 
 test('everyday measured glass and wall questions keep the same dew-point calculation', async () => {

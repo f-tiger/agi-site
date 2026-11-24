@@ -292,7 +292,7 @@ function asksAboutGlassvacFault(query) {
 const windowDewPointTool = 'fenster_oberflaeche_taucheck';
 const temperatureValue = String.raw`[+−-]?\d{1,2}(?:[.,]\d+)?\s*(?:°\s*c\b|grad\b)`;
 const roomLabel = String.raw`(?:raumtemperatur|zimmertemperatur|innenraum|raum|zimmer|schlafzimmer|wohnzimmer|kinderzimmer|innen\s+sind es)`;
-const roomTemperature = new RegExp(String.raw`\b${roomLabel}\b(?:\s+(?:hat|sind|ist|beträgt|betraegt|liegt bei)){0,2}\s*[:=]?\s*${temperatureValue}|${temperatureValue}\s+(?:im|in der)\s+${roomLabel}\b`);
+const roomTemperature = new RegExp(String.raw`\b${roomLabel}\b(?:\s+(?:hat|sind(?: es)?|ist|beträgt|betraegt|liegt bei)){0,2}\s*[:=]?\s*${temperatureValue}|${temperatureValue}\s+(?:(?:im|in der)\s+${roomLabel}|raumtemperatur|zimmertemperatur)\b`);
 const measuredSurface = String.raw`(?:glas(?:oberflaeche)?|(?:innen|fenster)?scheibe|scheibentemperatur|(?:innen|aussen)?wand(?:oberflaeche)?)`;
 const surfaceTemperature = new RegExp(String.raw`\b${measuredSurface}\b(?:\s+(?:innen|hat|misst|zeigt|ist|nur|bei|liegt bei)){0,3}\s*[:=]?\s*${temperatureValue}|${temperatureValue}\s+(?:am|an der|auf der)\s+${measuredSurface}\b`);
 const humidityField = String.raw`(?:(?:relative[rn]?)\s+(?:luft)?feucht(?:e|igkeit)|(?:raum)?luftfeucht(?:e|igkeit)|rf|rh)`;
@@ -307,12 +307,23 @@ function asksAboutOtherWindowSurface(query) {
   return wetExterior.test(query) && !dryExterior.test(query);
 }
 
+const unrelatedWindowTask = /\b(?:auto|pkw|wohnmobil|ablaufschlauch|abluftschlauch|gummilippe|abziehlippe|saugduese|fenstersauger\w*reparatur)\b/;
+
 function asksForMeasuredIndoorDewPoint(query) {
   const condensation = /\b(?:taupunkt\w*|tauwasser\w*|kondens(?:at|wasser|ation|iert)\w*|beschla(?:eg|g)\w*|nass\w*)\b/;
-  const differentTask = /\b(?:auto|pkw|wohnmobil|ablaufschlauch|abluftschlauch|gummilippe|abziehlippe|saugduese|fenstersauger\w*reparatur)\b/;
   const unmeasured = /\b(?:schaetze|geschaetzt|geraten|nicht gemessen)\b|\bgemessen\b[^,.!?;]{0,25}\bnicht\b/;
-  return condensation.test(query) && !differentTask.test(query) && !unmeasured.test(query) &&
+  return condensation.test(query) && !unrelatedWindowTask.test(query) && !unmeasured.test(query) &&
     roomTemperature.test(query) && roomHumidity.test(query) && surfaceTemperature.test(query);
+}
+
+function asksForIndoorDewPointThreshold(query) {
+  const indoorGlass = /\b(?:innen(?:scheibe|fenster)|fenster(?:scheibe)?|scheibe)\b/;
+  const condensation = /\b(?:kondens\w*|beschla(?:eg|g)\w*|tauwasser\w*)\b/;
+  const threshold = /\b(?:ab welcher temperatur|ab wie viel grad)\b/;
+  const directDewPoint = /\b(?:taupunkt berechnen|wie (?:hoch|niedrig) ist (?:mein|der) taupunkt)\b/;
+  const wantsThreshold = directDewPoint.test(query) ||
+    (indoorGlass.test(query) && condensation.test(query) && threshold.test(query));
+  return wantsThreshold && !unrelatedWindowTask.test(query) && roomTemperature.test(query) && roomHumidity.test(query);
 }
 
 export function findCatalogueTools(index, {query='', category='', name=null}={}) {
@@ -444,7 +455,7 @@ export function findCatalogueTools(index, {query='', category='', name=null}={})
   else if (trotecConditions) preferredName = trotecTool;
   else if (asksForDehumidifierDrainRoute(focus.query)) preferredName = 'entfeuchter_ablaufcheck';
   else if (cellarVentilation) preferredName = cellarVentilationTool;
-  else if (!nonIndoorGlass && asksForMeasuredIndoorDewPoint(focus.query)) preferredName = windowDewPointTool;
+  else if (!nonIndoorGlass && (asksForMeasuredIndoorDewPoint(focus.query) || asksForIndoorDewPointThreshold(focus.query))) preferredName = windowDewPointTool;
   else if (fritzValve) preferredName = fritzValveTool;
   else if (singleLaundry) preferredName = singleLaundryTool;
   else if (asksForLaundryCostComparison(tokens)) preferredName = 'waesche_trocknungskosten';

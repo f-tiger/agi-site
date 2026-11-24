@@ -9,13 +9,22 @@ export function dewPoint(celsius, relativeHumidity) {
 
 export function checkWindowCondensation({room_c, room_rh_pct, surface_c}) {
   const dew = dewPoint(room_c, room_rh_pct);
+  const dew_point_c = Number(dew.toFixed(1));
+  if (surface_c === undefined) {
+    return {
+      dew_point_c,
+      surface_margin_c: null,
+      condensation_possible: null,
+      messlage: 'scheibentemperatur_fehlt',
+    };
+  }
   const margin = surface_c - dew;
   // Recheck close readings rather than interpreting rounded measurements as proof.
   // This orientation band does not estimate the precision of the user's sensors.
   const messlage = Math.abs(margin) <= 1 + 1e-9 ? 'nahe_am_taupunkt' :
     margin < 0 ? 'unter_taupunkt' : 'ueber_taupunkt';
   return {
-    dew_point_c: Number(dew.toFixed(1)),
+    dew_point_c,
     surface_margin_c: Number(margin.toFixed(1)),
     condensation_possible: margin <= 1e-9,
     messlage,

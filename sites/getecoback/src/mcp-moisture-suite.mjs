@@ -45,17 +45,20 @@ const germanNumber = new Intl.NumberFormat('de-DE');
 export const moistureSuite = [
   {
     name:'fenster_oberflaeche_taucheck',
-    description:'Kondenswasser am Fenster einordnen: gemessene Innenscheibe oder Wand mit dem Taupunkt vergleichen — Check a measured indoor glass or wall surface against the dew point.',
+    description:'Taupunkt aus Raumtemperatur und Luftfeuchte berechnen. Eine gemessene Innenscheibe oder Wand optional damit vergleichen — Calculate dew point and optionally compare a measured indoor surface.',
     page:WINDOW_CONDENSATION_PAGE,
+    required:['room_c','room_rh_pct'],
     properties:{
       room_c:roomTemperature,
       room_rh_pct:roomHumidity,
-      surface_c:number('Gemessene Temperatur der Oberfläche in °C.',-20,55),
+      surface_c:number('Gemessene Temperatur der Oberfläche in °C. Ohne Messung weglassen, damit der Vergleich offenbleibt.',-20,55),
     },
     calculate(values) {
       return {
         ...checkWindowCondensation(values),
-        assumption:'Taupunkt-Näherung für zeitgleich gemessene Raumluft und Oberfläche. Bei höchstens 1 °C Abstand erneut messen. Das ist eine Orientierung und keine Angabe zur Messgenauigkeit. Kein Nachweis für Bauzustand oder Schimmelfreiheit.',
+        assumption:values.surface_c === undefined
+          ? 'Taupunkt-Näherung aus zeitgleich gemessener Raumtemperatur und Luftfeuchte. Ohne Oberflächentemperatur bleibt der Vergleich offen. Miss an der betroffenen Innenscheibe oder Wand.'
+          : 'Taupunkt-Näherung für zeitgleich gemessene Raumluft und Oberfläche. Bei höchstens 1 °C Abstand erneut messen. Das ist eine Orientierung und keine Angabe zur Messgenauigkeit. Kein Nachweis für Bauzustand oder Schimmelfreiheit.',
         buying_note:'Tuch oder geeigneter Fenstersauger nehmen sichtbare Tropfen auf. Bei wiederkehrender Nässe die Ursache prüfen, bevor du ein Gerät kaufst.',
         share_url:WINDOW_CONDENSATION_URL,
       };

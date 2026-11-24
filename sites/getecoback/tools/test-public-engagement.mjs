@@ -21,7 +21,7 @@ test('DACH actions are bound to their own tool; no inputs, private paths or inhe
     ['/guide/heizdecke-stromverbrauch.html','eco-personal-warmth',['eco_warmth_example','eco_warmth_calculate','eco_warmth_share']],
     ['/guide/smarte-heizkoerperthermostate-lohnen-sich.html','eco-valve-fit',['eco_valve_result','eco_valve_official','eco_valve_share']],
     ['/guide/richtig-lueften-im-winter.html','eco-wall-moisture',['eco_dewpoint_example','eco_dewpoint_check']],
-    ['/guide/fenster-beschlagen-innen.html','eco-window-condensation',['eco_window_condensation_check','eco_window_width_open']],
+    ['/guide/fenster-beschlagen-innen.html','eco-window-condensation',['eco_window_dewpoint_calculate','eco_window_condensation_check','eco_window_width_open']],
     ['/produkte.html','eco-window-width',['eco_window_width_check']]
   ];
   for (const [path,tool_id,names] of pairs) for (const name of names) {
