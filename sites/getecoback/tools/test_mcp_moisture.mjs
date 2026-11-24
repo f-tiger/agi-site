@@ -82,7 +82,7 @@ test('tool schema keeps legacy inputs optional and documents bounded choices and
   assert.ok(schema.properties.temperature.description.includes('keine allgemeine Betriebsgrenze'));
   assert.ok(schema.properties.qm.description.includes('heating/cooling only'));
   const init = await rpc('initialize');
-  assert.equal(init.serverInfo.version, '1.24.27');
+  assert.equal(init.serverInfo.version, '1.24.28');
   assert.ok(init.instructions.includes('keine Affiliate-Kauflinks'));
 });
 
@@ -122,9 +122,18 @@ test('the window dew-point tool keeps its earlier result and adds a shareable, c
     assert.equal(boundary.structuredContent.messlage, 'nahe_am_taupunkt');
   }
 
-  const missing = await callWindow(inputs);
-  assert.equal(missing.isError, true);
-  assert.equal(missing.structuredContent, undefined);
+  const threshold = await callWindow({...inputs, room_rh_pct:50});
+  assert.equal(threshold.isError, false);
+  assert.equal(threshold.structuredContent.dew_point_c, 9.3);
+  assert.equal(threshold.structuredContent.surface_margin_c, null);
+  assert.equal(threshold.structuredContent.condensation_possible, null);
+  assert.equal(threshold.structuredContent.messlage, 'scheibentemperatur_fehlt');
+  assert.equal(threshold.structuredContent.share_url, guide + '#fenstersauger-gegen-kondenswasser');
+  const zero = await callWindow({...inputs, surface_c:0});
+  assert.equal(zero.structuredContent.condensation_possible, true);
+  for (const surface_c of ['', null, -21, 56]) {
+    assert.equal((await callWindow({...inputs, surface_c})).isError, true);
+  }
 });
 
 test('basement ventilation requires both measured dew points and a genuinely measured cold wall', async () => {

@@ -32,6 +32,8 @@ Wird dieselbe Stelle regelmäßig nass, halte Zeitpunkt, Stelle und Messwerte fe
 
 Der Check nutzt die Magnus-Näherung und rechnet Scheibentemperatur minus Taupunkt. Liegt der Unterschied innerhalb von **±1 °C**, miss erneut. Dieser Bereich dient zur Orientierung. Wie genau deine Geräte messen, kann der Check nicht bestimmen.
 
+**Ohne Scheibentemperatur:** Zwei Raumwerte genügen, um den Taupunkt zu berechnen. Bei **20 °C und 50 %** liegt er bei **rund 9,3 °C**. Das ist der Vergleichswert für die nasse Stelle. Ob die Scheibe beim Beschlagen so kalt war, bleibt ohne Messung offen.
+
 Taupunkt ohne Rechner nachschlagen
 Die Tabelle zeigt berechnete Taupunkte in °C für genau diese Raumwerte. Vergleiche den passenden Wert mit der gemessenen Innenscheibe. Liegt die Scheibentemperatur darunter, ist Kondenswasser möglich. Innerhalb von ±1 °C erneut messen.
 

@@ -584,7 +584,8 @@ for (const tool of expandedDefinitions) {
     const invalid = expandedCall(name,{...example.args, private:'raw-home-input'});
     assert.equal(invalid.isError,true);
     assert.doesNotMatch(invalid.content[0].text,/raw-home-input/);
-    for (const key of Object.keys(example.args)) {
+    for (const key of tool.required ?? Object.keys(properties)) {
+      assert.ok(Object.hasOwn(example.args, key), 'example must include required input '+key);
       const args = {...example.args};
       delete args[key];
       assert.equal(expandedCall(name,args).isError,true);

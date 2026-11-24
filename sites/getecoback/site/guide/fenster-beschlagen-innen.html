@@ -123,14 +123,15 @@
       <p><strong>Fehlt ein verlässlicher Scheibenwert?</strong> Lass die Einordnung offen. Mit einem vorhandenen, geeigneten Oberflächenfühler kannst du direkt an der betroffenen Innenscheibe messen. Prüfe bei einem Infrarotgerät in seiner Anleitung die Einstellung für die Glasoberfläche (Emissionsgrad) und den Messabstand. Der Messfleck muss vollständig auf der betroffenen Glasstelle liegen. Verwende die Raumtemperatur nicht als Ersatz. <a href="https://www.bosch-diy.com/storage/diy/zip-manuals/ptd-1-100033618-zip-359451/de-DE/2210275595.html">Bosch zur Materialeinstellung</a> und <a href="https://dostmann-electronic.de/download/699-5020-0485_Manual.pdf">Dostmann zum Messfleck</a>, geprüft am <time datetime="2026-11-23">23.11.2026</time>.</p>
       <p><strong>Rechenbeispiel:</strong> Bei <strong>20 °C und 60 %</strong> relativer Luftfeuchte liegt der Taupunkt bei <strong>rund 12 °C</strong>. Eine <strong>10 °C</strong> kalte Innenscheibe passt zu Kondensation. Bei <strong>14 °C</strong> erklärt diese Messung vorhandenes Wasser an der Stelle nicht. Prüfe Messort, Messzeit und andere Feuchtequellen.</p>
       <p>Der Check nutzt die Magnus-Näherung und rechnet Scheibentemperatur minus Taupunkt. Liegt der Unterschied innerhalb von <strong>±1 °C</strong>, miss erneut. Dieser Bereich dient zur Orientierung. Wie genau deine Geräte messen, kann der Check nicht bestimmen.</p>
+      <p><strong>Ohne Scheibentemperatur:</strong> Zwei Raumwerte genügen, um den Taupunkt zu berechnen. Bei <strong>20 °C und 50 %</strong> liegt er bei <strong>rund 9,3 °C</strong>. Das ist der Vergleichswert für die nasse Stelle. Ob die Scheibe beim Beschlagen so kalt war, bleibt ohne Messung offen.</p>
       <div id="fenster-taucheck" hidden>
         <form aria-label="Taupunkt für die Innenscheibe prüfen">
           <div class="fenster-messwerte">
             <label>Raumtemperatur (°C)<input type="number" name="room_c" min="0" max="40" step="any" required></label>
             <label>Raumluftfeuchte (%)<input type="number" name="room_rh_pct" min="1" max="100" step="any" required></label>
-            <label>Scheibentemperatur (°C)<input type="number" name="surface_c" min="-20" max="55" step="any" required></label>
+            <label>Scheibentemperatur (°C, optional)<input type="number" name="surface_c" min="-20" max="55" step="any"></label>
           </div>
-          <button type="submit">Taupunkt prüfen</button>
+          <button type="submit">Taupunkt berechnen</button>
           <p role="status" data-result></p>
         </form>
       </div>
@@ -238,6 +239,6 @@
 
 <link rel="stylesheet" href="/analytics-assets/consent.css?v=cae7d0105b62"><script type="module" src="/analytics-assets/consent.mjs?v=cae7d0105b62" data-ga4-id="G-E2V0Q9SJ9V" data-ga4-host="getecoback.com" data-ga4-page="https://getecoback.com/guide/fenster-beschlagen-innen.html" data-ga4-title="Fenster beschlagen von innen: Messen, abwischen oder Ursache prüfen"></script><script type="module" src="/eco-engagement.mjs?v=bdb8993dbe2b"></script>
 
-<script type="module" src="/assets/fenster-taucheck-ui.mjs"></script>
+<script type="module" src="/assets/fenster-taucheck-ui.mjs?v=2f79774ce2c9"></script>
 </body>
 </html>

@@ -75,11 +75,14 @@ test('compact routes an everyday measured window report to the shareable dew-poi
   assert.equal(first.name,name);
   assert.equal(first.citation_url,guide);
   assert.equal(first.guide_url,guide+'#fenstersauger-gegen-kondenswasser');
-  assert.deepEqual(first.inputSchema.required.toSorted(), ['room_c','room_rh_pct','surface_c']);
+  assert.deepEqual(first.inputSchema.required.toSorted(), ['room_c','room_rh_pct']);
   const room = {room_c:20,room_rh_pct:60};
-  const missing = await call(compactPath,runName,{name,eingaben:room});
-  assert.equal(missing.isError,true);
-  assert.equal(missing.structuredContent,undefined);
+  const threshold = await call(compactPath,runName,{name,eingaben:room});
+  assert.equal(threshold.isError,false);
+  assert.equal(threshold.structuredContent.dew_point_c,12);
+  assert.equal(threshold.structuredContent.condensation_possible,null);
+  assert.equal(threshold.structuredContent.surface_margin_c,null);
+  assert.equal(threshold.structuredContent.messlage,'scheibentemperatur_fehlt');
   const value = await call(compactPath,runName,{name,eingaben:{...room,surface_c:10}});
   assert.equal(value.isError,false);
   assert.equal(value.structuredContent.dew_point_c,12);
