@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated": "2026-11-23T11:12:00.859Z",
+  "generated": "2026-11-24T12:54:09.026Z",
   "source": "same-origin /api/member and /api/member-admin stats",
   "privacy": "aggregate counters only; no member, order, support, token or wallet data",
   "ok": false,
@@ -32,7 +32,7 @@
       "origin": "https://agiscorecard.com",
       "public": {
         "ok": true,
-        "ready": false,
+        "ready": true,
         "site": "agi",
         "auto_renew": false,
         "plan_price_units": 9000000,
