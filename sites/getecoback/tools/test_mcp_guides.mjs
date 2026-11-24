@@ -105,6 +105,12 @@ const focusedLookups = [
       'www.k-einbruch.de/sicherheitstipps/verhaltenstipps', 'transkript-portasplit-fensterabdichtung1'],
   },
   {
+    path: '/guide/klimaanlage-40-qm.html', section: 'portasplit-40-qm',
+    queries: ['Klimaanlage 40 m²','Klimaanlage offenes Wohnzimmer 40 qm','Midea PortaSplit für 40 qm'],
+    evidence: ['42 m² / 105 m³','100 m³','112 m³','2,625 m Höhe','4048164116478',
+      '2 m lang und kann nicht verlängert werden','den Kauf zurückstellen','PortaSplit-Gebrauchsanweisung-DE.pdf'],
+  },
+  {
     path: '/guide/fenster-beschlagen-innen.html', section: 'fenstersauger-gegen-kondenswasser',
     queries: ['Warum beschlägt das geschlossene Fenster morgens innen?',
       'Jeden Morgen sind die Fensterscheiben im Schlafzimmer von innen nass. Was soll ich zuerst messen?',
@@ -165,7 +171,9 @@ test('ambiguous cooling models, conflicting identifiers and other languages are 
     ['Meine PortaSplit läuft am Fenster. Wie verriegele ich die Fernbedienung für Kinder?', 'de'],
     ['Kann ich ohne mobile Klimaanlage die Wohnung verlassen, wenn das Fenster gekippt bleibt?', 'de'],
     ['DeLonghi PAC N90 ECO Silent', 'en'], ['Midea Porta-Split Original', 'fr'],
-    ['Midea Porta-Split Original', 'nl'],
+    ['Midea Porta-Split Original', 'nl'], ['PortaSplit E für 40 qm', 'de'],
+    ['Klimaanlage für 140 qm', 'de'], ['Klimaanlage 40 qm oder 50 qm', 'de'],
+    ['Midea PortaSplit für 40 qm', 'en'],
   ]) {
     const {env, requests} = assetEnv();
     const result = await call('ratgeber_suche', {frage, sprache, max: 5}, env);

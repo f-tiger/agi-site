@@ -55,12 +55,19 @@ const cases=[
    // These routes were deliberately changed to tool-first decisions in the
    // existing demand_tools generator. Requiring the removed sales popup here
    // would undo that product contract, not detect a regression.
-   const decisionRoute=url==='/guide/heizluefter-stromverbrauch.html'||url==='/en/guide/dehumidifier-20-sqm.html';
+   const roomDecision=url==='/guide/klimaanlage-40-qm.html';
+   const decisionRoute=url==='/guide/heizluefter-stromverbrauch.html'||url==='/en/guide/dehumidifier-20-sqm.html'||roomDecision;
    if(revision==='current'&&decisionRoute){
     assert.equal(await page.locator('#eb-pu,#eb-toppick,#eb-models,#eb-ustop,#eb-usshelf').count(),0,'No unconditional sales surfaces on decision routes');
     if(url.includes('heizluefter')){
      await page.locator('#eb-heater-cost [type=submit]').click();
      await page.locator('#eb-heater-cost [data-result]').waitFor({state:'visible'});
+    }else if(roomDecision){
+     const answer=page.locator('#portasplit-40-qm');
+     assert(await answer.isVisible());
+     for(const volume of ['100 m³','112 m³','105 m³'])assert((await answer.innerText()).includes(volume));
+     assert.equal(await answer.locator('a[href="/guide/midea-portasplit-kaufen.html"]').count(),1);
+     assert.equal(await page.locator('article a[href*="amazon."],#eb-sticky-cta,#eb-usmarket').count(),0);
     }else{
      await page.locator('#eb-moisture-choice [type=submit]').click();
      assert.equal(await page.locator('#eb-moisture-choice [data-answer]:visible').getAttribute('data-answer'),'measure');
