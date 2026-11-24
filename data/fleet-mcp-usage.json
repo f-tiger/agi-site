@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-23T19:42:07Z",
+ "generated": "2026-11-24T19:16:38Z",
  "window_days": 28,
  "rule": "demand caller = >=10 argument-bearing calls, >=5 distinct days, argument variety >= 1/4 of those calls; ci/operator/indexer never count. Pre-registered 2026-09-24, before anything qualified.",
  "sites": [
@@ -37,15 +37,15 @@
    "calls": 513,
    "by_tool": {
     "geraet_wahl": 156,
-    "hitzewelle_vorschau": 80,
-    "fensterabdichtung_laenge": 70,
-    "btu_empfehlung": 70,
-    "taupunkt_lueften": 32,
-    "klimaanlage_stromkosten": 32,
-    "heizleistung_watt": 32,
-    "entfeuchter_kalt_modellbeleg": 17,
-    "mobile_klima_einlagern_check": 12,
-    "klimaanlage_filterpflege_check": 12
+    "hitzewelle_vorschau": 79,
+    "fensterabdichtung_laenge": 68,
+    "btu_empfehlung": 68,
+    "taupunkt_lueften": 31,
+    "klimaanlage_stromkosten": 31,
+    "heizleistung_watt": 31,
+    "entfeuchter_kalt_modellbeleg": 19,
+    "mobile_klima_einlagern_check": 15,
+    "klimaanlage_filterpflege_check": 15
    },
    "ci": 0,
    "ci_note": "the worker already refuses to log its own smoke UA, so these are non-CI calls",
