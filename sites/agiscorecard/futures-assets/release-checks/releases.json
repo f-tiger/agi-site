@@ -1,13 +1,13 @@
 {
   "version": 1,
-  "checkedAt": "2026-11-23T11:18:26Z",
+  "checkedAt": "2026-11-24T12:57:25Z",
   "sources": [
     {
       "id": "codex",
       "name": "Codex CLI",
       "repo": "openai/codex",
       "sourceUrl": "https://github.com/openai/codex/releases",
-      "checkedAt": "2026-11-23T11:18:26Z",
+      "checkedAt": "2026-11-24T12:57:25Z",
       "lastSuccessAt": "2026-11-23T11:18:26Z",
       "coverageSince": "2026-11-20T15:21:56Z",
       "releases": [
@@ -60,9 +60,9 @@
           }
         }
       ],
-      "error": null,
+      "error": "http_403",
       "anchorId": 453327817,
-      "status": "ok",
+      "status": "unavailable",
       "backlog": null
     },
     {
@@ -70,7 +70,7 @@
       "name": "Claude Code",
       "repo": "anthropics/claude-code",
       "sourceUrl": "https://github.com/anthropics/claude-code/releases",
-      "checkedAt": "2026-11-23T11:18:26Z",
+      "checkedAt": "2026-11-24T12:57:25Z",
       "lastSuccessAt": "2026-11-23T11:18:26Z",
       "coverageSince": "2026-11-20T15:21:56Z",
       "releases": [
@@ -327,9 +327,9 @@
           }
         }
       ],
-      "error": null,
+      "error": "http_403",
       "anchorId": 453086311,
-      "status": "ok",
+      "status": "unavailable",
       "backlog": null
     }
   ]

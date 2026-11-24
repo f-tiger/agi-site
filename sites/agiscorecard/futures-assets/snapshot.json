@@ -1,12 +1,12 @@
 {
-  "checkedAt": "2026-11-23T11:18:25Z",
+  "checkedAt": "2026-11-24T12:57:23Z",
   "sources": [
     {
       "id": "openai",
       "company": "OpenAI",
       "url": "https://openai.com/news/rss.xml",
-      "checkedAt": "2026-11-23T11:18:25Z",
-      "lastSuccessAt": "2026-11-23T11:18:25Z",
+      "checkedAt": "2026-11-24T12:57:23Z",
+      "lastSuccessAt": "2026-11-24T12:57:23Z",
       "ok": true,
       "error": null
     },
@@ -14,8 +14,8 @@
       "id": "anthropic",
       "company": "Anthropic",
       "url": "https://www.anthropic.com/news",
-      "checkedAt": "2026-11-23T11:18:25Z",
-      "lastSuccessAt": "2026-11-23T11:18:25Z",
+      "checkedAt": "2026-11-24T12:57:23Z",
+      "lastSuccessAt": "2026-11-24T12:57:23Z",
       "ok": true,
       "error": null
     },
@@ -23,8 +23,8 @@
       "id": "meta",
       "company": "Meta",
       "url": "https://about.fb.com/news/feed/",
-      "checkedAt": "2026-11-23T11:18:25Z",
-      "lastSuccessAt": "2026-11-23T11:18:25Z",
+      "checkedAt": "2026-11-24T12:57:23Z",
+      "lastSuccessAt": "2026-11-24T12:57:23Z",
       "ok": true,
       "error": null
     },
@@ -32,7 +32,7 @@
       "id": "xai",
       "company": "xAI / SpaceX",
       "url": "https://x.ai/news",
-      "checkedAt": "2026-11-23T11:18:25Z",
+      "checkedAt": "2026-11-24T12:57:23Z",
       "lastSuccessAt": "2026-10-31T16:20:44Z",
       "ok": false,
       "error": "http_403"
@@ -41,13 +41,63 @@
       "id": "deepmind",
       "company": "Google DeepMind",
       "url": "https://deepmind.google/blog/rss.xml",
-      "checkedAt": "2026-11-23T11:18:25Z",
-      "lastSuccessAt": "2026-11-23T11:18:25Z",
+      "checkedAt": "2026-11-24T12:57:23Z",
+      "lastSuccessAt": "2026-11-24T12:57:23Z",
       "ok": true,
       "error": null
     }
   ],
   "items": [
+    {
+      "id": "7b9e1527ad48bc879bf04a0d",
+      "company": "Meta",
+      "title": "Introducing Muse in the UK: A Personal AI Agent You Control",
+      "url": "https://about.fb.com/news/2026/11/introducing-muse-in-the-uk-a-personal-ai-agent-you-control",
+      "publishedAt": "2026-11-24T06:00:40Z",
+      "discoveredAt": "2026-11-24T12:57:23Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "00b157b41f1fc84a3aeb4f93",
+      "company": "Meta",
+      "title": "Muse Now Available in the UK: Muse Does the Work, You Stay in Control",
+      "url": "https://about.fb.com/news/2026/11/muse-now-available-in-the-uk-muse-does-the-work-you-stay-in-control",
+      "publishedAt": "2026-11-24T06:00:04Z",
+      "discoveredAt": "2026-11-24T12:57:23Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "b0689cf87ab570a441c88635",
+      "company": "OpenAI",
+      "title": "OpenAI and Cisco introduce Shirudo",
+      "url": "https://openai.com/index/introducing-shirudo",
+      "publishedAt": "2026-11-23T21:20:00Z",
+      "discoveredAt": "2026-11-24T12:57:23Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "7eab091a475df40e9bbf92d8",
+      "company": "Meta",
+      "title": "Researchers Are Using Meta’s Open-Weight AI Models to Transform Medicine",
+      "url": "https://about.fb.com/news/2026/11/researchers-using-meta-open-weight-ai-models-medical-breakthroughs",
+      "publishedAt": "2026-11-23T18:00:01Z",
+      "discoveredAt": "2026-11-24T12:57:23Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "895b540db6a8889e694ca9f9",
+      "company": "Google DeepMind",
+      "title": "Finding faster quantum algorithms with agents and formal verification",
+      "url": "https://deepmind.google/blog/finding-faster-quantum-algorithms-with-agents-and-formal-verification",
+      "publishedAt": "2026-11-23T16:59:40Z",
+      "discoveredAt": "2026-11-24T12:57:23Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
     {
       "id": "1a10f1676d46fc01a909d8ea",
       "company": "OpenAI",
@@ -61,7 +111,7 @@
     {
       "id": "585b84b1937546daaf84b13d",
       "company": "Meta",
-      "title": "Advancing Science Together: Highlights From the Open Source AI For Science Summit",
+      "title": "Advancing Science Together: Highlights From the Open Source AI for Science Summit",
       "url": "https://about.fb.com/news/2026/11/advancing-science-together-highlights-from-the-open-source-ai-for-science-summit",
       "publishedAt": "2026-11-20T18:30:45Z",
       "discoveredAt": "2026-11-21T10:15:06Z",

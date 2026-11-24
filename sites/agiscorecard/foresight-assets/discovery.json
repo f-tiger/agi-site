@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "checkedAt": "2026-11-23T11:18:23Z",
+  "checkedAt": "2026-11-24T12:57:22Z",
   "cadence": "daily",
   "retentionDays": 730,
   "maxItems": 3000,
@@ -14,10 +14,10 @@
       "home": "https://www.latent.space/",
       "feed": "https://www.latent.space/feed",
       "aiFocused": true,
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
-      "fetchedCount": 10,
+      "fetchedCount": 9,
       "count": 55
     },
     {
@@ -28,8 +28,8 @@
       "home": "https://www.dwarkesh.com/",
       "feed": "https://www.dwarkesh.com/feed",
       "aiFocused": false,
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 11,
       "count": 14
@@ -42,11 +42,11 @@
       "home": "https://www.lennysnewsletter.com/",
       "feed": "https://www.lennysnewsletter.com/feed",
       "aiFocused": false,
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
-      "fetchedCount": 16,
-      "count": 46
+      "fetchedCount": 15,
+      "count": 47
     },
     {
       "id": "lex",
@@ -56,8 +56,8 @@
       "home": "https://lexfridman.com/podcast/",
       "feed": "https://lexfridman.com/feed/podcast/",
       "aiFocused": false,
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 11,
       "count": 11
@@ -70,8 +70,8 @@
       "home": "https://www.youtube.com/@NoPriorsPodcast",
       "feed": "https://feeds.megaphone.fm/nopriors",
       "aiFocused": true,
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 97,
       "count": 97
@@ -84,8 +84,8 @@
       "home": "https://aiexplainedopodcast.buzzsprout.com/",
       "feed": "https://rss.buzzsprout.com/2418777.rss",
       "aiFocused": true,
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 67,
       "count": 67
@@ -98,8 +98,8 @@
       "home": "https://www.youtube.com/channel/UCbfYPyITQ-7l4upoX8nvctg",
       "feed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg",
       "aiFocused": false,
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 14,
       "count": 29
@@ -112,11 +112,11 @@
       "home": "https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA",
       "feed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCsBjURrPoezykLs9EqgamOA",
       "aiFocused": false,
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 12,
-      "count": 27
+      "count": 28
     },
     {
       "id": "sv101",
@@ -126,8 +126,8 @@
       "home": "https://sv101.fireside.fm/",
       "feed": "https://feeds.fireside.fm/sv101/rss",
       "aiFocused": false,
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 37,
       "count": 37
@@ -140,7 +140,7 @@
       "home": "https://www.xiaoyuzhoufm.com/podcast/626b46ea9cbbf0451cf5a962",
       "feed": "https://feed.xyzfm.space/dk4yh3pkpjp3",
       "aiFocused": false,
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
       "lastSuccessAt": "2026-11-18T10:46:12Z",
       "status": "error",
       "errorCode": "ValueError",
@@ -156,8 +156,8 @@
       "aiFocused": true,
       "channelId": "UCxBcwypKK-W3GHd_RZ9FZrQ",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 15,
       "count": 42
@@ -172,8 +172,8 @@
       "aiFocused": false,
       "channelId": "UCXl4i9dYBrFOabk0xGmbkRA",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 3,
       "count": 5
@@ -188,8 +188,8 @@
       "aiFocused": false,
       "channelId": "UC6t1O76G0jYXOAoYCm153dA",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 4,
       "count": 17
@@ -204,8 +204,8 @@
       "aiFocused": false,
       "channelId": "UCSHZKyawb77ixDdsGog4iWA",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 3,
       "count": 5
@@ -220,8 +220,8 @@
       "aiFocused": true,
       "channelId": "UCSI7h9hydQ40K5MJHnCrQvw",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 3,
       "count": 11
@@ -236,8 +236,8 @@
       "aiFocused": true,
       "channelId": "UCNJ1Ymd5yFuUPtn21xtRbbw",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 15,
       "count": 19
@@ -252,8 +252,8 @@
       "aiFocused": true,
       "channelId": "UChpleBmo18P08aKCIgti38g",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 4,
       "count": 22
@@ -268,11 +268,11 @@
       "aiFocused": true,
       "channelId": "UCawZsQWqfGSbCI5yjkdVkTA",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
-      "fetchedCount": 7,
-      "count": 31
+      "fetchedCount": 8,
+      "count": 32
     },
     {
       "id": "ycombinator",
@@ -284,8 +284,8 @@
       "aiFocused": false,
       "channelId": "UCcefcZRL2oaA_uBNeo5UOWg",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 8,
       "count": 16
@@ -300,11 +300,11 @@
       "aiFocused": false,
       "channelId": "UC9cn0TuPq4dnbTY-CBsm8XA",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
-      "fetchedCount": 6,
-      "count": 41
+      "fetchedCount": 7,
+      "count": 42
     },
     {
       "id": "sequoia",
@@ -316,8 +316,8 @@
       "aiFocused": false,
       "channelId": "UCWrF0oN6unbXrWsTN7RctTw",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 3,
       "count": 6
@@ -332,8 +332,8 @@
       "aiFocused": true,
       "channelId": "UChugFTK0KyrES9terTid8vA",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 15,
       "count": 37
@@ -348,8 +348,8 @@
       "aiFocused": true,
       "channelId": "UCLKPca3kwwd-B59HNr-_lvA",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 15,
       "count": 120
@@ -364,8 +364,8 @@
       "aiFocused": true,
       "channelId": "UCP7jMXSY2xbc3KCAE0MHQ-A",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 14,
       "count": 21
@@ -380,10 +380,10 @@
       "aiFocused": true,
       "channelId": "UCXZCJLdBC09xxGZ6gcdrc6A",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
-      "fetchedCount": 13,
+      "fetchedCount": 11,
       "count": 120
     },
     {
@@ -396,8 +396,8 @@
       "aiFocused": true,
       "channelId": "UCrDwWp7EBBv4NwvScIpBDOA",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 13,
       "count": 14
@@ -412,8 +412,8 @@
       "aiFocused": true,
       "channelId": "UCXUPKJO5MZQN11PqgIvyuvQ",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 2,
       "count": 2
@@ -428,8 +428,8 @@
       "aiFocused": true,
       "channelId": "UCcIXc5mJsHVYTZR1maL5l9w",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 8,
       "count": 17
@@ -444,8 +444,8 @@
       "aiFocused": true,
       "channelId": "UCHlNU7kIZhRgSbhHvFoy72w",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 12,
       "count": 33
@@ -460,8 +460,8 @@
       "aiFocused": true,
       "channelId": "UCqcbQf6yw5KzRoDDcZ_wBSw",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 15,
       "count": 38
@@ -476,8 +476,8 @@
       "aiFocused": true,
       "channelId": "UCHhYXsLBEVVnbvsq57n1MTQ",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 5,
       "count": 18
@@ -492,8 +492,8 @@
       "aiFocused": true,
       "channelId": "UCrXSVX9a1mj8l0CMLwKgMVw",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 15,
       "count": 15
@@ -508,11 +508,11 @@
       "aiFocused": false,
       "channelId": "UCESLZhusAkFfsNsApnjF_Cg",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 3,
-      "count": 19
+      "count": 20
     },
     {
       "id": "cognitiverevolution",
@@ -524,11 +524,11 @@
       "aiFocused": true,
       "channelId": "UCjNRVMBVI30Sak_p6HRWhIA",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 15,
-      "count": 42
+      "count": 44
     },
     {
       "id": "aiforhumans",
@@ -540,8 +540,8 @@
       "aiFocused": true,
       "channelId": "UCghJTNTO9kcDeUFXMuSDGLQ",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 11,
       "count": 25
@@ -556,8 +556,8 @@
       "aiFocused": true,
       "channelId": "UCuK2Mf5As9OKfWU7XV6yzCg",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 4,
       "count": 4
@@ -572,8 +572,8 @@
       "aiFocused": true,
       "channelId": "UCZHmQk67mSJgfCCTn7xBfew",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 15,
       "count": 15
@@ -588,11 +588,11 @@
       "aiFocused": true,
       "channelId": "UCKelCK4ZaO6HeEI1KQjqzWA",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 15,
-      "count": 58
+      "count": 60
     },
     {
       "id": "sv101-video",
@@ -604,8 +604,8 @@
       "aiFocused": false,
       "channelId": "UCKV2yWPB3wn0RTZh3cTD8YA",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 8,
       "count": 17
@@ -620,8 +620,8 @@
       "aiFocused": false,
       "channelId": "UChnNjLyx_5rk_iDPQ2BQDQA",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 2,
       "count": 5
@@ -636,8 +636,8 @@
       "aiFocused": true,
       "channelId": "UC2ggjtuuWvxrHHHiaDH1dlQ",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 14,
       "count": 14
@@ -652,8 +652,8 @@
       "aiFocused": true,
       "channelId": "UC7kjWIK1H8tfmFlzZO-wHMw",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 15,
       "count": 24
@@ -668,8 +668,8 @@
       "aiFocused": true,
       "channelId": "UCMLtBahI5DMrt0NPvDSoIRQ",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 1,
       "count": 11
@@ -684,8 +684,8 @@
       "aiFocused": true,
       "channelId": "UC4e35vN3-tSBZMNLE-wm45A",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 9,
       "count": 32
@@ -700,11 +700,11 @@
       "aiFocused": false,
       "channelId": "UCKWaEZ-_VweaEx1j62do_vQ",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 11,
-      "count": 52
+      "count": 54
     },
     {
       "id": "nvidia",
@@ -716,14 +716,255 @@
       "aiFocused": false,
       "channelId": "UCHuiy8bXnmK5nisYHUd1J5g",
       "verifiedAt": "2026-10-03",
-      "lastAttemptAt": "2026-11-23T11:18:23Z",
-      "lastSuccessAt": "2026-11-23T11:18:23Z",
+      "lastAttemptAt": "2026-11-24T12:57:22Z",
+      "lastSuccessAt": "2026-11-24T12:57:22Z",
       "status": "ok",
       "fetchedCount": 8,
-      "count": 45
+      "count": 46
     }
   ],
   "items": [
+    {
+      "id": "ec2446a580fa3154e639",
+      "sourceId": "allin",
+      "title": "Crowdstrike CEO: AI Cyberattack Wave, Hyperspeed Hacks, & The Patching Problem",
+      "url": "https://www.youtube.com/watch?v=o6KIjtkRdOI",
+      "publishedAt": "2026-11-24T12:16:21Z",
+      "medium": "video",
+      "goals": [
+        "work",
+        "learn"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "(0:00) CrowdStrike CEO, George Kurtz joins the show! (1:38) Are the Outages Cyberattacks? (10:36) How AI Lets Anyone Hack Like a Nation-State Level Threat…",
+      "videoId": "o6KIjtkRdOI",
+      "firstSeenAt": "2026-11-24T12:57:22Z"
+    },
+    {
+      "id": "c71c08c00a8e03fd3487",
+      "sourceId": "ibmtechnology",
+      "title": "What Is Sovereign AI? Data, Models & AI Agents Explained",
+      "url": "https://www.youtube.com/watch?v=OX9-zSfT4xI",
+      "publishedAt": "2026-11-24T12:00:16Z",
+      "medium": "video",
+      "goals": [
+        "work",
+        "learn",
+        "earn",
+        "understand"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Learn more about AI Sovereignty here → Sovereign AI goes far beyond controlling where data lives. Sam Anthony explains how sovereignty extends across AI…",
+      "videoId": "OX9-zSfT4xI",
+      "firstSeenAt": "2026-11-24T12:57:22Z"
+    },
+    {
+      "id": "6dc77455385afa22d396",
+      "sourceId": "nvidia",
+      "title": "Why Transparency Matters for AI Security",
+      "url": "https://www.youtube.com/watch?v=aAbtjH0-oQQ",
+      "publishedAt": "2026-11-24T11:00:17Z",
+      "medium": "video",
+      "goals": [
+        "work",
+        "learn"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Red Hat CTO Chris Wright joins the NVIDIA AI Podcast at GTC Berlin to explain why open source is the foundation for secure AI…",
+      "videoId": "aAbtjH0-oQQ",
+      "firstSeenAt": "2026-11-24T12:57:22Z"
+    },
+    {
+      "id": "2dff231811bd008751de",
+      "sourceId": "matthewberman",
+      "title": "Did AI JUST Solve Mathematics?",
+      "url": "https://www.youtube.com/watch?v=MkeKXJzJo98",
+      "publishedAt": "2026-11-24T02:30:08Z",
+      "medium": "video",
+      "goals": [
+        "forecast"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Try Grok Bot by SpaceXSI (starts at $30 with X Subscription Premium): This video was fully edited by Scarlet, our free and open source…",
+      "videoId": "MkeKXJzJo98",
+      "firstSeenAt": "2026-11-24T12:57:22Z"
+    },
+    {
+      "id": "819f260d5b4a71a5bf65",
+      "sourceId": "aidaily",
+      "title": "Jensen is Back as CEO After White House Advocacy",
+      "url": "https://www.youtube.com/watch?v=3m3nnfJfAxA",
+      "publishedAt": "2026-11-24T00:01:02Z",
+      "medium": "video",
+      "goals": [
+        "learn"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Jensen Huang is back as Nvidia CEO, and the White House played a major role in the reversal. NLW traces the path from the…",
+      "videoId": "3m3nnfJfAxA",
+      "firstSeenAt": "2026-11-24T12:57:22Z"
+    },
+    {
+      "id": "8a5269a74cbba8f8c42b",
+      "sourceId": "cognitiverevolution",
+      "title": "AI for Cash Aid, Smaller Models That Punch Up | AI:AM",
+      "url": "https://www.youtube.com/watch?v=o2-DrDRIaY8",
+      "publishedAt": "2026-11-23T21:26:08Z",
+      "medium": "video",
+      "goals": [
+        "understand"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "",
+      "videoId": "o2-DrDRIaY8",
+      "firstSeenAt": "2026-11-24T12:57:22Z"
+    },
+    {
+      "id": "71d09ee6b35e91a17a78",
+      "sourceId": "cognitiverevolution",
+      "title": "AI for Cash Aid, Smaller Models That Punch Up | AI:AM",
+      "url": "https://www.youtube.com/watch?v=OO8XqqsIJSM",
+      "publishedAt": "2026-11-23T20:42:59Z",
+      "medium": "video",
+      "goals": [
+        "understand"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "",
+      "videoId": "OO8XqqsIJSM",
+      "firstSeenAt": "2026-11-24T12:57:22Z"
+    },
+    {
+      "id": "98982edbd92cf3d08f4d",
+      "sourceId": "openai",
+      "title": "Investigating Linux Vulnerabilities with GPT-6 Cyber",
+      "url": "https://www.youtube.com/watch?v=MpsO8Ds8uyo",
+      "publishedAt": "2026-11-23T20:02:15Z",
+      "medium": "video",
+      "goals": [
+        "work",
+        "learn",
+        "understand"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "AI can help security teams move faster from finding vulnerabilities to getting fixes into the software people rely on. In one run, GPT-6 Cyber…",
+      "videoId": "MpsO8Ds8uyo",
+      "firstSeenAt": "2026-11-24T12:57:22Z"
+    },
+    {
+      "id": "bcd1cc5ddda59da10651",
+      "sourceId": "aiengineer",
+      "title": "12 Rules for a Software Factory That Doesn't Ship Slop — Dex Horthy, Factory",
+      "url": "https://www.youtube.com/watch?v=-NFMsM2y0Vk",
+      "publishedAt": "2026-11-23T20:00:40Z",
+      "medium": "video",
+      "goals": [
+        "work",
+        "understand"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "The best model scores about 16% on Slop Code Bench, a new benchmark for how well agents evolve a code base over time. Dex…",
+      "videoId": "-NFMsM2y0Vk",
+      "firstSeenAt": "2026-11-24T12:57:22Z"
+    },
+    {
+      "id": "daaac6b7cf81bbc01db6",
+      "sourceId": "fireship",
+      "title": "Opus just lost to the last company you'd expect...",
+      "url": "https://www.youtube.com/watch?v=jP9yjEDlc4k",
+      "publishedAt": "2026-11-23T19:14:30Z",
+      "medium": "video",
+      "goals": [
+        "work",
+        "earn",
+        "understand"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Railway is the smoothest way to deploy software: Google just dropped Gemini 4 Neon, a mid tier model that somehow outscores its own three…",
+      "videoId": "jP9yjEDlc4k",
+      "firstSeenAt": "2026-11-24T12:57:22Z"
+    },
+    {
+      "id": "4385c896e4c374dad9ce",
+      "sourceId": "lenny",
+      "title": "🎙️ How I AI: OpenClaw for executives: Automate every 1% annoyance",
+      "url": "https://www.lennysnewsletter.com/p/how-i-ai-openclaw-for-executives",
+      "publishedAt": "2026-11-23T16:01:48Z",
+      "medium": "text",
+      "goals": [
+        "understand"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Your weekly listens from How I AI, part of the Lenny’s Podcast Network",
+      "firstSeenAt": "2026-11-24T12:57:22Z"
+    },
+    {
+      "id": "02a7530d12afa03a2c66",
+      "sourceId": "a16z",
+      "title": "Why OpenAI Acquired a Biotech Startup",
+      "url": "https://www.youtube.com/watch?v=RwYz8XhZiu0",
+      "publishedAt": "2026-11-23T15:30:33Z",
+      "medium": "video",
+      "goals": [
+        "work",
+        "earn",
+        "understand",
+        "forecast"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "What happens when scientists are no longer limited by human attention? OpenAI’s Joy Jiao and Ashoka Rajendra join a16z’s Jay Rughani and Jorge Conde…",
+      "videoId": "RwYz8XhZiu0",
+      "firstSeenAt": "2026-11-24T12:57:22Z"
+    },
+    {
+      "id": "6c14b48864e3e08bcc4f",
+      "sourceId": "openai",
+      "title": "How Franklin Templeton uses AI for investment research | OpenAI",
+      "url": "https://www.youtube.com/watch?v=PXKvR8ta22Q",
+      "publishedAt": "2026-11-23T15:21:09Z",
+      "medium": "video",
+      "goals": [
+        "work",
+        "learn",
+        "earn"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "“Just delivering data is not enough.” Franklin Templeton’s Katrina Dudley explains how OpenAI is helping the firm connect information from compliance, risk and trading,…",
+      "videoId": "PXKvR8ta22Q",
+      "firstSeenAt": "2026-11-24T12:57:22Z"
+    },
+    {
+      "id": "cac4ccb8eea0abf63b39",
+      "sourceId": "aidaily",
+      "title": "Why Some Are Claiming Gemini Neon is Better than Fable",
+      "url": "https://www.youtube.com/watch?v=3TH7QVL59V4",
+      "publishedAt": "2026-11-23T14:48:09Z",
+      "medium": "video",
+      "goals": [
+        "earn",
+        "understand"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Gemini 4 Neon is earning real praise, and Google is finally back in the conversation at the top of the model race. NLW breaks…",
+      "videoId": "3TH7QVL59V4",
+      "firstSeenAt": "2026-11-24T12:57:22Z"
+    },
+    {
+      "id": "af6168ba6effcbe9b10c",
+      "sourceId": "ibmtechnology",
+      "title": "Vibe Coding vs. Agentic Coding: Which Should You Use?",
+      "url": "https://www.youtube.com/watch?v=h4tHDFCPmQE",
+      "publishedAt": "2026-11-23T12:00:09Z",
+      "medium": "video",
+      "goals": [
+        "work",
+        "learn"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Learn more about Agentic Coding here → Not every AI coding task needs the same workflow. Grace Ableidinger compares Vibe Coding with Agentic Coding…",
+      "videoId": "h4tHDFCPmQE",
+      "firstSeenAt": "2026-11-24T12:57:22Z"
+    },
     {
       "id": "34b20453933aee2a5319",
       "sourceId": "aiforgood",
@@ -839,7 +1080,7 @@
     {
       "id": "7358c8cc8af8aa02a102",
       "sourceId": "lenny-video",
-      "title": "Why “everyone’s a builder” isn’t working | A reality check with Sherif Mansour",
+      "title": "Why “everyone becoming a builder” isn't working",
       "url": "https://www.youtube.com/watch?v=hRtmV1mCBSE",
       "publishedAt": "2026-11-22T13:30:32Z",
       "medium": "video",
@@ -1426,7 +1667,7 @@
     {
       "id": "67d344be1450c0a297b2",
       "sourceId": "deepmind",
-      "title": "Gemini and the path to AGI with Koray Kavukcuoglu",
+      "title": "Is Gemini our path to AGI?",
       "url": "https://www.youtube.com/watch?v=FORdPIWOH5k",
       "publishedAt": "2026-11-19T19:58:06Z",
       "medium": "video",
@@ -8752,22 +8993,6 @@
       "firstSeenAt": "2026-10-28T09:00:14Z"
     },
     {
-      "id": "807106f920d1249c8f01",
-      "sourceId": "aiengineer",
-      "title": "Why Are We Still Governing AI Agents Like Software? - Tim Tyler, Gravitee",
-      "url": "https://www.youtube.com/watch?v=h8jgniNJcbQ",
-      "publishedAt": "2026-10-27T09:00:16Z",
-      "medium": "video",
-      "goals": [
-        "work",
-        "earn"
-      ],
-      "status": "discovered",
-      "publisherExcerpt": "Nobody would hire a worker with no ID, no manager and shared passwords, yet that's how most companies deploy AI agents. Tim Tyler of…",
-      "videoId": "h8jgniNJcbQ",
-      "firstSeenAt": "2026-10-28T09:00:14Z"
-    },
-    {
       "id": "42e7b58ae01f01450b72",
       "sourceId": "matthewberman",
       "title": "This is much more concerning than you think...",
@@ -14777,21 +15002,6 @@
       "firstSeenAt": "2026-10-03T09:00:29Z"
     },
     {
-      "id": "674c0bbd19cf6077ff9a",
-      "sourceId": "openai",
-      "title": "The Defender's Window: Cyber security keynote",
-      "url": "https://www.youtube.com/watch?v=3jDhHA9JGUE",
-      "publishedAt": "2026-09-28T13:29:06Z",
-      "medium": "video",
-      "goals": [
-        "understand"
-      ],
-      "status": "discovered",
-      "publisherExcerpt": "OpenAI's security experts explain why every organization needs a cyber defence factory, and how to build it with Daybreak.",
-      "videoId": "3jDhHA9JGUE",
-      "firstSeenAt": "2026-10-03T09:00:29Z"
-    },
-    {
       "id": "f03128291384d7c4f1c6",
       "sourceId": "aiforhumans",
       "title": "This Documentary Was Made Entirely by AI. Including Her.",
@@ -15630,22 +15840,6 @@
       "publisherExcerpt": "Greptile is the only AI code reviewer that actually runs your code. Try it for free: Automattic's board fired WordPress co-founder Matt Mullenweg while…",
       "videoId": "ylO0DQeVEBQ",
       "firstSeenAt": "2026-10-03T08:04:43Z"
-    },
-    {
-      "id": "0fe517e0a8438460aae3",
-      "sourceId": "openai",
-      "title": "Get Stuff Done with ChatGPT Voice",
-      "url": "https://www.youtube.com/watch?v=96ogPwN9ykM",
-      "publishedAt": "2026-09-23T17:11:13Z",
-      "medium": "video",
-      "goals": [
-        "work",
-        "understand"
-      ],
-      "status": "discovered",
-      "publisherExcerpt": "We heard you loud and clear. ChatGPT Voice can now: - Use plugins like your email, calendar, and Slack. - Be powered by GPT-6…",
-      "videoId": "96ogPwN9ykM",
-      "firstSeenAt": "2026-10-03T09:00:29Z"
     },
     {
       "id": "35efb9422413b8367952",
