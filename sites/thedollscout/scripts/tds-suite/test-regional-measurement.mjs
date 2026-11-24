@@ -41,6 +41,10 @@ test('regional pageviews use the anonymous pageview channel with only a canonica
     assert.equal(events.length, 0, 'GA4 already records its own pageview');
     assert.doesNotMatch(JSON.stringify(sent), /DO_NOT_SEND|private-measurement/);
   }
+  const reddit = browser();
+  reddit.win.document.referrer = 'https://old.reddit.com/r/private/comments/DO_NOT_SEND';
+  assert.equal(recordRegionalPageview(reddit.win), true);
+  assert.deepEqual(reddit.sent[0].body, {p: '/de/ai-tools/dach-meter-fit', e: '', r: 'https://old.reddit.com'});
   for (const referrer of ['', 'bad', 'file:///private', 'data:text/plain,private', 'blob:https://private.example/id']) {
     const {win, sent} = browser();win.document.referrer = referrer;
     assert.equal(recordRegionalPageview(win), true);assert.equal(sent[0].body.r, '');
@@ -164,22 +168,56 @@ test('report excludes release and incomplete days; tool and existing guide count
     assert.deepEqual(report.measuredWindow, {start: '2026-11-23', end_exclusive: '2026-11-25'});
     assert.deepEqual(report.pageviewMeasuredWindow, {start: '2026-11-24', end_exclusive: '2026-11-25'});
     assert.equal(report.coveredDays, 2);
-    assert.deepEqual(report.counts, {result_events: 3, guide_handoff_clicks: 2, pageviews: 5, eco_referred_pageviews: 2});
+    assert.deepEqual(report.counts, {result_events: 3, guide_handoff_clicks: 2, pageviews: 5, eco_referred_pageviews: 2, reddit_referred_pageviews: 0});
     assert.deepEqual(report.tools.map(tool => tool.counts), [
-      {result_events: 2, guide_handoff_clicks: 1, pageviews: 4, eco_referred_pageviews: 2},
-      {result_events: 1, guide_handoff_clicks: 1, pageviews: 1, eco_referred_pageviews: 0},
+      {result_events: 2, guide_handoff_clicks: 1, pageviews: 4, eco_referred_pageviews: 2, reddit_referred_pageviews: 0},
+      {result_events: 1, guide_handoff_clicks: 1, pageviews: 1, eco_referred_pageviews: 0, reddit_referred_pageviews: 0},
     ]);
     assert.deepEqual(report.tools[0].daily.filter(row => /pageview/.test(row.event)), [
       {date: '2026-11-24', path: '/de/ai-tools/dach-meter-fit', event: 'eco_referred_pageview', n: 2},
       {date: '2026-11-24', path: '/de/ai-tools/dach-meter-fit', event: 'pageview', n: 4},
     ]);
     assert.deepEqual(report.guides.map(guide => guide.counts), [
-      {pageviews: 1, amazon_de_affiliate_clicks: 1, amazon_uk_ordinary_shop_clicks: null, official_source_clicks: null},
-      {pageviews: 1, amazon_de_affiliate_clicks: null, amazon_uk_ordinary_shop_clicks: 1, official_source_clicks: 1},
+      {pageviews: 1, reddit_referred_pageviews: 0, amazon_de_affiliate_clicks: 1, amazon_uk_ordinary_shop_clicks: null, official_source_clicks: null},
+      {pageviews: 1, reddit_referred_pageviews: 0, amazon_de_affiliate_clicks: null, amazon_uk_ordinary_shop_clicks: 1, official_source_clicks: 1},
     ]);
     assert.match(report.notes, /not a joined funnel/);assert.match(report.notes, /no confirmed affiliate tag/);
     assert.ok(fixture.calls.some(call => call.sql.startsWith('EXPLAIN QUERY PLAN ')));
     assert.doesNotMatch(JSON.stringify(report), /amazon\.com|unrelated|getecoback\.com|google\.com/);
+  } finally {fixture.db.close();}
+});
+
+test('Reddit arrivals use exact recorded hosts and remain distinct from all pageviews, actions and uncovered dates', async () => {
+  const fixture = database();
+  const deTool = '/de/ai-tools/dach-meter-fit', ukTool = '/ai-tools/uk-laundry-session';
+  const deGuide = '/de/shop/categories/smart-home', ukGuide = '/uk/indoor-laundry';
+  const day = '2026-11-24';
+  try {
+    for (const path of [deTool, deGuide]) {
+      fixture.add('2026-11-23', path, '', 'reddit.com');
+      fixture.add('2026-11-25', path, '', 'reddit.com');
+    }
+    for (const host of ['reddit.com','www.reddit.com','old.reddit.com','new.reddit.com','m.reddit.com','out.reddit.com','np.reddit.com'])
+      fixture.add(day, deTool, '', host);
+    for (const host of ['', 'reddit.com.example', 'notreddit.com', 'example.reddit.com', 'old.reddit.com:443',
+      'https://www.reddit.com/private', 'www.reddit.com/private', 'getecoback.com'])
+      fixture.add(day, deTool, '', host);
+    fixture.add(day, deTool, 'tds_regional_result', 'reddit.com');
+    fixture.add(day, ukTool, '', 'old.reddit.com');
+    fixture.add(day, deGuide, '', 'www.reddit.com');
+    fixture.add(day, ukGuide, '', 'out.reddit.com');
+    fixture.add(day, ukGuide, '', '');
+
+    const report = await regionalReport(fixture.read, new Date('2026-11-25T10:00:00Z'));
+    assert.deepEqual(report.counts, {result_events: 1, guide_handoff_clicks: 0, pageviews: 16,
+      eco_referred_pageviews: 1, reddit_referred_pageviews: 8});
+    assert.deepEqual(report.tools.map(({counts}) => counts.reddit_referred_pageviews), [7, 1]);
+    assert.deepEqual(report.tools[0].daily.filter(row => row.event === 'reddit_referred_pageview'),
+      [{date: day, path: deTool, event: 'reddit_referred_pageview', n: 7}]);
+    assert.deepEqual(report.guides.map(({counts}) => [counts.pageviews, counts.reddit_referred_pageviews]), [[2, 1], [2, 1]]);
+    assert.deepEqual(report.guides[0].daily.filter(row => row.metric === 'reddit_referred_pageviews'),
+      [{date: day, metric: 'reddit_referred_pageviews', n: 1}]);
+    assert.doesNotMatch(JSON.stringify(report), /reddit\.com|private/);
   } finally {fixture.db.close();}
 });
 
@@ -191,9 +229,12 @@ test('pending coverage, unavailable data and a successfully queried zero have di
   try {
     const partial = await regionalReport(fixture.read, new Date('2026-11-24T10:00:00Z'));
     assert.equal(partial.pageviewMeasuredWindow, null);
-    assert.deepEqual(partial.counts, {result_events: 0, guide_handoff_clicks: 0, pageviews: null, eco_referred_pageviews: null});
+    assert.deepEqual(partial.counts, {result_events: 0, guide_handoff_clicks: 0, pageviews: null, eco_referred_pageviews: null, reddit_referred_pageviews: null});
+    assert.ok(partial.tools.every(tool => tool.counts.reddit_referred_pageviews === null));
+    assert.ok(partial.guides.every(guide => guide.counts.reddit_referred_pageviews === null));
     const zero = await regionalReport(fixture.read, new Date('2026-11-25T10:00:00Z'));
-    assert.deepEqual(zero.counts, {result_events: 0, guide_handoff_clicks: 0, pageviews: 0, eco_referred_pageviews: 0});
+    assert.deepEqual(zero.counts, {result_events: 0, guide_handoff_clicks: 0, pageviews: 0, eco_referred_pageviews: 0, reddit_referred_pageviews: 0});
+    assert.ok(zero.guides.every(guide => guide.counts.reddit_referred_pageviews === 0));
   }
   finally {fixture.db.close();}
   const unindexed = database({index: false});
@@ -205,7 +246,9 @@ test('pending coverage, unavailable data and a successfully queried zero have di
   assert.deepEqual(await response.json(), {ok: false, error: 'no_db', counts: null});
   const window = regionalWindow(new Date('2026-12-30T10:00:00Z'));
   assert.equal(window.coveredDays, 28);
-  const row = {d: '2026-12-20', path: '/ai-tools/dach-meter-fit', ev: '', merchant: '', n: 1, eco_n: 1};
-  for (const invalid of [{n: 'DO_NOT_SEND'}, {eco_n: null}, {eco_n: 2}, {eco_n: -1}, {ev: 'tds_regional_result'}])
+  const row = {d: '2026-12-20', path: '/ai-tools/dach-meter-fit', ev: '', merchant: '', n: 1, eco_n: 1, reddit_n: 0};
+  for (const invalid of [{n: 'DO_NOT_SEND'}, {eco_n: null}, {eco_n: 2}, {eco_n: -1}, {ev: 'tds_regional_result'},
+    {reddit_n: null}, {reddit_n: -1}, {reddit_n: '0'}, {reddit_n: 1}, {eco_n: 0, reddit_n: 2},
+    {eco_n: 0, reddit_n: 1, ev: 'tds_regional_result'}])
     assert.throws(() => aggregateRegional([{...row, ...invalid}], window), /Invalid aggregate/);
 });
