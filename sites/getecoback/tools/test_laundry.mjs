@@ -121,7 +121,7 @@ function shareSchema(isLaundry=true){
   const number=(name,value,min='0',max='')=>({name,value,type:'number',tagName:'INPUT',min,max});
   const select=(name,value,options)=>({name,value,type:'select-one',tagName:'SELECT',options:options.map(value=>({value}))});
   const fields=[number('dryer','200','0','2000'),select('dryerBasis','hundred',['cycle','hundred']),select('method','estimate',['estimate','measured']),number('watts','600','0','5000'),number('hours','8','0','72'),number('dehum','-1','0','100'),number('price','0.30','0','5'),number('loads','3','0','30'),number('purchase','0','0','50000'),select('currency','GBP',['EUR','GBP','USD']),{name:'comparable',type:'checkbox',checked:true}];
-  const schema=runInNewContext(`(()=>{${functions};return {read,checked,fieldsFor:typeof fieldsFor==='function'?fieldsFor:null};})()`,{adapter:{fields},laundry:isLaundry?{}:null,tariff:null});
+  const schema=runInNewContext(`(()=>{${functions};return {read,checked,fieldsFor:typeof fieldsFor==='function'?fieldsFor:null};})()`,{adapter:{fields},laundry:isLaundry?{}:null,tariff:null,heatCost:null});
   return {schema,fields,set:(name,value)=>{fields.find(e=>e.name===name).value=value;},plain:value=>JSON.parse(JSON.stringify(value))};
 }
 

@@ -114,6 +114,25 @@ class HeatpumpIntent(unittest.TestCase):
         for target in re.findall(r'href="#([^"]+)"', self.article):
             self.assertIn('id="' + target + '"', self.article)
 
+    def test_cost_tool_uses_variable_cop_and_keeps_shareable_equal_heat_evidence(self):
+        target = SITE / "guide/heizkosten-vergleich-rechner.html"
+        page = target.read_text()
+        mirror = target.with_suffix(".md").read_text()
+        for phrase in ("1.200 kWh Wärme", "COP 2", "222 €", "COP 3", "148 €",
+                       "Warmwasser, Kauf, Montage und Wartung sind nicht enthalten.",
+                       "EU-Produktinformationen zum saisonalen SCOP"):
+            self.assertIn(phrase, page)
+            self.assertIn(phrase, mirror)
+        for removed in ("bei strengem Frost eher 2", "ab wann sich das dreht", "ab 300 €"):
+            self.assertNotIn(removed, page)
+            self.assertNotIn(removed, mirror)
+        self.assertIn('/guide/heizkosten-vergleich-rechner.html#eb-hk-calc', self.article)
+        self.assertIn('id="hk-go" disabled', page)
+        self.assertIn('id="hk-cop" value="3"', page)
+        self.assertNotIn('https://www.reddit.com/submit', mirror)
+        for marker in SHOPPING:
+            self.assertNotIn('<!--EB_' + marker + '-->', rebuild(page, "heizkosten-vergleich-rechner"))
+
     def test_heater_copy_does_not_turn_trends_into_search_volume(self):
         for table in (B.DEVICE_MODELS, B.DEVICE_MODELS_EN):
             card = next(row for row in table["heater"] if row[0] == "Midea NTH20-17BR")
