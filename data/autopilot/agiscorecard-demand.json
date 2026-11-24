@@ -27,11 +27,11 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 16,
+    "n": 14,
     "q": "tool:verdicts"
    },
    {
-    "n": 16,
+    "n": 14,
     "q": "tool:portfolio_returns"
    },
    {
@@ -39,7 +39,7 @@
     "q": "tool:claim_ledger https://goldrush.agiscorecard."
    },
    {
-    "n": 10,
+    "n": 9,
     "q": "tool:thesis_tracker"
    },
    {
@@ -55,12 +55,12 @@
     "q": "tool:invest_positions"
    },
    {
-    "n": 4,
-    "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
+    "n": 5,
+    "q": "tool:search_mcp_catalog"
    },
    {
-    "n": 3,
-    "q": "tool:search_mcp_catalog"
+    "n": 4,
+    "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
    },
    {
     "n": 1,
@@ -110,13 +110,13 @@
    "v": 3300
   }
  ],
- "generated": "2026-11-23",
+ "generated": "2026-11-24",
  "geo": "US",
- "heat_source": "measured 2026-11-23 (1 pages); no notes",
+ "heat_source": "measured 2026-11-24 (1 pages); no notes",
  "hot_pages": [
   {
-   "n7": 141,
-   "p7": 54,
+   "n7": 160,
+   "p7": 71,
    "page": "/agents/"
   }
  ],

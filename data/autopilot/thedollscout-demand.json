@@ -19,6 +19,16 @@
    "source": "related-queries",
    "stand": "2026-11-22",
    "v": 950
+  },
+  {
+   "kind": "autocomplete-new",
+   "match": 0.75,
+   "page": "series/sonny-angel-animal-series-4.html",
+   "q": "sonny angel cat christmas series",
+   "seed": "sonny angel",
+   "source": "autocomplete-diff",
+   "stand": "2026-11-23",
+   "v": 1
   }
  ],
  "first_party_demand": {},
@@ -164,7 +174,7 @@
    "v": 500
   }
  ],
- "generated": "2026-11-23",
+ "generated": "2026-11-24",
  "geo": "US",
  "heat_source": "no public aggregate endpoint on this site — heat needs either a Worker /api/* aggregate route or the D1 read permission on the deploy token",
  "hot_pages": [],
@@ -178,7 +188,8 @@
  ],
  "site": "thedollscout",
  "source_notes": [
-  "sites/thedollscout/content/trends-rising.json: 2 fresh seed(s) used; 6 stale and 0 undated dropped"
+  "sites/thedollscout/content/trends-rising.json: 1 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (sonny angel). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
+  "sites/thedollscout/content/trends-rising.json: 3 fresh seed(s) used; 5 stale and 0 undated dropped"
  ],
  "sources": [
   "sites/thedollscout/content/trends-rising.json"

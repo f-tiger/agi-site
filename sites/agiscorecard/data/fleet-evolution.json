@@ -3,7 +3,7 @@
   "site": "agiscorecard",
   "signals": {
     "membership": {
-      "ready": false,
+      "ready": true,
       "has_paid_members": false,
       "has_active_members": false
     },
@@ -27,13 +27,6 @@
   },
   "actions": [
     {
-      "kind": "membership_health",
-      "priority": 92,
-      "reason": "recent snapshot reported unavailable checkout; check the live API before recovery",
-      "evidence": {},
-      "mode": "alert"
-    },
-    {
       "kind": "optimize_existing_page",
       "priority": 80,
       "reason": "review the source and fit of topic signals mapped to an existing page; missing page-view events do not establish rejected demand",
@@ -44,6 +37,13 @@
         "value_band": "100+"
       },
       "mode": "queue"
+    },
+    {
+      "kind": "membership_readiness_check",
+      "priority": 70,
+      "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
+      "evidence": {},
+      "mode": "observe"
     },
     {
       "kind": "content_gap",

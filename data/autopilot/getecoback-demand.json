@@ -1,29 +1,10 @@
 {
  "covered": [
   {
-   "heat": null,
-   "kind": "value",
-   "match": 0.917,
-   "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
-   "q": "luftentfeuchter fürs auto",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-11-15",
-   "v": 29600
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.633,
-   "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
-   "q": "luftentfeuchter auto testsieger",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-11-15",
-   "v": 3000
-  },
-  {
-   "heat": null,
+   "heat": {
+    "n7": 6,
+    "p7": 0
+   },
    "kind": "value",
    "match": 1.0,
    "page": "guide/klimaanlage-mit-heizfunktion.html",
@@ -34,7 +15,10 @@
    "v": 550
   },
   {
-   "heat": null,
+   "heat": {
+    "n7": 6,
+    "p7": 0
+   },
    "kind": "value",
    "match": 1.0,
    "page": "guide/klimaanlage-mit-heizfunktion.html",
@@ -45,7 +29,10 @@
    "v": 500
   },
   {
-   "heat": null,
+   "heat": {
+    "n7": 6,
+    "p7": 0
+   },
    "kind": "value",
    "match": 0.917,
    "page": "guide/klimaanlage-mit-heizfunktion.html",
@@ -56,7 +43,10 @@
    "v": 500
   },
   {
-   "heat": null,
+   "heat": {
+    "n7": 6,
+    "p7": 0
+   },
    "kind": "value",
    "match": 1.0,
    "page": "guide/klimaanlage-mit-heizfunktion.html",
@@ -76,55 +66,12 @@
    "source": "related-queries",
    "stand": "2026-11-17",
    "v": 250
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.95,
-   "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
-   "q": "auto luftentfeuchter",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-11-15",
-   "v": 180
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.775,
-   "page": "guide/schimmel-kleiderschrank.html",
-   "q": "luftentfeuchter nachfüllpack",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-11-15",
-   "v": 90
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.975,
-   "page": "guide/pro-breeze-luftentfeuchter-test.html",
-   "q": "mini luftentfeuchter",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-11-15",
-   "v": 80
   }
  ],
  "first_party_demand": {
   "zero_hit_records": 0
  },
  "gaps": [
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "guide/luftentfeuchter-10-qm.html",
-   "q": "pingi luftentfeuchter",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-11-15",
-   "v": 27500
-  },
   {
    "kind": "value",
    "match": 0.18,
@@ -348,7 +295,7 @@
   {
    "kind": "value",
    "match": 0.333,
-   "page": "en/filter-finder.html",
+   "page": "guide/klimaanlage-40-qm.html",
    "q": "emma original matratze",
    "seed": "matratze",
    "source": "related-queries",
@@ -356,12 +303,12 @@
    "v": 70
   }
  ],
- "generated": "2026-11-23",
+ "generated": "2026-11-24",
  "geo": "DE",
- "heat_source": "measured 2026-11-23 (25 pages); no notes",
+ "heat_source": "measured 2026-11-24 (25 pages); no notes",
  "hot_pages": [
   {
-   "n7": 23,
+   "n7": 25,
    "p7": 4,
    "page": "/waeschetrockner-oder-luftentfeuchter.html"
   },
@@ -377,18 +324,23 @@
   },
   {
    "n7": 9,
+   "p7": 4,
+   "page": "/"
+  },
+  {
+   "n7": 9,
    "p7": 2,
    "page": "/en/guide/tilt-and-turn-windows-winter-condensation.html"
   },
   {
    "n7": 8,
-   "p7": 4,
-   "page": "/"
+   "p7": 0,
+   "page": "/guide/luftbefeuchter-stromverbrauch.html"
   },
   {
-   "n7": 8,
-   "p7": 1,
-   "page": "/guide/luftbefeuchter-stromverbrauch.html"
+   "n7": 7,
+   "p7": 0,
+   "page": "/guide/klimaanlage-40-qm.html"
   },
   {
    "n7": 7,
@@ -398,7 +350,27 @@
   {
    "n7": 6,
    "p7": 0,
+   "page": "/guide/heizkosten-vergleich-rechner.html"
+  },
+  {
+   "n7": 6,
+   "p7": 0,
+   "page": "/guide/klimaanlage-mit-heizfunktion.html"
+  },
+  {
+   "n7": 6,
+   "p7": 4,
+   "page": "/guide/klimaanlage-wann-kaufen.html"
+  },
+  {
+   "n7": 6,
+   "p7": 0,
    "page": "/guide/luftentfeuchter-ratgeber.html"
+  },
+  {
+   "n7": 6,
+   "p7": 2,
+   "page": "/guide/midea-portasplit-ausverkauft-alternativen.html"
   },
   {
    "n7": 6,
@@ -407,41 +379,13 @@
   },
   {
    "n7": 5,
-   "p7": 5,
-   "page": "/guide/klimaanlage-wann-kaufen.html"
-  },
-  {
-   "n7": 5,
    "p7": 0,
    "page": "/guide/luftentfeuchter-keller.html"
-  },
-  {
-   "n7": 5,
-   "p7": 2,
-   "page": "/guide/midea-portasplit-ausverkauft-alternativen.html"
-  },
-  {
-   "n7": 4,
-   "p7": 0,
-   "page": "/guide/heizluefter-stromsparend.html"
-  },
-  {
-   "n7": 3,
-   "p7": 0,
-   "page": "/en/guide/evaporative-cooler-vs-fan.html"
-  },
-  {
-   "n7": 3,
-   "p7": 1,
-   "page": "/en/guide/heated-airer-vs-dehumidifier.html"
   }
  ],
  "how_to_read": "Research candidates only; token matching is not an editorial or market decision. Relative growth is not search volume, and autocomplete is vocabulary evidence only. Underserved requires an observed zero in the matching measurement window; missing page measurements are unknown, and zero arrivals do not establish a title or internal-link cause. First-party evidence contains only aggregate zero-hit record counts, never raw search terms. Freshness, country, independent evidence and the reviewed page catalog must pass tools/eco_evolution.py before prioritising an existing page. This research queue does not publish. The separate getecoback scheduled deployment runs tools/auto_content.py to discover official product specifications, validate evidence and publish at most one substantive guide change per UTC day.",
  "note": "选题输入,不是选题依据。任何由它引出的页面仍要过本站三门与硬内容规则。本文件由 tools/autopilot 每日确定性生成,零 AI、零编造。",
  "offtopic_dropped": [
-  "meacodry arete one 10l",
-  "black friday 2026",
-  "echooria",
   "daikin stylish",
   "beco maxima plus"
  ],
