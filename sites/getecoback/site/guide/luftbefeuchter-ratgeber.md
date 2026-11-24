@@ -6,7 +6,7 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftbefeuchter-ratg
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
 
-Redaktionell aktualisiert am 22. November 2026 · Redaktionelle Kauf- und Nutzungshilfe, kein eigener Gerätetest.
+Redaktionell aktualisiert am 24. November 2026 · Redaktionelle Kauf- und Nutzungshilfe, kein eigener Gerätetest.
 **Die kurze Entscheidung**Ohne nachvollziehbaren Bedarf brauchst du kein neues Gerät. Bei wiederholt trockener Raumluft zuerst Messung und Nutzung prüfen. Wenn Befeuchtung sinnvoll bleibt, sind passende Regelung, Wasserart und eine Pflege, die du zuverlässig erledigst, wichtiger als ein pauschaler Testsieger.
 
 ## Erst messen: Vielleicht ist kein Kauf nötig
@@ -17,6 +17,8 @@ Notiere Temperatur und relative Feuchte zu verschiedenen Tageszeiten. Stelle das
 
 ### Kalte Flächen beachten
 Bei Kondenswasser oder feuchten Stellen zusätzliche Befeuchtung pausieren und Ursachen klären. Für schlecht gedämmte Wohnungen empfiehlt das Umweltbundesamt im Winter als Faustregel unter 50 % Raumfeuchte; das ist keine universelle Zielzahl für jedes Gebäude.
+Aus Raumtemperatur und Luftfeuchte kannst du den Taupunkt abschätzen. Wenn du auch die Temperatur an der betroffenen Innenscheibe misst, kannst du beide Werte vergleichen.
+[Taupunkt am Fenster berechnen →](https://getecoback.com/guide/fenster-beschlagen-innen.html#fenstersauger-gegen-kondenswasser)
 
 ### Vorhandene Lösung reicht
 Wenn der Raum keinen zusätzlichen Feuchteeintrag braucht oder du die notwendige Pflege nicht übernehmen kannst, kaufe vorerst nichts. Ein vorhandenes Gerät erst nach seiner Anleitung prüfen, statt es allein wegen eines Belags zu ersetzen.

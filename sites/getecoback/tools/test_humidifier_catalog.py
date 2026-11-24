@@ -224,6 +224,23 @@ class HumidifierTests(unittest.TestCase):
                 self.assertIn(part, answer)
                 self.assertIn(model['source'], answer)
 
+    def test_cold_surface_card_reaches_the_existing_window_tool(self):
+        from build_agent_md import to_markdown
+
+        site = catalog.ROOT / 'site'
+        path = '/guide/luftbefeuchter-ratgeber.html'
+        target = '/guide/fenster-beschlagen-innen.html#fenstersauger-gegen-kondenswasser'
+        html = (site / path.lstrip('/')).read_text()
+        card = html.split('<h3>Kalte Flächen beachten</h3>', 1)[1].split('</section>', 1)[0]
+        self.assertIn('zusätzliche Befeuchtung pausieren', card)
+        self.assertIn('Aus Raumtemperatur und Luftfeuchte', card)
+        self.assertIn('Temperatur an der betroffenen Innenscheibe', card)
+        self.assertEqual(html.count(f'href="{target}"'), 1)
+        self.assertIn(f'href="{target}"', card)
+        self.assertIn('https://getecoback.com' + target, to_markdown(html, path, 'de'))
+        target_path, anchor = target[1:].split('#')
+        self.assertEqual((site / target_path).read_text().count(f'id="{anchor}"'), 1)
+
     def test_final_artifacts_keep_catalog_and_support_separation(self):
         for slug in guide.PAGES:
             html=(catalog.ROOT/'site/guide'/f'{slug}.html').read_text()
