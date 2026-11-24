@@ -9,6 +9,7 @@ import {
 import {SHOPPING_QUERY, shoppingWindow, aggregateShopping} from '../../functions/api/shopping-growth.js';
 import {langOf, onRequestPost} from '../../functions/api/ev.js';
 import {collectorEventAllowed} from '../../lib/collector-measurement.js';
+import {WINTER_HUMIDITY_PATH, WINTER_HUMIDITY_ANCHOR, WINTER_HUMIDITY_EVENT, winterHumidityArrival} from '../../collector-assets/winter-humidity-referral.mjs';
 
 async function record(body, headers = {}) {
   const rows = [], pending = [];
@@ -124,4 +125,18 @@ test('English-home cloud events retain fixed capability admission and QA/privacy
       assert.deepEqual(await record({p: '/en/', e, r: ''}, headers), []);
     assert.deepEqual(await record({p: '/en/?__qa=1', e, r: ''}), []);
   }
+});
+
+test('humidity arrivals require the exact region, anchor and EcoBack origin and keep the same privacy gates', async () => {
+  const payload = winterHumidityArrival(WINTER_HUMIDITY_PATH, WINTER_HUMIDITY_ANCHOR, 'https://www.getecoback.com');
+  assert.deepEqual(payload, {p: WINTER_HUMIDITY_PATH, e: WINTER_HUMIDITY_EVENT, r: 'https://getecoback.com'});
+  assert.deepEqual((await record(payload)).map(row => row.slice(1)), [[WINTER_HUMIDITY_PATH, 'de', '', 'getecoback.com', WINTER_HUMIDITY_EVENT]]);
+  for (const ref of ['', 'https://getecoback.com.evil.test', 'https://getecoback.com/private'])
+    assert.equal(winterHumidityArrival(WINTER_HUMIDITY_PATH, WINTER_HUMIDITY_ANCHOR, ref), null);
+  assert.equal(winterHumidityArrival(WINTER_HUMIDITY_PATH, '#strommessung', payload.r), null);
+  assert.equal(winterHumidityArrival('/shop/categories/smart-home', WINTER_HUMIDITY_ANCHOR, payload.r), null);
+  for (const other of [{p: payload.p + '?x=1'}, {r: payload.r + '/private'}, {item: 'CUSTOM'}, {r: ''}])
+    assert.deepEqual(await record({...payload, ...other}), []);
+  for (const header of [{'x-probe': '1'}, {'sec-gpc': '1'}, {dnt: '1'}, {cookie: 'tds_analytics_choice_v1=denied'}])
+    assert.deepEqual(await record(payload, header), []);
 });

@@ -261,6 +261,16 @@ test('German smart-home report covers one page, with distinct ECO views and Amaz
     ['2026-11-17', 'before', 0, 0, 0], ['2026-11-19', 'after', 1, 1, 1],
   ]);
   assert.doesNotMatch(JSON.stringify(report), /fake\.test|smart-plugs|amazon\.com/);
+  assert.equal(report.winter_humidity.daily, null);
+  for (const date of ['2026-11-24', '2026-11-25', '2026-11-27'])
+    insert.run(date, guide, 'getecoback.com', 'winter_humidity_arrival');
+  insert.run('2026-11-25', guide, 'getecoback.com.fake.test', 'winter_humidity_arrival');
+  view('2026-11-25', 'getecoback.com');
+  const winter = await guideReport(read, new Date('2026-11-27T13:00:00Z'));
+  assert.equal(winter.winter_humidity.first_full_utc_day, '2026-11-25');
+  assert.deepEqual(winter.winter_humidity.daily, [{date: '2026-11-25', arrivals: 1}, {date: '2026-11-26', arrivals: 0}]);
+  assert.equal(winter.daily.find(row => row.date === '2026-11-25').pageviews, 1);
+  assert.equal(winter.daily.find(row => row.date === '2026-11-25').eco_referred_pageviews, 1);
   db.exec('DROP INDEX real_shopping_date_index');
   const result = await onRequestGet(ctx);
   assert.equal(result.status, 503);

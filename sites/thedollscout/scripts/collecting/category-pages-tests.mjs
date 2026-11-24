@@ -90,7 +90,7 @@ test('all 27 category pages expose usable decisions, comparison anchors and ever
   const displayed=[];
   for(const guide of data.categories){
    const slug='shop/categories/'+guide.id,page=pages.get(route(lang,slug)),d=guide[lang],group=homeCatalogCategories.find(g=>g.id===guide.id);
-   assert.ok(page,lang+'/'+guide.id);assert.equal(page.title,d.title);assert.equal(page.description,d.description);assert.equal(page.modified,[data.updated,d.smartPlugDecision ? '2026-11-22' : null,d.smartPlugDecision?.checked,...products.filter(p=>group.types.includes(p.category)).map(p=>lang==='de'&&p.deVariant?p.deVariant.checked:p.checked)].filter(Boolean).sort().at(-1));
+   assert.ok(page,lang+'/'+guide.id);assert.equal(page.title,d.title);assert.equal(page.description,d.description);assert.equal(page.modified,[data.updated,d.smartPlugDecision ? '2026-11-22' : null,d.smartPlugDecision?.checked,lang==='de'&&guide.id==='smart-home' ? '2026-11-24' : null,...products.filter(p=>group.types.includes(p.category)).map(p=>lang==='de'&&p.deVariant?p.deVariant.checked:p.checked)].filter(Boolean).sort().at(-1));
    assert.equal((page.html.match(/<h1[ >]/g)||[]).length,1);
    assert.ok(page.html.includes(esc(d.answer)));assert.ok(page.html.includes('datetime="'+guide.checked+'"'));
    assert.ok(page.html.includes('<table>'));assert.ok(page.html.includes('id="category-faq"'));
@@ -143,6 +143,36 @@ test('German plug choices lead to disclosed, measurable model searches from the 
  for (const term of ['16 A','3.680 W','1/6 HP','0,12 kWh']) {
   assert.ok(mirror.includes(term));
   assert.ok(section.includes(term));
+ }
+});
+
+test('German humidity guide starts with keeping the current meter and links source-backed device choices',()=>{
+ const path='/de/shop/categories/smart-home',pages=renderedPages(),page=pages.get(path);
+ for(const [otherPath,entry] of pages){
+  assert.equal((entry.html.match(/id="raumfeuchte-messen"/g)||[]).length,otherPath===path ? 1 : 0);
+ }
+ assert.match(page.html,/href="#raumfeuchte-messen"/);
+ const section=/<section[^>]*id="raumfeuchte-messen"[^>]*>([\s\S]*?)<\/section>/.exec(page.html)?.[1];
+ assert.ok(section);
+ assert.match(section,/<table>[\s\S]*?<th scope="row">Gelegentlich ablesen<\/th><td>Vorhandenes Hygrometer behalten<\/td>/);
+ assert.doesNotMatch(section,/amazon\.|data-shopping-merchant|rel="sponsored/);
+ const links=anchors(section);
+ const mirror=page.text.join('\n');
+ const modelLinks=[['SwitchBot Meter Plus','/de/shop/categories/home-care#catalog-item-c22'],['Tapo T310',path+'#catalog-item-b12']];
+ for(const [name,href] of modelLinks){
+  assert.ok(links.some(link=>link.text===name&&link.attrs.href===href));
+  assert.ok(mirror.includes(origin+href));
+  const [modelPath,id]=href.split('#');
+  assert.ok(pages.get(modelPath).html.includes('id="'+id+'"'));
+ }
+ for(const name of ['www.verbraucherzentrale.de','eu.switch-bot.com','support.switch-bot.com','www.tapo.com']){
+  const link=links.find(link=>link.attrs.href.startsWith('https://'+name+'/'));
+  assert.ok(link,name);
+  assert.ok(mirror.includes(link.attrs.href),name);
+ }
+ for(const text of ['Vorhandenes Hygrometer behalten','Bluetooth','kompatibler SwitchBot Hub','H100 oder H200','KH100','2026-11-24']){
+  assert.ok(section.includes(text),text);
+  assert.ok(mirror.includes(text),text);
  }
 });
 

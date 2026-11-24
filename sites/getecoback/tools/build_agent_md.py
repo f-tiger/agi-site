@@ -39,9 +39,10 @@ CITABLE_ROOT_TOOLS = (
     "strommess-protokoll.html", "geraete-austausch-rechner.html", "familienwerkstatt.html",
 )
 CITABLE_ROOT_EVIDENCE = ("daten.html", "wie-wir-empfehlen.html")
-LAUNDRY_TOOL_HANDOFFS = {
+TDS_DECISION_HANDOFFS = {
     '/waeschetrockner-oder-luftentfeuchter.html': 'https://thedollscout.com/de/ai-tools/dach-meter-fit#messgeraet-ausleihen-oder-kaufen',
     '/en/guide/heated-airer-vs-dehumidifier.html': 'https://thedollscout.com/ai-tools/uk-laundry-session',
+    '/guide/richtig-lueften-im-winter.html': 'https://thedollscout.com/de/shop/categories/smart-home#raumfeuchte-messen',
 }
 
 DISCLOSURE = {
@@ -266,7 +267,7 @@ def to_markdown(src_html, path_url, lang):
         source = citation_url(H.unescape(href), rel.group(1) if rel else '')
         if source:
             return f"[{text}]({source})"
-        if href == LAUNDRY_TOOL_HANDOFFS.get(path_url) and (not rel or 'sponsored' not in rel[1].lower().split()):
+        if href == TDS_DECISION_HANDOFFS.get(path_url) and (not rel or 'sponsored' not in rel[1].lower().split()):
             return f"[{text}]({href})"
         if re.match(r"^/(?!/)", href):
             return f"[{text}]({BASE}{href})"
