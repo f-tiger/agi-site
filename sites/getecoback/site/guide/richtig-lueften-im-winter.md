@@ -113,6 +113,8 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Verkäufen. Die Links unte
 
 Anzeige Sortiert danach, wie oft es wirklich die Antwort ist:
 
+Hast du schon ein Hygrometer? Nutze es, wenn es die Werte zeigt, die du brauchst. Falls du einen Nachtwert oder einen Verlauf sehen willst, hilft der Vergleich bei The Doll Scout. [Anzeige, Min/Max-Speicher oder App-Verlauf auswählen](https://thedollscout.com/de/shop/categories/smart-home#raumfeuchte-messen).
+
 - **Ein Hygrometer mit Min/Max-Speicher** — vor allem anderen. Es hält den Nachtwert fest, den man nie selbst sieht, und ist der Unterschied zwischen Wissen und Raten. Hygrometer mit Min/Max auf Amazon.de →
 
 - **Ein Infrarot-Thermometer** kann helfen, die Temperatur an einer kalten Wandstelle zu messen. Infrarot-Thermometer auf Amazon.de →

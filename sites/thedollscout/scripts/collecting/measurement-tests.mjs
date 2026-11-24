@@ -185,11 +185,12 @@ test('Aggregate cache bounds repeat scans and failures/overflow never become an 
 });
 
 const clientSource=(await fs.readFile(new URL('../../collector-assets/collecting.mjs',import.meta.url),'utf8')).replace(/^import .+;\s*$/gm,'');
+const {winterHumidityArrival}=await import('../../collector-assets/winter-humidity-referral.mjs');
 function browser(options={}) {
   const sent=[],events=[],handlers={},status={textContent:''},button={dataset:{success:'Copied',failure:'Copy failed'},addEventListener:(name,fn)=>handlers[name]=fn};
   const loc=new URL(options.url||'https://thedollscout.com/for-agents');
   const context={location:loc,URL,URLSearchParams,Set,CustomEvent:class{constructor(name,options){this.type=name;this.detail=options.detail;}},navigator:{userAgent:'Mozilla/5.0',clipboard:{writeText:options.copy||(()=>Promise.resolve())},...options.navigator},localStorage:{getItem:()=>{if(options.storageError)throw Error();return options.denied?'denied':null;}},window:{dispatchEvent:event=>events.push(event)},fetch:async(path,init)=>{sent.push(JSON.parse(init.body));return {};},document:{referrer:'',querySelector:selector=>selector==='[data-copy-mcp]'?button:selector==='[data-mcp-status]'?status:selector==='link[rel=canonical]'?{href:loc.origin+loc.pathname}:null,querySelectorAll:()=>[]},installAffiliateMeasurement(){},initStyleOdds(){},initDisplayFit(){},initPlanning(){},initSeries(){}};
-  vm.runInNewContext(clientSource,context);return {sent,events,handlers,status};
+  vm.runInNewContext(clientSource,{...context,winterHumidityArrival});return {sent,events,handlers,status};
 }
 test('MCP copy counts only clipboard success, with no endpoint value or other input',async()=>{
   let complete;const pending=new Promise(resolve=>complete=resolve),b=browser({copy:()=>pending});

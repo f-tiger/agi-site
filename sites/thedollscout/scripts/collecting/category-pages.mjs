@@ -92,15 +92,67 @@ function smartPlugDecisionText(decision,origin){
  ]),'Welche Last ist zulässig?',decision.load,decision.example,'Herstellerangaben zu den deutschen Steckdosen geprüft am '+decision.checked+'.'];
 }
 
+const roomHumidity = {
+ id: 'raumfeuchte-messen',
+ checked: '2026-11-24',
+ title: 'Raumfeuchte messen mit Hygrometer oder App',
+ answer: 'Wenn dein Hygrometer Temperatur und relative Luftfeuchte gut ablesbar anzeigt, nutze es weiter. Ein gespeicherter Verlauf hilft dir, Veränderungen rund ums Lüften, Duschen oder Wäschetrocknen auch dann zu sehen, wenn du gerade nicht abliest.',
+ measure: 'Notiere Temperatur und relative Feuchte am gleichen Messort und zu vergleichbaren Zeiten. Ein Raumwert kann unauffällig sein, während sich Feuchte an einer kalten Wand oder am Fenster niederschlägt.',
+ rows: [
+  {need: 'Gelegentlich ablesen', option: 'Vorhandenes Hygrometer behalten', check: 'Notiere Messwert und Uhrzeit von Hand. Hat dein Gerät Min/Max, kannst du Spitzen zwischen zwei Ablesungen prüfen.'},
+  {need: 'Display und gespeicherte Messwerte', option: 'SwitchBot Meter Plus', check: 'Das Display zeigt Temperatur und Luftfeuchte. Gespeicherte Messwerte lassen sich in der Nähe per Bluetooth in der App abrufen. Für Zugriff von unterwegs ist ein kompatibler SwitchBot Hub nötig.', model: {id: 'c22', category: 'home-care'}},
+  {need: 'Verläufe in der vorhandenen Smart-Home-App', option: 'Tapo T310', check: 'Nutze den Sensor, wenn du einen kompatiblen Hub hast oder bewusst mit einplanst. Prüfe H100 oder H200 für Tapo und KH100 für Kasa sowie die passende App und regionale Geräteversion.', model: {id: 'b12', category: 'smart-home'}},
+ ],
+ sources: [
+  {label: 'Verbraucherzentrale zu Luftfeuchte, Heizen und Lüften', url: 'https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426'},
+  {label: 'SwitchBot Meter Plus mit Display', url: 'https://eu.switch-bot.com/products/switchbot-meter-plus/'},
+  {label: 'SwitchBot zur Speicherung und zum App-Abruf', url: 'https://support.switch-bot.com/hc/de/articles/360060298693-Synchronisierung-Speicherung-UND-L%C3%B6schung-von-Daten-F%C3%BCr-SwitchBot-Meter'},
+  {label: 'Tapo T310 mit kompatiblen Hubs', url: 'https://www.tapo.com/de/product/smart-sensor/tapo-t310/'},
+ ],
+};
+
+function humidityDecision(record,lang,products,route) {
+ if (lang !== 'de' || record.id !== 'smart-home') return null;
+ const rows = roomHumidity.rows.map(row => {
+  if (!row.model) return row;
+  const {id,category} = row.model;
+  const group = homeCatalogCategories.find(item => item.id === category);
+  const present = products.some(product => product.id === id && group.types.includes(product.category));
+  const href = present ? route(lang,'shop/categories/'+category)+'#catalog-item-'+id : null;
+  return {...row,href};
+ });
+ return {...roomHumidity,rows};
+}
+
+function humidityDecisionHTML(decision,esc) {
+ if (!decision) return '';
+ const rows = decision.rows.map(row => `<tr><th scope="row">${esc(row.need)}</th><td>${row.href ? `<a href="${esc(row.href)}">${esc(row.option)}</a>` : esc(row.option)}</td><td>${esc(row.check)}</td></tr>`).join('');
+ return `<section class="category-comparison" id="${decision.id}" aria-labelledby="${decision.id}-titel">
+  <h2 id="${decision.id}-titel">${esc(decision.title)}</h2><p>${esc(decision.answer)}</p>
+  <p class="category-table-hint">${copy.de.scroll}</p><div class="category-table-scroll" role="region" aria-labelledby="${decision.id}-titel" tabindex="0"><table>
+  <thead><tr><th scope="col">${copy.de.need}</th><th scope="col">${copy.de.consider}</th><th scope="col">${copy.de.check}</th></tr></thead><tbody>${rows}</tbody></table></div>
+  <p>${esc(decision.measure)}</p><p class="shop-source-date">Quellen geprüft am <time datetime="${decision.checked}">${decision.checked}</time>.</p>
+  <ul>${sourceHTML(decision.sources,'de',esc)}</ul>
+ </section>`;
+}
+
+function humidityDecisionText(decision,origin) {
+ if (!decision) return [];
+ return [decision.title,decision.answer,...decision.rows.map(row =>
+  `${row.need} — ${row.option}. ${row.check}${row.href ? ' '+origin+row.href : ''}`),
+  decision.measure,'Quellen geprüft am '+decision.checked+'.',...decision.sources.map(source => source.label+': '+source.url)];
+}
+
 export function categoryPageHTML({record,updated,lang,route,esc,products=loadHomeCatalog()}){
  const c=copy[lang],d=record[lang],market=homeCatalogCopy(lang),group=homeCatalogCategories.find(g=>g.id===record.id),selected=categoryProducts(record,products,lang),byId=new Map(selected.map(p=>[p.id,p]));
+ const humidity=humidityDecision(record,lang,products,route);
  const related=record.related.map(id=>homeCatalogCategories.find(g=>g.id===id));
- return `<nav class="breadcrumb" aria-label="${c.home}"><a href="${route(lang)}">${c.home}</a><span>/</span><a href="${route(lang,'shop')}">${c.catalogue}</a><span>/</span><span>${esc(group[lang])}</span></nav><article class="category-guide" data-category-guide="${record.id}"><header class="category-guide-hero"><p class="category-guide-kicker">${esc(group[lang])}</p><h1>${esc(d.title)}</h1><p class="category-direct-answer" data-category-answer>${esc(d.answer)}</p><p class="category-guide-dates">${c.updated}: <time datetime="${updated}">${updated}</time> · ${c.checked}: <time datetime="${record.checked}">${record.checked}</time></p><nav class="category-guide-jumps" aria-label="${c.decisions}">${d.smartPlugDecision?'<a class="button primary" href="#strommessung">P110 und P110M vergleichen</a>':''}<a class="button${d.smartPlugDecision?'':' primary'}" href="#category-models">${c.modelJump} (${selected.length})</a><a class="button" href="#category-comparison">${c.compareJump}</a><a href="#category-faq">${c.faq}</a></nav></header>${smartPlugDecisionHTML(d.smartPlugDecision,esc)}<section class="category-decisions" id="category-decisions"><h2>${c.decisions}</h2><ol>${d.decisions.map(x=>`<li><h3>${esc(x.title)}</h3><p>${esc(x.body)}</p></li>`).join('')}</ol></section><section class="category-comparison" id="category-comparison"><h2>${c.comparison}</h2><p class="category-table-hint">${c.scroll}</p><div class="category-table-scroll" role="region" aria-label="${c.comparison}" tabindex="0"><table><thead><tr><th scope="col">${c.need}</th><th scope="col">${c.consider}</th><th scope="col">${c.check}</th></tr></thead><tbody>${d.comparisons.map(row=>`<tr><th scope="row">${esc(row.need)}</th><td><p>${esc(row.consider)}</p><div class="category-model-links" aria-label="${c.examples}">${localProductLinks(row.productIds,byId,esc)}</div></td><td>${esc(row.check)}</td></tr>`).join('')}</tbody></table></div></section><section class="category-buying-checks"><h2>${c.before}</h2><ul>${d.beforeBuying.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></section><section class="category-models" id="category-models" data-category-models><header><h2>${c.models}</h2><p class="category-market">${market.market}</p><p>${market.notice}</p></header>${homeCatalogProductCardsHTML({lang,esc,merchantURL,disclosure:shoppingCopy[lang].disclosure,products:selected,placement:'guide'})}</section><section class="category-faq" id="category-faq"><h2>${c.faq}</h2>${d.faq.map(q=>`<details><summary>${esc(q.question)}</summary><p>${esc(q.answer)}</p></details>`).join('')}</section><section class="category-sources" id="category-sources"><h2>${c.sources}</h2><p>${c.method}</p><p>${c.sourceMethod}</p><ul>${sourceHTML(categorySources(record,products,lang),lang,esc)}</ul></section><nav class="category-related" aria-label="${c.related}"><h2>${c.related}</h2>${related.map(g=>`<a href="${route(lang,'shop/categories/'+g.id)}">${g[lang]} →</a>`).join('')}<a href="${route(lang,'shop')}#catalog-category-${record.id}">${c.filtered}</a><a href="${route(lang,'shop')}">${c.all}</a></nav></article>`;
+ return `<nav class="breadcrumb" aria-label="${c.home}"><a href="${route(lang)}">${c.home}</a><span>/</span><a href="${route(lang,'shop')}">${c.catalogue}</a><span>/</span><span>${esc(group[lang])}</span></nav><article class="category-guide" data-category-guide="${record.id}"><header class="category-guide-hero"><p class="category-guide-kicker">${esc(group[lang])}</p><h1>${esc(d.title)}</h1><p class="category-direct-answer" data-category-answer>${esc(d.answer)}</p><p class="category-guide-dates">${c.updated}: <time datetime="${updated}">${updated}</time> · ${c.checked}: <time datetime="${record.checked}">${record.checked}</time></p><nav class="category-guide-jumps" aria-label="${c.decisions}">${d.smartPlugDecision?'<a class="button primary" href="#strommessung">P110 und P110M vergleichen</a>':''}<a class="button${d.smartPlugDecision?'':' primary'}" href="#category-models">${c.modelJump} (${selected.length})</a>${humidity?'<a class="button" href="#raumfeuchte-messen">Raumfeuchte messen</a>':''}<a class="button" href="#category-comparison">${c.compareJump}</a><a href="#category-faq">${c.faq}</a></nav></header>${smartPlugDecisionHTML(d.smartPlugDecision,esc)}${humidityDecisionHTML(humidity,esc)}<section class="category-decisions" id="category-decisions"><h2>${c.decisions}</h2><ol>${d.decisions.map(x=>`<li><h3>${esc(x.title)}</h3><p>${esc(x.body)}</p></li>`).join('')}</ol></section><section class="category-comparison" id="category-comparison"><h2>${c.comparison}</h2><p class="category-table-hint">${c.scroll}</p><div class="category-table-scroll" role="region" aria-label="${c.comparison}" tabindex="0"><table><thead><tr><th scope="col">${c.need}</th><th scope="col">${c.consider}</th><th scope="col">${c.check}</th></tr></thead><tbody>${d.comparisons.map(row=>`<tr><th scope="row">${esc(row.need)}</th><td><p>${esc(row.consider)}</p><div class="category-model-links" aria-label="${c.examples}">${localProductLinks(row.productIds,byId,esc)}</div></td><td>${esc(row.check)}</td></tr>`).join('')}</tbody></table></div></section><section class="category-buying-checks"><h2>${c.before}</h2><ul>${d.beforeBuying.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></section><section class="category-models" id="category-models" data-category-models><header><h2>${c.models}</h2><p class="category-market">${market.market}</p><p>${market.notice}</p></header>${homeCatalogProductCardsHTML({lang,esc,merchantURL,disclosure:shoppingCopy[lang].disclosure,products:selected,placement:'guide'})}</section><section class="category-faq" id="category-faq"><h2>${c.faq}</h2>${d.faq.map(q=>`<details><summary>${esc(q.question)}</summary><p>${esc(q.answer)}</p></details>`).join('')}</section><section class="category-sources" id="category-sources"><h2>${c.sources}</h2><p>${c.method}</p><p>${c.sourceMethod}</p><ul>${sourceHTML(categorySources(record,products,lang),lang,esc)}</ul></section><nav class="category-related" aria-label="${c.related}"><h2>${c.related}</h2>${related.map(g=>`<a href="${route(lang,'shop/categories/'+g.id)}">${g[lang]} →</a>`).join('')}<a href="${route(lang,'shop')}#catalog-category-${record.id}">${c.filtered}</a><a href="${route(lang,'shop')}">${c.all}</a></nav></article>`;
 }
 
 export function categoryPageText({record,updated,lang,route,origin,products=loadHomeCatalog()}){
  const c=copy[lang],d=record[lang],selected=categoryProducts(record,products,lang),byId=new Map(selected.map(p=>[p.id,p])),slug='shop/categories/'+record.id;
- return[d.title,d.description,d.answer,c.updated+': '+updated,c.checked+': '+record.checked,...smartPlugDecisionText(d.smartPlugDecision,origin),c.decisions,...d.decisions.flatMap(x=>[x.title,x.body]),c.comparison,...d.comparisons.flatMap(x=>[x.need,x.consider,x.check,...x.productIds.map(id=>byId.get(id).name+': '+origin+route(lang,slug)+'#catalog-item-'+id)]),c.before,...d.beforeBuying,c.models,homeCatalogCopy(lang).notice,shoppingCopy[lang].disclosure,...homeCatalogProductText({lang,route,origin,slug,products:selected}),c.faq,...d.faq.flatMap(q=>[q.question,q.answer]),c.sources,c.method,c.sourceMethod,...categorySources(record,products,lang).map(s=>s.label+(amazonSource(s.url)?' — '+c.sourceAmazon:': '+s.url)),c.related,...record.related.map(id=>homeCatalogCategories.find(g=>g.id===id)[lang]+': '+origin+route(lang,'shop/categories/'+id)),c.filtered+': '+origin+route(lang,'shop')+'#catalog-category-'+record.id,c.all+': '+origin+route(lang,'shop')];
+ return[d.title,d.description,d.answer,c.updated+': '+updated,c.checked+': '+record.checked,...smartPlugDecisionText(d.smartPlugDecision,origin),...humidityDecisionText(humidityDecision(record,lang,products,route),origin),c.decisions,...d.decisions.flatMap(x=>[x.title,x.body]),c.comparison,...d.comparisons.flatMap(x=>[x.need,x.consider,x.check,...x.productIds.map(id=>byId.get(id).name+': '+origin+route(lang,slug)+'#catalog-item-'+id)]),c.before,...d.beforeBuying,c.models,homeCatalogCopy(lang).notice,shoppingCopy[lang].disclosure,...homeCatalogProductText({lang,route,origin,slug,products:selected}),c.faq,...d.faq.flatMap(q=>[q.question,q.answer]),c.sources,c.method,c.sourceMethod,...categorySources(record,products,lang).map(s=>s.label+(amazonSource(s.url)?' — '+c.sourceAmazon:': '+s.url)),c.related,...record.related.map(id=>homeCatalogCategories.find(g=>g.id===id)[lang]+': '+origin+route(lang,'shop/categories/'+id)),c.filtered+': '+origin+route(lang,'shop')+'#catalog-category-'+record.id,c.all+': '+origin+route(lang,'shop')];
 }
 
 export function categoryPageSchema({record,lang,route,origin,products=loadHomeCatalog()}){
@@ -114,7 +166,7 @@ export function buildCategoryPages({emit,route,esc,locales,origin,products=loadH
  validateCategoryGuides(guides,products);
  for(const lang of Object.keys(locales))for(const category of homeCatalogCategories){
   const record=guides.categories.find(c=>c.id===category.id),d=record[lang];
-  const updated=[guides.updated,d.smartPlugDecision ? '2026-11-22' : null,d.smartPlugDecision?.checked,...categoryProducts(record,products,lang).map(p=>p.checked)].filter(Boolean).sort().at(-1);
+  const updated=[guides.updated,d.smartPlugDecision ? '2026-11-22' : null,d.smartPlugDecision?.checked,lang==='de'&&record.id==='smart-home' ? roomHumidity.checked : null,...categoryProducts(record,products,lang).map(p=>p.checked)].filter(Boolean).sort().at(-1);
   const args={record,updated,lang,route,esc,origin,products};
   emit(lang,'shop/categories/'+record.id,d.title,d.description,categoryPageHTML(args),categoryPageText(args),categoryPageSchema(args),updated);
  }

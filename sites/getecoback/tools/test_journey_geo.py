@@ -57,10 +57,11 @@ class JourneyGeo(unittest.TestCase):
             self.assertNotIn('amazon.', result)
             self.assertNotIn('data-country-action', result)
 
-    def test_laundry_handoffs_keep_only_the_two_reviewed_noncommercial_targets(self):
+    def test_tds_handoffs_keep_only_reviewed_noncommercial_targets(self):
         examples = [
             ('/waeschetrockner-oder-luftentfeuchter.html', 'de', 'https://thedollscout.com/de/ai-tools/dach-meter-fit#messgeraet-ausleihen-oder-kaufen'),
             ('/en/guide/heated-airer-vs-dehumidifier.html', 'en', 'https://thedollscout.com/ai-tools/uk-laundry-session'),
+            ('/guide/richtig-lueften-im-winter.html', 'de', 'https://thedollscout.com/de/shop/categories/smart-home#raumfeuchte-messen'),
         ]
         for route, lang, href in examples:
             html = (f'<article><p><a href="{href}">Compare</a> '

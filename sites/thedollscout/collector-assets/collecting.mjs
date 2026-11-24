@@ -1,5 +1,6 @@
 // Interaction never sends filter choices, clipboard data or user inputs.
 import {installAffiliateMeasurement} from './affiliate-measurement.mjs?v=2026-11-15.german1';
+import {winterHumidityArrival} from './winter-humidity-referral.mjs';
 installAffiliateMeasurement();
 const filters=document.querySelector('.filters');
 if(filters){filters.hidden=false;filters.addEventListener('click',event=>{const button=event.target.closest('[data-filter]');if(!button)return;const filter=button.dataset.filter;if(!['all','blind','plush'].includes(filter))return;for(const b of filters.querySelectorAll('button'))b.setAttribute('aria-pressed',String(b===button));let count=0;for(const card of document.querySelectorAll('[data-kind]')){card.hidden=filter!=='all'&&!card.dataset.kind.split(' ').includes(filter);if(!card.hidden)count++;}const status=document.querySelector('#filter-status');status.textContent=count+' '+status.dataset.suffix;});}
@@ -12,8 +13,16 @@ function optedOut(){try{return localStorage.getItem('tds_analytics_choice_v1')==
 const measurable=location.hostname==='thedollscout.com'&&!['ci','__ci','__probe','qa','__qa'].some(k=>params.has(k))&&params.get('utm_source')!=='verify'&&!location.pathname.startsWith('/__ci')&&!navigator.webdriver&&!/bot|crawler|spider|headless/i.test(navigator.userAgent)&&!navigator.globalPrivacyControl&&navigator.doNotTrack!=='1'&&!optedOut();
 if(measurable){
  let ref='';try{ref=new URL(document.referrer).origin;}catch{}
- const body=JSON.stringify({p:new URL(document.querySelector('link[rel=canonical]').href).pathname,e:'',r:ref});
+ const pagePath=new URL(document.querySelector('link[rel=canonical]').href).pathname;
+ const body=JSON.stringify({p:pagePath,e:'',r:ref});
  fetch('/api/ev',{method:'POST',body,keepalive:true}).catch(()=>{});
+ const winter=window.top===window.self && location.pathname===pagePath && winterHumidityArrival(pagePath,location.hash,ref);
+ if(winter){
+  try {
+   if(localStorage.getItem('fleet_ga4_choice_v1')!=='denied')
+    fetch('/api/ev',{method:'POST',body:JSON.stringify(winter),keepalive:true}).catch(()=>{});
+  } catch {}
+ }
 }
 const recorded=new Set();
 function recordAction(name){if(!measurable||optedOut()||recorded.has(name))return;recorded.add(name);window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name}}));const body=JSON.stringify({p:new URL(document.querySelector('link[rel=canonical]').href).pathname,e:name,r:''});fetch('/api/ev',{method:'POST',body,keepalive:true}).catch(()=>{});}
