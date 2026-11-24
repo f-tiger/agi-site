@@ -24,6 +24,11 @@ await Promise.all([...document.querySelectorAll('script[type=module][src]')].fil
 let adapter=null;
 const guard=document.querySelector('script[src*="/assets/legacy-tool-guard.mjs"]');
 if(guard){const {config}=await import(guard.src),c=config[location.pathname];if(c){const go=document.getElementById(c.button);adapter={go,fields:Object.keys(c.inputs).map(id=>document.getElementById(id)),result:document.getElementById(c.result),error:document.getElementById('legacy-tool-error'),anchor:go.closest('form,.calc,.calculator,.tool')||go.parentElement};const box=go.closest('form,.calc,.calculator,.tool')||go.parentElement;adapter.fields.push(...box.querySelectorAll('select,input[type=checkbox],input[type=range]'));}}
+const heatCost=adapter?.anchor?.matches('#eb-hk-calc[data-heat-cost]')
+ ?adapter.anchor:null;
+const heatCostShare=heatCost?new URL('#eb-hk-calc',canonical).href:null;
+const heatCostTitle='Heizkosten vergleichen: Was ändert der COP bei gleicher Wärmemenge?';
+if(heatCost)adapter.fields=[...heatCost.querySelectorAll('select,input[type=number]')];
 const modern=document.querySelector('[data-winter-tool],[data-au-cost]');
 if(modern)adapter={form:modern.querySelector('form'),result:modern.querySelector('[data-result]'),error:modern.querySelector('[data-error]'),anchor:modern.querySelector('form')};
 const household=document.querySelector('[data-household]');if(household)adapter={form:household,result:document.querySelector('#result'),anchor:household};
@@ -53,6 +58,10 @@ function read(){const raw=Object.fromEntries(adapter.fields.map(e=>[key(e),e.typ
 function label(e){const l=e.labels?.[0];if(!l)return key(e);const c=l.cloneNode(true);c.querySelectorAll('input,select,button').forEach(x=>x.remove());return clean(c.textContent)||key(e);}
 function checked(raw){
  if(!raw||typeof raw!=='object'||Array.isArray(raw))throw Error('schema');
+ // Older heating links stored the tariff alone and restored the original settings.
+ if(heatCost&&Object.keys(raw).length===1&&Object.hasOwn(raw,'hk-price')){
+  raw={'hk-qm':'2000','hk-h':'4','hk-price':raw['hk-price'],'hk-cop':'3'};
+ }
  if(laundry&&(!['estimate','measured'].includes(raw.method)||!['cycle','hundred'].includes(raw.dryerBasis)))throw Error('enum');
  const fields=fieldsFor(raw),keys=Object.keys(raw);
  // Existing laundry links included every field. Read that exact old shape,
@@ -101,13 +110,13 @@ function openShare(withResult){
  }else{
   text=[title,provenance,s?.text||'',...(s?['',t[3]+':',...fieldsFor(s.values).filter(e=>key(e)!=='own').map(e=>label(e)+': '+s.values[key(e)])]:[]),'',t[18],t[17]+': '+url].filter(Boolean).join('\n');
  }
- const note=cellarShare||cleanLaundryShare?'Der Text kann deine Rechenwerte enthalten. Reddit und X erhalten über diese Schaltflächen nur den Rechnerlink und einen festen Titel. Beschreibe deine Situation in eigenen Worten und beachte die Regeln der Community.':t[10];
+ const note=cellarShare||cleanLaundryShare||heatCostShare?'Der Text kann deine Rechenwerte enthalten. Reddit und X erhalten über diese Schaltflächen nur den Rechnerlink und einen festen Titel. Beschreibe deine Situation in eigenen Worten und beachte die Regeln der Community.':t[10];
  genericDraft.replaceChildren(node('h3',t[19]),node('p',note,'eco-note'));
  const area=node('textarea');area.value=text;area.readOnly=true;area.setAttribute('aria-label',t[19]);genericDraft.append(area);
  const links=node('div',null,'eco-links');
  for(const platform of ['reddit','x']){
-  const u=cellarShare?.CELLAR_SHARE_URL??cleanLaundryShare?.LAUNDRY_SHARE_URL??shareURL(s?.values,platform);
-  const shareTitle=cellarShare?.CELLAR_SHARE_TITLE??(cleanLaundryShare?'Trocknungskosten je Ladung vergleichen'
+  const u=cellarShare?.CELLAR_SHARE_URL??cleanLaundryShare?.LAUNDRY_SHARE_URL??heatCostShare??shareURL(s?.values,platform);
+  const shareTitle=cellarShare?.CELLAR_SHARE_TITLE??(heatCostShare?heatCostTitle:null)??(cleanLaundryShare?'Trocknungskosten je Ladung vergleichen'
    :platform==='reddit'?title.slice(0,180)+(provenance?' · '+provenance:'')
    :[title.slice(0,65),provenance,s?clean(s.text).slice(0,85):t[18]].filter(Boolean).join(' · ').slice(0,210));
   const target=new URL(platform==='reddit'?'https://www.reddit.com/submit':'https://x.com/intent/post');
@@ -147,7 +156,7 @@ if(adapter){
  // Existing reset/import controls can invalidate output without dispatching input.
  const watch=new MutationObserver(()=>{if(!snapshot||inRun)return;try{if(adapter.result.hidden||getComputedStyle(adapter.result).display==='none'||adapter.error?.textContent.trim()||JSON.stringify(checked(read()))!==JSON.stringify(snapshot.values))invalidate();}catch{invalidate();}});
  watch.observe(adapter.result,{attributes:true,attributeFilter:['hidden','style'],childList:true,subtree:true,characterData:true});if(adapter.error)watch.observe(adapter.error,{childList:true,subtree:true,characterData:true});
- if(location.pathname==='/guide/keller-lueften-sommer.html'&&adapter.anchor.id==='taupunkt'){
+ if(heatCost||(location.pathname==='/guide/keller-lueften-sommer.html'&&adapter.anchor.id==='taupunkt')){
   adapter.anchor.after(panel);
  }else{
   adapter.anchor.before(panel);

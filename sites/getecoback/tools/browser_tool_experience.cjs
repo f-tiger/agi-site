@@ -15,15 +15,23 @@ if(url==='/en/filter-finder.html'){
 const panel=p.locator('#eco-tool-experience');await panel.locator('[type=button]').first().waitFor();await p.waitForSelector('#eco-tool-experience[data-ready]');checks++;
 const plainLaundryShare=url==='/waeschetrockner-oder-luftentfeuchter.html';
 const plainCellarShare=url==='/guide/keller-lueften-sommer.html';
+const plainHeatingShare=url==='/guide/heizkosten-vergleich-rechner.html';
 for(const width of [320,390,1280]){await p.setViewportSize({width,height:844});assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),url+' overflow '+width);checks++;}
 if(await panel.getAttribute('data-quick')){quick++;const preview=panel.locator('.eco-preview');assert(await preview.isVisible(),url+' no initial result');assert(!(await preview.innerText()).includes('NaN'));assert.equal((await p.evaluate(()=>window.__legacy.filter(a=>a[0]==='event'&&/calc|check|fit/.test(a[1])))).length,0,url+' example emitted completion');assert.equal((await p.evaluate(()=>window.__business.filter(e=>e.name==='legacy:tool_complete'||e.name==='legacy:tool_start'))).length,0,url+' example counted');checks+=4;
 const choices=panel.locator(':scope > .eco-actions').first().locator('button');if(await choices.count()>1)await choices.nth(1).click();const prepare=panel.locator(':scope > .eco-actions').last().locator('button').first();await prepare.click();const draft=panel.locator('textarea');assert((await draft.inputValue()).includes('https://getecoback.com'));const link=await panel.locator('.eco-fallback').getAttribute('href'),u=new URL(link);assert(u.hash.startsWith('#eco-v1='));assert.deepEqual([...u.searchParams.keys()].sort(),plainCellarShare?[]:['utm_campaign','utm_medium','utm_source']);const data=JSON.parse(decodeURIComponent(u.hash.slice(8)));assert.equal(data.path,url);checks+=4;
 for(const platform of ['Reddit','X']){
  const external=new URL(await panel.locator('.eco-links a').filter({hasText:new RegExp('^'+platform+'$')}).getAttribute('href'));
  const shared=new URL(external.searchParams.get('url'));
- assert.equal(shared.pathname,url);assert.equal(shared.hash,plainLaundryShare?'#laundry-check':plainCellarShare?'#taupunkt':u.hash);checks+=2;
- if(plainLaundryShare||plainCellarShare){assert.equal(shared.origin,origin);assert.equal(shared.search,'');checks+=2;}
+ assert.equal(shared.pathname,url);assert.equal(shared.hash,plainLaundryShare?'#laundry-check':plainCellarShare?'#taupunkt':plainHeatingShare?'#eb-hk-calc':u.hash);checks+=2;
+ if(plainLaundryShare||plainCellarShare||plainHeatingShare){assert.equal(shared.origin,origin);assert.equal(shared.search,'');checks+=2;}
  if(plainCellarShare){assert.equal(external.searchParams.get(platform==='Reddit'?'title':'text'),'Keller lüften? Taupunkte und kalte Wand vergleichen');checks++;}
+ if(plainHeatingShare){
+  const titleKey=platform==='Reddit'?'title':'text';
+  assert.deepEqual([...external.searchParams.keys()].sort(),[titleKey,'url'].sort());
+  assert.equal(external.searchParams.get(titleKey),'Heizkosten vergleichen: Was ändert der COP bei gleicher Wärmemenge?');
+  assert.deepEqual(Object.keys(data.values).sort(),['hk-cop','hk-h','hk-price','hk-qm']);
+  checks+=3;
+ }
 }
 if(plainCellarShare){
  const {cellarVentilationShareText}=await import('../site/assets/keller-lueften-share.mjs');

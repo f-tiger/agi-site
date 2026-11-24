@@ -1,21 +1,24 @@
 # Heizkosten-Vergleich: Heizlüfter, Infrarot oder Klima?
 
-> Was kostet dein Zusatzheizen pro Winter? Rechner vergleicht Heizlüfter, Infrarotheizung und Klimaanlage mit Wärmepumpenfunktion — ehrlich.
+> Stromkosten für dieselbe Wärmemenge vergleichen: Heizlüfter, Infrarot und Klimaanlage mit einstellbarem COP, eigenen Tarifangaben und offenem Rechenweg.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/heizkosten-vergleich-rechner.html
 
-Heizlüfter, Infrarotheizung oder Klimaanlage mit Wärmepumpenfunktion: alle drei heizen elektrisch — aber pro Winter liegen zwischen ihnen Hunderte Euro. Dieser Rechner vergleicht alle drei für deinen Raum, statt jedes Gerät einzeln zu rechnen.
+Du kannst dieselbe Wärmemenge mit Heizlüfter, Infrarotheizung oder einer reversiblen Klimaanlage bereitstellen. Vergleiche dafür den Strombedarf und deinen Arbeitspreis. Der COP beschreibt, wie viel Wärme eine Wärmepumpe je eingesetzter Kilowattstunde Strom liefert.
 
-**Kurz gesagt:** Heizlüfter und Infrarotheizung wandeln Strom **1:1** in Wärme (2 kWh Strom = 2 kWh Wärme); eine Klimaanlage mit Wärmepumpenfunktion liefert pro kWh Strom rund das **Dreifache** an Wärme (COP ~3) — die gleiche Wärme kostet also nur etwa ein Drittel. Beispiel 20 m², 4 h täglich, 5 Wintermonate, 37 ct/kWh: Heizlüfter/Infrarot ≈ **440 €**, Klima mit WP-Funktion ≈ **150 €**. Dafür kostet die Klima in der Anschaffung ein Vielfaches — der Rechner zeigt, ab wann sich das dreht.
+**Beispiel:** 2 kW Wärmeleistung × 4 Stunden am Tag × 150 Tage ergeben 1.200 kWh Wärme. Bei 37 ct/kWh kosten Heizlüfter und Infrarotheizung jeweils 444 €. Die reversible Klimaanlage kostet bei angenommenem COP 2 rund 222 €, bei COP 3 rund 148 €. Diese Werte sind frei gewählte Rechenannahmen. Für einen Kaufvergleich brauchst du außerdem deine Anschaffungs-, Montage- und Wartungskosten.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks sind Affiliate-Links — du zahlst denselben Preis.
+EcoBack finanziert sich unter anderem über gekennzeichnete Affiliate-Links auf anderen Ratgeberseiten.
 
-**🔥 Dein Winter-Vergleich in 30 Sekunden**
-Raumgröße
+## Stromkosten bei gleicher Wärmemenge
 
-bis 10 m² (≈1.000 W nötig)
-15–20 m² (≈2.000 W nötig)
-25–30 m² (≈2.500 W nötig)
+Die voreingestellten Werte sind ein Rechenbeispiel. Gib den COP für vergleichbare Betriebsbedingungen ein, wenn er dir vorliegt. Ohne JavaScript kannst du die [Beispieltabelle](https://getecoback.com/guide/heizkosten-vergleich-rechner.html#kosten-pro-winter-richtwerte) nutzen.
+
+Angenommene Wärmeleistung
+
+1,0 kW Wärme
+2,0 kW Wärme
+2,5 kW Wärme
 
 Heizstunden pro Tag
 
@@ -26,31 +29,37 @@ Heizstunden pro Tag
 
 Strompreis (Cent pro kWh)
 
-Winterkosten vergleichen →
+COP der reversiblen Klimaanlage (Annahme)
+
+Stromkosten vergleichen
+
+[Vor dem Kauf Heizfreigabe, Aufstellung und Angebot prüfen](https://getecoback.com/guide/klimaanlage-mit-heizfunktion.html#worauf-beim-kauf-achten)
 
 ## Wie der Vergleich rechnet
 
-Annahmen, ehrlich offengelegt: Heizsaison = **150 Tage** (5 Monate). Heizlüfter und Infrarotheizung heizen mit Wirkungsgrad 1:1 (Widerstandsheizung — physikalisch identisch; Infrarot kann in der Praxis durch gezielte Strahlungswärme mit weniger Laufzeit auskommen). Die Klimaanlage rechnet mit **COP 3** (mildes Winterwetter; bei strengem Frost eher 2). Die benötigte Leistung schätzen wir mit ~100 W/m² für Zusatzheizung in normal gedämmten Räumen — gut gedämmte Räume brauchen weniger.
+Wärmemenge = Wärmeleistung in kW × Stunden pro Tag × 150 Tage. Heizlüfter und Infrarotheizung benötigen im Vergleich für 1 kWh Wärme 1 kWh Strom. Für die reversible Klimaanlage teilst du dieselbe Wärmemenge durch den angenommenen COP. Die Stromkosten sind kWh Strom × eigener Arbeitspreis.
 
-## Kosten pro Winter (Richtwerte, 20 m², 37 ct/kWh)
+Die Wärmeleistung ist eine Annahme für den Vergleich und ersetzt keine Heizlastberechnung. Die Rechnungen setzen gleiche bereitgestellte Wärme voraus. Warmwasser, Kauf, Montage und Wartung sind nicht enthalten. Wenn du den COP für deine Bedingungen nicht kennst, bleiben die Werte Szenarien. Schau ins Datenblatt für dein Modell und dieselben Bedingungen. [EU-Produktinformationen zum saisonalen SCOP](https://energy-efficient-products.ec.europa.eu/product-list/air-conditioners-and-comfort-fans_en) und [Außentemperatur und Heizleistung prüfen](https://getecoback.com/guide/klimaanlage-mit-heizfunktion.html#uebergangsheizen-herbst).
 
-| Gerät | 4 h/Tag | 0,5 h/Tag (Bad) | Anschaffung |
-| --- | --- | --- | --- |
-| Heizlüfter (2.000 W) | ~444 € | ~55 € | ab 25 € |
-| Infrarotheizung (2.000 W) | ~444 € | ~55 € | ab 180 € |
-| Klima mit WP-Funktion | ~148 € | ~19 € | ab 300 € |
+## Rechenbeispiele bei 1.200 kWh Wärme und 37 ct/kWh
 
-150 Heiztage angenommen. Faustregel: Je mehr Stunden du heizt, desto schneller rechnet sich die Wärmepumpen-Klima — bei 4 h/Tag spart sie ~300 € pro Winter gegenüber der Widerstandsheizung.
+| Szenario | Strom | Kosten |
+| --- | --- | --- |
+| Heizlüfter oder Infrarot | 1.200 kWh | 444 € |
+| Klimaanlage bei COP 2 | 600 kWh | 222 € |
+| Klimaanlage bei COP 3 | 400 kWh | 148 € |
+
+Beim jeweils gleichen Arbeitspreis sinken die reinen Stromkosten bei einem COP über 1. Ob sich eine Anschaffung lohnt, hängt von konkreten Angeboten und der Nutzung ab.
 
 ## Häufige Fragen
 
-**Was ist die günstigste elektrische Zusatzheizung?**Im Betrieb ist eine Klimaanlage mit Wärmepumpenfunktion am günstigsten: Sie liefert pro kWh Strom rund das Dreifache an Wärme (COP ~3) und kostet damit nur etwa ein Drittel von Heizlüfter oder Infrarotheizung. Dafür ist die Anschaffung deutlich teurer. Heizlüfter sind in der Anschaffung am billigsten, im Dauerbetrieb aber am teuersten.
+**Was ist die günstigste elektrische Zusatzheizung?**Bei gleicher Wärmemenge und gleichem Tarif liefert eine reversible Klimaanlage mit einem COP über 1 niedrigere reine Stromkosten als eine elektrische Widerstandsheizung. Kauf, Montage und Wartung können die Gesamtkosten verändern.
 
-**Heizlüfter oder Infrarotheizung — was kostet weniger?**Physikalisch wandeln beide Strom 1:1 in Wärme um — bei gleicher Leistung und Laufzeit kosten sie gleich viel. In der Praxis kann eine Infrarotheizung sparen, weil ihre Strahlungswärme gezielt Personen wärmt statt der ganzen Raumluft: Man kommt oft mit weniger Leistung oder kürzerer Laufzeit aus.
+**Heizlüfter oder Infrarotheizung — was kostet weniger?**Bei gleicher Leistung, Laufzeit und gleichem Strompreis kosten beide gleich viel. Unterschiedliche Laufzeiten und Nutzungsarten können das Ergebnis verändern.
 
-**Wie viel kostet ein Heizlüfter pro Winter?**Ein 2.000-Watt-Heizlüfter, der 4 Stunden täglich über 5 Wintermonate läuft, verbraucht rund 1.200 kWh — bei 37 Cent pro kWh etwa 444 Euro. Als kurzzeitige Badheizung (30 Minuten täglich) sind es dagegen nur rund 55 Euro pro Winter.
+**Wie viel kostet ein Heizlüfter pro Winter?**Bei 2 kW, vier Stunden am Tag und 150 Tagen sind es 1.200 kWh. Bei angenommenen 37 Cent je kWh ergeben sich 444 Euro. Thermostat-Abschaltungen können die Laufzeit verkürzen.
 
-**Lohnt sich eine Klimaanlage mit Heizfunktion zum Heizen?**Als Zusatzheizung in der Übergangszeit oft ja: Dank Wärmepumpenprinzip kostet die gleiche Wärmemenge nur rund ein Drittel. Ehrlich dazu: Bei Außentemperaturen deutlich unter null sinkt die Effizienz (COP eher 2 statt 3), und das Gerät muss als Wärmepumpen-Modell ausgelegt sein — nicht jede mobile Klimaanlage heizt effizient.
+**Lohnt sich eine Klimaanlage mit Heizfunktion zum Heizen?**Vergleiche für die konkrete reversible Anlage Heizleistung und Stromaufnahme bei passenden Bedingungen. Der eingestellte COP dient der Szenariorechnung. Für den Kaufvergleich zählen außerdem Angebot, Aufstellung und Nutzung.
 
 **Weiter im Thema**
 [Heizlüfter: Stromverbrauch & Kosten im Detail →](https://getecoback.com/guide/heizluefter-stromverbrauch.html)
