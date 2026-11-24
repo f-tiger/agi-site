@@ -2,6 +2,7 @@ import {CELLAR_PAGE, WINDOW_TIKTOK_GUIDE_PAGE} from './affiliate-meta.mjs';
 import {WINDOW_ENTRY_PAGE} from './fenstersauger-entry.mjs';
 import {PORTASPLIT_ENTRY_PAGE} from './portasplit-entry.mjs';
 import {N90_ENTRY_PAGE, N90_PRODUCT_URL} from './n90-entry.mjs';
+import {WINDOW_CONDENSATION_PAGE} from '../site/assets/fenster-taucheck.mjs';
 
 // Bounded, aggregate-only history for distinguishing demand/mix changes from
 // telemetry loss. No identifiers, raw paths, referrers or outbound URLs leave
@@ -36,6 +37,8 @@ export const AUDIT_SQL = `SELECT day, name, page, ref,
       AND json_extract(meta,'$.mcp_n90_entry') = 1
       AND (name='page_view' OR (name='affiliate_click' AND json_extract(meta,'$.link_url')='${N90_PRODUCT_URL}')),0)
     ELSE 0 END AS n90_entry,
+  COUNT(CASE WHEN page='${WINDOW_CONDENSATION_PAGE}' AND name='page_view' AND ua_class='human'
+    THEN 1 END) AS window_human_views,
   COUNT(*) AS n, date('now') AS end_exclusive
 FROM ev
 WHERE (name IN ('page_view','affiliate_click')
@@ -50,6 +53,10 @@ const GAPS = [
   {day:'2026-09-26',approx_start_utc:'10:00'},
 ];
 const gapDays = new Set(GAPS.map(x=>x.day));
+const redditReferralHosts = new Set([
+  'reddit.com', 'www.reddit.com', 'old.reddit.com', 'new.reddit.com',
+  'm.reddit.com', 'out.reddit.com', 'np.reddit.com',
+]);
 export function pageGroup(path='') {
   if (/^\/guide\/(?:balkon(?:kraftwerk|speicher)-|growatt-noah-2000-probleme|stromausfall-heizen|klimaanlage-balkonkraftwerk)/.test(path)) return 'retired_storage';
   if (/\/(?:index\.html)?$/.test(path)) return 'home';
@@ -97,6 +104,7 @@ const range = (start,end)=>({...section(),start,end_exclusive:end,
   mcp_window_entry:null,
   mcp_portasplit_entry:null,
   window_tiktok:null,
+  window_reddit_referrals:null,
   mcp_drain_entry: end <= firstFullDrainDay ? null : {
     start: start < firstFullDrainDay ? firstFullDrainDay : start, end_exclusive:end, ...count(),
   },
@@ -143,6 +151,21 @@ function addWindowTikTok(section, row) {
   if (row.day < evidence.first_recorded_day) evidence.first_recorded_day = row.day;
   evidence[key] = (evidence[key] ?? 0) + row.n;
 }
+
+function addWindowReddit(section, row) {
+  if (row.name !== 'page_view' || row.page !== WINDOW_CONDENSATION_PAGE || !row.window_human_views) return;
+  const arrivals = section.window_reddit_referrals ??= {
+    human_classified_page_views:0,
+    page_views_with_referrer:0,
+    reddit_page_views:null,
+  };
+  arrivals.human_classified_page_views += row.window_human_views;
+  if (!row.ref) return;
+  arrivals.page_views_with_referrer += row.window_human_views;
+  arrivals.reddit_page_views = (arrivals.reddit_page_views ?? 0) +
+    (redditReferralHosts.has(row.ref) ? row.window_human_views : 0);
+}
+
 function add(s,r,channel) {
   const field=r.name==='page_view'?'page_views':'affiliate_clicks';
   s[field]+=r.n;
@@ -192,12 +215,17 @@ export async function affiliateAudit(db,classifyRef,now=new Date()) {
   const recentThree=range(dayAt(end,-3),end),previousThree=range(dayAt(end,-10),dayAt(end,-7));
   for(const r of rows) {
     if(!Number.isSafeInteger(r.n)||r.n<0||!byDay.has(r.day)||!['page_view','affiliate_click','eco_window_width_check'].includes(r.name)) throw Error('affiliate_audit_invalid');
+    const eligible = r.window_human_views ?? 0;
+    if (!Number.isSafeInteger(eligible) || eligible < 0 || eligible > r.n) throw Error('affiliate_audit_invalid');
     const wi=Math.floor((Date.parse(r.day)-Date.parse(start))/86400000/7);
     const recent=r.day>=recentThree.start;
     const previous=r.day>=previousThree.start&&r.day<previousThree.end_exclusive;
     addWindowTikTok(weeks[wi],r);
     if (recent) addWindowTikTok(recentThree,r);
     if (previous) addWindowTikTok(previousThree,r);
+    addWindowReddit(weeks[wi],r);
+    if (recent) addWindowReddit(recentThree,r);
+    if (previous) addWindowReddit(previousThree,r);
     if (r.name==='eco_window_width_check') continue;
     byDay.get(r.day)[r.name==='page_view'?'page_views':'affiliate_clicks']+=r.n;
     const channel=classifyRef(r.ref);
@@ -210,6 +238,7 @@ export async function affiliateAudit(db,classifyRef,now=new Date()) {
     metric:'recorded_events_not_users_or_orders',timezone:'UTC',start,end_exclusive:end,
     cohorts_v2_version:COHORTS_V2_VERSION,
     window_tiktok_note:'Complete UTC days start 2026-11-23. The fixed tags and same-site handoff mark three independent event counts. Unobserved stages are null. A shared or typed link can carry the fixed tags.',
+    window_reddit_note:'Human-classified view events on the German indoor window guide only. Reddit is an exact immediate referrer host. A missing referrer may hide a visit. No usable referrer evidence is null. This report does not attribute tool completions, affiliate clicks or orders.',
     known_collection_gaps:GAPS.filter(x=>x.day>=start&&x.day<end),
     note:'Missing events are not reconstructed. Gaps are known incidents, not an exhaustive uptime audit. Clicks / page views is an event ratio, not buyer conversion. Cohorts are fixed path rules, not randomized controls. Channel belongs to each event referrer, not session acquisition.',
     daily,weeks,last_three_complete_days:recentThree,same_weekdays_previous_week:previousThree,
