@@ -1,8 +1,8 @@
 {
-  "generated": "2026-11-23",
+  "generated": "2026-11-24",
   "note": "由 scripts/trend-radar.mjs 每日聚合五路站内信号生成。只排队不写事实；核实动作按硬规则执行。分数是领先指标的相对排序，不是预测。",
   "counts": {
-    "candidate": 31,
+    "candidate": 30,
     "category_hot": 0,
     "stale": 5,
     "demand": 0
@@ -64,7 +64,7 @@
     {
       "id": "aiflow:first",
       "type": "ai_referral",
-      "title": "AI 助手引流出现：www.perplexity.ai×10、kagi.com×2",
+      "title": "AI 助手引流出现：www.perplexity.ai×9、kagi.com×2",
       "why": "这是 AI 引用第一次转化为点击——哪些页面被引用、答的是什么问题，决定下一批内容怎么写",
       "action": "查快照中这些 ref 的落地页；把被引用页的模式（问题形、数据形、日期形）复制到同类页面",
       "refs": [
@@ -117,18 +117,6 @@
     {
       "id": "candidate:github.com",
       "type": "verify_candidate",
-      "title": "核实候选：Let your AI agents paint big arrows, boxes and text on your screen",
-      "why": "HN 391 分 / 174 评论（2026-10-10 发现）——外部热度已验证，站内尚未收录",
-      "action": "按收录标准核实 https://github.com/franzenzenhofer/big-arrow-on-the-screen；合格则中英同步入库，limits 走 limits-edit.mjs",
-      "refs": [
-        "https://github.com/franzenzenhofer/big-arrow-on-the-screen",
-        "https://news.ycombinator.com/item?id=50018817"
-      ],
-      "score": 60
-    },
-    {
-      "id": "candidate:github.com",
-      "type": "verify_candidate",
       "title": "核实候选：Get your coding agent off ~2019 JavaScript, onto modern web primitives",
       "why": "HN 336 分 / 101 评论（2026-11-11 发现）——外部热度已验证，站内尚未收录",
       "action": "按收录标准核实 https://github.com/GoogleChrome/modern-web-guidance；合格则中英同步入库，limits 走 limits-edit.mjs",
@@ -151,9 +139,21 @@
       "score": 60
     },
     {
+      "id": "candidate:github.com",
+      "type": "verify_candidate",
+      "title": "核实候选：I built a game where you are an LLM's subagent",
+      "why": "HN 310 分 / 74 评论（2026-11-23 发现）——外部热度已验证，站内尚未收录",
+      "action": "按收录标准核实 https://github.com/gulivan/worker755；合格则中英同步入库，limits 走 limits-edit.mjs",
+      "refs": [
+        "https://github.com/gulivan/worker755",
+        "https://news.ycombinator.com/item?id=50599762"
+      ],
+      "score": 60
+    },
+    {
       "id": "paidgap:kimi",
       "type": "paid_gap",
-      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 82 次，无付费档）",
+      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 79 次，无付费档）",
       "why": "有需求、无判定页：is-kimi-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
       "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
       "refs": [
@@ -164,7 +164,7 @@
     {
       "id": "paidgap:exa",
       "type": "paid_gap",
-      "title": "补付费档：Exa（工具页 28 天带来源真人 37 次，无付费档）",
+      "title": "补付费档：Exa（工具页 28 天带来源真人 34 次，无付费档）",
       "why": "有需求、无判定页：is-exa-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
       "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
       "refs": [
