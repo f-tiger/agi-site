@@ -298,6 +298,25 @@ test('German cooling window-closure questions find the static decision answer',(
  ]) assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u===destination),q);
 });
 
+test('German 40 m² cooling searches open the measured-volume decision',()=>{
+ const destination='/guide/klimaanlage-40-qm.html#portasplit-40-qm';
+ for(const q of [
+  'Klimaanlage 40 m²','Klimaanlage offenes Wohnzimmer 40 qm','Midea PortaSplit für 40 qm',
+  'Reicht die originale PortaSplit für 40m2 mit 2,80 m Deckenhöhe?',
+ ]) {
+  const first=searchEntries(index,q,'de')[0]?.entry;
+  assert.equal(first?.u,destination,q);
+  assert.match(first.d,/100 m³.+112 m³.+105 m³/,q);
+  assert.ok(!searchEntries(index,q,'en').some(hit=>hit.entry.u===destination),q);
+ }
+ for(const q of [
+  'Welche Klimaanlage für 140 m²?', 'Klimaanlage 40,5 qm',
+  'PortaSplit für 40 qm oder 50 qm?', 'Wie viel Strom verbraucht eine Klimaanlage für 40 qm?',
+  'Midea PortaSplit Cool für 40 qm', 'Klarstein Klimaanlage 40 qm',
+  '40 qm Wohnung heizen', 'PortaSplit 40 qm: welchen Fensterfalz muss ich messen?',
+ ]) assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u===destination),q);
+});
+
 test('German original PortaSplit lip questions open the existing guide measurement answer',()=>{
  const page='/guide/midea-portasplit-ausverkauft-alternativen.html';
  for(const q of [

@@ -1,6 +1,7 @@
 """The bulk agent document must preserve evidence, not hidden shopping UI."""
 import re
 import html
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -117,6 +118,34 @@ class LlmsFull(unittest.TestCase):
         adjacent = (SITE / 'guide/klimaanlage-kippfenster.html').read_text()
         self.assertIsNotNone(re.search(
             rf'<a href="{re.escape(route)}"[^>]*>Fensterstellung beim Klimabetrieb prüfen', adjacent))
+
+    def test_room40_final_guide_keeps_measured_volume_and_installation_before_shopping(self):
+        route = '/guide/klimaanlage-40-qm.html'
+        guide = SITE / route.lstrip('/')
+        page = guide.read_text()
+        mirror = guide.with_suffix('.md').read_text()
+        self.assertEqual(page.count('id="portasplit-40-qm"'), 1)
+        section = re.search(r'<section class="rec" id="portasplit-40-qm".*?</section>', page, re.S)[0]
+        for text in ('100 m³', '112 m³', '2,625 m Höhe', '42 m² / 105 m³', '4048164116478',
+                     '3,5 kW Kühlleistung', '2 m lang und kann nicht verlängert werden',
+                     'den Kauf zurückstellen', '/guide/midea-portasplit-kaufen.html',
+                     'www.midea.com/de/klimatisieren-heizen/portasplit', 'PortaSplit-Gebrauchsanweisung-DE.pdf'):
+            self.assertIn(text, section)
+            self.assertIn(text, mirror)
+        link = re.search(r'href="(https://www\.reddit\.com/submit\?[^"]+)"', section)[1]
+        self.assertEqual(parse_qs(urlsplit(html.unescape(link)).query), {
+            'url': [f'https://getecoback.com{route}#portasplit-40-qm'],
+            'title': ['PortaSplit für 40 m²: Raumhöhe und Außenplatz vor dem Kauf prüfen'],
+        })
+        self.assertNotRegex(page, r'Richtig dimensioniert|14\.000\+|Quick-Connect|<!--EB_(?:TOPPICK|MODELS|POPUP|STICKY|QUICKPICK|USMARKET)-->')
+        self.assertNotRegex(mirror, r'reddit\.com/submit|https?://[^\s")]*amazon\.')
+        faq, = [x for x in re.findall(r'<script type="application/ld\+json">(.*?)</script>', page, re.S)
+                if '"@type":"FAQPage"' in x]
+        questions = [entry for item in json.loads(faq).get('@graph', [json.loads(faq)])
+                     if item.get('@type') == 'FAQPage' for entry in item['mainEntity']]
+        self.assertEqual(len(questions), 4)
+        for item in questions:
+            self.assertIn('<strong>' + item['name'] + '</strong><br>' + item['acceptedAnswer']['text'], page)
 
     def test_room50_final_page_keeps_original_portasplit_conditions_and_share(self):
         route = '/guide/klimaanlage-50-qm.html'

@@ -1,77 +1,61 @@
-# Klimaanlage für 40 m²: BTU, Modell-Tipps & Stromkosten 2026
+# Klimaanlage für 40 m²: Passt die Original-PortaSplit?
 
-> Welche Klimaanlage für 40 m²? Empfohlen: 14.000+ BTU. Mit Modell-Tipp, Stromkosten & Kauf-Checkliste (Ratgeber 2026).
+> 40 m², aber welche Raumhöhe? Volumen mit 105 m³ vergleichen, die 2-m-Kältemittelleitung prüfen und erst dann die originale Midea PortaSplit einordnen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/klimaanlage-40-qm.html
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
 
-Du suchst eine tragbare Klimaanlage für einen Raum mit rund 40 m²? Die wichtigste Frage ist die richtige Kühlleistung (BTU): zu wenig, und das Gerät kommt nie hinterher; zu viel ist rausgeworfenes Geld und unnötig laut. Hier die konkrete Empfehlung für 40 m².
+Eine 40-m²-Wohnung kann mehrere Zimmer haben. Miss zuerst den Raum, der tatsächlich kühl werden soll. Bei getrennten Zimmern berechne den Bedarf für jede Zone separat.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
+## Passt die originale Midea PortaSplit für 40 m²?
 
-**Kurz gesagt:** Für 40 m² solltest du eine Klimaanlage mit **14.000+ BTU** wählen. Ein häufig empfohlenes Modell dieser Klasse ist **Klarstein mobile Klimaanlage 14000 BTU**. Rechne mit rund 0,45 € Stromkosten pro Stunde bzw. ~70 € im Hitzemonat.
+**Bei 40 m² entscheidet auch die Raumhöhe.** Multipliziere die Grundfläche des Zielraums mit seiner Deckenhöhe. Für die originale PortaSplit (EAN 4048164116478) nennt Midea Deutschland **3,5 kW Kühlleistung (12.000 BTU/h)** und eine Eignung bis **42 m² / 105 m³**.
 
-## Wie viel BTU für 40 m²?
-
-Bei 40 m² oder offenem Grundriss ist ein starkes Monoblock (14.000+ BTU) oder eine Split-Klimaanlage die realistische Wahl. Als Orientierung gelten für 40 m² **14.000+ BTU**. Aufschlagen solltest du bei starker Sonneneinstrahlung (Süd-/Westfenster), hohen Decken oder Dachgeschoss-Lage. Die vollständige Tabelle findest du im [BTU-Ratgeber nach Raumgröße](https://getecoback.com/guide/wie-viel-btu-brauche-ich.html).
-
-## Empfohlenes Modell für 40 m²
-
-Sehr große / offene Räume · 14.000+ BTU
-**Klarstein mobile Klimaanlage 14000 BTU** — passend dimensioniert für ein offener Grundriss oder sehr großes Wohnzimmer. Wird in unabhängigen deutschen Tests und Amazon-Bestsellern regelmäßig genannt. Wir testen nicht selbst; die Auswahl fasst öffentliche Tests zusammen.
-
-✓ Richtig dimensioniert für 40 m²   ✓ Ohne Installation   ✕ Abluftschlauch/Fensterabdichtung nötig
-
-Preis auf Amazon.de ansehen →
-
-## Was kostet die Kühlung von 40 m²?
-
-Ein für 40 m² passendes Gerät zieht ca. 1500 W. Bei 0,30 €/kWh (Rechenbasis — setze deinen Tarif ein) sind das rund **0,45 € pro Stunde**. Über einen Hitzemonat (ca. 8 Std./Nacht, Kompressor taktet herunter) liegst du real bei etwa **70 €**. Spartipps im [Stromkosten-Ratgeber](https://getecoback.com/guide/klimaanlage-stromkosten.html).
-
-### Die Kosten im Überblick
-
-| Zeitraum | Rechnung (1500 W, 0,30 €/kWh, ~65 % Takt) | Kosten |
+| Raumhöhe | Raumvolumen | Einordnung |
 | --- | --- | --- |
-| 1 Stunde Volllast | 1500 W ÷ 1.000 × 0,30 € | **0,45 €** |
-| 1 Nacht (8 h) | × 8 h × 0,65 | **2,34 €** |
-| 1 Hitzemonat (30 Nächte) | × 30 | **~70 €** |
-| Ohne Fensterabdichtung | Warmluft strömt zurück, Gerät taktet kaum | **bis ×2** |
+| 2,50 m | 100 m³ | Unter 105 m³. Kühllast und Aufstellung weiter prüfen. |
+| 2,80 m | 112 m³ | Über 105 m³. Kauf zurückstellen und Kühllast neu beurteilen. |
 
-Die letzte Zeile ist der am meisten unterschätzte Posten: Ohne dichtes Fenster kühlt das Gerät gegen die eigene Abwärme an. Mit dynamischem Stromtarif lässt sich zusätzlich [mittags billig vorkühlen](https://getecoback.com/guide/strompreis-radar.html).
+Mit genau 40 m² liegt die Volumengrenze rechnerisch bei 2,625 m Höhe. Die Herstellerangabe ist eine Orientierung. Bei Dachlage, starker Sonne, einer offenen Küche oder spürbaren Wärmequellen prüfe die Kühllast auch unterhalb des Werts.
 
-## Ab 40 m²: Monoblock oder Split ohne Kernbohrung?
+- **Außenplatz klären.** Beim Kühlen steht das Außengerät im Freien. Prüfe eine tragfähige Aufstellung oder die vorgesehene Fensterbefestigung und die Erlaubnis vor Ort.
 
-Je größer der Raum, desto eher lohnt der Blick auf Quick-Connect-Splits wie den Midea PortaSplit: Kompressor draußen heißt **deutlich leiser drinnen und spürbar effizienter** — bei höherem Preis und nötigem Stellplatz vor dem Fenster. Für gelegentliche Hitzewellen bleibt der Monoblock die flexible Wahl, für den ganzen Sommer im offener Grundriss oder sehr großes Wohnzimmer rechnet sich der Split schneller. Der ehrliche Vergleich: [PortaSplit vs. Monoblock](https://getecoback.com/guide/portasplit-vs-monoblock.html) und [Split ohne Kernbohrung](https://getecoback.com/guide/split-klimaanlage-ohne-kernbohrung.html).
+- **Den ganzen Leitungsweg messen.** Laut Anleitung ist die fest verbundene Kältemittelleitung 2 m lang und kann nicht verlängert werden. Miss den Weg vom Innen- zum Außengerät mit Öffnung und Bögen. Die Leitung darf dabei weder eingeklemmt noch verdreht werden.
+
+- **Nur bei passenden Bedingungen weiter.** Wenn Volumen, Kühllast und Aufstellung passen, prüfe [das genaue Original und das Zubehör im Angebot](https://getecoback.com/guide/midea-portasplit-kaufen.html). Bei ungemessener Raumhöhe, zu langem Weg oder ungeklärter Montage den Kauf zurückstellen.
+
+Quellen geprüft am 24.11.2026. [Midea Deutschland, Original und Varianten](https://www.midea.com/de/klimatisieren-heizen/portasplit) · [Deutsche Gebrauchsanweisung der Original-PortaSplit](https://www.midea.com/content/dam/midea-aem/de/klimatisieren-heizen/portasplit/PortaSplit-Gebrauchsanweisung-DE.pdf).
+
+## Wie viel Kühlleistung braucht der Zielraum?
+
+Berücksichtige außer dem Volumen auch Fensterflächen, Sonne, Dachlage und Dämmung. Bei mehreren geschlossenen Zimmern kannst du nicht dieselbe Kühlung in jedem Raum voraussetzen. [Kühlbedarf grob abschätzen](https://getecoback.com/guide/btu-rechner.html) · [Verbraucherzentrale zu Gebäude und Aufstellung](https://www.verbraucherzentrale.de/wissen/energie/energetische-sanierung/klimaanlage-installieren-was-ist-zu-beachten-10525).
+
+## Monoblock oder mobiles Splitgerät?
+
+Beim Monoblock geht die warme Abluft durch einen Schlauch nach draußen. Die PortaSplit nutzt dafür ein Außengerät. Prüfe abhängig von der Bauart den verfügbaren Außenplatz und die Fensterlösung. [Die Aufstellungswege vergleichen](https://getecoback.com/guide/portasplit-vs-monoblock.html).
 
 ## Für Mieter
 
-Ein Monoblock braucht weder Bohrung noch Außeneinheit — aufstellen, Schlauch ins Fenster, fertig. Damit ist er in der Mietwohnung in aller Regel [ohne Zustimmung des Vermieters](https://getecoback.com/guide/klimaanlage-mietwohnung.html) nutzbar; erst ein Split-Gerät mit Wandmontage braucht eine Erlaubnis.
+Kläre vor einer Befestigung, ob die Anleitung sie für das Fenster vorsieht und ob die Hausverwaltung oder der Vermieter zustimmen muss. [Aufstellung in der Mietwohnung prüfen](https://getecoback.com/guide/klimaanlage-mietwohnung.html).
 
-## Nicht vergessen: Fensterabdichtung
+## Fenster und Leitungsöffnung prüfen
 
-Jede tragbare Klimaanlage muss die warme Luft über einen Schlauch nach draußen leiten. Bei deutschen Dreh-Kipp-Fenstern brauchst du eine passende Fensterabdichtung — sonst strömt warme Luft zurück und das Gerät läuft doppelt so lange. Details: [Klimaanlage am Kippfenster abdichten](https://getecoback.com/guide/klimaanlage-kippfenster.html).
+Wenn du das Außengerät am Fenster befestigen willst, [miss den Fensterfalz für das Original](https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html#fensterfalz). Für einen Monoblock gilt die [Anleitung zum Abluftschlauch](https://getecoback.com/guide/klimaanlage-kippfenster.html).
+
+## Stromkosten je nach Nutzung
+
+Für Stromkosten zählt die gemessene elektrische Energie. Als Rechenbeispiel kosten 2 kWh bei 30 ct/kWh 0,60 €. Die 3,5 kW im Modellvergleich bezeichnen die abgegebene Kühlleistung. [Stromkosten mit deinem Tarif rechnen](https://getecoback.com/guide/klimaanlage-stromkosten.html).
 
 ## Häufige Fragen
 
-**Wie viel BTU brauche ich für 40 m²?**Als Faustregel 14.000+ BTU. Bei viel Sonneneinstrahlung, hoher Decke oder Dachlage eher am oberen Ende planen.
+**Reicht die originale Midea PortaSplit für 40 m²?**Midea nennt für das Original bis zu 42 m² / 105 m³. 40 m² bei 2,50 m Höhe ergeben 100 m³, bei 2,80 m Höhe sind es 112 m³. Ob das Gerät ausreichend kühlt, hängt auch von Sonne, Gebäude, Raumaufteilung und Aufstellung ab.
 
-**Was kostet der Betrieb bei 40 m² an Strom?**Ein passendes Gerät zieht ca. 1500 W, das sind rund 0,45 € pro Stunde (bei 0,30 €/kWh). Real liegst du bei ~70 € im Hitzemonat, weil der Kompressor bei erreichter Temperatur heruntertaktet.
+**Kann ich damit eine 40-m²-Wohnung mit mehreren Zimmern kühlen?**Miss den tatsächlichen Zielraum separat. Die Gesamtfläche deiner Wohnung sagt bei getrennten Zimmern wenig über den Kühlbedarf und die Luftverteilung aus.
 
-**Welches Modell passt für 40 m²?**Für ein offener Grundriss oder sehr großes Wohnzimmer wird Klarstein mobile Klimaanlage 14000 BTU häufig empfohlen. Bei 40 m² oder offenem Grundriss ist ein starkes Monoblock (14.000+ BTU) oder eine Split-Klimaanlage die realistische Wahl.
+**Kann ich die Kältemittelleitung der Original-PortaSplit verlängern?**Nein. Laut originaler deutscher Gebrauchsanweisung ist sie 2 m lang und kann nicht verlängert werden. Prüfe den tatsächlichen Weg mit Bögen und einem sicheren Außenplatz.
 
-**Was kostet eine Nacht Kühlung bei 40 m²?**Rund 2,34 € — 1500 W × 8 Stunden × 0,30 €/kWh, mit realem Kompressor-Takt von etwa 65 Prozent. Ohne dichte Fensterabdichtung läuft das Gerät gegen die zurückströmende Warmluft an und die Nacht kostet bis zum Doppelten.
-
-**Monoblock oder Split ohne Kernbohrung für 40 m²?**Ab dieser Raumgröße lohnt der Vergleich: Ein Quick-Connect-Split wie der Midea PortaSplit kostet mehr, ist aber drinnen deutlich leiser und effizienter, weil der Kompressor draußen hängt. Der Monoblock bleibt die günstigere und flexiblere Wahl für gelegentliche Hitzewellen.
-
-**Passende Klimaanlagen für 40 m² auf Amazon.de ansehen** — nach BTU und Preis filterbar:
-
-Klimaanlagen vergleichen →
-
-**Weitere Ratgeber**
-[Wie viel BTU brauche ich? →](https://getecoback.com/guide/wie-viel-btu-brauche-ich.html)
-[Beste tragbare Klimaanlage 2026 →](https://getecoback.com/guide/beste-tragbare-klimaanlage-hitzewelle.html)
-[Was kostet eine Klimaanlage an Strom? →](https://getecoback.com/guide/klimaanlage-stromkosten.html)
+**Wie rechne ich die Stromkosten?**Multipliziere gemessene kWh mit deinem Arbeitspreis. Die 3,5 kW sind die Kühlleistung. Für den Strombedarf zählt die elektrische Aufnahme im jeweiligen Betrieb.
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json

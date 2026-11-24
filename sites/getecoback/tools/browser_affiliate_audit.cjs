@@ -48,6 +48,17 @@ const cases=[
         page.on('popup',p=>p.close().catch(()=>{}));
         await page.goto(base+path,{waitUntil:'load'});
         await page.waitForTimeout(150);
+        if(revision==='current'&&path==='/guide/klimaanlage-40-qm.html'){
+          assert.equal(await page.locator('#eb-toppick,#eb-models,#eb-sticky-cta,#eb-pu,#eb-ustop,article a[href*="amazon."]').count(),0);
+          const link=page.locator('#portasplit-40-qm a[href="/guide/midea-portasplit-kaufen.html"]');
+          assert(await link.isVisible());
+          // Hold the internal destination to inspect events from the source document.
+          await link.evaluate(a=>a.addEventListener('click',event=>event.preventDefault(),{once:true}));
+          await link.click();
+          assert.equal(await page.evaluate(()=>window.__affiliateQA.filter(event=>event.n==='affiliate_click').length),0);
+          assert.deepEqual(errors,[]);
+          await context.close();continue;
+        }
         const heaterDecision=revision==='current'&&path==='/guide/heizluefter-stromverbrauch.html';
         const moistureDecision=revision==='current'&&path==='/en/guide/dehumidifier-20-sqm.html';
         if(heaterDecision||moistureDecision)assert.equal(await page.locator('#eb-toppick,#eb-ustop,#eb-usshelf').count(),0);

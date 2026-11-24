@@ -60,6 +60,9 @@ def collect():
  sections[('de','/guide/midea-portasplit-ausverkauft-alternativen.html')]={
   'id':'fensterfalz','title':'Midea PortaSplit Original: EAN und Fensterfalz prüfen',
   'description':'EAN 4048164116478 abgleichen. Breite und Höhe am Falz für die Standardhalterung messen. Bei unklarer Passung warten.'}
+ sections[('de','/guide/klimaanlage-40-qm.html')]={
+  'id':'portasplit-40-qm','title':'Klimaanlage für 40 m²: Raumhöhe und PortaSplit prüfen',
+  'description':'2,50 m Raumhöhe ergeben 100 m³, 2,80 m ergeben 112 m³. Vergleiche mit 105 m³ und prüfe Außenplatz und Leitung.'}
  sections[('de','/guide/klimaanlage-fenster-einbruchschutz.html')]={
   'id':'fenster-verschluss-pruefen','title':'Klimaanlage am Fenster: Schließen und Verriegeln prüfen',
   'description':'Prüfe am konkreten Fenster, ob es mit der Leitung normal verriegelt. Bei unklarem Ergebnis den Kauf zurückstellen.'}

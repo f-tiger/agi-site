@@ -48,6 +48,15 @@ function asksAboutIndoorWindowCondensation(query) {
     !anotherLocation.test(query)&&!otherIntent.test(query);
 }
 
+function asksForGermanCoolingAt40SquareMetres(query) {
+ const areas=[...query.matchAll(/\b(\d+(?:[.,]\d+)?)\s*(?:qm|m2|m²)(?![\p{L}\p{N}])/gu)];
+ if(!areas.length||areas.some(match=>match[1]!=='40'))return false;
+ const cooling=/\b(?:klimaanlag\w*|klimageraet\w*|monoblock\w*|porta[ -]*split|kuehlbedarf)\b/;
+ const otherIntent=/\b(?:klarstein|comfee|delonghi|pinguino|strom\w*|kwh|heiz\w*|geraeusch\w*|wie laut|reparatur|reinigung)\b/;
+ return cooling.test(query)&&!otherIntent.test(query)&&!namesDifferentPortaSplit(query)&&
+    !asksForPortaSplitWindowLip(query)&&!/\b(?!4048164116478\b)\d{13}\b/.test(query);
+}
+
 export function exactGermanGuide(normalizedQuery) {
  const query=normalizedQuery.trim().replace(/\s+/g,' ');
  if(n90ExactName.test(query)||n90ExactEan.test(query))
@@ -56,6 +65,8 @@ export function exactGermanGuide(normalizedQuery) {
    return {path:'/guide/midea-portasplit-ausverkauft-alternativen.html',id:'fensterfalz'};
  if(asksForCoolingWindowClosure(query))
    return {path:'/guide/klimaanlage-fenster-einbruchschutz.html',id:'fenster-verschluss-pruefen'};
+ if(asksForGermanCoolingAt40SquareMetres(query))
+   return {path:'/guide/klimaanlage-40-qm.html',id:'portasplit-40-qm'};
  if(asksAboutIndoorWindowCondensation(query))
    return {path:'/guide/fenster-beschlagen-innen.html',id:'fenstersauger-gegen-kondenswasser'};
  return null;
