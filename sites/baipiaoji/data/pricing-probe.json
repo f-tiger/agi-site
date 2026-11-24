@@ -1,19 +1,19 @@
 {
- "generated": "2026-11-23",
+ "generated": "2026-11-24",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "cohere",
-  "comate",
-  "continue",
-  "coze",
-  "d-id",
-  "devv",
-  "dify",
-  "doubao-aixue"
+  "duckduckgo-ai",
+  "elevenlabs",
+  "elicit",
+  "felo",
+  "figma",
+  "fish-audio",
+  "framer",
+  "gamma"
  ],
- "cursor": "doubao-aixue",
+ "cursor": "gamma",
  "summary": {
   "ready": 43,
   "empty": 36,
@@ -292,8 +292,8 @@
    "slug": "fish-audio",
    "name": "Fish Audio",
    "cat": "audio",
-   "reach": 5,
-   "probed": "2026-10-30",
+   "reach": 0,
+   "probed": "2026-11-24",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1322,7 +1322,7 @@
    "name": "DuckDuckGo AI Chat",
    "cat": "chat",
    "reach": 0,
-   "probed": "2026-11-11",
+   "probed": "2026-11-24",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -1356,7 +1356,7 @@
    "name": "ElevenLabs",
    "cat": "audio",
    "reach": 0,
-   "probed": "2026-11-11",
+   "probed": "2026-11-24",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -1364,13 +1364,13 @@
      "url": "https://elevenlabs.io/pricing",
      "status": 200,
      "bytes": 600000,
-     "tokens": 377
+     "tokens": 61
     }
    ],
    "best": {
     "url": "https://elevenlabs.io/pricing",
-    "tokens": 377,
-    "excerpt": "([1,\"a8:\\\"StarterPromoDeadlineProvider\\\"\\na9:I[93702,[\\\"30881\\\",\\\"$17\\\",\\\"64915\\\",\\\"$18\\\",\\\"66901\\\",\\\"$30\\\",\\\"89997\\\",\\\"$31\\\",\\\"17321\\\",\\\"$32\\\",\\\"68538\\\",\\\"$33\\\",\\\"29218\\\",\\\"$22\\\",\\\"83046\\\",\\\"$23\\\",\\\"34287\\\",\\\"$24\\\",\\\"30259\\\",\\\"$34\\\",\\\"10331\\\",\\\"$35\\\",\\\"2850\\\",\\\"$25\\\",\\\"33551\\\",\\\"$36\\\",\\\"36636\\\",\\\"$37\\\",\\\"95818\\\",\\\"$38\\\",\\\"1836\\\",\\\"$26\\\",\\\"256\\\",\\\"$39\\\",\\\"95864\\\",\\\"$27\\\",\\\"16685\\\",\\\"$28\\\",\\\"61284\\\",\\\"$29\\\",\\\"39863\\\",\\\"$3a\\\",\\\"80570\\\",\\\"$3b\\\",\\\"11817\\\",\\\"$3c\\\",\\\"11306\\\",\\\"$3d\\\",\\\"58014\\\",\\\"$3e\\\",\\\"40987\\\",\\\"$3f\\\",\\\"3240\\\",\\\"$40\\\",\\\"93545\\\",\\\"$41\\\",\\\"33120\\\",\\\"$42\\\",\\\"44334\\\",\\\"$43\\\",\\\"66314\\\",\\\"$44\\\",\\\"6924\\\",\\\"$45\\\",\\\"72433\\\",\\\"$46\\\",\\\"84547\\\",\\\"$47\\\",\\\"52393\\\",\\\"$48\\\",\\\"22511\\\",\\\"$2c\\\",\\\"18"
+    "tokens": 61,
+    "excerpt": "% &)]:tw-overflow-x-hidden\"> Black Friday Up to 55% off Get up to 55% off Ends December 1 Get the offer First month for $1 Get your first month for only $1 Ends September 30 Subscribe Skip to content Products Solutions Customers Resources Enterprise Pricing Log in Sign up Contact sales Log in Sign up ElevenLabs Black Friday pricing Up to 55% off ElevenCreative Creative ElevenAgents Agents ElevenAPI API ElevenCreative Creative ElevenAgents Agents ElevenAPI API Monthly billing Monthly billing Yearly billing Free $0 /mo Build for free Text to Speech Speech to Text Sound Effects Voice Design Music Productions Image 3 Projects in Studio 10k credits per month Starter $1 first month Then $6 per mon"
    }
   },
   "elicit": {
@@ -1378,14 +1378,14 @@
    "name": "Elicit",
    "cat": "study",
    "reach": 0,
-   "probed": "2026-11-11",
+   "probed": "2026-11-24",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://elicit.com/pricing",
      "status": 200,
-     "bytes": 531906,
+     "bytes": 527861,
      "tokens": 27
     }
    ],
@@ -1422,14 +1422,14 @@
    "name": "Felo Search",
    "cat": "search",
    "reach": 0,
-   "probed": "2026-11-11",
+   "probed": "2026-11-24",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://felo.ai/pricing",
      "status": 200,
-     "bytes": 124374,
+     "bytes": 124218,
      "tokens": 0
     },
     {
@@ -1456,7 +1456,7 @@
    "name": "Figma",
    "cat": "design",
    "reach": 0,
-   "probed": "2026-11-12",
+   "probed": "2026-11-24",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -1478,7 +1478,7 @@
    "name": "Framer",
    "cat": "design",
    "reach": 0,
-   "probed": "2026-11-12",
+   "probed": "2026-11-24",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -1486,13 +1486,13 @@
      "url": "https://framer.com/pricing",
      "status": 200,
      "bytes": 600000,
-     "tokens": 12
+     "tokens": 22
     }
    ],
    "best": {
     "url": "https://framer.com/pricing",
-    "tokens": 12,
-    "excerpt": "ntroduction Examples Start free, then scale your site Start free, then scale your site Yearly billing Free Try for free $0 500 AI credits / month Free Framer domain 1 GB bandwidth Design pages MCP server Start for Free Basic Creative personal sites $10 per month 1,000 AI credits / month 2,000 AI credits / month 3,000 AI credits / month 5,000 AI credits / month 8,000 AI credits / month 10,000 AI credits / month 15,000 credits / month Free custom domain 2× credits first month 2 CMS collections 50 GB bandwidth Built-in SEO Use your own domain Localization (add-on) Start with Basic Pro Growing professional sites $30 <p class=\"framer-text framer-styles-preset-rhbxb3\" data-styles-preset=\"vvG68NbwN"
+    "tokens": 22,
+    "excerpt": "ramer Log in Sign up Start free, then scale your site Start free, then scale your site Yearly billing Free Try for free $0 500 AI credits / month Free Framer domain 5 GB bandwidth Design pages MCP server Start for Free Basic Creative personal sites $10 per month 1,000 AI credits / month 2,000 AI credits / month 3,000 AI credits / month 5,000 AI credits / month 8,000 AI credits / month 10,000 AI credits / month 15,000 credits / month Free custom domain 2× credits first month 2 CMS collections 50 GB bandwidth Built-in SEO Use your own domain Localization (add-on) Start with Basic Pro Growing professional sites $30 per month 3,000 credits / month 5,000 credits / month 10,000 credits / month 20,"
    }
   },
   "gamma": {
@@ -1500,7 +1500,7 @@
    "name": "Gamma",
    "cat": "office",
    "reach": 0,
-   "probed": "2026-11-12",
+   "probed": "2026-11-24",
    "env": "runner",
    "state": "blocked",
    "tried": [

@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-23",
+ "checked": "2026-11-24",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -4662,294 +4662,36 @@
    "source_http": 403,
    "repo_http": null,
    "reason": "source HTTP 403"
+  },
+  "gcwars-site-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-11-24",
+   "last_attempt": "2026-11-24",
+   "attemptedAt": "2026-11-24T10:23:16.795Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "genmb-genmb": {
+   "attempts": 1,
+   "first_attempt": "2026-11-24",
+   "last_attempt": "2026-11-24",
+   "attemptedAt": "2026-11-24T10:23:16.795Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
+  },
+  "getcaboo-caboo": {
+   "attempts": 1,
+   "first_attempt": "2026-11-24",
+   "last_attempt": "2026-11-24",
+   "attemptedAt": "2026-11-24T10:23:16.795Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
   }
  },
  "admitted": [
-  {
-   "slug": "hiddencontent-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "project-feldspar-scan",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "mosadd-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "808bits-fips-cmvp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "made-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "codenib-codenib",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "schedulenchill-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "familiaplanner-familia",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "nowgetitdone-getitdone",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "dzgapp-mint",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "workos-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "upload-post-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "audioeye-testing-sdk-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "vercel-proof-stack-lake-proofstack",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "ifa-wisdom-library",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "crisphive-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "promotionpros-catalog",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "extend-extend",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "sellermate-amazon-ads",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "de-bibelstudium-mcp-bibelstudium",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "askacharge-askacharge",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "balmasai-balmas-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "lazyweb-discovery",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "pandough-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cn-pianam-mcp-ip-location-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "clideck-network-knowledge",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cn-pianam-mcp-exchange-rate-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cn-pianam-mcp-weather-mcp-china",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cn-pianam-mcp-12306-train-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cn-pianam-mcp-hot-trending-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "getbeachfinder-beachfinder",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "heyyumi-heyyumi",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "neuronsearchlab-mcp",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "xweather-weather",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "datakoot-domain-dns-whois",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "datakoot-base-onchain-wallet-tokens",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "postfleet-postfleet",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "datakoot-us-weather-forecast-alerts",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "datakoot-federal-register-rules",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "datakoot-economy-gdp-inflation-unemployment",
-   "date": "2026-09-22",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "mcp-pulse",
-   "date": "2026-09-23",
-   "origin": "curated"
-  },
-  {
-   "slug": "getecoback-mcp",
-   "date": "2026-09-23",
-   "origin": "curated"
-  },
-  {
-   "slug": "sourceradar-mcp",
-   "date": "2026-09-23",
-   "origin": "curated"
-  },
-  {
-   "slug": "mythsensus-mcp",
-   "date": "2026-09-23",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "tractorscope-mcp",
-   "date": "2026-09-23",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cloud-massdriver-mcp-server",
-   "date": "2026-09-23",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "generect-mcp",
-   "date": "2026-09-23",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "mambabuilt-mcp-creator-change-monitor",
-   "date": "2026-09-23",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "mambabuilt-mcp-creator-profile-reader",
-   "date": "2026-09-23",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "mambabuilt-mcp-creator-lead-list-all-in-one",
-   "date": "2026-09-23",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "mambabuilt-mcp-link-in-bio-newsletter-checker",
-   "date": "2026-09-23",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "mambabuilt-mcp-creator-finder",
-   "date": "2026-09-23",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "quillhub-mcp",
-   "date": "2026-09-23",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "pageree-landing-pages",
-   "date": "2026-09-23",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "megalens-mcp",
-   "date": "2026-09-23",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "powmcp-caption-file-check",
-   "date": "2026-09-23",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "snaphost-snaphost",
-   "date": "2026-09-23",
-   "origin": "mcp-registry"
-  },
   {
    "slug": "maatsii-linreg",
    "date": "2026-09-23",
@@ -22330,6 +22072,348 @@
    "date": "2026-11-23",
    "source_http": 200,
    "repo_http": 200
+  },
+  {
+   "slug": "geckoboard-gateway-metrics",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "geiant-mcp-agentcore",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "gekkode-foliade",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gemalli-trade",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "gencove-consumer-mcp",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "general-index-gx-mcp",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "generategreetings-greetings",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "generaterandomiban-iban-generator",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gensparkclaw-mbiyepyh-business-verify",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gentkey-mcp",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "gentoura-tours",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "geo-parity-geo-parity",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "georgiaautoquotes-quote-exchange",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "georgiaroofreplacementcost-site",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "geospatialsystem-location-profile",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "get-obra-obra-cfo",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "get-obra-obra-cto",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "get409avaluation-site",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "get4agent-marketplace",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getabstract-mcp",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getacqpath-acqpath",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getagentictools-catalog",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "getagentwiki-agent-wiki",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "getalai-presentations",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "getappniche-mcp",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "getarbo-arbo",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getarcresearch-arc-research",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "getaroundhongkong-trip-planner",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getaxionlabs-axion-gateway",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getbillwatchdog-billwatch",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "getbioflow-bioflow",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getbotlens-eaglesandangelsltd",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getbotlens-getbotlens",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getbotlens-manoforstaterep",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getbotlens-raconteur",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getbotlens-texasvoice",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getboxkite-xero-backup-export",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getcurrentoffer-mcp",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "getdealboard-dealboard",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getdextego-dextego",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getdynamicqr-qr-codes",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getfinero-finero",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getfirmament-firmament",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "getfreedomos-freedom-mcp",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getgovinbox-govinbox",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "getguru-mcp-server",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "getholdings-mcp",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "gethumandesign-mcp",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getinquira-inquira",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "getklar-klar",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getklo-mcp-klo",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getklo-klo-mcp",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "getlandlens-landlens",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getlinkintel-linkintel",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getmcpulse-mcpulse",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getmeetnotes-meetnotes",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getmixwise-mixwise",
+   "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
   }
  ],
  "note": "Written by scripts/agent-watch-admit.mjs. A slug listed under rejected was NOT admitted (reason + last HTTP status); it is retried on later runs. Candidates that were admitted appear in data/agent-watch.json."

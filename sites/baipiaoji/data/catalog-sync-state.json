@@ -1,19 +1,9 @@
 {
  "version": 1,
  "github": {
-  "queryIndex": 0,
+  "queryIndex": 6,
   "page": 2,
   "pending": [
-   {
-    "repo": "GoogleCloudPlatform/generative-ai",
-    "topic": "agents",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
-    "repo": "Snailclimb/JavaGuide",
-    "topic": "agents",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
    {
     "repo": "koala73/worldmonitor",
     "topic": "agents",
@@ -85,11 +75,6 @@
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
-    "repo": "NanmiCoder/cc-haha",
-    "topic": "coding",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
     "repo": "go-vgo/robotgo",
     "topic": "agents",
     "foundAt": "2026-10-05T06:14:17.704Z"
@@ -112,11 +97,6 @@
    {
     "repo": "arcboxlabs/arcbox",
     "topic": "agents",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
-    "repo": "milind-soni/OpenMausBot",
-    "topic": "coding",
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
@@ -550,11 +530,6 @@
     "foundAt": "2026-10-06T06:50:25.349Z"
    },
    {
-    "repo": "RHVoice/RHVoice",
-    "topic": "audio",
-    "foundAt": "2026-10-06T06:50:25.349Z"
-   },
-   {
     "repo": "Tencent-Hunyuan/AuK",
     "topic": "audio",
     "foundAt": "2026-10-06T06:50:25.349Z"
@@ -740,11 +715,6 @@
     "foundAt": "2026-10-10T06:21:21.428Z"
    },
    {
-    "repo": "SharpAI/SwiftLM",
-    "topic": "local",
-    "foundAt": "2026-10-10T06:21:21.428Z"
-   },
-   {
     "repo": "openvinotoolkit/model_server",
     "topic": "local",
     "foundAt": "2026-10-10T06:21:21.428Z"
@@ -832,11 +802,6 @@
    {
     "repo": "cheshire-cat-ai/core",
     "topic": "agents",
-    "foundAt": "2026-10-13T07:04:30.117Z"
-   },
-   {
-    "repo": "pingcap/autoflow",
-    "topic": "knowledge",
     "foundAt": "2026-10-13T07:04:30.117Z"
    },
    {
@@ -952,11 +917,6 @@
    {
     "repo": "beam-cloud/beta9",
     "topic": "local",
-    "foundAt": "2026-10-16T04:57:03.412Z"
-   },
-   {
-    "repo": "elie222/inbox-zero",
-    "topic": "everyday",
     "foundAt": "2026-10-16T04:57:03.412Z"
    },
    {
@@ -1452,11 +1412,6 @@
    {
     "repo": "zi-yue-1129/DATAGEN",
     "topic": "coding",
-    "foundAt": "2026-10-26T05:14:44.073Z"
-   },
-   {
-    "repo": "bytedance/Sa2VA",
-    "topic": "ai",
     "foundAt": "2026-10-26T05:14:44.073Z"
    },
    {
@@ -2012,11 +1967,6 @@
    {
     "repo": "HUANGCHIHHUNGLeo/claude-real-video",
     "topic": "coding",
-    "foundAt": "2026-11-05T07:19:29.391Z"
-   },
-   {
-    "repo": "jingsongliujing/OnnxOCR",
-    "topic": "documents",
     "foundAt": "2026-11-05T07:19:29.391Z"
    },
    {
@@ -2755,11 +2705,6 @@
     "foundAt": "2026-11-19T07:52:30.561Z"
    },
    {
-    "repo": "Anil-matcha/open-genjutsu",
-    "topic": "video",
-    "foundAt": "2026-11-19T07:52:30.561Z"
-   },
-   {
     "repo": "joeseesun/opus-video-prompts",
     "topic": "coding",
     "foundAt": "2026-11-19T07:52:30.561Z"
@@ -2868,6 +2813,196 @@
     "repo": "helloHub1212/dsh-windows-mcp",
     "topic": "agents",
     "foundAt": "2026-11-23T08:07:39.108Z"
+   },
+   {
+    "repo": "JosssphZhou/poki",
+    "topic": "coding",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "nanocodexyz/nanocode",
+    "topic": "coding",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "EthanYoQ/Pagekin",
+    "topic": "ai",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "NVIDIA-NeMo/Automodel",
+    "topic": "agents",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "kitfunso/hippo-memory",
+    "topic": "coding",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "comet-ml/opik",
+    "topic": "ai",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "avibe-bot/avibe",
+    "topic": "coding",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "agentty-org/agentty",
+    "topic": "coding",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "KKKKhazix/AIHOT",
+    "topic": "agents",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "autonomous-ai/lampOS",
+    "topic": "coding",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "AgileRL/AgileRL",
+    "topic": "agents",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "LazyAGI/LazyMind",
+    "topic": "agents",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "rocketride-org/rocketride-server",
+    "topic": "agents",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "chunkhound/chunkhound",
+    "topic": "agents",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "chrisryugj/kordoc",
+    "topic": "agents",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "xr843/Master-skill",
+    "topic": "knowledge",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "caura-ai/caura",
+    "topic": "agents",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "ZhuLinsen/alphasift",
+    "topic": "coding",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "EvoScientist/EvoScientist",
+    "topic": "agents",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "budtmo/docker-android",
+    "topic": "agents",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "BotHarness/DeepSeekBot",
+    "topic": "agents",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "browser-use/browser-harness",
+    "topic": "coding",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "rcarmo/piclaw",
+    "topic": "agents",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "boxlite-ai/boxlite",
+    "topic": "agents",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "chu0119/Pojun",
+    "topic": "agents",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "w01fb0ss/PiBot",
+    "topic": "agents",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "rociiu/talorys",
+    "topic": "agents",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "ai4s-research/open-science",
+    "topic": "agents",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "iflytek/skillhub",
+    "topic": "agents",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "MayDay-wpf/snow-cli",
+    "topic": "coding",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "MichaelKinsy/PiG",
+    "topic": "coding",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "Folkbench/folkbench",
+    "topic": "coding",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "maxritter/qualitylayer",
+    "topic": "coding",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "jgravelle/jcodemunch-mcp",
+    "topic": "coding",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "magiksoft/aider-desk",
+    "topic": "coding",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "Gentleman-Programming/gentle-shell",
+    "topic": "coding",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "frontman-ai/frontman",
+    "topic": "coding",
+    "foundAt": "2026-11-24T10:23:16.795Z"
+   },
+   {
+    "repo": "editor-code-assistant/eca",
+    "topic": "coding",
+    "foundAt": "2026-11-24T10:23:16.795Z"
    }
   ],
   "checked": {
@@ -3074,11 +3209,17 @@
    "gh-foundationvision-liquid-3eead3": "2026-11-23T08:07:39.108Z",
    "gh-dograh-hq-dograh-461572": "2026-11-23T08:07:39.108Z",
    "gh-axoviq-ai-synthadoc-aa1d8e": "2026-11-23T08:07:39.108Z",
-   "gh-zai-org-glm-ocr-618dcd": "2026-11-23T08:07:39.108Z"
+   "gh-zai-org-glm-ocr-618dcd": "2026-11-23T08:07:39.108Z",
+   "gh-ray-project-llm-applications-99dc34": "2026-11-24T10:23:16.795Z",
+   "gh-flow-launcher-flow-launcher-b807ca": "2026-11-24T10:23:16.795Z",
+   "gh-google-ai-edge-mediapipe-f55317": "2026-11-24T10:23:16.795Z",
+   "gh-krillinai-opencreator-f05c68": "2026-11-24T10:23:16.795Z",
+   "gh-openvinotoolkit-nncf-6cb208": "2026-11-24T10:23:16.795Z",
+   "gh-codigoencasa-builderbot-3feb65": "2026-11-24T10:23:16.795Z"
   }
  },
  "mcp": {
-  "cursor": "com.valutorio/sync:1.1.0",
+  "cursor": "dev.cotlet/grammarly:1.0.2",
   "since": "2026-10-01T15:26:40.958Z",
   "watermark": "2026-10-02T15:26:40.958Z",
   "scanStarted": "2026-11-14T06:58:47.664Z",
@@ -3443,11 +3584,11 @@
    "gocardless-gc-mcp": "2026-11-23T08:07:39.108Z",
    "gominddb-gomind": "2026-11-23T08:07:39.108Z",
    "gondola-gondola": "2026-11-23T08:07:39.108Z",
-   "goodbarber-public-mcp": "2026-10-13T07:04:30.117Z",
-   "google-adk": "2026-10-13T07:04:30.117Z",
-   "goose": "2026-10-13T07:04:30.117Z",
-   "gpt-pilot": "2026-10-13T07:04:30.117Z",
-   "gpt-researcher": "2026-10-13T07:04:30.117Z",
+   "goodbarber-public-mcp": "2026-11-24T10:23:16.795Z",
+   "google-adk": "2026-11-24T10:23:16.795Z",
+   "goose": "2026-11-24T10:23:16.795Z",
+   "gpt-pilot": "2026-11-24T10:23:16.795Z",
+   "gpt-researcher": "2026-11-24T10:23:16.795Z",
    "gpuquant-infrastructure": "2026-10-13T07:04:30.117Z",
    "grafana-mcp": "2026-10-13T07:04:30.117Z",
    "graphiti": "2026-10-13T07:04:30.117Z",
@@ -4803,7 +4944,42 @@
    "smithery-mjucius-cozi-mcp": "2026-11-23T08:07:39.108Z",
    "smithery-morosss-sdfsdf": "2026-11-23T08:07:39.108Z",
    "smithery-mrugankpednekar-bill-splitter-mcp": "2026-11-23T08:07:39.108Z",
-   "smithery-mrugankpednekar-mcp-optimizer": "2026-11-23T08:07:39.108Z"
+   "smithery-mrugankpednekar-mcp-optimizer": "2026-11-23T08:07:39.108Z",
+   "smithery-neverinfamous-memory-journal-mcp": "2026-11-24T10:23:16.795Z",
+   "smithery-oxylabs-oxylabs-mcp": "2026-11-24T10:23:16.795Z",
+   "smithery-pinion05-supabase-mcp-lite": "2026-11-24T10:23:16.795Z",
+   "smithery-pinkpixel-dev-web-scout-mcp": "2026-11-24T10:23:16.795Z",
+   "smithery-plainyogurt21-sec-edgar-mcp": "2026-11-24T10:23:16.795Z",
+   "smithery-rainbowgore-stealthee-mcp-tools": "2026-11-24T10:23:16.795Z",
+   "smithery-ramadasmr-networkcalc-mcp": "2026-11-24T10:23:16.795Z",
+   "smithery-rencosta2025-context7fork": "2026-11-24T10:23:16.795Z",
+   "smithery-rfdez-pvpc-mcp-server": "2026-11-24T10:23:16.795Z",
+   "smithery-saidsef-mcp-github-pr-issue-analyser": "2026-11-24T10:23:16.795Z",
+   "smithery-samihalawa-whatsapp-go-mcp": "2026-11-24T10:23:16.795Z",
+   "smithery-sebastianall1977-gmail-mcp": "2026-11-24T10:23:16.795Z",
+   "smithery-serkan-ozal-driflyte-mcp-server": "2026-11-24T10:23:16.795Z",
+   "smithery-shoumikdc-arxiv-mcp": "2026-11-24T10:23:16.795Z",
+   "smithery-slhad-aha-mcp": "2026-11-24T10:23:16.795Z",
+   "smithery-sunub-obsidian-mcp-server": "2026-11-24T10:23:16.795Z",
+   "smithery-szge-lolwiki-mcp": "2026-11-24T10:23:16.795Z",
+   "smithery-truss44-mcp-crypto-price": "2026-11-24T10:23:16.795Z",
+   "smithery-turnono-datacommons-mcp-server": "2026-11-24T10:23:16.795Z",
+   "smithery-wgong-sqlite-mcp-server": "2026-11-24T10:23:16.795Z",
+   "smithery-xinkuang-china-stock-mcp": "2026-11-24T10:23:16.795Z",
+   "smithery-yuna0x0-anilist-mcp": "2026-11-24T10:23:16.795Z",
+   "smithery-yuna0x0-hackmd-mcp": "2026-11-24T10:23:16.795Z",
+   "smithery-zeta-chain-cli": "2026-11-24T10:23:16.795Z",
+   "smithery-zhaoganghao-hellomcp": "2026-11-24T10:23:16.795Z",
+   "smithery-zwldarren-akshare-one-mcp": "2026-11-24T10:23:16.795Z",
+   "snipget-snipget": "2026-11-24T10:23:16.795Z",
+   "snowdata-live-snow": "2026-11-24T10:23:16.795Z",
+   "sourcemill-au-hot-water-payback": "2026-11-24T10:23:16.795Z",
+   "sourcemill-au-towing-legality": "2026-11-24T10:23:16.795Z",
+   "spendline-spendline": "2026-11-24T10:23:16.795Z",
+   "spmos-spm": "2026-11-24T10:23:16.795Z",
+   "stackeasy-credit-cards": "2026-11-24T10:23:16.795Z",
+   "stackrate-comparisons": "2026-11-24T10:23:16.795Z",
+   "statey-statey": "2026-11-24T10:23:16.795Z"
   }
  }
 }
