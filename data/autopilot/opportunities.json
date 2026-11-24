@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-23",
- "radar_fetched": "2026-11-23",
+ "generated": "2026-11-24",
+ "radar_fetched": "2026-11-24",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -51,6 +51,21 @@
    "fleet_pages": []
   },
   {
+   "theme": "is there a way to get a human at openai support",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "ask_hn",
+   "days_seen": [
+    "2026-11-23"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.06,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
    "theme": "what software can help me organize and manage personal files stored across multi",
    "site": "",
    "kind": "request-board",
@@ -72,21 +87,6 @@
    "subreddit": "ask_hn",
    "days_seen": [
     "2026-11-22"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.02,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
-   "theme": "why is stripe dashboard so slow",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "ask_hn",
-   "days_seen": [
-    "2026-11-16"
    ],
    "state": "scout",
    "supplied": false,
