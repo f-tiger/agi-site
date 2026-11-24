@@ -54,6 +54,47 @@ test('missing DB results reject; valid empty days remain zero without claiming r
   const d=await affiliateAudit(dbFor([]),()=> 'direct',new Date('2026-10-01T09:00Z'));
   assert.equal(d.daily.reduce((n,x)=>n+x.affiliate_clicks,0),0);
   assert.equal(d.known_collection_gaps.length,3);
+  assert.equal(d.weeks.at(-1).window_reddit_referrals,null);
+});
+
+test('one bounded SQLite query counts exact Reddit arrivals only on eligible window guide events', async () => {
+  const script = `import json,sqlite3,sys
+db=sqlite3.connect(':memory:');db.row_factory=sqlite3.Row
+db.execute('CREATE TABLE ev(day,name,page,ref,ua_class,meta)')
+db.execute('CREATE INDEX ev_day ON ev(day)')
+guide='/guide/fenster-beschlagen-innen.html'
+def add(day,ref='',ua='human',page=guide,name='page_view'):
+ db.execute('INSERT INTO ev VALUES(?,?,?,?,?,?)',(day,name,page,ref,ua,''))
+add('2026-11-08')
+add('2026-11-15','www.google.de')
+add('2026-11-15','m.reddit.com',None)
+add('2026-11-22','www.reddit.com')
+add('2026-11-22','www.reddit.com',None)
+add('2026-11-22','old.reddit.com')
+add('2026-11-22','old.reddit.com','ci')
+add('2026-11-22','reddit.com.evil.test')
+add('2026-11-22','fake-reddit.com')
+add('2026-11-22')
+add('2026-11-22','reddit.com',page='/guide/richtig-lueften-im-winter.html')
+add('2026-11-22','reddit.com',name='affiliate_click')
+add('2026-11-24','reddit.com')
+q=sys.stdin.read().replace("date('now'","date('2026-11-24'")
+print(json.dumps([dict(r) for r in db.execute(q)]))`;
+  const fixture = spawnSync('python3',['-c',script],{input:AUDIT_SQL,encoding:'utf8'});
+  assert.equal(fixture.status,0,fixture.stderr);
+  const report = await affiliateAudit(dbFor(JSON.parse(fixture.stdout)),()=> 'social');
+  const expected = {human_classified_page_views:5,page_views_with_referrer:4,reddit_page_views:2};
+  assert.deepEqual(report.weeks.at(-1).window_reddit_referrals,expected);
+  assert.deepEqual(report.last_three_complete_days.window_reddit_referrals,expected);
+  const rivalWeek = {human_classified_page_views:1,page_views_with_referrer:1,reddit_page_views:0};
+  assert.deepEqual(report.weeks.at(-2).window_reddit_referrals,rivalWeek);
+  assert.deepEqual(report.same_weekdays_previous_week.window_reddit_referrals,rivalWeek);
+  assert.deepEqual(report.weeks.at(-3).window_reddit_referrals,
+    {human_classified_page_views:1,page_views_with_referrer:0,reddit_page_views:null});
+  assert.equal(report.weeks.at(-1).page_views,7);
+  assert.equal(report.weeks.at(-1).affiliate_clicks,1);
+  assert.equal(report.amazon_orders,null);
+  assert.doesNotMatch(JSON.stringify(report),/reddit\.com|google\.de|evil\.test|fenster-beschlagen-innen\.html/);
 });
 
 test('the marked window TikTok evidence uses only complete post-launch dates and preserves legacy totals',async()=>{
