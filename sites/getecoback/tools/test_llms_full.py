@@ -332,6 +332,34 @@ class LlmsFull(unittest.TestCase):
         })
         self.assertNotIn('reddit.com/submit', md)
 
+    def test_exact_delonghi_guides_show_the_matched_destination_after_model_evidence(self):
+        paths = [
+            ('delonghi-pac-n90-test', 'n90-angebot', '8004399512351',
+             'https://www.delonghi.com/de-de/s/PACN90ECOSILENT',
+             'https://www.amazon.de/dp/B07NC5CP6F?tag=getecoback-21'),
+            ('pinguino-pac-ex105-test', 'ex105-angebot', 'PACEX105A+++',
+             'https://www.delonghi.com/de-de/s/PACEX105A%2B%2B%2B',
+             'https://www.amazon.de/s?k=De%27Longhi+Pinguino+PAC+EX105&tag=getecoback-21'),
+        ]
+        for slug, target, model, source, merchant in paths:
+            with self.subTest(slug=slug):
+                file=SITE / 'guide' / (slug + '.html')
+                page=file.read_text()
+                mirror=file.with_suffix('.md').read_text()
+                first=re.search(r'href="(https://www[.]amazon[.]de/[^"]+)"', page)
+                self.assertIsNotNone(first)
+                self.assertEqual(html.unescape(first[1]), merchant)
+                self.assertEqual(page.count(html.escape(merchant)), 1)
+                self.assertLess(page.index(f'id="{target}"'), first.start())
+                self.assertLess(page.index(source), first.start())
+                self.assertLess(first.end(), page.index('id="alternativen"'))
+                self.assertNotRegex(page, r'<!--EB_(?:MODELS|TOPPICK|POPUP|STICKY|QUICKPICK|SIZER|USMARKET)-->')
+                self.assertIn('warte mit der bestellung', page.lower())
+                self.assertIn(model, mirror)
+                self.assertIn(source, mirror)
+                self.assertNotIn('amazon.de/', mirror)
+                self.assertNotIn('zuletzt ohne Neuangebot', page)
+
     def test_portasplit_original_has_one_exact_german_offer_per_guide(self):
         buying = SITE / 'guide' / 'midea-portasplit-kaufen.html'
         alternatives = SITE / 'guide' / 'midea-portasplit-ausverkauft-alternativen.html'
