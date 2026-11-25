@@ -111,7 +111,7 @@ async function assertGuideVisible(page, item) {
   assert(layout.top >= Math.max(0, layout.navBottom) - 1 && layout.bottom <= layout.height,
     `Guide heading is clipped at ${guide.hash}: ${JSON.stringify(layout)}`);
   if (item.tool === 'waesche_trocknungswechsel_kaufschwelle') {
-    assert(await page.locator(guide.hash).getByText(/spart 16,80 € pro Saison/).isVisible());
+    assert(await page.locator(guide.hash).getByText(/16,80 € Ersparnis pro Saison/).isVisible());
   }
   if (item.guide.endsWith('#fenstersauger-belege')) {
     await page.getByRole('link', {name:'Fenstersauger-Modelle und Lieferumfang vergleichen'}).click();
