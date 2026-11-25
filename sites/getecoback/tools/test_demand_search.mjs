@@ -4,8 +4,25 @@ import {readFileSync} from 'node:fs';
 import {searchEntries,normalize} from '../site/assets/demand-discovery.mjs';
 import {ecoPublicBusinessEvent} from '../site/assets/public-engagement.mjs';
 import {calculateGasHeatThreshold} from '../site/assets/heat-gas-cost.mjs';
+import {compareSocketWatts} from '../site/assets/auto-12v-check.mjs';
 const browsingIndex=readFileSync(new URL('../site/assets/search-index.json',import.meta.url));
 const index=JSON.parse(browsingIndex);
+test('Vehicle 12 V heater questions find the socket check without redirecting AC repairs or other voltages', () => {
+ const href='/guide/akku-heizluefter.html#auto-12v-steckdose';
+ for(const query of ['Heizlüfter 12V Auto', 'Auto Heizlüfter 12 V 150 Watt', 'Autoheizlüfter 12 Volt Zigarettenanzünder']) {
+  assert.equal(searchEntries(index,query,'de')[0]?.entry.u,href,query);
+ }
+ for(const query of ['Heizlüfter im Auto 24 V', '12 V Auto Heizlüfter reparieren', 'Was hält ein 18 V Akku-Heizlüfter durch?']) {
+  assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,href,query);
+ }
+});
+test('The vehicle socket check distinguishes above, below and exact documented load', () => {
+ assert.deepEqual(compareSocketWatts(150,120),{difference:30,condition:'above'});
+ assert.deepEqual(compareSocketWatts(150,180),{difference:-30,condition:'below'});
+ assert.deepEqual(compareSocketWatts(120,120),{difference:0,condition:'equal'});
+ assert.equal(compareSocketWatts(120,0),null);
+ assert.equal(compareSocketWatts(NaN,120),null);
+});
 test('German heat and gas tariff queries lead to the existing guide calculator', () => {
  const href='/guide/klimaanlage-mit-heizfunktion.html#heizkosten-klimaanlage-gas';
  for(const query of ['Ist Heizen mit Klimaanlage günstiger als Gas?',

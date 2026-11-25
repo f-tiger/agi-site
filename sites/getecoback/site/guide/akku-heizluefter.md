@@ -1,6 +1,6 @@
 # Akku-Heizlüfter: Wie lange heizt er wirklich? (Rechner)
 
-> Ein 18-V-Akku mit 5 Ah hat 90 Wh: Das reicht einem 2.000-W-Heizlüfter für 2,7 Minuten. Rechner, Tabelle und was ohne Steckdose wirklich wärmt.
+> Akku-Laufzeit mit Wattstunden berechnen. Für 12-V-Heizlüfter im Auto Steckdosenleistung, Freigabe und Einsatz vor dem Kauf prüfen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/akku-heizluefter.html
 
@@ -30,6 +30,16 @@ Leistung des Geräts auf der gewählten Stufe (W)
 Ausrechnen
 
 Nennkapazität, ohne Verluste. Die Leistung steht auf dem Typenschild oder im Datenblatt, getrennt nach Stufen.
+
+## Passt ein 12-V-Heizlüfter an die Steckdose im Auto?
+
+Vergleiche die elektrische Leistungsaufnahme des Heizlüfters mit der Grenze für genau diese 12-V-Steckdose im Bordbuch. Prüfe außerdem, ob die Fahrzeug- und Geräteanleitung den Anschluss und deine Nutzungsdauer abdecken. Angaben zur Sicherung oder zur Dauer der Stromversorgung ersetzen diese Prüfung nicht.
+
+**150 W bei 12 V entsprechen rechnerisch 12,5 A.** An einer Steckdose mit höchstens 120 W liegt ein 150-W-Gerät 30 W über der Grenze. Bei 180 W liegt es rechnerisch 30 W darunter. Das allein bestätigt weder die Eignung des Steckers noch den Dauerbetrieb.
+
+Die [deutsche Opel-Corsa-F-Anleitung, Ausgabe Mai 2025, Seite 50](https://public-servicebox.opel.com/OVddb/OV/de_DE/Corsa_F/2023_2028/2025_05/manual_user/OCORSFO2505de-1_online.pdf) nennt höchstens 120 W für die Steckdose in der Mittelkonsole. Die [deutsche Ford-Fiesta-Vignale-Anleitung für Fahrzeuge vom 06.01. bis 19.04.2020, Seite 144](https://www.fordservicecontent.com/Ford_Content/Catalog/owner_information/CG3657deDEU-201909-20191004140221.pdf#page=148) nennt höchstens 180 W für die Zubehörsteckdose und unterscheidet sie ausdrücklich vom Zigarettenanzünder. Übernimm diese Werte nur für die jeweils dokumentierte Ausführung.
+
+Fehlt die Leistungsgrenze oder ist die Verwendung an deiner Steckdose ungeklärt, warte mit dem Kauf. Für die freie Sicht prüfe zuerst die vorgesehene Entfrostung im Fahrzeug und entferne Eis vor der Fahrt. Der [ADAC ordnet die geringe Leistung von 150-W-Zusatzlüftern ein](https://www.adac.de/rund-ums-fahrzeug/ausstattung-technik-zubehoer/zubehoer/winterzubehoer/). Quellen geprüft am 25. November 2026.
 
 ## Stunden oder Minuten: warum beide Angaben stimmen können
 

@@ -61,6 +61,20 @@ export const gasHeatCost = {
   tool:'ratgeber_suche',
 };
 
+export const carHeaterOutlet = {
+  path:'/guide/akku-heizluefter.html',
+  id:'auto-12v-steckdose',
+  tool:'ratgeber_suche',
+};
+
+function asksForCarHeaterOutlet(query) {
+  const voltage = /\b12[ -]*(?:v|volt)\b/;
+  const vehicle = /\b(?:auto(?=\b|heiz)|pkw\b|kfz\b|fahrzeug\w*|zigarettenanzuend\w*|bordsteckdos\w*)/;
+  const heater = /\b(?:[a-z]*heiz[ -]?luefter|auto[ -]?heizer)\w*\b/;
+  const otherTask = /\b(?:24|16|48|230)[ -]*(?:v|volt)\b|\b(?:repar\w*|defekt\w*|umbau\w*|ueberbrueck\w*)\b/;
+  return voltage.test(query) && vehicle.test(query) && heater.test(query) && !otherTask.test(query);
+}
+
 function asksForGasHeatCost(query) {
   const gas = /\b(?:gas|gasheiz\w*|gaskessel\w*|gastherm\w*|erdgas\w*|gas(?:arbeits)?preis\w*|gaskosten)\b/;
   const heatPump = /\b(?:klimaanlag\w*|klimageraet\w*|split[ -]?klima\w*|waermepump\w*|cop)\b/;
@@ -267,6 +281,7 @@ export function exactGermanHouseholdTask(query) {
   if (asksForOfflineThermostat(query)) return offlineThermostatChoice;
   if (asksForSiemensWaterFilter(query)) return siemensFilterDecision;
   if (asksForGasHeatCost(query)) return gasHeatCost;
+  if (asksForCarHeaterOutlet(query)) return carHeaterOutlet;
   if (asksForDirectHeatComparison(query)) return directHeat;
   if (asksForShowerFlow(query)) return showerFlow;
   if (asksForVacuumOffer(query)) return vacuumOffer;

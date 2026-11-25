@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Akku-Heizlüfter: Wie lange heizt er wirklich? (Rechner)</title>
-<meta name="description" content="Ein 18-V-Akku mit 5 Ah hat 90 Wh: Das reicht einem 2.000-W-Heizlüfter für 2,7 Minuten. Rechner, Tabelle und was ohne Steckdose wirklich wärmt.">
+<meta name="description" content="Akku-Laufzeit mit Wattstunden berechnen. Für 12-V-Heizlüfter im Auto Steckdosenleistung, Freigabe und Einsatz vor dem Kauf prüfen.">
 <link rel="canonical" href="https://getecoback.com/guide/akku-heizluefter.html">
 <link rel="alternate" type="text/markdown" href="https://getecoback.com/guide/akku-heizluefter.md">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Akku-Heizlüfter: Wie lange heizt er wirklich? (Rechner)">
-<meta property="og:description" content="Die Laufzeit eines Akku-Heizlüfters ist eine Division: Wattstunden durch Watt. Warum Werbung mit Stunden und Kritik mit Minuten beide stimmen können.">
+<meta property="og:description" content="Akku-Laufzeit mit Wattstunden berechnen. Für 12-V-Heizlüfter im Auto Steckdosenleistung, Freigabe und Einsatz vor dem Kauf prüfen.">
 <meta property="og:url" content="https://getecoback.com/guide/akku-heizluefter.html">
 <!-- Google Analytics (GA4) -->
 
@@ -35,12 +35,18 @@
   .box { background: #fff; border: 1px solid #e4ebf0; border-radius: 12px; padding: 16px 18px; margin: 18px 0; }
   .box strong { color: #0a4d7a; }
   .warn { background: #fff7ed; border-color: #fed7aa; }
+  #auto-12v-steckdose { scroll-margin-top: 145px; }
+  #auto-12v-check:not([hidden]) { display: grid; gap: 10px; }
+  #auto-12v-check label { display: grid; gap: 4px; }
+  #auto-12v-check input { width: 100%; max-width: 12rem; padding: 8px; font: inherit; }
+  #auto-12v-check button { justify-self: start; padding: 8px 12px; font: inherit; }
+  body:has(#auto-12v-steckdose:target) :is(#eb-sticky, #eb-pu) { display: none !important; }
   footer { text-align: center; color: #5b6b78; font-size: 13px; padding: 30px 20px 50px; }
 </style>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0a4d7a">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Akku-Heizlüfter: Wie lange heizt er wirklich? (Rechner)","description":"Wie lange ein Akku-Heizlüfter mit 18-V-Akkus von 2, 5 und 8 Ah bei 2.000, 1.000, 500, 50 und 25 Watt läuft, warum ein Akku keinen Raum heizt und was ohne Steckdose tatsächlich wärmt — mit Rechner zum Nachrechnen.","mainEntityOfPage":"https://getecoback.com/guide/akku-heizluefter.html","inLanguage":"de","datePublished":"2026-09-27","dateModified":"2026-09-27","author":{"@type":"Organization","@id":"https://getecoback.com/#org","name":"EcoBack","url":"https://getecoback.com/"},"publisher":{"@type":"Organization","@id":"https://getecoback.com/#org","name":"EcoBack","url":"https://getecoback.com/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Startseite","item":"https://getecoback.com/"},{"@type":"ListItem","position":2,"name":"Heizen","item":"https://getecoback.com/kategorie/heizen.html"},{"@type":"ListItem","position":3,"name":"Akku-Heizlüfter: Wie lange heizt er wirklich? (Rechner)","item":"https://getecoback.com/guide/akku-heizluefter.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Wie lange hält ein Akku-Heizlüfter?","acceptedAnswer":{"@type":"Answer","text":"Wattstunden des Akkus geteilt durch die Leistung. Ein 18-Volt-Akku mit 5 Ah hat 90 Wattstunden; bei 2.000 Watt sind das 2,7 Minuten, bei 500 Watt knapp 11 Minuten, bei 25 Watt dreieinhalb Stunden. Nicht der Akku allein entscheidet, sondern die Stufe, auf der das Gerät gerade heizt."}},{"@type":"Question","name":"Kann ein Akku-Heizlüfter einen Raum heizen?","acceptedAnswer":{"@type":"Answer","text":"Nicht nennenswert. Ein gedämmter Raum braucht nach unseren Richtwerten 60 bis 100 Watt je Quadratmeter, zehn Quadratmeter also 600 bis 1.000 Watt. Ein 90-Wattstunden-Akku hält das 5 bis 9 Minuten durch. Für einen Raum braucht es eine Steckdose."}},{"@type":"Question","name":"Warum werben manche Geräte mit mehreren Stunden Laufzeit?","acceptedAnswer":{"@type":"Answer","text":"Weil die Laufzeit für eine kleine Stufe gilt. Wer mit einem 90-Wattstunden-Akku drei bis vier Stunden erreicht, zieht im Schnitt nur 22 bis 30 Watt. Das wärmt eine Hand oder einen Sitzplatz, keinen Raum. Die Werbung mit Stunden und die Kritik mit Minuten können beide stimmen, sie beschreiben verschiedene Stufen."}},{"@type":"Question","name":"Was wärmt ohne Steckdose wirklich?","acceptedAnswer":{"@type":"Answer","text":"Alles, was die Wärme an den Körper bringt statt in die Luft: beheizte Weste, beheizte Sitzauflage, Heizkissen. Ein Heizkissen braucht 40 bis 60 Watt, ein Akku mit 90 Wattstunden reicht damit rund anderthalb bis zwei Stunden. Gibt es eine Steckdose, kostet eine Stunde mit 1.000 Watt bei 0,30 Euro je Kilowattstunde 30 Cent, dann ist der Akku keine Ersparnis, sondern nur eine Grenze."}}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Akku-Heizlüfter: Wie lange heizt er wirklich? (Rechner)","description":"Akku-Laufzeit mit Wattstunden berechnen. Für 12-V-Heizlüfter im Auto Steckdosenleistung, Freigabe und Einsatz vor dem Kauf prüfen.","mainEntityOfPage":"https://getecoback.com/guide/akku-heizluefter.html","inLanguage":"de","datePublished":"2026-09-27","dateModified":"2026-11-25","author":{"@type":"Organization","@id":"https://getecoback.com/#org","name":"EcoBack","url":"https://getecoback.com/"},"publisher":{"@type":"Organization","@id":"https://getecoback.com/#org","name":"EcoBack","url":"https://getecoback.com/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Startseite","item":"https://getecoback.com/"},{"@type":"ListItem","position":2,"name":"Heizen","item":"https://getecoback.com/kategorie/heizen.html"},{"@type":"ListItem","position":3,"name":"Akku-Heizlüfter: Wie lange heizt er wirklich? (Rechner)","item":"https://getecoback.com/guide/akku-heizluefter.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Wie lange hält ein Akku-Heizlüfter?","acceptedAnswer":{"@type":"Answer","text":"Wattstunden des Akkus geteilt durch die Leistung. Ein 18-Volt-Akku mit 5 Ah hat 90 Wattstunden; bei 2.000 Watt sind das 2,7 Minuten, bei 500 Watt knapp 11 Minuten, bei 25 Watt dreieinhalb Stunden. Nicht der Akku allein entscheidet, sondern die Stufe, auf der das Gerät gerade heizt."}},{"@type":"Question","name":"Kann ein Akku-Heizlüfter einen Raum heizen?","acceptedAnswer":{"@type":"Answer","text":"Nicht nennenswert. Ein gedämmter Raum braucht nach unseren Richtwerten 60 bis 100 Watt je Quadratmeter, zehn Quadratmeter also 600 bis 1.000 Watt. Ein 90-Wattstunden-Akku hält das 5 bis 9 Minuten durch. Für einen Raum braucht es eine Steckdose."}},{"@type":"Question","name":"Warum werben manche Geräte mit mehreren Stunden Laufzeit?","acceptedAnswer":{"@type":"Answer","text":"Weil die Laufzeit für eine kleine Stufe gilt. Wer mit einem 90-Wattstunden-Akku drei bis vier Stunden erreicht, zieht im Schnitt nur 22 bis 30 Watt. Das wärmt eine Hand oder einen Sitzplatz, keinen Raum. Die Werbung mit Stunden und die Kritik mit Minuten können beide stimmen, sie beschreiben verschiedene Stufen."}},{"@type":"Question","name":"Was wärmt ohne Steckdose wirklich?","acceptedAnswer":{"@type":"Answer","text":"Alles, was die Wärme an den Körper bringt statt in die Luft: beheizte Weste, beheizte Sitzauflage, Heizkissen. Ein Heizkissen braucht 40 bis 60 Watt, ein Akku mit 90 Wattstunden reicht damit rund anderthalb bis zwei Stunden. Gibt es eine Steckdose, kostet eine Stunde mit 1.000 Watt bei 0,30 Euro je Kilowattstunde 30 Cent, dann ist der Akku keine Ersparnis, sondern nur eine Grenze."}}]}]}</script>
 <link rel="alternate" type="application/rss+xml" title="EcoBack Ratgeber" href="/feed.xml">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="/site.webmanifest">
@@ -81,7 +87,7 @@
 
 
 
-<!--EB_UPDATED--><p style="font-size:13px;color:#5b6b78;margin:0 0 14px;">🗓 Aktualisiert am 27. September 2026 · EcoBack Redaktion</p><!--/EB_UPDATED-->
+<!--EB_UPDATED--><p style="font-size:13px;color:#5b6b78;margin:0 0 14px;">🗓 Aktualisiert am 25. November 2026 · EcoBack Redaktion</p><!--/EB_UPDATED-->
 
 <p><strong>Kurz:</strong> Laufzeit = <strong>Wattstunden ÷ Watt</strong>. Ein 18-V-Akku mit 5 Ah hat <strong>90 Wh</strong>. Auf <strong>2.000 W</strong> sind das <strong>2,7 Minuten</strong>, auf 500 W knapp 11 Minuten, auf 25 W dreieinhalb Stunden. Einen Raum heizt ein Akku deshalb nicht: 10 m² brauchen nach unseren Richtwerten 600–1.000 W, und dafür reichen 90 Wh <strong>5 bis 9 Minuten</strong>. Was ohne Steckdose wirklich wärmt, heizt den Körper statt der Luft — Weste, Sitzauflage, Heizkissen.</p>
 
@@ -90,6 +96,7 @@
     <strong style="display:block;margin-bottom:8px;">Inhaltsverzeichnis</strong>
     <ol style="margin:0 0 0 20px;">
     <li style="margin:4px 0;"><a href="#die-rechnung" style="text-decoration:none;">Die Rechnung: Wattstunden durch Watt</a></li>
+    <li style="margin:4px 0;"><a href="#auto-12v-steckdose" style="text-decoration:none;">12-V-Steckdose im Auto prüfen</a></li>
     <li style="margin:4px 0;"><a href="#stunden-oder-minuten" style="text-decoration:none;">Stunden oder Minuten: warum beide Angaben stimmen können</a></li>
     <li style="margin:4px 0;"><a href="#warum-kein-raum" style="text-decoration:none;">Warum ein Akku keinen Raum heizt</a></li>
     <li style="margin:4px 0;"><a href="#was-ohne-steckdose-waermt" style="text-decoration:none;">Was ohne Steckdose wirklich wärmt</a></li>
@@ -126,6 +133,23 @@
   <p class="out" id="out" role="status" aria-live="polite"></p>
   <p style="font-size:12.5px;color:#455;margin:8px 0 0;">Nennkapazität, ohne Verluste. Die Leistung steht auf dem Typenschild oder im Datenblatt, getrennt nach Stufen.</p>
 </div>
+
+<h2 id="auto-12v-steckdose">Passt ein 12-V-Heizlüfter an die Steckdose im Auto?</h2>
+<p>Vergleiche die elektrische Leistungsaufnahme des Heizlüfters mit der Grenze für genau diese 12-V-Steckdose im Bordbuch. Prüfe außerdem, ob die Fahrzeug- und Geräteanleitung den Anschluss und deine Nutzungsdauer abdecken. Angaben zur Sicherung oder zur Dauer der Stromversorgung ersetzen diese Prüfung nicht.</p>
+<p><strong>150 W bei 12 V entsprechen rechnerisch 12,5 A.</strong> An einer Steckdose mit höchstens 120 W liegt ein 150-W-Gerät 30 W über der Grenze. Bei 180 W liegt es rechnerisch 30 W darunter. Das allein bestätigt weder die Eignung des Steckers noch den Dauerbetrieb.</p>
+<form id="auto-12v-check" class="box" aria-labelledby="auto-12v-steckdose" hidden>
+  <label for="auto-12v-load">Leistungsaufnahme des Heizlüfters in W
+    <input id="auto-12v-load" type="number" inputmode="decimal" min="0.01" step="any" required>
+  </label>
+  <label for="auto-12v-limit">Grenze dieser 12-V-Steckdose laut Bordbuch in W
+    <input id="auto-12v-limit" type="number" inputmode="decimal" min="0.01" step="any" required>
+  </label>
+  <button type="submit">Leistungsgrenze vergleichen</button>
+  <output for="auto-12v-load auto-12v-limit" aria-live="polite"></output>
+</form>
+<p>Die <a href="https://public-servicebox.opel.com/OVddb/OV/de_DE/Corsa_F/2023_2028/2025_05/manual_user/OCORSFO2505de-1_online.pdf">deutsche Opel-Corsa-F-Anleitung, Ausgabe Mai 2025, Seite 50</a> nennt höchstens 120 W für die Steckdose in der Mittelkonsole. Die <a href="https://www.fordservicecontent.com/Ford_Content/Catalog/owner_information/CG3657deDEU-201909-20191004140221.pdf#page=148">deutsche Ford-Fiesta-Vignale-Anleitung für Fahrzeuge vom 06.01. bis 19.04.2020, Seite 144</a> nennt höchstens 180 W für die Zubehörsteckdose und unterscheidet sie ausdrücklich vom Zigarettenanzünder. Übernimm diese Werte nur für die jeweils dokumentierte Ausführung.</p>
+<p>Fehlt die Leistungsgrenze oder ist die Verwendung an deiner Steckdose ungeklärt, warte mit dem Kauf. Für die freie Sicht prüfe zuerst die vorgesehene Entfrostung im Fahrzeug und entferne Eis vor der Fahrt. Der <a href="https://www.adac.de/rund-ums-fahrzeug/ausstattung-technik-zubehoer/zubehoer/winterzubehoer/">ADAC ordnet die geringe Leistung von 150-W-Zusatzlüftern ein</a>. Quellen geprüft am 25. November 2026.</p>
+<script type="module" src="/assets/auto-12v-check.mjs?v=49484043c8de"></script>
 
 <h2 id="stunden-oder-minuten">Stunden oder Minuten: warum beide Angaben stimmen können</h2>
 

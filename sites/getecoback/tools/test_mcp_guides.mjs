@@ -184,6 +184,12 @@ test('Bosch stacking kit search leads with the answer and the readable catalog e
 
 const focusedLookups = [
   {
+    path:'/guide/akku-heizluefter.html', section:'auto-12v-steckdose',
+    expectedTitle:'Passt ein 12-V-Heizlüfter an die Steckdose im Auto?',
+    queries:['Heizlüfter 12V Auto','Auto Heizlüfter 12 V 150 Watt'],
+    evidence:['12,5 A','120 W','höchstens 180 W','warte mit dem Kauf','OCORSFO2505de-1_online.pdf'],
+  },
+  {
     path:'/guide/klimaanlage-mit-heizfunktion.html', section:'heizkosten-klimaanlage-gas',
     expectedTitle:'Wann kostet Heizen mit Klimaanlage weniger als Gas?',
     queries:['Ist Heizen mit Klimaanlage günstiger als Gas?', 'Welchen COP brauche ich bei 30 Cent Strom und 12 Cent Gas?'],
