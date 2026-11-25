@@ -378,6 +378,22 @@ test('German same-place hygrometer comparisons open the numerical example',()=>{
  ]) assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u.startsWith(page+'#')),q);
 });
 
+test('Siemens filter lookups open the verified E-Nr decision in German',()=>{
+ const target='/produkte.html#siemens-eq6-intenza';
+ for(const q of ['Wasserfilter für Siemens TE653501DE/13', 'TE654509DE / 12',
+   'Siemens EQ.6 plus s400 Intenza Filterpatrone', '17008835', '17008836',
+   'Welcher Filter passt zu TE653501DE?', 'Passt ein Wasserfilter zu TE654509DE/13?']){
+   const hits=searchEntries(index,q,'de');
+   assert.equal(hits[0]?.entry.u,target,q);
+   assert.match(hits[0].entry.d,/Fehlt die Endung oder weicht sie ab/,q);
+   assert.ok(!searchEntries(index,q,'en').some(hit=>hit.entry.u===target),q);
+ }
+ for(const q of ['Wie oft muss ich den Filter TE653501DE/13 wechseln?',
+   'Bosch TIE20301 Filter TCZ7003','Vergleich Kaffeemaschine Siemens EQ.6 plus s300 s400']){
+   assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u===target),q);
+ }
+});
+
 test('German offline thermostat questions open the two documented operating limits',()=>{
  const destination='/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-ohne-internet';
  for(const q of ['Funktioniert mein Bosch Heizkörperthermostat II [+M] ohne Zentrale?',

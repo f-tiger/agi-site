@@ -21,3 +21,12 @@ export function asksForCoffeeWaterFilterMatch(query) {
   const filterChoice = /\bfilter\w*\b/.test(query) && /\b(?:welch\w*|pass\w*|kompat\w*|kauf\w*|bestell\w*|ersatz\w*|kennung\w*|nummer\w*|wassertank\w*)\b/.test(query);
   return exactPart || waterFilter || filterChoice;
 }
+
+export function asksForSiemensWaterFilter(query) {
+  if (asksAboutCoffeeFilterMaintenance(query)) return false;
+  const device = /\bte(?:653501|654509)de\b/;
+  const family = /\bsiemens\b/.test(query) && /\beq[ .-]*6\b/.test(query);
+  const filter = /\b(?:filter\w*|wasser[ -]?filter\w*|ersatz[ -]?filter\w*|patrone\w*|intenza|1700883[56])\b/;
+  const identity = /^(?:te653501de\s*\/\s*13|te654509de\s*\/\s*12|1700883[56])$/;
+  return identity.test(query) || ((device.test(query) || family) && filter.test(query));
+}

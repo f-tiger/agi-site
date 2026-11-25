@@ -10,7 +10,9 @@ index=json.loads((SITE/'search-index.json').read_text())
 assert index==collect() and len({r['u'] for r in index})==len(rows)
 assert all('#' not in entry['u'] for entry in index),'Search sections must not become canonical index entries'
 product_index=next(row for row in index if row['u']=='/produkte.html')
-assert [row['id'] for row in product_index['model_sections']]==['waeschesaeule-zubehoer','beutelstaubsauger-angebote','miele-staubsaugerbeutel','kaercher-170mm-saugduese','fenstersauger-duesenbreite']
+assert [row['id'] for row in product_index['model_sections']]==[
+    'waeschesaeule-zubehoer','beutelstaubsauger-angebote','miele-staubsaugerbeutel',
+    'kaercher-170mm-saugduese','fenstersauger-duesenbreite','siemens-eq6-intenza']
 comfee_index=next(row for row in index if row['u']=='/guide/luftentfeuchter-keller.html')
 assert [row['id'] for row in comfee_index['model_sections']]==['modell-comfee-mddf20']
 trotec_index=next(row for row in index if row['u']=='/guide/trotec-luftentfeuchter-test.html')

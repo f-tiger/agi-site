@@ -84,6 +84,20 @@ test('laundry search stays on task and every search result can be read through t
   }
 });
 
+test('Siemens filter guide search names the only verified E-Nr pair and an unknown fallback', async () => {
+  const {env} = assetEnv();
+  const path='/produkte.html';
+  const matching=await call('ratgeber_suche',{frage:'Welcher Wasserfilter für TE653501DE?',sprache:'de',max:1},env);
+  assert.equal(matching.isError,false);
+  const lines=textOf(matching).split('\n');
+  assert.match(lines[1],/BRITA Intenza.*Siemens/);
+  assert.equal(lines[2].trim(),'https://getecoback.com'+path);
+  assert.match(lines[3],/17008835 \(1 Stück\).*17008836 \(3 Stück\).*TE653501DE\/13 und TE654509DE\/12.*Fehlt die Endung/);
+  const reading=await call('ratgeber_lesen',{pfad:path},env);
+  assert.equal(reading.isError,false);
+  assert.match(textOf(reading),/https:\/\/getecoback\.com\/produkte\.md/);
+});
+
 test('offline thermostat guide search keeps both manufacturer citations readable', async () => {
   const {env} = assetEnv();
   const path='/guide/smarte-heizkoerperthermostate-lohnen-sich.html';

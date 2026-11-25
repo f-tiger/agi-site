@@ -95,6 +95,8 @@ async function checkGermanFocusedDiscovery(browser,base){
    {href:coolingSalePage+'#'+coolingSaleSection,language:'de'},'German sale searches open the retailer reference price');
   equal((await search('FRITZ! 302 bei Internetausfall'))[0],
    {href:thermostatPage+'#'+thermostatSection,language:'de'},'Thermostat outage searches open the documented operating limits');
+  equal((await search('Wasserfilter für Siemens TE653501DE/13'))[0],
+   {href:'/produkte.html#siemens-eq6-intenza',language:'de'},'Exact Siemens E-Nr filter searches reach the model evidence');
   equal((await search('Welcher Ersatzfilter passt in meinen Beurer LR 401?'))[0],{href:'/ersatzfilter.html#beurer-lr401',language:'de'},'Beurer model reaches the audited exact filter');
   equal((await search('Welchen Filter brauche ich für meinen Levoit Core 300S ohne Pro?'))[0],{href:'/ersatzfilter.html#levoit-core-300s',language:'de'},'Core 300S reaches its exact standard filter');
   const ventilation='Soll ich meinen Keller lüften? Innen 16 °C und 75 %, draußen 8 °C und 90 %, Wand 12 °C.';
@@ -287,6 +289,12 @@ async function checkGermanFocusedDiscovery(browser,base){
  check(await operation.getByText('am Drehknopf einstellen',{exact:false}).isVisible(),'Manual standalone operation is readable');
  check(await operation.getByText('Die automatische Schaltung ist dabei eingeschränkt',{exact:false}).isVisible(),
   'The no-script answer distinguishes retained settings from automatic operation');
+ await page.goto(base+'/produkte.html?__ci=1#siemens-eq6-intenza');
+ const siemens=page.locator('section[aria-labelledby="siemens-eq6-intenza"]');
+ check(await siemens.getByText('17008836 enthält drei Wasserfilter',{exact:true}).isVisible(),
+  'The no-script Siemens guide identifies the three-pack');
+ check(await siemens.getByText('Fehlt die Endung hinter dem Schrägstrich',{exact:false}).isVisible(),
+  'The no-script Siemens guide requires a verified full E-Nr');
  await page.goto(base+'/guide/heizkosten-vergleich-rechner.html?__ci=1');
  const heatLink=page.getByRole('link',{name:'Kurze Einsätze von Heizlüfter und Infrarot vergleichen',exact:true});
  check(await heatLink.isVisible(),'Direct-heat comparison has a native in-page link without JavaScript');

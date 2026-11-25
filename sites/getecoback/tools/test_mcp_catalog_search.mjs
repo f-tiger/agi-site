@@ -137,6 +137,20 @@ test('the German window condensation question finds the measured check and fixed
   assert.notEqual(findCatalogueTools(compact,{query:ventilate})[0]?.name, name, ventilate);
 });
 
+test('Siemens filter discovery uses the exact guide instead of the other model schemas', async () => {
+  const path='/produkte.html#siemens-eq6-intenza';
+  for(const query of ['Siemens TE653501DE/13 Wasserfilter','Wasserfilter für TE654509DE/13','17008836']){
+    const result=await catalogue({q:query,view:'compact',limit:3});
+    assert.deepEqual(names(result.tools),['ratgeber_suche'],query);
+    assert.equal(toolGuidePath(result.tools[0]),path,query);
+    assert.equal(toolGuidePath(findCatalogueTools(compact,{query})[0]),path,query);
+  }
+  const bosch='Welcher BRITA Intenza Filter passt zum Bosch TIE20301?';
+  assert.equal(findCatalogueTools(compact,{query:bosch})[0]?.name,
+    'kaffeevollautomat_intenza_aquaclean_filterfamilie_modellpruefung');
+  assert.equal(analytics,0);
+});
+
 test('offline thermostat discovery returns cited guidance and retains exact tool access', async () => {
   const query='Funktioniert mein Bosch Heizkörperthermostat II [+M] ohne Zentrale?';
   const path='/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-ohne-internet';

@@ -1,8 +1,8 @@
-import {exactBoschStackingGuide, exactGermanHouseholdTask, exactWindowShadeMeasurement, hasOtherWindowSurface} from './german-household-intent.mjs?v=081c2759c241';
+import {exactBoschStackingGuide, exactGermanHouseholdTask, exactWindowShadeMeasurement, hasOtherWindowSurface} from './german-household-intent.mjs?v=63a7ef038ee5';
 import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion} from './kaercher-saugduese-intent.mjs';
-import {asksForCoffeeWaterFilterMatch} from './kaffee-wasserfilter-intent.mjs';
+import {asksForCoffeeWaterFilterMatch} from './kaffee-wasserfilter-intent.mjs?v=99bfa4094412';
 import {asksForTrotecTtk75EcoConditions} from './trotec-ttk75-eco-intent.mjs';
 import {asksForCoolingNoiseComparison} from './cooling-noise-intent.mjs?v=f0bcc0785943';
 import {asksForTesamollWindowProfile} from './tesamoll-profile-intent.mjs';
