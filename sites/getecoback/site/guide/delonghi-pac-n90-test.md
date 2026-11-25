@@ -40,6 +40,8 @@ Auf dem Label stehen **0,9 kWh/60 min** Stromverbrauch unter Prüfbedingungen un
 
 Für die Kosten eines eigenen Laufs brauchst du die am Gerät gemessenen kWh zwischen Start und Ende sowie deinen Tarif. Bei festem Arbeitspreis gilt: gemessene kWh × €/kWh. Teile die Kosten durch die gemessene Laufzeit in Stunden, wenn du den Durchschnitt für diesen Lauf wissen möchtest. Für eine andere Nacht bleiben Verbrauch und Kosten offen.
 
+Wenn du den PAC N90 ECO Silent mit der EAN 8004399512351 suchst und die Abluft sicher nach draußen führen kannst, sieh dir das [deutsche Angebot für dieses Modell](https://getecoback.com/guide/delonghi-pac-n90-test.html#n90-angebot) an. Fehlt die EAN im Angebot oder ist die Variante unklar, [kläre zuerst die Modellkennung](https://getecoback.com/guide/delonghi-pac-n90-test.html#testlage).
+
 ## Für welchen Raum reicht er?
 
 Das Datenblatt führt 2,5 kW Kühlleistung bei 35 °C und 40 % relativer Feuchte (EN 14511) und ein Raumvolumen bis 85 m³ auf. Ein 20-m²-Zimmer mit 2,50 m Deckenhöhe hat 50 m³. Wie viel Kühlung es braucht, hängt auch von Sonneneinstrahlung, Dachlage und dem Weg für die Abluft ab. Mit dem [BTU-Rechner](https://getecoback.com/guide/btu-rechner.html) kannst du die Kühllast für dein Zimmer abschätzen.

@@ -347,6 +347,24 @@ class LlmsFull(unittest.TestCase):
         self.assertIn('https://www.amazon.de/dp/B07NC5CP6F?tag=getecoback-21', html)
         self.assertNotIn('amazon.de/', md)
 
+    def test_n90_energy_label_links_to_the_existing_model_check_and_offer(self):
+        route = '/guide/delonghi-pac-n90-test.html'
+        guide = SITE / route.lstrip('/')
+        page = guide.read_text()
+        md = guide.with_suffix('.md').read_text()
+        section = page.split('id="n90-energielabel"', 1)[1].split('<h2', 1)[0]
+        mirror = md.split('## Was kostet eine Stunde Kühlen mit dem PAC N90 ECO Silent?', 1)[1].split('\n## ', 1)[0]
+        self.assertEqual(page.count('id="n90-angebot"'), 1)
+        self.assertEqual(section.count('href="#n90-angebot"'), 1)
+        self.assertIn('href="#testlage"', section)
+        self.assertIn('https://getecoback.com' + route + '#n90-angebot', mirror)
+        self.assertIn('https://getecoback.com' + route + '#testlage', mirror)
+        for surface in (section, mirror):
+            self.assertIn('8004399512351', surface)
+            self.assertIn('Abluft sicher nach draußen führen', surface)
+            self.assertIn('Fehlt die EAN im Angebot', surface)
+            self.assertNotIn('amazon.de/', surface)
+
     def test_n90_portasplit_noise_comparison_keeps_metrics_and_sources(self):
         route = '/guide/delonghi-pac-n90-test.html'
         guide = SITE / route.lstrip('/')

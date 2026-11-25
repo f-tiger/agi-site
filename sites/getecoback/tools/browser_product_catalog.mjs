@@ -225,7 +225,7 @@ async function checkN90Entry(browser) {
  const otherModel='https://www.amazon.de/s?k=AEG+ChillFlex+Pro&tag=getecoback-21';
  for(const mode of ['tagged','other-model','untagged','wrong-fragment','extra-query','opted-out','revoked','dnt','gpc','webdriver','no-script']){
   const noScript=mode==='no-script';
-  const context=await browser.newContext({viewport:{width:390,height:844},javaScriptEnabled:!noScript,serviceWorkers:'block'});
+  const context=await browser.newContext({viewport:{width:noScript?320:390,height:844},javaScriptEnabled:!noScript,serviceWorkers:'block'});
   const merchants=[];
   let eventRequests=0;
   await context.route('**/*',route=>{
@@ -260,8 +260,11 @@ async function checkN90Entry(browser) {
    assert.equal(JSON.parse((await unrelated).postData()).mcp_n90_entry,undefined);
   }
   if(mode==='revoked')await page.evaluate(()=>localStorage.setItem('fleet_ga4_choice_v1','denied'));
-  const laterFragment=mode==='wrong-fragment'?n90Entry.fragment:'#alternativen';
-  await page.locator('a[href="'+laterFragment+'"]').first().click();
+  const followsCostOffer=mode==='tagged'||noScript;
+  const laterFragment=followsCostOffer?'#n90-angebot':mode==='wrong-fragment'?n90Entry.fragment:'#alternativen';
+  const offerJump=page.locator('#n90-kosten-kaufcheck a[href="#n90-angebot"]');
+  const jump=followsCostOffer?offerJump:page.locator('a[href="'+laterFragment+'"]').first();
+  await jump.click();
   await page.waitForURL(documentURL+laterFragment);
   const product=mode==='other-model'?otherModel:n90Entry.product_url;
   const link=mode==='other-model'?page.locator('table a[href="'+otherModel+'"]'):page.locator('.cta-box a[href="'+product+'"]');
