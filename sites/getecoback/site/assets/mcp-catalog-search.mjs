@@ -1,4 +1,4 @@
-import {boschDry, comfeeVariant, exactGermanHouseholdTask, festiveLights, showerFlow, vacuumOffer} from './german-household-intent.mjs?v=c87f9a5151f8';
+import {boschDry, comfeeVariant, directHeat, exactGermanHouseholdTask, festiveLights, showerFlow, vacuumOffer} from './german-household-intent.mjs?v=73737c4b700b';
 import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion, glassvacModel, windowVacCharging} from './kaercher-saugduese-intent.mjs';
@@ -383,7 +383,7 @@ export function findCatalogueTools(index, {query='', category='', name=null}={})
   const portaSplitVariant = namesDifferentPortaSplit(focus.query);
   const portaSplitLipTool = 'midea_portasplit_fensterfalz_pruefen';
   const householdTask = exactGermanHouseholdTask(focus.query);
-  if (householdTask === boschDry || householdTask === comfeeVariant || householdTask === festiveLights || householdTask === showerFlow) {
+  if (householdTask === boschDry || householdTask === comfeeVariant || householdTask === festiveLights || householdTask === showerFlow || householdTask === directHeat) {
     const guideSearch = index.find(entry => entry.tool.name === householdTask.tool && eligible(entry));
     if (!guideSearch) return [];
     const citation_url = 'https://getecoback.com' + householdTask.path;

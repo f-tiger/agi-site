@@ -1287,6 +1287,19 @@ test('exact humidifier accessory queries prefer the appropriate existing tool an
   assert.equal(analytics,0);
 });
 
+test('German direct-heating comparisons recommend the existing guide reader', async () => {
+  for (const query of ['Heizlüfter oder Infrarotheizung', 'Was ist billiger: Heizlüfter 2000 W für 15 Minuten oder Infrarotpanel 600 W für eine Stunde?', 'Was kostet Heizlüfter oder Infrarotheizung am Schreibtisch?']) {
+    const result = await catalogue({q:query,view:'compact',limit:3});
+    assert.deepEqual(names(result.tools),['ratgeber_suche'],query);
+    assert.deepEqual(names(findCatalogueTools(compact,{query})),['ratgeber_suche'],query);
+    assert.equal(toolGuidePath(result.tools[0]),'/guide/heizkosten-vergleich-rechner.html#heizluefter-oder-infrarot',query);
+  }
+  const safety = 'Welche IP44-Freigabe brauche ich für Heizlüfter oder Infrarotheizung im Bad?';
+  const result = await catalogue({q:safety,view:'compact',limit:3});
+  assert.ok(!result.tools.some(tool=>toolGuidePath(tool)==='/guide/heizkosten-vergleich-rechner.html#heizluefter-oder-infrarot'));
+  assert.equal(analytics,0);
+});
+
 test('Bosch Dry 4000 catalogue queries prefer guide search and leave drainage to its own tool', async () => {
   for (const query of ['Bosch Dry 4000','D4000-EU','7733703558','4069143047774',
     'Welchen Ablaufschlauch oder Tank hat der Bosch Dry 4000 D4000-EU?']) {

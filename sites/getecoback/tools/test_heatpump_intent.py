@@ -133,6 +133,18 @@ class HeatpumpIntent(unittest.TestCase):
         for marker in SHOPPING:
             self.assertNotIn('<!--EB_' + marker + '-->', rebuild(page, "heizkosten-vergleich-rechner"))
 
+    def test_short_direct_heating_answer_keeps_sources_and_cost_boundaries(self):
+        target = SITE / "guide/heizkosten-vergleich-rechner.html"
+        page = target.read_text()
+        mirror = target.with_suffix(".md").read_text()
+        section_id = 'heizluefter-oder-infrarot'
+        self.assertEqual(page.count(f'id="{section_id}"'), 1)
+        self.assertIn(f'href="#{section_id}"', page)
+        for phrase in ("0,50 kWh", "17,5 Cent", "0,60 kWh", "21 Cent", "50 Minuten",
+                       "auf ein Zusatzgerät verzichten", "https://www.umweltbundesamt.de/umwelttipps-fuer-den-alltag/richtiges-heizen-schuetzt-das-klima-den-geldbeutel"):
+            self.assertIn(phrase, page)
+            self.assertIn(phrase, mirror)
+
     def test_heater_copy_does_not_turn_trends_into_search_volume(self):
         for table in (B.DEVICE_MODELS, B.DEVICE_MODELS_EN):
             card = next(row for row in table["heater"] if row[0] == "Midea NTH20-17BR")

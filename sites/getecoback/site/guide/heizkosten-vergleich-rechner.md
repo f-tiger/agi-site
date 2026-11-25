@@ -1,6 +1,6 @@
 # Heizkosten-Vergleich: Heizlüfter, Infrarot oder Klima?
 
-> Stromkosten für dieselbe Wärmemenge vergleichen: Heizlüfter, Infrarot und Klimaanlage mit einstellbarem COP, eigenen Tarifangaben und offenem Rechenweg.
+> Heizlüfter oder Infrarotheizung? Leistung und Laufzeit für kurze Einsätze vergleichen. Für dieselbe Wärmemenge mit eigenem Tarif und COP rechnen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/heizkosten-vergleich-rechner.html
 
@@ -9,6 +9,8 @@ Du kannst dieselbe Wärmemenge mit Heizlüfter, Infrarotheizung oder einer rever
 **Beispiel:** 2 kW Wärmeleistung × 4 Stunden am Tag × 150 Tage ergeben 1.200 kWh Wärme. Bei 37 ct/kWh kosten Heizlüfter und Infrarotheizung jeweils 444 €. Die reversible Klimaanlage kostet bei angenommenem COP 2 rund 222 €, bei COP 3 rund 148 €. Diese Werte sind frei gewählte Rechenannahmen. Für einen Kaufvergleich brauchst du außerdem deine Anschaffungs-, Montage- und Wartungskosten.
 
 EcoBack finanziert sich unter anderem über gekennzeichnete Affiliate-Links auf anderen Ratgeberseiten.
+
+[Kurze Einsätze von Heizlüfter und Infrarot vergleichen](https://getecoback.com/guide/heizkosten-vergleich-rechner.html#heizluefter-oder-infrarot)
 
 ## Stromkosten bei gleicher Wärmemenge
 
@@ -34,6 +36,20 @@ COP der reversiblen Klimaanlage (Annahme)
 Stromkosten vergleichen
 
 [Vor dem Kauf Heizfreigabe, Aufstellung und Angebot prüfen](https://getecoback.com/guide/klimaanlage-mit-heizfunktion.html#worauf-beim-kauf-achten)
+
+## Heizlüfter oder Infrarotheizung für kurze Einsätze?
+
+**Vergleiche für jeden Einsatz die Leistung und die tatsächlich eingeschalteten Minuten.** Verbrauch in kWh = Leistung in Watt × Einschaltminuten ÷ 60.000. Multipliziere die kWh mit deinem Arbeitspreis. Bei gleicher Leistung und Einschaltzeit kosten beide am selben Tarif gleich viel.
+
+- **Heizlüfter, 2.000 W für 15 Minuten:** 0,50 kWh, bei angenommenen 35 ct/kWh also 17,5 Cent.
+
+- **Infrarotpanel, 600 W für 60 Minuten:** 0,60 kWh, bei demselben Tarif also 21 Cent. Bei 50 Minuten wären es ebenfalls 0,50 kWh.
+
+Die Zeiten und Leistungen sind Rechenannahmen. Ob beide Einsätze denselben Komfort bringen, hängt vom Raum, vom Abstand und vom Platz ab, den du wärmen willst. Bei einer Thermostatpause zählt die tatsächliche Einschaltzeit. Wenn du den Verbrauch des ganzen Einsatzes sicher messen kannst, verwende stattdessen die gemessenen kWh.
+
+Reicht die vorhandene Heizung nach einer kurzen Anpassung, kannst du auf ein Zusatzgerät verzichten. Wenn du gezielt noch Wärme brauchst, prüfe den [Heizlüfter für einen kurzen Warmluft-Einsatz](https://getecoback.com/guide/heizluefter-stromsparend.html) oder das [Infrarotpanel für einen passenden Sitzplatz](https://getecoback.com/guide/infrarotheizung-ratgeber.html). Beurteile dabei auch Aufstellung und die Herstellerangaben für das konkrete Gerät.
+
+[Umweltbundesamt: Hinweise zu elektrischen Zusatzheizungen](https://www.umweltbundesamt.de/umwelttipps-fuer-den-alltag/richtiges-heizen-schuetzt-das-klima-den-geldbeutel), geprüft am 25. November 2026.
 
 ## Wie der Vergleich rechnet
 

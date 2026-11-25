@@ -70,6 +70,26 @@ test('Glazing questions reach the existing comparison, while indoor glass keeps 
   assert.notEqual(searchEntries(index,question,'de')[0]?.entry.u,glazing,question);
  }
 });
+test('German direct-heating comparisons find the short-use answer',()=>{
+ const target='/guide/heizkosten-vergleich-rechner.html#heizluefter-oder-infrarot';
+ for(const query of [
+  "Heizlüfter oder Infrarotheizung",
+  "Was ist billiger: Heizlüfter 2000 W für 15 Minuten oder Infrarotpanel 600 W für eine Stunde?",
+  "Was kostet Heizlüfter oder Infrarotheizung am Schreibtisch?"
+]){
+  assert.equal(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+  assert.ok(!searchEntries(index,query,'en').some(hit=>hit.entry.u===target),query);
+ }
+ for(const query of [
+  "Heizlüfter oder Infrarotheizung oder Klimaanlage zum Heizen?",
+  "Welche IP44-Freigabe brauche ich für Heizlüfter oder Infrarotheizung im Bad?",
+  "Heizlüfter defekt, Infrarotheizung als Ersatz reparieren?",
+  "Sicherung fliegt bei Heizlüfter oder Infrarotheizung",
+  "Wie viel Strom braucht mein Heizlüfter?"
+]){
+  assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+ }
+});
 test('Showerhead flow-fit questions reach the measured-flow decision',()=>{
  const target='/guide/duschen-kosten-rechner.html#durchlauferhitzer-mindestdurchfluss';
  for(const query of [
