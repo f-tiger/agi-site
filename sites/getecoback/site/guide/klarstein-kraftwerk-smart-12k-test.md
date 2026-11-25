@@ -18,13 +18,13 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unte
 
 Prüfe am Fenster die Öffnungsart, den Befestigungsrand und den Weg des Abluftschlauchs. Beim seitlich geöffneten Dreh-Kipp-Fenster, beim Schiebefenster oder bei fehlenden Maßen kläre die Passung vor der Bestellung. [Fensterflügel und passende Abdichtung prüfen](https://getecoback.com/guide/fensterabdichtung-klimaanlage.html).
 
-Die weiße 11.500-BTU-Ausführung hat die Artikelnummer **10040189**. Gleiche im konkreten Angebot die vollständige Artikelnummer und den Packungsinhalt ab. [Vorhandenen Angebotslink prüfen](https://getecoback.com/guide/klarstein-kraftwerk-smart-12k-test.html#angebot-kraftwerk). Bleiben Modell oder Inhalt unklar, frage beim Händler nach und warte mit der Bestellung.
+Die anthrazitfarbene 12.000-BTU-Ausführung hat die Artikelnummer **10034665**, die weiße 11.500-BTU-Ausführung die Nummer **10040189**. Gleiche im gewählten Angebot Artikelnummer, Farbe und Packungsinhalt ab. Bleiben Modell oder Inhalt unklar, frage beim Händler nach und warte mit der Bestellung.
 
-Deutsche Herstellerangaben, geprüft am 25. November 2026. [Klarstein: Lieferumfang für 10034664](https://www.klarstein.de/kraftwerk-smart-12000-btu-mobile-klimaanlage-weiss-p-10034664.html) · [Klarstein: 11.500-BTU-Variante 10040189](https://www.klarstein.de/kraftwerk-smart-11500-btu-mobile-klimaanlage-weiss-p-10040189.html).
+Deutsche Herstellerangaben, geprüft am 25. November 2026. [Klarstein: weißes Gerät und Lieferumfang 10034664](https://www.klarstein.de/kraftwerk-smart-12000-btu-mobile-klimaanlage-weiss-p-10034664.html) · [Klarstein: anthrazitfarbene 12.000-BTU-Variante 10034665](https://www.klarstein.de/kraftwerk-smart-12000-btu-mobile-klimaanlage-anthrazit-p-10034665.html) · [Klarstein: 11.500-BTU-Variante 10040189](https://www.klarstein.de/kraftwerk-smart-11500-btu-mobile-klimaanlage-weiss-p-10040189.html).
 
 ## Die Testlage: Stärken und Schwächen
 
-Das Kraftwerk Smart 12K ist die 12.000-BTU-Variante von Klarsteins Kraftwerk-Smart-Reihe; die Eckdaten — **12.000 BTU Kühlleistung (ca. 3,5 kW), Energieeffizienzklasse A, EER 2,6, ca. 1,3 kWh Verbrauch pro Stunde im Kühlbetrieb, ca. 27 kg** — stehen im Datenblatt des Herstellers. Über die öffentlichen Tests hinweg wiederholen sich dieselben Befunde:
+Das Kraftwerk Smart 12K ist die 12.000-BTU-Variante von Klarsteins Kraftwerk-Smart-Reihe; die Eckdaten — **12.000 BTU Kühlleistung (ca. 3,5 kW), Energieeffizienzklasse A, EER 2,6, ca. 1,3 kWh Verbrauch pro Stunde im Kühlbetrieb, ca. 27 kg** — stehen im [Datenblatt des Herstellers](https://www.klarstein.de/kraftwerk-smart-12000-btu-mobile-klimaanlage-anthrazit-p-10034665.html). Über die öffentlichen Tests hinweg wiederholen sich dieselben Befunde:
 
 | Befund öffentlicher Tests | Unsere Einordnung für den Alltag |
 | --- | --- |
@@ -85,11 +85,11 @@ Mit der Faustregel von rund 340 BTU pro m² decken 12.000 BTU etwa 25 bis 35 m²
 **Was ist die Alternative, wenn das Kraftwerk Smart 12K nicht passt?**
 Für 15–25 m² ist der De'Longhi Pinguino PAC EX105 die effizientere und leisere Wahl, für kleine Räume mit knappem Budget das Comfee MPPH-09CRN7 mit 9.000 BTU. Wer nachts absolute Ruhe braucht, nimmt den Midea PortaSplit, dessen Kompressor draußen hängt. Und wenn der Raum mehr als etwa 13.500 BTU braucht, ist die ehrliche Antwort keines dieser Geräte, sondern ein fest installiertes Split-Gerät oder zwei kleinere Monoblöcke.
 
-**Angebot prüfen** — [Artikelnummer 10034664 und Packungsinhalt abgleichen](https://getecoback.com/guide/klarstein-kraftwerk-smart-12k-test.html#kraftwerk-10034664-lieferumfang).
+**Händlerangebot für die Kraftwerk-12K-Reihe**. Prüfe im Shop die ausgewählte Farbe, die Artikelnummer und den Packungsinhalt. Für das weiße Gerät nutze die [Herstellerangaben zu 10034664](https://getecoback.com/guide/klarstein-kraftwerk-smart-12k-test.html#kraftwerk-10034664-lieferumfang).
 
 Anzeige · Affiliate-Link — du zahlst denselben Preis
 
-Klarstein Kraftwerk Smart 12K auf Amazon →
+12K-Angebot bei Amazon öffnen und Ausführung prüfen →
 
 **Weiterlesen**
 [Welche Klimaanlage für 30 m²? →](https://getecoback.com/guide/klimaanlage-30-qm.html)

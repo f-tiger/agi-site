@@ -146,6 +146,7 @@ test('appliance evidence survives in both the generated mirror and edge fallback
   ]],
   ['guide/klarstein-kraftwerk-smart-12k-test', [
    'https://www.klarstein.de/kraftwerk-smart-12000-btu-mobile-klimaanlage-weiss-p-10034664.html',
+   'https://www.klarstein.de/kraftwerk-smart-12000-btu-mobile-klimaanlage-anthrazit-p-10034665.html',
    'https://www.klarstein.de/kraftwerk-smart-11500-btu-mobile-klimaanlage-weiss-p-10040189.html',
   ]],
   ['guide/duschen-kosten-rechner', [

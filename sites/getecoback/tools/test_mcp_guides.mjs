@@ -89,7 +89,7 @@ const focusedLookups = [
     path:'/guide/klarstein-kraftwerk-smart-12k-test.html', section:'kraftwerk-10034664-lieferumfang',
     expectedTitle:'Klarstein Kraftwerk Smart 12K: Was ist bei 10034664 dabei?',
     queries:["Was gehört beim Klarstein Kraftwerk Smart 12K zum Lieferumfang, brauche ich eine zusätzliche Fensterabdichtung?", "Klarstein Kraftwerk Smart 12K 10034664"],
-    evidence:['Fensterabdichtungsset für Kippfenster','Abluftschlauch mit Anschlussstücken','10040189','warte mit der Bestellung','https://www.klarstein.de/kraftwerk-smart-12000-btu-mobile-klimaanlage-weiss-p-10034664.html'],
+    evidence:['Fensterabdichtungsset für Kippfenster','Abluftschlauch mit Anschlussstücken','10034665','10040189','warte mit der Bestellung','https://www.klarstein.de/kraftwerk-smart-12000-btu-mobile-klimaanlage-weiss-p-10034664.html'],
   },
   {
     path:'/guide/heizkosten-vergleich-rechner.html', section:'heizluefter-oder-infrarot',

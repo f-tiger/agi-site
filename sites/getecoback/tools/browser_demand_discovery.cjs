@@ -190,9 +190,14 @@ async function checkGermanFocusedDiscovery(browser,base){
  const klarsteinAnswer=page.locator('section[aria-labelledby="kraftwerk-10034664-lieferumfang"]');
  check(await klarsteinAnswer.getByText('Fensterabdichtungsset für Kippfenster',{exact:true}).isVisible(),
   'Klarstein provides the included package contents without JavaScript');
- await klarsteinAnswer.getByRole('link',{name:'Vorhandenen Angebotslink prüfen',exact:true}).click();
- await page.waitForURL(base+'/guide/klarstein-kraftwerk-smart-12k-test.html?__ci=1#angebot-kraftwerk');
- const existingShop=page.locator('#angebot-kraftwerk a[rel~="sponsored"]');
+ const exactManufacturer=klarsteinAnswer.getByRole('link',{name:'Klarstein: weißes Gerät und Lieferumfang 10034664',exact:true});
+ equal(await exactManufacturer.getAttribute('href'),'https://www.klarstein.de/kraftwerk-smart-12000-btu-mobile-klimaanlage-weiss-p-10034664.html',
+  'The white article links to its confirmed manufacturer listing');
+ check(!await klarsteinAnswer.locator('a[rel~="sponsored"]').count(),'The variant evidence has its own reference path');
+ const offerBlock=page.locator('#angebot-kraftwerk');
+ check(await offerBlock.getByText('Händlerangebot für die Kraftwerk-12K-Reihe',{exact:true}).isVisible(),
+  'The existing family-level retailer offer asks readers to verify the variant');
+ const existingShop=offerBlock.getByRole('link',{name:'12K-Angebot bei Amazon öffnen und Ausführung prüfen →',exact:true});
  equal(await existingShop.getAttribute('href'),'https://www.amazon.de/dp/B08VWSP8FW?tag=getecoback-21',
   'The existing tagged product destination follows the model check');
  await context.close();
