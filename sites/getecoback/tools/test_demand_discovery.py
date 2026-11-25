@@ -24,6 +24,7 @@ assert sorted(humidifier_sections)==sorted(['ersatzteile-zuordnen','philips-verd
 focused=[entry for entry in index if entry.get('section')]
 assert [(entry['l'],entry['u'],entry['section']['id']) for entry in focused]==[
     ('de','/geraete-austausch-rechner.html','geschirrspueler-handabwasch'),
+    ('de','/guide/akku-heizluefter.html','auto-12v-steckdose'),
     ('de','/guide/delonghi-pac-n90-test.html','testlage'),
     ('de','/guide/duschen-kosten-rechner.html','durchlauferhitzer-mindestdurchfluss'),
     ('de','/guide/fenster-beschlagen-aussen.html','aussen-innen-oder-dazwischen'),

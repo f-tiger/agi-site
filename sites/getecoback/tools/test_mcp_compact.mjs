@@ -73,6 +73,7 @@ test('hosted compact returns reviewed guide sections without presenting them as 
     ['Welcher Wasserfilter passt für Siemens TE653501DE/13?', '/produkte.html', 'siemens-eq6-intenza'],
     ['Welchen COP brauche ich bei 30 Cent Strom und 12 Cent Gas?', '/guide/klimaanlage-mit-heizfunktion.html', 'heizkosten-klimaanlage-gas'],
     ['Warum ist mein Fenster hinter dem Plissee nass, obwohl das Hygrometer 50 % zeigt?', '/guide/luftfeuchtigkeit-richtig-messen.html', 'kondenswasser-hinter-plissee'],
+    ['Auto Heizlüfter 12 V 150 Watt', '/guide/akku-heizluefter.html', 'auto-12v-steckdose'],
   ]) {
     const found = await call(compactPath,findName,{frage},headers);
     assert.equal(found.isError,false);
