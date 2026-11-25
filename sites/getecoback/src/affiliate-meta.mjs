@@ -84,17 +84,42 @@ const windowModelSearches = new Set(productCatalog.products
 const portasplitModelSearches = new Set([PORTASPLIT_MODEL_SEARCH]);
 const cellarModelSearches = new Set([CELLAR_MODEL_SEARCH]);
 
-function isGermanModelSearch(value, modelSearches) {
-  if (typeof value !== 'string') return false;
+export const VACUUM_OFFER_PAGE = '/produkte.html';
+export const VACUUM_OFFER_MODELS = Object.freeze([
+  'miele-guard-s1', 'miele-guard-m1-parquet-flex', 'bosch-bgbs2ba1p',
+]);
+const vacuumModelSearches = new Map(productCatalog.products
+  .filter(item => VACUUM_OFFER_MODELS.includes(item.id) && item.status === 'verified')
+  .map(item => [item.query, item.id]));
+
+function germanModelSearchTerm(value) {
+  if (typeof value !== 'string') return null;
   try {
     const url = new URL(value);
-    return url.origin === 'https://www.amazon.de' && url.pathname === '/s' &&
-      !url.username && !url.password && !url.hash && url.searchParams.size === 2 &&
-      url.searchParams.get('tag') === 'getecoback-21' &&
-      modelSearches.has(url.searchParams.get('k'));
-  } catch {
-    return false;
-  }
+    if (url.origin !== 'https://www.amazon.de' || url.pathname !== '/s' ||
+        url.username || url.password || url.hash || url.searchParams.size !== 2 ||
+        url.searchParams.get('tag') !== 'getecoback-21') return null;
+    return url.searchParams.get('k');
+  } catch { return null; }
+}
+
+function isGermanModelSearch(value, modelSearches) {
+  return modelSearches.has(germanModelSearchTerm(value));
+}
+
+export function vacuumOfferModel(body, request, uaClass) {
+  const headers = request.headers;
+  const fetchSite = headers.get('sec-fetch-site');
+  if (body.n !== 'affiliate_click' || body.p !== VACUUM_OFFER_PAGE || uaClass !== 'human' ||
+      headers.get('origin') !== ecoOrigin || (fetchSite && fetchSite !== 'same-origin') ||
+      ['dnt', 'sec-gpc', 'x-probe'].some(name => headers.get(name) === '1')) return null;
+  try {
+    const document = new URL(headers.get('referer'));
+    if (document.origin !== ecoOrigin || document.pathname !== VACUUM_OFFER_PAGE ||
+        ['__probe', '__qa', '__ci', 'qa', 'ci', 'verify'].some(key => document.searchParams.has(key)) ||
+        document.searchParams.get('utm_source') === 'verify') return null;
+  } catch { return null; }
+  return vacuumModelSearches.get(germanModelSearchTerm(body.m?.link_url)) ?? null;
 }
 
 function eligibleModelEntry(body, request, uaClass, path, documentUrl, matchesMerchant) {
@@ -153,7 +178,7 @@ export function taggedN90ModelEntry(body, request, uaClass) {
     N90_ENTRY_PAGE, N90_ENTRY_DOCUMENT, link => link === N90_PRODUCT_URL);
 }
 
-export function affiliateMeta(meta, taggedDrain = false, taggedWindow = false, taggedPortaSplit = false, taggedCellar = false, taggedN90 = false, taggedWindowTikTok = false) {
+export function affiliateMeta(meta, taggedDrain = false, taggedWindow = false, taggedPortaSplit = false, taggedCellar = false, taggedN90 = false, taggedWindowTikTok = false, vacuumModel = null) {
   const clean = {};
   if (taggedDrain) clean.mcp_drain_entry = 1;
   if (taggedWindow) clean.mcp_window_entry = 1;
@@ -161,6 +186,7 @@ export function affiliateMeta(meta, taggedDrain = false, taggedWindow = false, t
   if (taggedCellar) clean.mcp_cellar_entry = 1;
   if (taggedN90) clean.mcp_n90_entry = 1;
   if (taggedWindowTikTok) clean.window_tiktok_entry = 1;
+  if (VACUUM_OFFER_MODELS.includes(vacuumModel)) clean.vacuum_model = vacuumModel;
   if (!meta || typeof meta !== 'object' || Array.isArray(meta)) return JSON.stringify(clean);
   for (const [key, value] of [
     ['source', text(meta.source, 48)],
