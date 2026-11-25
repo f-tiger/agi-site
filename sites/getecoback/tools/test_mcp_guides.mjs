@@ -86,6 +86,12 @@ test('laundry search stays on task and every search result can be read through t
 
 const focusedLookups = [
   {
+    path:'/guide/heizkosten-vergleich-rechner.html', section:'heizluefter-oder-infrarot',
+    expectedTitle:'Heizlüfter oder Infrarotheizung für kurze Einsätze?',
+    queries:["Heizlüfter oder Infrarotheizung", "Was ist billiger: Heizlüfter 2000 W für 15 Minuten oder Infrarotpanel 600 W für eine Stunde?", "Was kostet Heizlüfter oder Infrarotheizung am Schreibtisch?"],
+    evidence:['0,50 kWh','17,5 Cent','0,60 kWh','21 Cent','50 Minuten', 'https://www.umweltbundesamt.de/umwelttipps-fuer-den-alltag/richtiges-heizen-schuetzt-das-klima-den-geldbeutel'],
+  },
+  {
     path:'/guide/duschen-kosten-rechner.html', section:'durchlauferhitzer-mindestdurchfluss',
     expectedTitle:'Passt eine Sparbrause zu meinem Durchlauferhitzer?',
     queries:['Funktioniert ein Sparduschkopf an meinem hydraulischen Durchlauferhitzer?'],

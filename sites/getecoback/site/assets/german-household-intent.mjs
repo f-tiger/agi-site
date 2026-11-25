@@ -15,6 +15,20 @@ const glazing = {
   id:'aussen-innen-oder-dazwischen',
   tool:'fenster_beschlag_einordnen',
 };
+export const directHeat = {
+  path:'/guide/heizkosten-vergleich-rechner.html',
+  id:'heizluefter-oder-infrarot',
+  tool:'ratgeber_suche',
+};
+
+function asksForDirectHeatComparison(query) {
+  const fan = /\b(?:[a-z]*heiz[ -]?luefter|heizgeblaese)\w*\b/;
+  const radiant = /\binfrarot(?:[ -]?(?:heiz\w*|panel\w*))?\b/;
+  const comparison = /\b(?:oder|vergleich\w*|billig\w*|guenstig\w*|kost\w*|verbrauch\w*|welch\w*)\b/;
+  const otherTask = /\b(?:klimaanlag\w*|waermepump\w*|cop|scop|akku\w*|sicherung\w*|repar\w*|defekt\w*|wandmontag\w*|deckenmontag\w*|ip[ -]?\d{2}|feuchtraum\w*|schimmel\w*)\b/;
+  return fan.test(query) && radiant.test(query) && comparison.test(query) && !otherTask.test(query);
+}
+
 export const showerFlow = {
   path:'/guide/duschen-kosten-rechner.html',
   id:'durchlauferhitzer-mindestdurchfluss',
@@ -131,6 +145,7 @@ function humidifierAccessoryTask(query) {
 
 // Consumers pass their normalized German query. Match a task, not a category.
 export function exactGermanHouseholdTask(query) {
+  if (asksForDirectHeatComparison(query)) return directHeat;
   if (asksForShowerFlow(query)) return showerFlow;
   if (asksForVacuumOffer(query)) return vacuumOffer;
   if (asksForBoschDry(query)) return boschDry;

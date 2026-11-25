@@ -104,6 +104,10 @@ async function checkGermanFocusedDiscovery(browser,base){
   const flowQuestion='Funktioniert ein Sparduschkopf an meinem hydraulischen Durchlauferhitzer?';
   equal((await search(flowQuestion))[0],{href:showerFit,language:'de'},
    'Showerhead fit reaches the measured flow and minimum threshold decision');
+  const directHeat='/guide/heizkosten-vergleich-rechner.html#heizluefter-oder-infrarot';
+  const directHeatQuery='Heizlüfter oder Infrarotheizung';
+  equal((await search(directHeatQuery))[0],{href:directHeat,language:'de'},
+   'German direct heating searches reach the short-use comparison');
   await search('eco-local-privacy-marker-6381');
   equal(await results.count(),0,'An arbitrary private phrase yields no result');
   await search(positive[1]);
@@ -136,6 +140,12 @@ async function checkGermanFocusedDiscovery(browser,base){
   await results.first().click();
   await page.waitForURL(base+showerFit);
   check(await page.locator('#durchlauferhitzer-mindestdurchfluss').isVisible(),'Showerhead search follows the exact result');
+  await page.locator('#eb-search-toggle').click();
+  await input.waitFor({state:'visible'});
+  await search(directHeatQuery);
+  await results.first().click();
+  await page.waitForURL(base+directHeat);
+  check(await page.locator('#heizluefter-oder-infrarot').isVisible(),'Heater comparison search navigates to the exact section');
   await context.close();
  }
 
@@ -158,6 +168,14 @@ async function checkGermanFocusedDiscovery(browser,base){
  const showerAnswer=page.locator('section[aria-labelledby="durchlauferhitzer-mindestdurchfluss"]');
  check(await showerAnswer.getByText('Behalte die vorhandene Brause',{exact:false}).isVisible(),
   'The static shower advice keeps the wait and no-purchase option');
+ await page.goto(base+'/guide/heizkosten-vergleich-rechner.html?__ci=1');
+ const heatLink=page.getByRole('link',{name:'Kurze Einsätze von Heizlüfter und Infrarot vergleichen',exact:true});
+ check(await heatLink.isVisible(),'Direct-heat comparison has a native in-page link without JavaScript');
+ equal(await heatLink.getAttribute('href'),'#heizluefter-oder-infrarot','The link opens the short-use calculation');
+ await heatLink.click();
+ await page.waitForURL(base+'/guide/heizkosten-vergleich-rechner.html?__ci=1#heizluefter-oder-infrarot');
+ const heatAnswer=page.locator('section[aria-labelledby="heizluefter-oder-infrarot"]');
+ check(await heatAnswer.getByText('17,5 Cent',{exact:false}).isVisible(),'Heater cost example works without JavaScript');
  await context.close();
  return checks;
 }

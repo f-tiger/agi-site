@@ -33,6 +33,9 @@ def collect():
  tasks=json.loads((ROOT/'data/demand-discovery.json').read_text())
  aliases={(l,t['url']):t['label']+' '+t['aliases'] for l,g in tasks.items() for t in g['tasks']}
  sections={(l,t['url']):t['section'] for l,g in tasks.items() for t in g['tasks'] if 'section' in t}
+ sections[('de','/guide/heizkosten-vergleich-rechner.html')]= {
+  'id':'heizluefter-oder-infrarot','title':'Heizlüfter oder Infrarotheizung für kurze Einsätze?',
+  'description':'Für zwei konkrete Einsätze Leistung und aktive Laufzeit getrennt rechnen. Weniger Watt allein bedeuten weder weniger Strom pro Einsatz noch denselben Komfort.'}
  sections[('de','/guide/lichterkette-stromkosten.html')]={
   'id':'zeitschaltuhr-strombilanz','title':'Weihnachtsbeleuchtung: Spart eine Zeitschaltuhr Strom?',
   'description':'5 W LED und 0,5 W Timer: Erst mehr als 2 Stunden und 24 Minuten weniger Licht pro Tag sparen Energie. Eigene Zeiten und mehrere Lichterketten prüfen.'}
