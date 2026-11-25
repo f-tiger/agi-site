@@ -49,10 +49,37 @@ def buyer_start():
             ' <span>Köpfe, fehlende Zentrale und Adapter zählen; danach mit eigener Sparannahme rechnen.</span></a></li>'
             '<li><a href="#thermostat-behalten"><strong>Mein bisheriger Kopf reicht vielleicht</strong>'
             ' <span>Weiterverwenden oder einen einfachen Zeitplan prüfen, bevor du ein Funk-System kaufst.</span></a></li>'
-            '</ul><p class="tc-source">Grundlage: <a href="https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizkosten-sparen-thermostat-richtig-einstellen-und-wechseln-7940">'
+            '</ul><p><a href="#thermostat-ohne-internet">Bedienung ohne Internet oder Zentrale prüfen</a></p>'
+            '<p class="tc-source">Grundlage: <a href="https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizkosten-sparen-thermostat-richtig-einstellen-und-wechseln-7940">'
             'Verbraucherzentrale zur Thermostatregelung</a> (Quellenstand 4. Oktober 2026). '
             'Modell- und Paketquellen vom 12. November 2026 stehen bei den jeweiligen Geräten. '
             'Redaktionelle Entscheidungshilfe, kein eigener Produkttest.</p></section>')
+
+
+def offline_choice():
+    return (
+        '<section class="tc-keep" aria-labelledby="thermostat-ohne-internet">'
+        '<h3 id="thermostat-ohne-internet">Welches Thermostat funktioniert ohne Internet oder Zentrale?</h3>'
+        '<p>Vor dem Kauf festlegen, ob du nur am Heizkörper drehen oder auch einen Zeitplan beziehungsweise App-Zugriff '
+        'brauchst. Ein fehlender Internetzugang und eine fehlende Verbindung zur Zentrale sind verschiedene Fälle.</p>'
+        '<ul><li><strong>Bosch II [+M] ohne Zentrale.</strong> Nach der Kalibrierung lässt sich die Wunschtemperatur '
+        'laut Bosch am Drehknopf einstellen. Für das Konfigurationsmenü am Gerät muss der Kopf mit einem Bosch- oder '
+        'Matter-System gekoppelt sein. Wenn du Zeitpläne brauchst, prüfe das gewählte System vor der Bestellung. '
+        '<a href="https://www.bosch-smarthome.com/res/web/produkt/heizkoerper-thermostat2/pdf/8-750-002-924_V001_BTH-RAD_OM_11L_20240819.pdf">'
+        'Bosch-Anleitung II [+M], Abschnitt Autarker Betrieb</a> · <a href="#thermostat-bosch-ii-m">Bosch-System und Paket prüfen</a>.</li>'
+        '<li><strong>FRITZ!Smart Thermo 302 bei einer Unterbrechung.</strong> Laut FRITZ! bleiben Einstellungen '
+        'bei fehlendem Internet, Stromausfall an der FRITZ!Box oder unterbrochener DECT-Verbindung erhalten. '
+        'Die automatische Schaltung ist dabei eingeschränkt. Die Anleitung nennt Routinen und den Zugriff per '
+        'FRITZ!App als Beispiele. Die Hinweise gelten für das aktuelle FRITZ!OS. Kläre vor dem Kauf für deine Ausfallart, '
+        'ob dein gewünschter Zeitplan funktioniert. '
+        '<a href="https://fritz.com/apps/knowledge-base/FRITZ-Smart-Thermo-302/3523_Verhalten-des-FRITZ-Heizkorperreglers-bei-Strom-oder-Internetausfall/">'
+        'FRITZ!-Wissensdokument 3523</a> · <a href="#thermostat-fritz-302">FRITZ!Box und Paket prüfen</a>.</li></ul>'
+        '<p>Wenn dein vorhandener Kopf für die manuelle Regelung reicht, behalte ihn. Für einen festen Zeitplan '
+        'ohne Funk kommt ein lokal programmierbarer Kopf infrage. Ist die gewünschte Funktion ungeklärt, '
+        'warte mit der Bestellung. <a href="#thermostat-paketkosten">Das vollständige Paket rechnen</a>.</p>'
+        '<p class="tc-source">Herstellerquellen für Deutschland geprüft am <time datetime="2026-11-25">25. November 2026</time>.</p>'
+        '</section>'
+    )
 
 
 def render(today=None, data=None):
@@ -84,7 +111,8 @@ def render(today=None, data=None):
             '<p>Drei konkrete Modelle für unterschiedliche vorhandene Systeme. Die Auswahl ist keine Rangliste und kein eigener Produkttest. '
             'Die Ventilpassung und der Nutzen eines Zeitplans bleiben eigene Prüfschritte.</p>'
             '<nav class="tc-jump" aria-label="Vorhandenes Thermostat-System"><a href="#thermostat-tado-x-starter">Neues tado° X-System</a>'
-            '<a href="#thermostat-bosch-ii-m">Bosch oder Matter</a><a href="#thermostat-fritz-302">FRITZ!Box vorhanden</a></nav>'
+            '<a href="#thermostat-bosch-ii-m">Bosch oder Matter</a><a href="#thermostat-fritz-302">FRITZ!Box vorhanden</a></nav>' +
+            offline_choice() +
             '<div class="tc-keep" id="thermostat-behalten"><h3>Vierte Möglichkeit: vorhandene Köpfe weiter nutzen</h3>'
             '<p>Deine Räume werden passend zur Nutzung warm und du regelst zuverlässig herunter? Dann musst du nicht auf smarte Köpfe wechseln. '
             'Für gleichbleibende Zeiten kann ein einfacher programmierbarer Kopf genügen. Vergleiche diese Lösung vor einem neuen Funk-System.</p>'

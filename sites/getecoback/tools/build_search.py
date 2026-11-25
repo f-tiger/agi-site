@@ -180,6 +180,12 @@ def collect():
     targets=re.findall(r'<h[23]\b[^<>]*\sid="'+re.escape(anchor)+r'"[^<>]*>',text)
     if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*',anchor) or len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
      raise ValueError(f'Missing or ambiguous humidifier accessory destination: {route}#{anchor}')
+  if lang=='de' and route=='/guide/smarte-heizkoerperthermostate-lohnen-sich.html':
+   anchor='thermostat-ohne-internet'
+   if text.count(f'<h3 id="{anchor}">')!=1:
+    raise ValueError(f'Missing or ambiguous thermostat offline section: {route}#{anchor}')
+   entry['model_sections']=[{'id':anchor,'title':'Welches Thermostat funktioniert ohne Internet oder Zentrale?',
+    'description':'Manuelle Temperaturwahl am Bosch II [+M] und die eingeschränkte Automatik des FRITZ! 302 bei einer Unterbrechung getrennt prüfen.'}]
   if lang=='de' and route=='/guide/trotec-luftentfeuchter-test.html':
    anchor='ttk70-hepa-filter'
    targets=re.findall(r'<(?:section|h[23])\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)

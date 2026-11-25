@@ -1,6 +1,6 @@
 # Smarte Heizkörperthermostate: Ventil prüfen, Kosten rechnen | EcoBack
 
-> Thermostat, Ventil und Paket vergleichen. Danfoss-Adapter für Bosch II [+M] und FRITZ! 302 prüfen und eigene Heizkosten rechnen.
+> Bosch II [+M] und FRITZ! 302 ohne Internet oder Zentrale prüfen. Ventil, Danfoss-Adapter und Gesamtkosten vergleichen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html
 
@@ -11,6 +11,7 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/smarte-heizkoerpert
 - [Ich bin beim Ventil unsicher Modell und Anschluss klären. Prüfe tado° V3+, Bosch II [+M] und FRITZ! 302 anhand der jeweiligen Herstellerunterlagen.](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#ventilcheck)
 - [Ich möchte die Gesamtkosten prüfen Köpfe, fehlende Zentrale und Adapter zählen; danach mit eigener Sparannahme rechnen.](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-paketkosten)
 - [Mein bisheriger Kopf reicht vielleicht Weiterverwenden oder einen einfachen Zeitplan prüfen, bevor du ein Funk-System kaufst.](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-behalten)
+[Bedienung ohne Internet oder Zentrale prüfen](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-ohne-internet)
 Grundlage: [Verbraucherzentrale zur Thermostatregelung](https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizkosten-sparen-thermostat-richtig-einstellen-und-wechseln-7940) (Quellenstand 4. Oktober 2026). Modell- und Paketquellen vom 12. November 2026 stehen bei den jeweiligen Geräten. Redaktionelle Entscheidungshilfe, kein eigener Produkttest.
 
 Vor dem Kauf · zwei Auswahlen, keine Texteingabe
@@ -109,6 +110,14 @@ Eigene Berechnungen benötigen JavaScript. Rechenweg und Beispiel stehen darunte
 
 ## Welches System und welches Paket passt zu dir?
 Drei konkrete Modelle für unterschiedliche vorhandene Systeme. Die Auswahl ist keine Rangliste und kein eigener Produkttest. Die Ventilpassung und der Nutzen eines Zeitplans bleiben eigene Prüfschritte.
+
+### Welches Thermostat funktioniert ohne Internet oder Zentrale?
+Vor dem Kauf festlegen, ob du nur am Heizkörper drehen oder auch einen Zeitplan beziehungsweise App-Zugriff brauchst. Ein fehlender Internetzugang und eine fehlende Verbindung zur Zentrale sind verschiedene Fälle.
+
+- **Bosch II [+M] ohne Zentrale.** Nach der Kalibrierung lässt sich die Wunschtemperatur laut Bosch am Drehknopf einstellen. Für das Konfigurationsmenü am Gerät muss der Kopf mit einem Bosch- oder Matter-System gekoppelt sein. Wenn du Zeitpläne brauchst, prüfe das gewählte System vor der Bestellung. [Bosch-Anleitung II [+M], Abschnitt Autarker Betrieb](https://www.bosch-smarthome.com/res/web/produkt/heizkoerper-thermostat2/pdf/8-750-002-924_V001_BTH-RAD_OM_11L_20240819.pdf) · [Bosch-System und Paket prüfen](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-bosch-ii-m).
+- **FRITZ!Smart Thermo 302 bei einer Unterbrechung.** Laut FRITZ! bleiben Einstellungen bei fehlendem Internet, Stromausfall an der FRITZ!Box oder unterbrochener DECT-Verbindung erhalten. Die automatische Schaltung ist dabei eingeschränkt. Die Anleitung nennt Routinen und den Zugriff per FRITZ!App als Beispiele. Die Hinweise gelten für das aktuelle FRITZ!OS. Kläre vor dem Kauf für deine Ausfallart, ob dein gewünschter Zeitplan funktioniert. [FRITZ!-Wissensdokument 3523](https://fritz.com/apps/knowledge-base/FRITZ-Smart-Thermo-302/3523_Verhalten-des-FRITZ-Heizkorperreglers-bei-Strom-oder-Internetausfall/) · [FRITZ!Box und Paket prüfen](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-fritz-302).
+Wenn dein vorhandener Kopf für die manuelle Regelung reicht, behalte ihn. Für einen festen Zeitplan ohne Funk kommt ein lokal programmierbarer Kopf infrage. Ist die gewünschte Funktion ungeklärt, warte mit der Bestellung. [Das vollständige Paket rechnen](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-paketkosten).
+Herstellerquellen für Deutschland geprüft am 25. November 2026.
 
 ### Vierte Möglichkeit: vorhandene Köpfe weiter nutzen
 Deine Räume werden passend zur Nutzung warm und du regelst zuverlässig herunter? Dann musst du nicht auf smarte Köpfe wechseln. Für gleichbleibende Zeiten kann ein einfacher programmierbarer Kopf genügen. Vergleiche diese Lösung vor einem neuen Funk-System.

@@ -378,6 +378,18 @@ test('German same-place hygrometer comparisons open the numerical example',()=>{
  ]) assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u.startsWith(page+'#')),q);
 });
 
+test('German offline thermostat questions open the two documented operating limits',()=>{
+ const destination='/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-ohne-internet';
+ for(const q of ['Funktioniert mein Bosch Heizkörperthermostat II [+M] ohne Zentrale?',
+   'FRITZ! 302 bei Internetausfall', 'Heizkörperthermostat offline ohne Internet']){
+   assert.equal(searchEntries(index,q,'de')[0]?.entry.u,destination,q);
+   assert.ok(!searchEntries(index,q,'en').some(hit=>hit.entry.u===destination),q);
+ }
+ for(const q of ['Welcher Danfoss Adapter passt zum FRITZ 302?', 'Smarte Steckdose ohne Internet']){
+   assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u===destination),q);
+ }
+});
+
 test('German cooling sale questions open the retailer reference price check',()=>{
  const destination='/guide/klimaanlage-wann-kaufen.html#angebot-30-tage-preis';
  for(const q of ['black friday klimaanlage','Midea PortaSplit Black-Friday-Angebot prüfen',
