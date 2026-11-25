@@ -38,6 +38,10 @@ test('German household questions agree in browser, catalogue and compact MCP', a
       'spuelmaschine_handspuelen_kosten','/geraete-austausch-rechner.html#geschirrspueler-handabwasch'],
     ['Was kostet Abwaschen per Hand im Vergleich zum Geschirrspüler, mit warmem Wasser?',
       'spuelmaschine_handspuelen_kosten','/geraete-austausch-rechner.html#geschirrspueler-handabwasch'],
+    ['Passt ein smartes Heizkörperventil auf das alte Danfoss Klickventil?',
+      'thermostat_ventilabgleich','/guide/smarte-heizkoerperthermostate-lohnen-sich.html#danfoss-altventil'],
+    ['Wie erkenne ich am alten Danfoss-Ventil ohne Gewinde, ob es RA oder RAV ist?',
+      'thermostat_ventilabgleich','/guide/smarte-heizkoerperthermostate-lohnen-sich.html#danfoss-altventil'],
   ];
   for (const [frage, name, path] of scenarios) {
     const browser = findCatalogueTools(compact,{query:frage});
@@ -63,9 +67,9 @@ test('German household questions agree in browser, catalogue and compact MCP', a
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 241);
+  assert.equal(withGuides.length, 242);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 41);
+  assert.equal(destinations.size, 42);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);
