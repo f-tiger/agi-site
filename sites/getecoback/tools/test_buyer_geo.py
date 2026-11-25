@@ -85,7 +85,13 @@ class BuyerGeo(unittest.TestCase):
     def test_new_comfee_sources_are_exact_references_not_a_domain_allowlist(self):
         self.assertEqual(citation_url(COMFEE), COMFEE)
         self.assertEqual(citation_url(DATASHEET), DATASHEET)
-        self.assertIsNone(citation_url(COMFEE + '-wf'))
+        wifi = COMFEE + '-wf'
+        catalog = ('https://www.feelcomfee.com/content/dam/comfee-aem/de/katalog/'
+                   'comfee-klimakatalog-2024-din-a4-v2-lores.pdf#page=27')
+        self.assertEqual(citation_url(wifi), wifi)
+        self.assertEqual(citation_url(catalog), catalog)
+        self.assertIsNone(citation_url(wifi + '-unused'))
+        self.assertIsNone(citation_url(wifi + '?tag=example'))
         self.assertIsNone(citation_url(COMFEE + '?tag=example'))
         self.assertIsNone(citation_url(DATASHEET.replace('page=2', 'page=2&url=https://example.test')))
 
