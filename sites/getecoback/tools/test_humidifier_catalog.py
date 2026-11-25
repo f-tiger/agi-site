@@ -217,9 +217,12 @@ class HumidifierTests(unittest.TestCase):
         self.assertIn(data['manufacturer_source'], md)
         self.assertIn('warte mit der Bestellung', md)
         self.assertIn('pausiere die Befeuchtung', md)
+        self.assertIn('„Series 2000“ und „Series 3000“', md)
         for device, part, anchor in (
             ('HU4803/01', 'FY2401/30', 'philips-hu4803-01'),
             ('HU2716/10', 'FY3446/30', 'philips-hu2716-10'),
+            ('HU3916/10', 'FY3446/30', 'philips-hu3916-10'),
+            ('HU3918/10', 'FY3446/30', 'philips-hu3918-10'),
         ):
             with self.subTest(device=device):
                 self.assertEqual(parser.ids.count(anchor), 1)
@@ -236,6 +239,8 @@ class HumidifierTests(unittest.TestCase):
                 answer = md.split(f'### Philips {device}', 1)[1].split('\n### ', 1)[0]
                 self.assertIn(part, answer)
                 self.assertIn(model['source'], answer)
+                if part == 'FY3446/30':
+                    self.assertIn(data['part_catalog'][part], answer)
 
     def test_cold_surface_card_reaches_the_existing_window_tool(self):
         from build_agent_md import to_markdown

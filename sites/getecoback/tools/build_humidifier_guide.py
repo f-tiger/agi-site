@@ -19,7 +19,7 @@ PAGES = {
     MAIN: {
         'modified':'2026-11-25',
         'title':'Luftbefeuchter wählen: Bedarf, Pflege und vier genaue Modelle',
-        'description':'Luftbefeuchter nach Feuchte, Pflege und Kosten vergleichen. Philips Series 2000 am Typenschild prüfen und FY2401/30 oder FY3446/30 zuordnen.',
+        'description':'Luftbefeuchter nach Feuchte, Pflege und Kosten vergleichen. Philips Series 2000 und 3000 am Typenschild prüfen und FY2401/30 oder FY3446/30 zuordnen.',
         'published':'2026-09-15',
         'intro':'Erst die Raumfeuchte verstehen, dann die Technik wählen. Hier vergleichst du vier genaue Modelle samt Pflege und passenden Ersatzteilen.',
         'faq':[
@@ -123,6 +123,8 @@ def philips_filter_guide():
         part = esc(model['part'])
         anchor = esc(model['anchor'])
         source = esc(model['source'])
+        part_page = data['part_catalog'].get(model['part'])
+        part_link = f' · <a href="{esc(part_page, quote=True)}">{part} beim Hersteller prüfen</a>' if part_page else ''
         target = f'{page_url}#{model["anchor"]}'
         title = f'Welcher Verdunsterfilter passt zum Philips {model["device"]}?'
         reddit = 'https://www.reddit.com/submit?' + urlencode({'url': target, 'title': title}, quote_via=quote)
@@ -130,7 +132,7 @@ def philips_filter_guide():
             f'<h3 id="{anchor}">Philips {device}</h3>'
             f'<p>Die deutsche Philips-Übersicht ordnet dem <strong>{device}</strong> '
             f'das Befeuchtungselement <strong>{part}</strong> zu. '
-            f'<a href="{source}">Philips Datenblatt für {part}</a>.</p>'
+            f'<a href="{source}">Philips Datenblatt</a>{part_link}.</p>'
             f'<nav aria-label="Philips {device} teilen"><a href="{esc(target)}">Direktlink</a> · '
             f'<a href="{esc(reddit)}" target="_blank" rel="noopener noreferrer">Auf Reddit teilen</a></nav>'
         )
@@ -138,12 +140,12 @@ def philips_filter_guide():
     source = esc(data['manufacturer_source'])
     return (
         '<section aria-labelledby="philips-verdunsterfilter">'
-        '<h2 id="philips-verdunsterfilter">Welcher Philips-Verdunsterfilter passt zu Series 2000?</h2>'
-        '<p>Philips führt mehrere Geräte unter „Series 2000“. Lies die vollständige Modellnummer '
+        '<h2 id="philips-verdunsterfilter">Welcher Philips-Verdunsterfilter passt zu meinem Modell?</h2>'
+        '<p>Philips führt mehrere Geräte unter „Series 2000“ und „Series 3000“. Lies die vollständige Modellnummer '
         'mit Suffix auf dem Typenschild und vergleiche sie mit einer der Herstellerzuordnungen.</p>'
         + ''.join(answers) +
-        '<p>Siehst du nur den Seriennamen, fehlt der Suffix oder steht ein anderes Modell auf dem '
-        'Typenschild? Kläre die Teilenummer mit Philips und warte mit der Bestellung. '
+        '<p>Bei einem Seriennamen ohne Modellnummer, fehlender Endung oder einer abweichenden Kennung wie /10R1 '
+        'kläre die Teilenummer mit Philips und warte mit der Bestellung. '
         'Bei Kondenswasser oder feuchten Stellen pausiere die Befeuchtung und prüfe zuerst die Ursache.</p>'
         f'<p class="hc-source"><a href="{source}">Philips Kompatibilitätsübersicht für Deutschland</a> · '
         f'geprüft am <time datetime="{checked.isoformat()}">{checked:%d.%m.%Y}</time>.</p></section>'

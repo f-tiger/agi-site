@@ -334,6 +334,12 @@ test('Philips humidifier filter searches keep model and series destinations dist
   ['Passt der Filter FY2401/30 in meinen Philips HU2716/10?','philips-hu2716-10'],
   ['Welcher Ersatzfilter passt zum Philips HU4803/01?','philips-hu4803-01'],
   ['Welchen Verdunsterfilter braucht mein Philips HU 4803 / 01?','philips-hu4803-01'],
+  ['Welcher Filter passt in den Philips HU3916/10?','philips-hu3916-10'],
+  ['Ersatzfilter für Philips HU 3918 / 10','philips-hu3918-10'],
+  ['Philips HU3918/10R1 Ersatzfilter',common],
+  ['Philips HU3918/10 R1 Ersatzfilter',common],
+  ['Philips HU3916 Filter ohne Modellendung',common],
+  ['Philips Series 3000 Verdunsterfilter',common],
   ['HU2716/11 Ersatzfilter',common],
   ['HU2716/10A Ersatzfilter',common],
   ['HU2716/10-Plus Ersatzfilter',common],
@@ -352,6 +358,7 @@ test('Philips humidifier filter searches keep model and series destinations dist
  assert.equal(index.filter(entry=>entry.u===guide).length,1);
  for(const q of ['Wie oft soll ich den Filter vom Philips HU2716/10 reinigen?',
   'Ersatzfilter für Philips Series 2000 AC2887 Luftreiniger','FY3446/30 Vergleich mit Venta Filter',
+  'Ersatzfilter für Philips Series 3000 Luftreiniger AC3033','Wie oft soll ich den Filter vom Philips HU3918/10 reinigen?',
   'Welcher Ersatzfilter passt zum Bosch HU4803/01?']) {
   assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u.startsWith(guide+'#')),q);
  }

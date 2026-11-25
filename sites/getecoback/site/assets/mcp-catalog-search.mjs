@@ -7,7 +7,7 @@ import {asksForTrotecTtk75EcoConditions, namesTrotecTtk75Eco} from './trotec-ttk
 import {asksForCoolingNoiseComparison} from './cooling-noise-intent.mjs?v=f0bcc0785943';
 import {asksForTesamollWindowProfile} from './tesamoll-profile-intent.mjs';
 import {exactGermanFilterModel} from './exact-filter-intent.mjs';
-import {philipsHumidifierFilterSection} from './philips-humidifier-filter-intent.mjs';
+import {philipsHumidifierFilterSection} from './philips-humidifier-filter-intent.mjs?v=537af20b39fb';
 import {asksForElectricBlanketCost, isElectricBlanketQuestion} from './electric-blanket-cost-intent.mjs';
 import {asksForHygrometerComparison} from './hygrometer-comparison-intent.mjs';
 import {asksForN90ModelIdentity, namesAnotherPacWithoutN90} from './n90-model-intent.mjs';
