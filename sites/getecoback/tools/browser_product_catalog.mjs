@@ -633,7 +633,7 @@ async function checkCatalog(browser){
   }
   await page.goto(origin+'/produkte.html?__probe=1');
   if(javaScriptEnabled)await page.locator('#product-filters').waitFor({state:'visible'});
-  assert.equal(await page.locator('.pc-tool').count(),12);
+  assert.equal(await page.locator('.pc-tool').count(),13);
   for(const [category,href] of Object.entries(reusedTools)){
    const tool=page.locator('#pc-tool-'+category);assert(await tool.isVisible());
    assert.equal(await tool.locator('a[href="'+href+'"]').count(),1);
@@ -678,7 +678,7 @@ async function checkCatalog(browser){
    await form.locator('button[type=reset]').click();
    assert.deepEqual(await page.evaluate(()=>window.__catalogToolEvents),[],'QA must not emit tool_complete');
   }else{
-   assert.equal(await page.locator('.pc-tool:visible').count(),12);
+   assert.equal(await page.locator('.pc-tool:visible').count(),13);
    assert.equal(await page.locator('form[data-category-tool]').count(),9);
    assert.equal(await page.locator('form[data-category-tool]:visible').count(),0);
    assert.equal(await page.locator('[data-category-result]:visible').count(),0);
