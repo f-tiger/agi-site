@@ -80,11 +80,11 @@ function capture(){
  for(const e of fieldsFor(values)){if(key(e)==='own')continue;assumptions.append(node('dt',label(e)),node('dd',String(values[key(e)])));}
  resultShare.disabled=false;status.textContent='';
 }
-function run(raw,source){
+function run(raw,source,restoreScroll=true){
  const values=checked(raw);inRun=true;window.__ecoToolExample=true;kind=source;snapshot=null;genericDraft.hidden=true;
  const x=scrollX,y=scrollY,originalURL=location.href;
  try{for(const e of fieldsFor(values)){if(e.type==='checkbox')e.checked=values[key(e)];else e.value=values[key(e)];e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}if(adapter.form===tariff){tariff.elements.namedItem('purpose').value='example';/* Preview hypothetical data without claiming the user's required confirmation. The model and checked() still validate all numbers. */tariff.dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));}else if(adapter.form)adapter.form.requestSubmit();else adapter.go.click();capture();}
- finally{window.__ecoToolExample=false;inRun=false;history.replaceState(null,'',originalURL);window.scrollTo(x,y);}
+ finally{window.__ecoToolExample=false;inRun=false;history.replaceState(null,'',originalURL);if(restoreScroll)window.scrollTo(x,y);}
  if(!snapshot){resultShare.disabled=true;preview.hidden=true;status.textContent=t[20];}
 }
 function shareURL(values,channel){
@@ -162,7 +162,9 @@ if(adapter){
   adapter.anchor.before(panel);
  }
  function loadScenario(){let incoming=null,bad=false;if(location.hash.startsWith('#eco-v1=')){try{if(location.hash.length>8000)throw Error();const parsed=JSON.parse(decodeURIComponent(location.hash.slice(8)));if(parsed.path!==location.pathname)throw Error();incoming=checked(parsed.values);}catch{bad=true;}}
- run(incoming||original,incoming?'shared':'example');if(bad)status.textContent=t[16];}
+ // The native fragment tracks the seasonal card when this earlier example expands.
+ const seasonEntry=laundry&&location.hash==='#waesche-saisonwechsel';
+ run(incoming||original,incoming?'shared':'example',!seasonEntry);if(bad)status.textContent=t[16];}
  if(!earlyInput)loadScenario();else{kind='edited';status.textContent=t[14];}window.addEventListener('hashchange',()=>{if(location.hash.startsWith('#eco-v1='))loadScenario();});
  panel.dataset.quick='true';
 }else{const h=document.querySelector('main h1,article h1,h1');if(h)h.after(panel);}
