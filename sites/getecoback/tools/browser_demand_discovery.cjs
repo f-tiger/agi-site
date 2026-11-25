@@ -238,8 +238,10 @@ async function checkGermanFocusedDiscovery(browser,base){
  check(await showerAnswer.getByText('Behalte die vorhandene Brause',{exact:false}).isVisible(),
   'The static shower advice keeps the wait and no-purchase option');
  await page.goto(base+shadePage+'?__ci=1');
- const shadeLink=page.locator('a[href="#'+shadeSection+'"]');
- await shadeLink.click();
+ const shadeLink=page.getByRole('link',{name:'Nasse Scheibe hinter dem Plissee prüfen',exact:true});
+ equal(await shadeLink.getAttribute('href'),'#'+shadeSection,'The static intro opens the measurement answer');
+ await shadeLink.focus();
+ await page.keyboard.press('Enter');
  await page.waitForURL(base+shadePage+'?__ci=1#'+shadeSection);
  const shadeAnswer=page.locator('section[aria-labelledby="'+shadeSection+'"]');
  check(await shadeAnswer.getByText('9,3 °C',{exact:false}).isVisible(),'The dew point example works without JavaScript');
