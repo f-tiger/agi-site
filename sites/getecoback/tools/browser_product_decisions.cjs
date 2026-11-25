@@ -14,5 +14,26 @@ try{for(const url of ['/rechner.html','/en/solution-calculator.html','/fr/calcul
  await p.goto(link.replace('.html#','.html?__probe=1#'));await p.waitForSelector('#product-decisions[data-ready]');assert.equal(await p.locator('#pd-result').innerText(),snap);assert.equal((await p.evaluate(()=>window.__events)).length,0);checks+=2;
  await box.locator('form > details').evaluate(e=>e.open=true);await p.fill('#pd-flowA','');await box.locator('button[type=submit]').click();assert.equal((await p.locator('#pd-result').innerText()).trim(),'');assert(await box.locator(':scope > div[data-pd-mount] > .pd-actions button').first().isDisabled());checks+=2;
  await p.goto(origin+url+'?__probe=1#eco-buy-v1=%XX');await p.waitForSelector('#product-decisions[data-ready]');assert((await box.locator('[role=status]').innerText()).length>5);assert.deepEqual(errors,[]);checks+=2;
+ if(url==='/geraete-austausch-rechner.html'){
+  const dish='#geschirrspueler-handabwasch';
+  await p.setViewportSize({width:320,height:640});
+  await p.goto(origin+url+'?__probe=1&entry=dish'+dish);
+  await p.waitForSelector('#product-decisions[data-ready]');
+  await p.locator('[data-quick=true]').first().waitFor({state:'attached'});
+  assert.equal(await p.locator('#pd-mode').inputValue(),'dish');
+  assert.equal(await p.locator('#pd-machineWater').inputValue(),'10');
+  assert.equal(await p.locator('#pd-handWater').inputValue(),'20');
+  assert.match(await p.locator('#pd-result').innerText(),/22,6/);
+  assert.equal(await box.locator('.pd-commerce').count(),0);
+  const heading=await p.locator(dish).boundingBox();
+  assert(heading.y>=0&&heading.y+heading.height<=640,'dish heading outside the direct mobile viewport');
+  await p.goto(origin+url+'?__probe=1&entry=label#product-decisions');
+  await p.waitForSelector('#product-decisions[data-ready]');
+  assert.equal(await p.locator('#pd-mode').inputValue(),'label');
+  await p.evaluate(fragment=>{location.hash=fragment;},dish);
+  await p.waitForFunction(()=>document.getElementById('pd-mode').value==='dish');
+  assert.equal((await p.evaluate(()=>window.__events)).length,0);
+  checks+=9;
+ }
  await c.close();}
  console.log(JSON.stringify({status:'PASS',checks,pages:8,live}));}finally{await browser.close();}})().catch(e=>{console.error(e);process.exit(1)});

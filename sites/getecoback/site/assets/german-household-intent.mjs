@@ -13,6 +13,11 @@ const glazing = {
   id:'aussen-innen-oder-dazwischen',
   tool:'fenster_beschlag_einordnen',
 };
+const dishwashing = {
+  path:'/geraete-austausch-rechner.html',
+  id:'geschirrspueler-handabwasch',
+  tool:'spuelmaschine_handspuelen_kosten',
+};
 
 // Consumers pass their normalized German query. Match a task, not a category.
 export function exactGermanHouseholdTask(query) {
@@ -42,5 +47,10 @@ export function exactGermanHouseholdTask(query) {
   const ruledOut = /\b(?:nicht|nie)\s+(?:im scheibenzwischenraum|zwischen\s+(?:(?:den|beiden|zwei|drei)\s+){0,3}(?:fenster|glas)?scheiben)\b|\bkein(?:en)? beschlag zwischen\b/;
   if (betweenPanes.test(query) && glassMoisture.test(query) && !unrelatedGlass.test(query) &&
       !photoComparison.test(query) && !ruledOut.test(query)) return glazing;
+
+  const machine = /\b(?:geschirrspueler\w*|(?:geschirr)?spuelmaschin\w*)\b/;
+  const byHand = /\b(?:handabwasch\w*|handspuel\w*|(?:per|von|mit der) hand)\b/;
+  const useOrCost = /\b(?:kost\w*|billig\w*|guenstig\w*|teuer\w*|spar\w*|strom\w*|wasserverbrauch\w*|liter|kwh|lohnt)\b/;
+  if (machine.test(query) && byHand.test(query) && useOrCost.test(query)) return dishwashing;
   return null;
 }

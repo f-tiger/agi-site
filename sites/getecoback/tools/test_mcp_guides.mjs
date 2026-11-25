@@ -86,6 +86,13 @@ test('laundry search stays on task and every search result can be read through t
 
 const focusedLookups = [
   {
+    path:'/geraete-austausch-rechner.html', section:'geschirrspueler-handabwasch',
+    queries:['Ist Geschirrspüler oder Handabwasch billiger, wenn die Maschine 10 Liter braucht und ich von Hand 20 Liter brauche?',
+      'Was kostet Abwaschen per Hand im Vergleich zum Geschirrspüler, mit warmem Wasser?'],
+    evidence:['0,350 € für die Maschine','0,309 € von Hand','22,6 Litern Handspülwasser',
+      'vergleichbares Spülergebnis','geschirrspueler-im-eco-programm-wasser-strom-sparen'],
+  },
+  {
     path: '/guide/delonghi-pac-n90-test.html', section: 'testlage',
     queries: ['DeLonghi PAC N90 ECO Silent', 'PACN90 ECO Silent', '8004399512351', 'EAN 8004399512351'],
   },
@@ -209,7 +216,7 @@ test('ambiguous cooling models, conflicting identifiers and other languages are 
 });
 
 test('missing or malformed optional cooling section leaves normal guide search available', async () => {
-  const [{path, queries}] = focusedLookups;
+  const {path, queries} = focusedLookups.find(entry => entry.path === '/guide/delonghi-pac-n90-test.html');
   const {section, ...guide} = corpus.find(entry => entry.u === path);
   const baseline = {...guide, t: 'DeLonghi PAC N90 ECO Silent', d: 'Allgemeine Hinweise zum bestehenden Ratgeber.'};
   for (const fallback of [

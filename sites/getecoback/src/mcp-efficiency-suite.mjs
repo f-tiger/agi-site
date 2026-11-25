@@ -328,8 +328,9 @@ export const efficiencySuite = [
   },
   {
     name: 'spuelmaschine_handspuelen_kosten',
-    description: 'Spülmaschine und Handwäsche für dieselbe Geschirrmenge inklusive Warmwasser vergleichen. — Compare dishwashing costs for the same load with hot water and electricity.',
+    description: 'Geschirrspüler und Handspülen für dieselbe Geschirrmenge inklusive Warmwasser vergleichen. — Compare dishwashing costs for the same load with hot water and electricity.',
     page: labelPage,
+    guide_url: 'https://getecoback.com' + labelPage + '#geschirrspueler-handabwasch',
     properties: {
       maschine_kwh: number('Strom für ein vollständiges Maschinenprogramm bei Kaltwasseranschluss.', 0, 20),
       maschine_l: number('Maschinenwasser in Litern pro Programm.', 0, 200),
@@ -353,7 +354,7 @@ export const efficiencySuite = [
         annahme: 'Gleiche Geschirrmenge und vergleichbares Ergebnis. Kaltwasseranschluss an der Maschine, kein Vorspülen, keine Waschmittel- oder Gerätekosten.',
       };
     },
-    example: {args: {maschine_kwh: 1, maschine_l: 10, hand_l: 20, temperaturhub_c: 30, waermefaktor: 1, strom_eur_kwh: 0.3, waerme_eur_kwh: 0.3, wasser_eur_m3: 5}, expect: {maschine_eur_pro_ladung: 0.35}},
+    example: {args: {maschine_kwh: 1, maschine_l: 10, hand_l: 20, temperaturhub_c: 30, waermefaktor: 1, strom_eur_kwh: 0.3, waerme_eur_kwh: 0.3, wasser_eur_m3: 5}, expect: {maschine_eur_pro_ladung: 0.35, hand_eur_pro_ladung: 0.309, gleichstand_hand_liter: 22.6}},
   },
   {
     name: 'wohnungsstrom_stromspiegel',

@@ -92,6 +92,16 @@ Quellen geprüft am 20.11.2026. [EU-Verordnung 2019/2016, Anhänge I bis V](http
 ## Weniger kaufen, besser vergleichen
 Vergleiche Energielabel, Geschirrspülen und Duschköpfe. Beispiel öffnen, Land und Entscheidung wählen. Ohne Konto oder persönliche Angaben.
 
+### Was kostet eine Ladung mit der Spülmaschine oder von Hand?
+
+Vergleiche dieselbe Geschirrmenge und ein vergleichbares Spülergebnis. Zähle beim Handspülen auch das Nachspülwasser. Im Rechenbeispiel wird das gesamte Wasser zum Handspülen um 30 °C erwärmt.
+
+**Beispiel pro Ladung.** Die Maschine mit Kaltwasseranschluss braucht 10 Liter und 1 kWh. Für das Handspülen werden 20 Liter erwärmt. Mit 0,30 € pro kWh für Strom und Warmwasserbereitung, Wärmefaktor 1 und 5 € pro Kubikmeter für Wasser und Abwasser ergeben sich **0,350 € für die Maschine** und **0,309 € von Hand**. Bei rund **22,6 Litern Handspülwasser** kosten beide Wege unter diesen Annahmen gleich viel.
+
+Das sind Beispielwerte. Der Rechner zeigt bei einem Zyklus die Beträge für eine Ladung. Trage für eine Jahresrechnung deine Zyklen und Tarife ein. Vorspülen, Spülmittel und Anschaffung sind im Beispiel nicht eingerechnet. Bei extern erwärmtem Zulauf erfasse die separat erwärmte Wassermenge. Die Warmwasseroption setzt denselben Temperaturhub und Wärmefaktor für beide Wege an. Berechne die Wärme getrennt, wenn diese Werte unterschiedlich sind.
+
+Das [Umweltbundesamt empfiehlt ein voll beladenes Eco-Programm und rät vom Vorspülen ab](https://www.umweltbundesamt.de/umwelttipps-fuer-den-alltag/geschirrspueler-im-eco-programm-wasser-strom-sparen). Miss deinen tatsächlichen Durchgang, bevor du über einen Gerätekauf entscheidest.
+
 Rechenbeispiel — keine aktuellen Preise, Messprodukte oder Kaufempfehlung.
 Rechenweg & GrenzenLabel: kWh/100 Zyklen ÷ 100 × Jahreszyklen; Jahreslabel unverändert. Gesamtkosten = Kauf + Jahresstrom × Preis × Jahre. Amortisation = positive Mehrinvestition ÷ positive Jahresersparnis. Geschirr: Maschinenstrom × Strompreis + Liter × Wasserpreis/1000; Handwasser zusätzlich mit dem Warmwasserpreis bewerten.
 Jahreslabels behalten ihre Standardnutzung; Zyklen ändern nur zyklusbasierte Werte. Unterschiedliche Prüfstandards oder Kapazitäten nicht vergleichen. Ohne Finanzierung, Reparaturen, Wasser, Restwert oder Ersatzgeräte. Behalten oder reparieren kann besser sein. Nur Elektrogeräte: Brennstoffkosten gasbetriebener Geräte fehlen.

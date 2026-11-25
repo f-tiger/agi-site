@@ -52,6 +52,8 @@ Der Wäschetrockner gehört zu den größten Verbrauchern der Wohnung: rund 3 bi
 
 Eine voll beladene Spülmaschine im Eco-Programm braucht weniger Wasser und Strom als Spülen unter fließendem heißem Wasser — Eco dauert länger, heizt aber schwächer auf und ist deshalb am sparsamsten. Nie halb leer laufen lassen.
 
+Für deinen Haushalt kannst du bei gleicher Geschirrmenge [Spülmaschine und Handspülen pro Ladung vergleichen](https://getecoback.com/geraete-austausch-rechner.html#geschirrspueler-handabwasch). Rechne Strom, Wasser und die Erwärmung des Handspülwassers zusammen.
+
 ## 9. Wasserkocher und Deckel statt Herd
 
 Wasser im Wasserkocher statt auf der Herdplatte erhitzen, den Deckel auf den Topf setzen (ohne Deckel bis zu dreimal so viel Energie) und nur so viel Wasser aufsetzen wie nötig — kleine Gewohnheiten, die sich täglich summieren.

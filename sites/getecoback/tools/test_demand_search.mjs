@@ -60,6 +60,21 @@ test('Glazing questions reach the existing comparison, while indoor glass keeps 
   assert.notEqual(searchEntries(index,question,'de')[0]?.entry.u,glazing,question);
  }
 });
+test('German dishwashing cost questions open the existing exact calculation',()=>{
+ const target='/geraete-austausch-rechner.html#geschirrspueler-handabwasch';
+ for(const q of [
+  'Ist Geschirrspüler oder Handabwasch billiger, wenn die Maschine 10 Liter braucht und ich von Hand 20 Liter brauche?',
+  'Was kostet Abwaschen per Hand im Vergleich zum Geschirrspüler, mit warmem Wasser?',
+  'Was kostet eine Spülmaschinenladung mit 10 Litern im Vergleich zum Handspülen mit 20 Litern warmem Wasser?',
+ ]){
+  assert.equal(searchEntries(index,q,'de')[0]?.entry.u,target,q);
+  assert.ok(!searchEntries(index,q,'en').some(hit=>hit.entry.u===target),q);
+ }
+ for(const q of ['Geschirrspüler Wasseranschluss prüfen','Wie reinige ich den Filter meiner Spülmaschine?',
+  'Warum dauert das Eco-Programm meiner Spülmaschine so lange?', 'Handwäsche Stromkosten für einen Wollpullover']){
+  assert.notEqual(searchEntries(index,q,'de')[0]?.entry.u,target,q);
+ }
+});
 test('all three German tool entry points link directly to the curtain measurement',()=>{
  const link='href="/guide/thermovorhang-ratgeber.html#thermovorhang-bahnenbedarf"';
  for(const page of ['index.html','tools.html','rechner.html']){
