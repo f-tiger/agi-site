@@ -70,6 +70,27 @@ test('Glazing questions reach the existing comparison, while indoor glass keeps 
   assert.notEqual(searchEntries(index,question,'de')[0]?.entry.u,glazing,question);
  }
 });
+test('German Klarstein package questions reach only the confirmed white 12K model',()=>{
+ const target='/guide/klarstein-kraftwerk-smart-12k-test.html#kraftwerk-10034664-lieferumfang';
+ for(const query of [
+  "Was gehört beim Klarstein Kraftwerk Smart 12K zum Lieferumfang, brauche ich eine zusätzliche Fensterabdichtung?",
+  "Klarstein Kraftwerk Smart 12K 10034664",
+  "10034664",
+  "Kraftwerk Smart 12K: Ist für mein Dreh-Kipp-Fenster eine Fensterabdichtung dabei?"
+]){
+  assert.equal(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+  assert.ok(!searchEntries(index,query,'en').some(hit=>hit.entry.u===target),query);
+ }
+ for(const query of [
+  "Klarstein Kraftwerk Smart 11500 BTU 10040189 Fensterabdichtung",
+  "Kraftwerk Eco Smart 11.500 BTU Lieferumfang",
+  "Klarstein Kraftwerk Smart 12K anthrazit Fensterabdichtung",
+  "Klarstein Kraftwerk Smart 12K 10034664: Wie viel Strom verbraucht es?",
+  "Klarstein Kraftwerk Smart 12K mit 10034667, welche Fensterabdichtung?"
+]){
+  assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+ }
+});
 test('German direct-heating comparisons find the short-use answer',()=>{
  const target='/guide/heizkosten-vergleich-rechner.html#heizluefter-oder-infrarot';
  for(const query of [

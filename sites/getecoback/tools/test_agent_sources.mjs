@@ -144,6 +144,11 @@ test('appliance evidence survives in both the generated mirror and edge fallback
    'https://www.midea.com/content/dam/midea-aem/de/klimatisieren-heizen/portasplit/universalhalterung/PortaSplit-UM-universal-bracket.pdf',
    'https://www.remko.de/gewerblich/klimasysteme/lokal/rkl-dc/',
   ]],
+  ['guide/klarstein-kraftwerk-smart-12k-test', [
+   'https://www.klarstein.de/kraftwerk-smart-12000-btu-mobile-klimaanlage-weiss-p-10034664.html',
+   'https://www.klarstein.de/kraftwerk-smart-12000-btu-mobile-klimaanlage-anthrazit-p-10034665.html',
+   'https://www.klarstein.de/kraftwerk-smart-11500-btu-mobile-klimaanlage-weiss-p-10040189.html',
+  ]],
   ['guide/duschen-kosten-rechner', [
    'https://www.stiebel-eltron.com/static/ste/docportal/manual/DM0000018436-fjw.pdf',
    'https://www.ikea.com/de/de/p/tisken-handduschenhalter-mit-saugnapf-weiss-50400307/',
