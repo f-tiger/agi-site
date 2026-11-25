@@ -27,5 +27,19 @@ try{
  await p.goto('https://agiscorecard.com/zh/ai-tools?__qa=1#tools');await p.waitForFunction(()=>document.getElementById('language').hash==='#tools');assert.equal(await p.locator('#language').getAttribute('href'),'/ai-tools#tools');
  await p.goto('https://agiscorecard.com/zh/mentor?embed=1&__qa=1');assert.equal(await p.locator('#agi-nav').isVisible(),false);
  await p.goto('https://agiscorecard.com/zh/discuss/account?__qa=1');assert.equal(await p.locator('#login-key').count(),1);
+ for(const [prefix,home] of [['','/'],['/zh','/cn']]){
+  await p.goto('https://agiscorecard.com'+prefix+'/members?tool=ai-infrastructure&__qa=1');
+  await p.waitForFunction(()=>new URL(document.getElementById('language').href).searchParams.get('tool')==='ai-infrastructure');
+  const returnHref=await p.locator('#return-tool').getAttribute('href');
+  assert.equal(new URL(returnHref,p.url()).pathname,prefix+'/ai-infrastructure');
+  for(const [id,route] of [['home',home],['videos',prefix+'/future-guide'],['invest',prefix+'/invest']]){
+   const links=await p.locator(`#agi-nav a[data-nav-destination="${id}"]`).evaluateAll(anchors=>anchors.map(anchor=>anchor.getAttribute('href')));
+   assert.ok(links.length>0);
+   for(const href of links)assert.equal(href,route,id+' keeps its original destination on '+prefix+'/members');
+  }
+  await p.locator('#language').click();
+  assert.equal(new URL(p.url()).pathname,(prefix?'':'/zh')+'/members');
+  assert.equal(new URL(p.url()).searchParams.get('tool'),'ai-infrastructure');
+ }
  console.log(JSON.stringify({navigationPages:checked,widths:[320,360,390,650,768,1024,1440],menuDestinations:groups.flatMap(g=>g.links).length,passed:true}));
 }finally{await browser.close();}
