@@ -2,10 +2,25 @@ import {checkLaundrySeason} from './laundry-season.mjs?v=2201ab0e594b';
 
 const form = document.querySelector('[data-laundry-season]');
 const result = form.querySelector('[data-season-result]');
+const comparison = form.querySelector('[data-season-compare]');
 const fields = form.elements;
 const measured = ['trockner_kwh', 'entfeuchter_kwh', 'tarif_eur_kwh', 'anschaffung_eur'];
 const euros = new Intl.NumberFormat('de-DE', {style:'currency', currency:'EUR'});
 const measurementsConfirmed = () => fields.ladungen_vergleichbar.checked && fields.zusatzstrom_erfasst.checked;
+const recorded = new Set();
+
+function record(name) {
+  if (recorded.has(name) || navigator.doNotTrack === '1' || navigator.globalPrivacyControl ||
+      navigator.webdriver || /[?&]__(probe|ci|qa)(=|&|$)/.test(location.search)) return;
+  try { if (localStorage.getItem('fleet_ga4_choice_v1') === 'denied') return; } catch {}
+  recorded.add(name);
+  window.dispatchEvent(new CustomEvent('fleet:business', {detail:{name}}));
+  fetch('/api/ev', {
+    method:'POST', keepalive:true, credentials:'omit',
+    headers:{'content-type':'application/json'},
+    body:JSON.stringify({n:name, p:location.pathname}),
+  }).catch(() => {});
+}
 
 function refresh() {
   const confirmed = measurementsConfirmed();
@@ -13,6 +28,7 @@ function refresh() {
   fields.ladungen_ersetzbar.setCustomValidity('');
   result.textContent = '';
   delete result.dataset.status;
+  comparison.hidden = true;
 }
 
 function answer(data) {
@@ -34,6 +50,9 @@ function answer(data) {
 }
 
 form.addEventListener('input', refresh);
+comparison.querySelector('a').addEventListener('click', event => {
+  if (event.isTrusted && !comparison.hidden) record('eco_laundry_season_guide');
+});
 form.addEventListener('submit', event => {
   event.preventDefault();
   if (!form.reportValidity()) return;
@@ -55,9 +74,8 @@ form.addEventListener('submit', event => {
   });
   result.dataset.status = data.status;
   result.textContent = answer(data);
-  if (event.isTrusted && confirmed) window.dispatchEvent(new CustomEvent('fleet:business', {
-    detail:{name:'eco_laundry_season_check'},
-  }));
+  comparison.hidden = data.status !== 'rechnerische_kostendeckung';
+  if (event.isTrusted && confirmed) record('eco_laundry_season_check');
 });
 
 refresh();

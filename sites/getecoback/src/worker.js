@@ -10,7 +10,7 @@ import {finderName, runnerName, compactTools, compactInstructions, compactSearch
 import {exactGermanGuide, normalize as normalizeSearch} from '../site/assets/demand-discovery.mjs';
 import {isAnalyticsPath, analyticsResponse} from '../../../tools/fleet-analytics/edge.mjs';
 import {DISTRIBUTION_EVENTS,validDistribution,distributionGrowth} from './distribution-growth.mjs';
-import {LAUNDRY_EVENTS,validLaundryEvent} from './laundry-events.mjs';
+import {LAUNDRY_EVENTS,LAUNDRY_SEASON_EVENTS,validLaundryEvent} from './laundry-events.mjs';
 import {BUYER_EVENTS,validBuyerEvent} from './buyer-events.mjs';
 import {memberRoute,memberPage,secureMemberPage} from '../../../tools/member-studio/server.mjs';
 import {videoGrowth} from './video-growth.mjs';
@@ -849,7 +849,7 @@ async function handleEvent(request, env, ctx) {
   }
   if(LAUNDRY_EVENTS.includes(name)) {
     if(!validLaundryEvent(body))return json({ok:false,error:'invalid_laundry_event'},400,cors);
-    if(request.headers.get('dnt')==='1'||request.headers.get('sec-gpc')==='1'||evUaClass(request.headers.get('user-agent')||'')!=='human')return json({ok:true,skipped:true},200,cors);
+    if(request.headers.get('dnt')==='1'||request.headers.get('sec-gpc')==='1'||request.headers.get('x-probe')==='1'||evUaClass(request.headers.get('user-agent')||'')!=='human')return json({ok:true,skipped:true},200,cors);
   }
   const page = String(body.p || "").slice(0, 200);
   // Referrer reduced to its host — enough to tell Google from ChatGPT, not
@@ -903,7 +903,7 @@ async function handleEvent(request, env, ctx) {
   if (windowTikTokEntry && name !== 'affiliate_click') metadata = {window_tiktok_entry:1};
   const meta = name === 'affiliate_click' ? affiliateMeta(metadata, drainEntry, windowEntry, portasplitEntry, cellarModelEntry, n90Entry, windowTikTokEntry)
     : metadata ? JSON.stringify(metadata).slice(0, 200) : "";
-  const country = meterEvent || windowTikTokWidth ? "" : request.headers.get("CF-IPCountry") || "";
+  const country = meterEvent || windowTikTokWidth || LAUNDRY_SEASON_EVENTS.includes(name) ? "" : request.headers.get("CF-IPCountry") || "";
   const day = new Date().toISOString().slice(0, 10);
 
   if (name === "page_view") auditUa(env, ctx, evUa, evCls);

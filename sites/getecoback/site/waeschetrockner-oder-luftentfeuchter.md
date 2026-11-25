@@ -86,7 +86,7 @@ Große oder eilige Ladungen bleiben oft im Trockner. Zähle alle Ladungen einer 
 
 Für den Mix rechnest du verbleibende Trocknerladungen × Trockner-kWh plus ersetzte Ladungen × Entfeuchter-kWh. Multipliziere die Summe mit deinem Arbeitspreis. Ziehe die Mixkosten von den bisherigen Kosten ab.
 
-Vor einem Kauf auch [Raumfeuchte, Lüftung und Platz prüfen](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice). Nicht erfasste Heizwärme, Wartung, Lebensdauer und Tarifänderungen bleiben offen. Die Eingaben bleiben im Browser.
+Vor einem Kauf auch [Raumfeuchte, Lüftung und Platz prüfen](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice). Wenn die Anschaffung sich während deiner geplanten Nutzung rechnerisch nicht deckt oder du bereits alles hast, ist der Stromvergleich allein kein Grund für einen Neukauf. Nicht erfasste Heizwärme, Wartung, Lebensdauer und Tarifänderungen bleiben offen. Die Eingaben bleiben im Browser.
 
 ## Eine Ladung fair vergleichen
 kWh für den ganzen Durchgang × Arbeitspreis. Vorbelegte Zahlen sind Rechenbeispiele, keine Produktmessungen. Gleiche Wäschemenge und gleicher Trocknungsgrad sind Voraussetzung. PNG und CSV werden lokal erstellt; Eingaben werden nicht hochgeladen.

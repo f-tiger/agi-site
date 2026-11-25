@@ -135,8 +135,9 @@ def season_switch():
   </fieldset>
   <button type="submit">Saisonkosten berechnen</button>
   <p class="lc-verdict" role="status" data-season-result></p>
+  <p data-season-compare hidden>Passt die errechnete Zeit zu deiner geplanten Nutzung und passen Lüftung und Stellfläche? Dann kannst du <a href="/guide/waesche-trocknen-wohnung.html#eb-models">Modelle und Kaufgrenzen für Wäsche vergleichen</a>.</p>
  </form>
- <p>Vor einem Kauf auch <a href="/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice">Raumfeuchte, Lüftung und Platz prüfen</a>. Nicht erfasste Heizwärme, Wartung, Lebensdauer und Tarifänderungen bleiben offen. Die Eingaben bleiben im Browser.</p>
+ <p>Vor einem Kauf auch <a href="/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice">Raumfeuchte, Lüftung und Platz prüfen</a>. Wenn die Anschaffung sich während deiner geplanten Nutzung rechnerisch nicht deckt oder du bereits alles hast, ist der Stromvergleich allein kein Grund für einen Neukauf. Nicht erfasste Heizwärme, Wartung, Lebensdauer und Tarifänderungen bleiben offen. Die Eingaben bleiben im Browser.</p>
 </section><script type="module" src="/assets/laundry-season-ui.mjs?v={SEASON_VERSION}"></script>'''
 
 
