@@ -1,3 +1,6 @@
+import {compareVacuumOffers, InputError} from '../site/assets/product-category-tools.mjs';
+import catalog from '../data/product-catalog.json' with {type:'json'};
+
 const page='/produkte.html';
 const verified='2026-11-20';
 const matrix='https://www.miele.de/c/staubsaugerbeutel-und-filter-10520.htm';
@@ -56,7 +59,48 @@ function whole(...numbers){
   if(!numbers.every(Number.isInteger)) throw new RangeError('Ganze Stückzahl angeben.');
 }
 
+const offerPrices = {
+  s1_geraet:number('Guard S1 12558410, eigener Gerätepreis mit Steuern in EUR',0,100000),
+  s1_extras:number('Guard S1 12558410, bekannte nötige Extras und Versand zusammen in EUR',0,100000),
+  m1_geraet:number('Guard M1 Parquet Flex 12560320, eigener Gerätepreis mit Steuern in EUR',0,100000),
+  m1_extras:number('Guard M1 Parquet Flex 12560320, bekannte nötige Extras und Versand zusammen in EUR',0,100000),
+};
+
+function vacuumOfferEvidence(id) {
+  const product = catalog.products.find(row => row.id === id);
+  const {nozzle, bag, caveat, source} = product.offer;
+  return {modell:product.variant, duese:nozzle, beutel:bag, grenze:caveat,
+    quellen:source ? [product.source, source] : [product.source], geprueft_am:product.checked};
+}
+
+const vacuumOfferTool = {
+  ...entry('beutelstaubsauger_angebot_kosten_pruefen',
+    'Prüfe Originaldüse, Beutel und eigene Gesamtpreise für Guard S1 12558410 und M1 Parquet Flex 12560320 oder den Lieferumfang des Bosch BGBS2BA1P — Check the German vacuum offer contents and entered totals',
+    {
+      auswahl:choose('Genau zugeordnetes deutsches Angebot oder Ausführung noch nicht eindeutig','miele_s1_m1','bosch_bgbs2ba1p','unbekannt'),
+      ...offerPrices,
+    }, a=>{
+      if (a.auswahl === 'unbekannt') return {status:'modellnummer_pruefen', modelle:[], gesamtpreise:null};
+      if (a.auswahl === 'bosch_bgbs2ba1p') return {status:'bosch_lieferumfang_pruefen',
+        modelle:[vacuumOfferEvidence('bosch-bgbs2ba1p')], gesamtpreise:null};
+      const modelle = ['miele-guard-s1','miele-guard-m1-parquet-flex'].map(vacuumOfferEvidence);
+      const grenze = 'Nur bestätigte Angebote derselben Einkaufsaufgabe und desselben Zeitraums vergleichen. Bei unklaren Extras offen lassen. Ein passendes vorhandenes Gerät kann weiter genutzt werden.';
+      if (!Object.keys(offerPrices).every(key => Object.hasOwn(a,key))) {
+        return {status:'eingaben_offen', modelle, gesamtpreise:null, grenze};
+      }
+      try {
+        return {status:'eigene_gesamtpreise', modelle, gesamtpreise:compareVacuumOffers(a), grenze};
+      } catch (error) {
+        if (!(error instanceof InputError)) throw error;
+        return {status:'centbetraege_pruefen', modelle, gesamtpreise:null, grenze};
+      }
+    },{auswahl:'miele_s1_m1',s1_geraet:200,s1_extras:40,m1_geraet:230,m1_extras:15},
+    {status:'eigene_gesamtpreise',gesamtpreise:{s1_gesamt_eur:240,m1_gesamt_eur:245,m1_minus_s1_eur:5}}),
+  required:['auswahl'],
+};
+
 export const bodenstaubsaugerBelege=[
+  vacuumOfferTool,
   entry('miele_hyclean_beutel_vollstaendige_modellzeile',
     'Lies die eindeutige Classic-, Complete-, Compact- oder Guard-Bezeichnung ab und prüfe den vorgesehenen Beuteltyp — Match an exact German Miele vacuum model to its documented bag family',
     {

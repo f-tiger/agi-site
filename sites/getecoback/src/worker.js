@@ -1031,7 +1031,7 @@ async function trendCompute(env) {
 // MCP server (Model Context Protocol, stateless Streamable HTTP).
 // Each tool returns a usable answer with sources. Publication, calls, website
 // visits and merchant activity are observed separately.
-const MCP_VERSION = "1.24.28";
+const MCP_VERSION = "1.24.29";
 const LEGACY_MCP_TOOLS = [
   drainTool,
   // AI-era round 2026-08-29: the decision LAYER above the per-device
@@ -1484,7 +1484,7 @@ async function mcpCallTool(name, args, env) {
     const hits = index
       .filter((e) => e && e.u && (!lang || e.l === lang))
       .map((e) => {
-        const section = e.section;
+        const section = exact && (e.model_sections?.find(item => item.id === exact.id) ?? e.section);
         if (exact && e.u === exact.path && e.l === "de" && section?.id === exact.id &&
             typeof section.title === "string" && section.title.trim() &&
             typeof section.description === "string" && section.description.trim()) {

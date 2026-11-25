@@ -1,4 +1,4 @@
-import {exactGermanHouseholdTask} from './german-household-intent.mjs?v=f6913eee1188';
+import {exactGermanHouseholdTask, vacuumOffer} from './german-household-intent.mjs?v=3615247c3096';
 import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion, glassvacModel, windowVacCharging} from './kaercher-saugduese-intent.mjs';
@@ -444,6 +444,7 @@ export function findCatalogueTools(index, {query='', category='', name=null}={})
   else if (philipsFilter) preferredName = philipsFilterTool;
   else if (asksForWindowVacClearance(focus.query)) preferredName = 'fenstersauger_sprossenfenster_duesenbreite';
   else if (narrowNozzle) preferredName = narrowNozzleTool;
+  else if (householdTask === vacuumOffer) preferredName = vacuumOffer.tool;
   else if (mieleBags === 'single') preferredName = 'miele_hyclean_beutel_vollstaendige_modellzeile';
   else if (mieleBags === 'pair') preferredName = 'miele_zwei_sauger_vorrat_beutel_abluftfilter_getrennt';
   else if (coffeeFilterMatch) preferredName = coffeeFilterTool;

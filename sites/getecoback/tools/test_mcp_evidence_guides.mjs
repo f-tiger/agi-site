@@ -32,6 +32,7 @@ const toolPaths = new Map([
   ['befeuchter_nennwatt_abgabeleistung_bezug', '/guide/luftbefeuchter-stromverbrauch.html#effizienz-vergleichen'],
   ['glassvac_kalt_lagern_einschalten_laden_getrennt', products + '#bosch-glassvac-einsatz-und-pflege'],
   ['miele_hyclean_beutel_vollstaendige_modellzeile', products + '#miele-staubsaugerbeutel'],
+  ['beutelstaubsauger_angebot_kosten_pruefen', products + '#beutelstaubsauger-angebote'],
   ['miele_zwei_sauger_vorrat_beutel_abluftfilter_getrennt', products + '#miele-staubsaugerbeutel'],
   ['fenstersauger_170mm_saugduese_geraetezuordnung', products + '#kaercher-170mm-saugduese'],
   ['fenstersauger_wv3_wv8_led_muster_einordnen', products + '#kaercher-fenstersauger-einsatz-und-hinweise'],
@@ -80,6 +81,32 @@ function offlineWorker() {
   };
 }
 
+test('German vacuum offers preserve missing amounts and exact package evidence', async () => {
+  const worker = offlineWorker();
+  const call = async args => (await worker.rpc('tools/call', {
+    name:'beutelstaubsauger_angebot_kosten_pruefen', arguments:args,
+  })).structuredContent;
+  const example = {auswahl:'miele_s1_m1',s1_geraet:200,s1_extras:40,m1_geraet:230,m1_extras:15};
+  const known = await call(example);
+  assert.equal(known.guide_url, origin + products + '#beutelstaubsauger-angebote');
+  assert.deepEqual(known.gesamtpreise, {s1_gesamt_eur:240,m1_gesamt_eur:245,m1_minus_s1_eur:5});
+  assert.match(known.modelle[0].beutel,/\bTU\b/);
+  assert.match(known.modelle[1].beutel,/\bCO\b/);
+  assert.match(known.modelle[1].duese,/SBB 300-3/);
+  const open = await call({auswahl:'miele_s1_m1',s1_geraet:200,s1_extras:0,m1_geraet:230});
+  assert.equal(open.status,'eingaben_offen');
+  assert.equal(open.gesamtpreise,null);
+  const explicitZero = await call({...example,m1_extras:0});
+  assert.equal(explicitZero.gesamtpreise.m1_minus_s1_eur,-10);
+  assert.equal((await call({...example,m1_extras:0.001})).status,'centbetraege_pruefen');
+  const bosch = await call({auswahl:'bosch_bgbs2ba1p'});
+  assert.match(bosch.modelle[0].beutel,/Typ G/);
+  assert.ok(bosch.modelle[0].quellen.includes('https://media3.bosch-home.com/Documents/specsheet/de-DE/BGBS2BA1P.pdf'));
+  assert.equal(bosch.gesamtpreise,null);
+  assert.deepEqual((await call({...example,auswahl:'unbekannt'})).modelle,[]);
+  worker.assertNoWrites();
+});
+
 test('cooling offer budget and confirmed time stay independent', async () => {
   const worker = offlineWorker();
   const call = args => worker.rpc('tools/call', {name:'klima_kaufzeitpunkt_eigenbedarf', arguments:args});
@@ -107,7 +134,7 @@ test('each mapped tool publishes the same exact evidence link after a real tool 
   const advertised = new Map(standard.map(tool => [tool.name, tool]));
   const compact = new Map((await h.catalogue({view:'compact'})).tools.map(tool => [tool.name, tool]));
   const mapped = expandedDefinitions.filter(tool=>paths.has(tool.category) || toolPaths.has(tool.name));
-  assert.equal(mapped.length, 241);
+  assert.equal(mapped.length, 242);
   assert.equal([...compact.values()].filter(tool=>tool.guide_url && tool.name!=='entfeuchter_ablaufcheck').length, mapped.length);
 
   for (const {name, category, page, properties, required, oneOf, example} of mapped) {

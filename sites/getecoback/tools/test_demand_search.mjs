@@ -9,6 +9,16 @@ test('Final browser index preserves the public compatibility index byte-for-byte
  const compatibilityIndex=readFileSync(new URL('../site/search-index.json',import.meta.url));
  assert(browsingIndex.equals(compatibilityIndex),'Built browser and compatibility search indices differ');
 });
+test('German vacuum bundle questions reach the buying check without stealing bag-only questions',()=>{
+ const offer='/produkte.html#beutelstaubsauger-angebote';
+ for(const query of [
+  'Ist beim Miele Guard M1 Parquet Flex die Parkettbürste dabei und welche Staubsaugerbeutel brauche ich?',
+  'Miele Guard S1 oder Guard M1 Parquet Flex: Welches Angebot passt für Parkett mit Beuteln?',
+  'Welche Beutel und Bodendüse sind beim Bosch BGBS2BA1P im Lieferumfang?',
+ ]) assert.equal(searchEntries(index,query,'de')[0]?.entry.u,offer,query);
+ assert.equal(searchEntries(index,'Welche Staubsaugerbeutel passen in den Miele Guard S1 und M1?','de')[0]?.entry.u,'/produkte.html#miele-staubsaugerbeutel');
+ assert.notEqual(searchEntries(index,'Miele Guard S1 Performance oder Guard M1 Cat & Dog: Welche Bodendüse ist dabei?','de')[0]?.entry.u,offer);
+});
 test('Natural needs, umlauts, case and filler words resolve to reviewed tasks',()=>{
  for(const [q,l,path] of [['Wie kann ich kalte Füße','de','/guide/homeoffice-warm-bleiben.html'],['waesche trocknen','de','/waeschetrockner-oder-luftentfeuchter.html'],['dry my clothes','en','/en/guide/heated-airer-vs-dehumidifier.html'],['replacement filter','en','/en/filter-finder.html'],['vocht','nl','/nl/ventilatie-of-luchtontvochtiger.html'],['CBAM','zh-CN','/zh/agents/cbam-supplier-data.html']])assert(searchEntries(index,q,l).some(h=>h.entry.u===path),q);
  assert.equal(normalize('FÜẞE'),normalize('fuesse'));

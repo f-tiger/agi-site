@@ -2,7 +2,7 @@
   "version": 1,
   "market": "DE",
   "published": "2026-11-13",
-  "modified": "2026-11-22",
+  "modified": "2026-11-25",
   "max_age_days": 90,
   "method": "Herstellerangaben, keine eigenen Produkttests. Modell, Paket und Einsatzgrenzen vor dem Kauf prüfen. Farben sind keine zusätzlichen Produkte. Händlerlinks sind genaue Modellsuchen, keine verifizierten Produktangebote.",
   "categories": [
@@ -557,13 +557,18 @@
       "name": "Miele Guard S1",
       "brand": "Miele",
       "variant": "Guard S1 12558410",
+      "offer": {
+        "nozzle": "Miele führt die Bodendüse SBD 355-3 im Lieferumfang auf.",
+        "bag": "HyClean Pure TU",
+        "caveat": "Eine separate Parkettbürste ist in diesem Set nicht aufgeführt. Prüfe zuerst die Pflegehinweise deines Bodens und ob du überhaupt eine zusätzliche Düse brauchst."
+      },
       "role": "Beutelsauger mit kürzerem Aktionsradius",
       "facts": "Der Hersteller nennt 10 m Aktionsradius und einen 3,5-Liter-Staubbeutel vom Typ HyClean Pure TU.",
       "limit": "Passende TU-Beutel und Filter als Verbrauchsmaterial einplanen. Die Eignung der Bodendüse für den eigenen Boden gesondert prüfen.",
       "source": "https://www.miele.de/product/12558410/bodenstaubsauger-mit-beutel-guard-s1-obsidianschwarz",
       "source_label": "Miele Deutschland: Miele Guard S1",
       "query": "Miele Guard S1 12558410",
-      "checked": "2026-11-13",
+      "checked": "2026-11-25",
       "status": "verified"
     },
     {
@@ -572,13 +577,18 @@
       "name": "Miele Guard M1 Parquet Flex",
       "brand": "Miele",
       "variant": "Guard M1 Parquet Flex 12560320",
+      "offer": {
+        "nozzle": "Neben der Bodendüse SBD 365-3 gehören die Parkettbürste Twister SBB 300-3 und die flexible Fugendüse SFD 20 zum deutschen Set.",
+        "bag": "HyClean Pure CO",
+        "caveat": "Stimmt die Materialnummer des Angebots, rechne die enthaltene Parkettbürste nur einmal. Beachte auch bei dieser Bürste die Pflegehinweise für deinen Boden."
+      },
       "role": "Parkettbürste und flexible Fugendüse im Paket",
       "facts": "Miele nennt 11 m Aktionsradius; die Parquet-Twister-Bürste und eine flexible Fugendüse gehören zum aufgeführten Zubehör.",
       "limit": "Diese Ausführung verwendet HyClean Pure CO-Beutel mit 4,5 Litern, nicht die TU-Beutel von Guard S1/L1. Bodenfreigabe auch mit Parkettbürste beachten.",
       "source": "https://www.miele.de/product/12560320/bodenstaubsauger-mit-beutel-guard-m1-parquet-flex-brillantweiss",
       "source_label": "Miele Deutschland: Miele Guard M1 Parquet Flex",
       "query": "Miele Guard M1 Parquet Flex 12560320",
-      "checked": "2026-11-13",
+      "checked": "2026-11-25",
       "status": "verified"
     },
     {
@@ -602,13 +612,19 @@
       "name": "Bosch BGBS2BA1P",
       "brand": "Bosch",
       "variant": "BGBS2BA1P Serie 2",
+      "offer": {
+        "nozzle": "Bosch nennt eine umschaltbare Rollendüse, eine Fugendüse und eine Polsterdüse. Das Datenblatt führt Hartbodendüsen als Sonderzubehör.",
+        "bag": "Ersatzbeutel Typ G. Bosch empfiehlt PowerProtect Typ G ALL.",
+        "caveat": "Gleiche für die Zubehörauswahl die vollständige E-Nr. mit dem Suffix nach dem Schrägstrich auf dem Typenschild ab. Ist die Ausführung im Angebot unklar, kläre sie vor dem Kauf.",
+        "source": "https://media3.bosch-home.com/Documents/specsheet/de-DE/BGBS2BA1P.pdf"
+      },
       "role": "Kompakter kabelgebundener Beutelsauger",
       "facts": "Bosch nennt 8 m Aktionsradius und ein nutzbares Filterbeutelvolumen von 3,5 Litern.",
       "limit": "Das angegebene Gerätegewicht ohne äußeres Saugzubehör ist nicht das Gesamtgewicht. Beuteltyp, Düsen und Filter beim konkreten Paket prüfen.",
       "source": "https://www.bosch-home.com/de/de/product/staubsauger/staubsauger-mit-beutel/BGBS2BA1P",
       "source_label": "Bosch Deutschland: Bosch BGBS2BA1P",
       "query": "Bosch BGBS2BA1P Serie 2",
-      "checked": "2026-11-13",
+      "checked": "2026-11-25",
       "status": "verified"
     },
     {

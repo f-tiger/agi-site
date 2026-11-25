@@ -11,7 +11,7 @@ Canonical (HTML, zitierfähig): https://getecoback.com/produkte.html
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Händlersuchen sind als Anzeige gekennzeichnet. Keine eigenen Gerätetests; Herstellerangaben sind keine Leistungszusage für dein Zuhause.
 
-Veröffentlicht: 13.11.2026 · Inhalt geändert: 22.11.2026. Der Quellenstand steht an jedem Modell.
+Veröffentlicht: 13.11.2026 · Inhalt geändert: 25.11.2026. Der Quellenstand steht an jedem Modell.
 
 ## Ersatzteile nach Modell prüfen
 
@@ -542,6 +542,26 @@ Kabelgebundene Beutelsauger nach Reichweite, Bodendüse und Verbrauchsmaterial v
 
 [Direkt die 4 Modelle vergleichen ↓](https://getecoback.com/produkte.html#modelle-bodenstaubsauger) [Erst die passende Auswahlhilfe nutzen ↓](https://getecoback.com/produkte.html#pc-tool-bodenstaubsauger)
 
+### Beutelstaubsauger im Angebot: Was kosten S1 und M1 mit dem Zubehör für meinen Boden?
+
+Gleiche zuerst die Modellnummer und den Lieferumfang mit dem Angebot ab. Liegt die benötigte Düse bei? Welche Beutel passen? Familienname und Produktfoto reichen für diese Entscheidung allein nicht aus.
+
+- **[Guard S1 12558410](https://getecoback.com/produkte.html#produkt-miele-guard-s1)** · Miele führt die Bodendüse SBD 355-3 im Lieferumfang auf. Beutel: HyClean Pure TU
+Eine separate Parkettbürste ist in diesem Set nicht aufgeführt. Prüfe zuerst die Pflegehinweise deines Bodens und ob du überhaupt eine zusätzliche Düse brauchst.
+[Miele Deutschland: Miele Guard S1](https://www.miele.de/product/12558410/bodenstaubsauger-mit-beutel-guard-s1-obsidianschwarz) · geprüft am 2026-11-25.
+
+- **[Guard M1 Parquet Flex 12560320](https://getecoback.com/produkte.html#produkt-miele-guard-m1-parquet-flex)** · Neben der Bodendüse SBD 365-3 gehören die Parkettbürste Twister SBB 300-3 und die flexible Fugendüse SFD 20 zum deutschen Set. Beutel: HyClean Pure CO
+Stimmt die Materialnummer des Angebots, rechne die enthaltene Parkettbürste nur einmal. Beachte auch bei dieser Bürste die Pflegehinweise für deinen Boden.
+[Miele Deutschland: Miele Guard M1 Parquet Flex](https://www.miele.de/product/12560320/bodenstaubsauger-mit-beutel-guard-m1-parquet-flex-brillantweiss) · geprüft am 2026-11-25.
+
+- **[BGBS2BA1P Serie 2](https://getecoback.com/produkte.html#produkt-bosch-bgbs2ba1p)** · Bosch nennt eine umschaltbare Rollendüse, eine Fugendüse und eine Polsterdüse. Das Datenblatt führt Hartbodendüsen als Sonderzubehör. Beutel: Ersatzbeutel Typ G. Bosch empfiehlt PowerProtect Typ G ALL.
+Gleiche für die Zubehörauswahl die vollständige E-Nr. mit dem Suffix nach dem Schrägstrich auf dem Typenschild ab. Ist die Ausführung im Angebot unklar, kläre sie vor dem Kauf.
+[Bosch Deutschland: Bosch BGBS2BA1P](https://www.bosch-home.com/de/de/product/staubsauger/staubsauger-mit-beutel/BGBS2BA1P) · [Bosch-Datenblatt für Deutschland](https://media3.bosch-home.com/Documents/specsheet/de-DE/BGBS2BA1P.pdf) · geprüft am 2026-11-25.
+
+Für den Preisvergleich der zwei Miele-Angebote gilt: **Gesamtpreis = Gerätepreis + Zusatzkosten.** Addiere als Zusatzkosten die tatsächlich benötigte, fehlende Düse, passende Beutel für denselben selbst gewählten Zeitraum und den Versand. Bereits enthaltenes Zubehör wird nicht nochmals berechnet. Trage ausdrücklich 0 ein, wenn nichts hinzukommt. Ist ein Betrag offen, kläre ihn vor dem Vergleich.
+
+**Fiktives Rechenbeispiel:** Beim S1 ergeben 200 € + 40 € insgesamt 240 €. Beim M1 ergeben 230 € + 15 € insgesamt 245 €. Mit diesen angenommenen Beträgen kostet das S1-Angebot 5 € weniger. Die Rechnung bewertet weder Reinigungsleistung noch Lebensdauer.
+
 ### Wie vergleiche ich Beutelsauger einschließlich Folgekosten?
 Der Rechner vergleicht deine eingetragenen Verbrauchsmaterialkosten. Ein niedrigerer Betrag beweist weder bessere Reinigung noch geringeren Stromverbrauch.
 
@@ -554,10 +574,10 @@ Genaue Variante, Aufgabe und Kaufgrenze im Vergleich
 
 | Modell | Aufgabe und Herstellerangabe | Grenze | Quelle |
 | --- | --- | --- | --- |
-| [Miele Guard S1](https://getecoback.com/produkte.html#produkt-miele-guard-s1) Guard S1 12558410 | Beutelsauger mit kürzerem AktionsradiusDer Hersteller nennt 10 m Aktionsradius und einen 3,5-Liter-Staubbeutel vom Typ HyClean Pure TU. | Passende TU-Beutel und Filter als Verbrauchsmaterial einplanen. Die Eignung der Bodendüse für den eigenen Boden gesondert prüfen. | [Miele Deutschland: Miele Guard S1](https://www.miele.de/product/12558410/bodenstaubsauger-mit-beutel-guard-s1-obsidianschwarz) Quellenstand: 2026-11-13 |
-| [Miele Guard M1 Parquet Flex](https://getecoback.com/produkte.html#produkt-miele-guard-m1-parquet-flex) Guard M1 Parquet Flex 12560320 | Parkettbürste und flexible Fugendüse im PaketMiele nennt 11 m Aktionsradius; die Parquet-Twister-Bürste und eine flexible Fugendüse gehören zum aufgeführten Zubehör. | Diese Ausführung verwendet HyClean Pure CO-Beutel mit 4,5 Litern, nicht die TU-Beutel von Guard S1/L1. Bodenfreigabe auch mit Parkettbürste beachten. | [Miele Deutschland: Miele Guard M1 Parquet Flex](https://www.miele.de/product/12560320/bodenstaubsauger-mit-beutel-guard-m1-parquet-flex-brillantweiss) Quellenstand: 2026-11-13 |
+| [Miele Guard S1](https://getecoback.com/produkte.html#produkt-miele-guard-s1) Guard S1 12558410 | Beutelsauger mit kürzerem AktionsradiusDer Hersteller nennt 10 m Aktionsradius und einen 3,5-Liter-Staubbeutel vom Typ HyClean Pure TU. | Passende TU-Beutel und Filter als Verbrauchsmaterial einplanen. Die Eignung der Bodendüse für den eigenen Boden gesondert prüfen. | [Miele Deutschland: Miele Guard S1](https://www.miele.de/product/12558410/bodenstaubsauger-mit-beutel-guard-s1-obsidianschwarz) Quellenstand: 2026-11-25 |
+| [Miele Guard M1 Parquet Flex](https://getecoback.com/produkte.html#produkt-miele-guard-m1-parquet-flex) Guard M1 Parquet Flex 12560320 | Parkettbürste und flexible Fugendüse im PaketMiele nennt 11 m Aktionsradius; die Parquet-Twister-Bürste und eine flexible Fugendüse gehören zum aufgeführten Zubehör. | Diese Ausführung verwendet HyClean Pure CO-Beutel mit 4,5 Litern, nicht die TU-Beutel von Guard S1/L1. Bodenfreigabe auch mit Parkettbürste beachten. | [Miele Deutschland: Miele Guard M1 Parquet Flex](https://www.miele.de/product/12560320/bodenstaubsauger-mit-beutel-guard-m1-parquet-flex-brillantweiss) Quellenstand: 2026-11-25 |
 | [Miele Guard L1](https://getecoback.com/produkte.html#produkt-miele-guard-l1) Guard L1 12558870 | Mehr Reichweite mit BeutelsystemDie deutsche Produktseite nennt 12 m Aktionsradius und einen 3,5-Liter-Beutel HyClean Pure TU. | Guard L1 ist nicht automatisch die Comfort-, AllFloor- oder Cat-&-Dog-Ausführung; Zubehör und Bedienung des genauen Angebots abgleichen. | [Miele Deutschland: Miele Guard L1](https://www.miele.de/product/12558870/bodenstaubsauger-mit-beutel-guard-l1-nordicblau) Quellenstand: 2026-11-13 |
-| [Bosch BGBS2BA1P](https://getecoback.com/produkte.html#produkt-bosch-bgbs2ba1p) BGBS2BA1P Serie 2 | Kompakter kabelgebundener BeutelsaugerBosch nennt 8 m Aktionsradius und ein nutzbares Filterbeutelvolumen von 3,5 Litern. | Das angegebene Gerätegewicht ohne äußeres Saugzubehör ist nicht das Gesamtgewicht. Beuteltyp, Düsen und Filter beim konkreten Paket prüfen. | [Bosch Deutschland: Bosch BGBS2BA1P](https://www.bosch-home.com/de/de/product/staubsauger/staubsauger-mit-beutel/BGBS2BA1P) Quellenstand: 2026-11-13 |
+| [Bosch BGBS2BA1P](https://getecoback.com/produkte.html#produkt-bosch-bgbs2ba1p) BGBS2BA1P Serie 2 | Kompakter kabelgebundener BeutelsaugerBosch nennt 8 m Aktionsradius und ein nutzbares Filterbeutelvolumen von 3,5 Litern. | Das angegebene Gerätegewicht ohne äußeres Saugzubehör ist nicht das Gesamtgewicht. Beuteltyp, Düsen und Filter beim konkreten Paket prüfen. | [Bosch Deutschland: Bosch BGBS2BA1P](https://www.bosch-home.com/de/de/product/staubsauger/staubsauger-mit-beutel/BGBS2BA1P) Quellenstand: 2026-11-25 |
 
 ### Beutel- und Filterkosten pro Jahr planen
 Trage die von dir ermittelten Preise und deinen eigenen Wechselbedarf ein. Die Vorgaben des konkreten Geräts gehen vor.
@@ -577,7 +597,7 @@ Der Hersteller nennt 10 m Aktionsradius und einen 3,5-Liter-Staubbeutel vom Typ 
 
 **Vor dem Kauf:** Passende TU-Beutel und Filter als Verbrauchsmaterial einplanen. Die Eignung der Bodendüse für den eigenen Boden gesondert prüfen.
 
-Quelle: [Miele Deutschland: Miele Guard S1](https://www.miele.de/product/12558410/bodenstaubsauger-mit-beutel-guard-s1-obsidianschwarz) · geprüft am 13.11.2026.
+Quelle: [Miele Deutschland: Miele Guard S1](https://www.miele.de/product/12558410/bodenstaubsauger-mit-beutel-guard-s1-obsidianschwarz) · geprüft am 25.11.2026.
 
 Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue Variante, Gesamtpreis und Lieferung beim Händler prüfen.
 
@@ -589,7 +609,7 @@ Miele nennt 11 m Aktionsradius; die Parquet-Twister-Bürste und eine flexible Fu
 
 **Vor dem Kauf:** Diese Ausführung verwendet HyClean Pure CO-Beutel mit 4,5 Litern, nicht die TU-Beutel von Guard S1/L1. Bodenfreigabe auch mit Parkettbürste beachten.
 
-Quelle: [Miele Deutschland: Miele Guard M1 Parquet Flex](https://www.miele.de/product/12560320/bodenstaubsauger-mit-beutel-guard-m1-parquet-flex-brillantweiss) · geprüft am 13.11.2026.
+Quelle: [Miele Deutschland: Miele Guard M1 Parquet Flex](https://www.miele.de/product/12560320/bodenstaubsauger-mit-beutel-guard-m1-parquet-flex-brillantweiss) · geprüft am 25.11.2026.
 
 Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue Variante, Gesamtpreis und Lieferung beim Händler prüfen.
 
@@ -613,7 +633,7 @@ Bosch nennt 8 m Aktionsradius und ein nutzbares Filterbeutelvolumen von 3,5 Lite
 
 **Vor dem Kauf:** Das angegebene Gerätegewicht ohne äußeres Saugzubehör ist nicht das Gesamtgewicht. Beuteltyp, Düsen und Filter beim konkreten Paket prüfen.
 
-Quelle: [Bosch Deutschland: Bosch BGBS2BA1P](https://www.bosch-home.com/de/de/product/staubsauger/staubsauger-mit-beutel/BGBS2BA1P) · geprüft am 13.11.2026.
+Quelle: [Bosch Deutschland: Bosch BGBS2BA1P](https://www.bosch-home.com/de/de/product/staubsauger/staubsauger-mit-beutel/BGBS2BA1P) · geprüft am 25.11.2026.
 
 Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue Variante, Gesamtpreis und Lieferung beim Händler prüfen.
 
