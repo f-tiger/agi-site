@@ -541,7 +541,7 @@ def render(data, today=None):
                 merchant = '<p class="pc-commerce pc-paused">Händlersuche pausiert: Quellenprüfung ausstehend. Die Angaben unten sind der dokumentierte Stand, keine aktuelle Kaufempfehlung.</p>'
             care_link = (f'<p class="pc-care"><a href="/ersatzfilter.html#{esc(product["id"])}">Ersatzfilter zuordnen &amp; Pflege notieren →</a></p>'
                          if product['id'] in FILTER_CARE_MODELS else '')
-            stacking_link = (f'<p class="pc-buyer-routes"><a href="#{BOSCH_STACKING_ID}">Verbindungssatz für die Wasch-Trocken-Säule prüfen →</a></p>'
+            stacking_link = (f'<p class="pc-care"><a href="#{BOSCH_STACKING_ID}">Verbindungssatz für die Wasch-Trocken-Säule prüfen →</a></p>'
                              if product['id'] == 'bosch-wqg241001' else '')
             cards.append(f'''<section class="pc-card" id="produkt-{esc(product['id'])}" data-product-card data-category="{esc(category['id'])}">
 <h3>{esc(product['name'])}</h3><p class="pc-brand">{esc(product['brand'])} · {esc(product['variant'])}</p>
