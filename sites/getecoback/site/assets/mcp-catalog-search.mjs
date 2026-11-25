@@ -1,8 +1,8 @@
-import {boschDry, comfeeVariant, coolingDiscountReference, directHeat, exactGermanHouseholdTask, exactWindowShadeMeasurement, festiveLights, granulateDryingChoice, klarsteinPackage, offlineThermostatChoice, showerFlow, vacuumOffer} from './german-household-intent.mjs?v=081c2759c241';
+import {boschDry, comfeeVariant, coolingDiscountReference, directHeat, exactGermanHouseholdTask, exactWindowShadeMeasurement, festiveLights, granulateDryingChoice, klarsteinPackage, offlineThermostatChoice, showerFlow, siemensFilterDecision, vacuumOffer} from './german-household-intent.mjs?v=63a7ef038ee5';
 import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion, glassvacModel, windowVacCharging} from './kaercher-saugduese-intent.mjs';
-import {asksAboutCoffeeFilterMaintenance, asksForCoffeeWaterFilterMatch} from './kaffee-wasserfilter-intent.mjs';
+import {asksAboutCoffeeFilterMaintenance, asksForCoffeeWaterFilterMatch} from './kaffee-wasserfilter-intent.mjs?v=99bfa4094412';
 import {asksForTrotecTtk75EcoConditions, namesTrotecTtk75Eco} from './trotec-ttk75-eco-intent.mjs';
 import {asksForCoolingNoiseComparison} from './cooling-noise-intent.mjs?v=f0bcc0785943';
 import {asksForTesamollWindowProfile} from './tesamoll-profile-intent.mjs';
@@ -392,7 +392,8 @@ export function findCatalogueTools(index, {query='', category='', name=null}={})
     }
   }
   const householdTask = exactGermanHouseholdTask(focus.query);
-  const comparisonGuide = householdTask === granulateDryingChoice || householdTask === coolingDiscountReference || householdTask === offlineThermostatChoice;
+  const comparisonGuide = householdTask === granulateDryingChoice || householdTask === coolingDiscountReference ||
+    householdTask === offlineThermostatChoice || householdTask === siemensFilterDecision;
   if (householdTask === boschDry || householdTask === comfeeVariant || householdTask === festiveLights || householdTask === showerFlow || householdTask === directHeat || householdTask === klarsteinPackage || comparisonGuide) {
     const guideSearch = index.find(entry => entry.tool.name === householdTask.tool && eligible(entry));
     if (guideSearch) {

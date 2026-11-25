@@ -1170,6 +1170,18 @@ Die Modellzuordnung klärt den passenden Artikel. Ob der Filter eingesetzt und a
 
 Herstellerangaben für Deutschland geprüft am 22.11.2026.
 
+### Welcher BRITA Intenza passt zum Siemens EQ.6 plus s300 oder s400?
+
+Lies die vollständige E-Nr. vom Typenschild ab. Für die beiden hier genannten deutschen Varianten führt Siemens dieselben BRITA-Intenza-Filter.
+
+- [Siemens EQ.6 plus s300 · TE653501DE/13](https://www.siemens-home.bsh-group.com/de/de/productservice/TE653501DE-13)
+
+- [Siemens EQ.6 plus s400 · TE654509DE/12](https://www.siemens-home.bsh-group.com/de/de/productservice/TE654509DE-12)
+
+Gleiche die Artikelnummer und Stückzahl auf der Packung ab. [17008835 enthält einen Wasserfilter](https://www.siemens-home.bsh-group.com/de/de/product/17008835). [17008836 enthält drei Wasserfilter](https://www.siemens-home.bsh-group.com/de/de/product/17008836). Prüfe die E-Nr. auch dann, wenn du die Packungsnummer bereits kennst.
+
+Fehlt die Endung hinter dem Schrägstrich oder weicht sie ab, bleibt die Zuordnung offen. Suche im Siemens-Service mit der vollständigen E-Nr. und warte mit der Bestellung, bis der Hersteller den Artikel für deine Variante führt. Quellen für Deutschland geprüft am 25. November 2026.
+
 Prüfe vor dem Kauf die volle Modellkennung. Philips EP2231/40 hat einen zweiteiligen LatteGo-Milchbehälter, EP2220/10 einen klassischen Milchaufschäumer. Beim Bosch TIE20301 wird die Milch laut Produktblatt in die Tasse gefüllt. Für hohe Gläser nennt Bosch bis zu 13 cm. Prüfe ein eigenes Glas zusätzlich mit Griff und geradem Einsetzweg. Für beide Philips-Modelle ist eine Doppeltasse Kaffee ausgewiesen. Die Angaben führen keine Doppeltasse Milch auf.
 
 Philips nennt AquaClean bei diesen beiden Geräten im Lieferumfang. Bosch nennt BRITA Intenza TCZ7003 oder TCZ7033 beim TIE20301 als Sonderzubehör. De’Longhi führt DLSC002 für die Magnifica S ECAM22.110.B. Ein bestätigter beigelegter Originalfilter kann anders aussehen als das separat angebotene Teil. Bei Gebrauchtware oder einem Händlerbundle den konkreten Lieferumfang prüfen. Wer keinen optionalen Filterbetrieb wünscht, braucht dafür keinen Filterkauf einzuplanen. Die Pflege nach Herstelleranleitung bleibt Teil des Betriebs.

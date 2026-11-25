@@ -1,4 +1,5 @@
 import {asksForDehumidifierDrainRoute} from './dehumidifier-drain-intent.mjs?v=f6bce24817e8';
+import {asksForSiemensWaterFilter} from './kaffee-wasserfilter-intent.mjs?v=99bfa4094412';
 
 const curtain = {
   path:'/guide/thermovorhang-ratgeber.html',
@@ -200,6 +201,12 @@ export const offlineThermostatChoice = {
   tool:'ratgeber_suche',
 };
 
+export const siemensFilterDecision = {
+  path:'/produkte.html',
+  id:'siemens-eq6-intenza',
+  tool:'ratgeber_suche',
+};
+
 function asksForOfflineThermostat(query) {
   const head = /\b(?:(?:heizkoerper|heiz)?thermostat\w*|heizkoerperregler\w*|fritz[ !-]*(?:smart[ -]+thermo[ -]*)?302)\b/;
   const connection = /\b(?:offline|internet[ -]?ausfall|ohne (?:internet(?:verbindung|zugang)?|zentrale|(?:bosch )?(?:smart home )?controller|hub|gateway|fritz[ !-]*box))\b/;
@@ -244,6 +251,7 @@ export function exactGermanHouseholdTask(query) {
   if (asksForGranulateDryingChoice(query)) return granulateDryingChoice;
   if (asksForCoolingDiscountReference(query)) return coolingDiscountReference;
   if (asksForOfflineThermostat(query)) return offlineThermostatChoice;
+  if (asksForSiemensWaterFilter(query)) return siemensFilterDecision;
   if (asksForDirectHeatComparison(query)) return directHeat;
   if (asksForShowerFlow(query)) return showerFlow;
   if (asksForVacuumOffer(query)) return vacuumOffer;

@@ -179,6 +179,25 @@ class CatalogTest(unittest.TestCase):
         })
         self.assertNotIn('reddit.com/submit', md)
 
+    def test_siemens_filter_numbers_and_revision_scope_survive_generation(self):
+        page = C.ROOT / 'site/produkte.html'
+        mirror = page.with_suffix('.md').read_text()
+        pattern = r'<section aria-labelledby="siemens-eq6-intenza">.*?</section>'
+        rendered = re.search(pattern, page.read_text(), re.S)[0]
+        authored = re.search(pattern, C.render(C.load(), dt.date(2026, 11, 25)), re.S)[0]
+        self.assertEqual(rendered, authored)
+        self.assertEqual(Document(page.read_text()).ids.count(C.SIEMENS_FILTER_ID), 1)
+        for surface in (rendered, mirror):
+            for statement in (
+                'TE653501DE/13', 'TE654509DE/12',
+                '17008835 enthält einen Wasserfilter', '17008836 enthält drei Wasserfilter',
+                'Fehlt die Endung hinter dem Schrägstrich oder weicht sie ab',
+                'productservice/TE653501DE-13', 'productservice/TE654509DE-12',
+                '/de/de/product/17008835', '/de/de/product/17008836',
+            ):
+                self.assertIn(statement, surface)
+            self.assertNotRegex(surface, r'amazon\.de/|tag=getecoback-21')
+
     def test_final_airfryer_evidence_survives_all_generators(self):
         from html import unescape
         html=(C.ROOT/'site/produkte.html').read_text()

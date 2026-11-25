@@ -4,7 +4,10 @@ from pathlib import Path
 import json
 import re
 from build_language_nav import Head, local
-from build_product_catalog import BOSCH_STACKING_ANSWER, BOSCH_STACKING_ID, BOSCH_STACKING_TITLE
+from build_product_catalog import (
+ BOSCH_STACKING_ANSWER, BOSCH_STACKING_ID, BOSCH_STACKING_TITLE,
+ SIEMENS_FILTER_ANSWER, SIEMENS_FILTER_ID, SIEMENS_FILTER_TITLE,
+)
 ROOT=Path(__file__).resolve().parents[1]
 SITE=ROOT/'site'
 PRIVATE={'auth','api','account','account.html','members','members.html','widgets','analytics-assets','member-assets'}
@@ -141,7 +144,8 @@ def collect():
     {'id':'kaercher-170mm-saugduese','title':'Welche schmale Kärcher-Absaugdüse passt zu meinem WV?',
      'description':'Die 170-mm-Absaugdüse anhand von Gerätevariante, Lieferumfang und Zubehörnummer von der Gummilippe unterscheiden.'},
     {'id':'fenstersauger-duesenbreite','title':'Welche Saugdüse passt zwischen die Sprossen?',
-     'description':'Miss die lichte Glasbreite und prüfe den Spielraum für Saugkopf und Gehäuse.'}]
+     'description':'Miss die lichte Glasbreite und prüfe den Spielraum für Saugkopf und Gehäuse.'},
+    {'id':SIEMENS_FILTER_ID,'title':SIEMENS_FILTER_TITLE,'description':SIEMENS_FILTER_ANSWER}]
    for section in model_sections:
     anchor=section['id']
     targets=re.findall(r'<h[23]\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)

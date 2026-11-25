@@ -62,6 +62,12 @@ BOSCH_STACKING_ANSWER = (
     'Prüfe die genaue Bosch-Waschmaschine, gleiche Gerätebreite und -tiefe und die Arbeitsplattentiefe über 55 cm. '
     'Bei unklarer Zuordnung warte mit der Bestellung.'
 )
+SIEMENS_FILTER_ID = 'siemens-eq6-intenza'
+SIEMENS_FILTER_TITLE = 'Welcher BRITA Intenza passt zum Siemens EQ.6 plus s300 oder s400?'
+SIEMENS_FILTER_ANSWER = (
+    'Siemens führt 17008835 (1 Stück) und 17008836 (3 Stück) für TE653501DE/13 und TE654509DE/12. '
+    'Fehlt die Endung oder weicht sie ab, prüfe die vollständige E-Nr. im Siemens-Service vor der Bestellung.'
+)
 
 # These named models have their own evidence sections. Keep nearby variants from
 # matching a short token inside the title or measurement instructions.
@@ -82,7 +88,7 @@ PART_GUIDES = (
     ('Kärcher-Saugdüse 170 mm', '#kaercher-170mm-saugduese', 'fenstersauger',
      'Absaugdüse WV 2 3 4-4 5 6 8 WV2 WV3 WV4-4 WV5 WV6 WV8 2.633-112.0 2.633-605.0 2.633-512.0 2.633-532.0 26331120 26336050 26335120 26335320'),
     ('Kaffeevollautomat-Wasserfilter', '#kaffee-wasserfilter', '',
-     'Ersatzfilter Philips EP2220/10 EP2231/40 AquaClean CA6903/10 Bosch VeroCafe TIE20301 Intenza TCZ7003 TCZ7033 DeLonghi Magnifica S ECAM22.110.B DLSC002'),
+     'Ersatzfilter Philips EP2220/10 EP2231/40 AquaClean CA6903/10 Bosch VeroCafe TIE20301 Intenza TCZ7003 TCZ7033 DeLonghi Magnifica S ECAM22.110.B DLSC002 Siemens EQ.6 plus s300 s400 TE653501DE/13 TE654509DE/12 17008835 17008836'),
     ('Trotec TTK 70 HEPA-Filter', '/guide/trotec-luftentfeuchter-test.html#ttk70-hepa-filter', '',
      'Ersatzfilter HEPA Plus 7710000024 7710000077 7710000080'),
     ('Ersatzfilter für Luftreiniger', '/ersatzfilter.html#finder', 'luftreiniger',
@@ -195,6 +201,16 @@ APPLIANCE_EVIDENCE = f'''
   <p>Die Modellzuordnung klärt den passenden Artikel. Ob der Filter eingesetzt und aktiviert ist, prüfst du separat am Gerät. Passe die Wasserhärte und gegebenenfalls den Filtermodus nach der Anleitung an. Wenn du ohne optionalen Filter arbeiten möchtest, richte die Maschine dafür nach Anleitung ein und halte die Pflegehinweise ein. Dafür brauchst du keinen Ersatzfilter.</p>
   <p>Herstellerangaben für Deutschland geprüft am <time datetime="2026-11-22">22.11.2026</time>.</p>
   <!--EB_COFFEE_FILTER_SHARE--><p><a href="https://www.reddit.com/submit?url=https%3A%2F%2Fgetecoback.com%2Fprodukte.html%23kaffee-wasserfilter&amp;title=Welcher%20Wasserfilter%20passt%20zu%20meinem%20Kaffeevollautomaten%3F" rel="noreferrer" style="display:inline-flex;align-items:center;min-height:44px">Auf Reddit teilen</a></p><!--/EB_COFFEE_FILTER_SHARE-->
+  <section aria-labelledby="{SIEMENS_FILTER_ID}">
+    <h3 id="{SIEMENS_FILTER_ID}" style="scroll-margin-top:210px">{SIEMENS_FILTER_TITLE}</h3>
+    <p>Lies die vollständige E-Nr. vom Typenschild ab. Für die beiden hier genannten deutschen Varianten führt Siemens dieselben BRITA-Intenza-Filter.</p>
+    <ul>
+      <li><a href="https://www.siemens-home.bsh-group.com/de/de/productservice/TE653501DE-13">Siemens EQ.6 plus s300 · TE653501DE/13</a></li>
+      <li><a href="https://www.siemens-home.bsh-group.com/de/de/productservice/TE654509DE-12">Siemens EQ.6 plus s400 · TE654509DE/12</a></li>
+    </ul>
+    <p>Gleiche die Artikelnummer und Stückzahl auf der Packung ab. <a href="https://www.siemens-home.bsh-group.com/de/de/product/17008835">17008835 enthält einen Wasserfilter</a>. <a href="https://www.siemens-home.bsh-group.com/de/de/product/17008836">17008836 enthält drei Wasserfilter</a>. Prüfe die E-Nr. auch dann, wenn du die Packungsnummer bereits kennst.</p>
+    <p>Fehlt die Endung hinter dem Schrägstrich oder weicht sie ab, bleibt die Zuordnung offen. Suche im Siemens-Service mit der vollständigen E-Nr. und warte mit der Bestellung, bis der Hersteller den Artikel für deine Variante führt. Quellen für Deutschland geprüft am <time datetime="2026-11-25">25. November 2026</time>.</p>
+  </section>
   <p>Prüfe vor dem Kauf die volle Modellkennung. Philips EP2231/40 hat einen zweiteiligen LatteGo-Milchbehälter, EP2220/10 einen klassischen Milchaufschäumer. Beim Bosch TIE20301 wird die Milch laut Produktblatt in die Tasse gefüllt. Für hohe Gläser nennt Bosch bis zu 13&nbsp;cm. Prüfe ein eigenes Glas zusätzlich mit Griff und geradem Einsetzweg. Für beide Philips-Modelle ist eine Doppeltasse Kaffee ausgewiesen. Die Angaben führen keine Doppeltasse Milch auf.</p>
   <p>Philips nennt AquaClean bei diesen beiden Geräten im Lieferumfang. Bosch nennt BRITA Intenza TCZ7003 oder TCZ7033 beim TIE20301 als Sonderzubehör. De’Longhi führt DLSC002 für die Magnifica S ECAM22.110.B. Ein bestätigter beigelegter Originalfilter kann anders aussehen als das separat angebotene Teil. Bei Gebrauchtware oder einem Händlerbundle den konkreten Lieferumfang prüfen. Wer keinen optionalen Filterbetrieb wünscht, braucht dafür keinen Filterkauf einzuplanen. Die Pflege nach Herstelleranleitung bleibt Teil des Betriebs.</p>
   <p>Orange blinkendes AquaClean kann den Erstgebrauch, einen verbrauchten Filter oder einen Hinweis nach der Entkalkung anzeigen. Blau bestätigt die Aktivierung. Bei fehlender Anzeige und unbekannter Vorgeschichte zuerst die Aktivierungsvoraussetzungen im Handbuch klären. Philips nennt 95&nbsp;l durch den Filter sowie einen Wechsel spätestens nach drei Monaten. Tassen allein erfassen Spülvorgänge nicht vollständig. De’Longhi nennt für den eingesetzten Filter zwei Monate bei normaler Nutzung und höchstens drei Wochen bei Nichtgebrauch. An der eindeutig identifizierten De’Longhi-Entkalkungsleuchte signalisiert Blinken die Aufforderung, Dauerlicht das gestartete Programm.</p>
