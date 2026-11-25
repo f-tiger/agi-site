@@ -202,9 +202,13 @@ Quelle: [Stadler Form Deutschland: Lukas](https://www.stadlerform.com/de-de/luft
 
 ### Comfee MDDF-20DEN7
 **Feuchteregelung mit Timer**
-MDDF-20DEN7 · ohne WF
+MDDF-20DEN7 · ohne WF · Artikel 10000651
 3-Liter-Tank, Feuchtigkeitskontrolle, Timer und Auto-Restart laut deutscher Produktseite.
-**Vor dem Kauf:** Nicht mit MDDF-20DEN7-WF verwechseln. Vergleichbare Entzugs- und Stromwerte bei 10 °C / 60 % sind hier nicht belegt.
+**Vor dem Kauf:** Im Datenblatt gelten 20 L/24 h bei 30 °C und 80 % relativer Feuchte. Entzugsleistung und Stromaufnahme bei 10 °C / 60 % sind hier nicht belegt. Brauchst du diesen Prüfpunkt für deinen kalten Keller, warte mit dem Kauf, bis passende Herstellerwerte vorliegen.
+**Deutsches Angebot prüfen:** Zur oben genannten Modell- und Artikelnummer gehört die EAN **4048164103010**. Der Händlerlink gehört zur Basisversion ohne WF. Prüfe Modellbezeichnung, Artikelnummer oder EAN der gewählten Ausführung. Steht dort nur „20 Liter“, fehlt die genaue Kennung oder widersprechen sich die Angaben, kläre die Variante vor dem Kauf.
+
+- [Comfee MDDF-20DEN7-WF](https://www.feelcomfee.com/de/produkte/klimatisieren-heizen/mddf-20den7-wf): Die WLAN-Ausführung trägt die Artikelnummer 10000726 und die EAN 4048164103485. Der Hersteller nennt App- und Sprachsteuerung nur für die WF-Modelle. Das bei der Prüfung auf der WF-Webseite verlinkte Datenblatt nennt die Basisversion. Für die WF-Kennung gilt die eigene Zeile im deutschen Katalog. Wer diese Funktion braucht, prüft zuerst das WF-Angebot.
+[Comfee Deutschland: Klimakatalog, Stand 04.2024, S. 27 (beide Modellkennungen)](https://www.feelcomfee.com/content/dam/comfee-aem/de/katalog/comfee-klimakatalog-2024-din-a4-v2-lores.pdf#page=27) · Modellzuordnung geprüft am 25.11.2026.
 Quelle: [Comfee Deutschland: MDDF-20DEN7](https://www.feelcomfee.com/de/produkte/klimatisieren-heizen/mddf-20den7)
 
 ### MeacoDry Arete One 20L

@@ -1326,3 +1326,28 @@ test('German Advent lighting costs find the existing cost tool and keep the sche
     'lichterkette_timer_einschaltfenster_vergleichen');
   assert.equal(analytics,0);
 });
+
+test('exact Comfee variant identifiers find the existing evidence tool and preserve condition and drainage tools', async () => {
+  const name = 'comfee_mddf20_wf_beleggrenze';
+  const guide = '/guide/luftentfeuchter-keller.html';
+  for (const query of [
+    'Comfee MDDF-20DEN7', 'Comfee MDDF-20DEN7-WF', '10000651', '10000726',
+    '4048164103010', '4048164103485',
+    'Wie unterscheiden sich Comfee MDDF-20DEN7 und MDDF-20DEN7-WF?',
+  ]) {
+    const result = await catalogue({q:query,view:'compact',limit:3});
+    assert.equal(result.tools[0]?.name,name,query);
+    assert.equal(findCatalogueTools(compact,{query})[0]?.name,name,query);
+    assert.equal(toolGuidePath(result.tools[0]),guide + '#modell-comfee-mddf20',query);
+  }
+  for (const query of ['Comfee MDDF-16DEN7','Comfee MDDF3-20DEN7-WF']) {
+    const result = await catalogue({q:query,view:'compact',limit:3});
+    assert.notEqual(result.tools[0]?.name,name,query);
+  }
+  for (const [query,expected] of [
+    ['Wie viele Liter zieht ein Comfee MDDF-20DEN7 bei 10 °C und 60 % aus meinem Keller?',
+      'kellerentfeuchter_pruefpunkt_abgleichen'],
+    ['Geht der Ablauf beim Comfee MDDF-20DEN7 auch bergauf bis zum Waschbecken?','entfeuchter_ablaufcheck'],
+  ]) assert.equal((await catalogue({q:query,view:'compact'})).tools[0]?.name,expected,query);
+  assert.equal(analytics,0);
+});

@@ -394,3 +394,30 @@ test('the seasonal lighting title stays outside unrelated German guide searches'
     assert.deepEqual(requests.map(request => new URL(request.url).pathname),['/mcp-guides.json']);
   }
 });
+
+test('Comfee DE variant guide searches cite the canonical cellar guide for each identifier', async () => {
+  const title = 'Comfee MDDF-20DEN7 oder WF: Modell und EAN prüfen';
+  const canonical = 'https://getecoback.com/guide/luftentfeuchter-keller.html';
+  for (const frage of [
+    'Comfee MDDF-20DEN7', 'Comfee MDDF-20DEN7-WF', '10000651', '10000726',
+    '4048164103010', '4048164103485',
+    'Wie unterscheiden sich Comfee MDDF-20DEN7 und MDDF-20DEN7-WF?',
+  ]) {
+    const {env,requests} = assetEnv();
+    const result = await call('ratgeber_suche',{frage,sprache:'de',max:3},env);
+    assert.equal(result.isError,false,frage);
+    assert.deepEqual(textOf(result).split('\n').slice(1,3),['- ' + title,'  ' + canonical],frage);
+    assert.deepEqual(requests.map(request => new URL(request.url).pathname),['/mcp-guides.json']);
+  }
+  for (const [frage,sprache] of [
+    ['Comfee MDDF-16DEN7','de'], ['Comfee MDDF3-20DEN7-WF','de'],
+    ['Wie viele Liter zieht ein Comfee MDDF-20DEN7 bei 10 °C und 60 % aus meinem Keller?','de'],
+    ['Geht der Ablauf beim Comfee MDDF-20DEN7 auch bergauf bis zum Waschbecken?','de'],
+    ['Comfee MDDF-20DEN7-WF','en'],
+  ]) {
+    const {env} = assetEnv();
+    const result = await call('ratgeber_suche',{frage,sprache,max:3},env);
+    assert.equal(result.isError,false,frage);
+    assert.notEqual(textOf(result).split('\n')[1],'- ' + title,frage);
+  }
+});

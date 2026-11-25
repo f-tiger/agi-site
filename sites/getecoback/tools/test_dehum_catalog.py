@@ -41,6 +41,36 @@ class CatalogTest(unittest.TestCase):
                     self.assertEqual(parse_qs(merchant[0].query), {'k': [product['query']], 'tag': ['getecoback-21']})
                 self.assertNotIn('getecoback-21', mirror)
 
+    def test_comfee_base_and_wifi_identifiers_on_final_pages(self):
+        data = C.load()
+        site = C.DATA.parent.parent / 'site' / 'guide'
+        product, = [item for item in data['products'] if item['id'] == 'comfee-mddf20']
+        today = dt.datetime.now(dt.timezone.utc).date()
+        age = (today - dt.date.fromisoformat(data['checked'])).days
+        eligible = 0 <= age <= data['max_age_days'] and product['status'] == 'verified'
+        expected_url = 'https://www.amazon.de/dp/B07KJX6RDK?tag=getecoback-21'
+        for slug in data['pages']:
+            with self.subTest(slug=slug):
+                doc = Document((site / (slug + '.html')).read_text()).root
+                mirror = (site / (slug + '.md')).read_text()
+                card, = [node for node in doc.find('div') if node.attrs.get('class') == 'dc-card'
+                         and any(h.attrs.get('id') == 'modell-comfee-mddf20' for h in node.find('h3'))]
+                for token in ('MDDF-20DEN7', 'ohne WF', '10000651', '4048164103010', 'MDDF-20DEN7-WF',
+                              '10000726', '4048164103485', 'Sprachsteuerung', '10 °C / 60 %',
+                              'kläre die Variante', '04.2024', '25.11.2026'):
+                    self.assertIn(token, card.text())
+                    self.assertIn(token, mirror)
+                links = card.find('a')
+                sources = [link.attrs['href'] for link in links]
+                for row in [product, product['identity'], *product['identity']['alternatives']]:
+                    self.assertIn(row['source'], sources)
+                    self.assertIn(row['source'], mirror)
+                merchant = [link for link in links if urlsplit(link.attrs['href']).hostname == 'www.amazon.de']
+                self.assertEqual([link.attrs['href'] for link in merchant], [expected_url] if eligible else [])
+                if merchant:
+                    self.assertIn('ohne WF', merchant[0].text())
+                self.assertNotIn(expected_url, mirror)
+
     def test_native_reading_and_comparison_shortcuts_survive_the_full_rebuild_order(self):
         for slug in C.load()['pages']:
             source = (C.DATA.parent.parent/'site/guide'/f'{slug}.html').read_text()

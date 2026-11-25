@@ -105,6 +105,13 @@ def collect():
    catalog=json.loads((ROOT/'data/product-catalog.json').read_text())
    extra=' '.join([extra]+[c['name'] for c in catalog['categories']]+[p['name']+' '+p['variant'] for p in catalog['products']])
   entry={'u':route,'t':' '.join(h.title.split()),'d':desc[:320],'l':lang,'a':extra}
+  if lang=='de' and route=='/guide/luftentfeuchter-keller.html':
+   anchor='modell-comfee-mddf20'
+   targets=re.findall(r'<h[23]\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)
+   if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
+    raise ValueError(f'Missing or ambiguous Comfee model comparison: {route}#{anchor}')
+   entry['model_sections']=[{'id':anchor,'title':'Comfee MDDF-20DEN7 oder WF: Modell und EAN prüfen',
+    'description':'Basis: Artikel 10000651, EAN 4048164103010. WF: Artikel 10000726, EAN 4048164103485. Kennung der gewählten Ausführung vor der Bestellung prüfen.'}]
   if lang=='de' and route=='/produkte.html':
    model_sections=[
     {'id':'beutelstaubsauger-angebote','title':'Guard S1 oder M1 Parquet Flex: Lieferumfang und Gesamtpreis prüfen',

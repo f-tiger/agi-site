@@ -61,6 +61,20 @@ function asksForFestiveLightingCost(query) {
   return lights.test(query) && costOrTimer.test(query) && !otherTask.test(query);
 }
 
+export const comfeeVariant = {
+  path:'/guide/luftentfeuchter-keller.html',
+  id:'modell-comfee-mddf20',
+  tool:'comfee_mddf20_wf_beleggrenze',
+};
+
+function asksForComfeeVariant(query) {
+  const exactModel = /\b(?:mddf[ -]*20[ -]*den[ -]*7(?:[ -]*wf)?|10000651|10000726|40[ -]*48164[ -]*(?:10301[ -]*0|10348[ -]*5))\b/;
+  const otherModel = /\b(?:mddf[ -]*16[ -]*den[ -]*7|mddf3[ -]*\d{2}[ -]*den[ -]*7|10000650|10000725|4048164103003|4048164103478)\b/;
+  const coldRoom = /\b(?:kalt\w*|kaelt\w*|unbeheiz\w*|pruefpunkt\w*)\b|\b\d{1,2}\s*(?:grad\b|°\s*c\b)/;
+  return exactModel.test(query) && !otherModel.test(query) && !coldRoom.test(query) &&
+    !asksForDehumidifierDrainRoute(query + ' luftentfeuchter');
+}
+
 function asksForVacuumOffer(query) {
   const s1 = /\b(?:guard[ -]+s1|12558410)\b/.test(query);
   const m1 = /\b(?:guard[ -]+m1|m1[ -]+parquet|12560320)\b/.test(query) ||
@@ -102,6 +116,7 @@ function humidifierAccessoryTask(query) {
 export function exactGermanHouseholdTask(query) {
   if (asksForVacuumOffer(query)) return vacuumOffer;
   if (asksForBoschDry(query)) return boschDry;
+  if (asksForComfeeVariant(query)) return comfeeVariant;
   if (asksForFestiveLightingCost(query)) return festiveLights;
   const accessory = humidifierAccessoryTask(query);
   if (accessory) return accessory;

@@ -708,3 +708,25 @@ test('German seasonal lighting cost questions open the net timer comparison', ()
     'Lichterkette Timer Einschaltfenster 6 Stunden, wie viele gewünschte Einschaltminuten?',
   ]) assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
 });
+
+test('German Comfee variant and identifier lookups open the cellar model card', () => {
+  const page = '/guide/luftentfeuchter-keller.html';
+  const card = page + '#modell-comfee-mddf20';
+  for (const query of [
+    'Comfee MDDF-20DEN7', 'Comfee MDDF-20DEN7-WF', '10000651', '10000726',
+    '4048164103010', '4048164103485',
+    'Wie unterscheiden sich Comfee MDDF-20DEN7 und MDDF-20DEN7-WF?',
+  ]) {
+    const hits = searchEntries(index,query,'de');
+    assert.equal(hits[0]?.entry.u,card,query);
+    assert.equal(hits[0].entry.t,'Comfee MDDF-20DEN7 oder WF: Modell und EAN prüfen',query);
+    assert.equal(hits.filter(hit => hit.entry.u.split('#')[0] === page).length,1,query);
+  }
+  for (const query of [
+    'Comfee MDDF-16DEN7', 'Comfee MDDF3-20DEN7-WF',
+    'Wie viele Liter zieht ein Comfee MDDF-20DEN7 bei 10 °C und 60 % aus meinem Keller?',
+  ]) assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,card,query);
+  const uphill = 'Geht der Ablauf beim Comfee MDDF-20DEN7 auch bergauf bis zum Waschbecken?';
+  assert.equal(searchEntries(index,uphill,'de')[0]?.entry.u,page + '#ablauf-vor-kauf',uphill);
+  assert.ok(!searchEntries(index,'Comfee MDDF-20DEN7-WF','en').some(hit => hit.entry.u === card));
+});

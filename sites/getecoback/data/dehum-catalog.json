@@ -27,7 +27,9 @@
             "detail": "Unter Artikel 7733701943 führt Bosch einen Luftreiniger.",
             "source": "https://www.bosch-homecomfort.com/de/de/ocs/wohngebaeude/air-4000-19287220-p/"
           }
-        ]
+        ],
+        "offer_check": "Gleiche die Kennung der ausgewählten Händlervariante mit den Bosch-Daten ab. Steht im Angebot nur „4000“ oder widersprechen sich die Nummern, kläre die Ausführung vor der Bestellung.",
+        "source_label": "Bosch-Ersatzteilkatalog: deutsche Modellkennung und EAN"
       },
       "reason": "Drei Betriebsmodi statt vieler Einstellungen",
       "facts": "Auto-, Nacht- und Wäschemodus; 2,5-Liter-Tank und kontinuierlicher Ablauf laut Bosch.",
@@ -64,15 +66,30 @@
     {
       "id": "comfee-mddf20",
       "name": "Comfee MDDF-20DEN7",
-      "variant": "MDDF-20DEN7 · ohne WF",
+      "variant": "MDDF-20DEN7 · ohne WF · Artikel 10000651",
       "reason": "Feuchteregelung mit Timer",
       "facts": "3-Liter-Tank, Feuchtigkeitskontrolle, Timer und Auto-Restart laut deutscher Produktseite.",
-      "limit": "Nicht mit MDDF-20DEN7-WF verwechseln. Vergleichbare Entzugs- und Stromwerte bei 10 °C / 60 % sind hier nicht belegt.",
+      "limit": "Im Datenblatt gelten 20 L/24 h bei 30 °C und 80 % relativer Feuchte. Entzugsleistung und Stromaufnahme bei 10 °C / 60 % sind hier nicht belegt. Brauchst du diesen Prüfpunkt für deinen kalten Keller, warte mit dem Kauf, bis passende Herstellerwerte vorliegen.",
       "source": "https://www.feelcomfee.com/de/produkte/klimatisieren-heizen/mddf-20den7",
       "source_label": "Comfee Deutschland: MDDF-20DEN7",
       "status": "verified",
       "query": "Comfee MDDF-20DEN7",
-      "asin": "B07KJX6RDK"
+      "asin": "B07KJX6RDK",
+      "identity": {
+        "ean": "4048164103010",
+        "checked": "2026-11-25",
+        "source": "https://www.feelcomfee.com/content/dam/comfee-aem/de/katalog/comfee-klimakatalog-2024-din-a4-v2-lores.pdf#page=27",
+        "source_label": "Comfee Deutschland: Klimakatalog, Stand 04.2024, S. 27 (beide Modellkennungen)",
+        "offer_check": "Der Händlerlink gehört zur Basisversion ohne WF. Prüfe Modellbezeichnung, Artikelnummer oder EAN der gewählten Ausführung. Steht dort nur „20 Liter“, fehlt die genaue Kennung oder widersprechen sich die Angaben, kläre die Variante vor dem Kauf.",
+        "alternatives": [
+          {
+            "label": "Comfee MDDF-20DEN7-WF",
+            "detail": "Die WLAN-Ausführung trägt die Artikelnummer 10000726 und die EAN 4048164103485. Der Hersteller nennt App- und Sprachsteuerung nur für die WF-Modelle. Das bei der Prüfung auf der WF-Webseite verlinkte Datenblatt nennt die Basisversion. Für die WF-Kennung gilt die eigene Zeile im deutschen Katalog. Wer diese Funktion braucht, prüft zuerst das WF-Angebot.",
+            "source": "https://www.feelcomfee.com/de/produkte/klimatisieren-heizen/mddf-20den7-wf"
+          }
+        ]
+      },
+      "commerce_label": "Comfee MDDF-20DEN7 ohne WF bei Amazon.de ansehen"
     },
     {
       "id": "meaco-one-20",
