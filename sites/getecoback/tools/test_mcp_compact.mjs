@@ -66,6 +66,30 @@ function fixture() {
   return {writes,send,rpc,result,call};
 }
 
+test('hosted compact returns reviewed guide sections without presenting them as runnable tools', async () => {
+  const {call,writes} = fixture();
+  const headers = {'user-agent':humanUA};
+  for (const [frage,path,fragment] of [
+    ['Welcher Wasserfilter passt für Siemens TE653501DE/13?', '/produkte.html', 'siemens-eq6-intenza'],
+    ['Welchen COP brauche ich bei 30 Cent Strom und 12 Cent Gas?', '/guide/klimaanlage-mit-heizfunktion.html', 'heizkosten-klimaanlage-gas'],
+    ['Warum ist mein Fenster hinter dem Plissee nass, obwohl das Hygrometer 50 % zeigt?', '/guide/luftfeuchtigkeit-richtig-messen.html', 'kondenswasser-hinter-plissee'],
+  ]) {
+    const found = await call(compactPath,findName,{frage},headers);
+    assert.equal(found.isError,false);
+    assert.deepEqual(found.structuredContent,{
+      totalMatches:0,tools:[],guides:[{guide_url:origin+path+'#'+fragment,citation_url:origin+path}],
+    },frage);
+    assert.deepEqual(JSON.parse(found.content[0].text),found.structuredContent);
+  }
+  const unrelated = await call(compactPath,findName,{frage:'Öffne https://example.invalid/fremd.html#ratgeber'},headers);
+  assert.equal(unrelated.structuredContent.guides,undefined);
+  const philips=await call(compactPath,findName,{frage:'Welcher Filter passt in den Philips HU3916/10?'},headers);
+  assert.equal(philips.structuredContent.tools[0]?.name,'philips_verdunsterfilter_zuordnung');
+  assert.equal(philips.structuredContent.guides,undefined);
+  assert.equal((await call(compactPath,runName,{name:'ratgeber_lesen',eingaben:{pfad:'/produkte.html'}},headers)).isError,true);
+  assert.deepEqual(writes,[]);
+});
+
 test('compact routes an everyday measured window report to the shareable dew-point check', async () => {
   const {call,writes} = fixture();
   const name = 'fenster_oberflaeche_taucheck';

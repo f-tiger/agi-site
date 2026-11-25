@@ -1,4 +1,4 @@
-import {findCatalogueTools} from '../site/assets/mcp-catalog-search.mjs';
+import {findCatalogueTools, toolGuidePath} from '../site/assets/mcp-catalog-search.mjs';
 import {isExpandedTool, catalogueExample} from './mcp-expanded.mjs';
 import {legacyCatalogueExample} from './mcp-legacy-examples.mjs';
 import {drainTool, drainDecision} from './mcp-drain.mjs';
@@ -6,7 +6,7 @@ import {CELLAR_RESOURCE, CELLAR_RESOURCE_TEXT, matchesColdCellarQuestion} from '
 
 export const finderName = 'ecoback_werkzeug_finden';
 export const runnerName = 'ecoback_werkzeug_ausfuehren';
-export const compactInstructions = 'Suche mit ecoback_werkzeug_finden. Führe einen passenden Treffer über ecoback_werkzeug_ausfuehren mit eigenen Messwerten aus. Frage nach fehlenden Werten. Verwende die Quellen und Grenzen aus der Antwort. Für kalte Keller findest du über resources/list eine deutschsprachige Übersicht der Prüfbedingungen und des Kondensatablaufs.';
+export const compactInstructions = 'Suche mit ecoback_werkzeug_finden. Führe einen passenden Werkzeugtreffer über ecoback_werkzeug_ausfuehren mit eigenen Messwerten aus. Wenn guides einen Ratgeber nennt, öffne guide_url und zitiere citation_url. Frage nach fehlenden Werten. Verwende die Quellen und Grenzen aus der Antwort. Für kalte Keller findest du über resources/list eine deutschsprachige Übersicht der Prüfbedingungen und des Kondensatablaufs.';
 
 const offlineLegacy = new Set([
   drainTool.name,
@@ -19,7 +19,7 @@ const object = value => value !== null && typeof value === 'object' && !Array.is
 export const compactTools = [
   {
     name: finderName,
-    description: 'Passende EcoBack-Werkzeuge für eine Haushaltsfrage suchen. Bis zu fünf Treffer mit Eingabeschema, Beispiel und Quelle — Find up to five tools with schemas, examples and citations.',
+    description: 'Passende EcoBack-Werkzeuge mit Eingabeschema, Beispiel und Quelle finden. Bei einer belegten Ratgeberfrage kann guides direkt zum Abschnitt führen — Find tools and reviewed guide sections.',
     inputSchema: {
       type:'object',
       properties:{frage:{type:'string', minLength:1, maxLength:500, description:'Eine konkrete Frage oder ein exakter Werkzeugname.'}},
@@ -52,7 +52,10 @@ export function compactSearch(index, args) {
   if (typeof question !== 'string' || question.length > 1000 || [...question].length > 500 || !question.trim()) {
     return {isError:true, content:[{type:'text', text:'Gib eine Frage mit 1 bis 500 Zeichen an.'}]};
   }
-  const matches = findCatalogueTools(index, {query:question.trim()}).filter(tool => permitted(tool.name));
+  const candidates = findCatalogueTools(index, {query:question.trim()});
+  const matches = candidates.filter(tool => permitted(tool.name));
+  const guideMatch = candidates.find(tool => tool.name === 'ratgeber_suche');
+  const guidePath = guideMatch && toolGuidePath(guideMatch);
   const tools = matches.slice(0, 5).map(tool => {
     const {example, citation_url} = legacyCatalogueExample(tool.name) ?? catalogueExample(tool.name);
     const guide_url = tool.name === drainTool.name ? drainDecision(example.arguments).structuredContent.guide_url : tool.guide_url;
@@ -63,6 +66,10 @@ export function compactSearch(index, args) {
   });
   const evidence = matchesColdCellarQuestion(question);
   const structuredContent = {totalMatches:matches.length, tools, ...(evidence ? {resources:[CELLAR_RESOURCE]} : {})};
+  if (guidePath?.includes('#')) {
+    const origin = 'https://getecoback.com';
+    structuredContent.guides = [{guide_url:origin+guidePath, citation_url:origin+guidePath.split('#')[0]}];
+  }
   const content = [{type:'text', text:JSON.stringify(structuredContent)}];
   if (evidence) content.push({type:'resource', resource:cellarResourceContents});
   return {isError:false, structuredContent, content};

@@ -305,6 +305,29 @@ const focusedLookups = [
   },
 ];
 
+test('Full guide search finds an exact Philips filter or asks for the type plate', async () => {
+  const {env} = assetEnv();
+  const path = '/guide/luftbefeuchter-ratgeber.html';
+  for(const [frage,model] of [
+    ['Welcher Filter passt in den Philips HU3916/10?', 'HU3916/10'],
+    ['Ersatzfilter für Philips HU3918/10', 'HU3918/10'],
+  ]){
+    const result = await call('ratgeber_suche',{frage,sprache:'de',max:1},env);
+    const lines = textOf(result).split('\n');
+    assert.equal(result.isError,false);
+    assert.equal(lines[1],'- Philips '+model+': Originalfilter prüfen');
+    assert.equal(lines[2].trim(),'https://getecoback.com'+path);
+    assert.match(lines[3],/FY3446\/30/);
+  }
+  const result = await call('ratgeber_suche',{frage:'Philips HU3918/10R1 Ersatzfilter',sprache:'de',max:1},env);
+  const lines=textOf(result).split('\n');
+  assert.equal(result.isError,false);
+  assert.equal(lines[1],'- Philips Series 2000 und 3000: Verdunsterfilter prüfen');
+  assert.equal(lines[2].trim(),'https://getecoback.com'+path);
+  assert.match(lines[3],/vollständige HU-Gerätenummer/);
+  assert.doesNotMatch(lines[3],/FY3446\/30/);
+});
+
 test('exact German guide searches prefer reviewed section copy and pass a readable canonical URL', async () => {
   for (const {path, section, queries, expectedTitle, evidence = []} of focusedLookups) {
     const guide = corpus.find(entry => entry.u === path);
