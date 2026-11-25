@@ -41,9 +41,36 @@ function asksForVacuumOffer(query) {
     (m1 && packagePart && /\b(?:parquet|12560320)\b/.test(query)) || (bosch && packagePart));
 }
 
+function humidifierAccessoryTask(query) {
+  const buying = /\b(?:welch\w*|wieviel\w*|wie\s+viel\w*|artikelnummer|bestell\w*|kauf\w*|pass\w*|pack\w*|filterpack\w*|reicht)\b/.test(query);
+  if (!buying || /\b(?:reinig\w*|entkalk\w*|stromverbrauch|stromkosten|oskar[ -]+big)\b/.test(query)) return null;
+
+  const destination = {path:'/guide/luftbefeuchter-ratgeber.html', id:'ersatzteile-zuordnen'};
+  const filter = /\b(?:ersatz|verdunster|befeuchtungs)?filter\w*\b|\b(?:verdunster)?kassett\w*\b/.test(query);
+  const pads = /\b(?:kalk)?pads?\b/.test(query);
+  const oskar = /\b(?:oskar[ -]+little|o[ -]?(?:020|060|030))\b/.test(query);
+  const otherOskar = /\bo[ -]?(?!(?:020|060|030)\b)\d{3}\b/.test(query);
+  const lb200 = /\b(?:lb[ -]?200|10069|110[ .]?005)\b/.test(query);
+  const lb55 = /\b(?:lb[ -]?55|68605|163[ .]?141)\b/.test(query);
+  const otherBeurer = /\blb[ -]?(?!(?:200|55)\b)\d+\b/.test(query);
+
+  if (oskar && (filter || /\bo[ -]?030\b/.test(query)) && !otherOskar && !lb200 && !lb55 && !otherBeurer) {
+    return {...destination, tool:'oskar_filtermatten_gemeinsamer_vorrat'};
+  }
+  if (lb200 && filter && !pads && !oskar && !lb55 && !otherBeurer) {
+    return {...destination, tool:'beurer_lb200_filter_frist_auslastung'};
+  }
+  if (lb55 && pads && !filter && !oskar && !lb200 && !otherBeurer) {
+    return {...destination, tool:'beurer_lb55_kalkpad_packungswiderspruch'};
+  }
+  return null;
+}
+
 // Consumers pass their normalized German query. Match a task, not a category.
 export function exactGermanHouseholdTask(query) {
   if (asksForVacuumOffer(query)) return vacuumOffer;
+  const accessory = humidifierAccessoryTask(query);
+  if (accessory) return accessory;
 
   const hangingFabric = /\b(?:(?:thermo|waermeschutz)[ -]?)?vorha(?:ng|enge)\w*\b|\bgardin\w*\b/;
   const buyingQuantity = /\bwie\s+viel(?:e)?\s+(?:thermovorha\w*|vorha\w*|gardin\w*|bahnen?|schals?|packungen?|stoff|meter)\b|\b(?:bahnenbedarf|stoffbedarf|stoffbreite\s+berechnen)\b/;

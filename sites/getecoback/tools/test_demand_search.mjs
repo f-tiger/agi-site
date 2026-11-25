@@ -635,3 +635,29 @@ test('Miele HyClean one-device and shared-stock questions reach a single German 
     'Welcher Beutel passt auf einen Bosch Staubsauger?', 'TU oder CO?', 'Miele Boost CX1 Beutel kaufen?',
   ]) assert.ok(searchEntries(index,q,'de').every(hit=>hit.entry.u!==target),q);
 });
+
+test('German exact humidifier part questions use the owned accessory section', () => {
+ assert.equal(searchEntries(index,'Oskar O-020 und Oskar little O-060: Wie viele O-030 Zweierpacks brauche ich für beide?','de')[0]?.entry.u,'/guide/luftbefeuchter-ratgeber.html#ersatzteile-zuordnen');
+  const guide = '/guide/luftbefeuchter-ratgeber.html';
+  const target = guide + '#ersatzteile-zuordnen';
+  for (const query of [
+    'Welche Filtermatten passen zum Stadler Form Oskar O-020?',
+    'Welche Filtermatte brauche ich für den Oskar little O-060?',
+    'Passen die O-030 Filtermatten zum Oskar O-020 und zum Oskar little O-060?',
+    'Passt der Ersatzfilter 110005 in meinen Beurer LB 200?',
+    'Welche Kalkpads soll ich für den Beurer LB 55 kaufen: Artikel 163141?',
+  ]) {
+    const matches = searchEntries(index,query,'de');
+    assert.equal(matches[0]?.entry.u,target,query);
+    assert.equal(matches.filter(hit => hit.entry.u.split('#')[0] === guide).length,1,query);
+    assert.ok(!searchEntries(index,query,'en').some(hit => hit.entry.u === target),query);
+  }
+  for (const query of [
+    'Welchen Ersatzfilter brauche ich für meinen Luftbefeuchter?',
+    'Passt der Ersatzfilter 110005 in meinen Beurer LB 300?',
+    'Welcher Filter passt zum Oskar big O-040?',
+    'Wie reinige ich meinen Beurer LB 55?',
+  ]) assert.ok(!searchEntries(index,query,'de').some(hit => hit.entry.u === target),query);
+  assert.equal(searchEntries(index,'Welcher Ersatzfilter passt zum Philips HU4803/01?','de')[0]?.entry.u,
+    guide + '#philips-hu4803-01');
+});

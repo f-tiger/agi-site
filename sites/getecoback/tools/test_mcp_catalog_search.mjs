@@ -73,9 +73,9 @@ test('German household questions agree in browser, catalogue and compact MCP', a
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 243);
+  assert.equal(withGuides.length, 246);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 43);
+  assert.equal(destinations.size, 44);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);
@@ -1250,4 +1250,33 @@ test('Miele bag selection separates one model’s replacement from sharing stock
   const reset='Miele Guard L1: Die Abluftfilteranzeige leuchtet. Wie setze ich sie nach dem Filterwechsel zurück?';
   assert.equal((await catalogue({q:reset,view:'compact',limit:'1'})).tools[0]?.name,'miele_guard_l1_abluftanzeige_reset_vor_wechsel');
   for(const name of [one,pair]) assert.equal((await catalogue({q:name,view:'compact',limit:'1'})).tools[0]?.name,name);
+});
+
+test('exact humidifier accessory queries prefer the appropriate existing tool and evidence', async () => {
+  const oskar = 'oskar_filtermatten_gemeinsamer_vorrat';
+  const filter = 'beurer_lb200_filter_frist_auslastung';
+  const pads = 'beurer_lb55_kalkpad_packungswiderspruch';
+  const target = '/guide/luftbefeuchter-ratgeber.html#ersatzteile-zuordnen';
+  for (const [query,name] of [
+    ['Welche Filtermatten passen zum Stadler Form Oskar O-020?',oskar],
+    ['Welche Filtermatte brauche ich für den Oskar little O-060?',oskar],
+    ['Passen die O-030 Filtermatten zum Oskar O-020 und zum Oskar little O-060?',oskar],
+    ['Passt der Ersatzfilter 110005 in meinen Beurer LB 200?',filter],
+    ['Welche Kalkpads soll ich für den Beurer LB 55 kaufen: Artikel 163141?',pads],
+  ]) {
+    const [first] = (await catalogue({q:query,view:'compact',limit:3})).tools;
+    assert.equal(first?.name,name,query);
+    assert.equal(findCatalogueTools(compact,{query})[0]?.name,name,query);
+    assert.equal(toolGuidePath(first),target);
+    assert.equal(first.citation_url,origin + target.split('#')[0]);
+  }
+  for (const [query,irrelevant] of [
+    ['Welcher Filter passt zum Oskar big O-040?',oskar],
+    ['Passt der Ersatzfilter 110005 in meinen Beurer LB 300?',filter],
+    ['Wie reinige ich meinen Beurer LB 55?',pads],
+  ]) assert.notEqual((await catalogue({q:query,view:'compact'})).tools[0]?.name,irrelevant,query);
+  const [philips] = (await catalogue({q:'Welcher Ersatzfilter passt zum Philips HU4803/01?',view:'compact'})).tools;
+  assert.equal(philips?.name,'philips_verdunsterfilter_zuordnung');
+  assert.equal(toolGuidePath(philips),'/guide/luftbefeuchter-ratgeber.html#philips-verdunsterfilter');
+  assert.equal(analytics,0);
 });

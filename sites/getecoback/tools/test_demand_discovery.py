@@ -13,6 +13,9 @@ product_index=next(row for row in index if row['u']=='/produkte.html')
 assert [row['id'] for row in product_index['model_sections']]==['beutelstaubsauger-angebote','miele-staubsaugerbeutel','kaercher-170mm-saugduese','fenstersauger-duesenbreite']
 trotec_index=next(row for row in index if row['u']=='/guide/trotec-luftentfeuchter-test.html')
 assert [row['id'] for row in trotec_index['model_sections']]==['ttk70-hepa-filter']
+humidifier_index=next(row for row in index if row['u']=='/guide/luftbefeuchter-ratgeber.html')
+humidifier_sections=[row['id'] for row in humidifier_index['model_sections']]
+assert sorted(humidifier_sections)==sorted(['ersatzteile-zuordnen','philips-verdunsterfilter','philips-hu4803-01','philips-hu2716-10'])
 focused=[entry for entry in index if entry.get('section')]
 assert [(entry['l'],entry['u'],entry['section']['id']) for entry in focused]==[
     ('de','/geraete-austausch-rechner.html','geschirrspueler-handabwasch'),
