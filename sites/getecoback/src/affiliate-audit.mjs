@@ -1,4 +1,4 @@
-import {CELLAR_PAGE, WINDOW_TIKTOK_GUIDE_PAGE} from './affiliate-meta.mjs';
+import {CELLAR_PAGE, VACUUM_OFFER_MODELS, VACUUM_OFFER_PAGE, WINDOW_TIKTOK_GUIDE_PAGE} from './affiliate-meta.mjs';
 import {WINDOW_ENTRY_PAGE} from './fenstersauger-entry.mjs';
 import {PORTASPLIT_ENTRY_PAGE, PORTASPLIT_PRODUCT_URL} from './portasplit-entry.mjs';
 import {N90_ENTRY_PAGE, N90_PRODUCT_URL} from './n90-entry.mjs';
@@ -13,6 +13,10 @@ export const AUDIT_SQL = `SELECT day, name, page, ref,
     THEN json_extract(meta,'$.link_url') ELSE NULL END AS link,
   CASE WHEN name='affiliate_click' AND json_valid(meta)
     THEN json_extract(meta,'$.source') ELSE NULL END AS source,
+  CASE WHEN page='${VACUUM_OFFER_PAGE}' AND name='affiliate_click' AND ua_class='human' AND json_valid(meta)
+    THEN CASE WHEN json_extract(meta,'$.link_url')='https://www.amazon.de/s?tag=getecoback-21'
+      AND json_extract(meta,'$.vacuum_model') IN ('${VACUUM_OFFER_MODELS.join("','")}')
+      THEN json_extract(meta,'$.vacuum_model') END END AS vacuum_model,
   CASE WHEN page='${CELLAR_PAGE}' AND ua_class='human' AND json_valid(meta)
     THEN json_extract(meta,'$.mcp_drain_entry') = 1 ELSE 0 END AS drain_entry,
   CASE WHEN page='${CELLAR_PAGE}' AND ua_class='human' AND json_valid(meta)
@@ -47,7 +51,7 @@ WHERE (name IN ('page_view','affiliate_click')
     OR (name IN ('${LAUNDRY_SEASON_EVENTS.join("','")}') AND page='${LAUNDRY_SEASON_PAGE}' AND ua_class='human'))
   AND day >= date('now','-56 days') AND day < date('now')
   AND (ua_class IS NULL OR ua_class='human') AND page NOT LIKE '/__ci%'
-GROUP BY day, name, page, ref, link, source, drain_entry, cellar_entry, window_entry, window_tiktok_entry, portasplit_entry, n90_entry`;
+GROUP BY day, name, page, ref, link, source, drain_entry, cellar_entry, window_entry, window_tiktok_entry, portasplit_entry, n90_entry, vacuum_model`;
 
 const GAPS = [
   {day:'2026-09-24',approx_start_utc:'13:00'},
@@ -99,6 +103,7 @@ const dayAt = (end,offset)=>new Date(Date.parse(end+'T00:00:00Z')+offset*8640000
 // Launch day is partial. Mixed windows expose only the dates actually counted.
 const firstFullDrainDay = '2026-11-20';
 const firstFullWindowTikTokDay = '2026-11-23';
+const firstFullVacuumDay = '2026-11-26';
 const range = (start,end)=>({...section(),start,end_exclusive:end,
   // An empty marker cohort alone cannot establish when coverage started.
   mcp_cellar_entry:null,
@@ -108,6 +113,11 @@ const range = (start,end)=>({...section(),start,end_exclusive:end,
   window_tiktok:null,
   window_reddit_referrals:null,
   laundry_season:null,
+  vacuum_catalog: end <= firstFullVacuumDay ? null : {
+    start: start < firstFullVacuumDay ? firstFullVacuumDay : start, end_exclusive:end,
+    catalogue_page_views:0, model_search_clicks:0,
+    models:Object.fromEntries(VACUUM_OFFER_MODELS.map(model => [model,0])),
+  },
   mcp_drain_entry: end <= firstFullDrainDay ? null : {
     start: start < firstFullDrainDay ? firstFullDrainDay : start, end_exclusive:end, ...count(),
   },
@@ -180,7 +190,19 @@ function addLaundrySeason(section, row) {
   actions[field] = (actions[field] ?? 0) + row.n;
 }
 
+function addVacuumCatalogue(section, row) {
+  const catalogue = section.vacuum_catalog;
+  if (!catalogue || row.day < catalogue.start || row.page !== VACUUM_OFFER_PAGE) return;
+  if (row.name === 'page_view') catalogue.catalogue_page_views += row.n;
+  else if (row.name === 'affiliate_click' && row.link === 'https://www.amazon.de/s?tag=getecoback-21' &&
+      Object.hasOwn(catalogue.models, row.vacuum_model)) {
+    catalogue.model_search_clicks += row.n;
+    catalogue.models[row.vacuum_model] += row.n;
+  }
+}
+
 function add(s,r,channel) {
+  addVacuumCatalogue(s,r);
   const field=r.name==='page_view'?'page_views':'affiliate_clicks';
   s[field]+=r.n;
   const guide = n90Guides.get(r.page);
@@ -265,6 +287,7 @@ export async function affiliateAudit(db,classifyRef,now=new Date()) {
     window_tiktok_note:'Complete UTC days start 2026-11-23. The fixed tags and same-site handoff mark three independent event counts. Unobserved stages are null. A shared or typed link can carry the fixed tags.',
     window_reddit_note:'Human-classified view events on the German indoor window guide only. Reddit is an exact immediate referrer host. A missing referrer may hide a visit. No usable referrer evidence is null. This report does not attribute tool completions, affiliate clicks or orders.',
     laundry_season_note:'German laundry season tool actions on complete UTC days. Tracking may begin partway through the first recorded UTC day. Measured comparisons and model guide clicks are independent events. Unobserved stages are null. These counts do not attribute merchant clicks or orders.',
+    vacuum_catalog_note:'Complete UTC days start 2026-11-26. Views cover the entire product catalogue. Clicks count the three exact German model searches. These are independent events and do not identify comparison use, unique shoppers, attribution to acquisitions, orders, or commission.',
     known_collection_gaps:GAPS.filter(x=>x.day>=start&&x.day<end),
     note:'Missing events are not reconstructed. Gaps are known incidents, not an exhaustive uptime audit. Clicks / page views is an event ratio, not buyer conversion. Cohorts are fixed path rules, not randomized controls. Channel belongs to each event referrer, not session acquisition.',
     daily,weeks,last_three_complete_days:recentThree,same_weekdays_previous_week:previousThree,

@@ -531,3 +531,48 @@ print(json.dumps([dict(row) for row in db.execute(sql)]))`;
   assert.equal(audit.weeks.at(-1).n90_guides.family.exact_product_clicks,1);
   assert.equal(audit.weeks.at(-1).mcp_cellar_entry,null);
 });
+
+test('vacuum catalogue reports fixed model search events only on complete measured UTC days', async () => {
+  const script = `import json,sqlite3,sys
+db=sqlite3.connect(':memory:');db.row_factory=sqlite3.Row
+db.execute('CREATE TABLE ev(day,name,page,ref,ua_class,meta)')
+page='/produkte.html'
+link='https://www.amazon.de/s?tag=getecoback-21'
+def add(day, name='affiliate_click', model='miele-guard-s1', destination=link, route=page, ua='human', raw=None):
+ meta=raw if raw is not None else json.dumps(dict(vacuum_model=model,link_url=destination,source='body'))
+ db.execute('INSERT INTO ev VALUES(?,?,?,?,?,?)',(day,name,route,'',ua,meta))
+add('2026-11-25','page_view')
+add('2026-11-25')
+add('2026-11-26','page_view');add('2026-11-26','page_view')
+add('2026-11-26','page_view',route='/unrelated.html')
+for model in ['miele-guard-s1','miele-guard-s1','miele-guard-m1-parquet-flex','bosch-bgbs2ba1p']:
+ add('2026-11-26',model=model)
+add('2026-11-26',model='private-model')
+add('2026-11-26',raw='{invalid json')
+add('2026-11-26',destination='https://www.amazon.de/s')
+add('2026-11-26',destination='https://www.amazon.de/dp/B07NC5CP6F?tag=getecoback-21')
+add('2026-11-26',route='/unrelated.html')
+add('2026-11-26',ua=None);add('2026-11-26',ua='ci');add('2026-11-26',ua='bot')
+add('2026-11-27','page_view');add('2026-11-27')
+sql=sys.stdin.read().replace("date('now'","date('2026-11-27'")
+print(json.dumps([dict(r) for r in db.execute(sql)]))`;
+  const fixture = spawnSync('python3',['-c',script],{input:AUDIT_SQL,encoding:'utf8'});
+  assert.equal(fixture.status,0,fixture.stderr);
+  const report = await affiliateAudit(dbFor(JSON.parse(fixture.stdout)),()=> 'direct');
+  const models = {'miele-guard-s1':2,'miele-guard-m1-parquet-flex':1,'bosch-bgbs2ba1p':1};
+  const expected = {start:'2026-11-26',end_exclusive:'2026-11-27',
+    catalogue_page_views:2,model_search_clicks:4,models};
+  assert.deepEqual(report.weeks.at(-1).vacuum_catalog,expected);
+  assert.deepEqual(report.last_three_complete_days.vacuum_catalog,expected);
+  assert.equal(report.weeks.at(-2).vacuum_catalog,null);
+  assert.equal(report.same_weekdays_previous_week.vacuum_catalog,null);
+  assert.equal(report.weeks.at(-1).page_views,4);
+  assert.equal(report.weeks.at(-1).affiliate_clicks,11);
+  assert.doesNotMatch(JSON.stringify(report),/private-model|unrelated\.html|www\.amazon\.de|invalid json/);
+
+  const launch = await affiliateAudit(dbFor([]),()=> 'direct',new Date('2026-11-26T08:00Z'));
+  assert.equal(launch.weeks.at(-1).vacuum_catalog,null);
+  const empty = await affiliateAudit(dbFor([]),()=> 'direct',new Date('2026-11-27T08:00Z'));
+  assert.deepEqual(empty.weeks.at(-1).vacuum_catalog,{...expected,catalogue_page_views:0,
+    model_search_clicks:0,models:{'miele-guard-s1':0,'miele-guard-m1-parquet-flex':0,'bosch-bgbs2ba1p':0}});
+});

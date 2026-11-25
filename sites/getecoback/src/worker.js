@@ -20,6 +20,7 @@ import {affiliateAudit} from './affiliate-audit.mjs';
 import {
   affiliateMeta, CELLAR_PAGE, taggedCellarModelEntry, taggedDrainEntry, taggedN90ModelEntry,
   taggedPortaSplitEntry, taggedWindowEntry, taggedWindowTikTokEntry, WINDOW_TIKTOK_WIDTH_EVENT,
+  vacuumOfferModel,
 } from './affiliate-meta.mjs';
 import {CELLAR_MODEL_ENTRY_URL} from './cellar-entry.mjs';
 import {N90_ENTRY_URL, N90_TOOL_NAME} from './n90-entry.mjs';
@@ -868,16 +869,18 @@ async function handleEvent(request, env, ctx) {
   const portasplitEntry = taggedPortaSplitEntry(body, request, evCls);
   const cellarModelEntry = taggedCellarModelEntry(body, request, evCls);
   const n90Entry = taggedN90ModelEntry(body, request, evCls);
+  const vacuumModel = vacuumOfferModel(body, request, evCls);
   let metadata = body.m;
   if (metadata?.mcp_profile !== undefined || metadata?.mcp_cellar_link !== undefined ||
       metadata?.mcp_n90_link !== undefined || metadata?.mcp_n90_entry !== undefined ||
-      metadata?.window_tiktok_entry !== undefined) {
+      metadata?.window_tiktok_entry !== undefined || metadata?.vacuum_model !== undefined) {
     metadata = {...metadata};
     delete metadata.mcp_profile;
     delete metadata.mcp_cellar_link;
     delete metadata.mcp_n90_link;
     delete metadata.mcp_n90_entry;
     delete metadata.window_tiktok_entry;
+    delete metadata.vacuum_model;
   }
   if (name === 'page_view' && page === CELLAR_PAGE && (drainEntry || metadata?.mcp_drain_entry !== undefined)) {
     metadata = {...metadata};
@@ -901,7 +904,7 @@ async function handleEvent(request, env, ctx) {
   }
   if (name === 'page_view' && n90Entry) metadata = {mcp_n90_entry:1};
   if (windowTikTokEntry && name !== 'affiliate_click') metadata = {window_tiktok_entry:1};
-  const meta = name === 'affiliate_click' ? affiliateMeta(metadata, drainEntry, windowEntry, portasplitEntry, cellarModelEntry, n90Entry, windowTikTokEntry)
+  const meta = name === 'affiliate_click' ? affiliateMeta(metadata, drainEntry, windowEntry, portasplitEntry, cellarModelEntry, n90Entry, windowTikTokEntry, vacuumModel)
     : metadata ? JSON.stringify(metadata).slice(0, 200) : "";
   const country = meterEvent || windowTikTokWidth || LAUNDRY_SEASON_EVENTS.includes(name) ? "" : request.headers.get("CF-IPCountry") || "";
   const day = new Date().toISOString().slice(0, 10);

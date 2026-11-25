@@ -391,3 +391,41 @@ test('N90 markers are issued for the exact first-party arrival and approved Germ
     assert.equal((await stored({...candidate, m:{mcp_n90_entry:1}})).mcp_n90_entry, undefined);
   }
 });
+
+test('the catalogue stores only the derived vacuum model and the existing sanitized affiliate dimensions', async () => {
+  const page = '/produkte.html';
+  const origin = 'https://getecoback.com';
+  const headers = {origin, referer:origin + page, 'sec-fetch-site':'same-origin'};
+  const links = [
+    ['miele-guard-s1','Miele+Guard+S1+12558410'],
+    ['miele-guard-m1-parquet-flex','Miele+Guard+M1+Parquet+Flex+12560320'],
+    ['bosch-bgbs2ba1p','Bosch+BGBS2BA1P+Serie+2'],
+  ].map(([slug, query]) => [slug, 'https://www.amazon.de/s?k=' + query + '&tag=getecoback-21']);
+  const click = link_url => ({n:'affiliate_click', p:page, m:{link_url, source:'body',
+    vacuum_model:'untrusted-model', entered_household_price:'PRIVATE_INPUT'}});
+  const stored = async (body, overrides={}) => {
+    const result = await record(body,{...headers,...overrides});
+    assert.equal(result.body.ok,true);
+    assert.equal(result.rows.length,1);
+    return JSON.parse(result.rows[0][4] || '{}');
+  };
+  for (const [slug,link] of links) {
+    assert.deepEqual(await stored(click(link)),{source:'body',
+      link_url:'https://www.amazon.de/s?tag=getecoback-21', vacuum_model:slug});
+  }
+  const link = links[0][1];
+  for (const modified of [link.replace('getecoback-21','wrong-21'),link.replace('www.amazon.de','www.amazon.de.example'),
+    link.replace('https:','http:'),link.replace('12558410','12558411'),link + '&other=PRIVATE_INPUT',
+    link + '#other',link + '&k=private','https://www.amazon.de/s?tag=getecoback-21']) {
+    const body = click(modified);
+    body.m.vacuum_model = links[0][0];
+    assert.equal((await stored(body)).vacuum_model,undefined,modified);
+  }
+  for (const overrides of [{origin:'https://foreign.example'},{referer:'https://foreign.example/produkte.html'},
+    {referer:origin + '/guide/klimaanlage-40-qm.html'},{referer:''},{dnt:'1'},{'sec-gpc':'1'},
+    {'x-probe':'1'},{'user-agent':'getecoback-ci/vacuum'},{'user-agent':'Googlebot'}]) {
+    assert.equal((await stored(click(link),overrides)).vacuum_model,undefined,JSON.stringify(overrides));
+  }
+  assert.equal((await stored({...click(link),p:'/guide/vacuum.html'})).vacuum_model,undefined);
+  assert.equal((await stored({n:'page_view',p:page,m:{vacuum_model:links[0][0]}})).vacuum_model,undefined);
+});
