@@ -12,7 +12,7 @@ for(const [prefix,lang]of [['','zh'],['/en','en']]){
  assert.equal(await page.locator('[data-tool-id]:visible').count(),18);
  assert.equal(Number(await page.locator('#github-count').getAttribute('data-total')),GITHUB_TOOLS.tools.length);
  await page.locator('#github-more').click();assert.equal(await page.locator('[data-tool-id]:visible').count(),36);
- await page.locator('#github-query').fill('firecrawl');assert.equal(await page.locator('[data-tool-id]:visible').count(),1);assert.ok(await page.locator('#firecrawl').isVisible(),'search must reach projects outside initial batch');
+ await page.locator('#github-query').fill('firecrawl/firecrawl');assert.equal(await page.locator('[data-tool-id]:visible').count(),1);assert.ok(await page.locator('#firecrawl').isVisible(),'repository search must reach projects outside initial batch');
  await page.locator('#github-reset').click();await page.locator('#github-topic').selectOption('ai');await page.locator('#github-kind').selectOption('model');
  const modelCount=GITHUB_TOOLS.tools.filter(t=>t.ai&&t.kind==='model').length;assert.equal(Number(await page.locator('#github-count').getAttribute('data-total')),modelCount);assert.equal(await page.locator('[data-tool-id]:visible').count(),Math.min(18,modelCount));
  assert.ok(new URL(page.url()).searchParams.get('__probe')==='1');

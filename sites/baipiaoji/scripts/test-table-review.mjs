@@ -15,6 +15,10 @@ for(const prefix of ['','en/']){
   assert.match(html,/hreflang="(?:zh|zh-CN|zh-Hans)"/);assert.match(html,/hreflang="en"/);
   assert(html.includes('table-review-app.mjs'));assert(html.includes('table-review.css'));assert(!/name="robots" content="noindex/.test(html));
   assert(html.includes('id="table-review-privacy"')&&html.includes('href="#table-review-privacy"'),'Privacy link resolves to the explicit local-processing policy');
+  const shopifyGuide=html.match(/<section\b[^>]*\bid="shopify-csv-check"[^>]*>([\s\S]*?)<\/section>/)?.[1];
+  assert(shopifyGuide&&html.includes('href="#shopify-csv-check"'),route+' Shopify checklist is reachable');
+  assert(shopifyGuide.includes('href="#source"')&&html.includes('id="source"'),route+' checklist links to the original CSV input');
+  assert(shopifyGuide.includes('https://help.shopify.com/en/manual/products/import-export/import-products'),route+' links to Shopify import documentation');
   assert.match(html,/application\/ld\+json/);assert.match(html,/<h1\b/);
   if(live){assert.match(html,/data-ga4-id="G-H79D948F4Z"/);assert.equal((html.match(/src="\/analytics-assets\/consent\.mjs\?v=/g)||[]).length,1);}
   for(const path of [prefix+'studio/index.html',prefix+'studio/toolkit.html'])assert((await read(path)).includes(route));
