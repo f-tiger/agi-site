@@ -440,6 +440,24 @@ async function checkCatalog(browser){
   assert.equal(await page.locator('[data-product-card]').count(),data.products.length);
   assert.equal(await page.locator('.pc-comparison').count(),12);
   assert.equal(await page.locator('.pc-comparison tbody tr').count(),48);
+  const vacuumOffers = page.locator('section[aria-labelledby="beutelstaubsauger-angebote"]');
+  assert.match(await vacuumOffers.innerText(),/SBD 355-3.*HyClean Pure TU.*SBB 300-3.*HyClean Pure CO.*Typ G/s);
+  assert.equal(await vacuumOffers.locator('a[rel~=sponsored]').count(),0);
+  const vacuumOfferForm = vacuumOffers.locator('[data-vacuum-offer-form]');
+  if (javaScriptEnabled) {
+   await vacuumOfferForm.waitFor({state:'visible'});
+   const result = vacuumOfferForm.locator('[data-vacuum-offer-result]');
+   assert.equal(await result.textContent(),'');
+   await setValues(vacuumOfferForm,{s1_geraet:'200',s1_extras:'40',m1_geraet:'230',m1_extras:'15'});
+   await vacuumOfferForm.locator('button[type=submit]').click();
+   assert.match(await result.innerText(),/240,00\s+€.*245,00\s+€.*5,00\s+€/s);
+   await vacuumOfferForm.locator('[name=m1_extras]').fill('');
+   await vacuumOfferForm.locator('button[type=submit]').click();
+   assert.equal(await result.textContent(),'');
+  } else {
+   assert(await vacuumOfferForm.isHidden());
+   assert.match(await vacuumOffers.innerText(),/240\s*€.*245\s*€.*5\s*€/s);
+  }
 
   const guideLinks=page.locator('[data-specialist-guide] a');
   assert.equal(await guideLinks.count(),8);

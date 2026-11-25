@@ -23,9 +23,28 @@ const danfossValve = {
   id:'danfoss-altventil',
   tool:'thermostat_ventilabgleich',
 };
+export const vacuumOffer = {
+  path:'/produkte.html',
+  id:'beutelstaubsauger-angebote',
+  tool:'beutelstaubsauger_angebot_kosten_pruefen',
+};
+
+function asksForVacuumOffer(query) {
+  const s1 = /\b(?:guard[ -]+s1|12558410)\b/.test(query);
+  const m1 = /\b(?:guard[ -]+m1|m1[ -]+parquet|12560320)\b/.test(query) ||
+    (s1 && /\bm1\b/.test(query));
+  const bosch = /\bbgbs2ba1p\b/.test(query);
+  const blocked = /\b(?:performance|cat\s*(?:&|und|and)?\s*dog|guard[ -]+l1|repar\w*|defekt\w*|wechselanzeig\w*)\b/.test(query);
+  const packagePart = /\b(?:parkett(?:buerst\w*|dues\w*)|(?:boden|universal)?dues\w*|lieferumfang)\b/.test(query);
+  const offer = /\b(?:angebot\w*|aufpreis|gesamtpreis|paketpreis|kost\w*|preisvergleich)\b/.test(query);
+  return !blocked && ((s1 && m1 && (packagePart || offer)) ||
+    (m1 && packagePart && /\b(?:parquet|12560320)\b/.test(query)) || (bosch && packagePart));
+}
 
 // Consumers pass their normalized German query. Match a task, not a category.
 export function exactGermanHouseholdTask(query) {
+  if (asksForVacuumOffer(query)) return vacuumOffer;
+
   const hangingFabric = /\b(?:(?:thermo|waermeschutz)[ -]?)?vorha(?:ng|enge)\w*\b|\bgardin\w*\b/;
   const buyingQuantity = /\bwie\s+viel(?:e)?\s+(?:thermovorha\w*|vorha\w*|gardin\w*|bahnen?|schals?|packungen?|stoff|meter)\b|\b(?:bahnenbedarf|stoffbedarf|stoffbreite\s+berechnen)\b/;
   const sizingWidth = /\bwie\s+breit\b[^.?!]{0,56}\b(?:thermovorha\w*|vorha\w*|gardin\w*|stoff\w*|bahnen?)\b/;

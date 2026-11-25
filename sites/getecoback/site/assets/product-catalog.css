@@ -71,3 +71,11 @@ body{margin:0;background:#f8fafb;font-family:system-ui,-apple-system,BlinkMacSys
   align-items: center;
   font-weight: 650;
 }
+.pc-vacuum-offers form:not([hidden]) { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+.pc-vacuum-offers fieldset { display: grid; align-self: stretch; align-content: start; gap: 12px; }
+.pc-vacuum-offers button, .pc-vacuum-offers output { grid-column: 1 / -1; }
+.pc-vacuum-offers button { justify-self: start; }
+.pc-vacuum-offers output:not(:empty) { font-weight: 600; }
+@media (max-width: 680px) {
+  #beutelstaubsauger-angebote { scroll-margin-top: 260px; }
+}

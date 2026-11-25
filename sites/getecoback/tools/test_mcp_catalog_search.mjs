@@ -42,6 +42,12 @@ test('German household questions agree in browser, catalogue and compact MCP', a
       'thermostat_ventilabgleich','/guide/smarte-heizkoerperthermostate-lohnen-sich.html#danfoss-altventil'],
     ['Wie erkenne ich am alten Danfoss-Ventil ohne Gewinde, ob es RA oder RAV ist?',
       'thermostat_ventilabgleich','/guide/smarte-heizkoerperthermostate-lohnen-sich.html#danfoss-altventil'],
+    ['Ist beim Miele Guard M1 Parquet Flex die Parkettbürste dabei und welche Staubsaugerbeutel brauche ich?',
+      'beutelstaubsauger_angebot_kosten_pruefen','/produkte.html#beutelstaubsauger-angebote'],
+    ['Was kostet mich der Miele Guard S1 gegenüber dem M1 Parquet Flex inklusive Staubbeutel und Zubehör?',
+      'beutelstaubsauger_angebot_kosten_pruefen','/produkte.html#beutelstaubsauger-angebote'],
+    ['Welche Beutel und Bodendüse sind beim Bosch BGBS2BA1P im Lieferumfang?',
+      'beutelstaubsauger_angebot_kosten_pruefen','/produkte.html#beutelstaubsauger-angebote'],
   ];
   for (const [frage, name, path] of scenarios) {
     const browser = findCatalogueTools(compact,{query:frage});
@@ -67,9 +73,9 @@ test('German household questions agree in browser, catalogue and compact MCP', a
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 242);
+  assert.equal(withGuides.length, 243);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 42);
+  assert.equal(destinations.size, 43);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);

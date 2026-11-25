@@ -101,6 +101,8 @@ def collect():
   entry={'u':route,'t':' '.join(h.title.split()),'d':desc[:320],'l':lang,'a':extra}
   if lang=='de' and route=='/produkte.html':
    model_sections=[
+    {'id':'beutelstaubsauger-angebote','title':'Guard S1 oder M1 Parquet Flex: Lieferumfang und Gesamtpreis prüfen',
+     'description':'Miele 12558410 und 12560320 nach Originaldüse, TU- oder CO-Beuteln und eigenen Preisen vergleichen. Bosch BGBS2BA1P im Lieferumfang prüfen.'},
     {'id':'miele-staubsaugerbeutel','title':'Welcher Staubsaugerbeutel passt zu meinem Miele?',
      'description':'GN, FJM, TU und CO anhand der vollständigen Modellreihe prüfen. Vorhandene Beutel für zwei Geräte abgleichen.'},
     {'id':'kaercher-170mm-saugduese','title':'Welche schmale Kärcher-Absaugdüse passt zu meinem WV?',

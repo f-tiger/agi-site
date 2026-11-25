@@ -99,6 +99,40 @@ export function initCategoryTools(root) {
   }
 }
 
+export function compareVacuumOffers(values) {
+  const cents = key => {
+    const price = number(values, key, 0, 100000);
+    const rounded = Math.round(price * 100);
+    if (price !== rounded / 100) throw new InputError('Bitte Preise mit höchstens zwei Nachkommastellen eingeben.');
+    return rounded;
+  };
+  const s1 = cents('s1_geraet') + cents('s1_extras');
+  const m1 = cents('m1_geraet') + cents('m1_extras');
+  return {s1_gesamt_eur:s1 / 100, m1_gesamt_eur:m1 / 100, m1_minus_s1_eur:(m1 - s1) / 100};
+}
+
+function initVacuumOfferCheck(root) {
+  const form = root.querySelector('[data-vacuum-offer-form]');
+  if (!form) return;
+  const result = form.querySelector('[data-vacuum-offer-result]');
+  const money = new Intl.NumberFormat('de-DE', {style:'currency', currency:'EUR'});
+  const clear = () => { result.textContent = ''; };
+  form.addEventListener('input', clear);
+  form.addEventListener('invalid', clear, true);
+  form.addEventListener('reset', clear);
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    try {
+      const answer = compareVacuumOffers(Object.fromEntries(new FormData(form)));
+      result.textContent = `Guard S1 gesamt ${money.format(answer.s1_gesamt_eur)}. Guard M1 Parquet Flex gesamt ${money.format(answer.m1_gesamt_eur)}. Differenz M1 zu S1 ${money.format(answer.m1_minus_s1_eur)}. Grundlage sind deine Eingaben.`;
+    } catch (error) {
+      if (!(error instanceof InputError)) throw error;
+      result.textContent = error.message;
+    }
+  });
+  form.hidden = false;
+}
+
 export function windowWidthFit(values, packages) {
   const net = usableWindowWidth(number(values, 'lichte_breite_mm', 1, 5000),
     number(values, 'spiel_pro_seite_mm', 0, 1000));
@@ -169,4 +203,5 @@ function initWindowWidthCheck(root) {
 if(typeof document!=='undefined') {
   initCategoryTools(document);
   initWindowWidthCheck(document);
+  initVacuumOfferCheck(document);
 }
