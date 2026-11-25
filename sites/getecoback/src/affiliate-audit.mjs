@@ -1,6 +1,6 @@
 import {CELLAR_PAGE, WINDOW_TIKTOK_GUIDE_PAGE} from './affiliate-meta.mjs';
 import {WINDOW_ENTRY_PAGE} from './fenstersauger-entry.mjs';
-import {PORTASPLIT_ENTRY_PAGE} from './portasplit-entry.mjs';
+import {PORTASPLIT_ENTRY_PAGE, PORTASPLIT_PRODUCT_URL} from './portasplit-entry.mjs';
 import {N90_ENTRY_PAGE, N90_PRODUCT_URL} from './n90-entry.mjs';
 import {WINDOW_CONDENSATION_PAGE} from '../site/assets/fenster-taucheck.mjs';
 import {LAUNDRY_SEASON_PAGE,LAUNDRY_SEASON_EVENTS} from './laundry-events.mjs';
@@ -94,7 +94,7 @@ const buyingPathKeys = new Map([
   ['/guide/saugroboter-kaufberatung.html','robot'],
   ['/guide/luftbefeuchter-ratgeber.html','humidifier'],
 ]);
-const section = ()=>({...count(),cohorts:{},cohorts_v2:{},n90_guides:{model:{...count(),exact_product_clicks:0},family:{...count(),exact_product_clicks:0}},cellar_catalog:{...count(),catalog_product_clicks:0,catalog_search_clicks:0},buying_paths:{smart_thermostat:count(),saugwischer:count(),robot:count(),humidifier:count()},channels:{},destinations:{product:0,search:0,prime_trial:0,other:0},surfaces:{},models:{ex105:0,n90:0,other:0}});
+const section = ()=>({...count(),cohorts:{},cohorts_v2:{},n90_guides:{model:{...count(),exact_product_clicks:0},family:{...count(),exact_product_clicks:0}},cellar_catalog:{...count(),catalog_product_clicks:0,catalog_search_clicks:0},buying_paths:{smart_thermostat:count(),saugwischer:count(),robot:count(),humidifier:count()},channels:{},destinations:{product:0,search:0,prime_trial:0,other:0},surfaces:{},models:{ex105:0,n90:0,portasplit_original:0,other:0}});
 const dayAt = (end,offset)=>new Date(Date.parse(end+'T00:00:00Z')+offset*86400000).toISOString().slice(0,10);
 // Launch day is partial. Mixed windows expose only the dates actually counted.
 const firstFullDrainDay = '2026-11-20';
@@ -113,6 +113,7 @@ const range = (start,end)=>({...section(),start,end_exclusive:end,
   },
 });
 function destination(link) {
+  if (link === PORTASPLIT_PRODUCT_URL) return ['product','portasplit_original'];
   try {
     const u=new URL(link);
     if(u.protocol!=='https:' || !/^(?:www\.)?amazon\.(?:de|com)$/.test(u.hostname)) return ['other','other'];
@@ -197,7 +198,11 @@ function add(s,r,channel) {
     const clickField = modelPath.clickField ?? 'model_search_clicks';
     const entry = s[modelPath.aggregate] ??= {first_recorded_day:r.day,page_views:0,[clickField]:0};
     if (r.day < entry.first_recorded_day) entry.first_recorded_day = r.day;
-    entry[field === 'page_views' ? field : clickField] += r.n;
+    if (field === 'affiliate_clicks' && r.page === PORTASPLIT_ENTRY_PAGE && r.link === PORTASPLIT_PRODUCT_URL) {
+      entry.exact_product_clicks = (entry.exact_product_clicks ?? 0) + r.n;
+    } else {
+      entry[field === 'page_views' ? field : clickField] += r.n;
+    }
   }
   if (cellar) s.cellar_catalog[field] += r.n;
   const group=pageGroup(r.page);

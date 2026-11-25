@@ -1144,17 +1144,11 @@ CONTEXT_MODELS = {
  # Split-Cluster (2026-08-31). The site's highest-ticket path was selling the
  # cheapest device on it. The BTU calculator's fourth tier routes every room
  # above 13.500 BTU here because a monoblock is genuinely at its limit — and
- # split-klimaanlage-ohne-kernbohrung, portasplit-vs-monoblock and
- # midea-portasplit-kaufen then showed that reader the same monoblock cards as
+ # split-klimaanlage-ohne-kernbohrung and portasplit-vs-monoblock
+ # then showed that reader the same monoblock cards as
  # a 15 m² page (EX105 / PAC N90 / Comfee / Klarstein). The whole cluster is
  # built around the Midea PortaSplit, which this site already documents as sold
  # out, so its own premise had no current answer.
- #
- # Correction to a first reading of this cluster: the tower-fan and portable-AC
- # links on midea-portasplit-kaufen are NOT a mis-sell. Both sit inside the
- # "for whom is this not worth it" section ("only hot on a few days — then a fan
- # is enough", "a portable at ~250 € is louder and less efficient but available
- # today"). That is this site's honest ordering doing its job. Left alone.
  #
  # Two contradictions resolve at once: a CONTEXT_MODELS page also drops out of
  # EB_SIZER, and the sizer's top band was recommending a monoblock on the page
@@ -1172,7 +1166,7 @@ CONTEXT_MODELS = {
  # this site size below 25 m²; the 12.000 for the rooms the fourth tier sends
  # here; KESSER third because two competing listings for the same model make it
  # the least unambiguous of the three.
- **{slug: [
+ "split-klimaanlage-ohne-kernbohrung": [
    ("TCL BreezeIn Quick Connect 9.000 BTU", "Quick-Connect, bis ca. 25 m²",
     "Vorgefüllte Leitungen mit Schnellkupplung — kein Bördeln, kein Vakuumieren. 2,6 kW, R32, kühlt und heizt. In öffentlichen Vergleichen als besonders leise geführt.",
     "€€€ · ab ca. 450 €", "TCL+BreezeIn+Quick+Connect+9000+BTU", "ac"),
@@ -1182,8 +1176,7 @@ CONTEXT_MODELS = {
    ("KESSER Split Quick Connect 12.000 BTU", "Mit Heizfunktion im Set",
     "3,4 kW, R32, Montagematerial im Lieferumfang. Achte beim Kauf auf die Variante — von diesem Modell stehen mehrere Angebote nebeneinander.",
     "€€€ · Preis vor Ort prüfen", "KESSER+Split+Klimaanlage+Quick+Connect+12000+BTU", "ac"),
- ] for slug in ("split-klimaanlage-ohne-kernbohrung",
-                "midea-portasplit-kaufen")},
+ ],
 
  "portasplit-vs-monoblock": [
    ("TCL BreezeIn Quick Connect 9.000 BTU", "9.000-BTU-Variante",
@@ -1232,7 +1225,6 @@ CONTEXT_MODELS = {
  "midea-portasplit-ausverkauft-alternativen": [
    ("Clima Butler Split 2 (CB-3500)", "Split-Kandidat", "Fischer führt 3,5 kW Kühlleistung. Fensterhalterung, Leitung und Lieferumfang für das genaue Modell prüfen.", "Preis und Bestand prüfen", "Clima+Butler+Split+2+CB-3500", "ac"),
    ("Remko RKL 495 DC", "Andere Leistungsklasse", "4,3 kW laut Hersteller. Außenteil, Leitungsweg und Aufstellung vor dem Kauf prüfen; keine pauschale Raumfreigabe.", "Preis und Bestand prüfen", "Remko+RKL+495+DC", "ac"),
-   ("Midea PortaSplit", "Original vergleichen", "3,5 kW Kühlleistung laut Hersteller. Wir bestätigen keinen Live-Bestand: genaue Variante und Lieferdatum beim Händler prüfen.", "Preis und Bestand prüfen", "Midea+PortaSplit", "ac"),
    ("Fensterabdichtung", "Falls du Monoblock wählst", "Fensterbauart und Schlauchanschluss prüfen. Zubehör ersetzt weder ein passendes Gerät noch einen sicheren Abluftweg.", "Preis vor Ort prüfen", "klimaanlage+fensterabdichtung", "shade"),
  ],
  # ---- Autumn/first-sale iteration (2026-08-17) -------------------------------
@@ -2024,17 +2016,20 @@ def shelf_skipped(slug, ctx):
 
 
 def strip_decision_promotions(html, slug):
-    """Keep generic promotions off technical checks and the electricity-price fact check."""
+    """Keep generic promotions off technical checks and exact-model purchase decisions."""
     electricity_fact_check = "treiben-rechenzentren-die-strompreise"
     if slug not in {"klimaanlage-mit-heizfunktion", "mobile-klimaanlage-ueberwintern", "keller-lueften-sommer",
                     "klimaanlage-40-qm", "klimaanlage-50-qm", "klimaanlage-fenster-einbruchschutz",
-                    "klimaanlage-wann-kaufen", "heizkosten-vergleich-rechner", electricity_fact_check}:
+                    "klimaanlage-wann-kaufen", "heizkosten-vergleich-rechner", "midea-portasplit-kaufen",
+                    electricity_fact_check}:
         return html
     markers = ("EB_MODELS", "EB_TOPPICK", "EB_POPUP", "EB_STICKY", "EB_PROFILE",
                "EB_QUICKPICK", "EB_SIZER", "EB_USMARKET", "EB_USTOP",
                "EB_USSHELF", "EB_USUNITS", "EB_USSWITCH", "EB_INLINE", "EB_HEATENERGY")
     if slug == electricity_fact_check:
         markers += ("EB_HEATNOW", "EB_EXPLAINER", "EB_CLIMATE", "EB_RADAR")
+    if slug == "midea-portasplit-kaufen":
+        markers += ("EB_EXPLAINER",)
     for marker in markers:
         html = re.sub(r'<!--' + marker + r'-->.*?<!--/' + marker + r'-->\n?', '', html, flags=re.S)
     return html

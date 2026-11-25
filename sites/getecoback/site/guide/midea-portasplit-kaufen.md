@@ -6,9 +6,28 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/midea-portasplit-ka
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
 
-Die mobile Split-Klimaanlage hat ein Innen- und ein Außengerät. Prüfe für die originale PortaSplit die EAN 4048164116478, den Lieferumfang und den Platz an deinem Fenster oder Balkon. Bei offenem Aufstellort oder Liefertermin kannst du mit der Bestellung warten.
+Die mobile Split-Klimaanlage hat ein Innen- und ein Außengerät. Prüfe für die originale PortaSplit die EAN 4048164116478, den Lieferumfang und den Platz an deinem Fenster oder Balkon. Bei offenem Aufstellort oder Liefertermin kannst du mit der Bestellung warten. [Zum genauen Modell und Angebot](https://getecoback.com/guide/midea-portasplit-kaufen.html#portasplit-original-angebot).
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
+
+## Originale PortaSplit vor dem Kauf an der EAN erkennen
+
+Für das komplette Originalgerät in Deutschland muss im Angebot die EAN **4048164116478** stehen. Ähnlich benannte Geräte und Zubehör haben eigene Nummern:
+
+- **Originale PortaSplit, Komplettgerät:** 4048164116478.
+
+- **PortaSplit-E:** 4048164122424.
+
+- **PortaSplit Cool:** 4048164122301.
+
+- **Universalhalterung als Zubehör:** 4048164118687. Prüfe den Lieferumfang des Geräts und der Halterung getrennt.
+
+Gleiche Fensterfalz, Standort des Außengeräts und Halterung mit der Anleitung ab. [Fensterfalz messen](https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html#fensterfalz). Fehlen EAN, Lieferumfang oder Eignung der Befestigung, kläre sie vor der Bestellung.
+
+[Midea Deutschland vergleicht die drei Geräte und verlinkt den Amazon-Artikel des Originals](https://www.midea.com/de/klimatisieren-heizen/portasplit). [Midea zur Universalhalterung](https://www.midea.com/content/dam/midea-aem/de/klimatisieren-heizen/portasplit/universalhalterung/PortaSplit-UM-universal-bracket.pdf). Quellen geprüft am 25. November 2026.
+
+Anzeige: Originale Midea PortaSplit auf Amazon.de prüfen
+Das ist die Produktseite des Originalgeräts. Prüfe beim Händler, ob es an deinen Lieferort angeboten wird, was beiliegt und wann es kommen kann. EcoBack bestätigt hier weder einen Preis noch eine Verfügbarkeit.
 
 ## Was die PortaSplit besonders macht
 
@@ -26,10 +45,6 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unte
 
 **Lohnt sich nicht,** wenn du nur an einzelnen heißen Tagen Abkühlung brauchst (dann kann ein Ventilator oder Luftkühler für spürbare Luftbewegung genügen). Wenn kein passendes Angebot vorliegt, kannst du warten.
 
-**Verfügbarkeit und aktuellen Preis prüfen:**
-
-Midea PortaSplit auf Amazon.de →
-
 ## Wenn dein Händler nicht liefern kann
 
 [Aufstellung prüfen und Alternativen oder Warten abwägen](https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html#kaufpruefung).
@@ -37,12 +52,6 @@ Midea PortaSplit auf Amazon.de →
 - **Andere Split-Geräte:** Prüfe anhand der Anleitung, welche Montage das angebotene Modell erfordert. Split-Klimaanlagen suchen →
 
 - **Monoblock:** Prüfe den Abluftweg und vergleiche den Gesamtpreis sowie die Geräuschangaben für das konkrete Gerät. Tragbare Klimaanlagen → — passende Größe im [BTU-Ratgeber](https://getecoback.com/guide/wie-viel-btu-brauche-ich.html).
-
-**Das passende Gerät finden — ehrlich empfohlen**
-
-Konkrete Modelle mit Rolle, aus öffentlichen Testberichten zusammengestellt (nicht selbst getestet) — plus kostenlose Rechner für die richtige Größe.
-
-[Top-Angebote ansehen →](https://getecoback.com/#deals)
 
 ## Häufige Fragen
 

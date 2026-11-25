@@ -26,7 +26,7 @@ Die Maße zeigt die [Midea Gebrauchsanweisung für die originale PortaSplit (PDF
 
 ## Welche Alternative passt zu deiner Aufstellung?
 
-Ein ausverkauftes Angebot sagt nichts über andere Händler oder Varianten aus. Bestätige zuerst das genaue Modell und das Lieferdatum. Ein Suchergebnis bei Amazon ist noch kein passendes oder verfügbares Angebot.
+Ein ausverkauftes Angebot sagt nichts über andere Händler oder Varianten aus. Bestätige zuerst das genaue Modell, die vorgesehene Aufstellung und das Lieferdatum des konkreten Artikels.
 
 - **Außenteil möglich?** Prüfe Halterung, Aufstellfläche und Sicherung anhand der Anleitung. „Mobil“ bedeutet nicht, dass jedes Fenster und jeder Balkon geeignet ist.
 
@@ -42,6 +42,11 @@ Gleiche für Deutschland die EAN **4048164116478** mit dem konkreten Angebot ab.
 
 Klär beim konkreten Händler den Lieferumfang oder prüfe die EAN der bereits vorhandenen Halterung. [Vergleiche die beiden Maße am Fensterfalz](https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html#fensterfalz). Gleiche Befestigung und erforderliche Erlaubnis mit den [Midea-Unterlagen zur Aufstellung](https://www.midea.com/de/klimatisieren-heizen/portasplit/installation) ab. Warte mit dem Kauf, solange der Halterungsbeleg oder die Eignung am Standort offen ist. Herstellerunterlagen zur Modellwahl geprüft am 20.11.2026.
 
+Ist die Halterung geklärt und suchst du das Originalgerät mit EAN 4048164116478? Prüfe den von Midea Deutschland verlinkten Artikel. [Gerätevarianten und Zubehör per EAN unterscheiden](https://getecoback.com/guide/midea-portasplit-kaufen.html#portasplit-original-angebot).
+
+Anzeige: Originale Midea PortaSplit auf Amazon.de prüfen
+Liefertermin, Umfang und Preis beim Händler prüfen. Den Händlerlink haben wir am 25. November 2026 mit der Midea-Seite abgeglichen.
+
 ## Clima Butler Split 2 CB-3500: genaue Variante prüfen
 
 Der Fischer-Katalog führt den CB-3500 mit 3,5 kW Kühlleistung und R32. Prüfe Halterung, Leitungsführung und Lieferumfang für genau dieses Gerät. Ältere Geräte mit „Climabutler 2“ im Namen sind nicht automatisch dasselbe Modell. Kläre beim Fachhandel, ob das Angebot für dich bestellbar ist und wann es geliefert werden kann.
@@ -50,9 +55,7 @@ Der Fischer-Katalog führt den CB-3500 mit 3,5 kW Kühlleistung und R32. Prüfe 
 
 [REMKO nennt für den RKL 495 DC](https://www.remko.de/gewerblich/klimasysteme/lokal/rkl-dc/) 4,3 kW Kühlleistung und eine insgesamt 3 m lange Kältemittelleitung. Prüfe deren nutzbaren Weg und die Aufstellung in der Anleitung. Die höhere Nennleistung allein belegt weder einen leiseren Betrieb noch eine passende Lösung für dein Zimmer. Bestand und Preis sind hier nicht bestätigt.
 
-**Passendes Angebot prüfen**Wähle erst die geeignete Bauart. Vergleiche dann genaue Modellbezeichnung, Lieferdatum, Zubehör, Verkäufer und Rückgabebedingungen.
-
-Midea PortaSplit auf Amazon.de suchen →
+**Alternative Angebote prüfen**Wähle erst die geeignete Bauart. Vergleiche dann genaue Modellbezeichnung, Lieferdatum, Zubehör, Verkäufer und Rückgabebedingungen.
 
 CB-3500 auf Amazon.de suchen → · Remko RKL 495 DC auf Amazon.de suchen →
 

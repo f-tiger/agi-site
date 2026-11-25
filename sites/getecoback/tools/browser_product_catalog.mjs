@@ -734,15 +734,13 @@ async function checkCatalog(browser){
   await page.locator('nav[aria-label="Inhaltsverzeichnis"] a[href="'+secondFragment+'"]').click();
   await page.waitForURL(url=>url.hash===secondFragment);
   const click=waitForEvent(page,'affiliate_click');
-  await page.getByRole('link',{name:'Midea PortaSplit auf Amazon.de suchen →',exact:true}).click();
+  await page.getByRole('link',{name:'Anzeige: Originale Midea PortaSplit auf Amazon.de prüfen',exact:true}).click();
   const request=await click;
   const payload=JSON.parse(request.postData());
   const merchant=new URL(payload.m.link_url);
   assert.equal(payload.mcp_portasplit_entry,expectedMarker,mode);
   assert.equal((await request.allHeaders()).referer,document);
-  assert.equal(merchant.origin+merchant.pathname,'https://www.amazon.de/s');
-  assert.equal(merchant.searchParams.get('k'),portasplitEntry.model_search);
-  assert.equal(merchant.searchParams.get('tag'),'getecoback-21');
+  assert.equal(merchant.href,portasplitEntry.product_url);
   assert.equal(blockedMerchant,1,mode);
   await context.close();
   portasplitEntryCases.push({mode,marker:expectedMarker??false});

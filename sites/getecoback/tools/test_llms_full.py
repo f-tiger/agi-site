@@ -330,6 +330,31 @@ class LlmsFull(unittest.TestCase):
         })
         self.assertNotIn('reddit.com/submit', md)
 
+    def test_portasplit_original_has_one_exact_german_offer_per_guide(self):
+        buying = SITE / 'guide' / 'midea-portasplit-kaufen.html'
+        alternatives = SITE / 'guide' / 'midea-portasplit-ausverkauft-alternativen.html'
+        known = json.loads((SITE.parent / 'data' / 'mcp-portasplit-entry.json').read_text())['product_url']
+        for guide in (buying, alternatives):
+            with self.subTest(guide=guide.name):
+                page = guide.read_text()
+                markdown = guide.with_suffix('.md').read_text()
+                self.assertEqual(page.count('href="' + known + '"'), 1)
+                self.assertNotRegex(page, re.compile(r'amazon\.de/s\?k=midea\+portasplit(?:&|%26)', re.I))
+                self.assertIn('4048164116478', markdown)
+                self.assertNotRegex(markdown, r'https?://[^\s")]*amazon\.|getecoback-21')
+        page = buying.read_text()
+        self.assertNotRegex(page, r'<!--EB_(?:TOPPICK|MODELS|POPUP|STICKY|QUICKPICK|SIZER|EXPLAINER)-->')
+        self.assertEqual(page.count('id="portasplit-original-angebot"'), 1)
+        first_merchant = re.search(r'href="(https://www\.amazon\.de/[^"]+)"', page)
+        self.assertIsNotNone(first_merchant)
+        self.assertEqual(first_merchant[1], known)
+        markdown = buying.with_suffix('.md').read_text()
+        for detail in ('4048164122424', '4048164122301', '4048164118687',
+                       'kläre sie vor der Bestellung', 'PortaSplit-UM-universal-bracket.pdf',
+                       'https://www.midea.com/de/klimatisieren-heizen/portasplit'):
+            self.assertIn(detail, markdown)
+        self.assertIn('href="/guide/midea-portasplit-kaufen.html#portasplit-original-angebot"', alternatives.read_text())
+
     def test_portasplit_window_fit_keeps_original_manual_and_cautious_decision(self):
         route = '/guide/midea-portasplit-ausverkauft-alternativen.html'
         guide = SITE / route.lstrip('/')
