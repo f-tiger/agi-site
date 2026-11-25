@@ -137,6 +137,18 @@ test('the German window condensation question finds the measured check and fixed
   assert.notEqual(findCatalogueTools(compact,{query:ventilate})[0]?.name, name, ventilate);
 });
 
+test('offline thermostat discovery returns cited guidance and retains exact tool access', async () => {
+  const query='Funktioniert mein Bosch Heizkörperthermostat II [+M] ohne Zentrale?';
+  const path='/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-ohne-internet';
+  const result=await catalogue({q:query,view:'compact',limit:3});
+  assert.deepEqual(names(result.tools),['ratgeber_suche']);
+  assert.equal(toolGuidePath(result.tools[0]),path);
+  assert.equal(toolGuidePath(findCatalogueTools(compact,{query})[0]),path);
+  const name='thermostat_betrieb_ohne_cloud';
+  assert.equal(findCatalogueTools(compact,{query:name})[0]?.name,name);
+  assert.equal(analytics,0);
+});
+
 test('German cooling discount discovery points to the 30-day evidence', async () => {
   const query='Black Friday Klimaanlage';
   const answer='/guide/klimaanlage-wann-kaufen.html#angebot-30-tage-preis';

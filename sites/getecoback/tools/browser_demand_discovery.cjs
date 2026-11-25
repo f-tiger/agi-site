@@ -37,6 +37,8 @@ async function checkGermanFocusedDiscovery(browser,base){
  const granulateSection='granulat-waesche-entscheidung';
  const coolingSalePage='/guide/klimaanlage-wann-kaufen.html';
  const coolingSaleSection='angebot-30-tage-preis';
+ const thermostatPage='/guide/smarte-heizkoerperthermostate-lohnen-sich.html';
+ const thermostatSection='thermostat-ohne-internet';
  const positive=['Was kostet eine Ladung Wäsche nur mit meinem Luftentfeuchter?','Stromkosten Luftentfeuchter Wäsche'];
  const ordinary=[
   ['Trockner oder Luftentfeuchter Stromkosten Wäsche','/waeschetrockner-oder-luftentfeuchter.html'],
@@ -91,6 +93,8 @@ async function checkGermanFocusedDiscovery(browser,base){
    {href:granulatePage+'#'+granulateSection,language:'de'},'Passively drying a load leads to the German buying decision');
   equal((await search('Black Friday Klimaanlage'))[0],
    {href:coolingSalePage+'#'+coolingSaleSection,language:'de'},'German sale searches open the retailer reference price');
+  equal((await search('FRITZ! 302 bei Internetausfall'))[0],
+   {href:thermostatPage+'#'+thermostatSection,language:'de'},'Thermostat outage searches open the documented operating limits');
   equal((await search('Welcher Ersatzfilter passt in meinen Beurer LR 401?'))[0],{href:'/ersatzfilter.html#beurer-lr401',language:'de'},'Beurer model reaches the audited exact filter');
   equal((await search('Welchen Filter brauche ich für meinen Levoit Core 300S ohne Pro?'))[0],{href:'/ersatzfilter.html#levoit-core-300s',language:'de'},'Core 300S reaches its exact standard filter');
   const ventilation='Soll ich meinen Keller lüften? Innen 16 °C und 75 %, draußen 8 °C und 90 %, Wand 12 °C.';
@@ -274,6 +278,15 @@ async function checkGermanFocusedDiscovery(browser,base){
  check(await priceAdvice.getByText('469 €',{exact:false}).isVisible(),'The price comparison works without scripts');
  check(await priceAdvice.getByRole('link',{name:'Eigenes Budget und Lieferzeit prüfen'}).isVisible(),
   'The sale comparison connects to the existing budget and delivery check');
+ await page.goto(base+thermostatPage+'?__ci=1');
+ const offlineLink=page.getByRole('link',{name:'Bedienung ohne Internet oder Zentrale prüfen',exact:true});
+ await offlineLink.focus();
+ await page.keyboard.press('Enter');
+ await page.waitForURL(base+thermostatPage+'?__ci=1#'+thermostatSection);
+ const operation=page.locator('section[aria-labelledby="'+thermostatSection+'"]');
+ check(await operation.getByText('am Drehknopf einstellen',{exact:false}).isVisible(),'Manual standalone operation is readable');
+ check(await operation.getByText('Die automatische Schaltung ist dabei eingeschränkt',{exact:false}).isVisible(),
+  'The no-script answer distinguishes retained settings from automatic operation');
  await page.goto(base+'/guide/heizkosten-vergleich-rechner.html?__ci=1');
  const heatLink=page.getByRole('link',{name:'Kurze Einsätze von Heizlüfter und Infrarot vergleichen',exact:true});
  check(await heatLink.isVisible(),'Direct-heat comparison has a native in-page link without JavaScript');

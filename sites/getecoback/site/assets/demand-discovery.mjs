@@ -1,4 +1,4 @@
-import {exactBoschStackingGuide, exactGermanHouseholdTask, exactWindowShadeMeasurement, hasOtherWindowSurface} from './german-household-intent.mjs?v=89cb981cf6b4';
+import {exactBoschStackingGuide, exactGermanHouseholdTask, exactWindowShadeMeasurement, hasOtherWindowSurface} from './german-household-intent.mjs?v=081c2759c241';
 import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion} from './kaercher-saugduese-intent.mjs';

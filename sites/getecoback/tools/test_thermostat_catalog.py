@@ -58,6 +58,23 @@ class CatalogTests(unittest.TestCase):
         slug = 'heizkoerper-wird-nicht-warm'
         self.assertNotIn('id="eb-thermostat-products"', page(slug, PAGES[slug]))
 
+    def test_offline_choice_preserves_source_limits_and_model_links(self):
+        from build_agent_md import to_markdown
+        html = page(catalog.SLUG, PAGES[catalog.SLUG])
+        mirror = to_markdown(html, '/guide/' + catalog.SLUG + '.html', 'de')
+        self.assertEqual(html.count('id="thermostat-ohne-internet"'), 1)
+        self.assertIn('href="#thermostat-ohne-internet"', html)
+        section = html.split('aria-labelledby="thermostat-ohne-internet">', 1)[1].split('</section>', 1)[0]
+        for document in (section, mirror):
+            for phrase in (
+                'Nach der Kalibrierung', 'am Drehknopf einstellen', 'Matter-System gekoppelt sein',
+                'unterbrochener DECT-Verbindung', 'Die automatische Schaltung ist dabei eingeschränkt',
+                'warte mit der Bestellung', '#thermostat-bosch-ii-m', '#thermostat-fritz-302',
+                'V001_BTH-RAD_OM_11L_20240819.pdf', '3523_Verhalten-des-FRITZ-Heizkorperreglers',
+            ):
+                self.assertIn(phrase, document)
+            self.assertNotIn('amazon.de/', document)
+
     def test_markdown_retains_model_evidence_without_merchant_urls(self):
         from build_agent_md import to_markdown
         html = page(catalog.SLUG, PAGES[catalog.SLUG])

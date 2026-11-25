@@ -84,6 +84,20 @@ test('laundry search stays on task and every search result can be read through t
   }
 });
 
+test('offline thermostat guide search keeps both manufacturer citations readable', async () => {
+  const {env} = assetEnv();
+  const path='/guide/smarte-heizkoerperthermostate-lohnen-sich.html';
+  const search=await call('ratgeber_suche',{frage:'FRITZ! 302 bei Internetausfall',sprache:'de',max:1},env);
+  assert.equal(search.isError,false);
+  const lines=textOf(search).split('\n');
+  assert.match(lines[1],/Thermostat funktioniert ohne Internet oder Zentrale/);
+  assert.equal(lines[2].trim(),'https://getecoback.com'+path);
+  const reading=await call('ratgeber_lesen',{pfad:path},env);
+  assert.equal(reading.isError,false);
+  assert.match(textOf(reading),/V001_BTH-RAD_OM_11L_20240819\.pdf/);
+  assert.match(textOf(reading),/3523_Verhalten-des-FRITZ-Heizkorperreglers/);
+});
+
 test('cooling sale guide search names the same seller and the 30-day reference', async () => {
   const {env} = assetEnv();
   const path='/guide/klimaanlage-wann-kaufen.html';

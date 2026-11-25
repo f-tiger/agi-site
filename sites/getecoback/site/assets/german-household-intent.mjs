@@ -194,6 +194,18 @@ export const coolingDiscountReference = {
   tool:'ratgeber_suche',
 };
 
+export const offlineThermostatChoice = {
+  path:'/guide/smarte-heizkoerperthermostate-lohnen-sich.html',
+  id:'thermostat-ohne-internet',
+  tool:'ratgeber_suche',
+};
+
+function asksForOfflineThermostat(query) {
+  const head = /\b(?:(?:heizkoerper|heiz)?thermostat\w*|heizkoerperregler\w*|fritz[ !-]*(?:smart[ -]+thermo[ -]*)?302)\b/;
+  const connection = /\b(?:offline|internet[ -]?ausfall|ohne (?:internet(?:verbindung|zugang)?|zentrale|(?:bosch )?(?:smart home )?controller|hub|gateway|fritz[ !-]*box))\b/;
+  return head.test(query) && connection.test(query) && !/\b(?:fussbodenheiz\w*|wandthermostat\w*)\b/.test(query);
+}
+
 function asksForCoolingDiscountReference(query) {
   const unit = /\b(?:klimaanlag\w*|klimageraet\w*|portasplit\w*)\b/;
   const salesEvent = /\b(?:black[ -]?friday|black[ -]?week\w*|cyber[ -]?monday)\b/;
@@ -231,6 +243,7 @@ export function exactGermanHouseholdTask(query) {
   if (asksForKlarsteinPackage(query)) return klarsteinPackage;
   if (asksForGranulateDryingChoice(query)) return granulateDryingChoice;
   if (asksForCoolingDiscountReference(query)) return coolingDiscountReference;
+  if (asksForOfflineThermostat(query)) return offlineThermostatChoice;
   if (asksForDirectHeatComparison(query)) return directHeat;
   if (asksForShowerFlow(query)) return showerFlow;
   if (asksForVacuumOffer(query)) return vacuumOffer;
