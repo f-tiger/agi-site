@@ -10,5 +10,7 @@ export function calculate(kind,input){
   return {before,after,annual,waterSaved:(before.litres-after.litres)*x.count/1000,payback:annual>0?x.cost/annual:null};
  }
  const before=x.watts*x.hours*x.days/1000,after=(x.watts*x.newhours+x.timer*24)*x.days/1000;
- return {before,after,beforeCost:before*x.price,afterCost:after*x.price,saving:(before-after)*x.price};
+ const hoursToOffset=x.watts>0 ? x.timer*24/x.watts : Infinity;
+ const breakEvenHours=Number.isFinite(hoursToOffset) ? hoursToOffset : null;
+ return {before,after,beforeCost:before*x.price,afterCost:after*x.price,saving:(before-after)*x.price,breakEvenHours};
 }

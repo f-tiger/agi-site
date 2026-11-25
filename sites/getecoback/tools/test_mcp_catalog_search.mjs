@@ -1300,3 +1300,29 @@ test('Bosch Dry 4000 catalogue queries prefer guide search and leave drainage to
   assert.equal(drainage.tools[0]?.name,'entfeuchter_ablaufcheck');
   assert.equal(analytics,0);
 });
+
+test('German Advent lighting costs find the existing cost tool and keep the scheduling tool separate', async () => {
+  const costTool = 'lichterkette_timer_netto';
+  const guide = '/guide/lichterkette-stromkosten.html';
+  for (const query of [
+    'Lohnt sich eine Zeitschaltuhr für Weihnachtsbeleuchtung?',
+    'Was kostet eine LED-Lichterkette pro Stunde, Tag und Weihnachtszeit?',
+    'Adventbeleuchtung Stromkosten', 'Adventsbeleuchtung Stromkosten',
+    'Baumbeleuchtung Stromkosten', 'Weihnachtsbeleuchtung Stromkosten',
+  ]) {
+    const [first] = (await catalogue({q:query,view:'compact'})).tools;
+    assert.equal(first?.name,costTool,query);
+    assert.equal(findCatalogueTools(compact,{query})[0]?.name,costTool,query);
+    assert.equal(first.citation_url,origin + guide);
+    assert.equal(toolGuidePath(first),guide + '#zeitschaltuhr-strombilanz');
+  }
+  for (const query of [
+    'Zeitschaltuhr','Was kostet die Hausbeleuchtung pro Tag?',
+    'Was kostet ein Heizlüfter mit Zeitschaltuhr?',
+    'Wie installiere ich die Weihnachtsbeleuchtung im Außenbereich sicher?',
+  ]) assert.notEqual((await catalogue({q:query,view:'compact'})).tools[0]?.name,costTool,query);
+  const schedule = 'Lichterkette Timer Einschaltfenster 6 Stunden, wie viele gewünschte Einschaltminuten?';
+  assert.equal((await catalogue({q:schedule,view:'compact'})).tools[0]?.name,
+    'lichterkette_timer_einschaltfenster_vergleichen');
+  assert.equal(analytics,0);
+});

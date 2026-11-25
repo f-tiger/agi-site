@@ -1,4 +1,4 @@
-import {boschDry, exactGermanHouseholdTask, vacuumOffer} from './german-household-intent.mjs?v=0eaa4dd94199';
+import {boschDry, exactGermanHouseholdTask, festiveLights, vacuumOffer} from './german-household-intent.mjs?v=d301bd2700a5';
 import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion, glassvacModel, windowVacCharging} from './kaercher-saugduese-intent.mjs';
@@ -383,11 +383,11 @@ export function findCatalogueTools(index, {query='', category='', name=null}={})
   const portaSplitVariant = namesDifferentPortaSplit(focus.query);
   const portaSplitLipTool = 'midea_portasplit_fensterfalz_pruefen';
   const householdTask = exactGermanHouseholdTask(focus.query);
-  if (householdTask === boschDry) {
-    const guideSearch = index.find(entry => entry.tool.name === boschDry.tool && eligible(entry));
+  if (householdTask === boschDry || householdTask === festiveLights) {
+    const guideSearch = index.find(entry => entry.tool.name === householdTask.tool && eligible(entry));
     if (!guideSearch) return [];
-    const citation_url = 'https://getecoback.com' + boschDry.path;
-    return [{...guideSearch.tool, citation_url, guide_url:citation_url + '#' + boschDry.id}];
+    const citation_url = 'https://getecoback.com' + householdTask.path;
+    return [{...guideSearch.tool, citation_url, guide_url:citation_url + '#' + householdTask.id}];
   }
 
   const singleLaundry = asksForSingleLaundryCost(focus.query);

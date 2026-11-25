@@ -8,3 +8,22 @@ test('payback uses only net savings; zero savings never amortize',()=>{assert.de
 test('shower includes energy and water with a system factor',()=>{const r=calculate('shower',s);near(r.before.heat,3.126144);near(r.before.cost,1.5741504);near(r.after.cost,1.0494336);near(r.annual,191.521632);near(r.waterSaved,11.68);near(calculate('shower',{...s,factor:2}).before.energy,r.before.energy/2);assert.equal(calculate('shower',{...s,newflow:12}).payback,null);assert(calculate('shower',{...s,newflow:15}).annual<0);});
 test('timer includes 24-hour standby and may lose money',()=>{const r=calculate('lights',l);near(r.beforeCost,1.68);near(r.afterCost,.966);near(r.saving,.714);assert(calculate('lights',{...l,watts:1,hours:5,newhours:4,timer:1}).saving<0);});
 test('invalid, blank, nonfinite and contradictory inputs fail closed',()=>{for(const x of ['',null,undefined,true,Infinity,-1,'abc'])assert.throws(()=>calculate('lights',{...l,watts:x}),RangeError);assert.throws(()=>calculate('shower',{...s,cold:38}),RangeError);assert.throws(()=>calculate('shower',{...s,factor:0}),RangeError);assert.throws(()=>calculate('lights',{...l,hours:25}),RangeError);});
+test('low-power festive lights need enough avoided hours to repay the added timer energy', () => {
+ const settings={watts:5,hours:8,newhours:6,days:28,price:.35,timer:.5};
+ const result=calculate('lights',settings);
+ near(result.before,1.12);
+ near(result.after,1.176);
+ near(result.beforeCost,.392);
+ near(result.afterCost,.4116);
+ near(result.breakEvenHours,2.4);
+ assert(result.saving<0);
+ const atThreshold=calculate('lights',{...settings,newhours:5.6});
+ near(atThreshold.saving,0);
+ assert(calculate('lights',{...settings,newhours:5.5}).saving>0);
+ assert.equal(calculate('lights',{...settings,watts:0}).breakEvenHours,null);
+ assert.equal(calculate('lights',{...settings,watts:Number.MIN_VALUE}).breakEvenHours,null);
+ assert.equal(calculate('lights',{...settings,timer:0}).breakEvenHours,0);
+ const several={...settings,watts:12,newhours:5,timer:.8};
+ near(calculate('lights',several).saving,.16464);
+ near(calculate('lights',{...several,timer:2.4}).saving,-.21168);
+});
