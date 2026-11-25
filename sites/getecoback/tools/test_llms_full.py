@@ -16,6 +16,20 @@ MEACO = 'https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-
 
 
 class LlmsFull(unittest.TestCase):
+    def test_cooling_offer_calculation_has_a_static_owned_example(self):
+        page = SITE / 'guide/klimaanlage-wann-kaufen.html'
+        source = page.read_text()
+        mirror = page.with_suffix('.md').read_text()
+        section = re.search(r'<section id="kaufzeitpunkt-rechner".*?</section>', source, re.S)[0]
+        self.assertIn('href="#kaufzeitpunkt-rechner"', source)
+        self.assertIn('data-offer-form hidden', section)
+        for phrase in ('Zeitpuffer = Tage bis zum Einsatz', '380 € Gesamtpreis', 'fehlt trotzdem 1 Tag',
+                       'Ohne bestätigte Lieferfrist bleibt der Zeitpuffer offen'):
+            for document in (section, mirror):
+                self.assertIn(phrase, document)
+        self.assertNotRegex(source, r'<!--EB_(?:TOPPICK|MODELS|POPUP|STICKY|SIZER)-->')
+        self.assertNotRegex(mirror, r'https?://[^\s]*amazon\.|tag=getecoback-21')
+
     def test_offline_setup_uses_the_reviewed_release_entry_and_real_first_example(self):
         setup = 'https://github.com/f-tiger/getecoback-mcp#connect'
         registry = ('https://registry.modelcontextprotocol.io/v0.1/servers'

@@ -2027,7 +2027,8 @@ def strip_decision_promotions(html, slug):
     """Keep generic promotions off technical checks and the electricity-price fact check."""
     electricity_fact_check = "treiben-rechenzentren-die-strompreise"
     if slug not in {"klimaanlage-mit-heizfunktion", "mobile-klimaanlage-ueberwintern", "keller-lueften-sommer",
-                    "klimaanlage-40-qm", "klimaanlage-50-qm", "klimaanlage-fenster-einbruchschutz", "heizkosten-vergleich-rechner", electricity_fact_check}:
+                    "klimaanlage-40-qm", "klimaanlage-50-qm", "klimaanlage-fenster-einbruchschutz",
+                    "klimaanlage-wann-kaufen", "heizkosten-vergleich-rechner", electricity_fact_check}:
         return html
     markers = ("EB_MODELS", "EB_TOPPICK", "EB_POPUP", "EB_STICKY", "EB_PROFILE",
                "EB_QUICKPICK", "EB_SIZER", "EB_USMARKET", "EB_USTOP",

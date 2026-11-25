@@ -1,6 +1,6 @@
 # Klimaanlage kaufen: Wann ist der beste Zeitpunkt? (2026)
 
-> Klimaanlage jetzt kaufen oder warten? Prüfe Preisverlauf, Liefertermin, Aufstellung und Gesamtkosten mit vier Kaufchecks und einem Rechenbeispiel.
+> Klimaanlage jetzt kaufen oder warten? Rechne mit Gesamtpreis, Budget, bestätigter Lieferfrist und Aufstellung. Mit Entscheidungshilfe für Deutschland.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/klimaanlage-wann-kaufen.html
 
@@ -26,6 +26,14 @@ Vier Prüfungen vor dem Kauf — unabhängig von der Jahreszeit
 | Gesamtkosten | Gerät, Lieferung, notwendiges Zubehör und gegebenenfalls Montage; Betriebsstrom separat abschätzen. | Wenn Angebote unterschiedliche Leistungen enthalten. |
 
 **Frei gewähltes Rechenbeispiel, kein Händlerangebot:** 299 € Gerät + 39 € benötigtes Zubehör + 15 € Versand = 353 €. Ein passendes Angebot zu 329 €, das diese Positionen bereits enthält, wäre in diesem Beispiel 24 € günstiger. Die Zahlen belegen keinen Saisonrabatt und keine gleiche Geräteleistung.
+
+## Passt das Angebot zu Budget und Einsatztermin?
+
+Vergleiche den Gesamtpreis inklusive Lieferung, nötigem Zubehör und gegebenenfalls Montage mit deinem Budget. Zeitpuffer = Tage bis zum Einsatz minus bestätigte Lieferdauer minus Zeit für die Einrichtung. Verwende für alle drei Angaben Kalendertage.
+
+**Beispiel:** 380 € Gesamtpreis liegen unter 420 € Budget. Bei 6 Tagen bis zum Einsatz, 5 Tagen Lieferdauer und 2 Tagen für die Einrichtung fehlt trotzdem 1 Tag. Ohne bestätigte Lieferfrist bleibt der Zeitpuffer offen.
+
+Die Eingaben bleiben im Browser. Vor einem Kauf auch [Abluft oder Montage für deinen Wohnort klären](https://getecoback.com/guide/klimaanlage-wann-kaufen.html#timing-nach-geraetetyp). Bei ungeklärter Aufstellung oder fehlendem Kühlbedarf kannst du warten.
 
 ## Der teuerste Fehler: ungeprüft unter Zeitdruck kaufen
 

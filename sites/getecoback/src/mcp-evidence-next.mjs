@@ -6,6 +6,7 @@ import humidifiers from '../data/humidifier-catalog.json' with {type:'json'};
 import {PORTASPLIT_ENTRY_PAGE, PORTASPLIT_ENTRY_URL, PORTASPLIT_GUIDE_URL} from './portasplit-entry.mjs';
 import {CELLAR_VENTILATION_ANCHOR, CELLAR_VENTILATION_BOUNDS, CELLAR_VENTILATION_PAGE, checkCellarVentilation} from '../site/assets/keller-lueften-check.mjs';
 import {CELLAR_SHARE_URL, cellarVentilationShareText} from '../site/assets/keller-lueften-share.mjs';
+import {checkCoolingOffer} from '../site/assets/klima-kaufzeitpunkt.mjs';
 
 const method = '/wie-wir-empfehlen.html';
 const cold = '/guide/luftentfeuchter-keller.html';
@@ -766,12 +767,7 @@ export const evidenceNext = [
       deckel_eur:money('Eigenes maximales Ausgabebudget in Euro.'),
       frist_belegt:bool('Lieferdauer stammt vom gewählten Verkäufer und gilt für diese Variante?'),
     },
-    calculate({tage_bis_bedarf,lieferdauer_tage,einrichten_tage,preis_eur,deckel_eur,frist_belegt}) {
-      const reserve=tage_bis_bedarf-lieferdauer_tage-einrichten_tage;
-      return {budget_eingehalten:preis_eur<=deckel_eur, reserve_tage:frist_belegt?reserve:null,
-        zeitlich:!frist_belegt?'lieferfrist_pruefen':reserve>=0?'ins_zeitfenster_geplant':'zu_spaet_geplant',
-        grenze:'Eigene Planung ohne Preis- oder Lieferprognose. Bestätigung kann sich bis zum Kauf ändern.'};
-    },
+    calculate:checkCoolingOffer,
     example:{args:{tage_bis_bedarf:6,lieferdauer_tage:5,einrichten_tage:2,preis_eur:380,deckel_eur:420,frist_belegt:true},expect:{reserve_tage:-1,zeitlich:'zu_spaet_geplant'}},
   },
   {

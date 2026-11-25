@@ -75,6 +75,27 @@ function offlineWorker() {
   };
 }
 
+test('cooling offer budget and confirmed time stay independent', async () => {
+  const worker = offlineWorker();
+  const call = args => worker.rpc('tools/call', {name:'klima_kaufzeitpunkt_eigenbedarf', arguments:args});
+  const quote = {tage_bis_bedarf:6,lieferdauer_tage:5,einrichten_tage:2,preis_eur:380,deckel_eur:420,frist_belegt:true};
+  for (const [overrides, budget, reserve, timing] of [
+    [{}, true, -1, 'zu_spaet_geplant'],
+    [{einrichten_tage:1}, true, 0, 'ins_zeitfenster_geplant'],
+    [{frist_belegt:false}, true, null, 'lieferfrist_pruefen'],
+    [{einrichten_tage:0,deckel_eur:350}, false, 1, 'ins_zeitfenster_geplant'],
+  ]) {
+    const {isError, structuredContent:data} = await call({...quote,...overrides});
+    assert.equal(isError,false);
+    assert.equal(data.budget_eingehalten,budget);
+    assert.equal(data.reserve_tage,reserve);
+    assert.equal(data.zeitlich,timing);
+    assert.equal(data.citation_url,origin + '/guide/klimaanlage-wann-kaufen.html');
+  }
+  assert.equal((await call({...quote,preis_eur:null})).isError,true);
+  worker.assertNoWrites();
+});
+
 test('each mapped tool publishes the same exact evidence link after a real tool call, with unchanged schema and citation', async () => {
   const h = offlineWorker();
   const standard = await collectToolPages(cursor => h.rpc('tools/list', cursor ? {cursor} : {}));
