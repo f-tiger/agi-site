@@ -169,9 +169,11 @@ async function checkGermanFocusedDiscovery(browser,base){
  check(await showerAnswer.getByText('Behalte die vorhandene Brause',{exact:false}).isVisible(),
   'The static shower advice keeps the wait and no-purchase option');
  await page.goto(base+'/guide/heizkosten-vergleich-rechner.html?__ci=1');
- const heatLink=page.locator('a[href="#heizluefter-oder-infrarot"]');
- check(await heatLink.isVisible(),'Direct-heat comparison has a native anchor without JavaScript');
+ const heatLink=page.getByRole('link',{name:'Kurze Einsätze von Heizlüfter und Infrarot vergleichen',exact:true});
+ check(await heatLink.isVisible(),'Direct-heat comparison has a native in-page link without JavaScript');
+ equal(await heatLink.getAttribute('href'),'#heizluefter-oder-infrarot','The link opens the short-use calculation');
  await heatLink.click();
+ await page.waitForURL(base+'/guide/heizkosten-vergleich-rechner.html?__ci=1#heizluefter-oder-infrarot');
  const heatAnswer=page.locator('section[aria-labelledby="heizluefter-oder-infrarot"]');
  check(await heatAnswer.getByText('17,5 Cent',{exact:false}).isVisible(),'Heater cost example works without JavaScript');
  await context.close();
