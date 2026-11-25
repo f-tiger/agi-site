@@ -3,7 +3,7 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 14,
+    "n": 15,
     "q": "tool:verdicts"
    },
    {
@@ -11,12 +11,16 @@
     "q": "tool:portfolio_returns"
    },
    {
-    "n": 11,
+    "n": 12,
     "q": "tool:claim_ledger https://goldrush.agiscorecard."
    },
    {
-    "n": 9,
+    "n": 11,
     "q": "tool:thesis_tracker"
+   },
+   {
+    "n": 10,
+    "q": "tool:sunwatch_ledger"
    },
    {
     "n": 8,
@@ -24,34 +28,30 @@
    },
    {
     "n": 7,
-    "q": "tool:sunwatch_ledger"
+    "q": "tool:search_mcp_catalog"
    },
    {
     "n": 7,
     "q": "tool:invest_positions"
    },
    {
-    "n": 5,
-    "q": "tool:search_mcp_catalog"
-   },
-   {
     "n": 4,
     "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
    },
    {
-    "n": 1,
-    "q": "巴菲特"
+    "n": 2,
+    "q": "tool:agi_consensus k2r-onet-tool-probe/0.1 "
    }
   ]
  },
- "fetched": "2026-11-24",
+ "fetched": "2026-11-25",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
   "/agents/": {
-   "n7": 160,
-   "p7": 71
+   "n7": 181,
+   "p7": 77
   }
  },
  "site": "agiscorecard",

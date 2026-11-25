@@ -3,23 +3,23 @@
   "events": {
    "affiliate_click": {
     "n7": 8,
-    "p7": 9
+    "p7": 8
    },
    "btu_calc": {
-    "n7": 6,
-    "p7": 1
+    "n7": 5,
+    "p7": 2
    },
    "buyer_view": {
-    "n7": 1,
-    "p7": 0
+    "n7": 0,
+    "p7": 1
    },
    "cold_now": {
-    "n7": 71,
+    "n7": 79,
     "p7": 43
    },
    "feuchte_now": {
-    "n7": 49,
-    "p7": 18
+    "n7": 91,
+    "p7": 24
    },
    "laundry_view": {
     "n7": 6,
@@ -30,28 +30,32 @@
     "p7": 0
    },
    "page_view": {
-    "n7": 229,
-    "p7": 123
+    "n7": 367,
+    "p7": 132
    },
    "popup_click": {
     "n7": 2,
     "p7": 2
    },
    "popup_close": {
-    "n7": 8,
-    "p7": 5
+    "n7": 7,
+    "p7": 6
    },
    "popup_view": {
-    "n7": 18,
+    "n7": 19,
     "p7": 16
    },
    "strom_now": {
-    "n7": 28,
-    "p7": 7
+    "n7": 37,
+    "p7": 6
    },
    "strompreis_api": {
     "n7": 0,
     "p7": 1
+   },
+   "watt_calc": {
+    "n7": 3,
+    "p7": 0
    },
    "widget_view": {
     "n7": 0,
@@ -60,26 +64,18 @@
   },
   "zero_hit_records": 0
  },
- "fetched": "2026-11-24",
+ "fetched": "2026-11-25",
  "kind": "eco-trend",
  "notes": [],
  "ok": true,
  "pages": {
   "/": {
-   "n7": 9,
-   "p7": 4
-  },
-  "/en/guide/evaporative-cooler-vs-fan.html": {
-   "n7": 3,
-   "p7": 0
+   "n7": 10,
+   "p7": 5
   },
   "/en/guide/heated-airer-vs-dehumidifier.html": {
-   "n7": 3,
+   "n7": 4,
    "p7": 1
-  },
-  "/en/guide/portable-ac-skylight-roof-window.html": {
-   "n7": 3,
-   "p7": 0
   },
   "/en/guide/portable-ac-smells-musty.html": {
    "n7": 3,
@@ -89,16 +85,24 @@
    "n7": 9,
    "p7": 2
   },
-  "/guide/heizkosten-vergleich-rechner.html": {
+  "/geraete-austausch-rechner.html": {
    "n7": 6,
-   "p7": 0
-  },
-  "/guide/heizluefter-stromsparend.html": {
-   "n7": 3,
    "p7": 1
   },
+  "/guide/fenster-beschlagen-aussen.html": {
+   "n7": 9,
+   "p7": 0
+  },
+  "/guide/fenster-beschlagen-innen.html": {
+   "n7": 11,
+   "p7": 0
+  },
+  "/guide/heizkosten-vergleich-rechner.html": {
+   "n7": 8,
+   "p7": 0
+  },
   "/guide/klimaanlage-40-qm.html": {
-   "n7": 7,
+   "n7": 9,
    "p7": 0
   },
   "/guide/klimaanlage-mit-heizfunktion.html": {
@@ -106,15 +110,15 @@
    "p7": 0
   },
   "/guide/klimaanlage-wann-kaufen.html": {
-   "n7": 6,
-   "p7": 4
+   "n7": 15,
+   "p7": 5
   },
-  "/guide/klimaanlage-wohnmobil.html": {
-   "n7": 2,
-   "p7": 4
+  "/guide/lichterkette-stromkosten.html": {
+   "n7": 10,
+   "p7": 0
   },
   "/guide/luftbefeuchter-ratgeber.html": {
-   "n7": 13,
+   "n7": 19,
    "p7": 11
   },
   "/guide/luftbefeuchter-stromverbrauch.html": {
@@ -122,47 +126,47 @@
    "p7": 0
   },
   "/guide/luftentfeuchter-keller.html": {
-   "n7": 5,
+   "n7": 11,
    "p7": 0
   },
   "/guide/luftentfeuchter-ratgeber.html": {
    "n7": 6,
-   "p7": 0
+   "p7": 6
   },
   "/guide/midea-portasplit-ausverkauft-alternativen.html": {
    "n7": 6,
-   "p7": 2
-  },
-  "/guide/mobile-klimaanlage-ueberwintern.html": {
-   "n7": 3,
-   "p7": 2
-  },
-  "/guide/portasplit-vs-monoblock.html": {
-   "n7": 2,
    "p7": 0
   },
   "/guide/richtig-lueften-im-winter.html": {
-   "n7": 16,
+   "n7": 28,
    "p7": 1
   },
+  "/guide/smarte-heizkoerperthermostate-lohnen-sich.html": {
+   "n7": 30,
+   "p7": 0
+  },
   "/guide/thermovorhang-ratgeber.html": {
+   "n7": 13,
+   "p7": 0
+  },
+  "/guide/waesche-trocknen-wohnung.html": {
    "n7": 6,
    "p7": 0
   },
   "/guide/was-bedeutet-btu.html": {
    "n7": 4,
-   "p7": 4
+   "p7": 2
   },
   "/mcp.html": {
-   "n7": 4,
+   "n7": 11,
    "p7": 1
   },
   "/produkte.html": {
-   "n7": 7,
+   "n7": 13,
    "p7": 11
   },
   "/waeschetrockner-oder-luftentfeuchter.html": {
-   "n7": 25,
+   "n7": 32,
    "p7": 4
   }
  },
