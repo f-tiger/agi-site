@@ -112,6 +112,9 @@ async function checkGermanFocusedDiscovery(browser,base){
   const klarsteinQuery='Klarstein Kraftwerk Smart 12K 10034664';
   equal((await search(klarsteinQuery))[0],{href:klarstein,language:'de'},
    'Identifying the Klarstein article number opens its package checklist');
+  const stacking='/produkte.html#waeschesaeule-zubehoer';
+  equal((await search('WTZ27400 oder WTZ27410: Welcher Verbindungssatz für den Bosch WQG241001 hat einen Auszug?'))[0],
+   {href:stacking,language:'de'},'Bosch stacking kit questions reach the product guide');
   await search('eco-local-privacy-marker-6381');
   equal(await results.count(),0,'An arbitrary private phrase yields no result');
   await search(positive[1]);
@@ -200,6 +203,21 @@ async function checkGermanFocusedDiscovery(browser,base){
  const existingShop=offerBlock.getByRole('link',{name:'12K-Angebot bei Amazon öffnen und Ausführung prüfen →',exact:true});
  equal(await existingShop.getAttribute('href'),'https://www.amazon.de/dp/B08VWSP8FW?tag=getecoback-21',
   'The existing tagged product destination follows the model check');
+ await page.goto(base+'/produkte.html?__ci=1');
+ const stackingLink=page.getByRole('link',{name:'Bosch WQG241001: WTZ27400 oder WTZ27410?',exact:true});
+ check(await stackingLink.isVisible(),'The short Bosch stacking answer has a native link');
+ await stackingLink.click();
+ await page.waitForURL(base+'/produkte.html?__ci=1#waeschesaeule-zubehoer');
+ const stackingAnswer=page.locator('section[aria-labelledby="waeschesaeule-zubehoer"]');
+ check(await stackingAnswer.getByText('warte mit der Bestellung',{exact:false}).isVisible(),
+  'The catalog keeps a no-purchase branch for unknown washer compatibility');
+ const dryerLink=stackingAnswer.getByRole('link',{name:'Zum Trockner Bosch WQG241001 und seiner Modellsuche',exact:true});
+ await dryerLink.click();
+ await page.waitForURL(base+'/produkte.html?__ci=1#produkt-bosch-wqg241001');
+ const dryerShop=page.locator('#produkt-bosch-wqg241001 a[rel~="sponsored"]');
+ const dryerDestination=new URL(await dryerShop.getAttribute('href'));
+ equal(dryerDestination.origin+dryerDestination.pathname,'https://www.amazon.de/s','Only the existing dryer search is offered');
+ equal(dryerDestination.searchParams.get('tag'),'getecoback-21','The existing dryer search has the approved tag');
  await context.close();
  return checks;
 }

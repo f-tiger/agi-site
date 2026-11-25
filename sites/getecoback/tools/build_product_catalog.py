@@ -55,9 +55,19 @@ SPECIALIST_GUIDES = (
      'Wischsauger Nasswischen Bodenfreigabe Parkett Tineco S7 FlashDry Dreame H14 Pro Roborock F25 XT'),
 )
 
-# These named models have their own evidence pages. Keep nearby variants from
+BOSCH_STACKING_ID = 'waeschesaeule-zubehoer'
+BOSCH_STACKING_TITLE = 'Bosch WQG241001: WTZ27400 oder WTZ27410?'
+BOSCH_STACKING_ANSWER = (
+    'WTZ27400 hat eine ausziehbare Ablage. WTZ27410 ist der Rahmen ohne Auszug. '
+    'Prüfe die genaue Bosch-Waschmaschine, gleiche Gerätebreite und -tiefe und die Arbeitsplattentiefe über 55 cm. '
+    'Bei unklarer Zuordnung warte mit der Bestellung.'
+)
+
+# These named models have their own evidence sections. Keep nearby variants from
 # matching a short token inside the title or measurement instructions.
 MODEL_GUIDES = (
+    (BOSCH_STACKING_TITLE, '#' + BOSCH_STACKING_ID, BOSCH_STACKING_ANSWER,
+     'Bosch WQG241001 WTZ27400 WTZ27410 Verbindungssatz Zwischenbaurahmen Auszug'),
     ('De’Longhi PAC N90 ECO Silent: Modell prüfen', '/guide/delonghi-pac-n90-test.html#testlage',
      'Gleiche die vollständige Gerätekennung und die EAN 8004399512351 mit dem Angebot ab.',
      'DeLonghi Pinguino PACN90 0151400003'),
@@ -98,17 +108,18 @@ APPLIANCE_EVIDENCE = f'''
 <p>Die Anleitung für SBV4EBX00D/48 zeigt verschiedene Montagesituationen. Gleiche die vollständige Modellkennung, die Bezugskante und die passende Zeichnung für Front und Sockel ab. Fehlt diese Zuordnung, bleibt der Platzbedarf offen. Maße allein klären keine Anschlüsse oder Montage.</p>
 <p>Herstellerquellen Deutschland, gelesen am <time datetime="2026-11-20">20.11.2026</time>. <a href="https://media3.bosch-home.com/Documents/specsheet/de-DE/SBV4EBX00D.pdf">Bosch Datenblatt SBV4EBX00D</a> · <a href="https://www.bosch-home.com/de/de/product/SBV4EBX00D">Bosch Modellseite</a> · <a href="https://www.bosch-home.com/de/de/productservice/SBV4EBX00D-48">Bosch Service SBV4EBX00D/48</a> · <a href="https://media3.bsh-group.com/Documents/9001902376_A.pdf">Montagezeichnung 9001902376_A</a>.</p>
 </section>
-<section class="pc-method" id="waeschesaeule-zubehoer">
-<h2>Welcher Verbindungssatz passt zu Waschmaschine und Trockner?</h2>
+<section class="pc-method" aria-labelledby="{BOSCH_STACKING_ID}">
+<h2 id="{BOSCH_STACKING_ID}">Welcher Verbindungssatz passt zu Waschmaschine und Trockner?</h2>
 <p>Prüfe zuerst die Modellkennungen, Baureihen und den genauen Verbindungssatz. Miss die verfügbare Höhe an der niedrigsten Stelle und halte den Platz für eine geöffnete Tür oder eine ausgezogene Ablage fest. Die Außenmaße eines Zubehörs und die endgültige Einbauhöhe stehen in unterschiedlichen Unterlagen.</p>
 <ul>
 <li>Miele WTV 512 (9351790) misst 120 mm und gehört zur T1 White Edition. WTV 511 (9351780) misst 120 mm und wird für T1 Chrome Edition oder T1 Classic angegeben. Beide haben eine Schublade. Die jeweiligen Miele-Seiten nennen WTZH und WTW als Ausnahmen bei den Waschmaschinen.</li>
 <li>Miele WTV 501 (9256130) misst 25 mm und wird für T1 Chrome Edition oder T1 Classic angegeben. Die Produktseite schließt W 1000 und WTZH aus. W 3000, W 5000 und W Classic werden mit gerader Blende angegeben. Die Anleitung der WTV 511 und 512 behandelt auf Seite 13 den Zustand der Abdeckung nach der Demontage. Prüfe beim Gebrauchtkauf, welche Teile tatsächlich vorliegen.</li>
-<li>Die Bosch-Anleitung für WQG241001 nennt WTZ27410 und WTZ27400 mit ausziehbarer Arbeitsplatte, eine geeignete Waschmaschine desselben Herstellers mit gleicher Breite und Tiefe sowie den Ausschluss eines Podests für die Säule. Die Zubehörseiten nennen eine Waschmaschinen-Arbeitsplattentiefe über 55 cm. WTZ27410 wird mit 35 × 593 × 556 mm angegeben, WTZ27400 mit 42 × 595 × 574 mm (H × B × T).</li>
+<li><strong>Bosch WQG241001:</strong> {BOSCH_STACKING_ANSWER} Bosch schließt ein Podest für die Säule aus. WTZ27410 misst 35 × 593 × 556 mm, WTZ27400 misst 42 × 595 × 574 mm (H × B × T).</li>
 <li>Die Anleitung nennt für WQG241001 einen Gerätekörper von 842 × 598 × 613 mm, eine Tiefe von 648 mm bei geschlossener und 1.096 mm bei geöffneter Tür. Dieselbe Anleitung führt WTZ1110 separat als Zubehör für den Kondensatablauf auf.</li>
 </ul>
 <p>Prüfe den Lieferumfang und die Bezugskanten der Messung. Fehlende Angaben zu Auszug, Belastung oder Kombination bleiben offen. Bei unklarer Kombination kommen getrennte Aufstellung oder Rückfrage beim Hersteller in Frage.</p>
-<p>Herstellerquellen Deutschland, gelesen am <time datetime="2026-11-20">20.11.2026</time>. <a href="https://www.miele.de/product/9351790/wasch-trocken-verbindungssatz-wtv-512">Miele WTV 512</a> · <a href="https://www.miele.de/product/9351780/wasch-trocken-verbindungssatz-wtv-511">Miele WTV 511</a> · <a href="https://www.miele.de/product/9256130/wasch-trocken-verbindungssatz-wtv-501">Miele WTV 501</a> · <a href="https://media.miele.com/downloads/c9/e5/00_56D762FF8C918420E10080000AB5C9E5.pdf">Miele Anleitung für WTV 511 und 512</a> · <a href="https://media3.bosch-home.com/Documents/9001984634_A.pdf">Bosch WQG241001 Anleitung, Seiten 6, 27 und 48</a> · <a href="https://www.bosch-home.com/de/de/product/WTZ27410">Bosch WTZ27410</a> · <a href="https://www.bosch-home.com/de/de/product/WTZ27400">Bosch WTZ27400</a>.</p>
+<p><a href="#produkt-bosch-wqg241001">Zum Trockner Bosch WQG241001 und seiner Modellsuche</a></p>
+<p>Herstellerquellen Deutschland. Bosch geprüft am <time datetime="2026-11-25">25.11.2026</time>, Miele geprüft am <time datetime="2026-11-20">20.11.2026</time>. <a href="https://www.miele.de/product/9351790/wasch-trocken-verbindungssatz-wtv-512">Miele WTV 512</a> · <a href="https://www.miele.de/product/9351780/wasch-trocken-verbindungssatz-wtv-511">Miele WTV 511</a> · <a href="https://www.miele.de/product/9256130/wasch-trocken-verbindungssatz-wtv-501">Miele WTV 501</a> · <a href="https://media.miele.com/downloads/c9/e5/00_56D762FF8C918420E10080000AB5C9E5.pdf">Miele Anleitung für WTV 511 und 512</a> · <a href="https://media3.bosch-home.com/Documents/9001984634_A.pdf">Bosch WQG241001 Anleitung, Seiten 6, 27 und 48</a> · <a href="https://www.bosch-home.com/de/de/product/WTZ27410">Bosch WTZ27410</a> · <a href="https://www.bosch-home.com/de/de/product/WTZ27400">Bosch WTZ27400</a>.</p>
 </section>
 <section class="pc-method" id="dunstabzug-umluft-zubehoer">
 <h2>Welches Umluftset oder welcher Ersatzfilter gehört zur Dunstabzugshaube?</h2>
@@ -530,12 +541,14 @@ def render(data, today=None):
                 merchant = '<p class="pc-commerce pc-paused">Händlersuche pausiert: Quellenprüfung ausstehend. Die Angaben unten sind der dokumentierte Stand, keine aktuelle Kaufempfehlung.</p>'
             care_link = (f'<p class="pc-care"><a href="/ersatzfilter.html#{esc(product["id"])}">Ersatzfilter zuordnen &amp; Pflege notieren →</a></p>'
                          if product['id'] in FILTER_CARE_MODELS else '')
+            stacking_link = (f'<p class="pc-buyer-routes"><a href="#{BOSCH_STACKING_ID}">Verbindungssatz für die Wasch-Trocken-Säule prüfen →</a></p>'
+                             if product['id'] == 'bosch-wqg241001' else '')
             cards.append(f'''<section class="pc-card" id="produkt-{esc(product['id'])}" data-product-card data-category="{esc(category['id'])}">
 <h3>{esc(product['name'])}</h3><p class="pc-brand">{esc(product['brand'])} · {esc(product['variant'])}</p>
 <p><strong>Aufgabe:</strong> {esc(product['role'])}</p><p>{esc(product['facts'])}</p>
 <p class="pc-limit"><strong>Vor dem Kauf:</strong> {esc(product['limit'])}</p>
 <p class="pc-source">Quelle: <a href="{esc(product['source'])}" target="_blank" rel="noopener">{esc(product['source_label'])}</a> · geprüft am <time datetime="{esc(product['checked'])}">{date(product['checked']).strftime('%d.%m.%Y')}</time>.</p>
-{merchant}{care_link}</section>''')
+{stacking_link}{merchant}{care_link}</section>''')
         comparison = render_comparison(category['id'], data['products'], category.get('buying_guide'))
         tool = render_tool(category['id'])
         if not isinstance(tool, str) or not tool.strip():
@@ -592,7 +605,7 @@ def render(data, today=None):
 <p id="product-filter-status" role="status" aria-live="polite">{count} Modelle in {len(data['categories'])} Produktgruppen.</p>
 <ul class="pc-part-links" data-part-results aria-label="Passende Ersatzteil-Hinweise" hidden></ul>
 <section class="pc-guides" id="kaufhilfen" data-specialist-guides aria-labelledby="pc-guides-heading">
-<h2 id="pc-guides-heading">Kaufhilfen für Raumklima, Heizung und Böden</h2>
+<h2 id="pc-guides-heading">Kaufhilfen für Haushaltsgeräte und Raumklima</h2>
 <ul>{''.join(guide_items)}</ul></section>
 {''.join(groups)}
 {APPLIANCE_EVIDENCE}

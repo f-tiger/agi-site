@@ -15,6 +15,21 @@ const glazing = {
   id:'aussen-innen-oder-dazwischen',
   tool:'fenster_beschlag_einordnen',
 };
+const boschStacking = {
+  path:'/produkte.html',
+  id:'waeschesaeule-zubehoer',
+};
+
+export function exactBoschStackingGuide(query) {
+  const dryer = /\bwqg[ -]?241001\b/;
+  const kit = /\bwtz[ -]?274(?:00|10)\b/;
+  const otherModel = /\b(?:wqg[ -]?(?!241001\b)[0-9][a-z0-9]+|wtz[ -]?(?!274(?:00|10)\b)\d+)\b/;
+  const stacking = /\b(?:zwischenbau|verbindungs|stapel)\w*\b|\b(?:uebereinander|auszug|arbeitsplattentiefe|auf\s+(?:der|einer|meiner)\s+waschmaschine)\b/;
+  const otherTask = /\b(?:repar\w*|defekt\w*|kondensat\w*|ablauf\w*|schlauch\w*|energieverbrauch|stromverbrauch|stromkost\w*)\b/;
+  return !otherModel.test(query) && !otherTask.test(query) &&
+    (kit.test(query) || (dryer.test(query) && stacking.test(query))) ? boschStacking : null;
+}
+
 export const klarsteinPackage = {
   path:'/guide/klarstein-kraftwerk-smart-12k-test.html',
   id:'kraftwerk-10034664-lieferumfang',

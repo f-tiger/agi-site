@@ -84,6 +84,29 @@ test('laundry search stays on task and every search result can be read through t
   }
 });
 
+test('Bosch stacking kit search leads with the answer and the readable catalog excerpt contains its primary references', async () => {
+  const {env} = assetEnv();
+  const frage = 'WTZ27400 oder WTZ27410: Welcher Verbindungssatz für den Bosch WQG241001 hat einen Auszug?';
+  const matching = await call('ratgeber_suche', {frage, sprache:'de', max:1}, env);
+  const lines = textOf(matching).split('\n');
+  assert.equal(matching.isError, false);
+  assert.equal(lines[1], '- Bosch WQG241001: WTZ27400 oder WTZ27410?');
+  assert.equal(lines[2].trim(), 'https://getecoback.com/produkte.html');
+  const reading = await call('ratgeber_lesen', {pfad:lines[2].trim()}, env);
+  assert.equal(reading.isError, false);
+  const answer = textOf(reading);
+  const excerpt = answer.split('[Auszug beendet.]')[0];
+  for (const phrase of ['WTZ27400 hat eine ausziehbare Ablage', 'WTZ27410 ist der Rahmen ohne Auszug',
+    'über 55 cm', 'warte mit der Bestellung', 'https://getecoback.com/produkte.html#waeschesaeule-zubehoer']) {
+    assert.ok(excerpt.includes(phrase), phrase);
+  }
+  for (const source of ['https://www.bosch-home.com/de/de/product/WTZ27400',
+    'https://www.bosch-home.com/de/de/product/WTZ27410', 'https://media3.bosch-home.com/Documents/9001984634_A.pdf']) {
+    assert.ok(answer.includes(source), source);
+  }
+  assert.doesNotMatch(answer, /amazon\.de\/|[?&]tag=/i);
+});
+
 const focusedLookups = [
   {
     path:'/guide/klarstein-kraftwerk-smart-12k-test.html', section:'kraftwerk-10034664-lieferumfang',
