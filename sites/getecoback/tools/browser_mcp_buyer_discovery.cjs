@@ -49,8 +49,8 @@ const cases = [
     question: 'Lohnt sich ein Luftentfeuchter für Wäsche im Winter, wenn manche Ladungen weiter in den Trockner gehen?',
     tool: 'waesche_trocknungswechsel_kaufschwelle',
     category: 'Kaufpraxis',
-    guide: '/waeschetrockner-oder-luftentfeuchter.html#laundry-check',
-    heading: 'Trocknungskosten pro Ladung vergleichen',
+    guide: '/waeschetrockner-oder-luftentfeuchter.html#waesche-saisonwechsel',
+    heading: 'Nur einen Teil der Wäsche umstellen: Kosten pro Saison',
   },
   {
     question: 'Brauche ich für das Dachfenster bei der originalen Midea PortaSplit eine Universalhalterung, und ist sie im Lieferumfang?',
@@ -111,8 +111,7 @@ async function assertGuideVisible(page, item) {
   assert(layout.top >= Math.max(0, layout.navBottom) - 1 && layout.bottom <= layout.height,
     `Guide heading is clipped at ${guide.hash}: ${JSON.stringify(layout)}`);
   if (item.tool === 'waesche_trocknungswechsel_kaufschwelle') {
-    await page.getByText('Ich habe bereits einen Trockner', {exact:true}).click();
-    assert(await page.getByText(/16,80 € Ersparnis pro Saison/).isVisible());
+    assert(await page.locator(guide.hash).getByText(/spart 16,80 € pro Saison/).isVisible());
   }
   if (item.guide.endsWith('#fenstersauger-belege')) {
     await page.getByRole('link', {name:'Fenstersauger-Modelle und Lieferumfang vergleichen'}).click();

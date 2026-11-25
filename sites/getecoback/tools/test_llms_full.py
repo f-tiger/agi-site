@@ -16,6 +16,20 @@ MEACO = 'https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-
 
 
 class LlmsFull(unittest.TestCase):
+    def test_german_laundry_season_has_the_same_exact_worked_example_in_the_mirror(self):
+        page = SITE / 'waeschetrockner-oder-luftentfeuchter.html'
+        raw = page.read_text()
+        mirror = page.with_suffix('.md').read_text()
+        part = re.search(r'<section[^>]*id="waesche-saisonwechsel".*?</section>', raw, re.S)[0]
+        self.assertIn('data-laundry-season hidden inert', part)
+        self.assertIn('href="#waesche-saisonwechsel"', raw)
+        for fact in ('Von 100 Ladungen bleiben 40 im Trockner', '49,00 €', '32,20 €',
+                     '16,80 € pro Saison', 'ab der 6. Saison', 'Nicht erfasste Heizwärme'):
+            self.assertIn(fact, part)
+            self.assertEqual(mirror.count(fact), 1)
+        self.assertNotIn('data-laundry-season', mirror)
+        self.assertNotIn('waesche-saisonwechsel', (SITE / 'en/guide/dehumidifier-drying-clothes-cost.html').read_text())
+
     def test_cooling_offer_calculation_has_a_static_owned_example(self):
         page = SITE / 'guide/klimaanlage-wann-kaufen.html'
         source = page.read_text()

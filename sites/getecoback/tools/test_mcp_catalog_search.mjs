@@ -556,7 +556,7 @@ test('German partial dryer replacement questions lead to the measured seasonal p
     'Teils weiter Wäschetrockner nutzen: Amortisation Luftentfeuchter je Saison']) {
     const [first] = (await catalogue({q, view:'compact', limit:'3'})).tools;
     assert.equal(first?.name, tool, q);
-    assert.equal(toolGuidePath(first), '/waeschetrockner-oder-luftentfeuchter.html#laundry-check');
+    assert.equal(toolGuidePath(first), '/waeschetrockner-oder-luftentfeuchter.html#waesche-saisonwechsel');
     assert.equal(findCatalogueTools(compact, {query:q})[0]?.name, tool, q);
   }
 });
