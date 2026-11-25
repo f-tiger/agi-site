@@ -70,6 +70,27 @@ test('Glazing questions reach the existing comparison, while indoor glass keeps 
   assert.notEqual(searchEntries(index,question,'de')[0]?.entry.u,glazing,question);
  }
 });
+test('Bosch stacking questions reach the exact kit comparison and do not steal dryer tasks',()=>{
+ const target='/produkte.html#waeschesaeule-zubehoer';
+ for(const query of [
+  'WTZ27400 oder WTZ27410: Welcher Verbindungssatz für den Bosch WQG241001 hat einen Auszug?',
+  'Welchen Zwischenbaurahmen brauche ich für den Bosch WQG241001 auf meiner Waschmaschine?',
+  'Reichen 55 cm Arbeitsplattentiefe für den Bosch WQG 241001?',
+  'WTZ-27410',
+ ]){
+  const result=searchEntries(index,query,'de')[0]?.entry;
+  assert.equal(result?.u,target,query);
+  assert.match(result.d,/WTZ27400 hat eine ausziehbare Ablage.*WTZ27410 ist der Rahmen ohne Auszug.*über 55 cm.*warte mit der Bestellung/);
+  assert.ok(!searchEntries(index,query,'en').some(hit=>hit.entry.u===target),query);
+ }
+ for(const query of [
+  'Bosch WQG241001 WTZ1110 Kondensatablauf',
+  'Bosch WQG241001 Stromverbrauch',
+  'Passt WTZ27400 zum WQG241031?',
+  'WQG241001 oder WQG233D01: Welcher Stapelrahmen passt?',
+  'WTZ27400 defekt, Auszug reparieren',
+ ]) assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+});
 test('German Klarstein package questions reach only the confirmed white 12K model',()=>{
  const target='/guide/klarstein-kraftwerk-smart-12k-test.html#kraftwerk-10034664-lieferumfang';
  for(const query of [

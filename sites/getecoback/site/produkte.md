@@ -25,7 +25,7 @@ Halte die vollständige Modellnummer vom Typenschild oder die Teilenummer bereit
 
 48 Modelle in 12 Produktgruppen.
 
-## Kaufhilfen für Raumklima, Heizung und Böden
+## Kaufhilfen für Haushaltsgeräte und Raumklima
 
 - [Luftentfeuchter](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#eb-models) Ist dein Keller dauerhaft feucht? Erst messen und die Ursache klären. Bei Bedarf Tankbetrieb und Schlauchablauf vergleichen.
 
@@ -38,6 +38,8 @@ Halte die vollständige Modellnummer vom Typenschild oder die Teilenummer bereit
 - [Saugroboter](https://getecoback.com/guide/saugroboter-kaufberatung.html#modelle-vergleichen) Soll ein Roboter die Räume selbstständig reinigen? Miss die Türschwellen und den Platz für die Station, bevor du die Wischfunktion wählst.
 
 - [Saugwischer](https://getecoback.com/guide/saugwischer-kaufberatung.html#modelle-vergleichen) Willst du Hartboden von Hand saugen und wischen? Prüfe die Freigabe für feuchte Reinigung und plane Zeit für Tank und Walze ein.
+
+- [Bosch WQG241001: WTZ27400 oder WTZ27410?](https://getecoback.com/produkte.html#waeschesaeule-zubehoer) WTZ27400 hat eine ausziehbare Ablage. WTZ27410 ist der Rahmen ohne Auszug. Prüfe die genaue Bosch-Waschmaschine, gleiche Gerätebreite und -tiefe und die Arbeitsplattentiefe über 55 cm. Bei unklarer Zuordnung warte mit der Bestellung.
 
 - [De’Longhi PAC N90 ECO Silent: Modell prüfen](https://getecoback.com/guide/delonghi-pac-n90-test.html#testlage) Gleiche die vollständige Gerätekennung und die EAN 8004399512351 mit dem Angebot ab.
 
@@ -783,6 +785,7 @@ Der Wärmepumpentrockner ist laut Bosch für maximal 9 kg Beladung ausgelegt und
 
 Quelle: [Bosch Deutschland: Bosch WQG241001](https://www.bosch-home.com/de/de/product/waschen-trocknen/waeschetrockner/waermepumpentrockner/WQG241001) · geprüft am 13.11.2026.
 
+[Verbindungssatz für die Wasch-Trocken-Säule prüfen →](https://getecoback.com/produkte.html#waeschesaeule-zubehoer)
 Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue Variante, Gesamtpreis und Lieferung beim Händler prüfen.
 
 ### Bosch WQG233D01
@@ -1063,13 +1066,15 @@ Prüfe zuerst die Modellkennungen, Baureihen und den genauen Verbindungssatz. Mi
 
 - Miele WTV 501 (9256130) misst 25 mm und wird für T1 Chrome Edition oder T1 Classic angegeben. Die Produktseite schließt W 1000 und WTZH aus. W 3000, W 5000 und W Classic werden mit gerader Blende angegeben. Die Anleitung der WTV 511 und 512 behandelt auf Seite 13 den Zustand der Abdeckung nach der Demontage. Prüfe beim Gebrauchtkauf, welche Teile tatsächlich vorliegen.
 
-- Die Bosch-Anleitung für WQG241001 nennt WTZ27410 und WTZ27400 mit ausziehbarer Arbeitsplatte, eine geeignete Waschmaschine desselben Herstellers mit gleicher Breite und Tiefe sowie den Ausschluss eines Podests für die Säule. Die Zubehörseiten nennen eine Waschmaschinen-Arbeitsplattentiefe über 55 cm. WTZ27410 wird mit 35 × 593 × 556 mm angegeben, WTZ27400 mit 42 × 595 × 574 mm (H × B × T).
+- **Bosch WQG241001:** WTZ27400 hat eine ausziehbare Ablage. WTZ27410 ist der Rahmen ohne Auszug. Prüfe die genaue Bosch-Waschmaschine, gleiche Gerätebreite und -tiefe und die Arbeitsplattentiefe über 55 cm. Bei unklarer Zuordnung warte mit der Bestellung. Bosch schließt ein Podest für die Säule aus. WTZ27410 misst 35 × 593 × 556 mm, WTZ27400 misst 42 × 595 × 574 mm (H × B × T).
 
 - Die Anleitung nennt für WQG241001 einen Gerätekörper von 842 × 598 × 613 mm, eine Tiefe von 648 mm bei geschlossener und 1.096 mm bei geöffneter Tür. Dieselbe Anleitung führt WTZ1110 separat als Zubehör für den Kondensatablauf auf.
 
 Prüfe den Lieferumfang und die Bezugskanten der Messung. Fehlende Angaben zu Auszug, Belastung oder Kombination bleiben offen. Bei unklarer Kombination kommen getrennte Aufstellung oder Rückfrage beim Hersteller in Frage.
 
-Herstellerquellen Deutschland, gelesen am 20.11.2026. [Miele WTV 512](https://www.miele.de/product/9351790/wasch-trocken-verbindungssatz-wtv-512) · [Miele WTV 511](https://www.miele.de/product/9351780/wasch-trocken-verbindungssatz-wtv-511) · [Miele WTV 501](https://www.miele.de/product/9256130/wasch-trocken-verbindungssatz-wtv-501) · [Miele Anleitung für WTV 511 und 512](https://media.miele.com/downloads/c9/e5/00_56D762FF8C918420E10080000AB5C9E5.pdf) · [Bosch WQG241001 Anleitung, Seiten 6, 27 und 48](https://media3.bosch-home.com/Documents/9001984634_A.pdf) · [Bosch WTZ27410](https://www.bosch-home.com/de/de/product/WTZ27410) · [Bosch WTZ27400](https://www.bosch-home.com/de/de/product/WTZ27400).
+[Zum Trockner Bosch WQG241001 und seiner Modellsuche](https://getecoback.com/produkte.html#produkt-bosch-wqg241001)
+
+Herstellerquellen Deutschland. Bosch geprüft am 25.11.2026, Miele geprüft am 20.11.2026. [Miele WTV 512](https://www.miele.de/product/9351790/wasch-trocken-verbindungssatz-wtv-512) · [Miele WTV 511](https://www.miele.de/product/9351780/wasch-trocken-verbindungssatz-wtv-511) · [Miele WTV 501](https://www.miele.de/product/9256130/wasch-trocken-verbindungssatz-wtv-501) · [Miele Anleitung für WTV 511 und 512](https://media.miele.com/downloads/c9/e5/00_56D762FF8C918420E10080000AB5C9E5.pdf) · [Bosch WQG241001 Anleitung, Seiten 6, 27 und 48](https://media3.bosch-home.com/Documents/9001984634_A.pdf) · [Bosch WTZ27410](https://www.bosch-home.com/de/de/product/WTZ27410) · [Bosch WTZ27400](https://www.bosch-home.com/de/de/product/WTZ27400).
 
 ## Welches Umluftset oder welcher Ersatzfilter gehört zur Dunstabzugshaube?
 

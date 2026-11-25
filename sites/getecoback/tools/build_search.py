@@ -4,6 +4,7 @@ from pathlib import Path
 import json
 import re
 from build_language_nav import Head, local
+from build_product_catalog import BOSCH_STACKING_ANSWER, BOSCH_STACKING_ID, BOSCH_STACKING_TITLE
 ROOT=Path(__file__).resolve().parents[1]
 SITE=ROOT/'site'
 PRIVATE={'auth','api','account','account.html','members','members.html','widgets','analytics-assets','member-assets'}
@@ -123,6 +124,7 @@ def collect():
     'description':'Basis: Artikel 10000651, EAN 4048164103010. WF: Artikel 10000726, EAN 4048164103485. Kennung der gewählten Ausführung vor der Bestellung prüfen.'}]
   if lang=='de' and route=='/produkte.html':
    model_sections=[
+    {'id':BOSCH_STACKING_ID,'title':BOSCH_STACKING_TITLE,'description':BOSCH_STACKING_ANSWER},
     {'id':'beutelstaubsauger-angebote','title':'Guard S1 oder M1 Parquet Flex: Lieferumfang und Gesamtpreis prüfen',
      'description':'Miele 12558410 und 12560320 nach Originaldüse, TU- oder CO-Beuteln und eigenen Preisen vergleichen. Bosch BGBS2BA1P im Lieferumfang prüfen.'},
     {'id':'miele-staubsaugerbeutel','title':'Welcher Staubsaugerbeutel passt zu meinem Miele?',

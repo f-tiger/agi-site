@@ -28,26 +28,27 @@ def fixture():
 
 
 class CatalogTest(unittest.TestCase):
-    def test_exact_cooling_guides_link_to_existing_answers_in_html_and_markdown(self):
+    def test_exact_model_guides_link_to_existing_answers_in_html_and_markdown(self):
         page = (C.ROOT / 'site' / C.ROUTE.lstrip('/')).read_text()
         mirror = (C.ROOT / 'site' / C.ROUTE.lstrip('/')).with_suffix('.md').read_text()
         rows = re.findall(r'<li data-specialist-guide data-exact-guide-terms\b[^>]*>.*?</li>', page, re.S)
         expected = {
+            '#waeschesaeule-zubehoer': 'WTZ27400',
             '/guide/delonghi-pac-n90-test.html#testlage': '8004399512351',
             '/guide/midea-portasplit-ausverkauft-alternativen.html#fensterfalz': '4048164116478',
         }
         self.assertEqual(len(rows), len(expected))
-        for row, (target, ean) in zip(rows, expected.items()):
+        for row, (target, identifier) in zip(rows, expected.items()):
             link, = Document(row).links
             self.assertEqual(link.get('href'), target)
             self.assertNotIn('sponsored', link.get('rel', ''))
-            self.assertIn(ean, row)
-            self.assertIn('https://getecoback.com' + target, mirror)
-            self.assertIn(ean, mirror)
+            self.assertIn(identifier, row)
+            self.assertIn('https://getecoback.com' + (C.ROUTE if target.startswith('#') else '') + target, mirror)
+            self.assertIn(identifier, mirror)
             route, anchor = target.split('#', 1)
-            destination = (C.ROOT / 'site' / route.lstrip('/')).read_text()
+            destination = (C.ROOT / 'site' / (route or C.ROUTE).lstrip('/')).read_text()
             self.assertEqual(Document(destination).ids.count(anchor), 1)
-            self.assertIn(ean, destination)
+            self.assertIn(identifier, destination)
 
     def test_focused_parts_are_static_readable_and_reached_from_catalogue_entries(self):
         from link_product_catalog import inject

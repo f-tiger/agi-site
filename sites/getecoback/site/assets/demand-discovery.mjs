@@ -1,4 +1,4 @@
-import {exactGermanHouseholdTask} from './german-household-intent.mjs?v=a1dc0dc6a9d6';
+import {exactBoschStackingGuide, exactGermanHouseholdTask} from './german-household-intent.mjs?v=c734c006cf48';
 import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion} from './kaercher-saugduese-intent.mjs';
@@ -70,7 +70,7 @@ export function exactGermanGuide(normalizedQuery) {
    return {path:'/guide/klimaanlage-40-qm.html',id:'portasplit-40-qm'};
  if(asksAboutIndoorWindowCondensation(query))
    return {path:'/guide/fenster-beschlagen-innen.html',id:'fenstersauger-gegen-kondenswasser'};
- const task=exactGermanHouseholdTask(query);
+ const task=exactBoschStackingGuide(query) ?? exactGermanHouseholdTask(query);
  return task && {path:task.path,id:task.id};
 }
 
