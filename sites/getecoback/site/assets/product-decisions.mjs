@@ -3,6 +3,8 @@ const root=document.getElementById('product-decisions');
 if(root){
 const config=JSON.parse(document.getElementById('product-decision-config').textContent),{text:t,markets}=config;
 let s=defaults(config.market),kind='example';
+const dishEntryRequested=()=>config.dishEntry && location.hash==='#'+config.dishEntry.anchor;
+const exampleState=market=>dishEntryRequested()?{...defaults(market),...config.dishEntry.example}:defaults(market);
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 const emit=action=>{if(!/[?&]__(probe|ci)(?:=|&|$)/.test(location.search))window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:'eco_buy_'+s.mode+'_'+action}}));};
 const button=(text,fn)=>{const b=el('button',text);b.type='button';b.addEventListener('click',fn);return b;};
@@ -15,7 +17,7 @@ for(const key of [...Object.keys(enums),...Object.keys(bounds)]){
  else{input.type='number';input.min=bounds[key][0];input.max=bounds[key][1];input.step='any';input.required=true;}
  inputs[key]=input;label.append(input);(key==='market'||key==='mode'||key==='category'?top:fields).append(label);
 }
-form.append(top,notice,local,advanced);const actions=el('div',undefined,'pd-actions'),go=el('button',t.run);go.type='submit';actions.append(go,button(t.reset,()=>{s=defaults(s.market);kind='example';sync();render();emit('example');}));form.append(actions);
+form.append(top,notice,local,advanced);const actions=el('div',undefined,'pd-actions'),go=el('button',t.run);go.type='submit';actions.append(go,button(t.reset,()=>{s=exampleState(s.market);kind='example';sync();render();emit('example');}));form.append(actions);
 const share=button(t.share,()=>{if(!read())return;render();const u=scenarioURL(document.querySelector('link[rel=canonical]').href,s);shareBox.replaceChildren(el('p',t.shareNote));const link=el('textarea');link.readOnly=true;link.value=u;link.setAttribute('aria-label',t.share);shareBox.append(link);const links=el('div',undefined,'pd-actions');links.append(button(t.copy,async()=>{try{await navigator.clipboard.writeText(u);status.textContent=t.copied;emit('copy');}catch{link.focus();link.select();status.textContent=t.copyFail;}}));for(const platform of ['Reddit','X']){const dest=new URL(platform==='Reddit'?'https://www.reddit.com/submit':'https://x.com/intent/post');dest.searchParams.set('url',u);dest.searchParams.set(platform==='Reddit'?'title':'text',t[s.mode]+' — '+t.edited);const a=el('a',platform);a.href=dest.href;a.target='_blank';a.rel='noopener noreferrer';a.addEventListener('click',()=>emit('share_'+platform.toLowerCase()));links.append(a);}shareBox.append(links);shareBox.hidden=false;emit('share_prepare');});
 const toolbar=el('div',undefined,'pd-actions');toolbar.append(share,button(t.print,()=>{if(read()){render();advanced.open=true;window.print();emit('print');}}));
 root.querySelector('[data-pd-mount]').append(form,result,toolbar,shareBox,status,sourceList);
@@ -47,6 +49,6 @@ form.addEventListener('change',e=>{
  }
  render();emit('example');
 });
-function restore(){try{const shared=parseShare(location.hash);if(shared){s=shared;kind='edited';}sync();render();}catch{ s=defaults(config.market);kind='example';sync();render();status.textContent=t.error;}}
-restore();window.addEventListener('hashchange',()=>{if(location.hash.startsWith('#eco-buy-v1='))restore();});
+function restore(){try{const shared=parseShare(location.hash);if(shared){s=shared;kind='edited';}else if(dishEntryRequested()){s=exampleState(config.market);kind='example';}sync();render();}catch{ s=defaults(config.market);kind='example';sync();render();status.textContent=t.error;}}
+restore();window.addEventListener('hashchange',()=>{if(location.hash.startsWith('#eco-buy-v1=')||dishEntryRequested())restore();});
 }

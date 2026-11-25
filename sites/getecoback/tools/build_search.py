@@ -66,6 +66,9 @@ def collect():
  sections[('de','/guide/klimaanlage-fenster-einbruchschutz.html')]={
   'id':'fenster-verschluss-pruefen','title':'Klimaanlage am Fenster: Schließen und Verriegeln prüfen',
   'description':'Prüfe am konkreten Fenster, ob es mit der Leitung normal verriegelt. Bei unklarem Ergebnis den Kauf zurückstellen.'}
+ sections[('de','/geraete-austausch-rechner.html')]={
+  'id':'geschirrspueler-handabwasch','title':'Was kostet eine Ladung mit der Spülmaschine oder von Hand?',
+  'description':'Gleiche Geschirrmenge und gleiches Spülergebnis vergleichen. Wasser, Strom und Warmwasser pro Ladung oder Jahr berechnen.'}
  sections[('de','/guide/fenster-beschlagen-aussen.html')]={
   'id':'aussen-innen-oder-dazwischen','title':'Blinde Fenster: Sitzt der Beschlag zwischen den Scheiben?',
   'description':'Nur sicher erreichbare Flächen prüfen. Vermuteten Beschlag im Isolierglas fotografieren und den Fensterbetrieb oder die Hausverwaltung informieren.'}

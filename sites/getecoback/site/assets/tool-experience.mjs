@@ -164,7 +164,8 @@ if(adapter){
  function loadScenario(){let incoming=null,bad=false;if(location.hash.startsWith('#eco-v1=')){try{if(location.hash.length>8000)throw Error();const parsed=JSON.parse(decodeURIComponent(location.hash.slice(8)));if(parsed.path!==location.pathname)throw Error();incoming=checked(parsed.values);}catch{bad=true;}}
  // Let the native guide fragment follow the layout when this earlier example expands.
  const evidenceEntry=(laundry&&location.hash==='#waesche-saisonwechsel')||
-  (location.pathname==='/guide/richtig-lueften-im-winter.html'&&location.hash==='#lueften-vorher-nachher');
+  (location.pathname==='/guide/richtig-lueften-im-winter.html'&&location.hash==='#lueften-vorher-nachher')||
+  (location.pathname==='/geraete-austausch-rechner.html'&&location.hash==='#geschirrspueler-handabwasch');
  run(incoming||original,incoming?'shared':'example',!evidenceEntry);if(bad)status.textContent=t[16];}
  if(!earlyInput)loadScenario();else{kind='edited';status.textContent=t[14];}window.addEventListener('hashchange',()=>{if(location.hash.startsWith('#eco-v1='))loadScenario();});
  panel.dataset.quick='true';

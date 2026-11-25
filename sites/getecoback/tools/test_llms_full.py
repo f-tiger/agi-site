@@ -249,6 +249,8 @@ class LlmsFull(unittest.TestCase):
             'strommess-protokoll': ['0,6 kWh pro Tag', '219 kWh und 76,65 €',
                                    'betriebstage', 'Keine Arbeiten an offenen Leitungen'],
             'geraete-austausch-rechner': ['7,14 Jahre', 'Behalten 700 €', 'positive jährliche Stromersparnis',
+                                         '0,350 € für die Maschine', '0,309 € von Hand', '22,6 Litern Handspülwasser',
+                                         'https://www.umweltbundesamt.de/umwelttipps-fuer-den-alltag/geschirrspueler-im-eco-programm-wasser-strom-sparen',
                                          'https://energy-efficient-products.ec.europa.eu/product-list/dishwashers_en'],
             'familienwerkstatt': ['Keine allgemeine Treppenfreigabe.', 'Begrenzungsdraht-Installation',
                                   'https://www.husqvarna.com/us/support/how-to-create-a-passage-in-an-automower-boundary-wire-installation-ka-01710/',

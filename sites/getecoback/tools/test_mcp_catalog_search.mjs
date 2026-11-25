@@ -34,6 +34,10 @@ test('German household questions agree in browser, catalogue and compact MCP', a
       '/guide/fenster-beschlagen-aussen.html#aussen-innen-oder-dazwischen'],
     ['Zwischen den beiden Fensterscheiben ist Beschlag, weder innen noch außen lässt er sich wegwischen. Hilft ein Luftentfeuchter?',
       'fenster_beschlag_einordnen','/guide/fenster-beschlagen-aussen.html#aussen-innen-oder-dazwischen'],
+    ['Ist Geschirrspüler oder Handabwasch billiger, wenn die Maschine 10 Liter braucht und ich von Hand 20 Liter brauche?',
+      'spuelmaschine_handspuelen_kosten','/geraete-austausch-rechner.html#geschirrspueler-handabwasch'],
+    ['Was kostet Abwaschen per Hand im Vergleich zum Geschirrspüler, mit warmem Wasser?',
+      'spuelmaschine_handspuelen_kosten','/geraete-austausch-rechner.html#geschirrspueler-handabwasch'],
   ];
   for (const [frage, name, path] of scenarios) {
     const browser = findCatalogueTools(compact,{query:frage});
@@ -59,9 +63,9 @@ test('German household questions agree in browser, catalogue and compact MCP', a
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 240);
+  assert.equal(withGuides.length, 241);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 40);
+  assert.equal(destinations.size, 41);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);

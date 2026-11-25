@@ -37,6 +37,7 @@ const toolPaths = new Map([
   ['fenstersauger_wv3_wv8_led_muster_einordnen', products + '#kaercher-fenstersauger-einsatz-und-hinweise'],
   ['fenster_oberflaeche_taucheck', '/guide/fenster-beschlagen-innen.html#fenstersauger-gegen-kondenswasser'],
   ['fenster_beschlag_einordnen', '/guide/fenster-beschlagen-aussen.html#aussen-innen-oder-dazwischen'],
+  ['spuelmaschine_handspuelen_kosten', '/geraete-austausch-rechner.html#geschirrspueler-handabwasch'],
   ['lueften_messwirkung', '/guide/richtig-lueften-im-winter.html#lueften-vorher-nachher'],
   ['thermovorhang_bahnenbedarf', '/guide/thermovorhang-ratgeber.html#thermovorhang-bahnenbedarf'],
 ]);
@@ -105,7 +106,7 @@ test('each mapped tool publishes the same exact evidence link after a real tool 
   const advertised = new Map(standard.map(tool => [tool.name, tool]));
   const compact = new Map((await h.catalogue({view:'compact'})).tools.map(tool => [tool.name, tool]));
   const mapped = expandedDefinitions.filter(tool=>paths.has(tool.category) || toolPaths.has(tool.name));
-  assert.equal(mapped.length, 239);
+  assert.equal(mapped.length, 240);
   assert.equal([...compact.values()].filter(tool=>tool.guide_url && tool.name!=='entfeuchter_ablaufcheck').length, mapped.length);
 
   for (const {name, category, page, properties, required, oneOf, example} of mapped) {
