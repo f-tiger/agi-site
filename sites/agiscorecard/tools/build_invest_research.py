@@ -8,6 +8,10 @@ def esc(s):return html.escape(str(s),quote=True)
 def section(zh):
  def t(en,cn):return cn if zh else en
  lang='zh' if zh else 'en'
+ locale_path='/zh' if zh else ''
+ sunwatch_record='https://invest.agiscorecard.com/'+('' if zh else 'en/')+'track-record'
+ sunwatch_terms='https://invest.agiscorecard.com/?lang=zh#pricing'
+ compass='https://compass.agiscorecard.com/'+lang
  def number(k,label,value,mn,mx,step='any'):
   return f'<label for="ir-{k}">{label}<input id="ir-{k}" type="number" min="{mn}" max="{mx}" step="{step}" value="{value}" required></label>'
  def field(k,label,kind='textarea'):
@@ -39,7 +43,31 @@ def section(zh):
 <div class="actions"><button type="button" id="ir-export-md">{t('Download AI review brief','下载 AI 复核文档')}</button><button type="button" id="ir-export-json">{t('Download JSON','下载 JSON')}</button><button type="button" id="ir-save">{t('Save in this browser','保存到当前浏览器')}</button><button type="button" id="ir-restore">{t('Restore saved record','恢复已存记录')}</button><button type="button" id="ir-delete">{t('Delete saved copy','删除已存副本')}</button></div><label for="ir-import">{t('Import a previous JSON record (50 KB max)','导入以前的 JSON 记录（最大 50 KB）')}<input type="file" id="ir-import" accept=".json,application/json"></label>
 <label class="note"><input type="checkbox" id="ir-measure">{t('Share anonymous tool actions (sample / own), without inputs. Optional; regular site analytics are separate.','可选：分享匿名工具操作（示例 / 自填），不包含输入。站点常规访问统计另行运行。')}</label><p id="ir-status" class="status" role="status" aria-live="polite"></p>
 <details><summary>{t('Research discipline and sources','研究纪律与方法来源')}</summary><p>{t('A 13F can arrive up to 45 days after quarter-end and does not show short stock positions. A filing-day closing price is not necessarily available to a follower: check the publication time, then use the next executable price. Historical model returns are not realized investor profits.','13F 最晚可在季末后 45 天披露，且不披露股票空头仓位。申报日收盘价不一定是跟随者可成交价：应核查披露时刻，再选择之后可执行的价格。历史模型回报不等于真实投资利润。')}</p><p><a href="https://www.sec.gov/divisions/investment/13ffaq">SEC 13F FAQ</a> · <a href="https://www.sec.gov/search-filings/edgar-application-programming-interfaces">SEC EDGAR API</a> · <a href="https://pages.stern.nyu.edu/~adamodar/New_Home_Page/valquestions/valquestions.htm">{t('Damodaran: cash flows and valuation assumptions','Damodaran：现金流与估值假设')}</a> · <a href="https://www.finra.org/investors/investing/investing-basics/asset-allocation-diversification">{t('FINRA: diversification','FINRA：分散投资')}</a></p><p class="note">{t('Next Q3 2026 13F deadline: November 16, 2026 (SEC calendar).','2026 Q3 的 13F 申报截止日为 2026-11-16（SEC 日历）。')}</p></details>
-<div class="next"><p>{t('Need to check a number? Open FilingLens. Need to assess a paid alert service? Inspect SunWatch’s public record and current terms first. This research record is not automatically monitored by either service.','要核对财报数字，可打开 FilingLens。要评估付费提醒服务，先查看 SunWatch 的公开记录和当前条款。这份研究记录不会被任一服务自动监控。')}</p><div class="actions"><a class="action" data-research-action="filinglens" href="https://filinglens.agiscorecard.com/?src=invest-research">{t('Check a filing number (English)','核对财报数字（英文）')}</a><a class="action" data-research-action="record" href="https://invest.agiscorecard.com/{'' if zh else 'en/'}track-record">{t('Inspect SunWatch record','核查 SunWatch 记录')}</a></div></div>
+<div class="next">
+<p><a data-research-action="filinglens" href="https://filinglens.agiscorecard.com/?src=invest-research">{t('Check a filing number with FilingLens (English)','用 FilingLens 核对财报数字（英文）')}</a></p>
+<section id="investment-follow-up" aria-labelledby="investment-follow-up-title" style="scroll-margin-top:76px">
+<h3 id="investment-follow-up-title">{t('Options for your next review','下次复查时可用的服务')}</h3>
+<p>{t('Save or export the record above locally. Each service below has its own terms and access.','上方研究记录可在本机保存或导出。下列服务各有独立的条款与使用入口。')}</p>
+<p class="note">{t('Public terms checked','公开条款核对日期')} <time datetime="2026-11-25">{t('November 25, 2026','2026 年 11 月 25 日')}</time>{t('.','。')}</p>
+<div class="toolgrid">
+<div class="tool">
+<b>{t('AGI cloud workspace','AGI 云端工作区')}</b>
+<p>{t('Save versions across devices in supported AGI tools, including the AI infrastructure thesis workspace. 9 USDT per 30 days plus an order-specific fraction and network fees. Renew manually.','在 AI 产业链论点工作台等受支持的 AGI 工具中跨设备保存版本。9 USDT／30 天，另有订单尾数和网络费用。手动续期。')}</p>
+<p><a data-research-action="workspace" href="{locale_path}/members">{t('View AGI membership terms','查看 AGI 会员条款')}</a></p>
+</div>
+<div class="tool">
+<b>SunWatch Pro</b>
+<p>{t('The public record lists dated editorial calls and outcomes, with publication evidence marked where available. The separate Pro service offers trigger alerts via Telegram. Listed price is CNY 199/month or CNY 1,999/year. Checkout and activation take place in Telegram.','公开记录列出带日期的编辑判断和结果，并标明事前公开证据的可用情况。独立的 Pro 服务通过 Telegram 提供触发提醒，标价 ¥199／月或 ¥1,999／年，在 Telegram 完成付款与激活。')}</p>
+<p><a data-research-action="record" href="{sunwatch_record}">{t('Inspect the public record','核查 SunWatch 公开记录')}</a> · <a data-research-action="sunwatch_terms" href="{sunwatch_terms}">{t('View Pro terms (Chinese)','查看 SunWatch Pro 条款')}</a></p>
+</div>
+<div class="tool">
+<b>{t('AI Investing Compass','AI 投资罗盘')}</b>
+<p>{t('The 13F scorecard is a historical simulation. Pro is a waitlist with an advertised early-bird price of US$6/month. Joining the list is free.','13F 成绩单是历史模拟。Pro 目前只开放候补，页面公示早鸟价为 6 美元／月。加入候补免费。')}</p>
+<p><a data-research-action="compass_record" href="{compass}/track-record/">{t('View the 13F scorecard','查看 13F 成绩单')}</a> · <a data-research-action="compass_waitlist" href="{compass}/pro/#waitlist">{t('View the Pro waitlist','查看 Pro 候补')}</a></p>
+</div>
+</div>
+</section>
+</div>
 <details><summary>{t('Embed this free workbench','嵌入免费研究工具')}</summary><pre>{esc('<iframe src="https://agiscorecard.com/'+('zh/' if zh else '')+'invest?embed=research&amp;utm_source=embed" title="'+t('AI investment research','AI 投资研究')+'" width="100%" height="1100" loading="lazy"></iframe>')}</pre><p><a href="{'/zh/invest' if zh else '/invest'}#research-workbench" target="_blank" rel="noopener">{t('Open full workbench on AGI Scorecard','在 AGI 记分牌打开完整工具')}</a> · <a href="/invest-research/evidence.json">{t('Dated source data (JSON)','带日期的来源数据（JSON）')}</a></p></details>
 <noscript><p>{t('JavaScript is needed for calculations and exports. Sources, formulas and the research framework remain readable above.','计算和导出需要 JavaScript；上述来源、公式与研究框架仍可阅读。')}</p></noscript>
 </section>'''

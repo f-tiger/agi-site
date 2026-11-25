@@ -15,7 +15,7 @@ for(const site of Object.keys(sites))execFileSync(process.execPath,[path.join(he
 let current='agi';
 const server=http.createServer((req,res)=>{try{let pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname);if(!path.extname(pathname))pathname+='.html';const file=path.resolve(root,current,'.'+pathname);if(!file.startsWith(path.resolve(root,current)+path.sep))throw Error('Bad path');const ext=path.extname(file);res.setHeader('Content-Type',({'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.css':'text/css','.wasm':'application/wasm'})[ext]||'application/octet-stream');res.end(fs.readFileSync(file));}catch{res.statusCode=404;res.end('Not found');}});
 await new Promise(r=>server.listen(0,'127.0.0.1',r));const origin='http://127.0.0.1:'+server.address().port;let browser;
-try{browser=await chromium.launch({headless:true,...(process.env.WORKBENCH_CHROMIUM?{executablePath:process.env.WORKBENCH_CHROMIUM,args:["--no-sandbox","--disable-dev-shm-usage","--single-process"]}:{})});const page=await browser.newPage();await page.addInitScript(()=>{window.businessEvents=[];window.addEventListener('fleet:business',e=>window.businessEvents.push(e.detail));});const errors=[];page.on('pageerror',e=>errors.push(e.message));
+try{browser=await chromium.launch({headless:true,...(process.env.WORKBENCH_CHROMIUM?{executablePath:process.env.WORKBENCH_CHROMIUM,args:["--no-sandbox","--disable-dev-shm-usage"]}:{})});const page=await browser.newPage();await page.addInitScript(()=>{window.businessEvents=[];window.addEventListener('fleet:business',e=>window.businessEvents.push(e.detail));});const errors=[];page.on('pageerror',e=>errors.push(e.message));
 for(const p of products)for(const lang of siteLanguages[p.site]){current=p.site;const s=sites[p.site];const t=translator(JSON.parse(fs.readFileSync(path.join(here,'locales',lang+'.json'))),lang);await page.goto(origin+route(p.site,lang,p.id));await page.waitForSelector('#input-form button');if(!p.kind){await page.getByRole('button',{name:t('Generate result'),exact:true}).click();await page.waitForSelector('#output table, #status.error');if(await page.locator('#status.error').count())throw Error(p.id+' '+lang+': '+await page.locator('#status').textContent());assert.equal(await page.locator('#status.error').count(),0,p.id);const name=page.getByRole('textbox',{name:t('Saved version name')});await name.fill('Test version');await page.getByRole('button',{name:t('Save version'),exact:true}).click();assert.equal(await page.locator('#status').textContent(),t('Saved on this device (up to 20 versions).'));const download=page.waitForEvent('download');await page.getByRole('button',{name:t('Export CSV'),exact:true}).click();assert.ok((await download).suggestedFilename().endsWith('.csv'));assert.deepEqual(await page.evaluate(()=>window.businessEvents),[{name:'workbench_example_start'},{name:'workbench_example_complete'},{name:'workbench_example_export'}]);}
 else if(p.kind==='sql'){for(let i=0;i<projects.length;i++){await page.locator('#project').selectOption(String(i));await page.locator('#query').fill(projects[i].answer);await page.getByRole('button',{name:t('Run query'),exact:true}).click();await page.waitForFunction(expected=>document.querySelector('#output h2')?.textContent===expected,t('Project passed'));await page.locator('#output h2').evaluate(n=>n.textContent='Ready');}}
 else if(p.kind==='puzzle'){const seed=await page.locator('#seed').inputValue(),solution=puzzle(seed).solution;const inputs=page.locator('.puzzle-grid input');for(let i=0;i<16;i++)if(await inputs.nth(i).getAttribute('readonly')===null)await inputs.nth(i).fill(String(solution[i]));await page.getByRole('button',{name:t('Check my solution')}).click();assert.match(await page.locator('#status').textContent(),lang==='zh'?/完成！/:/Solved!/);}
@@ -31,5 +31,46 @@ assert.deepEqual(await page.evaluate(()=>window.businessEvents),[{name:'workbenc
 await page.evaluate(()=>window.businessEvents=[]);await page.locator('#field-tariffs').fill('broken CSV');
 await page.getByRole('button',{name:'Generate result',exact:true}).click();await page.locator('#status.error').waitFor();
 assert.deepEqual(await page.evaluate(()=>window.businessEvents),[{name:'workbench_start'}]);
+const workflowOrigin=sites.agi.origin;
+await page.context().route(workflowOrigin+'/**',async route=>{
+ const request=route.request(),pathname=new URL(request.url()).pathname;
+ if(request.method()!=='GET'||pathname.startsWith('/api/'))return route.abort();
+ if(pathname==='/members')return route.fulfill({contentType:'text/html',body:`<script>
+  window.addEventListener('message',event=>{
+   if(event.source===window.opener&&event.origin===location.origin&&event.data?.kind==='workbench-save'){
+    window.fixtureDraft=event.data.data;
+   }
+  });
+  window.opener.postMessage({kind:'workbench-member-ready'},location.origin);
+ </script>`});
+ const file=path.join(root,'agi',pathname+(path.extname(pathname)?'':'.html'));
+ if(!fs.existsSync(file))return route.abort();
+ const contentType=({'.mjs':'text/javascript','.html':'text/html','.css':'text/css','.json':'application/json'})[path.extname(file)];
+ await route.fulfill({path:file,contentType});
+});
+await page.goto(workflowOrigin+'/workbench/workflowcost?__ci=1');
+await page.getByRole('button',{name:'Generate result',exact:true}).click();
+const output=page.locator('#output');
+assert.equal(await output.getByRole('button',{name:'Save to cloud'}).count(),0);
+const attempts='task_id,attempt_id,attempt_cost,completed\nA,1,0.20,no\nA,2,0.40,yes\nB,1,0.30,no';
+await page.getByLabel('Import Actual attempt log (optional)',{exact:true}).setInputFiles({name:'fictional-attempts.csv',mimeType:'text/csv',buffer:Buffer.from(attempts)});
+await page.getByRole('button',{name:'Generate result',exact:true}).click();
+assert.match(await output.getByRole('row',{name:/Observed execution cost per completed task/}).textContent(),/0\.90/);
+const resultDownload=page.waitForEvent('download');
+await output.getByRole('button',{name:'Export CSV',exact:true}).click();
+assert.match(fs.readFileSync(await (await resultDownload).path(),'utf8'),/"Observed execution cost per completed task","0\.90"/);
+const memberPopup=page.waitForEvent('popup');
+await output.getByRole('button',{name:'Save to cloud',exact:true}).click();
+const portal=await memberPopup;
+await portal.waitForFunction(()=>window.fixtureDraft);
+const portalQuery=new URL(portal.url()).searchParams;
+assert.equal(portalQuery.get('tool'),'workflowcost');
+assert.equal(portalQuery.get('__ci'),'1');
+assert.equal(await portal.evaluate(()=>window.fixtureDraft.values.attempt_log),attempts);
+await portal.close();
+const oldValues=Object.fromEntries(products.find(p=>p.id==='workflowcost').fields.filter(f=>f.key!=='attempt_log').map(f=>[f.key,f.value]));
+await page.getByLabel('Restore exported inputs',{exact:true}).setInputFiles({name:'older-workflow.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({version:1,product:'workflowcost',values:oldValues}))});
+await page.waitForFunction(()=>document.getElementById('field-attempt_log').value==='');
+console.log('WorkflowCost actual cost, export, same-origin member draft and old backups passed.');
 assert.deepEqual(errors,[]);console.log('All 51 localized browser flows, 4 standalone embeds and customized/failed outcome boundaries passed.');
 }finally{await browser?.close();await new Promise(r=>server.close(r));}
