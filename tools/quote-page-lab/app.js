@@ -19,6 +19,8 @@
   const e = escapeHTML;
   const money = n => formatMoney(n,config);
   const hosted = ['https:','http:'].includes(location.protocol) && !['localhost','127.0.0.1','[::1]'].includes(location.hostname);
+  const proposalNext = location.origin==='https://baipiaoji.com' && initial.mode==='builder' &&
+    /^\/(?:en\/)?studio\/quote-builder$/.test(location.pathname) && !location.hash.startsWith('#quote=') ? initial.proposalNext : null;
   const measured = new Set();
   function measure(action) {
     // Fixed labels only. Never transmit the URL, fragment, quote text or rates.
@@ -33,6 +35,18 @@
   function status(message,error=false) {
     const el = document.querySelector('#status');
     if(el){el.textContent=message;el.classList.toggle('error',error);}
+  }
+  function showProposalNext(completed) {
+    const next = proposalNext?.[completed.lang];
+    if(!next||mode!=='builder'||config!==completed||!completed.confirmed||document.querySelector('[data-proposal-next]'))return;
+    const scope = ({base,deposit,note,items}) => JSON.stringify([base,deposit,note,items]);
+    const currentScope = scope(completed);
+    if(QUOTE_TEMPLATES.some(kind=>['zh','en'].some(lang=>scope(template(kind,lang))===currentScope)))return;
+    const row=document.createElement('p'),link=document.createElement('a');
+    row.className='help';row.dataset.proposalNext='';
+    link.href=next.href;link.rel='noreferrer';link.textContent=next.label;
+    link.addEventListener('click',event=>{if(event.isTrusted)measure('proposal_open');});
+    row.append(next.description+' ',link);document.querySelector('#status').after(row);
   }
   function reportError() { status(t('请填写名称；金额最多保留两位小数，数量为 0–1000 的整数。','Enter names, amounts with up to two decimals, and whole-number quantities from 0 to 1000.'),true); }
   function shell() {
@@ -122,11 +136,11 @@
     if(name==='preview'){measure('demo_preview');mode='customer';shell();window.scrollTo(0,0);return;}
     if(name==='back'||name==='demo-start'){if(demoIntro)measure('demo_start');demoIntro=false;mode='builder';quantities=config.items.map(i=>i.quantity);shell();if(name==='demo-start'){document.querySelector('[name=brand]').focus();document.querySelector('#edit-panel').scrollIntoView({block:'start'});}return;}
     if(name==='close-dialog'){document.querySelector('#text-dialog').close();return;}
-    if(name==='export'){if(!config.confirmed)return;download(exportHTML(),'text/html;charset=utf-8','client-quote.html');measure('file_generated');status(t('已生成客户报价页。先打开检查，再将文件交给客户或自行托管。','Client quote page generated. Open and review it, then share the file or host it.'));return;}
+    if(name==='export'){if(!config.confirmed)return;download(exportHTML(),'text/html;charset=utf-8','client-quote.html');measure('file_generated');status(t('已生成客户报价页。先打开检查，再将文件交给客户或自行托管。','Client quote page generated. Open and review it, then share the file or host it.'));showProposalNext(config);return;}
     if(name==='share') {
       if(!config.confirmed||!hosted)return;
-      const url=new URL(location.href);url.search='';url.hash='quote='+encodeConfig(config);
-      try{await navigator.clipboard.writeText(url.href);measure('link_copied');status(t('客户链接已复制；任何持有链接的人都能查看全部报价配置。','Client link copied. Anyone with the link can read the complete rate configuration.'));}
+      const copiedConfig=config,url=new URL(location.href);url.search='';url.hash='quote='+encodeConfig(copiedConfig);
+      try{await navigator.clipboard.writeText(url.href);measure('link_copied');status(t('客户链接已复制；任何持有链接的人都能查看全部报价配置。','Client link copied. Anyone with the link can read the complete rate configuration.'));showProposalNext(copiedConfig);}
       catch{textDialog(t('复制客户链接','Copy client link'),t('自动复制不可用，请选择并复制下面的链接。','Automatic copying is unavailable. Select and copy the link below.'),url.href);}return;
     }
     if(name==='summary'||name==='copy-summary'){
@@ -150,7 +164,7 @@
       if(Object.hasOwn(button.dataset,'remove')){const i=Number(button.dataset.remove);if(!readEditor()||config.items.length<=1)return;config.items.splice(i,1);config.confirmed=false;dirty=true;quantities=config.items.map(i=>i.quantity);shell();return;}
       if(button.dataset.action)action(button.dataset.action).catch(()=>status(t('操作未完成，请检查输入或下载本机备份。','The action could not finish. Check your inputs or download a local backup.'),true));
     };
-    app.oninput=event=>{if(event.target.matches('[data-qty]')){quantityChanged(event.target);return;}if(event.target.closest('#editor')){dirty=true;if(event.target.name!=='confirmed'){const check=document.querySelector('[name="confirmed"]');check.checked=false;measure('own_edit');}const okay=readEditor();if(okay&&event.target.name==='confirmed'&&config.confirmed)measure('own_ready');}};
+    app.oninput=event=>{if(event.target.matches('[data-qty]')){quantityChanged(event.target);return;}if(event.target.closest('#editor')){document.querySelector('[data-proposal-next]')?.remove();dirty=true;if(event.target.name!=='confirmed'){const check=document.querySelector('[name="confirmed"]');check.checked=false;measure('own_edit');}const okay=readEditor();if(okay&&event.target.name==='confirmed'&&config.confirmed)measure('own_ready');}};
     document.querySelector('#editor')?.addEventListener('submit',event=>event.preventDefault());
     document.querySelector('#import-file').onchange=async event=>{const file=event.target.files?.[0];if(!file)return;try{if(file.size>20000)throw new Error('size');const next=validateConfig(JSON.parse(await file.text()));if(dirty&&!confirm(t('导入会替换当前编辑，继续吗？','Import and replace your current editor?')))return;config=next;quantities=config.items.map(i=>i.quantity);mode='builder';valid=true;dirty=true;shell();status(t('模板已导入，请核对价格与范围。','Template imported. Review rates and scope.'));}catch{status(t('无法导入：请选择有效且小于 20 KB 的报价模板 JSON。','Import failed. Choose a valid quote-template JSON under 20 KB.'),true);}finally{event.target.value='';}};
   }

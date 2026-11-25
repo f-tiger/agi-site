@@ -30,12 +30,17 @@ try{
   for(const lang of ['zh','en']){
     const page=await context.newPage(),prefix=lang==='en'?'/en':'',url=origin+prefix+'/studio/quote-builder';
     await page.goto(url+'?__ci=1');await page.locator('#editor').waitFor();
+    const proposal=page.locator('[data-proposal-next] a');
+    const proposalURL=origin+prefix+'/studio/proposal-deck';
+    assert.equal(await proposal.count(),0,'unprepared projects have no proposal shortcut');
     const firstTry=await page.locator('.intro-actions [data-action=preview]').boundingBox();assert(firstTry&&firstTry.y+firstTry.height<844,'first useful action visible on mobile');
     const before=events.length;
     await page.locator('[name="brand"]').fill('QA Studio — synthetic');
     await page.locator('[name="price-0"]').fill('199.99');
     await page.locator('[name="confirmed"]').check();
+    assert.equal(await proposal.count(),0,'confirmation alone does not show the shortcut');
     await page.locator('.mobile-nav [data-action="preview"]').click();
+    assert.equal(await proposal.count(),0,'preview never shows the creator shortcut');
     await page.locator('[data-qty="0"]').fill('2');
     await page.locator('[data-action="back"]').click();
     assert.equal(await page.locator('[name="brand"]').inputValue(),'QA Studio — synthetic');
@@ -43,12 +48,17 @@ try{
     await page.locator('.mobile-nav [data-action="share-jump"]').click();
     assert(await page.locator('[name="confirmed"]').evaluate(el=>el===document.activeElement));
     await page.locator('[data-action="share"]').click();
+    await proposal.waitFor();
+    assert.equal(await proposal.getAttribute('href'),proposalURL);
+    assert.equal(await proposal.getAttribute('rel'),'noreferrer');
+    assert.equal(new URL(page.url()).pathname,new URL(url).pathname,'copying does not open another tool');
     const link=await page.evaluate(()=>navigator.clipboard.readText());
     const shared=new URL(link);assert.equal(shared.search,'');assert.equal(shared.origin+shared.pathname,url);
     assert.equal(decodeConfig(shared.hash.slice(7)).brand,'QA Studio — synthetic');
     // CI marker is deliberately absent from customer links; add it only in QA navigation.
     shared.search='?__ci=1';const client=await context.newPage();await client.goto(shared.href);
     assert.equal(await client.locator('#editor').count(),0);
+    assert.equal(await client.locator('[data-proposal-next]').count(),0);
     assert(await client.locator('[data-host-only]').isHidden());
     assert.equal(await client.locator('meta[name=robots]').getAttribute('content'),'noindex,nofollow');
     await client.locator('[data-qty="0"]').fill('2');
@@ -57,11 +67,16 @@ try{
     assert(summary.includes('QA Studio — synthetic')&&summary.includes('429.98'));
     assert(await client.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
     await client.screenshot({path:new URL(`hosted-client-${lang}.png`,out).pathname,fullPage:true});
+    await page.locator('[name="title"]').fill('Revised quote');
+    assert.equal(await proposal.count(),0,'editing retires the previous handoff');
+    await page.locator('[name="confirmed"]').check();
     const exported=page.waitForEvent('download');await page.locator('[data-action="export"]').click();
     const artifact=new URL(`hosted-export-${lang}.html`,out);await (await exported).saveAs(artifact.pathname);
+    await proposal.waitFor();assert.equal(await proposal.getAttribute('href'),proposalURL);
     const html=readFileSync(artifact,'utf8');
     const state=JSON.parse(html.match(/id="initial-state">(.*?)<\/script>/s)[1]);
     assert.equal(state.mode,'customer');assert(!state.measure);
+    assert(!state.proposalNext&&!html.includes(proposalURL),'portable customer files carry no proposal URL or copy');
     assert(!html.includes('property="og:image"'));
     assert(!html.includes('rel="canonical"')&&!html.includes('hreflang='),'portable customer file has no host SEO');
     await page.locator('[data-action="recommend"]').click();
@@ -78,11 +93,15 @@ try{
   }
   const demo=await context.newPage();await demo.goto(origin+'/en/studio/quote-builder?template=video&demo=1&source=video-guide&__ci=1');
   assert.equal(await demo.locator('#editor').count(),0);assert.equal(await demo.locator('#total').textContent(),'$390.00');
+  assert.equal(await demo.locator('[data-proposal-next]').count(),0);
   await demo.locator('[data-qty="0"]').fill('5');assert.equal(await demo.locator('#total').textContent(),'$630.00');
   const start=await demo.locator('[data-action="demo-start"]').boundingBox();assert(start&&start.y+start.height<844,'demo-to-creator action is immediately visible');
   await demo.screenshot({path:new URL('public-demo-en.png',out).pathname,fullPage:true});
   await demo.locator('[data-action="demo-start"]').click();
   assert(await demo.locator('[name="brand"]').evaluate(el=>el===document.activeElement));assert.equal(await demo.locator('[name="quantity-0"]').inputValue(),'3');
+  await demo.locator('[name="confirmed"]').check();
+  const demoFile=demo.waitForEvent('download');await demo.locator('[data-action="export"]').click();await demoFile;
+  assert.equal(await demo.locator('[data-proposal-next]').count(),0,'confirmed stock templates do not trigger the creator shortcut');
   await demo.close();
   if(!live){
     for(const lang of ['zh','en']){
@@ -140,11 +159,24 @@ try{
     await source.locator('[data-quote-entry]').click();assert(await source.locator('.demo-intro').isVisible());
     assert.equal(new URL(source.url()).searchParams.get('source'),'video-tool');await source.close();
     const page=await context.newPage();await page.goto(origin+'/studio/quote-builder');
-    await page.locator('[name="brand"]').fill('DO NOT SEND THIS');await page.locator('[name="confirmed"]').check();
+    await page.locator('[name="brand"]').fill('DO NOT SEND THIS');await page.locator('[name="price-0"]').fill('155.00');await page.locator('[name="confirmed"]').check();
+    await page.evaluate(()=>{Object.defineProperty(navigator.clipboard,'writeText',{configurable:true,value:async()=>{throw Error('blocked');}});});
+    await page.locator('[data-action="share"]').click();await page.locator('#text-dialog').waitFor();
+    assert.equal(await page.locator('[data-proposal-next]').count(),0,'a canceled manual copy does not unlock the shortcut');
+    assert(!events.some(x=>x.p==='/quote-builder/link_copied/direct'));
+    await page.locator('[data-action="close-dialog"]').click();
+    await page.evaluate(()=>{delete navigator.clipboard.writeText;});
     await page.locator('[data-action="share"]').click();
     await page.waitForFunction(()=>document.querySelector('#status').textContent.includes('已复制'));
     assert(events.some(x=>x.p==='/quote-builder/builder_open/direct'));
     assert(events.some(x=>x.p==='/quote-builder/link_copied/direct'));
+    assert(!events.some(x=>x.p==='/quote-builder/proposal_open/direct'),'display alone is not a click');
+    const proposalURL=origin+'/studio/proposal-deck';let navigationHeaders;
+    await page.route(proposalURL,route=>{navigationHeaders=route.request().headers();return route.fulfill({status:200,body:'Proposal preview fixture'});});
+    const clickEvent=page.waitForRequest(r=>r.url()===origin+'/api/hit'&&r.postDataJSON()?.p==='/quote-builder/proposal_open/direct');
+    await Promise.all([page.waitForURL(proposalURL),clickEvent,page.locator('[data-proposal-next] a').click()]);
+    assert.equal(navigationHeaders.referer,undefined,'proposal receives no quote referrer');
+    assert.deepEqual((await clickEvent).postDataJSON(),{p:'/quote-builder/proposal_open/direct',l:'zh',e:'quote'});
     for(const event of events){assert.deepEqual(Object.keys(event).sort(),['e','l','p']);assert.equal(event.e,'quote');assert(parseQuoteEvent(event.p));}
     assert(!JSON.stringify(events).includes('DO NOT SEND THIS'));
     assert(requests.every(r=>!r.url.includes('#quote=')),'fragment stays on device');

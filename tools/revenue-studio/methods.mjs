@@ -16,7 +16,7 @@ export const formulas={
  'rfq-roundbook':'Quote total = quantity × unit_price + freight − discount. Compare identical requested quantities and currencies; terms still require human review.',
  'evidencebrief':'Keep each claim with its source, evidence type and stance. Count entered counterevidence; record the alternative and stop condition without inventing market demand.',
  'modelmeter-reconcile':'Difference = billed − expected. Flag absolute differences above tolerance, duplicate provider + period + id keys, and negative adjustments.',
- 'workflowcost':'Expected attempts = 1 + p + … + p^retries. Completion probability = 1 − p^(retries+1). Monthly cost includes execution attempts, review labor and fixed costs.',
+ 'workflowcost':'Expected attempts = 1 + p + … + p^retries. Completion probability = 1 − p^(retries+1). Monthly cost includes execution attempts, review labor and fixed costs. An optional attempt log gives actual execution spend divided by unique tasks with at least one completed attempt. For example, a task that fails at 0.20 and succeeds at 0.40, plus an unfinished task costing 0.30, gives 0.90 per completed task.',
  'querysprint-projects':'Each query runs against a fresh fictional SQLite database in a Web Worker. A pass requires exact output column names, row order and values. A five-second timeout terminates the worker.',
  'job-evidence':'For every requirement, keep your evidence, source reference and observed result. Missing fields become next actions, not invented qualifications.',
  'scamchecklist':'Six observable warning signals each map to a verification step. The count is not a probability or a verdict that a message is safe.',

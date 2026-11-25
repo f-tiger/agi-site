@@ -95,7 +95,31 @@ footer{border-top:1px solid var(--border);padding:24px 0;font-size:12px;color:va
 <div class="actions"><button type="button" id="ir-export-md">Download AI review brief</button><button type="button" id="ir-export-json">Download JSON</button><button type="button" id="ir-save">Save in this browser</button><button type="button" id="ir-restore">Restore saved record</button><button type="button" id="ir-delete">Delete saved copy</button></div><label for="ir-import">Import a previous JSON record (50 KB max)<input type="file" id="ir-import" accept=".json,application/json"></label>
 <label class="note"><input type="checkbox" id="ir-measure">Share anonymous tool actions (sample / own), without inputs. Optional; regular site analytics are separate.</label><p id="ir-status" class="status" role="status" aria-live="polite"></p>
 <details><summary>Research discipline and sources</summary><p>A 13F can arrive up to 45 days after quarter-end and does not show short stock positions. A filing-day closing price is not necessarily available to a follower: check the publication time, then use the next executable price. Historical model returns are not realized investor profits.</p><p><a href="https://www.sec.gov/divisions/investment/13ffaq">SEC 13F FAQ</a> · <a href="https://www.sec.gov/search-filings/edgar-application-programming-interfaces">SEC EDGAR API</a> · <a href="https://pages.stern.nyu.edu/~adamodar/New_Home_Page/valquestions/valquestions.htm">Damodaran: cash flows and valuation assumptions</a> · <a href="https://www.finra.org/investors/investing/investing-basics/asset-allocation-diversification">FINRA: diversification</a></p><p class="note">Next Q3 2026 13F deadline: November 16, 2026 (SEC calendar).</p></details>
-<div class="next"><p>Need to check a number? Open FilingLens. Need to assess a paid alert service? Inspect SunWatch’s public record and current terms first. This research record is not automatically monitored by either service.</p><div class="actions"><a class="action" data-research-action="filinglens" href="https://filinglens.agiscorecard.com/?src=invest-research">Check a filing number (English)</a><a class="action" data-research-action="record" href="https://invest.agiscorecard.com/en/track-record">Inspect SunWatch record</a></div></div>
+<div class="next">
+<p><a data-research-action="filinglens" href="https://filinglens.agiscorecard.com/?src=invest-research">Check a filing number with FilingLens (English)</a></p>
+<section id="investment-follow-up" aria-labelledby="investment-follow-up-title" style="scroll-margin-top:76px">
+<h3 id="investment-follow-up-title">Options for your next review</h3>
+<p>Save or export the record above locally. Each service below has its own terms and access.</p>
+<p class="note">Public terms checked <time datetime="2026-11-25">November 25, 2026</time>.</p>
+<div class="toolgrid">
+<div class="tool">
+<b>AGI cloud workspace</b>
+<p>Save versions across devices in supported AGI tools, including the AI infrastructure thesis workspace. 9 USDT per 30 days plus an order-specific fraction and network fees. Renew manually.</p>
+<p><a data-research-action="workspace" href="/members">View AGI membership terms</a></p>
+</div>
+<div class="tool">
+<b>SunWatch Pro</b>
+<p>The public record lists dated editorial calls and outcomes, with publication evidence marked where available. The separate Pro service offers trigger alerts via Telegram. Listed price is CNY 199/month or CNY 1,999/year. Checkout and activation take place in Telegram.</p>
+<p><a data-research-action="record" href="https://invest.agiscorecard.com/en/track-record">Inspect the public record</a> · <a data-research-action="sunwatch_terms" href="https://invest.agiscorecard.com/?lang=zh#pricing">View Pro terms (Chinese)</a></p>
+</div>
+<div class="tool">
+<b>AI Investing Compass</b>
+<p>The 13F scorecard is a historical simulation. Pro is a waitlist with an advertised early-bird price of US$6/month. Joining the list is free.</p>
+<p><a data-research-action="compass_record" href="https://compass.agiscorecard.com/en/track-record/">View the 13F scorecard</a> · <a data-research-action="compass_waitlist" href="https://compass.agiscorecard.com/en/pro/#waitlist">View the Pro waitlist</a></p>
+</div>
+</div>
+</section>
+</div>
 <details><summary>Embed this free workbench</summary><pre>&lt;iframe src=&quot;https://agiscorecard.com/invest?embed=research&amp;amp;utm_source=embed&quot; title=&quot;AI investment research&quot; width=&quot;100%&quot; height=&quot;1100&quot; loading=&quot;lazy&quot;&gt;&lt;/iframe&gt;</pre><p><a href="/invest#research-workbench" target="_blank" rel="noopener">Open full workbench on AGI Scorecard</a> · <a href="/invest-research/evidence.json">Dated source data (JSON)</a></p></details>
 <noscript><p>JavaScript is needed for calculations and exports. Sources, formulas and the research framework remain readable above.</p></noscript>
 </section>
@@ -157,7 +181,7 @@ footer{border-top:1px solid var(--border);padding:24px 0;font-size:12px;color:va
 <div class="toolgrid">
   <div class="tool"><b>FilingLens · SEC source check</b><p>Compare the same financial fact for the exact same period at two filing cutoffs. Inspect both source values and accession links. Free browser tool and local MCP beta; no investment signals.</p><a href="https://filinglens.agiscorecard.com/?src=agi" onclick="gtag('event','invest_tool_click',{location:'invest_hub_filinglens'});">Compare a financial fact →</a></div>
   <div class="tool"><b>📈 AI Stock Exposure Check</b><p>Score your own basket against the eight graded predictions — and see how little of it actually rides on AGI arriving.</p><a href="/ai-stock-exposure" onclick="gtag('event','invest_tool_click',{location:'invest_hub_exposure'});">Score your basket →</a></div>
-  <div class="tool"><b>📡 SunWatch Market Console</b><p>Live watchlist with pre-registered buy/sell trigger levels, 52-week positioning, and an auditable forecast ledger — updated every 30 minutes.</p><a href="https://invest.agiscorecard.com/en" onclick="gtag('event','invest_tool_click',{location:'invest_hub_sunwatch'});">Open SunWatch →</a></div>
+  <div class="tool"><b>📡 SunWatch Market Console</b><p>Browse public company disclosures and the editorial record of dated calls. The record labels whether publication evidence is available.</p><a href="https://invest.agiscorecard.com/en" onclick="gtag('event','invest_tool_click',{location:'invest_hub_sunwatch'});">Open SunWatch →</a></div>
   <div class="tool"><b>🏆 Copy-Homework Scorecard</b><p>Did copying the legends' AI holdings actually pay? Historical simulation at the next available session close after filing, compared with QQQ over matched windows.</p><a href="https://compass.agiscorecard.com/en/track-record" target="_blank" rel="noopener" onclick="gtag('event','invest_tool_click',{location:'invest_hub_trackrecord'});">See the scorecard →</a></div>
   <div class="tool"><b>🧭 AI Investing Compass</b><p>AI-sector themes, legends' 13F positioning, and a consensus score per AI stock.</p><a href="https://compass.agiscorecard.com/en/" target="_blank" rel="noopener" onclick="gtag('event','invest_tool_click',{location:'compass2'});">Open the Compass →</a></div>
   <div class="tool"><b>Gushen · Portfolio Research Workbench</b><p>Build a US stock/ETF basket, compare target weights, equal weight and HRP over the same window, inspect drawdowns and correlations, test assumptions, and keep an evidence journal. Local saving and report export; English and Chinese interfaces. Historical research, not trading signals.</p><a href="https://gushen.agiscorecard.com/en/" target="_blank" rel="noopener" onclick="gtag('event','invest_tool_click',{location:'gushen'});">Open the workbench →</a></div>

@@ -26,6 +26,29 @@ export function ics(events){const esc=v=>String(v).replace(/\\/g,'\\\\').replace
  for(const [i,e] of events.entries()){const start=Date.parse(e.when);if(!Number.isFinite(start)||!/(Z|[+-]\d{2}:\d{2})$/.test(e.when))throw Error('Event times need an explicit UTC offset, e.g. 2026-10-01T18:00:00+02:00.');const source=url(e.source);const end=start+3600000;const id=Array.from(e.title+e.when+source).reduce((a,c)=>Math.imul(a^c.codePointAt(0),16777619)>>>0,2166136261);lines.push('BEGIN:VEVENT',`UID:${id}-${i}@task-workbench`, 'DTSTAMP:'+stamp(Date.now()),'DTSTART:'+stamp(start),'DTEND:'+stamp(end),'SUMMARY:'+esc(e.title),'DESCRIPTION:'+esc('Source: '+source+'\n'+(e.note||'')),'URL:'+source,'BEGIN:VALARM','TRIGGER:-PT30M','ACTION:DISPLAY','DESCRIPTION:'+esc(e.title),'END:VALARM','END:VEVENT');}
  lines.push('END:VCALENDAR');return lines.map(line=>{let result='',part='';for(const c of line){if(new TextEncoder().encode(part+c).length>73){result+=part+'\r\n ';part='';}part+=c;}return result+part;}).join('\r\n')+'\r\n';
 }
+function observedWorkflowCosts(log){
+ const rows=records(log,['task_id','attempt_id','attempt_cost','completed']);
+ const tasks=new Set(), completed=new Set(), attempts=new Set();
+ let spend=0;
+ for(const row of rows){
+  if(!row.task_id||!row.attempt_id||!['yes','no'].includes(row.completed)){
+   throw Error('Set both IDs and use yes or no for completed on each attempt.');
+  }
+  const attempt=JSON.stringify([row.task_id,row.attempt_id]);
+  if(attempts.has(attempt))throw Error('Each task ID and attempt ID pair must be unique.');
+  attempts.add(attempt);
+  tasks.add(row.task_id);
+  if(row.completed==='yes')completed.add(row.task_id);
+  spend+=num(row.attempt_cost,'Attempt cost');
+ }
+ return [
+  ['Observed attempts',attempts.size],
+  ['Observed tasks',tasks.size],
+  ['Observed completed tasks',completed.size],
+  ['Observed execution spend',money(spend)],
+  ['Observed execution cost per completed task',completed.size?money(spend/completed.size):'No completed tasks']
+ ];
+}
 export const engines={
  'launchdesk':d=>{url(d.website);if(d.pitch.length>160)throw Error('Keep the pitch within 160 characters.');return report('Campaign readiness',['Check','Result'],[['Tool',d.name],['Destination',d.website],['Audience',d.category],['Pitch',d.pitch],['Budget',money(num(d.budget))+' USDT'],['Inventory','3 sponsored lanes per category; queue when full']],[ 'Buyers see live reach and the exact payment quote at checkout. Natural directory ranking is not for sale.','A 30-day placement is 49 USDT plus a unique matching fraction below 0.01 USDT. No traffic or sales guarantee.'],{links:[['See live inventory and buy a placement','https://baipiaoji.com/advertise']]});},
  'quotawatch-pro':d=>{const cols=['tool','limit','unit','period','source'];const old=records(d.before,cols),now=records(d.after,cols);const key=r=>r.tool.toLowerCase()+'|'+r.unit+'|'+r.period;for(const list of [old,now]){if(new Set(list.map(key)).size!==list.length)throw Error('Use one row per tool / unit / period.');list.forEach(r=>{url(r.source);num(r.limit,'Limit');});}const index=new Map(old.map(r=>[key(r),r]));const rows=now.map(r=>{const p=index.get(key(r));index.delete(key(r));return[r.tool,p?.limit??'Not recorded',r.limit,r.unit,r.period,p?(p.limit===r.limit?'Unchanged':'Changed'):'New / incomparable',r.source];});for(const p of index.values())rows.push([p.tool,p.limit,'Not in new snapshot',p.unit,p.period,'Removed / review',p.source]);return report('Quota snapshot comparison',['Tool','Before','After','Unit','Period','Review','Source'],rows,['No live website is fetched. Add a newly verified snapshot to compare changes. Unit or reset-period changes are not treated as numeric increases.','Save named snapshots on this device; JSON exports can be moved to another browser.']);},
@@ -44,7 +67,35 @@ export const engines={
  'rfq-roundbook':d=>{const rows=records(d.quotes,['supplier','currency','quantity','unit_price','freight','discount','lead_days','terms']);if(new Set(rows.map(r=>r.currency)).size>1)throw Error('Use one comparison currency.');if(new Set(rows.map(r=>r.quantity)).size>1)throw Error('Compare the same requested quantity.');return report('Comparable quote round',['Supplier','Currency','Units','Goods','Freight','Discount','Total','Lead days','Terms'],rows.map(r=>{const q=num(r.quantity,'Quantity',1),goods=q*num(r.unit_price),freight=num(r.freight),discount=num(r.discount);if(discount>goods+freight)throw Error('Discount cannot exceed quoted total.');return[r.supplier,r.currency,q,money(goods),money(freight),money(discount),money(goods+freight-discount),num(r.lead_days),r.terms];}).sort((a,b)=>Number(a[6])-Number(b[6])),['Compare Incoterms, tax, warranty and delivery scope before choosing. Lowest entered total is not a supplier recommendation.','Save named rounds locally and export JSON to preserve source inputs; no shared approval workspace is provided.']);},
  'evidencebrief':d=>{const rows=records(d.evidence,['claim','source','type','stance','observation']);const allowed=['primary','customer','vendor','secondary'];rows.forEach(r=>{url(r.source);if(!allowed.includes(r.type))throw Error('Evidence type: primary, customer, vendor or secondary.');if(!['supports','contradicts','unknown'].includes(r.stance))throw Error('Stance: supports, contradicts or unknown.');});const contra=rows.filter(r=>r.stance==='contradicts').length;return report('Opportunity evidence brief',['Claim','Source','Evidence type','Stance','Observation'],rows.map(r=>[r.claim,r.source,r.type,r.stance,r.observation]),['A vendor claim or launch vote is not payment evidence. Customer entries are your records, not independently verified interviews.',contra?'Counterevidence recorded: '+contra:'No counterevidence entered; actively look for alternatives and failed attempts.'],{text:`Buyer: ${d.buyer}\nRepeated task: ${d.task}\nCurrent alternative: ${d.alternative}\nNext test: ${d.test}\nStop condition: ${d.stop}\n\nUnknown until measured: reachable demand, paid conversion, support cost and repeat purchase.`});},
  'modelmeter-reconcile':d=>{const rows=records(d.bills,['id','provider','period','currency','expected','billed']),seen=new Set(),tol=num(d.tolerance,'Tolerance');return report('AI billing reconciliation',['Entry','Provider','Period','Currency','Expected','Billed','Difference','Review'],rows.map(r=>{const a=num(r.expected,'Expected',-1e12),b=num(r.billed,'Billed',-1e12),key=r.provider+'|'+r.period+'|'+r.id,flags=[];if(seen.has(key))flags.push('Duplicate entry');seen.add(key);if(Math.abs(b-a)>tol)flags.push('Outside tolerance');if(a<0||b<0)flags.push('Credit / adjustment');return[r.id,r.provider,r.period,r.currency,money(a),money(b),money(b-a),flags.join('; ')||'Within tolerance'];}),['Expected spend must come from your own normalized usage calculation. No provider account is accessed. Differences may reflect tax, credits, currency or billing-period cutoffs.','Duplicate entries are flagged; totals must not be approved until duplicates are resolved.']);},
- 'workflowcost':d=>{const runs=num(d.runs,'Monthly runs',1,1e8),base=num(d.input)/1e6*num(d.inputrate)+num(d.output)/1e6*num(d.outputrate)+num(d.other),p=num(d.failure,'Failure probability',0,0.99),retry=num(d.retries,'Retries',0,10);if(!Number.isInteger(retry))throw Error('Retries must be a whole number.');const attempts=Array.from({length:retry+1},(_,i)=>p**i).reduce((a,b)=>a+b,0),success=1-p**(retry+1),labor=num(d.minutes)/60*num(d.hourly),fixed=num(d.fixed);const total=runs*(base*attempts+labor)+fixed;return report('Workflow delivery cost',['Measure','Value'],[['One attempt cost',money(base)],['Expected attempts per run',attempts.toFixed(4)],['Completion probability',(success*100).toFixed(2)+'%'],['Monthly execution cost',money(runs*base*attempts)],['Monthly human review cost',money(runs*labor)],['Fixed monthly cost',money(fixed)],['Monthly total',money(total)],['Cost per expected completed run',money(total/(runs*success))]],['All money inputs must use the same currency. Failure probability is assumed constant and independent per attempt; correlated outages violate that assumption.','Human review minutes apply once per submitted run. Provider prices are your inputs, not a maintained price feed.']);},
+ 'workflowcost':d=>{
+  const runs=num(d.runs,'Monthly runs',1,1e8);
+  const base=num(d.input)/1e6*num(d.inputrate)+num(d.output)/1e6*num(d.outputrate)+num(d.other);
+  const failure=num(d.failure,'Failure probability',0,0.99);
+  const retries=num(d.retries,'Retries',0,10);
+  if(!Number.isInteger(retries))throw Error('Retries must be a whole number.');
+  const attempts=Array.from({length:retries+1},(_,i)=>failure**i).reduce((a,b)=>a+b,0);
+  const success=1-failure**(retries+1);
+  const labor=num(d.minutes)/60*num(d.hourly);
+  const fixed=num(d.fixed);
+  const total=runs*(base*attempts+labor)+fixed;
+  const rows=[
+   ['One attempt cost',money(base)],
+   ['Expected attempts per run',attempts.toFixed(4)],
+   ['Completion probability',(success*100).toFixed(2)+'%'],
+   ['Monthly execution cost',money(runs*base*attempts)],
+   ['Monthly human review cost',money(runs*labor)],
+   ['Fixed monthly cost',money(fixed)],
+   ['Monthly total',money(total)],
+   ['Cost per expected completed run',money(total/(runs*success))]
+  ];
+  const log=d.attempt_log?.trim();
+  if(log)rows.push(...observedWorkflowCosts(log));
+  return report('Workflow delivery cost',['Measure','Value'],rows,[
+   'All money inputs must use the same currency. Failure probability is assumed constant and independent per attempt; correlated outages violate that assumption.',
+   'Human review minutes apply once per submitted run. Provider prices are your inputs, not a maintained price feed.',
+   'Observed execution spend includes charged failures and retries. Upload attempts from one period in one currency. Mark completed yes when an attempt delivers a usable result. The observed figures cover only the costs in your CSV.'
+  ]);
+ },
  'job-evidence':d=>{const rows=records(d.mapping,['requirement','evidence','source','result']);return report('Application evidence map',['Requirement','Your evidence','Source / file reference','Observed result','Next action'],rows.map(r=>[r.requirement,r.evidence,r.source,r.result,!r.evidence?'Find a real project or acknowledge the gap':!r.source?'Attach a checkable artifact':!r.result?'Describe what you actually delivered':'Review wording for accuracy']),['No experience, qualifications, hiring probabilities or employer endorsements are generated. Local file references need not be public.'],{text:`Target role: ${d.role}\nPortfolio cover note: Select two relevant artifacts, explain your personal contribution, show the original result and name its limitations. Do not attach confidential employer data.`});},
  'scamchecklist':d=>{const checks=[['urgency','Artificial urgency','Pause; contact the organization through a independently known channel.'],['payment','Unusual payment demand','Do not send money based solely on this message. Verify through an established channel.'],['secret','Request for codes or secrets','Do not share one-time codes, passwords or wallet recovery phrases.'],['link','Unexpected link or attachment','Use a saved official address or phone number instead of the supplied link.'],['identity','Unverified identity','Verify who is asking using contact information you already trust.'],['remote','Remote-access request','Do not install remote-access software on an unsolicited request.']];const flagged=checks.filter(([k])=>d[k]==='yes');return report('Verification checklist',['Signal','Your response','Next step'],checks.map(([k,n,a])=>[n,d[k]==='yes'?'Present':'Not reported',d[k]==='yes'?a:'Absence of this signal does not establish safety.']),[`${flagged.length} selected warning signals. This is a checklist, not a verdict that a message is safe or fraudulent.`,'If you already disclosed information or paid, contact the account provider using its official channel and report the incident.'],{links:[['FTC: Recognize and avoid phishing','https://consumer.ftc.gov/articles/how-recognize-and-avoid-phishing-scams']]});}
 };

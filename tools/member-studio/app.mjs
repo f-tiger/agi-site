@@ -43,7 +43,12 @@ const errors={wrong_site:'wrongSite',revision_conflict:'conflict',storage_quota:
 async function api(action,extra={}){
  if(authMode==='account')return accountApi(action,extra);
  if(!/^[a-f0-9]{64}$/.test(key))throw Error(t.noKey);
- const epoch=authEpoch;const r=await fetch('/api/member',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+key},body:JSON.stringify({action,...extra}),signal:AbortSignal.timeout(90000)});const j=await r.json();if(epoch!==authEpoch)throw Error(accountText?.changed||t.error);if(!r.ok||!j.ok)throw Error(t[errors[j.code]||'error']+' ['+(j.code||r.status)+']');return j;
+ const epoch=authEpoch;const r=await fetch('/api/member',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+key},body:JSON.stringify({action,...extra}),signal:AbortSignal.timeout(90000)});const j=await r.json();if(epoch!==authEpoch)throw Error(accountText?.changed||t.error);
+ if (!r.ok || !j.ok) {
+  if (site === 'agi' && action === 'checkout' && j.code === 'not_ready') setAvailability(false);
+  throw Error(t[errors[j.code]||'error']+' ['+(j.code||r.status)+']');
+ }
+ return j;
 }
 function on(id,fn){$(id).onclick=async()=>{if(busy)return;busy=true;$(id).disabled=true;try{await fn();}catch(e){notice(e.message,true);}finally{$(id).disabled=false;busy=false;}};}
 function button(label,fn){const b=el('button',label);b.type='button';b.onclick=async()=>{if(busy)return;busy=true;b.disabled=true;try{await fn();}catch(e){notice(e.message,true);}finally{busy=false;b.disabled=false;}};return b;}
@@ -98,7 +103,40 @@ const origins=new Set([location.origin]);const from=new URLSearchParams(location
 if(window.opener&&origins.has(from)){
  const handler=e=>{if(e.source!==window.opener||e.origin!==from||e.data?.kind!=='workbench-save')return;try{const data=parseBackup(e.data.data);handoff=/^[a-f0-9]{32}$/.test(e.data.handoff||'')?{nonce:e.data.handoff,json:JSON.stringify(data),id:null}:null;const c=e.data.context;selected=c&&/^[a-f0-9]{32}$/.test(c.id||'')&&Number.isSafeInteger(c.revision)&&c.revision>0?{id:c.id,revision:c.revision,product:data.product,name:String(c.name||'').slice(0,80)}:null;version=selected?.revision||null;if(handoff)handoff.id=selected?.id||null;$('history').replaceChildren();$('payload').value=JSON.stringify(data,null,2);$('name').value=selected?.name||defaultName(data.product);retarget();notice(t.received);}catch(e){notice(e.message,true);}window.removeEventListener('message',handler);};window.addEventListener('message',handler);window.opener.postMessage({kind:'workbench-member-ready'},from);
 }
-try{const r=await fetch('/api/member',{cache:'no-store'}),j=await r.json();ready=r.ok&&j.ready===true;$('availability').textContent=ready?t.ready:t.notReady;if(key)await refresh();}catch{notice(t.error,true);$('availability').textContent=t.notReady;}
+function setAvailability(value) {
+ ready = value;
+ $('availability').textContent = ready ? t.ready : t.notReady;
+}
+async function readAvailability() {
+ const response = await fetch('/api/member', {
+  cache: 'no-store',
+  signal: site === 'agi' ? AbortSignal.timeout(15000) : undefined
+ });
+ const status = await response.json();
+ return response.ok && status.ready === true && (site !== 'agi' || (status.ok === true && status.site === site));
+}
+const retryAvailability = site === 'agi' && $('refresh-availability');
+if (retryAvailability) {
+ on('refresh-availability', async () => {
+  $('availability').textContent = t.loading;
+  try {
+   setAvailability(await readAvailability());
+   if ($('notice').textContent.startsWith(t.unavailable)) notice('');
+  } catch {
+   setAvailability(false);
+   throw Error(t.unavailable);
+  }
+ });
+}
+try {
+ setAvailability(await readAvailability());
+ if (key) await refresh();
+} catch {
+ notice(t.error, true);
+ if (site !== 'agi' || !ready) $('availability').textContent = t.notReady;
+} finally {
+ if (retryAvailability) retryAvailability.disabled = false;
+}
 setInterval(async()=>{const o=orders.find(o=>o.state==='pending'&&o.payment.expires>Date.now()/1000);if(!o||(authMode==='account'?!accountUser:!key)||document.hidden||busy)return;busy=true;try{await api('check',{id:o.id});await refresh();}catch(e){notice(e.message,true);}finally{busy=false;}},60000);
 
 if(site==='bpj'&&document.getElementById('startup-mcp')){const {mountStartupMcp}=await import('./startup-mcp.mjs?v=1');clearStartup=mountStartupMcp({api,lang,root:document.getElementById('startup-mcp')});}

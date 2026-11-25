@@ -3,15 +3,66 @@ import {memberRoute} from './server.mjs';import {mockChain,setupSites,KEY} from 
 const here=path.dirname(fileURLToPath(import.meta.url)),repo=path.resolve(here,'../..'),tmp=fs.mkdtempSync(path.join(os.tmpdir(),'independent-member-browser-'));const {chromium}=createRequire(new URL('../revenue-studio/package.json',import.meta.url))('playwright');
 for(const site of Object.keys(sites))execFileSync(process.execPath,[path.join(repo,'tools/revenue-studio/build.mjs'),'--site',site,'--out',path.join(tmp,site)]);execFileSync(process.execPath,[path.join(here,'build.mjs'),'--out',path.join(tmp,'bpj')]);
 const reset=mockChain(),all=await setupSites();for(const site of Object.keys(sites))all[site].db.sql.prepare('INSERT INTO wb_members(id,token_hash,created,ends_at) VALUES(?,?,?,?)').run('browser-fixture',await digest(KEY),seconds(),seconds()+86400);
-const browser=await chromium.launch({headless:true,...(process.env.WORKBENCH_CHROMIUM?{executablePath:process.env.WORKBENCH_CHROMIUM,args:['--no-sandbox','--disable-dev-shm-usage','--single-process']}:{})});
+const browser=await chromium.launch({headless:true,...(process.env.WORKBENCH_CHROMIUM?{executablePath:process.env.WORKBENCH_CHROMIUM,args:['--no-sandbox','--disable-dev-shm-usage']}:{})});
 const service=site=>site==='bpj'?'baipiaoji-workbench':site+'-workbench';
 try{const context=await browser.newContext();const errors=[];context.on('page',p=>p.on('pageerror',e=>errors.push(e.message)));
  await context.route('**/*',async route=>{const req=route.request(),url=new URL(req.url()),site=Object.keys(sites).find(k=>sites[k].origin===url.origin);if(!site)return route.abort();
   if(url.pathname.startsWith('/api/member')){const response=await memberRoute(new Request(req.url(),{method:req.method(),headers:req.headers(),...(req.method()==='POST'?{body:req.postData()}: {})}),all[site].raw,site);return route.fulfill({status:response.status,headers:Object.fromEntries(response.headers),body:await response.text()});}
   let relative=url.pathname;if(!path.extname(relative))relative+='.html';const file=path.join(tmp,site,relative);if(!fs.existsSync(file))return route.fulfill({status:404,body:'fixture not found'});const ext=path.extname(file);return route.fulfill({body:fs.readFileSync(file),contentType:{'.html':'text/html','.mjs':'application/javascript','.js':'application/javascript','.json':'application/json','.css':'text/css','.wasm':'application/wasm'}[ext]||'text/plain'});
  });
+ // An open AGI checkout can recover in place. Only an explicit checkout click may POST.
+ for (const lang of siteLanguages.agi) {
+  const page = await context.newPage();
+  const t = messages[lang];
+  const requests = [];
+  let available = false;
+  await page.route('**/api/member', async route => {
+   const req = route.request();
+   if (req.method() === 'GET') {
+    requests.push('GET');
+    return route.fulfill({json: {ok: true, site: 'agi', ready: available}});
+   }
+   requests.push(req.postDataJSON().action);
+   return route.fulfill({status: 503, json: {ok: false, code: 'not_ready'}});
+  });
+  await page.goto(memberURL(lang, 'agi'));
+  const waitForAvailability = value => page.waitForFunction(
+   text => document.querySelector('#availability').textContent === text, value
+  );
+  await waitForAvailability(t.notReady);
+  await page.locator('#new-key').click();
+  const key = await page.locator('#key').inputValue();
+  assert.match(key, /^[a-f0-9]{64}$/);
+  await page.locator('#key-saved').check();
+  await page.locator('#consent').check();
+  await page.locator('#name').fill('Fixture project');
+  await page.locator('#payload').fill('Unsaved fixture draft');
+  await page.locator('#checkout').click();
+  assert.deepEqual(requests, ['GET']);
+
+  available = true;
+  const retry = page.locator('#refresh-availability');
+  await retry.click();
+  await waitForAvailability(t.ready);
+  assert.deepEqual(requests, ['GET', 'GET']);
+  await page.locator('#checkout').click();
+  await waitForAvailability(t.notReady);
+  await page.locator('#checkout').click();
+  assert.deepEqual(requests, ['GET', 'GET', 'checkout']);
+  await retry.click();
+  await waitForAvailability(t.ready);
+  assert.deepEqual(requests, ['GET', 'GET', 'checkout', 'GET']);
+  assert.equal(await page.locator('#key').inputValue(), key);
+  assert.equal(await page.locator('#key-saved').isChecked(), true);
+  assert.equal(await page.locator('#consent').isChecked(), true);
+  assert.equal(await page.locator('#name').inputValue(), 'Fixture project');
+  assert.equal(await page.locator('#payload').inputValue(), 'Unsaved fixture draft');
+  await page.close();
+  console.log('AGI checkout availability recovery passed in ' + lang);
+ }
  for(const site of Object.keys(sites))for(const lang of site==='bpj'?Object.keys(messages):siteLanguages[site]){
   const t=messages[lang],page=await context.newPage();await page.goto(memberURL(lang,site));await page.waitForFunction(()=>document.querySelector('#availability').textContent.includes('Web3'));
+  assert.equal(await page.locator('#refresh-availability').count(), site === 'agi' ? 1 : 0);
   assert.equal(await page.locator('.brand').textContent(),sites[site].name);for(const a of await page.locator('header nav a').all())assert.equal(new URL(await a.getAttribute('href'),page.url()).origin,sites[site].origin);
   const keyFile=(s)=>({name:'key.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({service:service(s),key:KEY}))});
   await page.locator('#key-file').setInputFiles(keyFile(site==='eco'?'bpj':'eco'));await page.waitForFunction(expected=>document.querySelector('#notice').textContent===expected,t.badKey);

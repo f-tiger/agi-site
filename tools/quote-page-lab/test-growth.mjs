@@ -12,16 +12,19 @@ async function hit(path,lang='en'){return onRequestPost({env:{HITS:db},request:n
 assert.deepEqual(Object.keys(toolRecommendation('en')).sort(),['text','title','url']);
 assert.equal(toolRecommendation('evil?client=secret').url,'https://baipiaoji.com/studio/quote-builder?source=share');
 assert.equal(quoteEventPath('own_edit','youtube'),'/quote-builder/own_edit/youtube');
-for(const bad of ['/quote-builder/own_edit/name@example.com','/quote-builder/client-name','/quote-builder/link_copied/share?email=a','/quote-builder/own_edit/direct/extra']){assert.equal(parseQuoteEvent(bad),null);await hit(bad);}
+assert.equal(quoteEventPath('proposal_open','video-guide'),'/quote-builder/proposal_open/video-guide');
+for(const bad of ['/quote-builder/own_edit/name@example.com','/quote-builder/client-name','/quote-builder/link_copied/share?email=a','/quote-builder/own_edit/direct/extra','/quote-builder/proposal_open','/quote-builder/proposal_open/client','/quote-builder/proposal_open/direct#customer']){assert.equal(parseQuoteEvent(bad),null);await hit(bad);}
 assert.equal(sql.prepare('SELECT count(*) n FROM hits').get().n,0);
 for(const p of ['/quote-builder/entry_open/video-tool','/quote-builder/demo_preview/video-tool','/quote-builder/demo_start/video-tool','/quote-builder/builder_open/video-guide','/quote-builder/own_edit/video-guide','/quote-builder/link_copied/video-guide','/quote-builder/client_open/client','/quote-builder/summary_copied/client','/quote-builder/builder_open'])await hit(p);
 await hit('/quote-builder/builder_open/direct','ci');
+await hit('/quote-builder/proposal_open/video-guide');
+await hit('/quote-builder/proposal_open/direct','ci');
 const today=new Date().toISOString().slice(0,10);
 sql.prepare('INSERT INTO hits VALUES (?,?,?,?,?,?)').run(today,'/quote-builder/own_edit/direct','ci','','','quote');
 sql.prepare('INSERT INTO hits VALUES (?,?,?,?,?,?)').run('2020-01-01','/quote-builder/own_edit/direct','en','','','quote');
 const data=await readQuoteSignals(db,today);
 assert.equal(data.ok,true);assert.equal(data.actions.builder_open,2);assert.equal(data.actions.own_edit,1);
-assert.equal(data.actions.summary_copied,1);assert.equal(data.actions.file_generated,0);
+assert.equal(data.actions.summary_copied,1);assert.equal(data.actions.file_generated,0);assert.equal(data.actions.proposal_open,1);
 assert.equal(data.actions.entry_open,1);assert.equal(data.actions.demo_start,1);assert.deepEqual(data.entry_sources,{'video-tool':1});
 assert.deepEqual(data.builder_entries,{'video-guide':1,legacy:1});
 const failed=await readQuoteSignals({prepare:()=>{throw Error('offline')}},today);assert.equal(failed.entry_sources,null);assert.equal(failed.actions,null);assert.equal(failed.ok,false);
