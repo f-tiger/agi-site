@@ -1,6 +1,6 @@
 # Richtig lüften im Winter: gekippt oder kurz weit auf?
 
-> Lüften bei Regen? Bei 20 °C und 50 % drinnen kann Außenluft mit 5 °C und 90 % trocknen. Bei 14 °C und 95 % bringt sie Feuchte herein. Zwei Rechenbeispiele.
+> Lüften im Winter trotz Regen? Prüfe die Außenluft und vergleiche mit eigenen Messwerten, wie viel Wasser die Raumluft vor und nach dem Lüften enthält.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/richtig-lueften-im-winter.html
 
@@ -12,6 +12,7 @@ Sind die Scheiben morgens innen nass? Miss zuerst Raumtemperatur und Luftfeuchte
 
 ## Erst messen: Hilft Lüften gerade gegen Feuchte?
 Vier Messwerte statt einer vorschnellen Kaufempfehlung. Nutze möglichst gleichzeitig gemessene Innen- und Außenwerte. Keine Werte zur Hand? Erst messen – keine Schätzung als persönliche Empfehlung.
+[Schon gelüftet? Vorher und nachher vergleichen](https://getecoback.com/guide/richtig-lueften-im-winter.html#lueften-vorher-nachher)
 Fiktives Beispiel ausprobieren
 
 ###
@@ -30,15 +31,15 @@ Ohne JavaScript: Temperatur und Feuchte innen und außen notieren, Feuchtequelle
 
 ## Entscheidend ist die kalte Ecke, nicht der Raum
 
-Das Hygrometer im Regal misst die Luft in der Raummitte. Dort wächst kein Schimmel. Er wächst an der kältesten Fläche im Raum: an der Fensterlaibung, am Sturz, in der Außenwandecke, hinter dem Kleiderschrank.
+Das Hygrometer im Regal misst die Raumluft an seinem Standort. An kälteren Flächen kann die relative Feuchte höher sein, etwa an der Fensterlaibung, in der Außenwandecke oder hinter dem Kleiderschrank.
 
 Der Grund ist, dass sich relative Luftfeuchte immer auf die Temperatur bezieht. Dieselbe Luft ist, abgekühlt, näher an der Sättigung. Deshalb kann Raumluft mit einem völlig unauffälligen Wert in der Raummitte an einer kalten Fläche bereits im kritischen Bereich ankommen:
 
-- Raumluft mit **20 °C und 50 % relativer Feuchte** — angenehm, am Hygrometer nichts zu sehen — erreicht an einer **14 °C kalten Wandfläche rund 73 %**.
+- Raumluft mit **20 °C und 50 % relativer Feuchte** erreicht an einer **14 °C kalten Wandfläche rund 73 %**.
 
-- Sporen keimen ab etwa **70–80 % relativer Feuchte direkt an der Oberfläche**, und die ist damit überschritten.
+- Rund 73 % liegen im Orientierungsbereich von **70–80 % direkt an der Oberfläche**. Wie lange die Fläche feucht bleibt und welches Material betroffen ist, zählt mit. Ein Einzelwert weist keinen Schimmelbefall nach.
 
-- Bei **20 °C und 60 %** liegt der Taupunkt bei rund **12 °C**: Jede Fläche, die kälter ist, sammelt flüssiges Wasser, nicht nur Feuchte.
+- Bei **20 °C und 60 %** liegt der Taupunkt bei rund **12 °C**: Ist eine Fläche kälter, kann sich Tauwasser bilden.
 
 Ein stundenlang gekipptes Fenster kann Rahmen und Laibung auskühlen. An einer kalten Fläche kann sich Feuchte halten. Eine einzelne Messung weist die Ursache von Flecken am Rahmen nicht nach.
 
@@ -77,7 +78,7 @@ Kälteste Fläche (°C)
 
 Fläche prüfen
 
-Läuft im Browser, es wird nichts übertragen. Beantwortet genau eine Frage: ob die heutige Raumluft an dieser Fläche sicher ist. Warum die Fläche kalt ist — Wärmebrücke, fehlende Dämmung — kann die Rechnung nicht sagen.
+Die Messwerte bleiben im Browser. Der Rechner schätzt die momentane Feuchte an der Fläche. Messdauer, Ursache der kalten Oberfläche und ein möglicher Befall bleiben offen.
 
 ## Die vier Zahlen, die man behalten sollte
 
@@ -103,6 +104,16 @@ Das Gegenteil gibt es auch: Zeigt das Hygrometer in der Frostperiode dauerhaft u
 
 Ehrliche Grenze: Nichts davon repariert eine Fläche, die aus baulichen Gründen kalt ist. Bleibt eine Stelle dauerhaft deutlich kälter als der Rest derselben Wand, rettet sie kein Lüftungsplan — das ist ein Gespräch mit der Eigentümerseite und kein Einkaufsproblem. Wir sind keine Bausachverständigen, und diese Seite ist keine Rechtsberatung zum Mietverhältnis.
 
+## Hat Lüften Feuchte abgeführt? Vorher und nachher messen
+
+Miss Raumtemperatur und relative Luftfeuchte vor dem Lüften und nach dem Wiederaufwärmen. Verwende dasselbe Gerät am selben Ort und warte auf stabile Werte. Vergleiche in Gramm Wasser pro Kubikmeter (g/m³), weil sich Prozentwerte mit der Temperatur ändern.
+
+**Rechenbeispiel:** Bei 20 °C sinkt die relative Feuchte von 60 % vor dem Lüften auf 50 % danach. Das sind rechnerisch 1,72 g/m³ weniger Wasser in der Raumluft am Messpunkt.
+
+Die Magnus-Näherung beschreibt die Änderung am Messpunkt. Neue Feuchtequellen, feuchte Wände und Messunsicherheit bleiben offen. Vergleichbare Werte fehlen? Erst erneut messen. Bei wiederkehrender Nässe oder sichtbaren Schäden [Feuchteursache prüfen](https://getecoback.com/guide/luftfeuchtigkeit-senken.html). Aus diesem Vergleich allein folgt keine Kaufentscheidung.
+
+Zum Nachlesen: [Verbraucherzentrale über Heizen, Lüften und Messgeräte](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426).
+
 ## Dasselbe Fenster, ein halbes Jahr früher
 
 In der anderen Jahreshälfte ist die Kippstellung nicht der Gegner, sondern der Weg, den Abluftschlauch aus einem Fenster zu bekommen, das nie dafür gedacht war. Anderer Job, andere Hardware: [Klimaanlage am Kippfenster abdichten](https://getecoback.com/guide/klimaanlage-kippfenster.html).
@@ -111,9 +122,9 @@ In der anderen Jahreshälfte ist die Kippstellung nicht der Gegner, sondern der 
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Verkäufen. Die Links unten sind Affiliate-Links — für dich derselbe Preis.
 
-Anzeige Sortiert danach, wie oft es wirklich die Antwort ist:
-
 Hast du schon ein Hygrometer? Nutze es, wenn es die Werte zeigt, die du brauchst. Falls du einen Nachtwert oder einen Verlauf sehen willst, hilft der Vergleich bei The Doll Scout. [Anzeige, Min/Max-Speicher oder App-Verlauf auswählen](https://thedollscout.com/de/shop/categories/smart-home#raumfeuchte-messen).
+
+Anzeige Sortiert danach, wie oft es wirklich die Antwort ist:
 
 - **Ein Hygrometer mit Min/Max-Speicher** — vor allem anderen. Es hält den Nachtwert fest, den man nie selbst sieht, und ist der Unterschied zwischen Wissen und Raten. Hygrometer mit Min/Max auf Amazon.de →
 
@@ -135,7 +146,7 @@ Das hängt von beiden Luftmassen ab. Miss drinnen und draußen Temperatur und re
 
 ### Mein Hygrometer zeigt 50 Prozent, warum ist trotzdem Schimmel in der Ecke?
 
-Weil das Hygrometer die Raummitte misst und Schimmel an der kältesten Fläche wächst. Raumluft mit 20 Grad und 50 Prozent relativer Feuchte erreicht an einer 14 Grad kalten Wand etwa 73 Prozent, und das liegt bereits im Bereich, in dem Sporen keimen. Entscheidend ist die Feuchte an der kalten Stelle, nicht der Mittelwert im Raum.
+Ein Hygrometer in der Raummitte misst keine Wandfeuchte. Bei 20 Grad und 50 Prozent Raumfeuchte ergeben sich an einer 14 Grad kalten Wand rechnerisch etwa 73 Prozent relative Feuchte. Prüfe die kalte Stelle wiederholt und kläre sichtbare Schäden oder anhaltende Nässe. Der einzelne Schätzwert erklärt die Ursache nicht.
 
 ### Wie lange soll ich lüften, und kühlt die Wohnung dabei aus?
 

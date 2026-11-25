@@ -3,6 +3,33 @@ import hashlib,re
 from pathlib import Path
 PATHS={'luftfeuchtigkeit-senken','richtig-lueften-im-winter'}
 ROOT=Path(__file__).resolve().parents[1]
+
+def ventilation_effect():
+ fields=''
+ for when,label in [('before','Vor dem Lüften'),('after','Nach dem Wiederaufwärmen')]:
+  fields+=f'''<fieldset><legend>{label}</legend>
+  <label>Raumtemperatur (°C)<input name="{when}_c" type="number" required min="0" max="40" step="0.1" inputmode="decimal"></label>
+  <label>Relative Raumfeuchte (%)<input name="{when}_rh_pct" type="number" required min="1" max="100" step="0.1" inputmode="decimal"></label></fieldset>'''
+ rev=hashlib.sha256((ROOT/'site/assets/ventilation-effect.mjs').read_bytes()).hexdigest()[:12]
+ return f'''<!--ECO_VENTILATION_EFFECT-->
+<section id="lueften-vorher-nachher" aria-labelledby="lueften-vorher-nachher-titel">
+  <style>#lueften-vorher-nachher{{scroll-margin-top:150px}}#lueften-vorher-nachher label{{display:block;margin:.4rem 0}}#lueften-vorher-nachher input[type=number]{{display:block;width:min(100%,16rem);min-height:44px;box-sizing:border-box;font:inherit}}#lueften-vorher-nachher button{{min-height:44px;font:inherit}}</style>
+  <h2 id="lueften-vorher-nachher-titel">Hat Lüften Feuchte abgeführt? Vorher und nachher messen</h2>
+  <p>Miss Raumtemperatur und relative Luftfeuchte vor dem Lüften und nach dem Wiederaufwärmen. Verwende dasselbe Gerät am selben Ort und warte auf stabile Werte. Vergleiche in Gramm Wasser pro Kubikmeter (g/m³), weil sich Prozentwerte mit der Temperatur ändern.</p>
+  <p><strong>Rechenbeispiel:</strong> Bei 20 °C sinkt die relative Feuchte von 60 % vor dem Lüften auf 50 % danach. Das sind rechnerisch 1,72 g/m³ weniger Wasser in der Raumluft am Messpunkt.</p>
+  <form data-ventilation-effect hidden inert aria-label="Raumfeuchte vor und nach dem Lüften vergleichen">
+   {fields}
+   <label><input name="same_position" type="checkbox"> Gleiches Gerät, gleicher Messort und beide Messwerte stabil.</label>
+   <button type="submit">Messwerte vergleichen</button>
+   <p role="status"></p>
+  </form>
+  <p>Die Magnus-Näherung beschreibt die Änderung am Messpunkt. Neue Feuchtequellen, feuchte Wände und Messunsicherheit bleiben offen. Vergleichbare Werte fehlen? Erst erneut messen. Bei wiederkehrender Nässe oder sichtbaren Schäden <a href="/guide/luftfeuchtigkeit-senken.html">Feuchteursache prüfen</a>. Aus diesem Vergleich allein folgt keine Kaufentscheidung.</p>
+  <p>Zum Nachlesen: <a href="https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426">Verbraucherzentrale über Heizen, Lüften und Messgeräte</a>.</p>
+</section>
+<script type="module" src="/assets/ventilation-effect.mjs?v={rev}"></script>
+<!--/ECO_VENTILATION_EFFECT-->
+'''
+
 def inject(html,slug):
  if slug not in PATHS:return html
  html=re.sub(r'<!--ECO_MOISTURE_CHECK-->.*?<!--/ECO_MOISTURE_CHECK-->\n?','',html,flags=re.S)
@@ -19,4 +46,9 @@ def inject(html,slug):
  candidates=[m.start() for m in re.finditer(r'<!--EB_MODELS-->|<h2\b',html) if m.start()>=start]
  if not candidates:raise ValueError('Missing article anchor: '+slug)
  pos=min(candidates)
+ if slug=='richtig-lueften-im-winter':
+  block=block.replace('<form data-js hidden', '<p><a href="#lueften-vorher-nachher">Schon gelüftet? Vorher und nachher vergleichen</a></p><form data-js hidden',1)
+  html=re.sub(r'<!--ECO_VENTILATION_EFFECT-->.*?<!--/ECO_VENTILATION_EFFECT-->\n?','',html,flags=re.S)
+  target=html.index('<h2 id="dasselbe-fenster-ein-halbes-jahr-frueher">')
+  html=html[:target]+ventilation_effect()+html[target:]
  return html[:pos]+block+html[pos:]

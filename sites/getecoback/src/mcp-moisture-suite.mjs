@@ -2,6 +2,7 @@ import catalog from '../data/dehum-catalog.json' with {type:'json'};
 import {
   checkWindowCondensation, dewPoint, WINDOW_CONDENSATION_PAGE, WINDOW_CONDENSATION_URL,
 } from '../site/assets/fenster-taucheck.mjs';
+import {vapourDensity, ventilationEffect} from '../site/assets/ventilation-effect.mjs';
 
 const number = (description, minimum, maximum) => ({type:'number', description, minimum, maximum});
 const bool = description => ({type:'boolean', description});
@@ -10,11 +11,6 @@ const round = (value, digits = 2) => Number(value.toFixed(digits));
 const roomTemperature = number('Lufttemperatur innen in °C.', 0, 40);
 const roomHumidity = number('Relative Feuchte der Raumluft in Prozent.', 1, 100);
 const hygrometerGuide = '/guide/luftfeuchtigkeit-richtig-messen.html';
-
-// The guide's Magnus approximation over water, with vapour pressure in hPa.
-const saturation = celsius => 6.112 * Math.exp(17.62 * celsius / (243.12 + celsius));
-const vapourPressure = (celsius, relativeHumidity) => saturation(celsius) * relativeHumidity / 100;
-const vapourDensity = (celsius, relativeHumidity) => 216.7 * vapourPressure(celsius, relativeHumidity) / (273.15 + celsius);
 
 const coldModels = catalog.products.filter(model => model.status === 'verified' &&
   ['meaco-one-20', 'meaco-two-12', 'stadler-lukas'].includes(model.id));
@@ -127,6 +123,7 @@ export const moistureSuite = [
     name:'lueften_messwirkung',
     description:'Vorher-nachher-Messung nach dem Lüften in Gramm pro Kubikmeter vergleichen — Measure whether room air actually held less water after ventilation.',
     page:'/guide/richtig-lueften-im-winter.html',
+    guide_url:'https://getecoback.com/guide/richtig-lueften-im-winter.html#lueften-vorher-nachher',
     properties:{
       before_c:roomTemperature,
       before_rh_pct:roomHumidity,
@@ -134,11 +131,9 @@ export const moistureSuite = [
       after_rh_pct:roomHumidity,
       same_position:bool('Waren Messort und Gerät vergleichbar und beide Messungen stabil?'),
     },
-    calculate({before_c,before_rh_pct,after_c,after_rh_pct,same_position}) {
-      const before = vapourDensity(before_c,before_rh_pct);
-      const after = vapourDensity(after_c,after_rh_pct);
+    calculate(values) {
       return {
-        net_change_g_per_m3:same_position ? round(after-before,2) : null,
+        net_change_g_per_m3:ventilationEffect(values),
         assumption:'Veränderung der Raumluft am Messpunkt. Feuchtespeicher, Quellen und Sensorabweichung beeinflussen die Beobachtung. Möglichst zur üblichen Raumtemperatur zurückkehren.',
       };
     },
