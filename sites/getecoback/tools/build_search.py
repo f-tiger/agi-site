@@ -151,6 +151,12 @@ def collect():
      raise ValueError(f'Missing or ambiguous filter model destination: {route}#{identifier}')
     entry['model_sections'].append({'id':identifier,'title':item['brand']+' '+item['models'][0]+': Ersatzfilter prüfen',
                                    'description':item['note']})
+  if lang=='de' and route=='/guide/luftfeuchtigkeit-richtig-messen.html':
+   categories=json.loads((ROOT/'data/country-categories.json').read_text())['countries']
+   shade=next(country['guide']['window_cover_check'] for country in categories if country['market']=='DE')
+   anchor=shade['id']
+   if text.count(f'<h2 id="{anchor}">')!=1:raise ValueError(f'Missing or ambiguous window measurement section: {route}#{anchor}')
+   entry['model_sections']=[{'id':anchor,'title':shade['title'],'description':shade['search_description']}]
   if lang=='de' and route=='/guide/luftbefeuchter-ratgeber.html':
    models=json.loads((ROOT/'data/humidifier-philips-filters-de.json').read_text())['models']
    entry['model_sections']=[

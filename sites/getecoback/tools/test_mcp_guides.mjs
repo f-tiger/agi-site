@@ -84,6 +84,25 @@ test('laundry search stays on task and every search result can be read through t
   }
 });
 
+test('blind-side condensation search and reader preserve the measurement limits and source', async () => {
+  const {env} = assetEnv();
+  const path='/guide/luftfeuchtigkeit-richtig-messen.html';
+  const result=await call('ratgeber_suche', {
+    frage:'Warum ist mein Fenster hinter dem Plissee nass, obwohl das Hygrometer 50 % zeigt?',
+    sprache:'de', max:1,
+  }, env);
+  assert.equal(result.isError,false);
+  const lines=textOf(result).split('\n');
+  assert.equal(lines[1],'- Fenster hinter dem Plissee nass trotz 50 Prozent Luftfeuchte?');
+  assert.equal(lines[2].trim(),'https://getecoback.com'+path);
+  assert.match(lines[3],/9,3 °C.*Ohne verlässlichen Glaswert/);
+  const reading=await call('ratgeber_lesen',{pfad:path},env);
+  assert.equal(reading.isError,false);
+  const answer=textOf(reading);
+  assert.match(answer,/Ohne verlässliche Scheibentemperatur bleibt der Vergleich offen/);
+  assert.match(answer,/heizen-und-lueften-so-gehts-richtig-10426/);
+});
+
 test('Bosch stacking kit search leads with the answer and the readable catalog excerpt contains its primary references', async () => {
   const {env} = assetEnv();
   const frage = 'WTZ27400 oder WTZ27410: Welcher Verbindungssatz für den Bosch WQG241001 hat einen Auszug?';

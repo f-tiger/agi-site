@@ -1,4 +1,4 @@
-import {exactBoschStackingGuide, exactGermanHouseholdTask} from './german-household-intent.mjs?v=057d752ca0fa';
+import {exactBoschStackingGuide, exactGermanHouseholdTask, exactWindowShadeMeasurement, hasOtherWindowSurface} from './german-household-intent.mjs?v=6c40d2693fa4';
 import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion} from './kaercher-saugduese-intent.mjs';
@@ -43,10 +43,9 @@ function asksAboutIndoorWindowCondensation(query) {
  const window=/\b(?:[a-z]*fenster\w*|(?:innen)?scheib\w*|glas)\b/;
  const inside=/\b(?:innen(?:seite|scheiben?|fenster)?|raumseit(?:e|ig)|wohnungsseite)\b/;
  const moisture=/\b(?:beschla(?:g|eg)\w*|kondens(?:wasser|at|ation)\w*|wasser\w*|tropfen\w*|nass\w*|feucht\w*)\b|\blaeu(?:ft|fen|fst)\b[^.!?]{0,70}\ban(?=\s*(?:[,.!?]|$))/;
- const anotherLocation=/\b(?:aussen\w*|draussen|randverbund|(?:scheiben)?zwischenraum|zwischen\s+(?:(?:den|beiden|zwei|drei)\s+){0,2}(?:\w*scheiben|glaesern))\b/;
  const otherIntent=/\b(?:auto\w*|windschutzscheib\w*|pkw|fahrzeug\w*|wohnmobil\w*|kaercher|fenstersaug\w*|duese\w*|klimaanlag\w*|abluftschlauch|ablaufschlauch)\b/;
  return window.test(query)&&inside.test(query)&&moisture.test(query)&&
-    !anotherLocation.test(query)&&!otherIntent.test(query);
+    !hasOtherWindowSurface(query)&&!otherIntent.test(query);
 }
 
 function asksForGermanCoolingAt40SquareMetres(query) {
@@ -68,6 +67,8 @@ export function exactGermanGuide(normalizedQuery) {
    return {path:'/guide/klimaanlage-fenster-einbruchschutz.html',id:'fenster-verschluss-pruefen'};
  if(asksForGermanCoolingAt40SquareMetres(query))
    return {path:'/guide/klimaanlage-40-qm.html',id:'portasplit-40-qm'};
+ const shade=exactWindowShadeMeasurement(query);
+ if(shade)return {path:shade.path,id:shade.id};
  if(asksAboutIndoorWindowCondensation(query))
    return {path:'/guide/fenster-beschlagen-innen.html',id:'fenstersauger-gegen-kondenswasser'};
  const task=exactBoschStackingGuide(query) ?? exactGermanHouseholdTask(query);

@@ -176,6 +176,26 @@ function humidifierAccessoryTask(query) {
   return null;
 }
 
+export const windowShadeMeasurement = {
+  path:'/guide/luftfeuchtigkeit-richtig-messen.html',
+  id:'kondenswasser-hinter-plissee',
+  tool:'ratgeber_suche',
+};
+
+export function hasOtherWindowSurface(query) {
+  return /\b(?:aussen\w*|draussen|randverbund|(?:scheiben)?zwischenraum|zwischen\s+(?:(?:den|beiden|zwei|drei)\s+){0,2}(?:\w*scheiben|glaesern))\b/.test(query);
+}
+
+export function exactWindowShadeMeasurement(query) {
+  const shade = /\b(?:plissee|innenrollo|rollo|rollladen|rolladen|gardin|vorhang|vorhaeng)\w*\b/;
+  const window = /\b(?:[a-z]*fenster\w*|(?:innen)?scheib\w*|glas)\b/;
+  const moisture = /\b(?:nass\w*|naess\w*|feucht\w*|kondens\w*|beschla(?:g|eg)\w*|schwitz\w*|wassertropfen|wasser)\b/;
+  const otherTask = /\b(?:auto\w*|windschutzscheib\w*|pkw|fahrzeug\w*|wohnmobil\w*|kaercher|fenstersaug\w*|duese\w*|klimaanlag\w*|abluftschlauch|ablaufschlauch)\b/;
+  return shade.test(query) && window.test(query) && moisture.test(query) &&
+    !hasOtherWindowSurface(query) && !otherTask.test(query)
+    ? windowShadeMeasurement : null;
+}
+
 // Consumers pass their normalized German query. Match a task, not a category.
 export function exactGermanHouseholdTask(query) {
   const exhaustPanel = /\babluft[ -]?platt\w*\b|(?:\b(?:fenster|acryl|hohlkammer)[ -]?platt\w*\b.*\b(?:klimaanlag\w*|klimageraet\w*|abluft\w*)\b)|(?:\b(?:klimaanlag\w*|klimageraet\w*|abluft\w*)\b.*\b(?:fenster|acryl|hohlkammer)[ -]?platt\w*\b)/;

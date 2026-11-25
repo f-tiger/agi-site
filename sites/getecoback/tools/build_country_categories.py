@@ -62,6 +62,9 @@ def shell(c, page, content, hub=False):
     comparison = page.get('hygrometer_comparison')
     intro_jump = (f'<p class="intro-jump"><a href="#{HYGROMETER_COMPARISON}">{esc(comparison["jump_label"])}</a></p>'
                   if comparison else '')
+    cover = page.get('window_cover_check')
+    if cover:
+        intro_jump += f'<p class="intro-jump"><a href="#{esc(cover["id"])}">Nasse Scheibe hinter dem Plissee prüfen</a></p>'
     return f'''<!doctype html>
 <html lang="{c['lang']}"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -126,6 +129,8 @@ def guide_body(c):
     body = f'<aside class="decision-note"><strong>{esc(g["answer_title"])}</strong><p>{esc(g["answer"])}</p></aside>'
     if g.get('hygrometer_comparison'):
         body += hygrometer_comparison(g)
+    if g.get('window_cover_check'):
+        body += window_cover_check(g['window_cover_check'])
     if g.get('scenarios'):
         scenarios = g['scenarios']
         body += f'<section class="decision-note laundry-routes" id="{esc(scenarios["id"])}"><h2>{esc(scenarios["title"])}</h2><p>{esc(scenarios["intro"])}</p>'
@@ -155,6 +160,20 @@ def guide_body(c):
         body += f'<section class="guide-section"><h2>{esc(c["next_label"])}</h2><ul class="reading">'
         body += ''.join('<li>' + internal(p, label) + '</li>' for label, p in g['related']) + '</ul></section>'
     return body
+
+
+def window_cover_check(check):
+    section = esc(check['id'])
+    label, source = check['source']
+    checked = esc(check['source_checked'])
+    steps = ''.join(f'<li>{esc(step)}</li>' for step in check['steps'])
+    return f'''<section class="guide-section decision-note" aria-labelledby="{section}">
+<h2 id="{section}">{esc(check['title'])}</h2>
+<p>{esc(check['answer'])}</p><ol>{steps}</ol>
+<p>{esc(check['measurement_limit'])}</p>
+<p>{esc(check['example'])}</p><p>{esc(check['decision'])}</p>
+<p>{internal(check['tool'], 'Taupunkt und Scheibentemperatur mit eigenen Messwerten vergleichen')}</p>
+<p class="source-note"><a href="{esc(source)}">{esc(label)}</a> · Abgerufen am <time datetime="{checked}">{checked}</time></p></section>'''
 
 
 def hygrometer_comparison(guide):

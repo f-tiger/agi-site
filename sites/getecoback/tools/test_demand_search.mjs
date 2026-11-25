@@ -378,6 +378,23 @@ test('German same-place hygrometer comparisons open the numerical example',()=>{
  ]) assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u.startsWith(page+'#')),q);
 });
 
+test('German condensation behind a blind opens the glass measurement protocol',()=>{
+ const anchor='/guide/luftfeuchtigkeit-richtig-messen.html#kondenswasser-hinter-plissee';
+ for(const q of ['Warum ist mein Fenster hinter dem Plissee nass, obwohl das Hygrometer 50 % zeigt?',
+  'Fensterscheibe hinter der Gardine beschlägt innen']) {
+   const hits=searchEntries(index,q,'de');
+   assert.equal(hits[0]?.entry.u,anchor,q);
+   assert.match(hits[0].entry.d,/9,3 °C/,q);
+   assert.ok(!searchEntries(index,q,'en').some(hit=>hit.entry.u===anchor),q);
+ }
+ for(const q of ['Fenster hinter dem Rollo beschlägt zwischen den beiden Scheiben',
+  'Die Außenseiten der Fenster hinter dem Rollo sind nass',
+  'Die Fenster im Wohnmobil sind von innen hinter den Rollos nass',
+  'Warum beschlägt das geschlossene Fenster morgens innen?']) {
+   assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u===anchor),q);
+ }
+});
+
 test('German exact N90 offer identity searches reach the existing model evidence',()=>{
  const page='/guide/delonghi-pac-n90-test.html';
  for(const q of [
