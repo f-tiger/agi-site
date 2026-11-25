@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {assess} from '../site/assets/moisture-check.mjs';
 import {ventilationEffect} from '../site/assets/ventilation-effect.mjs';
-import {ecoPublicBusinessEvent} from '../site/eco-engagement.mjs';
+import {ecoPublicBusinessEvent} from '../site/assets/public-engagement.mjs';
 import worker from '../src/worker.js';
 test('vapour comparison handles winter, humid summer, ambiguity and damage',()=>{
  const v={inside:20,rh:65,outside:5,outRh:90};
