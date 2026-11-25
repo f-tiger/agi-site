@@ -24,6 +24,18 @@ test('the browser loads the current catalogue search module', async () => {
   const imports = [...html.matchAll(/from '([^']*mcp-catalog-search\.mjs[^']*)'/g)];
   assert.deepEqual(imports.map(match => match[1]), [`/assets/mcp-catalog-search.mjs?v=${version}`]);
 });
+test('German round panel questions find the existing exact geometry tool', async () => {
+ const query='Fensterplatte für mobile Klimaanlage: Welcher Randabstand bleibt um den runden Ausschnitt?';
+ const name='abluftplatte_lochposition_pruefen';
+ const url='/guide/fensterabdichtung-selber-bauen.html#abluft-ausschnitt-pruefen';
+ const result=await catalogue({q:query,view:'compact',limit:1});
+ assert.equal(result.tools[0]?.name,name);
+ assert.equal(findCatalogueTools(compact,{query})[0]?.name,name);
+ assert.equal(toolGuidePath(result.tools[0]),url);
+ for(const other of ['Klimaanlage Schlauch verlängern trotz Loch in Fensterplatte','Abluftplatte: rechteckiger Ausschnitt'])
+  assert.notEqual((await catalogue({q:other,view:'compact',limit:1})).tools[0]?.name,name);
+});
+
 test('German household questions agree in browser, catalogue and compact MCP', async () => {
   const scenarios = [
     ['Wie viele Thermovorhänge brauche ich für ein 120 cm breites Fenster?', 'thermovorhang_bahnenbedarf',
@@ -79,9 +91,9 @@ test('German household questions agree in browser, catalogue and compact MCP', a
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 246);
+  assert.equal(withGuides.length, 247);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 44);
+  assert.equal(destinations.size, 45);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);

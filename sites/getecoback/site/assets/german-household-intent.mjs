@@ -178,6 +178,11 @@ function humidifierAccessoryTask(query) {
 
 // Consumers pass their normalized German query. Match a task, not a category.
 export function exactGermanHouseholdTask(query) {
+  const exhaustPanel = /\babluft[ -]?platt\w*\b|(?:\b(?:fenster|acryl|hohlkammer)[ -]?platt\w*\b.*\b(?:klimaanlag\w*|klimageraet\w*|abluft\w*)\b)|(?:\b(?:klimaanlag\w*|klimageraet\w*|abluft\w*)\b.*\b(?:fenster|acryl|hohlkammer)[ -]?platt\w*\b)/;
+  const opening = /\b(?:ausschnitt\w*|lochr?and\w*|loch\w*|randabstand\w*|anschlusszeichnung\w*)\b/;
+  const irrelevant = /\b(?:rechteckig\w*|oval\w*|sicherung\w*|einbruch\w*|lautstaerk\w*|geraeusch\w*|schlauchlaeng\w*|(?:abluft)?schlauch\s+verlaeng\w*)\b/;
+  if (exhaustPanel.test(query) && opening.test(query) && !irrelevant.test(query))
+    return {path:'/guide/fensterabdichtung-selber-bauen.html',id:'abluft-ausschnitt-pruefen',tool:'abluftplatte_lochposition_pruefen'};
   if (asksForKlarsteinPackage(query)) return klarsteinPackage;
   if (asksForDirectHeatComparison(query)) return directHeat;
   if (asksForShowerFlow(query)) return showerFlow;

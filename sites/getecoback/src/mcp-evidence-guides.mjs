@@ -19,6 +19,7 @@ const sections = new Map([
 ]);
 
 const toolSections = new Map([
+  ['abluftplatte_lochposition_pruefen', ['/guide/fensterabdichtung-selber-bauen.html', 'abluft-ausschnitt-pruefen']],
   ['oskar_filtermatten_gemeinsamer_vorrat', humidifierParts],
   ['beurer_lb200_filter_frist_auslastung', humidifierParts],
   ['beurer_lb55_kalkpad_packungswiderspruch', humidifierParts],
