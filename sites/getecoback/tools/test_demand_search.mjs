@@ -3,8 +3,32 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {searchEntries,normalize} from '../site/assets/demand-discovery.mjs';
 import {ecoPublicBusinessEvent} from '../site/assets/public-engagement.mjs';
+import {calculateGasHeatThreshold} from '../site/assets/heat-gas-cost.mjs';
 const browsingIndex=readFileSync(new URL('../site/assets/search-index.json',import.meta.url));
 const index=JSON.parse(browsingIndex);
+test('German heat and gas tariff queries lead to the existing guide calculator', () => {
+ const href='/guide/klimaanlage-mit-heizfunktion.html#heizkosten-klimaanlage-gas';
+ for(const query of ['Ist Heizen mit Klimaanlage günstiger als Gas?',
+   'Welchen COP brauche ich bei 30 Cent Strom und 12 Cent Gas?',
+   'Luft Luft Wärmepumpe oder Gas Arbeitspreis vergleichen',
+   'Split-Klima günstiger als Gasheizung', 'Wärmepumpe statt Gas: Welcher Mindest-COP?']) {
+  assert.equal(searchEntries(index,query,'de')[0]?.entry.u,href,query);
+ }
+ for(const query of ['Klimaanlage mit Heizfunktion Datenblatt', 'Kältemittel Gas in der Klimaanlage',
+   'Förderung Klimaanlage oder Gasheizung Kosten','Gasheizung mit Wärmepumpe fürs Warmwasser vergleichen',
+   'Wie teuer ist der Austausch meiner Gasheizung gegen eine Wärmepumpe?']) {
+  assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,href,query);
+ }
+});
+test('The heat and gas cost calculator compares the same useful heat', () => {
+ const example=calculateGasHeatThreshold(30,12,90);
+ assert.equal(example.threshold,2.25);
+ assert.ok(Math.abs(example.gasHeatCost-13.333333333)<1e-8);
+ assert.equal(calculateGasHeatThreshold(37.5,12.5,100).threshold,3);
+ for(const fields of [[NaN,12,90],[30,0,90],[30,12,0],[30,12,105],[Number.MAX_VALUE,0.01,100]]) {
+  assert.equal(calculateGasHeatThreshold(...fields),null);
+ }
+});
 test('Final browser index preserves the public compatibility index byte-for-byte',()=>{
  const compatibilityIndex=readFileSync(new URL('../site/search-index.json',import.meta.url));
  assert(browsingIndex.equals(compatibilityIndex),'Built browser and compatibility search indices differ');

@@ -55,6 +55,20 @@ export const directHeat = {
   tool:'ratgeber_suche',
 };
 
+export const gasHeatCost = {
+  path:'/guide/klimaanlage-mit-heizfunktion.html',
+  id:'heizkosten-klimaanlage-gas',
+  tool:'ratgeber_suche',
+};
+
+function asksForGasHeatCost(query) {
+  const gas = /\b(?:gas|gasheiz\w*|gaskessel\w*|gastherm\w*|erdgas\w*|gas(?:arbeits)?preis\w*|gaskosten)\b/;
+  const heatPump = /\b(?:klimaanlag\w*|klimageraet\w*|split[ -]?klima\w*|waermepump\w*|cop)\b/;
+  const cost = /\b(?:gaskosten|gas(?:arbeits)?preis\w*|strom(?:arbeits)?preis\w*|vergleich\w*|guenstig\w*|billig\w*|teuer\w*|arbeitspreis\w*|rechn\w*|lohnt|kost\w*|(?:grenz|mindest|break[ -]?even)[ -]?cop)\b|\b\d+(?:[.,]\d+)?\s*(?:ct|cent)\b/;
+  const otherTask = /\b(?:repar\w*|defekt\w*|gasgeruch\w*|klimagas\w*|kaeltemittel\w*|warmwasser\w*|foerder\w*|angebot\w*|amorti\w*|anschaffung\w*|investition\w*|austausch\w*|tausch\w*|ersetz\w*|umruest\w*)\b/;
+  return gas.test(query) && heatPump.test(query) && cost.test(query) && !otherTask.test(query);
+}
+
 function asksForDirectHeatComparison(query) {
   const fan = /\b(?:[a-z]*heiz[ -]?luefter|heizgeblaese)\w*\b/;
   const radiant = /\binfrarot(?:[ -]?(?:heiz\w*|panel\w*))?\b/;
@@ -252,6 +266,7 @@ export function exactGermanHouseholdTask(query) {
   if (asksForCoolingDiscountReference(query)) return coolingDiscountReference;
   if (asksForOfflineThermostat(query)) return offlineThermostatChoice;
   if (asksForSiemensWaterFilter(query)) return siemensFilterDecision;
+  if (asksForGasHeatCost(query)) return gasHeatCost;
   if (asksForDirectHeatComparison(query)) return directHeat;
   if (asksForShowerFlow(query)) return showerFlow;
   if (asksForVacuumOffer(query)) return vacuumOffer;

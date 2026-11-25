@@ -184,6 +184,13 @@ test('Bosch stacking kit search leads with the answer and the readable catalog e
 
 const focusedLookups = [
   {
+    path:'/guide/klimaanlage-mit-heizfunktion.html', section:'heizkosten-klimaanlage-gas',
+    expectedTitle:'Wann kostet Heizen mit Klimaanlage weniger als Gas?',
+    queries:['Ist Heizen mit Klimaanlage günstiger als Gas?', 'Welchen COP brauche ich bei 30 Cent Strom und 12 Cent Gas?'],
+    evidence:['13,33 ct/kWh Nutzwärme','Fehlen Werte, bleibt der Vergleich offen','90 % Nutzungsgrad',
+      'https://www.umweltbundesamt.de/themen/klima-energie/erneuerbare-energien/umgebungswaerme-waermepumpen'],
+  },
+  {
     path:'/guide/fensterabdichtung-selber-bauen.html', section:'abluft-ausschnitt-pruefen',
     expectedTitle:'Abluftplatte: Ausschnitt und freien Rand prüfen',
     queries:['Fensterplatte für mobile Klimaanlage: Welcher Randabstand bleibt um den runden Ausschnitt?', 'Abluftplatte: kleinster Randabstand um das Loch'],

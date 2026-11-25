@@ -17,6 +17,19 @@ async function catalogue(params = {}) {
 const compact = indexCatalogue((await catalogue({view:'compact'})).tools);
 const names = results => results.map(tool => tool.name);
 
+test('Heat and gas comparison search points to the threshold answer', async () => {
+  const href='/guide/klimaanlage-mit-heizfunktion.html#heizkosten-klimaanlage-gas';
+  for (const q of ['Ist Heizen mit Klimaanlage günstiger als Gas?',
+    'Welchen COP brauche ich bei 30 Cent Strom und 12 Cent Gas?',
+    'Luft Luft Wärmepumpe oder Gas Arbeitspreis vergleichen']) {
+    const result=await catalogue({view:'compact', q, limit:3});
+    assert.equal(result.tools[0]?.name,'ratgeber_suche',q);
+    assert.equal(toolGuidePath(result.tools[0]),href,q);
+  }
+  const result=await catalogue({view:'compact', q:'Welche Heiztechnik belegt das Datenblatt einer Klimaanlage?', limit:3});
+  assert.ok(!result.tools.some(tool=>toolGuidePath(tool)===href));
+});
+
 test('the browser loads the current catalogue search module', async () => {
   const module = await readFile(new URL('../site/assets/mcp-catalog-search.mjs', import.meta.url));
   const version = createHash('sha256').update(module).digest('hex').slice(0, 12);
