@@ -1,0 +1,13 @@
+name = "bpj-receipts-clock"
+main = "worker.mjs"
+compatibility_date = "2026-09-01"
+workers_dev = true
+preview_urls = false
+
+[[durable_objects.bindings]]
+name = "BPJ_CLOCK"
+class_name = "ReceiptClock"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["ReceiptClock"]

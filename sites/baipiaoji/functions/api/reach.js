@@ -28,7 +28,7 @@ import {readQuoteSignals} from '../../lib/quote-signals.js';
 // 无来源的直接访问不计（那是本站被扫描的主要形态）,/__ 开头的自测路径不计。
 import {readCommercialTriggers} from '../../lib/commercial-triggers.js';
 import {HUMAN, EVENT_ROWS, NON_LOCAL_REFERRAL, REFERRED_PAGEVIEW_DEFINITION} from '../../lib/hits-schema.js';
-import {createReachCache} from '../../lib/reach-cache.js';
+import {createReachCache,REACH_CACHE_VERSION} from '../../lib/reach-cache.js';
 import {readConversionStages,readProposalDeckOrders} from '../../lib/conversion-stages.js';
 export const K_COUNTRY = 5;
 
@@ -67,7 +67,7 @@ export function reachDays(url) {
   return days;
 }
 
-const reachCache = createReachCache();
+const reachCache = createReachCache({cachePath:`/__bpj-cache/reach/${REACH_CACHE_VERSION}.1`});
 
 export async function onRequestGet(ctx) {
   const { request, env } = ctx;
