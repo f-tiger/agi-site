@@ -72,6 +72,9 @@ def collect():
  sections[('de','/guide/klimaanlage-fenster-einbruchschutz.html')]={
   'id':'fenster-verschluss-pruefen','title':'Klimaanlage am Fenster: Schließen und Verriegeln prüfen',
   'description':'Prüfe am konkreten Fenster, ob es mit der Leitung normal verriegelt. Bei unklarem Ergebnis den Kauf zurückstellen.'}
+ sections[('de','/guide/duschen-kosten-rechner.html')]={
+  'id':'durchlauferhitzer-mindestdurchfluss','title':'Passt eine Sparbrause zu meinem Durchlauferhitzer?',
+  'description':'Einschaltmenge aus der Anleitung und einen Messwert am passenden Bezugspunkt vergleichen. Bei fehlender Angabe mit dem Kauf warten.'}
  sections[('de','/geraete-austausch-rechner.html')]={
   'id':'geschirrspueler-handabwasch','title':'Was kostet eine Ladung mit der Spülmaschine oder von Hand?',
   'description':'Gleiche Geschirrmenge und gleiches Spülergebnis vergleichen. Wasser, Strom und Warmwasser pro Ladung oder Jahr berechnen.'}

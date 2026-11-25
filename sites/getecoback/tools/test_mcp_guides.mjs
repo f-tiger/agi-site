@@ -86,6 +86,13 @@ test('laundry search stays on task and every search result can be read through t
 
 const focusedLookups = [
   {
+    path:'/guide/duschen-kosten-rechner.html', section:'durchlauferhitzer-mindestdurchfluss',
+    expectedTitle:'Passt eine Sparbrause zu meinem Durchlauferhitzer?',
+    queries:['Funktioniert ein Sparduschkopf an meinem hydraulischen Durchlauferhitzer?'],
+    evidence:['am selben Bezugspunkt','8 l/min','6 l/min','Behalte die vorhandene Brause',
+      'https://www.stiebel-eltron.com/static/ste/docportal/manual/DM0000018436-fjw.pdf'],
+  },
+  {
     path:'/guide/lichterkette-stromkosten.html', section:'zeitschaltuhr-strombilanz',
     expectedTitle:'Weihnachtsbeleuchtung: Spart eine Zeitschaltuhr Strom?',
     queries:['Lohnt sich eine Zeitschaltuhr für Weihnachtsbeleuchtung?',

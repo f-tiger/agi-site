@@ -15,6 +15,23 @@ const glazing = {
   id:'aussen-innen-oder-dazwischen',
   tool:'fenster_beschlag_einordnen',
 };
+export const showerFlow = {
+  path:'/guide/duschen-kosten-rechner.html',
+  id:'durchlauferhitzer-mindestdurchfluss',
+  tool:'sparbrause_mindestdurchfluss',
+};
+
+function asksForShowerFlow(query) {
+  const device = /\bdurchlauferhitzer\w*\b/;
+  const showerhead = /\b(?:spar[ -]?(?:duschkopf|duschkoepf|braus)|dusch(?:kopf|koepf|braus)|handbraus|kopfbraus)\w*\b/;
+  const fit = /\b(?:pass\w*|funktionier\w*|geeignet\w*|vertraeg\w*|(?:mindest|einschalt)\w+|(?:genueg|reich)\w*)\b/;
+  const flow = /\b\d+(?:[.,]\d+)?\s*(?:l\s*\/\s*min|liter\s+(?:pro|je)\s+minute)\b/;
+  const buying = /\b(?:kauf\w*|bestell\w*)\b/;
+  const otherTask = /\b(?:entkalk\w*|reinig\w*|reparier\w*|defekt\w*|[a-z]*gewinde\w*|[a-z]*halter\w*|wandmontage)\b/;
+  return device.test(query) && showerhead.test(query) && !otherTask.test(query) &&
+    (fit.test(query) || (flow.test(query) && buying.test(query)));
+}
+
 const dishwashing = {
   path:'/geraete-austausch-rechner.html',
   id:'geschirrspueler-handabwasch',
@@ -114,6 +131,7 @@ function humidifierAccessoryTask(query) {
 
 // Consumers pass their normalized German query. Match a task, not a category.
 export function exactGermanHouseholdTask(query) {
+  if (asksForShowerFlow(query)) return showerFlow;
   if (asksForVacuumOffer(query)) return vacuumOffer;
   if (asksForBoschDry(query)) return boschDry;
   if (asksForComfeeVariant(query)) return comfeeVariant;

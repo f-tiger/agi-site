@@ -70,6 +70,25 @@ test('Glazing questions reach the existing comparison, while indoor glass keeps 
   assert.notEqual(searchEntries(index,question,'de')[0]?.entry.u,glazing,question);
  }
 });
+test('Showerhead flow-fit questions reach the measured-flow decision',()=>{
+ const target='/guide/duschen-kosten-rechner.html#durchlauferhitzer-mindestdurchfluss';
+ for(const query of [
+  "Funktioniert ein Sparduschkopf an meinem hydraulischen Durchlauferhitzer?",
+  "Der alte Durchlauferhitzer braucht 8 Liter pro Minute. Kann ich einen Duschkopf mit 6 l/min kaufen?",
+  "Mein Durchlauferhitzer braucht 8 l/min Mindestdurchfluss. Passt eine Sparbrause mit 6 l/min?"
+]){
+  assert.equal(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+  assert.ok(!searchEntries(index,query,'en').some(hit=>hit.entry.u===target),query);
+ }
+ for(const query of [
+  "Was kostet ein achtminütiges Duschen mit Durchlauferhitzer und Sparbrause bei 6 l/min?",
+  "Wie entkalke ich eine Sparbrause am Durchlauferhitzer?",
+  "Welcher Duschkopfhalter passt neben meinen Durchlauferhitzer?",
+  "Die neue Handbrause wackelt am Gewinde neben dem Durchlauferhitzer."
+]){
+  assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+ }
+});
 test('German dishwashing cost questions open the existing exact calculation',()=>{
  const target='/geraete-austausch-rechner.html#geschirrspueler-handabwasch';
  for(const q of [

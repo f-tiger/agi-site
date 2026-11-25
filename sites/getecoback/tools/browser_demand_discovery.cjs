@@ -100,6 +100,10 @@ async function checkGermanFocusedDiscovery(browser,base){
    {href:curtain,language:'de'},'The German curtain quantity question reaches its measurement tool');
   equal((await search('Luftfeuchtigkeit vor und nach dem Stoßlüften vergleichen'))[0],
    {href:roomVentilation,language:'de'},'A before/after room question reaches the matching ventilation tool');
+  const showerFit='/guide/duschen-kosten-rechner.html#durchlauferhitzer-mindestdurchfluss';
+  const flowQuestion='Funktioniert ein Sparduschkopf an meinem hydraulischen Durchlauferhitzer?';
+  equal((await search(flowQuestion))[0],{href:showerFit,language:'de'},
+   'Showerhead fit reaches the measured flow and minimum threshold decision');
   await search('eco-local-privacy-marker-6381');
   equal(await results.count(),0,'An arbitrary private phrase yields no result');
   await search(positive[1]);
@@ -126,6 +130,12 @@ async function checkGermanFocusedDiscovery(browser,base){
   await results.first().click();
   await page.waitForURL(base+glazing);
   check(await page.locator('#aussen-innen-oder-dazwischen').isVisible(),'Glazing search reaches the reviewed section');
+  await page.locator('#eb-search-toggle').click();
+  await input.waitFor({state:'visible'});
+  await search(flowQuestion);
+  await results.first().click();
+  await page.waitForURL(base+showerFit);
+  check(await page.locator('#durchlauferhitzer-mindestdurchfluss').isVisible(),'Showerhead search follows the exact result');
   await context.close();
  }
 
@@ -141,6 +151,13 @@ async function checkGermanFocusedDiscovery(browser,base){
   check(await page.locator('#luftentfeuchter-waesche-kosten').getByRole('heading').isVisible(),'The clean static link reaches the same section');
   check(await page.locator('#luftentfeuchter-waesche-kosten form').isHidden(),'The no-script reader does not submit a form');
  }
+ await page.goto(base+'/guide/duschen-kosten-rechner.html?__ci=1');
+ const showerLink=page.locator('a[href="#durchlauferhitzer-mindestdurchfluss"]');
+ check(await showerLink.isVisible(),'The shower guide links to the threshold answer without JavaScript');
+ await showerLink.click();
+ const showerAnswer=page.locator('section[aria-labelledby="durchlauferhitzer-mindestdurchfluss"]');
+ check(await showerAnswer.getByText('Behalte die vorhandene Brause',{exact:false}).isVisible(),
+  'The static shower advice keeps the wait and no-purchase option');
  await context.close();
  return checks;
 }
