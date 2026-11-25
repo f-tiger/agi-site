@@ -112,7 +112,7 @@ Miss Raumtemperatur und relative Luftfeuchte vor dem Lüften und nach dem Wieder
 
 Die Magnus-Näherung beschreibt die Änderung am Messpunkt. Neue Feuchtequellen, feuchte Wände und Messunsicherheit bleiben offen. Vergleichbare Werte fehlen? Erst erneut messen. Bei wiederkehrender Nässe oder sichtbaren Schäden [Feuchteursache prüfen](https://getecoback.com/guide/luftfeuchtigkeit-senken.html). Aus diesem Vergleich allein folgt keine Kaufentscheidung.
 
-Zum Nachlesen: [Verbraucherzentrale über Heizen, Lüften und Messgeräte](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426).
+Fehlt dir eine Messung über Nacht? [Prüfe, ob dein Hygrometer den Höchstwert speichert](https://getecoback.com/guide/richtig-lueften-im-winter.html#hygrometer-nachtwert). Zum Nachlesen: [Verbraucherzentrale über Heizen, Lüften und Messgeräte](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426).
 
 ## Dasselbe Fenster, ein halbes Jahr früher
 
@@ -122,17 +122,23 @@ In der anderen Jahreshälfte ist die Kippstellung nicht der Gegner, sondern der 
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Verkäufen. Die Links unten sind Affiliate-Links — für dich derselbe Preis.
 
-Hast du schon ein Hygrometer? Nutze es, wenn es die Werte zeigt, die du brauchst. Falls du einen Nachtwert oder einen Verlauf sehen willst, hilft der Vergleich bei The Doll Scout. [Anzeige, Min/Max-Speicher oder App-Verlauf auswählen](https://thedollscout.com/de/shop/categories/smart-home#raumfeuchte-messen).
+### Welches Hygrometer zeigt den Höchstwert der Nacht?
 
-Anzeige Sortiert danach, wie oft es wirklich die Antwort ist:
+Hat dein vorhandenes Hygrometer oder dein Smart-Home-Sensor einen rückstellbaren Maximalwert oder einen Verlauf, reicht das für diesen Check. Setze den Speicher vor dem Schlafengehen zurück oder wähle morgens in der App den Zeitraum seit dem Vorabend. Lies den Höchstwert vor dem Lüften ab. Für den Vergleich direkt vor und nach dem Lüften genügen zwei aktuelle Werte mit demselben Gerät.
 
-- **Ein Hygrometer mit Min/Max-Speicher** — vor allem anderen. Es hält den Nachtwert fest, den man nie selbst sieht, und ist der Unterschied zwischen Wissen und Raten. Hygrometer mit Min/Max auf Amazon.de →
+Fehlt dir die Speicherfunktion, kommen diese zwei Modelle infrage. Bei einem Angebot für Deutschland gleiche die vollständige Modellnummer ab.
 
-- **Ein Infrarot-Thermometer** kann helfen, die Temperatur an einer kalten Wandstelle zu messen. Infrarot-Thermometer auf Amazon.de →
+- **Kompakt aufstellen oder magnetisch befestigen – TFA 30.5055.01.** Das schwarze Thermo-Hygrometer zeigt Temperatur und relative Feuchte. Die Höchst- und Tiefstwerte rufst du per Taste ab. Prüfe vor der Messung, welchen Zeitraum der Speicher abdeckt. [TFA Herstellerdaten](https://www.tfa-dostmann.de/produkt/digitales-thermo-hygrometer-30-5055/). Anzeige: TFA 30.5055.01 auf Amazon.de suchen.
 
-- **Ein Luftentfeuchter mit Hygrostat**, aber erst, wenn Lüften und Quellenkontrolle nicht reichen — er hält den Raum unter einem eingestellten Wert und arbeitet nachts weiter, wenn Lüften nicht geht. Nach Raumgröße: [20 m²](https://getecoback.com/guide/luftentfeuchter-20-qm.html) · [30 m²](https://getecoback.com/guide/luftentfeuchter-30-qm.html) · [40 m²](https://getecoback.com/guide/luftentfeuchter-40-qm.html).
+- **Messzeitraum selbst zurücksetzen – TFA EXACTO 30.5047.54.** Zusätzlich zur automatischen Rückstellung nach 24 Stunden gibt es einen separat rückstellbaren Max./Min.-Speicher. TFA gibt bei 35–75 % relativer Feuchte ±3 Prozentpunkte an, außerhalb ±5. Zwei AAA-Batterien sind nicht enthalten. [TFA Herstellerdaten](https://www.tfa-dostmann.de/produkt/digitales-thermo-hygrometer-exacto-30-5047/). Anzeige: TFA EXACTO 30.5047.54 auf Amazon.de suchen.
 
-Die Reihenfolge ist Absicht. Ein Luftentfeuchter, der vor einem Hygrometer für 10 Euro gekauft wird, läuft gegen ein Problem an, das niemand gemessen hat — und in einem Raum, dessen eigentlicher Fehler eine 12 °C kalte Wand ist, läuft er praktisch dauerhaft.
+Herstellerangaben für Deutschland geprüft am 25. November 2026. Ein Maximalwert zeigt weder die Uhrzeit noch die Dauer des Ausschlags. Feuchte an einer kalten Wand oder wiederkehrende Nässe gesondert prüfen und die Ursache klären.
+
+[Weitere Hygrometer nach Aufgabe vergleichen](https://getecoback.com/produkte.html#modelle-hygrometer). Für einen Verlauf mit Uhrzeiten hilft der Vergleich bei The Doll Scout. [Anzeige, Min/Max-Speicher oder App-Verlauf auswählen](https://thedollscout.com/de/shop/categories/smart-home#raumfeuchte-messen).
+
+- **Ein Infrarot-Thermometer** kann helfen, die Temperatur an einer kalten Wandstelle zu messen. Anzeige: Infrarot-Thermometer auf Amazon.de suchen.
+
+- **Ein Luftentfeuchter mit Hygrostat** kommt infrage, wenn die Raumluft trotz Lüften und Kontrolle der Feuchtequellen wiederholt zu feucht bleibt. Hilfe zur Auswahl nach Raumgröße: [20 m²](https://getecoback.com/guide/luftentfeuchter-20-qm.html) · [30 m²](https://getecoback.com/guide/luftentfeuchter-30-qm.html) · [40 m²](https://getecoback.com/guide/luftentfeuchter-40-qm.html).
 
 ## Fragen, die wirklich gestellt werden
 

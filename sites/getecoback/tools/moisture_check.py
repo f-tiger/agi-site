@@ -24,7 +24,7 @@ def ventilation_effect():
    <p role="status"></p>
   </form>
   <p>Die Magnus-Näherung beschreibt die Änderung am Messpunkt. Neue Feuchtequellen, feuchte Wände und Messunsicherheit bleiben offen. Vergleichbare Werte fehlen? Erst erneut messen. Bei wiederkehrender Nässe oder sichtbaren Schäden <a href="/guide/luftfeuchtigkeit-senken.html">Feuchteursache prüfen</a>. Aus diesem Vergleich allein folgt keine Kaufentscheidung.</p>
-  <p>Zum Nachlesen: <a href="https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426">Verbraucherzentrale über Heizen, Lüften und Messgeräte</a>.</p>
+  <p>Fehlt dir eine Messung über Nacht? <a href="#hygrometer-nachtwert">Prüfe, ob dein Hygrometer den Höchstwert speichert</a>. Zum Nachlesen: <a href="https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426">Verbraucherzentrale über Heizen, Lüften und Messgeräte</a>.</p>
 </section>
 <script type="module" src="/assets/ventilation-effect.mjs?v={rev}"></script>
 <!--/ECO_VENTILATION_EFFECT-->

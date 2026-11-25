@@ -1,8 +1,9 @@
 """Regression cases for real buying-intent mismatches, not click-volume goals."""
+from html import unescape
 from pathlib import Path
 import unittest
 import re
-from urllib.parse import urlsplit
+from urllib.parse import parse_qs, urlsplit
 from build_rising_rail import destination_for
 from build_home_order import compose
 from check_related import check_curated_block
@@ -11,6 +12,39 @@ from moisture_journeys import GUIDE_NEXT
 SITE = Path(__file__).resolve().parents[1] / 'site'
 
 class ConversionRoutes(unittest.TestCase):
+    def test_winter_hygrometer_keeps_measurement_and_exact_german_searches(self):
+        page = SITE / 'guide' / 'richtig-lueften-im-winter.html'
+        html = page.read_text()
+        markdown = page.with_suffix('.md').read_text()
+        comparison = re.search(r'<section aria-labelledby="hygrometer-nachtwert">(.*?)</section>', html, re.S)
+        self.assertIsNotNone(comparison)
+        section = comparison[1]
+        self.assertEqual(html.count('id="hygrometer-nachtwert"'), 1)
+        measurement = re.search(r'<section id="lueften-vorher-nachher".*?</section>', html, re.S)
+        self.assertIsNotNone(measurement)
+        self.assertIn('href="#hygrometer-nachtwert"', measurement[0])
+        self.assertLess(section.index('vorhandenes Hygrometer'), section.index('rel="sponsored noopener"'))
+        self.assertIn('die Ursache klären', section)
+        self.assertNotIn('hygrometer+innen+min+max', html)
+
+        product = SITE / 'produkte.html'
+        self.assertIn('href="/produkte.html#modelle-hygrometer"', section)
+        self.assertIn('id="modelle-hygrometer"', product.read_text())
+        links = re.findall(r'<a href="(https://www\.amazon\.de/[^"]+)"[^>]*rel="sponsored noopener"', section)
+        searches = ['TFA 30.5055.01 Thermo Hygrometer', 'TFA EXACTO 30.5047.54 Thermo Hygrometer']
+        self.assertEqual(len(links), len(searches))
+        for href, query in zip(links, searches):
+            url = urlsplit(unescape(href))
+            self.assertEqual(url.path, '/s')
+            self.assertEqual(parse_qs(url.query), {'k': [query], 'tag': ['getecoback-21']})
+        for text in ('30.5055.01', '30.5047.54', '35–75 %', '±3 Prozentpunkte',
+                     '25. November 2026', 'vorhandenes Hygrometer', 'die Ursache klären',
+                     'https://www.tfa-dostmann.de/produkt/digitales-thermo-hygrometer-30-5055/',
+                     'https://www.tfa-dostmann.de/produkt/digitales-thermo-hygrometer-exacto-30-5047/'):
+            self.assertIn(text, markdown)
+        self.assertNotIn('https://www.amazon.de/', markdown)
+        self.assertNotIn('getecoback-21', markdown)
+
     def test_autumn_next_steps_resolve_to_existing_tools_and_anchors(self):
         for slug in ['fenster-beschlagen-innen','luftentfeuchter-keller',
                      'schimmel-im-keller-entfernen','heizluefter-stromsparend',
