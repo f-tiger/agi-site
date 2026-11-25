@@ -47,6 +47,7 @@ if (form) {
   const copy = one('[data-tds-copy]');
   const save = one('[data-tds-export]');
   const buyerGuide = one('[data-tds-buyer-guide]');
+  const energyHelper = one('[data-tds-energy-helper]');
   let inputRevision = 0;
   function clearGuide() {
     if (!buyerGuide) return;
@@ -61,8 +62,31 @@ if (form) {
   let resultText = '';
   let exportText = '';
   let exampleLoaded = false;
+  let exampleInputs = new Set();
   let exampleResult = false;
   let running = false;
+
+  function clearResult() {
+    status.textContent = '';
+    result.textContent = '';
+    summary.textContent = '';
+    summary.hidden = true;
+    copy.disabled = true;
+    save.disabled = true;
+    resultText = '';
+    exportText = '';
+  }
+
+  function recordEdit(trusted, field) {
+    inputRevision++;
+    clearGuide();
+    if (energyHelper) {
+      if (trusted) exampleInputs.delete(field);
+      clearResult();
+    } else {
+      exampleLoaded = false;
+    }
+  }
 
   const props = Object.entries(inputSchema.properties);
   function setInputs(values) {
@@ -94,12 +118,47 @@ if (form) {
     inputRevision++;
     setInputs(example);
     exampleLoaded = true;
+    if (energyHelper) {
+      exampleInputs = new Set(Object.keys(example));
+      clearResult();
+    }
   });
-  form.addEventListener('input', () => {
-    exampleLoaded = false;
-    inputRevision++;
-    clearGuide();
+  form.addEventListener('input', event => {
+    recordEdit(event.isTrusted, event.target.name);
   });
+  if (energyHelper) {
+    const controls = one('[data-tds-energy-controls]', energyHelper);
+    const readings = Array.from(controls.querySelectorAll('[data-tds-energy-input]'));
+    const energyStatus = one('[data-tds-energy-status]', controls);
+    const {maximum} = inputSchema.properties.sessionAKwh;
+    const format = new Intl.NumberFormat(document.documentElement.lang, {maximumSignificantDigits: 21});
+    controls.addEventListener('input', () => { energyStatus.textContent = ''; });
+    import('./uk-laundry-measurement.mjs?v=20261125').then(({sumMeasuredKwh}) => {
+      for (const button of controls.querySelectorAll('[data-tds-energy-use]')) {
+        button.addEventListener('click', event => {
+          const invalid = readings.find(input => !input.validity.valid);
+          if (invalid) {
+            energyStatus.textContent = ui.energy.invalid.replace('{maximum}', format.format(maximum));
+            invalid.focus();
+            return;
+          }
+          const values = readings.filter(input => input.value !== '').map(input => input.valueAsNumber);
+          const total = sumMeasuredKwh(values, maximum);
+          if (total.status !== 'ok') {
+            energyStatus.textContent = ui.energy[total.status].replace('{maximum}', format.format(maximum));
+            return;
+          }
+          const field = button.dataset.tdsEnergyUse;
+          form.elements.namedItem(field).value = String(total.value);
+          recordEdit(event.isTrusted, field);
+          energyStatus.textContent = ui.energy[field].replace('{total}', format.format(total.value));
+        });
+      }
+      controls.hidden = false;
+    }).catch(() => {
+      // The worked instructions stay available if the optional helper fails to load.
+    });
+  }
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (running || !form.reportValidity()) return;
@@ -107,18 +166,13 @@ if (form) {
     clearGuide();
     run.disabled = true;
     sample.disabled = true;
+    clearResult();
     status.textContent = ui.process;
-    result.textContent = '';
-    summary.textContent = '';
-    summary.hidden = true;
-    copy.disabled = true;
-    save.disabled = true;
-    resultText = '';
-    exportText = '';
+    const revision = inputRevision;
     try {
       const args = readInputs();
-      const wasExample = exampleLoaded;
-      const revision = inputRevision;
+      const wasExample = energyHelper ? exampleInputs.size > 0 : exampleLoaded;
+      const wasMixed = energyHelper && wasExample && exampleInputs.size < Object.keys(example).length;
       const { runTdsTool } = await import('./index.mjs');
       const value = await runTdsTool(name, args, locale);
       if (value === undefined) throw Error('Missing execution result');
@@ -136,7 +190,7 @@ if (form) {
       const head = typeof value?.message === 'string' ? value.message : value?.summary;
       summary.textContent = typeof head === 'string' ? head : '';
       summary.hidden = !summary.textContent;
-      status.textContent = wasExample ? ui.exampleResult : ui.result;
+      status.textContent = wasMixed ? ui.energy.mixed : wasExample ? ui.exampleResult : ui.result;
       copy.disabled = false;
       save.disabled = false;
       exampleResult = wasExample;
@@ -150,7 +204,7 @@ if (form) {
         }
       }
     } catch {
-      status.textContent = ui.failed;
+      if (revision === inputRevision) status.textContent = ui.failed;
     } finally {
       running = false;
       run.disabled = false;

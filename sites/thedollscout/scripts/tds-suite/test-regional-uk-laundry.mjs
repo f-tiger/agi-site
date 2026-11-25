@@ -2,9 +2,23 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {UK_LAUNDRY_TOOL, runUkLaundryTool} from '../../collector-assets/tds-suite/regional-uk-laundry.mjs';
 import {matchesInputSchema} from '../../collector-assets/tds-suite/input-schema.mjs';
+import {sumMeasuredKwh} from '../../collector-assets/tds-suite/uk-laundry-measurement.mjs';
 import {buildMarketPages, loadMarketGuides} from '../collecting/market-guides.mjs';
 
 const example = () => ({...UK_LAUNDRY_TOOL.example});
+
+test('whole-session readings add as decimals and check the total before rounding', () => {
+  const {maximum} = UK_LAUNDRY_TOOL.inputSchema.properties.sessionAKwh;
+  assert.deepEqual(sumMeasuredKwh([0.4, 0.85], maximum), {status: 'ok', value: 1.25});
+  assert.deepEqual(sumMeasuredKwh([0.1, 0.2, 0], maximum), {status: 'ok', value: 0.3});
+  assert.deepEqual(sumMeasuredKwh([0], maximum), {status: 'ok', value: 0});
+  assert.deepEqual(sumMeasuredKwh([49.99, 0.01], maximum), {status: 'ok', value: 50});
+  assert.deepEqual(sumMeasuredKwh([50, 5e-324], maximum), {status: 'over'});
+  assert.deepEqual(sumMeasuredKwh([], maximum), {status: 'empty'});
+  for (const reading of [-0.01, NaN, Infinity]) {
+    assert.deepEqual(sumMeasuredKwh([reading], maximum), {status: 'invalid'});
+  }
+});
 
 test('UK laundry definition gives one bounded measured-session task and a dated actual UK manufacturer reference', () => {
   const tool = UK_LAUNDRY_TOOL;
@@ -132,8 +146,8 @@ test('the UK laundry guide exposes the native tool before navigation and models,
   assert.match(uk, /TDS has not tested drying speed/);
   assert.match(uk, /Editorial sources checked: <time datetime="2026-11-15">/);
   const graph = JSON.parse(/<script type="application\/ld\+json">(.*?)<\/script>/s.exec(uk)[1]);
-  assert.equal(graph['@graph'].find(node => node['@type'] === 'WebPage').dateModified, '2026-11-23');
-  assert.equal(records.find(row => row.url.endsWith('/uk/indoor-laundry')).modified, '2026-11-23');
+  assert.equal(graph['@graph'].find(node => node['@type'] === 'WebPage').dateModified, '2026-11-25');
+  assert.equal(records.find(row => row.url.endsWith('/uk/indoor-laundry')).modified, '2026-11-25');
   assert.match(files.get('collector-assets/text/uk/indoor-laundry.txt'), /https:\/\/thedollscout\.com\/ai-tools\/uk-laundry-session/);
   for (const [path, html] of files) {
     if (path.endsWith('.html') && !['uk/indoor-laundry.html', 'uk/index.html'].includes(path)) assert.ok(!html.includes(toolHref), path + ': do not add the UK calculator to a different market or task');

@@ -96,41 +96,46 @@
           "slug": "indoor-laundry",
           "title": "Drying clothes indoors in the UK: moisture, space and running cost",
           "description": "Decide whether you need ventilation, a humidity monitor or a dehumidifier. Compare whole-session electricity use and local model details before buying.",
-          "answer": "A dehumidifier and an air purifier do different jobs. For laundry, start with the moisture source, ventilation and available drying space. If you compare dehumidifiers, use performance at similar temperature and humidity and the cost of a whole drying session.",
+          "answer": "Start with the clothes airer you already own if it dries a normal load in a well-ventilated room. If clothes take too long, compare a heated airer for smaller loads with a tumble dryer for frequent bulky loads. If moisture is building up in the room, check ventilation and the cause of damp before considering a dehumidifier.",
           "decisions": [
             {
               "title": "Find the problem before choosing an appliance",
               "body": "Note when moisture appears, where laundry dries and whether extraction and ventilation work as intended. A purchase does not repair a leak or a building defect. For persistent damp, follow appropriate housing or professional advice rather than relying on a product guide."
             },
             {
-              "title": "Compare the same conditions",
-              "body": "Which? describes testing extraction, energy use and noise. Use that decision framework, but do not treat TDS as a testing laboratory. A headline litres-per-day claim is not a promise for your room, and tank volume is a different measurement."
+              "title": "Compare the same loads and room conditions",
+              "body": "Compare loads with similar fabric, size, starting wetness and final dryness. Record room temperature and humidity when comparing rack setups, and count each drying cycle if one wash load takes two batches. For dehumidifiers, compare extraction figures at similar temperatures and humidity. The tank size only tells you how much water it holds."
             },
             {
               "title": "Budget for the full job",
-              "body": "Use measured kWh for a complete comparable session multiplied by your own GBP-per-kWh tariff. Rated watts × hours ÷ 1,000 is only a constant-power estimate; cycling and conditions change. Add filter costs only where the chosen mode actually needs that filter."
+              "body": "Add the measured kWh of every device used to dry the load, including any fan or extractor you can measure separately. For example, 0.40 kWh from a heated airer plus 0.85 kWh from a dehumidifier gives 1.25 kWh for the session. Enter 1.25 kWh and your own unit rate in the calculator. At an example rate of 27.5p/kWh, that is £0.34. These are illustrative inputs for the calculation. Actual readings depend on your equipment and room conditions."
             }
           ],
           "comparisons": [
             {
-              "need": "You need to understand humidity changes",
-              "consider": "A thermometer/hygrometer and an observation log",
-              "check": "It measures conditions; it does not remove moisture or establish the cause."
+              "need": "A normal load dries in time and the room can be ventilated",
+              "consider": "Keep your existing clothes airer",
+              "check": "Give garments space and check how long your usual load takes. The rack itself uses no electricity. Count any fan or extractor you run for the load."
             },
             {
-              "need": "Laundry dries slowly and extra extraction is appropriate",
-              "consider": "A dehumidifier rated for the intended room conditions",
-              "check": "Check extraction, noise, tank access, drainage and required clearance."
+              "need": "Small loads dry too slowly and you have room for a rack",
+              "consider": "A heated clothes airer",
+              "check": "Check whether towels fit and how much of a load fits in one go. Use a cover only if the manufacturer approves it for that exact model, and follow its clearance and ventilation instructions."
             },
             {
-              "need": "The concern is particles or smells",
-              "consider": "Read an air-purifier guide separately",
-              "check": "Particle filtration does not remove water vapour or replace ventilation."
+              "need": "Laundry adds moisture to the room and extra extraction is appropriate",
+              "consider": "Your existing clothes airer with a dehumidifier",
+              "check": "Check the operating temperature, extraction, noise, tank access and required clearance. Work out where the collected water will go."
+            },
+            {
+              "need": "You frequently need to dry large loads or bulky towels",
+              "consider": "A tumble dryer with room for your usual load",
+              "check": "Check the drying capacity for the programme you use, care labels, installation and moisture outlet. Compare the measured cost per whole load with your existing setup."
             }
           ],
           "beforeBuying": [
             "Confirm the exact generation, UK plug, rated supply and manufacturer operating range.",
-            "Compare a whole session under similar conditions; do not compare only maximum watts.",
+            "Use a thermometer/hygrometer if you need to observe how the room changes during drying.",
             "Check the standard washable filter versus optional replacement filters in the exact manual.",
             "Verify delivery to your postcode, current stock, seller, warranty and return arrangements."
           ],
@@ -142,6 +147,10 @@
             {
               "question": "Is a small moisture absorber equivalent to a room dehumidifier?",
               "answer": "No. Check the intended space and extraction method. A product intended for a cupboard is not evidence of useful performance for wet laundry in a room."
+            },
+            {
+              "question": "Will an air purifier help with indoor laundry moisture?",
+              "answer": "An air purifier filters particles. Use ventilation and appropriate moisture extraction to manage water vapour."
             }
           ],
           "models": [
@@ -161,6 +170,14 @@
             }
           ],
           "sources": [
+            {
+              "label": "Which? · indoor drying methods and whole-load test comparisons",
+              "url": "https://www.which.co.uk/reviews/clothes-airers/article/whats-the-best-and-cheapest-way-to-dry-clothes-indoors-aVcs74u56Gk8"
+            },
+            {
+              "label": "Which? · heated airer tests and cover observations",
+              "url": "https://www.which.co.uk/news/article/are-heated-airers-worth-it-anZ006K965Pj"
+            },
             {
               "label": "Which? · public dehumidifier buying and test-method guide",
               "url": "https://www.which.co.uk/reviews/dehumidifiers/article/how-to-buy-the-best-dehumidifier-ay5gu4q77WQN"
