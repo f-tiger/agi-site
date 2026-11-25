@@ -40,6 +40,9 @@ def collect():
  sections[('de','/guide/heizkosten-vergleich-rechner.html')]= {
   'id':'heizluefter-oder-infrarot','title':'Heizlüfter oder Infrarotheizung für kurze Einsätze?',
   'description':'Für zwei konkrete Einsätze Leistung und aktive Laufzeit getrennt rechnen. Weniger Watt allein bedeuten weder weniger Strom pro Einsatz noch denselben Komfort.'}
+ sections[('de','/guide/klimaanlage-mit-heizfunktion.html')]={
+  'id':'heizkosten-klimaanlage-gas','title':'Wann kostet Heizen mit Klimaanlage weniger als Gas?',
+  'description':'Kosten je kWh Nutzwärme vergleichen. Strompreis × Gas-Nutzungsgrad ÷ Gaspreis ergibt den COP für gleiche Energiekosten. Bei 30 ct Strom, 12 ct Gas und 90 % Nutzungsgrad liegt er bei 2,25.'}
  sections[('de','/guide/lichterkette-stromkosten.html')]={
   'id':'zeitschaltuhr-strombilanz','title':'Weihnachtsbeleuchtung: Spart eine Zeitschaltuhr Strom?',
   'description':'5 W LED und 0,5 W Timer: Erst mehr als 2 Stunden und 24 Minuten weniger Licht pro Tag sparen Energie. Eigene Zeiten und mehrere Lichterketten prüfen.'}

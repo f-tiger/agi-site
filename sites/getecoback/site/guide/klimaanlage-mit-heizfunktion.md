@@ -48,7 +48,15 @@ Die folgende Tabelle ist reine **Szenariorechnung mit angenommenen 0,30 €/kWh 
 
 **SCOP ist keine persönliche Verbrauchsprognose.** Er beschreibt eine standardisierte Heizsaison für ein Referenzklima. Das EU-Label unterscheidet bis zu drei Klimazonen; vergleiche denselben Klimabezug. Betriebsgrenzen, Teillast, Abtauen und zusätzliche Verbraucher müssen zur konkreten Nutzung passen. [Quelle: EU-Kommission, Energieetikett für Klimageräte](https://energy-efficient-products.ec.europa.eu/product-list/air-conditioners-and-comfort-fans_en).
 
-Für einen Gasvergleich gilt auf derselben Nutzwärmebasis: **Gasarbeitspreis ÷ Nutzungsgrad**. Beispielannahmen: 0,12 €/kWh Gas und 90 % Nutzungsgrad ergeben rund 0,133 €/kWh Wärme. Bei 0,30 €/kWh Strom müsste die Wärmepumpe für niedrigere reine Energiekosten über COP 2,25 liegen. Grundpreise, Anschaffung, Montage und Wartung sind dabei noch nicht enthalten. Ein niedrigerer Arbeitspreis allein beweist keine Amortisation.
+### Wann kostet Heizen mit Klimaanlage weniger als Gas?
+
+Vergleiche dieselbe Kilowattstunde Nutzwärme. **Gaskosten je kWh Wärme = Gasarbeitspreis ÷ Nutzungsgrad.** Setze den Nutzungsgrad als Dezimalzahl ein. Für die Wärmepumpe teilst du den Stromarbeitspreis durch den COP unter denselben Betriebsbedingungen.
+
+**COP für gleiche Energiekosten = Stromarbeitspreis × Gas-Nutzungsgrad ÷ Gasarbeitspreis.** Bei angenommenen 30 ct/kWh Strom, 12 ct/kWh Gas und 90 % Nutzungsgrad ergibt 30 × 0,90 ÷ 12 einen COP von 2,25. Bei COP 2,25 kosten beide rund 13,33 ct/kWh Nutzwärme. Oberhalb der Schwelle kostet der Strom für dieselbe Wärme weniger. Unterhalb kostet das Gas weniger.
+
+Nutze positive Arbeitspreise aus deinen Tarifen und einen für deinen Kessel und Zeitraum belegten Nutzungsgrad auf derselben Brennwertbasis wie die Gasabrechnung. Fehlen Werte, bleibt der Vergleich offen. Der errechnete COP ist eine Kostenschwelle. Prüfe separat, ob das konkrete Gerät diesen COP bei deiner Außentemperatur erreicht und genug Wärme liefert.
+
+Grundpreise, Kauf, Montage und Wartung gehören in einen getrennten Gesamtkostenvergleich. Wenn deine vorhandene Heizung ausreicht oder Geräteleistung und Montage ungeklärt sind, kannst du die Anschaffung zurückstellen. [Umweltbundesamt zu Leistungszahl und Energiekosten einer Wärmepumpe](https://www.umweltbundesamt.de/themen/klima-energie/erneuerbare-energien/umgebungswaerme-waermepumpen), geprüft am 25. November 2026.
 
 Für ein vorhandenes Gerät kannst du den elektrischen Verbrauch mit unserem [Strommess-Protokoll](https://getecoback.com/strommess-protokoll.html) dokumentieren. Der [Heizkosten-Vergleichsrechner](https://getecoback.com/guide/heizkosten-vergleich-rechner.html#eb-hk-calc) vergleicht die Stromkosten für dieselbe Wärmemenge. Du kannst den COP einstellen oder mit dem gekennzeichneten COP-3-Szenario beginnen.
 
