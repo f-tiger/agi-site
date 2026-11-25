@@ -137,6 +137,17 @@ test('the German window condensation question finds the measured check and fixed
   assert.notEqual(findCatalogueTools(compact,{query:ventilate})[0]?.name, name, ventilate);
 });
 
+test('German cooling discount discovery points to the 30-day evidence', async () => {
+  const query='Black Friday Klimaanlage';
+  const answer='/guide/klimaanlage-wann-kaufen.html#angebot-30-tage-preis';
+  const result=await catalogue({q:query,view:'compact',limit:3});
+  assert.deepEqual(names(result.tools),['ratgeber_suche']);
+  assert.equal(toolGuidePath(result.tools[0]),answer);
+  assert.equal(toolGuidePath(findCatalogueTools(compact,{query})[0]),answer);
+  assert.equal(findCatalogueTools(compact,{query:'klima_kaufzeitpunkt_eigenbedarf'})[0]?.name,'klima_kaufzeitpunkt_eigenbedarf');
+  assert.equal(analytics,0);
+});
+
 test('a German passive absorber comparison opens the guide without hiding measured tool queries', async () => {
   const guide='/guide/luftentfeuchter-granulat-oder-elektrisch.html#granulat-waesche-entscheidung';
   const question='Reicht eine Granulatbox zum Wäschetrocknen?';

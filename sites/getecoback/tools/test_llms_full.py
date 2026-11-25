@@ -54,6 +54,23 @@ class LlmsFull(unittest.TestCase):
         self.assertNotIn('data-laundry-season', mirror)
         self.assertNotIn('waesche-saisonwechsel', (SITE / 'en/guide/dehumidifier-drying-clothes-cost.html').read_text())
 
+    def test_cooling_discount_reference_is_static_and_matches_the_mirror(self):
+        page = SITE / 'guide/klimaanlage-wann-kaufen.html'
+        source = page.read_text()
+        mirror = page.with_suffix('.md').read_text()
+        identifier = 'angebot-30-tage-preis'
+        section = re.search(r'<section aria-labelledby="'+identifier+r'">.*?</section>', source, re.S)[0]
+        self.assertEqual(source.count('id="'+identifier+'"'), 1)
+        self.assertIn('href="#'+identifier+'"', source)
+        for fact in ('derselbe Händler in den 30 Tagen', '419 €', '429 €', '469 €',
+                     'gesetze-im-internet.de/pangv_2022/__11.html',
+                     'midea-portasplit-kaufen.html#portasplit-original-angebot',
+                     'midea-portasplit-ausverkauft-alternativen.html#option-3-monoblock',
+                     '#kaufzeitpunkt-rechner'):
+            for document in (section, mirror):
+                self.assertIn(fact, document)
+        self.assertNotRegex(section+mirror, r'amazon\.de/|tag=getecoback-21')
+
     def test_cooling_offer_calculation_has_a_static_owned_example(self):
         page = SITE / 'guide/klimaanlage-wann-kaufen.html'
         source = page.read_text()

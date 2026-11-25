@@ -33,6 +33,7 @@ assert [(entry['l'],entry['u'],entry['section']['id']) for entry in focused]==[
     ('de','/guide/klarstein-kraftwerk-smart-12k-test.html','kraftwerk-10034664-lieferumfang'),
     ('de','/guide/klimaanlage-40-qm.html','portasplit-40-qm'),
     ('de','/guide/klimaanlage-fenster-einbruchschutz.html','fenster-verschluss-pruefen'),
+    ('de','/guide/klimaanlage-wann-kaufen.html','angebot-30-tage-preis'),
     ('de','/guide/lichterkette-stromkosten.html','zeitschaltuhr-strombilanz'),
     ('de','/guide/luftentfeuchter-granulat-oder-elektrisch.html','granulat-waesche-entscheidung'),
     ('de','/guide/luftentfeuchter-keller.html','ablauf-vor-kauf'),

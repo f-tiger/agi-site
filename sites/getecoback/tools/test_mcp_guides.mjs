@@ -84,6 +84,20 @@ test('laundry search stays on task and every search result can be read through t
   }
 });
 
+test('cooling sale guide search names the same seller and the 30-day reference', async () => {
+  const {env} = assetEnv();
+  const path='/guide/klimaanlage-wann-kaufen.html';
+  const matching=await call('ratgeber_suche',{frage:'Black Friday Klimaanlage',sprache:'de',max:1},env);
+  assert.equal(matching.isError,false);
+  const lines=textOf(matching).split('\n');
+  assert.match(lines[1],/Black Friday.*30-Tage-Preis/);
+  assert.equal(lines[2].trim(),'https://getecoback.com'+path);
+  assert.match(lines[3],/desselben Händlers/);
+  const reading=await call('ratgeber_lesen',{pfad:path},env);
+  assert.equal(reading.isError,false);
+  assert.match(textOf(reading),/gesetze-im-internet\.de\/pangv_2022\/__11\.html/);
+});
+
 test('passive absorber search and reader explain what the package weight means', async () => {
   const {env} = assetEnv();
   const path='/guide/luftentfeuchter-granulat-oder-elektrisch.html';
