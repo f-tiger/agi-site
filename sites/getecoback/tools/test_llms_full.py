@@ -16,6 +16,24 @@ MEACO = 'https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-
 
 
 class LlmsFull(unittest.TestCase):
+    def test_humidity_guides_link_to_the_exact_measurement_and_purchase_decisions(self):
+        routes = [
+            ('waesche-trocknen-wohnung', 'wie-ein-luftentfeuchter-schneller-trocknet-und-die-wohnung-s',
+             'luftentfeuchter-granulat-oder-elektrisch', 'granulat-waesche-entscheidung'),
+            ('richtig-lueften-im-winter', 'die-eigene-kalte-stelle-pruefen',
+             'luftfeuchtigkeit-richtig-messen', 'kondenswasser-hinter-plissee'),
+        ]
+        for slug, section, target, anchor in routes:
+            with self.subTest(slug=slug):
+                page = SITE / 'guide' / (slug + '.html')
+                html = page.read_text()
+                body = html.split(f'<h2 id="{section}">', 1)[1].split('<h2', 1)[0]
+                url = f'/guide/{target}.html#{anchor}'
+                self.assertEqual(body.count(f'href="{url}"'), 1)
+                self.assertIn(f'https://getecoback.com{url}', page.with_suffix('.md').read_text())
+                target_page = (SITE / 'guide' / (target + '.html')).read_text()
+                self.assertEqual(target_page.count(f'id="{anchor}"'), 1)
+
     def test_passive_absorber_guide_preserves_primary_evidence_and_purchase_order(self):
         guide = SITE / 'guide/luftentfeuchter-granulat-oder-elektrisch.html'
         page = guide.read_text()

@@ -70,6 +70,8 @@ Bleibt die Wäsche drinnen, vergleiche die [Kosten für dieselbe vollständig ge
 
 Mit einem Infrarot-Thermometer die kälteste Stelle suchen, die zu finden ist — Laibung, Außenwandecke, die Wand hinter einem Möbelstück — und die drei Zahlen hier eintragen.
 
+Die Scheibe hinter dem Plissee ist nass, obwohl der Raumwert unauffällig ist? [Prüfe die Scheibenseite und miss zur selben Zeit Raumluft und Glasoberfläche](https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html#kondenswasser-hinter-plissee). Die Anleitung erklärt auch, was ohne verlässliche Scheibentemperatur offenbleibt.
+
 Kondensiert es an dieser Wand?
 
 Raumtemperatur (°C)

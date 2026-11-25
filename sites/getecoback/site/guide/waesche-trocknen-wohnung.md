@@ -40,6 +40,8 @@ Manche Geräte haben einen eigenen **Wäschetrocknen-Modus** (auch „Laundry-Mo
 
 - **Du suchst gezielt einen Wäschemodus.** Prüfe die Herstellerangaben zum [Bosch Dry 4000 D4000-EU](https://getecoback.com/guide/waesche-trocknen-wohnung.html#modell-bosch-d4000-eu) (Auto, Nacht, Wäsche) und zum [Stadler Form Lukas L-031E](https://getecoback.com/guide/waesche-trocknen-wohnung.html#modell-stadler-lukas) (Schwenkfunktion und Wäschemodus). Die Angaben zum Modus sagen nicht, wie viel Strom eine Ladung bei dir braucht.
 
+Du überlegst, ob eine Granulatbox für nasse Wäsche reicht? [Prüfe zuerst Feuchteabfuhr und Einsatzgrenzen](https://getecoback.com/guide/luftentfeuchter-granulat-oder-elektrisch.html#granulat-waesche-entscheidung), bevor du ein Gerät kaufst.
+
 Welche Entfeuchter-Größe zu deinem Raum passt und worauf du beim Kauf achten solltest, erklärt unser [großer Luftentfeuchter-Ratgeber](https://getecoback.com/guide/luftentfeuchter-ratgeber.html). Für kleine Räume lohnt sich der Blick in die Empfehlung [Luftentfeuchter für 15 qm](https://getecoback.com/guide/luftentfeuchter-15-qm.html).
 
 ## Heizen oder Luftentfeuchter — was ist günstiger?
@@ -170,7 +172,7 @@ Kaufgründe und genaue Varianten
 | [Bosch Dry 4000](https://getecoback.com/guide/waesche-trocknen-wohnung.html#modell-bosch-d4000-eu) | Drei Betriebsmodi statt vieler Einstellungen | D4000-EU · Artikel 7733703558 |
 | [MeacoDry Arete Two 12L](https://getecoback.com/guide/waesche-trocknen-wohnung.html#modell-meaco-two-12) | App-Steuerung und kleinerer Tank | Arete Two 12L · nicht One oder Two 20L |
 | [Stadler Form Lukas](https://getecoback.com/guide/waesche-trocknen-wohnung.html#modell-stadler-lukas) | Schwenkfunktion und Wäschemodus | Lukas weiss L-031E · nicht Lukas little oder Pro |
-| [Comfee MDDF-20DEN7](https://getecoback.com/guide/waesche-trocknen-wohnung.html#modell-comfee-mddf20) | Feuchteregelung mit Timer | MDDF-20DEN7 · ohne WF |
+| [Comfee MDDF-20DEN7](https://getecoback.com/guide/waesche-trocknen-wohnung.html#modell-comfee-mddf20) | Feuchteregelung mit Timer | MDDF-20DEN7 · ohne WF · Artikel 10000651 |
 | [MeacoDry Arete One 20L](https://getecoback.com/guide/waesche-trocknen-wohnung.html#modell-meaco-one-20) | Leistungsdaten unter konkreten Raumbedingungen | Arete One 20L · nicht Two oder One 25L |
 | [MeacoDry Arete One 25L](https://getecoback.com/guide/waesche-trocknen-wohnung.html#modell-meaco-one-25) | Weitere Kapazitätsvariante derselben Baureihe | Arete One 25L · nicht Two 25L |
 
