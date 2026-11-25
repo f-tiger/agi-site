@@ -18,6 +18,11 @@ const dishwashing = {
   id:'geschirrspueler-handabwasch',
   tool:'spuelmaschine_handspuelen_kosten',
 };
+const danfossValve = {
+  path:'/guide/smarte-heizkoerperthermostate-lohnen-sich.html',
+  id:'danfoss-altventil',
+  tool:'thermostat_ventilabgleich',
+};
 
 // Consumers pass their normalized German query. Match a task, not a category.
 export function exactGermanHouseholdTask(query) {
@@ -52,5 +57,12 @@ export function exactGermanHouseholdTask(query) {
   const byHand = /\b(?:handabwasch\w*|handspuel\w*|(?:per|von|mit der) hand)\b/;
   const useOrCost = /\b(?:kost\w*|billig\w*|guenstig\w*|teuer\w*|spar\w*|strom\w*|wasserverbrauch\w*|liter|kwh|lohnt)\b/;
   if (machine.test(query) && byHand.test(query) && useOrCost.test(query)) return dishwashing;
+
+  const radiatorValve = /\b(?:heizkoerper\w*|thermostat\w*|(?:klick|klemm)(?:ventil|anschluss)\w*|ra|rav|ravl)\b/;
+  const valveFit = /\b(?:pass\w*|adapter\w*|unterscheid\w*|erkenn\w*|identifizier\w*|montier\w*|anschluss\w*)\b/;
+  const exactHead = /\b(?:fritz!?\w*|dect\w*|avm|bosch\w*|tado\w*|oventrop|homematic\w*|netatmo|tapo|kasa|20003120|875000[0-9]+)\b/;
+  const repair = /\b(?:tropf\w*|undicht\w*|leck\w*|reparier\w*|reinigen|ersetzen\s+ohne\s+adapter)\b/;
+  if (/\bdanfoss\b/.test(query) && radiatorValve.test(query) && valveFit.test(query) &&
+      !exactHead.test(query) && !repair.test(query)) return danfossValve;
   return null;
 }

@@ -81,6 +81,9 @@ def collect():
  sections[('de','/guide/richtig-lueften-im-winter.html')]={
   'id':'lueften-vorher-nachher','title':'Hat Lüften Feuchte abgeführt? Vorher und nachher messen',
   'description':'Vergleiche stabile Messwerte am selben Ort. Die Änderung in Gramm Wasser pro Kubikmeter ist eine Orientierung am Messpunkt.'}
+ sections[('de','/guide/smarte-heizkoerperthermostate-lohnen-sich.html')]={
+  'id':'danfoss-altventil','title':'Welcher Typ steckt hinter dem alten Danfoss-Klickventil?',
+  'description':'Danfoss RA, RAV und RAVL anhand von Kennzeichnung und Zeichnung unterscheiden. Bei unklarem Ventiltyp den vorhandenen Kopf behalten.'}
  out=[]
  for path,route,lang,h in public_pages():
   if not h.title.strip():raise ValueError(f'Missing title: {route}')

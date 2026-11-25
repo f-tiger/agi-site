@@ -95,8 +95,9 @@ export const winterSuite = [
   },
   {
     name: 'thermostat_ventilabgleich',
-    description: 'Ein bekanntes Heizkörperventil anhand der Herstellerunterlagen für die gewählte Gerätegeneration prüfen — Check a known radiator valve against the selected model’s documentation.',
+    description: 'Ein Heizkörperventil, auch Danfoss, mit der passenden Thermostatgeneration abgleichen. Offene Geräte- oder Ventiltypen als unknown übergeben — Check a radiator valve against the selected model’s documentation.',
     page: thermostat,
+    guide_url: 'https://getecoback.com' + thermostat + '#danfoss-altventil',
     properties: {
       model: choice('Thermostat-Generation aus der Geräteanleitung.', valveData.models.map(({id}) => id)),
       valve: choice('Eindeutig identifizierter Ventilanschluss oder unknown.', documentedValves),

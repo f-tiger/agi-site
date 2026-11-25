@@ -23,7 +23,14 @@ const root=path.resolve(__dirname,'../site'),origin='https://getecoback.com',rou
  try{
   const ctx=await context({viewport:{width:390,height:844}}),page=await ctx.newPage(),errors=[];
   page.on('pageerror',e=>errors.push(e.message));
-  await page.goto(origin+routePath);await page.locator('[data-valve-check][data-ready=true]').waitFor();
+  await page.goto(origin+routePath+'#danfoss-altventil');await page.locator('[data-valve-check][data-ready=true]').waitFor();
+  const oldValve=page.locator('section[aria-labelledby=danfoss-altventil]');
+  assert.match(await oldValve.innerText(),/RA-click.*34 mm bei RAV.*26 mm bei RAVL/s);
+  assert.equal(await page.locator('#danfoss-altventil').evaluate(heading=>getComputedStyle(heading).scrollMarginTop),'260px');
+  assert.equal(await page.locator('#valve-model').inputValue(),'unknown');
+  assert.equal(await page.locator('#valve-connection').inputValue(),'unknown');
+  assert.equal(await oldValve.locator('a[rel~=sponsored]').count(),0);
+  checks+=5;
   assert.equal((await page.evaluate(()=>window.fixedEvents)).filter(x=>x.name.startsWith('eco_valve')).length,0);checks++;
   const result=page.locator('[data-valve-result]');
   const reference=page.locator('[data-valve-check] details');assert.equal(await reference.getAttribute('open'),null);checks++;

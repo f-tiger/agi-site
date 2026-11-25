@@ -147,6 +147,13 @@ const focusedLookups = [
       'Wie kann ich messen, ob der Raum nach dem Lüften wirklich trockener ist?'],
     evidence:['1,72 g/m³ weniger Wasser','Feuchteursache prüfen'],
   },
+  {
+    path:'/guide/smarte-heizkoerperthermostate-lohnen-sich.html', section:'danfoss-altventil',
+    queries:['Passt ein smartes Heizkörperventil auf das alte Danfoss Klickventil?',
+      'Alter Danfoss-Klickanschluss am Heizkörper, welchen Adapter brauche ich?'],
+    evidence:['RA-click als Anschlussbezeichnung','34 mm bei RAV und 26 mm bei RAVL',
+      'behalte den vorhandenen Kopf','assets.danfoss.com/documents/latest/215970/AB433044178502de-DE0102.pdf'],
+  },
 ];
 
 test('exact German guide searches prefer reviewed section copy and pass a readable canonical URL', async () => {

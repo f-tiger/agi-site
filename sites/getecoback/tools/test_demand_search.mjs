@@ -75,6 +75,20 @@ test('German dishwashing cost questions open the existing exact calculation',()=
   assert.notEqual(searchEntries(index,q,'de')[0]?.entry.u,target,q);
  }
 });
+test('Generic Danfoss adapter searches find the valve-identity guide without forcing model or repair queries',()=>{
+ const target='/guide/smarte-heizkoerperthermostate-lohnen-sich.html#danfoss-altventil';
+ for(const q of ['Passt ein smartes Heizkörperventil auf das alte Danfoss Klickventil?',
+  'Alter Danfoss-Klickanschluss am Heizkörper, welchen Adapter brauche ich?',
+  'Wie erkenne ich am alten Danfoss-Ventil ohne Gewinde, ob es RA oder RAV ist?']){
+  assert.equal(searchEntries(index,q,'de')[0]?.entry.u,target,q);
+  assert.ok(!searchEntries(index,q,'en').some(hit=>hit.entry.u===target),q);
+ }
+ for(const q of ['Welcher Adapter passt für Bosch II [+M] mit Danfoss RAVL?',
+  'Passt tado X auf ein Danfoss RAV Ventil?', 'Welchen Danfoss-RAV-Adapter braucht mein FRITZ!DECT 302?',
+  'Danfoss Heizkörperventil tropft am Klickanschluss. Wie repariere ich es?']){
+  assert.notEqual(searchEntries(index,q,'de')[0]?.entry.u,target,q);
+ }
+});
 test('all three German tool entry points link directly to the curtain measurement',()=>{
  const link='href="/guide/thermovorhang-ratgeber.html#thermovorhang-bahnenbedarf"';
  for(const page of ['index.html','tools.html','rechner.html']){

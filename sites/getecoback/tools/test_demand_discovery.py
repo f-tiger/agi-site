@@ -28,6 +28,7 @@ assert [(entry['l'],entry['u'],entry['section']['id']) for entry in focused]==[
     ('de','/guide/luftfeuchtigkeit-richtig-messen.html','hygrometer-vergleichen'),
     ('de','/guide/midea-portasplit-ausverkauft-alternativen.html','fensterfalz'),
     ('de','/guide/richtig-lueften-im-winter.html','lueften-vorher-nachher'),
+    ('de','/guide/smarte-heizkoerperthermostate-lohnen-sich.html','danfoss-altventil'),
     ('de','/guide/thermovorhang-ratgeber.html','thermovorhang-bahnenbedarf'),
     ('de','/guide/trotec-luftentfeuchter-test.html','ttk75-pruefpunkt'),
     ('de','/produkte.html','kaffee-wasserfilter'),
