@@ -17,11 +17,11 @@
    },
    "notes": [
     "34 URL(s) left untouched for want of a defensible date",
-    "heat: measured 2026-11-24 (1 pages); no notes"
+    "heat: measured 2026-11-25 (1 pages); no notes"
    ],
    "outcome": "ok",
    "site": "agiscorecard",
-   "today": "2026-11-24",
+   "today": "2026-11-25",
    "wrote": [
     "data/autopilot/agiscorecard.json",
     "data/autopilot/agiscorecard-demand.json"
@@ -36,11 +36,11 @@
     "bootstrapped": 0,
     "changed": 2,
     "covered": 0,
-    "demand_terms": 48,
+    "demand_terms": 30,
     "gaps": 0,
     "hot_pages": 0,
     "lastmod_updated": 2,
-    "offtopic": 48,
+    "offtopic": 30,
     "pages": 7,
     "undatable": 0,
     "underserved": 0
@@ -48,11 +48,11 @@
    "notes": [
     "sites/buysomething/site/rising.json: 3 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (aroma diffuser, balkonkraftwerk speicher, robot pet companion). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
     "sites/buysomething/site/rising.json: 11 fresh seed(s) used; 20 stale and 0 undated dropped",
-    "heat: measured 2026-11-24 (0 pages); no notes"
+    "heat: measured 2026-11-25 (0 pages); no notes"
    ],
    "outcome": "ok",
    "site": "buysomething",
-   "today": "2026-11-24",
+   "today": "2026-11-25",
    "wrote": [
     "sites/buysomething/site/sitemap.xml",
     "data/autopilot/buysomething.json",
@@ -61,31 +61,48 @@
   },
   {
    "changed_urls": [
-    "https://getecoback.com/en/guide/heated-airer-vs-dehumidifier.html",
+    "https://getecoback.com/geraete-austausch-rechner.html",
+    "https://getecoback.com/guide/duschen-kosten-rechner.html",
+    "https://getecoback.com/guide/fenster-beschlagen-aussen.html",
+    "https://getecoback.com/guide/fenster-beschlagen-innen.html",
     "https://getecoback.com/guide/heizkosten-vergleich-rechner.html",
-    "https://getecoback.com/guide/klimaanlage-40-qm.html",
-    "https://getecoback.com/guide/klimaanlage-mit-heizfunktion.html",
+    "https://getecoback.com/guide/klimaanlage-wann-kaufen.html",
+    "https://getecoback.com/guide/lichterkette-stromkosten.html",
+    "https://getecoback.com/guide/luftbefeuchter-ratgeber.html",
+    "https://getecoback.com/guide/luftentfeuchter-keller.html",
+    "https://getecoback.com/guide/luftentfeuchter-ratgeber.html",
+    "https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html",
+    "https://getecoback.com/guide/midea-portasplit-kaufen.html",
+    "https://getecoback.com/guide/richtig-lueften-im-winter.html",
+    "https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html",
+    "https://getecoback.com/guide/strom-sparen-haushalt.html",
+    "https://getecoback.com/guide/thermovorhang-ratgeber.html",
+    "https://getecoback.com/guide/waesche-trocknen-wohnung.html",
+    "https://getecoback.com/index.html",
+    "https://getecoback.com/mcp.html",
+    "https://getecoback.com/rechner.html",
+    "https://getecoback.com/tools.html",
     "https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html"
    ],
    "counts": {
     "bootstrapped": 0,
-    "changed": 5,
-    "covered": 5,
-    "demand_terms": 30,
-    "gaps": 23,
+    "changed": 22,
+    "covered": 11,
+    "demand_terms": 40,
+    "gaps": 26,
     "hot_pages": 15,
-    "offtopic": 2,
+    "offtopic": 3,
     "pages": 299,
     "undatable": 0,
     "underserved": 0
    },
    "notes": [
     "sitemap owned by this site's own generator — not touched",
-    "heat: measured 2026-11-24 (25 pages); no notes"
+    "heat: measured 2026-11-25 (25 pages); no notes"
    ],
    "outcome": "ok",
    "site": "getecoback",
-   "today": "2026-11-24",
+   "today": "2026-11-25",
    "wrote": [
     "data/autopilot/getecoback.json",
     "data/autopilot/getecoback-demand.json"
@@ -111,7 +128,7 @@
    ],
    "outcome": "ok",
    "site": "goldrush",
-   "today": "2026-11-24",
+   "today": "2026-11-25",
    "wrote": [
     "data/autopilot/goldrush.json",
     "data/autopilot/goldrush-demand.json"
@@ -137,7 +154,7 @@
    ],
    "outcome": "ok",
    "site": "gridlings",
-   "today": "2026-11-24",
+   "today": "2026-11-25",
    "wrote": [
     "data/autopilot/gridlings.json",
     "data/autopilot/gridlings-demand.json"
@@ -148,12 +165,11 @@
     "https://thedollscout.com/collecting/event-kit.html",
     "https://thedollscout.com/de/collecting/event-kit.html",
     "https://thedollscout.com/de/series.html",
-    "https://thedollscout.com/de/series/smiski-bath-series.html",
-    "https://thedollscout.com/de/series/smiski-bed-series.html",
-    "https://thedollscout.com/de/series/smiski-living-series.html",
-    "https://thedollscout.com/de/series/smiski-series3.html",
-    "https://thedollscout.com/de/series/smiski-series4.html",
-    "https://thedollscout.com/de/series/smiski-toilet-series.html",
+    "https://thedollscout.com/de/series/smiski-birthday.html",
+    "https://thedollscout.com/de/series/smiski-construction.html",
+    "https://thedollscout.com/de/series/smiski-series1.html",
+    "https://thedollscout.com/de/series/smiski-series2.html",
+    "https://thedollscout.com/de/series/smiski-sunday.html",
     "https://thedollscout.com/de/series/sonny-angel-animal-series-1.html",
     "https://thedollscout.com/de/series/sonny-angel-animal-series-2.html",
     "https://thedollscout.com/de/series/sonny-angel-animal-series-3.html",
@@ -164,13 +180,13 @@
     "https://thedollscout.com/de/series/sonny-angel-snack-series.html",
     "https://thedollscout.com/de/series/sonny-angel-sweets-series.html",
     "https://thedollscout.com/de/series/sonny-angel-vegetable-series.html",
+    "https://thedollscout.com/de/shop/categories/smart-home.html",
     "https://thedollscout.com/series.html",
-    "https://thedollscout.com/series/smiski-bath-series.html",
-    "https://thedollscout.com/series/smiski-bed-series.html",
-    "https://thedollscout.com/series/smiski-living-series.html",
-    "https://thedollscout.com/series/smiski-series3.html",
-    "https://thedollscout.com/series/smiski-series4.html",
-    "https://thedollscout.com/series/smiski-toilet-series.html",
+    "https://thedollscout.com/series/smiski-birthday.html",
+    "https://thedollscout.com/series/smiski-construction.html",
+    "https://thedollscout.com/series/smiski-series1.html",
+    "https://thedollscout.com/series/smiski-series2.html",
+    "https://thedollscout.com/series/smiski-sunday.html",
     "https://thedollscout.com/series/sonny-angel-animal-series-1.html",
     "https://thedollscout.com/series/sonny-angel-animal-series-2.html",
     "https://thedollscout.com/series/sonny-angel-animal-series-3.html",
@@ -183,12 +199,11 @@
     "https://thedollscout.com/series/sonny-angel-vegetable-series.html",
     "https://thedollscout.com/zh/collecting/event-kit.html",
     "https://thedollscout.com/zh/series.html",
-    "https://thedollscout.com/zh/series/smiski-bath-series.html",
-    "https://thedollscout.com/zh/series/smiski-bed-series.html",
-    "https://thedollscout.com/zh/series/smiski-living-series.html",
-    "https://thedollscout.com/zh/series/smiski-series3.html",
-    "https://thedollscout.com/zh/series/smiski-series4.html",
-    "https://thedollscout.com/zh/series/smiski-toilet-series.html",
+    "https://thedollscout.com/zh/series/smiski-birthday.html",
+    "https://thedollscout.com/zh/series/smiski-construction.html",
+    "https://thedollscout.com/zh/series/smiski-series1.html",
+    "https://thedollscout.com/zh/series/smiski-series2.html",
+    "https://thedollscout.com/zh/series/smiski-sunday.html",
     "https://thedollscout.com/zh/series/sonny-angel-animal-series-1.html",
     "https://thedollscout.com/zh/series/sonny-angel-animal-series-2.html",
     "https://thedollscout.com/zh/series/sonny-angel-animal-series-3.html",
@@ -202,12 +217,12 @@
    ],
    "counts": {
     "bootstrapped": 0,
-    "changed": 54,
+    "changed": 52,
     "covered": 3,
     "demand_terms": 21,
     "gaps": 14,
     "hot_pages": 0,
-    "lastmod_updated": 56,
+    "lastmod_updated": 54,
     "offtopic": 4,
     "pages": 341,
     "undatable": 0,
@@ -220,7 +235,7 @@
    ],
    "outcome": "ok",
    "site": "thedollscout",
-   "today": "2026-11-24",
+   "today": "2026-11-25",
    "wrote": [
     "sites/thedollscout/sitemap.xml",
     "data/autopilot/thedollscout.json",
@@ -228,5 +243,5 @@
    ]
   }
  ],
- "today": "2026-11-24"
+ "today": "2026-11-25"
 }

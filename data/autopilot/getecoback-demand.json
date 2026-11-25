@@ -1,6 +1,75 @@
 {
  "covered": [
   {
+   "heat": null,
+   "kind": "value",
+   "match": 0.75,
+   "page": "guide/akku-heizluefter.html",
+   "q": "auto heizlüfter mit akku",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-11-24",
+   "v": 112350
+  },
+  {
+   "heat": {
+    "n7": 8,
+    "p7": 0
+   },
+   "kind": "value",
+   "match": 1.0,
+   "page": "guide/heizkosten-vergleich-rechner.html",
+   "q": "heizlüfter oder infrarotheizung",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-11-24",
+   "v": 59850
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.667,
+   "page": "guide/akku-heizluefter.html",
+   "q": "heizlüfter mit zeitschaltuhr",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-11-24",
+   "v": 57450
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.667,
+   "page": "guide/akku-heizluefter.html",
+   "q": "akku heizlüfter makita",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-11-24",
+   "v": 51500
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.875,
+   "page": "guide/infrarotheizung-garage.html",
+   "q": "heizlüfter garage",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-11-24",
+   "v": 48750
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.75,
+   "page": "guide/midea-geraete-test.html",
+   "q": "aeg heizlüfter",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-11-24",
+   "v": 46200
+  },
+  {
    "heat": {
     "n7": 6,
     "p7": 0
@@ -72,6 +141,36 @@
   "zero_hit_records": 0
  },
  "gaps": [
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/akku-heizluefter.html",
+   "q": "tronic heizlüfter",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-11-24",
+   "v": 62800
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/akku-heizluefter.html",
+   "q": "kaufland heizlüfter",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-11-24",
+   "v": 52450
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/akku-heizluefter.html",
+   "q": "9kw heizlüfter",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-11-24",
+   "v": 46050
+  },
   {
    "kind": "value",
    "match": 0.18,
@@ -303,29 +402,69 @@
    "v": 70
   }
  ],
- "generated": "2026-11-24",
+ "generated": "2026-11-25",
  "geo": "DE",
- "heat_source": "measured 2026-11-24 (25 pages); no notes",
+ "heat_source": "measured 2026-11-25 (25 pages); no notes",
  "hot_pages": [
   {
-   "n7": 25,
+   "n7": 32,
    "p7": 4,
    "page": "/waeschetrockner-oder-luftentfeuchter.html"
   },
   {
-   "n7": 16,
+   "n7": 30,
+   "p7": 0,
+   "page": "/guide/smarte-heizkoerperthermostate-lohnen-sich.html"
+  },
+  {
+   "n7": 28,
    "p7": 1,
    "page": "/guide/richtig-lueften-im-winter.html"
   },
   {
-   "n7": 13,
+   "n7": 19,
    "p7": 11,
    "page": "/guide/luftbefeuchter-ratgeber.html"
   },
   {
-   "n7": 9,
-   "p7": 4,
+   "n7": 15,
+   "p7": 5,
+   "page": "/guide/klimaanlage-wann-kaufen.html"
+  },
+  {
+   "n7": 13,
+   "p7": 0,
+   "page": "/guide/thermovorhang-ratgeber.html"
+  },
+  {
+   "n7": 13,
+   "p7": 11,
+   "page": "/produkte.html"
+  },
+  {
+   "n7": 11,
+   "p7": 0,
+   "page": "/guide/fenster-beschlagen-innen.html"
+  },
+  {
+   "n7": 11,
+   "p7": 0,
+   "page": "/guide/luftentfeuchter-keller.html"
+  },
+  {
+   "n7": 11,
+   "p7": 1,
+   "page": "/mcp.html"
+  },
+  {
+   "n7": 10,
+   "p7": 5,
    "page": "/"
+  },
+  {
+   "n7": 10,
+   "p7": 0,
+   "page": "/guide/lichterkette-stromkosten.html"
   },
   {
    "n7": 9,
@@ -333,59 +472,20 @@
    "page": "/en/guide/tilt-and-turn-windows-winter-condensation.html"
   },
   {
-   "n7": 8,
+   "n7": 9,
    "p7": 0,
-   "page": "/guide/luftbefeuchter-stromverbrauch.html"
+   "page": "/guide/fenster-beschlagen-aussen.html"
   },
   {
-   "n7": 7,
+   "n7": 9,
    "p7": 0,
    "page": "/guide/klimaanlage-40-qm.html"
-  },
-  {
-   "n7": 7,
-   "p7": 11,
-   "page": "/produkte.html"
-  },
-  {
-   "n7": 6,
-   "p7": 0,
-   "page": "/guide/heizkosten-vergleich-rechner.html"
-  },
-  {
-   "n7": 6,
-   "p7": 0,
-   "page": "/guide/klimaanlage-mit-heizfunktion.html"
-  },
-  {
-   "n7": 6,
-   "p7": 4,
-   "page": "/guide/klimaanlage-wann-kaufen.html"
-  },
-  {
-   "n7": 6,
-   "p7": 0,
-   "page": "/guide/luftentfeuchter-ratgeber.html"
-  },
-  {
-   "n7": 6,
-   "p7": 2,
-   "page": "/guide/midea-portasplit-ausverkauft-alternativen.html"
-  },
-  {
-   "n7": 6,
-   "p7": 0,
-   "page": "/guide/thermovorhang-ratgeber.html"
-  },
-  {
-   "n7": 5,
-   "p7": 0,
-   "page": "/guide/luftentfeuchter-keller.html"
   }
  ],
  "how_to_read": "Research candidates only; token matching is not an editorial or market decision. Relative growth is not search volume, and autocomplete is vocabulary evidence only. Underserved requires an observed zero in the matching measurement window; missing page measurements are unknown, and zero arrivals do not establish a title or internal-link cause. First-party evidence contains only aggregate zero-hit record counts, never raw search terms. Freshness, country, independent evidence and the reviewed page catalog must pass tools/eco_evolution.py before prioritising an existing page. This research queue does not publish. The separate getecoback scheduled deployment runs tools/auto_content.py to discover official product specifications, validate evidence and publish at most one substantive guide change per UTC day.",
  "note": "选题输入,不是选题依据。任何由它引出的页面仍要过本站三门与硬内容规则。本文件由 tools/autopilot 每日确定性生成,零 AI、零编造。",
  "offtopic_dropped": [
+  "radiator",
   "daikin stylish",
   "beco maxima plus"
  ],
