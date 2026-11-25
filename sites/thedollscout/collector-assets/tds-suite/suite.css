@@ -23,6 +23,8 @@
 .tds-suite-field label { font-weight: 600; }
 .tds-suite-field textarea { resize: vertical; }
 .tds-suite-field input[type=checkbox] { width: 1.2rem; min-height: 1.2rem; margin: 0; }
+.tds-suite-energy-helper { margin: .75rem 0 1.15rem; }
+.tds-suite-energy-helper summary { color: var(--tds-accent); cursor: pointer; }
 .tds-suite-result [data-tds-result], .tds-mcp pre { overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; padding: .7rem; border: 1px solid var(--tds-line); border-radius: 7px; background: var(--tds-surface); }
 .tds-suite-result [data-tds-result] { min-height: 9rem; max-height: 29rem; }
 @media(max-width: 720px) {

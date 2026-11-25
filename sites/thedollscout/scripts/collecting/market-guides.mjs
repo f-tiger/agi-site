@@ -36,7 +36,8 @@ function sourceLink(source,label){return `<a href="${esc(source.url)}" rel="noop
 function countryNav(m,g,data){return `<nav class="market-country-nav" aria-label="${copy[m.id].country}"><a href="/" lang="de">Deutschland · Deutsch</a>${data.markets.map(other=>{const equivalent=g?other.guides.find(x=>x.id===g.id):null;return `<a href="/${other.id}/${equivalent?.slug||''}" lang="${other.lang}"${other.id===m.id?' aria-current="page"':''}>${other.country} · ${other.id==='nl'?'Nederlands':'English'}</a>`;}).join('')}<a href="/en/" lang="en">United States · English</a></nav>`;}
 function modelsHTML(m,g){const c=copy[m.id];return `<div class="market-models">${g.models.map((p,i)=>`<article class="market-card" id="model-${i+1}"><h3>${esc(p.name)}</h3><p>${esc(p.use)}</p><p><strong>${c.check}:</strong> ${esc(p.check)}</p>${sourceLink(p,c.source)}${p.query?`<p class="market-note">${c.searchNote}</p><a class="button" href="https://www.${m.merchant}/s?k=${encodeURIComponent(p.query)}" rel="nofollow noopener" data-market-shop>${c.shop}</a>`:''}</article>`).join('')}</div>`;}
 const ukLaundryToolPath='/ai-tools/uk-laundry-session';
-const ukLaundryUpdated='2026-11-23';
+const ukHubUpdated='2026-11-23';
+const ukLaundryUpdated='2026-11-25';
 const ukLaundryTariffSource='https://www.ofgem.gov.uk/your-energy-supply/your-energy-bill/energy-price-cap-unit-rates-and-standing-charges';
 const ukLaundryTariffLabel='Ofgem’s guide to unit rates and standing charges';
 const ukLaundryToolLabel='Compare two measured drying costs';
@@ -57,7 +58,8 @@ export function buildMarketPages({write,data=loadMarketGuides()}){
  const records=[];validateMarketGuides(data);
  for(const m of data.markets)for(const g of [null,...m.guides]){
   const ukLaundryGuide=hasUkLaundryTool(m,g),ukHub=m.id==='uk'&&!g;
-  const c=copy[m.id],p='/'+m.id+'/'+(g?.slug||''),url=origin+p,title=g?.title||m.title,description=g?.description||m.description,text='/collector-assets/text/'+m.id+'/'+(g?.slug||'home')+'.txt',modified=(ukLaundryGuide||ukHub)&&ukLaundryUpdated>data.updated?ukLaundryUpdated:data.updated;
+  const c=copy[m.id],p='/'+m.id+'/'+(g?.slug||''),url=origin+p,title=g?.title||m.title,description=g?.description||m.description,text='/collector-assets/text/'+m.id+'/'+(g?.slug||'home')+'.txt';
+  const modified=[data.updated,ukLaundryGuide?ukLaundryUpdated:ukHub?ukHubUpdated:''].sort().at(-1);
   const earlyHTML=ukLaundryGuide?ukLaundryToolHTML():ukHub?`<p>${esc(ukLaundryHubLead)} <a class="button primary" href="${ukLaundryToolPath}">${esc(ukLaundryToolLabel)} →</a></p>`:'';
   const earlyText=ukLaundryGuide?ukLaundryToolText():ukHub?[ukLaundryHubLead,ukLaundryToolLabel+': '+origin+ukLaundryToolPath]:[];
   const pageDate=modified===data.updated?'':` · Page updated <time datetime="${modified}">${modified}</time>`;

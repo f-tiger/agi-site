@@ -3,6 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { REGIONAL_TDS_TOOLS, TDS_TOOLS } from '../collector-assets/tds-suite/index.mjs';
 import { REGIONAL_GUIDE_PATHS } from '../collector-assets/tds-suite/regional-buying-links.mjs';
+import { UK_LAUNDRY_TOOL } from '../collector-assets/tds-suite/regional-uk-laundry.mjs';
 import { locales, origin, route } from './collecting/content.mjs';
 
 const updated = '2026-11-22';
@@ -35,6 +36,51 @@ const germanMeterAdvice = {
     ['Verbraucherzentrale · Kühlschrank sieben Tage messen', 'https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/so-finden-sie-den-passenden-kuehlschrank-10573'],
     ['TP-Link · Zulässige Lasttypen für EU-Modelle', 'https://www.tp-link.com/de/support/faq/3816/'],
   ],
+};
+const ukLaundryUpdated = '2026-11-25';
+const ukLaundryEnergy = {
+  en: {
+    title: 'Add readings from separate devices',
+    instructions: 'When you use a heated airer and a dehumidifier in the same drying session, add each device’s measured kWh from that session. Enter a combined meter reading only once. Leave unused device fields blank.',
+    example: 'Worked example: 0.40 kWh + 0.85 kWh = 1.25 kWh. Enter 1.25 kWh as the whole-session reading. Multiply the total by your tariff in pence/kWh and divide by 100 for the cost in pounds.',
+    devices: ['First device (kWh)', 'Second device (kWh)', 'Third device (kWh, optional)'],
+    useA: 'Use total for session A',
+    useB: 'Use total for session B',
+    empty: 'Enter at least one measured reading.',
+    invalid: 'Enter a measured kWh value between 0 and {maximum} for each device used.',
+    over: 'The combined reading must be {maximum} kWh or less.',
+    sessionAKwh: 'Session A now uses {total} kWh.',
+    sessionBKwh: 'Session B now uses {total} kWh.',
+    mixed: 'Some inputs still use example values. Replace them to use your own comparison.',
+  },
+  de: {
+    title: 'Messwerte einzelner Geräte addieren',
+    instructions: 'Wenn beheizter Wäscheständer und Luftentfeuchter im selben Trocknungsgang laufen, addiere die in diesem Durchgang gemessenen kWh beider Geräte. Erfasse eine gemeinsame Messung nur einmal. Lass ungenutzte Felder leer.',
+    example: 'Rechenbeispiel: 0,40 kWh + 0,85 kWh = 1,25 kWh. Trage 1,25 kWh als Messwert für den ganzen Durchgang ein. Multipliziere die Summe mit deinem Tarif in Pence/kWh und teile durch 100, um den Betrag in Pfund zu erhalten.',
+    devices: ['Erstes Gerät (kWh)', 'Zweites Gerät (kWh)', 'Drittes Gerät (kWh, optional)'],
+    useA: 'Summe für Durchgang A übernehmen',
+    useB: 'Summe für Durchgang B übernehmen',
+    empty: 'Gib mindestens einen Messwert ein.',
+    invalid: 'Gib für jedes verwendete Gerät einen Messwert zwischen 0 und {maximum} kWh ein.',
+    over: 'Die Summe darf höchstens {maximum} kWh betragen.',
+    sessionAKwh: 'Für Durchgang A sind jetzt {total} kWh eingetragen.',
+    sessionBKwh: 'Für Durchgang B sind jetzt {total} kWh eingetragen.',
+    mixed: 'Einige Felder enthalten noch Beispielwerte. Ersetze sie für deinen eigenen Vergleich.',
+  },
+  zh: {
+    title: '合计多台设备的实测用电量',
+    instructions: '同一次晾衣使用电热晾衣架和除湿机时，请将各设备在该次晾衣中的实测用电量相加。若仪表已经测得两台设备的总用电量，只录入一次。未使用的设备栏可留空。',
+    example: '计算示例：0.40 千瓦时 + 0.85 千瓦时 = 1.25 千瓦时。将 1.25 千瓦时填入整次晾衣的用电量。总用电量乘以便士/千瓦时电价，再除以 100，即得英镑电费。',
+    devices: ['第一台设备（千瓦时）', '第二台设备（千瓦时）', '第三台设备（千瓦时，选填）'],
+    useA: '将合计填入过程 A',
+    useB: '将合计填入过程 B',
+    empty: '请至少输入一个实测用电量。',
+    invalid: '每台已使用设备的实测用电量须在 0 至 {maximum} 千瓦时之间。',
+    over: '合计用电量不得超过 {maximum} 千瓦时。',
+    sessionAKwh: '已将 {total} 千瓦时填入过程 A。',
+    sessionBKwh: '已将 {total} 千瓦时填入过程 B。',
+    mixed: '部分输入仍使用示例值。请替换这些数值，再对比你自己的数据。',
+  },
 };
 
 const words = {
@@ -119,8 +165,10 @@ function page({ lang, slug, title, description, content, graph, discover = true,
   const c = words[lang];
   const full = origin + route(lang, slug);
   const machine = `${assets}/text/${lang}/${slug.replace(/^ai-tools\/?/, '') || 'index'}.txt`;
-  const browserVersion = regionalSlugs.has(slug.split('/').at(-1)) ? '?v=20261123' : '';
-  const body = `<!doctype html><html lang="${locales[lang].tag}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#e4002b"><title>${esc(title)} | The Doll Scout</title><meta name="description" content="${esc(description)}"><meta name="robots" content="${discover ? 'index,follow,max-image-preview:large' : 'noindex,follow'}"><link rel="canonical" href="${full}">${alt(slug)}<link rel="alternate" type="text/plain" href="${origin+machine}"><link rel="alternate" type="application/json" href="${origin+datasetUrl(lang)}"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${full}"><link rel="stylesheet" href="/document-assets/style.css"><link rel="stylesheet" href="${assets}/suite.css"><script type="application/ld+json">${json({'@context':'https://schema.org','@graph':graph})}</script></head><body><a class="skip" href="#main">${esc(c.catalog)}</a><header class="site-header"><div class="wrap header-inner"><a class="brand" href="${route(lang)}"><img width="34" height="34" src="/collector-assets/icon.svg" alt=""><span>The Doll Scout</span></a><nav class="main-nav" aria-label="${esc(c.nav)}"><a href="${shoppingPath ?? route(lang,'shop')}">${esc(c.buying)}</a><a href="${route(lang,slugPath())}" aria-current="page">${esc(c.suite)}</a></nav><nav class="languages" aria-label="Language">${Object.entries(locales).map(([key, value]) => `<a href="${route(key, slug)}" lang="${value.tag}"${key === lang ? ' aria-current="page"' : ''}>${value.label}</a>`).join('')}</nav></div></header><main id="main" class="wrap tds-suite">${content}</main><footer class="site-footer"><div class="wrap"><a href="${route(lang)}">The Doll Scout</a> · <a href="${route(lang,'document-privacy')}">${esc(c.privacyLink)}</a></div></footer><script type="module" src="${assets}/browser.mjs${browserVersion}"></script></body></html>`;
+  const isUkLaundry = slug === slugPath(UK_LAUNDRY_TOOL.slug);
+  const browserVersion = isUkLaundry ? '?v=20261125'
+    : regionalSlugs.has(slug.split('/').at(-1)) ? '?v=20261123' : '';
+  const body = `<!doctype html><html lang="${locales[lang].tag}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#e4002b"><title>${esc(title)} | The Doll Scout</title><meta name="description" content="${esc(description)}"><meta name="robots" content="${discover ? 'index,follow,max-image-preview:large' : 'noindex,follow'}"><link rel="canonical" href="${full}">${alt(slug)}<link rel="alternate" type="text/plain" href="${origin+machine}"><link rel="alternate" type="application/json" href="${origin+datasetUrl(lang)}"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${full}"><link rel="stylesheet" href="/document-assets/style.css"><link rel="stylesheet" href="${assets}/suite.css${isUkLaundry ? browserVersion : ''}"><script type="application/ld+json">${json({'@context':'https://schema.org','@graph':graph})}</script></head><body><a class="skip" href="#main">${esc(c.catalog)}</a><header class="site-header"><div class="wrap header-inner"><a class="brand" href="${route(lang)}"><img width="34" height="34" src="/collector-assets/icon.svg" alt=""><span>The Doll Scout</span></a><nav class="main-nav" aria-label="${esc(c.nav)}"><a href="${shoppingPath ?? route(lang,'shop')}">${esc(c.buying)}</a><a href="${route(lang,slugPath())}" aria-current="page">${esc(c.suite)}</a></nav><nav class="languages" aria-label="Language">${Object.entries(locales).map(([key, value]) => `<a href="${route(key, slug)}" lang="${value.tag}"${key === lang ? ' aria-current="page"' : ''}>${value.label}</a>`).join('')}</nav></div></header><main id="main" class="wrap tds-suite">${content}</main><footer class="site-footer"><div class="wrap"><a href="${route(lang)}">The Doll Scout</a> · <a href="${route(lang,'document-privacy')}">${esc(c.privacyLink)}</a></div></footer><script type="module" src="${assets}/browser.mjs${browserVersion}"></script></body></html>`;
   write(fileFor(route(lang,slug)),body);
   if (discover) discovery.push(full);
   allRecords.push({lang, slug, url:full, machine, title, discover});
@@ -156,6 +204,14 @@ const inputField = (lang, tool, key, schema) => {
   return `<div class="tds-suite-field"><label for="${id}">${esc(title)}${required ? ' <span aria-hidden="true">*</span>' : ''}</label>${field}</div>`;
 };
 
+function energyHelper(copy, {minimum, maximum}) {
+  const fields = copy.devices.map((label, index) => {
+    const id = `tds-energy-device-${index + 1}`;
+    return `<div class="tds-suite-field"><label for="${id}">${esc(label)}</label><input id="${id}" type="number" inputmode="decimal" min="${minimum}" max="${maximum}" step="any" data-tds-energy-input></div>`;
+  }).join('');
+  return `<details class="tds-suite-energy-helper" data-tds-energy-helper><summary>${esc(copy.title)}</summary><p>${esc(copy.instructions)}</p><p>${esc(copy.example)}</p><div data-tds-energy-controls hidden>${fields}<div class="actions"><button type="button" data-tds-energy-use="sessionAKwh">${esc(copy.useA)}</button><button type="button" data-tds-energy-use="sessionBKwh">${esc(copy.useB)}</button></div><p role="status" aria-live="polite" data-tds-energy-status></p></div></details>`;
+}
+
 for (const [lang,c] of Object.entries(words)) {
   const langData = catalogOrder.map(tool => ({
     name:tool.name, slug:tool.slug, category:tool.category, categoryLabel:categoryLabel(lang,tool.category), title:nameFor(lang,tool),
@@ -181,22 +237,25 @@ for (const [lang,c] of Object.entries(words)) {
   for (const tool of TDS_TOOLS) {
     const slug = slugPath(tool.slug);
     const advice = toolRoute(lang,tool) === germanMeterPath ? germanMeterAdvice : null;
+    const energy = tool.name === UK_LAUNDRY_TOOL.name ? ukLaundryEnergy[lang] : null;
     const title = advice?.title ?? nameFor(lang,tool);
     const description = advice?.description ?? lc(lang,tool.description);
     const shoppingPath = REGIONAL_GUIDE_PATHS[tool.slug];
-    const metadata = { name:tool.name, locale:lang, inputSchema:tool.inputSchema, example:examplesFor(lang,tool), ui:c };
+    const metadata = { name:tool.name, locale:lang, inputSchema:tool.inputSchema, example:examplesFor(lang,tool), ui:energy ? {...c, energy} : c };
     const evidence = evidenceFor(lang,tool);
     const checked = evidence?.checked ? ` <time datetime="${esc(evidence.checked)}">${esc(evidence.checked)}</time>` : '';
     const source = evidence?.url?.startsWith('https://') ? `<section class="section"><h2>${esc(c.evidence)}</h2><p><a href="${esc(evidence.url)}" rel="noopener noreferrer">${esc(new URL(evidence.url).hostname)}</a>${checked}</p><p>${esc(c.scope)}</p></section>` : '';
     const category = { href:categoryRoute(lang,tool.category), label:categoryLabel(lang,tool.category) };
     const checklistLink = advice ? `<p><a href="#messplan">${esc(advice.checklist)}</a></p>` : '';
     const checklist = advice ? `<section class="section" id="messplan" aria-labelledby="messplan-heading"><h2 id="messplan-heading">${esc(advice.checklist)}</h2><ol>${advice.steps.map(step => `<li>${esc(step)}</li>`).join('')}</ol><ul>${advice.sources.map(([label, url]) => `<li><a href="${esc(url)}" rel="noopener noreferrer">${esc(label)}</a></li>`).join('')}</ul><p class="tds-suite-meta">${updateLabel[lang]} <time datetime="${advice.updated}">${advice.updated}</time></p></section>` : '';
-    const content = `${crumb(lang,title,category)}<header class="tds-suite-head"${advice ? ' id="messgeraet-ausleihen-oder-kaufen"' : ''}><div><h1>${esc(title)}</h1><p>${esc(description)}</p>${checklistLink}</div><p class="tds-suite-note">${esc(c.local)}</p></header><div class="tds-suite-workspace"><section class="work-panel" aria-labelledby="tds-tool-heading"><h2 id="tds-tool-heading">${esc(c.input)}</h2><p class="tds-suite-meta">${esc(c.required)}</p><form data-tds-tool>${Object.entries(tool.inputSchema.properties).map(([key,schema]) => inputField(lang,tool,key,schema)).join('')}<div class="actions"><button class="primary" type="submit" disabled>${esc(c.execute)}</button><button type="button" data-tds-example disabled>${esc(c.examples)}</button></div></form><noscript><p>${esc(c.noscript)}</p></noscript><p class="tds-suite-meta">${esc(c.privacy)}</p><p role="status" aria-live="polite" data-tds-status></p></section><section class="work-panel tds-suite-result" aria-labelledby="tds-result-heading"><h2 id="tds-result-heading">${esc(c.result)}</h2><p class="tds-suite-result-summary" data-tds-summary hidden></p>${shoppingPath ? '<p><a class="button primary" data-tds-buyer-guide hidden></a></p>' : ''}<pre data-tds-result tabindex="0"></pre><div class="actions"><button type="button" data-tds-copy disabled>${esc(c.copy)}</button><button type="button" data-tds-export disabled>${esc(c.download)}</button></div></section></div>${checklist}${source}${mcpDocs(lang,tool)}<script type="application/json" data-tds-config>${json(metadata)}</script>`;
+    const content = `${crumb(lang,title,category)}<header class="tds-suite-head"${advice ? ' id="messgeraet-ausleihen-oder-kaufen"' : ''}><div><h1>${esc(title)}</h1><p>${esc(description)}</p>${checklistLink}</div><p class="tds-suite-note">${esc(c.local)}</p></header><div class="tds-suite-workspace"><section class="work-panel" aria-labelledby="tds-tool-heading"><h2 id="tds-tool-heading">${esc(c.input)}</h2>${energy ? energyHelper(energy, tool.inputSchema.properties.sessionAKwh) : ''}<p class="tds-suite-meta">${esc(c.required)}</p><form data-tds-tool>${Object.entries(tool.inputSchema.properties).map(([key,schema]) => inputField(lang,tool,key,schema)).join('')}<div class="actions"><button class="primary" type="submit" disabled>${esc(c.execute)}</button><button type="button" data-tds-example disabled>${esc(c.examples)}</button></div></form><noscript><p>${esc(c.noscript)}</p></noscript><p class="tds-suite-meta">${esc(c.privacy)}</p><p role="status" aria-live="polite" data-tds-status></p></section><section class="work-panel tds-suite-result" aria-labelledby="tds-result-heading"><h2 id="tds-result-heading">${esc(c.result)}</h2><p class="tds-suite-result-summary" data-tds-summary hidden></p>${shoppingPath ? '<p><a class="button primary" data-tds-buyer-guide hidden></a></p>' : ''}<pre data-tds-result tabindex="0"></pre><div class="actions"><button type="button" data-tds-copy disabled>${esc(c.copy)}</button><button type="button" data-tds-export disabled>${esc(c.download)}</button></div></section></div>${checklist}${source}${mcpDocs(lang,tool)}<script type="application/json" data-tds-config>${json(metadata)}</script>`;
     const url = origin + toolRoute(lang,tool);
-    const graph = [{'@type':'WebApplication', name:title, description, url, inLanguage:locales[lang].tag, applicationCategory:'UtilitiesApplication', operatingSystem:'Web browser', browserRequirements:'Requires JavaScript', isAccessibleForFree:true, offers:{'@type':'Offer', price:0, priceCurrency:'USD'}, ...(advice ? {dateModified:advice.updated} : {})}];
+    const dateModified = energy ? ukLaundryUpdated : advice?.updated;
+    const graph = [{'@type':'WebApplication', name:title, description, url, inLanguage:locales[lang].tag, applicationCategory:'UtilitiesApplication', operatingSystem:'Web browser', browserRequirements:'Requires JavaScript', isAccessibleForFree:true, offers:{'@type':'Offer', price:0, priceCurrency:'USD'}, ...(dateModified ? {dateModified} : {})}];
     const machine = page({lang,slug,title,description,content,graph,discover:featured(tool),shoppingPath});
     const checklistText = advice ? `## ${advice.checklist}\n\n${advice.steps.map((step, i) => `${i + 1}. ${step}`).join('\n')}\n\n${advice.sources.map(([label, url]) => `${label} ${url}`).join('\n')}\n${updateLabel[lang]} ${advice.updated}\n\n` : '';
-    write(machine.slice(1), `# ${title}\n\n${url}\n\n${description}\n\n${checklistText}${c.privacy}\n\n${c.endpoint} ${endpoint}\nMCP tool name ${tool.name}\n\n${JSON.stringify(tool.inputSchema,null,2)}\n`+(evidence?.url?`\n${c.evidence} ${evidence.url} ${updateLabel[lang]} ${evidence.checked}\n`:''));
+    const energyText = energy ? `## ${energy.title}\n\n${energy.instructions}\n\n${energy.example}\n\n` : '';
+    write(machine.slice(1), `# ${title}\n\n${url}\n\n${description}\n\n${checklistText}${energyText}${c.privacy}\n\n${c.endpoint} ${endpoint}\nMCP tool name ${tool.name}\n\n${JSON.stringify(tool.inputSchema,null,2)}\n`+(evidence?.url?`\n${c.evidence} ${evidence.url} ${updateLabel[lang]} ${evidence.checked}\n`:''));
   }
 }
 
@@ -213,7 +272,9 @@ const regionalIndexable = [...new Set([
   origin + '/',
 ])];
 const touched = new Set(regionalIndexable);
-const lastmod = url => url === origin + germanMeterPath ? germanMeterAdvice.updated : touched.has(url) ? updated : initialRelease;
+const ukLaundryUrls = new Set(Object.keys(locales).map(lang => origin + toolRoute(lang, UK_LAUNDRY_TOOL)));
+const lastmod = url => url === origin + germanMeterPath ? germanMeterAdvice.updated
+  : ukLaundryUrls.has(url) ? ukLaundryUpdated : touched.has(url) ? updated : initialRelease;
 xml = xml.replace('</urlset>',discovery.map(url=>`<url><loc>${url}</loc><lastmod>${lastmod(url)}</lastmod></url>`).join('\n')+'\n</urlset>');
 write('sitemap.xml',xml);
 const discoveryBody = '\n<!-- tds-suite:start -->\n## TDS AI and MCP tools\n\n' +

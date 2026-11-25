@@ -37,11 +37,27 @@ test('UK laundry guide and hub surface the calculator and explain the cost of a 
  assert(guideText.includes('https://thedollscout.com'+tool)&&hubText.includes('https://thedollscout.com'+tool));
  const changed=records.filter(r=>r.modified!==data.updated);
  assert.deepEqual(changed.map(r=>new URL(r.url).pathname),['/uk/','/uk/indoor-laundry']);
- for(const html of [guide,hub])assert(html.includes('"dateModified":"2026-11-23"'));
+ assert(hub.includes('"dateModified":"2026-11-23"'));
+ assert(guide.includes('"dateModified":"2026-11-25"'));
  for(const r of records.filter(r=>r.market==='nl')){
   const html=files.get(new URL(r.url).pathname.slice(1)+(r.slug?'.html':'index.html'));
   assert(!html.includes(tool)&&!html.includes(source));
  }
+});
+test('UK indoor laundry decisions and combined electricity example reach the HTML and text guide',()=>{
+ const guide=files.get('uk/indoor-laundry.html'),mirror=files.get('collector-assets/text/uk/indoor-laundry.txt');
+ for(const output of [guide,mirror]){
+  for(const choice of ['Keep your existing clothes airer','A heated clothes airer','Your existing clothes airer with a dehumidifier','A tumble dryer with room for your usual load'])assert(output.includes(choice));
+  assert(output.includes('Use a cover only if the manufacturer approves it for that exact model'));
+  assert(output.includes('Add the measured kWh of every device'));
+  assert(output.includes('0.40 kWh from a heated airer plus 0.85 kWh from a dehumidifier gives 1.25 kWh'));
+  assert(output.includes('At an example rate of 27.5p/kWh, that is £0.34'));
+  assert(output.includes('These are illustrative inputs for the calculation'));
+  assert(output.includes('https://www.which.co.uk/reviews/clothes-airers/article/whats-the-best-and-cheapest-way-to-dry-clothes-indoors-aVcs74u56Gk8'));
+  assert(output.includes('https://www.which.co.uk/news/article/are-heated-airers-worth-it-anZ006K965Pj'));
+ }
+ assert.equal(records.find(r=>r.slug==='indoor-laundry').modified,'2026-11-25');
+ assert.equal(records.filter(r=>r.modified==='2026-11-25').length,1);
 });
 test('bad country routes, source URLs and incomplete original guidance cannot publish',()=>{
  for(const edit of [d=>d.markets[1].id='uk',d=>d.markets[0].merchant='amazon.com',d=>d.markets[0].guides[0].slug='unknown',d=>d.markets[0].guides[0].sources[0].url='https://evil.test/',d=>d.markets[0].guides[0].models[0].url+='?tag=wrong',d=>d.markets[0].guides[0].comparisons=[]]){const d=structuredClone(data);edit(d);assert.throws(()=>validateMarketGuides(d));}
