@@ -1,6 +1,6 @@
 # Smarte Heizkörperthermostate: Ventil prüfen, Kosten rechnen | EcoBack
 
-> Bosch II [+M] und FRITZ! 302 ohne Internet oder Zentrale prüfen. Ventil, Danfoss-Adapter und Gesamtkosten vergleichen.
+> Bosch II [+M] und FRITZ! 302 ohne Internet oder Zentrale prüfen. Ventil, Danfoss-Adapter und Gesamtkosten vergleichen. Eigene Heizkosten rechnen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html
 

@@ -58,7 +58,7 @@ TESAMOLL_PROFILE = '''
 '''
 
 PAGES={
-'smarte-heizkoerperthermostate-lohnen-sich':dict(cat='heizen',updated='2026-11-25',title='Smarte Heizkörperthermostate: Ventil prüfen, Kosten rechnen',desc='Bosch II [+M] und FRITZ! 302 ohne Internet oder Zentrale prüfen. Ventil, Danfoss-Adapter und Gesamtkosten vergleichen.',lead='Ein Zeitplan kann unnötiges Heizen vermeiden. Ein smarter Thermostatkopf erzeugt aber keine billigere Wärme. Entscheidend ist, was du heute tatsächlich anders machen würdest.',sources=['thermostat','air'],tool='thermostat',terms=[('Heizkoerperthermostat programmierbar','Programmierbare Thermostatköpfe')],body='''<section id="tado-x-oventrop" aria-labelledby="tado-x-oventrop-titel" style="scroll-margin-top:260px">
+'smarte-heizkoerperthermostate-lohnen-sich':dict(cat='heizen',updated='2026-11-25',title='Smarte Heizkörperthermostate: Ventil prüfen, Kosten rechnen',desc='Bosch II [+M] und FRITZ! 302 ohne Internet oder Zentrale prüfen. Ventil, Danfoss-Adapter und Gesamtkosten vergleichen. Eigene Heizkosten rechnen.',lead='Ein Zeitplan kann unnötiges Heizen vermeiden. Ein smarter Thermostatkopf erzeugt aber keine billigere Wärme. Entscheidend ist, was du heute tatsächlich anders machen würdest.',sources=['thermostat','air'],tool='thermostat',terms=[('Heizkoerperthermostat programmierbar','Programmierbare Thermostatköpfe')],body='''<section id="tado-x-oventrop" aria-labelledby="tado-x-oventrop-titel" style="scroll-margin-top:260px">
 <h2 id="tado-x-oventrop-titel">Passt tado° X auf mein Oventrop-Ventil mit 30 mm?</h2>
 <p>Prüfe die genaue Modellbezeichnung und die Gewindesteigung in den Ventilunterlagen. Zwei Oventrop-Ventile mit 30 mm Außendurchmesser können unterschiedliche Gewinde haben.</p>
 <ul>
