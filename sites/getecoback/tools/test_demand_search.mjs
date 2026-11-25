@@ -637,6 +637,7 @@ test('Miele HyClean one-device and shared-stock questions reach a single German 
 });
 
 test('German exact humidifier part questions use the owned accessory section', () => {
+ assert.equal(searchEntries(index,'Oskar O-020 und Oskar little O-060: Wie viele O-030 Zweierpacks brauche ich für beide?','de')[0]?.entry.u,'/guide/luftbefeuchter-ratgeber.html#ersatzteile-zuordnen');
   const guide = '/guide/luftbefeuchter-ratgeber.html';
   const target = guide + '#ersatzteile-zuordnen';
   for (const query of [

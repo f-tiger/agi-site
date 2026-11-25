@@ -54,7 +54,7 @@ function humidifierAccessoryTask(query) {
   const lb55 = /\b(?:lb[ -]?55|68605|163[ .]?141)\b/.test(query);
   const otherBeurer = /\blb[ -]?(?!(?:200|55)\b)\d+\b/.test(query);
 
-  if (oskar && filter && !otherOskar && !lb200 && !lb55 && !otherBeurer) {
+  if (oskar && (filter || /\bo[ -]?030\b/.test(query)) && !otherOskar && !lb200 && !lb55 && !otherBeurer) {
     return {...destination, tool:'oskar_filtermatten_gemeinsamer_vorrat'};
   }
   if (lb200 && filter && !pads && !oskar && !lb55 && !otherBeurer) {
