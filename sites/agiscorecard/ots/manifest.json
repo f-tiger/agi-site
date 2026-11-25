@@ -8,6 +8,14 @@
     "stamped": "2026-09-26",
     "status": "bitcoin",
     "confirmed": "2026-09-26"
+   },
+   {
+    "sha256": "a2318771b8202dd19676778cb3604a8a2a929484e1a3761981f9296cec4f93f6",
+    "proof": "data.json.a2318771b820.ots",
+    "stamped": "2026-11-25",
+    "status": "pending",
+    "size": 12840,
+    "stamped_at": "2026-11-25T18:19:18+00:00"
    }
   ],
   "index-history.json": [
@@ -106,5 +114,5 @@
    }
   ]
  },
- "updated": "2026-09-29"
+ "updated": "2026-11-25"
 }
