@@ -10,7 +10,13 @@ Der Pinguino PAC EX105 ist das Gerät, das wir auf diesem Portal am häufigsten 
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
 
-**Kurz gesagt:** Für Räume von **15–25 m²** ist der PAC EX105 der Monoblock, den öffentliche Tests am konstantesten vorn sehen: **Energieeffizienzklasse A+++** (Ausnahme in dieser Klasse), gemessen rund **63 dB im Turbo direkt am Gerät** (leiser als die meisten Monoblöcke, kein Flüstergerät), bei Amazon.de zuletzt ohne Neuangebot (Stand 27.09.2026), Preis vor Ort prüfen. Schwächen: ~36 kg Gewicht, keine Fensterabdichtung im Karton. Kleiner Raum + knappes Budget → Comfee MPPH-09CRN7; über 25–30 m² → Klarstein 12K; maximale Ruhe → Midea PortaSplit.
+**Deutsches Angebot für den PAC EX105 prüfen**. Vergleiche die vollständige Kennung mit dem [deutschen De’Longhi-Support für PACEX105A+++](https://www.delonghi.com/de-de/s/PACEX105A%2B%2B%2B) (geprüft am 25.11.2026). Kläre Lieferumfang und [Abluftweg und Aufstellung](https://getecoback.com/guide/pinguino-pac-ex105-test.html#raumgroesse). Bei unklarer Kennung warte mit der Bestellung.
+
+Anzeige · Affiliate-Link — du zahlst denselben Preis
+
+PAC EX105 bei Amazon.de suchen →
+
+**Kurz gesagt:** Für Räume von **15–25 m²** ist der PAC EX105 der Monoblock, den öffentliche Tests am konstantesten vorn sehen: **Energieeffizienzklasse A+++** (Ausnahme in dieser Klasse), gemessen rund **63 dB im Turbo direkt am Gerät** (leiser als die meisten Monoblöcke, kein Flüstergerät), Preis und Verfügbarkeit beim Händler prüfen. Schwächen: ~36 kg Gewicht, keine Fensterabdichtung im Karton. Kleiner Raum + knappes Budget → Comfee MPPH-09CRN7; über 25–30 m² → Klarstein 12K; maximale Ruhe → Midea PortaSplit.
 
 ## Die Testlage: Stärken und Schwächen
 
@@ -65,12 +71,6 @@ Mit der Faustregel von rund 340 BTU pro m² ist der PAC EX105 die richtige Klass
 
 **Was ist die Alternative, wenn der PAC EX105 ausverkauft ist?**
 In der gleichen Leistungsklasse sind das AEG ChillFlex Pro (ähnlich leise Ausrichtung) und für kleinere Räume das deutlich günstigere Comfee MPPH-09CRN7 die üblichen Ausweichkandidaten; für große Räume das Klarstein Kraftwerk Smart 12K, für Leise-Priorität der Midea PortaSplit. In Hitzewellen verschwinden gut getestete Geräte binnen Tagen — vor dem Peak bestellen, nicht währenddessen.
-
-**Aktuellen Preis prüfen** — bei Amazon.de zuletzt ohne Neuangebot (Stand 27.09.2026) — der Link sucht das Modell und zeigt, was es gerade gibt:
-
-Anzeige · Affiliate-Link — du zahlst denselben Preis
-
-De'Longhi PAC EX105 auf Amazon →
 
 **Weiterlesen**
 [Welche Klimaanlage für 25 m²? →](https://getecoback.com/guide/klimaanlage-25-qm.html)

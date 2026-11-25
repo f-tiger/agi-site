@@ -12,6 +12,23 @@ function trackIndexRequests(page,origin){
  return requests;
 }
 
+async function checkExactDelonghiPurchase(page,base){
+ const outcomes=[
+  ['delonghi-pac-n90-test','n90-angebot','https://www.amazon.de/dp/B07NC5CP6F?tag=getecoback-21'],
+  ['pinguino-pac-ex105-test','ex105-angebot','https://www.amazon.de/s?k=De%27Longhi+Pinguino+PAC+EX105&tag=getecoback-21'],
+ ];
+ for(const [slug,anchor,href] of outcomes){
+  await page.goto(base+'/guide/'+slug+'.html?__ci=1#'+anchor);
+  const first=page.locator('a[href^="https://www.amazon.de/"]').first();
+  assert.equal(await first.getAttribute('href'),href,'The first German shop route must match '+slug);
+  assert(await first.isVisible(),'The matching offer must be usable at this size');
+  assert.equal(await page.locator('#'+anchor+' a[rel~="sponsored"]').count(),1,'One link in the authored offer');
+  assert.equal(await page.locator('#eb-toppick,#eb-sticky,#eb-usmarket,#eb-pu').count(),0,'Generic offers must stay out of exact guides');
+  assert(await page.locator('#'+anchor+' a[href="#raumgroesse"]').isVisible(),'The fit check precedes the shop decision');
+ }
+ return outcomes.length*5;
+}
+
 async function checkGermanFocusedDiscovery(browser,base){
  const destination='/waeschetrockner-oder-luftentfeuchter.html#luftentfeuchter-waesche-kosten';
  const positive=['Was kostet eine Ladung Wäsche nur mit meinem Luftentfeuchter?','Stromkosten Luftentfeuchter Wäsche'];
@@ -191,6 +208,7 @@ async function checkGermanFocusedDiscovery(browser,base){
   await runCutout.click();
   check((await report.textContent()).includes('15 mm')&&(await report.textContent()).includes('warte mit dem Zuschnitt'),
    'An off-center hole with inadequate clearance tells the buyer to wait');
+  checks+=await checkExactDelonghiPurchase(page,base);
   await context.close();
  }
 
@@ -260,6 +278,7 @@ async function checkGermanFocusedDiscovery(browser,base){
  check(await cutoutProof.getByText('50 mm frei',{exact:false}).isVisible(),'The static guide contains the worked cutout example');
  check(await cutoutProof.getByText('warte mit dem Zuschnitt',{exact:false}).isVisible(),'The no-script route explains when to wait');
  check(await page.locator('#panel-cutout-form').isHidden(),'The form is hidden without its local calculator');
+ checks+=await checkExactDelonghiPurchase(page,base);
  await context.close();
  return checks;
 }

@@ -2021,6 +2021,7 @@ def strip_decision_promotions(html, slug):
     if slug not in {"klimaanlage-mit-heizfunktion", "mobile-klimaanlage-ueberwintern", "keller-lueften-sommer",
                     "klimaanlage-40-qm", "klimaanlage-50-qm", "klimaanlage-fenster-einbruchschutz",
                     "klimaanlage-wann-kaufen", "heizkosten-vergleich-rechner", "midea-portasplit-kaufen",
+                    "delonghi-pac-n90-test", "pinguino-pac-ex105-test",
                     electricity_fact_check}:
         return html
     markers = ("EB_MODELS", "EB_TOPPICK", "EB_POPUP", "EB_STICKY", "EB_PROFILE",

@@ -24,6 +24,12 @@ Wenn du die [Abluft nicht sicher nach draußen führen](https://getecoback.com/g
 
 Der [deutsche De’Longhi-Support](https://www.delonghi.com/de-de/s/PACN90ECOSILENT) führt dieses Modell und sein Energielabel. Die EAN sowie Angaben zu Raumgröße, Schlauch und Geräusch stammen aus dem [De’Longhi-Datenblatt beim Händler Sonepar Österreich (PDF)](https://shop.sonepar.at/asset_external/downloads/pim/400901/datasheet_delonghi_PAC%20N90ECO.pdf), eingesehen am 19. November 2026. Lieferumfang und Angebot in Deutschland separat prüfen.
 
+**Deutsches Angebot prüfen**. Gleiche im Angebot die vollständige Modellbezeichnung und die EAN 8004399512351 ab. Prüfe bei Bedarf die [Geräuschwerte](https://getecoback.com/guide/delonghi-pac-n90-test.html#lautstaerke). Kläre [Abluftweg und Aufstellung](https://getecoback.com/guide/delonghi-pac-n90-test.html#raumgroesse) sowie den Lieferumfang vor der Bestellung.
+
+Anzeige · Affiliate-Link — du zahlst denselben Preis
+
+De'Longhi PAC N90 ECO Silent auf Amazon →
+
 **Kurzantwort:** Für den PAC N90 ECO Silent nennt das Datenblatt 50–52 dB(A) Schalldruck und maximal 64 dB(A) Schallleistung. Der Abstand zum Mikrofon fehlt. Ob dich der Kompressor am Bett stört, lässt sich daraus nicht ableiten. Brauchst du nachts Ruhe, prüfe zuerst, ob Verschattung und Lüften bei kühlerer Außenluft ausreichen.
 
 ## Was kostet eine Stunde Kühlen mit dem PAC N90 ECO Silent?
@@ -86,12 +92,6 @@ Das Datenblatt nennt ein Kondenswasser-Recycling-System. Für Entleerung und Abl
 
 **Woran erkenne ich den richtigen PAC N90 im Angebot?**
 Kontrolliere die vollständige Modellbezeichnung PAC N90 ECO Silent und die EAN 8004399512351. Bei einer abweichenden Variante deren eigenes Datenblatt, Energieetikett und Lieferumfang prüfen.
-
-**Deutsches Angebot prüfen** · Gleiche Modellbezeichnung und EAN 8004399512351 im Angebot abgleichen.
-
-Anzeige · Affiliate-Link — du zahlst denselben Preis
-
-De'Longhi PAC N90 ECO Silent auf Amazon →
 
 **Weiterlesen**
 [De'Longhi Pinguino: Welches Modell lohnt sich? →](https://getecoback.com/guide/delonghi-pinguino-vergleich.html)
