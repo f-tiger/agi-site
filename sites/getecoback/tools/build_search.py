@@ -94,6 +94,9 @@ def collect():
  sections[('de','/guide/fenster-beschlagen-innen.html')]={
   'id':'fenstersauger-gegen-kondenswasser','title':'Fenster morgens von innen nass: erst abwischen und messen',
   'description':'Raumtemperatur, Luftfeuchte und Temperatur an der Innenscheibe gleichzeitig messen. Bei anhaltender Nässe die Ursache prüfen.'}
+ sections[('de','/guide/luftentfeuchter-granulat-oder-elektrisch.html')]={
+  'id':'granulat-waesche-entscheidung','title':'Reicht eine Granulatbox zum Wäschetrocknen?',
+  'description':'Eine Ladung mit vorhandener Lüftung beobachten. Raumtemperatur und Luftfeuchte messen. Tab-Masse und Entzugsrate sind verschiedene Angaben.'}
  sections[('de','/guide/thermovorhang-ratgeber.html')]={
   'id':'thermovorhang-bahnenbedarf','title':'Wie viele Bahnen braucht dein Thermovorhang?',
   'description':'Berechne Stoffbreite und Bahnen aus Öffnung, Überstand und Kräuselmaß. Nutze die Packungsangabe des Händlers.'}

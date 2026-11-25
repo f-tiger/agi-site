@@ -378,6 +378,19 @@ test('German same-place hygrometer comparisons open the numerical example',()=>{
  ]) assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u.startsWith(page+'#')),q);
 });
 
+test('German passive absorber questions open the laundry purchase decision',()=>{
+ const destination='/guide/luftentfeuchter-granulat-oder-elektrisch.html#granulat-waesche-entscheidung';
+ for(const q of ['Reicht eine Granulatbox zum Wäschetrocknen?',
+  'Granulat oder elektrischer Luftentfeuchter für nasse Wäsche',
+  'Luftentfeuchter mit Granulat oder elektrisch?']){
+   assert.equal(searchEntries(index,q,'de')[0]?.entry.u,destination,q);
+   assert.ok(!searchEntries(index,q,'en').some(hit=>hit.entry.u===destination),q);
+ }
+ for(const q of ['Welche Tabletten passen in die PATTEX AERO 360?', 'Wie viel kostet eine Ladung Wäsche nur mit meinem Luftentfeuchter?']){
+   assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u===destination),q);
+ }
+});
+
 test('German condensation behind a blind opens the glass measurement protocol',()=>{
  const anchor='/guide/luftfeuchtigkeit-richtig-messen.html#kondenswasser-hinter-plissee';
  for(const q of ['Warum ist mein Fenster hinter dem Plissee nass, obwohl das Hygrometer 50 % zeigt?',

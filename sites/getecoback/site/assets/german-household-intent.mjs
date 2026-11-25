@@ -182,6 +182,18 @@ export const windowShadeMeasurement = {
   tool:'ratgeber_suche',
 };
 
+export const granulateDryingChoice = {
+  path:'/guide/luftentfeuchter-granulat-oder-elektrisch.html',
+  id:'granulat-waesche-entscheidung',
+  tool:'ratgeber_suche',
+};
+
+function asksForGranulateDryingChoice(query) {
+  const absorber = /\b(?:granulat(?:[ -]?(?:box|absorber|entfeuchter|luftentfeuchter))?|luftentfeuchter[ -]?tabs?)\b/;
+  const alternative = /\b(?:elektrisch\w*|kompressor\w*|waeschetrockn\w*|waesche\s+(?:(?:zu|drinnen)\s+)?trockn\w*|(?:feucht\w*|nass\w*)\s+waesche)\b/;
+  return absorber.test(query) && alternative.test(query);
+}
+
 export function hasOtherWindowSurface(query) {
   return /\b(?:aussen\w*|draussen|randverbund|(?:scheiben)?zwischenraum|zwischen\s+(?:(?:den|beiden|zwei|drei)\s+){0,2}(?:\w*scheiben|glaesern))\b/.test(query);
 }
@@ -204,6 +216,7 @@ export function exactGermanHouseholdTask(query) {
   if (exhaustPanel.test(query) && opening.test(query) && !irrelevant.test(query))
     return {path:'/guide/fensterabdichtung-selber-bauen.html',id:'abluft-ausschnitt-pruefen',tool:'abluftplatte_lochposition_pruefen'};
   if (asksForKlarsteinPackage(query)) return klarsteinPackage;
+  if (asksForGranulateDryingChoice(query)) return granulateDryingChoice;
   if (asksForDirectHeatComparison(query)) return directHeat;
   if (asksForShowerFlow(query)) return showerFlow;
   if (asksForVacuumOffer(query)) return vacuumOffer;

@@ -137,6 +137,18 @@ test('the German window condensation question finds the measured check and fixed
   assert.notEqual(findCatalogueTools(compact,{query:ventilate})[0]?.name, name, ventilate);
 });
 
+test('a German passive absorber comparison opens the guide without hiding measured tool queries', async () => {
+  const guide='/guide/luftentfeuchter-granulat-oder-elektrisch.html#granulat-waesche-entscheidung';
+  const question='Reicht eine Granulatbox zum Wäschetrocknen?';
+  const result=await catalogue({q:question,view:'compact',limit:3});
+  assert.deepEqual(names(result.tools),['ratgeber_suche']);
+  assert.equal(toolGuidePath(result.tools[0]),guide);
+  assert.equal(toolGuidePath(findCatalogueTools(compact,{query:question})[0]),guide);
+  const purchase='Welche Tabletten passen in die PATTEX AERO 360?';
+  assert.ok(findCatalogueTools(compact,{query:purchase}).every(tool=>toolGuidePath(tool)!==guide));
+  assert.equal(analytics,0);
+});
+
 test('condensation behind a blind finds the German guide or the measured dew-point tool', async () => {
   const guide='/guide/luftfeuchtigkeit-richtig-messen.html#kondenswasser-hinter-plissee';
   const question='Warum ist mein Fenster hinter dem Plissee nass, obwohl das Hygrometer 50 % zeigt?';

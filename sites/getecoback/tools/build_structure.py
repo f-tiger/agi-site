@@ -1354,11 +1354,6 @@ CONTEXT_MODELS = {
    ("Pro Breeze Luftentfeuchter 20 L", "20-Liter-Klasse vergleichen", "Liter/Tag, Leistungsaufnahme und Einsatztemperatur am konkreten Modell prüfen. Nicht selbst getestet; die Nennleistung ist kein Versprechen für einen kalten Keller.", "Preis vor Ort prüfen", "pro+breeze+luftentfeuchter+20l", "dehum"),
    ("Hygrometer", "Kontrolle statt Hoffnung", "Nach der Entfernung zeigt nur der Messwert, ob die Ursache wirklich weg ist.", "Preis vor Ort prüfen", "hygrometer+luftfeuchtigkeit+innen", "purifier"),
  ],
- "luftentfeuchter-granulat-oder-elektrisch": [
-   ("Granulat-Nachfüllpacks", "Der laufende Posten", "Die Nachfüllpacks sind der eigentliche Kostenfaktor — Granulatgeräte selbst kosten fast nichts.", "Preis vor Ort prüfen", "luftentfeuchter+granulat+nachf%C3%BCll", "dehum"),
-   ("Raumentfeuchter (Granulat)", "Für Schrank & Bad", "Ohne Strom, ohne Geräusch — für kleine geschlossene Räume die einfachste Lösung.", "Preis vor Ort prüfen", "raumentfeuchter+granulat", "dehum"),
-   ("Hygrometer", "Erst messen", "Ohne Messwert weißt du nicht, ob du überhaupt entfeuchten musst — über 60 % wird es kritisch.", "Preis vor Ort prüfen", "hygrometer+innen", "purifier"),
- ],
  "waesche-trocknen-wohnung": [
    ("Luftentfeuchter fürs Wäschetrocknen", "Das eigentliche Werkzeug", "Zieht die Feuchte aus der Luft, die sonst an den Außenwänden landet.", "Preis vor Ort prüfen", "luftentfeuchter+w%C3%A4schetrocknen", "dehum"),
    ("Hygrometer", "Die Warnschwelle", "Über 60 % relativer Feuchte beginnt das Schimmelrisiko — ohne Messgerät merkst du es zu spät.", "Preis vor Ort prüfen", "hygrometer+innen", "purifier"),
@@ -1520,8 +1515,6 @@ CONTEXT_SUB = {
                                       "Nicht selbst getestet. Symbolbilder."),
  "bester-luftkuehler": ("Verschleiß- und Pflegeteile für den Luftkühler, den du schon hast — das ist der "
                         "Grund, warum die Leistung nachlässt. Nicht selbst getestet. Symbolbilder."),
- "luftentfeuchter-granulat-oder-elektrisch": ("Der laufende Posten bei Granulat sind die Nachfüllpacks — "
-                                              "deshalb stehen sie hier vorn. Nicht selbst getestet. Symbolbilder."),
  "waesche-trocknen-wohnung": ("Gegen die Feuchte, die beim Trocknen in der Wohnung bleibt. Nicht selbst "
                               "getestet. Symbolbilder."),
  "luftentfeuchter-keller": ("Im Keller entscheidet der Messwert vor dem Kauf — deshalb steht das Hygrometer "
@@ -2021,7 +2014,7 @@ def strip_decision_promotions(html, slug):
     if slug not in {"klimaanlage-mit-heizfunktion", "mobile-klimaanlage-ueberwintern", "keller-lueften-sommer",
                     "klimaanlage-40-qm", "klimaanlage-50-qm", "klimaanlage-fenster-einbruchschutz",
                     "klimaanlage-wann-kaufen", "heizkosten-vergleich-rechner", "midea-portasplit-kaufen",
-                    "delonghi-pac-n90-test", "pinguino-pac-ex105-test",
+                    "delonghi-pac-n90-test", "pinguino-pac-ex105-test", "luftentfeuchter-granulat-oder-elektrisch",
                     electricity_fact_check}:
         return html
     markers = ("EB_MODELS", "EB_TOPPICK", "EB_POPUP", "EB_STICKY", "EB_PROFILE",
@@ -2031,6 +2024,8 @@ def strip_decision_promotions(html, slug):
         markers += ("EB_HEATNOW", "EB_EXPLAINER", "EB_CLIMATE", "EB_RADAR")
     if slug == "midea-portasplit-kaufen":
         markers += ("EB_EXPLAINER",)
+    if slug == "luftentfeuchter-granulat-oder-elektrisch":
+        markers += ("EB_EXPLAINER", "EB_RADAR")
     for marker in markers:
         html = re.sub(r'<!--' + marker + r'-->.*?<!--/' + marker + r'-->\n?', '', html, flags=re.S)
     return html

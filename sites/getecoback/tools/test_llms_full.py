@@ -16,6 +16,30 @@ MEACO = 'https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-
 
 
 class LlmsFull(unittest.TestCase):
+    def test_passive_absorber_guide_preserves_primary_evidence_and_purchase_order(self):
+        guide = SITE / 'guide/luftentfeuchter-granulat-oder-elektrisch.html'
+        page = guide.read_text()
+        mirror = guide.with_suffix('.md').read_text()
+        decision = 'granulat-waesche-entscheidung'
+        model = '/guide/waesche-trocknen-wohnung.html#modell-meaco-one-20'
+        for document in (page, mirror):
+            for evidence in (
+                'behalte deinen vorhandenen Ständer', 'IDH 2160541', 'je 450 g',
+                '8,5 Liter pro Tag und 216 W bei 20 °C und 60 %',
+                'pattex-aero-360-neutral-tabs-nachfllpack/SAP_0201LDP03EZ3.html',
+                'eu.meaco.com/products/meacodry-arete-one-20l-luftentfeuchter-luftreiniger',
+                model,
+            ):
+                self.assertIn(evidence, document)
+            self.assertNotRegex(document, r'ohne Schimmelrisiko|über 65 %|10–25 Liter pro Tag')
+        self.assertEqual(page.count(f'id="{decision}"'), 1)
+        search = 'https://www.amazon.de/s?k=luftentfeuchter+granulat&amp;tag=getecoback-21'
+        self.assertEqual(page.count('href="' + search + '"'), 1)
+        self.assertLess(page.index(f'id="{decision}"'), page.index('href="' + search + '"'))
+        self.assertLess(page.index('href="' + model + '"'), page.index('href="' + search + '"'))
+        self.assertNotRegex(page, r'<!--EB_(?:MODELS|TOPPICK|STICKY|POPUP|QUICKPICK)-->')
+        self.assertNotRegex(mirror, r'amazon\.de/|tag=getecoback-21')
+
     def test_german_laundry_season_has_the_same_exact_worked_example_in_the_mirror(self):
         page = SITE / 'waeschetrockner-oder-luftentfeuchter.html'
         raw = page.read_text()
