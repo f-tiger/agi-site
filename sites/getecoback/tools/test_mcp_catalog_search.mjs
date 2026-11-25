@@ -27,9 +27,9 @@ test('the browser loads the current catalogue search module', async () => {
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 237);
+  assert.equal(withGuides.length, 238);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 37);
+  assert.equal(destinations.size, 38);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);
@@ -43,6 +43,9 @@ test('appliance search results link to exact owned evidence and keep canonical m
   assert.equal(example.guide_url, origin + '/produkte.html#wasserkocher-bosch-twk8613p');
   assert.equal(example.citation_url, origin + '/produkte.html');
   assert.equal(example.citation_markdown_url, origin + '/produkte.md');
+  const [ventilation] = (await catalogue({tool:'lueften_messwirkung', view:'examples'})).tools;
+  assert.equal(ventilation.guide_url, origin + '/guide/richtig-lueften-im-winter.html#lueften-vorher-nachher');
+  assert.equal(ventilation.citation_url, origin + '/guide/richtig-lueften-im-winter.html');
 });
 
 test('the German window condensation question finds the measured check and fixed share answer', async () => {

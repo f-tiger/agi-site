@@ -261,6 +261,18 @@ async function run() {
         }
         assert.equal(dynamicCatalogueReads, 0, 'Browser discovery must not request the dynamic catalogue');
         assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), `Horizontal overflow at ${width}px`);
+        if (width === 320) {
+          const ventilation = {
+            guide:'/guide/richtig-lueften-im-winter.html#lueften-vorher-nachher',
+            heading:'Hat Lüften Feuchte abgeführt? Vorher und nachher messen',
+          };
+          await page.setViewportSize({width, height:640});
+          assert.equal((await page.goto(probePath(ventilation.guide).href)).status(), 200);
+          await assertGuideVisible(page, ventilation, javaScriptEnabled);
+          const section = page.locator('#lueften-vorher-nachher');
+          assert(await section.getByText(/1,72 g\/m³ weniger Wasser/).isVisible());
+          assert.equal(await section.locator('form').isVisible(), javaScriptEnabled);
+        }
         await context.close();
       }
     }

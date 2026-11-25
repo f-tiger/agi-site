@@ -162,9 +162,10 @@ if(adapter){
   adapter.anchor.before(panel);
  }
  function loadScenario(){let incoming=null,bad=false;if(location.hash.startsWith('#eco-v1=')){try{if(location.hash.length>8000)throw Error();const parsed=JSON.parse(decodeURIComponent(location.hash.slice(8)));if(parsed.path!==location.pathname)throw Error();incoming=checked(parsed.values);}catch{bad=true;}}
- // The native fragment tracks the seasonal card when this earlier example expands.
- const seasonEntry=laundry&&location.hash==='#waesche-saisonwechsel';
- run(incoming||original,incoming?'shared':'example',!seasonEntry);if(bad)status.textContent=t[16];}
+ // Let the native guide fragment follow the layout when this earlier example expands.
+ const evidenceEntry=(laundry&&location.hash==='#waesche-saisonwechsel')||
+  (location.pathname==='/guide/richtig-lueften-im-winter.html'&&location.hash==='#lueften-vorher-nachher');
+ run(incoming||original,incoming?'shared':'example',!evidenceEntry);if(bad)status.textContent=t[16];}
  if(!earlyInput)loadScenario();else{kind='edited';status.textContent=t[14];}window.addEventListener('hashchange',()=>{if(location.hash.startsWith('#eco-v1='))loadScenario();});
  panel.dataset.quick='true';
 }else{const h=document.querySelector('main h1,article h1,h1');if(h)h.after(panel);}
