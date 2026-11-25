@@ -1,15 +1,15 @@
 // Shared allowlist: browser payloads, server validation and aggregate reporting.
-export const QUOTE_ACTIONS=['entry_open','builder_open','client_open','demo_preview','demo_start','own_edit','own_ready','file_generated','link_copied','summary_copied','summary_generated','remix','tool_link_copied','tool_message_copied','tool_share_requested'];
+export const QUOTE_ACTIONS=['entry_open','builder_open','client_open','demo_preview','demo_start','own_edit','own_ready','file_generated','link_copied','summary_copied','summary_generated','remix','tool_link_copied','tool_message_copied','tool_share_requested','proposal_open'];
 export const QUOTE_SOURCES=['direct','home','video-guide','video-hub','video-tool','video-category','share','youtube','tiktok','community','client'];
 export const QUOTE_TEMPLATES=['video','web','content'];
 export function quoteEventPath(action,source='direct'){
-  if(!QUOTE_ACTIONS.includes(action)||!QUOTE_SOURCES.includes(source))return null;
+  if(!QUOTE_ACTIONS.includes(action)||!QUOTE_SOURCES.includes(source)||(action==='proposal_open'&&source==='client'))return null;
   return `/quote-builder/${action}/${source}`;
 }
 export function parseQuoteEvent(path){
   if(typeof path!=='string')return null;
   const parts=path.split('/');
-  if(parts.length===3&&parts[1]==='quote-builder'&&QUOTE_ACTIONS.includes(parts[2]))return {action:parts[2],source:'legacy'};
+  if(parts.length===3&&parts[1]==='quote-builder'&&parts[2]!=='proposal_open'&&QUOTE_ACTIONS.includes(parts[2]))return {action:parts[2],source:'legacy'};
   if(parts.length!==4||parts[1]!=='quote-builder'||!quoteEventPath(parts[2],parts[3]))return null;
   return {action:parts[2],source:parts[3]};
 }

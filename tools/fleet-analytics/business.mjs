@@ -43,6 +43,10 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
   const affiliate = affiliateEvent(host, detail);
   if (affiliate) return affiliate;
   const name = detail.name;
+  if (host === 'thedollscout.com' && /^\/(?:de\/|zh\/)?ai-tools\/uk-laundry-session$/.test(pathname) &&
+      ['tds_paid_offer_view', 'tds_paid_member_open', 'tds_paid_workspace_saved', 'tds_paid_workspace_restored'].includes(name)) {
+    return {name, tool_id: 'tds-uk-laundry-review', repeat: true};
+  }
   if (host === 'thedollscout.com' && /^\/(?:de\/|zh\/)?ai-tools\/(?:dach-meter-fit|uk-laundry-session)$/.test(pathname) &&
       ['tds_regional_result', 'tds_regional_handoff'].includes(name)) {
     return {name, tool_id: pathname.split('/').pop(), repeat: true};

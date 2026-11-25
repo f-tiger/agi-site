@@ -1,7 +1,7 @@
 import {readFileSync} from 'node:fs';
 import {safeJSON,template,escapeHTML} from './core.mjs';
 
-export const EDITION='2026-10-01.5';
+export const EDITION='2026-11-25.1';
 export const ROUTE='/studio/quote-builder';
 const css=readFileSync(new URL('./style.css',import.meta.url),'utf8');
 const core=readFileSync(new URL('./core.mjs',import.meta.url),'utf8').replace(/^export /gm,'');
@@ -14,6 +14,10 @@ export function renderQuoteStudio(lang='zh',{origin=''}={}){
   const title=zh?'免费互动报价生成器 — BPJ 报价工坊':'Free interactive quote builder — BPJ Quote Studio';
   const description=zh?'为视频、网站设计和内容服务创建互动报价。客户调整数量，复制需求摘要；免费分享链接或导出可离线使用的报价页，无需注册。':'Create interactive quotes for video, web design and content services. Clients adjust quantities and copy their scope. Share a link or export an offline quote page, free without an account.';
   const url=origin+(zh?'':'/en')+ROUTE;
+  const proposalNext=origin==='https://baipiaoji.com' ? {
+    zh:{href:origin+'/studio/proposal-deck',label:'制作客户提案',description:'需要把确认的范围、排期和报价整理成可编辑的 PowerPoint？'},
+    en:{href:origin+'/en/studio/proposal-deck',label:'Create a client proposal',description:'Need to turn the agreed scope, schedule and estimate into an editable PowerPoint?'},
+  } : undefined;
   const guides={zh:[
     ['怎样把报价交给客户？','选择视频制作、网站设计或内容运营模板，填写自己的品牌、单价、基础费与交付说明，核对币种与默认数量。示例价格均为虚构，勾选确认后才能分享。复制客户链接，或下载独立 HTML 报价页，先自行打开检查，再发送给客户。客户打开后可以调整各项服务数量，查看服务小计、预估合计、首期款和余款。'],
     ['客户怎样把需求发回来？','客户可复制需求摘要粘贴到双方已有的聊天中，也可下载文本文件，手动发送给服务商。摘要包含所选服务、数量、单价、总额和交付说明。页面不会自动提交需求、创建订单或收取付款；双方仍需确认最终范围、排期、税费和总价。'],
@@ -28,5 +32,5 @@ export function renderQuoteStudio(lang='zh',{origin=''}={}){
   const faq=guides[lang];
   const social=origin?`<meta property="og:type" content="website"><meta property="og:title" content="${e(title)}"><meta property="og:description" content="${e(description)}"><meta property="og:url" content="${e(url)}"><meta property="og:image" content="${e(origin)}/studio-assets/quote-social-${lang}.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="${e(origin)}/studio-assets/quote-social-${lang}.png">`:'';
   const metadata=origin?`${social}<link rel="canonical" href="${e(url)}"><link rel="alternate" hreflang="zh-Hans" href="${e(origin+ROUTE)}"><link rel="alternate" hreflang="en" href="${e(origin+'/en'+ROUTE)}"><link rel="alternate" hreflang="x-default" href="${e(origin+ROUTE)}"><script type="application/ld+json">${safeJSON({'@context':'https://schema.org','@type':'WebApplication',name:title,description,url,applicationCategory:'BusinessApplication',operatingSystem:'Web browser',inLanguage:lang,isAccessibleForFree:true,softwareVersion:EDITION})}</script>`:'';
-  return `<!doctype html><html lang="${zh?'zh-CN':'en'}"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="${origin?'index,follow':'noindex,nofollow'}"><meta name="referrer" content="no-referrer"><meta name="quote-studio-release" content="${EDITION}"><meta name="description" content="${e(description)}"><title>${title}</title>${metadata}<style>${css}</style></head><body><div id="app"><main class="shell"><h1>${title}</h1><p>${description}</p>${faq.map(([q,a])=>`<h2>${q}</h2><p>${a}</p>`).join('')}<noscript>${zh?'请开启 JavaScript 后使用报价工具。':'Enable JavaScript to use the quote builder.'}</noscript></main></div><section class="guide" data-host-only><h2>${zh?'使用说明':'How it works'}</h2>${faq.map(([q,a])=>`<details><summary>${q}</summary><p>${a}</p></details>`).join('')}</section><script type="application/json" id="initial-state">${safeJSON({mode:'builder',config:template('video',lang),guides,measure:origin==='https://baipiaoji.com'})}</script><script>${core}\n${growth}\n${app}</script></body></html>`;
+  return `<!doctype html><html lang="${zh?'zh-CN':'en'}"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="${origin?'index,follow':'noindex,nofollow'}"><meta name="referrer" content="no-referrer"><meta name="quote-studio-release" content="${EDITION}"><meta name="description" content="${e(description)}"><title>${title}</title>${metadata}<style>${css}</style></head><body><div id="app"><main class="shell"><h1>${title}</h1><p>${description}</p>${faq.map(([q,a])=>`<h2>${q}</h2><p>${a}</p>`).join('')}<noscript>${zh?'请开启 JavaScript 后使用报价工具。':'Enable JavaScript to use the quote builder.'}</noscript></main></div><section class="guide" data-host-only><h2>${zh?'使用说明':'How it works'}</h2>${faq.map(([q,a])=>`<details><summary>${q}</summary><p>${a}</p></details>`).join('')}</section><script type="application/json" id="initial-state">${safeJSON({mode:'builder',config:template('video',lang),guides,measure:origin==='https://baipiaoji.com',proposalNext})}</script><script>${core}\n${growth}\n${app}</script></body></html>`;
 }
