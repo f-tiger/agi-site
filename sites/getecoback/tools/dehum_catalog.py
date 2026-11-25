@@ -92,11 +92,9 @@ def block(slug, today=None, data=None):
             checked = dt.date.fromisoformat(identity['checked'])
             identity_note = (
                 f'<p><strong>Deutsches Angebot prüfen:</strong> Zur oben genannten Modell- und Artikelnummer '
-                f'gehört die EAN <strong>{e(identity["ean"])}</strong>. Gleiche die Kennung der ausgewählten '
-                'Händlervariante mit den Bosch-Daten ab. Steht im Angebot nur „4000“ oder widersprechen sich '
-                'die Nummern, kläre die Ausführung vor der Bestellung.</p>'
-                f'<ul>{differences}</ul><p><a href="{e(identity["source"])}">Bosch-Ersatzteilkatalog: '
-                f'deutsche Modellkennung und EAN</a> · Modellzuordnung geprüft am '
+                f'gehört die EAN <strong>{e(identity["ean"])}</strong>. {e(identity["offer_check"])}</p>'
+                f'<ul>{differences}</ul><p><a href="{e(identity["source"])}">{e(identity["source_label"])}</a> '
+                f'· Modellzuordnung geprüft am '
                 f'<time datetime="{checked.isoformat()}">{checked:%d.%m.%Y}</time>.</p>'
             )
         evidence = (f'<h3 id="{anchor}">{e(p["name"])}</h3>'
@@ -112,6 +110,7 @@ def block(slug, today=None, data=None):
             if cellar:
                 cta = (f'{p["name"]} bei Amazon.de ansehen' if p.get('asin')
                        else f'{p["name"]} bei Amazon.de suchen')
+            cta = p.get('commerce_label', cta)
             action = (f'<p data-catalog-commerce><a class="eb-shop-btn" href="{e(href, quote=True)}" '
                       f'target="_blank" rel="sponsored nofollow noopener">{e(cta)} →</a>'
                       '<small>Anzeige · Preis, Variante und Lieferbarkeit beim Händler prüfen.</small></p>')
