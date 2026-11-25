@@ -1287,6 +1287,30 @@ test('exact humidifier accessory queries prefer the appropriate existing tool an
   assert.equal(analytics,0);
 });
 
+test('German Klarstein package queries find the existing guide reader and exact variant', async () => {
+  const target='/guide/klarstein-kraftwerk-smart-12k-test.html#kraftwerk-10034664-lieferumfang';
+  for (const query of [
+  "Was gehört beim Klarstein Kraftwerk Smart 12K zum Lieferumfang, brauche ich eine zusätzliche Fensterabdichtung?",
+  "Klarstein Kraftwerk Smart 12K 10034664",
+  "10034664",
+  "Kraftwerk Smart 12K: Ist für mein Dreh-Kipp-Fenster eine Fensterabdichtung dabei?"
+]) {
+    const result = await catalogue({q:query,view:'compact',limit:3});
+    assert.deepEqual(names(result.tools),['ratgeber_suche'],query);
+    assert.deepEqual(names(findCatalogueTools(compact,{query})),['ratgeber_suche'],query);
+    assert.equal(toolGuidePath(result.tools[0]),target,query);
+  }
+  for (const query of [
+  "Klarstein Kraftwerk Smart 11500 BTU 10040189 Fensterabdichtung",
+  "Kraftwerk Eco Smart 11.500 BTU Lieferumfang",
+  "Klarstein Kraftwerk Smart 12K anthrazit Fensterabdichtung"
+]) {
+    const result = await catalogue({q:query,view:'compact',limit:3});
+    assert.ok(!result.tools.some(tool=>toolGuidePath(tool)===target),query);
+  }
+  assert.equal(analytics,0);
+});
+
 test('German direct-heating comparisons recommend the existing guide reader', async () => {
   for (const query of ['Heizlüfter oder Infrarotheizung', 'Was ist billiger: Heizlüfter 2000 W für 15 Minuten oder Infrarotpanel 600 W für eine Stunde?', 'Was kostet Heizlüfter oder Infrarotheizung am Schreibtisch?']) {
     const result = await catalogue({q:query,view:'compact',limit:3});

@@ -15,6 +15,24 @@ const glazing = {
   id:'aussen-innen-oder-dazwischen',
   tool:'fenster_beschlag_einordnen',
 };
+export const klarsteinPackage = {
+  path:'/guide/klarstein-kraftwerk-smart-12k-test.html',
+  id:'kraftwerk-10034664-lieferumfang',
+  tool:'ratgeber_suche',
+};
+
+function asksForKlarsteinPackage(query) {
+  const article = /\b10034664\b/;
+  const family = /\bkraftwerk[ -]+smart\b/;
+  const twelve = /\b(?:12[ -]?k|12[ .]?000[ -]*btu)\b/;
+  const buying = /\b(?:lieferumfang|beilieg\w*|dabei|enthalten|mitgeliefert|zubehoer|fensterabdicht\w*)\b/;
+  const different = /\b(?:100(?!34664\b)\d{5}|11[ .]?500|eco[ -]+smart|anthrazit|rosegold|blau)\b/;
+  const otherTask = /\b(?:repar\w*|defekt\w*|ersatzteil\w*|kondens\w*|stromverbrauch|stromkost\w*|lautstaerk\w*|dezibel|db|heizfunktion|wie\s+laut)\b|\bstrom\b[^.?!]{0,35}\b(?:verbrauch|brauch|kost)\w*\b/;
+  return !different.test(query) && !otherTask.test(query) &&
+    (article.test(query) || (family.test(query) && twelve.test(query) &&
+      (/\bklarstein\b/.test(query) || buying.test(query))));
+}
+
 export const directHeat = {
   path:'/guide/heizkosten-vergleich-rechner.html',
   id:'heizluefter-oder-infrarot',
@@ -145,6 +163,7 @@ function humidifierAccessoryTask(query) {
 
 // Consumers pass their normalized German query. Match a task, not a category.
 export function exactGermanHouseholdTask(query) {
+  if (asksForKlarsteinPackage(query)) return klarsteinPackage;
   if (asksForDirectHeatComparison(query)) return directHeat;
   if (asksForShowerFlow(query)) return showerFlow;
   if (asksForVacuumOffer(query)) return vacuumOffer;

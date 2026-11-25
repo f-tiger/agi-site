@@ -108,6 +108,10 @@ async function checkGermanFocusedDiscovery(browser,base){
   const directHeatQuery='Heizlüfter oder Infrarotheizung';
   equal((await search(directHeatQuery))[0],{href:directHeat,language:'de'},
    'German direct heating searches reach the short-use comparison');
+  const klarstein='/guide/klarstein-kraftwerk-smart-12k-test.html#kraftwerk-10034664-lieferumfang';
+  const klarsteinQuery='Klarstein Kraftwerk Smart 12K 10034664';
+  equal((await search(klarsteinQuery))[0],{href:klarstein,language:'de'},
+   'Identifying the Klarstein article number opens its package checklist');
   await search('eco-local-privacy-marker-6381');
   equal(await results.count(),0,'An arbitrary private phrase yields no result');
   await search(positive[1]);
@@ -146,6 +150,12 @@ async function checkGermanFocusedDiscovery(browser,base){
   await results.first().click();
   await page.waitForURL(base+directHeat);
   check(await page.locator('#heizluefter-oder-infrarot').isVisible(),'Heater comparison search navigates to the exact section');
+  await page.locator('#eb-search-toggle').click();
+  await input.waitFor({state:'visible'});
+  await search(klarsteinQuery);
+  await results.first().click();
+  await page.waitForURL(base+klarstein);
+  check(await page.locator('#kraftwerk-10034664-lieferumfang').isVisible(),'Klarstein search opens the exact package section');
   await context.close();
  }
 
@@ -176,6 +186,15 @@ async function checkGermanFocusedDiscovery(browser,base){
  await page.waitForURL(base+'/guide/heizkosten-vergleich-rechner.html?__ci=1#heizluefter-oder-infrarot');
  const heatAnswer=page.locator('section[aria-labelledby="heizluefter-oder-infrarot"]');
  check(await heatAnswer.getByText('17,5 Cent',{exact:false}).isVisible(),'Heater cost example works without JavaScript');
+ await page.goto(base+'/guide/klarstein-kraftwerk-smart-12k-test.html?__ci=1#kraftwerk-10034664-lieferumfang');
+ const klarsteinAnswer=page.locator('section[aria-labelledby="kraftwerk-10034664-lieferumfang"]');
+ check(await klarsteinAnswer.getByText('Fensterabdichtungsset für Kippfenster',{exact:true}).isVisible(),
+  'Klarstein provides the included package contents without JavaScript');
+ await klarsteinAnswer.getByRole('link',{name:'Vorhandenen Angebotslink prüfen',exact:true}).click();
+ await page.waitForURL(base+'/guide/klarstein-kraftwerk-smart-12k-test.html?__ci=1#angebot-kraftwerk');
+ const existingShop=page.locator('#angebot-kraftwerk a[rel~="sponsored"]');
+ equal(await existingShop.getAttribute('href'),'https://www.amazon.de/dp/B08VWSP8FW?tag=getecoback-21',
+  'The existing tagged product destination follows the model check');
  await context.close();
  return checks;
 }

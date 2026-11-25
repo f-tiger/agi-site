@@ -72,6 +72,9 @@ def collect():
  sections[('de','/guide/klimaanlage-40-qm.html')]={
   'id':'portasplit-40-qm','title':'Klimaanlage für 40 m²: Raumhöhe und PortaSplit prüfen',
   'description':'2,50 m Raumhöhe ergeben 100 m³, 2,80 m ergeben 112 m³. Vergleiche mit 105 m³ und prüfe Außenplatz und Leitung.'}
+ sections[('de','/guide/klarstein-kraftwerk-smart-12k-test.html')]= {
+  'id':'kraftwerk-10034664-lieferumfang','title':'Klarstein Kraftwerk Smart 12K: Was ist bei 10034664 dabei?',
+  'description':'Klarstein listet für 10034664 ein Fensterabdichtungsset für Kippfenster und den Abluftschlauch mit Anschlüssen. Artikelnummer und Fenstermaß vor der Bestellung abgleichen.'}
  sections[('de','/guide/klimaanlage-fenster-einbruchschutz.html')]={
   'id':'fenster-verschluss-pruefen','title':'Klimaanlage am Fenster: Schließen und Verriegeln prüfen',
   'description':'Prüfe am konkreten Fenster, ob es mit der Leitung normal verriegelt. Bei unklarem Ergebnis den Kauf zurückstellen.'}

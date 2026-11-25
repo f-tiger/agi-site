@@ -1,6 +1,6 @@
 # Klarstein Kraftwerk Smart 12K: Was sagen die Tests?
 
-> Klarstein Kraftwerk Smart 12K im Test-Überblick: 12.000 BTU für 25–35 m², App-Steuerung, laut Datenblatt 50–65 dB — Stärken, Schwächen, Alternativen.
+> Klarstein Kraftwerk Smart 12K (10034664): Fensterabdichtung, Abluftschlauch und Lieferumfang für Deutschland prüfen. Angebot und Fenstermaß abgleichen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/klarstein-kraftwerk-smart-12k-test.html
 
@@ -11,6 +11,16 @@ Das Kraftwerk Smart 12K ist das Gerät, das wir auf diesem Portal empfehlen, wen
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
 
 **Kurz gesagt:** Für Räume von **25–35 m²** ist das Kraftwerk Smart 12K die Klasse mit echter Reserve: **12.000 BTU (ca. 3,5 kW)**, App-Steuerung mit Alexa und Google Assistant, laut Datenblatt **Energieeffizienzklasse A** (EER 2,6) bei **ca. 1,3 kWh pro Stunde** im Kühlbetrieb. Schwächen: laut Datenblatt **bis 65 dB** auf höchster Stufe (12K-Geräte sind lauter als kleinere), ~27 kg Gewicht. Unter 25 m² → De'Longhi Pinguino PAC EX105 oder Comfee MPPH-09CRN7; maximale Ruhe → Midea PortaSplit; über ~13.500 BTU Bedarf → kein Monoblock mehr, Split oder zwei Geräte.
+
+## Klarstein Kraftwerk Smart 12K: Was ist bei 10034664 dabei?
+
+**Für das weiße Kraftwerk Smart 12K mit Artikelnummer 10034664** führt Klarstein Deutschland ein **Fensterabdichtungsset für Kippfenster** und einen **Abluftschlauch mit Anschlussstücken** im Lieferumfang auf. Wenn beides im gewählten Angebot enthalten ist und ans Fenster passt, kannst du auf ein separates Set verzichten.
+
+Prüfe am Fenster die Öffnungsart, den Befestigungsrand und den Weg des Abluftschlauchs. Beim seitlich geöffneten Dreh-Kipp-Fenster, beim Schiebefenster oder bei fehlenden Maßen kläre die Passung vor der Bestellung. [Fensterflügel und passende Abdichtung prüfen](https://getecoback.com/guide/fensterabdichtung-klimaanlage.html).
+
+Die weiße 11.500-BTU-Ausführung hat die Artikelnummer **10040189**. Gleiche im konkreten Angebot die vollständige Artikelnummer und den Packungsinhalt ab. [Vorhandenen Angebotslink prüfen](https://getecoback.com/guide/klarstein-kraftwerk-smart-12k-test.html#angebot-kraftwerk). Bleiben Modell oder Inhalt unklar, frage beim Händler nach und warte mit der Bestellung.
+
+Deutsche Herstellerangaben, geprüft am 25. November 2026. [Klarstein: Lieferumfang für 10034664](https://www.klarstein.de/kraftwerk-smart-12000-btu-mobile-klimaanlage-weiss-p-10034664.html) · [Klarstein: 11.500-BTU-Variante 10040189](https://www.klarstein.de/kraftwerk-smart-11500-btu-mobile-klimaanlage-weiss-p-10040189.html).
 
 ## Die Testlage: Stärken und Schwächen
 
@@ -23,7 +33,7 @@ Das Kraftwerk Smart 12K ist die 12.000-BTU-Variante von Klarsteins Kraftwerk-Sma
 | ✕ Laut Datenblatt 50–65 dB; Tests nennen die Maximalstufe deutlich hörbar und das Gerät fürs Schlafzimmer nur eingeschränkt geeignet | Bauartbedingt: mehr BTU = mehr Lärm — Einordnung unten |
 | ✕ Ca. 1,3 kWh pro Stunde im Kühlbetrieb (Herstellerangabe) | Bei angenommenen 0,30 €/kWh rund 0,39 € pro Stunde — dein Arbeitspreis steht im Stromvertrag, Rechenweg im [Stromkosten-Ratgeber](https://getecoback.com/guide/klimaanlage-stromkosten.html) |
 | ✕ Ca. 27 kg schwer | Auf Rollen im Geschoss kein Problem; Treppen sind eine Zwei-Personen-Aufgabe |
-| ✕ Wie bei jedem Monoblock entscheidet die Fensterabdichtung stark über die Wirkung | Ohne Abdichtung strömt die warme Luft direkt zurück — Kit (15–30 €) direkt mitdenken: [welches zu welchem Fenster passt](https://getecoback.com/guide/fensterabdichtung-klimaanlage.html) |
+| ✕ Wie bei jedem Monoblock entscheidet die Fensterabdichtung stark über die Wirkung | Klarstein führt für 10034664 eine Kippfensterabdichtung mit. [Lieferumfang und Passung vor einem zusätzlichen Kauf prüfen](https://getecoback.com/guide/klarstein-kraftwerk-smart-12k-test.html#kraftwerk-10034664-lieferumfang). |
 
 ## Für welchen Raum reicht es?
 
@@ -75,7 +85,7 @@ Mit der Faustregel von rund 340 BTU pro m² decken 12.000 BTU etwa 25 bis 35 m²
 **Was ist die Alternative, wenn das Kraftwerk Smart 12K nicht passt?**
 Für 15–25 m² ist der De'Longhi Pinguino PAC EX105 die effizientere und leisere Wahl, für kleine Räume mit knappem Budget das Comfee MPPH-09CRN7 mit 9.000 BTU. Wer nachts absolute Ruhe braucht, nimmt den Midea PortaSplit, dessen Kompressor draußen hängt. Und wenn der Raum mehr als etwa 13.500 BTU braucht, ist die ehrliche Antwort keines dieser Geräte, sondern ein fest installiertes Split-Gerät oder zwei kleinere Monoblöcke.
 
-**Aktuellen Preis prüfen** — gerade die stärkeren Geräte sind in Hitzewellen schnell vergriffen:
+**Angebot prüfen** — [Artikelnummer 10034664 und Packungsinhalt abgleichen](https://getecoback.com/guide/klarstein-kraftwerk-smart-12k-test.html#kraftwerk-10034664-lieferumfang).
 
 Anzeige · Affiliate-Link — du zahlst denselben Preis
 
