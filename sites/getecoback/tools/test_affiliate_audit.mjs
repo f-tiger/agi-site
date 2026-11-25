@@ -21,6 +21,36 @@ print(json.dumps({'rows':[dict(r) for r in db.execute(sql)],'plan':[r[3] for r i
 function data(){const r=spawnSync('python3',['-c',fixture],{input:AUDIT_SQL,encoding:'utf8'});assert.equal(r.status,0,r.stderr);return JSON.parse(r.stdout);}
 const dbFor=rows=>({prepare(sql){assert.equal(sql,AUDIT_SQL);return {all:async()=>({results:rows,meta:{rows_read:30}})};}});
 
+test('seasonal comparison and guide click counts use complete human days outside the affiliate totals', async () => {
+ const script = `import json,sqlite3,sys
+db=sqlite3.connect(':memory:');db.row_factory=sqlite3.Row
+db.execute('CREATE TABLE ev(day,name,page,ref,ua_class,meta)')
+path='/waeschetrockner-oder-luftentfeuchter.html'
+def add(day, action, page=path, ua='human'):
+ db.execute('INSERT INTO ev VALUES(?,?,?,?,?,?)',(day,action,page,'',ua,''))
+add('2026-11-25','eco_laundry_season_check')
+add('2026-11-24','eco_laundry_season_guide',ua='bot')
+add('2026-11-24','eco_laundry_season_guide',page='/wrong.html')
+add('2026-11-25','page_view')
+add('2026-11-26','eco_laundry_season_check')
+add('2026-11-26','eco_laundry_season_guide')
+add('2026-11-26','affiliate_click')
+add('2026-11-27','eco_laundry_season_guide')
+query=sys.stdin.read().replace("date('now'","date('2026-11-27'")
+print(json.dumps([dict(r) for r in db.execute(query)]))`;
+ const input=spawnSync('python3',['-c',script],{input:AUDIT_SQL,encoding:'utf8'});
+ assert.equal(input.status,0,input.stderr);
+ const rows=JSON.parse(input.stdout);
+ const report=await affiliateAudit(dbFor(rows),()=> 'direct');
+ const week=report.weeks.at(-1);
+ assert.deepEqual(week.laundry_season,{first_recorded_day:'2026-11-25',measured_comparisons:2,model_guide_clicks:1});
+ assert.equal(week.page_views,1);
+ assert.equal(week.affiliate_clicks,1);
+ assert.equal(report.weeks.at(-2).laundry_season,null);
+ const noClick=await affiliateAudit(dbFor(rows.filter(row=>row.name!=='eco_laundry_season_guide')),()=> 'direct');
+ assert.equal(noClick.weeks.at(-1).laundry_season.model_guide_clicks,null);
+});
+
 test('real SQLite: bounded complete dates, fixed weekdays, truthful gaps, conserved cohorts, private values absent',async()=>{
   const {rows,plan}=data();assert.ok(plan.some(x=>/SEARCH ev USING INDEX ev_day/.test(x)),plan.join('\n'));
   const d=await affiliateAudit(dbFor(rows),()=> 'search');

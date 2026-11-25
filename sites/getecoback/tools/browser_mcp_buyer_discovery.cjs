@@ -88,7 +88,7 @@ function probePath(path) {
   return url;
 }
 
-async function assertGuideVisible(page, item) {
+async function assertGuideVisible(page, item, javaScriptEnabled) {
   const guide = new URL(item.guide, base);
   await page.waitForURL(url => url.pathname === guide.pathname && url.hash === guide.hash);
   const heading = page.getByRole('heading', { name: item.heading, exact: true });
@@ -111,7 +111,33 @@ async function assertGuideVisible(page, item) {
   assert(layout.top >= Math.max(0, layout.navBottom) - 1 && layout.bottom <= layout.height,
     `Guide heading is clipped at ${guide.hash}: ${JSON.stringify(layout)}`);
   if (item.tool === 'waesche_trocknungswechsel_kaufschwelle') {
-    assert(await page.locator(guide.hash).getByText(/16,80 € Ersparnis pro Saison/).isVisible());
+    const section = page.locator(guide.hash);
+    assert(await section.getByText(/16,80 € Ersparnis pro Saison/).isVisible());
+    const compare = section.locator('[data-season-compare]');
+    assert.equal(await compare.isVisible(), false);
+    if (javaScriptEnabled) {
+      const form = section.locator('[data-laundry-season]');
+      await form.waitFor();
+      for (const [field, value] of Object.entries({
+        ladungen_saison:'100', ladungen_ersetzbar:'60', trockner_kwh:'1.4',
+        entfeuchter_kwh:'0.6', tarif_eur_kwh:'0.35', anschaffung_eur:'100',
+      })) await form.locator(`[name="${field}"]`).fill(value);
+      const submit = form.getByRole('button', {name:'Saisonkosten berechnen'});
+      await submit.click();
+      assert.equal(await compare.isVisible(), false);
+      await form.locator('[name="ladungen_vergleichbar"]').check();
+      await form.locator('[name="zusatzstrom_erfasst"]').check();
+      await submit.click();
+      await compare.waitFor();
+      await form.locator('[name="anschaffung_eur"]').fill('0');
+      await submit.click();
+      assert.equal(await compare.isVisible(), false);
+      await form.locator('[name="anschaffung_eur"]').fill('100');
+      await submit.click();
+      await compare.getByRole('link').click();
+      await page.waitForURL(url => url.pathname === '/guide/waesche-trocknen-wohnung.html' && url.hash === '#eb-models');
+      assert.equal(await page.locator('#eb-models .dc-card').count(), 6);
+    }
   }
   if (item.guide.endsWith('#fenstersauger-belege')) {
     await page.getByRole('link', {name:'Fenstersauger-Modelle und Lieferumfang vergleichen'}).click();
@@ -215,7 +241,7 @@ async function run() {
             const link = result.getByRole('link', { name: 'Ratgeber und Annahmen' });
             assert.equal(await link.getAttribute('href'), item.guide);
             await link.click();
-            await assertGuideVisible(page, item);
+            await assertGuideVisible(page, item, javaScriptEnabled);
             assert.equal((await page.goto(probePath('/mcp.html').href)).status(), 200);
           }
           assert(catalogueReads >= 1);
@@ -230,7 +256,7 @@ async function run() {
             // document anew so this also checks its HTTP response each time.
             if (new URL(page.url()).pathname === target.pathname) await page.goto('about:blank');
             assert.equal((await page.goto(target.href)).status(), 200);
-            await assertGuideVisible(page, item);
+            await assertGuideVisible(page, item, javaScriptEnabled);
           }
         }
         assert.equal(dynamicCatalogueReads, 0, 'Browser discovery must not request the dynamic catalogue');

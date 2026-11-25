@@ -58,6 +58,25 @@ test('same dry load: low watts can lose, shorter runtime can win, labels normali
 test('measured kWh takes precedence; unmatched drying never returns a winner or payback',()=>{const r=laundry({...x,method:'measured',dehum:.8,watts:NaN,hours:NaN});assert.equal(r.dehum,.8);assert.equal(r.breakEvenHours,null);for(const hours of [0,4,8]){const a=laundry({...x,hours,comparable:false});assert.equal(a.winner,'unconfirmed');assert.equal(a.payback,null);}assert.equal(laundry({...x,hours:4,loads:0}).payback,null);assert.equal(laundry({...x,price:0}).winner,'tie');for(const change of [{price:-1},{dryer:Infinity},{dryer:21},{currency:'JPY'},{method:'bad'},{hours:NaN}])assert.throws(()=>laundry({...x,...change}),RangeError);});
 test('fixed channel links preserve probes, never accept arbitrary destinations or attribution',()=>{for(const source of ['youtube','tiktok']){const res=videoEntry(new URL('https://getecoback.com/dry-'+source+'?next=https://evil.test&__probe=1'));const u=new URL(res.headers.get('location'));assert.equal(u.pathname,LAUNDRY_PATHS[1]);assert.equal(u.hash,'#laundry-check');assert.equal(u.searchParams.get('__probe'),'1');assert(!u.searchParams.has('next'));assert.deepEqual(acquisition(u.href),{source,evidence:'tag_only'});assert.equal(acquisition(u.href,'https://'+source+'.com/watch').evidence,'referrer');assert.equal(acquisition(u.href,'https://'+source+'.com.evil.test/').evidence,'other');assert.equal(acquisition(u.href.replace('eco-laundry-03','other')).source,'onsite');}assert.equal(videoEntry(new URL('https://getecoback.com/dry-tiktok'),'POST'),null);});
 test('actual collector rejects meter readings and preserves bounded metadata while suppressing bots and DNT',async()=>{let writes=[];const env={EVENTS:{prepare:()=>({bind:(...args)=>({run:async()=>writes.push(args)})})}};const b={n:'laundry_compare',p:LAUNDRY_PATHS[1],r:'https://www.youtube.com/watch?secret=private',m:{lang:'en',input:'edited',method:'measured',equal:'yes',action:'compare',source:'youtube',evidence:'referrer'}};const send=(body,headers={})=>worker.fetch(new Request('https://getecoback.com/api/ev',{method:'POST',headers:{'user-agent':'Mozilla/5.0',...headers},body:JSON.stringify(body)}),env,{});assert(validLaundryEvent(b));assert(JSON.stringify(b.m).length<200);assert.equal((await send(b)).status,200);assert.equal(writes.length,1);assert.equal(writes[0][3],'www.youtube.com');for(const bad of [{...b,p:'/'},{...b,m:{...b.m,kwh:1.5}},{...b,m:{...b.m,lang:'de'}},{...b,m:{...b.m,action:'buy'}}])assert.equal((await send(bad)).status,400);for(const headers of [{dnt:'1'},{'sec-gpc':'1'},{'user-agent':'getecoback-ci'}])await send(b,headers);assert.equal(writes.length,1);});
+test('seasonal actions accept only the fixed German path and name without metadata', async () => {
+ const rows=[];
+ const env={EVENTS:{prepare:()=>({bind:(...args)=>({run:async()=>rows.push(args)})})}};
+ const send=(payload,headers={})=>worker.fetch(new Request('https://getecoback.com/api/ev',{
+  method:'POST',headers:{'user-agent':'Mozilla/5.0','cf-ipcountry':'DE',...headers},body:JSON.stringify(payload),
+ }),env,{});
+ for(const n of ['eco_laundry_season_check','eco_laundry_season_guide']){
+  const action={n,p:LAUNDRY_PATHS[0]};
+  assert.equal((await send(action)).status,200);
+  for(const headers of [{dnt:'1'},{'sec-gpc':'1'},{'x-probe':'1'},{'user-agent':'getecoback-ci'}]){
+   assert.equal((await (await send(action,headers)).json()).skipped,true);
+  }
+  for(const extra of [{m:{kwh:1.4}},{r:'https://example.org/'},{p:LAUNDRY_PATHS[1]}]){
+   assert.equal((await send({...action,...extra})).status,400);
+  }
+ }
+ assert.equal(rows.length,2);
+ assert.ok(rows.every(row=>row.slice(3).join(',')===',,,human'));
+});
 test('both existing pages contain one localized calculator and do not claim measured performance',()=>{for(const path of LAUNDRY_PATHS){const h=readFileSync(new URL('../site'+path,import.meta.url),'utf8');assert.equal((h.match(/id="laundry-check"/g)||[]).length,1);assert(h.includes('laundry-check.mjs'));assert(h.includes('37984'));}const en=readFileSync(new URL('../site'+LAUNDRY_PATHS[1],import.meta.url),'utf8');assert(!en.includes('usually wins'));assert(!en.includes('those two numbers decide'));assert(!en.includes('60 per cent at a cool wall surface'));});
 
 
