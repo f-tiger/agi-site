@@ -2,6 +2,7 @@ import {WINDOW_CONDENSATION_PAGE, WINDOW_CONDENSATION_URL} from '../site/assets/
 
 const productGuide = '/produkte.html';
 const laundryGuide = '/guide/waesche-trocknen-wohnung.html';
+const humidifierParts = ['/guide/luftbefeuchter-ratgeber.html', 'ersatzteile-zuordnen'];
 const sections = new Map([
   ['Kaffeemaschinenpflege', [productGuide, 'kaffeevollautomat-pflege-und-kauf']],
   ['Waschmitteldosierung', [laundryGuide, 'waschmittel-automatische-dosierung']],
@@ -18,6 +19,9 @@ const sections = new Map([
 ]);
 
 const toolSections = new Map([
+  ['oskar_filtermatten_gemeinsamer_vorrat', humidifierParts],
+  ['beurer_lb200_filter_frist_auslastung', humidifierParts],
+  ['beurer_lb55_kalkpad_packungswiderspruch', humidifierParts],
   ['kaffeevollautomat_intenza_aquaclean_filterfamilie_modellpruefung', [productGuide, 'kaffee-wasserfilter']],
   ['glassvac_kalt_lagern_einschalten_laden_getrennt', [productGuide, 'bosch-glassvac-einsatz-und-pflege']],
   ['miele_hyclean_beutel_vollstaendige_modellzeile', [productGuide, 'miele-staubsaugerbeutel']],

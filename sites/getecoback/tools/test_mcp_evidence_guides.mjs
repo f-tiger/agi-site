@@ -12,6 +12,9 @@ const cellar = '/guide/luftentfeuchter-keller.html';
 const toolPaths = new Map([
   ['luftreiniger_ersatzfilter_zuordnung', '/ersatzfilter.html#finder'],
   ['philips_verdunsterfilter_zuordnung', '/guide/luftbefeuchter-ratgeber.html#philips-verdunsterfilter'],
+  ['oskar_filtermatten_gemeinsamer_vorrat', '/guide/luftbefeuchter-ratgeber.html#ersatzteile-zuordnen'],
+  ['beurer_lb200_filter_frist_auslastung', '/guide/luftbefeuchter-ratgeber.html#ersatzteile-zuordnen'],
+  ['beurer_lb55_kalkpad_packungswiderspruch', '/guide/luftbefeuchter-ratgeber.html#ersatzteile-zuordnen'],
   ['heizdecke_stromkosten_nennleistung', '/guide/heizdecke-stromverbrauch.html#waerme-rechner'],
   ['hygrometer_messbereiche', '/guide/luftfeuchtigkeit-richtig-messen.html#hygrometer-vergleichen'],
   ['luftentfeuchter_waesche_einzelkosten', '/waeschetrockner-oder-luftentfeuchter.html#luftentfeuchter-waesche-kosten'],
@@ -134,7 +137,7 @@ test('each mapped tool publishes the same exact evidence link after a real tool 
   const advertised = new Map(standard.map(tool => [tool.name, tool]));
   const compact = new Map((await h.catalogue({view:'compact'})).tools.map(tool => [tool.name, tool]));
   const mapped = expandedDefinitions.filter(tool=>paths.has(tool.category) || toolPaths.has(tool.name));
-  assert.equal(mapped.length, 242);
+  assert.equal(mapped.length, 245);
   assert.equal([...compact.values()].filter(tool=>tool.guide_url && tool.name!=='entfeuchter_ablaufcheck').length, mapped.length);
 
   for (const {name, category, page, properties, required, oneOf, example} of mapped) {

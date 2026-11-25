@@ -17,7 +17,7 @@ DUST = 'luftbefeuchter-weisser-staub'
 PHILIPS_FILTERS = ROOT / 'data/humidifier-philips-filters-de.json'
 PAGES = {
     MAIN: {
-        'modified':'2026-11-24',
+        'modified':'2026-11-25',
         'title':'Luftbefeuchter wählen: Bedarf, Pflege und vier genaue Modelle',
         'description':'Luftbefeuchter nach Feuchte, Pflege und Kosten vergleichen. Philips Series 2000 am Typenschild prüfen und FY2401/30 oder FY3446/30 zuordnen.',
         'published':'2026-09-15',
@@ -81,7 +81,14 @@ def accessory_guide(data):
         '<p>Lies Modell und Artikelnummer auf dem Typenschild ab und vergleiche sie mit den vier Geräten unten. '
         'Bei einer anderen oder unleserlichen Bezeichnung kläre die Teilenummer zuerst anhand der Anleitung oder beim Hersteller.</p>'
         '<ul>' + ''.join(items) + '</ul>'
-        '<p class="hc-note">Abgleich mit den deutschen Zubehörseiten der Hersteller am <time datetime="2026-11-18">18. November 2026</time>. '
+        '<p><strong>Ein Filterwechsel an beiden Oskar-Geräten.</strong> Ein vollständiger Wechsel am Oskar O-020 braucht zwei Matten, '
+        'am Oskar little O-060 eine. Zusammen sind es drei passende, unbenutzte O-030-Matten. '
+        'Ohne Vorrat brauchst du zwei Zweierpacks und behältst eine Matte übrig. '
+        'Ist bereits eine passende unbenutzte Matte da, genügt ein Zweierpack.</p>'
+        '<p>Bei anderen Modellnummern oder unbekanntem Packungsinhalt kläre zuerst die Zuordnung. '
+        'Bei Kondenswasser oder feuchten Stellen zusätzliche Befeuchtung pausieren und die Ursache prüfen.</p>'
+        + ref(['oskar_manual', 'oskar_little_manual'], data) +
+        '<p class="hc-note">Abgleich mit den deutschen Zubehörseiten der Hersteller am <time datetime="2026-11-25">25. November 2026</time>. '
         'Beim LB 55 weichen die Mengenangaben auf der Zubehörseite voneinander ab.</p></section>'
     )
 

@@ -127,6 +127,8 @@ def collect():
   if lang=='de' and route=='/guide/luftbefeuchter-ratgeber.html':
    models=json.loads((ROOT/'data/humidifier-philips-filters-de.json').read_text())['models']
    entry['model_sections']=[
+    {'id':'ersatzteile-zuordnen','title':'Oskar und Beurer: Originalfilter oder Kalkpad zum Modell finden',
+     'description':'O-030 für Oskar O-020 und little O-060 mit zwei beziehungsweise einer Matte prüfen. Beurer LB 200 nutzt 110005, LB 55 das Kalkpad 163141.'},
     {'id':'philips-verdunsterfilter','title':'Philips Series 2000: Verdunsterfilter prüfen',
      'description':'Die vollständige HU-Gerätenummer vom Typenschild entscheidet. Eine Serienangabe allein reicht nicht.'}
    ]+[
@@ -138,7 +140,7 @@ def collect():
     anchor=row['id']
     targets=re.findall(r'<h[23]\b[^<>]*\sid="'+re.escape(anchor)+r'"[^<>]*>',text)
     if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*',anchor) or len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
-     raise ValueError(f'Missing or ambiguous Philips filter destination: {route}#{anchor}')
+     raise ValueError(f'Missing or ambiguous humidifier accessory destination: {route}#{anchor}')
   if lang=='de' and route=='/guide/trotec-luftentfeuchter-test.html':
    anchor='ttk70-hepa-filter'
    targets=re.findall(r'<(?:section|h[23])\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)

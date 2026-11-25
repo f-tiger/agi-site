@@ -6,7 +6,7 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftbefeuchter-ratg
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
 
-Redaktionell aktualisiert am 24. November 2026 · Redaktionelle Kauf- und Nutzungshilfe, kein eigener Gerätetest.
+Redaktionell aktualisiert am 25. November 2026 · Redaktionelle Kauf- und Nutzungshilfe, kein eigener Gerätetest.
 **Die kurze Entscheidung**Ohne nachvollziehbaren Bedarf brauchst du kein neues Gerät. Bei wiederholt trockener Raumluft zuerst Messung und Nutzung prüfen. Wenn Befeuchtung sinnvoll bleibt, sind passende Regelung, Wasserart und eine Pflege, die du zuverlässig erledigst, wichtiger als ein pauschaler Testsieger.
 
 ## Erst messen: Vielleicht ist kein Kauf nötig
@@ -92,7 +92,10 @@ Lies Modell und Artikelnummer auf dem Typenschild ab und vergleiche sie mit den 
 - **Stadler Form Oskar little weiß O-060** – [Stadler Form: Filter O-030](https://www.stadlerform.com/de-de/luftbefeuchter-zubehoer/luftbefeuchter-filter-2-er-pack-o-030). Eine Filtermatte pro Wechsel. Ein Zweierpack reicht für zwei Wechsel.
 - **Beurer LB 200** – [Beurer: Ersatzfilter 110005](https://www.beurer.com/de/p/110005/). Geräteartikel 10069. Die Anleitung schreibt die Filternummer als 110.005.
 - **Beurer LB 55** – [Beurer: Kalkpads 163141](https://www.beurer.com/de/p/163141/). Geräteartikel 68605. Für dieses Dampfgerät sind Kalkpads vorgesehen. Prüfe die Stückzahl auf der konkreten Packung.
-Abgleich mit den deutschen Zubehörseiten der Hersteller am 18. November 2026. Beim LB 55 weichen die Mengenangaben auf der Zubehörseite voneinander ab.
+**Ein Filterwechsel an beiden Oskar-Geräten.** Ein vollständiger Wechsel am Oskar O-020 braucht zwei Matten, am Oskar little O-060 eine. Zusammen sind es drei passende, unbenutzte O-030-Matten. Ohne Vorrat brauchst du zwei Zweierpacks und behältst eine Matte übrig. Ist bereits eine passende unbenutzte Matte da, genügt ein Zweierpack.
+Bei anderen Modellnummern oder unbekanntem Packungsinhalt kläre zuerst die Zuordnung. Bei Kondenswasser oder feuchten Stellen zusätzliche Befeuchtung pausieren und die Ursache prüfen.
+Quellen: [Oskar: EU-Anleitung, DE S. 10–15](https://www.stadlerform.com/media/ed/93/91/1712837853/stadler-form-oskar-manual-eu.pdf) · [Oskar little: EU-Anleitung, DE S. 10–14](https://www.stadlerform.com/media/85/64/6d/1712837923/stadler-form-oskar-little-manual-eu.pdf).
+Abgleich mit den deutschen Zubehörseiten der Hersteller am 25. November 2026. Beim LB 55 weichen die Mengenangaben auf der Zubehörseite voneinander ab.
 
 ## Welcher Philips-Verdunsterfilter passt zu Series 2000?
 Philips führt mehrere Geräte unter „Series 2000“. Lies die vollständige Modellnummer mit Suffix auf dem Typenschild und vergleiche sie mit einer der Herstellerzuordnungen.
