@@ -7,22 +7,64 @@
   <link rel="hub" href="https://pubsubhubbub.appspot.com/"/>
   <link rel="hub" href="https://pubsubhubbub.superfeedr.com/"/>
   <id>https://agiscorecard.com/</id>
-  <updated>2026-11-12T00:00:00Z</updated>
+  <updated>2026-11-25T00:00:00Z</updated>
   <author><name>The AGI Scorecard</name></author>
   <rights>CC BY 4.0 — reuse with attribution and a link to https://agiscorecard.com</rights>
   <entry>
-    <title>AI investment roadmap | Views, evidence &amp; US stocks</title>
-    <link href="https://agiscorecard.com/invest"/>
-    <id>https://agiscorecard.com/invest</id>
-    <updated>2026-11-12T00:00:00Z</updated>
-    <summary>Five AI industry routes from reviewed interviews to US-listed watch candidates. Check business evidence, failure conditions, model returns and SunWatch updates in one investment hub.</summary>
+    <title>Will AGI Arrive by 2027? Aschenbrenner&#x27;s Prediction</title>
+    <link href="https://agiscorecard.com/will-agi-arrive-2027"/>
+    <id>https://agiscorecard.com/will-agi-arrive-2027</id>
+    <updated>2026-11-25T00:00:00Z</updated>
+    <summary>AGI by 2027 remains Open as of November 25, 2026. Review the new AI research evidence and the published January 1, 2028 resolution criteria.</summary>
+  </entry>
+  <entry>
+    <title>Did Open-Source AI Fade? Grading Aschenbrenner&#x27;s Moat</title>
+    <link href="https://agiscorecard.com/did-open-source-ai-fade"/>
+    <id>https://agiscorecard.com/did-open-source-ai-fade</id>
+    <updated>2026-11-25T00:00:00Z</updated>
+    <summary>Why the AGI Scorecard retains its open-weight verdict after the November 25 evidence review. See the dated Epoch AI study and the published rule for reopening it.</summary>
+  </entry>
+  <entry>
+    <title>AI 视频、观点与 AGI 倒计时 | AGI 记分牌</title>
+    <link href="https://agiscorecard.com/cn"/>
+    <id>https://agiscorecard.com/cn</id>
+    <updated>2026-11-25T00:00:00Z</updated>
+    <summary>按工作、学习、商业与未来预判浏览 AI 访谈和博主视频。阅读观点总结、直接观看原片，追踪 AGI 倒计时与预测证据。</summary>
+  </entry>
+  <entry>
+    <title>AGI-2027 Resolution: Criteria, Countdown, Evidence</title>
+    <link href="https://agiscorecard.com/agi-2027-resolution"/>
+    <id>https://agiscorecard.com/agi-2027-resolution</id>
+    <updated>2026-11-25T00:00:00Z</updated>
+    <summary>Read the pre-registered AGI-2027 resolution criteria, January 1, 2028 deadline and November 25, 2026 review of public AI research evidence.</summary>
+  </entry>
+  <entry>
+    <title>Free AI &amp; AGI Tools and Workplace Practice</title>
+    <link href="https://agiscorecard.com/ai-tools"/>
+    <id>https://agiscorecard.com/ai-tools</id>
+    <updated>2026-11-22T00:00:00Z</updated>
+    <summary>Free AI tools for research and work. Check Codex CLI and Claude Code releases, browse MCP servers by task, and explore evidence behind AGI forecasts.</summary>
+  </entry>
+  <entry>
+    <title>AGI Scorecard Data for AI Agents: JSON, Feed, llms.txt</title>
+    <link href="https://agiscorecard.com/for-agents"/>
+    <id>https://agiscorecard.com/for-agents</id>
+    <updated>2026-11-20T00:00:00Z</updated>
+    <summary>Free, machine-readable AGI verdict data: /data.json (CC BY 4.0), an Atom feed and llms.txt. Copy-paste prompt to add verdict-change alerts to any AI agent.</summary>
   </entry>
   <entry>
     <title>AI infrastructure research | AGI Scorecard</title>
     <link href="https://agiscorecard.com/ai-infrastructure"/>
     <id>https://agiscorecard.com/ai-infrastructure</id>
-    <updated>2026-11-12T00:00:00Z</updated>
+    <updated>2026-11-18T00:00:00Z</updated>
     <summary>Set financial review conditions for twenty AI infrastructure companies. Check annual SEC revenue and cash-flow facts, inspect sources and keep a review history.</summary>
+  </entry>
+  <entry>
+    <title>AI investment roadmap | Views, evidence &amp; US stocks</title>
+    <link href="https://agiscorecard.com/invest"/>
+    <id>https://agiscorecard.com/invest</id>
+    <updated>2026-11-13T00:00:00Z</updated>
+    <summary>Five AI industry routes from reviewed interviews to US-listed watch candidates. Check business evidence, failure conditions, model returns and SunWatch updates in one investment hub.</summary>
   </entry>
   <entry>
     <title>Jarvis — turn an AI goal into a useful next step</title>
@@ -37,20 +79,6 @@
     <id>https://agiscorecard.com/capital-radar-about</id>
     <updated>2026-11-02T00:00:00Z</updated>
     <summary>注册 AGI 账号后查看 AI 融资与创业线索、时序趋势和回测。经现有 SunWatch 发送 Telegram 核心信号：初始化状态、新湾区融资候选、首次可用预测或显著变化；不逐条广播，送达以实际回执为准。</summary>
-  </entry>
-  <entry>
-    <title>AI 视频、观点与 AGI 倒计时 | AGI 记分牌</title>
-    <link href="https://agiscorecard.com/cn"/>
-    <id>https://agiscorecard.com/cn</id>
-    <updated>2026-11-01T00:00:00Z</updated>
-    <summary>按工作、学习、商业与未来预判浏览 AI 访谈和博主视频。阅读观点总结、直接观看原片，追踪 AGI 倒计时与预测证据。</summary>
-  </entry>
-  <entry>
-    <title>Free AI &amp; AGI Tools and Workplace Practice</title>
-    <link href="https://agiscorecard.com/ai-tools"/>
-    <id>https://agiscorecard.com/ai-tools</id>
-    <updated>2026-11-01T00:00:00Z</updated>
-    <summary>Eight free AI tools, no sign-up: find your AGI type, check your job&#x27;s AI exposure, score your AI stock basket against the 2027 thesis, and read the live 0-100 score.</summary>
   </entry>
   <entry>
     <title>AI future guide: videos, podcasts &amp; key perspectives | AGI</title>
@@ -88,13 +116,6 @@
     <summary>Every question the AGI Scorecard answers: was Aschenbrenner right, when will AGI arrive, is AGI hype, forecaster comparisons.</summary>
   </entry>
   <entry>
-    <title>AGI Scorecard Data for AI Agents: JSON, Feed, llms.txt</title>
-    <link href="https://agiscorecard.com/for-agents"/>
-    <id>https://agiscorecard.com/for-agents</id>
-    <updated>2026-10-09T00:00:00Z</updated>
-    <summary>Free, machine-readable AGI verdict data: /data.json (CC BY 4.0), an Atom feed and llms.txt. Copy-paste prompt to add verdict-change alerts to any AI agent.</summary>
-  </entry>
-  <entry>
     <title>AGI-2027 Thesis Tracker: One Score for the 2027 Bet</title>
     <link href="https://agiscorecard.com/progress-index"/>
     <id>https://agiscorecard.com/progress-index</id>
@@ -107,20 +128,6 @@
     <id>https://agiscorecard.com/agi-test</id>
     <updated>2026-10-09T00:00:00Z</updated>
     <summary>Take the 30-second AGI test: pick when you think AGI arrives and get your archetype — Accelerationist, True Believer, Realist, Skeptic or Contrarian — placed against Musk, Aschenbrenner, Hassabis and Metaculus.</summary>
-  </entry>
-  <entry>
-    <title>Will AGI Arrive by 2027? Aschenbrenner&#x27;s Prediction</title>
-    <link href="https://agiscorecard.com/will-agi-arrive-2027"/>
-    <id>https://agiscorecard.com/will-agi-arrive-2027</id>
-    <updated>2026-10-09T00:00:00Z</updated>
-    <summary>Aschenbrenner predicted AGI by 2027. As of mid-2026 it&#x27;s graded Open — 18 months left. How his timeline compares to Metaculus (2033), Hassabis (2030).</summary>
-  </entry>
-  <entry>
-    <title>Did Open-Source AI Fade? Grading Aschenbrenner&#x27;s Moat</title>
-    <link href="https://agiscorecard.com/did-open-source-ai-fade"/>
-    <id>https://agiscorecard.com/did-open-source-ai-fade</id>
-    <updated>2026-10-09T00:00:00Z</updated>
-    <summary>Aschenbrenner predicted open-source AI would fade behind a proprietary moat. Graded Wrong: DeepSeek V4 and Qwen 3.7 trail the frontier by only ~3–6 months.</summary>
   </entry>
   <entry>
     <title>Situational Awareness Predictions: Full Tracker</title>
@@ -142,12 +149,5 @@
     <id>https://agiscorecard.com/ai-and-your-job</id>
     <updated>2026-10-09T00:00:00Z</updated>
     <summary>A dated verdict: fear (79%) vs the economy-wide record (4.2% unemployment, no discernible disruption) vs one real early signal: ages 22–25 in exposed jobs.</summary>
-  </entry>
-  <entry>
-    <title>What Is the &#x27;AI 2027&#x27; Scenario? (Explained, 2026)</title>
-    <link href="https://agiscorecard.com/ai-2027-scenario-explained"/>
-    <id>https://agiscorecard.com/ai-2027-scenario-explained</id>
-    <updated>2026-10-09T00:00:00Z</updated>
-    <summary>&#x27;AI 2027&#x27; is a widely-discussed 2025 scenario depicting, month by month, how a fast takeoff could unfold around 2027 via AI automating AI research.</summary>
   </entry>
 </feed>

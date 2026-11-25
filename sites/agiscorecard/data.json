@@ -66,30 +66,52 @@
       "target": "—",
       "prediction": "Open source fades; proprietary algorithms create a durable US moat",
       "verdict": "Wrong",
-      "evidence": "DeepSeek/Qwen open-weight models within ~3-6 months of frontier",
+      "evidence": "Epoch ECI, Jan 1–May 28, 2026: about 4 months on average, or about 6 under a stricter comparison. Epoch revised the ECI method on Nov 4, without re-estimating this gap in that publication.",
       "sources": [
         {
-          "name": "Epoch AI",
-          "url": "https://epoch.ai"
+          "name": "Epoch AI: open-weight time gap",
+          "url": "https://epoch.ai/data-insights/open-closed-eci-gap"
+        },
+        {
+          "name": "Epoch AI: November ECI methodology",
+          "url": "https://epoch.ai/publications/eci-bayesian-methodology"
         }
       ],
       "detail": "https://agiscorecard.com/did-open-source-ai-fade",
-      "flip": "The frontier pulls a multi-year lead via advances that don't diffuse. No sign of that yet."
+      "flip": "Reopen if the open-weight gap widens beyond about 18 months for two consecutive frontier generations.",
+      "reviewedAt": "2026-11-25"
     },
     {
       "id": "agi-2027",
       "target": "2027",
       "prediction": "AGI: models do the work of an AI researcher/engineer",
       "verdict": "Open",
-      "evidence": "Agentic coding strong; autonomous AI research undemonstrated; resolves 2028-01-01",
+      "evidence": "METR measured research-related tasks on Nov 20. FRI compared benchmark and laboratory evidence on Nov 24. This review leaves the claim Open under the published criteria.",
       "sources": [
         {
-          "name": "Situational Awareness (Aschenbrenner, 2024)",
-          "url": "https://situational-awareness.ai"
+          "name": "Situational Awareness: From GPT-4 to AGI",
+          "url": "https://situational-awareness.ai/from-gpt-4-to-agi/"
+        },
+        {
+          "name": "AGI Scorecard: preregistered resolution criteria",
+          "url": "https://agiscorecard.com/agi-2027-resolution"
+        },
+        {
+          "name": "METR: November AI R&D capability evaluation",
+          "url": "https://metr.org/blog/2026-11-20-q4-2026-capability-update/"
+        },
+        {
+          "name": "Forecasting Research Institute: evidence review",
+          "url": "https://forecastingresearch.org/research/recursive-self-improvement"
+        },
+        {
+          "name": "METR: interpreting pretraining loss",
+          "url": "https://metr.org/blog/2026-11-24-interpreting-a-recent-acceleration-in-pretraining-loss/"
         }
       ],
       "detail": "https://agiscorecard.com/will-agi-arrive-2027",
-      "resolves": "By January 1, 2028. Fulfilled if autonomous AI research is demonstrated; Wrong if the deadline passes without it."
+      "resolves": "By January 1, 2028, under the published Right, Partial and Wrong criteria for autonomous AI research.",
+      "reviewedAt": "2026-11-25"
     },
     {
       "id": "the-project",

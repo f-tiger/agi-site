@@ -2,6 +2,9 @@ import {createRequire} from 'node:module';import fs from 'node:fs';import path f
 const require=createRequire(import.meta.url),{chromium}=require(require.resolve('playwright',{paths:[path.resolve('tools/revenue-studio/node_modules')]}));
 const launch={headless:true};if(process.env.AGI_CHROMIUM){const c=require(process.env.AGI_CHROMIUM);launch.executablePath=await c.executablePath();launch.args=c.args.filter(a=>!['--disable-web-security','--single-process'].includes(a));}
 const browser=await chromium.launch(launch),root=path.resolve('sites/agiscorecard');
+const data=JSON.parse(fs.readFileSync(path.join(root,'data.json'),'utf8'));
+const predictions=new Map(data.predictions.map(row=>[row.id,row]));
+const pages=[['progress-index',null],['will-agi-arrive-2027','agi-2027'],['did-open-source-ai-fade','open-source-fades'],['ai-and-your-job',null]];
 async function pageFor(route,{failCopy=false,privacy=false}={}){
  const ctx=await browser.newContext({viewport:{width:390,height:844}}),page=await ctx.newPage();
  await page.addInitScript(({failCopy,privacy})=>{window.__copied='';Object.defineProperty(navigator,'clipboard',{value:{writeText:async s=>{if(failCopy)throw Error('blocked');window.__copied=s;}}});if(privacy)Object.defineProperty(navigator,'globalPrivacyControl',{value:true});},{failCopy,privacy});
@@ -10,10 +13,19 @@ async function pageFor(route,{failCopy=false,privacy=false}={}){
 }
 const events=p=>p.evaluate(()=>Array.from(window.dataLayer||[]).filter(x=>x[0]==='event'&&['evidence_action','share_arrival'].includes(x[1])).map(x=>({name:x[1],...x[2]})));
 try{
- for(const lang of ['en','zh'])for(const slug of ['progress-index','will-agi-arrive-2027','did-open-source-ai-fade','ai-and-your-job']){
+ for(const lang of ['en','zh'])for(const [slug,id] of pages){
   const {ctx,page:p}=await pageFor((lang==='zh'?'/zh':'')+'/'+slug);const errors=[];p.on('pageerror',e=>errors.push(e.message));
   assert.equal(await p.locator('h1').count(),1);assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
-  const panel=p.locator('[data-evidence-key]');await panel.locator('[data-evidence-action=citation_copy]').click();assert.match(await p.evaluate(()=>window.__copied),/2026-10-02.*2026-09-06/);
+  const panel=p.locator('[data-evidence-key]');
+  const row=id?predictions.get(id):null;
+  const reviewDate=row?.reviewedAt??'2026-10-02',ledgerDate=data.thesisTracker.asOf;
+  assert.deepEqual(await panel.locator('.evidence-stamp time').allTextContents(),[reviewDate,ledgerDate]);
+  assert.equal(await panel.getAttribute('data-release'),'agi-evidence-20261002');
+  if(row)assert.deepEqual(await panel.locator('a[data-evidence-action=source_open]').evaluateAll(links=>links.map(link=>link.href)),row.sources.map(source=>source.url));
+  await panel.locator('[data-evidence-action=citation_copy]').click();
+  const copied=await p.evaluate(()=>window.__copied);
+  assert.equal(copied,await panel.locator('.evidence-citation').textContent());
+  assert.ok(copied.includes(reviewDate)&&copied.includes(ledgerDate)&&copied.indexOf(reviewDate)<copied.indexOf(ledgerDate),slug);
   await panel.locator('[data-evidence-action=share_copy]').click();assert.match(await p.evaluate(()=>window.__copied),/utm_campaign=agi_evidence_20261002/);assert.equal((await events(p)).length,2);
   const png=await Promise.all([p.waitForEvent('download'),panel.locator('[data-evidence-action=png_download]').click()]);assert.match(png[0].suggestedFilename(),/\.png$/);
   const download=await Promise.all([p.waitForEvent('download'),panel.locator('[data-evidence-action=chart_download]').click()]);assert.match(download[0].suggestedFilename(),/\.svg$/);

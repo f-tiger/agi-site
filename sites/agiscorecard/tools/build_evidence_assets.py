@@ -7,7 +7,7 @@ ROOT=Path(__file__).resolve().parents[1]
 VERSION='2026-10-02'
 CASES=[('progress','progress-index'),('agi2027','will-agi-arrive-2027'),('open','did-open-source-ai-fade'),('work','ai-and-your-job')]
 
-def svg(kind,zh,d,hist):
+def svg(kind,zh,d,hist,version):
     title={'progress':('Published score history','已发布分数历史'),'agi2027':('What would settle the 2027 prediction?','什么证据能判定 2027 预测？'),'open':('Open vs closed: measure the gap','开放权重与闭源：如何读差距'),'work':('Three signals, different questions','三种信号，回答不同问题')}[kind][zh]
     out=[f'<svg xmlns="http://www.w3.org/2000/svg" width="960" height="520" viewBox="0 0 960 520" role="img" aria-labelledby="title desc"><title id="title">{title}</title><desc id="desc">AGI Scorecard. {d["thesisTracker"]["asOf"]}. See the canonical page for sources and limitations.</desc><rect width="960" height="520" rx="16" fill="#171425"/><g font-family="Arial, PingFang SC, Noto Sans CJK SC, sans-serif" fill="#f4f2fc"><text x="40" y="54" font-size="28" font-weight="700">{title}</text>']
     def text(x,y,s,size=20,color='#f4f2fc'):out.append(f'<text x="{x}" y="{y}" font-size="{size}" fill="{color}">{h(str(s))}</text>')
@@ -30,35 +30,38 @@ def svg(kind,zh,d,hist):
         for i,(label,cn,en) in enumerate(rows):
             y=125+i*98;out.append(f'<path d="M40 {y+60}H920" stroke="#50495f"/>');text(40,y,label,22,'#c2abff');text(40,y+36,cn if zh else en,20)
         text(40,440,('资料区间不等于今天的实时表现。' if zh else 'A dated source window is not a live reading.') if kind=='open' else ('示意图；不表示概率或因果证明。' if zh else 'Reading guide; not a probability or proof of causation.'),19,'#c3bbd8')
-    text(40,488,'agiscorecard.com · CC BY 4.0 · '+(('台账 ' if zh else 'Ledger ')+d['thesisTracker']['asOf'] if kind in ('progress','agi2027') else ('说明版本 ' if zh else 'Note version ')+VERSION),18,'#c3bbd8')
+    text(40,488,'agiscorecard.com · CC BY 4.0 · '+(('台账 ' if zh else 'Ledger ')+d['thesisTracker']['asOf'] if kind in ('progress','agi2027') else ('说明版本 ' if zh else 'Note version ')+version),18,'#c3bbd8')
     out.append('</g></svg>');return '\n'.join(out)
 
 def render():
  d=json.loads((ROOT/'data.json').read_text());hist=json.loads((ROOT/'index-history.json').read_text());out={}
+ predictions={p['id']:p for p in d['predictions']}
+ reviewed={'agi2027':predictions['agi-2027'],'open':predictions['open-source-fades']}
  for kind,slug in CASES:
   for zh in [False,True]:
    lang='zh' if zh else 'en';route=('/zh/' if zh else '/')+slug;path=ROOT/(route.lstrip('/')+'.html');s=path.read_text()
    titles={'progress':('Read the score with its history','把分数与历史一起看'),'agi2027':('A forecast needs a resolution rule','预测需要明确的判定条件'),'open':('A capability lead is not a permanent moat','能力领先不等于永久壁垒'),'work':('Separate exposure from job loss','区分任务暴露与岗位流失')}
    summaries={
    'progress':(f'The published ledger is {d["thesisTracker"]["score"]}/100, dated {d["thesisTracker"]["asOf"]}. Eight equally weighted judgments make up this score. It is not the probability that AGI arrives.',f'台账读数为 {d["thesisTracker"]["score"]}/100，日期 {d["thesisTracker"]["asOf"]}。分数来自 8 项等权判定，不是 AGI 到来的概率。'),
-   'agi2027':('The ledger records this prediction as Open. Its operational test is autonomous AI research, with a site resolution date of 1 January 2028. This is the site’s interpretation, not a universal definition of AGI.','台账将此预测记为“未决”。本站以自主 AI 研究作为操作性标准，判定期限为 2028 年 1 月 1 日；这是本站口径，不是统一的 AGI 定义。'),
-   'open':('Epoch’s January–May 2026 ECI analysis estimates a four-month average open-weight capability lag; a stricter comparison gives six months. Neither estimate measures every capability or proves a durable commercial moat.','Epoch 对 2026 年 1—5 月的 ECI 分析给出开放权重模型平均约 4 个月的能力时间差；更严格比较规则下约为 6 个月。它们不能代表所有能力，也不能证明持久的商业壁垒。'),
+   'agi2027':('The prediction remains Open after a review of November research evaluations and laboratory disclosures. They report narrower research tasks or assistance. The published criteria evaluate autonomous AI research and set January 1, 2028 as the deadline.','核对 11 月的研究评估和实验室披露后，这项预测仍为“未决”。这些材料涉及范围较窄的研发任务或辅助能力。本站按已公布的自主 AI 研究条件判定，截止日为 2028 年 1 月 1 日。'),
+   'open':('Epoch measured an average open-weight capability lag of about four months from January 1 through May 28, 2026, or about six months under a stricter comparison. Its November methodology update did not re-estimate that gap. The ledger verdict remains Wrong.','Epoch 在 2026 年 1 月 1 日至 5 月 28 日测得开放权重模型平均落后约 4 个月，更严格的比较方法得到约 6 个月。11 月的方法更新没有重新估算这段差距，台账判定仍为“错误”。'),
    'work':('Sentiment, task exposure and observed employment answer different questions. Use the dated studies below to inspect a specific task and cohort; do not convert a task-exposure percentage into a probability of losing your job.','情绪、任务暴露和实际就业回答不同问题。请按下文研究的日期、任务和人群核对；不要把任务暴露比例当成个人失业概率。')}
    sources={'progress':[('/data.json','Published verdict ledger / 已发布判定台账'),('/index-history.json','Archived score readings / 已存档分数')],
-   'agi2027':[('https://situational-awareness.ai/from-gpt-4-to-agi/','Aschenbrenner, June 2024'),('/data.json','Site resolution rule / 本站判定规则')],
-   'open':[('https://epoch.ai/data-insights/open-closed-eci-gap','Edwards & Emberson, Epoch AI (2026)'),('https://epoch.ai/publications/open-models-report','Epoch AI: definitions and earlier research')],
    'work':[('https://github.com/microsoft/working-with-ai','Microsoft Research: Working with AI'),('https://budgetlab.yale.edu/research/evaluating-impact-ai-labor-market-current-state-affairs','Yale Budget Lab: employment tracker')]}
+   if kind in reviewed:
+    sources[kind]=[(record['url'],record['name']) for record in reviewed[kind]['sources']]
    # Date is for this source note, never a regrading of the underlying ledger.
+   version=reviewed[kind]['reviewedAt'] if kind in reviewed else VERSION
    title=titles[kind][zh];summary=summaries[kind][zh];file=f'evidence-assets/{kind}-{lang}.svg'
-   out[ROOT/file]=svg(kind,zh,d,hist)
+   out[ROOT/file]=svg(kind,zh,d,hist,version)
    linked=''.join(f'<li><a href="{h(url,quote=True)}" data-evidence-action="source_open">{h(label)}</a></li>' for url,label in sources[kind])
    history=('分数历史只有已存档读数，没有逐项判定的完整变更日志。' if zh else 'The archive contains score readings, not a complete history of individual verdict changes.')
-   if kind=='open':history=('本次补充精确研究区间和统计规则；保留 9 月 6 日台账判定。' if zh else 'This note adds the exact study window and comparison rule; the September 6 ledger verdict is retained.')
-   citation=f'AGI Scorecard. {title}. '+('引用说明版本 ' if zh else 'Citation note version ')+VERSION+f'; '+('台账 ' if zh else 'ledger ')+d['thesisTracker']['asOf']+f'. https://agiscorecard.com{route}. CC BY 4.0.'
+   if kind=='open':history=('图表展示 Epoch 5 月研究的历史结果。' if zh else 'The chart displays the historical results of Epoch’s May study.')
+   citation=f'AGI Scorecard. {title}. '+('引用说明版本 ' if zh else 'Citation note version ')+version+f'; '+('台账 ' if zh else 'ledger ')+d['thesisTracker']['asOf']+f'. https://agiscorecard.com{route}. CC BY 4.0.'
    panel=f'''<!-- evidence-asset:start -->
 <section class="evidence-asset" id="cite-evidence" data-evidence-key="{kind}" data-evidence-lang="{lang}" data-release="agi-evidence-20261002" aria-labelledby="evidence-heading">
 <h2 id="evidence-heading">{title}</h2><p class="evidence-answer">{summary}</p>
-<p class="evidence-stamp">{'引用说明版本' if zh else 'Citation note version'}: <time datetime="{VERSION}">{VERSION}</time> · {'台账日期' if zh else 'Ledger date'}: <time>{d['thesisTracker']['asOf']}</time></p>
+<p class="evidence-stamp">{'引用说明版本' if zh else 'Citation note version'}: <time datetime="{version}">{version}</time> · {'台账日期' if zh else 'Ledger date'}: <time>{d['thesisTracker']['asOf']}</time></p>
 <figure><a href="/{file}" target="_blank" rel="noopener" aria-label="{'打开完整图表' if zh else 'Open full-size chart'}"><img src="/{file}" width="960" height="520" alt="{h(title)}" loading="lazy"></a><figcaption>{history}</figcaption></figure>
 <details><summary>{'核对原始来源与口径' if zh else 'Inspect sources and scope'}</summary><ul>{linked}</ul><p>{'来源会持续更新；引用时保留研究区间。说明版本不代表全部旧文重新核验。' if zh else 'Sources may evolve. Retain their study window when citing. The note version does not mean the entire older article was reassessed.'}</p></details>
 <div class="evidence-actions"><button type="button" data-evidence-action="citation_copy">{'复制引用' if zh else 'Copy citation'}</button><button type="button" data-evidence-action="share_copy">{'复制分享链接' if zh else 'Copy share link'}</button><button type="button" data-evidence-action="png_download">{'保存图表 PNG' if zh else 'Save chart (PNG)'}</button><a href="/{file}" download="agi-{kind}-{lang}.svg" data-evidence-action="chart_download">{'下载图表 SVG' if zh else 'Download chart (SVG)'}</a></div>
@@ -71,7 +74,7 @@ def render():
    if panel not in s:raise ValueError('missing insertion anchor '+route)
    if '/evidence-assets/evidence.js' not in s:s=s.replace('</head>','<link rel="stylesheet" href="/evidence-assets/evidence.css">\n<script type="module" src="/evidence-assets/evidence.js"></script>\n</head>')
    # Add a visible-note schema separately from the original article's dated evidence.
-   note={'@context':'https://schema.org','@type':'CreativeWork','@id':'https://agiscorecard.com'+route+'#cite-evidence','name':title,'text':summary,'inLanguage':'zh-CN' if zh else 'en','datePublished':VERSION,'dateModified':VERSION,'license':'https://creativecommons.org/licenses/by/4.0/','creator':{'@type':'Organization','name':'AGI Scorecard'},'citation':[url if url.startswith('https://') else 'https://agiscorecard.com'+url for url,label in sources[kind]],'image':'https://agiscorecard.com/'+file}
+   note={'@context':'https://schema.org','@type':'CreativeWork','@id':'https://agiscorecard.com'+route+'#cite-evidence','name':title,'text':summary,'inLanguage':'zh-CN' if zh else 'en','datePublished':VERSION,'dateModified':version,'license':'https://creativecommons.org/licenses/by/4.0/','creator':{'@type':'Organization','name':'AGI Scorecard'},'citation':[url if url.startswith('https://') else 'https://agiscorecard.com'+url for url,label in sources[kind]],'image':'https://agiscorecard.com/'+file}
    schema='<!-- evidence-schema:start --><script type="application/ld+json">'+json.dumps(note,ensure_ascii=False).replace('<','\\u003c')+'</script><!-- evidence-schema:end -->'
    if '<!-- evidence-schema:start -->' in s:s=re.sub(r'<!-- evidence-schema:start -->.*?<!-- evidence-schema:end -->',lambda _:schema,s,flags=re.S)
    else:s=s.replace('</head>',schema+'\n</head>')

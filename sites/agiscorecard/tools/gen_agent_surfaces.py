@@ -20,6 +20,10 @@ from urllib.parse import urljoin, urlsplit
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ORIGIN = 'https://agiscorecard.com'
+REVIEWED_PAGES = {
+    'will-agi-arrive-2027', 'zh/will-agi-arrive-2027',
+    'did-open-source-ai-fade', 'zh/did-open-source-ai-fade', 'agi-2027-resolution',
+}
 
 
 def read_json(name):
@@ -166,7 +170,7 @@ def text_of(fragment):
     t = re.sub(r'\s+', ' ', t).strip()
     return re.sub(r'\s+([.,;:!?%)\]])', r'\1', t)
 
-def extract(path):
+def extract(path, reviewed=False):
     s = open(path, encoding='utf-8').read()
     def m1(pat):
         m = re.search(pat, s, re.S)
@@ -181,7 +185,8 @@ def extract(path):
         answer=text_of(re.search(r'<p class="evidence-answer">(.*?)</p>',note,re.S)[1])
         stamp=text_of(re.search(r'<p class="evidence-stamp">(.*?)</p>',note,re.S)[1])
         links=re.findall(r'<a href="([^"]+)" data-evidence-action="source_open">(.*?)</a>',note,re.S)
-        capsule=answer+' '+stamp+' Sources: '+'; '.join(text_of(label)+' — '+url for url,label in links)+' Older article summary: '+capsule
+        summary_label = ' Page summary: ' if reviewed else ' Older article summary: '
+        capsule=answer+' '+stamp+' Sources: '+'; '.join(text_of(label)+' — '+url for url,label in links)+summary_label+capsule
     roadmap = m1(r'<!-- roadmap-body:start -->(.*?)<!-- roadmap-body:end -->')
     if roadmap:
         capsule = text_of(re.search(r'<div class="rm-verdict">(.*?)</div>', roadmap, re.S)[1])
@@ -242,7 +247,7 @@ def main():
     full = list(head)
     n_md = 0
     for slug, url, fpath in pages:
-        title, desc, updated, capsule, faqs = extract(fpath)
+        title, desc, updated, capsule, faqs = extract(fpath, reviewed=slug in REVIEWED_PAGES)
         if slug in ('jarvis','zh/jarvis'):
             source_html = open(fpath, encoding='utf-8').read()
             faq_section = re.search(r'<section id="faq".*?>(.*?)</section>', source_html, re.S)
@@ -257,6 +262,17 @@ def main():
         if tool_evidence and not slug.endswith('/'):
             heading, body = tool_evidence
             md += '\n' + heading + '\n\n' + body + '\n'
+        if slug in REVIEWED_PAGES:
+            with open(fpath, encoding='utf-8') as src:
+                review = re.findall(r'<section id="review-(\d{4}-\d{2}-\d{2})"[^>]*>(.*?)</section>', src.read(), re.S)
+            if not review:
+                raise ValueError(f'Missing dated evidence review on {slug}')
+            date, evidence = max(review, key=lambda item: item[0])
+            heading = ('证据核对' if slug.startswith('zh/') else 'Evidence review') + ' · ' + date
+            archive_url = url + '#review-' + date
+            paragraphs = re.findall(r'<(p|li)\b[^>]*>(.*?)</\1>', evidence, re.S)
+            review_text = '\n\n'.join(('- ' if tag == 'li' else '') + linked_text(body, url) for tag, body in paragraphs)
+            md += '\n## ' + heading + '\n\n' + archive_url + '\n\n' + review_text + '\n'
         if slug in ('index','cn'):
             source_html = open(fpath, encoding='utf-8').read()
             home = re.search(r'<!-- home-focus:start -->(.*?)<!-- home-focus:end -->', source_html, re.S)
@@ -347,6 +363,8 @@ def main():
         if tool_evidence:
             heading, body = tool_evidence
             full += ['', heading, '', body]
+        if slug in REVIEWED_PAGES:
+            full += ['', heading, archive_url, '', review_text]
         full += ['', '---', '']
     out = '\n'.join(full)
     open(os.path.join(ROOT, 'llms-full.txt'), 'w', encoding='utf-8').write(out)

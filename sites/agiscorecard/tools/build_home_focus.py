@@ -76,20 +76,28 @@ def hero(d, zh):
     intro='从一条值得看的观点开始，了解工作、学习与未来正在发生什么。' if zh else 'Start with a perspective worth watching. Explore what AI means for work, learning and the future.'
     return f'''<section class="focus-intro home-editorial" aria-labelledby="focus-title" data-release="agi-focus-20261001">
 <div class="home-opening"><div><h1 id="focus-title">{headline}</h1><p class="home-lead">{intro}</p></div><a class="focus-primary" href="{base}/future-guide" data-home-action="library">{'探索视频与观点' if zh else 'Explore videos & ideas'} ↗</a></div>
+{evidence_desk(d,zh)}
 <div class="home-stats" id="home-stats">{content['stats']}</div>
 <div class="home-hero-grid"><div id="home-feature">{content['feature']}</div><aside class="home-outlook" aria-label="{'AGI 倒计时与投票' if zh else 'AGI countdown and poll'}">{countdown(zh)}{poll(zh)}</aside></div>
 {capital_radar(zh)}
 <div id="home-feed">{content['feed']}</div>
 <section class="home-next"><div><h2>{'看完之后，继续追问。' if zh else 'Turn a good question into a next step.'}</h2><p>{'收藏观点、核对证据，或让贾维斯围绕你的问题继续研究。' if zh else 'Save a perspective, inspect the evidence, or give Jarvis a question to investigate.'}</p></div><nav><a href="{base}/future-guide#notebook" data-home-action="notebook">{'我的收藏与行动' if zh else 'My saved views & actions'}</a><a href="{base}/jarvis" data-home-action="jarvis">{'让贾维斯继续研究' if zh else 'Research with Jarvis'}</a></nav></section>
 <div class="home-evidence"><div><h2>{'用证据检验未来。' if zh else 'Check the future against the evidence.'}</h2><p>{'追踪《态势感知》的 8 项预测，了解哪些已兑现、哪些仍有待观察。' if zh else 'Track 8 predictions from Situational Awareness: what has held up, and what remains open.'}</p><div class="focus-actions">{action(base+'/progress-index','查看预测证据' if zh else 'Inspect the evidence','hero_evidence','focus-secondary')}{action('#grade-game','给出我的判断' if zh else 'Make my assessment','hero_grade','focus-secondary')}</div></div><aside class="focus-reading"><p>{'AGI-2027 命题追踪指数' if zh else 'AGI-2027 Thesis Tracker'}</p><div class="focus-score">{score}<span>/100</span></div><p>{'判定综合分数，不是 AGI 发生概率。' if zh else 'A composite of verdicts, not an AGI probability.'}</p><p class="focus-date">{'台账日期' if zh else 'Ledger dated'} <time datetime="{date}">{date}</time></p></aside></div>
-{evidence_desk(d,zh)}
 </section>'''
 
 def evidence_desk(d,zh):
     base='/zh' if zh else ''
-    cases=[('progress','progress-index','分数与历史','Score and history'),('agi2027','will-agi-arrive-2027','2027 预测怎么判定','What resolves the 2027 prediction?'),('open','did-open-source-ai-fade','开源与闭源的能力差距','Open vs closed capability gap'),('work','ai-and-your-job','哪些证据说明工作在变','Which evidence shows work changing?')]
-    links=''.join(action(base+'/'+slug+'#cite-evidence',cn if zh else en,'asset_'+key) for key,slug,cn,en in cases)
-    return f'''<section class="focus-evidence-desk" id="evidence-desk" aria-labelledby="desk-heading"><h2 id="desk-heading">{'最新查证补充' if zh else 'Latest evidence notes'}</h2><p><time datetime="2026-10-02">2026-10-02</time> — {'补齐开放权重模型差距的研究区间：2026 年 1—5 月，平均约 4 个月；更严格比较约 6 个月。' if zh else 'Clarified the open-weight model gap: January–May 2026 study window, about 4 months on average; about 6 under a stricter comparison.'}</p><p class="focus-boundary">{'最新判定台账仍为 ' if zh else 'Latest verdict ledger remains dated '}{d['thesisTracker']['asOf']}{'。本次是来源说明与展示更新，不是新的判定。' if zh else '. This is a source-note and presentation update, not a new verdict.'}</p><nav aria-label="{'四个证据主题' if zh else 'Four evidence topics'}">{links}</nav></section>'''
+    predictions={p['id']:p for p in d['predictions']}
+    notes=[('agi-2027','will-agi-arrive-2027','asset_agi2027','2027 年预测仍未决。查阅 11 月的自主研发证据。','The 2027 prediction remains open. Read the November research evidence.'),
+           ('open-source-fades','did-open-source-ai-fade','asset_open','开放权重差距：区分 5 月测量和 11 月方法更新。','Open weights: the May measurement and the November method change.')]
+    entries=[]
+    for prediction,slug,key,cn,en in notes:
+        date=predictions[prediction]['reviewedAt']
+        link=action(base+'/'+slug+'#review-'+date,cn if zh else en,key)
+        entries.append(f'<p><time datetime="{date}">{date}</time> · {link}</p>')
+    links=action(base+'/progress-index#cite-evidence','分数与历史' if zh else 'Score and history','asset_progress')
+    links+=action(base+'/ai-and-your-job#cite-evidence','工作变化的证据' if zh else 'Evidence on how work is changing','asset_work')
+    return f'''<section class="focus-evidence-desk" id="evidence-desk" aria-labelledby="desk-heading"><h2 id="desk-heading">{'最新证据核对' if zh else 'Latest evidence reviews'}</h2>{''.join(entries)}<p class="focus-boundary">{'判定与分数沿用台账 ' if zh else 'Verdicts and score remain those of the ledger dated '}{d['thesisTracker']['asOf']}{'。' if zh else '.'}</p><nav aria-label="{'更多证据' if zh else 'More evidence'}">{links}</nav></section>'''
 
 def grade(zh):
     return f'''<section class="focus-grade section" id="grade-game" aria-labelledby="grade-title" data-grade-lang="{'zh' if zh else 'en'}">
