@@ -69,6 +69,12 @@ def collect():
  sections[('de','/guide/fenster-beschlagen-innen.html')]={
   'id':'fenstersauger-gegen-kondenswasser','title':'Fenster morgens von innen nass: erst abwischen und messen',
   'description':'Raumtemperatur, Luftfeuchte und Temperatur an der Innenscheibe gleichzeitig messen. Bei anhaltender Nässe die Ursache prüfen.'}
+ sections[('de','/guide/thermovorhang-ratgeber.html')]={
+  'id':'thermovorhang-bahnenbedarf','title':'Wie viele Bahnen braucht dein Thermovorhang?',
+  'description':'Berechne Stoffbreite und Bahnen aus Öffnung, Überstand und Kräuselmaß. Nutze die Packungsangabe des Händlers.'}
+ sections[('de','/guide/richtig-lueften-im-winter.html')]={
+  'id':'lueften-vorher-nachher','title':'Hat Lüften Feuchte abgeführt? Vorher und nachher messen',
+  'description':'Vergleiche stabile Messwerte am selben Ort. Die Änderung in Gramm Wasser pro Kubikmeter ist eine Orientierung am Messpunkt.'}
  out=[]
  for path,route,lang,h in public_pages():
   if not h.title.strip():raise ValueError(f'Missing title: {route}')

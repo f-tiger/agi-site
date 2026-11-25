@@ -11,6 +11,20 @@ assert(live || ['127.0.0.1', 'localhost'].includes(base.hostname), 'Use the loca
 
 const cases = [
   {
+    question:'Wie viele Thermovorhänge brauche ich für ein 120 cm breites Fenster?',
+    tool:'thermovorhang_bahnenbedarf',
+    category:'Gebäude & Fenster',
+    guide:'/guide/thermovorhang-ratgeber.html#thermovorhang-bahnenbedarf',
+    heading:'Wie viele Bahnen braucht dein Thermovorhang?',
+  },
+  {
+    question:'Luftfeuchtigkeit vor und nach dem Stoßlüften vergleichen',
+    tool:'lueften_messwirkung',
+    category:'Feuchte',
+    guide:'/guide/richtig-lueften-im-winter.html#lueften-vorher-nachher',
+    heading:'Hat Lüften Feuchte abgeführt? Vorher und nachher messen',
+  },
+  {
     question: 'Morgens beschlägt mein Fenster innen. Im Schlafzimmer sind 20 °C und 60 Prozent Luftfeuchte, die Scheibe hat 10 °C. Kann sich dort Tauwasser bilden?',
     tool: 'fenster_oberflaeche_taucheck',
     category: 'Feuchte',

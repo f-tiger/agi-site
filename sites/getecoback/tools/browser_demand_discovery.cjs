@@ -91,6 +91,12 @@ async function checkGermanFocusedDiscovery(browser,base){
   equal((await search(condensationQuery))[0],{href:condensation,language:'de'},'Indoor condensation reaches the measurement answer');
   check((await search('Mein Fenster beschlägt morgens von außen und innen ist es trocken.')).every(match=>match.href!==condensation),
    'Outdoor condensation avoids the indoor answer');
+  const curtain='/guide/thermovorhang-ratgeber.html#thermovorhang-bahnenbedarf';
+  const roomVentilation='/guide/richtig-lueften-im-winter.html#lueften-vorher-nachher';
+  equal((await search('Wie viele Thermovorhänge brauche ich für ein 120 cm breites Fenster?'))[0],
+   {href:curtain,language:'de'},'The German curtain quantity question reaches its measurement tool');
+  equal((await search('Luftfeuchtigkeit vor und nach dem Stoßlüften vergleichen'))[0],
+   {href:roomVentilation,language:'de'},'A before/after room question reaches the matching ventilation tool');
   await search('eco-local-privacy-marker-6381');
   equal(await results.count(),0,'An arbitrary private phrase yields no result');
   await search(positive[1]);
