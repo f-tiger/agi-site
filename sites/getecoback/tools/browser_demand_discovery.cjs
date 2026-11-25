@@ -91,6 +91,9 @@ async function checkGermanFocusedDiscovery(browser,base){
   equal((await search(condensationQuery))[0],{href:condensation,language:'de'},'Indoor condensation reaches the measurement answer');
   check((await search('Mein Fenster beschlägt morgens von außen und innen ist es trocken.')).every(match=>match.href!==condensation),
    'Outdoor condensation avoids the indoor answer');
+  const glazing='/guide/fenster-beschlagen-aussen.html#aussen-innen-oder-dazwischen';
+  const glazingQuery='Meine Doppelverglasung ist zwischen den Scheiben blind. Wen rufe ich an?';
+  equal((await search(glazingQuery))[0],{href:glazing,language:'de'},'Cloudy insulated glass reaches the existing diagnosis');
   const curtain='/guide/thermovorhang-ratgeber.html#thermovorhang-bahnenbedarf';
   const roomVentilation='/guide/richtig-lueften-im-winter.html#lueften-vorher-nachher';
   equal((await search('Wie viele Thermovorhänge brauche ich für ein 120 cm breites Fenster?'))[0],
@@ -117,6 +120,12 @@ async function checkGermanFocusedDiscovery(browser,base){
   await results.first().click();
   await page.waitForURL(base+condensation);
   check(await page.locator('#fenster-check-titel').isVisible(),'The condensation result reaches the same public answer');
+  await page.locator('#eb-search-toggle').click();
+  await input.waitFor({state:'visible'});
+  await search(glazingQuery);
+  await results.first().click();
+  await page.waitForURL(base+glazing);
+  check(await page.locator('#aussen-innen-oder-dazwischen').isVisible(),'Glazing search reaches the reviewed section');
   await context.close();
  }
 

@@ -24,12 +24,16 @@ test('the browser loads the current catalogue search module', async () => {
   const imports = [...html.matchAll(/from '([^']*mcp-catalog-search\.mjs[^']*)'/g)];
   assert.deepEqual(imports.map(match => match[1]), [`/assets/mcp-catalog-search.mjs?v=${version}`]);
 });
-test('German curtain and indoor airing questions agree in browser, catalogue and compact MCP', async () => {
+test('German household questions agree in browser, catalogue and compact MCP', async () => {
   const scenarios = [
     ['Wie viele Thermovorhänge brauche ich für ein 120 cm breites Fenster?', 'thermovorhang_bahnenbedarf',
       '/guide/thermovorhang-ratgeber.html#thermovorhang-bahnenbedarf'],
     ['Luftfeuchtigkeit vor und nach dem Stoßlüften vergleichen', 'lueften_messwirkung',
       '/guide/richtig-lueften-im-winter.html#lueften-vorher-nachher'],
+    ['Meine Doppelverglasung ist zwischen den Scheiben blind. Wen rufe ich an?', 'fenster_beschlag_einordnen',
+      '/guide/fenster-beschlagen-aussen.html#aussen-innen-oder-dazwischen'],
+    ['Zwischen den beiden Fensterscheiben ist Beschlag, weder innen noch außen lässt er sich wegwischen. Hilft ein Luftentfeuchter?',
+      'fenster_beschlag_einordnen','/guide/fenster-beschlagen-aussen.html#aussen-innen-oder-dazwischen'],
   ];
   for (const [frage, name, path] of scenarios) {
     const browser = findCatalogueTools(compact,{query:frage});
@@ -55,9 +59,9 @@ test('German curtain and indoor airing questions agree in browser, catalogue and
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 239);
+  assert.equal(withGuides.length, 240);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 39);
+  assert.equal(destinations.size, 40);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);

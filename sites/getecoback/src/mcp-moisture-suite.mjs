@@ -65,6 +65,7 @@ export const moistureSuite = [
     name:'fenster_beschlag_einordnen',
     description:'Beschlag außen, innen oder zwischen Glasscheiben einordnen — Interpret the side on which window condensation is observed.',
     page:'/guide/fenster-beschlagen-aussen.html',
+    guide_url:'https://getecoback.com/guide/fenster-beschlagen-aussen.html#aussen-innen-oder-dazwischen',
     properties:{
       side:choice('Seite anhand einer erreichbaren Oberfläche prüfen: outside, inside, between, unknown.', ['outside','inside','between','unknown']),
     },
@@ -72,7 +73,7 @@ export const moistureSuite = [
       const advice = {
         outside:'Die Außenscheibe kann im Freien abkühlen. Außenbeschlag allein zeigt keinen Bedarf zur Raumentfeuchtung.',
         inside:'Raumtemperatur, relative Feuchte und Scheibentemperatur vergleichen. Wiederkehrende Nässe dokumentieren.',
-        between:'Vermuteten Beschlag im Scheibenzwischenraum dokumentieren und Verglasung vom Fensterbetrieb prüfen lassen.',
+        between:'Vermuteten Beschlag im Scheibenzwischenraum fotografieren und die Verglasung vom Fensterbetrieb prüfen lassen. In der Mietwohnung Vermieter oder Hausverwaltung informieren. Dafür vorerst keinen Luftentfeuchter kaufen.',
         unknown:'Sicher erreichbare Innenseite auf Wischbarkeit prüfen. Unklaren Beschlag fotografieren und beobachten.',
       };
       return {observed_side:side, next_step:advice[side], assumption:'Eine Sichtbeobachtung bestimmt weder die Dichtheit noch die Ursache sicher.'};
