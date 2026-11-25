@@ -8,6 +8,11 @@ const ventilation = {
   id:'lueften-vorher-nachher',
   tool:'lueften_messwirkung',
 };
+const glazing = {
+  path:'/guide/fenster-beschlagen-aussen.html',
+  id:'aussen-innen-oder-dazwischen',
+  tool:'fenster_beschlag_einordnen',
+};
 
 // Consumers pass their normalized German query. Match a task, not a category.
 export function exactGermanHouseholdTask(query) {
@@ -29,5 +34,13 @@ export function exactGermanHouseholdTask(query) {
   const checksRoomMoisture = moisture.test(query) || (roomMentioned && /\b(?:feuchter|trockener)\b/.test(query));
   if (airing.test(query) && checksRoomMoisture && (paired.test(query) || effect.test(query)) &&
       !/\bkeller\w*\b/.test(query) && (!outdoors.test(query) || roomMentioned)) return ventilation;
+
+  const betweenPanes = /\bscheibenzwischenraum\b|\bzwischen\s+(?:(?:den|beiden|zwei|drei)\s+){0,3}(?:fenster|glas)?scheiben\b/;
+  const glassMoisture = /\b(?:beschla(?:g|eg)\w*|kondens\w*|feucht\w*|wasser\w*|tropfen\w*|blind\w*|milchig\w*|trueb\w*|schleier\w*)\b/;
+  const unrelatedGlass = /\b(?:auto\w*|pkw|fahrzeug\w*|windschutzscheib\w*|heckscheib\w*|backofen\w*|ofentuer\w*|aquari\w*)\b/;
+  const photoComparison = /\b(?:foto|bild)(?:paar|vergleich|abgleich)\b|\b(?:fotos?|bilder)\b[^.!?]{0,65}\b(?:vergleich|abgleich)\w*\b|\b(?:vergleich|abgleich)\w*\b[^.!?]{0,65}\b(?:fotos?|bilder)\b/;
+  const ruledOut = /\b(?:nicht|nie)\s+(?:im scheibenzwischenraum|zwischen\s+(?:(?:den|beiden|zwei|drei)\s+){0,3}(?:fenster|glas)?scheiben)\b|\bkein(?:en)? beschlag zwischen\b/;
+  if (betweenPanes.test(query) && glassMoisture.test(query) && !unrelatedGlass.test(query) &&
+      !photoComparison.test(query) && !ruledOut.test(query)) return glazing;
   return null;
 }

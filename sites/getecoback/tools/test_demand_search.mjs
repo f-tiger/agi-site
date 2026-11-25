@@ -41,6 +41,25 @@ test('German measurement questions prefer their published curtain and ventilatio
   assert.ok(![curtain,ventilation].includes(searchEntries(index,q,'de')[0]?.entry.u),q);
  }
 });
+test('Glazing questions reach the existing comparison, while indoor glass keeps the measurement result',()=>{
+ const glazing='/guide/fenster-beschlagen-aussen.html#aussen-innen-oder-dazwischen';
+ for(const question of [
+  'Meine Doppelverglasung ist zwischen den Scheiben blind. Wen rufe ich an?',
+  'Zwischen den beiden Fensterscheiben ist Beschlag, weder innen noch außen lässt er sich wegwischen. Hilft ein Luftentfeuchter?',
+  'Milchiger Schleier im Scheibenzwischenraum meiner Isolierverglasung. Was tun?',
+ ]){
+  assert.equal(searchEntries(index,question,'de')[0]?.entry.u,glazing,question);
+  assert.ok(!searchEntries(index,question,'en').some(hit=>hit.entry.u===glazing),question);
+ }
+ assert.equal(searchEntries(index,'Warum beschlägt das geschlossene Fenster morgens innen?','de')[0]?.entry.u,
+  '/guide/fenster-beschlagen-innen.html#fenstersauger-gegen-kondenswasser');
+ for(const question of ['Wasser zwischen den Scheiben von meinem Backofen',
+  'Mein Autofenster hat Beschlag zwischen den Scheiben',
+  'Beschlag sitzt nicht zwischen den Scheiben. Wie messe ich innen die Feuchtigkeit?',
+  'Fotopaar vergleichen, um Beschlag zwischen den Scheiben zu prüfen']){
+  assert.notEqual(searchEntries(index,question,'de')[0]?.entry.u,glazing,question);
+ }
+});
 test('all three German tool entry points link directly to the curtain measurement',()=>{
  const link='href="/guide/thermovorhang-ratgeber.html#thermovorhang-bahnenbedarf"';
  for(const page of ['index.html','tools.html','rechner.html']){

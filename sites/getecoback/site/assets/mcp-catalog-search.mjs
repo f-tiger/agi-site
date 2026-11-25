@@ -1,4 +1,4 @@
-import {exactGermanHouseholdTask} from './german-household-intent.mjs?v=81c65f68203f';
+import {exactGermanHouseholdTask} from './german-household-intent.mjs?v=a7f12b3f7ee5';
 import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion, glassvacModel, windowVacCharging} from './kaercher-saugduese-intent.mjs';

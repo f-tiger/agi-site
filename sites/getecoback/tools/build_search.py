@@ -66,6 +66,9 @@ def collect():
  sections[('de','/guide/klimaanlage-fenster-einbruchschutz.html')]={
   'id':'fenster-verschluss-pruefen','title':'Klimaanlage am Fenster: Schließen und Verriegeln prüfen',
   'description':'Prüfe am konkreten Fenster, ob es mit der Leitung normal verriegelt. Bei unklarem Ergebnis den Kauf zurückstellen.'}
+ sections[('de','/guide/fenster-beschlagen-aussen.html')]={
+  'id':'aussen-innen-oder-dazwischen','title':'Blinde Fenster: Sitzt der Beschlag zwischen den Scheiben?',
+  'description':'Nur sicher erreichbare Flächen prüfen. Vermuteten Beschlag im Isolierglas fotografieren und den Fensterbetrieb oder die Hausverwaltung informieren.'}
  sections[('de','/guide/fenster-beschlagen-innen.html')]={
   'id':'fenstersauger-gegen-kondenswasser','title':'Fenster morgens von innen nass: erst abwischen und messen',
   'description':'Raumtemperatur, Luftfeuchte und Temperatur an der Innenscheibe gleichzeitig messen. Bei anhaltender Nässe die Ursache prüfen.'}

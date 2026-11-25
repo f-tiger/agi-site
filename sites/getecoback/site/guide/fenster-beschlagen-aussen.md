@@ -38,15 +38,17 @@ Ausrechnen
 
 Die Luftfeuchte draußen steht in jeder Wetter-App. Gerechnet mit der Magnus-Formel, wie alle Taupunkte auf dieser Seite.
 
-## Außen, innen oder dazwischen — drei verschiedene Fälle
+## Außen, innen oder zwischen den Scheiben?
 
 | Wo die Scheibe beschlägt | Was es bedeutet | Was zu tun ist |
 | --- | --- | --- |
 | **Außen** | Die Verglasung dämmt gut, die Außenscheibe bekommt kaum Wärme von innen | Nichts. Es trocknet im Lauf des Vormittags ab |
 | **Innen** | Die Raumluft ist zu feucht oder die innere Scheibe zu kalt | Luftfeuchte messen, lüften, notfalls entfeuchten — siehe [Fenster beschlagen innen](https://getecoback.com/guide/fenster-beschlagen-innen.html) |
-| **Zwischen den Scheiben** | Der Randverbund des Isolierglases ist undicht, feuchte Luft ist in den Scheibenzwischenraum gekommen | Lässt sich nicht abwischen. Ein Fall für den Fensterbauer, in der Mietwohnung für den Vermieter |
+| **Zwischen den Scheiben** | Ein milchiger Schleier im geschlossenen Isolierglas kann auf ein beschädigtes Glas oder einen defekten Randverbund hindeuten | Stelle fotografieren und Verglasung vom Fensterbetrieb prüfen lassen. In der Mietwohnung Vermieter oder Hausverwaltung informieren |
 
-Die Unterscheidung ist wichtig, weil die Lösungen entgegengesetzt sind: Außen muss man nichts tun, innen muss die Feuchte aus der Wohnung, und zwischen den Scheiben hilft weder Lüften noch Entfeuchten. Wer innen und außen verwechselt, lüftet im Zweifel eine Wohnung trocken, die gar nicht zu feucht war.
+Wische nur über sicher erreichbare Glasflächen. Lässt sich ein milchiger Schleier dort nicht entfernen, notiere Fenster, Stelle und Zeitpunkt und mach ein Foto. Ein milchiger Schleier im Isolierglas wird oft als „blindes Fenster“ beschrieben. Bleibt die Außenseite unerreichbar oder der Ort unklar, lass offen, auf welcher Seite der Beschlag sitzt. Die Sichtprüfung bestimmt die Ursache nicht sicher.
+
+Für vermutete Feuchte im geschlossenen Scheibenzwischenraum brauchst du vorerst keinen Luftentfeuchter. Lass zuerst die Verglasung prüfen. [BauNetz Wissen zur Kondensation im Isolierglas](https://www.baunetzwissen.de/glas/fachwissen/schaeden/kondensatbildung-159378), gelesen am 25. November 2026.
 
 ## Was man tun kann — und was nicht
 
@@ -72,9 +74,9 @@ Nur wenig kälter als die Luft. Bei 5 Grad und 90 Prozent Luftfeuchte liegt der 
 
 ### Was bedeutet Beschlag zwischen den Scheiben?
 
-Dann ist der Randverbund des Isolierglases undicht, und feuchte Luft ist in den Scheibenzwischenraum gelangt. Das lässt sich weder abwischen noch weglüften. Es ist ein Fall für den Fensterbauer, in der Mietwohnung für den Vermieter.
+Sitzt die Feuchte im geschlossenen Isolierglas, kann sie auf beschädigtes Glas oder einen defekten Randverbund hindeuten. Dokumentiere den Beschlag und bitte den Fensterbetrieb um Prüfung. In der Mietwohnung melde ihn Vermieter oder Hausverwaltung.
 
-**Woher die Zahlen kommen.** Die Taupunkte sind die Magnus-Formel mit denselben Konstanten wie jeder Rechner auf dieser Seite, veröffentlicht als [offener Datensatz](https://getecoback.com/daten.html). Dass gut dämmende Verglasung an kalten Morgen außen beschlägt und dass Fensterbauer das als Qualitätsmerkmal ansehen, beschreiben zum Beispiel Rumpfinger Fenster und fensterversand.com (abgerufen am 24.09.2026). Dass Beschlag im Scheibenzwischenraum auf einen undichten Randverbund zeigt und sich meist nur durch Tausch der Scheibe beheben lässt, erklärt Fenster-Schmidinger. Das ist kein Gutachten zu deinem Fenster.
+**Woher die Zahlen kommen.** Die Taupunkte sind die Magnus-Formel mit denselben Konstanten wie jeder Rechner auf dieser Seite, veröffentlicht als [offener Datensatz](https://getecoback.com/daten.html). Dass gut dämmende Verglasung an kalten Morgen außen beschlägt und dass Fensterbauer das als Qualitätsmerkmal ansehen, beschreiben zum Beispiel Rumpfinger Fenster und fensterversand.com (abgerufen am 24.09.2026). Mögliche Ursachen und Arbeiten an angelaufenem Isolierglas beschreibt Fenster-Schmidinger. Das ist kein Gutachten zu deinem Fenster.
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
