@@ -1,3 +1,4 @@
+import {exactGermanHouseholdTask} from './german-household-intent.mjs?v=81c65f68203f';
 import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion} from './kaercher-saugduese-intent.mjs';
@@ -69,7 +70,8 @@ export function exactGermanGuide(normalizedQuery) {
    return {path:'/guide/klimaanlage-40-qm.html',id:'portasplit-40-qm'};
  if(asksAboutIndoorWindowCondensation(query))
    return {path:'/guide/fenster-beschlagen-innen.html',id:'fenstersauger-gegen-kondenswasser'};
- return null;
+ const task=exactGermanHouseholdTask(query);
+ return task && {path:task.path,id:task.id};
 }
 
 const laundryPage='/waeschetrockner-oder-luftentfeuchter.html';

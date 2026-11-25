@@ -19,6 +19,36 @@ test('Results stay within the exact language/market and public local routes',()=
  const bad=['//evil.test','/auth/account','/members.html','/api/x','/x?private=1','/x#private','/\\evil.test'];
  assert.deepEqual(searchEntries(bad.map(u=>({u,t:'test',l:'de'})),'test','de'),[]);
 });
+test('German measurement questions prefer their published curtain and ventilation sections',()=>{
+ const curtain='/guide/thermovorhang-ratgeber.html#thermovorhang-bahnenbedarf';
+ const ventilation='/guide/richtig-lueften-im-winter.html#lueften-vorher-nachher';
+ for(const [q,path] of [
+  ['Wie viele Thermovorhänge brauche ich für ein 120 cm breites Fenster?',curtain],
+  ['Wie viele Vorhangschals für meine Gardinenschiene?',curtain],
+  ['Wie breit muss mein Thermovorhang sein, damit der Stoff in Falten fällt?',curtain],
+  ['Hat Lüften geholfen? Vorher 20 Grad und 60 Prozent, danach 20 Grad und 50 Prozent Luftfeuchtigkeit.',ventilation],
+  ['Luftfeuchtigkeit vor und nach dem Stoßlüften vergleichen',ventilation],
+  ['Wie kann ich messen, ob der Raum nach dem Lüften wirklich trockener ist?',ventilation],
+ ]){
+  assert.equal(searchEntries(index,q,'de')[0]?.entry.u,path,q);
+  assert.ok(!searchEntries(index,q,'en').some(hit=>hit.entry.u===path),q);
+ }
+ for(const q of ['Wie viele Jahre hält ein Thermovorhang?', 'Kann ich den Thermovorhang vor dem Heizkörper aufhängen?',
+  'Wie breit ist das Etikettmaß, pro Schal oder für die ganze Packung Thermovorhang?',
+  'Wie viele Bahnen stecken in einer Packung dieses Thermovorhangs?',
+  'Luftfeuchtigkeit draußen vor und nach dem Stoßlüften vergleichen',
+  'Ist meine Wäsche nach dem Lüften trockener?', 'Soll ich meinen Keller bei feuchter Außenluft lüften?']){
+  assert.ok(![curtain,ventilation].includes(searchEntries(index,q,'de')[0]?.entry.u),q);
+ }
+});
+test('all three German tool entry points link directly to the curtain measurement',()=>{
+ const link='href="/guide/thermovorhang-ratgeber.html#thermovorhang-bahnenbedarf"';
+ for(const page of ['index.html','tools.html','rechner.html']){
+  const html=readFileSync(new URL('../site/'+page,import.meta.url),'utf8');
+  assert.equal(html.split(link).length,2,page);
+ }
+ assert.ok(!readFileSync(new URL('../site/en/index.html',import.meta.url),'utf8').includes(link));
+});
 test('Navigation measurement admits fixed names only and rejects raw queries/private routes',()=>{
  for(const name of ['eco_discovery_open','eco_discovery_task','eco_discovery_result']){
   assert.deepEqual(ecoPublicBusinessEvent('/guide/heizdecke-stromverbrauch.html',{name}),{name,tool_id:'eco-discovery'});

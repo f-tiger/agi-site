@@ -24,6 +24,34 @@ test('the browser loads the current catalogue search module', async () => {
   const imports = [...html.matchAll(/from '([^']*mcp-catalog-search\.mjs[^']*)'/g)];
   assert.deepEqual(imports.map(match => match[1]), [`/assets/mcp-catalog-search.mjs?v=${version}`]);
 });
+test('German curtain and indoor airing questions agree in browser, catalogue and compact MCP', async () => {
+  const scenarios = [
+    ['Wie viele Thermovorhänge brauche ich für ein 120 cm breites Fenster?', 'thermovorhang_bahnenbedarf',
+      '/guide/thermovorhang-ratgeber.html#thermovorhang-bahnenbedarf'],
+    ['Luftfeuchtigkeit vor und nach dem Stoßlüften vergleichen', 'lueften_messwirkung',
+      '/guide/richtig-lueften-im-winter.html#lueften-vorher-nachher'],
+  ];
+  for (const [frage, name, path] of scenarios) {
+    const browser = findCatalogueTools(compact,{query:frage});
+    const {tools} = await catalogue({q:frage,view:'compact',limit:3});
+    assert.equal(browser[0]?.name,name);
+    assert.deepEqual(names(tools),names(browser.slice(0,3)));
+    assert.equal(toolGuidePath(tools[0]),path);
+    assert.ok(!findCatalogueTools(compact,{query:frage,category:'Modellunterlagen'}).some(tool=>tool.name===name));
+    const request = new Request(origin+'/mcp/v1?profile=compact&__probe=1',{
+      method:'POST',headers:{'content-type':'application/json','user-agent':'getecoback-ci/household-discovery','x-probe':'1'},
+      body:JSON.stringify({jsonrpc:'2.0',id:1,method:'tools/call',params:{name:'ecoback_werkzeug_finden',arguments:{frage}}}),
+    });
+    const {result} = await (await worker.fetch(request,env,{})).json();
+    const first = result.structuredContent.tools[0];
+    assert.equal(first.name,name);
+    assert.equal(first.guide_url,origin+path);
+    assert.equal(first.citation_url,origin+path.split('#')[0]);
+  }
+  const label = 'Mein Thermovorhang hat laut Etikett 140 cm Breite. Ist das pro Schal oder für die ganze Packung?';
+  assert.equal((await catalogue({q:label,view:'compact'})).tools[0]?.name,'thermo_vorhang_packungsbreite_abdeckung');
+  assert.equal(analytics,0);
+});
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);

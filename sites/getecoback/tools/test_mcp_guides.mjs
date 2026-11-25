@@ -120,6 +120,18 @@ const focusedLookups = [
       'www.adac.de/rund-ums-haus/wohnen/haushalt/kondenswasser-am-fenster',
       'www.umweltbundesamt.de/themen/gesundheit/umwelteinfluesse-auf-den-menschen/schimmel/'],
   },
+  {
+    path:'/guide/thermovorhang-ratgeber.html', section:'thermovorhang-bahnenbedarf',
+    queries:['Wie viele Thermovorhänge brauche ich für ein 120 cm breites Fenster?',
+      'Wie viele Vorhangschals für meine Gardinenschiene?'],
+    evidence:['210 cm flachen Stoff','2 Bahnen','1 Packung'],
+  },
+  {
+    path:'/guide/richtig-lueften-im-winter.html', section:'lueften-vorher-nachher',
+    queries:['Luftfeuchtigkeit vor und nach dem Stoßlüften vergleichen',
+      'Wie kann ich messen, ob der Raum nach dem Lüften wirklich trockener ist?'],
+    evidence:['1,72 g/m³ weniger Wasser','Feuchteursache prüfen'],
+  },
 ];
 
 test('exact German guide searches prefer reviewed section copy and pass a readable canonical URL', async () => {

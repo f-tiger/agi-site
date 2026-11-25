@@ -1,3 +1,4 @@
+import {exactGermanHouseholdTask} from './german-household-intent.mjs?v=81c65f68203f';
 import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion, glassvacModel, windowVacCharging} from './kaercher-saugduese-intent.mjs';
@@ -381,6 +382,7 @@ export function findCatalogueTools(index, {query='', category='', name=null}={})
     asksForPortaSplitWindowLip(focus.query);
   const portaSplitVariant = namesDifferentPortaSplit(focus.query);
   const portaSplitLipTool = 'midea_portasplit_fensterfalz_pruefen';
+  const householdTask = exactGermanHouseholdTask(focus.query);
   const singleLaundry = asksForSingleLaundryCost(focus.query);
   const fritzValve = asksForFritzValveAdapter(focus.query);
   const nonIndoorGlass = asksAboutOtherWindowSurface(focus.query);
@@ -457,6 +459,7 @@ export function findCatalogueTools(index, {query='', category='', name=null}={})
   else if (cellarVentilation) preferredName = cellarVentilationTool;
   else if (!nonIndoorGlass && (asksForMeasuredIndoorDewPoint(focus.query) || asksForIndoorDewPointThreshold(focus.query))) preferredName = windowDewPointTool;
   else if (fritzValve) preferredName = fritzValveTool;
+  else if (householdTask) preferredName = householdTask.tool;
   else if (singleLaundry) preferredName = singleLaundryTool;
   else if (asksForLaundryCostComparison(tokens)) preferredName = 'waesche_trocknungskosten';
   else if (asksForHumidifierEfficiency(focus.query)) preferredName = 'befeuchter_nennwatt_abgabeleistung_bezug';
