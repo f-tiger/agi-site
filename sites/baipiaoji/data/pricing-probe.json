@@ -1,19 +1,19 @@
 {
- "generated": "2026-11-24",
+ "generated": "2026-11-25",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "duckduckgo-ai",
-  "elevenlabs",
-  "elicit",
-  "felo",
-  "figma",
-  "fish-audio",
-  "framer",
-  "gamma"
+  "gaoding",
+  "gemini",
+  "gemini-cli",
+  "gezhe",
+  "gptzero",
+  "grammarly",
+  "guojia-fanzha",
+  "heygen"
  ],
- "cursor": "gamma",
+ "cursor": "heygen",
  "summary": {
   "ready": 43,
   "empty": 36,
@@ -687,7 +687,7 @@
    "name": "国家反诈中心",
    "cat": "safety",
    "reach": 0,
-   "probed": "2026-11-13",
+   "probed": "2026-11-25",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1530,7 +1530,7 @@
    "name": "稿定 AI",
    "cat": "design",
    "reach": 0,
-   "probed": "2026-11-12",
+   "probed": "2026-11-25",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -1544,7 +1544,7 @@
    "best": {
     "url": "https://www.gaoding.com/pricing",
     "tokens": 28,
-    "excerpt": "大会员入手不亏，创作提效一步到位 01 天 08 小时 20 分钟 42 秒 个人使用 企业使用 2年 限时送1年 连续包年 连续包季 更多选择 模板会员 3.7折↓2年送1年 付费模板、无水印导出，不含 AI 创作与素材源文件下载权益 ¥ 289 /36个月 ¥799 ¥8.03/月 明细 50 豆/月 最多可生成约 50 张图片或 5 个视频 立即开通 购买后即时生效，不自动续费 模板创作权益 个人商用授权 模板作品高清无水印下载 模板作品 PSD 导出 海量海报、PPT、视频、H5 等 VIP 模板 持续更新 高级工具功能：尺寸延展、PSD 转模板等 随时随地 在线编辑 AI 创作权益 50 豆/月 访问所有AI模型 加购豆享折扣 AI作品高清下载（可设置多倍数尺寸） 模型限时优惠 精选素材组合包 无官方自营素材下载次数 无第三方合作素材下载次数 通用权益 50 GB 存储空间 AI 创作会员 6折↓2年送1年 AI 创意生成、豆灵活定制，不含付费模板与素材源文件下载 ¥ 859 /36个月 ¥1419 ¥23.86/月 1豆=0.08元 明细 0.3K 0.5K 1K 2K 3K 300 豆/月 每月最多可生成约 300 张图片或 30 个视频 立即开通 购买后即时生效，不自动续费 模板创作权益 无个人商用授权 模板作品高清无水印下载 模板作品 PSD 导出 海量海报、PPT、视频、H5 等 VIP 模板 持续更新 高级工具功能：尺寸延展、PSD 转模板等 随时随地 在线编辑 AI 创作权益 300～3000豆/月 访问所有AI模型 加购豆享折扣 AI作品高清下载（可设"
+    "excerpt": "感恩季双重福利回馈：会员直降省百元 + 最高加送3个月 05 天 06 小时 56 分钟 02 秒 个人使用 企业使用 2年 加送3个月 连续包年 连续包季 更多选择 模板会员 付费模板、无水印导出，不含 AI 创作与素材源文件下载权益 ¥ 239 /27个月 ¥589 ¥8.85/月 明细 50 豆/月 最多可生成约 50 张图片或 5 个视频 立即开通 购买后即时生效，不自动续费 模板创作权益 个人商用授权 模板作品高清无水印下载 模板作品 PSD 导出 海量海报、PPT、视频、H5 等 VIP 模板 持续更新 高级工具功能：尺寸延展、PSD 转模板等 随时随地 在线编辑 AI 创作权益 50 豆/月 访问所有AI模型 加购豆享折扣 AI作品高清下载（可设置多倍数尺寸） 模型限时优惠 精选素材组合包 无官方自营素材下载次数 无第三方合作素材下载次数 通用权益 50 GB 存储空间 AI 创作会员 AI 创意生成、豆灵活定制，不含付费模板与素材源文件下载 ¥ 699 /27个月 ¥1419 ¥25.89/月 1豆=0.09元 明细 0.3K 0.5K 1K 2K 3K 300 豆/月 每月最多可生成约 300 张图片或 30 个视频 立即开通 购买后即时生效，不自动续费 模板创作权益 无个人商用授权 模板作品高清无水印下载 模板作品 PSD 导出 海量海报、PPT、视频、H5 等 VIP 模板 持续更新 高级工具功能：尺寸延展、PSD 转模板等 随时随地 在线编辑 AI 创作权益 300～3000豆/月 访问所有AI模型 加购豆享折扣 AI作品高清下载（可设置多倍数尺寸） 模"
    }
   },
   "gemini": {
@@ -1552,7 +1552,7 @@
    "name": "Google Gemini",
    "cat": "chat",
    "reach": 0,
-   "probed": "2026-11-12",
+   "probed": "2026-11-25",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1582,14 +1582,14 @@
    "name": "Gemini CLI",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-11-12",
+   "probed": "2026-11-25",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://github.com/google-gemini/gemini-cli/blob/main/docs/resources/quota-and-pricing.md",
      "status": 200,
-     "bytes": 251201,
+     "bytes": 249605,
      "tokens": 0
     },
     {
@@ -1602,12 +1602,12 @@
      "url": "https://github.com/pricing",
      "status": 200,
      "bytes": 600000,
-     "tokens": 17
+     "tokens": 21
     }
    ],
    "best": {
     "url": "https://github.com/pricing",
-    "tokens": 17,
+    "tokens": 21,
     "excerpt": "ize your Dependabot alerts with automated triage rules. Enterprise AI-powered development, governed at enterprise scale $ 21 USD per user / month Start a free trial Contact Sales GitHub Enterprise now includes access to GitHub Copilot. Learn more Everything from Team, plus: GitHub Copilot access Agent governance Data residency Enterprise Managed Users User provisioning through SCIM Enterprise Account to centrally manage multiple organizations Environment protection rules Repository rules Audit Log API SOC1, SOC2, type 2 reports annually FedRAMP Tailored Authority to Operate (ATO) SAML single sign-on Advanced auditing GitHub Connect 50,000 CI/CD minutes/month 50GB of Packages storage Exclusiv"
    }
   },
@@ -1616,7 +1616,7 @@
    "name": "歌者 PPT",
    "cat": "office",
    "reach": 0,
-   "probed": "2026-11-12",
+   "probed": "2026-11-25",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1646,14 +1646,14 @@
    "name": "GPTZero",
    "cat": "safety",
    "reach": 0,
-   "probed": "2026-11-12",
+   "probed": "2026-11-25",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://gptzero.me/pricing",
      "status": 200,
-     "bytes": 244401,
+     "bytes": 236948,
      "tokens": 6
     }
    ],
@@ -1667,8 +1667,8 @@
    "slug": "grammarly",
    "name": "Grammarly",
    "cat": "writing",
-   "reach": 2,
-   "probed": "2026-11-09",
+   "reach": 0,
+   "probed": "2026-11-25",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -1676,13 +1676,13 @@
      "url": "https://www.grammarly.com/pricing",
      "status": 200,
      "bytes": 600000,
-     "tokens": 13
+     "tokens": 7
     }
    ],
    "best": {
     "url": "https://www.grammarly.com/pricing",
-    "tokens": 13,
-    "excerpt": "million people and 50,000 organizations Most popular For individuals Free Write without spelling and grammar mistakes. $0 USD / month Create account Write without mistakes See your writing tone Generate text with 100 AI prompts Most popular For eligible individuals and teams Pro Achieve your goals with clear and confident writing. $12 USD Try for free Email reminder 2 days before trial ends. $0 payment today Try for $0.00 Everything in Free, plus: Rewrite full sentences with a click Adjust your writing tone with ease Write fluently in English Unlimited personalized suggestions Detect plagiarism and AI generated text Generate text with 2,000 AI prompts Most popular For larger organizations En"
+    "tokens": 7,
+    "excerpt": "million people and 50,000 organizations Most popular For individuals Free Write without spelling and grammar mistakes. $0 USD / month Create account Write without mistakes See your writing tone Generate text with 100 AI prompts Most popular For eligible individuals and teams Pro Achieve your goals with clear and confident writing. $12 USD Try for free Email reminder 2 days before trial ends. $0 payment today Start 7-day Free Trial Everything in Free, plus: Rewrite full sentences with a click Adjust your writing tone with ease Write fluently in English Unlimited personalized suggestions Detect plagiarism and AI generated text Generate text with 2,000 AI prompts Most popular For larger organiz"
    }
   },
   "heygen": {
@@ -1690,7 +1690,7 @@
    "name": "HeyGen",
    "cat": "video",
    "reach": 0,
-   "probed": "2026-11-13",
+   "probed": "2026-11-25",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -1698,13 +1698,13 @@
      "url": "https://heygen.com/pricing",
      "status": 200,
      "bytes": 600000,
-     "tokens": 20
+     "tokens": 24
     }
    ],
    "best": {
     "url": "https://heygen.com/pricing",
-    "tokens": 20,
-    "excerpt": "onal video creation easier than ever. For Individuals For Businesses Free Creator Pro Monthly Yearly 2 months free Free $0/mo For trying it out Get started , Free Explore AI video creation 3 videos a month, watermarked Videos up to 1 minute each Access to Avatar IV and Video Agent One Custom Video Avatar, plus 500+ ready-made presenters 30+ languages Monthly Yearly 2 months free Creator $29 / mo For publishing video Get started , Creator Access to advanced AI video generation Avatar III and Avatar IV, our proven AI Avatar engines Avatar V, with limited usage Video Agent, with expanded access HeyGen Voice, with up to 10 hours of text to speech HeyGen Video 1: text, image, and reference to vid"
+    "tokens": 24,
+    "excerpt": "onal video creation easier than ever. For Individuals For Businesses Free Creator Pro Monthly Yearly 2 months free Free $0/mo For trying it out Get started , Free Explore AI video creation 3 videos a month, watermarked Videos up to 1 minute each Access to Avatar 6 and Video Agent One Custom Video Avatar, plus 500+ ready-made presenters 30+ languages Monthly Yearly 2 months free Creator $29 / mo For publishing video Get started , Creator Access to advanced AI video generation Avatar 6 Turbo, our newest expressive AI Avatar engine Avatar Lipsync, our proven AI Avatar engine Video Agent, with expanded access HeyGen Voice, with up to 10 hours of text to speech HeyGen Video 1: text, image, and re"
    }
   },
   "huggingface": {

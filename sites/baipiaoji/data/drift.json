@@ -1,31 +1,76 @@
 {
-  "generated": "2026-11-24",
+  "generated": "2026-11-25",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 107,
-  "fetched_fail": 20,
-  "pending": 16,
+  "fetched_ok": 106,
+  "fetched_fail": 21,
+  "pending": 12,
   "items": [
+    {
+      "slug": "exa",
+      "url": "https://exa.ai/pricing",
+      "confirmed": "2026-11-25",
+      "first_seen": "2026-11-24",
+      "added": [],
+      "removed": [
+        "$12,000"
+      ],
+      "checked_then": "2026-08-13"
+    },
+    {
+      "slug": "ragflow",
+      "url": "https://ragflow.io/docs/faq",
+      "confirmed": "2026-11-25",
+      "first_seen": "2026-11-24",
+      "added": [
+        "20m",
+        "20minutes"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-04"
+    },
     {
       "slug": "fireworks",
       "url": "https://docs.fireworks.ai/faq-new/billing-pricing/how-much-does-fireworks-cost",
-      "confirmed": "2026-11-23",
-      "first_seen": "2026-11-22",
+      "confirmed": "2026-11-25",
+      "first_seen": "2026-11-24",
+      "added": [],
+      "removed": [
+        "803b"
+      ],
+      "checked_then": "2026-09-12"
+    },
+    {
+      "slug": "bolt",
+      "url": "https://support.bolt.new",
+      "confirmed": "2026-11-25",
+      "first_seen": "2026-11-24",
       "added": [
-        "0%",
-        "0.15s",
-        "0.7s",
-        "0026s",
-        "100%",
-        "21b",
-        "2b",
-        "38b",
-        "4b",
-        "55%",
-        "5856b",
-        "5b"
+        "66b"
       ],
       "removed": [],
-      "checked_then": "2026-09-12"
+      "checked_then": "2026-09-21"
+    },
+    {
+      "slug": "suno",
+      "url": "https://help.suno.com",
+      "confirmed": "2026-11-25",
+      "first_seen": "2026-11-24",
+      "added": [
+        "30%"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "zhipu-glm",
+      "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
+      "confirmed": "2026-11-25",
+      "first_seen": "2026-11-24",
+      "added": [
+        "6b"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-01"
     },
     {
       "slug": "lovable",
@@ -180,33 +225,6 @@
       "checked_then": "2026-08-03"
     },
     {
-      "slug": "exa",
-      "url": "https://exa.ai/pricing",
-      "confirmed": "2026-11-21",
-      "first_seen": "2026-11-20",
-      "added": [
-        "$15,000",
-        "100s",
-        "1b",
-        "500s",
-        "70m"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-13"
-    },
-    {
-      "slug": "bolt",
-      "url": "https://support.bolt.new",
-      "confirmed": "2026-11-21",
-      "first_seen": "2026-11-20",
-      "added": [
-        "236b",
-        "6b"
-      ],
-      "removed": [],
-      "checked_then": "2026-09-21"
-    },
-    {
       "slug": "pixverse",
       "url": "https://pixverse.ai",
       "confirmed": "2026-11-21",
@@ -314,19 +332,6 @@
       "checked_then": "2026-08-04"
     },
     {
-      "slug": "zhipu-glm",
-      "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
-      "confirmed": "2026-11-19",
-      "first_seen": "2026-11-18",
-      "added": [
-        "73b"
-      ],
-      "removed": [
-        "40b"
-      ],
-      "checked_then": "2026-08-01"
-    },
-    {
       "slug": "hailuo",
       "url": "https://hailuoai.com/doc/zh/user-agreement.html",
       "confirmed": "2026-11-19",
@@ -375,17 +380,6 @@
         "100%"
       ],
       "checked_then": "2026-08-13"
-    },
-    {
-      "slug": "ragflow",
-      "url": "https://ragflow.io/docs/faq",
-      "confirmed": "2026-11-15",
-      "first_seen": "2026-11-14",
-      "added": [],
-      "removed": [
-        "30minutes"
-      ],
-      "checked_then": "2026-08-04"
     },
     {
       "slug": "elicit",

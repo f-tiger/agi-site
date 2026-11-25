@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-24",
+ "checked": "2026-11-25",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -4689,249 +4689,117 @@
    "source_http": 404,
    "repo_http": null,
    "reason": "source HTTP 404"
+  },
+  "getmyhotels-getmyhotels": {
+   "attempts": 1,
+   "first_attempt": "2026-11-25",
+   "last_attempt": "2026-11-25",
+   "attemptedAt": "2026-11-25T09:04:29.018Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "gettransformseo-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-11-25",
+   "last_attempt": "2026-11-25",
+   "attemptedAt": "2026-11-25T09:04:29.018Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
+  },
+  "getvahada-vahada": {
+   "attempts": 1,
+   "first_attempt": "2026-11-25",
+   "last_attempt": "2026-11-25",
+   "attemptedAt": "2026-11-25T09:04:29.018Z",
+   "source_http": 403,
+   "repo_http": null,
+   "reason": "source HTTP 403"
+  },
+  "gfbytes-mcp-oauth-connect": {
+   "attempts": 1,
+   "first_attempt": "2026-11-25",
+   "last_attempt": "2026-11-25",
+   "attemptedAt": "2026-11-25T09:04:29.018Z",
+   "source_http": 404,
+   "repo_http": 200,
+   "reason": "source HTTP 404"
+  },
+  "gibsonai-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-11-25",
+   "last_attempt": "2026-11-25",
+   "attemptedAt": "2026-11-25T09:04:29.018Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "gitbuyer-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-11-25",
+   "last_attempt": "2026-11-25",
+   "attemptedAt": "2026-11-25T09:04:29.018Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "glitchexecutor-grow-glitch-grow-linkedin-ad-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-11-25",
+   "last_attempt": "2026-11-25",
+   "attemptedAt": "2026-11-25T09:04:29.018Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "gocdkeys-gocdkeys": {
+   "attempts": 1,
+   "first_attempt": "2026-11-25",
+   "last_attempt": "2026-11-25",
+   "attemptedAt": "2026-11-25T09:04:29.018Z",
+   "source_http": 403,
+   "repo_http": null,
+   "reason": "source HTTP 403"
+  },
+  "gocosmik-cosmik": {
+   "attempts": 1,
+   "first_attempt": "2026-11-25",
+   "last_attempt": "2026-11-25",
+   "attemptedAt": "2026-11-25T09:04:29.018Z",
+   "source_http": 402,
+   "repo_http": 200,
+   "reason": "source HTTP 402"
+  },
+  "gocreativeai-enrich-prism": {
+   "attempts": 1,
+   "first_attempt": "2026-11-25",
+   "last_attempt": "2026-11-25",
+   "attemptedAt": "2026-11-25T09:04:29.018Z",
+   "source_http": 502,
+   "repo_http": null,
+   "reason": "source HTTP 502"
+  },
+  "gocreativeai-omnicall-agent-tools": {
+   "attempts": 1,
+   "first_attempt": "2026-11-25",
+   "last_attempt": "2026-11-25",
+   "attemptedAt": "2026-11-25T09:04:29.018Z",
+   "source_http": 502,
+   "repo_http": null,
+   "reason": "source HTTP 502"
+  },
+  "gocreativeai-predict-predict": {
+   "attempts": 1,
+   "first_attempt": "2026-11-25",
+   "last_attempt": "2026-11-25",
+   "attemptedAt": "2026-11-25T09:04:29.018Z",
+   "source_http": 502,
+   "repo_http": null,
+   "reason": "source HTTP 502"
   }
  },
  "admitted": [
-  {
-   "slug": "maatsii-linreg",
-   "date": "2026-09-23",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "searchconsole-ai",
-   "date": "2026-09-23",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "upscrape-mcp",
-   "date": "2026-09-23",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "algovesta-trading",
-   "date": "2026-09-23",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "elfa-mcp",
-   "date": "2026-09-23",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "greenlitbooks-catalog",
-   "date": "2026-09-23",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "gotincan-tincan",
-   "date": "2026-09-23",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "yourfinancejob-job-tracker",
-   "date": "2026-09-23",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "lightbringer-connector",
-   "date": "2026-09-23",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "aidoo-aidoo",
-   "date": "2026-09-23",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cherry-studio",
-   "date": "2026-09-23",
-   "origin": "curated"
-  },
-  {
-   "slug": "tensormaster-pdf",
-   "date": "2026-09-23",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "trypinchy-pinchy",
-   "date": "2026-09-23",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "golproductions-exnos",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "br-adseditor-mcp",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "ca-movahedi-privacy",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "golproductions-envie",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "alternativeassetliteracy-aal-advisor-mcp",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "laboriq-mcp-server",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "microsoft-powerbi-modeling-mcp",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "maskbreak-mcp",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "daedalmap-boundaries",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "polytranslator-translator",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "datasparc-dbhawk",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cartviral-cartviral",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "ravenmcp-raven-mcp",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "getmcpads-pinterest-ads",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "getmcpads-x-ads",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "getmcpads-tiktok-ads",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "getmcpads-meta-ads",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "getmcpads-google-search-console",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "getmcpads-google-analytics",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "getmcpads-google-ads",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "overwing-mcp",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "mettakin-mettakin",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "jidoseal-mcp",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "agentbuilt-agentbuilt",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "comos-federation-gateway",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hutchdb-hutchdb",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "warmthengine-observatory",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "aidesignblueprint-blueprint",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "brianbooms-quiet-menders",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "zettoai-zetto",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "devart-mcp-zohodesk",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "devart-mcp-zohocrm",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "devart-mcp-sqlite",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "devart-mcp-salesforcemc",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "devart-mcp-salesforce",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
   {
    "slug": "devart-mcp-quickbooks",
    "date": "2026-09-24",
@@ -22412,6 +22280,294 @@
   {
    "slug": "getmixwise-mixwise",
    "date": "2026-11-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getonbrd-recruiter",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getorquesta-orquesta",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getpanes-panes",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getroomproof-roomproof",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getrosey-rosey",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getsapiens-sapiens",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getsavitools-savi-tools",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getsendframe-sendframe",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getsigvest-sigvest",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getsimma-simma",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getsliq-sliq",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getspawnpoint-spawnpoint",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "getspm-spm",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "getstarhunt-github-developer-sourcing",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gettreatmenthelp-gettreatmenthelp",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "getuptimely-uptimely",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getvaletparking-valet-parking-directory",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "getveles-cpq",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getvoibe-transcription",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getwpagent-wordpress",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "ghostavo-retail-media-measurement",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "giftroam-giftroam",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "giftstoprint-poster-connector",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gitdiagram-gitdiagram",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "gitkraken-gk-cli",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "gitlab-mcp",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "gitscrum-mcp",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "givemeanode-givemeanode",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "givepersonhood-personhood",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "glance-glanceai-fashion",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "glassfrog-mcp",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "glasswarp-mcp-server",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "glean-mcp",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "globaldatabase-mcp",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "globalsourcepartners-emerging-markets-research",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "globalsurfari-globalsurfari",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "glockapps-mcp",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "gluecron-gluecron",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "glushkov-modelling-content",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "gmapsextractor-google-maps-scraper",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "gnosari-mcp",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gnosismemory-memory",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "goanyapi-mcp",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "gobananasai-go-bananas",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gocepetrov-goce-petrov",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gocodebook-codes",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gocushy-mcp",
+   "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "godavaii-health-ai",
+   "date": "2026-11-25",
    "source_http": 200,
    "repo_http": null
   }

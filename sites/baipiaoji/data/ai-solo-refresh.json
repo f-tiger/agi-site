@@ -1,7 +1,7 @@
 {
-  "lastRun": "2026-11-24T10:24:16.546Z",
+  "lastRun": "2026-11-25T09:05:31.497Z",
   "status": "degraded",
-  "checkedSources": 7,
+  "checkedSources": 5,
   "queue": [
     {
       "caseId": "photo-ai",
@@ -331,25 +331,25 @@
       "caseId": "glamour-color",
       "reason": "source-unreachable",
       "sourceUrl": "https://trustmrr.com/startup/glamour",
-      "lastChecked": "2026-11-11T07:03:32.418Z"
+      "lastChecked": "2026-11-25T09:05:31.497Z"
     },
     {
       "caseId": "social-wizard",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.starterstory.com/kelechi",
-      "lastChecked": "2026-11-11T07:03:32.418Z"
+      "lastChecked": "2026-11-25T09:05:31.497Z"
     },
     {
       "caseId": "boltai",
       "reason": "source-unreachable",
       "sourceUrl": "https://newsletter.danielnguyen.me/p/sep-2024-interview-on-indie-hackers",
-      "lastChecked": "2026-11-12T07:41:16.074Z"
+      "lastChecked": "2026-11-25T09:05:31.497Z"
     },
     {
       "caseId": "monai",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.starterstory.com/Florian",
-      "lastChecked": "2026-11-12T07:41:16.074Z"
+      "lastChecked": "2026-11-25T09:05:31.497Z"
     },
     {
       "caseId": "erly",
@@ -1086,7 +1086,7 @@
     "glamour-color|https://trustmrr.com/startup/glamour": {
       "caseId": "glamour-color",
       "sourceUrl": "https://trustmrr.com/startup/glamour",
-      "lastAttempt": "2026-11-11T07:03:32.418Z",
+      "lastAttempt": "2026-11-25T09:05:31.497Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1094,7 +1094,7 @@
     "social-wizard|https://www.starterstory.com/kelechi": {
       "caseId": "social-wizard",
       "sourceUrl": "https://www.starterstory.com/kelechi",
-      "lastAttempt": "2026-11-11T07:03:32.418Z",
+      "lastAttempt": "2026-11-25T09:05:31.497Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1102,10 +1102,10 @@
     "solo-color-microcase|https://www.microns.io/startup-listings/ai-personal-color-analysis-platform": {
       "caseId": "solo-color-microcase",
       "sourceUrl": "https://www.microns.io/startup-listings/ai-personal-color-analysis-platform",
-      "lastAttempt": "2026-11-12T07:41:16.074Z",
+      "lastAttempt": "2026-11-25T09:05:31.497Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-11-12T07:41:16.074Z",
+      "lastSuccess": "2026-11-25T09:05:31.497Z",
       "lastHash": "3297787dbb791fab118f3ef303d27809b013d886d4ff6af05a44429b290fc674",
       "hash": "bb146f7ec633dfc4f79fdce10f15dc44f5f073d33164e00d94ed74d3eb5d4ef4",
       "simhash": "067205528ac607ad",
@@ -1115,7 +1115,7 @@
     "boltai|https://newsletter.danielnguyen.me/p/sep-2024-interview-on-indie-hackers": {
       "caseId": "boltai",
       "sourceUrl": "https://newsletter.danielnguyen.me/p/sep-2024-interview-on-indie-hackers",
-      "lastAttempt": "2026-11-12T07:41:16.074Z",
+      "lastAttempt": "2026-11-25T09:05:31.497Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1123,7 +1123,7 @@
     "monai|https://www.starterstory.com/Florian": {
       "caseId": "monai",
       "sourceUrl": "https://www.starterstory.com/Florian",
-      "lastAttempt": "2026-11-12T07:41:16.074Z",
+      "lastAttempt": "2026-11-25T09:05:31.497Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1158,36 +1158,26 @@
       "consecutiveChange": 0
     }
   },
-  "cursor": 59,
+  "cursor": 64,
   "errors": [
     {
-      "caseId": "donotpay",
-      "sourceUrl": "https://www.ftc.gov/news-events/news/press-releases/2025/02/ftc-finalizes-order-donotpay-prohibits-deceptive-ai-lawyer-claims-imposes-monetary-relief-requires",
+      "caseId": "glamour-color",
+      "sourceUrl": "https://trustmrr.com/startup/glamour",
       "reason": "body-limit"
     },
     {
-      "caseId": "anki",
-      "sourceUrl": "https://www.macrumors.com/2019/04/29/anki-robotics-company-shutting-down/",
+      "caseId": "social-wizard",
+      "sourceUrl": "https://www.starterstory.com/kelechi",
       "reason": "body-limit"
     },
     {
-      "caseId": "glam-up",
-      "sourceUrl": "https://www.starterstory.com/stories/notion-fe7a6b35-c4fa-48f3-a3ef-d76f1623e1e3",
+      "caseId": "boltai",
+      "sourceUrl": "https://newsletter.danielnguyen.me/p/sep-2024-interview-on-indie-hackers",
       "reason": "body-limit"
     },
     {
-      "caseId": "glam-up",
-      "sourceUrl": "https://www.starterstory.com/nicole",
-      "reason": "body-limit"
-    },
-    {
-      "caseId": "glow-ai",
-      "sourceUrl": "https://startupspells.com/p/glow-ai-viral-skincare-app-10k-mrr-3-days",
-      "reason": "body-limit"
-    },
-    {
-      "caseId": "glowly-ai",
-      "sourceUrl": "https://www.starterstory.com/stories/the-lazy-method-how-i-build-10k-month-apps",
+      "caseId": "monai",
+      "sourceUrl": "https://www.starterstory.com/Florian",
       "reason": "body-limit"
     }
   ]
