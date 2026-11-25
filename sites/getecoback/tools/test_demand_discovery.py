@@ -25,6 +25,7 @@ assert [(entry['l'],entry['u'],entry['section']['id']) for entry in focused]==[
     ('de','/guide/duschen-kosten-rechner.html','durchlauferhitzer-mindestdurchfluss'),
     ('de','/guide/fenster-beschlagen-aussen.html','aussen-innen-oder-dazwischen'),
     ('de','/guide/fenster-beschlagen-innen.html','fenstersauger-gegen-kondenswasser'),
+    ('de','/guide/fensterabdichtung-selber-bauen.html','abluft-ausschnitt-pruefen'),
     ('de','/guide/fenster-zugluft-mietwohnung.html','dichtungsprofil'),
     ('de','/guide/heizdecke-stromverbrauch.html','waerme-rechner'),
     ('de','/guide/heizkosten-vergleich-rechner.html','heizluefter-oder-infrarot'),

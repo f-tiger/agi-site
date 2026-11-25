@@ -112,6 +112,9 @@ async function checkGermanFocusedDiscovery(browser,base){
   const klarsteinQuery='Klarstein Kraftwerk Smart 12K 10034664';
   equal((await search(klarsteinQuery))[0],{href:klarstein,language:'de'},
    'Identifying the Klarstein article number opens its package checklist');
+  const panel='/guide/fensterabdichtung-selber-bauen.html#abluft-ausschnitt-pruefen';
+  equal((await search('Fensterplatte für mobile Klimaanlage: Welcher Randabstand bleibt um den runden Ausschnitt?'))[0],
+   {href:panel,language:'de'},'Window panel queries reach the round cutout check');
   const stacking='/produkte.html#waeschesaeule-zubehoer';
   equal((await search('WTZ27400 oder WTZ27410: Welcher Verbindungssatz für den Bosch WQG241001 hat einen Auszug?'))[0],
    {href:stacking,language:'de'},'Bosch stacking kit questions reach the product guide');
@@ -159,6 +162,20 @@ async function checkGermanFocusedDiscovery(browser,base){
   await results.first().click();
   await page.waitForURL(base+klarstein);
   check(await page.locator('#kraftwerk-10034664-lieferumfang').isVisible(),'Klarstein search opens the exact package section');
+  await page.goto(base+'/guide/fensterabdichtung-selber-bauen.html?__ci=1#abluft-ausschnitt-pruefen');
+  const cutout=page.locator('#panel-cutout-form'), report=page.locator('#panel-cutout-result');
+  check(await cutout.isVisible(),'The cutout form opens at the exact German answer');
+  const runCutout=cutout.getByRole('button',{name:'Freien Rand berechnen'});
+  check(await cutout.locator('input:invalid').count()===6,'The cutout fields have no assumed measurements');
+  for(const [field,value] of Object.entries({breite_mm:400,hoehe_mm:250,loch_mm:150,mitte_x_mm:200,mitte_y_mm:125,rand_min_mm:30}))
+   await cutout.locator('[name="'+field+'"]').fill(String(value));
+  await runCutout.click();
+  check((await report.textContent()).includes('50 mm'),'A centered example leaves the same 50 mm as MCP');
+  await cutout.locator('[name="mitte_x_mm"]').fill('90');
+  equal(await report.textContent(),'','Changed geometry clears the previous result');
+  await runCutout.click();
+  check((await report.textContent()).includes('15 mm')&&(await report.textContent()).includes('warte mit dem Zuschnitt'),
+   'An off-center hole with inadequate clearance tells the buyer to wait');
   await context.close();
  }
 
@@ -218,6 +235,11 @@ async function checkGermanFocusedDiscovery(browser,base){
  const dryerDestination=new URL(await dryerShop.getAttribute('href'));
  equal(dryerDestination.origin+dryerDestination.pathname,'https://www.amazon.de/s','Only the existing dryer search is offered');
  equal(dryerDestination.searchParams.get('tag'),'getecoback-21','The existing dryer search has the approved tag');
+ await page.goto(base+'/guide/fensterabdichtung-selber-bauen.html?__ci=1#abluft-ausschnitt-pruefen');
+ const cutoutProof=page.locator('section[aria-labelledby="abluft-ausschnitt-pruefen"]');
+ check(await cutoutProof.getByText('50 mm frei',{exact:false}).isVisible(),'The static guide contains the worked cutout example');
+ check(await cutoutProof.getByText('warte mit dem Zuschnitt',{exact:false}).isVisible(),'The no-script route explains when to wait');
+ check(await page.locator('#panel-cutout-form').isHidden(),'The form is hidden without its local calculator');
  await context.close();
  return checks;
 }

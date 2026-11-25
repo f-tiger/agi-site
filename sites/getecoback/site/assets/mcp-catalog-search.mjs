@@ -1,4 +1,4 @@
-import {boschDry, comfeeVariant, directHeat, exactGermanHouseholdTask, festiveLights, klarsteinPackage, showerFlow, vacuumOffer} from './german-household-intent.mjs?v=c734c006cf48';
+import {boschDry, comfeeVariant, directHeat, exactGermanHouseholdTask, festiveLights, klarsteinPackage, showerFlow, vacuumOffer} from './german-household-intent.mjs?v=057d752ca0fa';
 import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion, glassvacModel, windowVacCharging} from './kaercher-saugduese-intent.mjs';

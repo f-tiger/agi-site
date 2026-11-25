@@ -1,6 +1,6 @@
 # Fensterabdichtung selber bauen: Platte statt Stoff (2026)
 
-> Kippfenster-Abdichtung selber bauen: Material für 10–40 €, zwei erprobte Methoden aus Hohlkammerplatte oder Plexiglas — und wann Kaufen schlauer ist.
+> Fensterabdichtung für mobile Klimageräte selbst planen. Plattenmaß, Anschlusszeichnung und freien Rand vor dem Zuschnitt prüfen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/fensterabdichtung-selber-bauen.html
 
@@ -8,7 +8,7 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Die Stoffabdichtung aus dem Set ist schnell montiert — aber wer sein Klimagerät den ganzen Sommer am selben Fenster betreibt, merkt ihre Schwächen: Der Reißverschluss lässt Luft durch, das Klebeband löst sich in der Sonne, und richtig dicht wird es nie. Die Baumarkt-Lösung schließt diese Lücke: eine passgenau geschnittene Platte, die die Kippöffnung fast vollständig verschließt. Hier sind die zwei Methoden, die sich in der DIY-Praxis durchgesetzt haben — und die ehrliche Abwägung, wann du besser doch kaufst.
 
-**Kurzantwort:** Miss den **gekippten Flügel** aus, lass dir eine **Hohlkammerplatte** (ab ~10 €) oder **Acrylglas** (ab ~20 €) zuschneiden, schneide eine Öffnung im Schlauchdurchmesser (meist 130/150 mm), befestige die Platte mit **selbstklebendem Magnetband** am Rahmen und dichte die Ränder mit **Schaumstoffband** ab. Kosten: 10–40 €, Zeitaufwand: ein Nachmittag. Dichter als jedes Stoff-Set — aber nur sinnvoll, wenn das Gerät am selben Fenster bleibt.
+**Kurzantwort:** Miss zuerst die Öffnung am Fenster und prüfe den [Ausschnitt laut Anschlusszeichnung](https://getecoback.com/guide/fensterabdichtung-selber-bauen.html#abluft-ausschnitt-pruefen). Plane dann Plattenrand, Flansch und Befestigung. Eine herausnehmbare Platte eignet sich für einen festen Einsatzort. Warte mit dem Zuschnitt, bis Maße und Befestigung geklärt sind.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks sind Affiliate-Links — du zahlst denselben Preis. Materialpreise sind Richtwerte aus öffentlich einsehbaren Angeboten.
 
@@ -30,7 +30,7 @@ Nicht auf der Liste: teure Spezialwerkzeuge. Hohlkammerplatten schneidet ein Cut
 
 - **Zuschneiden:** Platte so zuschneiden, dass sie den oberen Spalt abdeckt und seitlich je 2–3 cm übersteht. Für die seitlichen Dreiecksspalte zwei kleine Dreiecksstücke zuschneiden — oder die Hauptplatte L-förmig planen.
 
-- **Schlauchöffnung:** Kreis im Durchmesser deines Abluftschlauchs anzeichnen (130 oder 150 mm — [vorher am Gerät messen](https://getecoback.com/guide/abluftschlauch-verlaengern.html)), ausschneiden, Kanten mit Alu-Klebeband einfassen.
+- **Ausschnitt:** Übertrage die Form und das Ausschnittmaß aus der Anleitung des Anschlussstücks auf die herausnehmbare Platte. Prüfe den [freien Rand und den Platz für den Flansch](https://getecoback.com/guide/fensterabdichtung-selber-bauen.html#abluft-ausschnitt-pruefen). Fehlt die Maßangabe, warte mit dem Zuschnitt.
 
 - **Befestigen:** Magnetband auf Plattenränder und Rahmen kleben (Rahmen vorher mit Spülmittel entfetten — sonst löst sich der Kleber in der Sonne, [der übliche Schwachpunkt](https://getecoback.com/guide/fensterabdichtung-klimaanlage.html)). Platte aufsetzen.
 
@@ -40,17 +40,26 @@ Nicht auf der Liste: teure Spezialwerkzeuge. Hohlkammerplatten schneidet ein Cut
 
 Wenn dein Fenster sich weit öffnen lässt (Drehkippfenster in Drehstellung), geht es noch dichter: Acrylglasplatte in der Größe des **Blendrahmens** zuschneiden lassen, Magnetband rundum auf Platte und Rahmen, Schlauchöffnung wie oben. Das Fenster bleibt offen, die Platte ersetzt die Scheibe — nahezu vollständig dicht, und durchsichtiges Acryl lässt weiter Licht herein. Beim Auszug: Platte abnehmen, Magnetband abziehen, Kleberreste mit Spülmittel entfernen.
 
-**Zuschnitt-Rechner: Was musst du bestellen?**
+**Plattengröße und Bandbedarf abschätzen**
 Für Methode 2 (Magnetrahmen). Miss den **inneren Blendrahmen** bei ganz geöffnetem Fenster.
 
 Rahmenbreite (cm)
 
 Rahmenhöhe (cm)
 
-Schlauch-Ø
-150 mm (häufigster)130 mm
-
 Zuschnitt berechnen
+
+## Abluftplatte: Ausschnitt und freien Rand prüfen
+
+Für den Ausschnitt zählt die Zeichnung des genauen Anschlussstücks. Der Schlauchdurchmesser beschreibt den Schlauch. Ein Adapter kann auf der Plattenseite eine andere Form haben. Prüfe Ausschnitt, Außenmaß des Flansches und Befestigung getrennt.
+
+Markiere auf der endgültig geplanten rechteckigen Platte die Mitte eines runden Lochs. Miss von links bis zur Mitte und von oben bis zur Mitte. Ziehe den halben Lochdurchmesser vom kürzesten Abstand der Mitte zu einem Plattenrand ab. Vergleiche den verbleibenden freien Rand mit der Vorgabe für dein Material und deine Befestigung.
+
+**Beispiel:** Eine Platte von 400 × 250 mm mit einem runden Loch von 150 mm und der Mitte bei 200 mm von links und 125 mm von oben hat am engsten Rand 50 mm frei. Das sind Beispielmaße. Die Freigabe für Material, Flansch und Befestigung ergibt sich aus den jeweils passenden Unterlagen.
+
+Bei rechteckigen Ausschnitten nutze eine passende Schablone. Fehlen das Ausschnittmaß oder die Vorgabe für den freien Rand, warte mit dem Zuschnitt und kläre die Maße mit dem Hersteller oder dem Zuschnittbetrieb. Prüfe außerdem die zugelassene Abluftführung und die Befestigung am konkreten Fenster.
+
+Quellen, geprüft am 25.11.2026. [Trotec: Schlauchmaß und Adapterform](https://de.trotec.com/shop/abluftschlauchadapter-fensteradapter-fensterduese-mobile-klimageraete.html) · [Deutscher Zuschnittanbieter: Ausschnitt nach Endadapter](https://www.alles-aus-plexiglas.de/Produktideen/Klimaanlage-Fensterabdichtung/).
 
 ## Die ehrliche Abwägung: Bauen oder kaufen?
 

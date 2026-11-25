@@ -70,6 +70,18 @@ test('Glazing questions reach the existing comparison, while indoor glass keeps 
   assert.notEqual(searchEntries(index,question,'de')[0]?.entry.u,glazing,question);
  }
 });
+test('German round window-panel cutout queries reach the verified sizing guide',()=>{
+ const target='/guide/fensterabdichtung-selber-bauen.html#abluft-ausschnitt-pruefen';
+ for(const question of ['Fensterplatte für mobile Klimaanlage: Welcher Randabstand bleibt um den runden Ausschnitt?',
+  'Abluftplatte: kleinster Randabstand um das Loch','Klimagerät Hohlkammerplatte runder Ausschnitt und Flansch']){
+  assert.equal(searchEntries(index,question,'de')[0]?.entry.u,target,question);
+  assert.ok(!searchEntries(index,question,'en').some(hit=>hit.entry.u===target),question);
+ }
+ for(const question of ['Abluftplatte: rechteckiger Ausschnitt', 'mobile Klimaanlage Abluftplatte Fenstersicherung',
+  'Abluftschlauch verlängern trotz Fensterplatte und Loch', 'Kann ich Kondenswasser durch ein Loch ablassen?']){
+  assert.notEqual(searchEntries(index,question,'de')[0]?.entry.u,target,question);
+ }
+});
 test('Bosch stacking questions reach the exact kit comparison and do not steal dryer tasks',()=>{
  const target='/produkte.html#waeschesaeule-zubehoer';
  for(const query of [

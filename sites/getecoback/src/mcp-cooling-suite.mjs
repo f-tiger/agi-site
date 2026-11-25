@@ -1,3 +1,5 @@
+import {panelCutout} from '../site/assets/panel-cutout.mjs';
+
 const number = (description, minimum, maximum) => ({type:'number', minimum, maximum, description});
 const flag = description => ({type:'boolean', description});
 const choice = (description, ...values) => ({type:'string', enum:values, description});
@@ -36,13 +38,7 @@ export const coolingSuite = [
       mitte_y_mm:number('Lochmitte vom oberen Plattenrand in mm.',0,3000),
       rand_min_mm:number('Vom gewählten Plattenmaterial und der Befestigung geforderter freier Rand in mm.',1,300)
     },
-    calculate({breite_mm,hoehe_mm,loch_mm,mitte_x_mm,mitte_y_mm,rand_min_mm}) {
-      const margin = Math.min(mitte_x_mm,breite_mm-mitte_x_mm,mitte_y_mm,hoehe_mm-mitte_y_mm)-loch_mm/2;
-      return {
-        kleinster_freier_rand_mm:rounded(margin), passt_geometrisch:margin >= rand_min_mm,
-        annahme:'Nur Geometrie der rechteckigen Platte und des kreisförmigen Lochs. Flansch, Material und Befestigung separat nach Anleitung prüfen.'
-      };
-    },
+    calculate:panelCutout,
     example:{args:{breite_mm:400,hoehe_mm:250,loch_mm:150,mitte_x_mm:200,mitte_y_mm:125,rand_min_mm:30},expect:{kleinster_freier_rand_mm:50,passt_geometrisch:true}}
   },
   {

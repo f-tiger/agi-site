@@ -109,6 +109,13 @@ test('Bosch stacking kit search leads with the answer and the readable catalog e
 
 const focusedLookups = [
   {
+    path:'/guide/fensterabdichtung-selber-bauen.html', section:'abluft-ausschnitt-pruefen',
+    expectedTitle:'Abluftplatte: Ausschnitt und freien Rand prüfen',
+    queries:['Fensterplatte für mobile Klimaanlage: Welcher Randabstand bleibt um den runden Ausschnitt?', 'Abluftplatte: kleinster Randabstand um das Loch'],
+    evidence:['50 mm frei','warte mit dem Zuschnitt','https://de.trotec.com/shop/abluftschlauchadapter-fensteradapter-fensterduese-mobile-klimageraete.html',
+      'https://www.alles-aus-plexiglas.de/Produktideen/Klimaanlage-Fensterabdichtung/'],
+  },
+  {
     path:'/guide/klarstein-kraftwerk-smart-12k-test.html', section:'kraftwerk-10034664-lieferumfang',
     expectedTitle:'Klarstein Kraftwerk Smart 12K: Was ist bei 10034664 dabei?',
     queries:["Was gehört beim Klarstein Kraftwerk Smart 12K zum Lieferumfang, brauche ich eine zusätzliche Fensterabdichtung?", "Klarstein Kraftwerk Smart 12K 10034664"],
