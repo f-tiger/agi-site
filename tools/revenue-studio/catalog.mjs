@@ -45,6 +45,7 @@ export const externalProducts=[
 {id:'work-mentor',name:'Ecommerce Reporting Coach',site:'agi',urls:{zh:'https://agiscorecard.com/zh/mentor',en:'https://agiscorecard.com/mentor'}},
 {id:'ai-infrastructure',name:'AI Infrastructure Research',site:'agi',urls:{zh:'https://agiscorecard.com/zh/ai-infrastructure',en:'https://agiscorecard.com/ai-infrastructure'}},
 {id:'ai-work-plan',name:'AI Work Plan',site:'bpj',urls:{zh:'https://baipiaoji.com/work-plan',en:'https://baipiaoji.com/en/work-plan'}},
-{id:'bpj-video-variants',name:'BPJ Video Projects',site:'bpj',urls:{zh:'https://baipiaoji.com/studio/video-variants',en:'https://baipiaoji.com/en/studio/video-variants'}}
+{id:'bpj-video-variants',name:'BPJ Video Projects',site:'bpj',urls:{zh:'https://baipiaoji.com/studio/video-variants',en:'https://baipiaoji.com/en/studio/video-variants'}},
+{id:'tds-uk-laundry-review',name:'UK Laundry Review',site:'tds',urls:{en:'https://thedollscout.com/ai-tools/uk-laundry-session',de:'https://thedollscout.com/de/ai-tools/uk-laundry-session',zh:'https://thedollscout.com/zh/ai-tools/uk-laundry-session'}}
 ];
 export function href(product){const s=sites[product.site];return s.origin+s.prefix+'/'+product.id+s.suffix;}

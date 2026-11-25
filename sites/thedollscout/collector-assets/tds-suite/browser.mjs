@@ -1,5 +1,5 @@
 import { approvedBuyingGuide } from './regional-buying-links.mjs';
-import { recordRegionalAction, recordRegionalPageview } from './regional-measurement.mjs?v=20261123';
+import { recordPaidReviewAction, recordRegionalAction, recordRegionalPageview } from './regional-measurement.mjs?v=20261125-paid';
 const one = (selector, root = document) => root.querySelector(selector);
 const data = (selector) => {
   const entry = one(selector);
@@ -48,6 +48,7 @@ if (form) {
   const save = one('[data-tds-export]');
   const buyerGuide = one('[data-tds-buyer-guide]');
   const energyHelper = one('[data-tds-energy-helper]');
+  const reviewPanel = one('[data-tds-review]');
   let inputRevision = 0;
   function clearGuide() {
     if (!buyerGuide) return;
@@ -65,6 +66,28 @@ if (form) {
   let exampleInputs = new Set();
   let exampleResult = false;
   let running = false;
+  let review;
+  const reviewModule = reviewPanel ? import('./uk-laundry-workspace.mjs?v=20261125-paid')
+    .then(({mountLaundryWorkspace}) => {
+      review = mountLaundryWorkspace({
+        panel: reviewPanel,
+        copy: ui.review,
+        locale,
+        schema: inputSchema,
+        record: recordPaidReviewAction,
+        restore(inputs, reviewedAt) {
+          if (inputRevision > 0 && !confirm(ui.review.replace)) return false;
+          inputRevision++;
+          clearGuide();
+          clearResult();
+          exampleInputs.clear();
+          setInputs(inputs);
+          status.textContent = ui.review.restored.replace('{date}', reviewedAt);
+          return true;
+        },
+      });
+      return review;
+    }).catch(() => null) : null;
 
   function clearResult() {
     status.textContent = '';
@@ -75,6 +98,7 @@ if (form) {
     save.disabled = true;
     resultText = '';
     exportText = '';
+    review?.clear();
   }
 
   function recordEdit(trusted, field) {
@@ -195,6 +219,11 @@ if (form) {
       save.disabled = false;
       exampleResult = wasExample;
       message(wasExample ? 'tds_suite_example' : 'tds_suite_complete');
+      if (reviewModule && !wasExample && event.isTrusted && value?.status === 'comparison_ready') {
+        reviewModule.then(workspace => {
+          if (revision === inputRevision) workspace?.offer(args);
+        });
+      }
       if (buyerGuide && !wasExample && event.isTrusted) {
         recordRegionalAction('tds_regional_result');
         if (approvedBuyingGuide(name, value?.buyerGuide)) {

@@ -27,6 +27,9 @@
 .tds-suite-energy-helper summary { color: var(--tds-accent); cursor: pointer; }
 .tds-suite-result [data-tds-result], .tds-mcp pre { overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; padding: .7rem; border: 1px solid var(--tds-line); border-radius: 7px; background: var(--tds-surface); }
 .tds-suite-result [data-tds-result] { min-height: 9rem; max-height: 29rem; }
+.tds-suite-review { margin-top: 1.2rem; }
+.tds-suite-review h2 { margin-top: 0; }
+.tds-suite-review p { max-width: 66ch; }
 @media(max-width: 720px) {
   .tds-suite-head { display: block; }
   .tds-suite-head .tds-suite-note { width: fit-content; }
