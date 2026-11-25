@@ -1280,3 +1280,23 @@ test('exact humidifier accessory queries prefer the appropriate existing tool an
   assert.equal(toolGuidePath(philips),'/guide/luftbefeuchter-ratgeber.html#philips-verdunsterfilter');
   assert.equal(analytics,0);
 });
+
+test('Bosch Dry 4000 catalogue queries prefer guide search and leave drainage to its own tool', async () => {
+  for (const query of ['Bosch Dry 4000','D4000-EU','7733703558','4069143047774',
+    'Welchen Ablaufschlauch oder Tank hat der Bosch Dry 4000 D4000-EU?']) {
+    const result = await catalogue({q:query,view:'compact',limit:3});
+    assert.deepEqual(result.tools.map(tool=>tool.name),['ratgeber_suche'],query);
+    assert.deepEqual(findCatalogueTools(compact,{query}).map(tool=>tool.name),['ratgeber_suche'],query);
+    assert.equal(toolGuidePath(result.tools[0]),'/guide/luftentfeuchter-ratgeber.html#modell-bosch-d4000-eu',query);
+  }
+  for (const query of ['Bosch Air 4000','Bosch Dry 4000 D4000-UK','Bosch Dry 4000 EAN 4069143047804']) {
+    const result = await catalogue({q:query,view:'compact',limit:3});
+    assert.notEqual(result.tools[0]?.name,'ratgeber_suche',query);
+  }
+  const drainage = await catalogue({
+    q:'Kann der Ablaufschlauch vom Bosch Dry 4000 bergauf ins Waschbecken laufen?',
+    view:'compact',
+  });
+  assert.equal(drainage.tools[0]?.name,'entfeuchter_ablaufcheck');
+  assert.equal(analytics,0);
+});

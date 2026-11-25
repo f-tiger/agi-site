@@ -1,4 +1,4 @@
-import {exactGermanHouseholdTask, vacuumOffer} from './german-household-intent.mjs?v=986b2539c21e';
+import {boschDry, exactGermanHouseholdTask, vacuumOffer} from './german-household-intent.mjs?v=0eaa4dd94199';
 import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion, glassvacModel, windowVacCharging} from './kaercher-saugduese-intent.mjs';
@@ -13,7 +13,7 @@ import {asksForHygrometerComparison} from './hygrometer-comparison-intent.mjs';
 import {asksForN90ModelIdentity, namesAnotherPacWithoutN90} from './n90-model-intent.mjs';
 import {asksForPortaSplitWindowLip, namesDifferentPortaSplit, namesOriginalPortaSplitExactly} from './portasplit-fensterfalz-intent.mjs?v=66ae5fbd590d';
 import {asksForCellarVentilationCheck} from './cellar-ventilation-intent.mjs';
-import {asksForDehumidifierDrainRoute} from './dehumidifier-drain-intent.mjs';
+import {asksForDehumidifierDrainRoute} from './dehumidifier-drain-intent.mjs?v=f6bce24817e8';
 
 const german = {ä:'ae', ö:'oe', ü:'ue', ß:'ss'};
 const normalize = value => String(value).toLowerCase()
@@ -383,6 +383,13 @@ export function findCatalogueTools(index, {query='', category='', name=null}={})
   const portaSplitVariant = namesDifferentPortaSplit(focus.query);
   const portaSplitLipTool = 'midea_portasplit_fensterfalz_pruefen';
   const householdTask = exactGermanHouseholdTask(focus.query);
+  if (householdTask === boschDry) {
+    const guideSearch = index.find(entry => entry.tool.name === boschDry.tool && eligible(entry));
+    if (!guideSearch) return [];
+    const citation_url = 'https://getecoback.com' + boschDry.path;
+    return [{...guideSearch.tool, citation_url, guide_url:citation_url + '#' + boschDry.id}];
+  }
+
   const singleLaundry = asksForSingleLaundryCost(focus.query);
   const fritzValve = asksForFritzValveAdapter(focus.query);
   const nonIndoorGlass = asksAboutOtherWindowSurface(focus.query);

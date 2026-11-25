@@ -33,6 +33,9 @@ def collect():
  tasks=json.loads((ROOT/'data/demand-discovery.json').read_text())
  aliases={(l,t['url']):t['label']+' '+t['aliases'] for l,g in tasks.items() for t in g['tasks']}
  sections={(l,t['url']):t['section'] for l,g in tasks.items() for t in g['tasks'] if 'section' in t}
+ sections[('de','/guide/luftentfeuchter-ratgeber.html')]={
+  'id':'modell-bosch-d4000-eu','title':'Bosch Dry 4000: deutsche Modellnummer prüfen',
+  'description':'D4000-EU, Artikel 7733703558 und EAN 4069143047774 am Angebot oder Typenschild abgleichen. Bosch dokumentiert Tank und kontinuierlichen Ablauf.'}
  sections[('de','/guide/keller-lueften-sommer.html')]={
   'id':'taupunkt','title':'Trocknet Lüften meinen Keller jetzt?',
   'description':'Vergleiche Temperatur und Feuchte drinnen und draußen mit deiner kältesten gemessenen Wand.'}
