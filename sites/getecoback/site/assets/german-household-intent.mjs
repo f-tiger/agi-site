@@ -188,6 +188,19 @@ export const granulateDryingChoice = {
   tool:'ratgeber_suche',
 };
 
+export const coolingDiscountReference = {
+  path:'/guide/klimaanlage-wann-kaufen.html',
+  id:'angebot-30-tage-preis',
+  tool:'ratgeber_suche',
+};
+
+function asksForCoolingDiscountReference(query) {
+  const unit = /\b(?:klimaanlag\w*|klimageraet\w*|portasplit\w*)\b/;
+  const salesEvent = /\b(?:black[ -]?friday|black[ -]?week\w*|cyber[ -]?monday)\b/;
+  const referencePrice = /\b30[ -]+tage(?:n)?\b/.test(query) && /\b(?:preis\w*|referenzpreis\w*)\b/.test(query);
+  return unit.test(query) && (salesEvent.test(query) || referencePrice);
+}
+
 function asksForGranulateDryingChoice(query) {
   const absorber = /\b(?:granulat(?:[ -]?(?:box|absorber|entfeuchter|luftentfeuchter))?|luftentfeuchter[ -]?tabs?)\b/;
   const alternative = /\b(?:elektrisch\w*|kompressor\w*|waeschetrockn\w*|waesche\s+(?:(?:zu|drinnen)\s+)?trockn\w*|(?:feucht\w*|nass\w*)\s+waesche)\b/;
@@ -217,6 +230,7 @@ export function exactGermanHouseholdTask(query) {
     return {path:'/guide/fensterabdichtung-selber-bauen.html',id:'abluft-ausschnitt-pruefen',tool:'abluftplatte_lochposition_pruefen'};
   if (asksForKlarsteinPackage(query)) return klarsteinPackage;
   if (asksForGranulateDryingChoice(query)) return granulateDryingChoice;
+  if (asksForCoolingDiscountReference(query)) return coolingDiscountReference;
   if (asksForDirectHeatComparison(query)) return directHeat;
   if (asksForShowerFlow(query)) return showerFlow;
   if (asksForVacuumOffer(query)) return vacuumOffer;

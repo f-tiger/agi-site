@@ -35,6 +35,8 @@ async function checkGermanFocusedDiscovery(browser,base){
  const shadeSection='kondenswasser-hinter-plissee';
  const granulatePage='/guide/luftentfeuchter-granulat-oder-elektrisch.html';
  const granulateSection='granulat-waesche-entscheidung';
+ const coolingSalePage='/guide/klimaanlage-wann-kaufen.html';
+ const coolingSaleSection='angebot-30-tage-preis';
  const positive=['Was kostet eine Ladung Wäsche nur mit meinem Luftentfeuchter?','Stromkosten Luftentfeuchter Wäsche'];
  const ordinary=[
   ['Trockner oder Luftentfeuchter Stromkosten Wäsche','/waeschetrockner-oder-luftentfeuchter.html'],
@@ -87,6 +89,8 @@ async function checkGermanFocusedDiscovery(browser,base){
    .every(result=>result.href!==shadePage+'#'+shadeSection),'Glass cavity condensation stays outside the measurement answer');
   equal((await search('Reicht eine Granulatbox zum Wäschetrocknen?'))[0],
    {href:granulatePage+'#'+granulateSection,language:'de'},'Passively drying a load leads to the German buying decision');
+  equal((await search('Black Friday Klimaanlage'))[0],
+   {href:coolingSalePage+'#'+coolingSaleSection,language:'de'},'German sale searches open the retailer reference price');
   equal((await search('Welcher Ersatzfilter passt in meinen Beurer LR 401?'))[0],{href:'/ersatzfilter.html#beurer-lr401',language:'de'},'Beurer model reaches the audited exact filter');
   equal((await search('Welchen Filter brauche ich für meinen Levoit Core 300S ohne Pro?'))[0],{href:'/ersatzfilter.html#levoit-core-300s',language:'de'},'Core 300S reaches its exact standard filter');
   const ventilation='Soll ich meinen Keller lüften? Innen 16 °C und 75 %, draußen 8 °C und 90 %, Wand 12 °C.';
@@ -261,6 +265,15 @@ async function checkGermanFocusedDiscovery(browser,base){
  check(await page.locator('#'+granulateSection).isVisible(),'The passive absorber decision is reachable without scripts');
  check(await page.getByText('behalte deinen vorhandenen Ständer',{exact:false}).first().isVisible(),
   'Using the existing drying rack remains an option');
+ await page.goto(base+coolingSalePage+'?__ci=1');
+ const reference=page.getByRole('link',{name:'Black-Friday-Angebot prüfen',exact:true});
+ await reference.focus();
+ await page.keyboard.press('Enter');
+ await page.waitForURL(base+coolingSalePage+'?__ci=1#'+coolingSaleSection);
+ const priceAdvice=page.locator('section[aria-labelledby="'+coolingSaleSection+'"]');
+ check(await priceAdvice.getByText('469 €',{exact:false}).isVisible(),'The price comparison works without scripts');
+ check(await priceAdvice.getByRole('link',{name:'Eigenes Budget und Lieferzeit prüfen'}).isVisible(),
+  'The sale comparison connects to the existing budget and delivery check');
  await page.goto(base+'/guide/heizkosten-vergleich-rechner.html?__ci=1');
  const heatLink=page.getByRole('link',{name:'Kurze Einsätze von Heizlüfter und Infrarot vergleichen',exact:true});
  check(await heatLink.isVisible(),'Direct-heat comparison has a native in-page link without JavaScript');

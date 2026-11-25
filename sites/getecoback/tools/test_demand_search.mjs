@@ -378,6 +378,18 @@ test('German same-place hygrometer comparisons open the numerical example',()=>{
  ]) assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u.startsWith(page+'#')),q);
 });
 
+test('German cooling sale questions open the retailer reference price check',()=>{
+ const destination='/guide/klimaanlage-wann-kaufen.html#angebot-30-tage-preis';
+ for(const q of ['black friday klimaanlage','Midea PortaSplit Black-Friday-Angebot prüfen',
+  'Welchen Preis der letzten 30 Tage muss der Händler bei der Klimaanlage angeben?']){
+   assert.equal(searchEntries(index,q,'de')[0]?.entry.u,destination,q);
+   assert.ok(!searchEntries(index,q,'en').some(hit=>hit.entry.u===destination),q);
+ }
+ for(const q of ['Welcher Luftentfeuchter lohnt sich am Black Friday?', 'Klimaanlage 30 Tage im Jahr betreiben']){
+   assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u===destination),q);
+ }
+});
+
 test('German passive absorber questions open the laundry purchase decision',()=>{
  const destination='/guide/luftentfeuchter-granulat-oder-elektrisch.html#granulat-waesche-entscheidung';
  for(const q of ['Reicht eine Granulatbox zum Wäschetrocknen?',

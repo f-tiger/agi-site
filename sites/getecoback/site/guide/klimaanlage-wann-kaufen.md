@@ -1,6 +1,6 @@
 # Klimaanlage kaufen: Wann ist der beste Zeitpunkt? (2026)
 
-> Klimaanlage jetzt kaufen oder warten? Rechne mit Gesamtpreis, Budget, bestätigter Lieferfrist und Aufstellung. Mit Entscheidungshilfe für Deutschland.
+> Klimaanlage jetzt kaufen oder warten? Prüfe Black-Friday-Referenzpreis, Gesamtpreis, bestätigte Lieferung und Aufstellung für Deutschland.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/klimaanlage-wann-kaufen.html
 
@@ -26,6 +26,18 @@ Vier Prüfungen vor dem Kauf — unabhängig von der Jahreszeit
 | Gesamtkosten | Gerät, Lieferung, notwendiges Zubehör und gegebenenfalls Montage; Betriebsstrom separat abschätzen. | Wenn Angebote unterschiedliche Leistungen enthalten. |
 
 **Frei gewähltes Rechenbeispiel, kein Händlerangebot:** 299 € Gerät + 39 € benötigtes Zubehör + 15 € Versand = 353 €. Ein passendes Angebot zu 329 €, das diese Positionen bereits enthält, wäre in diesem Beispiel 24 € günstiger. Die Zahlen belegen keinen Saisonrabatt und keine gleiche Geräteleistung.
+
+## Klimaanlage am Black Friday kaufen? Erst den 30-Tage-Preis prüfen
+
+Prüfe bei einer angekündigten Preisermäßigung für eine Ware in Deutschland den niedrigsten Gesamtpreis, den derselbe Händler in den 30 Tagen vor Beginn der Ermäßigung verlangt hat. Das ist der Bezugspunkt nach [§ 11 Preisangabenverordnung](https://www.gesetze-im-internet.de/pangv_2022/__11.html). Ein Vergleich mit der unverbindlichen Preisempfehlung (UVP) zeigt nicht, was der Händler zuvor tatsächlich verlangt hat.
+
+- Vergleiche Angebote mit gleicher Modellnummer oder EAN, gleichem Zustand und gleichem Lieferumfang. Beim Angebot für die ursprüngliche Midea PortaSplit prüfe die EAN anhand der [Modellübersicht von Midea Deutschland](https://www.midea.com/de/klimatisieren-heizen/portasplit) und der [Modellprüfung für die originale PortaSplit](https://getecoback.com/guide/midea-portasplit-kaufen.html#portasplit-original-angebot).
+
+- Vergleiche den angegebenen 30-Tage-Preis und den aktuellen Gerätepreis. Rechne für den Kaufvergleich Versand und nötiges Zubehör hinzu. Prüfe anschließend, was andere Händler für dieselbe Variante verlangen. [Verbraucherzentrale zum Vergleich von Aktionspreisen](https://www.verbraucherzentrale.de/wissen/digitale-welt/onlinehandel/prime-days-black-friday-cyber-monday-tipps-fuer-die-schnaeppchenjagd-37835)
+
+- Prüfe die Aufstellung und die bestätigte Lieferung. Wenn Modell, Preisbasis oder Aufstellung unklar bleiben, entscheide erst nach der Klärung. Ohne passenden Platz für ein Außenteil kannst du die [Monoblock-Aufstellung prüfen](https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html#option-3-monoblock).
+
+**Frei gewähltes Rechenbeispiel.** Bei 499 € UVP, 419 € niedrigstem Händlerpreis der vorherigen 30 Tage und 429 € aktuellem Gerätepreis liegt der aktuelle Preis 10 € über dem früheren Händlerpreis. Mit 30 € Zubehör und 10 € Versand zahlst du in diesem Beispiel insgesamt 469 €. [Eigenes Budget und Lieferzeit prüfen](https://getecoback.com/guide/klimaanlage-wann-kaufen.html#kaufzeitpunkt-rechner)
 
 ## Passt das Angebot zu Budget und Einsatztermin?
 

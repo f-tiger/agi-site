@@ -97,6 +97,9 @@ def collect():
  sections[('de','/guide/luftentfeuchter-granulat-oder-elektrisch.html')]={
   'id':'granulat-waesche-entscheidung','title':'Reicht eine Granulatbox zum Wäschetrocknen?',
   'description':'Eine Ladung mit vorhandener Lüftung beobachten. Raumtemperatur und Luftfeuchte messen. Tab-Masse und Entzugsrate sind verschiedene Angaben.'}
+ sections[('de','/guide/klimaanlage-wann-kaufen.html')]={
+  'id':'angebot-30-tage-preis','title':'Klimaanlage am Black Friday kaufen? Erst den 30-Tage-Preis prüfen',
+  'description':'Den niedrigsten Preis desselben Händlers aus den vorherigen 30 Tagen, dieselbe Modellvariante und den Gesamtbetrag mit Zubehör und Versand prüfen.'}
  sections[('de','/guide/thermovorhang-ratgeber.html')]={
   'id':'thermovorhang-bahnenbedarf','title':'Wie viele Bahnen braucht dein Thermovorhang?',
   'description':'Berechne Stoffbreite und Bahnen aus Öffnung, Überstand und Kräuselmaß. Nutze die Packungsangabe des Händlers.'}

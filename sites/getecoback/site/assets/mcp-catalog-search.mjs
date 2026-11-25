@@ -1,4 +1,4 @@
-import {boschDry, comfeeVariant, directHeat, exactGermanHouseholdTask, exactWindowShadeMeasurement, festiveLights, granulateDryingChoice, klarsteinPackage, showerFlow, vacuumOffer} from './german-household-intent.mjs?v=bae6287dfab9';
+import {boschDry, comfeeVariant, coolingDiscountReference, directHeat, exactGermanHouseholdTask, exactWindowShadeMeasurement, festiveLights, granulateDryingChoice, klarsteinPackage, showerFlow, vacuumOffer} from './german-household-intent.mjs?v=89cb981cf6b4';
 import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion, glassvacModel, windowVacCharging} from './kaercher-saugduese-intent.mjs';
@@ -392,13 +392,14 @@ export function findCatalogueTools(index, {query='', category='', name=null}={})
     }
   }
   const householdTask = exactGermanHouseholdTask(focus.query);
-  if (householdTask === boschDry || householdTask === comfeeVariant || householdTask === festiveLights || householdTask === showerFlow || householdTask === directHeat || householdTask === klarsteinPackage || householdTask === granulateDryingChoice) {
+  const comparisonGuide = householdTask === granulateDryingChoice || householdTask === coolingDiscountReference;
+  if (householdTask === boschDry || householdTask === comfeeVariant || householdTask === festiveLights || householdTask === showerFlow || householdTask === directHeat || householdTask === klarsteinPackage || comparisonGuide) {
     const guideSearch = index.find(entry => entry.tool.name === householdTask.tool && eligible(entry));
     if (guideSearch) {
       const citation_url = 'https://getecoback.com' + householdTask.path;
       return [{...guideSearch.tool, citation_url, guide_url:citation_url + '#' + householdTask.id}];
     }
-    if (householdTask !== granulateDryingChoice) return [];
+    if (!comparisonGuide) return [];
   }
 
   const singleLaundry = asksForSingleLaundryCost(focus.query);
