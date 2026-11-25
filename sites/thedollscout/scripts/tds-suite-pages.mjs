@@ -38,6 +38,65 @@ const germanMeterAdvice = {
   ],
 };
 const ukLaundryUpdated = '2026-11-25';
+const ukLaundryReview = {
+  en: {
+    title: 'Keep a dated record for your next laundry test',
+    benefit: 'Save measured kWh, your tariff and the review date in the TDS member workspace. Reopen a previous version on another device, enter your new measurements and check whether the cost difference holds.',
+    terms: '30 days of TDS membership. Pay 9 USDT plus a unique order amount of about 0.03 USDT on BNB Smart Chain. The member page shows the exact amount. No automatic renewal.',
+    privacy: 'Calculating and downloading your results are free. The calculator runs on this device. Readings are uploaded only when you choose Save in the member workspace.',
+    start: 'Open the member workspace',
+    existing: 'Open the workspace for existing members',
+    checking: 'Checking whether new membership orders are available…',
+    paused: 'New membership orders are temporarily paused. Existing members can open their workspace.',
+    unavailable: 'New membership availability could not be checked. Existing members can try opening their workspace.',
+    popup: 'Allow this site to open the member tab, then try again.',
+    alreadyOpen: 'The member tab is already open for the earlier result. Close it to send a new draft.',
+    opened: 'Member tab opened. Check the plan and your draft before continuing.',
+    sent: 'Draft sent to the member tab. Choose Save there to keep it in the cloud.',
+    saved: 'This review was saved in the member workspace.',
+    changed: 'An earlier or edited version was saved. Review the current inputs before saving again.',
+    replace: 'Load the saved review and replace the current inputs?',
+    restored: 'Review dated {date} (UTC) loaded. Check your tariff, measurements and comparable conditions before running it again.',
+  },
+  de: {
+    title: 'Messwerte für den nächsten Trocknungstest festhalten',
+    benefit: 'Speichere gemessene kWh, Tarif und Prüfdatum im TDS-Mitgliederbereich. Öffne einen früheren Stand auf einem anderen Gerät, trage neue Messwerte ein und prüfe die Kostendifferenz erneut.',
+    terms: '30 Tage TDS-Mitgliedschaft. Der Preis beträgt 9 USDT plus etwa 0,03 USDT zur Zuordnung der Bestellung auf der BNB Smart Chain. Den genauen Betrag siehst du im Mitgliederbereich. Keine automatische Verlängerung.',
+    privacy: 'Berechnung und Ergebnisdownload sind kostenlos. Der Rechner läuft auf diesem Gerät. Messwerte werden erst beim Klick auf Speichern im Mitgliederbereich hochgeladen.',
+    start: 'Mitgliederbereich öffnen',
+    existing: 'Arbeitsbereich für bestehende Mitglieder öffnen',
+    checking: 'Verfügbarkeit neuer Mitgliedschaften wird geprüft…',
+    paused: 'Neue Mitgliedschaften sind vorübergehend pausiert. Bestehende Mitglieder können ihren Arbeitsbereich öffnen.',
+    unavailable: 'Die Verfügbarkeit neuer Mitgliedschaften konnte nicht geprüft werden. Bestehende Mitglieder können versuchen, ihren Arbeitsbereich zu öffnen.',
+    popup: 'Erlaube dieser Seite, den Mitgliederbereich in einem neuen Tab zu öffnen.',
+    alreadyOpen: 'Der Tab mit dem früheren Ergebnis ist offen. Schließe ihn, um einen neuen Entwurf zu senden.',
+    opened: 'Mitgliederbereich geöffnet. Prüfe den Tarif und deinen Entwurf.',
+    sent: 'Entwurf an den Mitgliederbereich übergeben. Wähle dort Speichern, um ihn in der Cloud abzulegen.',
+    saved: 'Diese Messprüfung wurde im Mitgliederbereich gespeichert.',
+    changed: 'Ein früherer oder bearbeiteter Stand wurde gespeichert. Prüfe deine aktuellen Eingaben vor dem nächsten Speichern.',
+    replace: 'Gespeicherte Messprüfung laden und aktuelle Eingaben ersetzen?',
+    restored: 'Messprüfung vom {date} (UTC) geladen. Prüfe Tarif, Messwerte und vergleichbare Bedingungen vor der nächsten Berechnung.',
+  },
+  zh: {
+    title: '保存本次晾衣记录，方便下次复测',
+    benefit: '在 TDS 会员工作区保存实测用电量、电价和复核日期。换设备也能打开以前的版本，填入新测量值，复核费用差异是否仍成立。',
+    terms: '30 天 TDS 会员。通过 BNB Smart Chain 支付 9 USDT，加约 0.03 USDT 的订单识别尾数。确切金额以会员页面为准。不会自动续费。',
+    privacy: '计算和下载结果均免费。计算器在本机运行。只有你在会员工作区主动点击保存时，测量记录才会上传。',
+    start: '打开会员工作区（英文）',
+    existing: '打开已有会员的工作区（英文）',
+    checking: '正在检查是否可以办理新会员…',
+    paused: '新会员办理暂时暂停。已有会员仍可打开工作区。',
+    unavailable: '暂时无法确认能否办理新会员。已有会员可尝试打开工作区。',
+    popup: '请允许打开会员工作区标签页，再重试。',
+    alreadyOpen: '较早结果的会员标签页仍开着。关闭它后可以发送新的草稿。',
+    opened: '已打开会员工作区。请核对会员方案和草稿。',
+    sent: '草稿已发送到会员标签页，需在那边点击保存才会上传。',
+    saved: '这次复测记录已保存到会员工作区。',
+    changed: '已保存的是较早或已修改的版本。再次保存前请检查当前输入。',
+    replace: '是否打开已保存的复测记录，并替换当前输入？',
+    restored: '已打开 {date}（UTC）的复测记录。再次计算前，请核对电价、测量值和可比条件。',
+  },
+};
 const ukLaundryEnergy = {
   en: {
     title: 'Add readings from separate devices',
@@ -166,7 +225,7 @@ function page({ lang, slug, title, description, content, graph, discover = true,
   const full = origin + route(lang, slug);
   const machine = `${assets}/text/${lang}/${slug.replace(/^ai-tools\/?/, '') || 'index'}.txt`;
   const isUkLaundry = slug === slugPath(UK_LAUNDRY_TOOL.slug);
-  const browserVersion = isUkLaundry ? '?v=20261125'
+  const browserVersion = isUkLaundry ? '?v=20261125-paid'
     : regionalSlugs.has(slug.split('/').at(-1)) ? '?v=20261123' : '';
   const body = `<!doctype html><html lang="${locales[lang].tag}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#e4002b"><title>${esc(title)} | The Doll Scout</title><meta name="description" content="${esc(description)}"><meta name="robots" content="${discover ? 'index,follow,max-image-preview:large' : 'noindex,follow'}"><link rel="canonical" href="${full}">${alt(slug)}<link rel="alternate" type="text/plain" href="${origin+machine}"><link rel="alternate" type="application/json" href="${origin+datasetUrl(lang)}"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${full}"><link rel="stylesheet" href="/document-assets/style.css"><link rel="stylesheet" href="${assets}/suite.css${isUkLaundry ? browserVersion : ''}"><script type="application/ld+json">${json({'@context':'https://schema.org','@graph':graph})}</script></head><body><a class="skip" href="#main">${esc(c.catalog)}</a><header class="site-header"><div class="wrap header-inner"><a class="brand" href="${route(lang)}"><img width="34" height="34" src="/collector-assets/icon.svg" alt=""><span>The Doll Scout</span></a><nav class="main-nav" aria-label="${esc(c.nav)}"><a href="${shoppingPath ?? route(lang,'shop')}">${esc(c.buying)}</a><a href="${route(lang,slugPath())}" aria-current="page">${esc(c.suite)}</a></nav><nav class="languages" aria-label="Language">${Object.entries(locales).map(([key, value]) => `<a href="${route(key, slug)}" lang="${value.tag}"${key === lang ? ' aria-current="page"' : ''}>${value.label}</a>`).join('')}</nav></div></header><main id="main" class="wrap tds-suite">${content}</main><footer class="site-footer"><div class="wrap"><a href="${route(lang)}">The Doll Scout</a> · <a href="${route(lang,'document-privacy')}">${esc(c.privacyLink)}</a></div></footer><script type="module" src="${assets}/browser.mjs${browserVersion}"></script></body></html>`;
   write(fileFor(route(lang,slug)),body);
@@ -212,6 +271,10 @@ function energyHelper(copy, {minimum, maximum}) {
   return `<details class="tds-suite-energy-helper" data-tds-energy-helper><summary>${esc(copy.title)}</summary><p>${esc(copy.instructions)}</p><p>${esc(copy.example)}</p><div data-tds-energy-controls hidden>${fields}<div class="actions"><button type="button" data-tds-energy-use="sessionAKwh">${esc(copy.useA)}</button><button type="button" data-tds-energy-use="sessionBKwh">${esc(copy.useB)}</button></div><p role="status" aria-live="polite" data-tds-energy-status></p></div></details>`;
 }
 
+function laundryReview(copy) {
+  return `<section class="work-panel tds-suite-review" data-tds-review hidden aria-labelledby="tds-review-heading"><h2 id="tds-review-heading">${esc(copy.title)}</h2><p>${esc(copy.benefit)}</p><p data-tds-review-terms hidden>${esc(copy.terms)}</p><button type="button" data-tds-review-open>${esc(copy.existing)}</button><p role="status" aria-live="polite" data-tds-review-status></p></section>`;
+}
+
 for (const [lang,c] of Object.entries(words)) {
   const langData = catalogOrder.map(tool => ({
     name:tool.name, slug:tool.slug, category:tool.category, categoryLabel:categoryLabel(lang,tool.category), title:nameFor(lang,tool),
@@ -238,24 +301,25 @@ for (const [lang,c] of Object.entries(words)) {
     const slug = slugPath(tool.slug);
     const advice = toolRoute(lang,tool) === germanMeterPath ? germanMeterAdvice : null;
     const energy = tool.name === UK_LAUNDRY_TOOL.name ? ukLaundryEnergy[lang] : null;
+    const review = energy ? ukLaundryReview[lang] : null;
     const title = advice?.title ?? nameFor(lang,tool);
     const description = advice?.description ?? lc(lang,tool.description);
     const shoppingPath = REGIONAL_GUIDE_PATHS[tool.slug];
-    const metadata = { name:tool.name, locale:lang, inputSchema:tool.inputSchema, example:examplesFor(lang,tool), ui:energy ? {...c, energy} : c };
+    const metadata = { name:tool.name, locale:lang, inputSchema:tool.inputSchema, example:examplesFor(lang,tool), ui:energy ? {...c, energy, review} : c };
     const evidence = evidenceFor(lang,tool);
     const checked = evidence?.checked ? ` <time datetime="${esc(evidence.checked)}">${esc(evidence.checked)}</time>` : '';
     const source = evidence?.url?.startsWith('https://') ? `<section class="section"><h2>${esc(c.evidence)}</h2><p><a href="${esc(evidence.url)}" rel="noopener noreferrer">${esc(new URL(evidence.url).hostname)}</a>${checked}</p><p>${esc(c.scope)}</p></section>` : '';
     const category = { href:categoryRoute(lang,tool.category), label:categoryLabel(lang,tool.category) };
     const checklistLink = advice ? `<p><a href="#messplan">${esc(advice.checklist)}</a></p>` : '';
     const checklist = advice ? `<section class="section" id="messplan" aria-labelledby="messplan-heading"><h2 id="messplan-heading">${esc(advice.checklist)}</h2><ol>${advice.steps.map(step => `<li>${esc(step)}</li>`).join('')}</ol><ul>${advice.sources.map(([label, url]) => `<li><a href="${esc(url)}" rel="noopener noreferrer">${esc(label)}</a></li>`).join('')}</ul><p class="tds-suite-meta">${updateLabel[lang]} <time datetime="${advice.updated}">${advice.updated}</time></p></section>` : '';
-    const content = `${crumb(lang,title,category)}<header class="tds-suite-head"${advice ? ' id="messgeraet-ausleihen-oder-kaufen"' : ''}><div><h1>${esc(title)}</h1><p>${esc(description)}</p>${checklistLink}</div><p class="tds-suite-note">${esc(c.local)}</p></header><div class="tds-suite-workspace"><section class="work-panel" aria-labelledby="tds-tool-heading"><h2 id="tds-tool-heading">${esc(c.input)}</h2>${energy ? energyHelper(energy, tool.inputSchema.properties.sessionAKwh) : ''}<p class="tds-suite-meta">${esc(c.required)}</p><form data-tds-tool>${Object.entries(tool.inputSchema.properties).map(([key,schema]) => inputField(lang,tool,key,schema)).join('')}<div class="actions"><button class="primary" type="submit" disabled>${esc(c.execute)}</button><button type="button" data-tds-example disabled>${esc(c.examples)}</button></div></form><noscript><p>${esc(c.noscript)}</p></noscript><p class="tds-suite-meta">${esc(c.privacy)}</p><p role="status" aria-live="polite" data-tds-status></p></section><section class="work-panel tds-suite-result" aria-labelledby="tds-result-heading"><h2 id="tds-result-heading">${esc(c.result)}</h2><p class="tds-suite-result-summary" data-tds-summary hidden></p>${shoppingPath ? '<p><a class="button primary" data-tds-buyer-guide hidden></a></p>' : ''}<pre data-tds-result tabindex="0"></pre><div class="actions"><button type="button" data-tds-copy disabled>${esc(c.copy)}</button><button type="button" data-tds-export disabled>${esc(c.download)}</button></div></section></div>${checklist}${source}${mcpDocs(lang,tool)}<script type="application/json" data-tds-config>${json(metadata)}</script>`;
+    const content = `${crumb(lang,title,category)}<header class="tds-suite-head"${advice ? ' id="messgeraet-ausleihen-oder-kaufen"' : ''}><div><h1>${esc(title)}</h1><p>${esc(description)}</p>${checklistLink}</div><p class="tds-suite-note">${esc(c.local)}</p></header><div class="tds-suite-workspace"><section class="work-panel" aria-labelledby="tds-tool-heading"><h2 id="tds-tool-heading">${esc(c.input)}</h2>${energy ? energyHelper(energy, tool.inputSchema.properties.sessionAKwh) : ''}<p class="tds-suite-meta">${esc(c.required)}</p><form data-tds-tool>${Object.entries(tool.inputSchema.properties).map(([key,schema]) => inputField(lang,tool,key,schema)).join('')}<div class="actions"><button class="primary" type="submit" disabled>${esc(c.execute)}</button><button type="button" data-tds-example disabled>${esc(c.examples)}</button></div></form><noscript><p>${esc(c.noscript)}</p></noscript><p class="tds-suite-meta">${esc(review?.privacy ?? c.privacy)}</p><p role="status" aria-live="polite" data-tds-status></p></section><section class="work-panel tds-suite-result" aria-labelledby="tds-result-heading"><h2 id="tds-result-heading">${esc(c.result)}</h2><p class="tds-suite-result-summary" data-tds-summary hidden></p>${shoppingPath ? '<p><a class="button primary" data-tds-buyer-guide hidden></a></p>' : ''}<pre data-tds-result tabindex="0"></pre><div class="actions"><button type="button" data-tds-copy disabled>${esc(c.copy)}</button><button type="button" data-tds-export disabled>${esc(c.download)}</button></div></section></div>${review ? laundryReview(review) : ''}${checklist}${source}${mcpDocs(lang,tool)}<script type="application/json" data-tds-config>${json(metadata)}</script>`;
     const url = origin + toolRoute(lang,tool);
     const dateModified = energy ? ukLaundryUpdated : advice?.updated;
     const graph = [{'@type':'WebApplication', name:title, description, url, inLanguage:locales[lang].tag, applicationCategory:'UtilitiesApplication', operatingSystem:'Web browser', browserRequirements:'Requires JavaScript', isAccessibleForFree:true, offers:{'@type':'Offer', price:0, priceCurrency:'USD'}, ...(dateModified ? {dateModified} : {})}];
     const machine = page({lang,slug,title,description,content,graph,discover:featured(tool),shoppingPath});
     const checklistText = advice ? `## ${advice.checklist}\n\n${advice.steps.map((step, i) => `${i + 1}. ${step}`).join('\n')}\n\n${advice.sources.map(([label, url]) => `${label} ${url}`).join('\n')}\n${updateLabel[lang]} ${advice.updated}\n\n` : '';
     const energyText = energy ? `## ${energy.title}\n\n${energy.instructions}\n\n${energy.example}\n\n` : '';
-    write(machine.slice(1), `# ${title}\n\n${url}\n\n${description}\n\n${checklistText}${energyText}${c.privacy}\n\n${c.endpoint} ${endpoint}\nMCP tool name ${tool.name}\n\n${JSON.stringify(tool.inputSchema,null,2)}\n`+(evidence?.url?`\n${c.evidence} ${evidence.url} ${updateLabel[lang]} ${evidence.checked}\n`:''));
+    write(machine.slice(1), `# ${title}\n\n${url}\n\n${description}\n\n${checklistText}${energyText}${review?.privacy ?? c.privacy}\n\n${review ? `## ${review.title}\n\n${review.benefit}\n\n${review.terms}\n\n` : ''}${c.endpoint} ${endpoint}\nMCP tool name ${tool.name}\n\n${JSON.stringify(tool.inputSchema,null,2)}\n`+(evidence?.url?`\n${c.evidence} ${evidence.url} ${updateLabel[lang]} ${evidence.checked}\n`:''));
   }
 }
 

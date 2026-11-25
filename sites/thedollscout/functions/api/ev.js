@@ -1,5 +1,5 @@
 import {MARKET_EVENTS,marketMeasurement} from '../../collector-assets/market-contract.mjs';
-import {REGIONAL_ACTIONS,REGIONAL_TOOL_PATHS,regionalMeasurement,regionalPageview} from '../../collector-assets/tds-suite/regional-measurement.mjs';
+import {REGIONAL_ACTIONS,REGIONAL_TOOL_PATHS,regionalMeasurement,regionalPageview,PAID_REVIEW_ACTIONS,paidReviewMeasurement} from '../../collector-assets/tds-suite/regional-measurement.mjs';
 import {WINTER_HUMIDITY_EVENT,validWinterHumidityEvent} from '../../collector-assets/winter-humidity-referral.mjs';
 // Client beacon endpoint (added 2026-08-19): the real-reader line. A row here
 // means JavaScript actually ran, which no crawler in the server-side log does.
@@ -33,6 +33,8 @@ export async function onRequestPost(ctx) {
     try { ref = body.r ? new URL(body.r).hostname.slice(0, 60) : ''; } catch (e) {}
     if(MARKET_EVENTS.includes(body.e)){const metric=marketMeasurement(body);if(!metric)return new Response(null,{status:204});ref=metric.ref;}
     if(REGIONAL_ACTIONS.includes(body.e)&&!regionalMeasurement(body))return new Response(null,{status:204});
+    const paidReview = PAID_REVIEW_ACTIONS.includes(body.e);
+    if (paidReview && !paidReviewMeasurement(body)) return new Response(null, {status:204});
     if(!body.e && REGIONAL_TOOL_PATHS.includes(path) && !regionalPageview(body)) return new Response(null,{status:204});
     if(body.e===WINTER_HUMIDITY_EVENT && !validWinterHumidityEvent(body))return new Response(null,{status:204});
     const shopping = ['shopping_official_click', 'shopping_compare'].includes(body.e) || Object.hasOwn(body, 'item') || Object.hasOwn(body, 'placement');
@@ -44,7 +46,7 @@ export async function onRequestPost(ctx) {
     // Unknown event names are dropped, not stored — an open-name endpoint is
     // write-anything storage, and the table stays honest by refusing it.
     const ALLOWED = new Set([...MARKET_EVENTS,...COLLECTOR_EVENTS,'collector_wish_generate','collector_wish_export','collector_wish_response_reported','collector_wish_fulfilled_reported','', 'affiliate_click', 'shopping_official_click', 'shopping_compare', 'price_check', 'odds_calc', 'cost_calc', 'checker_use', 'finder_use', 'lookup_use', 'collection_save', 'collection_export', 'collection_import', 'display_calc','display_plan_export','display_plan_example', 'collector_video_request', 'collector_video_tool','collector_budget_calc','collector_progress_calc','collector_series_calc','collector_series_save','collector_series_export','collector_mcp_copy','collector_swap_print_request','collector_swap_link_copy']);
-    if (body.e && !ALLOWED.has(body.e) && !REGIONAL_ACTIONS.includes(body.e) && body.e !== WINTER_HUMIDITY_EVENT) return new Response(null, { status: 204 });
+    if (body.e && !ALLOWED.has(body.e) && !REGIONAL_ACTIONS.includes(body.e) && !paidReview && body.e !== WINTER_HUMIDITY_EVENT) return new Response(null, { status: 204 });
     if (COLLECTOR_EVENTS.has(body.e) && (body.p !== path || !collectorEventAllowed(body.e, path))) return new Response(null, {status:204});
     // These are player requests and tool-link clicks, never watch time or completed plays.
     if (body.e?.startsWith('collector_video_') && !['/','/de/','/zh/'].includes(path)) return new Response(null, {status:204});
@@ -56,7 +58,7 @@ export async function onRequestPost(ctx) {
     const ev = body.e || '';
     const lang = langOf(path);
     const d = new Date().toISOString().slice(0, 10);
-    const country = (ctx.request.headers.get('cf-ipcountry') || '').slice(0, 2);
+    const country = paidReview ? '' : (ctx.request.headers.get('cf-ipcountry') || '').slice(0, 2);
     ctx.waitUntil(
       ctx.env.HITS.prepare('INSERT INTO hits (d, path, lang, country, ref, ev) VALUES (?,?,?,?,?,?)')
         .bind(d, path, lang, country, ref, ev)

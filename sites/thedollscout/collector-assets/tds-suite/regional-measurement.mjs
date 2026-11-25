@@ -3,6 +3,10 @@ export const REGIONAL_ACTIONS = Object.freeze(['tds_regional_result', 'tds_regio
 export const REGIONAL_TOOL_SLUGS = Object.freeze(['dach-meter-fit', 'uk-laundry-session']);
 export const REGIONAL_TOOL_PATHS = Object.freeze(['', '/de', '/zh'].flatMap(prefix =>
   REGIONAL_TOOL_SLUGS.map(slug => prefix + '/ai-tools/' + slug)));
+export const PAID_REVIEW_ACTIONS = Object.freeze([
+  'tds_paid_offer_view', 'tds_paid_member_open', 'tds_paid_workspace_saved', 'tds_paid_workspace_restored',
+]);
+export const PAID_REVIEW_PATHS = Object.freeze(REGIONAL_TOOL_PATHS.filter(path => path.endsWith('/uk-laundry-session')));
 
 function regionalPayload(body) {
   return !!body && typeof body === 'object' && !Array.isArray(body) &&
@@ -12,6 +16,10 @@ function regionalPayload(body) {
 
 export function regionalMeasurement(body) {
   return regionalPayload(body) && REGIONAL_ACTIONS.includes(body.e) && body.r === '';
+}
+
+export function paidReviewMeasurement(body) {
+  return regionalPayload(body) && PAID_REVIEW_PATHS.includes(body.p) && PAID_REVIEW_ACTIONS.includes(body.e) && body.r === '';
 }
 
 function webOrigin(value) {
@@ -50,13 +58,21 @@ function send(win, body) {
   try { Promise.resolve(win.fetch('/api/ev', {method: 'POST', body: JSON.stringify(body), keepalive: true})).catch(() => {}); } catch {}
 }
 
-export function recordRegionalAction(name, win = window) {
+function recordAction(name, win, allowed) {
   const body = {p: measurablePath(win), e: name, r: ''};
-  if (!regionalMeasurement(body)) return false;
+  if (!allowed(body)) return false;
   // Shared fleet analytics owns GA4 and the existing affiliate listener owns merchant exits.
   try { win.dispatchEvent(new win.CustomEvent('fleet:business', {detail: {name}})); } catch {}
   send(win, body);
   return true;
+}
+
+export function recordRegionalAction(name, win = window) {
+  return recordAction(name, win, regionalMeasurement);
+}
+
+export function recordPaidReviewAction(name, win = window) {
+  return recordAction(name, win, paidReviewMeasurement);
 }
 
 // Called once by the regional page's module entry point. The shared analytics
