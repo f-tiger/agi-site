@@ -86,6 +86,15 @@ test('laundry search stays on task and every search result can be read through t
 
 const focusedLookups = [
   {
+    path:'/guide/lichterkette-stromkosten.html', section:'zeitschaltuhr-strombilanz',
+    expectedTitle:'Weihnachtsbeleuchtung: Spart eine Zeitschaltuhr Strom?',
+    queries:['Lohnt sich eine Zeitschaltuhr für Weihnachtsbeleuchtung?',
+    'Was kostet eine LED-Lichterkette pro Stunde, Tag und Weihnachtszeit?',
+    'Adventbeleuchtung Stromkosten', 'Adventsbeleuchtung Stromkosten',
+    'Baumbeleuchtung Stromkosten', 'Weihnachtsbeleuchtung Stromkosten',],
+    evidence:['Timer','Stromkosten','Verbraucherzentrale'],
+  },
+  {
     path:'/guide/luftentfeuchter-ratgeber.html', section:'modell-bosch-d4000-eu',
     expectedTitle:'Bosch Dry 4000: deutsche Modellnummer prüfen',
     queries:['Bosch Dry 4000','D4000-EU','7733703558','4069143047774',
@@ -364,6 +373,22 @@ test('the German Bosch model-identity title is not returned for other variants o
   ]) {
     const {env,requests} = assetEnv();
     const result = await call('ratgeber_suche',{frage,sprache,max:3},env);
+    assert.equal(result.isError,false,frage);
+    assert.ok(!textOf(result).split('\n').includes('- ' + title),frage);
+    assert.deepEqual(requests.map(request => new URL(request.url).pathname),['/mcp-guides.json']);
+  }
+});
+
+test('the seasonal lighting title stays outside unrelated German guide searches', async () => {
+  const title = 'Weihnachtsbeleuchtung: Spart eine Zeitschaltuhr Strom?';
+  for (const frage of [
+    'Zeitschaltuhr', 'Was kostet die Hausbeleuchtung pro Tag?',
+    'Was kostet ein Heizlüfter mit Zeitschaltuhr?',
+    'Wie installiere ich die Weihnachtsbeleuchtung im Außenbereich sicher?',
+    'Lichterkette Timer Einschaltfenster 6 Stunden, wie viele gewünschte Einschaltminuten?',
+  ]) {
+    const {env,requests} = assetEnv();
+    const result = await call('ratgeber_suche',{frage,sprache:'de',max:3},env);
     assert.equal(result.isError,false,frage);
     assert.ok(!textOf(result).split('\n').includes('- ' + title),frage);
     assert.deepEqual(requests.map(request => new URL(request.url).pathname),['/mcp-guides.json']);

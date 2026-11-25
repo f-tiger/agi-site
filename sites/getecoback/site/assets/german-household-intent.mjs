@@ -48,6 +48,19 @@ function asksForBoschDry(query) {
     !coldRoom.test(query) && !asksForDehumidifierDrainRoute(query);
 }
 
+export const festiveLights = {
+  path:'/guide/lichterkette-stromkosten.html',
+  id:'zeitschaltuhr-strombilanz',
+  tool:'lichterkette_timer_netto',
+};
+
+function asksForFestiveLightingCost(query) {
+  const lights = /\b(?:(?:advents?|weihnachts?|christbaum|baum)[ -]+beleuchtung|(?:advents?|weihnachts?|christbaum|baum)beleuchtung|lichterkett\w*)\b/;
+  const costOrTimer = /\b(?:strom\w*|kost\w*|verbrauch\w*|watt|kwh|zeitschaltuhr\w*|timer|spar\w*|lohnt)\b/;
+  const otherTask = /\b(?:anschliess\w*|repar\w*|defekt\w*|brandschutz|ip[ -]?\d{2}|installier\w*|einschaltfenster|einschaltminut\w*|programmier\w*|tageszyklus)\b/;
+  return lights.test(query) && costOrTimer.test(query) && !otherTask.test(query);
+}
+
 function asksForVacuumOffer(query) {
   const s1 = /\b(?:guard[ -]+s1|12558410)\b/.test(query);
   const m1 = /\b(?:guard[ -]+m1|m1[ -]+parquet|12560320)\b/.test(query) ||
@@ -89,6 +102,7 @@ function humidifierAccessoryTask(query) {
 export function exactGermanHouseholdTask(query) {
   if (asksForVacuumOffer(query)) return vacuumOffer;
   if (asksForBoschDry(query)) return boschDry;
+  if (asksForFestiveLightingCost(query)) return festiveLights;
   const accessory = humidifierAccessoryTask(query);
   if (accessory) return accessory;
 

@@ -685,3 +685,26 @@ test('German Bosch Dry 4000 identity and equipment questions open the exact mode
   const hose = 'Der Ablaufschlauch von meinem Entfeuchter geht über eine Schwelle. Reicht der tiefere Bodenablauf?';
   assert.equal(searchEntries(index,hose,'de')[0]?.entry.u,'/guide/luftentfeuchter-keller.html#ablauf-vor-kauf');
 });
+
+test('German seasonal lighting cost questions open the net timer comparison', () => {
+  const guide = '/guide/lichterkette-stromkosten.html';
+  const target = guide + '#zeitschaltuhr-strombilanz';
+  for (const query of [
+    'Lohnt sich eine Zeitschaltuhr für Weihnachtsbeleuchtung?',
+    'Was kostet eine LED-Lichterkette pro Stunde, Tag und Weihnachtszeit?',
+    'Adventbeleuchtung Stromkosten', 'Adventsbeleuchtung Stromkosten',
+    'Baumbeleuchtung Stromkosten', 'Weihnachtsbeleuchtung Stromkosten',
+  ]) {
+    const hits = searchEntries(index,query,'de');
+    assert.equal(hits[0]?.entry.u,target,query);
+    assert.equal(hits[0].entry.t,'Weihnachtsbeleuchtung: Spart eine Zeitschaltuhr Strom?',query);
+    assert.equal(hits.filter(hit => hit.entry.u.split('#')[0] === guide).length,1,query);
+    assert.ok(!searchEntries(index,query,'en').some(hit => hit.entry.u === target),query);
+  }
+  for (const query of [
+    'Zeitschaltuhr', 'Was kostet die Hausbeleuchtung pro Tag?',
+    'Was kostet ein Heizlüfter mit Zeitschaltuhr?',
+    'Wie installiere ich die Weihnachtsbeleuchtung im Außenbereich sicher?',
+    'Lichterkette Timer Einschaltfenster 6 Stunden, wie viele gewünschte Einschaltminuten?',
+  ]) assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+});
