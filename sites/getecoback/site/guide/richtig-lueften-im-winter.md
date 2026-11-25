@@ -1,6 +1,6 @@
 # Richtig lüften im Winter: gekippt oder kurz weit auf?
 
-> Lüften im Winter trotz Regen? Prüfe die Außenluft und vergleiche mit eigenen Messwerten, wie viel Wasser die Raumluft vor und nach dem Lüften enthält.
+> Lüften bei Regen? Bei 20 °C und 50 % innen kann Außenluft mit 5 °C und 90 % rF Feuchte abführen. Vergleiche Messwerte vor und nach dem Lüften.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/richtig-lueften-im-winter.html
 
