@@ -1,4 +1,5 @@
 import {checkLaundrySeason} from '../site/assets/laundry-season.mjs';
+import {oskarFilterStock} from '../site/assets/oskar-filter-stock.mjs';
 
 const costPage = '/geraete-austausch-rechner.html';
 const methodPage = '/wie-wir-empfehlen.html';
@@ -204,13 +205,7 @@ export const kaufpraxis = [
       little_wechsel:number('Geplante vollständige Wechsel am Oskar little O-060.',0,50),
       vorhanden:number('Vorhandene passende unbenutzte einzelne O-030-Matten.',0,150),
     },
-    calculate({oskar_wechsel,little_wechsel,vorhanden}) {
-      if (![oskar_wechsel,little_wechsel,vorhanden].every(Number.isInteger)) throw new RangeError('Matten und Wechsel sind Ganzzahlen');
-      const need=oskar_wechsel*2+little_wechsel;
-      const packs=Math.ceil(Math.max(0,need-vorhanden)/2);
-      return {bedarf_matten:need,zusaetzliche_zweierpacks:packs,uebrige_matten:vorhanden+packs*2-need,
-        grenze:'O-030 gilt hier für die dokumentierten Oskar/Oskar little Ausführungen. Eigenen Wechselbedarf und tatsächlichen Packungsinhalt prüfen.'};
-    },
+    calculate:oskarFilterStock,
     example:{args:{oskar_wechsel:2,little_wechsel:3,vorhanden:2},
       expect:{bedarf_matten:7,zusaetzliche_zweierpacks:3,uebrige_matten:1}},
   },

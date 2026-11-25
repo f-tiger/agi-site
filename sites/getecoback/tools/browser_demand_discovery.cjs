@@ -162,6 +162,21 @@ async function checkGermanFocusedDiscovery(browser,base){
   await results.first().click();
   await page.waitForURL(base+klarstein);
   check(await page.locator('#kraftwerk-10034664-lieferumfang').isVisible(),'Klarstein search opens the exact package section');
+  await page.goto(base+'/guide/luftbefeuchter-ratgeber.html?__ci=1#ersatzteile-zuordnen');
+  const stock=page.locator('#oskar-stock-form'), stockResult=page.locator('#oskar-stock-result');
+  const filterSource=page.locator('#oskar-stock-product');
+  check(await stock.isVisible(),'Oskar filter stock can be planned on the existing accessory guide');
+  equal(await stock.locator('input:invalid').count(),3,'Stock and planned changes need the reader’s inputs');
+  const calculateStock=stock.getByRole('button',{name:'Filterbedarf berechnen'});
+  for(const name of ['oskar_wechsel','little_wechsel','vorhanden'])await stock.locator('[name="'+name+'"]').fill('1');
+  await calculateStock.click();
+  check((await stockResult.textContent()).includes('Zusätzliche Zweierpacks: 1'),'One spare mat reduces the plan to one two-pack');
+  check(await filterSource.isVisible(),'The exact manufacturer pack appears for a shortfall');
+  await stock.locator('[name="vorhanden"]').fill('3');
+  equal(await stockResult.textContent(),'','A change to the stock clears the previous result');
+  await calculateStock.click();
+  check((await stockResult.textContent()).includes('Zusätzliche Zweierpacks: 0')&&await filterSource.isHidden(),
+   'Known sufficient stock has a zero-pack outcome');
   await page.goto(base+'/guide/fensterabdichtung-selber-bauen.html?__ci=1#abluft-ausschnitt-pruefen');
   const cutout=page.locator('#panel-cutout-form'), report=page.locator('#panel-cutout-result');
   check(await cutout.isVisible(),'The cutout form opens at the exact German answer');
@@ -235,6 +250,11 @@ async function checkGermanFocusedDiscovery(browser,base){
  const dryerDestination=new URL(await dryerShop.getAttribute('href'));
  equal(dryerDestination.origin+dryerDestination.pathname,'https://www.amazon.de/s','Only the existing dryer search is offered');
  equal(dryerDestination.searchParams.get('tag'),'getecoback-21','The existing dryer search has the approved tag');
+ await page.goto(base+'/guide/luftbefeuchter-ratgeber.html?__ci=1#ersatzteile-zuordnen');
+ const stockStatic=page.locator('[aria-labelledby="oskar-filtervorrat"]');
+ check(await stockStatic.getByText('Reicht der Vorrat, brauchst du keine zusätzliche Packung.',{exact:false}).isVisible(),
+  'The static German pack guide explains the zero-pack decision');
+ check(await page.locator('#oskar-stock-form').isHidden(),'The stock form requires its local calculator');
  await page.goto(base+'/guide/fensterabdichtung-selber-bauen.html?__ci=1#abluft-ausschnitt-pruefen');
  const cutoutProof=page.locator('section[aria-labelledby="abluft-ausschnitt-pruefen"]');
  check(await cutoutProof.getByText('50 mm frei',{exact:false}).isVisible(),'The static guide contains the worked cutout example');

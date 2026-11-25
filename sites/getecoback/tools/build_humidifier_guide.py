@@ -64,6 +64,26 @@ def wall_rows():
     return ''.join('<tr><th scope="row">' + str(rh) + ' %</th>' + ''.join(f'<td>{round(rh*saturated(20)/saturated(t))} %</td>' for t in [16,14,12]) + '</tr>' for rh in [35,40,45,50,55])
 
 
+def oskar_stock_check(data):
+    path = '/assets/oskar-filter-stock.mjs'
+    version = hashlib.sha256((ROOT/'site'/path.lstrip('/')).read_bytes()).hexdigest()[:12]
+    source = esc(data['sources']['oskar_filter']['url'], quote=True)
+    return f'''<div class="hc-answer" aria-labelledby="oskar-filtervorrat">
+<h3 id="oskar-filtervorrat">Oskar-Filtervorrat für geplante Wechsel berechnen</h3>
+<p>Multipliziere die geplanten vollständigen Wechsel am Oskar O-020 mit zwei und addiere einen Filter pro Wechsel am Oskar little O-060. Ziehe deine passenden unbenutzten Matten ab. Teile einen positiven Rest durch zwei und runde auf ganze O-030-Zweierpacks auf. Reicht der Vorrat, brauchst du keine zusätzliche Packung.</p>
+<p id="oskar-stock-help">Zähle lose Matten einzeln. Trage 0 ein, wenn du an einem Modell keinen Wechsel planst oder sicher keine passenden Matten vorrätig hast. Kläre bei einem unleserlichen Typenschild oder einer unklaren Packung zuerst die Zuordnung.</p>
+<style>#oskar-stock-form label{{display:block;font-weight:650}}#oskar-stock-form fieldset{{min-width:0;border:1px solid #cfd8e0;border-radius:8px;padding:12px}}#oskar-stock-form input{{font:inherit;width:100%;max-width:12rem;padding:6px}}#oskar-stock-form button{{font:inherit;font-weight:650;padding:8px 12px}}</style>
+<form id="oskar-stock-form" aria-describedby="oskar-stock-help" hidden>
+<fieldset><legend>Eigene geplante Wechsel und vorhandene Matten</legend>
+<p><label for="oskar-change">Vollständige Wechsel am Oskar O-020</label><input id="oskar-change" name="oskar_wechsel" type="number" inputmode="numeric" min="0" max="50" step="1" required></p>
+<p><label for="oskar-little-change">Vollständige Wechsel am Oskar little O-060</label><input id="oskar-little-change" name="little_wechsel" type="number" inputmode="numeric" min="0" max="50" step="1" required></p>
+<p><label for="oskar-stock">Vorhandene passende unbenutzte O-030-Matten</label><input id="oskar-stock" name="vorhanden" type="number" inputmode="numeric" min="0" max="150" step="1" required></p>
+<button type="submit">Filterbedarf berechnen</button></fieldset>
+<p id="oskar-stock-result" role="status"></p>
+<p id="oskar-stock-product" hidden><a href="{source}">O-030-Zweierpack bei Stadler Form abgleichen</a></p>
+</form><script type="module" src="{path}?v={version}"></script></div>'''
+
+
 def accessory_guide(data):
     models = {product['id']: product['name'] for product in data['products']}
     matches = [
@@ -87,7 +107,7 @@ def accessory_guide(data):
         'Ist bereits eine passende unbenutzte Matte da, genügt ein Zweierpack.</p>'
         '<p>Bei anderen Modellnummern oder unbekanntem Packungsinhalt kläre zuerst die Zuordnung. '
         'Bei Kondenswasser oder feuchten Stellen zusätzliche Befeuchtung pausieren und die Ursache prüfen.</p>'
-        + ref(['oskar_manual', 'oskar_little_manual'], data) +
+        + oskar_stock_check(data) + ref(['oskar_manual', 'oskar_little_manual'], data) +
         '<p class="hc-note">Abgleich mit den deutschen Zubehörseiten der Hersteller am <time datetime="2026-11-25">25. November 2026</time>. '
         'Beim LB 55 weichen die Mengenangaben auf der Zubehörseite voneinander ab.</p></section>'
     )
