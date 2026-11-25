@@ -84,6 +84,20 @@ test('laundry search stays on task and every search result can be read through t
   }
 });
 
+test('passive absorber search and reader explain what the package weight means', async () => {
+  const {env} = assetEnv();
+  const path='/guide/luftentfeuchter-granulat-oder-elektrisch.html';
+  const result=await call('ratgeber_suche',{frage:'Reicht eine Granulatbox zum Wäschetrocknen?',sprache:'de',max:1},env);
+  assert.equal(result.isError,false);
+  const lines=textOf(result).split('\n');
+  assert.equal(lines[1],'- Reicht eine Granulatbox zum Wäschetrocknen?');
+  assert.equal(lines[2].trim(),'https://getecoback.com'+path);
+  const reading=await call('ratgeber_lesen',{pfad:path},env);
+  assert.equal(reading.isError,false);
+  assert.match(textOf(reading),/behalte deinen vorhandenen Ständer/);
+  assert.match(textOf(reading),/pattex-aero-360-neutral-tabs-nachfllpack/);
+});
+
 test('blind-side condensation search and reader preserve the measurement limits and source', async () => {
   const {env} = assetEnv();
   const path='/guide/luftfeuchtigkeit-richtig-messen.html';

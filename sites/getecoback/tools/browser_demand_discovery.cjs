@@ -33,6 +33,8 @@ async function checkGermanFocusedDiscovery(browser,base){
  const destination='/waeschetrockner-oder-luftentfeuchter.html#luftentfeuchter-waesche-kosten';
  const shadePage='/guide/luftfeuchtigkeit-richtig-messen.html';
  const shadeSection='kondenswasser-hinter-plissee';
+ const granulatePage='/guide/luftentfeuchter-granulat-oder-elektrisch.html';
+ const granulateSection='granulat-waesche-entscheidung';
  const positive=['Was kostet eine Ladung Wäsche nur mit meinem Luftentfeuchter?','Stromkosten Luftentfeuchter Wäsche'];
  const ordinary=[
   ['Trockner oder Luftentfeuchter Stromkosten Wäsche','/waeschetrockner-oder-luftentfeuchter.html'],
@@ -83,6 +85,8 @@ async function checkGermanFocusedDiscovery(browser,base){
    {href:shadePage+'#'+shadeSection,language:'de'},'A wet window behind a blind leads to the measurement answer');
   check((await search('Fenster hinter dem Rollo beschlägt zwischen den beiden Scheiben'))
    .every(result=>result.href!==shadePage+'#'+shadeSection),'Glass cavity condensation stays outside the measurement answer');
+  equal((await search('Reicht eine Granulatbox zum Wäschetrocknen?'))[0],
+   {href:granulatePage+'#'+granulateSection,language:'de'},'Passively drying a load leads to the German buying decision');
   equal((await search('Welcher Ersatzfilter passt in meinen Beurer LR 401?'))[0],{href:'/ersatzfilter.html#beurer-lr401',language:'de'},'Beurer model reaches the audited exact filter');
   equal((await search('Welchen Filter brauche ich für meinen Levoit Core 300S ohne Pro?'))[0],{href:'/ersatzfilter.html#levoit-core-300s',language:'de'},'Core 300S reaches its exact standard filter');
   const ventilation='Soll ich meinen Keller lüften? Innen 16 °C und 75 %, draußen 8 °C und 90 %, Wand 12 °C.';
@@ -249,6 +253,14 @@ async function checkGermanFocusedDiscovery(browser,base){
   'The static answer keeps the missing-temperature branch');
  check(await shadeAnswer.getByRole('link',{name:'Taupunkt und Scheibentemperatur mit eigenen Messwerten vergleichen'}).isVisible(),
   'The calculator link works as ordinary navigation');
+ await page.goto(base+granulatePage+'?__ci=1');
+ const passiveLink=page.getByRole('link',{name:'Entscheidung für nasse Wäsche prüfen',exact:true});
+ await passiveLink.focus();
+ await page.keyboard.press('Enter');
+ await page.waitForURL(base+granulatePage+'?__ci=1#'+granulateSection);
+ check(await page.locator('#'+granulateSection).isVisible(),'The passive absorber decision is reachable without scripts');
+ check(await page.getByText('behalte deinen vorhandenen Ständer',{exact:false}).first().isVisible(),
+  'Using the existing drying rack remains an option');
  await page.goto(base+'/guide/heizkosten-vergleich-rechner.html?__ci=1');
  const heatLink=page.getByRole('link',{name:'Kurze Einsätze von Heizlüfter und Infrarot vergleichen',exact:true});
  check(await heatLink.isVisible(),'Direct-heat comparison has a native in-page link without JavaScript');
