@@ -1,8 +1,10 @@
 # Duschen: Kosten und Sparbrause durchrechnen | EcoBack
 
-> Duschkosten aus Litern, Minuten, Temperatur und Energiepreis berechnen. Zwei Durchflüsse vergleichen, Wasser mitrechnen und Sparbrause auf Eignung prüfen.
+> Sparbrause am Durchlauferhitzer prüfen: Mindestdurchfluss aus der Anleitung mit einem passenden Messwert vergleichen und Duschkosten berechnen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/duschen-kosten-rechner.html
+
+[Mindestdurchfluss vor dem Kauf prüfen](https://getecoback.com/guide/duschen-kosten-rechner.html#durchlauferhitzer-mindestdurchfluss)
 
 ## Mit eigenen Werten rechnen
 Alle Vorgaben sind frei gewählte Beispiele, keine aktuellen Tarife, Produktmessungen oder Sparversprechen. Für Deutschland und Österreich EUR, für die Schweiz CHF wählen. Alle Geldbeträge müssen dieselbe Währung verwenden; keine Wechselkursumrechnung.
@@ -20,8 +22,17 @@ Fange Wasser bei deiner üblichen Einstellung in einem geeigneten Behälter auf 
 Er berechnet die Wärme für die Temperaturerhöhung des gemischten Duschwassers: Liter × Temperaturdifferenz × 0,001163 kWh/(Liter·°C). Die Wärme wird durch deinen angenommenen Systemfaktor geteilt. Bei direkter elektrischer Erwärmung kann 1 eine vereinfachte Annahme sein; bei einem Kessel liegt ein Wirkungsgrad unter 1, bei einer Wärmepumpe kann ein geeigneter Leistungsfaktor über 1 liegen. Keine dieser Zahlen ist eine Gerätebewertung.
 Leitungs-, Speicher- und Zirkulationsverluste sowie Grundgebühren werden nicht modelliert. Bei zentral abgerechneter Wärme ohne bekannten Systemfaktor bleibt dies eine Szenariorechnung. Senke weder die Speichertemperatur noch die hygienisch nötigen Anlagentemperaturen aufgrund des Rechners. Die Duschtemperatur ist nicht die Speichertemperatur.
 
-## Eine Sparbrause muss zur Anlage passen
-Bei hydraulischen Durchlauferhitzern kann zu wenig Durchfluss das Einschalten verhindern. Prüfe Mindestdurchfluss und Herstellerfreigabe, außerdem Druck, Anschluss und den gewünschten Strahl. Die erwartete Einsparung gilt nur bei gleicher Duschzeit und Temperatur; längeres Duschen kann sie aufheben. Die Rechnung berücksichtigt den Kaufpreis, aber keine Reparaturen oder Finanzierungskosten.
+## Passt eine Sparbrause zu meinem Durchlauferhitzer?
+
+**Vergleiche die Einschaltmenge aus der Anleitung deines Geräts mit einem Messwert am selben Bezugspunkt.** Bei hydraulischen Durchlauferhitzern kann zu wenig Durchfluss das Einschalten verhindern. Die Literangabe auf der Brausenpackung gilt unter den angegebenen Prüfbedingungen. Wenn die Anleitung den Durchfluss im Gerät meint, kläre den passenden Messwert mit dem Hersteller oder Fachbetrieb. Die gemischte Duschmenge allein reicht dafür nicht.
+
+- **Weniger als gefordert:** Beispiel mit vergleichbaren Werten: Bei 8 l/min gefordertem Mindestdurchfluss fehlen mit 6 l/min gemessenem Durchfluss 2 l/min. Wähle diesen Durchfluss für das Gerät nicht.
+
+- **Wert fehlt oder steht nur auf der Packung:** Behalte die vorhandene Brause, bis Gerät, Einschaltmenge und passender Messwert geklärt sind.
+
+- **Am Grenzwert oder darüber:** Lies die Bedingung genau. Bei „mehr als“ genügt Gleichheit nicht. Prüfe außerdem Druck, Anschluss und Herstellerfreigabe für die konkrete Kombination, bevor du sie kaufst.
+
+[Stiebel Eltron: Einschaltmengen und Druckverluste bei hydraulischen Geräten (Anleitung, PDF)](https://www.stiebel-eltron.com/static/ste/docportal/manual/DM0000018436-fjw.pdf), gelesen am 25.11.2026. Die Werte im Beispiel sind frei gewählt. Wenn die Kombination passt, kannst du die [Duschkosten bei gleicher Zeit und Temperatur vergleichen](https://getecoback.com/guide/duschen-kosten-rechner.html#rechner). Die Rechnung berücksichtigt den Kaufpreis, aber keine Reparaturen oder Finanzierungskosten.
 
 ## Erst Eignung prüfen, dann vergleichen
 **Anzeige · Affiliate-Links** — Als Amazon-Partner verdienen wir an qualifizierten Verkäufen. Keine eigenen Produkttests; Kategorie-Suchen sind keine geprüften Modellangebote. Amazon.de ist der deutsche Shop. Lieferung, Anschluss, Anleitung und Rückgabe selbst prüfen.

@@ -145,6 +145,7 @@ test('appliance evidence survives in both the generated mirror and edge fallback
    'https://www.remko.de/gewerblich/klimasysteme/lokal/rkl-dc/',
   ]],
   ['guide/duschen-kosten-rechner', [
+   'https://www.stiebel-eltron.com/static/ste/docportal/manual/DM0000018436-fjw.pdf',
    'https://www.ikea.com/de/de/p/tisken-handduschenhalter-mit-saugnapf-weiss-50400307/',
    'https://www.hansgrohe.de/articledetail-pulsify-s-handbrause-105-1jet-ecosmart-24121000',
   ]],
