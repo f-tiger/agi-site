@@ -76,9 +76,8 @@ def hero(d, zh):
     intro='从一条值得看的观点开始，了解工作、学习与未来正在发生什么。' if zh else 'Start with a perspective worth watching. Explore what AI means for work, learning and the future.'
     return f'''<section class="focus-intro home-editorial" aria-labelledby="focus-title" data-release="agi-focus-20261001">
 <div class="home-opening"><div><h1 id="focus-title">{headline}</h1><p class="home-lead">{intro}</p></div><a class="focus-primary" href="{base}/future-guide" data-home-action="library">{'探索视频与观点' if zh else 'Explore videos & ideas'} ↗</a></div>
-{evidence_desk(d,zh)}
 <div class="home-stats" id="home-stats">{content['stats']}</div>
-<div class="home-hero-grid"><div id="home-feature">{content['feature']}</div><aside class="home-outlook" aria-label="{'AGI 倒计时与投票' if zh else 'AGI countdown and poll'}">{countdown(zh)}{poll(zh)}</aside></div>
+<div class="home-hero-grid"><div class="home-feature-column">{evidence_desk(d,zh)}<div id="home-feature">{content['feature']}</div></div><aside class="home-outlook" aria-label="{'AGI 倒计时与投票' if zh else 'AGI countdown and poll'}">{countdown(zh)}{poll(zh)}</aside></div>
 {capital_radar(zh)}
 <div id="home-feed">{content['feed']}</div>
 <section class="home-next"><div><h2>{'看完之后，继续追问。' if zh else 'Turn a good question into a next step.'}</h2><p>{'收藏观点、核对证据，或让贾维斯围绕你的问题继续研究。' if zh else 'Save a perspective, inspect the evidence, or give Jarvis a question to investigate.'}</p></div><nav><a href="{base}/future-guide#notebook" data-home-action="notebook">{'我的收藏与行动' if zh else 'My saved views & actions'}</a><a href="{base}/jarvis" data-home-action="jarvis">{'让贾维斯继续研究' if zh else 'Research with Jarvis'}</a></nav></section>
@@ -138,7 +137,7 @@ def render():
         s=re.sub(r'/home-focus/media\.mjs\?v=[^\"]+', '/home-focus/media.mjs?v=20261003-daily1', s)
         if '/home-focus/media.mjs' not in s:s=s.replace('</head>','<script type="module" src="/home-focus/media.mjs?v=20261003-daily1"></script>\n</head>')
         if '/home-focus/nav.css' not in s:s=s.replace('</head>','<link rel="stylesheet" href="/home-focus/nav.css?v=20261003-nav2">\n</head>')
-        s=s.replace('/home-focus/focus.css?v=1','/home-focus/focus.css?v=20261003')
+        s=re.sub(r'/home-focus/focus\.css\?v=[^"\s]+', '/home-focus/focus.css?v=20261125', s)
         if '/home-focus/countdown.js' not in s:
             s=s.replace('</head>', '<script type="module" src="/home-focus/countdown.js"></script>\n</head>')
         if '/home-focus/vote.js' not in s:
