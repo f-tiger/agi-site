@@ -31,6 +31,8 @@ async function checkExactDelonghiPurchase(page,base){
 
 async function checkGermanFocusedDiscovery(browser,base){
  const destination='/waeschetrockner-oder-luftentfeuchter.html#luftentfeuchter-waesche-kosten';
+ const shadePage='/guide/luftfeuchtigkeit-richtig-messen.html';
+ const shadeSection='kondenswasser-hinter-plissee';
  const positive=['Was kostet eine Ladung Wäsche nur mit meinem Luftentfeuchter?','Stromkosten Luftentfeuchter Wäsche'];
  const ordinary=[
   ['Trockner oder Luftentfeuchter Stromkosten Wäsche','/waeschetrockner-oder-luftentfeuchter.html'],
@@ -77,6 +79,10 @@ async function checkGermanFocusedDiscovery(browser,base){
    check(matches.every(match=>match.href!==destination),'A different buying or information intent does not lead to the single-method tool: '+query);
    if(previousDestination)equal(matches[0]?.href,previousDestination,'Existing searches keep their first destination: '+query);
   }
+  equal((await search('Warum ist mein Fenster hinter dem Plissee nass, obwohl das Hygrometer 50 % zeigt?'))[0],
+   {href:shadePage+'#'+shadeSection,language:'de'},'A wet window behind a blind leads to the measurement answer');
+  check((await search('Fenster hinter dem Rollo beschlägt zwischen den beiden Scheiben'))
+   .every(result=>result.href!==shadePage+'#'+shadeSection),'Glass cavity condensation stays outside the measurement answer');
   equal((await search('Welcher Ersatzfilter passt in meinen Beurer LR 401?'))[0],{href:'/ersatzfilter.html#beurer-lr401',language:'de'},'Beurer model reaches the audited exact filter');
   equal((await search('Welchen Filter brauche ich für meinen Levoit Core 300S ohne Pro?'))[0],{href:'/ersatzfilter.html#levoit-core-300s',language:'de'},'Core 300S reaches its exact standard filter');
   const ventilation='Soll ich meinen Keller lüften? Innen 16 °C und 75 %, draußen 8 °C und 90 %, Wand 12 °C.';
@@ -231,6 +237,18 @@ async function checkGermanFocusedDiscovery(browser,base){
  const showerAnswer=page.locator('section[aria-labelledby="durchlauferhitzer-mindestdurchfluss"]');
  check(await showerAnswer.getByText('Behalte die vorhandene Brause',{exact:false}).isVisible(),
   'The static shower advice keeps the wait and no-purchase option');
+ await page.goto(base+shadePage+'?__ci=1');
+ const shadeLink=page.getByRole('link',{name:'Nasse Scheibe hinter dem Plissee prüfen',exact:true});
+ equal(await shadeLink.getAttribute('href'),'#'+shadeSection,'The static intro opens the measurement answer');
+ await shadeLink.focus();
+ await page.keyboard.press('Enter');
+ await page.waitForURL(base+shadePage+'?__ci=1#'+shadeSection);
+ const shadeAnswer=page.locator('section[aria-labelledby="'+shadeSection+'"]');
+ check(await shadeAnswer.getByText('9,3 °C',{exact:false}).isVisible(),'The dew point example works without JavaScript');
+ check(await shadeAnswer.getByText('Ohne verlässliche Scheibentemperatur',{exact:false}).isVisible(),
+  'The static answer keeps the missing-temperature branch');
+ check(await shadeAnswer.getByRole('link',{name:'Taupunkt und Scheibentemperatur mit eigenen Messwerten vergleichen'}).isVisible(),
+  'The calculator link works as ordinary navigation');
  await page.goto(base+'/guide/heizkosten-vergleich-rechner.html?__ci=1');
  const heatLink=page.getByRole('link',{name:'Kurze Einsätze von Heizlüfter und Infrarot vergleichen',exact:true});
  check(await heatLink.isVisible(),'Direct-heat comparison has a native in-page link without JavaScript');

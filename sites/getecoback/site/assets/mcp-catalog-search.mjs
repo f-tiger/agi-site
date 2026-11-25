@@ -1,4 +1,4 @@
-import {boschDry, comfeeVariant, directHeat, exactGermanHouseholdTask, festiveLights, klarsteinPackage, showerFlow, vacuumOffer} from './german-household-intent.mjs?v=057d752ca0fa';
+import {boschDry, comfeeVariant, directHeat, exactGermanHouseholdTask, exactWindowShadeMeasurement, festiveLights, klarsteinPackage, showerFlow, vacuumOffer} from './german-household-intent.mjs?v=6c40d2693fa4';
 import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion, glassvacModel, windowVacCharging} from './kaercher-saugduese-intent.mjs';
@@ -382,6 +382,15 @@ export function findCatalogueTools(index, {query='', category='', name=null}={})
     asksForPortaSplitWindowLip(focus.query);
   const portaSplitVariant = namesDifferentPortaSplit(focus.query);
   const portaSplitLipTool = 'midea_portasplit_fensterfalz_pruefen';
+  const measuredDewPoint = asksForMeasuredIndoorDewPoint(focus.query) || asksForIndoorDewPointThreshold(focus.query);
+  const shade = measuredDewPoint ? null : exactWindowShadeMeasurement(focus.query);
+  if (shade) {
+    const guideSearch = index.find(entry => entry.tool.name === shade.tool && eligible(entry));
+    if (guideSearch) {
+      const citation_url = 'https://getecoback.com' + shade.path;
+      return [{...guideSearch.tool, citation_url, guide_url:citation_url + '#' + shade.id}];
+    }
+  }
   const householdTask = exactGermanHouseholdTask(focus.query);
   if (householdTask === boschDry || householdTask === comfeeVariant || householdTask === festiveLights || householdTask === showerFlow || householdTask === directHeat || householdTask === klarsteinPackage) {
     const guideSearch = index.find(entry => entry.tool.name === householdTask.tool && eligible(entry));
@@ -465,7 +474,7 @@ export function findCatalogueTools(index, {query='', category='', name=null}={})
   else if (trotecConditions) preferredName = trotecTool;
   else if (asksForDehumidifierDrainRoute(focus.query)) preferredName = 'entfeuchter_ablaufcheck';
   else if (cellarVentilation) preferredName = cellarVentilationTool;
-  else if (!nonIndoorGlass && (asksForMeasuredIndoorDewPoint(focus.query) || asksForIndoorDewPointThreshold(focus.query))) preferredName = windowDewPointTool;
+  else if (!nonIndoorGlass && measuredDewPoint) preferredName = windowDewPointTool;
   else if (fritzValve) preferredName = fritzValveTool;
   else if (householdTask) preferredName = householdTask.tool;
   else if (singleLaundry) preferredName = singleLaundryTool;

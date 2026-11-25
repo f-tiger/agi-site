@@ -159,9 +159,29 @@
         "description": "Wo steht ein Hygrometer richtig? Ordne 55 % und 60 % bei zwei Geräten ein und beobachte Temperatur, Luftfeuchte und Lüftung mit einem einfachen Protokoll.",
         "heading": "Luftfeuchtigkeit messen, ohne vorschnell ein Gerät zu kaufen",
         "intro": "Ein Hygrometer ist ein guter Anfang. Aussagekräftig wird es mit einem festen Messort und etwas Kontext: Wie warm war der Raum, wurde gerade geduscht, gelüftet oder Wäsche aufgehängt?",
-        "modified": "2026-11-22",
+        "modified": "2026-11-25",
         "answer_title": "Kurzentscheidung",
         "answer": "Nutze einen festen, repräsentativen Platz im Raum und beobachte den Verlauf. Eine Messung direkt an der kalten Fensterbank beschreibt einen anderen Ort als eine Messung neben der Heizung. Ein einzelner Wert entscheidet nicht, ob ein Entfeuchter nötig ist.",
+        "window_cover_check": {
+          "id": "kondenswasser-hinter-plissee",
+          "title": "Fenster hinter dem Plissee nass trotz 50 Prozent Luftfeuchte?",
+          "search_description": "Raumluft und Temperatur der inneren Scheibe gleichzeitig messen. Bei 20 °C und 50 % liegt der Taupunkt bei etwa 9,3 °C. Ohne verlässlichen Glaswert bleibt die Einordnung offen.",
+          "answer": "Ein Hygrometer in der Raummitte misst die Raumluft. Direkt an einer kalten Scheibe kann dieselbe Luft so weit abkühlen, dass sich Wasser auf der Innenseite absetzt. Prüfe zuerst, wo das Wasser sitzt, und vergleiche Temperaturen am selben Morgen.",
+          "steps": [
+            "Prüfe nur sicher erreichbare Glasflächen. Lässt sich das Wasser innen abwischen, ist es auf der Innenseite. Bei Beschlag außen oder zwischen den Scheiben passt diese Messung nicht zur Ursache.",
+            "Notiere Raumtemperatur und relative Feuchte am gewohnten Messort. Miss möglichst zur selben Zeit die innere Glasoberfläche an der nassen Stelle, nach Anleitung des Thermometers. Halte fest, ob Plissee, Rollo oder Vorhang geschlossen war.",
+            "Wiederhole den Vergleich an einer trockenen Scheibe oder am nächsten Morgen. Halte Lüften, Heizen und Messzeit fest. Wenn du die Abdeckung testweise anders lässt, vergleiche auch Außentemperatur und Feuchte. Die Beobachtung allein beweist keine Ursache."
+          ],
+          "measurement_limit": "Ohne verlässliche Scheibentemperatur bleibt der Vergleich offen. Bei einem Infrarotthermometer prüfe in der Anleitung die Eignung für Glas und den Messabstand. Die Raumtemperatur ersetzt den Scheibenwert nicht.",
+          "example": "Beispiel mit 20 °C Raumtemperatur und 50 % relativer Feuchte. Der Taupunkt liegt bei etwa 9,3 °C. Bei 8 °C an der Innenscheibe ist Kondenswasser rechnerisch möglich. Bei 12 °C liegt dieselbe Scheibe unter diesen Beispielbedingungen über dem Taupunkt.",
+          "decision": "Prüfe Messort und kalte Flächen, bevor du einen Entfeuchter kaufst. Tritt das Wasser regelmäßig auf oder werden Rahmen beziehungsweise Wand feucht, dokumentiere Ort und Zeiten und kläre die Ursache mit Hausverwaltung oder Fachbetrieb.",
+          "source": [
+            "Verbraucherzentrale: relative Feuchte an kalten Oberflächen",
+            "https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426"
+          ],
+          "source_checked": "2026-11-25",
+          "tool": "/guide/fenster-beschlagen-innen.html#fenstersauger-gegen-kondenswasser"
+        },
         "hygrometer_comparison": {
           "title": "Zwei Hygrometer zeigen 55 % und 60 % – passt das zur Toleranz?",
           "jump_label": "Direkt zum Vergleich: 55 % und 60 %",

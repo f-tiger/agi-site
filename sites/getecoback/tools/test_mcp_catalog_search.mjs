@@ -137,6 +137,22 @@ test('the German window condensation question finds the measured check and fixed
   assert.notEqual(findCatalogueTools(compact,{query:ventilate})[0]?.name, name, ventilate);
 });
 
+test('condensation behind a blind finds the German guide or the measured dew-point tool', async () => {
+  const guide='/guide/luftfeuchtigkeit-richtig-messen.html#kondenswasser-hinter-plissee';
+  const question='Warum ist mein Fenster hinter dem Plissee nass, obwohl das Hygrometer 50 % zeigt?';
+  const result=await catalogue({q:question,view:'compact',limit:3});
+  assert.deepEqual(names(result.tools),['ratgeber_suche']);
+  assert.equal(toolGuidePath(result.tools[0]),guide);
+  assert.equal(toolGuidePath(findCatalogueTools(compact,{query:question})[0]),guide);
+  const measured='Taupunkt berechnen: Raumtemperatur 20 Grad, Luftfeuchte 50 Prozent, Scheibe 8 Grad, innen nass hinter dem Plissee';
+  for (const category of ['', 'Feuchte']) {
+    assert.equal(findCatalogueTools(compact,{query:measured,category})[0]?.name,'fenster_oberflaeche_taucheck');
+  }
+  const glazing='Fenster hinter dem Rollo beschlägt zwischen den beiden Scheiben';
+  assert.ok(findCatalogueTools(compact,{query:glazing}).every(tool=>toolGuidePath(tool)!==guide));
+  assert.equal(analytics,0);
+});
+
 test('everyday measured glass and wall questions keep the same dew-point calculation', async () => {
   const name = 'fenster_oberflaeche_taucheck';
   const canonical = origin + '/guide/fenster-beschlagen-innen.html';
