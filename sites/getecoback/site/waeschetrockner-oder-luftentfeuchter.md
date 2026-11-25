@@ -82,7 +82,7 @@ Zur Messung kannst du ein geeignetes Strommessgerät zwischen Steckdose und Ger�
 
 Große oder eilige Ladungen bleiben oft im Trockner. Zähle alle Ladungen einer Saison und gib separat an, wie viele du wirklich ersetzen kannst. Vergleiche nur vollständige, gleich trockene Durchgänge mit gleicher Wäschemenge und Schleuderdrehzahl.
 
-**Frei gewähltes Beispiel:** Von 100 Ladungen bleiben 40 im Trockner. Bei 1,4 kWh im Trockner, 0,6 kWh mit Entfeuchter einschließlich Zusatzstrom und 0,35 €/kWh kosten alle Trocknerladungen 49,00 €. Der Mix mit 60 ersetzten Ladungen kostet 32,20 € und spart 16,80 € pro Saison. 100 € zusätzliche Anschaffung wären rechnerisch ab der 6. Saison gedeckt.
+**Frei gewähltes Beispiel:** Wenn 60 von 100 Ladungen wechseln, bleiben 40 im Trockner. Bei 1,4 kWh im Trockner, 0,6 kWh mit Entfeuchter einschließlich Zusatzstrom und 0,35 €/kWh kosten alle Trocknerladungen 49,00 €. Der Mix kostet 32,20 €. Das sind 16,80 € Ersparnis pro Saison. Bei gleichbleibenden Werten sind sechs volle Saisons nötig, um die zusätzlichen Anschaffungskosten von 100 € zu decken.
 
 Für den Mix rechnest du verbleibende Trocknerladungen × Trockner-kWh plus ersetzte Ladungen × Entfeuchter-kWh. Multipliziere die Summe mit deinem Arbeitspreis. Ziehe die Mixkosten von den bisherigen Kosten ab.
 

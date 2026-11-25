@@ -23,8 +23,8 @@ class LlmsFull(unittest.TestCase):
         part = re.search(r'<section[^>]*id="waesche-saisonwechsel".*?</section>', raw, re.S)[0]
         self.assertIn('data-laundry-season hidden inert', part)
         self.assertIn('href="#waesche-saisonwechsel"', raw)
-        for fact in ('Von 100 Ladungen bleiben 40 im Trockner', '49,00 €', '32,20 €',
-                     '16,80 € pro Saison', 'ab der 6. Saison', 'Nicht erfasste Heizwärme'):
+        for fact in ('60 von 100 Ladungen wechseln, bleiben 40 im Trockner', '49,00 €', '32,20 €',
+                     '16,80 € Ersparnis pro Saison', 'sechs volle Saisons', 'Nicht erfasste Heizwärme'):
             self.assertIn(fact, part)
             self.assertEqual(mirror.count(fact), 1)
         self.assertNotIn('data-laundry-season', mirror)
