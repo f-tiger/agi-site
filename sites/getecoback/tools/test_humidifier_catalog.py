@@ -186,6 +186,19 @@ class HumidifierTests(unittest.TestCase):
             self.assertIn('Mengenangaben', lookup)
             self.assertNotIn('amazon.de/', lookup)
 
+    def test_oskar_stock_has_a_static_route_and_cites_the_same_pack_in_markdown(self):
+        path = catalog.ROOT / 'site/guide' / f'{guide.MAIN}.html'
+        html = path.read_text()
+        md = path.with_suffix('.md').read_text()
+        self.assertEqual(html.count('id="oskar-filtervorrat"'), 1)
+        self.assertRegex(html, r'<form id="oskar-stock-form"[^>]* hidden>')
+        self.assertIn('O-030-Zweierpack bei Stadler Form abgleichen', html)
+        for text in (html, md):
+            self.assertIn('Reicht der Vorrat, brauchst du keine zusätzliche Packung.', text)
+            self.assertIn('Kläre bei einem unleserlichen Typenschild', text)
+            self.assertIn(self.data['sources']['oskar_filter']['url'], text)
+        self.assertNotIn('<form', md)
+
     def test_philips_filter_sources_and_canonical_share_targets(self):
         from build_agent_md import to_markdown
 

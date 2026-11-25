@@ -85,6 +85,20 @@ function offlineWorker() {
   };
 }
 
+test('Oskar O-030 counts the whole pack shortfall using the buyer’s actual stock', async () => {
+  const h = offlineWorker();
+  const calculate = vorhanden => h.rpc('tools/call', {name:'oskar_filtermatten_gemeinsamer_vorrat',
+    arguments:{oskar_wechsel:1,little_wechsel:1,vorhanden}});
+  for(const [stock,packs,left] of [[0,2,1],[1,1,0],[3,0,0],[4,0,1]]){
+    const result=await calculate(stock);
+    assert.equal(result.isError,false,stock);
+    const data=result.structuredContent;
+    assert.deepEqual([data.bedarf_matten,data.zusaetzliche_zweierpacks,data.uebrige_matten],[3,packs,left]);
+  }
+  for(const invalid of [0.5,-1,151]) assert.equal((await calculate(invalid)).isError,true);
+  h.assertNoWrites();
+});
+
 test('German vacuum offers preserve missing amounts and exact package evidence', async () => {
   const worker = offlineWorker();
   const call = async args => (await worker.rpc('tools/call', {

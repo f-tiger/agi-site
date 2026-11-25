@@ -94,6 +94,13 @@ Lies Modell und Artikelnummer auf dem Typenschild ab und vergleiche sie mit den 
 - **Beurer LB 55** – [Beurer: Kalkpads 163141](https://www.beurer.com/de/p/163141/). Geräteartikel 68605. Für dieses Dampfgerät sind Kalkpads vorgesehen. Prüfe die Stückzahl auf der konkreten Packung.
 **Ein Filterwechsel an beiden Oskar-Geräten.** Ein vollständiger Wechsel am Oskar O-020 braucht zwei Matten, am Oskar little O-060 eine. Zusammen sind es drei passende, unbenutzte O-030-Matten. Ohne Vorrat brauchst du zwei Zweierpacks und behältst eine Matte übrig. Ist bereits eine passende unbenutzte Matte da, genügt ein Zweierpack.
 Bei anderen Modellnummern oder unbekanntem Packungsinhalt kläre zuerst die Zuordnung. Bei Kondenswasser oder feuchten Stellen zusätzliche Befeuchtung pausieren und die Ursache prüfen.
+
+### Oskar-Filtervorrat für geplante Wechsel berechnen
+
+Multipliziere die geplanten vollständigen Wechsel am Oskar O-020 mit zwei und addiere einen Filter pro Wechsel am Oskar little O-060. Ziehe deine passenden unbenutzten Matten ab. Teile einen positiven Rest durch zwei und runde auf ganze O-030-Zweierpacks auf. Reicht der Vorrat, brauchst du keine zusätzliche Packung.
+
+Zähle lose Matten einzeln. Trage 0 ein, wenn du an einem Modell keinen Wechsel planst oder sicher keine passenden Matten vorrätig hast. Kläre bei einem unleserlichen Typenschild oder einer unklaren Packung zuerst die Zuordnung.
+
 Quellen: [Oskar: EU-Anleitung, DE S. 10–15](https://www.stadlerform.com/media/ed/93/91/1712837853/stadler-form-oskar-manual-eu.pdf) · [Oskar little: EU-Anleitung, DE S. 10–14](https://www.stadlerform.com/media/85/64/6d/1712837923/stadler-form-oskar-little-manual-eu.pdf).
 Abgleich mit den deutschen Zubehörseiten der Hersteller am 25. November 2026. Beim LB 55 weichen die Mengenangaben auf der Zubehörseite voneinander ab.
 
