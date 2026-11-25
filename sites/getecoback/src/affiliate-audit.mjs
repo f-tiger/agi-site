@@ -5,6 +5,13 @@ import {N90_ENTRY_PAGE, N90_PRODUCT_URL} from './n90-entry.mjs';
 import {WINDOW_CONDENSATION_PAGE} from '../site/assets/fenster-taucheck.mjs';
 import {LAUNDRY_SEASON_PAGE,LAUNDRY_SEASON_EVENTS} from './laundry-events.mjs';
 
+const comfeeCataloguePages = [
+  CELLAR_PAGE,
+  '/guide/luftentfeuchter-ratgeber.html',
+  '/guide/waesche-trocknen-wohnung.html',
+];
+const comfeeBaseProduct = 'https://www.amazon.de/dp/B07KJX6RDK?tag=getecoback-21';
+
 // Bounded, aggregate-only history for distinguishing demand/mix changes from
 // telemetry loss. No identifiers, raw paths, referrers or outbound URLs leave
 // this module. Existing /api/trend caches the result for one hour.
@@ -44,6 +51,8 @@ export const AUDIT_SQL = `SELECT day, name, page, ref,
     ELSE 0 END AS n90_entry,
   COUNT(CASE WHEN page='${WINDOW_CONDENSATION_PAGE}' AND name='page_view' AND ua_class='human'
     THEN 1 END) AS window_human_views,
+  COUNT(CASE WHEN page IN ('${comfeeCataloguePages.join("','")}') AND ua_class='human'
+    THEN 1 END) AS comfee_human_events,
   COUNT(*) AS n, date('now') AS end_exclusive
 FROM ev
 WHERE (name IN ('page_view','affiliate_click')
@@ -104,6 +113,7 @@ const dayAt = (end,offset)=>new Date(Date.parse(end+'T00:00:00Z')+offset*8640000
 const firstFullDrainDay = '2026-11-20';
 const firstFullWindowTikTokDay = '2026-11-23';
 const firstFullVacuumDay = '2026-11-26';
+const firstFullComfeeDay = '2026-11-26';
 const range = (start,end)=>({...section(),start,end_exclusive:end,
   // An empty marker cohort alone cannot establish when coverage started.
   mcp_cellar_entry:null,
@@ -113,6 +123,7 @@ const range = (start,end)=>({...section(),start,end_exclusive:end,
   window_tiktok:null,
   window_reddit_referrals:null,
   laundry_season:null,
+  comfee_catalog:null,
   vacuum_catalog: end <= firstFullVacuumDay ? null : {
     start: start < firstFullVacuumDay ? firstFullVacuumDay : start, end_exclusive:end,
     catalogue_page_views:0, model_search_clicks:0,
@@ -201,7 +212,25 @@ function addVacuumCatalogue(section, row) {
   }
 }
 
+function addComfeeCatalogue(section, row) {
+  const events = row.comfee_human_events ?? 0;
+  if (!events || row.day < firstFullComfeeDay || !comfeeCataloguePages.includes(row.page)) return;
+  const isView = row.name === 'page_view';
+  const isProductClick = row.name === 'affiliate_click' && row.source === 'models' && row.link === comfeeBaseProduct;
+  if (!isView && !isProductClick) return;
+
+  const catalogue = section.comfee_catalog ??= {
+    start: section.start < firstFullComfeeDay ? firstFullComfeeDay : section.start,
+    end_exclusive: section.end_exclusive,
+    human_guide_page_view_events: null,
+    base_product_detail_click_events: 0,
+  };
+  if (isView) catalogue.human_guide_page_view_events = (catalogue.human_guide_page_view_events ?? 0) + events;
+  else catalogue.base_product_detail_click_events += events;
+}
+
 function add(s,r,channel) {
+  addComfeeCatalogue(s,r);
   addVacuumCatalogue(s,r);
   const field=r.name==='page_view'?'page_views':'affiliate_clicks';
   s[field]+=r.n;
@@ -258,6 +287,8 @@ export async function affiliateAudit(db,classifyRef,now=new Date()) {
     if(!Number.isSafeInteger(r.n)||r.n<0||!byDay.has(r.day)||(!laundrySeason&&!['page_view','affiliate_click','eco_window_width_check'].includes(r.name))) throw Error('affiliate_audit_invalid');
     const eligible = r.window_human_views ?? 0;
     if (!Number.isSafeInteger(eligible) || eligible < 0 || eligible > r.n) throw Error('affiliate_audit_invalid');
+    const comfeeEligible = r.comfee_human_events ?? 0;
+    if (!Number.isSafeInteger(comfeeEligible) || comfeeEligible < 0 || comfeeEligible > r.n) throw Error('affiliate_audit_invalid');
     const wi=Math.floor((Date.parse(r.day)-Date.parse(start))/86400000/7);
     const recent=r.day>=recentThree.start;
     const previous=r.day>=previousThree.start&&r.day<previousThree.end_exclusive;
@@ -288,6 +319,7 @@ export async function affiliateAudit(db,classifyRef,now=new Date()) {
     window_reddit_note:'Human-classified view events on the German indoor window guide only. Reddit is an exact immediate referrer host. A missing referrer may hide a visit. No usable referrer evidence is null. This report does not attribute tool completions, affiliate clicks or orders.',
     laundry_season_note:'German laundry season tool actions on complete UTC days. Tracking may begin partway through the first recorded UTC day. Measured comparisons and model guide clicks are independent events. Unobserved stages are null. These counts do not attribute merchant clicks or orders.',
     vacuum_catalog_note:'Complete UTC days start 2026-11-26. Views cover the entire product catalogue. Clicks count the three exact German model searches. These are independent events and do not identify comparison use, unique shoppers, attribution to acquisitions, orders, or commission.',
+    comfee_catalog_note:'Complete UTC days start 2026-11-26. Human-classified events only. Views cover all three German guides. Clicks count the fixed base-model product destination from their model comparison lists. No eligible evidence is null. A recorded zero is limited to these events. The stages are independent and do not count card impressions, individuals, orders or commission.',
     known_collection_gaps:GAPS.filter(x=>x.day>=start&&x.day<end),
     note:'Missing events are not reconstructed. Gaps are known incidents, not an exhaustive uptime audit. Clicks / page views is an event ratio, not buyer conversion. Cohorts are fixed path rules, not randomized controls. Channel belongs to each event referrer, not session acquisition.',
     daily,weeks,last_three_complete_days:recentThree,same_weekdays_previous_week:previousThree,

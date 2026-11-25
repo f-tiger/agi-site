@@ -576,3 +576,97 @@ print(json.dumps([dict(r) for r in db.execute(sql)]))`;
   assert.deepEqual(empty.weeks.at(-1).vacuum_catalog,{...expected,catalogue_page_views:0,
     model_search_clicks:0,models:{'miele-guard-s1':0,'miele-guard-m1-parquet-flex':0,'bosch-bgbs2ba1p':0}});
 });
+
+test('Comfee base-model catalogue clicks use the three human guide paths and preserve legacy populations', async () => {
+  const cellar = '/guide/luftentfeuchter-keller.html';
+  const overview = '/guide/luftentfeuchter-ratgeber.html';
+  const laundry = '/guide/waesche-trocknen-wohnung.html';
+  const outside = '/guide/comfee-geraete-test.html';
+  const product = 'https://www.amazon.de/dp/B07KJX6RDK?tag=getecoback-21';
+  const search = 'https://www.amazon.de/s?tag=getecoback-21';
+  const inputs = [];
+  function view(day,page,ua='human') {
+    inputs.push([day,'page_view',page,'',ua,'']);
+  }
+  function click(day,page,{ua='human',source='models',link=product,raw}={}) {
+    inputs.push([day,'affiliate_click',page,'',ua,raw ?? JSON.stringify({source,link_url:link})]);
+  }
+
+  view('2026-11-25',cellar);
+  click('2026-11-25',cellar);
+  view('2026-11-26',overview);
+  view('2026-11-26',overview,null);
+  click('2026-11-26',cellar,{link:search});
+  view('2026-11-28',cellar);
+  view('2026-11-28',laundry);
+  click('2026-11-28',overview);
+  for (const ua of ['human','human',null,'bot','ci']) click('2026-12-02',cellar,{ua});
+  click('2026-12-02',laundry);
+  click('2026-12-02',laundry,{ua:null});
+  click('2026-12-02',cellar,{source:'body'});
+  for (const link of [
+    product.replace('getecoback-21','incorrect'),product.replace('.de/','.com/'),
+    product.replace('/dp/','/gp/product/'),product.replace('B07KJX6RDK','B07NC5CP6F'),
+    product + '&unexpected=1',search,
+  ]) click('2026-12-02',cellar,{link});
+  click('2026-12-02',cellar,{raw:'{invalid json'});
+  click('2026-12-02',outside);
+  click('2026-12-02','/en' + cellar);
+  click('2026-12-02','/__ci/preview');
+  view('2026-12-03',outside);
+  view('2026-12-05',laundry);
+  click('2026-12-05',laundry);
+
+  const sqlFixture = `import json,sqlite3,sys
+args=json.load(sys.stdin)
+db=sqlite3.connect(':memory:');db.row_factory=sqlite3.Row
+db.execute('CREATE TABLE ev(day,name,page,ref,ua_class,meta)')
+db.executemany('INSERT INTO ev VALUES(?,?,?,?,?,?)',args['events'])
+sql=args['sql'].replace("date('now'","date('"+args['end']+"'")
+print(json.dumps([dict(row) for row in db.execute(sql)]))`;
+  function readRows(end,events=inputs) {
+    const query = spawnSync('python3',['-c',sqlFixture],{
+      input:JSON.stringify({end,events,sql:AUDIT_SQL}),encoding:'utf8',
+    });
+    assert.equal(query.status,0,query.stderr);
+    return JSON.parse(query.stdout);
+  }
+  const rows = readRows('2026-12-05');
+  const mixed = rows.find(row => row.day === '2026-12-02' && row.page === laundry &&
+    row.source === 'models' && row.link === product);
+  assert.equal(mixed.n,2);
+  assert.equal(mixed.comfee_human_events,1);
+  const report = await affiliateAudit(dbFor(rows),()=> 'direct');
+  const observed = (start,end_exclusive,views,clicks) => ({
+    start,end_exclusive,human_guide_page_view_events:views,base_product_detail_click_events:clicks,
+  });
+  const week = report.weeks.at(-1);
+  const recent = report.last_three_complete_days;
+  const prior = report.same_weekdays_previous_week;
+  assert.deepEqual(week.comfee_catalog,observed('2026-11-28','2026-12-05',2,4));
+  assert.deepEqual(recent.comfee_catalog,observed('2026-12-02','2026-12-05',null,3));
+  assert.deepEqual(prior.comfee_catalog,observed('2026-11-26','2026-11-28',1,0));
+  assert.deepEqual(report.weeks.at(-2).comfee_catalog,prior.comfee_catalog);
+  assert.equal(report.weeks.at(-3).comfee_catalog,null);
+  assert.deepEqual([recent.page_views,recent.affiliate_clicks],[1,15]);
+  assert.deepEqual(recent.destinations,{product:13,search:1,prime_trial:0,other:1});
+  assert.deepEqual(recent.models,{ex105:0,n90:1,portasplit_original:0,other:14});
+  assert.deepEqual(recent.cellar_catalog,{
+    page_views:0,affiliate_clicks:11,catalog_product_clicks:8,catalog_search_clicks:1,
+  });
+  assert.deepEqual(recent.channels.direct,{page_views:1,affiliate_clicks:15});
+  assert.equal(report.amazon_orders,null);
+  assert.doesNotMatch(JSON.stringify(report),/B07KJX6RDK|incorrect|invalid json|comfee-geraete-test/);
+
+  const before = await affiliateAudit(dbFor(readRows('2026-11-26')),()=> 'direct');
+  assert.equal(before.weeks.at(-1).comfee_catalog,null);
+  const noMatch = readRows('2026-12-05',[
+    ['2026-12-04','page_view',outside,'','human',''],
+    ['2026-12-04','page_view',cellar,'',null,''],
+    ['2026-12-04','affiliate_click',cellar,'','human',JSON.stringify({source:'models',link_url:search})],
+  ]);
+  const noEvidence = await affiliateAudit(dbFor(noMatch),()=> 'direct');
+  assert.equal(noEvidence.last_three_complete_days.comfee_catalog,null);
+  const empty = await affiliateAudit(dbFor([]),()=> 'direct',new Date('2026-12-05T10:00Z'));
+  assert.equal(empty.weeks.at(-1).comfee_catalog,null);
+});
