@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-24",
+ "fetched": "2026-11-25",
  "geo": "IT",
  "seeds": {
   "condizionatore portatile": {
@@ -49,50 +49,58 @@
    "fetched": "2026-11-24"
   },
   "deumidificatore": {
+   "auto": [
+    "deumidificatore",
+    "deumidificatore casa",
+    "deumidificatore portatile",
+    "deumidificatore dyson",
+    "deumidificatore in inglese",
+    "deumidificatore da parete",
+    "deumidificatore unieuro",
+    "deumidificatore industriale",
+    "deumidificatore olimpia splendid",
+    "deumidificatore elettrico"
+   ],
    "rising": [
     {
-     "q": "black friday deumidificatore",
-     "v": 29500
+     "q": "deumidificatore casa",
+     "v": "new"
     },
     {
-     "q": "deumidificatore ariston deos 20",
-     "v": 16250
+     "q": "deumidificatore portatile",
+     "v": "new"
     },
     {
-     "q": "deumidificatore per asciugare i panni",
-     "v": 11900
+     "q": "deumidificatore dyson",
+     "v": "new"
     },
     {
-     "q": "umidificatore ambiente",
-     "v": 11500
+     "q": "deumidificatore in inglese",
+     "v": "new"
     },
     {
-     "q": "bosch dry 2000",
-     "v": 9600
+     "q": "deumidificatore da parete",
+     "v": "new"
     },
     {
-     "q": "umidificatore termosifone",
-     "v": 6200
+     "q": "deumidificatore unieuro",
+     "v": "new"
     },
     {
-     "q": "deumidificatore per termosifone",
-     "v": 3300
+     "q": "deumidificatore industriale",
+     "v": "new"
     },
     {
-     "q": "usare il condizionatore come deumidificatore in inverno",
-     "v": 1900
+     "q": "deumidificatore olimpia splendid",
+     "v": "new"
     },
     {
-     "q": "deumidificatore termosifone",
-     "v": 1050
-    },
-    {
-     "q": "deumidificatore per termosifoni",
-     "v": 650
+     "q": "deumidificatore elettrico",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-11-14"
+   "source": "autocomplete-diff",
+   "fetched": "2026-11-25"
   }
  }
 }
