@@ -1,6 +1,6 @@
 # Luftbefeuchter wählen: Bedarf, Pflege und vier genaue Modelle
 
-> Luftbefeuchter nach Feuchte, Pflege und Kosten vergleichen. Philips Series 2000 am Typenschild prüfen und FY2401/30 oder FY3446/30 zuordnen.
+> Luftbefeuchter nach Feuchte, Pflege und Kosten vergleichen. Philips Series 2000 und 3000 am Typenschild prüfen und FY2401/30 oder FY3446/30 zuordnen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftbefeuchter-ratgeber.html
 
@@ -104,16 +104,22 @@ Zähle lose Matten einzeln. Trage 0 ein, wenn du an einem Modell keinen Wechsel 
 Quellen: [Oskar: EU-Anleitung, DE S. 10–15](https://www.stadlerform.com/media/ed/93/91/1712837853/stadler-form-oskar-manual-eu.pdf) · [Oskar little: EU-Anleitung, DE S. 10–14](https://www.stadlerform.com/media/85/64/6d/1712837923/stadler-form-oskar-little-manual-eu.pdf).
 Abgleich mit den deutschen Zubehörseiten der Hersteller am 25. November 2026. Beim LB 55 weichen die Mengenangaben auf der Zubehörseite voneinander ab.
 
-## Welcher Philips-Verdunsterfilter passt zu Series 2000?
-Philips führt mehrere Geräte unter „Series 2000“. Lies die vollständige Modellnummer mit Suffix auf dem Typenschild und vergleiche sie mit einer der Herstellerzuordnungen.
+## Welcher Philips-Verdunsterfilter passt zu meinem Modell?
+Philips führt mehrere Geräte unter „Series 2000“ und „Series 3000“. Lies die vollständige Modellnummer mit Suffix auf dem Typenschild und vergleiche sie mit einer der Herstellerzuordnungen.
 
 ### Philips HU4803/01
-Die deutsche Philips-Übersicht ordnet dem **HU4803/01** das Befeuchtungselement **FY2401/30** zu. [Philips Datenblatt für FY2401/30](https://www.documents.philips.com/assets/20210905/91037a0820b34b43a068ad9a00af98a4.pdf).
+Die deutsche Philips-Übersicht ordnet dem **HU4803/01** das Befeuchtungselement **FY2401/30** zu. [Philips Datenblatt](https://www.documents.philips.com/assets/20210905/91037a0820b34b43a068ad9a00af98a4.pdf).
 
 ### Philips HU2716/10
-Die deutsche Philips-Übersicht ordnet dem **HU2716/10** das Befeuchtungselement **FY3446/30** zu. [Philips Datenblatt für FY3446/30](https://www.documents.philips.com/assets/20220208/0ddd8e50b11a4e5a9161ae3601001daf.pdf).
-Siehst du nur den Seriennamen, fehlt der Suffix oder steht ein anderes Modell auf dem Typenschild? Kläre die Teilenummer mit Philips und warte mit der Bestellung. Bei Kondenswasser oder feuchten Stellen pausiere die Befeuchtung und prüfe zuerst die Ursache.
-[Philips Kompatibilitätsübersicht für Deutschland](https://acc.philips.de/c-e/ho/luftreiniger-und-luftbefeuchter/air-purifier-filter-replacement) · geprüft am 22.11.2026.
+Die deutsche Philips-Übersicht ordnet dem **HU2716/10** das Befeuchtungselement **FY3446/30** zu. [Philips Datenblatt](https://www.documents.philips.com/assets/20220208/0ddd8e50b11a4e5a9161ae3601001daf.pdf) · [FY3446/30 beim Hersteller prüfen](https://acc.philips.de/c-p/FY3446_30/filter-fuer-luftbefeuchter).
+
+### Philips HU3916/10
+Die deutsche Philips-Übersicht ordnet dem **HU3916/10** das Befeuchtungselement **FY3446/30** zu. [Philips Datenblatt](https://www.documents.philips.com/assets/20211126/940a7eae1f5d43afa192adec01088dfb.pdf) · [FY3446/30 beim Hersteller prüfen](https://acc.philips.de/c-p/FY3446_30/filter-fuer-luftbefeuchter).
+
+### Philips HU3918/10
+Die deutsche Philips-Übersicht ordnet dem **HU3918/10** das Befeuchtungselement **FY3446/30** zu. [Philips Datenblatt](https://www.documents.philips.com/assets/20210505/120641be6ffb465cbc34ad1f017d2adb.pdf) · [FY3446/30 beim Hersteller prüfen](https://acc.philips.de/c-p/FY3446_30/filter-fuer-luftbefeuchter).
+Bei einem Seriennamen ohne Modellnummer, fehlender Endung oder einer abweichenden Kennung wie /10R1 kläre die Teilenummer mit Philips und warte mit der Bestellung. Bei Kondenswasser oder feuchten Stellen pausiere die Befeuchtung und prüfe zuerst die Ursache.
+[Philips Kompatibilitätsübersicht für Deutschland](https://acc.philips.de/c-e/ho/luftreiniger-und-luftbefeuchter/air-purifier-filter-replacement) · geprüft am 25.11.2026.
 
 ## Kaufpreis plus Pflege: mit deinen Preisen rechnen
 

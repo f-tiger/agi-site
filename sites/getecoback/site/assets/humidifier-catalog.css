@@ -2,5 +2,5 @@
 
 .hc-limit{padding:12px;background:#f2f6f9;border-radius:8px}.hc-source{font-size:13px;color:#536775}.hc-source a{overflow-wrap:anywhere}.hc-status{border-left:3px solid #b56400;padding-left:12px}.hc-answer nav{line-height:2}.hc-card small{margin-bottom:9px}.hc-next{border-top:1px solid #d5e1e8;padding-top:24px}
 
-#modelle-vergleichen,#ersatzteile-zuordnen,#effizienz-vergleichen,#philips-verdunsterfilter,#philips-hu4803-01,#philips-hu2716-10{scroll-margin-top:180px}
-@media(max-width:680px){#modelle-vergleichen,#ersatzteile-zuordnen,#effizienz-vergleichen,#philips-verdunsterfilter,#philips-hu4803-01,#philips-hu2716-10{scroll-margin-top:260px}}
+#modelle-vergleichen,#ersatzteile-zuordnen,#effizienz-vergleichen,#philips-verdunsterfilter,[aria-labelledby="philips-verdunsterfilter"]>h3[id]{scroll-margin-top:180px}
+@media(max-width:680px){#modelle-vergleichen,#ersatzteile-zuordnen,#effizienz-vergleichen,#philips-verdunsterfilter,[aria-labelledby="philips-verdunsterfilter"]>h3[id]{scroll-margin-top:260px}}

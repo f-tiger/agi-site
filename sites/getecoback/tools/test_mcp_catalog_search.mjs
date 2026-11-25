@@ -930,6 +930,10 @@ test('German Philips replacement queries find the type-plate check rather than g
   'Welcher Ersatzfilter passt zum Philips HU4803/01?',
   'Mein Philips trägt Series 2000: Brauche ich FY2401/30 oder FY3446/30?',
   'Welcher Filter passt zu meinem Philips Luftbefeuchter Series 2000?',
+  'Welcher Filter passt in den Philips HU3916/10?',
+  'Ersatzfilter für Philips HU3918/10',
+  'Welcher Filter für Philips HU3918/10R1?',
+  'Welcher Filter für Philips Series 3000?',
   'HU2716/11 Ersatzfilter',
   'FY 3446/30',
  ]) {

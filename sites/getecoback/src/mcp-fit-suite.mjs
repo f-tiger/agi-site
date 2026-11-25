@@ -271,7 +271,7 @@ export const fitSuite = [
   },
   {
     name:'philips_verdunsterfilter_zuordnung',
-    description:'Philips Series 2000 Verdunsterfilter und Ersatzfilter nach vollständigem Typenschild prüfen: HU4803/01, HU2716/10, FY2401/30 und FY3446/30 — Resolve exact German Philips humidifier filter parts.',
+    description:'Philips Series 2000 und 3000 Verdunsterfilter nach vollständigem Typenschild prüfen: HU4803/01, HU2716/10, HU3916/10, HU3918/10, FY2401/30, FY3446/30 — Resolve exact German Philips humidifier filter parts.',
     page:humidifierPage,
     guide_url:humidifierUrl+'#philips-verdunsterfilter',
     properties:{
@@ -287,7 +287,7 @@ export const fitSuite = [
         source_checked:philipsFilters.checked};
       const item = philipsFilters.models.find(row=>row.device === model);
       if (!item) return {...source, status:'identify_model', part_number:null,
-        next_step:'Vollständige HU-Gerätenummer einschließlich Endung am Typenschild nachsehen. Series 2000 oder eine Filterpackung allein reicht nicht. Bis zur Klärung keinen Filter auswählen.'};
+        next_step:'Vollständige HU-Gerätenummer einschließlich Endung am Typenschild nachsehen. Der Serienname oder eine Filterpackung allein reicht nicht. Bis zur Klärung keinen Filter auswählen.'};
       const modelEvidence = {...source, exact_model:item.device, manufacturer_datasheet:item.source,
         model_guide_url:humidifierUrl+'#'+item.anchor};
       if (!freshness(philipsFilters.checked,philipsFilters.max_age_days)) {
@@ -295,7 +295,9 @@ export const fitSuite = [
           next_step:'Aktuelle deutsche Herstellerliste prüfen, bevor du einen Filter auswählst.'};
       }
       const different = candidate !== undefined && candidate.replace(/\s+/g,'').toUpperCase() !== item.part;
+      const manufacturerPart = philipsFilters.part_catalog[item.part];
       return {...modelEvidence, status:different ? 'candidate_not_documented' : 'documented_variant',
+        ...(manufacturerPart ? {manufacturer_part:manufacturerPart} : {}),
         part_number:item.part, next_step:different ?
           'Für die eingegebene Filternummer ist hier keine Zuordnung belegt. Vergleiche die dokumentierte Nummer inklusive Endung mit Angebot und Herstellertabelle.' :
           'Genaue Nummer einschließlich Endung abgleichen. Die Zuordnung beantwortet die Passformfrage; ob ein Wechsel fällig ist, steht in der Geräteanleitung.'};

@@ -64,11 +64,14 @@ test('German replacement-filter evidence returns a public exact-model anchor wit
 test('Philips humidifier checks require exact type plate and filter suffixes', async ({mock}) => {
   const name='philips_verdunsterfilter_zuordnung';
   const guide=origin+'/guide/luftbefeuchter-ratgeber.html';
-  mock.timers.enable({apis:['Date'],now:new Date('2026-11-22T12:00:00Z')});
+  mock.timers.enable({apis:['Date'],now:new Date('2026-11-25T12:00:00Z')});
   for (const [model,candidate,part,status,anchor] of [
     ['HU4803/01',undefined,'FY2401/30','documented_variant','philips-hu4803-01'],
     ['HU2716/10','fy3446 / 30','FY3446/30','documented_variant','philips-hu2716-10'],
     ['HU2716/10','FY2401/30','FY3446/30','candidate_not_documented','philips-hu2716-10'],
+    ['HU3916/10',undefined,'FY3446/30','documented_variant','philips-hu3916-10'],
+    ['HU3918/10','fy3446 / 30','FY3446/30','documented_variant','philips-hu3918-10'],
+    ['HU3918/10','FY2401/30','FY3446/30','candidate_not_documented','philips-hu3918-10'],
     ['HU4803/01','FY2401/31','FY2401/30','candidate_not_documented','philips-hu4803-01'],
     ['HU4803/01','FY2401','FY2401/30','candidate_not_documented','philips-hu4803-01'],
     ['unknown','FY3446/30',null,'identify_model',null],
@@ -89,13 +92,14 @@ test('Philips humidifier checks require exact type plate and filter suffixes', a
     assert.equal(result.guide_url,guide+'#philips-verdunsterfilter');
     assert.equal(result.model_guide_url,anchor ? guide+'#'+anchor : undefined);
     assert.match(result.manufacturer_source,/^https:\/\/acc\.philips\.de\//);
+    if (part === 'FY3446/30') assert.equal(result.manufacturer_part,'https://acc.philips.de/c-p/FY3446_30/filter-fuer-luftbefeuchter');
     if (anchor) assert.match(result.manufacturer_datasheet,/^https:\/\/www\.documents\.philips\.com\//);
     assert.doesNotMatch(JSON.stringify(result),/amazon\.|amzn\.|[?&]tag=/i);
   }
-  for (const args of [{model:'HU4803'}, {model:'HU2716/11'}, {model:'Series 2000'}, {model:'HU4803/01',candidate:' '}, {model:'HU4803/01',candidate:'a'.repeat(25)}]) {
+  for (const args of [{model:'HU4803'}, {model:'HU2716/11'}, {model:'Series 2000'}, {model:'HU3916'}, {model:'HU3918/10R1'}, {model:'Series 3000'}, {model:'HU4803/01',candidate:' '}, {model:'HU4803/01',candidate:'a'.repeat(25)}]) {
     assert.equal((await rpc('tools/call',{name,arguments:args})).isError,true);
   }
-  mock.timers.setTime(new Date('2027-02-21T12:00:00Z').getTime());
+  mock.timers.setTime(new Date('2027-02-24T12:00:00Z').getTime());
   const stale=(await rpc('tools/call',{name,arguments:{model:'HU2716/10'}})).structuredContent;
   assert.equal(stale.status,'source_recheck');
   assert.equal(stale.part_number,null);

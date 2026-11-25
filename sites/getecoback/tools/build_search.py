@@ -175,7 +175,7 @@ def collect():
    entry['model_sections']=[
     {'id':'ersatzteile-zuordnen','title':'Oskar und Beurer: Originalfilter oder Kalkpad zum Modell finden',
      'description':'O-030 für Oskar O-020 und little O-060 mit zwei beziehungsweise einer Matte prüfen. Beurer LB 200 nutzt 110005, LB 55 das Kalkpad 163141.'},
-    {'id':'philips-verdunsterfilter','title':'Philips Series 2000: Verdunsterfilter prüfen',
+    {'id':'philips-verdunsterfilter','title':'Philips Series 2000 und 3000: Verdunsterfilter prüfen',
      'description':'Die vollständige HU-Gerätenummer vom Typenschild entscheidet. Eine Serienangabe allein reicht nicht.'}
    ]+[
     {'id':item['anchor'],'title':f"Philips {item['device']}: Originalfilter prüfen",
