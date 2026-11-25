@@ -337,7 +337,7 @@ def main():
             workbench = re.search(r'<!-- invest-research-body:start -->(.*?)<!-- invest-research-body:end -->', source_html, re.S)
             if workbench:
                 # Extract only static teaching content; no user-entered browser records exist here.
-                readable = text_of(workbench.group(1))
+                readable = linked_text(workbench.group(1), url)
                 evidence_url = 'https://agiscorecard.com/invest-research/evidence.json'
                 md += '\n## Source-led research workbench\n\n' + readable + '\n\nDated examples: ' + evidence_url + '\n'
                 full += ['## Investment research workflow', '', readable, '', 'Dated examples: ' + evidence_url, '']
