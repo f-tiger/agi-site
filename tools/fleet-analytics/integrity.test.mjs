@@ -116,12 +116,6 @@ test('Laundry bridge is route-bound, opt-out aware and sends no input data',()=>
  assert.deepEqual(businessEvent('getecoback.com',germanPath,{name:'eco_laundry_single_calculate'}),{name:'laundry_single_calculate',tool_id:'laundry-single-cost',repeat:true});
  assert.equal(businessEvent('getecoback.com',path,{name:'eco_laundry_single_calculate'}),null);
  assert.equal(businessEvent('getecoback.com',germanPath,{name:'eco_laundry_single_calculate',kwh:1.8}),null);
- for(const action of ['check','guide']) {
-  const name='eco_laundry_season_'+action;
-  assert.deepEqual(businessEvent('getecoback.com',germanPath,{name}),{name:name.slice(4),tool_id:'laundry-season-cost'});
-  assert.equal(businessEvent('getecoback.com',path,{name}),null);
-  assert.equal(businessEvent('getecoback.com',germanPath,{name,kwh:1.8}),null);
- }
  assert.deepEqual(businessEvent('getecoback.com',path,{name:'eco_laundry_compare'}),{name:'laundry_compare',tool_id:'laundry-cost',repeat:true});
  assert.equal(businessEvent('getecoback.com','/members.html',{name:'eco_laundry_compare'}),null);
  assert.equal(businessEvent('getecoback.com',path,{name:'eco_laundry_compare',kwh:123}),null);

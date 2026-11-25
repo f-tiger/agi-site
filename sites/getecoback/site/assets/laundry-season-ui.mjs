@@ -8,13 +8,17 @@ const measured = ['trockner_kwh', 'entfeuchter_kwh', 'tarif_eur_kwh', 'anschaffu
 const euros = new Intl.NumberFormat('de-DE', {style:'currency', currency:'EUR'});
 const measurementsConfirmed = () => fields.ladungen_vergleichbar.checked && fields.zusatzstrom_erfasst.checked;
 const recorded = new Set();
+const ga4Actions = {
+  eco_laundry_season_check:'eco_laundry_compare',
+  eco_laundry_season_guide:'eco_laundry_guide',
+};
 
 function record(name) {
   if (recorded.has(name) || navigator.doNotTrack === '1' || navigator.globalPrivacyControl ||
       navigator.webdriver || /[?&]__(probe|ci|qa)(=|&|$)/.test(location.search)) return;
   try { if (localStorage.getItem('fleet_ga4_choice_v1') === 'denied') return; } catch {}
   recorded.add(name);
-  window.dispatchEvent(new CustomEvent('fleet:business', {detail:{name}}));
+  window.dispatchEvent(new CustomEvent('fleet:business', {detail:{name:ga4Actions[name]}}));
   fetch('/api/ev', {
     method:'POST', keepalive:true, credentials:'omit',
     headers:{'content-type':'application/json'},
