@@ -661,3 +661,27 @@ test('German exact humidifier part questions use the owned accessory section', (
   assert.equal(searchEntries(index,'Welcher Ersatzfilter passt zum Philips HU4803/01?','de')[0]?.entry.u,
     guide + '#philips-hu4803-01');
 });
+
+test('German Bosch Dry 4000 identity and equipment questions open the exact model card', () => {
+  const target = '/guide/luftentfeuchter-ratgeber.html#modell-bosch-d4000-eu';
+  for (const query of [
+    'Bosch Dry 4000', 'D4000-EU', '7733703558', '4069143047774',
+    'Ist 7733703558 die deutsche Ausführung des Bosch Dry 4000?',
+    'Wie groß ist der Wassertank beim Bosch Dry 4000 D4000-EU?',
+    'Ist beim Bosch Dry 4000 ein Ablaufschlauch im Lieferumfang?',
+  ]) {
+    const hits = searchEntries(index,query,'de');
+    assert.equal(hits[0]?.entry.u,target,query);
+    assert.equal(hits.filter(hit => hit.entry.u.split('#')[0] === target.split('#')[0]).length,1,query);
+    assert.ok(!searchEntries(index,query,'en').some(hit => hit.entry.u === target),query);
+  }
+  for (const query of [
+    'Bosch Air 4000', 'Bosch Dry 4000 D4000-UK',
+    'Bosch Dry 4000 D4000-EU EAN 4069143047781',
+    'Bosch Dry 4000 im kalten Keller: Wie viele Liter schafft er bei 10 °C und 60 % Luftfeuchte?',
+    'Kann der Ablaufschlauch vom Bosch Dry 4000 bergauf ins Waschbecken laufen?',
+  ]) assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+
+  const hose = 'Der Ablaufschlauch von meinem Entfeuchter geht über eine Schwelle. Reicht der tiefere Bodenablauf?';
+  assert.equal(searchEntries(index,hose,'de')[0]?.entry.u,'/guide/luftentfeuchter-keller.html#ablauf-vor-kauf');
+});

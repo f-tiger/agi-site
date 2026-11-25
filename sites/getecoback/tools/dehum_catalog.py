@@ -18,6 +18,10 @@ def load():
         ids.add(p['id'])
         if not citation_url(p['source']):
             raise ValueError('Unreviewed catalog source: ' + p['id'])
+        if identity := p.get('identity'):
+            dt.date.fromisoformat(identity['checked'])
+            if not all(citation_url(row['source']) for row in [identity, *identity['alternatives']]):
+                raise ValueError('Unreviewed model identity source: ' + p['id'])
         if p.get('asin') and (p['id'] != 'comfee-mddf20' or p['asin'] != 'B07KJX6RDK'):
             raise ValueError('No newly guessed ASINs')
     return data
@@ -79,10 +83,26 @@ def block(slug, today=None, data=None):
         source = f'<a href="{e(p["source"], quote=True)}">{e(p["source_label"])}</a>'
         note = drain_notes.get(p['id']) if cellar else None
         drain = f'<p><strong>Wasserablauf:</strong> {e(note)}</p>' if note else ''
+        identity_note = ''
+        if identity := p.get('identity'):
+            differences = ''.join(
+                f'<li><a href="{e(row["source"])}">{e(row["label"])}</a>: {e(row["detail"])}</li>'
+                for row in identity['alternatives']
+            )
+            checked = dt.date.fromisoformat(identity['checked'])
+            identity_note = (
+                f'<p><strong>Deutsches Angebot prüfen:</strong> Zur oben genannten Modell- und Artikelnummer '
+                f'gehört die EAN <strong>{e(identity["ean"])}</strong>. Gleiche die Kennung der ausgewählten '
+                'Händlervariante mit den Bosch-Daten ab. Steht im Angebot nur „4000“ oder widersprechen sich '
+                'die Nummern, kläre die Ausführung vor der Bestellung.</p>'
+                f'<ul>{differences}</ul><p><a href="{e(identity["source"])}">Bosch-Ersatzteilkatalog: '
+                f'deutsche Modellkennung und EAN</a> · Modellzuordnung geprüft am '
+                f'<time datetime="{checked.isoformat()}">{checked:%d.%m.%Y}</time>.</p>'
+            )
         evidence = (f'<h3 id="{anchor}">{e(p["name"])}</h3>'
                     f'<p><strong>{e(p["reason"])}</strong></p><p>{e(p["variant"])}</p>'
                     f'<p>{e(p["facts"])}</p><p><strong>Vor dem Kauf:</strong> {e(p["limit"])}</p>'
-                    f'{drain}<p>Quelle: {source}</p>')
+                    f'{identity_note}{drain}<p>Quelle: {source}</p>')
         # Static facts remain visible; stale/conflicting evidence removes only this catalog's commerce.
         if fresh and p['status'] == 'verified':
             href = ('https://www.amazon.de/dp/' + p['asin'] + '?tag=getecoback-21' if p.get('asin')

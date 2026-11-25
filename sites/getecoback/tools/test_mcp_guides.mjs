@@ -86,6 +86,15 @@ test('laundry search stays on task and every search result can be read through t
 
 const focusedLookups = [
   {
+    path:'/guide/luftentfeuchter-ratgeber.html', section:'modell-bosch-d4000-eu',
+    expectedTitle:'Bosch Dry 4000: deutsche Modellnummer prüfen',
+    queries:['Bosch Dry 4000','D4000-EU','7733703558','4069143047774',
+      'Ist 7733703558 die deutsche Ausführung des Bosch Dry 4000?',
+      'Wie groß ist der Wassertank beim Bosch Dry 4000 D4000-EU?',
+      'Ist beim Bosch Dry 4000 ein Ablaufschlauch im Lieferumfang?'],
+    evidence:['D4000-EU','7733703558','https://www.bosch-homecomfort.com/web-etk/de/bosch/de/de/product/7733703558'],
+  },
+  {
     path:'/geraete-austausch-rechner.html', section:'geschirrspueler-handabwasch',
     queries:['Ist Geschirrspüler oder Handabwasch billiger, wenn die Maschine 10 Liter braucht und ich von Hand 20 Liter brauche?',
       'Was kostet Abwaschen per Hand im Vergleich zum Geschirrspüler, mit warmem Wasser?'],
@@ -157,10 +166,11 @@ const focusedLookups = [
 ];
 
 test('exact German guide searches prefer reviewed section copy and pass a readable canonical URL', async () => {
-  for (const {path, section, queries, evidence = []} of focusedLookups) {
+  for (const {path, section, queries, expectedTitle, evidence = []} of focusedLookups) {
     const guide = corpus.find(entry => entry.u === path);
     assert.equal(guide?.section?.id, section, path);
     const {title, description} = guide.section;
+    if (expectedTitle) assert.equal(title,expectedTitle,path);
     assert.ok(title && description);
     assert.notEqual(title, guide.t);
     assert.notEqual(description, guide.d);
@@ -341,4 +351,21 @@ test('long excerpts declare truncation and retain references beyond the cut', as
   assert.ok(text.includes('vor einer Bewertung den vollständigen Text mit allen Bedingungen lesen'));
   assert.ok(text.includes('Originalquellen der vollständigen Textansicht:\n- ' + labelSource));
   assert.ok(!text.includes('[Official label source]'), 'the source was actually beyond the excerpt');
+});
+
+test('the German Bosch model-identity title is not returned for other variants or installation questions', async () => {
+  const title = 'Bosch Dry 4000: deutsche Modellnummer prüfen';
+  for (const [frage,sprache] of [
+    ['Bosch Air 4000','de'], ['Bosch Dry 4000 D4000-UK','de'],
+    ['Bosch Dry 4000 D4000-EU EAN 4069143047781','de'],
+    ['Bosch Dry 4000 im kalten Keller: Wie viele Liter schafft er bei 10 °C und 60 % Luftfeuchte?','de'],
+    ['Kann der Ablaufschlauch vom Bosch Dry 4000 bergauf ins Waschbecken laufen?','de'],
+    ['Bosch Dry 4000','en'],
+  ]) {
+    const {env,requests} = assetEnv();
+    const result = await call('ratgeber_suche',{frage,sprache,max:3},env);
+    assert.equal(result.isError,false,frage);
+    assert.ok(!textOf(result).split('\n').includes('- ' + title),frage);
+    assert.deepEqual(requests.map(request => new URL(request.url).pathname),['/mcp-guides.json']);
+  }
 });

@@ -179,6 +179,11 @@ Kaufgründe und genaue Varianten
 D4000-EU · Artikel 7733703558
 Auto-, Nacht- und Wäschemodus; 2,5-Liter-Tank und kontinuierlicher Ablauf laut Bosch.
 **Vor dem Kauf:** Die beworbenen bis zu 16 L/Tag sind keine Zusage für deinen Raum. Vergleichbare Entzugs- und Stromwerte bei 10 °C / 60 % sind hier nicht belegt.
+**Deutsches Angebot prüfen:** Zur oben genannten Modell- und Artikelnummer gehört die EAN **4069143047774**. Gleiche die Kennung der ausgewählten Händlervariante mit den Bosch-Daten ab. Steht im Angebot nur „4000“ oder widersprechen sich die Nummern, kläre die Ausführung vor der Bestellung.
+
+- [Dry 4000 für Großbritannien](https://www.bosch-homecomfort.com/web-etk/de/bosch/de/de/product/7733703561): D4000-UK trägt die Bosch-Artikelnummer 7733703561 und die EAN 4069143047804.
+- [Bosch Air 4000](https://www.bosch-homecomfort.com/de/de/ocs/wohngebaeude/air-4000-19287220-p/): Unter Artikel 7733701943 führt Bosch einen Luftreiniger.
+[Bosch-Ersatzteilkatalog: deutsche Modellkennung und EAN](https://www.bosch-homecomfort.com/web-etk/de/bosch/de/de/product/7733703558) · Modellzuordnung geprüft am 25.11.2026.
 Quelle: [Bosch Deutschland: D4000-EU](https://www.bosch-homecomfort.com/de/de/ocs/wohngebaeude/dry-4000-20990506-p/)
 
 ### MeacoDry Arete Two 12L

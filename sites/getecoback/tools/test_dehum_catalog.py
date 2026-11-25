@@ -12,6 +12,35 @@ from build_onpage import inject_toc
 from test_buyer_comparison import Document
 
 class CatalogTest(unittest.TestCase):
+    def test_bosch_german_identity_and_model_search_on_final_pages(self):
+        site = C.DATA.parent.parent / 'site'
+        data = C.load()
+        product, = [item for item in data['products'] if item['id'] == 'bosch-d4000-eu']
+        self.assertNotIn('asin', product)
+        for slug in data['pages']:
+            with self.subTest(slug=slug):
+                html = (site / 'guide' / (slug + '.html')).read_text()
+                mirror = (site / 'guide' / (slug + '.md')).read_text()
+                cards = [node for node in Document(html).root.find('div') if node.attrs.get('class') == 'dc-card']
+                card, = [node for node in cards if any(h.attrs.get('id') == 'modell-bosch-d4000-eu' for h in node.find('h3'))]
+                for token in ('D4000-EU', '7733703558', '4069143047774', 'D4000-UK', '7733703561',
+                              '4069143047804', 'Bosch Air 4000', '7733701943', 'Luftreiniger', '25.11.2026'):
+                    self.assertIn(token, card.text())
+                    self.assertIn(token, mirror)
+                links = [node.attrs['href'] for node in card.find('a')]
+                for row in [product['identity'], *product['identity']['alternatives']]:
+                    self.assertIn(row['source'], links)
+                    self.assertIn(row['source'], mirror)
+                merchant = [urlsplit(url) for url in links if urlsplit(url).hostname == 'www.amazon.de']
+                age = (dt.datetime.now(dt.timezone.utc).date() - dt.date.fromisoformat(data['checked'])).days
+                if 0 <= age <= data['max_age_days'] and product['status'] == 'verified':
+                    self.assertEqual(len(merchant), 1)
+                if merchant:
+                    self.assertEqual(len(merchant), 1)
+                    self.assertEqual(merchant[0].path, '/s')
+                    self.assertEqual(parse_qs(merchant[0].query), {'k': [product['query']], 'tag': ['getecoback-21']})
+                self.assertNotIn('getecoback-21', mirror)
+
     def test_native_reading_and_comparison_shortcuts_survive_the_full_rebuild_order(self):
         for slug in C.load()['pages']:
             source = (C.DATA.parent.parent/'site/guide'/f'{slug}.html').read_text()

@@ -12,6 +12,23 @@
       "id": "bosch-d4000-eu",
       "name": "Bosch Dry 4000",
       "variant": "D4000-EU · Artikel 7733703558",
+      "identity": {
+        "ean": "4069143047774",
+        "checked": "2026-11-25",
+        "source": "https://www.bosch-homecomfort.com/web-etk/de/bosch/de/de/product/7733703558",
+        "alternatives": [
+          {
+            "label": "Dry 4000 für Großbritannien",
+            "detail": "D4000-UK trägt die Bosch-Artikelnummer 7733703561 und die EAN 4069143047804.",
+            "source": "https://www.bosch-homecomfort.com/web-etk/de/bosch/de/de/product/7733703561"
+          },
+          {
+            "label": "Bosch Air 4000",
+            "detail": "Unter Artikel 7733701943 führt Bosch einen Luftreiniger.",
+            "source": "https://www.bosch-homecomfort.com/de/de/ocs/wohngebaeude/air-4000-19287220-p/"
+          }
+        ]
+      },
       "reason": "Drei Betriebsmodi statt vieler Einstellungen",
       "facts": "Auto-, Nacht- und Wäschemodus; 2,5-Liter-Tank und kontinuierlicher Ablauf laut Bosch.",
       "limit": "Die beworbenen bis zu 16 L/Tag sind keine Zusage für deinen Raum. Vergleichbare Entzugs- und Stromwerte bei 10 °C / 60 % sind hier nicht belegt.",

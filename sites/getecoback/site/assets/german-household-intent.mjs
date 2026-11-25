@@ -1,3 +1,5 @@
+import {asksForDehumidifierDrainRoute} from './dehumidifier-drain-intent.mjs?v=f6bce24817e8';
+
 const curtain = {
   path:'/guide/thermovorhang-ratgeber.html',
   id:'thermovorhang-bahnenbedarf',
@@ -28,6 +30,23 @@ export const vacuumOffer = {
   id:'beutelstaubsauger-angebote',
   tool:'beutelstaubsauger_angebot_kosten_pruefen',
 };
+
+export const boschDry = {
+  path:'/guide/luftentfeuchter-ratgeber.html',
+  id:'modell-bosch-d4000-eu',
+  tool:'ratgeber_suche',
+};
+
+function asksForBoschDry(query) {
+  const model = /\b(?:bosch(?:[ -]+(?:home[ -]+comfort|thermotechnik))?[ -]+dry[ -]*4000|d[ -]*4000[ -]+eu|7733703558|4069143047774)\b/;
+  if (!model.test(query)) return false;
+
+  const wrongModel = /\b(?:air[ -]*4000i?|dry[ -]*(?:1000|2000|4000i)|d[ -]*4000[ -]+uk|7733703561|4069143047804)\b/;
+  const otherIdentifier = /\b(?:(?!7733703558\b)773370\d{4}|(?!4069143047774\b)\d{13})\b/;
+  const coldRoom = /\b(?:kalt\w*|kaelt\w*|unbeheiz\w*|pruefpunkt\w*)\b|\b\d{1,2}\s*(?:grad\b|°\s*c\b)/;
+  return !wrongModel.test(query) && !otherIdentifier.test(query) &&
+    !coldRoom.test(query) && !asksForDehumidifierDrainRoute(query);
+}
 
 function asksForVacuumOffer(query) {
   const s1 = /\b(?:guard[ -]+s1|12558410)\b/.test(query);
@@ -69,6 +88,7 @@ function humidifierAccessoryTask(query) {
 // Consumers pass their normalized German query. Match a task, not a category.
 export function exactGermanHouseholdTask(query) {
   if (asksForVacuumOffer(query)) return vacuumOffer;
+  if (asksForBoschDry(query)) return boschDry;
   const accessory = humidifierAccessoryTask(query);
   if (accessory) return accessory;
 
