@@ -18,7 +18,8 @@ for(const route of ['index.html','wohnen.html','tools.html']){const html=fs.read
 const executablePath=process.env.CHROMIUM_PATH||process.env.PILOT_CHROMIUM;
 const localTools=['luftreiniger','hygrometer','dampfreiniger','fenstersauger','nass-trockensauger','bodenstaubsauger','wasserkocher','heissluftfritteusen','kontaktgrills'];
 const reusedTools={ventilatoren:'/guide/stromkosten-rechner.html',heizluefter:'/guide/heizluefter-stromverbrauch.html#eb-heater-cost',waeschetrockner:'/waeschetrockner-oder-luftentfeuchter.html#laundry-check'};
-const coolingGuides=[
+const modelGuides=[
+ {href:'#waeschesaeule-zubehoer',queries:['WTZ27400','WTZ-27410','Bosch WQG241001']},
  {href:'/guide/delonghi-pac-n90-test.html#testlage',queries:['PAC N90','PACN90','DeLonghi PAC N90 ECO Silent','8004399512351']},
  {href:'/guide/midea-portasplit-ausverkauft-alternativen.html#fensterfalz',queries:['Midea PortaSplit','Porta Split','Porta-Split','Midea PortaSplit Original','4048164116478']},
 ];
@@ -460,11 +461,11 @@ async function checkCatalog(browser){
   }
 
   const guideLinks=page.locator('[data-specialist-guide] a');
-  assert.equal(await guideLinks.count(),8);
-  assert.equal(await page.locator('[data-specialist-guide]:visible').count(),8);
-  const exactCoolingLinks=page.locator('[data-specialist-guide][data-exact-guide-terms] a');
-  assert.equal(await exactCoolingLinks.count(),coolingGuides.length);
-  for(const {href} of coolingGuides)assert(await exactCoolingLinks.and(page.locator('a[href="'+href+'"]')).isVisible(),href);
+  assert.equal(await guideLinks.count(),9);
+  assert.equal(await page.locator('[data-specialist-guide]:visible').count(),9);
+  const exactModelLinks=page.locator('[data-specialist-guide][data-exact-guide-terms] a');
+  assert.equal(await exactModelLinks.count(),modelGuides.length);
+  for(const {href} of modelGuides)assert(await exactModelLinks.and(page.locator('a[href="'+href+'"]')).isVisible(),href);
   const humidifierLink=guideLinks.filter({hasText:/^Luftbefeuchter$/i});
   assert.equal(await humidifierLink.count(),1);
   const humidifierPath=await humidifierLink.getAttribute('href');
@@ -544,8 +545,8 @@ async function checkCatalog(browser){
     assert(await accessoryLink.isVisible());
     assert(await page.locator('#product-filter-empty').isHidden());
    }
-   for(const {href,queries} of coolingGuides){
-    const link=exactCoolingLinks.and(page.locator('a[href="'+href+'"]'));
+   for(const {href,queries} of modelGuides){
+    const link=exactModelLinks.and(page.locator('a[href="'+href+'"]'));
     for(const query of queries){
      await page.locator('#product-query').fill(query);
      assert(await link.isVisible(),query+' must reach '+href);
@@ -554,7 +555,7 @@ async function checkCatalog(browser){
    }
    for(const query of otherCoolingModels){
     await page.locator('#product-query').fill(query);
-    assert.equal(await exactCoolingLinks.filter({visible:true}).count(),0,query+' names a different model');
+    assert.equal(await exactModelLinks.filter({visible:true}).count(),0,query+' names a different model');
    }
    const partResults=page.locator('[data-part-results]');
    for(const [part,target] of Object.entries({
@@ -577,7 +578,7 @@ async function checkCatalog(browser){
    await page.locator('#product-filters button[type=reset]').click();
    assert(await partResults.isHidden());
    assert.equal(await page.locator('[data-product-card]:visible').count(),data.products.length);
-   assert.equal(await page.locator('[data-specialist-guide]:visible').count(),8);
+   assert.equal(await page.locator('[data-specialist-guide]:visible').count(),9);
    const example=data.products[0];await page.locator('#product-query').fill(example.name);
    assert(await page.locator('#produkt-'+example.id).isVisible());
    await page.locator('#product-filters button[type=reset]').click();

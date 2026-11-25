@@ -67,7 +67,7 @@ BOSCH_STACKING_ANSWER = (
 # matching a short token inside the title or measurement instructions.
 MODEL_GUIDES = (
     (BOSCH_STACKING_TITLE, '#' + BOSCH_STACKING_ID, BOSCH_STACKING_ANSWER,
-     'Bosch WQG241001 WTZ27400 WTZ27410 Verbindungssatz Zwischenbaurahmen Auszug'),
+     'Bosch WQG241001 WTZ27400 WTZ27410 WQG-241001 WTZ-27400 WTZ-27410 Verbindungssatz Zwischenbaurahmen Auszug'),
     ('De’Longhi PAC N90 ECO Silent: Modell prüfen', '/guide/delonghi-pac-n90-test.html#testlage',
      'Gleiche die vollständige Gerätekennung und die EAN 8004399512351 mit dem Angebot ab.',
      'DeLonghi Pinguino PACN90 0151400003'),
