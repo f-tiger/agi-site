@@ -29,7 +29,7 @@ import {readQuoteSignals} from '../../lib/quote-signals.js';
 import {readCommercialTriggers} from '../../lib/commercial-triggers.js';
 import {HUMAN, EVENT_ROWS, NON_LOCAL_REFERRAL, REFERRED_PAGEVIEW_DEFINITION} from '../../lib/hits-schema.js';
 import {createReachCache} from '../../lib/reach-cache.js';
-import {readConversionStages} from '../../lib/conversion-stages.js';
+import {readConversionStages,readProposalDeckOrders} from '../../lib/conversion-stages.js';
 export const K_COUNTRY = 5;
 
 // 小于 K 的国家并进 other:一个只有 1 次访问的国家配上 28 天窗口,在公开端点上离
@@ -84,7 +84,7 @@ export async function computeReach(env, days) {
   const today = new Date(now).toISOString().slice(0, 10);
   try {
     const q = (sql, ...params) => env.HITS.prepare(sql).bind(...params).all().then((r) => (r && r.results) || []);
-    const [total, paths, referrers, aiRefs, events, subsNew, subsAll, adsRows, countryRows, subsByStatus, checkoutByState, web3Rows, watchRows, wbOrderRows, videoOrders, proofkitOrders, claimRows, attRows] = await Promise.all([
+    const [total, paths, referrers, aiRefs, events, subsNew, subsAll, adsRows, countryRows, subsByStatus, checkoutByState, web3Rows, watchRows, wbOrderRows, videoOrders, proofkitOrders, claimRows, attRows, proposalDeckOrders] = await Promise.all([
       q(`SELECT count(*) n, count(*) FILTER (WHERE d < ? AND ${NON_LOCAL_REFERRAL}) complete_referred
         FROM hits WHERE d >= ? AND ${HUMAN}`, today, since),
       q(`SELECT path, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} GROUP BY path ORDER BY n DESC, path LIMIT 400`, since),
@@ -113,11 +113,12 @@ export async function computeReach(env, days) {
       // 两张表首次认领时才建,按 slug 一行,极小;表不存在按 null 计。
       q("SELECT count(*) n FROM claims WHERE last_result = 'ok'").catch(() => [{ n: null }]),
       q("SELECT count(*) n FROM attestations WHERE status = 'queued'").catch(() => [{ n: null }]),
+      readProposalDeckOrders(env.HITS, since, today),
     ]);
     const ads = {};
     for (const r of adsRows) ads[String(r.status || '')] = r.n;
     const commercial = await readCommercialTriggers(env.HITS, since);
-    const conversionStages = await readConversionStages(env.HITS, days);
+    const conversionStages = await readConversionStages(env.HITS, days, now);
     const quoteSignals = await readQuoteSignals(env.HITS, since);
     const homepageSignals = await readHomepageSignals(env.HITS, since, today);
     const manjuSignals = await readManjuSignals(env.HITS, since);
@@ -149,7 +150,7 @@ export async function computeReach(env, days) {
       ai_solo_signals: aiSoloSignals,
       // 有一块没读出来(09-26 额度边缘时实见:主查询成功、商业触发那条被拒)就标 partial,
       // lib/reach-cache.js 不缓存它——否则缺一块的结果会被原样挂一小时。
-      ...(commercial.ok === false || !conversionStages.ok || !quoteSignals.ok || !homepageSignals.ok || !aiSoloSignals.ok || !depthSignals.ok ? { partial: true } : {}),
+      ...(commercial.ok === false || !conversionStages.ok || !quoteSignals.ok || !homepageSignals.ok || !aiSoloSignals.ok || !depthSignals.ok || proposalDeckOrders === null ? { partial: true } : {}),
       money: {
         days,
         subs_by_status: Object.fromEntries(subsByStatus.map((r) => [String(r.status || ''), r.n])),
@@ -162,6 +163,9 @@ export async function computeReach(env, days) {
         proofkit_order_definition:'BPJ membership orders first attributed to the customer quote studio; states are not export counts or profit. Other membership tools and older orders excluded; failed query is null.',
         video_orders_by_state: videoOrders===null?null:Object.fromEntries(videoOrders.map(r=>[String(r.state||''),r.n])),
         video_order_definition: 'Orders first created from the video membership entry within this window; paid means confirmed payment, not profit or causal attribution.',
+        proposal_deck_orders_by_state: proposalDeckOrders,
+        proposal_deck_order_window: conversionStages.window,
+        proposal_deck_order_definition: 'Membership orders first attributed to ProposalDeck and created during this complete UTC window, classified at its exclusive end. Paid means a confirmed payment recorded by then. Each order is counted once. Buyer, cloud delivery and profit metrics require separate records. A failed read is null.',
         scope_note: 'Inventory/state counts are lifetime unless a metric explicitly says window; go_28d and biz_28d retain legacy names and use the requested window. Video-order states are windowed. These are not an attributed acquisition funnel.',
         submissions_total: subsAll[0] ? subsAll[0].n : null,
         go_28d: (events.find((r) => r.ev === 'go') || {}).n || 0,

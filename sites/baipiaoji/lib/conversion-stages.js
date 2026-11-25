@@ -4,6 +4,8 @@ import {parseListingEvent,emptyListingCounts} from './listing-signals.mjs';
 import catalog from '../data/tools.json' with {type:'json'};
 
 const toolSlugs = new Set(catalog.map(tool => tool.slug));
+const DECK_ACTION = /^\/studio\/proposal-deck\/(pptx-export|member-open|cloud-open|cloud-saved|cloud-restore|paid-offer-view)\/(own|demo)$/;
+const DECK_ACTION_COUNTS = { pptx_export: 0, member_open: 0, cloud_open: 0, cloud_saved: 0, cloud_restore: 0 };
 
 // Project the existing grouped query; no extra tracking request or D1 read.
 // Unknown paths are counted without exposing arbitrary client-supplied strings.
@@ -41,8 +43,35 @@ export const STAGE_ACCOUNTS_DAILY_SQL = `SELECT date(a.created, 'unixepoch') dat
  WHERE a.qa = 0 AND a.created >= ? AND a.created < ?
  GROUP BY date(a.created, 'unixepoch') ORDER BY date`;
 
+// Attribute only to the source on the first order. Classify as of the end of
+// the complete UTC window so a payment from today's partial day cannot enter it.
+const PROPOSAL_DECK_ORDERS_SQL = `SELECT
+ COUNT(*) FILTER (WHERE bucket = 'pending') pending,
+ COUNT(*) FILTER (WHERE bucket = 'expired') expired,
+ COUNT(*) FILTER (WHERE bucket = 'paid') paid
+ FROM (
+   SELECT CASE WHEN o.state = 'paid' AND o.paid_at < ? THEN 'paid'
+     WHEN o.expires < ? THEN 'expired' ELSE 'pending' END bucket
+   FROM wb_order_sources s JOIN wb_orders o ON o.id = s.order_id
+   WHERE s.product = 'bpj-proposal-deck' AND o.created >= ? AND o.created < ?
+     AND o.state IN ('pending', 'paid')
+ )`;
+
+export async function readProposalDeckOrders(db, start, end) {
+  const startSeconds = Date.parse(start) / 1000;
+  const endSeconds = Date.parse(end) / 1000;
+  try {
+    const row = await db.prepare(PROPOSAL_DECK_ORDERS_SQL).bind(endSeconds, endSeconds, startSeconds, endSeconds).first();
+    if (!row) return null;
+    const {pending, expired, paid} = row;
+    return [pending, expired, paid].every(n => Number.isSafeInteger(n) && n >= 0) ? {pending, expired, paid} : null;
+  } catch { return null; }
+}
+
 export function stageCounts(rows) {
-  const counts = { table_review_actions: emptyTableReviewCounts(), listing_actions: emptyListingCounts(), tool_results_own: 0, tool_results_demo: 0, tool_download_actions_own: 0,
+  const counts = { table_review_actions: emptyTableReviewCounts(), listing_actions: emptyListingCounts(),
+    proposal_deck_actions: { demo: {...DECK_ACTION_COUNTS}, own: {...DECK_ACTION_COUNTS, paid_offer_view: 0} },
+    tool_results_own: 0, tool_results_demo: 0, tool_download_actions_own: 0,
     tool_download_actions_demo: 0, other_calc_events: 0, directory_outbound_clicks: 0,
     homepage_limit_navigation: 0, video_exports_own: 0, video_exports_demo: 0,
     account_tool_entries: 0, coding_access_filters: 0, coding_access_empty_results: 0,
@@ -76,6 +105,12 @@ export function stageCounts(rows) {
     if (path === '/account-growth/tool-entry') { counts.account_tool_entries += n; continue; }
     const video = path.match(/^\/studio\/video-variants\/(export-video|export-batch)\/(own|demo)$/);
     if (video) { counts['video_exports_' + video[2]] += n; continue; }
+    const deck = DECK_ACTION.exec(path);
+    if (deck && Number.isSafeInteger(n) && n >= 0) {
+      const group = counts.proposal_deck_actions[deck[2]], action = deck[1].replaceAll('-', '_');
+      if (Object.hasOwn(group, action)) group[action] += n;
+      // Preserve the legacy other_calc_events counter. This is a projection of it.
+    }
     const m = path.match(/^\/studio\/(pdf-tools|product-images|quote-compare)\/(complete|calculate|download|export-csv|export-report)\/(own|demo)$/);
     if (!m || (m[1] === 'quote-compare' ? !['calculate','export-csv','export-report'].includes(m[2]) : !['complete','download'].includes(m[2]))) {
       counts.other_calc_events += n; continue;
@@ -116,6 +151,7 @@ export async function readConversionStages(db, days, clock = Date.now()) {
     definitions: {
       table_review_actions: 'Fixed browser actions since the 2026-11-12 release, split into fictional demo and declared own inputs. Check means structural comparison succeeded; export initiates a download. Neither proves correctness, unique customers, paid demand or revenue. No table content is collected. These events have no user-level channel join.',
       listing_actions: 'Measured from the 2026-10-31 listing-pack release. Fixed browser action counts, separated into fictional demo and declared own inputs. Review is a user acknowledgement, not semantic verification; export initiates a download, not platform acceptance. Inquiry counts a browser success response, not a unique lead, paid order or revenue. QA, lost events and unlabeled automation limitations still apply.',
+      proposal_deck_actions: 'Fixed ProposalDeck browser action counts projected from other_calc_events, excluding known CI. Own is declared project use. paid_offer_view is measured from its release. cloud_saved records an acknowledged save. Actions and orders have independent counts.',
       acquisition: 'Search clicks and CTR come only from GSC; not supplied by this endpoint. GSC uses Pacific reporting days.',
       usage: 'Client-reported successful result actions from PDF, image and quote tools only; repeats are not deduplicated. Demo and own-input actions are separate. Image completion can include partial batch success. Download means an action, not a verified saved file.',
       other_calc_events: 'Unclassified calc events include navigation, edits and tools without a reviewed success contract; never count the whole calc bucket as completed work.',

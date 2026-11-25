@@ -44,15 +44,22 @@ async function createOrderWithIdentity(env,member,hash,nonce,ip,source){
  if(member?.suspended)throw Error('suspended');if(!await memberReady(env))throw Error('not_ready');
  await rate(db,'order:'+await digest(env.ADS_WATCH_SECRET+':'+ip),5);
  const cfg=web3Settings(env),height=await probeChain(env,cfg),memberID=member?.id||crypto.randomUUID();
- if(member){const pending=await db.prepare("SELECT * FROM wb_orders WHERE member_id=? AND state='pending' AND expires>? ORDER BY created DESC LIMIT 1").bind(member.id,now).first();if(pending)return orderStatus(pending);}
+ const pendingOrder=()=>db.prepare("SELECT * FROM wb_orders WHERE member_id=(SELECT id FROM wb_members WHERE token_hash=?) AND state='pending' AND expires>? ORDER BY created DESC LIMIT 1").bind(hash,now).first();
+ if(member){const pending=await pendingOrder();if(pending)return orderStatus(pending);}
  const p=(s,...a)=>db.prepare(s).bind(...a);
+ // The transaction repeats both checks so concurrent requests cannot create a second quote.
  await db.batch([
  p('INSERT OR IGNORE INTO wb_members(id,token_hash,created) VALUES(?,?,?)',memberID,hash,now),
  p(`INSERT INTO wb_orders(id,member_id,chain,recipient,recipient_hex,contract,amount_units,days,created,expires,cursor)
- SELECT ?, (SELECT id FROM wb_members WHERE token_hash=?),?,?,?,?,COALESCE(MAX(amount_units),?)+1,?,?,?,? FROM wb_orders WHERE chain=? AND recipient=? AND contract=?`,id,hash,cfg.chain,cfg.recipient,cfg.recipient.slice(2),cfg.network.contract,plan.quote_base,plan.days,now,now+3600,height,cfg.chain,cfg.recipient,cfg.network.contract),
- p('INSERT INTO wb_order_sources(order_id,product,created) VALUES(?,?,?)',id,source,now)
+ SELECT ?,m.id,?,?,?,?,(SELECT COALESCE(MAX(amount_units),?)+1 FROM wb_orders WHERE chain=? AND recipient=? AND contract=?),?,?,?,?
+ FROM wb_members m WHERE m.token_hash=? AND NOT EXISTS (SELECT 1 FROM wb_orders WHERE id=?)
+ AND NOT EXISTS (SELECT 1 FROM wb_orders WHERE member_id=m.id AND state='pending' AND expires>?)`,
+ id,cfg.chain,cfg.recipient,cfg.recipient.slice(2),cfg.network.contract,plan.quote_base,cfg.chain,cfg.recipient,cfg.network.contract,plan.days,now,now+3600,height,hash,id,now),
+ p(`INSERT INTO wb_order_sources(order_id,product,created)
+ SELECT id,?,? FROM wb_orders WHERE id=? ON CONFLICT(order_id) DO NOTHING`,source,now,id)
  ]);
- const row=await db.prepare('SELECT * FROM wb_orders WHERE id=?').bind(id).first();
+ const row=await db.prepare('SELECT * FROM wb_orders WHERE id=?').bind(id).first()||await pendingOrder();
+ if(!row)throw Error('temporarily_unavailable');
  // Never recycle amount identifiers. Capacity guard is also checked in SQL below.
  if(row.amount_units>=plan.quote_base+10000)throw Error('quote_capacity');return orderStatus(row);
 }

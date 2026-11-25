@@ -1,4 +1,4 @@
-export const DECK_VERSION='20261001a';
+export const DECK_VERSION='20261125a';
 export const PRODUCT='bpj-proposal-deck';
 export const THEMES={blue:{ink:'142D4E',accent:'185BCC',paper:'FFFFFF',muted:'53657A'},forest:{ink:'183E32',accent:'257758',paper:'FCFDFC',muted:'57695F'},slate:{ink:'292B35',accent:'7157AC',paper:'FFFFFF',muted:'666779'}};
 export const escapeHTML=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

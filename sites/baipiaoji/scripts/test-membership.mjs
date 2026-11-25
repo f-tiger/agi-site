@@ -25,6 +25,27 @@ try{
 await test('public config contains price and no wallet or secret; requires healthy live BSC',async()=>{const{env}=await setup();let r=await onRequestGet({env}),s=await r.text();assert.ok(!s.includes(addr));assert.ok(!s.includes(env.ADS_WATCH_SECRET));assert.equal(JSON.parse(s).ready,true);assert.equal((await (await onRequestGet({env:{...env,MEMBERS_ENABLED:'false'}})).json()).ready,false);});
 await test('unpaid, missing token and foreign origins cannot save',async()=>{const{env}=await setup();await order(env);for(const[k,origin,want]of [['bad','https://baipiaoji.com',401],[key(1),'https://evil.example',403],[key(1),'https://baipiaoji.com',403]])assert.equal((await onRequestPost({env,request:request(k,{action:'save',...space()},origin)})).status,want);});
 await test('quote idempotency and amount uniqueness; client cannot choose price or term',async()=>{const{env,d}=await setup();const a=await order(env),b=await order(env,2);assert.equal(a.amount_units,9000001);assert.notEqual(a.amount_units,b.amount_units);assert.equal((await order(env)).id,a.id);const r=await onRequestPost({env,request:request(key(3),{action:'checkout',nonce:nonce(3),accept_terms:true,key_saved:true,price_units:1,days:999})});const j=await r.json();assert.equal(j.order.days,30);assert.equal(d.sql.prepare('SELECT COUNT(*) n FROM wb_orders').get().n,3);});
+await test('concurrent checkout reuses the first payable quote and source with either nonce',async()=>{
+ for(const secondNonce of [nonce(1),nonce(2)]){
+  const{env,d}=await setup(),batch=d.batch.bind(d);
+  const firstAtWrite=Promise.withResolvers(),secondCommitted=Promise.withResolvers();
+  let quoteBatches=0;
+  d.batch=async items=>{
+   if(!items.some(item=>item.query.includes('INSERT INTO wb_orders')))return batch(items);
+   if(++quoteBatches===1){firstAtWrite.resolve();await secondCommitted.promise;return batch(items);}
+   try{return await batch(items);}finally{secondCommitted.resolve();}
+  };
+  const checkout=(orderNonce,source)=>onRequestPost({env,request:request(key(1),{action:'checkout',nonce:orderNonce,source,accept_terms:true,key_saved:true})});
+  const first=checkout(nonce(1),VIDEO);
+  await firstAtWrite.promise;
+  const [retried,winner]=await Promise.all([first,checkout(secondNonce,'ai-work-plan')]);
+  assert.equal(winner.status,200);assert.equal(retried.status,200);assert.equal(quoteBatches,2);
+  const {order:quoted}=await winner.json();assert.deepEqual((await retried.json()).order,quoted);
+  assert.equal(d.sql.prepare('SELECT COUNT(*) n FROM wb_orders').get().n,1);
+  assert.equal(d.sql.prepare('SELECT COUNT(*) n FROM wb_members').get().n,1);
+  assert.equal(d.sql.prepare('SELECT product FROM wb_order_sources WHERE order_id=?').get(quoted.id).product,'ai-work-plan');
+ }
+});
 await test('confirmed exact transfer activates once; replay never extends term',async()=>{const{env}=await setup();const m=await paid(env);assert.equal(memberStatus(m).active,true);assert.ok(Math.abs(m.ends_at-seconds()-30*86400)<3);const o=await order(env);await deliver(env,o,{code:'verified',tx,block:1000});assert.equal((await memberByToken(env.HITS,key(1))).ends_at,m.ends_at);});
 await test('ad-consumed transaction cannot activate a membership',async()=>{const{env,d}=await setup(),o=await order(env);d.sql.prepare('INSERT INTO bpj_ad_chain_receipts VALUES(?,?,?,?,?,?)').run('bsc',tx,'ad-owned',1000,49000001,seconds());await deliver(env,o,{code:'verified',tx,block:1000});assert.equal(memberStatus(await memberByToken(d,key(1))).active,false);});
 await test('renewal adds 30 days from current expiry, not from now',async()=>{const{env,d}=await setup();const m=await paid(env);const res=await createOrder(env,key(1),nonce(9),'ip9'),o=await d.prepare('SELECT * FROM wb_orders WHERE id=?').bind(res.id).first(),t='0x'+'c'.repeat(64);receipt=receiptFor(o,t);await deliver(env,o,await verifyTransfer(env,o,t));assert.equal((await memberByToken(d,key(1))).ends_at,m.ends_at+30*86400);});

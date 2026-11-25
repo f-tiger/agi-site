@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
-import {readConversionStages,directoryOutboundCounts,STAGE_EVENTS_SQL,STAGE_ACCOUNTS_DAILY_SQL} from '../lib/conversion-stages.js';
+import {readConversionStages,readProposalDeckOrders,directoryOutboundCounts,STAGE_EVENTS_SQL,STAGE_ACCOUNTS_DAILY_SQL} from '../lib/conversion-stages.js';
 import {emptyListingCounts} from '../lib/listing-signals.mjs';
 import {emptyTableReviewCounts} from '../lib/table-review-signals.mjs';
 import {HITS_INDEXES} from '../lib/hits-schema.js';
@@ -16,6 +16,12 @@ for(const [path,ev,lang='en',date='2026-09-26'] of [
  ['/studio/product-images/download/own','calc'],['/studio/quote-compare/calculate/own','calc'],
  ['/studio/quote-compare/export-report/demo','calc'],['/studio/video-variants/export-batch/own','calc'],
  ['/studio/video-variants/export-video/demo','calc'],['/studio/video-variants/cloud-open/own','calc'],
+ ['/studio/proposal-deck/pptx-export/own','calc'],['/studio/proposal-deck/pptx-export/own','calc'],
+ ['/studio/proposal-deck/pptx-export/demo','calc'],['/studio/proposal-deck/member-open/own','calc'],
+ ['/studio/proposal-deck/cloud-open/own','calc'],['/studio/proposal-deck/cloud-saved/own','calc'],
+ ['/studio/proposal-deck/cloud-restore/own','calc'],['/studio/proposal-deck/paid-offer-view/own','calc'],
+ ['/studio/proposal-deck/paid-offer-view/demo','calc'],['/studio/proposal-deck/pptx-export/own/extra','calc'],
+ ['/studio/proposal-deck/pptx-export/own','calc','ci'],['/studio/proposal-deck/pptx-export/own','calc','en','2026-09-27'],
  ['/studio/quote-compare/download/own','calc'],['/studio/pdf-tools/complete/own/extra','calc'],
  ['/account-growth/tool-entry','calc'],['/account-growth/tool-entry/forged','calc'],['/account-growth/tool-entry','calc','ci'],
  ['/coding-access/filter/catalog','coding_access'],['/coding-access/miss/catalog','coding_access'],
@@ -64,7 +70,11 @@ for (const invalid of [-1, 0.5, NaN, Infinity, '0', null, undefined, false, [], 
 for (const unknown of [null, undefined, [], {}]) {
   assert.throws(() => assertCountTree(unknown, 'events'), /events/);
 }
-assert.deepEqual(out.events,{table_review_actions:emptyTableReviewCounts(),listing_actions:emptyListingCounts(),tool_results_own:2,tool_results_demo:1,tool_download_actions_own:1,tool_download_actions_demo:1,other_calc_events:4,directory_outbound_clicks:1,homepage_limit_navigation:1,video_exports_own:1,video_exports_demo:1,account_tool_entries:1,coding_access_filters:1,coding_access_empty_results:1,coding_access_provider_opens:1,coding_access_source_opens:1,coding_access_selection_copies:2,coding_access_checklist_copies:1,coding_access_vendor_entries:1});
+const proposalDeckActions={
+ demo:{pptx_export:1,member_open:0,cloud_open:0,cloud_saved:0,cloud_restore:0},
+ own:{pptx_export:2,member_open:1,cloud_open:1,cloud_saved:1,cloud_restore:1,paid_offer_view:1},
+};
+assert.deepEqual(out.events,{table_review_actions:emptyTableReviewCounts(),listing_actions:emptyListingCounts(),proposal_deck_actions:proposalDeckActions,tool_results_own:2,tool_results_demo:1,tool_download_actions_own:1,tool_download_actions_demo:1,other_calc_events:14,directory_outbound_clicks:1,homepage_limit_navigation:1,video_exports_own:1,video_exports_demo:1,account_tool_entries:1,coding_access_filters:1,coding_access_empty_results:1,coding_access_provider_opens:1,coding_access_source_opens:1,coding_access_selection_copies:2,coding_access_checklist_copies:1,coding_access_vendor_entries:1});
 assert.deepEqual(out.accounts,{created:2,new_accounts_currently_email_verified:1,total_non_test:4,total_currently_email_verified:3});
 assert.equal(out.account_scope,'fleet_shared_account_pool');
 assert.equal(out.accounts_daily.length,28);
@@ -112,6 +122,24 @@ const legacy=await readConversionStages(binding,28,Date.parse('2026-09-27T15:01:
 assert.equal(legacy.accounts.total_non_test,5);assert.equal(legacy.accounts.created,2);assert.equal(legacy.accounts.total_currently_email_verified,3);
 const queryPlan=db.prepare('EXPLAIN QUERY PLAN '+STAGE_EVENTS_SQL).all('2026-08-30','2026-09-27');
 assert.ok(queryPlan.some(r=>r.detail.includes('hits_events')),JSON.stringify(queryPlan));
+// Order attribution and browser actions are separate. Test exact UTC boundaries,
+// a payment recorded during the next partial day, and another product's order.
+const readDeckOrders=()=>readProposalDeckOrders(binding,'2026-08-30','2026-09-27');
+assert.equal(await readDeckOrders(),null);
+db.exec(`CREATE TABLE wb_orders (id TEXT PRIMARY KEY,state TEXT,created INTEGER,expires INTEGER,paid_at INTEGER);
+ CREATE TABLE wb_order_sources (order_id TEXT PRIMARY KEY, product TEXT NOT NULL);`);
+assert.deepEqual(await readDeckOrders(),{pending:0,expired:0,paid:0});
+const addOrder=(id,created,expires,paidAt=null,product='bpj-proposal-deck')=>{
+ db.prepare('INSERT INTO wb_orders VALUES(?,?,?,?,?)').run(id,paidAt?'paid':'pending',sec(created),sec(expires),paidAt?sec(paidAt):null);
+ db.prepare('INSERT INTO wb_order_sources VALUES(?,?)').run(id,product);
+};
+addOrder('start','2026-08-30','2026-08-30T01:00:00Z','2026-08-30T00:30:00Z');
+addOrder('expired','2026-09-26T21:00:00Z','2026-09-26T22:00:00Z');
+addOrder('late','2026-09-26T23:59:59Z','2026-09-27T00:59:59Z','2026-09-27');
+addOrder('before','2026-08-29T23:59:59Z','2026-08-30T00:59:59Z');
+addOrder('today','2026-09-27','2026-09-27T01:00:00Z');
+addOrder('other','2026-09-25','2026-09-25T01:00:00Z','2026-09-25T00:30:00Z','bpj-testimonial-kit');
+assert.deepEqual(await readDeckOrders(),{pending:1,expired:1,paid:1});
 db.exec('DELETE FROM hits; DELETE FROM free_accounts; DELETE FROM free_account_identities;');
 const empty=await readConversionStages(binding,28);
 assert.deepEqual(empty.directory_outbound,{by_tool:[],unattributed_clicks:0});
