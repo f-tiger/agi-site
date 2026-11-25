@@ -88,7 +88,7 @@ def render():
 <p class="winter-kicker">Vor dem Kauf · zwei Auswahlen, keine Texteingabe</p><h2 id="valve-title">Welcher Thermostatkopf passt zu meinem Ventil?</h2>
 <p>Wähle zuerst die genaue Gerätegeneration, dann ein bereits identifiziertes Ventil. Der Check sortiert den nächsten Prüfschritt; er erkennt kein Ventil und erteilt keine Montagefreigabe.</p>
 <section aria-labelledby="danfoss-altventil">
-<h3 id="danfoss-altventil" style="scroll-margin-top:150px">Welcher Typ steckt hinter dem alten Danfoss-Klickventil?</h3>
+<h3 id="danfoss-altventil">Welcher Typ steckt hinter dem alten Danfoss-Klickventil?</h3>
 <p>Danfoss verwendet <a href="https://designcenter.danfoss.com/de-de/products/p/015G4590">RA-click als Anschlussbezeichnung</a>. Ein Steck- oder Klemmgefühl ist ein erster Hinweis. Vergleiche die Kennzeichnung am Ventil und die Anschlussform in der Herstellerzeichnung, bevor du RA, RAV oder RAVL auswählst.</p>
 <p>Für ältere Ventile zeigt <a href="https://assets.danfoss.com/documents/latest/215970/AB433044178502de-DE0102.pdf">Danfoss den Ventilhals mit 34 mm bei RAV und 26 mm bei RAVL</a>. <a href="{e(data['sources']['fritz-valves']['url'])}">FRITZ! nennt für RAVL 25,5 mm</a>. Vergleiche Maß und Messstelle mit der jeweiligen Skizze. Eine einzelne Messung reicht für die Adapterwahl nicht aus.</p>
 <p>Ist Ventiltyp oder gewünschte Gerätegeneration offen, behalte den vorhandenen Kopf und warte mit der Bestellung. Notiere sichtbare Kennzeichnungen und zeige sie dem Hersteller oder Fachbetrieb. Am wasserführenden Ventilkörper nichts lösen. Melde eine undichte oder festsitzende Stelle dem Fachbetrieb oder der Hausverwaltung.</p>
