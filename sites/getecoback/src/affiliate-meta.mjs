@@ -1,7 +1,7 @@
 import productCatalog from '../data/product-catalog.json' with {type:'json'};
 import {WINDOW_CONDENSATION_PAGE} from '../site/assets/fenster-taucheck.mjs';
 import {WINDOW_ENTRY_DOCUMENT, WINDOW_ENTRY_PAGE} from './fenstersauger-entry.mjs';
-import {PORTASPLIT_ENTRY_DOCUMENT, PORTASPLIT_ENTRY_PAGE, PORTASPLIT_MODEL_SEARCH} from './portasplit-entry.mjs';
+import {PORTASPLIT_ENTRY_DOCUMENT, PORTASPLIT_ENTRY_PAGE, PORTASPLIT_MODEL_SEARCH, PORTASPLIT_PRODUCT_URL} from './portasplit-entry.mjs';
 import {CELLAR_MODEL_ENTRY_DOCUMENT, CELLAR_MODEL_ENTRY_PAGE, CELLAR_MODEL_SEARCH} from './cellar-entry.mjs';
 import {N90_ENTRY_DOCUMENT, N90_ENTRY_PAGE, N90_PRODUCT_URL} from './n90-entry.mjs';
 
@@ -136,8 +136,11 @@ export function taggedWindowTikTokEntry(body, request, uaClass) {
 }
 
 export function taggedPortaSplitEntry(body, request, uaClass) {
+  // Both targets are allowed so a cached guide can still report the previous
+  // model search while the audit distinguishes the new product-page clicks.
   return body.mcp_portasplit_entry === true && eligibleModelEntry(body, request, uaClass,
-    PORTASPLIT_ENTRY_PAGE, PORTASPLIT_ENTRY_DOCUMENT, link => isGermanModelSearch(link, portasplitModelSearches));
+    PORTASPLIT_ENTRY_PAGE, PORTASPLIT_ENTRY_DOCUMENT,
+    link => link === PORTASPLIT_PRODUCT_URL || isGermanModelSearch(link, portasplitModelSearches));
 }
 
 export function taggedCellarModelEntry(body, request, uaClass) {

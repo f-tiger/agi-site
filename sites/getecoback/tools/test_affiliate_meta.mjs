@@ -10,7 +10,7 @@ import {
 import {AFFILIATE_SQL, affiliateMetrics} from '../src/affiliate-metrics.mjs';
 import {CELLAR_MODEL_ENTRY_DOCUMENT, CELLAR_MODEL_ENTRY_PAGE, CELLAR_MODEL_ENTRY_URL, CELLAR_MODEL_SEARCH} from '../src/cellar-entry.mjs';
 import {WINDOW_ENTRY_DOCUMENT, WINDOW_ENTRY_PAGE} from '../src/fenstersauger-entry.mjs';
-import {PORTASPLIT_ENTRY_DOCUMENT, PORTASPLIT_ENTRY_PAGE} from '../src/portasplit-entry.mjs';
+import {PORTASPLIT_ENTRY_DOCUMENT, PORTASPLIT_ENTRY_PAGE, PORTASPLIT_PRODUCT_URL} from '../src/portasplit-entry.mjs';
 import {N90_ENTRY_DOCUMENT, N90_ENTRY_PAGE, N90_PRODUCT_URL} from '../src/n90-entry.mjs';
 import worker from '../src/worker.js';
 
@@ -283,11 +283,12 @@ test('window TikTok landing, width completion and approved search are separate f
   assert.equal(JSON.parse(old.rows[0][4]).window_tiktok_entry,undefined);
 });
 
-test('the PortaSplit marker records an eligible landing and only its approved German model search', async () => {
+test('the PortaSplit marker allows the exact German product and the search from a cached guide', async () => {
   const headers = {origin:'https://getecoback.com', referer:PORTASPLIT_ENTRY_DOCUMENT, 'sec-fetch-site':'same-origin'};
   const view = {n:'page_view',p:PORTASPLIT_ENTRY_PAGE,mcp_portasplit_entry:true,r:'https://example.test/?extra=secret'};
   const link = 'https://www.amazon.de/s?k=Midea+PortaSplit&tag=getecoback-21';
   const click = {...view,n:'affiliate_click',m:{source:'body',link_url:link,private_input:'secret'}};
+  const exact = {...click,m:{...click.m,link_url:PORTASPLIT_PRODUCT_URL}};
   const stored = async (body, requestHeaders=headers) => {
     const receipt = await record(body,requestHeaders);
     assert.equal(receipt.rows.length,1);
@@ -298,18 +299,23 @@ test('the PortaSplit marker records an eligible landing and only its approved Ge
   assert.deepEqual(await stored(click),{
     mcp_portasplit_entry:1,source:'body',link_url:'https://www.amazon.de/s?tag=getecoback-21',
   });
+  assert.deepEqual(await stored(exact),{
+    mcp_portasplit_entry:1,source:'body',link_url:PORTASPLIT_PRODUCT_URL,
+  });
   for (const variant of [
     {referer:''},{referer:PORTASPLIT_ENTRY_DOCUMENT+'&extra=1'},{referer:WINDOW_ENTRY_DOCUMENT},{origin:'https://other.test'},
     {'sec-fetch-site':'cross-site'},{dnt:'1'},{'sec-gpc':'1'},{'x-probe':'1'},
     {'user-agent':'getecoback-ci/portasplit'},{'user-agent':'Googlebot'},
   ]) {
-    for (const body of [view,click]) {
+    for (const body of [view,click,exact]) {
       assert.equal((await stored({...body,m:{...body.m,mcp_portasplit_entry:1}}, {...headers,...variant})).mcp_portasplit_entry,undefined);
     }
   }
   for (const badLink of [product, link+'&tag=getecoback-21', link+'&extra=1', link+'#other',
     link.replace('Midea+PortaSplit','Remko+RKL+495+DC'), link.replace('getecoback-21','ecoback0d-20'),
-    link.replace('www.amazon.de','amazon.de.evil.test')]) {
+    link.replace('www.amazon.de','amazon.de.evil.test'),
+    PORTASPLIT_PRODUCT_URL+'&extra=1', PORTASPLIT_PRODUCT_URL.split('?')[0],
+    PORTASPLIT_PRODUCT_URL.replace('amazon.de','amazon.com')]) {
     const ordinary = await stored({...click,m:{...click.m,link_url:badLink,mcp_portasplit_entry:1}});
     assert.equal(ordinary.mcp_portasplit_entry,undefined,badLink);
     assert.equal(ordinary.source,'body');

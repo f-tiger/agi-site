@@ -425,7 +425,7 @@ print(json.dumps([dict(r) for r in db.execute(sql)]))`;
   assert.doesNotMatch(JSON.stringify(audit),/produkte\.html|eco-mcp|amazon\.de/);
 });
 
-test('PortaSplit entry counts only validated metadata in complete days and preserves the other cohorts',async()=>{
+test('PortaSplit entry separates original product clicks and legacy searches in complete days',async()=>{
   const fixture = `import json,sqlite3,sys
 db=sqlite3.connect(':memory:'); db.row_factory=sqlite3.Row
 db.execute('CREATE TABLE ev(day,name,page,ref,ua_class,meta)')
@@ -434,6 +434,8 @@ def add(day,name,meta,page=porta,ua='human'):
  db.execute('INSERT INTO ev VALUES (?,?,?,?,?,?)',(day,name,page,'',ua,json.dumps(meta)))
 add('2026-11-21','page_view',{'mcp_portasplit_entry':1})
 add('2026-11-22','affiliate_click',{'mcp_portasplit_entry':1,'link_url':'https://www.amazon.de/s?tag=getecoback-21'})
+add('2026-11-22','affiliate_click',{'mcp_portasplit_entry':1,'link_url':'https://www.amazon.de/dp/B0D3PP64JS?tag=getecoback-21'})
+add('2026-11-22','affiliate_click',{'link_url':'https://www.amazon.de/dp/B0D3PP64JS?tag=getecoback-21'},page='/guide/midea-portasplit-kaufen.html')
 add('2026-11-22','page_view',{'mcp_portasplit_entry':True})
 add('2026-11-22','page_view',{'mcp_portasplit_entry':'1'})
 add('2026-11-22','affiliate_click',{},page=porta)
@@ -448,15 +450,16 @@ print(json.dumps([dict(r) for r in db.execute(sql)]))`;
   const result=spawnSync('python3',['-c',fixture],{input:AUDIT_SQL,encoding:'utf8'});
   assert.equal(result.status,0,result.stderr);
   const audit=await affiliateAudit(dbFor(JSON.parse(result.stdout)),()=>'direct');
-  const recorded={first_recorded_day:'2026-11-21',page_views:1,model_search_clicks:1};
+  const recorded={first_recorded_day:'2026-11-21',page_views:1,model_search_clicks:1,exact_product_clicks:1};
   assert.deepEqual(audit.last_three_complete_days.mcp_portasplit_entry,recorded);
   assert.deepEqual(audit.weeks.at(-1).mcp_portasplit_entry,recorded);
   assert.equal(audit.weeks.at(-2).mcp_portasplit_entry,null);
   assert.equal(audit.same_weekdays_previous_week.mcp_portasplit_entry,null);
   assert.deepEqual(audit.last_three_complete_days.mcp_window_entry,{first_recorded_day:'2026-11-22',page_views:1,model_search_clicks:0});
   assert.equal(audit.last_three_complete_days.mcp_drain_entry.page_views,1);
-  assert.equal(audit.last_three_complete_days.affiliate_clicks,2);
-  assert.doesNotMatch(JSON.stringify(audit),/midea-portasplit-ausverkauft|amazon\.de|\?mcp_entry=/);
+  assert.equal(audit.last_three_complete_days.affiliate_clicks,4);
+  assert.equal(audit.last_three_complete_days.models.portasplit_original,2);
+  assert.doesNotMatch(JSON.stringify(audit),/midea-portasplit-ausverkauft|amazon\.de|B0D3PP64JS|\?mcp_entry=/);
 });
 
 

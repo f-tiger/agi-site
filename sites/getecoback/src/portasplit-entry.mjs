@@ -6,3 +6,4 @@ export const PORTASPLIT_GUIDE_URL = canonical + entry.fragment;
 export const PORTASPLIT_ENTRY_DOCUMENT = canonical + entry.query;
 export const PORTASPLIT_ENTRY_URL = PORTASPLIT_ENTRY_DOCUMENT + entry.fragment;
 export const PORTASPLIT_MODEL_SEARCH = entry.model_search;
+export const PORTASPLIT_PRODUCT_URL = entry.product_url;
