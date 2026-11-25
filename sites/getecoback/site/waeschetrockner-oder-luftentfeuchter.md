@@ -1,6 +1,6 @@
 # Trockner oder Entfeuchter? Stromkosten vergleichen | EcoBack
 
-> Vergleiche Trockner und Luftentfeuchter mit eigenen Verbrauchswerten: Kosten pro Ladung und Jahr, Grenzen des Vergleichs und Anleitung zum Messen.
+> Vergleiche Trockner und Luftentfeuchter mit eigenen Messwerten. Berechne Kosten pro Ladung und je Saison, auch wenn nur ein Teil der Wäsche wechselt.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html
 
@@ -30,8 +30,7 @@ Frei gewähltes Beispiel, keine Produktmessung: 250 W × 8 h ÷ 1.000 = 2 kWh; b
 ### Welche Situation passt zu dir?
 **Ich habe bereits einen Trockner**
 Vergleiche zuerst einen vollständigen Durchgang deines vorhandenen Geräts. Ein neuer Entfeuchter muss zusätzlich angeschafft werden; ein niedriger Wattwert allein rechtfertigt den Kauf nicht. Das Rechenbeispiel unten zeigt, wie eine lange Laufzeit den Vorteil umkehren kann.
-Wenn du im Winter nur einen Teil der Ladungen anders trocknest, rechne die Ersparnis nur für diese Ladungen. Multipliziere die gemessene Stromdifferenz je gleich trockener Ladung mit deinem Arbeitspreis und der Anzahl ersetzbarer Ladungen je Saison. Teile die Anschaffungskosten durch die positive Saisonersparnis. Ist die Saisonersparnis null oder negativ, bezahlt sich der Kauf nicht über den Strom.
-Frei gewähltes Beispiel: 60 von 100 Ladungen wechseln von 1,4 kWh auf 0,6 kWh je Ladung inklusive Zusatzstrom. Bei 0,35 € je kWh sind das 16,80 € Ersparnis pro Saison. Für 100 € Anschaffung braucht es sechs volle Saisons mit denselben Annahmen. Miss zuerst, wenn Wäschemenge, Trocknungsgrad oder Zusatzstrom noch offen sind.
+Wenn nur ein Teil der Ladungen wechselt, [Kosten und Anschaffung je Saison vergleichen](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#waesche-saisonwechsel). Miss zuerst, wenn Wäschemenge, Trocknungsgrad oder Zusatzstrom noch offen sind.
 **Ich habe wenig Platz und keinen Trockner**
 Prüfe zuerst Platz für einen Wäscheständer, Luftaustausch und den gewünschten Trocknungszeitpunkt. Eine Wäscheleine braucht keinen direkten Gerätestrom; mögliche zusätzliche Heiz- und Lüftungsenergie ist damit nicht berechnet. Ein Entfeuchter ersetzt weder Luftaustausch noch Stellfläche für die Wäsche.
 [Lüften und Trocknen in der Wohnung einordnen](https://getecoback.com/guide/waesche-trocknen-wohnung.html)
@@ -79,15 +78,24 @@ Raumheizung, Lüftungswärme und Anschaffung bleiben außen vor. Für einen Kost
 
 Zur Messung kannst du ein geeignetes Strommessgerät zwischen Steckdose und Gerät stecken. [Hinweise der Verbraucherzentrale zum Strommessen](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/strom-sparen-im-haushalt-einfache-tipps-10734).
 
+## Nur einen Teil der Wäsche umstellen: Kosten pro Saison
+
+Große oder eilige Ladungen bleiben oft im Trockner. Zähle alle Ladungen einer Saison und gib separat an, wie viele du wirklich ersetzen kannst. Vergleiche nur vollständige, gleich trockene Durchgänge mit gleicher Wäschemenge und Schleuderdrehzahl.
+
+**Frei gewähltes Beispiel:** Von 100 Ladungen bleiben 40 im Trockner. Bei 1,4 kWh im Trockner, 0,6 kWh mit Entfeuchter einschließlich Zusatzstrom und 0,35 €/kWh kosten alle Trocknerladungen 49,00 €. Der Mix mit 60 ersetzten Ladungen kostet 32,20 € und spart 16,80 € pro Saison. 100 € zusätzliche Anschaffung wären rechnerisch ab der 6. Saison gedeckt.
+
+Für den Mix rechnest du verbleibende Trocknerladungen × Trockner-kWh plus ersetzte Ladungen × Entfeuchter-kWh. Multipliziere die Summe mit deinem Arbeitspreis. Ziehe die Mixkosten von den bisherigen Kosten ab.
+
+Vor einem Kauf auch [Raumfeuchte, Lüftung und Platz prüfen](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice). Nicht erfasste Heizwärme, Wartung, Lebensdauer und Tarifänderungen bleiben offen. Die Eingaben bleiben im Browser.
+
 ## Eine Ladung fair vergleichen
 kWh für den ganzen Durchgang × Arbeitspreis. Vorbelegte Zahlen sind Rechenbeispiele, keine Produktmessungen. Gleiche Wäschemenge und gleicher Trocknungsgrad sind Voraussetzung. PNG und CSV werden lokal erstellt; Eingaben werden nicht hochgeladen.
 
 - Vergleiche Wäsche mit gleicher Masse, Schleuderdrehzahl und gewünschter Restfeuchte.
 - Notiere Start- und Endstand eines passenden Strommessgeräts sowie die Laufzeit. Beachte Anleitung und elektrische Belastbarkeit.
 - Nutze die kWh-Differenz des ganzen Durchgangs. Typenschild-Watt ist keine gemessene mittlere Leistung.
-
-Noch kein geeignetes Messgerät? TDS hilft dir, [zwischen vorhandenem, geliehenem und neuem Strommessgerät zu wählen](https://thedollscout.com/de/ai-tools/dach-meter-fit#messgeraet-ausleihen-oder-kaufen). Prüfe dabei, welche Messung der Hersteller deines Geräts erlaubt.
 - Beim Label eines eigenständigen Trockners für 100 Trocknungen: durch 100 teilen. Das Labelprogramm kann von deiner eigenen Nutzung abweichen.
+Noch kein geeignetes Messgerät? TDS hilft dir, [zwischen vorhandenem, geliehenem und neuem Strommessgerät zu wählen](https://thedollscout.com/de/ai-tools/dach-meter-fit#messgeraet-ausleihen-oder-kaufen). Prüfe dabei, welche Messung der Hersteller deines Geräts erlaubt.
 
 ### Sind beide Ladungen gleich trocken?
 

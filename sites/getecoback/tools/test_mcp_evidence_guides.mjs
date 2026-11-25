@@ -28,7 +28,7 @@ const toolPaths = new Map([
   ['pac_n90_energielabel_zu_stromkosten', '/guide/delonghi-pac-n90-test.html#n90-energielabel'],
   ['pac_n90_ean_abgleichen', '/guide/delonghi-pac-n90-test.html#testlage'],
   ['klimaanlage_geraeusch_vergleich', '/guide/delonghi-pac-n90-test.html#lautstaerke'],
-  ['waesche_trocknungswechsel_kaufschwelle', '/waeschetrockner-oder-luftentfeuchter.html#laundry-check'],
+  ['waesche_trocknungswechsel_kaufschwelle', '/waeschetrockner-oder-luftentfeuchter.html#waesche-saisonwechsel'],
   ['befeuchter_nennwatt_abgabeleistung_bezug', '/guide/luftbefeuchter-stromverbrauch.html#effizienz-vergleichen'],
   ['glassvac_kalt_lagern_einschalten_laden_getrennt', products + '#bosch-glassvac-einsatz-und-pflege'],
   ['miele_hyclean_beutel_vollstaendige_modellzeile', products + '#miele-staubsaugerbeutel'],

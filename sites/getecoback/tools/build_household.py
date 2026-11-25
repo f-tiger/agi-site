@@ -9,7 +9,7 @@ from laundry_decision import block as laundry_block
 ROOT=Path(__file__).resolve().parents[1]; SITE=ROOT/'site'; BASE='https://getecoback.com/'
 PAGES={
 'wohnkosten-werkstatt':('Haushaltskosten prüfen: messen, trocknen, vergleichen','Drei kostenlose Rechner für Haushaltsstrom: Wäsche trocknen, Verbrauch messen und Gerätewechsel prüfen. Mit Rechenbeispielen und Messprotokoll.'),
-'waeschetrockner-oder-luftentfeuchter':('Trockner oder Entfeuchter? Stromkosten vergleichen','Vergleiche Trockner und Luftentfeuchter mit eigenen Verbrauchswerten: Kosten pro Ladung und Jahr, Grenzen des Vergleichs und Anleitung zum Messen.'),
+'waeschetrockner-oder-luftentfeuchter':('Trockner oder Entfeuchter? Stromkosten vergleichen','Vergleiche Trockner und Luftentfeuchter mit eigenen Messwerten. Berechne Kosten pro Ladung und je Saison, auch wenn nur ein Teil der Wäsche wechselt.'),
 'strommess-protokoll':('Stromverbrauch messen: Protokoll und Jahreskosten','Gemessene Kilowattstunden statt Typenschild-Watt: Verbrauch auf Betriebstage hochrechnen, Messprotokoll herunterladen und Stromfresser prüfen.'),
 'geraete-austausch-rechner':('Altes Gerät behalten oder ersetzen? Kostenrechner','Berechne, wann geringere Stromkosten einen Gerätekauf ausgleichen. Mit Kaufpreis, eigenem Tarif, Jahresverbrauch und offenem Rechenweg.')}
 LINKS=''.join(f'<a href="/{s}.html"><strong>{t}</strong><span>{d}</span></a>' for s,(t,d) in list(PAGES.items())[1:])
