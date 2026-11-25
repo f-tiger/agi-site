@@ -179,7 +179,7 @@ def collect():
      'description':'Die vollständige HU-Gerätenummer vom Typenschild entscheidet. Eine Serienangabe allein reicht nicht.'}
    ]+[
     {'id':item['anchor'],'title':f"Philips {item['device']}: Originalfilter prüfen",
-     'description':'Die deutsche Philips-Zuordnung und die Endung der Filternummer abgleichen.'}
+     'description':f"{item['part']} ist für diese Variante in der deutschen Philips-Übersicht dokumentiert. Beide Kennungen samt Endung abgleichen."}
     for item in models
    ]
    for row in entry['model_sections']:

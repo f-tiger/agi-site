@@ -57,8 +57,12 @@ function asksForGermanCoolingAt40SquareMetres(query) {
     !asksForPortaSplitWindowLip(query)&&!/\b(?!4048164116478\b)\d{13}\b/.test(query);
 }
 
+const philipsHumidifierGuide='/guide/luftbefeuchter-ratgeber.html';
+
 export function exactGermanGuide(normalizedQuery) {
  const query=normalizedQuery.trim().replace(/\s+/g,' ');
+ const philipsSection=philipsHumidifierFilterSection(query);
+ if(philipsSection)return {path:philipsHumidifierGuide,id:philipsSection};
  if(n90ExactName.test(query)||n90ExactEan.test(query))
    return {path:'/guide/delonghi-pac-n90-test.html',id:'testlage'};
  if(namesOriginalPortaSplitExactly(query))
@@ -97,11 +101,10 @@ export function searchEntries(index,term,lang){
  const pages=index.filter(e=>e.l===lang&&typeof e.t==='string'&&/^\/(?!\/)[^?#\\]*$/.test(e.u)&&!/^\/(auth|api|account|members|widgets)(\/|\.|$)/.test(e.u));
  let targetPage, targetId;
  const filterModel=lang==='de' && exactGermanFilterModel(query);
- const philipsFilter=lang==='de' && philipsHumidifierFilterSection(query);
  if(filterModel) {
    targetPage='/ersatzfilter.html'; targetId=filterModel;
- } else if(philipsFilter) {
-   targetPage='/guide/luftbefeuchter-ratgeber.html'; targetId=philipsFilter;
+ } else if(exactGuide?.path===philipsHumidifierGuide) {
+   ({path:targetPage,id:targetId}=exactGuide);
  } else if(lang==='de' && asksForElectricBlanketCost(query)) {
    targetPage='/guide/heizdecke-stromverbrauch.html'; targetId='waerme-rechner';
  } else if(lang==='de' && asksForHygrometerComparison(query)) {
