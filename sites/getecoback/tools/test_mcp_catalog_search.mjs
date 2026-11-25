@@ -91,7 +91,7 @@ test('German household questions agree in browser, catalogue and compact MCP', a
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 246);
+  assert.equal(withGuides.length, 247);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
   assert.equal(destinations.size, 44);
   const pages = new Map();
