@@ -252,7 +252,7 @@ Für Claude Code kannst du den Anschluss so anlegen:
 claude mcp add --transport http ecoback-kompakt 'https://getecoback.com/mcp/v1?profile=compact'
 tools/list zeigt zwei Werkzeuge. Übergib deine Frage als frage an ecoback_werkzeug_finden. Der Treffer enthält einen Namen und sein Eingabeschema. Sende diesen Namen als name und deine Werte als eingaben an ecoback_werkzeug_ausfuehren.
 
-Das HTTP-Kompaktprofil kann auch geprüfte Ratgeberabschnitte zurückgeben. Steht die Antwort unter guides, öffne guide_url für die genaue Stelle und zitiere die Seite unter citation_url. Beispiel: [Welchen COP brauche ich bei 30 Cent Strom und 12 Cent Gas?](https://getecoback.com/guide/klimaanlage-mit-heizfunktion.html#heizkosten-klimaanlage-gas)
+Das HTTP-Kompaktprofil kann auch geprüfte Ratgeberabschnitte zurückgeben. Steht ein Link unter guides, öffne guide_url für die genaue Stelle und zitiere die Seite unter citation_url. [Rechenbeispiel mit 30 Cent Strom und 12 Cent Gas ansehen](https://getecoback.com/guide/klimaanlage-mit-heizfunktion.html#heizkosten-klimaanlage-gas).
 
 #### Beispiel für einen kalten Keller
 
