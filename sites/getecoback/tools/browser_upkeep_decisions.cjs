@@ -31,14 +31,29 @@ const executablePath=process.env.CHROMIUM_PATH;
     const shop=root.locator('[data-shop]');
     await choose({place:'window',radiator:'covered',opening:'blocked'});await run();check(!await shop.isVisible());check((await result.innerText()).includes('Heizkörper und Thermostat'));check((await result.innerText()).includes('Fluchtweg'));
     await choose({radiator:'clear',opening:'unsure'});await run();check(!await shop.isVisible());
-    await choose({opening:'clear'});await run();check(await shop.isVisible());check((await shop.innerText()).includes('keine geprüften Modelle oder Größen'));check((await shop.locator('a').getAttribute('href')).startsWith('https://www.amazon.de/'));
+    await choose({opening:'clear'});await run();check(await shop.isVisible());check((await shop.innerText()).includes('keine geprüften Modelle oder Größen'));check((await shop.locator('a[rel~="sponsored"]').getAttribute('href')).startsWith('https://www.amazon.de/'));
+    await shop.getByRole('link',{name:'Breite, Bahnen und Packungen berechnen'}).click();
+    await page.waitForURL(url=>url.hash==='#thermovorhang-bahnenbedarf');
+    const panels=page.locator('[data-curtain-panels]');
+    for(const [field,value] of Object.entries({oeffnung_cm:'120',ueberstand_links_cm:'10',ueberstand_rechts_cm:'10',stofffaktor:'1.5',bahn_flach_cm:'110',bahnen_je_packung:'2'})){
+     await panels.locator(`[name="${field}"]`).fill(value);
+    }
+    const calculate=panels.getByRole('button',{name:'Bahnen berechnen'});
+    await calculate.click();check((await panels.getByRole('status').innerText()).includes('Erst im Angebot klären'));
+    await panels.locator('[name="bahnbreite_bestaetigt"]').check();
+    await calculate.click();check((await panels.getByRole('status').innerText()).includes('2 Bahnen. Bei 2 je Packung: 1 Packung.'));
     await root.locator('[data-copy]').click();check((await page.evaluate(()=>window.__copied)).includes('keine Passformprüfung'));
     await choose({opening:'blocked'});check(!await result.isVisible());check(!await root.locator('[data-copy-text]').isVisible());
    }
    for(const width of [320,390,1280]){await page.setViewportSize({width,height:900});check(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'no horizontal overflow at '+width);}
    await page.setViewportSize({width:390,height:844});await root.screenshot({path:out+'/'+slug+'.png'});
    check(errors.length===0,JSON.stringify(errors));check((await page.evaluate(()=>window.__business)).length===0,'QA emits no business events');await page.close();
-   const nojs=await browser.newPage({javaScriptEnabled:false});await nojs.route('**/*',r=>new URL(r.request().url()).origin===new URL(base).origin?r.continue():r.abort());await nojs.goto(base+'/guide/'+slug+'.html?__probe=1');check(await nojs.locator('#upkeep-check noscript').isVisible());check(!await nojs.locator('#upkeep-check form').isVisible());check((await nojs.locator('article').innerText()).includes('Häufige Fragen'));await nojs.close();
+   const nojs=await browser.newPage({javaScriptEnabled:false});await nojs.route('**/*',r=>new URL(r.request().url()).origin===new URL(base).origin?r.continue():r.abort());await nojs.goto(base+'/guide/'+slug+'.html?__probe=1');check(await nojs.locator('#upkeep-check noscript').isVisible());check(!await nojs.locator('#upkeep-check form').isVisible());check((await nojs.locator('article').innerText()).includes('Häufige Fragen'));
+   if(!care){
+    check(!await nojs.locator('[data-curtain-panels]').isVisible());
+    check(await nojs.locator('#thermovorhang-bahnenbedarf').getByText(/210 cm flachen Stoff/).isVisible());
+   }
+   await nojs.close();
   }
   console.log(JSON.stringify({pass:true,checks}));
  }finally{await browser.close();}

@@ -58,6 +58,10 @@ const cases=[
  ['http://www.umweltbundesamt.de/page','',false],
  ['https://www.umweltbundesamt.de/page)malformed','',false],
  ['https://www.amazon.de/dp/EXAMPLE?tag=affiliate','',false],
+ ['https://www.ikea.com/de/de/files/pdf/a4/f2/a4f2bcc7/bf_leitfaden_fenster_07-2026_online.pdf','',true],
+ ['https://wunschgardine.de/anleitung.php','',true],
+ ['https://wunschgardine.de/anleitung.php?ref=example','',false],
+ ['https://wunschgardine.de/anleitung.php','sponsored',false],
  ['https://amzn.to/example','',false],
  ['https://unknown.example/article','',false]
 ];

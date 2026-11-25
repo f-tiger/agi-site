@@ -1,6 +1,6 @@
 # Thermovorhang prüfen: Fenster, Tür und Heizkörper richtig einplanen
 
-> Kostenloser Montagecheck für Thermovorhänge: Tür oder Fenster, freier Heizkörper und Öffnungsweg. Erst prüfen und messen, dann passende Angebote vergleichen.
+> Thermovorhang für Tür oder Fenster: Heizkörper und Öffnung prüfen. Mit Stoffbreite und Kräuselmaß die nötigen Bahnen und Packungen berechnen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/thermovorhang-ratgeber.html
 
@@ -20,6 +20,18 @@ Die [Verbraucherzentrale empfiehlt ausdrücklich, Heizkörper nicht mit Vorhäng
 - Artikelmaße, Verpackungsinhalt, Befestigungsmaterial, Waschpflege und Rückgabe vor Bestellung lesen.
 Unbekannte Maße ergeben keine genaue Produktempfehlung. Auch die Dicke eines Stoffes allein belegt keine bestimmte Dämmwirkung. Eine vorhandene passende Lösung weiterzuverwenden kann den Kauf überflüssig machen.
 
+## Wie viele Bahnen braucht dein Thermovorhang?
+
+Miss die Öffnung und addiere nur den seitlichen Überstand, den deine Aufhängung tatsächlich zulässt. Multipliziere die Abdeckung mit dem Kräuselmaß für deine Aufhängung. Teile die flache Stoffbreite durch die nutzbare flache Breite je Bahn und runde auf.
+
+**Rechenbeispiel:** 120 cm Öffnung plus je 10 cm Überstand ergeben 140 cm Abdeckung. Mit einem Kräuselmaß von 1,5 brauchst du 210 cm flachen Stoff. Bei 110 cm je Bahn sind das 2 Bahnen. Bei zwei Bahnen je Packung genügt 1 Packung.
+
+Prüfe die Maßangabe im Angebot. „Fertige Breite“ bei bereits eingerechneten Falten bezeichnet die Abdeckung. Vergleiche sie direkt mit deinem Bedarf an Abdeckung. Steht dort nur eine Breite, kläre zuerst, ob sie je Bahn, für die ganze Packung oder für den gerafften Vorhang gilt.
+
+Prüfe vor der Bestellung Höhe, Saum, mögliche Schrumpfung und die zulässige Befestigung. Heizkörper, Thermostat, Lüftung und Öffnungsweg bleiben frei. Die Stoffbreite belegt keine Dämmleistung. Einen vorhandenen passenden Vorhang kannst du weiterverwenden. Deine Maße bleiben im Browser.
+
+Maßangaben zum Nachlesen · [IKEA Deutschland, Ausmessen für Fensterlösungen](https://www.ikea.com/de/de/files/pdf/a4/f2/a4f2bcc7/bf_leitfaden_fenster_07-2026_online.pdf) · [Wunschgardine, glatte und dekorierte Breite](https://wunschgardine.de/anleitung.php). Links geprüft am 25. November 2026.
+
 ## Grenzen im Sommer und Winter
 Dieser Check berechnet keine Heizkostenersparnis und garantiert weder niedrigere Raumtemperaturen noch trockene Fenster. Nutze den Vorhang so, dass Fenster bedienbar bleiben, und prüfe Scheibe und Rahmen auf Feuchtigkeit. Zur Auswahl eines Sonnenschutzes siehe den eigenen [Fenster-Hitzeschutz-Ratgeber](https://getecoback.com/guide/hitzeschutz-fenster.html); eine Wintermontage ist kein Wirksamkeitsnachweis für den Sommer.
 
@@ -33,7 +45,7 @@ Quellen geprüft: 17. Oktober 2026. Verbraucherzentrale: „Heizung: 10 einfache
 Spart ein Thermovorhang sicher Heizkosten?Eine konkrete Einsparung lässt sich aus diesem Montagecheck nicht ableiten. Gebäude, Fenster, Nutzung, Lüftung und Heizung beeinflussen das Ergebnis. Ein Vorhang ersetzt keine Reparatur und darf Heizkörper oder Thermostat nicht verdecken.
 Was tun, wenn der Vorhang vor dem Heizkörper hängt?Den Stoffverlauf ändern, damit Heizkörper und Thermostat frei bleiben. Die Verbraucherzentrale rät ausdrücklich davon ab, Heizkörper mit Vorhängen zu verdecken. Zusätzlich die Abstände in der Anleitung des Heizgeräts beachten.
 Ist Klemmmontage in einer Mietwohnung immer geeignet?Nein. Flügeldicke, Dichtungen, Tragfähigkeit und Öffnungsweg müssen zur Halterung passen. Die Freigaben der Hersteller und gegebenenfalls die Mietbedingungen prüfen. Ohne Bohren bedeutet nicht automatisch ohne Beschädigung.
-Kann ich eine genaue Vorhanggröße aus diesem Check übernehmen?Nein. Der Check fragt keine Maße ab. Breite, Höhe, Träger- oder Flügeldicke und Bewegungsraum müssen vor einem Kauf vor Ort gemessen werden. Suchergebnisse sind keine Passformempfehlung.
+Was lässt sich mit dem Bahnenrechner bestimmen?Der Rechner ermittelt die Stoffbreite und die Zahl gleich breiter Bahnen. Bei bekanntem Lieferumfang berechnet er auch die Packungszahl. Miss Höhe, Befestigung und Öffnungsweg separat und prüfe, auf welche Breite sich das Angebot bezieht. Suchergebnisse sind keine Passformempfehlung.
 
 Transparenz: Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Der nach passender Auswahl eingeblendete Amazon.de-Link ist als Anzeige gekennzeichnet. Suchergebnisse sind keine getesteten oder als passend bestätigten Modelle. Preise, Versand und Rückgabe beim Händler prüfen.
 
@@ -49,7 +61,8 @@ Fiktives Beispiel ansehen
 ###
 
 [Offizielle Grundlage / Herstellerhilfe lesen →](https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizung-10-einfache-tipps-zum-heizkosten-sparen-13892)
-**Erst messen, dann Angebote prüfen**Anzeige · Amazon.de · vorhandene Partnerverbindung. Dies sind allgemeine Suchergebnisse, keine geprüften Modelle oder Größen. Lieferung nach Österreich oder in die Schweiz sowie Endpreis und Rückgabe separat beim Händler prüfen.
+**Erst messen, dann Angebote prüfen**[Breite, Bahnen und Packungen berechnen](https://getecoback.com/guide/thermovorhang-ratgeber.html#thermovorhang-bahnenbedarf)
+Anzeige · Amazon.de · vorhandene Partnerverbindung. Dies sind allgemeine Suchergebnisse, keine geprüften Modelle oder Größen. Artikelmaße und Lieferumfang stehen im jeweiligen Angebot. Lieferung nach Österreich oder in die Schweiz sowie Endpreis und Rückgabe separat beim Händler prüfen.
 Thermovorhänge auf Amazon.de suchen →
 Ergebnis zum Teilen kopieren
 

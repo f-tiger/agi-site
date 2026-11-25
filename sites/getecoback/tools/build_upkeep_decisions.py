@@ -5,6 +5,7 @@ No network, new URLs or generated buying recommendations. FAQ body and JSON-LD
 share one source. Keep this late in the build, before discovery and GA coverage.
 """
 import argparse
+import hashlib
 import html
 import json
 from pathlib import Path
@@ -28,13 +29,13 @@ PAGES = {
   ]},
  'thermovorhang-ratgeber': {
   'title':'Thermovorhang prüfen: Fenster, Tür und Heizkörper richtig einplanen',
-  'description':'Kostenloser Montagecheck für Thermovorhänge: Tür oder Fenster, freier Heizkörper und Öffnungsweg. Erst prüfen und messen, dann passende Angebote vergleichen.',
+  'description':'Thermovorhang für Tür oder Fenster: Heizkörper und Öffnung prüfen. Mit Stoffbreite und Kräuselmaß die nötigen Bahnen und Packungen berechnen.',
   'tool':'curtain-fit',
   'faq':[
    ('Spart ein Thermovorhang sicher Heizkosten?', 'Eine konkrete Einsparung lässt sich aus diesem Montagecheck nicht ableiten. Gebäude, Fenster, Nutzung, Lüftung und Heizung beeinflussen das Ergebnis. Ein Vorhang ersetzt keine Reparatur und darf Heizkörper oder Thermostat nicht verdecken.'),
    ('Was tun, wenn der Vorhang vor dem Heizkörper hängt?', 'Den Stoffverlauf ändern, damit Heizkörper und Thermostat frei bleiben. Die Verbraucherzentrale rät ausdrücklich davon ab, Heizkörper mit Vorhängen zu verdecken. Zusätzlich die Abstände in der Anleitung des Heizgeräts beachten.'),
    ('Ist Klemmmontage in einer Mietwohnung immer geeignet?', 'Nein. Flügeldicke, Dichtungen, Tragfähigkeit und Öffnungsweg müssen zur Halterung passen. Die Freigaben der Hersteller und gegebenenfalls die Mietbedingungen prüfen. Ohne Bohren bedeutet nicht automatisch ohne Beschädigung.'),
-   ('Kann ich eine genaue Vorhanggröße aus diesem Check übernehmen?', 'Nein. Der Check fragt keine Maße ab. Breite, Höhe, Träger- oder Flügeldicke und Bewegungsraum müssen vor einem Kauf vor Ort gemessen werden. Suchergebnisse sind keine Passformempfehlung.')
+   ('Was lässt sich mit dem Bahnenrechner bestimmen?', 'Der Rechner ermittelt die Stoffbreite und die Zahl gleich breiter Bahnen. Bei bekanntem Lieferumfang berechnet er auch die Packungszahl. Miss Höhe, Befestigung und Öffnungsweg separat und prüfe, auf welche Breite sich das Angebot bezieht. Suchergebnisse sind keine Passformempfehlung.')
   ]}
 }
 
@@ -77,11 +78,40 @@ def tool(tool_id):
    ('clear','Ja, ohne Stoff oder Halterung im Weg','','free'),('blocked','Nein, es gibt einen Konflikt','','blocked'),('unsure','Noch nicht geprüft','','unknown')])
  alert='<p class="up-alert"><strong>Verbrannter oder elektrischer Geruch / Rauch:</strong> Gerät ausschalten, nicht weiter benutzen, laden oder erneut testen. Kundendienst kontaktieren; bei unmittelbarer Gefahr den Notruf wählen.</p>' if care else '<p class="up-alert"><strong>Heizkörper, Thermostat und Lüftungsöffnungen frei halten.</strong> Tür, Fenster und Fluchtwege dürfen nicht durch die Montage blockiert werden.</p>'
  nojs='Ohne JavaScript: Bei gewöhnlichem Pflegebedarf zuerst die freigegebenen Schritte deiner Modellanleitung prüfen. S5-Filter müssen nach der Reinigung vollständig trocknen. Besteht das Problem weiter, den Kundendienst fragen; kein Filter- oder Akkukauf auf Verdacht.' if care else 'Ohne JavaScript: Heizkörper, Thermostat und Lüftungsöffnungen frei halten. Vorhänge dürfen Öffnung und Durchgang nicht behindern. Vor Kauf Maße und Befestigung prüfen; eine konkrete Einsparung oder Passform ist hier nicht ermittelt.'
- shop='' if care else '<div class="up-shop" data-shop hidden><strong>Erst messen, dann Angebote prüfen</strong><p class="up-note">Anzeige · Amazon.de · vorhandene Partnerverbindung. Dies sind allgemeine Suchergebnisse, keine geprüften Modelle oder Größen. Lieferung nach Österreich oder in die Schweiz sowie Endpreis und Rückgabe separat beim Händler prüfen.</p><a href="https://www.amazon.de/s?k=thermovorhang+verdunkelung&amp;tag=getecoback-21" target="_blank" rel="sponsored noopener">Thermovorhänge auf Amazon.de suchen →</a></div>'
+ shop='' if care else '<div class="up-shop" data-shop hidden><strong>Erst messen, dann Angebote prüfen</strong><p><a href="#thermovorhang-bahnenbedarf">Breite, Bahnen und Packungen berechnen</a></p><p class="up-note">Anzeige · Amazon.de · vorhandene Partnerverbindung. Dies sind allgemeine Suchergebnisse, keine geprüften Modelle oder Größen. Artikelmaße und Lieferumfang stehen im jeweiligen Angebot. Lieferung nach Österreich oder in die Schweiz sowie Endpreis und Rückgabe separat beim Händler prüfen.</p><a href="https://www.amazon.de/s?k=thermovorhang+verdunkelung&amp;tag=getecoback-21" target="_blank" rel="sponsored noopener">Thermovorhänge auf Amazon.de suchen →</a></div>'
  return f'''<!--EB_UPKEEP--><link rel="stylesheet" href="/assets/upkeep-decisions.css"><section id="upkeep-check" class="eb-upkeep" data-upkeep="{tool_id}" aria-labelledby="upkeep-title"><p class="up-kicker">EcoBack · zuerst prüfen</p><h2 id="upkeep-title">{title}</h2><p>{intro}</p>{alert}<button type="button" class="up-secondary" data-example hidden>Fiktives Beispiel ansehen</button><form hidden>{fields}<button type="submit">Nächsten Schritt anzeigen</button></form><div class="up-result" data-result hidden tabindex="-1" aria-labelledby="upkeep-result-title"><p class="up-kicker" data-result-label></p><h3 id="upkeep-result-title" data-result-title></h3><ul data-result-steps></ul><p><a data-result-source href="{S5 if care else HEAT}">Offizielle Grundlage / Herstellerhilfe lesen →</a></p>{shop}<button type="button" class="up-secondary" data-copy hidden>Ergebnis zum Teilen kopieren</button><textarea aria-label="Ergebnis zum Kopieren" readonly data-copy-text hidden></textarea><p role="status" data-status></p></div><p class="up-note">Deine Auswahl bleibt in diesem Browser. Es werden keine Modell- oder Symptomauswahlen übertragen. Nutzung und Beispielaufruf werden getrennt gezählt; die Datenschutzeinstellung gilt weiterhin. Teilen ist freiwillig und veröffentlicht nichts automatisch.</p><noscript><p>{nojs}</p></noscript></section><script type="module" src="/assets/upkeep-decisions.mjs"></script><!--/EB_UPKEEP-->'''
 
 def faq_block(cfg):
  return '<section class="up-faq" id="haeufige-fragen"><h2>Häufige Fragen</h2>'+''.join('<details><summary>'+esc(q)+'</summary><p>'+esc(a)+'</p></details>' for q,a in cfg['faq'])+'</section>'
+
+def curtain_panel_section():
+ inputs=''.join(
+  f'<label>{label}<input name="{name}" type="number" min="{lo}" max="{hi}" step="any" inputmode="decimal" required></label>'
+  for name,label,lo,hi in [
+   ('oeffnung_cm','Breite der Öffnung (cm)',0.1,10000),
+   ('ueberstand_links_cm','Verfügbarer Überstand links (cm)',0,10000),
+   ('ueberstand_rechts_cm','Verfügbarer Überstand rechts (cm)',0,10000),
+   ('stofffaktor','Kräuselmaß (flache Stoffbreite ÷ fertige Breite)',1,4),
+   ('bahn_flach_cm','Nutzbare flache Breite pro Bahn (cm)',1,1000),
+  ]
+ )
+ version=hashlib.sha256((ROOT/'site/assets/curtain-panels.mjs').read_bytes()).hexdigest()[:12]
+ return f'''<section class="eb-upkeep" id="thermovorhang-bahnenbedarf" aria-labelledby="thermovorhang-bahnenbedarf-titel">
+ <style>#thermovorhang-bahnenbedarf{{scroll-margin-top:150px}}#thermovorhang-bahnenbedarf label{{display:block;margin:.4rem 0}}#thermovorhang-bahnenbedarf input[type=number]{{display:block;width:min(100%,16rem);min-height:44px;box-sizing:border-box;font:inherit}}</style>
+ <h2 id="thermovorhang-bahnenbedarf-titel">Wie viele Bahnen braucht dein Thermovorhang?</h2>
+ <p>Miss die Öffnung und addiere nur den seitlichen Überstand, den deine Aufhängung tatsächlich zulässt. Multipliziere die Abdeckung mit dem Kräuselmaß für deine Aufhängung. Teile die flache Stoffbreite durch die nutzbare flache Breite je Bahn und runde auf.</p>
+ <p><strong>Rechenbeispiel:</strong> 120 cm Öffnung plus je 10 cm Überstand ergeben 140 cm Abdeckung. Mit einem Kräuselmaß von 1,5 brauchst du 210 cm flachen Stoff. Bei 110 cm je Bahn sind das 2 Bahnen. Bei zwei Bahnen je Packung genügt 1 Packung.</p>
+ <p>Prüfe die Maßangabe im Angebot. „Fertige Breite“ bei bereits eingerechneten Falten bezeichnet die Abdeckung. Vergleiche sie direkt mit deinem Bedarf an Abdeckung. Steht dort nur eine Breite, kläre zuerst, ob sie je Bahn, für die ganze Packung oder für den gerafften Vorhang gilt.</p>
+ <form data-curtain-panels hidden inert aria-label="Bahnen und Packungen berechnen">
+  <fieldset><legend>Deine Öffnung und das Angebot</legend>{inputs}
+   <label>Bahnen pro Packung laut Lieferumfang (optional)<input name="bahnen_je_packung" type="number" min="1" max="30" step="1" inputmode="numeric"></label>
+  </fieldset>
+  <label><input name="bahnbreite_bestaetigt" type="checkbox"> Das Angebotsmaß ist die nutzbare flache Breite einer Bahn.</label>
+  <button type="submit">Bahnen berechnen</button><p role="status"></p>
+ </form>
+ <p>Prüfe vor der Bestellung Höhe, Saum, mögliche Schrumpfung und die zulässige Befestigung. Heizkörper, Thermostat, Lüftung und Öffnungsweg bleiben frei. Die Stoffbreite belegt keine Dämmleistung. Einen vorhandenen passenden Vorhang kannst du weiterverwenden. Deine Maße bleiben im Browser.</p>
+ <p>Maßangaben zum Nachlesen · <a href="https://www.ikea.com/de/de/files/pdf/a4/f2/a4f2bcc7/bf_leitfaden_fenster_07-2026_online.pdf">IKEA Deutschland, Ausmessen für Fensterlösungen</a> · <a href="https://wunschgardine.de/anleitung.php">Wunschgardine, glatte und dekorierte Breite</a>. Links geprüft am 25. November 2026.</p>
+</section><script type="module" src="/assets/curtain-panels.mjs?v={version}"></script>'''
 
 def article(slug,cfg):
  if cfg['tool']=='tineco-care':
@@ -98,6 +128,7 @@ def article(slug,cfg):
   content=f'''<h2 id="zugluft-oder-kalte-flaeche">Zugluft und kalte Oberflächen unterscheiden</h2><p>Dass es am Fenster oder an der Tür kalt wirkt, beweist keine kaputte Dichtung. Beobachte die Stelle und den Zustand vorhandener Dichtungen. Bei unklaren baulichen Mängeln den Vermieter oder einen Fachbetrieb einbeziehen; ein Vorhang ersetzt die Klärung nicht. Lüftungsöffnungen und vorgeschriebene Luftwege dürfen nicht zugestellt werden.</p>
 <h2 id="heizkoerper-frei">Heizkörper und Thermostat bleiben frei</h2><p>Die <a href="{HEAT}">Verbraucherzentrale empfiehlt ausdrücklich, Heizkörper nicht mit Vorhängen zu verdecken</a>. Wärme soll in den Raum gelangen. Berücksichtige auch die Abstände aus der Anleitung eines elektrischen Heizgeräts. Der Check erkennt einen von dir angegebenen Konflikt, misst aber keine Abstände.</p>
 <h2 id="vor-kauf-messen">Vor dem Kauf: messen und Befestigung prüfen</h2><ul><li>Breite und Höhe der tatsächlichen Einbaustelle messen; Tür- und Fensterflügel vollständig öffnen.</li><li>Abstand zu Heizkörper, Thermostat, Griffen, Lüftungsöffnungen und Durchgang prüfen.</li><li>Bei Klemmträgern: Flügeldicke, Dichtungen, Tragfähigkeit und Herstellerfreigabe abgleichen. „Ohne Bohren“ bedeutet nicht automatisch schadensfrei oder in jeder Mietwohnung erlaubt.</li><li>Artikelmaße, Verpackungsinhalt, Befestigungsmaterial, Waschpflege und Rückgabe vor Bestellung lesen.</li></ul><p>Unbekannte Maße ergeben keine genaue Produktempfehlung. Auch die Dicke eines Stoffes allein belegt keine bestimmte Dämmwirkung. Eine vorhandene passende Lösung weiterzuverwenden kann den Kauf überflüssig machen.</p>
+{curtain_panel_section()}
 <h2 id="grenzen">Grenzen im Sommer und Winter</h2><p>Dieser Check berechnet keine Heizkostenersparnis und garantiert weder niedrigere Raumtemperaturen noch trockene Fenster. Nutze den Vorhang so, dass Fenster bedienbar bleiben, und prüfe Scheibe und Rahmen auf Feuchtigkeit. Zur Auswahl eines Sonnenschutzes siehe den eigenen <a href="/guide/hitzeschutz-fenster.html">Fenster-Hitzeschutz-Ratgeber</a>; eine Wintermontage ist kein Wirksamkeitsnachweis für den Sommer.</p>
 <div class="up-evidence"><strong>Warum die Tür als eigener Fall vorkommt</strong><p>Eine <a href="https://www.reddit.com/r/wohnen/comments/1x6s0m9/wohnungst%C3%BCr_abdichten/">deutschsprachige Frage zur undichten Wohnungstür</a> zeigt eine konkrete Alltagssorge. Die Antworten sind keine technische Montagefreigabe. Für die Hinweise zum freien Heizkörper verwenden wir die Verbraucherzentrale; die restliche Passform muss vor Ort geklärt werden.</p></div>
 <div class="up-links"><a href="/tools.html">Weitere EcoBack-Werkzeuge →</a><a href="/guide/heizluefter-stromverbrauch.html">Tatsächliche Laufzeit und Heizkosten rechnen →</a><a href="/guide/waesche-trocknen-wohnung.html">Feuchtigkeit beim Wäschetrocknen einordnen →</a></div>
