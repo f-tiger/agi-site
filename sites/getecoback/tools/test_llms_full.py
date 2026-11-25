@@ -103,10 +103,29 @@ class LlmsFull(unittest.TestCase):
         self.assertNotRegex(source, r'<!--EB_(?:TOPPICK|MODELS|POPUP|STICKY|SIZER)-->')
         self.assertNotRegex(mirror, r'https?://[^\s]*amazon\.|tag=getecoback-21')
 
+    def test_machine_discovery_links_to_the_two_exact_mcp_registry_entries(self):
+        registry = 'https://registry.modelcontextprotocol.io/v0.1/servers/'
+        hosted = registry + 'io.github.f-tiger%2Fhvac-btu-heat-klimaanlage/versions/latest'
+        local = registry + 'io.github.f-tiger%2Fecoback-local-tools/versions/latest'
+        index = (SITE / 'llms.txt').read_text()
+        self.assertEqual(index.count(hosted), 1)
+        self.assertEqual(index.count(local), 1)
+        self.assertLess(index.index(hosted), index.index('Lokales EcoBack-MCPB'))
+        self.assertIn('https://getecoback.com/mcp/v1?profile=compact', index)
+        manifest = json.loads((SITE / '.well-known/mcp.json').read_text())
+        service = manifest['mcpServers']['getecoback-raumklima']
+        self.assertEqual(service['url'], 'https://getecoback.com/mcp/v1')
+        self.assertEqual(service['transport'], 'streamable-http')
+        self.assertIn(hosted, service['description'])
+        for page in ('mcp', 'for-agents'):
+            mirror = (SITE / (page + '.md')).read_text()
+            self.assertIn('](' + hosted + ')', mirror)
+            self.assertIn('](' + local + ')', mirror)
+
     def test_offline_setup_uses_the_reviewed_release_entry_and_real_first_example(self):
         setup = 'https://github.com/f-tiger/getecoback-mcp#connect'
-        registry = ('https://registry.modelcontextprotocol.io/v0.1/servers'
-                    '?search=io.github.f-tiger%2Fecoback-local-tools&version=latest')
+        registry = ('https://registry.modelcontextprotocol.io/v0.1/servers/'
+                    'io.github.f-tiger%2Fecoback-local-tools/versions/latest')
         example = 'node src/find-tools.mjs --example fenster_oberflaeche_taucheck'
         guide = '/guide/fenster-beschlagen-innen.html#fenstersauger-gegen-kondenswasser'
         for page, aid in [('mcp','offline-installation'), ('for-agents','local-mcpb')]:

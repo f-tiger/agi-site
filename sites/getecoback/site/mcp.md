@@ -227,7 +227,7 @@ claude mcp add --transport http getecoback https://getecoback.com/mcp/v1
 
 ### EcoBack lokal installieren (MCPB)
 
-[Downloadseite und Installationsanleitung öffnen](https://github.com/f-tiger/getecoback-mcp#connect) · [Aktuelle Version im offiziellen MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.f-tiger%2Fecoback-local-tools&version=latest)
+[Downloadseite und Installationsanleitung öffnen](https://github.com/f-tiger/getecoback-mcp#connect) · [Aktuelle Version im offiziellen MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions/latest)
 
 Öffne die heruntergeladene MCPB-Datei in einem Client, der dieses Format unterstützt. Das Paket benötigt Node.js 22 oder neuer und rechnet auf deinem Gerät. Live-Wetter und Online-Ratgeber werden im vollständigen Modus nur bei einem entsprechenden Werkzeugaufruf abgerufen.
 
@@ -283,7 +283,7 @@ Zitiere die kanonische Seite aus citation_url. Wenn citation_markdown_url vorhan
 
 ### Offizieller MCP-Registry-Eintrag
 
-Im offiziellen Registry-Eintrag für io.github.f-tiger/hvac-btu-heat-klimaanlage stehen die registrierte Version und die Verbindungsadresse. Die [Discovery-Datei von EcoBack](https://getecoback.com/.well-known/mcp.json) enthält die Client-Konfiguration.
+Im [offiziellen Registry-Eintrag für io.github.f-tiger/hvac-btu-heat-klimaanlage](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fhvac-btu-heat-klimaanlage/versions/latest) stehen die registrierte Version und die Verbindungsadresse. Die [Discovery-Datei von EcoBack](https://getecoback.com/.well-known/mcp.json) enthält die Client-Konfiguration.
 
 ## Quellen und Datenschutz
 

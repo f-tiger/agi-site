@@ -9,8 +9,18 @@ import worker, {htmlToMarkdown} from '../src/worker.js';
 
 const labelEndpoint='https://library.delonghigroup.com/assetbank-delonghi/action/directLinkImage';
 const n90Label=labelEndpoint+'?assetId=209150&download=true';
+const registry='https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2F';
+const hostedRegistry=registry+'hvac-btu-heat-klimaanlage/versions/latest';
+const localRegistry=registry+'ecoback-local-tools/versions/latest';
 
 const cases=[
+ [hostedRegistry,'',true],
+ [localRegistry,'',true],
+ [hostedRegistry,'sponsored',false],
+ [hostedRegistry+'?tracking=1','',false],
+ [localRegistry+'#section','',false],
+ [hostedRegistry.replace('%2F','%252F'),'',false],
+ [registry+'an-unreviewed-entry/versions/latest','',false],
  ['https://www.adac.de/rund-ums-haus/wohnen/haushalt/kondenswasser-am-fenster/','',true],
  ['https://www.kaercher.com/de/de/home-and-garden/produkte/akku-fensterreiniger-c36','',true],
  ['https://www.kaercher.com/de/de/home-and-garden/produkte/akku-fensterreiniger-c36?tag=example','',false],

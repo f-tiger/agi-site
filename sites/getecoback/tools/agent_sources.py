@@ -26,7 +26,10 @@ def citation_url(href, rel=''):
                     and href.split('#', 1)[0] in POLICY['reference_urls'])
         if not any(url.path.startswith(prefix) for prefix in POLICY['hosts'].get(url.hostname, [])) and not (exact or pdf_page):
             return None
-        if re.search(r'%(?:00|0a|0d|2f|3a|40|5c)', url.path, re.I):
+        # The Registry expects its reviewed namespace and server in one path segment.
+        registry_entry = (exact and url.hostname == 'registry.modelcontextprotocol.io'
+                          and re.fullmatch(r'/v0\.1/servers/io\.github\.f-tiger%2F[a-z0-9-]+/versions/latest', url.path))
+        if not registry_entry and re.search(r'%(?:00|0a|0d|2f|3a|40|5c)', url.path, re.I):
             return None
         return href
     except (ValueError, TypeError):

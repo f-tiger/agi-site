@@ -16,8 +16,10 @@ export function citationUrl(href, rel='') {
     const pdfPage=url.pathname.toLowerCase().endsWith('.pdf') && /^#page=[1-9][0-9]{0,3}$/.test(url.hash)
       && policy.reference_urls.includes(href.split('#',1)[0]);
     if (!prefixes?.some(prefix=>url.pathname.startsWith(prefix)) && !exact && !pdfPage) return null;
-    // Encoded URL delimiters can hide a redirect destination or credentials.
-    if (/%(?:00|0a|0d|2f|3a|40|5c)/i.test(url.pathname)) return null;
+    // The official Registry requires this one separator for reviewed entries.
+    const registryEntry = exact && url.hostname === 'registry.modelcontextprotocol.io'
+      && /^\/v0\.1\/servers\/io\.github\.f-tiger%2F[a-z0-9-]+\/versions\/latest$/.test(url.pathname);
+    if (!registryEntry && /%(?:00|0a|0d|2f|3a|40|5c)/i.test(url.pathname)) return null;
     return href;
   } catch { return null; }
 }
