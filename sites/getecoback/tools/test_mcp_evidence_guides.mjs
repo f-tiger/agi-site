@@ -37,6 +37,7 @@ const toolPaths = new Map([
   ['fenstersauger_wv3_wv8_led_muster_einordnen', products + '#kaercher-fenstersauger-einsatz-und-hinweise'],
   ['fenster_oberflaeche_taucheck', '/guide/fenster-beschlagen-innen.html#fenstersauger-gegen-kondenswasser'],
   ['lueften_messwirkung', '/guide/richtig-lueften-im-winter.html#lueften-vorher-nachher'],
+  ['thermovorhang_bahnenbedarf', '/guide/thermovorhang-ratgeber.html#thermovorhang-bahnenbedarf'],
 ]);
 const paths = new Map([
   ['Kaffeemaschinenpflege', `${products}#kaffeevollautomat-pflege-und-kauf`],
@@ -103,7 +104,7 @@ test('each mapped tool publishes the same exact evidence link after a real tool 
   const advertised = new Map(standard.map(tool => [tool.name, tool]));
   const compact = new Map((await h.catalogue({view:'compact'})).tools.map(tool => [tool.name, tool]));
   const mapped = expandedDefinitions.filter(tool=>paths.has(tool.category) || toolPaths.has(tool.name));
-  assert.equal(mapped.length, 237);
+  assert.equal(mapped.length, 238);
   assert.equal([...compact.values()].filter(tool=>tool.guide_url && tool.name!=='entfeuchter_ablaufcheck').length, mapped.length);
 
   for (const {name, category, page, properties, required, oneOf, example} of mapped) {
@@ -137,6 +138,17 @@ test('each mapped tool publishes the same exact evidence link after a real tool 
       }
     }
   }
+  h.assertNoWrites();
+});
+
+test('curtain panel count rounds genuine shortfalls up without over-ordering exact decimal fits', async () => {
+  const h = offlineWorker();
+  const args = {oeffnung_cm:80, ueberstand_links_cm:2, ueberstand_rechts_cm:6.4, stofffaktor:1.5, bahn_flach_cm:66.3};
+  const call = arguments_ => h.rpc('tools/call', {name:'thermovorhang_bahnenbedarf', arguments:arguments_});
+  const fit = (await call(args)).structuredContent;
+  assert.equal(fit.stoff_flach_cm,132.6);
+  assert.equal(fit.bahnen,2);
+  assert.equal((await call({...args,bahn_flach_cm:66.29})).structuredContent.bahnen,3);
   h.assertNoWrites();
 });
 

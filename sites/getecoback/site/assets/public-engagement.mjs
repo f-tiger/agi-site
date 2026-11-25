@@ -42,6 +42,8 @@ export function ecoPublicBusinessEvent(pathname, detail) {
   if (['/guide/luftfeuchtigkeit-senken.html','/guide/richtig-lueften-im-winter.html'].includes(pathname) && ['eco_moisture_example','eco_moisture_check','eco_moisture_save','eco_moisture_export'].includes(detail.name)) return {name:detail.name,tool_id:'eco-moisture-check'};
   if (pathname === '/guide/richtig-lueften-im-winter.html' && detail.name === 'eco_ventilation_effect')
     return {name:detail.name, tool_id:'eco-ventilation-effect'};
+  if (pathname === '/guide/thermovorhang-ratgeber.html' && detail.name === 'eco_curtain_panel_check')
+    return {name:detail.name, tool_id:'eco-curtain-panels'};
   const country = countryScenarioEvent(pathname, detail);
   if (country) return {name:country, tool_id:pathname === '/wohnen.html' ? 'eco-country-de' : 'eco-country-nl'};
   const routes = {

@@ -1,3 +1,5 @@
+import {curtainPanels} from '../site/assets/curtain-panels.mjs';
+
 const number = (description, minimum, maximum) => ({type:'number', description, minimum, maximum});
 const choice = (description, ...values) => ({type:'string', enum:values, description});
 const flag = description => ({type:'boolean', description});
@@ -74,6 +76,7 @@ export const envelopeSuite = [
     name:'thermovorhang_bahnenbedarf',
     description:'Mit Wunschüberstand und Kräuselmaß die Anzahl gleich großer Vorhangbahnen bestimmen — Calculate curtain panels from measured coverage and the chosen fullness.',
     page:guide('thermovorhang-ratgeber'),
+    guide_url:'https://getecoback.com/guide/thermovorhang-ratgeber.html#thermovorhang-bahnenbedarf',
     properties:{
       oeffnung_cm:cm('Zu bedeckende Breite der gemessenen Öffnung.'),
       ueberstand_links_cm:cm('Gewollte Überdeckung links, in der Aufhängung verfügbar.'),
@@ -81,16 +84,7 @@ export const envelopeSuite = [
       stofffaktor:number('Verhältnis flache Stoffbreite zu fertiger Breite entlang der Schiene.', 1, 4),
       bahn_flach_cm:number('Flache Stoffbreite einer verwendbaren Bahn in cm.', 1, 1000)
     },
-    calculate({oeffnung_cm,ueberstand_links_cm,ueberstand_rechts_cm,stofffaktor,bahn_flach_cm}) {
-      if (!oeffnung_cm) throw new RangeError('Öffnung');
-      const deckbreite = oeffnung_cm + ueberstand_links_cm + ueberstand_rechts_cm;
-      const stoff = deckbreite * stofffaktor;
-      return {
-        deckbreite_cm:rounded(deckbreite), stoff_flach_cm:rounded(stoff),
-        bahnen:Math.ceil(stoff/bahn_flach_cm),
-        hinweis:'Breiten beziehen sich auf nutzbaren Stoff. Nahtzugaben, Aufhängung und Waschschrumpfung separat prüfen. Die Überdeckung belegt keine Dämmleistung.'
-      };
-    },
+    calculate:curtainPanels,
     example:{args:{oeffnung_cm:120,ueberstand_links_cm:10,ueberstand_rechts_cm:10,stofffaktor:1.5,bahn_flach_cm:110},expect:{stoff_flach_cm:210,bahnen:2}}
   },
   {
