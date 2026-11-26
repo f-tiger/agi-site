@@ -14,9 +14,14 @@ test('An empty dehumidifier tank finds the troubleshooting section instead of a 
   'Luftentfeuchter sammelt kein Wasser trotz laufendem Lüfter',
   'Warum zieht mein Entfeuchter kein Wasser?',
   'Wasserbehälter vom Luftentfeuchter ist immer leer',
+  'Der Luftentfeuchter läuft, aber im Tank ist kein Wasser.',
+  'Der Tank meines Luftentfeuchters füllt sich nicht mehr.',
+  'MeacoDry Arete One 20L: Lüfter läuft, Tank bleibt leer',
  ]) assert.equal(searchEntries(index,query,'de')[0]?.entry.u,target,query);
  for(const query of [
   'Luftentfeuchter meldet Tank voll, obwohl der Behälter leer ist',
+  'Luftentfeuchter: Der Tank bleibt leer, aber er meldet Tank voll',
+  'Welches Entfeuchter Granulat brauche ich? Der Tank bleibt leer.',
   'Kann der Ablaufschlauch am Luftentfeuchter bergauf zum Waschbecken laufen?',
   'Klimaanlage läuft, aber der Tank bleibt leer',
  ]) assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);

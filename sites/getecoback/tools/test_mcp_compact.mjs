@@ -104,6 +104,8 @@ test('empty tank discovery and execution distinguish temperature, hose and humid
   assert.equal(first.name,name);
   assert.equal(first.citation_url,guide);
   assert.equal(first.guide_url,guide+'#pruefen-bevor-du-ein-neues-geraet-kaufst');
+  const granulate = await call(compactPath,findName,{frage:'Welches Entfeuchter Granulat brauche ich? Der Tank bleibt leer.'});
+  assert.notEqual(granulate.structuredContent.tools[0]?.name,name);
   const inputs = {current_rh_pct:60,setpoint_rh_pct:50,room_c:12,documented_minimum_c:10,hose_in_use:false};
   for (const [overrides,expected,flags] of [
     [{room_c:9,hose_in_use:true}, /Temperaturbereich/, [true,false,true]],

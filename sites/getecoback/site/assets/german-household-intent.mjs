@@ -278,11 +278,13 @@ const emptyDehumidifierTank = {
 };
 
 function asksAboutAnEmptyDehumidifierTank(query) {
-  const device = /\b(?:luft)?entfeuchter(?:s|n)?\b/;
+  const device = /\b(?:luft)?entfeuchter(?:s|n)?\b|\barete[ -]+one[ -]+(?:20|25)\s*l\b/;
   const emptyTank = /\b(?:\w*tank|wasserbehaelter)\s+(?:(?:vom|des) (?:luft)?entfeuchters?\s+)?(?:(?:bleibt|ist|immer|noch|dauerhaft|weiterhin)\s+){0,3}leer\b|\bleerer?\s+(?:\w*tank|wasserbehaelter)\b/;
   const noWater = /\b(?:zieht|sammelt|holt|entzieht)\s+(?:(?:(?:mein|der|ein)\s+)?(?:luft)?entfeuchter\s+)?(?:(?:aber|mehr|fast|trotzdem)\s+){0,3}kein\s+wasser\b/;
-  return device.test(query) && (emptyTank.test(query) || noWater.test(query)) &&
-    !asksForDehumidifierDrainRoute(query);
+  const doesNotFill = /\bim\s+(?:\w*tank|wasserbehaelter)\s+(?:ist|steht)\s+kein\s+wasser\b|\b(?:\w*tank|wasserbehaelter)\s+(?:(?:meines|meinem|des|vom)\s+(?:luft)?entfeuchters?\s+)?fuellt\s+sich\s+nicht\b/;
+  const otherProblem = /\b(?:granulat\w*|[a-z]*entfeuchter[ -]*box\w*|luftentfeuchter[ -]*tabs?|tank[ -]*voll)\b/;
+  return device.test(query) && (emptyTank.test(query) || noWater.test(query) || doesNotFill.test(query)) &&
+    !otherProblem.test(query) && !asksForDehumidifierDrainRoute(query);
 }
 
 export const coolingDiscountReference = {
