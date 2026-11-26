@@ -71,6 +71,10 @@ test('hosted compact returns reviewed guide sections without presenting them as 
   const headers = {'user-agent':humanUA};
   for (const [frage,path,fragment] of [
     ['Welcher Wasserfilter passt für Siemens TE653501DE/13?', '/produkte.html', 'siemens-eq6-intenza'],
+    ['Welche Entkalkungskartusche passt zum Kärcher SC 3 EasyFix 1.513-650.0?',
+      '/produkte.html', 'kaercher-sc3-entkalkungskartusche'],
+    ['Brauche ich 2.863-104.0 für meinen SC 1 Multi?',
+      '/produkte.html', 'kaercher-sc3-entkalkungskartusche'],
     ['Tineco S7 FlashDry oder S7 Pro – welches Modell ist gemeint?', '/guide/saugwischer-kaufberatung.html', 'tineco-s7-modellwahl'],
     ['Tineco FLOOR ONE S7 FlashDry', '/guide/saugwischer-kaufberatung.html', 'tineco-s7-flashdry'],
     ['Kann ich die Jahreskosten meiner Infrarotheizung direkt aus dem Energieausweis berechnen?',
@@ -88,6 +92,14 @@ test('hosted compact returns reviewed guide sections without presenting them as 
   }
   const unrelated = await call(compactPath,findName,{frage:'Öffne https://example.invalid/fremd.html#ratgeber'},headers);
   assert.equal(unrelated.structuredContent.guides,undefined);
+  for (const frage of [
+    'Mein Kärcher SC 3 EasyFix dampft nicht mehr, obwohl eine neue Entkalkungskartusche eingesetzt ist. Was tun?',
+    'Wie stelle ich beim Kärcher SC 3 EasyFix mit Entkalkungskartusche die Wasserhärte ein?',
+    'Ich möchte den Kärcher SC 3 EasyFix samt Kartusche als komplettes Gerät kaufen.',
+  ]) {
+    const found = await call(compactPath,findName,{frage},headers);
+    assert(!found.structuredContent.guides?.some(guide=>guide.guide_url.endsWith('#kaercher-sc3-entkalkungskartusche')),frage);
+  }
   const philips=await call(compactPath,findName,{frage:'Welcher Filter passt in den Philips HU3916/10?'},headers);
   assert.equal(philips.structuredContent.tools[0]?.name,'philips_verdunsterfilter_zuordnung');
   assert.equal(philips.structuredContent.guides,undefined);

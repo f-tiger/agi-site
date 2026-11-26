@@ -7,6 +7,26 @@ import {calculateGasHeatThreshold} from '../site/assets/heat-gas-cost.mjs';
 import {compareSocketWatts} from '../site/assets/auto-12v-check.mjs';
 const browsingIndex=readFileSync(new URL('../site/assets/search-index.json',import.meta.url));
 const index=JSON.parse(browsingIndex);
+test('Kärcher cartridge purchase queries resolve to the exact German comparison',()=>{
+ const target='/produkte.html#kaercher-sc3-entkalkungskartusche';
+ for(const query of [
+  'Welche Entkalkungskartusche passt zum Kärcher SC 3 EasyFix 1.513-650.0?',
+  'Passt die Entkalkungskartusche 2.863-018.0 in meinen Kärcher SC 3 EasyFix?',
+  'Brauche ich die kleine Kartusche für Kärcher SC 1 Multi 1.516-404.0?',
+  '28631040', '4054278026213',
+ ]) assert.equal(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+ for(const query of [
+  'Kärcher SC 3 EasyFix 1.513-650.0 kaufen',
+  'Kärcher SC 3 EasyFix Kartusche zurücksetzen',
+  'Mein Kärcher SC 3 EasyFix dampft nicht mehr, obwohl eine neue Entkalkungskartusche eingesetzt ist. Was tun?',
+  'Wie stelle ich beim Kärcher SC 3 EasyFix mit Entkalkungskartusche die Wasserhärte ein?',
+  'Ich möchte den Kärcher SC 3 EasyFix samt Kartusche als komplettes Gerät kaufen.',
+  'Kärcher SC 2 EasyFix 1.512-600.0 Entkalkungskartusche',
+  'Kärcher SC 3 Deluxe EasyFix Entkalkungskartusche',
+  'Kärcher SC 1 Multi Comfort Kartusche',
+  'Welche Kartusche gehört in meinen Kärcher SC 1 Multi & Up?',
+ ]) assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+});
 test('Low-load meter searches find the selected buying or measurement evidence',()=>{
  const target='/strommess-protokoll.html#kleine-lasten-messen';
  for(const query of [

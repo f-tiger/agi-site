@@ -63,6 +63,7 @@ class CatalogTest(unittest.TestCase):
         links = Document(section[0]).links
         expected = [
             '/produkte.html#miele-staubsaugerbeutel', '/produkte.html#kaercher-170mm-saugduese',
+            '/produkte.html#kaercher-sc3-entkalkungskartusche',
             '/produkte.html#kaffee-wasserfilter', '/guide/trotec-luftentfeuchter-test.html#ttk70-hepa-filter',
             '/ersatzfilter.html#finder',
         ]
@@ -78,6 +79,29 @@ class CatalogTest(unittest.TestCase):
             authored = (C.ROOT / 'site' / entry).read_text()
             self.assertEqual(inject(authored, data), authored)
             self.assertEqual(sum(link.get('href') == route+'#ersatzteile-pruefen' for link in Document(authored).links), 1)
+
+    def test_de_karcher_cartridge_matches_exact_model_and_pauses_stale_shopping(self):
+        from urllib.parse import parse_qs, urlsplit
+        data = C.load()
+        model = next(product for product in data['products'] if product['id'] == 'kaercher-sc3-easyfix')
+        section = C.render_karcher_cartridge(data, model, dt.date(2026, 11, 26))
+        paused = C.render_karcher_cartridge(data, model, dt.date(2027, 3, 1))
+        for group in (
+            ('1.513-650.0', '2.863-018.0', '4054278026213'),
+            ('1.516-404.0', '2.863-104.0', '4066529064912'),
+        ):
+            self.assertTrue(any(all(item in row for item in group) for row in re.findall(r'<tr>.*?</tr>', section, re.S)))
+        self.assertIn('brauchst du keine weitere zu bestellen', section)
+        link, = [a for a in Document(section).links if 'sponsored' in a.get('rel', '')]
+        url = urlsplit(link['href'])
+        self.assertEqual((url.netloc, url.path), ('www.amazon.de', '/s'))
+        self.assertEqual(parse_qs(url.query), {'k':['Kärcher Entkalkungskartusche 2.863-018.0'], 'tag':['getecoback-21']})
+        self.assertNotIn('amazon.de', paused)
+        self.assertIn('4054278026213', paused)
+        mirror = C.to_markdown(C.render(data, dt.date(2026, 11, 26)), C.ROUTE, 'de')
+        for token in ('4054278026213', '4066529064912', '2.863-018.0_PI_de_DE.pdf', '2.863-104.0_PI_de_DE.pdf'):
+            self.assertIn(token, mirror[:20000])
+        self.assertNotIn('2.863-018.0 bei Amazon.de suchen', mirror)
 
     def test_miele_bag_packs_keep_exact_model_filter_roles_and_native_share(self):
         html = C.render(C.load(), dt.date(2026, 11, 22))

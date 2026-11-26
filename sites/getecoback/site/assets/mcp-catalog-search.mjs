@@ -1,4 +1,4 @@
-import {asksForLaundryCostComparison, boschDry, carHeaterOutlet, comfeeVariant, coolingDiscountReference, directHeat, exactGermanHouseholdTask, exactWindowShadeMeasurement, excludesPortableCoolingStorage, festiveLights, gasHeatCost, granulateDryingChoice, infraredAnnualCost, klarsteinPackage, lowLoadMeterGuide, mentionsLaundryDryer, offlineThermostatChoice, portableCoolingStorage, showerFlow, siemensFilterDecision, tinecoS7FlashDry, tinecoS7Variant, vacuumOffer} from './german-household-intent.mjs?v=f216cfb91dbf';
+import {asksForLaundryCostComparison, boschDry, carHeaterOutlet, comfeeVariant, coolingDiscountReference, directHeat, exactGermanHouseholdTask, exactWindowShadeMeasurement, excludesPortableCoolingStorage, festiveLights, gasHeatCost, granulateDryingChoice, infraredAnnualCost, karcherCartridgeDecision, klarsteinPackage, lowLoadMeterGuide, mentionsLaundryDryer, offlineThermostatChoice, portableCoolingStorage, showerFlow, siemensFilterDecision, tinecoS7FlashDry, tinecoS7Variant, vacuumOffer} from './german-household-intent.mjs?v=8834bb279741';
 import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion, glassvacModel, windowVacCharging} from './kaercher-saugduese-intent.mjs';
@@ -388,7 +388,8 @@ export function findCatalogueTools(index, {query='', category='', name=null}={})
   const comparisonGuide = householdTask === granulateDryingChoice || householdTask === coolingDiscountReference ||
     householdTask === offlineThermostatChoice || householdTask === siemensFilterDecision ||
     householdTask === gasHeatCost || householdTask === carHeaterOutlet || householdTask === infraredAnnualCost ||
-    householdTask === tinecoS7FlashDry || householdTask === tinecoS7Variant || householdTask === lowLoadMeterGuide;
+    householdTask === tinecoS7FlashDry || householdTask === tinecoS7Variant || householdTask === lowLoadMeterGuide ||
+    householdTask === karcherCartridgeDecision;
   if (householdTask === boschDry || householdTask === comfeeVariant || householdTask === festiveLights || householdTask === showerFlow || householdTask === directHeat || householdTask === klarsteinPackage || comparisonGuide) {
     const guideSearch = index.find(entry => entry.tool.name === householdTask.tool && eligible(entry));
     if (guideSearch) {

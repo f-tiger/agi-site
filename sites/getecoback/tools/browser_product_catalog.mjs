@@ -564,6 +564,8 @@ async function checkCatalog(browser){
    for(const [part,target] of Object.entries({
     'GN FJM':'/produkte.html#miele-staubsaugerbeutel',
     '2.633-605.0':'/produkte.html#kaercher-170mm-saugduese',
+    '2.863-018.0':'/produkte.html#kaercher-sc3-entkalkungskartusche',
+    '4066529064912':'/produkte.html#kaercher-sc3-entkalkungskartusche',
     'TCZ7033':'/produkte.html#kaffee-wasserfilter',
     'DLSC002':'/produkte.html#kaffee-wasserfilter',
     'TTK 70 HEPA':'/guide/trotec-luftentfeuchter-test.html#ttk70-hepa-filter',
@@ -588,7 +590,12 @@ async function checkCatalog(browser){
   }else{assert(await page.locator('#product-filters').isHidden());assert.equal(await page.locator('[data-product-card]:visible').count(),data.products.length);}
   const shortcuts=page.locator('#ersatzteile-pruefen');
   assert(await shortcuts.isVisible());
-  assert.equal(await shortcuts.getByRole('link').count(),5);
+  assert.equal(await shortcuts.getByRole('link').count(),6);
+  const cartridgeGuide=shortcuts.getByRole('link',{name:'Kärcher-Entkalkungskartusche für SC 3 oder SC 1'});
+  await cartridgeGuide.focus();
+  await page.keyboard.press('Enter');
+  await page.waitForURL(origin+'/produkte.html?__probe=1#kaercher-sc3-entkalkungskartusche');
+  assert(await page.locator('#kaercher-sc3-entkalkungskartusche').isVisible());
   const bagGuide=shortcuts.getByRole('link',{name:'Miele-Staubsaugerbeutel'});
   await bagGuide.focus();
   await page.keyboard.press('Enter');
