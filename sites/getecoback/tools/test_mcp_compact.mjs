@@ -95,6 +95,37 @@ test('hosted compact returns reviewed guide sections without presenting them as 
   assert.deepEqual(writes,[]);
 });
 
+test('empty tank discovery and execution distinguish temperature, hose and humidity without diagnosing a defect', async () => {
+  const {call,writes} = fixture();
+  const name = 'entfeuchter_leerer_tank_check';
+  const guide = origin + '/guide/luftentfeuchter-zieht-kein-wasser.html';
+  const found = await call(compactPath,findName,{frage:'Mein Luftentfeuchter läuft, aber der Tank bleibt leer. Was soll ich prüfen?'});
+  const first = found.structuredContent.tools[0];
+  assert.equal(first.name,name);
+  assert.equal(first.citation_url,guide);
+  assert.equal(first.guide_url,guide+'#pruefen-bevor-du-ein-neues-geraet-kaufst');
+  const granulate = await call(compactPath,findName,{frage:'Welches Entfeuchter Granulat brauche ich? Der Tank bleibt leer.'});
+  assert.notEqual(granulate.structuredContent.tools[0]?.name,name);
+  const inputs = {current_rh_pct:60,setpoint_rh_pct:50,room_c:12,documented_minimum_c:10,hose_in_use:false};
+  for (const [overrides,expected,flags] of [
+    [{room_c:9,hose_in_use:true}, /Temperaturbereich/, [true,false,true]],
+    [{hose_in_use:true}, /Schlauchende/, [true,false,false]],
+    [{current_rh_pct:50,room_c:10}, /Schaltbereich/, [false,true,false]],
+    [{}, /Kundendienst/, [false,false,false]],
+  ]) {
+    const args = {...inputs,...overrides};
+    const result = await call(compactPath,runName,{name,eingaben:args});
+    assert.equal(result.isError,false);
+    const answer = result.structuredContent;
+    assert.deepEqual(result,await call(fullPath,name,args));
+    assert.match(answer.next_step,expected);
+    assert.match(answer.assumption,/Gehäuse geschlossen lassen/);
+    assert.deepEqual([answer.hose_may_bypass_tank,answer.measured_humidity_at_or_below_setpoint,
+      answer.below_documented_operating_limit],flags);
+  }
+  assert.deepEqual(writes,[]);
+});
+
 test('compact routes an everyday measured window report to the shareable dew-point check', async () => {
   const {call,writes} = fixture();
   const name = 'fenster_oberflaeche_taucheck';

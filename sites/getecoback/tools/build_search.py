@@ -55,6 +55,9 @@ def collect():
  sections[('de','/guide/luftentfeuchter-ratgeber.html')]={
   'id':'modell-bosch-d4000-eu','title':'Bosch Dry 4000: deutsche Modellnummer prüfen',
   'description':'D4000-EU, Artikel 7733703558 und EAN 4069143047774 am Angebot oder Typenschild abgleichen. Bosch dokumentiert Tank und kontinuierlichen Ablauf.'}
+ sections[('de','/guide/luftentfeuchter-zieht-kein-wasser.html')]={
+  'id':'pruefen-bevor-du-ein-neues-geraet-kaufst','title':'Luftentfeuchter läuft, aber der Tank bleibt leer?',
+  'description':'Sollfeuchte, Schlauch, Betriebsmodus und Temperatur nach Anleitung prüfen. Herstellerwerte für genau dasselbe Modell bei passender Temperatur und Feuchte vergleichen.'}
  sections[('de','/guide/keller-lueften-sommer.html')]={
   'id':'taupunkt','title':'Trocknet Lüften meinen Keller jetzt?',
   'description':'Vergleiche Temperatur und Feuchte drinnen und draußen mit deiner kältesten gemessenen Wand.'}

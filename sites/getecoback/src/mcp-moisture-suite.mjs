@@ -11,6 +11,7 @@ const round = (value, digits = 2) => Number(value.toFixed(digits));
 const roomTemperature = number('Lufttemperatur innen in °C.', 0, 40);
 const roomHumidity = number('Relative Feuchte der Raumluft in Prozent.', 1, 100);
 const hygrometerGuide = '/guide/luftfeuchtigkeit-richtig-messen.html';
+const emptyTankGuide = '/guide/luftentfeuchter-zieht-kein-wasser.html';
 
 const coldModels = catalog.products.filter(model => model.status === 'verified' &&
   ['meaco-one-20', 'meaco-two-12', 'stadler-lukas'].includes(model.id));
@@ -303,8 +304,9 @@ export const moistureSuite = [
   },
   {
     name:'entfeuchter_leerer_tank_check',
-    description:'Leeren Tank vor einem Ersatzkauf eingrenzen — Troubleshoot an empty dehumidifier tank using the actual setting, temperature and drain mode.',
-    page:'/guide/luftentfeuchter-zieht-kein-wasser.html',
+    description:'Luftentfeuchter läuft, aber der Tank bleibt leer? Sollfeuchte, Temperatur und Schlauchablauf vor einem Ersatzkauf prüfen — Troubleshoot an empty dehumidifier tank.',
+    page:emptyTankGuide,
+    guide_url:'https://getecoback.com' + emptyTankGuide + '#pruefen-bevor-du-ein-neues-geraet-kaufst',
     properties:{
       current_rh_pct:roomHumidity,
       setpoint_rh_pct:roomHumidity,
@@ -313,11 +315,21 @@ export const moistureSuite = [
       hose_in_use:bool('Ablaufschlauch statt Tankbetrieb angeschlossen?'),
     },
     calculate({current_rh_pct,setpoint_rh_pct,room_c,documented_minimum_c,hose_in_use}) {
+      const belowMinimum = room_c < documented_minimum_c;
+      const atOrBelowSetpoint = current_rh_pct <= setpoint_rh_pct;
+      let nextStep = 'Prüfe Filter, Luftwege und Abtauhinweise laut Anleitung. Bei Fehleranzeige oder anhaltender Abweichung Kundendienst fragen.';
+      if (belowMinimum) {
+        nextStep = 'Prüfe den gewählten Modus und den dokumentierten Temperaturbereich, bevor du die Entfeuchtung beurteilst.';
+      } else if (hose_in_use) {
+        nextStep = 'Prüfe nach Anleitung, ob Wasser am Schlauchende ankommt und der Ablauf frei ist.';
+      } else if (atOrBelowSetpoint) {
+        nextStep = 'Der Messwert liegt am oder unter dem Sollwert. Prüfe den Schaltbereich und den Modus in der Anleitung.';
+      }
       return {
         hose_may_bypass_tank:hose_in_use,
-        measured_humidity_at_or_below_setpoint:current_rh_pct <= setpoint_rh_pct,
-        below_documented_operating_limit:room_c < documented_minimum_c,
-        next_step:'Ablauf, Luftwege, eingestellten Sollwert und Abtauhinweise gemäß Anleitung kontrollieren. Bei Fehleranzeige oder anhaltender Abweichung Kundendienst fragen.',
+        measured_humidity_at_or_below_setpoint:atOrBelowSetpoint,
+        below_documented_operating_limit:belowMinimum,
+        next_step:nextStep,
         assumption:'Dieser Check schließt einen Defekt weder aus noch weist er einen nach. Gehäuse geschlossen lassen.',
       };
     },

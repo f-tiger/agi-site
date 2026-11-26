@@ -48,6 +48,7 @@ assert [(entry['l'],entry['u'],entry['section']['id']) for entry in focused]==[
     ('de','/guide/luftentfeuchter-granulat-oder-elektrisch.html','granulat-waesche-entscheidung'),
     ('de','/guide/luftentfeuchter-keller.html','ablauf-vor-kauf'),
     ('de','/guide/luftentfeuchter-ratgeber.html','modell-bosch-d4000-eu'),
+    ('de','/guide/luftentfeuchter-zieht-kein-wasser.html','pruefen-bevor-du-ein-neues-geraet-kaufst'),
     ('de','/guide/luftfeuchtigkeit-richtig-messen.html','hygrometer-vergleichen'),
     ('de','/guide/midea-portasplit-ausverkauft-alternativen.html','fensterfalz'),
     ('de','/guide/richtig-lueften-im-winter.html','lueften-vorher-nachher'),

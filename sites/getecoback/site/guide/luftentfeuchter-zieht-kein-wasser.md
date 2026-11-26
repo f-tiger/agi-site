@@ -20,7 +20,7 @@ Gemessene Luftfeuchte (%)
 
 Ausrechnen
 
-Gerechnet bis 50 % relative Luftfeuchte, dem üblichen Zielwert. Ohne Nachschub von außen oder aus Wäsche, Duschen und Kochen — den gibt es in der Praxis natürlich, und genau deshalb läuft das Gerät überhaupt weiter.
+50 % relative Luftfeuchte sind ein Vergleichswert für diese Rechnung. Wäsche, Kochen, Duschen oder Außenluft können während des Betriebs weitere Feuchte eintragen.
 
 ## Prüfen, bevor du ein neues Gerät kaufst
 
@@ -30,12 +30,19 @@ Gerechnet bis 50 % relative Luftfeuchte, dem üblichen Zielwert. Ohne Nachschub 
 - Temperaturbereich und Abtauverhalten des genauen Modells nachlesen. Niedrige Raumtemperatur kann die Leistung stark verändern; es gibt keine universelle 15-°C-Defektgrenze.
 - Bei anhaltend nassen Wänden, Lecks oder starkem Feuchtenachschub die Ursache klären. Ein Gerät kann eine bauliche Ursache nicht beheben.
 
+### Beispiel MeacoDry Arete One 20L und 25L
+
+Im Smart-Humidity-Modus kann die Entfeuchtung nach Erreichen des Sollbereichs stoppen. Der Lüfter läuft laut Meaco alle 30 Minuten kurz zur Feuchtemessung an. Lüftergeräusch allein zeigt daher keine aktive Entfeuchtung an. [Deutsche Meaco-Anleitung zum Smart-Humidity-Modus](https://cdn.shopify.com/s/files/1/0371/8378/3043/files/German_-_MeacoDry_Arete_One_20L_and_25L_Instruction_Manual_June_2021.pdf#page=8).
+
+Bei kontinuierlichem Ablauf kann Wasser den Tank umgehen. Prüfe, ob Wasser am Schlauchende ankommt und ob der Schlauch entsprechend der Anleitung durchgehend abwärts führt sowie frei von Knicken und Blockaden ist. [Deutsche Meaco-Anleitung zum Schlauchablauf](https://cdn.shopify.com/s/files/1/0371/8378/3043/files/German_-_MeacoDry_Arete_One_20L_and_25L_Instruction_Manual_June_2021.pdf#page=12).
+
 ## Warum die Literangabe allein nicht genügt
 Hersteller geben die Entnahme für definierte Temperatur und Luftfeuchte an. Daraus lässt sich weder pauschal die Hälfte der Nennleistung noch eine lineare Skalierung mit dem Wassergehalt ableiten. Vergleiche das Datenblatt bei passenden Bedingungen.
-[Beispiel mit Herstellerdaten bei gleichen Bedingungen (Englisch)](https://getecoback.com/en/guide/12l-vs-20l-dehumidifier-uk.html) · [Bedarf vor einem Ersatzkauf prüfen](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice).
+Meaco Deutschland nennt für den **Arete One 20L** bei 60 % relativer Feuchte **3,4 Liter pro Tag bei 10 °C** und **8,5 Liter pro Tag bei 20 °C**. Diese Prüfpunkte geben einen Vergleich für genau dieses Modell. Sie bestimmen weder die Wassermenge in deinem Tank noch die Mindesttemperatur für den Betrieb. [Deutsches Meaco-Datenblatt zum Arete One 20L](https://eu.meaco.com/products/meacodry-arete-one-20l-luftentfeuchter-luftreiniger).
+[Bedarf vor einem Ersatzkauf prüfen](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice).
 
 ## Wann zum Kundendienst?
-Wenn das Gerät unter zulässigen Betriebsbedingungen, mit korrektem Zielwert und freien Luftwegen nicht wie beschrieben arbeitet oder einen Fehler anzeigt, Anleitung und Kundendienst nutzen. Eine bestimmte Temperatur oder eine pauschale Zweistundenfrist beweist keinen Defekt.
+Wenn das Gerät unter zulässigen Betriebsbedingungen, mit korrektem Zielwert und freien Luftwegen nicht wie beschrieben arbeitet oder einen Fehler anzeigt, Anleitung und Kundendienst nutzen. Eine bestimmte Temperatur oder eine pauschale Zweistundenfrist beweist keinen Defekt. Bei Arete One 20L und 25L nennt die Anleitung E1 und E2 als Meldungen für den Meaco-Kundendienst. [Fehlercode-Tabelle der deutschen Anleitung](https://cdn.shopify.com/s/files/1/0371/8378/3043/files/German_-_MeacoDry_Arete_One_20L_and_25L_Instruction_Manual_June_2021.pdf#page=17).
 
 ## Häufige Fragen
 
@@ -47,7 +54,7 @@ Nein. Prüfe den Betriebsbereich und das Abtauverhalten des konkreten Modells so
 
 ## Rechenweg und Grenzen
 Die Rechnung nutzt die absolute Feuchte nach Magnus und das eingegebene Luftvolumen. 50 % ist ein Vergleichsziel dieser Rechnung, keine allgemeine Vorgabe für jeden Raum.
-Keine eigenen Gerätetests, keine Ferndiagnose. Überarbeitet am 4. Oktober 2026. Hintergrund zu Feuchtequellen und Lüftung: [Verbraucherzentrale: Heizen und Lüften](https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizen-und-lueften-so-gehts-richtig-10426).
+Keine eigenen Gerätetests, keine Ferndiagnose. Herstellerquellen am 26. November 2026 geprüft. Hintergrund zu Feuchtequellen und Lüftung: [Verbraucherzentrale: Heizen und Lüften](https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizen-und-lueften-so-gehts-richtig-10426).
 
 ## Dein nächster Schritt
 

@@ -7,6 +7,25 @@ import {calculateGasHeatThreshold} from '../site/assets/heat-gas-cost.mjs';
 import {compareSocketWatts} from '../site/assets/auto-12v-check.mjs';
 const browsingIndex=readFileSync(new URL('../site/assets/search-index.json',import.meta.url));
 const index=JSON.parse(browsingIndex);
+test('An empty dehumidifier tank finds the troubleshooting section instead of a buying guide',()=>{
+ const target='/guide/luftentfeuchter-zieht-kein-wasser.html#pruefen-bevor-du-ein-neues-geraet-kaufst';
+ for(const query of [
+  'Mein Luftentfeuchter läuft, aber der Tank bleibt leer. Was soll ich prüfen?',
+  'Luftentfeuchter sammelt kein Wasser trotz laufendem Lüfter',
+  'Warum zieht mein Entfeuchter kein Wasser?',
+  'Wasserbehälter vom Luftentfeuchter ist immer leer',
+  'Der Luftentfeuchter läuft, aber im Tank ist kein Wasser.',
+  'Der Tank meines Luftentfeuchters füllt sich nicht mehr.',
+  'MeacoDry Arete One 20L: Lüfter läuft, Tank bleibt leer',
+ ]) assert.equal(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+ for(const query of [
+  'Luftentfeuchter meldet Tank voll, obwohl der Behälter leer ist',
+  'Luftentfeuchter: Der Tank bleibt leer, aber er meldet Tank voll',
+  'Welches Entfeuchter Granulat brauche ich? Der Tank bleibt leer.',
+  'Kann der Ablaufschlauch am Luftentfeuchter bergauf zum Waschbecken laufen?',
+  'Klimaanlage läuft, aber der Tank bleibt leer',
+ ]) assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+});
 test('Vehicle 12 V heater questions find the socket check without redirecting AC repairs or other voltages', () => {
  const href='/guide/akku-heizluefter.html#auto-12v-steckdose';
  for(const query of ['Heizlüfter 12V Auto', 'Auto Heizlüfter 12 V 150 Watt', 'Autoheizlüfter 12 Volt Zigarettenanzünder']) {
