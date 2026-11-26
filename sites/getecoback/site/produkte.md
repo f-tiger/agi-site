@@ -11,7 +11,7 @@ Canonical (HTML, zitierfähig): https://getecoback.com/produkte.html
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Händlersuchen sind als Anzeige gekennzeichnet. Keine eigenen Gerätetests; Herstellerangaben sind keine Leistungszusage für dein Zuhause.
 
-Veröffentlicht: 13.11.2026 · Inhalt geändert: 25.11.2026. Der Quellenstand steht an jedem Modell.
+Veröffentlicht: 13.11.2026 · Inhalt geändert: 26.11.2026. Der Quellenstand steht an jedem Modell.
 
 ## Ersatzteile nach Modell prüfen
 
@@ -19,6 +19,7 @@ Halte die vollständige Modellnummer vom Typenschild oder die Teilenummer bereit
 
 - [Miele-Staubsaugerbeutel](https://getecoback.com/produkte.html#miele-staubsaugerbeutel)
 - [Kärcher-Saugdüse 170 mm](https://getecoback.com/produkte.html#kaercher-170mm-saugduese)
+- [Kärcher-Entkalkungskartusche für SC 3 oder SC 1](https://getecoback.com/produkte.html#kaercher-sc3-entkalkungskartusche)
 - [Kaffeevollautomat-Wasserfilter](https://getecoback.com/produkte.html#kaffee-wasserfilter)
 - [Trotec TTK 70 HEPA-Filter](https://getecoback.com/guide/trotec-luftentfeuchter-test.html#ttk70-hepa-filter)
 - [Ersatzfilter für Luftreiniger](https://getecoback.com/ersatzfilter.html#finder)
@@ -44,6 +45,21 @@ Halte die vollständige Modellnummer vom Typenschild oder die Teilenummer bereit
 - [De’Longhi PAC N90 ECO Silent: Modell prüfen](https://getecoback.com/guide/delonghi-pac-n90-test.html#testlage) Gleiche die vollständige Gerätekennung und die EAN 8004399512351 mit dem Angebot ab.
 
 - [Midea PortaSplit: Fensterfalz prüfen](https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html#fensterfalz) Gleiche zuerst die EAN 4048164116478 ab. Miss dann Breite und Höhe am Fensterfalz für die Standardhalterung.
+
+## Welche Entkalkungskartusche gehört in den Kärcher SC 3 EasyFix?
+
+Kärcher führt 2.863-018.0 für SC 3 EasyFix 1.513-650.0. Für SC 1 Multi 1.516-404.0 steht die kleinere 2.863-104.0 in der deutschen Zuordnung. Vergleiche Typenschild und Teilenummer und prüfe vor dem Kauf, ob bereits eine Kartusche beiliegt.
+
+| Deutsches Modell | Gelistetes Ersatzteil | EAN des Ersatzteils |
+| --- | --- | --- |
+| [SC 3 EasyFix · 1.513-650.0](https://www.karcher.com/de/de/home-and-garden/produkte/sc-3-easyfix-p15136500) | [2.863-018.0](https://www.karcher.com/de/de/home-and-garden/produkte/entkalkungskartusche-p28630180) | 4054278026213 |
+| [SC 1 Multi · 1.516-404.0](https://www.karcher.com/de/de/home-and-garden/produkte/sc-1-multi-p15164040) | [2.863-104.0 (klein)](https://www.karcher.com/de/de/home-and-garden/produkte/entkalkungskartusche-klein-p28631040) | 4066529064912 |
+
+Beim SC 3 EasyFix 1.513-650.0 nennt Kärcher bereits eine Entkalkungskartusche im Lieferumfang. Ist dein Gerät vollständig und steht kein Wechsel an, brauchst du keine weitere zu bestellen. Richte dich für den Wechsel nach der Anzeige und Anleitung deines Geräts. Bei einer anderen Modellnummer, etwa SC 3 Deluxe oder einer Upright-Variante, prüfe die eigene Liste. SC 2 EasyFix und SC 2 Upright sind verschiedene Geräte.
+
+Deutsche Herstellerquellen am 26.11.2026 geprüft.
+[Kärcher-Datenblatt zu 2.863-018.0](https://d201jv09wbq6e1.cloudfront.net/product_information/deu/2.863-018.0_PI_de_DE.pdf) ·
+[Kärcher-Datenblatt zu 2.863-104.0](https://d201jv09wbq6e1.cloudfront.net/product_information/deu/2.863-104.0_PI_de_DE.pdf).
 
 ## Luftreiniger 4 Modelle
 
@@ -335,6 +351,7 @@ Der Hersteller nennt einen entnehmbaren 200-ml-Tank und 30 Sekunden Aufheizzeit.
 
 Quelle: [Kärcher Deutschland: Kärcher SC 1 Multi](https://www.karcher.com/de/de/home-and-garden/produkte/sc-1-multi-p15164040) · geprüft am 13.11.2026.
 
+[Passende Entkalkungskartusche prüfen →](https://getecoback.com/produkte.html#kaercher-sc3-entkalkungskartusche)
 Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue Variante, Gesamtpreis und Lieferung beim Händler prüfen.
 
 ### Kärcher SC 2 EasyFix
@@ -359,6 +376,7 @@ Der Hersteller nennt 30 Sekunden Aufheizzeit, einen permanent wiederbefüllbaren
 
 Quelle: [Kärcher Deutschland: Kärcher SC 3 EasyFix](https://www.karcher.com/de/de/home-and-garden/produkte/sc-3-easyfix-p15136500) · geprüft am 13.11.2026.
 
+[Passende Entkalkungskartusche prüfen →](https://getecoback.com/produkte.html#kaercher-sc3-entkalkungskartusche)
 Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue Variante, Gesamtpreis und Lieferung beim Händler prüfen.
 
 ### Kärcher SC 4 EasyFix

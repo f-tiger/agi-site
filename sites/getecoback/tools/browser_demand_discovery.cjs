@@ -41,6 +41,8 @@ async function checkGermanFocusedDiscovery(browser,base){
  const thermostatSection='thermostat-ohne-internet';
  const positive=['Was kostet eine Ladung Wäsche nur mit meinem Luftentfeuchter?','Stromkosten Luftentfeuchter Wäsche'];
  const ordinary=[
+  ['Welche Entkalkungskartusche passt zum Kärcher SC 3 EasyFix 1.513-650.0?',
+    '/produkte.html#kaercher-sc3-entkalkungskartusche'],
   ['Wo kann ich ein Strommessgerät leihen, statt es zu kaufen?',
     '/strommess-protokoll.html#kleine-lasten-messen'],
   ['Wie mache ich meine mobile Klimaanlage winterfest?',

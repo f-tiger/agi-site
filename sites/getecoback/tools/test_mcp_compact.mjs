@@ -71,6 +71,10 @@ test('hosted compact returns reviewed guide sections without presenting them as 
   const headers = {'user-agent':humanUA};
   for (const [frage,path,fragment] of [
     ['Welcher Wasserfilter passt für Siemens TE653501DE/13?', '/produkte.html', 'siemens-eq6-intenza'],
+    ['Welche Entkalkungskartusche passt zum Kärcher SC 3 EasyFix 1.513-650.0?',
+      '/produkte.html', 'kaercher-sc3-entkalkungskartusche'],
+    ['Brauche ich 2.863-104.0 für meinen SC 1 Multi?',
+      '/produkte.html', 'kaercher-sc3-entkalkungskartusche'],
     ['Tineco S7 FlashDry oder S7 Pro – welches Modell ist gemeint?', '/guide/saugwischer-kaufberatung.html', 'tineco-s7-modellwahl'],
     ['Tineco FLOOR ONE S7 FlashDry', '/guide/saugwischer-kaufberatung.html', 'tineco-s7-flashdry'],
     ['Kann ich die Jahreskosten meiner Infrarotheizung direkt aus dem Energieausweis berechnen?',

@@ -25,6 +25,8 @@ laundry_index=next(row for row in index if row['u']=='/waeschetrockner-oder-luft
 assert [row['id'] for row in laundry_index['model_sections']]==['laundry-check']
 floorcare_index=next(row for row in index if row['u']=='/guide/saugwischer-kaufberatung.html')
 assert [row['id'] for row in floorcare_index['model_sections']]==['tineco-s7-modellwahl','tineco-s7-flashdry']
+products_index=next(row for row in index if row['u']=='/produkte.html')
+assert sum(section['id']=='kaercher-sc3-entkalkungskartusche' for section in products_index['model_sections'])==1
 focused=[entry for entry in index if entry.get('section')]
 assert [(entry['l'],entry['u'],entry['section']['id']) for entry in focused]==[
     ('de','/geraete-austausch-rechner.html','geschirrspueler-handabwasch'),

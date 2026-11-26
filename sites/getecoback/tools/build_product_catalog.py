@@ -68,6 +68,19 @@ SIEMENS_FILTER_ANSWER = (
     'Siemens führt 17008835 (1 Stück) und 17008836 (3 Stück) für TE653501DE/13 und TE654509DE/12. '
     'Fehlt die Endung oder weicht sie ab, prüfe die vollständige E-Nr. im Siemens-Service vor der Bestellung.'
 )
+KARCHER_CARTRIDGE_ID = 'kaercher-sc3-entkalkungskartusche'
+KARCHER_CARTRIDGE_TITLE = 'Welche Entkalkungskartusche gehört in den Kärcher SC 3 EasyFix?'
+KARCHER_CARTRIDGE_ANSWER = (
+    'Kärcher führt 2.863-018.0 für SC 3 EasyFix 1.513-650.0. '
+    'Für SC 1 Multi 1.516-404.0 steht die kleinere 2.863-104.0 in der deutschen Zuordnung. '
+    'Vergleiche Typenschild und Teilenummer und prüfe vor dem Kauf, ob bereits eine Kartusche beiliegt.'
+)
+KARCHER_CARTRIDGE_CHECKED = '2026-11-26'
+KARCHER_CARTRIDGE_TERMS = (
+    'Kärcher Kaercher SC3 SC 3 EasyFix SC1 SC 1 Multi Entkalkungskartusche Ersatzkartusche Ersatz Entkalker '
+    '1.513-650.0 15136500 1.516-404.0 15164040 2.863-018.0 28630180 2.863-104.0 28631040 '
+    '4054278026213 4066529064912'
+)
 
 # These named models have their own evidence sections. Keep nearby variants from
 # matching a short token inside the title or measurement instructions.
@@ -87,6 +100,8 @@ PART_GUIDES = (
      'Staubbeutel Staubsaugerbeutel HyClean GN FJM TU CO 12421170 12421180 12557060 12557080 Guard S1 L1 M1 Classic Compact Complete C1 C2 C3'),
     ('Kärcher-Saugdüse 170 mm', '#kaercher-170mm-saugduese', 'fenstersauger',
      'Absaugdüse WV 2 3 4-4 5 6 8 WV2 WV3 WV4-4 WV5 WV6 WV8 2.633-112.0 2.633-605.0 2.633-512.0 2.633-532.0 26331120 26336050 26335120 26335320'),
+    ('Kärcher-Entkalkungskartusche für SC 3 oder SC 1', '#' + KARCHER_CARTRIDGE_ID,
+     'dampfreiniger', KARCHER_CARTRIDGE_TERMS),
     ('Kaffeevollautomat-Wasserfilter', '#kaffee-wasserfilter', '',
      'Ersatzfilter Philips EP2220/10 EP2231/40 AquaClean CA6903/10 Bosch VeroCafe TIE20301 Intenza TCZ7003 TCZ7033 DeLonghi Magnifica S ECAM22.110.B DLSC002 Siemens EQ.6 plus s300 s400 TE653501DE/13 TE654509DE/12 17008835 17008836'),
     ('Trotec TTK 70 HEPA-Filter', '/guide/trotec-luftentfeuchter-test.html#ttk70-hepa-filter', '',
@@ -536,9 +551,38 @@ def eligible(product, data, today):
     return product['status'] == 'verified' and 0 <= age <= data['max_age_days']
 
 
+def render_karcher_cartridge(data, model, today):
+    if model is None:
+        return ''
+    age = (today - date(KARCHER_CARTRIDGE_CHECKED)).days
+    offer = ''
+    if model['status'] == 'verified' and 0 <= age <= data['max_age_days']:
+        url = 'https://www.amazon.de/s?' + urlencode({'k':'Kärcher Entkalkungskartusche 2.863-018.0', 'tag':'getecoback-21'})
+        offer = f'''<!--EB_KARCHER_CARTRIDGE_AD--><p class="pc-commerce">Für einen bestätigten SC 3 EasyFix 1.513-650.0 und bei tatsächlichem Wechselbedarf:
+<a href="{escape(url, quote=True)}" target="_blank" rel="sponsored nofollow noopener">2.863-018.0 bei Amazon.de suchen →</a>
+<small>Anzeige · Suche nach dem Teil. Bestellnummer und Packung am Angebot abgleichen.</small></p><!--/EB_KARCHER_CARTRIDGE_AD-->'''
+    return f'''<section class="pc-method" aria-labelledby="{KARCHER_CARTRIDGE_ID}">
+<h2 id="{KARCHER_CARTRIDGE_ID}" style="scroll-margin-top:210px">{KARCHER_CARTRIDGE_TITLE}</h2>
+<p>{KARCHER_CARTRIDGE_ANSWER}</p>
+<div class="pc-table-scroll" role="region" aria-label="Kärcher-Entkalkungskartuschen nach Modell" tabindex="0"><table>
+<thead><tr><th scope="col">Deutsches Modell</th><th scope="col">Gelistetes Ersatzteil</th><th scope="col">EAN des Ersatzteils</th></tr></thead>
+<tbody>
+<tr><th scope="row"><a href="https://www.karcher.com/de/de/home-and-garden/produkte/sc-3-easyfix-p15136500">SC 3 EasyFix · 1.513-650.0</a></th>
+<td><a href="https://www.karcher.com/de/de/home-and-garden/produkte/entkalkungskartusche-p28630180">2.863-018.0</a></td><td>4054278026213</td></tr>
+<tr><th scope="row"><a href="https://www.karcher.com/de/de/home-and-garden/produkte/sc-1-multi-p15164040">SC 1 Multi · 1.516-404.0</a></th>
+<td><a href="https://www.karcher.com/de/de/home-and-garden/produkte/entkalkungskartusche-klein-p28631040">2.863-104.0 (klein)</a></td><td>4066529064912</td></tr>
+</tbody></table></div>
+<p>Beim SC 3 EasyFix 1.513-650.0 nennt Kärcher bereits eine Entkalkungskartusche im Lieferumfang. Ist dein Gerät vollständig und steht kein Wechsel an, brauchst du keine weitere zu bestellen. Richte dich für den Wechsel nach der Anzeige und Anleitung deines Geräts. Bei einer anderen Modellnummer, etwa SC 3 Deluxe oder einer Upright-Variante, prüfe die eigene Liste. SC 2 EasyFix und SC 2 Upright sind verschiedene Geräte.</p>
+<p>Deutsche Herstellerquellen am <time datetime="{KARCHER_CARTRIDGE_CHECKED}">26.11.2026</time> geprüft.
+<a href="https://d201jv09wbq6e1.cloudfront.net/product_information/deu/2.863-018.0_PI_de_DE.pdf">Kärcher-Datenblatt zu 2.863-018.0</a> ·
+<a href="https://d201jv09wbq6e1.cloudfront.net/product_information/deu/2.863-104.0_PI_de_DE.pdf">Kärcher-Datenblatt zu 2.863-104.0</a>.</p>
+{offer}</section>'''
+
+
 def render(data, today=None):
     data = validate(data)
     today = today or dt.datetime.now(dt.timezone.utc).date()
+    sc3 = next((product for product in data['products'] if product['id'] == 'kaercher-sc3-easyfix'), None)
     esc = lambda value: escape(str(value), quote=True)
     # Every published product group must have its matching practical check.
     # A missing helper is a build error, never an empty feature placeholder.
@@ -559,12 +603,14 @@ def render(data, today=None):
                          if product['id'] in FILTER_CARE_MODELS else '')
             stacking_link = (f'<p class="pc-care"><a href="#{BOSCH_STACKING_ID}">Verbindungssatz für die Wasch-Trocken-Säule prüfen →</a></p>'
                              if product['id'] == 'bosch-wqg241001' else '')
+            cartridge_link = (f'<p class="pc-care"><a href="#{KARCHER_CARTRIDGE_ID}">Passende Entkalkungskartusche prüfen →</a></p>'
+                              if sc3 is not None and product['id'] in {'kaercher-sc3-easyfix','kaercher-sc1-multi'} else '')
             cards.append(f'''<section class="pc-card" id="produkt-{esc(product['id'])}" data-product-card data-category="{esc(category['id'])}">
 <h3>{esc(product['name'])}</h3><p class="pc-brand">{esc(product['brand'])} · {esc(product['variant'])}</p>
 <p><strong>Aufgabe:</strong> {esc(product['role'])}</p><p>{esc(product['facts'])}</p>
 <p class="pc-limit"><strong>Vor dem Kauf:</strong> {esc(product['limit'])}</p>
 <p class="pc-source">Quelle: <a href="{esc(product['source'])}" target="_blank" rel="noopener">{esc(product['source_label'])}</a> · geprüft am <time datetime="{esc(product['checked'])}">{date(product['checked']).strftime('%d.%m.%Y')}</time>.</p>
-{stacking_link}{merchant}{care_link}</section>''')
+{stacking_link}{cartridge_link}{merchant}{care_link}</section>''')
         comparison = render_comparison(category['id'], data['products'], category.get('buying_guide'))
         tool = render_tool(category['id'])
         if not isinstance(tool, str) or not tool.strip():
@@ -584,6 +630,7 @@ def render(data, today=None):
         f'<li><a href="{esc(target)}" data-part-guide data-category="{esc(category)}" data-search-terms="{esc(terms)}">'
         f'{esc(name)}</a></li>'
         for name, target, category, terms in PART_GUIDES
+        if sc3 is not None or target != '#' + KARCHER_CARTRIDGE_ID
     )
     options = ''.join(f'<option value="{esc(c["id"])}">{esc(c["name"])}</option>' for c in data['categories'])
     css_version = hashlib.sha256((ROOT / 'site/assets/product-catalog.css').read_bytes()).hexdigest()[:12]
@@ -623,6 +670,7 @@ def render(data, today=None):
 <section class="pc-guides" id="kaufhilfen" data-specialist-guides aria-labelledby="pc-guides-heading">
 <h2 id="pc-guides-heading">Kaufhilfen für Haushaltsgeräte und Raumklima</h2>
 <ul>{''.join(guide_items)}</ul></section>
+{render_karcher_cartridge(data, sc3, today)}
 {''.join(groups)}
 {APPLIANCE_EVIDENCE}
 <section class="pc-method" id="auswahlmethode"><h2>Was diese Auswahl leistet</h2><p>Die Gruppen zeigen unterschiedliche Aufgaben und konkrete Modelle, keine vollständige Marktübersicht. Herstellerdaten und genaue Varianten stehen bei jedem Gerät. Wir haben diese Geräte nicht selbst getestet. Eine Händlersuche bestätigt weder ein bestimmtes Angebot noch Verfügbarkeit oder einen Preis.</p><p>Quellen älter als 90 Tage, zukünftige Prüfdaten oder offene Widersprüche pausieren die Händlersuche. Die zuletzt dokumentierten Fakten bleiben nachvollziehbar. Zubehör, regionale Ausführung und die passende Anleitung am konkreten Angebot prüfen. Ein funktionierendes vorhandenes Gerät muss nicht ersetzt werden.</p></section>
