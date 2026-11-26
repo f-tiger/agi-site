@@ -614,6 +614,21 @@ export const coolingDiscountReference = {
   tool:'ratgeber_suche',
 };
 
+export const tadoXVaillantAdapter = {
+  path:'/guide/smarte-heizkoerperthermostate-lohnen-sich.html',
+  id:'tado-x-vaillant-305-adapter',
+  tool:'ratgeber_suche',
+};
+
+function asksForTadoXVaillantAdapter(query) {
+  const head = /\btado(?:\s*°)?[ -]*(?:smart[ -]+radiator[ -]+thermostat[ -]+|thermostat[ -]+)?x\b/;
+  const valve = /\b(?:vaillant|ta[ /-]+heimeier)\b/;
+  const fit = /\b(?:adapter\w*|ventil\w*|klemm\w*|anschluss\w*|pass\w*|30[,.]5)\b/;
+  const part = /\b(?:4260012710533|700[ -]*100[ -]*001)\b/;
+  const other = /\b(?:v[23]|danfoss|fritz\w*|bosch|oventrop|leck\w*|tropf\w*|reparier\w*)\b/;
+  return !other.test(query) && (part.test(query) || (head.test(query) && valve.test(query) && fit.test(query)));
+}
+
 export const offlineThermostatChoice = {
   path:'/guide/smarte-heizkoerperthermostate-lohnen-sich.html',
   id:'thermostat-ohne-internet',
@@ -788,6 +803,7 @@ export function exactGermanHouseholdTask(query) {
   if (asksAboutAnEmptyDehumidifierTank(query)) return emptyDehumidifierTank;
   if (asksForMeacoDd8lProGarage(query)) return meacoDd8lProGarage;
   if (asksForCoolingDiscountReference(query)) return coolingDiscountReference;
+  if (asksForTadoXVaillantAdapter(query)) return tadoXVaillantAdapter;
   if (asksForOfflineThermostat(query)) return offlineThermostatChoice;
   if (asksForSiemensWaterFilter(query)) return siemensFilterDecision;
   if (asksForKarcherCartridge(query)) return karcherCartridgeDecision;

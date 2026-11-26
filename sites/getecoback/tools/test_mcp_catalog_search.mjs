@@ -1854,3 +1854,16 @@ test('German dehumidifier price checks find the offer verification guide without
    assert.notEqual(toolGuidePath(hit??{}),target,q);
  }
 });
+
+test('the exact German tado X Vaillant adapter search returns the scoped answer',async()=>{
+ const target='/guide/smarte-heizkoerperthermostate-lohnen-sich.html#tado-x-vaillant-305-adapter';
+ for(const q of ["Welchen Adapter brauche ich beim tado° X für ein Vaillant Heizkörperventil mit 30,5 mm Klemmanschluss?","tado X Thermostat: passt der Adapter an ein TA Heimeier Ventil mit 30,5 mm Klemme?","Welcher tado X Vaillant Adapter ist 700 100 001?","Welche Ventilzuordnung hat die EAN 4260012710533?"]) {
+   const [hit]=(await catalogue({q,view:'compact',limit:1})).tools;
+   assert.equal(hit?.name,'ratgeber_suche',q);
+   assert.equal(toolGuidePath(hit),target,q);
+ }
+ for(const q of ["Passt tado V3 auf das Vaillant Thermostatventil mit 30,5 mm Klemme?","tado X Oventrop UniDH M30 x 1,0 Adapter","FRITZ! 302 Heizkörperthermostat Vaillant 30,5 mm Adapter","Mein tado X mit Vaillant Ventil tropft, wie reparieren?","Passt tado X auf Danfoss RAV?"]) {
+   const [hit]=(await catalogue({q,view:'compact',limit:1})).tools;
+   assert.notEqual(toolGuidePath(hit??{}),target,q);
+ }
+});

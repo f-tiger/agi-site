@@ -39,10 +39,12 @@ FORBIDDEN = {'asin', 'tag', 'affiliate_tag', 'merchant_url', 'affiliate_url', 'p
 
 # These comparisons have their own reviewed catalogs and merchant eligibility.
 # Only their editorial entry points belong in this directory.
+DEHUM_MODELS = '/guide/luftentfeuchter-ratgeber.html#eb-models'
+DEHUM_PRICE_CHECK = '/guide/luftentfeuchter-ratgeber.html#luftentfeuchter-30-tage-preischeck'
 SPECIALIST_GUIDES = (
-    ('Luftentfeuchter', '/guide/luftentfeuchter-ratgeber.html#eb-models',
+    ('Luftentfeuchter', DEHUM_MODELS,
      'Ist dein Keller dauerhaft feucht? Erst messen und die Ursache klären. Bei Bedarf Tankbetrieb und Schlauchablauf vergleichen.',
-     'Raumfeuchte Feuchtigkeit feuchter Keller Luftentfeuchtung Meaco Bosch Dry'),
+     'Raumfeuchte Feuchtigkeit feuchter Keller Luftentfeuchtung Meaco Bosch Dry Angebot Preischeck Rabatt Black Friday 30 Tage'),
     ('Luftbefeuchter', '/guide/luftbefeuchter-ratgeber.html#modelle-vergleichen',
      'Trockene Luft gemessen? Vergleiche manuelle Stufen mit einstellbarem Feuchteziel und prüfe, welche Filter du wechseln musst.',
      'Raumfeuchte Luftbefeuchtung trockene Raumluft Hygrostat Stadler Form Oskar little O-060 Beurer'),
@@ -699,8 +701,10 @@ def render(data, today=None):
     guide_items = []
     for guides, attribute in ((SPECIALIST_GUIDES, ''), (MODEL_GUIDES, ' data-exact-guide-terms')):
         for name, target, question, keywords in guides:
+            price_check = (f' <a href="{DEHUM_PRICE_CHECK}">Angebotspreis für denselben Luftentfeuchter prüfen</a>.'
+                           if target == DEHUM_MODELS else '')
             guide_items.append(f'<li data-specialist-guide{attribute} data-search-terms="{esc(keywords)}">'
-                               f'<a href="{esc(target)}">{esc(name)}</a> <p>{esc(question)}</p></li>')
+                               f'<a href="{esc(target)}">{esc(name)}</a> <p>{esc(question)}{price_check}</p></li>')
     part_links = ''.join(
         f'<li><a href="{esc(target)}" data-part-guide data-category="{esc(category)}" data-search-terms="{esc(terms)}">'
         f'{esc(name)}</a></li>'

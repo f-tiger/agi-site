@@ -65,7 +65,28 @@ async function checkExactDelonghiPurchase(page,base){
  for(const needed of ['in den 30 Tagen vor Beginn','derselbe Verkäufer','4069143047774','218 €','verschiebe den Kauf']) assert(priceFacts.includes(needed),needed);
  assert.equal(await priceCheck.locator('a[rel~="sponsored"]').count(),0);
  assert(await priceCheck.locator('a[href="#eb-models"]').isVisible(),'The existing model comparison follows the price check');
- return outcomes.length*5+12;
+
+ await page.goto(base+'/guide/smarte-heizkoerperthermostate-lohnen-sich.html?__ci=1#tado-x-vaillant-305-adapter');
+ const valve=page.locator('section[aria-labelledby="tado-x-vaillant-305-adapter"]');
+ const valveFacts=await valve.innerText();
+ for(const phrase of ['30,5 mm Klemmanschluss','700 100 001','4260012710533','verschiebe die Bestellung']) assert(valveFacts.includes(phrase),phrase);
+ assert(await valve.locator('a[href="#thermostat-tado-x-starter"]').isVisible());
+ assert.equal(await valve.locator('a[rel~="sponsored"]').count(),0);
+ await page.goto(base+'/produkte.html?__ci=1#kaufhilfen');
+ const priceGuide=page.locator('[data-specialist-guide]').filter({has: page.locator('a[href="/guide/luftentfeuchter-ratgeber.html#luftentfeuchter-30-tage-preischeck"]')});
+ assert(await priceGuide.locator('a[href="/guide/luftentfeuchter-ratgeber.html#eb-models"]').isVisible());
+ assert(await priceGuide.getByRole('link',{name:"Angebotspreis für denselben Luftentfeuchter prüfen",exact:true}).isVisible());
+ const directorySearch=page.locator('#product-query');
+ if(await directorySearch.isVisible()){
+   for(const query of ['Luftentfeuchter Angebot','Black Friday Luftentfeuchter','Luftentfeuchter Preischeck','30 Tage Luftentfeuchter']){
+     await directorySearch.fill(query);
+     assert.equal(await page.locator('[data-specialist-guide]:visible').count(),1,query);
+     assert(await priceGuide.isVisible(),query);
+   }
+   await directorySearch.fill('Klimaanlage Preischeck');
+   assert(!await priceGuide.isVisible());
+ }
+ return outcomes.length*5+24;
 }
 
 async function checkGermanCoolingLoad(browser,base){
@@ -127,6 +148,7 @@ async function checkGermanFocusedDiscovery(browser,base){
  const ex105Page='/guide/pinguino-pac-ex105-test.html';
  const positive=['Was kostet eine Ladung Wäsche nur mit meinem Luftentfeuchter?','Stromkosten Luftentfeuchter Wäsche'];
  const ordinary=[
+  ["Welchen Adapter brauche ich beim tado° X für ein Vaillant Heizkörperventil mit 30,5 mm Klemmanschluss?",'/guide/smarte-heizkoerperthermostate-lohnen-sich.html#tado-x-vaillant-305-adapter'],
   ["Black Friday Luftentfeuchter Angebote prüfen",'/guide/luftentfeuchter-ratgeber.html#luftentfeuchter-30-tage-preischeck'],
   ["Wie hoch ist der Lärmspiegel von dem Teil, der bei der Midea PortaSplit draußen hängt?",'/guide/midea-portasplit-kaufen.html#portasplit-aussengeraet-lautstaerke'],
   ['Braucht mein De’Longhi PAC EX105 A+++ einen Abluftschlauch mit 150 oder 170 mm?',
