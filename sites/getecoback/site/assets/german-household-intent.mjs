@@ -273,6 +273,22 @@ function asksForSaros10rFloorPrep(query) {
   return model.test(query) && task.test(query) && !other.test(query);
 }
 
+export const proBreeze12lModelChoice = {
+  path:'/guide/pro-breeze-luftentfeuchter-test.html',
+  id:'pro-breeze-12l-modellwahl',
+  tool:'ratgeber_suche',
+};
+
+function asksForProBreeze12lModelChoice(query) {
+  const exact=/\b(?:8438639001266|5060596028197|pb[ -]*(?:06|18|d[ -]*(?:06w[ -]*w[ -]*eu|18w[ -]*wf|18|27)))\b/;
+  const brand=/\b(?:pro[ -]*breeze|omni[ -]*dry)\b/;
+  const capacity=/\b12[ -]*l(?:iter)?\b/;
+  const task=/\b(?:wlan|wi[ -]*fi|app|smart|modell\w*|typenschild|gtin|ean|variante\w*|kenn\w*|kauf\w*|welch\w*|oder|hygrostat|dauerablauf|entwaesserung)\b/;
+  const other=/\b(?:20[ -]*l(?:iter)?|500[ -]*ml|pb[ -]*02|fehlercode|reset|gekoppelt|verbinde[nst]?|nachkauf)\b/;
+  return (exact.test(query) || (brand.test(query) && capacity.test(query))) &&
+    task.test(query) && !other.test(query);
+}
+
 export const gasHeatCost = {
   path:'/guide/klimaanlage-mit-heizfunktion.html',
   id:'heizkosten-klimaanlage-gas',
@@ -734,6 +750,7 @@ export function exactGermanHouseholdTask(query) {
   const meterTask = exactLowLoadMeterTask(query);
   if (meterTask) return meterTask;
   if (asksForPortableCoolingStorage(query)) return portableCoolingStorage;
+  if (asksForProBreeze12lModelChoice(query)) return proBreeze12lModelChoice;
   if (asksForSaros10rFloorPrep(query)) return saros10rFloorPrep;
   if (asksForPortaSplitDefrost(query)) return portaSplitDefrost;
   if (exactComfeeMpphOffer(query)) return comfeeMpphOffer;

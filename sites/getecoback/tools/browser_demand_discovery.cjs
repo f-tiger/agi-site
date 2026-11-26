@@ -17,15 +17,21 @@ async function checkExactDelonghiPurchase(page,base){
   ['delonghi-pac-n90-test','n90-angebot','https://www.amazon.de/dp/B07NC5CP6F?tag=getecoback-21'],
   ['pinguino-pac-ex105-test','ex105-angebot','https://www.amazon.de/s?k=De%27Longhi+Pinguino+PAC+EX105&tag=getecoback-21'],
   ['comfee-mpph-09crn7-test','comfee-angebot','https://www.amazon.de/dp/B07KJYD1ZP?tag=getecoback-21'],
+  ['pro-breeze-luftentfeuchter-test','pro-breeze-12l-modellwahl','https://www.amazon.de/s?k=Pro+Breeze+Luftentfeuchter+12L&tag=getecoback-21'],
  ];
  for(const [slug,anchor,href] of outcomes){
   await page.goto(base+'/guide/'+slug+'.html?__ci=1#'+anchor);
   const first=page.locator('a[href^="https://www.amazon.de/"]').first();
   assert.equal(await first.getAttribute('href'),href,'The first German shop route must match '+slug);
   assert(await first.isVisible(),'The matching offer must be usable at this size');
-  assert.equal(await page.locator('#'+anchor+' a[rel~="sponsored"]').count(),1,'One link in the authored offer');
+  const offer=anchor==='pro-breeze-12l-modellwahl' ? page.locator('.cta-box').first() : page.locator('#'+anchor);
+  assert.equal(await offer.locator('a[rel~="sponsored"]').count(),1,'One link in the authored offer');
   assert.equal(await page.locator('#eb-toppick,#eb-sticky,#eb-usmarket,#eb-pu').count(),0,'Generic offers must stay out of exact guides');
-  assert(await page.locator('#'+anchor+' a[href="#raumgroesse"]').isVisible(),'The fit check precedes the shop decision');
+  assert(await offer.locator('a[href="#raumgroesse"]').isVisible(),'The fit check precedes the shop decision');
+  if(anchor==='pro-breeze-12l-modellwahl'){
+   assert(await page.getByText('PB-D-06W-W-EU',{exact:true}).first().isVisible(),'The app-specific type is visible without scripting');
+   assert.equal(await page.locator('a[href^="https://www.amazon.de/"]').count(),1,'Single approved Pro Breeze search');
+  }
   if(anchor==='comfee-angebot'){
    const offer=page.locator('#'+anchor);
    assert(await offer.getByText('EAN 4048164103065',{exact:true}).isVisible(),'Check the original German EAN');
@@ -105,6 +111,7 @@ async function checkGermanFocusedDiscovery(browser,base){
   ['Bei meinem DeLonghi PAC EX105 A+++ fehlt die Fensterhalterung. Passt ein 150-mm-Schlauch an mein Kippfenster?',
     ex105Page+'#ex105-ablufteinbau'],
   ['Welche EAN hat der De’Longhi PAC EX105 A+++?',ex105Page+'#ex105-angebot'],
+  ["Hat der Pro Breeze PB-06 mit 12 Litern WLAN oder brauche ich PB-D-06W-W-EU?",'/guide/pro-breeze-luftentfeuchter-test.html#pro-breeze-12l-modellwahl'],
   ["Erkennt der Roborock Saros 10R Kabel, Socken und Katzenspielzeug?",'/guide/saugroboter-kaufberatung.html#saros-10r-fahrweg'],
   ["Ist der Meaco DD8L Pro für meine unbeheizte Garage bei 5 °C geeignet?",'/guide/luftentfeuchter-keller.html#meaco-dd8l-pro-kalte-garage'],
   ["Midea PortaSplit Heizmodus: Außengerät vereist bei null Grad, ist der Abtauzyklus normal?",'/guide/klimaanlage-mit-heizfunktion.html#portasplit-abtauen'],

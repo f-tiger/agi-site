@@ -993,3 +993,16 @@ test('German Saros 10R preparation retains the source distinction and purchase d
  for(const value of ["S91COP", "EWFD28HRR", "B1-1", "2 cm breit und 2 cm hoch", "interne Tests", "Kabel und lose Gegenstände", "aktive Zeit", "Kurzflorteppich", "Kauf zurückstellen", "https://de.roborock.com/pages/roborock-saros-10r", "https://support.roborock.com/hc/de/article_attachments/46144394789529", "#roborock-saros-10r"]) assert(textOf(full).includes(value),value);
  assert(!textOf(full).includes('https://www.amazon.de/'));
 });
+
+test('German Pro Breeze 12L model rows and the hold decision are readable in both profiles',async()=>{
+ const {env}=assetEnv();
+ const pfad='https://getecoback.com/guide/pro-breeze-luftentfeuchter-test.html#pro-breeze-12l-modellwahl';
+ const found=await call('ratgeber_suche',{frage:"Hat der Pro Breeze PB-06 mit 12 Litern WLAN oder brauche ich PB-D-06W-W-EU?",sprache:'de',max:1},env);
+ assert(textOf(found).includes('Abschnitt: '+pfad));
+ const full=await call('ratgeber_lesen',{pfad},env);
+ assert.equal(full.isError,false);
+ assert.deepEqual(await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad}},env,true),full);
+ for(const value of ["PB-06", "PB-D-06W-W-EU", "PB-D-18W-WF", "PB-D-27", "Typenschild", "Kauf zurückstellen", "8438639001266", "5060596028197", "https://eu.probreeze.com/de/blogs/news/pro-breeze-dehumidifier-instructions", "https://eu.probreeze.com/de/products/12-l-luftentfeuchter-mit-integriertem-feuchtigkeitsregler", "https://eu.probreeze.com/de/products/12-l-luftentfeuchter-mit-integriertem-feuchtigkeitsregler-und-intelligenter-app-steuerung"]) assert(textOf(full).includes(value),value);
+ for(const row of ['| 12L mit Hygrostat | PB-06 |','| 12L mit Hygrostat und App | PB-D-06W-W-EU |','| OmniDry 12L mit App | PB-D-18W-WF |']) assert(textOf(full).includes(row),row);
+ assert(!textOf(full).includes('https://www.amazon.de/'));
+});
