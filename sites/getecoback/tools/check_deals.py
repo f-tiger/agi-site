@@ -56,6 +56,17 @@ def check_calendar(cal, today):
             continue
         if end < start:
             errors.append(f"{eid}: ends before it starts")
+        guide_paths = ev.get("guide_paths")
+        if guide_paths is not None and (
+            not isinstance(guide_paths, dict) or not guide_paths
+            or not all(
+                re.fullmatch(r"(?:index|guide/[a-z0-9-]+)\.html", rel)
+                and isinstance(href, str)
+                and re.fullmatch(r"/guide/[a-z0-9-]+\.html#[a-z0-9-]+", href)
+                for rel, href in guide_paths.items()
+            )
+        ):
+            errors.append(f"{eid}: guide_paths must map German shelf pages to German guide fragments")
         if ev.get("announced"):
             for k in ("source", "quote", "date_text", "checked"):
                 if not ev.get(k):
@@ -84,6 +95,10 @@ def check_calendar(cal, today):
 def check_built(pages, ev):
     """pages: {rel: html}. ev: the event live today, or None."""
     errors = []
+    guide_paths = (ev.get("guide_paths") or {}) if ev else {}
+    for rel in guide_paths:
+        if bd.ANCHOR not in pages.get(rel, ""):
+            errors.append(f"{rel}: selected deal page has no shelf")
     for rel, s in pages.items():
         blocks = re.findall(r"<!--EB_DEALS-->(.*?)<!--/EB_DEALS-->", s, re.S)
         german = not rel.startswith(("en/", "it/"))
@@ -96,9 +111,14 @@ def check_built(pages, ev):
             if blocks:
                 errors.append(f"{rel}: deal band while no event is live (stale)")
             continue
-        if german and bd.ANCHOR in s and not blocks and (rel == "index.html" or rel.startswith("guide/")):
+        expected = bd.applies_to_page(ev, rel)
+        if expected and bd.ANCHOR in s and not blocks:
             errors.append(f"{rel}: shelf page without the live deal band")
+        if blocks and not expected:
+            errors.append(f"{rel}: deal band outside the selected shelf pages")
         for blk in blocks:
+            if (buyer_guide := guide_paths.get(rel)) and f'href="{buyer_guide}"' not in blk:
+                errors.append(f"{rel}: deal band without the buyer guide link")
             if 'id="eb-deals" hidden' not in blk:
                 errors.append(f"{rel}: deal band not shipped hidden")
             if f'data-deal="{ev["id"]}"' not in blk:
@@ -155,6 +175,19 @@ def selftest():
     extra = band.replace("</div></aside>", '<a href="https://www.amazon.de/s?k=x&tag=getecoback-21">x</a></div></aside>')
     ok("extra Amazon link is caught", check_built({"guide/a.html": bd.apply(shelf, extra)}, good_ev))
     ok("English page is caught", check_built({"en/guide/a.html": bd.apply(shelf, band)}, good_ev))
+    href = "/guide/klimaanlage-wann-kaufen.html#angebot-30-tage-preis"
+    scoped = dict(good_ev, prime_only=False, date_prefix="vom", guide_paths={"index.html": href})
+    selected = bd.apply(shelf, bd.render(scoped, cal, None, "index.html"))
+    ok("scoped deal includes a dated buyer guide link", f'href="{href}"' in selected and " vom " in selected)
+    ok("scoped deal only expects the selected shelf", check_built(
+        {"index.html": selected, "guide/a.html": shelf}, scoped) == [])
+    ok("scoped deal requires the selected shelf", check_built({}, scoped))
+    ok("scoped deal rejects a band on another shelf", check_built(
+        {"index.html": selected, "guide/a.html": selected}, scoped))
+    ok("scoped deal requires the exact buyer guide link", check_built(
+        {"index.html": selected.replace(href, "/guide/another.html#fragment")}, scoped))
+    invalid = dict(scoped, guide_paths={"index.html": "https://example.org/"})
+    ok("scoped deal rejects an external link", check_calendar(dict(cal, events=[invalid]), today)[0])
     return 1 if bad else 0
 
 

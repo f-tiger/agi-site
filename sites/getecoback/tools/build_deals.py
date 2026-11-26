@@ -93,19 +93,32 @@ def family_of(rel):
     return device_of(os.path.basename(rel)[:-5])
 
 
-def render(ev, cal, family):
+def applies_to_page(ev, rel):
+    guide_paths = ev.get("guide_paths")
+    if guide_paths is not None:
+        return rel in guide_paths
+    return rel == "index.html" or rel.startswith("guide/")
+
+
+def render(ev, cal, family, rel=None):
     e = lambda s: html.escape(s, quote=True)
-    lines = [f'<p style="margin:0 0 5px;"><strong>{e(ev["name"])} am {e(ev["date_text"])}</strong>'
+    lines = [f'<p style="margin:0 0 5px;"><strong>{e(ev["name"])} {e(ev.get("date_prefix", "am"))} {e(ev["date_text"])}</strong>'
              + (', laut Amazon nur für Prime-Mitglieder.</p>' if ev.get("prime_only") else ', laut Amazon.</p>')]
     # The source is cited in words, not linked: aboutamazon.de contains
     # "amazon.", so every page tracker on this site would log a click on it as
     # an affiliate_click. The URL stays in the calendar file.
-    if FAMILY_LINE.get(family):
-        lines.append(f'<p style="margin:0 0 5px;">{FAMILY_LINE[family]}</p>')
-    lines.append('<p style="margin:0 0 7px;">Echter Rabatt? Zu jeder Preisermäßigung gehört der niedrigste Preis '
-                 'der letzten 30 Tage '
-                 f'(<a href="{PANGV}" rel="noopener" target="_blank" style="color:#0f6ba8;">§ 11 PAngV</a>): '
-                 'vergleiche mit dem, nicht mit dem durchgestrichenen.</p>')
+    if buyer_guide := (ev.get("guide_paths") or {}).get(rel):
+        lines.append(
+            '<p style="margin:0;">Prüfe bei einer angekündigten Preissenkung in Deutschland den niedrigsten Preis '
+            'desselben Händlers in den 30 Tagen davor. Vergleiche die genaue Modellvariante, Versand und Zubehör. '
+            f'<a href="{e(buyer_guide)}">Kaufangebot prüfen</a></p>')
+    else:
+        if FAMILY_LINE.get(family):
+            lines.append(f'<p style="margin:0 0 5px;">{FAMILY_LINE[family]}</p>')
+        lines.append('<p style="margin:0 0 7px;">Echter Rabatt? Zu jeder Preisermäßigung gehört der niedrigste Preis '
+                     'der letzten 30 Tage '
+                     f'(<a href="{PANGV}" rel="noopener" target="_blank" style="color:#0f6ba8;">§ 11 PAngV</a>): '
+                     'vergleiche mit dem, nicht mit dem durchgestrichenen.</p>')
     if ev.get("prime_only"):
         b = cal["bounty"]["prime_trial"]
         lines.append(
@@ -150,7 +163,9 @@ def main(today=None):
     for p in targets():
         rel = os.path.relpath(p, SITE)
         s = open(p, encoding="utf-8").read()
-        block = render(ev, cal, family_of(rel)) if (ev and ANCHOR in s) else ""
+        block = ""
+        if ev and ANCHOR in s and applies_to_page(ev, rel):
+            block = render(ev, cal, family_of(rel), rel)
         new = apply(s, block)
         placed += bool(block)
         if new != s:
