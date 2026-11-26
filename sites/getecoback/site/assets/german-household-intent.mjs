@@ -80,6 +80,20 @@ function asksAboutThermostatReferenceRoom(query) {
     satisfied.test(query) && !anotherJob.test(query);
 }
 
+export const stadlerLukasColdEvidence = {
+  path:'/guide/luftentfeuchter-keller.html',
+  id:'modell-stadler-lukas',
+  tool:'entfeuchter_kalt_modellbeleg',
+};
+
+function asksForStadlerLukasColdEvidence(query) {
+  const exactModel = /\blukas\b/.test(query) && /\bl[ \p{Pd}]?031e\b/u.test(query);
+  const coldConditions = /\b(?:keller\w*|kalt\w*|kaelt\w*|niedrig\w* temperatur\w*)\b|\b(?:[5-9]|1[0-5])\s*(?:grad\b|°)/;
+  const capability = /\b(?:liter|luftfeuchte\w*|entzieh\w*|entzug\w*|entfeuchtungsleist\w*|leist\w*|betriebsgrenz\w*|mindesttemperatur\w*|betreib\w*|benutz\w*)\b/;
+  const otherVariantOrTask = /\blukas\s+(?:little|pro)\b|\b(?:l[ \p{Pd}]?(?!031e\b)\d{3}[a-z0-9]*|filter\w*|pumpe\w*|schlauch\w*|ablauf\w*|reinig\w*|wartung\w*|app|ersatzteil\w*)\b/u;
+  return exactModel && coldConditions.test(query) && capability.test(query) && !otherVariantOrTask.test(query);
+}
+
 const glazing = {
   path:'/guide/fenster-beschlagen-aussen.html',
   id:'aussen-innen-oder-dazwischen',
@@ -674,6 +688,8 @@ export function exactGermanHouseholdTask(query) {
   if (asksWhyIndoorMoistureReturns(query)) return ventilationRebound;
 
   if (asksAboutThermostatReferenceRoom(query)) return thermostatReferenceRoom;
+
+  if (asksForStadlerLukasColdEvidence(query)) return stadlerLukasColdEvidence;
 
   const betweenPanes = /\bscheibenzwischenraum\b|\bzwischen\s+(?:(?:den|beiden|zwei|drei)\s+){0,3}(?:fenster|glas)?scheiben\b/;
   const glassMoisture = /\b(?:beschla(?:g|eg)\w*|kondens\w*|feucht\w*|wasser\w*|tropfen\w*|blind\w*|milchig\w*|trueb\w*|schleier\w*)\b/;

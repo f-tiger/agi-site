@@ -64,6 +64,16 @@ def cellar_drain_route():
     )
 
 
+def cold_room_note(evidence):
+    if not evidence:
+        return ''
+    checked = dt.date.fromisoformat(evidence['checked'])
+    return (
+        f'<p><strong>Prüfwerte bei Kälte:</strong> {e(evidence["text"])} '
+        f'Herstellerangaben geprüft am <time datetime="{checked.isoformat()}">{checked:%d.%m.%Y}</time>.</p>'
+    )
+
+
 def block(slug, today=None, data=None):
     data = load() if data is None else data
     if slug not in data['pages']:
@@ -83,6 +93,7 @@ def block(slug, today=None, data=None):
         source = f'<a href="{e(p["source"], quote=True)}">{e(p["source_label"])}</a>'
         note = drain_notes.get(p['id']) if cellar else None
         drain = f'<p><strong>Wasserablauf:</strong> {e(note)}</p>' if note else ''
+        cold = cold_room_note(p.get('cold_evidence')) if cellar else ''
         identity_note = ''
         if identity := p.get('identity'):
             differences = ''.join(
@@ -100,7 +111,7 @@ def block(slug, today=None, data=None):
         evidence = (f'<h3 id="{anchor}">{e(p["name"])}</h3>'
                     f'<p><strong>{e(p["reason"])}</strong></p><p>{e(p["variant"])}</p>'
                     f'<p>{e(p["facts"])}</p><p><strong>Vor dem Kauf:</strong> {e(p["limit"])}</p>'
-                    f'{identity_note}{drain}<p>Quelle: {source}</p>')
+                    f'{identity_note}{cold}{drain}<p>Quelle: {source}</p>')
         # Static facts remain visible; stale/conflicting evidence removes only this catalog's commerce.
         if fresh and p['status'] == 'verified':
             href = ('https://www.amazon.de/dp/' + p['asin'] + '?tag=getecoback-21' if p.get('asin')

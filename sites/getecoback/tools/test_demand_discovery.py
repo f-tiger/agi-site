@@ -16,7 +16,7 @@ assert [row['id'] for row in product_index['model_sections']]==[
     'kaercher-170mm-saugduese','fenstersauger-duesenbreite','kaercher-sc3-entkalkungskartusche',
     'kaercher-wd3-wd4-filterbeutel','siemens-eq6-intenza']
 comfee_index=next(row for row in index if row['u']=='/guide/luftentfeuchter-keller.html')
-assert [row['id'] for row in comfee_index['model_sections']]==['modell-comfee-mddf20']
+assert [row['id'] for row in comfee_index['model_sections']]==['modell-comfee-mddf20','modell-stadler-lukas']
 trotec_index=next(row for row in index if row['u']=='/guide/trotec-luftentfeuchter-test.html')
 assert [row['id'] for row in trotec_index['model_sections']]==['ttk70-hepa-filter']
 humidifier_index=next(row for row in index if row['u']=='/guide/luftbefeuchter-ratgeber.html')

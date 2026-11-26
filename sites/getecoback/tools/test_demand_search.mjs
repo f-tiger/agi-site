@@ -1258,3 +1258,18 @@ test('German reference-room heating questions reach the existing cold radiator g
  'Wie viel Heizkosten kann ich mit smarten Heizkörperthermostaten sparen?',
 ]) assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
 });
+
+test('German Lukas L-031E cold performance reaches exact evidence without stealing other models', () => {
+  const target='/guide/luftentfeuchter-keller.html#modell-stadler-lukas';
+  for(const q of [
+    'Stadler Form Lukas L-031E: Wie viele Liter entzieht er bei 10 °C und 60 Prozent im Keller?',
+    'Kann ich den Stadler Form Lukas weiss L-031E bei 5 Grad im Keller benutzen?',
+    'Stadler Form Lukas L‑031E: Entfeuchtungsleistung im kalten Keller?',
+  ]) assert.equal(searchEntries(index,q,'de')[0]?.entry.u,target,q);
+  for(const q of [
+    'Was leistet der Lukas little bei 10 Grad im Keller?',
+    'Stadler Lukas Pro oder Lukas L-031E: Welche Leistung bei 10 Grad im Keller?',
+    'Stadler Form Lukas L-031E: Welcher Schlauch passt für den kalten Keller?',
+    'Stadler Form Lukas L-031E: HEPA-Filter für Betrieb im Keller',
+  ]) assert.notEqual(searchEntries(index,q,'de')[0]?.entry.u,target,q);
+});

@@ -1713,3 +1713,25 @@ test('German reference-room heating questions prefer diagnosis across both room 
    assert.notEqual(toolGuidePath(first??{}),target,query);
  }
 });
+
+test('German Lukas L-031E cold performance finds the tool whose schema accepts the exact model', async () => {
+  const target='/guide/luftentfeuchter-keller.html#modell-stadler-lukas';
+  for(const q of [
+    'Stadler Form Lukas L-031E: Wie viele Liter entzieht er bei 10 °C und 60 Prozent im Keller?',
+    'Kann ich den Stadler Form Lukas weiss L-031E bei 5 Grad im Keller benutzen?',
+    'Stadler Form Lukas L‑031E: Entfeuchtungsleistung im kalten Keller?',
+  ]) {
+    const [hit]=(await catalogue({q,view:'compact',limit:1})).tools;
+    assert.equal(hit?.name,'entfeuchter_kalt_modellbeleg',q);
+    assert.equal(toolGuidePath(hit),target,q);
+  }
+  for(const q of [
+    'Was leistet der Lukas little bei 10 Grad im Keller?',
+    'Stadler Lukas Pro oder Lukas L-031E: Welche Leistung bei 10 Grad im Keller?',
+    'Stadler Form Lukas L-031E: Welcher Schlauch passt für den kalten Keller?',
+    'Stadler Form Lukas L-031E: HEPA-Filter für Betrieb im Keller',
+  ]) {
+    const [hit]=(await catalogue({q,view:'compact',limit:1})).tools;
+    assert.notEqual(toolGuidePath(hit??{}),target,q);
+  }
+});

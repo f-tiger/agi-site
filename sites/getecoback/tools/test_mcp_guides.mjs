@@ -904,3 +904,17 @@ test('German reference-room heating advice is directly readable in both MCP prof
  for(const fact of facts) assert(textOf(full).includes(fact),fact);
  assert(!textOf(full).includes('getecoback-21'));
 });
+
+test('German Lukas L-031E checkout evidence is readable and keeps the test point open', async () => {
+  const {env}=assetEnv();
+  const url='https://getecoback.com/guide/luftentfeuchter-keller.html#modell-stadler-lukas';
+  const frage='Stadler Form Lukas L-031E: Wie viele Liter entzieht er bei 10 °C und 60 Prozent im Keller?';
+  const found=await call('ratgeber_suche',{frage,sprache:'de',max:1},env);
+  assert(textOf(found).includes('Abschnitt: '+url));
+  const full=await call('ratgeber_lesen',{pfad:url},env);
+  assert.equal(full.isError,false);
+  const compact=await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad:url}},env,true);
+  assert.deepEqual(full,compact);
+  for(const phrase of ['L-031E','13–35 °C','10 °C und 60 %','Litern pro Tag offen','stadlerform.com/de-de/luftentfeuchter/lukas-weiss-l-031e']) assert(textOf(full).includes(phrase),phrase);
+  assert(!textOf(full).includes('getecoback-21'));
+});

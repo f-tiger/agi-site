@@ -208,12 +208,18 @@ def collect():
    entry['model_sections']=[{'id':'hohe-kuehllast','title':'Hohe Kühllast und mehrere Räume prüfen',
     'description':'Bei großer Fläche, Dachlage oder mehreren Zimmern die gleichzeitig benötigten Kühlzonen, Wärmequellen und Abluftwege einzeln prüfen.'}]
   if lang=='de' and route=='/guide/luftentfeuchter-keller.html':
-   anchor='modell-comfee-mddf20'
-   targets=re.findall(r'<h[23]\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)
-   if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
-    raise ValueError(f'Missing or ambiguous Comfee model comparison: {route}#{anchor}')
-   entry['model_sections']=[{'id':anchor,'title':'Comfee MDDF-20DEN7 oder WF: Modell und EAN prüfen',
-    'description':'Basis: Artikel 10000651, EAN 4048164103010. WF: Artikel 10000726, EAN 4048164103485. Kennung der gewählten Ausführung vor der Bestellung prüfen.'}]
+   models=[
+    {'id':'modell-comfee-mddf20','title':'Comfee MDDF-20DEN7 oder WF: Modell und EAN prüfen',
+     'description':'Basis: Artikel 10000651, EAN 4048164103010. WF: Artikel 10000726, EAN 4048164103485. Kennung der gewählten Ausführung vor der Bestellung prüfen.'},
+    {'id':'modell-stadler-lukas','title':'Lukas L-031E im kalten Keller: Herstellerangaben prüfen',
+     'description':'Die Mindesttemperatur von 5 °C bestätigt keine Literleistung. Bei 10 °C und 60 % ist der Entzugswert offen. Vor der Auswahl Ursache und Einsatzbedingungen prüfen.'},
+   ]
+   for model in models:
+    anchor=model['id']
+    targets=re.findall(r'<h[23]\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)
+    if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
+     raise ValueError(f'Missing or ambiguous cellar model comparison: {route}#{anchor}')
+   entry['model_sections']=models
   if lang=='de' and route=='/produkte.html':
    model_sections=[
     {'id':BOSCH_STACKING_ID,'title':BOSCH_STACKING_TITLE,'description':BOSCH_STACKING_ANSWER},
