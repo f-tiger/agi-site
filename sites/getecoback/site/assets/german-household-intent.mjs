@@ -370,6 +370,22 @@ function asksForKarcherCartridge(query) {
     (part.test(query) || (model.test(query) && buying.test(query)));
 }
 
+export const karcherBagDecision = {
+  path:'/produkte.html',
+  id:'kaercher-wd3-wd4-filterbeutel',
+  tool:'ratgeber_suche',
+};
+
+function asksForKarcherBag(query) {
+  query = query.replace(/[‐‑‒–—]/g, '-');
+  const part = /\b(?:kfi[ -]*(?:357|487)|2[ .-]*863[ .-]*(?:314|006)[ .-]*0|4054278777689|4039784945241)\b/;
+  const model = /\b(?:wd[ -]*[34]|1[ .-]*628[ .-]*(?:130|270)[ .-]*0)\b/;
+  const bag = /\b(?:(?:vlies|papier|filter|staubsauger|sauger|staub|ersatz)*beutel\w*|filtertuet\w*)\b/;
+  const otherModel = /\b(?:premium|battery|akku\w*|car[ -]+vac|anniversary|aeg|bosch|einhell|nilfisk|miele)\b|\bwd[ -]*(?:[2567]|[34][ -]+(?:18|s|control))\b|\bwd[ -]*4\s+v[ -]*\d|\b1[ .-]*628[ .-]*(?!(?:130|270)[ .-]*0\b)\d{3}[ .-]*0\b/;
+  const fullMachine = /\b(?:komplettgeraet\w*|komplett\w*\s+geraet\w*|komplette\w*\s+(?:kaercher\s+)?(?:nass|trocken|saug)\w*|ganze\w*\s+geraet\w*)\b/;
+  return !otherModel.test(query) && !fullMachine.test(query) && (part.test(query) || (model.test(query) && bag.test(query)));
+}
+
 function asksForOfflineThermostat(query) {
   const head = /\b(?:(?:heizkoerper|heiz)?thermostat\w*|heizkoerperregler\w*|fritz[ !-]*(?:smart[ -]+thermo[ -]*)?302)\b/;
   const connection = /\b(?:offline|internet[ -]?ausfall|ohne (?:internet(?:verbindung|zugang)?|zentrale|(?:bosch )?(?:smart home )?controller|hub|gateway|fritz[ !-]*box))\b/;
@@ -423,6 +439,7 @@ export function exactGermanHouseholdTask(query) {
   if (asksForOfflineThermostat(query)) return offlineThermostatChoice;
   if (asksForSiemensWaterFilter(query)) return siemensFilterDecision;
   if (asksForKarcherCartridge(query)) return karcherCartridgeDecision;
+  if (asksForKarcherBag(query)) return karcherBagDecision;
   if (asksForGasHeatCost(query)) return gasHeatCost;
   if (asksForCarHeaterOutlet(query)) return carHeaterOutlet;
   if (asksForDirectHeatComparison(query)) return directHeat;

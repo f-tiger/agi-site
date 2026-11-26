@@ -566,6 +566,10 @@ async function checkCatalog(browser){
     '2.633-605.0':'/produkte.html#kaercher-170mm-saugduese',
     '2.863-018.0':'/produkte.html#kaercher-sc3-entkalkungskartusche',
     '4066529064912':'/produkte.html#kaercher-sc3-entkalkungskartusche',
+    '2.863-314.0':'/produkte.html#kaercher-wd3-wd4-filterbeutel',
+    '4054278777689':'/produkte.html#kaercher-wd3-wd4-filterbeutel',
+    '2.863-006.0':'/produkte.html#kaercher-wd3-wd4-filterbeutel',
+    '4039784945241':'/produkte.html#kaercher-wd3-wd4-filterbeutel',
     'TCZ7033':'/produkte.html#kaffee-wasserfilter',
     'DLSC002':'/produkte.html#kaffee-wasserfilter',
     'TTK 70 HEPA':'/guide/trotec-luftentfeuchter-test.html#ttk70-hepa-filter',
@@ -590,7 +594,12 @@ async function checkCatalog(browser){
   }else{assert(await page.locator('#product-filters').isHidden());assert.equal(await page.locator('[data-product-card]:visible').count(),data.products.length);}
   const shortcuts=page.locator('#ersatzteile-pruefen');
   assert(await shortcuts.isVisible());
-  assert.equal(await shortcuts.getByRole('link').count(),6);
+  assert.equal(await shortcuts.getByRole('link').count(),7);
+  const wdBagGuide=shortcuts.getByRole('link',{name:'Kärcher-Filterbeutel für WD 3 oder WD 4',exact:true});
+  await wdBagGuide.focus();
+  await page.keyboard.press('Enter');
+  await page.waitForURL(origin+'/produkte.html?__probe=1#kaercher-wd3-wd4-filterbeutel');
+  assert(await page.locator('#kaercher-wd3-wd4-filterbeutel').isVisible());
   const cartridgeGuide=shortcuts.getByRole('link',{name:'Kärcher-Entkalkungskartusche für SC 3 oder SC 1'});
   await cartridgeGuide.focus();
   await page.keyboard.press('Enter');

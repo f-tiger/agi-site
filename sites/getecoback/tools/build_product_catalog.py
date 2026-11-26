@@ -81,6 +81,25 @@ KARCHER_CARTRIDGE_TERMS = (
     '1.513-650.0 15136500 1.516-404.0 15164040 2.863-018.0 28630180 2.863-104.0 28631040 '
     '4054278026213 4066529064912'
 )
+KARCHER_WD_BAG_ID = 'kaercher-wd3-wd4-filterbeutel'
+KARCHER_WD_BAG_TITLE = 'Passen dieselben Kärcher-Filterbeutel in WD 3 und WD 4?'
+KARCHER_WD_BAG_ANSWER = (
+    'Kärcher listet KFI 357 (2.863-314.0) für WD 3 V-17/4/20 (1.628-130.0) und KFI 487 '
+    '(2.863-006.0) für WD 4 P V-20/5/22 (1.628-270.0). Nutze die Zuordnung vom Typenschild. '
+    'Zum Aufsaugen von Flüssigkeit verlangen beide Anleitungen den Ausbau des Beutels.'
+)
+KARCHER_WD_BAG_CHECKED = '2026-11-26'
+KARCHER_WD_BAGS = (
+    ('kaercher-wd3-v17420', 'KFI 357', '2.863-314.0', '4054278777689',
+     'vliesfilterbeutel-kfi-357-p28633140', 'xx_59513920'),
+    ('kaercher-wd4p-v20522', 'KFI 487', '2.863-006.0', '4039784945241',
+     'vliesfilterbeutel-kfi-487-p28630060', 'xx_59511950'),
+)
+KARCHER_WD_BAG_TERMS = (
+    'Kärcher Kaercher WD3 WD 3 V-17/4/20 WD4 WD 4 P V-20/5/22 Filterbeutel Staubbeutel '
+    'Staubsaugerbeutel Vliesfilterbeutel Ersatzbeutel 1.628-130.0 16281300 1.628-270.0 16282700 '
+    'KFI 357 KFI357 2.863-314.0 28633140 4054278777689 KFI 487 KFI487 2.863-006.0 28630060 4039784945241'
+)
 
 # These named models have their own evidence sections. Keep nearby variants from
 # matching a short token inside the title or measurement instructions.
@@ -102,6 +121,8 @@ PART_GUIDES = (
      'Absaugdüse WV 2 3 4-4 5 6 8 WV2 WV3 WV4-4 WV5 WV6 WV8 2.633-112.0 2.633-605.0 2.633-512.0 2.633-532.0 26331120 26336050 26335120 26335320'),
     ('Kärcher-Entkalkungskartusche für SC 3 oder SC 1', '#' + KARCHER_CARTRIDGE_ID,
      'dampfreiniger', KARCHER_CARTRIDGE_TERMS),
+    ('Kärcher-Filterbeutel für WD 3 oder WD 4', '#' + KARCHER_WD_BAG_ID,
+     'nass-trockensauger', KARCHER_WD_BAG_TERMS),
     ('Kaffeevollautomat-Wasserfilter', '#kaffee-wasserfilter', '',
      'Ersatzfilter Philips EP2220/10 EP2231/40 AquaClean CA6903/10 Bosch VeroCafe TIE20301 Intenza TCZ7003 TCZ7033 DeLonghi Magnifica S ECAM22.110.B DLSC002 Siemens EQ.6 plus s300 s400 TE653501DE/13 TE654509DE/12 17008835 17008836'),
     ('Trotec TTK 70 HEPA-Filter', '/guide/trotec-luftentfeuchter-test.html#ttk70-hepa-filter', '',
@@ -579,10 +600,53 @@ def render_karcher_cartridge(data, model, today):
 {offer}</section>'''
 
 
+def render_karcher_wd_bags(data, today):
+    models = {product['id']: product for product in data['products']}
+    if not all(row[0] in models for row in KARCHER_WD_BAGS):
+        return ''
+    age = (today - date(KARCHER_WD_BAG_CHECKED)).days
+    rows = []
+    offers = []
+    for model_id, family, part, ean, accessory, manual in KARCHER_WD_BAGS:
+        model = models[model_id]
+        part_url = 'https://www.karcher.com/de/de/home-and-garden/produkte/' + accessory
+        pdf_url = f'https://d201jv09wbq6e1.cloudfront.net/product_information/deu/{part}_PI_de_DE.pdf'
+        manual_url = f'https://dp6jru56judg7.cloudfront.net/eBTA/000/{manual}.html/DE.html'
+        rows.append(f'''<tr><th scope="row"><a href="{escape(model['source'], quote=True)}">{escape(model['variant'])}</a></th>
+<td><a href="{part_url}">{family} · {part}</a></td><td>{ean} · 4 Stück</td>
+<td><a href="{pdf_url}">{family}: Datenblatt</a> · <a href="{manual_url}">{escape(model['name'])}: Anleitung</a></td></tr>''')
+        if eligible(model, data, today) and 0 <= age <= data['max_age_days']:
+            url = 'https://www.amazon.de/s?' + urlencode({
+                'k': f'Kärcher {family} {part} Vliesfilterbeutel', 'tag': 'getecoback-21',
+            })
+            offers.append(f'<li><a href="{escape(url, quote=True)}" target="_blank" rel="sponsored nofollow noopener">{family} ({part}) bei Amazon.de suchen →</a></li>')
+    shopping = ''
+    if offers:
+        shopping = f'''<!--EB_KARCHER_WD_BAG_AD--><div class="pc-commerce">
+<p>Bei tatsächlichem Wechselbedarf und bestätigter Modellnummer:</p><ul>{''.join(offers)}</ul>
+<small>Anzeige · Suche nach dem Teil. Teilenummer und Stückzahl im Angebot abgleichen.</small>
+</div><!--/EB_KARCHER_WD_BAG_AD-->'''
+    return f'''<section class="pc-method" aria-labelledby="{KARCHER_WD_BAG_ID}">
+<h3 id="{KARCHER_WD_BAG_ID}" style="scroll-margin-top:210px">{KARCHER_WD_BAG_TITLE}</h3>
+<p>{KARCHER_WD_BAG_ANSWER}</p>
+<div class="pc-table-scroll" role="region" aria-label="Kärcher-Filterbeutel nach Typenschild" tabindex="0"><table>
+<thead><tr><th scope="col">Deutsches Modell</th><th scope="col">Filterbeutel</th><th scope="col">EAN und Packung</th><th scope="col">Herstellerunterlagen</th></tr></thead>
+<tbody>{''.join(rows)}</tbody></table></div>
+<ul>
+<li><strong>Vorhandenen Beutel prüfen.</strong> Beide deutschen Neugeräte führen je einen Vliesfilterbeutel im Lieferumfang. Wenn dein passender Beutel einsatzfähig ist, brauchst du keinen Vorrat zu bestellen.</li>
+<li><strong>Feuchte Erde oder freies Wasser?</strong> Kärcher nennt feuchte Erde als Beispiel für feuchten Schmutz. Für verschüttetes Wasser oder andere Flüssigkeiten gilt der Abschnitt Nasssaugen in der Anleitung: Filterbeutel herausnehmen. Für diese Aufgabe brauchst du keinen Beutel zu kaufen. Patronenfilter bzw. Flachfaltenfilter bleiben eigene Bauteile mit eigenen Vorgaben.</li>
+<li><strong>Ähnliche Bezeichnung?</strong> Bei einer abweichenden Gerätenummer, auch bei gleichem Namen, prüfe die Kompatibilitätsliste von Kärcher mit der vollständigen Nummer. Die beiden Beutel sind für die zwei hier genannten Gerätenummern unterschiedlich zugeordnet.</li>
+</ul>
+<p>Deutsche Herstellerquellen, Ersatzteil-Datenblätter vom 19.11.2026, geprüft am <time datetime="{KARCHER_WD_BAG_CHECKED}">26.11.2026</time>.</p>
+{shopping}</section>'''
+
+
 def render(data, today=None):
     data = validate(data)
     today = today or dt.datetime.now(dt.timezone.utc).date()
     sc3 = next((product for product in data['products'] if product['id'] == 'kaercher-sc3-easyfix'), None)
+    wd_bag_guide = render_karcher_wd_bags(data, today)
+    wd_bag_models = {bag[0] for bag in KARCHER_WD_BAGS}
     esc = lambda value: escape(str(value), quote=True)
     # Every published product group must have its matching practical check.
     # A missing helper is a build error, never an empty feature placeholder.
@@ -605,21 +669,24 @@ def render(data, today=None):
                              if product['id'] == 'bosch-wqg241001' else '')
             cartridge_link = (f'<p class="pc-care"><a href="#{KARCHER_CARTRIDGE_ID}">Passende Entkalkungskartusche prüfen →</a></p>'
                               if sc3 is not None and product['id'] in {'kaercher-sc3-easyfix','kaercher-sc1-multi'} else '')
+            bag_link = (f'<p class="pc-care"><a href="#{KARCHER_WD_BAG_ID}">Passenden Vliesfilterbeutel prüfen →</a></p>'
+                        if wd_bag_guide and product['id'] in wd_bag_models else '')
             cards.append(f'''<section class="pc-card" id="produkt-{esc(product['id'])}" data-product-card data-category="{esc(category['id'])}">
 <h3>{esc(product['name'])}</h3><p class="pc-brand">{esc(product['brand'])} · {esc(product['variant'])}</p>
 <p><strong>Aufgabe:</strong> {esc(product['role'])}</p><p>{esc(product['facts'])}</p>
 <p class="pc-limit"><strong>Vor dem Kauf:</strong> {esc(product['limit'])}</p>
 <p class="pc-source">Quelle: <a href="{esc(product['source'])}" target="_blank" rel="noopener">{esc(product['source_label'])}</a> · geprüft am <time datetime="{esc(product['checked'])}">{date(product['checked']).strftime('%d.%m.%Y')}</time>.</p>
-{stacking_link}{cartridge_link}{merchant}{care_link}</section>''')
+{stacking_link}{cartridge_link}{bag_link}{merchant}{care_link}</section>''')
         comparison = render_comparison(category['id'], data['products'], category.get('buying_guide'))
         tool = render_tool(category['id'])
+        accessory_guide = wd_bag_guide if category['id'] == 'nass-trockensauger' else ''
         if not isinstance(tool, str) or not tool.strip():
             raise ValueError('Missing category tool: ' + category['id'])
         groups.append(f'''<section class="pc-category" id="kategorie-{esc(category['id'])}" data-product-category="{esc(category['id'])}">
 <h2>{esc(category['name'])} <span class="pc-category-count">{len(cards)} Modelle</span></h2>
 <p>{esc(category['intro'])}</p><p class="pc-no-purchase"><strong>Vorhandenes weiter nutzen?</strong> {esc(category['no_purchase'])}</p>
 <p class="pc-buyer-routes"><a href="#modelle-{esc(category['id'])}">Direkt die {len(cards)} Modelle vergleichen ↓</a> <a href="#pc-tool-{esc(category['id'])}">Erst die passende Auswahlhilfe nutzen ↓</a></p>
-{comparison}{tool}<h3 class="pc-model-heading" id="modelle-{esc(category['id'])}">{esc(category['name'])}: Modelle und Kaufgrenzen</h3><div class="pc-grid">{''.join(cards)}</div></section>''')
+{comparison}{tool}<h3 class="pc-model-heading" id="modelle-{esc(category['id'])}">{esc(category['name'])}: Modelle und Kaufgrenzen</h3><div class="pc-grid">{''.join(cards)}</div>{accessory_guide}</section>''')
     nav = ''.join(f'<a href="#kategorie-{esc(c["id"])}" data-category-link="{esc(c["id"])}">{esc(c["name"])}</a>' for c in data['categories'])
     guide_items = []
     for guides, attribute in ((SPECIALIST_GUIDES, ''), (MODEL_GUIDES, ' data-exact-guide-terms')):
@@ -630,7 +697,8 @@ def render(data, today=None):
         f'<li><a href="{esc(target)}" data-part-guide data-category="{esc(category)}" data-search-terms="{esc(terms)}">'
         f'{esc(name)}</a></li>'
         for name, target, category, terms in PART_GUIDES
-        if sc3 is not None or target != '#' + KARCHER_CARTRIDGE_ID
+        if (sc3 is not None or target != '#' + KARCHER_CARTRIDGE_ID)
+        and (wd_bag_guide or target != '#' + KARCHER_WD_BAG_ID)
     )
     options = ''.join(f'<option value="{esc(c["id"])}">{esc(c["name"])}</option>' for c in data['categories'])
     css_version = hashlib.sha256((ROOT / 'site/assets/product-catalog.css').read_bytes()).hexdigest()[:12]

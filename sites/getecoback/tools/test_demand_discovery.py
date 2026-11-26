@@ -12,7 +12,8 @@ assert all('#' not in entry['u'] for entry in index),'Search sections must not b
 product_index=next(row for row in index if row['u']=='/produkte.html')
 assert [row['id'] for row in product_index['model_sections']]==[
     'waeschesaeule-zubehoer','beutelstaubsauger-angebote','miele-staubsaugerbeutel',
-    'kaercher-170mm-saugduese','fenstersauger-duesenbreite','kaercher-sc3-entkalkungskartusche','siemens-eq6-intenza']
+    'kaercher-170mm-saugduese','fenstersauger-duesenbreite','kaercher-sc3-entkalkungskartusche',
+    'kaercher-wd3-wd4-filterbeutel','siemens-eq6-intenza']
 comfee_index=next(row for row in index if row['u']=='/guide/luftentfeuchter-keller.html')
 assert [row['id'] for row in comfee_index['model_sections']]==['modell-comfee-mddf20']
 trotec_index=next(row for row in index if row['u']=='/guide/trotec-luftentfeuchter-test.html')
