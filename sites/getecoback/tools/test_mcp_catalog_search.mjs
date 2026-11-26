@@ -1691,3 +1691,25 @@ test('persistent German indoor humidity finds reading advice and retains explici
   assert.equal(measured?.name,'lueften_messwirkung');
   assert.equal(toolGuidePath(measured),target);
 });
+
+test('German reference-room heating questions prefer diagnosis across both room directions', async () => {
+ const target='/guide/heizkoerper-wird-nicht-warm.html#referenzraum-warm-nebenraum-kalt';
+ for(const query of [
+ 'Das Thermostat im Wohnzimmer ist auf 21 Grad, dort ist es warm. Im Schlafzimmer bleibt die Heizung kalt trotz Stufe 5. Was tun?',
+ 'Immer wenn das Wohnzimmer warm genug ist und das Raumthermostat abschaltet, wird das Bad nicht mehr warm. Brauche ich smarte Heizkörperthermostate?',
+ 'Das Raumthermostat im Schlafzimmer schaltet ab, sobald es dort warm genug ist. Warum wird im Wohnzimmer der Heizkörper nicht mehr warm?',
+]) {
+   const [first]=(await catalogue({q:query,view:'compact',limit:1})).tools;
+   assert.equal(first?.name,'ratgeber_suche',query);
+   assert.equal(toolGuidePath(first),target,query);
+ }
+ for(const query of [
+ 'Mein Heizkörper gluckert und wird unten nicht warm.',
+ 'Welcher Danfoss-Adapter passt zum Bosch II [+M]?',
+ 'Wettergeführte Heizung mit Wandthermostat: Wohnzimmer ist warm, Bad bleibt kalt. Wie prüfe ich die Heizkurve?',
+ 'Wie viel Heizkosten kann ich mit smarten Heizkörperthermostaten sparen?',
+]) {
+   const [first]=(await catalogue({q:query,view:'compact',limit:1})).tools;
+   assert.notEqual(toolGuidePath(first??{}),target,query);
+ }
+});

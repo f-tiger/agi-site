@@ -11,7 +11,7 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/smarte-heizkoerpert
 - [Ich bin beim Ventil unsicher Modell und Anschluss klären. Prüfe tado° V3+, Bosch II [+M] und FRITZ! 302 anhand der jeweiligen Herstellerunterlagen.](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#ventilcheck)
 - [Ich möchte die Gesamtkosten prüfen Köpfe, fehlende Zentrale und Adapter zählen; danach mit eigener Sparannahme rechnen.](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-paketkosten)
 - [Mein bisheriger Kopf reicht vielleicht Weiterverwenden oder einen einfachen Zeitplan prüfen, bevor du ein Funk-System kaufst.](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-behalten)
-[Bedienung ohne Internet oder Zentrale prüfen](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-ohne-internet)
+[Ein Zimmer bleibt trotz warmem Referenzraum kalt](https://getecoback.com/guide/heizkoerper-wird-nicht-warm.html#referenzraum-warm-nebenraum-kalt) · [Bedienung ohne Internet oder Zentrale prüfen](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-ohne-internet)
 Grundlage: [Verbraucherzentrale zur Thermostatregelung](https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizkosten-sparen-thermostat-richtig-einstellen-und-wechseln-7940) (Quellenstand 4. Oktober 2026). Modell- und Paketquellen vom 12. November 2026 stehen bei den jeweiligen Geräten. Redaktionelle Entscheidungshilfe, kein eigener Produkttest.
 
 Vor dem Kauf · zwei Auswahlen, keine Texteingabe
@@ -143,7 +143,7 @@ Neues tado° X-System mit enthaltener Bridge
 **System:** Bridge X liegt diesem Starter Kit bei. Ein bereits vorhandener, kompatibler Thread Border Router kann eine andere Paketwahl ermöglichen; die genaue Freigabe prüfen.
 **Paket und Zusatzkauf:** Ein Thermostatkopf, Bridge X und sechs Adapter. USB-C-Ladekabel nicht enthalten. Ein Einzelkopf oder Trio-Pack ist nicht automatisch dasselbe Starter Kit.
 **Betrieb und Funktionen:** Abnehmbarer, per USB-C ladbarer Akku. Die kostenlose App enthält Zeitpläne; zusätzliche Automatisierungen können das optionale AI-Assist-Abo benötigen. Gewünschte Funktion vor dem Kauf prüfen.
-**Vor der Bestellung:** tado° X und die V3+-Geräte/Internet Bridge sind nicht miteinander kompatibel. Die V3+-Ventiltabelle auf dieser Seite bestätigt keine Passung für X.
+**Vor der Bestellung:** tado° X und die V3+-Geräte/Internet Bridge sind nicht miteinander kompatibel. Die V3+-Ventiltabelle auf dieser Seite bestätigt keine Passung für X. In diesem Starter Kit ist kein Heizkreis-Regler für die Therme enthalten. Die Bridge X verbindet die Geräte mit dem Netzwerk. Wer Wärme für einen anderen Raum anfordern will, prüft die Anlagenregelung vor Bestellung.
 [tado°: X Starter Kit, Packung und Kompatibilität](https://shop.tado.com/products/smart-radiator-thermostat-x-starter-kit-1)
 Anzeige · Modellsuche, kein geprüftes Einzelangebot.tado° Smartes Heizkörper-Thermostat X – Starter Kit bei Amazon.de suchen →
 

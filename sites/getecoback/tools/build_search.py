@@ -138,6 +138,9 @@ def collect():
  sections[('de','/guide/richtig-lueften-im-winter.html')]={
   'id':'lueften-vorher-nachher','title':'Hat Lüften Feuchte abgeführt? Vorher und nachher messen',
   'description':'Bleibt die Luftfeuchtigkeit trotz Stoßlüften hoch? Miss am selben Ort vor dem Lüften, nach dem Wiederaufwärmen und bei Bedarf am nächsten Morgen.'}
+ sections[('de','/guide/heizkoerper-wird-nicht-warm.html')]={
+  'id':'referenzraum-warm-nebenraum-kalt','title':'Der Referenzraum ist warm, ein anderes Zimmer bleibt kalt',
+  'description':'Vergleiche beide Räume und prüfe, ob die Anlage Wärme anfordert. Ein Heizkörperkopf allein kann eine abgeschaltete Therme nicht starten.'}
  sections[('de','/guide/smarte-heizkoerperthermostate-lohnen-sich.html')]={
   'id':'danfoss-altventil','title':'Welcher Typ steckt hinter dem alten Danfoss-Klickventil?',
   'description':'Danfoss RA, RAV und RAVL anhand von Kennzeichnung und Zeichnung unterscheiden. Bei unklarem Ventiltyp den vorhandenen Kopf behalten.'}

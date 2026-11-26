@@ -225,6 +225,8 @@ async function checkGermanFocusedDiscovery(browser,base){
   equal((await search(glazingQuery))[0],{href:glazing,language:'de'},'Cloudy insulated glass reaches the existing diagnosis');
   const curtain='/guide/thermovorhang-ratgeber.html#thermovorhang-bahnenbedarf';
   const roomVentilation='/guide/richtig-lueften-im-winter.html#lueften-vorher-nachher';
+  equal((await search('Raumthermostat im Wohnzimmer schaltet ab. Warum bleibt das Bad kalt?'))[0],
+   {href:'/guide/heizkoerper-wird-nicht-warm.html#referenzraum-warm-nebenraum-kalt',language:'de'},'Diagnose before suggesting a smart valve');
   equal((await search('Wie viele Thermovorhänge brauche ich für ein 120 cm breites Fenster?'))[0],
    {href:curtain,language:'de'},'The German curtain quantity question reaches its measurement tool');
   equal((await search('Luftfeuchtigkeit vor und nach dem Stoßlüften vergleichen'))[0],
@@ -338,6 +340,10 @@ async function checkGermanFocusedDiscovery(browser,base){
   check(await page.locator('#luftentfeuchter-waesche-kosten').getByRole('heading').isVisible(),'The clean static link reaches the same section');
   check(await page.locator('#luftentfeuchter-waesche-kosten form').isHidden(),'The no-script reader does not submit a form');
  }
+ await page.goto(base+'/guide/heizkoerper-wird-nicht-warm.html?__ci=1#referenzraum-warm-nebenraum-kalt');
+ const heating=page.locator('section[aria-labelledby="referenzraum-warm-nebenraum-kalt"]');
+ check(await heating.getByText('Erst den Heizkreis prüfen.',{exact:true}).isVisible(),'Room control advice stays visible without JavaScript');
+ check(await heating.locator('a[href="/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-tado-x-starter"]').isVisible(),'Qualified kit details stay reachable without JavaScript');
  await page.goto(base+'/guide/duschen-kosten-rechner.html?__ci=1');
  const showerLink=page.locator('a[href="#durchlauferhitzer-mindestdurchfluss"]');
  check(await showerLink.isVisible(),'The shower guide links to the threshold answer without JavaScript');

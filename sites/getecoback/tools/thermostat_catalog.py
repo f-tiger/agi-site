@@ -49,7 +49,7 @@ def buyer_start():
             ' <span>Köpfe, fehlende Zentrale und Adapter zählen; danach mit eigener Sparannahme rechnen.</span></a></li>'
             '<li><a href="#thermostat-behalten"><strong>Mein bisheriger Kopf reicht vielleicht</strong>'
             ' <span>Weiterverwenden oder einen einfachen Zeitplan prüfen, bevor du ein Funk-System kaufst.</span></a></li>'
-            '</ul><p><a href="#thermostat-ohne-internet">Bedienung ohne Internet oder Zentrale prüfen</a></p>'
+            '</ul><p><a href="/guide/heizkoerper-wird-nicht-warm.html#referenzraum-warm-nebenraum-kalt">Ein Zimmer bleibt trotz warmem Referenzraum kalt</a> · <a href="#thermostat-ohne-internet">Bedienung ohne Internet oder Zentrale prüfen</a></p>'
             '<p class="tc-source">Grundlage: <a href="https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizkosten-sparen-thermostat-richtig-einstellen-und-wechseln-7940">'
             'Verbraucherzentrale zur Thermostatregelung</a> (Quellenstand 4. Oktober 2026). '
             'Modell- und Paketquellen vom 12. November 2026 stehen bei den jeweiligen Geräten. '

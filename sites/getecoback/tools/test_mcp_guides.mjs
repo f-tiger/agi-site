@@ -889,3 +889,18 @@ test('persistent German indoor humidity can read the same sourced section in bot
   for(const fact of ['um 65 % trotz Stoßlüften','am nächsten Morgen vor dem Lüften','Wassergehalt','die Ursache','heizen-und-lueften-so-gehts-richtig-10426']) assert(textOf(full).includes(fact),fact);
   assert(!textOf(full).includes('getecoback-21'));
 });
+
+test('German reference-room heating advice is directly readable in both MCP profiles', async () => {
+ const url='https://getecoback.com/guide/heizkoerper-wird-nicht-warm.html#referenzraum-warm-nebenraum-kalt';
+ const {env}=assetEnv();
+ const frage='Das Raumthermostat im Schlafzimmer schaltet ab, sobald es dort warm genug ist. Warum wird im Wohnzimmer der Heizkörper nicht mehr warm?';
+ const result=await call('ratgeber_suche',{frage,sprache:'de',max:1},env);
+ assert(textOf(result).includes('Abschnitt: '+url));
+ const full=await call('ratgeber_lesen',{pfad:url},env);
+ const compact=await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad:url}},env,true);
+ assert.equal(full.isError,false);
+ assert.deepEqual(full,compact);
+ const facts=['Referenzraum','21 °C','19 °C','Behalte den vorhandenen Kopf','Bridge X','6721836889.pdf','8911771-wie-steuert-tado-x-heizkreise','/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-tado-x-starter'];
+ for(const fact of facts) assert(textOf(full).includes(fact),fact);
+ assert(!textOf(full).includes('getecoback-21'));
+});

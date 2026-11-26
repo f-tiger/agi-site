@@ -40,6 +40,7 @@ assert [(entry['l'],entry['u'],entry['section']['id']) for entry in focused]==[
     ('de','/guide/fenster-zugluft-mietwohnung.html','dichtungsprofil'),
     ('de','/guide/fensterabdichtung-selber-bauen.html','abluft-ausschnitt-pruefen'),
     ('de','/guide/heizdecke-stromverbrauch.html','waerme-rechner'),
+    ('de','/guide/heizkoerper-wird-nicht-warm.html','referenzraum-warm-nebenraum-kalt'),
     ('de','/guide/heizkosten-vergleich-rechner.html','heizluefter-oder-infrarot'),
     ('de','/guide/infrarotheizung-ratgeber.html','jahreskosten-hauptheizung'),
     ('de','/guide/infrarotheizung-thermostat.html','belastbarkeit-die-zahl-auf-dem-thermostat'),
