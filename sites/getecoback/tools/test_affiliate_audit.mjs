@@ -347,7 +347,15 @@ test('the affiliate trend view and default response have separate canonical cach
   const env = {EVENTS:{prepare() { return {all:async () => ({results:[]})}; }}};
   const read = (suffix,bindings=env) => worker.fetch(new Request(base + suffix),bindings,{});
   const view = '?view=affiliate_audit';
-  for (const [bindings,error] of [[{},'no_db'],[{EVENTS:{prepare() { throw Error('D1 failed'); }}},'query_failed']]) {
+  const responseFailure = {EVENTS:{prepare(sql) {
+    assert.equal(sql,AUDIT_SQL);
+    return {all:async () => ({success:false,error:'D1 failed',results:[]})};
+  }}};
+  for (const [bindings,error] of [
+    [{},'no_db'],
+    [{EVENTS:{prepare() { throw Error('D1 failed'); }}},'query_failed'],
+    [responseFailure,'query_failed'],
+  ]) {
     const failure = await read(view,bindings);
     assert.equal(failure.status,503);
     assert.equal(failure.headers.get('cache-control'),'no-store');

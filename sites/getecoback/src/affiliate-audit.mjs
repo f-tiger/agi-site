@@ -294,7 +294,7 @@ function add(s,r,channel) {
 }
 export async function affiliateAudit(db,classifyRef,now=new Date()) {
   const result=await db.prepare(AUDIT_SQL).all();
-  if(!Array.isArray(result.results)) throw Error('affiliate_audit_missing');
+  if(result?.success===false||!Array.isArray(result?.results)) throw Error('affiliate_audit_missing');
   const rows=result.results;
   const end=rows[0]?.end_exclusive||now.toISOString().slice(0,10),start=dayAt(end,-56);
   const daily=Array.from({length:56},(_,i)=>({day:dayAt(start,i),...count(),known_collection_gap:gapDays.has(dayAt(start,i))}));
