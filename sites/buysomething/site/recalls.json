@@ -1,7 +1,7 @@
 {
- "generated": "2026-11-24",
+ "generated": "2026-11-26",
  "window_days": 365,
- "since": "2025-11-24",
+ "since": "2025-11-26",
  "sources": {
   "cpsc": "https://www.saferproducts.gov/RestWebServices/Recall (official CPSC API)",
   "eu_safety_gate": "not wired: probed URL serves HTML, JSON endpoint unconfirmed (2026-09-13)"
@@ -464,5 +464,7 @@
    "stale": false
   }
  },
- "failed_keywords": []
+ "failed_keywords": [
+  "light therapy: The read operation timed out"
+ ]
 }
