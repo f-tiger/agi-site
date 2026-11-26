@@ -1,6 +1,6 @@
 # Midea PortaSplit kaufen: Passt sie in deine Wohnung?
 
-> Midea PortaSplit in der Mietwohnung: Prüfe vor dem Kauf den Platz für das Außengerät, die passende Halterung und den Liefertermin beim Händler.
+> Midea PortaSplit in der Mietwohnung. Prüfe vor dem Kauf die Lautstärke des Außengeräts, den Platz am Fenster, die Halterung und das passende Angebot.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/midea-portasplit-kaufen.html
 
@@ -9,6 +9,14 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 Die mobile Split-Klimaanlage hat ein Innen- und ein Außengerät. Prüfe für die originale PortaSplit die EAN 4048164116478, den Lieferumfang und den Platz an deinem Fenster oder Balkon. Bei offenem Aufstellort oder Liefertermin kannst du mit der Bestellung warten. [Zum genauen Modell und Angebot](https://getecoback.com/guide/midea-portasplit-kaufen.html#portasplit-original-angebot).
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
+
+## Wie laut ist das Außengerät der Midea PortaSplit?
+
+Für die originale PortaSplit mit EAN 4048164116478 nennt Midea beim Außengerät in 1 m Abstand 56 dB(A) Schalldruck auf hoher Stufe und 48 dB(A) im Außen-Flüstermodus. Die 39 dB(A) aus der Produktbeschreibung wurden am Innengerät im Silent-Modus gemessen. Das EU-Produktdatenblatt nennt für das Außengerät 62 dB Schallleistung, jeweils beim Kühlen und beim Heizen.
+
+Am Nachbarfenster hängt der hörbare Pegel vom Abstand, der Ausrichtung und dem Umfeld ab. Steht das Außengerät dicht am Nachbarfenster oder auf engem Raum zwischen reflektierenden Wänden, kläre zuerst einen geeigneten Standort. Wenn nur dieser Platz infrage kommt und die Aufstellung ungeklärt ist, verschiebe die Bestellung.
+
+Den Außen-Flüstermodus aktivierst du laut Midea in der App. Beim Einschalten oder Wechsel der Betriebsart wird er deaktiviert. [Midea-Anleitung zu den Messwerten](https://www.midea.com/content/dam/midea-aem/de/klimatisieren-heizen/portasplit/PortaSplit-Gebrauchsanweisung-DE.pdf#page=16) · [Midea-Anleitung zum Modus](https://www.midea.com/content/dam/midea-aem/de/klimatisieren-heizen/portasplit/PortaSplit-Gebrauchsanweisung-DE.pdf#page=37) · [EU-Produktdatenblatt](https://eprel.ec.europa.eu/fiches/airconditioners/Fiche_1917520_DE.pdf#page=1). Quellen geprüft am 26. November 2026.
 
 ## Originale PortaSplit vor dem Kauf an der EAN erkennen
 

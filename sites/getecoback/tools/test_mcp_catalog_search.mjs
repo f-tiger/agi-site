@@ -1828,3 +1828,16 @@ test('German Pro Breeze 12L variant questions use the right evidence without tak
    assert.notEqual(toolGuidePath(hit??{}),target,q);
  }
 });
+
+test('German PortaSplit outdoor sound discovery uses the source-backed buying path',async()=>{
+ const target='/guide/midea-portasplit-kaufen.html#portasplit-aussengeraet-lautstaerke';
+ for(const q of ["Wie hoch ist der Lärmspiegel von dem Teil, der bei der Midea PortaSplit draußen hängt?","Wie laut ist das Außengerät der Midea PortaSplit am Nachbarfenster?","4048164116478 Außengerät 48 dB im Flüstermodus?"]) {
+   const [hit]=(await catalogue({q,view:'compact',limit:1})).tools;
+   assert.equal(hit?.name,'ratgeber_suche',q);
+   assert.equal(toolGuidePath(hit),target,q);
+ }
+ for(const q of ["Wie laut ist das Außengerät der PortaSplit Cool?","PortaSplit-E Außeneinheit: wie viel Schalldruck?","PortaSplit Außengerät rattert laut, was ist kaputt?","PortaSplit: Ist 39 dB im Schlafzimmer leise?","PortaSplit Außengerät vereist. Wie lange dauert Abtauen?"]) {
+   const [hit]=(await catalogue({q,view:'compact',limit:1})).tools;
+   assert.notEqual(toolGuidePath(hit??{}),target,q);
+ }
+});

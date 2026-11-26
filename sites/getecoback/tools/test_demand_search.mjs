@@ -1315,3 +1315,9 @@ test('German Pro Breeze 12L model questions reach the correct app and manual com
  for(const q of ["Hat der Pro Breeze PB-06 mit 12 Litern WLAN oder brauche ich PB-D-06W-W-EU?", "Welche Pro Breeze 12L Variante mit App passt, PB-06 oder OmniDry?", "OmniDry 12L PB-D-18W-WF: Welche Variante hat die App?", "Pro Breeze PB-D-27 oder PB-06: welches Modell für Dauerablauf?", "Welches Pro Breeze Modell hat die GTIN 5060596028197?"]) assert.equal(searchEntries(index,q,'de')[0]?.entry.u,target,q);
  for(const q of ["Hat der Pro Breeze OmniDry 20L mit PB-D-24-WF eine App?", "Hat der kleine Pro Breeze PB-02 500 ml Tank?", "Wie verbinde ich die App beim Pro Breeze PB-D-06W-W-EU?", "Meaco DD8L Pro oder Arete One für 12 Liter bei 10 Grad?"]) assert.notEqual(searchEntries(index,q,'de')[0]?.entry.u,target,q);
 });
+
+test('German PortaSplit outdoor sound routes distinguish the original from other variants and repair',()=>{
+ const target='/guide/midea-portasplit-kaufen.html#portasplit-aussengeraet-lautstaerke';
+ for(const q of ["Wie hoch ist der Lärmspiegel von dem Teil, der bei der Midea PortaSplit draußen hängt?","Wie laut ist das Außengerät der Midea PortaSplit am Nachbarfenster?","4048164116478 Außengerät 48 dB im Flüstermodus?"]) assert.equal(searchEntries(index,q,'de')[0]?.entry.u,target,q);
+ for(const q of ["Wie laut ist das Außengerät der PortaSplit Cool?","PortaSplit-E Außeneinheit: wie viel Schalldruck?","PortaSplit Außengerät rattert laut, was ist kaputt?","PortaSplit: Ist 39 dB im Schlafzimmer leise?","PortaSplit Außengerät vereist. Wie lange dauert Abtauen?"]) assert.notEqual(searchEntries(index,q,'de')[0]?.entry.u,target,q);
+});
