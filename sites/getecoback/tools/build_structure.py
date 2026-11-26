@@ -2015,6 +2015,7 @@ def strip_decision_promotions(html, slug):
                     "klimaanlage-40-qm", "klimaanlage-50-qm", "klimaanlage-fenster-einbruchschutz",
                     "klimaanlage-wann-kaufen", "heizkosten-vergleich-rechner", "midea-portasplit-kaufen",
                     "delonghi-pac-n90-test", "pinguino-pac-ex105-test", "comfee-mpph-09crn7-test", "pro-breeze-luftentfeuchter-test",
+                    "meacodry-arete-one-test",
                     "luftentfeuchter-granulat-oder-elektrisch",
                     "infrarotheizung-thermostat",
                     electricity_fact_check}:

@@ -205,6 +205,13 @@ def collect():
     raise ValueError(f'Missing or hidden PortaSplit outdoor sound evidence: {route}#{anchor}')
    entry['model_sections']=[{'id':anchor,'title':'Wie laut ist das Außengerät der Midea PortaSplit?',
     'description':'Beim Original mit EAN 4048164116478 nennt Midea für das Außengerät in 1 m Abstand 56 dB(A) auf hoher Stufe und 48 dB(A) im Außen-Flüstermodus. Prüfe vor dem Kauf den Abstand und die Ausrichtung zum Nachbarfenster.'}]
+  if lang=='de' and route=='/guide/meacodry-arete-one-test.html':
+   anchor='one-oder-two'
+   targets=re.findall(r'<h3\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)
+   if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
+    raise ValueError(f'Missing or hidden Meaco comparison: {route}#{anchor}')
+   entry['model_sections']=[{'id':anchor,'title':'MeacoDry Arete One 20L oder Two 20L?',
+    'description':'Die deutschen Meaco-Tabellen nennen für beide 20L-Varianten 8,50 L/24 h bei 20 °C und 60 % relativer Feuchte. Prüfe Messbedingungen, App und genaue GTIN vor dem Kauf.'}]
   if lang=='de' and route=='/guide/luftentfeuchter-ratgeber.html':
    filter_target=re.findall(r'<h4\b[^<>]*\sid="'+BOSCH_FILTER_ID+r'"[^<>]*>',text)
    if len(filter_target)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',filter_target[0]):

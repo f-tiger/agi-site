@@ -97,7 +97,18 @@ async function checkExactDelonghiPurchase(page,base){
    await directorySearch.fill('Klimaanlage Preischeck');
    assert(!await priceGuide.isVisible());
  }
- return outcomes.length*5+31;
+
+ await page.goto(base+'/guide/meacodry-arete-one-test.html?__ci=1#one-oder-two');
+ const areteCompare=page.locator('section[aria-labelledby="one-oder-two"]');
+ const areteFacts=await areteCompare.innerText();
+ for(const against of ['3,40 L/24 h','3,35 L/24 h','8,50 L/24 h','207 W','5060409604617','behalte ihn']) assert(areteFacts.includes(against),against);
+ assert.equal(await areteCompare.locator('table tbody tr').count(),2);
+ const areteStores=page.locator('a[href^="https://www.amazon.de/"]');
+ assert.equal(await areteStores.count(),1);
+ assert.equal(await areteStores.first().getAttribute('href'),'https://www.amazon.de/s?k=MeacoDry+Arete+One+20L&tag=getecoback-21');
+ assert(await areteCompare.locator('a[href="https://eu.meaco.com/products/meacodry-arete-two-20l-luftentfeuchter-luftreiniger"]').last().isVisible());
+ assert.equal(await page.locator('#eb-toppick,#eb-sticky,#eb-usmarket,#eb-pu').count(),0);
+ return outcomes.length*5+42;
 }
 
 async function checkGermanCoolingLoad(browser,base){
@@ -159,6 +170,7 @@ async function checkGermanFocusedDiscovery(browser,base){
  const ex105Page='/guide/pinguino-pac-ex105-test.html';
  const positive=['Was kostet eine Ladung Wäsche nur mit meinem Luftentfeuchter?','Stromkosten Luftentfeuchter Wäsche'];
  const ordinary=[
+  ["Was ist im kalten Keller der Unterschied zwischen Meaco Arete One 20L und Two 20L?",'/guide/meacodry-arete-one-test.html#one-oder-two'],
   ["Ist der Aktivkohlefilter beim Bosch Dry 4000 dabei?",'/guide/luftentfeuchter-ratgeber.html#bosch-dry-4000-aktivkohlefilter'],
   ["Welchen Adapter brauche ich beim tado° X für ein Vaillant Heizkörperventil mit 30,5 mm Klemmanschluss?",'/guide/smarte-heizkoerperthermostate-lohnen-sich.html#tado-x-vaillant-305-adapter'],
   ["Black Friday Luftentfeuchter Angebote prüfen",'/guide/luftentfeuchter-ratgeber.html#luftentfeuchter-30-tage-preischeck'],

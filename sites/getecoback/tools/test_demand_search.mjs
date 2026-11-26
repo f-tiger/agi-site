@@ -1339,3 +1339,9 @@ test('German Bosch Dry 4000 filter questions reach its exact package evidence',(
  for(const q of ["Ist der Aktivkohlefilter beim Bosch Dry 4000 dabei?","Muss ich beim Bosch Dry 4000 den HEPA Filter separat kaufen?","D4000-EU: Welcher Staubfilter ist im Lieferumfang?","Welches Gerät hat den 2-in-1 Dry-Filter 7733703602?"]) assert.equal(searchEntries(index,q,'de')[0]?.entry.u,target,q);
  for(const q of ["Welcher Filter passt zum Bosch Air 4000?","Brauch ich für den Bosch Dry 2000 einen Aktivkohlefilter?","4069143047804 Bosch D4000-UK Ersatzfilter?","Hat der Bosch Dry 4000 einen Schlauch dabei?","Ist der DeLonghi PAC N90 Filter im Lieferumfang?","Bosch Dry 4000 Aktivkohlefilter Geräte-EAN 4069143047781"]) assert.notEqual(searchEntries(index,q,'de')[0]?.entry.u,target,q);
 });
+
+test('German Meaco Arete 20L comparison searches reach the matched tests and variant evidence',()=>{
+ const target='/guide/meacodry-arete-one-test.html#one-oder-two';
+ for(const q of ["Was ist im kalten Keller der Unterschied zwischen Meaco Arete One 20L und Two 20L?","Meaco Arete One 20L oder Two 20L bei 20 Grad und 60 Prozent?","Wie laut ist der Meaco Arete Two 20L im Nachtmodus?","Welche Meaco Arete hat die GTIN 5060409604617?","Meaco Arete Two 20L bei 10 Grad: Entzug und Stromverbrauch?"]) assert.equal(searchEntries(index,q,'de')[0]?.entry.u,target,q);
+ for(const q of ["Meaco Arete One 25L oder Two 20L bei 10 Grad?","Meaco Arete Two 12L mit App?","Kann ich den Ablaufschlauch beim Meaco Arete One 20L bergauf zum Waschbecken legen?","Welcher Ersatzfilter passt in den Arete Two 20L?","Welchen Luftentfeuchter brauche ich für den Keller bei 10 Grad?","Entzieht der Meaco Arete Two 20L bei 10 Grad mehr als der Comfee MDDF-20DEN7?"]) assert.notEqual(searchEntries(index,q,'de')[0]?.entry.u,target,q);
+});

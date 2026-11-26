@@ -1880,3 +1880,16 @@ test('German Bosch Dry 4000 filter questions find the original part without capt
    assert.notEqual(toolGuidePath(hit??{}),target,q);
  }
 });
+
+test('German Meaco Arete 20L comparison searches retain neighboring sizes and support tasks',async()=>{
+ const target='/guide/meacodry-arete-one-test.html#one-oder-two';
+ for(const q of ["Was ist im kalten Keller der Unterschied zwischen Meaco Arete One 20L und Two 20L?","Meaco Arete One 20L oder Two 20L bei 20 Grad und 60 Prozent?","Wie laut ist der Meaco Arete Two 20L im Nachtmodus?","Welche Meaco Arete hat die GTIN 5060409604617?","Meaco Arete Two 20L bei 10 Grad: Entzug und Stromverbrauch?"]) {
+   const [hit]=(await catalogue({q,view:'compact',limit:1})).tools;
+   assert.equal(hit?.name,'ratgeber_suche',q);
+   assert.equal(toolGuidePath(hit),target,q);
+ }
+ for(const q of ["Meaco Arete One 25L oder Two 20L bei 10 Grad?","Meaco Arete Two 12L mit App?","Kann ich den Ablaufschlauch beim Meaco Arete One 20L bergauf zum Waschbecken legen?","Welcher Ersatzfilter passt in den Arete Two 20L?","Welchen Luftentfeuchter brauche ich für den Keller bei 10 Grad?","Entzieht der Meaco Arete Two 20L bei 10 Grad mehr als der Comfee MDDF-20DEN7?"]) {
+   const [hit]=(await catalogue({q,view:'compact',limit:1})).tools;
+   assert.notEqual(toolGuidePath(hit??{}),target,q);
+ }
+});
