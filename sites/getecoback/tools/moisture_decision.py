@@ -34,6 +34,11 @@ def block(en=False, slug=None):
     monitoring = ('/en/guide/uk-damp-and-heating-decisions.html#damp-in-a-rented-home-keep-a-useful-record' if en
                   else '/guide/luftfeuchtigkeit-richtig-messen.html')
     care = '/en/guide/rising-damp-penetrating-damp-or-condensation.html' if en else '/guide/luftentfeuchter-gegen-schimmel.html'
+    laundry_models = ''
+    if not en and slug == 'waesche-trocknen-wohnung':
+        laundry_models = ('\n<p>Für den Einkauf in Deutschland kannst du die '
+                          '<a href="#eb-models">Wäschemodelle samt Quellen und Einsatzgrenzen vergleichen</a>. '
+                          'Kläre zuerst die Ursache, wenn die Feuchte anhält.</p>')
     fields = select('purpose',t('Wobei brauchst du Hilfe?','What are you trying to do?'),[
         ('room',t('Feuchte Raumluft senken','Reduce room humidity')),
         ('laundry',t('Wäsche drinnen trocknen','Dry laundry indoors')),
@@ -110,7 +115,7 @@ def block(en=False, slug=None):
         t('Exaktes Modell bei Amazon.de suchen*', 'Find exact model at Amazon.de*'))
     products = '<div data-market-de hidden><p class="choice-comparison-note">' + t(
         'Zwei vorhandene Kandidaten mit denselben Prüfpunkten. Fehlende Werte sind keine Null und kein Nachteil im Ranking: Ohne vergleichbare Daten gibt es hier keinen Effizienz-Sieger.',
-        'Two existing candidates with the same checks. Missing figures are not zero or a ranking penalty: without comparable data, this guide names no efficiency winner.') + '</p><div class="choice-products">' + comfee + meaco + '</div><small>'+t(
+        'Two existing candidates with the same checks. Missing figures are not zero or a ranking penalty: without comparable data, this guide names no efficiency winner.') + '</p>' + laundry_models + '<div class="choice-products">' + comfee + meaco + '</div><small>'+t(
         'Werbung · Affiliate-Links: Als Amazon-Partner verdienen wir an qualifizierten Verkäufen. Preis, Verkäufer, Lieferbarkeit, Stecker und Rückgabebedingungen bei Amazon prüfen. Zwei Beispiele aus unserem Bestand, kein vollständiger Marktvergleich und kein eigener Produkttest.',
         'Ad · Affiliate links: As an Amazon Associate we earn from qualifying purchases. Check price, seller, availability, plug and return terms at Amazon. Two examples from our existing coverage, not a whole-market comparison or hands-on test.')+'</small></div><p data-market-other hidden>'+t(
         'Hier werden keine deutschen Kauflinks eingeblendet. Die Herstellerdaten beider Modelle findest du in der Vergleichstabelle darunter. Vergleiche beim Händler in deinem Markt das genaue Modell, Netzspannung, Stecker, Garantie und Liefergebiet.',
@@ -144,7 +149,7 @@ def block(en=False, slug=None):
         'Modellgrenzen: Comfee MDDF-20DEN7 ist hier die Variante ohne WF. MeacoDry Arete One 20L ist weder Arete Two noch One 25L. Die UK-Modellseite bestätigt keine deutsche Händlerausstattung, Stecker, Lieferbarkeit oder Rückgabe. Netzspannung, Typenschild und Anleitung immer mit dem konkreten Angebot abgleichen. Beide Kandidaten ersetzen weder Ursachenklärung noch eine passende Lüftung.',
         'Model boundaries: Comfee MDDF-20DEN7 here is the variant without WF. MeacoDry Arete One 20L is neither Arete Two nor One 25L. The UK model page does not verify a German retailer’s equipment, plug, availability or returns. Match voltage, rating plate and manual to the actual offer. Neither candidate replaces investigating moisture sources or suitable ventilation.')+'</p><p>'+t(
         'Rechenbeispiel: 216 W × 6 h ÷ 1.000 × 0,35 €/kWh = 0,45 €. Das ist weder eine gemessene Wäscheladung noch eine Einsparzusage.',
-        'Example calculation: 216 W × 6 h ÷ 1,000 × €0.35/kWh = €0.45. This is not a measured laundry load or a savings promise.')+'</p><small>'+t('Quellen geprüft am 06.11.2026: ','Sources checked on 6 November 2026: ')+source(MEACO, 'Meaco One 20L')+' · '+source(COMFEE_PRODUCT, 'Comfee MDDF-20DEN7')+' · '+source(COMFEE_DATA,t('Comfee-Datenblatt, Seite 2','Comfee data sheet, page 2'))+' · '+source(COMFEE,t('Comfee-Bedienhinweise','Comfee operating instructions'))+' · '+source(AIR,'Verbraucherzentrale')+'. '+t('Herstellerangaben, keine eigenen Messungen. Orientierung, keine Ferndiagnose.','Manufacturer figures, not our own measurements. Guidance, not a remote diagnosis.')+'</small></details>'
+        'Example calculation: 216 W × 6 h ÷ 1,000 × €0.35/kWh = €0.45. This is not a measured laundry load or a savings promise.')+'</p><small>'+t('Quellen geprüft am 06.11.2026: ','Sources checked on 6 November 2026: ')+source(MEACO, 'Meaco One 20L')+' · '+source(COMFEE_PRODUCT, 'Comfee MDDF-20DEN7')+' · '+source(COMFEE_DATA,t('Comfee-Datenblatt, Seite 2','Comfee data sheet, page 2'))+' · '+source(COMFEE,t('Comfee-Bedienhinweise','Comfee operating instructions'))+' · '+source(AIR,'Verbraucherzentrale')+'. '+t('Herstellerangaben, keine eigenen Messungen. Orientierung, keine Ferndiagnose.','Manufacturer figures, not our own measurements. Guidance, not a remote diagnosis.')+'</small>'+laundry_models+'</details>'
     fallback = '<div data-choice-fallback><p>'+t(
         'Dein nächster Schritt: Feuchte und Temperatur zunächst messen, bei nassen Wänden die Ursache klären. Die Herstellerdaten unten helfen dir, Bedingungen und Modellvarianten zu unterscheiden.',
         'Your next step: measure humidity and temperature first, and investigate the cause of wet walls. The manufacturer data below helps distinguish conditions and model variants.')+'</p><p>'+link(cost,t('Wäschekosten vergleichen','Compare laundry costs'))+' · '+link(cold,t('Kalte Räume prüfen','Check cold-room conditions'))+' · '+link(care,t('Feuchteursachen klären','Investigate moisture sources'))+'</p></div>'

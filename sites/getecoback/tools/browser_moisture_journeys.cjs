@@ -238,6 +238,38 @@ async function noJavaScript(browser){
  check(!await root.locator('form').isVisible(),'no-JS cannot submit incomplete questionnaire');
  await layout(page,'no-JS direct reading');await complete(f,'no-JS direct reading');
 }
+async function laundryModelComparison(browser,javaScriptEnabled){
+ const width=javaScriptEnabled?390:320;
+ const pathname='/guide/waesche-trocknen-wohnung.html';
+ const f=await fixture(browser,{width,javaScriptEnabled});await f.goto(pathname+'#eb-moisture-choice');
+ const {page}=f,root=page.locator('#eb-moisture-choice');
+ if(javaScriptEnabled){
+  await root.locator('form').waitFor({state:'visible'});
+  const market=root.locator('[name=market]');
+  await market.selectOption('other');
+  await root.locator('[data-choice-direct]').press('Enter');
+  const advice=root.locator('[data-answer=compare]');
+  check(await advice.locator('[data-market-other]').isVisible(),'the advice-only result is available');
+  check(!await advice.locator('a[href="#eb-models"]').isVisible(),'the German link stays out of the advice-only result');
+  await root.locator('[data-choice-direct-note] [data-choice-needs]').click();
+  await market.selectOption('de');
+ }
+ await root.locator('[data-choice-direct]').press('Enter');
+ const container=javaScriptEnabled?root.locator('[data-answer=compare] [data-market-de]'):root.locator('[data-choice-method]');
+ if(!javaScriptEnabled)await page.waitForURL(u=>u.hash==='#eb-choice-method');
+ const link=container.locator('a[href="#eb-models"]');
+ check(await link.isVisible(),'the comparison links to the sourced laundry models');
+ await link.press('Enter');
+ await page.waitForURL(u=>u.hash==='#eb-models');
+ const catalog=page.locator('#eb-models');
+ check(await catalog.getByRole('heading',{level:2}).isVisible(),'the existing German comparison is visible');
+ await catalog.locator('tbody a[href="#modell-bosch-d4000-eu"]').press('Enter');
+ await page.waitForURL(u=>u.hash==='#modell-bosch-d4000-eu');
+ check(await catalog.locator('#modell-bosch-d4000-eu').isVisible(),'an exact model card is reachable from the table');
+ await layout(page,'German laundry comparison '+width);
+ report.push({page:pathname,width,javaScriptEnabled,model:'bosch-d4000-eu'});
+ await complete(f,'German laundry comparison '+width);
+}
 async function cellarModelRoute(browser,javaScriptEnabled){
  const width=javaScriptEnabled?390:320;
  const pathname='/guide/luftentfeuchter-keller.html';
@@ -340,7 +372,11 @@ async function windowCondensation(browser,javaScriptEnabled){
  try{
   for(const width of [390,1280]){await home(browser,width);await category(browser,width);await directComparison(browser,'/guide/luftentfeuchter-ratgeber.html','de',width);await directComparison(browser,'/en/guide/dehumidifier-20-sqm.html','en',width);}
   await editorialRoutes(browser);await coldAndMeasure(browser);await noJavaScript(browser);
-  for(const javaScriptEnabled of [true,false]){await windowCondensation(browser,javaScriptEnabled);await cellarModelRoute(browser,javaScriptEnabled);}
+  for(const javaScriptEnabled of [true,false]){
+   await windowCondensation(browser,javaScriptEnabled);
+   await cellarModelRoute(browser,javaScriptEnabled);
+   await laundryModelComparison(browser,javaScriptEnabled);
+  }
   for(const width of [390,1280])await acquisitionPath(browser,width);
   for(const mode of ['denied','dnt','gpc','qa','webdriver'])await directComparison(browser,'/guide/luftentfeuchter-ratgeber.html','de',390,mode);
   fs.writeFileSync(path.join(dir,'moisture-journeys-browser.json'),JSON.stringify({pass:true,checks,fixtureRoot:site,scenarios:report},null,2));

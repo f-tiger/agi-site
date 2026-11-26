@@ -43,6 +43,32 @@ class BuyerEntry(unittest.TestCase):
             self.assertIn('leaks' if en else 'Leck', note.text())
             self.assertIn('wet building materials' if en else 'nassen Bauteilen', note.text())
 
+    def test_published_laundry_comparison_links_reach_the_existing_models(self):
+        anchor = '#eb-models'
+        label = 'Wäschemodelle samt Quellen und Einsatzgrenzen vergleichen'
+        for en, slugs in M.PATHS.items():
+            for slug in slugs:
+                with self.subTest(slug=slug):
+                    path = SITE / ('en/guide' if en else 'guide') / (slug + '.html')
+                    doc = Document(path.read_text()).root
+                    buyer = doc.find(attr='data-choice-method')[0]
+                    germany = doc.find(attr='data-market-de')
+                    advice = doc.find(attr='data-market-other')
+                    link_count = int(not en and slug == 'waesche-trocknen-wohnung')
+                    for container in [buyer, *germany, *advice]:
+                        links = [a for a in container.find('a') if a.attrs.get('href') == anchor]
+                        expected = 0 if 'data-market-other' in container.attrs else link_count
+                        self.assertEqual(len(links), expected)
+                        for link in links:
+                            self.assertEqual(link.text(), label)
+                            self.assertNotIn('data-choice-action', link.attrs)
+                    if link_count:
+                        comparison = [n for n in doc.find(attr='id') if n.attrs['id'] == anchor[1:]]
+                        self.assertEqual(len(comparison), 1)
+                        self.assertTrue(comparison[0].find('tbody')[0].find('tr'))
+                        md = path.with_suffix('.md').read_text()
+                        self.assertIn(f'[{label}](https://getecoback.com/guide/{slug}.html{anchor})', md)
+
     def test_measure_and_wait_each_have_one_real_monitoring_step_without_merchants(self):
         for en, slugs in M.PATHS.items():
             for slug in slugs:
