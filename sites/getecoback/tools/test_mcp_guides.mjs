@@ -30,8 +30,8 @@ function assetEnv(overrides = new Map()) {
   return {env, requests};
 }
 
-async function call(name, args, env) {
-  const response = await worker.fetch(new Request('https://getecoback.com/mcp/v1', {
+async function call(name, args, env, compact = false) {
+  const response = await worker.fetch(new Request('https://getecoback.com/mcp/v1' + (compact ? '?profile=compact&__probe=1' : ''), {
     method: 'POST', headers: {'content-type': 'application/json', 'user-agent': 'getecoback-ci'},
     body: JSON.stringify({jsonrpc: '2.0', id: 1, method: 'tools/call', params: {name, arguments: args}}),
   }), env, {});
@@ -461,6 +461,44 @@ test('root-level laundry reading preserves measured-condition limits and trusted
   assert.ok(!/<(?:form|script|input)|<!--EB_|https?:\/\/[^\s]*(?:amazon\.|amzn\.)|[?&]tag=/i.test(text));
 });
 
+test('hosts read the exact evidence returned by search beyond the product-directory excerpt', async () => {
+  const {env, requests} = assetEnv();
+  const page = '/produkte.html';
+  const prefix = 'https://getecoback.com' + page;
+  const plain = textOf(await call('ratgeber_lesen', {pfad: page}, env));
+  assert.match(plain, /Gekürzt: ja/);
+  assert(!plain.includes('35 × 593 × 556'));
+  for (const [anchor, phrases, excluded] of [
+    ['waeschesaeule-zubehoer',['35 × 593 × 556','WTZ27410','9001984634_A.pdf','über 55 cm'],'17008836 enthält drei'],
+    ['siemens-eq6-intenza',['17008836 enthält drei Wasserfilter','TE653501DE/13','Fehlt die Endung'],'Compact C2 braucht FJM'],
+    ['kaercher-170mm-saugduese',['2.633-512.0','WV 4-4 Plus','den Lieferumfang separat bestätigen'],'Fenstersauger: Modelle und Kaufgrenzen'],
+    ['miele-staubsaugerbeutel',['Compact C2 braucht FJM, Complete C2 braucht GN','12421180','warte bis dahin'],'Welcher BRITA Intenza'],
+  ]) {
+    const pfad = prefix + '#' + anchor;
+    const result = await call('ratgeber_lesen', {pfad}, env);
+    assert.equal(result.isError,false,pfad);
+    assert.deepEqual(result,await call('ratgeber_lesen',{pfad:page+'#'+anchor},env));
+    assert.deepEqual(result,await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad}},env,true));
+    const text = textOf(result);
+    assert(text.startsWith('Quelle: ' + pfad + '\nVollständige Textansicht: ' + prefix.replace('.html','.md')));
+    assert.match(text,/Gekürzt: nein/);
+    for(const value of phrases) assert(text.includes(value),anchor+': '+value);
+    assert(!text.includes(excluded),anchor);
+    assert(!/https?:\/\/[^\s]*amazon\.|[?&]tag=/.test(text),anchor);
+  }
+  const found = textOf(await call('ratgeber_suche',{
+    frage:'Welcher Wasserfilter passt für Siemens TE653501DE/13?',sprache:'de',max:1,
+  }, env));
+  assert(found.includes('\n  '+prefix+'\n'));
+  assert(found.includes('Abschnitt: '+prefix+'#siemens-eq6-intenza'));
+  const boschWithoutId = textOf(await call('ratgeber_suche',{
+    frage:'Bosch Trockner 599 mm auf neue Waschmaschine WUU28T49 mit 590 mm. Passt der Zwischenbaurahmen?',
+    sprache:'de',max:3,
+  }, env));
+  assert(!boschWithoutId.includes('Abschnitt: '+prefix+'#waeschesaeule-zubehoer'));
+  assert(requests.every(request=>new URL(request.url).hash===''));
+});
+
 test('dedicated French and Spanish mirrors retain their existing search/read coverage', async () => {
   const {env} = assetEnv();
   for (const [sprache, frage, path] of [['fr', 'climatisation chauffage', '/fr/calculateur.html'], ['es', 'climatización ahorro', '/es/calculadora.html']]) {
@@ -484,18 +522,43 @@ test('every published MCP entry resolves to its own canonical text mirror', asyn
   assert.ok(requests.every(request => /\/(?:mcp-guides\.json|[a-z0-9/-]+\.md)$/.test(new URL(request.url).pathname)));
 });
 
-test('malformed, external, credentialed, query, fragment and traversal inputs fetch nothing', async () => {
+test('malformed, external, credentialed, query, unsafe fragment and traversal inputs fetch nothing', async () => {
   const invalid = [null, {}, 1, '//evil.test/a.html', 'http://getecoback.com' + laundry,
     'https://www.getecoback.com' + laundry, 'https://getecoback.com.evil.test' + laundry,
     'https://getecoback.com@evil.test' + laundry, 'https://user@getecoback.com' + laundry,
     'https://getecoback.com:443' + laundry, 'https://getecoback.com:8443' + laundry,
-    laundry + '?private=1', laundry + '#input', laundry + '\n', '/guide/../' + laundry.slice(1),
+    laundry + '?private=1', laundry + '#', laundry + '#abc?private=1', laundry + '#a#b',
+    laundry + '#%2e%2e/private', laundry + '#a\n', laundry + '\n', '/guide/../' + laundry.slice(1),
     '/guide/%2e%2e/' + laundry.slice(1), '/guide/%2fsecret.html', '/guide/%5csecret.html',
     '/guide/\\secret.html', '/guide/a\u0000.html', '/api/test.html', '/en/members.html', '/auth/account.html'];
   for (const pfad of invalid) {
     const {env, requests} = assetEnv();
     assert.equal((await call('ratgeber_lesen', {pfad}, env)).isError, true, JSON.stringify(pfad));
     assert.equal(requests.length, 0, JSON.stringify(pfad));
+  }
+});
+
+test('an unpublished fragment never causes an evidence fetch or a fallback to a whole page', async () => {
+  const {env,requests} = assetEnv();
+  const pfad='/produkte.html#not-in-the-corpus';
+  for (const result of [
+    await call('ratgeber_lesen',{pfad},env),
+    await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad}},env,true),
+  ]) assert.equal(result.isError,true);
+  assert.deepEqual(requests.map(request=>new URL(request.url).pathname),['/mcp-guides.json','/mcp-guides.json']);
+});
+
+test('a stale or ambiguous published section title cannot silently return unrelated text', async () => {
+  const anchor = 'siemens-eq6-intenza';
+  const page = '/produkte.html';
+  const entry = corpus.find(item=>item.u===page);
+  const original = readFileSync(new URL(entry.m.slice(1),site),'utf8');
+  const heading = entry.readable_sections[anchor];
+  for (const stale of [original.replace(heading, '### Neuer Titel'), original + '\n\n' + heading + '\n']) {
+    const overrides = new Map([[entry.m,()=>new Response(stale,{headers:{'content-type':'text/markdown'}})]]);
+    const {env,requests} = assetEnv(overrides);
+    assert.equal((await call('ratgeber_lesen',{pfad:page+'#'+anchor},env)).isError,true);
+    assert.deepEqual(requests.map(request=>new URL(request.url).pathname),['/mcp-guides.json',entry.m]);
   }
 });
 

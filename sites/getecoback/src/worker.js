@@ -5,7 +5,7 @@ import {legacyCatalogueExample} from './mcp-legacy-examples.mjs';
 import {sealFit} from '../site/assets/demand-tools.mjs';
 import {validMeterEvent, meterReferralReport} from './meter-referral.mjs';
 import {citationUrl} from './agent-sources.mjs';
-import {guidePath, publishedGuides, readGuide} from './mcp-guides.mjs';
+import {guideTarget, publishedGuides, readGuide} from './mcp-guides.mjs';
 import {drainTool, drainDecision} from './mcp-drain.mjs';
 import {finderName, runnerName, compactTools, compactInstructions, compactSearch, validCompactRun, cellarResourceContents, cellarResourceListing} from './mcp-assistant.mjs';
 import {exactGermanGuide, normalize as normalizeSearch} from '../site/assets/demand-discovery.mjs';
@@ -1155,11 +1155,11 @@ const LEGACY_MCP_TOOLS = [
   },
   {
     name: "ratgeber_lesen",
-    description: "Liest die redaktionelle Textansicht eines veröffentlichten Ratgebers. — Reads the cleaned Markdown of a published guide, with reviewed source links, assumptions and limits. Long excerpts are explicitly marked and link the full text. Pass an exact canonical path or URL from ratgeber_suche, without query or fragment.",
+    description: "Liest einen veröffentlichten Ratgeber oder einen dafür ausgewiesenen Abschnitt. — Reads editorial Markdown and reviewed sources. Pass a canonical URL or a supported section URL from ratgeber_suche, without a query.",
     inputSchema: {
       type: "object",
       properties: {
-        pfad: { type: "string", description: "Pfad oder vollständige URL, z. B. /guide/klimaanlage-kippfenster.html" },
+        pfad: { type: "string", description: "Pfad oder vollständige URL; bei einem ausgewiesenen Abschnitt mit seinem Anker, z. B. /produkte.html#waeschesaeule-zubehoer." },
       },
       required: ["pfad"],
     },
@@ -1497,7 +1497,8 @@ async function mcpCallTool(name, args, env) {
         if (exact && e.u === exact.path && e.l === "de" && section?.id === exact.id &&
             typeof section.title === "string" && section.title.trim() &&
             typeof section.description === "string" && section.description.trim()) {
-          return { e: { ...e, t: section.title, d: section.description }, s: Infinity };
+          const anchor = Object.hasOwn(e.readable_sections ?? {}, exact.id) ? exact.id : null;
+          return { e: { ...e, t: section.title, d: section.description }, s: Infinity, anchor };
         }
         return { e, s: scoreEntry(e, tokens, phrase) };
       })
@@ -1508,24 +1509,29 @@ async function mcpCallTool(name, args, env) {
       return mcpToolResult(
         `Keine passende Seite zu „${a.frage}" gefunden. Übersicht aller Ratgeber: https://getecoback.com/llms.txt\n${MCP_DISCLOSURE}`);
     }
-    const lines = hits.map(({ e }) =>
-      `- ${e.t}\n  https://getecoback.com${e.u}\n  ${e.d || ""}`).join("\n");
+    const lines = hits.map(({ e, anchor }) =>
+      `- ${e.t}\n  https://getecoback.com${e.u}\n  ${e.d || ""}` +
+      (anchor ? `\n  Abschnitt: https://getecoback.com${e.u}#${anchor}` : "")).join("\n");
     return mcpToolResult(
       `${hits.length} Treffer zu „${a.frage}":\n${lines}\n\n` +
-      `Volltext einer Seite: Tool ratgeber_lesen mit dem Pfad aufrufen.\n${MCP_DISCLOSURE}`);
+      `Text lesen: Tool ratgeber_lesen mit dem Pfad oder der ausgewiesenen Abschnitts-URL aufrufen.\n${MCP_DISCLOSURE}`);
   }
   if (name === "ratgeber_lesen") {
     if (!env || !env.ASSETS) {
       return { content: [{ type: "text", text: "Seite derzeit nicht erreichbar." }], isError: true };
     }
-    const path = guidePath(a.pfad);
-    if (!path) return { content: [{ type: "text", text: "Bitte einen exakten veröffentlichten Pfad oder eine HTTPS-URL von getecoback.com aus ratgeber_suche angeben, ohne Query oder Fragment." }], isError: true };
+    const target = guideTarget(a.pfad);
+    if (!target) return mcpInputError("Gib einen exakten veröffentlichten Pfad oder eine HTTPS-URL von getecoback.com an. Ein ausgewiesener Abschnitt darf seinen Anker enthalten.");
+    const {path, anchor} = target;
     let guide;
     try {
       const entries = await publishedGuides(env.ASSETS);
       const entry = entries.find(item => item.u === path);
       if (!entry) return { content: [{ type: "text", text: "Diese Seite ist nicht im veröffentlichten MCP-Lesekatalog. Bitte ratgeber_suche verwenden." }], isError: true };
-      guide = await readGuide(env.ASSETS, entry);
+      if (anchor !== undefined && !Object.hasOwn(entry.readable_sections ?? {}, anchor)) {
+        return mcpInputError("Für diesen Abschnitt liegt kein eigener Leseauszug vor. Öffne die veröffentlichte Seite oder wähle einen ausgewiesenen Abschnitt aus ratgeber_suche.");
+      }
+      guide = await readGuide(env.ASSETS, entry, anchor);
     } catch {
       return { content: [{ type: "text", text: "Die geprüfte Textansicht ist derzeit nicht erreichbar. Bitte später erneut versuchen." }], isError: true };
     }
@@ -1533,7 +1539,9 @@ async function mcpCallTool(name, args, env) {
       `Quelle: ${guide.canonical}\nVollständige Textansicht: ${guide.mirror}\n` +
       `Gekürzt: ${guide.truncated ? "ja — vor einer Bewertung den vollständigen Text mit allen Bedingungen lesen" : "nein"}.\n\n` +
       guide.excerpt +
-      (guide.truncated ? "\n\n[Auszug beendet.]\nOriginalquellen der vollständigen Textansicht:\n" + guide.references.map(url => "- " + url).join("\n") : "") +
+      (guide.truncated ? "\n\n[Auszug beendet.]\n" +
+        (anchor === undefined ? "Originalquellen der vollständigen Textansicht:\n" : "Originalquellen dieses Abschnitts:\n") +
+        guide.references.map(url => "- " + url).join("\n") : "") +
       `\n\n${MCP_DISCLOSURE}`);
   }
   return { content: [{ type: "text", text: `Unbekanntes Tool: ${name}` }], isError: true };
@@ -1585,7 +1593,9 @@ async function handleMcp(request, env, url) {
       // 但这一行漏了,于是注册表说 hvac-btu-heat-klimaanlage、连上来的客户端却被告知是已废弃的
       // getecoback-raumklima。一个实体三个名字正是 entity stacking 最忌讳的事。
       serverInfo: { name: "hvac-btu-heat-klimaanlage", version: MCP_VERSION },
-      instructions: compact ? compactInstructions : "Entdecke Werkzeuge mit tools/list. Sende jedes zurückgegebene nextCursor als params.cursor im nächsten Aufruf. Suche nach Aufgaben in https://getecoback.com/api/mcp-tools?view=compact&limit=24 mit q oder category. Mit view=examples und tool=EXAKTER_NAME findest du geprüfte Eingaben, erwartete Ergebnisse und die Quelle. Verwende die angegebenen Einheiten, Annahmen und Grenzen. Bei Feuchte nutzt geraet_wahl dieselben Entscheidungsregeln wie die Website: fehlende Messungen bleiben unbekannt, Schäden zuerst klären, Fläche allein bestimmt keine Liter/Tag. Bei Fragen zum Kondensatablauf im Keller: entfeuchter_ablaufcheck unterscheidet Gefälle, Pumpe und Tank und nennt die Modellquelle. Antworten enthalten Quell-URLs, keine Affiliate-Kauflinks.",
+      instructions: compact ? compactInstructions +
+        " Einen ausgewiesenen Ratgeberabschnitt kannst du über ecoback_werkzeug_ausfuehren mit name ratgeber_lesen und eingaben.pfad gleich guide_url lesen." :
+        "Entdecke Werkzeuge mit tools/list. Sende jedes zurückgegebene nextCursor als params.cursor im nächsten Aufruf. Suche nach Aufgaben in https://getecoback.com/api/mcp-tools?view=compact&limit=24 mit q oder category. Mit view=examples und tool=EXAKTER_NAME findest du geprüfte Eingaben, erwartete Ergebnisse und die Quelle. Verwende die angegebenen Einheiten, Annahmen und Grenzen. Bei Feuchte nutzt geraet_wahl dieselben Entscheidungsregeln wie die Website: fehlende Messungen bleiben unbekannt, Schäden zuerst klären, Fläche allein bestimmt keine Liter/Tag. Bei Fragen zum Kondensatablauf im Keller: entfeuchter_ablaufcheck unterscheidet Gefälle, Pumpe und Tank und nennt die Modellquelle. Antworten enthalten Quell-URLs, keine Affiliate-Kauflinks.",
     });
   }
   if (method === "notifications/initialized" || (typeof method === "string" && method.startsWith("notifications/"))) {
@@ -1616,6 +1626,10 @@ async function handleMcp(request, env, url) {
       if (compact) {
         if (name === finderName) return mcpJson(id, compactSearch(CATALOG_INDEX, args));
         if (name !== runnerName) return mcpError(id, -32602, "Unknown compact tool");
+        if (args?.name === "ratgeber_lesen" && Object.keys(args).length === 2 &&
+            guideTarget(args.eingaben?.pfad)?.anchor && Object.keys(args.eingaben).length === 1) {
+          return mcpJson(id, await mcpCallTool("ratgeber_lesen", args.eingaben, env));
+        }
         if (!validCompactRun(args)) return mcpJson(id, mcpInputError("Wähle einen passenden Treffer und gib seine Eingaben als Objekt an."));
         name = args.name;
         args = args.eingaben;

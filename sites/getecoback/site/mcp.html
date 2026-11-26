@@ -81,7 +81,7 @@
 <article>
   <p><a href="#einrichten">Online verbinden</a> · <a href="#offline-installation">EcoBack lokal installieren</a></p>
   <h2 id="tools">Werkzeuge nach Aufgabe finden</h2>
-  <section id="mcp-catalog" data-catalogue="/assets/mcp-catalogue.json?v=fe486df6faeb" aria-label="Interaktiver Werkzeugkatalog" hidden>
+  <section id="mcp-catalog" data-catalogue="/assets/mcp-catalogue.json?v=7684485f4f78" aria-label="Interaktiver Werkzeugkatalog" hidden>
     <div class="catalog-filters" hidden>
       <label>Aufgabe oder Werkzeugname <input type="search" autocomplete="off" maxlength="512"></label>
       <label>Kategorie
@@ -140,7 +140,7 @@
   <div class="tool"><strong>klimaanlage_stromkosten</strong><p>Stromkosten eines Klimageräts: Watt × Stunden × Arbeitspreis × Kompressor-Auslastung.</p></div>
   <div class="tool"><strong>heizleistung_watt</strong><p>Benötigte Heizleistung in Watt für einen Raum (Infrarot/Elektro) aus Fläche und Dämmstandard — 60 W/m² Neubau, 80 Bestand, 100 Altbau — inklusive Betriebskosten pro Volllaststunde und Hinweis, ab wann zwei Panels sinnvoller sind.</p></div>
   <div class="tool"><strong>ratgeber_suche</strong><p>Durchsucht veröffentlichte Ratgeber mit vorhandener Textansicht und liefert Titel, kanonische URL und eine Kurzbeschreibung zur Aufgabe. Jeder Treffer kann mit ratgeber_lesen abgerufen werden. Optional auf Deutsch oder Englisch eingegrenzt.</p></div>
-  <div class="tool"><strong>ratgeber_lesen</strong><p>Liest die bereinigte Markdown-Ansicht mit Bedingungen, Grenzen und geprüften Quellenlinks. Lange Auszüge sind ausdrücklich als gekürzt markiert; der vollständige Text und dessen Originalquellen bleiben verlinkt. Nur exakte veröffentlichte Seitenpfade oder HTTPS-URLs dieser Website, ohne Query oder Fragment.</p></div>
+  <div class="tool"><strong>ratgeber_lesen</strong><p>Liest die redaktionelle Textansicht oder einen ausgewiesenen Abschnitt mit Bedingungen und Quellen. Verwende den exakten Seitenpfad oder die HTTPS-URL dieser Website. Eine Abschnitts-URL enthält ihren Anker. Lange Auszüge sind markiert und verlinken die vollständige Textansicht.</p></div>
   <div class="tool"><strong>taupunkt_lueften</strong><p>Vergleicht den Außentaupunkt mit einer Wandtemperatur, die 2 °C unter der Raumluft geschätzt wird. Für die Trocknungswirkung sind die Innenluftfeuchte und die gemessene kälteste Oberfläche nötig.</p></div>
 
 
@@ -267,6 +267,11 @@
   <pre><code>{"jsonrpc":"2.0","id":5,"method":"tools/call","params":{"name":"ratgeber_lesen","arguments":{"pfad":"/waeschetrockner-oder-luftentfeuchter.html"}}}</code></pre>
   <p>Die Textansicht erklärt den Vergleich bei gleicher Wäschemenge und gleichem Trocknungsgrad. Sie verlinkt die Originalquellen zum Energielabel. Rechenbeispiele sind keine Produktmessungen.</p>
   <p>Für Wärmepumpen-, Kondens- oder Ablufttrockner und Luftentfeuchter nutze den <a href="/waeschetrockner-oder-luftentfeuchter.html#laundry-check">Kostenvergleich je Ladung</a> mit zwei eigenen Messwerten. Wenn du nur den Entfeuchter gemessen hast, öffne die <a href="/waeschetrockner-oder-luftentfeuchter.html#luftentfeuchter-waesche-kosten">Einzelrechnung für den Luftentfeuchter</a>.</p>
+
+  <h2 id="ratgeber-abschnitte">Herstellerbelege im passenden Abschnitt lesen</h2>
+  <p>Wenn <code>ratgeber_suche</code> einen Abschnitt ausweist, übergib dessen Link mit Anker an <code>ratgeber_lesen</code>. So erhältst du etwa die <a href="/produkte.html#waeschesaeule-zubehoer">Angaben zum Bosch-Verbindungssatz</a> als Textauszug mit Quellen.</p>
+  <pre><code>{"jsonrpc":"2.0","id":6,"method":"tools/call","params":{"name":"ratgeber_lesen","arguments":{"pfad":"/produkte.html#waeschesaeule-zubehoer"}}}</code></pre>
+  <p>Im gehosteten Kompaktprofil nutzt du <code>ecoback_werkzeug_ausfuehren</code> mit <code>name: "ratgeber_lesen"</code> und der Abschnitts-URL in <code>eingaben.pfad</code>.</p>
 
   <h2 id="einrichten">In deinem Client einrichten</h2>
 
