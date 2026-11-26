@@ -201,7 +201,7 @@ def to_markdown(src_html, path_url, lang):
         protocol = re.search(r'<details\b[^>]*><summary>(?:Measure one load fairly: checklist|Eine Ladung fair messen: Checkliste)</summary>(.*?)</details>', laundry.group(1), re.S)
         if protocol:
             worked = re.search(r'<p data-laundry-example>(.*?)</p>', laundry.group(1), re.S)
-            if worked:
+            if worked and lang != 'de':
                 body += '<p>' + worked.group(1) + '</p>'
             if lang == 'de':
                 decisions = re.search(r'<div class="lc-evidence" id="waesche-entscheidung">(.*?)</div>', laundry.group(1), re.S)
@@ -221,6 +221,14 @@ def to_markdown(src_html, path_url, lang):
                 season_switch = re.search(r'<section\b[^>]*\bid="waesche-saisonwechsel"[^>]*>.*?</section>', laundry.group(1), re.S)
                 if season_switch:
                     body += season_switch.group()
+                overview = re.search(
+                    r'<h2 id="lc-title">[^<]+</h2>\s*<p data-laundry-comparison-method>.*?</p>'
+                    r'\s*<details class="lc-evidence" data-laundry-baseline>.*?</details>', laundry.group(1), re.S,
+                )
+                if overview:
+                    body += re.sub(r'<summary>(.*?)</summary>', r'<p><strong>\1</strong></p>', overview.group(), flags=re.S)
+                if worked:
+                    body += '<p>' + worked.group(1) + '</p>'
                 body += '<h2 id="lc-measurement">Eine Ladung fair vergleichen</h2><p>kWh für den ganzen Durchgang × Arbeitspreis. Vorbelegte Zahlen sind Rechenbeispiele, keine Produktmessungen. Gleiche Wäschemenge und gleicher Trocknungsgrad sind Voraussetzung. PNG und CSV werden lokal erstellt; Eingaben werden nicht hochgeladen.</p>' + protocol.group(1)
                 sharing = re.search(r'<p\b[^>]*data-laundry-share-note>(.*?)</p>', laundry.group(1), re.S)
                 if sharing:

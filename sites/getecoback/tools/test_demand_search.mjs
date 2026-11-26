@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {searchEntries,normalize} from '../site/assets/demand-discovery.mjs';
+import {exactGermanGuide,searchEntries,normalize} from '../site/assets/demand-discovery.mjs';
 import {ecoPublicBusinessEvent} from '../site/assets/public-engagement.mjs';
 import {calculateGasHeatThreshold} from '../site/assets/heat-gas-cost.mjs';
 import {compareSocketWatts} from '../site/assets/auto-12v-check.mjs';
@@ -218,18 +218,29 @@ test('German per-load cost searches link to the right calculator for the applian
   'Wärmepumpentrockner oder Luftentfeuchter: Was kostet eine Ladung Wäsche?',
   'Kondenstrockner und Luftentfeuchter: Stromverbrauch je Ladung vergleichen',
   'Wäschetrockner oder Luftentfeuchter – was kostet das Trocknen pro Ladung?',
- ]) assert.equal(searchEntries(index,query,'de')[0]?.entry.u,comparison,query);
+ ]) {
+  assert.deepEqual(exactGermanGuide(normalize(query)),{path:base,id:'laundry-check'},query);
+  assert.equal(searchEntries(index,query,'de')[0]?.entry.u,comparison,query);
+  assert.ok(!searchEntries(index,query,'en').some(hit=>hit.entry.u===comparison),query);
+ }
  const single=base+'#luftentfeuchter-waesche-kosten';
  assert.equal(searchEntries(index,'Ohne Wärmepumpen-Trockner: Was kostet eine Wäscheladung nur mit dem Luftentfeuchter?','de')[0]?.entry.u,single);
  for (const query of [
   'Was kostet eine Ladung Wäsche bei Kondenstrockner und Luftentfeuchter gleichzeitig?',
   'Was kostet eine Wäscheladung einschließlich Anschaffung von Trockner oder Luftentfeuchter?',
   'Was kostet ein Luftentfeuchter im Keller pro Tag?',
+  'Welche Kosten entstehen pro Saison, wenn 60 von 100 Ladungen vom Trockner zum Luftentfeuchter wechseln?',
  ]) {
+  assert.notEqual(exactGermanGuide(normalize(query))?.id,'laundry-check',query);
   const result=searchEntries(index,query,'de')[0]?.entry.u;
   assert.notEqual(result,comparison,query);
   assert.notEqual(result,single,query);
  }
+ const singleTask='Was kostet eine Ladung Wäsche mit dem Luftentfeuchter? Ein Trockner kommt wegen Platzmangel nicht infrage.';
+ assert.equal(exactGermanGuide(normalize(singleTask))?.id,'luftentfeuchter-waesche-kosten');
+ const drainAndCost='Abfluss höher als Luftentfeuchter. Was kostet eine Ladung Wäsche mit Trockner oder Luftentfeuchter?';
+ assert.equal(searchEntries(index,drainAndCost,'de')[0]?.entry.u,'/guide/luftentfeuchter-keller.html#ablauf-vor-kauf');
+ assert.notEqual(exactGermanGuide(normalize(drainAndCost))?.id,'laundry-check');
  const withoutSection=index.map(entry=>entry.u===base?{...entry,model_sections:[]}:entry);
  assert.notEqual(searchEntries(withoutSection,'Wärmepumpentrockner oder Luftentfeuchter: Was kostet eine Ladung Wäsche?','de')[0]?.entry.u,comparison);
 });
