@@ -65,14 +65,15 @@ const fixtures = new Map(Object.entries({
     conditions: 'Frage, Sprache und aktueller Ratgeberbestand beeinflussen die Treffer. Öffne einen exakten veröffentlichten Treffer mit ratgeber_lesen und zitiere dann dessen HTML-URL.',
   },
   ratgeber_lesen: {
-    page: '/waeschetrockner-oder-luftentfeuchter.html',
-    args: {pfad: '/waeschetrockner-oder-luftentfeuchter.html'},
+    page: '/guide/heizdecke-stromverbrauch.html',
+    section: '#waerme-rechner',
+    args: {pfad: '/guide/heizdecke-stromverbrauch.html#waerme-rechner'},
     expected_text: [
-      'Quelle: https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html',
-      'Vollständige Textansicht: https://getecoback.com/waeschetrockner-oder-luftentfeuchter.md',
-      'Gekürzt:',
+      'Quelle: https://getecoback.com/guide/heizdecke-stromverbrauch.html#waerme-rechner',
+      'Vollständige Textansicht: https://getecoback.com/guide/heizdecke-stromverbrauch.md',
+      '110 W',
     ],
-    conditions: 'Nur exakt veröffentlichte Pfade oder kanonische HTTPS-URLs ohne Suchparameter oder Fragment. Bei gekürztem Ergebnis die vollständige Textansicht und ihre Originalquellen lesen.',
+    conditions: 'Verwende den veröffentlichten Pfad oder die kanonische HTTPS-URL dieser Website ohne Suchparameter. Für einen Abschnitt übernimm den exakten Anker aus ratgeber_suche. Bei gekürztem Ergebnis lies auch die vollständige Textansicht und ihre Originalquellen.',
   },
 }));
 
