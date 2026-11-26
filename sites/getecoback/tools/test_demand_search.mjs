@@ -1279,3 +1279,9 @@ test('German laundry cost questions without room for a dryer lead to single-run 
  for(const q of ["Was kostet es, Wäsche mit einem Luftentfeuchter zu trocknen? Ein Trockner kommt wegen Platzmangel nicht infrage.", "Luftentfeuchter 400 W zum Wäschetrocknen – Stromkosten? Ein Wäschetrockner passt bei uns nicht.", "Mein Luftentfeuchter hat laut Typenschild 400 Watt. Was kostet eine Ladung Wäsche?"]) assert.equal(searchEntries(index,q,'de')[0]?.entry.u,target,q);
  for(const q of ["Wärmepumpentrockner oder Luftentfeuchter: Was kostet eine Ladung Wäsche?", "Lohnt sich ein Luftentfeuchter im Winter, wenn manche Ladungen weiter in den Trockner gehen?", "Was kostet eine Ladung Wäsche, wenn Trockner und Luftentfeuchter gleichzeitig laufen?", "Was kostet der Luftentfeuchter mit 400 W pro Tag im Keller?"]) assert.notEqual(searchEntries(index,q,'de')[0]?.entry.u,target,q);
 });
+
+test('German EX105 identity searches reach the exact offer check without redirecting nearby models',()=>{
+ const target='/guide/pinguino-pac-ex105-test.html#ex105-angebot';
+ for(const query of ["Welche EAN hat der De’Longhi PAC EX105 A+++?", "PAC EX105 kaufen: Im Angebot steht 0151454025 und PAC EX93. Passt es?", "Welches Gerät hat die EAN 8004399026445?"]) assert.equal(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+ for(const query of ["Welche EAN hat der PAC EX93 Extreme?", "Welches Fensterkit passt zum PAC EX105 am Kippfenster?", "Sind die 63 dB beim PAC EX105 Schallleistung?", "Welche EAN hat der PAC N90?"]) assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+});

@@ -631,15 +631,18 @@ const ex105Path='/guide/pinguino-pac-ex105-test.html';
 export const highCoolingLoadDecision={path:'/guide/btu-rechner.html',id:'hohe-kuehllast',tool:'ratgeber_suche'};
 export const ex105Exhaust={path:ex105Path,id:'ex105-ablufteinbau',tool:'ratgeber_suche'};
 export const ex105Sound={path:ex105Path,id:'lautstaerke',tool:'ratgeber_suche'};
+export const ex105Offer={path:ex105Path,id:'ex105-angebot',tool:'ratgeber_suche'};
 
 function exactEx105Evidence(query) {
-  const model=/\b(?:(?:pac[ -]*)?ex[ -]*105a?|0151454026)\b/;
+  const model=/\b(?:(?:pac[ -]*)?ex[ -]*105a?|0151454026|8004399026445)\b/;
   const another=/\b(?:(?:pac[ -]*)?ex[ -]*(?:100|120|130)a?|(?:pac[ -]*)?n[ -]*90|portasplit)\b/;
   if(!model.test(query)||another.test(query))return null;
-  if(/\b(?:abluftschlauch\w*|schlauchdurchmesser|innen?durchmesser|aussen?durchmesser|fensterhalterung\w*|fensterstutzen\w*|kippfenster\w*|dlsa[ -]*012)\b/.test(query))
+  const namesEx93=/\b(?:(?:pac[ -]*)?ex[ -]*93(?:[ -]*extreme)?|0151454025)\b/.test(query);
+  if(!namesEx93 && /\b(?:abluftschlauch\w*|schlauchdurchmesser|innen?durchmesser|aussen?durchmesser|fensterhalterung\w*|fensterstutzen\w*|kippfenster\w*|dlsa[ -]*012)\b/.test(query))
     return ex105Exhaust;
-  if(/\b(?:lautstaerk\w*|wie laut|schalldruck\w*|schallleistung\w*|63\s*db)\b/.test(query))
+  if(!namesEx93 && /\b(?:lautstaerk\w*|wie laut|schalldruck\w*|schallleistung\w*|63\s*db)\b/.test(query))
     return ex105Sound;
+  if(/\b(?:8004399026445|ean(?:[ -]*13)?|gtin|artikelnummer\w*|hersteller(?:nummer|kennung)|sku|modell(?:nummer|kennung)|produktcode|barcode|angebot\w*|kauf\w*|haendler\w*|amazon)\b/.test(query))return ex105Offer;
   return null;
 }
 

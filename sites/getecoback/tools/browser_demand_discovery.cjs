@@ -25,6 +25,11 @@ async function checkExactDelonghiPurchase(page,base){
   assert.equal(await page.locator('#'+anchor+' a[rel~="sponsored"]').count(),1,'One link in the authored offer');
   assert.equal(await page.locator('#eb-toppick,#eb-sticky,#eb-usmarket,#eb-pu').count(),0,'Generic offers must stay out of exact guides');
   assert(await page.locator('#'+anchor+' a[href="#raumgroesse"]').isVisible(),'The fit check precedes the shop decision');
+  if(anchor==='ex105-angebot'){
+   const offer=page.locator('#'+anchor);
+   assert(await offer.getByText('EAN 8004399026445',{exact:true}).isVisible(),'Show the German EAN before the shop link');
+   assert(await offer.getByText('PAC EX93 Extreme · 0151454025',{exact:true}).isVisible(),'Show the nearby but different EX93');
+  }
  }
  return outcomes.length*5;
 }
@@ -92,6 +97,7 @@ async function checkGermanFocusedDiscovery(browser,base){
     ex105Page+'#ex105-ablufteinbau'],
   ['Bei meinem DeLonghi PAC EX105 A+++ fehlt die Fensterhalterung. Passt ein 150-mm-Schlauch an mein Kippfenster?',
     ex105Page+'#ex105-ablufteinbau'],
+  ['Welche EAN hat der De’Longhi PAC EX105 A+++?',ex105Page+'#ex105-angebot'],
   ['De’Longhi PAC EX105 A+++: Sind 63 dB Schalldruck oder Schallleistung?',
     ex105Page+'#lautstaerke'],
   ['Meine Wäsche trocknet im Keller langsam und es riecht muffig. Was tun?',
