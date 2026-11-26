@@ -18,6 +18,8 @@ Notiere Temperatur, relative Luftfeuchtigkeit und sichtbare feuchte Stellen übe
 
 Die Verbraucherzentrale erläutert: Kalte Außenluft kann im Winter beim Lüften Feuchtigkeit abführen; warme, feuchte Sommerluft kann im kühlen Keller dagegen ungünstig sein. Vergleiche die Bedingungen, statt allein nach Uhrzeit zu lüften. Unser [Taupunkt-Check für den Keller](https://getecoback.com/guide/keller-lueften-sommer.html) hilft bei dieser Einordnung. Bei nassen Bauteilen, Wassereintritt oder wiederkehrendem Schimmel fachliche Unterstützung einholen.
 
+**Muffiger Keller bei 12 °C und oft unter 60 %?** Halte fest, wo der Geruch auftritt und ob er nach trockenen oder regnerischen Tagen wiederkehrt. Ein Raumwert beschreibt die Luft am Messpunkt. Kalte oder verdeckte Bauteile können trotzdem feucht sein. Bei anhaltendem Geruch zuerst die Ursache mit der Hausverwaltung oder einem Fachbetrieb klären und die Anschaffung zurückstellen. [Umweltbundesamt zu verdecktem Schimmel und muffigem Geruch](https://www.umweltbundesamt.de/presse/pressemitteilungen/schimmel-vorbeugen-aufspueren-beseitigen).
+
 ## 2. Kalter Keller bei 10–15 °C: Kompressor oder Adsorption?
 
 **Bei 10 °C zählt der Prüfwert bei 10 °C.** Meaco Deutschland nennt für den **MeacoDry Arete One 20L** bei jeweils 60 % relativer Luftfeuchte **3,4 l/Tag bei 180 W (10 °C)** und **8,5 l/Tag bei 216 W (20 °C)**. Das sind Hersteller-Prüfwerte.
@@ -175,7 +177,7 @@ Kaufgründe und genaue Varianten
 | [Bosch Dry 4000](https://getecoback.com/guide/luftentfeuchter-keller.html#modell-bosch-d4000-eu) | Drei Betriebsmodi statt vieler Einstellungen | D4000-EU · Artikel 7733703558 |
 | [MeacoDry Arete Two 12L](https://getecoback.com/guide/luftentfeuchter-keller.html#modell-meaco-two-12) | App-Steuerung und kleinerer Tank | Arete Two 12L · nicht One oder Two 20L |
 | [Stadler Form Lukas](https://getecoback.com/guide/luftentfeuchter-keller.html#modell-stadler-lukas) | Schwenkfunktion und Wäschemodus | Lukas weiss L-031E · nicht Lukas little oder Pro |
-| [Comfee MDDF-20DEN7](https://getecoback.com/guide/luftentfeuchter-keller.html#modell-comfee-mddf20) | Feuchteregelung mit Timer | MDDF-20DEN7 · ohne WF |
+| [Comfee MDDF-20DEN7](https://getecoback.com/guide/luftentfeuchter-keller.html#modell-comfee-mddf20) | Feuchteregelung mit Timer | MDDF-20DEN7 · ohne WF · Artikel 10000651 |
 | [MeacoDry Arete One 20L](https://getecoback.com/guide/luftentfeuchter-keller.html#modell-meaco-one-20) | Leistungsdaten unter konkreten Raumbedingungen | Arete One 20L · nicht Two oder One 25L |
 | [MeacoDry Arete One 25L](https://getecoback.com/guide/luftentfeuchter-keller.html#modell-meaco-one-25) | Weitere Kapazitätsvariante derselben Baureihe | Arete One 25L · nicht Two 25L |
 
@@ -203,6 +205,7 @@ Quelle: [Meaco.de: deutsche Anbieter- und Datenseite](https://www.meaco.de/produ
 Lukas weiss L-031E · nicht Lukas little oder Pro
 4,2-Liter-Tank, vier Stufen, App und 100-cm-Drainageschlauch laut Hersteller. HEPA-Filter ist optional.
 **Vor dem Kauf:** Die Betriebsgrenze bis 5 °C belegt keine bestimmte Leistung im kalten Keller. Die genannten 260 W sind kein gemessener Verbrauch pro Wäscheladung.
+**Prüfwerte bei Kälte:** Stadler Form nennt 13–35 °C als optimalen Bereich. Bei 10 °C und 60 % relativer Feuchte bleibt die Entzugsleistung in Litern pro Tag offen. Herstellerangaben geprüft am 26.11.2026.
 **Wasserablauf:** Beim Lukas weiss L-031E gehört ein 100-cm-Schlauch zum Lieferumfang. Sein Ende muss tiefer liegen als der Anfang. Quelle: Stadler Form Deutschland, geprüft am 18.11.2026.
 Quelle: [Stadler Form Deutschland: Lukas](https://www.stadlerform.com/de-de/luftentfeuchter/lukas-weiss-l-031e)
 

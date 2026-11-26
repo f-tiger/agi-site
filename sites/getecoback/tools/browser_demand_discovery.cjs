@@ -225,6 +225,8 @@ async function checkGermanFocusedDiscovery(browser,base){
   equal((await search(glazingQuery))[0],{href:glazing,language:'de'},'Cloudy insulated glass reaches the existing diagnosis');
   const curtain='/guide/thermovorhang-ratgeber.html#thermovorhang-bahnenbedarf';
   const roomVentilation='/guide/richtig-lueften-im-winter.html#lueften-vorher-nachher';
+  equal((await search('Stadler Form Lukas L-031E: Wieviel entzieht er bei 10 Grad im Keller?'))[0],
+   {href:'/guide/luftentfeuchter-keller.html#modell-stadler-lukas',language:'de'},'German Lukas searches find the confirmed cold-room evidence');
   equal((await search('Raumthermostat im Wohnzimmer schaltet ab. Warum bleibt das Bad kalt?'))[0],
    {href:'/guide/heizkoerper-wird-nicht-warm.html#referenzraum-warm-nebenraum-kalt',language:'de'},'Diagnose before suggesting a smart valve');
   equal((await search('Wie viele Thermovorhänge brauche ich für ein 120 cm breites Fenster?'))[0],

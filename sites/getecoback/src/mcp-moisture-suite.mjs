@@ -270,13 +270,14 @@ export const moistureSuite = [
       const source = cellarTestSources[model];
       const coldEvidence = source
         ? source.points.map(point => `${point.c} °C und ${point.rh} % relative Feuchte: ${germanNumber.format(point.litres)} L/Tag bei ${point.watts} W.`).join(' ')
-        : 'Die genannte Betriebsgrenze von 5 °C liefert keinen Entzugswert für einen kalten Keller.';
+        : 'Die genannte Betriebsgrenze von 5 °C liefert keinen Entzugswert für einen kalten Keller. ' + product.cold_evidence.text;
       return {
         variant:product.variant,
         cold_evidence:coldEvidence,
         source_url:source?.source ?? product.source,
         source_label:source ? 'Meaco DE, Herstellerdaten' : product.source_label,
-        ...(source ? {source_checked:source.checked, model_guide_url:'https://getecoback.com' + cellarGuide + '#modell-' + model} : {}),
+        source_checked:source?.checked ?? product.cold_evidence.checked,
+        model_guide_url:'https://getecoback.com' + cellarGuide + '#modell-' + model,
         catalog_checked:catalog.checked,
         assumption:'Ein Vergleich erfordert dieselben Angaben zu Temperatur und relativer Feuchte. Betriebspunkt, Einsatzgrenze und Geräteleistung sind unterschiedliche Größen.',
       };

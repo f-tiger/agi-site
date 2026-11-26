@@ -58,6 +58,10 @@
       "reason": "Schwenkfunktion und Wäschemodus",
       "facts": "4,2-Liter-Tank, vier Stufen, App und 100-cm-Drainageschlauch laut Hersteller. HEPA-Filter ist optional.",
       "limit": "Die Betriebsgrenze bis 5 °C belegt keine bestimmte Leistung im kalten Keller. Die genannten 260 W sind kein gemessener Verbrauch pro Wäscheladung.",
+      "cold_evidence": {
+        "checked": "2026-11-26",
+        "text": "Stadler Form nennt 13–35 °C als optimalen Bereich. Bei 10 °C und 60 % relativer Feuchte bleibt die Entzugsleistung in Litern pro Tag offen."
+      },
       "source": "https://www.stadlerform.com/de-de/luftentfeuchter/lukas-weiss-l-031e",
       "source_label": "Stadler Form Deutschland: Lukas",
       "status": "verified",

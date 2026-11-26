@@ -386,6 +386,11 @@ test('German cellar conditions match only reviewed model test points, with cause
   const lookup = async model => (await h.rpc('tools/call', {
     name:'entfeuchter_kalt_modellbeleg', arguments:{model},
   })).structuredContent;
+  const lukas = await lookup('stadler-lukas');
+  assert.equal(lukas.model_guide_url, origin + cellar + '#modell-stadler-lukas');
+  assert.equal(lukas.source_checked,'2026-11-26');
+  assert.match(lukas.cold_evidence,/5 °C liefert keinen Entzugswert/);
+  assert.match(lukas.cold_evidence,/10 °C und 60 %.*Litern pro Tag offen/);
   const one = await lookup('meaco-one-20');
   assert.match(one.source_url, /^https:\/\/eu\.meaco\.com\/products\/.*one-20l/);
   assert.match(one.cold_evidence, /10 °C und 60 % relative Feuchte: 3,4 L\/Tag bei 180 W/);
