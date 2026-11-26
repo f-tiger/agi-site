@@ -977,10 +977,12 @@ async function handleTop(request, env, ctx) {
 // 2026-09-26:D1 失败不再静默回空数组 200(读侧 measure.py 曾专门写「空 = 疑似故障」来猜),
 // 改回 503 {ok:false} + no-store;成功形状不变(events/pages/zero_hits/refs/mcp),走 cachedJson 1 小时。
 async function handleTrend(request, env, ctx) {
-  return cachedJson(request, env, ctx, 3600, () => trendCompute(env));
+  const views = new URL(request.url).searchParams.getAll("view");
+  const auditOnly = request.method === "GET" && views.length === 1 && views[0] === "affiliate_audit";
+  return cachedJson(request, env, ctx, 3600, () => trendCompute(env, auditOnly), auditOnly ? ["view"] : []);
 }
 
-async function trendCompute(env) {
+async function trendCompute(env, auditOnly) {
   const headers = {
     "content-type": "application/json; charset=utf-8",
     "cache-control": "public, max-age=3600",
@@ -989,6 +991,8 @@ async function trendCompute(env) {
   const noStore = { ...headers, "cache-control": "no-store" };
   if (!env.EVENTS) return new Response(JSON.stringify({ ok: false, error: "no_db" }), { status: 503, headers: noStore });
   try {
+    const readAudit = () => affiliateAudit(env.EVENTS, ref => srcBucket(srcHost(ref), 'getecoback.com'));
+    if (auditOnly) return new Response(JSON.stringify({affiliate_audit: await readAudit()}), {headers});
     const ev = await env.EVENTS.prepare(
       "SELECT name, " +
       "SUM(CASE WHEN day >= date('now','-7 day') THEN 1 ELSE 0 END) AS n7, " +
@@ -1043,7 +1047,7 @@ async function trendCompute(env) {
       mcp_complete_week: completeWeek,
       mcp_compact_complete_week: compactCompleteWeek,
       mcp_n90_compact_complete_week: n90CompactCompleteWeek,
-      affiliate_audit: await affiliateAudit(env.EVENTS, ref => srcBucket(srcHost(ref), 'getecoback.com')),
+      affiliate_audit: await readAudit(),
     }), { headers });
   } catch (e) {
     return new Response(JSON.stringify({ ok: false, error: "query_failed" }), { status: 503, headers: noStore });

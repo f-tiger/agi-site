@@ -314,6 +314,57 @@ print(json.dumps([dict(row) for row in db.execute(sys.stdin.read())]))`;
   assert.deepEqual(report.mcp.find(row=>row.tool===null),{tool:null,n:1});
   assert.equal(report.mcp_complete_week.completed_calls,4);
   assert.equal(report.affiliate_audit.weeks.at(-1).affiliate_clicks,1);
+
+  const statements = [];
+  const auditDb = {prepare(sql) {
+    statements.push(sql);
+    if (sql !== AUDIT_SQL) throw Error('Auxiliary query unavailable');
+    return env.EVENTS.prepare(sql);
+  }};
+  const base = 'https://getecoback.com/api/trend';
+  const audit = await worker.fetch(new Request(base + '?view=affiliate_audit'),{EVENTS:auditDb},{});
+  assert.equal(audit.status,200);
+  assert.equal(audit.headers.get('access-control-allow-origin'),'*');
+  assert.deepEqual(await audit.json(),{affiliate_audit:report.affiliate_audit});
+  assert.deepEqual(statements,[AUDIT_SQL]);
+  const full = await worker.fetch(new Request(base),{EVENTS:auditDb},{});
+  assert.equal(full.status,503);
+  assert.deepEqual(await full.json(),{ok:false,error:'query_failed'});
+});
+
+test('the affiliate trend view and default response have separate canonical cache keys', async t => {
+  const entries = new Map();
+  const descriptor = Object.getOwnPropertyDescriptor(globalThis,'caches');
+  Object.defineProperty(globalThis,'caches',{configurable:true,value:{default:{
+    match(key) { return entries.get(key.url)?.clone(); },
+    put(key,response) { entries.set(key.url,response); },
+  }}});
+  t.after(() => {
+    if (descriptor) Object.defineProperty(globalThis,'caches',descriptor);
+    else delete globalThis.caches;
+  });
+  const base = 'https://getecoback.com/api/trend';
+  const env = {EVENTS:{prepare() { return {all:async () => ({results:[]})}; }}};
+  const read = (suffix,bindings=env) => worker.fetch(new Request(base + suffix),bindings,{});
+  const view = '?view=affiliate_audit';
+  for (const [bindings,error] of [[{},'no_db'],[{EVENTS:{prepare() { throw Error('D1 failed'); }}},'query_failed']]) {
+    const failure = await read(view,bindings);
+    assert.equal(failure.status,503);
+    assert.equal(failure.headers.get('cache-control'),'no-store');
+    assert.equal(failure.headers.get('access-control-allow-origin'),'*');
+    assert.deepEqual(await failure.json(),{ok:false,error});
+  }
+  assert.equal(entries.size,0);
+  assert.deepEqual(Object.keys(await (await read(view)).json()),['affiliate_audit']);
+  assert.equal((await read(view + '&__probe=1',{})).status,200);
+  const full = await (await read('')).json();
+  assert.ok(Array.isArray(full.events));
+  const nonGet = await worker.fetch(new Request(base + view,{method:'POST'}),{},{});
+  assert.deepEqual(await nonGet.json(),full);
+  for (const suffix of ['?view=unknown','?view=affiliate_audit&view=other']) {
+    assert.deepEqual(await (await read(suffix,{})).json(),full);
+  }
+  assert.deepEqual([...entries.keys()].sort(),[base+'?v=dev',base+'?v=dev&view=affiliate_audit']);
 });
 
 test('existing trend fails visibly when the audit query fails',async()=>{
