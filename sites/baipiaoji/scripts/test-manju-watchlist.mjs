@@ -34,5 +34,5 @@ test('session revoked between authorization and SQL write cannot save; bounded r
  h.setBeforeStatement(null);const b=await h.account('rate_user');for(let version=0;version<60;version++)assert.equal((await h.call(b,save(b,version,[]))).status,200);assert.equal((await h.call(b,save(b,60))).status,429);h.sql.close();
 });
 test('cloud analytics accept fixed catalog actions and never identity/content payloads',()=>{
- for(const action of ['save','restore','delete']){assert(parseManjuEvent('/manju/cloud_'+action+'/catalog',ids));assert(!parseManjuEvent('/manju/cloud_'+action+'/'+ids[0],ids));assert(!parseManjuEvent('/manju/cloud_'+action+'/private@example.test',ids));assert(businessEvent('baipiaoji.com','/manju/',{name:'manju_cloud_'+action}));assert.equal(businessEvent('baipiaoji.com','/manju/',{name:'manju_cloud_'+action,account_id:'private'}),null);}
+ for(const action of ['signup','save','restore','delete']){assert(parseManjuEvent('/manju/cloud_'+action+'/catalog',ids));assert(!parseManjuEvent('/manju/cloud_'+action+'/'+ids[0],ids));assert(!parseManjuEvent('/manju/cloud_'+action+'/private@example.test',ids));assert(businessEvent('baipiaoji.com','/manju/',{name:'manju_cloud_'+action}));assert.equal(businessEvent('baipiaoji.com','/manju/',{name:'manju_cloud_'+action,account_id:'private'}),null);}
 });

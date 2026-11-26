@@ -113,6 +113,9 @@ test('Every form workbench has the correct property and fixed tool id',()=>{
 });
 
 test('BPJ homepage accepts fixed labels only and keeps repeated clicks',()=>{
+ for(const destination of ['manju','trade-workbench','ai-tool-workspace','allowance-changes','site-report']){
+  assert.deepEqual(businessEvent('baipiaoji.com','/en/',{name:'home:ai-tools:'+destination}),{name:'home_click',home_block:'ai-tools',home_destination:destination,site_edition:'en',repeat:true});
+ }
  assert.deepEqual(businessEvent('baipiaoji.com','/en/',{name:'home:hero:tool-directory'}),{name:'home_click',home_block:'hero',home_destination:'tool-directory',site_edition:'en',repeat:true});
  for(const [host,path,detail] of [['baipiaoji.com','/tools/grok',{name:'home:hero:toolbox'}],['getecoback.com','/',{name:'home:hero:toolbox'}],['baipiaoji.com','/',{name:'home:SECRET:toolbox'}],['baipiaoji.com','/',{name:'home:hero:https://private.invalid'}],['baipiaoji.com','/',{name:'home:hero:toolbox',query:'SECRET'}]])assert.equal(businessEvent(host,path,detail),null);
 });
@@ -257,6 +260,11 @@ test('quote workflow accepts fixed public outcomes, never content or private mem
 });
 test('trade workbench measures fixed actions on exact BPJ tool routes',()=>{
  const slug='fx-bank-quote-unit', route='/studio/trade-tools/'+slug;
+ const signup={name:'trade_workbench_signup'};
+ for(const hub of ['/studio/trade-tools/','/en/studio/trade-tools/']) {
+  assert.deepEqual(businessEvent('baipiaoji.com',hub,signup),{...signup,tool_id:'trade-workbench',repeat:true});
+  assert.equal(businessEvent('baipiaoji.com',hub,{...signup,email:'private'}),null);
+ }
  for(const pathname of [route,'/en'+route])for(const action of ['signup','run','example','membership_open','csv']){
   const name='trade_workbench_'+action;
   assert.deepEqual(businessEvent('baipiaoji.com',pathname,{name}),{name,tool_id:slug,repeat:true});

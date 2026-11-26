@@ -23,6 +23,10 @@ assert.equal(r.unclassified_records,1);assert.equal(r.entries.find(x=>x.block===
 assert.equal(r.daily.reduce((sum,d)=>sum+d.clicks,0),r.clicks);assert.equal(r.entries.reduce((sum,d)=>sum+d.n,0),r.clicks);
 assert(!JSON.stringify(r).includes('customer-private-name'));assert(!JSON.stringify(r).includes('token=secret'));
 assert.equal(parseHomepageClick('/discovery/share/copy'),null);
+for(const [path,destination] of [['/manju/','manju'],['/en/studio/trade-tools/','trade-workbench'],['/en/studio/ai/csv-to-json','ai-tool-workspace'],['/changes.html','allowance-changes'],['/report','site-report']]){
+ assert.equal(parseHomepageClick('/home/hero'+path).destination,destination);
+ assert.equal(parseHomepageClick('/home/hero'+path+'?query=private'),null);
+}
 const plan=db.prepare('EXPLAIN QUERY PLAN '+HOMEPAGE_SQL).all('2026-09-22','2026-10-01').map(x=>x.detail).join(' ');
 assert.match(plan,/SEARCH hits USING INDEX hits_events/);assert(!plan.includes('SCAN hits'));
 assert.equal((await readHomepageSignals({prepare(){throw Error('unavailable')}},'2026-09-24','2026-10-01')).clicks,null);

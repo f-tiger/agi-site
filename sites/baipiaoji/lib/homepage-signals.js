@@ -20,6 +20,9 @@ export const HOME_DESTINATIONS = {
   '/coding-quota-board':'coding-quota','/tokenizer':'tokenizer',
   '/llm-api-calculator':'api-calculator','/subscription-audit':'subscription-audit',
   '/stack-builder':'stack-builder','/upgrade':'paid-tiers','/vs':'comparisons',
+  '/manju':'manju','/ai-video':'ai-video','/studio/trade-tools':'trade-workbench','/studio/trade':'trade-leads',
+  '/changes':'allowance-changes','/publish-check':'commercial-use','/report':'site-report','/method':'source-method',
+  '/studio/table-review':'table-review',
 };
 export function parseHomepageClick(path) {
   const match = String(path || '').match(/^\/home\/([a-z0-9-]{1,40})(\/[^?#\s]*)$/);
@@ -28,7 +31,8 @@ export function parseHomepageClick(path) {
   const block = HOME_BLOCKS.includes(match[1]) ? match[1] : 'legacy-other';
   const destination = HOME_DESTINATIONS[target] || (target.startsWith('/ext/') ? 'external-link' :
     target.startsWith('/tools/') ? 'tool-profile' : target.startsWith('/c/') ? 'tool-category' :
-    target.startsWith('/agents/') ? 'agent-directory' : 'other-destination');
+    target.startsWith('/agents/') ? 'agent-directory' : target.startsWith('/studio/ai/') ? 'ai-tool-workspace' :
+    'other-destination');
   return {block,destination};
 }
 

@@ -96,6 +96,39 @@ try{
  const executablePath=process.env.PILOT_CHROMIUM||process.env.WORKBENCH_CHROMIUM;
  browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{}),args:['--no-sandbox','--disable-dev-shm-usage','--no-zygote','--disable-gpu']});
  let groups=0;
+ for (const [lang,next,expected,label,intro] of [
+  ['zh','/manju/#mj-cloud','/manju/?__ci=1#mj-cloud',/返回片单保存区/,/返回帧选手动保存/],
+  ['en','/en/studio/trade-tools/','/en/studio/trade-tools/?__ci=1',/Back to the trade tools/,/10 runs a day/],
+  ['en','/en/studio/trade-tools/fx-bank-quote-unit','/en/studio/trade-tools/fx-bank-quote-unit?__ci=1',/Back to your trade tool/,/10 runs a day/],
+ ]) {
+  const f=await fixture({lang,google:{}});
+  await f.open('&next='+encodeURIComponent(next));
+  const continuation=f.page.locator('#account-return');
+  assert.match(await f.page.locator('#account-page-intro').textContent(),intro);
+  assert(await continuation.isHidden(),'the account dashboard is gated until sign-in');
+  await f.page.waitForFunction(()=>!!window.__gisOptions);
+  await f.page.evaluate(()=>window.__gisOptions.callback({credential:'contextual-synthetic-proof'}));
+  await continuation.waitFor({state:'visible'});
+  assert.equal(await continuation.getAttribute('href'),expected);
+  assert.match(await continuation.textContent(),label);
+  await f.page.waitForFunction(()=>document.activeElement?.id==='account-return');
+  assert.match(new URL(f.page.url()).pathname,/\/account$/,'return remains an explicit action');
+  assert.equal(f.posts('register').length,0);
+  await f.context.close();
+  groups++;
+ }
+ for(const [next,expected] of [
+  ['/manju/#other-fragment','/manju/'],
+  ['https://baipiaoji.com//outside.example/',null],
+ ]) {
+  const f=await fixture({lang:'zh',user:USER});
+  await f.open('&next='+encodeURIComponent(next));
+  const continuation=f.page.locator('#account-return');
+  assert.equal(await continuation.getAttribute('href'),expected);
+  assert.equal(await continuation.isVisible(),expected!==null);
+  await f.context.close();
+  groups++;
+ }
  for(const lang of ['zh','en']){
   const f=await fixture({lang,google:{},holdCredential:true,credentialResult:{state:'onboarding',email:USER.email}});await f.open();
   await f.page.waitForFunction(()=>!!window.__gisOptions);

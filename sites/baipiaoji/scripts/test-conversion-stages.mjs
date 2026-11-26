@@ -112,17 +112,21 @@ async function tradeBeacon({p=tradePath,l='en',e='biz',origin='https://baipiaoji
 }
 await tradeBeacon();
 await tradeBeacon({l:'zh',ref:'https://baipiaoji.com/studio/trade-tools/'+tradeTool,p:'/trade-workbench/'+tradeTool+'/example'});
+const directorySignup='/trade-workbench/directory/signup';
+const tradeHub='https://baipiaoji.com/en/studio/trade-tools/';
+await tradeBeacon({p:directorySignup,ref:tradeHub});
 for (const opt of [
  {e:''},{e:'calc'}, {p:tradePath+'?customer=Alice'}, {p:'/trade-workbench/unknown-slug/run'},
  {p:'/trade-workbench/'+tradeTool+'/preview'}, {l:'zh'}, {l:'ci'}, {l:'de'}, {origin:''},
  {origin:'https://other.example'}, {addHeaders:{'sec-fetch-site':'cross-site'}},
  {ref:'https://baipiaoji.com/en/studio/trade-tools/fx-remittance-net'},
+ {p:directorySignup},{p:'/trade-workbench/directory/run',ref:tradeHub},{ref:tradeHub},
  {ref:'https://baipiaoji.com/en/studio/trade-tools/'+tradeTool+'?__qa=1'},
  {url:'https://baipiaoji.com/api/hit?__probe=1'}, {addHeaders:{dnt:'1'}}, {addHeaders:{'sec-gpc':'1'}},
  {addHeaders:{'user-agent':'bpj-ci'}}, {addHeaders:{'user-agent':'HeadlessChrome'}},
  {cf:{country:'US',botManagement:{verifiedBot:true}}},
 ]) await tradeBeacon(opt);
-assert.deepEqual(tradeRows.map(row=>row.slice(1)),[[tradePath,'en','','','biz'],['/trade-workbench/'+tradeTool+'/example','zh','','','biz']]);
+assert.deepEqual(tradeRows.map(row=>row.slice(1)),[[tradePath,'en','','','biz'],['/trade-workbench/'+tradeTool+'/example','zh','','','biz'],[directorySignup,'en','','','biz']]);
 assert.deepEqual(out.accounts,{created:2,new_accounts_currently_email_verified:1,total_non_test:4,total_currently_email_verified:3});
 assert.equal(out.account_scope,'fleet_shared_account_pool');
 assert.equal(out.accounts_daily.length,28);

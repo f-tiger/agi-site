@@ -5,10 +5,34 @@ const directory = document.querySelector('[data-trade-directory]');
 const params = new URLSearchParams(location.search);
 const qa = ['__ci','__qa','qa','__probe','ci'].some(key=>params.has(key));
 
+function trackTrade(slug,action) {
+  try {
+    if (location.hostname!=='baipiaoji.com'||qa||navigator.webdriver||navigator.doNotTrack==='1'||navigator.globalPrivacyControl||localStorage.getItem('fleet_ga4_choice_v1')==='denied') return;
+    window.bpjEv?.('biz','/trade-workbench/'+slug+'/'+action);
+    window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:'trade_workbench_'+action}}));
+  } catch {}
+}
+
+function markQa(link) {
+  if (!qa) return;
+  const href = new URL(link.href);
+  href.searchParams.set('__ci','1');
+  link.href = href.href;
+}
+
 if (directory) {
   const input = directory.querySelector('#trade-search');
   const groups = [...directory.querySelectorAll('.trade-category')].map(section=>({section,items:[...section.querySelectorAll('li')]}));
   const status = directory.querySelector('[data-trade-search-status]');
+  const join = directory.querySelector('[data-trade-directory-join]');
+  if (join) {
+    const gate = join.closest('[data-trade-directory-gate]');
+    const showForGuests = user => { gate.hidden = !!user; };
+    showForGuests(window.bpjAccount?.state?.user);
+    document.addEventListener('bpj-account-state',event=>showForGuests(event.detail?.user));
+    markQa(join);
+    join.addEventListener('click',()=>trackTrade('directory','signup'));
+  }
   input.parentElement.hidden = false;
   input.addEventListener('input',()=>{
     const tokens = input.value.toLowerCase().trim().split(/\s+/).filter(Boolean);
@@ -56,18 +80,8 @@ if (root) {
     status.textContent = message;
     status.toggleAttribute('data-error',error);
   }
-  function track(action) {
-    try {
-      if (location.hostname!=='baipiaoji.com'||qa||navigator.webdriver||navigator.doNotTrack==='1'||navigator.globalPrivacyControl||localStorage.getItem('fleet_ga4_choice_v1')==='denied') return;
-      window.bpjEv?.('biz','/trade-workbench/'+root.dataset.tradeTool+'/'+action);
-      window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:'trade_workbench_'+action}}));
-    } catch {}
-  }
-  for (const link of [join,member]) if (qa) {
-    const href = new URL(link.href);
-    href.searchParams.set('__ci','1');
-    link.href = href.href;
-  }
+  const track = action => trackTrade(root.dataset.tradeTool,action);
+  for (const link of [join,member]) markQa(link);
   join.addEventListener('click',()=>track('signup'));
   member.addEventListener('click',()=>track('membership_open'));
 

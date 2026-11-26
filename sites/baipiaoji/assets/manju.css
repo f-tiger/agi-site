@@ -39,3 +39,8 @@
 /* Category navigation remains reachable on narrow screens. */
 @media(max-width:540px){.mj-header nav{flex-wrap:wrap;row-gap:4px;max-width:100%}.mj-header nav>.mj-creator-nav{flex-shrink:0}}
 .mj-category-table{table-layout:fixed}.mj-category-table th,.mj-category-table td{min-width:0;white-space:normal;text-align:left;font-size:14px;padding:10px;overflow-wrap:anywhere}.mj-category-table th:first-child{width:22%}.mj-category-table th:nth-child(2){width:27%}
+
+.mj-save-account{display:block;width:100%;box-sizing:border-box;margin:.6rem 0;padding:.55rem .7rem;border-left:3px solid #59654f;background:#f1f4ed;color:#2f3a29;font-size:.9rem;line-height:1.45;overflow-wrap:anywhere}
+.mj-save-account[hidden]{display:none}
+.mj-save-account a{padding-inline:.15em;color:inherit;text-decoration:underline;text-underline-offset:.18em}
+#mj-cloud{scroll-margin-top:1rem}

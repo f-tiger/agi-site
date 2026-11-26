@@ -23,8 +23,27 @@
   }
   document.addEventListener('manju:action',e=>{if(location.pathname==='/manju/video-fit'&&videoTaskActions.includes(e.detail))event(e.detail);});
   document.addEventListener('manju:action',e=>{if(['rank_sort','topic_complete','topic_empty','topic_export','search_start','search_submit','search_results','search_empty','suggest_view','suggest_select','recommend_select','discover_start','discover_found','discover_empty','discover_error','discover_limited','discover_cached','video_file_ready','video_file_error','video_complete','video_example','video_export','video_compare','official_open','platform_search','intro_open','share_native','share_copy','cloud_save','cloud_restore','cloud_delete'].includes(e.detail))event(e.detail);});
+  const signupURL = '/account?next=%2Fmanju%2F%23mj-cloud' + (qa ? '&__ci=1' : '');
+  const cloudLogin = $('[data-cloud-login]');
+  if (cloudLogin) cloudLogin.href = signupURL;
+  let savePrompt;
+  function showSavePrompt(anchor) {
+    if (!saved.size || !anchor?.isConnected) return;
+    if (!savePrompt) {
+      savePrompt = document.createElement('p');
+      savePrompt.className = 'mj-save-account';
+      const link = document.createElement('a');
+      link.href = signupURL;
+      link.dataset.manjuSaveSignup = '';
+      link.dataset.mjAction = 'cloud_signup';
+      link.textContent = '免费注册或登录';
+      savePrompt.append('想换台设备继续这份片单？', link, ' 后可手动保存。');
+    }
+    anchor.after(savePrompt);
+    savePrompt.hidden = false;
+  }
   let timer;function toast(s){$('#mj-toast').textContent=s;clearTimeout(timer);timer=setTimeout(()=>{$('#mj-toast').textContent='';},6000);}
-  function renderSaved(){document.querySelectorAll('[data-save]').forEach(b=>{const on=saved.has(b.dataset.save);b.setAttribute('aria-pressed',String(on));b.textContent=on?'✓ 已收藏':'＋ 收藏';});document.querySelectorAll('[data-save-count]').forEach(e=>e.textContent=saved.size);}
+  function renderSaved(){if(!saved.size&&savePrompt)savePrompt.hidden=true;document.querySelectorAll('[data-save]').forEach(b=>{const on=saved.has(b.dataset.save);b.setAttribute('aria-pressed',String(on));b.textContent=on?'✓ 已收藏':'＋ 收藏';});document.querySelectorAll('[data-save-count]').forEach(e=>e.textContent=saved.size);}
   function persist(next){try{localStorage.setItem(key,JSON.stringify([...next]));saved=next;storage=true;renderSaved();showRecommendations();return true;}catch{storage=false;toast('浏览器未允许保存。请使用片单分享或导出，收藏没有写入。');return false;}}
   document.addEventListener('click',e=>{document.querySelectorAll('.mj-home .mj-record[open],.mj-home .mj-more[open]').forEach(d=>{if(!d.contains(e.target))d.open=false;});});document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.mj-home details[open]').forEach(d=>d.open=false);});
   const cards=new Map([...document.querySelectorAll('[data-item]')].map(r=>[r.dataset.item,r]));
@@ -151,13 +170,35 @@
   $('#mj-official')?.addEventListener('click',()=>{onlyOfficial=!onlyOfficial;update(true);});
   renderSaved();showRecommendations();sort?.addEventListener('change',()=>update(true));
   document.addEventListener('click',e=>{const b=e.target.closest('[data-related]');if(b&&$('#mj-recommendations')){e.preventDefault();showRecommendations(b.dataset.related);event('filter');}});
-  document.addEventListener('click',e=>{const b=e.target.closest('[data-save]');if(b){const next=new Set(saved),id=b.dataset.save;if(!ids.has(id))return;next.has(id)?next.delete(id):next.add(id);if(persist(next)){event(next.has(id)?'save':'unsave',id);update(false,true);toast(next.has(id)?'已收藏到当前浏览器。':'已从本机片单移除。');}}const a=e.target.closest('[data-mj-action]');if(a)event(a.dataset.mjAction,a.dataset.mjId);});
+  document.addEventListener('click', eventObject => {
+    const button = eventObject.target.closest('[data-save]');
+    if (button) {
+      const next = new Set(saved), id = button.dataset.save;
+      if (!ids.has(id)) return;
+      const adding = !next.has(id);
+      if (adding) next.add(id);
+      else next.delete(id);
+      if (persist(next)) {
+        event(adding ? 'save' : 'unsave', id);
+        update(false,true);
+        if (adding) showSavePrompt(button.closest('.mj-card-actions,.mj-actions') || button);
+        toast(adding ? '已收藏到当前浏览器。' : '已从本机片单移除。');
+      }
+    }
+    const link = eventObject.target.closest('[data-mj-action]');
+    if (link) event(link.dataset.mjAction,link.dataset.mjId);
+  });
   window.addEventListener('storage',e=>{if(e.key!==key)return;try{const data=JSON.parse(e.newValue||'[]');saved=new Set(Array.isArray(data)?data.filter(x=>ids.has(x)):[]);renderSaved();update();}catch{}});
-  if(query){content?.addEventListener('change',()=>{channel='all';sort.value='relevance';update(true);});fields.forEach(f=>f.addEventListener('change',()=>update(true)));query.addEventListener('input',()=>{channel='all';genre='';tag='';onlySaved=false;onlyOfficial=false;sharedActive=false;sort.value='relevance';if(content)content.value='';fields.forEach(f=>f.value='');update();});query.addEventListener('change',()=>event(rows.some(r=>!r.hidden)?'filter':'empty'));$('#mj-reset').addEventListener('click',reset);$('[data-reset]').addEventListener('click',reset);$('#mj-saved').addEventListener('click',()=>{onlySaved=!onlySaved;onlyOfficial=false;sort.value='relevance';if(content)content.value='';sharedActive=false;channel='all';genre='';tag='';fields.forEach(f=>f.value='');query.value='';update(true);});$('#mj-clear').addEventListener('click',()=>{if(!saved.size)return toast('本机片单已经是空的。');if(confirm('清空当前浏览器的所有帧选收藏？')){if(persist(new Set())){update();toast('本机收藏已清空。');}}});
+  if(query){content?.addEventListener('change',()=>{channel='all';sort.value='relevance';update(true);});fields.forEach(f=>f.addEventListener('change',()=>update(true)));query.addEventListener('input',()=>{channel='all';genre='';tag='';onlySaved=false;onlyOfficial=false;sharedActive=false;sort.value='relevance';if(content)content.value='';fields.forEach(f=>f.value='');update();});query.addEventListener('change',()=>event(rows.some(r=>!r.hidden)?'filter':'empty'));$('#mj-reset').addEventListener('click',reset);$('[data-reset]').addEventListener('click',reset);$('#mj-saved').addEventListener('click',()=>{onlySaved=!onlySaved;onlyOfficial=false;sort.value='relevance';if(content)content.value='';sharedActive=false;channel='all';genre='';tag='';fields.forEach(f=>f.value='');query.value='';update(true);if(onlySaved)showSavePrompt($('.mj-browse-tabs'));else if(savePrompt)savePrompt.hidden=true;});$('#mj-clear').addEventListener('click',()=>{if(!saved.size)return toast('本机片单已经是空的。');if(confirm('清空当前浏览器的所有帧选收藏？')){if(persist(new Set())){update();toast('本机收藏已清空。');}}});
     $('#mj-share').addEventListener('click',e=>shareList(e.currentTarget,matches.map(r=>r.dataset.item),60));
     $('#mj-export').addEventListener('click',()=>{if(!saved.size)return toast('先收藏一部作品，再导出。');const text='我的帧选片单\n\n'+rows.filter(r=>saved.has(r.dataset.item)).map(r=>workMap.get(r.dataset.item).title+'\n'+r.dataset.url).join('\n\n')+'\n\n收藏为本机数据；此文件不包含视频。';const url=URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download='我的帧选片单.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);event('export');toast('片单文本已生成。');});
     for(const [id,delta]of [['mj-prev',-1],['mj-next',1]])$('#'+id).addEventListener('click',()=>{currentPage+=delta;update(false,true);$('#mj-result-heading').scrollIntoView({block:'start'});});
-    function revealHash(){const target=location.hash.slice(1),r=rows.find(x=>x.id===target);if(!r)return;sort.value='relevance';if(content)content.value='';channel='all';genre='';tag='';sharedActive=false;onlySaved=false;onlyOfficial=false;query.value='';fields.forEach(f=>f.value='');update(false,true);currentPage=Math.floor(matches.indexOf(r)/pageSize)+1;update(false,true);renderTask.then(()=>requestAnimationFrame(()=>document.getElementById(target)?.scrollIntoView({block:'start'})));}
+    function revealHash(){
+      if(location.hash==='#mj-cloud'){
+        renderTask.then(()=>requestAnimationFrame(()=>$('#mj-cloud')?.scrollIntoView({block:'start'})));
+        return;
+      }
+      const target=location.hash.slice(1),r=rows.find(x=>x.id===target);if(!r)return;sort.value='relevance';if(content)content.value='';channel='all';genre='';tag='';sharedActive=false;onlySaved=false;onlyOfficial=false;query.value='';fields.forEach(f=>f.value='');update(false,true);currentPage=Math.floor(matches.indexOf(r)/pageSize)+1;update(false,true);renderTask.then(()=>requestAnimationFrame(()=>document.getElementById(target)?.scrollIntoView({block:'start'})));}
     update(false,true);revealHash();if(!location.hash&&(['genre','tag','saved','list','official','content','evidence','page'].some(k=>params.has(k))||params.get('channel')==='culture'))document.getElementById('mj-full-directory')?.scrollIntoView({block:'start'});window.addEventListener('hashchange',revealHash);
   }
   const form=$('#mj-inquiry');if(form){const kind=form.elements.kind,email=form.elements.email;const initial=params.get('kind');if(['submit','cooperate','correction'].includes(initial))kind.value=initial;const work=params.get('work');if(ids.has(work))form.elements.url.value=workMap.get(work).url;const change=()=>{email.required=kind.value==='cooperate';};change();kind.addEventListener('change',change);let started=false;form.addEventListener('focusin',()=>{if(!started){started=true;event('inquiry_start');}});

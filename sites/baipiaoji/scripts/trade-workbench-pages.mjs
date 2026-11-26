@@ -26,18 +26,21 @@ export function buildTradeWorkbench({layout,esc,crumbLd,BASE,NAME,LOCALE,write,p
     id:tool.id,name:titleFor(tool,zh),url:hub+tool.id,description:local(tool.purpose,zh),source:{name:tool.source[zh?0:1],url:tool.source[2]},
   }))}));
   const assets = `<link rel="stylesheet" href="/studio-assets/trade-workbench.css?v=${edition}">`;
-  const script = `<script type="module" src="/studio-assets/trade-workbench.mjs?v=${edition}"></script>`;
+  const script = (version=edition) => `<script type="module" src="/studio-assets/trade-workbench.mjs?v=${version}"></script>`;
+  const directoryJoin = BASE+'/account?next='+encodeURIComponent((zh?'':'/en')+TRADE_WORKBENCH);
   const sharedCrumbs = [{name:NAME,url:BASE+'/'},{name:t('自研工具','BPJ tools'),url:studio},{name:title,url:hub}];
   const breadcrumbs = (name='')=>`<nav class="trade-crumb" aria-label="${t('面包屑','Breadcrumb')}"><a href="${studio}">${t('自研工具','BPJ tools')}</a><span aria-hidden="true">/</span>${name ? `<a href="${hub}">${title}</a><span aria-hidden="true">/</span><span aria-current="page">${esc(name)}</span>`:`<span aria-current="page">${title}</span>`}</nav>`;
   const hubBody = `${assets}<main class="stage trade-suite" id="main-content" data-trade-directory>${breadcrumbs()}
-    <header class="trade-title"><h1>${title}</h1><p>${description}</p><p>${t('免费账户每天共 10 次，覆盖目录内全部工具。','A free account gets 10 runs a day across the directory.')}</p></header>
+    <header class="trade-title"><h1>${title}</h1><p>${description}</p><p>${t('免费账户每天共 10 次，覆盖目录内全部工具。','A free account gets 10 runs a day across the directory.')}</p>
+      <div class="trade-actions" data-trade-directory-gate><a class="trade-button" data-trade-directory-join href="${esc(directoryJoin)}">${t('免费注册或登录后试用','Join free or sign in to try')}</a></div>
+    </header>
     <nav class="trade-categories" aria-label="${t('工具分类','Tool categories')}">${categories.map(group=>`<a href="#${group.id}">${esc(group.name)}</a>`).join('')}</nav>
     <label class="trade-search" hidden>${t('搜索工具','Find a tool')}<input id="trade-search" type="search" autocomplete="off" placeholder="${t('例如报关、退税、收款','Try customs, refund, settlement')}"></label>
     <p role="status" data-trade-search-status hidden></p>
     ${categories.map(group=>`<section class="trade-category" id="${group.id}" aria-labelledby="heading-${group.id}"><h2 id="heading-${group.id}">${esc(group.name)}</h2><ul>
       ${group.tools.map(tool=>`<li><a href="${tool.url}">${esc(tool.name)}</a><p>${esc(tool.description)}</p></li>`).join('')}</ul></section>`).join('')}
     <footer class="trade-reference"><a href="${hub}catalog.json">${t('工具和官方出处索引（JSON）','Tool and authority index (JSON)')}</a><a href="${hub}index.md">${t('文本目录','Plain-text directory')}</a></footer>
-  </main>${script}`;
+  </main>${script(edition+'-directory')}`;
   const itemList = categories.flatMap(group=>group.tools).map((tool,index)=>({'@type':'ListItem',position:index+1,name:tool.name,url:tool.url}));
   write('studio/trade-tools/index.html',layout({title:title+' · BPJ',description,path:TRADE_WORKBENCH,body:hubBody,wide:true,schema:[
     crumbLd(sharedCrumbs),{'@context':'https://schema.org','@type':'CollectionPage',name:title,url:hub,description,inLanguage:lang,mainEntity:{'@type':'ItemList',itemListElement:itemList}},
@@ -85,7 +88,7 @@ export function buildTradeWorkbench({layout,esc,crumbLd,BASE,NAME,LOCALE,write,p
         <p>${t('输入只发送给 BPJ 服务器计算，不存入项目或分析数据。请填计算必需的字段。','Inputs go to the BPJ server for the calculation. They are omitted from project storage and analytics. Enter only the values needed for the result.')}</p>
       </aside></div>
       <section class="trade-related"><h2>${t('同类工具','Related tools')}</h2><ul>${related.map(next=>`<li><a href="${hub+next.id}">${esc(titleFor(next,zh))}</a></li>`).join('')}</ul></section>
-    </main>${script}`;
+    </main>${script()}`;
     write('studio/trade-tools/'+tool.id+'.html',layout({title:name+' · BPJ',description:purpose,path,body,wide:true,schema:[
       crumbLd([...sharedCrumbs,{name,url}]),{'@context':'https://schema.org','@type':'WebApplication',name,url,description:purpose,inLanguage:lang,applicationCategory:'BusinessApplication',operatingSystem:'Web',offers:{'@type':'Offer',price:'0',priceCurrency:'USD'}},
     ]}));

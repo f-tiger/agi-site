@@ -13,6 +13,10 @@ export function recentDays(now=new Date(),count=7){if(!Number.isInteger(count)||
 const DAYS=recentDays();
 const POPULAR_PATHS=['hg-7701328280862854168','hg-7697622096326708286','hg-7702378804068502552','hg-7701588705932217406','hg-7696095984266251326'].map(id=>'/manju/'+id);
 const POPULAR_FILTER=',clientRequestPath_in:'+JSON.stringify(POPULAR_PATHS)+',clientRequestHTTPMethodName:"GET",edgeResponseStatus:200';
+const MCP_ENDPOINTS=new Map([
+ ['/api/mcp','mcp'], ['/api/ai-mcp','ai-mcp'], ['/api/startup-mcp','startup-mcp'], ['/api/video-mcp','video-mcp'],
+]);
+const MCP_POST_FILTER=',clientRequestPath_in:'+JSON.stringify([...MCP_ENDPOINTS.keys()])+',clientRequestHTTPMethodName:"POST"';
 const SCOPE='https://www.googleapis.com/auth/analytics.readonly';
 const failure=e=>String(e?.code||e?.message||'request_failed').slice(0,320);
 const fail=code=>{throw Object.assign(new Error(code),{code});};
@@ -28,10 +32,52 @@ async function json(fetchFn,url,options={},label='request'){
 export function cfQuery(dimensions,extra='',limit=2000){
  const safe=['datetimeHour','clientCountryName','clientAsn','clientASNDescription','userAgent','userAgentBrowser','userAgentOS','clientRequestPath','clientRequestHTTPMethodName','edgeResponseStatus','edgeResponseContentTypeName','clientRefererHost','verifiedBotCategory','botScoreBucketBy10','jsDetectionPassed','securityAction'];
  if(dimensions.some(d=>!safe.includes(d)))fail('unsupported_cf_dimension');
- if(!['',',clientRequestPath_like:"/manju/%"',',clientRequestPath_like:"/manju/%",clientRequestHTTPMethodName:"GET",edgeResponseStatus:200',',clientRequestPath_in:["/analytics-assets/frame","/analytics-assets/frame.html"],clientRequestHTTPMethodName:"GET",edgeResponseStatus:200',POPULAR_FILTER].includes(extra))fail('unsupported_cf_filter');
+ if(!['',',clientRequestPath_like:"/manju/%"',',clientRequestPath_like:"/manju/%",clientRequestHTTPMethodName:"GET",edgeResponseStatus:200',',clientRequestPath_in:["/analytics-assets/frame","/analytics-assets/frame.html"],clientRequestHTTPMethodName:"GET",edgeResponseStatus:200',POPULAR_FILTER,MCP_POST_FILTER].includes(extra))fail('unsupported_cf_filter');
  return `query($z:string,$s:Time,$e:Time){viewer{zones(filter:{zoneTag:$z}){httpRequestsAdaptiveGroups(limit:${limit},orderBy:[count_DESC],filter:{datetime_geq:$s,datetime_lt:$e,requestSource:"eyeball",clientRequestHTTPHost:"${HOST}"${extra}}){count dimensions{${dimensions.join(' ')}}}}}}`;
 }
-export async function cloudflare(env,{fetchFn=fetch,days=DAYS,clientsOnly=false,baseline=false}={}){
+function mcpCounts(rows){
+ const byEndpoint=Object.fromEntries([...MCP_ENDPOINTS.values()].map(name=>[name,{http200:0,http202:0,total:0}]));
+ const seen=new Set();
+ let total=0;
+ for(const {count,dimensions} of rows){
+  const endpoint=MCP_ENDPOINTS.get(dimensions?.clientRequestPath),status=dimensions?.edgeResponseStatus;
+  if(!endpoint||!Number.isInteger(status)||status<100||status>599||!Number.isSafeInteger(count)||count<0)fail('cf_invalid_mcp_group');
+  const key=endpoint+':'+status;
+  if(seen.has(key))fail('cf_duplicate_mcp_group');
+  seen.add(key);
+  if(status!==200&&status!==202)continue;
+  byEndpoint[endpoint]['http'+status]=count;
+  byEndpoint[endpoint].total+=count;
+  total+=count;
+ }
+ return {total,byEndpoint};
+}
+
+function botCounts(rows){
+ const byCategory=new Map();
+ let withoutVerifiedCategory=0,verified=0,seenEmpty=false;
+ for(const {count,dimensions} of rows){
+  const category=dimensions?.verifiedBotCategory;
+  if(typeof category!=='string'||(category!==''&&!/^[\p{L}\p{N}][\p{L}\p{N} &,+.()'-]{0,99}$/u.test(category))||!Number.isSafeInteger(count)||count<0)fail('cf_invalid_bot_group');
+  if(category===''){
+   if(seenEmpty)fail('cf_duplicate_bot_group');
+   seenEmpty=true;
+   withoutVerifiedCategory=count;
+  }else{
+   if(category.trim()!==category||byCategory.has(category))fail('cf_invalid_bot_group');
+   byCategory.set(category,count);
+   verified+=count;
+  }
+ }
+ return {total:verified+withoutVerifiedCategory,verified,withoutVerifiedCategory,byCategory:Object.fromEntries(byCategory)};
+}
+
+function partialWindow(now){
+ const date=now.toISOString().slice(0,10),start=date+'T00:00:00.000Z',end=now.toISOString();
+ return start<end?{date,start,end,complete:false}:null;
+}
+
+export async function cloudflare(env,{fetchFn=fetch,days=DAYS,clientsOnly=false,baseline=false,mcpOnly=false,now=new Date()}={}){
  const tokens=[...new Set(['CLOUDFLARE_API_TOKEN','CLOUDFLARE_API_TOKEN_ZONE','CF_API_TOKEN'].map(k=>env[k]).filter(Boolean))];
  const out={host:HOST,timezone:'UTC',definition:'Adaptive request aggregates, not users, GA4 events or exact billing. HEAD requests do not execute page JavaScript. Unavailable bot scores do not classify traffic as human.',reports:[]};
  if(!tokens.length)return {...out,status:'blocked',reason:'cloudflare_credentials_missing'};
@@ -65,13 +111,27 @@ export async function cloudflare(env,{fetchFn=fetch,days=DAYS,clientsOnly=false,
   ['frame_bot_score',['clientCountryName','botScoreBucketBy10'],frame],
   ['popular_manju_clients',['clientCountryName','clientRequestPath','userAgent','verifiedBotCategory'],POPULAR_FILTER],
  ];
- const selected=baseline?sections.filter(([name])=>['site_country','manju_verified_bots','manju_clients','popular_manju_clients','frame_clients'].includes(name)):clientsOnly?sections.filter(([name])=>name.endsWith('_clients')):sections;
- for(const date of days){
-  const start=date+'T00:00:00.000Z',end=new Date(Date.parse(start)+86400000).toISOString();
+ const selected=mcpOnly?[
+  ['mcp_post_accepted',['clientRequestPath','edgeResponseStatus'],MCP_POST_FILTER,mcpCounts],
+  ['verified_bot_categories',['verifiedBotCategory'],'',botCounts],
+ ]:baseline?sections.filter(([name])=>['site_country','manju_verified_bots','manju_clients','popular_manju_clients','frame_clients'].includes(name)):clientsOnly?sections.filter(([name])=>name.endsWith('_clients')):sections;
+ const windows=days.map(date=>({date,start:date+'T00:00:00.000Z',end:new Date(Date.parse(date)+86400000).toISOString(),...(mcpOnly?{complete:true}:{})}));
+ const partial=mcpOnly?partialWindow(now):null;
+ if(partial)windows.push(partial);
+ for(const window of windows){
+  const {start,end}=window;
   // Two concurrent bounded aggregates; no retries on a rejected dataset.
-  for(let i=0;i<selected.length;i+=2)await Promise.all(selected.slice(i,i+2).map(async([name,dims,extra])=>{
-   const item={name,date,start,end,limit:2000};
-   try{const d=await request('graphql',{query:cfQuery(dims,extra),variables:{z:zone,s:start,e:end}});const rows=d?.viewer?.zones?.[0]?.httpRequestsAdaptiveGroups;if(!Array.isArray(rows))fail('cf_missing_rows');out.reports.push({...item,status:'received',truncated:rows.length>=2000,rows:scrubRows(rows)});}
+  for(let i=0;i<selected.length;i+=2)await Promise.all(selected.slice(i,i+2).map(async([name,dims,extra,aggregate])=>{
+   const limit=aggregate?100:2000,item={name,...window,limit};
+   try{
+    const d=await request('graphql',{query:cfQuery(dims,extra,limit),variables:{z:zone,s:start,e:end}});
+    const rows=d?.viewer?.zones?.[0]?.httpRequestsAdaptiveGroups;
+    if(!Array.isArray(rows))fail('cf_missing_rows');
+    const truncated=rows.length>=limit;
+    if(aggregate&&truncated)fail('cf_incomplete_aggregate');
+    const projection=aggregate?{counts:aggregate(rows)}:{rows:scrubRows(rows)};
+    out.reports.push({...item,status:'received',truncated,...projection});
+   }
    catch(e){out.reports.push({...item,status:'blocked',reason:failure(e)});}
   }));
  }
@@ -134,10 +194,16 @@ export async function google(env,{fetchFn=fetch,now=new Date()}={}){
 
 export async function run(env=process.env,dependencies={}){
  const pem=Buffer.from(env.WORKERS_REPORT_PUBLIC_KEY||'','base64').toString();validatePublicKey(pem);
- const phase=env.BPJ_DIAG_PHASE||'full';if(!['full','clients','baseline'].includes(phase))fail('unsupported_phase');
- const days=recentDays(dependencies.now||new Date(),Number(env.BPJ_DIAG_DAYS||7));
- const [cf,ga4]=await Promise.all([cloudflare(env,{...dependencies,days,clientsOnly:phase==='clients',baseline:phase==='baseline'}),phase!=='clients'?google(env,dependencies):Promise.resolve({status:'not_requested',reason:'client_followup_reuses_previous_ga4_access_result',reports:[]})]);
- const report={schema:1,phase,generated:new Date().toISOString(),host:HOST,window:{dates:days,timezone:'UTC',completeDays:true},question:'Recent BPJ traffic quality; requests and GA4 identities are separate',cloudflare:cf,ga4};
+ const phase=env.BPJ_DIAG_PHASE||'full';if(!['full','clients','baseline','mcp'].includes(phase))fail('unsupported_phase');
+ const now=dependencies.now||new Date(),days=recentDays(now,Number(env.BPJ_DIAG_DAYS||7));
+ const mcpOnly=phase==='mcp',clientsOnly=phase==='clients';
+ const [cf,ga4]=await Promise.all([
+  cloudflare(env,{...dependencies,now,days,mcpOnly,clientsOnly,baseline:phase==='baseline'}),
+  mcpOnly||clientsOnly?{status:'not_requested',reason:mcpOnly?'edge_report_only':'client_followup_reuses_previous_ga4_access_result',reports:[]}:google(env,{...dependencies,now}),
+ ]);
+ const window={dates:days,timezone:'UTC',completeDays:true,...(mcpOnly?{currentPartial:partialWindow(now)}:{})};
+ const question=mcpOnly?'Exact MCP endpoint POST HTTP 200/202 and separate sitewide verified-bot categories. These are overlapping edge request counts, not tool calls, sessions or users. An empty category does not imply a human. Current partial-day data may lag.':'Recent BPJ traffic quality; requests and GA4 identities are separate';
+ const report={schema:1,phase,generated:new Date().toISOString(),host:HOST,window,question,cloudflare:cf,ga4};
  const envelope=seal(report,pem);
  (dependencies.write||((body)=>writeFileSync('/tmp/bpj-traffic-diagnosis.enc.json',body,{mode:0o600})))(JSON.stringify(envelope));
  return {reportWritten:true,cloudflare:cf.status,ga4:ga4.status};

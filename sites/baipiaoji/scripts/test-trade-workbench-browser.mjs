@@ -4,6 +4,7 @@ import {createRequire} from 'node:module';
 import {fileURLToPath} from 'node:url';
 import {mockChain,setupSites} from '../../../tools/member-studio/test-fixtures.mjs';
 import {onRequest} from '../functions/api/trade-workbench.js';
+import {onRequest as accountRoute} from '../functions/api/account.js';
 import {ensureAccountMembers} from '../functions/api/account-member.js';
 import {ACCOUNT_COOKIE,issueSession,now} from '../lib/free-account.js';
 
@@ -29,8 +30,9 @@ try {
     await context.route('**/*',async route=>{
       const r = route.request(),url = new URL(r.url());
       if (url.origin!==origin) return route.abort();
-      if (url.pathname==='/api/trade-workbench') {
-        const response = await onRequest({env,request:new Request(url,{method:r.method(),headers:await r.allHeaders(),...(r.method()==='POST' ? {body:r.postData()} : {})})});
+      if (url.pathname==='/api/trade-workbench'||url.pathname==='/api/account') {
+        const handler = url.pathname==='/api/account' ? accountRoute : onRequest;
+        const response = await handler({env,request:new Request(url,{method:r.method(),headers:await r.allHeaders(),...(r.method()==='POST' ? {body:r.postData()} : {})})});
         return route.fulfill({status:response.status,headers:Object.fromEntries(response.headers),body:await response.text()});
       }
       if (url.pathname.startsWith('/api/')) return route.fulfill({status:204});
@@ -42,7 +44,14 @@ try {
       return route.fulfill({contentType:mime[path.split('.').pop()]||'application/octet-stream',body:readFileSync(dist+path)});
     });
     const tool = origin+prefix+samplePath+'?__ci=1';
-    await page.goto(origin+prefix+'/studio/trade-tools/?__ci=1');
+    const hub = prefix+'/studio/trade-tools/';
+    await page.goto(origin+hub+'?__ci=1');
+    const directoryJoin = page.locator('[data-trade-directory-join]');
+    assert(await directoryJoin.isVisible());
+    const directoryNext = new URL(await directoryJoin.getAttribute('href'));
+    assert.equal(directoryNext.pathname,prefix+'/account');
+    assert.equal(directoryNext.searchParams.get('next'),hub);
+    assert.equal(directoryNext.searchParams.get('__ci'),'1');
     const search = page.locator('#trade-search');
     await search.fill(lang==='zh'?'纸箱总体积':'Carton Cubic Volume');
     await page.locator('.trade-category li:visible').first().waitFor();
@@ -61,7 +70,9 @@ try {
     assert(await page.locator('[data-trade-form]').isHidden());
 
     await context.addCookies([{name:ACCOUNT_COOKIE,value:session,url:origin,secure:true,httpOnly:true,sameSite:'Lax'}]);
-    await page.reload();
+    await page.goto(origin+hub+'?__ci=1');
+    await directoryJoin.waitFor({state:'hidden'});
+    await page.goto(tool);
     const form = page.locator('[data-trade-form]'),upgrade = page.locator('[data-trade-upgrade]');
     await form.waitFor({state:'visible'});
     assert(await upgrade.isHidden());

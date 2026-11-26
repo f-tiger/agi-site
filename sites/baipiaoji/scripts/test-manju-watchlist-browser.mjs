@@ -28,8 +28,23 @@ const waitText=(p,text)=>p.waitForFunction(expected=>document.querySelector('#mj
 try{
  const first=await setup();const {p,mode}=first;
  assert.equal(mode.calls,0,'public browsing must not request authenticated API');
- await p.locator('[data-save]:visible').first().click();const selected=await p.evaluate(()=>ManjuWatchlist.read());assert.equal(selected.length,1);
- assert.equal(await p.locator('[data-cloud-login]').getAttribute('href'),'/account?next=%2Fmanju%2F');
+ const prompt=p.locator('[data-manju-save-signup]');
+ assert.equal(await prompt.count(),0,'ordinary browsing must not show a registration prompt');
+ await p.locator('#mj-saved').click();
+ assert.equal(await prompt.count(),0,'an empty watchlist does not prompt registration');
+ await p.locator('#mj-saved').click();
+ await p.locator('[data-save]:visible').first().click();
+ const selected=await p.evaluate(()=>ManjuWatchlist.read());assert.equal(selected.length,1);
+ await p.locator('.mj-card [data-manju-save-signup]').waitFor({state:'visible'});
+ const returnLink='/account?next=%2Fmanju%2F%23mj-cloud&__ci=1';
+ assert.equal(await prompt.getAttribute('href'),returnLink);
+ assert.equal(await p.locator('[data-cloud-login]').getAttribute('href'),returnLink);
+ assert.equal(await prompt.getAttribute('data-mj-action'),'cloud_signup');
+ await p.locator('#mj-saved').click();
+ await p.locator('.mj-browse-tabs + .mj-save-account [data-manju-save-signup]').waitFor({state:'visible'});
+ await p.locator('#mj-saved').click();
+ assert(await prompt.isHidden());
+ assert.equal(mode.calls,0,'the optional signup prompt never checks or syncs the account');
  await click(p,'check');await waitText(p,'请先登录');assert.deepEqual(await p.evaluate(()=>ManjuWatchlist.read()),selected);
  mode.user=a;await click(p,'check');await waitText(p,'账户云片单有 0 部');await click(p,'save');await waitText(p,'已保存 1 部');assert.deepEqual((await h.call(a)).body.ids,selected);
  const second=await setup(a);assert.equal(second.mode.calls,0);await click(second.p,'check');await waitText(second.p,'账户云片单有 1 部');await click(second.p,'restore');await waitText(second.p,'已恢复 1 部');assert.deepEqual(await second.p.evaluate(()=>ManjuWatchlist.read()),selected);
@@ -67,5 +82,10 @@ try{
  await p.setViewportSize({width:390,height:844});assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
  await p.locator('#mj-cloud').screenshot({path:'/tmp/bpj-manju-cloud-mobile.png'});
  assert.deepEqual(first.errors,[]);assert.deepEqual(second.errors,[]);assert.deepEqual(await p.evaluate(()=>cloudEvents),['cloud_save','cloud_save','cloud_delete']);
+ const callsBeforeReturn=mode.calls;
+ await p.goto('https://baipiaoji.com/manju/?__ci=1#mj-cloud');
+ await p.waitForFunction(()=>{const top=document.getElementById('mj-cloud').getBoundingClientRect().top;return top>=0&&top<140;});
+ assert.equal(mode.calls,callsBeforeReturn,'returning to the anchor must not check or sync automatically');
+ assert.deepEqual(await p.evaluate(()=>ManjuWatchlist.read()),selected);
  console.log('BPJ watchlist browser PASS: anonymous local save; contextual login; real SQLite save/restore/CAS; account switch; failed storage/API; stale response; delete; mobile. No production requests.');
 }finally{await browser.close();h.sql.close();}

@@ -8,11 +8,11 @@ on:
   workflow_dispatch:
     inputs:
       dataset:
-        description: 'd1, workers, bpj or bpj-vendors (all except d1 encrypted)'
+        description: 'd1, workers, bpj, bpj-mcp or bpj-vendors (all except d1 encrypted)'
         required: false
         default: 'd1'
       report_public_key:
-        description: 'Base64 RSA public key, required for workers diagnosis'
+        description: 'Base64 RSA public key for encrypted reports'
         required: false
       days:
         description: 'Days of history (1-14)'
@@ -26,7 +26,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: ${{ inputs.dataset == 'bpj' && 'bpj-traffic-diagnosis' || 'd1-usage' }}
+  group: ${{ (inputs.dataset == 'bpj' || inputs.dataset == 'bpj-mcp') && 'bpj-traffic-diagnosis' || 'd1-usage' }}
   cancel-in-progress: false
 
 jobs:
@@ -41,7 +41,7 @@ jobs:
       - name: Redaction selftest
         run: node tools/fleet/d1_usage.mjs --selftest
       - name: Rows read by database, hour and query
-        if: inputs.dataset != 'workers' && inputs.dataset != 'bpj' && inputs.dataset != 'bpj-vendors'
+        if: inputs.dataset != 'workers' && inputs.dataset != 'bpj' && inputs.dataset != 'bpj-mcp' && inputs.dataset != 'bpj-vendors'
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_API_TOKEN_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
@@ -68,20 +68,20 @@ jobs:
           retention-days: 1
           if-no-files-found: error
       - name: BPJ traffic diagnosis (read-only, encrypted)
-        if: inputs.dataset == 'bpj'
+        if: inputs.dataset == 'bpj' || inputs.dataset == 'bpj-mcp'
         env:
-          BPJ_DIAG_PHASE: baseline
+          BPJ_DIAG_PHASE: ${{ inputs.dataset == 'bpj-mcp' && 'mcp' || 'baseline' }}
           BPJ_DIAG_DAYS: ${{ inputs.days }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_API_TOKEN_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-          GA4_SERVICE_ACCOUNT_JSON: ${{ secrets.GA4_SERVICE_ACCOUNT_JSON }}
+          GA4_SERVICE_ACCOUNT_JSON: ${{ inputs.dataset == 'bpj' && secrets.GA4_SERVICE_ACCOUNT_JSON || '' }}
           WORKERS_REPORT_PUBLIC_KEY: ${{ inputs.report_public_key }}
         run: |
           node --test tools/fleet/bpj-traffic-diagnosis.test.mjs
           node tools/fleet/bpj-traffic-diagnosis.mjs
       - uses: actions/upload-artifact@v4
-        if: inputs.dataset == 'bpj'
+        if: inputs.dataset == 'bpj' || inputs.dataset == 'bpj-mcp'
         with:
           name: bpj-traffic-diagnosis-encrypted
           path: /tmp/bpj-traffic-diagnosis.enc.json

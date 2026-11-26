@@ -63,6 +63,9 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
   const suiteTool = /^\/(?:en\/)?studio\/ai\/([a-z0-9-]{1,60})$/.exec(pathname);
   if(host==='baipiaoji.com' && suiteTool && /^ai_suite_result_(demo|own)$/.test(name))return {name,tool_id:suiteTool[1],repeat:true};
   const tradeTool = /^\/(?:en\/)?studio\/trade-tools\/([a-z0-9]+(?:-[a-z0-9]+)*)$/.exec(pathname);
+  if (host === 'baipiaoji.com' && ['/studio/trade-tools/','/en/studio/trade-tools/'].includes(pathname) && name === 'trade_workbench_signup') {
+    return {name,tool_id:'trade-workbench',repeat:true};
+  }
   if (host === 'baipiaoji.com' && tradeTool && tradeTool[1].length <= 64 &&
       /^trade_workbench_(signup|run|example|membership_open|csv)$/.test(name)) {
     return {name, tool_id: tradeTool[1], repeat: true};
@@ -115,7 +118,7 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
 
   if (host === 'getecoback.com' && ['/rechner.html','/en/solution-calculator.html','/nl/wonen.html','/fr/calculateur.html','/guide/midea-portasplit-kaufen.html','/guide/waesche-trocknen-wohnung.html','/en/guide/dehumidifier-drying-clothes-cost.html'].includes(pathname) && /^eco_fit_(robot|laundry|ac|floor)_(example|complete|share_prepare|copy|share_reddit|share_x|print)$/.test(name)) { const [,mode,action]=/^eco_fit_(robot|laundry|ac|floor)_(.+)$/.exec(name); return {name:'eco_fit_'+action,tool_id:'eco-fit-'+mode,repeat:true}; }
 
-  if(host==='baipiaoji.com' && /^\/manju(?:\/[a-z0-9-]*)?\/?$/.test(pathname) && ['view','filter','empty','open','source','save','unsave','share','export','feed','inquiry_start','inquiry_ok','inquiry_error','return','preview_open','rank_sort','topic_complete','topic_empty','topic_export','search_start','search_submit','search_results','search_empty','suggest_view','suggest_select','recommend_select','discover_start','discover_found','discover_empty','discover_error','discover_limited','discover_cached','video_file_ready','video_file_error','video_complete','video_example','video_export','video_compare','official_open','platform_search','intro_open','share_native','share_copy','cloud_save','cloud_restore','cloud_delete'].some(a=>name==='manju_'+a)) return {name,tool_id:'manju',repeat:true};
+  if(host==='baipiaoji.com' && /^\/manju(?:\/[a-z0-9-]*)?\/?$/.test(pathname) && ['view','filter','empty','open','source','save','unsave','share','export','feed','inquiry_start','inquiry_ok','inquiry_error','return','preview_open','rank_sort','topic_complete','topic_empty','topic_export','search_start','search_submit','search_results','search_empty','suggest_view','suggest_select','recommend_select','discover_start','discover_found','discover_empty','discover_error','discover_limited','discover_cached','video_file_ready','video_file_error','video_complete','video_example','video_export','video_compare','official_open','platform_search','intro_open','share_native','share_copy','cloud_signup','cloud_save','cloud_restore','cloud_delete'].some(a=>name==='manju_'+a)) return {name,tool_id:'manju',repeat:true};
   if (name.startsWith('legacy:')) return legacyEvent(host, pathname, name.slice(7));
   const route = String(pathname).replace(/^\/(?:en|de|zh|it)\//, '/').replace(/\.html$/, '');
   if (host === 'agiscorecard.com' && route === '/tianya' && /^(?:tianya_(?:calculate|local_save|export)_(?:demo|own)|tianya_(?:member_open|register_open|research_open|restore|import))$/.test(name)) return {name,tool_id:'tianya-validation',repeat:true};
@@ -164,8 +167,9 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
   // Homepage events use fixed public labels only, never destinations or search input.
   if (host === 'baipiaoji.com' && ['/', '/en', '/en/'].includes(pathname)) {
     const parts = name.split(':');
-    const blocks = ['ai-solo','github-tools','hero','site-header','site-footer','featured-tools','task-lanes','directory','dirs','money','agents','agent-watch','limit-check','plans','studio','video','agent','nav','footer','header','other','legacy-other'];
-    const destinations = ['ai-solo','ai-solo-agent','ai-solo-success','ai-solo-failure','github-tools','homepage','tool-directory','toolbox','free-account','membership','pdf-tools','product-images','video-variants','quote-builder','quote-compare','proposal-deck','ai-tools','codex-efficiency','work-plan','video-hub','agents','feature-map','mcp','developers','workbench','creatorops','launchdesk','quotawatch','work-plans','business-workflows','workflow-packs','coding-quota','tokenizer','api-calculator','subscription-audit','stack-builder','paid-tiers','comparisons','external-link','tool-profile','tool-category','agent-directory','other-destination'];
+    const blocks = ['ai-solo','ai-tools','github-tools','hero','site-header','site-footer','featured-tools','task-lanes','directory','dirs','money','agents','agent-watch','limit-check','plans','studio','video','agent','nav','footer','header','other','legacy-other'];
+    const destinations = ['ai-solo','ai-solo-agent','ai-solo-success','ai-solo-failure','github-tools','homepage','tool-directory','toolbox','free-account','membership','pdf-tools','product-images','video-variants','quote-builder','quote-compare','proposal-deck','ai-tools','codex-efficiency','work-plan','video-hub','agents','feature-map','mcp','developers','workbench','creatorops','launchdesk','quotawatch','work-plans','business-workflows','workflow-packs','coding-quota','tokenizer','api-calculator','subscription-audit','stack-builder','paid-tiers','comparisons','external-link','tool-profile','tool-category','agent-directory','other-destination',
+      'manju','ai-video','trade-workbench','trade-leads','allowance-changes','commercial-use','site-report','source-method','table-review','ai-tool-workspace'];
     if (parts.length === 3 && parts[0] === 'home' && blocks.includes(parts[1]) && destinations.includes(parts[2]))
       return {name:'home_click', home_block:parts[1], home_destination:parts[2], site_edition:pathname.startsWith('/en')?'en':'zh', repeat:true};
   }

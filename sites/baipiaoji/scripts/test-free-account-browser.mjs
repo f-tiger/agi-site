@@ -49,5 +49,31 @@ await p.goto(origin+pre+'/account?__ci=1&save=%3Cscript%3Ebad%3C/script%3E');awa
 await p.goto(origin+pre+'/account?__ci=1&save=nonexistent-catalog-tool');await p.waitForFunction(()=>window.bpjAccount?.state.loaded);assert(await p.locator('#account-save-intent').isHidden());
 await p.goto(origin+pre+'/account?__ci=1');await p.locator('#account-logout').click();await p.locator('#account-auth').waitFor({state:'visible'});await p.evaluate(()=>{localStorage.setItem('bpj_tool_reg','1');localStorage.setItem('bpj_reg_email','somebody@example.test');});await p.goto(origin+pre+'/llm-api-calculator?__ci=1');await p.waitForFunction(()=>window.bpjAccount?.state.loaded);assert.equal(await p.locator('[data-account-gate]').isVisible(),true);const denied=await p.evaluate(async()=>{const r=await fetch('/api/earn',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slug:'ai-design-service',email:'somebody@example.test'})});return r.status;});assert.equal(denied,401);
 await p.goto(origin+pre+'/account?__ci=1');await p.locator('[data-account-tab=recover]').click();await p.locator('#recover-email').fill('browser_'+lang+'@example.test');await p.locator('#recover-code').fill(recovery);await p.locator('#recover-password').fill(password+' reset');await p.locator('#account-recover button[type=submit]').click();await p.locator('#account-recovery').waitFor({state:'visible'});assert.notEqual(await p.locator('#account-recovery-code').innerText(),recovery);await p2.reload();await p2.waitForFunction(()=>window.bpjAccount?.state.loaded);assert.equal(await p2.locator('[data-account-gate]').isVisible(),true);await p.setViewportSize({width:1440,height:1000});await p.screenshot({path:out+'/'+lang+'-recovery-desktop.png',fullPage:true});await c.close();await c2.close();}
+{
+ const c=await context(),p=await c.newPage();
+ const page=new URL('/account',origin);
+ page.searchParams.set('next','/manju/#mj-cloud');
+ page.searchParams.set('__ci','1');
+ await p.goto(page.href);
+ await p.locator('#account-auth').waitFor({state:'visible'});
+ assert.match(await p.locator('#account-page-intro').textContent(),/返回帧选手动保存/);
+ await p.locator('#register-email').fill('saved-watchlist@example.test');
+ await p.locator('#register-username').fill('看片名单');
+ await p.locator('#register-password').fill(password);
+ await p.locator('#account-consent').check();
+ await p.locator('#account-register button[type=submit]').click();
+ await p.locator('#account-recovery').waitFor({state:'visible'});
+ assert.equal((await p.locator('#account-recovery-code').textContent()).length,43);
+ const continuation=p.locator('#account-return');
+ assert(await continuation.isHidden(),'required recovery confirmation precedes the contextual handoff');
+ assert.equal(new URL(p.url()).pathname,'/account');
+ await p.locator('#account-recovery-continue').click();
+ await continuation.waitFor({state:'visible'});
+ assert.equal(await continuation.getAttribute('href'),'/manju/?__ci=1#mj-cloud');
+ assert.match(await continuation.textContent(),/返回片单保存区/);
+ await p.waitForFunction(()=>document.activeElement?.id==='account-return');
+ assert.equal(new URL(p.url()).pathname,'/account','return requires a separate explicit click');
+ await c.close();
+}
 assert.deepEqual(errors,[]);assert.equal(sql.prepare('SELECT COUNT(*) n FROM free_accounts WHERE qa=0').get().n,0);console.log('PASS EN/ZH real SQLite+browser: registration, HttpOnly cookie, recovery download, dashboard search/follow counts and explicit deduplicated local import, cross-device favorites, export, tool gate, real pack access, legacy-email denial, logout and recovery revocation. '+out);
 }finally{if(errors.length)console.error('Browser errors:',errors);await browser?.close();sql.close();}
