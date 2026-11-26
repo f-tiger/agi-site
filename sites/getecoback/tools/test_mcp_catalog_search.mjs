@@ -1502,3 +1502,35 @@ test('exact Comfee variant identifiers find the existing evidence tool and prese
   ]) assert.equal((await catalogue({q:query,view:'compact'})).tools[0]?.name,expected,query);
   assert.equal(analytics,0);
 });
+
+test('German room-sizing questions find heating watts while operating costs retain their own guides', async () => {
+  const target = '/guide/infrarotheizung-watt-rechner.html#watt-rechner-raumgroesse-und-daemmung-eingeben';
+  for (const query of [
+    'Wie viel Watt Infrarotheizung brauche ich für 18 m² im Altbau?',
+    'Wie viel Heizleistung in Watt braucht mein Zimmer mit 18 Quadratmetern und schlechter Dämmung?',
+  ]) {
+    const result = await catalogue({q:query,view:'compact',limit:3});
+    for (const first of [result.tools[0],findCatalogueTools(compact,{query})[0]]) {
+      assert.equal(first?.name,'heizleistung_watt',query);
+      assert.equal(first.guide_url,origin + target,query);
+    }
+  }
+  const desk = 'Wie viel Watt Infrarotheizung brauche ich nur am Schreibtisch in meinem 18 m² großen Zimmer?';
+  const deskResult = await catalogue({q:desk,view:'compact',limit:3});
+  for (const hits of [deskResult.tools,findCatalogueTools(compact,{query:desk})]) {
+    assert.ok(!hits.some(tool => toolGuidePath(tool) === target),desk);
+  }
+  for (const [query,path] of [
+    ['Wie viel Strom verbraucht eine Infrarotheizung als Hauptheizung im Jahr?',
+      '/guide/infrarotheizung-ratgeber.html#jahreskosten-hauptheizung'],
+    ['Was ist billiger: Heizlüfter 2000 W für 15 Minuten oder Infrarotpanel 600 W für eine Stunde?',
+      '/guide/heizkosten-vergleich-rechner.html#heizluefter-oder-infrarot'],
+  ]) {
+    const result = await catalogue({q:query,view:'compact',limit:3});
+    for (const first of [result.tools[0],findCatalogueTools(compact,{query})[0]]) {
+      assert.equal(first?.name,'ratgeber_suche',query);
+      assert.equal(toolGuidePath(first),path,query);
+    }
+  }
+  assert.equal(analytics,0);
+});

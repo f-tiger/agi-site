@@ -72,6 +72,23 @@ test('The infrared annual-cost guide distinguishes household meter data from cer
   assert(!content.includes('getecoback-21'));
 });
 
+test('the infrared room watt question has a readable full and compact calculation section', async () => {
+  const page = '/guide/infrarotheizung-watt-rechner.html';
+  const section = 'https://getecoback.com'+page+'#watt-rechner-raumgroesse-und-daemmung-eingeben';
+  const {env}=assetEnv();
+  const frage='Wie viel Watt Infrarotheizung brauche ich für 18 m² im Altbau?';
+  const hits=await call('ratgeber_suche',{frage,sprache:'de',max:1},env);
+  assert(textOf(hits).includes('Abschnitt: '+section));
+  const full=await call('ratgeber_lesen',{pfad:section},env);
+  const compact=await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad:section}},env,true);
+  assert.equal(full.isError,false);
+  assert.deepEqual(full,compact);
+  const text=textOf(full);
+  assert(text.startsWith('Quelle: '+section+'\n'));
+  for(const fact of ['18 m²','1.800 W','0,54 €','Verbraucherzentrale']) assert(text.includes(fact),fact);
+  assert(!text.includes('getecoback-21'));
+});
+
 test('the committed MCP corpus is derived from current public canonical pages and built mirrors', () => {
   const py = spawnSync('python3', ['-c', "import json,sys;sys.path.insert(0,'tools');from build_mcp_guides import collect_guides;print(json.dumps(collect_guides()))"], {cwd, encoding: 'utf8', timeout: 15000});
   assert.equal(py.status, 0, py.stderr);

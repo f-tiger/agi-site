@@ -46,10 +46,11 @@ const fixtures = new Map(Object.entries({
   },
   heizleistung_watt: {
     page: '/guide/infrarotheizung-watt-rechner.html',
+    section: '#watt-rechner-raumgroesse-und-daemmung-eingeben',
     args: {qm: 20, daemmung: 'mittel', strompreis_euro_kwh: 0.3},
     expected_fields: {estimated_watts: 1600, eur_per_full_load_hour: 0.48},
     expected_text: ['ca. 1.600 Watt', '0,48 € pro Stunde Volllast'],
-    conditions: '80 W/m² als grober Ansatz für den Bestand. Stromkosten beziehen sich auf eine Stunde Volllast. Maßgeblich für eine Auslegung ist die tatsächliche Heizlast.',
+    conditions: '80 W/m² als grober Ansatz für angenommene mittlere Dämmung. Stromkosten beziehen sich auf eine Stunde Volllast. Für die Auslegung einer Hauptheizung ist die tatsächliche Raumheizlast maßgeblich.',
   },
   taupunkt_lueften: {
     page: '/guide/keller-lueften-sommer.html',

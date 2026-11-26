@@ -46,6 +46,9 @@ def collect():
  sections[('de','/guide/infrarotheizung-ratgeber.html')]={
   'id':'jahreskosten-hauptheizung','title':'Infrarotheizung als einzige Heizung: Jahreskosten prüfen',
   'description':'Belegten Heizstrom mit dem Arbeitspreis verrechnen. Gebäudewerte aus dem Energieausweis ergeben keinen Heizstromverbrauch der einzelnen Wohnung.'}
+ sections[('de','/guide/infrarotheizung-watt-rechner.html')]={
+  'id':'watt-rechner-raumgroesse-und-daemmung-eingeben','title':'Wie viel Watt braucht eine Infrarotheizung für einen Raum?',
+  'description':'Fläche und tatsächliche Dämmung ergeben einen groben Richtwert. Bei 18 m² und angenommener schlechter Dämmung sind es 1.800 W. Punktuelle Zusatzwärme und die Raumheizlast getrennt beurteilen.'}
  sections[('de','/guide/akku-heizluefter.html')]={
   'id':'auto-12v-steckdose','title':'Passt ein 12-V-Heizlüfter an die Steckdose im Auto?',
   'description':'150 W bei 12 V ergeben rechnerisch 12,5 A und überschreiten eine 120-W-Grenze. Die Freigabe für Anschluss und Nutzungsdauer in beiden Anleitungen prüfen.'}
