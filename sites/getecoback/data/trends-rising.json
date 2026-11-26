@@ -1,86 +1,60 @@
 {
- "fetched": "2026-11-25",
+ "fetched": "2026-11-26",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
-   "rising": [
-    {
-     "q": "black friday klimaanlage",
-     "v": 1950
-    },
-    {
-     "q": "infrarotheizung",
-     "v": 1050
-    },
-    {
-     "q": "heizen mit klimaanlage",
-     "v": 600
-    },
-    {
-     "q": "klimaanlage heizen",
-     "v": 550
-    },
-    {
-     "q": "klimaanlage zum heizen",
-     "v": 550
-    },
-    {
-     "q": "verkleidung klimaanlage außengerät",
-     "v": 350
-    },
-    {
-     "q": "vrf klimaanlage",
-     "v": 350
-    },
-    {
-     "q": "klimaanlage verkleidung",
-     "v": 350
-    },
-    {
-     "q": "klimaanlage als heizung",
-     "v": 300
-    },
-    {
-     "q": "daikin stylish",
-     "v": 300
-    }
+   "auto": [
+    "klimaanlage",
+    "klimaanlage mobil",
+    "klimaanlage splitgerät",
+    "klimaanlage wohnung",
+    "klimaanlage für zuhause",
+    "klimaanlagen",
+    "klimaanlage mitsubishi",
+    "klimaanlage in der nähe",
+    "klimaanlage mit abluftschlauch",
+    "klimaanlage kaufen"
    ],
-   "source": "related-queries",
-   "fetched": "2026-11-25",
-   "polluted": false,
-   "last_attempt_at": "2026-11-25T14:48:11.518219+00:00",
-   "last_attempt_status": "ok"
+   "new_vocabulary": [
+    "klimaanlage mobil",
+    "klimaanlage splitgerät",
+    "klimaanlage wohnung",
+    "klimaanlage für zuhause",
+    "klimaanlagen",
+    "klimaanlage mitsubishi",
+    "klimaanlage in der nähe",
+    "klimaanlage mit abluftschlauch",
+    "klimaanlage kaufen"
+   ],
+   "rising": [],
+   "source": "autocomplete-vocabulary",
+   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
+   "last_attempt_at": "2026-11-26T14:14:09.997498+00:00",
+   "last_attempt_status": "failed",
+   "fetched": "2026-11-26"
   },
   "schimmel entfernen": {
    "auto": [
     "schimmel entfernen",
     "schimmel entfernen wand",
     "schimmel entfernen hausmittel",
-    "schimmel entfernen dusche",
     "schimmel entfernen bad fugen",
+    "schimmel entfernen dusche",
     "schimmel entfernen wand innen",
     "schimmel entfernen dm",
-    "schimmel entfernen firma in der nähe",
     "schimmel entfernen tapete",
-    "schimmel entfernen alkohol"
+    "schimmel entfernen alkohol",
+    "schimmel entfernen bad"
    ],
    "new_vocabulary": [
-    "schimmel entfernen wand",
-    "schimmel entfernen hausmittel",
-    "schimmel entfernen dusche",
-    "schimmel entfernen bad fugen",
-    "schimmel entfernen wand innen",
-    "schimmel entfernen dm",
-    "schimmel entfernen firma in der nähe",
-    "schimmel entfernen tapete",
-    "schimmel entfernen alkohol"
+    "schimmel entfernen bad"
    ],
    "rising": [],
    "source": "autocomplete-vocabulary",
    "signal_limit": "vocabulary_only_not_growth_or_search_volume",
-   "last_attempt_at": "2026-11-18T13:20:12.237242+00:00",
+   "last_attempt_at": "2026-11-26T14:17:10.512776+00:00",
    "last_attempt_status": "failed",
-   "fetched": "2026-11-18"
+   "fetched": "2026-11-26"
   },
   "infrarotheizung": {
    "auto": [
