@@ -1,12 +1,12 @@
 {
-  "checkedAt": "2026-11-25T11:45:34Z",
+  "checkedAt": "2026-11-26T11:31:05Z",
   "sources": [
     {
       "id": "openai",
       "company": "OpenAI",
       "url": "https://openai.com/news/rss.xml",
-      "checkedAt": "2026-11-25T11:45:34Z",
-      "lastSuccessAt": "2026-11-25T11:45:34Z",
+      "checkedAt": "2026-11-26T11:31:05Z",
+      "lastSuccessAt": "2026-11-26T11:31:05Z",
       "ok": true,
       "error": null
     },
@@ -14,8 +14,8 @@
       "id": "anthropic",
       "company": "Anthropic",
       "url": "https://www.anthropic.com/news",
-      "checkedAt": "2026-11-25T11:45:34Z",
-      "lastSuccessAt": "2026-11-25T11:45:34Z",
+      "checkedAt": "2026-11-26T11:31:05Z",
+      "lastSuccessAt": "2026-11-26T11:31:05Z",
       "ok": true,
       "error": null
     },
@@ -23,8 +23,8 @@
       "id": "meta",
       "company": "Meta",
       "url": "https://about.fb.com/news/feed/",
-      "checkedAt": "2026-11-25T11:45:34Z",
-      "lastSuccessAt": "2026-11-25T11:45:34Z",
+      "checkedAt": "2026-11-26T11:31:05Z",
+      "lastSuccessAt": "2026-11-26T11:31:05Z",
       "ok": true,
       "error": null
     },
@@ -32,7 +32,7 @@
       "id": "xai",
       "company": "xAI / SpaceX",
       "url": "https://x.ai/news",
-      "checkedAt": "2026-11-25T11:45:34Z",
+      "checkedAt": "2026-11-26T11:31:05Z",
       "lastSuccessAt": "2026-10-31T16:20:44Z",
       "ok": false,
       "error": "http_403"
@@ -41,13 +41,23 @@
       "id": "deepmind",
       "company": "Google DeepMind",
       "url": "https://deepmind.google/blog/rss.xml",
-      "checkedAt": "2026-11-25T11:45:34Z",
-      "lastSuccessAt": "2026-11-25T11:45:34Z",
+      "checkedAt": "2026-11-26T11:31:05Z",
+      "lastSuccessAt": "2026-11-26T11:31:05Z",
       "ok": true,
       "error": null
     }
   ],
   "items": [
+    {
+      "id": "616293296550946fa78f0e19",
+      "company": "Google DeepMind",
+      "title": "From spectrum to structure: Identifying molecules with Mass Spec Skills for Google Antigravity",
+      "url": "https://deepmind.google/blog/interpreting-mass-spectra-with-google-antigravity",
+      "publishedAt": "2026-11-24T13:07:53Z",
+      "discoveredAt": "2026-11-26T11:31:05Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
     {
       "id": "ac2f786b30f6d45772c42167",
       "company": "OpenAI",
