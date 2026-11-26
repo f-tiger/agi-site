@@ -64,6 +64,22 @@ function asksWhyIndoorMoistureReturns(query) {
     (despiteAiring.test(query) || (afterAiring.test(query) && risesAgain.test(query)));
 }
 
+export const thermostatReferenceRoom = {
+  path:'/guide/heizkoerper-wird-nicht-warm.html',
+  id:'referenzraum-warm-nebenraum-kalt',
+  tool:'ratgeber_suche',
+};
+
+function asksAboutThermostatReferenceRoom(query) {
+  const centralControl = /\b(?:zentral\w*\s+(?:raum[ -]?)?thermostat\w*|wand[ -]?thermostat\w*|raumthermostat\w*|raumregler\w*|referenzraum\w*|fuehrungsraum\w*|gasetagenheizung\w*)\b|\bthermostat\b[^.?!]{0,25}\b(?:wohn|schlaf)zimmer\b/;
+  const coldRoom = /\b(?:schlafzimmer|kinderzimmer|wohnzimmer|bad(?:ezimmer)?|kueche|nebenraum|ander\w*\s+(?:zimmer|raum|raeum\w*))\b/;
+  const tooCold = /\b(?:kalt\w*|kuehl\w*|nicht (?:mehr |richtig )?warm|heiz\w*\s+nicht mehr)\b/;
+  const satisfied = /\b(?:schaltet\s+ab|schaltet\b[^.?!]{0,30}\bab|abschaltet|geht aus|stoppt|warm genug|(?:schon|bereits) warm|dort ist es warm|solltemperatur (?:ist )?erreicht)\b|\berreicht\b[^.?!]{0,20}(?:\bsolltemperatur\b|\b\d{2}\s*(?:grad\b|°))/;
+  const anotherJob = /\b(?:danfoss|oventrop|adapter\w*|batterie\w*|amortisier\w*|amortisation|ersparnis\w*|stromverbrauch|glucker\w*|wettergefuehrt\w*|aussentemperaturregelung|heizkurve\w*)\b/;
+  return centralControl.test(query) && coldRoom.test(query) && tooCold.test(query) &&
+    satisfied.test(query) && !anotherJob.test(query);
+}
+
 const glazing = {
   path:'/guide/fenster-beschlagen-aussen.html',
   id:'aussen-innen-oder-dazwischen',
@@ -656,6 +672,8 @@ export function exactGermanHouseholdTask(query) {
       !/\bkeller\w*\b/.test(query) && (!outdoors.test(query) || roomMentioned)) return ventilation;
 
   if (asksWhyIndoorMoistureReturns(query)) return ventilationRebound;
+
+  if (asksAboutThermostatReferenceRoom(query)) return thermostatReferenceRoom;
 
   const betweenPanes = /\bscheibenzwischenraum\b|\bzwischen\s+(?:(?:den|beiden|zwei|drei)\s+){0,3}(?:fenster|glas)?scheiben\b/;
   const glassMoisture = /\b(?:beschla(?:g|eg)\w*|kondens\w*|feucht\w*|wasser\w*|tropfen\w*|blind\w*|milchig\w*|trueb\w*|schleier\w*)\b/;
