@@ -6,7 +6,7 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/midea-portasplit-ka
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
 
-Die mobile Split-Klimaanlage hat ein Innen- und ein Außengerät. Prüfe für die originale PortaSplit die EAN 4048164116478, den Lieferumfang und den Platz an deinem Fenster oder Balkon. Bei offenem Aufstellort oder Liefertermin kannst du mit der Bestellung warten. [Zum genauen Modell und Angebot](https://getecoback.com/guide/midea-portasplit-kaufen.html#portasplit-original-angebot).
+Die mobile Split-Klimaanlage hat ein Innen- und ein Außengerät. Prüfe für die originale PortaSplit die EAN 4048164116478, den Lieferumfang und den Platz an deinem Fenster oder Balkon. Bei offenem Aufstellort oder Liefertermin kannst du mit der Bestellung warten. [Zum genauen Modell und Angebot](https://getecoback.com/guide/midea-portasplit-kaufen.html#portasplit-original-angebot). [Lieferung oder Abholung zum Wunschtermin prüfen](https://getecoback.com/guide/midea-portasplit-kaufen.html#portasplit-liefertermin-pruefen).
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
 
@@ -35,6 +35,20 @@ Gleiche Fensterfalz, Standort des Außengeräts und Halterung mit der Anleitung 
 Willst du das Original auch zum Heizen nutzen? Prüfe, [wie die automatische Abtauphase abläuft und wann du den Kundendienst brauchst](https://getecoback.com/guide/klimaanlage-mit-heizfunktion.html#portasplit-abtauen).
 
 [Midea Deutschland vergleicht die drei Geräte und verlinkt den Amazon-Artikel des Originals](https://www.midea.com/de/klimatisieren-heizen/portasplit). [Midea zur Universalhalterung](https://www.midea.com/content/dam/midea-aem/de/klimatisieren-heizen/portasplit/universalhalterung/PortaSplit-UM-universal-bracket.pdf). Quellen geprüft am 25. November 2026.
+
+### Bis zum Wunschtermin: Lieferung oder Abholung prüfen
+
+Brauchst du die originale Midea PortaSplit (EAN 4048164116478) bis zu einem festen Datum? Rechne vom Einsatztag die Zeit für die Aufstellung zurück. Kläre den so ermittelten spätesten Empfangstag für alle benötigten Geräte.
+
+- **Versand oder Vorbestellung:** Frage nach dem bestätigten Ankunftstag für deine Postleitzahl und Stückzahl. Prüfe, ob das genannte Datum den Versand oder die Ankunft bezeichnet. Ein voraussichtlicher Zeitraum lässt die tatsächliche Ankunft offen. [Händlerbeispiel für Vorbestellung und Lieferzeitraum](https://solarhandel24.de/products/midea-portasplit-klimaanlage).
+
+- **Abholung:** Wähle Markt und Stückzahl. Warte auf die Abholbestätigung für diesen Markt, bevor du losfährst. [OBI erklärt den Ablauf der Abholung](https://www.obi.de/markt/services/abholung-express).
+
+- **Zwei Geräte:** Lass dir zwei vollständige Sets bestätigen. Jedes Set umfasst je ein Innen- und ein Außengerät.
+
+**Frage an den Händler:** Können Sie mir schriftlich bestätigen, dass [Anzahl] vollständige Midea PortaSplit, EAN 4048164116478, spätestens am [Datum] an [PLZ] eintreffen oder in [Markt/Ort] abholbereit sind?
+
+[Budget und verbleibende Zeit prüfen](https://getecoback.com/guide/klimaanlage-wann-kaufen.html#kaufzeitpunkt-rechner). Kann der Händler den benötigten Termin nicht bestätigen, verschiebe die Bestellung oder [prüfe eine passende Alternative](https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html#kaufpruefung). Händlerabläufe geprüft am 26. November 2026.
 
 Anzeige: Originale Midea PortaSplit auf Amazon.de prüfen
 Das ist die Produktseite des Originalgeräts. Prüfe beim Händler, ob es an deinen Lieferort angeboten wird, was beiliegt und wann es kommen kann. EcoBack bestätigt hier weder einen Preis noch eine Verfügbarkeit.

@@ -1080,3 +1080,18 @@ test('German PortaSplit versus Monoblock evidence links only to the two matching
     '/guide/midea-portasplit-ausverkauft-alternativen.html#option-3-monoblock']) assert(textOf(full).includes(value),value);
  assert(!textOf(full).includes('https://www.amazon.de/'));
 });
+
+test('German original PortaSplit delivery evidence keeps the quantity, date and pickup distinction',async()=>{
+ const {env}=assetEnv();
+ const pfad='https://getecoback.com/guide/midea-portasplit-kaufen.html#portasplit-liefertermin-pruefen';
+ const found=await call('ratgeber_suche',{frage:'Wann wird die PortaSplit geliefert?',sprache:'de',max:1},env);
+ assert(textOf(found).includes('Abschnitt: '+pfad));
+ const full=await call('ratgeber_lesen',{pfad},env);
+ assert.equal(full.isError,false);
+ assert.deepEqual(await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad}},env,true),full);
+ for(const value of ['4048164116478','Postleitzahl','Ankunftstag','Abholbestätigung','zwei vollständige Sets',
+    'verschiebe die Bestellung','https://solarhandel24.de/products/midea-portasplit-klimaanlage',
+    'https://www.obi.de/markt/services/abholung-express',
+    '/guide/klimaanlage-wann-kaufen.html#kaufzeitpunkt-rechner']) assert(textOf(full).includes(value),value);
+ assert(!textOf(full).includes('https://www.amazon.de/'));
+});

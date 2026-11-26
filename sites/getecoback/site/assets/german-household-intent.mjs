@@ -643,6 +643,20 @@ function asksForDehumidifierDiscountReference(query) {
   return device.test(query) && offer.test(query) && !elsewhere.test(query);
 }
 
+export const portaSplitDelivery = {
+  path:'/guide/midea-portasplit-kaufen.html',
+  id:'portasplit-liefertermin-pruefen',
+  tool:'ratgeber_suche',
+};
+
+function asksForPortaSplitDelivery(query) {
+  if (!/\b(?:porta[ -]*split|4048164116478)\b/.test(query) || namesDifferentPortaSplit(query)) return false;
+  const eans = query.match(/\b\d{13}\b/g) || [];
+  if (eans.some(ean => ean !== '4048164116478')) return false;
+  if (/\b(?:[a-z-]*halterung\w*|ersatzteil\w*|monoblock\w*|fenster[ -]?falz\w*)\b/.test(query)) return false;
+  return /\b(?:vorbestell\w*|abhol\w*|abzuholen|lieferbar\w*|liefertermin\w*|lieferdatum\w*|lieferwoche\w*|lieferzeit\w*|zustelltermin\w*|geliefert|verschickt|reservier\w*)\b/.test(query);
+}
+
 export const portaSplitMonoblockChoice = {
   path:'/guide/portasplit-vs-monoblock.html',
   id:'bauart-vor-angebot',
@@ -852,6 +866,7 @@ export function exactGermanHouseholdTask(query) {
   if (asksAboutAnEmptyDehumidifierTank(query)) return emptyDehumidifierTank;
   if (asksForMeacoDd8lProGarage(query)) return meacoDd8lProGarage;
   if (asksForCoolingDiscountReference(query)) return coolingDiscountReference;
+  if (asksForPortaSplitDelivery(query)) return portaSplitDelivery;
   if (asksForPortaSplitMonoblockChoice(query)) return portaSplitMonoblockChoice;
   if (asksForTadoXVaillantAdapter(query)) return tadoXVaillantAdapter;
   if (asksForOfflineThermostat(query)) return offlineThermostatChoice;
