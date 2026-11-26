@@ -1,80 +1,75 @@
-# Split-Klimaanlage ohne Kernbohrung: So geht es (2026)
+# Split-Klimaanlage ohne Kernbohrung: Was passt?
 
-> Split-Klimaanlage ohne Kernbohrung: Wie Quick-Connect-Systeme leise Split-Kühlung ohne Installateur liefern und rund 1.000 € Montagekosten sparen.
+> Mobile Splitgeräte und Quick-Connect-Sets brauchen unterschiedliche Aufstell- und Montagebedingungen. Prüfe Fenster, Außenplatz und Fachbetrieb vor dem Kauf.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/split-klimaanlage-ohne-kernbohrung.html
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
 
-Eine klassische Split-Klimaanlage ist leise und effizient — aber Kernbohrung, Kältemitteltechniker und 1.000–2.000 € Montagekosten schrecken ab, und zur Miete ist sie meist gar nicht erlaubt. Seit die Midea PortaSplit diese Lücke aufgerissen hat, gibt es eine wachsende Kategorie: **Split-Klimaanlagen mit Quick-Connect-Kupplung zur Selbstmontage**. Hier der ehrliche Überblick.
+**Kaufentscheidung:** Miss zuerst den tatsächlichen Leitungsweg. Prüfe danach, ob das Außengerät nach Anleitung sicher steht und ob du die nötige Zustimmung für diesen Aufbau hast. Sind diese Punkte offen, kläre sie vor der Bestellung.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
 
-## Wie funktioniert eine Splitanlage ohne Kernbohrung?
+## Mobile Splitgeräte und Quick-Connect-Sets
 
-Wie bei jeder Splitanlage hängt der laute Kompressor draußen (Balkon, Terrasse, Fensterbrett-Halterung) und drinnen steht/hängt nur der leise Lüfter. Der Unterschied: Innen- und Außeneinheit sind mit einer **vorbefüllten Kältemittelleitung mit Schnellkupplung** verbunden, die durch ein gekipptes Fenster passt. Kein Bohren, kein Techniker, beim Umzug nimmst du alles mit.
+**Werkseitig verbunden:** Bei der ursprünglichen Midea PortaSplit (EAN 4048164116478) bleiben Innen- und Außengerät durch einen fest verbundenen Schlauch gekoppelt. Er ist laut Midea 2 m lang. Prüfe anhand der Herstelleranleitung, ob er bei deinem Fenster frei verlegt werden kann und das Außengerät sicher steht.
 
-## Quick-Connect-Split vs. tragbare Monoblock-Klimaanlage
+**Vor Ort zu verbinden:** Bei Quick-Connect-Sets werden die Einheiten vor Ort verbunden. Prüfe die Anleitung für das genaue Modell, die zulässige Leitungsführung, den Lieferumfang und die Anforderungen an die Installation. Eine Schnellkupplung sagt allein nichts über den nötigen Installationsnachweis aus.
 
-|  | Quick-Connect-Split | Tragbarer Monoblock |
-| --- | --- | --- |
-| Lautstärke innen | ~35–42 dB (schlafzimmertauglich) | ~55–65 dB |
-| Effizienz | Höher (echter Split) | Niedriger |
-| Preis | ~800–1.300 € | ~250–600 € |
-| Montage | Selbst, ~1–2 Std. | Selbst, ~10 Min. |
-| Außeneinheit nötig? | Ja (Balkon/Fensterplatz) | Nein, nur Abluftschlauch |
-| Heizfunktion | Meist ja (Wärmepumpe) | Teilweise |
+## Aufstellung im Vergleich
 
-## Für wen lohnt sich der Aufpreis?
+| Bauart | Vor dem Kauf prüfen |
+| --- | --- |
+| Mobiles Splitgerät | Außenplatz, ungehinderter Leitungsweg und Befestigung nach Anleitung. |
+| Quick-Connect-Set | Außenplatz, Leitungsführung, Zubehör und nötiger Installationsnachweis. |
+| Mobiler Monoblock | Geeignete Abluftöffnung und passender Fensteradapter. |
 
-- **Ja,** wenn du jeden Sommer kühlen willst, im Schlafzimmer Ruhe brauchst und einen Balkon/Platz für die Außeneinheit hast. Über 3–4 Sommer gerechnet ist sie durch die bessere Effizienz und den Heizbetrieb im Winter oft die wirtschaftlichere Wahl.
+## Wann sich ein Preisvergleich lohnt
 
-- **Nein,** wenn du nur wenige heiße Wochen überbrücken willst (dann reicht ein [tragbarer Monoblock](https://getecoback.com/guide/beste-tragbare-klimaanlage-hitzewelle.html)) oder keinerlei Außenfläche hast.
+Wenn mehrere Bauarten zu deinem Fenster und Außenplatz passen, vergleiche Kühlleistung, Stromverbrauch und Geräuschwerte unter vergleichbaren Messbedingungen. Rechne benötigte Halterung und gegebenenfalls Fachmontage zum Gerätepreis. Für eine Wohnung ohne nutzbaren Außenplatz kommt ein [tragbarer Monoblock](https://getecoback.com/guide/beste-tragbare-klimaanlage-hitzewelle.html) infrage, sofern du die Abluft nach draußen führen kannst. Fehlt beides, warte mit dem Kauf.
 
 ## Worauf beim Kauf achten
 
-- **Vorbefüllte Leitung mit Schnellkupplung** — nur dann ist wirklich keine Fachfirma nötig.
+- **Modell abgleichen:** Notiere Modellnummer oder EAN und prüfe das Handbuch der angebotenen Ausführung.
 
-- **Leitungslänge** (meist 3–5 m): reicht sie von deinem Aufstellort zum Fenster/Balkon?
+- **Leitungsweg messen:** Miss vom geplanten Innenplatz bis zum Außenplatz entlang des tatsächlichen Wegs. Prüfe, ob das Fenster ohne Klemmen oder Knicken bedient werden kann. Für einen Monoblock prüfe die [passende Fensterabdichtung](https://getecoback.com/guide/klimaanlage-kippfenster.html).
 
-- **Halterung für die Außeneinheit**: Balkonboden, Wandhalter oder Fensterbank-Konsole — vorher klären.
+- **Außenplatz und Montage klären:** Prüfe Tragfähigkeit, Befestigung und Abstände nach Anleitung. Kläre eine nötige Zustimmung und einen nötigen Installationsnachweis vor der Bestellung.
 
-- **Kippfenster-Durchführung**: flaches Leitungsprofil + [Fensterabdichtung](https://getecoback.com/guide/klimaanlage-kippfenster.html) einplanen.
+## Kältemittel und Installationsnachweis
 
-## Kältemittel: R32 oder R290 — und wer die Anlage in Betrieb nehmen darf
+Artikel 11 Absatz 7 der EU-F-Gas-Verordnung betrifft den Verkauf an Endverbraucher von nicht hermetisch geschlossenen Geräten mit den dort erfassten fluorierten Kältemitteln. Dafür ist ein Nachweis über die Installation durch einen entsprechend zertifizierten Betrieb erforderlich. In Deutschland regelt § 15 Absatz 3 der Chemikalien-Klimaschutzverordnung den schriftlichen Nachweis beim Verkäufer.
 
-Das ist der Punkt, den die Vergleichsseiten überspringen, und er entscheidet mit über deine tatsächlichen Kosten. Quick-Connect-Sets arbeiten überwiegend mit **R32**. R32 ist ein fluoriertes Kältemittel — **R290** (Propan), das in vielen Monoblöcken steckt, ist es nicht. An das fluorierte knüpfen sich die Regeln für Handhabung und Inbetriebnahme, und bei Quick-Connect-Angeboten auf Amazon.de findet sich dazu teils der ausdrückliche Hinweis, dass Installation und Inbetriebnahme durch einen **zertifizierten Fachbetrieb** nachzuweisen sind.
+Prüfe vor der Bestellung die Kältemittelkennzeichnung und die Installationsunterlagen für die konkrete Ausführung. Kläre offene Punkte mit Anbieter und Fachbetrieb.
 
-**Was konkret zu tun ist:** Lies vor dem Kauf die Installationsklausel des jeweiligen Anbieters — sie steht in der Artikelbeschreibung, nicht im Datenblatt. Wird dort ein Fachbetrieb verlangt, gehören dessen Kosten in deine Rechnung, und der Preisvorteil gegenüber einer klassisch installierten Splitanlage schrumpft. Steht dort nichts dergleichen, hast du das immerhin schriftlich.
+## Mietwohnung und Wohnungseigentum
 
-Wir sind keine Kältetechniker und geben keine Rechtsberatung. Was hier steht, ist die Aufforderung, die Angaben des Anbieters selbst zu lesen — nicht deren Auslegung.
+Prüfe bei einer Mietwohnung Mietvertrag und Hausordnung sowie die geplante Aufstellung, mögliche Geräusche und die Befestigung am Gebäude. Kläre eine nötige Zustimmung vor der Bestellung schriftlich. Im [Mietwohnungs-Ratgeber](https://getecoback.com/guide/klimaanlage-mietwohnung.html) findest du die Prüfschritte für Fenster und Außenplatz.
 
-## Mietwohnung & WEG: Was erlaubt ist (Stand Juli 2026)
-
-Der eigentliche Grund, warum viele „ohne Kernbohrung" suchen, ist nicht die Bohrmaschine — es ist die Erlaubnis. Die Rechtslage in Kürze:
-
-- **Mieter:** Ein Quick-Connect-Split ohne Bohrung, dessen Außeneinheit frei auf dem Balkon steht und die Leitung durchs gekippte Fenster führt, ist rechtlich nah am mobilen Gerät — rückstandslos entfernbar, in der Regel ohne Genehmigung. Sobald aber **fest montiert** wird (Wandhalter an der Fassade, Brüstungskonsole, Durchführung im Rahmen), ist es eine bauliche Veränderung und braucht die **schriftliche Zustimmung des Vermieters**.
-
-- **Wohnungseigentümer:** Seit dem **BGH-Urteil vom 17. Juli 2026 (Az. V ZR 162/25)** kannst du von deiner Eigentümergemeinschaft grundsätzlich die **Gestattung** einer Split-Klimaanlage verlangen — sogar mit Fassadendurchbohrung (§ 20 Abs. 3 WEG). Abstrakte Lärmsorgen der Nachbarn reichen als Ablehnungsgrund regelmäßig nicht; ein Beschluss bleibt aber erforderlich.
-
-- **Praktisch heißt das:** Die Lösung ohne Kernbohrung bleibt der schnellste Weg — sie umgeht die Erlaubnisfrage weitgehend. Wer langfristig eine feste Anlage will, hat seit Juli 2026 deutlich bessere Karten als vorher. Details im [Mietwohnungs-Ratgeber](https://getecoback.com/guide/klimaanlage-mietwohnung.html).
-
-Redaktionelle Zusammenfassung, keine Rechtsberatung.
+Das BGH-Urteil vom 17. Juli 2026 (V ZR 162/25) betrifft die Gestattung einer baulichen Veränderung durch die Gemeinschaft der Wohnungseigentümer. Der konkrete Aufbau und der erforderliche Beschluss bleiben zu klären.
 
 ## Häufige Fragen
 
-**Braucht eine Split-Klimaanlage ohne Kernbohrung die Zustimmung des Vermieters?**Solange nichts gebohrt oder fest montiert wird — die Außeneinheit steht frei auf dem Balkon, die vorbefüllte Leitung führt durchs gekippte Fenster — ist sie rückstandslos entfernbar und in der Regel genehmigungsfrei. Eine feste Montage an Fassade oder Brüstung ist dagegen eine bauliche Veränderung und braucht die schriftliche Zustimmung des Vermieters.
+**Braucht eine Split-Klimaanlage ohne Kernbohrung die Zustimmung des Vermieters?**Die nötige Zustimmung hängt vom konkreten Aufbau ab. Prüfe Mietvertrag und Hausordnung, den Außenplatz und die Befestigung. Kläre eine nötige Zustimmung vor der Bestellung schriftlich.
 
-**Wie laut ist ein Quick-Connect-Split im Vergleich zum Monoblock?**Deutlich leiser im Raum: Beim Split arbeitet der Kompressor in der Außeneinheit, innen bleiben typischerweise rund 35–42 dB — Monoblöcke liegen innen meist bei 50–65 dB, weil der Kompressor mit im Zimmer steht. Für Schlafzimmer und Dauerbetrieb ist das der spürbarste Unterschied.
+**Kann ich bei der Midea PortaSplit den Verbindungsschlauch trennen?**Laut Midea bleibt der Schlauch der ursprünglichen PortaSplit (EAN 4048164116478) fest verbunden. Der Schlauch ist 2 m lang. Miss den Leitungsweg vor dem Kauf und prüfe, ob er ohne Klemmen oder Knicken möglich ist.
 
-**Kühlt ein Split ohne Kernbohrung besser als eine mobile Klimaanlage?**Ja, meist deutlich effizienter: Es entsteht kein Unterdruck im Raum, der warme Luft durch Tür- und Fensterritzen nachzieht, und die Abwärme bleibt komplett draußen. Der Preis dafür: höhere Anschaffungskosten und die Außeneinheit braucht einen Platz an Fenster oder Balkon.
+**Wie vergleiche ich mobile Splitgeräte und Monoblöcke beim Kauf?**Prüfe zuerst, ob ein sicherer Außenplatz oder nur eine passende Abluftöffnung vorhanden ist. Vergleiche anschließend Kühlleistung und Geräuschwerte unter vergleichbaren Messbedingungen.
 
-**Darf ich eine Quick-Connect-Splitanlage selbst in Betrieb nehmen?**Die Schnellkupplung ist so gebaut, dass du ohne Bördelwerkzeug und ohne Vakuumpumpe auskommst — das ist der technische Teil. Der rechtliche ist ein anderer: Quick-Connect-Sets enthalten überwiegend das fluorierte Kältemittel R32, und bei Angeboten auf Amazon.de findet sich dazu teils der ausdrückliche Hinweis, dass Installation und Inbetriebnahme durch einen zertifizierten Fachbetrieb nachzuweisen sind. Lies diese Klausel in der Artikelbeschreibung, bevor du bestellst — wird ein Fachbetrieb verlangt, gehören dessen Kosten in deine Rechnung. Wir sind keine Kältetechniker und geben keine Rechtsberatung.
+**Darf ich eine Quick-Connect-Splitanlage selbst installieren?**Eine Schnellkupplung klärt die Vorgaben für das konkrete Gerät nicht. Prüfe Anleitung, Kältemittelkennzeichnung und den erforderlichen Installationsnachweis vor dem Kauf.
 
-**Verfügbare Quick-Connect-Splitanlagen vergleichen:**
+## Quellen für die Kaufprüfung
 
-Splitanlagen zur Selbstmontage →
-  Midea PortaSplit →
+- [Midea Deutschland: fest verbundener Schlauch](https://www.midea.com/de/klimatisieren-heizen/portasplit/produktinfos.portasplit), [Modellvergleich und EAN](https://www.midea.com/de/klimatisieren-heizen/portasplit) sowie [Aufstellvarianten laut Hersteller](https://www.midea.com/de/klimatisieren-heizen/portasplit/installation).
+
+- [EUR-Lex: EU-Verordnung 2024/573, Artikel 11 Absatz 7](https://eur-lex.europa.eu/eli/reg/2024/573/oj/deu) und [Chemikalien-Klimaschutzverordnung, § 15 Absatz 3](https://www.gesetze-im-internet.de/chemklimaschutzv_2026/BJNR0640B0026.html).
+
+- [Bundesgerichtshof: Urteil V ZR 162/25](https://www.bundesgerichtshof.de/SharedDocs/Pressemitteilungen/DE/2026/2026130.html).
+
+**Angebote prüfen, wenn Außenplatz und Montage geklärt sind**
+
+Splitgeräte bei Amazon.de suchen →
+  Midea PortaSplit bei Amazon.de suchen →
 
 **Weitere Ratgeber**
 [Midea PortaSplit kaufen: Lohnt sich der Bestseller? →](https://getecoback.com/guide/midea-portasplit-kaufen.html)

@@ -158,6 +158,36 @@ class LlmsFull(unittest.TestCase):
             self.assertEqual(re.findall(r'href="(https://www.amazon.de/[^"]+)"',card),[merchant])
         self.assertNotRegex(md, r'amazon\.de/|getecoback-21')
 
+    def test_split_installation_checks_precede_affiliate_links_in_generated_guide(self):
+        page = SITE / 'guide/split-klimaanlage-ohne-kernbohrung.html'
+        raw = page.read_text()
+        mirror = page.with_suffix('.md').read_text()
+        [document] = re.findall(r'<script type="application/ld\+json">(.*?)</script>', raw, re.S)
+        graph = json.loads(document)['@graph']
+        [faq] = [item for item in graph if item['@type'] == 'FAQPage']
+        visible = re.findall(r'<p data-split-faq><strong>(.*?)</strong><br>(.*?)</p>', raw, re.S)
+        self.assertEqual(len(visible), 4)
+        self.assertEqual(visible, [(item['name'], item['acceptedAnswer']['text']) for item in faq['mainEntity']])
+        for question, answer in visible:
+            self.assertIn(question, mirror)
+            self.assertIn(answer, mirror)
+        for version in (raw, mirror):
+            for phrase in ('4048164116478', '2 m lang', 'V ZR 162/25', '§ 15 Absatz 3',
+                           'eur-lex.europa.eu/eli/reg/2024/573/oj/deu',
+                           'gesetze-im-internet.de/chemklimaschutzv_2026/BJNR0640B0026.html',
+                           'midea.com/de/klimatisieren-heizen/portasplit/produktinfos.portasplit',
+                           'Fehlt beides, warte mit dem Kauf.'):
+                self.assertIn(phrase, version)
+            self.assertNotRegex(version, r'genehmigungsfrei|ohne Genehmigung|Kein Bohren, kein Techniker|450 €')
+        self.assertNotRegex(raw, r'<!--EB_(?:TOPPICK|MODELS|POPUP|STICKY|PROFILE|QUICKPICK|EXPLAINER|RADAR|CLIMATE)-->')
+        first_cta = raw.index('href="https://www.amazon.de/')
+        self.assertLess(raw.index('id="mietwohnung-und-weg-was-erlaubt-ist"'), first_cta)
+        self.assertEqual(re.findall(r'href="(https://www.amazon.de/[^"]+)"', raw), [
+            'https://www.amazon.de/s?k=split+klimaanlage+ohne+installation&amp;tag=getecoback-21',
+            'https://www.amazon.de/s?k=midea+portasplit&amp;tag=getecoback-21',
+        ])
+        self.assertNotRegex(mirror, r'amazon\.de/|getecoback-21')
+
     def test_cooling_discount_reference_is_static_and_matches_the_mirror(self):
         page = SITE / 'guide/klimaanlage-wann-kaufen.html'
         source = page.read_text()
