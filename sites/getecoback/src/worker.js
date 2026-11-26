@@ -1389,7 +1389,7 @@ async function mcpCallTool(name, args, env) {
       const estimates = [60, 80, 100].map(rate => estimateHeatingWatts(qm, rate));
       const [good, medium, poor] = estimates.map(watt => watt.toLocaleString("de-DE"));
       const origin = hasArea ? "Faustregel" : "Beispiel ohne eigene Flächenangabe";
-      text = `${origin} für ${qm} m²: ca. ${good} W bei guter, ${medium} W bei mittlerer und ${poor} W bei schlechter Dämmung.\n` +
+      text = `${origin} für ${qm} m²: ca. ${good}–${poor} W. Das Modell setzt je nach Dämmung 60, 80 oder 100 W/m² an. Bei mittlerer Dämmung sind es ca. ${medium} W.\n` +
         "Die Annahme zur Dämmung und die tatsächliche Heizlast können das Ergebnis ändern. Kläre bei einer Hauptheizung die Raumheizlast fachlich. Für punktuelle Zusatzwärme prüfe Einbauort und Herstellerangaben.";
       if (!hasArea) {
         text += `\nGib die tatsächliche Fläche an und prüfe die Dämmung. Rechner: ${heatingSizingGuide}`;

@@ -293,7 +293,7 @@ test('heating device choice validates measured area and qualifies the existing g
   }
 
   const boundary = await call('geraet_wahl', {problem:'zu_kalt',qm:20});
-  assert.match(boundary.content[0].text, /1\.200 W bei guter, 1\.600 W bei mittlerer und 2\.000 W bei schlechter/);
+  assert.match(boundary.content[0].text, /1\.200–2\.000 W.*60, 80 oder 100 W\/m².*mittlerer Dämmung sind es ca\. 1\.600 W/);
   assert.ok(boundary.content[0].text.includes(sizing));
   assert.ok(boundary.content[0].text.includes(origin + '/guide/heizung-20-qm.html'));
 
@@ -305,7 +305,7 @@ test('heating device choice validates measured area and qualifies the existing g
     assert.doesNotMatch(answer, /\/guide\/heizung-\d+-qm\.html/);
     assert.doesNotMatch(answer, /amazon\.|[?&]tag=/);
     if (qm === 60) {
-      assert.match(answer, /3\.600 W bei guter, 4\.800 W bei mittlerer und 6\.000 W bei schlechter/);
+      assert.match(answer, /3\.600–6\.000 W.*mittlerer Dämmung sind es ca\. 4\.800 W/);
     }
   }
   const html = readFileSync(new URL('guide/infrarotheizung-watt-rechner.html', site),'utf8');
