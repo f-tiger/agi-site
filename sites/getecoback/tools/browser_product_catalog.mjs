@@ -468,7 +468,18 @@ async function checkCatalog(browser){
   }
 
   const guideLinks=page.locator('[data-specialist-guide] a');
-  assert.equal(await guideLinks.count(),9);
+  assert.equal(await page.locator('[data-specialist-guide] > a').count(),9);
+  assert.equal(await guideLinks.count(),10);
+  const dehumidifierGuide=page.locator('[data-specialist-guide]').filter({
+    has:page.locator('a[href="/guide/luftentfeuchter-ratgeber.html#eb-models"]'),
+  });
+  const priceCheck=dehumidifierGuide.locator('a[href="/guide/luftentfeuchter-ratgeber.html#luftentfeuchter-30-tage-preischeck"]');
+  assert.equal(await priceCheck.count(),1);
+  assert(await priceCheck.isVisible());
+  assert.deepEqual(await dehumidifierGuide.locator('a').evaluateAll(links=>links.map(link=>link.getAttribute('href'))),[
+    '/guide/luftentfeuchter-ratgeber.html#eb-models',
+    '/guide/luftentfeuchter-ratgeber.html#luftentfeuchter-30-tage-preischeck',
+  ]);
   assert.equal(await page.locator('[data-specialist-guide]:visible').count(),9);
   const exactModelLinks=page.locator('[data-specialist-guide][data-exact-guide-terms] a');
   assert.equal(await exactModelLinks.count(),modelGuides.length);
