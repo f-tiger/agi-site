@@ -22,6 +22,7 @@ def readable_sections(source, markdown, entry):
         '/guide/fenster-beschlagen-innen.html': 'fenstersauger-gegen-kondenswasser',
         '/guide/richtig-lueften-im-winter.html': 'lueften-vorher-nachher',
         '/waeschetrockner-oder-luftentfeuchter.html': 'luftentfeuchter-waesche-kosten',
+        '/guide/pinguino-pac-ex105-test.html': 'ex105-angebot',
     }
     wrapper = wrapped_sections.get(entry['u'])
     labels = {}

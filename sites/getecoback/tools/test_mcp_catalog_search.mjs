@@ -1750,3 +1750,16 @@ test('German laundry cost questions with no dryer distinguish measurement from r
    assert.notEqual(toolGuidePath(hit??{}),target,q);
  }
 });
+
+test('German EX105 offer identity queries lead to the sourced guide rather than an unconfirmed listing',async()=>{
+ const target='/guide/pinguino-pac-ex105-test.html#ex105-angebot';
+ for(const q of ["Welche EAN hat der De’Longhi PAC EX105 A+++?", "PAC EX105 kaufen: Im Angebot steht 0151454025 und PAC EX93. Passt es?", "Welches Gerät hat die EAN 8004399026445?"]) {
+   const [hit]=(await catalogue({q,view:'compact',limit:1})).tools;
+   assert.equal(hit?.name,'ratgeber_suche',q);
+   assert.equal(toolGuidePath(hit),target,q);
+ }
+ for(const q of ["Welche EAN hat der PAC EX93 Extreme?", "Welches Fensterkit passt zum PAC EX105 am Kippfenster?", "Sind die 63 dB beim PAC EX105 Schallleistung?", "Welche EAN hat der PAC N90?"]) {
+   const [hit]=(await catalogue({q,view:'compact',limit:1})).tools;
+   assert.notEqual(toolGuidePath(hit??{}),target,q);
+ }
+});

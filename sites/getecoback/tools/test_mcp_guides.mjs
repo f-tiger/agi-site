@@ -932,3 +932,15 @@ test('German laundry cost questions with only rated watts get usable sourced gui
  for(const phrase of ['nur 400 W im Datenblatt','0,4 kWh pro Stunde','gewünschten Trockenheit','vorhandenen Wäscheständer','umweltbundesamt.de','/waeschetrockner-oder-luftentfeuchter.html']) assert(textOf(full).includes(phrase),phrase);
  assert(!textOf(full).includes('getecoback-21'));
 });
+
+test('German EX105 purchase identity reads the manufacturer-backed section in both MCP profiles',async()=>{
+ const {env}=assetEnv();
+ const pfad='https://getecoback.com/guide/pinguino-pac-ex105-test.html#ex105-angebot';
+ const found=await call('ratgeber_suche',{frage:"PAC EX105 kaufen: Im Angebot steht 0151454025 und PAC EX93. Passt es?",sprache:'de',max:1},env);
+ assert(textOf(found).includes('Abschnitt: '+pfad));
+ const full=await call('ratgeber_lesen',{pfad},env);
+ assert.equal(full.isError,false);
+ assert.deepEqual(await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad}},env,true),full);
+ for(const phrase of ["8004399026445", "0151454026", "0151454025", "warte mit der Bestellung", "https://delonghigroup-newsroom.de/wp-content/uploads/2023/05/230509_DeLonghi_PM_Pinguino_PAC-EX105-.pdf", "https://www.delonghi.com/de-de/p/mobile-klimagerate-mobiles-klimagerat-pinguino-extreme-pacex93extreme/PACEX93EXTREME.html?pid=0151454025"]) assert(textOf(full).includes(phrase),phrase);
+ assert(!textOf(full).includes('amazon.de/'));
+});

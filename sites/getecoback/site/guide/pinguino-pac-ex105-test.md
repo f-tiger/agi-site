@@ -10,7 +10,13 @@ Diese Entscheidungshilfe gilt für den PAC EX105 A+++ mit der deutschen Artikeln
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
 
-**Deutsches Angebot für den PAC EX105 prüfen**. Gleiche **PACEX105A+++ · 0151454026** mit dem [deutschen De’Longhi-Support für PACEX105A+++](https://www.delonghi.com/de-de/s/PACEX105A%2B%2B%2B) ab. Prüfe zuerst die [Fensterteile und beide Schlauchmaße](https://getecoback.com/guide/pinguino-pac-ex105-test.html#ex105-ablufteinbau) sowie [Abluftweg und Aufstellung](https://getecoback.com/guide/pinguino-pac-ex105-test.html#raumgroesse). Bei unklarer Kennung warte mit der Bestellung.
+## Deutsches Angebot für den PAC EX105 prüfen
+
+Vergleiche die Kennung in den Produktdetails des Händlers. Zum deutschen **PAC EX105 A+++ (PACEX105A+++)** gehören die **Hersteller-Artikelnummer 0151454026** und die **EAN 8004399026445**. Belege: [deutscher De’Longhi-Support für PACEX105A+++](https://www.delonghi.com/de-de/s/PACEX105A%2B%2B%2B) und [De’Longhis deutsche Produktinformation vom 9. Mai 2023 (EAN)](https://delonghigroup-newsroom.de/wp-content/uploads/2023/05/230509_DeLonghi_PM_Pinguino_PAC-EX105-.pdf).
+
+Der **PAC EX93 Extreme · 0151454025** ist laut [De’Longhis deutscher EX93-Produktseite](https://www.delonghi.com/de-de/p/mobile-klimagerate-mobiles-klimagerat-pinguino-extreme-pacex93extreme/PACEX93EXTREME.html?pid=0151454025) eine andere Gerätevariante. Prüfe außerdem, ob das Angebot das Klimagerät enthält oder nur einen Schlauch oder ein Fensterkit. Fehlt eine eindeutige Kennung oder widersprechen sich die Angaben, warte mit der Bestellung und lass das Gerät vom Händler bestätigen.
+
+Prüfe vor dem Kauf auch die [Fensterteile und beide Schlauchmaße](https://getecoback.com/guide/pinguino-pac-ex105-test.html#ex105-ablufteinbau) sowie [Abluftweg und Aufstellung](https://getecoback.com/guide/pinguino-pac-ex105-test.html#raumgroesse).
 
 Anzeige · Affiliate-Link — du zahlst denselben Preis
 
