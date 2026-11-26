@@ -1618,3 +1618,24 @@ test('German Bosch WQG235D00 care queries use the single-model tool only for the
   }
   assert.equal(analytics,0);
 });
+
+test('wet balcony door threshold questions open guide search in the compact catalogue', async () => {
+  const destination = '/guide/fenster-beschlagen-innen.html#balkontuer-schwelle-kondenswasser';
+  for (const query of [
+    'Kondenswasser unter Balkontür bei 21 Grad und 50 Prozent – Vermieter informieren?',
+    'Wasser auf der Aluschwelle innen an der Balkontür, ist das Kondenswasser oder kommt Regen rein?',
+  ]) {
+    const [first] = (await catalogue({q:query,view:'compact',limit:1})).tools;
+    assert.equal(first?.name,'ratgeber_suche',query);
+    assert.equal(toolGuidePath(first),destination,query);
+  }
+  for (const query of [
+    '18 Grad und 50 Prozent Luftfeuchte im Schlafzimmer',
+    'Schafft mein Saugroboter die Schwelle zur Balkontür?',
+    'Welche Dichtung soll ich für die Balkontür kaufen?',
+    'Ich messe am Glas 9 Grad. Innen sind es 21 Grad und 55 Prozent Luftfeuchte. Ist Tauwasser auf der Innenseite möglich?',
+  ]) {
+    const result = await catalogue({q:query,view:'compact',limit:3});
+    assert.ok(!result.tools.some(tool=>toolGuidePath(tool)===destination),query);
+  }
+});

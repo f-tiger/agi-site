@@ -56,6 +56,21 @@ const glazing = {
   id:'aussen-innen-oder-dazwischen',
   tool:'fenster_beschlag_einordnen',
 };
+export const balconyThresholdMoisture = {
+  path:'/guide/fenster-beschlagen-innen.html',
+  id:'balkontuer-schwelle-kondenswasser',
+  tool:'ratgeber_suche',
+};
+
+function asksAboutBalconyThresholdMoisture(query) {
+  const door = /\b(?:balkon|terrassen?)[ -]?tuer\w*\b/;
+  const wet = /\b(?:kondens\w*|tauwasser|wasser\w*|nass\w*|feucht\w*|tropf\w*)\b/;
+  const threshold = /\b(?:(?:(?:metall|alu|boden|tuer)[ -]?)?(?:schwelle\w*|schiene\w*)|(?:metall|alu)[ -]?leist\w*|unter(?:halb)?\s+(?:(?:der|meiner|einer|eurer)\s+)?(?:balkon|terrassen?)[ -]?tuer\w*)\b/;
+  const anotherSurface = /\b(?:zwisch\w*\s+(?:den\s+)?scheib\w*|aussenscheib\w*|windschutzscheib\w*)\b/;
+  const doorBottom = /\bunten\b/.test(query) && !/\b(?:innen)?scheib\w*\b/.test(query);
+  return door.test(query) && wet.test(query) && (threshold.test(query) || doorBottom) && !anotherSurface.test(query);
+}
+
 const boschStacking = {
   path:'/produkte.html',
   id:'waeschesaeule-zubehoer',
@@ -535,6 +550,7 @@ function exactEx105Evidence(query) {
 }
 
 export function exactGermanHouseholdTask(query) {
+  if (asksAboutBalconyThresholdMoisture(query)) return balconyThresholdMoisture;
   if (asksForBoschDryerDrain(query)) return boschDryerDrain;
   const dryerCare = exactBoschDryerCare(query);
   if (dryerCare) return dryerCare;

@@ -10,6 +10,8 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Diese Seite erklärt Bauphysik und Messwerte — sie ersetzt bei Bauschäden oder bestehendem Schimmelbefall keine Fachbegutachtung. Amazon-Links sind Partnerlinks; sie finanzieren diese Seite, ohne dass du mehr zahlst.
 
+Ist die Schwelle an der Balkontür nass? [Messwerte und mögliche Feuchtequellen an der Schwelle prüfen](https://getecoback.com/guide/fenster-beschlagen-innen.html#balkontuer-schwelle-kondenswasser).
+
 ## Fenster morgens von innen nass: erst abwischen und messen
 
 **Prüfe zuerst, auf welcher Seite das Wasser sitzt.** Wische Wasser an der zugänglichen Innenscheibe mit einem sauberen Tuch ab. Ist nur die Außenseite nass, [Außenbeschlag getrennt einordnen](https://getecoback.com/guide/fenster-beschlagen-aussen.html). Sitzt der Beschlag zwischen den Scheiben und lässt sich auf keiner Seite abwischen, das Glas von einem Fensterbetrieb prüfen lassen.
@@ -73,6 +75,16 @@ Hygrometer auf Amazon ansehen →
 ## Wann kann sich Kondenswasser am Glas bilden?
 
 Erreicht die Luft unmittelbar an der Scheibe ihren Taupunkt, kann Wasserdampf kondensieren. Auch wenn der Raumwert unauffällig aussieht, kann das Glas am Rand kalt genug sein. Ein einzelner Luftfeuchtewert verrät daher nicht, warum es an genau dieser Stelle nass ist. [Messwerte und Rechenbeispiel ansehen](https://getecoback.com/guide/fenster-beschlagen-innen.html#fenstersauger-gegen-kondenswasser).
+
+## Balkontür unten nass: Schwelle und Raumwerte prüfen
+
+Auf der Metallschwelle stehen Tropfen und die Innenscheibe ist trocken? Wische die Stelle mit einem Tuch trocken und beobachte, wo sich das Wasser zuerst wieder zeigt. Bei **21 °C und 50 % relativer Luftfeuchte** liegt der berechnete Taupunkt bei **rund 10,2 °C**. Erreicht die innere Schwelle diesen Wert oder ist sie kälter, kann dort Wasser kondensieren. Die Raumwerte allein zeigen nicht, woher das Wasser kommt.
+
+Hast du einen geeigneten Kontaktfühler, miss die Temperatur direkt an der betroffenen inneren Schwelle und gleichzeitig Temperatur und Luftfeuchte im Raum. Ein Infrarotwert auf blankem, spiegelndem Metall kann täuschen. Fehlt ein verlässlicher Oberflächenwert, lass die Ursache offen. Im [Taupunkt-Check](https://getecoback.com/guide/fenster-beschlagen-innen.html#fenstersauger-gegen-kondenswasser) genügen die beiden Raumwerte für den Taupunkt. Das optionale Feld „Scheibentemperatur“ ist für die gemessene Innenscheibe. Lass es leer, wenn du nur die Schwelle gemessen hast.
+
+Notiere Datum, Uhrzeit, Messwerte und Wetter. Fotografiere dieselbe Stelle und vergleiche die Schwelle bei trockenem Wetter und nach Regen. Wird sie nach Regen deutlich nasser oder kehrt das Wasser regelmäßig zurück, lass Türanschluss und Schwelle vor Ort prüfen. In einer Mietwohnung kannst du die Beobachtungen mit Fotos der Hausverwaltung oder dem Vermieter zeigen. Zum Abwischen genügt ein Tuch. Kläre einen vermuteten Spalt, bevor du eine neue Dichtung kaufst.
+
+Quellen geprüft am 26.11.2026. [Verbraucherzentrale zur Luftfeuchte an kalten Oberflächen](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426) · [Bosch zu Infrarotmessungen an glänzenden Oberflächen](https://www.bosch-diy.com/storage/diy/zip-manuals/ptd-1-100033618-zip-359451/de-DE/2210275595.html).
 
 ## Was bei wiederkehrender Nässe hilft
 

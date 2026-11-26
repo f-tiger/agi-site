@@ -156,6 +156,13 @@ def collect():
    catalog=json.loads((ROOT/'data/product-catalog.json').read_text())
    extra=' '.join([extra]+[c['name'] for c in catalog['categories']]+[p['name']+' '+p['variant'] for p in catalog['products']])
   entry={'u':route,'t':' '.join(h.title.split()),'d':desc[:320],'l':lang,'a':extra}
+  if lang=='de' and route=='/guide/fenster-beschlagen-innen.html':
+   anchor='balkontuer-schwelle-kondenswasser'
+   targets=re.findall(r'<h2\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)
+   if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
+    raise ValueError(f'Missing or hidden balcony threshold answer: {route}#{anchor}')
+   entry['model_sections']=[{'id':anchor,'title':'Balkontür unten nass: Schwelle und Raumwerte prüfen',
+    'description':'Bei 21 °C und 50 % liegt der Taupunkt bei rund 10,2 °C. Miss an derselben nassen Stelle und dokumentiere wiederkehrende Nässe, Regen und Zeitpunkt.'}]
   if lang=='de' and route=='/guide/saugwischer-kaufberatung.html':
    models=[
     {'id':'tineco-s7-modellwahl','title':'Tineco S7 FlashDry oder S7 Pro?',
