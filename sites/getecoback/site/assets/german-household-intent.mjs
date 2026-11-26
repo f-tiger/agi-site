@@ -708,7 +708,7 @@ export const coolingDiscountReference = {
   tool:'ratgeber_suche',
 };
 
-const boschCalibration = {
+export const boschCalibration = {
   path:'/guide/smarte-heizkoerperthermostate-lohnen-sich.html',
   id:'bosch-ii-m-e03',
   tool:'ratgeber_suche',
