@@ -424,6 +424,26 @@ export const vacuumOffer = {
   tool:'beutelstaubsauger_angebot_kosten_pruefen',
 };
 
+export const meacoArete20lComparison = {
+  path:'/guide/meacodry-arete-one-test.html',
+  id:'one-oder-two',
+  tool:'ratgeber_suche',
+};
+
+function asksForMeacoArete20lComparison(query) {
+  const arete = /\barete\b/;
+  const one = /\bone\b/;
+  const two = /\btwo\b/;
+  const twenty = /\b20[ -]*(?:l\b|liter\b)/;
+  const otherSize = /\b(?:10|12|25)[ -]*(?:l\b|liter\b)/;
+  const packaging = /\b(?:5060409601746|5060409605058|5060409604617|meacodryarete[12][ -]*20leu|arete1[ -]*20lgreyeu)\b/;
+  const evidence = /\b(?:leistung\w*|pruefpunkt\w*|strom\w*|watt|entzug\w*|feuchte\w*|keller\w*|app|nachtmodus|laut\w*|geraeusch\w*|ean|gtin|unterschied\w*|wechsel\w*)\b/;
+  const otherTask = /\b(?:ablaufschlauch\w*|pumpe\w*|reparier\w*|defekt\w*|wassertank\w*|ersatzfilter\w*|comfee|trotec|pro[ -]*breeze|bosch|stadler)\b/;
+  return !otherSize.test(query) && !otherTask.test(query) &&
+    (packaging.test(query) || (arete.test(query) && twenty.test(query) && two.test(query) &&
+      (one.test(query) || evidence.test(query))));
+}
+
 export const boschDryFilter = {
   path:'/guide/luftentfeuchter-ratgeber.html',
   id:'bosch-dry-4000-aktivkohlefilter',
@@ -828,6 +848,7 @@ export function exactGermanHouseholdTask(query) {
   if (asksForDirectHeatComparison(query)) return directHeat;
   if (asksForShowerFlow(query)) return showerFlow;
   if (asksForVacuumOffer(query)) return vacuumOffer;
+  if (asksForMeacoArete20lComparison(query)) return meacoArete20lComparison;
   if (asksForBoschDryFilter(query)) return boschDryFilter;
   if (asksForBoschDry(query)) return boschDry;
   if (asksForComfeeVariant(query)) return comfeeVariant;

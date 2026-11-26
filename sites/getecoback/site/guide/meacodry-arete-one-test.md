@@ -1,12 +1,12 @@
 # MeacoDry Arete One im Test-Überblick: One oder Two?
 
-> Arete One 20L: öffentliche Tests richtig einordnen. One oder Two? App, Bedienung und genaue Variante vor dem Kauf mit deutschen Herstellerquellen prüfen.
+> MeacoDry Arete One 20L und Two 20L bei gleicher Temperatur und Feuchte vergleichen. App, Geräusch je Gebläsestufe und deutsche GTIN prüfen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/meacodry-arete-one-test.html
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
 
-Der MeacoDry Arete One 20L ist das Gerät, das wir auf diesem Portal in der 20-Liter-Klasse als erste Wahl nennen — Grund genug, ihm zur Entfeuchter-Saison eine eigene Seite zu geben. Wir testen nicht selbst: Diese Seite fasst zusammen, was öffentliche Tests, Messungen und das Hersteller-Datenblatt zum Arete One sagen, und ordnet die Zahlen für konkrete Räume ein.
+Hier findest du die deutschen Prüfwerte für MeacoDry Arete One 20L und Two 20L sowie die veröffentlichten Messungen zum One 20L. Prüfe zuerst Raumtemperatur, Feuchteursache und Bedienung. [Direkt zum Vergleich der beiden 20L-Modelle und ihren GTINs](https://getecoback.com/guide/meacodry-arete-one-test.html#one-oder-two).
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
 
@@ -24,23 +24,33 @@ Arete One ist eine Modellfamilie, kein einzelnes Gerät — und die Größen unt
 
 Wichtig beim Kauf über Suchergebnisse: Die Angebote mischen diese Varianten, und die dB- und Liter-Werte aus Tests gelten jeweils nur für die getestete Größe. Nicht zu verwechseln ist die Familie außerdem mit der neueren Serie Arete Two — das ist eine eigene Baureihe. Alle Zahlen auf dieser Seite beziehen sich, wo nicht anders gesagt, auf das **20L-Modell**.
 
-### Arete One oder Two: Welche Unterschiede helfen bei der Auswahl?
+### MeacoDry Arete One 20L oder Two 20L?
 
-**Wähle zuerst die Bedienfunktionen, danach die passende Größe.** Wenn du am Gerät bedienen möchtest, kann One genügen. Wenn App-Steuerung, Zeitplanung oder eine verstellbare Luftführung wichtig sind, prüfe Two. Daraus folgt keine pauschale Empfehlung, ein funktionierendes One-Gerät zu ersetzen.
+Bei 20 °C und 60 % relativer Feuchte nennen die deutschen Meaco-Daten für beide 20L-Modelle **8,50 L/24 h**. Bei 10 °C und derselben Feuchte stehen **3,40 L/24 h** beim One und **3,35 L/24 h** beim Two. Wer mit dem One unter ähnlichen Bedingungen bereits genug Feuchte abführt, kann ihn weiterverwenden.
 
-Herstellerfunktionen der Baureihen — keine eigene Vergleichsmessung
+Deutsche Meaco-Produktseiten, gleiche Temperatur und relative Feuchte
 
-| Was möchtest du? | Arete One | Arete Two |
+| Prüfbedingungen | Arete One 20L | Arete Two 20L |
 | --- | --- | --- |
-| Bedienen und von unterwegs ändern | Bedienung am Gerät; laut Herstellervergleich ohne App-Anbindung. | Meaco App sowie Sprachsteuerung mit Alexa und Google Assistant. Vor dem Kauf Anforderungen der App prüfen. |
-| Wäschebetrieb gezielt einstellen | Wäschemodus vorhanden; die hier besprochene One-20L-Funktion bleibt vom Two getrennt. | Zusätzliche dritte Lüfterstufe und manuell einstellbare Luftklappe; Ein-/Aus-Timer. Das belegt keine bestimmte Trocknungszeit bei dir. |
-| Ein vorhandenes One ersetzen | Weiterverwenden, wenn Bedienung und gemessene Entfeuchtung den Bedarf decken. | Zusatzfunktionen gegen den eigenen Bedarf abwägen. „Neuer“ allein belegt weder nötigen Ersatz noch eine Kostenersparnis. |
+| 10 °C, 60 % r. F. | 3,40 L/24 h · 180 W | 3,35 L/24 h · 176 W |
+| 20 °C, 60 % r. F. | 8,50 L/24 h · 216 W | 8,50 L/24 h · 207 W |
 
-Die [deutsche Herstellerseite zum Two 12L](https://eu.meaco.com/products/meacodry-arete-two-12l-luftentfeuchter-luftreiniger) nennt einen 2,5-Liter-Tank und einen Dauerablauf, dessen Schlauch nicht enthalten ist. Das sind Angaben für **Two 12L**, nicht für One 20L oder Two 20L. Vergleiche Entzug und Strombedarf nur bei derselben Temperatur und Feuchte; die One-20L-Testzahlen weiter unten bewerten kein Two-Gerät.
+Die Wattwerte sind Leistungsaufnahmen am jeweiligen Prüfpunkt. Für die Stromkosten bei dir zählen zusätzlich Laufzeit, Zielwert und Feuchtenachschub. [Mit deinem Tarif und gemessener Laufzeit rechnen](https://getecoback.com/guide/luftentfeuchter-dauerbetrieb-stromkosten.html).
 
-**Genaues Modell vor der Händlersuche prüfen:** [Two 12L: Variantenhinweise und Amazon.de-Modellsuche](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#modell-meaco-two-12) · [One 20L: Datenbasis und Amazon.de-Modellsuche](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#modell-meaco-one-20) · [One 25L: Unterschiede und Amazon.de-Modellsuche](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#modell-meaco-one-25). Die dortigen One-20L-/25L-Daten stammen aus UK-Unterlagen; deutschen Stecker, Lieferumfang und passende Anleitung beim konkreten Angebot abgleichen. Eine Modellsuche bestätigt weder einen bestimmten Händler noch Preis oder Lieferbarkeit.
+**Bedienung und Geräusch:** One hat zwei Lüfterstufen und Bedienung am Gerät. Two hat drei Stufen, App-Steuerung, einen 1–24-Stunden-Timer und eine verstellbare Luftklappe. Die deutschen Handbücher nennen **38–40 dB** für One 20L und **38 / 40 / 50 dB** für Two 20L in niedriger, mittlerer und hoher Stufe. Für das Geräusch am eigenen Bett spielen zusätzlich Kompressor, Abstand und Raum eine Rolle.
 
-Quellen für diesen Baureihenvergleich geprüft am 13.11.2026: [Meaco DE: Arete-Übersicht](https://eu.meaco.com/collections/arete), [Meaco: offizieller One-/Two-Vergleich](https://eu.blog.meaco.com/luftentfeuchter/arete-one-vs-arete-two-welcher-meaco-luftentfeuchter-passt-zu-ihrem-zuhause/) und die verlinkte Two-12L-Produktseite. Herstellerangaben, keine eigenen Produkttests. Die ursprünglichen Quellen und Messbedingungen des One-Testüberblicks bleiben separat angegeben.
+**Deutsche Verkaufsvarianten prüfen:** Meaco führt für One 20L die Verkaufs-SKUs **MeacoDryArete1-20LEU** (GTIN **5060409601746**) und **Arete1-20LGreyEU** (GTIN **5060409605058**). Für Two 20L nennt Meaco **MeacoDryArete2-20LEU** (GTIN **5060409604617**). Gleiche Modellname, GTIN und Lieferumfang im Angebot ab.
+
+[Meaco DE: One 20L und Prüfwerttabelle](https://eu.meaco.com/products/meacodry-arete-one-20l-luftentfeuchter-luftreiniger) · [Meaco DE: Two 20L und Prüfwerttabelle](https://eu.meaco.com/products/meacodry-arete-two-20l-luftentfeuchter-luftreiniger) · [One-Handbuch zu den Geräuschwerten](https://cdn.shopify.com/s/files/1/0371/8378/3043/files/AreteOne_20L25L_Manual_DE01.pdf#page=23) · [Two-Handbuch zu den Geräuschwerten](https://cdn.shopify.com/s/files/1/0371/8378/3043/files/AreteTwo_20_x3a_25L_Manual_DE05.pdf#page=25). Geprüft am 26. November 2026.
+
+Deckt dein vorhandener One den gemessenen Bedarf und reicht dir die Bedienung, behalte ihn. Ist die Feuchteursache offen, miss zuerst oder lass Lecks und nasse Bauteile klären. Prüfe vor einer Bestellung Raumwerte und den Platz für Tank oder Ablauf. [Raumeignung prüfen](https://getecoback.com/guide/meacodry-arete-one-test.html#raumgroesse) · [Gleiches Modell und Gesamtpreis prüfen](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#luftentfeuchter-30-tage-preischeck).
+
+**Wenn die Variante und der Bedarf feststehen**
+
+Arete One 20L bei Amazon.de suchen
+Anzeige · Modellsuche. GTIN, Lieferumfang und Lieferbarkeit beim Händler prüfen.
+
+[Arete Two 20L und Lieferumfang bei Meaco Deutschland prüfen](https://eu.meaco.com/products/meacodry-arete-two-20l-luftentfeuchter-luftreiniger)
 
 ## Die Testlage: Stärken und Schwächen
 
@@ -48,8 +58,8 @@ Meaco vermarktet den Arete One als besonders leisen und sparsamen Entfeuchter; d
 
 | Befund öffentlicher Tests | Unsere Einordnung für den Alltag |
 | --- | --- |
-| ✓ Sparsam: 216 W laut Datenblatt (bei 20 °C/60 % rF) | Deutlich unter den ca. 300 W typischer Kompressor-Geräte — Rechenweg unten |
-| ✓ Leise-Auslegung: Hersteller 38–40 dB, unabhängig gemessen 45,9–52,7 dB | Leiser als das Feld, aber die Herstellerzahl ist ein Laborwert — Einordnung unten |
+| ✓ Sparsam: 216 W laut Datenblatt (bei 20 °C/60 % rF) | Prüfwert für den Rechenweg unten |
+| ✓ Leise-Auslegung: Hersteller 38–40 dB, unabhängig gemessen 45,9–52,7 dB | Die beiden unabhängigen Quellen verwenden eigene Messbedingungen. Einordnung unten. |
 | ✓ Wäschemodus: 6 h maximale Entfeuchtung, danach automatische Abschaltung | Im Test von Real Homes trocknete er damit einen Ständer Bettwäsche — Kostenrechnung im Ratgeber [Wäsche trocknen in der Wohnung](https://getecoback.com/guide/waesche-trocknen-wohnung.html) |
 | ✓ 5 Jahre Garantie, H13-HEPA-Filter, Hygrostat, Dauerablauf über Schlauchadapter im Tankdeckel | Die Garantie ist in dieser Preisklasse die Ausnahme; der HEPA-Teil ersetzt keinen vollwertigen Luftreiniger, ist aber ein echter Filter (H13) |
 | Herstellerangabe „für Räume bis 100 m²“ | Die Flächenangabe allein belegt keine Eignung für deinen Raum. Temperatur, Feuchte, Luftaustausch und neue Feuchtelasten mitprüfen |
@@ -59,7 +69,7 @@ Meaco vermarktet den Arete One als besonders leisen und sparsamen Entfeuchter; d
 
 Die Literangabe gilt für die jeweilige Herstellerprüfung, nicht für jeden Raum. Eine Flächenangabe und ein pauschaler Abschlag auf die Nennleistung reichen zur Auswahl nicht aus. Miss **Temperatur und relative Feuchte wiederholt** und prüfe Raumvolumen, offene Türen sowie neue Feuchte durch Wäsche oder Nutzung. Vergleiche dann Entzugsleistung und Strombedarf bei ähnlichen Bedingungen; die [Entscheidungshilfe mit Quellentabelle](https://getecoback.com/guide/luftentfeuchter-ratgeber.html) zeigt, wie stark sich Herstellerwerte schon bei anderer Temperatur unterscheiden. Zwei Grenzen bleiben wichtig:
 
-- **Nasse Bauteile oder wiederkehrender Schimmel:** Erst die Ursache klären. Ein Wert unter 60 % relativer Raumluftfeuchte garantiert keine schimmelfreien kalten Oberflächen; ein Gerät ersetzt keine Sanierung. Der Ratgeber erklärt, [was ein Entfeuchter gegen Schimmel leisten kann](https://getecoback.com/guide/luftentfeuchter-gegen-schimmel.html). Auch ein Arete One 25L löst die Feuchteursache nicht automatisch.
+- **Nasse Bauteile oder wiederkehrender Schimmel:** Erst die Ursache klären. Ein Wert unter 60 % relativer Raumluftfeuchte garantiert keine schimmelfreien kalten Oberflächen; ein Gerät ersetzt keine Sanierung. Der Ratgeber erklärt, [was ein Entfeuchter gegen Schimmel leisten kann](https://getecoback.com/guide/luftentfeuchter-gegen-schimmel.html). Auch ein [Arete One 25L](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#modell-meaco-one-25) löst die Feuchteursache nicht automatisch.
 
 - **Kleine Räume oder wenig gemessener Bedarf:** Daraus folgt weder eine feste 10L-Empfehlung noch der Bedarf für ein 20L-Modell. Prüfe zuerst, ob angepasste Nutzung und Lüftung genügen. Falls ein Gerät nötig ist, vergleiche auch die Daten des Arete One 10L/12L unter passenden Bedingungen.
 
@@ -69,28 +79,25 @@ Das Leise-Versprechen ist das Kaufargument des Arete One — und genau hier lohn
 
 ## Was kostet der Betrieb?
 
-Das Datenblatt nennt **216 W** (gemessen bei 20 °C und 60 % rF). Der Rechenweg ist transparent: 216 W = 0,216 kWh pro Stunde; bei 0,30 €/kWh sind das **rund 0,06 € pro Stunde** — ein typisches 300-W-Kompressorgerät liegt bei ca. 0,09 €/h. Acht Stunden Betrieb am Tag kosten damit etwa 0,52 €, ein kompletter sechsstündiger Wäschemodus-Durchlauf grob gerechnet 0,40 €. Real läuft der Kompressor mit Hygrostat-Automatik nur, bis die Zielfeuchte erreicht ist — meist deutlich weniger als die eingeschaltete Zeit. Die ehrliche Monatsrechnung inklusive Dauerbetriebs-Szenarien steht im Ratgeber [Luftentfeuchter im Dauerbetrieb: Stromkosten](https://getecoback.com/guide/luftentfeuchter-dauerbetrieb-stromkosten.html). Rechne mit deinem eigenen Arbeitspreis nach — 0,30 €/kWh ist unsere Beispielannahme, kein Marktversprechen.
+Das Datenblatt nennt **216 W** (gemessen bei 20 °C und 60 % rF). Der Rechenweg ist transparent: 216 W = 0,216 kWh pro Stunde; bei 0,30 €/kWh sind das **rund 0,06 € pro Stunde**. Acht Stunden Betrieb am Tag kosten damit etwa 0,52 €, ein kompletter sechsstündiger Wäschemodus-Durchlauf grob gerechnet 0,40 €. Real läuft der Kompressor mit Hygrostat-Automatik nur, bis die Zielfeuchte erreicht ist — meist deutlich weniger als die eingeschaltete Zeit. Die ehrliche Monatsrechnung inklusive Dauerbetriebs-Szenarien steht im Ratgeber [Luftentfeuchter im Dauerbetrieb: Stromkosten](https://getecoback.com/guide/luftentfeuchter-dauerbetrieb-stromkosten.html). Rechne mit deinem eigenen Arbeitspreis nach — 0,30 €/kWh ist unsere Beispielannahme, kein Marktversprechen.
 
 ## Alternativen: wann ein anderes Gerät besser passt
 
 | Situation | Modell zum Vergleichen | Vor dem Kauf prüfen |
 | --- | --- | --- |
-| Keller/Abstellraum, wo niemand sitzt | Comfee MDDF-20DEN7 | Temperaturbereich, Entzug und Strombedarf im Keller prüfen; gleiche Nennliter allein machen Geräte nicht gleich geeignet |
-| 20-l-Klasse zum Einstiegspreis | Pro Breeze Luftentfeuchter 20 L | Preis-Einstieg in die Klasse — ohne Leise-Anspruch, HEPA-Teil und 5-Jahre-Garantie |
-| 20L- und 25L-Variante bei gemessenen Bedingungen vergleichen | MeacoDry Arete One 25L | Höhere Nennleistung ersetzt keine Prüfung von Feuchtelast und Ursache; Hersteller nennt 40–42 dB |
+| Keller/Abstellraum, wo niemand sitzt | [Comfee MDDF-20DEN7](https://getecoback.com/guide/luftentfeuchter-keller.html#modell-comfee-mddf20) | Temperaturbereich, Entzug und Strombedarf im Keller prüfen; gleiche Nennliter allein machen Geräte nicht gleich geeignet |
+| 20L- und 25L-Variante bei gemessenen Bedingungen vergleichen | [MeacoDry Arete One 25L](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#modell-meaco-one-25) | Höhere Nennleistung ersetzt keine Prüfung von Feuchtelast und Ursache; Hersteller nennt 40–42 dB |
 | Kleinere Variante als mögliche Alternative prüfen | MeacoDry Arete One 10L | Leistungsdaten bei deiner Temperatur und Feuchte vergleichen; Hersteller nennt 35 dB, die Fläche allein belegt die Eignung nicht |
-
-Anzeige · Affiliate-Links — du zahlst denselben Preis. Nicht selbst getestet; Auswahl fasst öffentliche Tests zusammen.
 
 Vor der Bestellung: Feuchteursache und Messwerte prüfen, dann die genaue Variante, Betriebsbedingungen, Ablaufmöglichkeit und den aktuellen Gesamtpreis vergleichen. Kondenswasser am Fenster allein ist kein Kaufgrund; die [Anleitung zum Messen](https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html) hilft beim ersten Schritt.
 
 ## Häufige Fragen
 
 **Ist der MeacoDry Arete One 20L sein Geld wert?**
-Für Wohnräume, in denen der Entfeuchter läuft, während Menschen anwesend sind — Schlafzimmer, Wohnzimmer, Homeoffice —, ist er der Kandidat, den öffentliche Tests am konstantesten vorn sehen: leiser als das Feld, sparsame 216 W laut Datenblatt, 5 Jahre Garantie, H13-HEPA-Filter und ein Wäschemodus, der sich nach sechs Stunden selbst abschaltet. Er kostet mit ca. 250–280 € aber deutlich mehr als Standard-Geräte wie das Comfee MDDF-20DEN7. Wer nur einen Keller oder Abstellraum trocknet, in dem niemand sitzt, braucht den Leise-Aufpreis nicht. Wir haben das Gerät nicht selbst getestet; wir fassen öffentliche Tests zusammen.
+Prüfe zuerst deine gemessene Temperatur und Feuchte. Wenn ein Gerät nötig ist, vergleiche die erwartete Nutzung, das Geräusch bei deiner Lüfterstufe, den Ablauf und den Gesamtpreis der genauen Variante. Wenn dein vorhandenes Gerät die Feuchte ausreichend senkt, kannst du es weiterverwenden.
 
 **Wie leise ist der MeacoDry Arete One wirklich?**
-Der Hersteller nennt für das 20L-Modell 38–40 dB — gemessen nach eigener Angabe in einer schallisolierten Kammer aus 1 m Abstand. Unabhängige Messungen im Wohnraum liegen höher: Trusted Reviews maß am 20L-Modell 45,9 dB auf niedriger und 48,8 dB auf höchster Lüfterstufe, Real Homes im Testdurchschnitt 52,7 dB; im Wäschemodus sind es über 50 dB. Für einen Kompressor-Entfeuchter bleibt das leise — das Gerät trägt das Quiet-Mark-Siegel, und Tester berichten, auf niedriger Stufe mit etwas Abstand daneben schlafen zu können. Die 38–40 dB solltest du aber als Laborwert lesen, nicht als Wohnzimmer-Realität.
+Die deutsche Anleitung nennt für den One 20L zwei Lüfterstufen und 38–40 dB. Trusted Reviews meldet am One 20L 45,9 dB auf niedriger und 48,8 dB auf hoher Stufe, Real Homes nennt 52,7 dB im eigenen Test. Abstand, Raum und Betriebsart beeinflussen das Geräusch am Einsatzort.
 
 **Welche Varianten des MeacoDry Arete One gibt es?**
 Arete One ist eine Modellfamilie, kein einzelnes Gerät. Im deutschen Handel sind vor allem die Größen 10L, 12L, 20L und 25L zu finden — die Zahl steht für die maximale Entfeuchtungsleistung in Litern pro Tag laut Hersteller. Alle kombinieren Kompressor-Entfeuchter und Luftreiniger mit H13-HEPA-Filter. Die Zahlen auf dieser Seite beziehen sich, wo nicht anders gesagt, auf das 20L-Modell; für das 10L-Modell nennt der Hersteller 35 dB, für das 25L-Modell 40–42 dB. Nicht zu verwechseln mit der neueren Serie Arete Two — das ist eine eigene Baureihe.
@@ -99,13 +106,7 @@ Arete One ist eine Modellfamilie, kein einzelnes Gerät. Im deutschen Handel sin
 Aus der Fläche allein lässt sich das nicht verlässlich ableiten. Miss Temperatur und relative Feuchte wiederholt und vergleiche Herstellerwerte für Entzug und Strombedarf unter ähnlichen Bedingungen. Raumvolumen, offene Türen und neue Feuchte durch Nutzung oder Wäsche gehören dazu. Die Nennleistung von 20 l/Tag ist keine Zusage für deinen Raum; 25L ist nicht automatisch nötig oder sparsamer. Bei nassen Bauteilen oder wiederkehrendem Schimmel muss zuerst die Ursache geklärt werden. Weniger als 60 % relative Raumluftfeuchte garantiert keine schimmelfreien kalten Oberflächen.
 
 **Was kostet der Betrieb des Arete One 20L?**
-Das Hersteller-Datenblatt nennt 216 W Leistungsaufnahme (gemessen bei 20 °C und 60 % relativer Luftfeuchte). Bei 0,30 €/kWh sind das rund 0,06 € pro Stunde — spürbar unter den ca. 0,09 €/h eines typischen 300-W-Kompressorgeräts. Mit Hygrostat-Automatik läuft der Kompressor ohnehin nur, bis die eingestellte Zielfeuchte erreicht ist. Ein kompletter sechsstündiger Wäschemodus-Durchlauf kostet mit der Datenblatt-Leistung grob gerechnet etwa 0,40 €. Die ehrliche Monatsrechnung für alle Betriebsarten steht in unserem Dauerbetrieb-Ratgeber.
-
-**Aktuellen Preis prüfen** — Preisband zuletzt ca. 250–280 €, zur Kondenswasser-Saison oft schnell vergriffen:
-
-Anzeige · Affiliate-Link — du zahlst denselben Preis
-
-MeacoDry Arete One 20L auf Amazon →
+Bei 20 °C und 60 % relativer Feuchte gibt Meaco für den One 20L 216 W an. Bei einer Stunde mit dieser Aufnahme und 0,30 €/kWh kostet der Strom 0,0648 €, gerundet etwa 0,06 €. Für deine Gesamtkosten zählen der eigene Tarif und die tatsächlich gemessene Energie.
 
 **Weiterlesen**
 [Welcher Luftentfeuchter für 25 m²? →](https://getecoback.com/guide/luftentfeuchter-25-qm.html)
