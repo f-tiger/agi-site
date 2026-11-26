@@ -26,6 +26,8 @@ Angebot für Comfee MPPH-09CRN7 prüfen →
 
 Für dieses Modell nennt Comfee 2,6 kW Kühlleistung, Energieeffizienzklasse A und 25,3 kg Nettogewicht. Die [Herstellerwerte](https://www.feelcomfee.com/content/dam/comfee-aem/de/produkte/klimatisieren-heizen/mpph-09crn7/comfee-MPPH-09CRN7-Datenblatt.pdf#page=2) beziehen sich auf die genannte Modellkennung. Im Entfeuchtungsmodus stehen 50,9 l/24 h bei 30 °C und 80 % relativer Feuchte. Diese Prüfbedingung eignet sich nicht als Prognose für einen kühlen Keller. Geräte mit anderer Kennung benötigen ihre eigenen Unterlagen.
 
+Das [Energielabel im deutschen Datenblatt](https://www.feelcomfee.com/content/dam/comfee-aem/de/produkte/klimatisieren-heizen/mpph-09crn7/comfee-MPPH-09CRN7-Datenblatt.pdf) nennt für den Kühlbetrieb **1,0 kWh pro 60 Minuten** unter Normbedingungen. Rechenbeispiel bei einem angenommenen Tarif von 0,30 €/kWh: 1,0 kWh kosten **0,30 €**. Für deine Stromkosten zählt der tatsächlich gemessene Verbrauch mit deinem Tarif.
+
 ## Raum, Stellplatz und Abluft prüfen
 
 Comfee nennt bis zu 33 m² beziehungsweise 80 m³. Raumfläche allein reicht für die Auswahl nicht. Dachlage, Südfenster und gewünschte Kühlzeiten ändern die Last. Mit dem [BTU-Rechner](https://getecoback.com/guide/btu-rechner.html) kannst du den Raum zuerst einordnen. Bei warmem Luftstrom zurück durchs Fenster kläre zuerst die Abdichtung.
