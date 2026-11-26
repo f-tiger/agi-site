@@ -19,6 +19,7 @@ const toolPaths = new Map([
   ['heizdecke_stromkosten_nennleistung', '/guide/heizdecke-stromverbrauch.html#waerme-rechner'],
   ['hygrometer_messbereiche', '/guide/luftfeuchtigkeit-richtig-messen.html#hygrometer-vergleichen'],
   ['luftentfeuchter_waesche_einzelkosten', '/waeschetrockner-oder-luftentfeuchter.html#luftentfeuchter-waesche-kosten'],
+  ['waesche_trocknungskosten', '/waeschetrockner-oder-luftentfeuchter.html#laundry-check'],
   ['keller_lueften_taupunkt_messwerte', '/guide/keller-lueften-sommer.html#taupunkt'],
   ['kellerentfeuchter_pruefpunkt_abgleichen', cellar + '#kalter-keller'],
   ['midea_portasplit_fensterhalterung_pruefen', '/guide/midea-portasplit-ausverkauft-alternativen.html#kaufpruefung'],
@@ -152,7 +153,7 @@ test('each mapped tool publishes the same exact evidence link after a real tool 
   const advertised = new Map(standard.map(tool => [tool.name, tool]));
   const compact = new Map((await h.catalogue({view:'compact'})).tools.map(tool => [tool.name, tool]));
   const mapped = expandedDefinitions.filter(tool=>paths.has(tool.category) || toolPaths.has(tool.name));
-  assert.equal(mapped.length, 246);
+  assert.equal(mapped.length, 247);
   assert.equal([...compact.values()].filter(tool=>tool.guide_url && tool.name!=='entfeuchter_ablaufcheck').length, mapped.length);
 
   for (const {name, category, page, properties, required, oneOf, example} of mapped) {
