@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-11-25T11:40:16.283Z",
+  "asOf": "2026-11-26T11:27:01.943Z",
   "ok": true,
   "checks": [
     {
@@ -15,22 +15,6 @@
       "ok": true
     },
     {
-      "name": "reconcile.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "evidence.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "incentives.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "web3.agiscorecard.com",
-      "ok": true
-    },
-    {
       "name": "proof.agiscorecard.com",
       "ok": true
     },
@@ -39,15 +23,11 @@
       "ok": true
     },
     {
+      "name": "reconcile.agiscorecard.com",
+      "ok": true
+    },
+    {
       "name": "protocol.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "compute.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "calls.agiscorecard.com",
       "ok": true
     },
     {
@@ -55,7 +35,27 @@
       "ok": true
     },
     {
+      "name": "incentives.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "calls.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "compute.agiscorecard.com",
+      "ok": true
+    },
+    {
       "name": "disclosures.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "evidence.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "web3.agiscorecard.com",
       "ok": true
     },
     {
@@ -70,35 +70,35 @@
   "sources": {
     "market": {
       "status": "fresh",
-      "retrievedAt": "2026-11-25T11:40:16.764Z",
+      "retrievedAt": "2026-11-26T11:27:03.069Z",
       "ageSeconds": 0,
       "quotes": [
         {
           "symbol": "BTC",
           "quote": "USD",
-          "price": 58495.1827155,
-          "sourceUpdatedAt": "2026-11-25T11:40:01.000Z",
+          "price": 60600.54698,
+          "sourceUpdatedAt": "2026-11-26T11:26:49.000Z",
           "deviationBps": null
         },
         {
           "symbol": "ETH",
           "quote": "USD",
-          "price": 1638.9,
-          "sourceUpdatedAt": "2026-11-25T11:40:01.000Z",
+          "price": 1697.808063,
+          "sourceUpdatedAt": "2026-11-26T11:26:49.000Z",
           "deviationBps": null
         },
         {
           "symbol": "USDC",
           "quote": "USD",
-          "price": 0.9997937052,
-          "sourceUpdatedAt": "2026-11-25T11:40:01.000Z",
-          "deviationBps": -2.0629480000000644
+          "price": 0.9998585888,
+          "sourceUpdatedAt": "2026-11-26T11:26:49.000Z",
+          "deviationBps": -1.4141119999999674
         },
         {
           "symbol": "USDT",
           "quote": "USD",
           "price": 0.99875,
-          "sourceUpdatedAt": "2026-11-25T11:40:01.000Z",
+          "sourceUpdatedAt": "2026-11-26T11:26:49.000Z",
           "deviationBps": -12.499999999999734
         }
       ],
@@ -110,25 +110,34 @@
     },
     "briefs": {
       "status": "fresh",
-      "retrievedAt": "2026-11-25T11:40:16.550Z",
+      "retrievedAt": "2026-11-26T11:27:02.396Z",
       "sources": [
         {
           "id": "ethereum",
           "status": "ok",
-          "checkedAt": "2026-11-25T11:40:16.534Z"
+          "checkedAt": "2026-11-26T11:27:02.272Z"
         },
         {
           "id": "x402",
           "status": "unavailable",
-          "checkedAt": "2026-11-25T11:40:16.550Z"
+          "checkedAt": "2026-11-26T11:27:02.319Z"
         },
         {
           "id": "ezkl",
           "status": "unavailable",
-          "checkedAt": "2026-11-25T11:40:16.548Z"
+          "checkedAt": "2026-11-26T11:27:02.317Z"
         }
       ],
       "items": [
+        {
+          "title": "Devcon 8 India Recap: Four Days in Mumbai, and What's Next",
+          "url": "https://blog.ethereum.org/en/2026/11/25/devcon-mumbai-wrap",
+          "publishedAt": "2026-11-25T00:00:00.000Z",
+          "source": "Ethereum Foundation",
+          "sourceId": "ethereum",
+          "kind": "rss",
+          "task": "protocol-change"
+        },
         {
           "title": "PQAI #1: One hash to rule them all — Keccak-256 for Ethereum's post-quantum, post-AI era",
           "url": "https://blog.ethereum.org/en/2026/11/24/pqai-1",
@@ -164,148 +173,139 @@
           "sourceId": "ethereum",
           "kind": "rss",
           "task": "protocol-change"
-        },
-        {
-          "title": "Glamsterdam on Hoodi Postponed",
-          "url": "https://blog.ethereum.org/en/2026/10/22/glamsterdam-hoodi-delay",
-          "publishedAt": "2026-10-22T00:00:00.000Z",
-          "source": "Ethereum Foundation",
-          "sourceId": "ethereum",
-          "kind": "rss",
-          "task": "protocol-change"
         }
       ]
     },
     "research": {
       "status": "fresh",
-      "retrievedAt": "2026-11-25T11:40:16.941Z",
+      "retrievedAt": "2026-11-26T11:27:03.284Z",
       "historyStatus": "fresh",
       "quotes": [
         {
           "symbol": "BTC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-25T11:40:01.000Z",
+          "sourceUpdatedAt": "2026-11-26T11:26:49.000Z",
           "day": {
-            "percent": -2.0216660088897775,
-            "from": "2026-11-24T11:00:00.000Z",
-            "to": "2026-11-25T11:40:01.000Z"
+            "percent": 3.032432900386528,
+            "from": "2026-11-25T11:00:00.000Z",
+            "to": "2026-11-26T11:26:49.000Z"
           },
           "week": {
-            "percent": -9.034000222274209,
-            "from": "2026-11-18T11:00:00.000Z",
-            "to": "2026-11-25T11:40:01.000Z"
+            "percent": -4.935922004322091,
+            "from": "2026-11-19T11:00:00.000Z",
+            "to": "2026-11-26T11:26:49.000Z"
           }
         },
         {
           "symbol": "ETH",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-25T11:40:01.000Z",
+          "sourceUpdatedAt": "2026-11-26T11:26:49.000Z",
           "day": {
-            "percent": -2.5599106907927105,
-            "from": "2026-11-24T11:00:00.000Z",
-            "to": "2026-11-25T11:40:01.000Z"
+            "percent": 3.1618388354269333,
+            "from": "2026-11-25T11:00:00.000Z",
+            "to": "2026-11-26T11:26:49.000Z"
           },
           "week": {
-            "percent": -9.202884608760154,
-            "from": "2026-11-18T11:00:00.000Z",
-            "to": "2026-11-25T11:40:01.000Z"
+            "percent": -5.787323912275877,
+            "from": "2026-11-19T11:00:00.000Z",
+            "to": "2026-11-26T11:26:49.000Z"
           }
         },
         {
           "symbol": "USDC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-25T11:40:01.000Z",
+          "sourceUpdatedAt": "2026-11-26T11:26:49.000Z",
           "day": {
-            "percent": 0.017351317531555388,
-            "from": "2026-11-24T11:00:00.000Z",
-            "to": "2026-11-25T11:40:01.000Z"
+            "percent": 0.03735248271663494,
+            "from": "2026-11-25T11:00:00.000Z",
+            "to": "2026-11-26T11:26:49.000Z"
           },
           "week": {
-            "percent": 0.026758287122063962,
-            "from": "2026-11-18T11:00:00.000Z",
-            "to": "2026-11-25T11:40:01.000Z"
+            "percent": 0.026862754573464542,
+            "from": "2026-11-19T11:00:00.000Z",
+            "to": "2026-11-26T11:26:49.000Z"
           }
         },
         {
           "symbol": "USDT",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-25T11:40:01.000Z",
+          "sourceUpdatedAt": "2026-11-26T11:26:49.000Z",
           "day": {
-            "percent": -0.03913248493003785,
-            "from": "2026-11-24T11:00:00.000Z",
-            "to": "2026-11-25T11:40:01.000Z"
+            "percent": -0.012200245538651622,
+            "from": "2026-11-25T11:00:00.000Z",
+            "to": "2026-11-26T11:26:49.000Z"
           },
           "week": {
-            "percent": -0.022957666372425134,
-            "from": "2026-11-18T11:00:00.000Z",
-            "to": "2026-11-25T11:40:01.000Z"
+            "percent": -0.04486092699015343,
+            "from": "2026-11-19T11:00:00.000Z",
+            "to": "2026-11-26T11:26:49.000Z"
           }
         },
         {
           "symbol": "TAO",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-25T11:40:00.000Z",
+          "sourceUpdatedAt": "2026-11-26T11:26:48.000Z",
           "day": {
-            "percent": -5.533548270908717,
-            "from": "2026-11-24T11:00:00.000Z",
-            "to": "2026-11-25T11:40:00.000Z"
+            "percent": 4.424618117334811,
+            "from": "2026-11-25T11:00:00.000Z",
+            "to": "2026-11-26T11:26:48.000Z"
           },
           "week": {
-            "percent": -10.97597093498428,
-            "from": "2026-11-18T11:00:00.000Z",
-            "to": "2026-11-25T11:40:00.000Z"
+            "percent": -6.778341143418009,
+            "from": "2026-11-19T11:00:00.000Z",
+            "to": "2026-11-26T11:26:48.000Z"
           }
         },
         {
           "symbol": "RENDER",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-25T11:40:01.000Z",
+          "sourceUpdatedAt": "2026-11-26T11:26:49.000Z",
           "day": {
-            "percent": -4.481799571350731,
-            "from": "2026-11-24T11:00:00.000Z",
-            "to": "2026-11-25T11:40:01.000Z"
+            "percent": 6.135833752416264,
+            "from": "2026-11-25T11:00:00.000Z",
+            "to": "2026-11-26T11:26:49.000Z"
           },
           "week": {
-            "percent": -13.549649434893961,
-            "from": "2026-11-18T11:00:01.000Z",
-            "to": "2026-11-25T11:40:01.000Z"
+            "percent": -8.041775165588216,
+            "from": "2026-11-19T10:59:40.000Z",
+            "to": "2026-11-26T11:26:49.000Z"
           }
         },
         {
           "symbol": "FET",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-25T11:40:01.000Z",
+          "sourceUpdatedAt": "2026-11-26T11:26:49.000Z",
           "day": {
-            "percent": -2.7906976744186074,
-            "from": "2026-11-24T11:00:00.000Z",
-            "to": "2026-11-25T11:40:01.000Z"
+            "percent": 9.61759717654822,
+            "from": "2026-11-25T11:00:00.000Z",
+            "to": "2026-11-26T11:26:49.000Z"
           },
           "week": {
-            "percent": -20.29703728095805,
-            "from": "2026-11-18T11:00:01.000Z",
-            "to": "2026-11-25T11:40:01.000Z"
+            "percent": -10.858874857073697,
+            "from": "2026-11-19T10:59:40.000Z",
+            "to": "2026-11-26T11:26:49.000Z"
           }
         },
         {
           "symbol": "AKT",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-25T11:40:00.000Z",
+          "sourceUpdatedAt": "2026-11-26T11:26:48.000Z",
           "day": {
-            "percent": -5.284856572696484,
-            "from": "2026-11-24T11:00:00.000Z",
-            "to": "2026-11-25T11:40:00.000Z"
+            "percent": 5.901360769890607,
+            "from": "2026-11-25T11:00:00.000Z",
+            "to": "2026-11-26T11:26:48.000Z"
           },
           "week": {
-            "percent": -12.607081324148483,
-            "from": "2026-11-18T11:00:01.000Z",
-            "to": "2026-11-25T11:40:00.000Z"
+            "percent": -11.947110510164782,
+            "from": "2026-11-19T10:59:40.000Z",
+            "to": "2026-11-26T11:26:48.000Z"
           }
         }
       ]
     }
   },
   "events": {
-    "asOf": "2026-11-25T11:40:17.000Z",
+    "asOf": "2026-11-26T11:27:03.000Z",
     "windowDays": 28,
     "measurement": "Opt-in event counts, deduplicated by event ID. Not unique people or a cross-domain session funnel. Incoming attribution is unverified; stripped referrers appear direct. Default examples, probes and MCP requests do not generate events.",
     "groups": []
@@ -316,8 +316,8 @@
   },
   "changes": [
     {
-      "url": "https://blog.ethereum.org/en/2026/11/24/pqai-1",
-      "title": "PQAI #1: One hash to rule them all — Keccak-256 for Ethereum's post-quantum, post-AI era",
+      "url": "https://blog.ethereum.org/en/2026/11/25/devcon-mumbai-wrap",
+      "title": "Devcon 8 India Recap: Four Days in Mumbai, and What's Next",
       "task": "protocol-change",
       "kind": "new_since_previous_check",
       "requiresReview": true
