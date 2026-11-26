@@ -228,5 +228,10 @@ def evidence_html(source):
     match = re.search(r'<!--EB_MODELS-->(.*?)<!--/EB_MODELS-->', source, re.S)
     if not match or 'data-catalog-evidence' not in match[1]:
         return ''
-    content = match[1].split('<div data-catalog-evidence>', 1)[1].rsplit('</div></section>', 1)[0]
-    return re.sub(r'<p data-catalog-commerce>.*?</p>', '', content, flags=re.S)
+    heading, content = match[1].split('<div data-catalog-evidence>', 1)
+    content = content.rsplit('</div></section>', 1)[0]
+    content = re.sub(r'<p data-catalog-commerce>.*?</p>', '', content, flags=re.S)
+    anchor = re.match(r'<section\b[^>]*\bid="(eb-models)"[^>]*>', heading)
+    if anchor:
+        return f'<section id="{anchor[1]}">{content}</section>'
+    return content
