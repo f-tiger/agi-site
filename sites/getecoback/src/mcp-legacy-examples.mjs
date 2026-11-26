@@ -24,9 +24,11 @@ const fixtures = new Map(Object.entries({
   },
   fensterabdichtung_laenge: {
     page: '/guide/fensterabdichtung-klimaanlage.html',
+    section: '#messweg-vor-kauf',
     args: {breite_cm: 60, hoehe_cm: 140, fenstertyp: 'kipp'},
-    expected_text: ['mindestens 4,00 m', '400 cm'],
-    conditions: 'Gemessen wird der bewegliche Flügel. Vor dem Kauf Geometrie, Fenstertyp und Messvorgaben des konkreten Kits prüfen.',
+    expected_fields: {rectangular_perimeter_cm: 400, example_size_cm: 400},
+    expected_text: ['4,00 m', 'Messvorgaben des konkreten Sets'],
+    conditions: 'Rechnerischer Umfang des rechteckigen Flügels. 400 cm sind eine Beispielgröße, wenn die Anleitung vier Seiten verlangt. Für Dachfenster ist die Montagezeichnung maßgeblich.',
   },
   hitzewelle_vorschau: {
     page: '/guide/hitze-check.html',
@@ -76,11 +78,12 @@ const fixtures = new Map(Object.entries({
 export function legacyCatalogueExample(name) {
   const fixture = fixtures.get(name);
   if (!fixture) return null;
-  const {page, args, ...expectations} = fixture;
+  const {page, args, section, ...expectations} = fixture;
   const citation_url = origin + page;
   return {
     citation_url,
     citation_markdown_url: citation_url.replace(/\.html$/, '.md'),
+    ...(section ? {guide_url: citation_url + section} : {}),
     example: {arguments: args, ...expectations},
   };
 }

@@ -43,8 +43,8 @@ test('all ten legacy names have callable published examples with canonical sourc
     assert.equal(response.status, 200);
     const {tools:[published]} = await response.json();
     assert.equal(published.name, name);
-    const {example, citation_url, citation_markdown_url} = published;
-    assert.deepEqual({example, citation_url, citation_markdown_url}, expected);
+    const {example, citation_url, citation_markdown_url, guide_url} = published;
+    assert.deepEqual({example, citation_url, citation_markdown_url, ...(guide_url ? {guide_url} : {})}, expected);
     const html = readFileSync(new URL(new URL(citation_url).pathname.slice(1), site), 'utf8');
     const markdown = readFileSync(new URL(new URL(citation_markdown_url).pathname.slice(1), site), 'utf8');
     assert.ok(html.includes('href="' + citation_url + '"'), citation_url);
@@ -188,7 +188,32 @@ test('legacy dew point compares estimated surface temperatures without a drying 
 test('the 560 cm stock example remains a candidate for a 540 cm sash', async () => {
   const result = await call('fensterabdichtung_laenge', {breite_cm:130,hoehe_cm:140});
   assert.equal(result.isError, false);
-  assert.match(result.content[0].text, /mindestens 5,40 m/);
-  assert.match(result.content[0].text, /Konfektionsgröße zum Prüfen: 560 cm/);
+  assert.match(result.content[0].text, /5,40 m/);
+  assert.match(result.content[0].text, /Beispielgröße zum Prüfen: 560 cm/);
   assert.match(result.content[0].text, /Messvorgaben des konkreten Sets/);
+  assert.equal(result.structuredContent.rectangular_perimeter_cm,540);
+  assert.equal(result.structuredContent.example_size_cm,560);
+  const guide='/guide/fensterabdichtung-klimaanlage.html';
+  assert.equal(result.structuredContent.guide_url,origin+guide+'#messweg-vor-kauf');
+  const html=readFileSync(new URL(guide.slice(1),site),'utf8');
+  assert.equal((html.match(/id="messweg-vor-kauf"/g)||[]).length,1);
+});
+
+test('window seal rejects invalid measurements and separates roof and oversized sash decisions', async()=>{
+  const name='fensterabdichtung_laenge';
+  for(const args of [
+    {breite_cm:0,hoehe_cm:140},{breite_cm:301,hoehe_cm:140},{breite_cm:60},
+    {breite_cm:'60',hoehe_cm:140},{breite_cm:60,hoehe_cm:140,fenstertyp:'andere'},
+  ]){
+    const result=await call(name,args);
+    assert.equal(result.isError,true);
+    assert.equal(result.structuredContent,undefined);
+  }
+  const roof=await call(name,{breite_cm:60,hoehe_cm:140,fenstertyp:'dachfenster'});
+  assert.equal(roof.structuredContent.rectangular_perimeter_cm,400);
+  assert.equal(roof.structuredContent.example_size_cm,null);
+  assert.match(roof.content[0].text,/Montagezeichnung des Sets/);
+  const oversized=await call(name,{breite_cm:150,hoehe_cm:140,fenstertyp:'drehkipp'});
+  assert.equal(oversized.structuredContent.rectangular_perimeter_cm,580);
+  assert.equal(oversized.structuredContent.example_size_cm,null);
 });

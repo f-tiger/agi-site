@@ -535,3 +535,20 @@ test('the compact finder distinguishes two measured laundry methods from one app
   }
   assert.deepEqual(writes,[]);
 });
+
+test('the window seal finder and result link to the same published measurement guide',async()=>{
+  const {call,writes}=fixture();
+  const name='fensterabdichtung_laenge';
+  const page=origin+'/guide/fensterabdichtung-klimaanlage.html';
+  const guide=page+'#messweg-vor-kauf';
+  const found=await call(compactPath,findName,{frage:name});
+  const [tool]=found.structuredContent.tools;
+  assert.equal(tool.citation_url,page);
+  assert.equal(tool.guide_url,guide);
+  const result=await call(compactPath,runName,{
+    name,eingaben:{breite_cm:60,hoehe_cm:140,fenstertyp:'dachfenster'},
+  });
+  assert.equal(result.structuredContent.guide_url,guide);
+  assert.equal(result.structuredContent.example_size_cm,null);
+  assert.deepEqual(writes,[]);
+});

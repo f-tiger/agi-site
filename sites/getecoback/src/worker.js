@@ -2,6 +2,7 @@ import {indexCatalogue, findCatalogueTools} from '../site/assets/mcp-catalog-sea
 import {pageTools} from './mcp-pagination.mjs';
 import {expandedTools, expandedCatalog, expandedCall, isExpandedTool, catalogueExample} from './mcp-expanded.mjs';
 import {legacyCatalogueExample} from './mcp-legacy-examples.mjs';
+import {sealFit} from '../site/assets/demand-tools.mjs';
 import {validMeterEvent, meterReferralReport} from './meter-referral.mjs';
 import {citationUrl} from './agent-sources.mjs';
 import {guidePath, publishedGuides, readGuide} from './mcp-guides.mjs';
@@ -1070,7 +1071,7 @@ const LEGACY_MCP_TOOLS = [
   },
   {
     name: "fensterabdichtung_laenge",
-    description: "Benötigte Länge einer Fensterabdichtung aus den Flügelmaßen. — Estimate the seal length for a portable air conditioner from sash measurements (perimeter = 2 × (width + height)) and identify a stock size to verify. Covers tilt-and-turn and roof windows.",
+    description: "Fensterabdichtung für mobile Klimaanlagen aus den Flügelmaßen prüfen. — Calculate the rectangular sash perimeter and check an example fabric size against the kit instructions.",
     inputSchema: {
       type: "object",
       properties: {
@@ -1174,6 +1175,10 @@ const CATALOG_TOOLS = [...LEGACY_MCP_TOOLS.map(tool => ({...tool,category:"Raumk
     if (tool.name === drainTool.name) {
       const {citation_url} = legacyCatalogueExample(tool.name);
       return {...tool, page:new URL(citation_url).pathname, guide_url:citation_url + "#ablauf-vor-kauf"};
+    }
+    if (tool.name === "fensterabdichtung_laenge") {
+      const {citation_url,guide_url} = legacyCatalogueExample(tool.name);
+      return {...tool, page:new URL(citation_url).pathname, guide_url};
     }
     const equivalent = LEGACY_TASK_EQUIVALENTS.get(tool.name);
     return equivalent ? {...tool,equivalent_task:equivalent} : tool;
@@ -1371,25 +1376,26 @@ async function mcpCallTool(name, args, env) {
       `Vollständiger Rechner (Decke, Personen, offene Küche): https://getecoback.com/guide/btu-rechner.html\n${MCP_DISCLOSURE}`);
   }
   if (name === "fensterabdichtung_laenge") {
-    const W = Math.max(20, Math.min(300, Number(a.breite_cm) || 60));
-    const H = Math.max(20, Math.min(300, Number(a.hoehe_cm) || 140));
-    // Identical to the EB_SEALFIT calculator: perimeter of the sash.
-    const need = (2 * (W + H)) / 100;
-    const sizes = [2.0, 2.8, 3.0, 4.0, 5.0, 5.6];
-    const fit = sizes.find((s) => s >= need);
-    const size = fit ? `Konfektionsgröße zum Prüfen: ${Math.round(fit * 100)} cm.`
-      : "Die Beispielgrößen reichen hier nicht. Prüfe größere Kits oder eine Maßanfertigung.";
-    // Window sealing is the topic AI assistants already cite this site for, so
-    // the answer carries the guide for the window type that was actually asked
-    // about rather than one generic link.
-    const typGuide = a.fenstertyp === "dachfenster"
+    const {breite_cm:width, hoehe_cm:height, fenstertyp = "kipp"} = a;
+    if (!mcpNumberInRange(width,20,300) || !mcpNumberInRange(height,20,300) ||
+        !["kipp","drehkipp","dachfenster"].includes(fenstertyp)) {
+      return mcpInputError("Gib Breite und Höhe des Flügels als Zahlen von 20 bis 300 cm und eine gültige Fensterart an.");
+    }
+    const roof = fenstertyp === "dachfenster";
+    const {perimeter,size} = sealFit({width,height,window:roof ? "roof" : "casement",material:"fabric",market:"none"});
+    const example = roof ? "Für Dachfenster entscheidet die Montagezeichnung des Sets. Keine Beispielgröße aus dem Umfang ableiten."
+      : size ? `Beispielgröße zum Prüfen: ${size} cm, sofern die Anleitung dieses Sets den Vierseitenumfang verlangt.`
+      : "Die Beispiele mit 400 und 560 cm reichen bei Vierseitenmessung nicht. Prüfe eine größere oder passende individuelle Lösung.";
+    const typGuide = roof
       ? "Dachfenster/Velux: https://getecoback.com/guide/klimaanlage-dachfenster.html"
       : "Kipp- & Dreh-Kipp-Fenster: https://getecoback.com/guide/klimaanlage-kippfenster.html";
+    const {citation_url,guide_url} = legacyCatalogueExample(name);
     return mcpToolResult(
-      `Benötigte Abdichtungslänge für einen Flügel ${W}×${H} cm: mindestens ${need.toFixed(2).replace(".", ",")} m (Umfang 2×(B+H)). ${size}\n` +
-      `Gemessen wird der bewegliche Flügel, nicht der Rahmen. Prüfe Fenstertyp und Messvorgaben des konkreten Sets.\n` +
+      `Rechnerischer Umfang für den rechteckigen Flügel ${width} × ${height} cm: ${(perimeter / 100).toFixed(2).replace(".", ",")} m. ${example}\n` +
+      `Prüfe Fenstertyp und Messvorgaben des konkreten Sets, bevor du eine Größe auswählst.\n` +
       `${typGuide}\n` +
-      `Kaufberatung nach Bauart: https://getecoback.com/guide/fensterabdichtung-klimaanlage.html\n${MCP_DISCLOSURE}`);
+      `Messweg und Kaufprüfung: ${guide_url}\n${MCP_DISCLOSURE}`,
+      {rectangular_perimeter_cm:perimeter,example_size_cm:size,citation_url,guide_url});
   }
   if (name === "hitzewelle_vorschau") {
     const d = await heatReading();
