@@ -236,6 +236,13 @@ def collect():
     if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
      raise ValueError(f'Missing or ambiguous cellar model comparison: {route}#{anchor}')
    entry['model_sections']=models
+  if lang=='de' and route=='/guide/luftentfeuchter-keller.html':
+   anchor='meaco-dd8l-pro-kalte-garage'
+   targets=re.findall(r'<h3\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)
+   if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
+    raise ValueError(f'Missing or hidden DD8L Pro garage evidence: {route}#{anchor}')
+   entry['model_sections'].append({'id':anchor,'title':'Meaco DD8L Pro in der kalten Garage: Prüfwerte und Ablauf',
+    'description':'DD8L Pro: Drei Herstellerwerte bei 10 °C und 60 % relativer Feuchte. Werte bei 3 oder 5 °C bleiben offen. Luftstrom, Dauerablauf und Wandhalterung vor dem Kauf prüfen.'})
   if lang=='de' and route=='/produkte.html':
    model_sections=[
     {'id':BOSCH_STACKING_ID,'title':BOSCH_STACKING_TITLE,'description':BOSCH_STACKING_ANSWER},

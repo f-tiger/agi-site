@@ -526,13 +526,27 @@ function asksForPortableCoolingStorage(query) {
   return appliance.test(query) && storage.test(query) && !excludesPortableCoolingStorage(query);
 }
 
+export const meacoDd8lProGarage = {
+  path:'/guide/luftentfeuchter-keller.html',
+  id:'meaco-dd8l-pro-kalte-garage',
+  tool:'ratgeber_suche',
+};
+
+const meacoDd8lProModel=/\bdd[ -]*8[ -]*l[ -]*pro\b/;
+
+function asksForMeacoDd8lProGarage(query) {
+  const conditions=/\b(?:garag\w*|keller\w*|kalt\w*|kaelt\w*|unbeheiz\w*|entzug|entfeuchtungsleist\w*|leistungsaufnahm\w*|entzieh\w*|pruefwert\w*|liter\w*|watt\w*|dauerablauf\w*|ablaufschlauch\w*|entwaesser\w*|ablauf\w*|drain\w*|wand(?:halter|montier|montag|haeng)\w*|wand[ -]+haeng\w*|luftstrom\w*|luftmenge\w*|luftdurchsatz\w*|luftleistung\w*|betrieb\S*temperatur\w*|kaeltegrenz\w*|kauf\w*)\b/;
+  const other=/\b(?:junior|ion|zambezi|arete|repar\w*|defekt\w*|reset|fehlercode|app|wlan|filterwechsel)\b/;
+  return meacoDd8lProModel.test(query) && conditions.test(query) && !other.test(query);
+}
+
 function asksAboutAnEmptyDehumidifierTank(query) {
   const device = /\b(?:luft)?entfeuchter(?:s|n)?\b|\barete[ -]+one[ -]+(?:20|25)\s*l\b/;
   const emptyTank = /\b(?:\w*tank|wasserbehaelter)\s+(?:(?:vom|des) (?:luft)?entfeuchters?\s+)?(?:(?:bleibt|ist|immer|noch|dauerhaft|weiterhin)\s+){0,3}leer\b|\bleerer?\s+(?:\w*tank|wasserbehaelter)\b/;
   const noWater = /\b(?:zieht|sammelt|holt|entzieht)\s+(?:(?:(?:mein|der|ein)\s+)?(?:luft)?entfeuchter\s+)?(?:(?:aber|mehr|fast|trotzdem)\s+){0,3}kein\s+wasser\b/;
   const doesNotFill = /\bim\s+(?:\w*tank|wasserbehaelter)\s+(?:ist|steht)\s+kein\s+wasser\b|\b(?:\w*tank|wasserbehaelter)\s+(?:(?:meines|meinem|des|vom)\s+(?:luft)?entfeuchters?\s+)?fuellt\s+sich\s+nicht\b/;
   const otherProblem = /\b(?:granulat\w*|[a-z]*entfeuchter[ -]*box\w*|luftentfeuchter[ -]*tabs?|tank[ -]*voll)\b/;
-  return device.test(query) && (emptyTank.test(query) || noWater.test(query) || doesNotFill.test(query)) &&
+  return (device.test(query) || meacoDd8lProModel.test(query)) && (emptyTank.test(query) || noWater.test(query) || doesNotFill.test(query)) &&
     !otherProblem.test(query) && !asksForDehumidifierDrainRoute(query);
 }
 
@@ -710,6 +724,7 @@ export function exactGermanHouseholdTask(query) {
   if (asksForPortaSplitDefrost(query)) return portaSplitDefrost;
   if (exactComfeeMpphOffer(query)) return comfeeMpphOffer;
   if (asksAboutAnEmptyDehumidifierTank(query)) return emptyDehumidifierTank;
+  if (asksForMeacoDd8lProGarage(query)) return meacoDd8lProGarage;
   if (asksForCoolingDiscountReference(query)) return coolingDiscountReference;
   if (asksForOfflineThermostat(query)) return offlineThermostatChoice;
   if (asksForSiemensWaterFilter(query)) return siemensFilterDecision;

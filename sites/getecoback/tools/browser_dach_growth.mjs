@@ -72,7 +72,15 @@ try{
     for(const term of ['Deutschland','Österreich','Schweiz','EUR','CHF','keinen Wechselkurs'])assert(region.includes(term),'DACH context missing: '+term);
    }
    if(path.includes('keller.html')){
-    assert.equal(await page.locator('.dach-table table').count(),2);
+    const existingTables=page.locator('.dach-table:not([aria-label="Meaco DD8L Pro Prüfwerte"]) table');
+    assert.equal(await existingTables.count(),2,'Keep the two existing cellar tables');
+    const proTable=page.locator('.dach-table[aria-label="Meaco DD8L Pro Prüfwerte"] table');
+    assert(await proTable.isVisible(),'The DD8L Pro test table is visible with or without scripts');
+    const testRows=await proTable.locator('tbody tr').allInnerTexts();
+    assert.equal(testRows.length,3);
+    for(const [position,[litres,watts]] of [['2,30','232'],['5,23','443'],['6,89','630']].entries()){
+     assert(testRows[position].includes(litres+' L/24 h') && testRows[position].includes(watts+' W'),'DD8L Pro figures must stay on the same fan-speed row');
+    }
     assert.equal(await page.locator('#checkliste').count(),1);
     if(js){
      const tool=page.locator('#eb-moisture-choice');

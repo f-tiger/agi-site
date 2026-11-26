@@ -1789,3 +1789,16 @@ test('German PortaSplit defrost discovery uses the exact guide and retains adjac
    assert.notEqual(toolGuidePath(hit??{}),target,q);
  }
 });
+
+test('German DD8L Pro cold-garage searches use the exact evidence instead of another model schema',async()=>{
+ const target='/guide/luftentfeuchter-keller.html#meaco-dd8l-pro-kalte-garage';
+ for(const q of ["Ist der Meaco DD8L Pro für meine unbeheizte Garage bei 5 °C geeignet?", "Meaco DD8L Pro bei 3, 5 und 10 Grad in einer unbeheizten Garage: Welche Leistung?", "Meaco DD8L Pro 10 °C und 60 Prozent, wie viel Liter und Watt?", "Meaco DD8L Pro mit Dauerablauf und Wandhalterung in der Garage?", "DD8LPro: Welcher Luftstrom wird für den Kauf angegeben?"]) {
+   const [hit]=(await catalogue({q,view:'compact',limit:1})).tools;
+   assert.equal(hit?.name,'ratgeber_suche',q);
+   assert.equal(toolGuidePath(hit),target,q);
+ }
+ for(const q of ["Wie viel Wasser schafft der Meaco DD8L Junior bei 10 °C im Keller?", "Meaco DD8L ION oder DD8L Pro für die kalte Garage?", "Ist der Meaco DD8L Zambezi für meine Garage passend?", "Der Meaco DD8L Pro läuft im Keller, aber der Tank bleibt leer.", "Wie verbinde ich die App beim Meaco DD8L Pro in der Garage?", "Stadler Form Lukas L-031E: Wie viele Liter entzieht er bei 10 °C und 60 Prozent im Keller?"]) {
+   const [hit]=(await catalogue({q,view:'compact',limit:1})).tools;
+   assert.notEqual(toolGuidePath(hit??{}),target,q);
+ }
+});
