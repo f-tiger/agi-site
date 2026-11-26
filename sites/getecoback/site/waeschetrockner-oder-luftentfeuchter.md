@@ -62,9 +62,21 @@ Die deutsche Anleitung nennt bei 1.000 U/min Schleuderdrehzahl, 60 % Anfangsfeuc
 
 Bei einem beispielhaften Arbeitspreis von 0,35 €/kWh sind das rund 0,68 € für die volle und 0,38 € für die halbe Ladung. Zwei gleich trockene halbe Ladungen mit zusammen 9 kg ergeben im Beispiel 2,16 kWh und rund 0,76 €.
 
-Das Energielabel nennt 128 kWh je 100 Trocknungen. Die daraus berechneten 1,28 kWh pro Normzyklus dienen dem standardisierten Vergleich. Für deine Rechnung zählen die eigene Beladung, das Programm und die gemessenen kWh bis zur gleichen Endtrockenheit. Beim Kauf die vollständige E-Nr. und die zugehörige Anleitung prüfen.
+Das Energielabel nennt 128 kWh je 100 Trocknungen. Die daraus berechneten 1,28 kWh pro Normzyklus dienen dem standardisierten Vergleich. Für deine Rechnung zählen die eigene Beladung, das Programm und die [gemessenen kWh bis zur gleichen Endtrockenheit](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#lc-measurement). Beim Kauf die vollständige E-Nr. und die zugehörige Anleitung prüfen.
 
 Geprüft am 23.11.2026. [Bosch-Anleitung WQG241031, Abschnitt 19, S. 38–39](https://media3.bsh-group.com/Documents/9001984619_B.pdf) · [Bosch EU-Energielabel für Deutschland](https://media3.bosch-home.com/Documents/energylabel/de-DE/WQG241031.pdf).
+
+### Was folgt aus den gemessenen Kosten fürs Wäschetrocknen?
+
+Vergleiche vollständige Durchgänge bis zur gleichen Endtrockenheit. Bei steigender Raumfeuchte oder muffigem Keller prüfe den Raum und die Feuchteursache vor einem Gerätekauf.
+
+- **Nur geschätzt oder noch unterschiedlich trocken:** Beide Durchgänge bis zur gleichen Endtrockenheit messen. Gleiche Wäschemenge und dasselbe Schleuderprogramm nutzen. [Endtrockenheit der Wäsche vergleichen](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#lc-endtrockenheit) · [kWh je Durchgang messen](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#lc-measurement).
+
+- **Wäsche trocknet langsam, Raumfeuchte steigt oder der Keller riecht muffig:** Raumtemperatur und relative Feuchte vor, während und nach dem Trocknen notieren. Einen geeigneten, gut lüftbaren Ort prüfen. Bei muffigem Geruch oder feuchten Wänden zuerst die Feuchteursache klären. Warme, feuchte Außenluft kann im kühlen Keller an kalten Flächen kondensieren. [Raum und Feuchteursache prüfen](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice) · [Besonderheiten im kühlen Keller](https://getecoback.com/guide/luftentfeuchter-keller.html).
+
+- **Beide Durchgänge gemessen und gleich trocken:** Erst prüfen, ob das vorhandene Gerät und der Platz ausreichen. Wenn eine Anschaffung nötig ist, beim [Trockner Aufstellort, Türöffnung und Ablauf](https://getecoback.com/produkte.html#entscheidung-waeschetrockner) prüfen oder bei [Entfeuchtern die Einsatzgrenzen für Wäsche](https://getecoback.com/guide/waesche-trocknen-wohnung.html#eb-models) nachlesen.
+
+Grundlage zur Lüftung und Feuchte: [Umweltbundesamt: Wie lüfte ich richtig?](https://www.umweltbundesamt.de/themen/gesundheit/umwelteinfluesse-auf-den-menschen/schimmel/wie-luefte-ich-richtig-tipps-tricks-zur), geprüft am 26.11.2026.
 
 ### Was kostet das Wäschetrocknen mit einem Luftentfeuchter?
 

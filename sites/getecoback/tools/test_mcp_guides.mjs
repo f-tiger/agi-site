@@ -461,6 +461,22 @@ test('root-level laundry reading preserves measured-condition limits and trusted
   assert.ok(!/<(?:form|script|input)|<!--EB_|https?:\/\/[^\s]*(?:amazon\.|amzn\.)|[?&]tag=/i.test(text));
 });
 
+test('a German laundry moisture question links the exact sourced follow-up', async () => {
+  const {env} = assetEnv();
+  const pfad='https://getecoback.com'+laundry+'#waesche-messung-naechster-schritt';
+  const found=await call('ratgeber_suche',{
+    frage:'Meine Wäsche trocknet trotz Entfeuchter langsam und die Raumfeuchte steigt. Was prüfen?',
+    sprache:'de',max:1,
+  },env);
+  assert(textOf(found).includes('Abschnitt: '+pfad));
+  const result=await call('ratgeber_lesen',{pfad},env);
+  assert.equal(result.isError,false);
+  assert.deepEqual(result,await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad}},env,true));
+  for(const token of ['gleichen Endtrockenheit','muffigem Keller','Umweltbundesamt','/produkte.html#entscheidung-waeschetrockner','#lc-measurement'])
+    assert(textOf(result).includes(token),token);
+  assert(!/https?:\/\/[^\s]*amazon\.|[?&]tag=/.test(textOf(result)));
+});
+
 test('hosts read the exact evidence returned by search beyond the product-directory excerpt', async () => {
   const {env, requests} = assetEnv();
   const page = '/produkte.html';
