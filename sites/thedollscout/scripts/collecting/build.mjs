@@ -39,7 +39,7 @@ function emit(lang,slug,title,description,body,paragraphs,extra=[],modified=upda
   paragraphs=[...marketBridgeText(),...paragraphs];
   modified=[modified,'2026-11-15'].sort().at(-1);
  }
- if(!slug)modified=lang==='de'?'2026-11-22':'2026-11-20';
+ if(!slug)modified=lang==='de'?'2026-11-26':'2026-11-20';
  if(slug==='shop')modified='2026-11-20';
  if(slug.startsWith('brands/'))modified='2026-11-07';
  if(slug==='series')modified='2026-11-05';

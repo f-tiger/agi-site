@@ -90,7 +90,7 @@ test('all 27 category pages expose usable decisions, comparison anchors and ever
   const displayed=[];
   for(const guide of data.categories){
    const slug='shop/categories/'+guide.id,page=pages.get(route(lang,slug)),d=guide[lang],group=homeCatalogCategories.find(g=>g.id===guide.id);
-   assert.ok(page,lang+'/'+guide.id);assert.equal(page.title,d.title);assert.equal(page.description,d.description);assert.equal(page.modified,[data.updated,d.smartPlugDecision ? '2026-11-22' : null,d.smartPlugDecision?.checked,lang==='de'&&guide.id==='smart-home' ? '2026-11-24' : null,...products.filter(p=>group.types.includes(p.category)).map(p=>lang==='de'&&p.deVariant?p.deVariant.checked:p.checked)].filter(Boolean).sort().at(-1));
+   assert.ok(page,lang+'/'+guide.id);assert.equal(page.title,d.title);assert.equal(page.description,d.description);assert.equal(page.modified,[data.updated,d.smartPlugDecision ? '2026-11-22' : null,d.smartPlugDecision?.checked,lang==='de'&&guide.id==='smart-home' ? '2026-11-26' : null,...products.filter(p=>group.types.includes(p.category)).map(p=>lang==='de'&&p.deVariant?p.deVariant.checked:p.checked)].filter(Boolean).sort().at(-1));
    assert.equal((page.html.match(/<h1[ >]/g)||[]).length,1);
    assert.ok(page.html.includes(esc(d.answer)));assert.ok(page.html.includes('datetime="'+guide.checked+'"'));
    assert.ok(page.html.includes('<table>'));assert.ok(page.html.includes('id="category-faq"'));
@@ -174,6 +174,32 @@ test('German humidity guide starts with keeping the current meter and links sour
   assert.ok(section.includes(text),text);
   assert.ok(mirror.includes(text),text);
  }
+});
+
+test('the German Smart Home Black Friday check compares like-for-like prices and uses existing model exits',()=>{
+ const path='/de/shop/categories/smart-home',pages=renderedPages(),page=pages.get(path);
+ for(const [otherPath,entry] of pages){
+  assert.equal((entry.html.match(/id="black-friday-preischeck"/g)||[]).length,otherPath===path ? 1 : 0);
+  assert.equal(entry.text.some(line=>line.includes('Black Friday 2026: Tapo-Angebote')),otherPath===path);
+ }
+ assert.match(page.html,/href="#black-friday-preischeck"/);
+ const section=/<section id="black-friday-preischeck"[^>]*>([\s\S]*?)<\/section>/.exec(page.html)?.[1];
+ assert.ok(section);
+ assert.ok(page.html.indexOf('id="black-friday-preischeck"')<page.html.indexOf('id="strommessung"'));
+ assert.doesNotMatch(section,/amazon\.|data-shopping-merchant|rel="sponsored|\d+[,.]\d{2}\s*€/i);
+ const links=anchors(section).map(link=>link.attrs.href);
+ assert.deepEqual(links.filter(link=>link.startsWith('#')),['#tapo-p110','#tapo-p110m','#raumfeuchte-messen']);
+ const mirror=page.text.join('\n');
+ for(const link of links){
+  assert.ok(mirror.includes(link.startsWith('#')?origin+path+link:link.startsWith('/')?origin+link:link),link);
+ }
+ for(const phrase of ['Endpreis inklusive Versand','4er-Pack','Hardwareversion','Systempreis mit Hub','1. Dezember 2026','2026-11-26']){
+  assert.ok(section.includes(phrase),phrase);
+  assert.ok(mirror.includes(phrase),phrase);
+ }
+ assert.ok(links.includes('https://www.tp-link.com/de/press/news/22601/'));
+ assert.ok(links.some(link=>link.startsWith('https://www.verbraucherzentrale.de/')));
+ assert.ok(links.some(link=>link.startsWith('https://geizhals.de/')));
 });
 
 test('category ItemList and breadcrumbs describe visible same-page content without invented Product, Offer or review schema',()=>{

@@ -37,8 +37,8 @@ test('UK laundry guide and hub surface the calculator and explain the cost of a 
  assert(guideText.includes('https://thedollscout.com'+tool)&&hubText.includes('https://thedollscout.com'+tool));
  const changed=records.filter(r=>r.modified!==data.updated);
  assert.deepEqual(changed.map(r=>new URL(r.url).pathname),['/uk/','/uk/indoor-laundry']);
- assert(hub.includes('"dateModified":"2026-11-23"'));
- assert(guide.includes('"dateModified":"2026-11-25"'));
+ assert(hub.includes('"dateModified":"2026-11-26"'));
+ assert(guide.includes('"dateModified":"2026-11-26"'));
  for(const r of records.filter(r=>r.market==='nl')){
   const html=files.get(new URL(r.url).pathname.slice(1)+(r.slug?'.html':'index.html'));
   assert(!html.includes(tool)&&!html.includes(source));
@@ -56,8 +56,22 @@ test('UK indoor laundry decisions and combined electricity example reach the HTM
   assert(output.includes('https://www.which.co.uk/reviews/clothes-airers/article/whats-the-best-and-cheapest-way-to-dry-clothes-indoors-aVcs74u56Gk8'));
   assert(output.includes('https://www.which.co.uk/news/article/are-heated-airers-worth-it-anZ006K965Pj'));
  }
- assert.equal(records.find(r=>r.slug==='indoor-laundry').modified,'2026-11-25');
- assert.equal(records.filter(r=>r.modified==='2026-11-25').length,1);
+ assert.equal(records.find(r=>r.slug==='indoor-laundry').modified,'2026-11-26');
+});
+test('UK Black Friday sends readers to a dated comparison and existing decision and shopping paths',()=>{
+ const path='/uk/indoor-laundry#black-friday-price-check',heading='Black Friday dehumidifier price check';
+ const guide=files.get('uk/indoor-laundry.html'),mirror=files.get('collector-assets/text/uk/indoor-laundry.txt');
+ const hub=files.get('uk/index.html'),hubText=files.get('collector-assets/text/uk/home.txt');
+ assert(hub.indexOf(`href="${path}"`)>0&&hub.indexOf(`href="${path}"`)<hub.indexOf('class="market-grid"'));
+ assert(hubText.includes('https://thedollscout.com'+path));
+ const section=guide.match(/<section id="black-friday-price-check"[^>]*>.*?<\/section>/)?.[0];
+ assert(section);
+ for(const output of [section,mirror])for(const value of [heading,'Arete One 12L','Arete Two','5–35°C','delivered total','dated earlier price','measured kWh','2026-11-26','https://www.which.co.uk/news/article/best-dehumidifier-deals-aCEmK0Z5Bvoo','https://www.meaco.com/products/meacodryarete1-12l'])assert(output.includes(value),value);
+ assert(section.includes('href="#uk-laundry-tool-heading"')&&section.includes('href="#model-1"'));
+ assert.equal((section.match(/data-market-source/g)||[]).length,2);
+ assert(!/amazon\.|tag=|£\d|% off/.test(section));
+ assert.deepEqual(records.filter(r=>r.modified==='2026-11-26').map(r=>new URL(r.url).pathname),['/uk/','/uk/indoor-laundry']);
+ for(const [file,content] of files)if(!['uk/index.html','uk/indoor-laundry.html','collector-assets/text/uk/home.txt','collector-assets/text/uk/indoor-laundry.txt'].includes(file))assert(!content.includes(heading),file);
 });
 test('bad country routes, source URLs and incomplete original guidance cannot publish',()=>{
  for(const edit of [d=>d.markets[1].id='uk',d=>d.markets[0].merchant='amazon.com',d=>d.markets[0].guides[0].slug='unknown',d=>d.markets[0].guides[0].sources[0].url='https://evil.test/',d=>d.markets[0].guides[0].models[0].url+='?tag=wrong',d=>d.markets[0].guides[0].comparisons=[]]){const d=structuredClone(data);edit(d);assert.throws(()=>validateMarketGuides(d));}

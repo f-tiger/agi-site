@@ -66,6 +66,11 @@ test('old German home aliases redirect once to the German root without language 
 
 test('German home gives German shopping and useful local task entry points before the catalogue', () => {
  const body = shoppingHomeHTML({lang: 'de', route, esc});
+ const priceCheck = '/de/shop/categories/smart-home#black-friday-preischeck';
+ assert.equal(anchors(body).filter(link => link.attrs.href === priceCheck).length, 1);
+ assert.ok(body.indexOf(priceCheck) < body.indexOf('id="home-catalog"'));
+ assert.ok(shoppingHomeText('de', route, origin).some(line => line.endsWith(origin + priceCheck)));
+ for (const lang of ['en', 'zh']) assert.ok(!shoppingHomeHTML({lang, route, esc}).includes(priceCheck));
  assert.ok(body.includes('<h1>' + homeCatalogCopy('de').homeTitle + '</h1>'));
  const market = /<nav\b[^>]*class="[^"]*shop-market-shortcuts[^"]*"[^>]*>([\s\S]*?)<\/nav>/.exec(body);
  assert.ok(market, 'Market choice remains visible');
