@@ -58,6 +58,20 @@ test('Tineco S7 advice finds the same canonical guide and separate primary evide
   assert(!text.includes('getecoback-21'));
 });
 
+test('The infrared annual-cost guide distinguishes household meter data from certificate values', async ()=>{
+  const pfad='/guide/infrarotheizung-ratgeber.html';
+  const {env}=assetEnv();
+  const frage='Infrarotheizung als einzige Heizung: Stromkosten pro Jahr aus dem Energieausweis?';
+  const hits=textOf(await call('ratgeber_suche',{frage,sprache:'de',max:1},env));
+  assert(hits.includes('Jahreskosten prüfen\n  https://getecoback.com'+pfad));
+  const content=textOf(await call('ratgeber_lesen',{pfad},env));
+  for(const evidence of ['Gebäudenutzfläche','4.000 kWh','1.400 €','1.520 €','www.gesetze-im-internet.de/geg/__85.html',
+    'Verbraucherzentrale zum Energieausweis','den Grundpreis eines bestehenden Haushaltsstromvertrags']) {
+    assert(content.toLowerCase().includes(evidence.toLowerCase()),evidence);
+  }
+  assert(!content.includes('getecoback-21'));
+});
+
 test('the committed MCP corpus is derived from current public canonical pages and built mirrors', () => {
   const py = spawnSync('python3', ['-c', "import json,sys;sys.path.insert(0,'tools');from build_mcp_guides import collect_guides;print(json.dumps(collect_guides()))"], {cwd, encoding: 'utf8', timeout: 15000});
   assert.equal(py.status, 0, py.stderr);

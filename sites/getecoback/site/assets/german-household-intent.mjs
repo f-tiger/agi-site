@@ -101,6 +101,20 @@ export const gasHeatCost = {
   tool:'ratgeber_suche',
 };
 
+export const infraredAnnualCost = {
+  path:'/guide/infrarotheizung-ratgeber.html',
+  id:'jahreskosten-hauptheizung',
+  tool:'ratgeber_suche',
+};
+
+function asksForInfraredAnnualCost(query) {
+  const infrared = /\binfrarot(?:[ -]*(?:elektro[ -]*)?(?:heiz\w*|paneel\w*|panel\w*))?\b/;
+  const annual = /\b(?:jahreskost\w*|jahresverbrauch\w*|jaehrlich\w*|pro jahr|im jahr|energieausweis\w*|heizwaermebedarf\w*|endenergie\w*)\b/;
+  const cost = /\b(?:kosten|kostet|jahreskost\w*|stromkost\w*|verbrauch\w*|jahresverbrauch\w*|stromverbrauch\w*|heizstrom|arbeitspreis|euro|rechnung\w*|berechn\w*|abschaetz\w*)\b/;
+  const otherTask = /\b(?:heizluefter|heizdecke|montag\w*|befestig\w*|anschl(?:uss|iess)\w*|waermepumpe\w*)\b/;
+  return infrared.test(query) && annual.test(query) && cost.test(query) && !otherTask.test(query);
+}
+
 export const carHeaterOutlet = {
   path:'/guide/akku-heizluefter.html',
   id:'auto-12v-steckdose',
@@ -312,6 +326,7 @@ export function exactWindowShadeMeasurement(query) {
 export function exactGermanHouseholdTask(query) {
   const tineco = exactTinecoS7Task(query);
   if (tineco) return tineco;
+  if (asksForInfraredAnnualCost(query)) return infraredAnnualCost;
   const exhaustPanel = /\babluft[ -]?platt\w*\b|(?:\b(?:fenster|acryl|hohlkammer)[ -]?platt\w*\b.*\b(?:klimaanlag\w*|klimageraet\w*|abluft\w*)\b)|(?:\b(?:klimaanlag\w*|klimageraet\w*|abluft\w*)\b.*\b(?:fenster|acryl|hohlkammer)[ -]?platt\w*\b)/;
   const opening = /\b(?:ausschnitt\w*|lochr?and\w*|loch\w*|randabstand\w*|anschlusszeichnung\w*)\b/;
   const irrelevant = /\b(?:rechteckig\w*|oval\w*|sicherung\w*|einbruch\w*|lautstaerk\w*|geraeusch\w*|schlauchlaeng\w*|(?:abluft)?schlauch\s+verlaeng\w*)\b/;
