@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-25T18:19:12+00:00",
+ "generated": "2026-11-26T18:00:13+00:00",
  "note": "aggregate counts read from each site's public pulse/reach endpoint; owner_reported figures are hand-entered from PartnerNet screenshots with their data window and are never extrapolated",
  "sites": [
   {
@@ -7,7 +7,7 @@
    "via": "endpoint",
    "money": {
     "days": 28,
-    "affiliate_click_28d": 42,
+    "affiliate_click_28d": 39,
     "affiliate_click_us_market_28d": 0,
     "affiliate_click_amazon_com_28d": 0,
     "affiliate_diagnostics": {
@@ -15,29 +15,29 @@
      "legacy_window": "28d key includes today plus 28 previous UTC dates",
      "timezone": "UTC",
      "complete_28d": {
-      "start": "2026-10-28",
-      "end_exclusive": "2026-11-25",
-      "clicks": 42
+      "start": "2026-10-29",
+      "end_exclusive": "2026-11-26",
+      "clicks": 39
      },
      "recent_7d": {
-      "start": "2026-11-18",
-      "end_exclusive": "2026-11-25",
-      "clicks": 8
+      "start": "2026-11-19",
+      "end_exclusive": "2026-11-26",
+      "clicks": 6
      },
      "previous_7d": {
-      "start": "2026-11-11",
-      "end_exclusive": "2026-11-18",
-      "clicks": 8
+      "start": "2026-11-12",
+      "end_exclusive": "2026-11-19",
+      "clicks": 9
      },
      "today_partial": 0,
      "markets_28d": {
-      "de": 42,
+      "de": 39,
       "us": 0,
       "unknown": 0
      },
      "destinations_28d": {
       "product": 9,
-      "search": 33,
+      "search": 30,
       "prime_trial": 0,
       "other_or_unknown": 0
      },
@@ -49,7 +49,7 @@
     "member_orders_by_state": {}
    },
    "summary": {
-    "affiliate_click_28d": 42,
+    "affiliate_click_28d": 39,
     "paid_orders": 0,
     "subscribers": 1
    }
@@ -64,9 +64,9 @@
     "ev_invest_tool_click_28d": 1,
     "ev_subscribe_click_28d": 6,
     "ev_tool_click_28d": 18,
-    "pv_advertise_28d": 154,
-    "pv_audits_28d": 286,
-    "pv_workbench_28d": 757,
+    "pv_advertise_28d": 152,
+    "pv_audits_28d": 288,
+    "pv_workbench_28d": 771,
     "member_orders_by_state": {},
     "discuss_profiles": 0
    },
@@ -92,6 +92,20 @@
     "member_orders_by_state": {},
     "proofkit_orders_by_state": {},
     "proofkit_order_definition": "BPJ membership orders first attributed to the customer quote studio; states are not export counts or profit. Other membership tools and older orders excluded; failed query is null.",
+    "proofkit_orders_complete_utc": {
+     "window": {
+      "start": "2026-10-29",
+      "end_exclusive": "2026-11-26",
+      "complete_days": 28,
+      "date_basis": "UTC"
+     },
+     "by_state": {
+      "pending": 0,
+      "expired": 0,
+      "paid": 0
+     },
+     "definition": "First-source ProofKit membership orders created in the stated UTC window, with payment and expiry classified at the window end. Each order counts once. Package generation and profit require separate records."
+    },
     "video_orders_by_state": {},
     "video_order_definition": "Orders first created from the video membership entry within this window; paid means confirmed payment, not profit or causal attribution.",
     "proposal_deck_orders_by_state": {
@@ -100,16 +114,30 @@
      "paid": 0
     },
     "proposal_deck_order_window": {
-     "start": "2026-10-28",
-     "end_exclusive": "2026-11-25",
+     "start": "2026-10-29",
+     "end_exclusive": "2026-11-26",
      "complete_days": 28,
      "date_basis": "UTC"
     },
     "proposal_deck_order_definition": "Membership orders first attributed to ProposalDeck and created during this complete UTC window, classified at its exclusive end. Paid means a confirmed payment recorded by then. Each order is counted once. Buyer, cloud delivery and profit metrics require separate records. A failed read is null.",
+    "trade_workbench_orders_complete_utc": {
+     "window": {
+      "start": "2026-10-29",
+      "end_exclusive": "2026-11-26",
+      "complete_days": 28,
+      "date_basis": "UTC"
+     },
+     "by_state": {
+      "pending": 0,
+      "expired": 0,
+      "paid": 0
+     },
+     "definition": "Membership orders first attributed to the trade workbench and created in this complete UTC window, classified at its exclusive end. Paid means a confirmed payment recorded by then. Orders count once. A failed read is null."
+    },
     "scope_note": "Inventory/state counts are lifetime unless a metric explicitly says window; go_28d and biz_28d retain legacy names and use the requested window. Video-order states are windowed. These are not an attributed acquisition funnel.",
-    "submissions_total": 464,
-    "go_28d": 228,
-    "biz_28d": 595,
+    "submissions_total": 477,
+    "go_28d": 221,
+    "biz_28d": 598,
     "claims_verified": 0,
     "attestations_queued": 0
    },
@@ -139,8 +167,8 @@
    "money": {
     "days": 28,
     "calc_use_28d": 10,
-    "mcp_call_28d": 145,
-    "pick_open_28d": 16
+    "mcp_call_28d": 147,
+    "pick_open_28d": 15
    },
    "summary": {
     "affiliate_click_28d": null,
@@ -181,6 +209,6 @@
   "spend_usd_30d": 0,
   "net_usd_30d": null,
   "north_star_resolved_prelogged": 0,
-  "generated": "2026-11-25T18:19:11+00:00"
+  "generated": "2026-11-26T18:00:12+00:00"
  }
 }
