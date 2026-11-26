@@ -595,6 +595,19 @@ function asksAboutAnEmptyDehumidifierTank(query) {
     !otherProblem.test(query) && !asksForDehumidifierDrainRoute(query);
 }
 
+export const dehumidifierDiscountReference = {
+  path:'/guide/luftentfeuchter-ratgeber.html',
+  id:'luftentfeuchter-30-tage-preischeck',
+  tool:'ratgeber_suche',
+};
+
+function asksForDehumidifierDiscountReference(query) {
+  const device = /\b(?:(?:luft|raum)[ -]?)?entfeucht(?:er|ungsgeraet)\w*\b/;
+  const offer = /\b(?:black[ -]*(?:friday|week)|cyber[ -]*(?:monday|week)|30[ -]*tag\w*|(?:aktions|tiefst|streich)[ -]?preis|uvp|preiserm(ae|a)essig\w*)\b/;
+  const elsewhere = /\b(?:schweiz\w*|oesterreich\w*|chf|usa|amazon[ .-]*com)\b/;
+  return device.test(query) && offer.test(query) && !elsewhere.test(query);
+}
+
 export const coolingDiscountReference = {
   path:'/guide/klimaanlage-wann-kaufen.html',
   id:'angebot-30-tage-preis',
@@ -766,6 +779,7 @@ export function exactGermanHouseholdTask(query) {
   const meterTask = exactLowLoadMeterTask(query);
   if (meterTask) return meterTask;
   if (asksForPortableCoolingStorage(query)) return portableCoolingStorage;
+  if (asksForDehumidifierDiscountReference(query)) return dehumidifierDiscountReference;
   if (asksForProBreeze12lModelChoice(query)) return proBreeze12lModelChoice;
   if (asksForSaros10rFloorPrep(query)) return saros10rFloorPrep;
   if (asksForPortaSplitDefrost(query)) return portaSplitDefrost;

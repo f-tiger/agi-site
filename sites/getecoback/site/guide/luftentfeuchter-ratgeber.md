@@ -1,6 +1,6 @@
 # Luftentfeuchter kaufen: 10 oder 20 Liter für den kalten Keller?
 
-> Luftentfeuchter mit 10 oder 20 Litern? Temperatur, Feuchte und Herstellerwerte vor dem Kauf prüfen. Was im kalten Keller zählt und wann kein Gerät hilft.
+> Luftentfeuchter kaufen? Prüfe Temperatur, Feuchte und Modellvariante. Vergleiche Herstellerwerte für kalte Keller und den 30-Tage-Preis vor dem Kauf.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftentfeuchter-ratgeber.html
 
@@ -9,6 +9,22 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 Ob 10 oder 20 Liter Nennleistung passen, lässt sich aus der Fläche allein nicht ableiten. Prüfe zuerst die Feuchteursache und [miss Temperatur und relative Luftfeuchte wiederholt](https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html). Vergleiche danach die Herstellerleistung unter ähnlichen Bedingungen sowie Raumvolumen, Feuchtenachschub, Strombedarf und Ablauf. Bei Lecks, nassen Bauteilen oder Schimmel muss die Ursache geklärt werden; ein Entfeuchter behebt sie nicht.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
+
+[Black-Friday-Angebot für einen Luftentfeuchter prüfen](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#luftentfeuchter-30-tage-preischeck)
+
+## Luftentfeuchter am Black Friday: Ist das Angebot günstiger?
+
+Vergleiche den aktuellen Preis des konkreten Geräts mit dem niedrigsten Gesamtpreis, den derselbe Verkäufer in den 30 Tagen vor Beginn der Ermäßigung verlangt hat. Das ist in Deutschland der Bezugspunkt, wenn ein Händler eine Preisermäßigung für eine Ware ankündigt. [§ 11 Preisangabenverordnung](https://www.gesetze-im-internet.de/pangv_2022/__11.html).
+
+- **Gleiche Ausführung:** Vergleiche die vollständige Modellnummer oder EAN, den Zustand und den Lieferumfang. Beim Bosch Dry 4000 gehört EAN 4069143047774 zum D4000-EU. Bei Pro Breeze 12L tragen Standard- und App-Version verschiedene Modellnummern. [Bosch-Modell prüfen](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#modell-bosch-d4000-eu) · [Pro-Breeze-Varianten abgleichen](https://getecoback.com/guide/pro-breeze-luftentfeuchter-test.html#pro-breeze-12l-modellwahl).
+
+- **Gleicher Verkäufer:** Prüfe auf einem Marktplatz, wer unter „Verkauf durch“ steht. Eine UVP oder der Preisverlauf mehrerer Händler kann zusätzlichen Kontext liefern. Für den angekündigten Rabatt zählt der 30-Tage-Preis dieses Verkäufers. Fehlt dieser Bezug, bleibt die beworbene Ersparnis offen. [Verbraucherzentrale zum Vergleich von Aktionspreisen](https://www.verbraucherzentrale.de/wissen/digitale-welt/onlinehandel/prime-days-black-friday-cyber-monday-tipps-fuer-die-schnaeppchenjagd-37835).
+
+- **Gesamtkosten für deinen Kauf:** Addiere zum aktuellen Gerätepreis Versand und nur das Zubehör, das du am Einsatzort tatsächlich brauchst. Vergleiche diesen Betrag mit anderen Angeboten für dieselbe Ausführung. Für den kalten Keller prüfst du außerdem Leistung bei deiner Temperatur und den Ablauf. [Einsatz im kalten Keller prüfen](https://getecoback.com/guide/luftentfeuchter-keller.html#kalter-keller).
+
+**Frei gewähltes Rechenbeispiel:** Bei 249 € UVP, 179 € niedrigstem Verkäuferpreis und 189 € aktuellem Gerätepreis kostet das Gerät aktuell 10 € mehr als beim früheren Tiefstpreis. Mit 9 € Versand und 20 € für einen benötigten Schlauch ergibt das 218 € für den Kauf.
+
+Wenn du die Feuchte noch nicht gemessen hast, [miss zuerst Temperatur und relative Luftfeuchte](https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html). Bei unklarer Modellnummer oder ungeklärter Feuchteursache verschiebe den Kauf. Bei Lecks, nassen Bauteilen oder Schimmel zuerst die Ursache klären. Wenn Bedarf und Variante feststehen, kannst du die [passende Modellkarte und den Händlerlink prüfen](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#eb-models). Quellen geprüft am 26. November 2026.
 
 **Kurz gesagt:** **10 oder 20 Liter sind Nennwerte, keine Zusage für deinen Keller.** Beim MeacoDry Arete One 20L nennt der Hersteller 3,4 L/Tag bei 10 °C und 60 % r. F., aber 8,5 L/Tag bei 20 °C und derselben Feuchte. Das sind Herstellerwerte, kein EcoBack-Test. Vergleiche passende Leistungs- und Verbrauchsdaten statt pauschal größer zu kaufen. Unter 15 °C ist Adsorption nicht automatisch die richtige Wahl. Die vorhandene Entscheidungshilfe mit Quellentabelle und der [Vergleich für kalte Keller](https://getecoback.com/guide/luftentfeuchter-keller.html#kalter-keller) helfen weiter.
 
@@ -141,7 +157,7 @@ Kaufgründe und genaue Varianten
 | [Bosch Dry 4000](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#modell-bosch-d4000-eu) | Drei Betriebsmodi statt vieler Einstellungen | D4000-EU · Artikel 7733703558 |
 | [MeacoDry Arete Two 12L](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#modell-meaco-two-12) | App-Steuerung und kleinerer Tank | Arete Two 12L · nicht One oder Two 20L |
 | [Stadler Form Lukas](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#modell-stadler-lukas) | Schwenkfunktion und Wäschemodus | Lukas weiss L-031E · nicht Lukas little oder Pro |
-| [Comfee MDDF-20DEN7](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#modell-comfee-mddf20) | Feuchteregelung mit Timer | MDDF-20DEN7 · ohne WF |
+| [Comfee MDDF-20DEN7](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#modell-comfee-mddf20) | Feuchteregelung mit Timer | MDDF-20DEN7 · ohne WF · Artikel 10000651 |
 | [MeacoDry Arete One 20L](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#modell-meaco-one-20) | Leistungsdaten unter konkreten Raumbedingungen | Arete One 20L · nicht Two oder One 25L |
 | [MeacoDry Arete One 25L](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#modell-meaco-one-25) | Weitere Kapazitätsvariante derselben Baureihe | Arete One 25L · nicht Two 25L |
 

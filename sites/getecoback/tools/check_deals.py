@@ -57,13 +57,19 @@ def check_calendar(cal, today):
         if end < start:
             errors.append(f"{eid}: ends before it starts")
         if ev.get("announced"):
-            for k in ("source", "quote", "date_text", "show_from", "checked"):
+            for k in ("source", "quote", "date_text", "checked"):
                 if not ev.get(k):
                     errors.append(f"{eid}: announced without {k}")
             if ev.get("source") and not str(ev["source"]).startswith("https://"):
                 errors.append(f"{eid}: source must be an https URL")
-            if ev.get("show_from"):
-                sf = dt.date.fromisoformat(ev["show_from"])
+            if "show_from" not in ev:
+                errors.append(f"{eid}: specify show_from or set it to null for an event without the band")
+            elif ev["show_from"] is not None:
+                try:
+                    sf = dt.date.fromisoformat(ev["show_from"])
+                except (TypeError, ValueError):
+                    errors.append(f"{eid}: show_from must be an ISO date or null")
+                    continue
                 if sf > start:
                     errors.append(f"{eid}: show_from after start")
                 if (start - sf).days > MAX_LEAD_DAYS:
@@ -124,6 +130,12 @@ def selftest():
         bad += not cond
 
     ok("good calendar passes", check_calendar(cal, today) == ([], []))
+    recorded = dict(cal, events=[dict(good_ev, show_from=None)])
+    ok("confirmed event with no band is recorded", check_calendar(recorded, today) == ([], [])
+       and bd.active_event(recorded, dt.date(2026, 10, 6)) is None)
+    missing_display = dict(good_ev)
+    missing_display.pop("show_from")
+    ok("missing display decision is refused", check_calendar(dict(cal, events=[missing_display]), today)[0])
     early = dict(good_ev, show_from="2026-09-01")
     ok("30-day lead is refused", any("standing Prime" in e for e in check_calendar(dict(cal, events=[early]), today)[0]))
     nosrc = dict(good_ev, source="")
