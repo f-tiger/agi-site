@@ -4767,6 +4767,10 @@ def main():
         from dehum_catalog import inject as inject_catalog
         new = inject_catalog(new, os.path.basename(path)[:-5])
         new = strip_decision_promotions(new, os.path.basename(path)[:-5])
+        if os.path.basename(path) == 'btu-rechner.html':
+            # The calculator offers models only within its supported load range.
+            for marker in ('EB_STICKY', 'EB_QUICKPICK', 'EB_POPUP'):
+                new = re.sub(r'<!--' + marker + r'-->.*?<!--/' + marker + r'-->\n?', '', new, flags=re.S)
         if os.path.basename(path) in ('tineco-saugt-nicht-mehr.html', 'thermovorhang-ratgeber.html', 'saugwischer-kaufberatung.html', 'saugroboter-kaufberatung.html', 'luftbefeuchter-ratgeber.html', 'luftbefeuchter-stromverbrauch.html', 'luftbefeuchter-weisser-staub.html', 'smarte-heizkoerperthermostate-lohnen-sich.html'):
             # These guides qualify a specific maintenance/fit decision. Generic
             # shopping overlays bypass it and may advertise an unrelated device.

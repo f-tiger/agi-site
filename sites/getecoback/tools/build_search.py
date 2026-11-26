@@ -183,6 +183,12 @@ def collect():
     targets=re.findall(r'<h2\b[^<>]*\sid="'+section['id']+r'"[^<>]*>',text)
     if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
      raise ValueError(f'Missing or hidden EX105 evidence: {route}#{section["id"]}')
+  if lang=='de' and route=='/guide/btu-rechner.html':
+   targets=re.findall(r'<h2\b[^<>]*\sid="hohe-kuehllast"[^<>]*>',text)
+   if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
+    raise ValueError(f'Missing or hidden high cooling load guidance: {route}')
+   entry['model_sections']=[{'id':'hohe-kuehllast','title':'Hohe Kühllast und mehrere Räume prüfen',
+    'description':'Bei großer Fläche, Dachlage oder mehreren Zimmern die gleichzeitig benötigten Kühlzonen, Wärmequellen und Abluftwege einzeln prüfen.'}]
   if lang=='de' and route=='/guide/luftentfeuchter-keller.html':
    anchor='modell-comfee-mddf20'
    targets=re.findall(r'<h[23]\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)

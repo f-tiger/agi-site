@@ -150,6 +150,43 @@ test('invalid legacy electricity settings return an error rather than using defa
   assert.doesNotMatch(JSON.stringify(heatExcessive), /NaN|Infinity/);
 });
 
+test('the cooling device chooser and BTU estimate hand large rooms to the load check', async () => {
+  const highLoadUrl = origin + '/guide/btu-rechner.html#hohe-kuehllast';
+  for (const [qm, estimated] of [[40,'13.500'],[45,'15.500'],[60,'20.500']]) {
+    const chooser = await call('geraet_wahl', {problem:'zu_heiss', qm});
+    const sizing = await call('btu_empfehlung', {qm, sonne:'normal'});
+    for (const result of [chooser,sizing]) {
+      assert.equal(result.isError, false);
+      const answer = result.content[0].text;
+      assert.ok(answer.includes(estimated + ' BTU/h'), answer);
+      if (qm === 40) {
+        assert.ok(answer.includes(origin + '/guide/klimaanlage-40-qm.html'), answer);
+      } else {
+        assert.ok(answer.includes(highLoadUrl), answer);
+        assert.doesNotMatch(answer, /\/guide\/klimaanlage-\d+-qm\.html/);
+      }
+    }
+  }
+  for (const [sonne, estimated] of [['wenig','6.000'],['normal','7.000'],['viel','8.000']]) {
+    const result = await call('btu_empfehlung', {qm:20, sonne});
+    assert.ok(result.content[0].text.includes(estimated + ' BTU/h'), sonne);
+  }
+});
+
+test('the cooling chooser labels a missing-area example and rejects explicit invalid areas', async () => {
+  const example = await call('geraet_wahl', {problem:'zu_heiss'});
+  assert.equal(example.isError, false);
+  assert.match(example.content[0].text, /Beispiel/i);
+  assert.match(example.content[0].text, /20\s*m²/);
+  assert.doesNotMatch(example.content[0].text, /\/guide\/klimaanlage-\d+-qm\.html/);
+  for (const qm of [null,'20',0,3,121]) {
+    const result = await call('geraet_wahl', {problem:'zu_heiss', qm});
+    assert.equal(result.isError, true, JSON.stringify(qm));
+    assert.match(result.content[0].text, /4\D+120/);
+    assert.doesNotMatch(result.content[0].text, /\/guide\/klimaanlage-\d+-qm\.html/);
+  }
+});
+
 test('a large BTU scenario does not point to a small-room product', async () => {
   const result = await call('btu_empfehlung', {qm:120});
   assert.equal(result.isError, false);

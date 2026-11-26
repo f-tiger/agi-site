@@ -29,6 +29,52 @@ async function checkExactDelonghiPurchase(page,base){
  return outcomes.length*5;
 }
 
+async function checkGermanCoolingLoad(browser,base){
+ const route='/guide/btu-rechner.html',anchor='#hohe-kuehllast';
+ const url=base+route+'?__ci=1';
+ let checks=0;
+ for(const [width,javaScriptEnabled] of [[390,true],[320,false]]){
+  const ctx=await browser.newContext({viewport:{width,height:844},javaScriptEnabled,serviceWorkers:'block'});
+  await ctx.route('**/*',request=>{
+   const address=new URL(request.request().url());
+   if(address.origin!==new URL(base).origin)return request.abort();
+   if(request.request().method()!=='GET'||address.pathname.startsWith('/api/'))return request.fulfill({status:204});
+   return request.continue();
+  });
+  const page=await ctx.newPage();
+  try{
+   await page.goto(url+anchor);
+   assert(await page.locator(anchor).isVisible(),'The high-load explanation is available at its direct link');
+   assert.match(await page.locator(anchor).innerText(),/Kühllast|BTU/i);checks+=2;
+   if(!javaScriptEnabled)continue;
+   await page.selectOption('#ceil','1');
+   await page.selectOption('#sun','1');
+   await page.fill('#pers','2');
+   await page.uncheck('#kitchen');
+   const result=page.locator('#result');
+   const roomGuide=result.locator('a[href="/guide/klimaanlage-40-qm.html"]');
+   const shop=result.locator('a[rel~=sponsored],a[href*="amazon."],a[href*="amzn."],a[href*="tag="]');
+   for(const qm of ['60','40','60']){
+    await page.fill('#qm',qm);
+    await page.click('#calcBtn');
+    const copy=await result.innerText();
+    if(qm==='60'){
+     assert.match(copy,/20\.500\s*BTU\/h/);
+     assert(await result.locator('a[href="#hohe-kuehllast"],a[href="/guide/btu-rechner.html#hohe-kuehllast"]').first().isVisible());
+     assert.equal(await shop.count(),0);
+     assert.equal(await roomGuide.count(),0);
+     assert.equal(await result.locator('#btu-save').count(),0);checks+=5;
+    }else{
+     assert.match(copy,/13\.500\s*BTU\/h/);
+     assert(await roomGuide.first().isVisible());
+     assert(await shop.first().isVisible());checks+=3;
+    }
+   }
+  }finally{await ctx.close();}
+ }
+ return checks;
+}
+
 async function checkGermanFocusedDiscovery(browser,base){
  const destination='/waeschetrockner-oder-luftentfeuchter.html#luftentfeuchter-waesche-kosten';
  const shadePage='/guide/luftfeuchtigkeit-richtig-messen.html';
@@ -470,6 +516,7 @@ async function checkGermanFocusedDiscovery(browser,base){
   assert.deepEqual(failedIndexRequests,[searchAsset,searchAsset]);
   await fail.close();checks+=5;
   checks+=await checkGermanFocusedDiscovery(browser,base);
+  checks+=await checkGermanCoolingLoad(browser,base);
   console.log(`PASS demand discovery: ${checks} checks, 8 locales, 3 widths, no-JS and static-index failure/retry`);
  }finally{if(browser)await browser.close();if(server)server.kill();}
 })().catch(e=>{console.error(e);process.exit(1)});

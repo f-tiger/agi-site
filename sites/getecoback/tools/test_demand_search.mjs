@@ -7,6 +7,15 @@ import {calculateGasHeatThreshold} from '../site/assets/heat-gas-cost.mjs';
 import {compareSocketWatts} from '../site/assets/auto-12v-check.mjs';
 const browsingIndex=readFileSync(new URL('../site/assets/search-index.json',import.meta.url));
 const index=JSON.parse(browsingIndex);
+test('German large or multi-room cooling questions reach the load assessment',()=>{
+ const target='/guide/btu-rechner.html#hohe-kuehllast';
+ for(const query of ['Reicht eine mobile Klimaanlage für 60 m² im Dachgeschoss?',
+  'Welche Klimaanlage kann mehrere Zimmer kühlen?', 'Wie viel BTU brauche ich für eine Klimaanlage auf 45 Quadratmetern?']){
+  assert.equal(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+ }
+ for(const query of ['Welche Klimaanlage passt zu meinem 40 m² Wohnzimmer?', 'Wie viel Heizleistung braucht ein Raum mit 60 m²?'])
+  assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+});
 test('German hygrometer placement questions reach the comparison of two fixed locations',()=>{
  const guide='/guide/luftfeuchtigkeit-richtig-messen.html';
  for(const query of [

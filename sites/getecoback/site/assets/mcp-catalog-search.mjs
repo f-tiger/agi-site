@@ -1,4 +1,4 @@
-import {asksForLaundryCostComparison, boschDry, carHeaterOutlet, comfeeVariant, coolingDiscountReference, directHeat, exactGermanHouseholdTask, exactWindowShadeMeasurement, excludesPortableCoolingStorage, ex105Exhaust, ex105Sound, festiveLights, gasHeatCost, granulateDryingChoice, infraredAnnualCost, karcherBagDecision, karcherCartridgeDecision, klarsteinPackage, laundryMeasuredFollowUp, lowLoadMeterGuide, mentionsLaundryDryer, offlineThermostatChoice, portableCoolingStorage, showerFlow, siemensFilterDecision, tinecoS7FlashDry, tinecoS7Variant, vacuumOffer} from './german-household-intent.mjs?v=141670ea223f';
+import {asksForLaundryCostComparison, boschDry, carHeaterOutlet, comfeeVariant, coolingDiscountReference, directHeat, exactGermanHouseholdTask, exactWindowShadeMeasurement, excludesPortableCoolingStorage, ex105Exhaust, ex105Sound, festiveLights, gasHeatCost, granulateDryingChoice, highCoolingLoadDecision, infraredAnnualCost, karcherBagDecision, karcherCartridgeDecision, klarsteinPackage, laundryMeasuredFollowUp, lowLoadMeterGuide, mentionsLaundryDryer, offlineThermostatChoice, portableCoolingStorage, showerFlow, siemensFilterDecision, tinecoS7FlashDry, tinecoS7Variant, vacuumOffer} from './german-household-intent.mjs?v=18c55c9b750c';
 import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion, glassvacModel, windowVacCharging} from './kaercher-saugduese-intent.mjs';
@@ -390,7 +390,8 @@ export function findCatalogueTools(index, {query='', category='', name=null}={})
     householdTask === gasHeatCost || householdTask === carHeaterOutlet || householdTask === infraredAnnualCost ||
     householdTask === tinecoS7FlashDry || householdTask === tinecoS7Variant || householdTask === lowLoadMeterGuide ||
     householdTask === karcherCartridgeDecision || householdTask === karcherBagDecision ||
-    householdTask === laundryMeasuredFollowUp || householdTask === ex105Exhaust || householdTask === ex105Sound;
+    householdTask === laundryMeasuredFollowUp || householdTask === ex105Exhaust || householdTask === ex105Sound ||
+    householdTask === highCoolingLoadDecision;
   if (householdTask === boschDry || householdTask === comfeeVariant || householdTask === festiveLights || householdTask === showerFlow || householdTask === directHeat || householdTask === klarsteinPackage || comparisonGuide) {
     const guideSearch = index.find(entry => entry.tool.name === householdTask.tool && eligible(entry));
     if (guideSearch) {
