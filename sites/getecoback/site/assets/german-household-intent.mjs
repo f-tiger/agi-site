@@ -382,6 +382,17 @@ export const laundryMeasuredFollowUp = {
   tool:'ratgeber_suche',
 };
 
+export function exactHygrometerPlacement(query) {
+  const gauge=/\b(?:hygrometer\w*|feuchtemessgeraet\w*)\b/;
+  const window=/\bfenster(?:bank|naehe)?\b/;
+  const room=/\b(?:raummitte|zimmermitte|mitte des raums|mitten im zimmer|mitten im raum|im raum)\b/;
+  const difference=/\b(?:standort\w*|messort\w*|unterschied\w*|abweich\w*|tausch\w*|vergleich\w*)\b/;
+  const other=/\b(?:salztest\w*|kalibrier\w*|plissee\w*|aussensensor\w*)\b/;
+  if(gauge.test(query)&&window.test(query)&&room.test(query)&&difference.test(query)&&!other.test(query))
+    return {path:'/guide/luftfeuchtigkeit-richtig-messen.html',id:'hygrometer-standorte-tauschen'};
+  return null;
+}
+
 function asksForLaundryMeasuredFollowUp(query) {
   const laundry = /\b(?:waesche\w*|waschladung\w*)\b/;
   const drying = /\b(?:(?:waesche)?trockn\w*|noch nass|noch feucht)\b/;

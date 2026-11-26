@@ -497,6 +497,29 @@ test('German EX105 hose and sound answers read the exact published manufacturer 
   }
 });
 
+test('the existing hygrometer swap tool leads to the sourced measurement protocol', async () => {
+  const {env}=assetEnv();
+  const page='https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html';
+  const pfad=page+'#hygrometer-standorte-tauschen';
+  const frage='Wie kann ich zwei Hygrometer zwischen Fensterbank und Raummitte tauschen?';
+  const found=await call('ratgeber_suche',{frage,sprache:'de',max:1},env);
+  assert(textOf(found).includes('Abschnitt: '+pfad));
+  const read=await call('ratgeber_lesen',{pfad},env);
+  assert.equal(read.isError,false);
+  assert.deepEqual(read,await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad}},env,true));
+  for(const token of ['10 Prozentpunkte','2 Prozentpunkte','tfa-dostmann.de/luftfeuchtigkeit/luftfeuchtigkeit-messen/','leihe dir','Glasoberfläche'])
+    assert(textOf(read).includes(token),token);
+  const inputs={a_ort_1_rh:57,b_ort_2_rh:45,a_ort_2_rh:47,b_ort_1_rh:55};
+  const tool='hygrometer_standorttausch_auswerten';
+  const stable=await call(tool,{...inputs,standorte_stabil:true},env);
+  assert.equal(stable.structuredContent.ort_1_minus_ort_2_pp,10);
+  assert.equal(stable.structuredContent.anzeige_a_minus_b_pp,2);
+  assert(stable.structuredContent.annahme.includes(pfad));
+  const changed=await call(tool,{...inputs,standorte_stabil:false},env);
+  assert.equal(changed.structuredContent.ort_1_minus_ort_2_pp,null);
+  assert.equal(changed.structuredContent.anzeige_a_minus_b_pp,null);
+});
+
 test('hosts read the exact evidence returned by search beyond the product-directory excerpt', async () => {
   const {env, requests} = assetEnv();
   const page = '/produkte.html';

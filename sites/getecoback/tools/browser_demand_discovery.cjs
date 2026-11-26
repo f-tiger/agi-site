@@ -120,6 +120,19 @@ async function checkGermanFocusedDiscovery(browser,base){
   }
   equal((await search('Warum ist mein Fenster hinter dem Plissee nass, obwohl das Hygrometer 50 % zeigt?'))[0],
    {href:shadePage+'#'+shadeSection,language:'de'},'A wet window behind a blind leads to the measurement answer');
+  const placementHref=shadePage+'#hygrometer-standorte-tauschen';
+  for(const query of [
+   'Ein Hygrometer auf der Fensterbank, eins mitten im Zimmer: Wie finde ich heraus, ob der Standort oder das Gerät den Unterschied macht?',
+   'Wie kann ich zwei Hygrometer zwischen Fensterbank und Raummitte tauschen?',
+  ]){
+   const matches=await search(query);
+   equal(matches[0],{href:placementHref,language:'de'},'The location-swap question opens its German section');
+   equal(matches.filter(match=>match.href.split('#')[0]===shadePage).length,1,'The guide has one result for this question');
+  }
+  equal((await search('Zwei Hygrometer am gleichen Ort zeigen unterschiedliche Werte. Welches stimmt?'))[0],
+   {href:shadePage+'#hygrometer-vergleichen',language:'de'},'A same-location comparison keeps its tolerance example');
+  check((await search('Wie kalibriere ich mein Hygrometer mit einem Salztest?')).every(match=>match.href!==placementHref),
+   'Calibration does not open the location-swap guide');
   check((await search('Fenster hinter dem Rollo beschlägt zwischen den beiden Scheiben'))
    .every(result=>result.href!==shadePage+'#'+shadeSection),'Glass cavity condensation stays outside the measurement answer');
   equal((await search('Reicht eine Granulatbox zum Wäschetrocknen?'))[0],

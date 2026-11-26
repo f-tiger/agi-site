@@ -75,7 +75,7 @@ export const measurementLab = [
       const phase2 = a.a_ort_2_rh - a.b_ort_1_rh;
       return {ort_1_minus_ort_2_pp:a.standorte_stabil ? round((phase1 - phase2) / 2) : null,
         anzeige_a_minus_b_pp:a.standorte_stabil ? round((phase1 + phase2) / 2) : null,
-        annahme:'Vereinfachte Rechnung mit stabiler Ortsdifferenz und konstantem Anzeigenversatz. Temperatur und Eingewöhnungszeit mitprotokollieren. Der Tausch kalibriert keines der Geräte.'};
+        annahme:`Vereinfachte Rechnung mit stabiler Ortsdifferenz und konstantem Anzeigenversatz. Temperatur und Eingewöhnungszeit mitprotokollieren. Der Tausch kalibriert keines der Geräte. Messanleitung unter https://getecoback.com${humidity}#hygrometer-standorte-tauschen`};
     },
     example:{args:{a_ort_1_rh:57,b_ort_2_rh:45,a_ort_2_rh:47,b_ort_1_rh:55,standorte_stabil:true},
       expect:{ort_1_minus_ort_2_pp:10,anzeige_a_minus_b_pp:2}},
