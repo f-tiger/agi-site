@@ -130,7 +130,7 @@
       var m=parseFloat(qm.value),w=parseInt(d.value,10);
       if(!Number.isFinite(m)||m<1||m>100){out.innerHTML="Bitte eine Raumgröße zwischen 1 und 100 m² eingeben.";return;}
       var bedarf=Math.round(m*w/10)*10;
-      var html="<strong>Richtwert für den ganzen Raum: ca. "+fmt(bedarf)+" Watt</strong> ("+fmt(m)+" m² × "+w+" W/m²)";
+      var html="<strong>Geschätzter Watt-Bedarf für den ganzen Raum: ca. "+fmt(bedarf)+" Watt</strong> ("+fmt(m)+" m² × "+w+" W/m²)";
       if(bedarf>2000){html+='<br>Vor dem Kauf <a href="#ueber-2-000-watt-besser-zwei-panels">Heizlast und Stromkreis prüfen lassen</a>.';}
       html+="<br><span style='font-size:13.5px;color:#5b6b78;'>Betriebskosten bei 0,30 €/kWh: ca. "+(bedarf/1000*0.30).toFixed(2).replace(".",",")+" € pro Stunde Volllast.</span>";
       out.innerHTML=html;
