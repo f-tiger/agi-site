@@ -160,7 +160,10 @@ const root=path.resolve(__dirname,'../site'),origin='https://getecoback.com',rou
   assert.deepEqual([...composer.searchParams.keys()].sort(),['title','url']);
   assert((composer.searchParams.get('title')||'').trim());
   assert(await fallback.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
-  checks+=16;
+  await staticAnswer.locator('a[href="#thermostat-bosch-ii-m"]').press('Enter');
+  await fallback.waitForURL(origin+routePath+'#thermostat-bosch-ii-m');
+  assert(await fallback.locator('#thermostat-bosch-ii-m').getByRole('heading').isVisible());
+  checks+=18;
   const fritzAnchor='#fritz-302-danfoss-adapter';
   await fallback.goto(origin+routePath+fritzAnchor);
   const fritzAnswer=fallback.locator(fritzAnchor);
@@ -176,7 +179,10 @@ const root=path.resolve(__dirname,'../site'),origin='https://getecoback.com',rou
   assert.deepEqual([...fritzComposer.searchParams.keys()].sort(),['title','url']);
   assert((fritzComposer.searchParams.get('title')||'').trim());
   assert(await fallback.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
-  checks+=14;
+  await fritzAnswer.locator('a[href="#thermostat-fritz-302"]').press('Enter');
+  await fallback.waitForURL(origin+routePath+'#thermostat-fritz-302');
+  assert.match(await fallback.locator('#thermostat-fritz-302').getByRole('heading').textContent(),/20003120/);
+  checks+=16;
   await nojs.close();
   console.log(`PASS thermostat fit: ${checks} browser checks; sourced branches, preserved payback, no-input selectors, copy success/failure, opt-out, no payloads, no-JS, 320/390/1280px.`);
  }finally{await browser.close();}

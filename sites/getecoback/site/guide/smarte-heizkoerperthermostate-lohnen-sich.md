@@ -65,6 +65,8 @@ Danfoss-Anschlüsse am Bosch II [+M], geprüft am 22.11.2026
 
 Bei bestätigtem RAV führt Bosch den separaten Adapter mit der Gerätenummer **8750002600** und EAN **4062321692636**. Bei RA oder RAVL prüfe den passenden beiliegenden Adapter in der genauen Packung. Ist die Kennzeichnung offen, warte mit der Bestellung. Am wasserführenden Ventilkörper nichts lösen. Bei Unsicherheit einen Fachbetrieb fragen.
 
+Wenn du den Kopf ersetzen möchtest und der passende Adapter feststeht, prüfe [Zentrale und Lieferumfang für Bosch II [+M]](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-bosch-ii-m). Bei RAV den separat benötigten Adapter mit einplanen.
+
 [Bosch: Lieferumfang des Heizkörper-Thermostats II [+M]](https://www.bosch-smarthome.com/de/de/produkte/heizung/heizkoerper-thermostat/) · [Bosch: Danfoss-RAV-Adapter, Gerätenummer und EAN](https://www.bosch-smarthome.com/de/de/produkte/zubehoer-und-ersatzteile/ventiladapter/) · [Bosch: Ventilbilder und Adapterempfehlungen](https://www.bosch-smarthome.com/res/web/produkt/heizkoerper-thermostat2/pdf/8-750-002-943_V001_Valve_adapter_recommendations_ML_20240808.pdf).
 
 ### Welcher Danfoss-Adapter passt zum FRITZ!Smart Thermo 302?
@@ -82,6 +84,8 @@ Danfoss-Anschlüsse am FRITZ!Smart Thermo 302, geprüft am 22.11.2026
 | Danfoss RAVL | **Danfoss RAVL: Separaten Adapter einplanen** Für das bestätigte RAVL-Ventil mit 25,5 mm führt FRITZ! einen gesonderten RAVL-Adapter aus dem Fachhandel auf. Gleiche vor der Auswahl Ventilbezeichnung und Maß ab. | [FRITZ!DECT 302: Heizungsventile und passende Adapter](https://fritz.com/apps/knowledge-base/fritz-dect-302/3376_An-welchen-Heizungsventilen-kann-der-FRITZ-Heizkorperregler-eingesetzt-werden?market=de-de) |
 
 Ist die Kennzeichnung offen, warte mit der Bestellung und kläre den Anschluss mit dem Hersteller oder einem Fachbetrieb. Am wasserführenden Ventilkörper nichts lösen.
+
+Wenn du den Kopf ersetzen möchtest und das Ventil eindeutig bestimmt ist, prüfe [die FRITZ!Box und den Lieferumfang für Artikel 20003120](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-fritz-302). Bei RAV oder RAVL zuerst klären, welcher Zusatzadapter passt.
 
 [FRITZ!Smart Thermo 302: Lieferumfang für Artikel 20003120](https://fritz.com/products/fritz-smart-thermo-302-20003120) · [FRITZ!DECT 302: Heizungsventile und passende Adapter](https://fritz.com/apps/knowledge-base/fritz-dect-302/3376_An-welchen-Heizungsventilen-kann-der-FRITZ-Heizkorperregler-eingesetzt-werden?market=de-de).
 

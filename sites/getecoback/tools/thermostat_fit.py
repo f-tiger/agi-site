@@ -46,6 +46,7 @@ def render_bosch(data):
 <p>Bosch zeigt bei <strong>Danfoss RAV 34 mm</strong> und bei <strong>Danfoss RAVL 25,5 mm</strong> am Anschluss. Beide haben vier Kerben. Nutze die Maße als Hinweis und vergleiche die Kennzeichnung am vorhandenen Ventil und die Abbildungen in der Bosch-Übersicht.</p>
 <div class="winter-table"><table><caption>Danfoss-Anschlüsse am Bosch II [+M], geprüft am {reviewed}</caption><thead><tr><th scope="col">Identifiziertes Ventil</th><th scope="col">Nächster Prüfschritt</th><th scope="col">Bosch-Quelle</th></tr></thead><tbody>{rows}</tbody></table></div>
 <p>Bei bestätigtem RAV führt Bosch den separaten Adapter mit der Gerätenummer <strong>8750002600</strong> und EAN <strong>4062321692636</strong>. Bei RA oder RAVL prüfe den passenden beiliegenden Adapter in der genauen Packung. Ist die Kennzeichnung offen, warte mit der Bestellung. Am wasserführenden Ventilkörper nichts lösen. Bei Unsicherheit einen Fachbetrieb fragen.</p>
+<p>Wenn du den Kopf ersetzen möchtest und der passende Adapter feststeht, prüfe <a href="#thermostat-bosch-ii-m">Zentrale und Lieferumfang für Bosch II [+M]</a>. Bei RAV den separat benötigten Adapter mit einplanen.</p>
 <p class="winter-note">{source_links}.</p>
 {share_nav('bosch-ii-m-danfoss-adapter', title)}
 </section>'''
@@ -67,6 +68,7 @@ def render_fritz(data):
 <p>FRITZ! nennt <strong>34 mm für Danfoss RAV</strong> und <strong>25,5 mm für Danfoss RAVL</strong>. Nutze die Maße als Hinweis und gleiche die Kennzeichnung am vorhandenen Ventil mit der Herstellerübersicht ab.</p>
 <div class="winter-table"><table><caption>Danfoss-Anschlüsse am FRITZ!Smart Thermo 302, geprüft am {reviewed}</caption><thead><tr><th scope="col">Identifiziertes Ventil</th><th scope="col">Nächster Prüfschritt</th><th scope="col">FRITZ!-Quelle</th></tr></thead><tbody>{rows}</tbody></table></div>
 <p>Ist die Kennzeichnung offen, warte mit der Bestellung und kläre den Anschluss mit dem Hersteller oder einem Fachbetrieb. Am wasserführenden Ventilkörper nichts lösen.</p>
+<p>Wenn du den Kopf ersetzen möchtest und das Ventil eindeutig bestimmt ist, prüfe <a href="#thermostat-fritz-302">die FRITZ!Box und den Lieferumfang für Artikel 20003120</a>. Bei RAV oder RAVL zuerst klären, welcher Zusatzadapter passt.</p>
 <p class="winter-note">{source_links}.</p>
 {share_nav('fritz-302-danfoss-adapter', title)}
 </section>'''
