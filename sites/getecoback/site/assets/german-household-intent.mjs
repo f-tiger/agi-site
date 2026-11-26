@@ -277,18 +277,23 @@ const emptyDehumidifierTank = {
   tool:'entfeuchter_leerer_tank_check',
 };
 
-const portableCoolingStorage = {
+export const portableCoolingStorage = {
   path:'/guide/mobile-klimaanlage-ueberwintern.html',
   id:'schritt-fuer-schritt-so-machst-du-das-geraet-winterfest',
   tool:'mobile_klima_einlagern_check',
 };
 
+export function excludesPortableCoolingStorage(query) {
+  const otherAppliance = /\b(?:porta[ -]*split|(?:multi[ -]?)?split[ -]*(?:anlagen?|klima\w*|geraet\w*)|wandklima\w*|waermepumpe\w*|luftentfeuchter\w*|kfz|pkw|auto(?:s|klima\w*)?|wohnmobil\w*|wohnwagen\w*)\b/;
+  const fixedInstallation = /\bfest\w*\s+(?:installiert\w*|montiert\w*|aussengeraet\w*)\b|\bausseneinheit\b/;
+  const otherJob = /\b(?:heizbetrieb|heizen|frostschutzmittel)\b|\bnicht\s+erst\s+vor\s+(?:der\s+)?winterpause\b/;
+  return otherAppliance.test(query) || fixedInstallation.test(query) || otherJob.test(query);
+}
+
 function asksForPortableCoolingStorage(query) {
-  const portable = /\b(?:mobil\w*\s+klima\w*|schlauchklima\w*|monoblock|mpph[ -]?09crn7|4048164103065)\b/;
-  const appliance = /\bklima(?:anlage|geraet)\w*\b/;
+  const appliance = /\b(?:klima(?:anlage|geraet)\w*|schlauchklima\w*|monoblock[ -]*klima\w*|mpph[ -]?09crn7|4048164103065)\b/;
   const storage = /\b(?:winterfest|(?:ue|u)berwinter\w*|einlager\w*|einmott\w*|winterpause|winterlager\w*|(?:im|fuer den|ueber den) winter(?:\s+\w+){0,3}\s+(?:lager\w*|wegstell\w*))\b/;
-  const otherJob = /\b(?:porta[ -]*split|(?:multi[ -]?)?split[ -]*(?:anlagen?|klima\w*)|wandklima\w*|waermepumpe\w*|luftentfeuchter\w*|kfz|auto(?:s|klima\w*)?|wohnmobil\w*|heizbetrieb|heizen|frostschutzmittel)\b/;
-  return storage.test(query) && !otherJob.test(query) && (portable.test(query) || appliance.test(query));
+  return appliance.test(query) && storage.test(query) && !excludesPortableCoolingStorage(query);
 }
 
 function asksAboutAnEmptyDehumidifierTank(query) {

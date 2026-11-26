@@ -109,6 +109,14 @@ test('portable AC storage lookup opens the checklist and returns the first uncon
     assert.equal(first.citation_url,guide);
     assert.equal(first.guide_url,guide+'#schritt-fuer-schritt-so-machst-du-das-geraet-winterfest');
   }
+  for (const frage of [
+    'Wie mache ich die Klimaanlage im Pkw winterfest?',
+    'Wie mache ich meine fest installierte Klimaanlage winterfest?',
+    'Wasser läuft im Kühlbetrieb aus der Klimaanlage, nicht erst vor der Winterpause.',
+  ]) {
+    const found = await call(compactPath,findName,{frage});
+    assert.notEqual(found.structuredContent.tools[0]?.name,name,frage);
+  }
   const confirmed = {anleitung:true,wasser:true,trocken:true,lager:true};
   for (const [open,next] of [
     [['anleitung','wasser'],/Typenschild/], [['wasser'],/Ablässen/],

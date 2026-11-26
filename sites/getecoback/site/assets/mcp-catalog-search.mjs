@@ -1,4 +1,4 @@
-import {asksForLaundryCostComparison, boschDry, carHeaterOutlet, comfeeVariant, coolingDiscountReference, directHeat, exactGermanHouseholdTask, exactWindowShadeMeasurement, festiveLights, gasHeatCost, granulateDryingChoice, infraredAnnualCost, klarsteinPackage, mentionsLaundryDryer, offlineThermostatChoice, showerFlow, siemensFilterDecision, tinecoS7FlashDry, tinecoS7Variant, vacuumOffer} from './german-household-intent.mjs?v=b2fc1e58cbdd';
+import {asksForLaundryCostComparison, boschDry, carHeaterOutlet, comfeeVariant, coolingDiscountReference, directHeat, exactGermanHouseholdTask, exactWindowShadeMeasurement, excludesPortableCoolingStorage, festiveLights, gasHeatCost, granulateDryingChoice, infraredAnnualCost, klarsteinPackage, mentionsLaundryDryer, offlineThermostatChoice, portableCoolingStorage, showerFlow, siemensFilterDecision, tinecoS7FlashDry, tinecoS7Variant, vacuumOffer} from './german-household-intent.mjs?v=333aa0650f4c';
 import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion, glassvacModel, windowVacCharging} from './kaercher-saugduese-intent.mjs';
@@ -323,8 +323,10 @@ export function findCatalogueTools(index, {query='', category='', name=null}={})
   const exact = normalize(bounded.trim());
   const focus = focusWindowVacQuestion(exact);
   if (focus === null) return [];
+  const excludeStorage = excludesPortableCoolingStorage(focus.query);
   const eligible = entry => (!category || category === entry.tool.category) &&
     (name === null || name === entry.tool.name) &&
+    (!excludeStorage || entry.tool.name !== portableCoolingStorage.tool) &&
     (!focus.omitPrefix || !entry.tool.name.startsWith(focus.omitPrefix));
   if (!exact) return query.length === bounded.length ? index.filter(eligible).map(entry => entry.tool) : [];
   if (query.length === bounded.length) {

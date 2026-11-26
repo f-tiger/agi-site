@@ -19,6 +19,12 @@ test('Portable AC winter-storage searches lead to the storage checklist for the 
  for(const query of [
   'Midea PortaSplit für den Winter einlagern',
   'Wie mache ich meine Auto-Klimaanlage winterfest?',
+  'Wie mache ich die Klimaanlage im Pkw winterfest?',
+  'Klimaanlage am Wohnwagen fürs Winterlager entleeren',
+  'Wie mache ich die Monoblock-Wasserpumpe im Garten winterfest?',
+  'Wie mache ich meine fest installierte Klimaanlage winterfest?',
+  'Klimaanlage mit festem Außengerät winterfest machen',
+  'Wasser läuft im Kühlbetrieb aus der Klimaanlage, nicht erst vor der Winterpause.',
   'Comfee MPPH-07CRN7 für den Winter lagern',
   'Luftentfeuchter für die Winterpause abstellen',
   'Kondenswasser vom Monoblock beim Kühlen ablassen',
