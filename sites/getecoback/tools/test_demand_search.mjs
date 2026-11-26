@@ -1285,3 +1285,9 @@ test('German EX105 identity searches reach the exact offer check without redirec
  for(const query of ["Welche EAN hat der De’Longhi PAC EX105 A+++?", "PAC EX105 kaufen: Im Angebot steht 0151454025 und PAC EX93. Passt es?", "Welches Gerät hat die EAN 8004399026445?"]) assert.equal(searchEntries(index,query,'de')[0]?.entry.u,target,query);
  for(const query of ["Welche EAN hat der PAC EX93 Extreme?", "Welches Fensterkit passt zum PAC EX105 am Kippfenster?", "Sind die 63 dB beim PAC EX105 Schallleistung?", "Welche EAN hat der PAC N90?"]) assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
 });
+
+test('German MPPH-09CRN7 buyers reach the exact window and model checks',()=>{
+ const target='/guide/comfee-mpph-09crn7-test.html#comfee-angebot';
+ for(const q of ["Welche EAN hat das Comfee MPPH-09CRN7?", "Kann ich das Comfee MPPH-09CRN7 für mein Kippfenster kaufen?", "Welches Gerät hat die EAN 4048164103065?"]) assert.equal(searchEntries(index,q,'de')[0]?.entry.u,target,q);
+ for(const q of ["Welches Fensterkit passt zum Comfee MPPHA-09CRN7?", "Welche EAN hat das Comfee MPPH-08CRN7?", "Welche EAN hat der Comfee MDDF-20DEN7?", "Comfee MPPH-09CRN7 oder PAC EX105 kaufen?", "Wie soll ich 4048164103065 im Winter lagern?"]) assert.notEqual(searchEntries(index,q,'de')[0]?.entry.u,target,q);
+});

@@ -944,3 +944,15 @@ test('German EX105 purchase identity reads the manufacturer-backed section in bo
  for(const phrase of ["8004399026445", "0151454026", "0151454025", "warte mit der Bestellung", "https://delonghigroup-newsroom.de/wp-content/uploads/2023/05/230509_DeLonghi_PM_Pinguino_PAC-EX105-.pdf", "https://www.delonghi.com/de-de/p/mobile-klimagerate-mobiles-klimagerat-pinguino-extreme-pacex93extreme/PACEX93EXTREME.html?pid=0151454025"]) assert(textOf(full).includes(phrase),phrase);
  assert(!textOf(full).includes('amazon.de/'));
 });
+
+test('German MPPH-09CRN7 offer evidence is readable in the full and compact profiles',async()=>{
+ const {env}=assetEnv();
+ const pfad='https://getecoback.com/guide/comfee-mpph-09crn7-test.html#comfee-angebot';
+ const found=await call('ratgeber_suche',{frage:"Kann ich das Comfee MPPH-09CRN7 für mein Kippfenster kaufen?",sprache:'de',max:1},env);
+ assert(textOf(found).includes('Abschnitt: '+pfad));
+ const full=await call('ratgeber_lesen',{pfad},env);
+ assert.equal(full.isError,false);
+ assert.deepEqual(await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad}},env,true),full);
+ for(const phrase of ["4048164103065", "10000656", "MPPHA-09CRN7", "30 cm", "67,5 bis 123 cm", "verschiebe den Kauf", "https://www.feelcomfee.com/content/dam/comfee-aem/de/produkte/klimatisieren-heizen/mpph-09crn7/comfee-MPPH-09CRN7-Datenblatt.pdf#page=2", "https://www.feelcomfee.com/content/dam/comfee-aem/de/produkte/klimatisieren-heizen/mpph-09crn7/comfee-MPPH-09CRN7-User-Manual-DE-FR-EN-ES-IT-NL.pdf#page=19"]) assert(textOf(full).includes(phrase),phrase);
+ assert(!textOf(full).includes('https://www.amazon.de/'));
+});

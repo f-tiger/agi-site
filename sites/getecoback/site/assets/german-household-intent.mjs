@@ -627,6 +627,15 @@ export function exactWindowShadeMeasurement(query) {
 }
 
 // Consumers pass their normalized German query. Match a task, not a category.
+export const comfeeMpphOffer={path:'/guide/comfee-mpph-09crn7-test.html',id:'comfee-angebot',tool:'ratgeber_suche'};
+
+function exactComfeeMpphOffer(query) {
+  const exact=/\b(?:mpph[ -]?09crn7|4048164103065|10000656)\b/;
+  const other=/\b(?:mpph[ -]?0[78]crn7|mppha[ -]?09crn7|mppa[ -]?09crn7|d?mddf|ex[ -]?105|n[ -]?90|portasplit)\b/;
+  const decision=/\b(?:ean|gtin|kauf\w*|haendler\w*|amazon|angebot\w*|lieferumfang|artikelnummer|fenster\w*|abluftschlauch\w*|kenn(?:ung|nummer)\w*|4048164103065|10000656)\b/;
+  return exact.test(query) && decision.test(query) && !other.test(query);
+}
+
 const ex105Path='/guide/pinguino-pac-ex105-test.html';
 export const highCoolingLoadDecision={path:'/guide/btu-rechner.html',id:'hohe-kuehllast',tool:'ratgeber_suche'};
 export const ex105Exhaust={path:ex105Path,id:'ex105-ablufteinbau',tool:'ratgeber_suche'};
@@ -678,6 +687,7 @@ export function exactGermanHouseholdTask(query) {
   const meterTask = exactLowLoadMeterTask(query);
   if (meterTask) return meterTask;
   if (asksForPortableCoolingStorage(query)) return portableCoolingStorage;
+  if (exactComfeeMpphOffer(query)) return comfeeMpphOffer;
   if (asksAboutAnEmptyDehumidifierTank(query)) return emptyDehumidifierTank;
   if (asksForCoolingDiscountReference(query)) return coolingDiscountReference;
   if (asksForOfflineThermostat(query)) return offlineThermostatChoice;
