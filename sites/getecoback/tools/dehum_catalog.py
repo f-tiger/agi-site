@@ -20,7 +20,11 @@ def load():
             raise ValueError('Unreviewed catalog source: ' + p['id'])
         if identity := p.get('identity'):
             dt.date.fromisoformat(identity['checked'])
-            if not all(citation_url(row['source']) for row in [identity, *identity['alternatives']]):
+            sources = [identity, *identity['alternatives']]
+            if retailer := identity.get('retailer'):
+                dt.date.fromisoformat(retailer['checked'])
+                sources.append(retailer)
+            if not all(citation_url(row['source']) for row in sources):
                 raise ValueError('Unreviewed model identity source: ' + p['id'])
         if p.get('asin') and (p['id'] != 'comfee-mddf20' or p['asin'] != 'B07KJX6RDK'):
             raise ValueError('No newly guessed ASINs')
@@ -134,6 +138,14 @@ def block(slug, today=None, data=None):
                 f'· Modellzuordnung geprüft am '
                 f'<time datetime="{checked.isoformat()}">{checked:%d.%m.%Y}</time>.</p>'
             )
+            if retailer := identity.get('retailer'):
+                retailer_date = dt.date.fromisoformat(retailer['checked'])
+                identity_note += (
+                    f'<p data-catalog-retailer>{e(retailer["name"])} listet dieselbe EAN und Hersteller-Teilenummer. '
+                    f'<a href="{e(retailer["source"])}">Modell bei {e(retailer["name"])} prüfen (ohne Partnerlink)</a>. '
+                    'Lieferumfang und Gesamtpreis einschließlich Versand beim Händler prüfen. '
+                    f'Händlerangaben zur Kennung geprüft am <time datetime="{retailer_date.isoformat()}">{retailer_date:%d.%m.%Y}</time>.</p>'
+                )
         filter_note = bosch_filter_note() if slug == 'luftentfeuchter-ratgeber' and p['id'] == 'bosch-d4000-eu' else ''
         evidence = (f'<h3 id="{anchor}">{e(p["name"])}</h3>'
                     f'<p><strong>{e(p["reason"])}</strong></p><p>{e(p["variant"])}</p>'

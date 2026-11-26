@@ -29,7 +29,12 @@
           }
         ],
         "offer_check": "Gleiche die Kennung der ausgewählten Händlervariante mit den Bosch-Daten ab. Steht im Angebot nur „4000“ oder widersprechen sich die Nummern, kläre die Ausführung vor der Bestellung.",
-        "source_label": "Bosch-Ersatzteilkatalog: deutsche Modellkennung und EAN"
+        "source_label": "Bosch-Ersatzteilkatalog: deutsche Modellkennung und EAN",
+        "retailer": {
+          "name": "Conrad",
+          "source": "https://www.conrad.de/de/p/bosch-home-comfort-dry-4000-luftentfeuchter-75-m-weiss-3349331.html",
+          "checked": "2026-11-26"
+        }
       },
       "reason": "Drei Betriebsmodi statt vieler Einstellungen",
       "facts": "Auto-, Nacht- und Wäschemodus; 2,5-Liter-Tank und kontinuierlicher Ablauf laut Bosch.",
