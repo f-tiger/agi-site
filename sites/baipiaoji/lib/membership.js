@@ -1,4 +1,5 @@
 import {products,externalProducts} from '../../../tools/revenue-studio/catalog.mjs';
+import {checkoutOnlySource} from '../../../tools/revenue-studio/member-copy.mjs';
 import {restore as restoreVideo,PRODUCT as VIDEO_PRODUCT} from '../assets/studio/video-core.mjs';
 import {digest,seconds} from './ad-commerce.js';
 import {failureReason} from '../../../tools/member-studio/failure.mjs';
@@ -39,7 +40,7 @@ export async function createOrderForMember(env,member,nonce,ip,source=''){
 }
 async function createOrderWithIdentity(env,member,hash,nonce,ip,source){
  if(!/^[a-f0-9]{32}$/.test(nonce||''))throw Error('bad_nonce');const plan=memberPlan(env),db=env.HITS,now=seconds();const id=await digest('membership:'+memberSite(env)+':'+hash+':'+nonce);
- if(source&&!allowedProduct(memberSite(env),source))throw Error('bad_source');
+ if(source&&!allowedProduct(plan.site,source)&&!checkoutOnlySource(plan.site,source))throw Error('bad_source');
  const old=await db.prepare('SELECT * FROM wb_orders WHERE id=?').bind(id).first();if(old)return orderStatus(old);
  if(member?.suspended)throw Error('suspended');if(!await memberReady(env))throw Error('not_ready');
  await rate(db,'order:'+await digest(env.ADS_WATCH_SECRET+':'+ip),5);

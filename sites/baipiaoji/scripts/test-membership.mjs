@@ -8,6 +8,7 @@ import {onRequestPost as admin} from '../functions/api/member-admin.js';
 import {newProject,cloudBackup,PRODUCT as VIDEO} from '../assets/studio/video-core.mjs';
 import {allowedProduct} from '../lib/membership.js';
 import {onRequestGet as reach} from '../functions/api/reach.js';
+import {memberContext,portalURL,startupMcpCheckoutURL,STARTUP_MCP_ORDER_SOURCE} from '../../../tools/revenue-studio/member-copy.mjs';
 function db(){const sql=new DatabaseSync(':memory:');sql.exec('PRAGMA foreign_keys=ON');return {sql,failAt:null,prepare(query){return {args:[],query,bind(...a){this.args=a;return this;},async first(){return sql.prepare(query).get(...this.args)||null;},async all(){return {results:sql.prepare(query).all(...this.args)};},async run(){return {meta:{changes:sql.prepare(query).run(...this.args).changes}};}};},async batch(items){sql.exec('BEGIN');try{const out=[];for(const[i,s]of items.entries()){if(this.failAt===i)throw Error('injected fault');out.push({meta:{changes:sql.prepare(s.query).run(...s.args).changes}});}sql.exec('COMMIT');return out;}catch(e){sql.exec('ROLLBACK');throw e;}}};}
 const addr='0x'+'1'.repeat(40),tx='0x'+'a'.repeat(64),blockhash='0x'+'b'.repeat(64),topic='0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef';let receipt=null,logs=[],failedRPC=false;
 const originalFetch=globalThis.fetch;
@@ -60,6 +61,31 @@ await test('key rotation invalidates old key; operator suspension blocks writes'
 await test('fully scanned expired unpaid quotes retire from background work',async()=>{const{env,d}=await setup(),o=await order(env);d.sql.prepare('UPDATE wb_orders SET expires=? WHERE id=?').run(seconds()-1,o.id);await watchMembers(env);assert.equal(d.sql.prepare('SELECT scan_done FROM wb_orders WHERE id=?').get(o.id).scan_done,1);assert.equal((await watchMembers(env)).processed,0);});
 await test('stale member watcher closes new sales without revoking existing access',async()=>{const{env,d}=await setup();const m=await paid(env);d.sql.exec('UPDATE wb_health SET checked_at=0');assert.equal((await (await onRequestGet({env})).json()).ready,false);assert.equal(memberStatus(m).active,true);});
 await test('video order attribution records first creation and never rewrites a pending order source',async()=>{const{env,d}=await setup();const a=await createOrder(env,key(1),nonce(1),'video-fixture',VIDEO);assert.equal(d.sql.prepare('SELECT product FROM wb_order_sources WHERE order_id=?').get(a.id).product,VIDEO);const b=await createOrder(env,key(1),nonce(2),'video-fixture','ai-work-plan');assert.equal(a.id,b.id);assert.equal(d.sql.prepare('SELECT product FROM wb_order_sources WHERE order_id=?').get(a.id).product,VIDEO);await assert.rejects(()=>createOrder(env,key(2),nonce(3),'fixture','billlens'),/bad_source/);assert.equal(d.sql.prepare('SELECT COUNT(*) n FROM wb_orders').get().n,1);});
+await test('startup MCP attributes an existing BPJ membership purchase without admitting a workspace product',async()=>{
+ const {env,d}=await setup(),source=STARTUP_MCP_ORDER_SOURCE;
+ try{
+  for(const [lang,prefix] of [['zh',''],['en','/en']]){
+   const url=new URL(startupMcpCheckoutURL(lang));
+   const context=memberContext(url.search,lang,'bpj');
+   assert.equal(url.pathname,prefix+'/members');assert.equal(url.searchParams.get('tool'),source);assert.equal(url.hash,'#account-use');
+   assert.equal(context.product,undefined);assert.equal(context.orderSource,source);assert.equal(context.returnURL,'https://baipiaoji.com'+prefix+'/ai-solo/mcp/');
+  }
+  for(const site of ['agi','eco','tds']){
+   assert.equal(new URL(portalURL('en',site,source)).searchParams.get('tool'),null);
+   await assert.rejects(()=>createOrder({...env,MEMBER_SITE:site},key(2),nonce(3),'fixture',source),/bad_source/);
+  }
+  assert.equal(allowedProduct('bpj',source),false);
+  const order=await createOrder(env,key(1),nonce(1),'startup-fixture',source);
+  const rewritten=await createOrder(env,key(1),nonce(2),'startup-fixture','ai-work-plan');
+  assert.equal(order.id,rewritten.id);assert.equal(order.state,'pending');assert.equal(order.days,30);assert.equal(order.payment.amount,'9.000001');
+  const row=await d.prepare('SELECT * FROM wb_orders WHERE id=?').bind(order.id).first();
+  receipt=receiptFor(row);
+  assert.equal((await deliver(env,row,await verifyTransfer(env,row,tx))).state,'paid');
+  assert.equal(d.sql.prepare('SELECT product FROM wb_order_sources WHERE order_id=?').get(order.id).product,source);
+  const save=await onRequestPost({env,request:request(key(1),{action:'save',...space(),data:{...backup,product:source}})});
+  assert.equal(save.status,400);assert.equal(d.sql.prepare('SELECT COUNT(*) n FROM wb_orders').get().n,1);
+ }finally{d.sql.close();}
+});
 await test('video is BPJ-only, active membership saves a sanitized project and a second revision',async()=>{assert.equal(allowedProduct('bpj',VIDEO),true);for(const site of ['agi','eco','tds'])assert.equal(allowedProduct(site,VIDEO),false);const{env,d}=await setup();await paid(env);const data=cloudBackup(newProject('zh',true));data.values.mediaBytes='not uploaded';data.values.project.extra='not retained';const body={action:'save',id:nonce(90),revision:0,name:'Video fixture',data};const a=await onRequestPost({env,request:request(key(1),body)});assert.equal(a.status,200);const saved=JSON.parse(d.sql.prepare('SELECT body FROM wb_versions').get().body);assert.equal(saved.values.mediaBytes,undefined);assert.equal(saved.values.project.extra,undefined);assert.equal(saved.values.project.demo,true);data.values.project.hooks[0]='Changed opening';assert.equal((await onRequestPost({env,request:request(key(1),{...body,revision:1})})).status,200);assert.equal(d.sql.prepare('SELECT COUNT(*) n FROM wb_versions').get().n,2);});
 await test('malformed video payload and unpaid saves cannot create cloud records',async()=>{const{env,d}=await setup();await paid(env);const data=cloudBackup(newProject());data.values.project.scenes[0].seconds=-1;const body={action:'save',id:nonce(90),revision:0,name:'Invalid',data};assert.equal((await onRequestPost({env,request:request(key(1),body)})).status,400);await order(env,2);assert.equal((await onRequestPost({env,request:request(key(2),{...body,data:cloudBackup(newProject())})})).status,403);assert.equal(d.sql.prepare('SELECT COUNT(*) n FROM wb_spaces').get().n,0);});
 await test('public video revenue summary excludes old and other-tool orders and distinguishes missing data',async()=>{

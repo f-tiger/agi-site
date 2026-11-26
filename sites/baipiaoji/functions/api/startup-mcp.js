@@ -1,8 +1,20 @@
 import {STARTUP_TOOLS,STARTUP_VERSION,validateStartupArgs,prepareStartupTool,loadStartupData} from '../../lib/startup-mcp-tools.mjs';
 import {startupPrincipal,reserveStartupCall,refundStartupCall} from '../../lib/startup-mcp-access.mjs';
+import {isMcpValueProbe,recordMcpValue} from '../../lib/mcp-value-events.mjs';
 const PROTOCOLS=['2025-11-25','2025-06-18','2025-03-26'];
 const reply=(body,status=200,headers={})=>new Response(body===null?null:JSON.stringify(body),{status,headers:{'Content-Type':'application/json','Cache-Control':'no-store','X-Content-Type-Options':'nosniff',...headers}});
-export async function onRequest({request,env}){
+
+const sourced=entry=>Array.isArray(entry?.sources)&&entry.sources.some(source=>typeof source?.url==='string'&&/^https?:\/\//.test(source.url));
+function hasUsableOutput(name,output){
+ if(name==='startup_preview')return Array.isArray(output?.examples)&&output.examples.some(sourced);
+ if(name==='search_startup_cases')return Array.isArray(output?.cases)&&output.cases.some(sourced);
+ if(name==='compare_startup_cases')return Array.isArray(output?.cases)&&output.cases.length>=2&&output.cases.every(sourced);
+ if(name==='get_startup_radar')return Array.isArray(output?.sources)&&output.sources.some(source=>!source?.stale&&source?.items?.length>0);
+ return name==='build_startup_plan'&&output?.matched===true&&Array.isArray(output.matchedCases)&&output.matchedCases.some(sourced)&&output.steps14days?.length>0;
+}
+
+export async function onRequest(ctx){
+ const {request,env}=ctx;
  const url=new URL(request.url),origin=request.headers.get('Origin');
  if(url.origin!=='https://baipiaoji.com'||origin&&origin!==url.origin)return reply({error:'origin_rejected'},403);
  if(request.method!=='POST')return reply({error:'method_not_allowed',docs:'https://baipiaoji.com/ai-solo/mcp/'},405,{Allow:'POST'});
@@ -26,8 +38,17 @@ export async function onRequest({request,env}){
  if(msg.method!=='tools/call')return error(-32601,'Method not found');
  let args;const name=msg.params?.name;
  try{args=validateStartupArgs(name,msg.params?.arguments??{});}catch(e){return error(-32602,e.message==='unknown_tool'?'Unknown tool':'Invalid arguments');}
+ const preview=name==='startup_preview';
+ const measure=async(outcome,memberId)=>{
+  if(preview&&isMcpValueProbe(request))return;
+  const write=recordMcpValue(env.HITS,{tool:name,outcome,memberId});
+  try{
+   if(ctx.waitUntil)ctx.waitUntil(write);
+   else await write;
+  }catch{/* Measurement cannot change the MCP response. */}
+ };
  let principal=null,reservation=null;
- if(name!=='startup_preview'){
+ if(!preview){
   const token=request.headers.get('Authorization')?.match(/^Bearer (bpj_solo_[a-f0-9]{64})$/)?.[1];
   if(!token)return reply({error:'startup_key_required',docs:'https://baipiaoji.com/ai-solo/mcp/'},401,{'WWW-Authenticate':'Bearer realm="bpj-startup-mcp"'});
   try{if(!env.HITS)throw Error('unavailable');principal=await startupPrincipal(env.HITS,token);}catch{return error(-32603,'Service temporarily unavailable',503);}
@@ -39,9 +60,12 @@ export async function onRequest({request,env}){
   try{run=prepareStartupTool(name,args,data);}catch(e){return error(-32602,e.message);}
   if(principal){try{reservation=await reserveStartupCall(env.HITS,principal);}catch(e){if(e.message==='quota_or_access_changed')return reply({error:'quota_or_access_changed',message:'Daily/minute quota reached, or access changed. Inspect membership and quota in the member portal.'},429,{'Retry-After':'60'});throw e;}}
   const output=await run(),structuredContent={data:output,...(reservation?{usage:{dailyLimit:100,remaining:reservation.remaining,resetsAt:reservation.resetsAt}}:{})};
-  return result({content:[{type:'text',text:JSON.stringify(structuredContent)}],structuredContent});
+  const response=result({content:[{type:'text',text:JSON.stringify(structuredContent)}],structuredContent});
+  await measure(hasUsableOutput(name,output)?'usable':'no_result',reservation?.member_id);
+  return response;
  }catch{
   if(reservation)try{await refundStartupCall(env.HITS,reservation);}catch{/* Fail closed; do not disclose database or private input errors. */}
+  await measure('service_error');
   return error(-32603,'Service temporarily unavailable',503);
  }
 }

@@ -1,5 +1,6 @@
 import { registerWatch } from './watch.js';
 import { filterAgents, findAgent, verificationOf, paginate, audiencesOf } from './_agents.js';
+import { isMcpValueProbe, recordMcpValue } from '../../lib/mcp-value-events.mjs';
 // MCP server：把本站三个数据工具直接挂进 agent 的工具箱——被引用的最短路径
 // 不是等 AI 检索来抓页面，而是让 Claude/Cursor/任意 MCP 客户端把
 // 「查免费额度」「搜 AI 工具」「查商用判定」当成自己的工具来调。
@@ -338,13 +339,42 @@ function logHit(ctx, path, lang) {
   } catch (e) { /* 度量失败不影响服务 */ }
 }
 
+const VALUE_TOOLS = new Set(['check_api_quota_fit', 'check_commercial_use']);
+const ACTIONABLE_LICENCE = new Set(['yes', 'no', 'conditional', 'depends']);
+const KNOWN_MONITOR = /^(?:(?:SentinelOracle|histor|mcpbeat|rokmcp-collector|ainet-probe|alalanet-prober|protogrid-probe|EveryMCP-Probe|MCPWatch|mcpcost)(?:\/|\s|$)|mcptry\.com indexer)/i;
+const checkedDate = value => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value);
+const nonEmpty = value => typeof value === 'string' && value.trim().length > 0;
+
+function directoryValueRecorder(ctx, msg, tool) {
+  const { id, jsonrpc } = msg || {};
+  const request = ctx.request;
+  if (!VALUE_TOOLS.has(tool) || !ctx.waitUntil || jsonrpc !== '2.0' ||
+      (typeof id !== 'string' && !Number.isSafeInteger(id)) || isMcpValueProbe(request) ||
+      request.headers.get('dnt') === '1' || request.headers.get('sec-gpc') === '1' ||
+      request.cf?.botManagement?.verifiedBot === true || KNOWN_MONITOR.test(request.headers.get('user-agent') || '')) return null;
+  return outcome => {
+    try { ctx.waitUntil(recordMcpValue(ctx.env.HITS, { tool, outcome })); }
+    catch { /* Telemetry does not determine the RPC result. */ }
+  };
+}
+
+function quotaResultIsUsable(args, result) {
+  const { requests_per_day, tokens_per_call } = args;
+  if (!Number.isFinite(requests_per_day) || requests_per_day < 1 ||
+      !Number.isFinite(tokens_per_call) || tokens_per_call < 1 ||
+      !Number.isFinite(requests_per_day * tokens_per_call)) return false;
+  const datedSource = row => nonEmpty(row.source) && checkedDate(row.checked);
+  return [...result.within_limits, ...result.over_limits].some(row => row.checks?.length && datedSource(row)) ||
+    result.one_time_credits.some(row => Number.isFinite(row.credit_tokens) && row.credit_tokens > 0 && datedSource(row));
+}
+
 async function loadAsset(ctx, path) {
   const res = await ctx.env.ASSETS.fetch(new URL(path, new URL(ctx.request.url).origin));
   if (!res.ok) throw new Error('asset');
   return res.json();
 }
 
-async function callTool(ctx, name, args = {}) {
+async function callTool(ctx, name, args = {}, reportValue) {
   const lang = args.lang === 'zh' ? 'zh' : 'en';   // MCP 客户端以英文 agent 为主，默认英文
   const dirPath = lang === 'en' ? '/en/directory.json' : '/directory.json';
   const dir = await loadAsset(ctx, dirPath);
@@ -523,7 +553,7 @@ async function callTool(ctx, name, args = {}) {
         unknown.push({ ...base, why: lang === 'zh' ? '官方未公布数字' : 'no figure published officially' });
       }
     }
-    return {
+    const result = {
       workload: { requests_per_day: R, tokens_per_call: T, tokens_per_day: perDay },
       method: lang === 'zh'
         ? '只把官方数字除以你的用量。分钟级速率按 12 小时摊平估算，突发峰值需自行建模。'
@@ -531,6 +561,8 @@ async function callTool(ctx, name, args = {}) {
       within_limits: fits, over_limits: over, one_time_credits: oneTime, no_published_figure: unknown,
       attribution: cite,
     };
+    reportValue?.(quotaResultIsUsable(args, result) ? 'usable' : 'no_result');
+    return result;
   }
 
   if (name === 'find_free_alternatives') {
@@ -649,6 +681,8 @@ async function callTool(ctx, name, args = {}) {
 
   if (name === 'check_commercial_use') {
     const t = find(args.tool);
+    reportValue?.(nonEmpty(args.tool) && ACTIONABLE_LICENCE.has(t?.licence_verdict) &&
+      checkedDate(t?.evidence?.commercial_terms_checked) && nonEmpty(t?.citation_url) ? 'usable' : 'no_result');
     if (!t) return { found: false };
     return {
       found: true, slug: t.slug, name: t.name,
@@ -701,11 +735,15 @@ async function handle(ctx, msg) {
     });
   }
   if (method === 'tools/call') {
+    const tool = params?.name;
+    const reportValue = directoryValueRecorder(ctx, msg, tool);
     try {
-      const out = await callTool(ctx, params?.name, params?.arguments || {});
-      logHit(ctx, `/api/mcp/${params?.name}`, params?.arguments?.lang === 'zh' ? 'zh' : 'en');
+      const out = await callTool(ctx, tool, params?.arguments || {}, reportValue);
+      // These two tools now use bounded daily totals instead of a raw legacy hit.
+      if (!VALUE_TOOLS.has(tool)) logHit(ctx, `/api/mcp/${tool}`, params?.arguments?.lang === 'zh' ? 'zh' : 'en');
       return rpcResult(id, { content: [{ type: 'text', text: JSON.stringify(out, null, 1) }] });
     } catch (e) {
+      reportValue?.('service_error');
       return rpcResult(id, { content: [{ type: 'text', text: String(e.message || e) }], isError: true });
     }
   }

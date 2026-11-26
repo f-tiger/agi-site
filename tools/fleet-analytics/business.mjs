@@ -137,6 +137,8 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
   if(host==='baipiaoji.com' && /^\/ai-solo(?:\/[a-z0-9/-]*)?\/?$/.test(route) &&
       ['plan_complete','plan_export','case_open','filter','source_open','example','skill_export','save_local','mcp_preview','mcp_setup'].some(a=>name==='ai_solo_'+a))
     return {name,tool_id:'ai-solo',repeat:true};
+  if(host==='baipiaoji.com'&&/^\/ai-solo\/mcp\/?$/.test(route)&&name==='ai_solo_mcp_checkout')
+    return {name,tool_id:'ai-solo',repeat:true};
   if (host === 'baipiaoji.com' && !/^\/(?:account|members)(?:\/|$)/.test(route) && ['search_suggestions','search_results','search_empty','search_suggestion_select','search_result_select','search_error'].includes(name)) return {name, tool_id:'site-search', repeat:true};
   if (host === 'baipiaoji.com' && /^\/tools\/[a-z0-9-]+$/.test(route) && name === 'account_entry') return {name, tool_id:'free-account', repeat:true};
   if (host === 'baipiaoji.com' && route === '/subscription-audit' &&

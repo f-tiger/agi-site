@@ -130,6 +130,10 @@ test('AI Solo actions stay on public BPJ routes and exclude consultation payload
  }
  assert.equal(businessEvent('baipiaoji.com','/ai-solo/agent/',{name:'ai_solo_income'}),null);
  assert.equal(businessEvent('baipiaoji.com','/ai-solo/agent/',{name:'ai_solo_purchase'}),null);
+ const checkout={name:'ai_solo_mcp_checkout'};
+ assert.deepEqual(businessEvent('baipiaoji.com','/en/ai-solo/mcp/',checkout),{...checkout,tool_id:'ai-solo',repeat:true});
+ assert.equal(businessEvent('baipiaoji.com','/ai-solo/agent/',checkout),null);
+ assert.equal(businessEvent('baipiaoji.com','/members',checkout),null);
  assert.deepEqual(businessEvent('baipiaoji.com','/',{name:'home:ai-solo:ai-solo-agent'}),{name:'home_click',home_block:'ai-solo',home_destination:'ai-solo-agent',site_edition:'zh',repeat:true});
 });
 

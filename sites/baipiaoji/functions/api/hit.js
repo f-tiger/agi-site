@@ -141,9 +141,14 @@ export async function onRequestPost({ request, env, waitUntil }) {
       b.r='';
     }
     if(ev==='ai_solo'){
-      if(!['zh','en'].includes(lang)||!parseAiSoloEvent(path))return new Response(null,{status:204});
+      const event=parseAiSoloEvent(path);
+      if(!['zh','en'].includes(lang)||!event)return new Response(null,{status:204});
       const ref=request.headers.get('referer')||'';
       if(request.headers.get('dnt')==='1'||request.headers.get('sec-gpc')==='1'||/[?&](?:__ci|__probe|qa)(?:=|&|$)/.test(ref)||/bot|spider|crawler|headless|bpj-ci|playwright|curl|wget|python|node/i.test(request.headers.get('user-agent')||''))return new Response(null,{status:204});
+      if(event.action==='mcp-checkout'){
+        let u;try{u=new URL(ref);}catch{return new Response(null,{status:204});}
+        if(u.origin!=='https://baipiaoji.com'||!/^\/(?:en\/)?ai-solo\/mcp\/?$/.test(u.pathname))return new Response(null,{status:204});
+      }
       b.r='';
     }
     if(ev==='manju'){

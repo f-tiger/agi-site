@@ -1,4 +1,5 @@
 import {messages} from './messages.mjs?v=independent1';
+import {memberContext} from '/workbench-assets/member-copy.mjs?v=startup-source1';
 const lang=document.body.dataset.language||'en',t=messages[lang],$=id=>document.getElementById(id),products=await fetch('/member-assets/products.json?v=independent1',{cache:'no-store'}).then(r=>r.json());
 const site=document.body.dataset.memberSite||'bpj',keySlot='workbench-member-key:'+site,service=site==='bpj'?'baipiaoji-workbench':site+'-workbench';
 const random=n=>[...crypto.getRandomValues(new Uint8Array(n))].map(x=>x.toString(16).padStart(2,'0')).join('');
@@ -85,7 +86,7 @@ $('key-file').onchange=async()=>{try{const f=$('key-file').files[0];if(!f||f.siz
 on('logout',async()=>{if(authMode==='account'){if(!accountUser)throw Error(accountText.choose);const response=await fetch('/api/account',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'logout',account_id:accountUser.id})});if(!response.ok)throw Error(t.error);setAuthMode('key');const draft=$('payload').value,name=$('name').value,h=handoff;storeKey('');$('payload').value=draft;$('name').value=name;handoff=h;notice(t.logout);return;}key='';try{sessionStorage.removeItem(keySlot);}catch{}location.reload();});
 on('rotate',async()=>{if(!confirm(t.rotateConfirm))return;clearStartup();if(authMode==='account'){const j=await accountApi('replace_key',{password:$('account-password').value});$('account-password').value='';accountBackupKey=j.key;$('account-key').value=j.key;backupKey();await refresh();$('key-saved').checked=false;notice(t.keyReady);return;}const next=random(32),draft=$('payload').value,name=$('name').value,previous=selected,previousVersion=version,h=handoff;await api('rotate',{new_key:next});storeKey(next);selected=previous;version=previousVersion;handoff=h;$('payload').value=draft;$('name').value=name;backupKey();$('key-saved').checked=false;await refresh();notice(t.keyReady);});
 on('checkout',async()=>{
- const tool=new URLSearchParams(location.search).get('tool');
+ const tool=memberContext(location.search,lang,site).orderSource;
  if(site==='bpj'&&tool==='bpj-trade-toolbox'&&authMode!=='account'){
   $('account-use')?.focus();
   throw Error(accountText.choose);
@@ -96,8 +97,7 @@ on('checkout',async()=>{
   if(!accountBackupKey)throw Error(accountText.backup);
   await accountApi('confirm_backup',{key:accountBackupKey,confirmed:true});
  }
- const source=products.some(p=>p.id===tool)?tool:'';
- const j=await api('checkout',{nonce:random(16),accept_terms:true,key_saved:true,source});
+ const j=await api('checkout',{nonce:random(16),accept_terms:true,key_saved:true,source:tool||''});
  orders=[j.order];renderOrders();notice(t.pending);await refresh();
  $('payment').scrollIntoView({behavior:'smooth',block:'start'});
 });

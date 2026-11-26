@@ -1,4 +1,5 @@
 import {retrieveCases,generatePlan,prepareInferenceCorpus} from './ai-solo-core.mjs';
+import {startupMcpCheckoutURL} from '../../../tools/revenue-studio/member-copy.mjs';
 export const STARTUP_VERSION='1.0.0';
 const str=(maxLength=160)=>({type:'string',maxLength}),choice=values=>({type:'string',enum:values});
 const language=choice(['zh','en']),limit={type:'integer',minimum:1,maximum:20};
@@ -31,7 +32,7 @@ const view=(c,lang)=>({id:c.id,name:localized(c,'name',lang),summary:localized(c
 export function prepareStartupTool(name,args,data){
  const lang=args.language,eligible=data.cases.filter(c=>reviewed(c)&&data.model.caseIds.includes(c.id)),caveats=['Revenue or adoption does not establish profit. Source periods are historical, not live financial verification.','Public-source selection and survivorship bias limit conclusions. Company performance is not solo feasibility.'];
  const base={caseVersion:data.model.contentHash,language:lang,caveats};
- if(name==='startup_preview')return ()=>({...base,membership:{price:'9 USDT / 30 days plus payment matching decimal and network fees',autoRenew:false,dailyCalls:100,perMinute:10,sharedAcrossKeys:true,checkout:'https://baipiaoji.com/members',docs:'https://baipiaoji.com/ai-solo/mcp/'},caseCount:data.cases.length,reviewedCount:eligible.length,examples:eligible.filter(c=>c.scope!=='company').slice(0,3).map(c=>view(c,lang)),radar:data.hot.sources.map(s=>({id:s.id,status:s.status,observedAt:s.observedAt,items:s.items.filter(x=>x.consumerSignal).slice(0,2)})),note:'Free website and public JSON remain available. Paid access is the hosted tool service, not exclusive ownership of public facts.'});
+ if(name==='startup_preview')return ()=>({...base,membership:{price:'9 USDT / 30 days plus payment matching decimal and network fees',autoRenew:false,dailyCalls:100,perMinute:10,sharedAcrossKeys:true,checkout:startupMcpCheckoutURL(lang),docs:'https://baipiaoji.com'+(lang==='zh'?'':'/en')+'/ai-solo/mcp/'},caseCount:data.cases.length,reviewedCount:eligible.length,examples:eligible.filter(c=>c.scope!=='company').slice(0,3).map(c=>view(c,lang)),radar:data.hot.sources.map(s=>({id:s.id,status:s.status,observedAt:s.observedAt,items:s.items.filter(x=>x.consumerSignal).slice(0,2)})),note:'Free website and public JSON remain available. Paid access is the hosted tool service, not exclusive ownership of public facts.'});
  if(name==='search_startup_cases'){
   const category=args.category;if(category&&!eligible.some(c=>c.classification?.job===category))throw Error('unknown_category');
   return ()=>{const inference=data.inference||data;let rows=args.query?.trim()?retrieveCases(inference.cases,inference.model,args.query,{limit:200}).map(h=>({...data.cases.find(c=>c.id===h.case.id),relevance:h.score})):eligible;

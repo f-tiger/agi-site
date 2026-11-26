@@ -386,6 +386,7 @@ jobs:
           node scripts/test-coding-access.mjs --dist
           node scripts/ai-solo-validate.mjs
           node --test scripts/test-ai-solo-core.mjs scripts/test-ai-solo-refresh.mjs scripts/test-ai-solo-hot.mjs scripts/test-startup-mcp.mjs
+          node --test scripts/test-directory-mcp-value.mjs scripts/test-mcp-value-report.mjs
           node scripts/test-ai-solo.mjs --dist
           node --test scripts/test-manju-consumer-links.mjs
           node --test scripts/test-manju-automation.mjs
@@ -954,7 +955,7 @@ jobs:
             -d '{"jsonrpc":"2.0","id":4,"method":"prompts/get","params":{"name":"pick-a-free-tier","arguments":{"task":"ci selftest"}}}')
           echo "$mp" | grep -q 'ci selftest' || { echo "::error::prompts/get 未把参数嵌进提示词"; exit 1; }
           # 计算型工具单独断言：它不是查询而是除法，静默算错比返回空更危险
-          mf=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/mcp' -H 'Content-Type: application/json' \
+          mf=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/mcp?__probe=1' -A 'bpj-ci-selfcheck/1.0' -H 'Content-Type: application/json' \
             -d '{"jsonrpc":"2.0","id":5,"method":"tools/call","params":{"name":"check_api_quota_fit","arguments":{"requests_per_day":200,"tokens_per_call":2000}}}')
           echo "$mf" | grep -q 'within_limits' || { echo "::error::check_api_quota_fit 未返回测算结果"; exit 1; }
           mw=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/mcp' -H 'Content-Type: application/json' \

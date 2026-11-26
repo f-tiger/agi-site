@@ -321,7 +321,10 @@ async function send(body, headers = {}) {
   const request = new Request(origin + '/api/hit', {method: 'POST', headers: {'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0', Referer: origin + '/ai-solo/agent/', ...headers}, body: JSON.stringify(body)});
   assert.equal((await onRequestPost({request, env})).status, 204, 'Analytics must never block product use');
 }
-for (const lang of ['zh', 'en']) for (const action of AI_SOLO_ACTIONS) await send({e: 'ai_solo', p: '/ai-solo/' + action + '/workspace', l: lang, r: 'https://private.example/context', question: 'private-input-test-marker', customer: 'private-input-test-marker', amount: 999});
+for (const lang of ['zh', 'en']) for (const action of AI_SOLO_ACTIONS) {
+  const headers = action === 'mcp-checkout' ? {Referer: origin + (lang === 'en' ? '/en' : '') + '/ai-solo/mcp/'} : {};
+  await send({e: 'ai_solo', p: '/ai-solo/' + action + '/workspace', l: lang, r: 'https://private.example/context', question: 'private-input-test-marker', customer: 'private-input-test-marker', amount: 999}, headers);
+}
 assert.equal(inserts.length, AI_SOLO_ACTIONS.length * 2, 'Valid fixed actions were dropped');
 for (const row of inserts) {
   assert.equal(row.values.length, 6, 'Unexpected analytics persistence columns');
@@ -335,5 +338,7 @@ for (const p of ['/ai-solo/unknown/workspace', '/ai-solo/view/customer-id', '/ai
 for (const l of ['', 'ci', 'ZH', 'en-US', 'fr', 'zh/private']) await send({...valid, l});
 for (const headers of [{DNT: '1'}, {'Sec-GPC': '1'}, {Referer: origin + '/ai-solo/?qa=1'}, {Referer: origin + '/ai-solo/?__ci=1'}, {Referer: origin + '/ai-solo/?__probe=1'}, {'User-Agent': 'bpj-ci-selfcheck'}, {'User-Agent': 'HeadlessChrome'}, {'User-Agent': 'Playwright'}, {'User-Agent': 'Googlebot'}]) await send(valid, headers);
 await send({...valid, e: 'ai_solo_arbitrary'});
+const checkout = {...valid, p: '/ai-solo/mcp-checkout/workspace'};
+for (const Referer of ['', origin + '/ai-solo/', origin + '/ai-solo/mcp/?__probe=1', 'https://foreign.example/ai-solo/mcp/']) await send(checkout, {Referer});
 assert.equal(inserts.length, baseline, 'Forged or suppressed requests entered first-party counts');
 console.log(`PASS AI Solo ${live ? 'live' : 'dist'}: ${expectedCases.length} bilingual cases and Markdown, ${model.training.caseCount} trained / ${model.training.excludedCaseCount} excluded, finite improving loss, discovery and ${reads} public assets; offline action/privacy contracts exclude private inputs and QA/DNT/GPC/WebDriver traffic.`);

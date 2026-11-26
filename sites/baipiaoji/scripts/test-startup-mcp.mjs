@@ -8,11 +8,12 @@ import {startupKeyAction,startupPrincipal,reserveStartupCall,refundStartupCall} 
 import {onRequest as mcp} from '../functions/api/startup-mcp.js';
 import {prepareInferenceCorpus,generatePlan,analyzePatterns} from '../lib/ai-solo-core.mjs';
 import {memberAction,onRequestPost as legacyMember} from '../functions/api/member.js';
+import {recordMcpValue} from '../lib/mcp-value-events.mjs';
 const key='1'.repeat(64),origin='https://baipiaoji.com';
 const files=Object.fromEntries(['ai-solo-cases.json','ai-solo-model.json','ai-solo-hot.json'].map(p=>[p,readFileSync(new URL('../dist/'+p,import.meta.url),'utf8')]));
 async function setup(){const db=database();await ensureMembers(db);const now=seconds(),member={id:'paid-fixture',token_hash:await digest(key),created:now,ends_at:now+30*86400,suspended:0};await db.prepare('INSERT INTO wb_members(id,token_hash,created,ends_at) VALUES(?,?,?,?)').bind(member.id,member.token_hash,now,member.ends_at).run();const env={HITS:db,ASSETS:{fetch:async r=>new Response(files[new URL(r.url).pathname.slice(1)]||'',{status:files[new URL(r.url).pathname.slice(1)]?200:404})}};return {db,env,member,now,close:()=>db.sql.close()};}
 const msg=(method,params={},id=1)=>({jsonrpc:'2.0',id,method,params});
-async function rpc(env,body,token='',extra={}){const request=new Request(origin+'/api/startup-mcp',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json, text/event-stream',...(token?{Authorization:'Bearer '+token}:{}),...extra},body:JSON.stringify(body)});const r=await mcp({env,request});return {status:r.status,headers:r.headers,body:r.status===202?null:await r.json()};}
+async function rpc(env,body,token='',extra={},search=''){const request=new Request(origin+'/api/startup-mcp'+search,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json, text/event-stream',...(token?{Authorization:'Bearer '+token}:{}),...extra},body:JSON.stringify(body)});const r=await mcp({env,request});return {status:r.status,headers:r.headers,body:r.status===202?null:await r.json()};}
 const call=(env,name,args={},token='')=>rpc(env,msg('tools/call',{name,arguments:args}),token);
 const mint=(s,label='Agent')=>startupKeyAction(s.db,s.member,{action:'startup_mcp_create',label},s.now);
 
@@ -52,6 +53,53 @@ test('invalid tools, arguments and cross-job comparisons do not consume quota',a
   }
   assert.equal(s.db.sql.prepare('SELECT COUNT(*) n FROM bpj_startup_usage').get().n,0);
   s.env.ASSETS={fetch:async()=>new Response('unavailable',{status:503})};assert.equal((await call(s.env,'get_startup_radar',{},token)).status,503);assert.equal(s.db.sql.prepare('SELECT COUNT(*) n FROM bpj_startup_usage').get().n,0);
+ }finally{s.close();}
+});
+test('paid value counts usable execution and dedupes authenticated usage without storing inputs',async()=>{
+ const s=await setup();try{
+  const preview=msg('tools/call',{name:'startup_preview'}),probe={'User-Agent':'bpj-ci-selfcheck/1.0'};
+  assert.equal((await rpc(s.env,msg('tools/list'))).status,200);
+  assert.equal((await rpc(s.env,preview,'',probe,'?__probe=1')).status,200);
+  assert.equal(s.db.sql.prepare("SELECT count(*) n FROM sqlite_master WHERE name='bpj_mcp_value_daily'").get().n,0);
+  assert.equal((await rpc(s.env,preview,'',probe)).status,200);
+  const {key:first}=await mint(s,'first'),{key:second}=await mint(s,'second');
+  const profile={question:'A selfie skincare beauty app',skill:'coding',customer:'Private fixture company'};
+  const task=msg('tools/call',{name:'build_startup_plan',arguments:profile});
+  assert.equal((await rpc(s.env,task)).status,401);
+  for(const key of [first,second]){
+   const plan=await rpc(s.env,task,key,probe,'?__probe=1');
+   assert.equal(plan.status,200);
+   assert.equal(plan.body.result.structuredContent.data.matched,true);
+  }
+  const empty=await call(s.env,'build_startup_plan',{question:'zqvw pnjxz qrplw'},first);
+  assert.equal(empty.body.result.structuredContent.data.matched,false);
+  const counts=s.db.sql.prepare('SELECT tool,outcome,n FROM bpj_mcp_value_daily ORDER BY tool,outcome').all().map(row=>({...row}));
+  assert.deepEqual(counts,[
+   {tool:'build_startup_plan',outcome:'no_result',n:1},
+   {tool:'build_startup_plan',outcome:'usable',n:2},
+   {tool:'startup_preview',outcome:'usable',n:1},
+  ]);
+  const people=s.db.sql.prepare('SELECT * FROM bpj_mcp_value_startup_member_days').all();
+  assert.equal(people.length,1);assert.equal(people[0].member_id,s.member.id);
+  assert(!JSON.stringify([counts,people]).includes(profile.customer));
+  assert(!JSON.stringify([counts,people]).includes(first));
+  s.env.ASSETS={fetch:async()=>new Response('unavailable',{status:503})};
+  assert.equal((await call(s.env,'get_startup_radar',{},first)).status,503);
+  assert.equal(s.db.sql.prepare("SELECT n FROM bpj_mcp_value_daily WHERE tool='get_startup_radar' AND outcome='service_error'").get().n,1);
+ }finally{s.close();}
+});
+
+test('member-day keeps the earliest timestamp and prunes identifiers after the retention window',async()=>{
+ const s=await setup();try{
+  const tool='build_startup_plan',outcome='usable',memberId=s.member.id,day=Math.floor(s.now/86400)*86400;
+  await Promise.all([day+70,day+2,day+30].map(now=>recordMcpValue(s.db,{tool,outcome,memberId,now})));
+  assert.equal(s.db.sql.prepare('SELECT first_at FROM bpj_mcp_value_startup_member_days').get().first_at,day+2);
+  assert.equal(s.db.sql.prepare('SELECT n FROM bpj_mcp_value_daily').get().n,3);
+  await recordMcpValue(s.db,{tool,outcome,memberId,now:day+34*86400});
+  assert.equal(s.db.sql.prepare('SELECT count(*) n FROM bpj_mcp_value_startup_member_days').get().n,2);
+  await recordMcpValue(s.db,{tool:'startup_preview',outcome,now:day+35*86400});
+  assert.equal(s.db.sql.prepare('SELECT first_at FROM bpj_mcp_value_startup_member_days').get().first_at,day+34*86400);
+  assert.equal(s.db.sql.prepare('SELECT sum(n) n FROM bpj_mcp_value_daily').get().n,5);
  }finally{s.close();}
 });
 test('scoped key count, owner isolation, revocation, expiry, suspension and main-key rotation',async()=>{
