@@ -56,6 +56,33 @@ const glazing = {
   id:'aussen-innen-oder-dazwischen',
   tool:'fenster_beschlag_einordnen',
 };
+export const wetWindowDiagnosis = {
+  path:'/guide/fenster-beschlagen-innen.html',
+  id:'fenstersauger-gegen-kondenswasser',
+  tool:'ratgeber_suche',
+};
+
+const wetWindowNoun = '(?:[a-z]*fenster|(?:innen|fenster)?scheiben?|(?:fenster)?glas)';
+const wetWindowArticle = '(?:das|die|mein(?:e)?|unser(?:e)?|dies(?:es|e)|ein(?:e)?)';
+const sweatingWindowSubject = new RegExp(
+  '(?:^|\\b'+wetWindowArticle+'\\s+)'+wetWindowNoun+'\\s+(?:(?:innen|unten|morgens)\\s+){0,2}schwitz(?:t|en)\\b|' +
+  '\\bschwitz(?:t|en)\\s+(?:'+wetWindowArticle+'\\s+)?'+wetWindowNoun+'\\b'
+);
+const otherWetWindowTask = /\b(?:auto\w*|pkw|fahrzeug\w*|wohnmobil\w*|windschutzscheib\w*|heckscheib\w*|kaercher|fenstersaug\w*|duese\w*|klimaanlag\w*|abluftschlauch|ablaufschlauch|plissee\w*|(?:innen)?rollo\w*|rolll?aden\w*|gardin\w*|vorh(?:ang|aeng)\w*)\b/;
+
+export function asksAboutSweatingIndoorWindow(query) {
+  const inside = /\b(?:innen(?:seite|scheiben?|fenster)?|raumseit(?:e|ig)|wohnungsseite)\b/;
+  const deniesInside = /\b(?:nicht|nie)\s+(?:von\s+)?innen\w*\b/;
+  return inside.test(query) && !deniesInside.test(query) && sweatingWindowSubject.test(query) &&
+    !hasOtherWindowSurface(query) && !otherWetWindowTask.test(query);
+}
+
+function asksAboutMorningWetWindow(query) {
+  const morning = /\b(?:morgens|jeden morgen|am morgen)\b/;
+  const wetPane = /\b(?:[a-z]*fenster|(?:innen)?scheiben?)\b(?:\s+(?:ist|sind|morgens|jetzt|immer|heute|komplett|ganz|richtig)){0,6}\s+(?:nass|klatschnass)\b/;
+  return morning.test(query) && wetPane.test(query) && !hasOtherWindowSurface(query) && !otherWetWindowTask.test(query);
+}
+
 export const balconyThresholdMoisture = {
   path:'/guide/fenster-beschlagen-innen.html',
   id:'balkontuer-schwelle-kondenswasser',
@@ -551,6 +578,7 @@ function exactEx105Evidence(query) {
 
 export function exactGermanHouseholdTask(query) {
   if (asksAboutBalconyThresholdMoisture(query)) return balconyThresholdMoisture;
+  if (asksAboutSweatingIndoorWindow(query) || asksAboutMorningWetWindow(query)) return wetWindowDiagnosis;
   if (asksForBoschDryerDrain(query)) return boschDryerDrain;
   const dryerCare = exactBoschDryerCare(query);
   if (dryerCare) return dryerCare;

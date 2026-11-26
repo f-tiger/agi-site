@@ -1,4 +1,4 @@
-import {asksForLaundryCostComparison, balconyThresholdMoisture, boschDry, boschDryerCare, boschDryerCareComparison, boschDryerDrain, carHeaterOutlet, comfeeVariant, coolingDiscountReference, directHeat, exactGermanHouseholdTask, exactWindowShadeMeasurement, excludesPortableCoolingStorage, ex105Exhaust, ex105Sound, festiveLights, gasHeatCost, granulateDryingChoice, highCoolingLoadDecision, infraredAnnualCost, infraredRoomWatts, infraredThermostatFit, karcherBagDecision, karcherCartridgeDecision, klarsteinPackage, laundryMeasuredFollowUp, lowLoadMeterGuide, mentionsLaundryDryer, offlineThermostatChoice, portableCoolingStorage, showerFlow, siemensFilterDecision, tinecoS7FlashDry, tinecoS7Variant, vacuumOffer} from './german-household-intent.mjs?v=728ec0e1b121';
+import {asksAboutSweatingIndoorWindow, asksForLaundryCostComparison, balconyThresholdMoisture, boschDry, boschDryerCare, boschDryerCareComparison, boschDryerDrain, carHeaterOutlet, comfeeVariant, coolingDiscountReference, directHeat, exactGermanHouseholdTask, exactWindowShadeMeasurement, excludesPortableCoolingStorage, ex105Exhaust, ex105Sound, festiveLights, gasHeatCost, granulateDryingChoice, highCoolingLoadDecision, infraredAnnualCost, infraredRoomWatts, infraredThermostatFit, karcherBagDecision, karcherCartridgeDecision, klarsteinPackage, laundryMeasuredFollowUp, lowLoadMeterGuide, mentionsLaundryDryer, offlineThermostatChoice, portableCoolingStorage, showerFlow, siemensFilterDecision, tinecoS7FlashDry, tinecoS7Variant, vacuumOffer, wetWindowDiagnosis} from './german-household-intent.mjs?v=bc876f68d1fd';
 import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion, glassvacModel, windowVacCharging} from './kaercher-saugduese-intent.mjs';
@@ -304,7 +304,7 @@ const unrelatedWindowTask = /\b(?:auto|pkw|wohnmobil|ablaufschlauch|abluftschlau
 function asksForMeasuredIndoorDewPoint(query) {
   const condensation = /\b(?:taupunkt\w*|tauwasser\w*|kondens(?:at|wasser|ation|iert)\w*|beschla(?:eg|g)\w*|nass\w*)\b/;
   const unmeasured = /\b(?:schaetze|geschaetzt|geraten|nicht gemessen)\b|\bgemessen\b[^,.!?;]{0,25}\bnicht\b/;
-  return condensation.test(query) && !unrelatedWindowTask.test(query) && !unmeasured.test(query) &&
+  return (condensation.test(query) || asksAboutSweatingIndoorWindow(query)) && !unrelatedWindowTask.test(query) && !unmeasured.test(query) &&
     roomTemperature.test(query) && roomHumidity.test(query) && surfaceTemperature.test(query);
 }
 
@@ -392,7 +392,7 @@ export function findCatalogueTools(index, {query='', category='', name=null}={})
     householdTask === karcherCartridgeDecision || householdTask === karcherBagDecision ||
     householdTask === laundryMeasuredFollowUp || householdTask === ex105Exhaust || householdTask === ex105Sound ||
     householdTask === highCoolingLoadDecision || householdTask === boschDryerCareComparison ||
-    householdTask === balconyThresholdMoisture;
+    householdTask === balconyThresholdMoisture || (householdTask === wetWindowDiagnosis && !measuredDewPoint);
   if (householdTask === boschDry || householdTask === boschDryerCare || householdTask === boschDryerDrain || householdTask === comfeeVariant || householdTask === festiveLights || householdTask === showerFlow || householdTask === directHeat || householdTask === klarsteinPackage || householdTask === infraredRoomWatts || comparisonGuide) {
     const guideSearch = index.find(entry => entry.tool.name === householdTask.tool && eligible(entry));
     if (guideSearch) {
@@ -479,7 +479,7 @@ export function findCatalogueTools(index, {query='', category='', name=null}={})
   else if (cellarVentilation) preferredName = cellarVentilationTool;
   else if (!nonIndoorGlass && measuredDewPoint) preferredName = windowDewPointTool;
   else if (fritzValve) preferredName = fritzValveTool;
-  else if (householdTask) preferredName = householdTask.tool;
+  else if (householdTask && householdTask !== wetWindowDiagnosis) preferredName = householdTask.tool;
   else if (singleLaundry) preferredName = singleLaundryTool;
   else if (asksForLaundryCostComparison(focus.query)) preferredName = 'waesche_trocknungskosten';
   else if (asksForHumidifierEfficiency(focus.query)) preferredName = 'befeuchter_nennwatt_abgabeleistung_bezug';

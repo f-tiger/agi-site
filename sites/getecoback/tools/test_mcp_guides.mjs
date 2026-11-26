@@ -863,3 +863,15 @@ test('Comfee DE variant guide searches cite the canonical cellar guide for each 
     assert.notEqual(textOf(result).split('\n')[1],'- ' + title,frage);
   }
 });
+
+test('German sweating window language finds the readable existing guide', async () => {
+  const url='https://getecoback.com/guide/fenster-beschlagen-innen.html#fenstersauger-gegen-kondenswasser';
+  const {env}=assetEnv();
+  const frage='Warum schwitzt mein Schlafzimmerfenster morgens nur unten an der Innenseite?';
+  const result=await call('ratgeber_suche',{frage,sprache:'de',max:1},env);
+  assert(textOf(result).includes('Abschnitt: '+url));
+  const guide=await call('ratgeber_lesen',{pfad:url},env);
+  assert.equal(guide.isError,false);
+  assert(textOf(guide).includes('Das Fenster schwitzt'));
+  assert(textOf(guide).includes('45 %'));
+});
