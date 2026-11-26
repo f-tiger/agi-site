@@ -354,12 +354,7 @@ SVG = {
 
 # Per-category "shop by type" grid: (svg-key, role-badge, title, desc, price, amazon-search-q, bg-gradient)
 CAT_SHOP = {
- "klimaanlagen": [
-   ("ac", "Echte Kühlung", "Tragbare Klimaanlage", "Senkt die Temperatur wirklich — Abluft übers Fenster.", "ab 250 €", "tragbare+klimaanlage", "#eaf6ff,#cfe6f7"),
-   ("cooler", "Günstig", "Luftkühler", "Kein Abluftschlauch nötig — ideal bei trockener Hitze.", "ab 60 €", "luftk%C3%BChler", "#e6f6fb,#c6e9f4"),
-   ("fan", "Ab 30 €", "Ventilator", "Turm & Stand — schnelle Abkühlung fürs kleine Budget.", "ab 30 €", "turmventilator", "#eef4ff,#d5e2f6"),
-   ("dehum", "Gegen Schwüle", "Luftentfeuchter", "Trockenere Luft fühlt sich kühler an — besserer Schlaf.", "ab 120 €", "luftentfeuchter", "#eaf6ff,#cfe6f7"),
- ],
+ "klimaanlagen": [],
  "heizen": [
    ("heater", "Effizient", "Infrarotheizung", "Wärmt Flächen statt Luft — angenehm & sparsam.", "ab 90 €", "infrarotheizung", "#fff4e8,#ffe6cc"),
    ("heater", "Schnell warm", "Heizlüfter", "Sofort warm für Bad & Übergang — stromsparende Modelle.", "ab 25 €", "heizl%C3%BCfter+stromsparend", "#fff4e8,#ffe6cc"),
@@ -840,6 +835,29 @@ def shop_card(entry):
 
 
 def shop_section(cat_key):
+    if cat_key == "klimaanlagen":
+        entries = [
+            ("Kühlbedarf nach Raum einschätzen",
+             "Nimm Raumgröße, Deckenhöhe und Sonneneinstrahlung als Ausgangspunkt.",
+             "/guide/btu-rechner.html", "Raumbedarf berechnen"),
+            ("Außenplatz oder Abluftweg prüfen",
+             "Vergleiche, wo das Außengerät sicher stehen kann oder wie ein Monoblock seine Abluft nach draußen führt.",
+             "/guide/portasplit-vs-monoblock.html#bauart-vor-angebot", "Aufstellung vergleichen"),
+            ("Mobiles Splitgerät am Fenster prüfen",
+             "Bei FM Solar kommt es auf Fensterrahmen, Außenwandkante und geeigneten Außenplatz an.",
+             "/guide/midea-portasplit-ausverkauft-alternativen.html#fm-solar-yfg-montage", "FM-Solar-Halterung prüfen"),
+            ("Konkretes Kaufangebot vergleichen",
+             "Gleiche die Modellvariante ab. Prüfe den 30-Tage-Preis beim Händler und den Gesamtpreis mit Lieferung und Zubehör.",
+             "/guide/klimaanlage-wann-kaufen.html#angebot-30-tage-preis", "Angebot prüfen"),
+        ]
+        cards = ''.join(
+            '<div class="eb-shop-card"><div class="bd">'
+            f'<h3>{title}</h3><p class="ds">{desc}</p>'
+            f'<a class="go" style="min-height:44px" href="{url}">{label}</a></div></div>'
+            for title, desc, url, label in entries)
+        return ('<section class="eb-shop" id="eb-cooling-decisions" aria-labelledby="eb-cooling-title">'
+                '<h2 id="eb-cooling-title">Klimagerät auswählen und Angebot prüfen</h2>'
+                f'<div class="eb-shop-grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))">{cards}</div></section>\n')
     if cat_key == "luftqualitaet":
         entries = [
             ("Entfeuchter: Bedarf und Modelldaten prüfen",

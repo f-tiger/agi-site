@@ -1905,3 +1905,9 @@ test('German original PortaSplit delivery discovery cites the fixed-date check',
  assert.equal(tools[0]?.name,'ratgeber_suche');
  assert.equal(tools[0]?.guide_url,'https://getecoback.com/guide/midea-portasplit-kaufen.html#portasplit-liefertermin-pruefen');
 });
+
+test('German FM Solar mobile AC discovery offers the exact model and window check',async()=>{
+ const {tools}=await catalogue({q:'FM Solar mobile Split 12000 BTU als Alternative zur PortaSplit',view:'compact',limit:1});
+ assert.equal(tools[0]?.name,'ratgeber_suche');
+ assert.equal(tools[0]?.guide_url,'https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html#fm-solar-yfg-montage');
+});

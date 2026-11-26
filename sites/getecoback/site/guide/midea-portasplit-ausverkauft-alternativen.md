@@ -10,6 +10,8 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Herstellerangaben geprüft am 02.10.2026. Kein eigener Produkttest, kein vollständiger Marktvergleich und keine Live-Bestandsabfrage. Amazon-Links sind Partnerlinks: Als Amazon-Partner verdienen wir an qualifizierten Verkäufen.
 
+Für das mobile Gerät von FM Solar siehe den [Halterungscheck für YFG-12H/FC6-W](https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html#fm-solar-yfg-montage).
+
 ## Passt die Midea PortaSplit an einen 60-mm-Fensterfalz?
 
 **60 mm Falzbreite liegen außerhalb des Bereichs für die Standardhalterung.** Für die originale Midea PortaSplit (EAN 4048164116478) nennt Midea für nach innen öffnende Fenster höchstens **45 mm Falzbreite** und mindestens **20 mm Falzhöhe**.
@@ -46,6 +48,18 @@ Ist die Halterung geklärt und suchst du das Originalgerät mit EAN 404816411647
 
 Anzeige: Originale Midea PortaSplit auf Amazon.de prüfen
 Liefertermin, Umfang und Preis beim Händler prüfen. Den Händlerlink haben wir am 25. November 2026 mit der Midea-Seite abgeglichen.
+
+## FM Solar 12.000 BTU als PortaSplit-Alternative: Halterung und Außenplatz prüfen
+
+Für Deutschland ist hier das mobile Splitgerät **YFG-12H/FC6-W** gemeint. OBI Deutschland führt das Angebot unter **EAN 4251933818361**. Gleiche Modellnummer und EAN mit deinem Angebot ab.
+
+- **Montage am Fenster:** Die FM-Solar-Anleitung verlangt höchstens **20 cm zwischen Fensterrahmen und Außenwandkante**. Zeichnung und Tragfähigkeit von Rahmen und Wand prüfen. Die Maße für den Fensterfalz der originalen PortaSplit betreffen eine andere Klemmstelle.
+
+- **Dachfenster, Balkon oder Terrasse:** Laut Anbieter ist die mitgelieferte Fensterhalterung für Dachfenster ungeeignet. Prüfe, ob du das Außengerät stattdessen sicher auf Balkon oder Terrasse aufstellen kannst. Die Verbindungsleitung ist laut Anleitung **2 m** lang.
+
+Bei ungeklärter Tragfähigkeit oder fehlendem sicheren Außenplatz kannst du warten oder [einen Monoblock mit passendem Abluftweg prüfen](https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html#option-3-monoblock). Die Anleitung nennt für innen und außen Geräuschpegel, aber ohne ausgewiesene Messgröße in der Datentabelle. Für einen Vergleich mit dem Schalldruck der originalen PortaSplit brauchst du gleichartige Messbedingungen.
+
+[FM-Solar-Anleitung zur Fensterhalterung](https://cdn02.plentyone.com/gqw2uxdr3nhq/frontend/Downloads/Klimaanlage/FM_Solar_Mobiles_Splitklimageraet_12000BTU_2.0_06.2026_Anleitung.pdf#page=23) · [Technische Daten in der Anleitung](https://cdn02.plentyone.com/gqw2uxdr3nhq/frontend/Downloads/Klimaanlage/FM_Solar_Mobiles_Splitklimageraet_12000BTU_2.0_06.2026_Anleitung.pdf#page=34) · [FM Solar zur Modellnummer und Dachfenster-Eignung](https://www.fm-solar.de/kuehlen-und-heizenklimaanlagemobile-split-klimaanlage-klimageraet-mit-wifi-12-000btu_95200_16455/) · [OBI Deutschland zur Modell-EAN](https://www.obi.de/p/2191166731490/fm-solar-mobile-klimaanlage-klimageraet-mit-wifi-12-000btu). Quellen geprüft am 26. November 2026.
 
 ## Clima Butler Split 2 CB-3500: genaue Variante prüfen
 
