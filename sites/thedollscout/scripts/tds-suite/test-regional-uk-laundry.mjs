@@ -146,8 +146,8 @@ test('the UK laundry guide exposes the native tool before navigation and models,
   assert.match(uk, /TDS has not tested drying speed/);
   assert.match(uk, /Editorial sources checked: <time datetime="2026-11-15">/);
   const graph = JSON.parse(/<script type="application\/ld\+json">(.*?)<\/script>/s.exec(uk)[1]);
-  assert.equal(graph['@graph'].find(node => node['@type'] === 'WebPage').dateModified, '2026-11-25');
-  assert.equal(records.find(row => row.url.endsWith('/uk/indoor-laundry')).modified, '2026-11-25');
+  assert.equal(graph['@graph'].find(node => node['@type'] === 'WebPage').dateModified, '2026-11-26');
+  assert.equal(records.find(row => row.url.endsWith('/uk/indoor-laundry')).modified, '2026-11-26');
   assert.match(files.get('collector-assets/text/uk/indoor-laundry.txt'), /https:\/\/thedollscout\.com\/ai-tools\/uk-laundry-session/);
   for (const [path, html] of files) {
     if (path.endsWith('.html') && !['uk/indoor-laundry.html', 'uk/index.html'].includes(path)) assert.ok(!html.includes(toolHref), path + ': do not add the UK calculator to a different market or task');
