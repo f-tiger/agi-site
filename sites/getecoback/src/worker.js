@@ -1058,12 +1058,12 @@ const LEGACY_MCP_TOOLS = [
   // honest physics the pages use, then hands over to the sizing tools/guides.
   {
     name: "geraet_wahl",
-    description: "Welches Gerät löst mein Raumklima-Problem? — Choose a next step for heat, damp/mould, cold or stale air. For damp rooms, measure first, investigate damage and compare cold-room or laundry conditions before buying; floor area alone cannot size a dehumidifier. Same decision rules as the website.",
+    description: "Welches Gerät löst mein Raumklima-Problem? — Choose a next step for heat, damp/mould, cold or stale air. For cold rooms, distinguish an example from a measured area and check heat load and circuits at higher wattages. For damp rooms, measure first, investigate damage and compare cold-room or laundry conditions before buying; floor area alone cannot size a dehumidifier. Same decision rules as the website.",
     inputSchema: {
       type: "object",
       properties: {
         problem: { type: "string", enum: ["zu_heiss", "feucht_schimmel", "zu_kalt", "stickige_luft"], description: "Das Problem — the problem: zu_heiss = room too hot, feucht_schimmel = damp air / condensation / mould risk, zu_kalt = room too cold (no fixed heating), stickige_luft = stale air / odours" },
-        qm: { type: "number", description: "Raumfläche in m² — room floor area in square metres (4–120). Default: 20. Used for heating/cooling only, never to infer dehumidifier litres/day." },
+        qm: { type: "number", description: "Raumfläche in m² — room floor area in square metres (4–120). When omitted, 20 m² is only a sizing example. Used for heating/cooling only, never to infer dehumidifier litres/day." },
         purpose: { type: "string", enum: ["room", "laundry", "damage"], description: "Nur bei feucht_schimmel: room = Raumluft, laundry = Wäsche trocknen, damage = nasse Wand, Leck oder sichtbarer Schimmel. Default: room. No remote diagnosis." },
         humidity: { type: "string", enum: ["unknown", "normal", "high"], description: "Nur bei feucht_schimmel: unknown = ungemessen/unsicher (Default), normal = meist 40–60 % oder darunter, high = wiederholt über 60 %. Orientierung, keine Schimmelfrei-Garantie." },
         temperature: { type: "string", enum: ["unknown", "warm", "cold"], description: "Nur bei feucht_schimmel: unknown = ungemessen (Default), warm = mindestens 15 °C, cold = unter 15 °C. 15 °C ist ein Vergleichssignal, keine allgemeine Betriebsgrenze." },
@@ -1326,6 +1326,14 @@ const MOISTURE_NEXT_STEPS = {
 
 const coolingCalculator = "https://getecoback.com/guide/btu-rechner.html";
 const highCoolingLoadGuide = coolingCalculator + "#hohe-kuehllast";
+const heatingCalculator = "https://getecoback.com/guide/infrarotheizung-watt-rechner.html";
+const heatingSizingGuide = heatingCalculator + "#watt-rechner-raumgroesse-und-daemmung-eingeben";
+const heatingCircuitGuide = heatingCalculator + "#ueber-2-000-watt-besser-zwei-panels";
+const heatingCheckWatts = 2000;
+
+function estimateHeatingWatts(qm, wattsPerSquareMetre) {
+  return Math.round((qm * wattsPerSquareMetre) / 10) * 10;
+}
 
 function estimateCoolingLoad(qm, sun = 1) {
   const btu = Math.round((qm * 340 * sun) / 500) * 500;
@@ -1374,11 +1382,22 @@ async function mcpCallTool(name, args, env) {
         "\nEntscheidungshilfe und Quellen (der Link enthält keine Eingaben): https://getecoback.com/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice" +
         "\nOrientierung, keine Ferndiagnose. Die Website zeigt vorhandene Vergleichskandidaten für Deutschland; prüfe Modell, Markt und Einsatzbedingungen selbst.";
     } else if (a.problem === "zu_kalt") {
-      const wl = Math.round(qm * 60), wh = Math.round(qm * 100);
-      text = `Für "Raum zu kalt ohne feste Heizung" sind Infrarot-/Elektropaneele mit Thermostat die installationsfreie Familie (Zusatz-/Übergangsheizung; als alleinige Winterheizung ist eine Wärmepumpe wirtschaftlicher — Strom-Direktheizung macht aus 1 kWh Strom genau 1 kWh Wärme).\n` +
-        `Faustregel für ${qm} m² (gedämmter Raum): ${wl.toLocaleString("de-DE")}–${wh.toLocaleString("de-DE")} W.\n` +
-        `Geräteklasse & Modelle: https://getecoback.com/guide/heizung-${qp}-qm.html\n` +
-        `Feinrechnung: Tool heizleistung_watt`;
+      const hasArea = Object.hasOwn(a, "qm");
+      if (hasArea && !mcpNumberInRange(a.qm, 4, 120)) {
+        return mcpInputError("Gib die Grundfläche des zu beheizenden Raums als Zahl von 4 bis 120 m² an.");
+      }
+      const estimates = [60, 80, 100].map(rate => estimateHeatingWatts(qm, rate));
+      const [good, medium, poor] = estimates.map(watt => watt.toLocaleString("de-DE"));
+      const origin = hasArea ? "Faustregel" : "Beispiel ohne eigene Flächenangabe";
+      text = `${origin} für ${qm} m²: ca. ${good}–${poor} W. Das Modell setzt je nach Dämmung 60, 80 oder 100 W/m² an. Bei mittlerer Dämmung sind es ca. ${medium} W.\n` +
+        "Die Annahme zur Dämmung und die tatsächliche Heizlast können das Ergebnis ändern. Kläre bei einer Hauptheizung die Raumheizlast fachlich. Für punktuelle Zusatzwärme prüfe Einbauort und Herstellerangaben.";
+      if (!hasArea) {
+        text += `\nGib die tatsächliche Fläche an und prüfe die Dämmung. Rechner: ${heatingSizingGuide}`;
+      } else if (estimates[2] > heatingCheckWatts) {
+        text += `\nDie obere Schätzung liegt über 2.000 W. Kläre vor einem Kauf Heizlast und Belastbarkeit der vorhandenen Stromkreise. ${heatingCircuitGuide}`;
+      } else {
+        text += `\nRechner für Fläche und Dämmung: ${heatingSizingGuide}\nRatgeber für eine ähnliche Raumgröße: https://getecoback.com/guide/heizung-${qp}-qm.html`;
+      }
     } else {
       text = `Für "stickige Luft / Gerüche" ist die ehrliche Reihenfolge: erst richtig lüften (kostet nichts), dann je nach Ursache Luftreiniger (Partikel/Pollen) oder Luftentfeuchter (wenn die Ursache Feuchte ist — Muffgeruch ist oft ein Feuchteproblem).\n` +
         `Einordnung Reiniger vs. Entfeuchter: https://getecoback.com/guide/luftentfeuchter-oder-luftreiniger.html\n` +
@@ -1471,13 +1490,13 @@ async function mcpCallTool(name, args, env) {
     }
     const wPerQm = daemmung === "gut" ? 60 : (daemmung === "schlecht" ? 100 : 80);
     // Identical to /guide/infrarotheizung-watt-rechner.html.
-    const watt = Math.round((qm * wPerQm) / 10) * 10;
+    const watt = estimateHeatingWatts(qm, wPerQm);
     const perH = (watt / 1000) * price;
     if (!Number.isFinite(perH)) return mcpInputError("Die angegebenen Werte ergeben keine endlichen Stromkosten.");
-    const purchaseCheck = watt > 2000
+    const purchaseCheck = watt > heatingCheckWatts
       ? "Vor dem Kauf Raumheizlast und die Belastbarkeit der vorhandenen Stromkreise fachlich prüfen lassen. Die Anschlussleistung aller Paneele zählt zusammen.\n"
       : "";
-    const citationUrl = "https://getecoback.com/guide/infrarotheizung-watt-rechner.html";
+    const citationUrl = heatingCalculator;
     const insulation = a.daemmung === undefined ? "mittlerer Beispielwert" : daemmung;
     return mcpToolResult(
       `Grobe Schätzung für einen ganzen Raum mit ${qm} m² (${insulation}, ${wPerQm} W/m²): ca. ${watt.toLocaleString("de-DE")} Watt.\n` +

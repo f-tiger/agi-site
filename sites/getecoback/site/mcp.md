@@ -77,7 +77,7 @@ Kochgeschirr, Ladungen, Programmbelege und elektrische Betriebszustände im Allt
 
 **entfeuchter_ablaufcheck**Liegt der Abfluss höher als der Auslass des Entfeuchters? Prüfe Schlauchgefälle, mögliche Pumpen und Tankbetrieb für dein genaues Modell. [Beispiel für den Keller](https://getecoback.com/mcp.html#ablauf-beispiel)
 
-**geraet_wahl**Der nächste Schritt bei Hitze, Feuchte, Kälte oder stickiger Luft. Bei Feuchte nutzt das Tool dieselben sechs Entscheidungszweige wie die Website: erst messen, weiter beobachten, Ursache klären, kalte Räume prüfen, Wäschekosten vergleichen oder gezielt Geräte vergleichen. Eine Raumfläche allein ergibt keine Liter-Empfehlung.
+**geraet_wahl**Der nächste Schritt bei Hitze, Feuchte, Kälte oder stickiger Luft. Bei Feuchte nutzt das Tool dieselben sechs Entscheidungszweige wie die Website: erst messen, weiter beobachten, Ursache klären, kalte Räume prüfen, Wäschekosten vergleichen oder gezielt Geräte vergleichen. Eine Raumfläche allein ergibt keine Liter-Empfehlung. Bei Kälte zeigt das Tool die Dämmannahmen und führt bei hoher Schätzung zur Prüfung von Heizlast und Stromkreis. [Beispiel für 60 m²](https://getecoback.com/mcp.html#heizlast-beispiel).
 
 **btu_empfehlung**Empfohlene Kühlleistung (BTU) für einen Raum aus m² und Sonneneinstrahlung, mit passender Geräteklasse. Formel: 340 BTU/m² × Sonnenfaktor.
 
@@ -254,6 +254,12 @@ Für eine Schlauchstrecke bergauf brauchst du eine passende Pumpe oder einen and
 Bei normaler Sonne ergibt die Faustformel rund 7.000 BTU/h. Für eine genauere Abschätzung prüfe Deckenhöhe, Personen und offene Küchen im [BTU-Rechner](https://getecoback.com/guide/btu-rechner.html).
 
 {"jsonrpc":"2.0","id":10,"method":"tools/call","params":{"name":"btu_empfehlung","arguments":{"qm":20,"sonne":"normal"}}}
+
+## Heizlast vor dem Gerätekauf prüfen
+
+Bei 60 m² liefert das Rechenmodell 3.600 W bei guter, 4.800 W bei mittlerer und 6.000 W bei schlechter Dämmung. Vor einem Kauf [Raumheizlast und vorhandene Stromkreise prüfen lassen](https://getecoback.com/guide/infrarotheizung-watt-rechner.html#ueber-2-000-watt-besser-zwei-panels). Ohne gemessene Fläche zeigt das Tool ein Beispiel für 20 m² und bittet um die tatsächliche Fläche.
+
+{"jsonrpc":"2.0","id":11,"method":"tools/call","params":{"name":"geraet_wahl","arguments":{"problem":"zu_kalt","qm":60}}}
 
 ## Feuchte prüfen: drei kopierbare Aufrufe
 

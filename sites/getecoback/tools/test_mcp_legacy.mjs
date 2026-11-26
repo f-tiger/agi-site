@@ -276,3 +276,39 @@ test('legacy heating watts keep numeric estimates and cite their limits for supp
     assert.doesNotMatch(text,/(?:zwei|2)\s+(?:Infrarot[- ]?)?Panels?\s+verteilen/iu);
   }
 });
+
+test('heating device choice validates measured area and qualifies the existing guides', async () => {
+  const calculator = origin + '/guide/infrarotheizung-watt-rechner.html';
+  const sizing = calculator + '#watt-rechner-raumgroesse-und-daemmung-eingeben';
+  const circuit = calculator + '#ueber-2-000-watt-besser-zwei-panels';
+  const example = await call('geraet_wahl', {problem:'zu_kalt'});
+  assert.equal(example.isError, false);
+  assert.match(example.content[0].text, /Beispiel ohne eigene Flächenangabe für 20 m²/);
+  assert.ok(example.content[0].text.includes(sizing));
+  assert.doesNotMatch(example.content[0].text, /\/guide\/heizung-\d+-qm\.html/);
+  for (const qm of [null,'20',-4,0,3,120.01]) {
+    const invalid = await call('geraet_wahl', {problem:'zu_kalt',qm});
+    assert.equal(invalid.isError, true, JSON.stringify(qm));
+    assert.doesNotMatch(invalid.content[0].text, /https?:\/\//);
+  }
+
+  const boundary = await call('geraet_wahl', {problem:'zu_kalt',qm:20});
+  assert.match(boundary.content[0].text, /1\.200–2\.000 W.*60, 80 oder 100 W\/m².*mittlerer Dämmung sind es ca\. 1\.600 W/);
+  assert.ok(boundary.content[0].text.includes(sizing));
+  assert.ok(boundary.content[0].text.includes(origin + '/guide/heizung-20-qm.html'));
+
+  for (const qm of [20.1,30,40,60,120]) {
+    const result = await call('geraet_wahl', {problem:'zu_kalt',qm});
+    assert.equal(result.isError, false, qm);
+    const answer = result.content[0].text;
+    assert.ok(answer.includes(circuit), answer);
+    assert.doesNotMatch(answer, /\/guide\/heizung-\d+-qm\.html/);
+    assert.doesNotMatch(answer, /amazon\.|[?&]tag=/);
+    if (qm === 60) {
+      assert.match(answer, /3\.600–6\.000 W.*mittlerer Dämmung sind es ca\. 4\.800 W/);
+    }
+  }
+  const html = readFileSync(new URL('guide/infrarotheizung-watt-rechner.html', site),'utf8');
+  assert.ok(html.includes('id="ueber-2-000-watt-besser-zwei-panels"'));
+  assert.ok(html.includes('id="watt-rechner-raumgroesse-und-daemmung-eingeben"'));
+});

@@ -81,7 +81,7 @@
 <article>
   <p><a href="#einrichten">Online verbinden</a> · <a href="#offline-installation">EcoBack lokal installieren</a></p>
   <h2 id="tools">Werkzeuge nach Aufgabe finden</h2>
-  <section id="mcp-catalog" data-catalogue="/assets/mcp-catalogue.json?v=ccad2bc90f74" aria-label="Interaktiver Werkzeugkatalog" hidden>
+  <section id="mcp-catalog" data-catalogue="/assets/mcp-catalogue.json?v=42724478b2c5" aria-label="Interaktiver Werkzeugkatalog" hidden>
     <div class="catalog-filters" hidden>
       <label>Aufgabe oder Werkzeugname <input type="search" autocomplete="off" maxlength="512"></label>
       <label>Kategorie
@@ -133,7 +133,7 @@
 
   <h3>Ausgewählte Werkzeuge und Ratgeber</h3>
   <div class="tool"><strong>entfeuchter_ablaufcheck</strong><p>Liegt der Abfluss höher als der Auslass des Entfeuchters? Prüfe Schlauchgefälle, mögliche Pumpen und Tankbetrieb für dein genaues Modell. <a href="#ablauf-beispiel">Beispiel für den Keller</a></p></div>
-  <div class="tool"><strong>geraet_wahl</strong><p>Der nächste Schritt bei Hitze, Feuchte, Kälte oder stickiger Luft. Bei Feuchte nutzt das Tool dieselben sechs Entscheidungszweige wie die Website: erst messen, weiter beobachten, Ursache klären, kalte Räume prüfen, Wäschekosten vergleichen oder gezielt Geräte vergleichen. Eine Raumfläche allein ergibt keine Liter-Empfehlung.</p></div>
+  <div class="tool"><strong>geraet_wahl</strong><p>Der nächste Schritt bei Hitze, Feuchte, Kälte oder stickiger Luft. Bei Feuchte nutzt das Tool dieselben sechs Entscheidungszweige wie die Website: erst messen, weiter beobachten, Ursache klären, kalte Räume prüfen, Wäschekosten vergleichen oder gezielt Geräte vergleichen. Eine Raumfläche allein ergibt keine Liter-Empfehlung. Bei Kälte zeigt das Tool die Dämmannahmen und führt bei hoher Schätzung zur Prüfung von Heizlast und Stromkreis. <a href="#heizlast-beispiel">Beispiel für 60 m²</a>.</p></div>
   <div class="tool"><strong>btu_empfehlung</strong><p>Empfohlene Kühlleistung (BTU) für einen Raum aus m² und Sonneneinstrahlung, mit passender Geräteklasse. Formel: 340 BTU/m² × Sonnenfaktor.</p></div>
   <div class="tool"><strong>fensterabdichtung_laenge</strong><p>Benötigte Länge einer Fensterabdichtung aus den Flügelmaßen (Umfang = 2 × (Breite + Höhe)), plus passende Konfektionsgröße — für Kipp-, Drehkipp- und Dachfenster.</p></div>
   <div class="tool"><strong>hitzewelle_vorschau</strong><p>Live-Maximaltemperatur der nächsten 3 Tage für Berlin/Frankfurt/München (open-meteo), mit Einordnung ab 28 °C / 32 °C — dieselbe Datenquelle wie das Hitzeband dieser Website.</p></div>
@@ -247,6 +247,10 @@
   <h2 id="btu-beispiel">Kühlleistung für 20 m² abschätzen</h2>
   <p>Bei normaler Sonne ergibt die Faustformel rund 7.000 BTU/h. Für eine genauere Abschätzung prüfe Deckenhöhe, Personen und offene Küchen im <a href="/guide/btu-rechner.html">BTU-Rechner</a>.</p>
   <pre><code>{"jsonrpc":"2.0","id":10,"method":"tools/call","params":{"name":"btu_empfehlung","arguments":{"qm":20,"sonne":"normal"}}}</code></pre>
+
+  <h2 id="heizlast-beispiel">Heizlast vor dem Gerätekauf prüfen</h2>
+  <p>Bei 60 m² liefert das Rechenmodell 3.600 W bei guter, 4.800 W bei mittlerer und 6.000 W bei schlechter Dämmung. Vor einem Kauf <a href="/guide/infrarotheizung-watt-rechner.html#ueber-2-000-watt-besser-zwei-panels">Raumheizlast und vorhandene Stromkreise prüfen lassen</a>. Ohne gemessene Fläche zeigt das Tool ein Beispiel für 20 m² und bittet um die tatsächliche Fläche.</p>
+  <pre><code>{"jsonrpc":"2.0","id":11,"method":"tools/call","params":{"name":"geraet_wahl","arguments":{"problem":"zu_kalt","qm":60}}}</code></pre>
 
   <h2 id="feuchte-beispiele">Feuchte prüfen: drei kopierbare Aufrufe</h2>
   <p>Die Beispiele sind JSON-RPC-Nachrichten für <code>tools/call</code> am Endpoint oben. <code>problem</code> und <code>qm</code> bleiben kompatibel. Bei Feuchte sind <code>purpose</code>, <code>humidity</code> und <code>temperature</code> optional; fehlende Messangaben führen zuerst zum Messen.</p>
