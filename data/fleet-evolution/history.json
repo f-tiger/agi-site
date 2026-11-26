@@ -1,118 +1,5 @@
 [
   {
-    "as_of": "2026-10-27",
-    "fleet": {
-      "sites": 14,
-      "healthy": 31,
-      "membership_ready": 4,
-      "paid_members": null,
-      "active_members": null,
-      "opportunities": 10,
-      "stale_inputs": 0
-    },
-    "actions": [
-      {
-        "site": "agiscorecard",
-        "kind": "membership_observability",
-        "priority": 68,
-        "reason": "membership aggregate counters are unavailable",
-        "evidence": {
-          "admin_ok": false
-        },
-        "mode": "observe"
-      },
-      {
-        "site": "baipiaoji",
-        "kind": "membership_observability",
-        "priority": 68,
-        "reason": "membership aggregate counters are unavailable",
-        "evidence": {
-          "admin_ok": false
-        },
-        "mode": "observe"
-      },
-      {
-        "site": "getecoback",
-        "kind": "membership_observability",
-        "priority": 68,
-        "reason": "membership aggregate counters are unavailable",
-        "evidence": {
-          "admin_ok": false
-        },
-        "mode": "observe"
-      },
-      {
-        "site": "thedollscout",
-        "kind": "membership_observability",
-        "priority": 68,
-        "reason": "membership aggregate counters are unavailable",
-        "evidence": {
-          "admin_ok": false
-        },
-        "mode": "observe"
-      },
-      {
-        "site": "agiscorecard",
-        "kind": "content_gap",
-        "priority": 55,
-        "reason": "rising demand has no matching page; editorial judgement is required",
-        "evidence": {
-          "count": 4,
-          "query": "jim cramer ai chip stocks",
-          "value": 11450
-        },
-        "mode": "queue"
-      },
-      {
-        "site": "getecoback",
-        "kind": "content_gap",
-        "priority": 55,
-        "reason": "rising demand has no matching page; editorial judgement is required",
-        "evidence": {
-          "count": 24,
-          "query": "byecold infrarotheizung",
-          "value": 49950
-        },
-        "mode": "queue"
-      },
-      {
-        "site": "thedollscout",
-        "kind": "content_gap",
-        "priority": 55,
-        "reason": "rising demand has no matching page; editorial judgement is required",
-        "evidence": {
-          "count": 17,
-          "query": "lets try the viral crumbl labubu",
-          "value": 18550
-        },
-        "mode": "queue"
-      },
-      {
-        "site": "getecoback",
-        "kind": "improve_hot_page",
-        "priority": 52,
-        "reason": "prioritize a page with measured reader heat",
-        "evidence": {
-          "page": "/guide/heizluefter-stromsparend.html",
-          "n7": 5,
-          "p7": 1
-        },
-        "mode": "queue"
-      },
-      {
-        "site": "goldrush",
-        "kind": "ai_discovery",
-        "priority": 48,
-        "reason": "referred traffic exists but no AI-assistant referral is measured",
-        "evidence": {
-          "human_pv_28d": 251,
-          "ai_ref_28d": 0
-        },
-        "mode": "queue"
-      }
-    ]
-  },
-  {
     "as_of": "2026-10-28",
     "fleet": {
       "sites": 14,
@@ -4285,6 +4172,159 @@
         "reason": "check source coverage and useful AI arrivals before expanding discovery work; legacy page views do not establish referred people or citations",
         "evidence": {
           "legacy_page_view_events": 2915,
+          "ai_referrer_events": 0
+        },
+        "mode": "queue"
+      }
+    ]
+  },
+  {
+    "as_of": "2026-11-26",
+    "fleet": {
+      "sites": 14,
+      "healthy": 31,
+      "membership_ready": 0,
+      "paid_members": 0,
+      "active_members": 0,
+      "opportunities": 7,
+      "stale_inputs": 0
+    },
+    "actions": [
+      {
+        "site": "agiscorecard",
+        "kind": "membership_health",
+        "priority": 92,
+        "reason": "recent snapshot reported unavailable checkout; check the live API before recovery",
+        "evidence": {
+          "public_ok": true,
+          "ready": false
+        },
+        "mode": "alert"
+      },
+      {
+        "site": "baipiaoji",
+        "kind": "membership_health",
+        "priority": 92,
+        "reason": "recent snapshot reported unavailable checkout; check the live API before recovery",
+        "evidence": {
+          "public_ok": true,
+          "ready": false
+        },
+        "mode": "alert"
+      },
+      {
+        "site": "getecoback",
+        "kind": "membership_health",
+        "priority": 92,
+        "reason": "recent snapshot reported unavailable checkout; check the live API before recovery",
+        "evidence": {
+          "public_ok": true,
+          "ready": false
+        },
+        "mode": "alert"
+      },
+      {
+        "site": "thedollscout",
+        "kind": "membership_health",
+        "priority": 92,
+        "reason": "recent snapshot reported unavailable checkout; check the live API before recovery",
+        "evidence": {
+          "public_ok": true,
+          "ready": false
+        },
+        "mode": "alert"
+      },
+      {
+        "site": "agiscorecard",
+        "kind": "optimize_existing_page",
+        "priority": 80,
+        "reason": "review the source and fit of topic signals mapped to an existing page; missing page-view events do not establish rejected demand",
+        "evidence": {
+          "count": 2,
+          "query": "when are 13f filings due",
+          "page": "ai-stock-exposure.html",
+          "value": 420250
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "agiscorecard",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "topic-signal overlap has no matching page; apply the buyer, source, country and distribution gates before expansion",
+        "evidence": {
+          "count": 4,
+          "query": "rzai stock",
+          "value": 17900
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "getecoback",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "topic-signal overlap has no matching page; apply the buyer, source, country and distribution gates before expansion",
+        "evidence": {
+          "count": 22,
+          "query": "makita heizlüfter",
+          "value": 88050
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "thedollscout",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "topic-signal overlap has no matching page; apply the buyer, source, country and distribution gates before expansion",
+        "evidence": {
+          "count": 14,
+          "query": "cat mode labubu",
+          "value": 86750
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "agiscorecard",
+        "kind": "improve_hot_page",
+        "priority": 52,
+        "reason": "review observed page-event activity and source quality; activity is not verified people or buying intent",
+        "evidence": {
+          "page": "/agents/",
+          "n7": 203,
+          "p7": 76
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "getecoback",
+        "kind": "improve_hot_page",
+        "priority": 52,
+        "reason": "review observed page-event activity and source quality; activity is not verified people or buying intent",
+        "evidence": {
+          "page": "/waeschetrockner-oder-luftentfeuchter.html",
+          "n7": 32,
+          "p7": 4
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "goldrush",
+        "kind": "ai_attribution_review",
+        "priority": 48,
+        "reason": "check source coverage and useful AI arrivals before expanding discovery work; legacy page views do not establish referred people or citations",
+        "evidence": {
+          "legacy_page_view_events": 549,
+          "ai_referrer_events": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "thedollscout",
+        "kind": "ai_attribution_review",
+        "priority": 48,
+        "reason": "check source coverage and useful AI arrivals before expanding discovery work; legacy page views do not establish referred people or citations",
+        "evidence": {
+          "legacy_page_view_events": 2961,
           "ai_referrer_events": 0
         },
         "mode": "queue"

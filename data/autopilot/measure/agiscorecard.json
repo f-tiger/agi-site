@@ -3,7 +3,7 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 15,
+    "n": 16,
     "q": "tool:verdicts"
    },
    {
@@ -11,16 +11,16 @@
     "q": "tool:portfolio_returns"
    },
    {
-    "n": 12,
-    "q": "tool:claim_ledger https://goldrush.agiscorecard."
-   },
-   {
     "n": 11,
     "q": "tool:thesis_tracker"
    },
    {
     "n": 10,
-    "q": "tool:sunwatch_ledger"
+    "q": "tool:claim_ledger https://goldrush.agiscorecard."
+   },
+   {
+    "n": 8,
+    "q": "tool:search_mcp_catalog"
    },
    {
     "n": 8,
@@ -28,10 +28,10 @@
    },
    {
     "n": 7,
-    "q": "tool:search_mcp_catalog"
+    "q": "tool:sunwatch_ledger"
    },
    {
-    "n": 7,
+    "n": 6,
     "q": "tool:invest_positions"
    },
    {
@@ -44,14 +44,14 @@
    }
   ]
  },
- "fetched": "2026-11-25",
+ "fetched": "2026-11-26",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
   "/agents/": {
-   "n7": 181,
-   "p7": 77
+   "n7": 203,
+   "p7": 76
   }
  },
  "site": "agiscorecard",

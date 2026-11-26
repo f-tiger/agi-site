@@ -2,24 +2,28 @@
  "extra": {
   "events": {
    "affiliate_click": {
-    "n7": 8,
-    "p7": 8
+    "n7": 6,
+    "p7": 9
    },
    "btu_calc": {
-    "n7": 5,
+    "n7": 7,
     "p7": 2
    },
+   "buyer_result": {
+    "n7": 1,
+    "p7": 0
+   },
    "buyer_view": {
-    "n7": 0,
+    "n7": 1,
     "p7": 1
    },
    "cold_now": {
-    "n7": 79,
-    "p7": 43
+    "n7": 103,
+    "p7": 50
    },
    "feuchte_now": {
-    "n7": 91,
-    "p7": 24
+    "n7": 61,
+    "p7": 63
    },
    "laundry_view": {
     "n7": 6,
@@ -30,24 +34,24 @@
     "p7": 0
    },
    "page_view": {
-    "n7": 367,
-    "p7": 132
+    "n7": 354,
+    "p7": 211
    },
    "popup_click": {
-    "n7": 2,
+    "n7": 1,
     "p7": 2
    },
    "popup_close": {
-    "n7": 7,
-    "p7": 6
+    "n7": 10,
+    "p7": 5
    },
    "popup_view": {
-    "n7": 19,
-    "p7": 16
+    "n7": 21,
+    "p7": 15
    },
    "strom_now": {
-    "n7": 37,
-    "p7": 6
+    "n7": 39,
+    "p7": 14
    },
    "strompreis_api": {
     "n7": 0,
@@ -64,30 +68,26 @@
   },
   "zero_hit_records": 0
  },
- "fetched": "2026-11-25",
+ "fetched": "2026-11-26",
  "kind": "eco-trend",
  "notes": [],
  "ok": true,
  "pages": {
   "/": {
-   "n7": 10,
-   "p7": 5
-  },
-  "/en/guide/heated-airer-vs-dehumidifier.html": {
-   "n7": 4,
-   "p7": 1
-  },
-  "/en/guide/portable-ac-smells-musty.html": {
-   "n7": 3,
-   "p7": 1
-  },
-  "/en/guide/tilt-and-turn-windows-winter-condensation.html": {
-   "n7": 9,
-   "p7": 2
+   "n7": 7,
+   "p7": 6
   },
   "/geraete-austausch-rechner.html": {
    "n7": 6,
    "p7": 1
+  },
+  "/guide/delonghi-pac-n90-test.html": {
+   "n7": 6,
+   "p7": 0
+  },
+  "/guide/duschen-kosten-rechner.html": {
+   "n7": 6,
+   "p7": 0
   },
   "/guide/fenster-beschlagen-aussen.html": {
    "n7": 9,
@@ -97,7 +97,15 @@
    "n7": 11,
    "p7": 0
   },
+  "/guide/fensterabdichtung-selber-bauen.html": {
+   "n7": 9,
+   "p7": 2
+  },
   "/guide/heizkosten-vergleich-rechner.html": {
+   "n7": 13,
+   "p7": 0
+  },
+  "/guide/klarstein-kraftwerk-smart-12k-test.html": {
    "n7": 8,
    "p7": 0
   },
@@ -110,60 +118,56 @@
    "p7": 0
   },
   "/guide/klimaanlage-wann-kaufen.html": {
-   "n7": 15,
-   "p7": 5
+   "n7": 16,
+   "p7": 7
   },
   "/guide/lichterkette-stromkosten.html": {
    "n7": 10,
    "p7": 0
   },
   "/guide/luftbefeuchter-ratgeber.html": {
-   "n7": 19,
-   "p7": 11
-  },
-  "/guide/luftbefeuchter-stromverbrauch.html": {
-   "n7": 8,
-   "p7": 0
+   "n7": 13,
+   "p7": 24
   },
   "/guide/luftentfeuchter-keller.html": {
-   "n7": 11,
-   "p7": 0
+   "n7": 9,
+   "p7": 5
   },
   "/guide/luftentfeuchter-ratgeber.html": {
-   "n7": 6,
+   "n7": 8,
    "p7": 6
   },
-  "/guide/midea-portasplit-ausverkauft-alternativen.html": {
-   "n7": 6,
+  "/guide/pinguino-pac-ex105-test.html": {
+   "n7": 5,
    "p7": 0
   },
   "/guide/richtig-lueften-im-winter.html": {
-   "n7": 28,
-   "p7": 1
+   "n7": 12,
+   "p7": 17
   },
   "/guide/smarte-heizkoerperthermostate-lohnen-sich.html": {
-   "n7": 30,
+   "n7": 31,
    "p7": 0
   },
   "/guide/thermovorhang-ratgeber.html": {
-   "n7": 13,
-   "p7": 0
+   "n7": 7,
+   "p7": 6
   },
   "/guide/waesche-trocknen-wohnung.html": {
    "n7": 6,
    "p7": 0
   },
   "/guide/was-bedeutet-btu.html": {
-   "n7": 4,
+   "n7": 5,
    "p7": 2
   },
   "/mcp.html": {
    "n7": 11,
-   "p7": 1
+   "p7": 2
   },
   "/produkte.html": {
-   "n7": 13,
-   "p7": 11
+   "n7": 15,
+   "p7": 16
   },
   "/waeschetrockner-oder-luftentfeuchter.html": {
    "n7": 32,

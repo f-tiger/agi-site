@@ -1,4 +1,4 @@
-# 舰队需求摘要 · 2026-11-25
+# 舰队需求摘要 · 2026-11-26
 
 零 AI 汇总;每条带日期;它是**选题输入不是选题依据**,任何由此引出的页面仍过三门(数据/需求/变现)。
 
@@ -25,7 +25,7 @@
   - 门槛/反证: status is rejected；Swydo、AgencyAnalytics 与 Whatagraph 已覆盖通用 AI 报告；存在满意用户反证。
 
 ## 源状态(抓不到就写出来,不复用旧数据)
-- softwarerecs: ok, 4 条
+- softwarerecs: ok, 5 条
 - bluesky_wish: **不可用** — "is there an app that" HTTP 403; "is there a tool that" HTTP 403; "i wish there was an app" HTTP 403
 - lemmy_wish: **不可用** — zero request-shaped posts this week
 - producthunt: ok, 30 条
@@ -34,21 +34,21 @@
 - reddit_wish: **不可用** — stopped 2026-09-28: public JSON 403 for 14+ days (pre-registered rule); runs again only via OAuth
 - hn_ask: ok, 3 条
 - hn_show: ok, 30 条
-- hn_top_ai: ok, 2 条
-- 雷达快照日期:2026-11-24(1 天前)
+- hn_top_ai: ok, 7 条
+- 雷达快照日期:2026-11-25(1 天前)
 
 ## 候选 idea 源探针(只报状态,200 且有内容才值得写解析器)
 - betalist: HTTP 404 text/html; charset=UTF-8 1722B
 - indiehackers_rss: HTTP 403 text/html; charset=UTF-8 5659B
 - producthunt_topic_ai: HTTP 403 text/html; charset=UTF-8 5759B
-- yc_rfs: HTTP 200 text/html; charset=utf-8 98149B
+- yc_rfs: HTTP 200 text/html; charset=utf-8 98185B
 - reddit_rss_public: HTTP 404 application/atom+xml; charset=UTF-8 266B
 - reddit_json_public: HTTP 403 text/html 190238B
 - reddit_oauth_endpoint: HTTP 401 application/json; charset=UTF-8 41B
 - stackexchange_softwarerecs: HTTP 200 application/json; charset=utf-8 380B
 - bluesky_public_search: HTTP 403 text/html 2334B
-- bluesky_alt_host: HTTP 200 application/json; charset=utf-8 1134B
-- lemmy_world_search: HTTP 200 application/json 28416B
+- bluesky_alt_host: HTTP 200 application/json; charset=utf-8 1037B
+- lemmy_world_search: HTTP 200 application/json 6341B
 
 - Reddit 访问通道:public-json(oauth = owner 已注册官方 app;public-json = 未鉴权,runner 09-13 起逐板 403)
 ## 求做帖(Reddit request 板 + wish 句式 + Ask HN + Software Recommendations SE + Bluesky 求做搜索)
@@ -57,6 +57,7 @@
 - ↑3 · ask_hn · Windows malware removal in Bay Area — https://news.ycombinator.com/item?id=50551096
 - ↑3 · softwarerecs · What screenshot software allows the user to capture solely a specific window? — https://softwarerecs.stackexchange.com/questions/95798/what-screenshot-software-allows-the-user-to-capture-solely-a-specific-window
 - ↑1 · ask_hn · How to make Three.js support real-time path tracing? — https://news.ycombinator.com/item?id=50601473
+- ↑0 · softwarerecs · How do I give my Hermes agents permanent memory, institutional knowledge, and intelligent model routing? — https://softwarerecs.stackexchange.com/questions/95836/how-do-i-give-my-hermes-agents-permanent-memory-institutional-knowledge-and-in
 - ↑0 · softwarerecs · Looking for the Best Battery App — https://softwarerecs.stackexchange.com/questions/95817/looking-for-the-best-battery-app
 - ↑0 · softwarerecs · How to Transfer Photos from iCloud Photos to Google Drive — https://softwarerecs.stackexchange.com/questions/95812/how-to-transfer-photos-from-icloud-photos-to-google-drive
 - ↑0 · softwarerecs · What software can help me organize and manage personal files stored across multiple cloud storage services? — https://softwarerecs.stackexchange.com/questions/95804/what-software-can-help-me-organize-and-manage-personal-files-stored-across-multi
@@ -67,62 +68,62 @@
 
 ## agiscorecard
 **Trends rising(逐 seed 时效)**
-- [5d] **artificial general intelligence** → (空)
-- [5d] **agi timeline** → (空)
-- [4d] **13f filings** → when are 13f filings due (420250)
-- [4d] **ai stocks** → top tourist attractions in paris (45100), how to bake a cake (37350), cheapest flights to tokyo (33850), how to make sushi (32800)
+- [6d] **artificial general intelligence** → (空)
+- [6d] **agi timeline** → (空)
+- [5d] **13f filings** → when are 13f filings due (420250)
+- [5d] **ai stocks** → top tourist attractions in paris (45100), how to bake a cake (37350), cheapest flights to tokyo (33850), how to make sushi (32800)
 **创业雷达词表命中(PH/HN/Reddit)**
-- Cullman
-- Granular.Build
-- Viktor Code
-- tday.com
-- Claude Ship
-- Clam AI
-- Is there a way to get a human at OpenAI support?
-- Show HN: Genesis Map – Visualize your agent's changes. See where they can break
-**autopilot 需求队列**:gaps **4** / covered 2 · heat: measured 2026-11-25 (1 pages); no notes(gaps 量的是标题与开篇有没有接住,不是站内有没有这一页——建页前先 grep 正文)
+- How do I give my Hermes agents permanent memory, institutional knowledge, and intelligent model routing?
+- Tendeck
+- Continual-ARC
+- Koed
+- Canva MCP
+- Qube
+- MemoryWorks
+- VibeCode.surf
+**autopilot 需求队列**:gaps **4** / covered 2 · heat: measured 2026-11-26 (1 pages); no notes(gaps 量的是标题与开篇有没有接住,不是站内有没有这一页——建页前先 grep 正文)
 - kind=value · match=0.5 · page=ai-stock-exposure.html · q=rzai stock
 - kind=value · match=0.47 · page=invest/cathie-wood.html · q=ai boom top stocks nvidia tsmc
 - kind=value · match=0.517 · page=ai-tools.html · q=energy fuels stock
-**第一方需求**:`{"search_no_result": [], "site_search": [{"n": 15, "q": "tool:verdicts"}, {"n": 14, "q": "tool:portfolio_returns"}, {"n": 12, "q": "tool:claim_ledger https://goldrush.agiscorecard."}, {"n": 11, "q": "`
+**第一方需求**:`{"search_no_result": [], "site_search": [{"n": 16, "q": "tool:verdicts"}, {"n": 14, "q": "tool:portfolio_returns"}, {"n": 11, "q": "tool:thesis_tracker"}, {"n": 10, "q": "tool:claim_ledger https://gol`
 
 ## baipiaoji
 **Trends rising(逐 seed 时效)**
-- [8d] **deepseek** → deepseek login (new), deepseek news (new)
+- [9d] **deepseek** → deepseek login (new), deepseek news (new)
 - [STALE] **midjourney** → midjourney v8.2 (30800), seedance 2.5 (4900), runway gen-2 (4750), software testing strategies (2150)
 - [STALE] **suno** → bmg suno (15100), jason isbell suno lawsuit (14150), suno artist incubator program (8050), treblo (6800)
-- [7d] **sora** → when is sora coming to fortnite (24350), sora release date fortnite speculation (9400), when will sora be in fortnite (5800), kingdom hearts grandista sora figure (4100)
-- [6d] **gemini** → gemini ai (new), gemini neon (new), gemini google (new), gemini notebook (new)
-- [6d] **perplexity** → perplexity ai (new), perplexity computer (new), perplexity careers (new), perplexity pro (new)
-- [8d] **cursor** → cursor usage (new), cursor student plan (new)
-- [7d] **claude code** → apple smartring abraham quiros villalba (32000), abrahamquirosvillalba .com (30950), how to bake a cake (20450), milliondollarthings.com crypto (17800)
+- [8d] **sora** → when is sora coming to fortnite (24350), sora release date fortnite speculation (9400), when will sora be in fortnite (5800), kingdom hearts grandista sora figure (4100)
+- [7d] **gemini** → gemini ai (new), gemini neon (new), gemini google (new), gemini notebook (new)
+- [7d] **perplexity** → perplexity ai (new), perplexity computer (new), perplexity careers (new), perplexity pro (new)
+- [9d] **cursor** → cursor usage (new), cursor student plan (new)
+- [8d] **claude code** → apple smartring abraham quiros villalba (32000), abrahamquirosvillalba .com (30950), how to bake a cake (20450), milliondollarthings.com crypto (17800)
 **创业雷达词表命中(PH/HN/Reddit)**
 - Show HN: Juncts, one DM inbox for five apps that Claude and ChatGPT can work in
-- Show HN: Second Brain – One Memory Shared by Claude, ChatGPT and Cursor via MCP
+- Gemini refused to give me the lyrics to Twinkle Twinkle Little Star
 **autopilot 需求队列**:该站未纳入 autopilot
 
 ## getecoback
 **Trends rising(逐 seed 时效)**
-- [2d] **portable air conditioner** → (空)
-- [1d] **dehumidifier** → drieaz dehumidifier (140), what is the difference between a humidifier and a dehumidifier (130), difference between humidifier and dehumidifier (110), best small dehumidifier for bathroom (100)
-- [1d] **condizionatore portatile** → condizionatore portatile 12v per auto camper furgone (32600), condizionatore portatile caldo freddo (250), equation condizionatore portatile (250), condizionatore portatile con pompa di calore (130)
-- [STALE] **deumidificatore** → black friday deumidificatore (29500), deumidificatore ariston deos 20 (16250), deumidificatore per asciugare i panni (11900), umidificatore ambiente (11500)
-- [8d] **klimaanlage** → black friday klimaanlage (1500), heizen mit klimaanlage (550), klimaanlage heizen (500), klimaanlage zum heizen (500)
-- [7d] **schimmel entfernen** → (空)
-- [6d] **infrarotheizung** → (空)
-- [1d] **luftentfeuchter** → ukraine krim brücke (66850), mogelpackung (58650), amazon verliert 40 satelliten (58200), christian lell privatinsolvenz (50900)
-- [1d] **heizlüfter** → auto heizlüfter mit akku (112350), tronic heizlüfter (62800), heizlüfter oder infrarotheizung (59850), heizlüfter mit zeitschaltuhr (57450)
-- [5d] **kaffeevollautomat** → siemens kaffeevollautomat eq.6 plus s300 te653501de (22350), siemens kaffeevollautomat eq.6 plus s400 te654509de (14200), philips kaffeevollautomat 6000 serie (9650), siemens te651509de eq.6 plus s100 kaffeevollautomat (7600)
-- [4d] **akku staubsauger** → (空)
-- [3d] **matratze** → emma flip matratze (140), beco maxima plus (140), betten 180x200 mit matratze und lattenrost (120), emma original pro matratze (90)
+- [3d] **portable air conditioner** → (空)
+- [2d] **dehumidifier** → drieaz dehumidifier (140), what is the difference between a humidifier and a dehumidifier (130), difference between humidifier and dehumidifier (110), best small dehumidifier for bathroom (100)
+- [2d] **condizionatore portatile** → condizionatore portatile 12v per auto camper furgone (32600), condizionatore portatile caldo freddo (250), equation condizionatore portatile (250), condizionatore portatile con pompa di calore (130)
+- [1d] **deumidificatore** → deumidificatore casa (new), deumidificatore portatile (new), deumidificatore dyson (new), deumidificatore in inglese (new)
+- [1d] **klimaanlage** → black friday klimaanlage (1950), infrarotheizung (1050), heizen mit klimaanlage (600), klimaanlage heizen (550)
+- [8d] **schimmel entfernen** → (空)
+- [7d] **infrarotheizung** → (空)
+- [2d] **luftentfeuchter** → ukraine krim brücke (66850), mogelpackung (58650), amazon verliert 40 satelliten (58200), christian lell privatinsolvenz (50900)
+- [1d] **heizlüfter** → akku heizlüfter auto (171250), auto heizlüfter mit akku (113100), makita heizlüfter (88050), makita akku heizlüfter (59550)
+- [6d] **kaffeevollautomat** → siemens kaffeevollautomat eq.6 plus s300 te653501de (22350), siemens kaffeevollautomat eq.6 plus s400 te654509de (14200), philips kaffeevollautomat 6000 serie (9650), siemens te651509de eq.6 plus s100 kaffeevollautomat (7600)
+- [5d] **akku staubsauger** → (空)
+- [4d] **matratze** → emma flip matratze (140), beco maxima plus (140), betten 180x200 mit matratze und lattenrost (120), emma original pro matratze (90)
 **创业雷达词表命中(PH/HN/Reddit)**
 - (无)
-**autopilot 需求队列**:gaps **26** / covered 11 · heat: measured 2026-11-25 (25 pages); no notes(gaps 量的是标题与开篇有没有接住,不是站内有没有这一页——建页前先 grep 正文)
-- kind=value · match=0.5 · page=guide/akku-heizluefter.html · q=tronic heizlüfter
-- kind=value · match=0.5 · page=guide/akku-heizluefter.html · q=kaufland heizlüfter
+**autopilot 需求队列**:gaps **22** / covered 16 · heat: measured 2026-11-26 (25 pages); no notes(gaps 量的是标题与开篇有没有接住,不是站内有没有这一页——建页前先 grep 正文)
+- kind=value · match=0.5 · page=guide/akku-heizluefter.html · q=makita heizlüfter
 - kind=value · match=0.5 · page=guide/akku-heizluefter.html · q=9kw heizlüfter
+- kind=value · match=0.18 · page=guide/bei-hitze-schlafen.html · q=siemens kaffeevollautomat eq.6 plus s300
 **第一方需求**:`{"zero_hit_records": 0}`
-**季节日历**(5 年季节性 × 德语页标题覆盖;峰值月在 42 天内开始;数据 2026-11-10,15 天前,锚 heizlüfter)
+**季节日历**(5 年季节性 × 德语页标题覆盖;峰值月在 42 天内开始;数据 2026-11-10,16 天前,锚 heizlüfter)
 | 词 | 峰值 | 峰值月 | 距峰值月 | 冬÷九月 | 标题覆盖页 | 状态 |
 |---|---|---|---|---|---|---|
 | matratze | 163.1 | 11 月 | 本月 | 0.99 | 0 | 已裁定:站外(离题大词)(2026-09-15) |
@@ -142,19 +143,19 @@
 | richtig heizen | 2.8 | 11 月 | 本月 | 1.16 | 0 | **未覆盖 · 待过三门** |
 | konvektorheizung | 1.3 | 11 月 | 本月 | 0.77 | 0 | 已裁定:rising 假象,5 年峰值 1,2(2026-09-15) |
 | wäsche trocknen wohnung | 0.9 | 11 月 | 本月 | 1.81 | 1 | 量太小(峰值 <2.0) |
-| schimmel | 119.9 | 12 月 | 6 天 | 1.44 | 8 | 已覆盖 8 页 |
-| luftbefeuchter | 21.7 | 12 月 | 6 天 | 2.72 | 3 | 已覆盖 3 页 |
-| schimmel wand | 11.8 | 12 月 | 6 天 | 2.66 | 1 | 已覆盖 1 页 |
-| schimmel fenster | 4.6 | 12 月 | 6 天 | 4.03 | 1 | 已覆盖 1 页 |
-| fenster abdichten | 3.0 | 12 月 | 6 天 | 0.96 | 2 | 已覆盖 2 页 |
-| schwarzer schimmel | 2.9 | 12 月 | 6 天 | 1.62 | 0 | 已裁定:菌种/健康声明边界;扩展条件挂 eco-schimmel-fenster-1213(2026-09-09) |
-| schimmel schlafzimmer | 2.3 | 12 月 | 6 天 | 4.12 | 0 | 已裁定:预登记:eco-schimmel-fenster-1213 赢了才补(2026-09-15) |
-| schimmel tapete | 2.3 | 12 月 | 6 天 | 2.18 | 0 | 已裁定:预登记:eco-schimmel-fenster-1213 赢了才补(2026-09-15) |
+| schimmel | 119.9 | 12 月 | 5 天 | 1.44 | 8 | 已覆盖 8 页 |
+| luftbefeuchter | 21.7 | 12 月 | 5 天 | 2.72 | 3 | 已覆盖 3 页 |
+| schimmel wand | 11.8 | 12 月 | 5 天 | 2.66 | 1 | 已覆盖 1 页 |
+| schimmel fenster | 4.6 | 12 月 | 5 天 | 4.03 | 1 | 已覆盖 1 页 |
+| fenster abdichten | 3.0 | 12 月 | 5 天 | 0.96 | 2 | 已覆盖 2 页 |
+| schwarzer schimmel | 2.9 | 12 月 | 5 天 | 1.62 | 0 | 已裁定:菌种/健康声明边界;扩展条件挂 eco-schimmel-fenster-1213(2026-09-09) |
+| schimmel schlafzimmer | 2.3 | 12 月 | 5 天 | 4.12 | 0 | 已裁定:预登记:eco-schimmel-fenster-1213 赢了才补(2026-09-15) |
+| schimmel tapete | 2.3 | 12 月 | 5 天 | 2.18 | 0 | 已裁定:预登记:eco-schimmel-fenster-1213 赢了才补(2026-09-15) |
 读法:数值只在本文件内可比(与 rising 不可比);「未覆盖 · 待过三门」才是候选,仍要过需求/变现门;过了门的写进扩展队列,每天最多建一页(2026-09-24 起不再等 eco-new-page-discovery-1020,新页的发现面由首页「Neu im Ratgeber」块承担,是否奏效看 eco-newest-block-1008)。
 **扩展队列**(更新 2026-11-06;blocked 1 · built 11 · gated 1 · queued 1 · rejected 9 · removed 1 · withdrawn 3;**可建 <3,当天先补货**)
 - `heizluefter-riecht-verbrannt` — Heizlüfter riecht verbrannt: Staub, Erstbetrieb oder Defekt? · 待办:Find a manufacturer manual or safety source for the first-use smell before stating it; otherwise leave that paragraph out. Safety wording as schaltet-sich-aus: 
 **Deal-Kalender**(Amazon 活动;data/deal-calendar.json)
-- Black Friday 2026-11-27(2 天后)· **未公告:去 aboutamazon.de 查,填进 deal-calendar.json 才会出横幅**
+- Black Friday 2026-11-27(1 天后)· **未公告:去 aboutamazon.de 查,填进 deal-calendar.json 才会出横幅**
 
 ## buysomething
 **Trends rising(逐 seed 时效)**
@@ -168,27 +169,26 @@
 - [STALE] **solar camping lights** → (空)
 **创业雷达词表命中(PH/HN/Reddit)**
 - (无)
-**autopilot 需求队列**:gaps **0** / covered 0 · heat: measured 2026-11-25 (0 pages); no notes
+**autopilot 需求队列**:gaps **0** / covered 0 · heat: measured 2026-11-26 (0 pages); no notes
 **第一方需求**:`{"picks": {"bottle-warmer": {"open": 1, "out": 0}, "hair-dryer": {"open": 1, "out": 0}, "led-mask": {"open": 3, "out": 0}, "mamian-skirt": {"open": 3, "out": 0}, "massage-gun": {"open": 1, "out": 0}, `
 
 ## gridlings
 **Trends rising(逐 seed 时效)**
 - (无 rising 文件)
 **创业雷达词表命中(PH/HN/Reddit)**
-- Mystonie
-- Show HN: How 80s C64 games made 3 voices sound like a band – now with a tracker
+- (无)
 **autopilot 需求队列**:gaps **0** / covered 0 · heat: no public aggregate endpoint on this site — heat needs eithe
 
 ## thedollscout
 **Trends rising(逐 seed 时效)**
-- [3d] **labubu** → cat mode labubu (86750), labubu cat mode on (30600), labubu costume for kids (12050), maine coon labubu (10550)
+- [4d] **labubu** → cat mode labubu (86750), labubu cat mode on (30600), labubu costume for kids (12050), maine coon labubu (10550)
 - [STALE] **fake labubu** → fake labubu dolls (new), fake labubu name (new), fake labubu amazon (new), fake labubu feet (new)
 - [STALE] **pop mart** → hirono mist walker (9350), hirono after dark (7950), pop mart monster hunter (1200), nightmare before christmas pop mart (800)
 - [STALE] **pdf accessibility** → how to bake a cake (1300), best time to visit maldives (1250), cheapest flights to tokyo (900), best laptop for work (850)
 - [STALE] **pdf remediation** → (空)
 - [STALE] **compare pdf** → cheapest flights to tokyo (9100), compare and contrast essay examples pdf (1500), how to bake a cake (1450), how to make sushi (600)
-- [3d] **jellycat** → bizzlestomp bear jellycat (25800), costco jellycat advent calendar (21350), advent calendar (8050), jellycat advent calendar (7400)
-- [2d] **sonny angel** → sonny angel cat christmas series (new)
+- [4d] **jellycat** → bizzlestomp bear jellycat (25800), costco jellycat advent calendar (21350), advent calendar (8050), jellycat advent calendar (7400)
+- [3d] **sonny angel** → sonny angel cat christmas series (new)
 **创业雷达词表命中(PH/HN/Reddit)**
 - (无)
 **autopilot 需求队列**:gaps **14** / covered 3 · heat: no public aggregate endpoint on this site — heat needs eithe(gaps 量的是标题与开篇有没有接住,不是站内有没有这一页——建页前先 grep 正文)
@@ -211,60 +211,61 @@
 **autopilot 需求队列**:该站未纳入 autopilot
 
 ## 机会撮合(reddit 请求 × Trends rising × PH/HN 供给;data/autopilot/opportunities.json)
-- 候选 6 · 趋势主题重合 0 · 重现 0 · 已有人做 0(生成 2026-11-24;Reddit 源 ok:{'reddit_requests': False, 'reddit_wish': False, 'reddit_vertical': False, 'hn_ask': True, 'softwarerecs': True, 'bluesky_wish': False, 'lemmy_wish': False, 'reddit_access': 'public-json'})
+- 候选 7 · 趋势主题重合 0 · 重现 0 · 已有人做 0(生成 2026-11-25;Reddit 源 ok:{'reddit_requests': False, 'reddit_wish': False, 'reddit_vertical': False, 'hn_ask': True, 'softwarerecs': True, 'bluesky_wish': False, 'lemmy_wish': False, 'reddit_access': 'public-json'})
 - 旧字段 demand-confirmed 仅指与 Google Trends 的主题重合，不代表客户确认、独立买家数或付费意愿；以下候选仍须读取原帖和核验客户行动。
 - [scout] what screenshot software allows the user to capture solely a specific window · 1 天 · 站 -
 - [scout] windows malware removal in bay area · 1 天 · 站 -
 - [scout] is there a way to get a human at openai support · 1 天 · 站 -
+- [scout] how do i give my hermes agents permanent memory institutional knowledge and inte · 1 天 · 站 -
 - [scout] what software can help me organize and manage personal files stored across multi · 1 天 · 站 -
 - [scout] how to make three js support real time path tracing · 1 天 · 站 -
 - [scout] how to transfer photos from icloud photos to google drive · 1 天 · 站 -
 
 ## AI 助手引荐(28 天窗,真人 pv 里 referrer 是 ChatGPT/Perplexity/Claude/Copilot 等)
-- 舰队合计 **20** 次 / 真人 pv 81600,剔除已标记噪音站 10264(快照 2026-11-24;09-12 手测基线 69)
-- 其中 claude.ai **1** 次(可能含舰队自己在 claude.ai/code 里的点击,分不开所以不剔除;不含它是 19 次。判定线照旧读合计)
-- baipiaoji: 11 / 615 pv · www.perplexity.ai 9, kagi.com 2
-- agiscorecard: 3 / 66734 pv · kagi.com 2, claude.ai 1 · ⚠ pv 不是读者数:server-side pageviews; JS page_view beacon 1,641/28d on 2026-09-23
-- gridlings: 2 / 4128 pv · https://www.doubao.com/ 2
-- gamesledger: 2 / 1009 pv · kagi.com 2
-- getecoback: 1 / 522 pv · www.perplexity.ai 1
+- 舰队合计 **19** 次 / 真人 pv 82166,剔除已标记噪音站 10333(快照 2026-11-25;09-12 手测基线 69)
+- 其中 claude.ai **1** 次(可能含舰队自己在 claude.ai/code 里的点击,分不开所以不剔除;不含它是 18 次。判定线照旧读合计)
+- baipiaoji: 10 / 597 pv · www.perplexity.ai 8, kagi.com 2
+- agiscorecard: 3 / 67178 pv · kagi.com 2, claude.ai 1 · ⚠ pv 不是读者数:server-side pageviews; JS page_view beacon 1,641/28d on 2026-09-23
+- gridlings: 2 / 4150 pv · https://www.doubao.com/ 2
+- gamesledger: 2 / 1023 pv · kagi.com 2
+- getecoback: 1 / 707 pv · www.perplexity.ai 1
 - buysomething: 1 / 346 pv · https://source.agiscorecard.com/?utm_source=chatgpt.com 1
-- thedollscout: 0 / 2915 pv · —
-- goldrush: 0 / 729 pv · —
-- after35: 0 / 1158 pv · — · ⚠ pv 不是读者数:0 outside referrers and 0 events in 28d on 2026-09-23
-- learn: 0 / 520 pv · — · ⚠ pv 不是读者数:0 outside referrers and 0 events in 28d on 2026-09-23
-- fanzha: 0 / 529 pv · — · ⚠ pv 不是读者数:0 outside referrers and 0 events in 28d on 2026-09-23
-- firstjob: 0 / 508 pv · — · ⚠ pv 不是读者数:0 outside referrers and 0 events in 28d on 2026-09-23
-- codeword: 0 / 1006 pv · — · ⚠ pv 不是读者数:0 outside referrers and 0 events in 28d on 2026-09-23
-- powerbill: 0 / 881 pv · — · ⚠ pv 不是读者数:0 outside referrers and 0 events in 28d on 2026-09-23
-- AI 占外部到达(渠道构成快照 2026-11-24,pulse 口径,agi 为服务端计数;只列外部到达 ≥20 且 AI>0 的站):agiscorecard 3/284 = 1.1% · baipiaoji 23/612 = 3.8% · getecoback 1/230 = 0.4% · gridlings 2/58 = 3.4% · gamesledger 2/58 = 3.4%
+- thedollscout: 0 / 2961 pv · —
+- goldrush: 0 / 549 pv · —
+- after35: 0 / 1177 pv · — · ⚠ pv 不是读者数:0 outside referrers and 0 events in 28d on 2026-09-23
+- learn: 0 / 526 pv · — · ⚠ pv 不是读者数:0 outside referrers and 0 events in 28d on 2026-09-23
+- fanzha: 0 / 546 pv · — · ⚠ pv 不是读者数:0 outside referrers and 0 events in 28d on 2026-09-23
+- firstjob: 0 / 526 pv · — · ⚠ pv 不是读者数:0 outside referrers and 0 events in 28d on 2026-09-23
+- codeword: 0 / 1001 pv · — · ⚠ pv 不是读者数:0 outside referrers and 0 events in 28d on 2026-09-23
+- powerbill: 0 / 879 pv · — · ⚠ pv 不是读者数:0 outside referrers and 0 events in 28d on 2026-09-23
+- AI 占外部到达(渠道构成快照 2026-11-25,pulse 口径,agi 为服务端计数;只列外部到达 ≥20 且 AI>0 的站):agiscorecard 3/305 = 1.0% · baipiaoji 22/593 = 3.7% · getecoback 1/255 = 0.4% · gridlings 2/58 = 3.4% · gamesledger 2/59 = 3.4%
 
 ## 渠道构成(28 天窗;`search` 指真正的搜索引擎引荐,不是排名)
-- 舰队合计(快照 2026-11-24):search 1154 · ai 31 · fleet 40 · social 5 · self 20017 · direct 60229 · other 121
-- baipiaoji: 搜索 548 / AI 23 / 舰队内 0 / 社交 5 / 直接 0 · Google 230 · 前三 cn.bing.com 235, google.com 230, bing.com 58
-- getecoback: 搜索 229 / AI 1 / 舰队内 0 / 社交 0 / 直接 260 · Google 7 · 前三 bing.com 94, duckduckgo.com 81, ecosia.org 24
-- agiscorecard: 搜索 191 / AI 3 / 舰队内 25 / 社交 0 / 直接 51459 · Google 79 · 前三 google.com 79, duckduckgo.com 44, bing.com 38
-- gamesledger: 搜索 54 / AI 2 / 舰队内 1 / 社交 0 / 直接 510 · Google 18 · 前三 duckduckgo.com 21, google.com 18, bing.com 10
-- gridlings: 搜索 47 / AI 2 / 舰队内 4 / 社交 0 / 直接 1557 · Google 1 · 前三 cn.bing.com 27, bing.com 13, duckduckgo.com 2
-- thedollscout: 搜索 32 / AI 0 / 舰队内 0 / 社交 0 / 直接 2860 · Google 20 · 前三 google.com 20, search.yahoo.com 9, ecosia.org 1
-- powerbill: 搜索 14 / AI 0 / 舰队内 2 / 社交 0 / 直接 448 · Google 11 · 前三 google.com 11, m.baidu.com 2, baidu.com 1
+- 舰队合计(快照 2026-11-25):search 1167 · ai 30 · fleet 39 · social 4 · self 20128 · direct 60652 · other 142
+- baipiaoji: 搜索 530 / AI 22 / 舰队内 0 / 社交 4 / 直接 0 · Google 230 · 前三 google.com 230, cn.bing.com 224, bing.com 51
+- getecoback: 搜索 254 / AI 1 / 舰队内 0 / 社交 0 / 直接 424 · Google 7 · 前三 bing.com 122, duckduckgo.com 77, ecosia.org 24
+- agiscorecard: 搜索 194 / AI 3 / 舰队内 23 / 社交 0 / 直接 51823 · Google 86 · 前三 google.com 86, duckduckgo.com 45, bing.com 35
+- gamesledger: 搜索 54 / AI 2 / 舰队内 2 / 社交 0 / 直接 516 · Google 19 · 前三 google.com 19, duckduckgo.com 19, bing.com 10
+- gridlings: 搜索 47 / AI 2 / 舰队内 4 / 社交 0 / 直接 1492 · Google 1 · 前三 cn.bing.com 27, bing.com 13, duckduckgo.com 2
+- thedollscout: 搜索 32 / AI 0 / 舰队内 0 / 社交 0 / 直接 2906 · Google 20 · 前三 google.com 20, search.yahoo.com 9, ecosia.org 1
+- powerbill: 搜索 14 / AI 0 / 舰队内 2 / 社交 0 / 直接 443 · Google 11 · 前三 google.com 11, m.baidu.com 2, baidu.com 1
 - buysomething: 搜索 10 / AI 0 / 舰队内 0 / 社交 0 / 直接 277 · Google 10 · 前三 google.com 10
-- codeword: 搜索 10 / AI 0 / 舰队内 1 / 社交 0 / 直接 557 · Google 8 · 前三 google.com 8, m.baidu.com 2
-- goldrush: 搜索 8 / AI 0 / 舰队内 0 / 社交 0 / 直接 559 · Google 8 · 前三 google.com 8
-- fanzha: 搜索 7 / AI 0 / 舰队内 0 / 社交 0 / 直接 389 · Google 7 · 前三 google.com 7
-- firstjob: 搜索 3 / AI 0 / 舰队内 1 / 社交 0 / 直接 290 · Google 2 · 前三 google.com 2, baidu.com 1
-- learn: 搜索 1 / AI 0 / 舰队内 2 / 社交 0 / 直接 305 · Google 0 · 前三 baidu.com 1
-- after35: 搜索 0 / AI 0 / 舰队内 4 / 社交 0 / 直接 758 · Google 0 · 前三 —
+- codeword: 搜索 10 / AI 0 / 舰队内 1 / 社交 0 / 直接 547 · Google 8 · 前三 google.com 8, m.baidu.com 2
+- goldrush: 搜索 8 / AI 0 / 舰队内 0 / 社交 0 / 直接 449 · Google 8 · 前三 google.com 8
+- fanzha: 搜索 8 / AI 0 / 舰队内 0 / 社交 0 / 直接 402 · Google 8 · 前三 google.com 8
+- firstjob: 搜索 3 / AI 0 / 舰队内 1 / 社交 0 / 直接 301 · Google 2 · 前三 google.com 2, baidu.com 1
+- learn: 搜索 2 / AI 0 / 舰队内 2 / 社交 0 / 直接 304 · Google 1 · 前三 google.com 1, baidu.com 1
+- after35: 搜索 1 / AI 0 / 舰队内 4 / 社交 0 / 直接 768 · Google 1 · 前三 google.com 1
 - **读法**:自己这一行 Google = 0,就不要做「给 Google 看」的优化(eco 09-15 的教训);`舰队内` 是兄弟站互链真的送来的人,不是链接数。
 ## 钱线仪表盘(28 天窗,各站自己的口径;owner 亲报的 PartnerNet 数字带数据窗)
-- 快照 2026-11-24
-- getecoback: 联盟点击 45 / 付费订单 0 / 订阅 1 · us-market 0 · amazon.com 0 (endpoint)
-- agiscorecard: 联盟点击 — / 付费订单 0 / 订阅 5 · invest_tool_click 1 · /advertise pv 157 · /audits pv 288 (endpoint)
-- baipiaoji: 联盟点击 — / 付费订单 0 / 订阅 0 · go 234 · 厂商 biz 656 · 投稿累计 451 · watches 0 (endpoint)
+- 快照 2026-11-25
+- getecoback: 联盟点击 42 / 付费订单 0 / 订阅 1 · us-market 0 · amazon.com 0 (endpoint)
+- agiscorecard: 联盟点击 — / 付费订单 0 / 订阅 5 · invest_tool_click 1 · /advertise pv 154 · /audits pv 286 (endpoint)
+- baipiaoji: 联盟点击 — / 付费订单 0 / 订阅 0 · go 228 · 厂商 biz 595 · 投稿累计 464 · watches 0 (endpoint)
 - thedollscout: 联盟点击 0 / 付费订单 0 / 订阅 — (endpoint)
 - buysomething: 联盟点击 — / 付费订单 — / 订阅 — · mcp_call 145 · out_click — (endpoint)
 - owner 亲报 PartnerNet DE(30 天窗至 2026-09-14):佣金 €11.2 · 112 点击 · 待办 Complete your onboarding checklist(付款/税务信息未填完)
-- 预测记录线(Metaculus bot,快照 2026-11-24):状态 never · 账本 0 条 · 北极星(赛前记录且已结算)0 · house prior Brier 差 None(n=0) · 30 天花费 $0 · 奖金 未报 · 净 —
+- 预测记录线(Metaculus bot,快照 2026-11-25):状态 never · 账本 0 条 · 北极星(赛前记录且已结算)0 · house prior Brier 差 None(n=0) · 30 天花费 $0 · 奖金 未报 · 净 —
 - FutureEval 覆盖探针:抽样 2 题,舰队已存档来源覆盖 0(占比 0.0)
 
 ---

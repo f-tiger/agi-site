@@ -1,4 +1,4 @@
-# Fleet evolution report — 2026-11-25
+# Fleet evolution report — 2026-11-26
 
 Deterministic, aggregate-only report. Missing data remains unknown; no editorial text, payments or membership rights are changed by this job.
 
@@ -6,7 +6,7 @@ Deterministic, aggregate-only report. Missing data remains unknown; no editorial
 
 - Sites: 14 (healthy probes: 31)
 - Membership ready: 0 · paid members: 0 · active members: 0
-- Opportunity candidates: 6 · stale inputs: 0
+- Opportunity candidates: 7 · stale inputs: 0
 
 ## Priority actions
 
@@ -18,22 +18,22 @@ Deterministic, aggregate-only report. Missing data remains unknown; no editorial
 | 92 | thedollscout | membership_health | alert | public_ok=True; ready=False |
 | 80 | agiscorecard | optimize_existing_page | queue | count=2; query=when are 13f filings due; page=ai-stock-exposure.html; value=420250 |
 | 55 | agiscorecard | content_gap | queue | count=4; query=rzai stock; value=17900 |
-| 55 | getecoback | content_gap | queue | count=26; query=tronic heizlüfter; value=62800 |
+| 55 | getecoback | content_gap | queue | count=22; query=makita heizlüfter; value=88050 |
 | 55 | thedollscout | content_gap | queue | count=14; query=cat mode labubu; value=86750 |
-| 52 | agiscorecard | improve_hot_page | queue | page=/agents/; n7=181; p7=77 |
+| 52 | agiscorecard | improve_hot_page | queue | page=/agents/; n7=203; p7=76 |
 | 52 | getecoback | improve_hot_page | queue | page=/waeschetrockner-oder-luftentfeuchter.html; n7=32; p7=4 |
-| 48 | goldrush | ai_attribution_review | queue | legacy_page_view_events=729; ai_referrer_events=0 |
-| 48 | thedollscout | ai_attribution_review | queue | legacy_page_view_events=2915; ai_referrer_events=0 |
+| 48 | goldrush | ai_attribution_review | queue | legacy_page_view_events=549; ai_referrer_events=0 |
+| 48 | thedollscout | ai_attribution_review | queue | legacy_page_view_events=2961; ai_referrer_events=0 |
 
 ## Input freshness
 
 | Input | Date | Age (days) |
 |---|---|---:|
-| membership | 2026-11-25T11:40:31.172Z | 0 |
-| health | 2026-11-24T19:14:33Z | 1 |
-| ai_referrals | 2026-11-24T19:16:34Z | 1 |
-| opportunities | 2026-11-24 | 1 |
-| autopilot_receipt | 2026-11-25 | 0 |
+| membership | 2026-11-26T11:27:11.286Z | 0 |
+| health | 2026-11-25T18:18:40Z | 1 |
+| ai_referrals | 2026-11-25T18:19:08Z | 1 |
+| opportunities | 2026-11-25 | 1 |
+| autopilot_receipt | 2026-11-26 | 0 |
 
 ## Growth directions
 
