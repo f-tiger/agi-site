@@ -16,6 +16,8 @@ Ist die Schwelle an der Balkontür nass? [Messwerte und mögliche Feuchtequellen
 
 **Prüfe zuerst, auf welcher Seite das Wasser sitzt.** Wische Wasser an der zugänglichen Innenscheibe mit einem sauberen Tuch ab. Ist nur die Außenseite nass, [Außenbeschlag getrennt einordnen](https://getecoback.com/guide/fenster-beschlagen-aussen.html). Sitzt der Beschlag zwischen den Scheiben und lässt sich auf keiner Seite abwischen, das Glas von einem Fensterbetrieb prüfen lassen.
 
+„Das Fenster schwitzt“ und „die Fenster sind morgens nass“ beschreiben sichtbare Feuchte am Fenster. Prüfe zuerst die Seite und den genauen Ort. Bei Nässe an der Innenscheibe können 45 % in der Raummitte und ein deutlich kälterer Glasrand zusammen vorkommen. Miss an der betroffenen Stelle, bevor du über einen Entfeuchter entscheidest. [Verbraucherzentrale zu Luftfeuchte und kalten Oberflächen](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426).
+
 Beim Atmen gelangt über Nacht Feuchtigkeit in die Raumluft. Kühlt die Luft an der Scheibe bis zum Taupunkt ab, kann sich dort Wasser bilden. Auch bei einem unauffälligen Messwert in der Raummitte kann ein Glasrand kalt genug sein. Prüfe die betroffene Stelle.
 
 Wird dieselbe Stelle regelmäßig nass, halte Zeitpunkt, Stelle und Messwerte fest. Bei **wiederholt nassen Wänden, sichtbarem Schimmel oder möglichem Wassereintritt** die Ursache fachlich prüfen lassen. In der Mietwohnung der Hausverwaltung Bescheid geben.

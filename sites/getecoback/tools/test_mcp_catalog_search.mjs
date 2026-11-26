@@ -1639,3 +1639,29 @@ test('wet balcony door threshold questions open guide search in the compact cata
     assert.ok(!result.tools.some(tool=>toolGuidePath(tool)===destination),query);
   }
 });
+
+test('German sweating and wet morning window questions find the guide without stealing measured tasks', async () => {
+  const target='/guide/fenster-beschlagen-innen.html#fenstersauger-gegen-kondenswasser';
+  for(const query of [
+    'Warum schwitzt mein Schlafzimmerfenster morgens nur unten an der Innenseite?',
+    'Mein Fenster schwitzt an der Innenseite unten am Rand, obwohl das Hygrometer im Schlafzimmer 45 Prozent zeigt. Brauche ich einen Entfeuchter?',
+    'Jeden Morgen sind meine Fenster jetzt komplett nass.',
+  ]) {
+    const [first]=(await catalogue({q:query,view:'compact',limit:1})).tools;
+    assert.equal(first?.name,'ratgeber_suche',query);
+    assert.equal(toolGuidePath(first),target,query);
+  }
+  for(const query of [
+    'Das Fenster schwitzt außen, innen bleibt es trocken.',
+    'Warum schwitzt die Scheibe zwischen den Scheiben?',
+    'Ich schwitze nachts innen am Fenster.',
+    'Mein Autofenster schwitzt innen.',
+    'Fenster schwitzt innen hinter dem Plissee.',
+  ]) {
+    const [first]=(await catalogue({q:query,view:'compact',limit:1})).tools;
+    assert(!(first?.name==='ratgeber_suche'&&toolGuidePath(first)===target),query);
+  }
+  const query='Das Fenster schwitzt an der Innenseite. Ich messe am Glas 10 Grad. Innen sind es 20 Grad und 60 Prozent Luftfeuchte.';
+  const [first]=(await catalogue({q:query,view:'compact',limit:1})).tools;
+  assert.equal(first?.name,'fenster_oberflaeche_taucheck',query);
+});

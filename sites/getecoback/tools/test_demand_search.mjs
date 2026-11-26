@@ -1212,3 +1212,19 @@ test('wet balcony door threshold questions reach the existing moisture guide', (
     'Kann das Fenster bei 20 Grad, 60 Prozent Luftfeuchte und 10 Grad am Glas von innen beschlagen?',
   ]) assert.ok(!searchEntries(index,query,'de').some(hit=>hit.entry.u===destination),query);
 });
+
+test('German sweating and wet morning windows find the existing moisture answer', () => {
+  const target='/guide/fenster-beschlagen-innen.html#fenstersauger-gegen-kondenswasser';
+  for(const query of [
+    'Warum schwitzt mein Schlafzimmerfenster morgens nur unten an der Innenseite?',
+    'Mein Fenster schwitzt an der Innenseite unten am Rand, obwohl das Hygrometer im Schlafzimmer 45 Prozent zeigt. Brauche ich einen Entfeuchter?',
+    'Jeden Morgen sind meine Fenster jetzt komplett nass.',
+  ]) assert.equal(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+  for(const query of [
+    'Das Fenster schwitzt außen, innen bleibt es trocken.',
+    'Warum schwitzt die Scheibe zwischen den Scheiben?',
+    'Ich schwitze nachts innen am Fenster.',
+    'Mein Autofenster schwitzt innen.',
+    'Fenster schwitzt innen hinter dem Plissee.',
+  ]) assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+});
