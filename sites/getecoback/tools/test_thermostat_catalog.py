@@ -108,6 +108,25 @@ class CatalogTests(unittest.TestCase):
             self.assertIn('id="thermostat-' + p['id'] + '"', html)
             self.assertIn(p['source'], html)
 
+    def test_both_valve_answers_reach_their_existing_model_cards(self):
+        source = catalog.ROOT / 'site/guide' / (catalog.SLUG + '.html')
+        html = source.read_text()
+        md = source.with_suffix('.md').read_text()
+        for section, target, limit in (
+            ('bosch-ii-m-danfoss-adapter', 'thermostat-bosch-ii-m', 'separat benötigten Adapter'),
+            ('fritz-302-danfoss-adapter', 'thermostat-fritz-302', 'welcher Zusatzadapter passt'),
+        ):
+            with self.subTest(section=section):
+                answer = html.split('id="' + section + '"', 1)[1].split('</section>', 1)[0]
+                self.assertEqual(answer.count('href="#' + target + '"'), 1)
+                self.assertEqual(html.count('id="' + target + '"'), 1)
+                self.assertIn('warte mit der Bestellung', answer)
+                self.assertIn('Wenn du den Kopf ersetzen möchtest', answer)
+                self.assertIn(limit, answer)
+                self.assertIn(limit, md)
+                self.assertIn('/guide/' + catalog.SLUG + '.html#' + target, md)
+                self.assertNotIn('amazon.de/', answer)
+
 
 if __name__ == '__main__':
     unittest.main()
