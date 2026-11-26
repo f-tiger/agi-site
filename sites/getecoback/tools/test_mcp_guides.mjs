@@ -1066,3 +1066,17 @@ test('German Meaco Arete 20L comparison retains the matched table and package id
  for(const value of ["3,40 L/24 h","180 W","3,35 L/24 h","176 W","8,50 L/24 h","216 W","207 W","38 / 40 / 50 dB","5060409601746","5060409605058","5060409604617","behalte ihn","https://eu.meaco.com/products/meacodry-arete-one-20l-luftentfeuchter-luftreiniger","https://eu.meaco.com/products/meacodry-arete-two-20l-luftentfeuchter-luftreiniger","https://cdn.shopify.com/s/files/1/0371/8378/3043/files/AreteOne_20L25L_Manual_DE01.pdf#page=23","https://cdn.shopify.com/s/files/1/0371/8378/3043/files/AreteTwo_20_x3a_25L_Manual_DE05.pdf#page=25","#raumgroesse"]) assert(textOf(full).includes(value),value);
  assert(!textOf(full).includes('https://www.amazon.de/'));
 });
+
+test('German PortaSplit versus Monoblock evidence links only to the two matching decisions',async()=>{
+ const {env}=assetEnv();
+ const pfad='https://getecoback.com/guide/portasplit-vs-monoblock.html#bauart-vor-angebot';
+ const found=await call('ratgeber_suche',{frage:'PortaSplit vs. Monoblock',sprache:'de',max:1},env);
+ assert(textOf(found).includes('Abschnitt: '+pfad));
+ const full=await call('ratgeber_lesen',{pfad},env);
+ assert.equal(full.isError,false);
+ assert.deepEqual(await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad}},env,true),full);
+ for(const value of ['4048164116478','Außenplatz','Abluft','warte mit dem Kauf',
+    '/guide/midea-portasplit-kaufen.html#portasplit-original-angebot',
+    '/guide/midea-portasplit-ausverkauft-alternativen.html#option-3-monoblock']) assert(textOf(full).includes(value),value);
+ assert(!textOf(full).includes('https://www.amazon.de/'));
+});

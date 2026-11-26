@@ -1893,3 +1893,9 @@ test('German Meaco Arete 20L comparison searches retain neighboring sizes and su
    assert.notEqual(toolGuidePath(hit??{}),target,q);
  }
 });
+
+test('German PortaSplit versus Monoblock discovery opens the sourced fit decision',async()=>{
+ const {tools}=await catalogue({q:'Midea PortaSplit oder Monoblock für eine Wohnung ohne Balkon?',view:'compact',limit:1});
+ assert.equal(tools[0]?.name,'ratgeber_suche');
+ assert.equal(tools[0]?.guide_url,'https://getecoback.com/guide/portasplit-vs-monoblock.html#bauart-vor-angebot');
+});

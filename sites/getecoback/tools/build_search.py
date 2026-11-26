@@ -130,6 +130,9 @@ def collect():
  sections[('de','/guide/luftentfeuchter-granulat-oder-elektrisch.html')]={
   'id':'granulat-waesche-entscheidung','title':'Reicht eine Granulatbox zum Wäschetrocknen?',
   'description':'Eine Ladung mit vorhandener Lüftung beobachten. Raumtemperatur und Luftfeuchte messen. Tab-Masse und Entzugsrate sind verschiedene Angaben.'}
+ sections[('de','/guide/portasplit-vs-monoblock.html')]={
+  'id':'bauart-vor-angebot','title':'PortaSplit oder Monoblock: Erst den Aufstellort prüfen',
+  'description':'Für die originale PortaSplit Außenplatz, Befestigung und Leitungsweg prüfen. Für einen Monoblock Abluft und Fensterabdichtung prüfen. Bei unklarer Passung warte mit dem Kauf.'}
  sections[('de','/guide/klimaanlage-wann-kaufen.html')]={
   'id':'angebot-30-tage-preis','title':'Klimaanlage am Black Friday kaufen? Erst den 30-Tage-Preis prüfen',
   'description':'Den niedrigsten Preis desselben Händlers aus den vorherigen 30 Tagen, dieselbe Modellvariante und den Gesamtbetrag mit Zubehör und Versand prüfen.'}
