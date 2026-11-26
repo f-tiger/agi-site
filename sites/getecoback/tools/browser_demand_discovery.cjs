@@ -225,6 +225,8 @@ async function checkGermanFocusedDiscovery(browser,base){
   equal((await search(glazingQuery))[0],{href:glazing,language:'de'},'Cloudy insulated glass reaches the existing diagnosis');
   const curtain='/guide/thermovorhang-ratgeber.html#thermovorhang-bahnenbedarf';
   const roomVentilation='/guide/richtig-lueften-im-winter.html#lueften-vorher-nachher';
+  equal((await search('Luftentfeuchter 400 W zum Wäschetrocknen – Stromkosten? Ein Wäschetrockner passt bei uns nicht.'))[0],
+   {href:'/waeschetrockner-oder-luftentfeuchter.html#luftentfeuchter-waesche-kosten',language:'de'},'Rated watts and no room for a dryer lead to the single-load evidence');
   equal((await search('Stadler Form Lukas L-031E: Wieviel entzieht er bei 10 Grad im Keller?'))[0],
    {href:'/guide/luftentfeuchter-keller.html#modell-stadler-lukas',language:'de'},'German Lukas searches find the confirmed cold-room evidence');
   equal((await search('Raumthermostat im Wohnzimmer schaltet ab. Warum bleibt das Bad kalt?'))[0],
@@ -341,6 +343,7 @@ async function checkGermanFocusedDiscovery(browser,base){
   await page.waitForURL(base+destination);
   check(await page.locator('#luftentfeuchter-waesche-kosten').getByRole('heading').isVisible(),'The clean static link reaches the same section');
   check(await page.locator('#luftentfeuchter-waesche-kosten form').isHidden(),'The no-script reader does not submit a form');
+  check(await page.getByText('Kein Platz für einen Trockner und nur 400 W im Datenblatt?',{exact:true}).isVisible(),'The measurement guidance is readable without JavaScript');
  }
  await page.goto(base+'/guide/heizkoerper-wird-nicht-warm.html?__ci=1#referenzraum-warm-nebenraum-kalt');
  const heating=page.locator('section[aria-labelledby="referenzraum-warm-nebenraum-kalt"]');

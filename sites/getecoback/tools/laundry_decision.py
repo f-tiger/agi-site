@@ -59,6 +59,8 @@ def dehumidifier_laundry_cost():
  return f'''<section id="{anchor}" class="eb-laundry" aria-labelledby="lc-single-title">
 <h3 id="lc-single-title">{title}</h3>
 <p>Der Rechner zeigt den direkten Stromverbrauch und die Stromkosten für einen Durchgang mit deinem Luftentfeuchter. Nutze den kWh-Wert eines vollständigen Durchgangs oder schätze ihn aus der mittleren Leistung und der Laufzeit.</p>
+<p><strong>Kein Platz für einen Trockner und nur 400 W im Datenblatt?</strong> Für eine Ladung brauchst du den Verbrauch bis zur gewünschten Trockenheit. Läuft das Gerät tatsächlich gleichmäßig mit 400 W, sind das 0,4 kWh pro Stunde. Weder die 400 W auf dem Typenschild noch eine Angabe in Litern pro Tag zeigen, wie lange es für deine Wäsche läuft oder wie viel Strom es dabei verbraucht.</p>
+<p>Nutze den vorhandenen Wäscheständer weiter, wenn die Wäsche am geeigneten, gut lüftbaren Platz trocknet. Prüfe bei Innenraumtrocknung Luftfeuchte und Lüftung. Erst wenn du zusätzlich ein Gerät brauchst, <a href="/guide/waesche-trocknen-wohnung.html#eb-models">Stellplatz, Einsatzbedingungen und Modelle vergleichen</a>. <a href="https://www.umweltbundesamt.de/themen/gesundheit/umwelteinfluesse-auf-den-menschen/schimmel/wie-luefte-ich-richtig-tipps-tricks-zur">Umweltbundesamt zu Wäsche und Lüftung</a>.</p>
 <ul>
 <li><strong>Mit Strommessgerät:</strong> Ziehe den Startstand vom Endstand ab. Frei gewähltes Beispiel: 1,8 kWh × 0,35 €/kWh = 0,63 €.</li>
 <li><strong>Mit mittlerer Leistung:</strong> Watt × Stunden ÷ 1.000 ergibt kWh. Schätzbeispiel: 200 W im Mittel × 6 Stunden ÷ 1.000 = 1,2 kWh. Bei 0,35 €/kWh sind das 0,42 €. Die Nennleistung auf dem Typenschild gibt den Durchschnitt über einen Durchgang nicht an.</li>

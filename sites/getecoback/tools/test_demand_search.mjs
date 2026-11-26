@@ -1273,3 +1273,9 @@ test('German Lukas L-031E cold performance reaches exact evidence without steali
     'Stadler Form Lukas L-031E: HEPA-Filter für Betrieb im Keller',
   ]) assert.notEqual(searchEntries(index,q,'de')[0]?.entry.u,target,q);
 });
+
+test('German laundry cost questions without room for a dryer lead to single-run evidence',()=>{
+ const target='/waeschetrockner-oder-luftentfeuchter.html#luftentfeuchter-waesche-kosten';
+ for(const q of ["Was kostet es, Wäsche mit einem Luftentfeuchter zu trocknen? Ein Trockner kommt wegen Platzmangel nicht infrage.", "Luftentfeuchter 400 W zum Wäschetrocknen – Stromkosten? Ein Wäschetrockner passt bei uns nicht.", "Mein Luftentfeuchter hat laut Typenschild 400 Watt. Was kostet eine Ladung Wäsche?"]) assert.equal(searchEntries(index,q,'de')[0]?.entry.u,target,q);
+ for(const q of ["Wärmepumpentrockner oder Luftentfeuchter: Was kostet eine Ladung Wäsche?", "Lohnt sich ein Luftentfeuchter im Winter, wenn manche Ladungen weiter in den Trockner gehen?", "Was kostet eine Ladung Wäsche, wenn Trockner und Luftentfeuchter gleichzeitig laufen?", "Was kostet der Luftentfeuchter mit 400 W pro Tag im Keller?"]) assert.notEqual(searchEntries(index,q,'de')[0]?.entry.u,target,q);
+});

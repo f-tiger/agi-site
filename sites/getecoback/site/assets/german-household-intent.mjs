@@ -18,6 +18,30 @@ export function asksForLaundryCostComparison(query) {
     !anotherDecision.test(query);
 }
 
+const unavailableLaundryDryer = new RegExp(
+  '\\b'+laundryDryer+'\\b\\s+(?:kommt\\b[^.!?;,]{0,65}\\bnicht\\s+in\\s*frage\\b|passt\\b[^.!?;,]{0,45}\\bnicht\\b)', 'g'
+);
+const singleLaundryPage = '/waeschetrockner-oder-luftentfeuchter.html';
+const singleLaundrySection = 'luftentfeuchter-waesche-kosten';
+export const laundryWithoutDryer = {path:singleLaundryPage,id:singleLaundrySection,tool:'luftentfeuchter_waesche_einzelkosten'};
+export const laundryRatedPower = {path:singleLaundryPage,id:singleLaundrySection,tool:'ratgeber_suche'};
+
+function exactLaundrySingleCost(query) {
+  const dehumidifier = /\b(?:luft)?entfeuchter(?:s|n)?\b/;
+  const laundry = /\b(?:waesch\w*|waschladung\w*|trocknungsgang|trocknungsdurchgang)\b/;
+  const runningCost = /\b(?:kostet|kosten|stromkosten|stromverbrauch|strompreis|stromgeld|teuer|eur|euro|cent)\b/;
+  const separateDecision = /\b(?:kaufpreis|anschaffung\w*|amortis\w*|rentier\w*|rechnet|gleichzeitig|parallel|zusammen|abgeschaltet|ausgeschaltet|betriebskosten pro monat)\b/;
+  if (!dehumidifier.test(query) || !laundry.test(query) || !runningCost.test(query) || separateDecision.test(query)) return null;
+  const available = query.replace(unavailableLaundryDryer,'');
+  if (mentionsLaundryDryer(available)) return null;
+
+  const namedRating = /\b(?:typenschild|datenblatt|nenn(?:leistung|watt)|herstellerangab\w*)\b/;
+  const wattage = /\b\d{2,4}\s*(?:w|watt)\b/;
+  const measured = /\b(?:gemess\w*|verbrauchsmess\w*|durchschnitt\w*|mittler\w*|im mittel)\b|\b\d+(?:[.,]\d+)?\s*kwh\b/;
+  if ((namedRating.test(query) || wattage.test(query)) && !measured.test(query)) return laundryRatedPower;
+  return query !== available ? laundryWithoutDryer : null;
+}
+
 const floorcareGuide = '/guide/saugwischer-kaufberatung.html';
 export const tinecoS7Variant = {path:floorcareGuide,id:'tineco-s7-modellwahl',tool:'ratgeber_suche'};
 export const tinecoS7FlashDry = {path:floorcareGuide,id:'tineco-s7-flashdry',tool:'ratgeber_suche'};
@@ -633,6 +657,8 @@ export function exactGermanHouseholdTask(query) {
     if((areas.size===1&&area>=45&&area<=120)||/\bmehrer(?:e|en)\s+(?:raeumen?|zimmern?)\b/.test(query))
       return highCoolingLoadDecision;
   }
+  const singleCost = exactLaundrySingleCost(query);
+  if (singleCost) return singleCost;
   if (asksForLaundryMeasuredFollowUp(query)) return laundryMeasuredFollowUp;
   const tineco = exactTinecoS7Task(query);
   if (tineco) return tineco;
