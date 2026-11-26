@@ -71,9 +71,19 @@ if (process.argv.includes('--dist')) {
 if (process.argv.includes('--live') || process.argv.includes('--live-smoke')) {
   const liveTools = process.argv.includes('--live') ? tools : tradeGroups.map(group=>group.tools[0]);
   const entries = prefixes.flatMap(prefix=>[null,...liveTools].map(tool=>[prefix,tool]));
+  async function publishedPage(url) {
+    // A new Pages deployment can briefly return a 404 from an older edge.
+    const backoff = [0,1500,3000,6000,12000];
+    for (const [attempt,delay] of backoff.entries()) {
+      if (delay) await new Promise(resolve=>setTimeout(resolve,delay));
+      const response = await fetch(url,{signal:AbortSignal.timeout(20000),headers:{'User-Agent':'bpj-ci-selfcheck/1.0'}});
+      if (attempt===backoff.length-1 || ![404,429,502,503,504].includes(response.status)) return response;
+      await response.body?.cancel();
+    }
+  }
   for (let offset=0;offset<entries.length;offset+=8) await Promise.all(entries.slice(offset,offset+8).map(async ([prefix,tool])=>{
     const url = host+prefix+base+(tool?.id||'');
-    const response = await fetch(url,{signal:AbortSignal.timeout(20000),headers:{'User-Agent':'bpj-ci-selfcheck/1.0'}});
+    const response = await publishedPage(url);
     assert.equal(response.status,200,url);
     assert.equal(response.url,url);
     inspectPage(await response.text(),prefix,tool);
