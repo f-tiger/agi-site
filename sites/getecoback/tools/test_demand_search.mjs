@@ -1309,3 +1309,9 @@ test('German Saros 10R floor preparation questions reach the exact manual and ex
  for(const q of ["Erkennt der Roborock Saros 10R Kabel, Socken und Katzenspielzeug?", "Muss ich beim Roborock Saros 10R vor jedem Saugen Ladekabel wegräumen?", "Roborock Saros 10R für Kurzflorteppich und Katzenhaare: Wie viel räume ich vorher auf?", "S91COP: Socken und Spielzeug vor dem Kauf wegräumen?"]) assert.equal(searchEntries(index,q,'de')[0]?.entry.u,target,q);
  for(const q of ["Erkennt der Roborock Saros 10 Socken und Ladekabel?", "Welches Zubehörset passt zum Saros 10R, inklusive Ersatzkabel?", "Der Saros 10R hat ein Kabel eingezogen. Was ist kaputt?", "Was mache ich, wenn mein Saugroboter über das Kabel fährt?", "Welche Kabel erkenne ich beim Saros 10R mit Festwasseranschluss?", "Saros 10R oder Dreame L10s Ultra Gen 2 für Hindernisse?"]) assert.notEqual(searchEntries(index,q,'de')[0]?.entry.u,target,q);
 });
+
+test('German Pro Breeze 12L model questions reach the correct app and manual comparison',()=>{
+ const target='/guide/pro-breeze-luftentfeuchter-test.html#pro-breeze-12l-modellwahl';
+ for(const q of ["Hat der Pro Breeze PB-06 mit 12 Litern WLAN oder brauche ich PB-D-06W-W-EU?", "Welche Pro Breeze 12L Variante mit App passt, PB-06 oder OmniDry?", "OmniDry 12L PB-D-18W-WF: Welche Variante hat die App?", "Pro Breeze PB-D-27 oder PB-06: welches Modell für Dauerablauf?", "Welches Pro Breeze Modell hat die GTIN 5060596028197?"]) assert.equal(searchEntries(index,q,'de')[0]?.entry.u,target,q);
+ for(const q of ["Hat der Pro Breeze OmniDry 20L mit PB-D-24-WF eine App?", "Hat der kleine Pro Breeze PB-02 500 ml Tank?", "Wie verbinde ich die App beim Pro Breeze PB-D-06W-W-EU?", "Meaco DD8L Pro oder Arete One für 12 Liter bei 10 Grad?"]) assert.notEqual(searchEntries(index,q,'de')[0]?.entry.u,target,q);
+});

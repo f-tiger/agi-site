@@ -250,6 +250,13 @@ def collect():
     raise ValueError(f'Missing or hidden Saros 10R floor-preparation guidance: {route}#{anchor}')
    entry['model_sections']=[{'id':anchor,'title':'Roborock Saros 10R: Kabel, Socken und Katzenspielzeug vor dem Kauf einplanen',
     'description':'Die Saros-10R-Anleitung fordert, Kabel und lose Gegenstände vor der Fahrt zu entfernen. Aufräumzeit, Kurzflorteppich und Nacharbeit vor dem Kauf prüfen.'}]
+  if lang=='de' and route=='/guide/pro-breeze-luftentfeuchter-test.html':
+   anchor='pro-breeze-12l-modellwahl'
+   targets=re.findall(r'<h3\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)
+   if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
+    raise ValueError(f'Missing or hidden Pro Breeze 12L model identification: {route}#{anchor}')
+   entry['model_sections']=[{'id':anchor,'title':'Pro Breeze 12L: Modellnummer vor dem Kauf abgleichen',
+    'description':'PB-06 mit Hygrostat, PB-D-06W-W-EU mit App, OmniDry und Compact nach Typenschild und eigener Anleitung unterscheiden.'}]
   if lang=='de' and route=='/produkte.html':
    model_sections=[
     {'id':BOSCH_STACKING_ID,'title':BOSCH_STACKING_TITLE,'description':BOSCH_STACKING_ANSWER},

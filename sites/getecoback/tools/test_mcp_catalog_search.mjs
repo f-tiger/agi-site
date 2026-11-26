@@ -1815,3 +1815,16 @@ test('German Saros 10R obstacle preparation uses the model evidence without taki
    assert.notEqual(toolGuidePath(hit??{}),target,q);
  }
 });
+
+test('German Pro Breeze 12L variant questions use the right evidence without taking 20 L or app support',async()=>{
+ const target='/guide/pro-breeze-luftentfeuchter-test.html#pro-breeze-12l-modellwahl';
+ for(const q of ["Hat der Pro Breeze PB-06 mit 12 Litern WLAN oder brauche ich PB-D-06W-W-EU?", "Welche Pro Breeze 12L Variante mit App passt, PB-06 oder OmniDry?", "OmniDry 12L PB-D-18W-WF: Welche Variante hat die App?", "Pro Breeze PB-D-27 oder PB-06: welches Modell für Dauerablauf?", "Welches Pro Breeze Modell hat die GTIN 5060596028197?"]) {
+   const [hit]=(await catalogue({q,view:'compact',limit:1})).tools;
+   assert.equal(hit?.name,'ratgeber_suche',q);
+   assert.equal(toolGuidePath(hit),target,q);
+ }
+ for(const q of ["Hat der Pro Breeze OmniDry 20L mit PB-D-24-WF eine App?", "Hat der kleine Pro Breeze PB-02 500 ml Tank?", "Wie verbinde ich die App beim Pro Breeze PB-D-06W-W-EU?", "Meaco DD8L Pro oder Arete One für 12 Liter bei 10 Grad?"]) {
+   const [hit]=(await catalogue({q,view:'compact',limit:1})).tools;
+   assert.notEqual(toolGuidePath(hit??{}),target,q);
+ }
+});
