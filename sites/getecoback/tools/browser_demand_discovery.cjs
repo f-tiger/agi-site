@@ -50,7 +50,7 @@ async function checkExactDelonghiPurchase(page,base){
    const explanation=portaSound.locator('xpath=following-sibling::p[position()<=3]');
    const facts=(await explanation.allTextContents()).join(' ');
    for(const phrase of ['56 dB(A)','48 dB(A)','62 dB Schallleistung','verschiebe die Bestellung']) assert(facts.includes(phrase),phrase);
- const offer=page.locator('#portasplit-original-angebot a[rel~="sponsored"]');
+ const offer=page.locator('section[aria-labelledby="portasplit-original-angebot"] a[rel~="sponsored"]');
  assert.equal(await offer.getAttribute('href'),'https://www.amazon.de/dp/B0D3PP64JS?tag=getecoback-21');
  assert(await portaSound.evaluate((heading, link)=>Boolean(heading.compareDocumentPosition(link)&Node.DOCUMENT_POSITION_FOLLOWING),await offer.elementHandle()));
  return outcomes.length*5+6;
