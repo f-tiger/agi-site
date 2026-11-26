@@ -30,6 +30,20 @@ Der Check ist eine allgemeine Vorprüfung. Er bestätigt weder die Eignung eines
 Fehlt der freie Stationsplatz, ist eine Schwelle ungeklärt oder kannst du Kabel und kleine Gegenstände nicht aus dem Fahrweg räumen, zuerst dieses Problem lösen. Bei empfindlichen Böden ohne Wischfreigabe die Nassfunktion nicht einplanen. Kommt dein vorhandener Sauger mit der Aufgabe gut zurecht, musst du nichts kaufen.
 Ein Roboter übernimmt keine Treppenreinigung und beseitigt nicht jede manuelle Nacharbeit. Für gelegentliches Wischen kann die vorhandene Kombination aus Sauger und Mopp reichen. Willst du selbst führen statt Fahrwege vorzubereiten, hilft die [Kaufhilfe für Saugwischer](https://getecoback.com/guide/saugwischer-kaufberatung.html).
 
+## Roborock Saros 10R: Kabel, Socken und Katzenspielzeug vor dem Kauf einplanen
+
+Für den **Saros 10R mit Tankstation (S91COP, EWFD28HRR)** zeigt die [deutsche Roborock-Produktseite](https://de.roborock.com/pages/roborock-saros-10r) die Hinderniserkennung auch an Kabeln. Ihre Fußnote nennt interne Tests mit Objekten, die jeweils **2 cm breit und 2 cm hoch** sind. Die Erkennung hängt von der Umgebung ab. Aus diesen Angaben lässt sich nicht ableiten, ob ein bestimmtes Ladekabel, eine Socke oder Katzenspielzeug auf deinem Teppich zuverlässig erkannt wird.
+
+Das [deutsche Saros-10R-Handbuch, Abschnitt B1-1](https://support.roborock.com/hc/de/article_attachments/46144394789529) fordert, **Kabel und lose Gegenstände vor der Fahrt zu entfernen**. Dazu gehört auch ein in den Fahrweg hängendes Stationskabel. Roborock empfiehlt, den ersten Lauf entlang der gesamten Route zu begleiten. Die Vorgaben zur Sicherung an Treppen bleiben dabei wichtig.
+
+- Geh den geplanten Weg einmal ab. Räum Ladekabel, Socken und kleine Spielzeuge aus dem Fahrbereich. Wenn der Kurzflorteppich vor allem wegen Katzenhaaren gereinigt werden soll, plane zuerst einen reinen Sauglauf und prüfe die Teppichhinweise der Anleitung.
+
+- Notiere für dieselben Räume deine **aktive Zeit**: Freiräumen, Nacharbeit und Gerätepflege. Vergleiche mit der aktiven Zeit für deinen vorhandenen Sauger. Reine Fahr- und Wartezeit bleibt getrennt.
+
+- Bleiben typische Wege mit losen Gegenständen belegt oder ist tägliches Freiräumen unpraktisch, kannst du den Kauf zurückstellen. Lass einen betroffenen Bereich nur nach Modellanleitung aus. Die Hinderniserkennung ersetzt die Vorbereitung nicht.
+
+Passt dieser Aufwand zu deinem Alltag, [prüfe die genaue Saros-10R-Tankstation und den vorhandenen deutschen Kaufverweis](https://getecoback.com/guide/saugroboter-kaufberatung.html#roborock-saros-10r). Für Saros 10, Saros 20 oder die Variante mit Festwasseranschluss gelten die jeweiligen Unterlagen.
+
 ## Drei unterschiedliche Ansätze, mit klaren Grenzen
 Die Reihenfolge ist keine Rangliste. Beim D10 Plus Gen 2 pflegst du das Wischpad von Hand. Der L10s Ultra Gen 2 ergänzt Moppwäsche und Tankpflege. Beim Saros 10R kommen die flache Bauhöhe und die genau zu prüfende Doppelschwellen-Angabe hinzu. Den Quellenstatus findest du bei jedem Modell.
 

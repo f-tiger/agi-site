@@ -105,6 +105,7 @@ async function checkGermanFocusedDiscovery(browser,base){
   ['Bei meinem DeLonghi PAC EX105 A+++ fehlt die Fensterhalterung. Passt ein 150-mm-Schlauch an mein Kippfenster?',
     ex105Page+'#ex105-ablufteinbau'],
   ['Welche EAN hat der De’Longhi PAC EX105 A+++?',ex105Page+'#ex105-angebot'],
+  ["Erkennt der Roborock Saros 10R Kabel, Socken und Katzenspielzeug?",'/guide/saugroboter-kaufberatung.html#saros-10r-fahrweg'],
   ["Ist der Meaco DD8L Pro für meine unbeheizte Garage bei 5 °C geeignet?",'/guide/luftentfeuchter-keller.html#meaco-dd8l-pro-kalte-garage'],
   ["Midea PortaSplit Heizmodus: Außengerät vereist bei null Grad, ist der Abtauzyklus normal?",'/guide/klimaanlage-mit-heizfunktion.html#portasplit-abtauen'],
   ['De’Longhi PAC EX105 A+++: Sind 63 dB Schalldruck oder Schallleistung?',

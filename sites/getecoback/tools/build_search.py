@@ -243,6 +243,13 @@ def collect():
     raise ValueError(f'Missing or hidden DD8L Pro garage evidence: {route}#{anchor}')
    entry['model_sections'].append({'id':anchor,'title':'Meaco DD8L Pro in der kalten Garage: Prüfwerte und Ablauf',
     'description':'DD8L Pro: Drei Herstellerwerte bei 10 °C und 60 % relativer Feuchte. Werte bei 3 oder 5 °C bleiben offen. Luftstrom, Dauerablauf und Wandhalterung vor dem Kauf prüfen.'})
+  if lang=='de' and route=='/guide/saugroboter-kaufberatung.html':
+   anchor='saros-10r-fahrweg'
+   targets=re.findall(r'<h2\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)
+   if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
+    raise ValueError(f'Missing or hidden Saros 10R floor-preparation guidance: {route}#{anchor}')
+   entry['model_sections']=[{'id':anchor,'title':'Roborock Saros 10R: Kabel, Socken und Katzenspielzeug vor dem Kauf einplanen',
+    'description':'Die Saros-10R-Anleitung fordert, Kabel und lose Gegenstände vor der Fahrt zu entfernen. Aufräumzeit, Kurzflorteppich und Nacharbeit vor dem Kauf prüfen.'}]
   if lang=='de' and route=='/produkte.html':
    model_sections=[
     {'id':BOSCH_STACKING_ID,'title':BOSCH_STACKING_TITLE,'description':BOSCH_STACKING_ANSWER},
