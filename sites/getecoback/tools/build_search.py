@@ -133,6 +133,19 @@ def collect():
    catalog=json.loads((ROOT/'data/product-catalog.json').read_text())
    extra=' '.join([extra]+[c['name'] for c in catalog['categories']]+[p['name']+' '+p['variant'] for p in catalog['products']])
   entry={'u':route,'t':' '.join(h.title.split()),'d':desc[:320],'l':lang,'a':extra}
+  if lang=='de' and route=='/guide/saugwischer-kaufberatung.html':
+   models=[
+    {'id':'tineco-s7-modellwahl','title':'Tineco S7 FlashDry oder S7 Pro?',
+     'description':'Modellzusatz in Angebot und Anleitung prüfen. Tineco dokumentiert getrennte Pflegeprogramme für FlashDry und Pro.'},
+    {'id':'tineco-s7-flashdry','title':'Tineco FLOOR ONE S7 FlashDry: Boden, Pflege und Kaufprüfung',
+     'description':'Herstellerangaben für genau den S7 FlashDry prüfen. Bodenfreigabe, Tankreinigung und Modellvariante abgleichen.'},
+   ]
+   for model in models:
+    anchor=model['id']
+    matches=re.findall(r'<(?:section|h2)\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)
+    if len(matches)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',matches[0]):
+     raise ValueError(f'Missing or hidden model section: {route}#{anchor}')
+   entry['model_sections']=models
   if lang=='de' and route=='/waeschetrockner-oder-luftentfeuchter.html':
    anchor='laundry-check'
    targets=re.findall(r'<section\b[^<>]*\sid="laundry-check"[^<>]*>',text)

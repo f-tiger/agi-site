@@ -23,6 +23,8 @@ assert sorted(humidifier_sections)==sorted(['ersatzteile-zuordnen','philips-verd
     'philips-hu2716-10','philips-hu3916-10','philips-hu3918-10'])
 laundry_index=next(row for row in index if row['u']=='/waeschetrockner-oder-luftentfeuchter.html')
 assert [row['id'] for row in laundry_index['model_sections']]==['laundry-check']
+floorcare_index=next(row for row in index if row['u']=='/guide/saugwischer-kaufberatung.html')
+assert [row['id'] for row in floorcare_index['model_sections']]==['tineco-s7-modellwahl','tineco-s7-flashdry']
 focused=[entry for entry in index if entry.get('section')]
 assert [(entry['l'],entry['u'],entry['section']['id']) for entry in focused]==[
     ('de','/geraete-austausch-rechner.html','geschirrspueler-handabwasch'),

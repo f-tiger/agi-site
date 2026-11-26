@@ -31,6 +31,10 @@ def load():
 
 def render(today=None, data=None):
     d = load() if data is None else data
+    flashdry = esc(d['sources']['tineco_product']['url'], quote=True)
+    pro_support = d['sources']['tineco_pro_support']
+    pro = esc(pro_support['url'], quote=True)
+    variant_checked = esc(pro_support['checked'])
     age = ((today or dt.datetime.now(dt.timezone.utc).date()) - dt.date.fromisoformat(d['checked'])).days
     fresh = 0 <= age <= d['max_age_days']
     rows, cards = [], []
@@ -44,7 +48,7 @@ def render(today=None, data=None):
         cards.append(f'<section class="fc-card" id="{esc(p["id"])}"><p class="fc-kicker">{esc(p["role"])}</p><h3>{esc(p["name"])}</h3><p>{esc(p["facts"])}</p><dl><dt>Boden und Einsatz</dt><dd>{esc(p["floor"])}</dd><dt>Pflege danach</dt><dd>{esc(p["care"])}</dd><dt>Genau diese Variante</dt><dd>{esc(p["variant"])}</dd><dt>Verbrauchsmaterial</dt><dd>{esc(p["parts"])}</dd></dl><p class="fc-sources">Herstellerquellen: {refs}</p>{action}</section>')
     faq = ''.join(f'<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q,a in FAQ)
     ld = {'@context':'https://schema.org','@graph':[
-        {'@type':'Article','headline':TITLE,'description':DESCRIPTION,'inLanguage':'de','mainEntityOfPage':URL,'datePublished':'2026-11-12','dateModified':'2026-11-12','author':{'@type':'Organization','name':'EcoBack','url':'https://getecoback.com/'},'publisher':{'@type':'Organization','name':'EcoBack','url':'https://getecoback.com/'}},
+        {'@type':'Article','headline':TITLE,'description':DESCRIPTION,'inLanguage':'de','mainEntityOfPage':URL,'datePublished':'2026-11-12','dateModified':pro_support['checked'],'author':{'@type':'Organization','name':'EcoBack','url':'https://getecoback.com/'},'publisher':{'@type':'Organization','name':'EcoBack','url':'https://getecoback.com/'}},
         {'@type':'FAQPage','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in FAQ]}
     ]}
     return f'''<!DOCTYPE html>
@@ -67,6 +71,16 @@ def render(today=None, data=None):
 <h2 id="modelle-vergleichen">Drei genaue Modelle mit unterschiedlichen Kaufgründen</h2>
 <p>Die Reihenfolge ist keine Rangliste. Wähle zuerst die Eigenschaft, die du brauchst, und lies dann die Einschränkungen. Watt, Pa, Hersteller-Reichweiten und unterschiedlich gemessene Gewichte ergeben keinen fairen gemeinsamen Testsieger.</p>
 <div class="fc-table" role="region" aria-label="Modellübersicht, horizontal scrollbar" tabindex="0"><table><caption>Was du mit welchem Modell prüfen kannst</caption><thead><tr><th scope="col">Modell</th><th scope="col">Interessant bei diesem Bedarf</th><th scope="col">Vor einem Vergleich abgrenzen</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div>
+<section class="fc-answer" aria-labelledby="tineco-s7-modellwahl">
+<h2 id="tineco-s7-modellwahl">Tineco S7 FlashDry oder S7 Pro: Welche Variante ist gemeint?</h2>
+<p>„Tineco S7“ reicht zur Zuordnung nicht aus. Gleiche die vollständige Modellbezeichnung im Angebot mit der Geräteanleitung ab. Bei einem vorhandenen Gerät prüfe zusätzlich das Typenschild.</p>
+<ul>
+<li><strong>FLOOR ONE S7 FlashDry:</strong> Tineco beschreibt die Selbstreinigung mit Heißwasser und das FlashDry-Trocknungsprogramm an der Station. <a href="{flashdry}">Deutsche Herstellerangaben zum FlashDry</a> · <a href="#tineco-s7-flashdry">FlashDry-Modellkarte und Kaufprüfung</a></li>
+<li><strong>FLOOR ONE S7 Pro:</strong> Der deutsche Tineco-Support beschreibt Selbstreinigung und Zentrifugaltrocknung. Nutze Anleitung und Zubehörhinweise für genau den S7 Pro. <a href="{pro}">Deutscher Hersteller-Support zum S7 Pro</a></li>
+</ul>
+<p>Diese Programme betreffen die Pflege des Geräts. Aus den Herstellerangaben lässt sich nicht ableiten, welche Walze nach derselben Nutzung trockener ist. Fehlt der Modellzusatz oder reicht dein vorhandenes Gerät, warte mit dem Kauf.</p>
+<p>Dein Gerät saugt nicht mehr richtig? Prüfe zuerst die <a href="/guide/tineco-saugt-nicht-mehr.html">modellabhängigen Wartungsschritte</a>. Quellen zur Modellabgrenzung geprüft am {variant_checked}.</p>
+</section>
 <p class="fc-disclosure">Anzeige · Die gekennzeichneten Modellsuchen enthalten Affiliate-Links. EcoBack kann bei qualifizierten Käufen eine Provision erhalten. Eine Suche bestätigt weder die genaue Variante noch den Preis oder die Lieferbarkeit.</p>
 <div class="fc-models">{''.join(cards)}</div>
 <h2 id="nachpflege">Vor dem Kauf einen Pflegeplan durchgehen</h2><ol><li>Tankentleerung und die in der Anleitung genannten Reinigungsarbeiten nach jeder Nutzung einplanen.</li><li>Walze, Filter und Ansaugweg nach den eigenen Modellvorgaben kontrollieren. Feuchte Teile nur so einsetzen oder lagern, wie es die Anleitung erlaubt.</li><li>Passende Teile und freigegebene Reinigungslösung mit genauer Modellkennung suchen; aktuelle Verfügbarkeit beim Anbieter prüfen.</li><li>Bei deinem vorhandenen Tineco zuerst den <a href="/guide/tineco-saugt-nicht-mehr.html">Pflege-Check für S5 und S7 FlashDry</a> nutzen. Er gilt nicht automatisch für andere Modelle.</li></ol>

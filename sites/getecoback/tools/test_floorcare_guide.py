@@ -93,6 +93,25 @@ class FloorcareGuide(unittest.TestCase):
             if href.startswith('#') and len(href) > 1:
                 self.assertIn(href[1:], parsed.ids)
 
+    def test_final_tineco_model_choice_uses_separate_manufacturer_evidence(self):
+        final = guide.TARGET.read_text()
+        choices = re.findall(r'<section\b[^>]*aria-labelledby="tineco-s7-modellwahl"[^>]*>(.*?)</section>', final, re.S)
+        self.assertEqual(len(choices), 1)
+        answer = choices[0]
+        links = {a['href'] for a in Page(answer).links}
+        pro = self.data['sources']['tineco_pro_support']
+        self.assertIn(pro['url'], links)
+        self.assertIn(self.data['sources']['tineco_product']['url'], links)
+        self.assertIn('#tineco-s7-flashdry', links)
+        self.assertIn('/guide/tineco-saugt-nicht-mehr.html', links)
+        self.assertIn('Zentrifugaltrocknung', answer)
+        self.assertIn('Heißwasser', answer)
+        self.assertIn(pro['checked'], answer)
+        self.assertNotIn('amazon.', answer)
+        md = guide.TARGET.with_suffix('.md').read_text()
+        self.assertIn(pro['url'], md)
+        self.assertIn(guide.URL + '#tineco-s7-flashdry', md)
+
 
 if __name__ == '__main__':
     unittest.main()

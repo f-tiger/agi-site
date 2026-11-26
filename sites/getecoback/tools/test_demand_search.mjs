@@ -50,6 +50,19 @@ test('Final browser index preserves the public compatibility index byte-for-byte
  const compatibilityIndex=readFileSync(new URL('../site/search-index.json',import.meta.url));
  assert(browsingIndex.equals(compatibilityIndex),'Built browser and compatibility search indices differ');
 });
+test('Tineco S7 search keeps model identity, FlashDry and repair separate',()=>{
+ const guide='/guide/saugwischer-kaufberatung.html';
+ for (const [query,anchor] of [
+  ['Tineco S7','tineco-s7-modellwahl'],
+  ['Tineco S7 FlashDry oder S7 Pro – welches Modell ist gemeint?','tineco-s7-modellwahl'],
+  ['Tineco FLOOR ONE S7 FlashDry','tineco-s7-flashdry'],
+ ]) assert.equal(searchEntries(index,query,'de')[0]?.entry.u,guide+'#'+anchor,query);
+ assert.equal(searchEntries(index,'Tineco saugt nicht mehr','de')[0]?.entry.u,'/guide/tineco-saugt-nicht-mehr.html');
+ for (const query of ['Tineco S7 Pro kaufen','Tineco S7 FlashDry Pet','Tineco S7 Stretch Steam',
+  'Tineco S7 FlashDry saugt nicht mehr','Tineco S7 FlashDry Zubehör Ersatzteile']) {
+  assert(!searchEntries(index,query,'de').some(hit=>hit.entry.u.startsWith(guide+'#tineco-s7-')),query);
+ }
+});
 test('German per-load cost searches link to the right calculator for the appliances named',()=>{
  const base='/waeschetrockner-oder-luftentfeuchter.html';
  const comparison=base+'#laundry-check';
