@@ -1,4 +1,4 @@
-import {asksForLaundryCostComparison, boschDry, carHeaterOutlet, comfeeVariant, coolingDiscountReference, directHeat, exactGermanHouseholdTask, exactWindowShadeMeasurement, festiveLights, gasHeatCost, granulateDryingChoice, klarsteinPackage, mentionsLaundryDryer, offlineThermostatChoice, showerFlow, siemensFilterDecision, vacuumOffer} from './german-household-intent.mjs?v=a94a295c93dc';
+import {asksForLaundryCostComparison, boschDry, carHeaterOutlet, comfeeVariant, coolingDiscountReference, directHeat, exactGermanHouseholdTask, exactWindowShadeMeasurement, festiveLights, gasHeatCost, granulateDryingChoice, klarsteinPackage, mentionsLaundryDryer, offlineThermostatChoice, showerFlow, siemensFilterDecision, tinecoS7FlashDry, tinecoS7Variant, vacuumOffer} from './german-household-intent.mjs?v=4757cacfc9ff';
 import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion, glassvacModel, windowVacCharging} from './kaercher-saugduese-intent.mjs';
@@ -385,7 +385,8 @@ export function findCatalogueTools(index, {query='', category='', name=null}={})
   const householdTask = exactGermanHouseholdTask(focus.query);
   const comparisonGuide = householdTask === granulateDryingChoice || householdTask === coolingDiscountReference ||
     householdTask === offlineThermostatChoice || householdTask === siemensFilterDecision ||
-    householdTask === gasHeatCost || householdTask === carHeaterOutlet;
+    householdTask === gasHeatCost || householdTask === carHeaterOutlet ||
+    householdTask === tinecoS7FlashDry || householdTask === tinecoS7Variant;
   if (householdTask === boschDry || householdTask === comfeeVariant || householdTask === festiveLights || householdTask === showerFlow || householdTask === directHeat || householdTask === klarsteinPackage || comparisonGuide) {
     const guideSearch = index.find(entry => entry.tool.name === householdTask.tool && eligible(entry));
     if (guideSearch) {

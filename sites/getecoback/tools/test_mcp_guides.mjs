@@ -41,6 +41,23 @@ async function call(name, args, env) {
   return payload.result;
 }
 
+test('Tineco S7 advice finds the same canonical guide and separate primary evidence', async ()=>{
+  const route = '/guide/saugwischer-kaufberatung.html';
+  const {env}=assetEnv();
+  for (const [frage,title] of [
+    ['Tineco S7','Tineco S7 FlashDry oder S7 Pro?'],
+    ['Tineco FLOOR ONE S7 FlashDry','Tineco FLOOR ONE S7 FlashDry: Boden, Pflege und Kaufprüfung'],
+  ]) {
+    const hits=textOf(await call('ratgeber_suche',{frage,sprache:'de',max:1},env));
+    assert(hits.includes('- '+title+'\n  https://getecoback.com'+route),hits);
+  }
+  const result=await call('ratgeber_lesen',{pfad:route},env);
+  const text=textOf(result);
+  assert(text.includes('Zentrifugaltrocknung'));
+  assert(text.includes('https://de.tineco.com/support/detail/floor-one-s7-pro/'));
+  assert(!text.includes('getecoback-21'));
+});
+
 test('the committed MCP corpus is derived from current public canonical pages and built mirrors', () => {
   const py = spawnSync('python3', ['-c', "import json,sys;sys.path.insert(0,'tools');from build_mcp_guides import collect_guides;print(json.dumps(collect_guides()))"], {cwd, encoding: 'utf8', timeout: 15000});
   assert.equal(py.status, 0, py.stderr);

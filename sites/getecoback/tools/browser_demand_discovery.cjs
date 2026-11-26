@@ -44,6 +44,8 @@ async function checkGermanFocusedDiscovery(browser,base){
   ['Trockner oder Luftentfeuchter Stromkosten Wäsche','/waeschetrockner-oder-luftentfeuchter.html'],
   ['Kondenstrockner oder Luftentfeuchter: Was kostet eine Ladung Wäsche?',
     '/waeschetrockner-oder-luftentfeuchter.html#laundry-check'],
+  ['Tineco S7','/guide/saugwischer-kaufberatung.html#tineco-s7-modellwahl'],
+  ['Tineco FLOOR ONE S7 FlashDry','/guide/saugwischer-kaufberatung.html#tineco-s7-flashdry'],
   ['Luftentfeuchter Keller','/guide/luftentfeuchter-keller.html'],
   ['Stromtarif','/stromtarif-werkstatt.html'],
   ['Wäsche trocknen','/waeschetrockner-oder-luftentfeuchter.html'],

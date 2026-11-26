@@ -41,6 +41,18 @@ Was du mit welchem Modell prüfen kannst
 | [Dreame H14 Pro](https://getecoback.com/guide/saugwischer-kaufberatung.html#dreame-h14-pro) | Unter niedrigen Möbeln reinigen | H14 Pro; nicht H14, H14 Dual oder H14 Pro TangleCut. Flachbetrieb nur nach der Anleitung des gelieferten Modells. |
 | [Roborock F25 XT](https://getecoback.com/guide/saugwischer-kaufberatung.html#roborock-f25-xt) | Automatische Dosierung und App-Einstellungen | Die Herstellerseite bezeichnet F25 XT als F25 ACE Neue Version. ALT, RT, Combo und Ultra sind andere Varianten. Die ACE-Anleitung belegt keine automatische Ersatzteil-Kompatibilität mit jeder XT-Ausführung. |
 
+## Tineco S7 FlashDry oder S7 Pro: Welche Variante ist gemeint?
+
+„Tineco S7“ reicht zur Zuordnung nicht aus. Gleiche die vollständige Modellbezeichnung im Angebot mit der Geräteanleitung ab. Bei einem vorhandenen Gerät prüfe zusätzlich das Typenschild.
+
+- **FLOOR ONE S7 FlashDry:** Tineco beschreibt die Selbstreinigung mit Heißwasser und das FlashDry-Trocknungsprogramm an der Station. [Deutsche Herstellerangaben zum FlashDry](https://de.tineco.com/products/floor-one-s7-flashdry.html) · [FlashDry-Modellkarte und Kaufprüfung](https://getecoback.com/guide/saugwischer-kaufberatung.html#tineco-s7-flashdry)
+
+- **FLOOR ONE S7 Pro:** Der deutsche Tineco-Support beschreibt Selbstreinigung und Zentrifugaltrocknung. Nutze Anleitung und Zubehörhinweise für genau den S7 Pro. [Deutscher Hersteller-Support zum S7 Pro](https://de.tineco.com/support/detail/floor-one-s7-pro/)
+
+Diese Programme betreffen die Pflege des Geräts. Aus den Herstellerangaben lässt sich nicht ableiten, welche Walze nach derselben Nutzung trockener ist. Fehlt der Modellzusatz oder reicht dein vorhandenes Gerät, warte mit dem Kauf.
+
+Dein Gerät saugt nicht mehr richtig? Prüfe zuerst die [modellabhängigen Wartungsschritte](https://getecoback.com/guide/tineco-saugt-nicht-mehr.html). Quellen zur Modellabgrenzung geprüft am 2026-11-26.
+
 Anzeige · Die gekennzeichneten Modellsuchen enthalten Affiliate-Links. EcoBack kann bei qualifizierten Käufen eine Provision erhalten. Eine Suche bestätigt weder die genaue Variante noch den Preis oder die Lieferbarkeit.
 
 Unterstützung beim Schieben und Ziehen

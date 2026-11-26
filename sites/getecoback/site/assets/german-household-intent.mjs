@@ -18,6 +18,29 @@ export function asksForLaundryCostComparison(query) {
     !anotherDecision.test(query);
 }
 
+const floorcareGuide = '/guide/saugwischer-kaufberatung.html';
+export const tinecoS7Variant = {path:floorcareGuide,id:'tineco-s7-modellwahl',tool:'ratgeber_suche'};
+export const tinecoS7FlashDry = {path:floorcareGuide,id:'tineco-s7-flashdry',tool:'ratgeber_suche'};
+
+function exactTinecoS7Task(query) {
+  const family = /\bs[ -]?7\b/;
+  const manufacturer = /\b(?:tineco|floor[ -]+one)\b/;
+  const service = /\b(?:saug\w*\s+(?:gar\s+)?nicht|keine\s+saugkraft|repar\w*|defekt\w*|wart\w*|ersatzteil\w*|fehler\w*|stinkt|laedt\s+nicht)\b/;
+  if (!manufacturer.test(query) || !family.test(query) || service.test(query)) return null;
+  if (/\b(?:dreame|roborock|s[ -]?(?:5|6|9))\b/.test(query)) return null;
+
+  const flashdry = /\bs[ -]?7[ -]+flash[ -]?dry\b/;
+  const pro = /\bs[ -]?7[ -]+pro\b|\b(?:oder|gegen|versus|vs)\s+pro\b/;
+  const anotherVariant = /\bs[ -]?7[ -]+(?:stretch|steam|max|ultra|pet|plus|combo)\b|\bflash[ -]?dry[ -]+(?:pet|pro|plus)\b/;
+  if (anotherVariant.test(query)) return null;
+  if (flashdry.test(query)) return pro.test(query) ? tinecoS7Variant : tinecoS7FlashDry;
+  if (pro.test(query)) return null;
+
+  const exactFamily = /^(?:(?:tineco|floor[ -]+one) +)+s[ -]?7$/;
+  const buyingOrIdentity = /\b(?:kauf\w*|preis\w*|angebot\w*|modell\w*|variant\w*|unterschied\w*|vergleich\w*)\b/;
+  return exactFamily.test(query) || buyingOrIdentity.test(query) ? tinecoS7Variant : null;
+}
+
 const curtain = {
   path:'/guide/thermovorhang-ratgeber.html',
   id:'thermovorhang-bahnenbedarf',
@@ -287,6 +310,8 @@ export function exactWindowShadeMeasurement(query) {
 
 // Consumers pass their normalized German query. Match a task, not a category.
 export function exactGermanHouseholdTask(query) {
+  const tineco = exactTinecoS7Task(query);
+  if (tineco) return tineco;
   const exhaustPanel = /\babluft[ -]?platt\w*\b|(?:\b(?:fenster|acryl|hohlkammer)[ -]?platt\w*\b.*\b(?:klimaanlag\w*|klimageraet\w*|abluft\w*)\b)|(?:\b(?:klimaanlag\w*|klimageraet\w*|abluft\w*)\b.*\b(?:fenster|acryl|hohlkammer)[ -]?platt\w*\b)/;
   const opening = /\b(?:ausschnitt\w*|lochr?and\w*|loch\w*|randabstand\w*|anschlusszeichnung\w*)\b/;
   const irrelevant = /\b(?:rechteckig\w*|oval\w*|sicherung\w*|einbruch\w*|lautstaerk\w*|geraeusch\w*|schlauchlaeng\w*|(?:abluft)?schlauch\s+verlaeng\w*)\b/;
