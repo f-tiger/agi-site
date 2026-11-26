@@ -20,6 +20,7 @@ Halte die vollständige Modellnummer vom Typenschild oder die Teilenummer bereit
 - [Miele-Staubsaugerbeutel](https://getecoback.com/produkte.html#miele-staubsaugerbeutel)
 - [Kärcher-Saugdüse 170 mm](https://getecoback.com/produkte.html#kaercher-170mm-saugduese)
 - [Kärcher-Entkalkungskartusche für SC 3 oder SC 1](https://getecoback.com/produkte.html#kaercher-sc3-entkalkungskartusche)
+- [Kärcher-Filterbeutel für WD 3 oder WD 4](https://getecoback.com/produkte.html#kaercher-wd3-wd4-filterbeutel)
 - [Kaffeevollautomat-Wasserfilter](https://getecoback.com/produkte.html#kaffee-wasserfilter)
 - [Trotec TTK 70 HEPA-Filter](https://getecoback.com/guide/trotec-luftentfeuchter-test.html#ttk70-hepa-filter)
 - [Ersatzfilter für Luftreiniger](https://getecoback.com/ersatzfilter.html#finder)
@@ -517,6 +518,7 @@ Der Hersteller nennt einen 17-Liter-Kunststoffbehälter, 4 m Kabel und 2 m Saugs
 
 Quelle: [Kärcher Deutschland: Kärcher WD 3 V-17/4/20](https://www.karcher.com/de/de/home-and-garden/produkte/wd-3-v-17-4-20-p16281300) · geprüft am 13.11.2026.
 
+[Passenden Vliesfilterbeutel prüfen →](https://getecoback.com/produkte.html#kaercher-wd3-wd4-filterbeutel)
 Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue Variante, Gesamtpreis und Lieferung beim Händler prüfen.
 
 ### Kärcher WD 4 P V-20/5/22
@@ -529,6 +531,7 @@ Der Hersteller nennt einen 20-Liter-Kunststoffbehälter, 5 m Kabel und 2,2 m Sch
 
 Quelle: [Kärcher Deutschland: Kärcher WD 4 P V-20/5/22](https://www.karcher.com/de/de/home-and-garden/produkte/wd-4-p-v-20-5-22-p16282700) · geprüft am 13.11.2026.
 
+[Passenden Vliesfilterbeutel prüfen →](https://getecoback.com/produkte.html#kaercher-wd3-wd4-filterbeutel)
 Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue Variante, Gesamtpreis und Lieferung beim Händler prüfen.
 
 ### Kärcher WD 5 Control S 25/5/22
@@ -554,6 +557,23 @@ Der Hersteller nennt einen 20-Liter-Kunststoffbehälter und zwei benötigte 18-V
 Quelle: [Kärcher Deutschland: Kärcher WD 4-18 Dual Battery Set](https://www.karcher.com/de/de/home-and-garden/produkte/wd-4-18-dual-battery-set-p16286010) · geprüft am 13.11.2026.
 
 Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue Variante, Gesamtpreis und Lieferung beim Händler prüfen.
+
+### Passen dieselben Kärcher-Filterbeutel in WD 3 und WD 4?
+
+Kärcher listet KFI 357 (2.863-314.0) für WD 3 V-17/4/20 (1.628-130.0) und KFI 487 (2.863-006.0) für WD 4 P V-20/5/22 (1.628-270.0). Nutze die Zuordnung vom Typenschild. Zum Aufsaugen von Flüssigkeit verlangen beide Anleitungen den Ausbau des Beutels.
+
+| Deutsches Modell | Filterbeutel | EAN und Packung | Herstellerunterlagen |
+| --- | --- | --- | --- |
+| [WD 3 V-17/4/20 · 1.628-130.0](https://www.karcher.com/de/de/home-and-garden/produkte/wd-3-v-17-4-20-p16281300) | [KFI 357 · 2.863-314.0](https://www.karcher.com/de/de/home-and-garden/produkte/vliesfilterbeutel-kfi-357-p28633140) | 4054278777689 · 4 Stück | [KFI 357: Datenblatt](https://d201jv09wbq6e1.cloudfront.net/product_information/deu/2.863-314.0_PI_de_DE.pdf) · [Kärcher WD 3 V-17/4/20: Anleitung](https://dp6jru56judg7.cloudfront.net/eBTA/000/xx_59513920.html/DE.html) |
+| [WD 4 P V-20/5/22 · 1.628-270.0](https://www.karcher.com/de/de/home-and-garden/produkte/wd-4-p-v-20-5-22-p16282700) | [KFI 487 · 2.863-006.0](https://www.karcher.com/de/de/home-and-garden/produkte/vliesfilterbeutel-kfi-487-p28630060) | 4039784945241 · 4 Stück | [KFI 487: Datenblatt](https://d201jv09wbq6e1.cloudfront.net/product_information/deu/2.863-006.0_PI_de_DE.pdf) · [Kärcher WD 4 P V-20/5/22: Anleitung](https://dp6jru56judg7.cloudfront.net/eBTA/000/xx_59511950.html/DE.html) |
+
+- **Vorhandenen Beutel prüfen.** Beide deutschen Neugeräte führen je einen Vliesfilterbeutel im Lieferumfang. Wenn dein passender Beutel einsatzfähig ist, brauchst du keinen Vorrat zu bestellen.
+
+- **Feuchte Erde oder freies Wasser?** Kärcher nennt feuchte Erde als Beispiel für feuchten Schmutz. Für verschüttetes Wasser oder andere Flüssigkeiten gilt der Abschnitt Nasssaugen in der Anleitung: Filterbeutel herausnehmen. Für diese Aufgabe brauchst du keinen Beutel zu kaufen. Patronenfilter bzw. Flachfaltenfilter bleiben eigene Bauteile mit eigenen Vorgaben.
+
+- **Ähnliche Bezeichnung?** Bei einer abweichenden Gerätenummer, auch bei gleichem Namen, prüfe die Kompatibilitätsliste von Kärcher mit der vollständigen Nummer. Die beiden Beutel sind für die zwei hier genannten Gerätenummern unterschiedlich zugeordnet.
+
+Deutsche Herstellerquellen, Ersatzteil-Datenblätter vom 19.11.2026, geprüft am 26.11.2026.
 
 ## Bodenstaubsauger 4 Modelle
 

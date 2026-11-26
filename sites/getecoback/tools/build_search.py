@@ -7,6 +7,7 @@ from build_language_nav import Head, local
 from build_product_catalog import (
  BOSCH_STACKING_ANSWER, BOSCH_STACKING_ID, BOSCH_STACKING_TITLE,
  KARCHER_CARTRIDGE_ANSWER, KARCHER_CARTRIDGE_ID, KARCHER_CARTRIDGE_TITLE,
+ KARCHER_WD_BAG_ANSWER, KARCHER_WD_BAG_ID, KARCHER_WD_BAG_TITLE,
  SIEMENS_FILTER_ANSWER, SIEMENS_FILTER_ID, SIEMENS_FILTER_TITLE,
 )
 ROOT=Path(__file__).resolve().parents[1]
@@ -185,6 +186,7 @@ def collect():
     {'id':'fenstersauger-duesenbreite','title':'Welche Saugdüse passt zwischen die Sprossen?',
      'description':'Miss die lichte Glasbreite und prüfe den Spielraum für Saugkopf und Gehäuse.'},
     {'id':KARCHER_CARTRIDGE_ID,'title':KARCHER_CARTRIDGE_TITLE,'description':KARCHER_CARTRIDGE_ANSWER},
+    {'id':KARCHER_WD_BAG_ID,'title':KARCHER_WD_BAG_TITLE,'description':KARCHER_WD_BAG_ANSWER},
     {'id':SIEMENS_FILTER_ID,'title':SIEMENS_FILTER_TITLE,'description':SIEMENS_FILTER_ANSWER}]
    for section in model_sections:
     anchor=section['id']

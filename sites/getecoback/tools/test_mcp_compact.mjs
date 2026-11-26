@@ -75,6 +75,11 @@ test('hosted compact returns reviewed guide sections without presenting them as 
       '/produkte.html', 'kaercher-sc3-entkalkungskartusche'],
     ['Brauche ich 2.863-104.0 für meinen SC 1 Multi?',
       '/produkte.html', 'kaercher-sc3-entkalkungskartusche'],
+    ['Welche Vliesfilterbeutel passen zu meinem Kärcher WD 3 V-17/4/20?',
+      '/produkte.html', 'kaercher-wd3-wd4-filterbeutel'],
+    ['Passt der KFI 357 aus meinem Kärcher WD 3 auch in meinen WD 4?',
+      '/produkte.html', 'kaercher-wd3-wd4-filterbeutel'],
+    ['4039784945241', '/produkte.html', 'kaercher-wd3-wd4-filterbeutel'],
     ['Tineco S7 FlashDry oder S7 Pro – welches Modell ist gemeint?', '/guide/saugwischer-kaufberatung.html', 'tineco-s7-modellwahl'],
     ['Tineco FLOOR ONE S7 FlashDry', '/guide/saugwischer-kaufberatung.html', 'tineco-s7-flashdry'],
     ['Kann ich die Jahreskosten meiner Infrarotheizung direkt aus dem Energieausweis berechnen?',
@@ -99,6 +104,15 @@ test('hosted compact returns reviewed guide sections without presenting them as 
   ]) {
     const found = await call(compactPath,findName,{frage},headers);
     assert(!found.structuredContent.guides?.some(guide=>guide.guide_url.endsWith('#kaercher-sc3-entkalkungskartusche')),frage);
+  }
+  for(const frage of [
+    'Welche Filterbeutel passen zum Kärcher WD 4-18 Dual Battery Set?',
+    'Passt der KFI 487 in meinen Kärcher WD 4 Premium?',
+    'Welchen Flachfaltenfilter brauche ich für meinen Kärcher WD 4 P V-20/5/22?',
+    'Ich möchte den Kärcher WD 3 V-17/4/20 als komplettes Gerät kaufen.',
+  ]){
+    const found=await call(compactPath,findName,{frage},headers);
+    assert(!found.structuredContent.guides?.some(guide=>guide.guide_url.endsWith('#kaercher-wd3-wd4-filterbeutel')),frage);
   }
   const philips=await call(compactPath,findName,{frage:'Welcher Filter passt in den Philips HU3916/10?'},headers);
   assert.equal(philips.structuredContent.tools[0]?.name,'philips_verdunsterfilter_zuordnung');

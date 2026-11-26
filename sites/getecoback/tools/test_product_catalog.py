@@ -64,6 +64,7 @@ class CatalogTest(unittest.TestCase):
         expected = [
             '/produkte.html#miele-staubsaugerbeutel', '/produkte.html#kaercher-170mm-saugduese',
             '/produkte.html#kaercher-sc3-entkalkungskartusche',
+            '/produkte.html#kaercher-wd3-wd4-filterbeutel',
             '/produkte.html#kaffee-wasserfilter', '/guide/trotec-luftentfeuchter-test.html#ttk70-hepa-filter',
             '/ersatzfilter.html#finder',
         ]
@@ -102,6 +103,39 @@ class CatalogTest(unittest.TestCase):
         for token in ('4054278026213', '4066529064912', '2.863-018.0_PI_de_DE.pdf', '2.863-104.0_PI_de_DE.pdf'):
             self.assertIn(token, mirror[:20000])
         self.assertNotIn('2.863-018.0 bei Amazon.de suchen', mirror)
+
+    def test_de_karcher_wd_bags_match_typeplates_and_remove_stale_offers(self):
+        from urllib.parse import parse_qs, urlsplit
+        data = C.load()
+        today = dt.date(2026, 11, 26)
+        section = C.render_karcher_wd_bags(data, today)
+        rows = re.findall(r'<tr>.*?</tr>', section, re.S)
+        parts = (
+            ('1.628-130.0', 'KFI 357', '2.863-314.0', '4054278777689', 'xx_59513920'),
+            ('1.628-270.0', 'KFI 487', '2.863-006.0', '4039784945241', 'xx_59511950'),
+        )
+        self.assertEqual(len(rows), 3)
+        for row, identifiers in zip(rows[1:], parts):
+            for identifier in (*identifiers, '4 Stück'):
+                self.assertIn(identifier, row)
+        self.assertIn('je einen Vliesfilterbeutel im Lieferumfang', section)
+        self.assertIn('Filterbeutel herausnehmen', section)
+        self.assertIn('keinen Beutel zu kaufen', section)
+        offers = [urlsplit(a['href']) for a in Document(section).links if 'sponsored' in a.get('rel', '')]
+        self.assertEqual(len(offers), 2)
+        for offer, (_, family, part, _, _) in zip(offers, parts):
+            self.assertEqual((offer.netloc, offer.path), ('www.amazon.de', '/s'))
+            self.assertEqual(parse_qs(offer.query), {'k':[f'Kärcher {family} {part} Vliesfilterbeutel'], 'tag':['getecoback-21']})
+        paused = C.render_karcher_wd_bags(data, dt.date(2027, 3, 1))
+        self.assertNotIn('amazon.de', paused)
+        self.assertIn('4039784945241', paused)
+        mirror = C.to_markdown(C.render(data, today), C.ROUTE, 'de')
+        self.assertIn('Filterbeutel herausnehmen', mirror)
+        for _, _, part, ean, manual in parts:
+            self.assertIn(f'{part}_PI_de_DE.pdf', mirror)
+            self.assertIn(ean, mirror)
+            self.assertIn(f'{manual}.html/DE.html', mirror)
+        self.assertNotIn('bei Amazon.de suchen', mirror.split(C.KARCHER_WD_BAG_TITLE)[1].split('## ')[0])
 
     def test_miele_bag_packs_keep_exact_model_filter_roles_and_native_share(self):
         html = C.render(C.load(), dt.date(2026, 11, 22))

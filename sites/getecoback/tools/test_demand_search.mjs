@@ -7,6 +7,22 @@ import {calculateGasHeatThreshold} from '../site/assets/heat-gas-cost.mjs';
 import {compareSocketWatts} from '../site/assets/auto-12v-check.mjs';
 const browsingIndex=readFileSync(new URL('../site/assets/search-index.json',import.meta.url));
 const index=JSON.parse(browsingIndex);
+test('German Kärcher WD bag searches distinguish replacement bags, appliance variants and main filters',()=>{
+ const target='/produkte.html#kaercher-wd3-wd4-filterbeutel';
+ for(const query of [
+  'Welche Vliesfilterbeutel passen zu meinem Kärcher WD 3 V-17/4/20?',
+  'Passt der KFI 357 aus meinem Kärcher WD 3 auch in meinen WD 4?',
+  'Welche Filterbeutel passen zum Kärcher WD 4 P V-20/5/22?',
+  '2.863-314.0','4054278777689','2.863-006.0','4039784945241',
+ ]) assert.equal(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+ for(const query of [
+  'Welche Filterbeutel passen zum Kärcher WD 4-18 Dual Battery Set?',
+  'Passt der KFI 487 in meinen Kärcher WD 4 Premium?',
+  'Welchen Flachfaltenfilter brauche ich für meinen Kärcher WD 4 P V-20/5/22?',
+  'Welchen Patronenfilter brauche ich für den Kärcher WD 3 V-17/4/20?',
+  'Ich möchte den Kärcher WD 3 V-17/4/20 als komplettes Gerät kaufen.',
+ ]) assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+});
 test('Kärcher cartridge purchase queries resolve to the exact German comparison',()=>{
  const target='/produkte.html#kaercher-sc3-entkalkungskartusche';
  for(const query of [
