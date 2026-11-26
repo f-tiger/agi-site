@@ -3,6 +3,7 @@ import {parseDepthEvent} from '../../lib/depth-signals.mjs';
 import {parseTableReviewEvent} from '../../lib/table-review-signals.mjs';
 import {parseListingEvent} from '../../lib/listing-signals.mjs';
 import {parseProofKitEvent} from '../../lib/proofkit-signals.mjs';
+import {parseTradeWorkbenchEvent} from '../../lib/trade-workbench-signals.mjs';
 import {parseAiSoloEvent} from '../../lib/ai-solo-events.mjs';
 import {parseManjuEvent} from '../../lib/manju.mjs';
 import MANJU from '../../data/manju.json' with {type:'json'};
@@ -78,6 +79,8 @@ export async function onRequestPost({ request, env, waitUntil }) {
     // 一个拼错的事件名不是丢失，而是冒充成页面浏览。
     if (b.e && !EVENTS.has(b.e)) return new Response(null, { status: 204 });
     const ev = b.e || '';
+    const tradePath = path.startsWith('/trade-workbench/');
+    if (tradePath && ev !== 'biz') return new Response(null,{status:204});
     if (['go', 'star', 'biz', 'catalog_task'].includes(ev)) {
       const origin = new URL(request.url).origin;
       const source = request.headers.get('origin');
@@ -99,6 +102,14 @@ export async function onRequestPost({ request, env, waitUntil }) {
         if (origin !== 'https://baipiaoji.com' || !['zh','en'].includes(lang) || !parseProofKitEvent(path) ||
             ref?.origin !== origin || ref.pathname !== expected || !qualityEligible(request,path,lang) ||
             ['declared_automation','verified_bot'].includes(classification)) return new Response(null,{status:204});
+        b.r = '';
+      }
+      if (tradePath) {
+        const trade = parseTradeWorkbenchEvent(path);
+        const expected = (lang === 'en' ? '/en' : '') + '/studio/trade-tools/' + trade?.slug;
+        if (!trade || origin !== 'https://baipiaoji.com' || source !== origin || foreign || !['zh','en'].includes(lang) ||
+            ref?.origin !== origin || ref.pathname !== expected || !qualityEligible(request,path,lang) ||
+            ['declared_automation','verified_bot'].includes(classification) || /bpj-ci/i.test(request.headers.get('user-agent') || '')) return new Response(null,{status:204});
         b.r = '';
       }
     }
@@ -168,7 +179,7 @@ export async function onRequestPost({ request, env, waitUntil }) {
     try { if (b.r) ref = new URL(b.r).hostname.slice(0, 100); } catch {}
     // 站内跳转不算来源
     if (ref.endsWith('baipiaoji.com') || ref.endsWith('.pages.dev')) ref = '';
-    const country = (request.cf && request.cf.country) || '';
+    const country = tradePath ? '' : (request.cf && request.cf.country) || '';
     const d = new Date().toISOString().slice(0, 10);
     await env.HITS.prepare('INSERT INTO hits (d, path, lang, country, ref, ev) VALUES (?,?,?,?,?,?)')
       .bind(d, path, lang, country, ref, ev).run();

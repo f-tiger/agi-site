@@ -255,3 +255,17 @@ test('quote workflow accepts fixed public outcomes, never content or private mem
  assert.equal(businessEvent('baipiaoji.com','/members',{name:'proofkit_export_own'}),null);
  assert.equal(businessEvent('baipiaoji.com','/studio/testimonial-kit',{name:'proofkit_paid'}),null);
 });
+test('trade workbench measures fixed actions on exact BPJ tool routes',()=>{
+ const slug='fx-bank-quote-unit', route='/studio/trade-tools/'+slug;
+ for(const pathname of [route,'/en'+route])for(const action of ['signup','run','example','membership_open','csv']){
+  const name='trade_workbench_'+action;
+  assert.deepEqual(businessEvent('baipiaoji.com',pathname,{name}),{name,tool_id:slug,repeat:true});
+ }
+ const event={name:'trade_workbench_run'};
+ for(const pathname of ['/studio/trade-tools/','/members','/zh'+route,route+'/extra',route+'.html',route+'?amount=1285',route+'\n','/studio/trade-tools/'+'a'.repeat(65)]){
+  assert.equal(businessEvent('baipiaoji.com',pathname,event),null,pathname);
+ }
+ assert.equal(businessEvent('example.test',route,event),null);
+ assert.equal(businessEvent('baipiaoji.com',route,{...event,customer:'private'}),null);
+ assert.equal(businessEvent('baipiaoji.com',route,{name:'trade_workbench_revenue'}),null);
+});

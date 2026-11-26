@@ -29,7 +29,8 @@ export function buildTradePages({layout,esc,BASE,LOCALE,write,pushPage}) {
   const leads = t('筛选买家线索','Prioritize buyer leads');
   const quote = t('计算出口报价','Calculate an export quote');
   const listing = t('制作跨境上新包','Prepare a cross-border listing');
-  const links = [[leadPath,leads],[quotePath,quote],['/studio/listing-pack',listing]];
+  const workbench = t('使用 100 个外贸工具','Use 100 export trade tools');
+  const links = [[leadPath,leads],[quotePath,quote],['/studio/listing-pack',listing],['/studio/trade-tools/',workbench]];
   const external = (href,label) => `<a href="${esc(href)}" target="_blank" rel="noopener noreferrer">${esc(label)}</a>`;
   const body = `<link rel="stylesheet" href="/studio-assets/trade.css?v=1">
   <main class="stage bpj-trade">
@@ -84,6 +85,7 @@ export function buildTradePages({layout,esc,BASE,LOCALE,write,pushPage}) {
         <a href="${BASE+leadPath}" data-bpj-next><strong>${leads}</strong><span>${t('导入 CSV 或 JSON，按市场、品类、采购信号和截止日排优先级。','Rank CSV or JSON leads by market, product, buying signal and deadline.')}</span></a>
         <a href="${BASE+quotePath}" data-bpj-next><strong>${quote}</strong><span>${t('填数量、成本、汇率与费用，计算目标利润下的最低单价。','Enter quantities, costs, exchange rates and fees to find the unit price that meets your target margin.')}</span></a>
         <a href="${BASE}/studio/listing-pack" data-bpj-next><strong>${listing}</strong><span>${t('复核英文草稿和商品事实，导出上新资料。','Review English copy against product facts and export your listing files.')}</span></a>
+        <a href="${BASE}/studio/trade-tools/" data-bpj-next><strong>${workbench}</strong><span>${t('免费注册后，核对关务、退税、外汇和单证。','Create a free account to check customs, tax refunds, FX, and documents.')}</span></a>
         <p>${t('网页筛选和报价在浏览器本地运行。搜索欧盟公告时，产品关键词会发送至 TED。','Lead ranking and quote calculations run locally in your browser. EU tender searches send the product keywords to TED.')}</p>
       </aside>
     </div>

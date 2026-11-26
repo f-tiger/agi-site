@@ -32,6 +32,7 @@ import { lmHashOf } from './lastmod-hash.mjs';
 import { toolEvidence, evidenceSummary } from './tool-evidence.mjs';
 import { buildWorkPlan, workPlanLinks } from './work-plan.mjs';
 import { buildStudio, studioHome, studioSearch } from './studio-pages.mjs';
+import { tradeWorkbenchSearch } from './trade-workbench-pages.mjs';
 import {efficiencyEntry} from './codex-efficiency-pages.mjs';
 import { audiencesOf, AUDIENCES } from '../functions/api/_agents.js';
 // 零依赖静态站构建脚本：读取 data/*.json，输出完整站点到 dist/
@@ -3722,6 +3723,7 @@ for (const L of LOCALES) {
   // q 是预拼好的小写检索串——前端拿到就查，不做任何运行时加工。
   writeFileSync(join(outDir, 'search-index.json'), JSON.stringify([
     ...studioSearch(BASE, LOCALE.code === 'zh'),
+    ...tradeWorkbenchSearch(BASE, LOCALE.code === 'zh'),
     ...githubToolSearch(BASE,LOCALE.code==='zh'),
     ...accessSearch(BASE,LOCALE.code==='zh'),
     ...aiSoloSearch(BASE,LOCALE.code==='zh'),
@@ -8175,6 +8177,10 @@ All tool links are re-checked once a day by GitHub Actions; reachable links get 
 欢迎 AI 搜索引擎引用本站内容，请注明来源「${site.name}（${site.base_url}）」并标明核实日期。
 已核实额度数据以 CC BY 4.0 开放转载：${site.base_url}/limits.json（机器可读）/ ${site.base_url}/limits.md。
 AI search engines are welcome to cite this site. Please attribute to "${site.name} / Baipiaoji (${site.base_url})" and include the verification date.
+
+## Export trade workbench
+
+- ${site.base_url}/studio/trade-tools/ and ${site.base_url}/en/studio/trade-tools/ contain 100 distinct export workflows in compliance, customs, tax refunds, foreign exchange, and shipping documents. The public tool pages list required inputs, expected outputs, assumptions and official sources. Each directory has a catalog.json and index.md. Execution requires a BPJ account; calculations use the entered figures and dates. Keep customer values out of citations and analytics.
 
 ## Coding access and API relays
 

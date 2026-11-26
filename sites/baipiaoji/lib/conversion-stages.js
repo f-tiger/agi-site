@@ -2,6 +2,7 @@ import { EVENT_ROWS } from './hits-schema.js';
 import {parseTableReviewEvent,emptyTableReviewCounts} from './table-review-signals.mjs';
 import {parseListingEvent,emptyListingCounts} from './listing-signals.mjs';
 import {PROOFKIT_PATHS,parseProofKitEvent,emptyProofKitCounts} from './proofkit-signals.mjs';
+import {parseTradeWorkbenchEvent,emptyTradeWorkbenchCounts} from './trade-workbench-signals.mjs';
 import catalog from '../data/tools.json' with {type:'json'};
 
 const toolSlugs = new Set(catalog.map(tool => tool.slug));
@@ -30,7 +31,8 @@ export function directoryOutboundCounts(rows) {
 export const STAGE_EVENTS_SQL = `SELECT ev, path, count(*) n FROM hits
  WHERE d >= ? AND d < ? AND ${EVENT_ROWS}
  AND (ev IN ('calc','go','home','coding_access','listing','table_review')
-   OR (ev = 'biz' AND path IN (${PROOFKIT_PATHS.map(path => `'${path}'`).join(',')})))
+   OR (ev = 'biz' AND (path IN (${PROOFKIT_PATHS.map(path => `'${path}'`).join(',')})
+     OR (path GLOB '/trade-workbench/*' AND lang IN ('zh', 'en')))))
  AND path NOT LIKE '/\\_\\_%' ESCAPE '\\' AND COALESCE(lang,'') != 'ci'
  GROUP BY ev, path`;
 export const STAGE_ACCOUNTS_SQL = `SELECT count(*) total_non_test,
@@ -46,33 +48,40 @@ export const STAGE_ACCOUNTS_DAILY_SQL = `SELECT date(a.created, 'unixepoch') dat
  WHERE a.qa = 0 AND a.created >= ? AND a.created < ?
  GROUP BY date(a.created, 'unixepoch') ORDER BY date`;
 
-// Attribute only to the source on the first order. Classify as of the end of
-// the complete UTC window so a payment from today's partial day cannot enter it.
-const PROPOSAL_DECK_ORDERS_SQL = `SELECT
+// Reuse one order-source read for both first-source product cohorts. Classify
+// at the complete UTC window's end, excluding today's orders and payments.
+const ORDER_PRODUCTS = {proposalDeck: 'bpj-proposal-deck', tradeWorkbench: 'bpj-trade-toolbox'};
+export const WORKBENCH_ORDER_COHORTS_SQL = `SELECT product,
  COUNT(*) FILTER (WHERE bucket = 'pending') pending,
  COUNT(*) FILTER (WHERE bucket = 'expired') expired,
  COUNT(*) FILTER (WHERE bucket = 'paid') paid
  FROM (
-   SELECT CASE WHEN o.state = 'paid' AND o.paid_at < ? THEN 'paid'
+   SELECT s.product, CASE WHEN o.state = 'paid' AND o.paid_at < ? THEN 'paid'
      WHEN o.expires < ? THEN 'expired' ELSE 'pending' END bucket
    FROM wb_order_sources s JOIN wb_orders o ON o.id = s.order_id
-   WHERE s.product = 'bpj-proposal-deck' AND o.created >= ? AND o.created < ?
+   WHERE s.product IN (?, ?) AND o.created >= ? AND o.created < ?
      AND o.state IN ('pending', 'paid')
- )`;
+ ) GROUP BY product`;
 
-export async function readProposalDeckOrders(db, start, end) {
+export async function readWorkbenchOrderCohorts(db, start, end) {
   const startSeconds = Date.parse(start) / 1000;
   const endSeconds = Date.parse(end) / 1000;
   try {
-    const row = await db.prepare(PROPOSAL_DECK_ORDERS_SQL).bind(endSeconds, endSeconds, startSeconds, endSeconds).first();
-    if (!row) return null;
-    const {pending, expired, paid} = row;
-    return [pending, expired, paid].every(n => Number.isSafeInteger(n) && n >= 0) ? {pending, expired, paid} : null;
+    const {results} = await db.prepare(WORKBENCH_ORDER_COHORTS_SQL)
+      .bind(endSeconds, endSeconds, ORDER_PRODUCTS.proposalDeck, ORDER_PRODUCTS.tradeWorkbench, startSeconds, endSeconds).all();
+    if (!Array.isArray(results)) return null;
+    const byProduct = new Map();
+    for (const {product, pending, expired, paid} of results) {
+      if (![pending, expired, paid].every(n => Number.isSafeInteger(n) && n >= 0)) return null;
+      byProduct.set(product, {pending, expired, paid});
+    }
+    return Object.fromEntries(Object.entries(ORDER_PRODUCTS).map(([key, product]) => [key, byProduct.get(product) ?? {pending: 0, expired: 0, paid: 0}]));
   } catch { return null; }
 }
 
 export function stageCounts(rows) {
   const counts = { table_review_actions: emptyTableReviewCounts(), listing_actions: emptyListingCounts(), proofkit_actions: emptyProofKitCounts(),
+    trade_workbench_actions: emptyTradeWorkbenchCounts(),
     proposal_deck_actions: { demo: {...DECK_ACTION_COUNTS}, own: {...DECK_ACTION_COUNTS, paid_offer_view: 0} },
     tool_results_own: 0, tool_results_demo: 0, tool_download_actions_own: 0,
     tool_download_actions_demo: 0, other_calc_events: 0, directory_outbound_clicks: 0,
@@ -85,8 +94,11 @@ export function stageCounts(rows) {
     const n = Number(row.n) || 0, path = String(row.path || '');
     if (row.ev === 'table_review') { const parsed=parseTableReviewEvent(path);if(parsed&&Number.isSafeInteger(n)&&n>=0)counts.table_review_actions[parsed.mode][parsed.action]+=n;continue; }
     if (row.ev === 'biz') {
-      const parsed = parseProofKitEvent(path);
-      if (parsed && Number.isSafeInteger(n) && n >= 0) counts.proofkit_actions[parsed.mode][parsed.action] += n;
+      if (!Number.isSafeInteger(n) || n < 0) continue;
+      const proof = parseProofKitEvent(path);
+      const trade = parseTradeWorkbenchEvent(path);
+      if (proof) counts.proofkit_actions[proof.mode][proof.action] += n;
+      if (trade) counts.trade_workbench_actions[trade.action] += n;
       continue;
     }
     if (row.ev === 'listing') {
@@ -161,6 +173,7 @@ export async function readConversionStages(db, days, clock = Date.now()) {
       listing_actions: 'Measured from the 2026-10-31 listing-pack release. Fixed browser action counts, separated into fictional demo and declared own inputs. Review is a user acknowledgement, not semantic verification; export initiates a download, not platform acceptance. Inquiry counts a browser success response, not a unique lead, paid order or revenue. QA, lost events and unlabeled automation limitations still apply.',
       proposal_deck_actions: 'Fixed ProposalDeck browser action counts projected from other_calc_events, excluding known CI. Own is declared project use. paid_offer_view is measured from its release. cloud_saved records an acknowledged save. Actions and orders have independent counts.',
       proofkit_actions: 'Fixed ProofKit actions from the same complete UTC days, separated into labelled examples and own projects. Own exports follow a local permission acknowledgement. paid_offer_view records a rendered contextual offer since its release. member_open records an explicit popup. Actions, customers and orders have independent counts.',
+      trade_workbench_actions: 'Fixed browser actions in this complete UTC window. signup and membership_open count link clicks. run and example count acknowledged results with own inputs and sample inputs respectively. csv counts download initiation after successful member export. Repeats can occur. Account creations, members and orders are measured separately. Input values and results are excluded.',
       acquisition: 'Search clicks and CTR come only from GSC; not supplied by this endpoint. GSC uses Pacific reporting days.',
       usage: 'Client-reported successful result actions from PDF, image and quote tools only; repeats are not deduplicated. Demo and own-input actions are separate. Image completion can include partial batch success. Download means an action, not a verified saved file.',
       other_calc_events: 'Unclassified calc events include navigation, edits and tools without a reviewed success contract; never count the whole calc bucket as completed work.',

@@ -62,6 +62,11 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
   }
   const suiteTool = /^\/(?:en\/)?studio\/ai\/([a-z0-9-]{1,60})$/.exec(pathname);
   if(host==='baipiaoji.com' && suiteTool && /^ai_suite_result_(demo|own)$/.test(name))return {name,tool_id:suiteTool[1],repeat:true};
+  const tradeTool = /^\/(?:en\/)?studio\/trade-tools\/([a-z0-9]+(?:-[a-z0-9]+)*)$/.exec(pathname);
+  if (host === 'baipiaoji.com' && tradeTool && tradeTool[1].length <= 64 &&
+      /^trade_workbench_(signup|run|example|membership_open|csv)$/.test(name)) {
+    return {name, tool_id: tradeTool[1], repeat: true};
+  }
   if (host === 'baipiaoji.com' && /^\/(?:en\/)?tools\/(chatgpt|kimi|qingying)$/.test(pathname) && name === 'catalog_task_open') {
     return {name, tool_id: pathname.split('/').pop(), repeat: true};
   }

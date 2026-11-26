@@ -1,0 +1,107 @@
+import assert from 'node:assert/strict';
+import {existsSync,readFileSync} from 'node:fs';
+import {createRequire} from 'node:module';
+import {fileURLToPath} from 'node:url';
+import {mockChain,setupSites} from '../../../tools/member-studio/test-fixtures.mjs';
+import {onRequest} from '../functions/api/trade-workbench.js';
+import {ensureAccountMembers} from '../functions/api/account-member.js';
+import {ACCOUNT_COOKIE,issueSession,now} from '../lib/free-account.js';
+
+const {chromium} = createRequire(new URL('../../../tools/revenue-studio/package.json',import.meta.url))('playwright');
+const dist = fileURLToPath(new URL('../dist/',import.meta.url));
+const origin = 'https://baipiaoji.com';
+const samplePath = '/studio/trade-tools/carton-cubic-volume';
+const resetFetch = mockChain();
+const sites = await setupSites();
+const {db,env} = sites.bpj;
+let browser;
+try {
+  await ensureAccountMembers(env);
+  browser = await chromium.launch({headless:true,executablePath:process.env.WORKBENCH_CHROMIUM,args:['--no-sandbox','--disable-dev-shm-usage']});
+  for (const [prefix,lang] of [['','zh'],['/en','en']]) {
+    const user = 'trade-browser-'+lang;
+    db.sql.prepare(`INSERT INTO free_accounts(id,username,password_hash,recovery_hash,created,updated)
+      VALUES(?,?,?,?,?,?)`).run(user,user,'test-password-hash','test-recovery-hash',now(),now());
+    const session = await issueSession(env,{id:user,session_version:1});
+    const context = await browser.newContext({viewport:{width:390,height:844},acceptDownloads:true});
+    const page = await context.newPage(),errors=[];
+    page.on('pageerror',error=>errors.push(error.message));
+    await context.route('**/*',async route=>{
+      const r = route.request(),url = new URL(r.url());
+      if (url.origin!==origin) return route.abort();
+      if (url.pathname==='/api/trade-workbench') {
+        const response = await onRequest({env,request:new Request(url,{method:r.method(),headers:await r.allHeaders(),...(r.method()==='POST' ? {body:r.postData()} : {})})});
+        return route.fulfill({status:response.status,headers:Object.fromEntries(response.headers),body:await response.text()});
+      }
+      if (url.pathname.startsWith('/api/')) return route.fulfill({status:204});
+      let path = url.pathname;
+      if (path.endsWith('/')) path += 'index.html';
+      else if (!/\.[a-z]+$/i.test(path)) path += '.html';
+      const mime = {html:'text/html',mjs:'application/javascript',js:'application/javascript',css:'text/css',json:'application/json'};
+      if (!existsSync(dist+path)) return route.fulfill({status:404});
+      return route.fulfill({contentType:mime[path.split('.').pop()]||'application/octet-stream',body:readFileSync(dist+path)});
+    });
+    const tool = origin+prefix+samplePath+'?__ci=1';
+    await page.goto(origin+prefix+'/studio/trade-tools/?__ci=1');
+    const search = page.locator('#trade-search');
+    await search.fill(lang==='zh'?'纸箱总体积':'Carton Cubic Volume');
+    await page.locator('.trade-category li:visible').first().waitFor();
+    assert.equal(await page.locator('.trade-category li:visible').count(),1);
+    await search.fill('______');
+    await page.locator('[data-trade-search-status]').waitFor();
+    assert.equal(await page.locator('.trade-category li:visible').count(),0);
+
+    await page.goto(tool);
+    await page.waitForFunction(()=>!document.querySelector('[data-trade-gate]').hasAttribute('aria-busy'));
+    const join = page.locator('[data-trade-join]');
+    assert(await join.isVisible());
+    const destination = new URL(await join.getAttribute('href'));
+    assert.equal(destination.pathname,prefix+'/account');
+    assert.equal(destination.searchParams.get('next'),prefix+samplePath);
+    assert(await page.locator('[data-trade-form]').isHidden());
+
+    await context.addCookies([{name:ACCOUNT_COOKIE,value:session,url:origin,secure:true,httpOnly:true,sameSite:'Lax'}]);
+    await page.reload();
+    const form = page.locator('[data-trade-form]'),upgrade = page.locator('[data-trade-upgrade]');
+    await form.waitFor({state:'visible'});
+    assert(await upgrade.isHidden());
+    await page.locator('[data-trade-example]').click();
+    assert(await upgrade.isHidden());
+    await page.locator('#tw-length').fill('80');
+    await form.locator('button[type=submit]').click();
+    await page.locator('[data-trade-result]').waitFor({state:'visible'});
+    assert.match(await page.locator('[data-trade-rows]').textContent(),/2\.688/);
+    await upgrade.waitFor({state:'visible'});
+    assert.match(await upgrade.locator('[data-trade-price]').textContent(),/9 USDT/);
+    assert.match(await page.locator('[data-trade-quota]').textContent(),/9.*10/);
+    const cta = new URL(await upgrade.locator('a').getAttribute('href'));
+    assert.equal(cta.searchParams.get('tool'),'bpj-trade-toolbox');
+    assert.equal(cta.hash,'#account-use');
+    assert(await page.locator('[data-trade-csv]').isHidden());
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+    if (process.env.TRADE_QA_DIR) await page.screenshot({path:process.env.TRADE_QA_DIR+'/'+lang+'-mobile.png',fullPage:true});
+
+    const memberId = 'trade-member-'+lang;
+    db.sql.prepare('INSERT INTO wb_members(id,token_hash,created,ends_at) VALUES(?,?,?,?)').run(memberId,'trade-test-hash-'+lang,now(),now()+86400);
+    db.sql.prepare('INSERT INTO bpj_account_members(account_id,member_id,created) VALUES(?,?,?)').run(user,memberId,now());
+    await page.setViewportSize({width:1365,height:920});
+    await page.reload();
+    await form.waitFor({state:'visible'});
+    await page.locator('[data-trade-example]').click();
+    await form.locator('button[type=submit]').click();
+    const csv = page.locator('[data-trade-csv]');
+    await csv.waitFor({state:'visible'});
+    const download = page.waitForEvent('download');
+    await csv.click();
+    const file = readFileSync(await (await download).path(),'utf8');
+    assert(file.startsWith(lang==='zh'?'\ufeff"字段"':'\ufeff"Field"'));
+    assert(await upgrade.isHidden());
+    assert.deepEqual(errors,[]);
+    await context.close();
+  }
+} finally {
+  await browser?.close();
+  resetFetch();
+  for (const site of Object.values(sites)) site.db.sql.close();
+}
+console.log('PASS bilingual directory, mobile sign-in gate, successful registered run, contextual membership and member CSV.');

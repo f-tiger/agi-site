@@ -24,6 +24,7 @@ export async function memberAction({request,env,b,token=null,m=null}){
   if(b.action==='status')return json({ok:true,...memberStatus(m),plan:memberPlan(env),site:memberSite(env)});
   if(b.action==='checkout'){
    if(b.accept_terms!==true||b.key_saved!==true)return json({ok:false,code:'consent_required'},400);
+   if(token&&memberSite(env)==='bpj'&&b.source==='bpj-trade-toolbox')return json({ok:false,code:'account_link_required'},403);
    const ip=request.headers.get('CF-Connecting-IP')||'unknown';
    return json({ok:true,order:token?await createOrder(env,token,b.nonce,ip,b.source||''):await createOrderForMember(env,m,b.nonce,ip,b.source||'')});
   }

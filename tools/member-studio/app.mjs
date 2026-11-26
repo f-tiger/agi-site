@@ -84,7 +84,23 @@ on('login',async()=>{const v=$('key').value.trim();if(!/^[a-f0-9]{64}$/.test(v))
 $('key-file').onchange=async()=>{try{const f=$('key-file').files[0];if(!f||f.size>2048)throw Error(t.badKey);const j=JSON.parse(await f.text());if(j.service!==service||!/^([a-f0-9]{64})$/.test(j.key||''))throw Error(t.badKey);setAuthMode('key');adoptKey(j.key);$('key-saved').checked=true;await refresh();}catch(e){notice(e.message,true);}};
 on('logout',async()=>{if(authMode==='account'){if(!accountUser)throw Error(accountText.choose);const response=await fetch('/api/account',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'logout',account_id:accountUser.id})});if(!response.ok)throw Error(t.error);setAuthMode('key');const draft=$('payload').value,name=$('name').value,h=handoff;storeKey('');$('payload').value=draft;$('name').value=name;handoff=h;notice(t.logout);return;}key='';try{sessionStorage.removeItem(keySlot);}catch{}location.reload();});
 on('rotate',async()=>{if(!confirm(t.rotateConfirm))return;clearStartup();if(authMode==='account'){const j=await accountApi('replace_key',{password:$('account-password').value});$('account-password').value='';accountBackupKey=j.key;$('account-key').value=j.key;backupKey();await refresh();$('key-saved').checked=false;notice(t.keyReady);return;}const next=random(32),draft=$('payload').value,name=$('name').value,previous=selected,previousVersion=version,h=handoff;await api('rotate',{new_key:next});storeKey(next);selected=previous;version=previousVersion;handoff=h;$('payload').value=draft;$('name').value=name;backupKey();$('key-saved').checked=false;await refresh();notice(t.keyReady);});
-on('checkout',async()=>{if(!$('key-saved').checked||!$('consent').checked)throw Error(t.consentRequired);if(!ready)throw Error(t.unavailable);if(authMode==='account'&&!member?.key_backed_up){if(!accountBackupKey)throw Error(accountText.backup);await accountApi('confirm_backup',{key:accountBackupKey,confirmed:true});}const j=await api('checkout',{nonce:random(16),accept_terms:true,key_saved:true,source:products.some(p=>p.id===new URLSearchParams(location.search).get('tool'))?new URLSearchParams(location.search).get('tool'):''});orders=[j.order];renderOrders();notice(t.pending);await refresh();$('payment').scrollIntoView({behavior:'smooth',block:'start'});});
+on('checkout',async()=>{
+ const tool=new URLSearchParams(location.search).get('tool');
+ if(site==='bpj'&&tool==='bpj-trade-toolbox'&&authMode!=='account'){
+  $('account-use')?.focus();
+  throw Error(accountText.choose);
+ }
+ if(!$('key-saved').checked||!$('consent').checked)throw Error(t.consentRequired);
+ if(!ready)throw Error(t.unavailable);
+ if(authMode==='account'&&!member?.key_backed_up){
+  if(!accountBackupKey)throw Error(accountText.backup);
+  await accountApi('confirm_backup',{key:accountBackupKey,confirmed:true});
+ }
+ const source=products.some(p=>p.id===tool)?tool:'';
+ const j=await api('checkout',{nonce:random(16),accept_terms:true,key_saved:true,source});
+ orders=[j.order];renderOrders();notice(t.pending);await refresh();
+ $('payment').scrollIntoView({behavior:'smooth',block:'start'});
+});
 on('refresh',refresh);
 on('new-space',()=>{selected=null;version=null;handoff=null;$('name').value='';$('payload').value='';$('history').replaceChildren();notice(t.choose);});
 $('backup-file').onchange=async()=>{try{const f=$('backup-file').files[0];if(!f||f.size>65536)throw Error(t.quota);const data=parseBackup(await f.text());selected=null;version=null;handoff=null;$('payload').value=JSON.stringify(data,null,2);$('name').value=f.name.replace(/\.json$/,'').slice(0,80);$('history').replaceChildren();notice(t.received);}catch(e){notice(e.message,true);}};

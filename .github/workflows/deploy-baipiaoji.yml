@@ -408,6 +408,8 @@ jobs:
           node ../../tools/quote-page-lab/test-growth.mjs --dist
           node scripts/test-ai-tools.mjs
           node --test lib/ai-suite/trade-lead.test.mjs lib/ai-suite/trade-quote.test.mjs scripts/test-trade-opportunities.mjs
+          node --test scripts/test-trade-workbench-api.mjs
+          node scripts/test-trade-workbench.mjs --dist
           node scripts/test-ai-tables.mjs
           node scripts/test-ai-measurement.mjs
           node scripts/test-ai-editorial.mjs
@@ -496,6 +498,7 @@ jobs:
           node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps chromium --only-shell
           node --test sites/baipiaoji/scripts/test-testimonial.mjs
           node sites/baipiaoji/scripts/test-testimonial-browser.mjs
+          node sites/baipiaoji/scripts/test-trade-workbench-browser.mjs
           node sites/baipiaoji/scripts/test-video-business-browser.mjs
           node sites/baipiaoji/scripts/test-deck-browser.mjs
           node sites/baipiaoji/scripts/test-release-pilot-browser.mjs
@@ -595,6 +598,7 @@ jobs:
         run: |
           node scripts/test-listing-pack.mjs --live
           node scripts/test-table-review.mjs --live
+          node scripts/test-trade-workbench.mjs --live-smoke
 
       - name: Verify live GA4 coverage and analytics asset version
         working-directory: ${{ github.workspace }}
