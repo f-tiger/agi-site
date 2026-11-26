@@ -277,6 +277,35 @@ const emptyDehumidifierTank = {
   tool:'entfeuchter_leerer_tank_check',
 };
 
+export const lowLoadMeterGuide = {
+  path:'/strommess-protokoll.html',
+  id:'kleine-lasten-messen',
+  tool:'ratgeber_suche',
+};
+const lowLoadMeterDuration = {...lowLoadMeterGuide,tool:'steckdosenmessung_mindestdauer'};
+const lowLoadMeterUnchanged = {...lowLoadMeterGuide,tool:'messung_nullanzeige_obergrenze'};
+
+function exactLowLoadMeterTask(query) {
+  const meter = /\b(?:(?:strom|energie(?:kosten)?|steckdosen)[ -]*mess(?:geraet|ung)\w*|messsteckdose\w*|smart[ -]*plug\w*|tapo[ -]*p110|pm[ -]*231[ -]*e)\b/;
+  const lowLoad = /\b(?:stand[ -]*by|klein\w*\s+(?:last\w*|leistung\w*)|niedrig\w*\s+(?:last\w*|leistung\w*)|mindestlast\w*|messuntergrenze|eigenverbrauch|0[.,]\d+\s*(?:w|watt))\b/;
+  const excludes = /\b(?:oekodesign|verordnung|gesetz\w*|maximale\s+last|2300\s*(?:w|watt))\b/;
+  if (!meter.test(query) || excludes.test(query)) return null;
+  if (/\b(?:leih\w*|ausleih\w*|ausborg\w*)\b/.test(query)) return lowLoadMeterGuide;
+  const unchanged = /(?<![\d.,])0(?:[.,]0+)?\s*kwh\b|\b(?:unveraendert|nullanzeige)\b[^.?!]{0,30}\bkwh\b/;
+  if (unchanged.test(query)) {
+    if (/\bvon\s+0(?:[.,]0+)?\s*(?:kwh\s+)?auf\s+\d/.test(query)) return null;
+    const repeated = /\b(?:immer noch|weiterhin|weiter|bleibt|unveraendert)\b/;
+    const reset = /\b(?:reset|zurueckgesetz\w*|zuruecksetzen|mitternacht|(?:heute\s+)?um\s+0\s+uhr)\b/;
+    const noNegatedReset = query.replace(/\bohne\s+(?:(?:einen|erneuten)\s+)?(?:reset|zuruecksetzen)\b/g,'');
+    return repeated.test(query) && !reset.test(noNegatedReset) ? lowLoadMeterUnchanged : lowLoadMeterGuide;
+  }
+  const instantaneousZero = /(?<![\d.,])0(?:[.,]0+)?\s*(?:w|watt)\b/;
+  if (instantaneousZero.test(query)) return lowLoadMeterGuide;
+  const duration = /\b(?:wie lange|wie viele stunden|messdauer|messzeit)\b/;
+  if (duration.test(query) && lowLoad.test(query)) return lowLoadMeterDuration;
+  return lowLoad.test(query) ? lowLoadMeterGuide : null;
+}
+
 export const portableCoolingStorage = {
   path:'/guide/mobile-klimaanlage-ueberwintern.html',
   id:'schritt-fuer-schritt-so-machst-du-das-geraet-winterfest',
@@ -369,6 +398,8 @@ export function exactGermanHouseholdTask(query) {
     return {path:'/guide/fensterabdichtung-selber-bauen.html',id:'abluft-ausschnitt-pruefen',tool:'abluftplatte_lochposition_pruefen'};
   if (asksForKlarsteinPackage(query)) return klarsteinPackage;
   if (asksForGranulateDryingChoice(query)) return granulateDryingChoice;
+  const meterTask = exactLowLoadMeterTask(query);
+  if (meterTask) return meterTask;
   if (asksForPortableCoolingStorage(query)) return portableCoolingStorage;
   if (asksAboutAnEmptyDehumidifierTank(query)) return emptyDehumidifierTank;
   if (asksForCoolingDiscountReference(query)) return coolingDiscountReference;

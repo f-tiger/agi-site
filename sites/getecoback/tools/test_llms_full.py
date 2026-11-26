@@ -325,7 +325,10 @@ class LlmsFull(unittest.TestCase):
     def test_root_mcp_citations_keep_static_evidence_and_safe_sources(self):
         evidence = {
             'strommess-protokoll': ['0,6 kWh pro Tag', '219 kWh und 76,65 €',
-                                   'betriebstage', 'Keine Arbeiten an offenen Leitungen'],
+                                   'betriebstage', 'Keine Arbeiten an offenen Leitungen',
+                                   '20 Stunden für einen Schritt und 60 Stunden für drei',
+                                   '0,64 W bei geöffnetem Relais', '1,64 W als Maximalwert',
+                                   'unter etwa 2 W', 'energiesparpaket-in-bibliotheken'],
             'geraete-austausch-rechner': ['7,14 Jahre', 'Behalten 700 €', 'positive jährliche Stromersparnis',
                                          '0,350 € für die Maschine', '0,309 € von Hand', '22,6 Litern Handspülwasser',
                                          'https://www.umweltbundesamt.de/umwelttipps-fuer-den-alltag/geschirrspueler-im-eco-programm-wasser-strom-sparen',

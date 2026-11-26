@@ -207,14 +207,21 @@ export const efficiencySuite = [
   },
   {
     name: 'steckdosenmessung_mindestdauer',
-    description: 'Messdauer für einen kleinen, gleichmäßigen Verbraucher aus der Anzeigeauflösung planen. — Estimate how long a steady low-power load needs to register on a plug meter.',
+    description: 'Wie lange muss ich einen kleinen Standby-Verbrauch messen? Anzeigeauflösung und dokumentierte Mindestlast einer Messsteckdose prüfen. — Plan a steady low-power measurement.',
     page: meterPage,
+    guide_url: 'https://getecoback.com' + meterPage + '#kleine-lasten-messen',
     properties: {
       last_w: number('Erwartete konstante Wirkleistung in Watt.', 0.01, 4000),
       schritt_kwh: number('Kleinste darstellbare Änderung der Energieanzeige in kWh.', 0.000001, 1),
       ziel_schritte: number('Zahl der gewünschten Anzeigeschritte.', 1, 1000),
+      mindestlast_w: number('Optional: dokumentierte untere Leistungsgrenze des konkreten Messgeräts in Watt.', 0, 4000),
     },
+    required: ['last_w','schritt_kwh','ziel_schritte'],
     calculate(a) {
+      if (a.mindestlast_w !== undefined && a.last_w < a.mindestlast_w) return {
+        dauer_stunden_geplant: null,
+        annahme: 'Die erwartete Leistung liegt unter der dokumentierten Mindestlast. Eine längere Messdauer ersetzt kein geeigneteres Messgerät.',
+      };
       return {
         dauer_stunden_geplant: Math.ceil(a.schritt_kwh * Math.ceil(a.ziel_schritte) * 100000 / a.last_w) / 100,
         annahme: 'Nur Anzeigeauflösung. Prüfe die Mindestlast, den Messfehler laut Hersteller und die zulässige Last; ein Zähler kann trotz langer Dauer zu kleine Lasten verfehlen.',

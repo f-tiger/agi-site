@@ -10,6 +10,8 @@ const products = '/produkte.html';
 const laundry = '/guide/waesche-trocknen-wohnung.html';
 const cellar = '/guide/luftentfeuchter-keller.html';
 const toolPaths = new Map([
+  ['steckdosenmessung_mindestdauer', '/strommess-protokoll.html#kleine-lasten-messen'],
+  ['messung_nullanzeige_obergrenze', '/strommess-protokoll.html#kleine-lasten-messen'],
   ['mobile_klima_einlagern_check', '/guide/mobile-klimaanlage-ueberwintern.html#schritt-fuer-schritt-so-machst-du-das-geraet-winterfest'],
   ['entfeuchter_leerer_tank_check', '/guide/luftentfeuchter-zieht-kein-wasser.html#pruefen-bevor-du-ein-neues-geraet-kaufst'],
   ['abluftplatte_lochposition_pruefen', '/guide/fensterabdichtung-selber-bauen.html#abluft-ausschnitt-pruefen'],
@@ -155,7 +157,7 @@ test('each mapped tool publishes the same exact evidence link after a real tool 
   const advertised = new Map(standard.map(tool => [tool.name, tool]));
   const compact = new Map((await h.catalogue({view:'compact'})).tools.map(tool => [tool.name, tool]));
   const mapped = expandedDefinitions.filter(tool=>paths.has(tool.category) || toolPaths.has(tool.name));
-  assert.equal(mapped.length, 249);
+  assert.equal(mapped.length, 251);
   const legacyGuideNames = new Set(['entfeuchter_ablaufcheck','fensterabdichtung_laenge']);
   assert.equal([...compact.values()].filter(tool=>tool.guide_url && !legacyGuideNames.has(tool.name)).length, mapped.length);
 
