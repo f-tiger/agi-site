@@ -23,7 +23,7 @@ humidifier_sections=[row['id'] for row in humidifier_index['model_sections']]
 assert sorted(humidifier_sections)==sorted(['ersatzteile-zuordnen','philips-verdunsterfilter','philips-hu4803-01',
     'philips-hu2716-10','philips-hu3916-10','philips-hu3918-10'])
 laundry_index=next(row for row in index if row['u']=='/waeschetrockner-oder-luftentfeuchter.html')
-assert [row['id'] for row in laundry_index['model_sections']]==['laundry-check']
+assert [row['id'] for row in laundry_index['model_sections']]==['laundry-check','waesche-messung-naechster-schritt']
 floorcare_index=next(row for row in index if row['u']=='/guide/saugwischer-kaufberatung.html')
 assert [row['id'] for row in floorcare_index['model_sections']]==['tineco-s7-modellwahl','tineco-s7-flashdry']
 focused=[entry for entry in index if entry.get('section')]

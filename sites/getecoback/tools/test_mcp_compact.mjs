@@ -70,6 +70,8 @@ test('hosted compact returns reviewed guide sections without presenting them as 
   const {call,writes} = fixture();
   const headers = {'user-agent':humanUA};
   for (const [frage,path,fragment] of [
+    ['Meine Wäsche trocknet trotz Entfeuchter langsam und die Raumfeuchte steigt. Was prüfen?',
+      '/waeschetrockner-oder-luftentfeuchter.html', 'waesche-messung-naechster-schritt'],
     ['Welcher Wasserfilter passt für Siemens TE653501DE/13?', '/produkte.html', 'siemens-eq6-intenza'],
     ['Welche Entkalkungskartusche passt zum Kärcher SC 3 EasyFix 1.513-650.0?',
       '/produkte.html', 'kaercher-sc3-entkalkungskartusche'],

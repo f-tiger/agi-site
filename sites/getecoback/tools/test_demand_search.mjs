@@ -7,6 +7,19 @@ import {calculateGasHeatThreshold} from '../site/assets/heat-gas-cost.mjs';
 import {compareSocketWatts} from '../site/assets/auto-12v-check.mjs';
 const browsingIndex=readFileSync(new URL('../site/assets/search-index.json',import.meta.url));
 const index=JSON.parse(browsingIndex);
+test('slow German laundry and rising room humidity reach the sourced next steps',()=>{
+ const target='/waeschetrockner-oder-luftentfeuchter.html#waesche-messung-naechster-schritt';
+ for(const query of [
+  'Meine Wäsche trocknet trotz Entfeuchter langsam und die Raumfeuchte steigt. Was prüfen?',
+  'Meine Wäsche trocknet im Keller langsam und es riecht muffig. Was tun?',
+  'Die Luftfeuchte steigt beim Wäschetrocknen. Was soll ich messen?',
+ ]) assert.equal(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+ for(const query of [
+  'Welcher Wärmepumpentrockner braucht weniger kWh pro Ladung?',
+  'Mein Trockner zeigt einen Fehlercode, das Flusensieb ist frei.',
+  'Meine Wäsche bleibt feucht. Welches Flusensieb ist das Ersatzteil?',
+ ]) assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+});
 test('German Kärcher WD bag searches distinguish replacement bags, appliance variants and main filters',()=>{
  const target='/produkte.html#kaercher-wd3-wd4-filterbeutel';
  for(const query of [

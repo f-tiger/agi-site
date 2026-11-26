@@ -4,6 +4,7 @@ from pathlib import Path
 import json
 import re
 from build_language_nav import Head, local
+from laundry_decision import RESULT_GUIDE_ID, RESULT_GUIDE_TITLE, RESULT_GUIDE_SUMMARY
 from build_product_catalog import (
  BOSCH_STACKING_ANSWER, BOSCH_STACKING_ID, BOSCH_STACKING_TITLE,
  KARCHER_CARTRIDGE_ANSWER, KARCHER_CARTRIDGE_ID, KARCHER_CARTRIDGE_TITLE,
@@ -167,6 +168,10 @@ def collect():
     raise ValueError(f'Missing or hidden laundry comparison: {route}#{anchor}')
    entry['model_sections']=[{'id':anchor,'title':'Trockner oder Luftentfeuchter: Stromkosten pro Ladung',
     'description':'Vergleiche die gemessenen kWh beider Trocknungswege bis zur gleichen Endtrockenheit. Nutze den eigenen Strompreis.'}]
+   targets=re.findall(r'<h3\b[^<>]*\sid="'+RESULT_GUIDE_ID+r'"[^<>]*>',text)
+   if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
+    raise ValueError(f'Missing or hidden laundry result guidance: {route}#{RESULT_GUIDE_ID}')
+   entry['model_sections'].append({'id':RESULT_GUIDE_ID,'title':RESULT_GUIDE_TITLE,'description':RESULT_GUIDE_SUMMARY})
   if lang=='de' and route=='/guide/luftentfeuchter-keller.html':
    anchor='modell-comfee-mddf20'
    targets=re.findall(r'<h[23]\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)

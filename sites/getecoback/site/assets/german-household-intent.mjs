@@ -376,6 +376,21 @@ export const karcherBagDecision = {
   tool:'ratgeber_suche',
 };
 
+export const laundryMeasuredFollowUp = {
+  path:'/waeschetrockner-oder-luftentfeuchter.html',
+  id:'waesche-messung-naechster-schritt',
+  tool:'ratgeber_suche',
+};
+
+function asksForLaundryMeasuredFollowUp(query) {
+  const laundry = /\b(?:waesche\w*|waschladung\w*)\b/;
+  const drying = /\b(?:(?:waesche)?trockn\w*|noch nass|noch feucht)\b/;
+  const room = /\b(?:(?:raum|luft)feucht\w*|muffig\w*|feucht\w*\s+keller)\b/;
+  const problem = /\b(?:langsam|lange|dauert|steig\w*|bleib\w*|trotz|muffig\w*)\b/;
+  const repair = /\b(?:fehlercode|defekt|ersatzteil\w*|reparier\w*|trommel|flusensieb)\b/;
+  return laundry.test(query) && drying.test(query) && room.test(query) && problem.test(query) && !repair.test(query);
+}
+
 function asksForKarcherBag(query) {
   query = query.replace(/[‐‑‒–—]/g, '-');
   const part = /\b(?:kfi[ -]*(?:357|487)|2[ .-]*863[ .-]*(?:314|006)[ .-]*0|4054278777689|4039784945241)\b/;
@@ -421,6 +436,7 @@ export function exactWindowShadeMeasurement(query) {
 
 // Consumers pass their normalized German query. Match a task, not a category.
 export function exactGermanHouseholdTask(query) {
+  if (asksForLaundryMeasuredFollowUp(query)) return laundryMeasuredFollowUp;
   const tineco = exactTinecoS7Task(query);
   if (tineco) return tineco;
   if (asksForInfraredAnnualCost(query)) return infraredAnnualCost;

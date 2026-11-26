@@ -25,6 +25,34 @@ if(typeof document!=='undefined'){
  const values=()=>{const d=new FormData(form),number=n=>Number(d.get(n));return {dryer:number('dryer'),dryerBasis:d.get('dryerBasis'),method:d.get('method'),watts:number('watts'),hours:number('hours'),dehum:number('dehum'),price:number('price'),loads:number('loads'),purchase:number('purchase'),currency:d.get('currency'),comparable:d.has('comparable')};};
  const signature=x=>JSON.stringify({...x,comparable:false,watts:x.method==='estimate'?x.watts:0,hours:x.method==='estimate'?x.hours:0,dehum:x.method==='measured'?x.dehum:0});let initial;
  const inputKind=x=>signature(x)===initial?'example':'edited';
+ const next=q('[data-laundry-result-next]');
+ const enteredMeasurements=new Set();
+ if(next){
+   for(const name of ['dryer','dehum'])form.elements[name].addEventListener('input',event=>{
+     if(event.isTrusted)enteredMeasurements.add(name);
+   });
+   dryerBasis.addEventListener('change',()=>enteredMeasurements.delete('dryer'));
+   form.elements.method.addEventListener('change',()=>enteredMeasurements.delete('dehum'));
+   form.addEventListener('reset',()=>enteredMeasurements.clear());
+ }
+ const updateNext=(x,r)=>{
+   if(!next)return;
+   const steps={
+     unconfirmed:['Die Ladungen sind noch nicht vergleichbar. Miss bei gleicher Wäschemenge bis zum selben Trocknungsziel.','#lc-endtrockenheit','Endtrockenheit prüfen'],
+     measure:['Miss beide vollständigen Durchgänge in kWh. Beispiele, Betriebsstunden und Labelwerte helfen bei der Orientierung.','#lc-measurement','Mess-Checkliste öffnen'],
+     tie:['Aus gleichen Stromkosten folgt kein Gerätewechsel. Prüfe, was mit dem vorhandenen Gerät und dem Raum möglich ist.','#waesche-entscheidung','Vorhandene Möglichkeiten prüfen'],
+     dryer:['Falls du einen Trockner anschaffen musst, prüfe Platz, Türöffnung, Beladung und Ablauf für deinen Haushalt.','/produkte.html#entscheidung-waeschetrockner','Aufstellort und Trocknermodelle prüfen'],
+     dehum:['Falls du einen Entfeuchter anschaffen musst, prüfe Eignung für die Raumtemperatur, die gemessene Feuchte und den Stellplatz.','/guide/waesche-trocknen-wohnung.html#eb-models','Entfeuchter und Kaufgrenzen für Wäsche prüfen'],
+   };
+   let key=r.winner;
+   if(!x.comparable)key='unconfirmed';
+   else if(enteredMeasurements.size!==2||x.method!=='measured'||x.dryerBasis!=='cycle'||r.dryer<=0||r.dehum<=0)key='measure';
+   const [note,href,label]=steps[key];
+   next.querySelector('span').textContent=note;
+   const link=next.querySelector('a');
+   link.href=href;
+   link.textContent=label;
+ };
  const privacy=()=>navigator.doNotTrack==='1'||navigator.globalPrivacyControl||navigator.webdriver||/[?&]__(probe|ci|qa)(=|&|$)/.test(location.search);
  const emit=(name,action,x=values())=>{if(privacy()||window.__ecoToolExample)return;const m={lang:en?'en':'de',input:inputKind(x),method:x.method,equal:x.comparable?'yes':'no',action,...acquisition(location.href,document.referrer)},key=name+JSON.stringify(m);if(seen.has(key))return;seen.add(key);const fixed=laundryAction(name,m);if(fixed)window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:fixed}}));try{fetch('/api/ev',{method:'POST',keepalive:true,credentials:'omit',headers:{'content-type':'application/json'},body:JSON.stringify({n:name,p:location.pathname,r:document.referrer,m})}).catch(()=>{});}catch{}};
  const invalidate=()=>{latest=null;results.hidden=true;q('[data-error]').textContent='';};
@@ -58,6 +86,7 @@ if(typeof document!=='undefined'){
  const tariff=laundryTariff(x.price,x.currency,en?'en-GB':'de-DE');
  const formula=t(`Trockner ${fmt(r.dryer,4)} kWh × ${tariff}/kWh. Entfeuchter ${fmt(r.dehum,4)} kWh × ${tariff}/kWh. Jahreswerte werden vor der Rundung berechnet.`,`Dryer ${fmt(r.dryer,4)} kWh × ${tariff}/kWh. Dehumidifier ${fmt(r.dehum,4)} kWh × ${tariff}/kWh. Annual values use unrounded costs.`);
  for(const [attr,text] of Object.entries({provenance,verdict,annual,breakeven:threshold,payback,formula}))q('[data-'+attr+']').textContent=text;
+ updateNext(x,r);
  latest={x,r,provenance,verdict,annual,threshold,payback,formula};results.hidden=false;if(!window.__ecoToolExample)results.focus();q('[data-export-status]').textContent='';emit('laundry_compare','compare',x);
  }catch{q('[data-error]').textContent=t('Bitte gültige Werte prüfen. Trockner maximal 20 kWh je Ladung.','Check the values. Dryer consumption must not exceed 20 kWh per load.');}
  };
