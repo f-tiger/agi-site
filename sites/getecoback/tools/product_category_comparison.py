@@ -18,6 +18,28 @@ BOSCH_DRAIN_GUIDE = f'''<section class="pc-method" aria-labelledby="{BOSCH_WTH_D
 <p>Quellen für Deutschland geprüft am <time datetime="2026-11-26">26.11.2026</time>. <a href="#produkt-bosch-wth83v03">Zur Modellkarte Bosch WTH83V03</a>.</p>
 </section>'''
 
+BOSCH_WQG_CARE_ID = 'bosch-wqg235d00-filterpflege'
+BOSCH_WQG_CARE_TITLE = 'Bosch WQG235D00: Muss ich trotz selbstreinigendem Kondensator das Flusensieb reinigen?'
+BOSCH_WQG_CARE_ANSWER = (
+    'Ja. Beim WQG235D00 spült die Selbstreinigung den Wärmetauscher. Das zweiteilige Flusensieb '
+    'reinigst du nach jedem beendeten Trockenprogramm selbst. Erscheint der Filterhinweis schon '
+    'während des Trocknens, warte mit der Reinigung bis zum Programmende.'
+)
+BOSCH_WQG_CARE_LINK = f'<a href="#{BOSCH_WQG_CARE_ID}">Selbstreinigung und Pflege des zweiteiligen Flusensiebs prüfen</a>'
+BOSCH_WQG_CARE_GUIDE = f'''<section class="pc-method" aria-labelledby="{BOSCH_WQG_CARE_ID}">
+<h3 id="{BOSCH_WQG_CARE_ID}">{BOSCH_WQG_CARE_TITLE}</h3>
+<p>{BOSCH_WQG_CARE_ANSWER}</p>
+<p>Die <a href="https://www.bosch-home.com/de/de/product/waschen-trocknen/waeschetrockner/waermepumpentrockner/WQG235D00">deutsche Bosch-Produktseite zum WQG235D00</a> nennt einen selbstreinigenden Kondensator. <a href="https://media3.bosch-home.com/Documents/9001984679_B.pdf#page=15">Seite 15 der Anleitung</a> erklärt, welchen Teil das Gerät automatisch spült.</p>
+<p>Nimm die beiden Siebteile nach Programmende nacheinander heraus. Öffne beide und entsorge die Flusen im Hausmüll. Reinige beide Siebe mit warmem fließendem Wasser und trockne sie vor dem Zusammensetzen und Wiedereinsetzen ab. Folge der <a href="https://media3.bosch-home.com/Documents/9001984679_B.pdf#page=23">bebilderten Anleitung in Abschnitt 11.10, Seite 23</a>. <a href="https://media3.bosch-home.com/Documents/9001984679_B.pdf#page=24">Seite 24</a> erklärt, wie du das aufgefangene Reinigungswasser filterst und die beiden Siebe wieder einsetzt.</p>
+<p>Der Filter im Kondenswasserbehälter ist ein separates Bauteil. Prüfe diesen Filter regelmäßig und reinige ihn bei Verschmutzung nach Anleitung. Wenn dein vorhandener Trockner für deine Wäsche ausreicht, kannst du ihn weiter nutzen. Nutze bei einer anderen E-Nr. die Anleitung deines Geräts.</p>
+<p>Quellen für Deutschland geprüft am <time datetime="2026-11-26">26.11.2026</time>. <a href="#produkt-bosch-wqg235d00">Zur Modellkarte Bosch WQG235D00</a>.</p>
+</section>'''
+
+BOSCH_DRYER_NOTES = {
+    'bosch-wth83v03': (BOSCH_DRAIN_LINK, BOSCH_DRAIN_GUIDE),
+    'bosch-wqg235d00': (BOSCH_WQG_CARE_LINK, BOSCH_WQG_CARE_GUIDE),
+}
+
 
 def render_vacuum_offers(products):
     models = []
@@ -59,19 +81,20 @@ def render_comparison(category_id, products, guide=None):
         return ''
     esc = lambda value: escape(str(value), quote=True)
     rows = []
-    drain_guide = ''
+    model_notes = []
     for p in products:
         if p['category'] != category_id:
             continue
         limit = esc(p['limit'])
-        if p['id'] == 'bosch-wth83v03':
-            limit += f'<p>{BOSCH_DRAIN_LINK}</p>'
-            drain_guide = BOSCH_DRAIN_GUIDE
+        if note := BOSCH_DRYER_NOTES.get(p['id']):
+            link, section = note
+            limit += f'<p>{link}</p>'
+            model_notes.append(section)
         rows.append(f'<tr><th scope="row"><a href="#produkt-{esc(p["id"])}">{esc(p["name"])}</a><br>{esc(p["variant"])}</th><td>{esc(p["role"])}<p>{esc(p["facts"])}</p></td><td>{limit}</td><td><a href="{esc(p["source"])}">{esc(p["source_label"])}</a><br>Quellenstand: {esc(p["checked"])}</td></tr>')
     if guide:
         steps = ''.join(f'<li>{esc(step)}</li>' for step in guide['steps'])
         offers = render_vacuum_offers(products) if category_id == 'bodenstaubsauger' else ''
-        return offers + f'''<section class="pc-comparison" aria-labelledby="entscheidung-{esc(category_id)}"><h3 id="entscheidung-{esc(category_id)}">{esc(guide['question'])}</h3><p>{esc(guide['answer'])}</p><ol>{steps}</ol><p>Vergleich nach dokumentierten Herstellerangaben, keine Rangliste und keine eigenen Gerätetests. Die genaue Variante und den Quellenstand vor der Auswahl beachten.</p><div class="pc-table-scroll" role="region" aria-label="Modelle nach Aufgabe vergleichen" tabindex="0"><table><caption>Genaue Variante, Aufgabe und Kaufgrenze im Vergleich</caption><thead><tr><th scope="col">Modell</th><th scope="col">Aufgabe und Herstellerangabe</th><th scope="col">Grenze</th><th scope="col">Quelle</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div></section>{drain_guide}'''
+        return offers + f'''<section class="pc-comparison" aria-labelledby="entscheidung-{esc(category_id)}"><h3 id="entscheidung-{esc(category_id)}">{esc(guide['question'])}</h3><p>{esc(guide['answer'])}</p><ol>{steps}</ol><p>Vergleich nach dokumentierten Herstellerangaben, keine Rangliste und keine eigenen Gerätetests. Die genaue Variante und den Quellenstand vor der Auswahl beachten.</p><div class="pc-table-scroll" role="region" aria-label="Modelle nach Aufgabe vergleichen" tabindex="0"><table><caption>Genaue Variante, Aufgabe und Kaufgrenze im Vergleich</caption><thead><tr><th scope="col">Modell</th><th scope="col">Aufgabe und Herstellerangabe</th><th scope="col">Grenze</th><th scope="col">Quelle</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div></section>{''.join(model_notes)}'''
     return '''<section class="pc-comparison" aria-labelledby="airfryer-choice"><h3 id="airfryer-choice">Heißluftfritteuse: eine Schublade oder zwei Garzonen?</h3>
 <p><strong>Die Aufgabe entscheidet:</strong> Für eine Speise oder zwei Durchgänge nacheinander genügt eine passend große Zone. Möchtest du zwei Speisen mit verschiedenen Temperaturen parallel planen, brauchst du zwei unabhängig geregelte Zonen. Zwei Programme oder ein Grillrost belegen diese Eigenschaft nicht.</p>
 <p>Eine geteilte Schublade ist nicht dasselbe wie zwei herausziehbare Schubladen: Beim FlexDrawer AF550EU beschreibt der Hersteller zwei Zonen innerhalb einer Schublade mit entnehmbarer Trennwand. Beim EY9018 nennt Tefal zwei unterschiedlich große Schubladen. Prüfe die genaue Variante und nutzbare Fläche statt allein die Summe der Liter.</p>

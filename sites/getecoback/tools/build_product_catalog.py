@@ -20,6 +20,7 @@ from agent_sources import citation_url
 from filter_finder_de_sources import BINDINGS as FILTER_CARE_MODELS
 from product_category_comparison import (
     BOSCH_WTH_DRAIN_ANSWER, BOSCH_WTH_DRAIN_ID, BOSCH_WTH_DRAIN_TITLE,
+    BOSCH_WQG_CARE_LINK,
     BOSCH_DRAIN_LINK, render_comparison,
 )
 from build_agent_md import to_markdown
@@ -672,6 +673,8 @@ def render(data, today=None):
                           if product['id'] == 'bosch-wth83v03' else '')
             stacking_link = (f'<p class="pc-care"><a href="#{BOSCH_STACKING_ID}">Verbindungssatz für die Wasch-Trocken-Säule prüfen →</a></p>'
                              if product['id'] == 'bosch-wqg241001' else '')
+            filter_link = (f'<p class="pc-care">{BOSCH_WQG_CARE_LINK}</p>'
+                           if product['id'] == 'bosch-wqg235d00' else '')
             cartridge_link = (f'<p class="pc-care"><a href="#{KARCHER_CARTRIDGE_ID}">Passende Entkalkungskartusche prüfen →</a></p>'
                               if sc3 is not None and product['id'] in {'kaercher-sc3-easyfix','kaercher-sc1-multi'} else '')
             bag_link = (f'<p class="pc-care"><a href="#{KARCHER_WD_BAG_ID}">Passenden Vliesfilterbeutel prüfen →</a></p>'
@@ -681,7 +684,7 @@ def render(data, today=None):
 <p><strong>Aufgabe:</strong> {esc(product['role'])}</p><p>{esc(product['facts'])}</p>
 <p class="pc-limit"><strong>Vor dem Kauf:</strong> {esc(product['limit'])}</p>
 <p class="pc-source">Quelle: <a href="{esc(product['source'])}" target="_blank" rel="noopener">{esc(product['source_label'])}</a> · geprüft am <time datetime="{esc(product['checked'])}">{date(product['checked']).strftime('%d.%m.%Y')}</time>.</p>
-{drain_link}{stacking_link}{cartridge_link}{bag_link}{merchant}{care_link}</section>''')
+{drain_link}{filter_link}{stacking_link}{cartridge_link}{bag_link}{merchant}{care_link}</section>''')
         comparison = render_comparison(category['id'], data['products'], category.get('buying_guide'))
         tool = render_tool(category['id'])
         accessory_guide = wd_bag_guide if category['id'] == 'nass-trockensauger' else ''

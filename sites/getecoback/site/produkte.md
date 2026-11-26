@@ -777,7 +777,7 @@ Genaue Variante, Aufgabe und Kaufgrenze im Vergleich
 | Modell | Aufgabe und Herstellerangabe | Grenze | Quelle |
 | --- | --- | --- | --- |
 | [Bosch WTH83V03](https://getecoback.com/produkte.html#produkt-bosch-wth83v03) WTH83V03 Serie 4 | Wärmepumpentrockner für kleinere BeladungenDie deutsche Produktseite nennt maximal 7 kg Beladung und die feuchtegeführte Auto-Dry-Funktion. | Der Kondensator ist laut Bosch nicht selbstreinigend. Zum aufgeführten Lieferumfang gehört kein Ablaufschlauch. Für direkten Ablauf nennt die Anleitung WTZ1110 als Zubehör. Bei Tankbetrieb genügt es, den Behälter regelmäßig zu leeren.[Lieferumfang und Kondensatablauf mit WTZ1110 prüfen](https://getecoback.com/produkte.html#bosch-wth83v03-kondensatablauf) | [Bosch Deutschland: Bosch WTH83V03](https://www.bosch-home.com/de/de/product/WTH83V03) Quellenstand: 2026-11-26 |
-| [Bosch WQG235D00](https://getecoback.com/produkte.html#produkt-bosch-wqg235d00) WQG235D00 Serie 6 | Acht-Kilo-Ausführung mit selbstreinigendem KondensatorBosch nennt maximal 8 kg Beladung sowie einen selbstreinigenden Kondensator. | Selbstreinigung ersetzt nicht die gesamte Gerätepflege. Gehäusemaß laut Hersteller 842 × 598 × 613 mm; bei geöffneter Tür und für Aufstellung ist zusätzlicher Platz nötig. | [Bosch Deutschland: Bosch WQG235D00](https://www.bosch-home.com/de/de/product/waschen-trocknen/waeschetrockner/waermepumpentrockner/WQG235D00) Quellenstand: 2026-11-13 |
+| [Bosch WQG235D00](https://getecoback.com/produkte.html#produkt-bosch-wqg235d00) WQG235D00 Serie 6 | Acht-Kilo-Ausführung mit selbstreinigendem KondensatorBosch nennt maximal 8 kg Beladung sowie einen selbstreinigenden Kondensator. | Die Selbstreinigung spült den Wärmetauscher. Das zweiteilige Flusensieb nach jedem beendeten Trockenprogramm reinigen. Gehäusemaß laut Hersteller 842 × 598 × 613 mm; bei geöffneter Tür und für Aufstellung ist zusätzlicher Platz nötig.[Selbstreinigung und Pflege des zweiteiligen Flusensiebs prüfen](https://getecoback.com/produkte.html#bosch-wqg235d00-filterpflege) | [Bosch Deutschland: Bosch WQG235D00](https://www.bosch-home.com/de/de/product/waschen-trocknen/waeschetrockner/waermepumpentrockner/WQG235D00) Quellenstand: 2026-11-26 |
 | [Bosch WQG241001](https://getecoback.com/produkte.html#produkt-bosch-wqg241001) WQG241001 Serie 6 | Neun-Kilo-Ausführung mit Auto DryDer Wärmepumpentrockner ist laut Bosch für maximal 9 kg Beladung ausgelegt und bietet Auto Dry. | Die maximale Beladung gilt nicht automatisch für jedes Programm. Der Kondensator ist laut Produktseite nicht selbstreinigend; Pflege und Einbauraum vor dem Kauf prüfen. | [Bosch Deutschland: Bosch WQG241001](https://www.bosch-home.com/de/de/product/waschen-trocknen/waeschetrockner/waermepumpentrockner/WQG241001) Quellenstand: 2026-11-13 |
 | [Bosch WQG233D01](https://getecoback.com/produkte.html#produkt-bosch-wqg233d01) WQG233D01 Serie 6 | Weitere Neun-Kilo-Variante mit dokumentiertem GeräuschwertDie deutsche Produktseite nennt maximal 9 kg Beladung und 63 dB(A) re 1 pW als Geräuschwert. | Das ist ein Hersteller-Geräuschwert, keine Messung in deiner Wohnung. Kondensator nicht selbstreinigend; nicht mit dem WQG235D00 oder einer anderen Modellendung gleichsetzen. | [Bosch Deutschland: Bosch WQG233D01](https://www.bosch-home.com/de/de/product/waschen-trocknen/waeschetrockner/waermepumpentrockner/WQG233D01) Quellenstand: 2026-11-13 |
 
@@ -792,6 +792,18 @@ Du kannst den Kondenswasserbehälter nutzen und regelmäßig leeren. Dafür brau
 Vergleiche die vollständige E-Nr. am Typenschild, einschließlich der Ziffern nach dem Schrägstrich, mit der zugehörigen Anleitung. Der [Bosch-Serviceeintrag WTH83V03/01](https://www.bosch-home.com/de/de/productservice/WTH83V03-01) gilt für diese Ausführung. Sind Modellendung oder Anschluss unklar, kläre sie vor einer Bestellung.
 
 Quellen für Deutschland geprüft am 26.11.2026. [Zur Modellkarte Bosch WTH83V03](https://getecoback.com/produkte.html#produkt-bosch-wth83v03).
+
+### Bosch WQG235D00: Muss ich trotz selbstreinigendem Kondensator das Flusensieb reinigen?
+
+Ja. Beim WQG235D00 spült die Selbstreinigung den Wärmetauscher. Das zweiteilige Flusensieb reinigst du nach jedem beendeten Trockenprogramm selbst. Erscheint der Filterhinweis schon während des Trocknens, warte mit der Reinigung bis zum Programmende.
+
+Die [deutsche Bosch-Produktseite zum WQG235D00](https://www.bosch-home.com/de/de/product/waschen-trocknen/waeschetrockner/waermepumpentrockner/WQG235D00) nennt einen selbstreinigenden Kondensator. [Seite 15 der Anleitung](https://media3.bosch-home.com/Documents/9001984679_B.pdf#page=15) erklärt, welchen Teil das Gerät automatisch spült.
+
+Nimm die beiden Siebteile nach Programmende nacheinander heraus. Öffne beide und entsorge die Flusen im Hausmüll. Reinige beide Siebe mit warmem fließendem Wasser und trockne sie vor dem Zusammensetzen und Wiedereinsetzen ab. Folge der [bebilderten Anleitung in Abschnitt 11.10, Seite 23](https://media3.bosch-home.com/Documents/9001984679_B.pdf#page=23). [Seite 24](https://media3.bosch-home.com/Documents/9001984679_B.pdf#page=24) erklärt, wie du das aufgefangene Reinigungswasser filterst und die beiden Siebe wieder einsetzt.
+
+Der Filter im Kondenswasserbehälter ist ein separates Bauteil. Prüfe diesen Filter regelmäßig und reinige ihn bei Verschmutzung nach Anleitung. Wenn dein vorhandener Trockner für deine Wäsche ausreicht, kannst du ihn weiter nutzen. Nutze bei einer anderen E-Nr. die Anleitung deines Geräts.
+
+Quellen für Deutschland geprüft am 26.11.2026. [Zur Modellkarte Bosch WQG235D00](https://getecoback.com/produkte.html#produkt-bosch-wqg235d00).
 
 ### Eine Wäscheladung mit Entfeuchter oder Trockner vergleichen
 Gemessene kWh für einen vollständigen Durchgang × eigener Arbeitspreis.
@@ -820,10 +832,11 @@ Bosch · WQG235D00 Serie 6
 **Aufgabe:** Acht-Kilo-Ausführung mit selbstreinigendem Kondensator
 Bosch nennt maximal 8 kg Beladung sowie einen selbstreinigenden Kondensator.
 
-**Vor dem Kauf:** Selbstreinigung ersetzt nicht die gesamte Gerätepflege. Gehäusemaß laut Hersteller 842 × 598 × 613 mm; bei geöffneter Tür und für Aufstellung ist zusätzlicher Platz nötig.
+**Vor dem Kauf:** Die Selbstreinigung spült den Wärmetauscher. Das zweiteilige Flusensieb nach jedem beendeten Trockenprogramm reinigen. Gehäusemaß laut Hersteller 842 × 598 × 613 mm; bei geöffneter Tür und für Aufstellung ist zusätzlicher Platz nötig.
 
-Quelle: [Bosch Deutschland: Bosch WQG235D00](https://www.bosch-home.com/de/de/product/waschen-trocknen/waeschetrockner/waermepumpentrockner/WQG235D00) · geprüft am 13.11.2026.
+Quelle: [Bosch Deutschland: Bosch WQG235D00](https://www.bosch-home.com/de/de/product/waschen-trocknen/waeschetrockner/waermepumpentrockner/WQG235D00) · geprüft am 26.11.2026.
 
+[Selbstreinigung und Pflege des zweiteiligen Flusensiebs prüfen](https://getecoback.com/produkte.html#bosch-wqg235d00-filterpflege)
 Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue Variante, Gesamtpreis und Lieferung beim Händler prüfen.
 
 ### Bosch WQG241001

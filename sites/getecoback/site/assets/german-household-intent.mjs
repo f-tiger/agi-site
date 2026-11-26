@@ -77,6 +77,29 @@ export const boschDryerDrain = {
   tool:'bosch_wth83v03_ablaufschlauch_nein_bezug',
 };
 
+export const boschDryerCare = {
+  path:'/produkte.html',
+  id:'bosch-wqg235d00-filterpflege',
+  tool:'bosch_wqg235d00_kondensatorpflege_zahl_inventur',
+};
+
+export const boschDryerCareComparison = {
+  path:'/produkte.html',
+  id:'entscheidung-waeschetrockner',
+  tool:'ratgeber_suche',
+};
+
+function exactBoschDryerCare(query) {
+  const model = /\bwqg[ -]?235[ -]?d00\b/;
+  const care = /\b(?:flusen[ -]?(?:sieb|filter)\w*|selbstreinig\w*|kondensator\w*|waermetausch\w*|pflege\w*|reinig\w*|saeuber\w*)\b/;
+  const another = /\b(?:wqg[ -]?(?!235[ -]?d00\b|241[ -]?001\b)[a-z0-9]{6,}|wth[ -]?\d[a-z0-9]+)\b/;
+  const differentTask = /\b(?:ersatzteil\w*|teilenummer|wtz[ -]?\d+|ablauf[ -]?schlauch\w*|kondensat[ -]?ablauf\w*|kondenswasser[ -]?ablauf\w*)\b/;
+  if (!model.test(query) || !care.test(query) || another.test(query) || differentTask.test(query)) return null;
+  const peer = /\bwqg[ -]?241[ -]?001\b/;
+  if (!peer.test(query)) return boschDryerCare;
+  return /\b(?:oder|vergleich\w*|unterschied\w*|gegenueber|beide\w*|welch\w*)\b/.test(query) ? boschDryerCareComparison : null;
+}
+
 function asksForBoschDryerDrain(query) {
   const model = /\bwth[ -]?83[ -]?v03\b/;
   const otherModel = /\b(?:wth[ -]?83[ -]?v(?!03\b)[a-z0-9]+|wqg[ -]?[a-z0-9]{5,})\b/;
@@ -513,6 +536,8 @@ function exactEx105Evidence(query) {
 
 export function exactGermanHouseholdTask(query) {
   if (asksForBoschDryerDrain(query)) return boschDryerDrain;
+  const dryerCare = exactBoschDryerCare(query);
+  if (dryerCare) return dryerCare;
   const ex105=exactEx105Evidence(query);
   if(ex105)return ex105;
   if(/\b(?:klimaanlag\w*|klimageraet\w*|monoblock\w*|(?:ab)?kuehl\w*|btu)\b/.test(query)){

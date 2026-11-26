@@ -11,7 +11,8 @@ assert index==collect() and len({r['u'] for r in index})==len(rows)
 assert all('#' not in entry['u'] for entry in index),'Search sections must not become canonical index entries'
 product_index=next(row for row in index if row['u']=='/produkte.html')
 assert [row['id'] for row in product_index['model_sections']]==[
-    'waeschesaeule-zubehoer','bosch-wth83v03-kondensatablauf','beutelstaubsauger-angebote','miele-staubsaugerbeutel',
+    'waeschesaeule-zubehoer','bosch-wth83v03-kondensatablauf','bosch-wqg235d00-filterpflege',
+    'entscheidung-waeschetrockner','beutelstaubsauger-angebote','miele-staubsaugerbeutel',
     'kaercher-170mm-saugduese','fenstersauger-duesenbreite','kaercher-sc3-entkalkungskartusche',
     'kaercher-wd3-wd4-filterbeutel','siemens-eq6-intenza']
 comfee_index=next(row for row in index if row['u']=='/guide/luftentfeuchter-keller.html')

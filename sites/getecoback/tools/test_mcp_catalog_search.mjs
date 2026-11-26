@@ -1587,3 +1587,34 @@ test('German Bosch WTH83V03 drain questions reach the existing tool and its exac
   }
   assert.equal(analytics,0);
 });
+
+test('German Bosch WQG235D00 care queries use the single-model tool only for the single-model task', async () => {
+  const care = '/produkte.html#bosch-wqg235d00-filterpflege';
+  const careTool = 'bosch_wqg235d00_kondensatorpflege_zahl_inventur';
+  for (const [query,name,path] of [
+    ['Muss ich beim Bosch WQG235D00 das Flusensieb reinigen, obwohl der Kondensator selbstreinigend ist?',careTool,care],
+    ['Bosch WQG235D00: Ersetzt der selbstreinigende Kondensator die Filterpflege?',careTool,care],
+    ['Bosch WQG235D00 oder WQG241001: Welchen Kondensator muss ich reinigen?',
+      'ratgeber_suche','/produkte.html#entscheidung-waeschetrockner'],
+    ['Kann ich beim Bosch WTH83V03 das Kondenswasser mit WTZ1110 direkt ableiten?',
+      'bosch_wth83v03_ablaufschlauch_nein_bezug','/produkte.html#bosch-wth83v03-kondensatablauf'],
+  ]) {
+    const result = await catalogue({q:query,view:'compact',limit:3});
+    for (const first of [result.tools[0],findCatalogueTools(compact,{query})[0]]) {
+      assert.equal(first?.name,name,query);
+      assert.equal(first.guide_url,origin + path,query);
+    }
+  }
+  const drain = 'Bosch WQG241001 WTZ1110 Kondensatablauf';
+  const drainResult = await catalogue({q:drain,view:'compact',limit:3});
+  for (const first of [drainResult.tools[0],findCatalogueTools(compact,{query:drain})[0]]) {
+    assert.equal(first?.name,'wqg241001_tank_oder_ablauf_platzentscheidung',drain);
+  }
+  const energy = 'Bosch WQG235D00 Energieetikett: Wie viele kWh pro 100 Trocknungen?';
+  const energyResult = await catalogue({q:energy,view:'compact',limit:3});
+  for (const hits of [energyResult.tools,findCatalogueTools(compact,{query:energy})]) {
+    assert.notEqual(hits[0]?.name,careTool,energy);
+    assert.ok(!hits.some(tool => toolGuidePath(tool) === care),energy);
+  }
+  assert.equal(analytics,0);
+});
