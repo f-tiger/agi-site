@@ -242,6 +242,22 @@ export const directHeat = {
   tool:'ratgeber_suche',
 };
 
+export const portaSplitOutdoorNoise = {
+  path:'/guide/midea-portasplit-kaufen.html',
+  id:'portasplit-aussengeraet-lautstaerke',
+  tool:'ratgeber_suche',
+};
+
+function asksForPortaSplitOutdoorNoise(query) {
+  const original = /\b(?:porta[ -]*split|4048164116478)\b/;
+  const outdoor = /\b(?:aussen[ -]?(?:geraet|einheit|modul|teil)\w*|draussen|nachbarfenster\w*|aussen[ -]?fluester\w*|laerm\s+(?:nach\s+)?aussen)\b/;
+  const noise = /\b(?:laut|lauter|lautstaerk\w*|laerm\w*|geraeusch\w*|schall\w*|fluester\w*|leis\w*|db|dezibel\w*)\b/;
+  const other = /\b(?:defekt\w*|repar\w*|ratter\w*|klapper\w*|pfeif\w*|brumm\w*|abtau\w*|vereis\w*|monoblock\w*|pac[ -]?n90|pac[ -]?ex105)\b/;
+  const eans = query.match(/\b\d{13}\b/g) || [];
+  return original.test(query) && outdoor.test(query) && noise.test(query) &&
+    !other.test(query) && !namesDifferentPortaSplit(query) && eans.every(ean => ean === '4048164116478');
+}
+
 export const portaSplitDefrost = {
   path:'/guide/klimaanlage-mit-heizfunktion.html',
   id:'portasplit-abtauen',
@@ -753,6 +769,7 @@ export function exactGermanHouseholdTask(query) {
   if (asksForProBreeze12lModelChoice(query)) return proBreeze12lModelChoice;
   if (asksForSaros10rFloorPrep(query)) return saros10rFloorPrep;
   if (asksForPortaSplitDefrost(query)) return portaSplitDefrost;
+  if (asksForPortaSplitOutdoorNoise(query)) return portaSplitOutdoorNoise;
   if (exactComfeeMpphOffer(query)) return comfeeMpphOffer;
   if (asksAboutAnEmptyDehumidifierTank(query)) return emptyDehumidifierTank;
   if (asksForMeacoDd8lProGarage(query)) return meacoDd8lProGarage;

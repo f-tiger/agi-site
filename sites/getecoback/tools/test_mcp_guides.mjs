@@ -1006,3 +1006,15 @@ test('German Pro Breeze 12L model rows and the hold decision are readable in bot
  for(const row of ['| 12L mit Hygrostat | PB-06 |','| 12L mit Hygrostat und App | PB-D-06W-W-EU |','| OmniDry 12L mit App | PB-D-18W-WF |']) assert(textOf(full).includes(row),row);
  assert(!textOf(full).includes('https://www.amazon.de/'));
 });
+
+test('German PortaSplit outdoor sound measurements and placement limits are readable in both profiles',async()=>{
+ const {env}=assetEnv();
+ const pfad='https://getecoback.com/guide/midea-portasplit-kaufen.html#portasplit-aussengeraet-lautstaerke';
+ const found=await call('ratgeber_suche',{frage:"Wie hoch ist der Lärmspiegel von dem Teil, der bei der Midea PortaSplit draußen hängt?",sprache:'de',max:1},env);
+ assert(textOf(found).includes('Abschnitt: '+pfad));
+ const full=await call('ratgeber_lesen',{pfad},env);
+ assert.equal(full.isError,false);
+ assert.deepEqual(await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad}},env,true),full);
+ for(const value of ["4048164116478","56 dB(A)","48 dB(A)","39 dB(A)","62 dB Schallleistung","1 m Abstand","Nachbarfenster","verschiebe die Bestellung","https://www.midea.com/content/dam/midea-aem/de/klimatisieren-heizen/portasplit/PortaSplit-Gebrauchsanweisung-DE.pdf#page=15","https://www.midea.com/content/dam/midea-aem/de/klimatisieren-heizen/portasplit/PortaSplit-Gebrauchsanweisung-DE.pdf#page=36","https://eprel.ec.europa.eu/fiches/airconditioners/Fiche_1917520_DE.pdf#page=1"]) assert(textOf(full).includes(value),value);
+ assert(!textOf(full).includes('https://www.amazon.de/'));
+});

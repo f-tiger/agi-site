@@ -197,6 +197,13 @@ def collect():
     raise ValueError(f'Missing or hidden Comfee offer: {route}#{anchor}')
    entry['model_sections']=[{'id':anchor,'title':'Comfee MPPH-09CRN7 vor dem Kauf abgleichen',
     'description':'MPPH-09CRN7 mit EAN 4048164103065 und Artikelnummer 10000656. Prüfe Abluftweg und optionales Fensterkit vor der Bestellung.'}]
+  if lang=='de' and route=='/guide/midea-portasplit-kaufen.html':
+   anchor='portasplit-aussengeraet-lautstaerke'
+   targets=re.findall(r'<h2\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)
+   if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
+    raise ValueError(f'Missing or hidden PortaSplit outdoor sound evidence: {route}#{anchor}')
+   entry['model_sections']=[{'id':anchor,'title':'Wie laut ist das Außengerät der Midea PortaSplit?',
+    'description':'Beim Original mit EAN 4048164116478 nennt Midea für das Außengerät in 1 m Abstand 56 dB(A) auf hoher Stufe und 48 dB(A) im Außen-Flüstermodus. Prüfe vor dem Kauf den Abstand und die Ausrichtung zum Nachbarfenster.'}]
   if lang=='de' and route=='/guide/klimaanlage-mit-heizfunktion.html':
    anchor='portasplit-abtauen'
    targets=re.findall(r'<h3\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)

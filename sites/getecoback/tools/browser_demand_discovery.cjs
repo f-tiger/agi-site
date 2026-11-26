@@ -44,7 +44,16 @@ async function checkExactDelonghiPurchase(page,base){
    assert(await offer.getByText('PAC EX93 Extreme · 0151454025',{exact:true}).isVisible(),'Show the nearby but different EX93');
   }
  }
- return outcomes.length*5;
+ await page.goto(base+'/guide/midea-portasplit-kaufen.html?__ci=1#portasplit-aussengeraet-lautstaerke');
+ const portaSound=page.locator('#portasplit-aussengeraet-lautstaerke');
+   assert(await portaSound.isVisible(),'The outdoor sound question is reachable without scripting');
+   const explanation=portaSound.locator('xpath=following-sibling::p[position()<=3]');
+   const facts=(await explanation.allTextContents()).join(' ');
+   for(const phrase of ['56 dB(A)','48 dB(A)','62 dB Schallleistung','verschiebe die Bestellung']) assert(facts.includes(phrase),phrase);
+ const offer=page.locator('#portasplit-original-angebot a[rel~="sponsored"]');
+ assert.equal(await offer.getAttribute('href'),'https://www.amazon.de/dp/B0D3PP64JS?tag=getecoback-21');
+ assert(await portaSound.evaluate((heading, link)=>Boolean(heading.compareDocumentPosition(link)&Node.DOCUMENT_POSITION_FOLLOWING),await offer.elementHandle()));
+ return outcomes.length*5+6;
 }
 
 async function checkGermanCoolingLoad(browser,base){
@@ -106,6 +115,7 @@ async function checkGermanFocusedDiscovery(browser,base){
  const ex105Page='/guide/pinguino-pac-ex105-test.html';
  const positive=['Was kostet eine Ladung Wäsche nur mit meinem Luftentfeuchter?','Stromkosten Luftentfeuchter Wäsche'];
  const ordinary=[
+  ["Wie hoch ist der Lärmspiegel von dem Teil, der bei der Midea PortaSplit draußen hängt?",'/guide/midea-portasplit-kaufen.html#portasplit-aussengeraet-lautstaerke'],
   ['Braucht mein De’Longhi PAC EX105 A+++ einen Abluftschlauch mit 150 oder 170 mm?',
     ex105Page+'#ex105-ablufteinbau'],
   ['Bei meinem DeLonghi PAC EX105 A+++ fehlt die Fensterhalterung. Passt ein 150-mm-Schlauch an mein Kippfenster?',
