@@ -6756,8 +6756,19 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
   var acceptedTool=null;
   var qaVisit=['qa','__qa','ci','__ci','__probe'].some(function(k){return new URLSearchParams(location.search).has(k)});
   document.addEventListener('click',function(e){
-    var a=e.target.closest?e.target.closest('[data-biz="from-submit"]'):null;
+    var a=e.target.closest?e.target.closest('[data-biz="from-submit"], [data-commercial-action="vendor-sponsor"]'):null;
     if(!a)return;
+    if(a.dataset.commercialAction==='vendor-sponsor'){
+      if(acceptedTool)try{
+        var name=acceptedTool.name.trim(),url=new URL(acceptedTool.url),host=url.hostname.replace(/\\.$/,'');
+        if(!name||name.length>60||/[@<>]/.test(name)||url.protocol!=='https:'||url.username||url.password||url.port
+          ||!host.includes('.')||/^[\\d.]+$/.test(host)||/\\.(localhost|local|internal|test|invalid|example)$/.test(host)
+          ||decodeURIComponent(url.pathname).includes('@'))return;
+        url.search='';url.hash='';
+        if(url.href.length<=300)sessionStorage.setItem('bpj-sponsor-handoff',JSON.stringify({name:name,url:url.href,expires:Date.now()+300000}));
+      }catch(err){}
+      return;
+    }
     if(qaVisit){var target=new URL(a.href);target.searchParams.set('__ci','1');a.href=target.href;}
     if(acceptedTool)try{
       sessionStorage.setItem('bpj-vendor-handoff',JSON.stringify({name:acceptedTool.name,url:acceptedTool.url,expires:Date.now()+300000}));
@@ -6769,10 +6780,11 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
     var msg=f.querySelector('.sub-msg'), btn=f.querySelector('button');
     msg.className='sub-msg'; msg.textContent=''; btn.disabled=true;
     var submittedTool={name:f.elements.namedItem('name').value,url:f.elements.namedItem('url').value};
+    var website=f.elements.namedItem('website').value;
     fetch('/api/submit',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
         name:f.name.value, url:f.url.value, note:f.note.value, email:f.email.value,
-        website:(f.querySelector('input[name=website]')||{}).value||''
+        website:website
       })})
     .then(function(r){return r.json().catch(function(){return{ok:false}})})
     .then(function(d){
@@ -6785,7 +6797,7 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
           : (ZH?'没提交上，稍后再试。':'That did not go through — try again shortly.');
         return;
       }
-      acceptedTool=submittedTool;
+      acceptedTool=!website.trim()&&(d.code==='ok'||d.code==='already')?submittedTool:null;
       f.reset();
       document.dispatchEvent(new Event('bpj:submission-accepted'));
       msg.className='sub-msg is-ok';
@@ -6811,7 +6823,7 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
   });
 })();
 </script>
-<script src="/commercial-trigger.js?v=20261118-1" defer></script>`;
+<script src="/commercial-trigger.js?v=20261126-1" defer></script>`;
 
   writeFileSync(join(dist, ...(L.dir ? [L.dir.slice(1)] : []), 'submit.html'), layout({
     title: `${h1} - ${NAME}`,
@@ -7093,7 +7105,7 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
         <select name="kind">${KINDS.map(([v, t]) => `<option value="${v}">${esc(t)}</option>`).join('')}</select></label>
       <label><span>${zh ? '你的邮箱（用于回复报价，必填）' : 'Your email (required — quotes go here)'}</span>
         <input type="email" name="email" required maxlength="254"></label>
-      <label><span>${zh ? '留言（可选）：预算范围、时间要求、想推的页面' : 'Note (optional): budget range, timing, pages you have in mind'}</span>
+      <label><span>${zh ? '留言（可选，可填写目标类目、预计开始日和预算）' : 'Note (optional, with target category, start date and budget if known)'}</span>
         <textarea name="note" maxlength="500" rows="3"></textarea></label>
       <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
       <button type="submit">${zh ? '发送询价' : 'Send inquiry'}</button>
@@ -7124,8 +7136,21 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
     if(f && a.dataset.biz!=='free' && f.kind) f.kind.value=a.dataset.biz;
   });
   var f=document.getElementById('vendorForm'); if(!f)return;
-  var intent=new URLSearchParams(location.search).get('intent');
-  if(intent==='sponsor')f.elements.kind.value='sponsor';
+  var params=new URLSearchParams(location.search),intent=params.get('intent');
+  if(intent==='sponsor'){
+    f.elements.kind.value='sponsor';
+    var categories=${JSON.stringify(Object.fromEntries(catEntries))},category=params.get('cat');
+    if(Object.hasOwn(categories,category))f.elements.namedItem('note').value=(ZH?'目标类目：':'Target category: ')+categories[category];
+    if(params.get('source')==='advertise')try{
+      var stored=sessionStorage.getItem('bpj-sponsor-handoff');
+      sessionStorage.removeItem('bpj-sponsor-handoff');
+      var tool=JSON.parse(stored);
+      if(tool&&tool.expires>Date.now()&&typeof tool.name==='string'&&typeof tool.url==='string'){
+        f.elements.namedItem('name').value=tool.name.slice(0,60);
+        f.elements.namedItem('url').value=tool.url.slice(0,300);
+      }
+    }catch(err){}
+  }
   if(intent==='expedite'){
     f.elements.kind.value='expedite';
     try{
@@ -7249,7 +7274,7 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
     <h2 class="group-title">${zh ? '这次投放适合你吗？' : 'Is this placement right for you?'}</h2>
     <p>${zh ? '适合希望在相关工具类目中展示产品、并接受小规模试投的厂商。若你需要保证获客量、购买目录收录或完整的成效归因，本服务不适合。先看下面有日期的历史触达；浏览次数不等于独立用户，也不是未来广告曝光或点击承诺。' : 'For vendors who want a placement in a relevant tool category and can accept a small test. This is not a fit if you need guaranteed acquisition, paid directory inclusion or complete outcome attribution. Read the dated historical reach below: page views are not unique people or a promise of future ad impressions or clicks.'}</p>
     <p data-commercial-availability role="status">${zh ? '正在核对付款方式…' : 'Checking payment methods…'}</p>
-    <p><a data-commercial-action="ad-inquiry" href="${BASE}/for-vendors.html?intent=sponsor#vendorForm">${zh ? '向运营询问类目赞助排期' : 'Ask about category sponsorship availability'}</a> · ${zh ? '可附上目标类目和预计投放日期，我们会通过邮箱回复。' : 'Include your target category and dates for a reply by email.'}</p>
+    <p><a data-commercial-action="ad-inquiry" href="${BASE}/for-vendors.html?intent=sponsor&amp;source=advertise#vendorForm">${zh ? '向运营询问类目赞助排期' : 'Ask about category sponsorship availability'}</a> · ${zh ? '可附上目标类目和预计投放日期，我们会通过邮箱回复。' : 'Include your target category and dates for a reply by email.'}</p>
     <details><summary>${zh ? '暂不投放？可选一个原因（可跳过）' : 'Not booking? Optionally select a reason'}</summary>
       <p>${zh ? '仅记录所选类别，不要求联系方式。' : 'Only the selected category is recorded; no contact details are requested.'}</p>
       <button type="button" data-commercial-action="ad-wallet">${zh ? '付款方式不适合' : 'Payment method does not suit me'}</button>
@@ -7305,8 +7330,8 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
       : 'We store public ad details, order references and delivery state. Chain transactions are public. This browser saves your order access token. Keep your payment receipt. Chain refunds require contacting the site for review.'}</p>
   </section>
 </main>
-<script src="/ad-checkout.js" defer></script>
-<script src="/commercial-trigger.js?v=20261118-1" defer></script>`;
+<script src="/ad-checkout.js?v=20261126-1" defer></script>
+<script src="/commercial-trigger.js?v=20261126-1" defer></script>`;
 
   writeFileSync(join(dist, ...(L.dir ? [L.dir.slice(1)] : []), 'advertise.html'), layout({
     title: `${h1} - ${NAME}`, description: desc, path: '/advertise.html', body,

@@ -1,4 +1,4 @@
-/* Optional vendor decision support. No submission data, checkout creation or identifiers. */
+/* Optional vendor decision support and opt-in local handoff. */
 (()=>{
  const zh=document.documentElement.lang.startsWith('zh'),say=(cn,en)=>zh?cn:en;
  const params=new URLSearchParams(location.search),qa=['__ci','__probe','qa','ci'].some(k=>params.has(k));
@@ -9,12 +9,39 @@
  const vendor=document.getElementById('vendorSponsor');
  document.addEventListener('bpj:submission-accepted',()=>{if(!vendor)return;vendor.hidden=false;observe(vendor,'vendor-view');},{once:true});
  const decision=document.getElementById('adDecision');observe(decision,'ad-view');
+ const adForm=document.getElementById('adForm'),inquiry=decision?.querySelector('[data-commercial-action="ad-inquiry"]');
+ const sponsorKey='bpj-sponsor-handoff';
+ let sponsorTool;
+ if(adForm&&inquiry){
+  const category=adForm.elements.namedItem('cat');
+  const updateInquiry=value=>{
+   const target=new URL(inquiry.href);
+   if([...category.options].some(option=>option.value===value))target.searchParams.set('cat',value);
+   else target.searchParams.delete('cat');
+   inquiry.href=target.href;
+  };
+  if(category.dataset.explicitSelection==='true')updateInquiry(category.value);
+  category.addEventListener('change',()=>updateInquiry(category.value));
+  if(params.get('source')==='submit')try{
+   const raw=sessionStorage.getItem(sponsorKey);
+   sessionStorage.removeItem(sponsorKey);
+   const tool=JSON.parse(raw),name=adForm.elements.namedItem('name'),url=adForm.elements.namedItem('url');
+   if(tool&&tool.expires>Date.now()&&typeof tool.name==='string'&&typeof tool.url==='string'&&!name.value&&!url.value){
+    sponsorTool={name:tool.name.slice(0,60),url:tool.url.slice(0,300),expires:tool.expires};
+    name.value=sponsorTool.name;url.value=sponsorTool.url;
+   }
+  }catch{}
+ }
  document.addEventListener('click',e=>{
   const el=e.target.closest?.('[data-commercial-action]');if(!el)return;
   const action=el.dataset.commercialAction;
   if(!['vendor-sponsor','vendor-wait','ad-inquiry','ad-wallet','ad-reach','ad-later'].includes(action))return;
   track(action);
-  if(action==='ad-inquiry')return;
+  if(action==='ad-inquiry'){
+   if(sponsorTool&&sponsorTool.expires>Date.now()&&adForm.elements.namedItem('name').value===sponsorTool.name
+     &&adForm.elements.namedItem('url').value===sponsorTool.url)try{sessionStorage.setItem(sponsorKey,JSON.stringify(sponsorTool));}catch{}
+   return;
+  }
   if(action==='vendor-wait'){vendor.hidden=true;return;}
   if(action.startsWith('ad-')){for(const b of decision.querySelectorAll('button[data-commercial-action]')){b.disabled=true;b.setAttribute('aria-pressed',String(b===el));}const msg=document.getElementById('adReasonStatus');if(msg)msg.textContent=say('已选择；你可以不创建订单。此反馈不订阅邮件，也不改变免费投稿。','Selected. You can leave without creating an order. This feedback does not subscribe you to emails or affect a free submission.');}
  });

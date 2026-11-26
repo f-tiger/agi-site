@@ -24,7 +24,7 @@ globalThis.fetch=async(url,opt)=>{const b=JSON.parse(opt.body);if(rpcError)retur
 };
 async function setup(extra={}){finalHeight=1000;blockTime=seconds();receipt=null;logs=[];rpcError=false;chainId='0x38';precision=18;const d=db(),env={...envFor(d),...extra};if(env.ADS_WALLET_CHAIN==='base-sepolia'){chainId='0x14a34';precision=6;}await ensureWeb3(d);await watchWeb3(env);return {d,env};}
 const token=n=>n.toString(16).padStart(64,'0');
-async function order(env,n=1){const t=token(n);await createWeb3Order(env,{name:'Tool '+n,url:'https://tool'+n+'.example.org',pitch:'A workflow tool',cat:'coding',lang:'en'},t,'ip'+n);return web3Order(env.HITS,(await digest(t)).slice(0,32));}
+async function order(env,n=1,cat='coding'){const t=token(n);await createWeb3Order(env,{name:'Tool '+n,url:'https://tool'+n+'.example.org',pitch:'A workflow tool',cat,lang:'en'},t,'ip'+n);return web3Order(env.HITS,(await digest(t)).slice(0,32));}
 function receiptFor(row,change={}){const raw=BigInt(row.amount_units)*10n**BigInt(NETWORKS[row.chain].decimals-6);return {transactionHash:TX,status:'0x1',blockNumber:'0x3e8',blockHash:BH,logs:[{address:row.contract,transactionHash:TX,topics:[topic,'0x'+'0'.repeat(64),'0x'+row.recipient_hex.padStart(64,'0')],data:'0x'+raw.toString(16).padStart(64,'0')}],...change};}
 async function verified(env,row,tx=TX){receipt=receiptFor(row,{transactionHash:tx});return verifyTransfer(env,row,tx);}
 let passed=0;async function test(name,fn){await fn();passed++;console.log('PASS',name);}
@@ -39,6 +39,32 @@ await test('pre-order and late transfers are rejected; window expiry never reuse
 await test('payment and slot allocation are atomic and rollback on mid-batch failure',async()=>{const{d,env}=await setup(),row=await order(env),proof=await verified(env,row);d.failAt=4;await assert.rejects(()=>deliverWeb3(env,row,proof));assert.equal(d.sql.prepare('SELECT COUNT(*) n FROM bpj_ad_chain_receipts').get().n,0);assert.equal((await web3Order(d,row.id)).paid_at,null);d.failAt=null;assert.equal((await deliverWeb3(env,row,proof)).state,'live');});
 await test('a transaction already consumed by another order cannot allocate an unpaid slot',async()=>{const{d,env}=await setup(),a=await order(env,1),b=await order(env,2);await deliverWeb3(env,a,await verified(env,a));await deliverWeb3(env,b,{code:'verified',tx:TX,block:1000});const row=await web3Order(d,b.id);assert.equal(row.state,'pending');assert.equal(row.slot,null);assert.equal(row.paid_at,null);});
 await test('four payments share three lanes and replay never extends delivery',async()=>{const{d,env}=await setup();const rows=[];for(let n=1;n<=4;n++){const row=await order(env,n),tx='0x'+n.toString(16).repeat(64);await deliverWeb3(env,row,await verified(env,row,tx));rows.push(await web3Order(d,row.id));}assert.deepEqual(rows.map(r=>r.slot),[1,2,3,1]);assert.equal(rows[3].starts_at,rows[0].ends_at);assert.equal(rows[3].ends_at-rows[3].starts_at,30*86400);const before=JSON.stringify(rows[0]);await deliverWeb3(env,rows[0],{code:'verified',tx:'0x'+'1'.repeat(64),block:1000});assert.equal(JSON.stringify(await web3Order(d,rows[0].id)),before);});
+await test('public sponsorship inventory keeps paid categories separate and rotates the queue at expiry',async()=>{
+ const {d,env}=await setup();
+ const names=async cat=>{
+  const response=await ads({env,request:new Request('https://baipiaoji.com/api/ads?cat='+cat)});
+  assert.equal(response.status,200);
+  return (await response.json()).ads.map(ad=>ad.name);
+ };
+ const orders=[];
+ for (let n=1;n<=5;n++) orders.push(await order(env,n,n===5?'video':'coding'));
+ assert.deepEqual(await names('coding'),[]);
+ assert.deepEqual(await names('video'),[]);
+ for (const [index,row] of orders.entries()) {
+  const tx='0x'+(index+1).toString(16).repeat(64);
+  await deliverWeb3(env,row,await verified(env,row,tx));
+ }
+ assert.deepEqual((await names('coding')).sort(),['Tool 1','Tool 2','Tool 3']);
+ assert.deepEqual(await names('video'),['Tool 5']);
+ const first=await web3Order(d,orders[0].id);
+ try {
+  Date.now=()=>first.ends_at*1000;
+  assert.deepEqual(await names('coding'),['Tool 4']);
+  assert.deepEqual(await names('video'),[]);
+ } finally {
+  Date.now=()=>fixtureNow;
+ }
+});
 await test('automatic scan discovers payment with no submitted transaction hash',async()=>{const{d,env}=await setup(),row=await order(env);receipt=receiptFor(row);logs=receipt.logs;assert.equal((await scanOrder(env,row)).state,'live');assert.equal((await web3Order(d,row.id)).tx,TX);});
 await test('background watch catches payments after buyer closes page',async()=>{const{d,env}=await setup(),row=await order(env);receipt=receiptFor(row);logs=receipt.logs;await watchWeb3(env);assert.equal((await web3Order(d,row.id)).state,'paid');});
 await test('empty scan advances cursor, while RPC failure never skips blocks',async()=>{const{d,env}=await setup(),row=await order(env);await scanOrder(env,row);assert.equal((await web3Order(d,row.id)).cursor,1001);d.sql.exec('UPDATE bpj_ad_web3 SET checked_at=0');rpcError=true;await assert.rejects(()=>scanOrder(env,row));assert.equal((await web3Order(d,row.id)).cursor,1001);});

@@ -1,7 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {project,sample,backup,restore,html,svg,paidFiles,readTable,importTable,canvaTable} from '../assets/studio/testimonial-core.mjs';
-import {database} from '../../../tools/member-studio/test-fixtures.mjs';
-import {ensureMembers,allowedProduct} from '../lib/membership.js';import {digest,seconds} from '../lib/ad-commerce.js';
+import {database,mockChain,setupSites,fixture,transfer,KEY} from '../../../tools/member-studio/test-fixtures.mjs';
+import {ensureMembers,allowedProduct,watchMembers} from '../lib/membership.js';import {digest,seconds} from '../lib/ad-commerce.js';
 import {onRequestPost} from '../functions/api/member.js';
 const own=()=>({...sample(),demo:false,title:'Client <script>private</script>',quotes:[{quote:'<img src=x onerror=alert(1)> A real customer statement.',name:'Name <svg>',role:'Maker',source:'https://example.test/review?q=a&b=2',approved:true}]});
 test('quote exports escape all customer text and keep demos visibly labelled',()=>{
@@ -32,4 +32,48 @@ test('existing-app CSV mapping preserves quoted text, rejects excess data and re
  const p=importTable(t,{quote:'Feedback',name:'Customer',role:'Role',source:'URL'});assert.equal(p.quotes[0].quote,'Useful, clear');assert.equal(p.quotes[0].approved,false);assert.throws(()=>canvaTable(p),/permission/);
  p.quotes[0].approved=true;p.quotes[0].quote='=SUM(1,2)';assert.ok(canvaTable(p).includes("'=SUM"));assert.ok(canvaTable(sample()).includes('[Fictional example]'));
  assert.throws(()=>readTable('a,b\n'+Array(13).fill('x,y').join('\n')),/max_12/);assert.throws(()=>importTable(t,{quote:'Feedback',name:'Feedback'}),/mapping/);
+});
+test('a ProofKit receipt activates one attributed membership and unlocks the first customer export',async()=>{
+ const originalFetch=mockChain();
+ const sites=await setupSites();
+ const {db,env}=sites.bpj;
+ const call=body=>onRequestPost({env,request:new Request('https://baipiaoji.com/api/member',{
+  method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+KEY,Origin:'https://baipiaoji.com'},body:JSON.stringify(body)
+ })});
+ try{
+  const checkout={action:'checkout',nonce:'e'.repeat(32),accept_terms:true,key_saved:true,source:'bpj-testimonial-kit'};
+  const quotes=await Promise.all([call(checkout),call({...checkout,nonce:'f'.repeat(32)})]);
+  const [first,second]=await Promise.all(quotes.map(r=>r.json()));
+  assert.equal(first.order.id,second.order.id);
+  assert.equal(first.order.state,'pending');
+  const exportProject={action:'testimonial_export',data:backup(own())};
+  assert.equal((await call(exportProject)).status,403);
+
+  const row=db.sql.prepare('SELECT * FROM wb_orders WHERE id=?').get(first.order.id);
+  fixture.receipt=transfer(row);
+  fixture.logs=fixture.receipt.logs;
+  assert.equal((await watchMembers(env)).processed,1);
+  assert.equal((await watchMembers(env)).processed,0);
+  const status=await (await call({action:'status'})).json();
+  assert.equal(status.active,true);
+  const paid=db.sql.prepare('SELECT o.state,o.paid_at,s.product FROM wb_orders o JOIN wb_order_sources s ON s.order_id=o.id').all();
+  assert.equal(paid.length,1);
+  assert.equal(paid[0].state,'paid');
+  assert.equal(paid[0].product,'bpj-testimonial-kit');
+  assert.equal(status.ends_at,paid[0].paid_at+30*86400);
+
+  const delivery=await call(exportProject);
+  assert.equal(delivery.status,200);
+  const {files}=await delivery.json();
+  assert.equal(files.length,5);
+  const page=files.find(file=>file.name==='index.html');
+  assert.match(page.data,/A real customer statement/);
+  assert.doesNotMatch(page.data,/Made with BPJ/);
+  assert.equal(db.sql.prepare('SELECT COUNT(*) n FROM wb_versions').get().n,0);
+ }finally{
+  fixture.receipt=null;
+  fixture.logs=[];
+  originalFetch();
+  for(const site of Object.values(sites))site.db.sql.close();
+ }
 });

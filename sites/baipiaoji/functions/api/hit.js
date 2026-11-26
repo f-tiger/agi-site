@@ -2,6 +2,7 @@ import {recordQuality,trafficClass,qualityEligible,qualityKind} from '../../lib/
 import {parseDepthEvent} from '../../lib/depth-signals.mjs';
 import {parseTableReviewEvent} from '../../lib/table-review-signals.mjs';
 import {parseListingEvent} from '../../lib/listing-signals.mjs';
+import {parseProofKitEvent} from '../../lib/proofkit-signals.mjs';
 import {parseAiSoloEvent} from '../../lib/ai-solo-events.mjs';
 import {parseManjuEvent} from '../../lib/manju.mjs';
 import MANJU from '../../data/manju.json' with {type:'json'};
@@ -91,6 +92,13 @@ export async function onRequestPost({ request, env, waitUntil }) {
         const slug = /^\/catalog-task\/(chatgpt|kimi|qingying)$/.exec(path)?.[1];
         const expected = (lang === 'en' ? '/en' : '') + '/tools/' + slug;
         if (!slug || !['zh','en'].includes(lang) || ref?.origin !== origin || ref.pathname !== expected || !qualityEligible(request,path,lang)) return new Response(null, {status:204});
+        b.r = '';
+      }
+      if (ev === 'biz' && path.startsWith('/proofkit/')) {
+        const expected = (lang === 'en' ? '/en' : '') + '/studio/testimonial-kit';
+        if (origin !== 'https://baipiaoji.com' || !['zh','en'].includes(lang) || !parseProofKitEvent(path) ||
+            ref?.origin !== origin || ref.pathname !== expected || !qualityEligible(request,path,lang) ||
+            ['declared_automation','verified_bot'].includes(classification)) return new Response(null,{status:204});
         b.r = '';
       }
     }

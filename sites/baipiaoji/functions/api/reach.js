@@ -67,7 +67,7 @@ export function reachDays(url) {
   return days;
 }
 
-const reachCache = createReachCache({cachePath:`/__bpj-cache/reach/${REACH_CACHE_VERSION}.1`});
+const reachCache = createReachCache({cachePath:`/__bpj-cache/reach/${REACH_CACHE_VERSION}.2`});
 
 export async function onRequestGet(ctx) {
   const { request, env } = ctx;
@@ -82,6 +82,7 @@ export async function computeReach(env, days) {
   const now = Date.now();
   const since = new Date(now - days * 86400000).toISOString().slice(0, 10);
   const today = new Date(now).toISOString().slice(0, 10);
+  const endSeconds = Date.parse(today) / 1000;
   try {
     const q = (sql, ...params) => env.HITS.prepare(sql).bind(...params).all().then((r) => (r && r.results) || []);
     const [total, paths, referrers, aiRefs, events, subsNew, subsAll, adsRows, countryRows, subsByStatus, checkoutByState, web3Rows, watchRows, wbOrderRows, videoOrders, proofkitOrders, claimRows, attRows, proposalDeckOrders] = await Promise.all([
@@ -108,7 +109,17 @@ export async function computeReach(env, days) {
       q('SELECT count(*) n FROM watches').catch(() => [{ n: null }]),
       q('SELECT state, count(*) n FROM wb_orders GROUP BY state').catch(() => []),
       q("SELECT o.state, count(*) n FROM wb_orders o JOIN wb_order_sources s ON s.order_id=o.id WHERE s.product='bpj-video-variants' AND o.created>=? GROUP BY o.state",Math.floor(Date.parse(since)/1000)).catch(() => null),
-      q("SELECT o.state, count(*) n FROM wb_orders o JOIN wb_order_sources s ON s.order_id=o.id WHERE s.product='bpj-testimonial-kit' AND o.created>=? GROUP BY o.state",Math.floor(Date.parse(since)/1000)).catch(() => null),
+      q(`SELECT state, count(*) n,
+          count(*) FILTER (WHERE bucket='pending') pending,
+          count(*) FILTER (WHERE bucket='expired') expired,
+          count(*) FILTER (WHERE bucket='paid') paid
+        FROM (SELECT o.state,
+          CASE WHEN o.created >= ? OR o.state NOT IN ('pending','paid') THEN NULL
+               WHEN o.state='paid' AND o.paid_at < ? THEN 'paid'
+               WHEN o.expires < ? THEN 'expired' ELSE 'pending' END bucket
+          FROM wb_orders o JOIN wb_order_sources s ON s.order_id=o.id
+          WHERE s.product='bpj-testimonial-kit' AND o.created>=?) GROUP BY state`,
+        endSeconds,endSeconds,endSeconds,Date.parse(since)/1000).catch(() => null),
       // 厂商认领层(2026-09-26,functions/api/claim.js):已验证认领数与排队中的厂商更正数,判定线 bpj-claim-* 的读数源。
       // 两张表首次认领时才建,按 slug 一行,极小;表不存在按 null 计。
       q("SELECT count(*) n FROM claims WHERE last_result = 'ok'").catch(() => [{ n: null }]),
@@ -117,6 +128,9 @@ export async function computeReach(env, days) {
     ]);
     const ads = {};
     for (const r of adsRows) ads[String(r.status || '')] = r.n;
+    const proofkitComplete = proofkitOrders?.reduce((counts,row)=>({
+      pending:counts.pending+row.pending, expired:counts.expired+row.expired, paid:counts.paid+row.paid,
+    }),{pending:0,expired:0,paid:0}) ?? null;
     const commercial = await readCommercialTriggers(env.HITS, since);
     const conversionStages = await readConversionStages(env.HITS, days, now);
     const quoteSignals = await readQuoteSignals(env.HITS, since);
@@ -150,7 +164,7 @@ export async function computeReach(env, days) {
       ai_solo_signals: aiSoloSignals,
       // 有一块没读出来(09-26 额度边缘时实见:主查询成功、商业触发那条被拒)就标 partial,
       // lib/reach-cache.js 不缓存它——否则缺一块的结果会被原样挂一小时。
-      ...(commercial.ok === false || !conversionStages.ok || !quoteSignals.ok || !homepageSignals.ok || !aiSoloSignals.ok || !depthSignals.ok || proposalDeckOrders === null ? { partial: true } : {}),
+      ...(commercial.ok === false || !conversionStages.ok || !quoteSignals.ok || !homepageSignals.ok || !aiSoloSignals.ok || !depthSignals.ok || proposalDeckOrders === null || proofkitComplete === null ? { partial: true } : {}),
       money: {
         days,
         subs_by_status: Object.fromEntries(subsByStatus.map((r) => [String(r.status || ''), r.n])),
@@ -161,6 +175,8 @@ export async function computeReach(env, days) {
         member_orders_by_state: Object.fromEntries(wbOrderRows.map((r) => [String(r.state || ''), r.n])),
         proofkit_orders_by_state: proofkitOrders===null?null:Object.fromEntries(proofkitOrders.map(r=>[String(r.state||''),r.n])),
         proofkit_order_definition:'BPJ membership orders first attributed to the customer quote studio; states are not export counts or profit. Other membership tools and older orders excluded; failed query is null.',
+        proofkit_orders_complete_utc: {window:conversionStages.window, by_state:proofkitComplete,
+          definition:'First-source ProofKit membership orders created in the stated UTC window, with payment and expiry classified at the window end. Each order counts once. Package generation and profit require separate records.'},
         video_orders_by_state: videoOrders===null?null:Object.fromEntries(videoOrders.map(r=>[String(r.state||''),r.n])),
         video_order_definition: 'Orders first created from the video membership entry within this window; paid means confirmed payment, not profit or causal attribution.',
         proposal_deck_orders_by_state: proposalDeckOrders,

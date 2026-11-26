@@ -1,8 +1,9 @@
 import {createRequire} from 'node:module';import {createServer} from 'node:http';import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';
 let pw;try{pw=createRequire(new URL('../../../tools/revenue-studio/package.json',import.meta.url))('playwright');}catch{pw=createRequire(import.meta.url)('playwright');}
-const root=path.resolve(new URL('../dist/',import.meta.url).pathname);let origin,failSubmit=true,mode='live',failDoctor=false,orders=0;
+const root=path.resolve(new URL('../dist/',import.meta.url).pathname);let origin,failSubmit=true,mode='live',failDoctor=false,orders=0,vendorResult='ok';
+const vendorRequests=[];
 const doctor={ok:true,selling:true,mode:'live',rails:{wallet:true,card:false},web3:{chain:'bsc',token:'USDT',price_cents:4900},days:30};
-const server=createServer(async(req,res)=>{const u=new URL(req.url,origin);if(u.pathname.startsWith('/api/')){for await(const c of req){}res.setHeader('Content-Type','application/json');if(u.pathname==='/api/submit'){res.statusCode=failSubmit?503:200;res.end(JSON.stringify({ok:!failSubmit,code:failSubmit?'error':'ok'}));return;}if(u.pathname==='/api/ads'){res.statusCode=failDoctor?503:200;res.end(JSON.stringify(failDoctor?{ok:false}:{...doctor,mode}));return;}if(/ad-web3|ad-draft/.test(u.pathname))orders++;res.end('{}');return;}
+const server=createServer(async(req,res)=>{const u=new URL(req.url,origin);if(u.pathname.startsWith('/api/')){const chunks=[];for await(const c of req)chunks.push(c);res.setHeader('Content-Type','application/json');if(u.pathname==='/api/submit'){res.statusCode=failSubmit?503:200;res.end(JSON.stringify({ok:!failSubmit,code:failSubmit?'error':'ok'}));return;}if(u.pathname==='/api/vendor'){vendorRequests.push(JSON.parse(Buffer.concat(chunks).toString()));res.end(JSON.stringify({ok:true,code:vendorResult}));return;}if(u.pathname==='/api/ads'){res.statusCode=failDoctor?503:200;res.end(JSON.stringify(failDoctor?{ok:false}:{...doctor,mode}));return;}if(/ad-web3|ad-draft/.test(u.pathname))orders++;res.end('{}');return;}
  try{let p=u.pathname;if(p.endsWith('/'))p+='index.html';else if(!path.extname(p))p+='.html';const f=path.resolve(root,'.'+p);if(!f.startsWith(root+path.sep))throw Error();res.setHeader('Content-Type',({'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.css':'text/css'})[path.extname(f)]||'text/plain');res.end(fs.readFileSync(f,'utf8').replaceAll('https://baipiaoji.com',origin));}catch{res.statusCode=404;res.end('Not found');}});
 await new Promise(r=>server.listen(0,'127.0.0.1',r));origin='http://127.0.0.1:'+server.address().port;let browser;
 try{browser=await pw.chromium.launch({headless:true,...(process.env.PILOT_CHROMIUM?{executablePath:process.env.PILOT_CHROMIUM,args:['--no-sandbox','--disable-dev-shm-usage','--no-zygote']}: {})});
@@ -17,7 +18,42 @@ try{browser=await pw.chromium.launch({headless:true,...(process.env.PILOT_CHROMI
  await p.locator('[data-biz=selfserve]').click();await p.locator('[data-biz=selfserve]').click();
  assert.equal((await p.evaluate(()=>window.__biz)).filter(x=>x[1]==='/biz/trigger/vendor-sponsor').length,1);assert.equal(await p.locator('#vendorForm select[name=kind]').inputValue(),'expedite');assert.equal(orders,0);
 
- await p.goto(origin+prefix+'/submit.html?__ci=1');assert.equal(await p.locator('#vendorSponsor').isVisible(),false);await p.locator('#submitForm input[name=name]').fill('Test tool');await p.locator('#submitForm input[name=url]').fill('https://example.test/');failSubmit=true;await p.locator('#submitForm button').click();await p.locator('#submitForm .is-err').waitFor();assert.equal(await p.locator('#vendorSponsor').isVisible(),false);failSubmit=false;await p.locator('#submitForm button').click();await p.locator('#vendorSponsor').waitFor();await p.locator('[data-commercial-action=vendor-sponsor]').click();await p.waitForURL(u=>/\/advertise(?:\.html)?$/.test(u.pathname));assert.ok(p.url().includes('__ci=1'));await p.locator('[data-commercial-availability]').filter({hasText:'49.00'}).waitFor();assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));assert.equal((await p.evaluate(()=>window.__biz)).filter(x=>x[1]?.startsWith('/biz/trigger/')).length,0);
+ await p.goto(origin+prefix+'/submit.html?__ci=1');
+ const sponsorSubmission=p.locator('#submitForm');
+ assert.equal(await p.locator('#vendorSponsor').isVisible(),false);
+ await sponsorSubmission.locator('[name=name]').fill('Test tool');
+ await sponsorSubmission.locator('[name=url]').fill('https://example.com/tool?contact=private%40example.test#private');
+ await sponsorSubmission.locator('[name=email]').fill('private@example.test');
+ await sponsorSubmission.locator('[name=note]').fill('Free submission note');
+ failSubmit=true;await sponsorSubmission.locator('button').click();await p.locator('#submitForm .is-err').waitFor();
+ assert.equal(await p.locator('#vendorSponsor').isVisible(),false);
+ failSubmit=false;await sponsorSubmission.locator('button').click();await p.locator('#vendorSponsor').waitFor();
+ assert.equal(await p.evaluate(()=>sessionStorage.getItem('bpj-sponsor-handoff')),null);
+ await p.locator('[data-commercial-action=vendor-sponsor]').click();
+ await p.waitForURL(u=>/\/advertise(?:\.html)?$/.test(u.pathname));assert.ok(p.url().includes('__ci=1'));
+ await p.locator('[data-commercial-availability]').filter({hasText:'49.00'}).waitFor();
+ assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+ assert.equal(await p.locator('#adForm [name=name]').inputValue(),'Test tool');
+ assert.equal(await p.locator('#adForm [name=url]').inputValue(),'https://example.com/tool');
+ assert.equal(await p.locator('#adForm [name=pitch]').inputValue(),'');
+ assert.equal(await p.evaluate(()=>sessionStorage.getItem('bpj-sponsor-handoff')),null);
+ assert.doesNotMatch(p.url(),/example|private/i);
+ assert.equal((await p.evaluate(()=>window.__biz)).filter(x=>x[1]?.startsWith('/biz/trigger/')).length,0);
+ await p.locator('#adForm [name=cat]').selectOption('video');
+ await p.locator('[data-commercial-action=ad-inquiry]').click();
+ await p.waitForURL(u=>u.hash==='#vendorForm');
+ const sponsorInquiry=p.locator('#vendorForm');
+ assert.equal(new URL(p.url()).searchParams.get('cat'),'video');
+ assert.equal(await sponsorInquiry.locator('[name=kind]').inputValue(),'sponsor');
+ assert.equal(await sponsorInquiry.locator('[name=name]').inputValue(),'Test tool');
+ assert.equal(await sponsorInquiry.locator('[name=url]').inputValue(),'https://example.com/tool');
+ assert.equal(await sponsorInquiry.locator('[name=email]').inputValue(),'');
+ const sponsorNote=await sponsorInquiry.locator('[name=note]').inputValue();
+ assert.match(sponsorNote,lang==='en'?/^Target category: .*Video/i:/^目标类目：.*视频/);
+ assert.doesNotMatch(sponsorNote,/Free submission note/);
+ assert.doesNotMatch(p.url(),/example|private/i);
+ assert.equal(await p.evaluate(()=>sessionStorage.getItem('bpj-sponsor-handoff')),null);
+ assert.equal(orders,0);
  await p.goto(origin+prefix+'/submit.html?__ci=1');
  const submitted=p.locator('#submitForm');
  await submitted.locator('[name=name]').fill('Example Studio');
@@ -52,6 +88,7 @@ try{browser=await pw.chromium.launch({headless:true,...(process.env.PILOT_CHROMI
   assert.match(await p.locator('.ad-slot .sub-note').first().textContent(),lang==='en'?/free inclusion/:/免费收录/);
   await house.click();await p.waitForURL(u=>u.pathname===prefix+'/advertise');
   await p.waitForFunction(cat=>document.querySelector('#adForm select[name=cat]').value===cat,category);
+  assert.equal(new URL(await p.locator('[data-commercial-action=ad-inquiry]').getAttribute('href')).searchParams.get('cat'),category);
   assert.equal((await p.evaluate(()=>window.__biz)).filter(x=>x[0]==='ad'||x[1]?.startsWith('/biz/trigger/')).length,0);
  }
  await p.goto(origin+prefix+'/tools/kling.html');
@@ -60,7 +97,27 @@ try{browser=await pw.chromium.launch({headless:true,...(process.env.PILOT_CHROMI
  await p.locator('.ad-slot .ad-house').first().click();
  assert.equal((await p.evaluate(()=>window.__biz)).filter(x=>x[0]==='ad'&&x[1]==='/ad/house/tool/kling').length,1);
  await p.goto(origin+prefix+'/advertise?cat=unknown&__ci=1');
- assert.notEqual(await p.locator('#adForm select[name=cat]').inputValue(),'unknown');
+ const selectedCategory=await p.locator('#adForm select[name=cat]').inputValue();
+ assert.notEqual(selectedCategory,'unknown');
+ assert.equal(new URL(await p.locator('[data-commercial-action=ad-inquiry]').getAttribute('href')).searchParams.has('cat'),false);
+ await p.evaluate(()=>localStorage.setItem('bpj.ad.order.v2',JSON.stringify({input:{cat:'coding'}})));
+ await p.goto(origin+prefix+'/advertise?cat=video&__ci=1');
+ assert.equal(await p.locator('#adForm select[name=cat]').inputValue(),'coding');
+ assert.equal(new URL(await p.locator('[data-commercial-action=ad-inquiry]').getAttribute('href')).searchParams.get('cat'),'coding');
+ await p.evaluate(()=>localStorage.removeItem('bpj.ad.order.v2'));
+ await p.goto(origin+prefix+'/for-vendors?intent=sponsor&cat=video');
+ const reportForm=p.locator('#vendorForm');
+ for(const outcome of ['ok','already']){
+  vendorResult=outcome;
+  await reportForm.locator('[name=name]').fill('Sample sponsor');
+  await reportForm.locator('[name=url]').fill('https://example.com/tool');
+  await reportForm.locator('[name=email]').fill('dummy@example.test');
+  await reportForm.locator('[name=kind]').selectOption('sponsor');
+  await reportForm.locator('button').click();await reportForm.locator('.is-ok').waitFor();
+ }
+ assert.equal((await p.evaluate(()=>window.__biz)).filter(x=>x[1]==='/biz/ok/sponsor').length,1);
+ assert.equal(vendorRequests.at(-1).kind,'sponsor');
+ await p.goto(origin+prefix+'/advertise?cat=unknown&__ci=1');
  await p.setViewportSize({width:1440,height:1000});await p.reload();await p.locator('[data-commercial-availability]').filter({hasText:'49.00'}).waitFor();assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));assert.deepEqual(errors,[]);await context.close();
  }assert.equal(orders,0);console.log('PASS EN/ZH: submission, optional CTA, category-specific house handoff, fixed query/QA propagation, action measurement, payment states, mobile/desktop; no order created.');
 }finally{await browser?.close();await new Promise(r=>server.close(r));}

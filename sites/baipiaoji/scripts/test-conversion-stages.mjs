@@ -5,6 +5,8 @@ import {emptyListingCounts} from '../lib/listing-signals.mjs';
 import {emptyTableReviewCounts} from '../lib/table-review-signals.mjs';
 import {HITS_INDEXES} from '../lib/hits-schema.js';
 import {assertCountTree} from './conversion-stage-counts.mjs';
+import {onRequestPost} from '../functions/api/hit.js';
+import {hitWriteFixture} from './hit-write-fixture.mjs';
 const db=new DatabaseSync(':memory:');
 db.exec(`CREATE TABLE hits(d TEXT,path TEXT,lang TEXT,ev TEXT,ref TEXT); ${HITS_INDEXES.join(';')};
  CREATE TABLE free_accounts(id TEXT PRIMARY KEY,created INTEGER,qa INTEGER);
@@ -22,6 +24,9 @@ for(const [path,ev,lang='en',date='2026-09-26'] of [
  ['/studio/proposal-deck/cloud-restore/own','calc'],['/studio/proposal-deck/paid-offer-view/own','calc'],
  ['/studio/proposal-deck/paid-offer-view/demo','calc'],['/studio/proposal-deck/pptx-export/own/extra','calc'],
  ['/studio/proposal-deck/pptx-export/own','calc','ci'],['/studio/proposal-deck/pptx-export/own','calc','en','2026-09-27'],
+ ['/proofkit/export_demo','biz'],['/proofkit/export_own','biz'],['/proofkit/paid_offer_view','biz'],['/proofkit/member_open','biz'],
+ ['/proofkit/import_own','biz'],['/proofkit/paid_offer_view','biz','ci'],['/proofkit/export_own','biz','en','2026-09-27'],
+ ['/proofkit/private-customer-input','biz'],['/proofkit/paid_offer_view_demo','biz'],['/biz/trigger/vendor-view','biz'],
  ['/studio/quote-compare/download/own','calc'],['/studio/pdf-tools/complete/own/extra','calc'],
  ['/account-growth/tool-entry','calc'],['/account-growth/tool-entry/forged','calc'],['/account-growth/tool-entry','calc','ci'],
  ['/coding-access/filter/catalog','coding_access'],['/coding-access/miss/catalog','coding_access'],
@@ -74,7 +79,24 @@ const proposalDeckActions={
  demo:{pptx_export:1,member_open:0,cloud_open:0,cloud_saved:0,cloud_restore:0},
  own:{pptx_export:2,member_open:1,cloud_open:1,cloud_saved:1,cloud_restore:1,paid_offer_view:1},
 };
-assert.deepEqual(out.events,{table_review_actions:emptyTableReviewCounts(),listing_actions:emptyListingCounts(),proposal_deck_actions:proposalDeckActions,tool_results_own:2,tool_results_demo:1,tool_download_actions_own:1,tool_download_actions_demo:1,other_calc_events:14,directory_outbound_clicks:1,homepage_limit_navigation:1,video_exports_own:1,video_exports_demo:1,account_tool_entries:1,coding_access_filters:1,coding_access_empty_results:1,coding_access_provider_opens:1,coding_access_source_opens:1,coding_access_selection_copies:2,coding_access_checklist_copies:1,coding_access_vendor_entries:1});
+const proofkitActions={demo:{preview:0,backup:0,export:1,image:0,canva:0},own:{preview:0,backup:0,export:1,image:0,canva:0,import:1,member_open:1,paid_offer_view:1}};
+assert.deepEqual(out.events,{table_review_actions:emptyTableReviewCounts(),listing_actions:emptyListingCounts(),proofkit_actions:proofkitActions,proposal_deck_actions:proposalDeckActions,tool_results_own:2,tool_results_demo:1,tool_download_actions_own:1,tool_download_actions_demo:1,other_calc_events:14,directory_outbound_clicks:1,homepage_limit_navigation:1,video_exports_own:1,video_exports_demo:1,account_tool_entries:1,coding_access_filters:1,coding_access_empty_results:1,coding_access_provider_opens:1,coding_access_source_opens:1,coding_access_selection_copies:2,coding_access_checklist_copies:1,coding_access_vendor_entries:1});
+const beaconRows=[];
+async function proofkitBeacon(path, ref='/en/studio/testimonial-kit', headers={}) {
+ return onRequestPost({env:{HITS:hitWriteFixture(beaconRows)},request:new Request('https://baipiaoji.com/api/hit',{
+  method:'POST',headers:{referer:`https://baipiaoji.com${ref}`,origin:'https://baipiaoji.com','user-agent':'Mozilla/5.0',...headers},
+  body:JSON.stringify({e:'biz',p:path,l:'en',r:'https://example.com/raw-customer-source'}),
+ })});
+}
+await proofkitBeacon('/proofkit/paid_offer_view');
+await proofkitBeacon('/proofkit/private-customer-input');
+await proofkitBeacon('/proofkit/paid_offer_view','/en/studio/testimonial-kit?__qa=1');
+await proofkitBeacon('/proofkit/paid_offer_view','/en/studio/testimonial-kit',{dnt:'1'});
+await proofkitBeacon('/proofkit/paid_offer_view','/en/studio/testimonial-kit',{'sec-gpc':'1'});
+await proofkitBeacon('/proofkit/paid_offer_view','/en/studio/testimonial-kit',{'user-agent':'HeadlessChrome'});
+await proofkitBeacon('/proofkit/paid_offer_view','/en/studio/quote-builder');
+assert.equal(beaconRows.length,1);
+assert.deepEqual(beaconRows[0].slice(1),['/proofkit/paid_offer_view','en','','','biz']);
 assert.deepEqual(out.accounts,{created:2,new_accounts_currently_email_verified:1,total_non_test:4,total_currently_email_verified:3});
 assert.equal(out.account_scope,'fleet_shared_account_pool');
 assert.equal(out.accounts_daily.length,28);

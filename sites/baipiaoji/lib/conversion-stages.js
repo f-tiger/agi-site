@@ -1,6 +1,7 @@
 import { EVENT_ROWS } from './hits-schema.js';
 import {parseTableReviewEvent,emptyTableReviewCounts} from './table-review-signals.mjs';
 import {parseListingEvent,emptyListingCounts} from './listing-signals.mjs';
+import {PROOFKIT_PATHS,parseProofKitEvent,emptyProofKitCounts} from './proofkit-signals.mjs';
 import catalog from '../data/tools.json' with {type:'json'};
 
 const toolSlugs = new Set(catalog.map(tool => tool.slug));
@@ -27,7 +28,9 @@ export function directoryOutboundCounts(rows) {
 // Separate stage counts, deliberately not a user-level or Google-attributed funnel.
 // Reuse the hourly reach cache and the partial event index; never fetch identity fields.
 export const STAGE_EVENTS_SQL = `SELECT ev, path, count(*) n FROM hits
- WHERE d >= ? AND d < ? AND ${EVENT_ROWS} AND ev IN ('calc','go','home','coding_access','listing','table_review')
+ WHERE d >= ? AND d < ? AND ${EVENT_ROWS}
+ AND (ev IN ('calc','go','home','coding_access','listing','table_review')
+   OR (ev = 'biz' AND path IN (${PROOFKIT_PATHS.map(path => `'${path}'`).join(',')})))
  AND path NOT LIKE '/\\_\\_%' ESCAPE '\\' AND COALESCE(lang,'') != 'ci'
  GROUP BY ev, path`;
 export const STAGE_ACCOUNTS_SQL = `SELECT count(*) total_non_test,
@@ -69,7 +72,7 @@ export async function readProposalDeckOrders(db, start, end) {
 }
 
 export function stageCounts(rows) {
-  const counts = { table_review_actions: emptyTableReviewCounts(), listing_actions: emptyListingCounts(),
+  const counts = { table_review_actions: emptyTableReviewCounts(), listing_actions: emptyListingCounts(), proofkit_actions: emptyProofKitCounts(),
     proposal_deck_actions: { demo: {...DECK_ACTION_COUNTS}, own: {...DECK_ACTION_COUNTS, paid_offer_view: 0} },
     tool_results_own: 0, tool_results_demo: 0, tool_download_actions_own: 0,
     tool_download_actions_demo: 0, other_calc_events: 0, directory_outbound_clicks: 0,
@@ -81,6 +84,11 @@ export function stageCounts(rows) {
   for (const row of rows) {
     const n = Number(row.n) || 0, path = String(row.path || '');
     if (row.ev === 'table_review') { const parsed=parseTableReviewEvent(path);if(parsed&&Number.isSafeInteger(n)&&n>=0)counts.table_review_actions[parsed.mode][parsed.action]+=n;continue; }
+    if (row.ev === 'biz') {
+      const parsed = parseProofKitEvent(path);
+      if (parsed && Number.isSafeInteger(n) && n >= 0) counts.proofkit_actions[parsed.mode][parsed.action] += n;
+      continue;
+    }
     if (row.ev === 'listing') {
       const parsed = parseListingEvent(path);
       if (parsed) counts.listing_actions[parsed.mode][parsed.action] += n;
@@ -152,6 +160,7 @@ export async function readConversionStages(db, days, clock = Date.now()) {
       table_review_actions: 'Fixed browser actions since the 2026-11-12 release, split into fictional demo and declared own inputs. Check means structural comparison succeeded; export initiates a download. Neither proves correctness, unique customers, paid demand or revenue. No table content is collected. These events have no user-level channel join.',
       listing_actions: 'Measured from the 2026-10-31 listing-pack release. Fixed browser action counts, separated into fictional demo and declared own inputs. Review is a user acknowledgement, not semantic verification; export initiates a download, not platform acceptance. Inquiry counts a browser success response, not a unique lead, paid order or revenue. QA, lost events and unlabeled automation limitations still apply.',
       proposal_deck_actions: 'Fixed ProposalDeck browser action counts projected from other_calc_events, excluding known CI. Own is declared project use. paid_offer_view is measured from its release. cloud_saved records an acknowledged save. Actions and orders have independent counts.',
+      proofkit_actions: 'Fixed ProofKit actions from the same complete UTC days, separated into labelled examples and own projects. Own exports follow a local permission acknowledgement. paid_offer_view records a rendered contextual offer since its release. member_open records an explicit popup. Actions, customers and orders have independent counts.',
       acquisition: 'Search clicks and CTR come only from GSC; not supplied by this endpoint. GSC uses Pacific reporting days.',
       usage: 'Client-reported successful result actions from PDF, image and quote tools only; repeats are not deduplicated. Demo and own-input actions are separate. Image completion can include partial batch success. Download means an action, not a verified saved file.',
       other_calc_events: 'Unclassified calc events include navigation, edits and tools without a reviewed success contract; never count the whole calc bucket as completed work.',

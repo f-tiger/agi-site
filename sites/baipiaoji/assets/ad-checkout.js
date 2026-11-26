@@ -5,8 +5,10 @@
  const button=f.querySelector('button'),msg=f.querySelector('.sub-msg'),box=document.getElementById('adPrice');
  const key='bpj.ad.order.v2';let order=null,ready=false,rail='web3',timer,polls=0,busy=false;
  try{order=JSON.parse(localStorage.getItem(key)||'null');}catch{}
- const category=new URLSearchParams(location.search).get('cat');if(!order&&category&&[...f.elements.namedItem('cat').options].some(o=>o.value===category))f.elements.namedItem('cat').value=category;
+ const category=new URLSearchParams(location.search).get('cat'),categoryField=f.elements.namedItem('cat');
+ if(!order&&category&&[...categoryField.options].some(o=>o.value===category))categoryField.value=category;
  if(order?.input)for(const [name,value]of Object.entries(order.input)){const el=f.elements.namedItem(name);if(el&&name!=='accept_queue'&&name!=='website')el.value=value;}
+ if(order?.input?.cat||(!order&&categoryField.value===category))categoryField.dataset.explicitSelection='true';
  const status=document.createElement('p');status.setAttribute('role','status');status.setAttribute('aria-live','polite');f.before(status);
  const payment=document.createElement('section');payment.hidden=true;f.before(payment);
  const newOrder=document.createElement('button');newOrder.type='button';newOrder.textContent=say('开始另一笔投放','Start another placement');newOrder.hidden=true;f.before(newOrder);
