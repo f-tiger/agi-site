@@ -1010,12 +1010,14 @@ async function trendCompute(env) {
       "AND day >= date('now','-14 day') " +
       "GROUP BY page HAVING n7 >= 2 ORDER BY n7 DESC LIMIT 25"
     ).all();
-    const zh = await env.EVENTS.prepare(
-      "SELECT json_extract(meta,'$.q') AS q, COUNT(*) AS n FROM ev " +
-      "WHERE name='site_search' AND json_extract(meta,'$.hits')=0 " +
-      "AND page NOT LIKE '/__ci%' AND day >= date('now','-28 day') " +
-      "GROUP BY q ORDER BY n DESC LIMIT 20"
-    ).all();
+    const zh = await env.EVENTS.prepare(`
+      WITH searches AS (
+        SELECT CASE WHEN json_valid(meta) THEN meta END AS valid_meta FROM ev
+        WHERE name='site_search' AND page NOT LIKE '/__ci%' AND day >= date('now','-28 day')
+      )
+      SELECT json_extract(valid_meta,'$.q') AS q, COUNT(*) AS n FROM searches
+      WHERE json_extract(valid_meta,'$.hits')=0 GROUP BY q ORDER BY n DESC LIMIT 20
+    `).all();
     // Discovery layer: where readers come from (the AI-referral share drives
     // the GEO priority rule) and which MCP tools real agents actually call.
     const refs = await env.EVENTS.prepare(
@@ -1025,11 +1027,14 @@ async function trendCompute(env) {
       "FROM ev WHERE name='page_view' AND ref != '' AND page NOT LIKE '/__ci%' " +
       "AND day >= date('now','-14 day') GROUP BY ref ORDER BY n7 DESC LIMIT 15"
     ).all();
-    const mcp = await env.EVENTS.prepare(
-      "SELECT json_extract(meta,'$.tool') AS tool, COUNT(*) AS n FROM ev " +
-      "WHERE name='mcp_call' AND day >= date('now','-28 day') " +
-      "GROUP BY tool ORDER BY n DESC LIMIT 10"
-    ).all();
+    const mcp = await env.EVENTS.prepare(`
+      WITH calls AS (
+        SELECT CASE WHEN json_valid(meta) THEN meta END AS valid_meta FROM ev
+        WHERE name='mcp_call' AND day >= date('now','-28 day')
+      )
+      SELECT json_extract(valid_meta,'$.tool') AS tool, COUNT(*) AS n FROM calls
+      WHERE valid_meta IS NOT NULL GROUP BY tool ORDER BY n DESC LIMIT 10
+    `).all();
     const recentMcp = await env.EVENTS.prepare(COMPLETE_MCP_WEEK_SQL).all();
     const {completeWeek, compactCompleteWeek, n90CompactCompleteWeek} = completedMcpReports(recentMcp.results?.[0]);
     return new Response(JSON.stringify({

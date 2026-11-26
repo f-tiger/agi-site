@@ -286,6 +286,36 @@ print(new_result['status'])`;
   assert.equal(result.stdout.trim(),'current');
 });
 
+test('trend rankings skip malformed metadata while preserving valid events and affiliate counts', async () => {
+  const fixture = `import json, sqlite3, sys
+db = sqlite3.connect(':memory:')
+db.row_factory = sqlite3.Row
+db.execute('CREATE TABLE ev(day,name,page,ref,ua_class,meta)')
+db.executemany("INSERT INTO ev VALUES(date('now','-1 day'),?,?,'','human',?)", [
+ ('site_search','/','{"q":"Fenster","hits":0}'),
+ ('site_search','/','{"q":"Heizen","hits":1}'),
+ ('site_search','/',''), ('site_search','/','{"q":'),
+ ('mcp_call','/mcp','{"tool":"ratgeber_suche"}'),
+ ('mcp_call','/mcp','{}'), ('mcp_call','/mcp',''), ('mcp_call','/mcp','{"tool":'),
+ ('affiliate_click','/guide/test.html','{"link_url":"https://www.amazon.de/s?tag=getecoback-21"}'),
+])
+print(json.dumps([dict(row) for row in db.execute(sys.stdin.read())]))`;
+  const env = {EVENTS:{prepare(sql) { return {all() {
+    const result = spawnSync('python3',['-c',fixture],{input:sql,encoding:'utf8'});
+    if (result.status !== 0) throw new Error(result.stderr);
+    return {results:JSON.parse(result.stdout)};
+  }}; }}};
+  const response = await worker.fetch(new Request('https://getecoback.com/api/trend'),env,{});
+  assert.equal(response.status,200);
+  const report = await response.json();
+  assert.deepEqual(report.zero_hits,[{q:'Fenster',n:1}]);
+  assert.equal(report.mcp.length,2);
+  assert.deepEqual(report.mcp.find(row=>row.tool==='ratgeber_suche'),{tool:'ratgeber_suche',n:1});
+  assert.deepEqual(report.mcp.find(row=>row.tool===null),{tool:null,n:1});
+  assert.equal(report.mcp_complete_week.completed_calls,4);
+  assert.equal(report.affiliate_audit.weeks.at(-1).affiliate_clicks,1);
+});
+
 test('existing trend fails visibly when the audit query fails',async()=>{
   const {default:worker}=await import('../src/worker.js');
   const env={EVENTS:{prepare(sql){return {all:async()=>{if(sql===AUDIT_SQL)throw Error('D1 failed');return {results:[]};}};}}};
