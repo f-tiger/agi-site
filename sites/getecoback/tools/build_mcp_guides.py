@@ -23,6 +23,7 @@ def readable_sections(source, markdown, entry):
         '/guide/richtig-lueften-im-winter.html': 'lueften-vorher-nachher',
         '/waeschetrockner-oder-luftentfeuchter.html': 'luftentfeuchter-waesche-kosten',
         '/guide/pinguino-pac-ex105-test.html': 'ex105-angebot',
+        '/guide/comfee-mpph-09crn7-test.html': 'comfee-angebot',
     }
     wrapper = wrapped_sections.get(entry['u'])
     labels = {}

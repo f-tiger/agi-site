@@ -190,6 +190,13 @@ def collect():
    if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
     raise ValueError(f'Missing or hidden laundry result guidance: {route}#{RESULT_GUIDE_ID}')
    entry['model_sections'].append({'id':RESULT_GUIDE_ID,'title':RESULT_GUIDE_TITLE,'description':RESULT_GUIDE_SUMMARY})
+  if lang=='de' and route=='/guide/comfee-mpph-09crn7-test.html':
+   anchor='comfee-angebot'
+   targets=re.findall(r'<section\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)
+   if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
+    raise ValueError(f'Missing or hidden Comfee offer: {route}#{anchor}')
+   entry['model_sections']=[{'id':anchor,'title':'Comfee MPPH-09CRN7 vor dem Kauf abgleichen',
+    'description':'MPPH-09CRN7 mit EAN 4048164103065 und Artikelnummer 10000656. Prüfe Abluftweg und optionales Fensterkit vor der Bestellung.'}]
   if lang=='de' and route=='/guide/pinguino-pac-ex105-test.html':
    entry['model_sections']=[
     {'id':'ex105-angebot','title':'Deutsches Angebot für den PAC EX105 prüfen',

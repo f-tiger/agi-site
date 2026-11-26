@@ -16,6 +16,7 @@ async function checkExactDelonghiPurchase(page,base){
  const outcomes=[
   ['delonghi-pac-n90-test','n90-angebot','https://www.amazon.de/dp/B07NC5CP6F?tag=getecoback-21'],
   ['pinguino-pac-ex105-test','ex105-angebot','https://www.amazon.de/s?k=De%27Longhi+Pinguino+PAC+EX105&tag=getecoback-21'],
+  ['comfee-mpph-09crn7-test','comfee-angebot','https://www.amazon.de/dp/B07KJYD1ZP?tag=getecoback-21'],
  ];
  for(const [slug,anchor,href] of outcomes){
   await page.goto(base+'/guide/'+slug+'.html?__ci=1#'+anchor);
@@ -25,6 +26,12 @@ async function checkExactDelonghiPurchase(page,base){
   assert.equal(await page.locator('#'+anchor+' a[rel~="sponsored"]').count(),1,'One link in the authored offer');
   assert.equal(await page.locator('#eb-toppick,#eb-sticky,#eb-usmarket,#eb-pu').count(),0,'Generic offers must stay out of exact guides');
   assert(await page.locator('#'+anchor+' a[href="#raumgroesse"]').isVisible(),'The fit check precedes the shop decision');
+  if(anchor==='comfee-angebot'){
+   const offer=page.locator('#'+anchor);
+   assert(await offer.getByText('EAN 4048164103065',{exact:true}).isVisible(),'Check the original German EAN');
+   assert.equal(await page.locator('a[href^="https://www.amazon.de/"]').count(),1,'Do not generate an offer for another model');
+   assert(await offer.getByText('Anleitung als optional',{exact:true}).isVisible(),'Show the optional window kit before purchase');
+  }
   if(anchor==='ex105-angebot'){
    const offer=page.locator('#'+anchor);
    assert(await offer.getByText('EAN 8004399026445',{exact:true}).isVisible(),'Show the German EAN before the shop link');

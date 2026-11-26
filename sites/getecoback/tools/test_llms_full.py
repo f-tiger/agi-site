@@ -431,11 +431,14 @@ class LlmsFull(unittest.TestCase):
         })
         self.assertNotIn('reddit.com/submit', md)
 
-    def test_exact_delonghi_guides_show_the_matched_destination_after_model_evidence(self):
+    def test_exact_german_cooling_guides_show_the_matched_destination_after_model_evidence(self):
         paths = [
             ('delonghi-pac-n90-test', 'n90-angebot', '8004399512351',
              'https://www.delonghi.com/de-de/s/PACN90ECOSILENT',
              'https://www.amazon.de/dp/B07NC5CP6F?tag=getecoback-21'),
+            ('comfee-mpph-09crn7-test', 'comfee-angebot', '4048164103065',
+             'https://www.feelcomfee.com/content/dam/comfee-aem/de/produkte/klimatisieren-heizen/mpph-09crn7/comfee-MPPH-09CRN7-Datenblatt.pdf#page=2',
+             'https://www.amazon.de/dp/B07KJYD1ZP?tag=getecoback-21'),
             ('pinguino-pac-ex105-test', 'ex105-angebot', 'PACEX105A+++',
              'https://www.delonghi.com/de-de/s/PACEX105A%2B%2B%2B',
              'https://www.amazon.de/s?k=De%27Longhi+Pinguino+PAC+EX105&tag=getecoback-21'),
@@ -454,7 +457,7 @@ class LlmsFull(unittest.TestCase):
                 self.assertLess(page.index(source), first.start())
                 self.assertLess(first.end(), page.index('id="alternativen"'))
                 self.assertNotRegex(page, r'<!--EB_(?:MODELS|TOPPICK|POPUP|STICKY|QUICKPICK|SIZER|USMARKET)-->')
-                self.assertIn('warte mit der bestellung', page.lower())
+                self.assertRegex(page.lower(), r'warte mit der bestellung|verschiebe den kauf')
                 self.assertIn(model, mirror)
                 self.assertIn(source, mirror)
                 self.assertNotIn('amazon.de/', mirror)

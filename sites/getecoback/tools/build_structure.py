@@ -2014,7 +2014,8 @@ def strip_decision_promotions(html, slug):
     if slug not in {"klimaanlage-mit-heizfunktion", "mobile-klimaanlage-ueberwintern", "keller-lueften-sommer",
                     "klimaanlage-40-qm", "klimaanlage-50-qm", "klimaanlage-fenster-einbruchschutz",
                     "klimaanlage-wann-kaufen", "heizkosten-vergleich-rechner", "midea-portasplit-kaufen",
-                    "delonghi-pac-n90-test", "pinguino-pac-ex105-test", "luftentfeuchter-granulat-oder-elektrisch",
+                    "delonghi-pac-n90-test", "pinguino-pac-ex105-test", "comfee-mpph-09crn7-test",
+                    "luftentfeuchter-granulat-oder-elektrisch",
                     "infrarotheizung-thermostat",
                     electricity_fact_check}:
         return html
