@@ -41,7 +41,17 @@ Dachfenster-Versionen ansehen →
 
 ## Welche Länge brauchst du?
 
-Der häufigste Fehlkauf ist die zu kurze Abdichtung. Die Regel: Gemessen wird der **bewegliche Flügel** (nicht der Rahmen), und die Abdichtung muss seinen **kompletten Umfang** umschließen — also **2 × (Breite + Höhe)**. Ein typisches Fenster mit 60 × 140 cm braucht demnach 4 m. Gängige Konfektionsgrößen sind ~300, 400 und 560 cm; im Zweifel die nächstgrößere Länge nehmen — Überstand lässt sich raffen, eine Lücke nicht. Der Rechner oben auf dieser Seite nimmt dir das Rechnen ab und nennt dir direkt die passende Konfektionsgröße.
+Der Umfang eines rechteckigen Flügels mit 60 × 140 cm ist 2 × (60 + 140) = 400 cm. Der Rechner für den Flügelumfang liefert diesen Vergleichswert. Ob du ihn für die Größenauswahl verwenden kannst, hängt von der Messskizze des konkreten Sets ab.
+
+## Fensterabdichtung messen: Welche Seiten zählen für dein Set?
+
+- **Bestimme zuerst das Modell und den Fensterflügel.** Die englische Größenanleitung für [HOOMEE AL003](https://hoomee.com/blogs/hoomee/how-to-choose-the-best-size-for-your-window-door-model-al003) zeigt vier Seiten am ausgewählten Flügel. Bei zwei Flügeln misst du damit den Flügel, an dem dieses Set montiert wird. Ordne das Maß anschließend der Größentabelle genau dieses Modells zu.
+
+- **Gleiche das Herstellermaß und die Öffnung ab.** Trotec nennt für [AirLock 100](https://de.trotec.com/shop/airlock-100-fensterabdichtung.html) bis 400 cm Fensterumlauf und für [AirLock 1000](https://de.trotec.com/shop/airlock-1000-tuer-und-fensterabdichtung.html) bis 560 cm. Die [Montageskizze des AirLock 1000](https://de.trotec.com/fileadmin/downloads/Zubehoer/AirLock100_200_1000/TRT-BA-AIRLOCK1000-HS-001-INT.pdf#page=2) zeigt die Position des Klettbands. Daraus allein ergibt sich keine Dreiseitenregel für die Bestellung.
+
+- **Bei Dach- oder Schwingfenstern zuerst die Zeichnung prüfen.** Öffnungsweg, Lage der Achse und die Schlauchöffnung entscheiden, ob die Bauart passt. Wenn das Angebot keine eindeutige Messskizze für dein Fenster zeigt, frage nach der Anleitung und warte mit der Bestellung.
+
+Quellen am 26.11.2026 geprüft. Prüfe den genauen Setnamen, die Stoffbreite und die Schlauchöffnung am konkreten Angebot.
 
 ## Kleben oder klemmen? Der ehrliche Schwachpunkt
 
@@ -57,7 +67,7 @@ In Käuferbewertungen scheitern Stoffabdichtungen fast nie am Stoff — sondern 
 
 **Welche Fensterabdichtung ist die beste für Kippfenster?**Für gelegentliche Nutzung der universelle Klett-Stoff (ab ca. 15–25 €): Er umschließt den gekippten Flügel komplett und lässt sich rückstandslos entfernen. Wer das Gerät den ganzen Sommer am selben Fenster betreibt, fährt mit einer starren Platte bzw. einem Auslass-Panel besser — es dichtet besser, das Fenster bleibt fast geschlossen, kostet aber mehr und muss zur Fenstergröße passen.
 
-**Welche Länge muss die Fensterabdichtung haben?**Miss den beweglichen Flügel (nicht den Rahmen) und rechne 2 × (Breite + Höhe) — das ist der Umfang, den die Abdichtung umschließen muss. Bei einem typischen Fenster mit 60 × 140 cm sind das 4 Meter. Beispiele sind 400 und 560 cm, etwa Trotec AirLock 100 und 1000. Die nächste ausreichende Länge ist nur ein Vergleichskandidat; Montagezeichnung und Messvorgaben des konkreten Produkts prüfen.
+**Welche Länge muss die Fensterabdichtung haben?**Bei einem rechteckigen Flügel von 60 × 140 cm beträgt der Vierseitenumfang 400 cm. Nutze diesen Wert, wenn die Anleitung des konkreten Sets vier Seiten verlangt, und prüfe die Zuordnung in dessen Größentabelle. Für Dachfenster ist vor allem die Montagezeichnung für die konkrete Öffnungsart wichtig.
 
 **Warum hält die Fensterabdichtung nicht am Fenster?**Der Schwachpunkt ist fast nie der Stoff, sondern das mitgelieferte Klebeband: In direkter Sonne wird der Rahmen 50 bis 60 Grad heiß, der Kleber wird weich, löst sich und hinterlässt Rückstände. Vor dem Kleben den Rahmen mit Spülmittel entfetten, andrücken und 24 Stunden ruhen lassen — oder gleich eine Variante wählen, die geklemmt statt geklebt wird.
 
