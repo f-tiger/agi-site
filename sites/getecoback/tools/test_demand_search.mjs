@@ -1145,3 +1145,19 @@ test('German room heat sizing opens the watt calculator without rerouting operat
     'Wie viel Watt Infrarotheizung brauche ich nur am Schreibtisch in meinem 18 m² großen Zimmer?',
   ]) assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
 });
+
+test('German plug thermostat compatibility searches open the infrared panel check', () => {
+  const target = '/guide/infrarotheizung-thermostat.html#belastbarkeit-die-zahl-auf-dem-thermostat';
+  for (const query of [
+    'Funktioniert mein Infrarotpanel am Steckdosenthermostat nach einem Stromausfall wieder?',
+    'Passt das Steckdosenthermostat W2022 zur Heidenfeld HP100-1?',
+  ]) {
+    assert.equal(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+    assert.ok(!searchEntries(index,query,'en').some(hit => hit.entry.u === target),query);
+  }
+  const yearly = 'Wie viel Strom verbraucht eine Infrarotheizung als Hauptheizung im Jahr?';
+  assert.equal(searchEntries(index,yearly,'de')[0]?.entry.u,
+    '/guide/infrarotheizung-ratgeber.html#jahreskosten-hauptheizung',yearly);
+  const sensor = 'Wo soll der Raumtemperaturfühler für mein Infrarotpanel sitzen?';
+  assert.notEqual(searchEntries(index,sensor,'de')[0]?.entry.u,target,sensor);
+});

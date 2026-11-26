@@ -46,6 +46,9 @@ def collect():
  sections[('de','/guide/infrarotheizung-ratgeber.html')]={
   'id':'jahreskosten-hauptheizung','title':'Infrarotheizung als einzige Heizung: Jahreskosten prüfen',
   'description':'Belegten Heizstrom mit dem Arbeitspreis verrechnen. Gebäudewerte aus dem Energieausweis ergeben keinen Heizstromverbrauch der einzelnen Wohnung.'}
+ sections[('de','/guide/infrarotheizung-thermostat.html')]={
+  'id':'belastbarkeit-die-zahl-auf-dem-thermostat','title':'Steckdosenthermostat für ein Infrarotgerät prüfen',
+  'description':'Lies die Anleitung des genauen Geräts. Prüfe die zugelassene Regelung, das Verhalten nach einer Stromunterbrechung und die Anschlusswerte. Der IH100 startet im Standby.'}
  sections[('de','/guide/infrarotheizung-watt-rechner.html')]={
   'id':'watt-rechner-raumgroesse-und-daemmung-eingeben','title':'Wie viel Watt braucht eine Infrarotheizung für einen Raum?',
   'description':'Fläche und tatsächliche Dämmung ergeben einen groben Richtwert. Bei 18 m² und angenommener schlechter Dämmung sind es 1.800 W. Punktuelle Zusatzwärme und die Raumheizlast getrennt beurteilen.'}

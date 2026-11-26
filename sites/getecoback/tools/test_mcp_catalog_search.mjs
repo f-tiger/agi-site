@@ -1534,3 +1534,25 @@ test('German room-sizing questions find heating watts while operating costs reta
   }
   assert.equal(analytics,0);
 });
+
+test('German plug thermostat compatibility questions find the existing infrared guide reader', async () => {
+  const target = '/guide/infrarotheizung-thermostat.html#belastbarkeit-die-zahl-auf-dem-thermostat';
+  for (const [query,path] of [
+    ['Funktioniert mein Infrarotpanel am Steckdosenthermostat nach einem Stromausfall wieder?',target],
+    ['Passt das Steckdosenthermostat W2022 zur Heidenfeld HP100-1?',target],
+    ['Wie viel Strom verbraucht eine Infrarotheizung als Hauptheizung im Jahr?',
+      '/guide/infrarotheizung-ratgeber.html#jahreskosten-hauptheizung'],
+  ]) {
+    const result = await catalogue({q:query,view:'compact',limit:3});
+    for (const first of [result.tools[0],findCatalogueTools(compact,{query})[0]]) {
+      assert.equal(first?.name,'ratgeber_suche',query);
+      assert.equal(first.guide_url,origin + path,query);
+    }
+  }
+  const sensor = 'Wo soll der Raumtemperaturfühler für mein Infrarotpanel sitzen?';
+  const result = await catalogue({q:sensor,view:'compact',limit:3});
+  for (const hits of [result.tools,findCatalogueTools(compact,{query:sensor})]) {
+    assert.ok(!hits.some(tool => toolGuidePath(tool) === target),sensor);
+  }
+  assert.equal(analytics,0);
+});

@@ -113,6 +113,19 @@ export const infraredRoomWatts = {
   tool:'heizleistung_watt',
 };
 
+export const infraredThermostatFit = {
+  path:'/guide/infrarotheizung-thermostat.html',
+  id:'belastbarkeit-die-zahl-auf-dem-thermostat',
+  tool:'ratgeber_suche',
+};
+
+function asksForInfraredThermostatFit(query) {
+  const device = /\b(?:infrarot[ -]?(?:heiz\w*|panel\w*|paneel\w*)|(?:heidenfeld\s+)?(?:ih[ -]?100|hp[ -]?100[ -]?1))\b/;
+  const regulator = /\b(?:(?:steckdosen|funk)[ -]?)?thermostat\w*\b|\b(?:schaltsteckdose\w*|w[ -]?2022)\b/;
+  const compatibility = /\b(?:passt|passend\w*|funktionier\w*|kompatib\w*|vertraeg\w*|anschl(?:uss|iess)\w*|erlaub\w*|standby|wiederanlauf\w*|stromausfall\w*|nachruest\w*|unterbrech\w*)\b|\bwieder\s+(?:an|ein)\b/;
+  return device.test(query) && regulator.test(query) && compatibility.test(query);
+}
+
 function statedRoomAreas(query) {
   return new Set(Array.from(
     query.matchAll(/(?<![\d.,-])\b(\d{1,3}(?:[.,]\d+)?)\s*(?:m²|m2|qm|quadratmetern?)(?![\p{L}\p{N}])/gu),
@@ -498,6 +511,7 @@ export function exactGermanHouseholdTask(query) {
   const tineco = exactTinecoS7Task(query);
   if (tineco) return tineco;
   if (asksForInfraredAnnualCost(query)) return infraredAnnualCost;
+  if (asksForInfraredThermostatFit(query)) return infraredThermostatFit;
   if (asksForInfraredRoomWatts(query)) return infraredRoomWatts;
   const exhaustPanel = /\babluft[ -]?platt\w*\b|(?:\b(?:fenster|acryl|hohlkammer)[ -]?platt\w*\b.*\b(?:klimaanlag\w*|klimageraet\w*|abluft\w*)\b)|(?:\b(?:klimaanlag\w*|klimageraet\w*|abluft\w*)\b.*\b(?:fenster|acryl|hohlkammer)[ -]?platt\w*\b)/;
   const opening = /\b(?:ausschnitt\w*|lochr?and\w*|loch\w*|randabstand\w*|anschlusszeichnung\w*)\b/;

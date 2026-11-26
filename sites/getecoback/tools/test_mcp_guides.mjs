@@ -86,6 +86,27 @@ test('the infrared room watt question has a readable full and compact calculatio
   const text=textOf(full);
   assert(text.startsWith('Quelle: '+section+'\n'));
   for(const fact of ['18 m²','1.800 W','0,54 €','Verbraucherzentrale']) assert(text.includes(fact),fact);
+  assert(text.includes('https://getecoback.com/guide/heizkosten-vergleich-rechner.html#heizluefter-oder-infrarot'));
+  assert(text.includes('https://getecoback.com/guide/infrarotheizung-thermostat.html#belastbarkeit-die-zahl-auf-dem-thermostat'));
+  assert(!text.includes('getecoback-21'));
+});
+
+test('infrared thermostat fit reads manufacturer evidence and leaves the choice conditional', async () => {
+  const page = '/guide/infrarotheizung-thermostat.html';
+  const section = 'https://getecoback.com'+page+'#belastbarkeit-die-zahl-auf-dem-thermostat';
+  const {env}=assetEnv();
+  const frage='Passt das Steckdosenthermostat W2022 zur Heidenfeld HP100-1?';
+  const search=await call('ratgeber_suche',{frage,sprache:'de',max:1},env);
+  assert(textOf(search).includes('Abschnitt: '+section));
+  const full=await call('ratgeber_lesen',{pfad:section},env);
+  const compact=await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad:section}},env,true);
+  assert.equal(full.isError,false);
+  assert.deepEqual(full,compact);
+  const text=textOf(full);
+  assert(text.startsWith('Quelle: '+section+'\n'));
+  for(const fact of ['IH100','Standby','HP100-1','W2022','1.500 W','10 A','110–220 V',
+    'PR0032163-Heidenfeld-Infrarot-Heizstrahler-IH100-Bedienungsanleitung.pdf#page=14',
+    'Heidenfeld-HF-HP100-1-Bedienungsanleitung.pdf#page=17']) assert(text.includes(fact),fact);
   assert(!text.includes('getecoback-21'));
 });
 
