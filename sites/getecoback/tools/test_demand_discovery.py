@@ -12,7 +12,7 @@ assert all('#' not in entry['u'] for entry in index),'Search sections must not b
 product_index=next(row for row in index if row['u']=='/produkte.html')
 assert [row['id'] for row in product_index['model_sections']]==[
     'waeschesaeule-zubehoer','beutelstaubsauger-angebote','miele-staubsaugerbeutel',
-    'kaercher-170mm-saugduese','fenstersauger-duesenbreite','siemens-eq6-intenza']
+    'kaercher-170mm-saugduese','fenstersauger-duesenbreite','kaercher-sc3-entkalkungskartusche','siemens-eq6-intenza']
 comfee_index=next(row for row in index if row['u']=='/guide/luftentfeuchter-keller.html')
 assert [row['id'] for row in comfee_index['model_sections']]==['modell-comfee-mddf20']
 trotec_index=next(row for row in index if row['u']=='/guide/trotec-luftentfeuchter-test.html')
@@ -25,8 +25,6 @@ laundry_index=next(row for row in index if row['u']=='/waeschetrockner-oder-luft
 assert [row['id'] for row in laundry_index['model_sections']]==['laundry-check']
 floorcare_index=next(row for row in index if row['u']=='/guide/saugwischer-kaufberatung.html')
 assert [row['id'] for row in floorcare_index['model_sections']]==['tineco-s7-modellwahl','tineco-s7-flashdry']
-products_index=next(row for row in index if row['u']=='/produkte.html')
-assert sum(section['id']=='kaercher-sc3-entkalkungskartusche' for section in products_index['model_sections'])==1
 focused=[entry for entry in index if entry.get('section')]
 assert [(entry['l'],entry['u'],entry['section']['id']) for entry in focused]==[
     ('de','/geraete-austausch-rechner.html','geschirrspueler-handabwasch'),
