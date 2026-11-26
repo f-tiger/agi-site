@@ -213,6 +213,7 @@ Auto-, Nacht- und Wäschemodus; 2,5-Liter-Tank und kontinuierlicher Ablauf laut 
 - [Dry 4000 für Großbritannien](https://www.bosch-homecomfort.com/web-etk/de/bosch/de/de/product/7733703561): D4000-UK trägt die Bosch-Artikelnummer 7733703561 und die EAN 4069143047804.
 - [Bosch Air 4000](https://www.bosch-homecomfort.com/de/de/ocs/wohngebaeude/air-4000-19287220-p/): Unter Artikel 7733701943 führt Bosch einen Luftreiniger.
 [Bosch-Ersatzteilkatalog: deutsche Modellkennung und EAN](https://www.bosch-homecomfort.com/web-etk/de/bosch/de/de/product/7733703558) · Modellzuordnung geprüft am 25.11.2026.
+Conrad listet dieselbe EAN und Hersteller-Teilenummer. [Modell bei Conrad prüfen (ohne Partnerlink)](https://www.conrad.de/de/p/bosch-home-comfort-dry-4000-luftentfeuchter-75-m-weiss-3349331.html). Lieferumfang und Gesamtpreis einschließlich Versand beim Händler prüfen. Händlerangaben zur Kennung geprüft am 26.11.2026.
 Quelle: [Bosch Deutschland: D4000-EU](https://www.bosch-homecomfort.com/de/de/ocs/wohngebaeude/dry-4000-20990506-p/)
 
 ### MeacoDry Arete Two 12L

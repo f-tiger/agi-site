@@ -48,6 +48,20 @@ class CatalogTest(unittest.TestCase):
                 for row in [product['identity'], *product['identity']['alternatives']]:
                     self.assertIn(row['source'], links)
                     self.assertIn(row['source'], mirror)
+                retailer = product['identity']['retailer']
+                checked = [node for node in card.find('a') if node.attrs.get('href') == retailer['source']]
+                self.assertEqual(len(checked), 1)
+                self.assertIn('Modell bei Conrad prüfen (ohne Partnerlink)', checked[0].text())
+                self.assertNotIn('sponsored', checked[0].attrs.get('rel', ''))
+                url = urlsplit(checked[0].attrs['href'])
+                self.assertEqual(url.hostname, 'www.conrad.de')
+                self.assertFalse(url.query)
+                self.assertFalse(url.fragment)
+                self.assertIn(retailer['source'], mirror)
+                for fact in ('Conrad listet dieselbe EAN und Hersteller-Teilenummer',
+                             'Lieferumfang und Gesamtpreis einschließlich Versand', '26.11.2026'):
+                    self.assertIn(fact, card.text())
+                    self.assertIn(fact, mirror)
                 merchant = [urlsplit(url) for url in links if urlsplit(url).hostname == 'www.amazon.de']
                 age = (dt.datetime.now(dt.timezone.utc).date() - dt.date.fromisoformat(data['checked'])).days
                 if 0 <= age <= data['max_age_days'] and product['status'] == 'verified':
