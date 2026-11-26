@@ -2,10 +2,10 @@
   "source": "Cloudflare GraphQL Analytics API (edge-measured)",
   "note": "Counted at the edge, so unaffected by ad blockers, privacy browsers or network-level blocking of Google. Includes bot and crawler traffic, which on a new site is most of it — read it as a floor, not as humans.",
   "zone": "thedollscout.com",
-  "updated": "2026-11-25",
+  "updated": "2026-11-26",
   "window": {
     "since": "2026-07-26",
-    "until": "2026-11-24"
+    "until": "2026-11-25"
   },
   "days": {
     "2026-07-26": {
@@ -7162,6 +7162,75 @@
         "CN": 563,
         "BE": 360,
         "BR": 347
+      }
+    },
+    "2026-11-25": {
+      "date": "2026-11-25",
+      "requests": 18637,
+      "pageViews": 6539,
+      "uniques": 1689,
+      "byIpType": {
+        "unknown": 9503,
+        "noRecord": 8779,
+        "searchEngine": 288,
+        "allowlist": 67
+      },
+      "byBrowser": {
+        "Unknown": 5724,
+        "Chrome": 334,
+        "Curl": 283,
+        "YandexBot": 64,
+        "MobileSafari": 39,
+        "Safari": 31,
+        "Firefox": 22,
+        "BingBot": 22,
+        "AppleBot": 8,
+        "GoogleBot": 6,
+        "Edge": 3,
+        "ChromeMobile": 1,
+        "OperaMobile": 1,
+        "ChromeDerivative": 1
+      },
+      "byContentType": {
+        "html": 7926,
+        "json": 4469,
+        "txt": 2969,
+        "empty": 1520,
+        "js": 1283,
+        "css": 330,
+        "xml": 40,
+        "unknown": 39,
+        "pdf": 25,
+        "svg": 19,
+        "png": 10,
+        "zip": 5,
+        "jpeg": 2
+      },
+      "byStatus": {
+        "200": 15576,
+        "202": 781,
+        "204": 98,
+        "301": 601,
+        "303": 72,
+        "304": 26,
+        "308": 87,
+        "400": 44,
+        "401": 1,
+        "403": 29,
+        "404": 1173,
+        "405": 85,
+        "410": 56,
+        "499": 8
+      },
+      "topCountries": {
+        "US": 13143,
+        "BE": 1024,
+        "FI": 788,
+        "SG": 694,
+        "CN": 478,
+        "FR": 401,
+        "GB": 349,
+        "HK": 244
       }
     }
   }

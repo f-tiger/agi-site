@@ -2,14 +2,14 @@
   "ok": true,
   "since": "2026-09-25",
   "days": 28,
-  "generated": "2026-11-25T16:57:43.236Z",
+  "generated": "2026-11-26T16:37:34.801Z",
   "cache_seconds": 300,
   "unit": "Anonymous action counts, deduplicated per event per page load in the browser. Not unique users; not verified buyers. Bots, CI and samples are excluded from task completion. Open endpoint counts can be spoofed. Public aggregates may be cached for 5 minutes.",
   "events": {
-    "doc_view": 145
+    "doc_view": 144
   },
   "excluded": {
-    "doc_ci": 35,
+    "doc_ci": 34,
     "doc_image_sample": 1
   },
   "daily": [
@@ -72,11 +72,6 @@
       "d": "2026-11-08",
       "ev": "doc_view",
       "n": 11
-    },
-    {
-      "d": "2026-10-29",
-      "ev": "doc_view",
-      "n": 1
     }
   ],
   "pages": [
@@ -133,10 +128,6 @@
       "n": 9
     },
     {
-      "path": "/ai-text-summarizer",
-      "n": 1
-    },
-    {
       "path": "/image-compressor",
       "n": 1
     }
@@ -147,22 +138,26 @@
       "n": 142
     },
     {
-      "ref": "www.google.com",
-      "n": 2
+      "ref": "thedollscout.com",
+      "n": 1
     },
     {
-      "ref": "thedollscout.com",
+      "ref": "www.google.com",
       "n": 1
     }
   ],
   "crawler_fetches": [
     {
       "path": "/document-sitemap.xml",
-      "n": 180
+      "n": 166
     },
     {
       "path": "/llms.txt",
       "n": 11
+    },
+    {
+      "path": "/de/delivery-evidence",
+      "n": 9
     },
     {
       "path": "/delivery-evidence",
@@ -171,10 +166,6 @@
     {
       "path": "/llms-full.txt",
       "n": 9
-    },
-    {
-      "path": "/de/delivery-evidence",
-      "n": 8
     },
     {
       "path": "/zh/delivery-evidence",
@@ -525,51 +516,11 @@
       "n": 1
     },
     {
-      "path": "/document-assets/text/en/delivery-evidence.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/en/learn/pdf-accessibility-checklist.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/en/learn/scanned-pdf-vs-text-pdf.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/en/open-source.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/en/open-source/audacity.txt",
-      "n": 1
-    },
-    {
       "path": "/document-assets/text/en/open-source/obs.txt",
       "n": 1
     },
     {
-      "path": "/document-assets/text/en/open-source/shotcut.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/en/pdf-accessibility-checker.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/en/pdf-batch-audit.txt",
-      "n": 1
-    },
-    {
       "path": "/document-assets/text/en/verify-file.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/en/videos/shotcut.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/zh/videos/shotcut.txt",
       "n": 1
     },
     {
@@ -584,7 +535,7 @@
   "crawler_agents": [
     {
       "claimed_agent": "ClaudeBot",
-      "n": 243
+      "n": 230
     },
     {
       "claimed_agent": "GPTBot",
@@ -592,11 +543,11 @@
     },
     {
       "claimed_agent": "Amazonbot",
-      "n": 26
+      "n": 18
     },
     {
       "claimed_agent": "YandexBot",
-      "n": 14
+      "n": 13
     },
     {
       "claimed_agent": "Googlebot",
@@ -609,10 +560,6 @@
     {
       "claimed_agent": "OAI-SearchBot",
       "n": 2
-    },
-    {
-      "claimed_agent": "Applebot",
-      "n": 1
     }
   ],
   "source_events": [
@@ -631,12 +578,12 @@
     {
       "source": "search_referral",
       "events": {
-        "doc_view": 2
+        "doc_view": 1
       }
     }
   ],
   "homepage_views": 33,
-  "dedicated_tool_views": 2,
+  "dedicated_tool_views": 1,
   "homepage_selections": {
     "portrait": 0,
     "speech": 0,
@@ -690,6 +637,6 @@
   "revenue_scope": "Equipment outbound clicks are purchase intent, not orders or revenue. Actual earned commission must be reconciled with Amazon reports; no sales attribution is inferred from these anonymous actions. Video loads are not plays or completed watches.",
   "homepage_scope": "Homepage selections are fixed tool-link actions introduced on 2026-09-27, not completed tasks or unique visitors. Homepage views include historical document homepages and the current /document-tools directory; collector page views use a separate event stream. Legacy tool_views includes homepage views; dedicated_tool_views does not.",
   "attribution_scope": "Per-action observed referrer, not session attribution or a conversion rate. Missing referrers are unknown; Google AI search is not distinguishable from ordinary Google referrals. Crawler identities are user-agent claims, not verified IPs or citations.",
-  "tool_views": 35,
-  "query_rows_read": 11205
+  "tool_views": 34,
+  "query_rows_read": 11164
 }
