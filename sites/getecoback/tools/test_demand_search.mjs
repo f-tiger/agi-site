@@ -7,6 +7,21 @@ import {calculateGasHeatThreshold} from '../site/assets/heat-gas-cost.mjs';
 import {compareSocketWatts} from '../site/assets/auto-12v-check.mjs';
 const browsingIndex=readFileSync(new URL('../site/assets/search-index.json',import.meta.url));
 const index=JSON.parse(browsingIndex);
+test('Low-load meter searches find the selected buying or measurement evidence',()=>{
+ const target='/strommess-protokoll.html#kleine-lasten-messen';
+ for(const query of [
+  'Wie lange muss ich 0,5 Watt Standby messen, wenn mein Strommessgerät nur 0,01 kWh anzeigt?',
+  'Mein Strommessgerät zeigt nach fünf Stunden immer noch 0,00 kWh. Verbraucht mein Gerät im Standby wirklich nichts?',
+  'Wo kann ich ein Strommessgerät leihen, statt es zu kaufen?',
+  'Messsteckdose zeigt 0 W im Standby',
+  'Tapo P110 Eigenverbrauch und Messuntergrenze',
+ ]) assert.equal(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+ for(const query of [
+  'Was kostet 1 Watt Standby im Jahr?',
+  'Steckdosenmessgerät 2300 W maximale Last prüfen',
+  'Miele Backofen Standby Werte Ökodesign Verordnung',
+ ]) assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+});
 test('Portable AC winter-storage searches lead to the storage checklist for the exact market',()=>{
  const target='/guide/mobile-klimaanlage-ueberwintern.html#schritt-fuer-schritt-so-machst-du-das-geraet-winterfest';
  for(const query of [

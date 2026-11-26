@@ -61,6 +61,9 @@ def collect():
  sections[('de','/guide/mobile-klimaanlage-ueberwintern.html')]={
   'id':'schritt-fuer-schritt-so-machst-du-das-geraet-winterfest','title':'Mobile Klimaanlage winterfest machen',
   'description':'Modell prüfen, Kondenswasser nach Anleitung ablassen, Trocknung und Lagerort klären. Für Comfee MPPH-09CRN7 gibt es ein konkretes Herstellerbeispiel; Staubschutz bleibt optional.'}
+ sections[('de','/strommess-protokoll.html')]={
+  'id':'kleine-lasten-messen','title':'Kleine Standby-Lasten zuverlässig einordnen',
+  'description':'Watt, kWh-Anzeigeschritt und dokumentierte Mindestlast trennen. Unveränderte Anzeige prüfen und ein passendes Strommessgerät zuerst ausleihen.'}
  sections[('de','/guide/keller-lueften-sommer.html')]={
   'id':'taupunkt','title':'Trocknet Lüften meinen Keller jetzt?',
   'description':'Vergleiche Temperatur und Feuchte drinnen und draußen mit deiner kältesten gemessenen Wand.'}

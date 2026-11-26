@@ -41,6 +41,8 @@ async function checkGermanFocusedDiscovery(browser,base){
  const thermostatSection='thermostat-ohne-internet';
  const positive=['Was kostet eine Ladung Wäsche nur mit meinem Luftentfeuchter?','Stromkosten Luftentfeuchter Wäsche'];
  const ordinary=[
+  ['Wo kann ich ein Strommessgerät leihen, statt es zu kaufen?',
+    '/strommess-protokoll.html#kleine-lasten-messen'],
   ['Wie mache ich meine mobile Klimaanlage winterfest?',
     '/guide/mobile-klimaanlage-ueberwintern.html#schritt-fuer-schritt-so-machst-du-das-geraet-winterfest'],
   ['Mein Luftentfeuchter läuft, aber der Tank bleibt leer.',

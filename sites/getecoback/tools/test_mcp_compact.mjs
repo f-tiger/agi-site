@@ -95,6 +95,42 @@ test('hosted compact returns reviewed guide sections without presenting them as 
   assert.deepEqual(writes,[]);
 });
 
+test('low-load meter discovery separates a reading plan, unchanged kWh and borrowing', async () => {
+  const {call,writes} = fixture();
+  const page = origin+'/strommess-protokoll.html';
+  const duration = 'steckdosenmessung_mindestdauer';
+  const unchanged = 'messung_nullanzeige_obergrenze';
+  const guide = page+'#kleine-lasten-messen';
+  for(const [frage,name] of [
+    ['Wie lange muss ich 0,5 Watt Standby messen, wenn mein Strommessgerät nur 0,01 kWh anzeigt?',duration],
+    ['Mein Strommessgerät zeigt nach fünf Stunden immer noch 0,00 kWh. Verbraucht mein Gerät im Standby wirklich nichts?',unchanged],
+  ]){
+    const found = await call(compactPath,findName,{frage});
+    assert.equal(found.structuredContent.tools[0]?.name,name,frage);
+    assert.equal(found.structuredContent.tools[0].guide_url,guide);
+  }
+  for(const frage of ['Wo kann ich ein Strommessgerät leihen, statt es zu kaufen?','Messsteckdose zeigt 0 W im Standby']){
+    const found = await call(compactPath,findName,{frage});
+    assert.deepEqual(found.structuredContent,{
+      totalMatches:0,tools:[],guides:[{guide_url:guide,citation_url:page}],
+    },frage);
+  }
+  for(const [name,args,key,expected] of [
+    [duration,{last_w:0.5,schritt_kwh:0.01,ziel_schritte:3},'dauer_stunden_geplant',60],
+    [duration,{last_w:0.5,schritt_kwh:0.01,ziel_schritte:1,mindestlast_w:0.5},'dauer_stunden_geplant',20],
+    [duration,{last_w:0.5,schritt_kwh:0.01,ziel_schritte:3,mindestlast_w:1},'dauer_stunden_geplant',null],
+    [unchanged,{anzeige_unveraendert:true,schritt_kwh:0.01,dauer_h:5,unterlast_erfasst:true},'oberer_durchschnitt_w',2],
+    [unchanged,{anzeige_unveraendert:true,schritt_kwh:0.01,dauer_h:5,unterlast_erfasst:false},'oberer_durchschnitt_w',null],
+  ]){
+    const result = await call(compactPath,runName,{name,eingaben:args});
+    assert.equal(result.isError,false);
+    assert.deepEqual(result,await call(fullPath,name,args));
+    assert.equal(result.structuredContent[key],expected);
+    assert.equal(result.structuredContent.guide_url,guide);
+  }
+  assert.deepEqual(writes,[]);
+});
+
 test('portable AC storage lookup opens the checklist and returns the first unconfirmed step', async () => {
   const {call,writes} = fixture();
   const name = 'mobile_klima_einlagern_check';

@@ -325,8 +325,9 @@ export const measurementLab = [
   },
   {
     name:'messung_nullanzeige_obergrenze',
-    description:'Unveränderte Energieanzeige bei bekanntem Anzeigeverhalten als Obergrenze einordnen — Interpret an unchanged cumulative meter reading without claiming zero consumption.',
+    description:'Strommessgerät zeigt nach Stunden weiter 0,00 kWh? Eine unveränderte kumulierte Energieanzeige mit dokumentierter Erfassung einordnen — Interpret an unchanged cumulative meter reading.',
     page:meter,
+    guide_url:'https://getecoback.com' + meter + '#kleine-lasten-messen',
     properties:{
       anzeige_unveraendert:flag('War die kumulierte Energieanzeige vom Anfang bis zum Ende unverändert?'),
       schritt_kwh:numeric('Schrittweite der Energieanzeige in kWh, laut Gerät.', 0.000001, 1),

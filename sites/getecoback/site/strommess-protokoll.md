@@ -14,10 +14,28 @@ Finde große Verbraucher mit einer nachvollziehbaren Messung. Rechne deinen beob
 
 ## Mit deinen Werten rechnen
 Die vorbelegten Zahlen sind frei gewählte Rechenbeispiele, keine Produktmessungen oder aktuellen Stromtarife. Ersetze sie durch deine Werte.
-Noch kein kWh-Messwert? Ein Steckdosenmessgerät mit kWh-Anzeige genügt. Für die Messung per App kannst du auf unserer Schwesterseite The Doll Scout Messsteckdosen mit und ohne Matter vergleichen.
+Noch kein kWh-Messwert? Prüfe [Messbereich und Anzeigeauflösung](https://getecoback.com/strommess-protokoll.html#kleine-lasten-messen) deines Steckdosenmessgeräts. Für die Messung per App kannst du auf unserer Schwesterseite The Doll Scout Messsteckdosen mit und ohne Matter vergleichen.
 Beispiel: 1,2 kWh in 48 Stunden = 0,6 kWh pro Tag. Bei 365 vergleichbaren Betriebstagen: 219 kWh und 76,65 € im Jahr.
 Eingaben werden lokal im Browser verarbeitet und nicht gespeichert oder als Messwerte übertragen. Ein Rechenaufruf wird ohne Eingabewerte gezählt.
 Für eigene Berechnungen ist JavaScript nötig. Der Rechenweg und das Beispiel darunter funktionieren auch ohne JavaScript.
+
+## Kleine Standby-Lasten messen: Was bedeuten 0 W und 0,00 kWh?
+
+**Prüfe zuerst die untere Messgrenze des konkreten Geräts.** 0 W ist eine momentane Leistungsanzeige. 0,00 kWh ist der abgelesene kumulierte Zählerstand. Wenn das Messgerät die kleine Last nicht zuverlässig erfasst, kann auch nach langer Zeit 0 stehen.
+
+**Messdauer planen:** Anzeigeschritt in kWh × gewünschte Schritte × 1.000 ÷ erwartete konstante Leistung in W. Bei 0,5 W und einem Anzeigeschritt von 0,01 kWh sind das rechnerisch 20 Stunden für einen Schritt und 60 Stunden für drei. Vorausgesetzt, das Messgerät erfasst 0,5 W und integriert durchgehend. Ein kleinerer Anzeigeschritt allein verspricht keine bessere Genauigkeit.
+
+**Unveränderte Anzeige einordnen:** Bleibt der kumulierte Zähler bei einem Schritt von 0,01 kWh fünf Stunden lang unverändert, liegt die erfasste mittlere Leistung rechnerisch unter etwa 2 W. Das setzt eine dokumentierte Erfassung dieser Last, eine durchlaufende Messung ohne Reset und das passende Anzeigeverhalten voraus. Zusätzlicher Messfehler ist in der Grenze nicht enthalten. Prüfe außerdem, ob die App einen Kalendertag oder ein rollendes Zeitfenster zeigt.
+
+### Zwei Herstellerangaben richtig lesen
+
+- [Brennenstuhl PM 231 E, Artikel 1506600](https://www.brennenstuhl.com/de-DE/produkte/reise-steckdosenadapter/primera-line-energiemessgeraet-pm-231-e): Der [Hersteller-Service](https://service.brennenstuhl.com/hc/de/articles/8867312023453) nennt einen Leistungsbereich von 0,2 bis 3.600 W, eine Genauigkeit von ±1 % oder ±0,2 W sowie unter 0,5 W eigenen Verbrauch ohne benannten Betriebszustand. Der untere Bereichswert und der mögliche Fehler sind verschiedene Angaben.
+
+- [TP-Link Tapo P110 V1, deutsche Einzelpackung](https://www.tp-link.com/de/home-networking/smart-plug/tapo-p110/v1%20%281-pack%29/): Die technischen Daten nennen für die Steckdose selbst 0,64 W bei geöffnetem Relais und 1,64 W als Maximalwert bei geschlossenem Relais. Eine Messuntergrenze für die angeschlossene Last gibt diese Produktseite nicht an. Aus dem Eigenverbrauch lässt sich die Messuntergrenze nicht ablesen.
+
+**Erst ausleihen, dann bei Bedarf auswählen:** Frag deine örtliche Bibliothek nach einem Strommessgerät. Das [Umweltbundesamt beschreibt den kostenlosen Verleih in teilnehmenden Bibliotheken](https://www.umweltbundesamt.de/themen/klima-energie/energiesparen/energiesparen-im-haushalt/energiesparpaket-in-bibliotheken). Lass dir vorab Modell und Eignung für kleine Lasten bestätigen. Mit einem verlässlichen kWh-Messwert kannst du [oben die Kosten berechnen](https://getecoback.com/strommess-protokoll.html#calculator).
+
+Herstellerangaben und Verleihhinweis am 26. November 2026 geprüft. Rechenbeispiele und veröffentlichte Spezifikationen, keine eigenen Gerätetests.
 
 ## Ein Messplan für drei verschiedene Geräte
 

@@ -277,6 +277,28 @@ const emptyDehumidifierTank = {
   tool:'entfeuchter_leerer_tank_check',
 };
 
+export const lowLoadMeterGuide = {
+  path:'/strommess-protokoll.html',
+  id:'kleine-lasten-messen',
+  tool:'ratgeber_suche',
+};
+const lowLoadMeterDuration = {...lowLoadMeterGuide,tool:'steckdosenmessung_mindestdauer'};
+const lowLoadMeterUnchanged = {...lowLoadMeterGuide,tool:'messung_nullanzeige_obergrenze'};
+
+function exactLowLoadMeterTask(query) {
+  const meter = /\b(?:(?:strom|energie(?:kosten)?|steckdosen)[ -]*mess(?:geraet|ung)\w*|messsteckdose\w*|smart[ -]*plug\w*|tapo[ -]*p110|pm[ -]*231[ -]*e)\b/;
+  const lowLoad = /\b(?:stand[ -]*by|klein\w*\s+(?:last\w*|leistung\w*)|niedrig\w*\s+(?:last\w*|leistung\w*)|mindestlast\w*|messuntergrenze|eigenverbrauch|0[.,]\d+\s*(?:w|watt))\b/;
+  const excludes = /\b(?:oekodesign|verordnung|gesetz\w*|maximale\s+last|2300\s*(?:w|watt))\b/;
+  if (!meter.test(query) || excludes.test(query)) return null;
+  if (/\b(?:leih\w*|ausleih\w*|ausborg\w*)\b/.test(query)) return lowLoadMeterGuide;
+  const unchanged = /(?<![\d.,])0(?:[.,]0+)?\s*kwh\b|\b(?:unveraendert|nullanzeige)\b[^.?!]{0,30}\bkwh\b/;
+  const repeated = /\b(?:immer noch|weiter|bleibt|unveraendert|nach|seit|nullanzeige)\b/;
+  if (unchanged.test(query) && repeated.test(query)) return lowLoadMeterUnchanged;
+  const duration = /\b(?:wie lange|messdauer|stunden|messzeit)\b/;
+  if (duration.test(query) && lowLoad.test(query)) return lowLoadMeterDuration;
+  return lowLoad.test(query) || /(?<![\d.,])0\s*(?:w|watt)\b/.test(query) ? lowLoadMeterGuide : null;
+}
+
 export const portableCoolingStorage = {
   path:'/guide/mobile-klimaanlage-ueberwintern.html',
   id:'schritt-fuer-schritt-so-machst-du-das-geraet-winterfest',
@@ -369,6 +391,8 @@ export function exactGermanHouseholdTask(query) {
     return {path:'/guide/fensterabdichtung-selber-bauen.html',id:'abluft-ausschnitt-pruefen',tool:'abluftplatte_lochposition_pruefen'};
   if (asksForKlarsteinPackage(query)) return klarsteinPackage;
   if (asksForGranulateDryingChoice(query)) return granulateDryingChoice;
+  const meterTask = exactLowLoadMeterTask(query);
+  if (meterTask) return meterTask;
   if (asksForPortableCoolingStorage(query)) return portableCoolingStorage;
   if (asksAboutAnEmptyDehumidifierTank(query)) return emptyDehumidifierTank;
   if (asksForCoolingDiscountReference(query)) return coolingDiscountReference;
