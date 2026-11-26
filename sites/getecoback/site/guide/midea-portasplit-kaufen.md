@@ -16,7 +16,7 @@ Für die originale PortaSplit mit EAN 4048164116478 nennt Midea beim Außengerä
 
 Am Nachbarfenster hängt der hörbare Pegel vom Abstand, der Ausrichtung und dem Umfeld ab. Steht das Außengerät dicht am Nachbarfenster oder auf engem Raum zwischen reflektierenden Wänden, kläre zuerst einen geeigneten Standort. Wenn nur dieser Platz infrage kommt und die Aufstellung ungeklärt ist, verschiebe die Bestellung.
 
-Den Außen-Flüstermodus aktivierst du laut Midea in der App. Beim Einschalten oder Wechsel der Betriebsart wird er deaktiviert. [Midea-Anleitung zu den Messwerten](https://www.midea.com/content/dam/midea-aem/de/klimatisieren-heizen/portasplit/PortaSplit-Gebrauchsanweisung-DE.pdf#page=15) · [Midea-Anleitung zum Modus](https://www.midea.com/content/dam/midea-aem/de/klimatisieren-heizen/portasplit/PortaSplit-Gebrauchsanweisung-DE.pdf#page=36) · [EU-Produktdatenblatt](https://eprel.ec.europa.eu/fiches/airconditioners/Fiche_1917520_DE.pdf#page=1). Quellen geprüft am 26. November 2026.
+Den Außen-Flüstermodus aktivierst du laut Midea in der App. Beim Einschalten oder Wechsel der Betriebsart wird er deaktiviert. [Midea-Anleitung zu den Messwerten](https://www.midea.com/content/dam/midea-aem/de/klimatisieren-heizen/portasplit/PortaSplit-Gebrauchsanweisung-DE.pdf#page=16) · [Midea-Anleitung zum Modus](https://www.midea.com/content/dam/midea-aem/de/klimatisieren-heizen/portasplit/PortaSplit-Gebrauchsanweisung-DE.pdf#page=37) · [EU-Produktdatenblatt](https://eprel.ec.europa.eu/fiches/airconditioners/Fiche_1917520_DE.pdf#page=1). Quellen geprüft am 26. November 2026.
 
 ## Originale PortaSplit vor dem Kauf an der EAN erkennen
 
