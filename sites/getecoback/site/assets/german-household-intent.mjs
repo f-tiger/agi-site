@@ -294,9 +294,11 @@ function exactLowLoadMeterTask(query) {
   const unchanged = /(?<![\d.,])0(?:[.,]0+)?\s*kwh\b|\b(?:unveraendert|nullanzeige)\b[^.?!]{0,30}\bkwh\b/;
   const repeated = /\b(?:immer noch|weiter|bleibt|unveraendert|nach|seit|nullanzeige)\b/;
   if (unchanged.test(query) && repeated.test(query)) return lowLoadMeterUnchanged;
-  const duration = /\b(?:wie lange|messdauer|stunden|messzeit)\b/;
+  const instantaneousZero = /(?<![\d.,])0(?:[.,]0+)?\s*(?:w|watt)\b/;
+  if (instantaneousZero.test(query)) return lowLoadMeterGuide;
+  const duration = /\b(?:wie lange|wie viele stunden|messdauer|messzeit)\b/;
   if (duration.test(query) && lowLoad.test(query)) return lowLoadMeterDuration;
-  return lowLoad.test(query) || /(?<![\d.,])0\s*(?:w|watt)\b/.test(query) ? lowLoadMeterGuide : null;
+  return lowLoad.test(query) ? lowLoadMeterGuide : null;
 }
 
 export const portableCoolingStorage = {

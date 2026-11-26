@@ -109,7 +109,11 @@ test('low-load meter discovery separates a reading plan, unchanged kWh and borro
     assert.equal(found.structuredContent.tools[0]?.name,name,frage);
     assert.equal(found.structuredContent.tools[0].guide_url,guide);
   }
-  for(const frage of ['Wo kann ich ein Strommessgerät leihen, statt es zu kaufen?','Messsteckdose zeigt 0 W im Standby']){
+  for(const frage of [
+    'Wo kann ich ein Strommessgerät leihen, statt es zu kaufen?',
+    'Messsteckdose zeigt 0 W im Standby',
+    'Seit drei Stunden zeigt meine Messsteckdose 0,0 W im Standby an.',
+  ]){
     const found = await call(compactPath,findName,{frage});
     assert.deepEqual(found.structuredContent,{
       totalMatches:0,tools:[],guides:[{guide_url:guide,citation_url:page}],
