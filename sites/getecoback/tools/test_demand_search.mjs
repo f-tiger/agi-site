@@ -1179,3 +1179,22 @@ test('German Bosch WTH83V03 drain questions open the exact hose evidence', () =>
   const stacking = 'WTZ27400 oder WTZ27410: Welcher Verbindungssatz für den Bosch WQG241001 hat einen Auszug?';
   assert.equal(searchEntries(index,stacking,'de')[0]?.entry.u,'/produkte.html#waeschesaeule-zubehoer',stacking);
 });
+
+test('German Bosch WQG235D00 care questions distinguish one model from comparing condensers', () => {
+  const care = '/produkte.html#bosch-wqg235d00-filterpflege';
+  const comparison = '/produkte.html#entscheidung-waeschetrockner';
+  for (const [query,path] of [
+    ['Muss ich beim Bosch WQG235D00 das Flusensieb reinigen, obwohl der Kondensator selbstreinigend ist?',care],
+    ['Bosch WQG235D00: Ersetzt der selbstreinigende Kondensator die Filterpflege?',care],
+    ['Bosch WQG235D00 oder WQG241001: Welchen Kondensator muss ich reinigen?',comparison],
+    ['Kann ich beim Bosch WTH83V03 das Kondenswasser mit WTZ1110 direkt ableiten?',
+      '/produkte.html#bosch-wth83v03-kondensatablauf'],
+  ]) {
+    assert.equal(searchEntries(index,query,'de')[0]?.entry.u,path,query);
+    assert.ok(!searchEntries(index,query,'en').some(hit => hit.entry.u === path),query);
+  }
+  for (const query of [
+    'Bosch WQG235D00 Energieetikett: Wie viele kWh pro 100 Trocknungen?',
+    'Bosch WQG241001 WTZ1110 Kondensatablauf',
+  ]) assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,care,query);
+});

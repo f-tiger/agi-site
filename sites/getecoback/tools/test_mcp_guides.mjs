@@ -139,6 +139,36 @@ test('Bosch WTH83V03 drain evidence distinguishes the box from optional WTZ1110'
   assert(!unknown.structuredContent.grenze.includes('WTZ1110'));
 });
 
+test('Bosch WQG235D00 filter care links official instructions and keeps the two-model comparison distinct', async () => {
+  const origin='https://getecoback.com';
+  const exact=origin+'/produkte.html#bosch-wqg235d00-filterpflege';
+  const compare=origin+'/produkte.html#entscheidung-waeschetrockner';
+  const {env}=assetEnv();
+  for(const [frage,target] of [
+    ['Muss ich beim Bosch WQG235D00 das Flusensieb reinigen, obwohl der Kondensator selbstreinigend ist?',exact],
+    ['Bosch WQG235D00 oder WQG241001: Welchen Kondensator muss ich reinigen?',compare],
+  ]){
+    const search=await call('ratgeber_suche',{frage,sprache:'de',max:1},env);
+    assert(textOf(search).includes('Abschnitt: '+target),frage);
+    const full=await call('ratgeber_lesen',{pfad:target},env);
+    const compact=await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad:target}},env,true);
+    assert.equal(full.isError,false);
+    assert.deepEqual(full,compact);
+    const evidence=textOf(full);
+    for(const fact of (target===exact?['Wärmetauscher','Flusensieb','Programmende','9001984679_B.pdf#page=15','9001984679_B.pdf#page=23']
+      :['WQG235D00','WQG241001'])) assert(evidence.includes(fact),fact);
+    assert(!evidence.includes('getecoback-21'));
+  }
+  const tool='bosch_wqg235d00_kondensatorpflege_zahl_inventur';
+  const args={wqg235d00:true,pflegevorgaenge:6,kondensatorvorgaenge:1,restmodell_abgeglichen:2};
+  const checked=await call(tool,args,env);
+  assert.equal(checked.structuredContent.andere_pflegevorgaenge_offen,3);
+  assert(checked.structuredContent.grenze.includes(exact));
+  const unknown=await call(tool,{...args,wqg235d00:false},env);
+  assert.equal(unknown.structuredContent.andere_pflegevorgaenge_offen,null);
+  assert(!unknown.structuredContent.grenze.includes(exact));
+});
+
 test('the committed MCP corpus is derived from current public canonical pages and built mirrors', () => {
   const py = spawnSync('python3', ['-c', "import json,sys;sys.path.insert(0,'tools');from build_mcp_guides import collect_guides;print(json.dumps(collect_guides()))"], {cwd, encoding: 'utf8', timeout: 15000});
   assert.equal(py.status, 0, py.stderr);

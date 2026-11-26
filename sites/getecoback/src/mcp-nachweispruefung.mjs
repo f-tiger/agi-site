@@ -599,7 +599,9 @@ export const nachweispruefung = [
       if (kondensatorvorgaenge + restmodell_abgeglichen > pflegevorgaenge) throw new RangeError('Pflegevorgänge getrennt zählen.');
       return {selbstreinigender_kondensator_belegt: wqg235d00 ? true : null,
         andere_pflegevorgaenge_offen: wqg235d00 ? pflegevorgaenge - kondensatorvorgaenge - restmodell_abgeglichen : null,
-        grenze: 'Die ausgewiesene Selbstreinigung ist auf den Kondensator bezogen. Maßgeblich für alle Pflegevorgänge bleibt die Geräteanleitung.'};
+        grenze: wqg235d00
+          ? 'Die Selbstreinigung betrifft den Wärmetauscher. Reinige das zweiteilige Flusensieb nach Programmende von Hand gemäß Bosch-Anleitung. Prüfe den Filter im Kondenswasserbehälter separat. Originalquelle und Pflegeabschnitt: https://getecoback.com/produkte.html#bosch-wqg235d00-filterpflege'
+          : 'Prüfe die vollständige E-Nr. und die zugehörige Anleitung, bevor du daraus einen Pflegeplan ableitest.'};
     }, {wqg235d00: true, pflegevorgaenge: 6, kondensatorvorgaenge: 1, restmodell_abgeglichen: 2},
     {selbstreinigender_kondensator_belegt: true, andere_pflegevorgaenge_offen: 3}),
 

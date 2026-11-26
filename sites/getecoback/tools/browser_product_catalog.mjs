@@ -441,6 +441,10 @@ async function checkCatalog(browser){
   });
   const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
   assert.equal((await page.goto(origin+'/produkte.html?__probe=1',{waitUntil:'load'})).status(),200);
+  if(width===320) {
+   const pageWidth=await page.evaluate(()=>document.documentElement.scrollWidth);
+   assert(pageWidth<=width,'Product directory must not scroll horizontally at 320px');
+  }
   assert.equal(await page.locator('[data-product-card]').count(),data.products.length);
   assert.equal(await page.locator('.pc-comparison').count(),12);
   assert.equal(await page.locator('.pc-comparison tbody tr').count(),48);
