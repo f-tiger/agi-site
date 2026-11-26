@@ -52,8 +52,9 @@ class BuyerEntry(unittest.TestCase):
                     path = SITE / ('en/guide' if en else 'guide') / (slug + '.html')
                     doc = Document(path.read_text()).root
                     buyer = doc.find(attr='data-choice-method')[0]
-                    germany = doc.find(attr='data-market-de')
-                    advice = doc.find(attr='data-market-other')
+                    results = doc.find(attr='data-results')[0]
+                    germany = results.find(attr='data-market-de')
+                    advice = results.find(attr='data-market-other')
                     link_count = int(not en and slug == 'waesche-trocknen-wohnung')
                     for container in [buyer, *germany, *advice]:
                         links = [a for a in container.find('a') if a.attrs.get('href') == anchor]
@@ -63,6 +64,8 @@ class BuyerEntry(unittest.TestCase):
                             self.assertEqual(link.text(), label)
                             self.assertNotIn('data-choice-action', link.attrs)
                     if link_count:
+                        reading_gate = buyer.find('p', 'data-market-de')[0]
+                        self.assertNotIn('hidden', reading_gate.attrs)
                         comparison = [n for n in doc.find(attr='id') if n.attrs['id'] == anchor[1:]]
                         self.assertEqual(len(comparison), 1)
                         self.assertTrue(comparison[0].find('tbody')[0].find('tr'))

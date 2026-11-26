@@ -35,10 +35,13 @@ def block(en=False, slug=None):
                   else '/guide/luftfeuchtigkeit-richtig-messen.html')
     care = '/en/guide/rising-damp-penetrating-damp-or-condensation.html' if en else '/guide/luftentfeuchter-gegen-schimmel.html'
     laundry_models = ''
+    laundry_method_link = ''
     if not en and slug == 'waesche-trocknen-wohnung':
-        laundry_models = ('\n<p>Für den Einkauf in Deutschland kannst du die '
-                          '<a href="#eb-models">Wäschemodelle samt Quellen und Einsatzgrenzen vergleichen</a>. '
-                          'Kläre zuerst die Ursache, wenn die Feuchte anhält.</p>')
+        handoff = ('Für den Einkauf in Deutschland kannst du die '
+                   '<a href="#eb-models">Wäschemodelle samt Quellen und Einsatzgrenzen vergleichen</a>. '
+                   'Kläre zuerst die Ursache, wenn die Feuchte anhält.')
+        laundry_models = f'\n<p>{handoff}</p>'
+        laundry_method_link = f'\n<p data-market-de>{handoff}</p>'
     fields = select('purpose',t('Wobei brauchst du Hilfe?','What are you trying to do?'),[
         ('room',t('Feuchte Raumluft senken','Reduce room humidity')),
         ('laundry',t('Wäsche drinnen trocknen','Dry laundry indoors')),
@@ -149,7 +152,7 @@ def block(en=False, slug=None):
         'Modellgrenzen: Comfee MDDF-20DEN7 ist hier die Variante ohne WF. MeacoDry Arete One 20L ist weder Arete Two noch One 25L. Die UK-Modellseite bestätigt keine deutsche Händlerausstattung, Stecker, Lieferbarkeit oder Rückgabe. Netzspannung, Typenschild und Anleitung immer mit dem konkreten Angebot abgleichen. Beide Kandidaten ersetzen weder Ursachenklärung noch eine passende Lüftung.',
         'Model boundaries: Comfee MDDF-20DEN7 here is the variant without WF. MeacoDry Arete One 20L is neither Arete Two nor One 25L. The UK model page does not verify a German retailer’s equipment, plug, availability or returns. Match voltage, rating plate and manual to the actual offer. Neither candidate replaces investigating moisture sources or suitable ventilation.')+'</p><p>'+t(
         'Rechenbeispiel: 216 W × 6 h ÷ 1.000 × 0,35 €/kWh = 0,45 €. Das ist weder eine gemessene Wäscheladung noch eine Einsparzusage.',
-        'Example calculation: 216 W × 6 h ÷ 1,000 × €0.35/kWh = €0.45. This is not a measured laundry load or a savings promise.')+'</p><small>'+t('Quellen geprüft am 06.11.2026: ','Sources checked on 6 November 2026: ')+source(MEACO, 'Meaco One 20L')+' · '+source(COMFEE_PRODUCT, 'Comfee MDDF-20DEN7')+' · '+source(COMFEE_DATA,t('Comfee-Datenblatt, Seite 2','Comfee data sheet, page 2'))+' · '+source(COMFEE,t('Comfee-Bedienhinweise','Comfee operating instructions'))+' · '+source(AIR,'Verbraucherzentrale')+'. '+t('Herstellerangaben, keine eigenen Messungen. Orientierung, keine Ferndiagnose.','Manufacturer figures, not our own measurements. Guidance, not a remote diagnosis.')+'</small>'+laundry_models+'</details>'
+        'Example calculation: 216 W × 6 h ÷ 1,000 × €0.35/kWh = €0.45. This is not a measured laundry load or a savings promise.')+'</p><small>'+t('Quellen geprüft am 06.11.2026: ','Sources checked on 6 November 2026: ')+source(MEACO, 'Meaco One 20L')+' · '+source(COMFEE_PRODUCT, 'Comfee MDDF-20DEN7')+' · '+source(COMFEE_DATA,t('Comfee-Datenblatt, Seite 2','Comfee data sheet, page 2'))+' · '+source(COMFEE,t('Comfee-Bedienhinweise','Comfee operating instructions'))+' · '+source(AIR,'Verbraucherzentrale')+'. '+t('Herstellerangaben, keine eigenen Messungen. Orientierung, keine Ferndiagnose.','Manufacturer figures, not our own measurements. Guidance, not a remote diagnosis.')+'</small>'+laundry_method_link+'</details>'
     fallback = '<div data-choice-fallback><p>'+t(
         'Dein nächster Schritt: Feuchte und Temperatur zunächst messen, bei nassen Wänden die Ursache klären. Die Herstellerdaten unten helfen dir, Bedingungen und Modellvarianten zu unterscheiden.',
         'Your next step: measure humidity and temperature first, and investigate the cause of wet walls. The manufacturer data below helps distinguish conditions and model variants.')+'</p><p>'+link(cost,t('Wäschekosten vergleichen','Compare laundry costs'))+' · '+link(cold,t('Kalte Räume prüfen','Check cold-room conditions'))+' · '+link(care,t('Feuchteursachen klären','Investigate moisture sources'))+'</p></div>'

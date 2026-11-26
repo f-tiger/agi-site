@@ -250,7 +250,7 @@ async function laundryModelComparison(browser,javaScriptEnabled){
   await root.locator('[data-choice-direct]').press('Enter');
   const advice=root.locator('[data-answer=compare]');
   check(await advice.locator('[data-market-other]').isVisible(),'the advice-only result is available');
-  check(!await advice.locator('a[href="#eb-models"]').isVisible(),'the German link stays out of the advice-only result');
+  equal(await root.locator('a[href="#eb-models"]:visible').count(),0,'the German link stays out of advice-only mode');
   await root.locator('[data-choice-direct-note] [data-choice-needs]').click();
   await market.selectOption('de');
  }
