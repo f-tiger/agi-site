@@ -1,6 +1,6 @@
 # Dachgeschoss kühlen: Hitzeschutz unterm Dach (2026)
 
-> Miss Innen- und Außentemperatur, lüfte im kühleren Zeitfenster und nutze vorhandene Verschattung und Ventilatoren. Prüfe eine Klimaanlage erst bei weiterem Kühlbedarf.
+> Innen und außen messen, bei kühler Außenluft sicher lüften und vorhandene Verschattung nutzen. Wann sich im Dachgeschoss eine Klimaanlage lohnt.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/dachgeschoss-kuehlen.html
 
