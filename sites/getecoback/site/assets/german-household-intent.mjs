@@ -643,6 +643,20 @@ function asksForDehumidifierDiscountReference(query) {
   return device.test(query) && offer.test(query) && !elsewhere.test(query);
 }
 
+export const portaSplitMonoblockChoice = {
+  path:'/guide/portasplit-vs-monoblock.html',
+  id:'bauart-vor-angebot',
+  tool:'ratgeber_suche',
+};
+
+function asksForPortaSplitMonoblockChoice(query) {
+  const original = /\bporta[ -]*split\b/;
+  const monoblock = /\bmonoblock\w*\b/;
+  const comparison = /\b(?:vs|versus|oder|statt|gegen|vergleich\w*|unterschied\w*)\b/;
+  const differentTask = /\b(?:cool|pro|fensterfalz|abholung|vorbestell\w*|repar\w*|winterfest|pflege|wartung)\b/;
+  return original.test(query) && monoblock.test(query) && comparison.test(query) && !differentTask.test(query);
+}
+
 export const coolingDiscountReference = {
   path:'/guide/klimaanlage-wann-kaufen.html',
   id:'angebot-30-tage-preis',
@@ -838,6 +852,7 @@ export function exactGermanHouseholdTask(query) {
   if (asksAboutAnEmptyDehumidifierTank(query)) return emptyDehumidifierTank;
   if (asksForMeacoDd8lProGarage(query)) return meacoDd8lProGarage;
   if (asksForCoolingDiscountReference(query)) return coolingDiscountReference;
+  if (asksForPortaSplitMonoblockChoice(query)) return portaSplitMonoblockChoice;
   if (asksForTadoXVaillantAdapter(query)) return tadoXVaillantAdapter;
   if (asksForOfflineThermostat(query)) return offlineThermostatChoice;
   if (asksForSiemensWaterFilter(query)) return siemensFilterDecision;

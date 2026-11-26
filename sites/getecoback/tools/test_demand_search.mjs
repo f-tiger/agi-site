@@ -1345,3 +1345,17 @@ test('German Meaco Arete 20L comparison searches reach the matched tests and var
  for(const q of ["Was ist im kalten Keller der Unterschied zwischen Meaco Arete One 20L und Two 20L?","Meaco Arete One 20L oder Two 20L bei 20 Grad und 60 Prozent?","Wie laut ist der Meaco Arete Two 20L im Nachtmodus?","Welche Meaco Arete hat die GTIN 5060409604617?","Meaco Arete Two 20L bei 10 Grad: Entzug und Stromverbrauch?"]) assert.equal(searchEntries(index,q,'de')[0]?.entry.u,target,q);
  for(const q of ["Meaco Arete One 25L oder Two 20L bei 10 Grad?","Meaco Arete Two 12L mit App?","Kann ich den Ablaufschlauch beim Meaco Arete One 20L bergauf zum Waschbecken legen?","Welcher Ersatzfilter passt in den Arete Two 20L?","Welchen Luftentfeuchter brauche ich für den Keller bei 10 Grad?","Entzieht der Meaco Arete Two 20L bei 10 Grad mehr als der Comfee MDDF-20DEN7?"]) assert.notEqual(searchEntries(index,q,'de')[0]?.entry.u,target,q);
 });
+
+test('German PortaSplit versus Monoblock shopping queries find the installation choice', () => {
+ const target='/guide/portasplit-vs-monoblock.html#bauart-vor-angebot';
+ for(const query of [
+  'PortaSplit vs. Monoblock',
+  'Midea PortaSplit oder Monoblock für eine Wohnung ohne Balkon?',
+  'Unterschied zwischen Midea PortaSplit und mobilem Monoblock',
+ ]) assert.equal(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+ for(const query of [
+  'Midea PortaSplit Cool oder Monoblock',
+  'Wie messe ich den Fensterfalz für die originale PortaSplit?',
+  'Black Friday Klimaanlage',
+ ]) assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+});

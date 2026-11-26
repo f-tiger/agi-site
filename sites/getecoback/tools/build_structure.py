@@ -1178,17 +1178,6 @@ CONTEXT_MODELS = {
     "€€€ · Preis vor Ort prüfen", "KESSER+Split+Klimaanlage+Quick+Connect+12000+BTU", "ac"),
  ],
 
- "portasplit-vs-monoblock": [
-   ("TCL BreezeIn Quick Connect 9.000 BTU", "9.000-BTU-Variante",
-    "Prüfe die genaue Typnummer und die Geräuschwerte für Innen- und Außengerät im zugehörigen Datenblatt.",
-    "Preis beim Händler prüfen", "TCL+BreezeIn+Quick+Connect+9000+BTU", "ac"),
-   ("TCL BreezeIn Quick Connect 12.000 BTU", "12.000-BTU-Variante",
-    "Gleiche die Kühlleistung mit deinem Raum ab und prüfe, welche Montagekosten zum Händlerpreis hinzukommen.",
-    "Preis beim Händler prüfen", "TCL+BreezeIn+Quick+Connect+12000+BTU", "ac"),
-   ("KESSER Split Quick Connect 12.000 BTU", "Lieferumfang prüfen",
-    "Prüfe beim angebotenen Set die Bezeichnungen beider Geräte, das Zubehör und die Montagevoraussetzungen.",
-    "Preis beim Händler prüfen", "KESSER+Split+Klimaanlage+Quick+Connect+12000+BTU", "ac"),
- ],
 
  # Mieter-Winterlinie (2026-08-28). The site's audience is 79 % renter-leaning by
  # landing-page intent (money line 19:1), and until today every one of its 33
@@ -2014,6 +2003,7 @@ def strip_decision_promotions(html, slug):
     if slug not in {"klimaanlage-mit-heizfunktion", "mobile-klimaanlage-ueberwintern", "keller-lueften-sommer",
                     "klimaanlage-40-qm", "klimaanlage-50-qm", "klimaanlage-fenster-einbruchschutz",
                     "klimaanlage-wann-kaufen", "heizkosten-vergleich-rechner", "midea-portasplit-kaufen",
+                    "portasplit-vs-monoblock",
                     "delonghi-pac-n90-test", "pinguino-pac-ex105-test", "comfee-mpph-09crn7-test", "pro-breeze-luftentfeuchter-test",
                     "meacodry-arete-one-test",
                     "luftentfeuchter-granulat-oder-elektrisch",
