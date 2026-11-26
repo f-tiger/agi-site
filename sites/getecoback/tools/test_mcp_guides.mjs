@@ -1095,3 +1095,17 @@ test('German original PortaSplit delivery evidence keeps the quantity, date and 
     '/guide/klimaanlage-wann-kaufen.html#kaufzeitpunkt-rechner']) assert(textOf(full).includes(value),value);
  assert(!textOf(full).includes('https://www.amazon.de/'));
 });
+
+test('German FM Solar mobile AC evidence distinguishes the new installation limits and sources',async()=>{
+ const {env}=assetEnv();
+ const pfad='https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html#fm-solar-yfg-montage';
+ const found=await call('ratgeber_suche',{frage:'YFG-12H/FC6-W Dachfenster',sprache:'de',max:1},env);
+ assert(textOf(found).includes('Abschnitt: '+pfad));
+ const full=await call('ratgeber_lesen',{pfad},env);
+ assert.equal(full.isError,false);
+ assert.deepEqual(await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad}},env,true),full);
+ for(const f of ['4251933818361','20 cm zwischen Fensterrahmen und Außenwandkante','für Dachfenster ungeeignet',
+                 '2 m','kannst du warten','_06.2026_Anleitung.pdf#page=23','www.obi.de/p/2191166731490',
+                 '#option-3-monoblock']) assert(textOf(full).includes(f),f);
+ assert(!textOf(full).includes('https://www.amazon.de/'));
+});

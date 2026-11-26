@@ -250,6 +250,13 @@ def collect():
     targets=re.findall(r'<(?:section|h2)\b[^<>]*\sid="'+section['id']+r'"[^<>]*>',text)
     if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
      raise ValueError(f'Missing or hidden EX105 evidence: {route}#{section["id"]}')
+  if lang=='de' and route=='/guide/midea-portasplit-ausverkauft-alternativen.html':
+   anchor='fm-solar-yfg-montage'
+   targets=re.findall(r'<h2\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)
+   if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
+    raise ValueError(f'Missing or hidden FM Solar fit check: {route}#{anchor}')
+   entry['model_sections']=[{'id':anchor,'title':'FM Solar 12.000 BTU: Fensterhalterung für YFG-12H/FC6-W prüfen',
+    'description':'EAN 4251933818361 abgleichen. Zwischen Fensterrahmen und Außenwandkante sind höchstens 20 cm zulässig. Die mitgelieferte Halterung ist für Dachfenster ungeeignet.'}]
   if lang=='de' and route=='/guide/btu-rechner.html':
    targets=re.findall(r'<h2\b[^<>]*\sid="hohe-kuehllast"[^<>]*>',text)
    if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):

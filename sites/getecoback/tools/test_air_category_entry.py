@@ -50,5 +50,32 @@ class AirCategoryEntry(unittest.TestCase):
         self.assertIn('https://getecoback.com/kategorie/luftqualitaet.html', output)
 
 
+class CoolingCategoryEntry(unittest.TestCase):
+    def test_generated_cooling_hub_opens_owned_decisions_and_keeps_inventory(self):
+        pages = B.collect_articles()['klimaanlagen']
+        output = B.hub_page('klimaanlagen', pages)
+        matches = re.findall(r'<section class="eb-shop" id="eb-cooling-decisions"[^>]*>.*?</section>', output, re.S)
+        self.assertEqual(len(matches), 1)
+        self.assertLess(output.index(matches[0]), output.index('<article>'))
+        parser = Anchors()
+        parser.feed(matches[0])
+        self.assertEqual(parser.links, [
+            '/guide/btu-rechner.html',
+            '/guide/portasplit-vs-monoblock.html#bauart-vor-angebot',
+            '/guide/midea-portasplit-ausverkauft-alternativen.html#fm-solar-yfg-montage',
+            '/guide/klimaanlage-wann-kaufen.html#angebot-30-tage-preis',
+        ])
+        self.assertNotRegex(output, r'amazon\.de/|besserer Schlaf|ab (?:250|60|30|120) €')
+        for href in parser.links:
+            route, _, fragment = href.partition('#')
+            text = (Path(B.SITE) / route.lstrip('/')).read_text()
+            if fragment:
+                self.assertIn('id="' + fragment + '"', text)
+        parser = Anchors()
+        parser.feed(output)
+        for page in pages:
+            self.assertIn(page['url'], parser.links)
+
+
 if __name__ == '__main__':
     unittest.main()

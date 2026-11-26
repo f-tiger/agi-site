@@ -1377,3 +1377,14 @@ test('German original PortaSplit delivery questions find the date and pickup che
   'PortaSplit vs. Monoblock',
  ]) assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
 });
+
+test('German FM Solar mobile AC questions open the exact window and bracket evidence',()=>{
+ const target='/guide/midea-portasplit-ausverkauft-alternativen.html#fm-solar-yfg-montage';
+ for(const q of ['FM Solar mobile Split 12000 BTU als Alternative zur PortaSplit',
+                 'YFG-12H/FC6-W Dachfenster','4251933818361','FM Solar mobile Klimaanlage Fensterhalterung'])
+   assert.equal(searchEntries(index,q,'de')[0]?.entry.u,target,q);
+ for(const q of ['FM Solar Split 12000 BTU 95012 fest installieren','Midea PortaSplit Cool',
+                 'Wie messe ich den Fensterfalz für die originale PortaSplit?',
+                 'PortaSplit vs. Monoblock','Wann wird die PortaSplit geliefert?'])
+   assert.notEqual(searchEntries(index,q,'de')[0]?.entry.u,target,q);
+});
