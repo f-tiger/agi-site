@@ -96,3 +96,23 @@ node --test tools/eco-reporting/report.test.mjs
 Tests use generated fixture credentials and mocked Google responses. They do
 not collect events or call production reporting APIs. No recurring job, new
 tracking identifier or Google configuration mutation is introduced.
+
+## Affiliate paths
+
+Select `affiliate-paths` on `main` in the same manual workflow. Enter the RSA
+public PEM and the ISO date at the end of the seven-day UTC window
+(`affiliate_end_exclusive`). For November 19–25, enter `2026-11-26`.
+The bound window excludes the current incomplete UTC day and cannot start
+more than 56 days back. The mode uses the repository Cloudflare credentials
+and sends one fixed, parameterized SELECT to the ECO D1 database. It does not
+call Google or create site events. A blocked run has no report artifact.
+
+The encrypted report groups existing `affiliate_click` events by reviewed
+German canonical HTML page, Amazon destination market, search/product/other
+route, and whether the normalized link carried the approved tag. Other source
+pages are grouped together. Raw destinations, search terms, referrers and
+event rows are excluded. The filter matches `affiliate_audit` for
+human-classified and historical unclassified events. Reconcile the total and
+destination sums against the matching complete UTC window before acting on the
+counts. Destination market describes the Amazon host. The counts do not
+measure unique users, session acquisition, orders, or commission.

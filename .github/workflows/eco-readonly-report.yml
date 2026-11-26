@@ -4,13 +4,17 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: Preflight checks credential presence only; report reads official data
+        description: Choose credential preflight, official Google reporting, or affiliate paths
         type: choice
-        options: [preflight, report]
+        options: [preflight, report, affiliate-paths]
         default: preflight
         required: true
       report_public_key:
-        description: RSA public PEM (2048+ bits); required for report. Never enter a private key.
+        description: RSA public PEM (2048+ bits) for encrypted reports. Never enter a private key.
+        type: string
+        required: false
+      affiliate_end_exclusive:
+        description: End of the seven complete UTC dates for affiliate-paths (YYYY-MM-DD)
         type: string
         required: false
 permissions:
@@ -20,6 +24,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   report:
+    if: inputs.mode != 'affiliate-paths' || github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 6
     steps:
@@ -29,10 +34,13 @@ jobs:
           node-version: '24'
       - name: Verify reporting privacy and request contracts
         run: node --test tools/eco-reporting/report.test.mjs
-      - name: Read with existing Google credentials; output status only
+      - name: Read selected source and output status only
         id: report
         env:
-          GA4_SERVICE_ACCOUNT_JSON: ${{ secrets.GA4_SERVICE_ACCOUNT_JSON }}
+          GA4_SERVICE_ACCOUNT_JSON: ${{ inputs.mode != 'affiliate-paths' && secrets.GA4_SERVICE_ACCOUNT_JSON || '' }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ inputs.mode == 'affiliate-paths' && secrets.CLOUDFLARE_ACCOUNT_ID || '' }}
+          CLOUDFLARE_API_TOKEN: ${{ inputs.mode == 'affiliate-paths' && secrets.CLOUDFLARE_API_TOKEN || '' }}
+          ECO_AFFILIATE_END_EXCLUSIVE: ${{ inputs.affiliate_end_exclusive }}
           ECO_REPORT_MODE: ${{ inputs.mode }}
           ECO_REPORT_PUBLIC_KEY: ${{ inputs.report_public_key }}
           ECO_REPORT_OUTPUT: ${{ runner.temp }}/eco-readonly/report.enc.json

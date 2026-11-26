@@ -4,6 +4,7 @@ import {mkdir, writeFile} from 'node:fs/promises';
 import {dirname, resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {seal} from '../fleet/workers_usage.mjs';
+import {collectAffiliatePaths} from './affiliate-paths.mjs';
 
 export const PROPERTY = '544688614';
 export const HOST = 'getecoback.com';
@@ -91,18 +92,33 @@ export async function collect(key, {fetchFn=fetch, now=new Date()}={}) {
 }
 export async function run(env=process.env, dependencies={}) {
   const mode=env.ECO_REPORT_MODE || 'preflight';
-  if (!['preflight','report'].includes(mode)) return {status:'blocked',reason:'invalid_report_mode',reportWritten:false};
+  if (!['preflight','report','affiliate-paths'].includes(mode)) return {status:'blocked',reason:'invalid_report_mode',reportWritten:false};
   let key;
-  try { key=credentials(env.GA4_SERVICE_ACCOUNT_JSON); }
-  catch(error) { return {status:'blocked',reason:failure(error),reportWritten:false}; }
+  if (mode !== 'affiliate-paths') {
+    try { key=credentials(env.GA4_SERVICE_ACCOUNT_JSON); }
+    catch(error) { return {status:'blocked',reason:failure(error),reportWritten:false}; }
+  }
   if (mode==='preflight') return {status:'credentials_present',liveAccess:'not_checked',reportWritten:false};
   let publicKey;
   try { publicKey=validatePublicKey(env.ECO_REPORT_PUBLIC_KEY); }
   catch(error) { return {status:'blocked',reason:failure(error),reportWritten:false}; }
   if (!env.ECO_REPORT_OUTPUT) return {status:'blocked',reason:'missing_encrypted_output_path',reportWritten:false};
-  const report=await collect(key,dependencies), envelope=encryptReport(report,publicKey);
+  let report;
+  if (mode === 'affiliate-paths') {
+    const {fetchFn = fetch, now, pagesFor} = dependencies;
+    try {
+      report = await collectAffiliatePaths(env, {now, pagesFor, query: (url, options, code) => jsonRequest(fetchFn, url, options, code)});
+    } catch (error) {
+      return {status:'blocked', reason:failure(error), reportWritten:false};
+    }
+    if (report.status === 'blocked') return {...report, reportWritten:false};
+  } else {
+    report = await collect(key, dependencies);
+  }
+  const envelope = encryptReport(report, publicKey);
   await mkdir(dirname(env.ECO_REPORT_OUTPUT),{recursive:true,mode:0o700});
   await writeFile(env.ECO_REPORT_OUTPUT,JSON.stringify(envelope),{mode:0o600});
+  if (mode === 'affiliate-paths') return {status:'received', reportWritten:true, encrypted:true};
   return {status:report.ga4.status==='received'&&report.gsc.status==='received'?'received':'blocked_or_partial',ga4:report.ga4.status,gsc:report.gsc.status,reportWritten:true,encrypted:true};
 }
 // An explicit access preflight can be blocked by missing setup without being
