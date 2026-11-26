@@ -1,12 +1,12 @@
 # Infrarotheizung mit Thermostat: welches, wohin, was es spart
 
-> Ohne Thermostat zieht ein 600-W-Panel acht Stunden lang durch: 4,8 kWh, rund 1,44 €. Welches Thermostat ohne Installation geht und wohin der Fühler gehört.
+> Passt ein Steckdosenthermostat zu deiner Infrarotheizung? Prüfe Freigabe, Wiederanlauf und Belastbarkeit anhand der genauen Modellanleitung.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/infrarotheizung-thermostat.html
 
-**Transparenz vorweg:** Wir testen keine Geräte und keine Thermostate. Die Rechnungen auf dieser Seite kannst du nachrechnen, die Hinweise zum Aufstellort stammen aus den Ratgebern der Branche, die wir unten verlinken. Wir nennen kein Modell.
+**So haben wir geprüft:** Für zwei Beispiele haben wir die deutschen Herstelleranleitungen ausgewertet. Sie zeigen, wie unterschiedlich sich Heizgeräte nach einer Stromunterbrechung verhalten können. Eigene Geräte- oder Thermostattests haben wir nicht durchgeführt.
 
-Eine Infrarotheizung ist eine elektrische Widerstandsheizung. Solange sie an ist, zieht sie die Leistung, die auf dem Typenschild steht, nicht mehr und nicht weniger. Einen Sparmodus im Panel gibt es nicht. Was sich ändern lässt, ist allein, **wie viele Stunden sie an ist**, und genau das entscheidet das Thermostat: Es schaltet ein, wenn der Raum unter die eingestellte Temperatur fällt, und aus, wenn sie erreicht ist.
+Ein einfaches elektrisches Heizpanel nimmt im Heizbetrieb seine Nennleistung auf. Ein passendes Thermostat kann die Einschaltzeit verkürzen. Viele Geräte haben bereits eine Regelung. Ob sich zusätzlich ein Steckdosenthermostat verwenden lässt, zeigt der [Modell- und Belastbarkeitscheck](https://getecoback.com/guide/infrarotheizung-thermostat.html#belastbarkeit-die-zahl-auf-dem-thermostat).
 
 ## Was ein Thermostat an der Rechnung ändert
 
@@ -14,7 +14,7 @@ Ein Rechenbeispiel mit einem 10-m²-Zimmer: Bei 60 W pro m², der unteren Stufe 
 
 **0,6 kW × 8 h = 4,8 kWh.** Bei 0,30 €/kWh sind das **1,44 €** für den Abend.
 
-Mit Thermostat läuft es nur, solange der Raum unter der Zieltemperatur liegt. Wie viele Stunden das sind, hängt an Dämmung, Außentemperatur, Zieltemperatur und der Größe des Panels im Verhältnis zum Raum. Das kann dir niemand vorher sagen, auch wir nicht. Du kannst es aber in einem Abend messen: ein **Energiekostenmessgerät** zwischen Steckdose und Thermostat stecken, den Abend normal heizen, am Ende die kWh ablesen. Dann ist die Rechnung einfach:
+Wenn die Regelung das Panel zeitweise abschaltet, sinkt der Verbrauch. Die tatsächliche Einschaltzeit hängt von Dämmung, Außentemperatur und Zieltemperatur ab. Lies für einen Abend die kWh einer vorhandenen, für das Gerät geeigneten Verbrauchsmessung ab. Einen zusätzlichen Zwischenstecker solltest du nur verwenden, wenn die Herstellerangaben die konkrete Anordnung und Belastung erlauben.
 
 | Das Messgerät zeigt für 8 Stunden | Kosten bei 0,30 €/kWh | gegenüber Dauerbetrieb |
 | --- | --- | --- |
@@ -22,22 +22,22 @@ Mit Thermostat läuft es nur, solange der Raum unter der Zieltemperatur liegt. W
 | 3,6 kWh | 1,08 € | 0,36 € weniger |
 | 2,4 kWh | 0,72 € | 0,72 € weniger |
 
-Zeigt das Gerät die vollen 4,8 kWh, ist das ein Befund: Entweder ist das Panel für den Raum zu klein, oder die Zieltemperatur ist höher, als dieser Raum mit diesem Panel erreichen kann. Ein Thermostat spart dann gar nichts, und das ist die wichtigste Information, die dir der Abend liefert.
+Zeigt die Messung 4,8 kWh, entspricht das acht Stunden mit durchschnittlich 600 W. Prüfe Zieltemperatur, Messort und gewählte Betriebsart, bevor du ein weiteres Gerät kaufst.
 
 ## Vier Arten, eine Infrarotheizung zu regeln
 
 | Bauart | Wo gemessen wird | Installation | Für Mieter |
 | --- | --- | --- | --- |
-| **Steckdosenthermostat** | In der Steckdose, meist auf Fußleistenhöhe | Einstecken, Panel einstecken | Ja |
-| **Funk-Thermostat mit Empfänger** | Wo du den Fühler hinstellst oder hängst | Empfänger an die Steckdose, Fühler frei platzieren | Ja, wenn der Empfänger ein Stecker ist |
+| **Steckdosenthermostat** | In der Steckdose, meist auf Fußleistenhöhe | Steckverbindung laut Modellanleitung | Bei ausdrücklich geeigneter Kombination |
+| **Funk-Thermostat mit Empfänger** | Wo du den Fühler hinstellst oder hängst | Empfänger an die Steckdose, Fühler frei platzieren | Bei geeignetem Panel und freigegebenem Steckempfänger |
 | **Im Panel eingebaut** | Am oder im Gerät selbst | Keine, schon dabei | Ja |
 | **Wandthermostat, fest verdrahtet** | An der Wand, frei gewählt | Elektrofachkraft | Nur mit dem Vermieter |
 
-**Steckdosenthermostat:** die einfachste Lösung und die einzige, bei der man wirklich nichts montiert. Der Haken ist der Messort. Steckdosen sitzen meist auf Fußleistenhöhe, und dort ist es kühler als auf der Höhe, auf der du sitzt, weil kalte Luft nach unten sinkt. Das Thermostat heizt dann eher etwas länger, als du brauchst. Stell den Zielwert danach ein und prüf ihn mit einem Thermometer auf Tischhöhe.
+**Steckdosenthermostat:** Für ausdrücklich geeignete Heizgeräte lässt sich die Raumtemperatur damit ohne feste Verdrahtung regeln. Der Messort liegt häufig auf Fußleistenhöhe. Vergleiche die Temperatur dort mit der an deinem Sitzplatz und passe den Sollwert bei Bedarf an.
 
 **Funk-Thermostat:** Der Fühler steht, wo du ihn haben willst, zum Beispiel am Schreibtisch. Bei manchen Systemen regelt ein Funk-Thermostat mehrere Panels gleichzeitig, was in einem großen Raum mit zwei Heizflächen praktisch ist. Ob dein System das kann, steht in dessen Anleitung.
 
-**Eingebautes Thermostat:** bequem, weil schon dabei. Es misst aber am Gerät, also genau dort, wo die Ratgeber der Branche den Fühler gerade nicht haben wollen, nämlich nah an der Wärmequelle. Das kann funktionieren. Es misst aber die Temperatur am Panel, nicht die an deinem Platz.
+**Eingebautes Thermostat:** Prüfe am Platz, an dem du dich aufhältst, ob Temperatur und Zeitprogramm passen. Reicht die vorhandene Regelung aus, brauchst du kein zusätzliches Thermostat.
 
 ## Wohin der Fühler gehört
 
@@ -51,25 +51,37 @@ Die Hinweise der Heizungsratgeber sind sich einig, und sie folgen alle derselben
 
 - **Mit Abstand zum Heizgerät.** Ein gewisser Abstand zum Panel ist Voraussetzung dafür, dass die Regelung überhaupt sauber arbeitet.
 
-## Belastbarkeit: die Zahl auf dem Thermostat
+## Passt ein Steckdosenthermostat zu meiner Infrarotheizung?
 
-Ein Steckdosenthermostat schaltet die volle Leistung des Panels, über Stunden. Auf seinem Typenschild steht, wie viel es schalten darf, als Watt oder als Ampere. **Diese Zahl muss über der Leistung deines Panels liegen.** Hängen zwei Panels an einem Thermostat, zählen beide zusammen. Wenn das Typenschild nur Ampere nennt: Ampere × 230 V ergibt die Watt.
+**Prüfe zuerst die genaue Modellnummer von Heizgerät und Thermostat.** Passt die eingebaute Regelung zu deinem Alltag, brauchst du keinen Zwischenstecker. Wenn du extern regeln willst, kläre anhand der Anleitungen drei Fragen:
 
-Und wie bei jedem Heizgerät: direkt in die Wandsteckdose, nicht über eine Steckdosenleiste, die dafür nicht ausgelegt ist. Warum das so ist und was ein 16-A-Stromkreis an Heizleistung verträgt, steht in [Heizlüfter schaltet sich aus](https://getecoback.com/guide/heizluefter-schaltet-sich-aus.html) — für ein Panel gilt dieselbe Rechnung.
+- Erlaubt der Hersteller die gewünschte externe Schaltung für diese Gerätekombination und diesen Einsatzort?
+
+- Heizt das Gerät nach Rückkehr der Netzspannung in der gewünschten Betriebsart weiter, oder wartet es im Standby auf eine Taste?
+
+- Passen die angegebene Eingangsspannung und die ausdrücklich zulässige Schaltleistung für die angeschlossene Heizlast zu Typenschild und Anschluss? Beachte eine separate Leistungsgrenze in Watt auch dann, wenn ein maximaler Strom in Ampere angegeben ist.
+
+**Heidenfeld IH100:** Laut [Bedienungsanleitung des Infrarot-Heizstrahlers IH100 (S. 13)](https://www.miweba.de/media/pdf/20/a7/8d/PR0032163-Heidenfeld-Infrarot-Heizstrahler-IH100-Bedienungsanleitung.pdf#page=14) kehrt der Strahler nach einer Stromunterbrechung in den Standby zurück. Ein Steckdosenthermostat, das nur die Netzspannung wieder einschaltet, startet den Heizbetrieb damit nicht von allein.
+
+**Heidenfeld HF-HP100-1:** Die [Bedienungsanleitung der HF-HP100-1 (S. 16)](https://www.miweba.de/media/pdf/f9/43/14/Heidenfeld-HF-HP100-1-Bedienungsanleitung.pdf#page=17) nennt das Steckdosenthermostat W2022 (PR0032958) ausdrücklich als kompatibel. Die Tabelle nennt für den Eingang 110–220 V, für den Ausgang 1.500 W und als maximale Ausgangskapazität 10 A. Aus der Ampere-Angabe lässt sich keine höhere zulässige Heizleistung ableiten. Ob dein konkretes Gerät an einem deutschen 230-V-Anschluss verwendet werden darf, muss anhand von Typenschild und passender Anleitung geklärt werden. Auch den tatsächlichen Lieferumfang beim konkreten Angebot prüfen.
+
+Bleiben Freigabe, Wiederanlauf oder Belastbarkeit offen, stelle den Kauf zurück und frage den Hersteller nach den beiden genauen Modellnummern. Bei Unklarheit zum Anschluss hilft eine Elektrofachkraft. [Schaltet dein Heizgerät im Betrieb unerwartet ab?](https://getecoback.com/guide/heizluefter-schaltet-sich-aus.html)
+
+Ist der Regler bestätigt und fehlt er im vorhandenen Lieferumfang, vergleiche Angebote für genau diese Typnummer. Anzeige · Händlersuche für Steckdosenthermostate.
 
 ## Für Mieter
 
-Ein Steckdosenthermostat oder ein Funk-Thermostat mit Steckdosen-Empfänger braucht keine Installation und ist mit einem Handgriff wieder draußen. Anders sieht es beim Panel selbst aus: Ein Wandpanel wird verschraubt. Wer nicht bohren will, findet die Alternative im Ratgeber [Infrarotheizung als Standgerät](https://getecoback.com/guide/infrarotheizung-standgeraet.html). Welche Leistung dein Raum braucht, rechnet der [Watt-Rechner](https://getecoback.com/guide/infrarotheizung-watt-rechner.html), und wann sich Infrarot überhaupt lohnt, steht im [Infrarotheizung-Ratgeber](https://getecoback.com/guide/infrarotheizung-ratgeber.html).
+Bei einer laut Anleitung geeigneten Kombination kommt ein Steckdosenempfänger ohne feste Verdrahtung aus. Ein Wandpanel kann trotzdem Bohrungen erfordern. Eine Alternative zeigt der Ratgeber [Infrarotheizung als Standgerät](https://getecoback.com/guide/infrarotheizung-standgeraet.html). Die geschätzte Raumleistung findest du im [Watt-Rechner](https://getecoback.com/guide/infrarotheizung-watt-rechner.html), Hinweise zur Nutzung im [Infrarotheizung-Ratgeber](https://getecoback.com/guide/infrarotheizung-ratgeber.html).
 
 ## Häufige Fragen
 
 ### Braucht eine Infrarotheizung ein Thermostat?
 
-Ohne Thermostat läuft sie mit voller Leistung, solange sie eingeschaltet ist. Ein 600-Watt-Panel braucht dann an einem Abend von acht Stunden 4,8 kWh, bei 0,30 Euro pro kWh rund 1,44 Euro. Mit Thermostat läuft es nur, solange der Raum unter der Zieltemperatur liegt. Wie viel das spart, zeigt ein Energiekostenmessgerät nach einem Abend.
+Reicht die eingebaute Regelung aus, brauchst du kein zusätzliches Thermostat. Möchtest du extern schalten, prüfe die Freigabe für die genaue Gerätekombination, das Verhalten nach Stromunterbrechung und die zulässige Heizlast.
 
 ### Welches Thermostat für eine Infrarotheizung in der Mietwohnung?
 
-Ein Steckdosenthermostat oder ein Funk-Thermostat, dessen Empfänger in die Steckdose kommt. Beide brauchen keine Installation. Ein fest verdrahtetes Wandthermostat gehört in die Hand einer Elektrofachkraft und ist in der Mietwohnung eine Frage an den Vermieter.
+Ein Steckdosen- oder Funkthermostat mit Steckempfänger kommt nur für eine laut Hersteller geeignete Kombination infrage. Für ein fest verdrahtetes Wandthermostat sind eine Elektrofachkraft und in der Mietwohnung die Abstimmung mit dem Vermieter erforderlich.
 
 ### Wo soll das Thermostat für eine Infrarotheizung hin?
 
@@ -77,7 +89,7 @@ Dorthin, wo du dich aufhältst, aber nicht in die Strahlung des Panels, nicht in
 
 ### Spart ein Thermostat bei der Infrarotheizung wirklich Strom?
 
-Es spart Stunden, nicht Leistung. Wie viele, hängt an Dämmung, Außentemperatur und Panelgröße. Zeigt ein Energiekostenmessgerät nach acht Stunden an einem 600-Watt-Panel die vollen 4,8 kWh, hat das Thermostat nie abgeschaltet und spart nichts: Dann ist das Panel für den Raum zu klein oder der Zielwert zu hoch.
+Es kann den Stromverbrauch senken, wenn es die Einschaltzeit verkürzt. Wie viele kWh das ausmacht, hängt vom Raum, dem Sollwert und der bisherigen Regelung ab. Vergleiche die gemessenen kWh unter möglichst ähnlichen Bedingungen.
 
 **Woher die Aussagen kommen.** Die Kosten sind Watt × Stunden × 0,30 €/kWh, die 60 W/m² die untere Stufe unseres [Watt-Rechners](https://getecoback.com/guide/infrarotheizung-watt-rechner.html). Die Hinweise zum Aufstellort des Fühlers (nicht in starker Sonne, entfernt von Heizplatten, nicht in Nischen, hinter Vorhängen oder Möbeln) stehen bei heizung.de, der Abstand zum Heizgerät, die Fußleistenhöhe der Steckdosen und dass Funk-Thermostate mehrere Panels ansteuern können bei heizungsfinder.de (beide abgerufen am 24.09.2026). Wir haben kein Thermostat getestet. Das ist keine Elektroberatung.
 

@@ -18,6 +18,10 @@ Bei 0,30 €/kWh kostet eine Stunde Volllast mit 1.800 W genau **0,54 €** (1,8
 
 **Nur Zusatzwärme an einem Platz?** Ob im bereits beheizten Bad 130, 300 oder 450 W genügen, lässt sich aus der gesamten Badfläche oder einem geschätzten Teil der Fläche nicht ableiten. Prüfe zuerst, wo du Wärme brauchst und wie das Panel laut Hersteller dafür angebracht werden darf.
 
+Reicht die vorhandene Heizung am gewünschten Platz, kannst du auf ein Zusatzgerät verzichten. Für kurze Einsätze [vergleiche die Stromkosten mit Watt und Einschaltzeit](https://getecoback.com/guide/heizkosten-vergleich-rechner.html#heizluefter-oder-infrarot). Die Wärme am Sitzplatz und den Strom pro Einsatz prüfst du getrennt.
+
+Steht ein Gerät schon fest, [prüfe die passende Regelung in seiner Anleitung](https://getecoback.com/guide/infrarotheizung-thermostat.html#belastbarkeit-die-zahl-auf-dem-thermostat). Manche Geräte bleiben nach einer Stromunterbrechung im Standby.
+
 **Heizleistung für den ganzen Raum grob schätzen**
 
 Raumgröße (m²)
@@ -76,7 +80,7 @@ Deshalb gilt: Eine Infrarotheizung lohnt sich als **Zusatzheizung** für einzeln
 **Raumheizlast und Anschluss geklärt? Hier kannst du die Leistungsangaben der angebotenen Panels vergleichen.**
 
 Infrarotheizungen ansehen →
-  Mit Thermostat →
+  [Thermostat vor dem Kauf prüfen →](https://getecoback.com/guide/infrarotheizung-thermostat.html#belastbarkeit-die-zahl-auf-dem-thermostat)
 
 **Weitere Ratgeber**
 [🔥 Heizkosten-Vergleich: drei Zusatzheizungen im Rechner →](https://getecoback.com/guide/heizkosten-vergleich-rechner.html)

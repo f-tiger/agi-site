@@ -1482,6 +1482,8 @@ async function mcpCallTool(name, args, env) {
     return mcpToolResult(
       `Grobe Schätzung für einen ganzen Raum mit ${qm} m² (${insulation}, ${wPerQm} W/m²): ca. ${watt.toLocaleString("de-DE")} Watt.\n` +
       "Das Baujahr allein reicht für die Wahl der Dämmstufe nicht aus. Für punktuelle Zusatzwärme zählen Einbauort und Abstand laut Geräteanleitung. Bei einer Hauptheizung die Raumheizlast fachlich ermitteln lassen.\n" +
+      "Kurze Einsätze nach Watt und Einschaltzeit vergleichen: https://getecoback.com/guide/heizkosten-vergleich-rechner.html#heizluefter-oder-infrarot\n" +
+      "Vor einem Thermostatkauf die Geräteanleitung prüfen: https://getecoback.com/guide/infrarotheizung-thermostat.html#belastbarkeit-die-zahl-auf-dem-thermostat\n" +
       purchaseCheck +
       `Bei ${price.toFixed(2).replace(".", ",")} €/kWh sind es rechnerisch ${perH.toFixed(2).replace(".", ",")} € pro Stunde Volllast. Den tatsächlichen Verbrauch bestimmt die Laufzeit.\n` +
       `Rechner und Rechenweg: ${citationUrl}#watt-rechner-raumgroesse-und-daemmung-eingeben\n${MCP_DISCLOSURE}`,
