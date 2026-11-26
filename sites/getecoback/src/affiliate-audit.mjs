@@ -11,6 +11,12 @@ const comfeeCataloguePages = [
   '/guide/waesche-trocknen-wohnung.html',
 ];
 const comfeeBaseProduct = 'https://www.amazon.de/dp/B07KJX6RDK?tag=getecoback-21';
+export const THERMOSTAT_PAGE = '/guide/smarte-heizkoerperthermostate-lohnen-sich.html';
+export const THERMOSTAT_PACKAGE_EVENTS = {
+  eco_thermostat_package_bosch:'bosch_ii_m',
+  eco_thermostat_package_fritz:'fritz_302',
+};
+const firstFullThermostatPackageDay = '2026-11-27';
 
 // Bounded, aggregate-only history for distinguishing demand/mix changes from
 // telemetry loss. No identifiers, raw paths, referrers or outbound URLs leave
@@ -57,6 +63,8 @@ export const AUDIT_SQL = `SELECT day, name, page, ref,
 FROM ev
 WHERE (name IN ('page_view','affiliate_click')
     OR (name='eco_window_width_check' AND page='${WINDOW_ENTRY_PAGE}' AND ua_class='human')
+    OR (name IN ('${Object.keys(THERMOSTAT_PACKAGE_EVENTS).join("','")}') AND page='${THERMOSTAT_PAGE}'
+      AND ua_class='human' AND meta='' AND ref='' AND day>='${firstFullThermostatPackageDay}')
     OR (name IN ('${LAUNDRY_SEASON_EVENTS.join("','")}') AND page='${LAUNDRY_SEASON_PAGE}' AND ua_class='human'))
   AND day >= date('now','-56 days') AND day < date('now')
   AND (ua_class IS NULL OR ua_class='human') AND page NOT LIKE '/__ci%'
@@ -102,7 +110,7 @@ const count = ()=>({page_views:0,affiliate_clicks:0});
 // Additive, exact intent paths for the DACH buying pilot. Do not reclassify the
 // frozen experiment cohorts or export arbitrary page names from event rows.
 const buyingPathKeys = new Map([
-  ['/guide/smarte-heizkoerperthermostate-lohnen-sich.html','smart_thermostat'],
+  [THERMOSTAT_PAGE,'smart_thermostat'],
   ['/guide/saugwischer-kaufberatung.html','saugwischer'],
   ['/guide/saugroboter-kaufberatung.html','robot'],
   ['/guide/luftbefeuchter-ratgeber.html','humidifier'],
@@ -123,6 +131,7 @@ const range = (start,end)=>({...section(),start,end_exclusive:end,
   window_tiktok:null,
   window_reddit_referrals:null,
   laundry_season:null,
+  thermostat_package_handoffs:null,
   comfee_catalog:null,
   vacuum_catalog: end <= firstFullVacuumDay ? null : {
     start: start < firstFullVacuumDay ? firstFullVacuumDay : start, end_exclusive:end,
@@ -199,6 +208,16 @@ function addLaundrySeason(section, row) {
   };
   if (row.day < actions.first_recorded_day) actions.first_recorded_day = row.day;
   actions[field] = (actions[field] ?? 0) + row.n;
+}
+
+function addThermostatPackage(section, row) {
+  if (row.n === 0) return;
+  const actions = section.thermostat_package_handoffs ??= {
+    first_recorded_day:row.day, bosch_ii_m:null, fritz_302:null,
+  };
+  if (row.day < actions.first_recorded_day) actions.first_recorded_day = row.day;
+  const key = THERMOSTAT_PACKAGE_EVENTS[row.name];
+  actions[key] = (actions[key] ?? 0) + row.n;
 }
 
 function addVacuumCatalogue(section, row) {
@@ -284,7 +303,8 @@ export async function affiliateAudit(db,classifyRef,now=new Date()) {
   const recentThree=range(dayAt(end,-3),end),previousThree=range(dayAt(end,-10),dayAt(end,-7));
   for(const r of rows) {
     const laundrySeason = LAUNDRY_SEASON_EVENTS.includes(r.name);
-    if(!Number.isSafeInteger(r.n)||r.n<0||!byDay.has(r.day)||(!laundrySeason&&!['page_view','affiliate_click','eco_window_width_check'].includes(r.name))) throw Error('affiliate_audit_invalid');
+    const thermostatPackage = Object.hasOwn(THERMOSTAT_PACKAGE_EVENTS,r.name);
+    if(!Number.isSafeInteger(r.n)||r.n<0||!byDay.has(r.day)||(!laundrySeason&&!thermostatPackage&&!['page_view','affiliate_click','eco_window_width_check'].includes(r.name))) throw Error('affiliate_audit_invalid');
     const eligible = r.window_human_views ?? 0;
     if (!Number.isSafeInteger(eligible) || eligible < 0 || eligible > r.n) throw Error('affiliate_audit_invalid');
     const comfeeEligible = r.comfee_human_events ?? 0;
@@ -292,6 +312,12 @@ export async function affiliateAudit(db,classifyRef,now=new Date()) {
     const wi=Math.floor((Date.parse(r.day)-Date.parse(start))/86400000/7);
     const recent=r.day>=recentThree.start;
     const previous=r.day>=previousThree.start&&r.day<previousThree.end_exclusive;
+    if (thermostatPackage) {
+      addThermostatPackage(weeks[wi],r);
+      if (recent) addThermostatPackage(recentThree,r);
+      if (previous) addThermostatPackage(previousThree,r);
+      continue;
+    }
     if (laundrySeason) {
       addLaundrySeason(weeks[wi],r);
       if (recent) addLaundrySeason(recentThree,r);
@@ -318,6 +344,7 @@ export async function affiliateAudit(db,classifyRef,now=new Date()) {
     window_tiktok_note:'Complete UTC days start 2026-11-23. The fixed tags and same-site handoff mark three independent event counts. Unobserved stages are null. A shared or typed link can carry the fixed tags.',
     window_reddit_note:'Human-classified view events on the German indoor window guide only. Reddit is an exact immediate referrer host. A missing referrer may hide a visit. No usable referrer evidence is null. This report does not attribute tool completions, affiliate clicks or orders.',
     laundry_season_note:'German laundry season tool actions on complete UTC days. Tracking may begin partway through the first recorded UTC day. Measured comparisons and model guide clicks are independent events. Unobserved stages are null. These counts do not attribute merchant clicks or orders.',
+    thermostat_package_note:'Complete UTC days from 2026-11-27. Counts are clicks from two named valve compatibility answers into the matching package section on the German guide. Unobserved actions are null. These events do not represent visitors, affiliate clicks, orders or commissions.',
     vacuum_catalog_note:'Complete UTC days start 2026-11-26. Views cover the entire product catalogue. Clicks count the three exact German model searches. These are independent events and do not identify comparison use, unique shoppers, attribution to acquisitions, orders, or commission.',
     comfee_catalog_note:'Complete UTC days start 2026-11-26. Human-classified events only. Views cover all three German guides. Clicks count the fixed base-model product destination from their model comparison lists. No eligible evidence is null. A recorded zero is limited to these events. The stages are independent and do not count card impressions, individuals, orders or commission.',
     known_collection_gaps:GAPS.filter(x=>x.day>=start&&x.day<end),

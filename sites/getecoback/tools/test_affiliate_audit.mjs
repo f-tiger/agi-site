@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {AUDIT_SQL,affiliateAudit,pageGroup,pageGroupV2,COHORTS_V2_VERSION} from '../src/affiliate-audit.mjs';
+import worker from '../src/worker.js';
 
 const fixture=`import sqlite3,json,sys
 db=sqlite3.connect(':memory:');db.row_factory=sqlite3.Row
@@ -20,6 +21,41 @@ sql=sys.stdin.read().replace("date('now'","date('2026-10-01'")
 print(json.dumps({'rows':[dict(r) for r in db.execute(sql)],'plan':[r[3] for r in db.execute('EXPLAIN QUERY PLAN '+sql)]}))`;
 function data(){const r=spawnSync('python3',['-c',fixture],{input:AUDIT_SQL,encoding:'utf8'});assert.equal(r.status,0,r.stderr);return JSON.parse(r.stdout);}
 const dbFor=rows=>({prepare(sql){assert.equal(sql,AUDIT_SQL);return {all:async()=>({results:rows,meta:{rows_read:30}})};}});
+
+test('thermostat package collector accepts only the exact site action and stores no context', async () => {
+ const origin = 'https://getecoback.com';
+ const page = '/guide/smarte-heizkoerperthermostate-lohnen-sich.html';
+ const name = 'eco_thermostat_package_bosch';
+ const writes = [];
+ const env = {EVENTS:{prepare(sql) {
+   assert.match(sql,/INSERT INTO ev /);
+   return {bind(...values) { return {async run(){ writes.push(values); }}; }};
+ }}};
+ async function send(body, extras={}, query='') {
+   const response = await worker.fetch(new Request(origin + '/api/ev' + query, {
+     method:'POST',
+     headers:{Origin:origin,'Content-Type':'application/json','User-Agent':'Mozilla/5.0 Chrome/142.0','CF-IPCountry':'DE',...extras},
+     body:JSON.stringify(body),
+   }),env,{});
+   return [response.status,await response.json()];
+ }
+ const action = {n:name,p:page};
+ for (const body of [{...action,r:'https://example.test/private'},{...action,m:{}},{...action,p:'/produkte.html'}]) {
+   assert.deepEqual(await send(body),[400,{ok:false,error:'invalid_thermostat_package_event'}]);
+ }
+ assert.deepEqual(await send(action,{Origin:'https://example.test'}),[400,{ok:false,error:'invalid_thermostat_package_event'}]);
+ for (const headers of [{DNT:'1'},{'Sec-GPC':'1'},{'X-Probe':'1'},{'User-Agent':'getecoback-ci/test'}]) {
+   assert.deepEqual(await send(action,headers),[200,{ok:true,skipped:true}]);
+ }
+ assert.deepEqual(await send(action,{},'?__probe=1'),[200,{ok:true,skipped:true}]);
+ assert.deepEqual(writes,[]);
+ assert.deepEqual(await send(action),[200,{ok:true}]);
+ assert.deepEqual(await send({...action,n:'eco_thermostat_package_fritz'}),[200,{ok:true}]);
+ assert.deepEqual(writes.map(row=>row.slice(1)),[
+   [name,page,'','','','human'],
+   ['eco_thermostat_package_fritz',page,'','','','human'],
+ ]);
+});
 
 test('seasonal comparison and guide click counts use complete human days outside the affiliate totals', async () => {
  const script = `import json,sqlite3,sys
@@ -669,4 +705,61 @@ print(json.dumps([dict(row) for row in db.execute(sql)]))`;
   assert.equal(noEvidence.last_three_complete_days.comfee_catalog,null);
   const empty = await affiliateAudit(dbFor([]),()=> 'direct',new Date('2026-12-05T10:00Z'));
   assert.equal(empty.weeks.at(-1).comfee_catalog,null);
+});
+
+test('thermostat package handoffs count only exact human actions on complete UTC days and leave the affiliate funnel unchanged', async () => {
+  const fixture = `import sqlite3,json,sys
+db=sqlite3.connect(':memory:'); db.row_factory=sqlite3.Row
+db.execute('CREATE TABLE ev(day,name,page,ref,ua_class,meta)')
+guide='/guide/smarte-heizkoerperthermostate-lohnen-sich.html'
+bosch='eco_thermostat_package_bosch'
+fritz='eco_thermostat_package_fritz'
+def add(day,name,page=guide,ua='human',meta=''):
+ db.execute('INSERT INTO ev VALUES(?,?,?,?,?,?)',(day,name,page,'',ua,meta))
+
+add('2026-11-26',fritz)
+add('2026-11-27',bosch); add('2026-11-27',bosch)
+add('2026-12-01',bosch)
+add('2026-12-03',fritz); add('2026-12-04',fritz)
+add('2026-12-05',bosch)
+for ua in [None,'ci','bot','other']: add('2026-12-03',bosch,ua=ua)
+for page in ['/en'+guide,'/produkte.html','/__ci/preview']: add('2026-12-03',bosch,page=page)
+for meta in ['{"private":"handoff-fixture-secret"}','{malformed','["unexpected"]']:
+ add('2026-12-03',bosch,meta=meta)
+add('2026-12-03','eco_thermostat_package_other')
+add('2026-12-03','page_view')
+add('2026-12-03','affiliate_click',meta=json.dumps({'source':'body','link_url':'https://www.amazon.de/s?tag=getecoback-21'}))
+sql=sys.stdin.read().replace("date('now'","date('2026-12-05'")
+print(json.dumps([dict(row) for row in db.execute(sql)]))`;
+  const query = spawnSync('python3',['-c',fixture],{input:AUDIT_SQL,encoding:'utf8'});
+  assert.equal(query.status,0,query.stderr);
+  const report = await affiliateAudit(dbFor(JSON.parse(query.stdout)),()=> 'direct');
+  const week = report.weeks.at(-1);
+  const recent = report.last_three_complete_days;
+  const previous = report.same_weekdays_previous_week;
+  assert.deepEqual(week.thermostat_package_handoffs,{
+    first_recorded_day:'2026-12-01',bosch_ii_m:1,fritz_302:2,
+  });
+  assert.deepEqual(recent.thermostat_package_handoffs,{
+    first_recorded_day:'2026-12-03',bosch_ii_m:null,fritz_302:2,
+  });
+  assert.deepEqual(previous.thermostat_package_handoffs,{
+    first_recorded_day:'2026-11-27',bosch_ii_m:2,fritz_302:null,
+  });
+  assert.equal(report.weeks.at(-3).thermostat_package_handoffs,null);
+  for (const range of [week,recent]) {
+    assert.deepEqual(range.buying_paths.smart_thermostat,{page_views:1,affiliate_clicks:1});
+    assert.deepEqual(range.channels.direct,{page_views:1,affiliate_clicks:1});
+    assert.equal(range.page_views,1);
+    assert.equal(range.affiliate_clicks,1);
+    assert.deepEqual(range.destinations,{product:0,search:1,prime_trial:0,other:0});
+  }
+  assert.equal(previous.page_views,0);
+  assert.equal(previous.affiliate_clicks,0);
+  assert.equal(report.daily.reduce((sum,row) => sum + row.affiliate_clicks,0),1);
+  assert.equal(report.amazon_orders,null);
+  assert.doesNotMatch(JSON.stringify(report),/handoff-fixture-secret|malformed/);
+
+  const empty = await affiliateAudit(dbFor([]),()=> 'direct',new Date('2026-12-05T08:00:00Z'));
+  assert.equal(empty.weeks.at(-1).thermostat_package_handoffs,null);
 });

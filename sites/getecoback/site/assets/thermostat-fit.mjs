@@ -52,10 +52,16 @@ export function selectionLink(model, valve, data) {
 }
 
 const allowedSource = url => /^https:\/\/(?:support\.tado\.com|help\.tado\.com|cdn\.brandfolder\.io|www\.verbraucherzentrale\.de|www\.bosch-smarthome\.com|fritz\.com)\//.test(url);
+const guidePath = '/guide/smarte-heizkoerperthermostate-lohnen-sich.html';
+const packageHandoffs = {
+  '#thermostat-bosch-ii-m': ['#bosch-ii-m-danfoss-adapter', 'eco_thermostat_package_bosch'],
+  '#thermostat-fritz-302': ['#fritz-302-danfoss-adapter', 'eco_thermostat_package_fritz'],
+};
 if (typeof document !== 'undefined') for (const root of document.querySelectorAll('[data-valve-check]')) {
   const data = JSON.parse(root.querySelector('[data-valve-data]').textContent);
   const model = root.querySelector('[name=valve-model]'), valve = root.querySelector('[name=valve-connection]');
   const result = root.querySelector('[data-valve-result]'), status = root.querySelector('[data-valve-share-status]');
+  const packageClicks = new Set();
   const emit = name => {
     try { if (localStorage.getItem('fleet_ga4_choice_v1') === 'denied') return; } catch {}
     window.dispatchEvent(new CustomEvent('fleet:business', {detail:{name}}));
@@ -76,6 +82,28 @@ if (typeof document !== 'undefined') for (const root of document.querySelectorAl
     const link = ev.target.closest?.('a[data-valve-official]');
     if (link && root.contains(link) && allowedSource(link.href)) emit('eco_valve_official');
   });
+  function recordPackageHandoff(event) {
+    if (!event.isTrusted || event.defaultPrevented || document.visibilityState !== 'visible' ||
+        (event.type === 'click' ? event.button !== 0 : event.button !== 1) ||
+        window.top !== window.self || location.origin !== 'https://getecoback.com' || location.pathname !== guidePath ||
+        navigator.webdriver || navigator.doNotTrack === '1' || navigator.globalPrivacyControl) return;
+    const query = new URLSearchParams(location.search);
+    if (['__probe','__ci','ci','__qa','qa'].some(key => query.has(key)) || query.get('utm_source') === 'verify') return;
+    const link = event.target.closest?.('a[href^="#thermostat-"]');
+    const destination = link?.getAttribute('href');
+    if (!Object.hasOwn(packageHandoffs, destination)) return;
+    const [from, name] = packageHandoffs[destination];
+    if (!link.closest(from) || packageClicks.has(name)) return;
+    try { if (localStorage.getItem('fleet_ga4_choice_v1') === 'denied') return; } catch { return; }
+    packageClicks.add(name);
+    fetch('/api/ev', {
+      method:'POST', keepalive:true, credentials:'omit', referrerPolicy:'origin',
+      headers:{'content-type':'application/json'},
+      body:JSON.stringify({n:name,p:guidePath}),
+    }).catch(() => {});
+  }
+  root.addEventListener('click', recordPackageHandoff);
+  root.addEventListener('auxclick', recordPackageHandoff);
   root.querySelector('[data-valve-share]').addEventListener('click', async () => {
     const url = selectionLink(model.value, valve.value, data); if (!url) return;
     try {
