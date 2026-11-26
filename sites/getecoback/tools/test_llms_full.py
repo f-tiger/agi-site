@@ -128,6 +128,36 @@ class LlmsFull(unittest.TestCase):
         self.assertNotIn('data-laundry-season', mirror)
         self.assertNotIn('waesche-saisonwechsel', (SITE / 'en/guide/dehumidifier-drying-clothes-cost.html').read_text())
 
+    def test_german_rental_cooling_faq_and_buying_checks_match_explicit_scope(self):
+        import json
+        page = SITE / 'guide/klimaanlage-mietwohnung.html'
+        html = page.read_text()
+        md = page.with_suffix('.md').read_text()
+        documents = [json.loads(x) for x in re.findall(
+            r'<script type="application/ld\+json">(.*?)</script>', html, re.S)]
+        [faq] = [doc for doc in documents if doc.get('@type') == 'FAQPage']
+        visible = re.findall(r'<p data-rental-faq><strong>(.*?)</strong><br>\s*(.*?)</p>', html, re.S)
+        self.assertEqual(visible, [(item['name'],item['acceptedAnswer']['text']) for item in faq['mainEntity']])
+        self.assertEqual(len(visible), 4)
+        for q,answer in visible:
+            self.assertIn(q, md)
+            self.assertIn(answer, md)
+        for document in (html, md):
+            for fact in ('Mietvertrag und Hausordnung', 'sicheren Außenplatz', 'Warte mit der Bestellung',
+                         '4048164116478', 'Fenstereinbausatz als optional', 'V ZR 162/25',
+                         'www.bundesgerichtshof.de/SharedDocs/Pressemitteilungen/DE/2026/2026130.html',
+                         'midea.com/de/klimatisieren-heizen/portasplit/installation',
+                         'comfee-MPPH-09CRN7-User-Manual-DE-FR-EN-ES-IT-NL.pdf#page=19'):
+                self.assertIn(fact,document)
+            self.assertNotRegex(document, r'~(?:700|230) €|35–42 dB|Alles rückstandslos Entfernbare geht ohne|Mobil ohne Bohren geht ohne Erlaubnis')
+        for anchor,merchant in (
+            ('mietwohnung-portasplit','https://www.amazon.de/s?k=Midea+PortaSplit&amp;tag=getecoback-21'),
+            ('mietwohnung-comfee','https://www.amazon.de/dp/B07KJYD1ZP?tag=getecoback-21'),
+        ):
+            card = re.search(r'<section class="cta-box" aria-labelledby="'+anchor+r'">.*?</section>',html,re.S)[0]
+            self.assertEqual(re.findall(r'href="(https://www.amazon.de/[^"]+)"',card),[merchant])
+        self.assertNotRegex(md, r'amazon\.de/|getecoback-21')
+
     def test_cooling_discount_reference_is_static_and_matches_the_mirror(self):
         page = SITE / 'guide/klimaanlage-wann-kaufen.html'
         source = page.read_text()

@@ -1,91 +1,85 @@
-# Klimaanlage in der Mietwohnung: Was erlaubt ist (2026)
+# Klimaanlage in der Mietwohnung: Fenster und Aufstellung
 
-> Klimaanlage in der Mietwohnung: Was ohne Genehmigung des Vermieters erlaubt ist und welche Geräte ohne Bohren funktionieren — der ehrliche Ratgeber 2026.
+> Monoblock oder mobile Split-Klimaanlage für die Mietwohnung? Prüfe Abluft, Außengerät, Befestigung und nötige Zustimmung vor dem Kauf.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/klimaanlage-mietwohnung.html
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
 
-Als Mieter willst du bei 35 °C nicht schwitzen — aber du willst auch keine Kaution riskieren oder dich mit dem Vermieter anlegen. Die gute Nachricht: Für die meisten Mietwohnungen gibt es Kühlung ganz ohne bauliche Veränderung. Die schlechte: Ausgerechnet die fest installierte Split-Klimaanlage, die am besten kühlt, ist genau die, die du **nicht** einfach anbringen darfst. Hier der ehrliche Überblick, was geht und was nicht.
+Ein Monoblock braucht einen Weg für die Abluft. Ein mobiles Splitgerät braucht einen sicheren Platz für das Außengerät. Kläre vor der Bestellung, was am Fenster oder Balkon möglich ist und welche Zustimmung für deine geplante Aufstellung nötig ist.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis. Dieser Artikel ist keine Rechtsberatung.
 
-## Die Grundregel: Was ohne bauliche Veränderung auskommt, ist meist erlaubt
+## Vor dem Kauf Fenster und Aufstellort prüfen
 
-Vereinfacht gilt: Alles, was du beim Auszug rückstandslos wieder mitnimmst und keine Löcher, keine Kernbohrung, keine feste Montage hinterlässt, fällt in der Regel unter deinen normalen Mietgebrauch und braucht **keine Genehmigung**. Sobald gebohrt, ein Loch in die Wand gebracht oder etwas fest an der Fassade montiert wird, ist es eine bauliche Veränderung — und die braucht die schriftliche Zustimmung des Vermieters.
+Prüfe Fensterform, Abluftweg und Platz am Aufstellort. Geht etwas über Fenster, Brüstung oder Fassade nach außen, kläre die konkrete Aufstellung und Befestigung mit Vermieter oder Hausverwaltung. Mietvertrag und Hausordnung helfen bei der Klärung. Warte mit der Bestellung, wenn Standort, Befestigung oder Zustimmung noch offen sind.
 
-## Was du als Mieter ohne Genehmigung nutzen darfst
+## Mobile Geräte und ihre Voraussetzungen
 
-- **Ventilatoren & Turmventilatoren** — völlig problemlos. Ein Turmventilator ist der einfachste Einstieg.
+- **Ventilator:** Ein Turmventilator bewegt die Luft im Zimmer.
 
-- **Tragbare Monoblock-Klimaanlage** — der Klassiker für Mieter: steht frei im Raum, der Abluftschlauch geht durchs gekippte Fenster, kein Bohren. Mit einer Fensterabdichtung zum Klemmen bleibt die warme Luft draußen — rückstandslos entfernbar.
+- **Monoblock:** Das Gerät steht im Zimmer und führt Abluft per Schlauch nach draußen. Prüfe Fensteröffnung, Schlauchführung und eine passende Fensterabdichtung.
 
-- **Luftkühler** — kleiner Effekt, aber ebenfalls genehmigungsfrei (Grenzen: siehe [Klimaanlage vs. Luftkühler](https://getecoback.com/guide/klimaanlage-vs-luftkuehler.html)).
+- **Luftkühler:** Prüfe die Funktionsweise und ob sie zu deinem Raum passt. [Klimaanlage und Luftkühler vergleichen](https://getecoback.com/guide/klimaanlage-vs-luftkuehler.html).
 
-- **Quick-Connect-Splitgeräte ohne Kernbohrung** — die Innen-/Außeneinheit wird durchs gekippte Fenster verbunden, ohne Loch in der Wand. Rechtlich eine Grauzone, wenn die Außeneinheit nur auf dem Balkon steht und nichts gebohrt wird — trotzdem **vorher kurz beim Vermieter anfragen** (Details: [Split ohne Kernbohrung](https://getecoback.com/guide/split-klimaanlage-ohne-kernbohrung.html)).
+- **Mobiles Splitgerät:** Innen- und Außengerät sind über eine Leitung verbunden. Kläre einen sicheren Außenplatz, die zulässige Befestigung und die Durchführung anhand der Anleitung. [Montageart gesondert prüfen](https://getecoback.com/guide/split-klimaanlage-ohne-kernbohrung.html).
 
-## Was du NICHT ohne Zustimmung darfst
+## Feste Montage vorher abstimmen
 
-- **Fest installierte Split-Klimaanlage** mit Kernbohrung durch die Außenwand und fest an der Fassade verschraubter Außeneinheit — das ist eine bauliche Veränderung und ohne schriftliche Genehmigung tabu.
+Eine fest installierte Split-Klimaanlage mit Wanddurchbruch und Fassadenmontage greift in das Gebäude ein. Hole vor der Beauftragung die Zustimmung des Vermieters schriftlich ein. Kläre auch dauerhafte Änderungen am Fenster vorab. [Verbraucherzentrale zur Installation von Klimageräten](https://www.verbraucherzentrale.de/wissen/energie/energetische-sanierung/klimaanlage-installieren-was-ist-zu-beachten-10525).
 
-- **Dauerhafte Fensterdurchbrüche** oder das Ersetzen von Fensterscheiben durch feste Durchführungen.
+## Monoblock und Splitgeräte im Vergleich
 
-## Der praktische Mieter-Kompromiss
+Was du vor der Auswahl prüfen kannst
 
-| Lösung | Genehmigung? | Kühlleistung | Beim Auszug |
-| --- | --- | --- | --- |
-| Turmventilator | Nein | Gering (Luftbewegung) | Mitnehmen |
-| Tragbare Monoblock-Klimaanlage | Nein | Gut | Rückstandslos |
-| Quick-Connect-Split | Anfragen empfohlen | Sehr gut, leise | Mitnehmen |
-| Fest verbaute Split | Ja, schriftlich | Am besten | Ggf. Rückbau nötig |
+| Lösung | Aufstellung | Entscheidung vor dem Kauf |
+| --- | --- | --- |
+| Ventilator | Im Zimmer | Reicht dir Luftbewegung? |
+| Monoblock | Im Zimmer, Abluftschlauch nach draußen | Passt die Durchführung zum Fenster? |
+| Mobiles Splitgerät | Innen- und Außengerät mit Leitung | Sicheren Außenplatz, Befestigung und Zustimmung klären. |
+| Festes Splitgerät | Feste Montage, häufig mit Wanddurchbruch | Schriftliche Zustimmung und fachliche Planung vorab klären. |
 
-Für die allermeisten Mieter ist die **tragbare Monoblock-Klimaanlage die pragmatischste Wahl**: sofort einsatzbereit, keine Genehmigung, beim Umzug kommt sie einfach mit. Wer dauerhaft und leise kühlen will und einen Balkon hat, fährt mit einem Quick-Connect-Split besser — sollte aber vorher kurz mit dem Vermieter sprechen.
+Wenn ein sicherer Außenplatz fehlt, prüfe einen Monoblock mit geeigneter Abluftführung. Fehlt auch dafür eine passende Öffnung, prüfe zunächst Verschattung oder einen vorhandenen Ventilator.
 
-## Neu seit Juli 2026: das BGH-Urteil zur Klimaanlage
+## Was das BGH-Urteil von 2026 regelt
 
-Am **17. Juli 2026** hat der Bundesgerichtshof entschieden (Az. **V ZR 162/25**): Ein **Wohnungseigentümer** kann von seiner Eigentümergemeinschaft grundsätzlich verlangen, dass ihm der Einbau einer Split-Klimaanlage **gestattet wird** — auch wenn dafür die Fassade durchbohrt werden muss (§ 20 Abs. 3 WEG). Abstrakte Lärmsorgen der Nachbarn reichen für ein Nein regelmäßig nicht aus. Ein Beschluss der Gemeinschaft bleibt trotzdem nötig — das Urteil ist eine Anspruchsgrundlage, kein Freifahrtschein zum einfach Losbohren.
+Das [BGH-Urteil vom 17. Juli 2026 (V ZR 162/25)](https://www.bundesgerichtshof.de/SharedDocs/Pressemitteilungen/DE/2026/2026130.html) behandelt den Antrag von Wohnungseigentümern auf Gestattung eines Splitgeräts am Balkon. Maßgeblich waren die Umstände des konkreten Einbaus im Verhältnis zur Wohnungseigentümergemeinschaft. Die geplante Aufstellung in einer Mietwohnung ist separat mit dem Vermieter zu klären.
 
-**Was heißt das für dich als Mieter?** Direkt erst einmal nichts — die Grundregeln oben gelten unverändert: Mobil ohne Bohren geht ohne Erlaubnis, fest installiert nur mit schriftlicher Zustimmung. Aber eine häufige Absage deines Vermieters verliert an Kraft: „Die Eigentümergemeinschaft würde das nie erlauben" zieht seit Juli 2026 deutlich seltener, denn ist dein Vermieter selbst Eigentümer in einer WEG, kann er sich jetzt auf genau diesen Gestattungsanspruch berufen. Wer eine feste Anlage möchte, fragt also am besten erneut — höflich, schriftlich und mit Verweis auf das Urteil.
-
-Hinweis: Das ist eine redaktionelle Zusammenfassung, keine Rechtsberatung. Im Streitfall hilft der örtliche Mieterverein oder eine Anwältin für Mietrecht.
-
-**Du wohnst in Österreich?** Dann gilt für dich nichts von dem, was oben aus dem BGB zitiert ist. Das Mietrechtsgesetz regelt Veränderungen der Wohnung in § 9 MRG — mit einer Anzeigepflicht, einer Zwei-Monats-Frist und sieben Bedingungen, die es im deutschen Recht so nicht gibt: [Klimaanlage in der Mietwohnung in Österreich: § 9 MRG erklärt →](https://getecoback.com/guide/klimaanlage-mietwohnung-oesterreich.html)
+**Du wohnst in Österreich?** Prüfe dafür die eigene Länderübersicht. [Klimaanlage in der Mietwohnung in Österreich: § 9 MRG erklärt →](https://getecoback.com/guide/klimaanlage-mietwohnung-oesterreich.html)
 
 ## Häufige Fragen
 
-**Ist eine Klimaanlage in der Mietwohnung erlaubt?**Ja — solange sie ohne bauliche Veränderung auskommt. Eine tragbare Monoblock-Klimaanlage steht frei im Raum, der Abluftschlauch geht durchs gekippte Fenster, nichts wird gebohrt: Das fällt in der Regel unter den normalen Mietgebrauch und braucht keine Genehmigung.
+**Ist eine Klimaanlage in der Mietwohnung erlaubt?** Entscheidend ist die geplante Aufstellung. Prüfe Mietvertrag und Hausordnung. Kläre bei einem Außengerät, einer Befestigung am Gebäude oder einem Eingriff in Fenster oder Wand vorab die nötige Zustimmung.
 
-**Darf ich als Mieter eine Klimaanlage auf dem Balkon aufstellen?**Ein frei stehendes mobiles Gerät auf dem Balkon ist meist unkritisch. Sobald aber ein Außengerät fest an Fassade, Balkonbrüstung oder Wand montiert wird, ist es eine bauliche Veränderung — dafür brauchst du die schriftliche Zustimmung des Vermieters.
+**Darf ich als Mieter eine Klimaanlage auf dem Balkon aufstellen?** Kläre den konkreten Standort und die Befestigung des Außengeräts mit Vermieter oder Hausverwaltung. Prüfe einen sicheren Stand nach Herstelleranleitung und mögliche Geräusche an benachbarten Fenstern.
 
-**Wann brauche ich die Zustimmung des Vermieters?**Immer dann, wenn gebohrt, ein Loch in die Wand gebracht oder etwas fest montiert wird — also bei jeder Split-Klimaanlage mit Außengerät und bei fest verschraubten Fensterdurchführungen. Alles rückstandslos Entfernbare geht ohne.
+**Welche Klimaanlage kommt ohne Wanddurchbruch aus?** Ein Monoblock kann Abluft durch eine geeignete Fensteröffnung abführen. Bei einem mobilen Splitgerät müssen der Außenplatz, eine passende Halterung und der Leitungsweg zur Anleitung passen.
 
-**Welche Klimaanlage ist die beste Lösung für Mieter?**Die tragbare Monoblock-Klimaanlage mit einer klemmbaren Fensterabdichtung: keine Bohrung, beim Auszug rückstandslos entfernbar, und mit guter Abdichtung bleibt die Kühlleistung im Raum. Sie ist der praktische Kompromiss aus Kühlung und Mietrecht.
+**Was bedeutet das BGH-Urteil zur Klimaanlage für Mieter?** Das Urteil V ZR 162/25 betrifft die Gestattung eines Splitgeräts für Wohnungseigentümer durch ihre Eigentümergemeinschaft. Für deine Mietwohnung klärst du die nötige Zustimmung zur geplanten Aufstellung gesondert.
 
-**Was hat der BGH im Juli 2026 zu Klimaanlagen entschieden?**Mit Urteil vom 17. Juli 2026 (Az. V ZR 162/25) hat der BGH entschieden, dass ein Wohnungseigentümer von der Eigentümergemeinschaft grundsätzlich die Gestattung einer Split-Klimaanlage verlangen kann — auch mit Fassadendurchbohrung. Abstrakte Lärmsorgen der Nachbarn genügen nicht als Ablehnungsgrund; ein Beschluss der Gemeinschaft bleibt aber erforderlich.
+### Originale Midea PortaSplit mit Außengerät
 
-**Ändert das BGH-Urteil etwas für Mieter?**Nicht direkt — Mieter brauchen für feste Anlagen weiterhin die schriftliche Zustimmung des Vermieters. Indirekt schon: Ist der Vermieter selbst Eigentümer in einer WEG, kann er sich seit dem Urteil auf den Gestattungsanspruch berufen. Die Absage „die Eigentümergemeinschaft erlaubt das nie" trägt damit deutlich seltener.
+Die Originalvariante hat die EAN **4048164116478**. Prüfe einen sicheren Außenplatz oder die passende Halterung, den Leitungsweg und die nötige Zustimmung zur konkreten Aufstellung. Warte mit der Bestellung, wenn einer dieser Punkte ungeklärt ist.
 
-**🏆 Unsere Empfehlung für Mieter: Midea PortaSplit** — Split ohne Bohren, mieterfreundlich (innen ca. 35–42 dB)
+[Midea: Originalvariante und Zubehör](https://www.midea.com/de/klimatisieren-heizen/portasplit) · [Midea: Aufstellung und Halterung](https://www.midea.com/de/klimatisieren-heizen/portasplit/installation). Gleiche die EAN mit dem Händlerangebot ab.
 
-✓ Leise wie eine feste Split-Anlage, keine Kernbohrung, beim Auszug einfach mitnehmen · ✕ Mit ~700 € deutlich teurer als ein Monoblock, und die Außeneinheit braucht Platz am Fenster oder Balkon. Basierend auf öffentlich verfügbaren Tests — wir haben das Gerät nicht selbst getestet.
+Midea PortaSplit bei Amazon.de suchen →
 
-Preis auf Amazon.de ansehen →
+### Comfee MPPH-09CRN7 mit Abluftschlauch
 
-**Preis-Leistungs-Tipp: Comfee MPPH-09CRN7** — günstiger Monoblock, kommt beim Umzug einfach mit (~230 €)
+Prüfe vor der Bestellung, wie der Abluftschlauch nach draußen führt. Die [deutsche Comfee-Anleitung](https://www.feelcomfee.com/content/dam/comfee-aem/de/produkte/klimatisieren-heizen/mpph-09crn7/comfee-MPPH-09CRN7-User-Manual-DE-FR-EN-ES-IT-NL.pdf#page=19) führt den Fenstereinbausatz als optional auf. Prüfe bei Dreh-Kipp-Fenstern die passende Durchführung, Abdichtung und den Lieferumfang.
 
-✓ Sofort einsatzbereit, keine Genehmigung nötig, rückstandslos entfernbar · ✕ Im Betrieb deutlich hörbar — fürs Schlafzimmer eher vorkühlen statt durchlaufen lassen. Basierend auf öffentlich verfügbaren Tests — wir haben das Gerät nicht selbst getestet.
+Comfee MPPH-09CRN7 bei Amazon.de ansehen →
 
-Preis auf Amazon.de ansehen →
+## Drei Prüfungen für den Betrieb
 
-## 3 Tipps, damit es keinen Ärger gibt
+- **Kondensat:** Ablauf und Behälter nach der Anleitung für dein Gerät prüfen.
 
-- **Kondenswasser sauber ableiten:** Wasserschäden am Boden sind der häufigste Streitpunkt — Auffangbehälter regelmäßig leeren oder Schlauch sicher in einen Eimer/Abfluss führen.
+- **Fenster:** Vorher testen, wie sich Schlauch oder Leitung und Abdichtung an deinem Fenster führen lassen.
 
-- **Fensterabdichtung statt Klebeband:** Rückstände auf Rahmen/Glas vermeiden — eine Klemm-Abdichtung lässt sich rückstandslos entfernen.
+- **Abstimmung:** Bei Rückfragen Standort, Befestigung und Gerät konkret beschreiben und die Antwort vor der Bestellung abwarten.
 
-- **Bei Unsicherheit kurz schriftlich fragen:** Eine formlose E-Mail an den Vermieter („mobiles Gerät, kein Bohren") schafft Klarheit und kostet nichts.
-
-**Mieter-taugliche Geräte ansehen** (kein Bohren, rückstandslos):
+**Tragbare Geräte und passendes Zubehör vergleichen**:
 
 Tragbare Klimaanlagen →
   Fensterabdichtungen →
