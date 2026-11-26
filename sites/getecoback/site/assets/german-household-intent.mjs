@@ -271,6 +271,20 @@ export const granulateDryingChoice = {
   tool:'ratgeber_suche',
 };
 
+const emptyDehumidifierTank = {
+  path:'/guide/luftentfeuchter-zieht-kein-wasser.html',
+  id:'pruefen-bevor-du-ein-neues-geraet-kaufst',
+  tool:'entfeuchter_leerer_tank_check',
+};
+
+function asksAboutAnEmptyDehumidifierTank(query) {
+  const device = /\b(?:luft)?entfeuchter(?:s|n)?\b/;
+  const emptyTank = /\b(?:\w*tank|wasserbehaelter)\s+(?:(?:vom|des) (?:luft)?entfeuchters?\s+)?(?:(?:bleibt|ist|immer|noch|dauerhaft|weiterhin)\s+){0,3}leer\b|\bleerer?\s+(?:\w*tank|wasserbehaelter)\b/;
+  const noWater = /\b(?:zieht|sammelt|holt|entzieht)\s+(?:(?:(?:mein|der|ein)\s+)?(?:luft)?entfeuchter\s+)?(?:(?:aber|mehr|fast|trotzdem)\s+){0,3}kein\s+wasser\b/;
+  return device.test(query) && (emptyTank.test(query) || noWater.test(query)) &&
+    !asksForDehumidifierDrainRoute(query);
+}
+
 export const coolingDiscountReference = {
   path:'/guide/klimaanlage-wann-kaufen.html',
   id:'angebot-30-tage-preis',
@@ -334,6 +348,7 @@ export function exactGermanHouseholdTask(query) {
     return {path:'/guide/fensterabdichtung-selber-bauen.html',id:'abluft-ausschnitt-pruefen',tool:'abluftplatte_lochposition_pruefen'};
   if (asksForKlarsteinPackage(query)) return klarsteinPackage;
   if (asksForGranulateDryingChoice(query)) return granulateDryingChoice;
+  if (asksAboutAnEmptyDehumidifierTank(query)) return emptyDehumidifierTank;
   if (asksForCoolingDiscountReference(query)) return coolingDiscountReference;
   if (asksForOfflineThermostat(query)) return offlineThermostatChoice;
   if (asksForSiemensWaterFilter(query)) return siemensFilterDecision;
