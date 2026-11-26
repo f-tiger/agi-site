@@ -136,6 +136,9 @@ def collect():
  sections[('de','/guide/portasplit-vs-monoblock.html')]={
   'id':'bauart-vor-angebot','title':'PortaSplit oder Monoblock: Erst den Aufstellort prüfen',
   'description':'Für die originale PortaSplit Außenplatz, Befestigung und Leitungsweg prüfen. Für einen Monoblock Abluft und Fensterabdichtung prüfen. Bei unklarer Passung warte mit dem Kauf.'}
+ sections[('de','/guide/dachgeschoss-kuehlen.html')]= {
+  'id':'dachgeschoss-ohne-durchzug','title':'Dachgeschoss kühlen ohne Durchzug: Innen und außen messen',
+  'description':'Vergleiche Innen- und Außentemperatur. Lüfte im kühleren Zeitfenster, wenn sich dein Fenster sicher öffnen lässt. Nutze vorhandene Verschattung und Ventilator, solange sie für dein Ziel ausreichen.'}
  sections[('de','/guide/klimaanlage-wann-kaufen.html')]={
   'id':'angebot-30-tage-preis','title':'Klimaanlage am Black Friday kaufen? Erst den 30-Tage-Preis prüfen',
   'description':'Den niedrigsten Preis desselben Händlers aus den vorherigen 30 Tagen, dieselbe Modellvariante und den Gesamtbetrag mit Zubehör und Versand prüfen.'}

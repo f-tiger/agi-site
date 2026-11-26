@@ -1,54 +1,58 @@
 # Dachgeschoss kühlen: Hitzeschutz unterm Dach (2026)
 
-> Dachgeschoss kühlen bei 35 °C unterm Dach: kostenlose Sofortmaßnahmen, richtiges Lüften und welche Klimaanlage zu Schrägen und Kippfenstern passt.
+> Innen und außen messen, bei kühler Außenluft sicher lüften und vorhandene Verschattung nutzen. Wann sich im Dachgeschoss eine Klimaanlage lohnt.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/dachgeschoss-kuehlen.html
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
 
-Dachgeschosswohnungen sind die heißesten Wohnungen überhaupt: Das Dach heizt sich in der Sonne auf 60–80 °C auf und strahlt die Wärme direkt in deine Räume — dazu steigt die warme Luft aus dem ganzen Haus nach oben. 33–38 °C im Schlafzimmer sind in der Hitzewelle normal. Hier die Maßnahmen in der Reihenfolge, die sich bewährt hat.
+Wenn das Dachgeschoss trotz Ventilator und Verschattung heiß bleibt, miss zuerst, wann Außenluft tatsächlich kühler ist. Schon dieser Vergleich hilft bei der Entscheidung, ob vorhandene Maßnahmen reichen.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
+Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Die verlinkten Kaufberatungen können gekennzeichnete Affiliate-Links enthalten.
 
-## Stufe 1: Die Hitze aussperren (kostenlos bis ~50 €)
+## Dachgeschoss kühlen ohne Durchzug: Innen und außen messen
 
-- **Dachfenster von außen verschatten** ist die wirksamste Einzelmaßnahme: Außenrollo oder aufklebbare Sonnenschutzfolie fürs Dachfenster blockt die Strahlung, bevor sie reinkommt. Innenrollos helfen nur halb — die Wärme ist dann schon im Raum.
+- **Temperaturen vergleichen:** Miss zur gleichen Zeit im Zielraum und draußen im Schatten. Vergleiche die Raumtemperatur vor und nach dem Lüften, besonders bei nur einem Fenster.
 
-- **Tagsüber alles zu, nachts querlüften:** Fenster und Rollos tagsüber geschlossen halten; erst nach Mitternacht öffnen, wenn es draußen kühler ist.
+- **Das kühlere Zeitfenster nutzen:** Ist die Außenluft kühler, öffne das vorhandene Fenster, sofern das sicher möglich ist. Ist es draußen gleich warm oder wärmer, warte zum Kühlen auf ein günstigeres Zeitfenster und nutze die Verschattung. Lüften für Frischluft bleibt eine eigene Aufgabe.
 
-- **Wärmequellen aus:** Jede Glühbirne, jeder Standby-Fernseher heizt mit.
+- **Vorhandenes nutzen:** Richtet sich dein Ziel auf die gefühlte Temperatur, kann der vorhandene Ventilator am Sitzplatz helfen. Die Wirkung der Lüftung prüfst du am Raumthermometer.
 
-## Stufe 2: Luft bewegen (30–120 €)
+**Beispiel:** Innen 29 °C und draußen 24 °C im Schatten ergeben ein mögliches Lüftungsfenster. Wie stark der Raum bei einem Fenster tatsächlich abkühlt, zeigt die Messung danach.
 
-Ein Turmventilator macht die Hitze erträglicher, senkt sie aber nicht. Wichtig im Dachgeschoss: nachts den Ventilator ins offene Fenster stellen und heiße Luft rausblasen — das beschleunigt den Luftaustausch spürbar.
+Reichen Verschattung, Lüften und vorhandener Ventilator für dein Ziel, kannst du den Kauf verschieben. Bleibt das Zimmer trotz dieser Schritte zu warm und brauchst du eine niedrigere Raumtemperatur, prüfe erst einen sicheren Abluftweg oder Außenplatz. [Aufstellung beider Bauarten vergleichen](https://getecoback.com/guide/portasplit-vs-monoblock.html#bauart-vor-angebot).
 
-## Stufe 3: Echte Kühlung (ab ~250 €)
+[Umweltbundesamt zu Lüftung, Sonnenschutz und Ventilatoren](https://www.umweltbundesamt.de/umwelttipps-fuer-den-alltag/gegen-die-hitze-das-koennen-sie-im-sommer-fuer) · [Verbraucherzentrale zu Hitzeschutz in Wohnungen](https://www.verbraucherzentrale.de/wissen/energie/energetische-sanierung/wohnung-kuehlen-was-hilft-gegen-hitze-zu-hause-27952). Quellen geprüft am 26. November 2026.
 
-Im Dachgeschoss führt bei echter Hitze kein Weg an einer Klimaanlage vorbei — und hier gilt eine Sonderregel: **größer dimensionieren**. Wegen der Dachhitze brauchst du ~20–30 % mehr BTU als die normale Raumgröße-Empfehlung (siehe [BTU-Ratgeber](https://getecoback.com/guide/wie-viel-btu-brauche-ich.html)).
+## Sonneneintrag am Dachfenster verringern
 
-- **Tragbare Klimaanlage (ab ~250 €):** Die schnelle Lösung. Bei Dachfenstern brauchst du eine passende Dachfenster-Abdichtung für den Abluftschlauch. Tragbare Klimaanlagen ansehen →
+Nutze eine vorhandene Verschattung vor der direkten Sonne. Außenliegender Sonnenschutz fängt Strahlung vor dem Glas ab. Wenn außen keine geeignete Lösung möglich ist, kann ein heller, reflektierender Innen-Sonnenschutz helfen. Kläre in der Mietwohnung die Eignung für das konkrete Dachfenster und nötige Erlaubnisse.
 
-- **Quick-Connect-Split (ab ~800 €):** Wer jeden Sommer unterm Dach schwitzt, fährt mit einer [selbst montierbaren Split-Klimaanlage](https://getecoback.com/guide/split-klimaanlage-ohne-kernbohrung.html) leiser und effizienter — gerade bei den langen Laufzeiten, die ein Dachgeschoss braucht.
+## Vorhandenen Ventilator für mehr Komfort nutzen
 
-## Was im Dachgeschoss NICHT funktioniert
+Richte den Luftstrom auf den Aufenthaltsplatz. Luftbewegung kann auf der Haut angenehm kühlen. Für eine sinkende Raumtemperatur kommt es auf kühlere Außenluft oder eine geeignete Wärmeabfuhr an.
 
-Ehrlichkeit spart Geld: **Verdunstungs-Luftkühler sind unterm Dach meist enttäuschend** — bei 33 °C+ und aufgeheizten Dachflächen kühlen ein paar Grad Luftstrom-Differenz gefühlt kaum noch, und die zusätzliche Feuchtigkeit macht es schwüler. Spar dir die 60–80 € und geh direkt zu Stufe 1 + 3.
+## Bei verbleibendem Kühlbedarf die Aufstellung prüfen
+
+Berücksichtige im [Kühllast-Rechner](https://getecoback.com/guide/btu-rechner.html) Raumgröße, Höhe, Sonneneinstrahlung und tatsächliche Wärmequellen. Die Werte sind eine Orientierung; für große oder mehrere Räume hilft der [Check für hohe Kühllast](https://getecoback.com/guide/btu-rechner.html#hohe-kuehllast).
+
+- **Monoblock:** Prüfe Abluftführung, Schlauchanschluss und [passende Abdichtung für das konkrete Dachfenster](https://getecoback.com/guide/klimaanlage-dachfenster.html).
+
+- **Mobiles Splitgerät:** Prüfe einen sicheren Außenplatz, Leitungsweg und Befestigung. Wenn der Außenplatz oder die Abluft ungeklärt bleibt, warte mit der Bestellung.
+
+## Verdunstungskühler bei feuchter Luft einordnen
+
+Verdunstung bringt Feuchtigkeit in die Raumluft. Bei bereits hoher Luftfeuchte wird die Verdunstung gebremst. Prüfe deine Raumfeuchte und vergleiche die gemessene Raumtemperatur mit dem gewünschten Ziel.
 
 ## Häufige Fragen
 
-**Wie kühle ich meine Dachgeschosswohnung am besten?**In drei Stufen: erst die Hitze aussperren (Dachfenster tagsüber verdunkeln, nachts querlüften), dann Luft gezielt bewegen (Ventilator nachts an der kühlen Fensterseite), und bei echter Hitze eine Klimaanlage — wegen der Dachhitze rund 20–30 % größer dimensioniert als die normale Raumgröße-Empfehlung.
+**Wie kühle ich meine Dachgeschosswohnung am besten?**Miss innen und außen zur gleichen Zeit. Lüfte zum Kühlen in einem kühleren Zeitfenster, sofern du das Fenster sicher öffnen kannst. Schütze Dachfenster vor direkter Sonne.
 
-**Was hilft gegen Hitze im Dachgeschoss?**Am meisten bringt konsequenter Hitzeschutz vor dem Fenster: Verdunkelung der Dachfenster tagsüber und Durchzug in der Nacht sind fast kostenlos und senken die Spitzentemperatur spürbar. Reicht das nicht, folgt ein Ventilator und als letzte Stufe eine tragbare oder Split-Klimaanlage.
+**Was hilft gegen Hitze im Dachgeschoss?**Verschattung verringert den Sonneneintrag. Ein vorhandener Ventilator kann die gefühlte Temperatur verbessern. Reichen diese Maßnahmen für dein Ziel, kannst du den Kauf verschieben.
 
-**Warum wird das Dachgeschoss so heiß?**Die Dachflächen heizen sich in der Sonne stark auf und geben die Wärme direkt in die darunterliegenden Räume ab — zusätzlich steigt warme Luft aus den unteren Etagen nach oben. Deshalb ist es unterm Dach oft mehrere Grad wärmer als im Rest des Hauses.
+**Warum wird das Dachgeschoss so heiß?**Sonne auf Dachflächen und Fenstern kann den Raum aufheizen. Wie warm es innen wird, hängt auch von Dämmung, Verschattung, Luftaustausch und Wärmequellen im Zimmer ab.
 
-**Hilft ein Luftkühler im Dachgeschoss?**Meist nicht. Verdunstungs-Luftkühler sind unterm Dach bei 33 °C und mehr enttäuschend, weil ein paar Grad Luftstrom-Differenz gegen aufgeheizte Dachflächen kaum ankommen und die zusätzliche Feuchtigkeit die Luft schwüler macht.
-
-**Das passende Gerät finden — ehrlich empfohlen**
-
-Konkrete Modelle mit Rolle, aus öffentlichen Testberichten zusammengestellt (nicht selbst getestet) — plus kostenlose Rechner für die richtige Größe.
-
-[Top-Angebote ansehen →](https://getecoback.com/#deals)
+**Hilft ein Luftkühler im Dachgeschoss?**Verdunstungskühler ergänzen die Raumluft um Feuchtigkeit. Bei hoher Luftfeuchte verdunstet weniger Wasser. Prüfe deine Raumfeuchte und ob die gemessene Raumtemperatur zu deinem Ziel passt.
 
 **Weitere Ratgeber**
 [Split-Klimaanlage ohne Kernbohrung →](https://getecoback.com/guide/split-klimaanlage-ohne-kernbohrung.html)

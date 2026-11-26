@@ -1388,3 +1388,13 @@ test('German FM Solar mobile AC questions open the exact window and bracket evid
                  'PortaSplit vs. Monoblock','Wann wird die PortaSplit geliefert?'])
    assert.notEqual(searchEntries(index,q,'de')[0]?.entry.u,target,q);
 });
+
+test('German attic cooling without crossflow reaches the measured first steps',()=>{
+ const target='/guide/dachgeschoss-kuehlen.html#dachgeschoss-ohne-durchzug';
+ for(const q of ['Dachgeschoss kühlen ohne Durchzug','Wie kann ich die Dachwohnung ohne Querlüftung kühlen?',
+                 'Im Dachgeschoss habe ich schon einen Ventilator und das Zimmer bleibt warm'])
+   assert.equal(searchEntries(index,q,'de')[0]?.entry.u,target,q);
+ for(const q of ['Klimaanlage für 60 m² im Dachgeschoss','Passt die PortaSplit mit Halterung ins Dachfenster?',
+                 'Abluftschlauch für PACEX105A+++'])
+   assert.notEqual(searchEntries(index,q,'de')[0]?.entry.u,target,q);
+});

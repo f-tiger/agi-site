@@ -81,7 +81,7 @@
 <article>
   <p><a href="#einrichten">Online verbinden</a> · <a href="#offline-installation">EcoBack lokal installieren</a></p>
   <h2 id="tools">Werkzeuge nach Aufgabe finden</h2>
-  <section id="mcp-catalog" data-catalogue="/assets/mcp-catalogue.json?v=42724478b2c5" aria-label="Interaktiver Werkzeugkatalog" hidden>
+  <section id="mcp-catalog" data-catalogue="/assets/mcp-catalogue.json?v=d16bd5aa8058" aria-label="Interaktiver Werkzeugkatalog" hidden>
     <div class="catalog-filters" hidden>
       <label>Aufgabe oder Werkzeugname <input type="search" autocomplete="off" maxlength="512"></label>
       <label>Kategorie
@@ -133,7 +133,7 @@
 
   <h3>Ausgewählte Werkzeuge und Ratgeber</h3>
   <div class="tool"><strong>entfeuchter_ablaufcheck</strong><p>Liegt der Abfluss höher als der Auslass des Entfeuchters? Prüfe Schlauchgefälle, mögliche Pumpen und Tankbetrieb für dein genaues Modell. <a href="#ablauf-beispiel">Beispiel für den Keller</a></p></div>
-  <div class="tool"><strong>geraet_wahl</strong><p>Der nächste Schritt bei Hitze, Feuchte, Kälte oder stickiger Luft. Bei Feuchte nutzt das Tool dieselben sechs Entscheidungszweige wie die Website: erst messen, weiter beobachten, Ursache klären, kalte Räume prüfen, Wäschekosten vergleichen oder gezielt Geräte vergleichen. Eine Raumfläche allein ergibt keine Liter-Empfehlung. Bei Kälte zeigt das Tool die Dämmannahmen und führt bei hoher Schätzung zur Prüfung von Heizlast und Stromkreis. <a href="#heizlast-beispiel">Beispiel für 60 m²</a>.</p></div>
+  <div class="tool"><strong>geraet_wahl</strong><p>Der nächste Schritt bei Hitze, Feuchte, Kälte oder stickiger Luft. Bei Hitze zuerst <a href="/guide/dachgeschoss-kuehlen.html#dachgeschoss-ohne-durchzug">Temperatur und sicheres Lüftungsfenster vergleichen</a>. Bei Feuchte nutzt das Tool dieselben sechs Entscheidungszweige wie die Website: erst messen, weiter beobachten, Ursache klären, kalte Räume prüfen, Wäschekosten vergleichen oder gezielt Geräte vergleichen. Eine Raumfläche allein ergibt keine Liter-Empfehlung. Bei Kälte zeigt das Tool die Dämmannahmen und führt bei hoher Schätzung zur Prüfung von Heizlast und Stromkreis. <a href="#heizlast-beispiel">Beispiel für 60 m²</a>.</p></div>
   <div class="tool"><strong>btu_empfehlung</strong><p>Empfohlene Kühlleistung (BTU) für einen Raum aus m² und Sonneneinstrahlung, mit passender Geräteklasse. Formel: 340 BTU/m² × Sonnenfaktor.</p></div>
   <div class="tool"><strong>fensterabdichtung_laenge</strong><p>Benötigte Länge einer Fensterabdichtung aus den Flügelmaßen (Umfang = 2 × (Breite + Höhe)), plus passende Konfektionsgröße — für Kipp-, Drehkipp- und Dachfenster.</p></div>
   <div class="tool"><strong>hitzewelle_vorschau</strong><p>Live-Maximaltemperatur der nächsten 3 Tage für Berlin/Frankfurt/München (open-meteo), mit Einordnung ab 28 °C / 32 °C — dieselbe Datenquelle wie das Hitzeband dieser Website.</p></div>
@@ -353,7 +353,7 @@
 <section aria-labelledby="mcp-geraetebelege"><h2 id="mcp-geraetebelege">Haushaltsgeräte im Gebrauch und beim Kauf</h2><p><a href="/api/mcp-tools?category=Kaffeemaschinenpflege&amp;view=compact">Kaffeemaschinenpflege</a> · <a href="/api/mcp-tools?category=Waschmitteldosierung&amp;view=compact">Waschmitteldosierung</a> · <a href="/api/mcp-tools?category=Sp%C3%BClmittel%20und%20Wasserh%C3%A4rte&amp;view=compact">Spülmittel und Wasserhärte</a> · <a href="/api/mcp-tools?category=Bodenstaubsaugerpflege&amp;view=compact">Bodenstaubsaugerpflege</a> · <a href="/api/mcp-tools?category=Dampfb%C3%BCgelger%C3%A4te&amp;view=compact">Dampfbügelgeräte</a> · <a href="/api/mcp-tools?category=Stabmixer%20und%20Zubeh%C3%B6r&amp;view=compact">Stabmixer und Zubehör</a> · <a href="/api/mcp-tools?category=Mikrowellenbelege&amp;view=compact">Mikrowellenbelege</a> · <a href="/api/mcp-tools?category=K%C3%BCchenwaagen&amp;view=compact">Küchenwaagen</a> · <a href="/api/mcp-tools?category=Wasserkocherbelege&amp;view=compact">Wasserkocherbelege</a> · <a href="/api/mcp-tools?category=Toasterbelege&amp;view=compact">Toasterbelege</a> · <a href="/api/mcp-tools?category=Fenstersauger&amp;view=compact">Fenstersauger</a></p></section>
 </article>
 <script type="module">
-import {indexCatalogue, findCatalogueTools, toolGuidePath} from '/assets/mcp-catalog-search.mjs?v=667c1a8f24eb';
+import {indexCatalogue, findCatalogueTools, toolGuidePath} from '/assets/mcp-catalog-search.mjs?v=24621586bfd5';
 
 (() => {
   const catalog = document.getElementById('mcp-catalog');

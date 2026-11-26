@@ -643,6 +643,22 @@ function asksForDehumidifierDiscountReference(query) {
   return device.test(query) && offer.test(query) && !elsewhere.test(query);
 }
 
+export const atticCoolingWithoutCrossflow = {
+  path:'/guide/dachgeschoss-kuehlen.html',
+  id:'dachgeschoss-ohne-durchzug',
+  tool:'ratgeber_suche',
+};
+
+function asksForAtticCoolingWithoutCrossflow(query) {
+  const attic = /\b(?:dachgeschoss\w*|dachwohnung\w*|unterm dach)\b/;
+  const missingCrossflow = /\b(?:kein\w*|fehlend\w*|ohne)\s+(?:quer[ -]*)?(?:durchzug|lueftung)\b/;
+  const existingFan = /\b(?:vorhanden\w*|schon|bereits|trotz)\b.*\bventilator\w*\b/;
+  const ventilation = /\b(?:lueft\w*|kuehl\w*|warm\w*|hitze)\b/;
+  const installation = /\b(?:schlauch\w*|abdichtung\w*|halterung\w*|portasplit|kompressor\w*)\b/;
+  return attic.test(query) && !installation.test(query) &&
+    (missingCrossflow.test(query) || (existingFan.test(query) && ventilation.test(query)));
+}
+
 export const fmSolarMobileFit = {
   path:'/guide/midea-portasplit-ausverkauft-alternativen.html',
   id:'fm-solar-yfg-montage',
@@ -881,6 +897,7 @@ export function exactGermanHouseholdTask(query) {
   if (asksAboutAnEmptyDehumidifierTank(query)) return emptyDehumidifierTank;
   if (asksForMeacoDd8lProGarage(query)) return meacoDd8lProGarage;
   if (asksForCoolingDiscountReference(query)) return coolingDiscountReference;
+  if (asksForAtticCoolingWithoutCrossflow(query)) return atticCoolingWithoutCrossflow;
   if (asksForFmSolarMobileFit(query)) return fmSolarMobileFit;
   if (asksForPortaSplitDelivery(query)) return portaSplitDelivery;
   if (asksForPortaSplitMonoblockChoice(query)) return portaSplitMonoblockChoice;

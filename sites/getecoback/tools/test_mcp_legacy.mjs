@@ -312,3 +312,12 @@ test('heating device choice validates measured area and qualifies the existing g
   assert.ok(html.includes('id="ueber-2-000-watt-besser-zwei-panels"'));
   assert.ok(html.includes('id="watt-rechner-raumgroesse-und-daemmung-eingeben"'));
 });
+
+test('cooling device choice puts measured ventilation and waiting ahead of sizing', async()=>{
+ const answer=(await call('geraet_wahl',{problem:'zu_heiss',qm:20})).content[0].text;
+ assert(answer.startsWith('Vergleiche die gemessene Temperatur drinnen und draußen.'));
+ assert.match(answer,/sofern du sicher öffnen kannst/);
+ assert.match(answer,/kannst du den Kauf verschieben/);
+ assert.match(answer,/https:\/\/getecoback\.com\/guide\/dachgeschoss-kuehlen\.html#dachgeschoss-ohne-durchzug/);
+ assert.match(answer,/7\.000 BTU\/h/);
+});

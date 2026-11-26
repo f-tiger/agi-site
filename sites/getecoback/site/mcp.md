@@ -77,7 +77,7 @@ Kochgeschirr, Ladungen, Programmbelege und elektrische Betriebszustände im Allt
 
 **entfeuchter_ablaufcheck**Liegt der Abfluss höher als der Auslass des Entfeuchters? Prüfe Schlauchgefälle, mögliche Pumpen und Tankbetrieb für dein genaues Modell. [Beispiel für den Keller](https://getecoback.com/mcp.html#ablauf-beispiel)
 
-**geraet_wahl**Der nächste Schritt bei Hitze, Feuchte, Kälte oder stickiger Luft. Bei Feuchte nutzt das Tool dieselben sechs Entscheidungszweige wie die Website: erst messen, weiter beobachten, Ursache klären, kalte Räume prüfen, Wäschekosten vergleichen oder gezielt Geräte vergleichen. Eine Raumfläche allein ergibt keine Liter-Empfehlung. Bei Kälte zeigt das Tool die Dämmannahmen und führt bei hoher Schätzung zur Prüfung von Heizlast und Stromkreis. [Beispiel für 60 m²](https://getecoback.com/mcp.html#heizlast-beispiel).
+**geraet_wahl**Der nächste Schritt bei Hitze, Feuchte, Kälte oder stickiger Luft. Bei Hitze zuerst [Temperatur und sicheres Lüftungsfenster vergleichen](https://getecoback.com/guide/dachgeschoss-kuehlen.html#dachgeschoss-ohne-durchzug). Bei Feuchte nutzt das Tool dieselben sechs Entscheidungszweige wie die Website: erst messen, weiter beobachten, Ursache klären, kalte Räume prüfen, Wäschekosten vergleichen oder gezielt Geräte vergleichen. Eine Raumfläche allein ergibt keine Liter-Empfehlung. Bei Kälte zeigt das Tool die Dämmannahmen und führt bei hoher Schätzung zur Prüfung von Heizlast und Stromkreis. [Beispiel für 60 m²](https://getecoback.com/mcp.html#heizlast-beispiel).
 
 **btu_empfehlung**Empfohlene Kühlleistung (BTU) für einen Raum aus m² und Sonneneinstrahlung, mit passender Geräteklasse. Formel: 340 BTU/m² × Sonnenfaktor.
 
