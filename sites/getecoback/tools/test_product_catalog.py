@@ -28,6 +28,20 @@ def fixture():
 
 
 class CatalogTest(unittest.TestCase):
+    def test_dehumidifier_directory_card_reaches_offer_check_and_keeps_model_comparison(self):
+        page = (C.ROOT / 'site' / C.ROUTE.lstrip('/')).read_text()
+        mirror = (C.ROOT / 'site' / C.ROUTE.lstrip('/')).with_suffix('.md').read_text()
+        rows = re.findall(r'<li data-specialist-guide\b[^>]*>.*?</li>', page, re.S)
+        row, = (r for r in rows if C.DEHUM_PRICE_CHECK in r)
+        links = Document(row).links
+        self.assertEqual([a['href'] for a in links], [C.DEHUM_MODELS, C.DEHUM_PRICE_CHECK])
+        self.assertTrue(all('sponsored' not in link.get('rel', '') for link in links))
+        self.assertIn('Black Friday 30 Tage', row)
+        self.assertIn('https://getecoback.com'+C.DEHUM_PRICE_CHECK, mirror)
+        path, fragment = C.DEHUM_PRICE_CHECK.split('#', 1)
+        destination = (C.ROOT / 'site' / path.lstrip('/')).read_text()
+        self.assertEqual(Document(destination).ids.count(fragment), 1)
+
     def test_exact_model_guides_link_to_existing_answers_in_html_and_markdown(self):
         page = (C.ROOT / 'site' / C.ROUTE.lstrip('/')).read_text()
         mirror = (C.ROOT / 'site' / C.ROUTE.lstrip('/')).with_suffix('.md').read_text()

@@ -1030,3 +1030,15 @@ test('German dehumidifier price checks retain the exact evidence and stop path i
  for(const value of ["in den 30 Tagen vor Beginn","derselbe Verkäufer","Verkauf durch","4069143047774","218 €","verschiebe den Kauf","miss zuerst Temperatur und relative Luftfeuchte","https://www.gesetze-im-internet.de/pangv_2022/__11.html","https://www.verbraucherzentrale.de/wissen/digitale-welt/onlinehandel/prime-days-black-friday-cyber-monday-tipps-fuer-die-schnaeppchenjagd-37835","/guide/pro-breeze-luftentfeuchter-test.html#pro-breeze-12l-modellwahl","#eb-models","26. November 2026"]) assert(textOf(full).includes(value),value);
  assert(!textOf(full).includes('https://www.amazon.de/'));
 });
+
+test('the German tado X Vaillant adapter identification and stop branch agree in both MCP profiles',async()=>{
+ const {env}=assetEnv();
+ const pfad='https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#tado-x-vaillant-305-adapter';
+ const found=await call('ratgeber_suche',{frage:"Welchen Adapter brauche ich beim tado° X für ein Vaillant Heizkörperventil mit 30,5 mm Klemmanschluss?",sprache:'de',max:1},env);
+ assert(textOf(found).includes('Abschnitt: '+pfad));
+ const full=await call('ratgeber_lesen',{pfad},env);
+ assert.equal(full.isError,false);
+ assert.deepEqual(await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad}},env,true),full);
+ for(const value of ["30,5 mm Klemmanschluss","700 100 001","4260012710533","separat erhältlich","verschiebe die Bestellung","wasserführenden Ventilkörper","https://cdn.bfldr.com/607DGEMS/at/hqb8tzxsq4cmchcjxsxtwhh/DE_SRTx_compatibility_Links.pdf#page=9","https://help.tado.com/de/articles/3405486-wie-montiere-ich-den-adapter-fur-vaillant-30-5-mm-heizkorperventile-damit-mein-smartes-heizkorper-thermostat-passt","#thermostat-tado-x-starter","26. November 2026"]) assert(textOf(full).includes(value),value);
+ assert(!textOf(full).includes('https://www.amazon.de/'));
+});

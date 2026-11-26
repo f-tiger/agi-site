@@ -29,7 +29,7 @@ Halte die vollständige Modellnummer vom Typenschild oder die Teilenummer bereit
 
 ## Kaufhilfen für Haushaltsgeräte und Raumklima
 
-- [Luftentfeuchter](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#eb-models) Ist dein Keller dauerhaft feucht? Erst messen und die Ursache klären. Bei Bedarf Tankbetrieb und Schlauchablauf vergleichen.
+- [Luftentfeuchter](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#eb-models) Ist dein Keller dauerhaft feucht? Erst messen und die Ursache klären. Bei Bedarf Tankbetrieb und Schlauchablauf vergleichen. [Angebotspreis für denselben Luftentfeuchter prüfen](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#luftentfeuchter-30-tage-preischeck).
 
 - [Luftbefeuchter](https://getecoback.com/guide/luftbefeuchter-ratgeber.html#modelle-vergleichen) Trockene Luft gemessen? Vergleiche manuelle Stufen mit einstellbarem Feuchteziel und prüfe, welche Filter du wechseln musst.
 

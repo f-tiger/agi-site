@@ -337,6 +337,12 @@ def collect():
     raise ValueError(f'Missing or ambiguous thermostat offline section: {route}#{anchor}')
    entry['model_sections']=[{'id':anchor,'title':'Welches Thermostat funktioniert ohne Internet oder Zentrale?',
     'description':'Manuelle Temperaturwahl am Bosch II [+M] und die eingeschränkte Automatik des FRITZ! 302 bei einer Unterbrechung getrennt prüfen.'}]
+   vaillant='tado-x-vaillant-305-adapter'
+   targets=re.findall(r'<h2\b[^<>]*\sid="'+vaillant+r'"[^<>]*>',text)
+   if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
+    raise ValueError(f'Missing or hidden tado X Vaillant adapter evidence: {route}#{vaillant}')
+   entry['model_sections'].append({'id':vaillant,'title':'Welcher Vaillant-Adapter passt zum tado° X?',
+    'description':'tado° nennt für den dokumentierten Vaillant-/TA-Heimeier-Thermostatanschluss mit 30,5-mm-Klemme den separat erhältlichen Adapter 700 100 001 (EAN 4260012710533). Anschluss zuerst anhand der Herstellerzeichnung prüfen.'})
   if lang=='de' and route=='/guide/trotec-luftentfeuchter-test.html':
    anchor='ttk70-hepa-filter'
    targets=re.findall(r'<(?:section|h[23])\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)
