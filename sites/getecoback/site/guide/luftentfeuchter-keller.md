@@ -34,9 +34,31 @@ Die Verbraucherzentrale erläutert: Kalte Außenluft kann im Winter beim Lüften
 
 - [MeacoDry Arete Two 12L](https://getecoback.com/guide/luftentfeuchter-keller.html#modell-meaco-two-12) · 1,97 L/Tag bei 111 W. [Meaco DE, Herstellerdaten](https://eu.meaco.com/products/meacodry-arete-two-12l-luftentfeuchter-luftreiniger).
 
+- [Meaco DD8L Pro: drei Lüfterstufen, kalte Garage und Dauerablauf prüfen](https://getecoback.com/guide/luftentfeuchter-keller.html#meaco-dd8l-pro-kalte-garage).
+
 Ein separater Prüfpunkt für den Arete Two 12L bei 20 °C und 60 % nennt 5,4 L/Tag bei 136 W. Werte verschiedener Temperaturen getrennt vergleichen.
 
 Prüfwerte geprüft am 23.11.2026. Die Quellen geben dieselbe Lufttemperatur und Feuchte an. Prüfablauf und Laufzeit zu Hause können abweichen. Für Bosch D4000-EU und Comfee MDDF-20DEN7 sind diese konkreten Werte in unserer Auswahl offen. Prüfe die [Tank-, Gefälle- oder Pumpenlösung](https://getecoback.com/guide/luftentfeuchter-keller.html#ablauf-vor-kauf) getrennt. Bei ungeklärter Nässe erst die [Ursache klären](https://getecoback.com/guide/luftentfeuchter-gegen-schimmel.html).
+
+### Meaco DD8L Pro in der kalten Garage: Prüfwerte und Ablauf
+
+Für den **Meaco DD8L Pro** veröffentlicht [Meaco Deutschland](https://eu.meaco.com/products/dd8l-pro-adsorptionstrockner-luftentfeuchter) bei **10 °C und 60 % relativer Luftfeuchte** drei Werte. Sie gelten für den DD8L Pro und seine jeweilige Lüfterstufe.
+
+Hersteller-Prüfwerte des DD8L Pro bei 10 °C und 60 %
+
+| Lüfterstufe | Wasserentzug | Leistungsaufnahme |
+| --- | --- | --- |
+| 1 | 2,30 L/24 h | 232 W |
+| 2 | 5,23 L/24 h | 443 W |
+| 3 | 6,89 L/24 h | 630 W |
+
+Für **3 °C oder 5 °C** sowie für 50 % relativer Luftfeuchte nennt diese Tabelle keinen entsprechenden Prüfpunkt. [Die deutsche Anleitung DE03 nennt als technischen Betriebsbereich 1 bis 35 °C](https://cdn.shopify.com/s/files/1/0371/8378/3043/files/DD8L_Pro_8L_Manual_DE03.pdf#page=23); die [Hinweise zum Betrieb bei niedriger Temperatur](https://cdn.shopify.com/s/files/1/0371/8378/3043/files/DD8L_Pro_8L_Manual_DE03.pdf#page=13) beschreiben den Normalbetrieb bis 3 °C. Der Bereich sagt nichts über die Literleistung bei 1 bis 3 °C und über die Eignung für Frost aus. Bei dauerhaft grenznahen Temperaturen frage Meaco zum Modus und zur Entzugsleistung.
+
+**Luftstrom vor der Auswahl bestätigen:** In der technischen Tabelle der DE03 stehen **110 / 150 / 175 m³/h** für die drei Stufen. Auf der deutschen Produktseite desselben Modells stehen für niedrige und hohe Stufe **40 / 50 m³/h**. Die veröffentlichten Angaben erklären die Abweichung nicht. Wenn die Luftumwälzung entscheidend ist, lass dir die Werte für das angebotene Gerät bestätigen.
+
+Beim [Dauerablauf nach Anleitung](https://cdn.shopify.com/s/files/1/0371/8378/3043/files/DD8L_Pro_8L_Manual_DE03.pdf#page=19) steckt der Adapter im Tankdeckel. Der separate Schlauch hat **12,5 mm Innendurchmesser**, führt durchgehend nach unten und bleibt frei von Knicken oder Verstopfungen. Die [passende Meaco-Wandhalterung für den DD8L Pro](https://eu.meaco.com/products/meaco-dd8l-wandhalterung) ist separat erhältlich. Prüfe Stellplatz, Wandaufbau und Ablaufroute vorher. Ohne Gefälle oder bei möglichem Einfrieren des Ablaufs zuerst die Aufstellung klären.
+
+Miss Temperatur und Feuchte mehrere Tage an derselben Stelle. Feuchte Wände, Wassereintritt oder wiederkehrende Nässe zuerst [auf ihre Ursache prüfen](https://getecoback.com/guide/luftentfeuchter-gegen-schimmel.html) und den Kauf zurückstellen. Die Fläche allein liefert keine Kaufentscheidung. DD8L Junior, DD8L ION und DD8L Zambezi brauchen eigene Daten. Quellen geprüft am 26.11.2026.
 
 Die Bauart ist ein erster Filter, keine Kaufgarantie. Stiftung Warentest beschreibt die unterschiedliche Temperaturabhängigkeit der Verfahren. Entscheidend bleibt die Anleitung des konkreten Modells. Eine zulässige Mindesttemperatur sagt noch nicht, wie viel Wasser das Gerät dort pro Tag entzieht.
 

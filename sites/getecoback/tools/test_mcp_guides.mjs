@@ -968,3 +968,16 @@ test('German PortaSplit defrost answers preserve the model, typical timing and s
  for(const phrase of ["etwa 5 bis 15 Minuten", "Innengerät langsamer weiter", "setzt die Heizung automatisch wieder ein", "Dauer des Abtauens", "Eis abzukratzen", "keinen Ersatzkauf", "https://www.midea.com/content/dam/midea-aem/de/klimatisieren-heizen/portasplit/PortaSplit-Gebrauchsanweisung-DE.pdf#page=33", "https://www.midea.com/de/klimatisieren-heizen/portasplit"]) assert(textOf(full).includes(phrase),phrase);
  assert(!textOf(full).includes('https://www.amazon.de/'));
 });
+
+test('German DD8L Pro model evidence retains the three matched rows and decision limits in both profiles',async()=>{
+ const {env}=assetEnv();
+ const pfad='https://getecoback.com/guide/luftentfeuchter-keller.html#meaco-dd8l-pro-kalte-garage';
+ const found=await call('ratgeber_suche',{frage:"Ist der Meaco DD8L Pro für meine unbeheizte Garage bei 5 °C geeignet?",sprache:'de',max:1},env);
+ assert(textOf(found).includes('Abschnitt: '+pfad));
+ const full=await call('ratgeber_lesen',{pfad},env);
+ assert.equal(full.isError,false);
+ assert.deepEqual(await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad}},env,true),full);
+ for(const value of ["10 °C und 60 %", "2,30 L/24 h", "232 W", "5,23 L/24 h", "443 W", "6,89 L/24 h", "630 W", "3 °C oder 5 °C", "1 bis 35 °C", "110 / 150 / 175 m³/h", "40 / 50 m³/h", "12,5 mm", "durchgehend nach unten", "separat erhältlich", "Kauf zurückstellen", "https://eu.meaco.com/products/dd8l-pro-adsorptionstrockner-luftentfeuchter", "https://cdn.shopify.com/s/files/1/0371/8378/3043/files/DD8L_Pro_8L_Manual_DE03.pdf#page=19", "https://cdn.shopify.com/s/files/1/0371/8378/3043/files/DD8L_Pro_8L_Manual_DE03.pdf#page=23", "https://eu.meaco.com/products/meaco-dd8l-wandhalterung"]) assert(textOf(full).includes(value),value);
+ for(const row of ['| 1 | 2,30 L/24 h | 232 W |','| 2 | 5,23 L/24 h | 443 W |','| 3 | 6,89 L/24 h | 630 W |']) assert(textOf(full).includes(row),row);
+ assert(!textOf(full).includes('https://www.amazon.de/'));
+});
