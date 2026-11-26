@@ -1802,3 +1802,16 @@ test('German DD8L Pro cold-garage searches use the exact evidence instead of ano
    assert.notEqual(toolGuidePath(hit??{}),target,q);
  }
 });
+
+test('German Saros 10R obstacle preparation uses the model evidence without taking parts or repair questions',async()=>{
+ const target='/guide/saugroboter-kaufberatung.html#saros-10r-fahrweg';
+ for(const q of ["Erkennt der Roborock Saros 10R Kabel, Socken und Katzenspielzeug?", "Muss ich beim Roborock Saros 10R vor jedem Saugen Ladekabel wegräumen?", "Roborock Saros 10R für Kurzflorteppich und Katzenhaare: Wie viel räume ich vorher auf?", "S91COP: Socken und Spielzeug vor dem Kauf wegräumen?"]) {
+   const [hit]=(await catalogue({q,view:'compact',limit:1})).tools;
+   assert.equal(hit?.name,'ratgeber_suche',q);
+   assert.equal(toolGuidePath(hit),target,q);
+ }
+ for(const q of ["Erkennt der Roborock Saros 10 Socken und Ladekabel?", "Welches Zubehörset passt zum Saros 10R, inklusive Ersatzkabel?", "Der Saros 10R hat ein Kabel eingezogen. Was ist kaputt?", "Was mache ich, wenn mein Saugroboter über das Kabel fährt?", "Welche Kabel erkenne ich beim Saros 10R mit Festwasseranschluss?", "Saros 10R oder Dreame L10s Ultra Gen 2 für Hindernisse?"]) {
+   const [hit]=(await catalogue({q,view:'compact',limit:1})).tools;
+   assert.notEqual(toolGuidePath(hit??{}),target,q);
+ }
+});

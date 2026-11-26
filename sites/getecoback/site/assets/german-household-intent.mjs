@@ -260,6 +260,19 @@ function asksForPortaSplitDefrost(query) {
     (!indoor.test(query) || outdoor.test(query)) && !other.test(query) && !namesDifferentPortaSplit(query) && eans.every(ean=>ean==='4048164116478');
 }
 
+export const saros10rFloorPrep = {
+  path:'/guide/saugroboter-kaufberatung.html',
+  id:'saros-10r-fahrweg',
+  tool:'ratgeber_suche',
+};
+
+function asksForSaros10rFloorPrep(query) {
+  const model=/\b(?:saros[ -]*10r|s91cop)\b/;
+  const task=/\b(?:\w*kabel\w*|socken\w*|spielzeug\w*|katzenspiel\w*|hindernis\w*|kleinteil\w*|vorbereit\w*|wegr(?:ae|a)um\w*|aufraeum\w*|freiraeum\w*)\b|\braeum\w*\s+(?:ich\s+)?(?:vorher\s+)?(?:auf|weg)\b/;
+  const other=/\b(?:saros[ -]*(?:10(?!r)|20\w*)|dreame\w*|qrevo\w*|ersatz\w*|zubehoer\w*|wasseranschluss|festwasser\w*|repar\w*|defekt\w*|eingezog\w*|kaputt)\b/;
+  return model.test(query) && task.test(query) && !other.test(query);
+}
+
 export const gasHeatCost = {
   path:'/guide/klimaanlage-mit-heizfunktion.html',
   id:'heizkosten-klimaanlage-gas',
@@ -721,6 +734,7 @@ export function exactGermanHouseholdTask(query) {
   const meterTask = exactLowLoadMeterTask(query);
   if (meterTask) return meterTask;
   if (asksForPortableCoolingStorage(query)) return portableCoolingStorage;
+  if (asksForSaros10rFloorPrep(query)) return saros10rFloorPrep;
   if (asksForPortaSplitDefrost(query)) return portaSplitDefrost;
   if (exactComfeeMpphOffer(query)) return comfeeMpphOffer;
   if (asksAboutAnEmptyDehumidifierTank(query)) return emptyDehumidifierTank;

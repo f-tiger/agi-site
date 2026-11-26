@@ -981,3 +981,15 @@ test('German DD8L Pro model evidence retains the three matched rows and decision
  for(const row of ['| 1 | 2,30 L/24 h | 232 W |','| 2 | 5,23 L/24 h | 443 W |','| 3 | 6,89 L/24 h | 630 W |']) assert(textOf(full).includes(row),row);
  assert(!textOf(full).includes('https://www.amazon.de/'));
 });
+
+test('German Saros 10R preparation retains the source distinction and purchase decision in both profiles',async()=>{
+ const {env}=assetEnv();
+ const pfad='https://getecoback.com/guide/saugroboter-kaufberatung.html#saros-10r-fahrweg';
+ const found=await call('ratgeber_suche',{frage:"Erkennt der Roborock Saros 10R Kabel, Socken und Katzenspielzeug?",sprache:'de',max:1},env);
+ assert(textOf(found).includes('Abschnitt: '+pfad));
+ const full=await call('ratgeber_lesen',{pfad},env);
+ assert.equal(full.isError,false);
+ assert.deepEqual(await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad}},env,true),full);
+ for(const value of ["S91COP", "EWFD28HRR", "B1-1", "2 cm breit und 2 cm hoch", "interne Tests", "Kabel und lose Gegenstände", "aktive Zeit", "Kurzflorteppich", "Kauf zurückstellen", "https://de.roborock.com/pages/roborock-saros-10r", "https://support.roborock.com/hc/de/article_attachments/46144394789529", "#roborock-saros-10r"]) assert(textOf(full).includes(value),value);
+ assert(!textOf(full).includes('https://www.amazon.de/'));
+});
