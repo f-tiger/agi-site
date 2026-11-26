@@ -38,7 +38,7 @@ Tool arguments are processed by the server. Setup notes for other clients:
 | `heizleistung_watt` | Required heating power in watts for a room, from floor area and insulation standard (60/80/100 W/m² for new build, existing, old building), including running cost per full-load hour. |
 | `taupunkt_lueften` | Dew point of the outside air and whether opening the window right now would make a basement or damp room wetter (Magnus formula, walls counted 2 °C below room temperature). |
 | `ratgeber_suche` | Searches published guides with a readable Markdown mirror, returning title, canonical URL and task-specific summary. Every result can be passed to ratgeber_lesen. |
-| `ratgeber_lesen` | Reads the cleaned Markdown of a published guide, with reviewed source links, assumptions and limits. Long excerpts are explicitly marked and link the full text. Pass an exact canonical path or URL from ratgeber_suche, without query or fragment. |
+| `ratgeber_lesen` | Reads a published guide or a supported section, with reviewed sources and limits. Pass an exact canonical path or a section URL shown by the hosted finder. Long excerpts link the complete Markdown. |
 <!-- tools:end -->
 
 ## Calculate the cost of repeated household use

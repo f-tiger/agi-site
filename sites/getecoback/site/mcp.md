@@ -91,7 +91,7 @@ Kochgeschirr, Ladungen, Programmbelege und elektrische Betriebszustände im Allt
 
 **ratgeber_suche**Durchsucht veröffentlichte Ratgeber mit vorhandener Textansicht und liefert Titel, kanonische URL und eine Kurzbeschreibung zur Aufgabe. Jeder Treffer kann mit ratgeber_lesen abgerufen werden. Optional auf Deutsch oder Englisch eingegrenzt.
 
-**ratgeber_lesen**Liest die bereinigte Markdown-Ansicht mit Bedingungen, Grenzen und geprüften Quellenlinks. Lange Auszüge sind ausdrücklich als gekürzt markiert; der vollständige Text und dessen Originalquellen bleiben verlinkt. Nur exakte veröffentlichte Seitenpfade oder HTTPS-URLs dieser Website, ohne Query oder Fragment.
+**ratgeber_lesen**Liest die redaktionelle Textansicht oder einen ausgewiesenen Abschnitt mit Bedingungen und Quellen. Verwende den exakten Seitenpfad oder die HTTPS-URL dieser Website. Eine Abschnitts-URL enthält ihren Anker. Lange Auszüge sind markiert und verlinken die vollständige Textansicht.
 
 **taupunkt_lueften**Vergleicht den Außentaupunkt mit einer Wandtemperatur, die 2 °C unter der Raumluft geschätzt wird. Für die Trocknungswirkung sind die Innenluftfeuchte und die gemessene kälteste Oberfläche nötig.
 
@@ -159,9 +159,93 @@ Von 240 kWh in 40 Messtagen ziehst du 24 kWh für vier Tage vor dem Abrechnungsz
 
 {"jsonrpc":"2.0","id":9,"method":"tools/call","params":{"name":"waesche_trocknungskosten","arguments":{"dryer":2,"dehum":1,"price":0.3,"comparable":true}}}
 
+## Welcher Ersatzfilter passt zum Beurer LR 401?
+
+Die deutsche Beurer-Zuordnung nennt die Artikelnummer 69309 für den LR 401. Vergleiche die Modellkennung auf dem Typenschild und prüfe die [genaue Zuordnung mit Herstellerquelle](https://getecoback.com/ersatzfilter.html#beurer-lr401). Bei einem anderen Modellzusatz zuerst die passende Herstellerfreigabe prüfen.
+
+{"jsonrpc":"2.0","id":11,"method":"tools/call","params":{"name":"luftreiniger_ersatzfilter_zuordnung","arguments":{"model":"beurer-lr401"}}}
+
+### Welcher Filter passt zu meinem Philips Series 2000?
+
+Die deutsche Philips-Tabelle ordnet dem HU4803/01 den FY2401/30 und dem HU2716/10 den FY3446/30 zu. Prüfe die vollständige Modellnummer einschließlich Schrägstrich am Typenschild. Der [Filterabgleich mit Herstellerquellen](https://getecoback.com/guide/luftbefeuchter-ratgeber.html#philips-verdunsterfilter) zeigt beide Fälle und die Grenzen der Zuordnung.
+
+{"jsonrpc":"2.0","id":12,"method":"tools/call","params":{"name":"philips_verdunsterfilter_zuordnung","arguments":{"model":"HU2716/10","candidate":"FY2401/30"}}}
+
+### Was kostet eine Heizdecke für zwei Stunden?
+
+Bei angenommenen 110 W über zwei Stunden und 0,35 €/kWh ergeben sich 0,22 kWh und rund 0,08 €. Verwende deine eigene Leistung und erlaubte Laufzeit. Im [Heizdecken-Rechner](https://getecoback.com/guide/heizdecke-stromverbrauch.html#waerme-rechner) findest du auch die Messmethode für den tatsächlichen Verbrauch.
+
+{"jsonrpc":"2.0","id":13,"method":"tools/call","params":{"name":"heizdecke_stromkosten_nennleistung","arguments":{"nennleistung_w":110,"laufzeit_h":2,"arbeitspreis_kwh":0.35}}}
+
+### Zwei Hygrometer zeigen 55 % und 60 %
+
+Mit je ±3 Prozentpunkten ergeben sich 52–58 % und 57–63 % relative Feuchte. Die Bereiche überschneiden sich von 57 bis 58 %. Prüfe Messort, Temperatur, Angleichzeit und die Gültigkeit der Geräteangaben vor dem [Vergleich der Messbereiche](https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html#hygrometer-vergleichen).
+
+{"jsonrpc":"2.0","id":14,"method":"tools/call","params":{"name":"hygrometer_messbereiche","arguments":{"reading_a_pct":55,"accuracy_a_pp":3,"reading_b_pct":60,"accuracy_b_pp":3}}}
+
+### Welche EAN passt zum De’Longhi PAC N90 ECO Silent?
+
+Gleiche den vollständigen Namen PAC N90 ECO Silent und die EAN 8004399512351 mit Händlerangaben und Typenschild ab. Bei fehlender oder widersprüchlicher Kennung führt der [Modellabgleich](https://getecoback.com/guide/delonghi-pac-n90-test.html#testlage) zuerst zu den Herstellerunterlagen.
+
+{"jsonrpc":"2.0","id":15,"method":"tools/call","params":{"name":"pac_n90_ean_abgleichen","arguments":{"ean":8004399512351,"modell":"PAC N90 ECO Silent"}}}
+
+### Welche schmale Saugdüse passt an die Kärcher WV 6 Plus?
+
+Kärcher Deutschland führt den exakten Namen WV 6 Plus sowohl bei der gelben 2.633-512.0 als auch bei der weißen 2.633-532.0. Die 170 mm helfen bei der Vorauswahl. Vor einer Bestellung [Gerätevariante, Artikelnummer und Angebotsumfang klären](https://getecoback.com/produkte.html#kaercher-170mm-saugduese).
+
+{"jsonrpc":"2.0","id":21,"method":"tools/call","params":{"name":"fenstersauger_170mm_saugduese_geraetezuordnung","arguments":{"geraet":"WV 6 Plus","teilenummer":"2.633-532.0","angebotsart":"komplette_saugduese"}}}
+
+### Passt AquaClean CA6903/10 zur EP2220/10?
+
+Der Check gleicht den vollständigen Modellnamen und die genaue Filterpackung ab. Für Bosch TIE20301 und De’Longhi ECAM22.110.B gelten eigene Kennungen. [Wasserfilter und Originalquellen vergleichen](https://getecoback.com/produkte.html#kaffee-wasserfilter).
+
+{"jsonrpc":"2.0","id":20,"method":"tools/call","params":{"name":"kaffeevollautomat_intenza_aquaclean_filterfamilie_modellpruefung","arguments":{"modell":"EP2220/10","filter":"CA6903/10"}}}
+
+### Passt ein gemeinsamer Beutel für Miele Guard S1 und L1?
+
+Für die beiden genannten Modellreihen ist TU gelistet. Der Guard M1 führt CO. [Den Beuteltyp am eigenen Modell und vorhandenen Vorrat prüfen](https://getecoback.com/produkte.html#miele-staubsaugerbeutel).
+
+{"jsonrpc":"2.0","id":23,"method":"tools/call","params":{"name":"miele_zwei_sauger_vorrat_beutel_abluftfilter_getrennt","arguments":{"erstes_modell":"guard_s1","zweites_modell":"guard_l1","vorrat_soll_hepa_serie_abdecken":false}}}
+
+### Welcher HEPA-Ersatzfilter gehört zum Trotec TTK 70 HEPA Plus?
+
+Beim Artikel 7710000077 widersprechen sich Überschrift und Merkmalliste zur Bauzeit. Lass den Filter für das konkrete Typenschild vom Hersteller bestätigen. [Beide Angaben und den Staubfilter prüfen](https://getecoback.com/guide/trotec-luftentfeuchter-test.html#ttk70-hepa-filter).
+
+{"jsonrpc":"2.0","id":22,"method":"tools/call","params":{"name":"trotec_ttk70_hepa_filter_generation","arguments":{"modell":"TTK 70 HEPA Plus","bauzeit":"nach_dezember_2023","angebot_kennung":"7710000077"}}}
+
+### Wie viel schafft der Trotec TTK 75 ECO bei 10 °C?
+
+20 l/24 h stehen in der Trotec-Anleitung bei 30 °C und 80 %. Bei 10 °C und 60 % liefert der Betriebsbereich allein keinen Literwert. [Prüfpunkte, Anbieterangabe und Kaufgrenze ansehen](https://getecoback.com/guide/trotec-luftentfeuchter-test.html#ttk75-pruefpunkt).
+
+{"jsonrpc":"2.0","id":19,"method":"tools/call","params":{"name":"trotec_ttk75_eco_pruefpunkt","arguments":{"modell":"ttk_75_eco","temperatur_c":10,"luftfeuchte_prozent":60}}}
+
+### Sind 39 und 64 dB bei Klimageräten direkt vergleichbar?
+
+Die originale PortaSplit nennt 39 dB(A) Schalldruck bei 1 m im Silent-Modus. Das Energielabel des PAC N90 ECO Silent nennt 64 dB Schallleistung. Der Vergleich liefert keine Pegeldifferenz. [Messbedingungen und Quellen ansehen](https://getecoback.com/guide/delonghi-pac-n90-test.html#lautstaerke).
+
+{"jsonrpc":"2.0","id":18,"method":"tools/call","params":{"name":"klimaanlage_geraeusch_vergleich","arguments":{"pegel_a_dba":39,"pegel_b_dba":64,"groesse_a":"schalldruck","groesse_b":"schallleistung","gleiche_bedingungen":false}}}
+
+### Welche tesamoll-Fensterdichtung liegt bei 4 mm im Maßbereich?
+
+Für die benannten Klebeprofile liegen bei 4 mm das P- und D-Profil im dokumentierten Spaltbereich. Eine Nut oder eine zweite Dichtungsebene vor dem Kauf klären. [Maße und tesa-Quellen prüfen](https://getecoback.com/guide/fenster-zugluft-mietwohnung.html#dichtungsprofil).
+
+{"jsonrpc":"2.0","id":17,"method":"tools/call","params":{"name":"tesamoll_fensterdichtung_profil_pruefen","arguments":{"dichtungsart":"tesamoll_klebeprofil","spalt_min_mm":4,"spalt_max_mm":4}}}
+
+### Ist ein 60 mm breiter Fensterfalz zu breit?
+
+Die Standardhalterung der originalen Midea PortaSplit ist laut deutscher Zeichnung für den Falz eines nach innen öffnenden Fensters mit höchstens 45 mm Breite und mindestens 20 mm Höhe angegeben. Ein bestätigter Falz von 60 mm Breite liegt 15 mm darüber. Im [Fensterfalz-Abgleich](https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html#fensterfalz) stehen Messstelle und Grenzen der Maßprüfung.
+
+{"jsonrpc":"2.0","id":16,"method":"tools/call","params":{"name":"midea_portasplit_fensterfalz_pruefen","arguments":{"angebot_ean":4048164116478,"halterung":"original_standard","fenster":"nach_innen_oeffnend","messbezug":"falz_nach_zeichnung","falzbreite_mm":60,"falzhoehe_mm":0}}}
+
+## Kann die Außenluft meinen Keller trocknen?
+
+Bei 28 °C und 60 % draußen liegt der Taupunkt bei 19,5 °C. Im Keller ergeben 17 °C und 65 % einen Taupunkt von 10,4 °C. An der gemessenen 15 °C kalten Wand kann die Außenluft kondensieren. Der [Taupunkt-Check mit eigenen Messwerten](https://getecoback.com/guide/keller-lueften-sommer.html#taupunkt) prüft den Feuchtevergleich und die Wandtemperatur zusammen.
+
+{"jsonrpc":"2.0","id":10,"method":"tools/call","params":{"name":"keller_lueften_taupunkt_messwerte","arguments":{"aussen_c":28,"aussen_rh_prozent":60,"innen_c":17,"innen_rh_prozent":65,"wand_c":15}}}
+
 ## Kann mein MeacoDry Arete One 20L ins höher liegende Waschbecken abpumpen?
 
-Beim Arete One 20L genügt ein Ablaufschlauch für diesen Höhenunterschied nicht. Meaco führt eine separate Pumpe für dieses Modell. Prüfe den deutschen Lieferumfang und die zulässige Förderhöhe vor dem Kauf; als Alternative kannst du den Tank leeren. Die Nachweise stehen im [Ablaufvergleich für den Keller](https://getecoback.com/guide/luftentfeuchter-keller.html#ablauf-vor-kauf).
+Für eine Schlauchstrecke bergauf brauchst du eine passende Pumpe oder einen anderen Wasserweg. Auch eine kurze Schwelle unterbricht das Gefälle zum tieferen Abfluss. Für das separat angebotene Arete One Pumpenzubehör nennt der deutsche Meaco-Vertrieb bis zu 2,5 m Förderhöhe und einen mitgelieferten 3-m-Schlauch. Prüfe den ganzen Wasserweg vor dem Kauf oder nutze den vorgesehenen Tank. Die Nachweise stehen im [Ablaufvergleich für den Keller](https://getecoback.com/guide/luftentfeuchter-keller.html#ablauf-vor-kauf).
 
 {"jsonrpc":"2.0","id":6,"method":"tools/call","params":{"name":"entfeuchter_ablaufcheck","arguments":{"drain":"level_or_uphill","model":"meaco-one-20"}}}
 
@@ -201,6 +285,13 @@ Die [Entscheidungshilfe im Browser](https://getecoback.com/guide/luftentfeuchter
 Die Textansicht erklärt den Vergleich bei gleicher Wäschemenge und gleichem Trocknungsgrad. Sie verlinkt die Originalquellen zum Energielabel. Rechenbeispiele sind keine Produktmessungen.
 
 Für Wärmepumpen-, Kondens- oder Ablufttrockner und Luftentfeuchter nutze den [Kostenvergleich je Ladung](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#laundry-check) mit zwei eigenen Messwerten. Wenn du nur den Entfeuchter gemessen hast, öffne die [Einzelrechnung für den Luftentfeuchter](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#luftentfeuchter-waesche-kosten).
+
+## Herstellerbelege im passenden Abschnitt lesen
+
+Wenn ratgeber_suche einen Abschnitt ausweist, übergib dessen Link mit Anker an ratgeber_lesen. So erhältst du etwa die [Angaben zum Bosch-Verbindungssatz](https://getecoback.com/produkte.html#waeschesaeule-zubehoer) als Textauszug mit Quellen.
+
+{"jsonrpc":"2.0","id":6,"method":"tools/call","params":{"name":"ratgeber_lesen","arguments":{"pfad":"/produkte.html#waeschesaeule-zubehoer"}}}
+Im gehosteten Kompaktprofil nutzt du ecoback_werkzeug_ausfuehren mit name: "ratgeber_lesen" und der Abschnitts-URL in eingaben.pfad.
 
 ## In deinem Client einrichten
 
