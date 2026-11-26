@@ -66,6 +66,17 @@ async function checkExactDelonghiPurchase(page,base){
  assert.equal(await priceCheck.locator('a[rel~="sponsored"]').count(),0);
  assert(await priceCheck.locator('a[href="#eb-models"]').isVisible(),'The existing model comparison follows the price check');
 
+
+ const boschCard=page.locator('.dc-card').filter({has:page.locator('#modell-bosch-d4000-eu')});
+ const boschFilterHeading=boschCard.locator('#bosch-dry-4000-aktivkohlefilter');
+ assert(await boschFilterHeading.isVisible());
+ const boschFilter=boschCard.locator('section[aria-labelledby="bosch-dry-4000-aktivkohlefilter"]');
+ const boschFacts=await boschFilter.innerText();
+ for(const phrase of ['Staubfilter im Lufteintrittsgitter integriert','7733703602','2er-Pack','verschiebe den Kauf']) assert(boschFacts.includes(phrase),phrase);
+ const boschMerchant=boschCard.locator('[data-catalog-commerce] a[rel~="sponsored"]');
+ assert.equal(await boschMerchant.getAttribute('href'),'https://www.amazon.de/s?k=Bosch+Dry+4000+D4000-EU+Luftentfeuchter&tag=getecoback-21');
+ assert(await boschFilterHeading.evaluate((heading, shop)=>Boolean(heading.compareDocumentPosition(shop)&Node.DOCUMENT_POSITION_FOLLOWING),await boschMerchant.elementHandle()));
+ assert.equal(await boschFilter.locator('a[rel~="sponsored"]').count(),0);
  await page.goto(base+'/guide/smarte-heizkoerperthermostate-lohnen-sich.html?__ci=1#tado-x-vaillant-305-adapter');
  const valve=page.locator('section[aria-labelledby="tado-x-vaillant-305-adapter"]');
  const valveFacts=await valve.innerText();
@@ -86,7 +97,7 @@ async function checkExactDelonghiPurchase(page,base){
    await directorySearch.fill('Klimaanlage Preischeck');
    assert(!await priceGuide.isVisible());
  }
- return outcomes.length*5+24;
+ return outcomes.length*5+31;
 }
 
 async function checkGermanCoolingLoad(browser,base){
@@ -148,6 +159,7 @@ async function checkGermanFocusedDiscovery(browser,base){
  const ex105Page='/guide/pinguino-pac-ex105-test.html';
  const positive=['Was kostet eine Ladung Wäsche nur mit meinem Luftentfeuchter?','Stromkosten Luftentfeuchter Wäsche'];
  const ordinary=[
+  ["Ist der Aktivkohlefilter beim Bosch Dry 4000 dabei?",'/guide/luftentfeuchter-ratgeber.html#bosch-dry-4000-aktivkohlefilter'],
   ["Welchen Adapter brauche ich beim tado° X für ein Vaillant Heizkörperventil mit 30,5 mm Klemmanschluss?",'/guide/smarte-heizkoerperthermostate-lohnen-sich.html#tado-x-vaillant-305-adapter'],
   ["Black Friday Luftentfeuchter Angebote prüfen",'/guide/luftentfeuchter-ratgeber.html#luftentfeuchter-30-tage-preischeck'],
   ["Wie hoch ist der Lärmspiegel von dem Teil, der bei der Midea PortaSplit draußen hängt?",'/guide/midea-portasplit-kaufen.html#portasplit-aussengeraet-lautstaerke'],

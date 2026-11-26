@@ -1042,3 +1042,15 @@ test('the German tado X Vaillant adapter identification and stop branch agree in
  for(const value of ["30,5 mm Klemmanschluss","700 100 001","4260012710533","separat erhältlich","verschiebe die Bestellung","wasserführenden Ventilkörper","https://cdn.bfldr.com/607DGEMS/at/hqb8tzxsq4cmchcjxsxtwhh/DE_SRTx_compatibility_Links.pdf#page=9","https://help.tado.com/de/articles/3405486-wie-montiere-ich-den-adapter-fur-vaillant-30-5-mm-heizkorperventile-damit-mein-smartes-heizkorper-thermostat-passt","#thermostat-tado-x-starter","26. November 2026"]) assert(textOf(full).includes(value),value);
  assert(!textOf(full).includes('https://www.amazon.de/'));
 });
+
+test('German Bosch Dry 4000 filter questions retain OEM evidence in both guide profiles',async()=>{
+ const {env}=assetEnv();
+ const pfad='https://getecoback.com/guide/luftentfeuchter-ratgeber.html#bosch-dry-4000-aktivkohlefilter';
+ const found=await call('ratgeber_suche',{frage:"Ist der Aktivkohlefilter beim Bosch Dry 4000 dabei?",sprache:'de',max:1},env);
+ assert(textOf(found).includes('Abschnitt: '+pfad));
+ const full=await call('ratgeber_lesen',{pfad},env);
+ assert.equal(full.isError,false);
+ assert.deepEqual(await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad}},env,true),full);
+ for(const value of ["D4000-EU","7733703558","4069143047774","Staubfilter im Lufteintrittsgitter integriert","7733703602","2er-Pack","verschiebe den Kauf","https://www.bosch-homecomfort.com/de/de/ocs/wohngebaeude/dry-4000-20990506-p/","https://www.bosch-home.com/de/de/product/7733703602","https://bosch-de-de.boschhc-documents.com/download/pdf/file/6721890171#page=10","#luftentfeuchter-30-tage-preischeck","26. November 2026"]) assert(textOf(full).includes(value),value);
+ assert(!textOf(full).includes('https://www.amazon.de/'));
+});

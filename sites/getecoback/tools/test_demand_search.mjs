@@ -1333,3 +1333,9 @@ test('the exact German tado X Vaillant adapter query respects other heads and va
  for(const q of ["Welchen Adapter brauche ich beim tado° X für ein Vaillant Heizkörperventil mit 30,5 mm Klemmanschluss?","tado X Thermostat: passt der Adapter an ein TA Heimeier Ventil mit 30,5 mm Klemme?","Welcher tado X Vaillant Adapter ist 700 100 001?","Welche Ventilzuordnung hat die EAN 4260012710533?"]) assert.equal(searchEntries(index,q,'de')[0]?.entry.u,target,q);
  for(const q of ["Passt tado V3 auf das Vaillant Thermostatventil mit 30,5 mm Klemme?","tado X Oventrop UniDH M30 x 1,0 Adapter","FRITZ! 302 Heizkörperthermostat Vaillant 30,5 mm Adapter","Mein tado X mit Vaillant Ventil tropft, wie reparieren?","Passt tado X auf Danfoss RAV?"]) assert.notEqual(searchEntries(index,q,'de')[0]?.entry.u,target,q);
 });
+
+test('German Bosch Dry 4000 filter questions reach its exact package evidence',()=>{
+ const target='/guide/luftentfeuchter-ratgeber.html#bosch-dry-4000-aktivkohlefilter';
+ for(const q of ["Ist der Aktivkohlefilter beim Bosch Dry 4000 dabei?","Muss ich beim Bosch Dry 4000 den HEPA Filter separat kaufen?","D4000-EU: Welcher Staubfilter ist im Lieferumfang?","Welches Gerät hat den 2-in-1 Dry-Filter 7733703602?"]) assert.equal(searchEntries(index,q,'de')[0]?.entry.u,target,q);
+ for(const q of ["Welcher Filter passt zum Bosch Air 4000?","Brauch ich für den Bosch Dry 2000 einen Aktivkohlefilter?","4069143047804 Bosch D4000-UK Ersatzfilter?","Hat der Bosch Dry 4000 einen Schlauch dabei?","Ist der DeLonghi PAC N90 Filter im Lieferumfang?","Bosch Dry 4000 Aktivkohlefilter Geräte-EAN 4069143047781"]) assert.notEqual(searchEntries(index,q,'de')[0]?.entry.u,target,q);
+});
