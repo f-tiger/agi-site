@@ -42,6 +42,8 @@ async function checkGermanFocusedDiscovery(browser,base){
  const positive=['Was kostet eine Ladung Wäsche nur mit meinem Luftentfeuchter?','Stromkosten Luftentfeuchter Wäsche'];
  const ordinary=[
   ['Trockner oder Luftentfeuchter Stromkosten Wäsche','/waeschetrockner-oder-luftentfeuchter.html'],
+  ['Kondenstrockner oder Luftentfeuchter: Was kostet eine Ladung Wäsche?',
+    '/waeschetrockner-oder-luftentfeuchter.html#laundry-check'],
   ['Luftentfeuchter Keller','/guide/luftentfeuchter-keller.html'],
   ['Stromtarif','/stromtarif-werkstatt.html'],
   ['Wäsche trocknen','/waeschetrockner-oder-luftentfeuchter.html'],
