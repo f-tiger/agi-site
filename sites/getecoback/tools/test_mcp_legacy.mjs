@@ -256,3 +256,23 @@ test('window seal rejects invalid measurements and separates roof and oversized 
   assert.equal(oversized.structuredContent.rectangular_perimeter_cm,580);
   assert.equal(oversized.structuredContent.example_size_cm,null);
 });
+
+test('legacy heating watts keep numeric estimates and cite their limits for supplementary warmth', async () => {
+  const citation = origin + '/guide/infrarotheizung-watt-rechner.html';
+  for (const [qm,daemmung,watts,cost] of [
+    [20,'mittel',1600,0.48],
+    [18,'schlecht',1800,0.54],
+    [30,'schlecht',3000,0.90],
+  ]) {
+    const result = await call('heizleistung_watt',{qm,daemmung,strompreis_euro_kwh:0.30});
+    assert.equal(result.isError,false);
+    assert.deepEqual(result.structuredContent,{
+      estimated_watts:watts,eur_per_full_load_hour:cost,citation_url:citation,
+    });
+    const text = result.content[0].text;
+    assert.match(text,/grob\w*\s+Schätzung/iu);
+    assert.match(text,/punktuell\w*\s+Zusatzwärme/iu);
+    assert.ok(text.includes(citation + '#watt-rechner-raumgroesse-und-daemmung-eingeben'));
+    assert.doesNotMatch(text,/(?:zwei|2)\s+(?:Infrarot[- ]?)?Panels?\s+verteilen/iu);
+  }
+});

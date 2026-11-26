@@ -39,6 +39,7 @@ assert [(entry['l'],entry['u'],entry['section']['id']) for entry in focused]==[
     ('de','/guide/heizdecke-stromverbrauch.html','waerme-rechner'),
     ('de','/guide/heizkosten-vergleich-rechner.html','heizluefter-oder-infrarot'),
     ('de','/guide/infrarotheizung-ratgeber.html','jahreskosten-hauptheizung'),
+    ('de','/guide/infrarotheizung-watt-rechner.html','watt-rechner-raumgroesse-und-daemmung-eingeben'),
     ('de','/guide/keller-lueften-sommer.html','taupunkt'),
     ('de','/guide/klarstein-kraftwerk-smart-12k-test.html','kraftwerk-10034664-lieferumfang'),
     ('de','/guide/klimaanlage-40-qm.html','portasplit-40-qm'),

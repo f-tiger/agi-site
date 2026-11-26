@@ -107,6 +107,29 @@ export const infraredAnnualCost = {
   tool:'ratgeber_suche',
 };
 
+export const infraredRoomWatts = {
+  path:'/guide/infrarotheizung-watt-rechner.html',
+  id:'watt-rechner-raumgroesse-und-daemmung-eingeben',
+  tool:'heizleistung_watt',
+};
+
+function statedRoomAreas(query) {
+  return new Set(Array.from(
+    query.matchAll(/(?<![\d.,-])\b(\d{1,3}(?:[.,]\d+)?)\s*(?:m²|m2|qm|quadratmetern?)(?![\p{L}\p{N}])/gu),
+    match => Number(match[1].replace(',','.')),
+  ));
+}
+
+function asksForInfraredRoomWatts(query) {
+  const heater = /\b(?:infrarot(?:[ -]?(?:heiz\w*|paneel\w*|panel\w*))?|elektroheiz\w*|direktheiz\w*|heizleistung)\b/;
+  const sizing = /\b(?:wie viel(?:e)?\s+(?:watt|heizleistung|leistung)|welche\s+(?:wattzahl|heizleistung)|wattzahl\s+(?:brauch\w*|berechn\w*)|heizleistung\s+(?:in watt|berechn\w*))\b/;
+  const otherTask = /\b(?:waermepump\w*|gaskessel\w*|gasheiz\w*|heizluefter\w*|heizdecke\w*|klimaanlag\w*|pro jahr|im jahr|jaehrlich\w*|jahres\w*|energieausweis\w*|repar\w*|ersatzteil\w*|reichweite\w*|abstand\w*|punktuell\w*|dusch\w*|am schreibtisch|auf dem sofa|sitzplatz\w*)\b/;
+  if (otherTask.test(query) || !heater.test(query) || !sizing.test(query)) return false;
+  const areas = statedRoomAreas(query);
+  const [area] = areas;
+  return areas.size === 1 && area >= 1 && area <= 100;
+}
+
 function asksForInfraredAnnualCost(query) {
   const infrared = /\binfrarot(?:[ -]*(?:elektro[ -]*)?(?:heiz\w*|paneel\w*|panel\w*))?\b/;
   const annual = /\b(?:jahreskost\w*|jahresverbrauch\w*|jaehrlich\w*|pro jahr|im jahr|energieausweis\w*|heizwaermebedarf\w*|endenergie\w*)\b/;
@@ -466,8 +489,7 @@ export function exactGermanHouseholdTask(query) {
   const ex105=exactEx105Evidence(query);
   if(ex105)return ex105;
   if(/\b(?:klimaanlag\w*|klimageraet\w*|monoblock\w*|(?:ab)?kuehl\w*|btu)\b/.test(query)){
-    const areas=new Set([...query.matchAll(/\b(\d{1,3}(?:[.,]\d+)?)\s*(?:m²|m2|qm|quadratmetern?)(?![\p{L}\p{N}])/gu)]
-      .map(match=>Number(match[1].replace(',','.'))));
+    const areas=statedRoomAreas(query);
     const [area]=areas;
     if((areas.size===1&&area>=45&&area<=120)||/\bmehrer(?:e|en)\s+(?:raeumen?|zimmern?)\b/.test(query))
       return highCoolingLoadDecision;
@@ -476,6 +498,7 @@ export function exactGermanHouseholdTask(query) {
   const tineco = exactTinecoS7Task(query);
   if (tineco) return tineco;
   if (asksForInfraredAnnualCost(query)) return infraredAnnualCost;
+  if (asksForInfraredRoomWatts(query)) return infraredRoomWatts;
   const exhaustPanel = /\babluft[ -]?platt\w*\b|(?:\b(?:fenster|acryl|hohlkammer)[ -]?platt\w*\b.*\b(?:klimaanlag\w*|klimageraet\w*|abluft\w*)\b)|(?:\b(?:klimaanlag\w*|klimageraet\w*|abluft\w*)\b.*\b(?:fenster|acryl|hohlkammer)[ -]?platt\w*\b)/;
   const opening = /\b(?:ausschnitt\w*|lochr?and\w*|loch\w*|randabstand\w*|anschlusszeichnung\w*)\b/;
   const irrelevant = /\b(?:rechteckig\w*|oval\w*|sicherung\w*|einbruch\w*|lautstaerk\w*|geraeusch\w*|schlauchlaeng\w*|(?:abluft)?schlauch\s+verlaeng\w*)\b/;

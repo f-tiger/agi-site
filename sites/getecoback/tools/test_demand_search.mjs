@@ -1124,3 +1124,24 @@ test('German Comfee variant and identifier lookups open the cellar model card', 
   assert.equal(searchEntries(index,uphill,'de')[0]?.entry.u,page + '#ablauf-vor-kauf',uphill);
   assert.ok(!searchEntries(index,'Comfee MDDF-20DEN7-WF','en').some(hit => hit.entry.u === card));
 });
+
+test('German room heat sizing opens the watt calculator without rerouting operating costs', () => {
+  const target = '/guide/infrarotheizung-watt-rechner.html#watt-rechner-raumgroesse-und-daemmung-eingeben';
+  for (const query of [
+    'Wie viel Watt Infrarotheizung brauche ich für 18 m² im Altbau?',
+    'Wie viel Heizleistung in Watt braucht mein Zimmer mit 18 Quadratmetern und schlechter Dämmung?',
+  ]) {
+    assert.equal(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+    assert.ok(!searchEntries(index,query,'en').some(hit => hit.entry.u === target),query);
+  }
+  for (const [query,expected] of [
+    ['Wie viel Strom verbraucht eine Infrarotheizung als Hauptheizung im Jahr?',
+      '/guide/infrarotheizung-ratgeber.html#jahreskosten-hauptheizung'],
+    ['Was ist billiger: Heizlüfter 2000 W für 15 Minuten oder Infrarotpanel 600 W für eine Stunde?',
+      '/guide/heizkosten-vergleich-rechner.html#heizluefter-oder-infrarot'],
+  ]) assert.equal(searchEntries(index,query,'de')[0]?.entry.u,expected,query);
+  for (const query of [
+    'Infrarotheizung 600 Watt Stromkosten pro Stunde',
+    'Wie viel Watt Infrarotheizung brauche ich nur am Schreibtisch in meinem 18 m² großen Zimmer?',
+  ]) assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+});

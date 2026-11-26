@@ -1122,12 +1122,12 @@ const LEGACY_MCP_TOOLS = [
   // the expansion follows the observed demand instead of guessing at breadth.
   {
     name: "heizleistung_watt",
-    description: "Benötigte Heizleistung in Watt für einen Raum (Infrarot/Elektro). — Required heating power in watts for a room, from floor area and insulation standard (60/80/100 W/m² for new build, existing, old building), including running cost per full-load hour.",
+    description: "Grobe Schätzung der Heizleistung für einen ganzen Raum (Infrarot/Elektro). — Rough whole-room estimate using floor area and actual insulation (60/80/100 W/m²), including cost per full-load hour.",
     inputSchema: {
       type: "object",
       properties: {
         qm: { type: "number", description: "Raumfläche in m² (1–100)" },
-        daemmung: { type: "string", enum: ["gut", "mittel", "schlecht"], description: "Dämmstandard: gut = Neubau (60 W/m²), mittel = Bestand (80), schlecht = Altbau (100). Default: mittel" },
+        daemmung: { type: "string", enum: ["gut", "mittel", "schlecht"], description: "Tatsächliche Dämmung: gut (60 W/m²), mittel (80), schlecht (100). Altbau allein legt die Dämmung nicht fest. Ohne Angabe: mittlerer Beispielwert." },
         strompreis_euro_kwh: { type: "number", description: "Arbeitspreis in €/kWh für die Betriebskosten (Default: 0.30)" },
       },
       required: ["qm"],
@@ -1474,14 +1474,17 @@ async function mcpCallTool(name, args, env) {
     const watt = Math.round((qm * wPerQm) / 10) * 10;
     const perH = (watt / 1000) * price;
     if (!Number.isFinite(perH)) return mcpInputError("Die angegebenen Werte ergeben keine endlichen Stromkosten.");
-    const split = watt > 2000
-      ? `\nÜber 2.000 W besser auf zwei Panels verteilen, z. B. 2 × ${(Math.round(watt / 2 / 50) * 50).toLocaleString("de-DE")} W an verschiedenen Wänden.`
+    const purchaseCheck = watt > 2000
+      ? "Vor dem Kauf Raumheizlast und die Belastbarkeit der vorhandenen Stromkreise fachlich prüfen lassen. Die Anschlussleistung aller Paneele zählt zusammen.\n"
       : "";
     const citationUrl = "https://getecoback.com/guide/infrarotheizung-watt-rechner.html";
+    const insulation = a.daemmung === undefined ? "mittlerer Beispielwert" : daemmung;
     return mcpToolResult(
-      `Heizleistung für ${qm} m² (Dämmung: ${daemmung}, ${wPerQm} W/m²): ca. ${watt.toLocaleString("de-DE")} Watt.${split}\n` +
-      `Betriebskosten bei ${price.toFixed(2).replace(".", ",")} €/kWh: ca. ${perH.toFixed(2).replace(".", ",")} € pro Stunde Volllast — Infrarot heizt Flächen, läuft aber selten durchgehend.\n` +
-      `Vollständiger Rechner: ${citationUrl}\n${MCP_DISCLOSURE}`,
+      `Grobe Schätzung für einen ganzen Raum mit ${qm} m² (${insulation}, ${wPerQm} W/m²): ca. ${watt.toLocaleString("de-DE")} Watt.\n` +
+      "Das Baujahr allein reicht für die Wahl der Dämmstufe nicht aus. Für punktuelle Zusatzwärme zählen Einbauort und Abstand laut Geräteanleitung. Bei einer Hauptheizung die Raumheizlast fachlich ermitteln lassen.\n" +
+      purchaseCheck +
+      `Bei ${price.toFixed(2).replace(".", ",")} €/kWh sind es rechnerisch ${perH.toFixed(2).replace(".", ",")} € pro Stunde Volllast. Den tatsächlichen Verbrauch bestimmt die Laufzeit.\n` +
+      `Rechner und Rechenweg: ${citationUrl}#watt-rechner-raumgroesse-und-daemmung-eingeben\n${MCP_DISCLOSURE}`,
       {estimated_watts:watt, eur_per_full_load_hour:Number(perH.toFixed(6)), citation_url:citationUrl});
   }
   if (name === "taupunkt_lueften") {
