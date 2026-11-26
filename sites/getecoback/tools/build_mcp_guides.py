@@ -5,8 +5,30 @@ Run after the page/Markdown generators. The browser keeps its broader search
 index; MCP only advertises canonical pages with a built, cleaned text mirror.
 """
 import json
+import re
+from collections import Counter
+from html import unescape
 from build_search import SITE, collect, public_pages
 from build_llmstxt import ENERGY_PATHS, checked_mirror
+
+
+def readable_sections(source, markdown, entry):
+    selected = {row['id'] for row in entry.get('model_sections', [])}
+    if entry.get('section'):
+        selected.add(entry['section']['id'])
+    if not selected:
+        return {}
+    headings = Counter(markdown.splitlines())
+    matches = {}
+    for depth, attrs, body in re.findall(r'<h([2-6])\b([^>]*)>(.*?)</h\1>', source, re.S):
+        anchor = re.search(r'\sid="([a-z0-9-]{1,80})"', attrs)
+        if anchor is None or anchor[1] not in selected:
+            continue
+        text = unescape(re.sub(r'<[^>]+>', '', body)).strip()
+        heading = '#' * int(depth) + ' ' + text
+        if len(heading) <= 240 and headings[heading] == 1:
+            matches[anchor[1]] = heading
+    return matches
 
 
 def collect_guides():
@@ -37,6 +59,10 @@ def collect_guides():
         entry['d'] = ' '.join(head.description.split())[:320]
         entry['m'] = route[:-5] + '.md'
         entry['c'] = canonical
+        if entry.get('section') or entry.get('model_sections'):
+            sections = readable_sections(page.read_text(), text, entry)
+            if sections:
+                entry['readable_sections'] = sections
         entries.append(entry)
     return entries
 

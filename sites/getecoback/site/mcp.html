@@ -81,7 +81,7 @@
 <article>
   <p><a href="#einrichten">Online verbinden</a> · <a href="#offline-installation">EcoBack lokal installieren</a></p>
   <h2 id="tools">Werkzeuge nach Aufgabe finden</h2>
-  <section id="mcp-catalog" data-catalogue="/assets/mcp-catalogue.json?v=fe486df6faeb" aria-label="Interaktiver Werkzeugkatalog" hidden>
+  <section id="mcp-catalog" data-catalogue="/assets/mcp-catalogue.json?v=7684485f4f78" aria-label="Interaktiver Werkzeugkatalog" hidden>
     <div class="catalog-filters" hidden>
       <label>Aufgabe oder Werkzeugname <input type="search" autocomplete="off" maxlength="512"></label>
       <label>Kategorie
@@ -267,6 +267,11 @@
   <pre><code>{"jsonrpc":"2.0","id":5,"method":"tools/call","params":{"name":"ratgeber_lesen","arguments":{"pfad":"/waeschetrockner-oder-luftentfeuchter.html"}}}</code></pre>
   <p>Die Textansicht erklärt den Vergleich bei gleicher Wäschemenge und gleichem Trocknungsgrad. Sie verlinkt die Originalquellen zum Energielabel. Rechenbeispiele sind keine Produktmessungen.</p>
   <p>Für Wärmepumpen-, Kondens- oder Ablufttrockner und Luftentfeuchter nutze den <a href="/waeschetrockner-oder-luftentfeuchter.html#laundry-check">Kostenvergleich je Ladung</a> mit zwei eigenen Messwerten. Wenn du nur den Entfeuchter gemessen hast, öffne die <a href="/waeschetrockner-oder-luftentfeuchter.html#luftentfeuchter-waesche-kosten">Einzelrechnung für den Luftentfeuchter</a>.</p>
+
+  <h2 id="ratgeber-abschnitte">Herstellerbelege im passenden Abschnitt lesen</h2>
+  <p>Wenn <code>ratgeber_suche</code> einen Abschnitt ausweist, übergib dessen Link mit Anker an <code>ratgeber_lesen</code>. So erhältst du etwa die <a href="/produkte.html#waeschesaeule-zubehoer">Angaben zum Bosch-Verbindungssatz</a> als Textauszug mit Quellen.</p>
+  <pre><code>{"jsonrpc":"2.0","id":6,"method":"tools/call","params":{"name":"ratgeber_lesen","arguments":{"pfad":"/produkte.html#waeschesaeule-zubehoer"}}}</code></pre>
+  <p>Im gehosteten Kompaktprofil nutzt du <code>ecoback_werkzeug_ausfuehren</code> mit <code>name: "ratgeber_lesen"</code> und der Abschnitts-URL in <code>eingaben.pfad</code>.</p>
 
   <h2 id="einrichten">In deinem Client einrichten</h2>
 
