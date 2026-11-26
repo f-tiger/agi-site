@@ -198,7 +198,9 @@ Die [Entscheidungshilfe im Browser](https://getecoback.com/guide/luftentfeuchter
 
 {"jsonrpc":"2.0","id":4,"method":"tools/call","params":{"name":"ratgeber_suche","arguments":{"frage":"Wäsche trocknen Wohnung Stromkosten","sprache":"de","max":3}}}
 {"jsonrpc":"2.0","id":5,"method":"tools/call","params":{"name":"ratgeber_lesen","arguments":{"pfad":"/waeschetrockner-oder-luftentfeuchter.html"}}}
-Die Textansicht erklärt den Vergleich bei gleicher Wäschemenge und gleichem Trocknungsgrad. Sie verlinkt die Originalquellen zum Energielabel; Rechenbeispiele sind keine Produktmessungen. Für eigene Werte öffne den [vorhandenen Kostenvergleich](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#laundry-check).
+Die Textansicht erklärt den Vergleich bei gleicher Wäschemenge und gleichem Trocknungsgrad. Sie verlinkt die Originalquellen zum Energielabel. Rechenbeispiele sind keine Produktmessungen.
+
+Für Wärmepumpen-, Kondens- oder Ablufttrockner und Luftentfeuchter nutze den [Kostenvergleich je Ladung](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#laundry-check) mit zwei eigenen Messwerten. Wenn du nur den Entfeuchter gemessen hast, öffne die [Einzelrechnung für den Luftentfeuchter](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#luftentfeuchter-waesche-kosten).
 
 ## In deinem Client einrichten
 

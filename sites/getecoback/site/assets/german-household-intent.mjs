@@ -1,6 +1,23 @@
 import {asksForDehumidifierDrainRoute} from './dehumidifier-drain-intent.mjs?v=f6bce24817e8';
 import {asksForSiemensWaterFilter} from './kaffee-wasserfilter-intent.mjs?v=99bfa4094412';
 
+const laundryDryer = '(?:(?:waesche|waermepumpen|kondens|abluft)[ -]?)?trockner(?:s|n)?';
+const namedLaundryDryer = new RegExp(`\\b${laundryDryer}\\b`);
+const excludedLaundryDryer = new RegExp(`\\b(?:kein(?:e[nmrs]?)?|ohne(?:\\s+(?:den|einen|meinen))?)\\s+${laundryDryer}\\b`,'g');
+
+export function mentionsLaundryDryer(query) {
+  return namedLaundryDryer.test(query.replace(excludedLaundryDryer,''));
+}
+
+export function asksForLaundryCostComparison(query) {
+  const anotherDecision = /\b(?:kaufpreis|anschaffung\w*|amortis\w*|rentier\w*|rechnet|gleichzeitig|parallel|zusammen|ausgeschaltet|abgeschaltet)\b/;
+  return mentionsLaundryDryer(query) &&
+    /\b(?:luft)?entfeuchter(?:s|n)?\b/.test(query) &&
+    /\b(?:(?:waesche|wasch)?ladung(?:en)?|trocknungsgang|trocknungsgaenge)\b/.test(query) &&
+    /\b(?:kosten|kostet|stromkosten|stromgeld|euro|billiger|guenstiger|stromverbrauch|kwh)\b/.test(query) &&
+    !anotherDecision.test(query);
+}
+
 const curtain = {
   path:'/guide/thermovorhang-ratgeber.html',
   id:'thermovorhang-bahnenbedarf',

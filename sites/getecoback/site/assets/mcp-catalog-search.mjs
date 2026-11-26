@@ -1,4 +1,4 @@
-import {boschDry, carHeaterOutlet, comfeeVariant, coolingDiscountReference, directHeat, exactGermanHouseholdTask, exactWindowShadeMeasurement, festiveLights, gasHeatCost, granulateDryingChoice, klarsteinPackage, offlineThermostatChoice, showerFlow, siemensFilterDecision, vacuumOffer} from './german-household-intent.mjs?v=63852905588d';
+import {asksForLaundryCostComparison, boschDry, carHeaterOutlet, comfeeVariant, coolingDiscountReference, directHeat, exactGermanHouseholdTask, exactWindowShadeMeasurement, festiveLights, gasHeatCost, granulateDryingChoice, klarsteinPackage, mentionsLaundryDryer, offlineThermostatChoice, showerFlow, siemensFilterDecision, vacuumOffer} from './german-household-intent.mjs?v=a94a295c93dc';
 import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion, glassvacModel, windowVacCharging} from './kaercher-saugduese-intent.mjs';
@@ -233,21 +233,12 @@ function matchWeight(term, root, entry) {
   return Math.max(body, Math.min(reference, 2));
 }
 
-function asksForLaundryCostComparison(terms) {
-  return terms.some(term => /^(?:waesche)?trockner(?:s|n)?$/.test(term)) &&
-    terms.some(term => /^(?:luft)?entfeuchter(?:s|n)?$/.test(term)) &&
-    terms.some(term => /^(?:(?:waesche|wasch)?ladung(?:en)?|trocknungsgang|trocknungsgaenge)$/.test(term)) &&
-    terms.some(term => /^(?:kosten|kostet|stromkosten|stromgeld|euro|billiger|guenstiger)$/.test(term)) &&
-    !terms.some(term => /^(?:kaufpreis|anschaffung|amortis|rentier|rechnet|gleichzeitig$|ausgeschaltet$|abgeschaltet$)/.test(term));
-}
-
 const singleLaundryTool = 'luftentfeuchter_waesche_einzelkosten';
 function asksForSingleLaundryCost(query) {
   if (!/\b(?:luft)?entfeuchter(?:s|n)?\b/.test(query) ||
       !/\b(?:kostet|kosten|stromkosten|strompreis|stromgeld|euro|cent)\b/.test(query)) return false;
   if (/\b(?:gleichzeitig|parallel|zusammen|abgeschaltet|ausgeschaltet|kaufpreis|anschaffung[a-z]*|amortis[a-z]*|rentier[a-z]*|rechnet|typenschild|nennleistung|nennwatt|herstellerangabe[a-z]*)\b/.test(query)) return false;
-  const hasDryer = /\b(?:waesche)?trockner(?:s|n)?\b/.test(query);
-  if (hasDryer && !/\b(?:kein(?:en)?|ohne(?:\s+(?:den|einen|meinen))?)\s+(?:waesche)?trockner\b/.test(query)) return false;
+  if (mentionsLaundryDryer(query)) return false;
   return /\b(?:waesche(?:ladung(?:en)?)?|waschladung(?:en)?|ladung(?:en)?|trocknungsgang|trocknungsdurchgang)\b/.test(query) ||
     /\b(?:durchschnittlich[a-z]*|mittler[a-z]*|gemittelt[a-z]*)\b/.test(query) && /\b(?:stunden?|laufzeit)\b/.test(query);
 }
@@ -483,7 +474,7 @@ export function findCatalogueTools(index, {query='', category='', name=null}={})
   else if (fritzValve) preferredName = fritzValveTool;
   else if (householdTask) preferredName = householdTask.tool;
   else if (singleLaundry) preferredName = singleLaundryTool;
-  else if (asksForLaundryCostComparison(tokens)) preferredName = 'waesche_trocknungskosten';
+  else if (asksForLaundryCostComparison(focus.query)) preferredName = 'waesche_trocknungskosten';
   else if (asksForHumidifierEfficiency(focus.query)) preferredName = 'befeuchter_nennwatt_abgabeleistung_bezug';
   else if (asksAboutGlassvacFault(focus.query)) return results.filter(tool => tool.name !== glassvacTemperatureTool);
   else if (asksForGlassvacTemperature(focus.query)) preferredName = glassvacTemperatureTool;

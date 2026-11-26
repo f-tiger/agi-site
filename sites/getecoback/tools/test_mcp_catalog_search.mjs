@@ -104,9 +104,9 @@ test('German household questions agree in browser, catalogue and compact MCP', a
 
 test('appliance search results link to exact owned evidence and keep canonical machine citations', async () => {
   const withGuides = compact.map(entry => entry.tool).filter(tool => tool.guide_url);
-  assert.equal(withGuides.length, 247);
+  assert.equal(withGuides.length, 248);
   const destinations = new Set(withGuides.map(tool => tool.guide_url));
-  assert.equal(destinations.size, 45);
+  assert.equal(destinations.size, 46);
   const pages = new Map();
   for (const tool of withGuides) {
     const {origin:site, pathname, hash} = new URL(tool.guide_url);
@@ -714,13 +714,26 @@ test('German per-load cost comparisons rank the measured tool first in the brows
     'Trockner oder Luftentfeuchter: Wie viel Stromgeld kostet mich eine gleich trockene Ladung Wäsche?',
     'Waeschetrockner gegen Luftentfeuchter: Welcher Trocknungsweg kostet bei gleicher Ladung weniger Euro?',
     'Ich habe die kWh für den Trockner und den Entfeuchter gemessen. Was kostet eine Ladung Wäsche jeweils?',
+    'Wärmepumpentrockner oder Luftentfeuchter: Was kostet eine Ladung Wäsche?',
+    'Vergleiche Kondenstrockner und Luftentfeuchter: Welche Stromkosten je Waschladung?',
+    '1,4 kWh im Wärmepumpen-Trockner, 0,8 kWh im Luftentfeuchter pro Ladung. Was kostet das jeweils?',
+    'Ablufttrockner oder Luftentfeuchter: kWh pro Wäscheladung?',
   ];
   for (const q of questions) {
     const browser = names(findCatalogueTools(compact, {query:q}));
     const api = await catalogue({q, view:'compact', limit:'5'});
     assert.equal(browser[0], name, q);
+    assert.equal(toolGuidePath(api.tools[0]), '/waeschetrockner-oder-luftentfeuchter.html#laundry-check', q);
     assert.deepEqual(names(api.tools), browser.slice(0,5), q);
     assert.equal(browser.filter(value => value === name).length, 1, q);
+  }
+  for (const q of [
+    'Was kostet eine Ladung Wäsche, wenn Wärmepumpentrockner und Luftentfeuchter parallel laufen?',
+    'Was kostet eine Wäscheladung einschließlich Anschaffung von Kondenstrockner oder Luftentfeuchter?',
+  ]) {
+    const first = (await catalogue({q, view:'compact', limit:'1'})).tools[0];
+    assert.notEqual(first?.name, name, q);
+    assert.notEqual(first?.name, 'luftentfeuchter_waesche_einzelkosten', q);
   }
   const query = questions[0];
   assert.deepEqual(names((await catalogue({q:query, tool:name})).tools), [name]);
@@ -762,6 +775,7 @@ test('individual laundry dehumidifier costs match the buyer question on the web 
   const name='luftentfeuchter_waesche_einzelkosten';
   for (const q of [
     'Ich habe keinen Wäschetrockner. Mein Entfeuchter hat für eine trockene Ladung 1,8 kWh verbraucht. Was kostet das bei 35 Cent/kWh?',
+    'Ohne Wärmepumpen-Trockner: Was kostet eine Wäscheladung nur mit dem Luftentfeuchter?',
     'Ich habe nur den Entfeuchter gemessen. Kann ich die Stromkosten je Wäscheladung teilen, ohne den Trockner zu schätzen?',
     'Was kostet eine Ladung Wäsche nur mit meinem Luftentfeuchter?',
     'Was kostet mein Luftentfeuchter bei gemessenen durchschnittlich 400 W über sechs Stunden für eine Wäscheladung?',

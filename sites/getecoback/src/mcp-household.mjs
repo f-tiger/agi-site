@@ -22,7 +22,9 @@ export const householdSuite = [
   },
   {
     name:'waesche_trocknungskosten', description:'Messwerte für zwei Trocknungswege vergleichen — Compare measured energy costs for equally dry laundry.',
-    page:'/waeschetrockner-oder-luftentfeuchter.html', example:{args:{dryer:2,dehum:1,price:0.3,comparable:false},expect:{lower_cost:'unconfirmed'}}, properties:{dryer:number('Trockner: kWh pro Ladung.',0,20),dehum:number('Entfeuchter: gemessene kWh pro Ladung.',0,100),comparable:{type:'boolean',description:'Gleiche Wäschemenge und Endtrockenheit erreicht?'},price},
+    page:'/waeschetrockner-oder-luftentfeuchter.html',
+    guide_url:LAUNDRY_SHARE_URL,
+    example:{args:{dryer:2,dehum:1,price:0.3,comparable:false},expect:{lower_cost:'unconfirmed'}}, properties:{dryer:number('Trockner: kWh pro Ladung.',0,20),dehum:number('Entfeuchter: gemessene kWh pro Ladung.',0,100),comparable:{type:'boolean',description:'Gleiche Wäschemenge und Endtrockenheit erreicht?'},price},
     calculate(args) {
       const input = {...args, dryerBasis:'cycle', method:'measured', currency:'EUR', loads:0, purchase:0};
       const r = laundry(input);

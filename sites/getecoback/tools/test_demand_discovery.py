@@ -21,6 +21,8 @@ humidifier_index=next(row for row in index if row['u']=='/guide/luftbefeuchter-r
 humidifier_sections=[row['id'] for row in humidifier_index['model_sections']]
 assert sorted(humidifier_sections)==sorted(['ersatzteile-zuordnen','philips-verdunsterfilter','philips-hu4803-01',
     'philips-hu2716-10','philips-hu3916-10','philips-hu3918-10'])
+laundry_index=next(row for row in index if row['u']=='/waeschetrockner-oder-luftentfeuchter.html')
+assert [row['id'] for row in laundry_index['model_sections']]==['laundry-check']
 focused=[entry for entry in index if entry.get('section')]
 assert [(entry['l'],entry['u'],entry['section']['id']) for entry in focused]==[
     ('de','/geraete-austausch-rechner.html','geschirrspueler-handabwasch'),
