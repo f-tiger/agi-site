@@ -208,6 +208,26 @@ test('labelled sections can be read at the exact guide anchors in both profiles'
   }
 });
 
+test('Bosch II [+M] E03 finds and reads the exact calibration answer in both profiles', async () => {
+  const {env} = assetEnv();
+  const pfad = 'https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#bosch-ii-m-e03';
+  const frage = 'Mein Bosch Heizkörper-Thermostat II [+M] zeigt E03. Brauche ich einen Danfoss RAV Adapter?';
+  const hits = await call('ratgeber_suche', {frage, sprache:'de', max:1}, env);
+  assert.ok(textOf(hits).includes('Abschnitt: ' + pfad), textOf(hits));
+  const full = await call('ratgeber_lesen', {pfad}, env);
+  const compact = await call('ecoback_werkzeug_ausfuehren', {
+    name:'ratgeber_lesen', eingaben:{pfad},
+  }, env, true);
+  assert.equal(full.isError, false);
+  assert.deepEqual(compact, full);
+  const answer = textOf(full);
+  assert.ok(answer.startsWith('Quelle: ' + pfad + '\n'));
+  for (const fact of ['8750002861','Ventilstift klemmt','runde Taste','RA und RAVL liegen bei',
+    'bei eindeutig bestätigtem Danfoss RAV','8750002600','warte mit der Bestellung',
+    '8-750-002-924_BTH-RAD_OM_11L.pdf','Druckseiten 47–48']) assert.ok(answer.includes(fact), fact);
+  assert.doesNotMatch(answer, /amazon[.]de\/|getecoback-21/);
+});
+
 test('the committed MCP corpus is derived from current public canonical pages and built mirrors', () => {
   const py = spawnSync('python3', ['-c', "import json,sys;sys.path.insert(0,'tools');from build_mcp_guides import collect_guides;print(json.dumps(collect_guides()))"], {cwd, encoding: 'utf8', timeout: 15000});
   assert.equal(py.status, 0, py.stderr);

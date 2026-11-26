@@ -708,6 +708,24 @@ export const coolingDiscountReference = {
   tool:'ratgeber_suche',
 };
 
+const boschCalibration = {
+  path:'/guide/smarte-heizkoerperthermostate-lohnen-sich.html',
+  id:'bosch-ii-m-e03',
+  tool:'ratgeber_suche',
+};
+
+function asksForBoschCalibration(query) {
+  const model = /\b8750002861\b/.test(query) || (/\bbosch\b/.test(query) &&
+    /\b(?:bosch|(?:heizkoerper[ -]?)?thermostat)[ -]+(?:ii|2)\s*(?:\[\s*)?(?:\+\s*m|plus[ -]+m)\b/.test(query));
+  if (!model) return false;
+  const otherDevice = /\b(?:tado|fritz\w*|netatmo|homematic\w*|waschmaschine\w*|geschirrspuel\w*|waeschetrockner\w*|backofen\w*|waermepumpe\w*)\b/;
+  const otherCode = /\b(?:e[ -]?(?!03\b)\d{1,3}|[fh][ -]?\d{1,3})\b/;
+  if (otherDevice.test(query) || otherCode.test(query) ||
+      /\b(?:ohne\s+(?:\[\s*)?(?:\+\s*|plus[ -]+)?m\b|kein(?:en)?\s+(?:fehler(?:code)?\s*)?e[ -]?03\b)/.test(query)) return false;
+  const failed = /\b(?:fehler\s+(?:waehrend|bei)\s+der\s+kalibrierung|kalibrier(?:ungs)?fehler|kalibrier\w*\s+(?:(?:ist|wird|erneut|immer|immer wieder)\s+)*(?:fehlgeschlagen|scheitert|abgebrochen|schlaegt\s+fehl|klappt\s+nicht|funktioniert\s+nicht|nicht\s+moeglich)|(?:laesst\s+sich\s+)?nicht\s+kalibrieren|kalibriert\s+nicht)\b/;
+  return /\be[ -]?03\b/.test(query) || failed.test(query);
+}
+
 export const tadoXVaillantAdapter = {
   path:'/guide/smarte-heizkoerperthermostate-lohnen-sich.html',
   id:'tado-x-vaillant-305-adapter',
@@ -901,6 +919,7 @@ export function exactGermanHouseholdTask(query) {
   if (asksForFmSolarMobileFit(query)) return fmSolarMobileFit;
   if (asksForPortaSplitDelivery(query)) return portaSplitDelivery;
   if (asksForPortaSplitMonoblockChoice(query)) return portaSplitMonoblockChoice;
+  if (asksForBoschCalibration(query)) return boschCalibration;
   if (asksForTadoXVaillantAdapter(query)) return tadoXVaillantAdapter;
   if (asksForOfflineThermostat(query)) return offlineThermostatChoice;
   if (asksForSiemensWaterFilter(query)) return siemensFilterDecision;

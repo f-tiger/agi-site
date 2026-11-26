@@ -88,7 +88,7 @@ def render(today=None, data=None):
     fresh = 0 <= age <= data['max_age_days']
     rows, cards = [], []
     adapter_checks = {
-        'bosch-ii-m': '<p><a href="#bosch-ii-m-danfoss-adapter">Für Bosch II [+M]: Danfoss RA, RAV und RAVL abgleichen</a></p>',
+        'bosch-ii-m': '<p><a href="#bosch-ii-m-danfoss-adapter">Für Bosch II [+M]: Danfoss RA, RAV und RAVL abgleichen</a></p><p><a href="#bosch-ii-m-e03">Bosch II [+M] zeigt E03? Kalibrierung prüfen</a></p>',
         'fritz-302': '<p><a href="#fritz-302-danfoss-adapter">Für FRITZ! 302: Danfoss-Adapter und Lieferumfang prüfen</a></p>',
     }
     for item in data['products']:
