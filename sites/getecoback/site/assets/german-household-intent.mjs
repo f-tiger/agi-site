@@ -447,6 +447,7 @@ export function exactWindowShadeMeasurement(query) {
 
 // Consumers pass their normalized German query. Match a task, not a category.
 const ex105Path='/guide/pinguino-pac-ex105-test.html';
+export const highCoolingLoadDecision={path:'/guide/btu-rechner.html',id:'hohe-kuehllast',tool:'ratgeber_suche'};
 export const ex105Exhaust={path:ex105Path,id:'ex105-ablufteinbau',tool:'ratgeber_suche'};
 export const ex105Sound={path:ex105Path,id:'lautstaerke',tool:'ratgeber_suche'};
 
@@ -464,6 +465,13 @@ function exactEx105Evidence(query) {
 export function exactGermanHouseholdTask(query) {
   const ex105=exactEx105Evidence(query);
   if(ex105)return ex105;
+  if(/\b(?:klimaanlag\w*|klimageraet\w*|monoblock\w*|(?:ab)?kuehl\w*|btu)\b/.test(query)){
+    const areas=new Set([...query.matchAll(/\b(\d{1,3}(?:[.,]\d+)?)\s*(?:m²|m2|qm|quadratmetern?)(?![\p{L}\p{N}])/gu)]
+      .map(match=>Number(match[1].replace(',','.'))));
+    const [area]=areas;
+    if((areas.size===1&&area>=45&&area<=120)||/\bmehrer(?:e|en)\s+(?:raeumen?|zimmern?)\b/.test(query))
+      return highCoolingLoadDecision;
+  }
   if (asksForLaundryMeasuredFollowUp(query)) return laundryMeasuredFollowUp;
   const tineco = exactTinecoS7Task(query);
   if (tineco) return tineco;

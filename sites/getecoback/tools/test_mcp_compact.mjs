@@ -70,6 +70,8 @@ test('hosted compact returns reviewed guide sections without presenting them as 
   const {call,writes} = fixture();
   const headers = {'user-agent':humanUA};
   for (const [frage,path,fragment] of [
+    ['Reicht eine mobile Klimaanlage für 60 m² im Dachgeschoss?',
+      '/guide/btu-rechner.html', 'hohe-kuehllast'],
     ['Meine Wäsche trocknet trotz Entfeuchter langsam und die Raumfeuchte steigt. Was prüfen?',
       '/waeschetrockner-oder-luftentfeuchter.html', 'waesche-messung-naechster-schritt'],
     ['Welcher Wasserfilter passt für Siemens TE653501DE/13?', '/produkte.html', 'siemens-eq6-intenza'],

@@ -1324,6 +1324,14 @@ const MOISTURE_NEXT_STEPS = {
   compare: "Kandidaten gezielt prüfen. Wenn erhöhte Feuchte trotz passender Lüftung wiederkehrt und keine bauliche Ursache vorliegt, kannst du ein Gerät mit Hygrostat prüfen. Vergleiche Raumvolumen, Feuchtelast, Geräusch und Leistung bei der gemessenen Temperatur. Das ist keine automatische Größenfreigabe oder Produktempfehlung.",
 };
 
+const coolingCalculator = "https://getecoback.com/guide/btu-rechner.html";
+const highCoolingLoadGuide = coolingCalculator + "#hohe-kuehllast";
+
+function estimateCoolingLoad(qm, sun = 1) {
+  const btu = Math.round((qm * 340 * sun) / 500) * 500;
+  return {btu, largeLoad: qm > 50 || btu > 14000};
+}
+
 async function mcpCallTool(name, args, env) {
   if (name === drainTool.name) return drainDecision(args);
   if (isExpandedTool(name)) return expandedCall(name, args);
@@ -1338,11 +1346,21 @@ async function mcpCallTool(name, args, env) {
     // measurement-first decision, never a floor-area-to-litres ladder.
     let text;
     if (a.problem === "zu_heiss") {
-      const btu = Math.round((qm * 340) / 500) * 500;
-      text = `Für "Raum zu heiß" ist die einzige Gerätefamilie, die netto kühlt, die mobile Klimaanlage mit Abluftschlauch (Wärme muss den Raum verlassen; Luftkühler/Ventilatoren kühlen nur die Person, nicht den Raum).\n` +
-        `Faustregel für ${qm} m²: ca. ${btu.toLocaleString("de-DE")} BTU. Ohne dichte Fensterabdichtung verliert jeder Monoblock den Großteil seiner Wirkung.\n` +
-        `Geräteklasse & Modelle: https://getecoback.com/guide/klimaanlage-${qp}-qm.html\n` +
-        `Feinrechnung (Decke, Personen, Sonne): Tool btu_empfehlung oder https://getecoback.com/guide/btu-rechner.html`;
+      const hasArea = Object.hasOwn(a, "qm");
+      if (hasArea && !mcpNumberInRange(a.qm, 4, 120)) {
+        return mcpInputError("Gib die Grundfläche des zu kühlenden Raums als Zahl von 4 bis 120 m² an.");
+      }
+      const {btu, largeLoad} = estimateCoolingLoad(qm);
+      const origin = hasArea ? `Faustregel für ${qm} m²` : `Beispiel ohne eigene Flächenangabe für ${qm} m²`;
+      let guidance = "Ermittle zuerst die Fläche des tatsächlich zu kühlenden Raums.";
+      if (hasArea && largeLoad) {
+        guidance = `Hohe überschlägige Kühllast. Prüfe die einzelnen Zonen, Wärmequellen und Nennkühlleistung. Rechne getrennte Räume einzeln durch. Hinweise unter ${highCoolingLoadGuide}`;
+      } else if (hasArea) {
+        guidance = `Orientierung in einer ähnlichen Raumklasse unter https://getecoback.com/guide/klimaanlage-${qp}-qm.html`;
+      }
+      text = `Prüfe zuerst Sonneneintrag, Verschattung und den tatsächlich zu kühlenden Raum. Bei einem Monoblock plane die Abluftöffnung und passende Abdichtung.\n` +
+        `${origin} ergibt ca. ${btu.toLocaleString("de-DE")} BTU/h vor Zuschlägen für Sonne, hohe Decken oder weitere Wärmequellen.\n` +
+        `${guidance}\nFür weitere Eingaben nutze btu_empfehlung oder ${coolingCalculator}`;
     } else if (a.problem === "feucht_schimmel") {
       let outcome;
       try { outcome = mcpMoistureOutcome(a); } catch {
@@ -1375,14 +1393,13 @@ async function mcpCallTool(name, args, env) {
     }
     const sun = sonne === "wenig" ? 0.9 : (sonne === "viel" ? 1.2 : 1);
     // Use the baseline from the browser calculator. It has additional inputs.
-    const btu = Math.round((qm * 340 * sun) / 500) * 500;
-    const largeLoad = qm > 50 || btu > 14000;
+    const {btu, largeLoad} = estimateCoolingLoad(qm, sun);
     const klasse = btu <= 9000 ? "bis ca. 9.000 BTU/h"
       : btu <= 11000 ? "ca. 10.000–11.000 BTU/h"
       : "ca. 12.000–14.000 BTU/h";
     const qp = qm <= 12 ? 10 : qm <= 17 ? 15 : qm <= 22 ? 20 : qm <= 27 ? 25 : qm <= 35 ? 30 : qm <= 45 ? 40 : 50;
     const sizing = largeLoad
-      ? "Hohe überschlägige Kühllast. Prüfe Zonen, Wärmequellen und Geräteleistung anhand einer Kühllastberechnung."
+      ? `Hohe überschlägige Kühllast. Prüfe Zonen, Wärmequellen und Geräteleistung anhand einer Kühllastberechnung. Hinweise unter ${highCoolingLoadGuide}`
       : `Geräteklasse als Orientierung: ${klasse}. Vergleiche die Nennkühlleistung mit der geschätzten Last.\nOrientierung nach Raumgröße: https://getecoback.com/guide/klimaanlage-${qp}-qm.html`;
     return mcpToolResult(
       `Geschätzte Kühlleistung für ${qm} m² (Sonne: ${sonne}): ca. ${btu.toLocaleString("de-DE")} BTU/h.\n` +

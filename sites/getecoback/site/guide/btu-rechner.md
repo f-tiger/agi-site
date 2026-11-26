@@ -1,16 +1,16 @@
 # Klimaanlagen-Rechner: BTU & Größe berechnen (kostenlos 2026)
 
-> BTU-Rechner für tragbare Klimaanlagen: Raumgröße, Deckenhöhe, Sonne und Personen eingeben — sofort passende BTU-Zahl plus Modell-Empfehlung erhalten.
+> Kühlleistung in BTU/h aus Raumgröße, Deckenhöhe, Sonne und Wärmequellen abschätzen. Bei hoher Last zuerst die einzelnen Räume prüfen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/btu-rechner.html
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
 
-Zu wenig BTU und dein Raum wird nie kühl; zu viel ist rausgeworfenes Geld und unnötig laut. Gib einfach deine Raumdaten ein — der Rechner nennt dir die passende Kühlleistung und ein dazu dimensioniertes Gerät.
+Rechne zuerst für den Raum, den du gleichzeitig kühlen möchtest. Fläche, Decke, Sonne und Wärmequellen beeinflussen die überschlägige Kühlleistung.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Die Produktlinks im Ergebnis sind Affiliate-Links — du zahlst denselben Preis. Der Rechner liefert eine Orientierung, keine Gewähr.
 
-**Kurz gesagt:** Als Faustregel brauchst du rund **340 BTU pro m²**. Grobe Richtwerte: **bis 15 m² → 7.000–9.000 BTU**, **15–25 m² → 9.000–12.000 BTU**, **25–35 m² → 12.000–14.000 BTU**, **ab 35 m² → 14.000+ BTU**. Für hohe Decken, starke Sonne (Süd/West/Dachlage), viele Personen oder eine offene Küche schlägst du auf. Der Rechner unten macht das automatisch.
+**Die Grundrechnung nutzt 340 BTU/h je m².** Die Rechnerwerte dienen der Orientierung. Für mehrere Zimmer oder hohe Last [die Räume getrennt prüfen](https://getecoback.com/guide/btu-rechner.html#hohe-kuehllast).
 
 Raumgröße (m²)
 
@@ -30,34 +30,41 @@ Personen im Raum
 Offene Küche / viele Wärmequellen im Raum
 BTU berechnen
 
-## BTU nach Raumgröße — Schnellübersicht
+## BTU/h nach Raumgröße als Rechenbeispiel
 
-Auch ohne den Rechner: Das sind die gängigen Richtwerte für eine tragbare Klimaanlage nach Raumgröße (bei normaler Deckenhöhe und durchschnittlicher Sonneneinstrahlung).
+Die Beispiele verwenden die Standardeinstellungen für einen einzelnen Raum. Deckenhöhe und Sonne sind normal, zwei Personen sind im Raum, weitere Wärmequellen bleiben unberücksichtigt. Die Grundrechnung wird auf 500 BTU/h gerundet.
 
-| Raumgröße | Empfohlene BTU | Typischer Raum | Passendes Modell |
-| --- | --- | --- | --- |
-| bis 15 m² | **7.000–9.000 BTU** | kleines Schlafzimmer, Büro | [Comfee (kleine Räume)](https://getecoback.com/guide/klimaanlage-15-qm.html) |
-| 15–25 m² | **9.000–12.000 BTU** | Schlafzimmer, Homeoffice | [De'Longhi Pinguino (Sweet Spot)](https://getecoback.com/guide/klimaanlage-20-qm.html) |
-| 25–35 m² | **12.000–14.000 BTU** | Wohnzimmer | [Klarstein (große Räume)](https://getecoback.com/guide/klimaanlage-30-qm.html) |
-| über 35 m² | **14.000+ BTU / Monoblock** | offener Grundriss | [Klarstein High-BTU](https://getecoback.com/guide/klimaanlage-40-qm.html) |
+| Raumgröße | Kühlleistung aus der Faustregel |
+| --- | --- |
+| 15 m² | 5.000 BTU/h |
+| 20 m² | 7.000 BTU/h |
+| 30 m² | 10.000 BTU/h |
+| 40 m² | 13.500 BTU/h |
+| 60 m² | 20.500 BTU/h |
 
-Modelle aus öffentlichen Testberichten zusammengestellt, nicht selbst getestet. Für hohe Decken, Süd-/Dachlage oder viele Personen eine Stufe höher wählen — der Rechner oben rechnet das automatisch.
+## Hohe Kühllast und mehrere Räume prüfen
+
+Ein einzelner Raum mit 60 m² ergibt bei diesen Standardeinstellungen rechnerisch rund **20.500 BTU/h**. Sonnenfenster, hohe Decken und eine offene Küche können den Wert erhöhen. Prüfe für eine Auswahl die Nennkühlleistung und die Bedingungen am Aufstellort.
+
+- **Kühlzonen einzeln erfassen.** Trage Schlafzimmer und Wohnzimmer getrennt in den Rechner ein. Halte fest, welche Zimmer gleichzeitig kühl sein sollen, ob Türen dazwischen liegen und wo Abluft ins Freie geführt werden kann. Ein Gerät nacheinander in zwei Räumen zu nutzen ist eine andere Aufgabe als beide Räume gleichzeitig zu kühlen.
+
+- **Wärmeeintrag reduzieren.** Prüfe zuerst außen liegenden Sonnenschutz, vor allem bei direkter Sonne und im Dachgeschoss. Bei einer Mietwohnung kläre Änderungen an Fenster oder Fassade mit der zuständigen Person.
+
+- **Hohe Last genauer bestimmen.** Für eine Anschaffung bei hoher Last oder mehreren Zonen hilft eine raumweise Kühllastberechnung. Vergleiche die technischen Daten für die vorgesehenen Zonen und den tatsächlichen Einbau.
+
+[Einen Raum mit eigenen Werten berechnen](https://getecoback.com/guide/btu-rechner.html#rechner) · [Verbraucherzentrale zu Verschattung, Raumgröße und mobilen Klimageräten](https://www.verbraucherzentrale.de/wissen/energie/energetische-sanierung/klimaanlage-installieren-was-ist-zu-beachten-10525), geprüft am 26.11.2026.
 
 ## So rechnet der BTU-Rechner
 
-Grundlage sind rund **340 BTU pro m²**, angepasst an Deckenhöhe, Sonneneinstrahlung, Personen (jede Person über zwei gibt Wärme ab) und Wärmequellen wie eine offene Küche. Das ist eine bewährte Faustregel — die genaue Zahl hängt auch von Dämmung und Fenstern ab. Die vollständige Tabelle findest du im [BTU-Ratgeber nach Raumgröße](https://getecoback.com/guide/wie-viel-btu-brauche-ich.html).
+Grundlage sind rund **340 BTU/h je m²**, angepasst an Deckenhöhe, Sonneneinstrahlung, Personen (jede Person über zwei gibt Wärme ab) und Wärmequellen wie eine offene Küche. Das ist eine bewährte Faustregel — die genaue Zahl hängt auch von Dämmung und Fenstern ab. Die vollständige Tabelle findest du im [BTU-Ratgeber nach Raumgröße](https://getecoback.com/guide/wie-viel-btu-brauche-ich.html).
 
 ## Häufige Fragen
 
-**Wie berechne ich die benötigten BTU für meinen Raum?**Als grobe Faustregel rechnest du rund 340 BTU pro Quadratmeter und schlägst für hohe Decken, starke Sonneneinstrahlung, viele Personen oder eine offene Küche auf. Der Rechner auf dieser Seite macht das automatisch.
+**Wie berechne ich die benötigten BTU für meinen Raum?**Die Faustregel für einen Raum nutzt 340 BTU/h je Quadratmeter. Deckenhöhe, Sonne, Personen und weitere Wärmequellen verändern die Abschätzung.
 
-**Was passiert, wenn die Klimaanlage zu wenig BTU hat?**Ein zu schwaches Gerät läuft dauerhaft auf Volllast, erreicht die Zieltemperatur nie und verbraucht trotzdem viel Strom. Lieber passend bis leicht darüber dimensionieren.
+**Was passiert, wenn die Klimaanlage zu wenig BTU hat?**Bei höherer Kühllast kann der Raum trotz langem Betrieb zu warm bleiben. Prüfe die tatsächliche Last und die Nennkühlleistung unter den vorgesehenen Bedingungen.
 
-**Ist mehr BTU immer besser?**Nein. Ein deutlich zu großes Gerät taktet ständig an und aus, kühlt ungleichmäßig, ist lauter und teurer in der Anschaffung. Passend zum Raum ist am besten.
-
-**Direkt stöbern statt rechnen?** Tragbare Klimaanlagen auf Amazon.de — nach BTU filterbar:
-
-Tragbare Klimaanlagen ansehen →
+**Ist mehr BTU immer besser?**Für die Auswahl zählen Kühllast und Regelverhalten des Geräts. Bei hoher Last oder mehreren Räumen hilft eine raumweise Kühllastberechnung.
 
 🧩 Du hast eine eigene Website? [Diesen Rechner kostenlos als Widget einbinden →](https://getecoback.com/widgets.html)
 

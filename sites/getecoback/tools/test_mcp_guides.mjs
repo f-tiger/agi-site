@@ -520,6 +520,20 @@ test('the existing hygrometer swap tool leads to the sourced measurement protoco
   assert.equal(changed.structuredContent.anzeige_a_minus_b_pp,null);
 });
 
+test('large cooling questions lead to the existing calculator with zoned guidance', async () => {
+  const {env}=assetEnv();
+  const frage='Reicht eine mobile Klimaanlage für 60 m² im Dachgeschoss?';
+  const pfad='https://getecoback.com/guide/btu-rechner.html#hohe-kuehllast';
+  const found=await call('ratgeber_suche',{frage,sprache:'de',max:1},env);
+  assert(textOf(found).includes('Abschnitt: '+pfad));
+  const result=await call('ratgeber_lesen',{pfad},env);
+  assert.equal(result.isError,false);
+  assert.deepEqual(result,await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad}},env,true));
+  for(const token of ['20.500 BTU/h','Kühlzonen einzeln','Verbraucherzentrale','raumweise Kühllastberechnung'])
+    assert(textOf(result).includes(token),token);
+  assert(!/klimaanlage-40-qm|amazon\.de\/|tag=getecoback-21/.test(textOf(result)));
+});
+
 test('hosts read the exact evidence returned by search beyond the product-directory excerpt', async () => {
   const {env, requests} = assetEnv();
   const page = '/produkte.html';
