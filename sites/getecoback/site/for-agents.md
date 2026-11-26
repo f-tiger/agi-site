@@ -19,11 +19,11 @@ In the complete catalogue, total counts callable names and distinctTotal counts 
 
 For MCP discovery, call tools/list and send each returned nextCursor as params.cursor in the next request. For structured results, cite citation_url and report the units, assumptions and limits from the tool. Use ratgeber_lesen to check the published guide and linked original sources when the answer depends on a model specification.
 
-Discovery: [/.well-known/mcp.json](https://getecoback.com/.well-known/mcp.json) · Docs: [/mcp.html](https://getecoback.com/mcp.html) · Registry: io.github.f-tiger/hvac-btu-heat-klimaanlage
+Discovery: [/.well-known/mcp.json](https://getecoback.com/.well-known/mcp.json) · Docs: [/mcp.html](https://getecoback.com/mcp.html) · Registry: [io.github.f-tiger/hvac-btu-heat-klimaanlage](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fhvac-btu-heat-klimaanlage/versions/latest)
 
 ## Local MCPB package (stdio)
 
-[Open the download and setup page](https://github.com/f-tiger/getecoback-mcp#connect) · [Current official Registry entry](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.f-tiger%2Fecoback-local-tools&version=latest)
+[Open the download and setup page](https://github.com/f-tiger/getecoback-mcp#connect) · [Current official Registry entry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions/latest)
 
 Run EcoBack in a client that supports MCPB, with Node.js 22 or later. Calculations run on your device. In full mode, weather and online guides use the network only when requested. Starting with --compact exposes a local finder and runner.
 

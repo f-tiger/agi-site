@@ -15,6 +15,8 @@ from build_agent_md import to_markdown, DISCLOSURE
 
 ROOT = os.path.join(os.path.dirname(__file__), "..", "site")
 BASE = "https://getecoback.com"
+HOSTED_MCP_REGISTRY = "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fhvac-btu-heat-klimaanlage/versions/latest"
+LOCAL_MCP_REGISTRY = "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions/latest"
 
 
 ENERGY_PATHS = {row['path'] for row in json.loads(
@@ -185,9 +187,10 @@ def main():
         f"  entfeuchter_ablaufcheck: Beispiel MeacoDry Arete One 20L, Waschbecken über dem Auslass. drain=level_or_uphill, model=meaco-one-20. Deutsche Modellnachweise und Tankoption: {BASE}/guide/luftentfeuchter-keller.html#ablauf-vor-kauf",
         "  geraet_wahl: problem=feucht_schimmel; optionale Kategorien purpose=room|laundry|damage, humidity=unknown|normal|high, temperature=unknown|warm|cold. Fehlende Messangaben führen zuerst zum Messen, nicht zur Liter-Empfehlung.",
         f"  Entscheidungshilfe im Browser: {BASE}/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice — MCP-Argumente werden dagegen auf dem Server verarbeitet.",
-        "  Offizielles MCP Registry: io.github.f-tiger/hvac-btu-heat-klimaanlage (dort suchbar unter btu, hvac, heat, klima).",
+        f"  [Offizieller Registry-Eintrag für den Online-Dienst]({HOSTED_MCP_REGISTRY}) mit der Kennung `io.github.f-tiger/hvac-btu-heat-klimaanlage`.",
         f"  Doku & Client-Konfiguration: {BASE}/mcp.html — Discovery: {BASE}/.well-known/mcp.json",
         f"- Lokales EcoBack-MCPB (stdio, Node.js 22 oder neuer): {BASE}/mcp.html#offline-installation. Berechnungen laufen lokal. Im vollständigen Modus werden Wetter und Online-Ratgeber nur auf Anfrage abgerufen.",
+        f"  [Offizieller Registry-Eintrag für das lokale MCPB]({LOCAL_MCP_REGISTRY}) mit der Kennung `io.github.f-tiger/ecoback-local-tools`.",
         "- Markdown statt HTML: Jeder Ratgeber hat einen direkt verlinkbaren Markdown-Zwilling unter",
         "  derselben URL mit .md statt .html (z. B. /guide/btu-rechner.md) — Navigation, Shop-Karten und",
         "  Skripte entfernt, interne Links erhalten, gedacht zum Zitieren. Zusätzlich liefert jede Seite",
