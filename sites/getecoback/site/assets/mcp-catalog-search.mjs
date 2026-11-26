@@ -1,4 +1,4 @@
-import {asksForLaundryCostComparison, boschDry, carHeaterOutlet, comfeeVariant, coolingDiscountReference, directHeat, exactGermanHouseholdTask, exactWindowShadeMeasurement, excludesPortableCoolingStorage, ex105Exhaust, ex105Sound, festiveLights, gasHeatCost, granulateDryingChoice, highCoolingLoadDecision, infraredAnnualCost, infraredRoomWatts, infraredThermostatFit, karcherBagDecision, karcherCartridgeDecision, klarsteinPackage, laundryMeasuredFollowUp, lowLoadMeterGuide, mentionsLaundryDryer, offlineThermostatChoice, portableCoolingStorage, showerFlow, siemensFilterDecision, tinecoS7FlashDry, tinecoS7Variant, vacuumOffer} from './german-household-intent.mjs?v=23721a5531b8';
+import {asksForLaundryCostComparison, boschDry, boschDryerDrain, carHeaterOutlet, comfeeVariant, coolingDiscountReference, directHeat, exactGermanHouseholdTask, exactWindowShadeMeasurement, excludesPortableCoolingStorage, ex105Exhaust, ex105Sound, festiveLights, gasHeatCost, granulateDryingChoice, highCoolingLoadDecision, infraredAnnualCost, infraredRoomWatts, infraredThermostatFit, karcherBagDecision, karcherCartridgeDecision, klarsteinPackage, laundryMeasuredFollowUp, lowLoadMeterGuide, mentionsLaundryDryer, offlineThermostatChoice, portableCoolingStorage, showerFlow, siemensFilterDecision, tinecoS7FlashDry, tinecoS7Variant, vacuumOffer} from './german-household-intent.mjs?v=d8b5a29016b8';
 import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion, glassvacModel, windowVacCharging} from './kaercher-saugduese-intent.mjs';
@@ -392,7 +392,7 @@ export function findCatalogueTools(index, {query='', category='', name=null}={})
     householdTask === karcherCartridgeDecision || householdTask === karcherBagDecision ||
     householdTask === laundryMeasuredFollowUp || householdTask === ex105Exhaust || householdTask === ex105Sound ||
     householdTask === highCoolingLoadDecision;
-  if (householdTask === boschDry || householdTask === comfeeVariant || householdTask === festiveLights || householdTask === showerFlow || householdTask === directHeat || householdTask === klarsteinPackage || householdTask === infraredRoomWatts || comparisonGuide) {
+  if (householdTask === boschDry || householdTask === boschDryerDrain || householdTask === comfeeVariant || householdTask === festiveLights || householdTask === showerFlow || householdTask === directHeat || householdTask === klarsteinPackage || householdTask === infraredRoomWatts || comparisonGuide) {
     const guideSearch = index.find(entry => entry.tool.name === householdTask.tool && eligible(entry));
     if (guideSearch) {
       const citation_url = 'https://getecoback.com' + householdTask.path;

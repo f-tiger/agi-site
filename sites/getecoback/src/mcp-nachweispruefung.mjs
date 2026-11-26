@@ -368,7 +368,9 @@ export const nachweispruefung = [
     }, ({wth83v03_bestaetigt, haendler_nennt_zusatzschlauch, anschluss_modellanleitung, ziel_ohne_tank}) => ({
       originalpaket_schlauch: wth83v03_bestaetigt ? 'nicht_aufgefuehrt' : 'offen',
       kaufbedingung_abgedeckt: !ziel_ohne_tank ? null : wth83v03_bestaetigt && anschluss_modellanleitung === 'belegt' && haendler_nennt_zusatzschlauch === 'belegt',
-      grenze: 'Die geprüfte Ausstattungsseite führt den Schlauch mit Nein. Diese Paketangabe entscheidet keine Anschlussfrage.'
+      grenze: wth83v03_bestaetigt
+        ? 'Bosch nennt den WTZ1110 als optionalen Ablauf und führt den Schlauch im Originalpaket nicht auf. Prüfe die vollständige E-Nr., den Abfluss vor Ort und die Teile des konkreten Angebots. Wenn der Behälter für dich passt, nutze ihn weiter. Anleitung und Modellkarte: https://getecoback.com/produkte.html#bosch-wth83v03-kondensatablauf'
+        : 'Prüfe zuerst die vollständige E-Nr. und die Anleitung für genau dieses Gerät. Halte den Lieferumfang des Angebots getrennt vom dokumentierten Zubehör.'
     }), {wth83v03_bestaetigt: true, haendler_nennt_zusatzschlauch: 'belegt', anschluss_modellanleitung: 'offen', ziel_ohne_tank: true},
     {originalpaket_schlauch: 'nicht_aufgefuehrt', kaufbedingung_abgedeckt: false}),
 

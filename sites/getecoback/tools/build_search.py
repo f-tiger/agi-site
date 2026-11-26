@@ -7,6 +7,7 @@ from build_language_nav import Head, local
 from laundry_decision import RESULT_GUIDE_ID, RESULT_GUIDE_TITLE, RESULT_GUIDE_SUMMARY
 from build_product_catalog import (
  BOSCH_STACKING_ANSWER, BOSCH_STACKING_ID, BOSCH_STACKING_TITLE,
+ BOSCH_WTH_DRAIN_ANSWER, BOSCH_WTH_DRAIN_ID, BOSCH_WTH_DRAIN_TITLE,
  KARCHER_CARTRIDGE_ANSWER, KARCHER_CARTRIDGE_ID, KARCHER_CARTRIDGE_TITLE,
  KARCHER_WD_BAG_ANSWER, KARCHER_WD_BAG_ID, KARCHER_WD_BAG_TITLE,
  SIEMENS_FILTER_ANSWER, SIEMENS_FILTER_ID, SIEMENS_FILTER_TITLE,
@@ -205,6 +206,7 @@ def collect():
   if lang=='de' and route=='/produkte.html':
    model_sections=[
     {'id':BOSCH_STACKING_ID,'title':BOSCH_STACKING_TITLE,'description':BOSCH_STACKING_ANSWER},
+    {'id':BOSCH_WTH_DRAIN_ID,'title':BOSCH_WTH_DRAIN_TITLE,'description':BOSCH_WTH_DRAIN_ANSWER},
     {'id':'beutelstaubsauger-angebote','title':'Guard S1 oder M1 Parquet Flex: Lieferumfang und Gesamtpreis prüfen',
      'description':'Miele 12558410 und 12560320 nach Originaldüse, TU- oder CO-Beuteln und eigenen Preisen vergleichen. Bosch BGBS2BA1P im Lieferumfang prüfen.'},
     {'id':'miele-staubsaugerbeutel','title':'Welcher Staubsaugerbeutel passt zu meinem Miele?',

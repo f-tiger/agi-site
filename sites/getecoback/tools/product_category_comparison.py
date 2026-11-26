@@ -2,6 +2,23 @@
 from html import escape
 
 
+BOSCH_WTH_DRAIN_ID = 'bosch-wth83v03-kondensatablauf'
+BOSCH_WTH_DRAIN_TITLE = 'Bosch WTH83V03: Muss ich den Behälter leeren oder passt ein Ablaufschlauch?'
+BOSCH_WTH_DRAIN_ANSWER = (
+    'Du kannst den Kondenswasserbehälter nutzen und regelmäßig leeren. Dafür brauchst du keinen Ablaufschlauch. '
+    'Für einen direkten Ablauf nennt Bosch den Wasserablaufschlauch WTZ1110 als optionales Zubehör zum WTH83V03.'
+)
+BOSCH_DRAIN_LINK = f'<a href="#{BOSCH_WTH_DRAIN_ID}">Lieferumfang und Kondensatablauf mit WTZ1110 prüfen</a>'
+BOSCH_DRAIN_GUIDE = f'''<section class="pc-method" aria-labelledby="{BOSCH_WTH_DRAIN_ID}">
+<h3 id="{BOSCH_WTH_DRAIN_ID}">{BOSCH_WTH_DRAIN_TITLE}</h3>
+<p>{BOSCH_WTH_DRAIN_ANSWER}</p>
+<p><strong>Was liegt bei?</strong> Die deutsche <a href="https://www.bosch-home.com/de/de/product/WTH83V03">Bosch-Produktseite WTH83V03</a> führt „Ablauf-Schlauch für Kondenswasser“ mit „Nein“. Die <a href="https://media3.bsh-group.com/Documents/9001752575_A.pdf#page=13">Lieferliste der Anleitung, Seite 13</a> nennt den Wäschetrockner und die Begleitunterlagen. Prüfe den Inhalt deines konkreten Angebots, bevor du Zubehör zusätzlich bestellst.</p>
+<p><strong>Was passt zum Ablauf?</strong> Die <a href="https://media3.bsh-group.com/Documents/9001752575_A.pdf#page=24">Zubehörliste der Anleitung, Seite 24</a> führt den <a href="https://www.bosch-home.com/de/de/product/waschen-trocknen/zubehoer-trockner/WTZ1110">Bosch-Ablaufschlauch WTZ1110</a> für überschüssiges Kondenswasser. Der dort separat gelistete Y-Verteiler 15000490 ist für ein zweites Gerät am selben Siphonanschluss vorgesehen. Prüfe, ob am Aufstellort ein geeigneter Ablauf vorhanden ist.</p>
+<p>Vergleiche die vollständige E-Nr. am Typenschild, einschließlich der Ziffern nach dem Schrägstrich, mit der zugehörigen Anleitung. Der <a href="https://www.bosch-home.com/de/de/productservice/WTH83V03-01">Bosch-Serviceeintrag WTH83V03/01</a> gilt für diese Ausführung. Sind Modellendung oder Anschluss unklar, kläre sie vor einer Bestellung.</p>
+<p>Quellen für Deutschland geprüft am <time datetime="2026-11-26">26.11.2026</time>. <a href="#produkt-bosch-wth83v03">Zur Modellkarte Bosch WTH83V03</a>.</p>
+</section>'''
+
+
 def render_vacuum_offers(products):
     models = []
     for product in products:
@@ -42,14 +59,19 @@ def render_comparison(category_id, products, guide=None):
         return ''
     esc = lambda value: escape(str(value), quote=True)
     rows = []
+    drain_guide = ''
     for p in products:
         if p['category'] != category_id:
             continue
-        rows.append(f'<tr><th scope="row"><a href="#produkt-{esc(p["id"])}">{esc(p["name"])}</a><br>{esc(p["variant"])}</th><td>{esc(p["role"])}<p>{esc(p["facts"])}</p></td><td>{esc(p["limit"])}</td><td><a href="{esc(p["source"])}">{esc(p["source_label"])}</a><br>Quellenstand: {esc(p["checked"])}</td></tr>')
+        limit = esc(p['limit'])
+        if p['id'] == 'bosch-wth83v03':
+            limit += f'<p>{BOSCH_DRAIN_LINK}</p>'
+            drain_guide = BOSCH_DRAIN_GUIDE
+        rows.append(f'<tr><th scope="row"><a href="#produkt-{esc(p["id"])}">{esc(p["name"])}</a><br>{esc(p["variant"])}</th><td>{esc(p["role"])}<p>{esc(p["facts"])}</p></td><td>{limit}</td><td><a href="{esc(p["source"])}">{esc(p["source_label"])}</a><br>Quellenstand: {esc(p["checked"])}</td></tr>')
     if guide:
         steps = ''.join(f'<li>{esc(step)}</li>' for step in guide['steps'])
         offers = render_vacuum_offers(products) if category_id == 'bodenstaubsauger' else ''
-        return offers + f'''<section class="pc-comparison" aria-labelledby="entscheidung-{esc(category_id)}"><h3 id="entscheidung-{esc(category_id)}">{esc(guide['question'])}</h3><p>{esc(guide['answer'])}</p><ol>{steps}</ol><p>Vergleich nach dokumentierten Herstellerangaben, keine Rangliste und keine eigenen Gerätetests. Die genaue Variante und den Quellenstand vor der Auswahl beachten.</p><div class="pc-table-scroll" role="region" aria-label="Modelle nach Aufgabe vergleichen" tabindex="0"><table><caption>Genaue Variante, Aufgabe und Kaufgrenze im Vergleich</caption><thead><tr><th scope="col">Modell</th><th scope="col">Aufgabe und Herstellerangabe</th><th scope="col">Grenze</th><th scope="col">Quelle</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div></section>'''
+        return offers + f'''<section class="pc-comparison" aria-labelledby="entscheidung-{esc(category_id)}"><h3 id="entscheidung-{esc(category_id)}">{esc(guide['question'])}</h3><p>{esc(guide['answer'])}</p><ol>{steps}</ol><p>Vergleich nach dokumentierten Herstellerangaben, keine Rangliste und keine eigenen Gerätetests. Die genaue Variante und den Quellenstand vor der Auswahl beachten.</p><div class="pc-table-scroll" role="region" aria-label="Modelle nach Aufgabe vergleichen" tabindex="0"><table><caption>Genaue Variante, Aufgabe und Kaufgrenze im Vergleich</caption><thead><tr><th scope="col">Modell</th><th scope="col">Aufgabe und Herstellerangabe</th><th scope="col">Grenze</th><th scope="col">Quelle</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div></section>{drain_guide}'''
     return '''<section class="pc-comparison" aria-labelledby="airfryer-choice"><h3 id="airfryer-choice">Heißluftfritteuse: eine Schublade oder zwei Garzonen?</h3>
 <p><strong>Die Aufgabe entscheidet:</strong> Für eine Speise oder zwei Durchgänge nacheinander genügt eine passend große Zone. Möchtest du zwei Speisen mit verschiedenen Temperaturen parallel planen, brauchst du zwei unabhängig geregelte Zonen. Zwei Programme oder ein Grillrost belegen diese Eigenschaft nicht.</p>
 <p>Eine geteilte Schublade ist nicht dasselbe wie zwei herausziehbare Schubladen: Beim FlexDrawer AF550EU beschreibt der Hersteller zwei Zonen innerhalb einer Schublade mit entnehmbarer Trennwand. Beim EY9018 nennt Tefal zwei unterschiedlich große Schubladen. Prüfe die genaue Variante und nutzbare Fläche statt allein die Summe der Liter.</p>

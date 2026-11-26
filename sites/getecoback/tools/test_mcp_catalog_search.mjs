@@ -1556,3 +1556,34 @@ test('German plug thermostat compatibility questions find the existing infrared 
   }
   assert.equal(analytics,0);
 });
+
+test('German Bosch WTH83V03 drain questions reach the existing tool and its exact evidence', async () => {
+  const name = 'bosch_wth83v03_ablaufschlauch_nein_bezug';
+  const guide = '/produkte.html#bosch-wth83v03-kondensatablauf';
+  for (const query of [
+    'Kann ich beim Bosch WTH83V03 das Kondenswasser mit WTZ1110 direkt ableiten?',
+    'Bosch WTH83V03/01: Ablaufschlauch im Lieferumfang oder Wassertank?',
+  ]) {
+    const result = await catalogue({q:query,view:'compact',limit:3});
+    for (const first of [result.tools[0],findCatalogueTools(compact,{query})[0]]) {
+      assert.equal(first?.name,name,query);
+      assert.equal(first.guide_url,origin + guide,query);
+    }
+  }
+  for (const [query,expected] of [
+    ['Bosch WQG241001 WTZ1110 Kondensatablauf','wqg241001_tank_oder_ablauf_platzentscheidung'],
+    ['WTZ27400 oder WTZ27410: Welcher Verbindungssatz für den Bosch WQG241001 hat einen Auszug?',
+      'wasch_trocken_saeule_herstellerkombination_beleg'],
+  ]) {
+    const result = await catalogue({q:query,view:'compact',limit:3});
+    assert.equal(result.tools[0]?.name,expected,query);
+    assert.equal(findCatalogueTools(compact,{query})[0]?.name,expected,query);
+  }
+  const energy = 'Bosch WTH83V03 Energieetikett: Wie viele kWh pro 100 Trocknungen?';
+  const result = await catalogue({q:energy,view:'compact',limit:3});
+  for (const hits of [result.tools,findCatalogueTools(compact,{query:energy})]) {
+    assert.notEqual(hits[0]?.name,name,energy);
+    assert.ok(!hits.some(tool => toolGuidePath(tool) === guide),energy);
+  }
+  assert.equal(analytics,0);
+});
