@@ -1321,3 +1321,9 @@ test('German PortaSplit outdoor sound routes distinguish the original from other
  for(const q of ["Wie hoch ist der Lärmspiegel von dem Teil, der bei der Midea PortaSplit draußen hängt?","Wie laut ist das Außengerät der Midea PortaSplit am Nachbarfenster?","4048164116478 Außengerät 48 dB im Flüstermodus?"]) assert.equal(searchEntries(index,q,'de')[0]?.entry.u,target,q);
  for(const q of ["Wie laut ist das Außengerät der PortaSplit Cool?","PortaSplit-E Außeneinheit: wie viel Schalldruck?","PortaSplit Außengerät rattert laut, was ist kaputt?","PortaSplit: Ist 39 dB im Schlafzimmer leise?","PortaSplit Außengerät vereist. Wie lange dauert Abtauen?"]) assert.notEqual(searchEntries(index,q,'de')[0]?.entry.u,target,q);
 });
+
+test('German dehumidifier price checks reach the same-seller Black Friday answer',()=>{
+ const target='/guide/luftentfeuchter-ratgeber.html#luftentfeuchter-30-tage-preischeck';
+ for(const q of ["Black Friday Luftentfeuchter Angebote prüfen","Luftentfeuchter am Cyber Monday: 30 Tage Preis und Versand vergleichen","Ist beim Raumentfeuchter der Streichpreis der 30-Tage-Tiefstpreis?","Black Week Luftentfeuchter 12 Liter: Ist die UVP ein Vergleichspreis?"]) assert.equal(searchEntries(index,q,'de')[0]?.entry.u,target,q);
+ for(const q of ["Black Friday Klimaanlage 30 Tage Preis prüfen","Luftentfeuchter Black Friday in der Schweiz, was ist der Tiefstpreis in CHF?","Welcher Luftentfeuchter kommt für einen kalten Keller bei 10 Grad infrage?","Hat der Pro Breeze PB-06 mit 12 Litern WLAN?","Der Luftentfeuchter läuft, aber der Tank bleibt leer. Was soll ich prüfen?"]) assert.notEqual(searchEntries(index,q,'de')[0]?.entry.u,target,q);
+});

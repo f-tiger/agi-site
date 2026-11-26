@@ -1841,3 +1841,16 @@ test('German PortaSplit outdoor sound discovery uses the source-backed buying pa
    assert.notEqual(toolGuidePath(hit??{}),target,q);
  }
 });
+
+test('German dehumidifier price checks find the offer verification guide without stealing adjacent intent',async()=>{
+ const target='/guide/luftentfeuchter-ratgeber.html#luftentfeuchter-30-tage-preischeck';
+ for(const q of ["Black Friday Luftentfeuchter Angebote prüfen","Luftentfeuchter am Cyber Monday: 30 Tage Preis und Versand vergleichen","Ist beim Raumentfeuchter der Streichpreis der 30-Tage-Tiefstpreis?","Black Week Luftentfeuchter 12 Liter: Ist die UVP ein Vergleichspreis?"]) {
+   const [hit]=(await catalogue({q,view:'compact',limit:1})).tools;
+   assert.equal(hit?.name,'ratgeber_suche',q);
+   assert.equal(toolGuidePath(hit),target,q);
+ }
+ for(const q of ["Black Friday Klimaanlage 30 Tage Preis prüfen","Luftentfeuchter Black Friday in der Schweiz, was ist der Tiefstpreis in CHF?","Welcher Luftentfeuchter kommt für einen kalten Keller bei 10 Grad infrage?","Hat der Pro Breeze PB-06 mit 12 Litern WLAN?","Der Luftentfeuchter läuft, aber der Tank bleibt leer. Was soll ich prüfen?"]) {
+   const [hit]=(await catalogue({q,view:'compact',limit:1})).tools;
+   assert.notEqual(toolGuidePath(hit??{}),target,q);
+ }
+});

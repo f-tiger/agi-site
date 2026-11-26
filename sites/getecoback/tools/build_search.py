@@ -204,6 +204,13 @@ def collect():
     raise ValueError(f'Missing or hidden PortaSplit outdoor sound evidence: {route}#{anchor}')
    entry['model_sections']=[{'id':anchor,'title':'Wie laut ist das Außengerät der Midea PortaSplit?',
     'description':'Beim Original mit EAN 4048164116478 nennt Midea für das Außengerät in 1 m Abstand 56 dB(A) auf hoher Stufe und 48 dB(A) im Außen-Flüstermodus. Prüfe vor dem Kauf den Abstand und die Ausrichtung zum Nachbarfenster.'}]
+  if lang=='de' and route=='/guide/luftentfeuchter-ratgeber.html':
+   anchor='luftentfeuchter-30-tage-preischeck'
+   targets=re.findall(r'<h2\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)
+   if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
+    raise ValueError(f'Missing or hidden dehumidifier price check: {route}#{anchor}')
+   entry.setdefault('model_sections',[]).append({'id':anchor,'title':'Luftentfeuchter am Black Friday: Ist das Angebot günstiger?',
+    'description':'Vergleiche für dieselbe Modellnummer den tatsächlichen Verkäufer, seinen niedrigsten Gesamtpreis der 30 Tage vor der Ermäßigung und deinen Preis mit Versand und Zubehör.'})
   if lang=='de' and route=='/guide/klimaanlage-mit-heizfunktion.html':
    anchor='portasplit-abtauen'
    targets=re.findall(r'<h3\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)

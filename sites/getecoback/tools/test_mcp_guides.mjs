@@ -1018,3 +1018,15 @@ test('German PortaSplit outdoor sound measurements and placement limits are read
  for(const value of ["4048164116478","56 dB(A)","48 dB(A)","39 dB(A)","62 dB Schallleistung","1 m Abstand","Nachbarfenster","verschiebe die Bestellung","https://www.midea.com/content/dam/midea-aem/de/klimatisieren-heizen/portasplit/PortaSplit-Gebrauchsanweisung-DE.pdf#page=16","https://www.midea.com/content/dam/midea-aem/de/klimatisieren-heizen/portasplit/PortaSplit-Gebrauchsanweisung-DE.pdf#page=37","https://eprel.ec.europa.eu/fiches/airconditioners/Fiche_1917520_DE.pdf#page=1"]) assert(textOf(full).includes(value),value);
  assert(!textOf(full).includes('https://www.amazon.de/'));
 });
+
+test('German dehumidifier price checks retain the exact evidence and stop path in both MCP profiles',async()=>{
+ const {env}=assetEnv();
+ const pfad='https://getecoback.com/guide/luftentfeuchter-ratgeber.html#luftentfeuchter-30-tage-preischeck';
+ const found=await call('ratgeber_suche',{frage:"Black Friday Luftentfeuchter Angebote prüfen",sprache:'de',max:1},env);
+ assert(textOf(found).includes('Abschnitt: '+pfad));
+ const full=await call('ratgeber_lesen',{pfad},env);
+ assert.equal(full.isError,false);
+ assert.deepEqual(await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad}},env,true),full);
+ for(const value of ["in den 30 Tagen vor Beginn","derselbe Verkäufer","Verkauf durch","4069143047774","218 €","verschiebe den Kauf","miss zuerst Temperatur und relative Luftfeuchte","https://www.gesetze-im-internet.de/pangv_2022/__11.html","https://www.verbraucherzentrale.de/wissen/digitale-welt/onlinehandel/prime-days-black-friday-cyber-monday-tipps-fuer-die-schnaeppchenjagd-37835","/guide/pro-breeze-luftentfeuchter-test.html#pro-breeze-12l-modellwahl","#eb-models","26. November 2026"]) assert(textOf(full).includes(value),value);
+ assert(!textOf(full).includes('https://www.amazon.de/'));
+});

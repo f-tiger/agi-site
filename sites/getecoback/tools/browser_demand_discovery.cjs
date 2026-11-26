@@ -53,7 +53,19 @@ async function checkExactDelonghiPurchase(page,base){
  const offer=page.locator('section[aria-labelledby="portasplit-original-angebot"] a[rel~="sponsored"]');
  assert.equal(await offer.getAttribute('href'),'https://www.amazon.de/dp/B0D3PP64JS?tag=getecoback-21');
  assert(await portaSound.evaluate((heading, link)=>Boolean(heading.compareDocumentPosition(link)&Node.DOCUMENT_POSITION_FOLLOWING),await offer.elementHandle()));
- return outcomes.length*5+6;
+
+ await page.goto(base+'/guide/luftentfeuchter-ratgeber.html?__ci=1#luftentfeuchter-30-tage-preischeck');
+ const priceLink=page.locator('article > p a[href="#luftentfeuchter-30-tage-preischeck"]');
+ const priceCheck=page.locator('section[aria-labelledby="luftentfeuchter-30-tage-preischeck"]');
+ assert(await priceLink.isVisible(),'The static price-check link is available before choosing a route');
+ assert(await priceCheck.getByRole('heading',{name:"Luftentfeuchter am Black Friday: Ist das Angebot günstiger?",exact:true}).isVisible());
+ const firstStore=page.locator('article a[rel~="sponsored"]').first();
+ assert(await priceLink.evaluate((link, store)=>Boolean(link.compareDocumentPosition(store)&Node.DOCUMENT_POSITION_FOLLOWING),await firstStore.elementHandle()));
+ const priceFacts=await priceCheck.innerText();
+ for(const needed of ['in den 30 Tagen vor Beginn','derselbe Verkäufer','4069143047774','218 €','verschiebe den Kauf']) assert(priceFacts.includes(needed),needed);
+ assert.equal(await priceCheck.locator('a[rel~="sponsored"]').count(),0);
+ assert(await priceCheck.locator('a[href="#eb-models"]').isVisible(),'The existing model comparison follows the price check');
+ return outcomes.length*5+12;
 }
 
 async function checkGermanCoolingLoad(browser,base){
@@ -115,6 +127,7 @@ async function checkGermanFocusedDiscovery(browser,base){
  const ex105Page='/guide/pinguino-pac-ex105-test.html';
  const positive=['Was kostet eine Ladung Wäsche nur mit meinem Luftentfeuchter?','Stromkosten Luftentfeuchter Wäsche'];
  const ordinary=[
+  ["Black Friday Luftentfeuchter Angebote prüfen",'/guide/luftentfeuchter-ratgeber.html#luftentfeuchter-30-tage-preischeck'],
   ["Wie hoch ist der Lärmspiegel von dem Teil, der bei der Midea PortaSplit draußen hängt?",'/guide/midea-portasplit-kaufen.html#portasplit-aussengeraet-lautstaerke'],
   ['Braucht mein De’Longhi PAC EX105 A+++ einen Abluftschlauch mit 150 oder 170 mm?',
     ex105Page+'#ex105-ablufteinbau'],
