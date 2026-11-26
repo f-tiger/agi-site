@@ -424,6 +424,21 @@ export const vacuumOffer = {
   tool:'beutelstaubsauger_angebot_kosten_pruefen',
 };
 
+export const boschDryFilter = {
+  path:'/guide/luftentfeuchter-ratgeber.html',
+  id:'bosch-dry-4000-aktivkohlefilter',
+  tool:'ratgeber_suche',
+};
+
+function asksForBoschDryFilter(query) {
+  const model = /\b(?:bosch(?:[ -]+(?:home[ -]+comfort|thermotechnik))?[ -]+dry[ -]*4000|d[ -]*4000[ -]+eu|7733703558|4069143047774)\b/;
+  const filter = /\b(?:hepa\w*|aktiv[ -]?kohl\w*|staub[ -]?filter\w*|(?:ersatz|dry)[ -]?filter\w*|filter\w*)\b/;
+  const other = /\b(?:air[ -]*4000i?|dry[ -]*(?:1000|2000|4000i)|d[ -]*4000[ -]+uk|7733703561|4069143047804|wasser[ -]?filter\w*|staubsauger\w*|kaffee\w*)\b/;
+  const unknownIdentifier = /\b(?:(?!773370(?:3558|3602)\b)773370\d{4}|(?!4069143047774\b)\d{13})\b/;
+  return !other.test(query) && !unknownIdentifier.test(query) &&
+    (/\b7733703602\b/.test(query) || (model.test(query) && filter.test(query)));
+}
+
 export const boschDry = {
   path:'/guide/luftentfeuchter-ratgeber.html',
   id:'modell-bosch-d4000-eu',
@@ -813,6 +828,7 @@ export function exactGermanHouseholdTask(query) {
   if (asksForDirectHeatComparison(query)) return directHeat;
   if (asksForShowerFlow(query)) return showerFlow;
   if (asksForVacuumOffer(query)) return vacuumOffer;
+  if (asksForBoschDryFilter(query)) return boschDryFilter;
   if (asksForBoschDry(query)) return boschDry;
   if (asksForComfeeVariant(query)) return comfeeVariant;
   if (asksForFestiveLightingCost(query)) return festiveLights;

@@ -173,6 +173,11 @@ Auto-, Nacht- und Wäschemodus; 2,5-Liter-Tank und kontinuierlicher Ablauf laut 
 [Bosch-Ersatzteilkatalog: deutsche Modellkennung und EAN](https://www.bosch-homecomfort.com/web-etk/de/bosch/de/de/product/7733703558) · Modellzuordnung geprüft am 25.11.2026.
 Quelle: [Bosch Deutschland: D4000-EU](https://www.bosch-homecomfort.com/de/de/ocs/wohngebaeude/dry-4000-20990506-p/)
 
+#### Ist der Aktivkohlefilter beim Bosch Dry 4000 dabei?
+Beim deutschen Dry 4000 **D4000-EU** (Geräteartikel 7733703558, EAN 4069143047774) ist der **Staubfilter im Lufteintrittsgitter integriert**. Den 2-in-1-Dry-Filter mit HEPA- und Aktivkohleschicht führt Bosch separat als Zubehör. Die Zubehörnummer **7733703602** bezeichnet bei Bosch das **2er-Pack** für die Luftentfeuchter der Dry-Serie.
+Für die reine Entfeuchtung genügt der vorhandene Staubfilter; reinige ihn nach der Geräteanleitung. Wenn ein Händler ein Set mit dem Zusatzfilter bewirbt, prüfe den ausgewiesenen Lieferumfang. Für den **Air 4000** gilt die eigene Filterzuordnung des Luftreinigers. Sind Feuchte und Ursache noch ungeklärt, [miss zuerst](https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html) und verschiebe den Kauf. [Angebot und nötige Zusatzkosten prüfen](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#luftentfeuchter-30-tage-preischeck).
+[Bosch: Ausstattung des Dry 4000](https://www.bosch-homecomfort.com/de/de/ocs/wohngebaeude/dry-4000-20990506-p/) · [Bosch: Dry Filter 7733703602](https://www.bosch-home.com/de/de/product/7733703602) · [Bosch-Anleitung: integrierten Staubfilter reinigen](https://bosch-de-de.boschhc-documents.com/download/pdf/file/6721890171#page=10). Quellen geprüft am 26. November 2026.
+
 ### MeacoDry Arete Two 12L
 **App-Steuerung und kleinerer Tank**
 Arete Two 12L · nicht One oder Two 20L

@@ -12,6 +12,23 @@ from build_onpage import inject_toc
 from test_buyer_comparison import Document
 
 class CatalogTest(unittest.TestCase):
+    def test_bosch_dry_filter_scope_and_order_on_final_generated_pages(self):
+        site = C.DATA.parent.parent / 'site'
+        path = site / 'guide/luftentfeuchter-ratgeber.html'
+        page = path.read_text()
+        mirror = path.with_suffix('.md').read_text()
+        self.assertEqual(page.count('id="bosch-dry-4000-aktivkohlefilter"'), 1)
+        section = page.split('aria-labelledby="bosch-dry-4000-aktivkohlefilter">', 1)[1].split('</section>', 1)[0]
+        for fact in ['Staubfilter im Lufteintrittsgitter integriert', '7733703602', '2er-Pack',
+                     'verschiebe den Kauf', 'https://www.bosch-home.com/de/de/product/7733703602', 'https://bosch-de-de.boschhc-documents.com/download/pdf/file/6721890171#page=10']:
+            self.assertIn(fact, section)
+            self.assertIn(fact, mirror)
+        self.assertNotIn('sponsored', section)
+        card = page.split('id="modell-bosch-d4000-eu"', 1)[1].split('id="modell-meaco-two-12"', 1)[0]
+        self.assertLess(card.index('id="bosch-dry-4000-aktivkohlefilter"'), card.index('data-catalog-commerce'))
+        for slug in ['luftentfeuchter-keller', 'waesche-trocknen-wohnung']:
+            self.assertNotIn('id="bosch-dry-4000-aktivkohlefilter"', (site / 'guide' / (slug + '.html')).read_text())
+
     def test_bosch_german_identity_and_model_search_on_final_pages(self):
         site = C.DATA.parent.parent / 'site'
         data = C.load()

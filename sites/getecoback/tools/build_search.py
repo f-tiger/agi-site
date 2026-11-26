@@ -4,6 +4,7 @@ from pathlib import Path
 import json
 import re
 from build_language_nav import Head, local
+from dehum_catalog import BOSCH_FILTER_ID, BOSCH_FILTER_TITLE, BOSCH_FILTER_SUMMARY
 from laundry_decision import RESULT_GUIDE_ID, RESULT_GUIDE_TITLE, RESULT_GUIDE_SUMMARY
 from product_category_comparison import BOSCH_WQG_CARE_ANSWER, BOSCH_WQG_CARE_ID, BOSCH_WQG_CARE_TITLE
 from build_product_catalog import (
@@ -205,6 +206,11 @@ def collect():
    entry['model_sections']=[{'id':anchor,'title':'Wie laut ist das Außengerät der Midea PortaSplit?',
     'description':'Beim Original mit EAN 4048164116478 nennt Midea für das Außengerät in 1 m Abstand 56 dB(A) auf hoher Stufe und 48 dB(A) im Außen-Flüstermodus. Prüfe vor dem Kauf den Abstand und die Ausrichtung zum Nachbarfenster.'}]
   if lang=='de' and route=='/guide/luftentfeuchter-ratgeber.html':
+   filter_target=re.findall(r'<h4\b[^<>]*\sid="'+BOSCH_FILTER_ID+r'"[^<>]*>',text)
+   if len(filter_target)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',filter_target[0]):
+    raise ValueError(f'Missing or hidden Bosch filter package: {route}#{BOSCH_FILTER_ID}')
+   entry.setdefault('model_sections',[]).append({'id':BOSCH_FILTER_ID,'title':BOSCH_FILTER_TITLE,
+    'description':BOSCH_FILTER_SUMMARY})
    anchor='luftentfeuchter-30-tage-preischeck'
    targets=re.findall(r'<h2\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)
    if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):

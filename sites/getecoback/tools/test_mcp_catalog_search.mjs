@@ -1867,3 +1867,16 @@ test('the exact German tado X Vaillant adapter search returns the scoped answer'
    assert.notEqual(toolGuidePath(hit??{}),target,q);
  }
 });
+
+test('German Bosch Dry 4000 filter questions find the original part without capturing neighboring appliances',async()=>{
+ const target='/guide/luftentfeuchter-ratgeber.html#bosch-dry-4000-aktivkohlefilter';
+ for(const q of ["Ist der Aktivkohlefilter beim Bosch Dry 4000 dabei?","Muss ich beim Bosch Dry 4000 den HEPA Filter separat kaufen?","D4000-EU: Welcher Staubfilter ist im Lieferumfang?","Welches Gerät hat den 2-in-1 Dry-Filter 7733703602?"]) {
+   const [hit]=(await catalogue({q,view:'compact',limit:1})).tools;
+   assert.equal(hit?.name,'ratgeber_suche',q);
+   assert.equal(toolGuidePath(hit),target,q);
+ }
+ for(const q of ["Welcher Filter passt zum Bosch Air 4000?","Brauch ich für den Bosch Dry 2000 einen Aktivkohlefilter?","4069143047804 Bosch D4000-UK Ersatzfilter?","Hat der Bosch Dry 4000 einen Schlauch dabei?","Ist der DeLonghi PAC N90 Filter im Lieferumfang?","Bosch Dry 4000 Aktivkohlefilter Geräte-EAN 4069143047781"]) {
+   const [hit]=(await catalogue({q,view:'compact',limit:1})).tools;
+   assert.notEqual(toolGuidePath(hit??{}),target,q);
+ }
+});

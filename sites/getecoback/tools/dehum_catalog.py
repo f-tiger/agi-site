@@ -74,6 +74,32 @@ def cold_room_note(evidence):
     )
 
 
+BOSCH_FILTER_ID = 'bosch-dry-4000-aktivkohlefilter'
+BOSCH_FILTER_TITLE = 'Ist der Aktivkohlefilter beim Bosch Dry 4000 dabei?'
+BOSCH_FILTER_SUMMARY = 'Der Bosch Dry 4000 D4000-EU hat einen integrierten Staubfilter. Bosch führt den zusätzlichen HEPA-/Aktivkohlefilter separat als Dry-Filter-Zweierpack 7733703602.'
+
+
+def bosch_filter_note():
+    return (
+        f'<section aria-labelledby="{BOSCH_FILTER_ID}">'
+        f'<h4 id="{BOSCH_FILTER_ID}" style="scroll-margin-top:180px">{BOSCH_FILTER_TITLE}</h4>'
+        '<p>Beim deutschen Dry 4000 <strong>D4000-EU</strong> (Geräteartikel 7733703558, EAN 4069143047774) '
+        'ist der <strong>Staubfilter im Lufteintrittsgitter integriert</strong>. '
+        'Den 2-in-1-Dry-Filter mit HEPA- und Aktivkohleschicht führt Bosch separat als Zubehör. '
+        'Die Zubehörnummer <strong>7733703602</strong> bezeichnet bei Bosch das <strong>2er-Pack</strong> für die Luftentfeuchter der Dry-Serie.</p>'
+        '<p>Für die reine Entfeuchtung genügt der vorhandene Staubfilter; reinige ihn nach der Geräteanleitung. '
+        'Wenn ein Händler ein Set mit dem Zusatzfilter bewirbt, prüfe den ausgewiesenen Lieferumfang. '
+        'Für den <strong>Air 4000</strong> gilt die eigene Filterzuordnung des Luftreinigers. '
+        'Sind Feuchte und Ursache noch ungeklärt, <a href="/guide/luftfeuchtigkeit-richtig-messen.html">miss zuerst</a> und verschiebe den Kauf. '
+        '<a href="#luftentfeuchter-30-tage-preischeck">Angebot und nötige Zusatzkosten prüfen</a>.</p>'
+        '<p><a href="https://www.bosch-homecomfort.com/de/de/ocs/wohngebaeude/dry-4000-20990506-p/">Bosch: Ausstattung des Dry 4000</a> · '
+        '<a href="https://www.bosch-home.com/de/de/product/7733703602">Bosch: Dry Filter 7733703602</a> · '
+        '<a href="https://bosch-de-de.boschhc-documents.com/download/pdf/file/6721890171#page=10">Bosch-Anleitung: integrierten Staubfilter reinigen</a>. '
+        'Quellen geprüft am <time datetime="2026-11-26">26. November 2026</time>.</p>'
+        '</section>'
+    )
+
+
 def block(slug, today=None, data=None):
     data = load() if data is None else data
     if slug not in data['pages']:
@@ -108,10 +134,11 @@ def block(slug, today=None, data=None):
                 f'· Modellzuordnung geprüft am '
                 f'<time datetime="{checked.isoformat()}">{checked:%d.%m.%Y}</time>.</p>'
             )
+        filter_note = bosch_filter_note() if slug == 'luftentfeuchter-ratgeber' and p['id'] == 'bosch-d4000-eu' else ''
         evidence = (f'<h3 id="{anchor}">{e(p["name"])}</h3>'
                     f'<p><strong>{e(p["reason"])}</strong></p><p>{e(p["variant"])}</p>'
                     f'<p>{e(p["facts"])}</p><p><strong>Vor dem Kauf:</strong> {e(p["limit"])}</p>'
-                    f'{identity_note}{cold}{drain}<p>Quelle: {source}</p>')
+                    f'{identity_note}{cold}{drain}<p>Quelle: {source}</p>{filter_note}')
         # Static facts remain visible; stale/conflicting evidence removes only this catalog's commerce.
         if fresh and p['status'] == 'verified':
             href = ('https://www.amazon.de/dp/' + p['asin'] + '?tag=getecoback-21' if p.get('asin')
