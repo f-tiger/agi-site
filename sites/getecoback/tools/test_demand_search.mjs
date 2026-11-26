@@ -18,9 +18,13 @@ test('Kärcher cartridge purchase queries resolve to the exact German comparison
  for(const query of [
   'Kärcher SC 3 EasyFix 1.513-650.0 kaufen',
   'Kärcher SC 3 EasyFix Kartusche zurücksetzen',
+  'Mein Kärcher SC 3 EasyFix dampft nicht mehr, obwohl eine neue Entkalkungskartusche eingesetzt ist. Was tun?',
+  'Wie stelle ich beim Kärcher SC 3 EasyFix mit Entkalkungskartusche die Wasserhärte ein?',
+  'Ich möchte den Kärcher SC 3 EasyFix samt Kartusche als komplettes Gerät kaufen.',
   'Kärcher SC 2 EasyFix 1.512-600.0 Entkalkungskartusche',
   'Kärcher SC 3 Deluxe EasyFix Entkalkungskartusche',
   'Kärcher SC 1 Multi Comfort Kartusche',
+  'Welche Kartusche gehört in meinen Kärcher SC 1 Multi & Up?',
  ]) assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
 });
 test('Low-load meter searches find the selected buying or measurement evidence',()=>{

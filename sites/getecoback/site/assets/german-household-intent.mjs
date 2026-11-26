@@ -363,9 +363,11 @@ function asksForKarcherCartridge(query) {
   const part = /\b(?:2[ .-]*863[ .-]*(?:018|104)[ .-]*0|4054278026213|4066529064912)\b/;
   const model = /\b(?:sc[ -]*3[ -]*easy[ -]*fix|sc[ -]*1[ -]*multi|1[ .-]*513[ .-]*650[ .-]*0|1[ .-]*516[ .-]*404[ .-]*0)\b/;
   const buying = /\b(?:(?:entkalkungs|ersatz|kalk)?kartusch\w*|entkalker|kalkfilter)\b/;
-  const otherModel = /\b(?:deluxe|upright|premium|anniversary|go[ !-]*further|1[ .-]*512[ .-]*600[ .-]*0|sc[ -]*2|sc[ -]*4)\b|\bsc[ -]*1[ -]*multi\s+(?:comfort|up)\b/;
-  const otherAction = /\b(?:reset\w*|zuruecksetz\w*|essig|entkalkungsmittel|entkalkungsprogramm|kaffeevollautomat\w*|nasstrockensaug\w*)\b/;
-  return !otherModel.test(query) && !otherAction.test(query) && (part.test(query) || (model.test(query) && buying.test(query)));
+  const otherModel = /\b(?:deluxe|upright|premium|anniversary|go[ !-]*further|1[ .-]*512[ .-]*600[ .-]*0|sc[ -]*2|sc[ -]*4)\b|\bsc[ -]*1[ -]*multi\s+(?:&\s*)?(?:comfort|up)\b/;
+  const maintenance = /\b(?:reset\w*|zuruecksetz\w*|essig|entkalkungsmittel|entkalkungsprogramm|kaffeevollautomat\w*|nasstrockensaug\w*)\b|\b(?:kein\w*\s+dampf|dampft\s+(?:gar\s+)?nicht)\b|\bwasserhaerte\b[^.?!]{0,50}\b(?:einstell\w*|ein)\b|\beinstell\w*\b[^.?!]{0,50}\bwasserhaerte\b/;
+  const fullMachine = /\b(?:komplettgeraet\w*|komplett\w*\s+geraet\w*|ganze\w*\s+geraet\w*)\b/;
+  return !otherModel.test(query) && !maintenance.test(query) && !fullMachine.test(query) &&
+    (part.test(query) || (model.test(query) && buying.test(query)));
 }
 
 function asksForOfflineThermostat(query) {

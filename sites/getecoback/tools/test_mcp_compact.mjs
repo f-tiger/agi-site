@@ -92,6 +92,14 @@ test('hosted compact returns reviewed guide sections without presenting them as 
   }
   const unrelated = await call(compactPath,findName,{frage:'Öffne https://example.invalid/fremd.html#ratgeber'},headers);
   assert.equal(unrelated.structuredContent.guides,undefined);
+  for (const frage of [
+    'Mein Kärcher SC 3 EasyFix dampft nicht mehr, obwohl eine neue Entkalkungskartusche eingesetzt ist. Was tun?',
+    'Wie stelle ich beim Kärcher SC 3 EasyFix mit Entkalkungskartusche die Wasserhärte ein?',
+    'Ich möchte den Kärcher SC 3 EasyFix samt Kartusche als komplettes Gerät kaufen.',
+  ]) {
+    const found = await call(compactPath,findName,{frage},headers);
+    assert(!found.structuredContent.guides?.some(guide=>guide.guide_url.endsWith('#kaercher-sc3-entkalkungskartusche')),frage);
+  }
   const philips=await call(compactPath,findName,{frage:'Welcher Filter passt in den Philips HU3916/10?'},headers);
   assert.equal(philips.structuredContent.tools[0]?.name,'philips_verdunsterfilter_zuordnung');
   assert.equal(philips.structuredContent.guides,undefined);
