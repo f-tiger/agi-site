@@ -32,8 +32,8 @@ if(typeof document!=='undefined'){
      unconfirmed:['Die Ladungen sind noch nicht vergleichbar. Miss bei gleicher Wäschemenge bis zum selben Trocknungsziel.','#lc-endtrockenheit','Endtrockenheit prüfen'],
      measure:['Miss beide vollständigen Durchgänge in kWh. Beispiele, Betriebsstunden und Labelwerte helfen bei der Orientierung.','#lc-measurement','Mess-Checkliste öffnen'],
      tie:['Aus gleichen Stromkosten folgt kein Gerätewechsel. Prüfe, was mit dem vorhandenen Gerät und dem Raum möglich ist.','#waesche-entscheidung','Vorhandene Möglichkeiten prüfen'],
-     dryer:['Falls du einen Trockner anschaffen musst: Prüfe Platz, Türöffnung, Beladung und Ablauf für deinen Haushalt.','/produkte.html#entscheidung-waeschetrockner','Aufstellort und Trocknermodelle prüfen'],
-     dehum:['Falls du einen Entfeuchter anschaffen musst: Prüfe Eignung für die Raumtemperatur, die gemessene Feuchte und den Stellplatz.','/guide/waesche-trocknen-wohnung.html#eb-models','Entfeuchter und Kaufgrenzen für Wäsche prüfen'],
+     dryer:['Falls du einen Trockner anschaffen musst, prüfe Platz, Türöffnung, Beladung und Ablauf für deinen Haushalt.','/produkte.html#entscheidung-waeschetrockner','Aufstellort und Trocknermodelle prüfen'],
+     dehum:['Falls du einen Entfeuchter anschaffen musst, prüfe Eignung für die Raumtemperatur, die gemessene Feuchte und den Stellplatz.','/guide/waesche-trocknen-wohnung.html#eb-models','Entfeuchter und Kaufgrenzen für Wäsche prüfen'],
    };
    let key=r.winner;
    if(!x.comparable)key='unconfirmed';
