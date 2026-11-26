@@ -110,6 +110,10 @@ Ehrliche Grenze: Nichts davon repariert eine Fläche, die aus baulichen Gründen
 
 Miss Raumtemperatur und relative Luftfeuchte vor dem Lüften und nach dem Wiederaufwärmen. Verwende dasselbe Gerät am selben Ort und warte auf stabile Werte. Vergleiche in Gramm Wasser pro Kubikmeter (g/m³), weil sich Prozentwerte mit der Temperatur ändern.
 
+**Immer noch um 65 % trotz Stoßlüften?** Miss zusätzlich am nächsten Morgen vor dem Lüften wieder Temperatur und Feuchte. Wenn der Raum nachts abkühlt, kann die relative Feuchte auch bei gleichbleibendem Wassergehalt steigen. Ein einzelner Prozentwert sagt daher wenig über die Wirkung des Lüftens.
+
+Sinkt der Wassergehalt am Messort nach dem Lüften und steigt später erneut, notiere, wann im Raum geschlafen, geduscht oder Wäsche getrocknet wurde. Prüfe auch die kältesten Flächen. Bleiben Stellen wiederholt nass, kläre die Ursache, bevor du ein Gerät auswählst.
+
 **Rechenbeispiel:** Bei 20 °C sinkt die relative Feuchte von 60 % vor dem Lüften auf 50 % danach. Das sind rechnerisch 1,72 g/m³ weniger Wasser in der Raumluft am Messpunkt.
 
 Die Magnus-Näherung beschreibt die Änderung am Messpunkt. Neue Feuchtequellen, feuchte Wände und Messunsicherheit bleiben offen. Vergleichbare Werte fehlen? Erst erneut messen. Bei wiederkehrender Nässe oder sichtbaren Schäden [Feuchteursache prüfen](https://getecoback.com/guide/luftfeuchtigkeit-senken.html). Aus diesem Vergleich allein folgt keine Kaufentscheidung.

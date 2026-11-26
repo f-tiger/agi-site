@@ -137,7 +137,7 @@ def collect():
   'description':'Berechne Stoffbreite und Bahnen aus Öffnung, Überstand und Kräuselmaß. Nutze die Packungsangabe des Händlers.'}
  sections[('de','/guide/richtig-lueften-im-winter.html')]={
   'id':'lueften-vorher-nachher','title':'Hat Lüften Feuchte abgeführt? Vorher und nachher messen',
-  'description':'Vergleiche stabile Messwerte am selben Ort. Die Änderung in Gramm Wasser pro Kubikmeter ist eine Orientierung am Messpunkt.'}
+  'description':'Bleibt die Luftfeuchtigkeit trotz Stoßlüften hoch? Miss am selben Ort vor dem Lüften, nach dem Wiederaufwärmen und bei Bedarf am nächsten Morgen.'}
  sections[('de','/guide/smarte-heizkoerperthermostate-lohnen-sich.html')]={
   'id':'danfoss-altventil','title':'Welcher Typ steckt hinter dem alten Danfoss-Klickventil?',
   'description':'Danfoss RA, RAV und RAVL anhand von Kennzeichnung und Zeichnung unterscheiden. Bei unklarem Ventiltyp den vorhandenen Kopf behalten.'}

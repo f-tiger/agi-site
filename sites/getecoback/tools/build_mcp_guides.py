@@ -18,13 +18,17 @@ def readable_sections(source, markdown, entry):
         selected.add(entry['section']['id'])
     if not selected:
         return {}
-    glass_target = 'fenstersauger-gegen-kondenswasser'
-    glass_label = None
-    if entry['u'] == '/guide/fenster-beschlagen-innen.html' and glass_target in selected:
-        label = re.search(r'<section id="fenstersauger-gegen-kondenswasser" aria-labelledby="([a-z0-9-]{1,80})">', source)
+    wrapped_sections = {
+        '/guide/fenster-beschlagen-innen.html': 'fenstersauger-gegen-kondenswasser',
+        '/guide/richtig-lueften-im-winter.html': 'lueften-vorher-nachher',
+    }
+    wrapper = wrapped_sections.get(entry['u'])
+    labels = {}
+    if wrapper in selected:
+        label = re.search(r'<section id="' + re.escape(wrapper) + r'" aria-labelledby="([a-z0-9-]{1,80})">', source)
         if label:
-            glass_label = label[1]
-            selected.add(glass_label)
+            labels[label[1]] = wrapper
+            selected.add(label[1])
     headings = Counter(markdown.splitlines())
     matches = {}
     for depth, attrs, body in re.findall(r'<h([2-6])\b([^>]*)>(.*?)</h\1>', source, re.S):
@@ -34,7 +38,7 @@ def readable_sections(source, markdown, entry):
         text = unescape(re.sub(r'<[^>]+>', '', body)).strip()
         heading = '#' * int(depth) + ' ' + text
         if len(heading) <= 240 and headings[heading] == 1:
-            matches[glass_target if anchor[1] == glass_label else anchor[1]] = heading
+            matches[labels.get(anchor[1], anchor[1])] = heading
     return matches
 
 

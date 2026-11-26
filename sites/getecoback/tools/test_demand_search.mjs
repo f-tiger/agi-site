@@ -1228,3 +1228,18 @@ test('German sweating and wet morning windows find the existing moisture answer'
     'Fenster schwitzt innen hinter dem Plissee.',
   ]) assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
 });
+
+test('persistent German indoor humidity reaches the existing ventilation measurement guide', () => {
+  const target='/guide/richtig-lueften-im-winter.html#lueften-vorher-nachher';
+  for(const query of [
+    'Luftfeuchtigkeit trotz Lüften immer durchschnittlich um die 65% - was tun?',
+    'Die Luftfeuchtigkeit steigt nach dem Stoßlüften wieder. Was soll ich messen?',
+    'Im Schlafzimmer ist die Luftfeuchte trotz regelmäßigem Querlüften weiter hoch.',
+  ]) assert.equal(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+  for(const query of [
+    'Wie lüfte ich bei hoher Luftfeuchtigkeit draußen?',
+    'Im Keller steigt die Luftfeuchtigkeit nach dem Lüften wieder.',
+    'Trotz Stoßlüften bleibt die feuchte Wand nass. Schimmel an der Wand?',
+    'Morgens sind meine Fenster innen komplett nass.',
+  ]) assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+});

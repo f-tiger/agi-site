@@ -229,6 +229,8 @@ async function checkGermanFocusedDiscovery(browser,base){
    {href:curtain,language:'de'},'The German curtain quantity question reaches its measurement tool');
   equal((await search('Luftfeuchtigkeit vor und nach dem Stoßlüften vergleichen'))[0],
    {href:roomVentilation,language:'de'},'A before/after room question reaches the matching ventilation tool');
+  equal((await search('Luftfeuchtigkeit trotz Lüften immer durchschnittlich um die 65% - was tun?'))[0],
+   {href:roomVentilation,language:'de'},'The persistent indoor humidity question finds the measurement guide');
   const showerFit='/guide/duschen-kosten-rechner.html#durchlauferhitzer-mindestdurchfluss';
   const flowQuestion='Funktioniert ein Sparduschkopf an meinem hydraulischen Durchlauferhitzer?';
   equal((await search(flowQuestion))[0],{href:showerFit,language:'de'},

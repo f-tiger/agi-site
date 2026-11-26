@@ -285,6 +285,7 @@ async function run() {
           await assertGuideVisible(page, ventilation, javaScriptEnabled);
           const section = page.locator('#lueften-vorher-nachher');
           assert(await section.getByText(/1,72 g\/m³ weniger Wasser/).isVisible());
+          assert(await section.getByText('Immer noch um 65 % trotz Stoßlüften?', {exact:true}).isVisible());
           assert.equal(await section.locator('form').isVisible(), javaScriptEnabled);
         }
         await context.close();

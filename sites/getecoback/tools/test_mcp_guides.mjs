@@ -875,3 +875,17 @@ test('German sweating window language finds the readable existing guide', async 
   assert(textOf(guide).includes('Das Fenster schwitzt'));
   assert(textOf(guide).includes('45 %'));
 });
+
+test('persistent German indoor humidity can read the same sourced section in both MCP profiles', async () => {
+  const url='https://getecoback.com/guide/richtig-lueften-im-winter.html#lueften-vorher-nachher';
+  const {env}=assetEnv();
+  const frage='Luftfeuchtigkeit trotz Lüften immer durchschnittlich um die 65% - was tun?';
+  const search=await call('ratgeber_suche',{frage,sprache:'de',max:1},env);
+  assert(textOf(search).includes('Abschnitt: '+url));
+  const full=await call('ratgeber_lesen',{pfad:url},env);
+  const compact=await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad:url}},env,true);
+  assert.equal(full.isError,false);
+  assert.deepEqual(full,compact);
+  for(const fact of ['um 65 % trotz Stoßlüften','am nächsten Morgen vor dem Lüften','Wassergehalt','die Ursache','heizen-und-lueften-so-gehts-richtig-10426']) assert(textOf(full).includes(fact),fact);
+  assert(!textOf(full).includes('getecoback-21'));
+});
