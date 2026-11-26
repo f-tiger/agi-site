@@ -1,19 +1,9 @@
 {
  "version": 1,
  "github": {
-  "queryIndex": 12,
+  "queryIndex": 18,
   "page": 2,
   "pending": [
-   {
-    "repo": "netdata/netdata",
-    "topic": "agents",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
-    "repo": "upstash/context7",
-    "topic": "agents",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
    {
     "repo": "sansan0/TrendRadar",
     "topic": "agents",
@@ -105,11 +95,6 @@
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
-    "repo": "OpenCoworkAI/open-cowork",
-    "topic": "coding",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
     "repo": "A9T9/RPA",
     "topic": "agents",
     "foundAt": "2026-10-05T06:14:17.704Z"
@@ -117,11 +102,6 @@
    {
     "repo": "showlab/ShowUI",
     "topic": "agents",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
-    "repo": "Core-Mate/OpenGUI",
-    "topic": "coding",
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
@@ -515,11 +495,6 @@
     "foundAt": "2026-10-06T06:50:25.349Z"
    },
    {
-    "repo": "met4citizen/TalkingHead",
-    "topic": "audio",
-    "foundAt": "2026-10-06T06:50:25.349Z"
-   },
-   {
     "repo": "ken107/read-aloud",
     "topic": "audio",
     "foundAt": "2026-10-06T06:50:25.349Z"
@@ -740,11 +715,6 @@
     "foundAt": "2026-10-12T06:28:11.186Z"
    },
    {
-    "repo": "gitleaks/gitleaks",
-    "topic": "local",
-    "foundAt": "2026-10-12T06:28:11.186Z"
-   },
-   {
     "repo": "codexu/note-gen",
     "topic": "agents",
     "foundAt": "2026-10-12T06:28:11.186Z"
@@ -837,11 +807,6 @@
    {
     "repo": "langfengQ/verl-agent",
     "topic": "agents",
-    "foundAt": "2026-10-14T08:05:15.418Z"
-   },
-   {
-    "repo": "Andrew-Jang/RAGHub",
-    "topic": "knowledge",
     "foundAt": "2026-10-14T08:05:15.418Z"
    },
    {
@@ -1570,11 +1535,6 @@
     "foundAt": "2026-10-31T06:14:25.984Z"
    },
    {
-    "repo": "CatVinci-Studio/Textus",
-    "topic": "ai",
-    "foundAt": "2026-10-31T06:14:25.984Z"
-   },
-   {
     "repo": "pbek/QOwnNotes",
     "topic": "ai",
     "foundAt": "2026-10-31T06:14:25.984Z"
@@ -1927,11 +1887,6 @@
    {
     "repo": "HUANGCHIHHUNGLeo/claude-real-video",
     "topic": "coding",
-    "foundAt": "2026-11-05T07:19:29.391Z"
-   },
-   {
-    "repo": "kha-white/mokuro",
-    "topic": "documents",
     "foundAt": "2026-11-05T07:19:29.391Z"
    },
    {
@@ -2745,11 +2700,6 @@
     "foundAt": "2026-11-23T08:07:39.108Z"
    },
    {
-    "repo": "Forget-C/Jellyfish",
-    "topic": "video",
-    "foundAt": "2026-11-23T08:07:39.108Z"
-   },
-   {
     "repo": "antgroup/echomimic_v2",
     "topic": "video",
     "foundAt": "2026-11-23T08:07:39.108Z"
@@ -2975,11 +2925,6 @@
     "foundAt": "2026-11-25T09:04:29.018Z"
    },
    {
-    "repo": "microsoft/BotFramework-WebChat",
-    "topic": "chat",
-    "foundAt": "2026-11-25T09:04:29.018Z"
-   },
-   {
     "repo": "ZeroTang05/cyber-doctor",
     "topic": "agents",
     "foundAt": "2026-11-25T09:04:29.018Z"
@@ -3003,6 +2948,61 @@
     "repo": "kingcharleslzy-ai/DSH-Spicy",
     "topic": "video",
     "foundAt": "2026-11-25T09:04:29.018Z"
+   },
+   {
+    "repo": "AntigmaLabs/ante",
+    "topic": "coding",
+    "foundAt": "2026-11-26T08:52:46.100Z"
+   },
+   {
+    "repo": "alvarobartt/hf-mem",
+    "topic": "local",
+    "foundAt": "2026-11-26T08:52:46.100Z"
+   },
+   {
+    "repo": "dllm-labs/mojo-dllm",
+    "topic": "local",
+    "foundAt": "2026-11-26T08:52:46.100Z"
+   },
+   {
+    "repo": "charent/Phi2-mini-Chinese",
+    "topic": "knowledge",
+    "foundAt": "2026-11-26T08:52:46.100Z"
+   },
+   {
+    "repo": "bosun-ai/swiftide",
+    "topic": "agents",
+    "foundAt": "2026-11-26T08:52:46.100Z"
+   },
+   {
+    "repo": "zaxiu88888/issue-rag",
+    "topic": "knowledge",
+    "foundAt": "2026-11-26T08:52:46.100Z"
+   },
+   {
+    "repo": "golemcloud/golem",
+    "topic": "agents",
+    "foundAt": "2026-11-26T08:52:46.100Z"
+   },
+   {
+    "repo": "earthtojake/text-to-cad",
+    "topic": "agents",
+    "foundAt": "2026-11-26T08:52:46.100Z"
+   },
+   {
+    "repo": "microsoft/agent-academy",
+    "topic": "agents",
+    "foundAt": "2026-11-26T08:52:46.100Z"
+   },
+   {
+    "repo": "vstorm-co/agenticos",
+    "topic": "agents",
+    "foundAt": "2026-11-26T08:52:46.100Z"
+   },
+   {
+    "repo": "lakesoul-io/LakeSoul",
+    "topic": "agents",
+    "foundAt": "2026-11-26T08:52:46.100Z"
    }
   ],
   "checked": {
@@ -3215,11 +3215,17 @@
    "gh-google-ai-edge-mediapipe-f55317": "2026-11-24T10:23:16.795Z",
    "gh-krillinai-opencreator-f05c68": "2026-11-24T10:23:16.795Z",
    "gh-openvinotoolkit-nncf-6cb208": "2026-11-24T10:23:16.795Z",
-   "gh-codigoencasa-builderbot-3feb65": "2026-11-24T10:23:16.795Z"
+   "gh-codigoencasa-builderbot-3feb65": "2026-11-24T10:23:16.795Z",
+   "gh-googleworkspace-cli-fe4e85": "2026-11-26T08:52:46.100Z",
+   "gh-mvschwarz-openrig-89d643": "2026-11-26T08:52:46.100Z",
+   "gh-worldbench-diffusionopsd-d0dbe0": "2026-11-26T08:52:46.100Z",
+   "gh-liuzhao1225-youdub-webui-3f0f0a": "2026-11-26T08:52:46.100Z",
+   "gh-cinnamon-kotaemon-4e41c7": "2026-11-26T08:52:46.100Z",
+   "gh-jev-chat-jev-chat-jarvis-a9a914": "2026-11-26T08:52:46.100Z"
   }
  },
  "mcp": {
-  "cursor": "dev.workers.mmelnyk2000.well-015-municipal-notices/municipal-notices:1.0.0",
+  "cursor": "io.appsigma/account:1.0.0",
   "since": "2026-10-01T15:26:40.958Z",
   "watermark": "2026-10-02T15:26:40.958Z",
   "scanStarted": "2026-11-14T06:58:47.664Z",
@@ -4984,7 +4990,47 @@
    "stonewake-stonewake": "2026-11-25T09:04:29.018Z",
    "streamclipping-streamclipping": "2026-11-25T09:04:29.018Z",
    "strix-strix": "2026-11-25T09:04:29.018Z",
-   "structupath-steel-tools": "2026-11-25T09:04:29.018Z"
+   "structupath-steel-tools": "2026-11-25T09:04:29.018Z",
+   "stumpy-agents": "2026-11-26T08:52:46.100Z",
+   "subscribr-subscribr": "2026-11-26T08:52:46.100Z",
+   "superbotapp-superbot": "2026-11-26T08:52:46.100Z",
+   "supercut-mcp": "2026-11-26T08:52:46.100Z",
+   "suprememind-expert-witness-simulation": "2026-11-26T08:52:46.100Z",
+   "susurration-playground": "2026-11-26T08:52:46.100Z",
+   "svtr-aidb": "2026-11-26T08:52:46.100Z",
+   "switchapp-switch": "2026-11-26T08:52:46.100Z",
+   "synthfolk-directory": "2026-11-26T08:52:46.100Z",
+   "syntology-graph": "2026-11-26T08:52:46.100Z",
+   "tailortalk-tailortalk": "2026-11-26T08:52:46.100Z",
+   "talpy-aya": "2026-11-26T08:52:46.100Z",
+   "taskaid-taskaid": "2026-11-26T08:52:46.100Z",
+   "taskive-mcp": "2026-11-26T08:52:46.100Z",
+   "teenadhd-library": "2026-11-26T08:52:46.100Z",
+   "teenanxiety-library": "2026-11-26T08:52:46.100Z",
+   "teenpsychiatry-library": "2026-11-26T08:52:46.100Z",
+   "teentherapy-library": "2026-11-26T08:52:46.100Z",
+   "tellas-bip-tellas-bip": "2026-11-26T08:52:46.100Z",
+   "tellers-mcp-tellers-mcp": "2026-11-26T08:52:46.100Z",
+   "tenderhunt-agent": "2026-11-26T08:52:46.100Z",
+   "tessen-grader": "2026-11-26T08:52:46.100Z",
+   "theaggregate-the-aggregate": "2026-11-26T08:52:46.100Z",
+   "theautomators-mcp": "2026-11-26T08:52:46.100Z",
+   "thebetterhire-mcp": "2026-11-26T08:52:46.100Z",
+   "thebotique-sigil": "2026-11-26T08:52:46.100Z",
+   "thedrain-board": "2026-11-26T08:52:46.100Z",
+   "thetickeris-agent-rail": "2026-11-26T08:52:46.100Z",
+   "thewholetorah-thewholetorah": "2026-11-26T08:52:46.100Z",
+   "thinkpattern-news": "2026-11-26T08:52:46.100Z",
+   "thirds-thirds": "2026-11-26T08:52:46.100Z",
+   "thrain-spotlight": "2026-11-26T08:52:46.100Z",
+   "thrivee-financial-intelligence": "2026-11-26T08:52:46.100Z",
+   "thumbnailcreator-thumbnails": "2026-11-26T08:52:46.100Z",
+   "timeml-time-machine": "2026-11-26T08:52:46.100Z",
+   "timeplex-booking": "2026-11-26T08:52:46.100Z",
+   "timix-time-tracking": "2026-11-26T08:52:46.100Z",
+   "titleman-commercial-real-estate-property-valuation": "2026-11-26T08:52:46.100Z",
+   "tokenarcade-tokenarcade": "2026-11-26T08:52:46.100Z",
+   "tokenos-contract-audit": "2026-11-26T08:52:46.100Z"
   }
  }
 }

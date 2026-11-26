@@ -1,22 +1,22 @@
 {
- "generated": "2026-11-25",
+ "generated": "2026-11-26",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "gaoding",
-  "gemini",
-  "gemini-cli",
-  "gezhe",
-  "gptzero",
-  "grammarly",
-  "guojia-fanzha",
-  "heygen"
+  "huggingface",
+  "ideogram",
+  "jsdesign",
+  "krea",
+  "languagetool",
+  "leonardo",
+  "lovable",
+  "luma"
  ],
- "cursor": "heygen",
+ "cursor": "luma",
  "summary": {
-  "ready": 43,
-  "empty": 36,
+  "ready": 44,
+  "empty": 35,
   "blocked": 29,
   "probed_total": 108
  },
@@ -1712,14 +1712,14 @@
    "name": "Hugging Face",
    "cat": "api",
    "reach": 0,
-   "probed": "2026-11-13",
+   "probed": "2026-11-26",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://huggingface.co/docs/inference-providers/pricing",
      "status": 200,
-     "bytes": 152808,
+     "bytes": 138308,
      "tokens": 4
     }
    ],
@@ -1734,7 +1734,7 @@
    "name": "Ideogram",
    "cat": "image",
    "reach": 0,
-   "probed": "2026-11-13",
+   "probed": "2026-11-26",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1794,7 +1794,7 @@
    "name": "即时设计",
    "cat": "design",
    "reach": 0,
-   "probed": "2026-11-13",
+   "probed": "2026-11-26",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -1828,7 +1828,7 @@
    "name": "Krea AI",
    "cat": "image",
    "reach": 0,
-   "probed": "2026-11-13",
+   "probed": "2026-11-26",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -1836,13 +1836,13 @@
      "url": "https://krea.ai/pricing",
      "status": 200,
      "bytes": 600000,
-     "tokens": 48
+     "tokens": 59
     }
    ],
    "best": {
     "url": "https://krea.ai/pricing",
-    "tokens": 48,
-    "excerpt": "t px-0 py-0 text-white [&amp;>svg]:size-3 [&amp;>svg]:shrink-0 [&amp;>svg]:fill-current\"> Most popular Pro 20,000 units / month ~803 Nano Banana 2.1 generations ~65 Seedance 2.5 videos $35 $21 /month svg]:px-8 font-book h-10 w-full justify-center rounded-full text-sm active:scale-[0.99] bg-action text-white dark:bg-white dark:text-black\" type=\"button\"> Get Pro Save $168 compared to monthly Krea 3 svg]:pointer-events-none [&amp;>svg]:size-3 [a&amp;]:hover:bg-accent [a&amp;]:hover:text-accent-foreground backdrop-blur-md bg-muted text-foreground ml-1 inline-flex h-[18px] items-center justify-center rounded-sm border-0 px-1.5 py-0 text-[10px] leading-none font-medium\"> NEW Krea Agent svg]:pointe"
+    "tokens": 59,
+    "excerpt": "ound/10 dark:[a&amp;]:hover:bg-foreground/15 tabular-nums\"> -29% ~328 Seedance 2.5 videos ~1,282 Nano Banana Pro images $249.50 $176.99 $1.77 / 1K units 100K 150K 200K 250K 300K 350K 400K 450K 500K svg]:px-3 rounded-full self-end @xl/top-ups:shrink-0\" type=\"button\"> Sign in required 50,000 compute units svg]:pointer-events-none h-4.5 gap-1 px-[7px] text-[11px] leading-4 has-data-[icon=inline-end]:pr-[2.5px] has-data-[icon=inline-end]:pl-[5.5px] has-data-[icon=inline-start]:pr-[5.5px] has-data-[icon=inline-start]:pl-[2.5px] [&amp;>svg]:size-3 rounded-full bg-foreground/6 text-foreground dark:bg-foreground/10 [a&amp;]:hover:bg-foreground/10 dark:[a&amp;]:hover:bg-foreground/15 tabular-nums\"> -"
    }
   },
   "languagetool": {
@@ -1850,14 +1850,14 @@
    "name": "LanguageTool",
    "cat": "writing",
    "reach": 0,
-   "probed": "2026-11-13",
+   "probed": "2026-11-26",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://languagetool.org/pricing",
      "status": 200,
-     "bytes": 511844,
+     "bytes": 511831,
      "tokens": 6
     }
    ],
@@ -1872,7 +1872,7 @@
    "name": "Leonardo AI",
    "cat": "image",
    "reach": 0,
-   "probed": "2026-11-14",
+   "probed": "2026-11-26",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1902,33 +1902,21 @@
    "name": "Lovable",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-11-14",
+   "probed": "2026-11-26",
    "env": "runner",
-   "state": "empty",
+   "state": "ready",
    "tried": [
     {
      "url": "https://lovable.dev/pricing",
      "status": 200,
-     "bytes": 197710,
-     "tokens": 1
-    },
-    {
-     "url": "https://lovable.dev/price",
-     "status": 404,
-     "bytes": 0,
-     "tokens": 0
-    },
-    {
-     "url": "https://lovable.dev/plans",
-     "status": 404,
-     "bytes": 0,
-     "tokens": 0
+     "bytes": 307917,
+     "tokens": 6
     }
    ],
    "best": {
     "url": "https://lovable.dev/pricing",
-    "tokens": 1,
-    "excerpt": "atures in user apps. On top, subscriptions include daily grants of 5 build credits (some regional plans cap these at 30 per month) and a monthly grant of 20 Cloud credits. How do I buy credits for a team, class, or community? Every Lovable plan belongs to a workspace, and everyone you invite into that workspace shares its credits. To fund a group of people, upgrade one workspace to a plan with enough monthly credits for everyone, then invite the whole group. Everyone builds from the shared credit pool on one subscription and one invoice, and each member can work on as many of their own projects as they want. To keep any one person from using up the shared credits, workspace owners and admins"
+    "tokens": 6,
+    "excerpt": "at exactly matches your team&#x27;s needs. Plans Monthly Yearly 2 months free Free Discover what Lovable can do for you $0 Get started No credit card needed Free grants Unlimited collaborators 5 lovable.app domains Invite-only publishing Publish websites that only people you invite can open. Invite up to 10 people per project. Cloud Community support Pro Designed for fast-moving teams building together in real time. $25 / month 100 monthly credits Get started Unlimited users Free grants Everything in Free, plus 100 Pro credits Credit rollovers Credits roll over for 1 month on monthly plans, or until one month after the end of your annual plan. On-demand credit top-ups Unlimited lovable.app d"
    }
   },
   "luma": {
@@ -1936,7 +1924,7 @@
    "name": "Luma Dream Machine",
    "cat": "video",
    "reach": 0,
-   "probed": "2026-11-14",
+   "probed": "2026-11-26",
    "env": "runner",
    "state": "ready",
    "tried": [

@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-11-25T09:05:31.497Z",
+  "lastRun": "2026-11-26T08:54:12.783Z",
   "status": "degraded",
   "checkedSources": 5,
   "queue": [
@@ -7,13 +7,13 @@
       "caseId": "photo-ai",
       "reason": "source-unreachable",
       "sourceUrl": "https://levels.io/new-420k-mo-revenue-record-lex-fridman",
-      "lastChecked": "2026-11-13T07:11:37.320Z"
+      "lastChecked": "2026-11-26T08:54:12.783Z"
     },
     {
       "caseId": "interior-ai",
       "reason": "source-unreachable",
       "sourceUrl": "https://levels.io/new-420k-mo-revenue-record-lex-fridman",
-      "lastChecked": "2026-11-13T07:11:37.320Z"
+      "lastChecked": "2026-11-26T08:54:12.783Z"
     },
     {
       "caseId": "typingmind",
@@ -355,20 +355,20 @@
       "caseId": "erly",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.starterstory.com/stories/this-insanely-simple-app-makes-50k-month",
-      "lastChecked": "2026-11-12T07:41:16.074Z"
+      "lastChecked": "2026-11-26T08:54:12.783Z"
     },
     {
       "caseId": "luca-running",
       "reason": "source-unreachable",
       "sourceUrl": "https://chalsarboleya.substack.com/p/how-ai-hype-pushed-us-to-100k-arr",
-      "lastChecked": "2026-11-12T07:41:16.074Z"
+      "lastChecked": "2026-11-26T08:54:12.783Z"
     }
   ],
   "sources": {
     "photo-ai|https://levels.io/new-420k-mo-revenue-record-lex-fridman": {
       "caseId": "photo-ai",
       "sourceUrl": "https://levels.io/new-420k-mo-revenue-record-lex-fridman",
-      "lastAttempt": "2026-11-13T07:11:37.320Z",
+      "lastAttempt": "2026-11-26T08:54:12.783Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -376,7 +376,7 @@
     "interior-ai|https://levels.io/new-420k-mo-revenue-record-lex-fridman": {
       "caseId": "interior-ai",
       "sourceUrl": "https://levels.io/new-420k-mo-revenue-record-lex-fridman",
-      "lastAttempt": "2026-11-13T07:11:37.320Z",
+      "lastAttempt": "2026-11-26T08:54:12.783Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1131,7 +1131,7 @@
     "erly|https://www.starterstory.com/stories/this-insanely-simple-app-makes-50k-month": {
       "caseId": "erly",
       "sourceUrl": "https://www.starterstory.com/stories/this-insanely-simple-app-makes-50k-month",
-      "lastAttempt": "2026-11-12T07:41:16.074Z",
+      "lastAttempt": "2026-11-26T08:54:12.783Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1139,45 +1139,45 @@
     "luca-running|https://chalsarboleya.substack.com/p/how-ai-hype-pushed-us-to-100k-arr": {
       "caseId": "luca-running",
       "sourceUrl": "https://chalsarboleya.substack.com/p/how-ai-hype-pushed-us-to-100k-arr",
-      "lastAttempt": "2026-11-12T07:41:16.074Z",
+      "lastAttempt": "2026-11-26T08:54:12.783Z",
       "status": "unreachable",
-      "http": 403,
+      "http": null,
       "consecutiveChange": 0
     },
     "humi-journal|https://www.linkedin.com/posts/sean-conerly-49063054_i-shut-down-my-app-not-because-it-failed-activity-7493074271565656064-oit0": {
       "caseId": "humi-journal",
       "sourceUrl": "https://www.linkedin.com/posts/sean-conerly-49063054_i-shut-down-my-app-not-because-it-failed-activity-7493074271565656064-oit0",
-      "lastAttempt": "2026-11-13T07:11:37.320Z",
+      "lastAttempt": "2026-11-26T08:54:12.783Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-11-13T07:11:37.320Z",
-      "lastHash": "79991365e0b13a9aecc85fbf3dae745fc95f67c5b42503af7df576e8542c9659",
+      "lastSuccess": "2026-11-26T08:54:12.783Z",
+      "lastHash": "b807daa8140aa26936bd65d5d5e264f377ebee789d52938bd7aa71354df5ddcc",
       "hash": "eb89880e44df3531a5e5bf75c3b53f637e5eb4b527acd0710a2858d96710f95a",
       "simhash": "a4dbb553077280be",
       "words": 491,
       "consecutiveChange": 0
     }
   },
-  "cursor": 64,
+  "cursor": 2,
   "errors": [
     {
-      "caseId": "glamour-color",
-      "sourceUrl": "https://trustmrr.com/startup/glamour",
+      "caseId": "erly",
+      "sourceUrl": "https://www.starterstory.com/stories/this-insanely-simple-app-makes-50k-month",
       "reason": "body-limit"
     },
     {
-      "caseId": "social-wizard",
-      "sourceUrl": "https://www.starterstory.com/kelechi",
+      "caseId": "luca-running",
+      "sourceUrl": "https://chalsarboleya.substack.com/p/how-ai-hype-pushed-us-to-100k-arr",
       "reason": "body-limit"
     },
     {
-      "caseId": "boltai",
-      "sourceUrl": "https://newsletter.danielnguyen.me/p/sep-2024-interview-on-indie-hackers",
+      "caseId": "photo-ai",
+      "sourceUrl": "https://levels.io/new-420k-mo-revenue-record-lex-fridman",
       "reason": "body-limit"
     },
     {
-      "caseId": "monai",
-      "sourceUrl": "https://www.starterstory.com/Florian",
+      "caseId": "interior-ai",
+      "sourceUrl": "https://levels.io/new-420k-mo-revenue-record-lex-fridman",
       "reason": "body-limit"
     }
   ]

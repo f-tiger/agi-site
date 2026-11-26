@@ -1,10 +1,107 @@
 {
-  "generated": "2026-11-25",
+  "generated": "2026-11-26",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 106,
-  "fetched_fail": 21,
-  "pending": 12,
+  "fetched_ok": 105,
+  "fetched_fail": 22,
+  "pending": 13,
   "items": [
+    {
+      "slug": "gptzero",
+      "url": "https://gptzero.me",
+      "confirmed": "2026-11-26",
+      "first_seen": "2026-11-25",
+      "added": [
+        "0.002%",
+        "0.03%",
+        "300words",
+        "97.34%"
+      ],
+      "removed": [
+        "1%",
+        "95.7%",
+        "96.5%"
+      ],
+      "checked_then": "2026-08-17"
+    },
+    {
+      "slug": "framer",
+      "url": "https://framer.com/pricing",
+      "confirmed": "2026-11-26",
+      "first_seen": "2026-11-25",
+      "added": [
+        "5gb"
+      ],
+      "removed": [
+        "1gb",
+        "22m"
+      ],
+      "checked_then": "2026-08-06"
+    },
+    {
+      "slug": "continue",
+      "url": "https://github.com/continuedev/continue",
+      "confirmed": "2026-11-26",
+      "first_seen": "2026-11-25",
+      "added": [
+        "36.6k"
+      ],
+      "removed": [
+        "36.5k"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "elevenlabs",
+      "url": "https://elevenlabs.io/pricing",
+      "confirmed": "2026-11-26",
+      "first_seen": "2026-11-25",
+      "added": [
+        "$1,",
+        "$17",
+        "$18",
+        "$18.33,",
+        "$18.33/mo",
+        "$2",
+        "$2,990",
+        "$21",
+        "$220",
+        "$23",
+        "$24",
+        "$249.17,"
+      ],
+      "removed": [
+        "$18.33",
+        "$249.17",
+        "$5",
+        "$82.50",
+        "100minutes",
+        "10minutes",
+        "10months",
+        "11,000minutes",
+        "11minutes",
+        "12,500seconds",
+        "121,000credits",
+        "152minutes"
+      ],
+      "checked_then": "2026-08-02"
+    },
+    {
+      "slug": "notion-ai",
+      "url": "https://notion.com",
+      "confirmed": "2026-11-26",
+      "first_seen": "2026-11-25",
+      "added": [
+        "23,802messages",
+        "91%"
+      ],
+      "removed": [
+        "1.4m",
+        "100m",
+        "50%",
+        "62%"
+      ],
+      "checked_then": "2026-08-04"
+    },
     {
       "slug": "exa",
       "url": "https://exa.ai/pricing",
@@ -166,41 +263,6 @@
       "checked_then": "2026-08-03"
     },
     {
-      "slug": "elevenlabs",
-      "url": "https://elevenlabs.io/pricing",
-      "confirmed": "2026-11-22",
-      "first_seen": "2026-11-21",
-      "added": [
-        "0.5credit",
-        "0.5credits",
-        "0026video",
-        "10000credits",
-        "1000characters",
-        "1000credits",
-        "100minutes",
-        "100words",
-        "10minutes",
-        "11,000minutes",
-        "11minutes",
-        "12,500seconds"
-      ],
-      "removed": [
-        "$1.",
-        "$18",
-        "$19",
-        "$2",
-        "$21",
-        "$23",
-        "$24",
-        "$25",
-        "$26",
-        "$27",
-        "$28",
-        "$3"
-      ],
-      "checked_then": "2026-08-02"
-    },
-    {
       "slug": "windsurf",
       "url": "https://windsurf.com",
       "confirmed": "2026-11-22",
@@ -235,27 +297,6 @@
       ],
       "removed": [],
       "checked_then": "2026-08-02"
-    },
-    {
-      "slug": "framer",
-      "url": "https://framer.com/pricing",
-      "confirmed": "2026-11-20",
-      "first_seen": "2026-11-19",
-      "added": [
-        "$20/mo",
-        "$30",
-        "10,000credits",
-        "100,000credits",
-        "100gb",
-        "20,000credits",
-        "22m",
-        "3,000credits",
-        "30,000credits",
-        "5,000credits",
-        "50,000credits"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-06"
     },
     {
       "slug": "cloudflare-workers-ai",
@@ -415,19 +456,6 @@
       ],
       "removed": [
         "160k"
-      ],
-      "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "continue",
-      "url": "https://github.com/continuedev/continue",
-      "confirmed": "2026-11-12",
-      "first_seen": "2026-11-11",
-      "added": [
-        "36.5k"
-      ],
-      "removed": [
-        "36.4k"
       ],
       "checked_then": "2026-08-04"
     },
@@ -648,21 +676,6 @@
       "checked_then": "2026-08-06"
     },
     {
-      "slug": "gptzero",
-      "url": "https://gptzero.me",
-      "confirmed": "2026-10-20",
-      "first_seen": "2026-10-19",
-      "added": [
-        "20m",
-        "2m"
-      ],
-      "removed": [
-        "17m",
-        "1m"
-      ],
-      "checked_then": "2026-08-17"
-    },
-    {
       "slug": "n8n",
       "url": "https://docs.n8n.io",
       "confirmed": "2026-10-20",
@@ -700,22 +713,6 @@
       ],
       "removed": [],
       "checked_then": "2026-08-05"
-    },
-    {
-      "slug": "notion-ai",
-      "url": "https://notion.com",
-      "confirmed": "2026-10-03",
-      "first_seen": "2026-10-01",
-      "added": [
-        "1.4m",
-        "100m",
-        "50%",
-        "62%"
-      ],
-      "removed": [
-        "98%"
-      ],
-      "checked_then": "2026-08-04"
     },
     {
       "slug": "kimi",

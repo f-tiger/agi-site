@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-25",
+ "checked": "2026-11-26",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -4797,274 +4797,72 @@
    "source_http": 502,
    "repo_http": null,
    "reason": "source HTTP 502"
+  },
+  "goedvps-wodan-posture-wodan-posture": {
+   "attempts": 1,
+   "first_attempt": "2026-11-26",
+   "last_attempt": "2026-11-26",
+   "attemptedAt": "2026-11-26T08:52:46.100Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "govbase-govbase": {
+   "attempts": 1,
+   "first_attempt": "2026-11-26",
+   "last_attempt": "2026-11-26",
+   "attemptedAt": "2026-11-26T08:52:46.100Z",
+   "source_http": 429,
+   "repo_http": 404,
+   "reason": "source HTTP 429"
+  },
+  "gramscraper-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-11-26",
+   "last_attempt": "2026-11-26",
+   "attemptedAt": "2026-11-26T08:52:46.100Z",
+   "source_http": 410,
+   "repo_http": null,
+   "reason": "source HTTP 410"
+  },
+  "grcmigrate-directory": {
+   "attempts": 1,
+   "first_attempt": "2026-11-26",
+   "last_attempt": "2026-11-26",
+   "attemptedAt": "2026-11-26T08:52:46.100Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
+  },
+  "grid-shot-gridshot": {
+   "attempts": 1,
+   "first_attempt": "2026-11-26",
+   "last_attempt": "2026-11-26",
+   "attemptedAt": "2026-11-26T08:52:46.100Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "timeout"
+  },
+  "gringofunnels-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-11-26",
+   "last_attempt": "2026-11-26",
+   "attemptedAt": "2026-11-26T08:52:46.100Z",
+   "source_http": 401,
+   "repo_http": null,
+   "reason": "source HTTP 401"
+  },
+  "groundworkdemographics-groundwork": {
+   "attempts": 1,
+   "first_attempt": "2026-11-26",
+   "last_attempt": "2026-11-26",
+   "attemptedAt": "2026-11-26T08:52:46.100Z",
+   "source_http": 429,
+   "repo_http": null,
+   "reason": "source HTTP 429"
   }
  },
  "admitted": [
-  {
-   "slug": "devart-mcp-quickbooks",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "devart-mcp-postgresql",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "devart-mcp-oracle",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "devart-mcp-dynamics365",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "devart-mcp-mysql",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "mambabuilt-mcp-talent-agency-lookup",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "celigo-celigo",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "neuronto-x402-payments-facilitator",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "osir-domain-registrar",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "surfingdog-inbox",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "vibe-fixer-vibefix",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "jithox-jithox",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "aiapplyd-aiapplyd",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cn-savantcat-answers",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cloud-basebalance-basebalance",
-   "date": "2026-09-24",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "kawacode-mcp",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "rolnia-mcp",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "swarmmemo-bulletin",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "withone-mcp",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "crosscheckapi-crosscheck",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hotker-hotker",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "3dneweraai-newera",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "useorgx-orgx-mcp",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "deckodex-deckodex",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "snoopscan-snoopscan",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "spelunking-hub",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "qmailing-mcp-server",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "factuarea-mcp",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "anthonyhunts-shaart-agency-docs",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "vepathos-vepathos",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "dabradata-mcp",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "goaimoat-email-person-lookup",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "docsautomator-mcp",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "synapticrelay-board",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "store-api-store-api",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "sentfrom-mcp",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "shumi-mcp",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "slickfast-mcp",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "neuhausre-followupboss",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "markaestro-mcp",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "gmapsleadfinder-gmaps-lead-finder",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "saaskly-mcp",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "justpublish-just-publish",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "ksaworks-goldseam",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "sourcey-sourcey",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "tryatria-atria",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hypnothera-hypnothera",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "siglata-mcp",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cn-savantcat-geo-cn",
-   "date": "2026-09-25",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "withruntime-runtime",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "bamf-bamf",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hydracept-hydracept",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "truealter-identity",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
   {
    "slug": "goaimoat-hot-topics",
    "date": "2026-09-26",
@@ -22568,6 +22366,324 @@
   {
    "slug": "godavaii-health-ai",
    "date": "2026-11-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "godorsal-dorsal",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gofrantic-frantic",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "gojinko-mcp-jinko",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "goldandsilvercompany-porte",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "goldenvisacalculator-site",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "goldpopcon-openapi-mcp",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "golemry-golemry",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gonkbot-mcp",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "goodrecmovies-mcp",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "goodsaegim-goodsaegim",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "goodword-mcp",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "gopathwize-pathwize",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gositehunt-gositehunt",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gotcashback-gotcashback",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gotfreefax-mcp",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "gotlinq-mcp",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "govtribe-mcp",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gpagradecompare-site",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gqlteam-site",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "grabbitapp-grabblist",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "grabgpu-gpu-finder",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "graceroad-group-graceroad",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gradientdecisions-merchant-check",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "gradusmusic-notation",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "grafomem-cgr-capture",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "granoflow-mcp-server",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "graphmake-graphmake",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "graqle-graqle",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "gravity8-dillie-mcp",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "grecahouse-greek-property",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "green-api-whatsapp",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "greencalculus-api",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gribstream-mcp",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "griffnode-griffnode",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "grokbotwiki-grok-bot-wiki",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "groniz-mcp",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "growomat-growomat",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "growthmak-growthmak",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "growthr-seo-geo-mcp",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "growvib-growvib",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gscwizard-gsc-wizard",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gtdbrain-gtd-brain",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "guffeyholdings-token-oracle",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "guleki-geolocate-me",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gummble-mcp",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "guruhotel-manager",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "guruhotel-mcp",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "guruwalk-affiliates-mcp",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "guruwalk-mcp",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gymflexa-gymflexa",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gymnavigator-coach",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "haasonline-trade-server",
+   "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hackforddata-mcp",
+   "date": "2026-11-26",
    "source_http": 200,
    "repo_http": null
   }
