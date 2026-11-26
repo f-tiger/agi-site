@@ -1771,7 +1771,7 @@ test('German MPPH-09CRN7 offer queries use the exact guide and keep nearby model
    assert.equal(hit?.name,'ratgeber_suche',q);
    assert.equal(toolGuidePath(hit),target,q);
  }
- for(const q of ["Welches Fensterkit passt zum Comfee MPPHA-09CRN7?", "Welche EAN hat das Comfee MPPH-08CRN7?", "Welche EAN hat der Comfee MDDF-20DEN7?", "Comfee MPPH-09CRN7 oder PAC EX105 kaufen?"]) {
+ for(const q of ["Welches Fensterkit passt zum Comfee MPPHA-09CRN7?", "Welche EAN hat das Comfee MPPH-08CRN7?", "Welche EAN hat der Comfee MDDF-20DEN7?", "Comfee MPPH-09CRN7 oder PAC EX105 kaufen?", "Wie soll ich 4048164103065 im Winter lagern?"]) {
    const [hit]=(await catalogue({q,view:'compact',limit:1})).tools;
    assert.notEqual(toolGuidePath(hit??{}),target,q);
  }

@@ -661,7 +661,6 @@ export function exactGermanHouseholdTask(query) {
   if (asksForBoschDryerDrain(query)) return boschDryerDrain;
   const dryerCare = exactBoschDryerCare(query);
   if (dryerCare) return dryerCare;
-  if (exactComfeeMpphOffer(query)) return comfeeMpphOffer;
   const ex105=exactEx105Evidence(query);
   if(ex105)return ex105;
   if(/\b(?:klimaanlag\w*|klimageraet\w*|monoblock\w*|(?:ab)?kuehl\w*|btu)\b/.test(query)){
@@ -688,6 +687,7 @@ export function exactGermanHouseholdTask(query) {
   const meterTask = exactLowLoadMeterTask(query);
   if (meterTask) return meterTask;
   if (asksForPortableCoolingStorage(query)) return portableCoolingStorage;
+  if (exactComfeeMpphOffer(query)) return comfeeMpphOffer;
   if (asksAboutAnEmptyDehumidifierTank(query)) return emptyDehumidifierTank;
   if (asksForCoolingDiscountReference(query)) return coolingDiscountReference;
   if (asksForOfflineThermostat(query)) return offlineThermostatChoice;
