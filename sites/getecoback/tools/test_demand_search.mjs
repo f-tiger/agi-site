@@ -1198,3 +1198,17 @@ test('German Bosch WQG235D00 care questions distinguish one model from comparing
     'Bosch WQG241001 WTZ1110 Kondensatablauf',
   ]) assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,care,query);
 });
+
+test('wet balcony door threshold questions reach the existing moisture guide', () => {
+  const destination = '/guide/fenster-beschlagen-innen.html#balkontuer-schwelle-kondenswasser';
+  for (const query of [
+    'Kondenswasser unter Balkontür bei 21 Grad und 50 Prozent – Vermieter informieren?',
+    'Wasser auf der Aluschwelle innen an der Balkontür, ist das Kondenswasser oder kommt Regen rein?',
+  ]) assert.equal(searchEntries(index,query,'de')[0]?.entry.u,destination,query);
+  for (const query of [
+    '18 Grad und 50 Prozent Luftfeuchte im Schlafzimmer',
+    'Schafft mein Saugroboter die Schwelle zur Balkontür?',
+    'Welche Dichtung soll ich für die Balkontür kaufen?',
+    'Kann das Fenster bei 20 Grad, 60 Prozent Luftfeuchte und 10 Grad am Glas von innen beschlagen?',
+  ]) assert.ok(!searchEntries(index,query,'de').some(hit=>hit.entry.u===destination),query);
+});

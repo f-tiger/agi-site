@@ -169,6 +169,24 @@ test('Bosch WQG235D00 filter care links official instructions and keeps the two-
   assert(!unknown.structuredContent.grenze.includes(exact));
 });
 
+test('German balcony threshold moisture finds the exact readable evidence in both profiles', async () => {
+  const url='https://getecoback.com/guide/fenster-beschlagen-innen.html#balkontuer-schwelle-kondenswasser';
+  const {env}=assetEnv();
+  const search=await call('ratgeber_suche',{frage:'Wasser auf der Aluschwelle innen an der Balkontür, ist das Kondenswasser oder kommt Regen rein?',sprache:'de',max:1},env);
+  assert(textOf(search).includes('Abschnitt: '+url));
+  const args={pfad:url};
+  const full=await call('ratgeber_lesen',args,env);
+  const compact=await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:args},env,true);
+  assert.equal(full.isError,false);
+  assert.deepEqual(full,compact);
+  const text=textOf(full);
+  assert(text.startsWith('Quelle: '+url+'\n'));
+  for(const value of ['10,2 °C','Kontaktfühler','nach Regen','Scheibentemperatur','Hausverwaltung',
+    'heizen-und-lueften-so-gehts-richtig-10426','2210275595.html'])
+    assert(text.includes(value),value);
+  assert(!text.includes('getecoback-21'));
+});
+
 test('the committed MCP corpus is derived from current public canonical pages and built mirrors', () => {
   const py = spawnSync('python3', ['-c', "import json,sys;sys.path.insert(0,'tools');from build_mcp_guides import collect_guides;print(json.dumps(collect_guides()))"], {cwd, encoding: 'utf8', timeout: 15000});
   assert.equal(py.status, 0, py.stderr);
