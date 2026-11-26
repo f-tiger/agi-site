@@ -1,6 +1,6 @@
-# Infrarotheizung 2026: Lohnt sie sich? Kosten im Test
+# Infrarotheizung: Stromverbrauch und Jahreskosten berechnen
 
-> Infrarotheizung: Für wen sie sich lohnt, was ein 600-Watt-Panel im Betrieb kostet und wann eine Wärmepumpe die günstigere Wahl ist — ehrlich erklärt.
+> Was kostet eine Infrarotheizung pro Stunde oder im Jahr? Rechne mit Heizstrom und Tarif und prüfe, was der Energieausweis für eine Wohnung aussagt.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/infrarotheizung-ratgeber.html
 
@@ -8,7 +8,7 @@ Infrarotheizungen werden als schlanke, schnelle Wärmequelle für einzelne Räum
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
 
-**Kurz gesagt:** Eine Infrarotheizung erwärmt **Flächen und Menschen statt der Raumluft** — das fühlt sich schnell behaglich an. Sie ist aber eine elektrische Widerstandsheizung und damit **nicht automatisch billig**: Bei 0,30 €/kWh kostet ein 600-Watt-Panel rund **0,18 € pro Stunde**. Sie lohnt sich in gut gedämmten Einzelräumen, die du gezielt und zeitlich begrenzt nutzt (Bad, Homeoffice, Übergangszeit) — am besten mit Thermostat. Für einen ganzen Wohnbereich über viele Stunden ist eine Wärmepumpe günstiger.
+**Kurz gesagt:** Ein 600-Watt-Panel verbraucht bei voller Leistung 0,6 kWh in einer Stunde. Bei 0,30 €/kWh sind das **0,18 €**. Entscheidend für die Jahreskosten ist der tatsächlich bezogene Heizstrom. Wenn Infrarot die einzige Heizung der Wohnung ist, [prüfe Zähler, Abrechnung und Tarif](https://getecoback.com/guide/infrarotheizung-ratgeber.html#jahreskosten-hauptheizung).
 
 ## Wie eine Infrarotheizung überhaupt heizt
 
@@ -34,7 +34,7 @@ Jetzt der Teil, den viele Anbieter überspringen: Eine Infrarotheizung wandelt S
 
 ## Was der Betrieb konkret kostet
 
-Die Rechnung ist einfach, weil der Verbrauch direkt der Nennleistung entspricht. Rechne mit rund **0,30 € pro kWh**:
+Für eine Stunde bei voller Nennleistung gilt Leistung in kW × eine Stunde × eigener Arbeitspreis. Die folgenden Beträge rechnen beispielhaft mit **0,30 € pro kWh**.
 
 - **300-Watt-Panel:** 0,3 kW × 0,30 € ≈ **0,09 € pro Stunde**.
 
@@ -42,7 +42,23 @@ Die Rechnung ist einfach, weil der Verbrauch direkt der Nennleistung entspricht.
 
 - **1000-Watt-Panel:** 1,0 kW × 0,30 € ≈ **0,30 € pro Stunde**.
 
-Ein 600-Watt-Panel, das du effektiv vier Stunden laufen lässt, kostet also grob 0,70 € am Tag. Das gilt für Dauerbetrieb — in der Praxis läuft ein gut geregeltes Panel nicht durchgehend, sondern hält die Temperatur und schaltet ab, sodass die realen Kosten oft niedriger liegen. Die gleiche Watt-mal-Preis-Logik gilt auch für Kühlgeräte im [Stromkosten-Ratgeber](https://getecoback.com/guide/klimaanlage-stromkosten.html).
+Ein 600-Watt-Panel braucht in vier Stunden auf voller Leistung 2,4 kWh. Bei 0,30 €/kWh kostet das 0,72 €. Ein Thermostat kann die Heizung während eines Nutzungsfensters ein- und ausschalten. Für die tatsächlichen Kosten zählt dann die gemessene Energie.
+
+## Infrarotheizung als einzige Heizung: Was kostet ein Jahr?
+
+Multipliziere den Jahresverbrauch für die Raumheizung mit dem Arbeitspreis pro kWh. Bei mehreren Preiszeiträumen oder Tarifen rechne die belegten Teilmengen getrennt und addiere sie. Einen Grundpreis rechne dazu, wenn er für den Heizstromvertrag anfällt.
+
+- **Eigene Heizstrom-Abrechnung:** Prüfe, ob sie etwa zwölf Monate mit tatsächlichen Zählerständen abdeckt und welche Geräte am Zähler hängen. Läuft über denselben Zähler auch Warmwasser oder Haushaltsstrom, bleibt der Anteil der Raumheizung offen, bis du ihn getrennt messen oder belegen kannst. Den Grundpreis eines bestehenden Haushaltsstromvertrags nicht noch einmal der Heizung zurechnen.
+
+- **Nur ein Energieausweis:** In Deutschland beziehen sich Endenergiebedarf oder Endenergieverbrauch im Wohngebäudeausweis auf das Gebäude und seine Gebäudenutzfläche. Die Kennwerte können auch Warmwasser erfassen. Frage nach einer wohnungsbezogenen Abrechnung oder einer fachlichen Abschätzung. Multipliziere den Ausweiswert nicht einfach mit den Quadratmetern deiner Wohnung.
+
+- **Nur die Wattzahl der Paneele:** Sie hilft bei der Rechnung für Stunden mit voller Leistung. Daraus folgt keine Jahreslaufzeit. Prüfe den Wärmebedarf und lass die Heizlast für eine alleinige Heizung ermitteln, bevor du weitere Paneele kaufst.
+
+**Rechenbeispiel:** 4.000 kWh separat erfasster Heizstrom × 0,35 €/kWh ergeben 1.400 € im Jahr. Mit einem ausschließlich dafür anfallenden Grundpreis von 120 € ergeben sich 1.520 €. Die Werte sind frei gewählt. Wenn die Wohnung schon zuverlässig warm wird, prüfe zuerst den vorhandenen Verbrauch und die laufenden Kosten.
+
+Für ein steckbares Paneel kannst du mit einem dafür geeigneten Strommessgerät [den Verbrauch über mehrere vergleichbare Nutzungszeiten erfassen](https://getecoback.com/strommess-protokoll.html). Für fest angeschlossene Geräte nutze vorhandene Zählerdaten oder lass eine Fachkraft die Messmöglichkeit klären.
+
+Quellen geprüft am 26.11.2026. [Angaben im deutschen Energieausweis (§ 85)](https://www.gesetze-im-internet.de/geg/__85.html) · [Verbraucherzentrale zum Energieausweis](https://www.verbraucherzentrale.de/wissen/energie/energetische-sanierung/energieausweis-was-sagt-dieser-steckbrief-fuer-wohngebaeude-aus-24074) · [Verbraucherzentrale zu Verbrauch, Arbeits- und Grundpreis](https://www.verbraucherzentrale.de/wissen/energie/preise-tarife-anbieterwechsel/rechner-das-ist-ihr-passender-abschlag-fuer-strom-gas-oder-fernwaerme-75669).
 
 ## Mit Thermostat und Zeitschaltung die Kosten im Griff behalten
 
@@ -58,7 +74,7 @@ Achte beim Kauf auf die Leistung: grob 60–100 Watt pro Quadratmeter in gut ged
 
 ## Wie viel Watt Infrarotheizung pro Quadratmeter?
 
-**Faustregel: 60 Watt pro m² in gut gedämmten Räumen, bis 100 Watt pro m² bei schlechter Dämmung oder im Altbau.** Für 20 m² brauchst du also grob 1.200–2.000 Watt. Umgekehrt deckt eine 600-Watt-Infrarotheizung etwa 6–10 m² ab. Als Zusatzheizung für einzelne Zonen (Schreibtisch, Bad) reicht weniger; als alleinige Heizung eher das obere Ende.
+**Die Tabelle zeigt grobe Rechenwerte mit 60 bis 100 W/m².** Bei 20 m² ergeben diese Annahmen 1.200 bis 2.000 W. Wie viel Leistung deine Wohnung bei kaltem Wetter wirklich braucht, hängt von ihrer Heizlast ab. Kläre sie für jeden Raum, wenn die Paneele die einzige Heizung sein sollen.
 
 | Raumgröße | Gut gedämmt (~60 W/m²) | Schlecht gedämmt (~100 W/m²) |
 | --- | --- | --- |
@@ -80,11 +96,11 @@ Hier liegt der entscheidende Kostenunterschied. Eine Wärmepumpe — auch die He
 
 ## Häufige Fragen
 
-**Welche Infrarotheizung brauche ich für 30 qm?**Für 30 m² brauchst du grob 1.800 Watt (gut gedämmt) bis 3.000 Watt (schlecht gedämmt) — also etwa 60 bis 100 Watt pro Quadratmeter. Ab rund 2.000 Watt teilst du die Leistung besser auf zwei Panels auf, das heizt gleichmäßiger als ein einzelnes großes Panel.
+**Welche Infrarotheizung brauche ich für 30 qm?**Mit den groben Tabellenannahmen von 60 bis 100 W/m² ergeben sich rechnerisch 1.800 bis 3.000 W. Für eine alleinige Heizung lass die Heizlast der Räume ermitteln. Sie entscheidet über die nötige Leistung und Aufteilung.
 
 **Ist eine Infrarotheizung günstig im Betrieb?**Nicht automatisch. Sie wandelt Strom zu 100 Prozent in Wärme um wie jede Widerstandsheizung — bei rund 0,30 €/kWh kostet ein 600-Watt-Panel etwa 0,18 € pro Stunde. Günstig wird sie nur durch gezielten, kurzen Einsatz in gut gedämmten Einzelräumen mit Thermostat.
 
-**Was kostet eine Infrarotheizung pro Stunde an Strom?**Der Verbrauch entspricht der Nennleistung. Bei 0,30 €/kWh kostet ein 300-Watt-Panel rund 0,09 €, ein 600-Watt-Panel etwa 0,18 € und ein 1000-Watt-Panel rund 0,30 € pro Stunde. Mit Thermostat läuft es nicht durchgehend, die realen Kosten liegen meist niedriger.
+**Was kostet eine Infrarotheizung pro Stunde an Strom?**Bei voller Leistung und beispielhaften 0,30 €/kWh kostet eine Stunde mit 300 W rund 0,09 €, mit 600 W 0,18 € und mit 1.000 W 0,30 €. Wenn ein Thermostat das Paneel zeitweise abschaltet, rechne mit dem tatsächlich gemessenen Stromverbrauch.
 
 **Wo lohnt sich eine Infrarotheizung am meisten?**In einzelnen, gut gedämmten Räumen, die du nur zeitweise nutzt: Bad, Homeoffice, Gästezimmer oder Hobbyraum. Als Zusatzheizung für die Übergangszeit ist sie ideal, als alleinige Heizung fürs ganze Haus selten wirtschaftlich.
 

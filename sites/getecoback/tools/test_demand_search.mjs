@@ -46,6 +46,19 @@ test('The heat and gas cost calculator compares the same useful heat', () => {
   assert.equal(calculateGasHeatThreshold(...fields),null);
  }
 });
+test('Infrared main heating and certificate searches land on the annual electricity decision',()=>{
+ const target='/guide/infrarotheizung-ratgeber.html#jahreskosten-hauptheizung';
+ for(const query of [
+  'Infrarotheizung als einzige Heizung in der Wohnung: Wie hoch sind die Stromkosten pro Jahr?',
+  'Kann ich die Jahreskosten meiner Infrarotheizung direkt aus dem Energieausweis berechnen?',
+  'Infrarot-Elektro Heizung Heizwärmebedarf: Kann ich die Kosten abschätzen?',
+ ]) assert.equal(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+ for(const query of [
+  'Infrarotheizung 600 Watt Stromkosten pro Stunde',
+  'Infrarotheizung an der Decke Montage',
+  'Was kostet eine Infrarotheizung gegenüber einem Heizlüfter für 20 Minuten?',
+ ]) assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+});
 test('Final browser index preserves the public compatibility index byte-for-byte',()=>{
  const compatibilityIndex=readFileSync(new URL('../site/search-index.json',import.meta.url));
  assert(browsingIndex.equals(compatibilityIndex),'Built browser and compatibility search indices differ');

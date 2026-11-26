@@ -46,6 +46,8 @@ async function checkGermanFocusedDiscovery(browser,base){
     '/waeschetrockner-oder-luftentfeuchter.html#laundry-check'],
   ['Tineco S7','/guide/saugwischer-kaufberatung.html#tineco-s7-modellwahl'],
   ['Tineco FLOOR ONE S7 FlashDry','/guide/saugwischer-kaufberatung.html#tineco-s7-flashdry'],
+  ['Kann ich die Jahreskosten meiner Infrarotheizung direkt aus dem Energieausweis berechnen?',
+    '/guide/infrarotheizung-ratgeber.html#jahreskosten-hauptheizung'],
   ['Luftentfeuchter Keller','/guide/luftentfeuchter-keller.html'],
   ['Stromtarif','/stromtarif-werkstatt.html'],
   ['Wäsche trocknen','/waeschetrockner-oder-luftentfeuchter.html'],

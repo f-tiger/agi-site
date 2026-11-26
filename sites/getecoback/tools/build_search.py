@@ -40,6 +40,9 @@ def collect():
  sections[('de','/guide/heizkosten-vergleich-rechner.html')]= {
   'id':'heizluefter-oder-infrarot','title':'Heizlüfter oder Infrarotheizung für kurze Einsätze?',
   'description':'Für zwei konkrete Einsätze Leistung und aktive Laufzeit getrennt rechnen. Weniger Watt allein bedeuten weder weniger Strom pro Einsatz noch denselben Komfort.'}
+ sections[('de','/guide/infrarotheizung-ratgeber.html')]={
+  'id':'jahreskosten-hauptheizung','title':'Infrarotheizung als einzige Heizung: Jahreskosten prüfen',
+  'description':'Belegten Heizstrom mit dem Arbeitspreis verrechnen. Gebäudewerte aus dem Energieausweis ergeben keinen Heizstromverbrauch der einzelnen Wohnung.'}
  sections[('de','/guide/akku-heizluefter.html')]={
   'id':'auto-12v-steckdose','title':'Passt ein 12-V-Heizlüfter an die Steckdose im Auto?',
   'description':'150 W bei 12 V ergeben rechnerisch 12,5 A und überschreiten eine 120-W-Grenze. Die Freigabe für Anschluss und Nutzungsdauer in beiden Anleitungen prüfen.'}
