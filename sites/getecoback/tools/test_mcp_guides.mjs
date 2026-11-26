@@ -918,3 +918,17 @@ test('German Lukas L-031E checkout evidence is readable and keeps the test point
   for(const phrase of ['L-031E','13–35 °C','10 °C und 60 %','Litern pro Tag offen','stadlerform.com/de-de/luftentfeuchter/lukas-weiss-l-031e']) assert(textOf(full).includes(phrase),phrase);
   assert(!textOf(full).includes('getecoback-21'));
 });
+
+test('German laundry cost questions with only rated watts get usable sourced guidance in both profiles', async () => {
+ const {env}=assetEnv();
+ const url='https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#luftentfeuchter-waesche-kosten';
+ const frage="Luftentfeuchter 400 W zum Wäschetrocknen – Stromkosten? Ein Wäschetrockner passt bei uns nicht.";
+ const hit=await call('ratgeber_suche',{frage,sprache:'de',max:1},env);
+ assert(textOf(hit).includes('Abschnitt: '+url));
+ const full=await call('ratgeber_lesen',{pfad:url},env);
+ const compact=await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad:url}},env,true);
+ assert.equal(full.isError,false);
+ assert.deepEqual(full,compact);
+ for(const phrase of ['nur 400 W im Datenblatt','0,4 kWh pro Stunde','gewünschten Trockenheit','vorhandenen Wäscheständer','umweltbundesamt.de','/waeschetrockner-oder-luftentfeuchter.html']) assert(textOf(full).includes(phrase),phrase);
+ assert(!textOf(full).includes('getecoback-21'));
+});

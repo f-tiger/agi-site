@@ -21,14 +21,19 @@ def readable_sections(source, markdown, entry):
     wrapped_sections = {
         '/guide/fenster-beschlagen-innen.html': 'fenstersauger-gegen-kondenswasser',
         '/guide/richtig-lueften-im-winter.html': 'lueften-vorher-nachher',
+        '/waeschetrockner-oder-luftentfeuchter.html': 'luftentfeuchter-waesche-kosten',
     }
     wrapper = wrapped_sections.get(entry['u'])
     labels = {}
     if wrapper in selected:
-        label = re.search(r'<section id="' + re.escape(wrapper) + r'" aria-labelledby="([a-z0-9-]{1,80})">', source)
-        if label:
-            labels[label[1]] = wrapper
-            selected.add(label[1])
+        labels_in_wrapper = re.findall(
+            r'<section\b(?=[^<>]*\sid="' + re.escape(wrapper) + r'")[^<>]*\saria-labelledby="([a-z0-9-]{1,80})"[^<>]*>',
+            source,
+        )
+        if len(labels_in_wrapper) == 1:
+            label, = labels_in_wrapper
+            labels[label] = wrapper
+            selected.add(label)
     headings = Counter(markdown.splitlines())
     matches = {}
     for depth, attrs, body in re.findall(r'<h([2-6])\b([^>]*)>(.*?)</h\1>', source, re.S):

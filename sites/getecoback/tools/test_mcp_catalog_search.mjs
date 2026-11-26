@@ -1735,3 +1735,18 @@ test('German Lukas L-031E cold performance finds the tool whose schema accepts t
     assert.notEqual(toolGuidePath(hit??{}),target,q);
   }
 });
+
+test('German laundry cost questions with no dryer distinguish measurement from rated watts',async()=>{
+ const target='/waeschetrockner-oder-luftentfeuchter.html#luftentfeuchter-waesche-kosten';
+ const calculated='luftentfeuchter_waesche_einzelkosten';
+ for(const [q,tool] of [["Was kostet es, Wäsche mit einem Luftentfeuchter zu trocknen? Ein Trockner kommt wegen Platzmangel nicht infrage.", "luftentfeuchter_waesche_einzelkosten"], ["Luftentfeuchter 400 W zum Wäschetrocknen – Stromkosten? Ein Wäschetrockner passt bei uns nicht.", "ratgeber_suche"], ["Mein Luftentfeuchter hat laut Typenschild 400 Watt. Was kostet eine Ladung Wäsche?", "ratgeber_suche"], ["Luftentfeuchter beim Wäschetrocknen: gemessen 400 W im Mittel über 4 Stunden. Was kostet das? Ein Trockner kommt nicht infrage.", "luftentfeuchter_waesche_einzelkosten"]]) {
+   const [hit]=(await catalogue({q,view:'compact',limit:1})).tools;
+   assert.equal(hit?.name,tool,q);
+   assert.equal(toolGuidePath(hit),target,q);
+   if(tool==='ratgeber_suche') assert.deepEqual((await catalogue({q,view:'compact',tool:calculated})).tools,[]);
+ }
+ for(const q of ["Wärmepumpentrockner oder Luftentfeuchter: Was kostet eine Ladung Wäsche?", "Lohnt sich ein Luftentfeuchter im Winter, wenn manche Ladungen weiter in den Trockner gehen?", "Was kostet eine Ladung Wäsche, wenn Trockner und Luftentfeuchter gleichzeitig laufen?", "Was kostet der Luftentfeuchter mit 400 W pro Tag im Keller?"]) {
+   const [hit]=(await catalogue({q,view:'compact',limit:1})).tools;
+   assert.notEqual(toolGuidePath(hit??{}),target,q);
+ }
+});

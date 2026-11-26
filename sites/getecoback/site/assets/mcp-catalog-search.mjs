@@ -1,4 +1,4 @@
-import {asksAboutSweatingIndoorWindow, asksForLaundryCostComparison, balconyThresholdMoisture, boschDry, boschDryerCare, boschDryerCareComparison, boschDryerDrain, carHeaterOutlet, comfeeVariant, coolingDiscountReference, directHeat, exactGermanHouseholdTask, exactWindowShadeMeasurement, excludesPortableCoolingStorage, ex105Exhaust, ex105Sound, festiveLights, gasHeatCost, granulateDryingChoice, highCoolingLoadDecision, infraredAnnualCost, infraredRoomWatts, infraredThermostatFit, karcherBagDecision, karcherCartridgeDecision, klarsteinPackage, laundryMeasuredFollowUp, lowLoadMeterGuide, mentionsLaundryDryer, offlineThermostatChoice, portableCoolingStorage, showerFlow, siemensFilterDecision, thermostatReferenceRoom, stadlerLukasColdEvidence, tinecoS7FlashDry, tinecoS7Variant, vacuumOffer, ventilationRebound, wetWindowDiagnosis} from './german-household-intent.mjs?v=96654c83feb9';
+import {asksAboutSweatingIndoorWindow, asksForLaundryCostComparison, balconyThresholdMoisture, boschDry, boschDryerCare, boschDryerCareComparison, boschDryerDrain, carHeaterOutlet, comfeeVariant, coolingDiscountReference, directHeat, exactGermanHouseholdTask, exactWindowShadeMeasurement, excludesPortableCoolingStorage, ex105Exhaust, ex105Sound, festiveLights, gasHeatCost, granulateDryingChoice, highCoolingLoadDecision, infraredAnnualCost, infraredRoomWatts, infraredThermostatFit, karcherBagDecision, karcherCartridgeDecision, klarsteinPackage, laundryMeasuredFollowUp, laundryRatedPower, laundryWithoutDryer, lowLoadMeterGuide, mentionsLaundryDryer, offlineThermostatChoice, portableCoolingStorage, showerFlow, siemensFilterDecision, thermostatReferenceRoom, stadlerLukasColdEvidence, tinecoS7FlashDry, tinecoS7Variant, vacuumOffer, ventilationRebound, wetWindowDiagnosis} from './german-household-intent.mjs?v=f522ac5803d1';
 import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion, glassvacModel, windowVacCharging} from './kaercher-saugduese-intent.mjs';
@@ -385,6 +385,12 @@ export function findCatalogueTools(index, {query='', category='', name=null}={})
     }
   }
   const householdTask = exactGermanHouseholdTask(focus.query);
+  if (householdTask === laundryRatedPower || householdTask === laundryWithoutDryer) {
+    const match = index.find(entry => entry.tool.name === householdTask.tool && eligible(entry));
+    if (!match) return [];
+    const citation_url = 'https://getecoback.com' + householdTask.path;
+    return [{...match.tool, citation_url, guide_url:citation_url + '#' + householdTask.id}];
+  }
   const comparisonGuide = householdTask === granulateDryingChoice || householdTask === coolingDiscountReference ||
     householdTask === offlineThermostatChoice || householdTask === siemensFilterDecision ||
     householdTask === gasHeatCost || householdTask === carHeaterOutlet || householdTask === infraredAnnualCost || householdTask === infraredThermostatFit ||
