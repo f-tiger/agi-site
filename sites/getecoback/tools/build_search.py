@@ -133,6 +133,13 @@ def collect():
    catalog=json.loads((ROOT/'data/product-catalog.json').read_text())
    extra=' '.join([extra]+[c['name'] for c in catalog['categories']]+[p['name']+' '+p['variant'] for p in catalog['products']])
   entry={'u':route,'t':' '.join(h.title.split()),'d':desc[:320],'l':lang,'a':extra}
+  if lang=='de' and route=='/waeschetrockner-oder-luftentfeuchter.html':
+   anchor='laundry-check'
+   targets=re.findall(r'<section\b[^<>]*\sid="laundry-check"[^<>]*>',text)
+   if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
+    raise ValueError(f'Missing or hidden laundry comparison: {route}#{anchor}')
+   entry['model_sections']=[{'id':anchor,'title':'Trockner oder Luftentfeuchter: Stromkosten pro Ladung',
+    'description':'Vergleiche die gemessenen kWh beider Trocknungswege bis zur gleichen Endtrockenheit. Nutze den eigenen Strompreis.'}]
   if lang=='de' and route=='/guide/luftentfeuchter-keller.html':
    anchor='modell-comfee-mddf20'
    targets=re.findall(r'<h[23]\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)

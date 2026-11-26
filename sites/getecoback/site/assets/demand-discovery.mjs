@@ -1,4 +1,4 @@
-import {exactBoschStackingGuide, exactGermanHouseholdTask, exactWindowShadeMeasurement, hasOtherWindowSurface} from './german-household-intent.mjs?v=63852905588d';
+import {asksForLaundryCostComparison, exactBoschStackingGuide, exactGermanHouseholdTask, exactWindowShadeMeasurement, hasOtherWindowSurface, mentionsLaundryDryer} from './german-household-intent.mjs?v=a94a295c93dc';
 import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion} from './kaercher-saugduese-intent.mjs';
@@ -81,17 +81,14 @@ export function exactGermanGuide(normalizedQuery) {
 
 const laundryPage='/waeschetrockner-oder-luftentfeuchter.html';
 const singleLaundryId='luftentfeuchter-waesche-kosten';
-const dryer='(?:waesche|waermepumpen|kondens|abluft)?trockner';
-const explicitlyNoDryer=new RegExp(`\\b(?:ohne|kein(?:e[nsrm]?)?) (?:einen )?${dryer}\\b`,'g');
-const mentionsDryer=new RegExp(`\\b${dryer}(?:s|n)?\\b`);
 function asksForOneDehumidifierRun(question) {
- const withDevices=question.replace(/\s+/g,' ').replace(explicitlyNoDryer,'');
+ const withDevices=question.replace(/\s+/g,' ');
  const laundry=/\b(?:waesch|waschladung)\w*/.test(withDevices)||
    (/\bladung(?:en)?\b/.test(withDevices)&&/\btrock\w*/.test(withDevices));
  return laundry &&
    /\b(?:luft)?entfeuchter(?:s|n)?\b/.test(withDevices) &&
    /\b(?:kost\w*|strom\w*|verbrauch\w*|kwh|eur|euro)\b/.test(withDevices) &&
-   !mentionsDryer.test(withDevices) &&
+   !mentionsLaundryDryer(withDevices) &&
    !/\b(?:oder|vs|versus|vergleich\w*|erspar\w*|guenstig\w*|billig\w*|amorti\w*|lohnt|keller\w*|stromtarif\w*|tarifwechsel\w*)\b/.test(withDevices);
 }
 export function searchEntries(index,term,lang){
@@ -135,6 +132,8 @@ export function searchEntries(index,term,lang){
    targetPage='/guide/luftentfeuchter-keller.html'; targetId='ablauf-vor-kauf';
  } else if(lang==='de' && asksForCellarVentilationCheck(query)) {
    targetPage='/guide/keller-lueften-sommer.html'; targetId='taupunkt';
+ } else if(lang==='de' && asksForLaundryCostComparison(query)) {
+   targetPage=laundryPage; targetId='laundry-check';
  } else if(lang==='de' && asksForOneDehumidifierRun(query)) {
    targetPage=laundryPage; targetId=singleLaundryId;
  }

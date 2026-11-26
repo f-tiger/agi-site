@@ -50,6 +50,28 @@ test('Final browser index preserves the public compatibility index byte-for-byte
  const compatibilityIndex=readFileSync(new URL('../site/search-index.json',import.meta.url));
  assert(browsingIndex.equals(compatibilityIndex),'Built browser and compatibility search indices differ');
 });
+test('German per-load cost searches link to the right calculator for the appliances named',()=>{
+ const base='/waeschetrockner-oder-luftentfeuchter.html';
+ const comparison=base+'#laundry-check';
+ for (const query of [
+  'Wärmepumpentrockner oder Luftentfeuchter: Was kostet eine Ladung Wäsche?',
+  'Kondenstrockner und Luftentfeuchter: Stromverbrauch je Ladung vergleichen',
+  'Wäschetrockner oder Luftentfeuchter – was kostet das Trocknen pro Ladung?',
+ ]) assert.equal(searchEntries(index,query,'de')[0]?.entry.u,comparison,query);
+ const single=base+'#luftentfeuchter-waesche-kosten';
+ assert.equal(searchEntries(index,'Ohne Wärmepumpen-Trockner: Was kostet eine Wäscheladung nur mit dem Luftentfeuchter?','de')[0]?.entry.u,single);
+ for (const query of [
+  'Was kostet eine Ladung Wäsche bei Kondenstrockner und Luftentfeuchter gleichzeitig?',
+  'Was kostet eine Wäscheladung einschließlich Anschaffung von Trockner oder Luftentfeuchter?',
+  'Was kostet ein Luftentfeuchter im Keller pro Tag?',
+ ]) {
+  const result=searchEntries(index,query,'de')[0]?.entry.u;
+  assert.notEqual(result,comparison,query);
+  assert.notEqual(result,single,query);
+ }
+ const withoutSection=index.map(entry=>entry.u===base?{...entry,model_sections:[]}:entry);
+ assert.notEqual(searchEntries(withoutSection,'Wärmepumpentrockner oder Luftentfeuchter: Was kostet eine Ladung Wäsche?','de')[0]?.entry.u,comparison);
+});
 test('German vacuum bundle questions reach the buying check without stealing bag-only questions',()=>{
  const offer='/produkte.html#beutelstaubsauger-angebote';
  for(const query of [

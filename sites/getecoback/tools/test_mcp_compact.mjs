@@ -512,3 +512,22 @@ test('the compact finder routes paired cellar conditions to the existing German 
   assert.equal((await ask('Wie messe ich Luftfeuchtigkeit im Keller?')).name,'keller_hygrometer_anzeige_obere_messgrenze');
   assert.deepEqual(writes,[]);
 });
+
+test('the compact finder distinguishes two measured laundry methods from one appliance',async()=>{
+  const {call,writes}=fixture();
+  const page=origin+'/waeschetrockner-oder-luftentfeuchter.html';
+  const cases=[
+    ['Wärmepumpentrockner oder Luftentfeuchter: Was kostet eine Ladung Wäsche?',
+      'waesche_trocknungskosten','#laundry-check'],
+    ['Ohne Wärmepumpen-Trockner: Was kostet eine Wäscheladung nur mit dem Luftentfeuchter?',
+      'luftentfeuchter_waesche_einzelkosten','#luftentfeuchter-waesche-kosten'],
+  ];
+  for (const [frage,name,anchor] of cases) {
+    const result=await call(compactPath,findName,{frage});
+    const first=result.structuredContent.tools[0];
+    assert.equal(first.name,name,frage);
+    assert.equal(first.citation_url,page);
+    assert.equal(first.guide_url,page+anchor);
+  }
+  assert.deepEqual(writes,[]);
+});
