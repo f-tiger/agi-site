@@ -7,6 +7,16 @@ import {calculateGasHeatThreshold} from '../site/assets/heat-gas-cost.mjs';
 import {compareSocketWatts} from '../site/assets/auto-12v-check.mjs';
 const browsingIndex=readFileSync(new URL('../site/assets/search-index.json',import.meta.url));
 const index=JSON.parse(browsingIndex);
+test('EX105 buyers can find the exact German hose and sound evidence',()=>{
+ const page='/guide/pinguino-pac-ex105-test.html';
+ for(const [query,section] of [
+  ['Welchen Abluftschlauch brauche ich beim De’Longhi PACEX105A+++?', 'ex105-ablufteinbau'],
+  ['Abluftschlauch 0151454026 150 oder 170 mm?', 'ex105-ablufteinbau'],
+  ['Sind beim PAC EX105 63 dB Schalldruck oder Schallleistung?', 'lautstaerke'],
+ ]) assert.equal(searchEntries(index,query,'de')[0]?.entry.u,page+'#'+section,query);
+ for(const query of ['Welchen Schlauch brauche ich beim PAC EX100?', 'Ist der N90 leiser als der EX105?'])
+   assert(!searchEntries(index,query,'de')[0]?.entry.u.startsWith(page+'#'),query);
+});
 test('slow German laundry and rising room humidity reach the sourced next steps',()=>{
  const target='/waeschetrockner-oder-luftentfeuchter.html#waesche-messung-naechster-schritt';
  for(const query of [

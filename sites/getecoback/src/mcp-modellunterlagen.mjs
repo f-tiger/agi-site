@@ -215,7 +215,7 @@ export const modellunterlagen = [
     calculate({modell_ex105, bietet_fensterabdichtung, vorhandener_fenstertyp, kit_fenstertyp}) {
       const bauart_abgleich = vorhandener_fenstertyp !== 'offen' && vorhandener_fenstertyp === kit_fenstertyp;
       return {zusatz_und_bauart_dokumentiert: modell_ex105 === 'belegt' && bietet_fensterabdichtung === 'belegt' && bauart_abgleich,
-        grenze: 'Der Ratgeber beschreibt beim Gerätepaket keine Fensterabdichtung. Angebote mit zusätzlichem Kit separat und anhand der Fenstermaße prüfen.'};
+        grenze: 'Die Anleitung unterscheidet Schlauch, Fensterhalterung und Fensterstutzen. Gleiche Modell, vorhandene Teile, Fenstermaße und eine ausdrücklich angebotene zusätzliche Abdichtung mit dem Paket ab.'};
     },
     example: {args: {modell_ex105: 'belegt', bietet_fensterabdichtung: 'belegt', vorhandener_fenstertyp: 'dach', kit_fenstertyp: 'dreh_kipp'}, expect: {zusatz_und_bauart_dokumentiert: false}}
   },

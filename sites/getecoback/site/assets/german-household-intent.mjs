@@ -435,7 +435,24 @@ export function exactWindowShadeMeasurement(query) {
 }
 
 // Consumers pass their normalized German query. Match a task, not a category.
+const ex105Path='/guide/pinguino-pac-ex105-test.html';
+export const ex105Exhaust={path:ex105Path,id:'ex105-ablufteinbau',tool:'ratgeber_suche'};
+export const ex105Sound={path:ex105Path,id:'lautstaerke',tool:'ratgeber_suche'};
+
+function exactEx105Evidence(query) {
+  const model=/\b(?:(?:pac[ -]*)?ex[ -]*105a?|0151454026)\b/;
+  const another=/\b(?:(?:pac[ -]*)?ex[ -]*(?:100|120|130)a?|(?:pac[ -]*)?n[ -]*90|portasplit)\b/;
+  if(!model.test(query)||another.test(query))return null;
+  if(/\b(?:abluftschlauch\w*|schlauchdurchmesser|innen?durchmesser|aussen?durchmesser|fensterhalterung\w*|fensterstutzen\w*|kippfenster\w*|dlsa[ -]*012)\b/.test(query))
+    return ex105Exhaust;
+  if(/\b(?:lautstaerk\w*|wie laut|schalldruck\w*|schallleistung\w*|63\s*db)\b/.test(query))
+    return ex105Sound;
+  return null;
+}
+
 export function exactGermanHouseholdTask(query) {
+  const ex105=exactEx105Evidence(query);
+  if(ex105)return ex105;
   if (asksForLaundryMeasuredFollowUp(query)) return laundryMeasuredFollowUp;
   const tineco = exactTinecoS7Task(query);
   if (tineco) return tineco;

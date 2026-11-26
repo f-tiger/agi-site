@@ -172,6 +172,17 @@ def collect():
    if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
     raise ValueError(f'Missing or hidden laundry result guidance: {route}#{RESULT_GUIDE_ID}')
    entry['model_sections'].append({'id':RESULT_GUIDE_ID,'title':RESULT_GUIDE_TITLE,'description':RESULT_GUIDE_SUMMARY})
+  if lang=='de' and route=='/guide/pinguino-pac-ex105-test.html':
+   entry['model_sections']=[
+    {'id':'ex105-ablufteinbau','title':'PAC EX105 Abluftschlauch und Fensterteile prüfen',
+     'description':'Für 0151454026 nennt De’Longhi 150 mm innen und 170 mm außen. Gleiche Anschlussstück, Fensterbauart und vorhandene Teile vor einem Zusatzkauf ab.'},
+    {'id':'lautstaerke','title':'63 dB beim PAC EX105 einordnen',
+     'description':'EU-Label: 63 dB Schallleistung im Kühlbetrieb. Die deutsche Produktseite nennt getrennt 45–48 dB Schalldruck.'},
+   ]
+   for section in entry['model_sections']:
+    targets=re.findall(r'<h2\b[^<>]*\sid="'+section['id']+r'"[^<>]*>',text)
+    if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
+     raise ValueError(f'Missing or hidden EX105 evidence: {route}#{section["id"]}')
   if lang=='de' and route=='/guide/luftentfeuchter-keller.html':
    anchor='modell-comfee-mddf20'
    targets=re.findall(r'<h[23]\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)

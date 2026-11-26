@@ -1,76 +1,78 @@
-# De'Longhi Pinguino PAC EX105: Was sagen die Tests?
+# De’Longhi PAC EX105 A+++ | Abluft, Lautstärke und Kaufcheck
 
-> De'Longhi Pinguino PAC EX105 im Test-Überblick: A+++, ca. 63 dB im Turbo, bis ~25 m² — was öffentliche Tests messen und welche Alternativen es gibt.
+> Prüfe beim PAC EX105 A+++ die 63 dB Schallleistung, den 150/170 mm Abluftschlauch und die Fensterteile nach deutscher Anleitung.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/pinguino-pac-ex105-test.html
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
 
-Der Pinguino PAC EX105 ist das Gerät, das wir auf diesem Portal am häufigsten als erste Wahl nennen — Grund genug, ihm eine eigene Seite zu geben. Wir testen nicht selbst: Diese Seite fasst zusammen, was öffentliche Tests und Messungen zum EX105 sagen, und ordnet die Zahlen für konkrete Räume ein.
+Diese Entscheidungshilfe gilt für den PAC EX105 A+++ mit der deutschen Artikelnummer **0151454026**. EcoBack wertet die verlinkten Herstellerunterlagen aus. Wir haben kein Gerät vermessen.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
 
-**Deutsches Angebot für den PAC EX105 prüfen**. Vergleiche die vollständige Kennung mit dem [deutschen De’Longhi-Support für PACEX105A+++](https://www.delonghi.com/de-de/s/PACEX105A%2B%2B%2B) (geprüft am 25.11.2026). Kläre Lieferumfang und [Abluftweg und Aufstellung](https://getecoback.com/guide/pinguino-pac-ex105-test.html#raumgroesse). Bei unklarer Kennung warte mit der Bestellung.
+**Deutsches Angebot für den PAC EX105 prüfen**. Gleiche **PACEX105A+++ · 0151454026** mit dem [deutschen De’Longhi-Support für PACEX105A+++](https://www.delonghi.com/de-de/s/PACEX105A%2B%2B%2B) ab. Prüfe zuerst die [Fensterteile und beide Schlauchmaße](https://getecoback.com/guide/pinguino-pac-ex105-test.html#ex105-ablufteinbau) sowie [Abluftweg und Aufstellung](https://getecoback.com/guide/pinguino-pac-ex105-test.html#raumgroesse). Bei unklarer Kennung warte mit der Bestellung.
 
 Anzeige · Affiliate-Link — du zahlst denselben Preis
 
 PAC EX105 bei Amazon.de suchen →
 
-**Kurz gesagt:** Für Räume von **15–25 m²** ist der PAC EX105 der Monoblock, den öffentliche Tests am konstantesten vorn sehen: **Energieeffizienzklasse A+++** (Ausnahme in dieser Klasse), gemessen rund **63 dB im Turbo direkt am Gerät** (leiser als die meisten Monoblöcke, kein Flüstergerät), Preis und Verfügbarkeit beim Händler prüfen. Schwächen: ~36 kg Gewicht, keine Fensterabdichtung im Karton. Kleiner Raum + knappes Budget → Comfee MPPH-09CRN7; über 25–30 m² → Klarstein 12K; maximale Ruhe → Midea PortaSplit.
+**Für den PAC EX105 A+++ weist das EU-Datenblatt 2,5 kW Kühlleistung und 63 dB Schallleistung im Kühlbetrieb aus.** Für die Aufstellung zählen Fensterbauart, vorhandene Originalteile und die kurze Schlauchführung.
+[Schlauch und Fensterteile prüfen](https://getecoback.com/guide/pinguino-pac-ex105-test.html#ex105-ablufteinbau) · [63 dB einordnen](https://getecoback.com/guide/pinguino-pac-ex105-test.html#lautstaerke)
 
-## Die Testlage: Stärken und Schwächen
+## Herstellerdaten und EU-Etikett
 
-De'Longhi hat den EX105 als ersten Pinguino mit **Energieeffizienzklasse A+++** eingeführt (ETM Testmagazin) — in einer Geräteklasse, in der die meisten Monoblöcke bei A und darunter liegen, ist das der zentrale Effizienz-Vorsprung. Über die öffentlichen Tests hinweg wiederholen sich dieselben Befunde:
+Für **PAC EX105 A+++ · 0151454026** dokumentieren [De’Longhis deutsche Produktseite](https://www.delonghi.com/de-de/p/mobile-klimagerate-mobiles-klimagerat-pacex105a-von-pinguino/PACEX105A%252B%252B%252B.html?pid=0151454026) und das [deutsche EU-Produktdatenblatt (EPREL 1449405)](https://eprel.ec.europa.eu/fiches/airconditioners/Fiche_1449405_DE.pdf) die folgenden Angaben. Quellen geprüft am 26.11.2026.
 
-| Befund öffentlicher Tests | Unsere Einordnung für den Alltag |
+| Angabe | Einordnung |
 | --- | --- |
-| ✓ Energieeffizienzklasse A+++, unterdurchschnittlicher Verbrauch in Messungen | Bei täglicher Nutzung im Hochsommer summiert sich das — Rechenweg im [Stromkosten-Ratgeber](https://getecoback.com/guide/klimaanlage-stromkosten.html) |
-| ✓ Für einen Monoblock leise („Silent Technology"): ~63 dB Turbo am Gerät, ~55 dB Raummitte gemessen | Leiser als das Feld, aber hörbar — Einordnung unten |
-| ✓ Kräftige, schnelle Abkühlung in Raumtests seiner Klasse | Gilt für die 15–25-m²-Klasse; kein Freifahrtschein für große Räume |
-| ✕ Rund 36 kg schwer | Auf Rollen im Geschoss kein Problem; Treppen sind eine Zwei-Personen-Aufgabe |
-| ✕ Keine Fensterabdichtung im Lieferumfang | Ohne Abdichtung verliert jeder Monoblock den Großteil seiner Wirkung — Kit (15–30 €) direkt mitbestellen: [welches passt zu welchem Fenster](https://getecoback.com/guide/fensterabdichtung-klimaanlage.html) |
+| 2,5 kW Kühlleistung, A+++ | EU-Angaben für den Kühlbetrieb. Wie gut das Gerät einen Raum kühlt, hängt auch von Wärmeeintrag und Abluftführung ab. |
+| 0,6 kWh je 60 Minuten | Verbrauch in der Normprüfung. Für deine Kosten zählt der tatsächliche Verbrauch bei deinem Tarif. |
+| 63 dB Schallleistung | EU-Angabe zur Geräuschabgabe im Kühlbetrieb. Die Produktseite führt den Schalldruck getrennt auf. |
+| 30 kg | Gewicht laut deutscher Produktseite für diese Artikelnummer. Prüfe Aufstellort und Trageweg. |
 
-## Für welchen Raum reicht er?
+## Raum und Aufstellung prüfen
 
-Mit der Faustregel **340 BTU pro m²** ist der EX105 die richtige Klasse für **15–25 m²**: Schlafzimmer, Homeoffice, normales Wohnzimmer. Konkret nachrechnen: [BTU-Rechner](https://getecoback.com/guide/btu-rechner.html). Zwei ehrliche Grenzen:
+Rechne mit Fläche × Deckenhöhe und berücksichtige Sonne, Dach und wärmeabgebende Geräte. Prüfe vor der Bestellung, ob ein kurzer Abluftweg ins Freie möglich ist. [Kühlbedarf für deinen Raum überschlagen](https://getecoback.com/guide/btu-rechner.html) · [Fenster und Schlauch abgleichen](https://getecoback.com/guide/pinguino-pac-ex105-test.html#ex105-ablufteinbau).
 
-- **Über 25–30 m², Dachgeschoss, große Südfenster:** Hier stößt jeder Monoblock dieser Klasse an seine Grenze — das Klarstein Kraftwerk Smart 12K (12.000 BTU) ist dann die passendere Wahl, Details im [30-m²-Ratgeber](https://getecoback.com/guide/klimaanlage-30-qm.html).
+## PAC EX105 Abluftschlauch und Fensterteile prüfen
 
-- **Kleines Zimmer, knappes Budget:** Für 15–20 m² liefert das Comfee MPPH-09CRN7 (9.000 BTU) die Grundleistung für deutlich weniger Geld — ohne A+++-Effizienz und Silent-Anspruch.
+Für **PACEX105A+++ · 0151454026** nennt De’Longhi **1.200 mm Schlauchlänge, 150 mm Innendurchmesser und 170 mm Außendurchmesser**. Prüfe bei Ersatz auch den vorhandenen Stutzen und die Anschlussform. Für einen Fenstereinsatz zählen die Maße des tatsächlichen Anschlussstücks und die Öffnung am vorgesehenen Einbauort.
 
-## Lautstärke ehrlich eingeordnet
+- **Flügelfenster.** Die deutsche Anleitung zeigt in Abb. 1–2 den Schlauch B2 mit Fensterstutzen B7. Prüfe, wie der Stutzen ins Freie geführt wird und ob an deinem Fenster eine geeignete zusätzliche Abdichtung nötig ist.
 
-Monoblöcke liegen typisch bei 55–65 dB — der Kompressor steht mit im Raum, das ist Bauart, kein Defekt. Der EX105 schneidet in Messungen mit rund **63 dB im Turbo direkt am Gerät** und etwa **55 dB in Raummitte** besser ab als viele Vergleichsgeräte, bleibt aber hörbar. Praxis: tagsüber vorkühlen, nachts auf niedriger Stufe oder per Timer — die konkreten Handgriffe stehen im Ratgeber [mobile Klimaanlage zu laut](https://getecoback.com/guide/mobile-klimaanlage-zu-laut.html). Wer beim Schlafen absolute Ruhe braucht, ist bauartbedingt beim [Split-Konzept des Midea PortaSplit](https://getecoback.com/guide/portasplit-vs-monoblock.html) besser aufgehoben.
+- **Vertikalschiebefenster.** Abb. 3–6 zeigen Adapter B4 in der Fensterhalterung B5 und deren Befestigung am Fenster. Bei einem seitlich verschiebbaren Fenster zeigt die Anleitung die Halterung aufrecht. Gleiche die Öffnung mit der Halterung ab.
 
-## Alternativen: wann ein anderes Gerät besser passt
+- **Kipp- oder Dachfenster.** Prüfe die genaue Öffnungsstellung, deine Befestigungsflächen und die Abmessungen des Anschlussstücks. Die separat angebotene DLSA012 nennt der Hersteller für ein- oder zweiflügelige Fenster, die nach innen oder außen öffnen, bei **mehr als 270 cm und weniger als 390 cm** Fensterumfang. Prüfe die Passung für deinen Einbau vor dem Kauf.
 
-| Situation | Bessere Wahl | Warum |
-| --- | --- | --- |
-| 15–20 m², Budget knapp | Comfee MPPH-09CRN7 · [Test-Überblick](https://getecoback.com/guide/comfee-mpph-09crn7-test.html) | 9.000 BTU Grundleistung, deutlich günstiger |
-| Über 25–30 m² | Klarstein Kraftwerk Smart 12K · [Test-Überblick](https://getecoback.com/guide/klarstein-kraftwerk-smart-12k-test.html) | 12.000 BTU Reserve für große Räume |
-| Sehr geräuschempfindlich | Midea PortaSplit | Kompressor hängt draußen — drinnen deutlich leiser |
-| Ähnliche Klasse, EX105 nicht lieferbar | AEG ChillFlex Pro · [Test-Überblick](https://getecoback.com/guide/aeg-chillflex-pro-test.html) | Gleiche Leise-Ausrichtung, ähnliches Preisband |
+Gleiche die Teile am vorhandenen Gerät oder im konkreten Händlerpaket mit der Anleitung ab. Wenn der vorhandene Aufbau passt, kannst du ihn weiterverwenden. Kläre eine abweichende Artikelnummer, fehlende Teile oder eine unklare Fensteröffnung, bevor du bestellst.
 
-Anzeige · Affiliate-Links — du zahlst denselben Preis. Nicht selbst getestet; Auswahl fasst öffentliche Tests zusammen.
+[De’Longhi-Anleitung DE, Abb. 1–6](https://library.delonghigroup.com/assetbank-delonghi/action/directLinkImage?assetId=261224&download=true) · [Schlauchmaße der deutschen SKU 0151454026](https://www.delonghi.com/de-de/p/mobile-klimagerate-mobiles-klimagerat-pacex105a-von-pinguino/PACEX105A%252B%252B%252B.html?pid=0151454026) · [Herstellergrenzen der DLSA012](https://www.delonghi.com/de-de/p/zubehor-dlsa012-universal-fensterabdichtung/DLSA012.html?pid=5515111101) · [Fensterabdichtung nach Bauart prüfen](https://getecoback.com/guide/fensterabdichtung-klimaanlage.html)
 
-In Hitzewellen sind gut getestete Geräte regelmäßig binnen Tagen ausverkauft — was dann zu tun ist, steht im Ratgeber [Ausverkauft: die Alternativen](https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html). Bestell-Grundregel: **vor** dem Peak, nicht währenddessen.
+## 63 dB beim PAC EX105 einordnen
+
+Das EU-Datenblatt dokumentiert **63 dB Schallleistung im Kühlbetrieb**. Die deutsche Herstellerseite führt **45–48 dB Schalldruck** als Min.–Max.-Angabe auf. Schallleistung beschreibt die Geräuschabgabe der Quelle. Beim Schalldruck zählen Messabstand, Betriebszustand und Raum.
+
+Vergleiche für den Gerätekauf zuerst dieselbe Messgröße unter vergleichbaren Bedingungen. Wenn du vor allem nachts kühlen willst, plane den Stellplatz und prüfe, wie hörbar das Gerät am tatsächlichen Schlafplatz ist.
+
+[EU-Datenblatt mit Schallleistung](https://eprel.ec.europa.eu/fiches/airconditioners/Fiche_1449405_DE.pdf) · [De’Longhi-Produktseite mit Schalldruck](https://www.delonghi.com/de-de/p/mobile-klimagerate-mobiles-klimagerat-pacex105a-von-pinguino/PACEX105A%252B%252B%252B.html?pid=0151454026) · [Stellplatz und Betriebszeit prüfen](https://getecoback.com/guide/mobile-klimaanlage-zu-laut.html)
+
+## Optionen bei ungeeignetem Raum
+
+- Fehlt ein geeigneter Abluftweg, prüfe zuerst eine passende Fensterlösung oder wie sich der Wärmeeintrag verringern lässt. [Fensterformen und Abdichtungen vergleichen](https://getecoback.com/guide/fensterabdichtung-klimaanlage.html).
+
+- Bei hohem Sonneneintrag oder größerem Raum prüfe den Kühlbedarf und die Aufstellung erneut. [Berechnung für einen größeren Raum](https://getecoback.com/guide/klimaanlage-30-qm.html).
+
+- Wenn dir vor allem die Geräuschsituation wichtig ist, vergleiche die Aufstellung der Bauarten. [Monoblock und Split-Aufbau vergleichen](https://getecoback.com/guide/portasplit-vs-monoblock.html).
 
 ## Häufige Fragen
 
-**Ist der De'Longhi Pinguino PAC EX105 sein Geld wert?**
-Für Räume bis etwa 25 m² gehört er in öffentlichen Tests regelmäßig zu den stärksten Monoblock-Geräten: Energieeffizienzklasse A+++ ist in dieser Geräteklasse die Ausnahme, und die gemessene Lautstärke liegt unter der vieler Vergleichsgeräte. Er kostet aber deutlich mehr als Einsteigergeräte — wer nur ein kleines Zimmer kühlen will, bekommt mit einem 9.000-BTU-Gerät wie dem Comfee MPPH-09CRN7 die Grundleistung erheblich günstiger. Wir haben das Gerät nicht selbst getestet; wir fassen öffentliche Tests zusammen.
+**Hat der PAC EX105 einen Abluftschlauch mit 150 oder 170 mm?**De’Longhi nennt für die Artikelnummer 0151454026 150 mm innen und 170 mm außen bei 1.200 mm Länge. Prüfe zusätzlich Stutzen und Anschlussform, bevor du Ersatz bestellst.
 
-**Wie laut ist der Pinguino PAC EX105 wirklich?**
-In öffentlichen Messungen wurden im Turbo-Modus rund 63 dB direkt am Gerät und etwa 55 dB in Raummitte gemessen — für einen Monoblock leise, aber kein Flüstergerät. Zum Vergleich: Monoblöcke liegen typisch bei 55–65 dB. Wer sehr geräuschempfindlich schläft, fährt mit der Split-Bauweise des Midea PortaSplit leiser, weil dessen Kompressor draußen hängt. Was gegen gefühlte Lautstärke sonst hilft, steht in unserem Ratgeber zu lauten mobilen Klimaanlagen.
+**Wie laut ist der PAC EX105 A+++?**Im EU-Datenblatt stehen 63 dB Schallleistung im Kühlbetrieb. De’Longhis Produktseite nennt getrennt 45–48 dB Schalldruck. Der Pegel an deinem Sitz- oder Schlafplatz hängt von Abstand, Aufstellung und Raum ab.
 
-**Für welche Raumgröße reicht der PAC EX105?**
-Mit der Faustregel von rund 340 BTU pro m² ist der PAC EX105 die richtige Klasse für etwa 15 bis 25 m² — also Schlafzimmer, Büro oder ein normales Wohnzimmer. Bei über 25–30 m², Dachgeschoss unter ungedämmtem Dach oder großen Südfenstern stößt jeder Monoblock dieser Klasse an Grenzen; dann ist ein 12.000-BTU-Gerät wie das Klarstein Kraftwerk Smart 12K die passendere Wahl.
+**Muss ich gleich eine Fensterabdichtung kaufen?**Die Anleitung zeigt Schlauch B2, Fensterstutzen B7 sowie Adapter B4 und Fensterhalterung B5 für passende Einbauten. Prüfe deine Fensterbauart, den passenden Aufbau in der Anleitung und den tatsächlichen Paketinhalt vor einem Zusatzkauf.
 
-**Was sind die Schwächen des Pinguino PAC EX105?**
-Öffentliche Tests nennen vor allem drei Punkte: Er wiegt rund 36 kg und ist damit nichts, was man ständig durchs Treppenhaus trägt. Eine Fensterabdichtung für Kipp- oder Flügelfenster liegt nicht bei — die muss separat gekauft werden, ist aber für die Kühlleistung entscheidend. Und im Turbo-Modus ist er zwar leiser als viele Vergleichsgeräte, für sehr empfindliche Schläfer aber weiterhin hörbar.
-
-**Was ist die Alternative, wenn der PAC EX105 ausverkauft ist?**
-In der gleichen Leistungsklasse sind das AEG ChillFlex Pro (ähnlich leise Ausrichtung) und für kleinere Räume das deutlich günstigere Comfee MPPH-09CRN7 die üblichen Ausweichkandidaten; für große Räume das Klarstein Kraftwerk Smart 12K, für Leise-Priorität der Midea PortaSplit. In Hitzewellen verschwinden gut getestete Geräte binnen Tagen — vor dem Peak bestellen, nicht währenddessen.
+**Welche Raumgröße passt?**Ermittle das Volumen aus Fläche und Deckenhöhe. Prüfe zusätzlich Sonneneintrag, Dämmung, interne Wärmequellen und den Abluftweg. 2,5 kW sind die Nennkühlleistung im EU-Datenblatt.
 
 **Weiterlesen**
 [Welche Klimaanlage für 25 m²? →](https://getecoback.com/guide/klimaanlage-25-qm.html)
