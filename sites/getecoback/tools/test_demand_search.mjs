@@ -7,6 +7,15 @@ import {calculateGasHeatThreshold} from '../site/assets/heat-gas-cost.mjs';
 import {compareSocketWatts} from '../site/assets/auto-12v-check.mjs';
 const browsingIndex=readFileSync(new URL('../site/assets/search-index.json',import.meta.url));
 const index=JSON.parse(browsingIndex);
+test('German hygrometer placement questions reach the comparison of two fixed locations',()=>{
+ const guide='/guide/luftfeuchtigkeit-richtig-messen.html';
+ for(const query of [
+  'Ein Hygrometer auf der Fensterbank, eins mitten im Zimmer: Wie finde ich heraus, ob der Standort oder das Gerät den Unterschied macht?',
+  'Wie kann ich zwei Hygrometer zwischen Fensterbank und Raummitte tauschen?',
+ ]) assert.equal(searchEntries(index,query,'de')[0]?.entry.u,guide+'#hygrometer-standorte-tauschen',query);
+ assert.equal(searchEntries(index,'Zwei Hygrometer nebeneinander am selben Messort zeigen 55 % und 60 %','de')[0]?.entry.u,guide+'#hygrometer-vergleichen');
+ assert.notEqual(searchEntries(index,'Hygrometer auf der Fensterbank mit Salztest kalibrieren','de')[0]?.entry.u,guide+'#hygrometer-standorte-tauschen');
+});
 test('EX105 buyers can find the exact German hose and sound evidence',()=>{
  const page='/guide/pinguino-pac-ex105-test.html';
  for(const [query,section] of [

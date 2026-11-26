@@ -225,6 +225,10 @@ def collect():
    anchor=shade['id']
    if text.count(f'<h2 id="{anchor}">')!=1:raise ValueError(f'Missing or ambiguous window measurement section: {route}#{anchor}')
    entry['model_sections']=[{'id':anchor,'title':shade['title'],'description':shade['search_description']}]
+   placement='hygrometer-standorte-tauschen'
+   if text.count(f'<h2 id="{placement}">')!=1:raise ValueError(f'Missing or ambiguous hygrometer placement section: {route}#{placement}')
+   entry['model_sections'].append({'id':placement,'title':'Hygrometer am Fenster und in der Raummitte vergleichen',
+    'description':'Vergleiche zwei Hygrometer erst nebeneinander und tausche dann die beiden Messorte. Notiere Temperatur und Feuchte und wiederhole den Vergleich bei geänderten Bedingungen.'})
   if lang=='de' and route=='/guide/luftbefeuchter-ratgeber.html':
    models=json.loads((ROOT/'data/humidifier-philips-filters-de.json').read_text())['models']
    entry['model_sections']=[

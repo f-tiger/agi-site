@@ -1,4 +1,4 @@
-import {asksForLaundryCostComparison, exactBoschStackingGuide, exactGermanHouseholdTask, exactWindowShadeMeasurement, hasOtherWindowSurface, mentionsLaundryDryer} from './german-household-intent.mjs?v=3ae5efd90dc1';
+import {asksForLaundryCostComparison, exactBoschStackingGuide, exactGermanHouseholdTask, exactHygrometerPlacement, exactWindowShadeMeasurement, hasOtherWindowSurface, mentionsLaundryDryer} from './german-household-intent.mjs?v=141670ea223f';
 import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion} from './kaercher-saugduese-intent.mjs';
@@ -73,6 +73,8 @@ export function exactGermanGuide(normalizedQuery) {
    return {path:'/guide/klimaanlage-40-qm.html',id:'portasplit-40-qm'};
  const shade=exactWindowShadeMeasurement(query);
  if(shade)return {path:shade.path,id:shade.id};
+ const placement=exactHygrometerPlacement(query);
+ if(placement)return placement;
  if(asksAboutIndoorWindowCondensation(query))
    return {path:'/guide/fenster-beschlagen-innen.html',id:'fenstersauger-gegen-kondenswasser'};
  const task=exactBoschStackingGuide(query) ?? exactGermanHouseholdTask(query);

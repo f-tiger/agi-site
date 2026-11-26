@@ -1,6 +1,6 @@
 # Luftfeuchtigkeit richtig messen: Ort & Protokoll | EcoBack
 
-> Wo steht ein Hygrometer richtig? Ordne 55 % und 60 % bei zwei Geräten ein und beobachte Temperatur, Luftfeuchte und Lüftung mit einem einfachen Protokoll.
+> Ordne 55 % und 60 % bei zwei Hygrometern ein. Vergleiche durch Standorttausch Lufttemperatur und Feuchte am Fenster und in der Raummitte.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html
 
@@ -9,8 +9,9 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftfeuchtigkeit-ri
 # Luftfeuchtigkeit messen, ohne vorschnell ein Gerät zu kaufen
 Ein Hygrometer ist ein guter Anfang. Aussagekräftig wird es mit einem festen Messort und etwas Kontext: Wie warm war der Raum, wurde gerade geduscht, gelüftet oder Wäsche aufgehängt?
 [Direkt zum Vergleich: 55 % und 60 %](https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html#hygrometer-vergleichen)
+[Hygrometer an zwei Messorten vergleichen](https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html#hygrometer-standorte-tauschen)
 [Nasse Scheibe hinter dem Plissee prüfen](https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html#kondenswasser-hinter-plissee)
-Kostenlose Ratgeber · EUR · Redaktion geprüft · 2026-11-25
+Kostenlose Ratgeber · EUR · Redaktion geprüft · 2026-11-26
 
 **Kurzentscheidung**Nutze einen festen, repräsentativen Platz im Raum und beobachte den Verlauf. Eine Messung direkt an der kalten Fensterbank beschreibt einen anderen Ort als eine Messung neben der Heizung. Ein einzelner Wert entscheidet nicht, ob ein Entfeuchter nötig ist.
 
@@ -24,6 +25,26 @@ Ja, sofern für beide Messungen jeweils ±3 Prozentpunkte laut Anleitung gelten.
 Die Überlappung zeigt, dass die zwei Anzeigen mit den angenommenen Toleranzen vereinbar sind. Sie bestimmt weder den wahren Raumwert noch das genauere Gerät und ersetzt keine Kalibrierung. Kaufe allein wegen der fünf Prozentpunkte kein neues Gerät. Bleibt die Differenz unter gleichen Bedingungen außerhalb der anwendbaren Toleranzen, prüfe die Anleitungen und ziehe ein geeignetes Referenzgerät oder den Hersteller hinzu.
 
 [TFA Dostmann: FAQ zur Messgenauigkeit](https://www.tfa-dostmann.de/service/faq/) · Abgerufen am 2026-11-22
+
+## Hygrometer am Fenster und in der Raummitte vergleichen
+
+Bei Kondenswasser hilft ein einzelner Prozentwert erst zusammen mit Messort und Lufttemperatur. Nutze einen repräsentativen Platz abseits von Fenster, Außenwand und Heizung für die Raumluft. Die Luft nahe einem auffälligen Fenster kannst du am gleichen Morgen getrennt beobachten. Die Temperatur der Glasoberfläche misst du separat mit einem für die Aufgabe geeigneten Thermometer.
+
+- **Erst nebeneinander.** Kennzeichne vorhandene oder geliehene Hygrometer mit A und B. Stell sie auf dieselbe Höhe und lass die Anzeigen nach Geräteanleitung stabil werden. Notiere Temperatur, Feuchte und die jeweils anwendbare Toleranz. [Abweichung am selben Ort einordnen](https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html#hygrometer-vergleichen).
+
+- **Zwei feste Plätze.** Stell A auf der Raumseite nahe der auffälligen Stelle auf, frei in der Luft und ohne Kontakt mit nassem Glas. Stell B an den Raum-Messort. Notiere Uhrzeit, Temperatur und relative Feuchte an beiden Orten möglichst gleichzeitig.
+
+- **Nur die Geräte tauschen.** Halte die beiden Plätze und die Höhe fest. Warte erneut auf stabile Anzeigen und lies beide Geräte möglichst gleichzeitig ab. Wenn sich Lüftung, Heizung, direkte Sonne, Nutzung oder die Temperatur am jeweiligen Ort deutlich geändert haben, lass das Ergebnis offen und wiederhole den Vergleich unter ähnlichen Bedingungen.
+
+**Frei gewähltes Rechenbeispiel.** In Runde 1 zeigt A am Fenster 57 % und B im Raum 45 %. Nach dem Tausch zeigt B am Fenster 55 % und A im Raum 47 %. Bei stabilen Verhältnissen ergibt der Mittelwert der Ortsdifferenzen (12 und 8) **10 Prozentpunkte** zwischen den Orten. Die halbe Differenz dieser beiden Feuchteunterschiede ergibt **2 Prozentpunkte** für den Anzeigenversatz A gegenüber B.
+
+Der Vergleich setzt eine stabile Ortsdifferenz und einen annähernd konstanten Geräteversatz voraus. Ein höherer Prozentwert nahe dem Fenster kann mit der niedrigeren Lufttemperatur zusammenhängen. Aus dem Tausch lässt sich nicht ableiten, welches Gerät genauer ist oder wodurch Feuchte am Bauteil entsteht.
+
+Mit nur einem Gerät dokumentiere zuerst mehrere Messungen am festen Raumplatz. Beginne für die Fensternähe eine eigene Reihe und kennzeichne geänderte Zeiten und Bedingungen. Wenn du eine gleichzeitige Kontrollmessung brauchst, leihe dir nach Möglichkeit ein Gerät. Wiederkehrende Nässe am Rahmen oder an der Wand getrennt festhalten und die Ursache bei Bedarf fachlich klären.
+
+[Taupunkt und separat gemessene Glasoberfläche vergleichen](https://getecoback.com/guide/fenster-beschlagen-innen.html#fenstersauger-gegen-kondenswasser)
+
+[TFA Dostmann zur Platzierung und Temperaturabhängigkeit](https://www.tfa-dostmann.de/luftfeuchtigkeit/luftfeuchtigkeit-messen/) · [Verbraucherzentrale zu kalten Oberflächen](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426). Geprüft am 26.11.2026. Der Standorttausch und die Beispielwerte sind eine vereinfachte EcoBack-Arbeitshilfe.
 
 ## Fenster hinter dem Plissee nass trotz 50 Prozent Luftfeuchte?
 

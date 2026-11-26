@@ -19,6 +19,9 @@ BASE = 'https://getecoback.com'
 DATE = '2026-10-01'
 DATA = json.loads((ROOT / 'data/country-categories.json').read_text())
 HYGROMETER_COMPARISON = 'hygrometer-vergleichen'
+HYGROMETER_GUIDE = '/guide/luftfeuchtigkeit-richtig-messen.html'
+HYGROMETER_PLACEMENT = 'hygrometer-standorte-tauschen'
+HYGROMETER_PLACEMENT_TITLE = 'Hygrometer am Fenster und in der Raummitte vergleichen'
 
 
 def esc(value):
@@ -62,6 +65,8 @@ def shell(c, page, content, hub=False):
     comparison = page.get('hygrometer_comparison')
     intro_jump = (f'<p class="intro-jump"><a href="#{HYGROMETER_COMPARISON}">{esc(comparison["jump_label"])}</a></p>'
                   if comparison else '')
+    if page['path'] == HYGROMETER_GUIDE:
+        intro_jump += f'<p class="intro-jump"><a href="#{HYGROMETER_PLACEMENT}">Hygrometer an zwei Messorten vergleichen</a></p>'
     cover = page.get('window_cover_check')
     if cover:
         intro_jump += f'<p class="intro-jump"><a href="#{esc(cover["id"])}">Nasse Scheibe hinter dem Plissee prüfen</a></p>'
@@ -129,6 +134,8 @@ def guide_body(c):
     body = f'<aside class="decision-note"><strong>{esc(g["answer_title"])}</strong><p>{esc(g["answer"])}</p></aside>'
     if g.get('hygrometer_comparison'):
         body += hygrometer_comparison(g)
+    if g['path'] == HYGROMETER_GUIDE:
+        body += hygrometer_placement()
     if g.get('window_cover_check'):
         body += window_cover_check(g['window_cover_check'])
     if g.get('scenarios'):
@@ -150,7 +157,7 @@ def guide_body(c):
     body += f'<button type="button" data-country-print hidden>{esc(c["print_label"])}</button></section>'
     body += f'<section class="guide-section"><h2>{esc(g["buy_title"])}</h2><p>{esc(g["buy_text"])}</p><p class="disclosure">{esc(c["shop_disclosure"])}</p>'
     body += merchant(c, g['query'], g['shop_label']) + '</section>'
-    if g['path'] == '/guide/luftfeuchtigkeit-richtig-messen.html':
+    if g['path'] == HYGROMETER_GUIDE:
         # This late generator rewrites the full guide after build_related.
         # Replace its old three-link next-step section with the same routing
         # policy, preserving the local guide action and a separate hub return.
@@ -191,6 +198,23 @@ def hygrometer_comparison(guide):
 <p>{esc(comparison['decision'])}</p>
 <p class="source-note"><a href="{esc(source_url)}">{esc(source_label)}</a> · Abgerufen am <time datetime="{esc(checked)}">{esc(checked)}</time></p>
 <!--EB_HYGROMETER_SHARE--><p><a href="{esc(reddit)}" rel="noreferrer">Auf Reddit teilen</a></p><!--/EB_HYGROMETER_SHARE-->
+</section>'''
+
+
+def hygrometer_placement():
+    return f'''<section class="guide-section decision-note" aria-labelledby="{HYGROMETER_PLACEMENT}">
+<h2 id="{HYGROMETER_PLACEMENT}">{HYGROMETER_PLACEMENT_TITLE}</h2>
+<p>Bei Kondenswasser hilft ein einzelner Prozentwert erst zusammen mit Messort und Lufttemperatur. Nutze einen repräsentativen Platz abseits von Fenster, Außenwand und Heizung für die Raumluft. Die Luft nahe einem auffälligen Fenster kannst du am gleichen Morgen getrennt beobachten. Die Temperatur der Glasoberfläche misst du separat mit einem für die Aufgabe geeigneten Thermometer.</p>
+<ol>
+<li><strong>Erst nebeneinander.</strong> Kennzeichne vorhandene oder geliehene Hygrometer mit A und B. Stell sie auf dieselbe Höhe und lass die Anzeigen nach Geräteanleitung stabil werden. Notiere Temperatur, Feuchte und die jeweils anwendbare Toleranz. <a href="#{HYGROMETER_COMPARISON}">Abweichung am selben Ort einordnen</a>.</li>
+<li><strong>Zwei feste Plätze.</strong> Stell A auf der Raumseite nahe der auffälligen Stelle auf, frei in der Luft und ohne Kontakt mit nassem Glas. Stell B an den Raum-Messort. Notiere Uhrzeit, Temperatur und relative Feuchte an beiden Orten möglichst gleichzeitig.</li>
+<li><strong>Nur die Geräte tauschen.</strong> Halte die beiden Plätze und die Höhe fest. Warte erneut auf stabile Anzeigen und lies beide Geräte möglichst gleichzeitig ab. Wenn sich Lüftung, Heizung, direkte Sonne, Nutzung oder die Temperatur am jeweiligen Ort deutlich geändert haben, lass das Ergebnis offen und wiederhole den Vergleich unter ähnlichen Bedingungen.</li>
+</ol>
+<p><strong>Frei gewähltes Rechenbeispiel.</strong> In Runde 1 zeigt A am Fenster 57 % und B im Raum 45 %. Nach dem Tausch zeigt B am Fenster 55 % und A im Raum 47 %. Bei stabilen Verhältnissen ergibt der Mittelwert der Ortsdifferenzen (12 und 8) <strong>10 Prozentpunkte</strong> zwischen den Orten. Die halbe Differenz dieser beiden Feuchteunterschiede ergibt <strong>2 Prozentpunkte</strong> für den Anzeigenversatz A gegenüber B.</p>
+<p>Der Vergleich setzt eine stabile Ortsdifferenz und einen annähernd konstanten Geräteversatz voraus. Ein höherer Prozentwert nahe dem Fenster kann mit der niedrigeren Lufttemperatur zusammenhängen. Aus dem Tausch lässt sich nicht ableiten, welches Gerät genauer ist oder wodurch Feuchte am Bauteil entsteht.</p>
+<p>Mit nur einem Gerät dokumentiere zuerst mehrere Messungen am festen Raumplatz. Beginne für die Fensternähe eine eigene Reihe und kennzeichne geänderte Zeiten und Bedingungen. Wenn du eine gleichzeitige Kontrollmessung brauchst, leihe dir nach Möglichkeit ein Gerät. Wiederkehrende Nässe am Rahmen oder an der Wand getrennt festhalten und die Ursache bei Bedarf fachlich klären.</p>
+<p>{internal('/guide/fenster-beschlagen-innen.html#fenstersauger-gegen-kondenswasser', 'Taupunkt und separat gemessene Glasoberfläche vergleichen')}</p>
+<p class="source-note"><a href="https://www.tfa-dostmann.de/luftfeuchtigkeit/luftfeuchtigkeit-messen/">TFA Dostmann zur Platzierung und Temperaturabhängigkeit</a> · <a href="https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426">Verbraucherzentrale zu kalten Oberflächen</a>. Geprüft am <time datetime="2026-11-26">26.11.2026</time>. Der Standorttausch und die Beispielwerte sind eine vereinfachte EcoBack-Arbeitshilfe.</p>
 </section>'''
 
 
