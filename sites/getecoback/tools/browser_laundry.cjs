@@ -53,8 +53,11 @@ async function checkMeasuredResultHandoff(browser){
   await expectNext('#lc-measurement');
   const details=form.locator('details');
   if(await details.getAttribute('open')===null)await details.locator('summary').click();
+  await field('method').selectOption('measured');
+  await submit.click();await expectNext('#lc-measurement');
   await field('dryerBasis').selectOption('cycle');await field('dryer').fill('1.4');
-  await field('method').selectOption('measured');await field('dehum').fill('2');
+  await submit.click();await expectNext('#lc-measurement');
+  await field('dehum').fill('2.1');
   await field('comparable').uncheck();
   assert(await next.isHidden(),'Changing input hides the previous handoff');checks++;
   await submit.click();await expectNext('#lc-endtrockenheit');

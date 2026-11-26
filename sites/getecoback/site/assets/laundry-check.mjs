@@ -26,6 +26,15 @@ if(typeof document!=='undefined'){
  const signature=x=>JSON.stringify({...x,comparable:false,watts:x.method==='estimate'?x.watts:0,hours:x.method==='estimate'?x.hours:0,dehum:x.method==='measured'?x.dehum:0});let initial;
  const inputKind=x=>signature(x)===initial?'example':'edited';
  const next=q('[data-laundry-result-next]');
+ const enteredMeasurements=new Set();
+ if(next){
+   for(const name of ['dryer','dehum'])form.elements[name].addEventListener('input',event=>{
+     if(event.isTrusted)enteredMeasurements.add(name);
+   });
+   dryerBasis.addEventListener('change',()=>enteredMeasurements.delete('dryer'));
+   form.elements.method.addEventListener('change',()=>enteredMeasurements.delete('dehum'));
+   form.addEventListener('reset',()=>enteredMeasurements.clear());
+ }
  const updateNext=(x,r)=>{
    if(!next)return;
    const steps={
@@ -37,7 +46,7 @@ if(typeof document!=='undefined'){
    };
    let key=r.winner;
    if(!x.comparable)key='unconfirmed';
-   else if(inputKind(x)==='example'||x.method!=='measured'||x.dryerBasis!=='cycle'||r.dryer<=0||r.dehum<=0)key='measure';
+   else if(enteredMeasurements.size!==2||x.method!=='measured'||x.dryerBasis!=='cycle'||r.dryer<=0||r.dehum<=0)key='measure';
    const [note,href,label]=steps[key];
    next.querySelector('span').textContent=note;
    const link=next.querySelector('a');
