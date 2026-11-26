@@ -477,6 +477,26 @@ test('a German laundry moisture question links the exact sourced follow-up', asy
   assert(!/https?:\/\/[^\s]*amazon\.|[?&]tag=/.test(textOf(result)));
 });
 
+test('German EX105 hose and sound answers read the exact published manufacturer evidence', async () => {
+  const {env}=assetEnv();
+  const page='https://getecoback.com/guide/pinguino-pac-ex105-test.html';
+  for(const [frage,anchor,details] of [
+    ['Brauche ich beim PAC EX105 einen Abluftschlauch mit 150 oder 170 mm?', 'ex105-ablufteinbau',
+      ['1.200 mm','150 mm Innendurchmesser','170 mm Außendurchmesser','B4','B5','assetId=261224','DLSA012']],
+    ['Sind 63 dB beim PAC EX105 Schalldruck oder Schallleistung?', 'lautstaerke',
+      ['63 dB Schallleistung','45–48 dB Schalldruck','Fiche_1449405_DE.pdf','Messabstand']],
+  ]){
+    const pfad=page+'#'+anchor;
+    const found=await call('ratgeber_suche',{frage,sprache:'de',max:1},env);
+    assert(textOf(found).includes('Abschnitt: '+pfad),frage);
+    const read=await call('ratgeber_lesen',{pfad},env);
+    assert.equal(read.isError,false,frage);
+    assert.deepEqual(read,await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad}},env,true));
+    for(const detail of details)assert(textOf(read).includes(detail),detail);
+    assert(!/36 kg|55 dB in Raummitte|63 dB im Turbo|amazon\.de\/|tag=getecoback-21/.test(textOf(read)));
+  }
+});
+
 test('hosts read the exact evidence returned by search beyond the product-directory excerpt', async () => {
   const {env, requests} = assetEnv();
   const page = '/produkte.html';

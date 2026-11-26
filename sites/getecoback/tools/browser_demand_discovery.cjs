@@ -39,8 +39,15 @@ async function checkGermanFocusedDiscovery(browser,base){
  const coolingSaleSection='angebot-30-tage-preis';
  const thermostatPage='/guide/smarte-heizkoerperthermostate-lohnen-sich.html';
  const thermostatSection='thermostat-ohne-internet';
+ const ex105Page='/guide/pinguino-pac-ex105-test.html';
  const positive=['Was kostet eine Ladung Wäsche nur mit meinem Luftentfeuchter?','Stromkosten Luftentfeuchter Wäsche'];
  const ordinary=[
+  ['Braucht mein De’Longhi PAC EX105 A+++ einen Abluftschlauch mit 150 oder 170 mm?',
+    ex105Page+'#ex105-ablufteinbau'],
+  ['Bei meinem DeLonghi PAC EX105 A+++ fehlt die Fensterhalterung. Passt ein 150-mm-Schlauch an mein Kippfenster?',
+    ex105Page+'#ex105-ablufteinbau'],
+  ['De’Longhi PAC EX105 A+++: Sind 63 dB Schalldruck oder Schallleistung?',
+    ex105Page+'#lautstaerke'],
   ['Meine Wäsche trocknet im Keller langsam und es riecht muffig. Was tun?',
     '/waeschetrockner-oder-luftentfeuchter.html#waesche-messung-naechster-schritt'],
   ['Welche Vliesfilterbeutel passen zu meinem Kärcher WD 3 V-17/4/20?',
@@ -102,6 +109,14 @@ async function checkGermanFocusedDiscovery(browser,base){
    const matches=await search(query);
    check(matches.every(match=>match.href!==destination),'A different buying or information intent does not lead to the single-method tool: '+query);
    if(previousDestination)equal(matches[0]?.href,previousDestination,'Existing searches keep their first destination: '+query);
+  }
+  for(const query of [
+   'Hat der DeLonghi PAC EX100 Silent einen Abluftschlauch mit 150 oder 170 mm?',
+   'DeLonghi PAC N90 ECO Silent: Sind 63 dB Schalldruck oder Schallleistung?',
+  ]){
+   const matches=await search(query);
+   check(matches.every(match=>match.href!==ex105Page+'#ex105-ablufteinbau'&&match.href!==ex105Page+'#lautstaerke'),
+    'A different Pinguino model does not inherit EX105 evidence: '+query);
   }
   equal((await search('Warum ist mein Fenster hinter dem Plissee nass, obwohl das Hygrometer 50 % zeigt?'))[0],
    {href:shadePage+'#'+shadeSection,language:'de'},'A wet window behind a blind leads to the measurement answer');

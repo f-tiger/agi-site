@@ -123,6 +123,33 @@ test('hosted compact returns reviewed guide sections without presenting them as 
   assert.deepEqual(writes,[]);
 });
 
+test('German EX105 installation and noise questions reach the model evidence while general bundle searches keep their tool',async()=>{
+  const {call,writes}=fixture();
+  const page=origin+'/guide/pinguino-pac-ex105-test.html';
+  for(const [frage,anchor] of [
+    ['Braucht mein De’Longhi PAC EX105 A+++ einen Abluftschlauch mit 150 oder 170 mm?','ex105-ablufteinbau'],
+    ['Bei meinem DeLonghi PAC EX105 A+++ fehlt die Fensterhalterung. Passt ein 150-mm-Schlauch an mein Kippfenster?','ex105-ablufteinbau'],
+    ['De’Longhi PAC EX105 A+++: Sind 63 dB Schalldruck oder Schallleistung?','lautstaerke'],
+  ]){
+    const found=await call(compactPath,findName,{frage});
+    assert.equal(found.isError,false,frage);
+    const first=found.structuredContent.guides?.[0]??found.structuredContent.tools[0];
+    assert.equal(first?.guide_url,page+'#'+anchor,frage);
+    assert.equal(first.citation_url,page,frage);
+  }
+  for(const frage of [
+    'Hat der DeLonghi PAC EX100 Silent einen Abluftschlauch mit 150 oder 170 mm?',
+    'DeLonghi PAC N90 ECO Silent: Sind 63 dB Schalldruck oder Schallleistung?',
+  ]){
+    const found=await call(compactPath,findName,{frage});
+    const results=[...(found.structuredContent.guides??[]),...found.structuredContent.tools];
+    assert(!results.some(item=>[page+'#ex105-ablufteinbau',page+'#lautstaerke'].includes(item.guide_url)),frage);
+  }
+  const general=await call(compactPath,findName,{frage:'Ist beim DeLonghi Pinguino EX105 eine Fensterabdichtung dabei?'});
+  assert.equal(general.structuredContent.tools[0]?.name,'pinguino_ex105_fensterkit_angebotsumfang');
+  assert.deepEqual(writes,[]);
+});
+
 test('low-load meter discovery separates a reading plan, unchanged kWh and borrowing', async () => {
   const {call,writes} = fixture();
   const page = origin+'/strommess-protokoll.html';
