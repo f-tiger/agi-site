@@ -49,7 +49,7 @@ class CatalogTests(unittest.TestCase):
         self.assertIn('keinen Schweizer Händler', html)
         self.assertIn('0 %', html)
         self.assertIn('12. November 2026', html)
-        self.assertIn('"dateModified": "2026-11-25"', html)
+        self.assertIn('"dateModified": "2026-11-26"', html)
         self.assertEqual(html.count('id="tado-x-oventrop"'), 1)
         self.assertIn('4026755228717', html)
         self.assertEqual(html, page(catalog.SLUG, PAGES[catalog.SLUG]))
@@ -126,6 +126,32 @@ class CatalogTests(unittest.TestCase):
                 self.assertIn(limit, md)
                 self.assertIn('/guide/' + catalog.SLUG + '.html#' + target, md)
                 self.assertNotIn('amazon.de/', answer)
+
+
+    def test_bosch_e03_has_the_same_source_and_no_unconfirmed_buy_in_built_surfaces(self):
+        from build_agent_md import to_markdown
+        slug = catalog.SLUG
+        source = catalog.ROOT / 'site/guide' / (slug + '.html')
+        heading = 'Bosch II [+M] zeigt E03: Kalibrierung prüfen'
+        facts = ('8750002861', 'Kalibrierung fehlgeschlagen', 'Ventilstift klemmt',
+                 'runde Taste am Kopf', 'Bosch-Service', 'RA und RAVL liegen bei',
+                 'eindeutig bestätigtem Danfoss RAV', '8750002600', 'warte mit der Bestellung',
+                 '8-750-002-924_BTH-RAD_OM_11L.pdf', 'Druckseiten 47–48')
+        for html in (page(slug, PAGES[slug]), source.read_text()):
+            self.assertEqual(html.count('id="bosch-ii-m-e03"'), 1)
+            self.assertIn('href="#bosch-ii-m-e03"', html)
+            section = html.split('id="bosch-ii-m-e03"', 1)[1].split('</section>', 1)[0]
+            self.assertIn(heading, section)
+            for fact in facts:
+                self.assertIn(fact, section)
+            self.assertNotIn('amazon.de/', section)
+            self.assertNotIn('getecoback-21', section)
+        for md in (to_markdown(page(slug, PAGES[slug]), '/guide/' + slug + '.html', 'de'),
+                   source.with_suffix('.md').read_text()):
+            answer = md.split('#### ' + heading, 1)[1].split('### ', 1)[0]
+            for fact in facts:
+                self.assertIn(fact, answer)
+            self.assertNotIn('amazon.de/', answer)
 
 
 if __name__ == '__main__':

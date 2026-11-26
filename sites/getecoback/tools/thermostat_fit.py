@@ -49,6 +49,14 @@ def render_bosch(data):
 <p>Wenn du den Kopf ersetzen möchtest und der passende Adapter feststeht, prüfe <a href="#thermostat-bosch-ii-m">Zentrale und Lieferumfang für Bosch II [+M]</a>. Bei RAV den separat benötigten Adapter mit einplanen.</p>
 <p class="winter-note">{source_links}.</p>
 {share_nav('bosch-ii-m-danfoss-adapter', title)}
+<h4 id="bosch-ii-m-e03" style="scroll-margin-top:150px">Bosch II [+M] zeigt E03: Kalibrierung prüfen</h4>
+<p>Beim deutschen Heizkörper-Thermostat II [+M] (8750002861) bedeutet E03, dass die Kalibrierung fehlgeschlagen ist. Der Ventiltyp muss unabhängig davon bestimmt werden.</p>
+<ol>
+<li><strong>Montage prüfen.</strong> Gleiche Sitz und passenden Adapter mit den Bosch-Abbildungen ab. Prüfe, ob etwas im Weg ist oder der Ventilstift klemmt. Am wasserführenden Ventilkörper nichts lösen. Bei Leckage oder einem festsitzenden Stift einen Fachbetrieb oder die Hausverwaltung einbeziehen.</li>
+<li><strong>Erneut kalibrieren.</strong> Drücke die runde Taste am Kopf. Sobald das in der Anleitung gezeigte Kalibriersymbol erscheint, drücke die Taste erneut. Bleibt E03 bestehen, prüfe eine gegebenenfalls vorhandene App-Meldung und wende dich an den Bosch-Service.</li>
+<li><strong>Auf die Ventilkennzeichnung warten.</strong> Die Adapter für RA und RAVL liegen bei. Erst bei eindeutig bestätigtem Danfoss RAV kommt der separat erhältliche Bosch-Adapter 8750002600 infrage. Bei unklarer Zuordnung warte mit der Bestellung.</li>
+</ol>
+<p class="winter-note"><a data-valve-official href="https://www.bosch-smarthome.com/res/web/produkt/heizkoerper-thermostat2/pdf/8-750-002-924_BTH-RAD_OM_11L.pdf">Bosch-Anleitung II [+M], V002, Druckseiten 47–48</a> · <a data-valve-official href="{e(sources['bosch-product']['url'])}">Bosch-Lieferumfang (Deutschland)</a> · <a data-valve-official href="{e(sources['bosch-adapter']['url'])}">Bosch RAV-Adapter</a> · geprüft am <time datetime="2026-11-26">26. November 2026</time>.</p>
 </section>'''
 
 

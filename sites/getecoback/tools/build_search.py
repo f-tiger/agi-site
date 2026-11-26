@@ -372,6 +372,13 @@ def collect():
     raise ValueError(f'Missing or hidden tado X Vaillant adapter evidence: {route}#{vaillant}')
    entry['model_sections'].append({'id':vaillant,'title':'Welcher Vaillant-Adapter passt zum tado° X?',
     'description':'tado° nennt für den dokumentierten Vaillant-/TA-Heimeier-Thermostatanschluss mit 30,5-mm-Klemme den separat erhältlichen Adapter 700 100 001 (EAN 4260012710533). Anschluss zuerst anhand der Herstellerzeichnung prüfen.'})
+   calibration='bosch-ii-m-e03'
+   title='Bosch II [+M] zeigt E03: Kalibrierung prüfen'
+   matches=re.findall(r'<h4\b[^<>]*\sid="'+calibration+r'"[^<>]*>'+re.escape(title)+r'</h4>',text)
+   if len(matches)!=1:
+    raise ValueError(f'Missing or ambiguous Bosch calibration section: {route}#{calibration}')
+   entry['model_sections'].append({'id':calibration,'title':title,
+    'description':'Bosch nennt E03 einen Kalibrierungsfehler. Montage, Ventilstift und gegebenenfalls den vorhandenen Adapter prüfen. Bei unklarem Ventiltyp keinen Adapter kaufen.'})
   if lang=='de' and route=='/guide/trotec-luftentfeuchter-test.html':
    anchor='ttk70-hepa-filter'
    targets=re.findall(r'<(?:section|h[23])\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)

@@ -625,6 +625,24 @@ test('Siemens filter lookups open the verified E-Nr decision in German',()=>{
  }
 });
 
+test('Bosch II [+M] E03 and failed calibration open the model-specific manual checks',()=>{
+ const target='/guide/smarte-heizkoerperthermostate-lohnen-sich.html#bosch-ii-m-e03';
+ for(const q of ['Mein Bosch Heizkörper-Thermostat II [+M] zeigt E03. Brauche ich einen neuen Adapter?',
+   '8750002861 Fehler während der Kalibrierung', 'Bosch II +M: Kalibrierung schlägt fehl',
+   'Mein Bosch Thermostat 2 plus M lässt sich nicht kalibrieren.']){
+   const hit=searchEntries(index,q,'de')[0]?.entry;
+   assert.equal(hit?.u,target,q);
+   assert.match(hit.d,/unklarem Ventiltyp keinen Adapter kaufen/,q);
+   assert.ok(!searchEntries(index,q,'en').some(hit=>hit.entry.u===target),q);
+ }
+ for(const q of ['Welcher Adapter passt für Bosch II [+M] mit Danfoss RAVL?',
+   'Bosch Heizkörperthermostat II ohne +M zeigt E03', 'Bosch Heizkörperthermostat II E03',
+   'Bosch II [+M] E05 bei der Kalibrierung', '8750002861: E02 oder E03?',
+   'Bosch II [+M] Kalibrierung starten', 'FRITZ!DECT 302: Kalibrierung schlägt fehl',
+   'Bosch Waschmaschine E03', 'Bosch II [+M] hat keinen Fehlercode E03. Welcher Adapter passt?'])
+   assert.ok(!searchEntries(index,q,'de').some(hit=>hit.entry.u===target),q);
+});
+
 test('German offline thermostat questions open the two documented operating limits',()=>{
  const destination='/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-ohne-internet';
  for(const q of ['Funktioniert mein Bosch Heizkörperthermostat II [+M] ohne Zentrale?',

@@ -69,6 +69,18 @@ Wenn du den Kopf ersetzen möchtest und der passende Adapter feststeht, prüfe [
 
 [Bosch: Lieferumfang des Heizkörper-Thermostats II [+M]](https://www.bosch-smarthome.com/de/de/produkte/heizung/heizkoerper-thermostat/) · [Bosch: Danfoss-RAV-Adapter, Gerätenummer und EAN](https://www.bosch-smarthome.com/de/de/produkte/zubehoer-und-ersatzteile/ventiladapter/) · [Bosch: Ventilbilder und Adapterempfehlungen](https://www.bosch-smarthome.com/res/web/produkt/heizkoerper-thermostat2/pdf/8-750-002-943_V001_Valve_adapter_recommendations_ML_20240808.pdf).
 
+#### Bosch II [+M] zeigt E03: Kalibrierung prüfen
+
+Beim deutschen Heizkörper-Thermostat II [+M] (8750002861) bedeutet E03, dass die Kalibrierung fehlgeschlagen ist. Der Ventiltyp muss unabhängig davon bestimmt werden.
+
+- **Montage prüfen.** Gleiche Sitz und passenden Adapter mit den Bosch-Abbildungen ab. Prüfe, ob etwas im Weg ist oder der Ventilstift klemmt. Am wasserführenden Ventilkörper nichts lösen. Bei Leckage oder einem festsitzenden Stift einen Fachbetrieb oder die Hausverwaltung einbeziehen.
+
+- **Erneut kalibrieren.** Drücke die runde Taste am Kopf. Sobald das in der Anleitung gezeigte Kalibriersymbol erscheint, drücke die Taste erneut. Bleibt E03 bestehen, prüfe eine gegebenenfalls vorhandene App-Meldung und wende dich an den Bosch-Service.
+
+- **Auf die Ventilkennzeichnung warten.** Die Adapter für RA und RAVL liegen bei. Erst bei eindeutig bestätigtem Danfoss RAV kommt der separat erhältliche Bosch-Adapter 8750002600 infrage. Bei unklarer Zuordnung warte mit der Bestellung.
+
+[Bosch-Anleitung II [+M], V002, Druckseiten 47–48](https://www.bosch-smarthome.com/res/web/produkt/heizkoerper-thermostat2/pdf/8-750-002-924_BTH-RAD_OM_11L.pdf) · [Bosch-Lieferumfang (Deutschland)](https://www.bosch-smarthome.com/de/de/produkte/heizung/heizkoerper-thermostat/) · [Bosch RAV-Adapter](https://www.bosch-smarthome.com/de/de/produkte/zubehoer-und-ersatzteile/ventiladapter/) · geprüft am 26. November 2026.
+
 ### Welcher Danfoss-Adapter passt zum FRITZ!Smart Thermo 302?
 
 Diese Zuordnung gilt für das deutsche **FRITZ!Smart Thermo 302**, auch als **FRITZ!DECT 302** dokumentiert, Artikelnummer **20003120**. Prüfe die genaue Variante an der Verpackung oder in den Geräteunterlagen.
@@ -154,6 +166,7 @@ Vorhandenes Bosch-System oder geprüftes Matter-System nutzen
 **Betrieb und Funktionen:** Batterien und gegebenenfalls separate Fensterkontakte mit einplanen. Funktionen unterscheiden sich zwischen dem Bosch-System und der direkten Matter-Einbindung; die Funktionsübersicht des Herstellers abgleichen.
 **Vor der Bestellung:** Matter bedeutet hier nicht Betrieb ohne passende Zentrale. Den Ventilanschluss anhand der Bosch-Anleitung prüfen; die tado°-Zuordnungen gelten nicht für dieses Modell.
 [Für Bosch II [+M]: Danfoss RA, RAV und RAVL abgleichen](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#bosch-ii-m-danfoss-adapter)
+[Bosch II [+M] zeigt E03? Kalibrierung prüfen](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#bosch-ii-m-e03)
 [Bosch: Modellvarianten und Systemfunktionen](https://www.bosch-smarthome.com/de/de/produkte/heizung/heizkoerper-thermostat/) · [Bosch: Anleitung II [+M], Matter-/Thread-Anforderungen](https://www.bosch-smarthome.com/res/web/produkt/heizkoerper-thermostat2/pdf/8-750-002-924_BTH-RAD_OM_11L.pdf)
 Anzeige · Modellsuche, kein geprüftes Einzelangebot.Bosch Heizkörper-Thermostat II [+M] bei Amazon.de suchen →
 

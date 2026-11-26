@@ -30,6 +30,22 @@ test('Heat and gas comparison search points to the threshold answer', async () =
   assert.ok(!result.tools.some(tool=>toolGuidePath(tool)===href));
 });
 
+test('the compact catalogue points exact Bosch E03 questions to the existing guide reader', async () => {
+  const target='/guide/smarte-heizkoerperthermostate-lohnen-sich.html#bosch-ii-m-e03';
+  const options={view:'compact',limit:3};
+  for(const q of ['Mein Bosch II [+M] zeigt E03. Brauche ich einen neuen Adapter?',
+    'Bosch 8750002861 lässt sich nicht kalibrieren']) {
+    const {tools}=await catalogue({...options,q});
+    assert.equal(tools[0]?.name,'ratgeber_suche',q);
+    assert.equal(toolGuidePath(tools[0]),target,q);
+  }
+  for(const q of ['Bosch Heizkörperthermostat II E03','Bosch II [+M] zeigt E05',
+    'Bosch II [+M] mit Danfoss RAVL. Welcher Adapter?']){
+    const {tools}=await catalogue({...options,q});
+    assert.ok(!tools.some(x=>toolGuidePath(x)===target),q);
+  }
+});
+
 test('the browser loads the current catalogue search module', async () => {
   const module = await readFile(new URL('../site/assets/mcp-catalog-search.mjs', import.meta.url));
   const version = createHash('sha256').update(module).digest('hex').slice(0, 12);
