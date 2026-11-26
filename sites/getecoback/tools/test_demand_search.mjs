@@ -7,6 +7,24 @@ import {calculateGasHeatThreshold} from '../site/assets/heat-gas-cost.mjs';
 import {compareSocketWatts} from '../site/assets/auto-12v-check.mjs';
 const browsingIndex=readFileSync(new URL('../site/assets/search-index.json',import.meta.url));
 const index=JSON.parse(browsingIndex);
+test('Portable AC winter-storage searches lead to the storage checklist for the exact market',()=>{
+ const target='/guide/mobile-klimaanlage-ueberwintern.html#schritt-fuer-schritt-so-machst-du-das-geraet-winterfest';
+ for(const query of [
+  'Wie mache ich meine mobile Klimaanlage winterfest?',
+  'Muss ich das Kondenswasser aus meiner mobilen Klimaanlage vor der Winterpause ablassen?',
+  'Comfee MPPH-09CRN7 für den Winter einlagern',
+  'Wie soll ich 4048164103065 im Winter lagern?',
+  'Klimagerät einmotten: Wassertank leeren und im Keller lagern?',
+ ]) assert.equal(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+ for(const query of [
+  'Midea PortaSplit für den Winter einlagern',
+  'Wie mache ich meine Auto-Klimaanlage winterfest?',
+  'Comfee MPPH-07CRN7 für den Winter lagern',
+  'Luftentfeuchter für die Winterpause abstellen',
+  'Kondenswasser vom Monoblock beim Kühlen ablassen',
+ ]) assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+ assert(!searchEntries(index,'mobile Klimaanlage winterfest','en').some(hit=>hit.entry.u===target));
+});
 test('An empty dehumidifier tank finds the troubleshooting section instead of a buying guide',()=>{
  const target='/guide/luftentfeuchter-zieht-kein-wasser.html#pruefen-bevor-du-ein-neues-geraet-kaufst';
  for(const query of [

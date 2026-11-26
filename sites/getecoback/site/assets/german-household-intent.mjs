@@ -277,6 +277,20 @@ const emptyDehumidifierTank = {
   tool:'entfeuchter_leerer_tank_check',
 };
 
+const portableCoolingStorage = {
+  path:'/guide/mobile-klimaanlage-ueberwintern.html',
+  id:'schritt-fuer-schritt-so-machst-du-das-geraet-winterfest',
+  tool:'mobile_klima_einlagern_check',
+};
+
+function asksForPortableCoolingStorage(query) {
+  const portable = /\b(?:mobil\w*\s+klima\w*|schlauchklima\w*|monoblock|mpph[ -]?09crn7|4048164103065)\b/;
+  const appliance = /\bklima(?:anlage|geraet)\w*\b/;
+  const storage = /\b(?:winterfest|(?:ue|u)berwinter\w*|einlager\w*|einmott\w*|winterpause|winterlager\w*|(?:im|fuer den|ueber den) winter(?:\s+\w+){0,3}\s+(?:lager\w*|wegstell\w*))\b/;
+  const otherJob = /\b(?:porta[ -]*split|(?:multi[ -]?)?split[ -]*(?:anlagen?|klima\w*)|wandklima\w*|waermepumpe\w*|luftentfeuchter\w*|kfz|auto(?:s|klima\w*)?|wohnmobil\w*|heizbetrieb|heizen|frostschutzmittel)\b/;
+  return storage.test(query) && !otherJob.test(query) && (portable.test(query) || appliance.test(query));
+}
+
 function asksAboutAnEmptyDehumidifierTank(query) {
   const device = /\b(?:luft)?entfeuchter(?:s|n)?\b|\barete[ -]+one[ -]+(?:20|25)\s*l\b/;
   const emptyTank = /\b(?:\w*tank|wasserbehaelter)\s+(?:(?:vom|des) (?:luft)?entfeuchters?\s+)?(?:(?:bleibt|ist|immer|noch|dauerhaft|weiterhin)\s+){0,3}leer\b|\bleerer?\s+(?:\w*tank|wasserbehaelter)\b/;
@@ -350,6 +364,7 @@ export function exactGermanHouseholdTask(query) {
     return {path:'/guide/fensterabdichtung-selber-bauen.html',id:'abluft-ausschnitt-pruefen',tool:'abluftplatte_lochposition_pruefen'};
   if (asksForKlarsteinPackage(query)) return klarsteinPackage;
   if (asksForGranulateDryingChoice(query)) return granulateDryingChoice;
+  if (asksForPortableCoolingStorage(query)) return portableCoolingStorage;
   if (asksAboutAnEmptyDehumidifierTank(query)) return emptyDehumidifierTank;
   if (asksForCoolingDiscountReference(query)) return coolingDiscountReference;
   if (asksForOfflineThermostat(query)) return offlineThermostatChoice;

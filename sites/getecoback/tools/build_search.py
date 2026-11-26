@@ -58,6 +58,9 @@ def collect():
  sections[('de','/guide/luftentfeuchter-zieht-kein-wasser.html')]={
   'id':'pruefen-bevor-du-ein-neues-geraet-kaufst','title':'Luftentfeuchter läuft, aber der Tank bleibt leer?',
   'description':'Sollfeuchte, Schlauch, Betriebsmodus und Temperatur nach Anleitung prüfen. Herstellerwerte für genau dasselbe Modell bei passender Temperatur und Feuchte vergleichen.'}
+ sections[('de','/guide/mobile-klimaanlage-ueberwintern.html')]={
+  'id':'schritt-fuer-schritt-so-machst-du-das-geraet-winterfest','title':'Mobile Klimaanlage winterfest machen',
+  'description':'Modell prüfen, Kondenswasser nach Anleitung ablassen, Trocknung und Lagerort klären. Für Comfee MPPH-09CRN7 gibt es ein konkretes Herstellerbeispiel; Staubschutz bleibt optional.'}
  sections[('de','/guide/keller-lueften-sommer.html')]={
   'id':'taupunkt','title':'Trocknet Lüften meinen Keller jetzt?',
   'description':'Vergleiche Temperatur und Feuchte drinnen und draußen mit deiner kältesten gemessenen Wand.'}

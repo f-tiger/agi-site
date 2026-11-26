@@ -51,6 +51,7 @@ assert [(entry['l'],entry['u'],entry['section']['id']) for entry in focused]==[
     ('de','/guide/luftentfeuchter-zieht-kein-wasser.html','pruefen-bevor-du-ein-neues-geraet-kaufst'),
     ('de','/guide/luftfeuchtigkeit-richtig-messen.html','hygrometer-vergleichen'),
     ('de','/guide/midea-portasplit-ausverkauft-alternativen.html','fensterfalz'),
+    ('de','/guide/mobile-klimaanlage-ueberwintern.html','schritt-fuer-schritt-so-machst-du-das-geraet-winterfest'),
     ('de','/guide/richtig-lueften-im-winter.html','lueften-vorher-nachher'),
     ('de','/guide/smarte-heizkoerperthermostate-lohnen-sich.html','danfoss-altventil'),
     ('de','/guide/thermovorhang-ratgeber.html','thermovorhang-bahnenbedarf'),
