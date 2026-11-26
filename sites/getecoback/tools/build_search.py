@@ -100,6 +100,9 @@ def collect():
  sections[('de','/guide/fenster-zugluft-mietwohnung.html')]={
   'id':'dichtungsprofil','title':'Fensterdichtung bei 4 mm: tesamoll E, P oder D?',
   'description':'Bei 4 mm liegen P und D im Herstellerbereich. Miss an mehreren Stellen und kläre eine vorhandene Nut vor dem Kauf.'}
+ sections[('de','/guide/midea-portasplit-kaufen.html')]={
+  'id':'portasplit-liefertermin-pruefen','title':'Originale PortaSplit: Lieferung oder Abholung zum Wunschtermin prüfen',
+  'description':'Für die originale PortaSplit mit EAN 4048164116478 Ankunft an der Lieferadresse oder Abholung am gewählten Markt bestätigen lassen. Bei zwei Geräten zwei vollständige Sets und denselben Stichtag prüfen.'}
  sections[('de','/guide/midea-portasplit-ausverkauft-alternativen.html')]={
   'id':'fensterfalz','title':'Midea PortaSplit Original: EAN und Fensterfalz prüfen',
   'description':'EAN 4048164116478 abgleichen. Breite und Höhe am Falz für die Standardhalterung messen. Bei unklarer Passung warten.'}

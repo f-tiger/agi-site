@@ -1359,3 +1359,21 @@ test('German PortaSplit versus Monoblock shopping queries find the installation 
   'Black Friday Klimaanlage',
  ]) assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
 });
+
+test('German original PortaSplit delivery questions find the date and pickup check', () => {
+ const target='/guide/midea-portasplit-kaufen.html#portasplit-liefertermin-pruefen';
+ for(const query of [
+  'Kann ich zwei originale Midea PortaSplit vorbestellen und im Markt abholen?',
+  'Wann wird die PortaSplit geliefert?',
+  'Kann ich 4048164116478 reservieren?',
+  'Midea PortaSplit Liefertermin bis Freitag',
+ ]) assert.equal(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+ for(const query of [
+  'Midea PortaSplit Cool vorbestellen',
+  'PortaSplit-E Lieferung und Abholung',
+  '4048164118687 vorbestellen',
+  'Kann ich die Midea PortaSplit Universalhalterung abholen?',
+  'Wie messe ich den Fensterfalz für die originale PortaSplit?',
+  'PortaSplit vs. Monoblock',
+ ]) assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+});

@@ -1899,3 +1899,9 @@ test('German PortaSplit versus Monoblock discovery opens the sourced fit decisio
  assert.equal(tools[0]?.name,'ratgeber_suche');
  assert.equal(tools[0]?.guide_url,'https://getecoback.com/guide/portasplit-vs-monoblock.html#bauart-vor-angebot');
 });
+
+test('German original PortaSplit delivery discovery cites the fixed-date check',async()=>{
+ const {tools}=await catalogue({q:'Kann ich zwei originale Midea PortaSplit vorbestellen und im Markt abholen?',view:'compact',limit:1});
+ assert.equal(tools[0]?.name,'ratgeber_suche');
+ assert.equal(tools[0]?.guide_url,'https://getecoback.com/guide/midea-portasplit-kaufen.html#portasplit-liefertermin-pruefen');
+});
