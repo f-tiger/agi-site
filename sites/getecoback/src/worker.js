@@ -1058,7 +1058,7 @@ const LEGACY_MCP_TOOLS = [
   // honest physics the pages use, then hands over to the sizing tools/guides.
   {
     name: "geraet_wahl",
-    description: "Welches Gerät löst mein Raumklima-Problem? — Choose a next step for heat, damp/mould, cold or stale air. For cold rooms, distinguish an example from a measured area and check heat load and circuits at higher wattages. For damp rooms, measure first, investigate damage and compare cold-room or laundry conditions before buying; floor area alone cannot size a dehumidifier. Same decision rules as the website.",
+    description: "Welches Gerät löst mein Raumklima-Problem? — Choose a next step for heat, damp/mould, cold or stale air. For hot rooms, check measured temperatures, safe ventilation and shading before choosing a cooling device. For cold rooms, distinguish an example from a measured area and check heat load and circuits at higher wattages. For damp rooms, measure first, investigate damage and compare cold-room or laundry conditions before buying; floor area alone cannot size a dehumidifier. Same decision rules as the website.",
     inputSchema: {
       type: "object",
       properties: {
@@ -1326,6 +1326,7 @@ const MOISTURE_NEXT_STEPS = {
 
 const coolingCalculator = "https://getecoback.com/guide/btu-rechner.html";
 const highCoolingLoadGuide = coolingCalculator + "#hohe-kuehllast";
+const atticVentilationGuide = "https://getecoback.com/guide/dachgeschoss-kuehlen.html#dachgeschoss-ohne-durchzug";
 const heatingCalculator = "https://getecoback.com/guide/infrarotheizung-watt-rechner.html";
 const heatingSizingGuide = heatingCalculator + "#watt-rechner-raumgroesse-und-daemmung-eingeben";
 const heatingCircuitGuide = heatingCalculator + "#ueber-2-000-watt-besser-zwei-panels";
@@ -1366,9 +1367,9 @@ async function mcpCallTool(name, args, env) {
       } else if (hasArea) {
         guidance = `Orientierung in einer ähnlichen Raumklasse unter https://getecoback.com/guide/klimaanlage-${qp}-qm.html`;
       }
-      text = `Prüfe zuerst Sonneneintrag, Verschattung und den tatsächlich zu kühlenden Raum. Bei einem Monoblock plane die Abluftöffnung und passende Abdichtung.\n` +
+      text = `Vergleiche die gemessene Temperatur drinnen und draußen. Ist es draußen kühler, lüfte, sofern du sicher öffnen kannst. Nutze vorhandene Verschattung und für die gefühlte Temperatur den vorhandenen Ventilator. Wenn das für dein Ziel reicht, kannst du den Kauf verschieben. Vor einem Monoblock-Kauf prüfe Abluftöffnung und passende Abdichtung.\n` +
         `${origin} ergibt ca. ${btu.toLocaleString("de-DE")} BTU/h vor Zuschlägen für Sonne, hohe Decken oder weitere Wärmequellen.\n` +
-        `${guidance}\nFür weitere Eingaben nutze btu_empfehlung oder ${coolingCalculator}`;
+        `${guidance}\nLüften ohne Durchzug und vorhandene Maßnahmen: ${atticVentilationGuide}\nFür weitere Eingaben nutze btu_empfehlung oder ${coolingCalculator}`;
     } else if (a.problem === "feucht_schimmel") {
       let outcome;
       try { outcome = mcpMoistureOutcome(a); } catch {

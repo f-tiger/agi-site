@@ -1911,3 +1911,9 @@ test('German FM Solar mobile AC discovery offers the exact model and window chec
  assert.equal(tools[0]?.name,'ratgeber_suche');
  assert.equal(tools[0]?.guide_url,'https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html#fm-solar-yfg-montage');
 });
+
+test('German attic cooling without crossflow cites the exact non-device decision',async()=>{
+ const {tools}=await catalogue({q:'Dachgeschoss kühlen ohne Durchzug',view:'compact',limit:1});
+ assert.equal(tools[0]?.name,'ratgeber_suche');
+ assert.equal(tools[0]?.guide_url,'https://getecoback.com/guide/dachgeschoss-kuehlen.html#dachgeschoss-ohne-durchzug');
+});

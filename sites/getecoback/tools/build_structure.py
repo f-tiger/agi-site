@@ -2021,6 +2021,7 @@ def strip_decision_promotions(html, slug):
     if slug not in {"klimaanlage-mit-heizfunktion", "mobile-klimaanlage-ueberwintern", "keller-lueften-sommer",
                     "klimaanlage-40-qm", "klimaanlage-50-qm", "klimaanlage-fenster-einbruchschutz",
                     "klimaanlage-wann-kaufen", "heizkosten-vergleich-rechner", "midea-portasplit-kaufen",
+                    "dachgeschoss-kuehlen",
                     "portasplit-vs-monoblock",
                     "delonghi-pac-n90-test", "pinguino-pac-ex105-test", "comfee-mpph-09crn7-test", "pro-breeze-luftentfeuchter-test",
                     "meacodry-arete-one-test",
@@ -2035,6 +2036,8 @@ def strip_decision_promotions(html, slug):
         markers += ("EB_HEATNOW", "EB_EXPLAINER", "EB_CLIMATE", "EB_RADAR")
     if slug == "midea-portasplit-kaufen":
         markers += ("EB_EXPLAINER",)
+    if slug == "dachgeschoss-kuehlen":
+        markers += ("EB_EXPLAINER", "EB_RADAR")
     if slug == "luftentfeuchter-granulat-oder-elektrisch":
         markers += ("EB_EXPLAINER", "EB_RADAR")
     for marker in markers:

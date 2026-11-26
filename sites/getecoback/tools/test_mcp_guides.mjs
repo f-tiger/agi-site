@@ -1109,3 +1109,17 @@ test('German FM Solar mobile AC evidence distinguishes the new installation limi
                  '#option-3-monoblock']) assert(textOf(full).includes(f),f);
  assert(!textOf(full).includes('https://www.amazon.de/'));
 });
+
+test('German attic cooling without crossflow keeps measurements and sources in both readers',async()=>{
+ const {env}=assetEnv();
+ const pfad='https://getecoback.com/guide/dachgeschoss-kuehlen.html#dachgeschoss-ohne-durchzug';
+ const found=await call('ratgeber_suche',{frage:'Dachgeschoss kühlen ohne Durchzug',sprache:'de',max:1},env);
+ assert(textOf(found).includes('Abschnitt: '+pfad));
+ const full=await call('ratgeber_lesen',{pfad},env);
+ assert.equal(full.isError,false);
+ assert.deepEqual(await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad}},env,true),full);
+ for(const f of ['draußen im Schatten','sicher möglich','29 °C','24 °C','den Kauf verschieben',
+                 'www.umweltbundesamt.de','www.verbraucherzentrale.de','#bauart-vor-angebot'])
+   assert(textOf(full).includes(f),f);
+ assert(!textOf(full).includes('https://www.amazon.de/'));
+});
