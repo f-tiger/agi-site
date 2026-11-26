@@ -92,6 +92,28 @@ class LlmsFull(unittest.TestCase):
         self.assertNotRegex(page, r'<!--EB_(?:MODELS|TOPPICK|STICKY|POPUP|QUICKPICK)-->')
         self.assertNotRegex(mirror, r'amazon\.de/|tag=getecoback-21')
 
+    def test_german_laundry_calculator_anchor_has_a_bounded_readable_answer(self):
+        page = SITE / 'waeschetrockner-oder-luftentfeuchter.html'
+        html = page.read_text()
+        md = page.with_suffix('.md').read_text()
+        heading = 'Trocknungskosten pro Ladung vergleichen'
+        self.assertIn(f'<h2 id="lc-title">{heading}</h2>', html)
+        self.assertEqual(html.count('id="laundry-check"'), 1)
+        self.assertIn('<details class="lc-evidence" data-laundry-baseline>', html)
+        start = md.index('## ' + heading)
+        end = md.index('## Eine Ladung fair vergleichen', start)
+        answer = md[start:end]
+        for evidence in ('kWh beider vollständigen Durchgänge', 'gewünschte Endtrockenheit',
+                         'zwei gleich lange Zeitfenster', 'einmal ohne Wäsche',
+                         'Wäscheanteil offen', 'kWh des ganzen Durchgangs',
+                         '250 W × 8 h ÷ 1.000 = 2 kWh', 'Raumheizung und Lüftungswärme fehlen',
+                         'strom-sparen-im-haushalt-einfache-tipps-10734'):
+            self.assertIn(evidence, html)
+            self.assertIn(evidence, answer)
+        self.assertEqual(md.count('250 W × 8 h ÷ 1.000 = 2 kWh'), 1)
+        self.assertNotIn('amazon.de/', answer)
+        self.assertNotIn('data-laundry-baseline', (SITE / 'en/guide/dehumidifier-drying-clothes-cost.html').read_text())
+
     def test_german_laundry_season_has_the_same_exact_worked_example_in_the_mirror(self):
         page = SITE / 'waeschetrockner-oder-luftentfeuchter.html'
         raw = page.read_text()

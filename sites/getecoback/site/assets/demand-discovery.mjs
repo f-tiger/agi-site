@@ -79,10 +79,14 @@ export function exactGermanGuide(normalizedQuery) {
  if(task===balconyThresholdMoisture)return {path:task.path,id:task.id};
  if(asksAboutIndoorWindowCondensation(query))
    return {path:'/guide/fenster-beschlagen-innen.html',id:'fenstersauger-gegen-kondenswasser'};
- return task && {path:task.path,id:task.id};
+ if(task)return {path:task.path,id:task.id};
+ const seasonalTotal=/\b(?:saisonkosten|saisonwechsel|(?:pro|je)\s+(?:saison|winter|jahr))\b|\b\d+\s+von\s+\d+\s+(?:waesche|wasch)?ladungen\b/;
+ return !seasonalTotal.test(query)&&!asksForDehumidifierDrainRoute(query)&&!asksForCellarVentilationCheck(query)&&
+   asksForLaundryCostComparison(query) ? laundryComparisonGuide : null;
 }
 
 const laundryPage='/waeschetrockner-oder-luftentfeuchter.html';
+const laundryComparisonGuide={path:laundryPage,id:'laundry-check'};
 const singleLaundryId='luftentfeuchter-waesche-kosten';
 function asksForOneDehumidifierRun(question) {
  const withDevices=question.replace(/\s+/g,' ');
@@ -111,7 +115,7 @@ export function searchEntries(index,term,lang){
    targetPage='/guide/luftfeuchtigkeit-richtig-messen.html'; targetId='hygrometer-vergleichen';
  } else if(lang==='de' && asksForCoolingNoiseComparison(query)) {
    targetPage='/guide/delonghi-pac-n90-test.html'; targetId='lautstaerke';
- } else if(exactGuide) {
+ } else if(exactGuide && exactGuide!==laundryComparisonGuide) {
    ({path:targetPage,id:targetId}=exactGuide);
  } else if(lang==='de' && asksForN90ModelIdentity(query)) {
    targetPage='/guide/delonghi-pac-n90-test.html'; targetId='testlage';
@@ -135,8 +139,8 @@ export function searchEntries(index,term,lang){
    targetPage='/guide/luftentfeuchter-keller.html'; targetId='ablauf-vor-kauf';
  } else if(lang==='de' && asksForCellarVentilationCheck(query)) {
    targetPage='/guide/keller-lueften-sommer.html'; targetId='taupunkt';
- } else if(lang==='de' && asksForLaundryCostComparison(query)) {
-   targetPage=laundryPage; targetId='laundry-check';
+ } else if(exactGuide===laundryComparisonGuide) {
+   ({path:targetPage,id:targetId}=exactGuide);
  } else if(lang==='de' && asksForOneDehumidifierRun(query)) {
    targetPage=laundryPage; targetId=singleLaundryId;
  }

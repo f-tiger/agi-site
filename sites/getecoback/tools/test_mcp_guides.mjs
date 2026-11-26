@@ -271,6 +271,27 @@ test('laundry search stays on task and every search result can be read through t
   }
 });
 
+test('German laundry cost search reads the exact per-load comparison in both MCP profiles', async () => {
+  const {env} = assetEnv();
+  const pfad = 'https://getecoback.com' + laundry + '#laundry-check';
+  const frage = 'Wäschetrockner oder Luftentfeuchter – was kostet das Trocknen pro Ladung?';
+  const found = await call('ratgeber_suche', {frage, sprache:'de', max:1}, env);
+  assert.ok(textOf(found).includes('Abschnitt: ' + pfad), textOf(found));
+  const full = await call('ratgeber_lesen', {pfad}, env);
+  const compact = await call('ecoback_werkzeug_ausfuehren', {
+    name:'ratgeber_lesen', eingaben:{pfad},
+  }, env, true);
+  assert.equal(full.isError, false);
+  assert.deepEqual(compact, full);
+  const evidence = textOf(full);
+  assert.ok(evidence.startsWith('Quelle: ' + pfad + '\n'));
+  for (const value of ['kWh beider vollständigen Durchgänge', 'gewünschte Endtrockenheit',
+    'Läuft dein Entfeuchter ohnehin?', 'zwei gleich lange Zeitfenster', 'Wäscheanteil offen',
+    '0,70 €', 'Raumheizung und Lüftungswärme fehlen','strom-sparen-im-haushalt-einfache-tipps-10734'])
+    assert.ok(evidence.includes(value), value);
+  assert.doesNotMatch(evidence, /## Eine Ladung fair vergleichen|gemessenen Kosten fürs Wäschetrocknen|amazon[.]de\/|getecoback-21/);
+});
+
 test('Siemens filter guide search names the only verified E-Nr pair and an unknown fallback', async () => {
   const {env} = assetEnv();
   const path='/produkte.html';
