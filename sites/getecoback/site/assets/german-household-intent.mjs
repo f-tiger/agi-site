@@ -292,8 +292,13 @@ function exactLowLoadMeterTask(query) {
   if (!meter.test(query) || excludes.test(query)) return null;
   if (/\b(?:leih\w*|ausleih\w*|ausborg\w*)\b/.test(query)) return lowLoadMeterGuide;
   const unchanged = /(?<![\d.,])0(?:[.,]0+)?\s*kwh\b|\b(?:unveraendert|nullanzeige)\b[^.?!]{0,30}\bkwh\b/;
-  const repeated = /\b(?:immer noch|weiter|bleibt|unveraendert|nach|seit|nullanzeige)\b/;
-  if (unchanged.test(query) && repeated.test(query)) return lowLoadMeterUnchanged;
+  if (unchanged.test(query)) {
+    if (/\bvon\s+0(?:[.,]0+)?\s*(?:kwh\s+)?auf\s+\d/.test(query)) return null;
+    const repeated = /\b(?:immer noch|weiterhin|weiter|bleibt|unveraendert)\b/;
+    const reset = /\b(?:reset|zurueckgesetz\w*|zuruecksetzen|mitternacht|(?:heute\s+)?um\s+0\s+uhr)\b/;
+    const noNegatedReset = query.replace(/\bohne\s+(?:(?:einen|erneuten)\s+)?(?:reset|zuruecksetzen)\b/g,'');
+    return repeated.test(query) && !reset.test(noNegatedReset) ? lowLoadMeterUnchanged : lowLoadMeterGuide;
+  }
   const instantaneousZero = /(?<![\d.,])0(?:[.,]0+)?\s*(?:w|watt)\b/;
   if (instantaneousZero.test(query)) return lowLoadMeterGuide;
   const duration = /\b(?:wie lange|wie viele stunden|messdauer|messzeit)\b/;

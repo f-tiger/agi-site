@@ -329,7 +329,7 @@ export const measurementLab = [
     page:meter,
     guide_url:'https://getecoback.com' + meter + '#kleine-lasten-messen',
     properties:{
-      anzeige_unveraendert:flag('War die kumulierte Energieanzeige vom Anfang bis zum Ende unverändert?'),
+      anzeige_unveraendert:flag('War dieselbe kumulierte Energieanzeige während der Messung ohne Reset unverändert?'),
       schritt_kwh:numeric('Schrittweite der Energieanzeige in kWh, laut Gerät.', 0.000001, 1),
       dauer_h:numeric('Verstrichene Messdauer in Stunden.', 0.01, 8760),
       unterlast_erfasst:flag('Ist die Erfassung auch für diese niedrige Last in der Anleitung belegt?'),

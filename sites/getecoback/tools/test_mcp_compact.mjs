@@ -104,6 +104,7 @@ test('low-load meter discovery separates a reading plan, unchanged kWh and borro
   for(const [frage,name] of [
     ['Wie lange muss ich 0,5 Watt Standby messen, wenn mein Strommessgerät nur 0,01 kWh anzeigt?',duration],
     ['Mein Strommessgerät zeigt nach fünf Stunden immer noch 0,00 kWh. Verbraucht mein Gerät im Standby wirklich nichts?',unchanged],
+    ['Die kumulierte Anzeige am Strommessgerät bleibt seit fünf Stunden ohne Reset bei 0,00 kWh.',unchanged],
   ]){
     const found = await call(compactPath,findName,{frage});
     assert.equal(found.structuredContent.tools[0]?.name,name,frage);
@@ -113,12 +114,18 @@ test('low-load meter discovery separates a reading plan, unchanged kWh and borro
     'Wo kann ich ein Strommessgerät leihen, statt es zu kaufen?',
     'Messsteckdose zeigt 0 W im Standby',
     'Seit drei Stunden zeigt meine Messsteckdose 0,0 W im Standby an.',
+    'Mein Strommessgerät zeigt 0,00 kWh nach einem Reset. Verbraucht meine Steckdose nichts?',
+    'Mein Tapo P110 zeigt seit heute um 0 Uhr 0,00 kWh. Ist der Zähler kaputt?',
   ]){
     const found = await call(compactPath,findName,{frage});
     assert.deepEqual(found.structuredContent,{
       totalMatches:0,tools:[],guides:[{guide_url:guide,citation_url:page}],
     },frage);
   }
+  const changed = await call(compactPath,findName,{
+    frage:'Nach fünf Stunden ist mein Strommessgerät von 0,00 kWh auf 0,25 kWh gestiegen. Was kostet das?',
+  });
+  assert.notEqual(changed.structuredContent.tools[0]?.name,unchanged);
   for(const [name,args,key,expected] of [
     [duration,{last_w:0.5,schritt_kwh:0.01,ziel_schritte:3},'dauer_stunden_geplant',60],
     [duration,{last_w:0.5,schritt_kwh:0.01,ziel_schritte:1,mindestlast_w:0.5},'dauer_stunden_geplant',20],
