@@ -1,9 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {generateKeyPairSync,privateDecrypt,createDecipheriv,constants} from 'node:crypto';
-import {mkdtemp,readFile,readdir,rm} from 'node:fs/promises';
+import {mkdir,mkdtemp,readFile,readdir,rm,writeFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
+import {DatabaseSync} from 'node:sqlite';
+import {pathToFileURL} from 'node:url';
+import {AFFILIATE_PATHS_SQL, affiliateReportPages, completeAffiliateWeek} from './affiliate-paths.mjs';
 import {credentials,validatePublicKey,encryptReport,run,collect,dayInZone,exitCode} from './report.mjs';
 
 const pair=generateKeyPairSync('rsa',{modulusLength:2048});
@@ -95,4 +98,108 @@ test('missing setup is a visible preflight block; actual report failures stay st
  assert.equal(exitCode(missing,'preflight'),0);assert.equal(exitCode(missing,'report'),2);
  assert.equal(exitCode({...missing,reason:'invalid_service_account_json'},'preflight'),2);
  assert.equal(exitCode({status:'blocked_or_partial'},'report'),2);
+});
+
+const auditNow = new Date('2026-11-26T16:00:00Z');
+const auditPages = ['/guide/portable.html', '/guide/humidity.html'];
+
+test('affiliate window is seven complete UTC dates and rejects invalid and out-of-range requests', () => {
+  assert.deepEqual(completeAffiliateWeek('2026-11-26', auditNow), {start:'2026-11-19', end_exclusive:'2026-11-26'});
+  for (const date of ['2026-11-31', '2026-11-27', '2026-10-07', '2026-11-26Z', '2026-11-26 OR 1=1', undefined]) {
+    assert.equal(completeAffiliateWeek(date, auditNow), null);
+  }
+});
+
+test('affiliate report only names checked-in German guide and selected root canonicals', async t => {
+  const dir = await mkdtemp(join(tmpdir(),'eco-public-affiliate-pages-'));
+  t.after(() => rm(dir,{recursive:true,force:true}));
+  await mkdir(join(dir,'guide'));
+  const page = (url, attrs = '') => `<html><head><link href="${url}" rel="canonical">${attrs}</head></html>`;
+  await Promise.all([
+    writeFile(join(dir,'index.html'), page('https://getecoback.com/')),
+    writeFile(join(dir,'guide/humidity.html'), page('https://getecoback.com/guide/humidity.html')),
+    writeFile(join(dir,'guide/alias.html'), page('https://getecoback.com/guide/humidity.html')),
+    writeFile(join(dir,'guide/hidden.html'), page('https://getecoback.com/guide/hidden.html', '<meta content="noindex,follow" name="robots">')),
+    writeFile(join(dir,'guide/external.html'), page('https://other.invalid/guide/external.html')),
+  ]);
+  assert.deepEqual(await affiliateReportPages(pathToFileURL(dir + '/')), ['/guide/humidity.html','/']);
+});
+
+test('private affiliate mode runs the fixed SQL once and emits only encrypted aggregates', async t => {
+  const db = new DatabaseSync(':memory:');
+  t.after(() => db.close());
+  db.exec('CREATE TABLE ev (day TEXT, name TEXT, page TEXT, ua_class TEXT, meta TEXT)');
+  const insert = db.prepare('INSERT INTO ev VALUES (?, ?, ?, ?, ?)');
+  const [cool, humidity] = auditPages;
+  const saved = url => JSON.stringify({link_url:url, ref:'private-ref-fixture'});
+  const search = saved('https://www.amazon.de/s?tag=getecoback-21');
+  const product = saved('https://amazon.de/gp/product/B000000000?tag=getecoback-21');
+  const unapproved = saved('https://www.amazon.de/s?k=private-search-fixture');
+  for (const args of [
+    ['2026-11-19','affiliate_click',cool,'human',search],
+    ['2026-11-25','affiliate_click',cool,null,search],
+    ['2026-11-19','affiliate_click',cool,'human',product],
+    ['2026-11-19','affiliate_click',humidity,'human',unapproved],
+    ['2026-11-21','affiliate_click','/private-page-fixture','human',saved('https://amazon.com/dp/B111111111?tag=ecoback0d-20')],
+    ['2026-11-21','affiliate_click',humidity,'human','invalid-json'],
+    ['2026-11-21','affiliate_click',humidity,'human',saved('https://amazon.de.other.invalid/s?tag=getecoback-21')],
+    ['2026-11-21','affiliate_click',humidity,'human',saved('http://amazon.de/s?tag=getecoback-21')],
+    ['2026-11-21','visit',cool,'human',search],
+    ['2026-11-21','affiliate_click','/__ci-check','human',search],
+    ['2026-11-21','affiliate_click',cool,'bot',search],
+    ['2026-11-21','affiliate_click',cool,'other',search],
+    ['2026-11-18','affiliate_click',cool,'human',search],
+    ['2026-11-26','affiliate_click',cool,'human',search],
+  ]) insert.run(...args);
+
+  const dir = await mkdtemp(join(tmpdir(),'eco-affiliate-encrypted-'));
+  t.after(() => rm(dir,{recursive:true,force:true}));
+  const file = join(dir,'report.enc.json');
+  const env = {ECO_REPORT_MODE:'affiliate-paths', ECO_REPORT_PUBLIC_KEY:publicPem, ECO_REPORT_OUTPUT:file,
+    ECO_AFFILIATE_END_EXCLUSIVE:'2026-11-26', CLOUDFLARE_ACCOUNT_ID:'a'.repeat(32), CLOUDFLARE_API_TOKEN:'fixture-secret'};
+  const requests = [];
+  const result = await run(env, {now:auditNow, pagesFor:async()=>auditPages, fetchFn:async (url, options) => {
+    requests.push({url, options});
+    const query = JSON.parse(options.body);
+    const rows = db.prepare(query.sql).all({'?1':query.params[0], '?2':query.params[1], '?3':query.params[2]});
+    return Response.json({success:true, result:[{success:true,results:rows}]});
+  }});
+  assert.deepEqual(result,{status:'received',reportWritten:true,encrypted:true});
+  assert.equal(requests.length,1);
+  const [{url, options}] = requests;
+  assert.equal(url,`https://api.cloudflare.com/client/v4/accounts/${'a'.repeat(32)}/d1/database/75e45e05-44b5-4c56-9a3b-dd504b5c53f1/query`);
+  assert.equal(options.method,'POST');
+  assert.equal(options.redirect,'error');
+  assert.deepEqual(JSON.parse(options.body), {sql:AFFILIATE_PATHS_SQL, params:[JSON.stringify(auditPages),'2026-11-19','2026-11-26']});
+  const ciphertext = await readFile(file,'utf8');
+  const report = open(JSON.parse(ciphertext));
+  assert.equal(report.total_events,8);
+  assert.deepEqual(report.rows,[
+    {page:humidity,market:'amazon_de',destination:'search',approved_tag:false,events:1},
+    {page:humidity,market:'other',destination:'other',approved_tag:false,events:3},
+    {page:cool,market:'amazon_de',destination:'product',approved_tag:true,events:1},
+    {page:cool,market:'amazon_de',destination:'search',approved_tag:true,events:2},
+    {page:'other',market:'amazon_com',destination:'product',approved_tag:true,events:1},
+  ]);
+  for (const value of ['B000000000','B111111111','private-page-fixture','private-search-fixture','private-ref-fixture','fixture-secret']) {
+    assert.ok(!JSON.stringify(report).includes(value));
+    assert.ok(!ciphertext.includes(value));
+  }
+});
+
+test('affiliate access failure and malformed aggregates remain unknown and write no artifact', async t => {
+  const dir = await mkdtemp(join(tmpdir(),'eco-affiliate-blocked-'));
+  t.after(() => rm(dir,{recursive:true,force:true}));
+  const env = {ECO_REPORT_MODE:'affiliate-paths', ECO_REPORT_PUBLIC_KEY:publicPem, ECO_REPORT_OUTPUT:join(dir,'report.enc.json'),
+    ECO_AFFILIATE_END_EXCLUSIVE:'2026-11-26', CLOUDFLARE_ACCOUNT_ID:'b'.repeat(32), CLOUDFLARE_API_TOKEN:'fixture-secret'};
+  const options = {now:auditNow, pagesFor:async()=>auditPages};
+  const denied = await run(env,{...options,fetchFn:async()=>new Response('private provider detail',{status:403})});
+  assert.deepEqual(denied,{status:'blocked',reason:'d1_affiliate_http_403',reportWritten:false});
+  const malformed = await run(env,{...options,fetchFn:async()=>Response.json({success:true,result:[{success:true,results:[{
+    page:'/private',market:'amazon_de',destination:'search',approved_tag:1,events:1,
+  }]}]})});
+  assert.deepEqual(malformed,{status:'blocked',reason:'d1_affiliate_invalid_aggregate',reportWritten:false});
+  const missing = await run({...env,CLOUDFLARE_API_TOKEN:''},{...options,fetchFn:async()=>assert.fail('unexpected request')});
+  assert.equal(missing.reason,'missing_or_invalid_d1_access');
+  assert.deepEqual(await readdir(dir),[]);
 });
