@@ -24,6 +24,8 @@ Für das komplette Originalgerät in Deutschland muss im Angebot die EAN **40481
 
 Gleiche Fensterfalz, Standort des Außengeräts und Halterung mit der Anleitung ab. [Fensterfalz messen](https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html#fensterfalz). Fehlen EAN, Lieferumfang oder Eignung der Befestigung, kläre sie vor der Bestellung.
 
+Willst du das Original auch zum Heizen nutzen? Prüfe, [wie die automatische Abtauphase abläuft und wann du den Kundendienst brauchst](https://getecoback.com/guide/klimaanlage-mit-heizfunktion.html#portasplit-abtauen).
+
 [Midea Deutschland vergleicht die drei Geräte und verlinkt den Amazon-Artikel des Originals](https://www.midea.com/de/klimatisieren-heizen/portasplit). [Midea zur Universalhalterung](https://www.midea.com/content/dam/midea-aem/de/klimatisieren-heizen/portasplit/universalhalterung/PortaSplit-UM-universal-bracket.pdf). Quellen geprüft am 25. November 2026.
 
 Anzeige: Originale Midea PortaSplit auf Amazon.de prüfen

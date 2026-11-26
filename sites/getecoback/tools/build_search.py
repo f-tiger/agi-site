@@ -197,6 +197,13 @@ def collect():
     raise ValueError(f'Missing or hidden Comfee offer: {route}#{anchor}')
    entry['model_sections']=[{'id':anchor,'title':'Comfee MPPH-09CRN7 vor dem Kauf abgleichen',
     'description':'MPPH-09CRN7 mit EAN 4048164103065 und Artikelnummer 10000656. Prüfe Abluftweg und optionales Fensterkit vor der Bestellung.'}]
+  if lang=='de' and route=='/guide/klimaanlage-mit-heizfunktion.html':
+   anchor='portasplit-abtauen'
+   targets=re.findall(r'<h3\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)
+   if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
+    raise ValueError(f'Missing or hidden PortaSplit defrost evidence: {route}#{anchor}')
+   entry['model_sections']=[{'id':anchor,'title':'Midea PortaSplit beim Heizen: Außengerät vereist',
+    'description':'Bei der Midea PortaSplit mit Heizfunktion startet die Abtauphase bei erkanntem Frost am Außengerät. Sie dauert typischerweise 5 bis 15 Minuten. Prüfe, ob der Heizbetrieb danach wieder einsetzt.'}]
   if lang=='de' and route=='/guide/pinguino-pac-ex105-test.html':
    entry['model_sections']=[
     {'id':'ex105-angebot','title':'Deutsches Angebot für den PAC EX105 prüfen',

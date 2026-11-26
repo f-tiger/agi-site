@@ -1291,3 +1291,9 @@ test('German MPPH-09CRN7 buyers reach the exact window and model checks',()=>{
  for(const q of ["Welche EAN hat das Comfee MPPH-09CRN7?", "Kann ich das Comfee MPPH-09CRN7 für mein Kippfenster kaufen?", "Welches Gerät hat die EAN 4048164103065?"]) assert.equal(searchEntries(index,q,'de')[0]?.entry.u,target,q);
  for(const q of ["Welches Fensterkit passt zum Comfee MPPHA-09CRN7?", "Welche EAN hat das Comfee MPPH-08CRN7?", "Welche EAN hat der Comfee MDDF-20DEN7?", "Comfee MPPH-09CRN7 oder PAC EX105 kaufen?", "Wie soll ich 4048164103065 im Winter lagern?"]) assert.notEqual(searchEntries(index,q,'de')[0]?.entry.u,target,q);
 });
+
+test('German PortaSplit defrost searches reach the operating guide without redirecting other models and tasks',()=>{
+ const target='/guide/klimaanlage-mit-heizfunktion.html#portasplit-abtauen';
+ for(const q of ["Midea PortaSplit Heizmodus: Außengerät vereist bei null Grad, ist der Abtauzyklus normal?", "Meine Porta Split ist beim Heizen außen gefroren. Ist das normal?", "PortaSplit beim Heizen: Wie lange dauert das Abtauen?", "4048164116478: Außeneinheit vereist, wie lange dauert Defrost?", "Midea PortaSplit: Außengerät vereist, das Innengerät bläst langsamer, ist das normal beim Heizen?"]) assert.equal(searchEntries(index,q,'de')[0]?.entry.u,target,q);
+ for(const q of ["Wie messe ich den Fensterfalz für meine Midea PortaSplit?", "PortaSplit Cool Außengerät vereist. Wie lange dauert das Abtauen?", "PortaSplit-E ist beim Heizen vereist.", "PortaSplit: Innengerät friert im Kühlbetrieb ein.", "Wie mache ich meine mobile Klimaanlage winterfest?", "Wie viel kostet das Heizen mit einer Klimaanlage im Vergleich zu Gas?"]) assert.notEqual(searchEntries(index,q,'de')[0]?.entry.u,target,q);
+});

@@ -956,3 +956,15 @@ test('German MPPH-09CRN7 offer evidence is readable in the full and compact prof
  for(const phrase of ["4048164103065", "10000656", "MPPHA-09CRN7", "30 cm", "67,5 bis 123 cm", "verschiebe den Kauf", "https://www.feelcomfee.com/content/dam/comfee-aem/de/produkte/klimatisieren-heizen/mpph-09crn7/comfee-MPPH-09CRN7-Datenblatt.pdf#page=2", "https://www.feelcomfee.com/content/dam/comfee-aem/de/produkte/klimatisieren-heizen/mpph-09crn7/comfee-MPPH-09CRN7-User-Manual-DE-FR-EN-ES-IT-NL.pdf#page=19"]) assert(textOf(full).includes(phrase),phrase);
  assert(!textOf(full).includes('https://www.amazon.de/'));
 });
+
+test('German PortaSplit defrost answers preserve the model, typical timing and stop conditions in both profiles',async()=>{
+ const {env}=assetEnv();
+ const pfad='https://getecoback.com/guide/klimaanlage-mit-heizfunktion.html#portasplit-abtauen';
+ const found=await call('ratgeber_suche',{frage:"Midea PortaSplit Heizmodus: Außengerät vereist bei null Grad, ist der Abtauzyklus normal?",sprache:'de',max:1},env);
+ assert(textOf(found).includes('Abschnitt: '+pfad));
+ const full=await call('ratgeber_lesen',{pfad},env);
+ assert.equal(full.isError,false);
+ assert.deepEqual(await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad}},env,true),full);
+ for(const phrase of ["etwa 5 bis 15 Minuten", "Innengerät langsamer weiter", "setzt die Heizung automatisch wieder ein", "Dauer des Abtauens", "Eis abzukratzen", "keinen Ersatzkauf", "https://www.midea.com/content/dam/midea-aem/de/klimatisieren-heizen/portasplit/PortaSplit-Gebrauchsanweisung-DE.pdf#page=33", "https://www.midea.com/de/klimatisieren-heizen/portasplit"]) assert(textOf(full).includes(phrase),phrase);
+ assert(!textOf(full).includes('https://www.amazon.de/'));
+});
