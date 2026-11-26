@@ -51,6 +51,19 @@ const ventilation = {
   id:'lueften-vorher-nachher',
   tool:'lueften_messwirkung',
 };
+export const ventilationRebound = {...ventilation,tool:'ratgeber_suche'};
+
+function asksWhyIndoorMoistureReturns(query) {
+  const humidity = /\b(?:(?:luft|raum)feucht(?:e|igkeit)|feuchtigkeit)\b/;
+  const despiteAiring = /\btrotz\s+(?:regelmaessig(?:em|en)\s+)?(?:stoss[ -]?|quer[ -]?)?lueften\b/;
+  const afterAiring = /\bnach\s+(?:dem\s+)?(?:stoss[ -]?|quer[ -]?)?lueften\b/;
+  const risesAgain = /\bwieder\s+(?:an(?:steig|gestieg)\w*|hoch|hoeher|feuchter|steig\w*)\b|\b(?:steig\w*|geht|klettert)\b[^.?!]{0,85}\bwieder\b/;
+  const otherTask = /\b(?:keller\w*|souterrain|draussen|aussen(?:luft|temperatur|feuchte)|wohnmobil\w*|pkw|auto|granulat\w*|ablauf\w*|taupunkt|oberflaechen\w*)\b/;
+  const visibleDamage = /\b(?:leck(?:age)?|wasserschaden|nass\w*\s+wand|schimmel\s+an\s+der\s+wand)\b/;
+  return humidity.test(query) && !otherTask.test(query) && !visibleDamage.test(query) &&
+    (despiteAiring.test(query) || (afterAiring.test(query) && risesAgain.test(query)));
+}
+
 const glazing = {
   path:'/guide/fenster-beschlagen-aussen.html',
   id:'aussen-innen-oder-dazwischen',
@@ -641,6 +654,8 @@ export function exactGermanHouseholdTask(query) {
   const checksRoomMoisture = moisture.test(query) || (roomMentioned && /\b(?:feuchter|trockener)\b/.test(query));
   if (airing.test(query) && checksRoomMoisture && (paired.test(query) || effect.test(query)) &&
       !/\bkeller\w*\b/.test(query) && (!outdoors.test(query) || roomMentioned)) return ventilation;
+
+  if (asksWhyIndoorMoistureReturns(query)) return ventilationRebound;
 
   const betweenPanes = /\bscheibenzwischenraum\b|\bzwischen\s+(?:(?:den|beiden|zwei|drei)\s+){0,3}(?:fenster|glas)?scheiben\b/;
   const glassMoisture = /\b(?:beschla(?:g|eg)\w*|kondens\w*|feucht\w*|wasser\w*|tropfen\w*|blind\w*|milchig\w*|trueb\w*|schleier\w*)\b/;

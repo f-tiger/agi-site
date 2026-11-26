@@ -1665,3 +1665,29 @@ test('German sweating and wet morning window questions find the guide without st
   const [first]=(await catalogue({q:query,view:'compact',limit:1})).tools;
   assert.equal(first?.name,'fenster_oberflaeche_taucheck',query);
 });
+
+test('persistent German indoor humidity finds reading advice and retains explicit calculations', async () => {
+  const target='/guide/richtig-lueften-im-winter.html#lueften-vorher-nachher';
+  for(const query of [
+    'Luftfeuchtigkeit trotz Lüften immer durchschnittlich um die 65% - was tun?',
+    'Die Luftfeuchtigkeit steigt nach dem Stoßlüften wieder. Was soll ich messen?',
+    'Im Schlafzimmer ist die Luftfeuchte trotz regelmäßigem Querlüften weiter hoch.',
+  ]) {
+    const [first]=(await catalogue({q:query,view:'compact',limit:1})).tools;
+    assert.equal(first?.name,'ratgeber_suche',query);
+    assert.equal(toolGuidePath(first),target,query);
+  }
+  for(const query of [
+    'Wie lüfte ich bei hoher Luftfeuchtigkeit draußen?',
+    'Im Keller steigt die Luftfeuchtigkeit nach dem Lüften wieder.',
+    'Trotz Stoßlüften bleibt die feuchte Wand nass. Schimmel an der Wand?',
+    'Morgens sind meine Fenster innen komplett nass.',
+  ]) {
+    const [first]=(await catalogue({q:query,view:'compact',limit:1})).tools;
+    assert(!(first?.name==='ratgeber_suche'&&toolGuidePath(first)===target),query);
+  }
+  const q='Luftfeuchtigkeit vor und nach dem Stoßlüften vergleichen';
+  const [measured]=(await catalogue({q,view:'compact',limit:1})).tools;
+  assert.equal(measured?.name,'lueften_messwirkung');
+  assert.equal(toolGuidePath(measured),target);
+});
