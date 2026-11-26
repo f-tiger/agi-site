@@ -17,7 +17,7 @@ import {memberRoute,memberPage,secureMemberPage} from '../../../tools/member-stu
 import {videoGrowth} from './video-growth.mjs';
 import {videoEntry} from './video-entry.mjs';
 import {affiliateMetrics} from './affiliate-metrics.mjs';
-import {affiliateAudit} from './affiliate-audit.mjs';
+import {affiliateAudit,THERMOSTAT_PAGE,THERMOSTAT_PACKAGE_EVENTS} from './affiliate-audit.mjs';
 import {
   affiliateMeta, CELLAR_PAGE, taggedCellarModelEntry, taggedDrainEntry, taggedN90ModelEntry,
   taggedPortaSplitEntry, taggedWindowEntry, taggedWindowTikTokEntry, WINDOW_TIKTOK_WIDTH_EVENT,
@@ -432,6 +432,7 @@ const EV_NAMES = new Set([
   ...BUYER_EVENTS,
   "eco_moisture_example", "eco_moisture_check", "eco_moisture_save", "eco_moisture_export",
   ...LAUNDRY_EVENTS,
+  ...Object.keys(THERMOSTAT_PACKAGE_EVENTS),
   "crawl",
   "tool_complete", // Local category tools; path and empty-metadata gate below.
   "eco_window_width_check",
@@ -853,6 +854,19 @@ async function handleEvent(request, env, ctx) {
     if(!validLaundryEvent(body))return json({ok:false,error:'invalid_laundry_event'},400,cors);
     if(request.headers.get('dnt')==='1'||request.headers.get('sec-gpc')==='1'||request.headers.get('x-probe')==='1'||evUaClass(request.headers.get('user-agent')||'')!=='human')return json({ok:true,skipped:true},200,cors);
   }
+  const thermostatPackage = Object.hasOwn(THERMOSTAT_PACKAGE_EVENTS,name);
+  if (thermostatPackage) {
+    const url = new URL(request.url);
+    if (body.p !== THERMOSTAT_PAGE || Object.keys(body).sort().join(',') !== 'n,p' ||
+        request.headers.get('origin') !== url.origin) {
+      return json({ok:false,error:'invalid_thermostat_package_event'},400,cors);
+    }
+    if (request.headers.get('dnt') === '1' || request.headers.get('sec-gpc') === '1' ||
+        request.headers.get('x-probe') === '1' || url.searchParams.has('__probe') ||
+        evUaClass(request.headers.get('user-agent') || '') !== 'human') {
+      return json({ok:true,skipped:true},200,cors);
+    }
+  }
   const page = String(body.p || "").slice(0, 200);
   // Referrer reduced to its host — enough to tell Google from ChatGPT, not
   // enough to reconstruct anyone's browsing.
@@ -907,7 +921,7 @@ async function handleEvent(request, env, ctx) {
   if (windowTikTokEntry && name !== 'affiliate_click') metadata = {window_tiktok_entry:1};
   const meta = name === 'affiliate_click' ? affiliateMeta(metadata, drainEntry, windowEntry, portasplitEntry, cellarModelEntry, n90Entry, windowTikTokEntry, vacuumModel)
     : metadata ? JSON.stringify(metadata).slice(0, 200) : "";
-  const country = meterEvent || windowTikTokWidth || LAUNDRY_SEASON_EVENTS.includes(name) ? "" : request.headers.get("CF-IPCountry") || "";
+  const country = meterEvent || windowTikTokWidth || thermostatPackage || LAUNDRY_SEASON_EVENTS.includes(name) ? "" : request.headers.get("CF-IPCountry") || "";
   const day = new Date().toISOString().slice(0, 10);
 
   if (name === "page_view") auditUa(env, ctx, evUa, evCls);

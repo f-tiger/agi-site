@@ -5,10 +5,16 @@ const {chromium}=requireTools('playwright');
 const root=path.resolve(__dirname,'../site'),origin='https://getecoback.com',routePath='/guide/smarte-heizkoerperthermostate-lohnen-sich.html';
 (async()=>{
  const browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH,args:['--no-sandbox']}: {})});let checks=0;
- const context=async options=>{
+ const context=async (options,onPackageRequest)=>{
   const ctx=await browser.newContext(options);
   await ctx.route('**/*',route=>{
    const u=new URL(route.request().url());
+   if(onPackageRequest&&u.origin===origin&&u.pathname==='/api/ev'){
+    const raw=route.request().postData();
+    if(raw&&raw.includes('eco_thermostat_package_')){
+     onPackageRequest({method:route.request().method(),url:u.href,body:JSON.parse(raw)});
+    }
+   }
    if(u.origin!==origin||u.pathname.startsWith('/api/'))return route.fulfill({status:204});
    const file=path.join(root,u.pathname+(u.pathname.endsWith('/')?'index.html':''));
    const mime={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json'};
@@ -20,7 +26,66 @@ const root=path.resolve(__dirname,'../site'),origin='https://getecoback.com',rou
    Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async text=>{if(window.copyFail)throw Error('denied');window.copied.push(text);}}});
   });return ctx;
  };
+ async function checkPackageEvents(){
+  const received=[];
+  const viewport={width:390,height:844};
+  const packages=[
+   ['bosch-ii-m-danfoss-adapter','thermostat-bosch-ii-m','eco_thermostat_package_bosch'],
+   ['fritz-302-danfoss-adapter','thermostat-fritz-302','eco_thermostat_package_fritz'],
+  ];
+  const link=(page,[source,target])=>page.locator('#'+source+' a[href="#'+target+'"]');
+  const human=await context({viewport},request=>received.push(request));
+  await human.addInitScript(()=>Object.defineProperty(navigator,'webdriver',{get:()=>false}));
+  const base=origin+routePath;
+  const ready=async(page,url)=>{
+   await page.goto(url);
+   await page.locator('[data-valve-check][data-ready=true]').waitFor();
+  };
+  const page=await human.newPage();
+  await ready(page,base+'#thermostat-bosch-ii-m');
+  await link(page,packages[0]).evaluate(anchor=>anchor.click());
+  await page.waitForLoadState('networkidle');
+  assert.deepEqual(received,[],'A shared fragment and a scripted click produce no package action');
+  for(const item of packages){
+   const [,target,name]=item;
+   const captured=page.waitForRequest(request=>
+    request.url()===origin+'/api/ev'&&(request.postData()||'').includes(name),{timeout:5000});
+   if(item===packages[0])await link(page,item).press('Enter');
+   else await link(page,item).click();
+   await captured;
+   await page.waitForURL(base+'#'+target);
+   await link(page,item).press('Enter');
+  }
+  await page.waitForLoadState('networkidle');
+  assert.deepEqual(received,packages.map(([, ,name])=>({
+   method:'POST',url:origin+'/api/ev',body:{n:name,p:routePath},
+  })),'Two trusted package handoffs carry only fixed fields and deduplicate per document');
+  checks+=2;
+  await page.close();
+  for(const mode of ['dnt','gpc','opt-out','probe','automation']){
+   const automated=mode==='automation';
+   const ctx=automated?await context({viewport},request=>received.push(request)):human;
+   const quiet=await ctx.newPage();
+   await quiet.addInitScript(mode=>{
+    if(mode==='dnt')Object.defineProperty(navigator,'doNotTrack',{get:()=>'1'});
+    if(mode==='gpc')Object.defineProperty(navigator,'globalPrivacyControl',{get:()=>true});
+    if(mode==='opt-out')localStorage.setItem('fleet_ga4_choice_v1','denied');
+    else localStorage.removeItem('fleet_ga4_choice_v1');
+   },mode);
+   const url=base+(mode==='probe'?'?__probe=1':'');
+   await ready(quiet,url+'#'+packages[0][0]);
+   await link(quiet,packages[0]).press('Enter');
+   await quiet.waitForURL(url+'#'+packages[0][1]);
+   await quiet.waitForLoadState('networkidle');
+   assert.equal(received.length,2,mode+' must suppress package events while navigation works');
+   checks++;
+   await quiet.close();
+   if(automated)await ctx.close();
+  }
+  await human.close();
+ }
  try{
+  await checkPackageEvents();
   const ctx=await context({viewport:{width:390,height:844}}),page=await ctx.newPage(),errors=[];
   page.on('pageerror',e=>errors.push(e.message));
   await page.goto(origin+routePath+'#danfoss-altventil');await page.locator('[data-valve-check][data-ready=true]').waitFor();
