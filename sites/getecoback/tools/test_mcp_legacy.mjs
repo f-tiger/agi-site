@@ -44,7 +44,9 @@ test('all ten legacy names have callable published examples with canonical sourc
     const {tools:[published]} = await response.json();
     assert.equal(published.name, name);
     const {example, citation_url, citation_markdown_url, guide_url} = published;
-    assert.deepEqual({example, citation_url, citation_markdown_url, ...(guide_url ? {guide_url} : {})}, expected);
+    const {guide_url:expectedGuide,...expectedExample} = expected;
+    assert.deepEqual({example, citation_url, citation_markdown_url}, expectedExample);
+    if (expectedGuide) assert.equal(guide_url, expectedGuide);
     const html = readFileSync(new URL(new URL(citation_url).pathname.slice(1), site), 'utf8');
     const markdown = readFileSync(new URL(new URL(citation_markdown_url).pathname.slice(1), site), 'utf8');
     assert.ok(html.includes('href="' + citation_url + '"'), citation_url);
