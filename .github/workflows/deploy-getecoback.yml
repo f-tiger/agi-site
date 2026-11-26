@@ -719,7 +719,13 @@ jobs:
           check "https://getecoback.com/sitemap.xml" "<urlset"
           check "https://getecoback.com/feed.xml" "<rss"
           check "https://getecoback.com/en/feed.xml" "<language>en</language>"
-          check "https://getecoback.com/guide/dachgeschoss-kuehlen.html" "tag=getecoback-21"
+          check "https://getecoback.com/guide/dachgeschoss-kuehlen.html?__probe=1" 'id="dachgeschoss-ohne-durchzug"'
+          attic=$(curl -fsSL --max-time 20 -A "getecoback-ci" "https://getecoback.com/guide/dachgeschoss-kuehlen.html?__probe=1")
+          if echo "$attic" | grep -qE '<a[^>]*href="https?://[^"]*amazon\.'; then
+            echo "::error::Dachgeschoss guide links directly to an Amazon merchant before the purchase decision"
+            fail=1
+          fi
+          check "https://getecoback.com/guide/midea-portasplit-kaufen.html?__probe=1" 'https://www.amazon.de/dp/B0D3PP64JS?tag=getecoback-21'
           check "https://getecoback.com/impressum.html" "Impressum"
           check "https://getecoback.com/datenschutz.html" "DSGVO"
           check "https://getecoback.com/en/" "tag=getecoback-21"
