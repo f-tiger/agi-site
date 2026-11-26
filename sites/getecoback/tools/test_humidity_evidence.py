@@ -15,6 +15,10 @@ PAGES = (COST, WINTER)
 UBA = 'https://www.umweltbundesamt.de/service/uba-fragen/was-tun-bei-schimmel-in-meiner-wohnung'
 VZ = 'https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426'
 MANUAL_ROOT = 'https://www.feelcomfee.com/content/dam/comfee-aem/global/products/heating-cooling/'
+COMFEE_DE = 'https://www.feelcomfee.com/content/dam/comfee-aem/de/'
+STORAGE_MANUAL = (COMFEE_DE + 'produkte/klimatisieren-heizen/mpph-09crn7/'
+                  'comfee-MPPH-09CRN7-User-Manual-DE-FR-EN-ES-IT-NL.pdf#page=30')
+STORAGE_CATALOG = COMFEE_DE + 'katalog/comfee_klimakatalog_2022_din_a4_lores.pdf#page=11'
 
 
 def read(name):
@@ -156,7 +160,11 @@ class HumidityEvidence(unittest.TestCase):
         winter = authored(read(WINTER))
         for url in [UBA, VZ, MANUAL_ROOT + 'dehumidifier-mddf-20den7/DF-Owners-Manual.pdf']:
             self.assertIn('href="' + url, cost)
-        self.assertIn('href="' + MANUAL_ROOT + 'mobile-air-conditioner-mpph-09crn7/PH-Owners-Manual.pdf#page=20"', winter)
+        for url in [STORAGE_MANUAL, STORAGE_CATALOG]:
+            self.assertIn('href="' + url + '"', winter)
+        self.assertIn('10000656', winter)
+        self.assertIn('4048164103065', winter)
+        self.assertIn('Batterien aus der Fernbedienung nehmen', winter)
         self.assertIn('Ein Messwert in der Raummitte ist keine Schimmelgarantie', cost)
         self.assertIn('Leck oder Wassereintritt zuerst beheben', cost)
         self.assertIn('Nur ausdrücklich waschbare Filter nass reinigen', winter)
@@ -173,8 +181,9 @@ class HumidityEvidence(unittest.TestCase):
                 self.assertEqual(og, desc)
                 self.assertLessEqual(len(desc), 155)
                 self.assertGreaterEqual(len(desc), 120)
-                self.assertEqual(article['dateModified'], '2026-11-06')
-                self.assertIn('inhaltlich geprüft am 6. November 2026', authored(source))
+                day = 26 if name == WINTER else 6
+                self.assertEqual(article['dateModified'], f'2026-11-{day:02d}')
+                self.assertIn(f'inhaltlich geprüft am {day}. November 2026', authored(source))
                 self.assertIn('EcoBack', authored(source))
 
     def test_existing_tools_and_storage_humidity_bridge_remain_reachable(self):

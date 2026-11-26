@@ -20,11 +20,17 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unte
 
 - **Filter und zugängliche Teile reinigen:** Erst vorhandene Filter prüfen. Nur ausdrücklich waschbare Filter nass reinigen; andere Filter nach ihrer Anleitung behandeln. Alles vollständig trocknen lassen. Ein universeller Ersatzfilter oder Reinigungsschaum ist ohne Freigabe für Gerät und Material keine Standardlösung. Weitere Schritte: [Klimaanlage reinigen](https://getecoback.com/guide/klimaanlage-reinigen.html).
 
-- **Nach Modellvorgabe trocknen:** Falls vorgesehen, den Trocknungs- oder Ventilatormodus mit korrekt eingesetzten Teilen verwenden. **Eine pauschale Dauer von 1–2 Stunden ist nicht belegt.** Als konkretes Gegenbeispiel nennt die [offizielle Anleitung zum Comfee MPPH-09CRN7](https://www.feelcomfee.com/content/dam/comfee-aem/global/products/heating-cooling/mobile-air-conditioner-mpph-09crn7/PH-Owners-Manual.pdf#page=20) auf S. 20 zwölf Stunden im FAN-Modus in einem warmen Raum. Diese Vorgabe gilt nicht automatisch für andere Modelle. Nach dem Vorgang ausschalten und den Stecker ziehen.
+- **Nach Modellvorgabe trocknen:** Falls vorgesehen, den Trocknungs- oder Ventilatormodus mit korrekt eingesetzten Teilen verwenden. Danach ausschalten und den Stecker ziehen. Die Reihenfolge und Laufzeit stehen in der Anleitung des Geräts.
 
 - **Zubehör aufbewahren:** Abnehmbare Schläuche, Adapter und Dichtungen nach Anleitung lösen, trocken und ohne Beschädigung verstauen. Kleinteile zusammen mit der Anleitung aufbewahren, damit sie zur nächsten Saison vollständig sind.
 
 - **Gerät trocken einlagern:** Lagerposition und Raumvorgaben aus der Anleitung einhalten. Falls eine Staubabdeckung gewünscht und zulässig ist, genügt gegebenenfalls ein vorhandenes sauberes, trockenes Tuch. Ein noch feuchtes Gerät nicht verpacken; eine Haube ersetzt die Trocknung nicht.
+
+### Beispiel: Comfee MPPH-09CRN7 in Deutschland
+
+Gleiche das Typenschild ab. Der [deutsche Comfee-Katalog](https://www.feelcomfee.com/content/dam/comfee-aem/de/katalog/comfee_klimakatalog_2022_din_a4_lores.pdf#page=11) führt MPPH-09CRN7 mit Artikelnummer **10000656** und EAN **4048164103065**. Beim MPPH-07CRN7 und MPPH-08CRN7 stehen andere Artikelnummern.
+
+Für MPPH-09CRN7 nennt die [deutsche Anleitung unter „Verstauen Sie das Gerät bei Nichtgebrauch“](https://www.feelcomfee.com/content/dam/comfee-aem/de/produkte/klimatisieren-heizen/mpph-09crn7/comfee-MPPH-09CRN7-User-Manual-DE-FR-EN-ES-IT-NL.pdf#page=30) diese Reihenfolge: Auffangwanne nach Anleitung entleeren, das Gerät zwölf Stunden im FAN-Modus in einem warmen Raum laufen lassen, dann ausschalten und den Stecker ziehen. Filter reinigen und sauber und trocken wieder einsetzen, Batterien aus der Fernbedienung nehmen und das Gerät kühl und dunkel lagern. Diese Vorgabe gilt nicht automatisch für andere Modelle.
 
 ## Staubschutz: Brauchst du überhaupt eine neue Haube?
 
@@ -36,7 +42,7 @@ Nur wenn ein passender Staubschutz fehlt, kannst du eine Abdeckhaube für Klimag
 
 Wähle einen trockenen, geschützten Innenraum innerhalb der vom Hersteller erlaubten Lagerbedingungen. Ein feuchter Keller ist kein guter Platz, nur weil dort noch Raum frei ist. Die Raumtemperatur und ihre Schwankungen mitprüfen; eine allgemeine Idealspanne von 5–25 °C lässt sich nicht auf alle Geräte übertragen.
 
-Die Comfee-Anleitung nennt für das Beispielgerät einen kühlen, dunklen Lagerort. Weitere Vorgaben können Mindestfläche, Belüftung und den Abstand zu Zündquellen betreffen, besonders bei brennbarem Kältemittel. Deshalb nicht pauschal einen engen Schrank oder den Platz unter dem Bett empfehlen. Maßgeblich sind Anleitung und Kennzeichnung des eigenen Geräts.
+Weitere Vorgaben können Mindestfläche, Belüftung und den Abstand zu Zündquellen betreffen, besonders bei brennbarem Kältemittel. Deshalb nicht pauschal einen engen Schrank oder den Platz unter dem Bett empfehlen. Maßgeblich sind Anleitung und Kennzeichnung des eigenen Geräts.
 
 **Position und Ruhezeit sind modellabhängig:** Gerät so lagern und transportieren, wie es der Hersteller vorsieht. Wurde es abweichend gekippt oder hingelegt, vor dem nächsten Start die Transporthinweise prüfen oder beim Hersteller nachfragen. Eine pauschale Wartezeit von 24 Stunden ist keine für jedes Modell belegte Vorgabe.
 
@@ -56,7 +62,7 @@ Bei sichtbarem Schimmel, beschädigten elektrischen Teilen oder anhaltendem unge
 
 ## Quelle und Modellgrenzen
 
-**Redaktion: EcoBack · inhaltlich geprüft am 6. November 2026.** Kein eigener Geräte- oder Zubehörtest. Das konkrete Zeitbeispiel stammt aus der [offiziellen Comfee-Anleitung für MPPH-09CRN7 (PDF, Englisch)](https://www.feelcomfee.com/content/dam/comfee-aem/global/products/heating-cooling/mobile-air-conditioner-mpph-09crn7/PH-Owners-Manual.pdf), S. 20, Abschnitt „Store the unit when not in use“. Sicherheits- und Raumvorgaben stehen ab S. 2. Die Anleitung wird als Modellbeispiel genannt; für dein Gerät gilt dessen eigene aktuelle Anleitung.
+**Redaktion: EcoBack · inhaltlich geprüft am 26. November 2026.** Kein eigener Geräte- oder Zubehörtest. Die Modellangaben oben stammen aus dem deutschen Comfee-Katalog. Die Lagervorgaben stehen in der deutschen Anleitung auf der gedruckten Seite 29 (PDF-Seite 30). Prüfe für dein Gerät auch die Sicherheits- und Raumvorgaben seiner Anleitung.
 
 ## Häufige Fragen
 

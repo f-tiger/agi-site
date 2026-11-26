@@ -4,6 +4,7 @@ const number = (description, minimum, maximum) => ({type:'number', minimum, maxi
 const flag = description => ({type:'boolean', description});
 const choice = (description, ...values) => ({type:'string', enum:values, description});
 const guide = slug => '/guide/' + slug + '.html';
+const portableCoolingStorage = guide('mobile-klimaanlage-ueberwintern');
 const rounded = (value, digits = 2) => Number(value.toFixed(digits));
 
 export const coolingSuite = [
@@ -299,8 +300,9 @@ export const coolingSuite = [
   },
   {
     name:'mobile_klima_einlagern_check',
-    description:'Vor der Winterpause offene Schritte für eine mobile Klimaanlage erkennen — Check portable AC storage readiness against its own manual.',
-    page:guide('mobile-klimaanlage-ueberwintern'),
+    description:'Mobile Klimaanlage winterfest machen: Kondenswasser, Trocknung und Lagerort nach der Anleitung abhaken — Check portable AC storage readiness against its own manual.',
+    page:portableCoolingStorage,
+    guide_url:'https://getecoback.com' + portableCoolingStorage + '#schritt-fuer-schritt-so-machst-du-das-geraet-winterfest',
     properties:{
       anleitung:flag('Anleitung für das genaue Modell liegt vor?'), wasser:flag('Kondensat ist nach Herstellerangaben entfernt?'),
       trocken:flag('Filter und Gerät sind gemäß Anleitung trocken?'),
@@ -309,9 +311,15 @@ export const coolingSuite = [
     calculate({anleitung,wasser,trocken,lager}) {
       const checks = {anleitung,wasser,trocken,lager};
       const open = Object.entries(checks).filter(([,done])=>!done).map(([key])=>key);
+      const next = {
+        anleitung:'Typenschild ablesen und die Anleitung für das genaue Modell bereitlegen.',
+        wasser:'Kondensat an den vorgesehenen Ablässen und in der Reihenfolge der Anleitung entfernen.',
+        trocken:'Filter und Gerät nur nach den Trocknungsvorgaben der eigenen Anleitung vorbereiten.',
+        lager:'Belüftung, Temperatur, Stellfläche und Position am geplanten Lagerort mit der Anleitung abgleichen.',
+      };
       return {
         bereit_zur_einlagerung:open.length===0, offene_pruefungen:open,
-        hinweis:'Trocknungs-, Transport- und Wiederinbetriebnahmevorgaben gelten pro Modell. Zubehör trocken lagern; vorhandene Teile können weiterverwendet werden.'
+        hinweis:next[open[0]] ?? 'Vorhandenes, geeignetes Zubehör trocken verstauen. Zusätzlichen Staubschutz nur erwägen, wenn passender Schutz fehlt und die Anleitung ihn zulässt.',
       };
     },
     example:{args:{anleitung:true,wasser:true,trocken:false,lager:true},expect:{bereit_zur_einlagerung:false,offene_pruefungen:['trocken']}}

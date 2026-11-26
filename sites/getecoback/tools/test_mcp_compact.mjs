@@ -95,6 +95,45 @@ test('hosted compact returns reviewed guide sections without presenting them as 
   assert.deepEqual(writes,[]);
 });
 
+test('portable AC storage lookup opens the checklist and returns the first unconfirmed step', async () => {
+  const {call,writes} = fixture();
+  const name = 'mobile_klima_einlagern_check';
+  const guide = origin + '/guide/mobile-klimaanlage-ueberwintern.html';
+  for (const frage of [
+    'Comfee MPPH-09CRN7 für den Winter einlagern',
+    'Klimagerät einmotten: Wassertank leeren und im Keller lagern?',
+  ]) {
+    const found = await call(compactPath,findName,{frage});
+    const first = found.structuredContent.tools[0];
+    assert.equal(first?.name,name,frage);
+    assert.equal(first.citation_url,guide);
+    assert.equal(first.guide_url,guide+'#schritt-fuer-schritt-so-machst-du-das-geraet-winterfest');
+  }
+  for (const frage of [
+    'Wie mache ich die Klimaanlage im Pkw winterfest?',
+    'Wie mache ich meine fest installierte Klimaanlage winterfest?',
+    'Wasser läuft im Kühlbetrieb aus der Klimaanlage, nicht erst vor der Winterpause.',
+  ]) {
+    const found = await call(compactPath,findName,{frage});
+    assert.notEqual(found.structuredContent.tools[0]?.name,name,frage);
+  }
+  const confirmed = {anleitung:true,wasser:true,trocken:true,lager:true};
+  for (const [open,next] of [
+    [['anleitung','wasser'],/Typenschild/], [['wasser'],/Ablässen/],
+    [['trocken'],/Trocknungsvorgaben/], [['lager'],/Stellfläche/], [[],/Staubschutz nur erwägen/],
+  ]) {
+    const args = {...confirmed};
+    for (const step of open) args[step]=false;
+    const result = await call(compactPath,runName,{name,eingaben:args});
+    assert.equal(result.isError,false);
+    assert.deepEqual(result,await call(fullPath,name,args));
+    assert.deepEqual(result.structuredContent.offene_pruefungen,open);
+    assert.equal(result.structuredContent.bereit_zur_einlagerung,!open.length);
+    assert.match(result.structuredContent.hinweis,next);
+  }
+  assert.deepEqual(writes,[]);
+});
+
 test('empty tank discovery and execution distinguish temperature, hose and humidity without diagnosing a defect', async () => {
   const {call,writes} = fixture();
   const name = 'entfeuchter_leerer_tank_check';

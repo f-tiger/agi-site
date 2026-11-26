@@ -41,6 +41,8 @@ async function checkGermanFocusedDiscovery(browser,base){
  const thermostatSection='thermostat-ohne-internet';
  const positive=['Was kostet eine Ladung Wäsche nur mit meinem Luftentfeuchter?','Stromkosten Luftentfeuchter Wäsche'];
  const ordinary=[
+  ['Wie mache ich meine mobile Klimaanlage winterfest?',
+    '/guide/mobile-klimaanlage-ueberwintern.html#schritt-fuer-schritt-so-machst-du-das-geraet-winterfest'],
   ['Mein Luftentfeuchter läuft, aber der Tank bleibt leer.',
     '/guide/luftentfeuchter-zieht-kein-wasser.html#pruefen-bevor-du-ein-neues-geraet-kaufst'],
   ['Trockner oder Luftentfeuchter Stromkosten Wäsche','/waeschetrockner-oder-luftentfeuchter.html'],

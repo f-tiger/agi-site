@@ -277,6 +277,25 @@ const emptyDehumidifierTank = {
   tool:'entfeuchter_leerer_tank_check',
 };
 
+export const portableCoolingStorage = {
+  path:'/guide/mobile-klimaanlage-ueberwintern.html',
+  id:'schritt-fuer-schritt-so-machst-du-das-geraet-winterfest',
+  tool:'mobile_klima_einlagern_check',
+};
+
+export function excludesPortableCoolingStorage(query) {
+  const otherAppliance = /\b(?:porta[ -]*split|(?:multi[ -]?)?split[ -]*(?:anlagen?|klima\w*|geraet\w*)|wandklima\w*|waermepumpe\w*|luftentfeuchter\w*|kfz|pkw|auto(?:s|klima\w*)?|wohnmobil\w*|wohnwagen\w*)\b/;
+  const fixedInstallation = /\bfest\w*\s+(?:installiert\w*|montiert\w*|aussengeraet\w*)\b|\bausseneinheit\b/;
+  const otherJob = /\b(?:heizbetrieb|heizen|frostschutzmittel)\b|\bnicht\s+erst\s+vor\s+(?:der\s+)?winterpause\b/;
+  return otherAppliance.test(query) || fixedInstallation.test(query) || otherJob.test(query);
+}
+
+function asksForPortableCoolingStorage(query) {
+  const appliance = /\b(?:klima(?:anlage|geraet)\w*|schlauchklima\w*|monoblock[ -]*klima\w*|mpph[ -]?09crn7|4048164103065)\b/;
+  const storage = /\b(?:winterfest|(?:ue|u)berwinter\w*|einlager\w*|einmott\w*|winterpause|winterlager\w*|(?:im|fuer den|ueber den) winter(?:\s+\w+){0,3}\s+(?:lager\w*|wegstell\w*))\b/;
+  return appliance.test(query) && storage.test(query) && !excludesPortableCoolingStorage(query);
+}
+
 function asksAboutAnEmptyDehumidifierTank(query) {
   const device = /\b(?:luft)?entfeuchter(?:s|n)?\b|\barete[ -]+one[ -]+(?:20|25)\s*l\b/;
   const emptyTank = /\b(?:\w*tank|wasserbehaelter)\s+(?:(?:vom|des) (?:luft)?entfeuchters?\s+)?(?:(?:bleibt|ist|immer|noch|dauerhaft|weiterhin)\s+){0,3}leer\b|\bleerer?\s+(?:\w*tank|wasserbehaelter)\b/;
@@ -350,6 +369,7 @@ export function exactGermanHouseholdTask(query) {
     return {path:'/guide/fensterabdichtung-selber-bauen.html',id:'abluft-ausschnitt-pruefen',tool:'abluftplatte_lochposition_pruefen'};
   if (asksForKlarsteinPackage(query)) return klarsteinPackage;
   if (asksForGranulateDryingChoice(query)) return granulateDryingChoice;
+  if (asksForPortableCoolingStorage(query)) return portableCoolingStorage;
   if (asksAboutAnEmptyDehumidifierTank(query)) return emptyDehumidifierTank;
   if (asksForCoolingDiscountReference(query)) return coolingDiscountReference;
   if (asksForOfflineThermostat(query)) return offlineThermostatChoice;
