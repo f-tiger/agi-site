@@ -3646,6 +3646,8 @@ def home_storage_block():
         '<p style="margin:0 0 14px;max-width:74ch;">' + lead + ' Kondenswasser an kühlen Wänden (und der Schimmel, der daraus wird) — '
         'und die Frage, womit sich einzelne Räume effizient heizen lassen. Erst messen und rechnen, dann kaufen.</p>'
         '<div style="margin-bottom:16px;">' + toolrow + '</div>'
+        '<p style="margin:0 0 12px;font-size:14px;">Feuchte gemessen und Ursache geklärt? '
+        '<a href="/guide/luftentfeuchter-ratgeber.html#luftentfeuchter-30-tage-preischeck">Angebot für einen passenden Luftentfeuchter prüfen</a>.</p>'
         '<div class="eb-shop-h" style="margin-bottom:2px;">Passend auswählen, dann das Angebot prüfen</div>'
         '<p class="eb-shop-sub" style="margin-bottom:4px;"><span style="font-size:11px;color:#8a99a6;">'
         + AD_LABEL[False] + '</span></p>'

@@ -15,6 +15,40 @@ SITE = Path(__file__).resolve().parents[1] / 'site'
 MEACO = 'https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-air-purifier'
 
 
+class ReadableSections(unittest.TestCase):
+    def test_selected_direct_and_labelled_headings(self):
+        from build_mcp_guides import readable_sections
+        entry = {'section': {'id': 'choice'}, 'model_sections': [{'id': 'tips'}]}
+        source = ('<section aria-labelledby="title" id="choice"><p>Before</p>'
+                  '<h3 id="title">A &amp; <em>B</em></h3></section><h2 id="tips">Tips</h2>'
+                  '<section id="other" aria-labelledby="more"><h2 id="more">Other</h2></section>')
+        self.assertEqual(readable_sections(source, '### A & B\n## Tips\n## Other', entry),
+                         {'choice': '### A & B', 'tips': '## Tips'})
+
+    def test_only_a_unique_visible_direct_label_with_matching_mirror_is_readable(self):
+        from build_mcp_guides import readable_sections
+        section = '<section id="choice" aria-labelledby="title">'
+        heading = '<h3 id="title">Answer</h3>'
+        good = section + heading + '</section>'
+        cases = [
+            (section + '</section>' + heading, '### Answer'),
+            (section + '<div>' + heading + '</div></section>', '### Answer'),
+            (good.replace('aria-labelledby="title"', 'aria-labelledby="title extra"'), '### Answer'),
+            (good.replace('<section', '<div').replace('</section>', '</div>'), '### Answer'),
+            ('<template>' + good + '</template>', '### Answer'),
+            ('<div aria-hidden="true">' + good + '</div>', '### Answer'),
+            (good.replace('<h3 ', '<h3 hidden '), '### Answer'),
+            (good + '<i id="choice" hidden></i>', '### Answer'),
+            (good + '<i id="title"></i>', '### Answer'),
+            (good, '### Different'),
+            (good, '## Answer'),
+            (good, '### Answer\n### Answer'),
+        ]
+        for source, markdown in cases:
+            with self.subTest(source=source, markdown=markdown):
+                self.assertEqual(readable_sections(source, markdown, {'section': {'id': 'choice'}}), {})
+
+
 class LlmsFull(unittest.TestCase):
     def test_humidity_guides_link_to_the_exact_measurement_and_purchase_decisions(self):
         routes = [

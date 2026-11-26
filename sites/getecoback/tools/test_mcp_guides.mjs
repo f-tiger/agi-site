@@ -187,6 +187,27 @@ test('German balcony threshold moisture finds the exact readable evidence in bot
   assert(!text.includes('getecoback-21'));
 });
 
+test('labelled sections can be read at the exact guide anchors in both profiles', async () => {
+  const {env} = assetEnv();
+  const routes = [
+    ['/guide/heizdecke-stromverbrauch.html#waerme-rechner', '110 W'],
+    ['/guide/thermovorhang-ratgeber.html#thermovorhang-bahnenbedarf', '210 cm'],
+    ['/guide/luftentfeuchter-keller.html#ablauf-vor-kauf', 'Schlauchanschluss allein'],
+    ['/ersatzfilter.html#beurer-lr401', '69309'],
+  ];
+  for (const [path, evidence] of routes) {
+    const pfad = 'https://getecoback.com' + path;
+    const full = await call('ratgeber_lesen', {pfad}, env);
+    const compact = await call('ecoback_werkzeug_ausfuehren', {
+      name: 'ratgeber_lesen', eingaben: {pfad},
+    }, env, true);
+    assert.equal(full.isError, false, pfad);
+    assert.deepEqual(compact, full, pfad);
+    assert.ok(textOf(full).startsWith('Quelle: ' + pfad + '\n'), pfad);
+    assert.ok(textOf(full).includes(evidence), pfad);
+  }
+});
+
 test('the committed MCP corpus is derived from current public canonical pages and built mirrors', () => {
   const py = spawnSync('python3', ['-c', "import json,sys;sys.path.insert(0,'tools');from build_mcp_guides import collect_guides;print(json.dumps(collect_guides()))"], {cwd, encoding: 'utf8', timeout: 15000});
   assert.equal(py.status, 0, py.stderr);
