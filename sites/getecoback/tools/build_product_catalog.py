@@ -18,6 +18,10 @@ from urllib.parse import urlencode
 
 from agent_sources import citation_url
 from filter_finder_de_sources import BINDINGS as FILTER_CARE_MODELS
+from product_category_comparison import (
+    BOSCH_WTH_DRAIN_ANSWER, BOSCH_WTH_DRAIN_ID, BOSCH_WTH_DRAIN_TITLE,
+    BOSCH_DRAIN_LINK, render_comparison,
+)
 from build_agent_md import to_markdown
 import storage_veto
 
@@ -651,7 +655,6 @@ def render(data, today=None):
     # Every published product group must have its matching practical check.
     # A missing helper is a build error, never an empty feature placeholder.
     from product_category_tools import render_tool
-    from product_category_comparison import render_comparison
     groups = []
     for category in data['categories']:
         cards = []
@@ -665,6 +668,8 @@ def render(data, today=None):
                 merchant = '<p class="pc-commerce pc-paused">Händlersuche pausiert: Quellenprüfung ausstehend. Die Angaben unten sind der dokumentierte Stand, keine aktuelle Kaufempfehlung.</p>'
             care_link = (f'<p class="pc-care"><a href="/ersatzfilter.html#{esc(product["id"])}">Ersatzfilter zuordnen &amp; Pflege notieren →</a></p>'
                          if product['id'] in FILTER_CARE_MODELS else '')
+            drain_link = (f'<p class="pc-care">{BOSCH_DRAIN_LINK}</p>'
+                          if product['id'] == 'bosch-wth83v03' else '')
             stacking_link = (f'<p class="pc-care"><a href="#{BOSCH_STACKING_ID}">Verbindungssatz für die Wasch-Trocken-Säule prüfen →</a></p>'
                              if product['id'] == 'bosch-wqg241001' else '')
             cartridge_link = (f'<p class="pc-care"><a href="#{KARCHER_CARTRIDGE_ID}">Passende Entkalkungskartusche prüfen →</a></p>'
@@ -676,7 +681,7 @@ def render(data, today=None):
 <p><strong>Aufgabe:</strong> {esc(product['role'])}</p><p>{esc(product['facts'])}</p>
 <p class="pc-limit"><strong>Vor dem Kauf:</strong> {esc(product['limit'])}</p>
 <p class="pc-source">Quelle: <a href="{esc(product['source'])}" target="_blank" rel="noopener">{esc(product['source_label'])}</a> · geprüft am <time datetime="{esc(product['checked'])}">{date(product['checked']).strftime('%d.%m.%Y')}</time>.</p>
-{stacking_link}{cartridge_link}{bag_link}{merchant}{care_link}</section>''')
+{drain_link}{stacking_link}{cartridge_link}{bag_link}{merchant}{care_link}</section>''')
         comparison = render_comparison(category['id'], data['products'], category.get('buying_guide'))
         tool = render_tool(category['id'])
         accessory_guide = wd_bag_guide if category['id'] == 'nass-trockensauger' else ''

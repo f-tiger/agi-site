@@ -1161,3 +1161,21 @@ test('German plug thermostat compatibility searches open the infrared panel chec
   const sensor = 'Wo soll der Raumtemperaturfühler für mein Infrarotpanel sitzen?';
   assert.notEqual(searchEntries(index,sensor,'de')[0]?.entry.u,target,sensor);
 });
+
+test('German Bosch WTH83V03 drain questions open the exact hose evidence', () => {
+  const target = '/produkte.html#bosch-wth83v03-kondensatablauf';
+  for (const query of [
+    'Kann ich beim Bosch WTH83V03 das Kondenswasser mit WTZ1110 direkt ableiten?',
+    'Bosch WTH83V03/01: Ablaufschlauch im Lieferumfang oder Wassertank?',
+  ]) {
+    assert.equal(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+    assert.ok(!searchEntries(index,query,'en').some(hit => hit.entry.u === target),query);
+  }
+  for (const query of [
+    'Bosch WQG241001 WTZ1110 Kondensatablauf',
+    'Bosch WTH83V03 Energieetikett: Wie viele kWh pro 100 Trocknungen?',
+  ]) assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+
+  const stacking = 'WTZ27400 oder WTZ27410: Welcher Verbindungssatz für den Bosch WQG241001 hat einen Auszug?';
+  assert.equal(searchEntries(index,stacking,'de')[0]?.entry.u,'/produkte.html#waeschesaeule-zubehoer',stacking);
+});

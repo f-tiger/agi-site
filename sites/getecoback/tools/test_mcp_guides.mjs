@@ -110,6 +110,35 @@ test('infrared thermostat fit reads manufacturer evidence and leaves the choice 
   assert(!text.includes('getecoback-21'));
 });
 
+test('Bosch WTH83V03 drain evidence distinguishes the box from optional WTZ1110', async () => {
+  const origin='https://getecoback.com';
+  const exact=origin+'/produkte.html#bosch-wth83v03-kondensatablauf';
+  const {env}=assetEnv();
+  const frage='Kann ich beim Bosch WTH83V03 das Kondenswasser mit WTZ1110 direkt ableiten?';
+  const search=await call('ratgeber_suche',{frage,sprache:'de',max:1},env);
+  assert(textOf(search).includes('Abschnitt: '+exact));
+  const full=await call('ratgeber_lesen',{pfad:exact},env);
+  const compact=await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad:exact}},env,true);
+  assert.equal(full.isError,false);
+  assert.deepEqual(full,compact);
+  const answer=textOf(full);
+  for(const fact of ['Kondenswasserbehälter','WTZ1110','E-Nr.',
+    '9001752575_A.pdf#page=13','9001752575_A.pdf#page=24','WTH83V03-01','#produkt-bosch-wth83v03'])
+    assert(answer.includes(fact),fact);
+  assert(!answer.includes('getecoback-21'));
+
+  const tool='bosch_wth83v03_ablaufschlauch_nein_bezug';
+  const reviewed={wth83v03_bestaetigt:true,haendler_nennt_zusatzschlauch:'offen',anschluss_modellanleitung:'belegt',ziel_ohne_tank:true};
+  const known=await call(tool,reviewed,env);
+  assert.equal(known.structuredContent.originalpaket_schlauch,'nicht_aufgefuehrt');
+  assert.equal(known.structuredContent.kaufbedingung_abgedeckt,false);
+  assert(known.structuredContent.grenze.includes('WTZ1110'));
+  assert(known.structuredContent.grenze.includes(exact));
+  const unknown=await call(tool,{...reviewed,wth83v03_bestaetigt:false},env);
+  assert.equal(unknown.structuredContent.originalpaket_schlauch,'offen');
+  assert(!unknown.structuredContent.grenze.includes('WTZ1110'));
+});
+
 test('the committed MCP corpus is derived from current public canonical pages and built mirrors', () => {
   const py = spawnSync('python3', ['-c', "import json,sys;sys.path.insert(0,'tools');from build_mcp_guides import collect_guides;print(json.dumps(collect_guides()))"], {cwd, encoding: 'utf8', timeout: 15000});
   assert.equal(py.status, 0, py.stderr);

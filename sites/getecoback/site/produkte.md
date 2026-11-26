@@ -776,10 +776,22 @@ Genaue Variante, Aufgabe und Kaufgrenze im Vergleich
 
 | Modell | Aufgabe und Herstellerangabe | Grenze | Quelle |
 | --- | --- | --- | --- |
-| [Bosch WTH83V03](https://getecoback.com/produkte.html#produkt-bosch-wth83v03) WTH83V03 Serie 4 | Wärmepumpentrockner für kleinere BeladungenDie deutsche Produktseite nennt maximal 7 kg Beladung und die feuchtegeführte Auto-Dry-Funktion. | Der Kondensator ist laut Bosch nicht selbstreinigend. Ein Kondenswasser-Ablaufschlauch ist auf der geprüften Ausstattungsseite mit Nein vermerkt; Aufstellung und Wasserbehälter vor dem Kauf klären. | [Bosch Deutschland: Bosch WTH83V03](https://www.bosch-home.com/de/de/product/WTH83V03) Quellenstand: 2026-11-13 |
+| [Bosch WTH83V03](https://getecoback.com/produkte.html#produkt-bosch-wth83v03) WTH83V03 Serie 4 | Wärmepumpentrockner für kleinere BeladungenDie deutsche Produktseite nennt maximal 7 kg Beladung und die feuchtegeführte Auto-Dry-Funktion. | Der Kondensator ist laut Bosch nicht selbstreinigend. Zum aufgeführten Lieferumfang gehört kein Ablaufschlauch. Für direkten Ablauf nennt die Anleitung WTZ1110 als Zubehör. Bei Tankbetrieb genügt es, den Behälter regelmäßig zu leeren.[Lieferumfang und Kondensatablauf mit WTZ1110 prüfen](https://getecoback.com/produkte.html#bosch-wth83v03-kondensatablauf) | [Bosch Deutschland: Bosch WTH83V03](https://www.bosch-home.com/de/de/product/WTH83V03) Quellenstand: 2026-11-26 |
 | [Bosch WQG235D00](https://getecoback.com/produkte.html#produkt-bosch-wqg235d00) WQG235D00 Serie 6 | Acht-Kilo-Ausführung mit selbstreinigendem KondensatorBosch nennt maximal 8 kg Beladung sowie einen selbstreinigenden Kondensator. | Selbstreinigung ersetzt nicht die gesamte Gerätepflege. Gehäusemaß laut Hersteller 842 × 598 × 613 mm; bei geöffneter Tür und für Aufstellung ist zusätzlicher Platz nötig. | [Bosch Deutschland: Bosch WQG235D00](https://www.bosch-home.com/de/de/product/waschen-trocknen/waeschetrockner/waermepumpentrockner/WQG235D00) Quellenstand: 2026-11-13 |
 | [Bosch WQG241001](https://getecoback.com/produkte.html#produkt-bosch-wqg241001) WQG241001 Serie 6 | Neun-Kilo-Ausführung mit Auto DryDer Wärmepumpentrockner ist laut Bosch für maximal 9 kg Beladung ausgelegt und bietet Auto Dry. | Die maximale Beladung gilt nicht automatisch für jedes Programm. Der Kondensator ist laut Produktseite nicht selbstreinigend; Pflege und Einbauraum vor dem Kauf prüfen. | [Bosch Deutschland: Bosch WQG241001](https://www.bosch-home.com/de/de/product/waschen-trocknen/waeschetrockner/waermepumpentrockner/WQG241001) Quellenstand: 2026-11-13 |
 | [Bosch WQG233D01](https://getecoback.com/produkte.html#produkt-bosch-wqg233d01) WQG233D01 Serie 6 | Weitere Neun-Kilo-Variante mit dokumentiertem GeräuschwertDie deutsche Produktseite nennt maximal 9 kg Beladung und 63 dB(A) re 1 pW als Geräuschwert. | Das ist ein Hersteller-Geräuschwert, keine Messung in deiner Wohnung. Kondensator nicht selbstreinigend; nicht mit dem WQG235D00 oder einer anderen Modellendung gleichsetzen. | [Bosch Deutschland: Bosch WQG233D01](https://www.bosch-home.com/de/de/product/waschen-trocknen/waeschetrockner/waermepumpentrockner/WQG233D01) Quellenstand: 2026-11-13 |
+
+### Bosch WTH83V03: Muss ich den Behälter leeren oder passt ein Ablaufschlauch?
+
+Du kannst den Kondenswasserbehälter nutzen und regelmäßig leeren. Dafür brauchst du keinen Ablaufschlauch. Für einen direkten Ablauf nennt Bosch den Wasserablaufschlauch WTZ1110 als optionales Zubehör zum WTH83V03.
+
+**Was liegt bei?** Die deutsche [Bosch-Produktseite WTH83V03](https://www.bosch-home.com/de/de/product/WTH83V03) führt „Ablauf-Schlauch für Kondenswasser“ mit „Nein“. Die [Lieferliste der Anleitung, Seite 13](https://media3.bsh-group.com/Documents/9001752575_A.pdf#page=13) nennt den Wäschetrockner und die Begleitunterlagen. Prüfe den Inhalt deines konkreten Angebots, bevor du Zubehör zusätzlich bestellst.
+
+**Was passt zum Ablauf?** Die [Zubehörliste der Anleitung, Seite 24](https://media3.bsh-group.com/Documents/9001752575_A.pdf#page=24) führt den [Bosch-Ablaufschlauch WTZ1110](https://www.bosch-home.com/de/de/product/waschen-trocknen/zubehoer-trockner/WTZ1110) für überschüssiges Kondenswasser. Der dort separat gelistete Y-Verteiler 15000490 ist für ein zweites Gerät am selben Siphonanschluss vorgesehen. Prüfe, ob am Aufstellort ein geeigneter Ablauf vorhanden ist.
+
+Vergleiche die vollständige E-Nr. am Typenschild, einschließlich der Ziffern nach dem Schrägstrich, mit der zugehörigen Anleitung. Der [Bosch-Serviceeintrag WTH83V03/01](https://www.bosch-home.com/de/de/productservice/WTH83V03-01) gilt für diese Ausführung. Sind Modellendung oder Anschluss unklar, kläre sie vor einer Bestellung.
+
+Quellen für Deutschland geprüft am 26.11.2026. [Zur Modellkarte Bosch WTH83V03](https://getecoback.com/produkte.html#produkt-bosch-wth83v03).
 
 ### Eine Wäscheladung mit Entfeuchter oder Trockner vergleichen
 Gemessene kWh für einen vollständigen Durchgang × eigener Arbeitspreis.
@@ -795,10 +807,11 @@ Bosch · WTH83V03 Serie 4
 **Aufgabe:** Wärmepumpentrockner für kleinere Beladungen
 Die deutsche Produktseite nennt maximal 7 kg Beladung und die feuchtegeführte Auto-Dry-Funktion.
 
-**Vor dem Kauf:** Der Kondensator ist laut Bosch nicht selbstreinigend. Ein Kondenswasser-Ablaufschlauch ist auf der geprüften Ausstattungsseite mit Nein vermerkt; Aufstellung und Wasserbehälter vor dem Kauf klären.
+**Vor dem Kauf:** Der Kondensator ist laut Bosch nicht selbstreinigend. Zum aufgeführten Lieferumfang gehört kein Ablaufschlauch. Für direkten Ablauf nennt die Anleitung WTZ1110 als Zubehör. Bei Tankbetrieb genügt es, den Behälter regelmäßig zu leeren.
 
-Quelle: [Bosch Deutschland: Bosch WTH83V03](https://www.bosch-home.com/de/de/product/WTH83V03) · geprüft am 13.11.2026.
+Quelle: [Bosch Deutschland: Bosch WTH83V03](https://www.bosch-home.com/de/de/product/WTH83V03) · geprüft am 26.11.2026.
 
+[Lieferumfang und Kondensatablauf mit WTZ1110 prüfen](https://getecoback.com/produkte.html#bosch-wth83v03-kondensatablauf)
 Modellsuche bei Amazon.de →Anzeige · Suche, keine feste Produktseite. Genaue Variante, Gesamtpreis und Lieferung beim Händler prüfen.
 
 ### Bosch WQG235D00

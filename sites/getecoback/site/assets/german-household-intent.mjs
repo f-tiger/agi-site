@@ -71,6 +71,19 @@ export function exactBoschStackingGuide(query) {
     (kit.test(query) || (dryer.test(query) && stacking.test(query))) ? boschStacking : null;
 }
 
+export const boschDryerDrain = {
+  path:'/produkte.html',
+  id:'bosch-wth83v03-kondensatablauf',
+  tool:'bosch_wth83v03_ablaufschlauch_nein_bezug',
+};
+
+function asksForBoschDryerDrain(query) {
+  const model = /\bwth[ -]?83[ -]?v03\b/;
+  const otherModel = /\b(?:wth[ -]?83[ -]?v(?!03\b)[a-z0-9]+|wqg[ -]?[a-z0-9]{5,})\b/;
+  const drain = /\b(?:(?:wasser)?ablauf[ -]?schlauch\w*|kondens(?:at|wasser)[ -]?(?:ablauf\w*|behaelter\w*)?|wasserbehaelter\w*|wassertank\w*|wtz[ -]?1110)\b/;
+  return model.test(query) && !otherModel.test(query) && drain.test(query);
+}
+
 export const klarsteinPackage = {
   path:'/guide/klarstein-kraftwerk-smart-12k-test.html',
   id:'kraftwerk-10034664-lieferumfang',
@@ -499,6 +512,7 @@ function exactEx105Evidence(query) {
 }
 
 export function exactGermanHouseholdTask(query) {
+  if (asksForBoschDryerDrain(query)) return boschDryerDrain;
   const ex105=exactEx105Evidence(query);
   if(ex105)return ex105;
   if(/\b(?:klimaanlag\w*|klimageraet\w*|monoblock\w*|(?:ab)?kuehl\w*|btu)\b/.test(query)){
