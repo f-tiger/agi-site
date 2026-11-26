@@ -1,3 +1,5 @@
+import {namesDifferentPortaSplit} from './portasplit-fensterfalz-intent.mjs?v=66ae5fbd590d';
+
 import {asksForDehumidifierDrainRoute} from './dehumidifier-drain-intent.mjs?v=f6bce24817e8';
 import {asksForSiemensWaterFilter} from './kaffee-wasserfilter-intent.mjs?v=99bfa4094412';
 
@@ -239,6 +241,24 @@ export const directHeat = {
   id:'heizluefter-oder-infrarot',
   tool:'ratgeber_suche',
 };
+
+export const portaSplitDefrost = {
+  path:'/guide/klimaanlage-mit-heizfunktion.html',
+  id:'portasplit-abtauen',
+  tool:'ratgeber_suche',
+};
+
+function asksForPortaSplitDefrost(query) {
+  const original=/\b(?:porta[ -]*split|4048164116478)\b/;
+  const frost=/\b(?:frost\w*|eis(?:bildung|belag|schicht)?|vereis\w*|(?:ein)?gefror\w*|(?:ein)?frier\w*|abtau\w*|de[ -]?frost)\b/;
+  const operating=/\b(?:heiz\w*|aussen[ -]?(?:geraet|einheit)\w*|waermepump\w*)\b/;
+  const other=/\b(?:kuehlbetrieb|kuehlmodus|cool[ -]*modus|monoblock\w*|einlager\w*|ueberwintern|winterfest|lagern)\b/;
+  const indoor=/\binnen[ -]?(?:geraet|einheit)\w*\b/;
+  const outdoor=/\baussen[ -]?(?:geraet|einheit)\w*\b/;
+  const eans=query.match(/\b\d{13}\b/g) || [];
+  return original.test(query) && frost.test(query) && operating.test(query) &&
+    (!indoor.test(query) || outdoor.test(query)) && !other.test(query) && !namesDifferentPortaSplit(query) && eans.every(ean=>ean==='4048164116478');
+}
 
 export const gasHeatCost = {
   path:'/guide/klimaanlage-mit-heizfunktion.html',
@@ -687,6 +707,7 @@ export function exactGermanHouseholdTask(query) {
   const meterTask = exactLowLoadMeterTask(query);
   if (meterTask) return meterTask;
   if (asksForPortableCoolingStorage(query)) return portableCoolingStorage;
+  if (asksForPortaSplitDefrost(query)) return portaSplitDefrost;
   if (exactComfeeMpphOffer(query)) return comfeeMpphOffer;
   if (asksAboutAnEmptyDehumidifierTank(query)) return emptyDehumidifierTank;
   if (asksForCoolingDiscountReference(query)) return coolingDiscountReference;

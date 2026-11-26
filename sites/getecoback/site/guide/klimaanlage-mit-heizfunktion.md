@@ -68,6 +68,14 @@ Eine pauschale Effizienzgrenze bei 0 bis −5 °C ist nicht belastbar. Als konkr
 
 Für Winterbetrieb brauchst du die Heizleistungs- und Effizienzdaten bei relevanten Außentemperaturen. Plane Abtauphasen, den Ablauf des dabei entstehenden Wassers und eine Alternative ein, wenn die abgegebene Leistung den Wärmebedarf nicht deckt. Mindest-Betriebstemperatur, Komfort und Wirtschaftlichkeit sind drei verschiedene Fragen.
 
+### Midea PortaSplit beim Heizen: Außengerät vereist
+
+Bei der ursprünglichen **Midea PortaSplit mit Heizfunktion** kann Reif am Außengerät beim Heizen vorkommen. Erkennt das Gerät den Reif, startet es laut [deutscher Midea-Gebrauchsanweisung, Abschnitt Heizmodus (S. 32)](https://www.midea.com/content/dam/midea-aem/de/klimatisieren-heizen/portasplit/PortaSplit-Gebrauchsanweisung-DE.pdf#page=33) die Abtaufunktion automatisch. Dabei läuft der Ventilator im **Innengerät langsamer weiter**. Ein begonnener Abtauzyklus dauert typischerweise **etwa 5 bis 15 Minuten**. Danach setzt die Heizung automatisch wieder ein. Die Angabe beschreibt die Dauer des Abtauens. Sie legt weder die Wartezeit bis zum Start noch einen festen Fehlergrenzwert fest.
+
+Gleiche zuerst die Modellbezeichnung am Gerät mit der [Midea-Übersicht der PortaSplit-Varianten](https://www.midea.com/de/klimatisieren-heizen/portasplit) ab. Die PortaSplit Cool ist dort für Kühlung ohne Heizfunktion ausgewiesen. Nutze für die PortaSplit-E die eigene Anleitung.
+
+Beobachte, ob das Außengerät abtaut und anschließend wieder warme Luft kommt. Geht beides wie beschrieben weiter, brauchst du wegen dieses Zyklus keinen Ersatzkauf. Bleibt ein deutlicher Eisbelag bestehen, setzt die Heizung nicht wieder ein oder erscheint ein Fehlercode, notiere Außentemperatur, Dauer und Anzeige und wende dich mit der genauen Modellbezeichnung an den Midea-Kundendienst. Versuche nicht, Eis abzukratzen oder den Vorgang mit Hilfsmitteln zu beschleunigen. Verwende dafür ausschließlich die in den [Sicherheitshinweisen des Herstellers](https://www.midea.com/content/dam/midea-aem/de/klimatisieren-heizen/portasplit/PortaSplit-Gebrauchsanweisung-DE.pdf#page=4) vorgesehenen Verfahren.
+
 ## Wann passt die Lösung — und wann zuerst anders planen?
 
 - **Prüfenswerter Fall:** Du willst einen bestimmten Raum heizen, kannst eine geeignete Außen-/Luftführung umsetzen und benötigst auch Kühlung. Vergleiche die Gesamtkosten mit dem Weiterbetrieb deiner vorhandenen Heizung.

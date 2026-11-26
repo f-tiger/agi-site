@@ -1776,3 +1776,16 @@ test('German MPPH-09CRN7 offer queries use the exact guide and keep nearby model
    assert.notEqual(toolGuidePath(hit??{}),target,q);
  }
 });
+
+test('German PortaSplit defrost discovery uses the exact guide and retains adjacent task routes',async()=>{
+ const target='/guide/klimaanlage-mit-heizfunktion.html#portasplit-abtauen';
+ for(const q of ["Midea PortaSplit Heizmodus: Außengerät vereist bei null Grad, ist der Abtauzyklus normal?", "Meine Porta Split ist beim Heizen außen gefroren. Ist das normal?", "PortaSplit beim Heizen: Wie lange dauert das Abtauen?", "4048164116478: Außeneinheit vereist, wie lange dauert Defrost?", "Midea PortaSplit: Außengerät vereist, das Innengerät bläst langsamer, ist das normal beim Heizen?"]) {
+   const [hit]=(await catalogue({q,view:'compact',limit:1})).tools;
+   assert.equal(hit?.name,'ratgeber_suche',q);
+   assert.equal(toolGuidePath(hit),target,q);
+ }
+ for(const q of ["Wie messe ich den Fensterfalz für meine Midea PortaSplit?", "PortaSplit Cool Außengerät vereist. Wie lange dauert das Abtauen?", "PortaSplit-E ist beim Heizen vereist.", "PortaSplit: Innengerät friert im Kühlbetrieb ein.", "Wie mache ich meine mobile Klimaanlage winterfest?", "Wie viel kostet das Heizen mit einer Klimaanlage im Vergleich zu Gas?"]) {
+   const [hit]=(await catalogue({q,view:'compact',limit:1})).tools;
+   assert.notEqual(toolGuidePath(hit??{}),target,q);
+ }
+});
