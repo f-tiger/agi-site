@@ -10,6 +10,9 @@ const currencyPlaces = new Map([
   ...['BHD','JOD','KWD','OMR'].map(code => [code,3]),
 ]);
 const terms = ['EXW','FOB','CIF'];
+const cifCosts = ['freight','insurance'];
+const feeKinds = [...cifCosts, 'freight_and_insurance'];
+const feeFields = new Set(['name','amount','currency','kind','includedIn']);
 const costPlaces = 6;
 const ratePlaces = 8;
 const percentPlaces = 4;
@@ -33,18 +36,39 @@ function scaled(value, places, field) {
 function readFees(input, costCurrency, quoteCurrency) {
   const rows = parse(input);
   if (!Array.isArray(rows) || rows.length > 30) throw Error('Supply a JSON array of up to 30 seller fee lines.');
-  return rows.map(row => {
-    if (!row || Array.isArray(row) || typeof row !== 'object' || Object.keys(row).length !== 3 ||
+  const fees = rows.map((row, index) => {
+    if (!row || Array.isArray(row) || typeof row !== 'object' || Object.keys(row).some(key => !feeFields.has(key)) ||
         typeof row.name !== 'string' || typeof row.currency !== 'string' ||
         !Number.isFinite(row.amount) || row.amount < 0 || row.amount > maxMoneyInput) {
-      throw Error('Each seller fee needs exactly name, amount and currency. Amount must be a nonnegative number up to 1 billion.');
+      throw Error('Each seller fee needs name, amount and currency. The optional fields are kind and includedIn. Amount must be a nonnegative number up to 1 billion.');
     }
     const name = row.name.trim();
     if (!name || name.length > 80 || /[\u0000-\u001f\u007f]/u.test(name)) throw Error('Use single-line fee names of 1 to 80 characters.');
     const code = currency(row.currency);
     if (code !== costCurrency && code !== quoteCurrency) throw Error('Seller fee currency must match either the cost or quote currency.');
-    return {name, amount:row.amount, currency:code};
+    const {kind, includedIn} = row;
+    if (Object.hasOwn(row,'kind') && !feeKinds.includes(kind)) throw Error('Fee kind must be freight, insurance or freight_and_insurance.');
+    if (Object.hasOwn(row,'includedIn') && (!kind || row.amount !== 0 || !Number.isInteger(includedIn) ||
+        includedIn < 1 || includedIn > rows.length || includedIn === index + 1)) {
+      throw Error('Use includedIn only on a typed zero fee to identify a different positive fee line by its 1-based number.');
+    }
+    return {name, amount:row.amount, currency:code, kind, includedIn};
   });
+  for (const {includedIn} of fees) {
+    if (includedIn !== undefined && fees[includedIn - 1].amount <= 0) {
+      throw Error('The referenced includedIn fee line must have a positive charge.');
+    }
+  }
+  return fees;
+}
+
+function checkSellerCosts(term, fees) {
+  // Classify only expressly typed amounts or their single billed line. A label
+  // such as "freight" or a separate zero amount carries no cost confirmation.
+  const missing = term === 'CIF' ? cifCosts.filter(cost => !fees.some(fee =>
+    (fee.kind === cost || fee.kind === 'freight_and_insurance') && (fee.amount > 0 || fee.includedIn !== undefined)
+  )) : [];
+  return {status: missing.length ? 'provisional' : 'costs_entered', missing};
 }
 
 function exportQuote({
@@ -80,10 +104,11 @@ function exportQuote({
   const productCostBase = scaled(unitProductCost, costPlaces, 'Product unit cost') * units;
   const convertedProduct = converted(productCostBase, from);
   let cost = convertedProduct;
-  const feeLines = readFees(sellerFees, from, to).map(fee => {
-    const inQuote = converted(scaled(fee.amount, costPlaces, 'Seller fee amount'), fee.currency);
+  const fees = readFees(sellerFees, from, to);
+  const feeLines = fees.map(({name, amount, currency}) => {
+    const inQuote = converted(scaled(amount, costPlaces, 'Seller fee amount'), currency);
     cost += inQuote;
-    return {...fee, inQuoteCurrency:quoteAmount(inQuote)};
+    return {name, amount, currency, inQuoteCurrency:quoteAmount(inQuote)};
   });
   if (cost === 0n) throw Error('Enter a positive product cost or seller fee to calculate a meaningful minimum quote.');
   const minimumOrder = ceilPositiveRatio(cost * percentScale, available);
@@ -123,6 +148,7 @@ function exportQuote({
     minimumUnitPrice:quoteAmount(minimumUnit),
     orderTotalAtMinimumUnitPrice:quoteAmount(minimumUnit * units),
     quotedOrder,
+    costCompleteness:checkSellerCosts(term,fees),
   };
 }
 
@@ -147,14 +173,18 @@ const quoteProperties = {
     {type:'null'},
     {type:'object',additionalProperties:false,required:Object.keys(quotedProperties),properties:quotedProperties},
   ]},
+  costCompleteness:{type:'object',additionalProperties:false,required:['status','missing'],properties:{
+    status:{type:'string',enum:['costs_entered','provisional']},
+    missing:{type:'array',maxItems:2,uniqueItems:true,items:{type:'string',enum:cifCosts}},
+  }},
 };
 
 const quoteTool = make(
   'trade-export-quote',
   '外贸订单报价与毛利计算器',
   'Export order quote and margin calculator',
-  '按输入的汇率、货品和卖方费用计算外贸订单底价。记录 EXW、FOB 或 CIF 的报价场景，估算扣除佣金和收款费后的利润率。',
-  'Calculate an export price floor from your exchange rate, product costs, and seller fees. Model an EXW, FOB, or CIF quote and estimate margins after commission and payment fees.',
+  '按输入的汇率、货品和卖方费用计算 EXW、FOB 或 CIF 底价与毛利。CIF 费用项用 kind 明确标记 freight、insurance 或 freight_and_insurance。若已含在同一笔正额费用中，额外零费用项可用 includedIn 指向该费用的行号（从 1 起）。costCompleteness 为 provisional 时，结果仅按已填成本估算，发送买家报价前请先补齐运费和保险。',
+  'Calculate an EXW, FOB or CIF price floor and margin from seller costs and exchange rates. In sellerFees JSON, mark CIF cost lines with kind freight, insurance or freight_and_insurance. When a billed fee already includes a cost, a separate typed zero line can refer to that positive fee by its 1-based line number in includedIn. If costCompleteness.status is provisional, prices use known costs only. Confirm freight and cargo insurance before using the result in a buyer quote.',
   [
     label('incoterm','贸易术语（EXW、FOB 或 CIF）','Trade term (EXW, FOB, or CIF)','CIF'),
     label('costCurrency','货品成本币种（如 CNY）','Product cost currency (e.g. CNY)','CNY'),
@@ -162,11 +192,11 @@ const quoteTool = make(
     number('quotePerCostUnit','汇率（每 1 成本币可换多少报价币）','Exchange rate (quote currency per 1 cost currency)',0.14,0.00000001,1_000_000),
     number('quantity','订单数量（整数）','Order quantity (whole units)',500,1,1_000_000,true),
     number('unitProductCost','货品单件成本（以成本币计）','Product cost per unit (in cost currency)',36,0,maxMoneyInput),
-    json('sellerFees','每单卖方费用（JSON，空费用填 []）','Seller fees per order (JSON, [] for none)',[
+    json('sellerFees','每单卖方费用（JSON，可填 kind 与 includedIn）','Seller fees per order (JSON, optional kind and includedIn)',[
       {name:'Packaging',amount:350,currency:'CNY'},
       {name:'Pre-carriage',amount:650,currency:'CNY'},
-      {name:'Freight',amount:250,currency:'USD'},
-      {name:'Insurance',amount:30,currency:'USD'},
+      {name:'Freight',amount:250,currency:'USD',kind:'freight'},
+      {name:'Insurance',amount:30,currency:'USD',kind:'insurance'},
     ]),
     number('commissionPercent','销售佣金（占报价金额的百分比）','Sales commission (% of quoted revenue)',5,0,100),
     number('paymentFeePercent','收款费（占报价金额的百分比）','Payment fee (% of quoted revenue)',2.5,0,100),

@@ -21,9 +21,9 @@ const guidance = {
   ),
   'trade-export-quote': entry(
     ['拿到询价后，用你实际承担的费用和目标毛利求出最低单价。','Use your seller costs and target margin to price a buyer inquiry.'],
-    ['EXW、FOB 或 CIF 用于标记本次方案。填入该方案下的卖方费用，工具按报价币种的最小单位向上计算底价。佣金和收款费按成交金额与所填比例估算。','Select EXW, FOB or CIF to label the scenario. Enter the seller costs for that scenario. The floor rounds up to the quote currency’s minor unit. Commission and payment fees are estimated from the order value at the entered rates.'],
+    ['填入当前贸易术语下的卖方费用。底价按报价币种的最小单位向上取整，佣金和收款费按报价额估算。CIF 缺运费或保险时，结果只按已填费用估算。','Enter the seller costs for the selected trade term. The floor rounds up to the quote currency’s minor unit, and fees use the quoted amount. A CIF result with missing freight or insurance shows an estimate from entered costs.'],
     {quotePerCostUnit: ['每 1 单位成本币可换多少报价币。例如 1 CNY = 0.14 USD，填 0.14。','Enter quote currency per unit of cost currency. For 1 CNY = 0.14 USD, enter 0.14.'],
-      sellerFees: ['每笔订单的费用用 JSON 数组填入，每项含 name、amount、currency。无额外费用填 []。','Use a JSON array of per-order fee lines with name, amount and currency. Enter [] for no additional fees.'],
+      sellerFees: ['用 JSON 数组填费用，例如 [{"name":"Freight", "amount":250, "currency":"USD", "kind":"freight"}]。CIF 保险填 kind 为 insurance，合并收费填 freight_and_insurance。若另列已包含的费用，保留 kind，amount 填 0，includedIn 指向收费行号（从 1 起）。','Use a JSON array, e.g. [{"name":"Freight", "amount":250, "currency":"USD", "kind":"freight"}]. For CIF use kind insurance for insurance or freight_and_insurance for a combined charge. For a typed zero charge included elsewhere, set includedIn to the billed line number, starting from 1.'],
       quotedUnitPrice: ['已有报价可填入试算利润。只求报价底线时填 0。','Enter a proposed price to estimate profit. Enter 0 to calculate the floor only.']},
     {sellerCost: ['卖方总成本','Seller cost'], minimumOrderTotal: ['最低整单金额','Minimum order total'],
       minimumUnitPrice: ['最低可报单价','Minimum unit price'], orderTotalAtMinimumUnitPrice: ['按最低单价的总额','Total at minimum unit price'],

@@ -240,6 +240,55 @@ def test_failed_or_malformed_public_reads_are_unknown_not_closed() -> None:
                 assert not any(a['kind']=='membership_demand_review' for a in report['latest']['actions'])
 
 
+def test_bpj_trade_quote_measures_only_the_known_source_and_current_window() -> None:
+    today = dt.date(2026, 12, 3)
+    stages = {
+        "window": {"start": "2026-11-05", "end_exclusive": "2026-12-03", "complete_days": 28, "date_basis": "UTC"},
+        "accounts": {"total_non_test": 900},
+        "events": {"trade_quote_actions": dict.fromkeys(evolution.TRADE_QUOTE_ACTION_FIELDS, 0)},
+    }
+    reach = {"ok": True, "conversion_stages": stages}
+    actions = stages["events"]["trade_quote_actions"]
+    report = evolution.trade_quote_growth(reach, today)
+    assert report["accounts"] is None and report["actions"] == actions
+    assert "first-source" in report["next_action"]
+    assert evolution.trade_quote_growth(reach, today + dt.timedelta(days=1))["window"] is None
+
+    accounts = {"total": 6, "email_verified_total": 4, "created": 0, "email_verified": 0}
+    stages["trade_quote_accounts"] = accounts
+    assert "Bring relevant exporters" in evolution.trade_quote_growth(reach, today)["next_action"]
+    actions["needs_info_own"] = 1
+    assert "clarify" in evolution.trade_quote_growth(reach, today)["next_action"]
+    actions["ready_own"] = 2
+    assert "signup benefit" in evolution.trade_quote_growth(reach, today)["next_action"]
+    actions["signup_open"] = 1
+    assert "return flow" in evolution.trade_quote_growth(reach, today)["next_action"]
+    accounts["created"] = 1
+    assert "toward the first 25" in evolution.trade_quote_growth(reach, today)["next_action"]
+
+    with patch.object(evolution, "SITE_DIRS", {"baipiaoji": "sites/baipiaoji"}):
+        daily, manifests = evolution.build(today, now=utc_noon(today), bpj_reach=reach)
+        _, manifests_without_data = evolution.build(today, now=utc_noon(today))
+    growth = daily["latest"]["bpj_trade_quote_growth"]
+    assert growth["accounts"] == accounts
+    assert growth["initial_target"] == 25 and growth["long_target"] == 1000
+    assert "Source-attributed surviving registrations: 6." in daily["markdown"]
+    assert "Long-term goal: 1,000." in daily["markdown"]
+    assert "900" not in json.dumps(growth)
+    assert manifests == manifests_without_data
+    for total, outcome in [(25, "first cohort"), (1000, "Review repeat use")]:
+        accounts["total"] = total
+        assert outcome in evolution.trade_quote_growth(reach, today)["next_action"]
+
+    actions["signup_open"] = False
+    report = evolution.trade_quote_growth(reach, today)
+    assert report["accounts"] == accounts and report["actions"] is None
+    assert "Recover" in report["next_action"]
+    assert "signup opened unknown" in "\n".join(evolution.render_trade_quote_growth(report))
+    accounts["email_verified"] = 2
+    assert evolution.trade_quote_growth(reach, today)["accounts"] is None
+
+
 if __name__ == "__main__":
     test_missing_is_unknown()
     test_action_is_bounded_and_redacted()
@@ -254,4 +303,5 @@ if __name__ == "__main__":
     test_pageviews_do_not_establish_paid_demand_or_ai_readership()
     test_strategy_is_reviewable_and_missing_policy_does_not_invent_direction()
     test_failed_or_malformed_public_reads_are_unknown_not_closed()
+    test_bpj_trade_quote_measures_only_the_known_source_and_current_window()
     print("evolution invariants: ok")

@@ -9,7 +9,13 @@ const run = (changes = {}) => executeSuiteTool(tool, {...tool.example, ...change
 test('the CIF worked example reconciles both currencies and each quoted fee', () => {
   const quote = run();
   assert.equal(quote.productCostInQuoteCurrency, 2520);
-  assert.deepEqual(quote.sellerFeeLines.map(fee => fee.inQuoteCurrency), [49,91,250,30]);
+  assert.deepEqual(quote.sellerFeeLines, [
+    {name:'Packaging',amount:350,currency:'CNY',inQuoteCurrency:49},
+    {name:'Pre-carriage',amount:650,currency:'CNY',inQuoteCurrency:91},
+    {name:'Freight',amount:250,currency:'USD',inQuoteCurrency:250},
+    {name:'Insurance',amount:30,currency:'USD',inQuoteCurrency:30},
+  ]);
+  assert.deepEqual(quote.costCompleteness,{status:'costs_entered',missing:[]});
   assert.equal(quote.sellerCost, 2940);
   assert.equal(quote.minimumOrderTotal, 4055.18);
   assert.equal(quote.minimumUnitPrice, 8.12);
@@ -23,6 +29,53 @@ test('the CIF worked example reconciles both currencies and each quoted fee', ()
   // Terms describe the scenario. Charges come from the seller's own worksheet.
   assert.equal(run({incoterm:'EXW'}).sellerCost, quote.sellerCost);
   assert.equal(run({incoterm:'FOB'}).sellerCost, quote.sellerCost);
+});
+
+const fee = (name, amount, extra = {}) => ({name, amount, currency:'USD', ...extra});
+const withFees = (fees, changes = {}) => run({sellerFees:JSON.stringify(fees), ...changes});
+
+test('CIF known-cost prices are provisional until both named obligations are explicitly entered', () => {
+  const missing = withFees([]);
+  assert.deepEqual(missing.costCompleteness,{status:'provisional',missing:['freight','insurance']});
+  assert.ok(missing.minimumUnitPrice < run().minimumUnitPrice);
+  const legacy = withFees([fee('Freight',250),fee('Insurance',30)]);
+  assert.equal(legacy.sellerCost,2800);
+  assert.deepEqual(legacy.costCompleteness,missing.costCompleteness);
+  assert.deepEqual(withFees([fee('Main carriage',250,{kind:'freight'})]).costCompleteness,
+    {status:'provisional',missing:['insurance']});
+  assert.deepEqual(withFees([fee('Main carriage',0,{kind:'freight'}),fee('Cargo cover',30,{kind:'insurance'})]).costCompleteness,
+    {status:'provisional',missing:['freight']});
+  for (const incoterm of ['FOB','EXW']) {
+    assert.deepEqual(withFees([],{incoterm}).costCompleteness,{status:'costs_entered',missing:[]});
+  }
+});
+
+test('declared all-in freight and insurance are charged once', () => {
+  const packageBill = withFees([fee('All-in main carriage and cover',280,{kind:'freight_and_insurance'})]);
+  const includedLine = withFees([
+    fee('Freight service including contracted cover',280,{kind:'freight'}),
+    fee('Cargo cover included in main service',0,{kind:'insurance',includedIn:1}),
+  ]);
+  assert.deepEqual(packageBill.costCompleteness,{status:'costs_entered',missing:[]});
+  assert.deepEqual(includedLine.costCompleteness,packageBill.costCompleteness);
+  assert.equal(includedLine.sellerCost,packageBill.sellerCost);
+  assert.deepEqual(includedLine.sellerFeeLines,[
+    {name:'Freight service including contracted cover',amount:280,currency:'USD',inQuoteCurrency:280},
+    {name:'Cargo cover included in main service',amount:0,currency:'USD',inQuoteCurrency:0},
+  ]);
+  assert.deepEqual(withFees([fee('Unconfirmed bundle',0,{kind:'freight_and_insurance'})]).costCompleteness,
+    {status:'provisional',missing:['freight','insurance']});
+});
+
+test('invalid bundled declarations and arbitrary fee fields cannot mark a quote complete', () => {
+  assert.throws(() => withFees([fee('Freight',250,{kind:'free'})]), /Fee kind/);
+  assert.throws(() => withFees([fee('Freight',250,{customer:'private name'})]), /optional fields/);
+  const packageRow = fee('Package',280);
+  for (const fields of [{includedIn:1},{kind:'insurance',includedIn:2},{kind:'insurance',includedIn:3},{kind:'insurance',includedIn:'1'}]) {
+    assert.throws(() => withFees([packageRow,fee('Cover',0,fields)]), /1-based/);
+  }
+  assert.throws(() => withFees([packageRow,fee('Cover',30,{kind:'insurance',includedIn:1})]), /typed zero fee/);
+  assert.throws(() => withFees([fee('Unconfirmed package',0),fee('Cover',0,{kind:'insurance',includedIn:1})]), /positive charge/);
 });
 
 test('an exact decimal price threshold stays on its currency increment', () => {

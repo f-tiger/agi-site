@@ -1,4 +1,5 @@
 export const TRADE_PATH = '/studio/trade/';
+export const TRADE_QUOTE_PATH = '/studio/ai/trade-export-quote';
 
 const canadaSearch = 'https://ised-isde.canada.ca/app/ixb/cid-bdic/searchProduct.html';
 const canadaReport = 'https://ised-isde.canada.ca/app/ixb/cid-bdic/productReport.html';
@@ -6,8 +7,17 @@ const euSearch = 'https://ted.europa.eu/en/advanced-search';
 const euResults = 'https://ted.europa.eu/en/search/result';
 const usSearch = 'https://sam.gov/opportunities';
 const leadPath = '/studio/ai/trade-lead-priority';
-const quotePath = '/studio/ai/trade-export-quote';
+const quotePath = TRADE_QUOTE_PATH;
 export const tradeTitle = {zh:'外贸找客与出口报价',en:'Find buyers and quote export orders'};
+export const tradeQuoteDiscovery = {
+  zh:{title:'FOB 出口报价计算器｜外贸底价与利润率',description:'按订单数量、汇率和卖方实际承担的费用，计算 FOB、EXW 或 CIF 的最低单价，并试算扣除佣金和收款费后的利润率。',keywords:'外贸报价 出口报价 FOB报价计算器 外贸出口底价 出口利润率 毛利 CNY USD CIF EXW'},
+  en:{title:'FOB Export Quote Calculator | Price Floor and Margin',description:'Calculate FOB, EXW, or CIF unit price floors from quantities, exchange rates, and seller costs. Check margin after commission and payment fees.',keywords:'export quote calculator FOB export price floor FOB quote margin EXW CIF exchange rate sales commission payment fees'},
+};
+
+export function tradeQuoteSearch(BASE,lang) {
+  const copy=tradeQuoteDiscovery[lang];
+  return {u:BASE+TRADE_QUOTE_PATH,n:copy.title,k:lang==='zh'?'自研工具':'BPJ tool',q:(copy.title+' '+copy.keywords).toLowerCase()};
+}
 
 export function tradeCategoryGuide(BASE,lang) {
   const t = (zh,en) => lang === 'zh' ? zh : en;

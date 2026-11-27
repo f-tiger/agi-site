@@ -3,7 +3,8 @@ import {renderAiIndex,categoryPath,aiSuiteSearchIndex,searchIndexPath} from './a
 import {suiteGuidance} from './ai-suite-guidance.mjs';
 import {aiSuiteFeaturedTool} from './ai-suite-featured.mjs';
 import {shellToolShare} from './site-shell.mjs';
-import {TRADE_PATH,tradeTitle,tradeCategoryGuide} from './trade-pages.mjs';
+import {TRADE_PATH,TRADE_QUOTE_PATH,tradeTitle,tradeCategoryGuide,tradeQuoteDiscovery} from './trade-pages.mjs';
+import {FREE_DAILY_RUNS} from '../lib/trade-workbench-access.mjs';
 
 export {renderAiIndex,suiteCount} from './ai-suite-directory.mjs';
 export const FREE_SUITE_MCP = 'https://baipiaoji.com/api/ai-mcp';
@@ -11,7 +12,47 @@ export const FREE_SUITE_MCP = 'https://baipiaoji.com/api/ai-mcp';
 const assets = '<link rel="stylesheet" href="/studio-assets/ai-suite.css?v=3">';
 const resultStyles = '<link rel="stylesheet" href="/studio-assets/ai-suite-result.css?v=3">';
 const script = '<script type="module" src="/studio-assets/ai-suite.mjs?v=3"></script>';
+const quoteScript = '<script type="module" src="/studio-assets/ai-suite.mjs?v=trade-quote-1"></script><script type="module" src="/studio-assets/trade-quote-signup.mjs?v=1"></script>';
 const siteTitle = {zh:'BPJ 自研 AI 工具',en:'BPJ AI tools'};
+const tradeRules = 'https://library.iccwbo.org/content/tfb/BOOKS/BK_0049/BK_0049_05_RulesSea.htm?AGENT=ICC_HQ';
+
+function tradeQuoteCase(tool, cif, BASE, lang, t, esc) {
+  const {quantity,unitProductCost,quotePerCostUnit,commissionPercent,paymentFeePercent,targetMarginPercent}=tool.example;
+  const [packaging,preCarriage,freight,insurance]=JSON.parse(tool.example.sellerFees);
+  const fob=runSuiteTool(tool.name,{...tool.example,incoterm:'FOB',sellerFees:JSON.stringify([packaging,preCarriage]),quotedUnitPrice:0});
+  const heading=t(`${quantity} 件外贸订单报价示例`,`${quantity}-unit export quote example`);
+  const input=t(
+    `每件货品成本 ${unitProductCost} CNY，整单包装费 ${packaging.amount} CNY，国内运费 ${preCarriage.amount} CNY。示例汇率为 1 CNY = ${quotePerCostUnit} USD，佣金 ${commissionPercent}%，收款费 ${paymentFeePercent}%，目标利润率 ${targetMarginPercent}%，三个比例都按报价额计算。`,
+    `Product cost is ${unitProductCost} CNY per unit, with ${packaging.amount} CNY for packaging and ${preCarriage.amount} CNY for inland transport per order. The sample exchange rate is 1 CNY = ${quotePerCostUnit} USD. Commission is ${commissionPercent}%, payment fees ${paymentFeePercent}%, and the target margin ${targetMarginPercent}%, each as a share of quoted revenue.`,
+  );
+  const rows=[
+    [t('FOB 方案','FOB scenario'),t(`本例由买方承担主运费和保险。卖方成本 ${fob.sellerCost.toFixed(2)} USD，最低单价 ${fob.minimumUnitPrice.toFixed(2)} USD。`,`The buyer covers main carriage and insurance in this example. Seller cost is ${fob.sellerCost.toFixed(2)} USD. The minimum unit price is ${fob.minimumUnitPrice.toFixed(2)} USD.`)],
+    [t('CIF 方案','CIF scenario'),t(`本例另计 ${freight.amount} USD 主运费及 ${insurance.amount} USD 保险。卖方成本 ${cif.sellerCost.toFixed(2)} USD，最低单价 ${cif.minimumUnitPrice.toFixed(2)} USD。`,`Add ${freight.amount} USD for main carriage and ${insurance.amount} USD for insurance. Seller cost is ${cif.sellerCost.toFixed(2)} USD. The minimum unit price is ${cif.minimumUnitPrice.toFixed(2)} USD.`)],
+  ];
+  const basis=t('这些是假设费用。根据你和买方确认的贸易术语、指定港口和费用承担方填写。FOB 和 CIF 均用于海运或内河运输。CIF 运费或保险费未确认时，先补齐费用再确定报价。',
+    'The amounts are illustrative. Enter costs based on the trade term, named port and responsibilities you agreed with your buyer. FOB and CIF apply to sea or inland waterway transport. Confirm any missing CIF freight or insurance costs before finalizing your quote.');
+  const label=t('ICC《国际贸易术语解释通则 2020》海运规则','ICC Incoterms® 2020 sea and inland waterway rules');
+  const canonical=BASE+TRADE_QUOTE_PATH;
+  const mirror=canonical+'.md';
+  const copy=tradeQuoteDiscovery[lang];
+  const html=`<section class="suite-method" id="trade-quote-case" aria-labelledby="trade-quote-case-title">
+    <h2 id="trade-quote-case-title">${esc(heading)}</h2><p>${esc(input)}</p>
+    <ul>${rows.map(([name,text])=>`<li><strong>${esc(name)}</strong> ${esc(text)}</li>`).join('')}</ul>
+    <p>${esc(basis)}</p><p><a href="${esc(tradeRules)}" rel="noopener noreferrer">${esc(label)}</a> · <a href="${esc(mirror)}" rel="alternate" type="text/markdown">${t('可引用的 Markdown 版','Citeable Markdown')}</a></p>
+  </section>`;
+  const markdown=`# ${copy.title}\n\n[${t('报价计算器网页','Canonical calculator')}](${canonical})\n\n${copy.description}\n\n## ${heading}\n\n${input}\n\n${rows.map(([name,text])=>`- **${name}** ${text}`).join('\n')}\n\n${basis}\n\n[${label}](${tradeRules})\n`;
+  return {html,markdown,mirror};
+}
+
+function tradeQuoteFollowup(BASE,t,esc) {
+  const next=t('', '/en')+TRADE_QUOTE_PATH;
+  const href=BASE+'/account?next='+encodeURIComponent(next);
+  return `<section class="suite-method" data-trade-quote-followup hidden aria-labelledby="trade-quote-followup-title">
+    <h3 id="trade-quote-followup-title">${t('继续用外贸工作台','Continue in the export trade workbench')}</h3>
+    <p data-trade-quote-guest>${t(`免费账户每天可在外贸工作台试算 ${FREE_DAILY_RUNS} 次。注册会在新标签页打开，当前报价结果留在此页。`,`A free account gets ${FREE_DAILY_RUNS} runs a day in the trade workbench. Joining opens a new tab and keeps this quote visible.`)}</p>
+    <p><span data-trade-quote-guest><a href="${esc(href)}" target="_blank" rel="noopener" data-trade-quote-signup>${t('免费注册或登录','Join free or sign in')}</a> · </span><a href="${BASE}/studio/trade-tools/">${t('浏览外贸工具','Browse trade tools')}</a></p>
+  </section>`;
+}
 
 function field(input, sample, hint, lang, esc) {
   const zh=lang==='zh', t=(cn,en)=>zh?cn:en;
@@ -78,12 +119,14 @@ export function buildAiSuite({layout,esc,BASE,LOCALE,write,pushPage}) {
     pushPage(BASE+path+'.html','0.8');
   }
   for (const tool of SUITE_TOOLS) {
-    const path=suitePath(tool), title=tool.title[lang], description=tool.description[lang];
+    const path=suitePath(tool), quote=path===TRADE_QUOTE_PATH?tradeQuoteDiscovery[lang]:null;
+    const title=quote?.title??tool.title[lang], description=quote?.description??tool.description[lang];
     const category=SUITE_CATEGORIES.find(group=>group.id===tool.category);
     const schema={'@context':'https://schema.org','@type':'WebApplication',name:title,url:BASE+path,description,
       applicationCategory:'UtilitiesApplication',operatingSystem:'Web browser',isAccessibleForFree:true,
-      offers:{'@type':'Offer',price:'0',priceCurrency:'USD'},inLanguage:lang};
+      offers:{'@type':'Offer',price:'0',priceCurrency:'USD'},inLanguage:lang,...(quote?{citation:tradeRules}:{})};
     const example=runSuiteTool(tool.name,tool.example);
+    const quoteCase=quote?tradeQuoteCase(tool,example,BASE,lang,t,esc):null;
     const guidance=suiteGuidance(tool,lang);
     const related=relatedTools(tool,category,guidance.relatedIds);
     const mcpExample={jsonrpc:'2.0',id:1,method:'tools/call',params:{name:tool.name,arguments:tool.example}};
@@ -115,9 +158,9 @@ export function buildAiSuite({layout,esc,BASE,LOCALE,write,pushPage}) {
           <pre id="suite-raw" data-suite-output hidden tabindex="0" aria-label="${t('JSON 结果','JSON result')}"></pre>
           <p data-suite-status role="status"></p>
           <div class="suite-buttons suite-exports" data-suite-actions hidden><button type="button" data-suite-copy-text hidden>${t('复制正文','Copy text')}</button><button type="button" data-suite-copy>${t('复制 JSON','Copy JSON')}</button><button type="button" data-suite-download>${t('下载 JSON','Download JSON')}</button></div>
-        </section>
+${quote?`          ${tradeQuoteFollowup(BASE,t,esc)}\n`:''}        </section>
       </div>
-      ${guidance.note?`<aside class="suite-method"><h2>${t('结果口径','How to read the result')}</h2><p>${esc(guidance.note)}</p></aside>`:''}
+${quoteCase?`      ${quoteCase.html}\n`:''}      ${guidance.note?`<aside class="suite-method"><h2>${t('结果口径','How to read the result')}</h2><p>${esc(guidance.note)}</p></aside>`:''}
       <div class="suite-reference">
         <details class="suite-mcp">
           <summary>${t('查看完整示例','View worked example')}</summary>
@@ -131,8 +174,13 @@ export function buildAiSuite({layout,esc,BASE,LOCALE,write,pushPage}) {
         </details>
       </div>
       ${related.length?`<nav class="suite-related" aria-label="${t('相关工具','Related tools')}"><h2>${t('相关工具','Related tools')}</h2><ul>${related.map(item=>`<li><a href="${BASE}${suitePath(item)}">${esc(item.title[lang])}</a></li>`).join('')}</ul></nav>`:''}
-    </main>${script}`;
-    write('studio/ai/'+tool.id+'.html',layout({title:title+' · BPJ',description,path,body,wide:true,schema:[schema,breadcrumbs]}));
+    </main>${quote?quoteScript:script}`;
+    const options={title:title+' · BPJ',description,path,body,wide:true,schema:[schema,breadcrumbs]};
+    if(quoteCase) {
+      options.mediaAlternates=[{type:'text/markdown',href:quoteCase.mirror}];
+      write(path.slice(1)+'.md',quoteCase.markdown);
+    }
+    write('studio/ai/'+tool.id+'.html',layout(options));
     pushPage(BASE+path+'.html','0.7');
   }
   write(searchIndexPath.slice(1),JSON.stringify(aiSuiteSearchIndex(lang,BASE)));

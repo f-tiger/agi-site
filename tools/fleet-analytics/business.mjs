@@ -62,6 +62,10 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
   }
   const suiteTool = /^\/(?:en\/)?studio\/ai\/([a-z0-9-]{1,60})$/.exec(pathname);
   if(host==='baipiaoji.com' && suiteTool && /^ai_suite_result_(demo|own)$/.test(name))return {name,tool_id:suiteTool[1],repeat:true};
+  if (host==='baipiaoji.com' && suiteTool?.[1]==='trade-export-quote' &&
+      /^trade_quote_(?:signup_open|(?:ready|needs_info)_(?:own|demo))$/.test(name)) {
+    return {name,tool_id:'trade-export-quote',repeat:true};
+  }
   const tradeTool = /^\/(?:en\/)?studio\/trade-tools\/([a-z0-9]+(?:-[a-z0-9]+)*)$/.exec(pathname);
   if (host === 'baipiaoji.com' && ['/studio/trade-tools/','/en/studio/trade-tools/'].includes(pathname) && name === 'trade_workbench_signup') {
     return {name,tool_id:'trade-workbench',repeat:true};

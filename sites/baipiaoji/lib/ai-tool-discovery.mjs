@@ -1,7 +1,7 @@
 import {AI_FREE_TOOLS, AI_PAID_TOOLS, AI_TOOLS} from './ai-tool-registry.mjs';
 import {SUITE_CATEGORIES, SUITE_TOOLS, suitePath, suiteToolDefinitions, toolInputSchema} from './ai-suite/registry.mjs';
 
-export const FREE_MCP_VERSION = '0.5.1';
+export const FREE_MCP_VERSION = '0.5.2';
 export const CATALOG_URL = 'https://baipiaoji.com/ai-tools.json';
 const LIST_PAGE_SIZE = 40;
 let freeDefinitions;

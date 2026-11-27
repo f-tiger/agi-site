@@ -281,3 +281,16 @@ test('trade workbench measures fixed actions on exact BPJ tool routes',()=>{
  assert.equal(businessEvent('baipiaoji.com',route,{...event,customer:'private'}),null);
  assert.equal(businessEvent('baipiaoji.com',route,{name:'trade_workbench_revenue'}),null);
 });
+
+test('export quote accepts only the localized tool and fixed outcome names',()=>{
+ const route='/studio/ai/trade-export-quote';
+ for (const pathname of [route,'/en'+route]) {
+  for (const action of ['signup_open','ready_own','ready_demo','needs_info_own','needs_info_demo']) {
+   const name='trade_quote_'+action;
+   assert.deepEqual(businessEvent('baipiaoji.com',pathname,{name}),{name,tool_id:'trade-export-quote',repeat:true});
+   assert.equal(businessEvent('baipiaoji.com',pathname,{name,quote:'private'}),null);
+  }
+ }
+ assert.equal(businessEvent('baipiaoji.com','/account',{name:'trade_quote_signup_open'}),null);
+ assert.equal(businessEvent('baipiaoji.com',route,{name:'trade_quote_registered'}),null);
+});

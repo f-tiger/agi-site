@@ -1,4 +1,5 @@
 import {STARTUP_MCP_ORDER_SOURCE} from '../../../tools/revenue-studio/member-copy.mjs';
+import {AI_TRADE_QUOTE,TRADE_QUOTE_DAILY_TABLE,TRADE_QUOTE_RETENTION_DAYS} from './ai-trade-quote-observations.mjs';
 
 const DAY = 86400;
 
@@ -19,12 +20,12 @@ export async function readMcpValueReport(db, now = new Date()) {
   const day = seconds => new Date(seconds * 1000).toISOString().slice(0, 10);
   const since = day(start), through = day(asOf);
   const tables = new Set((await read(db, `SELECT name FROM sqlite_schema WHERE type='table' AND name IN
-    ('bpj_mcp_value_daily','bpj_mcp_value_startup_member_days','wb_orders','wb_order_sources')`)).map(row => row.name));
+    ('bpj_mcp_value_daily','bpj_mcp_value_startup_member_days','wb_orders','wb_order_sources','${TRADE_QUOTE_DAILY_TABLE}')`)).map(row => row.name));
   const ordersReadable = tables.has('wb_orders') && tables.has('wb_order_sources');
   const tasksReadable = tables.has('bpj_mcp_value_daily');
   const usageReadable = tables.has('bpj_mcp_value_startup_member_days');
 
-  const [daily, orders, usage, membership] = await Promise.all([
+  const [daily, orders, usage, membership, tradeQuoteDaily] = await Promise.all([
     tasksReadable ? read(db, `SELECT day,tool,outcome,n FROM bpj_mcp_value_daily
       WHERE day BETWEEN ? AND ? ORDER BY day,tool,outcome`, since, through) : null,
     ordersReadable ? read(db, `WITH tagged AS (${taggedOrders})
@@ -52,10 +53,34 @@ export async function readMcpValueReport(db, now = new Date()) {
     tables.has('wb_orders') ? read(db, `SELECT COUNT(*) AS confirmed_orders,
         COUNT(DISTINCT member_id) AS confirmed_members, COALESCE(SUM(amount_units),0) AS gross_usdt_micro
       FROM wb_orders WHERE state='paid' AND paid_at BETWEEN 1 AND ?`, asOf) : null,
+    tables.has(TRADE_QUOTE_DAILY_TABLE) ? read(db, `SELECT day,form,outcome,caller_signal,n
+      FROM ${TRADE_QUOTE_DAILY_TABLE} WHERE day BETWEEN ? AND ? ORDER BY day,form,outcome,caller_signal`, since, through).catch(() => null) : null,
   ]);
   return {
     as_of: now.toISOString(), window: {since, through, timezone:'UTC', today_partial:true},
     task_outcomes: daily, startup_checkout: orders?.[0] ?? null, startup_paid_usage: usage?.[0] ?? null,
     site_membership_confirmed_all_time: membership?.[0] ?? null,
+    trade_quote_calls: {
+      tool: AI_TRADE_QUOTE, endpoint: '/api/ai-mcp', window: {since, through, timezone:'UTC', today_partial:true},
+      retention_days: TRADE_QUOTE_RETENTION_DAYS, observations: tradeQuoteDaily,
+      coverage: 'Instrumentation starts at release. A null readout means unavailable coverage. Earlier calls and storage failures are unmeasured.',
+      definition: 'Direct and wrapper observations count outcomes of recognized tools/call attempts. Discovery counts list_bpj_ai_tools responses that include this tool. Other methods and the private MCP are outside coverage. Counts measure calls.',
+      outcomes: {
+        costs_entered:'The tool returned a costs_entered result for the provided values.',
+        provisional:'The tool returned a provisional quote result with incomplete CIF inputs.',
+        invalid:'The recognized invocation returned the existing tool input error.',
+        listed:'The discovery response included the quote tool.',
+      },
+      identity: 'This stateless public route associates neither authenticated principals nor the clientInfo declared during initialize. No referral site is assigned.',
+      exclusions: 'Known QA, operator probes, DNT and GPC are excluded before recording.',
+      caller_signals: {
+        edge_verified_bot:'Cloudflare edge classified the request as a verified bot.',
+        ua_indexer_hint:'The request User-Agent matched a known indexer or crawler signature.',
+        sample_fixture:'The inputs matched the published example exactly.',
+        ua_automation_hint:'The User-Agent matched an automation heuristic.',
+        ua_anomaly_hint:'The User-Agent matched an anomaly heuristic.',
+        unknown:'Other callers with no attributed source or identity.',
+      },
+    },
   };
 }

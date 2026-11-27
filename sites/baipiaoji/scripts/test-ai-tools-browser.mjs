@@ -376,6 +376,41 @@ async function verifyNumericAndTextTools(page, locale) {
   await assertNoOverflow(page, 'Matrix tool overflow at 320px');
 }
 
+async function verifyExportQuote(page, locale) {
+  await visit(page, locale, toolPath('trade-export-quote'));
+  const followup=page.locator('[data-trade-quote-followup]');
+  const signup=page.locator('[data-trade-quote-signup]');
+  const fees=toolInput(page,'sellerFees');
+  await page.locator('[data-suite-example]').click();
+  const example=await fees.inputValue();
+  await fees.fill(JSON.stringify(JSON.parse(example).filter(row=>!row.kind)));
+  await runButton(page).click();
+  await resultView(page).getByText(locale?/Confirm freight and insurance/:/补齐已确认的运费和保险/).waitFor();
+  assert(await followup.isHidden());
+  assert(await page.locator('[data-suite-download]').isHidden());
+  assert.equal(await rawView(page).textContent(),'','A provisional buyer price must not be copyable from the browser');
+  assert.deepEqual(await eventDetails(page),[]);
+
+  await page.locator('[data-suite-example]').click();
+  await runButton(page).click();
+  await signup.waitFor();
+  assert.equal(new URL(await signup.getAttribute('href')).searchParams.get('next'),locale+toolPath('trade-export-quote'));
+  assert.equal(await signup.getAttribute('target'),'_blank');
+  await page.locator('[data-suite-raw]').click();
+  const result=JSON.parse(await rawView(page).textContent());
+  assert.equal(result.costCompleteness.status,'costs_entered');
+  assert.equal(result.minimumUnitPrice,8.12);
+  assert.deepEqual(await eventDetails(page),[{name:'ai_suite_result_demo'}]);
+  const next=page.context().waitForEvent('page');
+  await signup.click();
+  const account=await next;
+  await account.waitForURL(url=>url.pathname===locale+'/account');
+  await account.close();
+  assert.equal(await fees.inputValue(),example);
+  assert(await followup.isVisible());
+  await assertNoOverflow(page,'Export quote overflow at 320px');
+}
+
 async function verifyCategorySamples(page, locale) {
   for (const group of SUITE_CATEGORIES) {
     await visit(page, locale, '/studio/ai/categories/' + group.id);
@@ -451,6 +486,7 @@ try {
       }
       await verifyCsvTool(page, locale);
       await verifyNumericAndTextTools(page, locale);
+      await verifyExportQuote(page, locale);
       await page.setViewportSize({width: 390, height: 900});
       await verifyCategorySamples(page, locale);
       if (!locale) await verifyAllFixtures(page);

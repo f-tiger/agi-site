@@ -18,6 +18,55 @@ assert.equal((await call({},null)).status,200,'Anonymous requests need no databa
 assert.equal((await getAccount(request(),{HITS:{batch(){throw Error('anonymous request must not hit DB')}}})),null);
 assert.deepEqual(PASSWORD_COST,{N:32768,r:8,p:3,maxmem:64*1024*1024});
 {
+ const {env,sql}=setup();
+ const origin='https://baipiaoji.com',quote=origin+'/studio/ai/trade-export-quote';
+ const headers=(referer,extra={})=>({'Sec-Fetch-Site':'same-origin',Referer:referer,...extra});
+ const issue=(referer=quote,extra={},body={action:'issue_trade_signup_source'})=>call(env,body,{headers:headers(referer,extra)});
+ for(const ref of [origin+'/studio/trade-tools/',origin+'/studio/quote-builder',quote+'?__ci=1',quote+'.html','https://other.example/studio/ai/trade-export-quote']){
+  const denied=await issue(ref);assert.equal((await denied.json()).claim,null);assert.equal(denied.headers.get('Set-Cookie'),null);
+ }
+ assert.equal((await(await issue(quote,{DNT:'1'})).json()).claim,null);
+ assert.equal((await(await issue(quote,{'Sec-GPC':'1'})).json()).claim,null);
+ assert.equal((await(await issue(quote,{'User-Agent':'HeadlessChrome'})).json()).claim,null);
+ assert.equal((await(await issue(quote,{}, {action:'issue_trade_signup_source',source:'self_declared'})).json()).claim,null);
+ assert.equal(sql.prepare("SELECT name FROM sqlite_master WHERE name='free_account_signup_sources'").get(),undefined);
+ async function claim(ref=quote){
+  const response=await issue(ref),{claim}=await response.json(),cookie=cookieOf(response);
+  assert.match(claim,/^[A-Za-z0-9_-]{43}$/);assert.match(cookie,/^__Host-bpj_signup_source=/);
+  assert.match(response.headers.get('Set-Cookie'),/HttpOnly; Secure; SameSite=Strict/);
+  assert.equal(response.headers.get('Cache-Control'),'no-store');assert(!cookie.includes(claim));
+  return {claim,cookie};
+ }
+ const provenance=accountId=>sql.prepare('SELECT source FROM free_account_signup_sources WHERE account_id=?').get(accountId)?.source;
+ const signup=async(username,issued,extra={},ref=origin+'/account')=>{
+  const response=await call(env,{action:'register',username,password,consent:true,signup_source_claim:issued.claim,...extra},{cookie:issued.cookie,headers:headers(ref)});
+  assert.equal(response.status,200,await response.clone().text());return {body:await response.json(),cookie:cookieOf(response)};
+ };
+ const first=await claim();
+ const stolen=await signup('source_stolen',{claim:first.claim,cookie:''});assert.equal(provenance(stolen.body.user.id),undefined);
+ const outside=await signup('source_fleet',first,{},origin+'/account?fleet=agiscorecard.com');assert.equal(provenance(outside.body.user.id),undefined);
+ const attributed=await signup('source_password',first);assert.equal(provenance(attributed.body.user.id),'bpj_trade_quote');assert.equal(attributed.body.user.email_verified,false);
+ const replay=await signup('source_replay',first);assert.equal(provenance(replay.body.user.id),undefined);
+ const google=await claim(origin+'/en/studio/ai/trade-export-quote');
+ env.GOOGLE_CLIENT_ID='fixture-client.apps.googleusercontent.com';
+ await ensureGoogleAccounts(env);
+ const proof=randomToken(),time=now();
+ sql.prepare('INSERT INTO free_google_proofs VALUES(?,?,?,?,?,?,?,?,?)').run(hash(proof),'google-source-fixture','source_google@gmail.com',1,time,time+600,'signin',null,null);
+ const confirmed=await signup('source_google',{claim:google.claim,cookie:google.cookie+'; '+GOOGLE_PROOF_COOKIE+'='+proof},{email:'source_google@gmail.com',google:true},origin+'/en/account');
+ assert.equal(confirmed.body.user.email_verified,true);assert.equal(provenance(confirmed.body.user.id),'bpj_trade_quote');
+ const shared=await claim();const race=await Promise.all([signup('source_race_1',shared),signup('source_race_2',shared)]);
+ assert.equal(race.filter(row=>provenance(row.body.user.id)==='bpj_trade_quote').length,1);
+ const expired=await claim();sql.exec('UPDATE free_account_signup_claims SET expires=0');
+ const late=await signup('source_expired',expired);assert.equal(provenance(late.body.user.id),undefined);
+ const test=await claim();const excluded=await signup('source_qa',test,{qa:true});assert.equal(provenance(excluded.body.user.id),undefined);
+ sql.exec('DROP TABLE free_account_signup_claims');
+ const oldSchema=await signup('source_no_schema',test);assert.equal(provenance(oldSchema.body.user.id),undefined);
+ assert.equal(sql.prepare('SELECT COUNT(*) n FROM free_account_signup_sources').get().n,3);
+ sql.prepare('DELETE FROM free_accounts WHERE id=?').run(attributed.body.user.id);
+ assert.equal(provenance(attributed.body.user.id),undefined);
+ console.log('PASS: first trade-quote source, opaque browser-bound claim, password/Google commits, QA/no-schema/expiry exclusion, concurrent replay and deletion.');
+}
+{
  const {env,sql}=setup();assert.equal((await call(env)).status,200);assert.equal((await(await call(env)).json()).user,null);
  assert.equal((await call(env,{action:'register',username:'alice',password,consent:true},{origin:'https://evil.example'})).status,403);
  assert.equal((await call(env,{action:'register',username:'alice',password,consent:true},{headers:{'Content-Type':'text/plain'}})).status,400);
@@ -367,7 +416,23 @@ if(process.argv.includes('--workerd')){
  try {
   assert.equal(await readback(),null);
   const correct=pair(first);
-  await register(bpj.env,'eco_first',{eco_intent:correct});
+  const quoteOrigin='https://baipiaoji.com';
+  const issued=await call(bpj.env,{action:'issue_trade_signup_source'},{headers:{...browser,
+    Referer:quoteOrigin+'/en/studio/ai/trade-export-quote'}});
+  const quoteClaim=(await issued.json()).claim;
+  const quoteCookie=cookieOf(issued);
+  assert.match(quoteClaim,/^[A-Za-z0-9_-]{43}$/);
+  assert.match(quoteCookie,/^__Host-bpj_signup_source=/);
+  const quoteHeaders={cookie:quoteCookie,headers:{...browser,Referer:quoteOrigin+'/en/account'}};
+  const dual=await call(bpj.env,{action:'register',username:'eco_first',password,consent:true,
+    eco_intent:correct,signup_source_claim:quoteClaim},quoteHeaders);
+  assert.equal(dual.status,200,await dual.clone().text());
+  assert.equal((await readback()).committed_accounts,1);
+  assert.equal(bpj.sql.prepare('SELECT count(*) n FROM free_account_signup_sources').get().n,0);
+  const quoteOnly=await call(bpj.env,{action:'register',username:'eco_quote',password,consent:true,
+    eco_intent:[randomToken(),randomToken()],signup_source_claim:quoteClaim},quoteHeaders);
+  assert.equal(quoteOnly.status,200,await quoteOnly.clone().text());
+  assert.deepEqual(bpj.sql.prepare('SELECT source FROM free_account_signup_sources').all().map(r=>r.source),['bpj_trade_quote']);
   assert.equal((await readback()).committed_accounts,1);
   await register(bpj.env,'eco_replay',{eco_intent:correct});
   assert.equal((await readback()).committed_accounts,1);
@@ -411,7 +476,7 @@ if(process.argv.includes('--workerd')){
   assert.equal(t.committed_accounts,2);
   assert.equal(await readEcoLaundrySignup(bpj.env.HITS,'2026-01-01',new Date().toISOString().slice(0,10)),null);
   assert.deepEqual(Object.keys(t.daily[0]).sort(),['committed_accounts','day']);
-  console.log('PASS: optional Eco laundry proofs count only committed password/Google accounts once, fail open, expire and exclude privacy and QA.');
+  console.log('PASS: optional Eco laundry proofs count only committed password/Google accounts once, fail open, expire and exclude privacy and QA; trade quote registration remains independent.');
  } finally {
   globalThis.fetch=originalFetch;
  }

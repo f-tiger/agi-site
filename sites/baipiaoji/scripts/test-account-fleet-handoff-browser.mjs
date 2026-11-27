@@ -38,7 +38,7 @@ async function fixture({ lang = 'en', sourceLang = lang, fleet = true, user = nu
   let currentUser = user, failRead = readinessFailure, failAuthorize = authorizeFailure, failMetadata = metadataFailure;
   context.on('page', page => page.on('pageerror', error => errors.push(error.message)));
   await context.addInitScript(({ecoProof,ecoPrivacy}) => {
-    if(ecoProof&&location.origin==='https://baipiaoji.com'){Object.defineProperty(navigator,'webdriver',{get:()=>false});if(ecoPrivacy){try{localStorage.setItem('fleet_ga4_choice_v1','denied');}catch{}}}
+    if(ecoProof&&location.origin==='https://baipiaoji.com'){Object.defineProperty(navigator,'webdriver',{get:()=>false});sessionStorage.setItem('bpj_trade_signup_claim_v1','Q'.repeat(43));if(ecoPrivacy){try{localStorage.setItem('fleet_ga4_choice_v1','denied');}catch{}}}
     window.handoffFlowEvents = [];
     document.addEventListener('bpj-account-flow', event => window.handoffFlowEvents.push({ detail: event.detail, cancelable: event.cancelable }));
   },{ecoProof,ecoPrivacy});
@@ -214,6 +214,8 @@ try {
       await tracked.page.locator('#account-recovery').waitFor();
       const [request]=tracked.posts('register');
       assert.equal(request.body.google,!!variant.google);
+      assert.equal(Object.hasOwn(request.body,'signup_source_claim'),false);
+      assert.equal(await tracked.page.evaluate(()=>sessionStorage.getItem('bpj_trade_signup_claim_v1')),null);
       assert.deepEqual(request.body.eco_intent,variant.ecoPrivacy||variant.duplicateParam?undefined:[STATE,CHALLENGE]);
       assert.equal(tracked.posts('credential').some(({body})=>Object.hasOwn(body,'eco_intent')),false);
       await noGrant(tracked);scenarios++;
