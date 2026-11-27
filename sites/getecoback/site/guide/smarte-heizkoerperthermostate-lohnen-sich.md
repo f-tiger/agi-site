@@ -124,6 +124,18 @@ Eigene Berechnungen benötigen JavaScript. Rechenweg und Beispiel stehen darunte
 ## Rechenweg und Beispiel
 600 € beeinflussbare Heizkosten × 5 % angenommene Ersparnis − 10 € laufende Kosten = 20 € pro Jahr. 150 € Kaufpreis ÷ 20 € = 7,5 Jahre einfache Amortisation. Bei 0 % Ersparnis entsteht kein positiver Rückfluss.
 
+## tado° X misst zu warm: Temperatur-Korrektur oder Raumsensor?
+
+- **Am Aufenthaltsort nachmessen.** Vergleiche die in der tado° App gemessene Temperatur mit einem separaten Thermometer dort, wo du dich im Raum aufhältst. Ist die Abweichung ungefähr konstant, teste zuerst die Temperatur-Korrektur. In der tado° App öffnest du **Einstellungen → Räume & Geräte → Gerät auswählen → Temperatur-Korrektur** und speicherst den Wert. Zeigt die App 23 °C und das Thermometer 21 °C, ergibt das −2 °C Korrektur. Miss nach der Änderung erneut. [tado° Anleitung zur Temperatur-Korrektur](https://help.tado.com/de/articles/8911726-ich-glaube-die-tatsachliche-raumtemperatur-ist-hoher-niedriger-als-die-angezeigte-temperatur-meiner-tado-x-gerate-was-kann-ich-tun).
+
+- **Das vorhandene Messgerät im Raum prüfen.** Sind nur Smarte Heizkörper-Thermostate X zugeordnet, zeigt tado° den Mittelwert ihrer Temperaturmessungen. Ein zugeordnetes verkabeltes Smartes Thermostat X oder ein Funk-Temperatursensor X übernimmt die Messung für den Raum. Pro tado° Raum ist nur eines dieser separaten Messgeräte vorgesehen. Ist schon eines zugeordnet, prüfe seinen Standort und verschiebe den Kauf eines weiteren. [tado° Geräte je Raum](https://help.tado.com/de/articles/10299833-ist-die-anzahl-der-tado-x-gerate-pro-raum-zuhause-und-raume-pro-tado-zuhause-begrenzt).
+
+- **Einen Funk-Temperatursensor X erst bei Bedarf einplanen.** Ändert sich der Abstand zwischen den Messwerten je nach Heizphase, prüfe eine repräsentativere Messstelle. Laut tado° können beide Generationen des Funk-Temperatursensors X dort messen und die Heizkörper-Thermostate X desselben zugeordneten Raums steuern. [tado° Entscheidungshilfe zum Funksensor](https://help.tado.com/de/articles/9582087-brauche-ich-einen-funk-temperatursensor-x-in-einem-raum-mit-smarten-heizkorper-thermostaten-x).
+
+**Homey und Matter.** Matter verbindet Geräte. Die Messstelle für die tado° Raumregelung ergibt sich aus der Gerätezuordnung im Raum. Die verlinkten Anleitungen bestätigen keine native tado° Raumzuordnung per Homey Flow. tado° nennt für die Einrichtung eine Bridge X oder einen kompatiblen Thread-Border-Router. Ein Router eines anderen Herstellers braucht laut tado° für die Anbindung an die tado° App NAT64. Prüfe deine konkrete Router- und App-Kombination, bevor du dafür einen Sensor oder eine Bridge kaufst. [tado° Anforderungen an Bridge und Router](https://help.tado.com/de/articles/9090800-brauche-ich-eine-tado-bridge-x) · [tado° Geräte in einer Matter-App](https://help.tado.com/de/articles/10264759-wie-richte-ich-meine-tado-x-gerate-in-einer-matter-app-ein) · [Homey Anleitung zur Gerätekopplung](https://support.homey.app/hc/en-us/articles/12934291420060-Connect-a-Matter-or-Thread-Device).
+
+Die Angaben gelten für tado° X. Wenn du ein neues X-System planst, prüfe zuerst dein Ventil und dann den [Lieferumfang und die Voraussetzungen des Starter Kits](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-tado-x-starter). Quellen für Deutschland geprüft am 27. November 2026.
+
 ## Welches System und welches Paket passt zu dir?
 Drei konkrete Modelle für unterschiedliche vorhandene Systeme. Die Auswahl ist keine Rangliste und kein eigener Produkttest. Die Ventilpassung und der Nutzen eines Zeitplans bleiben eigene Prüfschritte.
 

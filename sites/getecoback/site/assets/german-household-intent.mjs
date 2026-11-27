@@ -744,6 +744,24 @@ function asksForBoschCalibration(query) {
   return /\be[ -]?03\b/.test(query) || failed.test(query);
 }
 
+export const tadoXRoomTemperature = {
+  path:'/guide/smarte-heizkoerperthermostate-lohnen-sich.html',
+  id:'tado-x-raumtemperatur',
+  tool:'ratgeber_suche',
+};
+
+function asksForTadoXRoomTemperature(query) {
+  const tadoX = /\btado(?:\s*°)?[ -]*x\b|\b(?:funk[ -]*temperatursensor|(?:smartes[ -]+)?heizkoerper[ -]*thermostat)[ -]+x\b/;
+  const legacyOrOther = /\b(?:v3|v2|v1|internet[ -]*bridge|bosch|fritz|avm|netatmo|homematic|oventrop|vaillant|danfoss|heimeier)\b|\b(?:ohne|statt)\s+tado(?:\s*°)?[ -]*x\b/;
+  const otherTask = /\b(?:adapter\w*|ventil\w*|batterie\w*|akku\w*|reset\w*|zuruecksetz\w*|defekt\w*|firmware\w*|qr[ -]*code|ersatzteil\w*)\b|\bsetz\w*\b[^.!?]{0,110}\bzurueck\b/;
+  const roomReference = /\b(?:raumtemperatur\w*|raum[ -]*(?:sensor\w*|mess\w*|referenz\w*)|referenz[ -]*(?:sensor\w*|temperatur\w*)|mess[ -]*(?:geraet\w*|stelle\w*)|temperatur[ -]*(?:korrekt\w*|abweich\w*|differenz\w*)|offset)\b/;
+  const sensor = /\b(?:(?:funk[ -]*)?temperatur[ -]*sensor\w*|funk[ -]*thermostat\w*)\b/;
+  const setup = /\b(?:koppel\w*|koppl\w*|pair\w*|verbind\w*|offline|auffind\w*|erreichbar\w*|einricht\w*|einbind\w*|hinzufueg\w*)\b|\b(?:bind\w*|fueg\w*)\b[^.!?]{0,100}\b(?:ein|hinzu)\b/;
+  const sign = /\b(?:misst\s+(?:zu\s+(?:warm|kalt|hoch|niedrig)|\d+)|zeigt\s+zu\s+(?:viel|wenig))\b/;
+  return tadoX.test(query) && !legacyOrOther.test(query) && !otherTask.test(query) &&
+    (roomReference.test(query) || sign.test(query) || (sensor.test(query) && !setup.test(query)));
+}
+
 export const tadoXVaillantAdapter = {
   path:'/guide/smarte-heizkoerperthermostate-lohnen-sich.html',
   id:'tado-x-vaillant-305-adapter',
@@ -940,6 +958,7 @@ export function exactGermanHouseholdTask(query) {
   if (asksForPortaSplitMonoblockChoice(query)) return portaSplitMonoblockChoice;
   if (asksForBoschCalibration(query)) return boschCalibration;
   if (asksForTadoXVaillantAdapter(query)) return tadoXVaillantAdapter;
+  if (asksForTadoXRoomTemperature(query)) return tadoXRoomTemperature;
   if (asksForOfflineThermostat(query)) return offlineThermostatChoice;
   if (asksForSiemensWaterFilter(query)) return siemensFilterDecision;
   if (asksForKarcherCartridge(query)) return karcherCartridgeDecision;

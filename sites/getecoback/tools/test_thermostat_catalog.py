@@ -49,7 +49,7 @@ class CatalogTests(unittest.TestCase):
         self.assertIn('keinen Schweizer Händler', html)
         self.assertIn('0 %', html)
         self.assertIn('12. November 2026', html)
-        self.assertIn('"dateModified": "2026-11-26"', html)
+        self.assertIn('"dateModified": "2026-11-27"', html)
         self.assertEqual(html.count('id="tado-x-oventrop"'), 1)
         self.assertIn('4026755228717', html)
         self.assertEqual(html, page(catalog.SLUG, PAGES[catalog.SLUG]))

@@ -1427,6 +1427,27 @@ test('German dehumidifier price checks reach the same-seller Black Friday answer
  for(const q of ["Black Friday Klimaanlage 30 Tage Preis prüfen","Luftentfeuchter Black Friday in der Schweiz, was ist der Tiefstpreis in CHF?","Welcher Luftentfeuchter kommt für einen kalten Keller bei 10 Grad infrage?","Hat der Pro Breeze PB-06 mit 12 Litern WLAN?","Der Luftentfeuchter läuft, aber der Tank bleibt leer. Was soll ich prüfen?"]) assert.notEqual(searchEntries(index,q,'de')[0]?.entry.u,target,q);
 });
 
+test('tado X room temperature searches preserve other thermostat and network tasks',()=>{
+ const page='/guide/smarte-heizkoerperthermostate-lohnen-sich.html';
+ const target=page+'#tado-x-raumtemperatur';
+ for(const query of ['Kann ich bei tado X einen externen Temperatursensor als Referenz wählen?',
+    'Homey Flow tado X Funkthermostat als Raumreferenz',
+    'Mein tado X misst 24 Grad am Heizkörper und am Sofa nur 21. Brauche ich ein neues Starter Kit?',
+    'Brauche ich einen Funk-Temperatursensor X?', 'tado° X zeigt zu viel an, wo ist die Temperatur-Korrektur?']){
+   assert.equal(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+ }
+ assert.equal(searchEntries(index,'Welchen Vaillant Adapter brauche ich für tado X, 30,5 mm?','de')[0]?.entry.u,
+   page+'#tado-x-vaillant-305-adapter');
+ for(const query of ['Wie kopple ich einen tado X Thermostat mit Homey Matter?',
+    'Wie kopple ich meinen tado X Funk-Temperatursensor mit Homey über Matter?',
+    'Mein Funk-Temperatursensor X ist offline. Wie verbinde ich ihn wieder mit der Bridge X?',
+    'Wie setze ich den tado X Funk-Temperatursensor zurück?',
+    'tado V3+ externer Temperatursensor im Zimmer', 'Bosch Heizkörper-Thermostat Raumtemperatur',
+    'Welche Batterie braucht mein Funk-Temperatursensor X?', 'Homey ohne tado X externer Temperatursensor']){
+   assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+ }
+});
+
 test('the exact German tado X Vaillant adapter query respects other heads and valves',()=>{
  const target='/guide/smarte-heizkoerperthermostate-lohnen-sich.html#tado-x-vaillant-305-adapter';
  for(const q of ["Welchen Adapter brauche ich beim tado° X für ein Vaillant Heizkörperventil mit 30,5 mm Klemmanschluss?","tado X Thermostat: passt der Adapter an ein TA Heimeier Ventil mit 30,5 mm Klemme?","Welcher tado X Vaillant Adapter ist 700 100 001?","Welche Ventilzuordnung hat die EAN 4260012710533?"]) assert.equal(searchEntries(index,q,'de')[0]?.entry.u,target,q);

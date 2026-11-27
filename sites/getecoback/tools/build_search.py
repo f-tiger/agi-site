@@ -389,6 +389,12 @@ def collect():
     raise ValueError(f'Missing or hidden tado X Vaillant adapter evidence: {route}#{vaillant}')
    entry['model_sections'].append({'id':vaillant,'title':'Welcher Vaillant-Adapter passt zum tado° X?',
     'description':'tado° nennt für den dokumentierten Vaillant-/TA-Heimeier-Thermostatanschluss mit 30,5-mm-Klemme den separat erhältlichen Adapter 700 100 001 (EAN 4260012710533). Anschluss zuerst anhand der Herstellerzeichnung prüfen.'})
+   room='tado-x-raumtemperatur'
+   targets=re.findall(r'<h2\b[^<>]*\sid="'+room+r'"[^<>]*>',text)
+   if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
+    raise ValueError(f'Missing or hidden tado X room temperature evidence: {route}#{room}')
+   entry['model_sections'].append({'id':room,'title':'tado° X misst zu warm: Temperatur-Korrektur oder Raumsensor?',
+    'description':'Temperatur am Aufenthaltsort vergleichen. Stabile Abweichung in der App korrigieren, ein vorhandenes Messgerät im Raum prüfen und Homey-Kopplung getrennt beurteilen.'})
    calibration='bosch-ii-m-e03'
    title='Bosch II [+M] zeigt E03: Kalibrierung prüfen'
    matches=re.findall(r'<h4\b[^<>]*\sid="'+calibration+r'"[^<>]*>'+re.escape(title)+r'</h4>',text)
