@@ -127,7 +127,9 @@ test('Trotec TTK 75 ECO offer and exact technical facts remain separate in both 
   for(const fact of ['1120001110','1120001003','Warte mit dem Kauf','#ttk75-pruefpunkt','ttk-75-eco.html'])
     assert.ok(textOf(full).includes(fact),fact);
   assert.doesNotMatch(textOf(full),/getecoback-21|https:\/\/www\.amazon\.de/);
-  for(const frage of ['TTK 75 E kaufen','TTK 75 ECO Plus Preis','TTK 75 ECO Plus 1120001110 kaufen','TTK 75 ECO Ersatzfilter kaufen','TTK 75 ECO kaufen für kalten Keller']){
+  for(const frage of ['TTK 75 E kaufen','TTK 75 ECO Plus Preis','TTK 75 ECO Plus 1120001110 kaufen','TTK 75 ECO Ersatzfilter kaufen',
+    'TTK 75 ECO Ersatzkondensatschlauch kaufen', 'Wo kann ich eine Kondensatpumpe für meinen Trotec TTK 75 ECO kaufen?',
+    'Wo kann ich einen Wassertank für TTK 75 ECO bestellen?', 'TTK 75 ECO oder 75 E kaufen?' ,'TTK 75 ECO kaufen für kalten Keller']){
     const finder=await call('ecoback_werkzeug_finden',{frage},env,true);
     assert.notEqual(finder.structuredContent.guides?.[0]?.guide_url,exact,frage);
   }

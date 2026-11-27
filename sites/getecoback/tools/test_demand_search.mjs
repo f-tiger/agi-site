@@ -20,7 +20,9 @@ test('Trotec TTK 75 ECO offer lookup preserves the separate technical and filter
    guide+'#ttk70-hepa-filter');
  for(const query of ['Trotec TTK 75 E kaufen','Trotec TTK 75 ECO Plus Preis', 'TTK 75 ECO Plus 1120001110 kaufen',
      'TTK 75 ECO oder TTK 75 E kaufen','TTK 75 ECO kaufen für kalten Keller',
-     'TTK 75 ECO Ersatzfilter kaufen']){
+     'TTK 75 ECO Ersatzfilter kaufen',
+    'TTK 75 ECO Ersatzkondensatschlauch kaufen', 'Wo kann ich eine Kondensatpumpe für meinen Trotec TTK 75 ECO kaufen?',
+    'Wo kann ich einen Wassertank für TTK 75 ECO bestellen?', 'TTK 75 ECO oder 75 E kaufen?' ]){
    assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,offer,query);
  }
 });

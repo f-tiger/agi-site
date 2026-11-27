@@ -3,7 +3,7 @@ import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion} from './kaercher-saugduese-intent.mjs';
 import {asksForCoffeeWaterFilterMatch} from './kaffee-wasserfilter-intent.mjs?v=99bfa4094412';
-import {asksForTrotecTtk75EcoConditions, asksForTrotecTtk75EcoOffer} from './trotec-ttk75-eco-intent.mjs?v=0a6f393565c3';
+import {asksForTrotecTtk75EcoConditions, asksForTrotecTtk75EcoOffer} from './trotec-ttk75-eco-intent.mjs?v=00b40528209b';
 import {asksForCoolingNoiseComparison} from './cooling-noise-intent.mjs?v=f0bcc0785943';
 import {asksForTesamollWindowProfile} from './tesamoll-profile-intent.mjs';
 import {asksForLevoitCore300SBoxFilter,exactGermanFilterModel} from './exact-filter-intent.mjs?v=a55b45f02c08';
