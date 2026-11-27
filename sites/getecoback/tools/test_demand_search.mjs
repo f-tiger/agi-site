@@ -1439,6 +1439,9 @@ test('tado X room temperature searches preserve other thermostat and network tas
  assert.equal(searchEntries(index,'Welchen Vaillant Adapter brauche ich für tado X, 30,5 mm?','de')[0]?.entry.u,
    page+'#tado-x-vaillant-305-adapter');
  for(const query of ['Wie kopple ich einen tado X Thermostat mit Homey Matter?',
+    'Wie kopple ich meinen tado X Funk-Temperatursensor mit Homey über Matter?',
+    'Mein Funk-Temperatursensor X ist offline. Wie verbinde ich ihn wieder mit der Bridge X?',
+    'Wie setze ich den tado X Funk-Temperatursensor zurück?',
     'tado V3+ externer Temperatursensor im Zimmer', 'Bosch Heizkörper-Thermostat Raumtemperatur',
     'Welche Batterie braucht mein Funk-Temperatursensor X?', 'Homey ohne tado X externer Temperatursensor']){
    assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);

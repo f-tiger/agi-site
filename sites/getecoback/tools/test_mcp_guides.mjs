@@ -1214,6 +1214,9 @@ test('tado X room sensor guidance matches both MCP profiles and retains the setu
    assert.ok(textOf(full).includes(value),value);
  assert.doesNotMatch(textOf(full),/getecoback-21|https:\/\/www\.amazon\.de/);
  for(const frage of ['Wie kopple ich einen tado X Thermostat mit Homey Matter?',
+    'Wie kopple ich meinen tado X Funk-Temperatursensor mit Homey über Matter?',
+    'Mein Funk-Temperatursensor X ist offline. Wie verbinde ich ihn wieder mit der Bridge X?',
+    'Wie setze ich den tado X Funk-Temperatursensor zurück?',
      'Wie kalibriere ich den Temperatursensor von tado V3+?',
      'Welche Batterie brauche ich für den Funk-Temperatursensor X?',
      'Welchen Vaillant Adapter brauche ich für tado X, 30,5 mm?']){
