@@ -1213,6 +1213,21 @@ test('German winter device questions retain precise internal links in both MCP p
  assert.doesNotMatch(textOf(full),/https:\/\/www\.amazon\.de|tag=getecoback/);
 });
 
+test('German Beurer offer check preserves exact variants and seller price evidence in both MCP profiles',async()=>{
+ const {env}=assetEnv();
+ const pfad='https://getecoback.com/guide/heizdecke-stromverbrauch.html#beurer-hd75-angebotscheck';
+ const full=await call('ratgeber_lesen',{pfad},env);
+ const compact=await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad}},env,true);
+ assert.equal(full.isError,false);
+ assert.deepEqual(compact,full);
+ for(const value of ['4211125424008','4211125421038','denselben Verkäufer',
+   'unverbindlichen Preisempfehlung','30 Tage vor der Ermäßigung','Versand',
+   'https://www.beurer.com/de/p/42103/','https://www.gesetze-im-internet.de/pangv_2022/__11.html']){
+   assert.ok(textOf(full).includes(value),value);
+ }
+ assert.doesNotMatch(textOf(full),/https:\/\/www\.amazon\.de|tag=getecoback/);
+});
+
 test('German Beurer model and placement questions cite the same evidence in both MCP profiles',async()=>{
  const {env}=assetEnv();
  const target='https://getecoback.com/guide/heizdecke-stromverbrauch.html#beurer-hd75-ub30';
