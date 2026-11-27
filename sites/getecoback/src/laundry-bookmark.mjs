@@ -6,9 +6,9 @@ const guide = '/waeschetrockner-oder-luftentfeuchter.html';
 const checklist = guide+'#lc-measurement';
 const account = accountEntryURL(guide,'de');
 
-function page(content,status=200) {
+function page(content,status=200,headers={}) {
   return response(`<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>Meine Mess-Checkliste | EcoBack</title><link rel="stylesheet" href="/assets/laundry-check.css"></head><body><main class="eb-laundry"><h1>Meine Mess-Checkliste</h1>${content}<p><a href="${checklist}">Zur kostenlosen Mess-Checkliste</a></p></main></body></html>`,
-    status,{'Content-Type':'text/html; charset=utf-8'});
+    status,{'Content-Type':'text/html; charset=utf-8',...headers});
 }
 
 function signIn() {
@@ -54,8 +54,9 @@ export async function laundryBookmarkRoute(request, fetcher=fetch) {
     const data = await result.json();
     if (data.ok !== true || typeof data.saved !== 'boolean') throw Error('invalid bookmark status');
     if (write) return response(null,303,{Location:path});
+    // Native form submissions need the same-origin Origin header even without JavaScript.
     const actionLabel = data.saved ? 'Aus meiner Merkliste entfernen' : 'Mess-Checkliste merken';
-    return page(`<p>${data.saved ? 'Die Mess-Checkliste ist in deinem kostenlosen Konto gespeichert.' : 'Speichere den Link zur Mess-Checkliste für deine nächste Wäsche.'} Messwerte bleiben bei dir.</p><form method="post" action="${path}"><button name="action" value="${data.saved ? 'remove' : 'add'}" type="submit">${actionLabel}</button></form>`);
+    return page(`<p>${data.saved ? 'Die Mess-Checkliste ist in deinem kostenlosen Konto gespeichert.' : 'Speichere den Link zur Mess-Checkliste für deine nächste Wäsche.'} Messwerte bleiben bei dir.</p><form method="post" action="${path}"><button name="action" value="${data.saved ? 'remove' : 'add'}" type="submit">${actionLabel}</button></form>`,200,{'Referrer-Policy':'same-origin'});
   } catch {
     return page('<p>Die Merkliste ist gerade nicht verfügbar. Bitte versuche es später erneut.</p>',503);
   }

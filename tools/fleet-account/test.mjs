@@ -181,6 +181,7 @@ test('Eco laundry bookmarks are explicit, idempotent, cross-device, and host/acc
    assert.equal(result.status,200);
    assert.match(await result.text(),pattern);
  };
+ assert.equal((await laundryBookmarkRoute(request(first),service)).headers.get('Referrer-Policy'),'same-origin');
  await reads(first,/Speichere den Link/);
  await reads(wrongHost,/Kostenloses Konto erstellen/);
  for(const res of await Promise.all([write(first),write(second)])){
