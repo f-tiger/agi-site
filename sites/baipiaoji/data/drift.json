@@ -1,10 +1,86 @@
 {
-  "generated": "2026-11-26",
+  "generated": "2026-11-27",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 105,
-  "fetched_fail": 22,
-  "pending": 13,
+  "fetched_ok": 108,
+  "fetched_fail": 19,
+  "pending": 11,
   "items": [
+    {
+      "slug": "deepinfra",
+      "url": "https://deepinfra.com",
+      "confirmed": "2026-11-27",
+      "first_seen": "2026-11-26",
+      "added": [
+        "$0.018",
+        "$0.036",
+        "$0.07",
+        "$0.281",
+        "$0.30",
+        "$0.709",
+        "$2.126",
+        "15%",
+        "220b",
+        "27b",
+        "35b",
+        "3b"
+      ],
+      "removed": [
+        "$0.015",
+        "$0.03",
+        "$0.042",
+        "$0.834",
+        "$2.501"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "immersive-translate",
+      "url": "https://immersivetranslate.com",
+      "confirmed": "2026-11-27",
+      "first_seen": "2026-11-26",
+      "added": [],
+      "removed": [
+        "$1",
+        "$12",
+        "$13",
+        "$14",
+        "$15",
+        "$16",
+        "$17",
+        "$18",
+        "$19",
+        "$2",
+        "$20",
+        "$21"
+      ],
+      "checked_then": "2026-08-03"
+    },
+    {
+      "slug": "pika",
+      "url": "https://pika.art/terms-of-service",
+      "confirmed": "2026-11-27",
+      "first_seen": "2026-11-26",
+      "added": [
+        "$100",
+        "$200",
+        "$200,"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-06"
+    },
+    {
+      "slug": "bolt",
+      "url": "https://support.bolt.new",
+      "confirmed": "2026-11-27",
+      "first_seen": "2026-11-26",
+      "added": [
+        "07004b"
+      ],
+      "removed": [
+        "66b"
+      ],
+      "checked_then": "2026-09-21"
+    },
     {
       "slug": "gptzero",
       "url": "https://gptzero.me",
@@ -137,17 +213,6 @@
       "checked_then": "2026-09-12"
     },
     {
-      "slug": "bolt",
-      "url": "https://support.bolt.new",
-      "confirmed": "2026-11-25",
-      "first_seen": "2026-11-24",
-      "added": [
-        "66b"
-      ],
-      "removed": [],
-      "checked_then": "2026-09-21"
-    },
-    {
       "slug": "suno",
       "url": "https://help.suno.com",
       "confirmed": "2026-11-25",
@@ -223,17 +288,6 @@
         "2.5k"
       ],
       "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "immersive-translate",
-      "url": "https://immersivetranslate.com",
-      "confirmed": "2026-11-22",
-      "first_seen": "2026-11-21",
-      "added": [],
-      "removed": [
-        "07b"
-      ],
-      "checked_then": "2026-08-03"
     },
     {
       "slug": "civitai",
@@ -336,41 +390,6 @@
       ],
       "removed": [],
       "checked_then": "2026-09-25"
-    },
-    {
-      "slug": "deepinfra",
-      "url": "https://deepinfra.com",
-      "confirmed": "2026-11-19",
-      "first_seen": "2026-11-18",
-      "added": [
-        "$0.02",
-        "$0.03",
-        "$0.098",
-        "$0.15",
-        "$0.19",
-        "$0.294",
-        "$0.387",
-        "$0.783",
-        "$1.90",
-        "$5.89",
-        "$9.50",
-        "10%"
-      ],
-      "removed": [
-        "$0.018",
-        "$0.075",
-        "$0.105",
-        "$0.25",
-        "$0.43",
-        "$0.75",
-        "$0.87",
-        "$0.95",
-        "$3.50",
-        "$4.89",
-        "13b",
-        "284b"
-      ],
-      "checked_then": "2026-08-04"
     },
     {
       "slug": "hailuo",
@@ -735,22 +754,6 @@
         "70k"
       ],
       "checked_then": "2026-08-02"
-    },
-    {
-      "slug": "pika",
-      "url": "https://pika.art/terms-of-service",
-      "confirmed": "2026-09-19",
-      "first_seen": "2026-09-18",
-      "added": [
-        "$100.",
-        "18years",
-        "30days",
-        "365days",
-        "60days",
-        "90days"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-06"
     }
   ]
 }

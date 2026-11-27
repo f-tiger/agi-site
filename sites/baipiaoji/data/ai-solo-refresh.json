@@ -1,7 +1,7 @@
 {
-  "lastRun": "2026-11-26T08:54:12.783Z",
+  "lastRun": "2026-11-27T09:03:14.445Z",
   "status": "degraded",
-  "checkedSources": 5,
+  "checkedSources": 7,
   "queue": [
     {
       "caseId": "photo-ai",
@@ -19,37 +19,37 @@
       "caseId": "typingmind",
       "reason": "source-unreachable",
       "sourceUrl": "https://news.tonydinh.com/p/500k-milestone-my-reflections-after",
-      "lastChecked": "2026-11-13T07:11:37.320Z"
+      "lastChecked": "2026-11-27T09:03:14.445Z"
     },
     {
       "caseId": "typingmind",
       "reason": "source-unreachable",
       "sourceUrl": "https://news.tonydinh.com/p/jun-2023-how-i-work-with-employees",
-      "lastChecked": "2026-11-13T07:11:37.320Z"
+      "lastChecked": "2026-11-27T09:03:14.445Z"
     },
     {
       "caseId": "pdf-ai",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.linkedin.com/posts/damengchen_pdfai-crossed-60k-in-revenue-in-november-activity-7136059894838820864-53OW",
-      "lastChecked": "2026-11-14T07:00:01.607Z"
+      "lastChecked": "2026-11-27T09:03:14.445Z"
     },
     {
       "caseId": "sitegpt",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.linkedin.com/posts/pbteja1998_we-just-crossed-500k-in-lifetime-revenue-activity-7397602042841686016-1OWJ",
-      "lastChecked": "2026-11-14T07:00:01.607Z"
+      "lastChecked": "2026-11-27T09:03:14.445Z"
     },
     {
       "caseId": "audiopen",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.indiehackers.com/post/tech/building-an-ai-tool-in-a-half-day-hackathon-and-hitting-20k-mo-BCloDTDRfjuip0pDghap",
-      "lastChecked": "2026-11-14T07:00:01.607Z"
+      "lastChecked": "2026-11-27T09:03:14.445Z"
     },
     {
       "caseId": "audiopen",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.audiopen.ai/",
-      "lastChecked": "2026-11-14T07:00:01.607Z"
+      "lastChecked": "2026-11-27T09:03:14.445Z"
     },
     {
       "caseId": "my-askai",
@@ -384,7 +384,7 @@
     "typingmind|https://news.tonydinh.com/p/500k-milestone-my-reflections-after": {
       "caseId": "typingmind",
       "sourceUrl": "https://news.tonydinh.com/p/500k-milestone-my-reflections-after",
-      "lastAttempt": "2026-11-13T07:11:37.320Z",
+      "lastAttempt": "2026-11-27T09:03:14.445Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -392,7 +392,7 @@
     "typingmind|https://news.tonydinh.com/p/jun-2023-how-i-work-with-employees": {
       "caseId": "typingmind",
       "sourceUrl": "https://news.tonydinh.com/p/jun-2023-how-i-work-with-employees",
-      "lastAttempt": "2026-11-13T07:11:37.320Z",
+      "lastAttempt": "2026-11-27T09:03:14.445Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -400,10 +400,10 @@
     "headshotpro|https://www.rewardful.com/case-studies/headshotpro": {
       "caseId": "headshotpro",
       "sourceUrl": "https://www.rewardful.com/case-studies/headshotpro",
-      "lastAttempt": "2026-11-13T07:11:37.320Z",
+      "lastAttempt": "2026-11-27T09:03:14.445Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-11-13T07:11:37.320Z",
+      "lastSuccess": "2026-11-27T09:03:14.445Z",
       "lastHash": "e4518a43ca185a8ae2aa74a9baaa1f2324568c73fe067990ebbc2c35f3a9a553",
       "hash": "e4518a43ca185a8ae2aa74a9baaa1f2324568c73fe067990ebbc2c35f3a9a553",
       "simhash": "ac082445adcec10d",
@@ -413,7 +413,7 @@
     "pdf-ai|https://www.linkedin.com/posts/damengchen_pdfai-crossed-60k-in-revenue-in-november-activity-7136059894838820864-53OW": {
       "caseId": "pdf-ai",
       "sourceUrl": "https://www.linkedin.com/posts/damengchen_pdfai-crossed-60k-in-revenue-in-november-activity-7136059894838820864-53OW",
-      "lastAttempt": "2026-11-14T07:00:01.607Z",
+      "lastAttempt": "2026-11-27T09:03:14.445Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -421,7 +421,7 @@
     "sitegpt|https://www.linkedin.com/posts/pbteja1998_we-just-crossed-500k-in-lifetime-revenue-activity-7397602042841686016-1OWJ": {
       "caseId": "sitegpt",
       "sourceUrl": "https://www.linkedin.com/posts/pbteja1998_we-just-crossed-500k-in-lifetime-revenue-activity-7397602042841686016-1OWJ",
-      "lastAttempt": "2026-11-14T07:00:01.607Z",
+      "lastAttempt": "2026-11-27T09:03:14.445Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -429,7 +429,7 @@
     "audiopen|https://www.indiehackers.com/post/tech/building-an-ai-tool-in-a-half-day-hackathon-and-hitting-20k-mo-BCloDTDRfjuip0pDghap": {
       "caseId": "audiopen",
       "sourceUrl": "https://www.indiehackers.com/post/tech/building-an-ai-tool-in-a-half-day-hackathon-and-hitting-20k-mo-BCloDTDRfjuip0pDghap",
-      "lastAttempt": "2026-11-14T07:00:01.607Z",
+      "lastAttempt": "2026-11-27T09:03:14.445Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -437,7 +437,7 @@
     "audiopen|https://www.audiopen.ai/": {
       "caseId": "audiopen",
       "sourceUrl": "https://www.audiopen.ai/",
-      "lastAttempt": "2026-11-14T07:00:01.607Z",
+      "lastAttempt": "2026-11-27T09:03:14.445Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1158,26 +1158,36 @@
       "consecutiveChange": 0
     }
   },
-  "cursor": 2,
+  "cursor": 7,
   "errors": [
     {
-      "caseId": "erly",
-      "sourceUrl": "https://www.starterstory.com/stories/this-insanely-simple-app-makes-50k-month",
+      "caseId": "typingmind",
+      "sourceUrl": "https://news.tonydinh.com/p/500k-milestone-my-reflections-after",
       "reason": "body-limit"
     },
     {
-      "caseId": "luca-running",
-      "sourceUrl": "https://chalsarboleya.substack.com/p/how-ai-hype-pushed-us-to-100k-arr",
+      "caseId": "typingmind",
+      "sourceUrl": "https://news.tonydinh.com/p/jun-2023-how-i-work-with-employees",
       "reason": "body-limit"
     },
     {
-      "caseId": "photo-ai",
-      "sourceUrl": "https://levels.io/new-420k-mo-revenue-record-lex-fridman",
+      "caseId": "pdf-ai",
+      "sourceUrl": "https://www.linkedin.com/posts/damengchen_pdfai-crossed-60k-in-revenue-in-november-activity-7136059894838820864-53OW",
       "reason": "body-limit"
     },
     {
-      "caseId": "interior-ai",
-      "sourceUrl": "https://levels.io/new-420k-mo-revenue-record-lex-fridman",
+      "caseId": "sitegpt",
+      "sourceUrl": "https://www.linkedin.com/posts/pbteja1998_we-just-crossed-500k-in-lifetime-revenue-activity-7397602042841686016-1OWJ",
+      "reason": "body-limit"
+    },
+    {
+      "caseId": "audiopen",
+      "sourceUrl": "https://www.indiehackers.com/post/tech/building-an-ai-tool-in-a-half-day-hackathon-and-hitting-20k-mo-BCloDTDRfjuip0pDghap",
+      "reason": "body-limit"
+    },
+    {
+      "caseId": "audiopen",
+      "sourceUrl": "https://www.audiopen.ai/",
       "reason": "body-limit"
     }
   ]

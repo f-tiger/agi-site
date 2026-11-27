@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-26",
+ "checked": "2026-11-27",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -4860,299 +4860,27 @@
    "source_http": 429,
    "repo_http": null,
    "reason": "source HTTP 429"
+  },
+  "hemelion-decision-reflection": {
+   "attempts": 1,
+   "first_attempt": "2026-11-27",
+   "last_attempt": "2026-11-27",
+   "attemptedAt": "2026-11-27T09:02:01.998Z",
+   "source_http": 402,
+   "repo_http": null,
+   "reason": "source HTTP 402"
+  },
+  "hihirosmartservice-hiro-radar": {
+   "attempts": 1,
+   "first_attempt": "2026-11-27",
+   "last_attempt": "2026-11-27",
+   "attemptedAt": "2026-11-27T09:02:01.998Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
   }
  },
  "admitted": [
-  {
-   "slug": "goaimoat-hot-topics",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "mobilevalidate-mcp",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "gemmein-mcp",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "porkbun-mcp",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "rokha-rokha",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "faivelo-mail",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "getstringer-synthesizer",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cnrcode-corroborateme",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "au-assetize-maximo",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "makeaivideo-video-generator",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "wrenk-agentic-ops",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "playdrop-mcp",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "airroi-mcp",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "neuronto-agents-tools-search-discovery-ard-registry",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "itsbaba-hebrewcore",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "digitaltableteur-mcp",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "audiala-mcp",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cloud-blitz-mcp",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "run402-mcp",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "br-pegarex-mcp",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "4bl1ty-mcp",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "fodda-mcp-server",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "peil-mcp",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "revdoku-revdoku",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "asksakina-islamic-knowledge",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "esimkenya-mcp",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hiasynth-humanity",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "screensdesign-screensdesign",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "gingerguide-catalog",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "whoogy-mcp",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "clawfetch-mcp",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "scriptgrain-scriptgrain",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cc-roboparts-roboparts",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hasdata-hasdata",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "getcleed-linkedin-buying-signals",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "loomaly-loomaly",
-   "date": "2026-09-26",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "agent-bev-bev-door",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "kairossignal-kairos-signal",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "voxell-forge",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "rubiic-agent",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "reassign-reassign",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "openworklabs-openwork",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cc-heatpulse-heatpulse",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "screenbrowser-screenbrowser",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "babyblueviper-invinoveritas",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "recordist-gateway",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "listnsfwai-catalog",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "yungle-yungle",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "harborrank-harborrank",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "zensation-zenbrain",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hooklistener-mcp",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "flightclaw-flightclaw",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "aicitely-citely",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "agentboxd-mcp",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "brydge-ai-brydge",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "parallelsandbox-parallelsandbox",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "rewindmap-rewindmap",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "doklad-mcp",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
   {
    "slug": "loppee-loppee",
    "date": "2026-09-27",
@@ -22684,6 +22412,354 @@
   {
    "slug": "hackforddata-mcp",
    "date": "2026-11-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hairdora-hairdora",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hakuto-0209-b612",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hakuto-0209-kata",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "halalterminal-mcp",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "hamptonsverified-hamptons-verified",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "handledlocal-locator",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "handovra-site",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "handsofflinks-link-followability",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "handsontable-docs",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hankookilbo-mcp-hankookilbo-mcp",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "hapticpaper-mcp",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "harborgovcon-port",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "hardcopylabs-hardcopy",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hardenvo-site",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hardfmly-site",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hardscapedesk-site",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "harucms-haru-cms",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "harukibox-harukibox",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "hasdata-chatgpt",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "hasdata-google-flights-deals",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "hashn-hashn",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hatchable-hatchable",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "haulbound-ebay-seller-mcp",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "haveitprinted-print-and-mail",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "haycion-haycion",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hdply-hdply",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "headcountdesk-site",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "healthai-clarity",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "healthai-radar",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "heatpumpcosteurope-site",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hedgefundalpha-public-research",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hedwig-ai-hedwig",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hedwigai-hedwigai",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "heffl-free-tools",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "heirmos-memory",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hekkova-mcp",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "helloretail-hello-retail",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "helpusagree-conciliation",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "helpyself-tools",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hergertsynthora-synthora-x402",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "hesperan-mcp",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hesperatlas-hesper-atlas",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "heybrahim-portfolio",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "heybuna-buna",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "heykairon-kairon",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "heyoden-mcp",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hi-aisha-aisha",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hi-daniel-techspy-techspy",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hibot-hibot",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hillsignal-hillsignalapp",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "himaxym-flightfinder-aviation-safety",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hireahelper-mcp",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hirelocksmiths-locksmith-finder",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hiringcensus-hiring-census",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hirosecure-agents",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hirosecure-architect",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hispanic-legacy-hispanic-legacy",
+   "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "historiapojazduvin-site",
+   "date": "2026-11-27",
    "source_http": 200,
    "repo_http": null
   }

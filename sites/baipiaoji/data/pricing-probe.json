@@ -1,19 +1,19 @@
 {
- "generated": "2026-11-26",
+ "generated": "2026-11-27",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "huggingface",
-  "ideogram",
-  "jsdesign",
-  "krea",
-  "languagetool",
-  "leonardo",
-  "lovable",
-  "luma"
+  "motiff",
+  "ms-copilot",
+  "n8n",
+  "napkin",
+  "notebooklm",
+  "notion-ai",
+  "nvidia-nim",
+  "ollama"
  ],
- "cursor": "luma",
+ "cursor": "ollama",
  "summary": {
   "ready": 44,
   "empty": 35,
@@ -716,27 +716,27 @@
    "slug": "ms-copilot",
    "name": "微软 Copilot",
    "cat": "chat",
-   "reach": 3,
-   "probed": "2026-11-21",
+   "reach": 0,
+   "probed": "2026-11-27",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://copilot.microsoft.com/pricing",
      "status": 200,
-     "bytes": 352880,
+     "bytes": 352920,
      "tokens": 0
     },
     {
      "url": "https://copilot.microsoft.com/price",
      "status": 200,
-     "bytes": 353079,
+     "bytes": 352916,
      "tokens": 0
     },
     {
      "url": "https://copilot.microsoft.com/plans",
      "status": 200,
-     "bytes": 353051,
+     "bytes": 353079,
      "tokens": 0
     }
    ],
@@ -2040,7 +2040,7 @@
    "name": "Motiff 妙多",
    "cat": "design",
    "reach": 0,
-   "probed": "2026-11-14",
+   "probed": "2026-11-27",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -2062,14 +2062,14 @@
    "name": "n8n",
    "cat": "agent",
    "reach": 0,
-   "probed": "2026-11-14",
+   "probed": "2026-11-27",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://n8n.io/pricing",
      "status": 200,
-     "bytes": 528797,
+     "bytes": 600000,
      "tokens": 8
     }
    ],
@@ -2084,14 +2084,14 @@
    "name": "Napkin AI",
    "cat": "office",
    "reach": 0,
-   "probed": "2026-11-14",
+   "probed": "2026-11-27",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://www.napkin.ai/pricing",
      "status": 200,
-     "bytes": 64064,
+     "bytes": 64380,
      "tokens": 7
     }
    ],
@@ -2106,7 +2106,7 @@
    "name": "NotebookLM（Google）",
    "cat": "search",
    "reach": 0,
-   "probed": "2026-11-14",
+   "probed": "2026-11-27",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -2140,21 +2140,21 @@
    "name": "Notion AI",
    "cat": "office",
    "reach": 0,
-   "probed": "2026-11-15",
+   "probed": "2026-11-27",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://www.notion.so/pricing",
      "status": 200,
-     "bytes": 392958,
-     "tokens": 18
+     "bytes": 404142,
+     "tokens": 20
     }
    ],
    "best": {
     "url": "https://www.notion.so/pricing",
-    "tokens": 18,
-    "excerpt": "nnections Custom Agents AI agents handle repetitive tasks autonomously, so your team doesn’t have to. Free to try, then $10 per 1,000 monthly Notion credits. Workers Beta Extend Notion with custom code to build agent tools, sync external data, and trigger Notion workflows from anywhere. Learn more → There’s power in a single platform where you can do all your work out of. Notion is that single place. Nick Erdenberger GTM, OpenAI Watch video → Plans and features Free $0 per seat/month Sign up Plus $10 per seat/month Get started Business $20 per seat/month Get started Enterprise Contact us → Content Blocks are pieces of content you add to a page (e.g. to-do checkboxes, paragraphs, bullet point"
+    "tokens": 20,
+    "excerpt": "ect payment mode: Pay monthly Pay yearly Save up to 20% with yearly Price in USD Essentials for staying organized. Free $0 per seat / month For individuals to organize personal projects and life. Sign up Plus* $10 per seat / month For small teams and professionals to work together. Get started Includes: Limited storage Trial AI capabilities like generating docs, or autofilling databases Trial of Notion AI Capture, organize, and act on responses right inside Notion. Basic forms Publish a Notion page to the web Basic sites Connect multiple Calendars to manage work and time together. Notion Calendar Organize hundreds or thousands of items in one place, like projects or tasks Databases including"
    }
   },
   "nvidia-nim": {
@@ -2162,26 +2162,26 @@
    "name": "NVIDIA NIM",
    "cat": "api",
    "reach": 0,
-   "probed": "2026-11-15",
+   "probed": "2026-11-27",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://build.nvidia.com/pricing",
      "status": 200,
-     "bytes": 39447,
+     "bytes": 42405,
      "tokens": 0
     },
     {
      "url": "https://build.nvidia.com/price",
      "status": 200,
-     "bytes": 39439,
+     "bytes": 42397,
      "tokens": 0
     },
     {
      "url": "https://build.nvidia.com/plans",
      "status": 200,
-     "bytes": 39439,
+     "bytes": 42397,
      "tokens": 0
     }
    ],
@@ -2196,20 +2196,20 @@
    "name": "Ollama",
    "cat": "local",
    "reach": 0,
-   "probed": "2026-11-15",
+   "probed": "2026-11-27",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://ollama.com/pricing",
      "status": 200,
-     "bytes": 50958,
-     "tokens": 94
+     "bytes": 51417,
+     "tokens": 97
     }
    ],
    "best": {
     "url": "https://ollama.com/pricing",
-    "tokens": 94,
+    "tokens": 97,
     "excerpt": "lus: $300 of usage credits per month Early access to the newest models 10 concurrent requests Get Max Team Early access $500 / mo. For teams scaling with open models Everything in Pro, plus: Unlimited users $1,000 of usage credits per month, shared across the team Centralized billing and administration Priority support Shared projects, skills, and instructions (coming soon) Get Team Enterprise Custom For larger teams with volume usage pricing Everything in Team, plus: Model access controls Limit team access to specific models Set cost budgets for users and API keys Private Slack channel with dedicated support Custom security questionnaires Contact us Model pricing Pay as you go with usage cr"
    }
   },
