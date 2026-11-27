@@ -4,6 +4,7 @@ import {WINDOW_ENTRY_DOCUMENT, WINDOW_ENTRY_PAGE} from './fenstersauger-entry.mj
 import {PORTASPLIT_ENTRY_DOCUMENT, PORTASPLIT_ENTRY_PAGE, PORTASPLIT_MODEL_SEARCH, PORTASPLIT_PRODUCT_URL} from './portasplit-entry.mjs';
 import {CELLAR_MODEL_ENTRY_DOCUMENT, CELLAR_MODEL_ENTRY_PAGE, CELLAR_MODEL_SEARCH} from './cellar-entry.mjs';
 import {N90_ENTRY_DOCUMENT, N90_ENTRY_PAGE, N90_PRODUCT_URL} from './n90-entry.mjs';
+import {LAUNDRY_ENTRY_DOCUMENT, LAUNDRY_ENTRY_PAGE} from './laundry-mcp-entry.mjs';
 
 // Only whitelisted affiliate dimensions. Never slice JSON: one long destination
 // used to corrupt every field, including the source merged by the click tracker.
@@ -130,6 +131,11 @@ function eligibleModelEntry(body, request, uaClass, path, documentUrl, matchesMe
     request.headers.get('origin') === 'https://getecoback.com' &&
     request.headers.get('sec-fetch-site') !== 'cross-site' &&
     request.headers.get('referer') === documentUrl;
+}
+
+export function taggedLaundryMcpEntry(body, request, uaClass) {
+  return body.n === 'page_view' && body.mcp_laundry_entry === true &&
+    eligibleModelEntry(body, request, uaClass, LAUNDRY_ENTRY_PAGE, LAUNDRY_ENTRY_DOCUMENT, () => false);
 }
 
 export function taggedWindowEntry(body, request, uaClass) {

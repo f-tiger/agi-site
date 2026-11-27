@@ -429,3 +429,46 @@ test('the catalogue stores only the derived vacuum model and the existing saniti
   assert.equal((await stored({...click(link),p:'/guide/vacuum.html'})).vacuum_model,undefined);
   assert.equal((await stored({n:'page_view',p:page,m:{vacuum_model:links[0][0]}})).vacuum_model,undefined);
 });
+
+test('laundry MCP arrivals require the exact document, trusted visit and one fixed flag', async () => {
+  const page = '/waeschetrockner-oder-luftentfeuchter.html';
+  const documentURL = 'https://getecoback.com'+page+'?mcp_entry=waesche-kosten';
+  const view = {n:'page_view',p:page,mcp_laundry_entry:true};
+  const headers = {origin:'https://getecoback.com',referer:documentURL,'sec-fetch-site':'same-origin'};
+  const read = async (body,overrides={}) => {
+    const rec=await record(body,{...headers,...overrides});
+    return JSON.parse(rec.rows[0]?.[4] || '{}');
+  };
+  assert.deepEqual(await read({...view,m:{private_input:'test arg'}}),{mcp_laundry_entry:1});
+  for(const bad of [
+    {referer:'https://getecoback.com'+page},{referer:documentURL+'&other=1'},
+    {referer:documentURL+'#lc-measurement'},{referer:documentURL.replace('waesche-kosten','verify')},
+    {origin:'https://example.test'},{'sec-fetch-site':'cross-site'}, {dnt:'1'},
+    {'sec-gpc':'1'},{'x-probe':'1'},{'user-agent':'getecoback-ci/laundry'},{'user-agent':'Googlebot'},
+  ]) assert.equal((await read({...view,m:{mcp_laundry_entry:1}},bad)).mcp_laundry_entry,undefined);
+  for(const wrong of [{mcp_laundry_entry:1},{p:'/en/dehumidifier-drying-clothes-cost.html'},{n:'affiliate_click'}])
+    assert.equal((await read({...view,...wrong,m:{mcp_laundry_entry:1}})).mcp_laundry_entry,undefined);
+  const html=readFileSync(new URL('../site'+page,import.meta.url),'utf8');
+  const script=html.split('<!--EB_TRACK--><script>')[1].split('</script><!--/EB_TRACK-->')[0];
+  async function visit(href,privacy={}){
+    const events=[];
+    const scope={
+      location:new URL(href),document:{referrer:'',addEventListener(){}},Blob,
+      navigator:{...privacy,sendBeacon:(path,body)=>{assert.equal(path,'/api/ev');events.push(body.text());}},
+      localStorage:{getItem:()=>privacy.denied?'denied':null},
+      addEventListener(){},setTimeout(){},clearTimeout(){},
+    };
+    scope.window=scope;
+    runInNewContext(script,scope);
+    return (await Promise.all(events)).map(JSON.parse);
+  }
+  const entry=documentURL+'#lc-measurement';
+  for(const href of [entry,documentURL,documentURL+'#laundry-check',documentURL+'&extra=1#lc-measurement','https://getecoback.com'+page+'#lc-measurement']){
+    const [event]=await visit(href);
+    assert.equal(event.n,'page_view');
+    assert.equal(event.p,page);
+    assert.equal(event.mcp_laundry_entry,href===entry?true:undefined);
+  }
+  for(const privacy of [{webdriver:true},{doNotTrack:'1'},{globalPrivacyControl:true},{denied:true}])
+    assert.equal((await visit(entry,privacy))[0].mcp_laundry_entry,undefined);
+});
