@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-26",
- "radar_fetched": "2026-11-26",
+ "generated": "2026-11-27",
+ "radar_fetched": "2026-11-27",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -17,7 +17,7 @@
   "demand_confirmed": 0,
   "recurring": 0,
   "scout": 5,
-  "supplied": 0
+  "supplied": 1
  },
  "opportunities": [
   {
@@ -30,7 +30,7 @@
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.27,
+   "score": 2.53,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -51,21 +51,6 @@
    "fleet_pages": []
   },
   {
-   "theme": "how do i give my hermes agents permanent memory institutional knowledge and inte",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "softwarerecs",
-   "days_seen": [
-    "2026-11-24"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.05,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
    "theme": "how to make three js support real time path tracing",
    "site": "",
    "kind": "request-board",
@@ -81,18 +66,43 @@
    "fleet_pages": []
   },
   {
-   "theme": "how to transfer photos from icloud photos to google drive",
+   "theme": "converter from 3d movie to normal movie",
    "site": "",
    "kind": "request-board",
    "subreddit": "softwarerecs",
    "days_seen": [
-    "2026-11-19"
+    "2026-11-27"
    ],
    "state": "scout",
    "supplied": false,
    "score": 2.0,
    "demand": [],
    "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "how do i give my hermes agents permanent memory institutional knowledge and inte",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "softwarerecs",
+   "days_seen": [
+    "2026-11-24"
+   ],
+   "state": "scout",
+   "supplied": true,
+   "score": 1.05,
+   "demand": [],
+   "supply": [
+    {
+     "title": "Show HN: Dev-Mem – Local-first SQLite knowledge graph for AI coding agents",
+     "url": "https://github.com/HarsH-1877/Dev-Mem",
+     "src": "hn_show",
+     "shared": [
+      "agents",
+      "knowledge"
+     ]
+    }
+   ],
    "fleet_pages": []
   }
  ]
