@@ -276,9 +276,6 @@ def test_bpj_trade_quote_measures_only_the_known_source_and_current_window() -> 
     assert "Long-term goal: 1,000." in daily["markdown"]
     assert "900" not in json.dumps(growth)
     assert manifests == manifests_without_data
-    for total, outcome in [(25, "first cohort"), (1000, "Review repeat use")]:
-        accounts["total"] = total
-        assert outcome in evolution.trade_quote_growth(reach, today)["next_action"]
 
     actions["signup_open"] = False
     report = evolution.trade_quote_growth(reach, today)
@@ -287,6 +284,52 @@ def test_bpj_trade_quote_measures_only_the_known_source_and_current_window() -> 
     assert "signup opened unknown" in "\n".join(evolution.render_trade_quote_growth(report))
     accounts["email_verified"] = 2
     assert evolution.trade_quote_growth(reach, today)["accounts"] is None
+
+
+def test_bpj_trade_quote_workbench_use_checks_subsets_and_guides_retention() -> None:
+    today = dt.date(2026, 12, 3)
+    accounts = {"total": 25, "email_verified_total": 4, "created": 2, "email_verified": 0}
+    actions = dict.fromkeys(evolution.TRADE_QUOTE_ACTION_FIELDS, 0)
+    actions["signup_open"] = 5
+    stages = {
+        "window": {"start": "2026-11-05", "end_exclusive": "2026-12-03", "complete_days": 28, "date_basis": "UTC"},
+        "trade_quote_accounts": accounts,
+        "events": {"trade_quote_actions": actions},
+    }
+    reach = {"ok": True, "conversion_stages": stages}
+    missing = evolution.trade_quote_growth(reach, today)
+    assert missing["workbench_use"] is None
+    assert missing["accounts"] == accounts and missing["actions"] == actions
+    assert "first-use and repeat-use reporting" in missing["next_action"]
+    assert "repeat Workbench use unknown" in "\n".join(evolution.render_trade_quote_growth(missing))
+
+    for numbers, expected_action in [
+        ((0, 0, 0, 0), "complete a first own-input"),
+        ((6, 0, 1, 0), "second workbench task"),
+        ((6, 2, 1, 0), "return path for recent"),
+        ((6, 3, 1, 2), "first cohort"),
+    ]:
+        usage = dict(zip(evolution.TRADE_QUOTE_USE_FIELDS, numbers))
+        stages["trade_quote_workbench_use"] = usage
+        report = evolution.trade_quote_growth(reach, today)
+        assert report["workbench_use"] == usage
+        assert expected_action in report["next_action"]
+
+    # A cohort can repeat this month after its first use in a prior window.
+    assert "first use 1, repeat use 2" in "\n".join(evolution.render_trade_quote_growth(report))
+    accounts["total"] = 1000
+    stages["events"] = None
+    report = evolution.trade_quote_growth(reach, today)
+    assert report["actions"] is None and report["workbench_use"] == usage
+    assert "support capacity" in report["next_action"]
+
+    accounts["total"] = 25
+    stages["events"] = {"trade_quote_actions": actions}
+    for numbers in [(26, 1, 1, 1), (2, 3, 1, 1), (6, 3, 7, 2), (6, 3, 1, 4), (6, 5, 4, 1), (6, 3, 1, False)]:
+        stages["trade_quote_workbench_use"] = dict(zip(evolution.TRADE_QUOTE_USE_FIELDS, numbers))
+        report = evolution.trade_quote_growth(reach, today)
+        assert report["workbench_use"] is None
+        assert report["accounts"] == accounts and report["actions"] == actions
 
 
 if __name__ == "__main__":
@@ -304,4 +347,5 @@ if __name__ == "__main__":
     test_strategy_is_reviewable_and_missing_policy_does_not_invent_direction()
     test_failed_or_malformed_public_reads_are_unknown_not_closed()
     test_bpj_trade_quote_measures_only_the_known_source_and_current_window()
+    test_bpj_trade_quote_workbench_use_checks_subsets_and_guides_retention()
     print("evolution invariants: ok")

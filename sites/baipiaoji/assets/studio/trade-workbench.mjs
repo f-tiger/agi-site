@@ -5,9 +5,16 @@ const directory = document.querySelector('[data-trade-directory]');
 const params = new URLSearchParams(location.search);
 const qa = ['__ci','__qa','qa','__probe','ci'].some(key=>params.has(key));
 
+function canMeasure() {
+  try {
+    return location.hostname==='baipiaoji.com' && !qa && !navigator.webdriver && navigator.doNotTrack!=='1' &&
+      !navigator.globalPrivacyControl && localStorage.getItem('fleet_ga4_choice_v1')!=='denied';
+  } catch { return false; }
+}
+
 function trackTrade(slug,action) {
   try {
-    if (location.hostname!=='baipiaoji.com'||qa||navigator.webdriver||navigator.doNotTrack==='1'||navigator.globalPrivacyControl||localStorage.getItem('fleet_ga4_choice_v1')==='denied') return;
+    if (!canMeasure()) return;
     window.bpjEv?.('biz','/trade-workbench/'+slug+'/'+action);
     window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:'trade_workbench_'+action}}));
   } catch {}
@@ -114,10 +121,10 @@ if (root) {
     select('price').textContent = valid ? t(`${plan.price_units/1e6} USDT／${plan.days} 天，BSC 网络，手动续期。`,`${plan.price_units/1e6} USDT for ${plan.days} days on BSC. Renew manually.`)
       : t('结账暂未开放。免费工具可按剩余次数继续使用。','Checkout is temporarily unavailable. You can continue with your remaining free runs.');
   }
-  async function request(body) {
+  async function request(body, measure=false) {
     const response = await fetch('/api/trade-workbench',{
       cache:'no-store',credentials:'same-origin',signal:AbortSignal.timeout(15000),
-      ...(body ? {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)} : {}),
+      ...(body ? {method:'POST',headers:{'Content-Type':'application/json',...(measure ? {'X-BPJ-Trade-Use':'1'} : {})},body:JSON.stringify(body)} : {}),
     });
     const data = await response.json().catch(()=>null);
     if (!response.ok||data?.ok!==true) throw Object.assign(Error(data?.code||'temporarily_unavailable'),{data});
@@ -201,18 +208,19 @@ if (root) {
     clearResult();
     notice(t('已填入虚构示例。生成结果会使用一次试用额度。','Example values filled. Getting a result uses one run.'));
   });
-  async function calculate(exportFile=false) {
+  async function calculate(exportFile=false, trusted=false) {
     if (busy || loading || !hasAllowance(account) || guestUnavailable || account.remaining===0 ||
         (exportFile && account.access!=='member')) return;
     const input = exportFile ? lastRun : readFields();
     if (!input) return;
     const isExample = !exportFile && exampleInput===JSON.stringify(input);
+    const measure = trusted && !exportFile && !isExample && account.access!=='guest' && canMeasure();
     const currentEpoch = epoch;
     busy = true;
     paintAccess();
     notice(exportFile ? t('正在生成 CSV…','Generating the CSV…') : t('正在生成结果…','Getting results…'));
     try {
-      const data = await request({id:root.dataset.tradeTool,input,...(exportFile ? {format:'csv',lang:zh?'zh':'en'} : {})});
+      const data = await request({id:root.dataset.tradeTool,input,...(exportFile ? {format:'csv',lang:zh?'zh':'en'} : {})},measure);
       if (currentEpoch !== epoch) return;
       showAllowance(data);
       if (exportFile) {
@@ -240,7 +248,7 @@ if (root) {
       if (refreshPending) refresh();
     }
   }
-  form.addEventListener('submit',event=>{ event.preventDefault(); calculate(); });
+  form.addEventListener('submit',event=>{ event.preventDefault(); calculate(false,event.isTrusted); });
   csv.addEventListener('click',()=>calculate(true));
   document.addEventListener('visibilitychange',()=>{ if (document.visibilityState==='visible') refresh(); });
   document.addEventListener('bpj-account-state',event=>{

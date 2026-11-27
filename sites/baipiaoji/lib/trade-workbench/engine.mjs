@@ -44,6 +44,10 @@ function transformInput(value, type) {
   throw new RangeError('invalid_input');
 }
 
+export function matchesWorkbenchExample(tool, input) {
+  return tool.inputs.every(([key,type,,,example]) => transformInput(input[key],type) === transformInput(example,type));
+}
+
 function validLabel(value) {
   return typeof value === 'string' && value.length > 0 && value.length <= 1000;
 }

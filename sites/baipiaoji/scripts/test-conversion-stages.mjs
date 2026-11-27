@@ -59,12 +59,21 @@ const out=await readConversionStages(binding,28,Date.parse('2026-09-27T15:01:00Z
 assert.deepEqual(out.window,{start:'2026-08-30',end_exclusive:'2026-09-27',complete_days:28,date_basis:'UTC'});
 assert.equal(out.ok,true);
 assert.equal(out.trade_quote_accounts,null,'Absent optional source table is unknown');
+assert.equal(out.trade_quote_workbench_use,null,'Absent optional use table is unknown');
 db.exec('CREATE TABLE free_account_signup_sources(account_id TEXT PRIMARY KEY,source TEXT)');
 const quoteSource=db.prepare('INSERT INTO free_account_signup_sources VALUES (?,?)');
 for (const id of ['real','unverified','qa','today']) quoteSource.run(id,'bpj_trade_quote');
 quoteSource.run('old','some_other_product');
 const attributed=await readConversionStages(binding,28,Date.parse('2026-09-27T15:01:00Z'));
 assert.deepEqual(attributed.trade_quote_accounts,{total:3,email_verified_total:2,created:2,email_verified:1});
+assert.equal(attributed.trade_quote_workbench_use,null);
+db.exec(`CREATE TABLE bpj_trade_quote_workbench_use(account_id TEXT PRIMARY KEY,first_day TEXT,repeat_day TEXT);
+  INSERT INTO bpj_trade_quote_workbench_use VALUES ('real','2026-09-24','2026-09-26'),
+    ('unverified','2026-09-26','2026-09-27'),('qa','2026-09-25','2026-09-26'),
+    ('today','2026-09-27',NULL),('old','2026-08-30','2026-09-10');`);
+const used = await readConversionStages(binding,28,Date.parse('2026-09-27T15:01:00Z'));
+assert.deepEqual({...used.trade_quote_workbench_use},
+  {first_use_total:2,repeat_use_total:1,first_use:2,repeat_use:1});
 assert.deepEqual(out.directory_outbound,{by_tool:[{slug:'fireworks',clicks:1}],unattributed_clicks:0});
 // Catalog allowlist prevents publishing arbitrary tracked paths. Page views and
 // current affiliate settings cannot turn outbound actions into commissions.

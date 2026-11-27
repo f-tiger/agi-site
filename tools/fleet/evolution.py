@@ -25,6 +25,7 @@ EVOLUTION = DATA / "fleet-evolution"
 BPJ_REACH = "https://baipiaoji.com/api/reach?days=28"
 TRADE_QUOTE_ACCOUNT_FIELDS = ("total", "email_verified_total", "created", "email_verified")
 TRADE_QUOTE_ACTION_FIELDS = ("signup_open", "ready_own", "ready_demo", "needs_info_own", "needs_info_demo")
+TRADE_QUOTE_USE_FIELDS = ("first_use_total", "repeat_use_total", "first_use", "repeat_use")
 
 SITE_DIRS = {
     "agiscorecard": "sites/agiscorecard",
@@ -203,7 +204,7 @@ def trade_quote_growth(reach: Any, today: dt.date) -> dict[str, Any]:
     stages = stages if isinstance(stages, dict) else {}
     window = {"start": (today - dt.timedelta(days=28)).isoformat(), "end_exclusive": today.isoformat(),
               "complete_days": 28, "date_basis": "UTC"}
-    accounts = actions = None
+    accounts = actions = workbench_use = None
     current_window = stages.get("window") == window
     if current_window:
         accounts = aggregate_counts(stages.get("trade_quote_accounts"), TRADE_QUOTE_ACCOUNT_FIELDS)
@@ -213,18 +214,34 @@ def trade_quote_growth(reach: Any, today: dt.date) -> dict[str, Any]:
         events = stages.get("events")
         if isinstance(events, dict):
             actions = aggregate_counts(events.get("trade_quote_actions"), TRADE_QUOTE_ACTION_FIELDS)
+        usage = aggregate_counts(stages.get("trade_quote_workbench_use"), TRADE_QUOTE_USE_FIELDS)
+        if usage:
+            first_total, repeat_total, first, repeat = (usage[key] for key in TRADE_QUOTE_USE_FIELDS)
+            if (first <= first_total and repeat <= repeat_total <= first_total
+                    and repeat_total - repeat <= first_total - first
+                    and (accounts is None or first_total <= accounts["total"])):
+                workbench_use = usage
 
     initial_target, long_target = 25, 1000
     if not current_window:
         next_action = "Check whether the current 28 complete UTC days are available before evaluating acquisition."
     elif accounts is None:
         next_action = "Verify the first-source registration readout before evaluating the signup funnel."
+    elif accounts["total"] >= initial_target:
+        if workbench_use is None:
+            next_action = "Verify first-use and repeat-use reporting before evaluating retention."
+        elif workbench_use["first_use_total"] == 0:
+            next_action = "Review the registration handoff and help exporters complete a first own-input workbench task."
+        elif workbench_use["repeat_use_total"] == 0:
+            next_action = "Review how exporters return for a second workbench task after their first successful use."
+        elif workbench_use["repeat_use"] == 0:
+            next_action = "Review the return path for recent workbench users before expanding distribution."
+        elif accounts["total"] >= long_target:
+            next_action = "Review observed repeat use and support capacity before expanding distribution further."
+        else:
+            next_action = "Review the first cohort's observed first and repeat workbench use before expanding distribution."
     elif actions is None:
         next_action = "Recover the calculator and signup-link event readout while retaining the confirmed registration count."
-    elif accounts["total"] >= long_target:
-        next_action = "Review repeat use and delivery before expanding acquisition."
-    elif accounts["total"] >= initial_target:
-        next_action = "Review the first cohort's repeated real quote use before expanding the sources with demonstrated fit."
     elif actions["ready_own"] == 0 and actions["needs_info_own"] > 0:
         next_action = "Use the measured incomplete own quotes to clarify the required cost inputs."
     elif actions["ready_own"] == 0:
@@ -241,6 +258,7 @@ def trade_quote_growth(reach: Any, today: dt.date) -> dict[str, Any]:
         "window": window if current_window else None,
         "accounts": accounts,
         "actions": actions,
+        "workbench_use": workbench_use,
         "initial_target": initial_target,
         "long_target": long_target,
         "next_action": next_action,
@@ -459,6 +477,7 @@ def build(today: dt.date, now: dt.datetime | None = None, *,
 def render_trade_quote_growth(report: dict[str, Any]) -> list[str]:
     accounts = report["accounts"] or {}
     actions = report["actions"] or {}
+    usage = report.get("workbench_use") or {}
     window = report["window"]
     dates = f"{window['start']} through {window['end_exclusive']} (exclusive)" if window else "unknown"
     return [
@@ -471,6 +490,11 @@ def render_trade_quote_growth(report: dict[str, Any]) -> list[str]:
         f"- Quote actions in the window: signup opened {actions.get('signup_open', 'unknown')}, "
         f"ready own {actions.get('ready_own', 'unknown')}, needs information own {actions.get('needs_info_own', 'unknown')}, "
         f"ready demo {actions.get('ready_demo', 'unknown')}, needs information demo {actions.get('needs_info_demo', 'unknown')}.",
+        f"- Attributed accounts through the last complete UTC day: first Workbench use {usage.get('first_use_total', 'unknown')}, "
+        f"repeat Workbench use {usage.get('repeat_use_total', 'unknown')}.",
+        f"- Workbench milestones in the window: first use {usage.get('first_use', 'unknown')}, "
+        f"repeat use {usage.get('repeat_use', 'unknown')}. Counts use each account's first and second distinct UTC days "
+        "with a successful own-input web Workbench task.",
         "- Registration scope: known, non-test accounts first attributed to the BPJ trade quote page. "
         "Browser actions can repeat. Email verification is a separate account status.",
         f"- Next action: {report['next_action']}",

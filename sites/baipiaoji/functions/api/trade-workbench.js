@@ -1,9 +1,11 @@
 import {json, seconds} from '../../lib/ad-commerce.js';
 import {getAccount, tokenFrom} from '../../lib/free-account.js';
 import {memberPlan, memberReady, memberSite} from '../../lib/membership.js';
-import {evaluateTool, getTool} from '../../lib/trade-workbench/engine.mjs';
+import {evaluateTool, getTool, matchesWorkbenchExample} from '../../lib/trade-workbench/engine.mjs';
 import {recordWorkbenchRun, utcDay, workbenchAllowance, workbenchMember, workbenchUsage} from '../../lib/trade-workbench-access.mjs';
 import {GUEST_DAILY_RUNS, guestTradeAllowance, guestTradeQuota, guestTradeUsage, recordGuestTradeRun} from '../../lib/trade-workbench-guests.mjs';
+import {recordTradeQuoteWorkbenchUse} from '../../lib/trade-quote-workbench-use.mjs';
+import {qualityEligible, trafficClass} from '../../lib/traffic-controls.mjs';
 
 const origin = 'https://baipiaoji.com';
 const maxBodyBytes = 4096;
@@ -81,7 +83,18 @@ async function status(request, env) {
   return json({ok: true, ...workbenchAllowance(activeMember, used), checkout});
 }
 
-async function run(request, env) {
+function measureUse(request, toolId) {
+  if (request.headers.get('X-BPJ-Trade-Use') !== '1' || request.headers.get('Sec-Fetch-Site') !== 'same-origin' ||
+      trafficClass(request) !== 'unclassified' || !qualityEligible(request, '/api/trade-workbench', '')) return false;
+  try {
+    const referrer = new URL(request.headers.get('Referer') || '');
+    const path = '/studio/trade-tools/' + toolId;
+    return referrer.origin === origin && [path, '/en' + path].includes(referrer.pathname);
+  } catch { return false; }
+}
+
+async function run(ctx) {
+  const {request, env} = ctx;
   const account = await getAccount(request, env);
   if (!account && tokenFrom(request)) return fail('sign_in_required', 401);
   const body = await readBody(request);
@@ -113,7 +126,8 @@ async function run(request, env) {
     return fail('temporarily_unavailable',503,guestTradeAllowance(GUEST_DAILY_RUNS));
   }
 
-  const usage = await recordWorkbenchRun(env.HITS, request, account, activeMember, seconds());
+  const acceptedAt = seconds();
+  const usage = await recordWorkbenchRun(env.HITS, request, account, activeMember, acceptedAt);
   if (!usage) {
     const current = await getAccount(request, env);
     if (!current || current.id !== account.id || current.session_version !== account.session_version) return fail('sign_in_required', 401);
@@ -122,10 +136,18 @@ async function run(request, env) {
     }
     return fail('rate_limited', 429, {...workbenchAllowance(activeMember, 0), remaining: 0});
   }
+  if (account.qa === 0 && body.format !== 'csv' && measureUse(request, tool.id)) {
+    const measurement = Promise.resolve().then(() => {
+      if (!matchesWorkbenchExample(tool, body.input)) return recordTradeQuoteWorkbenchUse(env.HITS, request, account.id, acceptedAt);
+    }).catch(() => {});
+    if (ctx.waitUntil) ctx.waitUntil(measurement);
+    else await measurement;
+  }
   return json({ok: true, ...result, ...workbenchAllowance(activeMember, usage.runs)});
 }
 
-export async function onRequest({request, env}) {
+export async function onRequest(ctx) {
+  const {request, env} = ctx;
   const url = new URL(request.url);
   const source = request.headers.get('Origin');
   if (url.origin !== origin || (source && source !== origin) ||
@@ -139,7 +161,7 @@ export async function onRequest({request, env}) {
   }
   try {
     if (!env.HITS || memberSite(env) !== 'bpj') return fail('temporarily_unavailable', 503);
-    return await (request.method === 'GET' ? status(request, env) : run(request, env));
+    return await (request.method === 'GET' ? status(request, env) : run(ctx));
   } catch {
     return fail('temporarily_unavailable', 503);
   }
