@@ -10,10 +10,16 @@ try{
  for(const prefix of ['', '/en']){
   for(const width of [320,390,1440]){
    await p.setViewportSize({width,height:900});await p.goto('https://baipiaoji.com'+prefix+'/#directory');
-   assert.equal(await p.locator('.bpj-directory-grid a').count(),14);
-   assert.ok(await p.locator('.bpj-directory-grid').evaluate(e=>e.scrollWidth<=e.clientWidth+1));
+   const directory=p.locator('#directory');
+   const categoryLinks=directory.locator('a[href*="/c/"]').filter({visible:true});
+   assert.equal(await categoryLinks.count(),14);
+   const destinations=await categoryLinks.evaluateAll(links=>links.map(link=>link.pathname));
+   assert.equal(new Set(destinations).size,14);
+   for(const group of ['.home-category-grid','.home-more']){
+    assert.ok(await directory.locator(group).evaluate(e=>e.scrollWidth<=e.clientWidth+1));
+   }
    if(width===390)await p.screenshot({path:'/tmp/bpj-upgrade-home'+(prefix?'-en':'-zh')+'.png'});
-   await p.locator('.bpj-directory-grid a[href$="/c/chat"]').click();
+   await directory.locator('a[href$="/c/chat"]').click();
    await p.locator('a[href="#choose"]').first().click();assert.ok(await p.locator('#choose h2').isVisible());
    assert.ok(await p.locator('#choose').evaluate(e=>e.scrollWidth<=e.clientWidth+1));
    if(width===390)await p.screenshot({path:'/tmp/bpj-upgrade-category'+(prefix?'-en':'-zh')+'.png'});
