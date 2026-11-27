@@ -7,6 +7,26 @@ import {calculateGasHeatThreshold} from '../site/assets/heat-gas-cost.mjs';
 import {compareSocketWatts} from '../site/assets/auto-12v-check.mjs';
 const browsingIndex=readFileSync(new URL('../site/assets/search-index.json',import.meta.url));
 const index=JSON.parse(browsingIndex);
+test('Trotec TTK 75 ECO offer lookup preserves the separate technical and filter answers',()=>{
+ const guide='/guide/trotec-luftentfeuchter-test.html';
+ const offer=guide+'#ttk75-angebot';
+ for(const query of ['Trotec TTK 75 ECO kaufen','Wo finde ich Händlerangebote für TTK75ECO?',
+     'Artikelnummer 1120001110 Preis','TTK 75 ECO Artikelnummer']){
+   assert.equal(searchEntries(index,query,'de')[0]?.entry.u,offer,query);
+ }
+ assert.equal(searchEntries(index,'TTK 75 ECO Arbeitsbereich bei 10 Grad im Keller','de')[0]?.entry.u,
+   guide+'#ttk75-pruefpunkt');
+ assert.equal(searchEntries(index,'Trotec TTK 70 HEPA welcher Ersatzfilter?','de')[0]?.entry.u,
+   guide+'#ttk70-hepa-filter');
+ for(const query of ['Trotec TTK 75 E kaufen','Trotec TTK 75 ECO Plus Preis', 'TTK 75 ECO Plus 1120001110 kaufen',
+     'TTK 75 ECO oder TTK 75 E kaufen','TTK 75 ECO kaufen für kalten Keller',
+     'TTK 75 ECO Ersatzfilter kaufen',
+    'TTK 75 ECO Ersatzkondensatschlauch kaufen', 'Wo kann ich eine Kondensatpumpe für meinen Trotec TTK 75 ECO kaufen?',
+    'Wo kann ich einen Wassertank für TTK 75 ECO bestellen?', 'TTK 75 ECO oder 75 E kaufen?' ]){
+   assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,offer,query);
+ }
+});
+
 test('Comfee drain hose uses its exact model or EAN without taking over other paths',()=>{
  const target='/guide/luftentfeuchter-zieht-kein-wasser.html#comfee-20den7-ablaufschlauch';
  for (const query of ['Welchen Schlauch brauche ich für den Dauerablauf am Comfee MDDF-20DEN7-WF?',

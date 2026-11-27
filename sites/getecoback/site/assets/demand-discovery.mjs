@@ -3,7 +3,7 @@ import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion} from './kaercher-saugduese-intent.mjs';
 import {asksForCoffeeWaterFilterMatch} from './kaffee-wasserfilter-intent.mjs?v=99bfa4094412';
-import {asksForTrotecTtk75EcoConditions} from './trotec-ttk75-eco-intent.mjs';
+import {asksForTrotecTtk75EcoConditions, asksForTrotecTtk75EcoOffer} from './trotec-ttk75-eco-intent.mjs?v=00b40528209b';
 import {asksForCoolingNoiseComparison} from './cooling-noise-intent.mjs?v=f0bcc0785943';
 import {asksForTesamollWindowProfile} from './tesamoll-profile-intent.mjs';
 import {asksForLevoitCore300SBoxFilter,exactGermanFilterModel} from './exact-filter-intent.mjs?v=a55b45f02c08';
@@ -61,6 +61,8 @@ const philipsHumidifierGuide='/guide/luftbefeuchter-ratgeber.html';
 
 export function exactGermanGuide(normalizedQuery) {
  const query=normalizedQuery.trim().replace(/\s+/g,' ');
+ if(asksForTrotecTtk75EcoOffer(query))
+   return {path:'/guide/trotec-luftentfeuchter-test.html',id:'ttk75-angebot'};
  const philipsSection=philipsHumidifierFilterSection(query);
  if(philipsSection)return {path:philipsHumidifierGuide,id:philipsSection};
  if(n90ExactName.test(query)||n90ExactEan.test(query))

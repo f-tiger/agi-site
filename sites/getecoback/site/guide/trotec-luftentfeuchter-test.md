@@ -22,22 +22,30 @@ Miss Temperatur und Luftfeuchte im Keller über mehrere Tage. Kläre feuchte Wä
 
 Herstellerquelle: [Trotec Originalbetriebsanleitung TTK 75 ECO (PDF), Seite 14](https://de.trotec.com/fileadmin/downloads/Entfeuchtung/TTK75ECO/TRT-BA-TTK75ECO-TC-010-DE.pdf). Geprüft am 22. November 2026.
 
+Wenn der Einsatz anhand der Werte geklärt ist, [prüfe vor der Händlersuche die genaue Artikelnummer](https://getecoback.com/guide/trotec-luftentfeuchter-test.html#ttk75-angebot).
+
 ## Wer ist Trotec?
 
 Trotec führt Luftentfeuchter für verschiedene Einsatzbereiche. Vergleiche die vollständige Modellbezeichnung und die Anleitung der jeweiligen Variante. Für allgemeine Auswahlkriterien gibt es den [Luftentfeuchter-Ratgeber](https://getecoback.com/guide/luftentfeuchter-ratgeber.html).
 
 ## Vier TTK-Modelle zum Nachschlagen
 
-Diese Übersicht dient als Ausgangspunkt für den Vergleich. Prüfe beim Händler Modell, Ausstattung und Lieferumfang.
+### Trotec TTK 75 ECO kaufen: Artikelnummer und Einsatz prüfen
 
-| Modell | Vor dem Kauf prüfen | Angebot |
+Auf der deutschen Herstellerseite heißt das Gerät **TTK 75 ECO**, Artikel **1120001110**. Prüfe diese Nummer am Angebot oder Typenschild. Der **TTK 75 E** ohne ECO ist ein anderes Gerät mit Artikelnummer **1120001003**. Quellen für Deutschland, geprüft am 27. November 2026: [Trotec TTK 75 ECO](https://de.trotec.com/shop/luftentfeuchter-ttk-75-eco.html) und [Trotec TTK 75 E](https://de.trotec.com/shop/luftentfeuchter-ttk-75-e.html).
+
+Miss am Standort Temperatur und Feuchte. Für [10 °C und 60 % relative Feuchte](https://getecoback.com/guide/trotec-luftentfeuchter-test.html#ttk75-pruefpunkt) bleibt die Entzugsleistung des TTK 75 ECO offen. Warte mit dem Kauf, wenn du diesen Wert für den Vergleich brauchst oder die Feuchteursache ungeklärt ist.
+
+Anzeige · Trotec TTK 75 ECO bei Amazon.de suchen. Prüfe in den Suchergebnissen die Artikelnummer, den Verkäufer, den Lieferumfang und den Gesamtpreis inklusive Versand.
+
+Bei den anderen TTK-Modellen gelten jeweils die Angaben für deren genaue Variante.
+
+| Modell | Vor dem Kauf prüfen | Nächster Schritt |
 | --- | --- | --- |
-| **TTK 52 E** | Datenblatt für Temperaturbereich und Entnahme beim eigenen Messpunkt prüfen. | Amazon → |
-| **TTK 72 E** | Bei Wäsche oder regelmäßigem Betrieb den eigenen Bedarf und die Laufzeit prüfen. | Amazon → |
-| **TTK 70 HEPA** | Filterausstattung und [Ersatzfilter für die genaue Gerätevariante prüfen](https://getecoback.com/guide/trotec-luftentfeuchter-test.html#ttk70-hepa-filter). | Amazon → |
-| **TTK 75 ECO** | Für einen kalten Keller den dokumentierten Arbeitsbereich und die Prüfbedingungen abgleichen. | Amazon → |
-
-Anzeige · Affiliate-Links — du zahlst denselben Preis. Nicht selbst getestet; Auswahl fasst öffentliche Quellen zusammen.
+| **TTK 52 E** | Datenblatt für Temperaturbereich und Entnahme beim eigenen Messpunkt prüfen. | Anzeige · TTK 52 E bei Amazon.de suchen |
+| **TTK 72 E** | Bei Wäsche oder regelmäßigem Betrieb den eigenen Bedarf und die Laufzeit prüfen. | Anzeige · TTK 72 E bei Amazon.de suchen |
+| **TTK 70 HEPA** | Filterausstattung und [Ersatzfilter für die genaue Gerätevariante prüfen](https://getecoback.com/guide/trotec-luftentfeuchter-test.html#ttk70-hepa-filter). | Anzeige · TTK 70 HEPA bei Amazon.de suchen |
+| **TTK 75 ECO** | Für einen kalten Keller den dokumentierten Arbeitsbereich und die Prüfbedingungen abgleichen. | [Artikelnummer und Händlersuche](https://getecoback.com/guide/trotec-luftentfeuchter-test.html#ttk75-angebot) |
 
 ## Trotec TTK 70 HEPA: Welcher Ersatzfilter passt?
 
@@ -59,11 +67,7 @@ Prüfe, ob für beide Geräte der Wasserentzug bei gleicher Temperatur und relat
 
 Miss Temperatur und Feuchte am geplanten Standort. Raumvolumen, Feuchtenachschub und Nutzungsdauer helfen bei der Auswahl. Die Fläche allein reicht für eine Modellentscheidung nicht. Bei anhaltend feuchten Bauteilen zuerst die [Feuchteursache klären](https://getecoback.com/guide/luftentfeuchter-gegen-schimmel.html).
 
-- TTK 52 E · Orientierung für [kleinere Räume](https://getecoback.com/guide/luftentfeuchter-15-qm.html).
-- TTK 70 HEPA · Daten für [Räume um 20 m²](https://getecoback.com/guide/luftentfeuchter-20-qm.html) einordnen.
-- TTK 72 E · Entnahme bei deinen Messbedingungen prüfen.
-- TTK 75 ECO · Im kalten Keller [Arbeitsbereich und Prüfpunkt](https://getecoback.com/guide/trotec-luftentfeuchter-test.html#ttk75-pruefpunkt) prüfen.
-- Bei [größeren Räumen](https://getecoback.com/guide/luftentfeuchter-40-qm.html) auch Raumhöhe und Feuchtenachschub berücksichtigen.
+Gleiche danach die [genaue TTK-Ausführung](https://getecoback.com/guide/trotec-luftentfeuchter-test.html#modelle) ab. Bei geplantem Filtertausch hilft die [Zuordnung für den TTK 70 HEPA](https://getecoback.com/guide/trotec-luftentfeuchter-test.html#ttk70-hepa-filter).
 
 ## Betriebskosten am eigenen Gerät messen
 
@@ -73,11 +77,11 @@ Miss den Verbrauch in kWh über einen vollständigen üblichen Einsatz und multi
 
 Vergleiche Modelle erst bei passendem Betriebspunkt. Prüfe danach Ablauf, Filter, Geräuschmessung und Kosten für deinen Einsatz.
 
-- Trotec TTK 72 E · Datenblatt beim Händler abgleichen.
-- MeacoDry Arete One 20L · Bedingungen im [Arete-One-Überblick](https://getecoback.com/guide/meacodry-arete-one-test.html) nachschlagen.
-- Comfee MDDF-20DEN7 · Genaue Modellvariante prüfen.
-- Trotec TTK 70 HEPA · Filter und Ersatzteilangebot prüfen.
-Anzeige · Affiliate-Links — du zahlst denselben Preis. Nicht selbst getestet; Auswahl fasst öffentliche Quellen zusammen.
+- [Arbeitsbereich und Messwerte für den TTK 75 ECO prüfen](https://getecoback.com/guide/trotec-luftentfeuchter-test.html#ttk75-pruefpunkt). Für den [TTK 70 HEPA die Filtergeneration abgleichen](https://getecoback.com/guide/trotec-luftentfeuchter-test.html#ttk70-hepa-filter).
+
+- [Prüfbedingungen beim MeacoDry Arete One 20L nachlesen](https://getecoback.com/guide/meacodry-arete-one-test.html). Anzeige · Arete One 20L bei Amazon.de suchen.
+
+- [Comfee-Basisversion und WF am Angebot unterscheiden](https://getecoback.com/guide/luftentfeuchter-keller.html#modell-comfee-mddf20). Anzeige · Comfee MDDF-20DEN7 ohne WF bei Amazon.de ansehen.
 
 ## Häufige Fragen
 

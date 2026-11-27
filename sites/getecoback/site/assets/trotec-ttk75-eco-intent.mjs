@@ -13,3 +13,14 @@ export function asksForTrotecTtk75EcoConditions(query) {
   const otherTask = /\b(?:strom\w*|watt\w*|kosten\w*|kwh|schlauch\w*|ablauf\w*)\b/.test(query);
   return capacity || (temperature && !otherTask);
 }
+
+export function asksForTrotecTtk75EcoOffer(query) {
+  const exactLabel = namesTrotecTtk75Eco(query);
+  const labelledVariant = /\bttk[ -]*75[ -]*eco\b/.test(query) && !exactLabel;
+  const exactModel = exactLabel || /\b1120001110\b/.test(query);
+  const merchant = /\b(?:kauf\w*|bestell\w*|angebot\w*|preis\w*|haendler\w*|amazon|artikelnummer)\b/;
+  const anotherModel = /\b(?:75[ -]*e|ttk[ -]*(?:52|70|72)\b|1120001003|meaco|comfee)\b/;
+  const technical = /\b(?:\w*(?:filter|schlauch|pumpe|tank)\w*|zubehoer|ersatzteil\w*|repar\w*|ablauf\w*|strom\w*|kwh|keller\w*|kalt\w*|liter\w*|entzug\w*|leist\w*|geraeusch\w*|temperatur\w*)\b|\b\d{1,2}\s*(?:°\s*c|grad)\b/;
+  return exactModel && !labelledVariant && merchant.test(query) && !anotherModel.test(query) && !technical.test(query) &&
+    !asksForTrotecTtk75EcoConditions(query);
+}

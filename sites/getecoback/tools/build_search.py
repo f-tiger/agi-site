@@ -403,6 +403,11 @@ def collect():
     raise ValueError(f'Missing or hidden search section: {route}#{anchor}')
    entry['model_sections']=[{'id':anchor,'title':'Welcher HEPA-Ersatzfilter passt zum Trotec TTK 70?',
     'description':'Filterkennung und Bauzeit abgleichen. Widersprüchliche Angaben zur Umstellung ab Dezember 2023 vor dem Kauf klären.'}]
+   offer='ttk75-angebot'
+   if len(re.findall(r'<h3\b[^<>]*\sid="'+offer+r'"[^<>]*>',text))!=1:
+    raise ValueError(f'Missing or ambiguous Trotec offer section: {route}#{offer}')
+   entry['model_sections'].append({'id':offer,'title':'Trotec TTK 75 ECO kaufen: Artikelnummer und Einsatz prüfen',
+    'description':'TTK 75 ECO (1120001110) vom TTK 75 E (1120001003) unterscheiden. Entzugsleistung bei den eigenen Raumwerten und den Gesamtpreis vor der Bestellung klären.'})
   if lang=='de' and route=='/guide/delonghi-pac-n90-test.html':
    anchor='lautstaerke'
    targets=re.findall(r'<h2\b[^<>]*\sid="lautstaerke"[^<>]*>',text)

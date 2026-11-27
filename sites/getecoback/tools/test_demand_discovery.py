@@ -18,7 +18,7 @@ assert [row['id'] for row in product_index['model_sections']]==[
 comfee_index=next(row for row in index if row['u']=='/guide/luftentfeuchter-keller.html')
 assert [row['id'] for row in comfee_index['model_sections']]==['modell-comfee-mddf20','modell-stadler-lukas', 'meaco-dd8l-pro-kalte-garage']
 trotec_index=next(row for row in index if row['u']=='/guide/trotec-luftentfeuchter-test.html')
-assert [row['id'] for row in trotec_index['model_sections']]==['ttk70-hepa-filter']
+assert [row['id'] for row in trotec_index['model_sections']]==['ttk70-hepa-filter','ttk75-angebot']
 humidifier_index=next(row for row in index if row['u']=='/guide/luftbefeuchter-ratgeber.html')
 humidifier_sections=[row['id'] for row in humidifier_index['model_sections']]
 assert sorted(humidifier_sections)==sorted(['ersatzteile-zuordnen','philips-verdunsterfilter','philips-hu4803-01',

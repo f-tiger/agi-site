@@ -110,6 +110,31 @@ test('infrared thermostat fit reads manufacturer evidence and leaves the choice 
   assert(!text.includes('getecoback-21'));
 });
 
+test('Trotec TTK 75 ECO offer and exact technical facts remain separate in both MCP profiles',async()=>{
+  const {env}=assetEnv();
+  const guide='https://getecoback.com/guide/trotec-luftentfeuchter-test.html';
+  const exact=guide+'#ttk75-angebot';
+  for(const frage of ['Trotec TTK 75 ECO kaufen','1120001110 Preis','TTK75ECO Artikelnummer']){
+    const search=await call('ratgeber_suche',{frage,sprache:'de',max:1},env);
+    assert.ok(textOf(search).includes('Abschnitt: '+exact),frage);
+    const finder=await call('ecoback_werkzeug_finden',{frage},env,true);
+    assert.equal(finder.structuredContent.guides?.[0]?.guide_url,exact,frage);
+  }
+  const full=await call('ratgeber_lesen',{pfad:exact},env);
+  const compact=await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad:exact}},env,true);
+  assert.equal(full.isError,false);
+  assert.deepEqual(full,compact);
+  for(const fact of ['1120001110','1120001003','Warte mit dem Kauf','#ttk75-pruefpunkt','ttk-75-eco.html'])
+    assert.ok(textOf(full).includes(fact),fact);
+  assert.doesNotMatch(textOf(full),/getecoback-21|https:\/\/www\.amazon\.de/);
+  for(const frage of ['TTK 75 E kaufen','TTK 75 ECO Plus Preis','TTK 75 ECO Plus 1120001110 kaufen','TTK 75 ECO Ersatzfilter kaufen',
+    'TTK 75 ECO Ersatzkondensatschlauch kaufen', 'Wo kann ich eine Kondensatpumpe für meinen Trotec TTK 75 ECO kaufen?',
+    'Wo kann ich einen Wassertank für TTK 75 ECO bestellen?', 'TTK 75 ECO oder 75 E kaufen?' ,'TTK 75 ECO kaufen für kalten Keller']){
+    const finder=await call('ecoback_werkzeug_finden',{frage},env,true);
+    assert.notEqual(finder.structuredContent.guides?.[0]?.guide_url,exact,frage);
+  }
+});
+
 test('Comfee drain hose dimensions are findable and cited in both MCP profiles', async () => {
   const {env}=assetEnv();
   const exact='https://getecoback.com/guide/luftentfeuchter-zieht-kein-wasser.html#comfee-20den7-ablaufschlauch';
