@@ -209,7 +209,13 @@ body.bpj-shell .bpj-home-refresh a.home-evidence-foot { color: #cfe0fa; }
   font-size: 15px;
   line-height: 1.6;
 }
+.bpj-home-refresh .home-section-actions {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 18px;
+}
 .bpj-home-refresh .home-section-heading > a,
+.bpj-home-refresh .home-section-actions a,
 .bpj-home-refresh .home-method-links a {
   display: inline-flex;
   align-items: center;
