@@ -1,81 +1,7 @@
 {
- "generated": "2026-11-26T18:00:13+00:00",
+ "generated": "2026-11-27T17:45:32+00:00",
  "note": "aggregate counts read from each site's public pulse/reach endpoint; owner_reported figures are hand-entered from PartnerNet screenshots with their data window and are never extrapolated",
  "sites": [
-  {
-   "site": "getecoback",
-   "via": "endpoint",
-   "money": {
-    "days": 28,
-    "affiliate_click_28d": 39,
-    "affiliate_click_us_market_28d": 0,
-    "affiliate_click_amazon_com_28d": 0,
-    "affiliate_diagnostics": {
-     "metric": "site_click_events_not_people_or_amazon_orders",
-     "legacy_window": "28d key includes today plus 28 previous UTC dates",
-     "timezone": "UTC",
-     "complete_28d": {
-      "start": "2026-10-29",
-      "end_exclusive": "2026-11-26",
-      "clicks": 39
-     },
-     "recent_7d": {
-      "start": "2026-11-19",
-      "end_exclusive": "2026-11-26",
-      "clicks": 6
-     },
-     "previous_7d": {
-      "start": "2026-11-12",
-      "end_exclusive": "2026-11-19",
-      "clicks": 9
-     },
-     "today_partial": 0,
-     "markets_28d": {
-      "de": 39,
-      "us": 0,
-      "unknown": 0
-     },
-     "destinations_28d": {
-      "product": 9,
-      "search": 30,
-      "prime_trial": 0,
-      "other_or_unknown": 0
-     },
-     "amazon_ordered_items": null,
-     "amazon_commission": null,
-     "attribution_note": "Amazon reports required; site membership orders and affiliate clicks do not measure Amazon sales. Store tags may be shared across sites."
-    },
-    "subs_total": 1,
-    "member_orders_by_state": {}
-   },
-   "summary": {
-    "affiliate_click_28d": 39,
-    "paid_orders": 0,
-    "subscribers": 1
-   }
-  },
-  {
-   "site": "agiscorecard",
-   "via": "endpoint",
-   "money": {
-    "days": 28,
-    "subscribers": 5,
-    "ev_calc_use_28d": 1,
-    "ev_invest_tool_click_28d": 1,
-    "ev_subscribe_click_28d": 6,
-    "ev_tool_click_28d": 18,
-    "pv_advertise_28d": 152,
-    "pv_audits_28d": 288,
-    "pv_workbench_28d": 771,
-    "member_orders_by_state": {},
-    "discuss_profiles": 0
-   },
-   "summary": {
-    "affiliate_click_28d": null,
-    "paid_orders": 0,
-    "subscribers": 5
-   }
-  },
   {
    "site": "baipiaoji",
    "via": "endpoint",
@@ -94,8 +20,8 @@
     "proofkit_order_definition": "BPJ membership orders first attributed to the customer quote studio; states are not export counts or profit. Other membership tools and older orders excluded; failed query is null.",
     "proofkit_orders_complete_utc": {
      "window": {
-      "start": "2026-10-29",
-      "end_exclusive": "2026-11-26",
+      "start": "2026-10-30",
+      "end_exclusive": "2026-11-27",
       "complete_days": 28,
       "date_basis": "UTC"
      },
@@ -114,16 +40,16 @@
      "paid": 0
     },
     "proposal_deck_order_window": {
-     "start": "2026-10-29",
-     "end_exclusive": "2026-11-26",
+     "start": "2026-10-30",
+     "end_exclusive": "2026-11-27",
      "complete_days": 28,
      "date_basis": "UTC"
     },
     "proposal_deck_order_definition": "Membership orders first attributed to ProposalDeck and created during this complete UTC window, classified at its exclusive end. Paid means a confirmed payment recorded by then. Each order is counted once. Buyer, cloud delivery and profit metrics require separate records. A failed read is null.",
     "trade_workbench_orders_complete_utc": {
      "window": {
-      "start": "2026-10-29",
-      "end_exclusive": "2026-11-26",
+      "start": "2026-10-30",
+      "end_exclusive": "2026-11-27",
       "complete_days": 28,
       "date_basis": "UTC"
      },
@@ -135,9 +61,9 @@
      "definition": "Membership orders first attributed to the trade workbench and created in this complete UTC window, classified at its exclusive end. Paid means a confirmed payment recorded by then. Orders count once. A failed read is null."
     },
     "scope_note": "Inventory/state counts are lifetime unless a metric explicitly says window; go_28d and biz_28d retain legacy names and use the requested window. Video-order states are windowed. These are not an attributed acquisition funnel.",
-    "submissions_total": 477,
-    "go_28d": 221,
-    "biz_28d": 598,
+    "submissions_total": 480,
+    "go_28d": 217,
+    "biz_28d": 591,
     "claims_verified": 0,
     "attestations_queued": 0
    },
@@ -145,35 +71,6 @@
     "affiliate_click_28d": null,
     "paid_orders": 0,
     "subscribers": 0
-   }
-  },
-  {
-   "site": "thedollscout",
-   "via": "endpoint",
-   "money": {
-    "days": 28,
-    "affiliate_click_28d": 0,
-    "member_orders_by_state": {}
-   },
-   "summary": {
-    "affiliate_click_28d": 0,
-    "paid_orders": 0,
-    "subscribers": null
-   }
-  },
-  {
-   "site": "buysomething",
-   "via": "endpoint",
-   "money": {
-    "days": 28,
-    "calc_use_28d": 10,
-    "mcp_call_28d": 147,
-    "pick_open_28d": 15
-   },
-   "summary": {
-    "affiliate_click_28d": null,
-    "paid_orders": null,
-    "subscribers": null
    }
   }
  ],
@@ -202,13 +99,18 @@
   "fleet_verified_revenue_to_date_eur": 11.2,
   "fleet_non_amazon_revenue_to_date": 0
  },
- "errors": [],
+ "errors": [
+  "getecoback: HTTP Error 500: Internal Server Error",
+  "agiscorecard: HTTP Error 500: Internal Server Error",
+  "thedollscout: HTTP Error 500: Internal Server Error",
+  "buysomething: HTTP Error 500: Internal Server Error"
+ ],
  "forecast": {
   "enabled_state": "never",
   "prize_usd_30d": null,
   "spend_usd_30d": 0,
   "net_usd_30d": null,
   "north_star_resolved_prelogged": 0,
-  "generated": "2026-11-26T18:00:12+00:00"
+  "generated": "2026-11-27T17:45:31+00:00"
  }
 }

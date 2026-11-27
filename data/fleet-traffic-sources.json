@@ -1,21 +1,34 @@
 {
- "generated": "2026-11-26T18:00:11Z",
+ "generated": "2026-11-27T17:45:27Z",
  "window_days": 28,
- "ok": true,
- "read_via": "endpoints",
- "errors": [],
+ "ok": false,
+ "read_via": "endpoints (partial)",
+ "errors": [
+  "agiscorecard: HTTP Error 500: Internal Server Error",
+  "getecoback: HTTP Error 500: Internal Server Error",
+  "thedollscout: HTTP Error 500: Internal Server Error",
+  "gridlings: HTTP Error 500: Internal Server Error",
+  "buysomething: HTTP Error 500: Internal Server Error",
+  "gamesledger: HTTP Error 500: Internal Server Error",
+  "after35: HTTP Error 500: Internal Server Error",
+  "learn: HTTP Error 500: Internal Server Error",
+  "fanzha: HTTP Error 500: Internal Server Error",
+  "firstjob: HTTP Error 500: Internal Server Error",
+  "codeword: HTTP Error 500: Internal Server Error",
+  "powerbill: HTTP Error 500: Internal Server Error"
+ ],
  "fleet": {
-  "search": 1164,
-  "ai": 31,
-  "fleet": 39,
+  "search": 528,
+  "ai": 21,
+  "fleet": 0,
   "social": 5,
-  "self": 20113,
-  "direct": 60386,
-  "other": 147,
+  "self": 89,
+  "direct": 389,
+  "other": 43,
   "unattributed": 3
  },
- "fleet_human_pv": 81888,
- "fleet_observations": 81888,
+ "fleet_human_pv": 1078,
+ "fleet_observations": 1078,
  "measurement": {
   "unit": "endpoint_observations",
   "verified_people": false,
@@ -28,95 +41,33 @@
  },
  "sites": [
   {
-   "site": "agiscorecard",
-   "human_pv": 67106,
-   "by_source": {
-    "search": 196,
-    "ai": 5,
-    "fleet": 23,
-    "social": 0,
-    "self": 14991,
-    "direct": 51800,
-    "other": 91
-   },
-   "by_search": {
-    "google.com": 88,
-    "duckduckgo.com": 44,
-    "bing.com": 38,
-    "cn.bing.com": 11,
-    "search.brave.com": 3,
-    "m.baidu.com": 2,
-    "html.duckduckgo.com": 2,
-    "yandex.com": 1,
-    "qwant.com": 1,
-    "ecosia.org": 1,
-    "vn.search.yahoo.com": 1,
-    "search.yahoo.com": 1
-   },
-   "by_fleet": {
-    "play.agiscorecard.com": 6,
-    "getecoback.com": 5,
-    "35.agiscorecard.com": 4,
-    "thedollscout.com": 2,
-    "tools.agiscorecard.com": 1,
-    "mcppulse.agiscorecard.com": 1,
-    "goldrush.agiscorecard.com": 1,
-    "compass.agiscorecard.com": 1,
-    "closecalc.agiscorecard.com": 1,
-    "baipiaoji.com": 1
-   },
-   "by_other": {
-    "agenticprint.org": 20,
-    "search.ebscohost.com": 17,
-    "corpus.blog": 15,
-    "github.com": 4,
-    "apis.io": 4,
-    "mcpcheckup.com": 3,
-    "glama.ai": 3,
-    "yuanbao.tencent.com": 1,
-    "lesswrong.com": 1,
-    "aerbo.com.cn": 1,
-    "aditumlove.com": 1,
-    "serverdex.io": 1
-   },
-   "unattributed": 0,
-   "via": "endpoint",
-   "observations": 67106,
-   "measurement": {
-    "unit": "endpoint_observations",
-    "verified_people": false,
-    "scope": "endpoint_specific_filters"
-   },
-   "note": "服务端口径,含不自报家门的爬虫;真人量级以 JS 口径为准(站规 2026-09-14)"
-  },
-  {
    "site": "baipiaoji",
-   "human_pv": 586,
+   "human_pv": 588,
    "by_source": {
-    "search": 521,
+    "search": 520,
     "ai": 21,
     "fleet": 0,
     "social": 5,
     "self": 0,
     "direct": 0,
-    "other": 36
+    "other": 39
    },
    "by_search": {
-    "google.com": 226,
-    "cn.bing.com": 220,
+    "google.com": 225,
+    "cn.bing.com": 214,
     "bing.com": 48,
-    "duckduckgo.com": 8,
+    "duckduckgo.com": 10,
     "m.baidu.com": 7,
+    "m.sogou.com": 7,
     "baidu.com": 4,
-    "m.sogou.com": 3,
     "search.brave.com": 2,
     "yandex.com": 2,
     "sogou.com": 1
    },
    "by_fleet": {},
    "by_other": {
-    "l.meta.ai": 19,
-    "127.0.0.1": 4,
+    "l.meta.ai": 20,
+    "127.0.0.1": 6,
     "aigate.icic.us.ci": 4,
     "ym.loveauto.top": 2,
     "yuanbao.tencent.com": 2,
@@ -128,7 +79,7 @@
    },
    "unattributed": 3,
    "via": "endpoint",
-   "observations": 586,
+   "observations": 588,
    "measurement": {
     "unit": "endpoint_observations",
     "verified_people": false,
@@ -137,83 +88,15 @@
    "note": "分母是带来源的浏览器上报记录，不证明真人或独立人数:无来源的直接访问不入库,本域 ref 入库时已清空,所以 direct/self 结构性为 0"
   },
   {
-   "site": "getecoback",
-   "human_pv": 708,
-   "by_source": {
-    "search": 254,
-    "ai": 1,
-    "fleet": 0,
-    "social": 0,
-    "self": 29,
-    "direct": 424,
-    "other": 0
-   },
-   "by_search": {
-    "bing.com": 118,
-    "duckduckgo.com": 80,
-    "ecosia.org": 23,
-    "de.search.yahoo.com": 10,
-    "google.com": 8,
-    "search.yahoo.com": 6,
-    "search.brave.com": 3,
-    "cn.bing.com": 2,
-    "at.search.yahoo.com": 2,
-    "qwant.com": 1,
-    "uk.search.yahoo.com": 1
-   },
-   "by_fleet": {},
-   "by_other": {},
-   "unattributed": 0,
-   "via": "endpoint",
-   "observations": 708,
-   "measurement": {
-    "unit": "endpoint_observations",
-    "verified_people": false,
-    "scope": "endpoint_specific_filters"
-   },
-   "note": "Endpoint observations may include unrecognized automated requests; not verified people."
-  },
-  {
-   "site": "thedollscout",
-   "human_pv": 3001,
-   "by_source": {
-    "search": 31,
-    "ai": 0,
-    "fleet": 0,
-    "social": 0,
-    "self": 25,
-    "direct": 2945,
-    "other": 0
-   },
-   "by_search": {
-    "google.com": 21,
-    "search.yahoo.com": 7,
-    "ecosia.org": 1,
-    "bing.com": 1,
-    "m.baidu.com": 1
-   },
-   "by_fleet": {},
-   "by_other": {},
-   "unattributed": 0,
-   "via": "endpoint",
-   "observations": 3001,
-   "measurement": {
-    "unit": "endpoint_observations",
-    "verified_people": false,
-    "scope": "endpoint_specific_filters"
-   },
-   "note": "Endpoint observations may include unrecognized automated requests; not verified people."
-  },
-  {
    "site": "goldrush",
-   "human_pv": 524,
+   "human_pv": 490,
    "by_source": {
     "search": 8,
     "ai": 0,
     "fleet": 0,
     "social": 0,
-    "self": 86,
-    "direct": 426,
+    "self": 89,
+    "direct": 389,
     "other": 4
    },
    "by_search": {
@@ -228,305 +111,7 @@
    },
    "unattributed": 0,
    "via": "endpoint",
-   "observations": 524,
-   "measurement": {
-    "unit": "endpoint_observations",
-    "verified_people": false,
-    "scope": "endpoint_specific_filters"
-   },
-   "note": "Endpoint observations may include unrecognized automated requests; not verified people."
-  },
-  {
-   "site": "gridlings",
-   "human_pv": 3875,
-   "by_source": {
-    "search": 49,
-    "ai": 3,
-    "fleet": 4,
-    "social": 0,
-    "self": 2620,
-    "direct": 1194,
-    "other": 5
-   },
-   "by_search": {
-    "cn.bing.com": 27,
-    "bing.com": 15,
-    "duckduckgo.com": 2,
-    "m.baidu.com": 2,
-    "google.com": 1,
-    "it.search.yahoo.com": 1,
-    "baidu.com": 1
-   },
-   "by_fleet": {
-    "agiscorecard.com": 4
-   },
-   "by_other": {
-    "html-classic.itch.zone": 4,
-    "search.ebscohost.com": 1
-   },
-   "unattributed": 0,
-   "via": "endpoint",
-   "observations": 3875,
-   "measurement": {
-    "unit": "endpoint_observations",
-    "verified_people": false,
-    "scope": "endpoint_specific_filters"
-   },
-   "note": "Endpoint observations may include unrecognized automated requests; not verified people."
-  },
-  {
-   "site": "buysomething",
-   "human_pv": 338,
-   "by_source": {
-    "search": 10,
-    "ai": 0,
-    "fleet": 0,
-    "social": 0,
-    "self": 52,
-    "direct": 275,
-    "other": 1
-   },
-   "by_search": {
-    "google.com": 10
-   },
-   "by_fleet": {},
-   "by_other": {
-    "ai-powered.com": 1
-   },
-   "unattributed": 0,
-   "via": "endpoint",
-   "observations": 338,
-   "measurement": {
-    "unit": "endpoint_observations",
-    "verified_people": false,
-    "scope": "endpoint_specific_filters"
-   },
-   "note": "Endpoint observations may include unrecognized automated requests; not verified people."
-  },
-  {
-   "site": "gamesledger",
-   "human_pv": 1015,
-   "by_source": {
-    "search": 52,
-    "ai": 1,
-    "fleet": 2,
-    "social": 0,
-    "self": 454,
-    "direct": 505,
-    "other": 1
-   },
-   "by_search": {
-    "google.com": 19,
-    "duckduckgo.com": 17,
-    "bing.com": 10,
-    "noai.duckduckgo.com": 2,
-    "yahoo.com": 1,
-    "ecosia.org": 1,
-    "search.brave.com": 1,
-    "cn.bing.com": 1
-   },
-   "by_fleet": {
-    "agiscorecard.com": 2
-   },
-   "by_other": {
-    "search.ebscohost.com": 1
-   },
-   "unattributed": 0,
-   "via": "endpoint",
-   "observations": 1015,
-   "measurement": {
-    "unit": "endpoint_observations",
-    "verified_people": false,
-    "scope": "endpoint_specific_filters"
-   },
-   "note": "Endpoint observations may include unrecognized automated requests; not verified people."
-  },
-  {
-   "site": "after35",
-   "human_pv": 1201,
-   "by_source": {
-    "search": 6,
-    "ai": 0,
-    "fleet": 4,
-    "social": 0,
-    "self": 410,
-    "direct": 779,
-    "other": 2
-   },
-   "by_search": {
-    "google.com": 6
-   },
-   "by_fleet": {
-    "learn.agiscorecard.com": 3,
-    "agiscorecard.com": 1
-   },
-   "by_other": {
-    "32win-bet.blog": 1,
-    "2buniverse.com": 1
-   },
-   "unattributed": 0,
-   "via": "endpoint",
-   "observations": 1201,
-   "measurement": {
-    "unit": "endpoint_observations",
-    "verified_people": false,
-    "scope": "endpoint_specific_filters"
-   },
-   "note": "Endpoint observations may include unrecognized automated requests; not verified people."
-  },
-  {
-   "site": "learn",
-   "human_pv": 538,
-   "by_source": {
-    "search": 2,
-    "ai": 0,
-    "fleet": 2,
-    "social": 0,
-    "self": 223,
-    "direct": 310,
-    "other": 1
-   },
-   "by_search": {
-    "google.com": 1,
-    "baidu.com": 1
-   },
-   "by_fleet": {
-    "agiscorecard.com": 1,
-    "35.agiscorecard.com": 1
-   },
-   "by_other": {
-    "newhampshireclimbing.com": 1
-   },
-   "unattributed": 0,
-   "via": "endpoint",
-   "observations": 538,
-   "measurement": {
-    "unit": "endpoint_observations",
-    "verified_people": false,
-    "scope": "endpoint_specific_filters"
-   },
-   "note": "Endpoint observations may include unrecognized automated requests; not verified people."
-  },
-  {
-   "site": "fanzha",
-   "human_pv": 554,
-   "by_source": {
-    "search": 8,
-    "ai": 0,
-    "fleet": 0,
-    "social": 0,
-    "self": 138,
-    "direct": 408,
-    "other": 0
-   },
-   "by_search": {
-    "google.com": 8
-   },
-   "by_fleet": {},
-   "by_other": {},
-   "unattributed": 0,
-   "via": "endpoint",
-   "observations": 554,
-   "measurement": {
-    "unit": "endpoint_observations",
-    "verified_people": false,
-    "scope": "endpoint_specific_filters"
-   },
-   "note": "Endpoint observations may include unrecognized automated requests; not verified people."
-  },
-  {
-   "site": "firstjob",
-   "human_pv": 532,
-   "by_source": {
-    "search": 3,
-    "ai": 0,
-    "fleet": 1,
-    "social": 0,
-    "self": 221,
-    "direct": 305,
-    "other": 2
-   },
-   "by_search": {
-    "google.com": 2,
-    "baidu.com": 1
-   },
-   "by_fleet": {
-    "agiscorecard.com": 1
-   },
-   "by_other": {
-    "fifty50group.com": 1,
-    "104.21.44.211": 1
-   },
-   "unattributed": 0,
-   "via": "endpoint",
-   "observations": 532,
-   "measurement": {
-    "unit": "endpoint_observations",
-    "verified_people": false,
-    "scope": "endpoint_specific_filters"
-   },
-   "note": "Endpoint observations may include unrecognized automated requests; not verified people."
-  },
-  {
-   "site": "codeword",
-   "human_pv": 1020,
-   "by_source": {
-    "search": 10,
-    "ai": 0,
-    "fleet": 1,
-    "social": 0,
-    "self": 445,
-    "direct": 561,
-    "other": 3
-   },
-   "by_search": {
-    "google.com": 8,
-    "m.baidu.com": 2
-   },
-   "by_fleet": {
-    "agiscorecard.com": 1
-   },
-   "by_other": {
-    "search.ebscohost.com": 1,
-    "powerfront.com": 1,
-    "clearprofitsdm.com": 1
-   },
-   "unattributed": 0,
-   "via": "endpoint",
-   "observations": 1020,
-   "measurement": {
-    "unit": "endpoint_observations",
-    "verified_people": false,
-    "scope": "endpoint_specific_filters"
-   },
-   "note": "Endpoint observations may include unrecognized automated requests; not verified people."
-  },
-  {
-   "site": "powerbill",
-   "human_pv": 890,
-   "by_source": {
-    "search": 14,
-    "ai": 0,
-    "fleet": 2,
-    "social": 0,
-    "self": 419,
-    "direct": 454,
-    "other": 1
-   },
-   "by_search": {
-    "google.com": 11,
-    "m.baidu.com": 2,
-    "baidu.com": 1
-   },
-   "by_fleet": {
-    "agiscorecard.com": 2
-   },
-   "by_other": {
-    "search.ebscohost.com": 1
-   },
-   "unattributed": 0,
-   "via": "endpoint",
-   "observations": 890,
+   "observations": 490,
    "measurement": {
     "unit": "endpoint_observations",
     "verified_people": false,
