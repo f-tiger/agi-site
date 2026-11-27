@@ -7,6 +7,16 @@ Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/uk-damp-and-heat
 ## Choose the problem you need to solve
 For a UK home with slow-drying washing, cold rooms or damp patches, start with the job, not a product ranking. These routes combine UK sources with our existing calculators. We have not tested the appliances ourselves.
 
+## Wet weekend or a cold spell? Choose what to check first
+
+Check the [Met Office forecast for your postcode](https://weather.metoffice.gov.uk/) before planning to dry washing outside or buying a heater. On 27 November 2026, the [Met Office reported rain, showers and some strong winds](https://www.metoffice.gov.uk/syndication/syndicated-articles/msn-news/2026/november/met-office-weather-unsettled-weather-continues-with-rain-showers-and-strong-winds) affecting many parts of the UK. That was a dated forecast example. Local conditions change.
+
+- **Rain keeps the washing indoors.** Keep ventilation working and compare the same load to the same final dryness. Measure the whole session, adding both devices if you use an airer and a dehumidifier together. [Calculate the cost to dry one load](https://getecoback.com/en/guide/dehumidifier-drying-clothes-cost.html#laundry-check).
+
+- **The room stays cold.** Check windows and draughts while keeping intended vents open. If you only need to warm yourself at a desk, compare that separately from heating the whole room. [Check draughts in a rented home](https://getecoback.com/en/guide/draughty-windows-rented-home.html) · [Compare personal warmth and room heating](https://getecoback.com/en/guide/keep-warm-working-from-home.html).
+
+- **A damp patch returns after rain.** Record the timing and report it. Drying laundry differently or buying a dehumidifier will not fix a leak. [Keep a useful record of damp](https://getecoback.com/en/guide/uk-damp-and-heating-decisions.html#damp-in-a-rented-home-keep-a-useful-record).
+
 ## Buying a dehumidifier: what does 12L or 20L actually mean?
 A headline litres-per-day rating is tied to test conditions. Compare extraction and watts at the same temperature and relative humidity before using room-count marketing.
 [Read the 12L versus 20L condition-matched comparison](https://getecoback.com/en/guide/12l-vs-20l-dehumidifier-uk.html).

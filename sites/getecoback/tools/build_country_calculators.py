@@ -79,6 +79,7 @@ def build():
  for lang,c in COUNTRIES.items():
   assert len(TEXT[lang])==len(KEYS),(lang,len(TEXT[lang]),len(KEYS))
   t=dict(zip(KEYS,TEXT[lang])); path=c["path"]; url=BASE+path
+  updated=esc(c.get("updated","2026-09-20"))
   nav=" ".join(f'<a href="{v["path"]}"'+(' aria-current="page"' if l==lang else '')+f'>{esc(v["country"])}</a>' for l,v in COUNTRIES.items())
   # These surfaces cover equivalent comparison tasks, with national editorial context.
   alternates="".join(f'<link rel="alternate" hreflang="{l}" href="{BASE+v["path"]}">\n' for l,v in COUNTRIES.items())+f'<link rel="alternate" hreflang="x-default" href="{BASE}/rechner.html">\n'
@@ -90,7 +91,7 @@ def build():
   body="".join(f'<section><h2>{esc(h)}</h2><p>{esc(p)}</p></section>' for h,p in c["sections"])
   sources="".join(f'<li><a href="{esc(u)}" rel="noopener">{esc(n)}</a></li>' for n,u in c["sources"])
   related="".join(f'<li><a href="{u}">{esc(n)}</a></li>' for n,u in c["related"])
-  schema={"@context":"https://schema.org","@type":"WebApplication","name":c["title"],"url":url,"inLanguage":lang,"dateModified":"2026-09-20","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"description":c["description"]}
+  schema={"@context":"https://schema.org","@type":"WebApplication","name":c["title"],"url":url,"inLanguage":lang,"dateModified":updated,"applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"description":c["description"]}
   content=f'''<!doctype html>
 <html lang="{lang}">
 <head>
@@ -126,8 +127,8 @@ def build():
 {body}
 <section id="method"><h2>{esc(t["methodology"])}</h2><p>{esc(t["formula"])}</p><p>{esc(t["limits"])}</p>
 <h3>{esc(t["scenario"])}</h3><p>1000 W ÷ 1000 × 6 h × 60 = 360 kWh · 700 W ÷ 1000 × 6 h × 60 = 252 kWh. 0.30 €/kWh: A = 108 €, B = 75.60 €. Δ = 32.40 €/a. 700 € ÷ 32.40 €/a = 21.60 a.</p><p>{esc(t["assumption"])}</p></section>
-<section><h2>{esc(t["sources"])} · 2026-09-20</h2><ul>{sources}</ul><h3>{esc(t["next"])}</h3><ul>{related}</ul></section>
-<section><h2>{esc(t["citationLabel"])}</h2><p>{esc(t["cite"])}</p><p>EcoBack · {esc(c["title"])} · <a href="{url}">{url}</a> · 2026-09-20</p><a href="{path[:-5]}.md">Markdown</a></section>
+<section><h2>{esc(t["sources"])} · {updated}</h2><ul>{sources}</ul><h3>{esc(t["next"])}</h3><ul>{related}</ul></section>
+<section><h2>{esc(t["citationLabel"])}</h2><p>{esc(t["cite"])}</p><p>EcoBack · {esc(c["title"])} · <a href="{url}">{url}</a> · {updated}</p><a href="{path[:-5]}.md">Markdown</a></section>
 </article>
 <footer>EcoBack · {esc(t["status"])}</footer>
 </main>
@@ -139,7 +140,7 @@ def build():
   md=f'# {c["title"]}\n\nCanonical: {url}\n\n{c["intro"]}\n\n'
   md+='\n\n'.join(f'## {h}\n\n{p}' for h,p in c["sections"])
   md+=f'\n\n## {t["methodology"]}\n\n{t["formula"]}\n\n{t["limits"]}\n\n'
-  md+=f'## {t["sources"]} · 2026-09-20\n\n'+'\n'.join(f'- [{n}]({u})' for n,u in c["sources"])
+  md+=f'## {t["sources"]} · {updated}\n\n'+'\n'.join(f'- [{n}]({u})' for n,u in c["sources"])
   target.with_suffix(".md").write_text(md+"\n")
  print("Built 5 country/language calculators and Markdown mirrors.")
 if __name__=="__main__": build()

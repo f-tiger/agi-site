@@ -7,12 +7,12 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/smarte-heizkoerpert
 ## Lohnt sich ein smartes Heizkörperthermostat für mich?
 **Ein smarter Kopf lohnt sich eher, wenn ein Zeitplan deine bisherige Heizroutine verbessert.** Wer schon passend herunterregelt, hat möglicherweise wenig zusätzlichen Nutzen. Vor dem Kauf müssen Ventil, vorhandene Zentrale und vollständiges Paket zusammenpassen. Eine feste Ersparnis ist nicht garantiert.
 
-- [Ich kenne mein vorhandenes System tado° X, Bosch II [+M] oder FRITZ! 302 samt benötigter Zentrale vergleichen.](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#eb-thermostat-products)
+- [Ich kenne mein vorhandenes System tado° X, Bosch II [+M], FRITZ! 302 oder Kasa KE100 samt benötigter Zentrale vergleichen.](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#eb-thermostat-products)
 - [Ich bin beim Ventil unsicher Modell und Anschluss klären. Prüfe tado° V3+, Bosch II [+M] und FRITZ! 302 anhand der jeweiligen Herstellerunterlagen.](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#ventilcheck)
 - [Ich möchte die Gesamtkosten prüfen Köpfe, fehlende Zentrale und Adapter zählen; danach mit eigener Sparannahme rechnen.](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-paketkosten)
 - [Mein bisheriger Kopf reicht vielleicht Weiterverwenden oder einen einfachen Zeitplan prüfen, bevor du ein Funk-System kaufst.](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-behalten)
 [Ein Zimmer bleibt trotz warmem Referenzraum kalt](https://getecoback.com/guide/heizkoerper-wird-nicht-warm.html#referenzraum-warm-nebenraum-kalt) · [Bedienung ohne Internet oder Zentrale prüfen](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-ohne-internet)
-Grundlage: [Verbraucherzentrale zur Thermostatregelung](https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizkosten-sparen-thermostat-richtig-einstellen-und-wechseln-7940) (Quellenstand 4. Oktober 2026). Modell- und Paketquellen vom 12. November 2026 stehen bei den jeweiligen Geräten. Redaktionelle Entscheidungshilfe, kein eigener Produkttest.
+Grundlage: [Verbraucherzentrale zur Thermostatregelung](https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizkosten-sparen-thermostat-richtig-einstellen-und-wechseln-7940) (Quellenstand 4. Oktober 2026). Modell- und Paketquellen stehen bei den jeweiligen Geräten. Redaktionelle Entscheidungshilfe, kein eigener Produkttest.
 
 Vor dem Kauf · zwei Auswahlen, keine Texteingabe
 
@@ -137,7 +137,7 @@ Eigene Berechnungen benötigen JavaScript. Rechenweg und Beispiel stehen darunte
 Die Angaben gelten für tado° X. Wenn du ein neues X-System planst, prüfe zuerst dein Ventil und dann den [Lieferumfang und die Voraussetzungen des Starter Kits](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-tado-x-starter). Quellen für Deutschland geprüft am 27. November 2026.
 
 ## Welches System und welches Paket passt zu dir?
-Drei konkrete Modelle für unterschiedliche vorhandene Systeme. Die Auswahl ist keine Rangliste und kein eigener Produkttest. Die Ventilpassung und der Nutzen eines Zeitplans bleiben eigene Prüfschritte.
+Konkrete Modelle für unterschiedliche vorhandene Systeme. Die Auswahl ist keine Rangliste und kein eigener Produkttest. Die Ventilpassung und der Nutzen eines Zeitplans bleiben eigene Prüfschritte.
 
 ### Welches Thermostat funktioniert ohne Internet oder Zentrale?
 Vor dem Kauf festlegen, ob du nur am Heizkörper drehen oder auch einen Zeitplan beziehungsweise App-Zugriff brauchst. Ein fehlender Internetzugang und eine fehlende Verbindung zur Zentrale sind verschiedene Fälle.
@@ -147,11 +147,11 @@ Vor dem Kauf festlegen, ob du nur am Heizkörper drehen oder auch einen Zeitplan
 Wenn dein vorhandener Kopf für die manuelle Regelung reicht, behalte ihn. Für einen festen Zeitplan ohne Funk kommt ein lokal programmierbarer Kopf infrage. Ist die gewünschte Funktion ungeklärt, warte mit der Bestellung. [Das vollständige Paket rechnen](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-paketkosten).
 Herstellerquellen für Deutschland geprüft am 25. November 2026.
 
-### Vierte Möglichkeit: vorhandene Köpfe weiter nutzen
+### Vorhandene Köpfe weiter nutzen
 Deine Räume werden passend zur Nutzung warm und du regelst zuverlässig herunter? Dann musst du nicht auf smarte Köpfe wechseln. Für gleichbleibende Zeiten kann ein einfacher programmierbarer Kopf genügen. Vergleiche diese Lösung vor einem neuen Funk-System.
 [Erst mit 0 % zusätzlicher Ersparnis rechnen](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#rechner) · [Ventil und Modellgeneration klären](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#ventilcheck)
 
-Herstellerquellen geprüft: 2026-11-12. Keine Live-Preise, Bestands- oder Spargarantie. Aktuelle Herstellerunterlagen und das konkrete Händlerpaket gehen vor.
+Prüfdaten stehen bei den jeweiligen Herstellerquellen. Keine Live-Preise, Bestands- oder Spargarantie. Aktuelle Herstellerunterlagen und das konkrete Händlerpaket gehen vor.
 Auf kleinen Bildschirmen kannst du die Vergleichstabelle seitlich verschieben.
 
 Erst die vorhandene Zentrale, dann den Thermostatkopf wählen
@@ -161,6 +161,7 @@ Erst die vorhandene Zentrale, dann den Thermostatkopf wählen
 | [tado° Smartes Heizkörper-Thermostat X – Starter Kit](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-tado-x-starter) | Neues tado° X-System mit enthaltener Bridge | Bridge X liegt diesem Starter Kit bei. Ein bereits vorhandener, kompatibler Thread Border Router kann eine andere Paketwahl ermöglichen; die genaue Freigabe prüfen. |
 | [Bosch Heizkörper-Thermostat II [+M]](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-bosch-ii-m) | Vorhandenes Bosch-System oder geprüftes Matter-System nutzen | Im Bosch-System ist ein Bosch Smart Home Controller nötig. Für ein fremdes Matter-System verlangt die Anleitung einen eingerichteten Matter Controller mit Thread-Unterstützung und dessen App. Fehlt dem Matter Controller die integrierte Thread-Kommunikation, ist zusätzlich ein Thread Border Router nötig. |
 | [FRITZ!Smart Thermo 302 · Artikel 20003120](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-fritz-302) | Passende FRITZ!Box mit DECT bereits vorhanden | Laut Produktseite: FRITZ!Box mit DECT-Basis und FRITZ!OS ab 6.83; FRITZ!Box 7312 und 7412 sind ausgenommen. Das genaue Routermodell vor dem Kauf prüfen. |
+| [TP-Link Kasa KE100: Einzelkopf oder KE100 KIT?](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-kasa-ke100) | Vorhandenen KH100 erweitern oder erstmals ein Kasa-System einrichten | Für die Steuerung in der Kasa-App braucht der KE100 den Kasa Hub KH100. Der Kopf funkt zum Hub; der Hub verbindet sich per 2,4-GHz-WLAN mit dem Router. Ein Tapo-Hub mit ähnlichem Namen ist kein belegter Ersatz. Für Matter nennt der Hersteller den Kasa-Hub und aktuelle Firmware. |
 
 ### tado° Smartes Heizkörper-Thermostat X – Starter Kit
 Neues tado° X-System mit enthaltener Bridge
@@ -168,7 +169,7 @@ Neues tado° X-System mit enthaltener Bridge
 **Paket und Zusatzkauf:** Ein Thermostatkopf, Bridge X und sechs Adapter. USB-C-Ladekabel nicht enthalten. Ein Einzelkopf oder Trio-Pack ist nicht automatisch dasselbe Starter Kit.
 **Betrieb und Funktionen:** Abnehmbarer, per USB-C ladbarer Akku. Die kostenlose App enthält Zeitpläne; zusätzliche Automatisierungen können das optionale AI-Assist-Abo benötigen. Gewünschte Funktion vor dem Kauf prüfen.
 **Vor der Bestellung:** tado° X und die V3+-Geräte/Internet Bridge sind nicht miteinander kompatibel. Die V3+-Ventiltabelle auf dieser Seite bestätigt keine Passung für X. In diesem Starter Kit ist kein Heizkreis-Regler für die Therme enthalten. Die Bridge X verbindet die Geräte mit dem Netzwerk. Wer Wärme für einen anderen Raum anfordern will, prüft die Anlagenregelung vor Bestellung.
-[tado°: X Starter Kit, Packung und Kompatibilität](https://shop.tado.com/products/smart-radiator-thermostat-x-starter-kit-1)
+[tado°: X Starter Kit, Packung und Kompatibilität](https://shop.tado.com/products/smart-radiator-thermostat-x-starter-kit-1) · geprüft am 2026-11-12
 Anzeige · Modellsuche, kein geprüftes Einzelangebot.tado° Smartes Heizkörper-Thermostat X – Starter Kit bei Amazon.de suchen →
 
 ### Bosch Heizkörper-Thermostat II [+M]
@@ -179,7 +180,7 @@ Vorhandenes Bosch-System oder geprüftes Matter-System nutzen
 **Vor der Bestellung:** Matter bedeutet hier nicht Betrieb ohne passende Zentrale. Den Ventilanschluss anhand der Bosch-Anleitung prüfen; die tado°-Zuordnungen gelten nicht für dieses Modell.
 [Für Bosch II [+M]: Danfoss RA, RAV und RAVL abgleichen](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#bosch-ii-m-danfoss-adapter)
 [Bosch II [+M] zeigt E03? Kalibrierung prüfen](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#bosch-ii-m-e03)
-[Bosch: Modellvarianten und Systemfunktionen](https://www.bosch-smarthome.com/de/de/produkte/heizung/heizkoerper-thermostat/) · [Bosch: Anleitung II [+M], Matter-/Thread-Anforderungen](https://www.bosch-smarthome.com/res/web/produkt/heizkoerper-thermostat2/pdf/8-750-002-924_BTH-RAD_OM_11L.pdf)
+[Bosch: Modellvarianten und Systemfunktionen](https://www.bosch-smarthome.com/de/de/produkte/heizung/heizkoerper-thermostat/) · [Bosch: Anleitung II [+M], Matter-/Thread-Anforderungen](https://www.bosch-smarthome.com/res/web/produkt/heizkoerper-thermostat2/pdf/8-750-002-924_BTH-RAD_OM_11L.pdf) · geprüft am 2026-11-12
 Anzeige · Modellsuche, kein geprüftes Einzelangebot.Bosch Heizkörper-Thermostat II [+M] bei Amazon.de suchen →
 
 ### FRITZ!Smart Thermo 302 · Artikel 20003120
@@ -189,11 +190,21 @@ Passende FRITZ!Box mit DECT bereits vorhanden
 **Betrieb und Funktionen:** Betrieb mit drei AA-Batterien und DECT-ULE. Der Hersteller schließt Nass- und Feuchträume aus. Das Gerät ist kein Ersatz für eine passende Zentrale.
 **Vor der Bestellung:** Artikelnummer 20003120 und Paketinhalt abgleichen. Nicht allein aus dem Namen FRITZ! oder einem M30-Anschluss auf System- oder Ventilkompatibilität schließen.
 [Für FRITZ! 302: Danfoss-Adapter und Lieferumfang prüfen](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#fritz-302-danfoss-adapter)
-[FRITZ!: Thermo 302, Voraussetzungen und Lieferumfang](https://fritz.com/products/fritz-smart-thermo-302-20003120)
+[FRITZ!: Thermo 302, Voraussetzungen und Lieferumfang](https://fritz.com/products/fritz-smart-thermo-302-20003120) · geprüft am 2026-11-12
 Anzeige · Modellsuche, kein geprüftes Einzelangebot.FRITZ!Smart Thermo 302 · Artikel 20003120 bei Amazon.de suchen →
 
+### TP-Link Kasa KE100: Einzelkopf oder KE100 KIT?
+Vorhandenen KH100 erweitern oder erstmals ein Kasa-System einrichten
+**System:** Für die Steuerung in der Kasa-App braucht der KE100 den Kasa Hub KH100. Der Kopf funkt zum Hub; der Hub verbindet sich per 2,4-GHz-WLAN mit dem Router. Ein Tapo-Hub mit ähnlichem Namen ist kein belegter Ersatz. Für Matter nennt der Hersteller den Kasa-Hub und aktuelle Firmware.
+**Paket und Zusatzkauf:** KH100 schon vorhanden: Prüfe den KE100-Einzelkopf ohne Hub. Noch kein KH100: Beim KE100 KIT nennt TP-Link einen KE100-Kopf und einen KH100-Hub. Vor dem Kauf die Stückzahl, den genauen Hub und die mitgelieferten Adapter im Angebot abgleichen.
+**Betrieb und Funktionen:** Der KE100 verwendet zwei AA/LR6-Batterien. Für die in der Hersteller-FAQ beschriebene Fenstererkennung wird ein separater Tapo T110 am selben Kasa-Hub benötigt.
+**Vor der Bestellung:** TP-Link nennt M30 × 1,5 als Anschluss und dokumentiert Adapter für weitere Ventile. Gleiche Ventil und Inhalt des konkreten EU-Angebots ab. Erst bei bestätigtem Ventil und passendem Paket bestellen.
+[TP-Link: KE100 KIT mit KH100, Lieferumfang und Matter](https://www.tp-link.com/de/home-networking/smart-thermostat/ke100-kit/) · [TP-Link: Kasa-App, Hub, Funk und Fensterkontakt](https://www.tp-link.com/de/support/faq/3602/) · geprüft am 2026-11-27
+Anzeige · Modellsuche, kein geprüftes Einzelangebot.KE100 Einzelkopf ohne Hub bei Amazon.de suchen →
+Anzeige · Modellsuche, kein geprüftes Einzelangebot.KE100 KIT mit KH100 Hub bei Amazon.de suchen →
+
 ### Deutschland, Österreich oder Schweiz?
-**Anzeige · Affiliate-Links:** Als Amazon-Partner verdienen wir an qualifizierten Verkäufen. Die drei Links öffnen Modellsuchen bei Amazon.de, keine geprüften Einzelangebote. Modell, Generation, Starter Kit und Verkäufer im Ergebnis abgleichen.
+**Anzeige · Affiliate-Links:** Als Amazon-Partner verdienen wir an qualifizierten Verkäufen. Die Links öffnen Modellsuchen bei Amazon.de, keine geprüften Einzelangebote. Modell, Generation, Starter Kit und Verkäufer im Ergebnis abgleichen.
 **DE:** EUR-Gesamtkosten einschließlich benötigter Zentrale prüfen. **AT:** Lieferung an deine Adresse, Rückgabe und Endpreis separat bestätigen. **CH:** lokale CHF-Kosten, Anschluss, Import und Garantie prüfen; diese Auswahl bestätigt keinen Schweizer Händler. Keine automatische Währungsumrechnung.
 
 ### Ein Raum oder drei Räume: das vollständige Paket rechnen

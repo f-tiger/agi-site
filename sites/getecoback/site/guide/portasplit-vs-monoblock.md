@@ -57,6 +57,7 @@ Fehlt ein sicherer Aufstellort für beide Bauarten oder ist die Passung offen, w
 **Wie vergleiche ich die Anschaffungskosten?**Addiere je Angebot den Gerätepreis, notwendiges Zubehör, Lieferung und gegebenenfalls Montage. Vergleiche diese Summen erst, wenn die Aufstellung beider Modelle geklärt ist. Ohne konkrete Angebote bleibt der Preisunterschied offen.
 
 **Weitere Ratgeber**
+[Klimaanlagen-Angebot prüfen: gleicher Händler, gleiches Modell und 30-Tage-Preis →](https://getecoback.com/guide/klimaanlage-wann-kaufen.html#angebot-30-tage-preis)
 [Midea PortaSplit kaufen: Passt sie in deine Wohnung? →](https://getecoback.com/guide/midea-portasplit-kaufen.html)
 [Split-Klimaanlage ohne Kernbohrung →](https://getecoback.com/guide/split-klimaanlage-ohne-kernbohrung.html)
 [Beste tragbare Klimaanlage 2026 →](https://getecoback.com/guide/beste-tragbare-klimaanlage-hitzewelle.html)

@@ -47,6 +47,8 @@ Jeder Monoblock hat einen Abluftschlauch, der raus muss. Ohne dichte Fensterabdi
 
 ## Konkrete Modelle nach Einsatzzweck
 
+Du hast schon eine passende Bauart gefunden? [Kaufzeitpunkt, Zubehörkosten und Liefertermin prüfen](https://getecoback.com/guide/klimaanlage-wann-kaufen.html#kaufzeitpunkt-rechner), bevor du die Modellangebote vergleichst.
+
 Häufig empfohlen in unabhängigen deutschen Tests (u. a. testit.de, home&smart, Testberichte.de) und Amazon-Bestsellern. **Wir testen nicht selbst**; die Auswahl fasst öffentliche Tests zusammen. Preise/Verfügbarkeit ändern sich täglich.
 
 Allrounder

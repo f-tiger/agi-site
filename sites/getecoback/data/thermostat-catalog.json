@@ -44,6 +44,25 @@
       "source_label": "FRITZ!: Thermo 302, Voraussetzungen und Lieferumfang",
       "query": "FRITZ Smart Thermo 302 20003120",
       "status": "verified"
+    },
+    {
+      "id": "kasa-ke100",
+      "name": "TP-Link Kasa KE100: Einzelkopf oder KE100 KIT?",
+      "role": "Vorhandenen KH100 erweitern oder erstmals ein Kasa-System einrichten",
+      "system": "Für die Steuerung in der Kasa-App braucht der KE100 den Kasa Hub KH100. Der Kopf funkt zum Hub; der Hub verbindet sich per 2,4-GHz-WLAN mit dem Router. Ein Tapo-Hub mit ähnlichem Namen ist kein belegter Ersatz. Für Matter nennt der Hersteller den Kasa-Hub und aktuelle Firmware.",
+      "package": "KH100 schon vorhanden: Prüfe den KE100-Einzelkopf ohne Hub. Noch kein KH100: Beim KE100 KIT nennt TP-Link einen KE100-Kopf und einen KH100-Hub. Vor dem Kauf die Stückzahl, den genauen Hub und die mitgelieferten Adapter im Angebot abgleichen.",
+      "care": "Der KE100 verwendet zwei AA/LR6-Batterien. Für die in der Hersteller-FAQ beschriebene Fenstererkennung wird ein separater Tapo T110 am selben Kasa-Hub benötigt.",
+      "limit": "TP-Link nennt M30 × 1,5 als Anschluss und dokumentiert Adapter für weitere Ventile. Gleiche Ventil und Inhalt des konkreten EU-Angebots ab. Erst bei bestätigtem Ventil und passendem Paket bestellen.",
+      "source": "https://www.tp-link.com/de/home-networking/smart-thermostat/ke100-kit/",
+      "source_label": "TP-Link: KE100 KIT mit KH100, Lieferumfang und Matter",
+      "manual": "https://www.tp-link.com/de/support/faq/3602/",
+      "manual_label": "TP-Link: Kasa-App, Hub, Funk und Fensterkontakt",
+      "query": "TP-Link Kasa KE100 Einzelkopf ohne Hub",
+      "search_label": "KE100 Einzelkopf ohne Hub",
+      "alternate_query": "TP-Link Kasa KE100 KIT mit KH100 Hub",
+      "alternate_label": "KE100 KIT mit KH100 Hub",
+      "checked": "2026-11-27",
+      "status": "verified"
     }
   ]
 }

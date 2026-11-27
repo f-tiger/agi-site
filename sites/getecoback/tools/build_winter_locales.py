@@ -22,10 +22,22 @@ def alternates(i=None):return ''.join(f'<link rel="alternate" hreflang="{lang}" 
 def calculator(lang,kind):
  u=UI[lang];fields=''.join(f'<label>{e(label)}<input required type="number" name="{name}" value="{value}" min="{lo}" max="{hi}" step="any" inputmode="decimal"></label>' for (name,_,value,lo,hi),label in zip(FIELDS[kind],LABELS[lang][kind]))
  return f'''<section class="winter-calculator" id="calculator" data-winter-tool="{kind}"><h2>{u['calc']}</h2><p>{u['note']}</p><form><label>{u['currency']} <select name="currency">{''.join(f'<option value="{c}">{c}</option>' for c in ['EUR','GBP','USD','CHF'])}</select></label><div class="winter-fields">{fields}</div><label class="winter-confirm"><input type="checkbox" name="own"> {u['own']}</label><button type="submit">{u['submit']}</button></form><p data-error role="alert"></p><div data-result hidden tabindex="-1" aria-live="polite"></div><button type="button" data-export hidden>{u['export']}</button><p class="winter-note">{u['privacy']}</p><noscript><p>{u['noscript']}</p></noscript></section><h2>{u['example']}</h2><p>{u['formula'][['thermostat','shower','lights'].index(kind)]}</p>'''
+
+def english_regions():
+ return (
+  '<section aria-labelledby="winter-by-country"><h2 id="winter-by-country">Find local winter guidance</h2>'
+  '<ul><li><a href="/en/guide/uk-damp-and-heating-decisions.html#uk-winter-weather-check">UK: damp, indoor drying and heating</a></li>'
+  '<li><a lang="fr" href="/fr/calculateur.html">France : chauffage et heures creuses en hiver</a></li>'
+  '<li><a lang="de" href="/winter-energiesparen.html#winter-nach-land">Deutschland, Österreich, Schweiz</a></li>'
+  '</ul></section>'
+ )
+
 def page(lang,i=None):
  u=UI[lang];hub=i is None;url=BASE+(HUB[lang] if hub else route(lang,i));faq=[];tool=None
  if hub:
   title,desc,lead=u['title'],u['desc'],u['lead'];body=f'<h2 id="tasks">{u["tasks"]}</h2><nav class="winter-grid">'+''.join(f'<a href="{route(lang,j)}"><strong>{e(p[1])}</strong><span>{e(p[3])}</span></a>' for j,p in enumerate(CONTENT[lang]))+'</nav>'
+  if lang == 'en':
+   body = english_regions() + body
  else:
   slug,title,desc,lead,sections,faq=CONTENT[lang][i];source=PAGES[DE[i]];tool=source.get('tool')
   body=(calculator(lang,tool) if tool else '')+''.join(f'<h2>{e(h)}</h2><p>{e(t)}</p>' for h,t in sections)

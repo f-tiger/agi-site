@@ -4,6 +4,14 @@
 
 Canonical (HTML, zitierfähig): https://getecoback.com/winter-energiesparen.html
 
+## Winterhilfe nach Land und Wetterlage
+
+- **Deutschland:** Bei kalten Nächten zuerst Heizzeiten, Zugluft und kalte Oberflächen prüfen. [Heizkörper und Regelung prüfen](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-start) · [DWD-Vorhersage](https://www.wettergefahren.de/warnungen/warnsituation/wochenvorhersage.html)
+- **Österreich:** Heizkosten mit dem eigenen Tarif rechnen. Regionale Angebote prüfen und bei Schnee oder Frost die lokale Lage berücksichtigen. [E-Control-Preismonitor](https://www.e-control.at/de/preismonitor) · [GeoSphere-Wetter](https://geosphere.at/de/karten/wetterportal)
+- **Schweiz:** Strompreis für die eigene Gemeinde in CHF einsetzen. [ElCom-Tarife](https://www.elcom.admin.ch/de/strompreise-und-tarife) · [MeteoSchweiz](https://www.meteoschweiz.admin.ch/)
+- [UK: rain, indoor washing and heating](https://getecoback.com/en/guide/uk-damp-and-heating-decisions.html#uk-winter-weather-check)
+- [France : chauffage et heures creuses en hiver](https://getecoback.com/fr/calculateur.html)
+
 ## Womit möchtest du anfangen?
 
 - [Smarte Heizkörperthermostate: Ventil prüfen, Kosten rechnen Ein Zeitplan kann unnötiges Heizen vermeiden. Ein smarter Thermostatkopf erzeugt aber keine billigere Wärme. Entscheidend ist, was du heute tatsächlich anders machen würdest.](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html)

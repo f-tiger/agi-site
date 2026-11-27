@@ -40,7 +40,10 @@ const routePath = '/guide/smarte-heizkoerperthermostate-lohnen-sich.html';
       }
       const catalog = page.locator('#eb-thermostat-products');
       assert(await catalog.isVisible());
-      assert.equal(await catalog.locator('.tc-card').count(),3);
+      assert.equal(await catalog.locator('.tc-card').count(),thermostatSpec.ids.length);
+      const kasa = catalog.locator('#thermostat-kasa-ke100');
+      assert.match(await kasa.innerText(), /KH100 schon vorhanden:.*Einzelkopf ohne Hub/);
+      assert.match(await kasa.innerText(), /Noch kein KH100:.*einen KE100-Kopf und einen KH100-Hub/);
       for(const width of [320,390]){
         await page.setViewportSize({width,height:844});
         for(const [card,section] of [['bosch-ii-m','bosch-ii-m-danfoss-adapter'],['fritz-302','fritz-302-danfoss-adapter']]){
@@ -56,7 +59,7 @@ const routePath = '/guide/smarte-heizkoerperthermostate-lohnen-sich.html';
       }
       eligibleSearches=await assertCatalogCommerce(catalog,thermostatSpec,data,today);
       assert.match(await catalog.innerText(), /V3\+.*nicht miteinander kompatibel/);
-      assert.match(await catalog.innerText(), /vorhandene Köpfe weiter nutzen/);
+      assert.match(await catalog.innerText(), /Vorhandene Köpfe weiter nutzen/);
       for (const a of await catalog.locator('a[rel~="sponsored"]').all()) {
         const u = new URL(await a.getAttribute('href'));
         assert.equal(u.hostname,'www.amazon.de'); assert.equal(u.pathname,'/s');
@@ -81,6 +84,6 @@ const routePath = '/guide/smarte-heizkoerperthermostate-lohnen-sich.html';
       await page.setViewportSize({width:390,height:844});await catalog.screenshot({path:path.join(dir,'thermostat-catalog-'+(enabled?'js':'nojs')+'.png')});
       assert.deepEqual(errors,[]);await ctx.close();
     }
-    console.log('PASS thermostat catalog: '+cases+' viewport/JS cases, '+eligibleSearches+' exact eligible searches on '+today+', three readable source cards, no-purchase branch, X not validated by V3, zero-savings result.');
+    console.log('PASS thermostat catalog: '+cases+' viewport/JS cases, '+eligibleSearches+' exact eligible searches on '+today+', '+thermostatSpec.ids.length+' readable source cards, no-purchase branch, X not validated by V3, zero-savings result.');
   } finally { await browser.close(); }
 })().catch(error => { console.error(error); process.exit(1); });

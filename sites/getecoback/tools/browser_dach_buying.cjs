@@ -3,20 +3,23 @@ const fs=require('node:fs'),path=require('node:path'),assert=require('node:asser
 const root=path.resolve(__dirname,'../site'),origin='https://getecoback.com',live=process.env.LIVE==='1';
 const out=process.env.QA_DIR||'/tmp/eco-dach-buying-qa';
 const routes=[
- {key:'thermostat',path:'/guide/smarte-heizkoerperthermostate-lohnen-sich.html',box:'#eb-thermostat-products',cards:'.tc-card',shops:'.tc-commerce a',names:['tado° Smartes Heizkörper-Thermostat X – Starter Kit','Bosch Heizkörper-Thermostat II [+M]','FRITZ!Smart Thermo 302 · Artikel 20003120'],ids:['tado-x-starter','bosch-ii-m','fritz-302'],queries:['tado Smartes Heizkörper Thermostat X Starter Kit Bridge X','Bosch Heizkörper Thermostat II +M','FRITZ Smart Thermo 302 20003120'],prefix:'thermostat-',source:'.tc-source a'},
+ {key:'thermostat',path:'/guide/smarte-heizkoerperthermostate-lohnen-sich.html',box:'#eb-thermostat-products',cards:'.tc-card',shops:'.tc-commerce a',names:['tado° Smartes Heizkörper-Thermostat X – Starter Kit','Bosch Heizkörper-Thermostat II [+M]','FRITZ!Smart Thermo 302 · Artikel 20003120','TP-Link Kasa KE100: Einzelkopf oder KE100 KIT?'],ids:['tado-x-starter','bosch-ii-m','fritz-302','kasa-ke100'],queries:['tado Smartes Heizkörper Thermostat X Starter Kit Bridge X','Bosch Heizkörper Thermostat II +M','FRITZ Smart Thermo 302 20003120','TP-Link Kasa KE100 Einzelkopf ohne Hub'],alternateQueries:{'kasa-ke100':'TP-Link Kasa KE100 KIT mit KH100 Hub'},prefix:'thermostat-',source:'.tc-source a'},
  {key:'floorcare',path:'/guide/saugwischer-kaufberatung.html',box:'article[data-floorcare-guide]',cards:'.fc-card',shops:'.fc-commerce a',names:['Tineco FLOOR ONE S7 FlashDry','Dreame H14 Pro','Roborock F25 XT'],ids:['tineco-s7-flashdry','dreame-h14-pro','roborock-f25-xt'],queries:['Tineco FLOOR ONE S7 FlashDry','Dreame H14 Pro Nass Trockensauger','Roborock F25 XT Nass Trockenstaubsauger'],prefix:'',source:'.fc-sources a'}
 ];
 // Independent publication expectation: never import a production renderer or
-// infer freshness from the rendered page. Both catalogs use one UTC review day.
+// infer freshness from the rendered page. A newly reviewed model can carry its own UTC date.
 function expectedCatalogQueries(catalog,today=new Date().toISOString().slice(0,10)){
  const day=value=>{
   if(typeof value!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(value))return NaN;
   const time=Date.parse(value+'T00:00:00Z');
   return Number.isFinite(time)&&new Date(time).toISOString().slice(0,10)===value?time/86400000:NaN;
  };
- const age=day(today)-day(catalog.checked);
- if(catalog.market!=='DE'||catalog.max_age_days!==90||!Number.isFinite(age)||age<0||age>90)return [];
- return catalog.products.filter(product=>product.status==='verified').map(product=>product.query);
+ if(catalog.market!=='DE'||catalog.max_age_days!==90||!Number.isFinite(day(catalog.checked)))return [];
+ return catalog.products.flatMap(product=>{
+  const age=day(today)-day(product.checked??catalog.checked);
+  if(product.status!=='verified'||!Number.isFinite(age)||age<0||age>90)return [];
+  return product.alternate_query?[product.query,product.alternate_query]:[product.query];
+ });
 }
 function eligibilitySelftest(){
  const products=['first','second','third'].map(query=>({query,status:'verified'}));
@@ -25,25 +28,28 @@ function eligibilitySelftest(){
  for(const today of ['2026-04-02','2025-12-31'])assert.deepEqual(expectedCatalogQueries(catalog,today),[],'Day 91 and future evidence withdraw all searches');
  const mixed={...catalog,products:products.map((p,i)=>({...p,status:i===1?'unverified':'verified'}))};
  assert.deepEqual(expectedCatalogQueries(mixed,'2026-04-01'),['first','third'],'Mixed verification retains only exact eligible searches');
+ const refreshed={...catalog,products:[...products,{query:'head',alternate_query:'kit',status:'verified',checked:'2026-04-02'}]};
+ assert.deepEqual(expectedCatalogQueries(refreshed,'2026-04-02'),['head','kit'],'A newly reviewed model does not refresh the other offers');
  assert.deepEqual(expectedCatalogQueries({...catalog,products:products.map(p=>({...p,status:'unverified'}))},'2026-01-01'),[],'Unverified models never receive commerce');
  for(const change of [{checked:'2026-02-30'},{checked:'invalid'},{max_age_days:365},{market:'US'}])assert.deepEqual(expectedCatalogQueries({...catalog,...change},'2026-03-01'),[],'Invalid evidence or policy must fail closed');
 }
 async function assertCatalogCommerce(box,spec,catalog,today){
- assert.equal(catalog.products.length,3,'The three reviewed model records must remain present');
+ assert.equal(catalog.products.length,spec.ids.length,'Reviewed model records must remain present');
  assert.deepEqual(catalog.products.map(p=>p.id).sort(),[...spec.ids].sort(),'Exact model identities changed');
  const expected=expectedCatalogQueries(catalog,today),queries=[];
- assert.equal(await box.locator(spec.cards).count(),3,'Source cards must remain after commerce expires');
+ assert.equal(await box.locator(spec.cards).count(),spec.ids.length,'Source cards must remain after commerce expires');
  assert.equal(await box.locator(spec.shops).count(),expected.length,'Missing eligible or unsuppressed stale merchant links');
  assert.equal(await box.locator('a[rel~="sponsored"]').count(),expected.length,'Unexpected sponsored link outside model actions');
  for(let i=0;i<spec.ids.length;i++){
   const product=catalog.products.find(p=>p.id===spec.ids[i]);
   assert.equal(product.name,spec.names[i]);assert.equal(product.query,spec.queries[i],'Exact variant query changed');
+  assert.equal(product.alternate_query,spec.alternateQueries?.[product.id],'Exact alternative package query changed');
   const card=box.locator('#'+spec.prefix+product.id),eligible=expected.includes(spec.queries[i]);
   assert(await card.isVisible(),`Unreadable source card: ${product.id}`);
   const content=await card.innerText();assert(content.includes(spec.names[i]));assert(content.includes(product.care),'Maintenance facts must remain readable');
   assert((await card.locator(spec.source).count())>=1,`Manufacturer source missing: ${product.id}`);
   for(const source of await card.locator(spec.source).all())assert(await source.isVisible(),'Manufacturer source hidden');
-  assert.equal(await card.locator('a[href*="amazon."]').count(),eligible?1:0,`Merchant eligibility mismatch: ${product.id}`);
+  assert.equal(await card.locator('a[href*="amazon."]').count(),eligible?(product.alternate_query?2:1):0,`Merchant eligibility mismatch: ${product.id}`);
   if(!eligible)assert.match(content,/Quellenprüfung ausstehend/,'Missing explanation for withdrawn commerce');
  }
  for(const a of await box.locator(spec.shops).all()){
@@ -79,7 +85,7 @@ async function main(){
    const context=await contextFor(browser,width,js),page=await context.newPage(),errors=[];
    page.on('pageerror',e=>errors.push(e.message));
    const response=await page.goto(origin+r.path+'?__probe=1',{waitUntil:'load'});assert.equal(response.status(),200);
-   const box=page.locator(r.box);assert.equal(await box.count(),1);assert.equal(await box.locator(r.cards).count(),3);
+   const box=page.locator(r.box);assert.equal(await box.count(),1);assert.equal(await box.locator(r.cards).count(),r.ids.length);
    const text=await box.innerText();for(const name of r.names)assert(text.includes(name),`${r.path}: ${name}`);
    const eligibleSearches=await assertCatalogCommerce(box,r,catalog,today);assert((await box.locator(r.source).count())>=3);
    assert.equal(await page.locator('h1').count(),1);
