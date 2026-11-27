@@ -16,3 +16,18 @@ export function asksForElectricBlanketCost(query) {
   const usage = /\b(?:kwh|kilowattstunden?|watt|stunden?|minuten?|abend(?:s|e|en)?|betrieb|nutzung\w*|pro tag|an strom)\b|\d\s?(?:h|w)\b/.test(query);
   return explicitlyElectric || (cost && usage);
 }
+
+export const beurerWarmthModelGuide = {
+  path:'/guide/heizdecke-stromverbrauch.html',
+  id:'beurer-hd75-ub30',
+};
+
+export function asksForBeurerWarmthModelFit(query) {
+  const hd75 = /\b(?:hd[ -]*75|424[ .-]*00|4211125424008)\b/;
+  const ub30 = /\b(?:ub[ -]*30|306[ .-]*00|4211125306007)\b/;
+  const other = /\b(?:nordic|ocean|dark[ -]*grey|felloptik|42106|42103|40000|40019|ub[ -]*(?:33|60|66|74|90|100|101|190)|ersatz\w*|defekt\w*|repar\w*|kaputt|blink\w*|wasch\w*|stecker\w*|fehler\w*)\b/;
+  if ((!hd75.test(query) && !ub30.test(query)) || other.test(query) || asksForElectricBlanketCost(query)) return false;
+  const decision = /\b(?:abschalt\w*|abschaltet|schaltet|timer|ueber nacht|nachts|schlaf\w*|bett\w*|matratz\w*|waermeunterbett\w*|zudeck\w*|liegen|unterlage\w*|unter mir|unterschie\w*|vergleich\w*)\b/;
+  return (hd75.test(query) && ub30.test(query)) || decision.test(query) ||
+    (ub30.test(query) && /\b(?:stromverbrauch|stromkosten|nennleistung|watt)\b/.test(query));
+}

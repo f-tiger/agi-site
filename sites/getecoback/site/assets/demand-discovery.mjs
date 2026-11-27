@@ -8,7 +8,7 @@ import {asksForCoolingNoiseComparison} from './cooling-noise-intent.mjs?v=f0bcc0
 import {asksForTesamollWindowProfile} from './tesamoll-profile-intent.mjs';
 import {asksForLevoitCore300SBoxFilter,exactGermanFilterModel} from './exact-filter-intent.mjs?v=a55b45f02c08';
 import {philipsHumidifierFilterSection} from './philips-humidifier-filter-intent.mjs?v=537af20b39fb';
-import {asksForElectricBlanketCost} from './electric-blanket-cost-intent.mjs';
+import {asksForBeurerWarmthModelFit, asksForElectricBlanketCost, beurerWarmthModelGuide} from './electric-blanket-cost-intent.mjs?v=af908d3e8ed8';
 import {asksForHygrometerComparison} from './hygrometer-comparison-intent.mjs';
 import {asksForN90ModelIdentity} from './n90-model-intent.mjs';
 import {asksForPortaSplitWindowLip, namesDifferentPortaSplit, namesOriginalPortaSplitExactly} from './portasplit-fensterfalz-intent.mjs?v=66ae5fbd590d';
@@ -61,6 +61,7 @@ const philipsHumidifierGuide='/guide/luftbefeuchter-ratgeber.html';
 
 export function exactGermanGuide(normalizedQuery) {
  const query=normalizedQuery.trim().replace(/\s+/g,' ');
+ if(asksForBeurerWarmthModelFit(query))return beurerWarmthModelGuide;
  if(asksForTrotecTtk75EcoOffer(query))
    return {path:'/guide/trotec-luftentfeuchter-test.html',id:'ttk75-angebot'};
  const philipsSection=philipsHumidifierFilterSection(query);

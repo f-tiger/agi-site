@@ -12,6 +12,26 @@ from moisture_journeys import GUIDE_NEXT
 SITE = Path(__file__).resolve().parents[1] / 'site'
 
 class ConversionRoutes(unittest.TestCase):
+    def test_beurer_models_distinguish_timed_cutoff_and_fault_protection(self):
+        guide=SITE/'guide/heizdecke-stromverbrauch.html'
+        html=guide.read_text()
+        md=guide.with_suffix('.md').read_text()
+        [section]=re.findall(r'<section aria-labelledby="beurer-hd75-ub30">(.*?)</section>',html,re.S)
+        for value in ('Artikel 42400','4211125424008','Artikel 30600','4211125306007',
+                      '50-W-Wärmeunterbett','zwischen Matratze und Betttuch','keine zeitgesteuerte Abschaltautomatik',
+                      'Sicherheitssystem schaltet im Fehlerfall','0,025 kWh','keine durchgehende Nutzung über Nacht',
+                      'HD75_2026-09-18_12_IM1_BEU.pdf#page=7','07101295_UB30-33_2024-09-06_02_IM1_BEU.pdf#page=6'):
+            self.assertIn(value,section)
+            self.assertIn(value,md)
+        for value in ('100–110 W','100 W','Typenschild'):
+            self.assertIn(value,html)
+            self.assertIn(value,md)
+        self.assertIn('href="#kaufpruefung"',section)
+        self.assertNotIn('amazon.de',section)
+        self.assertIn('Andere Wärmeunterbetten mit Abschaltautomatik vergleichen',html)
+        self.assertEqual(html.count('https://www.amazon.de/s?k=waermeunterbett+abschaltautomatik&amp;tag=getecoback-21'),1)
+        self.assertNotRegex(md,r'https?://www\.amazon\.de/|getecoback-21')
+
     def test_heated_rack_article_separates_assumed_power_real_load_and_timer_choices(self):
         page=SITE/'guide/beheizter-waeschestaender.html'
         raw=page.read_text()

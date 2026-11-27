@@ -13,9 +13,9 @@ from urllib.parse import quote, urlencode
 SITE = Path(__file__).resolve().parents[1] / 'site'
 SLUG = 'heizdecke-stromverbrauch'
 TITLE = 'Heizdecke: Stromkosten für Sofa und Homeoffice berechnen'
-DESC = 'Heizdecken-Stromkosten ohne Pflichtangaben: Beispiele für Sofa und Homeoffice, eigener Tarif in EUR oder CHF, Abschaltzeit und sichere Auswahl prüfen.'
+DESC = 'Heizdecken-Stromkosten mit eigenem Tarif in EUR oder CHF schätzen. Beurer HD 75 Taupe und UB 30 nach Einsatzort, Leistung und Abschaltzeit unterscheiden.'
 URL = 'https://getecoback.com/guide/' + SLUG + '.html'
-CHECKED = '2026-11-22'
+CHECKED = '2026-11-27'
 METER_SOURCE = 'https://verbraucherzentrale-energieberatung.de/energie-sparen/allgemeines/stromverbrauch-messen/'
 SHARE_TARGET = URL + '#waerme-rechner'
 SHARE_TITLE = 'Was kostet eine Heizdecke mit 110 W für zwei Stunden bei 35 ct/kWh?'
@@ -53,7 +53,7 @@ TOOL = f'''<section id="waerme-rechner" class="warmth-tool" aria-labelledby="war
 <ol><li>Lies die Wattangabe am Typenschild für die Schätzung ab. Die automatische Abschaltung begrenzt beim jeweiligen Modell die Heizdauer. Wie viel Energie die Decke bis dahin aufnimmt, ermittelst du über die Messung.</li>
 <li>Prüfe in den Anleitungen, ob das Strommessgerät für die Decke geeignet ist. Notiere den kWh-Stand vor dem Einschalten und nach deiner vollständigen Nutzung einschließlich Aufheizen sowie die verwendete Stufe.</li>
 <li>Ziehe den Anfangsstand vom Endstand ab und multipliziere die gemessenen kWh mit deinem Arbeitspreis.</li></ol>
-<p><a href="{html.escape(METER_SOURCE)}">Verbraucherzentrale Energieberatung zur Strommessung</a> · geprüft am <time datetime="{CHECKED}">22.11.2026</time>.</p>
+<p><a href="{html.escape(METER_SOURCE)}">Verbraucherzentrale Energieberatung zur Strommessung</a> · geprüft am <time datetime="2026-11-22">22.11.2026</time>.</p>
 <button type="button" data-warmth-copy disabled>Ergebnis für Reddit, X oder eine Nachricht kopieren</button>
 <small>Du teilst selbst. Der Text enthält deine Rechenannahmen und Grenzen, keine Anmeldung oder automatisch veröffentlichten Beiträge. Eingaben bleiben in diesem Browser.</small>
 <nav class="warmth-share" aria-label="Rechenbeispiel teilen">
@@ -67,14 +67,20 @@ TOOL = f'''<section id="waerme-rechner" class="warmth-tool" aria-labelledby="war
 def article():
     faq = ''.join('<h3>' + html.escape(q) + '</h3><p>' + html.escape(a) + '</p>' for q, a in FAQ)
     return '''<article><div class="wrap">
-<p><small>Fachlich überarbeitet und Quellen geprüft: 31. Oktober 2026 · EcoBack Redaktion</small></p>
+<p><small>EcoBack Redaktion · Aktualisiert am 27. November 2026. Quellenstand jeweils am Abschnitt.</small></p>
 <div class="tldr"><strong>Kurz gesagt:</strong> 110 W für zwei Stunden ergeben 0,22 kWh. Bei einem frei gewählten Preis von 0,35 €/kWh sind das rund 0,08 €. Eine Heizdecke wärmt eine Person; Raumheizung, Lüften und Feuchteschutz bleiben eigene Aufgaben.</div>
 <p>Für kalte Füße am Schreibtisch oder einen Abend auf dem Sofa zählt zuerst die passende Anwendung. Probiere vorhandene Decken, Kleidung und einen weniger zugigen Arbeitsplatz, bevor du ein neues Gerät kaufst. Der Rechner zeigt Gerätestromkosten, keine versprochene Ersparnis gegenüber deiner Heizung.</p>
 ''' + TOOL + '''
 <h2 id="modell-und-abschaltung">Ein konkretes Herstellerbeispiel statt pauschaler Wattzahlen</h2>
-<p>Im <a href="https://www.beurer.com/web/flippingbook/beurer-produktkatalog-2025-DE/62-63/">Beurer-Katalog 2025, Seiten 62–63</a> sind für die dort aufgeführte HD-75-Variante mit Art.-Nr. 424.00 <strong>100–110 W</strong> und eine Abschaltung nach etwa drei Stunden angegeben. Deshalb verwenden wir 110 W als obere Nennleistung dieses Rechenbeispiels. Die <a href="https://www.beurer.com/de/p/42400/">aktuelle Produktseite zur HD 75 Taupe</a> nennt ebenfalls drei Stunden bis zur Sicherheitsabschaltung. Das ist keine Messung der gewählten Heizstufe und keine Freigabe für andere Modelle.</p>
+<p>Im <a href="https://www.beurer.com/web/flippingbook/beurer-produktkatalog-2025-DE/62-63/">Beurer-Katalog 2025, Seiten 62–63</a> sind für die dort aufgeführte HD-75-Variante mit Art.-Nr. 424.00 <strong>100–110 W</strong> und eine Abschaltung nach etwa drei Stunden angegeben. Deshalb verwenden wir 110 W als obere Nennleistung dieses Rechenbeispiels. Die <a href="https://www.beurer.com/de/p/42400/">aktuelle Produktseite zur HD 75 Taupe</a> nennt ebenfalls drei Stunden bis zur zeitgesteuerten Abschaltung der Wärmezufuhr. Das dort verlinkte <a href="https://res.cloudinary.com/beurer/image/upload/v1705113134/stibo-live/42400_HD75_2018-08-30_02_DS_DE_BEU.pdf">Datenblatt für Artikel 42400</a> nennt <strong>100 W</strong>. Übernimm die Wattangabe vom Typenschild deines Geräts. Die 110 W im Rechner bleiben eine Annahme aus dem Katalog, keine Messung der gewählten Heizstufe.</p>
 <p>Ein Zwei-Stunden-Beispiel passt rechnerisch in dieses Zeitfenster. Drei Stunden liegen an der angegebenen Abschaltzeit. Acht Stunden ohne Unterbrechung rechnen wir nicht als Standardnacht. Die Abschaltung nicht überbrücken; Anleitung, genaue Artikelnummer und Eignung für die Person gehen vor.</p>
-<p><small>Beurer-Katalog und Produktseite zum Modell HD 75 Taupe erneut geprüft am <time datetime="2026-11-22">22.11.2026</time>.</small></p>
+<section aria-labelledby="beurer-hd75-ub30">
+<h2 id="beurer-hd75-ub30">Beurer HD 75 Taupe und UB 30 für Sofa und Bett richtig zuordnen</h2>
+<p><strong>HD 75 Taupe, Artikel 42400, EAN 4211125424008.</strong> Die Wärmezudecke dient zum Zudecken. Laut Anleitung endet die Wärmezufuhr nach etwa drei Stunden. Verwende die Decke in der vorgesehenen Lage und flach. Die Abschaltzeit ersetzt die Vorgaben zur Nutzung nicht. <a href="https://res.cloudinary.com/beurer/image/upload/v1789986507/stibo-live/HD75_2026-09-18_12_IM1_BEU.pdf#page=7">HD 75 Anleitung zu Wärmezufuhr und Abschaltung, PDF-Seite 7</a>.</p>
+<p><strong>UB 30, Artikel 30600, EAN 4211125306007.</strong> Das 50-W-Wärmeunterbett liegt glatt zwischen Matratze und Betttuch. Beurer weist für dieses Modell <strong>keine zeitgesteuerte Abschaltautomatik</strong> aus. Das Beurer Sicherheitssystem schaltet im Fehlerfall ab. Wenn du eine Abschaltung nach einer festen Dauer brauchst, vergleiche im <a href="#kaufpruefung">Kaufcheck</a> andere Wärmeunterbetten mit integrierter Abschaltautomatik. <a href="https://www.beurer.com/de/p/30600/">Beurer UB 30 und seine Funktionen</a> · <a href="https://res.cloudinary.com/beurer/image/upload/v1705113093/stibo-live/30600_UB30_2011-05-01_01_DS_DE_BEU.pdf">UB 30 Datenblatt mit Nennleistung</a> · <a href="https://res.cloudinary.com/beurer/image/upload/v1730181016/stibo-live/07101295_UB30-33_2024-09-06_02_IM1_BEU.pdf#page=6">UB 30 Auflage und Sicherheitssystem, PDF-Seite 6</a>.</p>
+<p>Die UB-30-Anleitung empfiehlt ungefähr 30 Minuten Vorwärmen und für eine Verwendung über mehrere Stunden die niedrigste Stufe. Schalte das Gerät entsprechend der Anleitung aus. Prüfe vor einem Kauf für den Schlafbetrieb die ausdrückliche Eignung für deine Anwendung. Die Angaben gelten für die genannten Artikel und begründen keine durchgehende Nutzung über Nacht. <a href="https://res.cloudinary.com/beurer/image/upload/v1730181016/stibo-live/07101295_UB30-33_2024-09-06_02_IM1_BEU.pdf#page=7">UB 30 Vorwärmen, Temperatur und Ausschalten, PDF-Seite 7</a>.</p>
+<p><strong>Strombeispiel für 30 Minuten bei 0,35 €/kWh:</strong> Bei angenommenen konstanten 50 W benötigt das UB 30 <strong>0,025 kWh</strong>, knapp 1 Cent. Übertrage den Wert nicht auf die ganze Nacht. Für die tatsächlichen Stromkosten brauchst du die gemessenen kWh über deine zugelassene Nutzung. Geräteunterlagen für Deutschland geprüft am <time datetime="2026-11-27">27. November 2026</time>.</p>
+</section>
 <h2 id="zweck-pruefen">Sofa, Schreibtisch oder Bett: nicht dasselbe Produkt</h2>
 <ul><li><strong>Auf dem Sofa:</strong> Eine Wärmezudecke nur so verwenden, wie die Anleitung es vorsieht. Nicht beschädigt, nass oder entgegen der Anleitung gefaltet betreiben.</li><li><strong>Am Schreibtisch:</strong> Erst Zugluft, Sitzposition und kalten Boden prüfen. Ein Fußwärmer ist eine andere Bauart mit eigener Leistung und Abschaltzeit. Das 110-W-Beispiel ist kein Fußwärmer-Test. <a href="/guide/homeoffice-warm-bleiben.html">Homeoffice-Schritte im Zusammenhang ansehen</a>.</li><li><strong>Im Bett:</strong> Wärmezudecke und Wärmeunterbett nicht verwechseln. Eine Abschaltautomatik allein erlaubt weder Schlafbetrieb noch die Nutzung unter dem Körper. Nur die ausdrücklichen Anwendungsvorgaben des konkreten Geräts verwenden.</li><li><strong>Ohne Neukauf:</strong> Eine vorhandene ungeheizte Decke verursacht keinen zusätzlichen Gerätestrom. Bei ausgefallener Heizung oder dauerhaft kalten, feuchten Räumen die Ursache lösen.</li></ul>
 <h2 id="raum-und-feuchte">Warum daraus keine pauschale Heizkostenersparnis folgt</h2>
@@ -85,7 +91,7 @@ def article():
 <div class="warmth-buy"><strong>Optional weitervergleichen · Werbung / Affiliate-Links</strong><p>Die folgenden bestehenden Kategorie-Suchen führen zu Amazon.de (Deutschland). EcoBack kann an qualifizierten Käufen verdienen. Keine eigene Produktprüfung, keine bestätigte Passform oder Lieferzusage nach Österreich oder in die Schweiz. Die Suche kann andere Varianten als das Herstellerbeispiel enthalten.</p>
 <a href="https://www.amazon.de/s?k=heizdecke+abschaltautomatik+waschbar&amp;tag=getecoback-21" target="_blank" rel="sponsored noopener">Wärmezudecken: Anleitung und Abschaltzeit vergleichen →</a>
 <a href="https://www.amazon.de/s?k=heizkissen+abschaltautomatik&amp;tag=getecoback-21" target="_blank" rel="sponsored noopener">Heizkissen: Bauart und Anwendung prüfen →</a>
-<a href="https://www.amazon.de/s?k=waermeunterbett+abschaltautomatik&amp;tag=getecoback-21" target="_blank" rel="sponsored noopener">Wärmeunterbetten: ausdrücklich erlaubte Nutzung prüfen →</a></div>
+<a href="https://www.amazon.de/s?k=waermeunterbett+abschaltautomatik&amp;tag=getecoback-21" target="_blank" rel="sponsored noopener">Andere Wärmeunterbetten mit Abschaltautomatik vergleichen →</a></div>
 <h2 id="haeufige-fragen">Häufige Fragen</h2>''' + faq + '''
 <p><a href="/guide/heizluefter-stromverbrauch.html">Kosten kurzzeitiger Raumwärme berechnen</a> · <a href="/winter-energiesparen.html">Winter-Aufgaben im Überblick</a></p>
 </div></article>'''

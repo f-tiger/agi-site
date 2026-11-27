@@ -402,6 +402,13 @@ def collect():
     raise ValueError(f'Missing or ambiguous Bosch calibration section: {route}#{calibration}')
    entry['model_sections'].append({'id':calibration,'title':title,
     'description':'Bosch nennt E03 einen Kalibrierungsfehler. Montage, Ventilstift und gegebenenfalls den vorhandenen Adapter prüfen. Bei unklarem Ventiltyp keinen Adapter kaufen.'})
+  if lang=='de' and route=='/guide/heizdecke-stromverbrauch.html':
+   anchor='beurer-hd75-ub30'
+   headings=re.findall(r'<h2\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)
+   if len(headings)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',headings[0]):
+    raise ValueError(f'Missing or hidden Beurer model guidance: {route}#{anchor}')
+   entry['model_sections']=[{'id':anchor,'title':'Beurer HD 75 Taupe und UB 30 für Sofa und Bett richtig zuordnen',
+    'description':'HD 75 Taupe 42400 ist eine Zudecke mit Abschaltung nach etwa drei Stunden. UB 30 30600 liegt unter dem Betttuch und hat keine zeitgesteuerte Abschaltautomatik.'}]
   if lang=='de' and route=='/guide/beheizter-waeschestaender.html':
    entry['model_sections']=[
     {'id':'kosten-pro-fertig-getrockneter-ladung','title':'Kosten pro fertig getrockneter Ladung',
