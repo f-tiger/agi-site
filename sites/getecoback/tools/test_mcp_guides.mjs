@@ -233,8 +233,14 @@ test('German Core 300S box contents and replacement filters are distinct readabl
   for (const [frage,path,answer] of [
     ['Ist beim Kauf des Levoit Core 300S ein Standardfilter enthalten?',
      '/guide/luftreiniger-ratgeber.html#levoit-core-300s-lieferumfang','vorinstallierter Standardfilter'],
+    ['Ist beim Core 300S ohne Pro im Set mit Ersatzfilter schon ein Filter im Gerät vorinstalliert?',
+     '/guide/luftreiniger-ratgeber.html#levoit-core-300s-lieferumfang','vorinstallierter Standardfilter'],
     ['Welcher Standardfilter passt zu meinem Levoit Core 300S ohne Pro?',
      '/ersatzfilter.html#levoit-core-300s','Standardfilter'],
+    ['Ich bestelle für meinen Levoit Core 300S den Ersatzfilter. Ist in der Packung nur ein Filter enthalten?',
+     '/ersatzfilter.html#levoit-core-300s','Prüfe die Stückzahl der gewählten Ersatzfilter-Packung beim Verkäufer.'],
+    ['Wie viele Filter sind in der Packung des Standardfilters für meinen Core 300S?',
+     '/ersatzfilter.html#levoit-core-300s','Prüfe die Stückzahl der gewählten Ersatzfilter-Packung beim Verkäufer.'],
   ]) {
     const target='https://getecoback.com'+path;
     const hit=await call('ratgeber_suche',{frage,sprache:'de',max:1},env);
@@ -245,6 +251,12 @@ test('German Core 300S box contents and replacement filters are distinct readabl
     assert.deepEqual(full,compact);
     assert.ok(textOf(full).includes(answer),frage);
     assert.doesNotMatch(textOf(full),/getecoback-21/);
+  }
+  for (const frage of ['Ist bei beiden Levoit Core 300S und 400S derselbe Standardfilter enthalten?',
+                       'Welcher Standardfilter passt zum Core 300S oder 400S?',
+                       'Ist beim Levoit Core 300S Pro ein Standardfilter enthalten?']) {
+    const hit=await call('ratgeber_suche',{frage,sprache:'de',max:1},env);
+    assert.doesNotMatch(textOf(hit),/#(?:levoit-core-300s-lieferumfang|levoit-core-300s)\b/,frage);
   }
 });
 

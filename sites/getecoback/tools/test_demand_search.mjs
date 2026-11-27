@@ -11,12 +11,19 @@ test('German Core 300S box contents and replacement filters lead to different pa
  const purchase='/guide/luftreiniger-ratgeber.html#levoit-core-300s-lieferumfang';
  const replacement='/ersatzfilter.html#levoit-core-300s';
  for (const query of ['Ist beim Kauf des Levoit Core 300S ein Standardfilter enthalten?',
-                      'Welcher Filter ist beim Core 300S ohne Pro dabei?'])
+                      'Welcher Filter ist beim Core 300S ohne Pro dabei?',
+                      'Ist beim Core 300S ohne Pro im Set mit Ersatzfilter schon ein Filter im Gerät vorinstalliert?',
+                      'Ist beim Kauf des Core 300S der Standardfilter in der Packung enthalten?'])
    assert.equal(searchEntries(index,query,'de')[0]?.entry.u,purchase,query);
- assert.equal(searchEntries(index,'Welcher Standardfilter passt zu meinem Levoit Core 300S ohne Pro?','de')[0]?.entry.u,replacement);
+ for (const query of ['Welcher Standardfilter passt zu meinem Levoit Core 300S ohne Pro?',
+                      'Ich bestelle für meinen Levoit Core 300S den Ersatzfilter. Ist in der Packung nur ein Filter enthalten?',
+                      'Wie viele Filter sind in der Packung des Standardfilters für meinen Core 300S?'])
+   assert.equal(searchEntries(index,query,'de')[0]?.entry.u,replacement,query);
  for (const query of ['Ist beim Levoit Core 300S Pro ein Standardfilter enthalten?',
                       'Welcher Spezialfilter ist beim Core 300S-P dabei?',
-                      'Ist beim Core 300 und Core 300S ein Standardfilter enthalten?'])
+                      'Ist beim Core 300 und Core 300S ein Standardfilter enthalten?',
+                      'Ist bei beiden Levoit Core 300S und 400S derselbe Standardfilter enthalten?',
+                      'Welcher Standardfilter passt zum Core 300S oder 400S?'])
    assert.ok(![purchase,replacement].includes(searchEntries(index,query,'de')[0]?.entry.u),query);
 });
 test('German air device choice lands on the decision section for dampness and particles',()=>{
