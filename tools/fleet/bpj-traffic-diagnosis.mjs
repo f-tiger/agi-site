@@ -25,11 +25,11 @@ async function json(fetchFn,url,options={},label='request'){
  if(!r.ok)fail(label+'_http_'+r.status);
  try{return await r.json();}catch{fail(label+'_invalid_json');}
 }
-export function cfQuery(dimensions,extra='',limit=2000){
+export function cfQuery(dimensions,extra='',limit=2000,singaporeOnly=false){
  const safe=['datetimeHour','clientCountryName','clientAsn','clientASNDescription','userAgent','userAgentBrowser','userAgentOS','clientRequestPath','clientRequestHTTPMethodName','edgeResponseStatus','edgeResponseContentTypeName','clientRefererHost','verifiedBotCategory','botScoreBucketBy10','jsDetectionPassed','securityAction','cacheStatus'];
  if(dimensions.some(d=>!safe.includes(d)))fail('unsupported_cf_dimension');
  if(![',clientRequestPath:"/manju/",clientRequestHTTPMethodName:"GET",edgeResponseStatus:200','',',clientRequestPath_like:"/manju/%"',',clientRequestPath_like:"/manju/%",clientRequestHTTPMethodName:"GET",edgeResponseStatus:200',',clientRequestPath_in:["/analytics-assets/frame","/analytics-assets/frame.html"],clientRequestHTTPMethodName:"GET",edgeResponseStatus:200',POPULAR_FILTER].includes(extra))fail('unsupported_cf_filter');
- return `query($z:string,$s:Time,$e:Time){viewer{zones(filter:{zoneTag:$z}){httpRequestsAdaptiveGroups(limit:${limit},orderBy:[count_DESC],filter:{datetime_geq:$s,datetime_lt:$e,requestSource:"eyeball",clientRequestHTTPHost:"${HOST}"${extra}}){count dimensions{${dimensions.join(' ')}}}}}}`;
+ return `query($z:string,$s:Time,$e:Time){viewer{zones(filter:{zoneTag:$z}){httpRequestsAdaptiveGroups(limit:${limit},orderBy:[count_DESC],filter:{datetime_geq:$s,datetime_lt:$e,requestSource:"eyeball",clientRequestHTTPHost:"${HOST}"${singaporeOnly ? ',clientCountryName:"SG"' : ''}${extra}}){count dimensions{${dimensions.join(' ')}}}}}}`;
 }
 export async function cloudflare(env,{fetchFn=fetch,days=DAYS,clientsOnly=false,baseline=false}={}){
  const tokens=[...new Set(['CLOUDFLARE_API_TOKEN','CLOUDFLARE_API_TOKEN_ZONE','CF_API_TOKEN'].map(k=>env[k]).filter(Boolean))];
@@ -67,20 +67,24 @@ export async function cloudflare(env,{fetchFn=fetch,days=DAYS,clientsOnly=false,
  ];
  const selected=baseline?sections.filter(([name])=>['site_country','manju_verified_bots','manju_clients','popular_manju_clients','frame_clients'].includes(name)):clientsOnly?sections.filter(([name])=>name.endsWith('_clients')):sections;
  const inspection=baseline && env.BPJ_MANJU_INSPECTION==='1';
- const cutoff=new Date();cutoff.setUTCMinutes(0,0,0);
+ const halfHour = 30 * 60 * 1000;
+ const cutoff = Math.floor((Date.now() - 15 * 60 * 1000) / halfHour) * halfHour;
+ const windows = inspection ? Array.from({length:6},(_,i)=>{
+   const start = new Date(cutoff - (6-i)*halfHour).toISOString();
+   return {date:start.slice(0,10),start,end:new Date(cutoff-(5-i)*halfHour).toISOString()};
+ }) : days.map(date=>({date,start:date+'T00:00:00.000Z',end:new Date(Date.parse(date)+86400000).toISOString()}));
  if(inspection){
    const home=',clientRequestPath:"/manju/",clientRequestHTTPMethodName:"GET",edgeResponseStatus:200';
    selected.splice(0,selected.length,
-     ['home_hours',['datetimeHour','verifiedBotCategory'],home],
-     ['home_clients',['userAgent','verifiedBotCategory'],home],
-     ['home_countries',['clientCountryName'],home]);
+     ['sg_requests',['clientCountryName','verifiedBotCategory'],''],
+     ['sg_response',['clientRequestHTTPMethodName','edgeResponseStatus','edgeResponseContentTypeName'],''],
+     ['sg_home',['verifiedBotCategory'],home],['sg_frame',['verifiedBotCategory'],frame]);
  }
- for(const date of (inspection && cutoff.getUTCHours()>0 ? [...days,cutoff.toISOString().slice(0,10)] : days)){
-   const start=date+'T00:00:00.000Z',end=new Date(Math.min(Date.parse(start)+86400000,inspection?cutoff.getTime():Infinity)).toISOString();
+ for(const {date,start,end} of windows){
   // Two concurrent bounded aggregates; no retries on a rejected dataset.
   for(let i=0;i<selected.length;i+=2)await Promise.all(selected.slice(i,i+2).map(async([name,dims,extra])=>{
    const item={name,date,start,end,limit:2000};
-   try{const d=await request('graphql',{query:cfQuery(dims,extra),variables:{z:zone,s:start,e:end}});const rows=d?.viewer?.zones?.[0]?.httpRequestsAdaptiveGroups;if(!Array.isArray(rows))fail('cf_missing_rows');out.reports.push({...item,status:'received',truncated:rows.length>=2000,rows:scrubRows(rows)});}
+   try{const d=await request('graphql',{query:cfQuery(dims,extra,2000,inspection),variables:{z:zone,s:start,e:end}});const rows=d?.viewer?.zones?.[0]?.httpRequestsAdaptiveGroups;if(!Array.isArray(rows))fail('cf_missing_rows');out.reports.push({...item,status:'received',truncated:rows.length>=2000,rows:scrubRows(rows)});}
    catch(e){out.reports.push({...item,status:'blocked',reason:failure(e)});}
   }));
  }
@@ -145,8 +149,8 @@ export async function run(env=process.env,dependencies={}){
  const pem=Buffer.from(env.WORKERS_REPORT_PUBLIC_KEY||'','base64').toString();validatePublicKey(pem);
  const phase=env.BPJ_DIAG_PHASE||'full';if(!['full','clients','baseline'].includes(phase))fail('unsupported_phase');
  const days=recentDays(dependencies.now||new Date(),Number(env.BPJ_DIAG_DAYS||7));
- const [cf,ga4]=await Promise.all([cloudflare(env,{...dependencies,days,clientsOnly:phase==='clients',baseline:phase==='baseline'}),phase!=='clients'?google(env,dependencies):Promise.resolve({status:'not_requested',reason:'client_followup_reuses_previous_ga4_access_result',reports:[]})]);
- const report={schema:1,phase,generated:new Date().toISOString(),host:HOST,window:{dates:days,timezone:'UTC',completeDays:true},question:'Recent BPJ traffic quality; requests and GA4 identities are separate',cloudflare:cf,ga4};
+ const [cf,ga4]=await Promise.all([cloudflare(env,{...dependencies,days,clientsOnly:phase==='clients',baseline:phase==='baseline'}),phase!=='clients'&&env.BPJ_MANJU_INSPECTION!=='1'?google(env,dependencies):Promise.resolve({status:'not_requested',reason:'client_followup_reuses_previous_ga4_access_result',reports:[]})]);
+ const report={schema:1,phase,generated:new Date().toISOString(),host:HOST,window:env.BPJ_MANJU_INSPECTION==='1'?{timezone:'UTC',completeHalfHours:6,lagMinutes:15}:{dates:days,timezone:'UTC',completeDays:true},question:env.BPJ_MANJU_INSPECTION==='1'?'Do fresh Singapore edge requests appear across nonoverlapping half hours?':'Recent BPJ traffic quality; requests and GA4 identities are separate',cloudflare:cf,ga4};
  const envelope=seal(report,pem);
  (dependencies.write||((body)=>writeFileSync('/tmp/bpj-traffic-diagnosis.enc.json',body,{mode:0o600})))(JSON.stringify(envelope));
  return {reportWritten:true,cloudflare:cf.status,ga4:ga4.status};
