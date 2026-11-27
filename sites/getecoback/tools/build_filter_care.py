@@ -25,7 +25,8 @@ def exact_label_panel(items):
             heading += ' ohne Pro-Zusatz'
             answer = (f'<p>Steht <strong>{escape(item["models"][0])}</strong> auf dem Typenschild, '
                       f'prüfe in der deutschen Herstellerquelle die Option <strong>{escape(item["variant"])}</strong>. '
-                      'Bei einem Pro-Zusatz verwende die Unterlagen der dort angegebenen Variante.</p>')
+                      'Bei einem Pro-Zusatz verwende die Unterlagen der dort angegebenen Variante. '
+                      'Prüfe die Stückzahl der gewählten Ersatzfilter-Packung beim Verkäufer.</p>')
         else:
             answer = (f'<p>Für den Geräteaufdruck <strong>{escape(item["models"][0])}</strong> '
                       f'gleiche die Filterartikelnummer <strong>{escape(item["part_number"])}</strong> '

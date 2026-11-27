@@ -158,6 +158,36 @@ class LlmsFull(unittest.TestCase):
             self.assertEqual(re.findall(r'href="(https://www.amazon.de/[^"]+)"',card),[merchant])
         self.assertNotRegex(md, r'amazon\.de/|getecoback-21')
 
+    def test_levoit_offer_keeps_included_filter_and_room_volume_visible_in_generated_guide(self):
+        page = SITE / 'guide/luftreiniger-ratgeber.html'
+        raw = page.read_text()
+        mirror = page.with_suffix('.md').read_text()
+        documents = [json.loads(doc) for doc in re.findall(
+            r'<script type="application/ld\+json">(.*?)</script>', raw, re.S)]
+        [faq] = [entry for doc in documents for entry in doc.get('@graph',[doc]) if entry['@type']=='FAQPage']
+        visible = re.findall(r'<p data-purifier-faq><strong>(.*?)</strong><br>(.*?)</p>', raw, re.S)
+        self.assertEqual(len(visible), 4)
+        self.assertEqual(visible, [(item['name'], item['acceptedAnswer']['text']) for item in faq['mainEntity']])
+        for question, answer in visible:
+            self.assertIn(question, mirror)
+            self.assertIn(answer, mirror)
+        for document in (raw, mirror):
+            for phrase in ('20 m² × 2,5 m = 50 m³', '2 Filterluftwechsel', '250 m³/h', '300 m³/h',
+                           '0810043373814', '0817915026878', 'vorinstallierter Standardfilter',
+                           'ersatzfilter.html#levoit-core-300s', 'core300-with-ersatzfilter',
+                           'indoor-air-quality-iaq/guide-air-cleaners-home'):
+                self.assertIn(phrase, document)
+            self.assertNotRegex(document, r'Bestseller|hunderttausend|Fünffachen deiner Raumfläche')
+        self.assertNotRegex(raw, r'<!--EB_(?:TOPPICK|MODELS|POPUP|STICKY|PROFILE|QUICKPICK|EXPLAINER|RADAR|USMARKET)-->')
+        links = re.findall(r'href="(https://www.amazon.[^"]+)"', raw)
+        self.assertEqual(links, [
+            'https://www.amazon.de/s?k=Levoit+Core+300S+Luftreiniger&amp;tag=getecoback-21',
+            'https://www.amazon.de/s?k=Philips+Series+2000+AC2887&amp;tag=getecoback-21',
+        ])
+        self.assertLess(raw.index('href="/ersatzfilter.html#levoit-core-300s"'),raw.index(links[0]))
+        self.assertLess(raw.index('<!--EB_FILTER_CARE_DE-->'),raw.index('<!--EB_FILTER_FINDER_ENTRY-->'))
+        self.assertNotRegex(mirror,r'amazon\.de/|getecoback-21')
+
     def test_air_device_choice_checks_cause_and_variant_before_the_one_product_cta(self):
         page = SITE / 'guide/luftentfeuchter-oder-luftreiniger.html'
         raw = page.read_text()

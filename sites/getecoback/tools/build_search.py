@@ -303,6 +303,13 @@ def collect():
     raise ValueError(f'Missing or hidden Pro Breeze 12L model identification: {route}#{anchor}')
    entry['model_sections']=[{'id':anchor,'title':'Pro Breeze 12L: Modellnummer vor dem Kauf abgleichen',
     'description':'PB-06 mit Hygrostat, PB-D-06W-W-EU mit App, OmniDry und Compact nach Typenschild und eigener Anleitung unterscheiden.'}]
+  if lang=='de' and route=='/guide/luftreiniger-ratgeber.html':
+   anchor='levoit-core-300s-lieferumfang'
+   targets=re.findall(r'<h2\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)
+   if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
+    raise ValueError(f'Missing or hidden Levoit purchase decision: {route}#{anchor}')
+   entry['model_sections']=[{'id':anchor,'title':'Levoit Core 300S: Standardfilter im Lieferumfang',
+    'description':'Für das deutsche Gerät ohne Pro ist der Standardfilter vorinstalliert. Modellnummer, zusätzlichen Ersatzfilter und Gesamtpreis beim Angebot prüfen.'}]
   if lang=='de' and route=='/produkte.html':
    model_sections=[
     {'id':BOSCH_STACKING_ID,'title':BOSCH_STACKING_TITLE,'description':BOSCH_STACKING_ANSWER},

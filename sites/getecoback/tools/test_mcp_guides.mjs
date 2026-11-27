@@ -228,6 +228,38 @@ test('Bosch II [+M] E03 finds and reads the exact calibration answer in both pro
   assert.doesNotMatch(answer, /amazon[.]de\/|getecoback-21/);
 });
 
+test('German Core 300S box contents and replacement filters are distinct readable answers', async () => {
+  const {env}=assetEnv();
+  for (const [frage,path,answer] of [
+    ['Ist beim Kauf des Levoit Core 300S ein Standardfilter enthalten?',
+     '/guide/luftreiniger-ratgeber.html#levoit-core-300s-lieferumfang','vorinstallierter Standardfilter'],
+    ['Ist beim Core 300S ohne Pro im Set mit Ersatzfilter schon ein Filter im Gerät vorinstalliert?',
+     '/guide/luftreiniger-ratgeber.html#levoit-core-300s-lieferumfang','vorinstallierter Standardfilter'],
+    ['Welcher Standardfilter passt zu meinem Levoit Core 300S ohne Pro?',
+     '/ersatzfilter.html#levoit-core-300s','Standardfilter'],
+    ['Ich bestelle für meinen Levoit Core 300S den Ersatzfilter. Ist in der Packung nur ein Filter enthalten?',
+     '/ersatzfilter.html#levoit-core-300s','Prüfe die Stückzahl der gewählten Ersatzfilter-Packung beim Verkäufer.'],
+    ['Wie viele Filter sind in der Packung des Standardfilters für meinen Core 300S?',
+     '/ersatzfilter.html#levoit-core-300s','Prüfe die Stückzahl der gewählten Ersatzfilter-Packung beim Verkäufer.'],
+  ]) {
+    const target='https://getecoback.com'+path;
+    const hit=await call('ratgeber_suche',{frage,sprache:'de',max:1},env);
+    assert.ok(textOf(hit).includes('Abschnitt: '+target),frage);
+    const full=await call('ratgeber_lesen',{pfad:target},env);
+    const compact=await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad:target}},env,true);
+    assert.equal(full.isError,false);
+    assert.deepEqual(full,compact);
+    assert.ok(textOf(full).includes(answer),frage);
+    assert.doesNotMatch(textOf(full),/getecoback-21/);
+  }
+  for (const frage of ['Ist bei beiden Levoit Core 300S und 400S derselbe Standardfilter enthalten?',
+                       'Welcher Standardfilter passt zum Core 300S oder 400S?',
+                       'Ist beim Levoit Core 300S Pro ein Standardfilter enthalten?']) {
+    const hit=await call('ratgeber_suche',{frage,sprache:'de',max:1},env);
+    assert.doesNotMatch(textOf(hit),/#(?:levoit-core-300s-lieferumfang|levoit-core-300s)\b/,frage);
+  }
+});
+
 test('German air device choice finds the source and reads the same exact section in both profiles', async () => {
   const path = '/guide/luftentfeuchter-oder-luftreiniger.html';
   const section = 'https://getecoback.com'+path+'#der-unterschied-in-einem-satz';
