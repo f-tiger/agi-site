@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {existsSync,readFileSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import {evaluateTool,tradeGroups} from '../lib/trade-workbench/engine.mjs';
+import {TRADE_QUOTE_PATH} from './trade-pages.mjs';
 
 const tools = tradeGroups.flatMap(group=>group.tools);
 assert.equal(tradeGroups.length,5);
@@ -35,6 +36,7 @@ const joinCopy = prefix => prefix?'Join free for 10 runs a day':'免费注册，
 function inspectPage(html,prefix,tool) {
   const path = base+(tool?.id||'');
   const url = host+prefix+path;
+  const quoteLink = `href="${host+prefix+TRADE_QUOTE_PATH}" data-bpj-next`;
   assert(html.includes('rel="canonical" href="'+url+'"'),prefix+path+' canonical');
   assert(html.includes(`hreflang="zh-Hans" href="${host+path}"`),prefix+path+' Chinese alternate');
   assert(html.includes(`hreflang="en" href="${host+'/en'+path}"`),prefix+path+' English alternate');
@@ -46,8 +48,11 @@ function inspectPage(html,prefix,tool) {
   if (!tool) {
     assert(html.includes(guestCopy(prefix)),url+' guest web allowance');
     assert(html.match(/<head>[\s\S]*?<\/head>/)?.[0].includes(`type="application/json" href="${url}catalog.json"`),url+' head JSON alternate');
+    assert(html.match(/<header class="trade-title">[\s\S]*?<\/header>/)?.[0].includes(quoteLink),url+' canonical quote link near the workbench title');
     return;
   }
+  assert.equal(html.includes(quoteLink),tool.id==='fx-bank-quote-unit',url+' scoped quote handoff');
+  if (tool.id==='fx-bank-quote-unit') assert(html.includes(prefix?'divide 1 by that result':'用 1 除以该结果'),url+' reciprocal direction');
   assert(html.includes(prefix?'Guests get 2 web runs a day across the workbench':'外贸工具网页访客每天共 2 次'),url+' visitor allowance across tools');
   assert(html.includes('data-trade-form hidden'),path+' form remains hidden until the live allowance is loaded');
   assert(html.includes('data-trade-result aria-labelledby="trade-result" hidden'),path+' no public result');
@@ -93,6 +98,8 @@ if (process.argv.includes('--dist')) {
     const hub = readFileSync(directory+'index.html','utf8');
     const hubMirror = readFileSync(directory+'index.md','utf8');
     inspectPage(hub,prefix);
+    const quoteReference = `](${host+prefix+TRADE_QUOTE_PATH})`;
+    assert(hubMirror.includes(quoteReference),docsUrl+' localized canonical quote handoff');
     const mcpCopy = prefix?'MCP requires a scoped account key':'使用 MCP 需要账号专用密钥';
     assert(hubMirror.includes(guestCopy(prefix))&&hubMirror.includes(mcpCopy),docsUrl+' Markdown distinguishes web and MCP access');
     assert(sitemap.includes(`<loc>${host+prefix+base}</loc>`));
@@ -101,6 +108,8 @@ if (process.argv.includes('--dist')) {
       const url = host+prefix+base+tool.id;
       const reference = references.find(item=>item.id===tool.id);
       const mirror = readFileSync(directory+tool.id+'.md','utf8');
+      assert.equal(mirror.includes(quoteReference),tool.id==='fx-bank-quote-unit',url+' scoped Markdown quote handoff');
+      if (tool.id==='fx-bank-quote-unit') assert(mirror.includes(prefix?'divide 1 by that result':'用 1 除以该结果'),url+' Markdown reciprocal direction');
       assert(sitemap.includes(`<loc>${url}</loc>`),url+' sitemap');
       assert(!sitemap.includes(`<loc>${url}.md</loc>`),url+' no indexed mirror duplicate');
       assert(linked.has(url),url+' search');

@@ -4,6 +4,7 @@ import {parseListingEvent,emptyListingCounts} from './listing-signals.mjs';
 import {PROOFKIT_PATHS,parseProofKitEvent,emptyProofKitCounts} from './proofkit-signals.mjs';
 import {parseTradeWorkbenchEvent,emptyTradeWorkbenchCounts} from './trade-workbench-signals.mjs';
 import {parseTradeQuoteEvent,emptyTradeQuoteCounts,readTradeQuoteAccounts} from './trade-quote-growth.mjs';
+import {readTradeQuoteWorkbenchUse} from './trade-quote-workbench-use.mjs';
 import catalog from '../data/tools.json' with {type:'json'};
 
 const toolSlugs = new Set(catalog.map(tool => tool.slug));
@@ -148,11 +149,12 @@ export async function readConversionStages(db, days, clock = Date.now()) {
   const endSeconds = Date.parse(end + 'T00:00:00Z') / 1000;
   const startSeconds = endSeconds - days * 86400;
   const start = new Date(startSeconds * 1000).toISOString().slice(0,10);
-  const [events, accounts, accountDays, tradeQuoteAccounts] = await Promise.allSettled([
+  const [events, accounts, accountDays, tradeQuoteAccounts, tradeQuoteWorkbenchUse] = await Promise.allSettled([
     db.prepare(STAGE_EVENTS_SQL).bind(start,end).all(),
     db.prepare(STAGE_ACCOUNTS_SQL).bind(startSeconds,endSeconds,startSeconds,endSeconds).first(),
     db.prepare(STAGE_ACCOUNTS_DAILY_SQL).bind(startSeconds,endSeconds).all(),
     readTradeQuoteAccounts(db,startSeconds,endSeconds),
+    readTradeQuoteWorkbenchUse(db,start,end),
   ]);
   const eventsOK = events.status === 'fulfilled';
   const accountsOK = accounts.status === 'fulfilled' && accounts.value != null;
@@ -172,6 +174,7 @@ export async function readConversionStages(db, days, clock = Date.now()) {
     }) : null,
     account_scope: 'fleet_shared_account_pool',
     trade_quote_accounts: tradeQuoteAccounts.status==='fulfilled' ? tradeQuoteAccounts.value : null,
+    trade_quote_workbench_use: tradeQuoteWorkbenchUse.status==='fulfilled' ? tradeQuoteWorkbenchUse.value : null,
     missing: [...(!eventsOK ? ['events'] : []), ...(!accountsOK ? ['accounts'] : []), ...(!accountDaysOK ? ['accounts_daily'] : [])],
     definitions: {
       table_review_actions: 'Fixed browser actions since the 2026-11-12 release, split into fictional demo and declared own inputs. Check means structural comparison succeeded; export initiates a download. Neither proves correctness, unique customers, paid demand or revenue. No table content is collected. These events have no user-level channel join.',
@@ -181,6 +184,7 @@ export async function readConversionStages(db, days, clock = Date.now()) {
       trade_workbench_actions: 'Fixed browser actions in this complete UTC window. signup and membership_open count link clicks. guest_run counts acknowledged guest results. run and example count acknowledged registered results with own inputs and sample inputs respectively. csv counts download initiation after successful member export. Repeats can occur. Account creations, members and orders are measured separately. Input values and results are excluded.',
       trade_quote_actions: 'Fixed same-site browser actions in complete UTC days. Ready means the calculator returned a result with the entered cost confirmations. Needs info means a CIF cost is unconfirmed. Demo and user-entered text are distinguished by the browser. Signup open is a link action. Counts may repeat and carry no quote data or identity.',
       trade_quote_accounts: 'Surviving non-test accounts with an immutable server-verified signup source from the BPJ export quote page. Created is restricted to the complete UTC window; total includes today. Email verification reflects current state separately. Historical or unverifiable sources remain outside the cohort. A read failure returns null.',
+      trade_quote_workbench_use: 'Unique quote-attributed accounts with a recorded first successful signed-in workbench web result or a second on a different UTC day. The two earliest observed days per account are retained. Total milestones end before today, and first_use and repeat_use count milestones within the complete UTC window. Known examples, CSV, MCP, tests, declared automation and privacy opt-outs are excluded. Calculations on the local quote page are counted separately as anonymous browser actions. A missing or unreadable measurement table returns null.',
       acquisition: 'Search clicks and CTR come only from GSC; not supplied by this endpoint. GSC uses Pacific reporting days.',
       usage: 'Client-reported successful result actions from PDF, image and quote tools only; repeats are not deduplicated. Demo and own-input actions are separate. Image completion can include partial batch success. Download means an action, not a verified saved file.',
       other_calc_events: 'Unclassified calc events include navigation, edits and tools without a reviewed success contract; never count the whole calc bucket as completed work.',

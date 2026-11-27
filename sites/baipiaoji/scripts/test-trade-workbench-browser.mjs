@@ -18,15 +18,19 @@ const {db,env} = sites.bpj;
 let browser;
 try {
   await ensureAccountMembers(env);
+  db.sql.exec('CREATE TABLE free_account_signup_sources(account_id TEXT PRIMARY KEY REFERENCES free_accounts(id) ON DELETE CASCADE,source TEXT)');
   browser = await chromium.launch({headless:true,executablePath:process.env.WORKBENCH_CHROMIUM,args:['--no-sandbox','--disable-dev-shm-usage']});
   for (const [prefix,lang] of [['','zh'],['/en','en']]) {
     const user = 'trade-browser-'+lang;
     db.sql.prepare(`INSERT INTO free_accounts(id,username,password_hash,recovery_hash,created,updated)
       VALUES(?,?,?,?,?,?)`).run(user,user,'test-password-hash','test-recovery-hash',now(),now());
+    db.sql.prepare('INSERT INTO free_account_signup_sources VALUES (?,?)').run(user,'bpj_trade_quote');
     const session = await issueSession(env,{id:user,session_version:1});
-    const context = await browser.newContext({viewport:{width:390,height:844},acceptDownloads:true});
+    const context = await browser.newContext({viewport:{width:390,height:844},acceptDownloads:true,
+      userAgent:'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/149.0.0.0 Safari/537.36'});
     const page = await context.newPage(),errors=[];
     let executions = 0;
+    const measuredRequests = [];
     page.on('pageerror',error=>errors.push(error.message));
     await context.route('**/*',async route=>{
       const r = route.request(),url = new URL(r.url());
@@ -35,7 +39,15 @@ try {
         const handler = url.pathname==='/api/account' ? accountRoute : onRequest;
         const headers = new Headers(await r.allHeaders());
         headers.set('CF-Connecting-IP',lang==='zh'?'192.0.2.1':'192.0.2.2');
-        if (url.pathname==='/api/trade-workbench'&&r.method()==='POST') executions++;
+        if (url.pathname==='/api/trade-workbench'&&r.method()==='POST') {
+          executions++;
+          if (headers.has('X-BPJ-Trade-Use')) {
+            measuredRequests.push(executions);
+            assert.equal(headers.get('Referer'),origin+prefix+samplePath);
+            // Chromium's intercepted request can omit browser fetch metadata.
+            if (!headers.has('Sec-Fetch-Site')) headers.set('Sec-Fetch-Site','same-origin');
+          }
+        }
         const response = await handler({env,request:new Request(url,{method:r.method(),headers,...(r.method()==='POST' ? {body:r.postData()} : {})})});
         return route.fulfill({status:response.status,headers:Object.fromEntries(response.headers),body:await response.text()});
       }
@@ -139,6 +151,27 @@ try {
     const file = readFileSync(await (await download).path(),'utf8');
     assert(file.startsWith(lang==='zh'?'\ufeff"字段"':'\ufeff"Field"'));
     assert(await upgrade.isHidden());
+    assert.deepEqual(measuredRequests,[],'QA traffic does not send the usage header');
+
+    // All network remains intercepted. Exercise the ordinary browser branch
+    // with the same D1 fixture and the real request origin/referrer headers.
+    await page.addInitScript(()=>Object.defineProperty(Navigator.prototype,'webdriver',{get:()=>false}));
+    await page.goto(origin+prefix+samplePath);
+    await form.waitFor({state:'visible'});
+    await example.click();
+    await run.click();
+    await result.waitFor({state:'visible'});
+    assert.deepEqual(measuredRequests,[],'example use does not send the usage header');
+    await page.locator('#tw-length').fill('80');
+    await run.click();
+    await result.waitFor({state:'visible'});
+    assert.deepEqual(measuredRequests,[executions]);
+    assert.equal(db.sql.prepare('SELECT repeat_day FROM bpj_trade_quote_workbench_use WHERE account_id=?').get(user)?.repeat_day,null);
+    await page.evaluate(()=>localStorage.setItem('fleet_ga4_choice_v1','denied'));
+    await page.locator('#tw-length').fill('81');
+    await run.click();
+    await result.waitFor({state:'visible'});
+    assert.equal(measuredRequests.length,1,'an explicit opt-out suppresses measurement');
     assert.deepEqual(errors,[]);
     await context.close();
   }
@@ -147,4 +180,4 @@ try {
   resetFetch();
   for (const site of Object.values(sites)) site.db.sql.close();
 }
-console.log('PASS bilingual directory, limited visitor runs, retained results and registration CTA, registered allowance and member CSV.');
+console.log('PASS bilingual workbench access, result retention, member CSV and signed-in usage measurement.');
