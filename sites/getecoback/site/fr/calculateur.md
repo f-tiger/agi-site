@@ -12,6 +12,10 @@ Pour une pièce sous les combles, commencez par l’ombrage et l’évacuation d
 
 Le comparateur du médiateur national de l’énergie utilise votre logement et votre consommation pour comparer les offres. Ici, saisissez le prix variable réellement applicable aux heures d’utilisation. Un simple prix moyen national ne décrit pas votre contrat. Une variation d’abonnement doit apparaître dans les frais annuels.
 
+## Hiver 2026–2027 : vos heures creuses changent-elles ?
+
+La deuxième phase du changement des heures creuses débute progressivement le 1er décembre 2026. Les horaires peuvent différer selon la saison et le logement. Vérifiez l’avis envoyé par votre fournisseur et reprenez vos créneaux et prix du contrat. Si vous pouvez déplacer un cycle de sèche-linge, comparez le coût des mêmes kWh sur les deux plages. Pendant une période froide, estimez séparément le coût du chauffage au tarif des heures où il fonctionne.
+
 ## Chauffage électrique ou pompe à chaleur
 
 Comparez le même besoin annuel de chaleur. Le coefficient saisonnier dépend du logement, de la température extérieure et du régime de fonctionnement : reprenez une estimation justifiée par l’installateur. Ne transformez pas la consommation électrique actuelle en besoin de chaleur sans vérifier le système existant.
@@ -26,9 +30,10 @@ Climatisation/déshumidification : W ÷ 1000 × heures × jours. Chauffage : cha
 
 Hors financement, actualisation, inflation, remplacement, dégradation et crédits d’impôt différés. Le résultat ne valide ni dimensionnement, ni autorisation, ni éligibilité.
 
-## Sources consultées · 2026-09-20
+## Sources consultées · 2026-11-27
 
 - [Médiateur national de l’énergie · comparateur officiel](https://comparateur-offres.energie-info.fr/)
+- [Enedis · évolution des heures creuses et saisonnalité](https://www.enedis.fr/presse/heures-creuses-enedis-poursuit-la-modernisation-du-dispositif-en-ajoutant-la-saisonnalite)
 <!--EB_PRODUCT_DECISIONS_MD-->
 ## Moins acheter, mieux comparer
 

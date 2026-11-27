@@ -13,22 +13,24 @@ from build_winter_guides import page, PAGES
 class CatalogTests(unittest.TestCase):
     def test_all_sources_and_exact_queries(self):
         data = catalog.load()
-        self.assertEqual(len(data['products']), 3)
-        text = catalog.render(today=dt.date(2026, 11, 12), data=data)
+        self.assertEqual(len(data['products']), 4)
+        text = catalog.render(today=dt.date(2026, 11, 27), data=data)
         links = re.findall(r'href="([^"]*amazon[^\"]*)"', text)
-        self.assertEqual(len(links), 3)
-        for link, product in zip(links, data['products']):
+        queries = [product['query'] for product in data['products']] + ['TP-Link Kasa KE100 KIT mit KH100 Hub']
+        self.assertEqual(len(links), len(queries))
+        for link, query in zip(links, queries):
             url = urlsplit(unescape(link))
             self.assertEqual(url.netloc, 'www.amazon.de')
             self.assertEqual(url.path, '/s')
-            self.assertEqual(parse_qs(url.query), {'k': [product['query']], 'tag': ['getecoback-21']})
+            self.assertEqual(parse_qs(url.query), {'k': [query], 'tag': ['getecoback-21']})
+        for product in data['products']:
             self.assertIn(product['source'], text)
         self.assertIn('Modellsuchen', text)
-        self.assertIn('vorhandene Köpfe weiter nutzen', text)
+        self.assertIn('Vorhandene Köpfe weiter nutzen', text)
 
     def test_stale_unverified_and_future_evidence_remove_only_merchant_links(self):
         data = catalog.load()
-        for day in [dt.date(2026, 11, 11), dt.date(2027, 2, 11)]:
+        for day in [dt.date(2026, 11, 11), dt.date(2027, 2, 26)]:
             html = catalog.render(today=day, data=data)
             self.assertNotIn('amazon.de/s?', html)
             self.assertIn('tado° Smartes Heizkörper-Thermostat X', html)
@@ -37,6 +39,10 @@ class CatalogTests(unittest.TestCase):
         old['products'][0]['status'] = 'unverified'
         html = catalog.render(today=dt.date(2026, 11, 12), data=old)
         self.assertEqual(html.count('amazon.de/s?'), 2)
+        html = catalog.render(today=dt.date(2027, 2, 11), data=data)
+        self.assertEqual(html.count('amazon.de/s?'), 2)
+        self.assertNotIn('Starter+Kit+Bridge+X', html)
+        self.assertIn('KE100+KIT+mit+KH100+Hub', html)
 
     def test_generator_preserves_catalog_and_v3_scope(self):
         html = page(catalog.SLUG, PAGES[catalog.SLUG])
@@ -48,7 +54,8 @@ class CatalogTests(unittest.TestCase):
         self.assertIn('Schweiz', html)
         self.assertIn('keinen Schweizer Händler', html)
         self.assertIn('0 %', html)
-        self.assertIn('12. November 2026', html)
+        self.assertIn('datetime="2026-11-12"', html)
+        self.assertIn('datetime="2026-11-27"', html)
         self.assertIn('"dateModified": "2026-11-27"', html)
         self.assertEqual(html.count('id="tado-x-oventrop"'), 1)
         self.assertIn('4026755228717', html)
@@ -96,6 +103,8 @@ class CatalogTests(unittest.TestCase):
         self.assertNotIn('amazon.de/', md)
         self.assertNotIn('getecoback-21', md)
         self.assertIn('nicht miteinander kompatibel', md)
+        self.assertIn('KH100 schon vorhanden', md)
+        self.assertIn('Noch kein KH100', md)
 
     def test_final_artifact_not_only_generator(self):
         html = (catalog.ROOT / 'site/guide' / (catalog.SLUG + '.html')).read_text()

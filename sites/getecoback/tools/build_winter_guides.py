@@ -157,6 +157,26 @@ def page(slug,p,hub=False):
  assets=hashlib.sha256((SITE/'assets/winter-tools.mjs').read_bytes()+(SITE/'assets/winter-math.mjs').read_bytes()+(SITE/'assets/winter-i18n.mjs').read_bytes()).hexdigest()[:12]
  return f'''<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{e(p['title'])} | EcoBack</title><meta name="description" content="{e(p['desc'])}"><link rel="canonical" href="{url}"><meta property="og:type" content="{'website' if hub else 'article'}"><meta property="og:title" content="{e(p['title'])}"><meta property="og:description" content="{e(p['desc'])}"><meta property="og:url" content="{url}"><link rel="stylesheet" href="/assets/winter.css">{fit_assets}<script type="application/ld+json">{json.dumps({'@context':'https://schema.org','@graph':graph},ensure_ascii=False)}</script><script type="module" src="/assets/winter-tools.mjs?v={assets}"></script></head><body class="winter-page"><main class="winter-wrap"><header class="winter-hero"><p class="winter-kicker">EcoBack · Der Wintercheck</p><h1>{e(p['title'])}</h1><p class="winter-lead">{e(p['lead'])}</p><p class="winter-note">EcoBack Redaktion · Stand {p.get('updated_label') or ('13. November 2026' if p.get('updated')=='2026-11-13' else '12. November 2026' if p.get('updated')=='2026-11-12' else '31. Oktober 2026' if p.get('updated')=='2026-10-31' else '4. Oktober 2026')} · Quellenbasiert, keine eigenen Produkttests</p><a class="winter-button" href="{'#aufgaben' if hub else '#thermostat-start' if fit_assets else '#rechner' if tool else '#entscheidung'}">{'Meine Aufgabe finden' if hub else 'Meinen nächsten Schritt finden' if fit_assets else 'Mit meinen Werten rechnen' if tool else 'Nächsten Schritt finden'} ↓</a>{product_entry}</header><article id="entscheidung">{calc}{p['body']}{shops}{'<h2>Häufige Fragen</h2>'+faq if faq else ''}{'<h2>Quellen und Grenzen</h2><p>Die folgenden Quellen wurden am '+source_date+' geprüft. Rechenbeispiele sind eigene Szenarien, keine Markt- oder Messdaten.</p><ul>'+source+'</ul>' if source else ''}<nav class="winter-next" aria-label="Winteraufgaben"><h2>Was möchtest du als Nächstes klären?</h2><p><a href="/winter-energiesparen.html">Alle Winteraufgaben →</a> · <a href="/tools.html">Alle Rechner →</a> · <a href="/wie-wir-empfehlen.html">So arbeiten wir</a></p></nav></article></main></body></html>'''
 
+def winter_regions():
+ return (
+  '<section id="winter-nach-land" aria-labelledby="winter-nach-land-title">'
+  '<h2 id="winter-nach-land-title">Winterhilfe nach Land und Wetterlage</h2>'
+  '<ul>'
+  '<li><strong>Deutschland:</strong> Bei kalten Nächten zuerst Heizzeiten, Zugluft und kalte Oberflächen prüfen. '
+  '<a href="/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-start">Heizkörper und Regelung prüfen</a> · '
+  '<a href="https://www.wettergefahren.de/warnungen/warnsituation/wochenvorhersage.html">DWD-Vorhersage</a></li>'
+  '<li><strong>Österreich:</strong> Heizkosten mit dem eigenen Tarif rechnen. Regionale Angebote prüfen und bei Schnee oder Frost '
+  'die lokale Lage berücksichtigen. <a href="https://www.e-control.at/de/preismonitor">E-Control-Preismonitor</a> · '
+  '<a href="https://geosphere.at/de/karten/wetterportal">GeoSphere-Wetter</a></li>'
+  '<li><strong>Schweiz:</strong> Strompreis für die eigene Gemeinde in CHF einsetzen. '
+  '<a href="https://www.elcom.admin.ch/de/strompreise-und-tarife">ElCom-Tarife</a> · '
+  '<a href="https://www.meteoschweiz.admin.ch/">MeteoSchweiz</a></li>'
+  '<li><a lang="en-GB" href="/en/guide/uk-damp-and-heating-decisions.html#uk-winter-weather-check">UK: rain, indoor washing and heating</a></li>'
+  '<li><a lang="fr" href="/fr/calculateur.html">France : chauffage et heures creuses en hiver</a></li>'
+  '</ul></section>'
+ )
+
+
 def main():
  for slug,p in PAGES.items():(SITE/'guide'/f'{slug}.html').write_text(page(slug,p))
  task_links = (
@@ -170,6 +190,7 @@ def main():
  questions = '<h2 id="winter-geraetefragen">Konkrete Gerätefragen im Winter</h2><ul>' + ''.join(
   f'<li><a href="{e(href)}">{e(label)}</a></li>' for href, label in task_links) + '</ul>'
  hub=dict(title='Winterkosten senken: die passende Aufgabe finden',updated='2026-11-27',updated_label='27. November 2026',desc='Heizung regeln, Zugluft prüfen, Warmwasser und Winterstrom berechnen: sieben konkrete Entscheidungen, kostenlose Rechner und passende nächste Schritte.',lead='Nicht alles braucht ein neues Gerät. Finde heraus, ob Einstellen, Messen, Reparieren oder ein gezielter Kauf zu deinem Problem passt.',body='<h2 id="aufgaben">Womit möchtest du anfangen?</h2><nav class="winter-grid" aria-label="Winterprobleme">'+links()+'''</nav><h2>Schon vorhanden: diese Hilfen gehören dazu</h2><nav class="winter-grid"><a href="/guide/luftfeuchtigkeit-richtig-messen.html"><strong>Feuchte messen</strong><span>Messwerte und Ursachen vor dem Gerätekauf klären.</span></a><a href="/waeschetrockner-oder-luftentfeuchter.html"><strong>Wäsche drinnen trocknen</strong><span>Gleich trockene Ladungen mit eigenen Verbrauchswerten vergleichen.</span></a><a href="/guide/luftbefeuchter-ratgeber.html"><strong>Trockene Luft einordnen</strong><span>Erst messen, dann Bedarf und Gerätepflege prüfen.</span></a><a href="/strommess-protokoll.html"><strong>Stromfresser finden</strong><span>kWh protokollieren und Jahreskosten abschätzen.</span></a><a href="/guide/heizkosten-senken-als-mieter.html"><strong>Als Mieter anfangen</strong><span>Bestehende Maßnahmen und Zuständigkeiten einordnen.</span></a><a href="/guide/thermovorhang-ratgeber.html"><strong>Fensterkomfort verbessern</strong><span>Vorhang, Zugluft und Heizkörper zusammen betrachten.</span></a></nav>'''+questions+'''<h2>Ein sinnvoller Ablauf</h2><ol><li>Problem und vorhandene Ausstattung beobachten.</li><li>Passende kostenlose Einstellung oder Messung ausprobieren.</li><li>Erst bei einer konkreten Lücke Produkte vergleichen.</li></ol><p>Die Inhalte richten sich an deutschsprachige Haushalte. Preise, Mietrecht und technische Vorgaben unterscheiden sich nach Land und Gebäude. Die Euro-Beispiele sind keine aktuellen Tarife; die Rechner unterstützen auch CHF ohne Umrechnung; eine deutsche Shop-Verlinkung ist keine lokale Kaufempfehlung für jedes Land.</p>''')
+ hub['body'] = winter_regions() + hub['body']
  (SITE/'winter-energiesparen.html').write_text(page('winter-energiesparen',hub,True))
  print('Built 7 German winter decisions, 3 calculators and one task hub.')
 if __name__=='__main__':main()

@@ -4,6 +4,12 @@
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/winter-energy-saving.html
 
+## Find local winter guidance
+
+- [UK: damp, indoor drying and heating](https://getecoback.com/en/guide/uk-damp-and-heating-decisions.html#uk-winter-weather-check)
+- [France : chauffage et heures creuses en hiver](https://getecoback.com/fr/calculateur.html)
+- [Deutschland, Österreich, Schweiz](https://getecoback.com/winter-energiesparen.html#winter-nach-land)
+
 ## Choose a task
 
 ---

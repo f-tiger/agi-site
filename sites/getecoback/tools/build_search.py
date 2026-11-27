@@ -172,6 +172,13 @@ def collect():
    catalog=json.loads((ROOT/'data/product-catalog.json').read_text())
    extra=' '.join([extra]+[c['name'] for c in catalog['categories']]+[p['name']+' '+p['variant'] for p in catalog['products']])
   entry={'u':route,'t':' '.join(h.title.split()),'d':desc[:320],'l':lang,'a':extra}
+  if lang=='de' and route=='/strommess-protokoll.html':
+   anchor='3d-drucker-stromverbrauch'
+   targets=re.findall(r'<section\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)
+   if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
+    raise ValueError(f'Missing or hidden 3D printing cost guidance: {route}#{anchor}')
+   entry['model_sections']=[{'id':anchor,'title':'3D-Drucker: Stromverbrauch und Filamentkosten pro Druck',
+    'description':'Miss kWh vom Aufheizen bis zum Druckende. Leerlauf getrennt messen, Stromtarif anwenden und Filament mit Stützen und Fehlversuchen rechnen.'}]
   if lang=='de' and route=='/guide/fenster-beschlagen-innen.html':
    anchor='balkontuer-schwelle-kondenswasser'
    targets=re.findall(r'<h2\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)
@@ -402,6 +409,12 @@ def collect():
     raise ValueError(f'Missing or ambiguous Bosch calibration section: {route}#{calibration}')
    entry['model_sections'].append({'id':calibration,'title':title,
     'description':'Bosch nennt E03 einen Kalibrierungsfehler. Montage, Ventilstift und gegebenenfalls den vorhandenen Adapter prüfen. Bei unklarem Ventiltyp keinen Adapter kaufen.'})
+   kasa='thermostat-kasa-ke100'
+   targets=re.findall(r'<section\b[^<>]*\sid="'+kasa+r'"[^<>]*>',text)
+   if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
+    raise ValueError(f'Missing or hidden Kasa thermostat decision: {route}#{kasa}')
+   entry['model_sections'].append({'id':kasa,'title':'TP-Link Kasa KE100: Einzelkopf oder KE100 KIT mit KH100?',
+    'description':'Prüfe Ventil und vorhandenen Hub. Der Einzelkopf und das Starter-Kit mit KH100 sind unterschiedliche Pakete. Vergleiche vor der Bestellung den Lieferumfang.'})
   if lang=='de' and route=='/winter-energiesparen.html':
    anchor='winter-geraetefragen'
    headings=re.findall(r'<h2\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)

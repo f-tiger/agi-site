@@ -67,6 +67,8 @@ Die Wärmeleistung ist eine Annahme für den Vergleich und ersetzt keine Heizlas
 
 Beim jeweils gleichen Arbeitspreis sinken die reinen Stromkosten bei einem COP über 1. Ob sich eine Anschaffung lohnt, hängt von konkreten Angeboten und der Nutzung ab.
 
+**Du hast schon Heizkörper und willst die Heizzeiten besser einstellen?** Prüfe im [Ratgeber für smarte Heizkörperthermostate](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-start), ob ein Zeitplan, ein anderer Kopf oder dein vorhandenes System ausreicht. Beim [Kasa KE100](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-kasa-ke100) hängt der Paketpreis davon ab, ob du den passenden Hub schon hast.
+
 ## Häufige Fragen
 
 **Was ist die günstigste elektrische Zusatzheizung?**Bei gleicher Wärmemenge und gleichem Tarif liefert eine reversible Klimaanlage mit einem COP über 1 niedrigere reine Stromkosten als eine elektrische Widerstandsheizung. Kauf, Montage und Wartung können die Gesamtkosten verändern.

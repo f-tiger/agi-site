@@ -19,6 +19,20 @@ Beispiel: 1,2 kWh in 48 Stunden = 0,6 kWh pro Tag. Bei 365 vergleichbaren Betrie
 Eingaben werden lokal im Browser verarbeitet und nicht gespeichert oder als Messwerte übertragen. Ein Rechenaufruf wird ohne Eingabewerte gezählt.
 Für eigene Berechnungen ist JavaScript nötig. Der Rechenweg und das Beispiel darunter funktionieren auch ohne JavaScript.
 
+## Wie viel Strom verbraucht ein 3D-Druck?
+
+Miss für einen Druck die **gesamten kWh an der Steckdose** : vor dem Aufheizen starten und bis zum Ende des Druckvorgangs messen. Der Wattwert beim Aufheizen verrät noch nicht, was das fertige Teil kostet.
+
+- Notiere Drucker, Material, Temperaturen und Laufzeit. Vergleiche Drucke nur bei nachvollziehbaren Einstellungen.
+
+- Wenn du den Leerlauf mitrechnen willst, miss ihn getrennt. Bei sehr kleinen Lasten prüfe unten zuerst, was dein Messgerät tatsächlich auflösen kann.
+
+- Multipliziere die gemessenen kWh mit deinem Stromtarif. Rechne Material inklusive Stützen und Fehlversuchen separat dazu.
+
+**Beispiel, kein Gerätemesswert:** 0,24 kWh × 0,35 €/kWh ergeben rund 0,08 € Strom. 55 g Filament inklusive Stützen kosten bei 20 €/kg weitere 1,10 €. Zusammen sind es rund 1,18 € vor Verschleiß und Anschaffung. Wenn du erst einen Drucker kaufen müsstest, vergleiche zusätzlich ein Angebot vom Druckdienst und ein verfügbares Fertigteil.
+
+[Für ein kleines, unbelastetes Projekt prüfen: kaufen, drucken oder erst ausmessen?](https://getecoback.com/familienwerkstatt.html#repair) · [Verbrauch über einen ganzen Nutzungstag hochrechnen](https://getecoback.com/strommess-protokoll.html#calculator)
+
 ## Kleine Standby-Lasten messen: Was bedeuten 0 W und 0,00 kWh?
 
 **Prüfe zuerst die untere Messgrenze des konkreten Geräts.** 0 W ist eine momentane Leistungsanzeige. 0,00 kWh ist der abgelesene kumulierte Zählerstand. Wenn das Messgerät die kleine Last nicht zuverlässig erfasst, kann auch nach langer Zeit 0 stehen.

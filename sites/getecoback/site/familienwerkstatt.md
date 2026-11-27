@@ -28,6 +28,8 @@ Einzelbericht: 70-cm-Passage mit Gefälle.
 
 ## Kaufen, drucken oder erst ausmessen?
 
+[Strom und Filamentkosten für einen 3D-Druck berechnen](https://getecoback.com/strommess-protokoll.html#3d-drucker-stromverbrauch)
+
 **Warum diese Fragen?**
 
 Prusas Materialübersicht trennt Temperatur- und mechanische Eigenschaften. Hier entsteht nur eine einfache Trennplatte, kein geprüftes Ersatzteil.
