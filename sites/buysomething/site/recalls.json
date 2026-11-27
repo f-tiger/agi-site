@@ -1,7 +1,7 @@
 {
- "generated": "2026-11-26",
+ "generated": "2026-11-27",
  "window_days": 365,
- "since": "2025-11-26",
+ "since": "2025-11-27",
  "sources": {
   "cpsc": "https://www.saferproducts.gov/RestWebServices/Recall (official CPSC API)",
   "eu_safety_gate": "not wired: probed URL serves HTML, JSON endpoint unconfirmed (2026-09-13)"
@@ -171,7 +171,7 @@
    "stale": false
   },
   "hair-dryer": {
-   "n": 3,
+   "n": 2,
    "latest": "2026-09-10",
    "items": [
     {
@@ -187,13 +187,6 @@
      "title": "Junkins Recalls DHASUWT Hair Dryer Brushes Due to Risk of Serious Injury or Death from Electrocution, and Shock Hazards; Violate Federal Reg",
      "hazard": "The recalled hair dryer brushes lack an integrated immersion protection device, which presents a substantial product haz",
      "url": "https://www.cpsc.gov/Recalls/2026/Junkins-Recalls-DHASUWT-Hair-Dryer-Brushes-Due-to-Risk-of-Serious-Injury-or-Death-from-Electrocution-and-Shock-Hazards-Violate-Federal-Regulations-Smoking-and-Fire-Hazards"
-    },
-    {
-     "id": 10506,
-     "date": "2025-11-26",
-     "title": "McLee Creations Recalls MyOnlyStyler Root Booster Hair Dryers Due to Risk of Serious Injury or Death from Electrocution and Shock Hazards",
-     "hazard": "The handheld hair dryers lack an immersion protection device, which presents a substantial product hazard to consumers, ",
-     "url": "https://www.cpsc.gov/Recalls/2026/McLee-Creations-Recalls-MyOnlyStyler-Root-Booster-Hair-Dryers-Due-to-Risk-of-Serious-Injury-or-Death-from-Electrocution-and-Shock-Hazards"
     }
    ],
    "keywords": [
@@ -464,7 +457,5 @@
    "stale": false
   }
  },
- "failed_keywords": [
-  "light therapy: The read operation timed out"
- ]
+ "failed_keywords": []
 }
