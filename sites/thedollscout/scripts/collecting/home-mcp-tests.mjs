@@ -2,6 +2,8 @@ import { TDS_HOME_SERVER, TDS_HOME_TOOL_COUNT, TDS_HOME_PAGE_SIZE } from '../../
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { onRequest } from '../../functions/api/home-mcp.js';
+import { onRequest as onCollectorRequest } from '../../functions/mcp.js';
+import { MODERN_MCP_PROTOCOL, TDS_MCP_PROTOCOLS } from '../../lib/mcp-transport.mjs';
 import { TDS_TOOLS, runTdsTool } from '../../collector-assets/tds-suite/index.mjs';
 import { WORKFLOW_TOOLS } from '../../collector-assets/tds-suite/collector-workflows.mjs';
 import { HOME_TOOLS } from '../../collector-assets/tds-suite/home-purchase.mjs';
@@ -103,5 +105,53 @@ test('MCP calls use browser calculations and count only successful eligible runs
   assert.equal(written.length, 0);
   await rpc('tools/call', call, 9, { 'user-agent': 'MCP Client' }, env);
   assert.equal(written.length, 1);
-  assert.deepEqual(written[0].slice(1), ['/api/home-mcp', '', '', '', 'tds_home_mcp_run']);
+  assert.deepEqual(written[0].slice(1), ['/api/home-mcp/' + tool.name, 'unknown', '', 'result', 'tds_home_mcp_run']);
+});
+
+test('both transports negotiate 2026 messages and cross-origin analytics refusal without losing legacy tools', async () => {
+  const cases = [
+    {handler: onRequest, endpoint: '/api/home-mcp', sample: {name: TDS_TOOLS[0].name, arguments: TDS_TOOLS[0].example}},
+    {handler: onCollectorRequest, endpoint: '/mcp', sample: {name: 'secret_pull_probability', arguments: {oddsN: 72, boxes: 12}}},
+  ];
+  for (const {handler, endpoint, sample} of cases) {
+    const address = 'https://thedollscout.com' + endpoint;
+    const records = [];
+    const env = { HITS: {prepare: () => ({bind: (...fields) => ({run: async () => records.push(fields)})})}};
+    const origin = 'https://chatgpt.com';
+    const metadata = {'io.modelcontextprotocol/protocolVersion': MODERN_MCP_PROTOCOL,
+      'io.modelcontextprotocol/clientCapabilities': {}, 'io.modelcontextprotocol/clientInfo': {name:'Cursor', version:'private-version'}};
+    const post = (method, params = {}, extra = {}, withMeta = true) => handler({env, request: new Request(address, {
+      method: 'POST', headers: {origin, 'Mcp-Protocol-Version':MODERN_MCP_PROTOCOL, 'Mcp-Method':method,
+        'user-agent':'Codex/1.0 private-agent', ...(params.name ? {'Mcp-Name':params.name} : {}), ...extra},
+      body: JSON.stringify({jsonrpc:'2.0', id:1, method, params:withMeta?{...params, _meta:metadata}:params}),
+    })});
+
+    const discovery = await (await post('server/discover')).json();
+    assert.deepEqual(discovery.result.supportedVersions, TDS_MCP_PROTOCOLS);
+    assert.equal(discovery.result.resultType, 'complete');
+    assert.equal(discovery.result.cacheScope, 'private');
+    assert.equal(discovery.result.ttlMs, 0);
+    assert.ok((await (await post('tools/list')).json()).result.tools.length);
+    for (const [response, code] of [[await post('tools/list',{}, {}, false), -32602],
+      [await post('tools/call', sample, {'Mcp-Name':'wrong'}), -32020]]) {
+      assert.equal(response.status, 400);
+      assert.equal((await response.json()).error.code, code);
+    }
+    const denied = await post('tools/call', sample, {'x-analytics-consent':'denied'});
+    assert.equal(denied.status, 200);
+    assert.equal((await denied.json()).result.resultType, 'complete');
+    assert.equal(records.length, 0);
+    const successful = await (await post('tools/call',sample)).json();
+    assert.notEqual(successful.result.isError, true);
+    assert.equal(records.length, 1);
+    assert.equal(records[0][2], 'client_info:cursor');
+    assert.equal(JSON.stringify(records).includes('private'), false);
+    const options = await handler({env,request:new Request(address,{method:'OPTIONS',headers:{origin}})});
+    assert.equal(options.status, 204);
+    assert.equal(options.headers.get('access-control-allow-origin'), origin);
+    assert.match(options.headers.get('access-control-allow-headers'), /x-analytics-consent/i);
+    const foreign = await handler({env,request:new Request(address,{method:'OPTIONS',headers:{origin:'https://unrelated.example'}})});
+    assert.equal(foreign.status, 403);
+    assert.equal(foreign.headers.get('access-control-allow-origin'), null);
+  }
 });

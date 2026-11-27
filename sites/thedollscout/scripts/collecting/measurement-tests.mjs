@@ -6,6 +6,7 @@ import vm from 'node:vm';
 import {onRequest as mcp} from '../../functions/mcp.js';
 import {onRequestPost as beacon} from '../../functions/api/ev.js';
 import {onRequestGet as growth, COLLECTOR_QUERY, collectorWindow, aggregateCollector, usesDateRangeIndex, collectorQueryWithPlan} from '../../functions/api/collector-growth.js';
+import {onRequestGet as mcpGrowth} from '../../functions/api/mcp-growth.js';
 import {recordMcpSuccess,EVENT_KIT_EVENTS,firstFullUTCDate} from '../../lib/collector-measurement.js';
 import {businessEvent} from '../../../../tools/fleet-analytics/business.mjs';
 
@@ -27,7 +28,7 @@ async function rpc(rec,method='tools/call',params=probability,{url='https://thed
 test('MCP records only successful executed tools and fixed result labels, never request data',async()=>{
   const rec=recorder();const answer=await rpc(rec);
   assert.equal(answer.result.isError,false);
-  assert.deepEqual(rec.rows,[[new Date().toISOString().slice(0,10),'/mcp/secret_pull_probability','','','result','collector_mcp_call']]);
+  assert.deepEqual(rec.rows,[[new Date().toISOString().slice(0,10),'/mcp/secret_pull_probability','unknown','','result','collector_mcp_call']]);
   for(const method of ['initialize','ping','tools/list','resources/list','notifications/initialized']){
     // Notifications without an id have their own protocol semantics; listed calls still must not count.
     const r=recorder();await rpc(r,method,{});assert.equal(r.rows.length,0,method);
@@ -39,7 +40,7 @@ test('MCP records only successful executed tools and fixed result labels, never 
   assert.ok((await rpc(missing,'tools/call',{name:'labubu_rarity_odds'})).error);assert.equal(missing.rows.length,0);
   const unknown=recorder();unknown.env.ASSETS={fetch:async()=>Response.json({terms:[]})};
   assert.equal((await rpc(unknown,'tools/call',{name:'define_labubu_term',arguments:{term:'private inquiry'}})).result.structuredContent.found,false);
-  assert.deepEqual(unknown.rows[0].slice(1),['/mcp/define_labubu_term','','','no_result','collector_mcp_call']);
+  assert.deepEqual(unknown.rows[0].slice(1),['/mcp/define_labubu_term','unknown','','no_result','collector_mcp_call']);
 });
 
 const exclusions=[
@@ -127,6 +128,44 @@ test('Endpoint distinguishes pending measurement, a successfully queried zero, u
   const unavailable=await growth({env:{}});assert.equal(unavailable.status,503);assert.equal((await unavailable.json()).counts,null);db.close();
 });
 
+test('MCP growth separates both endpoints, legacy coverage and bounded client signals on complete dates', async () => {
+  const db = database();
+  const entries = db.prepare('INSERT INTO hits(d,path,lang,country,ref,ev) VALUES(?,?,?,?,?,?)');
+  for (const [d,path,signal,outcome,event] of [
+    ['2026-10-29','/mcp/secret_pull_probability','unknown','result','collector_mcp_call'],
+    ['2026-11-22','/mcp/secret_pull_probability','client_info:cursor','result','collector_mcp_call'],
+    ['2026-11-22','/mcp/search_collection_series','','no_result','collector_mcp_call'],
+    ['2026-11-25','/api/home-mcp','','','tds_home_mcp_run'],
+    ['2026-11-26','/api/home-mcp/tds_figure_riser_row','user_agent:codex','result','tds_home_mcp_run'],
+    ['2026-11-26','/api/home-mcp/tds_figure_riser_row','PRIVATE','result','tds_home_mcp_run'],
+    ['2026-11-26','/api/home-mcp/private-input','unknown','result','tds_home_mcp_run'],
+    ['2026-11-27','/api/home-mcp/tds_figure_riser_row','unknown','result','tds_home_mcp_run'],
+  ]) entries.run(d,path,signal,'',outcome,event);
+  const ctx = contextForDB(db);
+  ctx.request = new Request('https://thedollscout.com/api/mcp-growth',{headers:{'x-probe':'measurement-test'}});
+  await atDate('2026-11-27T12:00:00Z',async()=>{
+    const response = await mcpGrowth(ctx);
+    assert.equal(response.status,200);
+    const report = await response.json();
+    assert.equal(report.window.start,'2026-10-30');
+    assert.equal(report.window.end_exclusive,'2026-11-27');
+    assert.deepEqual(report.endpoints['/mcp'].by_client_signal,{'client_info:cursor':1,legacy_unclassified:1});
+    assert.deepEqual(report.endpoints['/mcp'].by_outcome,{result:1,no_result:1});
+    const home = report.endpoints['/api/home-mcp'];
+    assert.equal(home.first_recorded_day,'2026-11-25');
+    assert.equal(home.last_recorded_day,'2026-11-26');
+    assert.deepEqual(home.by_tool,{unreported:1,tds_figure_riser_row:2});
+    assert.deepEqual(home.by_client_signal,{legacy_unclassified:1,'user_agent:codex':1,unknown:1});
+    assert.doesNotMatch(JSON.stringify(report),/PRIVATE|private-input/);
+  });
+  const noIndex = database('');
+  const unavailable = await mcpGrowth(contextForDB(noIndex));
+  assert.equal(unavailable.status,503);
+  assert.equal((await unavailable.json()).endpoints,null);
+  db.close();
+  noIndex.close();
+});
+
 test('An event-index planner choice falls back to the actual date index without DDL or extra data scans',async()=>{
   const db=database('an_actual_date_index');db.exec('CREATE INDEX idx_hits_ev ON hits(ev)');
   const bounds=['2026-10-12','2026-10-13'];
@@ -212,7 +251,7 @@ test('new collection task counters retain no figure names and respect QA',async(
   const answer=await rpc(rec,'tools/call',{name:'prepare_collection_checklist',arguments:{seriesId:museum.id,owned:['PRIVATE unknown figure']}},options);
   assert.equal(answer.result.isError,false);assert.doesNotMatch(JSON.stringify(rec.rows),/PRIVATE|unknown figure|Smiski Dali/);
   assert.equal(rec.rows.length,options.headers?0:1);
-  if(rec.rows.length)assert.deepEqual(rec.rows[0].slice(1),['/mcp/prepare_collection_checklist','','','result','collector_mcp_call']);
+  if(rec.rows.length)assert.deepEqual(rec.rows[0].slice(1),['/mcp/prepare_collection_checklist','unknown','','result','collector_mcp_call']);
  }
 });
 test('collection MCP tasks have their own complete-day coverage and exclude the release day',()=>{
@@ -267,6 +306,6 @@ test('Event MCP telemetry never stores the activity, share fragment or lists and
   const answer=await rpc(r,'tools/call',{name:'prepare_swap_event_card',arguments:{kind:'card',eventName:'PRIVATE activity name',eventDate:'2099-01-01',exchangeMode:'peer',wanted:['Smiski Dali'],offered:['PRIVATE unknown offer']}},options);
   assert.equal(answer.result.isError,false);assert.match(answer.result.structuredContent.shareUrl,/#event=/);
   assert.equal(r.rows.length,options.headers?0:1);assert.doesNotMatch(JSON.stringify(r.rows),/PRIVATE|2099|Smiski|#event=/);
-  if(r.rows.length)assert.deepEqual(r.rows[0].slice(1),['/mcp/prepare_swap_event_card','','','result','collector_mcp_call']);
+  if(r.rows.length)assert.deepEqual(r.rows[0].slice(1),['/mcp/prepare_swap_event_card','unknown','','result','collector_mcp_call']);
  }
 });

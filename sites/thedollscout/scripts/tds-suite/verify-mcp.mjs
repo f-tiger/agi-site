@@ -6,6 +6,7 @@ import { readFile } from 'node:fs/promises';
 import { TDS_TOOLS, runTdsTool } from '../../collector-assets/tds-suite/index.mjs';
 import { SERVER as COLLECTOR_SERVER, TOOLS as COLLECTOR_TOOLS } from '../../collector-assets/mcp-contract.mjs';
 import { TDS_HOME_SERVER, TDS_HOME_PROTOCOL, TDS_HOME_REGISTRY_NAME, TDS_HOME_TOOL_COUNT, TDS_HOME_PAGE_SIZE } from '../../collector-assets/tds-suite/service.mjs';
+import { verifyMcpGrowth, verifyModernMcp } from '../collecting/verify-mcp-modern.mjs';
 
 const root = new URL('../../', import.meta.url);
 const require = createRequire(new URL('mcp/package.json', root));
@@ -161,6 +162,13 @@ async function verifyCollecting() {
 
 try {
   const [home, collecting] = await Promise.all([verifyHome(), verifyCollecting()]);
+  await Promise.all([
+    verifyModernMcp(base, endpointPath, TDS_HOME_SERVER, { name: TDS_TOOLS[0].name, arguments: TDS_TOOLS[0].example }),
+    verifyModernMcp(base, '/mcp', COLLECTOR_SERVER, {
+      name: 'calculate_style_probability', arguments: { target: 'regular', regularStyles: 6, secretOddsN: 72, boxes: 12 },
+    }),
+    ...(live ? [verifyMcpGrowth(base)] : []),
+  ]);
   console.log(JSON.stringify({ verification: 'tds_official_sdk_http_passed', target: live ? 'production' : 'local', home, collecting }));
 } finally {
   if (server) await new Promise((resolve, reject) => server.close(error => error ? reject(error) : resolve()));

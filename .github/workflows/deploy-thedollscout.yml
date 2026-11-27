@@ -289,7 +289,7 @@ jobs:
         run: node scripts/tds-suite/verify-pages-live.mjs
 
       - name: Notify new TDS home tool canonical pages to IndexNow
-        if: ${{ !cancelled() && steps.publish.outcome == 'success' && github.event_name == 'push' && contains(github.event.head_commit.message, '[tds-home-mcp-publish]') }}
+        if: ${{ env.OUTCOME_READONLY_RELEASE != 'true' && !cancelled() && steps.publish.outcome == 'success' && github.event_name == 'push' && contains(github.event.head_commit.message, '[tds-home-mcp-publish]') }}
         continue-on-error: true
         env:
           REGIONAL_TOOLS_RELEASE: ${{ contains(github.event.head_commit.message, '[tds-regional-tools]') }}
@@ -517,7 +517,12 @@ jobs:
 
   publish-mcp:
     needs: deploy
-    if: github.event_name == 'push' && contains(github.event.head_commit.message, '[mcp-publish]') && !contains(github.event.head_commit.message, '[outcome-readonly-release]')
+    # Both explicit Registry markers allow a dual-MCP release while the deployment skips unrelated lifecycle writes.
+    if: >-
+      github.event_name == 'push' && github.ref == 'refs/heads/main' &&
+      contains(github.event.head_commit.message, '[mcp-publish]') &&
+      (!contains(github.event.head_commit.message, '[outcome-readonly-release]') ||
+      contains(github.event.head_commit.message, '[tds-home-mcp-publish]'))
     runs-on: ubuntu-24.04 # Pinned Playwright browser runtime; ubuntu-latest may be unsupported
     permissions:
       contents: read

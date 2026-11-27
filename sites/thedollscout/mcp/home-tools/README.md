@@ -2,6 +2,8 @@
 
 Connect an MCP client over Streamable HTTP at [https://thedollscout.com/api/home-mcp](https://thedollscout.com/api/home-mcp). Home Tools uses public manufacturer evidence and calculations on supplied values. The public endpoint requires no TDS API key.
 
+Version 1.2.0 supports `server/discover` on MCP `2026-07-28` and keeps legacy `initialize` compatible. The [usage report](https://thedollscout.com/api/mcp-growth) covers tool calls for this service separately from the collecting endpoint. See the [collecting guide](../README.md) for source availability and analytics options.
+
 Call `tools/list` and pass each returned `nextCursor` into the next request. The directory has 1,002 callable tools on 26 pages. Each tool supplies its input schema and a link to its browser page. Send `en`, `de` or `zh` in `params._meta["tds/locale"]` to select a response language.
 
 Claude Code users can connect with:

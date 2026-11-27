@@ -3,8 +3,13 @@
   "name": "io.github.f-tiger/dollscout-collecting",
   "title": "The Doll Scout · Collecting Tools",
   "description": "Search collectible series, prepare checklists and event cards, calculate odds and display fit.",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "websiteUrl": "https://thedollscout.com/for-agents",
+  "repository": {
+    "url": "https://github.com/f-tiger/agi-site",
+    "source": "github",
+    "subfolder": "sites/thedollscout"
+  },
   "remotes": [
     {
       "type": "streamable-http",
