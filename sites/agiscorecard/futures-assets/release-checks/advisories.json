@@ -1,13 +1,13 @@
 {
   "version": 1,
-  "checkedAt": "2026-11-26T11:31:09Z",
+  "checkedAt": "2026-11-27T11:26:42Z",
   "sources": [
     {
       "id": "codex",
       "package": "@openai/codex",
       "sourceUrl": "https://github.com/openai/codex/security/advisories",
-      "checkedAt": "2026-11-26T11:31:09Z",
-      "lastSuccessAt": "2026-11-26T11:31:09Z",
+      "checkedAt": "2026-11-27T11:26:42Z",
+      "lastSuccessAt": "2026-11-27T11:26:42Z",
       "status": "ok",
       "error": null,
       "advisories": [
@@ -58,8 +58,8 @@
       "id": "claude-code",
       "package": "@anthropic-ai/claude-code",
       "sourceUrl": "https://github.com/anthropics/claude-code/security/advisories",
-      "checkedAt": "2026-11-26T11:31:09Z",
-      "lastSuccessAt": "2026-11-26T11:31:09Z",
+      "checkedAt": "2026-11-27T11:26:42Z",
+      "lastSuccessAt": "2026-11-27T11:26:42Z",
       "status": "ok",
       "error": null,
       "advisories": [
