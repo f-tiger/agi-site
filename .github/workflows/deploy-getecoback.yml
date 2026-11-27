@@ -1090,7 +1090,7 @@ jobs:
           else
             echo "OK humidifier guide shows no dehumidifier cards"
           fi
-          check "https://getecoback.com/guide/richtig-lueften-im-winter.html" "MeacoDry"
+          check "https://getecoback.com/guide/richtig-lueften-im-winter.html" "entfeuchter-nach-dem-lueften"
           check "https://getecoback.com/en/guide/tilt-and-turn-windows-winter-condensation.html" "MeacoDry"
           for u in "https://getecoback.com/guide/richtig-lueften-im-winter.html" \
                    "https://getecoback.com/guide/schimmel-am-fenster.html" \

@@ -45,6 +45,29 @@ class ConversionRoutes(unittest.TestCase):
         self.assertNotIn('https://www.amazon.de/', markdown)
         self.assertNotIn('getecoback-21', markdown)
 
+    def test_winter_dehumidifier_choice_follows_measurement_and_has_one_exact_offer(self):
+        page = SITE / 'guide' / 'richtig-lueften-im-winter.html'
+        html = page.read_text()
+        mirror = page.with_suffix('.md').read_text()
+        target = 'https://www.amazon.de/dp/B07KJX6RDK?tag=getecoback-21'
+        block = re.search(r'<section id="eb-models" aria-labelledby="entfeuchter-nach-dem-lueften".*?</section>', html, re.S)[0]
+        self.assertEqual(html.count('id="eb-models"'), 1)
+        self.assertEqual(html.count(target), 1)
+        self.assertLess(html.index('id="lueften-vorher-nachher"'), html.index(target))
+        self.assertLess(block.index('warte mit dem Gerätekauf'), block.index(target))
+        self.assertIn('href="#lueften-vorher-nachher"', block)
+        self.assertIn('rel="sponsored noopener"', block)
+        self.assertNotRegex(html, r'<!--EB_(?:MODELS|POPUP|STICKY|PROFILE|TOPPICK)-->')
+        for doc in (html, mirror):
+            for phrase in ('4048164103010', '10000651', '30 °C und 80 %', '10 °C und 60 %',
+                           'warte mit dem Gerätekauf', 'luftentfeuchter-30-tage-preischeck',
+                           'comfee-MDDF-20DEN7-Datenblatt.pdf', '#modell-comfee-mddf20'):
+                self.assertIn(phrase, doc)
+            self.assertNotRegex(doc, r'150[–-]200 €|spart am meisten Strom')
+        self.assertNotRegex(mirror, r'amazon\.de/|getecoback-21')
+        buying = (SITE / 'guide' / 'luftentfeuchter-ratgeber.html').read_text()
+        self.assertIn('id="luftentfeuchter-30-tage-preischeck"', buying)
+
     def test_autumn_next_steps_resolve_to_existing_tools_and_anchors(self):
         for slug in ['fenster-beschlagen-innen','luftentfeuchter-keller',
                      'schimmel-im-keller-entfernen','heizluefter-stromsparend',
@@ -116,6 +139,53 @@ class CalculatorIsolation(unittest.TestCase):
 
 
 class ModelIntent(unittest.TestCase):
+    def test_only_reviewed_exact_german_queries_become_product_links(self):
+        from urllib.parse import quote_plus
+        from build_asin_links import rewrite
+
+        def search(term, tag='getecoback-21'):
+            return f'<a href="https://www.amazon.de/s?k={quote_plus(term)}&amp;tag={tag}">Prüfen</a>'
+
+        for term, product in (
+            ('Comfee MDDF-20DEN7 Luftentfeuchter', 'B07KJX6RDK'),
+            ('Comfee MDDF-20DEN7 ohne WF', 'B07KJX6RDK'),
+            ('mddf_20den7', 'B07KJX6RDK'),
+            ('Comfee MPPH-09CRN7', 'B07KJYD1ZP'),
+            ("De'Longhi PAC N90 ECO Silent", 'B07NC5CP6F'),
+            ('Klarstein Kraftwerk Smart 12K', 'B08VWSP8FW'),
+            ('PAC AP98', 'B0F3XL6LK6'),
+        ):
+            with self.subTest(term=term):
+                result, _ = rewrite(search(term))
+                self.assertIn(f'/dp/{product}?tag=getecoback-21"', result)
+                self.assertEqual(rewrite(result)[0], result)
+        for term in (
+            'Comfee MDDF-20DEN7-WF', 'Comfee MDDF-20DEN7B',
+            'Comfee MDDF-20DEN7 Ersatzfilter', 'Ablaufschlauch MDDF-20DEN7',
+            'Comfee MDDF-20DEN7 mit Ersatzfiltern',
+            'Comfee MDDF-20DEN7 oder MPPH-09CRN7',
+            'Abluftschlauch für Comfee MPPH-09CRN7',
+            "De'Longhi PAC N90 ECO Silent Adapter",
+            'Klarstein Kraftwerk Smart 12K Fernbedienung', 'PAC AP98X',
+            'Klarstein mobile Klimaanlage 12000 BTU',
+        ):
+            with self.subTest(term=term):
+                original = search(term)
+                self.assertEqual(rewrite(original)[0], original)
+        alternate_tag = search('Comfee MDDF-20DEN7', 'getecoback-210')
+        self.assertEqual(rewrite(alternate_tag)[0], alternate_tag)
+        valid = search('Comfee MDDF-20DEN7')
+        raw_quoted = valid.replace('&amp;', '&').replace('"', "'")
+        self.assertIn("/dp/B07KJX6RDK?tag=getecoback-21'", rewrite(raw_quoted)[0])
+        for tail in ('&amp;k=Ersatzfilter', '&amp;tag=unknown-21', '&variant=WF', '#offer'):
+            original = valid.replace('21"', '21' + tail + '"')
+            self.assertEqual(rewrite(original)[0], original)
+        for original in (
+            valid.replace('www.amazon.de', 'www.amazon.de.example.com'),
+            valid.replace('https://www.amazon.de/s?', 'https://www.example.com/?target=https://www.amazon.de/s?'),
+        ):
+            self.assertEqual(rewrite(original)[0], original)
+
     def test_meacodry_guide_is_discovered_as_humidity_not_cooling(self):
         from build_structure import cat_of, device_of, us_term, usmarket_html
         slug = 'meacodry-arete-one-test'
