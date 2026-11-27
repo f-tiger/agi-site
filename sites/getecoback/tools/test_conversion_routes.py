@@ -12,6 +12,25 @@ from moisture_journeys import GUIDE_NEXT
 SITE = Path(__file__).resolve().parents[1] / 'site'
 
 class ConversionRoutes(unittest.TestCase):
+    def test_tado_x_room_temperature_suggests_existing_hardware_before_shopping(self):
+        p=SITE/'guide/smarte-heizkoerperthermostate-lohnen-sich.html'
+        raw=p.read_text()
+        md=p.with_suffix('.md').read_text()
+        [section]=re.findall(r'<section aria-labelledby="tado-x-raumtemperatur">(.*?)</section>',raw,re.S)
+        self.assertEqual(raw.count('id="tado-x-raumtemperatur"'),1)
+        self.assertIn('href="#tado-x-raumtemperatur"',raw)
+        self.assertLess(raw.index(section),raw.index('id="thermostat-tado-x-starter"'))
+        self.assertLess(section.index('verschiebe den Kauf'),section.index('href="#thermostat-tado-x-starter"'))
+        for token in ('−2 °C','Mittelwert','nur eines dieser separaten Messgeräte','NAT64',
+                      'keine native tado° Raumzuordnung per Homey Flow','27. November 2026'):
+            for text in (section,md):
+                self.assertIn(token,text)
+        self.assertEqual(len(re.findall(r'href="https://(?:help.tado.com/de|support.homey.app/hc)/[^"]+"', section)),6)
+        self.assertNotRegex(section,r'getecoback-21|amazon\.de')
+        offer='https://www.amazon.de/s?k=tado+Smartes+Heizk%C3%B6rper+Thermostat+X+Starter+Kit+Bridge+X&amp;tag=getecoback-21'
+        self.assertEqual(raw.count(offer),1)
+        self.assertNotIn('getecoback-21',md)
+
     def test_trotec_offer_has_one_approved_search_after_exact_model_and_room_conditions(self):
         guide=SITE / 'guide/trotec-luftentfeuchter-test.html'
         page=guide.read_text()

@@ -1196,6 +1196,32 @@ test('German dehumidifier price checks retain the exact evidence and stop path i
  assert(!textOf(full).includes('https://www.amazon.de/'));
 });
 
+test('tado X room sensor guidance matches both MCP profiles and retains the setup boundary',async()=>{
+ const {env}=assetEnv();
+ const target='https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#tado-x-raumtemperatur';
+ const frage='Kann Homey Flow einen Funk-Temperatursensor X beim tado° X als Referenzsensor im selben Raum auswählen?';
+ const search=await call('ratgeber_suche',{frage,sprache:'de',max:1},env);
+ assert.ok(textOf(search).includes('Abschnitt: '+target));
+ const finder=await call('ecoback_werkzeug_finden',{frage},env,true);
+ assert.equal(finder.structuredContent.guides?.[0]?.guide_url,target);
+ const full=await call('ratgeber_lesen',{pfad:target},env);
+ const compact=await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad:target}},env,true);
+ assert.equal(full.isError,false);
+ assert.deepEqual(full,compact);
+ for(const value of ['−2 °C','Temperatur-Korrektur','Mittelwert','nur eines dieser separaten Messgeräte',
+     'keine native tado° Raumzuordnung per Homey Flow','NAT64','9090800-',
+     '12934291420060-','9582087-','#thermostat-tado-x-starter'])
+   assert.ok(textOf(full).includes(value),value);
+ assert.doesNotMatch(textOf(full),/getecoback-21|https:\/\/www\.amazon\.de/);
+ for(const frage of ['Wie kopple ich einen tado X Thermostat mit Homey Matter?',
+     'Wie kalibriere ich den Temperatursensor von tado V3+?',
+     'Welche Batterie brauche ich für den Funk-Temperatursensor X?',
+     'Welchen Vaillant Adapter brauche ich für tado X, 30,5 mm?']){
+   const hit=await call('ecoback_werkzeug_finden',{frage},env,true);
+   assert.notEqual(hit.structuredContent.guides?.[0]?.guide_url,target,frage);
+ }
+});
+
 test('the German tado X Vaillant adapter identification and stop branch agree in both MCP profiles',async()=>{
  const {env}=assetEnv();
  const pfad='https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#tado-x-vaillant-305-adapter';

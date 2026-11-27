@@ -72,7 +72,7 @@ TESAMOLL_PROFILE = '''
 '''
 
 PAGES={
-'smarte-heizkoerperthermostate-lohnen-sich':dict(cat='heizen',updated='2026-11-26',title='Smarte Heizkörperthermostate: Ventil prüfen, Kosten rechnen',desc='Bosch II [+M] und FRITZ! 302 ohne Internet oder Zentrale prüfen. Ventil, Danfoss-Adapter und Gesamtkosten vergleichen. Eigene Heizkosten rechnen.',lead='Ein Zeitplan kann unnötiges Heizen vermeiden. Ein smarter Thermostatkopf erzeugt aber keine billigere Wärme. Entscheidend ist, was du heute tatsächlich anders machen würdest.',sources=['thermostat','air'],tool='thermostat',terms=[('Heizkoerperthermostat programmierbar','Programmierbare Thermostatköpfe')],body='''<section id="tado-x-oventrop" aria-labelledby="tado-x-oventrop-titel" style="scroll-margin-top:260px">
+'smarte-heizkoerperthermostate-lohnen-sich':dict(cat='heizen',updated='2026-11-27',updated_label='27. November 2026',title='Smarte Heizkörperthermostate: Ventil prüfen, Kosten rechnen',desc='Bosch II [+M] und FRITZ! 302 ohne Internet oder Zentrale prüfen. Ventil, Danfoss-Adapter und Gesamtkosten vergleichen. Eigene Heizkosten rechnen.',lead='Ein Zeitplan kann unnötiges Heizen vermeiden. Ein smarter Thermostatkopf erzeugt aber keine billigere Wärme. Entscheidend ist, was du heute tatsächlich anders machen würdest.',sources=['thermostat','air'],tool='thermostat',terms=[('Heizkoerperthermostat programmierbar','Programmierbare Thermostatköpfe')],body='''<section id="tado-x-oventrop" aria-labelledby="tado-x-oventrop-titel" style="scroll-margin-top:260px">
 <h2 id="tado-x-oventrop-titel">Passt tado° X auf mein Oventrop-Ventil mit 30 mm?</h2>
 <p>Prüfe die genaue Modellbezeichnung und die Gewindesteigung in den Ventilunterlagen. Zwei Oventrop-Ventile mit 30 mm Außendurchmesser können unterschiedliche Gewinde haben.</p>
 <ul>
@@ -112,6 +112,19 @@ EXAMPLES={
 
 def links():
  return ''.join(f'<a href="/guide/{slug}.html"><strong>{p["title"]}</strong><span>{p["lead"]}</span></a>' for slug,p in PAGES.items())
+TADO_X_ROOM_TEMPERATURE = """
+<section aria-labelledby="tado-x-raumtemperatur">
+<h2 id="tado-x-raumtemperatur" style="scroll-margin-top:180px">tado° X misst zu warm: Temperatur-Korrektur oder Raumsensor?</h2>
+<ol>
+<li><strong>Am Aufenthaltsort nachmessen.</strong> Vergleiche die in der tado° App gemessene Temperatur mit einem separaten Thermometer dort, wo du dich im Raum aufhältst. Ist die Abweichung ungefähr konstant, teste zuerst die Temperatur-Korrektur. In der tado° App öffnest du <strong>Einstellungen → Räume &amp; Geräte → Gerät auswählen → Temperatur-Korrektur</strong> und speicherst den Wert. Zeigt die App 23 °C und das Thermometer 21 °C, ergibt das −2 °C Korrektur. Miss nach der Änderung erneut. <a href="https://help.tado.com/de/articles/8911726-ich-glaube-die-tatsachliche-raumtemperatur-ist-hoher-niedriger-als-die-angezeigte-temperatur-meiner-tado-x-gerate-was-kann-ich-tun">tado° Anleitung zur Temperatur-Korrektur</a>.</li>
+<li><strong>Das vorhandene Messgerät im Raum prüfen.</strong> Sind nur Smarte Heizkörper-Thermostate X zugeordnet, zeigt tado° den Mittelwert ihrer Temperaturmessungen. Ein zugeordnetes verkabeltes Smartes Thermostat X oder ein Funk-Temperatursensor X übernimmt die Messung für den Raum. Pro tado° Raum ist nur eines dieser separaten Messgeräte vorgesehen. Ist schon eines zugeordnet, prüfe seinen Standort und verschiebe den Kauf eines weiteren. <a href="https://help.tado.com/de/articles/10299833-ist-die-anzahl-der-tado-x-gerate-pro-raum-zuhause-und-raume-pro-tado-zuhause-begrenzt">tado° Geräte je Raum</a>.</li>
+<li><strong>Einen Funk-Temperatursensor X erst bei Bedarf einplanen.</strong> Ändert sich der Abstand zwischen den Messwerten je nach Heizphase, prüfe eine repräsentativere Messstelle. Laut tado° können beide Generationen des Funk-Temperatursensors X dort messen und die Heizkörper-Thermostate X desselben zugeordneten Raums steuern. <a href="https://help.tado.com/de/articles/9582087-brauche-ich-einen-funk-temperatursensor-x-in-einem-raum-mit-smarten-heizkorper-thermostaten-x">tado° Entscheidungshilfe zum Funksensor</a>.</li>
+</ol>
+<p><strong>Homey und Matter.</strong> Matter verbindet Geräte. Die Messstelle für die tado° Raumregelung ergibt sich aus der Gerätezuordnung im Raum. Die verlinkten Anleitungen bestätigen keine native tado° Raumzuordnung per Homey Flow. tado° nennt für die Einrichtung eine Bridge X oder einen kompatiblen Thread-Border-Router. Ein Router eines anderen Herstellers braucht laut tado° für die Anbindung an die tado° App NAT64. Prüfe deine konkrete Router- und App-Kombination, bevor du dafür einen Sensor oder eine Bridge kaufst. <a href="https://help.tado.com/de/articles/9090800-brauche-ich-eine-tado-bridge-x">tado° Anforderungen an Bridge und Router</a> · <a href="https://help.tado.com/de/articles/10264759-wie-richte-ich-meine-tado-x-gerate-in-einer-matter-app-ein">tado° Geräte in einer Matter-App</a> · <a href="https://support.homey.app/hc/en-us/articles/12934291420060-Connect-a-Matter-or-Thread-Device">Homey Anleitung zur Gerätekopplung</a>.</p>
+<p>Die Angaben gelten für tado° X. Wenn du ein neues X-System planst, prüfe zuerst dein Ventil und dann den <a href="#thermostat-tado-x-starter">Lieferumfang und die Voraussetzungen des Starter Kits</a>. Quellen für Deutschland geprüft am <time datetime="2026-11-27">27. November 2026</time>.</p>
+</section>
+"""
+
 def page(slug,p,hub=False):
  url='https://getecoback.com/'+('winter-energiesparen.html' if hub else 'guide/'+slug+'.html')
  source=''.join(f'<li><a href="{SOURCES[k][1]}">{SOURCES[k][0]}</a></li>' for k in p.get('sources',[]))
@@ -129,14 +142,14 @@ def page(slug,p,hub=False):
  if slug=='smarte-heizkoerperthermostate-lohnen-sich':
   from thermostat_fit import render as fit_render, assets as fit_asset_tags
   from thermostat_catalog import render as catalog_render, asset_tag as catalog_asset, buyer_start
-  calc=buyer_start()+fit_render()+calc+catalog_render()
+  calc=buyer_start()+fit_render()+calc+TADO_X_ROOM_TEMPERATURE+catalog_render()
   fit_assets=fit_asset_tags()+catalog_asset()
  source_date=e(p.get('sources_checked_label','4. Oktober 2026'))
  shops=''
  if p.get('terms'):
   from urllib.parse import quote_plus
   shops='<aside class="winter-shop"><h2>Erst Eignung prüfen, dann vergleichen</h2><p><strong>Anzeige · Affiliate-Links</strong> — Als Amazon-Partner verdienen wir an qualifizierten Verkäufen. Keine eigenen Produkttests; Kategorie-Suchen sind keine geprüften Modellangebote. Amazon.de ist der deutsche Shop. Lieferung, Anschluss, Anleitung und Rückgabe selbst prüfen.</p>'+''.join(f'<p><a data-winter-shop href="https://www.amazon.de/s?k={quote_plus(term)}&amp;tag=getecoback-21" rel="sponsored noopener" target="_blank">{label} bei Amazon.de suchen →</a></p>' for term,label in p['terms'])+'</aside>'
- product_entry='<p><a href="#eb-thermostat-products">System und konkrete Modelle vergleichen ↓</a></p>' if slug=='smarte-heizkoerperthermostate-lohnen-sich' else ''
+ product_entry='<p><a href="#eb-thermostat-products">System und konkrete Modelle vergleichen ↓</a> · <a href="#tado-x-raumtemperatur">tado° X misst zu warm? Raumtemperatur prüfen</a></p>' if slug=='smarte-heizkoerperthermostate-lohnen-sich' else ''
  if slug=='duschen-kosten-rechner':
   product_entry='<p><a href="#durchlauferhitzer-mindestdurchfluss">Mindestdurchfluss vor dem Kauf prüfen</a></p>'
  if slug=='fenster-zugluft-mietwohnung':
