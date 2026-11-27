@@ -62,6 +62,7 @@ assert.equal(out.trade_quote_accounts,null,'Absent optional source table is unkn
 assert.equal(out.trade_quote_workbench_use,null,'Absent optional use table is unknown');
 assert.equal(out.trade_workbench_accounts,null,'Absent optional source table is unknown for the direct cohort');
 assert.equal(out.trade_workbench_signup_use,null,'Absent optional use table is unknown for the direct cohort');
+assert.deepEqual(out.trade_measurement_status,{signup_sources:'schema_missing',workbench_use:'schema_missing'});
 db.exec('CREATE TABLE free_account_signup_sources(account_id TEXT PRIMARY KEY,source TEXT)');
 const insertSource=db.prepare('INSERT INTO free_account_signup_sources VALUES (?,?)');
 for (const id of ['real','unverified','qa','today']) insertSource.run(id,'bpj_trade_quote');
@@ -71,6 +72,7 @@ assert.deepEqual(attributed.trade_quote_accounts,{total:3,email_verified_total:2
 assert.equal(attributed.trade_quote_workbench_use,null);
 assert.deepEqual(attributed.trade_workbench_accounts,{total:0,email_verified_total:0,created:0,email_verified:0});
 assert.equal(attributed.trade_workbench_signup_use,null);
+assert.deepEqual(attributed.trade_measurement_status,{signup_sources:'available',workbench_use:'schema_missing'});
 db.exec(`CREATE TABLE bpj_trade_quote_workbench_use(account_id TEXT PRIMARY KEY,first_day TEXT,repeat_day TEXT);
   INSERT INTO bpj_trade_quote_workbench_use VALUES ('real','2026-09-24','2026-09-26'),
     ('unverified','2026-09-26','2026-09-27'),('qa','2026-09-25','2026-09-26'),
@@ -93,6 +95,42 @@ assert.deepEqual(used.trade_quote_accounts,attributed.trade_quote_accounts);
 assert.deepEqual(used.trade_quote_workbench_use,{first_use_total:2,repeat_use_total:1,first_use:2,repeat_use:1});
 assert.deepEqual(used.trade_workbench_accounts,{total:3,email_verified_total:2,created:1,email_verified:1});
 assert.deepEqual(used.trade_workbench_signup_use,{first_use_total:2,repeat_use_total:1,first_use:1,repeat_use:1});
+assert.deepEqual(used.trade_measurement_status,{signup_sources:'available',workbench_use:'available'});
+
+// With the tables present, a read error (or unreadable metadata) stays unknown.
+// Invalid counters are distinguished from both an absent table and a measured zero.
+let schemaReads = 0;
+function diagnosisBinding({sourceResult, schemaFailure} = {}) {
+  return {prepare(sql) {
+    if (sql.includes('FROM sqlite_schema')) {
+      schemaReads++;
+      if (schemaFailure) return {async first(){throw Error('metadata unavailable');}};
+    }
+    if (sourceResult && sql.includes('FROM free_account_signup_sources s JOIN free_accounts')) {
+      return {bind(){return this;}, async all(){return sourceResult();}};
+    }
+    return binding.prepare(sql);
+  }};
+}
+const diagnose = options => readConversionStages(diagnosisBinding(options),28,Date.parse('2026-09-27T15:01:00Z'));
+await diagnose();
+assert.equal(schemaReads,0);
+for (const options of [
+  {sourceResult(){throw Error('D1 unavailable');}},
+  {sourceResult(){return {success:false,results:[]};},schemaFailure:true},
+  {sourceResult(){return {results:null};}},
+]) {
+  const unreadable = await diagnose(options);
+  assert.equal(unreadable.trade_quote_accounts,null);
+  assert.equal(unreadable.trade_workbench_accounts,null);
+  assert.deepEqual(unreadable.trade_measurement_status,{signup_sources:'unavailable',workbench_use:'available'});
+}
+assert.equal(schemaReads,3);
+const invalid = await diagnose({sourceResult:()=>({results:[{source:'bpj_trade_quote',total:-1,email_verified_total:0,created:0,email_verified:0}]})});
+assert.equal(invalid.trade_quote_accounts,null);
+assert.deepEqual(invalid.trade_workbench_accounts,{total:0,email_verified_total:0,created:0,email_verified:0});
+assert.deepEqual(invalid.trade_measurement_status,{signup_sources:'invalid_result',workbench_use:'available'});
+assert.equal(schemaReads,3);
 for (const [id] of directAccounts) {
   db.prepare('DELETE FROM free_account_identities WHERE account_id=?').run(id);
   db.prepare('DELETE FROM free_accounts WHERE id=?').run(id);
@@ -248,11 +286,14 @@ addOrder('trade-next-day','2026-09-27','2026-09-27T01:00:00Z','2026-09-27T00:30:
 assert.deepEqual(await readOrders(),{proposalDeck:{pending:1,expired:1,paid:1},tradeWorkbench:{pending:0,expired:0,paid:1}});
 db.exec('DELETE FROM hits; DELETE FROM free_accounts; DELETE FROM free_account_identities;');
 const empty=await readConversionStages(binding,28);
+assert.deepEqual(empty.trade_measurement_status,{signup_sources:'available',workbench_use:'available'});
+assert.deepEqual(empty.trade_quote_workbench_use,{first_use_total:0,repeat_use_total:0,first_use:0,repeat_use:0});
 assert.deepEqual(empty.directory_outbound,{by_tool:[],unattributed_clicks:0});
 assert.equal(empty.accounts.total_non_test,0);assert.equal(empty.accounts.total_currently_email_verified,0);assert.equal(empty.accounts.created,0);assert.equal(empty.events.tool_results_own,0);assert.equal(empty.events.coding_access_selection_copies,0);
 assert.equal(empty.accounts_daily.length,28);assert.ok(empty.accounts_daily.every(row=>row.created===0&&row.new_accounts_currently_email_verified===0));
 db.exec('DROP TABLE free_account_identities');
 const missing=await readConversionStages(binding,28);
+assert.deepEqual(missing.trade_measurement_status,{signup_sources:'schema_missing',workbench_use:'available'});
 assert.equal(missing.ok,false);assert.equal(missing.accounts,null);assert.equal(missing.accounts_daily,null);assert.deepEqual(missing.missing,['accounts','accounts_daily']);
 db.exec('DROP TABLE hits');
 const failed=await readConversionStages(binding,28);
