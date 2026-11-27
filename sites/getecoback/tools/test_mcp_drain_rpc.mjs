@@ -38,7 +38,7 @@ test('valid and invalid non-QA calls retain only a fixed outcome and never house
   const invalid = await rpc('tools/call', {name, arguments: {...args, note: 'PRIVATE-HOUSEHOLD'}}, events, ua);
   assert.equal(invalid.isError, true);
   assert.deepEqual(events.map(row => [row[0], JSON.parse(row[1])]), [
-    ['mcp_call', {tool: name, outcome: 'pump_check', ua}],
+    ['mcp_call', {tool: name, outcome: 'pump_check', mcp_client_signal:'unknown', ua}],
     ['mcp_probe', {tool: name, outcome: 'invalid', ua}],
   ]);
   assert.doesNotMatch(JSON.stringify([events, invalid]), /PRIVATE-HOUSEHOLD|meaco-one-20|level_or_uphill/);

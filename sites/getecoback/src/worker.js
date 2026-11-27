@@ -26,6 +26,8 @@ import {
 import {CELLAR_MODEL_ENTRY_URL} from './cellar-entry.mjs';
 import {N90_ENTRY_URL, N90_TOOL_NAME} from './n90-entry.mjs';
 import {COMPLETE_MCP_WEEK_SQL, completedMcpReports} from './mcp-adoption.mjs';
+import {legacyMcpVersion, mcpRequestProtocol, SERVER_INFO_KEY, SUPPORTED_MCP_VERSIONS} from './mcp-protocol.mjs';
+import {mcpClientSignal} from './mcp-client-signal.mjs';
 // The browser module guards DOM setup with typeof document; its pure decision
 // function is also the MCP contract, so the two surfaces cannot route differently.
 import {decide as decideMoisture} from '../site/assets/moisture-decision.mjs';
@@ -888,12 +890,14 @@ async function handleEvent(request, env, ctx) {
   let metadata = body.m;
   if (metadata?.mcp_profile !== undefined || metadata?.mcp_cellar_link !== undefined ||
       metadata?.mcp_n90_link !== undefined || metadata?.mcp_n90_entry !== undefined ||
-      metadata?.window_tiktok_entry !== undefined || metadata?.vacuum_model !== undefined) {
+      metadata?.mcp_client_signal !== undefined || metadata?.window_tiktok_entry !== undefined ||
+      metadata?.vacuum_model !== undefined) {
     metadata = {...metadata};
     delete metadata.mcp_profile;
     delete metadata.mcp_cellar_link;
     delete metadata.mcp_n90_link;
     delete metadata.mcp_n90_entry;
+    delete metadata.mcp_client_signal;
     delete metadata.window_tiktok_entry;
     delete metadata.vacuum_model;
   }
@@ -1040,11 +1044,13 @@ async function trendCompute(env, auditOnly) {
       WHERE valid_meta IS NOT NULL GROUP BY tool ORDER BY n DESC LIMIT 10
     `).all();
     const recentMcp = await env.EVENTS.prepare(COMPLETE_MCP_WEEK_SQL).all();
-    const {completeWeek, compactCompleteWeek, n90CompactCompleteWeek} = completedMcpReports(recentMcp.results?.[0]);
+    const {completeWeek, compactCompleteWeek, n90CompactCompleteWeek, clientCompleteWeek} =
+      completedMcpReports(recentMcp.results?.[0]);
     return new Response(JSON.stringify({
       events: ev.results || [], pages: pg.results || [], zero_hits: zh.results || [],
       refs: refs.results || [], mcp: mcp.results || [],
       mcp_complete_week: completeWeek,
+      mcp_client_complete_week: clientCompleteWeek,
       mcp_compact_complete_week: compactCompleteWeek,
       mcp_n90_compact_complete_week: n90CompactCompleteWeek,
       affiliate_audit: await readAudit(),
@@ -1058,7 +1064,7 @@ async function trendCompute(env, auditOnly) {
 // MCP server (Model Context Protocol, stateless Streamable HTTP).
 // Each tool returns a usable answer with sources. Publication, calls, website
 // visits and merchant activity are observed separately.
-const MCP_VERSION = "1.24.29";
+const MCP_VERSION = "1.24.30";
 const LEGACY_MCP_TOOLS = [
   drainTool,
   // AI-era round 2026-08-29: the decision LAYER above the per-device
@@ -1618,21 +1624,25 @@ function mcpJson(id, result) {
   });
 }
 
-function mcpError(id, code, message, status) {
-  return new Response(JSON.stringify({ jsonrpc: "2.0", id: id === undefined ? null : id, error: { code, message } }), {
+function mcpError(id, code, message, status, data) {
+  return new Response(JSON.stringify({ jsonrpc: "2.0", id: id === undefined ? null : id, error: { code, message, data } }), {
     status: status || 200,
     headers: { "content-type": "application/json; charset=utf-8", "access-control-allow-origin": "*" },
   });
 }
 
 async function handleMcp(request, env, url) {
+  const origin = request.headers.get("Origin");
+  if (origin !== null && !ALLOWED_ORIGINS.has(origin)) {
+    return new Response("Origin not allowed", {status:403});
+  }
   if (request.method === "OPTIONS") {
     return new Response(null, {
       status: 204,
       headers: {
         "access-control-allow-origin": "*",
         "access-control-allow-methods": "POST, OPTIONS",
-        "access-control-allow-headers": "content-type, accept, mcp-session-id, mcp-protocol-version",
+        "access-control-allow-headers": "content-type, accept, mcp-session-id, mcp-protocol-version, mcp-method, mcp-name",
       },
     });
   }
@@ -1643,28 +1653,39 @@ async function handleMcp(request, env, url) {
   }
   let msg;
   try { msg = await request.json(); } catch { return mcpError(null, -32700, "parse error", 400); }
-  if (Array.isArray(msg)) return mcpError(null, -32600, "batching not supported", 400);
-  const { id, method, params } = msg || {};
+  if (!msg || Array.isArray(msg) || msg.jsonrpc !== "2.0" || typeof msg.method !== "string" ||
+      (msg.id !== undefined && msg.id !== null && !["string", "number"].includes(typeof msg.id))) {
+    return mcpError(null, -32600, "Invalid JSON-RPC request", 400);
+  }
+  const { id, method, params } = msg;
+  const protocol = mcpRequestProtocol(request.headers, method, params);
+  if (protocol.error) {
+    const {code, message, status, data} = protocol.error;
+    return mcpError(id, code, message, status, data);
+  }
   const compact = url.pathname === "/mcp/v1" && url.searchParams.get("profile") === "compact" &&
     url.searchParams.getAll("profile").length === 1;
-  if (method === "initialize") {
-    return mcpJson(id, {
-      protocolVersion: (params && params.protocolVersion) || "2025-03-26",
-      capabilities: compact ? {tools:{}, resources:{}} : {tools:{}},
-      // Keep in step with mcp/server.json — a client that reads one version
-      // from the registry and another from initialize has no way to tell which
-      // is stale.
-      // 自报名字必须与注册表 canonical 一致(2026-09-16):改名时 superseded/ 两份 manifest 都标了,
-      // 但这一行漏了,于是注册表说 hvac-btu-heat-klimaanlage、连上来的客户端却被告知是已废弃的
-      // getecoback-raumklima。一个实体三个名字正是 entity stacking 最忌讳的事。
-      serverInfo: { name: "hvac-btu-heat-klimaanlage", version: MCP_VERSION },
-      instructions: compact ? compactInstructions +
-        " Einen ausgewiesenen Ratgeberabschnitt kannst du über ecoback_werkzeug_ausfuehren mit name ratgeber_lesen und eingaben.pfad gleich guide_url lesen." :
-        "Entdecke Werkzeuge mit tools/list. Sende jedes zurückgegebene nextCursor als params.cursor im nächsten Aufruf. Suche nach Aufgaben in https://getecoback.com/api/mcp-tools?view=compact&limit=24 mit q oder category. Mit view=examples und tool=EXAKTER_NAME findest du geprüfte Eingaben, erwartete Ergebnisse und die Quelle. Verwende die angegebenen Einheiten, Annahmen und Grenzen. Bei Feuchte nutzt geraet_wahl dieselben Entscheidungsregeln wie die Website: fehlende Messungen bleiben unbekannt, Schäden zuerst klären, Fläche allein bestimmt keine Liter/Tag. Bei Fragen zum Kondensatablauf im Keller: entfeuchter_ablaufcheck unterscheidet Gefälle, Pumpe und Tank und nennt die Modellquelle. Antworten enthalten Quell-URLs, keine Affiliate-Kauflinks.",
-    });
+  const serverInfo = {name:"hvac-btu-heat-klimaanlage", version:MCP_VERSION};
+  const reply = result => mcpJson(id, protocol.modern ? {
+    ...result,
+    resultType:"complete",
+    _meta:{...result._meta, [SERVER_INFO_KEY]:serverInfo},
+    ...(["server/discover", "tools/list", "resources/list", "resources/templates/list", "resources/read"].includes(method)
+      ? {ttlMs:0, cacheScope:"private"} : {}),
+  } : result);
+  if (!protocol.modern && method.startsWith("notifications/") && id === undefined) {
+    return new Response(null, {status:202, headers:{"access-control-allow-origin":"*"}});
   }
-  if (method === "notifications/initialized" || (typeof method === "string" && method.startsWith("notifications/"))) {
-    return new Response(null, { status: 202 });
+  if (protocol.modern && (id === undefined || id === null)) {
+    return mcpError(null, -32600, "Request ID required", 400);
+  }
+  if (method === "server/discover" || (!protocol.modern && method === "initialize")) {
+    const capabilities = compact ? {tools:{}, resources:{}} : {tools:{}};
+    const instructions = compact ? compactInstructions +
+        " Einen ausgewiesenen Ratgeberabschnitt kannst du über ecoback_werkzeug_ausfuehren mit name ratgeber_lesen und eingaben.pfad gleich guide_url lesen." :
+        "Entdecke Werkzeuge mit tools/list. Sende jedes zurückgegebene nextCursor als params.cursor im nächsten Aufruf. Suche nach Aufgaben in https://getecoback.com/api/mcp-tools?view=compact&limit=24 mit q oder category. Mit view=examples und tool=EXAKTER_NAME findest du geprüfte Eingaben, erwartete Ergebnisse und die Quelle. Verwende die angegebenen Einheiten, Annahmen und Grenzen. Bei Feuchte nutzt geraet_wahl dieselben Entscheidungsregeln wie die Website: fehlende Messungen bleiben unbekannt, Schäden zuerst klären, Fläche allein bestimmt keine Liter/Tag. Bei Fragen zum Kondensatablauf im Keller: entfeuchter_ablaufcheck unterscheidet Gefälle, Pumpe und Tank und nennt die Modellquelle. Antworten enthalten Quell-URLs, keine Affiliate-Kauflinks.";
+    return reply(protocol.modern ? {supportedVersions:SUPPORTED_MCP_VERSIONS, capabilities, instructions}
+      : {protocolVersion:legacyMcpVersion(params?.protocolVersion), capabilities, serverInfo, instructions});
   }
   if (compact && (method === "resources/list" || method === "resources/templates/list" || method === "resources/read")) {
     if (id === undefined || id === null) return new Response(null, {status:202});
@@ -1673,29 +1694,34 @@ async function handleMcp(request, env, url) {
     }
     if (method === "resources/read") {
       if (typeof params?.uri !== "string" || !params.uri) return mcpError(id, -32602, "A resource URI is required");
-      if (params.uri !== cellarResourceContents.uri) return mcpError(id, -32002, "Resource not found");
-      return mcpJson(id, {contents:[cellarResourceContents]});
+      if (params.uri !== cellarResourceContents.uri) {
+        return mcpError(id, protocol.modern ? -32602 : -32002, "Resource not found", protocol.modern ? 400 : 200);
+      }
+      return reply({contents:[cellarResourceContents]});
     }
     if (params?.cursor !== undefined) return mcpError(id, -32602, "Invalid resource cursor");
-    return mcpJson(id, method === "resources/list" ? cellarResourceListing : {resourceTemplates:[]});
+    return reply(method === "resources/list" ? cellarResourceListing : {resourceTemplates:[]});
   }
   if (method === "tools/list") {
     const page = pageTools(compact ? compactTools : MCP_TOOLS, params?.cursor, MCP_VERSION);
     if (!page) return mcpError(id, -32602, "invalid or expired tools cursor");
-    return mcpJson(id, page);
+    return reply(page);
   }
   if (method === "tools/call") {
     let name = params && params.name;
     let args = params && params.arguments;
+    if (protocol.modern && !compact && !MCP_TOOLS.some(tool => tool.name === name)) {
+      return mcpError(id, -32602, "Unknown tool", 400);
+    }
     try {
       if (compact) {
-        if (name === finderName) return mcpJson(id, compactSearch(CATALOG_INDEX, args));
-        if (name !== runnerName) return mcpError(id, -32602, "Unknown compact tool");
+        if (name === finderName) return reply(compactSearch(CATALOG_INDEX, args));
+        if (name !== runnerName) return mcpError(id, -32602, "Unknown compact tool", protocol.modern ? 400 : 200);
         if (args?.name === "ratgeber_lesen" && Object.keys(args).length === 2 &&
             guideTarget(args.eingaben?.pfad)?.anchor && Object.keys(args.eingaben).length === 1) {
-          return mcpJson(id, await mcpCallTool("ratgeber_lesen", args.eingaben, env));
+          return reply(await mcpCallTool("ratgeber_lesen", args.eingaben, env));
         }
-        if (!validCompactRun(args)) return mcpJson(id, mcpInputError("Wähle einen passenden Treffer und gib seine Eingaben als Objekt an."));
+        if (!validCompactRun(args)) return reply(mcpInputError("Wähle einen passenden Treffer und gib seine Eingaben als Objekt an."));
         name = args.name;
         args = args.eingaben;
       }
@@ -1721,13 +1747,14 @@ async function handleMcp(request, env, url) {
         // The daily eco-mcp-smoke workflow calls every tool with canned args;
         // it now identifies itself (getecoback-ci UA) and is not adoption.
         const mcpUa = request.headers.get("user-agent") || "";
-        const quietCompact = compact && (url.searchParams.get("__probe") === "1" || request.headers.get("x-probe") === "1" ||
-          request.headers.get("dnt") === "1" || request.headers.get("sec-gpc") === "1");
-        if (env.EVENTS && !quietCompact && evUaClass(mcpUa) !== "ci") {
+        const quiet = url.searchParams.get("__probe") === "1" ||
+          ["x-probe", "dnt", "sec-gpc"].some(header => request.headers.get(header) === "1");
+        const successful = known && !result.isError;
+        if (env.EVENTS && !quiet && evUaClass(mcpUa) !== "ci") {
           await env.EVENTS.prepare(
             "INSERT INTO ev (day, name, page, ref, meta, country, ua_class) VALUES (date('now'), ?, '/mcp', '', ?, '', ?)"
           ).bind(
-            known && !result.isError ? "mcp_call" : "mcp_probe",
+            successful ? "mcp_call" : "mcp_probe",
             JSON.stringify({
               tool: known ? name : "unknown",
               // Store the fixed tool outcome regardless of when it was added.
@@ -1739,19 +1766,20 @@ async function handleMcp(request, env, url) {
               ...(compact && !result.isError ? {mcp_profile:"compact"} : {}),
               ...(cellarLinkOffered ? {mcp_cellar_link:1} : {}),
               ...(n90LinkOffered ? {mcp_n90_link:1} : {}),
+              ...(successful ? {mcp_client_signal:mcpClientSignal(protocol.clientInfo, mcpUa)} : {}),
               ua: mcpUa.slice(0, 80),
             }),
             evUaClass(mcpUa)
           ).run();
         }
       } catch (e) { /* telemetry must never break the tool */ }
-      return mcpJson(id, result);
+      return reply(result);
     } catch (e) {
       return mcpError(id, -32603, "tool execution failed");
     }
   }
-  if (method === "ping") return mcpJson(id, {});
-  return mcpError(id, -32601, `method not found: ${method}`);
+  if (!protocol.modern && method === "ping") return reply({});
+  return mcpError(id, -32601, "Method not found", protocol.modern ? 404 : 200);
 }
 
 // 引荐来源分类(2026-09-15「舰队相互学习」):tools/fleet/ref_sources.txt 是唯一权威,
