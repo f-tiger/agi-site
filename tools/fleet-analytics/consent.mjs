@@ -15,6 +15,7 @@ const {businessEvent, publicAccountEntryPath} = await import('./business.mjs' + 
 const {allowed} = await import('./registry.mjs' + new URL(import.meta.url).search);
 const copy = {
  en:['Disable analytics','Enable analytics'], zh:['关闭访问统计','开启访问统计'],
+ uk:['Вимкнути аналітику','Увімкнути аналітику'],
  de:['Analyse deaktivieren','Analyse aktivieren'], it:['Disattiva statistiche','Attiva statistiche'],
  fr:['Désactiver les statistiques','Activer les statistiques'], es:['Desactivar estadísticas','Activar estadísticas']
 };

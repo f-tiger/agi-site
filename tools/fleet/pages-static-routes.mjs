@@ -46,6 +46,7 @@ const REVIEWED_DATA={
   '/collector-assets/tds-suite/manifest.json',
   ...['de','en','zh'].map(lang=>'/collector-assets/tds-suite/catalog-'+lang+'.json'),
   ...['uk/home','uk/storage-boxes','uk/indoor-laundry','uk/smart-plugs','nl/home','nl/opbergboxen','nl/binnenklimaat','nl/slimme-stekkers'].map(name=>'/collector-assets/text/'+name+'.txt'),
+  ...['internet-bez-svitla','dbzh/archer-c6-xz000-g3','dbzh/archer-ax23-xz000-g7','dbzh/archer-ax55-xz000-g3'].map(name=>'/collector-assets/text/ua/'+name+'.txt'),
  ]),
 };
 function reviewedDirectoryAsset(site,path){
