@@ -8,7 +8,7 @@ import {asksForCoolingNoiseComparison} from './cooling-noise-intent.mjs?v=f0bcc0
 import {asksForTesamollWindowProfile} from './tesamoll-profile-intent.mjs';
 import {exactGermanFilterModel} from './exact-filter-intent.mjs';
 import {philipsHumidifierFilterSection} from './philips-humidifier-filter-intent.mjs?v=537af20b39fb';
-import {asksForBeurerWarmthModelFit, asksForElectricBlanketCost, beurerWarmthModelGuide, isElectricBlanketQuestion} from './electric-blanket-cost-intent.mjs?v=af908d3e8ed8';
+import {asksForBeurerWarmthModelFit, asksForElectricBlanketCost, beurerWarmthModelGuide, isElectricBlanketQuestion} from './electric-blanket-cost-intent.mjs?v=2f8767c00a87';
 import {asksForHygrometerComparison} from './hygrometer-comparison-intent.mjs';
 import {asksForN90ModelIdentity, namesAnotherPacWithoutN90} from './n90-model-intent.mjs';
 import {asksForPortaSplitWindowLip, namesDifferentPortaSplit, namesOriginalPortaSplitExactly} from './portasplit-fensterfalz-intent.mjs?v=66ae5fbd590d';

@@ -25,9 +25,19 @@ export const beurerWarmthModelGuide = {
 export function asksForBeurerWarmthModelFit(query) {
   const hd75 = /\b(?:hd[ -]*75|424[ .-]*00|4211125424008)\b/;
   const ub30 = /\b(?:ub[ -]*30|306[ .-]*00|4211125306007)\b/;
-  const other = /\b(?:nordic|ocean|dark[ -]*grey|felloptik|42106|42103|40000|40019|ub[ -]*(?:33|60|66|74|90|100|101|190)|ersatz\w*|defekt\w*|repar\w*|kaputt|blink\w*|wasch\w*|stecker\w*|fehler\w*)\b/;
-  if ((!hd75.test(query) && !ub30.test(query)) || other.test(query) || asksForElectricBlanketCost(query)) return false;
+  const blanketModel = hd75.test(query);
+  const mattressModel = ub30.test(query);
+  const other = /\b(?:nordic|ocean|dark[ -]*grey|felloptik|421[ .-]*(?:06|03)|400[ .-]*(?:00|19)|ub[ -]*(?:33|60|66|74|90|100|101|190)|ersatz\w*|defekt\w*|repar\w*|kaputt|blink\w*|wasch\w*|stecker\w*|fehler\w*)\b/;
+  const article = /\b(?:art(?:ikel)?[ .-]*(?:nr|nummer)\.?|artikel)\s*[:.#-]?\s*(\d{3})[ .-]*(\d{2})\b/g;
+  const wrongArticle = [...query.matchAll(article)].some(([, prefix, suffix]) =>
+    prefix+suffix !== '42400' && prefix+suffix !== '30600');
+  const broken = /\b(?:schaltet|startet|geht|heizt|waermt|wird)\s+(?:nicht\s+(?:mehr\b|ein\b|an\b|warm\b)|(?:gleich|sofort|direkt)\b)|\b(?:sofort|direkt|gleich)\s+nach dem einschalten\b/;
+  const part = /\b(?:schalter|bedienteil|kabel)\w*\b/.test(query) &&
+    /\b(?:neu\w*|kauf\w*|bestell\w*|wechsel\w*|pass\w*)\b/.test(query);
+  if ((!blanketModel && !mattressModel) || other.test(query) || wrongArticle || broken.test(query) || part) return false;
+  if (blanketModel && mattressModel) return true;
+  if (asksForElectricBlanketCost(query)) return false;
   const decision = /\b(?:abschalt\w*|abschaltet|schaltet|timer|ueber nacht|nachts|schlaf\w*|bett\w*|matratz\w*|waermeunterbett\w*|zudeck\w*|liegen|unterlage\w*|unter mir|unterschie\w*|vergleich\w*)\b/;
-  return (hd75.test(query) && ub30.test(query)) || decision.test(query) ||
-    (ub30.test(query) && /\b(?:stromverbrauch|stromkosten|nennleistung|watt)\b/.test(query));
+  return decision.test(query) ||
+    (mattressModel && /\b(?:stromverbrauch|stromkosten|nennleistung|watt)\b/.test(query));
 }
