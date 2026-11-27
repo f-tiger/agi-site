@@ -4,6 +4,9 @@ import {getTool} from './trade-workbench/engine.mjs';
 
 export const TRADE_QUOTE_SIGNUP_SOURCE = 'bpj_trade_quote';
 export const TRADE_WORKBENCH_SIGNUP_SOURCE = 'bpj_trade_workbench';
+export const TRADE_QUOTE_MCP_LINK_SIGNUP_SOURCE = 'bpj_trade_quote_mcp_link';
+export const TRADE_SIGNUP_SOURCES = Object.freeze([TRADE_QUOTE_SIGNUP_SOURCE,
+ TRADE_WORKBENCH_SIGNUP_SOURCE,TRADE_QUOTE_MCP_LINK_SIGNUP_SOURCE]);
 const QUOTE_PATHS = new Set(['/studio/ai/trade-export-quote','/en/studio/ai/trade-export-quote']);
 const WORKBENCH_PATH = /^\/(?:en\/)?studio\/trade-tools\/([a-z0-9-]+)?$/;
 const CLAIM_TABLE = 'free_account_signup_claims';
@@ -29,9 +32,12 @@ function eligibleOrigin(request) {
  return qualityEligible(request,'/api/account','');
 }
 
-function sourceForPath(path) {
- if (QUOTE_PATHS.has(path)) return TRADE_QUOTE_SIGNUP_SOURCE;
- const workbench = WORKBENCH_PATH.exec(path);
+function sourceForReferrer(referrer) {
+ if (QUOTE_PATHS.has(referrer.pathname)) {
+  return referrer.search === '?mcp_entry=trade-export-quote'
+   ? TRADE_QUOTE_MCP_LINK_SIGNUP_SOURCE : TRADE_QUOTE_SIGNUP_SOURCE;
+ }
+ const workbench = WORKBENCH_PATH.exec(referrer.pathname);
  return workbench && (!workbench[1] || getTool(workbench[1])) ? TRADE_WORKBENCH_SIGNUP_SOURCE : null;
 }
 
@@ -40,7 +46,7 @@ export async function issueTradeSignupSource(request,env,ip) {
  let referrer;
  try { referrer=new URL(request.headers.get('referer')||''); } catch { return null; }
  if (referrer.origin!==HOST || referrer.username || referrer.password) return null;
- const source = sourceForPath(referrer.pathname);
+ const source = sourceForReferrer(referrer);
  if (!source) return null;
  const db=env.HITS;
  const time=now(),browser=browserToken(request)||randomToken(),claim=randomToken();
@@ -71,8 +77,8 @@ export function tradeSignupSourceStatements(request,db,claim,accountId,created,q
  const hashed=claimHash(browser,claim);
  return [
   db.prepare(`INSERT INTO ${SOURCE_TABLE}(account_id,source) SELECT ?,source FROM ${CLAIM_TABLE}
-    WHERE claim_hash=? AND source IN (?,?) AND expires>?`)
-    .bind(accountId,hashed,TRADE_QUOTE_SIGNUP_SOURCE,TRADE_WORKBENCH_SIGNUP_SOURCE,created),
+    WHERE claim_hash=? AND source IN (?,?,?) AND expires>?`)
+    .bind(accountId,hashed,...TRADE_SIGNUP_SOURCES,created),
   db.prepare(`DELETE FROM ${CLAIM_TABLE} WHERE claim_hash=? AND EXISTS(SELECT 1 FROM ${SOURCE_TABLE} WHERE account_id=?)`).bind(hashed,accountId),
  ];
 }

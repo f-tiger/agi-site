@@ -1,6 +1,8 @@
 import {ceilPositiveRatio, decimalIntegers, fromDecimalInteger} from './operations/core.mjs';
 import {json, label, make, number, parse} from './tables-core.mjs';
 
+export const TRADE_QUOTE_ENTRY_URL = 'https://baipiaoji.com/studio/ai/trade-export-quote?mcp_entry=trade-export-quote';
+
 // Common currencies from the SIX ISO 4217 List One (2026-09-17).
 // Payment providers can apply a separate settlement precision.
 const twoPlaces = 'AED AUD BRL CAD CHF CNY COP DKK EUR GBP HKD IDR INR MXN MYR NOK NZD PEN PHP PLN QAR SAR SEK SGD THB TRY TWD USD ZAR'.split(' ');
@@ -105,6 +107,7 @@ function exportQuote({
   const convertedProduct = converted(productCostBase, from);
   let cost = convertedProduct;
   const fees = readFees(sellerFees, from, to);
+  const costCompleteness = checkSellerCosts(term, fees);
   const feeLines = fees.map(({name, amount, currency}) => {
     const inQuote = converted(scaled(amount, costPlaces, 'Seller fee amount'), currency);
     cost += inQuote;
@@ -128,7 +131,7 @@ function exportQuote({
       paymentFee:estimatedAmount(projectedPayment),
       profit:estimatedAmount(profit),
       marginPercent:Number((100 * Number(profit) / Number(order * percentScale)).toFixed(4)),
-      meetsTarget:profit >= order * margin,
+      meetsTarget:costCompleteness.status === 'costs_entered' ? profit >= order * margin : null,
     };
   }
 
@@ -148,7 +151,7 @@ function exportQuote({
     minimumUnitPrice:quoteAmount(minimumUnit),
     orderTotalAtMinimumUnitPrice:quoteAmount(minimumUnit * units),
     quotedOrder,
-    costCompleteness:checkSellerCosts(term,fees),
+    costCompleteness,
   };
 }
 
@@ -156,7 +159,10 @@ const money = {type:'number',minimum:0};
 const codeSchema = {type:'string',enum:[...currencyPlaces.keys()]};
 const quotedProperties = {
   unitPrice:money,orderTotal:money,commission:money,paymentFee:money,profit:{type:'number'},
-  marginPercent:{type:'number'},meetsTarget:{type:'boolean'},
+  marginPercent:{type:'number'},meetsTarget:{
+    type:['boolean','null'],
+    description:'Null when costCompleteness.status is provisional. Otherwise, compares the margin from entered costs with the target.',
+  },
 };
 const quoteProperties = {
   incoterm:{type:'string',enum:terms},
@@ -183,8 +189,8 @@ const quoteTool = make(
   'trade-export-quote',
   '外贸订单报价与毛利计算器',
   'Export order quote and margin calculator',
-  '按输入的汇率、货品和卖方费用计算 EXW、FOB 或 CIF 底价与毛利。CIF 费用项用 kind 明确标记 freight、insurance 或 freight_and_insurance。若已含在同一笔正额费用中，额外零费用项可用 includedIn 指向该费用的行号（从 1 起）。costCompleteness 为 provisional 时，结果仅按已填成本估算，发送买家报价前请先补齐运费和保险。',
-  'Calculate an EXW, FOB or CIF price floor and margin from seller costs and exchange rates. In sellerFees JSON, mark CIF cost lines with kind freight, insurance or freight_and_insurance. When a billed fee already includes a cost, a separate typed zero line can refer to that positive fee by its 1-based line number in includedIn. If costCompleteness.status is provisional, prices use known costs only. Confirm freight and cargo insurance before using the result in a buyer quote.',
+  '按输入的汇率、货品和卖方费用计算 EXW、FOB 或 CIF 底价与毛利。CIF 费用项用 kind 明确标记 freight、insurance 或 freight_and_insurance。若已含在同一笔正额费用中，额外零费用项可用 includedIn 指向该费用的行号（从 1 起）。costCompleteness.status 为 provisional 时，底价、利润和利润率仅按已填成本估算，试报结果的 meetsTarget 为 null。补齐运费和保险前，勿向买家发送该估价。',
+  'Calculate an EXW, FOB or CIF price floor and margin from seller costs and exchange rates. In sellerFees JSON, mark CIF cost lines with kind freight, insurance or freight_and_insurance. When a billed fee already includes a cost, a separate typed zero line can refer to that positive fee by its 1-based line number in includedIn. If costCompleteness.status is provisional, price floors, profit and margin use known costs only, and meetsTarget is null for a proposed price. Confirm freight and cargo insurance before using the estimate in a buyer quote.',
   [
     label('incoterm','贸易术语（EXW、FOB 或 CIF）','Trade term (EXW, FOB, or CIF)','CIF'),
     label('costCurrency','货品成本币种（如 CNY）','Product cost currency (e.g. CNY)','CNY'),
@@ -207,7 +213,10 @@ const quoteTool = make(
 );
 quoteTool.searchAliases = ['export price floor','FOB quote','CIF pricing','EXW price','trade profit margin','外贸报价','出口报价','外币报价','外贸利润','外贸毛利','FOB报价','CIF报价'];
 quoteTool.outputSchema = {
-  type:'object',additionalProperties:false,required:Object.keys(quoteProperties),properties:quoteProperties,
+  type:'object',additionalProperties:false,required:Object.keys(quoteProperties),properties:{
+    ...quoteProperties,
+    entry_url:{type:'string',const:TRADE_QUOTE_ENTRY_URL,description:'Optional fixed link to continue in the free browser calculator after the MCP input costs are entered. The link carries no quote data.'},
+  },
 };
 
 export const tools = [quoteTool];

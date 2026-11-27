@@ -249,6 +249,10 @@ for(const tool of SUITE_TOOLS){
  assert.equal(checked.isError,undefined,tool.name);
  const expected=JSON.parse(JSON.stringify(runSuiteTool(tool.name,tool.example)));
  assert(expected!==null&&typeof expected==='object'&&!Array.isArray(expected),'MCP structuredContent must be a JSON object: '+tool.name);
+ if(tool.name==='bpj_trade_export_quote'){
+  assert.equal(expected.entry_url,undefined);
+  expected.entry_url='https://baipiaoji.com/studio/ai/trade-export-quote?mcp_entry=trade-export-quote';
+ }
  assert.deepEqual(checked.structuredContent,expected,tool.name);
  assert.deepEqual(JSON.parse(checked.content[0].text),expected,tool.name);
  const invalid=await rpc('tools/call',{name:tool.name,arguments:{...tool.example,bpj_unknown_fixture_property:'private fixture'}});
@@ -338,9 +342,17 @@ console.log('PASS '+SUITE_TOOLS.length+' free MCP fixtures and invalid arguments
  try{
   const entered=await observe(quote(),{headers:{Referer:'https://baipiaoji.com/studio/ai/?case=PRIVATE-REFERRER'}});
   assert.equal(entered.structuredContent.costCompleteness.status,'costs_entered');
-  assert.equal((await observe(quote(known,true))).structuredContent.costCompleteness.status,'costs_entered');
-  assert.deepEqual((await observe(quote({...known,sellerFees:'[]'},true))).structuredContent.costCompleteness,
-   {status:'provisional',missing:['freight','insurance']});
+  assert.equal(entered.structuredContent.quotedOrder.meetsTarget,true);
+  const entryUrl='https://baipiaoji.com/studio/ai/trade-export-quote?mcp_entry=trade-export-quote';
+  assert.equal(entered.structuredContent.entry_url,entryUrl);
+  assert.equal(JSON.parse(entered.content[0].text).entry_url,entryUrl);
+  const wrapped=await observe(quote(known,true));
+  assert.equal(wrapped.structuredContent.costCompleteness.status,'costs_entered');
+  assert.equal(wrapped.structuredContent.entry_url,entryUrl);
+  const incomplete=await observe(quote({...known,sellerFees:'[]'},true));
+  assert.deepEqual(incomplete.structuredContent.costCompleteness,{status:'provisional',missing:['freight','insurance']});
+  assert.equal(incomplete.structuredContent.quotedOrder.meetsTarget,null);
+  assert.equal(incomplete.structuredContent.entry_url,undefined);
   assert.equal((await observe(quote({}))).isError,true);
   assert.equal((await observe({name:'run_bpj_ai_tool',arguments:{name:AI_TRADE_QUOTE}})).isError,true);
   assert.equal((await observe(quote(example))).structuredContent.costCompleteness.status,'costs_entered');

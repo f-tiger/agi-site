@@ -1,8 +1,7 @@
 import {hash, now, tokenFrom} from './free-account.js';
 import {utcDay} from './trade-workbench-access.mjs';
-import {TRADE_QUOTE_SIGNUP_SOURCE,TRADE_WORKBENCH_SIGNUP_SOURCE} from './trade-signup-source.mjs';
+import {TRADE_SIGNUP_SOURCES as sources} from './trade-signup-source.mjs';
 
-const sources = [TRADE_QUOTE_SIGNUP_SOURCE,TRADE_WORKBENCH_SIGNUP_SOURCE];
 // Keep the existing table and account key so quote milestones survive the new cohort.
 const table = 'bpj_trade_quote_workbench_use';
 const setup = `CREATE TABLE IF NOT EXISTS ${table} (
@@ -17,7 +16,7 @@ const record = `INSERT INTO ${table}(account_id,first_day)
  SELECT a.id,? FROM free_accounts a
  JOIN free_account_sessions session ON session.account_id=a.id AND session.version=a.session_version
  JOIN free_account_signup_sources source ON source.account_id=a.id
- WHERE a.id=? AND a.qa=0 AND session.token_hash=? AND session.expires>? AND source.source IN (?,?)
+ WHERE a.id=? AND a.qa=0 AND session.token_hash=? AND session.expires>? AND source.source IN (?,?,?)
  ON CONFLICT(account_id) DO UPDATE SET
    repeat_day=CASE WHEN excluded.first_day<first_day THEN first_day ELSE excluded.first_day END,
    first_day=MIN(first_day,excluded.first_day)
@@ -55,7 +54,7 @@ export async function readTradeSignupWorkbenchUse(db, start, end) {
      FROM ${table} usage
      JOIN free_accounts a ON a.id=usage.account_id
      JOIN free_account_signup_sources source ON source.account_id=a.id
-     WHERE a.qa=0 AND source.source IN (?,?) GROUP BY source.source`).bind(end,end,start,end,start,end,...sources).all();
+     WHERE a.qa=0 AND source.source IN (?,?,?) GROUP BY source.source`).bind(end,end,start,end,start,end,...sources).all();
     if (success===false || !Array.isArray(results)) return null;
     const counts = new Map(sources.map(source=>[source,{first_use_total:0,repeat_use_total:0,first_use:0,repeat_use:0}]));
     for (const {source,first_use_total,repeat_use_total,first_use,repeat_use} of results) {

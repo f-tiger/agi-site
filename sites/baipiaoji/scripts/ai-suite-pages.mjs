@@ -12,7 +12,7 @@ export const FREE_SUITE_MCP = 'https://baipiaoji.com/api/ai-mcp';
 const assets = '<link rel="stylesheet" href="/studio-assets/ai-suite.css?v=3">';
 const resultStyles = '<link rel="stylesheet" href="/studio-assets/ai-suite-result.css?v=3">';
 const script = '<script type="module" src="/studio-assets/ai-suite.mjs?v=3"></script>';
-const quoteScript = '<script type="module" src="/studio-assets/ai-suite.mjs?v=trade-quote-1"></script><script type="module" src="/studio-assets/trade-quote-signup.mjs?v=2"></script>';
+const quoteScript = '<script type="module" src="/studio-assets/ai-suite.mjs?v=trade-quote-2"></script><script type="module" src="/studio-assets/trade-quote-signup.mjs?v=3"></script>';
 const siteTitle = {zh:'BPJ 自研 AI 工具',en:'BPJ AI tools'};
 const tradeRules = 'https://library.iccwbo.org/content/tfb/BOOKS/BK_0049/BK_0049_05_RulesSea.htm?AGENT=ICC_HQ';
 

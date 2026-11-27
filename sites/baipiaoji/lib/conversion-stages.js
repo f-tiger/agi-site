@@ -3,9 +3,9 @@ import {parseTableReviewEvent,emptyTableReviewCounts} from './table-review-signa
 import {parseListingEvent,emptyListingCounts} from './listing-signals.mjs';
 import {PROOFKIT_PATHS,parseProofKitEvent,emptyProofKitCounts} from './proofkit-signals.mjs';
 import {parseTradeWorkbenchEvent,emptyTradeWorkbenchCounts} from './trade-workbench-signals.mjs';
-import {parseTradeQuoteEvent,emptyTradeQuoteCounts,readTradeSignupAccounts} from './trade-quote-growth.mjs';
+import {parseTradeQuoteEvent,emptyTradeQuoteCounts,readTradeSignupAccounts,combinedTradeQuoteCounts} from './trade-quote-growth.mjs';
 import {readTradeSignupWorkbenchUse} from './trade-quote-workbench-use.mjs';
-import {TRADE_QUOTE_SIGNUP_SOURCE,TRADE_WORKBENCH_SIGNUP_SOURCE} from './trade-signup-source.mjs';
+import {TRADE_QUOTE_MCP_LINK_SIGNUP_SOURCE,TRADE_SIGNUP_SOURCES,TRADE_WORKBENCH_SIGNUP_SOURCE} from './trade-signup-source.mjs';
 import catalog from '../data/tools.json' with {type:'json'};
 
 const toolSlugs = new Set(catalog.map(tool => tool.slug));
@@ -61,7 +61,7 @@ const TRADE_SCHEMA_SQL = `SELECT
 
 function tradeReadStatus(counts) {
   if (!counts) return 'unavailable';
-  return counts.get(TRADE_QUOTE_SIGNUP_SOURCE) && counts.get(TRADE_WORKBENCH_SIGNUP_SOURCE)
+  return TRADE_SIGNUP_SOURCES.every(source => counts.get(source))
     ? 'available' : 'invalid_result';
 }
 
@@ -203,8 +203,10 @@ export async function readConversionStages(db, days, clock = Date.now()) {
       return {date, created: Number(row?.created || 0), new_accounts_currently_email_verified: Number(row?.new_accounts_currently_email_verified || 0)};
     }) : null,
     account_scope: 'fleet_shared_account_pool',
-    trade_quote_accounts: tradeSignupAccounts.value?.get(TRADE_QUOTE_SIGNUP_SOURCE) ?? null,
-    trade_quote_workbench_use: tradeSignupWorkbenchUse.value?.get(TRADE_QUOTE_SIGNUP_SOURCE) ?? null,
+    trade_quote_accounts: combinedTradeQuoteCounts(tradeSignupAccounts.value),
+    trade_quote_workbench_use: combinedTradeQuoteCounts(tradeSignupWorkbenchUse.value),
+    trade_quote_mcp_link_accounts: tradeSignupAccounts.value?.get(TRADE_QUOTE_MCP_LINK_SIGNUP_SOURCE) ?? null,
+    trade_quote_mcp_link_workbench_use: tradeSignupWorkbenchUse.value?.get(TRADE_QUOTE_MCP_LINK_SIGNUP_SOURCE) ?? null,
     trade_workbench_accounts: tradeSignupAccounts.value?.get(TRADE_WORKBENCH_SIGNUP_SOURCE) ?? null,
     trade_workbench_signup_use: tradeSignupWorkbenchUse.value?.get(TRADE_WORKBENCH_SIGNUP_SOURCE) ?? null,
     trade_measurement_status: await tradeMeasurementStatus(db, tradeSignupAccounts.value, tradeSignupWorkbenchUse.value),
@@ -218,9 +220,11 @@ export async function readConversionStages(db, days, clock = Date.now()) {
       trade_quote_actions: 'Fixed same-site browser actions in complete UTC days. Ready means the calculator returned a result with the entered cost confirmations. Needs info means a CIF cost is unconfirmed. Demo and user-entered text are distinguished by the browser. Signup open is a link action. Counts may repeat and carry no quote data or identity.',
       trade_quote_accounts: 'Surviving non-test accounts with an immutable server-verified signup source from the BPJ export quote page. Created is restricted to the complete UTC window; total includes today. Email verification reflects current state separately. Historical or unverifiable sources remain outside the cohort. A read failure returns null.',
       trade_quote_workbench_use: 'Unique quote-attributed accounts with a recorded first successful signed-in workbench web result or a second on a different UTC day. The two earliest observed days per account are retained. Total milestones end before today, and first_use and repeat_use count milestones within the complete UTC window. Known examples, CSV, MCP, tests, declared automation and privacy opt-outs are excluded. Calculations on the local quote page are counted separately as anonymous browser actions. A missing or unreadable measurement table returns null.',
+      trade_quote_mcp_link_accounts: 'Subset of quote accounts that committed a signup claim issued from the exact tagged quote page. Tagged links can be shared and do not identify an MCP caller or originating platform. Attribution begins at this release.',
+      trade_quote_mcp_link_workbench_use: 'Subset of quote account first and repeat web use restricted to the tagged-link account cohort. This measures completed workbench results and does not establish purchases.',
       trade_workbench_accounts: 'Surviving non-test accounts with an immutable server-verified signup source from an eligible direct workbench entry. Uses the trade_quote_accounts date and current email-verification rules. Each account has at most one source and the two cohorts are disjoint. A missing or unreadable source table returns null.',
       trade_workbench_signup_use: 'First and repeat use of the web workbench by direct workbench signup accounts. Uses the same first successful own-input result, distinct UTC day, window and exclusion rules as trade_quote_workbench_use. A missing or unreadable measurement table returns null.',
-      trade_measurement_status: 'signup_sources covers both attributed account counts. workbench_use covers both first-use and repeat-use cohorts. available means both cohorts returned valid counts, including measured zeros. schema_missing means a required table was confirmed absent. invalid_result means a returned cohort failed count validation. unavailable means the read could not be verified. Coverage describes the current read and cannot recover earlier observations.',
+      trade_measurement_status: 'signup_sources covers attributed account counts. workbench_use covers first-use and repeat-use cohorts. available means every source returned valid counts, including measured zeros. schema_missing means a required table was confirmed absent. invalid_result means a returned cohort failed count validation. unavailable means the read could not be verified. Coverage describes the current read and cannot recover earlier observations.',
       acquisition: 'Search clicks and CTR come only from GSC; not supplied by this endpoint. GSC uses Pacific reporting days.',
       usage: 'Client-reported successful result actions from PDF, image and quote tools only; repeats are not deduplicated. Demo and own-input actions are separate. Image completion can include partial batch success. Download means an action, not a verified saved file.',
       other_calc_events: 'Unclassified calc events include navigation, edits and tools without a reviewed success contract; never count the whole calc bucket as completed work.',

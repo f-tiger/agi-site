@@ -5,8 +5,10 @@ import {recordTradeMcpRun, resolveTradeMcpPrincipal} from '../../lib/trade-mcp-a
 import {workbenchAllowance, workbenchMember} from '../../lib/trade-workbench-access.mjs';
 import {TRADE_MCP_DOCS, TRADE_MCP_PROTOCOLS, TRADE_MCP_SERVER_NAME, TRADE_MCP_TOOLS,
   TRADE_MCP_VERSION, getTradeTool, listTradeTools, runTradeTool, validateTradeMcpArgs} from '../../lib/trade-mcp-tools.mjs';
+import {mcpDiscovery, mcpRequestProtocol, mcpResult} from '../../lib/mcp-protocol.mjs';
 
 const origin = 'https://baipiaoji.com';
+const serverInfo = {name:TRADE_MCP_SERVER_NAME,version:TRADE_MCP_VERSION};
 const maxBodyBytes = 16 * 1024;
 const secondsPerDay = 86400;
 const envelopeFields = new Set(['jsonrpc','id','method','params']);
@@ -70,8 +72,6 @@ export async function onRequest({request,env}) {
   if (request.method !== 'POST') return reply({error:'method_not_allowed',docs:TRADE_MCP_DOCS},405,{Allow:'POST'});
   if (!/^application\/json(?:\s*;|$)/i.test(request.headers.get('Content-Type') || '')) return reply({error:'json_required'},415);
   if (!acceptsJson(request)) return reply({error:'accept_json_required'},406);
-  const version = request.headers.get('MCP-Protocol-Version');
-  if (version !== null && !TRADE_MCP_PROTOCOLS.includes(version)) return reply({error:'unsupported_protocol'},400);
   const authorization = request.headers.get('Authorization');
   const hasAccountCookie = (request.headers.get('Cookie') || '').split(';').some(value=>value.trimStart().startsWith(ACCOUNT_COOKIE+'='));
   if (authorization !== null && hasAccountCookie) return reply({error:'mixed_authentication'},400);
@@ -88,29 +88,36 @@ export async function onRequest({request,env}) {
     return reply({jsonrpc:'2.0',id:null,error:{code:-32700,message:'Parse error'}},400);
   }
   const validId = (typeof message?.id === 'string' && message.id.length <= 128) || Number.isSafeInteger(message?.id);
-  const fail = (code, description, status = 200, headers) => reply({jsonrpc:'2.0',id:validId ? message.id : null,
-    error:{code,message:description}},status,headers);
-  const result = value => reply({jsonrpc:'2.0',id:message.id,result:value});
+  const fail = (code, description, status = 200, headers, data) => reply({jsonrpc:'2.0',id:validId ? message.id : null,
+    error:{code,message:description,...(data?{data}:{})}},status,headers);
   if (!object(message) || message.jsonrpc !== '2.0' || typeof message.method !== 'string' || message.method.length > 100 ||
       Object.keys(message).some(key=>!envelopeFields.has(key)) || (Object.hasOwn(message,'params') && !object(message.params))) {
     return fail(-32600,'Invalid request',400);
   }
+  const {method,params = {}} = message;
+  const {modern,error:protocolError} = mcpRequestProtocol(request.headers,message,TRADE_MCP_PROTOCOLS);
+  if (protocolError) return fail(protocolError.code,protocolError.message,400,undefined,protocolError.data);
+  const version = request.headers.get('MCP-Protocol-Version');
+  if (!modern && version !== null && !TRADE_MCP_PROTOCOLS.includes(version)) return reply({error:'unsupported_protocol'},400);
+  const result = value => reply({jsonrpc:'2.0',id:message.id,result:mcpResult(value,modern,method,serverInfo)});
   if (!Object.hasOwn(message,'id')) {
     return message.method.startsWith('notifications/') ? reply(null,202) : fail(-32600,'Request ID required',400);
   }
   if (!validId) return fail(-32600,'Invalid request ID',400);
-  const {method,params = {}} = message;
-  if (method === 'initialize') {
-    if (!validClient(params)) return fail(-32602,'Invalid initialize parameters');
-    return result({protocolVersion:TRADE_MCP_PROTOCOLS.includes(params.protocolVersion) ? params.protocolVersion : TRADE_MCP_PROTOCOLS[0],
-      serverInfo:{name:TRADE_MCP_SERVER_NAME,version:TRADE_MCP_VERSION},capabilities:{tools:{listChanged:false}},
-      instructions:'Discover 100 BPJ foreign-trade calculations and evidence checklists. For tools/call, register at BPJ and pass your dedicated key in the Authorization Bearer header. Read tool details first, send only necessary fields, and review source documents and legal or policy outputs before acting. '+TRADE_MCP_DOCS});
+  if (method === 'server/discover' || (!modern && method === 'initialize')) {
+    if (!modern && !validClient(params)) return fail(-32602,'Invalid initialize parameters');
+    const metadata = {
+      serverInfo,capabilities:{tools:{listChanged:false}},
+      instructions:'Discover 100 BPJ foreign-trade calculations and evidence checklists. For tools/call, register at BPJ and pass your dedicated key in the Authorization Bearer header. Read tool details first, send only necessary fields, and review source documents and legal or policy outputs before acting. '+TRADE_MCP_DOCS};
+    const requested = params.protocolVersion;
+    return result(modern ? mcpDiscovery(TRADE_MCP_PROTOCOLS,metadata) :
+      {protocolVersion:TRADE_MCP_PROTOCOLS.includes(requested) ? requested : TRADE_MCP_PROTOCOLS[0],...metadata});
   }
   if (method === 'ping') return result({});
   if (method === 'tools/list') {
-    return Object.keys(params).some(key=>key !== '_meta') ? fail(-32602,'This server lists all MCP methods without pagination') : result({tools:TRADE_MCP_TOOLS});
+    return Object.keys(params).some(key=>key !== '_meta') ? fail(-32602,'This server lists all MCP methods without pagination',modern?400:200) : result({tools:TRADE_MCP_TOOLS});
   }
-  if (method !== 'tools/call') return fail(-32601,'Method not found');
+  if (method !== 'tools/call') return fail(-32601,'Method not found',modern?404:200);
   const bearer = authorization?.match(/^Bearer +(bpj_trade_[A-Za-z0-9_-]{43})$/i)?.[1];
   if (!bearer) return needsKey();
 
@@ -119,7 +126,7 @@ export async function onRequest({request,env}) {
     const db = env.HITS;
     const principal = await resolveTradeMcpPrincipal(db,bearer,seconds());
     if (!principal) return needsKey();
-    if (Object.keys(params).some(key=>!['name','arguments','_meta'].includes(key))) return fail(-32602,'Invalid tool parameters');
+    if (Object.keys(params).some(key=>!['name','arguments','_meta'].includes(key))) return fail(-32602,'Invalid tool parameters',modern?400:200);
     let output;
     try {
       const args = validateTradeMcpArgs(params.name,Object.hasOwn(params,'arguments') ? params.arguments : {});

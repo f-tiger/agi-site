@@ -8,6 +8,10 @@ Listed in the official
 [MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fhvac-btu-heat-klimaanlage/versions/latest)
 as `io.github.f-tiger/hvac-btu-heat-klimaanlage`.
 
+Use `https://getecoback.com/mcp/v1` when configuring a client. The existing `/mcp` and `/mcp/` addresses serve the same online service. Older Registry listings can display an earlier version. The active server version comes from the response at `/mcp/v1`. The separate [local MCPB](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fecoback-local-tools/versions/latest) runs over stdio.
+
+The [hosted source](https://github.com/f-tiger/agi-site/tree/main/sites/getecoback) and [local package source](https://github.com/f-tiger/getecoback-mcp) are public. The [mirror licence](LICENSE) explicitly covers the documentation under CC BY 4.0 and gives the sync script an additional MIT licence. Consult the applicable notices for other material.
+
 The [complete live JSON catalogue](https://getecoback.com/api/mcp-tools) groups the tools by task and supports `q` and `category` filters. Use `view=compact` for a quick scan with available citation links. Add `limit=24` for a ranked page. Send a returned `nextOffset` as `offset` with the same filters and page size. `offset` requires `limit`. `total` counts all matches and `returned` counts entries on the page. Use `tool=EXACT_NAME` without the compact view for one full input schema. Add `view=examples` for verified sample arguments, selected expected fields and available source links. [Two-phase electricity scheduling example](https://getecoback.com/api/mcp-tools?view=examples&tool=stromfenster_mehrphasen_start). With MCP, call `tools/list` and pass each returned `nextCursor` as `params.cursor` until the final page. For structured answers, use `citation_url` with the assumptions and limits provided. The table below is a snapshot updated by `sync.mjs`.
 
 ## Connect

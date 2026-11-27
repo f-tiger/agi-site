@@ -64,9 +64,9 @@ test('explicit cohort schema initialization records no accounts or tasks and pre
 
   db.sql.exec(migration);
   assert.deepEqual([...await signup()].map(([source, counts]) => [source, counts.total]),
-    [['bpj_trade_quote', 0], ['bpj_trade_workbench', 0]]);
+    [['bpj_trade_quote', 0], ['bpj_trade_workbench', 0], ['bpj_trade_quote_mcp_link', 0]]);
   assert.deepEqual([...await usage()].map(([source, counts]) => [source, counts.first_use_total]),
-    [['bpj_trade_quote', 0], ['bpj_trade_workbench', 0]]);
+    [['bpj_trade_quote', 0], ['bpj_trade_workbench', 0], ['bpj_trade_quote_mcp_link', 0]]);
 
   await userOf(ctx, 'existing-cohort', true);
   db.sql.exec(`INSERT INTO free_account_signup_sources VALUES ('existing-cohort','bpj_trade_workbench');
@@ -87,12 +87,14 @@ test('eligible successful web tasks record separate first and repeat UTC days fo
   const {db, env} = ctx;
   const cookie = await userOf(ctx,'exporter',true);
   const direct = await userOf(ctx,'direct-exporter',true);
+  const tagged = await userOf(ctx,'tagged-exporter',true);
   const another = await userOf(ctx,'unattributed');
   const qa = await userOf(ctx,'qa-attributed');
   db.sql.prepare('UPDATE free_accounts SET qa=1 WHERE id=?').run('qa-attributed');
   db.sql.exec(`CREATE TABLE free_account_signup_sources(account_id TEXT PRIMARY KEY REFERENCES free_accounts(id) ON DELETE CASCADE,source TEXT);
     INSERT INTO free_account_signup_sources VALUES ('exporter','bpj_trade_quote'),
-      ('direct-exporter','bpj_trade_workbench'),('qa-attributed','bpj_trade_workbench');`);
+      ('direct-exporter','bpj_trade_workbench'),('qa-attributed','bpj_trade_workbench'),
+      ('tagged-exporter','bpj_trade_quote_mcp_link');`);
   const headers = {'User-Agent':'Mozilla/5.0','X-BPJ-Trade-Use':'1','Sec-Fetch-Site':'same-origin',
     Referer: site+'/en/studio/trade-tools/'+example.id};
   const own = sample();
@@ -101,6 +103,7 @@ test('eligible successful web tasks record separate first and repeat UTC days fo
   const readUse = (from='2026-11-27',until='2026-11-29') => readTradeSignupWorkbenchUse(db,from,until);
   const use = async (from,until) => (await readUse(from,until))?.get('bpj_trade_quote') ?? null;
   const directUse = async () => (await readUse())?.get('bpj_trade_workbench') ?? null;
+  const taggedUse = async () => (await readUse())?.get('bpj_trade_quote_mcp_link') ?? null;
   const hit = (credential, payload=own, extra={}) => trade(env,{cookie:credential,payload,headers:{...headers,...extra}});
   const exampleAsStrings = {...sample(),input:Object.fromEntries(Object.entries(sample().input).map(([key,value])=>[key,String(value)]))};
 
@@ -124,9 +127,13 @@ test('eligible successful web tasks record separate first and repeat UTC days fo
   assert.deepEqual(await directUse(),{first_use_total:1,repeat_use_total:0,first_use:1,repeat_use:0});
   assert.equal((await hit(cookie)).status,200);
   assert.equal((await hit(cookie)).status,200);
+  assert.equal((await hit(tagged)).status,200);
+  assert.deepEqual(await taggedUse(),{first_use_total:1,repeat_use_total:0,first_use:1,repeat_use:0});
   assert.deepEqual({...await use()},{first_use_total:1,repeat_use_total:0,first_use:1,repeat_use:0});
   at = Date.parse('2026-11-28T23:59:50Z');
   assert.equal((await hit(direct)).status,200);
+  assert.equal((await hit(tagged)).status,200);
+  assert.deepEqual(await taggedUse(),{first_use_total:1,repeat_use_total:1,first_use:1,repeat_use:1});
   assert.deepEqual(await directUse(),{first_use_total:1,repeat_use_total:1,first_use:1,repeat_use:1});
   assert.deepEqual(await use(),{first_use_total:1,repeat_use_total:0,first_use:1,repeat_use:0});
   at = Date.parse('2026-11-29T00:00:00Z');

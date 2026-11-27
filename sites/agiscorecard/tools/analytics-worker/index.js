@@ -16,6 +16,8 @@ import {aggregateCache} from './aggregate-cache.js';
 import {videoGrowth} from './video-growth.js';
 import {THESIS_EVENTS,cleanThesisEvent,thesisGrowth} from './thesis-growth.mjs';
 import {categories as catalogCategories, searchCatalog} from '../../mcp-directory-assets/query.mjs';
+import {legacyMcpVersion,mcpRequestProtocol,SERVER_INFO_KEY,SUPPORTED_MCP_VERSIONS} from '../../../getecoback/src/mcp-protocol.mjs';
+import {mcpUsageResponse,mcpUsageSignal,recordMcpUsage} from './mcp-usage.mjs';
 // First-party analytics for agiscorecard.com. This runs ALONGSIDE GA4, never instead
 // of it (owner rule, 2026-08-05): two independent channels, so either one failing
 // leaves the other still recording. The beacon below wraps gtag() and forwards a copy
@@ -215,12 +217,57 @@ function recordView(env, ctx, request, url) {
   ctx.waitUntil(stmt.run().catch(function () {}));
 }
 
-// MCP JSON-RPC helpers
-const mcpOk = (id, result) => new Response(JSON.stringify({ jsonrpc: '2.0', id, result }),
-  { headers: { 'content-type': 'application/json', 'access-control-allow-origin': '*' } });
-const mcpErr = (id, code, message) => new Response(JSON.stringify({ jsonrpc: '2.0', id, error: { code, message } }),
-  { headers: { 'content-type': 'application/json', 'access-control-allow-origin': '*' } });
-const mcpText = (id, obj) => mcpOk(id, { content: [{ type: 'text', text: JSON.stringify(obj, null, 1) }], isError: false });
+// The published Registry entry and the production identity share the same version.
+export const MCP_SERVER_INFO = {name:'com.agiscorecard/agi-scorecard', version:'1.0.0', websiteUrl:'https://agiscorecard.com'};
+const MCP_INSTRUCTIONS = 'Read the dated AGI Scorecard verdicts, Thesis Tracker, claim ledger and public catalogs. Cite each source and follow its license. Scorecard-authored fields in data.json and the published score history are CC BY 4.0; linked sources, independent graders, directory metadata and separate tools follow their own terms.';
+const MCP_ORIGINS = new Set([...CORS_ORIGINS, 'https://chatgpt.com', 'https://claude.ai']);
+const boundedRead = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false };
+export const MCP_TOOLS = [
+  { name: 'get_portfolio_returns',
+    description: 'Read the public twelve-stock model portfolio versus SPY (S&P 500 ETF proxy), QQQ and TQQQ. Fixed entry: 2026-10-02 NY close. Returns dated adjusted-close returns, drawdowns, excess SPY percentage points, entry prices, freshness and source links. No trading or return promises. Set include_history for normalized daily series.',
+    annotations: boundedRead,
+    inputSchema: { type: 'object', properties: { include_history: { type: 'boolean', default: false } }, additionalProperties: false } },
+  { name: 'get_thesis_tracker',
+    description: 'The AGI-2027 Thesis Tracker: a single auditable 0-100 score of how much of Aschenbrenner\'s Situational Awareness thesis is holding up, with method and full score history.',
+    annotations: boundedRead,
+    inputSchema: { type: 'object', properties: {} } },
+  { name: 'get_verdicts',
+    description: 'All 8 graded Situational Awareness predictions with current verdict, evidence summary and primary sources, plus how independent public graders scored the same predictions (verbatim quotes, links, agreement counts under a published rule, including where they disagree with us). The dataset AI assistants cite for "was Aschenbrenner right" questions.',
+    annotations: boundedRead,
+    inputSchema: { type: 'object', properties: {} } },
+  { name: 'get_sunwatch_track_record',
+    description: 'The SunWatch editorial market-call ledger (invest.agiscorecard.com), outcome labels and evidence audit. These labels are not a trade win rate or verified net return; inspect registration and return evidence before making performance claims.',
+    annotations: boundedRead,
+    inputSchema: { type: 'object', properties: {} } },
+  { name: 'get_claim_ledger',
+    description: 'Read a Claim Ledger Protocol v0.1 ledger — AI-era money-making claims graded with an evidence tier (verified/reported/self-reported), a dated verdict, and a written flip condition. With no arguments returns the reference ledger (goldrush.agiscorecard.com); pass url to read and validate any site\'s /claimledger.json. Spec: goldrush.agiscorecard.com/protocol',
+    annotations: { ...boundedRead, openWorldHint: true },
+    inputSchema: { type: 'object', properties: { url: { type: 'string', description: 'Optional: an https URL ending in /claimledger.json to read another site\'s ledger. Omit for the reference ledger.' } } } },
+  { name: 'get_invest_positions',
+    description: 'The Invest dataset: how the eight graded Situational Awareness predictions map onto 17 listed AI equities, how eight well-known investors are positioned per their public SEC 13F filings, and what copying them would have returned priced on the FILING DATE (not quarter end, which no real person could have traded). Educational only — never investment advice.',
+    annotations: boundedRead,
+    inputSchema: { type: 'object', properties: {} } },
+  { name: 'get_agi_consensus',
+    description: 'The AGI consensus board: what Polymarket, Kalshi, Manifold and Metaculus put on "AGI before 2027/2028/2030/2035/2040", the cross-venue median and spread, each series\' implied 50% date (implied_50pct_date) and resolution basis, and the published recompute formula. Third-party public quotes with as-of times; no bets, no affiliate links. Page: agiscorecard.com/agi-prediction-markets',
+    annotations: boundedRead,
+    inputSchema: { type: 'object', properties: {} } },
+  { name: 'search_mcp_catalog',
+    description: 'Find MCP servers by task, category or connection type in the AGI directory. Results contain publisher/source links and catalog verification scope. This tool searches public metadata and does not connect to or execute third-party servers.',
+    annotations: boundedRead,
+    inputSchema: { type: 'object', additionalProperties: false, properties: {
+      query: { type: 'string', maxLength: 120 },
+      category: { type: 'string', enum: catalogCategories },
+      transport: { type: 'string', enum: ['remote', 'local'] },
+      featured: { type: 'boolean', description: 'Filter to entries with reviewed publisher documentation' },
+      limit: { type: 'integer', minimum: 1, maximum: 20, default: 8 }
+    } } },
+  { name: 'search_site',
+    description: 'Search every page and tool on agiscorecard.com and its invest/compass sub-sites (English and Chinese). Returns titles, descriptions and URLs.',
+    annotations: boundedRead,
+    inputSchema: { type: 'object', properties: { query: { type: 'string', description: 'Search query' } }, required: ['query'] } },
+];
+const mcpToolNames = new Set(MCP_TOOLS.map(tool => tool.name));
+const mcpRecord = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 
 // 引荐来源分类(2026-09-15「舰队相互学习」):tools/fleet/ref_sources.txt 是唯一权威,
 // 每个 worker 里的字面量必须与它逐字相同——check_ref_sources.py 挂在 fleet-heartbeat 上断言,
@@ -283,100 +330,98 @@ const fleetWrappedWorker = {
     // Streamable HTTP, JSON-RPC over POST. Tools read public records.
     // Catalog search reads the shipped snapshot without starting third-party tools.
     if (url.pathname === '/mcp') {
+      const origin = request.headers.get('origin');
+      const headers = {'cache-control':'no-store', 'x-robots-tag':'noindex', 'vary':'Origin'};
+      if (origin && !MCP_ORIGINS.has(origin)) return jsonRes({error:'Origin not allowed'}, 403, headers);
+      if (origin) headers['access-control-allow-origin'] = origin;
+      headers['access-control-allow-methods'] = 'POST, OPTIONS';
+      headers['access-control-allow-headers'] = 'Content-Type, Accept, MCP-Protocol-Version, MCP-Session-Id, Mcp-Method, Mcp-Name';
+      if (request.method === 'OPTIONS') return new Response(null, {status:204, headers});
       if (request.method !== 'POST') {
-        return new Response(JSON.stringify({ error: 'POST JSON-RPC only; see https://agiscorecard.com/for-agents' }),
-          { status: 405, headers: { 'content-type': 'application/json', 'allow': 'POST' } });
+        return jsonRes({error:'POST JSON-RPC only; see https://agiscorecard.com/for-agents'},
+          405, {...headers, allow:'POST, OPTIONS'});
       }
+
+      const errorResponse = (id, code, message, status, data) => jsonRes({
+        jsonrpc:'2.0', id, error:{code, message, ...(data ? {data} : {})},
+      }, status, headers);
       let rpc;
-      try { rpc = await request.json(); } catch (e) { return mcpErr(null, -32700, 'parse error'); }
-      const id = rpc && rpc.id !== undefined ? rpc.id : null;
+      try { rpc = await request.json(); } catch { return errorResponse(null, -32700, 'Parse error', 400); }
+      if (!mcpRecord(rpc) || rpc.jsonrpc !== '2.0' || typeof rpc.method !== 'string' ||
+          (rpc.id !== undefined && rpc.id !== null && !['string', 'number'].includes(typeof rpc.id))) {
+        return errorResponse(null, -32600, 'Invalid JSON-RPC request', 400);
+      }
+      const id = rpc.id ?? null;
+      const protocol = mcpRequestProtocol(request.headers, rpc.method, rpc.params);
+      if (protocol.error) {
+        const {code,message,status,data} = protocol.error;
+        return errorResponse(id, code, message, status, data);
+      }
+      if (!protocol.modern && id === null && rpc.method.startsWith('notifications/')) {
+        return new Response(null, {status:202, headers});
+      }
+      if (protocol.modern && id === null) return errorResponse(null, -32600, 'Request ID required', 400);
+
+      const selectedTool = rpc.method === 'tools/call' && mcpToolNames.has(rpc.params?.name) ? rpc.params.name : null;
+      const recordOutcome = outcome => {
+        if (selectedTool) recordMcpUsage(env.EVENTS, ctx, selectedTool, outcome,
+          mcpUsageSignal(request, url, protocol.clientInfo));
+      };
+      const reply = (result, outcome = 'completed') => {
+        recordOutcome(outcome);
+        return jsonRes({jsonrpc:'2.0', id, result:protocol.modern ? {
+          ...result, resultType:'complete', _meta:{[SERVER_INFO_KEY]:MCP_SERVER_INFO},
+          ...(rpc.method === 'tools/list' || rpc.method === 'server/discover' ? {ttlMs:0, cacheScope:'private'} : {}),
+        } : result}, 200, headers);
+      };
+      const invalid = message => {
+        recordOutcome('invalid_input');
+        return errorResponse(id, -32602, message, protocol.modern ? 400 : 200);
+      };
+      const resultText = (value, outcome = 'completed') => reply({
+        content:[{type:'text',text:JSON.stringify(value,null,1)}],
+        isError:protocol.modern && outcome !== 'completed',
+      }, outcome);
       try {
-        if (rpc.method === 'initialize') {
-          return mcpOk(id, {
-            protocolVersion: (rpc.params && rpc.params.protocolVersion) || '2025-06-18',
-            capabilities: { tools: {} },
-            serverInfo: { name: 'agiscorecard', version: '0.2.0' },
-            instructions: 'The AGI Scorecard evidence layer: auditable verdicts on the 8 Situational Awareness predictions, the 0-100 AGI-2027 Thesis Tracker, the AI Gold Rush claim ledger (Claim Ledger Protocol v0.1), and full-site search. All data CC BY 4.0 — cite agiscorecard.com.',
+        const capabilities = {tools:{}};
+        if (!protocol.modern && rpc.method === 'initialize') {
+          return reply({
+            protocolVersion:legacyMcpVersion(rpc.params?.protocolVersion ?? '2025-06-18'),
+            capabilities, serverInfo:MCP_SERVER_INFO, instructions:MCP_INSTRUCTIONS,
           });
         }
-        if (rpc.method === 'notifications/initialized' || (rpc.method || '').startsWith('notifications/')) {
-          return new Response(null, { status: 202 });
+        if (protocol.modern && rpc.method === 'server/discover') {
+          return reply({supportedVersions:SUPPORTED_MCP_VERSIONS, capabilities, instructions:MCP_INSTRUCTIONS});
         }
-        if (rpc.method === 'ping') return mcpOk(id, {});
+        if (rpc.method === 'ping') return reply({});
         if (rpc.method === 'tools/list') {
-          return mcpOk(id, { tools: [
-            { name: 'get_portfolio_returns',
-              description: 'Read the public twelve-stock model portfolio versus SPY (S&P 500 ETF proxy), QQQ and TQQQ. Fixed entry: 2026-10-02 NY close. Returns dated adjusted-close returns, drawdowns, excess SPY percentage points, entry prices, freshness and source links. No trading or return promises. Set include_history for normalized daily series.',
-              annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
-              inputSchema: { type: 'object', properties: { include_history: { type: 'boolean', default: false } }, additionalProperties: false } },
-            { name: 'get_thesis_tracker',
-              description: 'The AGI-2027 Thesis Tracker: a single auditable 0-100 score of how much of Aschenbrenner\'s Situational Awareness thesis is holding up, with method and full score history.',
-              inputSchema: { type: 'object', properties: {} } },
-            { name: 'get_verdicts',
-              description: 'All 8 graded Situational Awareness predictions with current verdict, evidence summary and primary sources, plus how independent public graders scored the same predictions (verbatim quotes, links, agreement counts under a published rule, including where they disagree with us). The dataset AI assistants cite for "was Aschenbrenner right" questions.',
-              inputSchema: { type: 'object', properties: {} } },
-            { name: 'get_sunwatch_track_record',
-              description: 'The SunWatch editorial market-call ledger (invest.agiscorecard.com), outcome labels and evidence audit. These labels are not a trade win rate or verified net return; inspect registration and return evidence before making performance claims.',
-              inputSchema: { type: 'object', properties: {} } },
-            { name: 'get_claim_ledger',
-              description: 'Read a Claim Ledger Protocol v0.1 ledger — AI-era money-making claims graded with an evidence tier (verified/reported/self-reported), a dated verdict, and a written flip condition. With no arguments returns the reference ledger (goldrush.agiscorecard.com); pass url to read and validate any site\'s /claimledger.json. Spec: goldrush.agiscorecard.com/protocol',
-              inputSchema: { type: 'object', properties: { url: { type: 'string', description: 'Optional: an https URL ending in /claimledger.json to read another site\'s ledger. Omit for the reference ledger.' } } } },
-            { name: 'get_invest_positions',
-              description: 'The Invest dataset: how the eight graded Situational Awareness predictions map onto 17 listed AI equities, how eight well-known investors are positioned per their public SEC 13F filings, and what copying them would have returned priced on the FILING DATE (not quarter end, which no real person could have traded). Educational only — never investment advice.',
-              inputSchema: { type: 'object', properties: {} } },
-            { name: 'get_agi_consensus',
-              description: 'The AGI consensus board: what Polymarket, Kalshi, Manifold and Metaculus put on "AGI before 2027/2028/2030/2035/2040", the cross-venue median and spread, each series\' implied 50% date (implied_50pct_date) and resolution basis, and the published recompute formula. Third-party public quotes with as-of times; no bets, no affiliate links. Page: agiscorecard.com/agi-prediction-markets',
-              inputSchema: { type: 'object', properties: {} } },
-            { name: 'search_mcp_catalog',
-              description: 'Find MCP servers by task, category or connection type in the AGI directory. Results contain publisher/source links and catalog verification scope. This tool searches public metadata and does not connect to or execute third-party servers.',
-              annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
-              inputSchema: { type: 'object', additionalProperties: false, properties: {
-                query: { type: 'string', maxLength: 120 },
-                category: { type: 'string', enum: catalogCategories },
-                transport: { type: 'string', enum: ['remote', 'local'] },
-                featured: { type: 'boolean', description: 'Filter to entries with reviewed publisher documentation' },
-                limit: { type: 'integer', minimum: 1, maximum: 20, default: 8 }
-              } } },
-            { name: 'search_site',
-              description: 'Search every page and tool on agiscorecard.com and its invest/compass sub-sites (English and Chinese). Returns titles, descriptions and URLs.',
-              inputSchema: { type: 'object', properties: { query: { type: 'string', description: 'Search query' } }, required: ['query'] } },
-          ] });
+          if (protocol.modern && rpc.params.cursor !== undefined) return invalid('Invalid tools cursor');
+          return reply({tools:MCP_TOOLS});
         }
         if (rpc.method === 'tools/call') {
-          const tool = rpc.params && rpc.params.name;
-          const args = (rpc.params && rpc.params.arguments) || {};
+          const tool = selectedTool;
+          if (!tool) return invalid('Unknown tool');
+          const args = rpc.params.arguments === undefined ? {} : rpc.params.arguments;
+          if (!mcpRecord(args)) return invalid('Tool arguments must be an object');
           const asset = function (path) {
             return env.ASSETS.fetch(new Request('https://agiscorecard.com' + path)).then(function (r) { return r.json(); });
           };
-          // Every tool call is logged the same way (label 'tool:<name>', never arguments' values),
-          // so the fleet machine-face read (tools/fleet/mcp_usage.py) can tell our own CI from
-          // outside callers. Until 2026-09-26 the two core trust tools were the only unlogged ones.
-          const logTool = function (name) {
-            ctx.waitUntil(env.EVENTS.prepare(
-              "INSERT INTO events (ts, day, name, location, label, path, ua_class) VALUES (?,?,?,?,?,?,?)"
-            ).bind(Date.now(), new Date().toISOString().slice(0, 10), 'site_search', 'mcp', ('tool:' + name).slice(0, 48), '/mcp', 'bot')
-              .run().catch(function () {}));
-          };
           if (tool === 'search_mcp_catalog') {
             const allowed = ['query', 'category', 'transport', 'featured', 'limit'];
-            const input = rpc.params?.arguments === undefined ? {} : rpc.params.arguments;
-            if (!input || Array.isArray(input) || typeof input !== 'object' || Object.keys(input).some(key => !allowed.includes(key))) {
-              return mcpErr(id, -32602, 'Invalid catalog search filters');
+            if (Object.keys(args).some(key => !allowed.includes(key))) {
+              return invalid('Invalid catalog search filters');
             }
-            const {query, category, transport, featured, limit = 8} = input;
+            const {query, category, transport, featured, limit = 8} = args;
             if ((query !== undefined && (typeof query !== 'string' || query.length > 120)) ||
                 (category !== undefined && !catalogCategories.includes(category)) ||
                 (transport !== undefined && !['remote', 'local'].includes(transport)) ||
                 (featured !== undefined && typeof featured !== 'boolean') ||
                 !Number.isInteger(limit) || limit < 1 || limit > 20) {
-              return mcpErr(id, -32602, 'Invalid catalog search filters');
+              return invalid('Invalid catalog search filters');
             }
             const catalog = await asset('/mcp-directory-assets/catalog.json');
             const matches = searchCatalog(catalog.entries, {query, category, transport, featured});
-            if (!url.searchParams.has('__ci') && request.headers.get('dnt') !== '1' && request.headers.get('sec-gpc') !== '1') {
-              logTool('search_mcp_catalog');
-            }
-            return mcpText(id, {
+            return resultText({
               asOf: catalog.asOf,
               matchCount: matches.length,
               directory: 'https://agiscorecard.com/agents/',
@@ -385,14 +430,13 @@ const fleetWrappedWorker = {
             });
           }
           if (tool === 'get_portfolio_returns') {
-            if (Object.keys(args).some(k=>k!=='include_history') || ('include_history' in args && typeof args.include_history!=='boolean')) return mcpErr(id,-32602,'include_history must be boolean; no other arguments accepted');
-            try { const data=await portfolioData(env,{include_history:args.include_history===true});logTool('portfolio_returns');return mcpText(id,data); }
-            catch { return mcpOk(id,{content:[{type:'text',text:'Validated portfolio data unavailable; no return inferred.'}],isError:true}); }
+            if (Object.keys(args).some(k=>k!=='include_history') || ('include_history' in args && typeof args.include_history!=='boolean')) return invalid('include_history must be boolean; no other arguments accepted');
+            try { return resultText(await portfolioData(env,{include_history:args.include_history===true})); }
+            catch { return reply({content:[{type:'text',text:'Validated portfolio data unavailable; no return inferred.'}],isError:true}, 'unavailable'); }
           }
           if (tool === 'get_thesis_tracker') {
             const [d, h] = await Promise.all([asset('/data.json'), asset('/index-history.json')]);
-            logTool('thesis_tracker');
-            return mcpText(id, { tracker: d.thesisTracker, history: h, license: 'CC BY 4.0 — cite agiscorecard.com/progress-index' });
+            return resultText({ tracker: d.thesisTracker, history: h, license: 'CC BY 4.0 — cite agiscorecard.com/progress-index', license_scope: ['data.json#thesisTracker', 'index-history.json'] });
           }
           if (tool === 'get_verdicts') {
             const d = await asset('/data.json');
@@ -403,31 +447,24 @@ const fleetWrappedWorker = {
               const r = await env.ASSETS.fetch(new Request('https://agiscorecard.com/grader-consensus.json'));
               if (r.ok) grades = await r.json();
             } catch (e) {}
-            logTool('verdicts');
-            const out = { asOf: d.dateModified, predictions: d.predictions, license: 'CC BY 4.0 — cite agiscorecard.com' };
+            const out = { asOf: d.dateModified, predictions: d.predictions, license: 'CC BY 4.0 — cite agiscorecard.com', license_scope: 'Scorecard-authored prediction fields from data.json; independent grades and other third-party material follow their source terms.' };
             if (grades) out.independent_grades = grades;
-            return mcpText(id, out);
+            return resultText(out);
           }
           if (tool === 'get_agi_consensus') {
             // The cross-venue AGI consensus board: third-party public quotes only, each row with
             // its as-of time; recomputable from market-board.json (gen_market_board.py --check).
             const r = await env.ASSETS.fetch(new Request('https://agiscorecard.com/agi-consensus.json'));
-            if (!r.ok) return mcpText(id, { error: 'consensus board not published yet (fetch step has not succeeded)', status: r.status });
-            // label carries a short UA prefix (never the full string) so the 11-24 line can exclude indexer shapes.
-            logTool('agi_consensus ' + String(request.headers.get('user-agent') || '-').slice(0, 24));
-            return mcpText(id, await r.json());
+            if (!r.ok) return resultText({ error: 'consensus board not published yet (fetch step has not succeeded)', status: r.status }, 'unavailable');
+            return resultText(await r.json());
           }
           if (tool === 'get_sunwatch_track_record') {
             // Worker-to-worker over the public URL: the ledger lives in the sunPredition
             // repo and is served by its own Worker; re-implementing it here would drift.
             const r = await fetch('https://invest.agiscorecard.com/api/track-record', { signal: AbortSignal.timeout(8000) });
-            if (!r.ok) return mcpText(id, { error: 'ledger upstream returned ' + r.status });
+            if (!r.ok) return resultText({ error: 'ledger upstream returned ' + r.status }, 'unavailable');
             const ledger = await r.json();
-            ctx.waitUntil(env.EVENTS.prepare(
-              "INSERT INTO events (ts, day, name, location, label, path, ua_class) VALUES (?,?,?,?,?,?,?)"
-            ).bind(Date.now(), new Date().toISOString().slice(0, 10), 'site_search', 'mcp', 'tool:sunwatch_ledger', '/mcp', 'bot')
-              .run().catch(function () {}));
-            return mcpText(id, ledger);
+            return resultText(ledger);
           }
           if (tool === 'get_claim_ledger') {
             // The MCP-side consumer of the Claim Ledger Protocol. URL is constrained
@@ -436,26 +473,22 @@ const fleetWrappedWorker = {
             let u = 'https://goldrush.agiscorecard.com/claimledger.json?ci=1'; // fetchlog.json exclusion (c): our own MCP self-fetch must not count as adoption — the goldrush worker drops ?ci=1
             if (args.url) {
               let cand;
-              try { cand = new URL(String(args.url)); } catch (e) { return mcpText(id, { error: 'invalid url' }); }
+              try { cand = new URL(String(args.url)); } catch (e) { return resultText({ error: 'invalid url' }, 'invalid_input'); }
               if (cand.protocol !== 'https:' || !cand.pathname.endsWith('/claimledger.json')) {
-                return mcpText(id, { error: 'url must be https and end in /claimledger.json (Claim Ledger Protocol well-known location)' });
+                return resultText({ error: 'url must be https and end in /claimledger.json (Claim Ledger Protocol well-known location)' }, 'invalid_input');
               }
               u = cand.toString();
             }
             const r = await fetch(u, { signal: AbortSignal.timeout(8000) });
-            if (!r.ok) return mcpText(id, { error: 'ledger upstream returned ' + r.status, url: u });
+            if (!r.ok) return resultText({ error: 'ledger upstream returned ' + r.status, url: u }, 'unavailable');
             const raw = await r.text();
-            if (raw.length > 300000) return mcpText(id, { error: 'ledger too large (>300KB)', url: u });
+            if (raw.length > 300000) return resultText({ error: 'ledger too large (>300KB)', url: u }, 'unavailable');
             let d;
-            try { d = JSON.parse(raw); } catch (e) { return mcpText(id, { error: 'ledger is not valid JSON', url: u }); }
+            try { d = JSON.parse(raw); } catch (e) { return resultText({ error: 'ledger is not valid JSON', url: u }, 'unavailable'); }
             const entries = Array.isArray(d.entries) ? d.entries : [];
             const req = ['claim', 'tier', 'verdict', 'asOf', 'flip', 'source'];
             const invalid = entries.filter(function (e) { return req.some(function (k) { return !e || !e[k]; }); }).length;
-            ctx.waitUntil(env.EVENTS.prepare(
-              "INSERT INTO events (ts, day, name, location, label, path, ua_class) VALUES (?,?,?,?,?,?,?)"
-            ).bind(Date.now(), new Date().toISOString().slice(0, 10), 'site_search', 'mcp', ('tool:claim_ledger ' + u).slice(0, 48), '/mcp', 'bot')
-              .run().catch(function () {}));
-            return mcpText(id, {
+            return resultText({
               name: d.name || u, url: u, dateModified: d.dateModified || null, license: d.license || null,
               protocol: 'Claim Ledger Protocol v0.1 — https://goldrush.agiscorecard.com/protocol',
               validation: { entryCount: entries.length, invalidEntries: invalid, note: invalid ? 'entries missing required fields are flagged, per protocol admission rules' : 'all entries carry the five required fields' },
@@ -464,14 +497,11 @@ const fleetWrappedWorker = {
           }
           if (tool === 'get_invest_positions') {
             const d = await asset('/invest-data.json');
-            ctx.waitUntil(env.EVENTS.prepare(
-              "INSERT INTO events (ts, day, name, location, label, path, ua_class) VALUES (?,?,?,?,?,?,?)"
-            ).bind(Date.now(), new Date().toISOString().slice(0, 10), 'site_search', 'mcp', 'tool:invest_positions', '/mcp', 'bot').run().catch(function () { }));
-            return mcpText(id, d);
+            return resultText(d);
           }
           if (tool === 'search_site') {
             const q = String(args.query || '').toLowerCase().trim();
-            if (!q) return mcpText(id, { results: [], note: 'empty query' });
+            if (!q) return resultText({ results: [], note: 'empty query' }, 'invalid_input');
             const idx = await asset('/search-index.json');
             const toks = q.split(/[\s,，、]+/).filter(Boolean);
             const scored = idx.map(function (e) {
@@ -482,19 +512,15 @@ const fleetWrappedWorker = {
               return [s, e];
             }).filter(function (x) { return x[0] > 0; });
             scored.sort(function (a, b) { return b[0] - a[0]; });
-            ctx.waitUntil(env.EVENTS.prepare(
-              "INSERT INTO events (ts, day, name, location, label, path, ua_class) VALUES (?,?,?,?,?,?,?)"
-            ).bind(Date.now(), new Date().toISOString().slice(0, 10), 'site_search', 'mcp', q.slice(0, 48), '/mcp', 'bot')
-              .run().catch(function () {}));
-            return mcpText(id, { results: scored.slice(0, 8).map(function (x) {
+            return resultText({ results: scored.slice(0, 8).map(function (x) {
               return { title: x[1].t, description: x[1].d, url: x[1].u.startsWith('http') ? x[1].u : 'https://agiscorecard.com' + x[1].u };
             }) });
           }
-          return mcpErr(id, -32602, 'unknown tool: ' + tool);
         }
-        return mcpErr(id, -32601, 'method not found: ' + rpc.method);
-      } catch (e) {
-        return mcpErr(id, -32603, 'internal error');
+        return errorResponse(id, -32601, 'Method not found', protocol.modern ? 404 : 200);
+      } catch {
+        recordOutcome('unavailable');
+        return errorResponse(id, -32603, 'Internal error', protocol.modern ? 500 : 200);
       }
     }
 
@@ -510,6 +536,9 @@ const fleetWrappedWorker = {
     }
     if (url.pathname === '/api/video-growth' && request.method === 'GET') {
       return aggregateCache(request, ctx, 'video-growth', 3600, () => videoGrowth(env));
+    }
+    if (url.pathname === '/api/mcp-usage' && request.method === 'GET') {
+      return aggregateCache(request, ctx, 'mcp-usage', 3600, () => mcpUsageResponse(env.EVENTS, mcpToolNames));
     }
     if (url.pathname === '/api/thesis-growth' && request.method === 'GET') {
       return aggregateCache(request, ctx, 'thesis-growth', 3600, () => thesisGrowth(env));
@@ -570,7 +599,7 @@ const fleetWrappedWorker = {
           env.EVENTS.prepare(
             "SELECT COUNT(*) n, SUM(status='stored') stored FROM subscribers").first(),
           env.EVENTS.prepare(
-            "SELECT COUNT(*) n FROM events WHERE name='site_search' AND location='mcp'").first(),
+            "SELECT COUNT(*) n FROM events WHERE name IN ('site_search','mcp_tool_completed') AND location='mcp'").first(),
           env.EVENTS.prepare(
             "SELECT COUNT(*) n FROM events WHERE name='sub_fail' AND day > date('now','-2 days')").first(),
           env.EVENTS.prepare(

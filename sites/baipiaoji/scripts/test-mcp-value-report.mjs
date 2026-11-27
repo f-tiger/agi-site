@@ -62,6 +62,8 @@ test('the readout is private and treats unavailable tables as uncovered', async 
   assert.equal(result.startup_checkout,null);
   assert.equal(result.startup_paid_usage,null);
   assert.equal(result.trade_quote_calls.observations,null);
+  assert.equal(result.trade_quote_mcp_link.accounts,null);
+  assert.equal(result.trade_quote_mcp_link.workbench_use,null);
   assert.doesNotMatch(JSON.stringify(result), /report-fixture-secret/);
 });
 
@@ -69,6 +71,22 @@ test('trade quote observations have bounded retention and use the protected repo
   const db = fixture();
   t.after(() => db.sql.close());
   const asOf = Date.parse('2026-11-27T16:21:00Z'), days = 86400000;
+  db.sql.exec(`CREATE TABLE free_accounts(id,qa,created);
+    CREATE TABLE free_account_signup_sources(account_id,source);
+    CREATE TABLE free_account_identities(account_id,email_verified);
+    CREATE TABLE bpj_trade_quote_workbench_use(account_id,first_day,repeat_day);
+    INSERT INTO free_accounts VALUES
+      ('private-tagged',0,unixepoch('2026-11-21')),
+      ('private-today',0,unixepoch('2026-11-27')),
+      ('private-ordinary',0,unixepoch('2026-11-21')),
+      ('private-qa',1,unixepoch('2026-11-21'));
+    INSERT INTO free_account_signup_sources VALUES
+      ('private-tagged','bpj_trade_quote_mcp_link'),('private-today','bpj_trade_quote_mcp_link'),
+      ('private-ordinary','bpj_trade_quote'),('private-qa','bpj_trade_quote_mcp_link');
+    INSERT INTO free_account_identities VALUES ('private-tagged',1),('private-qa',1);
+    INSERT INTO bpj_trade_quote_workbench_use VALUES
+      ('private-tagged','2026-11-21','2026-11-26'),('private-today','2026-11-27',NULL),
+      ('private-ordinary','2026-11-22','2026-11-26'),('private-qa','2026-11-21','2026-11-22');`);
   const request = new Request('https://baipiaoji.com/api/ai-mcp', {headers:{'User-Agent':'PRIVATE-CLIENT'}});
   const record = (time,form,outcome) => recordAiTradeQuote(db,request,{form,outcome},time);
   assert.equal(await record(asOf - 36 * days,'direct','costs_entered'),true);
@@ -92,5 +110,9 @@ test('trade quote observations have bounded retention and use the protected repo
     ['2026-11-27','wrapper','provisional','unknown',1],
   ]);
   assert.equal((await readMcpValueReport(db,new Date(asOf+15*days))).trade_quote_calls.observations.length,0);
-  assert.doesNotMatch(JSON.stringify(report),/PRIVATE-CLIENT/);
+  const tagged = report.trade_quote_mcp_link;
+  assert.deepEqual(tagged.window,{start:'2026-11-20',end_exclusive:'2026-11-27',timezone:'UTC',complete_days:7});
+  assert.deepEqual(tagged.accounts,{total:2,email_verified_total:1,created:1,email_verified:1});
+  assert.deepEqual(tagged.workbench_use,{first_use_total:1,repeat_use_total:1,first_use:1,repeat_use:1});
+  assert.doesNotMatch(JSON.stringify(report),/PRIVATE-CLIENT|private-tagged|private-today|private-ordinary|private-qa/);
 });

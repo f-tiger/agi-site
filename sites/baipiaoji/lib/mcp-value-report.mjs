@@ -1,5 +1,8 @@
 import {STARTUP_MCP_ORDER_SOURCE} from '../../../tools/revenue-studio/member-copy.mjs';
 import {AI_TRADE_QUOTE,TRADE_QUOTE_DAILY_TABLE,TRADE_QUOTE_RETENTION_DAYS} from './ai-trade-quote-observations.mjs';
+import {readTradeSignupAccounts} from './trade-quote-growth.mjs';
+import {readTradeSignupWorkbenchUse} from './trade-quote-workbench-use.mjs';
+import {TRADE_QUOTE_MCP_LINK_SIGNUP_SOURCE} from './trade-signup-source.mjs';
 
 const DAY = 86400;
 
@@ -25,7 +28,7 @@ export async function readMcpValueReport(db, now = new Date()) {
   const tasksReadable = tables.has('bpj_mcp_value_daily');
   const usageReadable = tables.has('bpj_mcp_value_startup_member_days');
 
-  const [daily, orders, usage, membership, tradeQuoteDaily] = await Promise.all([
+  const [daily, orders, usage, membership, tradeQuoteDaily, tradeSignupAccounts, tradeWorkbenchUse] = await Promise.all([
     tasksReadable ? read(db, `SELECT day,tool,outcome,n FROM bpj_mcp_value_daily
       WHERE day BETWEEN ? AND ? ORDER BY day,tool,outcome`, since, through) : null,
     ordersReadable ? read(db, `WITH tagged AS (${taggedOrders})
@@ -55,11 +58,21 @@ export async function readMcpValueReport(db, now = new Date()) {
       FROM wb_orders WHERE state='paid' AND paid_at BETWEEN 1 AND ?`, asOf) : null,
     tables.has(TRADE_QUOTE_DAILY_TABLE) ? read(db, `SELECT day,form,outcome,caller_signal,n
       FROM ${TRADE_QUOTE_DAILY_TABLE} WHERE day BETWEEN ? AND ? ORDER BY day,form,outcome,caller_signal`, since, through).catch(() => null) : null,
+    readTradeSignupAccounts(db, start, Math.floor(asOf / DAY) * DAY),
+    readTradeSignupWorkbenchUse(db, since, through),
   ]);
   return {
     as_of: now.toISOString(), window: {since, through, timezone:'UTC', today_partial:true},
     task_outcomes: daily, startup_checkout: orders?.[0] ?? null, startup_paid_usage: usage?.[0] ?? null,
     site_membership_confirmed_all_time: membership?.[0] ?? null,
+    trade_quote_mcp_link: {
+      source: TRADE_QUOTE_MCP_LINK_SIGNUP_SOURCE,
+      window: {start: since, end_exclusive: through, timezone:'UTC', complete_days:7},
+      accounts: tradeSignupAccounts?.get(TRADE_QUOTE_MCP_LINK_SIGNUP_SOURCE) ?? null,
+      workbench_use: tradeWorkbenchUse?.get(TRADE_QUOTE_MCP_LINK_SIGNUP_SOURCE) ?? null,
+      attribution: 'A fixed quote-page link can be copied or shared. A committed server-verified signup claim identifies that page context only. There is no call-to-account join, verified referring platform or purchase attribution.',
+      coverage: 'Starts at release. Windowed creations and milestones exclude today. Account totals reflect current accounts, and use totals end before today. Null means unavailable measurement.',
+    },
     trade_quote_calls: {
       tool: AI_TRADE_QUOTE, endpoint: '/api/ai-mcp', window: {since, through, timezone:'UTC', today_partial:true},
       retention_days: TRADE_QUOTE_RETENTION_DAYS, observations: tradeQuoteDaily,

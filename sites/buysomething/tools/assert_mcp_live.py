@@ -10,8 +10,10 @@ things that make this server worth calling at all:
 Usage: assert_mcp_live.py initialize.json toolscall.json   |   --selftest
 """
 import json
+from pathlib import Path
 import sys
 
+REGISTRY_VERSION = json.loads((Path(__file__).resolve().parent.parent / "server.json").read_text())["version"]
 TRACKERS = ["?tag=", "&tag=", "utm_", "amzn.to", "/dp/"]
 
 
@@ -21,6 +23,8 @@ def check(init_resp, call_resp):
     try:
         if init_resp["result"]["protocolVersion"] != "2025-06-18":
             bad.append("initialize returned protocolVersion %r" % init_resp["result"].get("protocolVersion"))
+        if init_resp["result"]["serverInfo"]["version"] != REGISTRY_VERSION:
+            bad.append("initialize server version differs from the Registry manifest")
     except Exception as e:
         bad.append("initialize response unusable: %s" % e)
     try:
@@ -41,10 +45,11 @@ def check(init_resp, call_resp):
 
 
 def selftest():
-    good_init = {"result": {"protocolVersion": "2025-06-18"}}
+    good_init = {"result": {"protocolVersion": "2025-06-18", "serverInfo": {"version": REGISTRY_VERSION}}}
     good_call = {"result": {"structuredContent": {"matched": [{"verdict": "false since 2026-06-24", "sources": ["https://www.federalregister.gov/x"]}]}}}
     assert check(good_init, good_call) == [], check(good_init, good_call)
     assert check({"result": {"protocolVersion": "1999-01-01"}}, good_call), "wrong protocol must fail"
+    assert check({"result": {"protocolVersion": "2025-06-18", "serverInfo": {"version": "0.0.0"}}}, good_call), "version drift must fail"
     assert check(good_init, {"result": {"structuredContent": {"matched": []}}}), "empty verdict must fail"
     stale = {"result": {"structuredContent": {"matched": [{"verdict": "true, still $800", "sources": ["u"]}]}}}
     assert check(good_init, stale), "stale verdict must fail"

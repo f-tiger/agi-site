@@ -35,9 +35,14 @@ const fee = (name, amount, extra = {}) => ({name, amount, currency:'USD', ...ext
 const withFees = (fees, changes = {}) => run({sellerFees:JSON.stringify(fees), ...changes});
 
 test('CIF known-cost prices are provisional until both named obligations are explicitly entered', () => {
-  const missing = withFees([]);
+  const knownFees = JSON.parse(tool.example.sellerFees).filter(row => !row.kind);
+  const missing = withFees(knownFees);
   assert.deepEqual(missing.costCompleteness,{status:'provisional',missing:['freight','insurance']});
-  assert.ok(missing.minimumUnitPrice < run().minimumUnitPrice);
+  assert.equal(missing.minimumUnitPrice, 7.34);
+  assert.equal(missing.quotedOrder.marginPercent, 29.1667);
+  assert.equal(missing.quotedOrder.meetsTarget, null);
+  assert.equal(withFees(knownFees,{quotedUnitPrice:7}).quotedOrder.meetsTarget, null);
+  assert.equal(withFees(knownFees,{quotedUnitPrice:0}).quotedOrder, null);
   const legacy = withFees([fee('Freight',250),fee('Insurance',30)]);
   assert.equal(legacy.sellerCost,2800);
   assert.deepEqual(legacy.costCompleteness,missing.costCompleteness);
@@ -46,7 +51,9 @@ test('CIF known-cost prices are provisional until both named obligations are exp
   assert.deepEqual(withFees([fee('Main carriage',0,{kind:'freight'}),fee('Cargo cover',30,{kind:'insurance'})]).costCompleteness,
     {status:'provisional',missing:['freight']});
   for (const incoterm of ['FOB','EXW']) {
-    assert.deepEqual(withFees([],{incoterm}).costCompleteness,{status:'costs_entered',missing:[]});
+    const entered = withFees([],{incoterm});
+    assert.deepEqual(entered.costCompleteness,{status:'costs_entered',missing:[]});
+    assert.equal(entered.quotedOrder.meetsTarget, true);
   }
 });
 
@@ -80,7 +87,7 @@ test('invalid bundled declarations and arbitrary fee fields cannot mark a quote 
 
 test('an exact decimal price threshold stays on its currency increment', () => {
   const inputs = {
-    costCurrency:'USD',quoteCurrency:'USD',quotePerCostUnit:1,quantity:1,unitProductCost:0.07,
+    incoterm:'FOB',costCurrency:'USD',quoteCurrency:'USD',quotePerCostUnit:1,quantity:1,unitProductCost:0.07,
     sellerFees:'[]',commissionPercent:7,paymentFeePercent:0,targetMarginPercent:23,
   };
   const exact = run({...inputs, quotedUnitPrice:0.1});
@@ -94,7 +101,7 @@ test('an exact decimal price threshold stays on its currency increment', () => {
 
 test('seller costs round up in zero-decimal and three-decimal quote currencies', () => {
   const yen = run({
-    costCurrency:'USD',quoteCurrency:'JPY',quotePerCostUnit:149.905,quantity:1,unitProductCost:2,
+    incoterm:'FOB',costCurrency:'USD',quoteCurrency:'JPY',quotePerCostUnit:149.905,quantity:1,unitProductCost:2,
     sellerFees:'[]',commissionPercent:0,paymentFeePercent:0,targetMarginPercent:10,quotedUnitPrice:334,
   });
   assert.equal(yen.sellerCost, 300);
@@ -102,7 +109,7 @@ test('seller costs round up in zero-decimal and three-decimal quote currencies',
   assert.equal(yen.quotedOrder.meetsTarget, true);
 
   const dinar = run({
-    costCurrency:'USD',quoteCurrency:'KWD',quotePerCostUnit:0.30673359,quantity:3,unitProductCost:1,
+    incoterm:'FOB',costCurrency:'USD',quoteCurrency:'KWD',quotePerCostUnit:0.30673359,quantity:3,unitProductCost:1,
     sellerFees:'[]',commissionPercent:0,paymentFeePercent:0,targetMarginPercent:0,quotedUnitPrice:0.307,
   });
   assert.equal(dinar.sellerCost, 0.921);

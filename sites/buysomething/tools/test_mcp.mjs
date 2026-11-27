@@ -55,11 +55,12 @@ const ok = (c, m) => { n++; if (!c) { console.error("FAIL " + n + ": " + m); pro
 
 // 1) descriptor
 const d = await (await call("/api/mcp")).json();
-ok(d.tools.length === 8 && d.protocol.streamable_http.includes("/api/mcp"), "GET /api/mcp 描述符:8 个工具 + 两种调用方式");
+const registryVersion = JSON.parse(await readFile(new URL("../server.json", import.meta.url), "utf8")).version;
+ok(d.tools.length === 8 && d.version === registryVersion && d.protocol.streamable_http.includes("/api/mcp"), "GET /api/mcp 描述符:8 个工具 + 两种调用方式");
 
 // 2) initialize
 const init = await rpc("initialize", { protocolVersion: "2025-06-18" });
-ok(init.result.protocolVersion === "2025-06-18" && /800/.test(init.result.instructions) && init.result.serverInfo.name === "sourceradar",
+ok(init.result.protocolVersion === "2025-06-18" && /800/.test(init.result.instructions) && init.result.serverInfo.name === "sourceradar" && init.result.serverInfo.version === registryVersion,
    "initialize:协议版本回显 + instructions 点名过期的 $800 口径");
 
 // 3) tools/list

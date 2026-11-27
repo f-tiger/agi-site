@@ -7,7 +7,7 @@ import {DatabaseSync} from 'node:sqlite';
 import {onRequest} from '../functions/api/account.js';
 import {ensureAccounts,getAccount,consumeRate,hash,PASSWORD_COST,ACCOUNT_COOKIE,issueSession,passwordRecord,randomToken,now} from '../lib/free-account.js';
 import {ensureGoogleAccounts,GOOGLE_PROOF_COOKIE} from '../lib/google-account.js';
-import {TRADE_QUOTE_SIGNUP_SOURCE,TRADE_WORKBENCH_SIGNUP_SOURCE} from '../lib/trade-signup-source.mjs';
+import {TRADE_QUOTE_MCP_LINK_SIGNUP_SOURCE,TRADE_QUOTE_SIGNUP_SOURCE,TRADE_WORKBENCH_SIGNUP_SOURCE} from '../lib/trade-signup-source.mjs';
 import tools from '../data/tools.json' with {type:'json'};
 function setup(){const sql=new DatabaseSync(':memory:');sql.exec("PRAGMA foreign_keys=ON; CREATE TABLE hits (id INTEGER PRIMARY KEY); INSERT INTO hits(id) VALUES(1)");let transactionQueue=Promise.resolve();const HITS={prepare(query){let values=[];const q={sql:query,bind(...args){values=args;return q;},run(){return sql.prepare(query).run(...values);},async first(){return sql.prepare(query).get(...values)||null;},async all(){return {results:sql.prepare(query).all(...values)};}};return q;},batch(queries){const task=transactionQueue.then(()=>{sql.exec('BEGIN');try{const out=[];for(const q of queries)out.push(q.run());sql.exec('COMMIT');return out;}catch(error){sql.exec('ROLLBACK');throw error;}});transactionQueue=task.catch(()=>{});return task;}};return {sql,env:{HITS}};}
 const password='correct horse battery 47';const newPassword='new strong password 2026';
@@ -79,10 +79,17 @@ assert.deepEqual(PASSWORD_COST,{N:32768,r:8,p:3,maxmem:64*1024*1024});
  const toolSignup=await signup('source_workbench_tool',await claim(workbenchTool),{},origin+'/en/account');
  assert.equal(provenance(toolSignup.body.user.id),TRADE_WORKBENCH_SIGNUP_SOURCE);
 
+ const taggedQuote=quote+'?mcp_entry=trade-export-quote';
+ const tagged=await signup('source_tagged_quote',await claim(taggedQuote));
+ assert.equal(provenance(tagged.body.user.id),TRADE_QUOTE_MCP_LINK_SIGNUP_SOURCE);
+ const queryNoise=await signup('source_other_quote',await claim(taggedQuote+'&other=1'));
+ assert.equal(provenance(queryNoise.body.user.id),TRADE_QUOTE_SIGNUP_SOURCE);
+
  sql.exec('DROP TABLE free_account_signup_claims');
  const oldSchema=await signup('source_no_schema',test);assert.equal(provenance(oldSchema.body.user.id),undefined);
  const sourceCount=sql.prepare('SELECT COUNT(*) n FROM free_account_signup_sources WHERE source=?');
- assert.equal(sourceCount.get(TRADE_QUOTE_SIGNUP_SOURCE).n,3);
+ assert.equal(sourceCount.get(TRADE_QUOTE_SIGNUP_SOURCE).n,4);
+ assert.equal(sourceCount.get(TRADE_QUOTE_MCP_LINK_SIGNUP_SOURCE).n,1);
  assert.equal(sourceCount.get(TRADE_WORKBENCH_SIGNUP_SOURCE).n,2);
  sql.prepare('DELETE FROM free_accounts WHERE id=?').run(attributed.body.user.id);
  assert.equal(provenance(attributed.body.user.id),undefined);

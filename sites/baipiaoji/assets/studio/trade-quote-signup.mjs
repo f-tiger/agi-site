@@ -44,7 +44,8 @@ if (signup && location.origin === origin && quoteRoute.test(quotePath)) {
 
   async function openAccount(tab) {
     try {
-      const claim = await requestTradeSignupClaim(quotePath);
+      const sourceDocument = quotePath + (location.search === '?mcp_entry=trade-export-quote' ? location.search : '');
+      const claim = await requestTradeSignupClaim(sourceDocument);
       if (claim && !tab.closed && tab.location.href === 'about:blank') {
         tab.sessionStorage.setItem(claimKey, claim);
       }
