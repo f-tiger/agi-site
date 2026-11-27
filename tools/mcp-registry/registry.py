@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Validate, publish and read back official MCP Registry records; no business calls."""
+"""Validate, publish and read back MCP Registry records using public synthetic probes."""
 import argparse
 import datetime as dt
 import json
 import pathlib
+import re
 import subprocess
 import time
 import urllib.error
@@ -13,6 +14,8 @@ import urllib.request
 REGISTRY = 'https://registry.modelcontextprotocol.io/v0.1/servers/'
 SCHEMA = 'https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json'
 UA = 'agi-site-mcp-registration/1.0 (metadata-only)'
+BPJ_AI_NAME = 'io.github.f-tiger/bpj-ai-tools'
+BPJ_AI_ENDPOINT = 'https://baipiaoji.com/api/ai-mcp'
 
 
 def request_json(url, payload=None, missing_ok=False):
@@ -63,9 +66,56 @@ def verify_receipt(manifest, receipt):
         raise ValueError('Registry status is not active: ' + str(status))
 
 
+def requires_bpj_quote_probe(manifest):
+    if manifest['name'] != BPJ_AI_NAME:
+        return False
+    base, separator, _ = manifest['version'].split('+', 1)[0].partition('-')
+    if not re.fullmatch(r'\d+\.\d+\.\d+', base):
+        raise ValueError('Invalid BPJ AI Tools version')
+    version = tuple(map(int, base.split('.')))
+    return version > (0, 5, 2) or (version == (0, 5, 2) and not separator)
+
+
+def verify_bpj_quote(url):
+    common = {
+        'incoterm': 'CIF', 'costCurrency': 'CNY', 'quoteCurrency': 'USD',
+        'quotePerCostUnit': 0.14, 'quantity': 500, 'unitProductCost': 36,
+        'commissionPercent': 5, 'paymentFeePercent': 2.5, 'targetMarginPercent': 20,
+        'quotedUnitPrice': 8.4,
+    }
+    fees = [
+        {'name': 'Packaging', 'amount': 350, 'currency': 'CNY'},
+        {'name': 'Pre-carriage', 'amount': 650, 'currency': 'CNY'},
+        {'name': 'Freight', 'amount': 250, 'currency': 'USD', 'kind': 'freight'},
+        {'name': 'Insurance', 'amount': 30, 'currency': 'USD', 'kind': 'insurance'},
+    ]
+    cases = [
+        ('costs_entered', fees, [], 8.12),
+        ('provisional', fees[:2], ['freight', 'insurance'], 7.34),
+    ]
+    for call_id, (status, charges, missing, floor) in enumerate(cases, start=3):
+        response = request_json(url + '?__probe=1', {
+            'jsonrpc': '2.0', 'id': call_id, 'method': 'tools/call',
+            'params': {'name': 'bpj_trade_export_quote',
+                       'arguments': {**common, 'sellerFees': json.dumps(charges)}},
+        })
+        result = response.get('result') if isinstance(response, dict) else None
+        output = result.get('structuredContent') if isinstance(result, dict) else None
+        if (not isinstance(output, dict) or response.get('jsonrpc') != '2.0' or response.get('id') != call_id or
+                'error' in response or result.get('isError') or output.get('incoterm') != 'CIF' or
+                output.get('quoteCurrency') != 'USD' or output.get('minimumUnitPrice') != floor or
+                output.get('costCompleteness') != {'status': status, 'missing': missing}):
+            raise ValueError('Live BPJ synthetic CIF contract mismatch: ' + status)
+    print('Live BPJ synthetic CIF verified: confirmed USD 8.12 and provisional missing freight and insurance')
+
+
 def verify_remote(manifest):
-    """Only initialize/tools/list; never tools/call/resources/read or customer input."""
-    for remote in manifest.get('remotes', []):
+    """Check public metadata and the scoped BPJ synthetic CIF cases."""
+    remotes = manifest.get('remotes', [])
+    quote_probe = requires_bpj_quote_probe(manifest)
+    if quote_probe and [remote['url'] for remote in remotes] != [BPJ_AI_ENDPOINT]:
+        raise ValueError('BPJ quote preflight requires the canonical free MCP endpoint')
+    for remote in remotes:
         init = request_json(remote['url'], {'jsonrpc': '2.0', 'id': 1, 'method': 'initialize', 'params': {'protocolVersion': '2025-06-18', 'capabilities': {}, 'clientInfo': {'name': 'fleet-registration-metadata', 'version': '1.0'}}})
         info = init.get('result', {}).get('serverInfo', {})
         if info.get('version') != manifest['version']:
@@ -75,6 +125,8 @@ def verify_remote(manifest):
         if not isinstance(tools, list) or not tools:
             raise ValueError('Live tools/list did not return tools')
         print('Live metadata verified:', manifest['name'], len(tools), 'tools')
+        if quote_probe:
+            verify_bpj_quote(remote['url'])
 
 
 def manifests(directories):

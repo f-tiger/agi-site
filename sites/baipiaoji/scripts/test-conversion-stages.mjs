@@ -7,6 +7,7 @@ import {HITS_INDEXES} from '../lib/hits-schema.js';
 import {assertCountTree} from './conversion-stage-counts.mjs';
 import {onRequestPost} from '../functions/api/hit.js';
 import {hitWriteFixture} from './hit-write-fixture.mjs';
+import {emptyTradeQuoteCounts} from '../lib/trade-quote-growth.mjs';
 const db=new DatabaseSync(':memory:');
 db.exec(`CREATE TABLE hits(d TEXT,path TEXT,lang TEXT,ev TEXT,ref TEXT); ${HITS_INDEXES.join(';')};
  CREATE TABLE free_accounts(id TEXT PRIMARY KEY,created INTEGER,qa INTEGER);
@@ -31,6 +32,8 @@ for(const [path,ev,lang='en',date='2026-09-26'] of [
  ['/trade-workbench/fx-bank-quote-unit/run','biz','ci'],['/trade-workbench/fx-bank-quote-unit/run','biz','de'],
  ['/trade-workbench/fx-bank-quote-unit/run','biz','en','2026-09-27'],
  ['/trade-workbench/fx-bank-quote-unit/run?value=125','biz'],['/trade-workbench/unknown-slug/run','biz'],
+ ['/trade-quote/ready_own','biz'],['/trade-quote/needs_info_demo','biz'],['/trade-quote/signup_open','biz','zh'],
+ ['/trade-quote/ready_own','biz','ci'],['/trade-quote/ready_own?amount=125','biz'],['/trade-quote/ready_own','biz','de'],
  ['/studio/quote-compare/download/own','calc'],['/studio/pdf-tools/complete/own/extra','calc'],
  ['/account-growth/tool-entry','calc'],['/account-growth/tool-entry/forged','calc'],['/account-growth/tool-entry','calc','ci'],
  ['/coding-access/filter/catalog','coding_access'],['/coding-access/miss/catalog','coding_access'],
@@ -55,6 +58,13 @@ for(const [id,date,qa,verified] of [['real','2026-09-26',0,1],['unverified','202
 const out=await readConversionStages(binding,28,Date.parse('2026-09-27T15:01:00Z'));
 assert.deepEqual(out.window,{start:'2026-08-30',end_exclusive:'2026-09-27',complete_days:28,date_basis:'UTC'});
 assert.equal(out.ok,true);
+assert.equal(out.trade_quote_accounts,null,'Absent optional source table is unknown');
+db.exec('CREATE TABLE free_account_signup_sources(account_id TEXT PRIMARY KEY,source TEXT)');
+const quoteSource=db.prepare('INSERT INTO free_account_signup_sources VALUES (?,?)');
+for (const id of ['real','unverified','qa','today']) quoteSource.run(id,'bpj_trade_quote');
+quoteSource.run('old','some_other_product');
+const attributed=await readConversionStages(binding,28,Date.parse('2026-09-27T15:01:00Z'));
+assert.deepEqual(attributed.trade_quote_accounts,{total:3,email_verified_total:2,created:2,email_verified:1});
 assert.deepEqual(out.directory_outbound,{by_tool:[{slug:'fireworks',clicks:1}],unattributed_clicks:0});
 // Catalog allowlist prevents publishing arbitrary tracked paths. Page views and
 // current affiliate settings cannot turn outbound actions into commissions.
@@ -84,7 +94,7 @@ const proposalDeckActions={
  own:{pptx_export:2,member_open:1,cloud_open:1,cloud_saved:1,cloud_restore:1,paid_offer_view:1},
 };
 const proofkitActions={demo:{preview:0,backup:0,export:1,image:0,canva:0},own:{preview:0,backup:0,export:1,image:0,canva:0,import:1,member_open:1,paid_offer_view:1}};
-assert.deepEqual(out.events,{table_review_actions:emptyTableReviewCounts(),listing_actions:emptyListingCounts(),proofkit_actions:proofkitActions,trade_workbench_actions:{signup:1,guest_run:1,run:1,example:1,membership_open:1,csv:1},proposal_deck_actions:proposalDeckActions,tool_results_own:2,tool_results_demo:1,tool_download_actions_own:1,tool_download_actions_demo:1,other_calc_events:14,directory_outbound_clicks:1,homepage_limit_navigation:1,video_exports_own:1,video_exports_demo:1,account_tool_entries:1,coding_access_filters:1,coding_access_empty_results:1,coding_access_provider_opens:1,coding_access_source_opens:1,coding_access_selection_copies:2,coding_access_checklist_copies:1,coding_access_vendor_entries:1});
+assert.deepEqual(out.events,{trade_quote_actions:{...emptyTradeQuoteCounts(),ready_own:1,needs_info_demo:1,signup_open:1},table_review_actions:emptyTableReviewCounts(),listing_actions:emptyListingCounts(),proofkit_actions:proofkitActions,trade_workbench_actions:{signup:1,guest_run:1,run:1,example:1,membership_open:1,csv:1},proposal_deck_actions:proposalDeckActions,tool_results_own:2,tool_results_demo:1,tool_download_actions_own:1,tool_download_actions_demo:1,other_calc_events:14,directory_outbound_clicks:1,homepage_limit_navigation:1,video_exports_own:1,video_exports_demo:1,account_tool_entries:1,coding_access_filters:1,coding_access_empty_results:1,coding_access_provider_opens:1,coding_access_source_opens:1,coding_access_selection_copies:2,coding_access_checklist_copies:1,coding_access_vendor_entries:1});
 const beaconRows=[];
 async function proofkitBeacon(path, ref='/en/studio/testimonial-kit', headers={}) {
  return onRequestPost({env:{HITS:hitWriteFixture(beaconRows)},request:new Request('https://baipiaoji.com/api/hit',{
@@ -128,6 +138,15 @@ for (const opt of [
  {cf:{country:'US',botManagement:{verifiedBot:true}}},
 ]) await tradeBeacon(opt);
 assert.deepEqual(tradeRows.map(row=>row.slice(1)),[[tradePath,'en','','','biz'],['/trade-workbench/'+tradeTool+'/guest_run','en','','','biz'],['/trade-workbench/'+tradeTool+'/example','zh','','','biz'],[directorySignup,'en','','','biz']]);
+const quoteRef='https://baipiaoji.com/en/studio/ai/trade-export-quote';
+const quotePath='/trade-quote/ready_own';
+tradeRows.length=0;
+await tradeBeacon({p:quotePath,ref:quoteRef});
+for (const options of [{ref:tradeHub},{p:quotePath+'?price=1'},{ref:quoteRef+'?__qa=1'},
+ {addHeaders:{'sec-gpc':'1'}},{addHeaders:{'user-agent':'HeadlessChrome'}},{e:'calc'},{p:'/trade-quote/paid'}]) {
+ await tradeBeacon({p:quotePath,ref:quoteRef,...options});
+}
+assert.deepEqual(tradeRows.map(row=>row.slice(1)),[[quotePath,'en','','','biz']]);
 assert.deepEqual(out.accounts,{created:2,new_accounts_currently_email_verified:1,total_non_test:4,total_currently_email_verified:3});
 assert.equal(out.account_scope,'fleet_shared_account_pool');
 assert.equal(out.accounts_daily.length,28);

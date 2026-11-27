@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import {publicReturnPath} from '../../../tools/fleet-account/config.mjs';
+import freeRegistryManifest from '../../../tools/mcp-registry/manifests/bpj-ai-tools.json' with {type:'json'};
 import {appendEvent,restoreLedger,reviewTask,summarize,compareRuns} from '../assets/studio/task-loop-core.mjs';
 import {aiMcp} from '../lib/ai-mcp.mjs';
 import {executeSuiteTool} from '../lib/ai-suite/runtime.mjs';
@@ -67,7 +68,7 @@ const rpc=async(method,params,paid=false,env={})=>{
 const metadata=await rpc('initialize');
 assert.equal(metadata.protocolVersion,'2025-06-18');
 assert.equal(metadata.serverInfo.name,'bpj-ai-tools');
-assert.equal(metadata.serverInfo.version,'0.5.1');
+assert.equal(metadata.serverInfo.version,freeRegistryManifest.version);
 const listing=[];
 const cursors=new Set();
 let cursor;
@@ -100,7 +101,8 @@ assert.equal(SUITE_TOOLS.length,1013);
 assert.equal(listing.length,1016);
 assert.equal(cursors.size,25);
 assert.equal(new Set(listing.map(tool=>tool.name)).size,listing.length);
-for(const cursor of [false,null,'','!!!','x'.repeat(128),btoa('bpj/0.5.0/free/40'),btoa('bpj/0.5.1/free/1'),btoa('bpj/0.5.1/free/10000')]){
+const cursorVersionPrefix='bpj/'+freeRegistryManifest.version+'/free/';
+for(const cursor of [false,null,'','!!!','x'.repeat(128),btoa('bpj/0.5.1/free/40'),btoa(cursorVersionPrefix+'1'),btoa(cursorVersionPrefix+'10000')]){
  const response=await req({jsonrpc:'2.0',id:42,method:'tools/list',params:{cursor}});
  assert.equal((await response.json()).error.code,-32602);
 }
@@ -313,3 +315,74 @@ assert.throws(()=>runSuiteTool(billing.name,{...billing.example,
 }),/below supported numeric precision/);
 console.log('PASS 9 independent evaluation answers, domain errors and token-cost underflow.');
 console.log('PASS '+SUITE_TOOLS.length+' free MCP fixtures and invalid arguments, paginated schemas, multilingual discovery and paid isolation.');
+
+{
+ const {database}=await import('../../../tools/member-studio/test-fixtures.mjs');
+ const {AI_TRADE_QUOTE,TRADE_QUOTE_DAILY_TABLE}=await import('../lib/ai-trade-quote-observations.mjs');
+ const db=database(), pending=[];
+ const example=SUITE_TOOLS.find(tool=>tool.name===AI_TRADE_QUOTE).example;
+ const known={...example,sellerFees:example.sellerFees.replace('Packaging','PRIVATE-FEE-LABEL')};
+ const quote=(argumentsForTool=known,wrapper=false)=>wrapper
+  ? {name:'run_bpj_ai_tool',arguments:{name:AI_TRADE_QUOTE,arguments:argumentsForTool}}
+  : {name:AI_TRADE_QUOTE,arguments:argumentsForTool};
+ const observe=async(params,{headers={},query='',verifiedBot=false,method='tools/call',hits=db,background=true}={})=>{
+  const request=new Request('https://baipiaoji.com/api/ai-mcp'+query,{
+   method:'POST',headers:{'Content-Type':'application/json',...headers},
+   body:JSON.stringify({jsonrpc:'2.0',id:'PRIVATE-REQUEST',method,params}),
+  });
+  if(verifiedBot)Object.defineProperty(request,'cf',{value:{botManagement:{verifiedBot:true}}});
+  const response=await aiMcp({request,env:{HITS:hits},...(background?{waitUntil:job=>pending.push(job)}:{})});
+  assert.equal(response.status,200);
+  return (await response.json()).result;
+ };
+ try{
+  const entered=await observe(quote(),{headers:{Referer:'https://baipiaoji.com/studio/ai/?case=PRIVATE-REFERRER'}});
+  assert.equal(entered.structuredContent.costCompleteness.status,'costs_entered');
+  assert.equal((await observe(quote(known,true))).structuredContent.costCompleteness.status,'costs_entered');
+  assert.deepEqual((await observe(quote({...known,sellerFees:'[]'},true))).structuredContent.costCompleteness,
+   {status:'provisional',missing:['freight','insurance']});
+  assert.equal((await observe(quote({}))).isError,true);
+  assert.equal((await observe({name:'run_bpj_ai_tool',arguments:{name:AI_TRADE_QUOTE}})).isError,true);
+  assert.equal((await observe(quote(example))).structuredContent.costCompleteness.status,'costs_entered');
+  const discovered=await observe({name:'list_bpj_ai_tools',arguments:{query:AI_TRADE_QUOTE,includeSchema:true}});
+  assert(discovered.structuredContent.suite.some(tool=>tool.freeMcp===AI_TRADE_QUOTE));
+  await observe({name:'list_bpj_ai_tools',arguments:{query:'{{unmatched_fixture}}'}});
+  await observe({}, {method:'tools/list'});
+  await observe({}, {method:'initialize'});
+  await observe(quote(known),{verifiedBot:true,headers:{'User-Agent':'GPTBot PRIVATE-EDGE'}});
+  await observe(quote(known),{headers:{'User-Agent':'Googlebot PRIVATE-INDEXER'}});
+  await observe(quote(known),{headers:{'User-Agent':'curl/8.0 PRIVATE-AUTOMATION'}});
+  await observe(quote(known),{headers:{'User-Agent':'Chrome/42.00.4010.01 PRIVATE-ANOMALY'}});
+  for(const options of [
+   {query:'?__probe=1'},{query:'?qa=1'},
+   {headers:{'X-Probe':'PRIVATE-PROBE'}},{headers:{'User-Agent':'bpj-ci-selfcheck/1.0'}},
+   {headers:{DNT:'1'}},{headers:{'Sec-GPC':'1'}},
+   {headers:{Referer:'https://baipiaoji.com/studio/ai/?__qa=1'}},
+  ])assert.equal((await observe(quote(),options)).structuredContent.costCompleteness.status,'costs_entered');
+  assert.equal((await observe(quote(known),{hits:{prepare(){throw Error('quota exhausted');}},background:false}))
+   .structuredContent.costCompleteness.status,'costs_entered');
+  await Promise.all(pending);
+  const rows=db.sql.prepare('SELECT form,outcome,caller_signal,n FROM '+TRADE_QUOTE_DAILY_TABLE
+   +' ORDER BY form,outcome,caller_signal').all().map(row=>Object.values(row));
+  assert.deepEqual(rows,[
+   ['direct','costs_entered','edge_verified_bot',1],
+   ['direct','costs_entered','sample_fixture',1],
+   ['direct','costs_entered','ua_anomaly_hint',1],
+   ['direct','costs_entered','ua_automation_hint',1],
+   ['direct','costs_entered','ua_indexer_hint',1],
+   ['direct','costs_entered','unknown',1],
+   ['direct','invalid','unknown',1],
+   ['discovery','listed','unknown',1],
+   ['wrapper','costs_entered','unknown',1],
+   ['wrapper','invalid','unknown',1],
+   ['wrapper','provisional','unknown',1],
+  ]);
+  assert.deepEqual(db.sql.prepare('PRAGMA table_info('+TRADE_QUOTE_DAILY_TABLE+')').all().map(column=>column.name),
+   ['day','form','outcome','caller_signal','n']);
+  assert.doesNotMatch(JSON.stringify(rows),/PRIVATE|sellerFees/);
+ }finally{
+  await Promise.allSettled(pending);
+  db.sql.close();
+ }
+ console.log('PASS export quote direct and wrapper outcomes, discovery-only returns, separate caller signals, privacy opt-outs, and best-effort D1.');
+}

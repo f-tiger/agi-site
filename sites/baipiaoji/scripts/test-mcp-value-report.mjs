@@ -4,6 +4,7 @@ import {database} from '../../../tools/member-studio/test-fixtures.mjs';
 import {onRequestGet} from '../functions/api/mcp-value-report.js';
 import {recordMcpValue} from '../lib/mcp-value-events.mjs';
 import {readMcpValueReport} from '../lib/mcp-value-report.mjs';
+import {recordAiTradeQuote, TRADE_QUOTE_DAILY_TABLE} from '../lib/ai-trade-quote-observations.mjs';
 
 function fixture() {
   const db = database(), prepare = db.prepare;
@@ -60,5 +61,36 @@ test('the readout is private and treats unavailable tables as uncovered', async 
   assert.equal(result.task_outcomes,null);
   assert.equal(result.startup_checkout,null);
   assert.equal(result.startup_paid_usage,null);
+  assert.equal(result.trade_quote_calls.observations,null);
   assert.doesNotMatch(JSON.stringify(result), /report-fixture-secret/);
+});
+
+test('trade quote observations have bounded retention and use the protected report UTC window', async t => {
+  const db = fixture();
+  t.after(() => db.sql.close());
+  const asOf = Date.parse('2026-11-27T16:21:00Z'), days = 86400000;
+  const request = new Request('https://baipiaoji.com/api/ai-mcp', {headers:{'User-Agent':'PRIVATE-CLIENT'}});
+  const record = (time,form,outcome) => recordAiTradeQuote(db,request,{form,outcome},time);
+  assert.equal(await record(asOf - 36 * days,'direct','costs_entered'),true);
+  assert.equal(await record(asOf - 34 * days,'direct','costs_entered'),true);
+  assert.equal(await record(asOf - 8 * days,'direct','invalid'),true);
+  assert.equal(await record(asOf - 7 * days,'direct','costs_entered'),true);
+  assert.equal(await record(asOf,'wrapper','provisional'),true);
+  assert.equal(await record(asOf,'discovery','listed'),true);
+  assert.equal(await record(asOf,'discovery','costs_entered'),false);
+  assert.equal(db.sql.prepare(`SELECT MIN(day) day FROM ${TRADE_QUOTE_DAILY_TABLE}`).get().day,'2026-10-24');
+
+  const report = await readMcpValueReport(db, new Date(asOf));
+  const quote = report.trade_quote_calls;
+  assert.equal(quote.tool,'bpj_trade_export_quote');
+  assert.equal(quote.endpoint,'/api/ai-mcp');
+  assert.equal(quote.retention_days,35);
+  assert.deepEqual(quote.window,{since:'2026-11-20',through:'2026-11-27',timezone:'UTC',today_partial:true});
+  assert.deepEqual(quote.observations.map(row=>Object.values(row)),[
+    ['2026-11-20','direct','costs_entered','unknown',1],
+    ['2026-11-27','discovery','listed','unknown',1],
+    ['2026-11-27','wrapper','provisional','unknown',1],
+  ]);
+  assert.equal((await readMcpValueReport(db,new Date(asOf+15*days))).trade_quote_calls.observations.length,0);
+  assert.doesNotMatch(JSON.stringify(report),/PRIVATE-CLIENT/);
 });

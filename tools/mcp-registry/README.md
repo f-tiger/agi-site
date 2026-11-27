@@ -20,8 +20,9 @@ and a registry listing do not establish genuine customers or successful usage.
 
 On a pull request the workflow validates manifests, checks live `initialize`
 and `tools/list` responses, builds the local bundles and checks their protocol.
-It never sends `tools/call` to the public remote services. Local synthetic
-checks use no private inputs or live model calls.
+For BPJ AI Tools 0.5.2 and later, the live check also calls the export quote tool
+with two fixed, QA-marked CIF examples. Those examples contain no customer data
+or model calls. The other remote checks use only protocol metadata.
 
 On `main`, two independent paths run:
 

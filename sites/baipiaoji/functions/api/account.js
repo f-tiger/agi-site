@@ -1,6 +1,7 @@
 import {getGoogleProof,googleRegistrationStatements,clearGoogleProofCookie} from '../../lib/google-account.js';
 import {ACCOUNT_COOKIE,ensureAccounts,getAccount,accountView,normalizeUsername,displayName,validUsername,normalizeEmail,validEmail,accountById,validPassword,validFavorite,passwordRecord,verifyPassword,randomToken,hash,now,cookie,clearCookie,tokenFrom,consumeRate,issueSession} from '../../lib/free-account.js';
-const ACTIONS=new Set(['register','login','recover','logout','change_password','delete_account','favorite_add','favorite_remove','rotate_recovery','link_email']);
+import {issueTradeSignupSource,tradeSignupSourceStatements,missingTradeSignupSourceSchema} from '../../lib/trade-signup-source.mjs';
+const ACTIONS=new Set(['register','login','recover','logout','change_password','delete_account','favorite_add','favorite_remove','rotate_recovery','link_email','issue_trade_signup_source']);
 const json=(body,status=200,sessionCookie)=>{const headers=new Headers({'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});for(const value of (Array.isArray(sessionCookie)?sessionCookie:[sessionCookie]).filter(Boolean))headers.append('Set-Cookie',value);return new Response(JSON.stringify(body),{status,headers});};
 const error=(code,status)=>json({ok:false,error:code},status);
 async function bodyOf(request){
@@ -30,6 +31,10 @@ async function route(request,env){
  if(url.protocol!=='https:'||request.headers.get('Origin')!==url.origin||request.headers.get('Sec-Fetch-Site')==='cross-site')return error('origin_rejected',403);
  const body=await bodyOf(request);if(!body||!ACTIONS.has(body.action))return error('invalid_request',400);
  const ip=request.headers.get('CF-Connecting-IP');if(!ip||ip.length>64)return error('unavailable',503);
+ if(body.action==='issue_trade_signup_source'){
+  const source=Object.keys(body).length===1?await issueTradeSignupSource(request,env,ip):null;
+  return json({ok:true,claim:source?.claim||null},200,source?.cookie);
+ }
  await ensureAccounts(env);
  const action=body.action,username=normalizeUsername(body.username),shownName=displayName(body.username),email=normalizeEmail(body.email);
  const hasEmail=Object.hasOwn(body,'email');
@@ -62,11 +67,20 @@ async function route(request,env){
   try{
    // D1 batch is transactional: either both the account and its unique identity exist,
    // or neither does. A concurrent duplicate cannot leave an orphan account.
-   await env.HITS.batch([
+   const registration=[
     env.HITS.prepare('INSERT INTO free_accounts(id,username,password_hash,recovery_hash,created,updated,qa) VALUES(?,?,?,?,?,?,?)').bind(id,username,password,hash(recovery),t,t,qa),
     env.HITS.prepare('INSERT INTO free_account_identities(account_id,email,display_name,display_key,email_verified,email_verified_at) VALUES(?,?,?,?,?,?)').bind(id,email,shownName,username,googleProof?.email_authoritative?1:0,googleProof?.email_authoritative?t:null),
     ...(googleProof?googleRegistrationStatements(env,googleProof,id):[]),
-   ]);
+   ];
+   try{
+    const source=tradeSignupSourceStatements(request,env.HITS,body.signup_source_claim,id,t,qa);
+    await env.HITS.batch([...registration,...source]);
+   }catch(cause){
+    // A missing optional table is a definite failed batch. Keep registration
+    // available without attribution during deployment or schema recovery.
+    if(!missingTradeSignupSourceSchema(cause))throw cause;
+    await env.HITS.batch(registration);
+   }
   }catch(cause){
    if(googleProof&&/(NOT NULL|UNIQUE) constraint failed: free_google_identities/i.test(String(cause?.message||cause)))return error('google_proof_invalid',409);
    if(!/UNIQUE constraint failed|SQLITE_CONSTRAINT_UNIQUE/i.test(String(cause?.message||cause)))throw cause;

@@ -3,6 +3,7 @@ import {parseTableReviewEvent,emptyTableReviewCounts} from './table-review-signa
 import {parseListingEvent,emptyListingCounts} from './listing-signals.mjs';
 import {PROOFKIT_PATHS,parseProofKitEvent,emptyProofKitCounts} from './proofkit-signals.mjs';
 import {parseTradeWorkbenchEvent,emptyTradeWorkbenchCounts} from './trade-workbench-signals.mjs';
+import {parseTradeQuoteEvent,emptyTradeQuoteCounts,readTradeQuoteAccounts} from './trade-quote-growth.mjs';
 import catalog from '../data/tools.json' with {type:'json'};
 
 const toolSlugs = new Set(catalog.map(tool => tool.slug));
@@ -32,7 +33,7 @@ export const STAGE_EVENTS_SQL = `SELECT ev, path, count(*) n FROM hits
  WHERE d >= ? AND d < ? AND ${EVENT_ROWS}
  AND (ev IN ('calc','go','home','coding_access','listing','table_review')
    OR (ev = 'biz' AND (path IN (${PROOFKIT_PATHS.map(path => `'${path}'`).join(',')})
-     OR (path GLOB '/trade-workbench/*' AND lang IN ('zh', 'en')))))
+     OR ((path GLOB '/trade-workbench/*' OR path GLOB '/trade-quote/*') AND lang IN ('zh', 'en')))))
  AND path NOT LIKE '/\\_\\_%' ESCAPE '\\' AND COALESCE(lang,'') != 'ci'
  GROUP BY ev, path`;
 export const STAGE_ACCOUNTS_SQL = `SELECT count(*) total_non_test,
@@ -81,7 +82,7 @@ export async function readWorkbenchOrderCohorts(db, start, end) {
 
 export function stageCounts(rows) {
   const counts = { table_review_actions: emptyTableReviewCounts(), listing_actions: emptyListingCounts(), proofkit_actions: emptyProofKitCounts(),
-    trade_workbench_actions: emptyTradeWorkbenchCounts(),
+    trade_workbench_actions: emptyTradeWorkbenchCounts(), trade_quote_actions: emptyTradeQuoteCounts(),
     proposal_deck_actions: { demo: {...DECK_ACTION_COUNTS}, own: {...DECK_ACTION_COUNTS, paid_offer_view: 0} },
     tool_results_own: 0, tool_results_demo: 0, tool_download_actions_own: 0,
     tool_download_actions_demo: 0, other_calc_events: 0, directory_outbound_clicks: 0,
@@ -99,6 +100,8 @@ export function stageCounts(rows) {
       const trade = parseTradeWorkbenchEvent(path);
       if (proof) counts.proofkit_actions[proof.mode][proof.action] += n;
       if (trade) counts.trade_workbench_actions[trade.action] += n;
+      const quote = parseTradeQuoteEvent(path);
+      if (quote) counts.trade_quote_actions[quote] += n;
       continue;
     }
     if (row.ev === 'listing') {
@@ -145,10 +148,11 @@ export async function readConversionStages(db, days, clock = Date.now()) {
   const endSeconds = Date.parse(end + 'T00:00:00Z') / 1000;
   const startSeconds = endSeconds - days * 86400;
   const start = new Date(startSeconds * 1000).toISOString().slice(0,10);
-  const [events, accounts, accountDays] = await Promise.allSettled([
+  const [events, accounts, accountDays, tradeQuoteAccounts] = await Promise.allSettled([
     db.prepare(STAGE_EVENTS_SQL).bind(start,end).all(),
     db.prepare(STAGE_ACCOUNTS_SQL).bind(startSeconds,endSeconds,startSeconds,endSeconds).first(),
     db.prepare(STAGE_ACCOUNTS_DAILY_SQL).bind(startSeconds,endSeconds).all(),
+    readTradeQuoteAccounts(db,startSeconds,endSeconds),
   ]);
   const eventsOK = events.status === 'fulfilled';
   const accountsOK = accounts.status === 'fulfilled' && accounts.value != null;
@@ -167,6 +171,7 @@ export async function readConversionStages(db, days, clock = Date.now()) {
       return {date, created: Number(row?.created || 0), new_accounts_currently_email_verified: Number(row?.new_accounts_currently_email_verified || 0)};
     }) : null,
     account_scope: 'fleet_shared_account_pool',
+    trade_quote_accounts: tradeQuoteAccounts.status==='fulfilled' ? tradeQuoteAccounts.value : null,
     missing: [...(!eventsOK ? ['events'] : []), ...(!accountsOK ? ['accounts'] : []), ...(!accountDaysOK ? ['accounts_daily'] : [])],
     definitions: {
       table_review_actions: 'Fixed browser actions since the 2026-11-12 release, split into fictional demo and declared own inputs. Check means structural comparison succeeded; export initiates a download. Neither proves correctness, unique customers, paid demand or revenue. No table content is collected. These events have no user-level channel join.',
@@ -174,6 +179,8 @@ export async function readConversionStages(db, days, clock = Date.now()) {
       proposal_deck_actions: 'Fixed ProposalDeck browser action counts projected from other_calc_events, excluding known CI. Own is declared project use. paid_offer_view is measured from its release. cloud_saved records an acknowledged save. Actions and orders have independent counts.',
       proofkit_actions: 'Fixed ProofKit actions from the same complete UTC days, separated into labelled examples and own projects. Own exports follow a local permission acknowledgement. paid_offer_view records a rendered contextual offer since its release. member_open records an explicit popup. Actions, customers and orders have independent counts.',
       trade_workbench_actions: 'Fixed browser actions in this complete UTC window. signup and membership_open count link clicks. guest_run counts acknowledged guest results. run and example count acknowledged registered results with own inputs and sample inputs respectively. csv counts download initiation after successful member export. Repeats can occur. Account creations, members and orders are measured separately. Input values and results are excluded.',
+      trade_quote_actions: 'Fixed same-site browser actions in complete UTC days. Ready means the calculator returned a result with the entered cost confirmations. Needs info means a CIF cost is unconfirmed. Demo and user-entered text are distinguished by the browser. Signup open is a link action. Counts may repeat and carry no quote data or identity.',
+      trade_quote_accounts: 'Surviving non-test accounts with an immutable server-verified signup source from the BPJ export quote page. Created is restricted to the complete UTC window; total includes today. Email verification reflects current state separately. Historical or unverifiable sources remain outside the cohort. A read failure returns null.',
       acquisition: 'Search clicks and CTR come only from GSC; not supplied by this endpoint. GSC uses Pacific reporting days.',
       usage: 'Client-reported successful result actions from PDF, image and quote tools only; repeats are not deduplicated. Demo and own-input actions are separate. Image completion can include partial batch success. Download means an action, not a verified saved file.',
       other_calc_events: 'Unclassified calc events include navigation, edits and tools without a reviewed success contract; never count the whole calc bucket as completed work.',

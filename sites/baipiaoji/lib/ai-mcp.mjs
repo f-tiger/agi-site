@@ -3,10 +3,22 @@ import {SUITE_TOOLS,runSuiteTool} from './ai-suite/registry.mjs';
 import {reviewTask,compareRuns} from '../assets/studio/task-loop-core.mjs';
 import {memberByToken,memberStatus,rate} from './membership.js';
 import {CATALOG_URL,FREE_MCP_VERSION,discoverSuite,listDefinitions} from './ai-tool-discovery.mjs';
+import {AI_TRADE_QUOTE,isTradeQuoteExample,recordAiTradeQuote} from './ai-trade-quote-observations.mjs';
 const DOCS='https://baipiaoji.com/en/studio/ai/';
 const suiteNames=new Set(SUITE_TOOLS.map(tool=>tool.name));
+const tradeQuoteExample=SUITE_TOOLS.find(tool=>tool.name===AI_TRADE_QUOTE)?.example;
 const response=(body,status=200)=>new Response(body===null?null:JSON.stringify(body),{status,headers:{'Content-Type':'application/json','Cache-Control':'no-store','X-Content-Type-Options':'nosniff',...(status===401?{'WWW-Authenticate':'Bearer realm="bpj-ai-mcp"'}:{}),...(status===405?{Allow:'POST, OPTIONS'}:{})}});
-export async function aiMcp({request,env},paid=false){
+async function measureTradeQuote(ctx,form,outcome,inputs){
+ try{
+  const sample=isTradeQuoteExample(inputs,tradeQuoteExample);
+  const write=recordAiTradeQuote(ctx.env.HITS,ctx.request,{form,outcome,sample});
+  if(ctx.waitUntil)ctx.waitUntil(write);
+  else await write;
+ }catch{/* Measurement cannot change the MCP response. */}
+}
+
+export async function aiMcp(ctx,paid=false){
+ const {request,env}=ctx;
  const url=new URL(request.url),origin=request.headers.get('Origin');
  if(origin&&origin!==url.origin)return response({error:'origin_rejected'},403);
  if(request.method==='OPTIONS')return new Response(null,{status:204,headers:{Allow:'POST, OPTIONS','Access-Control-Allow-Origin':url.origin,'Access-Control-Allow-Headers':'Content-Type, Authorization, MCP-Protocol-Version','Access-Control-Allow-Methods':'POST, OPTIONS','Vary':'Origin'}});
@@ -39,6 +51,8 @@ export async function aiMcp({request,env},paid=false){
  const name=msg.params?.name,args=msg.params?.arguments??{};
  const isSuiteTool=!paid&&suiteNames.has(name);
  if(!isSuiteTool&&!(paid?AI_PAID_TOOLS:AI_FREE_TOOLS).some(t=>t.name===name))return error(-32602,'Unknown tool');
+ const quoteForm=!paid?(name===AI_TRADE_QUOTE?'direct':name==='run_bpj_ai_tool'&&args?.name===AI_TRADE_QUOTE?'wrapper':null):null;
+ const quoteInputs=quoteForm==='wrapper'?args.arguments:args;
  try{
   if(isSuiteTool||name==='run_bpj_ai_tool'){
    let target=name, inputs=args;
@@ -49,13 +63,20 @@ export async function aiMcp({request,env},paid=false){
     inputs=args.arguments;
    }
    const output=runSuiteTool(target,inputs);
-   return rpc({structuredContent:output,content:[{type:'text',text:JSON.stringify(output)}]});
+   const reply=rpc({structuredContent:output,content:[{type:'text',text:JSON.stringify(output)}]});
+   if(quoteForm)await measureTradeQuote(ctx,quoteForm,output.costCompleteness?.status,quoteInputs);
+   return reply;
   }
   if(name==='list_bpj_ai_tools'){
    const out=discoverSuite(args,env.AI_MCP_PAID_ENABLED==='true');
-   return rpc({structuredContent:out,content:[{type:'text',text:JSON.stringify(out)}]});
+   const reply=rpc({structuredContent:out,content:[{type:'text',text:JSON.stringify(out)}]});
+   if(!paid&&out.suite.some(tool=>tool.freeMcp===AI_TRADE_QUOTE))await measureTradeQuote(ctx,'discovery','listed');
+   return reply;
   }
   const out=paid?compareRuns(args.runs):reviewTask(args);
   return rpc({content:[{type:'text',text:JSON.stringify(out)}]});
- }catch{return rpc({isError:true,content:[{type:'text',text:'invalid_input: check the tool schema'}]});}
+ }catch{
+  if(quoteForm)await measureTradeQuote(ctx,quoteForm,'invalid',quoteInputs);
+  return rpc({isError:true,content:[{type:'text',text:'invalid_input: check the tool schema'}]});
+ }
 }

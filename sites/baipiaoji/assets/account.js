@@ -16,7 +16,28 @@ function changed(){
  document.dispatchEvent(new CustomEvent('bpj-account-state',{detail:{user:state.user,favorites:[...state.favorites]}}));
 }
 async function refresh(){if(providerPending)return null;if(loading)return loading;const ticket=epoch;loading=(async()=>{try{const r=await fetch('/api/account'+(accountPage?'?readiness=1':''),{credentials:'same-origin',cache:'no-store'}),j=await r.json();if(!r.ok||!j.ok){const e=Error(message(j.error||'unavailable'));e.code=j.error||'unavailable';throw e;}if(ticket!==epoch)return j;const oldId=state.user?.id,newId=j.user?.id;if(oldId!==newId){identityVersion++;document.dispatchEvent(new CustomEvent('bpj-account-identity',{detail:{oldId,newId,newUser:j.user||null}}));}state.user=j.user||null;state.favorites=Array.isArray(j.favorites)?j.favorites:[];state.loaded=true;state.error=false;state.failureCode=null;changed();return j;}catch(e){if(ticket===epoch){state.error=true;state.failureCode=e.code||'unavailable';state.loaded=true;changed();}throw e;}finally{if(ticket===epoch)loading=null;}})();return loading;}
-async function api(action,data={}){const publicAction=['register','login','recover'].includes(action),owner=state.user?.id,identityTicket=identityVersion;if(!publicAction&&!owner)throw Error(errors.unauthorized);epoch++;loading=null;const r=await fetch('/api/account',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({action,...data,...(!publicAction?{account_id:data.account_id||owner}:{})})}),j=await r.json();if(!r.ok||!j.ok){const code=j.code||j.error;const e=Error(message(code));e.code=code;if(r.status===503){state.error=true;state.failureCode=code;changed();}if(code==='session_changed'||code==='authentication_required')refresh().catch(()=>{});throw e;}if((!publicAction&&(identityTicket!==identityVersion||state.user?.id!==owner))||(publicAction&&(identityTicket!==identityVersion||state.user&&state.user.id!==j.user?.id))){const e=Error(message('session_changed'));e.code='session_changed';throw e;}return j;}
+async function api(action,data={}){
+ const publicAction=['register','login','recover'].includes(action),owner=state.user?.id,identityTicket=identityVersion;
+ if(!publicAction&&!owner)throw Error(errors.unauthorized);
+ epoch++;loading=null;
+ const sourceReferrer=action==='register'&&data.signup_source_claim
+  ? {referrer:location.origin+pre+'/account',referrerPolicy:'same-origin'} : {};
+ const body={action,...data,...(!publicAction?{account_id:data.account_id||owner}:{})};
+ const r=await fetch('/api/account',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},
+  ...sourceReferrer,body:JSON.stringify(body)});
+ const j=await r.json();
+ if(!r.ok||!j.ok){
+  const code=j.code||j.error,e=Error(message(code));e.code=code;
+  if(r.status===503){state.error=true;state.failureCode=code;changed();}
+  if(code==='session_changed'||code==='authentication_required')refresh().catch(()=>{});
+  throw e;
+ }
+ if((!publicAction&&(identityTicket!==identityVersion||state.user?.id!==owner))||
+    (publicAction&&(identityTicket!==identityVersion||state.user&&state.user.id!==j.user?.id))){
+  const e=Error(message('session_changed'));e.code='session_changed';throw e;
+ }
+ return j;
+}
 const local=()=>{try{const v=JSON.parse(localStorage.getItem('bpj_watch')||'[]');return Array.isArray(v)?v.filter(s=>typeof s==='string'&&/^[a-z0-9-]{1,80}$/.test(s)).slice(0,40):[];}catch{return [];}};
 function accountHref(slug){const u=new URL(pre+'/account',location.origin);u.searchParams.set('save',slug);u.searchParams.set('next',location.pathname);if(qa)u.searchParams.set('__ci','1');return u.pathname+u.search;}
 document.addEventListener('click',e=>{const a=e.target.closest?.('a[data-account-save]');if(!a||accountPage)return;if(qa){const u=new URL(a.href);u.searchParams.set('__ci','1');a.href=u.pathname+u.search;}if(!qa&&!navigator.webdriver&&navigator.doNotTrack!=='1'&&!navigator.globalPrivacyControl){window.bpjEv?.('calc','/account-growth/tool-entry');window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:'account_entry'}}));}});
@@ -31,6 +52,7 @@ document.addEventListener('bpj-account-identity',e=>{clearSecrets();$('account-t
 // Local handoff only: no identity, inputs or analytics payload. Fleet consent remains explicit.
 function accountFlow(stage){
  if(returnContext)accountReturn.hidden=!!recovery;
+ if(stage==='signed_in'&&returnContext?.tradeQuote)clearTradeSignupClaim();
  return document.dispatchEvent(new CustomEvent('bpj-account-flow',{detail:{stage,recoveryPending:!!recovery,mailAvailable,googleAvailable},cancelable:stage==='signed_in'||stage==='recovery_confirmed'}));
 }
 function tab(name){$('account-legacy-entry').hidden=name!=='login';$('account-request-reset').hidden=name!=='recover';for(const n of ['register','login','recover'])$('account-'+n).hidden=n!==name;document.querySelectorAll('[data-account-tab]').forEach(b=>{if(b.dataset.accountTab===name)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});}
@@ -38,6 +60,7 @@ function download(name,text,type='text/plain'){const a=document.createElement('a
 function recoveryBox(code,username){recovery=code;recoveryUser=username;$('account-recovery-code').textContent=code;$('account-recovery').hidden=false;$('account-recovery').scrollIntoView({block:'center'});accountFlow('render');}
 function clearSecrets(){for(const e of document.querySelectorAll('.bpj-account-page input[type=password]'))e.value='';}
 const accountParams = new URLSearchParams(location.search), accountReturn = $('account-return');
+const tradeSignupClaimKey = 'bpj_trade_signup_claim_v1';
 let returnContext;
 try {
  const next = accountParams.get('next');
@@ -54,6 +77,13 @@ try {
       label:T('返回片单保存区','Back to watchlist saving'),
       intro:T('登录或免费注册后，返回帧选手动保存这份片单，换台设备也能恢复。','Sign in or join free, then return to save your watchlist so you can restore it on another device.'),
       ready:T('返回片单保存区，先查看账户云片单，再选择保存本机片单。','Return to watchlist saving, check your account watchlist, then choose to save your local list.'),
+     };
+    } else if (next === pre+'/studio/ai/trade-export-quote' && accountParams.getAll('next').length===1) {
+     returnContext = {
+      tradeQuote:true,
+      label:T('重新打开外贸报价工具','Reopen the export quote tool'),
+      intro:T('免费注册后可运行外贸工具。如果从报价工具打开此页，报价和结果还在原标签页。','Create a free account to run export trade tools. If you opened this from the quote tool, the quote and its results are still in your original tab.'),
+      ready:T('账户已就绪。切回原来的报价标签页可继续核对结果，也可打开一个新的报价页。','Your account is ready. Switch back to the original quote tab to continue, or open a fresh quote page.'),
      };
     } else if (next === path && /^\/(?:en\/)?studio\/trade-tools\/mcp\/keys\/$/.test(path)) {
      returnContext = {
@@ -79,6 +109,30 @@ try {
   }
  }
 } catch {}
+function clearTradeSignupClaim() {
+ try { sessionStorage.removeItem(tradeSignupClaimKey); } catch {}
+}
+if (!returnContext?.tradeQuote) clearTradeSignupClaim();
+function tradeSignupClaim() {
+ if (!returnContext?.tradeQuote||location.pathname!==pre+'/account'||qa||navigator.webdriver||navigator.doNotTrack==='1'||
+     navigator.globalPrivacyControl||['__qa','ci'].some(key=>accountParams.has(key))) {
+  clearTradeSignupClaim();
+  return undefined;
+ }
+ try {
+  if (localStorage.getItem('fleet_ga4_choice_v1')==='denied') {
+   clearTradeSignupClaim();
+   return undefined;
+  }
+  const claim=sessionStorage.getItem(tradeSignupClaimKey);
+  if (/^[A-Za-z0-9_-]{43}$/.test(claim||'')) return claim;
+  clearTradeSignupClaim();
+  return undefined;
+ } catch {
+  clearTradeSignupClaim();
+  return undefined;
+ }
+}
 function focusAccountReturn() {
  if (accountReturn.hidden) return;
  if (returnContext) {
@@ -112,7 +166,19 @@ async function render(){const user=state.user;$('account-page-title').textConten
 async function busy(form,fn){const button=form.querySelector('button[type=submit]');button.disabled=true;status(T('处理中…','Working…'));try{await fn();}catch(e){status(e.message||T('操作失败，请重试。','Please retry.'),true);}finally{button.disabled=state.error;}}
 $('account-retry').onclick=async()=>{const b=$('account-retry');b.disabled=true;try{await refresh();await render();status(T('账户读取检查通过，请继续操作；提交结果以实际响应为准。','The account read check passed. You can retry your action.'));}catch{status(message(state.failureCode),true);}finally{b.disabled=false;}};
 for(const b of document.querySelectorAll('[data-account-tab]'))b.onclick=()=>{tab(b.dataset.accountTab);status('');};
-$('account-register').onsubmit=e=>{e.preventDefault();busy(e.currentTarget,async()=>{const username=$('register-username').value.trim(),email=$('register-email').value.trim(),j=await api('register',{username,email,google:googleOnboarding,password:$('register-password').value,consent:$('account-consent').checked,qa,src:location.pathname});clearSecrets();googleOnboarding=false;recoveryBox(j.recovery_code,email);await refresh();await render();status(T('账户已创建。请保存恢复码，再开始使用。','Account created. Save your recovery code before continuing.'));accountFlow('registered');});};
+$('account-register').onsubmit=e=>{
+ e.preventDefault();
+ busy(e.currentTarget,async()=>{
+  const username=$('register-username').value.trim(),email=$('register-email').value.trim();
+  const j=await api('register',{username,email,google:googleOnboarding,password:$('register-password').value,
+   consent:$('account-consent').checked,qa,src:location.pathname,signup_source_claim:tradeSignupClaim()});
+  if(returnContext?.tradeQuote)clearTradeSignupClaim();
+  clearSecrets();googleOnboarding=false;recoveryBox(j.recovery_code,email);
+  await refresh();await render();
+  status(T('账户已创建。请保存恢复码，再开始使用。','Account created. Save your recovery code before continuing.'));
+  accountFlow('registered');
+ });
+};
 $('account-login').onsubmit=e=>{e.preventDefault();busy(e.currentTarget,async()=>{await api('login',{email:$('login-email').value,password:$('login-password').value});clearSecrets();await refresh();await render();status(T('已登录，关注清单已同步。','Signed in. Your followed tools are synced.'));if(googlePendingLink)showGoogleLink();else if(mailReceipt?.action==='verify'&&mailReceipt.token){$('account-confirm-email').focus();status(T('已登录，请确认验证当前账户邮箱。','Signed in. Confirm verification of this account’s email.'));}else if(accountFlow('signed_in'))focusAccountReturn();});};
 $('account-recover').onsubmit=e=>{e.preventDefault();busy(e.currentTarget,async()=>{const email=$('recover-email').value,j=await api('recover',{email,recovery_code:$('recover-code').value,new_password:$('recover-password').value});clearSecrets();recoveryBox(j.recovery_code,email);await refresh();await render();tab('login');status(T('密码已重置，旧会话已退出。保存新的恢复码后重新登录。','Password reset and old sessions revoked. Save the new recovery code, then sign in.'));});};
 $('account-recovery-download').onclick=()=>download('bpj-account-recovery.txt','BPJ / baipiaoji.com\nSign-in email / legacy username: '+recoveryUser+'\nRecovery code: '+recovery+'\nKeep private. This code resets your password.\n');$('account-recovery-continue').onclick=()=>{recovery='';$('account-recovery-code').textContent='';$('account-recovery').hidden=true;if(state.user){if(!accountFlow('recovery_confirmed'))return;if(!$('account-save-intent').hidden&&!$('account-save-tool').disabled){$('account-save-intent').scrollIntoView({block:'center'});$('account-save-tool').focus();status(T('恢复码已保存，确认添加刚才的工具。','Recovery code saved. Confirm adding the tool you selected.'));}else if(!accountReturn.hidden){accountReturn.scrollIntoView({block:'center'});accountReturn.focus();status(returnContext?.ready||T('恢复码已确认保存，可以返回刚才的工具继续使用。','Recovery code saved. Return to your previous tool to continue.'));}else{$('account-dashboard').scrollIntoView({block:'start'});status(T('免费账户已就绪。现在可以搜索并关注工具。','Your free account is ready. Search and follow a tool to begin.'));}}};

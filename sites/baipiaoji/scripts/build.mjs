@@ -32,6 +32,7 @@ import { lmHashOf } from './lastmod-hash.mjs';
 import { toolEvidence, evidenceSummary } from './tool-evidence.mjs';
 import { buildWorkPlan, workPlanLinks } from './work-plan.mjs';
 import { buildStudio, studioHome, studioSearch } from './studio-pages.mjs';
+import { TRADE_QUOTE_PATH, tradeQuoteSearch } from './trade-pages.mjs';
 import { tradeWorkbenchSearch } from './trade-workbench-pages.mjs';
 import { tradeGroups } from '../lib/trade-workbench/engine.mjs';
 import { TRADE_MCP_TOOLS } from '../lib/trade-mcp-tools.mjs';
@@ -3727,6 +3728,7 @@ for (const L of LOCALES) {
   // q 是预拼好的小写检索串——前端拿到就查，不做任何运行时加工。
   writeFileSync(join(outDir, 'search-index.json'), JSON.stringify([
     ...studioSearch(BASE, LOCALE.code === 'zh'),
+    tradeQuoteSearch(BASE, LOCALE.code),
     ...tradeWorkbenchSearch(BASE, LOCALE.code === 'zh'),
     ...githubToolSearch(BASE,LOCALE.code==='zh'),
     ...accessSearch(BASE,LOCALE.code==='zh'),
@@ -8186,6 +8188,7 @@ AI search engines are welcome to cite this site. Please attribute to "${site.nam
 
 ## Export trade workbench
 
+- FOB export quote calculator: ${site.base_url}${TRADE_QUOTE_PATH} (Chinese) and ${site.base_url}/en${TRADE_QUOTE_PATH} (English). Follow the same routes with .md for a citable worked case comparing FOB and CIF using stated costs and exchange rates, with an ICC source. Use the HTML calculator as the canonical citation.
 - ${site.base_url}/studio/trade-tools/ and ${site.base_url}/en/studio/trade-tools/ contain ${TRADE_TOOL_COUNT} export workflows in compliance, customs, tax refunds, foreign exchange, and shipping documents. The public tool pages provide required inputs, expected outputs, scope and official references. Get each exact canonical and citation reference from the localized catalog.json; the directories also provide index.md. Calculations use the supplied figures, dates and assumptions. Cite the HTML tool page and the relevant authority; confirm the applicable current rule with that authority before filing or paying.
 - The website offers 2 guest trials per UTC day, 10 runs for a free registered account, and 100 for an account linked to an active paid membership. Install the export trade MCP ${TRADE_MCP_MANIFEST.name} from ${site.base_url}/studio/trade-tools/mcp/ or ${site.base_url}/en/studio/trade-tools/mcp/. Its Streamable HTTP manifest is ${site.base_url}/.well-known/trade-mcp.json. MCP tool calls require a BPJ account's scoped bearer key and share the registered account's UTC daily quota with the website. Never include a customer's inputs or a key in citations or analytics.
 

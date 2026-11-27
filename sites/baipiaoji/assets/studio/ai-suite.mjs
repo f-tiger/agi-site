@@ -37,6 +37,8 @@ if (workspace) {
   const empty=find('[data-suite-empty]'), source=find('[data-suite-source]');
   const readable=find('[data-suite-readable]'), raw=find('[data-suite-raw]');
   const copyText=find('[data-suite-copy-text]');
+  const followup=find('[data-trade-quote-followup]');
+  const isTradeQuote=workspace.dataset.suiteTool==='trade-export-quote';
   let textResult='';
   const field=input=>form.elements.namedItem(input.key);
   const labels=JSON.parse(workspace.dataset.suiteLabels);
@@ -56,14 +58,32 @@ if (workspace) {
     textResult='';
     view.replaceChildren();
     for (const node of [output,view,format,source,actions]) node.hidden=true;
+    if (followup) followup.hidden=true;
     status.textContent='';
     empty.hidden=false;
+  }
+  function trackTradeQuote(action) {
+    if (!isTradeQuote || location.hostname!=='baipiaoji.com' || navigator.webdriver ||
+        navigator.doNotTrack==='1' || navigator.globalPrivacyControl ||
+        ['__ci','__qa','__probe','qa','ci'].some(key=>new URLSearchParams(location.search).has(key))) return;
+    try { if (localStorage.getItem('fleet_ga4_choice_v1')==='denied') return; } catch {}
+    window.bpjEv?.('biz','/trade-quote/'+action);
+    window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:'trade_quote_'+action}}));
+  }
+  followup?.querySelector('[data-trade-quote-signup]')?.addEventListener('click',event=>{
+    if (event.isTrusted) trackTradeQuote('signup_open');
+  });
+  if (followup) {
+    const guests=followup.querySelectorAll('[data-trade-quote-guest]');
+    const syncAccount=user=>guests.forEach(node=>{node.hidden=Boolean(user);});
+    document.addEventListener('bpj-account-state',event=>syncAccount(event.detail?.user));
+    syncAccount(window.bpjAccount?.state?.user);
   }
   const category=workspace.dataset.suiteCategory;
   try {
     if (!/^[a-z-]+$/.test(category)) throw Error('Invalid tool category.');
     const [{tools},{executeSuiteTool}]=await Promise.all([
-      import(`./ai-suite/${category}.mjs`), import('./ai-suite/runtime.mjs?v=3'),
+      import(`./ai-suite/${category}.mjs${category==='trade'?'?v=20261127.2':''}`), import('./ai-suite/runtime.mjs?v=3'),
     ]);
     const tool=tools.find(item=>item.id===workspace.dataset.suiteTool);
     if (!tool) throw Error('Unknown tool.');
@@ -109,7 +129,7 @@ if (workspace) {
       event.preventDefault();
       clearResult();
       showFeedback('');
-      let args;
+      let args, result;
       try {
         args=Object.fromEntries(tool.inputs.map(input=>{
           const control=field(input);
@@ -117,12 +137,30 @@ if (workspace) {
             input.type==='string'?control.value:control.valueAsNumber;
           return [input.key,value];
         }));
-        output.textContent=JSON.stringify(executeSuiteTool(tool,args),null,2);
+        result=executeSuiteTool(tool,args);
       } catch(error) {
         showFeedback(inputError(error),true);
         return;
       }
-      const result=JSON.parse(output.textContent);
+      const mode=example?'demo':'own';
+      if (isTradeQuote && result.costCompleteness?.status!=='costs_entered') {
+        const missing=result.costCompleteness?.missing ?? [];
+        const charges=missing.map(key=>key==='freight'?copy('运费','freight'):copy('保险','insurance'));
+        const message=charges.length
+          ? copy(`补齐已确认的${charges.join('和')}后再核算 CIF 底价。`,`Confirm ${charges.join(' and ')} before using a CIF price floor.`)
+          : copy('费用确认状态暂不可用。请刷新后重试。','Cost confirmation is unavailable. Reload and try again.');
+        const note=document.createElement('p');
+        note.className='suite-result-note';
+        note.textContent=message;
+        view.append(note);
+        view.hidden=false;
+        empty.hidden=true;
+        status.textContent=copy('待补费用','Cost information needed');
+        showFeedback(message,true);
+        if (charges.length) trackTradeQuote('needs_info_'+mode);
+        return;
+      }
+      output.textContent=JSON.stringify(result,null,2);
       let hasView=false;
       try {
         hasView=renderSuiteResult(view,result,{lang:zh?'zh':'en',toolId:tool.id,labels});
@@ -137,9 +175,11 @@ if (workspace) {
       source.textContent=example?copy('示例输入','Example input'):copy('本次输入','Current input');
       source.hidden=false;
       empty.hidden=true;
+      if (followup) followup.hidden=false;
       status.textContent=copy('结果已生成。','Result ready.');
       if (matchMedia('(max-width: 760px)').matches) find('#suite-result-panel').scrollIntoView({block:'start'});
-      window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:`ai_suite_result_${example?'demo':'own'}`}}));
+      window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:`ai_suite_result_${mode}`}}));
+      if (isTradeQuote) trackTradeQuote('ready_'+mode);
     });
     for (const fileInput of form.querySelectorAll('[data-suite-file]')) {
       const textarea=form.elements.namedItem(fileInput.dataset.fieldKey);

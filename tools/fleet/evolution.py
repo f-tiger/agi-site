@@ -12,14 +12,19 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
+from http.client import HTTPException
 from pathlib import Path
 from typing import Any
 
 import pain_radar
+from endpoint_cache import fetch_json
 
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "data"
 EVOLUTION = DATA / "fleet-evolution"
+BPJ_REACH = "https://baipiaoji.com/api/reach?days=28"
+TRADE_QUOTE_ACCOUNT_FIELDS = ("total", "email_verified_total", "created", "email_verified")
+TRADE_QUOTE_ACTION_FIELDS = ("signup_open", "ready_own", "ready_demo", "needs_info_own", "needs_info_demo")
 
 SITE_DIRS = {
     "agiscorecard": "sites/agiscorecard",
@@ -185,6 +190,63 @@ def member_count(value: Any) -> int | None:
     return value if type(value) is int and value >= 0 else None
 
 
+def aggregate_counts(value: Any, fields: tuple[str, ...]) -> dict[str, int] | None:
+    if not isinstance(value, dict):
+        return None
+    counts = {key: value.get(key) for key in fields}
+    return counts if all(member_count(count) is not None for count in counts.values()) else None
+
+
+def trade_quote_growth(reach: Any, today: dt.date) -> dict[str, Any]:
+    """Use only the dedicated trade-quote cohort and current complete UTC days."""
+    stages = reach.get("conversion_stages") if isinstance(reach, dict) and reach.get("ok") is True else None
+    stages = stages if isinstance(stages, dict) else {}
+    window = {"start": (today - dt.timedelta(days=28)).isoformat(), "end_exclusive": today.isoformat(),
+              "complete_days": 28, "date_basis": "UTC"}
+    accounts = actions = None
+    current_window = stages.get("window") == window
+    if current_window:
+        accounts = aggregate_counts(stages.get("trade_quote_accounts"), TRADE_QUOTE_ACCOUNT_FIELDS)
+        if accounts and not (accounts["email_verified"] <= min(accounts["created"], accounts["email_verified_total"])
+                             and max(accounts["created"], accounts["email_verified_total"]) <= accounts["total"]):
+            accounts = None
+        events = stages.get("events")
+        if isinstance(events, dict):
+            actions = aggregate_counts(events.get("trade_quote_actions"), TRADE_QUOTE_ACTION_FIELDS)
+
+    initial_target, long_target = 25, 1000
+    if not current_window:
+        next_action = "Check whether the current 28 complete UTC days are available before evaluating acquisition."
+    elif accounts is None:
+        next_action = "Verify the first-source registration readout before evaluating the signup funnel."
+    elif actions is None:
+        next_action = "Recover the calculator and signup-link event readout while retaining the confirmed registration count."
+    elif accounts["total"] >= long_target:
+        next_action = "Review repeat use and delivery before expanding acquisition."
+    elif accounts["total"] >= initial_target:
+        next_action = "Review the first cohort's repeated real quote use before expanding the sources with demonstrated fit."
+    elif actions["ready_own"] == 0 and actions["needs_info_own"] > 0:
+        next_action = "Use the measured incomplete own quotes to clarify the required cost inputs."
+    elif actions["ready_own"] == 0:
+        next_action = "Bring relevant exporters to the quote tool through existing channels and observe completed own quotes."
+    elif actions["signup_open"] == 0:
+        next_action = "Test the free signup benefit and return link on the completed quote."
+    elif accounts["created"] == 0:
+        next_action = "Review the signup and return flow for completed account creation."
+    else:
+        next_action = "Repeat the qualified acquisition run and measure progress toward the first 25 registrations."
+
+    return {
+        "source": BPJ_REACH,
+        "window": window if current_window else None,
+        "accounts": accounts,
+        "actions": actions,
+        "initial_target": initial_target,
+        "long_target": long_target,
+        "next_action": next_action,
+    }
+
+
 def public_readiness(member: Any) -> bool | None:
     public = member.get("public") if isinstance(member, dict) else None
     if not isinstance(public, dict) or public.get("ok") is not True or type(public.get("ready")) is not bool:
@@ -212,7 +274,8 @@ def membership_by_site(snapshot: dict[str, Any]) -> dict[str, dict[str, Any]]:
     return out
 
 
-def build(today: dt.date, now: dt.datetime | None = None) -> tuple[dict[str, Any], dict[str, str]]:
+def build(today: dt.date, now: dt.datetime | None = None, *,
+          bpj_reach: Any = None) -> tuple[dict[str, Any], dict[str, str]]:
     now = now or dt.datetime.now(dt.timezone.utc)
     policy = growth_policy()
     membership = read_json(EVOLUTION / "membership.json", {}) or {}
@@ -377,6 +440,7 @@ def build(today: dt.date, now: dt.datetime | None = None) -> tuple[dict[str, Any
         "actions": actions[:50],
         "site_manifests": {site: {"path": f"{site_dir}/data/fleet-evolution.json", "action_count": len(manifests[site]["actions"])} for site, site_dir in SITE_DIRS.items()},
         "growth_policy": policy,
+        "bpj_trade_quote_growth": trade_quote_growth(bpj_reach, today),
         "readiness_note": "A recent aggregate is an observation, not a live payment guarantee. Recheck checkout before selling.",
         "rules": {
             "no_editorial_autowrite": True,
@@ -392,6 +456,28 @@ def build(today: dt.date, now: dt.datetime | None = None) -> tuple[dict[str, Any
     return {"latest": latest, "markdown": markdown, "manifests": manifests}, site_text
 
 
+def render_trade_quote_growth(report: dict[str, Any]) -> list[str]:
+    accounts = report["accounts"] or {}
+    actions = report["actions"] or {}
+    window = report["window"]
+    dates = f"{window['start']} through {window['end_exclusive']} (exclusive)" if window else "unknown"
+    return [
+        "", "## BPJ trade quote registrations", "",
+        f"- Source-attributed surviving registrations: {accounts.get('total', 'unknown')}. "
+        f"First milestone: {report['initial_target']:,}. Long-term goal: {report['long_target']:,}.",
+        f"- Currently email-verified registrations: {accounts.get('email_verified_total', 'unknown')}.",
+        f"- Complete UTC window: {dates}. New attributed registrations: {accounts.get('created', 'unknown')}. "
+        f"New registrations currently email-verified: {accounts.get('email_verified', 'unknown')}.",
+        f"- Quote actions in the window: signup opened {actions.get('signup_open', 'unknown')}, "
+        f"ready own {actions.get('ready_own', 'unknown')}, needs information own {actions.get('needs_info_own', 'unknown')}, "
+        f"ready demo {actions.get('ready_demo', 'unknown')}, needs information demo {actions.get('needs_info_demo', 'unknown')}.",
+        "- Registration scope: known, non-test accounts first attributed to the BPJ trade quote page. "
+        "Browser actions can repeat. Email verification is a separate account status.",
+        f"- Next action: {report['next_action']}",
+        f"- [First-party conversion report]({report['source']})",
+    ]
+
+
 def render_markdown(latest: dict[str, Any]) -> str:
     fleet = latest["fleet"]
     paid = fleet["paid_members"] if fleet["paid_members"] is not None else "unknown"
@@ -403,6 +489,8 @@ def render_markdown(latest: dict[str, Any]) -> str:
         lines.append(f"| {row['priority']} | {row['site']} | {row['kind']} | {row['mode']} | {evidence or 'unknown'} |")
     if not latest["actions"]:
         lines.append("| — | — | no measured action | observe | no evidence above thresholds |")
+    if trade_quote := latest.get("bpj_trade_quote_growth"):
+        lines += render_trade_quote_growth(trade_quote)
     lines += ["", "## Input freshness", "", "| Input | Date | Age (days) |", "|---|---|---:|"]
     for name, value in latest["input_dates"].items():
         lines.append(f"| {name} | {value or 'unknown'} | {latest['input_ages_days'].get(name) if latest['input_ages_days'].get(name) is not None else 'unknown'} |")
@@ -440,7 +528,13 @@ def main() -> int:
     parser.add_argument("--check", action="store_true", help="compute and print without writing")
     args = parser.parse_args()
     today = dt.date.fromisoformat(args.today)
-    built, site_text = build(today)
+    bpj_reach = None
+    if not args.check and today == dt.datetime.now(dt.timezone.utc).date():
+        try:
+            bpj_reach = fetch_json(BPJ_REACH, timeout=12)
+        except (HTTPException, OSError, ValueError):
+            pass
+    built, site_text = build(today, bpj_reach=bpj_reach)
     print(built["markdown"])
     if args.check:
         return 0
@@ -452,7 +546,12 @@ def main() -> int:
     if not isinstance(history, list):
         history = []
     history = [row for row in history if isinstance(row, dict) and row.get("as_of") != built["latest"]["as_of"]]
-    history.append({"as_of": built["latest"]["as_of"], "fleet": built["latest"]["fleet"], "actions": built["latest"]["actions"][:20]})
+    history.append({
+        "as_of": built["latest"]["as_of"],
+        "fleet": built["latest"]["fleet"],
+        "actions": built["latest"]["actions"][:20],
+        "bpj_trade_quote_growth": built["latest"]["bpj_trade_quote_growth"],
+    })
     write_if_changed(history_path, f"{json.dumps(history[-30:], ensure_ascii=False, indent=2)}\n")
     for site, manifest in built["manifests"].items():
         site_path = ROOT / SITE_DIRS[site] / "data/fleet-evolution.json"
