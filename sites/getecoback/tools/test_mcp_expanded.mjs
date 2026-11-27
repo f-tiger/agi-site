@@ -607,12 +607,98 @@ test('all successful tools record the fixed outcome without raw inputs, while QA
   const ordinary = new Request(qa,{headers:{'content-type':'application/json','user-agent':'LocalClient'}});
   await worker.fetch(ordinary,events,{});
   assert.equal(rows[0][0],'mcp_call');
-  assert.deepEqual(JSON.parse(rows[0][1]),{tool:name,outcome:'complete',ua:'LocalClient'});
+  assert.deepEqual(JSON.parse(rows[0][1]),{tool:name,outcome:'complete',mcp_client_signal:'unknown',ua:'LocalClient'});
   const older = request('tools/call',{name:'btu_empfehlung',arguments:{qm:20,private:'raw-home-input'}});
   const legacy = new Request(older,{headers:{'content-type':'application/json','user-agent':'LocalClient'}});
   await worker.fetch(legacy,events,{});
   assert.equal(rows[1][0],'mcp_call');
-  assert.deepEqual(JSON.parse(rows[1][1]),{tool:'btu_empfehlung',outcome:'complete',ua:'LocalClient'});
+  assert.deepEqual(JSON.parse(rows[1][1]),{tool:'btu_empfehlung',outcome:'complete',mcp_client_signal:'unknown',ua:'LocalClient'});
+});
+
+test('legacy MCP negotiates supported versions and validates browser origin and explicit version', async () => {
+  const send = (path, method, params, headers) => worker.fetch(new Request(origin+path, {
+    method:'POST', headers:{'content-type':'application/json',...headers},
+    body:JSON.stringify({jsonrpc:'2.0', id:3, method, params}),
+  }), {}, {});
+  for (const path of ['/mcp','/mcp/v1','/mcp/v1?profile=compact']) {
+    const initialized = await send(path,'initialize',{protocolVersion:'2025-06-18'},{});
+    assert.equal((await initialized.json()).result.protocolVersion,'2025-06-18');
+    assert.equal(initialized.headers.get('mcp-session-id'),null);
+    const unsupported = await send(path,'initialize',{protocolVersion:'2030-01-01'},{});
+    assert.equal((await unsupported.json()).result.protocolVersion,'2025-11-25');
+    const oldClient = await send(path,'tools/list',{},{});
+    assert.ok((await oldClient.json()).result.tools.length);
+    const trusted = await send(path,'ping',{}, {origin,'MCP-Protocol-Version':'2025-06-18'});
+    assert.deepEqual((await trusted.json()).result,{});
+    const version = await send(path,'tools/list',{}, {'MCP-Protocol-Version':'2030-01-01'});
+    assert.equal(version.status,400);
+    for (const origin of ['https://other.invalid','null']) {
+      assert.equal((await send(path,'tools/list',{}, {origin})).status,403);
+      const preflight = new Request('https://getecoback.com'+path,{method:'OPTIONS',headers:{origin}});
+      assert.equal((await worker.fetch(preflight,{},{})).status,403);
+    }
+  }
+});
+
+test('modern MCP links only successful calls to bounded client labels and preserves privacy exclusions', async () => {
+  const rows = [];
+  const env = {EVENTS:{prepare:()=>({bind:(...args)=>({run:async()=>rows.push(args)})})}};
+  const revision = '2026-07-28';
+  const name = 'btu_empfehlung';
+  const send = (method, params = {}, {client, headers = {}, path = '/mcp/v1', version = revision} = {}) =>
+    worker.fetch(new Request(origin+path, {
+      method:'POST',
+      headers:{'content-type':'application/json','MCP-Protocol-Version':version,
+        'Mcp-Method':method,...(params.name || params.uri ? {'Mcp-Name':params.name ?? params.uri} : {}),
+        'user-agent':'Cursor/2.1',...headers},
+      body:JSON.stringify({jsonrpc:'2.0', id:4, method, params:{...params,_meta:{
+        'io.modelcontextprotocol/protocolVersion':version,
+        'io.modelcontextprotocol/clientCapabilities':{},
+        'io.modelcontextprotocol/clientInfo':client,
+      }}}),
+    }),env,{});
+  const discovery = (await (await send('server/discover',{}, {path:'/mcp/v1?profile=compact'})).json()).result;
+  assert.equal(discovery.supportedVersions[0],revision);
+  assert.deepEqual(discovery.capabilities,{tools:{},resources:{}});
+  assert.equal(discovery.resultType,'complete');
+  assert.equal(discovery._meta['io.modelcontextprotocol/serverInfo'].name,'hvac-btu-heat-klimaanlage');
+  assert.deepEqual(rows,[]);
+
+  const args = {name,arguments:{qm:20}};
+  const mismatched = await send('tools/call',args,{headers:{'Mcp-Name':'different_tool'}});
+  assert.equal(mismatched.status,400);
+  assert.equal((await mismatched.json()).error.code,-32020);
+  const unsupported = await send('server/discover',{}, {version:'2030-01-01'});
+  assert.equal(unsupported.status,400);
+  assert.equal((await unsupported.json()).error.code,-32022);
+  const removedMethod = await send('notifications/initialized');
+  assert.equal(removedMethod.status,404);
+  const unknownTool = await send('tools/call',{name:'unknown_tool',arguments:{}});
+  assert.equal((await unknownTool.json()).error.code,-32602);
+  const compactPath = '/mcp/v1?profile=compact';
+  const {resources} = (await (await send('resources/list',{}, {path:compactPath})).json()).result;
+  const {uri} = resources[0];
+  const resource = (await (await send('resources/read',{uri},{path:compactPath})).json()).result;
+  assert.equal(resource.contents[0].uri,uri);
+  const absent = await send('resources/read',{uri:uri+'/missing'},{path:compactPath});
+  assert.equal((await absent.json()).error.code,-32602);
+  assert.deepEqual(rows,[]);
+
+  const completed = (await (await send('tools/call',args,{client:{name:'Claude Code',version:'1.0',
+    websiteUrl:'https://private.invalid'}})).json()).result;
+  assert.equal(completed.resultType,'complete');
+  assert.equal(completed.isError,false);
+  await send('tools/call',args);
+  await send('tools/call',args,{client:{name:'private@example.invalid',version:'1.0'}});
+  await send('tools/call',{name,arguments:{qm:-1}},{client:{name:'Cursor',version:'2.1'}});
+  for (const headers of [{dnt:'1'},{'sec-gpc':'1'},{'x-probe':'1'},{'user-agent':'getecoback-ci/test'}]) {
+    await send('tools/call',args,{headers,client:{name:'Cursor',version:'2.1'}});
+  }
+  assert.deepEqual(rows.map(row=>[row[0],JSON.parse(row[1]).mcp_client_signal]),[
+    ['mcp_call','client_info:claude'], ['mcp_call','user_agent:cursor'], ['mcp_call','unknown'],
+    ['mcp_probe',undefined],
+  ]);
+  assert.doesNotMatch(JSON.stringify(rows),/private\.invalid|private@example/);
 });
 
 test('adoption summary keeps complete UTC windows separate from the diagnostic list', async () => {
@@ -632,6 +718,7 @@ test('adoption summary keeps complete UTC windows separate from the diagnostic l
   const data=await response.json();
   assert.equal(summaryQueries,1);
   assert.deepEqual(data.mcp_complete_week,fixture);
+  assert.equal(data.mcp_client_complete_week,null);
   assert.deepEqual(data.mcp,[]);
 });
 
@@ -660,24 +747,40 @@ for marker in [0,2,True,'1',None]: add(meta={**n90,'mcp_n90_link':marker})
 add(meta={**n90,'tool':'another'}); add(meta={**n90,'mcp_profile':'full'})
 add(day='2026-11-19',meta=n90); add(day='2026-11-27',meta=n90)
 add(ua=None,meta=n90); add(ua='ci',meta=n90); add(event='mcp_probe',meta=n90); add(page='/other',meta=n90)
-print(json.dumps([legacy,mixed,read(),[row[3] for row in db.execute('EXPLAIN QUERY PLAN '+sql)]]))`;
+before_clients=read()
+add(day='2026-11-25',meta={'tool':'a','mcp_client_signal':'unknown'})
+add(day='2026-11-24',meta={'tool':'a','mcp_client_signal':'client_info:claude'})
+add(day='2026-11-24',meta={'tool':'a','mcp_client_signal':'user_agent:cursor'})
+add(day='2026-11-21',meta={'tool':'a','mcp_client_signal':'client_info:unapproved'})
+add(ua='ci',meta={'tool':'a','mcp_client_signal':'user_agent:cursor'})
+add(event='mcp_probe',meta={'tool':'a','mcp_client_signal':'user_agent:cursor'})
+add(day='2026-11-27',meta={'tool':'a','mcp_client_signal':'user_agent:cursor'})
+print(json.dumps([legacy,mixed,before_clients,read(),[row[3] for row in db.execute('EXPLAIN QUERY PLAN '+sql)]]))`;
   const result = spawnSync('python3',['-c',script,COMPLETE_MCP_WEEK_SQL],{encoding:'utf8'});
   assert.equal(result.status,0,result.stderr);
-  const [legacy,mixed,withN90,plan] = JSON.parse(result.stdout);
+  const [legacy,mixed,withN90,clients,plan] = JSON.parse(result.stdout);
   assert.ok(plan.some(line => line.includes('USING INDEX ev_day')),plan.join(' '));
   const window={start:'2026-11-20',end_exclusive:'2026-11-27'};
   assert.deepEqual(completedMcpReports(legacy),{
-    completeWeek:{...window,completed_calls:2,tools_called:1,browser_class_calls:1},compactCompleteWeek:null,n90CompactCompleteWeek:null,
+    completeWeek:{...window,completed_calls:2,tools_called:1,browser_class_calls:1},compactCompleteWeek:null,
+    n90CompactCompleteWeek:null,clientCompleteWeek:null,
   });
   assert.deepEqual(completedMcpReports(mixed),{
     completeWeek:{...window,completed_calls:9,tools_called:3,browser_class_calls:2},
     compactCompleteWeek:{...window,first_recorded_day:'2026-11-22',completed_calls:4,cellar_links_offered:1},
-    n90CompactCompleteWeek:null,
+    n90CompactCompleteWeek:null,clientCompleteWeek:null,
   });
   assert.deepEqual(completedMcpReports(withN90).n90CompactCompleteWeek,{
     ...window,first_recorded_day:'2026-11-23',n90_links_offered:2,
   });
-  assert.deepEqual(completedMcpReports(null),{completeWeek:null,compactCompleteWeek:null,n90CompactCompleteWeek:null});
+  assert.deepEqual(completedMcpReports(clients).clientCompleteWeek,{
+    ...window,first_recorded_day:'2026-11-24',measured_calls:3,
+    unmeasured_calls:clients.completed_calls-3,unknown_calls:1,
+    by_signal:{client_info:{claude:1},user_agent:{cursor:1}},
+  });
+  assert.deepEqual(completedMcpReports(null),{
+    completeWeek:null,compactCompleteWeek:null,n90CompactCompleteWeek:null,clientCompleteWeek:null,
+  });
 });
 
 test('Fenstersauger distinguishes parts, missing evidence, and the same light pattern by phase', async () => {

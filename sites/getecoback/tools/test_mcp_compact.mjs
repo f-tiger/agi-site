@@ -463,7 +463,8 @@ test('compact execution matches the underlying result and records that fixed too
   const {sql,args:[event,metadata]} = writes[0];
   assert.match(sql,/INSERT INTO ev\b/);
   assert.equal(event,'mcp_call');
-  assert.deepEqual(JSON.parse(metadata),{tool:cellarName,outcome:'complete',mcp_profile:'compact',mcp_cellar_link:1,ua:humanUA});
+  assert.deepEqual(JSON.parse(metadata),{tool:cellarName,outcome:'complete',mcp_profile:'compact',
+    mcp_cellar_link:1,mcp_client_signal:'unknown',ua:humanUA});
   assert.doesNotMatch(metadata,/werkzeug_ausfuehren|modell|relative_feuchte|temperatur_c|meaco-one-20/i);
 
   for (const name of [cellarName,drainName,'not_a_compact_wrapper']) {
@@ -515,7 +516,8 @@ test('compact offers the model link only for an exact measured Meaco test point 
   assert.equal(JSON.parse(metadata).mcp_cellar_link,undefined);
 
   const forged = await send('/api/ev',{method:'POST',headers:{...headers,'content-type':'application/json'},
-    body:JSON.stringify({n:'mcp_call',p:'/mcp',m:{tool:cellarName,mcp_profile:'compact',mcp_cellar_link:1}})});
+    body:JSON.stringify({n:'mcp_call',p:'/mcp',m:{tool:cellarName,mcp_profile:'compact',mcp_cellar_link:1,
+      mcp_client_signal:'client_info:claude'}})});
   assert.equal(forged.status,200);
   assert.deepEqual(JSON.parse(writes.at(-1).args[4]),{tool:cellarName});
 });
@@ -555,7 +557,8 @@ test('only successful exact N90 compact answers offer the fixed owned entry with
   assert.doesNotMatch(JSON.stringify(compact.structuredContent),/amazon\.de|tag=getecoback-21/);
   assert.equal(writes.length,1);
   assert.deepEqual(JSON.parse(writes[0].args[1]),{
-    tool:N90_TOOL_NAME,outcome:'complete',mcp_profile:'compact',mcp_n90_link:1,ua:humanUA,
+    tool:N90_TOOL_NAME,outcome:'complete',mcp_profile:'compact',mcp_n90_link:1,
+    mcp_client_signal:'unknown',ua:humanUA,
   });
   for (const change of [{ean:0},{ean:8004399512352},{modell:'abweichend'},{ean:'8004399512351'}]) {
     const result = await run(change);
