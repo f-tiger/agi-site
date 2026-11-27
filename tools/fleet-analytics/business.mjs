@@ -20,6 +20,12 @@ const documents = {
   'ai-audio-to-text': ['doc_ai_speech_complete','doc_ai_speech_sample','doc_ai_speech_export'],
   'ai-text-summarizer': ['doc_ai_summary_complete','doc_ai_summary_sample','doc_ai_summary_export']
 };
+const uaBackupPaths = new Set([
+  '/ua/internet-bez-svitla',
+  '/ua/dbzh/archer-c6-xz000-g3',
+  '/ua/dbzh/archer-ax23-xz000-g7',
+  '/ua/dbzh/archer-ax55-xz000-g3'
+]);
 // Registration intent is allowed only on a registered public page. Reject URL
 // context and encoded private routes; no origin path or identity enters fields.
 export function publicAccountEntryPath(pathname) {
@@ -43,6 +49,11 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
   const affiliate = affiliateEvent(host, detail);
   if (affiliate) return affiliate;
   const name = detail.name;
+  // The Ukrainian pilot counts ordinary shop exits separately from commission.
+  if (host === 'thedollscout.com' && uaBackupPaths.has(pathname) &&
+      ['tds_ua_backup_result', 'tds_ua_backup_shop'].includes(name)) {
+    return {name, tool_id: 'tds-ua-router-backup', repeat: true};
+  }
   if (host === 'thedollscout.com' && /^\/(?:de\/|zh\/)?ai-tools\/uk-laundry-session$/.test(pathname) &&
       ['tds_paid_offer_view', 'tds_paid_member_open', 'tds_paid_workspace_saved', 'tds_paid_workspace_restored'].includes(name)) {
     return {name, tool_id: 'tds-uk-laundry-review', repeat: true};

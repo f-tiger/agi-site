@@ -34,6 +34,16 @@ test('Public data exceptions are explicit; new documents cannot inherit a direct
  const tds=createRoutes('tds',['/document-assets/resource-library.json','/document-assets/text/en/open-source/audacity.txt','/document-assets/vendor/cmaps/LICENSE','/document-assets/vendor/cmaps/Adobe-Japan1-UCS2.bcmap','/collector-assets/series-catalog.json','/collector-assets/text/de/collecting/wish-card.txt']);
  for(const path of ['/document-assets/resource-library.json','/collector-assets/text/de/collecting/wish-card.txt'])assert.equal(invokesFunction(tds,path),false);
 });
+test('Ukrainian backup mirrors are exact public exceptions while page and API routes stay dynamic',()=>{
+ const mirrors=['internet-bez-svitla','dbzh/archer-c6-xz000-g3','dbzh/archer-ax23-xz000-g7','dbzh/archer-ax55-xz000-g3']
+  .map(name=>'/collector-assets/text/ua/'+name+'.txt');
+ const routes=createRoutes('tds',mirrors);
+ for(const path of mirrors)assert.equal(invokesFunction(routes,path),false,path);
+ for(const path of ['/ua/internet-bez-svitla','/ua/dbzh/archer-c6-xz000-g3','/uk/indoor-laundry','/api/ev'])
+  assert.equal(invokesFunction(routes,path),true,path);
+ for(const path of ['/collector-assets/text/ua/private.txt','/collector-assets/text/ua/dbzh/unreviewed.txt','/collector-assets/text/ua/internet-bez-svitla.json'])
+  assert.throws(()=>createRoutes('tds',[path]),/Unreviewed/,path);
+});
 test('Static analytics responses preserve every edge privacy header without duplicate generated policies',()=>{
  const routes=createRoutes('bpj',['/analytics-assets/frame.html','/analytics-assets/frame-loader.mjs','/style.css']);
  const input='/account\n  Cache-Control: no-store\n# FLEET-GA4-HEADERS\n/analytics-assets/frame.html\n  Cache-Control: public, max-age=0, must-revalidate, no-transform\n# /FLEET-GA4-HEADERS\n';

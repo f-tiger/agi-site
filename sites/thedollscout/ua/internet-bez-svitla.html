@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="uk-UA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Інтернет без світла: ДБЖ для роутера й ONU | The Doll Scout</title>
+  <meta name="description" content="Перевірте, чи може один міні-ДБЖ живити ваш роутер та оптичний термінал. Оцініть час роботи й знайдіть модель в Україні.">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#092a35">
+  <link rel="canonical" href="https://thedollscout.com/ua/internet-bez-svitla">
+  <link rel="alternate" type="text/plain" href="/collector-assets/text/ua/internet-bez-svitla.txt" title="Текстова версія">
+  <link rel="icon" href="/collector-assets/icon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="uk_UA">
+  <meta property="og:title" content="Інтернет без світла: ДБЖ для роутера й ONU">
+  <meta property="og:description" content="Перевірте, чи може один міні-ДБЖ живити ваш роутер та оптичний термінал. Оцініть час роботи й знайдіть модель в Україні.">
+  <meta property="og:url" content="https://thedollscout.com/ua/internet-bez-svitla">
+  <link rel="stylesheet" href="/collector-assets/ua-backup/backup.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Інтернет без світла: ДБЖ для роутера й ONU","description":"Перевірте, чи може один міні-ДБЖ живити ваш роутер та оптичний термінал. Оцініть час роботи й знайдіть модель в Україні.","url":"https://thedollscout.com/ua/internet-bez-svitla","inLanguage":"uk-UA","dateModified":"2026-11-27"}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти до вмісту</a>
+  <header class="backup-header"><div class="layout"><a href="/" lang="de">The Doll Scout</a></div></header>
+  <main id="main" class="layout">
+    <section class="intro">
+      <h1>Інтернет без світла: ДБЖ для роутера й ONU</h1>
+      <p>Перевірте, чи може один міні-ДБЖ живити ваш роутер та оптичний термінал. Оцініть час роботи й знайдіть модель в Україні.</p>
+      <p class="provider-note">Спочатку перевірте, чи має мережа провайдера резервне живлення. Якщо лінія працює, живлення вдома зазвичай потрібне і роутеру, і оптичному терміналу. <a href="https://xpon.thedigital.gov.ua/">Державний гід з xPON</a></p>
+    </section>
+    
+    <div class="workbench">
+      <section aria-labelledby="fit-heading">
+        <h2 id="fit-heading">Перевірте свій комплект</h2>
+        <form id="perevirka" class="fit-form">
+    <label for="provider">Чи працює лінія провайдера під час відключення?
+      <select id="provider" name="provider">
+        <option value="unknown">Ще не знаю</option>
+        <option value="yes">Провайдер підтвердив</option>
+        <option value="no">Ні</option>
+      </select>
+    </label>
+    <label for="kit">Моделі вашого обладнання
+      <select id="kit" name="kit">
+        <option value="">Введу дані з адаптерів</option>
+        <option value="archer-c6-xz000-g3">TP-Link Archer C6 V3 + TP-Link XZ000-G3</option><option value="archer-ax23-xz000-g7">TP-Link Archer AX23 V1 + TP-Link XZ000-G7</option><option value="archer-ax55-xz000-g3">TP-Link Archer AX55 V1 + TP-Link XZ000-G3</option>
+      </select>
+    </label>
+    <div class="device-grid">
+      <fieldset>
+    <legend>Роутер</legend>
+    <div class="device-inputs">
+      <label>Вихід адаптера, В DC
+        <input name="router_volts" type="number" min="0.1" max="48" step="0.1" inputmode="decimal" required>
+      </label>
+      <label>Вихід адаптера, А
+        <input name="router_amps" type="number" min="0.01" max="10" step="0.01" inputmode="decimal" required>
+      </label>
+    </div>
+  </fieldset>
+      <fieldset>
+    <legend>Оптичний термінал (ONU)</legend>
+    <div class="device-inputs">
+      <label>Вихід адаптера, В DC
+        <input name="onu_volts" type="number" min="0.1" max="48" step="0.1" inputmode="decimal" required>
+      </label>
+      <label>Вихід адаптера, А
+        <input name="onu_amps" type="number" min="0.01" max="10" step="0.01" inputmode="decimal" required>
+      </label>
+    </div>
+  </fieldset>
+    </div>
+    <label for="ups">Який ДБЖ перевірити?
+      <select id="ups" name="ups">
+        <option value="marsriva-kp3-ec">Marsriva KP3 EC</option><option value="marsriva-kp4">Marsriva KP4</option>
+      </select>
+    </label>
+    <p class="form-hint" id="cable-notes"></p>
+    <label class="check-line"><input type="checkbox" name="own" required> Я звірив(-ла) напругу й струм обох пристроїв зі своїми адаптерами.</label>
+    <label class="check-line"><input type="checkbox" name="connections"> Для обраного ДБЖ я перевірив(-ла) розміри штекерів і полярність на обох кінцях двох окремих кабелів, за маркуванням або інструкціями.</label>
+    <label for="draw">Виміряне споживання на виходах DC, Вт <span class="optional">(необов’язково)</span>
+      <input id="draw" name="draw" type="number" min="0.1" max="100" step="any" inputmode="decimal" aria-describedby="draw-help">
+    </label>
+    <p class="form-hint" id="draw-help">Для оцінки часу потрібне виміряне споживання обох пристроїв під час роботи. Значення з етикеток адаптерів використовуються для перевірки потужності.</p>
+    <button type="submit" disabled>Перевірити сумісність</button>
+    <noscript><p>Для розрахунку увімкніть JavaScript. Нижче є характеристики та посилання на виробників.</p></noscript>
+  </form>
+      </section>
+      <aside class="result-panel" aria-labelledby="result-heading">
+        <h2 id="result-heading">Результат перевірки</h2>
+        <div id="backup-result" role="status" aria-live="polite" aria-atomic="true">
+          <p>Виберіть моделі або введіть дані з адаптерів.</p>
+        </div>
+      </aside>
+    </div>
+    <section class="evidence" aria-labelledby="examples">
+      <h2 id="examples">Роутери й термінали за моделями</h2>
+      <ul class="model-links"><li><a href="/ua/dbzh/archer-c6-xz000-g3">TP-Link Archer C6 V3 + TP-Link XZ000-G3</a></li><li><a href="/ua/dbzh/archer-ax23-xz000-g7">TP-Link Archer AX23 V1 + TP-Link XZ000-G7</a></li><li><a href="/ua/dbzh/archer-ax55-xz000-g3">TP-Link Archer AX55 V1 + TP-Link XZ000-G3</a></li></ul>
+    </section>
+    <section class="evidence" aria-labelledby="ups-specs">
+    <h2 id="ups-specs">Перевірені характеристики ДБЖ</h2>
+    <article class="ups-item">
+      <h3>Marsriva KP3 EC</h3>
+      <p>29,6 Вт·год номінально. До 18 Вт сумарно. Виходи DC: 12 В / 1,5 А, 9 В / 2 А, 5 В / 2 А.</p>
+      <p>Виробник не включає адаптер 12 В / 2 А до комплекту KP3 EC. Уточніть розмір штекера й полярність кожного кабелю.</p>
+      <a href="https://www.marsriva.com/Products_item_2/158.html">Характеристики виробника</a>
+    </article><article class="ups-item">
+      <h3>Marsriva KP4</h3>
+      <p>36 Вт·год номінально. До 18 Вт сумарно. Виходи DC: 12 В / 1,5 А, 9 В / 2 А, 5 В / 2,1 А.</p>
+      <p>В інструкції перелічено кабелі DC5525 і перехідник DC35135. Перевірте відповідність штекера й полярності для обох пристроїв.</p>
+      <a href="https://www.marsriva.com/Products_item_2/160.html">Характеристики виробника</a> · <a href="https://flytec.com.py/download/files/9439.pdf">Інструкція про кабелі (PDF)</a>
+    </article>
+    <small>Джерела перевірено <time datetime="2026-11-27">27.11.2026</time>.</small>
+  </section>
+    <section class="evidence" aria-labelledby="limitations">
+      <h2 id="limitations">Як читати оцінку часу</h2>
+      <p>Для планування ми використовуємо 65–85% номінальної енергії акумулятора й ділимо її на введене виміряне споживання. Цей діапазон — припущення, а не тест конкретного ДБЖ. Фактичний час залежить від втрат, стану батареї й навантаження. Доступність інтернету також залежить від резерву провайдера.</p>
+      <p>Посилання на магазини звичайні. Для цього підбору вони не нараховують нам комісію.</p>
+    </section>
+  </main>
+  <footer class="layout bottom"><a href="/legal/privacy" lang="en">Privacy</a> <a href="/collector-assets/text/ua/internet-bez-svitla.txt">Текстова версія</a></footer>
+  <script type="module" src../collector-assets/ua-backup/backup-ui.mjs"></script>
+</body>
+</html>
