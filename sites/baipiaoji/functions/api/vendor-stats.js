@@ -8,11 +8,6 @@ export async function onRequestGet({request,env}){
   if(!bearer.startsWith('Bearer ')||bearer.length>520||await digest(secret)!==await digest(bearer.slice(7)))return json({ok:false},401);
   try {
     const generated=new Date();
-    if(new URL(request.url).searchParams.get('view')==='eco_mcp_signups'){
-      const endExclusive=generated.toISOString().slice(0,10);
-      const start=new Date(Date.parse(endExclusive)-7*86400000).toISOString().slice(0,10);
-      return json({ok:true,start,end_exclusive:endExclusive,eco_mcp_signups:await readEcoLaundrySignup(env.HITS,start,endExclusive)});
-    }
     async function read(sql,params=[]){
       const statement=env.HITS.prepare(sql);
       const result=await (params.length?statement.bind(...params):statement).all();
@@ -21,12 +16,16 @@ export async function onRequestGet({request,env}){
     }
     const since=new Date(generated.getTime()-7*86400000).toISOString().slice(0,10);
     const until=generated.toISOString().slice(0,10);
+    async function ecoSignups(){
+      return {start:since,end_exclusive:until,eco_mcp_signups:await readEcoLaundrySignup(env.HITS,since,until)};
+    }
+    if(new URL(request.url).searchParams.get('view')==='eco_mcp_signups')return json({ok:true,...await ecoSignups()});
     const paths=['/biz/trigger/vendor-view','/biz/trigger/vendor-wait','/biz/trigger/vendor-sponsor','/biz/trigger/ad-view','/biz/trigger/ad-inquiry','/biz/from-submit/click','/biz/submit/sponsor','/biz/submit/expedite'];
     const events=await read(`SELECT d,path,count(*) n FROM hits WHERE d BETWEEN ? AND ? AND ev!='' AND ev='biz' AND lang!='ci' AND path IN (${paths.map(()=>'?').join(',')}) GROUP BY d,path ORDER BY d,path`,[since,until,...paths]);
     const tables=await read("SELECT count(*) n FROM sqlite_schema WHERE type='table' AND name='vendor_inquiries'");
     const provisioned=tables[0]?.n===1;
     if(!provisioned && tables[0]?.n!==0)throw Error('Unknown intake table state');
     const intake=provisioned?await read(`SELECT created d,CASE WHEN kind IN ('sponsor','feature','expedite') THEN kind ELSE 'other' END intent,count(*) n,sum(CASE WHEN status='new' THEN 1 ELSE 0 END) pending FROM vendor_inquiries WHERE created BETWEEN ? AND ? GROUP BY created,intent ORDER BY created,intent`,[since,until]):[];
-    return json({ok:true,generated:generated.toISOString(),since,until,todayPartial:true,provisioned,events,intake});
+    return json({ok:true,generated:generated.toISOString(),since,until,todayPartial:true,provisioned,events,intake,eco_mcp_registration:await ecoSignups()});
   }catch{return json({ok:false},503);}
 }

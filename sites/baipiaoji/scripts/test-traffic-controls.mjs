@@ -129,6 +129,7 @@ test('operator readout counts stored inquiries independently of QA and browser a
  assert.equal(empty.provisioned,false);assert.equal(empty.events[0].n,1);
  HITS.sqlite.exec("CREATE TABLE vendor_inquiries(created,kind,status,email); INSERT INTO vendor_inquiries VALUES(date('now'),'sponsor','new','private@example.test'),(date('now','-9 days'),'expedite','new','private@example.test')");
  const result=await (await load(secret)).json();
+ assert.deepEqual(result.eco_mcp_registration,{start:eco.start,end_exclusive:eco.end_exclusive,eco_mcp_signups:eco.eco_mcp_signups});
  assert.equal(result.intake.length,1);assert.equal(result.intake[0].pending,1);
  assert.equal(result.intake[0].intent,'sponsor');assert.doesNotMatch(JSON.stringify(result),/private@example/);
 });
