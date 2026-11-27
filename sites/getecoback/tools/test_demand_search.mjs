@@ -645,6 +645,27 @@ test('Philips humidifier filter searches keep model and series destinations dist
  }
 });
 
+test('German Beurer model and placement questions remain separate from blanket calculations',()=>{
+ const page='/guide/heizdecke-stromverbrauch.html';
+ const target=page+'#beurer-hd75-ub30';
+ for(const query of ['Beurer HD 75 oder UB 30: Welche Decke darf ich unter mir im Bett benutzen?',
+      'Beurer UB 30 30600: Schaltet das Wärmeunterbett nach drei Stunden automatisch ab?',
+      'Beurer HD75 Taupe 42400 Abschaltung nachts?', '30600 UB30 Stromverbrauch',"Beurer HD 75 oder UB 30: Was kosten sie bei 2 Stunden pro Abend?"]){
+   assert.equal(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+ }
+ const math='Meine Beurer HD 75 schaltet nach drei Stunden ab. Wieviel kostet ein Abend bei 0,35 Euro pro Kilowattstunde?';
+ assert.equal(searchEntries(index,math,'de')[0]?.entry.u,page+'#waerme-rechner');
+ for(const query of ['Beurer HD 75 Nordic 40000 zum Schlafen','Beurer UB 33 nachts',
+      'Beurer UB 30 defekt, die Anzeige blinkt', 'Beurer HD 75 Ersatzkabel kaufen',
+      "Kann ich die Beurer HD 75, Art.-Nr. 421.03, nachts benutzen?",
+      "Meine Beurer HD 75, Art. 400.19, schaltet automatisch ab?",
+      "Mein Beurer UB 30 schaltet nicht mehr ein. Woran liegt das?",
+      "Meine Beurer HD 75 schaltet gleich nach dem Einschalten wieder ab. Woran liegt das?",
+      "Wo kann ich einen neuen Schalter für mein Beurer UB 30 Wärmeunterbett kaufen?"]){
+   assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+ }
+});
+
 test('German blanket operating-cost questions go to the existing safe calculation',()=>{
  const page='/guide/heizdecke-stromverbrauch.html';
  for(const q of [

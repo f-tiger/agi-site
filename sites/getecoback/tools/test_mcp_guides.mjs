@@ -1196,6 +1196,35 @@ test('German dehumidifier price checks retain the exact evidence and stop path i
  assert(!textOf(full).includes('https://www.amazon.de/'));
 });
 
+test('German Beurer model and placement questions cite the same evidence in both MCP profiles',async()=>{
+ const {env}=assetEnv();
+ const target='https://getecoback.com/guide/heizdecke-stromverbrauch.html#beurer-hd75-ub30';
+ for(const frage of ['Beurer HD 75 oder UB 30 unter mir im Bett benutzen?', 'Hat das Beurer UB 30 30600 eine Abschaltautomatik?',"Beurer HD 75 oder UB 30: Was kosten sie bei 2 Stunden pro Abend?"]){
+   const found=await call('ratgeber_suche',{frage,sprache:'de',max:1},env);
+   assert.ok(textOf(found).includes('Abschnitt: '+target),frage);
+   const compact=await call('ecoback_werkzeug_finden',{frage},env,true);
+   assert.equal(compact.structuredContent.guides?.[0]?.guide_url,target,frage);
+ }
+ const args={pfad:target};
+ const full=await call('ratgeber_lesen',args,env);
+ const compact=await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:args},env,true);
+ assert.equal(full.isError,false);
+ assert.deepEqual(full,compact);
+ for(const fact of ['4211125424008','4211125306007','Sicherheitssystem schaltet im Fehlerfall',
+    'keine zeitgesteuerte Abschaltautomatik','0,025 kWh','HD75_2026-09-18_12_IM1_BEU.pdf#page=7'])
+    assert.ok(textOf(full).includes(fact),fact);
+ assert.doesNotMatch(textOf(full),/getecoback-21|https:\/\/www\.amazon\.de/);
+ for(const frage of ['HD 75 Nordic Grey Abschaltung', 'UB 30 Fehler Anzeige blinkt', 'Beurer HD 75 Ersatzkabel kaufen',
+      "Kann ich die Beurer HD 75, Art.-Nr. 421.03, nachts benutzen?",
+      "Meine Beurer HD 75, Art. 400.19, schaltet automatisch ab?",
+      "Mein Beurer UB 30 schaltet nicht mehr ein. Woran liegt das?",
+      "Meine Beurer HD 75 schaltet gleich nach dem Einschalten wieder ab. Woran liegt das?",
+      "Wo kann ich einen neuen Schalter für mein Beurer UB 30 Wärmeunterbett kaufen?"]){
+   const hit=await call('ecoback_werkzeug_finden',{frage},env,true);
+   assert.notEqual(hit.structuredContent.guides?.[0]?.guide_url,target,frage);
+ }
+});
+
 test('heated rack cost and timer answers can be found and read in both MCP profiles',async()=>{
  const {env}=assetEnv();
  const page='https://getecoback.com/guide/beheizter-waeschestaender.html';

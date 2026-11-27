@@ -8,7 +8,7 @@ import {asksForCoolingNoiseComparison} from './cooling-noise-intent.mjs?v=f0bcc0
 import {asksForTesamollWindowProfile} from './tesamoll-profile-intent.mjs';
 import {exactGermanFilterModel} from './exact-filter-intent.mjs';
 import {philipsHumidifierFilterSection} from './philips-humidifier-filter-intent.mjs?v=537af20b39fb';
-import {asksForElectricBlanketCost, isElectricBlanketQuestion} from './electric-blanket-cost-intent.mjs';
+import {asksForBeurerWarmthModelFit, asksForElectricBlanketCost, beurerWarmthModelGuide, isElectricBlanketQuestion} from './electric-blanket-cost-intent.mjs?v=2f8767c00a87';
 import {asksForHygrometerComparison} from './hygrometer-comparison-intent.mjs';
 import {asksForN90ModelIdentity, namesAnotherPacWithoutN90} from './n90-model-intent.mjs';
 import {asksForPortaSplitWindowLip, namesDifferentPortaSplit, namesOriginalPortaSplitExactly} from './portasplit-fensterfalz-intent.mjs?v=66ae5fbd590d';
@@ -349,6 +349,12 @@ export function findCatalogueTools(index, {query='', category='', name=null}={})
   const philipsFilter = philipsHumidifierFilterSection(focus.query);
   const philipsFilterTool = 'philips_verdunsterfilter_zuordnung';
   const blanketQuestion = isElectricBlanketQuestion(focus.query);
+  if (asksForBeurerWarmthModelFit(focus.query)) {
+    const guide = index.find(entry => entry.tool.name === 'ratgeber_suche' && eligible(entry));
+    if (!guide) return [];
+    const citation_url = 'https://getecoback.com'+beurerWarmthModelGuide.path;
+    return [{...guide.tool, citation_url, guide_url:citation_url+'#'+beurerWarmthModelGuide.id}];
+  }
   const blanketCost = asksForElectricBlanketCost(focus.query);
   const blanketCostTool = 'heizdecke_stromkosten_nennleistung';
   const hygrometerComparison = asksForHygrometerComparison(focus.query);
