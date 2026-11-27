@@ -416,6 +416,11 @@ def collect():
     raise ValueError(f'Missing or hidden Beurer model guidance: {route}#{anchor}')
    entry['model_sections']=[{'id':anchor,'title':'Beurer HD 75 Taupe und UB 30 für Sofa und Bett richtig zuordnen',
     'description':'HD 75 Taupe 42400 ist eine Zudecke mit Abschaltung nach etwa drei Stunden. UB 30 30600 liegt unter dem Betttuch und hat keine zeitgesteuerte Abschaltautomatik.'}]
+   offer='beurer-hd75-angebotscheck'
+   if text.count(f'<h2 id="{offer}">')!=1:
+    raise ValueError(f'Missing or ambiguous Beurer offer check: {route}#{offer}')
+   entry['model_sections'].append({'id':offer,'title':'Beurer HD 75: Ist das Angebot für dieselbe Taupe-Variante?',
+    'description':'HD 75 Taupe 42400 und Nordic Taupe 42103 anhand der EAN trennen. Vor einem Kauf Verkäufer, seinen niedrigsten Gesamtpreis vor einer angekündigten Ermäßigung und den Endbetrag mit Versand prüfen.'})
   if lang=='de' and route=='/guide/beheizter-waeschestaender.html':
    entry['model_sections']=[
     {'id':'kosten-pro-fertig-getrockneter-ladung','title':'Kosten pro fertig getrockneter Ladung',

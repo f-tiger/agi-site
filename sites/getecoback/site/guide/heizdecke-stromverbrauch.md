@@ -61,6 +61,8 @@ Die UB-30-Anleitung empfiehlt ungefähr 30 Minuten Vorwärmen und für eine Verw
 
 **Strombeispiel für 30 Minuten bei 0,35 €/kWh:** Bei angenommenen konstanten 50 W benötigt das UB 30 **0,025 kWh**, knapp 1 Cent. Übertrage den Wert nicht auf die ganze Nacht. Für die tatsächlichen Stromkosten brauchst du die gemessenen kWh über deine zugelassene Nutzung. Geräteunterlagen für Deutschland geprüft am 27. November 2026.
 
+Wenn du eine HD 75 kaufen möchtest, [Taupe-Variante und Preisangabe vor dem Kauf prüfen](https://getecoback.com/guide/heizdecke-stromverbrauch.html#beurer-hd75-angebotscheck).
+
 ## Sofa, Schreibtisch oder Bett: nicht dasselbe Produkt
 
 - **Auf dem Sofa:** Eine Wärmezudecke nur so verwenden, wie die Anleitung es vorsieht. Nicht beschädigt, nass oder entgegen der Anleitung gefaltet betreiben.
@@ -80,6 +82,16 @@ Wir rechnen deshalb weder einen festen Eurobetrag für eingesparte Raumheizung n
 - Anleitung: erlaubte Körperposition, Betrieb beim Schlafen, Abschaltung, Reinigung und Eignung bei eingeschränktem Wärmeempfinden prüfen.
 - Typenschild und vollständige Messung: Nennleistung ist kein Verbrauch einer mittleren Stufe.
 - Lieferland, Stecker, Rückgabe und Gesamtpreis: in Österreich und besonders der Schweiz separat beim Händler prüfen; die Länderwahl im Rechner bestätigt keine Lieferbarkeit.
+
+## Beurer HD 75: Ist das Angebot für dieselbe Taupe-Variante?
+
+Im deutschen Handel sind [HD 75 Taupe, Artikel 42400, EAN 4211125424008](https://www.beurer.com/de/p/42400/) und [HD 75 Nordic Taupe, Artikel 42103, EAN 4211125421038](https://www.beurer.com/de/p/42103/) verschiedene Artikel. Gleiche Farbe im Angebot oder „HD 75“ im Titel reicht für den Preisvergleich nicht. Prüfe die EAN der ausgewählten Variante am Angebot und im Warenkorb.
+
+- **Verkäufer prüfen:** Vergleiche dieselbe neue Variante und denselben Verkäufer. Auf einem Marktplatz kann der Verkäufer zwischen Varianten wechseln.
+- **Bezugswert prüfen:** Beurer kennzeichnet den Vergleich mit der unverbindlichen Preisempfehlung als UVP-Vergleich. Kündigt ein Händler für die Ware eine Preisermäßigung an, nennt [§ 11 PAngV](https://www.gesetze-im-internet.de/pangv_2022/__11.html) in Deutschland als Bezugswert den niedrigsten eigenen Gesamtpreis der 30 Tage vor der Ermäßigung. Ein Preisverlauf über mehrere Händler liefert diesen Wert nicht.
+- **Endbetrag prüfen:** Berücksichtige Versand und Bedingungen eines Gutscheins an deiner Lieferadresse. Fehlen EAN, konkreter Verkäufer oder sein Bezugswert, bleibt eine tatsächliche Ersparnis offen. Wenn du den Artikel ohnehin nicht brauchst, warte.
+
+Deutsche Herstellerseiten und Preishinweise geprüft am 27. November 2026.
 
 **Optional weitervergleichen · Werbung / Affiliate-Links**Die folgenden bestehenden Kategorie-Suchen führen zu Amazon.de (Deutschland). EcoBack kann an qualifizierten Käufen verdienen. Keine eigene Produktprüfung, keine bestätigte Passform oder Lieferzusage nach Österreich oder in die Schweiz. Die Suche kann andere Varianten als das Herstellerbeispiel enthalten.
 
