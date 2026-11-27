@@ -36,3 +36,16 @@ Public fleet pages start GA4 by default without a consent popup. This supersedes
 the earlier opt-in startup requirement. Preserve explicit stored opt-outs, the
 footer toggle, QA/DNT/GPC exclusions, isolated Google frame, fixed sanitized
 events and private-page exclusions. Do not restore a first-visit consent panel.
+
+# MCP observability release requirement (owner instruction, 2026-11-27)
+
+Every new or materially changed fleet MCP must be traceable and measurable before
+release. Use bounded, privacy-preserving server-side records for tool/outcome,
+time window and available caller signals. Distinguish authenticated principals,
+self-declared client metadata, User-Agent heuristics and unknown/unmeasured data;
+never present those signals as verified people or referring websites. Separate
+CI/operator/indexer/demo/probe traffic from business evidence, honor existing
+QA/DNT/GPC exclusions, and expose aggregate reporting without raw credentials,
+customer inputs or private identities. Verify coverage, exclusions and the
+reporting window in tests; disclose unsupported routes and historical gaps.
+Deployment must verify the live version before publishing its registry version.
