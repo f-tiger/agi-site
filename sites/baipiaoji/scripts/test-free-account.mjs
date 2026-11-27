@@ -1,3 +1,7 @@
+import {onRequest as ecoBookmarkService} from '../functions/api/account-eco-bookmark.js';
+import {laundryBookmarkRoute} from '../../getecoback/src/laundry-bookmark.mjs';
+import {hubRoute} from '../../../tools/fleet-account/hub.mjs';
+import {HUB, SESSION_COOKIE, random, digest} from '../../../tools/fleet-account/config.mjs';
 import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
 import {onRequest} from '../functions/api/account.js';
@@ -224,4 +228,83 @@ if(process.argv.includes('--workerd')){
   assert.equal((await post({action:'recover',email:'workerd@example.test',recovery_code:registered.recovery_code,new_password:password})).status,401);
   console.log('PASS actual workerd + D1: scrypt N32768/r8/p3 register/login, favorites, identity checks, recovery-code replacement and session invalidation; no KDF strength fallback.');
  }finally{await mf.dispose();}
+}
+
+// Verify EcoBack bookmarks with the same account database and fleet session lifecycle.
+{
+ const c=setup();
+ await ensureAccounts(c.env);
+ c.sql.prepare('INSERT INTO free_accounts VALUES(?,?,?,?,?,?,?,?)').run('fixture','EcoBookmarkFixture','invalid-fixture-password','invalid-recovery',1,now(),now(),1);
+ const fixtureToken=await issueSession(c.env,{id:'fixture',session_version:1});
+ c.headers={Origin:HUB,Cookie:'__Host-bpj_account='+fixtureToken};
+ const host='agiscorecard.com', eco='getecoback.com';
+ const req=(action,body={},headers={})=>new Request(HUB+'/api/account-fleet',{
+   method:'POST',headers:{'Content-Type':'application/json',...headers},
+   body:JSON.stringify({action,host,...body}),
+ });
+ async function grant(context,body) {
+   const verifier=random();
+   const r=await hubRoute(req('authorize',{
+     challenge:await digest(verifier),state:random(),confirmed:true,...body,
+   },context.headers),context.env);
+   return {r,verifier};
+ }
+ const bookmark='https://getecoback.com/auth/wasch-checkliste';
+ async function issue(site,context=c,accountId='fixture') {
+   const g=await grant(context,{host:site,account_id:accountId});
+   assert.equal(g.r.status,200);
+   const code=new URL((await g.r.json()).redirect).searchParams.get('code');
+   const exchange=await hubRoute(req('exchange',{host:site,code,verifier:g.verifier}),c.env);
+   assert.equal(exchange.status,200);
+   return (await exchange.json()).token;
+ }
+ const first=await issue(eco), second=await issue(eco), wrongHost=await issue(host);
+ c.sql.prepare('INSERT INTO free_accounts VALUES(?,?,?,?,?,?,?,?)').run('other','OtherFixtureUser','invalid-fixture-password','invalid-recovery',1,now(),now(),1);
+ const session=await issueSession(c.env,{id:'other',session_version:1});
+ const other=await issue(eco,{...c,headers:{Origin:HUB,Cookie:'__Host-bpj_account='+session}},'other');
+ const service=(url,init)=>ecoBookmarkService({request:new Request(url,init),env:c.env});
+ const request=(token,method='GET',action='',origin='https://getecoback.com')=>{
+   const headers=token?{Cookie:SESSION_COOKIE+'='+token}:{};
+   if(method==='POST'){
+     headers.Origin=origin;
+     headers['Content-Type']='application/x-www-form-urlencoded';
+   }
+   return new Request(bookmark,{method,headers,...(method==='POST'?{body:action}:{})});
+ };
+ let result=await laundryBookmarkRoute(request(),()=>{throw Error('guest called the hub')});
+ assert.match(await result.text(),/Kostenloses Konto erstellen/);
+ assert.equal(result.headers.get('Cache-Control'),'no-store');
+ assert.match(result.headers.get('X-Robots-Tag'),/noindex/);
+ assert.match(result.headers.get('Content-Security-Policy'),/form-action 'self'/);
+ result=await laundryBookmarkRoute(request(first,'POST','action=add','https://wrong.invalid'),service);
+ assert.equal(result.status,403);
+ assert.equal((await laundryBookmarkRoute(request(first,'POST','action=add&action=remove'),service)).status,400);
+ const write=token=>laundryBookmarkRoute(request(token,'POST','action=add'),service);
+ const reads=async(token,pattern)=>{
+   const result=await laundryBookmarkRoute(request(token),service);
+   assert.equal(result.status,200);
+   assert.match(await result.text(),pattern);
+ };
+ assert.equal((await laundryBookmarkRoute(request(first),service)).headers.get('Referrer-Policy'),'same-origin');
+ await reads(first,/Speichere den Link/);
+ await reads(wrongHost,/Kostenloses Konto erstellen/);
+ for(const res of await Promise.all([write(first),write(second)])){
+   assert.equal(res.status,303);
+   assert.equal(res.headers.get('Location'),'/auth/wasch-checkliste');
+ }
+ await reads(second,/in deinem kostenlosen Konto gespeichert/);
+ await reads(other,/Speichere den Link/);
+ assert.equal(c.sql.prepare('SELECT COUNT(*) n FROM fleet_eco_laundry_bookmarks').get().n,1);
+ assert.equal(c.sql.prepare('SELECT COUNT(*) n FROM free_account_favorites').get().n,0);
+ const deny=await service(HUB+'/api/account-eco-bookmark?action=read',{method:'POST',headers:{Origin:'https://getecoback.com',Authorization:'Bearer '+first}});
+ assert.equal(deny.status,403);
+ let direct=await service(HUB+'/api/account-eco-bookmark?action=read',{method:'POST',headers:{Authorization:'Bearer '+first}});
+ assert.deepEqual(await direct.json(),{ok:true,saved:true});
+ assert.equal((await laundryBookmarkRoute(request(second,'POST','action=remove'),service)).status,303);
+ await reads(first,/Speichere den Link/);
+ assert.equal((await write(first)).status,303);
+ c.sql.prepare('UPDATE free_accounts SET session_version=2 WHERE id=?').run('fixture');
+ await reads(first,/Kostenloses Konto erstellen/);
+ c.sql.prepare('DELETE FROM free_accounts WHERE id=?').run('fixture');
+ assert.equal(c.sql.prepare('SELECT COUNT(*) n FROM fleet_eco_laundry_bookmarks').get().n,0);
 }
