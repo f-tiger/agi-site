@@ -1441,7 +1441,11 @@ test('heated rack cost and exact model questions reach separate reviewed answers
    assert.equal(searchEntries(index,query,'de')[0]?.entry.u,models,query);
  }
  for(const query of ['Adler AD 7823 Heizkörper Stromkosten', 'Adler AD 7821 defekt Ersatzteil',
-    'Beheizbarer Wäscheständer oder Luftentfeuchter Stromkosten', 'EASYmaxx elektrischer Wäscheständer Lüfter Stromkosten']){
+    'Beheizbarer Wäscheständer oder Luftentfeuchter Stromkosten', 'EASYmaxx elektrischer Wäscheständer Lüfter Stromkosten',
+    'Was verbraucht mein elektrischer Wäscheständer mit Ventilator ohne Heizung?',
+    'Was kostet mein elektrischer Wäscheständer mit Lüfter ohne Heizstäbe pro Ladung?',
+    'Was kostet beheizter Wäscheständer oder Entfeuchter?', 'Im Trockner statt auf dem beheizten Wäscheständer?',
+    'Mein Adler AD 7821 heizt nicht mehr', 'DO7117DR geht nicht mehr an']){
    assert.ok(![cost,models].includes(searchEntries(index,query,'de')[0]?.entry.u),query);
  }
 });

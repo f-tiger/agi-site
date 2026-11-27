@@ -20,7 +20,8 @@ class ConversionRoutes(unittest.TestCase):
         pattern=r'<section aria-labelledby="(kosten-pro-fertig-getrockneter-ladung|heizstaender-modelle)">(.*?)</section>'
         parts=dict(re.findall(pattern,raw,re.S))
         self.assertEqual(len(parts),2)
-        for phrase in ('1,2 kWh','0,36 €','0 kWh Strom','gleichen Trockengrad','geeigneter Lüftung'):
+        for phrase in ('1,2 kWh','0,36 €','0 kWh Strom','passiver Wäscheständer ohne elektrische Bauteile',
+                       'Gebläse verbraucht auch ohne Heizstäbe Strom','gleichen Trockengrad','geeigneter Lüftung'):
             self.assertIn(phrase,parts['kosten-pro-fertig-getrockneter-ladung'])
             self.assertIn(phrase,md)
         for phrase in ('AD 7821','5903887809641','220 W','schließt externe Zeitschaltuhren','0,88 kWh',

@@ -1217,6 +1217,11 @@ test('heated rack cost and timer answers can be found and read in both MCP profi
    for(const fact of proof) assert.ok(textOf(full).includes(fact),fact);
    assert.doesNotMatch(textOf(full),/getecoback-21|https:\/\/www\.amazon\.de/);
  }
+ for(const frage of ['Was verbraucht mein elektrischer Wäscheständer mit Ventilator ohne Heizung?',
+   'Was kostet beheizter Wäscheständer oder Entfeuchter?', 'Mein Adler AD 7821 heizt nicht mehr', 'DO7117DR geht nicht mehr an']){
+   const result=await call('ecoback_werkzeug_finden',{frage},env,true);
+   assert.ok(!result.structuredContent.guides?.some(item=>item.guide_url.startsWith(page+'#')),frage);
+ }
 });
 
 test('tado X room sensor guidance matches both MCP profiles and retains the setup boundary',async()=>{

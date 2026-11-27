@@ -10,7 +10,7 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Watt ÷ 1.000 × Betriebsstunden ergibt bei konstanter Leistung die elektrische Arbeit in kWh. Multipliziere sie mit deinem Strompreis. **200 W für sechs Stunden** ergeben **1,2 kWh** und bei **0,30 €/kWh** geschätzte **0,36 €**. Nutzt das Gerät die Nennleistung nur zeitweise, miss den gesamten Lauf mit einem geeigneten Strommessgerät, sofern die Anleitung das zulässt.
 
-Ein unbeheizter Wäscheständer braucht selbst **0 kWh Strom**. Ob die Wohnung zusätzlich beheizt oder ein Entfeuchter betrieben werden muss, hängt von deinen Bedingungen ab. Eine kleinere Wattzahl sagt nichts darüber aus, welches Gerät eine Ladung mit weniger Energie bis zum gewünschten Trockengrad bringt.
+Ein passiver Wäscheständer ohne elektrische Bauteile braucht selbst **0 kWh Strom**. Ein elektrisches Gebläse verbraucht auch ohne Heizstäbe Strom. Ob die Wohnung zusätzlich beheizt oder ein Entfeuchter betrieben werden muss, hängt von deinen Bedingungen ab. Eine kleinere Wattzahl sagt nichts darüber aus, welches Gerät eine Ladung mit weniger Energie bis zum gewünschten Trockengrad bringt.
 
 Wiege oder vergleiche gleich große, ähnlich geschleuderte Ladungen bei ähnlichen Raumbedingungen bis zum gleichen Trockengrad. Notiere die gesamte Zeit und, falls verwendet, zusätzlich die kWh von Entfeuchter oder Lüfter. Wenn dein vorhandener Ständer mit geeigneter Lüftung ausreicht, nutze ihn weiter. [Eigene Laufzeit berechnen](https://getecoback.com/guide/stromkosten-rechner.html) · [Strom anderer Trocknungsmethoden vergleichen](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html).
 

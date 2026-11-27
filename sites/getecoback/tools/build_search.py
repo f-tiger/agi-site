@@ -405,7 +405,7 @@ def collect():
   if lang=='de' and route=='/guide/beheizter-waeschestaender.html':
    entry['model_sections']=[
     {'id':'kosten-pro-fertig-getrockneter-ladung','title':'Kosten pro fertig getrockneter Ladung',
-     'description':'200 W für sechs Stunden ergeben bei konstanter Leistung 1,2 kWh und bei 0,30 €/kWh geschätzte 0,36 €. Normale Ständer brauchen selbst keinen Strom.'},
+     'description':'200 W für sechs Stunden ergeben bei konstanter Leistung 1,2 kWh und bei 0,30 €/kWh geschätzte 0,36 €. Passive Ständer ohne Elektrik brauchen selbst keinen Strom.'},
     {'id':'heizstaender-modelle','title':'Adler AD 7821 und DOMO DO7117DR im Vergleich',
      'description':'Adler AD 7821 hat 220 W und schließt externe Zeitschaltuhren aus. DOMO DO7117DR hat 150 W und einen eingebauten Timer für 2 oder 4 Stunden.'},
    ]

@@ -1,4 +1,4 @@
-import {asksForLaundryCostComparison, balconyThresholdMoisture, exactBoschStackingGuide, exactGermanHouseholdTask, exactHygrometerPlacement, exactWindowShadeMeasurement, hasOtherWindowSurface, mentionsLaundryDryer} from './german-household-intent.mjs?v=5eb6bf0c5708';
+import {asksForLaundryCostComparison, balconyThresholdMoisture, exactBoschStackingGuide, exactGermanHouseholdTask, exactHygrometerPlacement, exactWindowShadeMeasurement, hasOtherWindowSurface, mentionsLaundryDryer} from './german-household-intent.mjs?v=8a51d5de27d2';
 import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion} from './kaercher-saugduese-intent.mjs';
