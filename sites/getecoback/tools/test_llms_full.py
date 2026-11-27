@@ -158,6 +158,30 @@ class LlmsFull(unittest.TestCase):
             self.assertEqual(re.findall(r'href="(https://www.amazon.de/[^"]+)"',card),[merchant])
         self.assertNotRegex(md, r'amazon\.de/|getecoback-21')
 
+    def test_air_device_choice_checks_cause_and_variant_before_the_one_product_cta(self):
+        page = SITE / 'guide/luftentfeuchter-oder-luftreiniger.html'
+        raw = page.read_text()
+        mirror = page.with_suffix('.md').read_text()
+        [graph] = [json.loads(doc)['@graph'] for doc in re.findall(
+            r'<script type="application/ld\+json">(.*?)</script>', raw, re.S)]
+        [faq] = [node for node in graph if node['@type']=='FAQPage']
+        visible = re.findall(r'<p data-air-device-faq><strong>(.*?)</strong><br>(.*?)</p>', raw, re.S)
+        self.assertEqual(len(visible), 3)
+        self.assertEqual(visible, [(item['name'], item['acceptedAnswer']['text']) for item in faq['mainEntity']])
+        for question, answer in visible:
+            self.assertIn(question, mirror)
+            self.assertIn(answer, mirror)
+        for document in (raw, mirror):
+            for phrase in ('Warte mit dem Gerätekauf', 'Feuchtequelle', '10000651', '4048164103010',
+                           '30 °C und 80 %', '10 °C und 60 %', 'comfee-MDDF-20DEN7-Datenblatt.pdf',
+                           'was-tun-bei-schimmel-in-meiner-wohnung', 'produkte.html#produkt-bosch-air-4000'):
+                self.assertIn(phrase, document)
+        self.assertNotRegex(raw, r'<!--EB_(?:TOPPICK|MODELS|POPUP|STICKY|PROFILE|QUICKPICK|EXPLAINER|RADAR|USMARKET)-->')
+        links = re.findall(r'href="(https://www.amazon.[^"]+)"', raw)
+        self.assertEqual(links, ['https://www.amazon.de/dp/B07KJX6RDK?tag=getecoback-21'])
+        self.assertLess(raw.index('Warte mit dem Gerätekauf'), raw.index(links[0]))
+        self.assertNotRegex(mirror, r'amazon\.de/|getecoback-21')
+
     def test_split_installation_checks_precede_affiliate_links_in_generated_guide(self):
         page = SITE / 'guide/split-klimaanlage-ohne-kernbohrung.html'
         raw = page.read_text()

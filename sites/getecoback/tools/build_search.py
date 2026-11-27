@@ -64,6 +64,9 @@ def collect():
  sections[('de','/guide/lichterkette-stromkosten.html')]={
   'id':'zeitschaltuhr-strombilanz','title':'Weihnachtsbeleuchtung: Spart eine Zeitschaltuhr Strom?',
   'description':'5 W LED und 0,5 W Timer: Erst mehr als 2 Stunden und 24 Minuten weniger Licht pro Tag sparen Energie. Eigene Zeiten und mehrere Lichterketten prüfen.'}
+ sections[('de','/guide/luftentfeuchter-oder-luftreiniger.html')]={
+  'id':'der-unterschied-in-einem-satz','title':'Luftentfeuchter, Luftreiniger oder erst messen?',
+  'description':'Bei nassen Fenstern Feuchte und Temperatur messen. Feuchte Bauteile oder sichtbare Flecken zuerst auf Ursachen prüfen. Bei Staub die Quelle und bei Schwebpartikeln den Filter prüfen.'}
  sections[('de','/guide/luftentfeuchter-ratgeber.html')]={
   'id':'modell-bosch-d4000-eu','title':'Bosch Dry 4000: deutsche Modellnummer prüfen',
   'description':'D4000-EU, Artikel 7733703558 und EAN 4069143047774 am Angebot oder Typenschild abgleichen. Bosch dokumentiert Tank und kontinuierlichen Ablauf.'}

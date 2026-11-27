@@ -7,6 +7,20 @@ import {calculateGasHeatThreshold} from '../site/assets/heat-gas-cost.mjs';
 import {compareSocketWatts} from '../site/assets/auto-12v-check.mjs';
 const browsingIndex=readFileSync(new URL('../site/assets/search-index.json',import.meta.url));
 const index=JSON.parse(browsingIndex);
+test('German air device choice lands on the decision section for dampness and particles',()=>{
+ const target='/guide/luftentfeuchter-oder-luftreiniger.html#der-unterschied-in-einem-satz';
+ for(const query of [
+  'Brauche ich bei Hausstaub und nassen Fenstern einen Luftreiniger oder Luftentfeuchter?',
+  'Luftreiniger oder Luftentfeuchter bei Schimmel an der Schlafzimmerwand?',
+  'Sind Luftentfeuchter und Luftreiniger beide sinnvoll?'
+ ]) assert.equal(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+ for(const [query,fragment] of [
+  ['MeacoDry Arete One oder Two 20L: Welche Unterschiede haben diese Luftentfeuchter mit Luftreiniger?','#one-oder-two'],
+  ['Hat mein Bosch Dry 4000 Luftentfeuchter einen HEPA- oder Aktivkohlefilter wie ein Luftreiniger?','#bosch-dry-4000-aktivkohlefilter'],
+ ]) assert.ok(searchEntries(index,query,'de')[0]?.entry.u.endsWith(fragment),query);
+ for(const query of ['Bosch Air 4000 Ersatzfilter','Stromkosten Luftentfeuchter oder Luftreiniger','Luftentfeuchter bei 10 °C'])
+  assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+});
 test('German large or multi-room cooling questions reach the load assessment',()=>{
  const target='/guide/btu-rechner.html#hohe-kuehllast';
  for(const query of ['Reicht eine mobile Klimaanlage für 60 m² im Dachgeschoss?',

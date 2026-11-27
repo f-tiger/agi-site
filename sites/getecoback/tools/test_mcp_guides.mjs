@@ -228,6 +228,26 @@ test('Bosch II [+M] E03 finds and reads the exact calibration answer in both pro
   assert.doesNotMatch(answer, /amazon[.]de\/|getecoback-21/);
 });
 
+test('German air device choice finds the source and reads the same exact section in both profiles', async () => {
+  const path = '/guide/luftentfeuchter-oder-luftreiniger.html';
+  const section = 'https://getecoback.com'+path+'#der-unterschied-in-einem-satz';
+  const {env}=assetEnv();
+  for (const frage of ['Luftreiniger oder Luftentfeuchter bei Schimmel an der Schlafzimmerwand?',
+                       'Brauche ich bei Hausstaub und nassen Fenstern einen Luftreiniger oder Luftentfeuchter?']) {
+    const result=await call('ratgeber_suche',{frage,sprache:'de',max:1},env);
+    assert.equal(result.isError,false);
+    assert.ok(textOf(result).includes('Abschnitt: '+section),frage);
+  }
+  const full=await call('ratgeber_lesen',{pfad:section},env);
+  const compact=await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad:section}},env,true);
+  assert.equal(full.isError,false);
+  assert.deepEqual(full,compact);
+  for (const phrase of ['Warte mit dem Gerätekauf', 'Feuchtequelle', 'Schwebpartikel', 'was-tun-bei-schimmel-in-meiner-wohnung']) {
+    assert.ok(textOf(full).includes(phrase),phrase);
+  }
+  assert.doesNotMatch(textOf(full),/getecoback-21|amazon\.de\//);
+});
+
 test('the committed MCP corpus is derived from current public canonical pages and built mirrors', () => {
   const py = spawnSync('python3', ['-c', "import json,sys;sys.path.insert(0,'tools');from build_mcp_guides import collect_guides;print(json.dumps(collect_guides()))"], {cwd, encoding: 'utf8', timeout: 15000});
   assert.equal(py.status, 0, py.stderr);
