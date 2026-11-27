@@ -55,6 +55,12 @@ try {
       intro:T('登录或免费注册后，返回帧选手动保存这份片单，换台设备也能恢复。','Sign in or join free, then return to save your watchlist so you can restore it on another device.'),
       ready:T('返回片单保存区，先查看账户云片单，再选择保存本机片单。','Return to watchlist saving, check your account watchlist, then choose to save your local list.'),
      };
+    } else if (next === path && /^\/(?:en\/)?studio\/trade-tools\/mcp\/keys\/$/.test(path)) {
+     returnContext = {
+      label:T('返回外贸 MCP 密钥管理','Back to trade MCP keys'),
+      intro:T('先登录或免费注册 BPJ，再返回生成外贸 MCP 专用密钥。','Sign in or create a free BPJ account, then return to create a scoped trade MCP key.'),
+      ready:T('返回密钥管理，生成用于外贸工具的专用密钥。','Return to keys to create a scoped credential for the trade tools.'),
+     };
     } else if (/^\/(?:en\/)?studio\/trade-tools\/(?:[a-z0-9]+(?:-[a-z0-9]+)*)?$/.test(path) && path.length<=86) {
      const directory = path.endsWith('/');
      returnContext = {

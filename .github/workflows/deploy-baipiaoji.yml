@@ -409,7 +409,7 @@ jobs:
           node ../../tools/quote-page-lab/test-growth.mjs --dist
           node scripts/test-ai-tools.mjs
           node --test lib/ai-suite/trade-lead.test.mjs lib/ai-suite/trade-quote.test.mjs scripts/test-trade-opportunities.mjs
-          node --test scripts/test-trade-workbench-api.mjs
+          node --test scripts/test-trade-workbench-api.mjs scripts/test-trade-mcp-access.mjs scripts/test-trade-mcp.mjs scripts/test-trade-mcp-pages.mjs scripts/test-trade-mcp-registry.mjs
           node scripts/test-trade-workbench.mjs --dist
           node scripts/test-ai-tables.mjs
           node scripts/test-ai-measurement.mjs
@@ -500,6 +500,7 @@ jobs:
           node --test sites/baipiaoji/scripts/test-testimonial.mjs
           node sites/baipiaoji/scripts/test-testimonial-browser.mjs
           node sites/baipiaoji/scripts/test-trade-workbench-browser.mjs
+          node sites/baipiaoji/scripts/test-trade-mcp-browser.mjs
           node sites/baipiaoji/scripts/test-video-business-browser.mjs
           node sites/baipiaoji/scripts/test-deck-browser.mjs
           node sites/baipiaoji/scripts/test-release-pilot-browser.mjs

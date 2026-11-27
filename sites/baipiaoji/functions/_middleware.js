@@ -1,6 +1,6 @@
 import {monitorOptOut} from '../../../tools/fleet/mcp-liveness-optout.mjs';
 import {isAnalyticsPath,protectAnalyticsResponse} from '../../../tools/fleet-analytics/edge.mjs';
-import {protectAccountPage} from '../lib/account-page-privacy.js';
+import {isTradeMcpKeysPage,protectAccountPage} from '../lib/account-page-privacy.js';
 // 服务端爬虫可见性：页面级打点此前 100% 依赖客户端 JS beacon（build.mjs 的 sendBeacon），
 // 而 GPTBot / ClaudeBot / PerplexityBot 这些 AI 检索爬虫**不执行 JavaScript**——
 // 它们抓一万页我们也一条都记不到。于是「AI 助手有没有来抓」这个问题，
@@ -89,6 +89,7 @@ async function handleRequest(ctx) {
   const privacyURL = new URL(ctx.request.url);
   try { for(let i=0;i<2;i++){const p=decodeURIComponent(privacyURL.pathname);if(p===privacyURL.pathname)break;privacyURL.pathname=p;} } catch { /* retain the decodable path */ }
   let res = protectAccountPage(await ctx.next(), {url:privacyURL.href});
+  if (isTradeMcpKeysPage(privacyURL.pathname)) return res;
   try {
     const url = new URL(ctx.request.url);
     // HEAD carries the same indexing policy as GET. Encoded aliases resolve

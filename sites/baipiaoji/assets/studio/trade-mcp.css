@@ -1,0 +1,24 @@
+.trade-mcp-section { margin-block: 16px; }
+.trade-mcp-section li + li { margin-top: 7px; }
+.trade-mcp-code {
+  max-width: 100%;
+  overflow: auto;
+  padding: 14px;
+  line-height: 1.5;
+  background: var(--trade-paper);
+  border: 1px solid var(--trade-line);
+  border-radius: 4px;
+}
+.trade-mcp-private {
+  margin: 0;
+  background: #f4f8f3;
+  font: 1rem/1.5 system-ui, sans-serif;
+}
+.trade-mcp-keys { max-width: 690px; margin-inline: auto; padding-bottom: 24px; }
+.trade-mcp-keys .trade-crumb { justify-content: space-between; }
+.trade-mcp-keys .trade-title h1 { font-size: clamp(1.8rem, 7vw, 3rem); }
+.trade-mcp-keys input { display: block; margin-top: 5px; }
+.trade-mcp-key-list { list-style: none; padding: 0; }
+.trade-mcp-key-list li { border-top: 1px solid var(--trade-line); padding-top: 12px; overflow-wrap: anywhere; }
+.trade-mcp-key-list li p { margin: 3px 0; }
+.trade-mcp-key-list .trade-actions { margin-top: 8px; }

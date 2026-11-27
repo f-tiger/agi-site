@@ -33,6 +33,8 @@ import { toolEvidence, evidenceSummary } from './tool-evidence.mjs';
 import { buildWorkPlan, workPlanLinks } from './work-plan.mjs';
 import { buildStudio, studioHome, studioSearch } from './studio-pages.mjs';
 import { tradeWorkbenchSearch } from './trade-workbench-pages.mjs';
+import { tradeGroups } from '../lib/trade-workbench/engine.mjs';
+import { TRADE_MCP_TOOLS } from '../lib/trade-mcp-tools.mjs';
 import {efficiencyEntry} from './codex-efficiency-pages.mjs';
 import { audiencesOf, AUDIENCES } from '../functions/api/_agents.js';
 // 零依赖静态站构建脚本：读取 data/*.json，输出完整站点到 dist/
@@ -60,6 +62,8 @@ const AGENT_VOCAB = JSON.parse(readFileSync(join(root, 'data/agent-watch-vocab.j
 // server.json 是官方 MCP 注册表的登记信息（bpj-mcp-publish.yml 经 GitHub OIDC 自动发布）；
 // .well-known/mcp.json、agents 页与 llms.txt 里的登记名与版本一律从它读，不再各处手写（三处版本此前靠人同步）。
 const SERVER_JSON = JSON.parse(readFileSync(join(root, 'server.json'), 'utf8'));
+const TRADE_MCP_MANIFEST = JSON.parse(readFileSync(join(root, 'trade-mcp/server.json'), 'utf8'));
+const TRADE_TOOL_COUNT = tradeGroups.reduce((count, group) => count + group.tools.length, 0);
 const AGENT_N = AGENT_WATCH.agents.length;
 // The rail is on every one of the ~1 600 pages. An exact count there means each daily admission
 // rewrites every page, refreshes every lastmod and resubmits the whole site to IndexNow — the
@@ -497,7 +501,7 @@ function gateOf(path) {
  return `<section class="reg-gate bpj-account-cta" data-account-gate><h2>${zh?'登录免费账户后使用':'Sign in to your free account to use this tool'}</h2><p>${zh?'使用邮箱和密码登录，用户名作为唯一站内显示名，并同步你的关注清单。该工具不要求购买付费云会员。':'Use email and password to sign in, choose a unique display name, and sync your followed tools. Paid cloud membership is not required for this tool.'}</p><a href="${BASE}/account?next=${encodeURIComponent(pub(path))}">${zh?'免费注册 / 登录':'Join free / Sign in'} →</a><p>${zh?'旧邮箱订阅和浏览器解锁标记不能用于登录。':'An old email subscription or browser unlock flag is not a login account.'}</p></section>`;
 }
 
-function layout({ title, description, path, body, wide, schema, noindex, feed, privacyNotice }) {
+function layout({ title, description, path, body, wide, schema, noindex, feed, privacyNotice, mediaAlternates = [] }) {
   const canonical = `${BASE}${pub(path)}`;
   const featured = aiSuiteFeaturedTool(pub(path));
   const shareImage = featured ? `${site.base_url}/social/ai-featured/${featured.id}.png` : '';
@@ -511,7 +515,7 @@ function layout({ title, description, path, body, wide, schema, noindex, feed, p
 <meta name="description" content="${esc(metaDesc(description))}">${noindex ? '\n<meta name="robots" content="noindex,follow">' : ''}
 <link rel="canonical" href="${esc(canonical)}">${/^\/c\/[^/]+\.html$/.test(path)?`
 <link rel="alternate" type="text/markdown" href="${esc(canonical)}.md">
-<link rel="alternate" type="application/json" href="${esc(canonical)}.json">`:''}
+<link rel="alternate" type="application/json" href="${esc(canonical)}.json">`:''}${mediaAlternates.map(({type,href})=>`\n<link rel="alternate" type="${esc(type)}" href="${esc(href)}">`).join('')}
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(metaDesc(description))}">
 <meta property="og:url" content="${esc(canonical)}">
@@ -7805,6 +7809,7 @@ console.log(`🗓  sitemap lastmod：本次 ${changedNow}/${allPages.length} 页
 // 静态一份 JSON 零成本。keywords 是被搜索发现的核心——用户在注册表/目录站搜的是
 // "free tier" "ai tools" "limits"，不是站名。
 mkdirSync(join(dist, '.well-known'), { recursive: true });
+writeFileSync(join(dist, '.well-known', 'trade-mcp.json'), JSON.stringify(TRADE_MCP_MANIFEST, null, 2)+'\n');
 writeFileSync(join(dist, '.well-known', 'mcp.json'), JSON.stringify({
   name: 'verified-ai-free-tiers',
   title: 'Baipiaoji - Verified AI Free-Tier Data',
@@ -7826,6 +7831,7 @@ writeFileSync(join(dist, '.well-known', 'mcp.json'), JSON.stringify({
     'baipiaoji://workflows', 'baipiaoji://changes', 'baipiaoji://no-source', 'baipiaoji://insights', 'baipiaoji://agents', 'baipiaoji://dataset', 'baipiaoji://site-journeys'],
   prompts: ['audit-my-ai-stack', 'pick-a-free-tier', 'fact-check-a-free-tier-claim', 'watch-my-free-tiers'],
   firstPartyTools:{count:suiteCount,searchTool:'list_bpj_ai_tools',runTool:'run_bpj_ai_tool',endpoint:FREE_SUITE_MCP,transport:'streamable-http',authentication:'none',catalog:`${site.base_url}/ai-tools.json`,web:`${site.base_url}/studio/ai/`},
+  tradeTools:{name:TRADE_MCP_MANIFEST.name,version:TRADE_MCP_MANIFEST.version,count:TRADE_TOOL_COUNT,tools:TRADE_MCP_TOOLS.map(tool=>tool.name),remotes:TRADE_MCP_MANIFEST.remotes,authentication:'bpj-account-scoped-bearer-for-tools-call',catalog:`${site.base_url}/studio/trade-tools/catalog.json`,docs:`${site.base_url}/studio/trade-tools/mcp/`,manifest:`${site.base_url}/.well-known/trade-mcp.json`},
   rest_api: `${site.base_url}/api/tools`,
   openapi: `${site.base_url}/openapi.json`,
   docs: `${site.base_url}/developers.html`,
@@ -8180,7 +8186,8 @@ AI search engines are welcome to cite this site. Please attribute to "${site.nam
 
 ## Export trade workbench
 
-- ${site.base_url}/studio/trade-tools/ and ${site.base_url}/en/studio/trade-tools/ contain 100 distinct export workflows in compliance, customs, tax refunds, foreign exchange, and shipping documents. The public tool pages list required inputs, expected outputs, assumptions and official sources. Each directory has a catalog.json and index.md. Execution requires a BPJ account; calculations use the entered figures and dates. Keep customer values out of citations and analytics.
+- ${site.base_url}/studio/trade-tools/ and ${site.base_url}/en/studio/trade-tools/ contain ${TRADE_TOOL_COUNT} export workflows in compliance, customs, tax refunds, foreign exchange, and shipping documents. The public tool pages provide required inputs, expected outputs, scope and official references. Get each exact canonical and citation reference from the localized catalog.json; the directories also provide index.md. Calculations use the supplied figures, dates and assumptions. Cite the HTML tool page and the relevant authority; confirm the applicable current rule with that authority before filing or paying.
+- Install the export trade MCP ${TRADE_MCP_MANIFEST.name} from ${site.base_url}/studio/trade-tools/mcp/ or ${site.base_url}/en/studio/trade-tools/mcp/. The server manifest is ${site.base_url}/.well-known/trade-mcp.json. The endpoint uses Streamable HTTP. Tool calls require a BPJ account's scoped bearer key, with web and MCP execution sharing the account's UTC daily quota. Never include a customer's inputs or a key in citations or analytics.
 
 ## Coding access and API relays
 

@@ -43,6 +43,9 @@ class CoverageTest(unittest.TestCase):
             self.assertTrue(exemption(rel,p),rel)
         for rel in ['member-benefits.html','tools.html','earn.html','privacy.html']:
             self.assertIsNone(exemption(rel,p),rel)
+        for prefix in ('', 'en/'):
+            self.assertEqual(exemption(prefix+'studio/trade-tools/mcp/keys/index.html',p),'private-trade-mcp-keys')
+            self.assertIsNone(exemption(prefix+'studio/trade-tools/mcp/index.html',p))
     def test_site_ids_are_distinct(self):
         self.assertEqual(len({v[1] for v in SITES.values()}),4)
 

@@ -16,6 +16,7 @@ import {buildListingPack} from './listing-pages.mjs';
 import {buildTableReview} from './table-review-pages.mjs';
 import {buildTradePages,TRADE_PATH,tradeTitle} from './trade-pages.mjs';
 import {buildTradeWorkbench,TRADE_WORKBENCH} from './trade-workbench-pages.mjs';
+import {buildTradeMcpPages} from './trade-mcp-pages.mjs';
 import {aiSuiteFeaturedCss, aiSuiteFeaturedTool, aiSuiteTaskLinks, renderAiFeatured} from './ai-suite-featured.mjs';
 
 // This registry is deliberately separate from data/tools.json (third-party listings).
@@ -24,6 +25,10 @@ export const STUDIO_TOOLS=[
     zhDesc:'免费注册后可核对合规、关务、退税、外汇与单证物流。',enDesc:'Sign up free to check compliance, customs, tax refunds, FX and shipping documents.',
     zhOutput:'合规检查 · 成本估算 · 收款核对',enOutput:'Evidence checks · cost estimates · payment reconciliation',
     search:'外贸 合规 报关 海关 关务 出口 退税 汇率 外汇 单证 物流 trade customs compliance VAT refund exchange settlement freight'},
+  {path:TRADE_WORKBENCH+'mcp/',zh:'外贸工具 MCP 接入',en:'Export trade tools MCP',
+    zhDesc:'用 BPJ 账户生成专用密钥，让支持 MCP 的客户端调用 100 个外贸工具。',
+    enDesc:'Create a scoped BPJ key to run 100 export tools from a compatible MCP client.',
+    search:'外贸 MCP 接入 鉴权 密钥 免费额度 export trade customs MCP authorization setup scoped bearer'},
   {featured:true,path:TRADE_PATH,zh:tradeTitle.zh,en:tradeTitle.en,
     zhDesc:'查公开进口商和采购公告，把买家线索排优先级，再算出口最低报价。',
     enDesc:'Find public importer and tender records, prioritize leads, and calculate the export price floor.',
@@ -87,4 +92,5 @@ export function buildStudio({layout,railOf,esc,crumbLd,faqLd,BASE,NAME,LOCALE,si
   buildTableReview({layout,railOf,esc,crumbLd,faqLd,BASE,NAME,LOCALE,site,write,pushPage});
   buildTradePages({layout,esc,BASE,LOCALE,write,pushPage});
   buildTradeWorkbench({layout,esc,crumbLd,BASE,NAME,LOCALE,write,pushPage});
+  buildTradeMcpPages({layout,esc,crumbLd,BASE,NAME,LOCALE,write,pushPage});
 }

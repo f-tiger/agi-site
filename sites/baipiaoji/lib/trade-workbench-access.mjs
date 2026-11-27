@@ -3,6 +3,7 @@ import {memberStatus} from './membership.js';
 
 export const FREE_DAILY_RUNS = 10;
 export const MEMBER_DAILY_RUNS = 100;
+export const TRADE_MCP_KEY_TABLE = 'bpj_trade_mcp_keys';
 
 const usageTable = 'bpj_trade_workbench_daily';
 const usageSchema = `CREATE TABLE IF NOT EXISTS ${usageTable} (
@@ -48,23 +49,23 @@ export function workbenchAllowance(activeMember, used) {
   return {access: activeMember ? 'member' : 'free', limit, remaining: Math.max(0, limit - used)};
 }
 
-export async function recordWorkbenchRun(db, request, account, activeMember, now) {
+async function recordRun(db, accountId, sessionVersion, credentialTable, credentialHash, activeMember, now) {
   const limit = activeMember ? MEMBER_DAILY_RUNS : FREE_DAILY_RUNS;
   const membershipGuard = activeMember ? `AND EXISTS (
     SELECT 1 FROM bpj_account_members l JOIN wb_members m ON m.id=l.member_id
     WHERE l.account_id=a.id AND m.suspended=0 AND m.ends_at>?
   )` : '';
   const query = `INSERT INTO ${usageTable}(account_id,utc_day,runs)
-    SELECT a.id,?,1 FROM free_accounts a JOIN free_account_sessions s
-      ON s.account_id=a.id AND s.version=a.session_version
-    WHERE a.id=? AND a.session_version=? AND s.token_hash=? AND s.expires>?
+    SELECT a.id,?,1 FROM free_accounts a JOIN ${credentialTable} credential
+      ON credential.account_id=a.id AND credential.version=a.session_version
+    WHERE a.id=? AND a.session_version=? AND credential.token_hash=? AND credential.expires>?
       ${membershipGuard}
     ON CONFLICT(account_id) DO UPDATE SET
       utc_day=excluded.utc_day,
       runs=CASE WHEN utc_day=excluded.utc_day THEN runs+1 ELSE 1 END
     WHERE utc_day<excluded.utc_day OR (utc_day=excluded.utc_day AND runs<?)
     RETURNING runs`;
-  const args = [utcDay(now), account.id, account.session_version, hash(tokenFrom(request)), now];
+  const args = [utcDay(now), accountId, sessionVersion, credentialHash, now];
   if (activeMember) args.push(now);
   args.push(limit);
 
@@ -76,4 +77,12 @@ export async function recordWorkbenchRun(db, request, account, activeMember, now
     await db.prepare(usageSchema).run();
     return claim();
   }
+}
+
+export function recordWorkbenchRun(db, request, account, activeMember, now) {
+  return recordRun(db, account.id, account.session_version, 'free_account_sessions', hash(tokenFrom(request)), activeMember, now);
+}
+
+export function recordTradeMcpRun(db, principal, activeMember, now) {
+  return recordRun(db, principal.accountId, principal.sessionVersion, TRADE_MCP_KEY_TABLE, principal.keyHash, activeMember, now);
 }

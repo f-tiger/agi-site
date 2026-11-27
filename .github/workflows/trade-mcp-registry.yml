@@ -1,0 +1,83 @@
+name: Register BPJ trade MCP
+
+on:
+  workflow_dispatch:
+    inputs:
+      deployment_run_id:
+        description: Successful BPJ production deployment run ID
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bpj-trade-mcp-registry
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.repository == 'f-tiger/agi-site' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      actions: read
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Confirm the trusted deployment succeeded
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DEPLOYMENT_RUN_ID: ${{ inputs.deployment_run_id }}
+        run: |
+          [[ "$DEPLOYMENT_RUN_ID" =~ ^[1-9][0-9]{0,17}$ ]]
+          run="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$DEPLOYMENT_RUN_ID")"
+          jq -e --arg repository "$GITHUB_REPOSITORY" '
+            .path == ".github/workflows/deploy-baipiaoji.yml" and
+            .head_repository.full_name == $repository and .head_branch == "main" and
+            .status == "completed" and .conclusion == "success" and
+            (.event == "push" or .event == "workflow_dispatch" or .event == "schedule")
+          ' <<< "$run" >/dev/null
+          attempt="$(jq -er '.run_attempt' <<< "$run")"
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$DEPLOYMENT_RUN_ID/attempts/$attempt/jobs" |
+            jq -e 'any(.jobs[]; .conclusion == "success" and any(.steps[]; .name == "Deploy to Cloudflare Pages" and .conclusion == "success"))' >/dev/null
+      - name: Validate official schema, public manifest and anonymous access boundary
+        run: |
+          python -m pip install jsonschema==4.25.1
+          python tools/mcp-registry/registry.py validate --manifest-dir sites/baipiaoji/trade-mcp
+          node --test sites/baipiaoji/scripts/test-trade-mcp-registry.mjs
+          node sites/baipiaoji/scripts/test-trade-mcp-live.mjs
+      - name: Check the exact official version before publishing
+        id: registry
+        run: node sites/baipiaoji/scripts/trade-mcp-registry.mjs --check "$RUNNER_TEMP/bpj-trade-registry-check.json"
+      - name: Install pinned official publisher and verify its checksum
+        if: steps.registry.outputs.publish == 'true'
+        run: |
+          mkdir -p "$RUNNER_TEMP/mcp-publisher"
+          curl -4 -fLsS --retry 3 --connect-timeout 10 --max-time 90 https://github.com/modelcontextprotocol/registry/releases/download/v1.8.1/mcp-publisher_linux_amd64.tar.gz -o "$RUNNER_TEMP/mcp-publisher.tar.gz"
+          echo "a06c9096dcb9727c13555b6be26c7effa707b01f06a4c561ba7a3635443cf2cc  $RUNNER_TEMP/mcp-publisher.tar.gz" | sha256sum -c -
+          tar xzf "$RUNNER_TEMP/mcp-publisher.tar.gz" -C "$RUNNER_TEMP/mcp-publisher" mcp-publisher
+      - name: Register the remote using short-lived GitHub OIDC
+        if: steps.registry.outputs.publish == 'true'
+        working-directory: sites/baipiaoji/trade-mcp
+        run: |
+          "$RUNNER_TEMP/mcp-publisher/mcp-publisher" login github-oidc
+          "$RUNNER_TEMP/mcp-publisher/mcp-publisher" publish || node ../scripts/trade-mcp-registry.mjs --verify "$RUNNER_TEMP/bpj-trade-registry-recovery.json"
+      - name: Read back the exact active latest listing
+        run: node sites/baipiaoji/scripts/trade-mcp-registry.mjs --verify "$RUNNER_TEMP/bpj-trade-registry-receipt.json"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bpj-trade-mcp-registry-${{ github.run_id }}
+          path: ${{ runner.temp }}/bpj-trade-registry-*.json
+          retention-days: 30
+          if-no-files-found: warn

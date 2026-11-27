@@ -26,6 +26,7 @@ export function publicReturnPath(value){
   if(u.origin!=='https://fleet.invalid'||u.pathname!==value||u.search||u.hash||/%[0-9a-f]{2}/i.test(decoded)||/%(?:2f|5c)/i.test(value)||/[\\?#\u0000-\u0020\u007f]/.test(decoded))return null;
   if(decoded.split('/').some(part=>/^(?:auth|api|analytics-assets|\.well-known|member|members|account|accounts|private|share|shared|delivery|download|downloads|packs-thanks|checkout|payment|receipt|order|orders|invoice|invoices|logout|login|register|unsubscribe|admin|go|out|redirect|embed|widget|widgets)(?:[.~-]|$)/i.test(part)||/^__(?:ci|probe|qa)/i.test(part)||part==='.'||part==='..'))return null;
   if(/^\/(?:[a-z]{2}\/)?(?:discuss\/moderate|studio\/quote-builder)(?:[/.]|$)/i.test(decoded))return null;
+  if(/^\/(?:en\/)?studio\/trade-tools\/mcp\/keys(?:[/.]|$)/i.test(decoded))return null;
   return value;
  }catch{return null;}
 }

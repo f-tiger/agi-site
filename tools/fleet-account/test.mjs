@@ -69,6 +69,8 @@ test('return context accepts public pathnames and rejects private, external and 
  for(const path of ['/','/zh/jarvis','/de/guide/room.html','/tools/compare-models'])assert.equal(publicReturnPath(path),path);
  for(const path of ['https://evil.example/x','//evil.example/x','/\\evil.example','/public?input=private','/public#result','/%2fauth','/%2561uth/account','/%61uth/account','/a/../public','/a/./public','/auth/account','/en/accounts/profile','/fr/member.html','/api/jarvis','/share/secret','/delivery/key','/download/export','/studio/quote-builder','/zh/discuss/moderate','/checkout/order','/go/affiliate','/out/item','/logout','/admin','/__qa/check','/'+'a'.repeat(513)])assert.equal(publicReturnPath(path),null,path);
  assert.equal(accountLocale('ZH-cn'),'zh');assert.equal(accountLocale('unsupported'),'en');
+ assert.equal(publicReturnPath('/studio/trade-tools/mcp/'),'/studio/trade-tools/mcp/');
+ for(const path of ['/studio/trade-tools/mcp/keys/','/en/studio/trade-tools/mcp/keys/index.html','/studio/trade-tools/mcp/%6beys/'])assert.equal(publicReturnPath(path),null,path);
  assert.equal(accountEntryURL('/tool?input=private','de'),'/auth/account?next=%2F&lang=de');
 });
 

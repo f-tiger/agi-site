@@ -1,0 +1,27 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.f-tiger/bpj-trade-tools",
+  "title": "BPJ Trade Tools",
+  "description": "Run 100 trade calculators and checklists using a registered BPJ account and scoped access key.",
+  "version": "1.0.0",
+  "websiteUrl": "https://baipiaoji.com/en/studio/trade-tools/mcp/",
+  "repository": {
+    "url": "https://github.com/f-tiger/agi-site",
+    "source": "github",
+    "subfolder": "sites/baipiaoji/trade-mcp"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://baipiaoji.com/api/trade-mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Bearer followed by a scoped BPJ trade MCP key. Required for all tool calls.",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}

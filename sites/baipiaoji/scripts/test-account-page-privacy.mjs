@@ -14,6 +14,16 @@ for (const method of ['GET','HEAD']) for (const path of ['/account','/account/',
 for (const path of ['/','/tools/kimi','/account.js','/api/account','/accounting','/en/account-fleet.js']) {
   const response=html();assert.equal(protectAccountPage(response,new Request('https://baipiaoji.com'+path)),response);
 }
+for (const method of ['GET','HEAD']) for (const prefix of ['', '/en']) for (const suffix of ['/keys/','/keys','/keys/index.html','/%6beys/']) {
+  const request = new Request('https://baipiaoji.com'+prefix+'/studio/trade-tools/mcp'+suffix,{method,headers:{'User-Agent':'GPTBot'}});
+  const response = await onRequest({request,next:async()=>html(method),env:{get HITS(){assert.fail('Key pages must not enter crawler analytics');}}});
+  assert.equal(response.headers.get('Cache-Control'),'no-store');
+  assert.equal(response.headers.get('X-Robots-Tag'),'noindex, nofollow');
+  assert.equal(response.headers.get('Referrer-Policy'),'no-referrer');
+  assert.equal(response.headers.get('X-Frame-Options'),'DENY');
+  assert.match(response.headers.get('Content-Security-Policy'),/script-src 'self'/);
+  assert.doesNotMatch(response.headers.get('Content-Security-Policy'),/unsafe-inline|accounts\.google/);
+}
 const json=Response.json({ok:true});assert.equal(protectAccountPage(json,new Request('https://baipiaoji.com/account')),json);
 console.log('PASS private account aliases, middleware wiring, body/previous policy preservation and public/API exclusions');
 

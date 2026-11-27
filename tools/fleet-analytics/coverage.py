@@ -64,6 +64,8 @@ def exemption(relative, page):
         return 'embedded-widget'
     if re.search(r'(^|/)(members|account)\.html$', relative):
         return 'private-account-portal'
+    if relative in {'studio/trade-tools/mcp/keys/index.html', 'en/studio/trade-tools/mcp/keys/index.html'}:
+        return 'private-trade-mcp-keys'
     if relative in {'studio/quote-builder.html', 'en/studio/quote-builder.html'}:
         return 'isolated-client-quote-first-party-events'
     return None
