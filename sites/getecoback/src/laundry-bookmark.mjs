@@ -1,5 +1,7 @@
 import {HUB, SESSION_COOKIE, TOKEN, accountEntryURL, cookieValue, escape, response} from '../../../tools/fleet-account/config.mjs';
 
+import {attributedLaundryBookmark, LAUNDRY_SIGNUP_START} from './laundry-signup-intent.mjs';
+
 const host = 'https://getecoback.com';
 const path = '/auth/wasch-checkliste';
 const guide = '/waeschetrockner-oder-luftentfeuchter.html';
@@ -11,8 +13,12 @@ function page(content,status=200,headers={}) {
     status,{'Content-Type':'text/html; charset=utf-8',...headers});
 }
 
-function signIn() {
-  return page(`<p>Merke dir die Anleitung für die nächste Wäsche und finde sie mit deinem kostenlosen Konto auf einem anderen Gerät wieder. Messwerte werden dabei nicht gespeichert.</p><p><a href="${escape(account)}">Kostenloses Konto erstellen oder anmelden</a></p><p>Öffne nach der Rückkehr den Merklink bei der Mess-Checkliste erneut und bestätige das Speichern.</p>`);
+function signIn(attributed=false) {
+  const choice = attributed
+    ? `<p>Die Anmeldung erfolgt bei Baipiaoji. Das Formular ist auf Englisch. E-Mail und Google stehen je nach Verfügbarkeit zur Auswahl.</p><form method="post" action="${LAUNDRY_SIGNUP_START}"><button type="submit">Kostenloses Konto erstellen oder anmelden</button></form>`
+    : `<p><a href="${escape(account)}">Kostenloses Konto erstellen oder anmelden</a></p>`;
+  return page(`<p>Merke dir die Anleitung für die nächste Wäsche und finde sie mit deinem kostenlosen Konto auf einem anderen Gerät wieder. Messwerte werden dabei nicht gespeichert.</p>${choice}<p>Öffne nach der Rückkehr den Merklink bei der Mess-Checkliste erneut und bestätige das Speichern.</p>`,
+    200,attributed?{'Referrer-Policy':'same-origin'}:{});
 }
 
 async function formAction(request) {
@@ -42,14 +48,14 @@ export async function laundryBookmarkRoute(request, fetcher=fetch) {
   if (write && (request.headers.get('Origin') !== host || request.headers.get('Sec-Fetch-Site') === 'cross-site')) {
     return page('<p>Öffne die Merkseite und versuche es erneut.</p>',403);
   }
-  if (!TOKEN.test(token)) return signIn();
+  if (!TOKEN.test(token)) return signIn(attributedLaundryBookmark(request));
   const action = write ? await formAction(request) : 'read';
   if (!action) return page('<p>Die Auswahl konnte nicht gelesen werden.</p>',400);
   try {
     const result = await fetcher(HUB+'/api/account-eco-bookmark?action='+action,{
       method:'POST',headers:{Authorization:'Bearer '+token},redirect:'manual',cache:'no-store',
     });
-    if (result.status === 401) return signIn();
+    if (result.status === 401) return signIn(attributedLaundryBookmark(request));
     if (!result.ok) throw Error('bookmark unavailable');
     const data = await result.json();
     if (data.ok !== true || typeof data.saved !== 'boolean') throw Error('invalid bookmark status');

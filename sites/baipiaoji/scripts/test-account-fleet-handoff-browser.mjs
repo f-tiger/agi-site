@@ -32,15 +32,16 @@ function htmlFor(lang) {
   return html;
 }
 
-async function fixture({ lang = 'en', sourceLang = lang, fleet = true, user = null, loginUser = USER, google = false, readinessFailure = false, holdAuthorize = false, authorizeFailure = false, authorizeRedirect = null, holdMetadata = false, metadataFailure = false, duplicateParam = null } = {}) {
+async function fixture({ lang = 'en', sourceLang = lang, fleet = true, user = null, loginUser = USER, google = false, readinessFailure = false, holdAuthorize = false, authorizeFailure = false, authorizeRedirect = null, holdMetadata = false, metadataFailure = false, duplicateParam = null, ecoProof = false, ecoPrivacy = false } = {}) {
   const context = await browser.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block' });
   const errors = [], unexpected = [], calls = [], navigations = [], entered = deferred(), release = deferred(), metadataEntered = deferred(), metadataRelease = deferred();
   let currentUser = user, failRead = readinessFailure, failAuthorize = authorizeFailure, failMetadata = metadataFailure;
   context.on('page', page => page.on('pageerror', error => errors.push(error.message)));
-  await context.addInitScript(() => {
+  await context.addInitScript(({ecoProof,ecoPrivacy}) => {
+    if(ecoProof&&location.origin==='https://baipiaoji.com'){Object.defineProperty(navigator,'webdriver',{get:()=>false});if(ecoPrivacy){try{localStorage.setItem('fleet_ga4_choice_v1','denied');}catch{}}}
     window.handoffFlowEvents = [];
     document.addEventListener('bpj-account-flow', event => window.handoffFlowEvents.push({ detail: event.detail, cancelable: event.cancelable }));
-  });
+  },{ecoProof,ecoPrivacy});
   await context.route('**/*', async route => {
     const request = route.request(), url = new URL(request.url());
     if (url.href === 'https://accounts.google.com/gsi/client') return route.fulfill({ contentType: 'text/javascript', body: gis });
@@ -62,8 +63,9 @@ async function fixture({ lang = 'en', sourceLang = lang, fleet = true, user = nu
       }
       if (url.pathname === '/api/account-email' && !body) return json({ ok: true, available: false });
       if (url.pathname === '/api/account-google') {
-        if (!body) return json({ ok: true, available: google });
+        if (!body) return json({ ok: true, available: !!google });
         if (body.action === 'start') return json({ ok: true, client_id: 'local-fixture.apps.googleusercontent.com', nonce: 'N'.repeat(43) });
+        if (body.action === 'credential' && google === 'new') return json({ok:true,state:'onboard',email:USER.email});
         if (body.action === 'credential') { currentUser = USER; return json({ ok: true, state: 'signed_in', user: USER, favorites: [] }); }
       }
       if (url.pathname === '/api/account-fleet') {
@@ -91,7 +93,8 @@ async function fixture({ lang = 'en', sourceLang = lang, fleet = true, user = nu
     setUser(value) { currentUser = value; }, setReadFailure(value) { failRead = value; }, setAuthorizeFailure(value) { failAuthorize = value; }, setMetadataFailure(value) { failMetadata = value; },
     async open(waitForIntent = true) {
       const url = new URL((lang === 'en' ? '/en' : '') + '/account', ORIGIN);
-      url.searchParams.set('__ci', '1');
+      if(ecoProof)url.searchParams.set('eco_signup','waesche-kosten');
+      else url.searchParams.set('__ci', '1');
       if (fleet) { url.searchParams.set('fleet', HOST); url.searchParams.set('state', STATE); url.searchParams.set('challenge', CHALLENGE); url.searchParams.set('lang', sourceLang); }
       if (duplicateParam) url.searchParams.append(duplicateParam, url.searchParams.get(duplicateParam));
       await page.goto(url.href);
@@ -193,6 +196,28 @@ try {
         for (const key of ['googleAvailable', 'mailAvailable', 'recoveryPending']) assert.equal(typeof detail[key], 'boolean');
       }
     } finally { await registered.close(); }
+  }
+
+  for(const variant of [{},{google:'new'},{ecoPrivacy:true},{duplicateParam:'state'}]){
+    const tracked=await fixture({ecoProof:true,...variant});
+    try {
+      await tracked.open(!variant.duplicateParam);
+      if(variant.google){
+        await tracked.page.waitForFunction(()=>!!window.__handoffGIS);
+        await tracked.page.evaluate(()=>window.__handoffGIS.callback({credential:'local-provider-fixture-only'}));
+        await tracked.page.waitForFunction(()=>document.getElementById('register-email').readOnly);
+      } else await tracked.page.locator('#register-email').fill(USER.email);
+      await tracked.page.locator('#register-username').fill(USER.username);
+      await tracked.page.locator('#register-password').fill(PASSWORD);
+      await tracked.page.locator('#account-consent').check();
+      await tracked.page.locator('#account-register button[type="submit"]').click();
+      await tracked.page.locator('#account-recovery').waitFor();
+      const [request]=tracked.posts('register');
+      assert.equal(request.body.google,!!variant.google);
+      assert.deepEqual(request.body.eco_intent,variant.ecoPrivacy||variant.duplicateParam?undefined:[STATE,CHALLENGE]);
+      assert.equal(tracked.posts('credential').some(({body})=>Object.hasOwn(body,'eco_intent')),false);
+      await noGrant(tracked);scenarios++;
+    } finally {await tracked.close();}
   }
 
   const google = await fixture({ google: true });

@@ -308,3 +308,95 @@ if(process.argv.includes('--workerd')){
  c.sql.prepare('DELETE FROM free_accounts WHERE id=?').run('fixture');
  assert.equal(c.sql.prepare('SELECT COUNT(*) n FROM fleet_eco_laundry_bookmarks').get().n,0);
 }
+
+{
+ const {laundrySignupIntentRoute}=await import('../../getecoback/src/laundry-signup-intent.mjs');
+ const {laundryBookmarkRoute}=await import('../../getecoback/src/laundry-bookmark.mjs');
+ const {readEcoLaundrySignup}=await import('../lib/eco-laundry-signup.js');
+ const eco=setup(),bpj=setup();
+ const host='https://getecoback.com';
+ const tagged=host+'/auth/wasch-checkliste?mcp_entry=waesche-kosten';
+ const doc=host+'/waeschetrockner-oder-luftentfeuchter.html?mcp_entry=waesche-kosten';
+ const endpoint=host+'/api/laundry-signup-intent';
+ const startURL=host+'/auth/wasch-checkliste/start';
+ const browser={'Sec-Fetch-Site':'same-origin','User-Agent':'Mozilla/5.0'};
+ const env={EVENTS:eco.env.HITS};
+ const get=(url,extra={})=>new Request(url,{headers:{...browser,...extra}});
+ const start=(extra={})=>laundrySignupIntentRoute(new Request(startURL,{method:'POST',
+   headers:{...browser,Origin:host,Referer:tagged,...extra}}),env);
+ const begin=async (extra={})=>{
+   const reply=await start(extra);
+   assert.equal(reply.status,303);
+   assert.match(reply.headers.get('Set-Cookie'),/^__Host-fleet_flow=/);
+   const u=new URL(reply.headers.get('Location'));
+   assert.equal(u.origin,'https://baipiaoji.com');
+   assert.equal(u.pathname,'/en/account');
+   assert.equal(u.searchParams.get('fleet'),'getecoback.com');
+   return u;
+ };
+ const pair=u=>[u.searchParams.get('state'),u.searchParams.get('challenge')];
+ assert.match(await(await laundryBookmarkRoute(get(tagged,{Referer:doc}))).text(),/form method="post" action="\/auth\/wasch-checkliste\/start"/);
+ assert.match(await(await laundryBookmarkRoute(get(tagged,{Referer:doc,DNT:'1'}))).text(),/href="\/auth\/account\\?/);
+ assert.match(await(await laundryBookmarkRoute(get(tagged+'&forged=1',{Referer:doc}))).text(),/href="\/auth\/account\\?/);
+ assert.equal((await start({Origin:'null'})).status,403);
+ assert.equal((await laundrySignupIntentRoute(get(endpoint),env)).status,405);
+ assert.equal((await begin({'Sec-GPC':'1'})).searchParams.has('eco_signup'),false);
+ assert.equal((await begin({Referer:doc})).searchParams.has('eco_signup'),false);
+ const first=await begin();
+ assert.equal(first.searchParams.get('eco_signup'),'waesche-kosten');
+ assert.deepEqual(eco.sql.prepare('SELECT name FROM pragma_table_info(?)').all('laundry_signup_intent').map(x=>x.name),['proof','expires']);
+ assert.equal(eco.sql.prepare('SELECT COUNT(*) n FROM laundry_signup_intent').get().n,1);
+ const readback=()=>readEcoLaundrySignup(bpj.env.HITS,'2026-01-01','2099-01-01');
+ const originalFetch=globalThis.fetch;
+ let calls=0,fail=false;
+ globalThis.fetch=async (target,opts)=>{
+   assert.equal(target,endpoint);
+   assert.equal(opts.redirect,'manual');
+   assert.deepEqual(Object.keys(opts.headers).sort(),['Accept','Content-Type']);
+   assert.match(opts.body,/^[A-Za-z0-9_-]{43}$/);
+   assert.notEqual(opts.body,pair(first)[0]);
+   assert.notEqual(opts.body,pair(first)[1]);
+   calls++;
+   if(fail)throw Error('local fault fixture');
+   return laundrySignupIntentRoute(new Request(target,opts),env);
+ };
+ try {
+  assert.equal(await readback(),null);
+  const correct=pair(first);
+  await register(bpj.env,'eco_first',{eco_intent:correct});
+  assert.equal((await readback()).committed_accounts,1);
+  await register(bpj.env,'eco_replay',{eco_intent:correct});
+  assert.equal((await readback()).committed_accounts,1);
+  const google=pair(await begin());
+  bpj.env.GOOGLE_CLIENT_ID='fixture-client.apps.googleusercontent.com';
+  await ensureGoogleAccounts(bpj.env);
+  const token=randomToken(),email='eco-laundry-google@gmail.com';
+  bpj.sql.prepare("INSERT INTO free_google_proofs(token_hash,sub,email,email_authoritative,created,expires,intent) VALUES(?,?,?,?,?,?,'signin')")
+    .run(hash(token),'eco-laundry-local-google',email,1,now(),now()+300);
+  const enrolled=await call(bpj.env,{action:'register',username:'eco_google',email,password,consent:true,google:true,eco_intent:google},{cookie:GOOGLE_PROOF_COOKIE+'='+token});
+  assert.equal(enrolled.status,200,await enrolled.clone().text());
+  assert.equal((await readback()).committed_accounts,2);
+  const used=calls;
+  await register(bpj.env,'eco_qa',{eco_intent:pair(await begin()),qa:true});
+  assert.equal(calls,used);
+  const notTracked=await call(bpj.env,{action:'register',username:'eco_dnt',password,consent:true,eco_intent:pair(await begin())},{headers:{DNT:'1'}});
+  assert.equal(notTracked.status,200);
+  assert.equal(calls,used);
+  const notFound=pair(await begin());
+  eco.sql.prepare('UPDATE laundry_signup_intent SET expires=?').run(now()-1);
+  await register(bpj.env,'eco_expired',{eco_intent:notFound});
+  const unavailable=pair(await begin());
+  fail=true;
+  await register(bpj.env,'eco_no_verifier',{eco_intent:unavailable});
+  fail=false;
+  const bogus=await call(bpj.env,{action:'register',username:'eco_existing',email,consent:true,password,eco_intent:pair(await begin())});
+  assert.equal(bogus.status,409);
+  const t=await readback();
+  assert.equal(t.committed_accounts,2);
+  assert.equal(await readEcoLaundrySignup(bpj.env.HITS,'2026-01-01',new Date().toISOString().slice(0,10)),null);
+  assert.deepEqual(Object.keys(t.daily[0]).sort(),['committed_accounts','day']);
+  console.log('PASS: optional Eco laundry proofs count only committed password/Google accounts once, fail open, expire and exclude privacy and QA.');
+ } finally {
+  globalThis.fetch=originalFetch;
+ }
+}

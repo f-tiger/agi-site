@@ -1,5 +1,6 @@
 import {getGoogleProof,googleRegistrationStatements,clearGoogleProofCookie} from '../../lib/google-account.js';
 import {ACCOUNT_COOKIE,ensureAccounts,getAccount,accountView,normalizeUsername,displayName,validUsername,normalizeEmail,validEmail,accountById,validPassword,validFavorite,passwordRecord,verifyPassword,randomToken,hash,now,cookie,clearCookie,tokenFrom,consumeRate,issueSession} from '../../lib/free-account.js';
+import {prepareEcoLaundrySignup} from '../../lib/eco-laundry-signup.js';
 const ACTIONS=new Set(['register','login','recover','logout','change_password','delete_account','favorite_add','favorite_remove','rotate_recovery','link_email']);
 const json=(body,status=200,sessionCookie)=>{const headers=new Headers({'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});for(const value of (Array.isArray(sessionCookie)?sessionCookie:[sessionCookie]).filter(Boolean))headers.append('Set-Cookie',value);return new Response(JSON.stringify(body),{status,headers});};
 const error=(code,status)=>json({ok:false,error:code},status);
@@ -59,6 +60,7 @@ async function route(request,env){
   if(await env.HITS.prepare('SELECT account_id FROM free_account_identities WHERE email=?').bind(email).first())return error('email_unavailable',409);
   const password=await passwordRecord(body.password),recovery=randomToken(),id=crypto.randomUUID(),t=now();
   const qa=body.qa===true||/bpj-ci-selftest|playwright/i.test(request.headers.get('User-Agent')||'')?1:0;
+  const ecoClaim=await prepareEcoLaundrySignup(env.HITS,body.eco_intent,request,t,qa);
   try{
    // D1 batch is transactional: either both the account and its unique identity exist,
    // or neither does. A concurrent duplicate cannot leave an orphan account.
@@ -66,6 +68,7 @@ async function route(request,env){
     env.HITS.prepare('INSERT INTO free_accounts(id,username,password_hash,recovery_hash,created,updated,qa) VALUES(?,?,?,?,?,?,?)').bind(id,username,password,hash(recovery),t,t,qa),
     env.HITS.prepare('INSERT INTO free_account_identities(account_id,email,display_name,display_key,email_verified,email_verified_at) VALUES(?,?,?,?,?,?)').bind(id,email,shownName,username,googleProof?.email_authoritative?1:0,googleProof?.email_authoritative?t:null),
     ...(googleProof?googleRegistrationStatements(env,googleProof,id):[]),
+    ...(ecoClaim?[ecoClaim]:[]),
    ]);
   }catch(cause){
    if(googleProof&&/(NOT NULL|UNIQUE) constraint failed: free_google_identities/i.test(String(cause?.message||cause)))return error('google_proof_invalid',409);
