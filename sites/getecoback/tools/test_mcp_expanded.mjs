@@ -755,20 +755,29 @@ add(day='2026-11-21',meta={'tool':'a','mcp_client_signal':'client_info:unapprove
 add(ua='ci',meta={'tool':'a','mcp_client_signal':'user_agent:cursor'})
 add(event='mcp_probe',meta={'tool':'a','mcp_client_signal':'user_agent:cursor'})
 add(day='2026-11-27',meta={'tool':'a','mcp_client_signal':'user_agent:cursor'})
-print(json.dumps([legacy,mixed,before_clients,read(),[row[3] for row in db.execute('EXPLAIN QUERY PLAN '+sql)]]))`;
+client_snapshot=read()
+laundry={'tool':'waesche_trocknungskosten','mcp_laundry_link':1}
+add(day='2026-11-23',meta=laundry)
+add(day='2026-11-24',meta={**laundry,'mcp_profile':'compact'})
+add(day='2026-11-27',meta=laundry); add(day='2026-11-19',meta=laundry); add(event='mcp_probe',meta=laundry)
+add(ua='ci',meta=laundry); add(ua='bot',meta=laundry); add(ua=None,meta=laundry)
+add(meta={'tool':'waesche_trocknungskosten','mcp_laundry_link':'1'})
+add(meta={'tool':'waesche_trocknungskosten','mcp_laundry_link':True})
+add(meta={'tool':'other','mcp_laundry_link':1})
+print(json.dumps([legacy,mixed,before_clients,client_snapshot,read(),[row[3] for row in db.execute('EXPLAIN QUERY PLAN '+sql)]]))`;
   const result = spawnSync('python3',['-c',script,COMPLETE_MCP_WEEK_SQL],{encoding:'utf8'});
   assert.equal(result.status,0,result.stderr);
-  const [legacy,mixed,withN90,clients,plan] = JSON.parse(result.stdout);
+  const [legacy,mixed,withN90,clients,laundry,plan] = JSON.parse(result.stdout);
   assert.ok(plan.some(line => line.includes('USING INDEX ev_day')),plan.join(' '));
   const window={start:'2026-11-20',end_exclusive:'2026-11-27'};
   assert.deepEqual(completedMcpReports(legacy),{
     completeWeek:{...window,completed_calls:2,tools_called:1,browser_class_calls:1},compactCompleteWeek:null,
-    n90CompactCompleteWeek:null,clientCompleteWeek:null,
+    n90CompactCompleteWeek:null,clientCompleteWeek:null,laundryCompleteWeek:null,
   });
   assert.deepEqual(completedMcpReports(mixed),{
     completeWeek:{...window,completed_calls:9,tools_called:3,browser_class_calls:2},
     compactCompleteWeek:{...window,first_recorded_day:'2026-11-22',completed_calls:4,cellar_links_offered:1},
-    n90CompactCompleteWeek:null,clientCompleteWeek:null,
+    n90CompactCompleteWeek:null,clientCompleteWeek:null,laundryCompleteWeek:null,
   });
   assert.deepEqual(completedMcpReports(withN90).n90CompactCompleteWeek,{
     ...window,first_recorded_day:'2026-11-23',n90_links_offered:2,
@@ -778,8 +787,11 @@ print(json.dumps([legacy,mixed,before_clients,read(),[row[3] for row in db.execu
     unmeasured_calls:clients.completed_calls-3,unknown_calls:1,
     by_signal:{client_info:{claude:1},user_agent:{cursor:1}},
   });
+  assert.deepEqual(completedMcpReports(laundry).laundryCompleteWeek,{
+    ...window,first_recorded_day:'2026-11-23',links_offered:2,
+  });
   assert.deepEqual(completedMcpReports(null),{
-    completeWeek:null,compactCompleteWeek:null,n90CompactCompleteWeek:null,clientCompleteWeek:null,
+    completeWeek:null,compactCompleteWeek:null,n90CompactCompleteWeek:null,clientCompleteWeek:null,laundryCompleteWeek:null,
   });
 });
 

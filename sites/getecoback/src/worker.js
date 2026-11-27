@@ -21,10 +21,12 @@ import {affiliateAudit,THERMOSTAT_PAGE,THERMOSTAT_PACKAGE_EVENTS} from './affili
 import {
   affiliateMeta, CELLAR_PAGE, taggedCellarModelEntry, taggedDrainEntry, taggedN90ModelEntry,
   taggedPortaSplitEntry, taggedWindowEntry, taggedWindowTikTokEntry, WINDOW_TIKTOK_WIDTH_EVENT,
+  taggedLaundryMcpEntry,
   vacuumOfferModel,
 } from './affiliate-meta.mjs';
 import {CELLAR_MODEL_ENTRY_URL} from './cellar-entry.mjs';
 import {N90_ENTRY_URL, N90_TOOL_NAME} from './n90-entry.mjs';
+import {LAUNDRY_ENTRY_TOOL, LAUNDRY_ENTRY_URL} from './laundry-mcp-entry.mjs';
 import {COMPLETE_MCP_WEEK_SQL, completedMcpReports} from './mcp-adoption.mjs';
 import {legacyMcpVersion, mcpRequestProtocol, SERVER_INFO_KEY, SUPPORTED_MCP_VERSIONS} from './mcp-protocol.mjs';
 import {mcpClientSignal} from './mcp-client-signal.mjs';
@@ -886,11 +888,13 @@ async function handleEvent(request, env, ctx) {
   const portasplitEntry = taggedPortaSplitEntry(body, request, evCls);
   const cellarModelEntry = taggedCellarModelEntry(body, request, evCls);
   const n90Entry = taggedN90ModelEntry(body, request, evCls);
+  const laundryEntry = taggedLaundryMcpEntry(body, request, evCls);
   const vacuumModel = vacuumOfferModel(body, request, evCls);
   let metadata = body.m;
   if (metadata?.mcp_profile !== undefined || metadata?.mcp_cellar_link !== undefined ||
       metadata?.mcp_n90_link !== undefined || metadata?.mcp_n90_entry !== undefined ||
       metadata?.mcp_client_signal !== undefined || metadata?.window_tiktok_entry !== undefined ||
+      metadata?.mcp_laundry_entry !== undefined || metadata?.mcp_laundry_link !== undefined ||
       metadata?.vacuum_model !== undefined) {
     metadata = {...metadata};
     delete metadata.mcp_profile;
@@ -898,6 +902,8 @@ async function handleEvent(request, env, ctx) {
     delete metadata.mcp_n90_link;
     delete metadata.mcp_n90_entry;
     delete metadata.mcp_client_signal;
+    delete metadata.mcp_laundry_entry;
+    delete metadata.mcp_laundry_link;
     delete metadata.window_tiktok_entry;
     delete metadata.vacuum_model;
   }
@@ -922,6 +928,7 @@ async function handleEvent(request, env, ctx) {
     if (cellarModelEntry) metadata.mcp_cellar_entry = 1;
   }
   if (name === 'page_view' && n90Entry) metadata = {mcp_n90_entry:1};
+  if (laundryEntry) metadata = {mcp_laundry_entry:1};
   if (windowTikTokEntry && name !== 'affiliate_click') metadata = {window_tiktok_entry:1};
   const meta = name === 'affiliate_click' ? affiliateMeta(metadata, drainEntry, windowEntry, portasplitEntry, cellarModelEntry, n90Entry, windowTikTokEntry, vacuumModel)
     : metadata ? JSON.stringify(metadata).slice(0, 200) : "";
@@ -1044,7 +1051,7 @@ async function trendCompute(env, auditOnly) {
       WHERE valid_meta IS NOT NULL GROUP BY tool ORDER BY n DESC LIMIT 10
     `).all();
     const recentMcp = await env.EVENTS.prepare(COMPLETE_MCP_WEEK_SQL).all();
-    const {completeWeek, compactCompleteWeek, n90CompactCompleteWeek, clientCompleteWeek} =
+    const {completeWeek, compactCompleteWeek, n90CompactCompleteWeek, clientCompleteWeek, laundryCompleteWeek} =
       completedMcpReports(recentMcp.results?.[0]);
     return new Response(JSON.stringify({
       events: ev.results || [], pages: pg.results || [], zero_hits: zh.results || [],
@@ -1053,6 +1060,7 @@ async function trendCompute(env, auditOnly) {
       mcp_client_complete_week: clientCompleteWeek,
       mcp_compact_complete_week: compactCompleteWeek,
       mcp_n90_compact_complete_week: n90CompactCompleteWeek,
+      mcp_laundry_complete_week: laundryCompleteWeek,
       affiliate_audit: await readAudit(),
     }), { headers });
   } catch (e) {
@@ -1064,7 +1072,7 @@ async function trendCompute(env, auditOnly) {
 // MCP server (Model Context Protocol, stateless Streamable HTTP).
 // Each tool returns a usable answer with sources. Publication, calls, website
 // visits and merchant activity are observed separately.
-const MCP_VERSION = "1.24.30";
+const MCP_VERSION = "1.24.31";
 const LEGACY_MCP_TOOLS = [
   drainTool,
   // AI-era round 2026-08-29: the decision LAYER above the per-device
@@ -1730,8 +1738,11 @@ async function handleMcp(request, env, url) {
         args?.modell === "meaco-one-20" && result.structuredContent?.status === "hersteller_pruefpunkt";
       const n90LinkOffered = compact && name === N90_TOOL_NAME &&
         result.structuredContent?.status === "modellangaben_passen";
-      if (cellarLinkOffered || n90LinkOffered) {
-        const structuredContent = {...result.structuredContent, entry_url:cellarLinkOffered ? CELLAR_MODEL_ENTRY_URL : N90_ENTRY_URL};
+      const laundryLinkOffered = name === LAUNDRY_ENTRY_TOOL && !result.isError && !!result.structuredContent;
+      const entryUrl = cellarLinkOffered ? CELLAR_MODEL_ENTRY_URL :
+        n90LinkOffered ? N90_ENTRY_URL : laundryLinkOffered ? LAUNDRY_ENTRY_URL : null;
+      if (entryUrl) {
+        const structuredContent = {...result.structuredContent, entry_url:entryUrl};
         result = {...result, structuredContent, content:[{type:"text", text:JSON.stringify(structuredContent,null,2)}]};
       }
       // Count real agent usage — same pipeline, same no-PII contract. Only
@@ -1766,6 +1777,7 @@ async function handleMcp(request, env, url) {
               ...(compact && !result.isError ? {mcp_profile:"compact"} : {}),
               ...(cellarLinkOffered ? {mcp_cellar_link:1} : {}),
               ...(n90LinkOffered ? {mcp_n90_link:1} : {}),
+              ...(laundryLinkOffered ? {mcp_laundry_link:1} : {}),
               ...(successful ? {mcp_client_signal:mcpClientSignal(protocol.clientInfo, mcpUa)} : {}),
               ua: mcpUa.slice(0, 80),
             }),

@@ -729,3 +729,42 @@ test('the window seal finder and result link to the same published measurement g
   assert.equal(result.structuredContent.example_size_cm,null);
   assert.deepEqual(writes,[]);
 });
+
+test('hosted laundry keeps clean share and citation links separate from the fixed landing', async () => {
+  const {call,send,writes} = fixture();
+  const headers = {'user-agent':humanUA};
+  const name = 'waesche_trocknungskosten';
+  const args = {dryer:2,dehum:1,price:0.3,comparable:false};
+  const plain = origin+'/waeschetrockner-oder-luftentfeuchter.html#laundry-check';
+  const tagged = origin+'/waeschetrockner-oder-luftentfeuchter.html?mcp_entry=waesche-kosten#lc-measurement';
+  const full = await call(fullPath,name,args,headers);
+  const compact = await call(compactPath,runName,{name,eingaben:args},headers);
+  for(const response of [full,compact]){
+    const data = response.structuredContent;
+    assert.equal(response.isError,false);
+    assert.equal(data.entry_url,tagged);
+    assert.equal(data.share_url,plain);
+    assert.equal(data.guide_url,plain);
+    assert.equal(data.lower_cost,'unconfirmed');
+    assert.deepEqual(JSON.parse(response.content[0].text),data);
+    assert.doesNotMatch(data.entry_url,/amazon|price|dryer|dehum/);
+  }
+  assert.equal(writes.length,2);
+  for(const entry of writes){
+    const meta=JSON.parse(entry.args[1]);
+    assert.equal(meta.tool,name);
+    assert.equal(meta.mcp_laundry_link,1);
+    assert.ok(!Object.hasOwn(meta,'dryer')&&!Object.hasOwn(meta,'price'));
+  }
+  const invalid = await call(fullPath,name,{...args,dryer:-1},headers);
+  assert.equal(invalid.isError,true);
+  assert.equal(invalid.structuredContent?.entry_url,undefined);
+  assert.equal(JSON.parse(writes.at(-1).args[1]).mcp_laundry_link,undefined);
+  writes.length=0;
+  for(const quiet of [{'x-probe':'1'},{dnt:'1'},{'sec-gpc':'1'},{'user-agent':ciUA}])
+    assert.equal((await call(fullPath,name,args,{...headers,...quiet})).structuredContent.entry_url,tagged);
+  assert.deepEqual(writes,[]);
+  await send('/api/ev',{method:'POST',headers:{...headers,'content-type':'application/json'},
+    body:JSON.stringify({n:'mcp_call',p:'/mcp',m:{tool:name,mcp_laundry_link:1,mcp_laundry_entry:1}})});
+  assert.deepEqual(JSON.parse(writes[0].args[4]),{tool:name});
+});

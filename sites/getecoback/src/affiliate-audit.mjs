@@ -2,6 +2,7 @@ import {CELLAR_PAGE, VACUUM_OFFER_MODELS, VACUUM_OFFER_PAGE, WINDOW_TIKTOK_GUIDE
 import {WINDOW_ENTRY_PAGE} from './fenstersauger-entry.mjs';
 import {PORTASPLIT_ENTRY_PAGE, PORTASPLIT_PRODUCT_URL} from './portasplit-entry.mjs';
 import {N90_ENTRY_PAGE, N90_PRODUCT_URL} from './n90-entry.mjs';
+import {LAUNDRY_ENTRY_PAGE} from './laundry-mcp-entry.mjs';
 import {WINDOW_CONDENSATION_PAGE} from '../site/assets/fenster-taucheck.mjs';
 import {LAUNDRY_SEASON_PAGE,LAUNDRY_SEASON_EVENTS} from './laundry-events.mjs';
 
@@ -55,6 +56,9 @@ export const AUDIT_SQL = `SELECT day, name, page, ref,
       AND json_extract(meta,'$.mcp_n90_entry') = 1
       AND (name='page_view' OR (name='affiliate_click' AND json_extract(meta,'$.link_url')='${N90_PRODUCT_URL}')),0)
     ELSE 0 END AS n90_entry,
+  CASE WHEN page='${LAUNDRY_ENTRY_PAGE}' AND name='page_view' AND ua_class='human' AND json_valid(meta)
+    THEN COALESCE(json_type(meta,'$.mcp_laundry_entry') = 'integer' AND json_extract(meta,'$.mcp_laundry_entry') = 1,0)
+    ELSE 0 END AS laundry_mcp_entry,
   COUNT(CASE WHEN page='${WINDOW_CONDENSATION_PAGE}' AND name='page_view' AND ua_class='human'
     THEN 1 END) AS window_human_views,
   COUNT(CASE WHEN page IN ('${comfeeCataloguePages.join("','")}') AND ua_class='human'
@@ -68,7 +72,7 @@ WHERE (name IN ('page_view','affiliate_click')
     OR (name IN ('${LAUNDRY_SEASON_EVENTS.join("','")}') AND page='${LAUNDRY_SEASON_PAGE}' AND ua_class='human'))
   AND day >= date('now','-56 days') AND day < date('now')
   AND (ua_class IS NULL OR ua_class='human') AND page NOT LIKE '/__ci%'
-GROUP BY day, name, page, ref, link, source, drain_entry, cellar_entry, window_entry, window_tiktok_entry, portasplit_entry, n90_entry, vacuum_model`;
+GROUP BY day, name, page, ref, link, source, drain_entry, cellar_entry, window_entry, window_tiktok_entry, portasplit_entry, n90_entry, laundry_mcp_entry, vacuum_model`;
 
 const GAPS = [
   {day:'2026-09-24',approx_start_utc:'13:00'},
@@ -128,6 +132,7 @@ const range = (start,end)=>({...section(),start,end_exclusive:end,
   mcp_n90_entry:null,
   mcp_window_entry:null,
   mcp_portasplit_entry:null,
+  mcp_laundry_entry:null,
   window_tiktok:null,
   window_reddit_referrals:null,
   laundry_season:null,
@@ -258,6 +263,11 @@ function add(s,r,channel) {
     const route = s.n90_guides[guide];
     route[field] += r.n;
     if (field === 'affiliate_clicks' && n90Product.test(r.link)) route.exact_product_clicks += r.n;
+  }
+  if (r.name === 'page_view' && r.page === LAUNDRY_ENTRY_PAGE && r.laundry_mcp_entry === 1 && r.n > 0) {
+    const entry = s.mcp_laundry_entry ??= {first_recorded_day:r.day, tagged_landing_views:0};
+    if (r.day < entry.first_recorded_day) entry.first_recorded_day = r.day;
+    entry.tagged_landing_views += r.n;
   }
   const cellar = r.page === CELLAR_PAGE;
   if (cellar && s.mcp_drain_entry && r.day >= firstFullDrainDay && r.drain_entry === 1) {

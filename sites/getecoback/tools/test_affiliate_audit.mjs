@@ -852,3 +852,24 @@ print(json.dumps([dict(row) for row in db.execute(sql)]))`;
   const empty = await affiliateAudit(dbFor([]),()=> 'direct',new Date('2026-12-05T08:00:00Z'));
   assert.equal(empty.weeks.at(-1).thermostat_package_handoffs,null);
 });
+
+test('laundry keeps tagged arrivals separate and leaves missing coverage unknown', async () => {
+  const now=new Date('2026-11-29T00:00:00Z');
+  const day='2026-11-28', page='/waeschetrockner-oder-luftentfeuchter.html';
+  const fixture=(rows)=>({prepare(sql) {
+    assert.match(sql,/AS laundry_mcp_entry/);
+    return {all:async()=>({results:rows})};
+  }});
+  const event={day,page,name:'page_view',n:3,end_exclusive:'2026-11-29',ref:''};
+  const bare=await affiliateAudit(fixture([event]),()=> 'direct',now);
+  assert.equal(bare.weeks.at(-1).mcp_laundry_entry,null);
+  const tagged=await affiliateAudit(fixture([
+    {...event,laundry_mcp_entry:1},
+    {...event,n:2},
+  ]),()=> 'direct',now);
+  assert.deepEqual(tagged.weeks.at(-1).mcp_laundry_entry,{
+    first_recorded_day:day,tagged_landing_views:3,
+  });
+  assert.equal(tagged.weeks.at(-2).mcp_laundry_entry,null);
+  assert.equal(tagged.weeks.at(-1).page_views,5);
+});

@@ -1,4 +1,5 @@
 import {N90_TOOL_NAME} from './n90-entry.mjs';
+import {LAUNDRY_ENTRY_TOOL} from './laundry-mcp-entry.mjs';
 import {MCP_CLIENT_SIGNALS} from './mcp-client-signal.mjs';
 
 const CLIENT_COLUMNS = MCP_CLIENT_SIGNALS.map((signal, index) =>
@@ -20,7 +21,10 @@ export const COMPLETE_MCP_WEEK_SQL = `WITH calls AS (
 ), offers AS (
   SELECT *, compact AND json_extract(valid_meta,'$.tool')='${N90_TOOL_NAME}'
     AND json_type(valid_meta,'$.mcp_n90_link')='integer'
-    AND json_extract(valid_meta,'$.mcp_n90_link')=1 AS n90_link
+    AND json_extract(valid_meta,'$.mcp_n90_link')=1 AS n90_link,
+    ua_class IS NOT NULL AND ua_class != 'bot' AND json_extract(valid_meta,'$.tool')='${LAUNDRY_ENTRY_TOOL}'
+    AND json_type(valid_meta,'$.mcp_laundry_link')='integer'
+    AND json_extract(valid_meta,'$.mcp_laundry_link')=1 AS laundry_link
   FROM profiles
 )
 SELECT date('now','-7 day') AS start, date('now') AS end_exclusive,
@@ -33,12 +37,14 @@ SELECT date('now','-7 day') AS start, date('now') AS end_exclusive,
     AND json_extract(valid_meta,'$.mcp_cellar_link') = 1 THEN 1 END) AS compact_cellar_links,
   MIN(CASE WHEN n90_link THEN day END) AS n90_first_day,
   COUNT(CASE WHEN n90_link THEN 1 END) AS n90_links_offered,
+  MIN(CASE WHEN laundry_link THEN day END) AS laundry_first_day,
+  COUNT(CASE WHEN laundry_link THEN 1 END) AS laundry_links_offered,
   MIN(CASE WHEN client_signal IN ('${MCP_CLIENT_SIGNALS.join("','")}') THEN day END) AS client_first_day,
   ${CLIENT_COLUMNS}
 FROM offers`;
 
 export function completedMcpReports(row) {
-  if (!row) return {completeWeek:null, compactCompleteWeek:null, n90CompactCompleteWeek:null, clientCompleteWeek:null};
+  if (!row) return {completeWeek:null, compactCompleteWeek:null, n90CompactCompleteWeek:null, clientCompleteWeek:null, laundryCompleteWeek:null};
   const {start, end_exclusive, completed_calls, tools_called, browser_class_calls} = row;
   const completeWeek = {start, end_exclusive, completed_calls, tools_called, browser_class_calls};
   // Without any marked execution, old rows cannot establish profile coverage.
@@ -67,5 +73,9 @@ export function completedMcpReports(row) {
       measured_calls, unmeasured_calls:completed_calls-measured_calls, unknown_calls, by_signal,
     };
   }
-  return {completeWeek, compactCompleteWeek, n90CompactCompleteWeek, clientCompleteWeek};
+  const laundryCompleteWeek = row.laundry_first_day ? {
+    start, end_exclusive, first_recorded_day:row.laundry_first_day,
+    links_offered:row.laundry_links_offered,
+  } : null;
+  return {completeWeek, compactCompleteWeek, n90CompactCompleteWeek, clientCompleteWeek, laundryCompleteWeek};
 }
