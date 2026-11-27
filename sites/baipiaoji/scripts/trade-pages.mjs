@@ -85,7 +85,7 @@ export function buildTradePages({layout,esc,BASE,LOCALE,write,pushPage}) {
         <a href="${BASE+leadPath}" data-bpj-next><strong>${leads}</strong><span>${t('导入 CSV 或 JSON，按市场、品类、采购信号和截止日排优先级。','Rank CSV or JSON leads by market, product, buying signal and deadline.')}</span></a>
         <a href="${BASE+quotePath}" data-bpj-next><strong>${quote}</strong><span>${t('填数量、成本、汇率与费用，计算目标利润下的最低单价。','Enter quantities, costs, exchange rates and fees to find the unit price that meets your target margin.')}</span></a>
         <a href="${BASE}/studio/listing-pack" data-bpj-next><strong>${listing}</strong><span>${t('复核英文草稿和商品事实，导出上新资料。','Review English copy against product facts and export your listing files.')}</span></a>
-        <a href="${BASE}/studio/trade-tools/" data-bpj-next><strong>${workbench}</strong><span>${t('免费注册后，核对关务、退税、外汇和单证。','Create a free account to check customs, tax refunds, FX, and documents.')}</span></a>
+        <a href="${BASE}/studio/trade-tools/" data-bpj-next><strong>${workbench}</strong><span>${t('试算关务、退税、外汇和单证，访客每天共 2 次。','Try customs, tax refunds, FX and document tools with 2 guest runs a day across the workbench.')}</span></a>
         <p>${t('网页筛选和报价在浏览器本地运行。搜索欧盟公告时，产品关键词会发送至 TED。','Lead ranking and quote calculations run locally in your browser. EU tender searches send the product keywords to TED.')}</p>
       </aside>
     </div>

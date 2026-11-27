@@ -269,7 +269,7 @@ test('trade workbench measures fixed actions on exact BPJ tool routes',()=>{
   assert.deepEqual(businessEvent('baipiaoji.com',hub,signup),{...signup,tool_id:'trade-workbench',repeat:true});
   assert.equal(businessEvent('baipiaoji.com',hub,{...signup,email:'private'}),null);
  }
- for(const pathname of [route,'/en'+route])for(const action of ['signup','run','example','membership_open','csv']){
+ for(const pathname of [route,'/en'+route])for(const action of ['signup','guest_run','run','example','membership_open','csv']){
   const name='trade_workbench_'+action;
   assert.deepEqual(businessEvent('baipiaoji.com',pathname,{name}),{name,tool_id:slug,repeat:true});
  }

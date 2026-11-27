@@ -8,17 +8,19 @@ import {onRequest as tradeAPI} from '../functions/api/trade-workbench.js';
 import {ACCOUNT_COOKIE, ensureAccounts, issueSession, now} from '../lib/free-account.js';
 import {tradeGroups} from '../lib/trade-workbench/engine.mjs';
 import {FREE_DAILY_RUNS, MEMBER_DAILY_RUNS} from '../lib/trade-workbench-access.mjs';
+import {GUEST_DAILY_RUNS, guestTradeQuota} from '../lib/trade-workbench-guests.mjs';
 
 const site = 'https://baipiaoji.com';
 const tools = tradeGroups.flatMap(group => group.tools);
 const example = tools.find(tool => tool.inputs.some(([, type]) => type === 'number'));
 const inputOf = tool => Object.fromEntries(tool.inputs.map(([key,,,, sample]) => [key, sample]));
 const sample = () => ({id: example.id, input: inputOf(example)});
+const guestHeaders = {'CF-Connecting-IP':'192.0.2.12'};
 
 async function fixture(t) {
   const db = database();
   t.after(() => db.sql.close());
-  const env = {HITS: db, MEMBER_SITE: 'bpj'};
+  const env = {HITS: db, MEMBER_SITE: 'bpj', ADS_WATCH_SECRET:'fixture-trade-guest-secret-at-least-32'};
   await ensureAccounts(env);
   return {db, env};
 }
@@ -48,18 +50,27 @@ function runs(db, id) {
   return db.sql.prepare('SELECT utc_day,runs FROM bpj_trade_workbench_daily WHERE account_id=?').get(id);
 }
 
-test('guest cannot execute by calling the API directly and cross-host/cross-site requests are rejected', async t => {
+test('guest status is private, read-only and fails closed without identity or secret', async t => {
   const ctx = await fixture(t);
   const {env, db} = ctx;
   const prepare = t.mock.method(db, 'prepare');
-  const response = await trade(env);
+  const response = await trade(env,{headers:guestHeaders});
   const guest = await response.json();
-  assert.equal(prepare.mock.callCount(), 0);
+  assert.equal(response.status,200);
+  assert.equal(prepare.mock.callCount(),1);
+  assert.match(prepare.mock.calls[0].arguments[0],/^SELECT runs FROM bpj_trade_workbench_guest_daily/);
   assert.equal(response.headers.get('Cache-Control'), 'no-store');
   assert.match(response.headers.get('X-Robots-Tag'), /noindex/);
-  assert.deepEqual(guest, {ok: true, access: 'guest', limit: null, remaining: null,
+  assert.deepEqual(guest, {ok: true, access: 'guest', limit: GUEST_DAILY_RUNS, remaining: GUEST_DAILY_RUNS,
     checkout: {ready: false, price_units: 9000000, days: 30, chain: 'bsc', token: 'USDT'}});
-  assert.equal((await trade(env, {payload: sample()})).status, 401);
+  for (const [settings,headers] of [[env,{}],[env,{'X-Forwarded-For':'192.0.2.12'}],
+    [env,{'CF-Connecting-IP':'192.0.2.1, 192.0.2.2'}],[{...env,ADS_WATCH_SECRET:''},guestHeaders]]) {
+    const closed = await trade(settings,{headers});
+    assert.equal(closed.status,503);
+    assert.equal((await closed.json()).remaining,0);
+    assert.equal((await trade(settings,{headers,payload:sample()})).status,503);
+  }
+  assert.equal(db.sql.prepare("SELECT name FROM sqlite_master WHERE name='bpj_trade_workbench_guest_daily'").get(),undefined);
   const cookie = await userOf(ctx, 'caller', true);
   for (const options of [
     {host: 'https://www.baipiaoji.com'}, {host: 'http://baipiaoji.com'},
@@ -70,6 +81,54 @@ test('guest cannot execute by calling the API directly and cross-host/cross-site
   assert.equal((await trade(env, {cookie, method: 'PUT'})).status, 405);
   assert.equal((await trade({...env, MEMBER_SITE: 'eco'}, {cookie, payload: sample()})).status, 503);
   assert.equal(db.sql.prepare("SELECT name FROM sqlite_master WHERE name='bpj_trade_workbench_daily'").get(), undefined);
+});
+
+test('two guest results share the client network and reset at UTC midnight without storing the address', async t => {
+  t.mock.method(Date,'now',()=>Date.parse('2026-11-26T23:59:59Z'));
+  const {db,env} = await fixture(t);
+  const body = sample();
+  for (const bad of [{...body,input:{}},{...body,id:'unavailable'}]) {
+    assert.equal((await trade(env,{headers:guestHeaders,payload:bad})).status,400);
+  }
+  assert.equal((await trade(env,{headers:guestHeaders,payload:{...body,format:'csv'}})).status,403);
+  assert.equal(db.sql.prepare("SELECT name FROM sqlite_master WHERE name='bpj_trade_workbench_guest_daily'").get(),undefined);
+
+  const requests = await Promise.all(Array.from({length:6},(_,i)=>trade(env,{payload:body,
+    headers:{...guestHeaders,'X-Forwarded-For':`198.51.100.${i+1}`}})));
+  assert.equal(requests.filter(result=>result.status===200).length,GUEST_DAILY_RUNS);
+  assert.equal(requests.filter(result=>result.status===429).length,4);
+  const response = await requests.find(result=>result.status===200).json();
+  assert.equal(response.access,'guest');
+  assert.equal(response.limit,GUEST_DAILY_RUNS);
+  assert(Array.isArray(response.rows) && response.rows.length>0);
+  assert.deepEqual(await requests.find(result=>result.status===429).json(),{
+    ok:false,code:'rate_limited',access:'guest',limit:GUEST_DAILY_RUNS,remaining:0,
+  });
+  assert.equal((await (await trade(env,{headers:{'CF-Connecting-IP':'::ffff:192.0.2.12'}})).json()).remaining,0);
+  assert.equal((await (await trade(env,{headers:{'CF-Connecting-IP':'192.0.2.13'}})).json()).remaining,GUEST_DAILY_RUNS);
+
+  const previous = db.sql.prepare('SELECT * FROM bpj_trade_workbench_guest_daily').get();
+  assert.deepEqual(Object.keys(previous).sort(),['bucket','runs','utc_day']);
+  assert.match(previous.bucket,/^[a-f0-9]{64}$/);
+  assert.equal(previous.runs,GUEST_DAILY_RUNS);
+  assert.equal(previous.utc_day,'2026-11-26');
+  assert(!JSON.stringify(previous).includes(guestHeaders['CF-Connecting-IP']));
+  Date.now.mock.mockImplementation(()=>Date.parse('2026-11-27T00:00:01Z'));
+  assert.equal((await (await trade(env,{headers:guestHeaders})).json()).remaining,GUEST_DAILY_RUNS);
+  assert.equal((await trade(env,{headers:guestHeaders,payload:body})).status,200);
+  const current = db.sql.prepare('SELECT * FROM bpj_trade_workbench_guest_daily').all();
+  assert.equal(current.length,1);
+  assert.equal(current[0].utc_day,'2026-11-27');
+  assert.notEqual(current[0].bucket,previous.bucket);
+  assert.equal(db.sql.prepare("SELECT name FROM sqlite_master WHERE name='bpj_trade_workbench_daily'").get(),undefined);
+});
+
+test('IPv6 uses one normalized daily bucket per client network', () => {
+  const secret = 'fixture-trade-guest-secret-at-least-32', at = Date.parse('2026-11-27T00:00:00Z')/1000;
+  const bucket = address => guestTradeQuota(request('/api/trade-workbench',{headers:{'CF-Connecting-IP':address}}),secret,at);
+  assert.deepEqual(bucket('2001:0db8:00aa:00fe::9'),bucket('2001:db8:aa:fe:ffff::1'));
+  assert.notDeepEqual(bucket('2001:db8:aa:fe::1'),bucket('2001:db8:aa:ff::1'));
+  assert.equal(bucket('2001:db8:aa:fe:invalid::'),null);
 });
 
 test('email/password registration unlocks free access before verification, and old registered accounts still work', async t => {

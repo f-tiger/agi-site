@@ -1,7 +1,9 @@
 import {evaluateTool,inputLimits,tradeGroups} from '../lib/trade-workbench/engine.mjs';
+import {FREE_DAILY_RUNS,MEMBER_DAILY_RUNS} from '../lib/trade-workbench-access.mjs';
+import {GUEST_DAILY_RUNS} from '../lib/trade-workbench-guests.mjs';
 
 export const TRADE_WORKBENCH = '/studio/trade-tools/';
-const edition = '20261126.1';
+const edition = '20261127.1';
 const local = (pair,zh) => pair[zh ? 0 : 1];
 const titleFor = (tool,zh) => zh ? tool.zh : tool.en;
 const workedExamples = new Set([
@@ -37,7 +39,7 @@ function publicTool(tool,hub,zh) {
   return reference;
 }
 
-function referenceMarkdown(reference,t) {
+function referenceMarkdown(reference,t,{allowanceCopy,join,joinCopy,mcpDocs,mcpCopy}) {
   const {name,url,description,scope,inputs,outputs,source,example} = reference;
   const bullets = values => values.map(value=>`- ${value}`);
   const exampleList = values => bullets(values.map(({label,value})=>`${label} — ${value}`));
@@ -55,7 +57,8 @@ function referenceMarkdown(reference,t) {
     ]:[]),
     `## ${t('原始出处','Primary reference')}`,'',`[${source.name}](${source.url})`,'',
     t(...citationNotice),'',
-    t('注册或登录 BPJ 免费账户后运行工具。','Create a free BPJ account or sign in to run the tool.'),'',
+    `## ${t('试用与额度','Access and limits')}`,'',allowanceCopy,'',
+    `[${joinCopy}](${join})`,`${mcpCopy} [${t('查看接入指南','Read the setup guide')}](${mcpDocs})`,'',
   ].join('\n');
 }
 
@@ -76,8 +79,13 @@ export function buildTradeWorkbench({layout,esc,crumbLd,BASE,NAME,LOCALE,write,p
   const mcpDocs = hub+'mcp/';
   const studio = BASE+'/studio/';
   const title = t('外贸工作台','Export trade workbench');
-  const searchTitle = t('100 个外贸工具｜关务、退税、收汇、合规','100 Export Trade Tools for Customs, Tax, FX and Compliance');
-  const description = t('面向中国出口团队的 100 个实用工具。核对合规资料、测算关务与退税、比对外汇收款，整理出口单证和物流。免费注册后即可使用。','100 practical tools for exporters in China. Review compliance evidence, estimate customs and refunds, reconcile FX receipts, and prepare shipping documents. Create a free account to run a tool.');
+  const toolCount = tradeGroups.reduce((count,group)=>count+group.tools.length,0);
+  const searchTitle = t(`${toolCount} 个外贸工具｜关务、退税、收汇、合规`,`${toolCount} Export Trade Tools for Customs, Tax, FX and Compliance`);
+  const intro = t(`面向中国出口团队的 ${toolCount} 个实用工具，覆盖合规、关务、退税、收汇和物流。`,`${toolCount} export trade tools covering compliance, customs, tax refunds, FX and logistics for exporters in China.`);
+  const description = intro+' '+t(`网页访客每天共 ${GUEST_DAILY_RUNS} 次试算额度。`,`Guests get ${GUEST_DAILY_RUNS} web runs a day.`);
+  const allowanceCopy = t(`网页访客每天共可试算 ${GUEST_DAILY_RUNS} 次，同一网络可能共用额度。免费账户每天共 ${FREE_DAILY_RUNS} 次，关联有效会员后每天共 ${MEMBER_DAILY_RUNS} 次。外贸工具共用额度，在 UTC 零点重置。`, `Guests get ${GUEST_DAILY_RUNS} web runs a day, which may be shared by visitors on the same network. A free account gets ${FREE_DAILY_RUNS} runs a day, or ${MEMBER_DAILY_RUNS} with an active linked membership. These allowances apply across the workbench and reset at midnight UTC.`);
+  const joinCopy = t(`免费注册，解锁每天 ${FREE_DAILY_RUNS} 次`,`Join free for ${FREE_DAILY_RUNS} runs a day`);
+  const mcpCopy = t('使用 MCP 需要账号专用密钥，与登录后的网页工具共用每日额度。','MCP requires a scoped account key and shares the signed-in web allowance.');
   const categories = tradeGroups.map(group=>({id:group.id,name:local(group.label,zh),tools:group.tools.map(tool=>publicTool(tool,hub,zh))}));
   const references = new Map(categories.flatMap(group=>group.tools.map(tool=>[tool.id,tool])));
   const assets = `<link rel="stylesheet" href="/studio-assets/trade-workbench.css?v=${edition}">`;
@@ -86,8 +94,8 @@ export function buildTradeWorkbench({layout,esc,crumbLd,BASE,NAME,LOCALE,write,p
   const sharedCrumbs = [{name:NAME,url:BASE+'/'},{name:t('自研工具','BPJ tools'),url:studio},{name:title,url:hub}];
   const breadcrumbs = (name='')=>`<nav class="trade-crumb" aria-label="${t('面包屑','Breadcrumb')}"><a href="${studio}">${t('自研工具','BPJ tools')}</a><span aria-hidden="true">/</span>${name ? `<a href="${hub}">${title}</a><span aria-hidden="true">/</span><span aria-current="page">${esc(name)}</span>`:`<span aria-current="page">${title}</span>`}</nav>`;
   const hubBody = `${assets}<main class="stage trade-suite" id="main-content" data-trade-directory>${breadcrumbs()}
-    <header class="trade-title"><h1>${title}</h1><p>${description}</p><p>${t('免费账户每天共 10 次，覆盖目录内全部工具。','A free account gets 10 runs a day across the directory.')}</p>
-      <div class="trade-actions" data-trade-directory-gate><a class="trade-button" data-trade-directory-join href="${esc(directoryJoin)}">${t('免费注册或登录后试用','Join free or sign in to try')}</a></div>
+    <header class="trade-title"><h1>${title}</h1><p>${intro}</p><p>${allowanceCopy}</p>
+      <div class="trade-actions" data-trade-directory-gate><a class="trade-button" data-trade-directory-join href="${esc(directoryJoin)}">${joinCopy}</a></div>
     </header>
     <nav class="trade-categories" aria-label="${t('工具分类','Tool categories')}">${categories.map(group=>`<a href="#${group.id}">${esc(group.name)}</a>`).join('')}</nav>
     <label class="trade-search" hidden>${t('搜索工具','Find a tool')}<input id="trade-search" type="search" autocomplete="off" placeholder="${t('例如报关、退税、收款','Try customs, refund, settlement')}"></label>
@@ -101,8 +109,13 @@ export function buildTradeWorkbench({layout,esc,crumbLd,BASE,NAME,LOCALE,write,p
     mediaAlternates:[{type:'application/json',href:hub+'catalog.json'},{type:'text/markdown',href:hub+'index.md'}],schema:[
     crumbLd(sharedCrumbs),{'@context':'https://schema.org','@type':'CollectionPage',name:title,url:hub,description,inLanguage:lang,mainEntity:{'@type':'ItemList',itemListElement:itemList}},
   ]}));
-  write('studio/trade-tools/catalog.json',JSON.stringify({title,url:hub,description,language:lang,execution:'registered_account_required',mcp_docs:mcpDocs,categories},null,2)+'\n');
-  write('studio/trade-tools/index.md',`# ${title}\n\n${description}\n\n[${t('工具目录网页','Canonical directory')}](${hub}) · [${t('工具与出处 JSON','Tools and source JSON')}](${hub}catalog.json) · [${t('外贸 MCP 接入指南','Trade MCP setup guide')}](${mcpDocs})\n\n`+categories.map(group=>`## ${group.name}\n\n`+group.tools.map(tool=>`- [${tool.name}](${tool.url}) — ${tool.description} [${tool.source.name}](${tool.source.url}) · [${t('输入、结果与出处','Inputs, outputs and reference')}](${tool.markdown})`).join('\n')).join('\n\n')+'\n');
+  const access = {
+    web:{guest_daily_runs:GUEST_DAILY_RUNS,free_account_daily_runs:FREE_DAILY_RUNS,linked_member_daily_runs:MEMBER_DAILY_RUNS,guest_may_share_network_quota:true},
+    mcp:{scoped_account_key_required:true,shares_account_web_allowance:true},
+    reset:'00:00 UTC',
+  };
+  write('studio/trade-tools/catalog.json',JSON.stringify({title,url:hub,description,language:lang,execution:'web_guest_or_account',access,mcp_docs:mcpDocs,categories},null,2)+'\n');
+  write('studio/trade-tools/index.md',`# ${title}\n\n${intro}\n\n${allowanceCopy}\n\n${mcpCopy}\n\n[${t('工具目录网页','Canonical directory')}](${hub}) · [${joinCopy}](${directoryJoin}) · [${t('工具与出处 JSON','Tools and source JSON')}](${hub}catalog.json) · [${t('外贸 MCP 接入指南','Trade MCP setup guide')}](${mcpDocs})\n\n`+categories.map(group=>`## ${group.name}\n\n`+group.tools.map(tool=>`- [${tool.name}](${tool.url}) — ${tool.description} [${tool.source.name}](${tool.source.url}) · [${t('输入、结果与出处','Inputs, outputs and reference')}](${tool.markdown})`).join('\n')).join('\n\n')+'\n');
   pushPage(hub,'0.9');
 
   for (const group of tradeGroups) for (const [index,tool] of group.tools.entries()) {
@@ -126,11 +139,11 @@ export function buildTradeWorkbench({layout,esc,crumbLd,BASE,NAME,LOCALE,write,p
       <header class="trade-title"><a class="trade-category-link" href="${hub}#${group.id}">${esc(local(group.label,zh))}</a><h1>${esc(name)}</h1><p>${esc(purpose)}</p></header>
       <div class="trade-tool-layout"><div>
         <section class="trade-use" aria-labelledby="trade-use"><h2 id="trade-use">${t('试用工具','Run this tool')}</h2>
-          <div data-trade-gate aria-busy="true"><p data-trade-gate-message>${t('注册或登录 BPJ 免费账户后即可使用。','Create a free BPJ account or sign in to use this tool.')}</p><a class="trade-button" data-trade-join href="${esc(join)}">${t('免费注册或登录','Join free or sign in')}</a></div>
+          <div data-trade-gate aria-busy="true"><p data-trade-gate-message>${t(`外贸工具网页访客每天共 ${GUEST_DAILY_RUNS} 次试算。注册或登录 BPJ 免费账户后每天共 ${FREE_DAILY_RUNS} 次。`,`Guests get ${GUEST_DAILY_RUNS} web runs a day across the workbench. Join free or sign in to get ${FREE_DAILY_RUNS} runs a day.`)}</p><a class="trade-button" data-trade-join href="${esc(join)}">${joinCopy}</a></div>
           <form data-trade-form hidden><p data-trade-quota></p><div class="trade-fields">${fields}</div><div class="trade-actions"><button class="trade-button" type="submit">${t('生成结果','Get results')}</button><button class="trade-secondary" type="button" data-trade-example>${t('填入示例','Fill example')}</button></div></form>
           <p class="trade-status" role="status" data-trade-status></p>
           <section class="trade-result" data-trade-result aria-labelledby="trade-result" hidden><h3 id="trade-result" tabindex="-1">${t('结果','Results')}</h3><dl data-trade-rows></dl><button class="trade-secondary" type="button" data-trade-csv hidden>${t('导出 CSV（计 1 次）','Export CSV (uses one run)')}</button></section>
-          <section class="trade-upgrade" data-trade-upgrade hidden><h3>${t('需要更多次数或导出结果？','Need more runs or a CSV export?')}</h3><p data-trade-price></p><p>${t('同一 BPJ 会员可每天运行 100 次并导出 CSV。到会员页选择「使用免费账户」，把权益关联到当前账户。','The BPJ membership includes 100 runs a day and CSV export. Choose “Use free account” on the membership page to attach the benefits to your account.')}</p><a class="trade-button" data-trade-member href="${checkout}" target="_blank" rel="noopener">${t('用当前账户开通会员','Open membership for this account')}</a></section>
+          <section class="trade-upgrade" data-trade-upgrade hidden><h3>${t('需要更多次数或导出结果？','Need more runs or a CSV export?')}</h3><p data-trade-price></p><p>${t(`关联有效 BPJ 会员后每天可运行 ${MEMBER_DAILY_RUNS} 次并导出 CSV。到会员页选择「使用免费账户」，把权益关联到当前账户。`,`An active linked BPJ membership includes ${MEMBER_DAILY_RUNS} runs a day and CSV export. Choose “Use free account” on the membership page to attach the benefits to your account.`)}</p><a class="trade-button" data-trade-member href="${checkout}" target="_blank" rel="noopener">${t('用当前账户开通会员','Open membership for this account')}</a></section>
         </section>
       </div><aside class="trade-details" aria-label="${t('范围与来源','Scope and source')}">
         <section><h2>${t('适用范围','Scope')}</h2><p>${esc(scope)}</p></section>
@@ -143,12 +156,12 @@ export function buildTradeWorkbench({layout,esc,crumbLd,BASE,NAME,LOCALE,write,p
       <section class="trade-related"><h2>${t('同类工具','Related tools')}</h2><ul>${related.map(next=>`<li><a href="${hub+next.id}">${esc(titleFor(next,zh))}</a></li>`).join('')}</ul></section>
       <footer class="trade-reference"><a href="${reference.markdown}" rel="alternate" type="text/markdown">${t('阅读或引用 Markdown','Read or cite Markdown')}</a><a href="${mcpDocs}">${t('外贸 MCP 接入指南','Trade MCP setup guide')}</a></footer>
     </main>${script()}`;
-    const searchDescription = purpose+' '+t('注册免费账户后即可用自己的业务数据运行。','Create a free account to run this tool with your own trade figures.');
+    const searchDescription = purpose+' '+t(`网页访客每天共 ${GUEST_DAILY_RUNS} 次试算额度。`,`The workbench gives guests ${GUEST_DAILY_RUNS} web runs a day.`);
     write('studio/trade-tools/'+tool.id+'.html',layout({title:name+t('｜外贸工具',' | Export Trade Tools')+' · BPJ',description:searchDescription,path,body,wide:true,
       mediaAlternates:[{type:'text/markdown',href:reference.markdown}],schema:[
       crumbLd([...sharedCrumbs,{name,url}]),{'@context':'https://schema.org','@type':'WebApplication',name,url,description:purpose,inLanguage:lang,applicationCategory:'BusinessApplication',operatingSystem:'Web',offers:{'@type':'Offer',price:'0',priceCurrency:'USD'},featureList:reference.outputs,subjectOf:{'@type':'CreativeWork',url:reference.markdown,inLanguage:lang},citation:{'@type':'CreativeWork',name:source.name,url:source.url}},
     ]}));
-    write('studio/trade-tools/'+tool.id+'.md',referenceMarkdown(reference,t));
+    write('studio/trade-tools/'+tool.id+'.md',referenceMarkdown(reference,t,{allowanceCopy,join,joinCopy,mcpDocs,mcpCopy}));
     pushPage(url+'.html','0.8');
   }
 }

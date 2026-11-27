@@ -26,13 +26,17 @@ try {
     const session = await issueSession(env,{id:user,session_version:1});
     const context = await browser.newContext({viewport:{width:390,height:844},acceptDownloads:true});
     const page = await context.newPage(),errors=[];
+    let executions = 0;
     page.on('pageerror',error=>errors.push(error.message));
     await context.route('**/*',async route=>{
       const r = route.request(),url = new URL(r.url());
       if (url.origin!==origin) return route.abort();
       if (url.pathname==='/api/trade-workbench'||url.pathname==='/api/account') {
         const handler = url.pathname==='/api/account' ? accountRoute : onRequest;
-        const response = await handler({env,request:new Request(url,{method:r.method(),headers:await r.allHeaders(),...(r.method()==='POST' ? {body:r.postData()} : {})})});
+        const headers = new Headers(await r.allHeaders());
+        headers.set('CF-Connecting-IP',lang==='zh'?'192.0.2.1':'192.0.2.2');
+        if (url.pathname==='/api/trade-workbench'&&r.method()==='POST') executions++;
+        const response = await handler({env,request:new Request(url,{method:r.method(),headers,...(r.method()==='POST' ? {body:r.postData()} : {})})});
         return route.fulfill({status:response.status,headers:Object.fromEntries(response.headers),body:await response.text()});
       }
       if (url.pathname.startsWith('/api/')) return route.fulfill({status:204});
@@ -67,14 +71,42 @@ try {
     const destination = new URL(await join.getAttribute('href'));
     assert.equal(destination.pathname,prefix+'/account');
     assert.equal(destination.searchParams.get('next'),prefix+samplePath);
-    assert(await page.locator('[data-trade-form]').isHidden());
+    const form = page.locator('[data-trade-form]'),upgrade = page.locator('[data-trade-upgrade]');
+    const run = form.locator('button[type=submit]'),result = page.locator('[data-trade-result]');
+    const example = page.locator('[data-trade-example]'),quota = page.locator('[data-trade-quota]');
+    await form.waitFor({state:'visible'});
+    assert.match(await quota.textContent(),/2.*2/);
+    await example.click();
+    await page.locator('#tw-length').fill('0');
+    await run.click();
+    await page.locator('[data-trade-status][data-error]').waitFor();
+    assert.match(await quota.textContent(),/2.*2/,'Invalid visitor input should not use a run');
+    await example.click();
+    await run.click();
+    await result.waitFor();
+    assert.match(await quota.textContent(),/1.*2/);
+    await page.locator('#tw-length').fill('80');
+    await run.click();
+    await result.waitFor();
+    assert.match(await page.locator('[data-trade-rows]').textContent(),/2\.688/);
+    assert.match(await quota.textContent(),/0.*2/);
+    assert(await run.isDisabled());
+    assert(await example.isDisabled());
+    assert(await join.isVisible());
+    assert.match(await page.locator('[data-trade-gate-message]').textContent(),/10/);
+    assert(await page.locator('[data-trade-csv]').isHidden());
+    assert(await upgrade.isHidden());
+    await form.dispatchEvent('submit');
+    assert.equal(executions,3,'Blocked visitor action should not send a third valid run');
+    assert(await result.isVisible(),'Exhaustion should keep the previous result');
 
     await context.addCookies([{name:ACCOUNT_COOKIE,value:session,url:origin,secure:true,httpOnly:true,sameSite:'Lax'}]);
     await page.goto(origin+hub+'?__ci=1');
     await directoryJoin.waitFor({state:'hidden'});
     await page.goto(tool);
-    const form = page.locator('[data-trade-form]'),upgrade = page.locator('[data-trade-upgrade]');
     await form.waitFor({state:'visible'});
+    await join.waitFor({state:'hidden'});
+    assert.match(await quota.textContent(),/10.*10/,'Guest runs should not reduce the account allowance');
     assert(await upgrade.isHidden());
     await page.locator('[data-trade-example]').click();
     assert(await upgrade.isHidden());
@@ -115,4 +147,4 @@ try {
   resetFetch();
   for (const site of Object.values(sites)) site.db.sql.close();
 }
-console.log('PASS bilingual directory, mobile sign-in gate, successful registered run, contextual membership and member CSV.');
+console.log('PASS bilingual directory, limited visitor runs, retained results and registration CTA, registered allowance and member CSV.');

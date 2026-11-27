@@ -81,7 +81,7 @@ export function buildTradeMcpPages({layout, esc, crumbLd, BASE, NAME, LOCALE, wr
   const title = t('外贸 AI 工具 MCP','Export trade MCP for AI agents');
   const description = t(`把 BPJ 的 ${toolCount} 个合规、关务、退税、外汇和物流工具接入 AI 助手。免费注册、创建专用密钥，网页与 MCP 共用每日额度。`, `Connect ${toolCount} BPJ tools for export compliance, customs, tax refunds, FX and logistics to an AI agent. A free account and scoped key unlock the same daily allowance as the web tools.`);
   const scope = t('MCP 结果包含工具依据和适用范围。提交或签署业务单据前，请按单项工具来源复核；这套工具提供计算和资料准备。','Each MCP result includes the tool’s reference and scope. Use the linked sources to review decisions before filing or signing trade documents. The tools support calculations and preparation.');
-  const limits = t('免费账户每天 10 次，关联有效 BPJ 会员后每天 100 次。网页和所有 MCP 密钥使用同一个账户额度，在 UTC 零点重置。','Free accounts get 10 runs a day. Accounts linked to an active BPJ membership get 100. Web tools and every MCP key share the same allowance, reset at midnight UTC.');
+  const limits = t('游客每天可在网页运行 2 次。免费账户每天 10 次，关联有效 BPJ 会员后每天 100 次。账户的网页运行和所有 MCP 密钥共享额度，UTC 零点重置。','Guests get 2 runs a day on the web. Free accounts get 10. An active, linked BPJ membership increases the account allowance to 100. Account web runs and every MCP key share the same allowance, reset at midnight UTC.');
   const auth = t('需要支持 Streamable HTTP 及自定义 Authorization 请求头的客户端。用外贸 MCP 专用密钥作为 Bearer 凭据。只有 OAuth 登录入口的客户端暂不适用。','Use a client that supports Streamable HTTP and custom Authorization headers. Supply a scoped trade MCP key as the Bearer credential. Clients with only OAuth sign-in require a different integration.');
   const discovery = t('可匿名握手和查看协议工具列表。调用工具需要有效密钥，查询工具目录和输入规则不占运行额度。','An anonymous client can initialize and list the protocol tools. Tool calls require a valid key. Browsing the catalog and input rules uses no runs.');
   const config = {mcpServers:{'bpj-trade-tools':{url:origin+'/api/trade-mcp',headers:{Authorization:'Bearer BPJ_TRADE_MCP_KEY'}}}};
@@ -139,7 +139,7 @@ export function buildTradeMcpPages({layout, esc, crumbLd, BASE, NAME, LOCALE, wr
   write(tradeMcpPath.slice(1)+'guide.json',JSON.stringify({
     title,description,language:lang,canonical:docs,endpoint:origin+'/api/trade-mcp',manifest:manifestLink,
     authentication:{kind:'Bearer',requirements:auth,keyManager:keys,publicDiscovery:['initialize','tools/list']},
-    allowances:{free:10,linkedMember:100,sharedWithWeb:true,reset:'00:00 UTC'},
+    allowances:{webGuest:2,free:10,linkedMember:100,sharedWithWeb:true,reset:'00:00 UTC'},
     protocolTools:tools.map(([name,detail])=>({name,description:detail})),
     catalog:hub+'catalog.json',example:{tool:sampleTitle,url:sampleURL,request:requestExample,shipmentVolumeM3:Number(sampleResult.toFixed(6)),description:exampleText,source:{name:sampleSource,url:tool.source[2]}},scope,
   },null,2)+'\n');

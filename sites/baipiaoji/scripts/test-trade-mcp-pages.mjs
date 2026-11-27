@@ -26,7 +26,7 @@ test('bilingual MCP docs, examples and credential-free public config are publish
     assert(!sitemap.includes(`<loc>${origin+keyPath}</loc>`));
     assert.equal(guide.canonical,canonical);
     assert.equal(guide.authentication.keyManager,origin+keyPath);
-    assert.deepEqual(guide.allowances,{free:10,linkedMember:100,sharedWithWeb:true,reset:'00:00 UTC'});
+    assert.deepEqual(guide.allowances,{webGuest:2,free:10,linkedMember:100,sharedWithWeb:true,reset:'00:00 UTC'});
     assert.deepEqual(guide.protocolTools.map(tool=>tool.name),['list_trade_tools','get_trade_tool','run_trade_tool']);
     assert.equal(guide.example.shipmentVolumeM3,2.016);
     assert(docs.includes(guide.example.source.url));

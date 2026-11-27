@@ -67,7 +67,7 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
     return {name,tool_id:'trade-workbench',repeat:true};
   }
   if (host === 'baipiaoji.com' && tradeTool && tradeTool[1].length <= 64 &&
-      /^trade_workbench_(signup|run|example|membership_open|csv)$/.test(name)) {
+      /^trade_workbench_(signup|guest_run|run|example|membership_open|csv)$/.test(name)) {
     return {name, tool_id: tradeTool[1], repeat: true};
   }
   if (host === 'baipiaoji.com' && /^\/(?:en\/)?tools\/(chatgpt|kimi|qingying)$/.test(pathname) && name === 'catalog_task_open') {

@@ -67,7 +67,7 @@ export function reachDays(url) {
   return days;
 }
 
-const reachCache = createReachCache({cachePath:`/__bpj-cache/reach/${REACH_CACHE_VERSION}.4`});
+const reachCache = createReachCache({cachePath:`/__bpj-cache/reach/${REACH_CACHE_VERSION}.5`});
 
 export async function onRequestGet(ctx) {
   const { request, env } = ctx;

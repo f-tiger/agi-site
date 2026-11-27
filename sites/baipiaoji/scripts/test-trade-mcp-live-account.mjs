@@ -48,6 +48,12 @@ async function cleanup() {
 }
 
 try {
+  const guest = await request('/api/trade-workbench',undefined,{browser:true});
+  assert.equal(guest.response.status,200,'Guest status is live');
+  assert.equal(guest.data.access,'guest');
+  assert.equal(guest.data.limit,2,'Web guest uses the two-run daily trial');
+  assert([0,1,2].includes(guest.data.remaining));
+  assert.equal(guest.data.checkout.ready,false);
   const signup = await account('register', {username,email,password,consent:true,qa:true}, '');
   assert.equal(signup.response.status,200,'Disposable BPJ account registration');
   owner = signup.data.user?.id;

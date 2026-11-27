@@ -1,8 +1,9 @@
 import {json, seconds} from '../../lib/ad-commerce.js';
-import {getAccount} from '../../lib/free-account.js';
+import {getAccount, tokenFrom} from '../../lib/free-account.js';
 import {memberPlan, memberReady, memberSite} from '../../lib/membership.js';
 import {evaluateTool, getTool} from '../../lib/trade-workbench/engine.mjs';
 import {recordWorkbenchRun, utcDay, workbenchAllowance, workbenchMember, workbenchUsage} from '../../lib/trade-workbench-access.mjs';
+import {GUEST_DAILY_RUNS, guestTradeAllowance, guestTradeQuota, guestTradeUsage, recordGuestTradeRun} from '../../lib/trade-workbench-guests.mjs';
 
 const origin = 'https://baipiaoji.com';
 const maxBodyBytes = 4096;
@@ -61,10 +62,17 @@ function createCsv(tool, rows, lang) {
 
 async function status(request, env) {
   const account = await getAccount(request, env);
+  if (!account && tokenFrom(request)) return fail('sign_in_required',401);
   const now = seconds();
   const {price_units, days} = memberPlan(env);
   const checkout = {ready: !!account && await memberReady(env), price_units, days, chain: 'bsc', token: 'USDT'};
-  if (!account) return json({ok: true, access: 'guest', limit: null, remaining: null, checkout});
+  if (!account) {
+    const quota = guestTradeQuota(request,env.ADS_WATCH_SECRET,now);
+    try {
+      if (quota) return json({ok: true, ...guestTradeAllowance(await guestTradeUsage(env.HITS,quota)), checkout});
+    } catch { /* unavailable guest quota is closed */ }
+    return fail('temporarily_unavailable',503,{...guestTradeAllowance(GUEST_DAILY_RUNS),checkout});
+  }
 
   const [activeMember, used] = await Promise.all([
     workbenchMember(env.HITS, account.id, now),
@@ -75,13 +83,13 @@ async function status(request, env) {
 
 async function run(request, env) {
   const account = await getAccount(request, env);
-  if (!account) return fail('sign_in_required', 401);
+  if (!account && tokenFrom(request)) return fail('sign_in_required', 401);
   const body = await readBody(request);
   const tool = body && getTool(body.id);
   if (!tool) return fail('invalid_input', 400);
 
   const now = seconds();
-  const activeMember = await workbenchMember(env.HITS, account.id, now);
+  const activeMember = account && await workbenchMember(env.HITS, account.id, now);
   if (body.format === 'csv' && !activeMember) return fail('membership_required', 403);
 
   let rows;
@@ -92,6 +100,18 @@ async function run(request, env) {
     throw error;
   }
   const result = body.format === 'csv' ? {csv: createCsv(tool, rows, body.lang)} : {rows};
+
+  if (!account) {
+    const quota = guestTradeQuota(request,env.ADS_WATCH_SECRET,seconds());
+    try {
+      if (quota) {
+        const usage = await recordGuestTradeRun(env.HITS,quota);
+        if (!usage) return fail('rate_limited',429,guestTradeAllowance(GUEST_DAILY_RUNS));
+        return json({ok: true, ...result, ...guestTradeAllowance(usage.runs)});
+      }
+    } catch { /* unavailable guest quota is closed */ }
+    return fail('temporarily_unavailable',503,guestTradeAllowance(GUEST_DAILY_RUNS));
+  }
 
   const usage = await recordWorkbenchRun(env.HITS, request, account, activeMember, seconds());
   if (!usage) {

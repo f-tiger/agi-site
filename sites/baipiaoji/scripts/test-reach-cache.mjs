@@ -163,7 +163,7 @@ const settle = () => Promise.all(pendingWrites.splice(0));
   assert.equal(j.conversion_stages.events.proofkit_actions.own.paid_offer_view,1);
   assert.deepEqual(j.money.trade_workbench_orders_complete_utc.window,j.conversion_stages.window);
   assert.deepEqual(j.money.trade_workbench_orders_complete_utc.by_state,{pending:1,expired:0,paid:1});
-  assert.deepEqual(j.conversion_stages.events.trade_workbench_actions,{signup:0,run:1,example:0,membership_open:0,csv:0});
+  assert.deepEqual(j.conversion_stages.events.trade_workbench_actions,{signup:0,guest_run:0,run:1,example:0,membership_open:0,csv:0});
   ok(workbenchOrderReads===1, 'ProposalDeck and trade-workbench cohorts share one order-source read and cache entry');
   ok(JSON.stringify(j.conversion_stages.directory_outbound)===JSON.stringify({by_tool:[{slug:'kimi',clicks:1}],unattributed_clicks:0}), '目录出站明细与原聚合一起缓存，命中不新增 D1 读取');
   ok(j.conversion_stages.account_scope === 'fleet_shared_account_pool' && j.conversion_stages.accounts_daily.length === 7 && j.conversion_stages.accounts_daily.every(row=>row.created===0), '共享账户池UTC日明细仅成功读取才补零');

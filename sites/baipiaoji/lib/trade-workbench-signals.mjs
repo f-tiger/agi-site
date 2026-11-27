@@ -1,6 +1,6 @@
 import {getTool} from './trade-workbench/engine.mjs';
 
-const actions = ['signup', 'run', 'example', 'membership_open', 'csv'];
+const actions = ['signup', 'guest_run', 'run', 'example', 'membership_open', 'csv'];
 const pathPattern = /^\/trade-workbench\/([a-z0-9-]{1,64})\/([a-z_]+)$/;
 
 export function parseTradeWorkbenchEvent(path) {
