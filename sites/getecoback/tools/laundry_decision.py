@@ -158,7 +158,7 @@ def season_switch():
 </section><script type="module" src="/assets/laundry-season-ui.mjs?v={SEASON_VERSION}"></script>'''
 
 
-LAUNDRY_BOOKMARK = '<nav aria-label="Mess-Checkliste merken"><a href="/auth/wasch-checkliste">Mess-Checkliste mit kostenlosem Konto geräteübergreifend merken</a></nav>'
+LAUNDRY_BOOKMARK = '<nav aria-label="Mess-Checkliste merken"><a href="/auth/wasch-checkliste" target="_blank" rel="noopener">Mess-Checkliste mit kostenlosem Konto geräteübergreifend merken</a></nav>'
 
 def block(en=False):
  def t(de,en_text):return en_text if en else de
