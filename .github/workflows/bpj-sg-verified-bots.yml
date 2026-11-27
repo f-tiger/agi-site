@@ -1,0 +1,37 @@
+name: BPJ Singapore verified-bot rule
+on:
+  push:
+    branches: ['ops/bpj-sg-verified-bots-20261127']
+    paths: ['.github/workflows/bpj-sg-verified-bots.yml']
+  workflow_dispatch:
+    inputs:
+      operation:
+        required: true
+        type: choice
+        default: status
+        options: [status, apply, rollback]
+permissions:
+  contents: read
+concurrency:
+  group: bpj-sg-verified-bots
+  cancel-in-progress: false
+jobs:
+  manage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Test the scope and rollback
+        run: node --test tools/fleet/bpj-sg-verified-bots.test.mjs
+      - name: Reconcile the BPJ zone rule
+        env:
+          # The bootstrap push applies the rule. For an isolated branch rollback before
+          # merging, change only this default to rollback and push the reviewed diff.
+          OPERATION: ${{ inputs.operation || 'apply' }}
+          BPJ_WAF_API_TOKEN: ${{ secrets.BPJ_WAF_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: node tools/fleet/bpj-sg-verified-bots.mjs "$OPERATION"
