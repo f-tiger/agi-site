@@ -6,7 +6,7 @@ import {asksForCoffeeWaterFilterMatch} from './kaffee-wasserfilter-intent.mjs?v=
 import {asksForTrotecTtk75EcoConditions} from './trotec-ttk75-eco-intent.mjs';
 import {asksForCoolingNoiseComparison} from './cooling-noise-intent.mjs?v=f0bcc0785943';
 import {asksForTesamollWindowProfile} from './tesamoll-profile-intent.mjs';
-import {asksForLevoitCore300SBoxFilter,exactGermanFilterModel} from './exact-filter-intent.mjs';
+import {asksForLevoitCore300SBoxFilter,exactGermanFilterModel} from './exact-filter-intent.mjs?v=1e39ebd83e30';
 import {philipsHumidifierFilterSection} from './philips-humidifier-filter-intent.mjs?v=537af20b39fb';
 import {asksForElectricBlanketCost} from './electric-blanket-cost-intent.mjs';
 import {asksForHygrometerComparison} from './hygrometer-comparison-intent.mjs';
