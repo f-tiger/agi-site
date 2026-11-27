@@ -393,6 +393,18 @@ if(process.argv.includes('--workerd')){
   fail=true;
   await register(bpj.env,'eco_no_verifier',{eco_intent:unavailable});
   fail=false;
+  const beforeSchemaLoss=pair(await begin()), batch=bpj.env.HITS.batch;
+  let rejectedOptionalBatch=0;
+  bpj.env.HITS.batch=async queries=>{
+   if(queries.some(q=>q.sql.startsWith('INSERT INTO free_accounts'))&&queries.some(q=>q.sql.includes('INSERT INTO eco_laundry_signup_claim'))){
+    rejectedOptionalBatch++;
+    throw Error('D1_ERROR: no such table: main.eco_laundry_signup_daily: SQLITE_ERROR');
+   }
+   return batch.call(bpj.env.HITS,queries);
+  };
+  try{await register(bpj.env,'eco_missing_table',{eco_intent:beforeSchemaLoss});}
+  finally{bpj.env.HITS.batch=batch;}
+  assert.equal(rejectedOptionalBatch,1);
   const bogus=await call(bpj.env,{action:'register',username:'eco_existing',email,consent:true,password,eco_intent:pair(await begin())});
   assert.equal(bogus.status,409);
   const t=await readback();

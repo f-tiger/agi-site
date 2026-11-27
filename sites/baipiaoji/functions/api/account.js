@@ -64,12 +64,18 @@ async function route(request,env){
   try{
    // D1 batch is transactional: either both the account and its unique identity exist,
    // or neither does. A concurrent duplicate cannot leave an orphan account.
-   await env.HITS.batch([
+   const writes=[
     env.HITS.prepare('INSERT INTO free_accounts(id,username,password_hash,recovery_hash,created,updated,qa) VALUES(?,?,?,?,?,?,?)').bind(id,username,password,hash(recovery),t,t,qa),
     env.HITS.prepare('INSERT INTO free_account_identities(account_id,email,display_name,display_key,email_verified,email_verified_at) VALUES(?,?,?,?,?,?)').bind(id,email,shownName,username,googleProof?.email_authoritative?1:0,googleProof?.email_authoritative?t:null),
     ...(googleProof?googleRegistrationStatements(env,googleProof,id):[]),
-    ...(ecoClaim?[ecoClaim]:[]),
-   ]);
+   ];
+   try{
+    await env.HITS.batch(ecoClaim?[...writes,ecoClaim]:writes);
+   }catch(cause){
+    // A missing analytics schema rolls back D1's batch. Retry without the optional claim.
+    if(!ecoClaim||!/no such (?:table|trigger): (?:main[.])?eco_laundry_signup_(?:daily|claim|count)\b/i.test(String(cause?.message||cause)))throw cause;
+    await env.HITS.batch(writes);
+   }
   }catch(cause){
    if(googleProof&&/(NOT NULL|UNIQUE) constraint failed: free_google_identities/i.test(String(cause?.message||cause)))return error('google_proof_invalid',409);
    if(!/UNIQUE constraint failed|SQLITE_CONSTRAINT_UNIQUE/i.test(String(cause?.message||cause)))throw cause;

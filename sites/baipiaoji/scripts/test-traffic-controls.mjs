@@ -110,8 +110,19 @@ test('vendor repeat attempts produce one inquiry and the sixth request stays out
 test('operator readout counts stored inquiries independently of QA and browser actions',async()=>{
  const {onRequestGet}=await import('../functions/api/vendor-stats.js');
  const HITS=db(), secret='x'.repeat(40), env={HITS,ADS_WATCH_SECRET:secret};
- const load=(key)=>onRequestGet({request:new Request('https://baipiaoji.com/api/vendor-stats',{headers:{authorization:'Bearer '+key}}),env});
+ const load=(key,view='')=>onRequestGet({request:new Request('https://baipiaoji.com/api/vendor-stats'+view,{headers:{authorization:'Bearer '+key}}),env});
  assert.equal((await load('invalid')).status,401);
+ const ecoView='?view=eco_mcp_signups';
+ assert.equal((await load('invalid',ecoView)).status,401);
+ assert.equal((await (await load(secret,ecoView)).json()).eco_mcp_signups,null);
+ HITS.sqlite.exec("CREATE TABLE eco_laundry_signup_daily(day TEXT PRIMARY KEY,n INTEGER NOT NULL); INSERT INTO eco_laundry_signup_daily VALUES(date('now','-1 day'),1),(date('now'),20),(date('now','-8 day'),30);");
+ const ecoResponse=await load(secret,ecoView);
+ assert.match(ecoResponse.headers.get('Cache-Control'),/no-store/);
+ assert.equal(ecoResponse.headers.get('X-Robots-Tag'),'noindex');
+ const eco=await ecoResponse.json();
+ assert.equal(eco.end_exclusive,new Date().toISOString().slice(0,10));
+ assert.equal(eco.eco_mcp_signups.committed_accounts,1);
+ assert.equal(eco.eco_mcp_signups.daily.length,1);
  assert.equal((await load(secret)).status,503);
  HITS.sqlite.exec("CREATE TABLE hits(d,path,ev,lang); INSERT INTO hits VALUES(date('now'),'/biz/trigger/ad-inquiry','biz','en'),(date('now'),'/biz/trigger/ad-inquiry','biz','ci')");
  const empty=await (await load(secret)).json();

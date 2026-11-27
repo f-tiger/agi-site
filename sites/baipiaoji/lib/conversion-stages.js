@@ -1,4 +1,3 @@
-import {readEcoLaundrySignup} from './eco-laundry-signup.js';
 import { EVENT_ROWS } from './hits-schema.js';
 import {parseTableReviewEvent,emptyTableReviewCounts} from './table-review-signals.mjs';
 import {parseListingEvent,emptyListingCounts} from './listing-signals.mjs';
@@ -146,11 +145,10 @@ export async function readConversionStages(db, days, clock = Date.now()) {
   const endSeconds = Date.parse(end + 'T00:00:00Z') / 1000;
   const startSeconds = endSeconds - days * 86400;
   const start = new Date(startSeconds * 1000).toISOString().slice(0,10);
-  const [events, accounts, accountDays, ecoSignup] = await Promise.allSettled([
+  const [events, accounts, accountDays] = await Promise.allSettled([
     db.prepare(STAGE_EVENTS_SQL).bind(start,end).all(),
     db.prepare(STAGE_ACCOUNTS_SQL).bind(startSeconds,endSeconds,startSeconds,endSeconds).first(),
     db.prepare(STAGE_ACCOUNTS_DAILY_SQL).bind(startSeconds,endSeconds).all(),
-    readEcoLaundrySignup(db,start,end),
   ]);
   const eventsOK = events.status === 'fulfilled';
   const accountsOK = accounts.status === 'fulfilled' && accounts.value != null;
@@ -168,7 +166,6 @@ export async function readConversionStages(db, days, clock = Date.now()) {
       const row = byDate.get(date);
       return {date, created: Number(row?.created || 0), new_accounts_currently_email_verified: Number(row?.new_accounts_currently_email_verified || 0)};
     }) : null,
-    eco_mcp_signups: ecoSignup.status==='fulfilled' ? ecoSignup.value : null,
     account_scope: 'fleet_shared_account_pool',
     missing: [...(!eventsOK ? ['events'] : []), ...(!accountsOK ? ['accounts'] : []), ...(!accountDaysOK ? ['accounts_daily'] : [])],
     definitions: {
@@ -186,7 +183,6 @@ export async function readConversionStages(db, days, clock = Date.now()) {
       account_totals: 'Current surviving accounts with qa=0, across all creation dates including today. Counts include unverified and legacy accounts; they do not prove distinct humans. Current mailbox-verified total is reported separately. Never add subscriber or paid-membership records to this count.',
       account_scope: 'The fleet shared free-account pool hosted by BPJ, not BPJ-origin registrations. No source site or external-person attribution is stored in this aggregate. Separate AGI native registrations are not included; never sum the shared pool with per-site sessions as users.',
       accounts_daily: 'Daily created counts use each surviving non-test account creation timestamp and complete UTC dates. Zero-filled only after a successful read. Deleted accounts are absent, so this is not a permanent historical signup ledger. new_accounts_currently_email_verified describes the current verification state of each creation-day cohort, not verifications performed on that day; past cohorts can change after later verification or deletion. The current partial UTC day is excluded.',
-      eco_mcp_signups: 'Committed new non-QA accounts with one validated EcoBack laundry MCP handoff in complete UTC days. Independent of account logins and anonymous tool or landing events. Unobserved days stay unknown. No account identifier or email is stored in this cohort.',
       account_tool_entries: 'Public tool-to-account link actions within the complete-day window. Repeated actions count again; they are not successful signups and have no person-level attribution.',
       coding_access: 'Fixed coding-access actions in the same complete UTC-day window. Selection copies mean the browser reported successful clipboard writing; generic checklist copies are separate. Repeated actions count again; neither action counts nor their ratios prove people, retained users, installs, purchases or revenue. No query or checklist content is collected.',
       attribution: 'Independent stages, no shared visitor identifier or channel attribution. Do not divide tool events or accounts by GSC clicks to claim a conversion rate.',

@@ -1,4 +1,5 @@
 import {digest,json} from '../../lib/ad-commerce.js';
+import {readEcoLaundrySignup} from '../../lib/eco-laundry-signup.js';
 
 export async function onRequestGet({request,env}){
   const secret=env.ADS_WATCH_SECRET;
@@ -7,6 +8,11 @@ export async function onRequestGet({request,env}){
   if(!bearer.startsWith('Bearer ')||bearer.length>520||await digest(secret)!==await digest(bearer.slice(7)))return json({ok:false},401);
   try {
     const generated=new Date();
+    if(new URL(request.url).searchParams.get('view')==='eco_mcp_signups'){
+      const endExclusive=generated.toISOString().slice(0,10);
+      const start=new Date(Date.parse(endExclusive)-7*86400000).toISOString().slice(0,10);
+      return json({ok:true,start,end_exclusive:endExclusive,eco_mcp_signups:await readEcoLaundrySignup(env.HITS,start,endExclusive)});
+    }
     async function read(sql,params=[]){
       const statement=env.HITS.prepare(sql);
       const result=await (params.length?statement.bind(...params):statement).all();

@@ -4199,7 +4199,7 @@ def track_block(cellar=False, window_fit=False, portasplit_url=None, cellar_mode
             'document.addEventListener("click",function(e){'
             'var a=e.target&&e.target.closest&&e.target.closest(\'a[href^="/auth/wasch-checkliste"]\');'
             'if(!a||!e.isTrusted)return;var b="/auth/wasch-checkliste",t=b+"?mcp_entry=waesche-kosten";'
-            'var h=a.getAttribute("href");if(h===b||h===t)a.setAttribute("href",laundryMeasure()?t:b);'
+            'var h=a.getAttribute("href");if(h!==b||!laundryMeasure())return;a.setAttribute("href",t);setTimeout(function(){if(a.getAttribute("href")===t)a.setAttribute("href",b);},0);'
             '},true);'
         )
     width_event = ''
