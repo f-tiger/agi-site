@@ -38,7 +38,7 @@ BASE = "https://getecoback.com"
 CITABLE_ROOT_TOOLS = (
     "strommess-protokoll.html", "geraete-austausch-rechner.html", "familienwerkstatt.html",
 )
-CITABLE_ROOT_EVIDENCE = ("daten.html", "wie-wir-empfehlen.html")
+CITABLE_ROOT_EVIDENCE = ("daten.html", "wie-wir-empfehlen.html", "winter-energiesparen.html")
 TDS_DECISION_HANDOFFS = {
     '/waeschetrockner-oder-luftentfeuchter.html': 'https://thedollscout.com/de/ai-tools/dach-meter-fit#messgeraet-ausleihen-oder-kaufen',
     '/en/guide/heated-airer-vs-dehumidifier.html': 'https://thedollscout.com/ai-tools/uk-laundry-session',
@@ -164,6 +164,13 @@ def to_markdown(src_html, path_url, lang):
                 body = re.sub(r'</strong>(?=[^<\s])', '</strong> ', body)
                 body = body.replace('<a href="/tools.html">Alle EcoBack-Rechner</a>', '')
                 body = body.replace('</a><p', '</a> <p').replace('</a>EcoBack', '</a> EcoBack')
+    if path_url == '/winter-energiesparen.html':
+        # These two card grids contain the editorial answer links.
+        body = re.sub(
+            r'<nav\b[^>]*class="winter-grid"[^>]*>(.*?)</nav>',
+            lambda grid: '<ul>' + re.sub(r'(<a\b[^>]*>.*?</a>)', r'<li>\1</li>', grid[1], flags=re.S) + '</ul>',
+            body, flags=re.S)
+        body = body.replace('</strong><span>', '</strong> <span>')
     if path_url == '/familienwerkstatt.html':
         # Exclude empty result slots and downloads that appear only after a
         # form submission. Keep the visible manufacturer evidence panels.

@@ -1196,6 +1196,23 @@ test('German dehumidifier price checks retain the exact evidence and stop path i
  assert(!textOf(full).includes('https://www.amazon.de/'));
 });
 
+test('German winter device questions retain precise internal links in both MCP profiles',async()=>{
+ const {env}=assetEnv();
+ const origin='https://getecoback.com';
+ const target=origin+'/winter-energiesparen.html#winter-geraetefragen';
+ const args={pfad:target};
+ const full=await call('ratgeber_lesen',args,env);
+ const compact=await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:args},env,true);
+ assert.equal(full.isError,false);
+ assert.deepEqual(full,compact);
+ for(const route of [
+   '/guide/smarte-heizkoerperthermostate-lohnen-sich.html#tado-x-raumtemperatur',
+   '/guide/beheizter-waeschestaender.html#kosten-pro-fertig-getrockneter-ladung',
+   '/guide/heizdecke-stromverbrauch.html#beurer-hd75-ub30',
+ ]) assert.ok(textOf(full).includes(origin+route),route);
+ assert.doesNotMatch(textOf(full),/https:\/\/www\.amazon\.de|tag=getecoback/);
+});
+
 test('German Beurer model and placement questions cite the same evidence in both MCP profiles',async()=>{
  const {env}=assetEnv();
  const target='https://getecoback.com/guide/heizdecke-stromverbrauch.html#beurer-hd75-ub30';

@@ -402,6 +402,13 @@ def collect():
     raise ValueError(f'Missing or ambiguous Bosch calibration section: {route}#{calibration}')
    entry['model_sections'].append({'id':calibration,'title':title,
     'description':'Bosch nennt E03 einen Kalibrierungsfehler. Montage, Ventilstift und gegebenenfalls den vorhandenen Adapter prüfen. Bei unklarem Ventiltyp keinen Adapter kaufen.'})
+  if lang=='de' and route=='/winter-energiesparen.html':
+   anchor='winter-geraetefragen'
+   headings=re.findall(r'<h2\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)
+   if len(headings)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',headings[0]):
+    raise ValueError(f'Missing or hidden winter device questions: {route}#{anchor}')
+   entry['model_sections']=[{'id':anchor,'title':'Konkrete Gerätefragen im Winter',
+    'description':'Raumtemperatur bei tado° X prüfen, den Strom pro trockener Ladung messen oder die passende Bauart und Abschaltung beim Wärmetextil wählen.'}]
   if lang=='de' and route=='/guide/heizdecke-stromverbrauch.html':
    anchor='beurer-hd75-ub30'
    headings=re.findall(r'<h2\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)

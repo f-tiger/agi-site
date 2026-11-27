@@ -38,4 +38,17 @@ for name,(url,*_) in TARGETS.items():
  assert block and url in block[1], 'Winter entry lost: '+name
 hub=(SITE/'winter-energiesparen.html').read_text()
 assert all('/guide/'+slug+'.html' in hub for slug in PAGES)
+questions=re.search(r'<h2 id="winter-geraetefragen">[^<]+</h2>\s*<ul>(.*?)</ul>',hub,re.S)
+assert questions, 'Winter device decisions must be present without JavaScript'
+parser=Links()
+parser.feed(questions[1])
+assert parser.hrefs == [
+ '/guide/smarte-heizkoerperthermostate-lohnen-sich.html#tado-x-raumtemperatur',
+ '/guide/beheizter-waeschestaender.html#kosten-pro-fertig-getrockneter-ladung',
+ '/guide/heizdecke-stromverbrauch.html#beurer-hd75-ub30',
+]
+for href in parser.hrefs:
+ route=urlsplit(href)
+ page=(SITE/route.path.lstrip('/')).read_text()
+ assert len(re.findall(r'<h[2-6]\b[^>]*\bid="'+re.escape(route.fragment)+r'"',page))==1,href
 print('Winter: 7 distinct guides, source/next-step links, 3 forms, 12 surviving entry links and hub verified.')
