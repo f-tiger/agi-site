@@ -15,7 +15,12 @@ on:
     workflows: ["Deploy getecoback.com"]
     types: [completed]
     branches: [main]
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      mark_legacy_aliases_deprecated:
+        description: Mark the two legacy Registry entries as deprecated
+        type: boolean
+        default: false
 
 permissions:
   actions: read
@@ -93,7 +98,7 @@ jobs:
         run: node tools/mcp_smoke.mjs --bounded
 
       - name: Install mcp-publisher
-        if: steps.registry-state.outputs.already_published != 'true'
+        if: steps.registry-state.outputs.already_published != 'true' || inputs.mark_legacy_aliases_deprecated || contains(github.event.workflow_run.head_commit.message, '[eco-mcp-aliases]')
         run: |
           # Release assets carry the version in their name, so resolve the
           # linux/amd64 asset from the latest-release API instead of guessing.
@@ -146,3 +151,10 @@ jobs:
         run: |
           python3 tools/test_mcp_registry.py
           python3 tools/check_mcp_registry.py --release
+
+      - name: Deprecate and verify the two historical Registry aliases
+        if: inputs.mark_legacy_aliases_deprecated || contains(github.event.workflow_run.head_commit.message, '[eco-mcp-aliases]')
+        run: |
+          set -euo pipefail
+          ./mcp-publisher login github-oidc
+          python3 tools/deprecate_mcp_aliases.py --publisher ./mcp-publisher

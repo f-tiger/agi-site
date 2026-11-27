@@ -1,0 +1,41 @@
+{
+  "sites": {
+    "agiscorecard": {
+      "source": "sites/agiscorecard",
+      "license": {"scope": "designated data files", "evidence": "sites/agiscorecard/for-agents.md"},
+      "attribution": "server tool outcomes; independent reuse and revenue require separate evidence",
+      "servers": [{"name": "com.agiscorecard/agi-scorecard", "url": "https://agiscorecard.com/mcp"}]
+    },
+    "baipiaoji": {
+      "source": "sites/baipiaoji",
+      "license": {"scope": "free-tier dataset and tables", "evidence": "sites/baipiaoji/mirror/LICENSE"},
+      "attribution": "existing quote and startup outcome measurement; external task, account and payment stages remain distinct",
+      "servers": [
+        {"name": "io.github.f-tiger/verified-ai-free-tiers", "url": "https://baipiaoji.com/api/mcp"},
+        {"name": "io.github.f-tiger/bpj-ai-tools", "url": "https://baipiaoji.com/api/ai-mcp"},
+        {"name": "io.github.f-tiger/bpj-startup-research", "url": "https://baipiaoji.com/api/startup-mcp"},
+        {"name": "io.github.f-tiger/bpj-trade-tools", "url": "https://baipiaoji.com/api/trade-mcp"},
+        {"name": "io.github.f-tiger/bpj-video-tools", "url": "https://baipiaoji.com/api/video-mcp"}
+      ]
+    },
+    "getecoback": {
+      "source": "sites/getecoback",
+      "license": {"scope": "documentation mirror and separately licensed sync script", "evidence": "sites/getecoback/mcp/public-mirror/LICENSE"},
+      "attribution": "tagged site handoff and measured actions; shared merchant tag earnings remain unallocated",
+      "servers": [{"name": "io.github.f-tiger/hvac-btu-heat-klimaanlage", "url": "https://getecoback.com/mcp/v1"}],
+      "legacy_aliases": [
+        {"name": "io.github.f-tiger/getecoback-raumklima", "url": "https://getecoback.com/mcp"},
+        {"name": "io.github.f-tiger/getecoback-climate-weather", "url": "https://getecoback.com/mcp/"}
+      ]
+    },
+    "thedollscout": {
+      "source": "sites/thedollscout",
+      "license": {"scope": "publicly readable source; no runtime reuse grant identified"},
+      "attribution": "collection and home MCP usage are separate; shared merchant tag earnings remain unallocated",
+      "servers": [
+        {"name": "io.github.f-tiger/dollscout-collecting", "url": "https://thedollscout.com/mcp"},
+        {"name": "io.github.f-tiger/tds-home-tools", "url": "https://thedollscout.com/api/home-mcp"}
+      ]
+    }
+  }
+}

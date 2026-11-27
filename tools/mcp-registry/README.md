@@ -16,6 +16,23 @@ MCPB Node bundles. Local execution is separate from the existing remote ECO
 service; the local variant's tool set and delivery differ. Package installation
 and a registry listing do not establish genuine customers or successful usage.
 
+## Primary-site inventory and drift checks
+
+[`primary-inventory.json`](primary-inventory.json) records the primary endpoints,
+Registry identities, source and license scope, and attribution coverage. A
+Registry listing describes distribution. Source visibility and software
+redistribution rights need their own evidence. Partner earnings on shared tags
+remain account-level until a site-specific merchant report is available.
+
+The existing fleet heartbeat checks each canonical endpoint against its active
+Registry record, exercises the legacy handshake and modern request routing,
+and verifies the public BPJ quote cost-completeness fixture. Historical EcoBack
+aliases are reported separately. The probe sends a QA header and no customer
+inputs. It does not create accounts, orders or subscriptions. Use
+`python3 tools/mcp-registry/primary_audit.py --site SITE --strict` after a site
+deployment for a single-site live receipt. Keep explicit QA exclusions and a
+first-party task/result aggregate alongside each material MCP release.
+
 ## Verification and publication
 
 On a pull request the workflow validates manifests, checks live `initialize`

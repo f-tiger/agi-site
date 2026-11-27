@@ -69,6 +69,17 @@ class RemoteTests(unittest.TestCase):
         self.assertEqual([line['kind'] for line in fees[0][2:]], ['freight', 'insurance'])
         self.assertEqual(fees[1], fees[0][:2])
 
+    def test_published_quote_cannot_decide_target_from_provisional_cost(self):
+        complete, provisional = self.responses('0.5.2', quotedOrder={'meetsTarget': None})[2:]
+        complete['result']['structuredContent']['quotedOrder'] = {'meetsTarget': True}
+        with patch.object(registry, 'request_json', side_effect=[complete, provisional]):
+            registry.verify_bpj_quote(registry.BPJ_AI_ENDPOINT, require_cost_gate=True)
+        for value in (True, False):
+            provisional['result']['structuredContent']['quotedOrder']['meetsTarget'] = value
+            with patch.object(registry, 'request_json', side_effect=[complete, provisional]):
+                with self.assertRaisesRegex(ValueError, 'target guard mismatch: provisional'):
+                    registry.verify_bpj_quote(registry.BPJ_AI_ENDPOINT, require_cost_gate=True)
+
     def test_quote_probe_scope_and_version_threshold(self):
         for name, version in [(registry.BPJ_AI_NAME, '0.5.1'), (registry.BPJ_AI_NAME, '0.5.2-rc.1'),
                               ('io.github.f-tiger/example', '9.0.0')]:

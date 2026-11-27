@@ -76,7 +76,7 @@ def requires_bpj_quote_probe(manifest):
     return version > (0, 5, 2) or (version == (0, 5, 2) and not separator)
 
 
-def verify_bpj_quote(url):
+def verify_bpj_quote(url, require_cost_gate=False):
     common = {
         'incoterm': 'CIF', 'costCurrency': 'CNY', 'quoteCurrency': 'USD',
         'quotePerCostUnit': 0.14, 'quantity': 500, 'unitProductCost': 36,
@@ -106,6 +106,11 @@ def verify_bpj_quote(url):
                 output.get('quoteCurrency') != 'USD' or output.get('minimumUnitPrice') != floor or
                 output.get('costCompleteness') != {'status': status, 'missing': missing}):
             raise ValueError('Live BPJ synthetic CIF contract mismatch: ' + status)
+        if require_cost_gate:
+            quoted = output.get('quotedOrder')
+            expected = True if status == 'costs_entered' else None
+            if not isinstance(quoted, dict) or 'meetsTarget' not in quoted or quoted['meetsTarget'] is not expected:
+                raise ValueError('Live BPJ synthetic CIF target guard mismatch: ' + status)
     print('Live BPJ synthetic CIF verified: confirmed USD 8.12 and provisional missing freight and insurance')
 
 
