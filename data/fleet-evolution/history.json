@@ -1,130 +1,5 @@
 [
   {
-    "as_of": "2026-10-28",
-    "fleet": {
-      "sites": 14,
-      "healthy": 31,
-      "membership_ready": 4,
-      "paid_members": null,
-      "active_members": null,
-      "opportunities": 11,
-      "stale_inputs": 0
-    },
-    "actions": [
-      {
-        "site": "agiscorecard",
-        "kind": "membership_observability",
-        "priority": 68,
-        "reason": "membership aggregate counters are unavailable",
-        "evidence": {
-          "admin_ok": false
-        },
-        "mode": "observe"
-      },
-      {
-        "site": "baipiaoji",
-        "kind": "membership_observability",
-        "priority": 68,
-        "reason": "membership aggregate counters are unavailable",
-        "evidence": {
-          "admin_ok": false
-        },
-        "mode": "observe"
-      },
-      {
-        "site": "getecoback",
-        "kind": "membership_observability",
-        "priority": 68,
-        "reason": "membership aggregate counters are unavailable",
-        "evidence": {
-          "admin_ok": false
-        },
-        "mode": "observe"
-      },
-      {
-        "site": "thedollscout",
-        "kind": "membership_observability",
-        "priority": 68,
-        "reason": "membership aggregate counters are unavailable",
-        "evidence": {
-          "admin_ok": false
-        },
-        "mode": "observe"
-      },
-      {
-        "site": "agiscorecard",
-        "kind": "content_gap",
-        "priority": 55,
-        "reason": "rising demand has no matching page; editorial judgement is required",
-        "evidence": {
-          "count": 4,
-          "query": "jim cramer ai chip stocks",
-          "value": 11450
-        },
-        "mode": "queue"
-      },
-      {
-        "site": "getecoback",
-        "kind": "content_gap",
-        "priority": 55,
-        "reason": "rising demand has no matching page; editorial judgement is required",
-        "evidence": {
-          "count": 23,
-          "query": "byecold infrarotheizung",
-          "value": 49950
-        },
-        "mode": "queue"
-      },
-      {
-        "site": "thedollscout",
-        "kind": "content_gap",
-        "priority": 55,
-        "reason": "rising demand has no matching page; editorial judgement is required",
-        "evidence": {
-          "count": 17,
-          "query": "lets try the viral crumbl labubu",
-          "value": 18550
-        },
-        "mode": "queue"
-      },
-      {
-        "site": "agiscorecard",
-        "kind": "improve_hot_page",
-        "priority": 52,
-        "reason": "prioritize a page with measured reader heat",
-        "evidence": {
-          "page": "/earn/cases/clip-service",
-          "n7": 38,
-          "p7": 16
-        },
-        "mode": "queue"
-      },
-      {
-        "site": "getecoback",
-        "kind": "improve_hot_page",
-        "priority": 52,
-        "reason": "prioritize a page with measured reader heat",
-        "evidence": {
-          "page": "/guide/luftentfeuchter-keller.html",
-          "n7": 6,
-          "p7": 5
-        },
-        "mode": "queue"
-      },
-      {
-        "site": "goldrush",
-        "kind": "ai_discovery",
-        "priority": 48,
-        "reason": "referred traffic exists but no AI-assistant referral is measured",
-        "evidence": {
-          "human_pv_28d": 266,
-          "ai_ref_28d": 0
-        },
-        "mode": "queue"
-      }
-    ]
-  },
-  {
     "as_of": "2026-10-29",
     "fleet": {
       "sites": 14,
@@ -4330,5 +4205,193 @@
         "mode": "queue"
       }
     ]
+  },
+  {
+    "as_of": "2026-11-27",
+    "fleet": {
+      "sites": 14,
+      "healthy": 31,
+      "membership_ready": 4,
+      "paid_members": 0,
+      "active_members": 0,
+      "opportunities": 5,
+      "stale_inputs": 0
+    },
+    "actions": [
+      {
+        "site": "agiscorecard",
+        "kind": "optimize_existing_page",
+        "priority": 80,
+        "reason": "review the source and fit of topic signals mapped to an existing page; missing page-view events do not establish rejected demand",
+        "evidence": {
+          "count": 2,
+          "query": "when are 13f filings due",
+          "page": "ai-stock-exposure.html",
+          "value": 420250
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "agiscorecard",
+        "kind": "membership_readiness_check",
+        "priority": 70,
+        "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
+        "evidence": {
+          "snapshot_date": "2026-11-27T11:22:06.213Z"
+        },
+        "mode": "observe"
+      },
+      {
+        "site": "baipiaoji",
+        "kind": "membership_readiness_check",
+        "priority": 70,
+        "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
+        "evidence": {
+          "snapshot_date": "2026-11-27T11:22:06.213Z"
+        },
+        "mode": "observe"
+      },
+      {
+        "site": "getecoback",
+        "kind": "membership_readiness_check",
+        "priority": 70,
+        "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
+        "evidence": {
+          "snapshot_date": "2026-11-27T11:22:06.213Z"
+        },
+        "mode": "observe"
+      },
+      {
+        "site": "thedollscout",
+        "kind": "membership_readiness_check",
+        "priority": 70,
+        "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
+        "evidence": {
+          "snapshot_date": "2026-11-27T11:22:06.213Z"
+        },
+        "mode": "observe"
+      },
+      {
+        "site": "baipiaoji",
+        "kind": "membership_demand_review",
+        "priority": 64,
+        "reason": "review product-matched own tasks, repeat use and the paid increment before membership expansion; referrer events do not establish qualified buyers",
+        "evidence": {
+          "external_referrer_page_view_events": 580,
+          "paid_members": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "agiscorecard",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "topic-signal overlap has no matching page; apply the buyer, source, country and distribution gates before expansion",
+        "evidence": {
+          "count": 4,
+          "query": "rzai stock",
+          "value": 17900
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "getecoback",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "topic-signal overlap has no matching page; apply the buyer, source, country and distribution gates before expansion",
+        "evidence": {
+          "count": 20,
+          "query": "makita heizlüfter",
+          "value": 88050
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "thedollscout",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "topic-signal overlap has no matching page; apply the buyer, source, country and distribution gates before expansion",
+        "evidence": {
+          "count": 14,
+          "query": "cat mode labubu",
+          "value": 86750
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "agiscorecard",
+        "kind": "improve_hot_page",
+        "priority": 52,
+        "reason": "review observed page-event activity and source quality; activity is not verified people or buying intent",
+        "evidence": {
+          "page": "/agents/",
+          "n7": 220,
+          "p7": 74
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "getecoback",
+        "kind": "improve_hot_page",
+        "priority": 52,
+        "reason": "review observed page-event activity and source quality; activity is not verified people or buying intent",
+        "evidence": {
+          "page": "/waeschetrockner-oder-luftentfeuchter.html",
+          "n7": 46,
+          "p7": 1
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "goldrush",
+        "kind": "ai_attribution_review",
+        "priority": 48,
+        "reason": "check source coverage and useful AI arrivals before expanding discovery work; legacy page views do not establish referred people or citations",
+        "evidence": {
+          "legacy_page_view_events": 524,
+          "ai_referrer_events": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "thedollscout",
+        "kind": "ai_attribution_review",
+        "priority": 48,
+        "reason": "check source coverage and useful AI arrivals before expanding discovery work; legacy page views do not establish referred people or citations",
+        "evidence": {
+          "legacy_page_view_events": 3001,
+          "ai_referrer_events": 0
+        },
+        "mode": "queue"
+      }
+    ],
+    "bpj_trade_quote_growth": {
+      "source": "https://baipiaoji.com/api/reach?days=28",
+      "window": {
+        "start": "2026-10-30",
+        "end_exclusive": "2026-11-27",
+        "complete_days": 28,
+        "date_basis": "UTC"
+      },
+      "accounts": null,
+      "actions": {
+        "signup_open": 0,
+        "ready_own": 0,
+        "ready_demo": 0,
+        "needs_info_own": 0,
+        "needs_info_demo": 0
+      },
+      "workbench_use": null,
+      "direct_workbench_accounts": null,
+      "direct_workbench_use": null,
+      "combined_accounts": null,
+      "combined_workbench_use": null,
+      "confirmed_registration_lower_bound": null,
+      "account_source_coverage": [],
+      "use_source_coverage": [],
+      "initial_target": 25,
+      "long_target": 1000,
+      "next_action": "Verify the first-source registration readout before evaluating the signup funnel."
+    }
   }
 ]

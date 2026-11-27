@@ -1,39 +1,55 @@
-# Fleet evolution report — 2026-11-26
+# Fleet evolution report — 2026-11-27
 
 Deterministic, aggregate-only report. Missing data remains unknown; no editorial text, payments or membership rights are changed by this job.
 
 ## Fleet counters
 
 - Sites: 14 (healthy probes: 31)
-- Membership ready: 0 · paid members: 0 · active members: 0
-- Opportunity candidates: 7 · stale inputs: 0
+- Membership ready: 4 · paid members: 0 · active members: 0
+- Opportunity candidates: 5 · stale inputs: 0
 
 ## Priority actions
 
 | Priority | Site | Action | Mode | Evidence |
 |---:|---|---|---|---|
-| 92 | agiscorecard | membership_health | alert | public_ok=True; ready=False |
-| 92 | baipiaoji | membership_health | alert | public_ok=True; ready=False |
-| 92 | getecoback | membership_health | alert | public_ok=True; ready=False |
-| 92 | thedollscout | membership_health | alert | public_ok=True; ready=False |
 | 80 | agiscorecard | optimize_existing_page | queue | count=2; query=when are 13f filings due; page=ai-stock-exposure.html; value=420250 |
+| 70 | agiscorecard | membership_readiness_check | observe | snapshot_date=2026-11-27T11:22:06.213Z |
+| 70 | baipiaoji | membership_readiness_check | observe | snapshot_date=2026-11-27T11:22:06.213Z |
+| 70 | getecoback | membership_readiness_check | observe | snapshot_date=2026-11-27T11:22:06.213Z |
+| 70 | thedollscout | membership_readiness_check | observe | snapshot_date=2026-11-27T11:22:06.213Z |
+| 64 | baipiaoji | membership_demand_review | queue | external_referrer_page_view_events=580; paid_members=0 |
 | 55 | agiscorecard | content_gap | queue | count=4; query=rzai stock; value=17900 |
-| 55 | getecoback | content_gap | queue | count=22; query=makita heizlüfter; value=88050 |
+| 55 | getecoback | content_gap | queue | count=20; query=makita heizlüfter; value=88050 |
 | 55 | thedollscout | content_gap | queue | count=14; query=cat mode labubu; value=86750 |
-| 52 | agiscorecard | improve_hot_page | queue | page=/agents/; n7=203; p7=76 |
-| 52 | getecoback | improve_hot_page | queue | page=/waeschetrockner-oder-luftentfeuchter.html; n7=32; p7=4 |
-| 48 | goldrush | ai_attribution_review | queue | legacy_page_view_events=549; ai_referrer_events=0 |
-| 48 | thedollscout | ai_attribution_review | queue | legacy_page_view_events=2961; ai_referrer_events=0 |
+| 52 | agiscorecard | improve_hot_page | queue | page=/agents/; n7=220; p7=74 |
+| 52 | getecoback | improve_hot_page | queue | page=/waeschetrockner-oder-luftentfeuchter.html; n7=46; p7=1 |
+| 48 | goldrush | ai_attribution_review | queue | legacy_page_view_events=524; ai_referrer_events=0 |
+| 48 | thedollscout | ai_attribution_review | queue | legacy_page_view_events=3001; ai_referrer_events=0 |
+
+## BPJ trade registrations
+
+- Combined registration objective: unknown. First milestone: 25. Long-term goal: 1,000.
+- Registration coverage: unavailable. Usage coverage: unavailable. Confirmed registration lower bound: unknown.
+- Complete UTC window: 2026-10-30 through 2026-11-27 (exclusive).
+- Export quote source. Source-attributed surviving registrations: unknown. Currently email-verified: unknown. New attributed registrations: unknown. New registrations currently email-verified: unknown.
+- Quote actions in the window: signup opened 0, ready own 0, needs information own 0, ready demo 0, needs information demo 0.
+- Attributed accounts through the last complete UTC day: first Workbench use unknown, repeat Workbench use unknown.
+- Workbench milestones in the window: first use unknown, repeat use unknown.
+- Direct Workbench source. Surviving registrations: unknown. Currently email-verified: unknown. New attributed registrations: unknown. New registrations currently email-verified: unknown.
+- Direct Workbench source usage through the last complete UTC day: first use unknown, repeat use unknown. Window milestones: first use unknown, repeat use unknown.
+- Registration scope: known, non-test accounts with a verified first source. Usage counts each account's first and second distinct UTC days with a successful own-input web Workbench task. Browser actions can repeat. Email verification is a separate account status.
+- Next action: Verify the first-source registration readout before evaluating the signup funnel.
+- [First-party conversion report](https://baipiaoji.com/api/reach?days=28)
 
 ## Input freshness
 
 | Input | Date | Age (days) |
 |---|---|---:|
-| membership | 2026-11-26T11:27:11.286Z | 0 |
-| health | 2026-11-25T18:18:40Z | 1 |
-| ai_referrals | 2026-11-25T18:19:08Z | 1 |
-| opportunities | 2026-11-25 | 1 |
-| autopilot_receipt | 2026-11-26 | 0 |
+| membership | 2026-11-27T11:22:06.213Z | 0 |
+| health | 2026-11-26T17:59:45Z | 1 |
+| ai_referrals | 2026-11-26T18:00:11Z | 1 |
+| opportunities | 2026-11-26 | 1 |
+| autopilot_receipt | 2026-11-27 | 0 |
 
 ## Growth directions
 

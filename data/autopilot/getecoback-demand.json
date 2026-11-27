@@ -90,22 +90,8 @@
   },
   {
    "heat": {
-    "n7": 16,
-    "p7": 7
-   },
-   "kind": "value",
-   "match": 1.0,
-   "page": "guide/klimaanlage-wann-kaufen.html",
-   "q": "black friday klimaanlage",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-11-25",
-   "v": 1950
-  },
-  {
-   "heat": {
-    "n7": 16,
-    "p7": 7
+    "n7": 32,
+    "p7": 8
    },
    "kind": "value",
    "match": 0.667,
@@ -115,87 +101,6 @@
    "source": "related-queries",
    "stand": "2026-11-20",
    "v": 1250
-  },
-  {
-   "heat": {
-    "n7": 13,
-    "p7": 0
-   },
-   "kind": "value",
-   "match": 1.0,
-   "page": "guide/heizkosten-vergleich-rechner.html",
-   "q": "infrarotheizung",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-11-25",
-   "v": 1050
-  },
-  {
-   "heat": {
-    "n7": 6,
-    "p7": 0
-   },
-   "kind": "value",
-   "match": 1.0,
-   "page": "guide/klimaanlage-mit-heizfunktion.html",
-   "q": "heizen mit klimaanlage",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-11-25",
-   "v": 600
-  },
-  {
-   "heat": {
-    "n7": 6,
-    "p7": 0
-   },
-   "kind": "value",
-   "match": 1.0,
-   "page": "guide/klimaanlage-mit-heizfunktion.html",
-   "q": "klimaanlage heizen",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-11-25",
-   "v": 550
-  },
-  {
-   "heat": {
-    "n7": 6,
-    "p7": 0
-   },
-   "kind": "value",
-   "match": 0.917,
-   "page": "guide/klimaanlage-mit-heizfunktion.html",
-   "q": "klimaanlage zum heizen",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-11-25",
-   "v": 550
-  },
-  {
-   "heat": {
-    "n7": 9,
-    "p7": 0
-   },
-   "kind": "value",
-   "match": 0.65,
-   "page": "guide/klimaanlage-40-qm.html",
-   "q": "verkleidung klimaanlage außengerät",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-11-25",
-   "v": 350
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.9,
-   "page": "guide/klimaanlage-mietwohnung-oesterreich.html",
-   "q": "klimaanlage als heizung",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-11-25",
-   "v": 300
   }
  ],
  "first_party_demand": {
@@ -291,26 +196,6 @@
    "source": "related-queries",
    "stand": "2026-11-20",
    "v": 800
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "guide/air-zuma-erfahrungen.html",
-   "q": "vrf klimaanlage",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-11-25",
-   "v": 350
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "guide/air-zuma-erfahrungen.html",
-   "q": "klimaanlage verkleidung",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-11-25",
-   "v": 350
   },
   {
    "kind": "value",
@@ -423,14 +308,19 @@
    "v": 70
   }
  ],
- "generated": "2026-11-26",
+ "generated": "2026-11-27",
  "geo": "DE",
- "heat_source": "measured 2026-11-26 (25 pages); no notes",
+ "heat_source": "measured 2026-11-27 (25 pages); no notes",
  "hot_pages": [
   {
-   "n7": 32,
-   "p7": 4,
+   "n7": 46,
+   "p7": 1,
    "page": "/waeschetrockner-oder-luftentfeuchter.html"
+  },
+  {
+   "n7": 32,
+   "p7": 8,
+   "page": "/guide/klimaanlage-wann-kaufen.html"
   },
   {
    "n7": 31,
@@ -438,14 +328,14 @@
    "page": "/guide/smarte-heizkoerperthermostate-lohnen-sich.html"
   },
   {
-   "n7": 16,
-   "p7": 7,
-   "page": "/guide/klimaanlage-wann-kaufen.html"
-  },
-  {
    "n7": 15,
    "p7": 16,
    "page": "/produkte.html"
+  },
+  {
+   "n7": 14,
+   "p7": 6,
+   "page": "/guide/luftentfeuchter-ratgeber.html"
   },
   {
    "n7": 13,
@@ -454,7 +344,7 @@
   },
   {
    "n7": 13,
-   "p7": 24,
+   "p7": 13,
    "page": "/guide/luftbefeuchter-ratgeber.html"
   },
   {
@@ -469,7 +359,7 @@
   },
   {
    "n7": 11,
-   "p7": 2,
+   "p7": 1,
    "page": "/mcp.html"
   },
   {
@@ -489,11 +379,6 @@
   },
   {
    "n7": 9,
-   "p7": 0,
-   "page": "/guide/klimaanlage-40-qm.html"
-  },
-  {
-   "n7": 9,
    "p7": 5,
    "page": "/guide/luftentfeuchter-keller.html"
   },
@@ -506,7 +391,6 @@
  "how_to_read": "Research candidates only; token matching is not an editorial or market decision. Relative growth is not search volume, and autocomplete is vocabulary evidence only. Underserved requires an observed zero in the matching measurement window; missing page measurements are unknown, and zero arrivals do not establish a title or internal-link cause. First-party evidence contains only aggregate zero-hit record counts, never raw search terms. Freshness, country, independent evidence and the reviewed page catalog must pass tools/eco_evolution.py before prioritising an existing page. This research queue does not publish. The separate getecoback scheduled deployment runs tools/auto_content.py to discover official product specifications, validate evidence and publish at most one substantive guide change per UTC day.",
  "note": "选题输入,不是选题依据。任何由它引出的页面仍要过本站三门与硬内容规则。本文件由 tools/autopilot 每日确定性生成,零 AI、零编造。",
  "offtopic_dropped": [
-  "daikin stylish",
   "beco maxima plus"
  ],
  "site": "getecoback",
