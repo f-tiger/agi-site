@@ -910,7 +910,25 @@ function exactEx105Evidence(query) {
   return null;
 }
 
+const heatedRackPage = '/guide/beheizter-waeschestaender.html';
+export const heatedRackCost = {path:heatedRackPage,id:'kosten-pro-fertig-getrockneter-ladung',tool:'ratgeber_suche'};
+export const heatedRackModels = {path:heatedRackPage,id:'heizstaender-modelle',tool:'ratgeber_suche'};
+
+function heatedRackTask(query) {
+  const otherTask = /\b(?:repar\w*|ersatzteil\w*|defekt\w*|akku\w*|kabelfehler\w*|(?:waerme(?:pumpen)?|waesche|trommel)?trockner\w*|(?:luft)?entfeuchter\w*|easymaxx|luftstrom\w*|luefter\w*|geblaese\w*|ventilator\w*)\b/;
+  const failure = /\b(?:heizt|funktioniert|geht|schaltet|startet|wird)\s+nicht\s+(?:mehr|an|warm)\b/;
+  if (otherTask.test(query) || failure.test(query)) return null;
+  if (/\b(?:ad[ -]*7821|5903887809641|do[ -]*7117[ -]*dr)\b/.test(query)) return heatedRackModels;
+  const rack = /\b(?:(?:beheiz\w*|elektrisch\w*)[ -]+waeschestaender\w*|heiz[ -]*waeschestaender\w*|waeschestaender\w*[ -]+(?:beheiz\w*|mit[ -]+heiz\w*))\b/;
+  if (!rack.test(query)) return null;
+  const energy = /\b(?:strom\w*|kost\w*|verbrauch\w*|watt\w*|heizleist\w*|kwh|cent)\b|\b\d+\s*w\b/;
+  if (energy.test(query)) return heatedRackCost;
+  return /\b(?:kauf\w*|modell\w*|timer\w*|zeitschaltuhr\w*|angebot\w*)\b/.test(query) ? heatedRackModels : null;
+}
+
 export function exactGermanHouseholdTask(query) {
+  const rack = heatedRackTask(query);
+  if (rack) return rack;
   if (asksForComfeeDrainHose(query)) return comfeeDrainHose;
   if (asksAboutBalconyThresholdMoisture(query)) return balconyThresholdMoisture;
   if (asksAboutSweatingIndoorWindow(query) || asksAboutMorningWetWindow(query)) return wetWindowDiagnosis;

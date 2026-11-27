@@ -1427,6 +1427,29 @@ test('German dehumidifier price checks reach the same-seller Black Friday answer
  for(const q of ["Black Friday Klimaanlage 30 Tage Preis prüfen","Luftentfeuchter Black Friday in der Schweiz, was ist der Tiefstpreis in CHF?","Welcher Luftentfeuchter kommt für einen kalten Keller bei 10 Grad infrage?","Hat der Pro Breeze PB-06 mit 12 Litern WLAN?","Der Luftentfeuchter läuft, aber der Tank bleibt leer. Was soll ich prüfen?"]) assert.notEqual(searchEntries(index,q,'de')[0]?.entry.u,target,q);
 });
 
+test('heated rack cost and exact model questions reach separate reviewed answers',()=>{
+ const page='/guide/beheizter-waeschestaender.html';
+ const cost=page+'#kosten-pro-fertig-getrockneter-ladung';
+ const models=page+'#heizstaender-modelle';
+ for(const query of ['Beheizbarer Wäscheständer Stromkosten: 200 W für 6 Stunden bei 30 Cent',
+    'Was kostet ein beheizbarer Wäscheständer pro Ladung im Vergleich zum normalen Wäscheständer?',
+    'Wie viel Heizleistung braucht mein elektrischer Wäscheständer im Vergleich zum normalen Ständer?']){
+   assert.equal(searchEntries(index,query,'de')[0]?.entry.u,cost,query);
+ }
+ for(const query of ['Darf der Adler AD 7821 an eine Zeitschaltuhr?', 'DO7117DR Timer',
+    'Adler 5903887809641', 'Beheizbaren Wäscheständer mit Timer kaufen']){
+   assert.equal(searchEntries(index,query,'de')[0]?.entry.u,models,query);
+ }
+ for(const query of ['Adler AD 7823 Heizkörper Stromkosten', 'Adler AD 7821 defekt Ersatzteil',
+    'Beheizbarer Wäscheständer oder Luftentfeuchter Stromkosten', 'EASYmaxx elektrischer Wäscheständer Lüfter Stromkosten',
+    'Was verbraucht mein elektrischer Wäscheständer mit Ventilator ohne Heizung?',
+    'Was kostet mein elektrischer Wäscheständer mit Lüfter ohne Heizstäbe pro Ladung?',
+    'Was kostet beheizter Wäscheständer oder Entfeuchter?', 'Im Trockner statt auf dem beheizten Wäscheständer?',
+    'Mein Adler AD 7821 heizt nicht mehr', 'DO7117DR geht nicht mehr an']){
+   assert.ok(![cost,models].includes(searchEntries(index,query,'de')[0]?.entry.u),query);
+ }
+});
+
 test('tado X room temperature searches preserve other thermostat and network tasks',()=>{
  const page='/guide/smarte-heizkoerperthermostate-lohnen-sich.html';
  const target=page+'#tado-x-raumtemperatur';

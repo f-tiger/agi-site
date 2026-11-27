@@ -7,8 +7,22 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/beheizter-waeschest
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
 
 ## Kosten pro fertig getrockneter Ladung
-Watt ÷ 1.000 × Stunden × eigener Strompreis ergibt die elektrische Arbeit und ihre Kosten. Ein frei gewähltes Beispiel: 200 W für sechs Stunden sind 1,2 kWh und bei 0,30 €/kWh 0,36 €. Eine niedrige Wattzahl allein beweist keine günstigere Ladung: Dauer, Wäschemenge, Endtrockenheit und zusätzliche Geräte gehören dazu.
-[Eigene Laufzeit berechnen](https://getecoback.com/guide/stromkosten-rechner.html) · [Gleiche Wäscheladung vergleichen](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html).
+
+Watt ÷ 1.000 × Betriebsstunden ergibt bei konstanter Leistung die elektrische Arbeit in kWh. Multipliziere sie mit deinem Strompreis. **200 W für sechs Stunden** ergeben **1,2 kWh** und bei **0,30 €/kWh** geschätzte **0,36 €**. Nutzt das Gerät die Nennleistung nur zeitweise, miss den gesamten Lauf mit einem geeigneten Strommessgerät, sofern die Anleitung das zulässt.
+
+Ein passiver Wäscheständer ohne elektrische Bauteile braucht selbst **0 kWh Strom**. Ein elektrisches Gebläse verbraucht auch ohne Heizstäbe Strom. Ob die Wohnung zusätzlich beheizt oder ein Entfeuchter betrieben werden muss, hängt von deinen Bedingungen ab. Eine kleinere Wattzahl sagt nichts darüber aus, welches Gerät eine Ladung mit weniger Energie bis zum gewünschten Trockengrad bringt.
+
+Wiege oder vergleiche gleich große, ähnlich geschleuderte Ladungen bei ähnlichen Raumbedingungen bis zum gleichen Trockengrad. Notiere die gesamte Zeit und, falls verwendet, zusätzlich die kWh von Entfeuchter oder Lüfter. Wenn dein vorhandener Ständer mit geeigneter Lüftung ausreicht, nutze ihn weiter. [Eigene Laufzeit berechnen](https://getecoback.com/guide/stromkosten-rechner.html) · [Strom anderer Trocknungsmethoden vergleichen](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html).
+
+[Zwei konkrete Geräte und ihre Timer vergleichen](https://getecoback.com/guide/beheizter-waeschestaender.html#heizstaender-modelle)
+
+## Adler AD 7821 und DOMO DO7117DR im Vergleich
+
+**Adler AD 7821, EAN 5903887809641.** Klappbarer Ständer mit **220 W**. Die deutsche Anleitung beschreibt einen Ein-/Aus-Schalter ohne integrierten Timer. Sie schließt externe Zeitschaltuhren und separate Fernsteuerung ausdrücklich aus. Wenn eine automatische Abschaltung am Gerät Pflicht ist, wähle anhand der Anleitung ein Modell mit eingebautem Timer. [Adler Modell und EAN](https://www.adler.com.pl/index.php/de/Main/Produkt/ad_7821) · [Adler Bedienung, Leistung und externer Timer, PDF-Seite 7](https://www.adler.com.pl/dane/manuals/ad_7821.pdf#page=7).
+
+**DOMO DO7117DR.** Der Hersteller weist **150 W** aus. Laut deutscher Anleitung kann der eingebaute Timer nach **2 oder 4 Stunden** abschalten. Das Ende des Timers sagt nichts darüber aus, ob die Wäsche trocken ist. Prüfe anhand der Anleitung, ob Bauform und Aufstellung für deinen Platz passen. [DOMO Daten zum DO7117DR](https://www.domo-elektro.be/de/do7117dr-domo-elektrisch-beheizbarer-waschestander) · [DOMO Timer, PDF-Seite 26](https://www.domo-elektro.be/nl/amfile/file/download/file/1214/product/3459/#page=26).
+
+Vier Stunden bei angenommener konstanter Nennleistung und 0,30 €/kWh ergeben **0,88 kWh und rund 0,26 €** beim Adler sowie **0,60 kWh und 0,18 €** beim DOMO. Das sind Rechenbeispiele. Für den Aufwand pro Ladung zählt der gemessene Verbrauch bis zur gleichen Endtrockenheit. Quellen geprüft am 27. November 2026.
 
 ## Was die Raumluft allein aufnehmen kann
 Die folgende Rechnung beschreibt ein idealisiertes Luftvolumen bei gleichbleibender Temperatur. Bei 12 m², 2,5 m Höhe, 18 °C und 55 % Feuchte sind es bis zur Sättigung rund 207 g zusätzliches Wasser. Das ist keine sichere Wäschemenge und kein zulässiger Feuchtewert für eine Wohnung.
@@ -44,6 +58,9 @@ Verwende eine Abdeckhaube nur wie vom Hersteller vorgesehen. Ob sie schneller tr
 
 ## Dein nächster Schritt
 Eine vergleichbare Ladung bis zur gleichen Trockenheit messen, die gesamte Laufzeit und gegebenenfalls beide Geräte einbeziehen. Bleiben Fenster oder Wände nass, nicht einfach mehr Wärme einsetzen: Feuchtequelle, Lüftung und kalte Flächen prüfen.
+Fehlt dir ein Hygrometer, nutze nach Möglichkeit ein ausgeliehenes Gerät. Anzeige · Hygrometer bei Amazon.de suchen.
+
+Passt ein beheizter Ständer zu deinem Raum und brauchst du einen Timer, prüfe im konkreten Angebot Modellnummer, eingebauten Timer und Lieferumfang. Anzeige · Beheizte Wäscheständer mit Timer bei Amazon.de suchen.
 
 ## Häufige Fragen
 
