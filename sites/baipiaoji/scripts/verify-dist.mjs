@@ -159,6 +159,8 @@ for (const p of pages) {
   // 功能页豁免：404、提交表单、退订页天生就短，短是设计不是缺陷。
   // 豁免走白名单而不是调低阈值——调低阈值等于把这道门关掉。
   if (/(?:^|\/)(404|submit|unsubscribe)\.html$/.test(p)) continue;
+  if (/^dist\/(?:en\/)?studio\/trade-tools\/mcp\/keys\/index\.html$/.test(p) &&
+      txt.includes('<meta name="robots" content="noindex,nofollow,noarchive">')) continue;
   if (!/<h1[\s>]/.test(txt)) continue;
   const main = (txt.match(/<main[\s\S]*?<\/main>/) || [''])[0]
     .replace(/<script[\s\S]*?<\/script>/g, ' ')
