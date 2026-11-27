@@ -489,6 +489,24 @@ function asksForFestiveLightingCost(query) {
   return lights.test(query) && costOrTimer.test(query) && !otherTask.test(query);
 }
 
+export const comfeeDrainHose = {
+  path:'/guide/luftentfeuchter-zieht-kein-wasser.html',
+  id:'comfee-20den7-ablaufschlauch',
+  tool:'ratgeber_suche',
+};
+
+function asksForComfeeDrainHose(query) {
+  const hoseQuestion = /\b(?:(?:ablauf|abfluss|kondensat|ersatz|wasser)[ -]?)?schlauch(?:s|es|mass|durchmesser)?\b|\b(?:dauerablauf|kontinuierlich\w*\s+entleer\w*)\b/;
+  const otherIntent = /\b(?:abluftschlauch|pumpe\w*|bergauf|foerderhoehe|laeng\w*|verlaenger\w*)\b/;
+  if (!hoseQuestion.test(query) || otherIntent.test(query)) return false;
+
+  const models = [...query.matchAll(/\b((?:mddf|cddf)[ -]*\d+[ -]*den[ -]*\d+(?:[ -]*wf\w*)?)(?:-([a-z0-9]+)| +(pro|plus)\b)?\b/g)];
+  if (models.some(([, model,suffix,edition]) => suffix || edition || !/^mddf20den7(?:wf)?$/.test(model.replace(/[ -]/g,'')))) return false;
+  const otherIds = /\b(?:10000650|10000725|4048164103003|4048164103478)\b/;
+  if (otherIds.test(query)) return false;
+  return models.length > 0 || /\b(?:10000651|10000726|4048164103010|4048164103485)\b/.test(query);
+}
+
 export const comfeeVariant = {
   path:'/guide/luftentfeuchter-keller.html',
   id:'modell-comfee-mddf20',
@@ -875,6 +893,7 @@ function exactEx105Evidence(query) {
 }
 
 export function exactGermanHouseholdTask(query) {
+  if (asksForComfeeDrainHose(query)) return comfeeDrainHose;
   if (asksAboutBalconyThresholdMoisture(query)) return balconyThresholdMoisture;
   if (asksAboutSweatingIndoorWindow(query) || asksAboutMorningWetWindow(query)) return wetWindowDiagnosis;
   if (asksForBoschDryerDrain(query)) return boschDryerDrain;
