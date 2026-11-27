@@ -60,6 +60,7 @@ jobs:
           python3 sites/agiscorecard/tools/create/build.py
           node sites/agiscorecard/tools/jarvis/build.mjs
           python3 sites/agiscorecard/tools/infrastructure/build.py
+          python3 sites/agiscorecard/tools/gen_agent_surfaces.py
           python3 tools/fleet-analytics/coverage.py --site agi --write
           python3 tools/fleet-analytics/coverage.py --site agi
       - name: Exercise existing local browser regressions
