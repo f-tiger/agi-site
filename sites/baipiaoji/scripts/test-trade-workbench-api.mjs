@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
 import {test} from 'node:test';
 import {database, fixture as chainState, mockChain, setupSites, transfer, TX} from '../../../tools/member-studio/test-fixtures.mjs';
 import {onRequest as accountAPI} from '../functions/api/account.js';
@@ -10,6 +11,7 @@ import {tradeGroups} from '../lib/trade-workbench/engine.mjs';
 import {FREE_DAILY_RUNS, MEMBER_DAILY_RUNS} from '../lib/trade-workbench-access.mjs';
 import {GUEST_DAILY_RUNS, guestTradeQuota} from '../lib/trade-workbench-guests.mjs';
 import {readTradeSignupWorkbenchUse, recordTradeQuoteWorkbenchUse} from '../lib/trade-quote-workbench-use.mjs';
+import {readTradeSignupAccounts} from '../lib/trade-quote-growth.mjs';
 
 const site = 'https://baipiaoji.com';
 const tools = tradeGroups.flatMap(group => group.tools);
@@ -50,6 +52,33 @@ const account = (env, options) => accountAPI({env, request: request('/api/accoun
 function runs(db, id) {
   return db.sql.prepare('SELECT utc_day,runs FROM bpj_trade_workbench_daily WHERE account_id=?').get(id);
 }
+
+test('explicit cohort schema initialization records no accounts or tasks and preserves existing data', async t => {
+  const ctx = await fixture(t);
+  const {db} = ctx;
+  const migration = readFileSync(new URL('../migrations/0003_trade_growth_schema.sql', import.meta.url), 'utf8');
+  const signup = () => readTradeSignupAccounts(db, 0, 2147483647);
+  const usage = () => readTradeSignupWorkbenchUse(db, '2026-11-01', '2026-12-01');
+  assert.equal(await signup(), null);
+  assert.equal(await usage(), null);
+
+  db.sql.exec(migration);
+  assert.deepEqual([...await signup()].map(([source, counts]) => [source, counts.total]),
+    [['bpj_trade_quote', 0], ['bpj_trade_workbench', 0]]);
+  assert.deepEqual([...await usage()].map(([source, counts]) => [source, counts.first_use_total]),
+    [['bpj_trade_quote', 0], ['bpj_trade_workbench', 0]]);
+
+  await userOf(ctx, 'existing-cohort', true);
+  db.sql.exec(`INSERT INTO free_account_signup_sources VALUES ('existing-cohort','bpj_trade_workbench');
+    INSERT INTO bpj_trade_quote_workbench_use VALUES ('existing-cohort','2026-11-27','2026-11-28');`);
+  const before = [await signup(), await usage()];
+  db.sql.exec(migration);
+  assert.deepEqual([await signup(), await usage()], before);
+  assert.equal(before[0].get('bpj_trade_workbench').email_verified_total, 1);
+  assert.equal(before[1].get('bpj_trade_workbench').repeat_use_total, 1);
+  assert.throws(() => db.sql.prepare('INSERT INTO free_account_signup_sources VALUES (?,?)')
+    .run('existing-cohort','bpj_trade_quote'), /UNIQUE constraint failed/);
+});
 
 test('eligible successful web tasks record separate first and repeat UTC days for each signup source', async t => {
   let at = Date.parse('2026-11-27T23:59:50Z');

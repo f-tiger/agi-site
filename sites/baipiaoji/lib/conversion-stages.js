@@ -51,6 +51,35 @@ export const STAGE_ACCOUNTS_DAILY_SQL = `SELECT date(a.created, 'unixepoch') dat
  WHERE a.qa = 0 AND a.created >= ? AND a.created < ?
  GROUP BY date(a.created, 'unixepoch') ORDER BY date`;
 
+// Both cohort readers preserve unknown counts as null. Inspect only the schema
+// when a read fails, so empty but working cohorts need no extra D1 query.
+const TRADE_SCHEMA_SQL = `SELECT
+ COUNT(*) FILTER (WHERE name IN ('free_accounts','free_account_signup_sources','free_account_identities')) signup_sources,
+ COUNT(*) FILTER (WHERE name IN ('free_accounts','free_account_signup_sources','bpj_trade_quote_workbench_use')) workbench_use
+ FROM sqlite_schema WHERE type = 'table'
+ AND name IN ('free_accounts','free_account_signup_sources','free_account_identities','bpj_trade_quote_workbench_use')`;
+
+function tradeReadStatus(counts) {
+  if (!counts) return 'unavailable';
+  return counts.get(TRADE_QUOTE_SIGNUP_SOURCE) && counts.get(TRADE_WORKBENCH_SIGNUP_SOURCE)
+    ? 'available' : 'invalid_result';
+}
+
+async function tradeMeasurementStatus(db, accounts, use) {
+  const status = {signup_sources: tradeReadStatus(accounts), workbench_use: tradeReadStatus(use)};
+  if (!Object.values(status).includes('unavailable')) return status;
+  try {
+    const row = await db.prepare(TRADE_SCHEMA_SQL).first();
+    for (const key of Object.keys(status)) {
+      const count = row?.[key];
+      if (status[key] === 'unavailable' && Number.isInteger(count) && count >= 0 && count < 3) {
+        status[key] = 'schema_missing';
+      }
+    }
+  } catch { /* Without a successful schema check the failed read remains unavailable. */ }
+  return status;
+}
+
 // Reuse one order-source read for both first-source product cohorts. Classify
 // at the complete UTC window's end, excluding today's orders and payments.
 const ORDER_PRODUCTS = {proposalDeck: 'bpj-proposal-deck', tradeWorkbench: 'bpj-trade-toolbox'};
@@ -178,6 +207,7 @@ export async function readConversionStages(db, days, clock = Date.now()) {
     trade_quote_workbench_use: tradeSignupWorkbenchUse.value?.get(TRADE_QUOTE_SIGNUP_SOURCE) ?? null,
     trade_workbench_accounts: tradeSignupAccounts.value?.get(TRADE_WORKBENCH_SIGNUP_SOURCE) ?? null,
     trade_workbench_signup_use: tradeSignupWorkbenchUse.value?.get(TRADE_WORKBENCH_SIGNUP_SOURCE) ?? null,
+    trade_measurement_status: await tradeMeasurementStatus(db, tradeSignupAccounts.value, tradeSignupWorkbenchUse.value),
     missing: [...(!eventsOK ? ['events'] : []), ...(!accountsOK ? ['accounts'] : []), ...(!accountDaysOK ? ['accounts_daily'] : [])],
     definitions: {
       table_review_actions: 'Fixed browser actions since the 2026-11-12 release, split into fictional demo and declared own inputs. Check means structural comparison succeeded; export initiates a download. Neither proves correctness, unique customers, paid demand or revenue. No table content is collected. These events have no user-level channel join.',
@@ -190,6 +220,7 @@ export async function readConversionStages(db, days, clock = Date.now()) {
       trade_quote_workbench_use: 'Unique quote-attributed accounts with a recorded first successful signed-in workbench web result or a second on a different UTC day. The two earliest observed days per account are retained. Total milestones end before today, and first_use and repeat_use count milestones within the complete UTC window. Known examples, CSV, MCP, tests, declared automation and privacy opt-outs are excluded. Calculations on the local quote page are counted separately as anonymous browser actions. A missing or unreadable measurement table returns null.',
       trade_workbench_accounts: 'Surviving non-test accounts with an immutable server-verified signup source from an eligible direct workbench entry. Uses the trade_quote_accounts date and current email-verification rules. Each account has at most one source and the two cohorts are disjoint. A missing or unreadable source table returns null.',
       trade_workbench_signup_use: 'First and repeat use of the web workbench by direct workbench signup accounts. Uses the same first successful own-input result, distinct UTC day, window and exclusion rules as trade_quote_workbench_use. A missing or unreadable measurement table returns null.',
+      trade_measurement_status: 'signup_sources covers both attributed account counts. workbench_use covers both first-use and repeat-use cohorts. available means both cohorts returned valid counts, including measured zeros. schema_missing means a required table was confirmed absent. invalid_result means a returned cohort failed count validation. unavailable means the read could not be verified. Coverage describes the current read and cannot recover earlier observations.',
       acquisition: 'Search clicks and CTR come only from GSC; not supplied by this endpoint. GSC uses Pacific reporting days.',
       usage: 'Client-reported successful result actions from PDF, image and quote tools only; repeats are not deduplicated. Demo and own-input actions are separate. Image completion can include partial batch success. Download means an action, not a verified saved file.',
       other_calc_events: 'Unclassified calc events include navigation, edits and tools without a reviewed success contract; never count the whole calc bucket as completed work.',
