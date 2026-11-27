@@ -174,6 +174,17 @@ class ModelIntent(unittest.TestCase):
                 self.assertEqual(rewrite(original)[0], original)
         alternate_tag = search('Comfee MDDF-20DEN7', 'getecoback-210')
         self.assertEqual(rewrite(alternate_tag)[0], alternate_tag)
+        valid = search('Comfee MDDF-20DEN7')
+        raw_quoted = valid.replace('&amp;', '&').replace('"', "'")
+        self.assertIn("/dp/B07KJX6RDK?tag=getecoback-21'", rewrite(raw_quoted)[0])
+        for tail in ('&amp;k=Ersatzfilter', '&amp;tag=unknown-21', '&variant=WF', '#offer'):
+            original = valid.replace('21"', '21' + tail + '"')
+            self.assertEqual(rewrite(original)[0], original)
+        for original in (
+            valid.replace('www.amazon.de', 'www.amazon.de.example.com'),
+            valid.replace('https://www.amazon.de/s?', 'https://www.example.com/?target=https://www.amazon.de/s?'),
+        ):
+            self.assertEqual(rewrite(original)[0], original)
 
     def test_meacodry_guide_is_discovered_as_humidity_not_cooling(self):
         from build_structure import cat_of, device_of, us_term, usmarket_html

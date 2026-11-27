@@ -28,7 +28,11 @@ VERIFIED_QUERIES = {
 }
 ASIN_BY_QUERY = {query: asin for asin, queries in VERIFIED_QUERIES.items() for query in queries}
 
-SEARCH = re.compile(r'https://www\.amazon\.de/s\?k=([^"\'&<\s]+)&(?:amp;)?tag=' + TAG + r'(?=["\'&<\s]|$)')
+SEARCH = re.compile(
+    r'''(?P<quote>["'])https://www[.]amazon[.]de/s[?]k=(?P<term>[^"'&<>\s#]+)&(?:amp;)?tag='''
+    + re.escape(TAG)
+    + r'''(?P=quote)'''
+)
 
 
 def asin_for(term_raw):
@@ -40,8 +44,8 @@ def asin_for(term_raw):
 
 def rewrite(html):
     def sub(m):
-        asin = asin_for(m.group(1))
-        return f"https://www.amazon.de/dp/{asin}?tag={TAG}" if asin else m.group(0)
+        asin = asin_for(m["term"])
+        return f"{m['quote']}https://www.amazon.de/dp/{asin}?tag={TAG}{m['quote']}" if asin else m.group(0)
     return SEARCH.subn(sub, html)
 
 
@@ -56,15 +60,15 @@ def main():
             touched += 1
             links += n
 
-    # Gate: no verified model may be left pointing at a search page, and every
-    # dp link must carry the tag (an untagged direct link earns nothing).
+    # Reviewed exact queries use their product page. Every direct link
+    # must retain the approved German affiliate tag.
     leaks, untagged = [], []
     for path in sorted(glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True)):
         html = open(path, encoding="utf-8").read()
         rel = os.path.relpath(path, ROOT)
         for m in SEARCH.finditer(html):
-            if asin_for(m.group(1)):
-                leaks.append(f"{rel}: {urllib.parse.unquote_plus(m.group(1))}")
+            if asin_for(m["term"]):
+                leaks.append(f"{rel}: {urllib.parse.unquote_plus(m['term'])}")
         for m in re.finditer(r'https://www\.amazon\.de/dp/([A-Z0-9]{10})(\?tag=([\w-]+))?', html):
             if m.group(3) != TAG:
                 untagged.append(f"{rel}: /dp/{m.group(1)}")
