@@ -1159,44 +1159,6 @@ SKIP_MODELS = {"saugroboter-kaufberatung", "luftbefeuchter-ratgeber", "luftbefeu
 # trade-off we can't back — generic category cards, exactly as the dehumidifier
 # and shade sets already do. ---
 CONTEXT_MODELS = {
- # Split-Cluster (2026-08-31). The site's highest-ticket path was selling the
- # cheapest device on it. The BTU calculator's fourth tier routes every room
- # above 13.500 BTU here because a monoblock is genuinely at its limit — and
- # split-klimaanlage-ohne-kernbohrung and portasplit-vs-monoblock
- # then showed that reader the same monoblock cards as
- # a 15 m² page (EX105 / PAC N90 / Comfee / Klarstein). The whole cluster is
- # built around the Midea PortaSplit, which this site already documents as sold
- # out, so its own premise had no current answer.
- #
- # Two contradictions resolve at once: a CONTEXT_MODELS page also drops out of
- # EB_SIZER, and the sizer's top band was recommending a monoblock on the page
- # whose thesis is that a monoblock has run out of room.
- #
- # Quick-Connect is the German term for what this cluster is about: pre-filled,
- # self-sealing lines, so no flaring tool and no vacuum pump. Models confirmed
- # on amazon.de listings, with public comparison coverage (homeandsmart,
- # klimaanlagentest.de; notebookcheck reported the 9.000 BTU set at 449 €).
- # SEARCH LINKS BY NAME, NO ASIN — candidates exist (B0F7XDNQRN, B0F7XC611X)
- # but today's EX105 closure is exactly why a listing title read through a
- # search index is not verification. They go in when someone opens the listing.
- #
- # Honest order, not commission order: 9.000 BTU first because most readers of
- # this site size below 25 m²; the 12.000 for the rooms the fourth tier sends
- # here; KESSER third because two competing listings for the same model make it
- # the least unambiguous of the three.
- "split-klimaanlage-ohne-kernbohrung": [
-   ("TCL BreezeIn Quick Connect 9.000 BTU", "Quick-Connect, bis ca. 25 m²",
-    "Vorgefüllte Leitungen mit Schnellkupplung — kein Bördeln, kein Vakuumieren. 2,6 kW, R32, kühlt und heizt. In öffentlichen Vergleichen als besonders leise geführt.",
-    "€€€ · ab ca. 450 €", "TCL+BreezeIn+Quick+Connect+9000+BTU", "ac"),
-   ("TCL BreezeIn Quick Connect 12.000 BTU", "Für die großen Räume",
-    "3,4 kW — die Klasse, in die dich der BTU-Rechner oberhalb von 13.500 BTU schickt, weil ein Monoblock dort ausläuft. R32, App- und Sprachsteuerung.",
-    "€€€ · Preis vor Ort prüfen", "TCL+BreezeIn+Quick+Connect+12000+BTU", "ac"),
-   ("KESSER Split Quick Connect 12.000 BTU", "Mit Heizfunktion im Set",
-    "3,4 kW, R32, Montagematerial im Lieferumfang. Achte beim Kauf auf die Variante — von diesem Modell stehen mehrere Angebote nebeneinander.",
-    "€€€ · Preis vor Ort prüfen", "KESSER+Split+Klimaanlage+Quick+Connect+12000+BTU", "ac"),
- ],
-
-
  # Mieter-Winterlinie (2026-08-28). The site's audience is 79 % renter-leaning by
  # landing-page intent (money line 19:1), and until today every one of its 33
  # tenant-facing pages was about cooling. These four are the reversible measures a
@@ -2026,7 +1988,7 @@ def strip_decision_promotions(html, slug):
                     "delonghi-pac-n90-test", "pinguino-pac-ex105-test", "comfee-mpph-09crn7-test", "pro-breeze-luftentfeuchter-test",
                     "meacodry-arete-one-test",
                     "luftentfeuchter-granulat-oder-elektrisch",
-                    "infrarotheizung-thermostat",
+                    "infrarotheizung-thermostat", "split-klimaanlage-ohne-kernbohrung",
                     electricity_fact_check}:
         return html
     markers = ("EB_MODELS", "EB_TOPPICK", "EB_POPUP", "EB_STICKY", "EB_PROFILE",
@@ -2038,8 +2000,10 @@ def strip_decision_promotions(html, slug):
         markers += ("EB_EXPLAINER",)
     if slug == "dachgeschoss-kuehlen":
         markers += ("EB_EXPLAINER", "EB_RADAR")
-    if slug == "luftentfeuchter-granulat-oder-elektrisch":
+    if slug in {"luftentfeuchter-granulat-oder-elektrisch", "split-klimaanlage-ohne-kernbohrung"}:
         markers += ("EB_EXPLAINER", "EB_RADAR")
+    if slug == "split-klimaanlage-ohne-kernbohrung":
+        markers += ("EB_CLIMATE",)
     for marker in markers:
         html = re.sub(r'<!--' + marker + r'-->.*?<!--/' + marker + r'-->\n?', '', html, flags=re.S)
     return html
