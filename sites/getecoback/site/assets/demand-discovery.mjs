@@ -61,6 +61,10 @@ const philipsHumidifierGuide='/guide/luftbefeuchter-ratgeber.html';
 
 export function exactGermanGuide(normalizedQuery) {
  const query=normalizedQuery.trim().replace(/\s+/g,' ');
+ if (/\b(?:luft)?entfeuchter(?:s|n)?\b/.test(query) && /\bluftreiniger(?:s|n)?\b/.test(query) &&
+     /\b(?:oder|vs|versus|unterschied\w*|vergleich\w*|beide)\b/.test(query) &&
+     !/\b(?:strom\w*|kwh|kosten\w*|verbrauch\w*|ersatzfilter)\b/.test(query))
+   return {path:'/guide/luftentfeuchter-oder-luftreiniger.html',id:'der-unterschied-in-einem-satz'};
  const philipsSection=philipsHumidifierFilterSection(query);
  if(philipsSection)return {path:philipsHumidifierGuide,id:philipsSection};
  if(n90ExactName.test(query)||n90ExactEan.test(query))
