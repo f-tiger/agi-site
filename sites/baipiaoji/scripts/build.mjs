@@ -1,21 +1,22 @@
 #!/usr/bin/env node
-import {renderAiIndex,FREE_SUITE_MCP,suiteCount} from './ai-suite-pages.mjs';
-import {aiSuiteFeaturedTool, aiSuiteLead} from './ai-suite-featured.mjs';
+import {FREE_SUITE_MCP,suiteCount} from './ai-suite-pages.mjs';
+import {aiSuiteFeaturedTool} from './ai-suite-featured.mjs';
 import {categoryGuidance,categoryGuideModel,categoryGuideHTML,categoryGuideMarkdown} from './category-guides.mjs';
+import {homepageModel, renderHomepage, homepageMarkdown} from './homepage.mjs';
 import {catalogTaskLink} from './catalog-task-link.mjs';
 import {kimiTaskPanel} from './depth-pages.mjs';
 import {pricingPage,pricingMarkdown,affiliateDisclosure} from './pricing-page.mjs';
 import {buildDevBuying} from './dev-buying-pages.mjs';
-import {buildManju,manjuSearch,manjuHome,manjuEvidenceSummary} from './manju-pages.mjs';
-import {buildAiVideo,aiVideoSearch,aiVideoHome} from './ai-video-pages.mjs';
+import {buildManju,manjuSearch,manjuEvidenceSummary} from './manju-pages.mjs';
+import {buildAiVideo,aiVideoSearch} from './ai-video-pages.mjs';
 import {auditQuota, assessAudit, auditAdvice} from './subscription-audit.mjs';
 import {searchResults} from '../lib/search-results.mjs';
 import {installSearch} from '../lib/search-ui.mjs';
 import {HOME_BLOCKS,HOME_DESTINATIONS,parseHomepageClick} from '../lib/homepage-signals.js';
 import {catalogStatus} from './catalog-status.mjs';
-import {buildAiSolo,aiSoloHome,aiSoloSearch} from './ai-solo-pages.mjs';
-import {buildCodingAccess,accessSearch,accessHome} from './coding-access-pages.mjs';
-import {buildGithubTools,githubToolsHome,githubToolSearch} from './github-tools-pages.mjs';
+import {buildAiSolo,aiSoloSearch} from './ai-solo-pages.mjs';
+import {buildCodingAccess,accessSearch} from './coding-access-pages.mjs';
+import {buildGithubTools,githubToolSearch} from './github-tools-pages.mjs';
 import {buildSkillDiscovery} from './skill-discovery.mjs';
 import {buildReleaseCheckAssets} from './release-check-assets.mjs';
 import {buildAccountPages} from './account-pages.mjs';
@@ -37,7 +38,7 @@ import { tradeWorkbenchSearch } from './trade-workbench-pages.mjs';
 import { tradeGroups } from '../lib/trade-workbench/engine.mjs';
 import { TRADE_MCP_TOOLS } from '../lib/trade-mcp-tools.mjs';
 import {efficiencyEntry} from './codex-efficiency-pages.mjs';
-import { audiencesOf, AUDIENCES } from '../functions/api/_agents.js';
+import { AUDIENCES } from '../functions/api/_agents.js';
 // 零依赖静态站构建脚本：读取 data/*.json，输出完整站点到 dist/
 import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, existsSync, readdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -45,6 +46,9 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
+const homepageStyle = 'homepage.css';
+const homepageStyleVersion = createHash('sha256')
+  .update(readFileSync(join(root, 'assets', homepageStyle))).digest('hex').slice(0, 12);
 const site = JSON.parse(readFileSync(join(root, 'data/site.json'), 'utf8'));
 const RAW_TOOLS = JSON.parse(readFileSync(join(root, 'data/tools.json'), 'utf8'));
 // 友情链接：只渲染 enabled 的条目，全部加 nofollow 以免权重外流到不可控站点
@@ -502,7 +506,7 @@ function gateOf(path) {
  return `<section class="reg-gate bpj-account-cta" data-account-gate><h2>${zh?'登录免费账户后使用':'Sign in to your free account to use this tool'}</h2><p>${zh?'使用邮箱和密码登录，用户名作为唯一站内显示名，并同步你的关注清单。该工具不要求购买付费云会员。':'Use email and password to sign in, choose a unique display name, and sync your followed tools. Paid cloud membership is not required for this tool.'}</p><a href="${BASE}/account?next=${encodeURIComponent(pub(path))}">${zh?'免费注册 / 登录':'Join free / Sign in'} →</a><p>${zh?'旧邮箱订阅和浏览器解锁标记不能用于登录。':'An old email subscription or browser unlock flag is not a login account.'}</p></section>`;
 }
 
-function layout({ title, description, path, body, wide, schema, noindex, feed, privacyNotice, mediaAlternates = [] }) {
+function layout({ title, description, path, body, wide, schema, noindex, feed, privacyNotice, mediaAlternates = [], homepage = false }) {
   const canonical = `${BASE}${pub(path)}`;
   const featured = aiSuiteFeaturedTool(pub(path));
   const shareImage = featured ? `${site.base_url}/social/ai-featured/${featured.id}.png` : '';
@@ -535,13 +539,14 @@ function layout({ title, description, path, body, wide, schema, noindex, feed, p
 <meta property="og:locale" content="${LOCALE.code === 'zh' ? 'zh_CN' : 'en_US'}">
 <link rel="alternate" type="application/rss+xml" title="${esc(NAME)}" href="${BASE}/feed.xml">${feed ? `\n<link rel="alternate" type="application/rss+xml" title="${esc(feed.title)}" href="${esc(feed.href)}">` : ''}\n<link rel="alternate" type="application/json" title="Verified free-tier snapshot" href="${site.base_url}/limits.json">\n<link rel="alternate" type="application/json" title="Verified free-tier changes (incremental: ?since=YYYY-MM-DD)" href="${site.base_url}/api/changes">${noindex ? '' : '\n' + hreflang(path)}
 <link rel="stylesheet" href="${site.base_url}/style.css">
-${shellHead(site.base_url)}
+${shellHead(site.base_url)}${homepage ? `
+<link rel="stylesheet" href="${site.base_url}/${homepageStyle}?v=${homepageStyleVersion}">` : ''}
 ${(schema || []).map(jsonLd).join('\n')}
 ${/\/account(?:\.html)?$/.test(path)?'':analyticsOf(path === '/' || path === '/index.html')}
 ${growthMarkup(new URL(canonical).pathname)}
 </head>
-<body class="bpj-shell${(wide || body.includes('class="rail"')) ? ' has-rail' : ''}">
-${shellHeader({lang:LOCALE.code,path:pub(path),alternates:(path.startsWith('/travel') && !hasEnTravel(path) ? LOCALES.filter(l=>l.code==='zh') : LOCALES).map(l=>({lang:l.code,href:site.base_url+l.dir+pub(path==='/404.html'?'/':path)}))})}
+<body class="bpj-shell${(wide || body.includes('class="rail"')) ? ' has-rail' : ''}${homepage ? ' bpj-home-page' : ''}">
+${shellHeader({lang:LOCALE.code,path:pub(path),homepage,alternates:(path.startsWith('/travel') && !hasEnTravel(path) ? LOCALES.filter(l=>l.code==='zh') : LOCALES).map(l=>({lang:l.code,href:site.base_url+l.dir+pub(path==='/404.html'?'/':path)}))})}
 <div id="bpj-main" tabindex="-1"></div>
 ${GATED_TOOLS.has(path)?body.replace(/(<main\b[^>]*>)/, '$1'+gateOf(path)):body}
 ${shellRelated(LOCALE.code,pub(path))}
@@ -888,74 +893,6 @@ const sponsorOf = () => site.sponsor?.url
   ? `<a class="sponsor" href="${esc(site.sponsor.url)}" target="_blank" rel="noopener nofollow"><b>${UI('sponsor_label', '本周推荐')}</b>${esc(site.sponsor.name)} — ${esc(site.sponsor.text)}</a>`
   : `<div class="sponsor is-empty"><b>${UI('sponsor_label', '本周推荐')}</b>${UI('sponsor_empty', '虚位以待')}${site.contact_email ? ` · <a href="mailto:${esc(site.contact_email)}">${UI('sponsor_cta', '联系投放')}</a>` : ''}</div>`;
 
-// 首页智能体区块下的「新 Agent / MCP 监控」联动条（2026-09-22，owner：「要和首页联动」）。
-// 首页 243 pv/28d 是全站第一页，而 /agents/ 上线后只有 5 pv、且只从 nav 里一个词进得去。
-// 不替换任何现有区块——首页此前没有区块级点击仪器，「换掉谁」在 D1 里答不了（bpjEv('home') 同日装上，
-// 28 天后按读数定）。条目只取最新 6 条、全部来自 data/agent-watch.json，链接进站内详情页，零外链零联盟。
-// 2026-09-22 重构：联动条改为「按你是谁选门」六个入口（受众计数机械推导）+ 最新 6 条人工收录；
-// 链接全部指向 agents 面自己的页（受众页 / 类目页 / 记录页），零外链零联盟。
-const agentWatchStrip = () => {
-  const all = AGENT_WATCH.agents || [];
-  if (!all.length) return '';
-  const zh = LOCALE.code === 'zh';
-  const list = [...all].filter((a) => a.origin !== 'mcp-registry')
-    .sort((a, b) => String(b.first_seen || '').localeCompare(String(a.first_seen || '')) || String(a.name).localeCompare(String(b.name)))
-    .slice(0, 6);
-  const audN = Object.fromEntries(AUDIENCES.map((k) => [k, 0]));
-  for (const a of all) for (const k of audiencesOf(a)) audN[k]++;
-  const doors = AUDIENCES.map((k) => `<a href="${BASE}/agents/for/${k}.html"><b>${esc(AGENT_VOCAB.audiences[k][zh ? 'zh' : 'en'])}</b><span>${audN[k]}</span></a>`).join('');
-  const items = list.map((a) => `<li><a href="${BASE}/agents/${esc(a.slug)}.html">${esc(a.name)}</a><span>${esc(zh ? (AGENT_VOCAB.status[a.status]?.zh || a.status) : a.status)} · ${esc(zh ? (AGENT_VOCAB.categories[a.category]?.zh || a.category) : (AGENT_VOCAB.categories[a.category]?.en || a.category))} · ${esc(a.first_seen)}</span></li>`).join('');
-  return `<div class="agent-watch" data-home-block="agent-watch">
-  <p class="agent-watch-h"><b>${zh ? 'Agent 与 MCP 监控目录' : 'Agents & MCP watch'}</b> · ${zh ? `${AGENT_N} 条记录（${AGENT_CURATED_N} 条人工收录 + 官方 MCP 注册表），每条带官方来源与 URL 核验日期` : `${AGENT_N} records (${AGENT_CURATED_N} curated + the official MCP registry), each with an official source and per-URL check dates`} · <a href="${BASE}/agents/">${zh ? '看全部 →' : 'See all →'}</a></p>
-  <nav class="agent-watch-doors">${doors}</nav>
-  <ul>${items}</ul>
-</div>`;
-};
-
-// 首页顶部的 Agent 与 MCP 目录区块（2026-09-22 第三轮，owner：「首页不够凸显 agents…也没有搜索」）。
-// 紧跟 hero，是首页第一个内容区块：专属搜索框（agents-index.json，事件 /gs/agents/…）+ 六扇受众门 +
-// 「有本站免费额度记录的 Agent」（重点 = 与本站已核实数据交叉的那些，规则可解释，不靠感觉排）+ 类目计数。
-// data-home-block="agents" 让区块级点击仪器（第 21 条）能单独读它。
-const agentsHomeBlock = () => {
-  const all = AGENT_WATCH.agents || [];
-  if (!all.length) return '';
-  const zh = LOCALE.code === 'zh';
-  const V = AGENT_VOCAB;
-  const audN = Object.fromEntries(AUDIENCES.map((k) => [k, 0]));
-  for (const a of all) for (const k of audiencesOf(a)) audN[k]++;
-  const catN = {}; for (const a of all) catN[a.category] = (catN[a.category] || 0) + 1;
-  const cats = Object.keys(V.categories).filter((k) => catN[k]).sort((a, b) => catN[b] - catN[a]).slice(0, 6);
-  const featured = all.filter((a) => a.origin !== 'mcp-registry' && a.tool_slug && bySlug.has(a.tool_slug))
-    .sort((a, b) => String(a.name).localeCompare(String(b.name))).slice(0, 8);
-  const curated = all.filter((a) => a.origin !== 'mcp-registry').length;
-  const doors = AUDIENCES.map((k) => `<a href="${BASE}/agents/for/${k}.html"><b>${esc(V.audiences[k][zh ? 'zh' : 'en'])}</b><i>${audN[k]}</i><span>${esc(V.audiences[k][zh ? 'lede_zh' : 'lede_en'])}</span></a>`).join('');
-  return `<section class="agents-home" id="agents" data-home-block="agents">
-  <div class="agents-home-head">
-    <h2 class="group-title">${zh ? 'Agent 与 MCP 目录' : 'Agents & MCP directory'}<span>${all.length}</span></h2>
-    <p class="agents-home-lede">${zh ? `${curated} 条人工收录 + ${all.length - curated} 条官方 MCP 注册表，每条带官方来源与 URL 核验日期。按你是谁选门，或直接搜。` : `${curated} curated records + ${all.length - curated} from the official MCP registry, each with an official source and per-URL check dates. Pick a door by who you are, or search.`}</p>
-    <div class="gs agents-gs" data-idx="${BASE}/agents-index.json" data-tag="agents"><input type="search" placeholder="${zh ? `搜 ${all.length} 条 Agent / MCP：名称、能力、类目` : `Search ${all.length} agents & MCP servers: name, capability, category`}" aria-label="${zh ? '搜索 Agent 与 MCP' : 'Search agents and MCP'}" autocomplete="off"><div class="gs-drop" hidden></div></div>
-  </div>
-  ${catalogStatus(zh,'mcp')}
-  <div class="agents-home-grid">
-    <nav class="agents-doors" aria-label="${zh ? '按受众选' : 'By audience'}">${doors}</nav>
-    <div class="agents-side">
-      <h3>${zh ? '有本站免费额度记录的 Agent' : 'Agents with a verified free-tier record here'}</h3>
-      <ul>${featured.map((a) => `<li><a href="${BASE}/agents/${esc(a.slug)}.html">${esc(a.name)}</a><a class="agents-ft" href="${BASE}/tools/${esc(a.tool_slug)}.html">${zh ? '还免费吗 →' : 'still free? →'}</a></li>`).join('')}</ul>
-      <p class="agents-cats">${cats.map((k) => `<a href="${BASE}/agents/c/${k}.html">${esc(V.categories[k][zh ? 'zh' : 'en'])} <b>${catN[k]}</b></a>`).join('')}<a class="agents-all" href="${BASE}/agents/">${zh ? `全部 ${all.length} 条 →` : `All ${all.length} →`}</a></p>
-    </div>
-  </div>
-</section>`;
-};
-
-const sectionsOf = () => catEntries.map(([k, v]) => `<section class="group" data-cat="${esc(k)}" id="${esc(k)}">
-  <h2 class="group-title">${esc(v)}<span>${countOf(k)}</span></h2>
-  ${k==='video'?videoEntry(BASE,LOCALE.code==='zh','home-directory'):''}
-  <div class="grid">
-${tools.filter((t) => t.category === k).sort((a, b) => (b.hot ? 1 : 0) - (a.hot ? 1 : 0)).map((t, i) => toolCard(t, t.hot && i < 3 ? i + 1 : 0)).join('\n')}
-  </div>
-${k === 'agent' ? agentWatchStrip() : ''}
-</section>`).join('\n');
-
 // 方案卡片：痛点入口的核心资产
 function planCard(s) {
   const marks = s.steps.slice(0, 4).map((st) => {
@@ -995,13 +932,6 @@ function hustleCard(h) {
   <span class="plan-foot"><span class="plan-marks">${marks}<i>${h.steps.length} ${UI('steps_unit', '步')} · ¥0</i></span><b>${UI('hustle_cta', '看作业')} →</b></span>
 </a>`;
 }
-
-const indexBodyOf = () => {
- const zh=LOCALE.code==='zh', tr=(a,b)=>zh?a:b;
- const featured=[['/studio/pdf-tools','PDF',tr('PDF 工具','PDF tools'),tr('合并、拆分和整理文档','Merge, split and organize documents')],['/studio/product-images','IMG',tr('商品图片','Product images'),tr('批量调整尺寸与导出','Resize and export a batch of images')],['/studio/video-variants','▶',tr('视频变体','Video variants'),tr('用现有素材制作多版视频','Create video variations from your assets')],['/work-plan','PLAN',tr('AI 工作规划','AI work planner'),tr('按岗位与工作量选择工具','Match tools to your role and workload')]];
- const lanes=[['create',tr('做内容，交付作品','Create and deliver'),tr('从文件处理到制作简报，把素材变成可交付结果。','Move from source files to a deliverable, with a practical production brief.'),[['/studio/quote-builder?source=home',tr('为客户制作报价','Build a client quote')],['/studio/',tr('全部自研工具','All BPJ tools')],['/video/',tr('视频工作室','Video studio')],['/workbench/creatorops','CreatorOps']]],['choose',tr('选工具，算清额度','Choose with confidence'),tr('先核对限制、成本和商用条件，再决定用什么。','Check limits, costs and commercial-use conditions before choosing.'),[['/work-plan',tr('岗位工作方案','Plan your workflow')],['/llm-api-calculator',tr('API 额度计算','API quota calculator')],['/workbench/quotawatch-pro','QuotaWatch Pro']]],['launch',tr('构建产品，检查发布','Build and launch'),tr('发现开发工具，整理发布素材，核对真实交付需求。','Discover development tools, prepare launch materials and check delivery needs.'),[['/coding-quota-board',tr('编程工具对比','Compare coding tools')],['/workbench/launchdesk','LaunchDesk'],['/studio/release-check',tr('收费应用验收试点','Paid-app review pilot')]]]];
- return `${railOf()}<main class="stage bpj-home"><section class="bpj-home-hero" data-home-block="hero"><div class="bpj-home-copy"><p class="bpj-eyebrow">${tr('白嫖计 · 有来源的 AI 工具目录','BPJ · Source-backed AI tools')}</p><h1>${tr('先查免费额度，<br>再选 AI 工具。','Check the limits.<br>Choose your AI tool.')}</h1><p>${tr('查免费额度、使用限制和商用条件；目录收录与额度核实分开标注。','Compare reviewed allowances, limits and terms. New listings show their pricing review status.')}</p>${gsOf()}<div class="bpj-quick">${LOCALE.code==='zh'?'<a href="/manju/">帧选目录 · 找漫剧</a>':''}<a class="bpj-primary-cta" href="${BASE}/#directory">${tr('按类别查免费额度','Browse free-tier limits')}</a><a href="${BASE}/github-tools/">${tr('找 GitHub 项目','Find GitHub projects')}</a><a href="${BASE}/agents/">${tr('找 Agent / MCP','Find agents / MCP')}</a><a href="${BASE}/#ai-tools">${tr('自研 AI 工具','BPJ AI tools')}</a><a class="bpj-home-toolbox" href="${BASE}/studio/">${tr('直接用 BPJ 工具','Use BPJ tools')}</a></div><p class="bpj-proof">${tr('目录无需注册。PDF 与图片工具可在本地试用。','Browse without signing up. Try PDF and image tools locally.')}</p></div><div class="bpj-feature-stage" id="studio" data-home-block="featured-tools"><div class="bpj-preview-top"><span>${tr('BPJ 自研工具','Tools made by BPJ')}</span><a href="${BASE}/studio/">${tr('工具箱','Toolbox')} ↗</a></div><a class="suite-home-lead" href="${BASE}${aiSuiteLead.path}">${esc(aiSuiteLead.title[LOCALE.code])}</a><div class="bpj-preview-grid">${featured.map(([u,i,n,d])=>`<a class="bpj-feature-tile" href="${BASE}${u}" data-bpj-next><span class="bpj-task-icon" aria-hidden="true">${i}</span><h2>${n}</h2><p>${d}</p><span aria-hidden="true">↗</span></a>`).join('')}</div></div></section>${renderAiIndex({BASE,lang:LOCALE.code,esc,home:true})}${LOCALE.code==='zh'?manjuHome():aiVideoHome()}${aiSoloHome(BASE,LOCALE.code==='zh')}${accessHome(BASE,LOCALE.code==='zh')}${githubToolsHome(BASE,LOCALE.code==='zh')}<section id="directory" data-home-block="directory"><div class="bpj-section-head"><div><p class="bpj-eyebrow">${tr('有来源的工具目录','SOURCE-BACKED DIRECTORY')}</p><h2>${tr('先查限制，再选 AI 工具','Know the limits before you choose')}</h2><p>${tr('收录','Explore')} ${tools.length} ${tr('个第三方 AI 工具；目录收录与额度核实分开标注。','third-party AI tools. Directory listings and verified allowances are labeled separately.')}</p></div><a href="${BASE}/method">${tr('我们如何核实','How we verify')} ↗</a></div><div class="bpj-directory-grid" id="dirs">${catEntries.map(([k,v])=>`<a href="${BASE}/c/${k}"><strong>${esc(v)}</strong><span>${esc(categoryGuidance(k,LOCALE.code).question)}</span><span>${countOf(k)} ${tr('个工具','tools')} ↗</span></a>`).join('')}</div></section>${limitCheckEntry(LOCALE.code,BASE)}<section id="plans" data-home-block="task-lanes"><div class="bpj-section-head"><div><p class="bpj-eyebrow">${tr('你的下一步','YOUR NEXT STEP')}</p><h2>${tr('你今天想完成什么？','What are you working on?')}</h2></div><a href="${BASE}/discover/">${tr('查看功能地图','View the feature map')} →</a></div><div class="bpj-task-lanes">${lanes.map(([id,n,d,links])=>`<article class="bpj-task-lane"><h3>${n}</h3><p>${d}</p>${links.map(([u,t])=>`<a href="${BASE}${u}" data-bpj-next>${t} →</a>`).join('')}</article>`).join('')}</div></section>${agentsHomeBlock()}<section class="bpj-home-agent" id="money"><div><p class="bpj-eyebrow">${tr('可直接引用的数据','DATA YOU CAN REUSE')}</p><h2>${tr('让你的 Agent 也能找到答案','Connect your agent to verified data')}</h2><p>${tr('开放 API、MCP 和功能地图，均保留来源与可检查的使用边界。','Use the open API, MCP server and feature map, with sources and explicit limitations.')}</p></div><div><a href="${BASE}/mcp">MCP →</a><a href="${BASE}/developers">API →</a><a href="${BASE}/money/">${tr('商业工作流','Business workflows')} →</a></div></section><details class="bpj-home-detail"><summary>${tr('展开完整 AI 工具目录','Browse the complete AI tool directory')}</summary>${sectionsOf()}</details>${subscribeOf('/')}</main>`;
-};
 
 // 「额度不够用了怎么办」——同类里同样不会撞墙的工具。
 // 完全由已有数据推导，零编造：同分类 + 带「完全免费」标签 + 排除自己。
@@ -3286,13 +3216,19 @@ for (const L of LOCALES) {
   }
 
 
+  const home = homepageModel(LOCALE.code, BASE, catEntries, categoryGuidance, countOf);
+  const evidenceDates = RAW_TOOLS.map(tool => tool.limits?.checked).filter(Boolean).sort();
+  writeFileSync(join(outDir, 'index.md'), homepageMarkdown(home));
   writeFileSync(join(outDir, 'index.html'), layout({
-    title: UI('index_title', '{name} - 免费 AI 工具、额度对比与实用工具箱')
-      .replace('{name}', NAME).replace('{n}', tools.length).replace('{p}', solutions.length),
-    description: DESC,
+    title: home.title,
+    description: home.description,
     path: '/',
-    body: indexBodyOf(),
-    wide: true,
+    homepage: true,
+    mediaAlternates: [{type: 'text/markdown', href: home.canonical + 'index.md'}],
+    body: renderHomepage({
+      model: home, esc, search: gsOf(),
+      limitCheck: limitCheckEntry(LOCALE.code, BASE), account: subscribeOf('/'),
+    }),
     schema: [
       {
         '@context': 'https://schema.org',
@@ -3303,7 +3239,7 @@ for (const L of LOCALES) {
             '@id': `${BASE}/#site`,
             url: BASE,
             name: NAME,
-            description: DESC,
+            description: home.description,
             publisher: { '@id': `${BASE}/#org` },
             inLanguage: LANG,
             potentialAction: {
@@ -3328,14 +3264,8 @@ for (const L of LOCALES) {
         license: 'https://creativecommons.org/licenses/by/4.0/',
         creator: { '@id': `${BASE}/#org` },
         isAccessibleForFree: true,
-        dateModified: TODAY,
-        // 以下五项是 Google Dataset Search 的推荐字段，缺了不会报错、但也不会被当成
-        // 「一份真的数据集」收录。全部据实填：sameAs 指镜像仓库（同一实体的第二个落点，
-        // 有助于 AI 引擎把站点与仓库合并成一个实体）；temporalCoverage 用真实核实日期区间；
-        // variableMeasured 就是每条记录真实存在的字段；measurementTechnique 就是我们的方法本身。
         sameAs: 'https://github.com/f-tiger/verified-ai-free-tiers',
-        version: TODAY,
-        temporalCoverage: `${RAW_TOOLS.map((t) => t.limits?.checked).filter(Boolean).sort()[0] || TODAY}/${TODAY}`,
+        ...(evidenceDates.length ? {temporalCoverage: `${evidenceDates[0]}/${evidenceDates.at(-1)}`} : {}),
         measurementTechnique: LOCALE.code === 'zh'
           ? '人工比对厂商官方页面（定价页 / 文档 / 条款）后录入，每条附出处链接与核实日期；官方口径矛盾时如实记为矛盾，第三方转述一律不采信。'
           : 'Manual verification against the vendor\'s own pages (pricing, docs, terms); each record carries the source link and check date. Contradictory official figures are recorded as contradictions; third-party restatements are never accepted.',
@@ -3360,8 +3290,10 @@ for (const L of LOCALES) {
       {
         '@context':'https://schema.org','@type':'ItemList',
         name:LOCALE.code==='zh'?'重点实用工具':'Featured practical tools',
-        numberOfItems:4,
-        itemListElement:localizedJourneys(LOCALE.code,BASE).filter(x=>['pdf','images','video','work-plan'].includes(x.id)).map((x,i)=>({'@type':'ListItem',position:i+1,name:x.title,url:x.url})),
+        numberOfItems: home.tools.length,
+        itemListElement: home.tools.map((tool, index) => ({
+          '@type': 'ListItem', position: index + 1, name: tool.name, url: tool.href,
+        })),
       },
     ],
   }));
@@ -7691,7 +7623,7 @@ ${el.groups.map((g) => `  <section class="limits-table">
 // 站点级文件只出一份（用中文态的数据做统计）
 useLocale(LOCALES[0]);
 writeFileSync(join(dist, 'style.css'), readFileSync(join(root, 'assets/style.css'), 'utf8') + '\n' + readFileSync(join(root, 'assets/studio/studio.css'), 'utf8'));
-for(const f of ['site-shell.css','site-shell.js','account.css','account.js','depth.js','depth.css','catalog-task.js']) cpSync(join(root,'assets',f),join(dist,f));
+for(const f of [homepageStyle,'site-shell.css','site-shell.js','account.css','account.js','depth.js','depth.css','catalog-task.js']) cpSync(join(root,'assets',f),join(dist,f));
 cpSync(join(root, 'assets/studio'), join(dist, 'studio-assets'), { recursive: true });
 cpSync(join(root, 'assets/social/ai-featured'), join(dist, 'social/ai-featured'), { recursive: true });
 cpSync(join(root, 'lib/ai-suite'), join(dist, 'studio-assets/ai-suite'), { recursive: true, filter: source => !source.endsWith('.test.mjs') });
@@ -8024,6 +7956,13 @@ const aiEvaluationBrief = `- [AI answer citation coverage](https://baipiaoji.com
 - [AI output JSON contract check](https://baipiaoji.com/en/studio/ai/ai-json-output-contract) (中文: https://baipiaoji.com/studio/ai/ai-json-output-contract): check sample JSON outputs against required paths and value types. The browser tools process inputs locally, and the pages provide worked examples and MCP call instructions.`;
 
 writeFileSync(join(dist, 'llms.txt'), pubText(`# ${site.name} / Baipiaoji (baipiaoji.com)
+
+
+## Start here / 首页
+
+- [白嫖计中文首页](${site.base_url}/) · [中文 Markdown](${site.base_url}/index.md)
+- [BPJ English homepage](${site.base_url}/en/) · [English Markdown](${site.base_url}/en/index.md)
+- Cite the canonical HTML and the official source on the individual tool record. An availability check only confirms that a link is reachable. For verifiable allowances and check dates, see [limits.json](${site.base_url}/limits.json) and [the verification method](${site.base_url}/en/method).
 
 ## BPJ first-party AI workflow tools
 - AI table rewrite review: https://baipiaoji.com/en/studio/table-review . Compare original and rewritten CSV by unique ID; restore locked strings and retain allowed edits. Free local checking and export, no account or model call. Not semantic or factual verification.

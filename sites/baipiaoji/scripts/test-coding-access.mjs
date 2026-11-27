@@ -20,7 +20,7 @@ for(const x of ACCESS.items){
 const escapeHtml=s=>s.replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;').replaceAll('>','&gt;');
 const live=process.argv.includes('--live');
 for(const prefix of ['','en/']){
- const get=async p=>{if(!live)return readFileSync(new URL('../dist/'+prefix+p,import.meta.url),'utf8');const r=await fetch('https://baipiaoji.com/'+prefix+p.replace('coding-access/index.html','coding-access/'),{headers:{'User-Agent':'bpj-ci-selfcheck'}});assert.equal(r.status,200,p);return r.text();};
+ const get=async p=>{if(!live)return readFileSync(new URL('../dist/'+prefix+p,import.meta.url),'utf8');const r=await fetch('https://baipiaoji.com/'+prefix+p.replace(/index\.html$/,''),{headers:{'User-Agent':'bpj-ci-selfcheck'}});assert.equal(r.status,200,p);return r.text();};
  const html=await get('coding-access/index.html'),data=JSON.parse(await get('coding-access.json')),md=await get('coding-access.md');
  assert.ok(html.includes('rel="canonical" href="https://baipiaoji.com/'+prefix+'coding-access/"'));assert.ok(html.includes('hreflang="en"'));assert.ok(html.includes('FAQPage'));assert.ok(html.includes('coding-access.js'));assert.ok(html.includes('id="access-selection-copy"'));assert.ok(html.includes('data-access-url="https://baipiaoji.com/'+prefix+'coding-access/"'));assert.equal(data.items.length,ACCESS.items.length);
  const lang=prefix?'en':'zh';
@@ -36,7 +36,11 @@ for(const prefix of ['','en/']){
   }
  }
 
- assert.ok((await get('index.html')).includes('href="https://baipiaoji.com/'+prefix+'coding-access/"'));assert.ok(JSON.parse(await get('search-index.json')).some(x=>x.u.includes('/coding-access/#deepseek')));assert.ok(JSON.parse(await get('site-journeys.json')).items.some(x=>x.id==='coding-access'));
+ const home=await get('index.html');
+ const discoverURL='/'+prefix+'discover/';
+ assert.ok(home.includes('href="https://baipiaoji.com'+discoverURL+'"')||home.includes('href="'+discoverURL+'"'),'Homepage links to the task directory');
+ assert.ok((await get('discover/index.html')).includes('href="https://baipiaoji.com/'+prefix+'coding-access/"'),'Task directory links to the localized coding guide');
+ assert.ok(JSON.parse(await get('search-index.json')).some(x=>x.u.includes('/coding-access/#deepseek')));assert.ok(JSON.parse(await get('site-journeys.json')).items.some(x=>x.id==='coding-access'));
 }
 if(!live){let written=[];const env={HITS:hitWriteFixture(written)};const send=async(p,h={})=>onRequestPost({env,request:new Request('https://baipiaoji.com/api/hit',{method:'POST',headers:{'Content-Type':'application/json','User-Agent':'Mozilla/5.0',Referer:'https://baipiaoji.com/coding-access/',...h},body:JSON.stringify({e:'coding_access',p,l:'zh',r:'https://private.example'})})});await send('/coding-access/open/codex');assert.equal(written.length,1);assert.equal(written[0][4],'');await send('/coding-access/copy/selection');assert.equal(written.length,2);assert.equal(written[1][4],'');for(const[p,h]of [['/coding-access/copy/private-selection',{}],['/coding-access/open/selection',{}],['/coding-access/copy/selection',{Referer:'https://baipiaoji.com/coding-access/?qa=1'}],['/coding-access/open/private-key',{}],['/coding-access/arbitrary/codex',{}],['/coding-access/open/codex',{DNT:'1'}],['/coding-access/open/codex',{'sec-gpc':'1'}],['/coding-access/open/codex',{'User-Agent':'bpj-ci-selfcheck'}],['/coding-access/open/codex',{Referer:'https://baipiaoji.com/coding-access/?qa=1'}]])await send(p,h);assert.equal(written.length,2);
  for(const item of ACCESS.items)for(const action of ['open','source']){
