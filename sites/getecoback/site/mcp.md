@@ -382,7 +382,9 @@ Zitiere die kanonische Seite aus citation_url. Wenn citation_markdown_url vorhan
 
 ### Offizieller MCP-Registry-Eintrag
 
-Im [offiziellen Registry-Eintrag für io.github.f-tiger/hvac-btu-heat-klimaanlage](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fhvac-btu-heat-klimaanlage/versions/latest) stehen die registrierte Version und die Verbindungsadresse. Die [Discovery-Datei von EcoBack](https://getecoback.com/.well-known/mcp.json) enthält die Client-Konfiguration.
+Verwende https://getecoback.com/mcp/v1 für die Einrichtung. Der [offizielle Registry-Eintrag](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.f-tiger%2Fhvac-btu-heat-klimaanlage/versions/latest) und die [Discovery-Datei von EcoBack](https://getecoback.com/.well-known/mcp.json) führen zu dieser Adresse. Die bisherigen Adressen /mcp und /mcp/ erreichen denselben Dienst. Ältere Registry-Einträge können eine frühere Version anzeigen.
+
+Der [Quellcode des Online-Dienstes](https://github.com/f-tiger/agi-site/tree/main/sites/getecoback) und der [Quellcode des lokalen Pakets](https://github.com/f-tiger/getecoback-mcp) sind öffentlich einsehbar. Die [Lizenz des Dokumentationsspiegels](https://github.com/f-tiger/getecoback-mcp/blob/main/LICENSE) nennt CC BY 4.0 für die Dokumentation und zusätzlich MIT für das Synchronisationsskript.
 
 ## Quellen und Datenschutz
 

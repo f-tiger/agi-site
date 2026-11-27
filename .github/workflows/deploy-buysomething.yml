@@ -269,7 +269,7 @@ jobs:
           got=$(curl -s --max-time 20 -A "$UA" "$BASE/api/mcp" | python3 -c "import json,sys; print(','.join(sorted(t['name'] for t in json.load(sys.stdin)['tools'])))" 2>/dev/null || echo PARSE_FAILED)
           if [ -n "$exp" ] && [ "$exp" = "$got" ]; then echo "OK    /api/mcp 工具清单与仓库一致($(echo "$got" | tr ',' '\n' | wc -l) 个)"
           else echo "::error::/api/mcp 与仓库不一致 — repo=[$exp] live=[$got]"; fail=1; fi
-          check_json /api/mcp '"/api/mcp" in j["protocol"]["streamable_http"] and len(j.get("resources", [])) >= 1'
+          check_json /api/mcp '"/api/mcp" in j["protocol"]["streamable_http"] and len(j.get("resources", [])) >= 1 and j.get("version") == json.load(open("sites/buysomething/server.json"))["version"]'
           check_json '/api/mcp/duty_stack_rules?part=fees' 'j["fees"]["mpf"]["rate_pct"] == 0.3464 and "rules" not in j'
           check_json '/api/mcp/section_301_ladder?rate_pct=100' 'j["count"] >= 1 and all(r["additional_rate_pct"] == 100 for r in j["ladder"]) and "does not assert membership" in j["coverage_disclaimer"]'
           check_json '/api/mcp/import_rule_changes?matched_in=title_or_abstract&limit=3' 'j["count"] >= 1 and all("federalregister.gov" in c["url"] for c in j["changes"]) and "antidumping" in j["out_of_scope"]'
