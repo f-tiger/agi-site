@@ -54,6 +54,8 @@ test('AGI exposes stateless discovery, stable registered identity and all legacy
   assert.deepEqual(discovery.body.result.supportedVersions, [version, '2025-11-25', '2025-06-18', '2025-03-26']);
   assert.match(discovery.body.result.instructions, /third-party|independent graders/);
   const modern = await post('tools/list', {}, {modern:true});
+  assert.equal(modern.body.result.ttlMs, 0);
+  assert.equal(modern.body.result.cacheScope, 'private');
   const legacy = await post('tools/list');
   assert.equal(legacy.body.result.tools.length, 9);
   assert.deepEqual(modern.body.result.tools, legacy.body.result.tools);

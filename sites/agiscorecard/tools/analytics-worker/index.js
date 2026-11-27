@@ -371,6 +371,7 @@ const fleetWrappedWorker = {
         recordOutcome(outcome);
         return jsonRes({jsonrpc:'2.0', id, result:protocol.modern ? {
           ...result, resultType:'complete', _meta:{[SERVER_INFO_KEY]:MCP_SERVER_INFO},
+          ...(rpc.method === 'tools/list' || rpc.method === 'server/discover' ? {ttlMs:0, cacheScope:'private'} : {}),
         } : result}, 200, headers);
       };
       const invalid = message => {

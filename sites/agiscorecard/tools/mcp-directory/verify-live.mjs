@@ -62,6 +62,8 @@ assert.deepEqual(discovery.result._meta['io.modelcontextprotocol/serverInfo'], M
 assert.equal(legacy.result.protocolVersion, '2025-11-25');
 assert.deepEqual(legacy.result.serverInfo, MCP_SERVER_INFO);
 assert.deepEqual(list.result.tools, MCP_TOOLS);
+assert.equal(list.result.ttlMs, 0);
+assert.equal(list.result.cacheScope, 'private');
 assert.equal(measured.ok, true);
 assert.equal(measured.window.days, 28);
 assert.ok(Array.isArray(measured.groups));
