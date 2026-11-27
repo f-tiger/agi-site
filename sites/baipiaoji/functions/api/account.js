@@ -1,6 +1,7 @@
 import {getGoogleProof,googleRegistrationStatements,clearGoogleProofCookie} from '../../lib/google-account.js';
 import {ACCOUNT_COOKIE,ensureAccounts,getAccount,accountView,normalizeUsername,displayName,validUsername,normalizeEmail,validEmail,accountById,validPassword,validFavorite,passwordRecord,verifyPassword,randomToken,hash,now,cookie,clearCookie,tokenFrom,consumeRate,issueSession} from '../../lib/free-account.js';
 import {issueTradeSignupSource,tradeSignupSourceStatements,missingTradeSignupSourceSchema} from '../../lib/trade-signup-source.mjs';
+import {prepareEcoLaundrySignup} from '../../lib/eco-laundry-signup.js';
 const ACTIONS=new Set(['register','login','recover','logout','change_password','delete_account','favorite_add','favorite_remove','rotate_recovery','link_email','issue_trade_signup_source']);
 const json=(body,status=200,sessionCookie)=>{const headers=new Headers({'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});for(const value of (Array.isArray(sessionCookie)?sessionCookie:[sessionCookie]).filter(Boolean))headers.append('Set-Cookie',value);return new Response(JSON.stringify(body),{status,headers});};
 const error=(code,status)=>json({ok:false,error:code},status);
@@ -64,6 +65,7 @@ async function route(request,env){
   if(await env.HITS.prepare('SELECT account_id FROM free_account_identities WHERE email=?').bind(email).first())return error('email_unavailable',409);
   const password=await passwordRecord(body.password),recovery=randomToken(),id=crypto.randomUUID(),t=now();
   const qa=body.qa===true||/bpj-ci-selftest|playwright/i.test(request.headers.get('User-Agent')||'')?1:0;
+  const ecoClaim=await prepareEcoLaundrySignup(env.HITS,body.eco_intent,request,t,qa);
   try{
    // D1 batch is transactional: either both the account and its unique identity exist,
    // or neither does. A concurrent duplicate cannot leave an orphan account.
@@ -73,12 +75,16 @@ async function route(request,env){
     ...(googleProof?googleRegistrationStatements(env,googleProof,id):[]),
    ];
    try{
-    const source=tradeSignupSourceStatements(request,env.HITS,body.signup_source_claim,id,t,qa);
+    // A verified fleet handoff supplies one source. An invalid Eco proof leaves the quote path available.
+    const source=ecoClaim?[ecoClaim]:tradeSignupSourceStatements(request,env.HITS,body.signup_source_claim,id,now(),qa);
     await env.HITS.batch([...registration,...source]);
    }catch(cause){
     // A missing optional table is a definite failed batch. Keep registration
     // available without attribution during deployment or schema recovery.
-    if(!missingTradeSignupSourceSchema(cause))throw cause;
+    const missingSource=ecoClaim
+      ? /no such (?:table|trigger): (?:main[.])?eco_laundry_signup_(?:daily|claim|count)\b/i.test(String(cause?.message||cause))
+      : missingTradeSignupSourceSchema(cause);
+    if(!missingSource)throw cause;
     await env.HITS.batch(registration);
    }
   }catch(cause){

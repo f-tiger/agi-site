@@ -4194,6 +4194,14 @@ def track_block(cellar=False, window_fit=False, portasplit_url=None, cellar_mode
                    'navigator.doNotTrack!=="1"&&window.doNotTrack!=="1"&&!navigator.globalPrivacyControl&&'
                    'localStorage.getItem("fleet_ga4_choice_v1")!=="denied";}catch(e){return false;}};')
         field += f'mcp_{entry_name}_entry:((n==="page_view"||{click})&&{entry_name}Measure())||undefined,'
+    if laundry_entry_url:
+        marker += (
+            'document.addEventListener("click",function(e){'
+            'var a=e.target&&e.target.closest&&e.target.closest(\'a[href^="/auth/wasch-checkliste"]\');'
+            'if(!a||!e.isTrusted)return;var b="/auth/wasch-checkliste",t=b+"?mcp_entry=waesche-kosten";'
+            'var h=a.getAttribute("href");if(h!==b||!laundryMeasure())return;a.setAttribute("href",t);setTimeout(function(){if(a.getAttribute("href")===t)a.setAttribute("href",b);},0);'
+            '},true);'
+        )
     width_event = ''
     if window_tiktok_guide or window_fit:
         guide_url = ('https://getecoback.com/guide/fenster-beschlagen-innen.html'

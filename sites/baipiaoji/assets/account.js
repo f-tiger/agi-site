@@ -61,6 +61,14 @@ function recoveryBox(code,username){recovery=code;recoveryUser=username;$('accou
 function clearSecrets(){for(const e of document.querySelectorAll('.bpj-account-page input[type=password]'))e.value='';}
 const accountParams = new URLSearchParams(location.search), accountReturn = $('account-return');
 const tradeSignupClaimKey = 'bpj_trade_signup_claim_v1';
+function ecoSignupIntent() {
+  if (qa || ['ci','__qa'].some(key=>accountParams.has(key)) || navigator.webdriver || navigator.doNotTrack==='1' || window.doNotTrack==='1' || navigator.globalPrivacyControl) return;
+  try { if (localStorage.getItem('fleet_ga4_choice_v1')==='denied') return; } catch { return; }
+  const one = key => accountParams.getAll(key).length===1 ? accountParams.get(key) : '';
+  if (one('fleet')!=='getecoback.com' || one('eco_signup')!=='waesche-kosten') return;
+  const intent = [one('state'),one('challenge')];
+  if (intent.every(value=>/^[A-Za-z0-9_-]{43}$/.test(value))) return intent;
+}
 let returnContext;
 try {
  const next = accountParams.get('next');
@@ -171,7 +179,7 @@ $('account-register').onsubmit=e=>{
  busy(e.currentTarget,async()=>{
   const username=$('register-username').value.trim(),email=$('register-email').value.trim();
   const j=await api('register',{username,email,google:googleOnboarding,password:$('register-password').value,
-   consent:$('account-consent').checked,qa,src:location.pathname,signup_source_claim:tradeSignupClaim()});
+   consent:$('account-consent').checked,qa,src:location.pathname,signup_source_claim:tradeSignupClaim(),eco_intent:ecoSignupIntent()});
   if(returnContext?.tradeQuote)clearTradeSignupClaim();
   clearSecrets();googleOnboarding=false;recoveryBox(j.recovery_code,email);
   await refresh();await render();
