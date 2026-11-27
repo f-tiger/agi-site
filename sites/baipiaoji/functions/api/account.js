@@ -76,7 +76,7 @@ async function route(request,env){
    ];
    try{
     // A verified fleet handoff supplies one source. An invalid Eco proof leaves the quote path available.
-    const source=ecoClaim?[ecoClaim]:tradeSignupSourceStatements(request,env.HITS,body.signup_source_claim,id,t,qa);
+    const source=ecoClaim?[ecoClaim]:tradeSignupSourceStatements(request,env.HITS,body.signup_source_claim,id,now(),qa);
     await env.HITS.batch([...registration,...source]);
    }catch(cause){
     // A missing optional table is a definite failed batch. Keep registration

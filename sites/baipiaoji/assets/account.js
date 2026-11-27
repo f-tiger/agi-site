@@ -62,7 +62,7 @@ function clearSecrets(){for(const e of document.querySelectorAll('.bpj-account-p
 const accountParams = new URLSearchParams(location.search), accountReturn = $('account-return');
 const tradeSignupClaimKey = 'bpj_trade_signup_claim_v1';
 function ecoSignupIntent() {
-  if (qa || navigator.webdriver || navigator.doNotTrack==='1' || window.doNotTrack==='1' || navigator.globalPrivacyControl) return;
+  if (qa || ['ci','__qa'].some(key=>accountParams.has(key)) || navigator.webdriver || navigator.doNotTrack==='1' || window.doNotTrack==='1' || navigator.globalPrivacyControl) return;
   try { if (localStorage.getItem('fleet_ga4_choice_v1')==='denied') return; } catch { return; }
   const one = key => accountParams.getAll(key).length===1 ? accountParams.get(key) : '';
   if (one('fleet')!=='getecoback.com' || one('eco_signup')!=='waesche-kosten') return;

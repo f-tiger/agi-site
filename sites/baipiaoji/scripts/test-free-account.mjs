@@ -463,7 +463,7 @@ if(process.argv.includes('--workerd')){
   bpj.env.HITS.batch=async queries=>{
    if(queries.some(q=>q.sql.startsWith('INSERT INTO free_accounts'))&&queries.some(q=>q.sql.includes('INSERT INTO eco_laundry_signup_claim'))){
     rejectedOptionalBatch++;
-    throw Error('D1_ERROR: no such table: main.eco_laundry_signup_daily: SQLITE_ERROR');
+    bpj.sql.exec('DROP TABLE eco_laundry_signup_claim');
    }
    return batch.call(bpj.env.HITS,queries);
   };

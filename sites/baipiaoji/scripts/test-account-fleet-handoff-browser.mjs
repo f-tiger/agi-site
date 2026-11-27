@@ -32,7 +32,7 @@ function htmlFor(lang) {
   return html;
 }
 
-async function fixture({ lang = 'en', sourceLang = lang, fleet = true, user = null, loginUser = USER, google = false, readinessFailure = false, holdAuthorize = false, authorizeFailure = false, authorizeRedirect = null, holdMetadata = false, metadataFailure = false, duplicateParam = null, ecoProof = false, ecoPrivacy = false } = {}) {
+async function fixture({ lang = 'en', sourceLang = lang, fleet = true, user = null, loginUser = USER, google = false, readinessFailure = false, holdAuthorize = false, authorizeFailure = false, authorizeRedirect = null, holdMetadata = false, metadataFailure = false, duplicateParam = null, ecoProof = false, ecoPrivacy = false, qaMarker = null } = {}) {
   const context = await browser.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block' });
   const errors = [], unexpected = [], calls = [], navigations = [], entered = deferred(), release = deferred(), metadataEntered = deferred(), metadataRelease = deferred();
   let currentUser = user, failRead = readinessFailure, failAuthorize = authorizeFailure, failMetadata = metadataFailure;
@@ -95,6 +95,7 @@ async function fixture({ lang = 'en', sourceLang = lang, fleet = true, user = nu
       const url = new URL((lang === 'en' ? '/en' : '') + '/account', ORIGIN);
       if(ecoProof)url.searchParams.set('eco_signup','waesche-kosten');
       else url.searchParams.set('__ci', '1');
+      if(qaMarker)url.searchParams.set(qaMarker,'1');
       if (fleet) { url.searchParams.set('fleet', HOST); url.searchParams.set('state', STATE); url.searchParams.set('challenge', CHALLENGE); url.searchParams.set('lang', sourceLang); }
       if (duplicateParam) url.searchParams.append(duplicateParam, url.searchParams.get(duplicateParam));
       await page.goto(url.href);
@@ -198,7 +199,7 @@ try {
     } finally { await registered.close(); }
   }
 
-  for(const variant of [{},{google:'new'},{ecoPrivacy:true},{duplicateParam:'state'}]){
+  for(const variant of [{},{google:'new'},{ecoPrivacy:true},{duplicateParam:'state'},{qaMarker:'__qa'},{qaMarker:'ci'}]){
     const tracked=await fixture({ecoProof:true,...variant});
     try {
       await tracked.open(!variant.duplicateParam);
@@ -216,7 +217,7 @@ try {
       assert.equal(request.body.google,!!variant.google);
       assert.equal(Object.hasOwn(request.body,'signup_source_claim'),false);
       assert.equal(await tracked.page.evaluate(()=>sessionStorage.getItem('bpj_trade_signup_claim_v1')),null);
-      assert.deepEqual(request.body.eco_intent,variant.ecoPrivacy||variant.duplicateParam?undefined:[STATE,CHALLENGE]);
+      assert.deepEqual(request.body.eco_intent,variant.ecoPrivacy||variant.duplicateParam||variant.qaMarker?undefined:[STATE,CHALLENGE]);
       assert.equal(tracked.posts('credential').some(({body})=>Object.hasOwn(body,'eco_intent')),false);
       await noGrant(tracked);scenarios++;
     } finally {await tracked.close();}
