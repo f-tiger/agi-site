@@ -173,6 +173,7 @@ for (const action of ['register', 'recover']) {
     const h = await harness(), pending = h.holdPost(action);
     action === 'register' ? h.fillRegister() : h.fillRecover();
     const completion = h.submit('account-' + action);
+    await h.until(() => h.requests.some(request => request.body?.action === action), 'public POST began: ' + action);
     await h.switchTo(BOB);
     pending.resolve(reply({...view(action === 'register' ? ALICE : null), recovery_code: CODE}));
     await completion;
