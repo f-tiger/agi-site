@@ -6,7 +6,7 @@ import {asksForCoffeeWaterFilterMatch} from './kaffee-wasserfilter-intent.mjs?v=
 import {asksForTrotecTtk75EcoConditions} from './trotec-ttk75-eco-intent.mjs';
 import {asksForCoolingNoiseComparison} from './cooling-noise-intent.mjs?v=f0bcc0785943';
 import {asksForTesamollWindowProfile} from './tesamoll-profile-intent.mjs';
-import {exactGermanFilterModel} from './exact-filter-intent.mjs';
+import {asksForLevoitCore300SBoxFilter,exactGermanFilterModel} from './exact-filter-intent.mjs';
 import {philipsHumidifierFilterSection} from './philips-humidifier-filter-intent.mjs?v=537af20b39fb';
 import {asksForElectricBlanketCost} from './electric-blanket-cost-intent.mjs';
 import {asksForHygrometerComparison} from './hygrometer-comparison-intent.mjs';
@@ -80,6 +80,10 @@ export function exactGermanGuide(normalizedQuery) {
  if(asksAboutIndoorWindowCondensation(query))
    return {path:'/guide/fenster-beschlagen-innen.html',id:'fenstersauger-gegen-kondenswasser'};
  if(task)return {path:task.path,id:task.id};
+ if(asksForLevoitCore300SBoxFilter(query))
+   return {path:'/guide/luftreiniger-ratgeber.html',id:'levoit-core-300s-lieferumfang'};
+ if(exactGermanFilterModel(query)==='levoit-core-300s')
+   return {path:'/ersatzfilter.html',id:'levoit-core-300s'};
  if (/\b(?:luft)?entfeuchter(?:s|n)?\b/.test(query) && /\bluftreiniger(?:s|n)?\b/.test(query) &&
      /\b(?:oder|vs|versus|unterschied\w*|vergleich\w*|beide)\b/.test(query) &&
      !/\b(?:strom\w*|kwh|kosten\w*|verbrauch\w*|ersatzfilter)\b/.test(query))

@@ -31,8 +31,9 @@ def main():
     source = re.sub(r'\s*<!--EB_FILTER_CARE_DE-->.*?<!--/EB_FILTER_CARE_DE-->\s*', '\n', path.read_text(), flags=re.S)
     block = ('<!--EB_FILTER_CARE_DE--><aside style="max-width:980px;margin:28px auto;padding:24px;border:1px solid #c9d4d5;border-left:4px solid #1f6666;background:#f3f7f5">'
              '<h2>Schon einen Core 300S oder LR 401 zu Hause?</h2><p>Prüfe die deutsche Herstellerzuordnung zum Ersatzfilter und notiere die letzte Pflege direkt in deinem Browser.</p>'
-             '<a href="/ersatzfilter.html">Ersatzfilter finden und Pflege notieren →</a></aside><!--/EB_FILTER_CARE_DE-->')
-    anchor = '</article>' if '</article>' in source else '</main>'
+             '<ul><li><a href="/ersatzfilter.html#levoit-core-300s">Core 300S ohne Pro: Standardfilter prüfen</a></li>'
+             '<li><a href="/ersatzfilter.html#beurer-lr401">Beurer LR 401: Ersatzfilter prüfen</a></li></ul></aside><!--/EB_FILTER_CARE_DE-->')
+    anchor = f'<!--{MARKER}-->'
     if anchor not in source:
         raise ValueError('No German editorial insertion point')
     path.write_text(source.replace(anchor, block + anchor, 1))
