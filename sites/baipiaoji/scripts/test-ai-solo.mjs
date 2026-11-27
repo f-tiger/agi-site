@@ -156,7 +156,7 @@ for (const lang of ['zh', 'en']) {
     assert.equal(item.requiresRegistration, false, 'Public AI Solo reading or consulting incorrectly gated');
     assert(searchURLs.has(item.url), 'Missing search discovery: ' + item.url);
   }
-  for (const route of ['/ai-solo/', '/ai-solo/success/', '/ai-solo/failure/', '/ai-solo/agent/']) assert(home.includes('href="' + origin + prefix + route + '"'), 'Homepage lacks AI Solo entry: ' + lang + route);
+  assert(home.includes('href="' + origin + prefix + '/ai-solo/"'), 'Missing localized homepage entry for AI Solo: ' + lang);
   const pages = new Map();
   for (const leaf of ['', 'mcp/', 'hot/', 'success/', 'failure/', 'agent/', 'method/', 'solo/', 'categories/', 'research/', 'compare/', ...comparisonGroups.map(g=>'compare/'+g.id+'/')]) {
     const path = prefix + '/ai-solo/' + leaf;
@@ -165,6 +165,9 @@ for (const lang of ['zh', 'en']) {
     assert(sitemap.includes('<loc>' + origin + path + '</loc>'), 'Missing sitemap page: ' + path);
     const markdownPath = path.replace(/\/$/, '') + '.md';
     assertMarkdown(await get(markdownPath), markdownPath);
+  }
+  for (const leaf of ['success/', 'failure/', 'agent/']) {
+    assert(pages.get('').includes('href="' + origin + prefix + '/ai-solo/' + leaf + '"'), 'AI Solo hub lacks ' + lang + '/' + leaf);
   }
   const categorized=pages.get('categories/');
   for(const c of expectedCases){assert(categorized.includes('data-solo-case="'+c.id+'"'));assert(categorized.includes('data-category="'+c.classification.job+'"'));}

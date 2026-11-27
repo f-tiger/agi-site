@@ -16,9 +16,22 @@ try{
  await context.addInitScript(()=>{window.soloEvents=[];addEventListener('fleet:business',e=>window.soloEvents.push(e.detail));});
  for(const [prefix,lang]of [['','zh'],['/en','en']]){
   const page=await context.newPage();page.on('pageerror',err=>errors.push(err.message));
-  await page.goto('https://baipiaoji.com'+prefix+'/?__probe=1');const home=page.locator('[data-home-block="ai-solo"]');assert.equal(await home.locator('.solo-home-links a').count(),3);for(const destination of ['success','failure','agent']){assert.ok(await home.locator('a[href$="/ai-solo/'+destination+'/"]').count());}
-  await home.locator('a[href$="/ai-solo/success/"]').click();await page.waitForURL('**/ai-solo/success/');assert.ok(await page.locator('.solo-case-row').count()>0);
-  await page.goto('https://baipiaoji.com'+prefix+'/ai-solo/?__probe=1');assert.equal(await page.locator('.solo-lanes>a').count(),2);assert.ok(await page.locator('.solo-pattern').count()>0);await page.screenshot({path:path.join(out,lang+'-home-desktop.png')});
+  const hubUrl='https://baipiaoji.com'+prefix+'/ai-solo/';
+  await page.goto('https://baipiaoji.com'+prefix+'/?__probe=1');
+  const entry=page.locator('a[data-home-block="ai-solo"], [data-home-block="ai-solo"] a').filter({visible:true});
+  assert.equal(await entry.count(),1);
+  assert.equal(await entry.evaluate(a=>a.href),hubUrl);
+  await entry.click();
+  await page.waitForURL(hubUrl);
+  assert.equal(await page.locator('.solo-lanes>a').count(),2);
+  assert.ok(await page.locator('.solo-pattern').count()>0);
+  for (const leaf of ['success/','failure/','agent/']) {
+    assert(await page.locator('main a[href="'+hubUrl+leaf+'"]').first().isVisible());
+  }
+  await page.screenshot({path:path.join(out,lang+'-home-desktop.png')});
+  await page.locator('.solo-lanes a[href="'+hubUrl+'success/"]').click();
+  await page.waitForURL(hubUrl+'success/');
+  assert.ok(await page.locator('.solo-case-row').count()>0);
   for(const outcome of ['success','failure']){
    await page.goto('https://baipiaoji.com'+prefix+'/ai-solo/'+outcome+'/?__probe=1');const expected=cases.filter(c=>c.outcome===outcome);await page.waitForFunction(()=>document.querySelector('#solo-count').dataset.total!==undefined);assert.equal(await page.locator('.solo-case-row:visible').count(),expected.length);
    await page.locator('#solo-scope').selectOption('solo');assert.equal(await page.locator('.solo-case-row:visible').count(),expected.filter(c=>c.scope==='solo').length);assert.equal(new URL(page.url()).searchParams.get('__probe'),'1');await page.reload();assert.equal(await page.locator('#solo-scope').inputValue(),'solo');await page.locator('#solo-reset').click();

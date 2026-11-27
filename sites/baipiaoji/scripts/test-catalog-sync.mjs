@@ -61,7 +61,19 @@ check('new admissions do not starve older projects that have already been rechec
 const source=readFileSync(new URL('../../../.github/workflows/deploy-baipiaoji.yml',import.meta.url),'utf8');
 check('daily discovery, durable commit and failure gate belong to the site workflow',()=>{assert.match(source,/cron: '30 0 \* \* \*'/);assert.match(source,/run: node scripts\/catalog-sync.mjs/);assert.match(source,/steps.catalog_sync.outcome/);assert.match(source,/steps.catalog_commit.outcome/);assert.match(source,/cancel-in-progress: false/);});
 if(process.argv.includes('--dist')){
- for(const prefix of ['','en/']){const html=readFileSync(new URL('../dist/'+prefix+'index.html',import.meta.url),'utf8');check(prefix+'homepage exposes actual GitHub projects before the directory',()=>{assert.ok(html.indexOf('id="github-tools"')<html.indexOf('id="directory"'));assert.equal((html.match(/class="bpj-github-pick"/g)||[]).length,6);assert.match(html,/id="home-github-query"/);assert.match(html,/data-catalog-status="mcp"/);assert.match(html,/data-catalog-status="github"/);});}
+ for(const prefix of ['','en/']){
+  const readPage=path=>readFileSync(new URL('../dist/'+prefix+path,import.meta.url),'utf8');
+  check(prefix+'homepage opens localized catalogues with searchable records and published sync status',()=>{
+   const home=readPage('index.html');
+   for (const [route,status] of [['github-tools','github'],['agents','mcp']]) {
+    assert.ok(home.includes('href="https://baipiaoji.com/'+prefix+route+'/"'),route+' discovery');
+    assert.ok(readPage(route+'/index.html').includes('data-catalog-status="'+status+'"'),route+' freshness');
+   }
+   const github=readPage('github-tools/index.html');
+   assert.match(github,/id="github-query"/);
+   assert.ok((github.match(/data-tool-id=/g)||[]).length>=6,'Actual projects must be discoverable before scripting');
+  });
+ }
  const published=JSON.parse(readFileSync(new URL('../dist/catalog-sync.json',import.meta.url)));check('public status is real source data',()=>assert.deepEqual(published,JSON.parse(readFileSync(new URL('../data/catalog-sync-status.json',import.meta.url)))));
 }
 console.log('PASS '+count+' catalogue automation and adversarial checks (fixtures, no network).');

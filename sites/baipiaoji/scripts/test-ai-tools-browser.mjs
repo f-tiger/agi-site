@@ -124,15 +124,15 @@ async function assertFeatured(page, locale) {
   assert.equal(await cards.locator('[data-bpj-share="copy"]').count(), featuredIds.length);
 }
 
-async function assertHomeDiscovery(suite,locale) {
-  const browse=suite.locator('[data-suite-browse]');
-  assert.equal(await browse.locator('[data-suite-group]').count(),SUITE_CATEGORIES.length);
-  assert.equal(await browse.locator('[data-suite-keywords]').count(),2*SUITE_CATEGORIES.length);
-  assert.deepEqual(await browse.locator('.suite-category-link').evaluateAll(links=>links.map(link=>link.pathname)),
-    SUITE_CATEGORIES.map(group=>locale+'/studio/ai/categories/'+group.id));
-  for(const route of ['/studio/ai/','/studio/table-review',toolPath('answer-citation-coverage'),toolPath('ai-json-output-contract')]){
-    assert.equal(await suite.locator('a[href="'+origin+locale+route+'"]').first().isVisible(),true,route);
-  }
+async function openHubFromHome(page, locale) {
+  await visit(page, locale, '/');
+  const link = page.locator('a#ai-tools[href$="/studio/ai/"], #ai-tools a[href$="/studio/ai/"]');
+  assert.equal(await link.count(), 1, 'Homepage must offer one AI directory entry at #ai-tools');
+  assert(await link.isVisible(), 'AI directory entry must be available before any interaction');
+  const hubUrl = origin + locale + '/studio/ai/';
+  assert.equal(await link.evaluate(anchor => anchor.href), hubUrl);
+  await link.click();
+  await page.waitForURL(hubUrl);
 }
 
 async function verifyDirectory(page, locale) {
@@ -141,8 +141,11 @@ async function verifyDirectory(page, locale) {
     if(new URL(request.url()).pathname===locale+'/studio/ai/search-index.json') searchIndexRequests.push(request.url());
   };
   page.on('request',noteIndexRead);
-  await visit(page, locale, '/');
-  const suite = page.locator('#ai-tools');
+  await openHubFromHome(page, locale);
+  const suite = page.locator('[data-suite-index]');
+  await assertToolLinks(suite, locale);
+  assert.deepEqual(await suite.locator('.suite-category-link').evaluateAll(links => links.map(link => link.pathname)),
+    SUITE_CATEGORIES.map(group => locale + '/studio/ai/categories/' + group.id));
   await assertFeatured(page, locale);
   const leadCard = page.locator('[data-suite-featured-tool="ai-eval-export-pair"]');
   await leadCard.locator('[data-bpj-share="copy"]').click();
@@ -154,10 +157,9 @@ async function verifyDirectory(page, locale) {
   assert.deepEqual(Object.fromEntries(shared.searchParams), {
     utm_source: 'reader_share', utm_medium: 'share', utm_campaign: 'free-tools',
   });
-  await assertHomeDiscovery(suite,locale);
   const search = suite.locator('[data-suite-search]');
   await search.waitFor({state:'visible'});
-  assert.equal(searchIndexRequests.length,0,'Homepage fetched search data before any interaction');
+  assert.equal(searchIndexRequests.length,0,'Loading the home or hub fetched a second search index');
   const results = suite.locator('[data-suite-results]');
   const resultLinks = results.locator('[data-suite-keywords] a');
   await search.fill('no-result-73261');
@@ -205,34 +207,26 @@ async function verifyDirectory(page, locale) {
 
   await suite.locator('[data-suite-clear]').click();
   assert.equal(await filter.inputValue(), '');
-  // The tool is absent from the homepage preview but available in the full index.
+  // The full directory renders this tool as a normal link and a searchable result.
   const workflow = toolById.get('ai-json-output-contract');
-  assert.equal(await suite.locator('[data-suite-group] a[href="'+origin+locale+toolPath(workflow.id)+'"]').count(),0);
+  assert.equal(await suite.locator('[data-suite-group] a[href="'+origin+locale+toolPath(workflow.id)+'"]').count(),1);
   await search.fill(workflow.name);
   assert.equal(await resultLinks.first().getAttribute('href'),origin+locale+toolPath(workflow.id));
   await resultLinks.first().click();
   await page.waitForURL('**/studio/ai/'+workflow.id);
-  assert.equal(searchIndexRequests.length,1,'Repeated searches refetched the index');
-  page.off('request',noteIndexRead);
+  assert.equal(searchIndexRequests.length,0,'The full directory must search its own links without fetching another index');
 
-  const indexUrl=origin+locale+'/studio/ai/search-index.json';
+  const indexUrl = origin + locale + '/studio/ai/search-index.json';
   await page.route(indexUrl,route=>route.fulfill({status:503,body:'Temporarily unavailable'}));
   try {
-    await visit(page,locale,'/');
-    await search.fill('csv-to-json');
-    const fallback=suite.locator('[data-suite-unavailable] a');
-    await fallback.waitFor({state:'visible'});
-    assert.equal(await suite.locator('[data-suite-group]:visible').count(),SUITE_CATEGORIES.length);
-    await fallback.click();
-    await page.waitForURL('**/studio/ai/');
-    await assertFeatured(page, locale);
-    await assertToolLinks(page.locator('[data-suite-index]'),locale);
-    const completeDirectory=page.locator('[data-suite-index]');
-    await completeDirectory.locator('[data-suite-search]').fill(locale ? 'release rollback check' : 'AI 回退检查');
-    assert.equal(await completeDirectory.locator('[data-suite-results] a').first().getAttribute('href'),
+    await openHubFromHome(page, locale);
+    await suite.locator('[data-suite-search]').fill(locale ? 'release rollback check' : 'AI 回退检查');
+    assert.equal(await suite.locator('[data-suite-results] a').first().getAttribute('href'),
       origin + locale + toolPath('ai-paired-pass-regression'));
+    assert.equal(searchIndexRequests.length,0,'Search must still use crawlable HTML when the JSON endpoint is unavailable');
   } finally {
     await page.unroute(indexUrl);
+    page.off('request',noteIndexRead);
   }
 }
 
@@ -241,13 +235,11 @@ async function verifyNoScriptBrowse(browser) {
   try {
     const page = await context.newPage();
     for (const locale of ['', '/en']) {
-      await visit(page, locale, '/');
-      const suite = page.locator('#ai-tools');
-      await assertHomeDiscovery(suite,locale);
+      await openHubFromHome(page, locale);
+      const suite = page.locator('[data-suite-index]');
+      await assertToolLinks(suite, locale);
       assert.equal(await suite.locator('[data-suite-search]').isVisible(), false);
-      await suite.locator('a[href="'+origin+locale+'/studio/ai/"]').first().click();
-      await page.waitForURL('**/studio/ai/');
-      await assertToolLinks(page.locator('[data-suite-index]'), locale);
+      await assertFeatured(page, locale);
       await page.locator('[data-suite-index] [data-group-id="text-data"] summary').click();
       const link = page.locator('[data-suite-index] [data-group-id="text-data"] a[href$="/csv-to-json"]');
       await link.waitFor({state: 'visible'});

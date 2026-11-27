@@ -4,7 +4,7 @@
 //             semantics + audiences + the hit.js allowlist vs every event name build.mjs actually emits
 //   --dist  : after `npm run build` — hub / audience / category pages exist in zh and en with canonical + hreflang,
 //             curated record pages are noindex without hreflang, the union of category tables carries every record,
-//             the sitemap lists hub + audience + category pages and NO record page, the homepage carries the strip
+//             the sitemap lists hub + audience + category pages and NO record page, the homepage links to the localized hub
 //             and the block-click beacon, and agents.json agrees with the registry.
 // Why each exists: a zh field missing or English renders a Chinese page with holes (2026-08-12 zhLeak, JSON
 // edition); a label typed per record instead of taken from the vocab drifts silently across 1 000 rows; a page
@@ -42,23 +42,11 @@ if (process.argv.includes('--dist')) {
   for (const p of ['index.html', 'en/index.html']) {
     ck(has(p), `${p} missing — run npm run build first`); if (!has(p)) continue;
     const s = read(p);
-    ck(s.includes('data-home-block="agent-watch"'), `${p}: agents strip missing from the homepage`);
+    const entry=s.match(/<([a-z]+)\b[^>]*\bdata-home-block="agent-watch"[^>]*>[\s\S]*?<\/\1>/)?.[0];
+    const prefix=p.startsWith('en/')?'/en':'';
+    ck(!!entry && entry.includes('href="'+site.base_url+prefix+'/agents/"'), `${p}: agent watch must link to its localized canonical directory`);
     ck(s.includes("bpjEv('home'"), `${p}: block-level click beacon missing — homepage clicks would stay unmeasured`);
-    const sec = s.match(/<section class="group" data-cat="agent"[\s\S]*?<\/section>/);
-    ck(!!sec && sec[0].includes('agent-watch'), `${p}: strip must live inside the 智能体 section`);
-    ck(!/\/agents\//.test(s.match(/<nav class="(?:lang|bpj-languages)"[^>]*>[\s\S]*?<\/nav>/)?.[0] || ''), `${p}: agents link must not sit inside the language switch (the 2026-09-22 复列 bug)`);
-    ck(/rail-jump[\s\S]*?\/agents\/"/.test(s), `${p}: rail-jump lacks the agents entry`);
-    // The rail is on every page; an exact count there rewrites ~1 600 pages (and their lastmod) on
-    // every admission. It must be a hundreds floor like "900+" (fleet rule 2026-09-22: 发现面只提真变化).
-    const railN = s.match(/rail-jump[\s\S]*?\/agents\/"><b>[^<]*<\/b><span>([^<]*)<\/span>/)?.[1];
-    ck(railN === undefined || /^\d+00\+$|^\d{1,2}$/.test(railN), `${p}: rail agents badge "${railN}" must be a floor like "900+", not the exact count`);
-    for (const k of AUDIENCES) ck(s.includes(`/agents/for/${k}"`), `${p}: strip lacks the ${k} door`);
-    // Third round (owner: 首页不够凸显 / 没有搜索): a top block right under the hero with its own search box.
-    const top = s.match(/<section class="agents-home"[\s\S]*?<\/section>/);
-    ck(!!top && s.indexOf('<section class="agents-home"') < s.indexOf('<details class="bpj-home-detail"'), `${p}: agents-home must remain visible before the expandable complete directory`);
-    ck(!!top && top[0].includes('data-home-block="agents"') && top[0].includes('agents-index.json') && top[0].includes('data-tag="agents"'), `${p}: agents-home block needs its beacon id and the agents search box`);
-    ck(!!top && AUDIENCES.every((k) => top[0].includes(`/agents/for/${k}"`)), `${p}: agents-home block lacks a door`);
-    ck(top?.[0].includes(`<span>${agents.length}</span>`), `${p}: visible agents block lacks the live record count`);
+    ck(!/\/agents\//.test(s.match(/<nav class="(?:lang|bpj-languages)"[^>]*>[\s\S]*?<\/nav>/)?.[0] || ''), `${p}: agents link must not sit inside the language switch`);
   }
   const seen = new Set();
   for (const lang of ['', 'en/']) {
@@ -70,6 +58,11 @@ if (process.argv.includes('--dist')) {
       ck(s.includes(`<link rel="canonical" href="${pre}/agents/">`), `${hub}: canonical`);
       ck(s.includes('hreflang="zh-Hans"') && s.includes('hreflang="en"') && s.includes('hreflang="x-default"'), `${hub}: hreflang trio`);
       ck(!s.includes('name="robots" content="noindex'), `${hub}: hub must be indexable`);
+      // The hub carries the full directory; shared rail badges use a stable floor.
+      const badge=s.match(/rail-jump[\s\S]*?\/agents\/"><b>[^<]*<\/b><span>([^<]*)<\/span>/)?.[1];
+      ck(badge === undefined || /^\d+00\+$|^\d{1,2}$/.test(badge), `${hub}: rail displays an unstable exact count: ${badge}`);
+      ck(s.includes('agents-index.json') && s.includes('data-tag="agents"'), `${hub}: localized catalogue search missing`);
+      ck(s.includes(`<dt>${lang ? 'Records' : '记录'}</dt><dd class="num">${agents.length}</dd>`), `${hub}: visible record count differs from the registry`);
       ck(s.includes('<nav class="bpj-languages"'), `${hub}: language switch missing`);
       ck(s.includes(`${site.base_url}/style.css`), `${hub}: site stylesheet missing (own-CSS regression)`);
       ck(s.includes('/api/hit'), `${hub}: page-view beacon missing`);
@@ -199,7 +192,7 @@ if (process.argv.includes('--dist')) {
   // Scope: the hub's own <main> minus table bodies and scripts (the site footer's "219 AI tools" is the directory's real count and verify-dist checks it).
   for (const p of ['agents/index.html', 'en/agents/index.html']) if (has(p)) ck(!/\b\d{2,5}\s*(?:个)?\s*(?:AI\s*)?(?:工具|tools\b)/.test(((read(p).match(/<main[\s\S]*?<\/main>/) || [''])[0]).replace(/<tbody>[\s\S]*?<\/tbody>/g, '').replace(/<script[\s\S]*?<\/script>/g, '')), `${p}: hub copy claims "N tools" — say records`);
   if (bad) { console.error(`test-agent-watch --dist: ${bad} failed`); process.exit(1); }
-  console.log(`✅ test-agent-watch --dist: hub + ${AUDIENCES.length} doors + ${cats.length} category tables (zh/en, indexable, hreflang), ${curated.length} record pages noindex, ${agents.length} records in tables + JSON, homepage strip + beacon`);
+  console.log(`✅ test-agent-watch --dist: hub + ${AUDIENCES.length} doors + ${cats.length} category tables (zh/en, indexable, hreflang), ${curated.length} record pages noindex, ${agents.length} records in tables + JSON, homepage entry + beacon`);
   process.exit(0);
 }
 
