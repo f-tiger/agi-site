@@ -101,7 +101,7 @@ export function buildTradeWorkbench({layout,esc,crumbLd,BASE,NAME,LOCALE,write,p
   const categories = tradeGroups.map(group=>({id:group.id,name:local(group.label,zh),tools:group.tools.map(tool=>publicTool(tool,hub,zh))}));
   const references = new Map(categories.flatMap(group=>group.tools.map(tool=>[tool.id,tool])));
   const assets = `<link rel="stylesheet" href="/studio-assets/trade-workbench.css?v=${edition}">`;
-  const script = (suffix='') => `<script type="module" src="/studio-assets/trade-workbench.mjs?v=20261127.2${suffix}"></script>`;
+  const script = (suffix='') => `<script type="module" src="/studio-assets/trade-workbench.mjs?v=20261127.3${suffix}"></script>`;
   const directoryJoin = BASE+'/account?next='+encodeURIComponent((zh?'':'/en')+TRADE_WORKBENCH);
   const sharedCrumbs = [{name:NAME,url:BASE+'/'},{name:t('自研工具','BPJ tools'),url:studio},{name:title,url:hub}];
   const breadcrumbs = (name='')=>`<nav class="trade-crumb" aria-label="${t('面包屑','Breadcrumb')}"><a href="${studio}">${t('自研工具','BPJ tools')}</a><span aria-hidden="true">/</span>${name ? `<a href="${hub}">${title}</a><span aria-hidden="true">/</span><span aria-current="page">${esc(name)}</span>`:`<span aria-current="page">${title}</span>`}</nav>`;

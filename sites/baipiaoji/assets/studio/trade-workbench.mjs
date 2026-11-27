@@ -1,3 +1,5 @@
+import {requestTradeSignupClaim} from './trade-signup-claim.mjs?v=1';
+
 const zh = document.documentElement.lang.startsWith('zh');
 const t = (cn,en) => zh ? cn : en;
 const root = document.querySelector('[data-trade-tool]');
@@ -27,6 +29,31 @@ function markQa(link) {
   link.href = href.href;
 }
 
+function connectTradeSignup(link, slug) {
+  markQa(link);
+  let pending = false;
+  link.addEventListener('click', async event => {
+    trackTrade(slug,'signup');
+    if (!event.isTrusted || event.defaultPrevented || event.button!==0 || event.metaKey || event.ctrlKey ||
+        event.shiftKey || event.altKey || !canMeasure() || window.doNotTrack==='1' || window.bpjAccount?.state?.user) return;
+    event.preventDefault();
+    if (pending) return;
+    pending = true;
+    const path = location.pathname;
+    const destination = link.href;
+    const key = 'bpj_trade_workbench_signup_claim_v1';
+    try {
+      sessionStorage.removeItem(key);
+      const claim = await requestTradeSignupClaim(path,2000);
+      if (claim) sessionStorage.setItem(key,JSON.stringify({path,claim}));
+    } catch { /* The optional source claim must never block registration. */ }
+    finally {
+      pending = false;
+      location.assign(destination);
+    }
+  });
+}
+
 if (directory) {
   const input = directory.querySelector('#trade-search');
   const groups = [...directory.querySelectorAll('.trade-category')].map(section=>({section,items:[...section.querySelectorAll('li')]}));
@@ -37,8 +64,7 @@ if (directory) {
     const showForGuests = user => { gate.hidden = !!user; };
     showForGuests(window.bpjAccount?.state?.user);
     document.addEventListener('bpj-account-state',event=>showForGuests(event.detail?.user));
-    markQa(join);
-    join.addEventListener('click',()=>trackTrade('directory','signup'));
+    connectTradeSignup(join,'directory');
   }
   input.parentElement.hidden = false;
   input.addEventListener('input',()=>{
@@ -91,8 +117,8 @@ if (root) {
     status.toggleAttribute('data-error',error);
   }
   const track = action => trackTrade(root.dataset.tradeTool,action);
-  for (const link of [join,member]) markQa(link);
-  join.addEventListener('click',()=>track('signup'));
+  connectTradeSignup(join,root.dataset.tradeTool);
+  markQa(member);
   member.addEventListener('click',()=>track('membership_open'));
 
   function paintAccess() {

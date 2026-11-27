@@ -1,9 +1,10 @@
+import {requestTradeSignupClaim} from './trade-signup-claim.mjs?v=1';
+
 const signup = document.querySelector('[data-trade-quote-signup]');
 const origin = 'https://baipiaoji.com';
 const quotePath = location.pathname;
 const quoteRoute = /^\/(?:en\/)?studio\/ai\/trade-export-quote$/;
 const claimKey = 'bpj_trade_signup_claim_v1';
-const claimFormat = /^[A-Za-z0-9_-]{43}$/;
 
 if (signup && location.origin === origin && quoteRoute.test(quotePath)) {
   const params = new URLSearchParams(location.search);
@@ -43,18 +44,9 @@ if (signup && location.origin === origin && quoteRoute.test(quotePath)) {
 
   async function openAccount(tab) {
     try {
-      const result = await fetch('/api/account', {
-        method: 'POST', credentials: 'same-origin', cache: 'no-store',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({action: 'issue_trade_signup_source'}),
-        referrer: origin + quotePath, referrerPolicy: 'same-origin',
-        signal: AbortSignal.timeout(4000),
-      });
-      if (result.ok) {
-        const {claim} = await result.json();
-        if (!tab.closed && tab.location.href === 'about:blank' && typeof claim === 'string' && claimFormat.test(claim)) {
-          tab.sessionStorage.setItem(claimKey, claim);
-        }
+      const claim = await requestTradeSignupClaim(quotePath);
+      if (claim && !tab.closed && tab.location.href === 'about:blank') {
+        tab.sessionStorage.setItem(claimKey, claim);
       }
     } catch {
       // Registration still opens when the optional source claim is unavailable.

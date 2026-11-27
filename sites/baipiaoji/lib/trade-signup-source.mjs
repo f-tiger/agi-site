@@ -1,8 +1,11 @@
 import {consumeRate,ensureAccounts,hash,now,randomToken} from './free-account.js';
 import {qualityEligible,trafficClass} from './traffic-controls.mjs';
+import {getTool} from './trade-workbench/engine.mjs';
 
 export const TRADE_QUOTE_SIGNUP_SOURCE = 'bpj_trade_quote';
-const SOURCE_PATHS = new Set(['/studio/ai/trade-export-quote','/en/studio/ai/trade-export-quote']);
+export const TRADE_WORKBENCH_SIGNUP_SOURCE = 'bpj_trade_workbench';
+const QUOTE_PATHS = new Set(['/studio/ai/trade-export-quote','/en/studio/ai/trade-export-quote']);
+const WORKBENCH_PATH = /^\/(?:en\/)?studio\/trade-tools\/([a-z0-9-]+)?$/;
 const CLAIM_TABLE = 'free_account_signup_claims';
 const SOURCE_TABLE = 'free_account_signup_sources';
 const BROWSER_COOKIE = '__Host-bpj_signup_source';
@@ -26,11 +29,19 @@ function eligibleOrigin(request) {
  return qualityEligible(request,'/api/account','');
 }
 
+function sourceForPath(path) {
+ if (QUOTE_PATHS.has(path)) return TRADE_QUOTE_SIGNUP_SOURCE;
+ const workbench = WORKBENCH_PATH.exec(path);
+ return workbench && (!workbench[1] || getTool(workbench[1])) ? TRADE_WORKBENCH_SIGNUP_SOURCE : null;
+}
+
 export async function issueTradeSignupSource(request,env,ip) {
  if (!eligibleOrigin(request)) return null;
  let referrer;
  try { referrer=new URL(request.headers.get('referer')||''); } catch { return null; }
- if (referrer.origin!==HOST || !SOURCE_PATHS.has(referrer.pathname)) return null;
+ if (referrer.origin!==HOST || referrer.username || referrer.password) return null;
+ const source = sourceForPath(referrer.pathname);
+ if (!source) return null;
  const db=env.HITS;
  const time=now(),browser=browserToken(request)||randomToken(),claim=randomToken();
  try {
@@ -41,7 +52,7 @@ export async function issueTradeSignupSource(request,env,ip) {
    db.prepare(`CREATE INDEX IF NOT EXISTS free_account_signup_claims_expires ON ${CLAIM_TABLE}(expires)`),
    db.prepare(`CREATE TABLE IF NOT EXISTS ${SOURCE_TABLE} (account_id TEXT PRIMARY KEY REFERENCES free_accounts(id) ON DELETE CASCADE, source TEXT NOT NULL)`),
    db.prepare(`DELETE FROM ${CLAIM_TABLE} WHERE claim_hash IN (SELECT claim_hash FROM ${CLAIM_TABLE} WHERE expires<=? ORDER BY expires LIMIT 200)`).bind(time),
-   db.prepare(`INSERT INTO ${CLAIM_TABLE}(claim_hash,source,expires) VALUES(?,?,?)`).bind(claimHash(browser,claim),TRADE_QUOTE_SIGNUP_SOURCE,time+CLAIM_SECONDS),
+   db.prepare(`INSERT INTO ${CLAIM_TABLE}(claim_hash,source,expires) VALUES(?,?,?)`).bind(claimHash(browser,claim),source,time+CLAIM_SECONDS),
   ]);
  } catch { return null; }
  return {claim,cookie:`${BROWSER_COOKIE}=${browser}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=${CLAIM_SECONDS}`};
@@ -60,7 +71,8 @@ export function tradeSignupSourceStatements(request,db,claim,accountId,created,q
  const hashed=claimHash(browser,claim);
  return [
   db.prepare(`INSERT INTO ${SOURCE_TABLE}(account_id,source) SELECT ?,source FROM ${CLAIM_TABLE}
-    WHERE claim_hash=? AND source=? AND expires>?`).bind(accountId,hashed,TRADE_QUOTE_SIGNUP_SOURCE,created),
+    WHERE claim_hash=? AND source IN (?,?) AND expires>?`)
+    .bind(accountId,hashed,TRADE_QUOTE_SIGNUP_SOURCE,TRADE_WORKBENCH_SIGNUP_SOURCE,created),
   db.prepare(`DELETE FROM ${CLAIM_TABLE} WHERE claim_hash=? AND EXISTS(SELECT 1 FROM ${SOURCE_TABLE} WHERE account_id=?)`).bind(hashed,accountId),
  ];
 }

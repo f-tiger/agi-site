@@ -60,20 +60,43 @@ assert.deepEqual(out.window,{start:'2026-08-30',end_exclusive:'2026-09-27',compl
 assert.equal(out.ok,true);
 assert.equal(out.trade_quote_accounts,null,'Absent optional source table is unknown');
 assert.equal(out.trade_quote_workbench_use,null,'Absent optional use table is unknown');
+assert.equal(out.trade_workbench_accounts,null,'Absent optional source table is unknown for the direct cohort');
+assert.equal(out.trade_workbench_signup_use,null,'Absent optional use table is unknown for the direct cohort');
 db.exec('CREATE TABLE free_account_signup_sources(account_id TEXT PRIMARY KEY,source TEXT)');
-const quoteSource=db.prepare('INSERT INTO free_account_signup_sources VALUES (?,?)');
-for (const id of ['real','unverified','qa','today']) quoteSource.run(id,'bpj_trade_quote');
-quoteSource.run('old','some_other_product');
+const insertSource=db.prepare('INSERT INTO free_account_signup_sources VALUES (?,?)');
+for (const id of ['real','unverified','qa','today']) insertSource.run(id,'bpj_trade_quote');
+insertSource.run('old','some_other_product');
 const attributed=await readConversionStages(binding,28,Date.parse('2026-09-27T15:01:00Z'));
 assert.deepEqual(attributed.trade_quote_accounts,{total:3,email_verified_total:2,created:2,email_verified:1});
 assert.equal(attributed.trade_quote_workbench_use,null);
+assert.deepEqual(attributed.trade_workbench_accounts,{total:0,email_verified_total:0,created:0,email_verified:0});
+assert.equal(attributed.trade_workbench_signup_use,null);
 db.exec(`CREATE TABLE bpj_trade_quote_workbench_use(account_id TEXT PRIMARY KEY,first_day TEXT,repeat_day TEXT);
   INSERT INTO bpj_trade_quote_workbench_use VALUES ('real','2026-09-24','2026-09-26'),
     ('unverified','2026-09-26','2026-09-27'),('qa','2026-09-25','2026-09-26'),
     ('today','2026-09-27',NULL),('old','2026-08-30','2026-09-10');`);
+const quoteOnly = await readConversionStages(binding,28,Date.parse('2026-09-27T15:01:00Z'));
+assert.deepEqual(quoteOnly.trade_workbench_signup_use,{first_use_total:0,repeat_use_total:0,first_use:0,repeat_use:0});
+const directAccounts = [['direct','2026-09-26',0,1],['direct-old','2026-08-29',0,0],
+  ['direct-qa','2026-09-26',1,1],['direct-today','2026-09-27',0,1]];
+for (const [id,date,qa,verified] of directAccounts) {
+  db.prepare('INSERT INTO free_accounts VALUES(?,?,?)').run(id,sec(date),qa);
+  db.prepare('INSERT INTO free_account_identities VALUES(?,?)').run(id,verified);
+  insertSource.run(id,'bpj_trade_workbench');
+}
+assert.throws(()=>insertSource.run('real','bpj_trade_workbench'),/UNIQUE constraint failed/);
+db.exec(`INSERT INTO bpj_trade_quote_workbench_use VALUES ('direct','2026-09-26','2026-09-27'),
+  ('direct-old','2026-08-29','2026-08-30'),('direct-qa','2026-09-25','2026-09-26'),
+  ('direct-today','2026-09-27',NULL);`);
 const used = await readConversionStages(binding,28,Date.parse('2026-09-27T15:01:00Z'));
-assert.deepEqual({...used.trade_quote_workbench_use},
-  {first_use_total:2,repeat_use_total:1,first_use:2,repeat_use:1});
+assert.deepEqual(used.trade_quote_accounts,attributed.trade_quote_accounts);
+assert.deepEqual(used.trade_quote_workbench_use,{first_use_total:2,repeat_use_total:1,first_use:2,repeat_use:1});
+assert.deepEqual(used.trade_workbench_accounts,{total:3,email_verified_total:2,created:1,email_verified:1});
+assert.deepEqual(used.trade_workbench_signup_use,{first_use_total:2,repeat_use_total:1,first_use:1,repeat_use:1});
+for (const [id] of directAccounts) {
+  db.prepare('DELETE FROM free_account_identities WHERE account_id=?').run(id);
+  db.prepare('DELETE FROM free_accounts WHERE id=?').run(id);
+}
 assert.deepEqual(out.directory_outbound,{by_tool:[{slug:'fireworks',clicks:1}],unattributed_clicks:0});
 // Catalog allowlist prevents publishing arbitrary tracked paths. Page views and
 // current affiliate settings cannot turn outbound actions into commissions.

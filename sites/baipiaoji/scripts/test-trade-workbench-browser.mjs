@@ -18,6 +18,7 @@ const {db,env} = sites.bpj;
 let browser;
 try {
   await ensureAccountMembers(env);
+  db.sql.exec('CREATE TABLE IF NOT EXISTS hits(d TEXT)');
   db.sql.exec('CREATE TABLE free_account_signup_sources(account_id TEXT PRIMARY KEY REFERENCES free_accounts(id) ON DELETE CASCADE,source TEXT)');
   browser = await chromium.launch({headless:true,executablePath:process.env.WORKBENCH_CHROMIUM,args:['--no-sandbox','--disable-dev-shm-usage']});
   for (const [prefix,lang] of [['','zh'],['/en','en']]) {
@@ -29,7 +30,8 @@ try {
     const context = await browser.newContext({viewport:{width:390,height:844},acceptDownloads:true,
       userAgent:'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/149.0.0.0 Safari/537.36'});
     const page = await context.newPage(),errors=[];
-    let executions = 0;
+    let executions = 0, claimsIssued = 0;
+    const directPath = lang==='zh' ? '/studio/trade-tools/' : prefix+samplePath;
     const measuredRequests = [];
     page.on('pageerror',error=>errors.push(error.message));
     await context.route('**/*',async route=>{
@@ -39,6 +41,14 @@ try {
         const handler = url.pathname==='/api/account' ? accountRoute : onRequest;
         const headers = new Headers(await r.allHeaders());
         headers.set('CF-Connecting-IP',lang==='zh'?'192.0.2.1':'192.0.2.2');
+        if (url.pathname==='/api/account' && r.method()==='POST') {
+          const payload = r.postDataJSON();
+          if (payload.action==='issue_trade_signup_source') {
+            claimsIssued++;
+            assert.equal(headers.get('Referer'),origin+directPath);
+          }
+          if (!headers.has('Sec-Fetch-Site')) headers.set('Sec-Fetch-Site','same-origin');
+        }
         if (url.pathname==='/api/trade-workbench'&&r.method()==='POST') {
           executions++;
           if (headers.has('X-BPJ-Trade-Use')) {
@@ -172,6 +182,30 @@ try {
     await run.click();
     await result.waitFor({state:'visible'});
     assert.equal(measuredRequests.length,1,'an explicit opt-out suppresses measurement');
+
+    await context.clearCookies();
+    const directJoin = lang==='zh' ? directoryJoin : join;
+    const accountPath = origin+prefix+'/account?next='+encodeURIComponent(directPath);
+    await page.goto(origin+directPath);
+    await directJoin.click();
+    await page.waitForURL(accountPath);
+    assert.equal(claimsIssued,0,'an opt-out preserves navigation without claiming a source');
+    await page.evaluate(()=>localStorage.removeItem('fleet_ga4_choice_v1'));
+    await page.goto(origin+directPath);
+    await directJoin.click();
+    await page.waitForURL(accountPath);
+    assert.equal(claimsIssued,1);
+    const email = `browser-workbench-${lang}@example.test`;
+    await page.locator('#register-email').fill(email);
+    await page.locator('#register-username').fill('workbench_sources_'+lang);
+    await page.locator('#register-password').fill('local fixture password');
+    await page.locator('#account-consent').check();
+    await page.locator('#account-register button[type=submit]').click();
+    await page.locator('#account-recovery-code').waitFor({state:'visible'});
+    const saved = db.sql.prepare(`SELECT s.source FROM free_account_signup_sources s
+      JOIN free_account_identities i ON i.account_id=s.account_id WHERE i.email=?`).get(email);
+    assert.equal(saved?.source,'bpj_trade_workbench');
+    assert.equal(await page.evaluate(()=>sessionStorage.getItem('bpj_trade_workbench_signup_claim_v1')),null);
     assert.deepEqual(errors,[]);
     await context.close();
   }
@@ -180,4 +214,4 @@ try {
   resetFetch();
   for (const site of Object.values(sites)) site.db.sql.close();
 }
-console.log('PASS bilingual workbench access, result retention, member CSV and signed-in usage measurement.');
+console.log('PASS bilingual workbench access, real signup attribution in local fixtures, member CSV, and signed-in usage measurement.');

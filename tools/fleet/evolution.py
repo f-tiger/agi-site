@@ -198,48 +198,74 @@ def aggregate_counts(value: Any, fields: tuple[str, ...]) -> dict[str, int] | No
     return counts if all(member_count(count) is not None for count in counts.values()) else None
 
 
+def trade_account_counts(value: Any) -> dict[str, int] | None:
+    counts = aggregate_counts(value, TRADE_QUOTE_ACCOUNT_FIELDS)
+    if counts and (counts["email_verified"] <= min(counts["created"], counts["email_verified_total"])
+                   and max(counts["created"], counts["email_verified_total"]) <= counts["total"]):
+        return counts
+    return None
+
+
+def trade_use_counts(value: Any, accounts: dict[str, int] | None) -> dict[str, int] | None:
+    counts = aggregate_counts(value, TRADE_QUOTE_USE_FIELDS)
+    if counts:
+        first_total, repeat_total, first, repeat = (counts[key] for key in TRADE_QUOTE_USE_FIELDS)
+        if (first <= first_total and repeat <= repeat_total <= first_total
+                and repeat_total - repeat <= first_total - first
+                and (accounts is None or first_total <= accounts["total"])):
+            return counts
+    return None
+
+
+def combined_trade_counts(quote: dict[str, int] | None, direct: dict[str, int] | None) -> dict[str, int] | None:
+    # An account can hold only one immutable signup source.
+    return {key: count + direct[key] for key, count in quote.items()} if quote and direct else None
+
+
 def trade_quote_growth(reach: Any, today: dt.date) -> dict[str, Any]:
-    """Use only the dedicated trade-quote cohort and current complete UTC days."""
+    """Use only the dedicated trade signup sources and current complete UTC days."""
     stages = reach.get("conversion_stages") if isinstance(reach, dict) and reach.get("ok") is True else None
     stages = stages if isinstance(stages, dict) else {}
     window = {"start": (today - dt.timedelta(days=28)).isoformat(), "end_exclusive": today.isoformat(),
               "complete_days": 28, "date_basis": "UTC"}
     accounts = actions = workbench_use = None
+    direct_accounts = direct_use = None
     current_window = stages.get("window") == window
     if current_window:
-        accounts = aggregate_counts(stages.get("trade_quote_accounts"), TRADE_QUOTE_ACCOUNT_FIELDS)
-        if accounts and not (accounts["email_verified"] <= min(accounts["created"], accounts["email_verified_total"])
-                             and max(accounts["created"], accounts["email_verified_total"]) <= accounts["total"]):
-            accounts = None
+        accounts = trade_account_counts(stages.get("trade_quote_accounts"))
+        direct_accounts = trade_account_counts(stages.get("trade_workbench_accounts"))
         events = stages.get("events")
         if isinstance(events, dict):
             actions = aggregate_counts(events.get("trade_quote_actions"), TRADE_QUOTE_ACTION_FIELDS)
-        usage = aggregate_counts(stages.get("trade_quote_workbench_use"), TRADE_QUOTE_USE_FIELDS)
-        if usage:
-            first_total, repeat_total, first, repeat = (usage[key] for key in TRADE_QUOTE_USE_FIELDS)
-            if (first <= first_total and repeat <= repeat_total <= first_total
-                    and repeat_total - repeat <= first_total - first
-                    and (accounts is None or first_total <= accounts["total"])):
-                workbench_use = usage
+        workbench_use = trade_use_counts(stages.get("trade_quote_workbench_use"), accounts)
+        direct_use = trade_use_counts(stages.get("trade_workbench_signup_use"), direct_accounts)
 
+    combined_accounts = combined_trade_counts(accounts, direct_accounts)
+    combined_use = combined_trade_counts(workbench_use, direct_use)
+    known_accounts = combined_accounts or accounts or direct_accounts
+    milestone_use = combined_use
+    if combined_accounts is None and milestone_use is None:
+        milestone_use = workbench_use if accounts is not None else direct_use
     initial_target, long_target = 25, 1000
     if not current_window:
         next_action = "Check whether the current 28 complete UTC days are available before evaluating acquisition."
-    elif accounts is None:
+    elif known_accounts is None:
         next_action = "Verify the first-source registration readout before evaluating the signup funnel."
-    elif accounts["total"] >= initial_target:
-        if workbench_use is None:
+    elif known_accounts["total"] >= initial_target:
+        if milestone_use is None:
             next_action = "Verify first-use and repeat-use reporting before evaluating retention."
-        elif workbench_use["first_use_total"] == 0:
+        elif milestone_use["first_use_total"] == 0:
             next_action = "Review the registration handoff and help exporters complete a first own-input workbench task."
-        elif workbench_use["repeat_use_total"] == 0:
+        elif milestone_use["repeat_use_total"] == 0:
             next_action = "Review how exporters return for a second workbench task after their first successful use."
-        elif workbench_use["repeat_use"] == 0:
+        elif milestone_use["repeat_use"] == 0:
             next_action = "Review the return path for recent workbench users before expanding distribution."
-        elif accounts["total"] >= long_target:
+        elif known_accounts["total"] >= long_target:
             next_action = "Review observed repeat use and support capacity before expanding distribution further."
         else:
             next_action = "Review the first cohort's observed first and repeat workbench use before expanding distribution."
+    elif accounts is None:
+        next_action = "Review the direct Workbench signup flow and recover export quote registration coverage."
     elif actions is None:
         next_action = "Recover the calculator and signup-link event readout while retaining the confirmed registration count."
     elif actions["ready_own"] == 0 and actions["needs_info_own"] > 0:
@@ -259,6 +285,15 @@ def trade_quote_growth(reach: Any, today: dt.date) -> dict[str, Any]:
         "accounts": accounts,
         "actions": actions,
         "workbench_use": workbench_use,
+        "direct_workbench_accounts": direct_accounts,
+        "direct_workbench_use": direct_use,
+        "combined_accounts": combined_accounts,
+        "combined_workbench_use": combined_use,
+        "confirmed_registration_lower_bound": known_accounts["total"] if known_accounts else None,
+        "account_source_coverage": [source for source, counts in (("quote", accounts), ("direct_workbench", direct_accounts))
+                                    if counts is not None],
+        "use_source_coverage": [source for source, counts in (("quote", workbench_use), ("direct_workbench", direct_use))
+                                if counts is not None],
         "initial_target": initial_target,
         "long_target": long_target,
         "next_action": next_action,
@@ -478,14 +513,27 @@ def render_trade_quote_growth(report: dict[str, Any]) -> list[str]:
     accounts = report["accounts"] or {}
     actions = report["actions"] or {}
     usage = report.get("workbench_use") or {}
+    direct_accounts = report.get("direct_workbench_accounts") or {}
+    direct_use = report.get("direct_workbench_use") or {}
+    combined = report.get("combined_accounts") or {}
+    source_names = {"quote": "export quote", "direct_workbench": "direct Workbench"}
+    account_coverage = report.get("account_source_coverage", ["quote"] if accounts else [])
+    use_coverage = report.get("use_source_coverage", ["quote"] if usage else [])
+    account_sources = ", ".join(source_names[source] for source in account_coverage) or "unavailable"
+    usage_sources = ", ".join(source_names[source] for source in use_coverage) or "unavailable"
+    lower_bound = report.get("confirmed_registration_lower_bound", accounts.get("total"))
     window = report["window"]
     dates = f"{window['start']} through {window['end_exclusive']} (exclusive)" if window else "unknown"
     return [
-        "", "## BPJ trade quote registrations", "",
-        f"- Source-attributed surviving registrations: {accounts.get('total', 'unknown')}. "
+        "", "## BPJ trade registrations", "",
+        f"- Combined registration objective: {combined.get('total', 'unknown')}. "
         f"First milestone: {report['initial_target']:,}. Long-term goal: {report['long_target']:,}.",
-        f"- Currently email-verified registrations: {accounts.get('email_verified_total', 'unknown')}.",
-        f"- Complete UTC window: {dates}. New attributed registrations: {accounts.get('created', 'unknown')}. "
+        f"- Registration coverage: {account_sources}. Usage coverage: {usage_sources}. "
+        f"Confirmed registration lower bound: {lower_bound if lower_bound is not None else 'unknown'}.",
+        f"- Complete UTC window: {dates}.",
+        f"- Export quote source. Source-attributed surviving registrations: {accounts.get('total', 'unknown')}. "
+        f"Currently email-verified: {accounts.get('email_verified_total', 'unknown')}. "
+        f"New attributed registrations: {accounts.get('created', 'unknown')}. "
         f"New registrations currently email-verified: {accounts.get('email_verified', 'unknown')}.",
         f"- Quote actions in the window: signup opened {actions.get('signup_open', 'unknown')}, "
         f"ready own {actions.get('ready_own', 'unknown')}, needs information own {actions.get('needs_info_own', 'unknown')}, "
@@ -493,9 +541,16 @@ def render_trade_quote_growth(report: dict[str, Any]) -> list[str]:
         f"- Attributed accounts through the last complete UTC day: first Workbench use {usage.get('first_use_total', 'unknown')}, "
         f"repeat Workbench use {usage.get('repeat_use_total', 'unknown')}.",
         f"- Workbench milestones in the window: first use {usage.get('first_use', 'unknown')}, "
-        f"repeat use {usage.get('repeat_use', 'unknown')}. Counts use each account's first and second distinct UTC days "
-        "with a successful own-input web Workbench task.",
-        "- Registration scope: known, non-test accounts first attributed to the BPJ trade quote page. "
+        f"repeat use {usage.get('repeat_use', 'unknown')}.",
+        f"- Direct Workbench source. Surviving registrations: {direct_accounts.get('total', 'unknown')}. "
+        f"Currently email-verified: {direct_accounts.get('email_verified_total', 'unknown')}. "
+        f"New attributed registrations: {direct_accounts.get('created', 'unknown')}. "
+        f"New registrations currently email-verified: {direct_accounts.get('email_verified', 'unknown')}.",
+        f"- Direct Workbench source usage through the last complete UTC day: first use {direct_use.get('first_use_total', 'unknown')}, "
+        f"repeat use {direct_use.get('repeat_use_total', 'unknown')}. Window milestones: first use "
+        f"{direct_use.get('first_use', 'unknown')}, repeat use {direct_use.get('repeat_use', 'unknown')}.",
+        "- Registration scope: known, non-test accounts with a verified first source. "
+        "Usage counts each account's first and second distinct UTC days with a successful own-input web Workbench task. "
         "Browser actions can repeat. Email verification is a separate account status.",
         f"- Next action: {report['next_action']}",
         f"- [First-party conversion report]({report['source']})",

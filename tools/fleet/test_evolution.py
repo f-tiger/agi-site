@@ -332,6 +332,54 @@ def test_bpj_trade_quote_workbench_use_checks_subsets_and_guides_retention() -> 
         assert report["accounts"] == accounts and report["actions"] == actions
 
 
+def test_bpj_trade_signup_sources_combine_only_with_complete_coverage() -> None:
+    today = dt.date(2026, 12, 3)
+    quote_accounts = {"total": 17, "email_verified_total": 7, "created": 3, "email_verified": 2}
+    direct_accounts = {"total": 8, "email_verified_total": 4, "created": 2, "email_verified": 1}
+    quote_use = {"first_use_total": 6, "repeat_use_total": 3, "first_use": 2, "repeat_use": 1}
+    direct_use = {"first_use_total": 4, "repeat_use_total": 3, "first_use": 2, "repeat_use": 2}
+    stages = {
+        "window": {"start": "2026-11-05", "end_exclusive": "2026-12-03", "complete_days": 28, "date_basis": "UTC"},
+        "trade_quote_accounts": quote_accounts,
+        "trade_quote_workbench_use": quote_use,
+    }
+    reach = {"ok": True, "conversion_stages": stages}
+    old = evolution.trade_quote_growth(reach, today)
+    assert old["accounts"] == quote_accounts and old["workbench_use"] == quote_use
+    assert old["combined_accounts"] is None and old["combined_workbench_use"] is None
+    assert old["confirmed_registration_lower_bound"] == 17
+    assert old["account_source_coverage"] == old["use_source_coverage"] == ["quote"]
+
+    stages["trade_workbench_accounts"] = direct_accounts
+    stages["trade_workbench_signup_use"] = direct_use
+    current = evolution.trade_quote_growth(reach, today)
+    assert current["direct_workbench_accounts"] == direct_accounts and current["direct_workbench_use"] == direct_use
+    assert current["combined_accounts"] == {"total": 25, "email_verified_total": 11, "created": 5, "email_verified": 3}
+    assert current["combined_workbench_use"] == {"first_use_total": 10, "repeat_use_total": 6, "first_use": 4, "repeat_use": 3}
+    assert current["account_source_coverage"] == current["use_source_coverage"] == ["quote", "direct_workbench"]
+    assert "first cohort" in current["next_action"]
+    markdown = "\n".join(evolution.render_trade_quote_growth(current))
+    assert "Combined registration objective: 25." in markdown
+    assert "Registration coverage: export quote, direct Workbench." in markdown
+    assert "Direct Workbench source. Surviving registrations: 8. Currently email-verified: 4." in markdown
+    assert "Direct Workbench source usage through the last complete UTC day: first use 4, repeat use 3." in markdown
+
+    stages["trade_workbench_signup_use"] = {**direct_use, "repeat_use_total": 5}
+    partial = evolution.trade_quote_growth(reach, today)
+    assert partial["combined_accounts"] == current["combined_accounts"]
+    assert partial["combined_workbench_use"] is None and partial["use_source_coverage"] == ["quote"]
+    assert "first-use and repeat-use reporting" in partial["next_action"]
+
+    stages["trade_quote_accounts"] = None
+    stages["trade_quote_workbench_use"] = None
+    stages["trade_workbench_signup_use"] = direct_use
+    direct_only = evolution.trade_quote_growth(reach, today)
+    assert direct_only["accounts"] is None and direct_only["direct_workbench_accounts"] == direct_accounts
+    assert direct_only["combined_accounts"] is None and direct_only["confirmed_registration_lower_bound"] == 8
+    assert direct_only["account_source_coverage"] == direct_only["use_source_coverage"] == ["direct_workbench"]
+    assert "direct Workbench signup flow" in direct_only["next_action"]
+
+
 if __name__ == "__main__":
     test_missing_is_unknown()
     test_action_is_bounded_and_redacted()
@@ -348,4 +396,5 @@ if __name__ == "__main__":
     test_failed_or_malformed_public_reads_are_unknown_not_closed()
     test_bpj_trade_quote_measures_only_the_known_source_and_current_window()
     test_bpj_trade_quote_workbench_use_checks_subsets_and_guides_retention()
+    test_bpj_trade_signup_sources_combine_only_with_complete_coverage()
     print("evolution invariants: ok")

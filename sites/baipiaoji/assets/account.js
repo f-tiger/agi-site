@@ -52,7 +52,7 @@ document.addEventListener('bpj-account-identity',e=>{clearSecrets();$('account-t
 // Local handoff only: no identity, inputs or analytics payload. Fleet consent remains explicit.
 function accountFlow(stage){
  if(returnContext)accountReturn.hidden=!!recovery;
- if(stage==='signed_in'&&returnContext?.tradeQuote)clearTradeSignupClaim();
+ if(stage==='signed_in'&&returnContext?.signupClaimKey)clearTradeSignupClaim();
  return document.dispatchEvent(new CustomEvent('bpj-account-flow',{detail:{stage,recoveryPending:!!recovery,mailAvailable,googleAvailable},cancelable:stage==='signed_in'||stage==='recovery_confirmed'}));
 }
 function tab(name){$('account-legacy-entry').hidden=name!=='login';$('account-request-reset').hidden=name!=='recover';for(const n of ['register','login','recover'])$('account-'+n).hidden=n!==name;document.querySelectorAll('[data-account-tab]').forEach(b=>{if(b.dataset.accountTab===name)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});}
@@ -60,7 +60,8 @@ function download(name,text,type='text/plain'){const a=document.createElement('a
 function recoveryBox(code,username){recovery=code;recoveryUser=username;$('account-recovery-code').textContent=code;$('account-recovery').hidden=false;$('account-recovery').scrollIntoView({block:'center'});accountFlow('render');}
 function clearSecrets(){for(const e of document.querySelectorAll('.bpj-account-page input[type=password]'))e.value='';}
 const accountParams = new URLSearchParams(location.search), accountReturn = $('account-return');
-const tradeSignupClaimKey = 'bpj_trade_signup_claim_v1';
+const quoteSignupClaimKey = 'bpj_trade_signup_claim_v1';
+const workbenchSignupClaimKey = 'bpj_trade_workbench_signup_claim_v1';
 function ecoSignupIntent() {
   const one = key => accountParams.getAll(key).length===1 ? accountParams.get(key) : '';
   if (one('fleet')!=='getecoback.com' || one('eco_signup')!=='waesche-kosten') return;
@@ -88,7 +89,7 @@ try {
      };
     } else if (next === pre+'/studio/ai/trade-export-quote' && accountParams.getAll('next').length===1) {
      returnContext = {
-      tradeQuote:true,
+      signupClaimKey:quoteSignupClaimKey,
       label:T('重新打开外贸报价工具','Reopen the export quote tool'),
       intro:T('免费注册后可运行外贸工具。如果从报价工具打开此页，报价和结果还在原标签页。','Create a free account to run export trade tools. If you opened this from the quote tool, the quote and its results are still in your original tab.'),
       ready:T('账户已就绪。切回原来的报价标签页可继续核对结果，也可打开一个新的报价页。','Your account is ready. Switch back to the original quote tab to continue, or open a fresh quote page.'),
@@ -102,6 +103,7 @@ try {
     } else if (/^\/(?:en\/)?studio\/trade-tools\/(?:[a-z0-9]+(?:-[a-z0-9]+)*)?$/.test(path) && path.length<=86) {
      const directory = path.endsWith('/');
      returnContext = {
+      signupClaimKey:next===path && path.startsWith(pre+'/studio/trade-tools/') && accountParams.getAll('next').length===1 ? workbenchSignupClaimKey : undefined,
       label:directory?T('返回外贸工具目录','Back to the trade tools'):T('返回刚才的外贸工具','Back to your trade tool'),
       intro:T('用 BPJ 免费账户运行外贸工具，每天共 10 次。登录或注册后可返回继续。','Use a free BPJ account to run export trade tools, with 10 runs a day across the directory. Sign in or join free to continue.'),
       ready:directory?T('返回外贸工具目录，选择需要运行的工具。','Return to the trade tools directory and choose a tool.'):T('返回刚才的外贸工具，即可开始试用。','Return to your trade tool to start a free run.'),
@@ -117,13 +119,16 @@ try {
   }
  }
 } catch {}
-function clearTradeSignupClaim() {
- try { sessionStorage.removeItem(tradeSignupClaimKey); } catch {}
+function clearTradeSignupClaim(key=returnContext?.signupClaimKey) {
+ if (key) try { sessionStorage.removeItem(key); } catch {}
 }
-if (!returnContext?.tradeQuote) clearTradeSignupClaim();
+for (const key of [quoteSignupClaimKey,workbenchSignupClaimKey]) {
+ if (returnContext?.signupClaimKey!==key) clearTradeSignupClaim(key);
+}
 function tradeSignupClaim() {
- if (!returnContext?.tradeQuote||location.pathname!==pre+'/account'||qa||navigator.webdriver||navigator.doNotTrack==='1'||
-     navigator.globalPrivacyControl||['__qa','ci'].some(key=>accountParams.has(key))) {
+ const key=returnContext?.signupClaimKey;
+ if (!key||location.pathname!==pre+'/account'||qa||navigator.webdriver||navigator.doNotTrack==='1'||window.doNotTrack==='1'||
+     navigator.globalPrivacyControl||['__qa','ci'].some(flag=>accountParams.has(flag))) {
   clearTradeSignupClaim();
   return undefined;
  }
@@ -132,8 +137,10 @@ function tradeSignupClaim() {
    clearTradeSignupClaim();
    return undefined;
   }
-  const claim=sessionStorage.getItem(tradeSignupClaimKey);
-  if (/^[A-Za-z0-9_-]{43}$/.test(claim||'')) return claim;
+  const stored=sessionStorage.getItem(key);
+  const workbench=key===workbenchSignupClaimKey ? JSON.parse(stored) : null;
+  const claim=key===quoteSignupClaimKey ? stored : workbench?.path===accountParams.get('next') ? workbench.claim : null;
+  if (typeof claim==='string'&&/^[A-Za-z0-9_-]{43}$/.test(claim)) return claim;
   clearTradeSignupClaim();
   return undefined;
  } catch {
@@ -180,7 +187,7 @@ $('account-register').onsubmit=e=>{
   const username=$('register-username').value.trim(),email=$('register-email').value.trim();
   const j=await api('register',{username,email,google:googleOnboarding,password:$('register-password').value,
    consent:$('account-consent').checked,qa,src:location.pathname,signup_source_claim:tradeSignupClaim(),eco_intent:ecoSignupIntent()});
-  if(returnContext?.tradeQuote)clearTradeSignupClaim();
+  if(returnContext?.signupClaimKey)clearTradeSignupClaim();
   clearSecrets();googleOnboarding=false;recoveryBox(j.recovery_code,email);
   await refresh();await render();
   status(T('账户已创建。请保存恢复码，再开始使用。','Account created. Save your recovery code before continuing.'));

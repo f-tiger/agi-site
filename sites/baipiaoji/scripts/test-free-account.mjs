@@ -7,6 +7,7 @@ import {DatabaseSync} from 'node:sqlite';
 import {onRequest} from '../functions/api/account.js';
 import {ensureAccounts,getAccount,consumeRate,hash,PASSWORD_COST,ACCOUNT_COOKIE,issueSession,passwordRecord,randomToken,now} from '../lib/free-account.js';
 import {ensureGoogleAccounts,GOOGLE_PROOF_COOKIE} from '../lib/google-account.js';
+import {TRADE_QUOTE_SIGNUP_SOURCE,TRADE_WORKBENCH_SIGNUP_SOURCE} from '../lib/trade-signup-source.mjs';
 import tools from '../data/tools.json' with {type:'json'};
 function setup(){const sql=new DatabaseSync(':memory:');sql.exec("PRAGMA foreign_keys=ON; CREATE TABLE hits (id INTEGER PRIMARY KEY); INSERT INTO hits(id) VALUES(1)");let transactionQueue=Promise.resolve();const HITS={prepare(query){let values=[];const q={sql:query,bind(...args){values=args;return q;},run(){return sql.prepare(query).run(...values);},async first(){return sql.prepare(query).get(...values)||null;},async all(){return {results:sql.prepare(query).all(...values)};}};return q;},batch(queries){const task=transactionQueue.then(()=>{sql.exec('BEGIN');try{const out=[];for(const q of queries)out.push(q.run());sql.exec('COMMIT');return out;}catch(error){sql.exec('ROLLBACK');throw error;}});transactionQueue=task.catch(()=>{});return task;}};return {sql,env:{HITS}};}
 const password='correct horse battery 47';const newPassword='new strong password 2026';
@@ -20,9 +21,13 @@ assert.deepEqual(PASSWORD_COST,{N:32768,r:8,p:3,maxmem:64*1024*1024});
 {
  const {env,sql}=setup();
  const origin='https://baipiaoji.com',quote=origin+'/studio/ai/trade-export-quote';
+ const workbench=origin+'/studio/trade-tools/';
+ const workbenchTool=origin+'/en/studio/trade-tools/fx-bank-quote-unit';
  const headers=(referer,extra={})=>({'Sec-Fetch-Site':'same-origin',Referer:referer,...extra});
  const issue=(referer=quote,extra={},body={action:'issue_trade_signup_source'})=>call(env,body,{headers:headers(referer,extra)});
- for(const ref of [origin+'/studio/trade-tools/',origin+'/studio/quote-builder',quote+'?__ci=1',quote+'.html','https://other.example/studio/ai/trade-export-quote']){
+ for(const ref of [workbench.slice(0,-1),workbench+'unknown-slug',workbench+'mcp/',workbench+'mcp/keys/',
+  workbenchTool+'.html',workbenchTool+'?__qa=1',origin+'/studio/quote-builder',quote+'?__ci=1',quote+'.html',
+  'https://other.example/studio/ai/trade-export-quote','https://other.example/studio/trade-tools/']){
   const denied=await issue(ref);assert.equal((await denied.json()).claim,null);assert.equal(denied.headers.get('Set-Cookie'),null);
  }
  assert.equal((await(await issue(quote,{DNT:'1'})).json()).claim,null);
@@ -59,12 +64,29 @@ assert.deepEqual(PASSWORD_COST,{N:32768,r:8,p:3,maxmem:64*1024*1024});
  const expired=await claim();sql.exec('UPDATE free_account_signup_claims SET expires=0');
  const late=await signup('source_expired',expired);assert.equal(provenance(late.body.user.id),undefined);
  const test=await claim();const excluded=await signup('source_qa',test,{qa:true});assert.equal(provenance(excluded.body.user.id),undefined);
+
+ const returning=await register(env,'source_workbench_returning');
+ const fromDirectory=await claim(workbench);
+ const login=await call(env,{action:'login',username:'source_workbench_returning',password,signup_source_claim:fromDirectory.claim},
+  {cookie:fromDirectory.cookie,headers:headers(origin+'/account')});
+ assert.equal(login.status,200);
+ assert.equal((await login.json()).user.id,returning.body.user.id);
+ assert.equal(provenance(returning.body.user.id),undefined,'An existing-account sign-in must not gain signup attribution');
+ const direct=await signup('source_workbench_directory',fromDirectory);
+ assert.equal(provenance(direct.body.user.id),TRADE_WORKBENCH_SIGNUP_SOURCE);
+ const directReplay=await signup('source_workbench_replay',fromDirectory);
+ assert.equal(provenance(directReplay.body.user.id),undefined,'A redeemed workbench claim is not reusable');
+ const toolSignup=await signup('source_workbench_tool',await claim(workbenchTool),{},origin+'/en/account');
+ assert.equal(provenance(toolSignup.body.user.id),TRADE_WORKBENCH_SIGNUP_SOURCE);
+
  sql.exec('DROP TABLE free_account_signup_claims');
  const oldSchema=await signup('source_no_schema',test);assert.equal(provenance(oldSchema.body.user.id),undefined);
- assert.equal(sql.prepare('SELECT COUNT(*) n FROM free_account_signup_sources').get().n,3);
+ const sourceCount=sql.prepare('SELECT COUNT(*) n FROM free_account_signup_sources WHERE source=?');
+ assert.equal(sourceCount.get(TRADE_QUOTE_SIGNUP_SOURCE).n,3);
+ assert.equal(sourceCount.get(TRADE_WORKBENCH_SIGNUP_SOURCE).n,2);
  sql.prepare('DELETE FROM free_accounts WHERE id=?').run(attributed.body.user.id);
  assert.equal(provenance(attributed.body.user.id),undefined);
- console.log('PASS: first trade-quote source, opaque browser-bound claim, password/Google commits, QA/no-schema/expiry exclusion, concurrent replay and deletion.');
+ console.log('PASS: first quote and workbench sources, browser-bound claims, password/Google commits, exact routes, no attribution on login/replay, QA/no-schema/expiry exclusion and deletion.');
 }
 {
  const {env,sql}=setup();assert.equal((await call(env)).status,200);assert.equal((await(await call(env)).json()).user,null);

@@ -9,7 +9,7 @@ import {ACCOUNT_COOKIE, ensureAccounts, issueSession, now} from '../lib/free-acc
 import {tradeGroups} from '../lib/trade-workbench/engine.mjs';
 import {FREE_DAILY_RUNS, MEMBER_DAILY_RUNS} from '../lib/trade-workbench-access.mjs';
 import {GUEST_DAILY_RUNS, guestTradeQuota} from '../lib/trade-workbench-guests.mjs';
-import {readTradeQuoteWorkbenchUse, recordTradeQuoteWorkbenchUse} from '../lib/trade-quote-workbench-use.mjs';
+import {readTradeSignupWorkbenchUse, recordTradeQuoteWorkbenchUse} from '../lib/trade-quote-workbench-use.mjs';
 
 const site = 'https://baipiaoji.com';
 const tools = tradeGroups.flatMap(group => group.tools);
@@ -51,23 +51,27 @@ function runs(db, id) {
   return db.sql.prepare('SELECT utc_day,runs FROM bpj_trade_workbench_daily WHERE account_id=?').get(id);
 }
 
-test('eligible successful web tasks record the first two UTC days for quote signups only', async t => {
+test('eligible successful web tasks record separate first and repeat UTC days for each signup source', async t => {
   let at = Date.parse('2026-11-27T23:59:50Z');
   t.mock.method(Date,'now',()=>at);
   const ctx = await fixture(t);
   const {db, env} = ctx;
   const cookie = await userOf(ctx,'exporter',true);
+  const direct = await userOf(ctx,'direct-exporter',true);
   const another = await userOf(ctx,'unattributed');
   const qa = await userOf(ctx,'qa-attributed');
   db.sql.prepare('UPDATE free_accounts SET qa=1 WHERE id=?').run('qa-attributed');
   db.sql.exec(`CREATE TABLE free_account_signup_sources(account_id TEXT PRIMARY KEY REFERENCES free_accounts(id) ON DELETE CASCADE,source TEXT);
-    INSERT INTO free_account_signup_sources VALUES ('exporter','bpj_trade_quote'),('qa-attributed','bpj_trade_quote');`);
+    INSERT INTO free_account_signup_sources VALUES ('exporter','bpj_trade_quote'),
+      ('direct-exporter','bpj_trade_workbench'),('qa-attributed','bpj_trade_workbench');`);
   const headers = {'User-Agent':'Mozilla/5.0','X-BPJ-Trade-Use':'1','Sec-Fetch-Site':'same-origin',
     Referer: site+'/en/studio/trade-tools/'+example.id};
   const own = sample();
   const field = example.inputs.find(([,type])=>type==='number')[0];
   own.input[field] = Number(own.input[field])+1;
-  const use = (from='2026-11-27',until='2026-11-29') => readTradeQuoteWorkbenchUse(db,from,until);
+  const readUse = (from='2026-11-27',until='2026-11-29') => readTradeSignupWorkbenchUse(db,from,until);
+  const use = async (from,until) => (await readUse(from,until))?.get('bpj_trade_quote') ?? null;
+  const directUse = async () => (await readUse())?.get('bpj_trade_workbench') ?? null;
   const hit = (credential, payload=own, extra={}) => trade(env,{cookie:credential,payload,headers:{...headers,...extra}});
   const exampleAsStrings = {...sample(),input:Object.fromEntries(Object.entries(sample().input).map(([key,value])=>[key,String(value)]))};
 
@@ -84,17 +88,25 @@ test('eligible successful web tasks record the first two UTC days for quote sign
   assert.equal((await hit(another)).status,200);
   assert.equal((await hit(qa)).status,200);
   assert.equal(await use(),null);
+  assert.equal(await directUse(),null);
 
+  assert.equal((await hit(direct)).status,200,'a direct account can initialize milestone storage');
+  assert.deepEqual(await use(),{first_use_total:0,repeat_use_total:0,first_use:0,repeat_use:0});
+  assert.deepEqual(await directUse(),{first_use_total:1,repeat_use_total:0,first_use:1,repeat_use:0});
   assert.equal((await hit(cookie)).status,200);
   assert.equal((await hit(cookie)).status,200);
   assert.deepEqual({...await use()},{first_use_total:1,repeat_use_total:0,first_use:1,repeat_use:0});
+  at = Date.parse('2026-11-28T23:59:50Z');
+  assert.equal((await hit(direct)).status,200);
+  assert.deepEqual(await directUse(),{first_use_total:1,repeat_use_total:1,first_use:1,repeat_use:1});
+  assert.deepEqual(await use(),{first_use_total:1,repeat_use_total:0,first_use:1,repeat_use:0});
   at = Date.parse('2026-11-29T00:00:00Z');
   assert.equal((await hit(cookie)).status,200);
   assert.deepEqual({...await use()},{first_use_total:1,repeat_use_total:0,first_use:1,repeat_use:0},'incomplete day never counts');
   const original = request('/api/trade-workbench',{cookie,payload:own,headers});
   await recordTradeQuoteWorkbenchUse(db,original,'exporter',Date.parse('2026-11-28T23:59:59Z')/1000);
   assert.deepEqual({...await use('2026-11-28')},{first_use_total:1,repeat_use_total:1,first_use:0,repeat_use:1});
-  assert.deepEqual({...db.sql.prepare('SELECT * FROM bpj_trade_quote_workbench_use').get()},
+  assert.deepEqual({...db.sql.prepare('SELECT * FROM bpj_trade_quote_workbench_use WHERE account_id=?').get('exporter')},
     {account_id:'exporter',first_day:'2026-11-27',repeat_day:'2026-11-28'});
 
   db.sql.prepare('UPDATE free_accounts SET session_version=2 WHERE id=?').run('exporter');
@@ -102,6 +114,9 @@ test('eligible successful web tasks record the first two UTC days for quote sign
   assert.deepEqual({...await use()},{first_use_total:1,repeat_use_total:1,first_use:1,repeat_use:1},'revoked session cannot move milestones');
   db.sql.prepare('DELETE FROM free_accounts WHERE id=?').run('exporter');
   assert.deepEqual({...await use()},{first_use_total:0,repeat_use_total:0,first_use:0,repeat_use:0});
+  assert.deepEqual(await directUse(),{first_use_total:1,repeat_use_total:1,first_use:1,repeat_use:1});
+  db.sql.prepare('DELETE FROM free_accounts WHERE id=?').run('direct-exporter');
+  assert.deepEqual(await directUse(),{first_use_total:0,repeat_use_total:0,first_use:0,repeat_use:0});
 });
 
 test('guest status is private, read-only and fails closed without identity or secret', async t => {
