@@ -453,7 +453,7 @@ test('laundry MCP arrivals require the exact document, trusted visit and one fix
   async function visit(href,privacy={}){
     const events=[];
     const scope={
-      location:new URL(href),document:{referrer:'',addEventListener(){}},Blob,
+      location:new URL(href),document:{referrer:'',addEventListener(){}},Blob,URLSearchParams,
       navigator:{...privacy,sendBeacon:(path,body)=>{assert.equal(path,'/api/ev');events.push(body.text());}},
       localStorage:{getItem:()=>privacy.denied?'denied':null},
       addEventListener(){},setTimeout(){},clearTimeout(){},
