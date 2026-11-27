@@ -1,5 +1,5 @@
 // Shared public contract for the endpoint, human guide and discovery manifests.
-export const SERVER = {name:'dollscout',version:'2.6.0'};
+export const SERVER = {name:'dollscout',version:'2.7.0'};
 export const PROTOCOL_VERSION = '2025-06-18';
 export const REGISTRY_NAME = 'io.github.f-tiger/dollscout-collecting';
 export const TOOLS = [

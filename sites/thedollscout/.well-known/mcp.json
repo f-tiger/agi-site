@@ -1,10 +1,16 @@
 {
   "name": "dollscout",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "description": "Source-backed series search, collection checklists, blind-box math and display planning.",
   "endpoint": "https://thedollscout.com/mcp",
   "transport": "streamable-http",
   "protocolVersion": "2025-06-18",
+  "supportedProtocolVersions": [
+    "2026-07-28",
+    "2025-06-18",
+    "2025-03-26",
+    "2024-11-05"
+  ],
   "tools": [
     "labubu_rarity_odds",
     "labubu_fake_signals",
@@ -49,5 +55,25 @@
   ],
   "documentation": "https://thedollscout.com/for-agents",
   "catalog": "https://thedollscout.com/collector-assets/tool-capabilities.json",
-  "registryManifest": "https://thedollscout.com/mcp/server.json"
+  "registryManifest": "https://thedollscout.com/mcp/server.json",
+  "additionalServers": [
+    {
+      "name": "tds-home-tools",
+      "version": "1.2.0",
+      "registryName": "io.github.f-tiger/tds-home-tools",
+      "transport": "streamable-http",
+      "protocolVersion": "2025-06-18",
+      "supportedProtocolVersions": [
+        "2026-07-28",
+        "2025-06-18",
+        "2025-03-26",
+        "2024-11-05"
+      ],
+      "endpoint": "https://thedollscout.com/api/home-mcp",
+      "documentation": "https://thedollscout.com/ai-tools",
+      "catalog": "https://thedollscout.com/collector-assets/tds-suite/catalog-en.json",
+      "registryManifest": "https://thedollscout.com/mcp/home-tools/server.json",
+      "toolCount": 1002
+    }
+  ]
 }

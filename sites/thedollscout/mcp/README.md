@@ -2,13 +2,17 @@
 
 The household calculations and buying checks use the separate [Home Tools MCP](home-tools/README.md).
 
-MCP contract: **2.6.0**. Verify that `search_collection_series` and `prepare_collection_checklist` appear in the connected server's tool list before using this workflow. A repository version alone does not establish production availability; release receipts are tracked separately.
+MCP contract: **2.7.0**. Use `server/discover` with the `2026-07-28` protocol, or the existing `initialize` flow with a legacy client. Verify that `search_collection_series` and `prepare_collection_checklist` appear in the connected server's tool list. A repository version alone does not establish production availability.
 
 TDS lets an MCP-compatible assistant find a source-linked SMISKI or Sonny Angel series and compare names the collector supplies. The result includes owned, not-marked-owned, explicitly wanted and unmatched names, plus copyable Markdown. Existing probability, budget and display tools remain available.
 
 ## Connect
 
 Remote endpoint: **https://thedollscout.com/mcp** (Streamable HTTP). No TDS API key is required. A generic MCP client must support remote HTTP; client availability, plan requirements and organization policy vary. Discovery or Registry listing does not install the server, guarantee an AI recommendation or establish use.
+
+The [public repository](https://github.com/f-tiger/agi-site/tree/main/sites/thedollscout) shows how the endpoints work. There is no repository-wide software licence grant for these endpoints. The Registry manifest identifies the source location.
+
+The [MCP usage report](https://thedollscout.com/api/mcp-growth) covers stored successful calls for both services on complete UTC dates. It distinguishes declared client and User-Agent categories from unknown or legacy rows. Those categories do not identify people or establish revenue. QA and declared analytics opt-outs are excluded. A browser integration on a supported origin can send `X-Analytics-Consent: denied`.
 
 With Claude Code already installed, run these commands from the project where you want the server configured:
 

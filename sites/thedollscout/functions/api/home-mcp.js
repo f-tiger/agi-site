@@ -1,19 +1,18 @@
 import { TDS_TOOLS, TDS_TOOL_LANGUAGES, lookupTdsTool, runTdsTool } from '../../collector-assets/tds-suite/index.mjs';
-import { measurableRequest } from '../../lib/collector-measurement.js';
+import { recordHomeMcpSuccess } from '../../lib/collector-measurement.js';
+import { legacyProtocolVersion, mcpError, mcpHeaders, mcpJson, mcpRequestProtocol, TDS_MCP_PROTOCOLS } from '../../lib/mcp-transport.mjs';
 import { TDS_HOME_PROTOCOL as PROTOCOL, TDS_HOME_SERVER as SERVER, TDS_HOME_PAGE_SIZE as PAGE_SIZE } from '../../collector-assets/tds-suite/service.mjs';
 
-const SUPPORTED = new Set(['2024-11-05', '2025-03-26', PROTOCOL]);
 const CANONICAL = 'https://thedollscout.com';
-const ORIGINS = new Set([CANONICAL, 'https://chatgpt.com', 'https://claude.ai', 'https://www.perplexity.ai']);
 const LIMIT = 32 * 1024;
 const CURSOR_PREFIX = 'tds-home-tools-v1:';
-const NO_STORE = { 'cache-control': 'no-store', 'x-content-type-options': 'nosniff', 'x-robots-tag': 'noindex', vary: 'Origin' };
 const TRANSIENT_INPUT_ERROR = 'Use the tool schema and provide values in the documented format and range.';
 const ANNOTATIONS = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false };
 const ACKNOWLEDGEMENTS = new Set(['notifications/initialized', 'notifications/cancelled', 'notifications/progress']);
+const CAPABILITIES = { tools: { listChanged: false } };
+const INSTRUCTIONS = 'Browse tools/list and follow each nextCursor. Call a listed tool with its published input schema. Models and calculations refer to supplied inputs and cited manufacturer evidence.';
 
 const cursorFor = offset => btoa(CURSOR_PREFIX + offset);
-const rpcError = (id, code, message) => ({ jsonrpc: '2.0', id, error: { code, message } });
 const callError = content => ({ isError: true, content: [{ type: 'text', text: content }] });
 const plainObject = value => value && typeof value === 'object' && !Array.isArray(value);
 const validId = id => typeof id === 'string' || Number.isSafeInteger(id);
@@ -71,26 +70,11 @@ function responseLocale(params, request) {
   return tags.map(tag => tag.trim().split(/[-;]/, 1)[0]).find(tag => TDS_TOOL_LANGUAGES.includes(tag)) ?? 'en';
 }
 
-function countRun(context) {
-  try {
-    if (!context.env.HITS || !measurableRequest(context.request, { mcp: true })) return;
-    const pending = context.env.HITS.prepare('INSERT INTO hits (d,path,lang,country,ref,ev) VALUES (?,?,?,?,?,?)')
-      .bind(new Date().toISOString().slice(0, 10), '/api/home-mcp', '', '', '', 'tds_home_mcp_run').run().catch(() => {});
-    if (typeof context.waitUntil === 'function') context.waitUntil(pending);
-  } catch { /* Usage measurement is independent of the tool result. */ }
-}
-
 export async function onRequest(context) {
   const { request } = context;
-  const origin = request.headers.get('origin');
-  if (origin && !ORIGINS.has(origin)) return new Response('Origin not allowed', { status: 403, headers: NO_STORE });
-  const headers = {
-    ...NO_STORE,
-    ...(origin ? { 'access-control-allow-origin': origin } : {}),
-    'access-control-allow-methods': 'POST, OPTIONS, GET, HEAD',
-    'access-control-allow-headers': 'Content-Type, Accept, MCP-Protocol-Version',
-    allow: 'GET, HEAD, POST, OPTIONS',
-  };
+  const { allowed, headers } = mcpHeaders(request);
+  if (!allowed) return new Response('Origin not allowed', { status: 403, headers });
+  const invalid = (id, code, message, status) => mcpError(headers, id, { code, message }, status);
   const json = value => Response.json(value, { headers });
   if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers });
   if (request.method === 'HEAD') return new Response(null, { headers: { ...headers, 'content-type': 'application/json' } });
@@ -101,6 +85,7 @@ export async function onRequest(context) {
     return json({
       server: SERVER,
       protocolVersion: PROTOCOL,
+      supportedProtocolVersions: TDS_MCP_PROTOCOLS,
       toolCount: TDS_TOOLS.length,
       transport: 'Streamable HTTP with JSON-RPC over POST',
       documentation: CANONICAL + '/ai-tools',
@@ -108,49 +93,45 @@ export async function onRequest(context) {
     });
   }
   if (request.method !== 'POST') return new Response(null, { status: 405, headers });
-  const version = request.headers.get('mcp-protocol-version');
-  if (version && !SUPPORTED.has(version)) return new Response('Unsupported MCP protocol version', { status: 400, headers });
-
   let payload;
   try {
     payload = await readPayload(request);
   } catch {
-    return json(rpcError(null, -32700, 'Parse error'));
+    return invalid(null, -32700, 'Parse error');
   }
   if (!payload) return new Response('Request too large', { status: 413, headers });
   const body = payload.parsed;
   if (!plainObject(body) || body.jsonrpc !== '2.0' || typeof body.method !== 'string' ||
-      (Object.hasOwn(body, 'id') && !validId(body.id))) return json(rpcError(null, -32600, 'Invalid Request'));
+      (Object.hasOwn(body, 'id') && !validId(body.id))) return invalid(null, -32600, 'Invalid Request');
   const { id, method, params } = body;
-  if (id === undefined && ACKNOWLEDGEMENTS.has(method)) return new Response(null, { status: 202, headers });
-  if (id === undefined) return json(rpcError(null, -32600, 'Missing request id'));
-  const result = value => json({ jsonrpc: '2.0', id, result: value });
-  if (params !== undefined && !plainObject(params)) return json(rpcError(id, -32602, 'Invalid params'));
+  const protocol = mcpRequestProtocol(request.headers, method, params);
+  if (protocol.error) return mcpError(headers, id, protocol.error, 400);
+  if (protocol.supported === false) return new Response('Unsupported MCP protocol version', { status: 400, headers });
+  if (!protocol.modern && id === undefined && ACKNOWLEDGEMENTS.has(method)) return new Response(null, { status: 202, headers });
+  if (id === undefined) return invalid(null, -32600, 'Missing request id', protocol.modern ? 400 : 200);
+  const result = value => mcpJson(headers, id, value, { method, modern: protocol.modern, server: SERVER });
+  if (params !== undefined && !plainObject(params)) return invalid(id, -32602, 'Invalid params', protocol.modern ? 400 : 200);
 
-  if (method === 'initialize') {
-    const requested = params?.protocolVersion;
-    return result({
-      protocolVersion: SUPPORTED.has(requested) ? requested : PROTOCOL,
-      capabilities: { tools: { listChanged: false } },
-      serverInfo: SERVER,
-      instructions: 'Browse tools/list and follow each nextCursor. Call a listed tool with its published input schema. Models and calculations refer to supplied inputs and cited manufacturer evidence.',
-    });
+  if (method === 'server/discover') return result({ supportedVersions: TDS_MCP_PROTOCOLS, capabilities: CAPABILITIES, instructions: INSTRUCTIONS });
+  if (!protocol.modern && method === 'initialize') {
+    return result({ protocolVersion: legacyProtocolVersion(params?.protocolVersion, PROTOCOL), capabilities: CAPABILITIES,
+      serverInfo: SERVER, instructions: INSTRUCTIONS });
   }
   if (method === 'ping') return result({});
   if (method === 'tools/list') {
     try { return result(definitions(params)); }
-    catch { return json(rpcError(id, -32602, 'Invalid tools/list cursor')); }
+    catch { return invalid(id, -32602, 'Invalid tools/list cursor', protocol.modern ? 400 : 200); }
   }
-  if (method !== 'tools/call') return json(rpcError(id, -32601, 'Method not found'));
+  if (method !== 'tools/call') return invalid(id, -32601, 'Method not found', protocol.modern ? 400 : 200);
 
   const tool = lookupTdsTool(params?.name);
-  if (!tool) return json(rpcError(id, -32602, 'Unknown tool'));
+  if (!tool) return invalid(id, -32602, 'Unknown tool', protocol.modern ? 400 : 200);
   const args = params?.arguments ?? {};
   try {
     const output = runTdsTool(tool.name, args, responseLocale(params, request));
     if (!plainObject(output)) throw new TypeError('Invalid tool result');
     const response = result({ structuredContent: output, content: [{ type: 'text', text: JSON.stringify(output) }] });
-    countRun(context);
+    recordHomeMcpSuccess(context, tool.name, protocol.clientInfo);
     return response;
   } catch {
     return result(callError(TRANSIENT_INPUT_ERROR));

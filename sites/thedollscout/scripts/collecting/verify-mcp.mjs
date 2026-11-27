@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import {SERVER,TOOLS,RESOURCES,DEMO_INPUT} from '../../collector-assets/mcp-contract.mjs';
+import {verifyMcpGrowth,verifyModernMcp} from './verify-mcp-modern.mjs';
 const origin='https://thedollscout.com';
 async function rpc(method,params={}){const r=await fetch(origin+'/mcp?ci=1',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json, text/event-stream','User-Agent':'tds-ci-selfcheck/1.0','x-probe':'mcp-release'},body:JSON.stringify({jsonrpc:'2.0',id:1,method,params}),signal:AbortSignal.timeout(20000)});assert.equal(r.status,200);const j=await r.json();assert.ok(!j.error,JSON.stringify(j.error));return j.result;}
 assert.deepEqual((await rpc('initialize',{protocolVersion:'2025-06-18',capabilities:{},clientInfo:{name:'tds-ci-selfcheck',version:'1'}})).serverInfo,SERVER);
@@ -23,3 +24,5 @@ const museum=search.structuredContent.series.find(s=>s.seriesId==='smiski-museum
 const supplied=['Smiski Dali','Smiski Pearl Earring'];
 const checklist=await rpc('tools/call',{name:'prepare_collection_checklist',arguments:{seriesId:museum.seriesId,owned:supplied,wanted:[],language:'en'}});assert.equal(checklist.isError,false);assert.deepEqual(checklist.structuredContent.owned,museum.styles.filter(n=>supplied.includes(n)));assert.deepEqual(checklist.structuredContent.notMarkedOwned,museum.styles.filter(n=>!supplied.includes(n)));assert.deepEqual(checklist.structuredContent.wanted,[]);assert.equal(checklist.structuredContent.source,museum.source);assert.ok(checklist.structuredContent.markdown.includes(museum.source));
 console.log(JSON.stringify({collectionTasks:'verified',series:museum.seriesId,owned:checklist.structuredContent.owned.length,notMarkedOwned:checklist.structuredContent.notMarkedOwned.length,qa:true,adoption:'not-measured'}));
+await verifyModernMcp(origin,'/mcp',SERVER,{name:'plan_display_fit',arguments:DEMO_INPUT});
+await verifyMcpGrowth(origin);
