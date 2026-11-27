@@ -342,10 +342,14 @@ if(process.argv.includes('--workerd')){
  assert.equal((await laundrySignupIntentRoute(get(endpoint),env)).status,405);
  assert.equal((await begin({'Sec-GPC':'1'})).searchParams.has('eco_signup'),false);
  assert.equal((await begin({Referer:doc})).searchParams.has('eco_signup'),false);
+ const missingMetadata=await laundrySignupIntentRoute(new Request(startURL,{method:'POST',
+   headers:{Origin:host,Referer:tagged,'User-Agent':'Mozilla/5.0'}}),env);
+ assert.equal(new URL(missingMetadata.headers.get('Location')).searchParams.get('eco_signup'),'waesche-kosten');
+ assert.equal((await start({'Sec-Fetch-Site':'same-site'})).status,403);
  const first=await begin();
  assert.equal(first.searchParams.get('eco_signup'),'waesche-kosten');
  assert.deepEqual(eco.sql.prepare('SELECT name FROM pragma_table_info(?)').all('laundry_signup_intent').map(x=>x.name),['proof','expires']);
- assert.equal(eco.sql.prepare('SELECT COUNT(*) n FROM laundry_signup_intent').get().n,1);
+ assert.equal(eco.sql.prepare('SELECT COUNT(*) n FROM laundry_signup_intent').get().n,2);
  const readback=()=>readEcoLaundrySignup(bpj.env.HITS,'2026-01-01','2099-01-01');
  const originalFetch=globalThis.fetch;
  let calls=0,fail=false;

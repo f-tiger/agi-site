@@ -14,10 +14,17 @@ const quiet = request => ['DNT','Sec-GPC','X-Probe'].some(name=>request.headers.
   /getecoback-ci|bpj-ci-selftest|playwright|headless|bot|crawler/i.test(request.headers.get('User-Agent') || '') ||
   /prefetch|prerender/i.test((request.headers.get('Sec-Purpose') || '')+' '+(request.headers.get('Purpose') || ''));
 
+// Exact Origin/Referer constrain the handoff. Fetch Metadata is an additional
+// check when the browser sends it; older browsers may omit it.
+function sameOriginMetadata(request) {
+  const site = request.headers.get('Sec-Fetch-Site');
+  return site===null || site==='same-origin';
+}
+
 export function attributedLaundryBookmark(request) {
   return request.method==='GET' && request.url===taggedBookmark && !quiet(request) &&
     request.headers.get('Referer')===LAUNDRY_ENTRY_DOCUMENT &&
-    request.headers.get('Sec-Fetch-Site')==='same-origin';
+    sameOriginMetadata(request);
 }
 
 async function readDigest(request) {
@@ -56,12 +63,12 @@ export async function laundrySignupIntentRoute(request,env) {
   if (url.origin!==host || url.search) return json({ok:false},404);
   if (url.pathname===verifierPath) return verify(request,env.EVENTS);
   if (request.method!=='POST') return json({ok:false},405);
-  if (request.headers.get('Origin')!==host || request.headers.get('Sec-Fetch-Site')==='cross-site')
+  if (request.headers.get('Origin')!==host || !sameOriginMetadata(request))
     return json({ok:false},403);
   const redirect = await accountRoute(new Request(flowStart));
   const db = env.EVENTS;
   if (!db || redirect?.status!==303 || quiet(request) ||
-      request.headers.get('Referer')!==taggedBookmark || request.headers.get('Sec-Fetch-Site')!=='same-origin')
+      request.headers.get('Referer')!==taggedBookmark)
     return redirect;
   try {
     const destination = new URL(redirect.headers.get('Location'));
