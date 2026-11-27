@@ -146,6 +146,16 @@ Herstellerangaben für Deutschland geprüft am 25. November 2026. Ein Maximalwer
 
 - **Ein Luftentfeuchter mit Hygrostat** kommt infrage, wenn die Raumluft trotz Lüften und Kontrolle der Feuchtequellen wiederholt zu feucht bleibt. Hilfe zur Auswahl nach Raumgröße: [20 m²](https://getecoback.com/guide/luftentfeuchter-20-qm.html) · [30 m²](https://getecoback.com/guide/luftentfeuchter-30-qm.html) · [40 m²](https://getecoback.com/guide/luftentfeuchter-40-qm.html).
 
+### Wann du einen Entfeuchter prüfen kannst
+
+Vergleiche zuerst die [Messwerte vor und nach dem Lüften](https://getecoback.com/guide/richtig-lueften-im-winter.html#lueften-vorher-nachher). Bleibt vor allem eine Stelle an Fenster oder Wand nass, kläre die Ursache und warte mit dem Gerätekauf. Bleibt die Raumluft trotz geeigneter Lüftung und geklärter Feuchtequellen wiederholt zu feucht, vergleiche Temperatur, Leistung und Ablauf am Aufstellort.
+
+Für den **Comfee MDDF-20DEN7 ohne WF** nennt die deutsche Ausführung die Artikelnummer 10000651 und die EAN 4048164103010. Die Angabe von 20 L pro 24 Stunden gilt bei 30 °C und 80 % relativer Luftfeuchte. Für 10 °C und 60 % enthält das Datenblatt keinen Vergleichswert. [Deutsches Comfee-Datenblatt](https://www.feelcomfee.com/content/dam/comfee-aem/de/produkte/klimatisieren-heizen/mddf-20den7/comfee-MDDF-20DEN7-Datenblatt.pdf) · [Basis- und WF-Ausführung abgleichen](https://getecoback.com/guide/luftentfeuchter-keller.html#modell-comfee-mddf20).
+
+Vergleiche beim passenden Modell den Gesamtpreis inklusive Versand und benötigtem Zubehör. Bei angekündigten Rabatten prüfe den [30-Tage-Preis desselben Verkäufers](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#luftentfeuchter-30-tage-preischeck).
+
+Anzeige: Comfee MDDF-20DEN7 ohne WF bei Amazon.de ansehen
+
 ## Fragen, die wirklich gestellt werden
 
 ### Ist ein dauerhaft gekipptes Fenster im Winter schlecht?
