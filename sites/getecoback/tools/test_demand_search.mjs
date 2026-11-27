@@ -7,6 +7,23 @@ import {calculateGasHeatThreshold} from '../site/assets/heat-gas-cost.mjs';
 import {compareSocketWatts} from '../site/assets/auto-12v-check.mjs';
 const browsingIndex=readFileSync(new URL('../site/assets/search-index.json',import.meta.url));
 const index=JSON.parse(browsingIndex);
+test('Comfee drain hose uses its exact model or EAN without taking over other paths',()=>{
+ const target='/guide/luftentfeuchter-zieht-kein-wasser.html#comfee-20den7-ablaufschlauch';
+ for (const query of ['Welchen Schlauch brauche ich für den Dauerablauf am Comfee MDDF-20DEN7-WF?',
+    'Ist der Ablaufschlauch beim MDDF-20DEN7-WF mitgeliefert?', 'MDDF 20 DEN 7 Ersatzschlauch',
+    '4048164103485 Schlauchmaß','10000651 Wasser-Schlauch']) {
+   const match=searchEntries(index,query,'de')[0]?.entry;
+   assert.equal(match?.u,target,query);
+   assert.match(match.d,/13,5 mm Innendurchmesser/);
+ }
+ assert.equal(searchEntries(index,'Comfee MDDF-20DEN7-WF','de')[0]?.entry.u,
+   '/guide/luftentfeuchter-keller.html#modell-comfee-mddf20');
+ for (const query of ['MDDF-16DEN7-WF Ablaufschlauch','MDDF-20DEN7-WF Pro Schlauch',
+    'MDDF-20DEN7-XYZ Schlauch','MDDF-20DEN7-WFI Schlauch', 'MDDF-20DEN7 Ablaufschlauch bergauf mit Pumpe?', 'Ablaufschlauch Durchmesser']) {
+   assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+ }
+});
+
 test('German Core 300S box contents and replacement filters lead to different pages',()=>{
  const purchase='/guide/luftreiniger-ratgeber.html#levoit-core-300s-lieferumfang';
  const replacement='/ersatzfilter.html#levoit-core-300s';

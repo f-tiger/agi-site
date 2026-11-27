@@ -110,6 +110,32 @@ test('infrared thermostat fit reads manufacturer evidence and leaves the choice 
   assert(!text.includes('getecoback-21'));
 });
 
+test('Comfee drain hose dimensions are findable and cited in both MCP profiles', async () => {
+  const {env}=assetEnv();
+  const exact='https://getecoback.com/guide/luftentfeuchter-zieht-kein-wasser.html#comfee-20den7-ablaufschlauch';
+  for (const frage of ['Ist der Ablaufschlauch beim MDDF-20DEN7-WF im Lieferumfang?',
+    'Welcher Kondensatschlauch passt zu Artikel 10000651?', '4048164103485 Schlauchdurchmesser']) {
+    const hit=await call('ratgeber_suche',{frage,sprache:'de',max:1},env);
+    assert.ok(textOf(hit).includes('Abschnitt: '+exact),frage);
+    const finder=await call('ecoback_werkzeug_finden',{frage},env,true);
+    assert.equal(finder.structuredContent.guides?.[0]?.guide_url,exact,frage);
+  }
+  const args={pfad:exact};
+  const full=await call('ratgeber_lesen',args,env);
+  const compact=await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:args},env,true);
+  assert.equal(full.isError,false);
+  assert.deepEqual(full,compact);
+  for (const fact of ['13,5 mm Innendurchmesser','nicht im Lieferumfang','4048164103010','4048164103485',
+    'unterhalb des Geräteauslasses','nutze den Tank','comfee-MDDF-20DEN7-user-manual.pdf#page=19',
+    'Benutzerhandbuch-MDDF-20DEN7-WF.pdf#page=19']) assert.ok(textOf(full).includes(fact),fact);
+  assert.doesNotMatch(textOf(full),/amazon\.de|getecoback-21/);
+  for (const frage of ['MDDF-16DEN7-WF Ablaufschlauch','MDDF-20DEN7-WFI Schlauch','MDDF-20DEN7-WF Pro Schlauch',
+    'MDDF-20DEN7-WF mit MDDF-16DEN7-WF vergleichen, Ablaufschlauch?', 'MDDF-20DEN7-WF Ablaufschlauch bergauf mit Pumpe?']) {
+    const finder=await call('ecoback_werkzeug_finden',{frage},env,true);
+    assert.notEqual(finder.structuredContent.guides?.[0]?.guide_url,exact,frage);
+  }
+});
+
 test('Bosch WTH83V03 drain evidence distinguishes the box from optional WTZ1110', async () => {
   const origin='https://getecoback.com';
   const exact=origin+'/produkte.html#bosch-wth83v03-kondensatablauf';

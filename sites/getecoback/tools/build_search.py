@@ -282,6 +282,13 @@ def collect():
     if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
      raise ValueError(f'Missing or ambiguous cellar model comparison: {route}#{anchor}')
    entry['model_sections']=models
+  if lang=='de' and route=='/guide/luftentfeuchter-zieht-kein-wasser.html':
+   anchor='comfee-20den7-ablaufschlauch'
+   targets=re.findall(r'<h3\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)
+   if len(targets)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',targets[0]):
+    raise ValueError(f'Missing or hidden Comfee drain hose guidance: {route}#{anchor}')
+   entry.setdefault('model_sections',[]).append({'id':anchor,'title':'Comfee MDDF-20DEN7 und WF: Welcher Ablaufschlauch passt?',
+    'description':'Beide deutschen Anleitungen nennen 13,5 mm Innendurchmesser und führen den Schlauch als nicht im Lieferumfang enthalten. Typenschild und Ablaufhöhe prüfen.'})
   if lang=='de' and route=='/guide/luftentfeuchter-keller.html':
    anchor='meaco-dd8l-pro-kalte-garage'
    targets=re.findall(r'<h3\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)
