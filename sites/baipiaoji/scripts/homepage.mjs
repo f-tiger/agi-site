@@ -37,6 +37,8 @@ export function homepageModel(lang, base, categories, guidance, countOf) {
     categories: categoryOrder.map(id => categoryLinks.find(category => category.id === id)).filter(Boolean),
     moreCategories: categoryLinks.filter(category => !categoryOrder.includes(category.id)),
     toolsTitle: t('用 BPJ 工具直接做事', 'Get work done with BPJ tools'),
+    toolbox: {href: base + '/studio/', name: t('全部自研工具', 'All BPJ tools')},
+    videoStudio: {href: base + '/video/', name: t('视频工作室', 'Video studio')},
     tools: links([
       ['/studio/pdf-tools', t('PDF 工具', 'PDF tools'), t('合并、拆分和重排页面', 'Merge, split, and reorder pages'), 'PDF'],
       ['/studio/product-images', t('商品图片', 'Product images'), t('批量调整尺寸与导出', 'Resize and export images in batches'), 'IMG'],
@@ -118,7 +120,10 @@ export function renderHomepage({model, esc, search, limitCheck, account}) {
     <div class="home-section-heading">
       <div><h2 id="home-studio-title">${esc(model.toolsTitle)}</h2>
       <p>${t('PDF 和商品图片工具在浏览器本机处理文件。', 'PDF and product image tools process your files locally in the browser.')}</p></div>
-      <a class="bpj-home-toolbox" href="${canonical}studio/">${t('全部自研工具', 'All BPJ tools')}</a>
+      <nav class="home-section-actions" aria-label="${t('浏览自研工作台', 'Browse BPJ workspaces')}">
+        <a data-video-nav href="${url(model.videoStudio.href)}">${esc(model.videoStudio.name)}</a>
+        <a class="bpj-home-toolbox" href="${url(model.toolbox.href)}">${esc(model.toolbox.name)}</a>
+      </nav>
     </div>
     <div class="home-tool-grid">${model.tools.map(({href, name, description, mark}) => `
       <a class="home-tool bpj-feature-tile" href="${url(href)}" data-bpj-next>
@@ -158,7 +163,7 @@ export function homepageMarkdown(model) {
     '', `${label('HTML 正典', 'Canonical HTML')}: ${model.canonical}`,
     '', `## ${model.evidenceTitle}`, '', model.evidenceIntro, '', ...list(model.evidence),
     '', `## ${model.categoriesTitle}`, '', ...list([...model.categories, ...model.moreCategories]),
-    '', `## ${model.toolsTitle}`, '', ...list(model.tools),
+    '', `## ${model.toolsTitle}`, '', ...list(model.tools), ...list([model.videoStudio, model.toolbox]),
     '', `## ${model.discoverTitle}`, '', ...list(model.discover),
     '', `## ${model.methodTitle}`, '', model.method, '', ...list(model.sources),
     '',
