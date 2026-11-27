@@ -4,7 +4,7 @@ import {PORTASPLIT_ENTRY_PAGE, PORTASPLIT_PRODUCT_URL} from './portasplit-entry.
 import {N90_ENTRY_PAGE, N90_PRODUCT_URL} from './n90-entry.mjs';
 import {LAUNDRY_ENTRY_PAGE} from './laundry-mcp-entry.mjs';
 import {WINDOW_CONDENSATION_PAGE} from '../site/assets/fenster-taucheck.mjs';
-import {LAUNDRY_SEASON_PAGE,LAUNDRY_SEASON_EVENTS} from './laundry-events.mjs';
+import {LAUNDRY_MCP_ACTIONS,LAUNDRY_SEASON_PAGE,LAUNDRY_SEASON_EVENTS} from './laundry-events.mjs';
 
 const comfeeCataloguePages = [
   CELLAR_PAGE,
@@ -59,6 +59,15 @@ export const AUDIT_SQL = `SELECT day, name, page, ref,
   CASE WHEN page='${LAUNDRY_ENTRY_PAGE}' AND name='page_view' AND ua_class='human' AND json_valid(meta)
     THEN COALESCE(json_type(meta,'$.mcp_laundry_entry') = 'integer' AND json_extract(meta,'$.mcp_laundry_entry') = 1,0)
     ELSE 0 END AS laundry_mcp_entry,
+  CASE WHEN page='${LAUNDRY_ENTRY_PAGE}' AND ua_class='human' AND json_valid(meta) THEN
+    CASE WHEN json_type(meta,'$.mcp_laundry_entry') = 'integer' AND json_extract(meta,'$.mcp_laundry_entry') = 1
+      AND json_extract(meta,'$.input')='edited' THEN
+      CASE WHEN name='laundry_compare' AND json_extract(meta,'$.method')='measured'
+        AND json_extract(meta,'$.equal')='yes' THEN 'measured_equal_comparisons'
+        WHEN name='laundry_compare' THEN 'other_edited_comparisons'
+        WHEN name='laundry_export' THEN 'edited_exports'
+        WHEN name='laundry_next' AND json_extract(meta,'$.action')='guide' THEN 'edited_guide_opens' END END
+    END AS laundry_mcp_action,
   COUNT(CASE WHEN page='${WINDOW_CONDENSATION_PAGE}' AND name='page_view' AND ua_class='human'
     THEN 1 END) AS window_human_views,
   COUNT(CASE WHEN page IN ('${comfeeCataloguePages.join("','")}') AND ua_class='human'
@@ -69,10 +78,11 @@ WHERE (name IN ('page_view','affiliate_click')
     OR (name='eco_window_width_check' AND page='${WINDOW_ENTRY_PAGE}' AND ua_class='human')
     OR (name IN ('${Object.keys(THERMOSTAT_PACKAGE_EVENTS).join("','")}') AND page='${THERMOSTAT_PAGE}'
       AND ua_class='human' AND meta='' AND ref='' AND day>='${firstFullThermostatPackageDay}')
-    OR (name IN ('${LAUNDRY_SEASON_EVENTS.join("','")}') AND page='${LAUNDRY_SEASON_PAGE}' AND ua_class='human'))
+    OR (name IN ('${LAUNDRY_SEASON_EVENTS.join("','")}') AND page='${LAUNDRY_SEASON_PAGE}' AND ua_class='human')
+    OR (name IN ('${LAUNDRY_MCP_ACTIONS.join("','")}') AND page='${LAUNDRY_ENTRY_PAGE}' AND ua_class='human'))
   AND day >= date('now','-56 days') AND day < date('now')
   AND (ua_class IS NULL OR ua_class='human') AND page NOT LIKE '/__ci%'
-GROUP BY day, name, page, ref, link, source, drain_entry, cellar_entry, window_entry, window_tiktok_entry, portasplit_entry, n90_entry, laundry_mcp_entry, vacuum_model`;
+GROUP BY day, name, page, ref, link, source, drain_entry, cellar_entry, window_entry, window_tiktok_entry, portasplit_entry, n90_entry, laundry_mcp_entry, laundry_mcp_action, vacuum_model`;
 
 const GAPS = [
   {day:'2026-09-24',approx_start_utc:'13:00'},
@@ -133,6 +143,7 @@ const range = (start,end)=>({...section(),start,end_exclusive:end,
   mcp_window_entry:null,
   mcp_portasplit_entry:null,
   mcp_laundry_entry:null,
+  mcp_laundry_outcomes:null,
   window_tiktok:null,
   window_reddit_referrals:null,
   laundry_season:null,
@@ -302,6 +313,19 @@ function add(s,r,channel) {
     s.surfaces[surface]=(s.surfaces[surface]||0)+r.n;
   }
 }
+
+const emptyLaundryMcpOutcomes = {
+  measured_equal_comparisons:null, other_edited_comparisons:null, edited_exports:null, edited_guide_opens:null,
+};
+
+function addLaundryMcpOutcome(range,row) {
+  const action=row.laundry_mcp_action;
+  if (!Object.hasOwn(emptyLaundryMcpOutcomes,action) || row.n===0) return;
+  const outcomes=range.mcp_laundry_outcomes ??= {first_recorded_day:row.day,...emptyLaundryMcpOutcomes};
+  if (row.day<outcomes.first_recorded_day) outcomes.first_recorded_day=row.day;
+  outcomes[action]=(outcomes[action] ?? 0)+row.n;
+}
+
 export async function affiliateAudit(db,classifyRef,now=new Date()) {
   const result=await db.prepare(AUDIT_SQL).all();
   if(result?.success===false||!Array.isArray(result?.results)) throw Error('affiliate_audit_missing');
@@ -313,8 +337,9 @@ export async function affiliateAudit(db,classifyRef,now=new Date()) {
   const recentThree=range(dayAt(end,-3),end),previousThree=range(dayAt(end,-10),dayAt(end,-7));
   for(const r of rows) {
     const laundrySeason = LAUNDRY_SEASON_EVENTS.includes(r.name);
+    const laundryMcpAction = LAUNDRY_MCP_ACTIONS.includes(r.name);
     const thermostatPackage = Object.hasOwn(THERMOSTAT_PACKAGE_EVENTS,r.name);
-    if(!Number.isSafeInteger(r.n)||r.n<0||!byDay.has(r.day)||(!laundrySeason&&!thermostatPackage&&!['page_view','affiliate_click','eco_window_width_check'].includes(r.name))) throw Error('affiliate_audit_invalid');
+    if(!Number.isSafeInteger(r.n)||r.n<0||!byDay.has(r.day)||(!laundrySeason&&!laundryMcpAction&&!thermostatPackage&&!['page_view','affiliate_click','eco_window_width_check'].includes(r.name))) throw Error('affiliate_audit_invalid');
     const eligible = r.window_human_views ?? 0;
     if (!Number.isSafeInteger(eligible) || eligible < 0 || eligible > r.n) throw Error('affiliate_audit_invalid');
     const comfeeEligible = r.comfee_human_events ?? 0;
@@ -332,6 +357,12 @@ export async function affiliateAudit(db,classifyRef,now=new Date()) {
       addLaundrySeason(weeks[wi],r);
       if (recent) addLaundrySeason(recentThree,r);
       if (previous) addLaundrySeason(previousThree,r);
+      continue;
+    }
+    if (laundryMcpAction) {
+      addLaundryMcpOutcome(weeks[wi],r);
+      if (recent) addLaundryMcpOutcome(recentThree,r);
+      if (previous) addLaundryMcpOutcome(previousThree,r);
       continue;
     }
     addWindowTikTok(weeks[wi],r);
@@ -354,6 +385,7 @@ export async function affiliateAudit(db,classifyRef,now=new Date()) {
     window_tiktok_note:'Complete UTC days start 2026-11-23. The fixed tags and same-site handoff mark three independent event counts. Unobserved stages are null. A shared or typed link can carry the fixed tags.',
     window_reddit_note:'Human-classified view events on the German indoor window guide only. Reddit is an exact immediate referrer host. A missing referrer may hide a visit. No usable referrer evidence is null. This report does not attribute tool completions, affiliate clicks or orders.',
     laundry_season_note:'German laundry season tool actions on complete UTC days. Tracking may begin partway through the first recorded UTC day. Measured comparisons and model guide clicks are independent events. Unobserved stages are null. These counts do not attribute merchant clicks or orders.',
+    mcp_laundry_outcomes_note:'Independent edited-input activity from the exact tagged German calculator page on complete UTC days. A copied link carries the same tag. Outcomes are unjoined to calls, signups, guide traffic and merchant activity. Unobserved outcomes are null.',
     thermostat_package_note:'Complete UTC days from 2026-11-27. Counts are clicks from two named valve compatibility answers into the matching package section on the German guide. Unobserved actions are null. These events do not represent visitors, affiliate clicks, orders or commissions.',
     vacuum_catalog_note:'Complete UTC days start 2026-11-26. Views cover the entire product catalogue. Clicks count the three exact German model searches. These are independent events and do not identify comparison use, unique shoppers, attribution to acquisitions, orders, or commission.',
     comfee_catalog_note:'Complete UTC days start 2026-11-26. Human-classified events only. Views cover all three German guides. Clicks count the fixed base-model product destination from their model comparison lists. No eligible evidence is null. A recorded zero is limited to these events. The stages are independent and do not count card impressions, individuals, orders or commission.',

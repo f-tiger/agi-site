@@ -83,7 +83,7 @@ if (workspace) {
   try {
     if (!/^[a-z-]+$/.test(category)) throw Error('Invalid tool category.');
     const [{tools},{executeSuiteTool}]=await Promise.all([
-      import(`./ai-suite/${category}.mjs${category==='trade'?'?v=20261127.2':''}`), import('./ai-suite/runtime.mjs?v=3'),
+      import(`./ai-suite/${category}.mjs${category==='trade'?'?v=20261127.3':''}`), import('./ai-suite/runtime.mjs?v=3'),
     ]);
     const tool=tools.find(item=>item.id===workspace.dataset.suiteTool);
     if (!tool) throw Error('Unknown tool.');
@@ -147,7 +147,7 @@ if (workspace) {
         const missing=result.costCompleteness?.missing ?? [];
         const charges=missing.map(key=>key==='freight'?copy('运费','freight'):copy('保险','insurance'));
         const message=charges.length
-          ? copy(`补齐已确认的${charges.join('和')}后再核算 CIF 底价。`,`Confirm ${charges.join(' and ')} before using a CIF price floor.`)
+          ? copy(`补齐已确认的${charges.join('和')}后再核算 CIF 底价及是否达到目标利润率。`,`Confirm ${charges.join(' and ')} before using a CIF price floor or deciding whether the target margin is met.`)
           : copy('费用确认状态暂不可用。请刷新后重试。','Cost confirmation is unavailable. Reload and try again.');
         const note=document.createElement('p');
         note.className='suite-result-note';

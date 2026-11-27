@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {AUDIT_SQL,affiliateAudit,pageGroup,pageGroupV2,COHORTS_V2_VERSION} from '../src/affiliate-audit.mjs';
+import {LAUNDRY_ENTRY_DOCUMENT,LAUNDRY_ENTRY_PAGE} from '../src/laundry-mcp-entry.mjs';
 import worker from '../src/worker.js';
 
 const fixture=`import sqlite3,json,sys
@@ -872,4 +873,64 @@ test('laundry keeps tagged arrivals separate and leaves missing coverage unknown
   });
   assert.equal(tagged.weeks.at(-2).mcp_laundry_entry,null);
   assert.equal(tagged.weeks.at(-1).page_views,5);
+});
+
+test('laundry tags only eligible edited activity from the exact German document', async () => {
+  const origin='https://getecoback.com', writes=[];
+  const env={EVENTS:{prepare:()=>({bind:(...values)=>({run:async()=>writes.push(values)})})}};
+  const sample={n:'laundry_compare',p:LAUNDRY_ENTRY_PAGE,
+    m:{lang:'de',input:'edited',method:'measured',equal:'yes',action:'compare',source:'onsite',evidence:'none'}};
+  const send=(body=sample,headers={},search='')=>worker.fetch(new Request(origin+'/api/ev'+search,{
+    method:'POST',headers:{Origin:origin,Referer:LAUNDRY_ENTRY_DOCUMENT,'Sec-Fetch-Site':'same-origin',
+      'User-Agent':'Mozilla/5.0','Content-Type':'application/json',...headers},body:JSON.stringify(body),
+  }),env,{});
+  assert.equal((await send()).status,200);
+  assert.deepEqual(JSON.parse(writes.at(-1)[4]),{...sample.m,mcp_laundry_entry:1});
+  for(const [body,headers,search] of [
+    [{...sample,mcp_laundry_entry:true},{Referer:origin+LAUNDRY_ENTRY_PAGE}],
+    [sample,{Referer:LAUNDRY_ENTRY_DOCUMENT+'&other=1'}],
+    [{...sample,m:{...sample.m,input:'example'}}],
+    [{...sample,n:'laundry_next',m:{...sample.m,action:'share'}}],
+    [sample,{},'?__probe=1'],
+  ]) {
+    assert.equal((await send(body,headers,search)).status,200);
+    assert.equal(JSON.parse(writes.at(-1)[4]).mcp_laundry_entry,undefined);
+  }
+  const previous= writes.length;
+  for(const headers of [{DNT:'1'},{'Sec-GPC':'1'},{'X-Probe':'1'},{'User-Agent':'getecoback-ci'}]) await send(sample,headers);
+  assert.equal(writes.length,previous);
+  assert.equal((await send({...sample,m:{...sample.m,kwh:42}})).status,400);
+});
+
+test('laundry tagged outcomes use complete UTC days and leave affiliate counts independent', async () => {
+  const script=`import json,sqlite3,sys
+db=sqlite3.connect(':memory:');db.row_factory=sqlite3.Row
+db.execute('CREATE TABLE ev(day,name,page,ref,ua_class,meta)')
+page='/waeschetrockner-oder-luftentfeuchter.html'
+def add(day,name,meta=None,ua='human',path=page):
+ db.execute('INSERT INTO ev VALUES(?,?,?,?,?,?)',(day,name,path,'',ua,json.dumps(meta or {})))
+edited={'mcp_laundry_entry':1,'input':'edited','method':'measured','equal':'yes'}
+add('2026-11-26','page_view',{'mcp_laundry_entry':1})
+add('2026-11-26','laundry_compare',edited)
+add('2026-11-27','laundry_compare',dict(edited,method='estimate'))
+add('2026-11-27','laundry_compare',dict(edited,input='example'))
+add('2026-11-27','laundry_compare',dict(edited,mcp_laundry_entry=True))
+add('2026-11-27','laundry_compare',edited,ua='bot')
+add('2026-11-27','laundry_compare',edited,path='/en/guide/dehumidifier-drying-clothes-cost.html')
+add('2026-11-27','laundry_next',dict(edited,action='share'))
+add('2026-11-27','laundry_next',dict(edited,action='guide'))
+add('2026-11-27','affiliate_click')
+add('2026-11-28','laundry_export',edited)
+query=sys.stdin.read().replace("date('now'","date('2026-11-28'")
+print(json.dumps([dict(r) for r in db.execute(query)]))`;
+  const input=spawnSync('python3',['-c',script],{input:AUDIT_SQL,encoding:'utf8'});
+  assert.equal(input.status,0,input.stderr);
+  const report=await affiliateAudit(dbFor(JSON.parse(input.stdout)),()=> 'direct');
+  const week=report.weeks.at(-1);
+  assert.deepEqual(week.mcp_laundry_outcomes,{first_recorded_day:'2026-11-26',measured_equal_comparisons:1,
+    other_edited_comparisons:1,edited_exports:null,edited_guide_opens:1});
+  assert.equal(report.weeks.at(-2).mcp_laundry_outcomes,null);
+  assert.equal(week.page_views,1);
+  assert.equal(week.affiliate_clicks,1);
+  assert.equal(report.amazon_orders,null);
 });

@@ -159,7 +159,9 @@ def tool_source_summary(slug, url, fpath):
         return heading, '\n\n'.join([date, count, '\n'.join(entries), linked_text(datasets, url)])
     if slug == 'for-agents':
         native = re.search(r'<h2>MCP server \(native tool access\)</h2>(.*?)<h2\b', source, re.S)[1]
-        parts = [linked_text(paragraph, url) for paragraph in re.findall(r'<p>(.*?)</p>', native, re.S)[:2]]
+        paragraphs = re.findall(r'<p>(.*?)</p>', native, re.S)[:2]
+        usage = re.search(r'<p id="mcp-data-and-usage">(.*?)</p>', native, re.S)
+        parts = [linked_text(paragraph, url) for paragraph in paragraphs + ([usage[1]] if usage else [])]
         return '## Native MCP', '\n\n'.join(parts)
     return None
 

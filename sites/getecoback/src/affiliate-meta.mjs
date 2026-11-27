@@ -5,6 +5,7 @@ import {PORTASPLIT_ENTRY_DOCUMENT, PORTASPLIT_ENTRY_PAGE, PORTASPLIT_MODEL_SEARC
 import {CELLAR_MODEL_ENTRY_DOCUMENT, CELLAR_MODEL_ENTRY_PAGE, CELLAR_MODEL_SEARCH} from './cellar-entry.mjs';
 import {N90_ENTRY_DOCUMENT, N90_ENTRY_PAGE, N90_PRODUCT_URL} from './n90-entry.mjs';
 import {LAUNDRY_ENTRY_DOCUMENT, LAUNDRY_ENTRY_PAGE} from './laundry-mcp-entry.mjs';
+import {LAUNDRY_MCP_ACTIONS} from './laundry-events.mjs';
 
 // Only whitelisted affiliate dimensions. Never slice JSON: one long destination
 // used to corrupt every field, including the source merged by the click tracker.
@@ -123,9 +124,8 @@ export function vacuumOfferModel(body, request, uaClass) {
   return vacuumModelSearches.get(germanModelSearchTerm(body.m?.link_url)) ?? null;
 }
 
-function eligibleModelEntry(body, request, uaClass, path, documentUrl, matchesMerchant) {
+function eligibleEntryDocument(body, request, uaClass, path, documentUrl) {
   return body.p === path &&
-    (body.n === 'page_view' || (body.n === 'affiliate_click' && matchesMerchant(body.m?.link_url))) &&
     uaClass === 'human' && request.headers.get('dnt') !== '1' &&
     request.headers.get('sec-gpc') !== '1' && request.headers.get('x-probe') !== '1' &&
     request.headers.get('origin') === 'https://getecoback.com' &&
@@ -133,9 +133,21 @@ function eligibleModelEntry(body, request, uaClass, path, documentUrl, matchesMe
     request.headers.get('referer') === documentUrl;
 }
 
+function eligibleModelEntry(body, request, uaClass, path, documentUrl, matchesMerchant) {
+  return (body.n === 'page_view' || (body.n === 'affiliate_click' && matchesMerchant(body.m?.link_url))) &&
+    eligibleEntryDocument(body,request,uaClass,path,documentUrl);
+}
+
 export function taggedLaundryMcpEntry(body, request, uaClass) {
   return body.n === 'page_view' && body.mcp_laundry_entry === true &&
     eligibleModelEntry(body, request, uaClass, LAUNDRY_ENTRY_PAGE, LAUNDRY_ENTRY_DOCUMENT, () => false);
+}
+
+export function taggedLaundryMcpAction(body, request, uaClass) {
+  return LAUNDRY_MCP_ACTIONS.includes(body.n) && body.m?.input === 'edited' &&
+    (body.n !== 'laundry_next' || body.m.action === 'guide') &&
+    !new URL(request.url).searchParams.has('__probe') &&
+    eligibleEntryDocument(body,request,uaClass,LAUNDRY_ENTRY_PAGE,LAUNDRY_ENTRY_DOCUMENT);
 }
 
 export function taggedWindowEntry(body, request, uaClass) {

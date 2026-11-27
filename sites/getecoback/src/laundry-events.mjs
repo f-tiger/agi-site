@@ -3,6 +3,7 @@ export const LAUNDRY_EVENTS=[
  'eco_laundry_season_check','eco_laundry_season_guide',
 ];
 export const LAUNDRY_SEASON_EVENTS=LAUNDRY_EVENTS.filter(name=>name.startsWith('eco_laundry_season_'));
+export const LAUNDRY_MCP_ACTIONS=['laundry_compare','laundry_export','laundry_next'];
 export const LAUNDRY_SEASON_PAGE='/waeschetrockner-oder-luftentfeuchter.html';
 export const LAUNDRY_PATHS=[LAUNDRY_SEASON_PAGE,'/en/guide/dehumidifier-drying-clothes-cost.html'];
 export function validLaundryEvent(b){

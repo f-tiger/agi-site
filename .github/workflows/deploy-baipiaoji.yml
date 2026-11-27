@@ -399,6 +399,7 @@ jobs:
           node scripts/test-video-fit.mjs
           node --test scripts/test-ai-video-core.mjs
           node --test scripts/test-video-mcp.mjs scripts/test-video-mcp-registry.mjs
+          node --test scripts/test-mcp-protocol.mjs
           node scripts/test-catalog-sync.mjs --dist
           node scripts/test-studio.mjs --dist
           node --test scripts/test-listing-core.mjs scripts/test-listing-inquiry.mjs scripts/test-listing-signals.mjs

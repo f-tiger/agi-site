@@ -22,6 +22,7 @@ import {
   affiliateMeta, CELLAR_PAGE, taggedCellarModelEntry, taggedDrainEntry, taggedN90ModelEntry,
   taggedPortaSplitEntry, taggedWindowEntry, taggedWindowTikTokEntry, WINDOW_TIKTOK_WIDTH_EVENT,
   taggedLaundryMcpEntry,
+  taggedLaundryMcpAction,
   vacuumOfferModel,
 } from './affiliate-meta.mjs';
 import {CELLAR_MODEL_ENTRY_URL} from './cellar-entry.mjs';
@@ -929,6 +930,7 @@ async function handleEvent(request, env, ctx) {
   }
   if (name === 'page_view' && n90Entry) metadata = {mcp_n90_entry:1};
   if (laundryEntry) metadata = {mcp_laundry_entry:1};
+  if (taggedLaundryMcpAction(body,request,evCls)) metadata = {...metadata,mcp_laundry_entry:1};
   if (windowTikTokEntry && name !== 'affiliate_click') metadata = {window_tiktok_entry:1};
   const meta = name === 'affiliate_click' ? affiliateMeta(metadata, drainEntry, windowEntry, portasplitEntry, cellarModelEntry, n90Entry, windowTikTokEntry, vacuumModel)
     : metadata ? JSON.stringify(metadata).slice(0, 200) : "";

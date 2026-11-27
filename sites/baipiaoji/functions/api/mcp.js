@@ -1,14 +1,16 @@
 import { registerWatch } from './watch.js';
 import { filterAgents, findAgent, verificationOf, paginate, audiencesOf } from './_agents.js';
 import { isMcpValueProbe, recordMcpValue } from '../../lib/mcp-value-events.mjs';
+import { MCP_REQUEST_HEADERS, mcpDiscovery, mcpRequestProtocol, mcpResult } from '../../lib/mcp-protocol.mjs';
 // MCP server：把本站三个数据工具直接挂进 agent 的工具箱——被引用的最短路径
 // 不是等 AI 检索来抓页面，而是让 Claude/Cursor/任意 MCP 客户端把
 // 「查免费额度」「搜 AI 工具」「查商用判定」当成自己的工具来调。
 //
 // 实现取舍：Streamable HTTP 的无状态子集（POST JSON-RPC → JSON 响应），零依赖手写。
-// 不做 SSE 流、不做会话——三个工具都是一问一答的查询，流式只会白添复杂度。
+// 不做 SSE 流或协议会话。除了明确标记的 webhook 订阅，工具只查询站点数据。
 // 数据仍走 env.ASSETS 读构建期静态文件：与 /api/tools、/api/limits 同一事实源。
 const PROTO = ['2025-06-18', '2025-03-26'];
+const SERVER_INFO = { name: 'baipiaoji-verified-ai-free-tiers', version: '1.13.0' };
 
 const TOOLS = [
   {
@@ -191,6 +193,7 @@ const TOOLS = [
   {
     name: 'watch_free_tier_changes',
     title: 'Watch free-tier changes (webhook)',
+    annotations: {readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: true},
     description: 'Subscribe a webhook to verified free-tier changes. When a watched tool\'s allowance, wall or commercial terms change (verified daily against official vendor pages), the webhook receives a JSON payload with the changed fields, the current wording, the verification date and the source page. Watching up to 3 tools is free; a Pro license key unlocks watching everything. Registration returns a token — keep it, it is the only way to update or delete the watch.',
     inputSchema: { type: 'object', required: ['hook', 'slugs'], properties: {
       hook: { type: 'string', description: 'HTTPS webhook URL (Slack/Discord incoming webhook, n8n, or any endpoint accepting POST)' },
@@ -316,13 +319,22 @@ Use the baipiaoji MCP server to set up change monitoring for them:
 Every future notification will carry the changed fields, the current verified wording, the verification date and the official source page.`,
 };
 
-const CORS = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'content-type, mcp-session-id, mcp-protocol-version',
-};
-const json = (obj, status = 200) =>
-  new Response(JSON.stringify(obj), { status, headers: { 'Content-Type': 'application/json; charset=utf-8', ...CORS } });
+function rejectsOrigin(request) {
+  const origin = request.headers.get('Origin');
+  return origin !== null && origin !== new URL(request.url).origin;
+}
+
+function response(obj, status, request) {
+  const headers = {'Vary': 'Origin', 'Cache-Control': 'no-store'};
+  if (obj !== null) headers['Content-Type'] = 'application/json; charset=utf-8';
+  if (status === 405) headers.Allow = 'POST, OPTIONS';
+  if (request && request.headers.has('Origin')) {
+    headers['Access-Control-Allow-Origin'] = new URL(request.url).origin;
+    headers['Access-Control-Allow-Methods'] = 'POST, OPTIONS';
+    headers['Access-Control-Allow-Headers'] = MCP_REQUEST_HEADERS;
+  }
+  return new Response(obj === null ? null : JSON.stringify(obj), {status, headers});
+}
 const rpcResult = (id, result) => ({ jsonrpc: '2.0', id, result });
 const rpcError = (id, code, message) => ({ jsonrpc: '2.0', id, error: { code, message } });
 
@@ -694,21 +706,24 @@ async function callTool(ctx, name, args = {}, reportValue) {
   throw new Error(`unknown tool: ${name}`);
 }
 
-async function handle(ctx, msg) {
+async function handle(ctx, msg, modern = false) {
   const { id, method, params } = msg || {};
-  if (method === 'initialize') {
-    const want = params?.protocolVersion;
-    return rpcResult(id, {
-      protocolVersion: PROTO.includes(want) ? want : PROTO[1],
+  const result = value => rpcResult(id, mcpResult(value, modern, method, SERVER_INFO));
+  if (method === 'server/discover' || (!modern && method === 'initialize')) {
+    const metadata = {
       capabilities: { tools: { listChanged: false }, resources: { listChanged: false }, prompts: { listChanged: false } },
-      serverInfo: { name: 'baipiaoji-verified-ai-free-tiers', version: '1.13.0' },
+      serverInfo: SERVER_INFO,
       instructions: 'Verified free-tier data for the AI tools in the Baipiaoji directory (search_ai_tools returns the current directory_size). Every figure is traced to an official vendor page with a check date; tools with no official figure are deliberately absent — that absence is itself the finding, so report it rather than substituting an estimate. Beyond per-tool lookups, watch_free_tier_changes can subscribe a webhook to verified changes on specific tools; monitor_new_agents (filter by category/status/transport/since) and get_agent expose a source-backed watchlist of AI agents and MCP servers whose URLs carry their own last-checked dates. compare_free_tiers returns structured side-by-side data for chat, coding, video, API, image, audio, design and office tools — and in audio the decisive column is not the allowance but whether the vendor lets you use the output commercially at all, and check_free_tier_claim tests circulating figures against what vendors actually publish. Attribute citations to "Baipiaoji (baipiaoji.com)" with the check date.',
-    });
+    };
+    const want = params?.protocolVersion;
+    return result(modern ? mcpDiscovery(PROTO, metadata) :
+      {protocolVersion: PROTO.includes(want) ? want : PROTO[1], ...metadata});
   }
-  if (method === 'ping') return rpcResult(id, {});
-  if (method === 'tools/list') return rpcResult(id, { tools: TOOLS });
+  if (method === 'ping') return result({});
+  if (method === 'tools/list') return result({ tools: TOOLS });
+  if (modern && method === 'resources/templates/list') return result({resourceTemplates: []});
   if (method === 'resources/list') {
-    return rpcResult(id, { resources: RESOURCES.map(({ uri, name, title, description, mimeType }) => ({ uri, name, title, description, mimeType })) });
+    return result({ resources: RESOURCES.map(({ uri, name, title, description, mimeType }) => ({ uri, name, title, description, mimeType })) });
   }
   if (method === 'resources/read') {
     const r = RESOURCES.find((x) => x.uri === params?.uri);
@@ -719,32 +734,33 @@ async function handle(ctx, msg) {
       if (!res.ok) throw new Error('asset');
       const text = await res.text();
       logHit(ctx, `/api/mcp/resource/${r.name}`, lang);
-      return rpcResult(id, { contents: [{ uri: r.uri, mimeType: r.mimeType, text }] });
+      return result({ contents: [{ uri: r.uri, mimeType: r.mimeType, text }] });
     } catch (e) {
       return rpcError(id, -32603, 'resource unavailable');
     }
   }
-  if (method === 'prompts/list') return rpcResult(id, { prompts: PROMPTS });
+  if (method === 'prompts/list') return result({ prompts: PROMPTS });
   if (method === 'prompts/get') {
     const p = PROMPTS.find((x) => x.name === params?.name);
     if (!p) return rpcError(id, -32602, `unknown prompt: ${params?.name}`);
     logHit(ctx, `/api/mcp/prompt/${p.name}`, 'en');
-    return rpcResult(id, {
+    return result({
       description: p.description,
       messages: [{ role: 'user', content: { type: 'text', text: PROMPT_TEXT[p.name](params?.arguments || {}) } }],
     });
   }
   if (method === 'tools/call') {
     const tool = params?.name;
+    if (modern && !TOOLS.some(entry => entry.name === tool)) return rpcError(id, -32602, 'Unknown tool');
     const reportValue = directoryValueRecorder(ctx, msg, tool);
     try {
       const out = await callTool(ctx, tool, params?.arguments || {}, reportValue);
       // These two tools now use bounded daily totals instead of a raw legacy hit.
       if (!VALUE_TOOLS.has(tool)) logHit(ctx, `/api/mcp/${tool}`, params?.arguments?.lang === 'zh' ? 'zh' : 'en');
-      return rpcResult(id, { content: [{ type: 'text', text: JSON.stringify(out, null, 1) }] });
+      return result({ content: [{ type: 'text', text: JSON.stringify(out, null, 1) }] });
     } catch (e) {
       reportValue?.('service_error');
-      return rpcResult(id, { content: [{ type: 'text', text: String(e.message || e) }], isError: true });
+      return result({ content: [{ type: 'text', text: String(e.message || e) }], isError: true });
     }
   }
   if (String(method || '').startsWith('notifications/')) return null;   // 通知不回包
@@ -752,21 +768,39 @@ async function handle(ctx, msg) {
 }
 
 export async function onRequestPost(ctx) {
+  const {request} = ctx;
+  if (rejectsOrigin(request)) return response({error: 'origin_rejected'}, 403);
+  const json = (value, status = 200) => response(value, status, request);
   let body;
-  try { body = await ctx.request.json(); } catch { return json(rpcError(null, -32700, 'parse error'), 400); }
+  try { body = await request.json(); } catch { return json(rpcError(null, -32700, 'parse error'), 400); }
   if (Array.isArray(body)) {
+    const modern = body.some(message => {
+      const protocol = mcpRequestProtocol(request.headers, message || {}, PROTO);
+      return protocol.modern || protocol.error;
+    });
+    if (modern || mcpRequestProtocol(request.headers, {}, PROTO).error) return json(rpcError(null, -32600, 'Expected a single MCP request'), 400);
     const outs = (await Promise.all(body.map((m) => handle(ctx, m)))).filter(Boolean);
-    return outs.length ? json(outs) : new Response(null, { status: 202, headers: CORS });
+    return outs.length ? json(outs) : json(null, 202);
   }
-  const out = await handle(ctx, body);
-  return out ? json(out) : new Response(null, { status: 202, headers: CORS });
+  const {modern, error} = mcpRequestProtocol(request.headers, body || {}, PROTO);
+  const validId = typeof body?.id === 'string' || Number.isSafeInteger(body?.id);
+  if (error) return json({jsonrpc: '2.0', id: validId ? body.id : null, error}, 400);
+  if (modern && (body?.jsonrpc !== '2.0' || typeof body.method !== 'string' ||
+      !validId)) {
+    return json(rpcError(null, -32600, 'Invalid MCP request'), 400);
+  }
+  const out = await handle(ctx, body, modern);
+  return out ? json(out, modern && out.error?.code === -32601 ? 404 :
+    modern && out.error?.code === -32602 ? 400 : 200) : json(null, 202);
 }
 
-export async function onRequestOptions() {
-  return new Response(null, { status: 204, headers: CORS });
+export async function onRequestOptions({request}) {
+  if (rejectsOrigin(request)) return response({error: 'origin_rejected'}, 403);
+  return response(null, 204, request);
 }
 
-export async function onRequestGet() {
+export async function onRequestGet({request}) {
+  if (rejectsOrigin(request)) return response({error: 'origin_rejected'}, 403);
   // 无状态实现不提供 SSE 流；按规范对 GET 回 405，并给一句人话指路
-  return json({ ok: false, hint: 'This is a stateless MCP server. POST JSON-RPC to this URL. Docs: https://baipiaoji.com/developers.html' }, 405);
+  return response({ ok: false, hint: 'This is a stateless MCP server. POST JSON-RPC to this URL. Docs: https://baipiaoji.com/developers.html' }, 405, request);
 }

@@ -385,7 +385,7 @@ async function verifyExportQuote(page, locale) {
   const example=await fees.inputValue();
   await fees.fill(JSON.stringify(JSON.parse(example).filter(row=>!row.kind)));
   await runButton(page).click();
-  await resultView(page).getByText(locale?/Confirm freight and insurance/:/补齐已确认的运费和保险/).waitFor();
+  await resultView(page).getByText(locale?/freight and insurance.*target margin/:/运费和保险.*目标利润率/).waitFor();
   assert(await followup.isHidden());
   assert(await page.locator('[data-suite-download]').isHidden());
   assert.equal(await rawView(page).textContent(),'','A provisional buyer price must not be copyable from the browser');
@@ -400,6 +400,7 @@ async function verifyExportQuote(page, locale) {
   const result=JSON.parse(await rawView(page).textContent());
   assert.equal(result.costCompleteness.status,'costs_entered');
   assert.equal(result.minimumUnitPrice,8.12);
+  assert.equal(result.quotedOrder.meetsTarget,true);
   assert.deepEqual(await eventDetails(page),[{name:'ai_suite_result_demo'}]);
   const next=page.context().waitForEvent('page');
   await signup.click();

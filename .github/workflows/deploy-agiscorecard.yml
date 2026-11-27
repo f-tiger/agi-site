@@ -18,6 +18,8 @@ on:
       - "sites/baipiaoji/lib/**"
       - "sites/baipiaoji/functions/api/member*.js"
       - "sites/baipiaoji/scripts/ad-runner-config.mjs"
+      - "sites/getecoback/src/mcp-protocol.mjs"
+      - "sites/getecoback/src/mcp-client-signal.mjs"
       - "sites/agiscorecard/**"
       - ".github/workflows/deploy-agiscorecard.yml"
       - ".github/scripts/deploy-main-guard*"
@@ -197,7 +199,7 @@ jobs:
       - name: Validate the published MCP catalog and its search contract
         run: |
           node sites/agiscorecard/tools/mcp-directory/build.mjs --validate
-          node --test sites/agiscorecard/tools/mcp-directory/*.test.mjs
+          node --test sites/agiscorecard/tools/mcp-directory/*.test.mjs sites/agiscorecard/tools/analytics-worker/mcp.test.mjs
       - name: Build and test Earn video project library
         run: |
           node sites/agiscorecard/tools/earn/build.mjs
