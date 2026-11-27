@@ -12,6 +12,32 @@ from moisture_journeys import GUIDE_NEXT
 SITE = Path(__file__).resolve().parents[1] / 'site'
 
 class ConversionRoutes(unittest.TestCase):
+    def test_trotec_offer_has_one_approved_search_after_exact_model_and_room_conditions(self):
+        guide=SITE / 'guide/trotec-luftentfeuchter-test.html'
+        page=guide.read_text()
+        md=guide.with_suffix('.md').read_text()
+        self.assertNotRegex(page,r'<!--EB_(?:TOPPICK|MODELS|POPUP|STICKY|PROFILE|QUICKPICK|USMARKET|USSWITCH|RADAR)-->')
+        self.assertNotRegex(page,r'href="https://(?:www\.)?amazon\.com/')
+        [offer]=re.findall(r'<h3 id="ttk75-angebot">.*?(?=<div class="tbl-scroll">)',page,re.S)
+        self.assertLess(page.index('id="ttk75-pruefpunkt"'),page.index(offer))
+        first=re.search(r'<a\b[^>]*href="(https://www\.amazon\.de/[^"]+)"',page)
+        expected='https://www.amazon.de/s?k=Trotec+TTK+75+ECO&amp;tag=getecoback-21'
+        self.assertEqual(first[1],expected)
+        self.assertEqual(page.count(expected),1)
+        self.assertLess(offer.index('Warte mit dem Kauf'),offer.index(expected))
+        self.assertIn('Anzeige · Trotec TTK 75 ECO bei Amazon.de suchen',offer)
+        for fact in ('1120001110','1120001003','Gesamtpreis inklusive Versand','Warte mit dem Kauf',
+                     'https://de.trotec.com/shop/luftentfeuchter-ttk-75-eco.html',
+                     'https://de.trotec.com/shop/luftentfeuchter-ttk-75-e.html'):
+            self.assertIn(fact,offer)
+            self.assertIn(fact,md)
+        comparison=re.search(r'<h2 id="vergleich">.*?(?=<h2)',page,re.S)[0]
+        self.assertIn('href="#ttk70-hepa-filter"',comparison)
+        self.assertNotIn('Trotec+TTK+70+HEPA',comparison)
+        evidence='/guide/luftentfeuchter-keller.html#modell-comfee-mddf20'
+        self.assertLess(comparison.index(evidence),comparison.index('B07KJX6RDK'))
+        self.assertNotRegex(md,r'getecoback-21|https://www.amazon.de/')
+
     def test_winter_hygrometer_keeps_measurement_and_exact_german_searches(self):
         page = SITE / 'guide' / 'richtig-lueften-im-winter.html'
         html = page.read_text()

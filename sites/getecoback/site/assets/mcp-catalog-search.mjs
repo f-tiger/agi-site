@@ -3,7 +3,7 @@ import {mieleBagTask} from './miele-beutel-intent.mjs';
 import {asksForTrotecTtk70Filter} from './trotec-ttk70-hepa-filter-intent.mjs';
 import {asksForNarrowKaercherNozzle, asksForWindowVacClearance, focusWindowVacQuestion, glassvacModel, windowVacCharging} from './kaercher-saugduese-intent.mjs';
 import {asksAboutCoffeeFilterMaintenance, asksForCoffeeWaterFilterMatch} from './kaffee-wasserfilter-intent.mjs?v=99bfa4094412';
-import {asksForTrotecTtk75EcoConditions, namesTrotecTtk75Eco} from './trotec-ttk75-eco-intent.mjs';
+import {asksForTrotecTtk75EcoConditions, asksForTrotecTtk75EcoOffer, namesTrotecTtk75Eco} from './trotec-ttk75-eco-intent.mjs?v=0a6f393565c3';
 import {asksForCoolingNoiseComparison} from './cooling-noise-intent.mjs?v=f0bcc0785943';
 import {asksForTesamollWindowProfile} from './tesamoll-profile-intent.mjs';
 import {exactGermanFilterModel} from './exact-filter-intent.mjs';
@@ -362,6 +362,12 @@ export function findCatalogueTools(index, {query='', category='', name=null}={})
   const trotecFilter = asksForTrotecTtk70Filter(focus.query);
   const trotecFilterTool = 'trotec_ttk70_hepa_filter_generation';
   const trotecConditions = asksForTrotecTtk75EcoConditions(focus.query);
+  if (asksForTrotecTtk75EcoOffer(focus.query)) {
+    const guide = index.find(entry => entry.tool.name === 'ratgeber_suche' && eligible(entry));
+    if (!guide) return [];
+    const citation_url = 'https://getecoback.com/guide/trotec-luftentfeuchter-test.html';
+    return [{...guide.tool, citation_url, guide_url:citation_url + '#ttk75-angebot'}];
+  }
   const trotecTool = 'trotec_ttk75_eco_pruefpunkt';
   const trotecOnly = namesTrotecTtk75Eco(focus.query) && !/\b(?:meaco|arete|comfee|pac[ -]*n[ -]*90|8004399512351)\b/.test(focus.query);
   const coolingNoise = asksForCoolingNoiseComparison(focus.query);
