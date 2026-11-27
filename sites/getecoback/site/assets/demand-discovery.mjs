@@ -61,10 +61,6 @@ const philipsHumidifierGuide='/guide/luftbefeuchter-ratgeber.html';
 
 export function exactGermanGuide(normalizedQuery) {
  const query=normalizedQuery.trim().replace(/\s+/g,' ');
- if (/\b(?:luft)?entfeuchter(?:s|n)?\b/.test(query) && /\bluftreiniger(?:s|n)?\b/.test(query) &&
-     /\b(?:oder|vs|versus|unterschied\w*|vergleich\w*|beide)\b/.test(query) &&
-     !/\b(?:strom\w*|kwh|kosten\w*|verbrauch\w*|ersatzfilter)\b/.test(query))
-   return {path:'/guide/luftentfeuchter-oder-luftreiniger.html',id:'der-unterschied-in-einem-satz'};
  const philipsSection=philipsHumidifierFilterSection(query);
  if(philipsSection)return {path:philipsHumidifierGuide,id:philipsSection};
  if(n90ExactName.test(query)||n90ExactEan.test(query))
@@ -84,6 +80,10 @@ export function exactGermanGuide(normalizedQuery) {
  if(asksAboutIndoorWindowCondensation(query))
    return {path:'/guide/fenster-beschlagen-innen.html',id:'fenstersauger-gegen-kondenswasser'};
  if(task)return {path:task.path,id:task.id};
+ if (/\b(?:luft)?entfeuchter(?:s|n)?\b/.test(query) && /\bluftreiniger(?:s|n)?\b/.test(query) &&
+     /\b(?:oder|vs|versus|unterschied\w*|vergleich\w*|beide)\b/.test(query) &&
+     !/\b(?:strom\w*|kwh|kosten\w*|verbrauch\w*|ersatzfilter)\b/.test(query))
+   return {path:'/guide/luftentfeuchter-oder-luftreiniger.html',id:'der-unterschied-in-einem-satz'};
  const seasonalTotal=/\b(?:saisonkosten|saisonwechsel|(?:pro|je)\s+(?:saison|winter|jahr))\b|\b\d+\s+von\s+\d+\s+(?:waesche|wasch)?ladungen\b/;
  return !seasonalTotal.test(query)&&!asksForDehumidifierDrainRoute(query)&&!asksForCellarVentilationCheck(query)&&
    asksForLaundryCostComparison(query) ? laundryComparisonGuide : null;

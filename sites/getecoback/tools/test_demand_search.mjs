@@ -14,6 +14,10 @@ test('German air device choice lands on the decision section for dampness and pa
   'Luftreiniger oder Luftentfeuchter bei Schimmel an der Schlafzimmerwand?',
   'Sind Luftentfeuchter und Luftreiniger beide sinnvoll?'
  ]) assert.equal(searchEntries(index,query,'de')[0]?.entry.u,target,query);
+ for(const [query,fragment] of [
+  ['MeacoDry Arete One oder Two 20L: Welche Unterschiede haben diese Luftentfeuchter mit Luftreiniger?','#one-oder-two'],
+  ['Hat mein Bosch Dry 4000 Luftentfeuchter einen HEPA- oder Aktivkohlefilter wie ein Luftreiniger?','#bosch-dry-4000-aktivkohlefilter'],
+ ]) assert.ok(searchEntries(index,query,'de')[0]?.entry.u.endsWith(fragment),query);
  for(const query of ['Bosch Air 4000 Ersatzfilter','Stromkosten Luftentfeuchter oder Luftreiniger','Luftentfeuchter bei 10 °C'])
   assert.notEqual(searchEntries(index,query,'de')[0]?.entry.u,target,query);
 });
