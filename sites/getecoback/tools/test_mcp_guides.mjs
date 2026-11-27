@@ -1196,6 +1196,29 @@ test('German dehumidifier price checks retain the exact evidence and stop path i
  assert(!textOf(full).includes('https://www.amazon.de/'));
 });
 
+test('heated rack cost and timer answers can be found and read in both MCP profiles',async()=>{
+ const {env}=assetEnv();
+ const page='https://getecoback.com/guide/beheizter-waeschestaender.html';
+ for(const [frage,id,proof] of [
+   ['Beheizbarer Wäscheständer Stromkosten: 200 W für 6 Stunden bei 30 Cent',
+    'kosten-pro-fertig-getrockneter-ladung',['1,2 kWh','0,36 €','0 kWh Strom','gleichen Trockengrad']],
+   ['Kann ich den Adler AD 7821 an eine externe Zeitschaltuhr anschließen?',
+    'heizstaender-modelle',['5903887809641','schließt externe Zeitschaltuhren','2 oder 4 Stunden','3459/#page=26']],
+ ]) {
+   const target=page+'#'+id;
+   const search=await call('ratgeber_suche',{frage,sprache:'de',max:1},env);
+   assert.ok(textOf(search).includes('Abschnitt: '+target),frage);
+   const finder=await call('ecoback_werkzeug_finden',{frage},env,true);
+   assert.equal(finder.structuredContent.guides?.[0]?.guide_url,target,frage);
+   const full=await call('ratgeber_lesen',{pfad:target},env);
+   const compact=await call('ecoback_werkzeug_ausfuehren',{name:'ratgeber_lesen',eingaben:{pfad:target}},env,true);
+   assert.equal(full.isError,false);
+   assert.deepEqual(full,compact);
+   for(const fact of proof) assert.ok(textOf(full).includes(fact),fact);
+   assert.doesNotMatch(textOf(full),/getecoback-21|https:\/\/www\.amazon\.de/);
+ }
+});
+
 test('tado X room sensor guidance matches both MCP profiles and retains the setup boundary',async()=>{
  const {env}=assetEnv();
  const target='https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#tado-x-raumtemperatur';

@@ -402,6 +402,18 @@ def collect():
     raise ValueError(f'Missing or ambiguous Bosch calibration section: {route}#{calibration}')
    entry['model_sections'].append({'id':calibration,'title':title,
     'description':'Bosch nennt E03 einen Kalibrierungsfehler. Montage, Ventilstift und gegebenenfalls den vorhandenen Adapter prüfen. Bei unklarem Ventiltyp keinen Adapter kaufen.'})
+  if lang=='de' and route=='/guide/beheizter-waeschestaender.html':
+   entry['model_sections']=[
+    {'id':'kosten-pro-fertig-getrockneter-ladung','title':'Kosten pro fertig getrockneter Ladung',
+     'description':'200 W für sechs Stunden ergeben bei konstanter Leistung 1,2 kWh und bei 0,30 €/kWh geschätzte 0,36 €. Normale Ständer brauchen selbst keinen Strom.'},
+    {'id':'heizstaender-modelle','title':'Adler AD 7821 und DOMO DO7117DR im Vergleich',
+     'description':'Adler AD 7821 hat 220 W und schließt externe Zeitschaltuhren aus. DOMO DO7117DR hat 150 W und einen eingebauten Timer für 2 oder 4 Stunden.'},
+   ]
+   for section in entry['model_sections']:
+    anchor=section['id']
+    headings=re.findall(r'<h2\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)
+    if len(headings)!=1 or re.search(r'\s(?:hidden(?:[ =>])|aria-hidden="true")',headings[0]):
+     raise ValueError(f'Missing or hidden heated rack guidance: {route}#{anchor}')
   if lang=='de' and route=='/guide/trotec-luftentfeuchter-test.html':
    anchor='ttk70-hepa-filter'
    targets=re.findall(r'<(?:section|h[23])\b[^<>]*\sid="'+anchor+r'"[^<>]*>',text)

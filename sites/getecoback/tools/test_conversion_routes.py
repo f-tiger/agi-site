@@ -12,6 +12,29 @@ from moisture_journeys import GUIDE_NEXT
 SITE = Path(__file__).resolve().parents[1] / 'site'
 
 class ConversionRoutes(unittest.TestCase):
+    def test_heated_rack_article_separates_assumed_power_real_load_and_timer_choices(self):
+        page=SITE/'guide/beheizter-waeschestaender.html'
+        raw=page.read_text()
+        md=page.with_suffix('.md').read_text()
+        self.assertNotRegex(raw,r'<!--EB_(?:TOPPICK|MODELS|POPUP|STICKY|PROFILE|QUICKPICK|USMARKET|RADAR)-->')
+        pattern=r'<section aria-labelledby="(kosten-pro-fertig-getrockneter-ladung|heizstaender-modelle)">(.*?)</section>'
+        parts=dict(re.findall(pattern,raw,re.S))
+        self.assertEqual(len(parts),2)
+        for phrase in ('1,2 kWh','0,36 €','0 kWh Strom','gleichen Trockengrad','geeigneter Lüftung'):
+            self.assertIn(phrase,parts['kosten-pro-fertig-getrockneter-ladung'])
+            self.assertIn(phrase,md)
+        for phrase in ('AD 7821','5903887809641','220 W','schließt externe Zeitschaltuhren','0,88 kWh',
+                       'DO7117DR','150 W','2 oder 4 Stunden','0,60 kWh','ad_7821.pdf#page=7','3459/#page=26'):
+            self.assertIn(phrase,parts['heizstaender-modelle'])
+            self.assertIn(phrase,md)
+        links=re.findall(r'<a\b[^>]*href="(https://www\.amazon\.de/[^"]+)"[^>]*>',raw)
+        self.assertEqual(links,[
+            'https://www.amazon.de/s?k=hygrometer+innen&amp;tag=getecoback-21',
+            'https://www.amazon.de/s?k=beheizter+w%C3%A4schest%C3%A4nder+timer&amp;tag=getecoback-21',
+        ])
+        self.assertLess(raw.index('id="dein-naechster-schritt"'),raw.index(links[0]))
+        self.assertNotRegex(md,r'https?://www\.amazon\.de/|getecoback-21')
+
     def test_tado_x_room_temperature_suggests_existing_hardware_before_shopping(self):
         p=SITE/'guide/smarte-heizkoerperthermostate-lohnen-sich.html'
         raw=p.read_text()

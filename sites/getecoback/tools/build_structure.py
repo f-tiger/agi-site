@@ -1992,7 +1992,7 @@ def strip_decision_promotions(html, slug):
                     "meacodry-arete-one-test",
                     "luftentfeuchter-granulat-oder-elektrisch",
                     "infrarotheizung-thermostat", "split-klimaanlage-ohne-kernbohrung",
-                    "trotec-luftentfeuchter-test", electricity_fact_check}:
+                    "trotec-luftentfeuchter-test", "beheizter-waeschestaender", electricity_fact_check}:
         return html
     markers = ("EB_MODELS", "EB_TOPPICK", "EB_POPUP", "EB_STICKY", "EB_PROFILE",
                "EB_QUICKPICK", "EB_SIZER", "EB_USMARKET", "EB_USTOP",
@@ -2003,7 +2003,7 @@ def strip_decision_promotions(html, slug):
         markers += ("EB_EXPLAINER",)
     if slug in {"dachgeschoss-kuehlen", "luftentfeuchter-oder-luftreiniger", "luftreiniger-ratgeber", "richtig-lueften-im-winter"}:
         markers += ("EB_EXPLAINER", "EB_RADAR")
-    if slug in {"luftentfeuchter-granulat-oder-elektrisch", "split-klimaanlage-ohne-kernbohrung", "trotec-luftentfeuchter-test"}:
+    if slug in {"luftentfeuchter-granulat-oder-elektrisch", "split-klimaanlage-ohne-kernbohrung", "trotec-luftentfeuchter-test", "beheizter-waeschestaender"}:
         markers += ("EB_EXPLAINER", "EB_RADAR")
     if slug == "split-klimaanlage-ohne-kernbohrung":
         markers += ("EB_CLIMATE",)
