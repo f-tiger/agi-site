@@ -250,7 +250,7 @@ class CatalogTest(unittest.TestCase):
             self.assertEqual(q['tag'],['getecoback-21'])
             if p.get('asin'):self.assertEqual(urlsplit(url).path,'/dp/B07KJX6RDK')
             else:self.assertEqual(q['k'],[p['query']])
-        self.assertIn('keine Rangliste',html)
+        self.assertIn('Weitere Modelle nach Ausstattung auswählen',html)
         self.assertIn('ander',html)
 
     def test_stale_future_or_unverified_sources_remove_commerce_not_evidence(self):

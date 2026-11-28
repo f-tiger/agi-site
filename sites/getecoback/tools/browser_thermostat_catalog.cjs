@@ -64,7 +64,7 @@ const routePath = '/guide/smarte-heizkoerperthermostate-lohnen-sich.html';
         const u = new URL(await a.getAttribute('href'));
         assert.equal(u.hostname,'www.amazon.de'); assert.equal(u.pathname,'/s');
         assert.equal(u.searchParams.get('tag'),'getecoback-21');
-        assert.match(await a.innerText(),/suchen/);
+        assert.match(await a.innerText(),/suchen|Modellsuche/);
       }
       if (enabled) {
         await page.locator('[data-valve-check][data-ready=true]').waitFor();

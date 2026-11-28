@@ -17,7 +17,9 @@ class CatalogTests(unittest.TestCase):
         text = catalog.render(today=dt.date(2026, 11, 27), data=data)
         links = re.findall(r'href="([^"]*amazon[^\"]*)"', text)
         queries = [product['query'] for product in data['products']] + ['TP-Link Kasa KE100 KIT mit KH100 Hub']
-        self.assertEqual(len(links), len(queries))
+        # Only Bosch's comparison source had been checked by Nov 27.
+        self.assertEqual(len(links), len(queries) + 1)
+        self.assertEqual(parse_qs(urlsplit(unescape(links.pop(0))).query)['k'], [data['products'][1]['query']])
         for link, query in zip(links, queries):
             url = urlsplit(unescape(link))
             self.assertEqual(url.netloc, 'www.amazon.de')
@@ -56,7 +58,7 @@ class CatalogTests(unittest.TestCase):
         self.assertIn('0 %', html)
         self.assertIn('datetime="2026-11-12"', html)
         self.assertIn('datetime="2026-11-27"', html)
-        self.assertIn('"dateModified": "2026-11-27"', html)
+        self.assertIn('"dateModified": "2026-11-28"', html)
         self.assertEqual(html.count('id="tado-x-oventrop"'), 1)
         self.assertIn('4026755228717', html)
         self.assertEqual(html, page(catalog.SLUG, PAGES[catalog.SLUG]))

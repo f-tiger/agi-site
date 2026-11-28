@@ -64,9 +64,26 @@ async function layout(page,label){
 }
 async function cards(root,lang,label){
  const visible=root.locator('.choice-candidate:visible');assert.equal(await visible.count(),2,label+' exactly two visible candidates');checks++;
+ const winter=label.startsWith('/guide/luftentfeuchter-ratgeber.html');
+ const winterModels=[
+  ['MeacoDry Arete One 20L','MeacoDry+Arete+One+20L','one-20l','3,4 L/Tag · 180 W','8,5 L/Tag · 216 W'],
+  ['MeacoDry Arete Two 12L','MeacoDry+Arete+Two+12L+Luftentfeuchter','two-12l','1,97 L/Tag · 111 W','5,4 L/Tag · 136 W']
+ ];
  const headings=[];
  for(let i=0;i<2;i++){
-  const card=visible.nth(i),expected=candidates[i];
+  const card=visible.nth(i);
+  if(winter){
+   const [name,query,slug,cold,warm]=winterModels[i];
+   assert.equal(await card.locator('h4').innerText(),name);
+   assert.deepEqual(await card.locator('.choice-facts dd').allTextContents(),[cold,warm]);
+   const offer=card.locator('[data-choice-action=shop]');
+   assert.equal(await offer.getAttribute('href'),'https://www.amazon.de/s?k='+query+'&tag=getecoback-21');
+   assert.deepEqual((await offer.getAttribute('rel')).split(' ').sort(),['nofollow','noopener','sponsored']);
+   const detail=card.locator('[data-choice-evidence]');await detail.locator('summary').click();
+   assert.equal(await detail.locator('a').getAttribute('href'),'https://eu.meaco.com/products/meacodry-arete-'+slug+'-luftentfeuchter-luftreiniger');
+   await detail.locator('summary').click();continue;
+  }
+  const expected=candidates[i];
   assert.equal((await card.locator('h4').innerText()).trim(),expected.name,label+' candidate identity');
   assert.equal(await card.locator('[data-choice-action=shop]').getAttribute('href'),expected.href,label+' original offer mapping');
   const rel=(await card.locator('[data-choice-action=shop]').getAttribute('rel')).split(/\s+/);
@@ -123,7 +140,7 @@ async function cards(root,lang,label){
     }
     const method=root.locator('[data-choice-method]');assert.equal(await method.count(),1);checks++;
     await method.locator('summary').click();
-    check((await method.innerText()).includes(lang==='de'?'keine eigenen Messungen':'not our own measurements'),pathname+' visible method limitation');
+    check((await method.innerText()).includes(pathname.endsWith('/luftentfeuchter-ratgeber.html')?'Wattzahl allein':lang==='de'?'keine eigenen Messungen':'not our own measurements'),pathname+' visible method limitation');
     await layout(page,pathname+' method '+width);await method.locator('summary').click();
     await root.locator('[data-copy]').click();assert.equal(await root.locator('[data-share]').inputValue(),origin+pathname+'#eb-moisture-choice');checks++;
     await root.screenshot({path:path.join(dir,'buyer-'+path.basename(pathname,'.html')+'-'+width+'.png')});

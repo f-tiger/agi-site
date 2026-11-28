@@ -110,6 +110,16 @@ class BuyerGeo(unittest.TestCase):
                     self.assertEqual(updated.count('data-choice-method'), 1)
                     self.assertGreater(updated.count('<details data-choice-evidence>'), 1)
                     markdown = to_markdown(updated, route, 'en' if en else 'de')
+                    if slug == 'luftentfeuchter-ratgeber':
+                        self.assertIn('| Prüfpunkt | MeacoDry Arete One 20L | MeacoDry Arete Two 12L |', markdown)
+                        self.assertIn('| 10 °C / 60 % RH | 3,4 L/Tag · 180 W | 1,97 L/Tag · 111 W |', markdown)
+                        self.assertIn('| 20 °C / 60 % RH | 8,5 L/Tag · 216 W | 5,4 L/Tag · 136 W |', markdown)
+                        for model in ('one-20l', 'two-12l'):
+                            self.assertIn('https://eu.meaco.com/products/meacodry-arete-' + model, markdown)
+                        self.assertNotIn('unter dieser Bedingung nicht verifiziert', markdown)
+                        self.assertNotRegex(markdown, r'amazon\.de/|getecoback-21')
+                        count += 1
+                        continue
                     for reference in [MEACO, COMFEE, DATASHEET, DECISION.COMFEE, DECISION.AIR]:
                         self.assertIn('](' + reference + ')', markdown)
                     for text in ['20 °C / 60 % RH', '10 °C / 60 % RH', '216 W', '180 W',

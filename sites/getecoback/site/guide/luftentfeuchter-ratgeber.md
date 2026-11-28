@@ -6,9 +6,17 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftentfeuchter-rat
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
 
-Ob 10 oder 20 Liter Nennleistung passen, lässt sich aus der Fläche allein nicht ableiten. Prüfe zuerst die Feuchteursache und [miss Temperatur und relative Luftfeuchte wiederholt](https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html). Vergleiche danach die Herstellerleistung unter ähnlichen Bedingungen sowie Raumvolumen, Feuchtenachschub, Strombedarf und Ablauf. Bei Lecks, nassen Bauteilen oder Schimmel muss die Ursache geklärt werden; ein Entfeuchter behebt sie nicht.
+## Schnell-Entscheidung in 30 Sekunden
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
+### Kalter Keller um 10 °C
+**MeacoDry Arete One 20L**3,4 L/Tag · 180 W. Bei 60 % Luftfeuchte zieht die One mehr Wasser aus der Luft als die Two.
+
+### Wäsche im Wohnraum um 20 °C
+**MeacoDry Arete Two 12L**5,4 L/Tag · 136 W. Wenn dir beim Wäschetrocknen die niedrigere Leistungsaufnahme wichtiger ist, wähle die Two.
+
+Bei nassen Wänden erst die Ursache klären. Ohne Messwerte zuerst Temperatur und Feuchte messen. [* Werbung · Quellen](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#winter-quellen)
+
+Ob 10 oder 20 Liter Nennleistung passen, lässt sich aus der Fläche allein nicht ableiten. Prüfe zuerst die Feuchteursache und [miss Temperatur und relative Luftfeuchte wiederholt](https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html). Vergleiche danach die Herstellerleistung unter ähnlichen Bedingungen sowie Raumvolumen, Feuchtenachschub, Strombedarf und Ablauf. Bei Lecks, nassen Bauteilen oder Schimmel muss die Ursache geklärt werden; ein Entfeuchter behebt sie nicht.
 
 [Black-Friday-Angebot für einen Luftentfeuchter prüfen](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#luftentfeuchter-30-tage-preischeck)
 
@@ -120,23 +128,24 @@ Luftentfeuchter auf Amazon.de ansehen →
 [Stromkosten und Laufzeit des Luftentfeuchters prüfen →](https://getecoback.com/guide/luftentfeuchter-dauerbetrieb-stromkosten.html)
 [Klimaanlage & Luftkühler reinigen →](https://getecoback.com/guide/klimaanlage-reinigen.html)
 
+Quellen, Auswahl und Affiliate-LinksWir vergleichen veröffentlichte Herstellerangaben. EcoBack hat die Geräte nicht selbst getestet. Als Amazon-Partner verdienen wir an qualifizierten Verkäufen. Die Modellsuche zeigt mehrere Treffer. Prüfe Generation, Lieferumfang und Gesamtpreis beim Händler.
+[MeacoDry Arete One 20L](https://eu.meaco.com/products/meacodry-arete-one-20l-luftentfeuchter-luftreiniger) (2026-11-28) · [MeacoDry Arete Two 12L](https://eu.meaco.com/products/meacodry-arete-two-12l-luftentfeuchter-luftreiniger) (2026-11-28)
+
 ## Herstellerdaten vor dem Kauf prüfen
-**So vergleichst du die Herstellerdaten**
-Zwei Beispiele aus vorhandenen Ratgebern, kein vollständiger Marktvergleich und kein EcoBack-Produkttest. Verglichen werden Wasserentzug und Betriebsleistung bei derselben Temperatur und relativen Feuchte (RH). Fehlende Angaben bleiben offen; daraus folgt keine Rangfolge.
+**Modelle direkt vergleichen**
 
-Herstellerangaben zu Wasserentzug und Leistung; geprüft am 06.11.2026
+Wasserentzug und Leistungsaufnahme bei gleicher Raumluft
 
-| Bedingung | Comfee MDDF-20DEN7 | MeacoDry Arete One 20L |
+| Prüfpunkt | MeacoDry Arete One 20L | MeacoDry Arete Two 12L |
 | --- | --- | --- |
-| 20 °C / 60 % RH | Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert. | 8.5 L/Tag · 216 W |
-| 10 °C / 60 % RH | Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert. | 3.4 L/Tag · 180 W |
+| 10 °C / 60 % RH | 3,4 L/Tag · 180 W | 1,97 L/Tag · 111 W |
+| 20 °C / 60 % RH | 8,5 L/Tag · 216 W | 5,4 L/Tag · 136 W |
 
-Die genannten 20 L/Tag beziehen sich in den Modellunterlagen auf 30 °C / 80 % RH. Das ist keine Zusage für den Keller oder eine Wäscheladung. Für Comfee wurden in den verlinkten Unterlagen keine Werte für die beiden Tabellenbedingungen verifiziert. Anschlusswert oder Nennleistung dürfen diese Datenlücke nicht ersetzen.
-Modellgrenzen: Comfee MDDF-20DEN7 ist hier die Variante ohne WF. MeacoDry Arete One 20L ist weder Arete Two noch One 25L. Die UK-Modellseite bestätigt keine deutsche Händlerausstattung, Stecker, Lieferbarkeit oder Rückgabe. Netzspannung, Typenschild und Anleitung immer mit dem konkreten Angebot abgleichen. Beide Kandidaten ersetzen weder Ursachenklärung noch eine passende Lüftung.
-Rechenbeispiel: 216 W × 6 h ÷ 1.000 × 0,35 €/kWh = 0,45 €. Das ist weder eine gemessene Wäscheladung noch eine Einsparzusage.
-Quellen geprüft am 06.11.2026: [Meaco One 20L](https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-air-purifier) · [Comfee MDDF-20DEN7](https://www.feelcomfee.com/de/produkte/klimatisieren-heizen/mddf-20den7) · [Comfee-Datenblatt, Seite 2](https://www.feelcomfee.com/content/dam/comfee-aem/de/produkte/klimatisieren-heizen/mddf-20den7/comfee-MDDF-20DEN7-Datenblatt.pdf#page=2) · [Comfee-Bedienhinweise](https://www.feelcomfee.com/content/dam/comfee-aem/global/products/heating-cooling/dehumidifier-mddf-20den7/DF-Owners-Manual.pdf) · [Verbraucherzentrale](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426). Herstellerangaben, keine eigenen Messungen. Orientierung, keine Ferndiagnose.Sechs Luftentfeuchter: Unterschiede vor dem Kauf
+Die One entzieht bei 10 °C mehr Wasser. Die Two nimmt bei 20 °C weniger Leistung auf. Die Wattzahl allein sagt dir nicht, was eine trockene Ladung kostet. [Kosten je gleich trockener Ladung prüfen](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#laundry-check).
+[MeacoDry Arete One 20L](https://eu.meaco.com/products/meacodry-arete-one-20l-luftentfeuchter-luftreiniger) (2026-11-28) · [MeacoDry Arete Two 12L](https://eu.meaco.com/products/meacodry-arete-two-12l-luftentfeuchter-luftreiniger) (2026-11-28)
+Sechs Luftentfeuchter: Unterschiede vor dem Kauf
 **Abfluss höher als der Geräteauslass?** Ein Schlauchanschluss allein bestätigt keine Pumpe. Ohne passende Lösung in der Anleitung des genauen Modells bleibt der Ablauf ungeklärt; prüfe stattdessen den vorgesehenen Tankbetrieb oder einen anderen Standort.
-[Ablauf, Lieferumfang und Modellquelle prüfen ↓](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#ablauf-vor-kauf)Du hast die Feuchte gemessen und brauchst ein Gerät? Vergleiche zuerst Bedienung, Ablauf und die genaue Modellvariante. Diese Auswahl erweitert die Möglichkeiten; sie ist keine Rangliste und kein eigener Gerätetest.
+[Ablauf, Lieferumfang und Modellquelle prüfen ↓](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#ablauf-vor-kauf)Du hast die Feuchte gemessen und brauchst ein Gerät? Vergleiche zuerst Bedienung, Ablauf und die genaue Modellvariante. Weitere Modelle nach Ausstattung auswählen.
 **Deutschland:** Händlerlinks führen zu Amazon.de. Für Österreich und die Schweiz Lieferung, Stecker, Garantie und Gesamtkosten separat prüfen.
 Bei ungeklärter Feuchte zuerst [richtig messen](https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html); bei nassen Wänden oder Schimmel [die Ursache klären](https://getecoback.com/guide/luftentfeuchter-gegen-schimmel.html). Für kalte Räume [Betriebsgrenzen prüfen](https://getecoback.com/guide/luftentfeuchter-keller.html#kalter-keller); bei Wäsche [Kosten je Ladung vergleichen](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#laundry-check).
 Hersteller-/Anbieterquellen geprüft: 2026-11-12. Keine Live-Preise oder garantierte Lieferbarkeit. Unterschiedliche Nennkapazitäten, Messbedingungen oder Quellen ergeben keinen Effizienzsieger.

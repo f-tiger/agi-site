@@ -72,7 +72,7 @@ TESAMOLL_PROFILE = '''
 '''
 
 PAGES={
-'smarte-heizkoerperthermostate-lohnen-sich':dict(cat='heizen',updated='2026-11-27',updated_label='27. November 2026',title='Smarte Heizkörperthermostate: Ventil prüfen, Kosten rechnen',desc='Bosch II [+M] und FRITZ! 302 ohne Internet oder Zentrale prüfen. Ventil, Danfoss-Adapter und Gesamtkosten vergleichen. Eigene Heizkosten rechnen.',lead='Ein Zeitplan kann unnötiges Heizen vermeiden. Ein smarter Thermostatkopf erzeugt aber keine billigere Wärme. Entscheidend ist, was du heute tatsächlich anders machen würdest.',sources=['thermostat','air'],tool='thermostat',terms=[('Heizkoerperthermostat programmierbar','Programmierbare Thermostatköpfe')],body='''<section id="tado-x-oventrop" aria-labelledby="tado-x-oventrop-titel" style="scroll-margin-top:260px">
+'smarte-heizkoerperthermostate-lohnen-sich':dict(cat='heizen',updated='2026-11-28',updated_label='28. November 2026',title='Smarte Heizkörperthermostate: Ventil prüfen, Kosten rechnen',desc='Bosch II [+M] und FRITZ! 302 ohne Internet oder Zentrale prüfen. Ventil, Danfoss-Adapter und Gesamtkosten vergleichen. Eigene Heizkosten rechnen.',lead='Ein Zeitplan kann unnötiges Heizen vermeiden. Ein smarter Thermostatkopf erzeugt aber keine billigere Wärme. Entscheidend ist, was du heute tatsächlich anders machen würdest.',sources=['thermostat','air'],tool='thermostat',terms=[('Heizkoerperthermostat programmierbar','Programmierbare Thermostatköpfe')],body='''<section id="tado-x-oventrop" aria-labelledby="tado-x-oventrop-titel" style="scroll-margin-top:260px">
 <h2 id="tado-x-oventrop-titel">Passt tado° X auf mein Oventrop-Ventil mit 30 mm?</h2>
 <p>Prüfe die genaue Modellbezeichnung und die Gewindesteigung in den Ventilunterlagen. Zwei Oventrop-Ventile mit 30 mm Außendurchmesser können unterschiedliche Gewinde haben.</p>
 <ul>
@@ -139,14 +139,22 @@ def page(slug,p,hub=False):
  if slug=='heizkoerper-wird-nicht-warm':
   calc=REFERENCE_ROOM_GUIDANCE
  fit_assets=''
+ quick_pick=''
+ method_note=' · Quellenbasiert, keine eigenen Produkttests'
  if slug=='smarte-heizkoerperthermostate-lohnen-sich':
   from thermostat_fit import render as fit_render, assets as fit_asset_tags
   from thermostat_catalog import render as catalog_render, asset_tag as catalog_asset, buyer_start
   calc=buyer_start()+fit_render()+calc+TADO_X_ROOM_TEMPERATURE+catalog_render()
-  fit_assets=fit_asset_tags()+catalog_asset()
+  from thermostat_catalog import load as load_catalog
+  from winter_picks import disclosure, quick_decision, shortlist
+  picks=shortlist(load_catalog())
+  quick_pick=quick_decision(picks)
+  method_note=''
+  calc+=disclosure(picks)
+  fit_assets=fit_asset_tags()+catalog_asset()+'<link rel="stylesheet" href="/assets/winter-picks.css">'
  source_date=e(p.get('sources_checked_label','4. Oktober 2026'))
  shops=''
- if p.get('terms'):
+ if p.get('terms') and not quick_pick:
   from urllib.parse import quote_plus
   shops='<aside class="winter-shop"><h2>Erst Eignung prüfen, dann vergleichen</h2><p><strong>Anzeige · Affiliate-Links</strong> — Als Amazon-Partner verdienen wir an qualifizierten Verkäufen. Keine eigenen Produkttests; Kategorie-Suchen sind keine geprüften Modellangebote. Amazon.de ist der deutsche Shop. Lieferung, Anschluss, Anleitung und Rückgabe selbst prüfen.</p>'+''.join(f'<p><a data-winter-shop href="https://www.amazon.de/s?k={quote_plus(term)}&amp;tag=getecoback-21" rel="sponsored noopener" target="_blank">{label} bei Amazon.de suchen →</a></p>' for term,label in p['terms'])+'</aside>'
  product_entry='<p><a href="#eb-thermostat-products">System und konkrete Modelle vergleichen ↓</a> · <a href="#tado-x-raumtemperatur">tado° X misst zu warm? Raumtemperatur prüfen</a></p>' if slug=='smarte-heizkoerperthermostate-lohnen-sich' else ''
@@ -155,7 +163,7 @@ def page(slug,p,hub=False):
  if slug=='fenster-zugluft-mietwohnung':
   product_entry='<p><a href="#dichtungsprofil">E-, P- und D-Profil bei 4 mm Spalt vergleichen</a></p>'
  assets=hashlib.sha256((SITE/'assets/winter-tools.mjs').read_bytes()+(SITE/'assets/winter-math.mjs').read_bytes()+(SITE/'assets/winter-i18n.mjs').read_bytes()).hexdigest()[:12]
- return f'''<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{e(p['title'])} | EcoBack</title><meta name="description" content="{e(p['desc'])}"><link rel="canonical" href="{url}"><meta property="og:type" content="{'website' if hub else 'article'}"><meta property="og:title" content="{e(p['title'])}"><meta property="og:description" content="{e(p['desc'])}"><meta property="og:url" content="{url}"><link rel="stylesheet" href="/assets/winter.css">{fit_assets}<script type="application/ld+json">{json.dumps({'@context':'https://schema.org','@graph':graph},ensure_ascii=False)}</script><script type="module" src="/assets/winter-tools.mjs?v={assets}"></script></head><body class="winter-page"><main class="winter-wrap"><header class="winter-hero"><p class="winter-kicker">EcoBack · Der Wintercheck</p><h1>{e(p['title'])}</h1><p class="winter-lead">{e(p['lead'])}</p><p class="winter-note">EcoBack Redaktion · Stand {p.get('updated_label') or ('13. November 2026' if p.get('updated')=='2026-11-13' else '12. November 2026' if p.get('updated')=='2026-11-12' else '31. Oktober 2026' if p.get('updated')=='2026-10-31' else '4. Oktober 2026')} · Quellenbasiert, keine eigenen Produkttests</p><a class="winter-button" href="{'#aufgaben' if hub else '#thermostat-start' if fit_assets else '#rechner' if tool else '#entscheidung'}">{'Meine Aufgabe finden' if hub else 'Meinen nächsten Schritt finden' if fit_assets else 'Mit meinen Werten rechnen' if tool else 'Nächsten Schritt finden'} ↓</a>{product_entry}</header><article id="entscheidung">{calc}{p['body']}{shops}{'<h2>Häufige Fragen</h2>'+faq if faq else ''}{'<h2>Quellen und Grenzen</h2><p>Die folgenden Quellen wurden am '+source_date+' geprüft. Rechenbeispiele sind eigene Szenarien, keine Markt- oder Messdaten.</p><ul>'+source+'</ul>' if source else ''}<nav class="winter-next" aria-label="Winteraufgaben"><h2>Was möchtest du als Nächstes klären?</h2><p><a href="/winter-energiesparen.html">Alle Winteraufgaben →</a> · <a href="/tools.html">Alle Rechner →</a> · <a href="/wie-wir-empfehlen.html">So arbeiten wir</a></p></nav></article></main></body></html>'''
+ return f'''<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{e(p['title'])} | EcoBack</title><meta name="description" content="{e(p['desc'])}"><link rel="canonical" href="{url}"><meta property="og:type" content="{'website' if hub else 'article'}"><meta property="og:title" content="{e(p['title'])}"><meta property="og:description" content="{e(p['desc'])}"><meta property="og:url" content="{url}"><link rel="stylesheet" href="/assets/winter.css">{fit_assets}<script type="application/ld+json">{json.dumps({'@context':'https://schema.org','@graph':graph},ensure_ascii=False)}</script><script type="module" src="/assets/winter-tools.mjs?v={assets}"></script></head><body class="winter-page"><main class="winter-wrap"><header class="winter-hero"><p class="winter-kicker">EcoBack · Der Wintercheck</p><h1>{e(p['title'])}</h1>{quick_pick}<p class="winter-lead">{e(p['lead'])}</p><p class="winter-note">EcoBack Redaktion · Stand {p.get('updated_label') or ('13. November 2026' if p.get('updated')=='2026-11-13' else '12. November 2026' if p.get('updated')=='2026-11-12' else '31. Oktober 2026' if p.get('updated')=='2026-10-31' else '4. Oktober 2026')}{method_note}</p><a class="winter-button" href="{'#aufgaben' if hub else '#thermostat-start' if fit_assets else '#rechner' if tool else '#entscheidung'}">{'Meine Aufgabe finden' if hub else 'Meinen nächsten Schritt finden' if fit_assets else 'Mit meinen Werten rechnen' if tool else 'Nächsten Schritt finden'} ↓</a>{product_entry}</header><article id="entscheidung">{calc}{p['body']}{shops}{'<h2>Häufige Fragen</h2>'+faq if faq else ''}{'<h2>Quellen und Grenzen</h2><p>Die folgenden Quellen wurden am '+source_date+' geprüft. Rechenbeispiele sind eigene Szenarien, keine Markt- oder Messdaten.</p><ul>'+source+'</ul>' if source else ''}<nav class="winter-next" aria-label="Winteraufgaben"><h2>Was möchtest du als Nächstes klären?</h2><p><a href="/winter-energiesparen.html">Alle Winteraufgaben →</a> · <a href="/tools.html">Alle Rechner →</a> · <a href="/wie-wir-empfehlen.html">So arbeiten wir</a></p></nav></article></main></body></html>'''
 
 def winter_regions():
  return (

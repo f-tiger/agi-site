@@ -164,7 +164,7 @@ async function directComparison(browser,pathname,lang,width,mode='normal'){
   check(await root.locator('[data-choice-method]').getAttribute('open')!==null,'advice-only direct mode reveals static evidence');
   equal(await root.locator('[data-choice-action=shop]:visible').count(),0,'EN other market has no German shops');
  }else{
-  equal(await root.locator('.choice-candidate:visible h4').allTextContents(),['Comfee MDDF-20DEN7','MeacoDry Arete One 20L'],'direct comparison retains same model identities');
+  equal(await root.locator('.choice-candidate:visible h4').allTextContents(),['MeacoDry Arete One 20L','MeacoDry Arete Two 12L'],'direct comparison uses both condition-matched models');
   await root.locator('[data-answer=compare] [data-choice-evidence]').first().locator('summary').click();
   check(await root.locator('[data-answer=compare] [data-choice-evidence]').first().getAttribute('open')!==null,'direct candidate evidence opens');
  }

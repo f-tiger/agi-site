@@ -10,7 +10,7 @@ let checks=0;
 const check=(ok,message)=>{assert.ok(ok,message);checks++;};
 const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 async function until(predicate,label){for(let i=0;i<100;i++){if(predicate())return;await pause(20);}assert.fail('Timed out: '+label);}
-async function fixture(browser,pathname,mode='normal'){
+async function fixture(browser,pathname,mode='normal',winterPlacement=false){
  const context=await browser.newContext({viewport:{width:390,height:844},serviceWorkers:'block'});
  const google=[],events=[],errors=[],missing=[],merchants=[];
  await context.addInitScript(mode=>{
@@ -40,7 +40,8 @@ async function fixture(browser,pathname,mode='normal'){
  const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
  const query={probe:'__probe=1',qa:'qa=1',ci:'__ci=1',verify:'utm_source=verify'}[mode]||'private_test=DO_NOT_SHARE';
  await page.goto(origin+pathname+'?'+query+'#private-fragment');
- const root=page.locator('#eb-moisture-choice'),form=root.locator('form');await form.waitFor({state:'visible'});
+ const root=page.locator(winterPlacement?'body':'#eb-moisture-choice'),form=root.locator('form');
+ if(!winterPlacement)await form.waitFor({state:'visible'});
  await root.scrollIntoViewIfNeeded();
  // Keep the genuine trusted click and all listeners, but prevent merchant navigation.
  await root.evaluate(node=>node.addEventListener('click',event=>{if(event.target.closest('a'))event.preventDefault();}));
@@ -74,6 +75,22 @@ function privacyShape(f,lang,pathname){
  const browser=await chromium.launch({...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH}:{}),headless:true,args:['--no-sandbox']});
  const report=[];
  try{
+  for(const pathname of [routes[0][1],'/guide/smarte-heizkoerperthermostate-lohnen-sich.html']){
+   const f=await fixture(browser,pathname,'normal',true);
+   await f.page.waitForFunction(()=>document.querySelector('iframe[title="Optional analytics"]')?.contentWindow.dataLayer?.length>0);
+   const hero=f.page.locator('#schnell-entscheidung');
+   await f.page.evaluate(()=>window.scrollTo(0,0));
+   const first=await hero.locator('a[target=_blank]').first().boundingBox();
+   assert(first && first.y>=0 && first.y+first.height<=844,pathname+' first scenario CTA above mobile fold: '+JSON.stringify(first));
+   await hero.locator('a[target=_blank]').first().click();
+   await until(()=>f.events.some(e=>e.n==='affiliate_click'),'hero click');
+   await f.page.locator('[data-choice-method]').evaluateAll(nodes=>nodes.forEach(n=>n.open=true));
+   await f.page.locator('a[data-winter-table]').first().click();
+   await until(()=>f.events.filter(e=>e.n==='affiliate_click').length===2,'table click');
+   assert.deepEqual(f.events.filter(e=>e.n==='affiliate_click').map(e=>e.m.source),['toppick','winter-table']);
+   assert.deepEqual(f.google.filter(([name])=>name==='affiliate_click').map(([,fields])=>fields.placement),['toppick','winter-table']);
+   assert.deepEqual(f.merchants,[]);await f.context.close();
+  }
   for(const [lang,pathname] of routes){
    const f=await fixture(browser,pathname),{page,root,form}=f;
    assert.equal(await page.locator('#fleet-analytics-choice').count(),0,'no consent popup');checks++;

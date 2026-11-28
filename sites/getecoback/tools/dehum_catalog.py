@@ -177,6 +177,8 @@ def block(slug, today=None, data=None):
         '<a href="#modell-meaco-one-20">Ablauf liegt höher: Pumpenoption der Arete One 20L prüfen</a>'
         '</nav>'
     ) if cellar else ''
+    context = ('Weitere Modelle nach Ausstattung auswählen.' if slug == 'luftentfeuchter-ratgeber' else
+               'Diese Auswahl erweitert die Möglichkeiten; sie ist keine Rangliste und kein eigener Gerätetest.')
     return ('<!--EB_MODELS--><section class="eb-shop eb-models dc-catalog" id="eb-models" aria-labelledby="dc-title">'
             '<style>.dc-catalog{scroll-margin-top:180px}.dc-catalog .dc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:16px}'
             '.dc-catalog .dc-card{padding:18px;border:1px solid #cfe0ea;border-radius:12px;background:#fff;min-width:0}'
@@ -197,7 +199,7 @@ def block(slug, today=None, data=None):
             '<a data-catalog-drain-entry href="#ablauf-vor-kauf" style="display:inline-flex;align-items:center;min-height:44px;font-weight:700">'
             'Ablauf, Lieferumfang und Modellquelle prüfen ↓</a></aside>'
             '<p>Du hast die Feuchte gemessen und brauchst ein Gerät? Vergleiche zuerst Bedienung, Ablauf und die genaue Modellvariante. '
-            'Diese Auswahl erweitert die Möglichkeiten; sie ist keine Rangliste und kein eigener Gerätetest.</p>'
+            f'{context}</p>'
             '<p><strong>Deutschland:</strong> Händlerlinks führen zu Amazon.de. Für Österreich und die Schweiz Lieferung, Stecker, Garantie und Gesamtkosten separat prüfen.</p>'
             '<p>Bei ungeklärter Feuchte zuerst <a href="/guide/luftfeuchtigkeit-richtig-messen.html">richtig messen</a>; '
             'bei nassen Wänden oder Schimmel <a href="/guide/luftentfeuchter-gegen-schimmel.html">die Ursache klären</a>. '
@@ -271,7 +273,19 @@ def inject(html, slug):
     article = re.search(r'<article\b[^>]*>(.*?)</article\s*>', html, re.S)
     faq = re.search(r'<h2\b[^>]*>\s*Häufige Fragen(?:\s+[^<]*)?\s*</h2>', article.group(1))
     position = article.start(1) + faq.start() if faq else article.end(1)
-    return html[:position] + reviewed + html[position:]
+    html = html[:position] + reviewed + html[position:]
+    if slug == 'luftentfeuchter-ratgeber':
+        from winter_picks import disclosure, quick_decision, shortlist
+        picks = shortlist(load())
+        html = re.sub(r'<!--WINTER_PICKS-->.*?<!--/WINTER_PICKS-->', '', html, flags=re.S)
+        hero = re.search(r'<h1\b[^>]*>.*?</h1>', html, re.S)
+        if hero:
+            html = html[:hero.end()] + '<!--WINTER_PICKS-->' + quick_decision(picks, dehum=True) + '<!--/WINTER_PICKS-->' + html[hero.end():]
+        html = re.sub(r'<!--WINTER_SOURCES-->.*?<!--/WINTER_SOURCES-->', '', html, flags=re.S)
+        html = html.replace('</article>', '<!--WINTER_SOURCES-->' + disclosure(picks) + '<!--/WINTER_SOURCES--></article>', 1)
+        if '/assets/winter-picks.css' not in html:
+            html = html.replace('</head>', '<link rel="stylesheet" href="/assets/winter-picks.css"></head>', 1)
+    return html
 
 def evidence_html(source):
     """Extract the same public evidence, excluding all shopping, styles and chrome."""

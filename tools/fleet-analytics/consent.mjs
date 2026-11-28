@@ -84,7 +84,7 @@ if (!excluded && !document.getElementById('fleet-analytics-settings')) {
         allowed[host] === id && publicAccountEntryPath(location.pathname)) {
       try { const destination = new URL(a.href); if (destination.origin === location.origin && destination.pathname === '/auth/account') accept({name:'fleet_account_entry'}); } catch {}
     }
-    const selectors=[['#eb-herbst','home-herbst'],['#eb-rising','home-rising'],['[data-eb-tp]','toppick'],['#eb-models','models'],['#eb-ac-finder','ac-finder'],['.eb-shop-grid','grid'],['#eb-seal-fit, #eb-heater-cost, [data-tool]','tool'],['.notice-bar','notice-bar'],['.hero','hero'],['.card','card'],['article','article']];
+    const selectors=[['#eb-herbst','home-herbst'],['#eb-rising','home-rising'],['[data-eb-tp]','toppick'],['[data-winter-table]','winter-table'],['[data-winter-compare]','models'],['#eb-models','models'],['#eb-ac-finder','ac-finder'],['.eb-shop-grid','grid'],['#eb-seal-fit, #eb-heater-cost, [data-tool]','tool'],['.notice-bar','notice-bar'],['.hero','hero'],['.card','card'],['article','article']];
     const placement=selectors.find(([selector])=>a.closest(selector))?.[1]||'other';
     const action=affiliateAction(a.href,placement);if(action)accept(action);
   },true);

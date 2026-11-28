@@ -11,7 +11,7 @@ export function legacyEvent(host,pathname,name) {
  // Never forward arbitrary event params (searches, emails, filenames, results).
  return {name,tool_id:pathname.replace(/^\//,'').replace(/\.html$/,'').slice(0,90)||'homepage',repeat:true};
 }
-const placements = new Set('home-herbst home-rising toppick models ac-finder grid article card hero notice-bar tool other'.split(' '));
+const placements = new Set('home-herbst home-rising toppick models winter-table ac-finder grid article card hero notice-bar tool other'.split(' '));
 export function affiliateAction(href,placement='other') {
  let url;try{url=new URL(href);}catch{return null;}
  const host=url.hostname.replace(/^www\./,'');

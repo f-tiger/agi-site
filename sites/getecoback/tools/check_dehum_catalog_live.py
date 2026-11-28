@@ -35,6 +35,14 @@ def check(slug, read_page=None):
             for surface in [match[1], md]:
                 assert 'Ein Schlauchanschluss allein bestätigt keine Pumpe.' in surface, slug + ': drain limitation missing'
                 assert 'weder den deutschen Lieferumfang noch die Eignung der Arete Two 12L' in surface, slug + ': market/model caveat missing'
+            if slug == 'luftentfeuchter-ratgeber':
+                assert html.count('id="schnell-entscheidung"') == 1
+                assert html.index('id="schnell-entscheidung"') < html.index('<!--EB_BUYER-->')
+                table = re.search(r'<details data-choice-method[^>]*>.*?<table>(.*?)</table>', html, re.S)
+                assert table and 'nicht verifiziert' not in table[1] and 'Comfee' not in table[1]
+                for text in ('MeacoDry Arete One 20L', 'MeacoDry Arete Two 12L', '3,4 L/Tag · 180 W',
+                             '1,97 L/Tag · 111 W', '8,5 L/Tag · 216 W', '5,4 L/Tag · 136 W'):
+                    assert text in table[1] and text in md, slug + ': incomplete condition comparison'
             if slug == 'luftentfeuchter-keller':
                 choices = re.search(r'<nav class="dc-drain-paths".*?</nav>', match[1], re.S)
                 assert choices, 'Cellar drainage model choices missing'
