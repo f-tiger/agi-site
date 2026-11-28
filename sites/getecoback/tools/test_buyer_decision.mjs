@@ -32,7 +32,11 @@ test('six built guides retain disclosures, evidence and existing language bounda
   assert.equal((html.match(/id="eb-moisture-choice"/g)||[]).length,1,path);
   assert.equal((html.match(/src="\/assets\/moisture-decision.mjs\?v=[a-f0-9]{12}"/g)||[]).length,1);
   assert.ok(html.includes('getecoback-21'));
-  assert.ok(html.includes('rel="sponsored nofollow noopener"'));
+  const offers = html.match(/<a\b[^>]*href="https:\/\/www\.amazon\.de\/[^"]+[?&](?:amp;)?tag=getecoback-21"[^>]*>/g) || [];
+  assert.ok(offers.some(anchor => {
+   const tokens = anchor.match(/\brel="([^"]+)"/)?.[1].split(/\s+/) || [];
+   return ['sponsored','nofollow','noopener'].every(token => tokens.includes(token));
+  }), path);
   if(path==='/guide/luftentfeuchter-ratgeber.html'){
    const method=html.match(/<details data-choice-method[^>]*>([\s\S]*?)<\/details>/)?.[1];
    assert.ok(method?.includes('8,5 L/Tag · 216 W')&&method.includes('3,4 L/Tag · 180 W'),path);
