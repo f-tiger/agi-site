@@ -1,3 +1,4 @@
+import {monitorOptOut} from '../../../tools/fleet/mcp-liveness-optout.mjs';
 import {homeLanguageRedirect} from './home-language.mjs';
 import {pageLanguage} from '../collector-assets/site-locale.mjs';
 import {accountRoute,addAccountEntry} from '../../../tools/fleet-account/edge.mjs';
@@ -95,7 +96,7 @@ async function handleRequest(ctx) {
 // The final Pages build sets static-pages-v1 only on bypassed public assets.
 // Mark the actual middleware path for bounded post-deploy verification.
 export async function onRequest(ctx) {
-  const response=await handleRequest(ctx);
+  const response=monitorOptOut(ctx.request)||await handleRequest(ctx);
   const result=new Response(response.body,response);
   result.headers.set('X-Fleet-Delivery','pages-function');
   return result;

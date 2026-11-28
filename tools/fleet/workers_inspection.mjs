@@ -67,14 +67,24 @@ export async function inspectWorkers({account,candidates,windows,fetcher=fetch})
     }
     out.zoneSummary=[];out.mcpClients=[];out.errorHours=[];
     out.currentPaths=[];out.currentMcpHours=[];out.currentErrorHours=[];
+    out.monitorTotals=[];out.currentMonitorTotals=[];
+    // Full client/hour tables can truncate before low-volume opted-out paths.
+    // A separately filtered, low-cardinality view supports before/after checks
+    // without treating absent top-N rows as zero traffic.
+    const monitorFilter=',userAgent_in:'+JSON.stringify([
+      'SentinelOracle/0.1 (+https://glimind.com/opt-out; liveness-only, never invokes tools)',
+      'mcpbeat/0.1 (+https://mcpbeat.com/bot/; liveness check)',
+    ]);
     for(const zone of zones.filter(z=>['agiscorecard.com','baipiaoji.com','getecoback.com','thedollscout.com'].includes(z.name))){
       for(const [key,dims,extra,limit,window=w] of [
         ['zoneSummary',['clientRequestHTTPHost','clientRequestHTTPMethodName','edgeResponseContentTypeName','edgeResponseStatus'],'',1000],
-        ['mcpClients',['clientRequestHTTPHost','clientRequestPath','userAgent','edgeResponseStatus'],',clientRequestPath_in:["/mcp","/mcp/","/mcp/v1","/mcp.html","/api/mcp","/api/ai-mcp","/api/startup-mcp","/api/video-mcp"]',200],
+        ['mcpClients',['clientRequestHTTPHost','clientRequestPath','userAgent','edgeResponseStatus'],',clientRequestPath_in:["/mcp","/mcp/","/mcp/v1","/mcp.html","/api/mcp","/api/ai-mcp","/api/startup-mcp","/api/video-mcp"]',1000],
+        ['monitorTotals',['clientRequestHTTPHost','clientRequestPath','userAgent','edgeResponseStatus'],monitorFilter,1000],
         ['errorHours',['clientRequestHTTPHost','datetimeHour','edgeResponseStatus'],',edgeResponseStatus_geq:500',1000],
         ['currentPaths',selected,'',1000,windows.at(-1)],
         ['currentMcpHours',['clientRequestHTTPHost','clientRequestPath','datetimeHour','userAgent','edgeResponseStatus'],',clientRequestPath_in:["/mcp","/mcp/","/mcp/v1","/mcp.html","/api/mcp","/api/ai-mcp","/api/startup-mcp","/api/video-mcp"]',1000,windows.at(-1)],
-        ['currentErrorHours',['clientRequestHTTPHost','datetimeHour','edgeResponseStatus'],',edgeResponseStatus_geq:500',1000,windows.at(-1)]
+        ['currentErrorHours',['clientRequestHTTPHost','datetimeHour','edgeResponseStatus'],',edgeResponseStatus_geq:500',1000,windows.at(-1)],
+        ['currentMonitorTotals',['clientRequestHTTPHost','clientRequestPath','userAgent','edgeResponseStatus'],monitorFilter,1000,windows.at(-1)]
       ]){
         try{
           const query=`query($z:string,$s:Time,$e:Time){viewer{zones(filter:{zoneTag:$z}){httpRequestsAdaptiveGroups(limit:${limit},orderBy:[count_DESC],filter:{datetime_geq:$s,datetime_lt:$e,requestSource:"eyeball"${extra}}){count dimensions{${dims.join(' ')}}}}}}`;

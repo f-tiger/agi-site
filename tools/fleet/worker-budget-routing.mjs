@@ -60,6 +60,7 @@ export function headerBlock(site,files){
  if(site==='agiscorecard')for(const path of ['/share/*','/badge/*'])add(path,{'Cache-Control':'public, max-age=604800'});
  if(site==='getecoback')for(const [path,cache] of ecoCacheRules(files))add(path,{'Cache-Control':cache});
  if(site==='buysomething')for(const path of files)add(path,{'Cache-Control':'public, max-age=86400'});
+ if(site==='gamesledger')add('/favicon.ico',{'Cache-Control':'public, max-age=86400'});
  if(site==='agent-delivery-lab')for(const path of files)add(path,labHeaders);
  for(const [path,headers] of rules)out+=headerRule(path,headers);
  return out+'# /FLEET-WORKER-STATIC-HEADERS\n';
