@@ -1,32 +1,52 @@
 {
- "fetched": "2026-11-27",
+ "fetched": "2026-11-28",
  "geo": "US",
  "seeds": {
   "deepseek": {
-   "auto": [
-    "deepseek",
-    "deepseek ai",
-    "deepseek api",
-    "deepseek v4.1 flash",
-    "deepseek v4 flash",
-    "deepseek harness desktop",
-    "deepseek chat",
-    "deepseek login",
-    "deepseek v4",
-    "deepseek news"
-   ],
    "rising": [
     {
-     "q": "deepseek login",
-     "v": "new"
+     "q": "deepseek v4.1 flash 1017",
+     "v": 61700
     },
     {
-     "q": "deepseek news",
-     "v": "new"
+     "q": "deepseek flash v4.1",
+     "v": 31700
+    },
+    {
+     "q": "deepseek 1017",
+     "v": 20600
+    },
+    {
+     "q": "deepseek deepinfer",
+     "v": 19200
+    },
+    {
+     "q": "deepinfer",
+     "v": 18850
+    },
+    {
+     "q": "deepseek 4.1 flash 1017",
+     "v": 16550
+    },
+    {
+     "q": "deepseek flash 4.1",
+     "v": 16050
+    },
+    {
+     "q": "deepseek superagent",
+     "v": 11100
+    },
+    {
+     "q": "deepseek v4.1 flash size",
+     "v": 10050
+    },
+    {
+     "q": "deepseek v4.1 flash benchmarks",
+     "v": 9800
     }
    ],
-   "source": "autocomplete-diff",
-   "fetched": "2026-11-17"
+   "source": "related-queries",
+   "fetched": "2026-11-28"
   },
   "midjourney": {
    "rising": [
@@ -275,30 +295,50 @@
    "fetched": "2026-11-19"
   },
   "cursor": {
-   "auto": [
-    "cursor",
-    "cursor ai",
-    "cursor download",
-    "cursory",
-    "cursory definition",
-    "cursor ide",
-    "cursor library",
-    "cursor usage",
-    "cursor pricing",
-    "cursor student plan"
-   ],
    "rising": [
     {
-     "q": "cursor usage",
-     "v": "new"
+     "q": "lurker",
+     "v": 47000
     },
     {
-     "q": "cursor student plan",
-     "v": "new"
+     "q": "spammer",
+     "v": 37000
+    },
+    {
+     "q": "lurker meaning",
+     "v": 21750
+    },
+    {
+     "q": "now that i can control reality with a mouse cursor",
+     "v": 16750
+    },
+    {
+     "q": "vanity plate",
+     "v": 15350
+    },
+    {
+     "q": "openai ends cursor contract spacex",
+     "v": 14150
+    },
+    {
+     "q": "spammer meaning",
+     "v": 12050
+    },
+    {
+     "q": "troll meaning",
+     "v": 9750
+    },
+    {
+     "q": "how to bake a cake",
+     "v": 8550
+    },
+    {
+     "q": "best time to visit maldives",
+     "v": 8250
     }
    ],
-   "source": "autocomplete-diff",
-   "fetched": "2026-11-17"
+   "source": "related-queries",
+   "fetched": "2026-11-28"
   },
   "claude code": {
    "rising": [

@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-27",
- "radar_fetched": "2026-11-27",
+ "generated": "2026-11-28",
+ "radar_fetched": "2026-11-28",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -13,10 +13,10 @@
  },
  "note": "Derived facts only: no Reddit post text, bodies or permalinks are stored here or published. Themes are normalised request titles used as matching keys; demand = Google Trends rising; supply = PH/HN public feeds.",
  "counts": {
-  "candidates": 5,
+  "candidates": 7,
   "demand_confirmed": 0,
   "recurring": 0,
-  "scout": 5,
+  "scout": 7,
   "supplied": 1
  },
  "opportunities": [
@@ -27,6 +27,21 @@
    "subreddit": "ask_hn",
    "days_seen": [
     "2026-11-26"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.65,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "yc startup not paying for a take home what to do",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "ask_hn",
+   "days_seen": [
+    "2026-11-28"
    ],
    "state": "scout",
    "supplied": false,
@@ -51,12 +66,27 @@
    "fleet_pages": []
   },
   {
-   "theme": "how to make three js support real time path tracing",
+   "theme": "how do i give my hermes agents permanent memory institutional knowledge and inte",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "softwarerecs",
+   "days_seen": [
+    "2026-11-24"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.05,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "is there a firebase for agentic backends",
    "site": "",
    "kind": "request-board",
    "subreddit": "ask_hn",
    "days_seen": [
-    "2026-11-22"
+    "2026-11-27"
    ],
    "state": "scout",
    "supplied": false,
@@ -81,25 +111,25 @@
    "fleet_pages": []
   },
   {
-   "theme": "how do i give my hermes agents permanent memory institutional knowledge and inte",
+   "theme": "how to make three js support real time path tracing",
    "site": "",
    "kind": "request-board",
-   "subreddit": "softwarerecs",
+   "subreddit": "ask_hn",
    "days_seen": [
-    "2026-11-24"
+    "2026-11-22"
    ],
    "state": "scout",
    "supplied": true,
-   "score": 1.05,
+   "score": 1.02,
    "demand": [],
    "supply": [
     {
-     "title": "Show HN: Dev-Mem – Local-first SQLite knowledge graph for AI coding agents",
-     "url": "https://github.com/HarsH-1877/Dev-Mem",
+     "title": "Show HN: I built an anonymous real time status generator for anything?",
+     "url": "https://statusmeter.web.app/",
      "src": "hn_show",
      "shared": [
-      "agents",
-      "knowledge"
+      "real",
+      "time"
      ]
     }
    ],
