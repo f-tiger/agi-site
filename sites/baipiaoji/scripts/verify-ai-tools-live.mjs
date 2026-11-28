@@ -7,6 +7,8 @@ import {AI_FREE_TOOLS} from '../lib/ai-tool-registry.mjs';
 const expectedDefinitions=AI_FREE_TOOLS.length+SUITE_TOOLS.length;
 
 const origin='https://baipiaoji.com';
+const quoteToolName='bpj_trade_export_quote';
+const quoteEntryUrl=origin+'/studio/ai/trade-export-quote?mcp_entry=trade-export-quote';
 const protocolVersion='2025-06-18';
 const metadataOnly=process.argv.includes('--metadata-only');
 const all=process.argv.includes('--all');
@@ -95,22 +97,35 @@ if(!metadataOnly){
  assert.equal(search.total,SUITE_TOOLS.length);
  assert.equal(search.suite[0].freeMcp,'bpj_csv_to_json');
  assert.deepEqual(search.suite[0].inputSchema,listed.find(x=>x.name==='bpj_csv_to_json').inputSchema);
- const last=SUITE_TOOLS.at(-1);
- const throughDispatcher=await rpc('tools/call',{name:'run_bpj_ai_tool',arguments:{name:last.name,arguments:last.example}});
- assert.equal(throughDispatcher.isError,undefined);
- assert.deepEqual(throughDispatcher.structuredContent,JSON.parse(JSON.stringify(runSuiteTool(last.name,last.example))));
- const samples=all?SUITE_TOOLS:[...new Map(SUITE_TOOLS.map(tool=>[tool.category,tool])).values()];
- const run=async tool=>{
-  const result=await rpc('tools/call',{name:tool.name,arguments:tool.example});
-  assert.equal(result.isError,undefined,tool.name);
-  const expected=JSON.parse(JSON.stringify(runSuiteTool(tool.name,tool.example)));
-  assert.deepEqual(result.structuredContent,expected,tool.name);
-  assert.deepEqual(JSON.parse(result.content[0].text),expected,tool.name);
+ const checkTool=async(tool,args=tool.example,dispatch=false)=>{
+  const target=dispatch?{name:'run_bpj_ai_tool',arguments:{name:tool.name,arguments:args}}:{name:tool.name,arguments:args};
+  const result=await rpc('tools/call',target);
+  const label=dispatch?tool.name+' via dispatcher':tool.name;
+  assert.equal(result.isError,undefined,label);
+  const expected=JSON.parse(JSON.stringify(runSuiteTool(tool.name,args)));
+  // The MCP transport, not the calculator, adds a fixed link only to completed quotes.
+  if(tool.name===quoteToolName&&expected.costCompleteness.status==='costs_entered')expected.entry_url=quoteEntryUrl;
+  assert.deepEqual(result.structuredContent,expected,label);
+  assert.deepEqual(JSON.parse(result.content[0].text),expected,label);
+  return result.structuredContent;
  };
+ const quote=SUITE_TOOLS.find(tool=>tool.name===quoteToolName);
+ assert(quote,'Missing export quote tool');
+ for(const dispatch of [false,true]){
+  const complete=await checkTool(quote,quote.example,dispatch);
+  assert.equal(complete.entry_url,quoteEntryUrl);
+  const provisional=await checkTool(quote,{...quote.example,sellerFees:'[]'},dispatch);
+  assert.equal(provisional.costCompleteness.status,'provisional');
+  assert.equal(provisional.quotedOrder.meetsTarget,null);
+  assert(!Object.hasOwn(provisional,'entry_url'));
+ }
+ const last=SUITE_TOOLS.at(-1);
+ if(last.name!==quoteToolName)await checkTool(last,last.example,true);
+ const samples=(all?SUITE_TOOLS:[...new Map(SUITE_TOOLS.map(tool=>[tool.category,tool])).values()]).filter(tool=>tool.name!==quoteToolName);
  // Cap the synthetic production probe at two concurrent calls.
  for(let i=0;i<samples.length;i+=2){
-  await Promise.all(samples.slice(i,i+2).map(run));
+  await Promise.all(samples.slice(i,i+2).map(tool=>checkTool(tool)));
   if((i+2)%100===0)console.log('Verified '+(i+2)+' synthetic tool calls.');
  }
- console.log('PASS live Task Loop, keyword discovery and '+samples.length+' free MCP calls with synthetic inputs.');
+ console.log('PASS live Task Loop, keyword discovery, completed/provisional export quote handoff in both call modes, and '+samples.length+' additional free MCP tool examples.');
 }
