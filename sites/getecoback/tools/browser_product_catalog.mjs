@@ -724,8 +724,12 @@ async function checkCatalog(browser){
   }
   const last=data.categories.at(-1);await page.locator('a[data-category-link="'+last.id+'"]').click();
   await page.waitForURL(u=>u.hash==='#kategorie-'+last.id);
-  const target=await page.locator('#kategorie-'+last.id).evaluate(n=>({top:n.getBoundingClientRect().top,nav:document.querySelector('.eb-nav')?.getBoundingClientRect().bottom||0}));
-  assert(target.top>=target.nav-1,'Category anchor hidden below fixed navigation');
+  // Fragment URLs change before the browser finishes positioning the target.
+  await page.waitForFunction(id=>{
+   const target=document.getElementById('kategorie-'+id).getBoundingClientRect();
+   const nav=document.querySelector('.eb-nav')?.getBoundingClientRect().bottom||0;
+   return target.top>=nav-1 && target.top<innerHeight;
+  },last.id,{timeout:5000});
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
   assert.deepEqual(errors,[]);
   cases.push({width,javaScriptEnabled,products:data.products.length,categories:data.categories.length,merchantSearches:expected.length,blockedWrites:blockedWrites.length,localTools:9,reusedTools:3,windowModelLinks:windowModels.length,windowWidthJourney,mieleC2Share,defaultSubmissions,independentSubmissions,invalidSubmissions,pass:true});
