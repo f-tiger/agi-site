@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-11-27T11:21:47.964Z",
+  "asOf": "2026-11-28T10:49:52.485Z",
   "ok": true,
   "checks": [
     {
@@ -19,15 +19,11 @@
       "ok": true
     },
     {
+      "name": "protocol.agiscorecard.com",
+      "ok": true
+    },
+    {
       "name": "evidence.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "proof.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "calls.agiscorecard.com",
       "ok": true
     },
     {
@@ -35,7 +31,7 @@
       "ok": true
     },
     {
-      "name": "compute.agiscorecard.com",
+      "name": "permit.agiscorecard.com",
       "ok": true
     },
     {
@@ -43,19 +39,23 @@
       "ok": true
     },
     {
-      "name": "protocol.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "permit.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "disclosures.agiscorecard.com",
+      "name": "proof.agiscorecard.com",
       "ok": true
     },
     {
       "name": "web3.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "calls.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "compute.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "disclosures.agiscorecard.com",
       "ok": true
     },
     {
@@ -70,36 +70,36 @@
   "sources": {
     "market": {
       "status": "fresh",
-      "retrievedAt": "2026-11-27T11:21:48.287Z",
+      "retrievedAt": "2026-11-28T10:49:52.759Z",
       "ageSeconds": 0,
       "quotes": [
         {
           "symbol": "BTC",
           "quote": "USD",
-          "price": 61548.6168,
-          "sourceUpdatedAt": "2026-11-27T11:21:29.000Z",
+          "price": 59142.68236305,
+          "sourceUpdatedAt": "2026-11-28T10:49:41.000Z",
           "deviationBps": null
         },
         {
           "symbol": "ETH",
           "quote": "USD",
-          "price": 1724.4299008000003,
-          "sourceUpdatedAt": "2026-11-27T11:21:29.000Z",
+          "price": 1645.73223685,
+          "sourceUpdatedAt": "2026-11-28T10:49:41.000Z",
           "deviationBps": null
         },
         {
           "symbol": "USDC",
           "quote": "USD",
-          "price": 0.9998785152000002,
-          "sourceUpdatedAt": "2026-11-27T11:21:29.000Z",
-          "deviationBps": -1.2148479999984918
+          "price": 0.999829367225,
+          "sourceUpdatedAt": "2026-11-28T10:49:41.000Z",
+          "deviationBps": -1.70632774999957
         },
         {
           "symbol": "USDT",
           "quote": "USD",
-          "price": 0.99872,
-          "sourceUpdatedAt": "2026-11-27T11:21:29.000Z",
-          "deviationBps": -12.799999999999478
+          "price": 0.9991,
+          "sourceUpdatedAt": "2026-11-28T10:49:41.000Z",
+          "deviationBps": -9.000000000000119
         }
       ],
       "source": {
@@ -110,25 +110,70 @@
     },
     "briefs": {
       "status": "fresh",
-      "retrievedAt": "2026-11-27T11:13:56.599Z",
+      "retrievedAt": "2026-11-28T10:49:52.836Z",
       "sources": [
         {
           "id": "ethereum",
           "status": "ok",
-          "checkedAt": "2026-11-27T11:13:56.571Z"
+          "checkedAt": "2026-11-28T10:49:52.649Z"
         },
         {
           "id": "x402",
-          "status": "unavailable",
-          "checkedAt": "2026-11-27T11:13:56.586Z"
+          "status": "ok",
+          "checkedAt": "2026-11-28T10:49:52.649Z"
         },
         {
           "id": "ezkl",
-          "status": "unavailable",
-          "checkedAt": "2026-11-27T11:13:56.586Z"
+          "status": "ok",
+          "checkedAt": "2026-11-28T10:49:52.649Z"
         }
       ],
       "items": [
+        {
+          "title": "Update docs/extensions/sign-in-with-x.mdx (#4505)",
+          "url": "https://github.com/x402-foundation/x402/commit/0916131ace0c5e12472d09cfc166d35a2ba40a68",
+          "publishedAt": "2026-11-28T10:21:36.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "Update docs/advanced-concepts/lifecycle-hooks.mdx (#4504)",
+          "url": "https://github.com/x402-foundation/x402/commit/e19517922b5c5aaa66b4cf66761a4679f55f74d8",
+          "publishedAt": "2026-11-28T10:20:40.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "fix(extensions): sign in on auth-only routes in wrapFetchWithSIWx (#4482)",
+          "url": "https://github.com/x402-foundation/x402/commit/1c86317563dd536b4037b1339a50304ce1ad40fc",
+          "publishedAt": "2026-11-28T10:17:19.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "fix(python/mcp): forward structured content on tool results (#4476)",
+          "url": "https://github.com/x402-foundation/x402/commit/7fc145e2ef790e55e57dbfd798c0805ffec02b62",
+          "publishedAt": "2026-11-28T10:14:17.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "fix(go/mcp): forward structuredContent on client tool results (#4477)",
+          "url": "https://github.com/x402-foundation/x402/commit/4817a3286f4f0a1d2e95cc31e2a30146534e82e4",
+          "publishedAt": "2026-11-28T10:12:50.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
         {
           "title": "Devcon 8 India Recap: Four Days in Mumbai, and What's Next",
           "url": "https://blog.ethereum.org/en/2026/11/25/devcon-mumbai-wrap",
@@ -178,118 +223,118 @@
     },
     "research": {
       "status": "fresh",
-      "retrievedAt": "2026-11-27T11:21:48.484Z",
+      "retrievedAt": "2026-11-28T10:49:53.030Z",
       "historyStatus": "fresh",
       "quotes": [
         {
           "symbol": "BTC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-27T11:21:47.000Z",
+          "sourceUpdatedAt": "2026-11-28T10:49:41.000Z",
           "day": {
-            "percent": 1.8518522075577915,
-            "from": "2026-11-26T11:00:00.000Z",
-            "to": "2026-11-27T11:21:47.000Z"
+            "percent": -3.953912573031171,
+            "from": "2026-11-27T10:00:00.000Z",
+            "to": "2026-11-28T10:49:41.000Z"
           },
           "week": {
-            "percent": -0.6755564426270455,
-            "from": "2026-11-20T11:00:00.000Z",
-            "to": "2026-11-27T11:21:47.000Z"
+            "percent": 2.1022639543687216,
+            "from": "2026-11-21T10:00:00.000Z",
+            "to": "2026-11-28T10:49:41.000Z"
           }
         },
         {
           "symbol": "ETH",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-27T11:21:47.000Z",
+          "sourceUpdatedAt": "2026-11-28T10:49:41.000Z",
           "day": {
-            "percent": 1.8985365756480244,
-            "from": "2026-11-26T11:00:00.000Z",
-            "to": "2026-11-27T11:21:47.000Z"
+            "percent": -4.717655187652669,
+            "from": "2026-11-27T10:00:00.000Z",
+            "to": "2026-11-28T10:49:41.000Z"
           },
           "week": {
-            "percent": -1.7148261231301754,
-            "from": "2026-11-20T11:00:00.000Z",
-            "to": "2026-11-27T11:21:47.000Z"
+            "percent": 0.5764768439222356,
+            "from": "2026-11-21T10:00:00.000Z",
+            "to": "2026-11-28T10:49:41.000Z"
           }
         },
         {
           "symbol": "USDC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-27T11:21:46.000Z",
+          "sourceUpdatedAt": "2026-11-28T10:49:41.000Z",
           "day": {
-            "percent": 0.03800171789156703,
-            "from": "2026-11-26T11:00:00.000Z",
-            "to": "2026-11-27T11:21:46.000Z"
+            "percent": 0.022320396463682002,
+            "from": "2026-11-27T10:00:00.000Z",
+            "to": "2026-11-28T10:49:41.000Z"
           },
           "week": {
-            "percent": 0.02331349388522419,
-            "from": "2026-11-20T11:00:00.000Z",
-            "to": "2026-11-27T11:21:46.000Z"
+            "percent": -0.007756199431530053,
+            "from": "2026-11-21T10:00:00.000Z",
+            "to": "2026-11-28T10:49:41.000Z"
           }
         },
         {
           "symbol": "USDT",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-27T11:21:47.000Z",
+          "sourceUpdatedAt": "2026-11-28T10:49:41.000Z",
           "day": {
-            "percent": -0.032703410206369465,
-            "from": "2026-11-26T11:00:00.000Z",
-            "to": "2026-11-27T11:21:47.000Z"
+            "percent": -0.0011969664671762636,
+            "from": "2026-11-27T10:00:00.000Z",
+            "to": "2026-11-28T10:49:41.000Z"
           },
           "week": {
-            "percent": -0.046227689757172286,
-            "from": "2026-11-20T11:00:00.000Z",
-            "to": "2026-11-27T11:21:47.000Z"
+            "percent": 0.04541035953129491,
+            "from": "2026-11-21T10:00:00.000Z",
+            "to": "2026-11-28T10:49:41.000Z"
           }
         },
         {
           "symbol": "TAO",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-27T11:21:47.000Z",
+          "sourceUpdatedAt": "2026-11-28T10:49:41.000Z",
           "day": {
-            "percent": 3.1406437118369546,
-            "from": "2026-11-26T11:00:00.000Z",
-            "to": "2026-11-27T11:21:47.000Z"
+            "percent": -3.047796350058085,
+            "from": "2026-11-27T09:59:51.000Z",
+            "to": "2026-11-28T10:49:41.000Z"
           },
           "week": {
-            "percent": 0.36742735986761144,
-            "from": "2026-11-20T11:00:00.000Z",
-            "to": "2026-11-27T11:21:47.000Z"
+            "percent": 2.355475201974855,
+            "from": "2026-11-21T10:00:00.000Z",
+            "to": "2026-11-28T10:49:41.000Z"
           }
         },
         {
           "symbol": "RENDER",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-27T11:21:47.000Z",
+          "sourceUpdatedAt": "2026-11-28T10:49:41.000Z",
           "day": {
-            "percent": 4.282137816031706,
-            "from": "2026-11-26T10:59:57.000Z",
-            "to": "2026-11-27T11:21:47.000Z"
+            "percent": -2.089840858782188,
+            "from": "2026-11-27T09:59:52.000Z",
+            "to": "2026-11-28T10:49:41.000Z"
           },
           "week": {
-            "percent": 0.8640860775466441,
-            "from": "2026-11-20T11:00:07.000Z",
-            "to": "2026-11-27T11:21:47.000Z"
+            "percent": 7.50854676240067,
+            "from": "2026-11-21T10:00:00.000Z",
+            "to": "2026-11-28T10:49:41.000Z"
           }
         },
         {
           "symbol": "FET",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-27T11:21:47.000Z",
+          "sourceUpdatedAt": "2026-11-28T10:49:41.000Z",
           "day": {
-            "percent": 12.706082887383419,
-            "from": "2026-11-26T10:59:57.000Z",
-            "to": "2026-11-27T11:21:47.000Z"
+            "percent": -4.745288801395597,
+            "from": "2026-11-27T09:59:52.000Z",
+            "to": "2026-11-28T10:49:41.000Z"
           },
           "week": {
-            "percent": 3.731066126466276,
-            "from": "2026-11-20T11:00:07.000Z",
-            "to": "2026-11-27T11:21:47.000Z"
+            "percent": 10.757170283559581,
+            "from": "2026-11-21T10:00:00.000Z",
+            "to": "2026-11-28T10:49:41.000Z"
           }
         },
         {
           "symbol": "AKT",
           "status": "stale",
-          "sourceUpdatedAt": "2026-11-27T10:53:07.000Z",
+          "sourceUpdatedAt": "2026-11-28T10:22:59.000Z",
           "day": null,
           "week": null
         }
@@ -297,7 +342,7 @@
     }
   },
   "events": {
-    "asOf": "2026-11-27T11:21:48.000Z",
+    "asOf": "2026-11-28T10:49:53.000Z",
     "windowDays": 28,
     "measurement": "Opt-in event counts, deduplicated by event ID. Not unique people or a cross-domain session funnel. Incoming attribution is unverified; stripped referrers appear direct. Default examples, probes and MCP requests do not generate events.",
     "groups": []
@@ -306,7 +351,43 @@
     "groups": [],
     "measurement": "Self-reported submissions, not independent buyers."
   },
-  "changes": [],
+  "changes": [
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/0916131ace0c5e12472d09cfc166d35a2ba40a68",
+      "title": "Update docs/extensions/sign-in-with-x.mdx (#4505)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/e19517922b5c5aaa66b4cf66761a4679f55f74d8",
+      "title": "Update docs/advanced-concepts/lifecycle-hooks.mdx (#4504)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/1c86317563dd536b4037b1339a50304ce1ad40fc",
+      "title": "fix(extensions): sign in on auth-only routes in wrapFetchWithSIWx (#4482)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/7fc145e2ef790e55e57dbfd798c0805ffec02b62",
+      "title": "fix(python/mcp): forward structured content on tool results (#4476)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/4817a3286f4f0a1d2e95cc31e2a30146534e82e4",
+      "title": "fix(go/mcp): forward structuredContent on client tool results (#4477)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    }
+  ],
   "outcomes": {
     "indexedPages": null,
     "verifiedThirdPartyBacklinks": null,
