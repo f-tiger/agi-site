@@ -2,14 +2,14 @@
   "ok": true,
   "since": "2026-09-25",
   "days": 28,
-  "generated": "2026-11-27T16:22:48.986Z",
+  "generated": "2026-11-28T15:16:01.068Z",
   "cache_seconds": 300,
   "unit": "Anonymous action counts, deduplicated per event per page load in the browser. Not unique users; not verified buyers. Bots, CI and samples are excluded from task completion. Open endpoint counts can be spoofed. Public aggregates may be cached for 5 minutes.",
   "events": {
     "doc_view": 144
   },
   "excluded": {
-    "doc_ci": 34,
+    "doc_ci": 30,
     "doc_image_sample": 1
   },
   "daily": [
@@ -149,7 +149,7 @@
   "crawler_fetches": [
     {
       "path": "/document-sitemap.xml",
-      "n": 157
+      "n": 149
     },
     {
       "path": "/llms.txt",
@@ -512,10 +512,6 @@
       "n": 2
     },
     {
-      "path": "/document-assets/tool-capabilities.json",
-      "n": 1
-    },
-    {
       "path": "/document-tools",
       "n": 1
     }
@@ -523,11 +519,11 @@
   "crawler_agents": [
     {
       "claimed_agent": "ClaudeBot",
-      "n": 220
+      "n": 212
     },
     {
       "claimed_agent": "GPTBot",
-      "n": 124
+      "n": 123
     },
     {
       "claimed_agent": "Amazonbot",
@@ -630,5 +626,5 @@
   "homepage_scope": "Homepage selections are fixed tool-link actions introduced on 2026-09-27, not completed tasks or unique visitors. Homepage views include historical document homepages and the current /document-tools directory; collector page views use a separate event stream. Legacy tool_views includes homepage views; dedicated_tool_views does not.",
   "attribution_scope": "Per-action observed referrer, not session attribution or a conversion rate. Missing referrers are unknown; Google AI search is not distinguishable from ordinary Google referrals. Crawler identities are user-agent claims, not verified IPs or citations.",
   "tool_views": 34,
-  "query_rows_read": 11179
+  "query_rows_read": 11155
 }

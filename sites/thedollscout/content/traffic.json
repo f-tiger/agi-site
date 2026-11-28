@@ -2,10 +2,10 @@
   "source": "Cloudflare GraphQL Analytics API (edge-measured)",
   "note": "Counted at the edge, so unaffected by ad blockers, privacy browsers or network-level blocking of Google. Includes bot and crawler traffic, which on a new site is most of it — read it as a floor, not as humans.",
   "zone": "thedollscout.com",
-  "updated": "2026-11-27",
+  "updated": "2026-11-28",
   "window": {
     "since": "2026-07-26",
-    "until": "2026-11-26"
+    "until": "2026-11-27"
   },
   "days": {
     "2026-07-26": {
@@ -7303,6 +7303,79 @@
         "NL": 545,
         "FI": 527,
         "FR": 406
+      }
+    },
+    "2026-11-27": {
+      "date": "2026-11-27",
+      "requests": 30789,
+      "pageViews": 12796,
+      "uniques": 3564,
+      "byIpType": {
+        "noRecord": 16556,
+        "unknown": 13705,
+        "searchEngine": 441,
+        "allowlist": 84,
+        "badHost": 3
+      },
+      "byBrowser": {
+        "Unknown": 10405,
+        "Curl": 930,
+        "Chrome": 812,
+        "Edge": 158,
+        "MobileSafari": 124,
+        "Firefox": 110,
+        "Safari": 97,
+        "AppleBot": 79,
+        "YandexBot": 35,
+        "BingBot": 19,
+        "GoogleBot": 17,
+        "ChromeMobile": 8,
+        "MobileSafariWebview": 1,
+        "ChromeDerivative": 1
+      },
+      "byContentType": {
+        "html": 14246,
+        "json": 7178,
+        "txt": 4366,
+        "js": 2207,
+        "empty": 1998,
+        "css": 511,
+        "xml": 88,
+        "unknown": 76,
+        "pdf": 49,
+        "svg": 32,
+        "png": 29,
+        "zip": 8,
+        "jpeg": 1
+      },
+      "byStatus": {
+        "200": 25356,
+        "202": 881,
+        "204": 930,
+        "206": 6,
+        "301": 508,
+        "303": 12,
+        "304": 125,
+        "308": 222,
+        "400": 979,
+        "401": 3,
+        "403": 13,
+        "404": 1326,
+        "405": 282,
+        "410": 117,
+        "499": 14,
+        "500": 4,
+        "503": 11
+      },
+      "topCountries": {
+        "US": 19873,
+        "KR": 1951,
+        "SG": 1278,
+        "NL": 1207,
+        "FR": 641,
+        "CN": 626,
+        "GB": 488,
+        "DE": 480
       }
     }
   }
