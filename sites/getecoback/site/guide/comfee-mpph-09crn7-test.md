@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Der mobile Monoblock **Comfee MPPH-09CRN7** leistet laut deutschem Datenblatt **2,6 kW (9.000 BTU/h)**. Prüfe vor der Bestellung, ob Modell, Fenster und Abluftweg zusammenpassen. EcoBack wertet Originalunterlagen aus. Wir haben das Gerät nicht selbst vermessen.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Der Produktlink ist ein Affiliate-Link.
-
 ## Comfee MPPH-09CRN7 vor dem Kauf abgleichen
 
 Im [deutschen Comfee-Datenblatt](https://www.feelcomfee.com/content/dam/comfee-aem/de/produkte/klimatisieren-heizen/mpph-09crn7/comfee-MPPH-09CRN7-Datenblatt.pdf#page=2) steht für das **MPPH-09CRN7** die **EAN 4048164103065** und die **Artikelnummer 10000656**. Suche in den Produktdetails nach diesen Nummern. [MPPHA-09CRN7](https://www.feelcomfee.com/content/dam/comfee-aem/de/produkte/klimatisieren-heizen/mobiles-klimager%C3%A4t-mppha-09crn7/Fiche-802996-de.pdf) ist eine eigene Modellkennung. Auch MPPH-08CRN7 und Zubehörangebote müssen getrennt geprüft werden.

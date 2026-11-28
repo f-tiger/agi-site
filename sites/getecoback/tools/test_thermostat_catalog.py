@@ -17,10 +17,16 @@ class CatalogTests(unittest.TestCase):
         text = catalog.render(today=dt.date(2026, 11, 27), data=data)
         links = re.findall(r'href="([^"]*amazon[^\"]*)"', text)
         queries = [product['query'] for product in data['products']] + ['TP-Link Kasa KE100 KIT mit KH100 Hub']
-        self.assertEqual(len(links), len(queries))
+        # Only Bosch's comparison source had been checked by Nov 27.
+        self.assertEqual(len(links), len(queries) + 1)
+        self.assertEqual(parse_qs(urlsplit(unescape(links.pop(0))).query)['k'], [data['products'][1]['query']])
         for link, query in zip(links, queries):
             url = urlsplit(unescape(link))
             self.assertEqual(url.netloc, 'www.amazon.de')
+            if query == 'FRITZ Smart Thermo 302 20003120':
+                self.assertEqual(url.path, '/dp/B0G2T5J493')
+                self.assertEqual(parse_qs(url.query), {'tag': ['getecoback-21']})
+                continue
             self.assertEqual(url.path, '/s')
             self.assertEqual(parse_qs(url.query), {'k': [query], 'tag': ['getecoback-21']})
         for product in data['products']:
@@ -32,15 +38,15 @@ class CatalogTests(unittest.TestCase):
         data = catalog.load()
         for day in [dt.date(2026, 11, 11), dt.date(2027, 2, 26)]:
             html = catalog.render(today=day, data=data)
-            self.assertNotIn('amazon.de/s?', html)
+            self.assertNotIn('www.amazon.de/', html)
             self.assertIn('tado° Smartes Heizkörper-Thermostat X', html)
             self.assertIn('Quellenprüfung ausstehend', html)
         old = copy.deepcopy(data)
         old['products'][0]['status'] = 'unverified'
         html = catalog.render(today=dt.date(2026, 11, 12), data=old)
-        self.assertEqual(html.count('amazon.de/s?'), 2)
+        self.assertEqual(html.count('https://www.amazon.de/'), 2)
         html = catalog.render(today=dt.date(2027, 2, 11), data=data)
-        self.assertEqual(html.count('amazon.de/s?'), 2)
+        self.assertEqual(html.count('https://www.amazon.de/'), 2)
         self.assertNotIn('Starter+Kit+Bridge+X', html)
         self.assertIn('KE100+KIT+mit+KH100+Hub', html)
 
@@ -56,7 +62,7 @@ class CatalogTests(unittest.TestCase):
         self.assertIn('0 %', html)
         self.assertIn('datetime="2026-11-12"', html)
         self.assertIn('datetime="2026-11-27"', html)
-        self.assertIn('"dateModified": "2026-11-27"', html)
+        self.assertIn('"dateModified": "2026-11-28"', html)
         self.assertEqual(html.count('id="tado-x-oventrop"'), 1)
         self.assertIn('4026755228717', html)
         self.assertEqual(html, page(catalog.SLUG, PAGES[catalog.SLUG]))

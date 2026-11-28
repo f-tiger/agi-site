@@ -57,7 +57,7 @@ def block(en=False, slug=None):
     fields += select('market',t('Wo möchtest du einkaufen?','Where will you shop?'),[
         ('de',t('Deutschland / Amazon.de','Germany / Amazon.de')),
         ('other',t('Anderer Markt / nur informieren','Another market / advice only'))], 'other' if en else 'de')
-    unknown = t('Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert.',
+    unknown = t('Für diese Temperatur fehlen vergleichbare Leistungswerte. Nutze für die Auslegung die Meaco-Werte bei gleicher Feuchte.',
                 'Extraction and running power at these conditions are not verified here.')
 
     def source(url, label):
@@ -116,6 +116,22 @@ def block(en=False, slug=None):
           'An Amazon.de model search. Results may include other generations or sizes.'),
         'https://www.amazon.de/s?k=MeacoDry+Arete+One+20L&tag=getecoback-21',
         t('Exaktes Modell bei Amazon.de suchen*', 'Find exact model at Amazon.de*'))
+    winter = not en and slug == 'luftentfeuchter-ratgeber'
+    if winter:
+        from dehum_catalog import load
+        from winter_picks import shortlist, offer
+        data = load()
+        picks = shortlist(data)
+        def winter_candidate(p):
+            facts = ''.join(f'<div><dt>{escape(col)}</dt><dd>{escape(value)}</dd></div>'
+                            for col, value in zip(data['winter_comparison']['columns'], p['values']))
+            return (f'<div class="choice-candidate"><h4>{escape(p["name"])}</h4><p>{escape(p["reason"])}</p>'
+                    f'<dl class="choice-facts">{facts}</dl><details data-choice-evidence><summary>Modellquelle öffnen</summary>'
+                    f'<p><a href="{escape(p["source"])}">Messwerte bei Meaco Deutschland</a> · {p["checked"]}</p>'
+                    f'</details><small>Werbung · Modellsuche</small>{offer(p, choice=True)}</div>')
+        winter_products = ('<div data-market-de hidden><div class="choice-products">' +
+                           ''.join(winter_candidate(p) for p in picks) + '</div></div>'
+                           '<p data-market-other hidden>Die Messwerte stehen im Direktvergleich. Prüfe Angebote in deinem Land.</p>')
     products = '<div data-market-de hidden><p class="choice-comparison-note">' + t(
         'Zwei vorhandene Kandidaten mit denselben Prüfpunkten. Fehlende Werte sind keine Null und kein Nachteil im Ranking: Ohne vergleichbare Daten gibt es hier keinen Effizienz-Sieger.',
         'Two existing candidates with the same checks. Missing figures are not zero or a ranking penalty: without comparable data, this guide names no efficiency winner.') + '</p>' + laundry_models + '<div class="choice-products">' + comfee + meaco + '</div><small>'+t(
@@ -123,6 +139,8 @@ def block(en=False, slug=None):
         'Ad · Affiliate links: As an Amazon Associate we earn from qualifying purchases. Check price, seller, availability, plug and return terms at Amazon. Two examples from our existing coverage, not a whole-market comparison or hands-on test.')+'</small></div><p data-market-other hidden>'+t(
         'Hier werden keine deutschen Kauflinks eingeblendet. Die Herstellerdaten beider Modelle findest du in der Vergleichstabelle darunter. Vergleiche beim Händler in deinem Markt das genaue Modell, Netzspannung, Stecker, Garantie und Liefergebiet.',
         'German shopping links are hidden. Both models’ manufacturer figures are in the comparison table below. At a retailer serving your market, check the exact model, voltage, plug, warranty and delivery area.')+'</p>'
+    if winter:
+        products = winter_products
     answer = lambda key,title,body: f'<div data-answer="{key}" hidden><h3>{title}</h3>{body}</div>'
     answers = answer('measure',t('Erst messen, dann entscheiden','Measure before deciding'),'<p>'+t(
         'Notiere an mehreren typischen Tagen Temperatur und relative Feuchte, auch vor und nach dem Lüften oder Wäschetrocknen. Wenn du schon ein Hygrometer hast, nutze es. Ein neuer Entfeuchter ist aus diesen Angaben noch nicht begründet.',
@@ -153,10 +171,26 @@ def block(en=False, slug=None):
         'Model boundaries: Comfee MDDF-20DEN7 here is the variant without WF. MeacoDry Arete One 20L is neither Arete Two nor One 25L. The UK model page does not verify a German retailer’s equipment, plug, availability or returns. Match voltage, rating plate and manual to the actual offer. Neither candidate replaces investigating moisture sources or suitable ventilation.')+'</p><p>'+t(
         'Rechenbeispiel: 216 W × 6 h ÷ 1.000 × 0,35 €/kWh = 0,45 €. Das ist weder eine gemessene Wäscheladung noch eine Einsparzusage.',
         'Example calculation: 216 W × 6 h ÷ 1,000 × €0.35/kWh = €0.45. This is not a measured laundry load or a savings promise.')+'</p><small>'+t('Quellen geprüft am 06.11.2026: ','Sources checked on 6 November 2026: ')+source(MEACO, 'Meaco One 20L')+' · '+source(COMFEE_PRODUCT, 'Comfee MDDF-20DEN7')+' · '+source(COMFEE_DATA,t('Comfee-Datenblatt, Seite 2','Comfee data sheet, page 2'))+' · '+source(COMFEE,t('Comfee-Bedienhinweise','Comfee operating instructions'))+' · '+source(AIR,'Verbraucherzentrale')+'. '+t('Herstellerangaben, keine eigenen Messungen. Orientierung, keine Ferndiagnose.','Manufacturer figures, not our own measurements. Guidance, not a remote diagnosis.')+'</small>'+laundry_method_link+'</details>'
+    if winter:
+        headings = ''.join(f'<th scope="col">{escape(p["name"])}</th>' for p in picks)
+        rows = ''.join('<tr><th scope="row">' + escape(col) + '</th>' +
+                       ''.join('<td>' + escape(p['values'][i]) + '</td>' for p in picks) + '</tr>'
+                       for i, col in enumerate(data['winter_comparison']['columns']))
+        shopping = ''.join('<td>' + offer(p) + '</td>' for p in picks)
+        sources = ' · '.join(f'<a href="{escape(p["source"])}">{escape(p["name"])}</a> ({p["checked"]})' for p in picks)
+        evidence = ('<details data-choice-method id="eb-choice-method" open><summary>Modelle direkt vergleichen</summary>'
+                    '<div class="choice-table"><table><caption>Wasserentzug und Leistungsaufnahme bei gleicher Raumluft</caption>'
+                    f'<thead><tr><th scope="col">Prüfpunkt</th>{headings}</tr></thead><tbody>{rows}'
+                    f'<tr data-winter-offers data-market-de><th scope="row">Werbung · Modellsuche*</th>{shopping}</tr></tbody></table></div>'
+                    '<p>Die One entzieht bei 10 °C mehr Wasser. Die Two nimmt bei 20 °C weniger Leistung auf. '
+                    'Die Wattzahl allein sagt dir nicht, was eine trockene Ladung kostet. '
+                    f'<a href="{cost}#laundry-check">Kosten je gleich trockener Ladung prüfen</a>.</p><p>{sources}</p></details>')
     fallback = '<div data-choice-fallback><p>'+t(
         'Dein nächster Schritt: Feuchte und Temperatur zunächst messen, bei nassen Wänden die Ursache klären. Die Herstellerdaten unten helfen dir, Bedingungen und Modellvarianten zu unterscheiden.',
         'Your next step: measure humidity and temperature first, and investigate the cause of wet walls. The manufacturer data below helps distinguish conditions and model variants.')+'</p><p>'+link(cost,t('Wäschekosten vergleichen','Compare laundry costs'))+' · '+link(cold,t('Kalte Räume prüfen','Check cold-room conditions'))+' · '+link(care,t('Feuchteursachen klären','Investigate moisture sources'))+'</p></div>'
     entry = '<div class="choice-entry"><div><h3>'+t('Noch unsicher, ob du ein Gerät brauchst?','Unsure whether you need a device?')+'</h3><p>'+t('Vier Angaben helfen, Messen, Ursachenklärung oder einen Vergleich als nächsten Schritt zu wählen.','Four answers help you choose between measuring, investigating the cause or comparing models.')+'</p><a href="#eb-choice-context" data-choice-needs>'+t('Bedarf zuerst prüfen','Check your need first')+'</a></div><div><h3>'+t('Du möchtest bereits Modelle vergleichen?','Ready to compare models?')+'</h3><p>'+t('Zwei vorhandene Kandidaten, gleiche Prüfpunkte und offene Datenlücken. Ohne Fragebogen.','Two existing candidates, the same checks and visible data gaps. No questionnaire required.')+'</p><a href="#eb-choice-method" data-choice-direct>'+t('Modelle direkt vergleichen','Compare model data directly')+'</a></div></div>'
+    if winter:
+        entry = entry.replace('Zwei vorhandene Kandidaten, gleiche Prüfpunkte und offene Datenlücken.', 'Zwei Modelle bei 10 und 20 °C und jeweils 60 % Luftfeuchte.')
     direct_note = '<div class="choice-direct-note" data-choice-direct-note hidden><p><strong>'+t('Nur Modellvergleich — Kaufbedarf noch nicht geprüft.','Model comparison only — purchase need has not been assessed.')+'</strong> '+t('Bei Leck, nassen Bauteilen oder Schimmel zuerst die Ursache klären. Dieser Einstieg bewertet weder deinen Raum noch deine Antworten.','Investigate leaks, wet building materials or mould first. This route does not assess your room or your answers.')+'</p><a href="#eb-choice-context" data-choice-needs>'+t('Bedarf und Einkaufsmarkt prüfen','Check need and shopping market')+'</a></div>'
     return '<!--EB_BUYER--><link rel="stylesheet" href="/assets/moisture-decision.css"><section id="eb-moisture-choice" data-lang="'+('en' if en else 'de')+'" aria-labelledby="eb-choice-title"><h2 id="eb-choice-title">'+t('Brauchst du einen Entfeuchter – und welchen Typ?','Do you need a dehumidifier — and which type?')+'</h2><p>'+t(
         'Finde deinen nächsten Schritt – vom Weiterbeobachten bis zum gezielten Modellvergleich. Entscheidend sind Feuchte, Temperatur und die Ursache. Ohne Anmeldung.',

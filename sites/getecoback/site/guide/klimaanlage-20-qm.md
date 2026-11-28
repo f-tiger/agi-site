@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Du suchst eine tragbare Klimaanlage für einen Raum mit rund 20 m²? Die wichtigste Frage ist die richtige Kühlleistung (BTU): zu wenig, und das Gerät kommt nie hinterher; zu viel ist rausgeworfenes Geld und unnötig laut. Hier die konkrete Empfehlung für 20 m².
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurz gesagt:** Für 20 m² solltest du eine Klimaanlage mit **9.000–10.000 BTU** wählen. Ein häufig empfohlenes Modell dieser Klasse ist **De'Longhi Pinguino PAC EX105**. Rechne mit rund 0,30 € Stromkosten pro Stunde bzw. ~47 € im Hitzemonat.
 
 ## Wie viel BTU für 20 m²?

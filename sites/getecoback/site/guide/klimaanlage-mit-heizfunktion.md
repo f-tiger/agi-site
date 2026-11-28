@@ -14,8 +14,6 @@ Gerät schon vorhanden? Heizmodus und Verbrauch prüfen. Neukauf geplant? Erst A
 [Wärmekosten nachrechnen](https://getecoback.com/guide/klimaanlage-mit-heizfunktion.html#kosten-pro-kwh-waerme)
 [Kauf- und Montagecheck ↓](https://getecoback.com/guide/klimaanlage-mit-heizfunktion.html#worauf-beim-kauf-achten)
 
-EcoBack finanziert sich teilweise über Affiliate-Links. Diese Seite führt zuerst zu Rechenwegen und bestehenden Ratgebern; Herstellerangaben sind keine unabhängigen Testergebnisse.
-
 ## Wärmepumpe oder elektrische Direktheizung?
 
 Eine Wärmepumpe transportiert Wärme von außen nach innen. Deshalb kann die abgegebene Wärme größer sein als die eingesetzte elektrische Energie. Ein Heizlüfter oder Infrarotpanel wandelt Strom dagegen unmittelbar in Wärme um: am Gerät ungefähr 1 kWh Wärme aus 1 kWh Strom. Weniger Watt allein bedeuten bei gleichem Wärmebedarf keine bessere Umwandlung.

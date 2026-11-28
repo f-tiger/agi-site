@@ -6,8 +6,6 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/klimaanlage-oder-ve
 
 Die häufigste Frage in der Hitzewelle: Reicht ein günstiger Ventilator, oder brauchst du eine echte Klimaanlage? Die kurze Antwort hängt an einem entscheidenden Unterschied — und deinem Budget.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurz gesagt:** Ein **Ventilator** (ab ~30 €) kühlt den Raum nicht, macht die Hitze aber für wenig Geld und Strom erträglicher. Eine **Klimaanlage** (ab ~250 €) senkt die Temperatur wirklich — nötig, wenn du bei über 30 °C schlafen oder arbeiten musst. Für die meisten ist die beste Lösung: **beides kombinieren**.
 
 ## Der entscheidende Unterschied

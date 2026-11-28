@@ -95,7 +95,7 @@ class BuyerComparison(unittest.TestCase):
             self.assertEqual([r.find('th')[0].text() for r in rows], ['20 °C / 60 % RH', '10 °C / 60 % RH'])
             for row, numbers in zip(rows, [('8.5 L', '216 W'), ('3.4 L', '180 W')]):
                 cells = row.find('td')
-                self.assertIn('not verified' if en else 'nicht verifiziert', cells[0].text())
+                self.assertIn('not verified' if en else 'fehlen vergleichbare Leistungswerte', cells[0].text())
                 self.assertNotRegex(cells[0].text(), r'\d')
                 for number in numbers:
                     self.assertIn(number, cells[1].text())

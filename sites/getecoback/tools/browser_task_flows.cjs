@@ -7,7 +7,7 @@ try{
   await p.fill('#rate','0.3');await p.fill('#costB','0');await p.locator('#country-form button[type=submit]').click();assert(!/NaN|undefined/.test(await p.locator('#result').innerText()));const promise=p.waitForEvent('download');await p.click('#download-card');assert((await promise).suggestedFilename().endsWith('.png'));checks+=2;
  }
  for(const u of ['/strommess-protokoll.html','/geraete-austausch-rechner.html']){
-  await visit(u);await p.locator('[data-household] button').click();const before=await p.locator('#result').innerText();assert(before.length>40);await p.locator('[data-household] input').first().fill('');assert((await p.locator('#result').innerText()).includes('neu berechnen'));checks+=2;
+  await visit(u);await p.locator('[data-household] button[type=submit]').click();const before=await p.locator('#result').innerText();assert(before.length>40);await p.locator('[data-household] input').first().fill('');assert((await p.locator('#result').innerText()).includes('neu berechnen'));checks+=2;
  }
  for(const lang of ['en','zh'])for(const slug of ['cbam-supplier-data','eudr-geolocation-evidence']){
   await visit('/'+lang+'/agents/'+slug+'.html');await p.locator('#evidence-check button[type=submit]').click();assert(await p.locator('#result').isVisible());const promise=p.waitForEvent('download');await p.click('#download');assert((await promise).suggestedFilename().length>0);const select=p.locator('#evidence-check select').last();await select.selectOption({index:1});assert(!await p.locator('#download').isVisible());checks+=3;

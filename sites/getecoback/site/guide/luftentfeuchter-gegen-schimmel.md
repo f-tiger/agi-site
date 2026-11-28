@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Schimmel in der Zimmerecke, hinterm Schrank oder an der Fensterlaibung — und der erste Reflex ist oft: Luftentfeuchter kaufen. Bevor du das tust, lohnt ein nüchterner Blick darauf, was so ein Gerät tatsächlich leistet. Denn ein Luftentfeuchter ist ein sehr gutes Werkzeug gegen **zu feuchte Luft** — aber kein Schimmelentferner und kein Ersatz für die Suche nach der Ursache.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurzantwort:** Ein Luftentfeuchter beugt Schimmel wirksam vor, indem er die relative Luftfeuchtigkeit unter 60–65 % hält — handeln solltest du, wenn dein Hygrometer wiederholt über 70 % anzeigt. Bestehenden Schimmel entfernt das Gerät aber nicht, und bauliche Ursachen wie Wärmebrücken, Leckagen oder aufsteigende Feuchte behebt es auch nicht — dort bekämpft es nur das Symptom.
 
 ## Was ein Luftentfeuchter gegen Schimmel kann — und was nicht

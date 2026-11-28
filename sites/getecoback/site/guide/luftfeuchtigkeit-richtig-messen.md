@@ -89,7 +89,6 @@ Fester Messort gewählt und Geräteanleitung gelesen.Temperatur und Feuchte geme
 
 ## Wenn dir ein geeignetes Messgerät fehlt
 Die Suche unten ist ein Ausgangspunkt für deinen Vergleich. EcoBack hat die dort angezeigten Modelle nicht selbst getestet. Wenn dein vorhandenes Gerät die Aufgabe erfüllt, ist kein Neukauf nötig.
-Anzeige · Affiliate-Link zu einer Produktsuche, keine geprüfte Modell-Empfehlung.
 Hygrometer auf Amazon.de vergleichen ↗
 [Alle Wohn-Themen für Deutschland](https://getecoback.com/wohnen.html)
 

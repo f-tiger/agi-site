@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Die meisten Kühl-Ratgeber gehen wie selbstverständlich davon aus, dass irgendwo eine Außeneinheit hängen kann — auf dem Balkon, an der Fassade, auf der Terrasse. In einer typischen deutschen Mietwohnung stimmt das oft nicht: kein Balkon, keine Erlaubnis zum Bohren, kein Platz für ein Gerät draußen. Die gute Nachricht: Du kannst trotzdem kühlen. Dieser Ratgeber zeigt dir ehrlich, welche Optionen ohne Balkon und ohne Außeneinheit wirklich funktionieren — und welche nur auf dem Papier.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurz gesagt:** Ohne Balkon und ohne Platz für eine Außeneinheit ist die **mobile Monoblock-Klimaanlage** die naheliegende Wahl: Sie braucht nur ein Fenster für den Abluftschlauch, keine Außeneinheit. Dichte das Fenster mit einer **Fensterabdichtung** ab, sonst kommt die Wärme wieder herein. Ehrlich gesagt: Ein Monoblock ist weniger effizient als eine Split-Anlage. Geht selbst kein Fenster, bleibt als Notlösung ein Luftkühler oder Ventilator. Eine Split-Anlage (auch PortaSplit) braucht dagegen weiterhin einen Platz für die Außeneinheit — ohne Balkon oft ein Problem.
 
 ## Warum der Monoblock ohne Balkon die erste Wahl ist

@@ -805,6 +805,9 @@ def live_price_text(e, en=False):
     return f"{amt:.2f}".replace(".", ",") + f" {cur} · Stand {day}"
 
 
+from winter_products import BY_QUERY, buttons
+
+
 def amazon_url(q, name=None):
     """Product page when we know the ASIN, search by model name otherwise.
 
@@ -815,6 +818,9 @@ def amazon_url(q, name=None):
     live = live_product(q)
     if live and ASIN_RE.match((live.get("asin") or "").upper()):
         return f"https://www.amazon.de/dp/{live['asin'].upper()}?tag=getecoback-21"
+    product = BY_QUERY.get(urllib.parse.unquote_plus(q or "").casefold())
+    if product:
+        return product["amazonUrl"]
     asin = (MODEL_ASIN.get(name or "") or "").strip().upper()
     if ASIN_RE.match(asin):
         return f"https://www.amazon.de/dp/{asin}?tag=getecoback-21"
@@ -826,12 +832,10 @@ def shop_card(entry):
     # amazon_url() — not a hand-built search URL: this card names a model, and
     # a verified model must land on its product page (2026-08-31 leak).
     url = amazon_url(q, title)
-    return (f'<div class="eb-shop-card"><div class="th" style="background:linear-gradient(135deg,{grad});">'
-            f'<span class="rl">{role}</span>{SVG[svg_key]}</div>'
-            f'<div class="bd"><h3>{title}</h3><p class="ds">{desc}</p>'
-            f'<div class="pr">{price}</div>'
-            f'<a class="go" href="{url}" target="_blank" rel="sponsored noopener">Preis auf Amazon prüfen →</a>'
-            '</div></div>')
+    return (f'<div class="eb-shop-card"><div class="bd"><span class="cro-spec">{role}</span>'
+            f'<h3>{title}</h3><p class="ds">{desc}</p>'
+            f'<a class="go" href="{url}" target="_blank" rel="nofollow sponsored noopener">'
+            'Aktuellen Preis bei Amazon prüfen * →</a></div></div>')
 
 
 def shop_section(cat_key):
@@ -880,7 +884,7 @@ def shop_section(cat_key):
     return ('<section class="eb-shop"><h2>Nach Gerätetyp shoppen</h2>'
             '<p class="eb-shop-sub">Direkt zum passenden Gerät auf Amazon.de — '
             'Auswahl aus öffentlichen Tests zusammengestellt, nicht selbst getestet. '
-            'Symbolbilder, keine echten Produktfotos.</p>'
+            '</p>'
             f'<div class="eb-shop-grid">{cards}</div></section>\n')
 
 
@@ -1644,6 +1648,12 @@ def model_card(entry, en=False, url=None):
     """`url` overrides the marketplace. The US shelf passes an amazon.com link
     with the US associates tag; everything else keeps the .de default."""
     name, role, why, price, q, svg_key = entry
+    product = BY_QUERY.get(urllib.parse.unquote_plus(q).casefold()) if not en and not url else None
+    if product:
+        from html import escape
+        specs = ' · '.join(escape(s) for s in product['keySpecs'])
+        return (f'<div class="eb-shop-card"><div class="bd"><span class="cro-spec">{escape(product["bestForBadge"])}</span>'
+                f'<h3>{escape(product["name"])}</h3><p class="ds">{specs}</p>' + buttons(product, 'data-winter-compare') + '</div></div>')
     url = url or amazon_url(q, name)
     live_txt = live_price_text(live_product(q), en=en)
     if live_txt:
@@ -1655,15 +1665,16 @@ def model_card(entry, en=False, url=None):
         pcline = ('<p class="ds" style="margin:0 0 9px;">'
                   f'<span style="color:#177245;">✓ {pc[0]}</span><br>'
                   f'<span style="color:#9a3412;">✕ {pc[1]}</span></p>')
-    return (f'<div class="eb-shop-card"><div class="th" style="background:linear-gradient(135deg,{grad});">'
-            f'<span class="rl">{role}</span>{SVG[svg_key]}</div>'
+    thumb = (f'<div class="th" style="background:linear-gradient(135deg,{grad});">'
+             f'<span class="rl">{role}</span>{SVG[svg_key]}</div>') if en else f'<span class="cro-spec">{role}</span>'
+    return (f'<div class="eb-shop-card">{thumb}'
             f'<div class="bd"><h3>{name}</h3><p class="ds">{why}</p>{pcline}'
             f'<div class="pr">{price}</div>'
             # The card takes `en` for its pro/con text but the button was hard-coded
             # German, so every English guide page shipped a German call to action —
             # on the pages that produce 36% of this site's affiliate clicks.
             f'<a class="go" href="{url}" target="_blank" rel="sponsored noopener">'
-            f'{"Check the price on Amazon →" if en else "Preis auf Amazon prüfen →"}</a>'
+            f'{"Check the price on Amazon →" if en else "Aktuellen Preis bei Amazon prüfen * →"}</a>'
             '</div></div>')
 
 
@@ -1754,6 +1765,22 @@ def models_block(device, en=False, slug=None):
         head, sub = "What actually helps here", CONTEXT_SUB_EN[slug]
     elif slug in CONTEXT_SUB and not en:
         head, sub = "Was hier wirklich hilft", CONTEXT_SUB[slug]
+    method = ''
+    if not en:
+        notes = []
+        keep = []
+        for sentence in re.split(r'(?<=[.!?])\s+', sub):
+            if 'Symbolbilder' in sentence:
+                sentence = sentence.replace('Symbolbilder.', '').strip()
+            if not sentence:
+                continue
+            if re.search(r'nicht selbst getestet|öffentlichen Tests|eigener Produkttest', sentence, re.I):
+                notes.append(sentence)
+            else:
+                keep.append(sentence)
+        sub = ' '.join(keep)
+        if notes:
+            method = '<details class="eb-shop-method"><summary>Methodik, Datenquellen &amp; Hinweise</summary><p>' + ' '.join(notes) + '</p></details>'
     # Heading is a styled <div>, not <h2>, so build_onpage's TOC (which slugs
     # every <h2> in <article>) leaves it alone — keeps the two injectors idempotent.
     return (f'<!--EB_MODELS--><section class="eb-shop eb-models" id="eb-models">'
@@ -1761,7 +1788,7 @@ def models_block(device, en=False, slug=None):
             f'<p class="eb-shop-sub" style="margin-bottom:6px;"><span style="font-size:11px;color:#8a99a6;">'
             f'{AD_LABEL[en]}</span></p>'
             f'<p class="eb-shop-sub">{sub}</p>'
-            f'<div class="eb-shop-grid">{cards}</div></section><!--/EB_MODELS-->\n')
+            f'<div class="eb-shop-grid">{cards}</div>{method}</section><!--/EB_MODELS-->\n')
 
 
 # Optional US recommendations are an explicit shopping-market choice. Existing
@@ -3558,7 +3585,7 @@ def home_storage_block():
             'Hygrometer': ('Vorhandenes Messgerät zuerst nutzen. Sonst Messbereich und Genauigkeit vergleichen.', '/guide/fenster-beschlagen-innen.html'),
         }
         check, guide = checks[title]
-        return ('<div class="eb-shop-card"><div class="th" style="background:' + bg + ';"><span class="rl">' + badge + '</span>' + svg + '</div>'
+        return ('<div class="eb-shop-card"><span class="cro-spec">' + badge + '</span>'
                 '<div class="bd"><h3>' + title + '</h3><p class="ds">' + desc + '</p>'
                 '<p class="ds" style="margin:0 0 9px;"><span style="color:#177245;">✓ ' + pros + '</span><br>'
                 '<span style="color:#9a3412;">✕ ' + cons + '</span></p>'
@@ -3618,7 +3645,7 @@ def home_storage_block():
         '<div class="eb-shop-h" style="margin-bottom:2px;">Passend auswählen, dann das Angebot prüfen</div>'
         '<p class="eb-shop-sub" style="margin-bottom:4px;"><span style="font-size:11px;color:#8a99a6;">'
         + AD_LABEL[False] + '</span></p>'
-        '<p class="eb-shop-sub">Nicht selbst getestet, Preise vor Ort prüfen. Symbolbilder, Affiliate-Links.</p>'
+        '<p class="eb-shop-sub">Werbung · Gekennzeichnete Links führen zum Händler.</p>'
         '<div class="eb-shop-grid">' + cards + '</div>'
         '<details style="margin-top:16px;"><summary>Vor dem Bestellen: meine kurze Kaufprüfung</summary>'
         '<ul><li>Raumtemperatur und Feuchte gemessen? Ein vorhandenes Gerät reicht für den ersten Check.</li>'
@@ -4269,7 +4296,8 @@ def track_block(cellar=False, window_fit=False, portasplit_url=None, cellar_mode
          'surf=a.closest("#eb-usmarket")?"us-market":'
          'a.closest("#eb-herbst")?"home-herbst":'
          'a.hasAttribute("data-eb-tp")?"toppick":'
-         'a.closest("#eb-models")?"models":'
+         'a.hasAttribute("data-winter-table")?"winter-table":'
+         '(a.hasAttribute("data-winter-compare")||a.closest("#eb-models"))?"models":'
          'a.closest("#eb-ac-finder")?"ac-finder":'
          'a.closest(".eb-shop-grid")?"grid":'
          'a.closest("article")?"body":"other";'

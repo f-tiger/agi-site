@@ -6,8 +6,6 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/infrarotheizung-rat
 
 Infrarotheizungen werden als schlanke, schnelle Wärmequelle für einzelne Räume beworben: Panel an die Wand, einschalten, sofort spürbare Wärme. Das stimmt — aber die Technik wird oft schöngerechnet, denn am Ende ist es eine elektrische Widerstandsheizung, und Strom ist teuer. Dieser Ratgeber erklärt ehrlich, wie Infrarot funktioniert, wo es sich lohnt, wo nicht — und wie du die Betriebskosten vorher abschätzt.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurz gesagt:** Ein 600-Watt-Panel verbraucht bei voller Leistung 0,6 kWh in einer Stunde. Bei 0,30 €/kWh sind das **0,18 €**. Entscheidend für die Jahreskosten ist der tatsächlich bezogene Heizstrom. Wenn Infrarot die einzige Heizung der Wohnung ist, [prüfe Zähler, Abrechnung und Tarif](https://getecoback.com/guide/infrarotheizung-ratgeber.html#jahreskosten-hauptheizung).
 
 ## Wie eine Infrarotheizung überhaupt heizt

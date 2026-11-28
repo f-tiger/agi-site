@@ -4,9 +4,11 @@
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/heizung-40-qm.html
 
-40 m² ist der Punkt, an dem elektrisches Heizen die Steckdose verlässt. Der Referenzwert von 2.800 W lässt an einem 16-A-Stromkreis nur noch 700 W für alles andere frei, und der Altbau-Rechenwert von 4.000 W liegt bereits über dem, was ein einzelner Kreis mit rund 3.500 W überhaupt trägt. Die Planung beginnt hier nicht im Onlineshop, sondern im Sicherungskasten.
+## Großer Keller oder hoher Altbau
+40 m² bei 2,80 m Deckenhöhe ergeben 112 m³. Bei höheren Decken das tatsächliche Volumen einsetzen.
+230 V × 16 A ergeben rechnerisch 3.680 W für den ganzen Stromkreis. Weitere Verbraucher mitrechnen. Das ist keine Freigabe für Dauerlast an einer einzelnen Steckdose oder Mehrfachleiste.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
+40 m² ist der Punkt, an dem elektrisches Heizen die Steckdose verlässt. Der Referenzwert von 2.800 W lässt an einem 16-A-Stromkreis nur noch 700 W für alles andere frei, und der Altbau-Rechenwert von 4.000 W liegt bereits über dem, was ein einzelner Kreis mit rund 3.500 W überhaupt trägt. Die Planung beginnt hier nicht im Onlineshop, sondern im Sicherungskasten.
 
 **Kurz gesagt:** 40 m² sind nur mit mehreren Panels sinnvoll, zusammen **2.400–3.200 W**. Das kostet 0,84 € pro Stunde und rund 252 € pro Saison. Bei 2.800 W bleiben am 16-A-Stromkreis nur 700 W frei — die Geräte gehören auf verschiedene Kreise.
 

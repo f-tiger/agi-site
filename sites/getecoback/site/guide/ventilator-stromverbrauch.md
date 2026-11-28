@@ -6,8 +6,6 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/ventilator-stromver
 
 Läuft der Ventilator jede Nacht durch, kommt schnell die Sorge: Was macht das mit der Stromrechnung? Die gute Nachricht vorweg — ein Ventilator gehört zu den sparsamsten Geräten im Haushalt. Selbst bei Dauerbetrieb reden wir über wenige Euro pro Monat. Hier bekommst du die konkreten Zahlen, eine einfache Formel zum Nachrechnen und den ehrlichen Vergleich zur Klimaanlage.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Auf einen Blick:** Ein Ventilator zieht meist 40–120 Watt, typisch ~50 Watt · das sind bei ~0,40 €/kWh rund 2 Cent pro Stunde · ~16 Cent für eine 8-Stunden-Nacht · wenige Euro pro Monat auch bei jeder Nacht · Deckenventilatoren und DC-Motoren noch sparsamer · eine mobile Klimaanlage zieht 10–20× so viel.
 
 ## Die konkreten Zahlen

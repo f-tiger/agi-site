@@ -80,6 +80,7 @@ jobs:
           python3 -m unittest discover -s ../../tools -p test_eco_demand_model.py
           node --test tools/test_agent_sources.mjs
           node --test ../../tools/fleet-analytics/business.test.mjs
+          python3 tools/test_winter_short.py
           python3 tools/test_affiliate_growth.py
           python3 tools/test_tools_hub.py
           python3 tools/test_build_hreflang.py
@@ -154,6 +155,7 @@ jobs:
           node tools/test_gone.mjs
           python3 tools/check_gone.py
           python3 tools/check_expansion_queue.py
+          python3 tools/build_german_entry.py
           python3 tools/build_search.py
           python3 tools/check_related.py
           python3 tools/test_dehum_catalog.py
@@ -200,6 +202,8 @@ jobs:
           python3 tools/link_product_catalog.py
           python3 tools/build_social_previews.py
           python3 tools/build_social_previews.py --check
+          python3 tools/build_german_entry.py
+          python3 tools/build_agent_md.py
           python3 tools/build_feed.py
           python3 tools/test_feed.py
           python3 tools/check_adlabel.py
@@ -240,6 +244,7 @@ jobs:
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_revenue.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_buyer_decision.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_moisture_analytics.cjs
+          NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_german_entry.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa/moisture-journeys" node tools/browser_moisture_journeys.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/test-public-engagement-browser.mjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_winter.cjs

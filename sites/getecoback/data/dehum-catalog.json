@@ -54,7 +54,17 @@
       "source": "https://www.meaco.de/produkt/luftentfeuchter-meaco-arete-two-12-l/",
       "source_label": "Meaco.de: deutsche Anbieter- und Datenseite",
       "status": "verified",
-      "query": "MeacoDry Arete Two 12L Luftentfeuchter"
+      "query": "MeacoDry Arete Two 12L Luftentfeuchter",
+      "winter_pick": {
+        "scenario": "Wäsche im Wohnraum um 20 °C",
+        "reason": "Wenn dir beim Wäschetrocknen die niedrigere Leistungsaufnahme wichtiger ist, wähle die Two.",
+        "source": "https://eu.meaco.com/products/meacodry-arete-two-12l-luftentfeuchter-luftreiniger",
+        "checked": "2026-11-28",
+        "values": [
+          "1,97 L/Tag · 111 W",
+          "5,4 L/Tag · 136 W"
+        ]
+      }
     },
     {
       "id": "stadler-lukas",
@@ -110,7 +120,17 @@
       "source": "https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-air-purifier",
       "source_label": "Meaco UK: Arete One 20L",
       "status": "verified",
-      "query": "MeacoDry Arete One 20L"
+      "query": "MeacoDry Arete One 20L",
+      "winter_pick": {
+        "scenario": "Kalter Keller um 10 °C",
+        "reason": "Bei 60 % Luftfeuchte zieht die One mehr Wasser aus der Luft als die Two.",
+        "source": "https://eu.meaco.com/products/meacodry-arete-one-20l-luftentfeuchter-luftreiniger",
+        "checked": "2026-11-28",
+        "values": [
+          "3,4 L/Tag · 180 W",
+          "8,5 L/Tag · 216 W"
+        ]
+      }
     },
     {
       "id": "meaco-one-25",
@@ -124,5 +144,15 @@
       "status": "verified",
       "query": "MeacoDry Arete One 25L"
     }
-  ]
+  ],
+  "winter_comparison": {
+    "columns": [
+      "10 °C / 60 % RH",
+      "20 °C / 60 % RH"
+    ],
+    "order": [
+      "meaco-one-20",
+      "meaco-two-12"
+    ]
+  }
 }

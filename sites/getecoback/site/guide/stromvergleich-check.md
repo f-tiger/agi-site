@@ -10,8 +10,6 @@ Ist dein Stromverbrauch normal — oder verheizt du jedes Jahr Hunderte Euro meh
 
 **Kurz gesagt:** Laut Stromspiegel 2025 (co2online, Daten aus 57.000 realen Haushalten) verbraucht in einer **Wohnung** ohne elektrische Warmwasserbereitung ein 1-Personen-Haushalt im Schnitt **~1.200 kWh**, 2 Personen **~1.900 kWh**, 3 Personen **~2.400 kWh**, 4 Personen **~2.600 kWh** pro Jahr. Bei ~37 ct/kWh bedeutet jede 500 kWh über dem Schnitt rund **185 € Mehrkosten pro Jahr**.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks sind Affiliate-Links — du zahlst denselben Preis.
-
 **⚡ Dein Check in 10 Sekunden**
 Personen im Haushalt (Wohnung)
 

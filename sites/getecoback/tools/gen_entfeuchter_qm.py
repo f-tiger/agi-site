@@ -10,6 +10,7 @@ Article+BreadcrumbList+FAQPage JSON-LD, button CTA + pros/cons).
 Honest rules of thumb; model links by keyword search, no fabricated ASINs.
 Usage: python tools/gen_entfeuchter_qm.py
 """
+from room_constraints import room_advice
 import os, re, json
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -118,11 +119,12 @@ def page(e):
 
 <div class="wrap">
 <article>
+  {room_advice(qm, False)}
   <p>Feuchte Luft, beschlagene Fenster oder muffiger Geruch in einem Raum mit rund {qm} m²? Ein Luftentfeuchter hilft — aber nur mit der richtigen Kapazität. Zu klein, und er kommt nie hinterher. Hier die konkrete Empfehlung für {qm} m².</p>
 
   <div class="disclosure">Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.</div>
 
-  <div class="tldr"><strong>Kurz gesagt:</strong> Für {qm} m² solltest du einen Luftentfeuchter mit <strong>{e['liter']} Liter/Tag</strong> Entfeuchtungsleistung wählen. Betrieb kostet ca. {kosten_h_str} € pro Stunde — mit Hygrostat deutlich weniger, weil er bei Zielfeuchte abschaltet.</p></div>
+  <div class="tldr"><strong>Kurz gesagt:</strong> Für {qm} m² solltest du einen Luftentfeuchter mit <strong>{e['liter']} Liter/Tag</strong> Entfeuchtungsleistung wählen. Betrieb kostet ca. {kosten_h_str} € pro Stunde — mit Hygrostat deutlich weniger, weil er bei Zielfeuchte abschaltet.</div>
 
   <h2>Wie viel Liter/Tag für {qm} m²?</h2>
   <p>{e['hinweis']} Als Orientierung gelten <strong>{e['liter']} Liter/Tag</strong>. Aufschlagen solltest du bei Kellern, Erdgeschoss, viel Wäschetrocknen oder nach einem Wasserschaden. Grundlagen: <a href="/guide/luftentfeuchter-ratgeber.html">Luftentfeuchter-Ratgeber</a>.</p>

@@ -164,6 +164,7 @@ def to_markdown(src_html, path_url, lang):
                 body = re.sub(r'</strong>(?=[^<\s])', '</strong> ', body)
                 body = body.replace('<a href="/tools.html">Alle EcoBack-Rechner</a>', '')
                 body = body.replace('</a><p', '</a> <p').replace('</a>EcoBack', '</a> EcoBack')
+    body = re.sub(r'<!--CRO:entry-->.*?<!--/CRO:entry-->', '', body, flags=re.S)
     if path_url == '/winter-energiesparen.html':
         # These two card grids contain the editorial answer links.
         body = re.sub(
@@ -182,11 +183,19 @@ def to_markdown(src_html, path_url, lang):
     if path_url == '/guide/smarte-heizkoerperthermostate-lohnen-sich.html':
         # The sourced no-JS table carries the evidence. Interactive selectors
         # would otherwise become a concatenated list of unrelated valve names.
+        body = re.sub(r'<td data-winter-table-offer>.*?</td>', '<td>Modellsuche auf der Website</td>', body, flags=re.S)
         body = re.sub(r'<div\b[^>]*data-valve-controls[^>]*>.*?</div>', '', body, flags=re.S)
         body = re.sub(r'<p\b[^>]*data-valve-share-row[^>]*>.*?</p>', '', body, flags=re.S)
         body = re.sub(r'<summary>(.*?)</summary>', r'<p><strong>\1</strong></p>', body, flags=re.S)
         body = re.sub(r'</strong><p>', '</strong><p> ', body)
         body = re.sub(r'</caption>', '</caption>\n', body)
+    if path_url == '/guide/luftentfeuchter-ratgeber.html' or path_url == '/guide/smarte-heizkoerperthermostate-lohnen-sich.html':
+        quick = re.search(r'(<section class="winter-picks".*?</section>)', src_html, re.S)
+        if quick:
+            body = re.sub(r'<a class="winter-pick-cta[^"]*"[^>]*>.*?</a>', '', quick[1], flags=re.S) + body
+    scenario = re.search(r'(<section class="cro-scenarios".*?</section>)', src_html, re.S)
+    if scenario and scenario[1] not in body:
+        body = re.sub(r'<a\b[^>]*class="[^"]*cro-cta[^"]*"[^>]*>.*?</a>', '', scenario[1], flags=re.S) + body
     heater = re.search(r'<!--EB_HEATCOST-->(.*?)<!--/EB_HEATCOST-->', src_html, re.S)
     if heater:
         # Keep the examples and limitations; remove forms below as usual.
@@ -198,6 +207,7 @@ def to_markdown(src_html, path_url, lang):
         if evidence:
             heading = 'Herstellerdaten vor dem Kauf prüfen' if lang == 'de' else 'Check manufacturer data before buying'
             evidence = re.sub(r'<summary>(.*?)</summary>', r'<p><strong>\1</strong></p>', evidence, flags=re.S)
+            evidence = re.sub(r'<tr data-winter-offers[^>]*>.*?</tr>', '', evidence, flags=re.S)
             evidence = evidence.replace('</caption>', '</caption>\n')
             body += f'<h2>{heading}</h2>' + evidence
     # Preserve the visible sourced catalog while excluding its merchant actions.

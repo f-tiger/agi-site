@@ -7,6 +7,7 @@ identify the offered product. Keep the site's existing affiliate tag on links
 that do go directly to a German product page.
 """
 import glob, os, re, sys, urllib.parse
+from winter_products import PRODUCTS
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
@@ -27,6 +28,11 @@ VERIFIED_QUERIES = {
     "B0F3XL6LK6": ("pac ap98", "pinguino gentlejet pac ap98", "de longhi pinguino gentlejet pac ap98"),
 }
 ASIN_BY_QUERY = {query: asin for asin, queries in VERIFIED_QUERIES.items() for query in queries}
+
+for product in PRODUCTS.values():
+    if product['asin']:
+        key = re.sub(r'[\W_]+', ' ', product['query'].lower()).strip()
+        ASIN_BY_QUERY[key] = product['asin']
 
 SEARCH = re.compile(
     r'''(?P<quote>["'])https://www[.]amazon[.]de/s[?]k=(?P<term>[^"'&<>\s#]+)&(?:amp;)?tag='''

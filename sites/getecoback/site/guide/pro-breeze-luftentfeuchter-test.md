@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Bei Pro Breeze beschreibt „12L“ die Nennangabe einer Geräteklasse. Für die Auswahl zählen die **vollständige Modellnummer**, die passende Anleitung und die gewünschte App-Steuerung. Bei Mini-Geräten wie dem 500-ml-PB-02 bezeichnet die Zahl den Tank.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Der gekennzeichnete Modell-Suchlink ist ein Affiliate-Link.
-
 ## Welche Pro-Breeze-Varianten gibt es?
 
 ### Pro Breeze 12L: Modellnummer vor dem Kauf abgleichen

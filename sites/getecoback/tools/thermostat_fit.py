@@ -76,7 +76,7 @@ def render_fritz(data):
 <p>FRITZ! nennt <strong>34 mm für Danfoss RAV</strong> und <strong>25,5 mm für Danfoss RAVL</strong>. Nutze die Maße als Hinweis und gleiche die Kennzeichnung am vorhandenen Ventil mit der Herstellerübersicht ab.</p>
 <div class="winter-table"><table><caption>Danfoss-Anschlüsse am FRITZ!Smart Thermo 302, geprüft am {reviewed}</caption><thead><tr><th scope="col">Identifiziertes Ventil</th><th scope="col">Nächster Prüfschritt</th><th scope="col">FRITZ!-Quelle</th></tr></thead><tbody>{rows}</tbody></table></div>
 <p>Ist die Kennzeichnung offen, warte mit der Bestellung und kläre den Anschluss mit dem Hersteller oder einem Fachbetrieb. Am wasserführenden Ventilkörper nichts lösen.</p>
-<p>Wenn du den Kopf ersetzen möchtest und das Ventil eindeutig bestimmt ist, prüfe <a href="#thermostat-fritz-302">die FRITZ!Box und den Lieferumfang für Artikel 20003120</a>. Bei RAV oder RAVL zuerst klären, welcher Zusatzadapter passt.</p>
+<p>Der FRITZ!Smart Thermo 302 verbindet sich per DECT ULE mit einer kompatiblen FRITZ!Box ohne zusätzliche Bridge. Wenn du den Kopf ersetzen möchtest und das Ventil eindeutig bestimmt ist, prüfe <a href="#thermostat-fritz-302">die FRITZ!Box und den Lieferumfang für Artikel 20003120</a>. Bei RAV oder RAVL zuerst klären, welcher Zusatzadapter passt.</p>
 <p class="winter-note">{source_links}.</p>
 {share_nav('fritz-302-danfoss-adapter', title)}
 </section>'''
@@ -113,7 +113,7 @@ def render():
 {render_fritz(data)}
 <h3>Ventil noch unbekannt?</h3><ol><li>Modellbezeichnung auf dem bisherigen Kopf, Unterlagen und vorhandene Kennzeichnungen vergleichen. Bei Unsicherheit Fotos nach Herstelleranleitung für dessen Support oder den Fachbetrieb vorbereiten; hier ist kein Upload nötig.</li><li>Gewinde, Klemmanschluss und genaue Variante zusammen prüfen. Uni L und Uni LV oder RA, RAV und RAVL sind nicht austauschbare Bezeichnungen.</li><li>Den wasserführenden Ventilkörper nicht lösen. Bei Leckage, festsitzenden Teilen oder unklarer Zuständigkeit stoppen und einen Fachbetrieb beziehungsweise die Hausverwaltung einbeziehen.</li></ol>
 <p><a data-valve-official href="{e(data['sources']['overview']['url'])}">tado°: vollständige Herstellerübersicht öffnen</a> · <a data-valve-official href="{e(data['sources']['x']['url'])}">Separate Hilfe für tado° X</a></p>
-<p class="winter-note">Stand der Prüfung: 31. Oktober 2026. Die verlinkte Ventilliste trägt Version 2.0, September 2021 und wird weiterhin von der Herstellerhilfe verlinkt. Die Liste ist indikativ und unvollständig. Neuere Modellunterlagen und Herstellerbestätigung gehen vor. Keine eigenen Montage- oder Produkttests; die Herstellerlinks sind keine Affiliate-Links.</p>
+<p class="winter-note">Stand der Prüfung: 31. Oktober 2026. Die verlinkte Ventilliste trägt Version 2.0, September 2021 und wird weiterhin von der Herstellerhilfe verlinkt. Die Liste ist indikativ und unvollständig. Neuere Modellunterlagen und Herstellerbestätigung gehen vor. Prüfe bei unklarer Passung die aktuelle Anleitung.</p>
 <h3>Passt technisch – lohnt sich der Wechsel?</h3><p>Kompatibilität belegt noch keine Heizkostenersparnis. Prüfe zuerst deinen Zeitplan. Rechne danach Köpfe, notwendige Adapter, Zentrale, Batterien und verpflichtende Dienste zusammen. Für Deutschland und Österreich EUR, für die Schweiz CHF verwenden; keine Währungsumrechnung und keine bestätigte lokale Lieferbarkeit.</p><p><a class="winter-button" href="#rechner">Gesamtkosten und eigene Sparannahme prüfen ↓</a></p>
 <script type="application/json" data-valve-data>{encoded}</script></section>'''
 

@@ -8,8 +8,6 @@ Du kannst dieselbe Wärmemenge mit Heizlüfter, Infrarotheizung oder einer rever
 
 **Beispiel:** 2 kW Wärmeleistung × 4 Stunden am Tag × 150 Tage ergeben 1.200 kWh Wärme. Bei 37 ct/kWh kosten Heizlüfter und Infrarotheizung jeweils 444 €. Die reversible Klimaanlage kostet bei angenommenem COP 2 rund 222 €, bei COP 3 rund 148 €. Diese Werte sind frei gewählte Rechenannahmen. Für einen Kaufvergleich brauchst du außerdem deine Anschaffungs-, Montage- und Wartungskosten.
 
-EcoBack finanziert sich unter anderem über gekennzeichnete Affiliate-Links auf anderen Ratgeberseiten.
-
 [Kurze Einsätze von Heizlüfter und Infrarot vergleichen](https://getecoback.com/guide/heizkosten-vergleich-rechner.html#heizluefter-oder-infrarot)
 
 ## Stromkosten bei gleicher Wärmemenge

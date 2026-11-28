@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Die Heizsaison fängt an, und mit ihr der Moment, in dem viele zum ersten Mal seit Monaten hinter den Kleiderschrank fassen. Auf einem Hemd sitzt ein Fleck, im Schrank riecht es muffig, die Rückwand fühlt sich klamm an. Gesucht wird dann meist, wie man die Flecken aus der Kleidung bekommt. Diese Frage beantwortet die Seite hier auch — aber ehrlich, und mit dem Hinweis, dass sie nicht die eigentliche ist. Stoff schimmelt nicht von allein. Er schimmelt an der Stelle, an der es kalt und feucht ist und keine Luft hinkommt.
 
-**Anzeige** · Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks auf dieser Seite sind Affiliate-Links — du zahlst denselben Preis. Nichts davon ist selbst getestet; die Auswahl ist aus öffentlichen Angaben zusammengestellt.
-
 **Kurzantwort:** Die Kleidung ist das Symptom. Steht der Schrank flach an einer Außenwand, ist seine Rückwand oft die kälteste Fläche im Raum — dort schlägt sich die Raumfeuchte nieder, und im geschlossenen, vollgepackten Schrank bewegt sich keine Luft. Waschbares wäschst du so heiß, wie das Pflegeetikett es erlaubt; stark betroffene und nicht waschbare Stücke sind womöglich verloren. Was den Rückfall verhindert, ist der Abstand zur Wand — als Faustregel eine Handbreit — und eine Luftfeuchte, die hinter dem Schrank gemessen nicht dauerhaft über 70 % liegt.
 
 ## Die Kleidung ist das Symptom, nicht die Ursache

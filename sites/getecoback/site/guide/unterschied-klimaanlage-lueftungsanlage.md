@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 „Wir haben doch eine Lüftungsanlage — warum ist es trotzdem 30 °C in der Wohnung?" Diese Frage taucht in jedem heißen Sommer wieder auf, und die Antwort ist einfach: Eine Lüftungsanlage ist keine Klimaanlage. Die beiden Systeme sehen für Laien ähnlich aus (Gerät, Rohre, Luft strömt), lösen aber komplett unterschiedliche Probleme. Hier steht klipp und klar, was welches System kann, was es kostet — und welches sich nachrüsten lässt.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Auf einen Blick:** Klimaanlage = kühlt und entfeuchtet über einen Kältekreislauf, Temperatur sinkt spürbar (oft 5–10 °C) · Lüftungsanlage = tauscht verbrauchte Luft gegen Frischluft, führt CO₂ und Feuchte ab, kühlt aber nicht nennenswert · Wärmerückgewinnung spart Heizkosten, ersetzt aber keine Kühlung · beides kombinierbar · für Mieter ist die mobile Klimaanlage die einfachste Nachrüstung (ab ca. 300 €).
 
 ## Was eine Klimaanlage macht: Wärme aktiv nach draußen schaffen

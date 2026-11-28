@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Wer „De'Longhi Pinguino" sucht, hat die Marke schon gewählt — offen ist nur noch, welcher Pinguino es werden soll. Diese Seite beantwortet genau das: was hinter den PAC-Modellnummern steckt, wie sich die beiden Modelle unterscheiden, die wir auf diesem Portal führen, und wann ehrlicherweise gar kein Pinguino die beste Wahl ist. Wir testen nicht selbst: Alle Zahlen stammen aus Hersteller-Datenblättern und öffentlichen Tests.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Für das Schlafzimmer:** Beim PAC N90 ECO Silent nennt das Datenblatt 50–52 dB(A) Schalldruck und maximal 64 dB(A) Schallleistung. Der Pegel am Bett hängt unter anderem vom Abstand, vom Raum und von der Betriebsstufe ab. Vergleiche beim EX105 und EX130 jeweils dieselbe Messgröße und Betriebsstufe. Kannst du den Raum tagsüber ausreichend vorkühlen, lässt sich der nächtliche Betrieb ganz vermeiden.
 
 ## Die Pinguino-Familie lesen

@@ -4,9 +4,11 @@
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/heizung-25-qm.html
 
-Bei 25 m² ändert sich an der Faustformel nichts, an der Umsetzung aber alles. 1.750 W als ein einzelnes Gerät sind im Handel die Ausnahme; zwei Panels zu je rund 875 W sind die Regel. Damit wird aus einer Wattfrage eine Platzierungsfrage — und die entscheidet am Ende darüber, ob sich der Raum warm anfühlt.
+## Wohnzimmer, offene Wohnküche oder Waschkeller
+Offene Türen vergrößern die beheizte Zone. Am Sofa kann lokale Wärme reichen; beim Heizen der ganzen Wohnküche auch den offenen Nebenraum mitrechnen.
+Beim Wäschetrocknen Feuchte vor und nach dem Lüften messen. Heizen allein transportiert die Feuchtigkeit nicht nach draußen.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
+Bei 25 m² ändert sich an der Faustformel nichts, an der Umsetzung aber alles. 1.750 W als ein einzelnes Gerät sind im Handel die Ausnahme; zwei Panels zu je rund 875 W sind die Regel. Damit wird aus einer Wattfrage eine Platzierungsfrage — und die entscheidet am Ende darüber, ob sich der Raum warm anfühlt.
 
 **Kurz gesagt:** Für 25 m² plane **1.500–2.000 W** ein (60–100 W pro m² je nach Dämmung). Das kostet bei voller Leistung 0,53 € pro Stunde und rund 158 € pro Saison. Rechne mit zwei Geräten statt einem.
 

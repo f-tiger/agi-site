@@ -14,8 +14,6 @@ Der Strompreis an der Börse ändert sich stündlich — mittags mit viel Sonne 
 
 Die Börsendaten sind gerade nicht abrufbar. Die aktuellen Stundenpreise findest du direkt bei SMARD (Bundesnetzagentur) — die Erklärungen unten gelten unabhängig davon.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks sind Affiliate-Links — du zahlst denselben Preis.
-
 ## Was sind negative Strompreise?
 
 Negative Preise entstehen, wenn das Stromangebot die Nachfrage deutlich übersteigt — typisch an sonnigen oder windigen Feiertagen und Wochenenden: Viel Solar- und Windstrom trifft auf wenig Verbrauch, und unflexible Kraftwerke zahlen lieber drauf, als abzuschalten. In diesen Stunden bekommen Abnehmer rechnerisch Geld fürs Verbrauchen. Der Trend zeigt steil nach oben: allein im **April 2026 waren es 123 negative Stunden**, im Jahresverlauf bereits über 400.

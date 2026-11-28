@@ -4,6 +4,17 @@
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/homeoffice-warm-bleiben.html
 
+## 3-Sekunden-Entscheidungshilfe
+
+### Nur dir ist kalt
+**Beurer HD 75 Nordic**Die Wärmezudecke wärmt dich am Sitzplatz. Raumtemperatur separat prüfen.
+
+### Wärme für einen festen Platz
+**Könighaus Eco 600 W**600 W über vier Stunden entsprechen bei voller Leistung 2,4 kWh. Montageabstände prüfen.
+
+[Wärmedecke, Infrarot und Heizlüfter durchrechnen →](https://getecoback.com/guide/heizkosten-vergleich-rechner.html)
+Methodik, Datenquellen & HinweiseModellunterlagen und Angebotsvarianten: [Beurer HD 75 Nordic](https://www.beurer.com/de/p/42103/) · Könighaus Eco 600 W
+
 ## Vier Schritte vor einem neuen Heizgerät
 
 - **Arbeitsplatz:** Sitze nicht direkt vor einer kalten Scheibe oder in einer Zugluftzone. Heizkörper und Thermostat bleiben frei.

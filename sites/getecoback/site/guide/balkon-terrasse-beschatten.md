@@ -6,8 +6,6 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/balkon-terrasse-bes
 
 Ein unbeschatteter Süd- oder Westbalkon wird in einer Hitzewelle schnell zur Wärmefalle: Der Belag speichert die Sonne, die Brüstung strahlt sie ab — und direkt dahinter liegt fast immer die größte Glasfläche der Wohnung, die Balkon- oder Terrassentür. Genau dort dringt am meisten Hitze in den Raum. Wer den Außenbereich klug beschattet, gewinnt also doppelt: einen nutzbaren Balkon und ein kühleres Zimmer. Dieser Ratgeber sortiert die Optionen nach Aufwand, Windstabilität und danach, ob du bohren darfst.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurz gesagt:** Beschatte außen vor der Glastür, dann bleibt auch der Raum kühler — das schlägt jeden Innenvorhang. Kleiner Balkon: ein **Sonnensegel** nimmt keine Stellfläche weg. Terrasse mit Platz: ein **Ampelschirm** ist flexibel und braucht keine Montage. Große Fensterfront: eine **Markise**. Tiefstehende Abend- oder Nachbarsonne: eine **Seitenmarkise** als Sicht- und Sonnenschutz. Für Mieter ohne Bohren: Klemmmarkise, beschwerter Ampelschirm, Segel am Geländer. Und immer auf Windstabilität achten.
 
 ## Warum die Außenbeschattung auch drinnen wirkt

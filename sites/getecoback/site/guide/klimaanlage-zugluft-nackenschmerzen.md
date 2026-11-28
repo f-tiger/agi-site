@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Endlich kühl im Raum — und am nächsten Morgen ist der Nacken steif. Verspannungen durch Klimaanlagen sind so verbreitet, dass viele das Gerät wieder ausschalten und lieber schwitzen. Dabei ist die Ursache fast nie die kühle Luft selbst, sondern der **gerichtete kalte Luftstrom auf Nacken, Schultern oder Rücken**. Mit der richtigen Aufstellung und drei Einstellungen kühlst du ohne Zugluft-Probleme.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Auf einen Blick:** Nie direkt anblasen lassen (Lamellen nach oben, Swing an) · maximal ca. 6 °C unter Außentemperatur kühlen (24–26 °C Ziel) · nachts Timer/Vorkühlen statt Dauerbetrieb · Sitz- und Schlafplatz nie in der direkten Luftschneise.
 
 ## Warum die Klimaanlage in den Nacken geht

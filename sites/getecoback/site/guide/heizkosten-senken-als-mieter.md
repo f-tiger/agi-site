@@ -13,8 +13,6 @@ Dieselbe Logik, die im Sommer für die [Klimaanlage in der Mietwohnung](https://
 
 Der Thermostatkopf ist der interessante Grenzfall, und mehrere Mietrechtsportale beschreiben ihn übereinstimmend als unkritisch: Er wird auf das vorhandene Ventil geschraubt, ist also kein Eingriff in die Bausubstanz. Die praktische Regel, die dort überall steht: **alten Kopf aufheben und beim Auszug wieder anschrauben.**
 
-Wir sind keine Anwälte und geben keine Rechtsberatung. Das oben ist die übereinstimmende Darstellung mehrerer Mietrechtsportale, nicht eine Prüfung deines Mietvertrags — der kann abweichende Klauseln enthalten. Bei Streit mit dem Vermieter ist der örtliche **Mieterverein** die richtige Adresse.
-
 ## Das Wirkungs-Ranking
 
 | Maßnahme | Was sie wirklich bringt | Lohnt sich, wenn … |

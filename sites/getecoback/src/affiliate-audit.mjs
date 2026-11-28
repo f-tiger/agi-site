@@ -309,7 +309,7 @@ function add(s,r,channel) {
       s.cellar_catalog['catalog_' + dest + '_clicks'] += r.n;
     }
     s.destinations[dest]+=r.n;s.models[model]+=r.n;
-    const surface=['body','toppick','models','sticky','home-herbst','us-market','inline','ac-finder','grid'].includes(r.source)?r.source:'other_or_unknown';
+    const surface=['body','toppick','models','winter-table','sticky','home-herbst','us-market','inline','ac-finder','grid'].includes(r.source)?r.source:'other_or_unknown';
     s.surfaces[surface]=(s.surfaces[surface]||0)+r.n;
   }
 }

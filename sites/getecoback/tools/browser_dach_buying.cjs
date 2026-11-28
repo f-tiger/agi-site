@@ -39,7 +39,14 @@ async function assertCatalogCommerce(box,spec,catalog,today){
  const expected=expectedCatalogQueries(catalog,today),queries=[];
  assert.equal(await box.locator(spec.cards).count(),spec.ids.length,'Source cards must remain after commerce expires');
  assert.equal(await box.locator(spec.shops).count(),expected.length,'Missing eligible or unsuppressed stale merchant links');
- assert.equal(await box.locator('a[rel~="sponsored"]').count(),expected.length,'Unexpected sponsored link outside model actions');
+ const tableQueries=spec.key==='thermostat'?catalog.winter_comparison.order.flatMap(id=>{
+  const p=catalog.products.find(model=>model.id===id);
+  const age=(Date.parse(today)-Date.parse(p.winter_pick.checked))/86400000;
+  return expected.includes(p.query)&&age>=0&&age<=catalog.max_age_days?[p.query]:[];
+ }):[];
+ const table=box.locator('[data-winter-table-offer] a');
+ assert.deepEqual((await table.evaluateAll(nodes=>nodes.map(a=>a.href))).map(href=>exactQuery(new URL(href))),tableQueries);
+ assert.equal(await box.locator('a[rel~="sponsored"]').count(),expected.length+tableQueries.length,'Unexpected sponsored link outside model actions');
  for(let i=0;i<spec.ids.length;i++){
   const product=catalog.products.find(p=>p.id===spec.ids[i]);
   assert.equal(product.name,spec.names[i]);assert.equal(product.query,spec.queries[i],'Exact variant query changed');
@@ -53,12 +60,16 @@ async function assertCatalogCommerce(box,spec,catalog,today){
   if(!eligible)assert.match(content,/Quellenprüfung ausstehend/,'Missing explanation for withdrawn commerce');
  }
  for(const a of await box.locator(spec.shops).all()){
-  const u=new URL(await a.getAttribute('href'));assert.equal(u.host,'www.amazon.de');assert.equal(u.pathname,'/s');assert.equal(u.searchParams.get('tag'),'getecoback-21');
+  const u=new URL(await a.getAttribute('href'));assert.equal(u.host,'www.amazon.de');assert.equal(u.searchParams.get('tag'),'getecoback-21');
   assert((await a.getAttribute('rel')).split(/\s+/).includes('sponsored'));
-  queries.push(u.searchParams.get('k'));
+  queries.push(exactQuery(u));
  }
  assert.deepEqual(queries.sort(),[...expected].sort(),'Wrong or duplicate eligible model searches');
  return expected.length;
+}
+function exactQuery(url){
+ if(url.pathname==='/dp/B0G2T5J493')return 'FRITZ Smart Thermo 302 20003120';
+ assert.equal(url.pathname,'/s');return url.searchParams.get('k');
 }
 async function contextFor(browser,width,js=true){
  const context=await browser.newContext({viewport:{width,height:900},javaScriptEnabled:js,serviceWorkers:'block'});

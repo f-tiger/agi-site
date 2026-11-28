@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 „Coolizi" gehört gerade zu den am schnellsten steigenden Suchbegriffen rund um Klimageräte in Deutschland. Beworben wird der **Coolizi Coolzy** als Klimaanlage ohne Abluftschlauch, ohne Installation, mit Kühl- und Heizfunktion. Wir haben das Gerät nicht gekauft und nicht getestet — dieser Artikel prüft stattdessen das, was sich von außen prüfen lässt: die Werbeversprechen gegen die Physik, die Quellenlage und das Vertriebsmuster.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks zu den ehrlichen Alternativen unten sind Affiliate-Links — du zahlst denselben Preis. Zum Coolizi Coolzy selbst enthält diese Seite bewusst keinen Kauflink.
-
 **Kurz gesagt:** Die zentralen Werbeversprechen können physikalisch nicht stimmen: Ein Gerät **ohne Abluftschlauch** kann einen geschlossenen Raum nicht netto kühlen — erst recht nicht um die beworbenen 7–8 °C. Ein unabhängiger Test (etwa Stiftung Warentest) existiert nicht; die ersten Google-Treffer sind gleichförmige „Test"-Seiten, die in den Hersteller-Shop verlinken — dasselbe Netzwerk-Muster wie beim [EpiCooler](https://getecoback.com/guide/epicooler-erfahrungen.html). Wer echte Raumkühlung will, braucht eine [richtige mobile Klimaanlage](https://getecoback.com/guide/klimaanlage-ohne-abluftschlauch.html) (ca. 340 BTU/m²); wer nur sich selbst kühlen will, ist mit einem Ventilator ehrlicher bedient.
 
 ## Was beworben wird — und was davon prüfbar ist

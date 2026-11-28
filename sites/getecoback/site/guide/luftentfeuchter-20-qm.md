@@ -6,6 +6,10 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftentfeuchter-20-
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
 
+## Schlafzimmer, Homeoffice oder Kinderzimmer
+Für die Nacht einen leisen Modus unter 38–40 dB(A) als persönlichen Zielwert setzen und auf abschaltbare Anzeigen achten. Schalldruck nur bei gleicher Messdistanz vergleichen.
+Am Bett und am Schreibtisch zuerst die tatsächlichen Betriebszeiten festlegen. Geräte und Kabel außerhalb der Reichweite kleiner Kinder aufstellen.
+
 Ein Schlafzimmer mit gelegentlich beschlagenen Fenstern stellt andere Anforderungen als ein kalter Keller oder ein Raum mit täglicher Wäsche. Entscheidend ist die Feuchtequelle, nicht nur die Quadratmeterzahl.
 **Kurz gesagt:** Für 20 m² gibt es keine automatische Empfehlung für 16–20 Liter/Tag. Miss relative Feuchte und Temperatur an mehreren typischen Tagen. Ein trockener Raum braucht möglicherweise kein Gerät; ein Leck braucht eine Ursachenklärung.
 
@@ -38,8 +42,8 @@ Herstellerangaben zu Wasserentzug und Leistung; geprüft am 06.11.2026
 
 | Bedingung | Comfee MDDF-20DEN7 | MeacoDry Arete One 20L |
 | --- | --- | --- |
-| 20 °C / 60 % RH | Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert. | 8.5 L/Tag · 216 W |
-| 10 °C / 60 % RH | Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert. | 3.4 L/Tag · 180 W |
+| 20 °C / 60 % RH | Für diese Temperatur fehlen vergleichbare Leistungswerte. Nutze für die Auslegung die Meaco-Werte bei gleicher Feuchte. | 8.5 L/Tag · 216 W |
+| 10 °C / 60 % RH | Für diese Temperatur fehlen vergleichbare Leistungswerte. Nutze für die Auslegung die Meaco-Werte bei gleicher Feuchte. | 3.4 L/Tag · 180 W |
 
 Die genannten 20 L/Tag beziehen sich in den Modellunterlagen auf 30 °C / 80 % RH. Das ist keine Zusage für den Keller oder eine Wäscheladung. Für Comfee wurden in den verlinkten Unterlagen keine Werte für die beiden Tabellenbedingungen verifiziert. Anschlusswert oder Nennleistung dürfen diese Datenlücke nicht ersetzen.
 Modellgrenzen: Comfee MDDF-20DEN7 ist hier die Variante ohne WF. MeacoDry Arete One 20L ist weder Arete Two noch One 25L. Die UK-Modellseite bestätigt keine deutsche Händlerausstattung, Stecker, Lieferbarkeit oder Rückgabe. Netzspannung, Typenschild und Anleitung immer mit dem konkreten Angebot abgleichen. Beide Kandidaten ersetzen weder Ursachenklärung noch eine passende Lüftung.

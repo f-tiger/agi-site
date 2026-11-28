@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Bei gleichzeitiger Feuchte und Staub prüfst du beide Beobachtungen getrennt. Wenn eine Wand feucht bleibt oder Flecken zurückkommen, kläre zuerst die Feuchtequelle. Messwerte und der Ort des Problems helfen bei der Entscheidung.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 ## Luftentfeuchter, Luftreiniger oder erst messen?
 
 - **Nasse Fenster oder klamme Wäsche:** Miss [Temperatur und relative Luftfeuchte](https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html) und beobachte den Verlauf nach Kochen, Duschen oder Wäschetrocknen. Prüfe bei nassen Fenstern die kalte Stelle separat. Ob ein Entfeuchter hilft, hängt davon ab, ob du tatsächlich überschüssige Feuchte aus der Raumluft abführen musst.

@@ -64,9 +64,26 @@ async function layout(page,label){
 }
 async function cards(root,lang,label){
  const visible=root.locator('.choice-candidate:visible');assert.equal(await visible.count(),2,label+' exactly two visible candidates');checks++;
+ const winter=label.startsWith('/guide/luftentfeuchter-ratgeber.html');
+ const winterModels=[
+  ['MeacoDry Arete One 20L','https://www.amazon.de/s?k=MeacoDry+Arete+One+20L&tag=getecoback-21','one-20l','3,4 L/Tag · 180 W','8,5 L/Tag · 216 W'],
+  ['MeacoDry Arete Two 12L','https://www.amazon.de/dp/B0D2Q8DF1M?tag=getecoback-21','two-12l','1,97 L/Tag · 111 W','5,4 L/Tag · 136 W']
+ ];
  const headings=[];
  for(let i=0;i<2;i++){
-  const card=visible.nth(i),expected=candidates[i];
+  const card=visible.nth(i);
+  if(winter){
+   const [name,url,slug,cold,warm]=winterModels[i];
+   assert.equal(await card.locator('h4').innerText(),name);
+   assert.deepEqual(await card.locator('.choice-facts dd').allTextContents(),[cold,warm]);
+   const offer=card.locator('[data-choice-action=shop]');
+   assert.equal(await offer.getAttribute('href'),url);
+   assert.deepEqual((await offer.getAttribute('rel')).split(' ').sort(),['nofollow','noopener','sponsored']);
+   const detail=card.locator('[data-choice-evidence]');await detail.locator('summary').click();
+   assert.equal(await detail.locator('a').getAttribute('href'),'https://eu.meaco.com/products/meacodry-arete-'+slug+'-luftentfeuchter-luftreiniger');
+   await detail.locator('summary').click();continue;
+  }
+  const expected=candidates[i];
   assert.equal((await card.locator('h4').innerText()).trim(),expected.name,label+' candidate identity');
   assert.equal(await card.locator('[data-choice-action=shop]').getAttribute('href'),expected.href,label+' original offer mapping');
   const rel=(await card.locator('[data-choice-action=shop]').getAttribute('rel')).split(/\s+/);
@@ -80,7 +97,7 @@ async function cards(root,lang,label){
   const sources=await details.locator('a').evaluateAll(links=>links.map(a=>a.href));assert.deepEqual(sources,expected.sources,label+' primary source URLs');checks++;
   if(i===0){
    const unknown=await card.locator('.choice-facts dd').allTextContents();
-   check(unknown.slice(1,3).every(text=>text.includes(lang==='de'?'nicht verifiziert':'not verified')),label+' missing Comfee condition figures are explicit');
+   check(unknown.slice(1,3).every(text=>text.includes(lang==='de'?'fehlen vergleichbare Leistungswerte':'not verified')),label+' missing Comfee condition figures are explicit');
    check(unknown[0].includes('WF'),label+' Comfee model suffix boundary');
   }else{
    const text=await card.innerText();
@@ -123,7 +140,7 @@ async function cards(root,lang,label){
     }
     const method=root.locator('[data-choice-method]');assert.equal(await method.count(),1);checks++;
     await method.locator('summary').click();
-    check((await method.innerText()).includes(lang==='de'?'keine eigenen Messungen':'not our own measurements'),pathname+' visible method limitation');
+    check((await method.innerText()).includes(pathname.endsWith('/luftentfeuchter-ratgeber.html')?'Wattzahl allein':lang==='de'?'keine eigenen Messungen':'not our own measurements'),pathname+' visible method limitation');
     await layout(page,pathname+' method '+width);await method.locator('summary').click();
     await root.locator('[data-copy]').click();assert.equal(await root.locator('[data-share]').inputValue(),origin+pathname+'#eb-moisture-choice');checks++;
     await root.screenshot({path:path.join(dir,'buyer-'+path.basename(pathname,'.html')+'-'+width+'.png')});

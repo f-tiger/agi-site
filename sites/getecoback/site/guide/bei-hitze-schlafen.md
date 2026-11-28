@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Wenn dein Schlafzimmer nachts nicht unter 28 °C fällt, wird Schlafen fast unmöglich. Die meisten Wohnungen in Europa sind nicht für Hitze gebaut, und Klimaanlagen sind selten. Hier sind zwölf Dinge, die wirklich beim Schlafen in der Hitzewelle helfen — erst die kostenlosen Tricks, dann die günstigen Geräte mit dem größten Effekt.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 ## Kostenlose Tricks (zuerst machen)
 
 - **Tagsüber Rollläden und Fenster zu.** Halte die heiße Nachmittagsluft und Sonne draußen; öffne erst, wenn es draußen kühler ist als drinnen (meist nach Mitternacht).

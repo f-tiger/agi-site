@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Wenn nachts das Thermometer im Schlafzimmer nicht unter 27 °C fällt, ist die Versuchung groß, die mobile Klimaanlage einfach durchlaufen zu lassen. Aber ist das sicher? Was kostet eine durchgekühlte Nacht wirklich? Und schläft man mit Dauerbetrieb tatsächlich besser — oder wacht man mit steifem Nacken und hoher Stromrechnung auf? Dieser Ratgeber gibt ehrliche Antworten und zeigt, warum ein Timer plus Sleep-Modus für die meisten die klügere Lösung ist.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurz gesagt:** Ja, eine mobile Klimaanlage darf nachts durchlaufen — moderne Geräte sind dafür ausgelegt. Eine Nacht kostet real meist **1,5–2,5 €** (bei ~1000 W und 0,30 €/kWh, weil der Kompressor taktet). Klüger ist oft ein **Timer**: 2–3 Stunden kühlen, bis du schläfst, dann abschalten. Ideale Schlaftemperatur: **25–26 °C**, nicht 18. Achte nachts auf einen leisen Betrieb (dB) und vermeide kalte Zugluft direkt auf den Körper.
 
 ## Ist Dauerbetrieb über Nacht sicher?

@@ -6,9 +6,11 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftentfeuchter-10-
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
 
-Feuchte Luft, beschlagene Fenster oder muffiger Geruch in einem Raum mit rund 10 m²? Ein Luftentfeuchter hilft — aber nur mit der richtigen Kapazität. Zu klein, und er kommt nie hinterher. Hier die konkrete Empfehlung für 10 m².
+## Innenbad, Gäste-WC oder Abstellkammer
+Nach dem Duschen erst die Abluft prüfen. Ein kompakter Entfeuchter braucht freie Ansaug- und Ausblaswege.
+In Spritzwasserzonen mindestens IPX4 beachten. Schutzart allein erlaubt keine Aufstellung: Schutzbereich, Herstellerfreigabe und Anschluss mit einer Elektrofachkraft klären.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
+Feuchte Luft, beschlagene Fenster oder muffiger Geruch in einem Raum mit rund 10 m²? Ein Luftentfeuchter hilft — aber nur mit der richtigen Kapazität. Zu klein, und er kommt nie hinterher. Hier die konkrete Empfehlung für 10 m².
 
 **Kurz gesagt:** Für 10 m² solltest du einen Luftentfeuchter mit **10–12 Liter/Tag** Entfeuchtungsleistung wählen. Betrieb kostet ca. 0,09 € pro Stunde — mit Hygrostat deutlich weniger, weil er bei Zielfeuchte abschaltet.
 

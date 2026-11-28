@@ -10,8 +10,6 @@ Die Angst vor der Stromrechnung hält viele vom Klimaanlagen-Kauf ab. Die gute N
 
 **Kurze Antwort:** Bei ~0,30 €/kWh kostet eine tragbare Klimaanlage rund **30 Cent pro Stunde** (9.000 BTU / ~1.000 W) bis **42 Cent pro Stunde** (14.000 BTU / ~1.400 W). Formel: **Watt ÷ 1.000 × Strompreis pro kWh**. Über einen Hitzemonat (8 Std./Nacht) sind das ~72–100 € — mit Timer und 25 °C eher **30–50 €**. Zum Vergleich: ein Ventilator (~50 W) kostet nur ~1,5 Cent pro Stunde, ein Luftkühler (~80 W) ~2,4 Cent.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 ## Die einfache Formel
 
 **Watt ÷ 1.000 × Strompreis pro kWh = Kosten pro Stunde.** Ein 1.000-Watt-Gerät kostet bei 0,30 €/kWh also 30 Cent pro Stunde. Mehr brauchst du nicht.

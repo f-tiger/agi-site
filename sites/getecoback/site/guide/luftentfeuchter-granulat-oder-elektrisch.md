@@ -55,8 +55,6 @@ Zähle den gesamten Strom bis zur gleichen Endtrockenheit, einschließlich zusä
 
 - **Du suchst einen passiven Absorber für einen anderen Einsatz.** Prüfe den vorgesehenen Einsatzort, den Behälter und passende Nachfüllung nach Anleitung.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen.
-
 Granulatboxen suchen (Anzeige · Amazon)
 
 ## Häufige Fragen

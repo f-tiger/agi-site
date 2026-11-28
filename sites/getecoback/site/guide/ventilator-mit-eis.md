@@ -6,8 +6,6 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/ventilator-mit-eis.
 
 Bei 35 °C in der Wohnung greift fast jeder zu diesem Trick: eine Schüssel Eiswürfel vor den Ventilator stellen und auf kühle Erfrischung hoffen. Das kurze Gefühl im Luftstrom ist echt — aber es täuscht. Physikalisch senkt der Trick die Raumtemperatur nicht, und wer das weiß, spart sich das Nachfüllen und setzt gleich auf das, was funktioniert.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Auf einen Blick:** Ein Ventilator gibt seine eigene Abwärme (~50 W) in den Raum ab · das Einfrieren der Würfel hat den Kühlschrank/Gefrierschrank und damit die Küche vorher genauso aufgeheizt · netto ≈ null Kühlung im geschlossenen Raum (Test: nach 3 h weiterhin ~26,8 °C) · der Eis-Trick liefert nur ein kurzes, lokales Gefühl direkt vor dem Gerät · echte Raumkühlung: Nachtlüften, Verschatten, guter Ventilator auf die Haut, oder Klimaanlage/Luftkühler.
 
 ## Was der Eis-Trick physikalisch wirklich macht

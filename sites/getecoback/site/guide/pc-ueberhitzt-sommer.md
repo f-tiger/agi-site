@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Sobald draußen die Hitzewelle rollt, drosselt der Gaming-PC im Benchmark, die Lüfter drehen auf Anschlag und im schlimmsten Fall stürzt das Spiel mitten im Match ab. Das ist normal — aber vermeidbar. Es gibt zwei Hebel: die Kühlung im Gehäuse und die Temperatur im Raum. Den zweiten unterschätzen fast alle, dabei ist er bei echter Hitze der entscheidende.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Auf einen Blick:** Erst Hardware: Staub aus Lüftern & Kühlkörpern · Lüfterkurve aggressiver · Gehäuse-Airflow ordnen · ggf. Wärmeleitpaste erneuern · Tower mit Abstand zur Wand. Dann der große Hebel: Raumtemperatur senken — Faustregel ~5 °C kühlerer Raum ≈ ~5 °C kühlere CPU/GPU. Nachts/früh querlüften, tagsüber Rollläden zu, Raumventilator kühlere Luft Richtung Tower schieben · bei extremer Hitze eine mobile Klimaanlage gegen dauerhaftes Throttling.
 
 ## Hebel A: Im Gehäuse aufräumen (das Naheliegende zuerst)

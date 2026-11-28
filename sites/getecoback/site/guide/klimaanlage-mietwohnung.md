@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Ein Monoblock braucht einen Weg für die Abluft. Ein mobiles Splitgerät braucht einen sicheren Platz für das Außengerät. Kläre vor der Bestellung, was am Fenster oder Balkon möglich ist und welche Zustimmung für deine geplante Aufstellung nötig ist.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis. Dieser Artikel ist keine Rechtsberatung.
-
 ## Vor dem Kauf Fenster und Aufstellort prüfen
 
 Prüfe Fensterform, Abluftweg und Platz am Aufstellort. Geht etwas über Fenster, Brüstung oder Fassade nach außen, kläre die konkrete Aufstellung und Befestigung mit Vermieter oder Hausverwaltung. Mietvertrag und Hausordnung helfen bei der Klärung. Warte mit der Bestellung, wenn Standort, Befestigung oder Zustimmung noch offen sind.

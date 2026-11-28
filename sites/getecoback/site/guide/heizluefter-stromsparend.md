@@ -6,8 +6,6 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/heizluefter-stromsp
 
 Wenn im Herbst 2026 die erste kühle Woche kommt, aber die Zentralheizung noch aus ist, greifen viele zum Heizlüfter: klein, günstig in der Anschaffung, und in Sekunden strömt warme Luft. Genau das macht ihn so beliebt — und genau hier liegt die Falle, denn beim Stromverbrauch ist ein Heizlüfter alles andere als sparsam. Dieser Ratgeber zeigt dir ehrlich, was er pro Stunde kostet, wann er sich trotzdem lohnt, wann du besser die Finger davon lässt und worauf du bei Technik und Sicherheit achten solltest.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurz gesagt:** Ein Heizlüfter ist ein **reiner Widerstandsheizer**: Aus 1 kWh Strom wird genau 1 kWh Wärme — mehr geht physikalisch nicht. Bei 2000 Watt und 0,30 €/kWh kostet er rund **0,60 € pro Stunde**. Als **schnelle Punktheizung** (Bad, selten genutztes Zimmer) top; als **Dauerheizung** viel zu teuer. Wer viele Stunden heizt, fährt mit einer [Klimaanlage mit Heizfunktion](https://getecoback.com/guide/klimaanlage-mit-heizfunktion.html) oder Wärmepumpe deutlich günstiger. Auf Kippschutz und Überhitzungsschutz achten.
 
 ## Warum ein Heizlüfter niemals „stromsparend" im engeren Sinne ist

@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 „Ist diese billige Marke okay?" — das ist die Frage hinter jeder Comfee-Suche, und sie ist berechtigt: Die Geräte kosten oft die Hälfte dessen, was De'Longhi oder AEG aufrufen. Wir testen nicht selbst: Diese Seite fasst zusammen, was öffentliche Tests und Kundenbewertungen zur Marke sagen, und ordnet die beiden Comfee-Geräte ein, die auf diesem Portal empfohlen werden.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurz gesagt:** Comfee ist die **Budgetmarke der Midea Group** — keine No-Name-Bastelei, sondern Großserientechnik eines der größten Klimageräte-Hersteller der Welt. In öffentlichen Tests und Kundenbewertungen schneiden die Geräte als **solide Basisgeräte** ab: Kernfunktion erfüllt, Bedienung einfach, Preis niedrig (Klimagerät ca. 250–320 €, Luftentfeuchter ca. 150–200 €). Die Abstriche sind konsistent: **hörbarer Betrieb** (63 dB(A) beim MPPH-09CRN7 — der häufigste Kritikpunkt), Effizienzklasse A statt A+++, Fensterabdichtung für Kippfenster nicht im Karton und wiederkehrende Kritik an der Erreichbarkeit des Kundendienstes auf Beschwerdeportalen.
 
 ## Wer ist Comfee?

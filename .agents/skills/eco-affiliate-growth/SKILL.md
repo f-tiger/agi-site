@@ -1,63 +1,27 @@
 ---
 name: eco-affiliate-growth
-description: Research German affiliate competitors and improve ECO product coverage, SEO/GEO and measured owned-channel distribution. Use for ECO growth and recurring marketing execution.
+description: Run EcoBack’s bounded German winter acquisition pilot and review its affiliate evidence.
 ---
 
-# ECO evidence-to-distribution workflow
+# EcoBack growth V2 · Germany · 14 days
 
-Read root AGENTS.md, current site instructions, `.agents/product-marketing.md` and the latest ECO release/marketing receipts. User authorization persists; use the current session and available connectors. No separate model login or paid SEO subscription is required.
+Read root AGENTS.md, sites/getecoback/CLAUDE.md, .agents/product-marketing.md and the latest marketing receipts. The 14-day focus and publication window starts on the German calendar day V2 takes effect. A delayed first post does not postpone the freeze. Record day 1 and the inclusive day 14 in the receipt. Changes to cadence below apply to this pilot.
 
-## Installed execution skills (2026-11-13)
+## One buyer decision per day
 
-Use the project-discoverable skills in `.agents/skills/`: `content-strategy` to choose one buyer question; `social` and `video` for original owned-channel material; `seo-audit` / `ai-seo` for discoverability; `cro` for the matching existing landing page; `analytics` / `attribution` for actual evidence; `marketing-loops` for deduplication and bounded execution. `product-marketing` reads the existing `.agents/product-marketing.md`, never overwrites it merely on install. Source/license/commit and hashes: `.agents/marketing-skills.lock.json`. Full bundled references/tools live in `.agents/vendor/marketingskills`; this is a project install, not a claim of account-global installation.
+Focus all new editorial and feature work on cold-cellar dehumidifiers (dehum) and radiator valve compatibility (thermostat). Freeze robot, humidifier and floorcare content and feature development for these 14 days. Keep existing pages usable. Storage and balcony PV remain excluded.
 
-Before publishing, read `.agents/marketing-state/eco-2026-11-13.json` and latest provider records. Catalog425192059 and thermostat426988578 are PUBLISHED. Thermostat UUID870940558159268939 stayed the same while its ID changed from425658724; final TikTokID7707655249196043533 supersedes the intermediate awaiting-confirmation ID. The owner advanced this existing post toNov13; this does not increase general volume. Old Nov14 pending wording is historical. Robot creative remains prepared, not scheduled. Concrete next execution brief: `docs/eco-marketing-skills-execution-2026-11-13.md`.
+Use the existing German guide. Lead with a **Top Pick by Scenario** for two distinct situations, the exact model, the decisive fact and one accurately labelled merchant action. Compare only models with complete official evidence at identical conditions or for the same valve types. Keep useful alternatives in the detailed catalogue. Keep measurement, repair, existing equipment and waiting available. Put method, limitations and full affiliate disclosure in one folded section or footer. Mark commercial actions briefly at the point of use. Never invent identifiers, prices, stock, test winners, savings or commissions. Match generation, market, source date and package before offering an approved link.
 
-Upstream examples, suggested posting frequencies, paid integrations and approval defaults do not override the user's existing authorization, no-spend boundary, dedup/cadence limits or stop dates. Use current connected tools; do not request new keys or execute bundled telemetry/installers just because a skill mentions them. Prefer official platform evidence over vendor growth claims. Do not interpret an internal content score as real demand or ROI.
+## Produce and distribute
 
-## Diagnose and research
+1. Choose one distinct buyer question per German calendar day. Check content, media hashes and platform receipts against the queue before sending. Resolve pending/unknown results first. Do not repeat a topic by simply changing the hook. Aim for 14 consecutive days, at most one new creative per day across the two owned channels. Missed slots do not accumulate.
+2. For each German landing page use the German system prompt from `sites/getecoback/tools/winter_short.py prompt dehum|thermostat`. Supply the generated fact packet to the writer. Validate its JSON via `winter_short.py check CATEGORY script.json`. Title, overlay, captions, voice and subtitles in idiomatic German (du). Shoot 9:16, 25–35 seconds. Use a real continuous demonstration or narrative movement, voiced in German with synchronized German subtitles and original/licensed music. Watch the whole export with sound. Put disclosure in caption_de. Photo posts are a different format.
+3. Rotate at least three opening mechanisms across distinct questions: a measured number, a common purchasing mistake and a visible before/after decision. Record hook, question, asset hash, source, tagged live destination and date. Verify the mobile and no-script landing page and merchant label. Use only connected owned TikTok/YouTube formats, with no spend, new accounts or unsolicited outreach. Record platform-local schedule, post ID and read-back status (prepared, scheduled, awaiting confirmation, published). Pause the affected channel on an authorization or delivery failure.
+4. Complete the 14-day publishing test before deciding on volume. Low early traffic alone does not stop it. On day 14 review actual completions and views by platform/hook (completion rate only with a matching denominator), external-link clicks, tagged arrivals and affiliate clicks by page and placement. Record missing measurements as unknown. Separate impressions, events, people, orders and settled revenue. Do not extend the pilot automatically.
 
-1. Use complete UTC windows from `/api/trend` → `affiliate_audit`. Keep event counts, visitors, AI referrals, citations, orders and settled commission separate. Unknown-UA rows and historical collection gaps limit comparisons. Do not divide by the capped raw referrer list.
-2. Read two relevant German publishers' actual category, shortlist, detail/method and distribution pages. Record URL/date, exact product generation, observed buyer path, and what is unavailable. Do not claim their internal conversion rates or that they are objectively the best sites without comparable evidence.
-3. Make a mechanism-to-change table: observed mechanism, ECO gap, implemented response, failure case and measurable outcome. The breadth of a publisher's catalog is not proof of demand for an ECO product.
-4. Verify new models against manufacturer or clearly labeled supplier pages. Record identity, market, relevant conditions, limits, source status and checked date in `sites/getecoback/data/dehum-catalog.json` where applicable. Missing data is not zero. No borrowed test scores, guessed ASINs, invented prices, stock claims or medical benefits. Do not reinstate storage or balcony PV.
+## Verify and hand off
 
-## Product and SEO/GEO
+Use gstack-codex-auto for planning, implementation, local tests and the authorized delivery. Check final generated HTML and the noncommercial AI Markdown, real mobile behaviour, GA4 privacy/placement and the catalog release gate. Use complete UTC reporting windows, preserve the earlier experiment baselines and exclude probes. Keep private business results in the private ledger. Reconcile historical distribution using data/marketing/receipts, .agents/marketing-state and provider read-back before any submission.
 
-The owner subsequently required categories 3 and 4, overriding conditional research deferral. Read `sites/getecoback/docs/categories-34-release-2026-11-12.md`, `data/robot-catalog.json` and `data/humidifier-catalog.json` before choosing those topics. Preserve the dedicated builders, catalog gates and final category browser tests. Distinguish dry-only robots from mopping variants, single from double thresholds, and exact humidifier controls, water/cleaning instructions and consumables. Existing support pages must not regain generic or overstated humidifier recommendations. Neither manufacturer clearance claims nor the generic home-fit check certifies a model for the user's home.
-
-The 2026-11-12 DACH release also owns `data/thermostat-catalog.json` and `data/floorcare-catalog.json`. Read `sites/getecoback/docs/dach-products-release-2026-11-12.md` before choosing these topics. Their official-source dates and exact market/generation limits control shopping eligibility; never refresh a date without checking the cited facts. Preserve the category generators and final-artifact tests, including generic-overlay exclusions and the floor-tool example-state deep link.
-
-Prefer expanding an existing intent-owning page to duplicating near-identical pages. Preserve measurement/cause-first/no-purchase branches and exact merchant attribution. A small-room guide must not inherit every larger model just because its generic category is dehumidifiers.
-
-Audit rendered HTML as well as source: status, robots, canonical, language alternates, headings, source links, internal discovery, metadata, mobile/no-JS behavior and structured data. Keep schema consistent with visible content; do not invent ratings or offers. Search Console index/rank/CTR claims require actual access. HTTP200 and IndexNow acceptance do not prove indexing.
-
-Make useful comparisons readable in static HTML and retain the same facts/sources in generated Markdown and existing MCP read surfaces. Preserve the no-commerce AI mirror policy. Different nominal capacities do not establish efficiency. Google AI Search has no additional markup requirement; do not promise citation gains from llms.txt, schema, word counts or third-party study percentages.
-
-## Authorized distribution
-
-The owner explicitly authorized ECO automated marketing on 2026-11-12. Use existing connected owned YouTube/TikTok accounts after checking actual brand settings. This does not authorize paid ads, subscriptions, new accounts or unsolicited DMs/comments.
-
-Choose one concrete buyer question, provide a useful answer in the post itself and one matching live landing page. Verify current sources and the live destination before scheduling. Use fixed approved campaign tags; disclose EcoBack ownership and affiliate links. For video, follow the repository's motion, narration, subtitles, original/licensed music and continuous playback requirements. Carousels are photo posts, never describe them as videos.
-
-Before any send, check the platform queue and repository/private publication receipts for the same campaign/media. Reconcile unknown outcomes instead of resubmitting. Cap at one new creative per run and two per seven days; reuse across owned channels only where the media format is supported. No same-creative repost within 30 days. If auth/reconnect/approval is required, pause that channel and report the exact blocker.
-
-`data/marketing/de-robot-fit-20261112.json` is a reviewed preparation, not a posting instruction or scheduled receipt. Recheck the pending Nov12 catalog and Nov14 thermostat posts and their reach before allocating a later slot. The manifest's review date is not a publication promise. PR294/296 record thermostat post425658724; a prepared repository snapshot must never cause a duplicate.
-
-Record media hash, reviewed content, landing URL, source date, platform post ID/status and timestamp. Scheduled, awaiting confirmation and published are distinct. Read actual reach/watch time/site arrivals separately; empty analytics rows are unavailable evidence, not zero performance. Stop expanding volume if reach/engagement fails to justify it.
-
-## Verification and delivery
-
-Use gstack-codex-auto for bounded plan → implement → self-review → tests → repair → authorized release. Relevant gates: `test_dehum_catalog.py`, `test_buyer_comparison.py`, `test_llms_full.py`, source policy tests, full ECO CI, final generated GA4 coverage and live checks. No synthetic analytics or purchase events. Preserve unrelated work and write a private checkpoint.
-
-Every run leaves an implementation/PR or a specific blocker, plus distribution receipts and unknown business outcomes. At the end of a bounded recurring pilot, review results before extending cadence. Successful deployment is not achieved revenue.
-
-## Research provenance
-
-Adapted in original wording from the reviewed priorities in coreyhaines31/marketingskills `seo-audit`, `ai-seo` and `social`, MIT repository, commit `1f837447b20bb6f0e72d87b80ece1c221c362c7d` (reviewed 2026-11-12):
-
-- https://github.com/coreyhaines31/marketingskills/blob/1f837447b20bb6f0e72d87b80ece1c221c362c7d/skills/seo-audit/SKILL.md
-- https://github.com/coreyhaines31/marketingskills/blob/1f837447b20bb6f0e72d87b80ece1c221c362c7d/skills/ai-seo/SKILL.md
-- https://github.com/coreyhaines31/marketingskills/blob/1f837447b20bb6f0e72d87b80ece1c221c362c7d/skills/social/SKILL.md
-
-This is a project-specific adaptation, not a full upstream installation or a guarantee about search engines. No remote installer, telemetry, paid dependency or outbound messaging script was executed. Upstream visibility percentages and platform assertions are not accepted as ECO forecasts. Official Google guidance: https://developers.google.com/search/docs/appearance/ai-features
+For these guides, first-party affiliate_click.source and GA4 affiliate_click.placement distinguish toppick (quick cards) and winter-table (direct comparison). Use a named denominator: page views for page-level click rates, measured impressions for placement CTR. The current clicks alone do not measure how many readers saw each placement.

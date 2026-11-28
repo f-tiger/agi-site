@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Bei der originalen Midea PortaSplit (EAN 4048164116478) steht beim Kühlen ein Gerät im Freien. Ein mobiler Monoblock führt die Abwärme über einen Schlauch nach draußen. Welche Bauart passt zu deinem Zimmer?
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Die verlinkten Kaufberatungen können gekennzeichnete Affiliate-Links enthalten.
-
 ## PortaSplit oder Monoblock: Erst den Aufstellort prüfen
 
 - **Sicherer Außenplatz und freier Leitungsweg:** Prüfe die Aufstellung der originalen Midea PortaSplit und gleiche die EAN 4048164116478 mit dem Angebot ab. [Originale PortaSplit und Angebot prüfen](https://getecoback.com/guide/midea-portasplit-kaufen.html#portasplit-original-angebot).

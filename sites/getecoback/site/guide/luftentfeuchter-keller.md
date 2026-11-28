@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Ein Luftentfeuchter kann Kellerluft trocknen. Ob er sinnvoll arbeitet, hängt aber stärker von Temperatur, Feuchtenachschub und Aufstellung ab als von einer großen Literzahl auf dem Karton. Dieser Ratgeber hilft dir, Datenblätter vor dem Kauf zu vergleichen. Keine eigenen Gerätetests und keine Bauwerksdiagnose.
 
-Anzeige: Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Die gekennzeichnete Produktsuche führt zu Amazon.de, nicht zu einer geprüften Modellrangliste.
-
 **Die kurze Entscheidung**Erst Feuchteursache und Raumtemperatur prüfen. Dann Geräte bei vergleichbaren Prüfbedingungen gegenüberstellen. Für einen kalten Keller sind Werte bei 10 oder 15 °C hilfreicher als eine alleinige Maximalangabe. Bei eindringendem Wasser zuerst die Ursache klären; ein größeres Gerät ersetzt keine Reparatur.
 
 ## 1. Keller entfeuchten: wann Lüften reicht und wann Hilfe nötig ist
@@ -151,6 +149,11 @@ Redaktionell geprüft am 30. Oktober 2026. Technische Einordnung anhand öffentl
 
 **Der nächste Schritt**[Luftentfeuchter auswählen: Einsatzort und Gerätetyp →](https://getecoback.com/guide/luftentfeuchter-ratgeber.html)[Vorhandenes Gerät zieht kein Wasser: erst prüfen →](https://getecoback.com/guide/luftentfeuchter-zieht-kein-wasser.html)[Wäsche trocknen: Feuchte und Kosten vergleichen →](https://getecoback.com/guide/waesche-trocknen-wohnung.html)[Wohnen im Herbst und Winter: alle Einstiege →](https://getecoback.com/wohnen.html)
 
+## Kälter als der dokumentierte Prüfpunkt?
+**Meaco DD8L Junior**Beim DD8L Junior übernimmt ein Adsorptionsrotor den Feuchteentzug. Vergleiche Einsatztemperatur, Stromaufnahme und Ablauf für deinen Keller. Bei nassen Wänden zuerst die Ursache klären.
+Modellunterlagen prüfen
+Aktuellen Preis bei Amazon prüfen * →
+
 ## Herstellerdaten vor dem Kauf prüfen
 **So vergleichst du die Herstellerdaten**
 Zwei Beispiele aus vorhandenen Ratgebern, kein vollständiger Marktvergleich und kein EcoBack-Produkttest. Verglichen werden Wasserentzug und Betriebsleistung bei derselben Temperatur und relativen Feuchte (RH). Fehlende Angaben bleiben offen; daraus folgt keine Rangfolge.
@@ -159,8 +162,8 @@ Herstellerangaben zu Wasserentzug und Leistung; geprüft am 06.11.2026
 
 | Bedingung | Comfee MDDF-20DEN7 | MeacoDry Arete One 20L |
 | --- | --- | --- |
-| 20 °C / 60 % RH | Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert. | 8.5 L/Tag · 216 W |
-| 10 °C / 60 % RH | Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert. | 3.4 L/Tag · 180 W |
+| 20 °C / 60 % RH | Für diese Temperatur fehlen vergleichbare Leistungswerte. Nutze für die Auslegung die Meaco-Werte bei gleicher Feuchte. | 8.5 L/Tag · 216 W |
+| 10 °C / 60 % RH | Für diese Temperatur fehlen vergleichbare Leistungswerte. Nutze für die Auslegung die Meaco-Werte bei gleicher Feuchte. | 3.4 L/Tag · 180 W |
 
 Die genannten 20 L/Tag beziehen sich in den Modellunterlagen auf 30 °C / 80 % RH. Das ist keine Zusage für den Keller oder eine Wäscheladung. Für Comfee wurden in den verlinkten Unterlagen keine Werte für die beiden Tabellenbedingungen verifiziert. Anschlusswert oder Nennleistung dürfen diese Datenlücke nicht ersetzen.
 Modellgrenzen: Comfee MDDF-20DEN7 ist hier die Variante ohne WF. MeacoDry Arete One 20L ist weder Arete Two noch One 25L. Die UK-Modellseite bestätigt keine deutsche Händlerausstattung, Stecker, Lieferbarkeit oder Rückgabe. Netzspannung, Typenschild und Anleitung immer mit dem konkreten Angebot abgleichen. Beide Kandidaten ersetzen weder Ursachenklärung noch eine passende Lüftung.

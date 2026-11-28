@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Der AEG ChillFlex Pro taucht auf diesem Portal regelmäßig als Leise-Alternative in der Klasse des Pinguino PAC EX105 auf — Grund genug, ihm eine eigene Seite zu geben. Wir testen nicht selbst: Diese Seite fasst zusammen, was öffentliche Tests und Datenblätter zur ChillFlex-Pro-Familie sagen, und ordnet die Zahlen für konkrete Räume ein.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurz gesagt:** ChillFlex Pro ist eine **Modellfamilie** — am häufigsten getestet ist der **AXP26U338CW** (9.000 BTU, Energieeffizienzklasse A). In öffentlichen Messungen: rund **64 dB(A) im Normalbetrieb** (oberes Mittelfeld der Monoblöcke), aber **ca. 52 dB(A) im Schlafmodus** — genau darauf stützt sich sein Ruf als Schlafzimmer-Gerät. Preisband ca. 350–500 €. Schwächen: keine Fensterabdichtung im Karton, keine App. Kleiner Raum + knappes Budget → Comfee MPPH-09CRN7; über 30 m² → Klarstein 12K; maximale Ruhe → Midea PortaSplit.
 
 ## Erst die Varianten-Frage: welcher ChillFlex Pro?

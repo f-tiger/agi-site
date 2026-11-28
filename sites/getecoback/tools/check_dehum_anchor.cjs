@@ -43,7 +43,7 @@ if(slug==='luftentfeuchter-keller') {
     assert((await card.innerText()).includes('Wasserablauf:'));
     const merchant=card.locator('[data-catalog-commerce] a');
     if(await merchant.count()) {
-      assert((await merchant.innerText()).includes('bei Amazon.de suchen'));
+      assert((await merchant.innerText()).includes('Aktuellen Preis bei Amazon prüfen'));
       assert.equal(new URL(await merchant.getAttribute('href')).searchParams.get('tag'),'getecoback-21');
     }
   }

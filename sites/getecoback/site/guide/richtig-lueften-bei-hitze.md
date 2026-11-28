@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Bei Hitzewelle machen viele intuitiv das Falsche: Sie reißen mittags die Fenster auf, um „frische Luft“ hereinzulassen — und holen damit genau die Hitze herein, die sie loswerden wollen. Dabei ist die Regel einfach: **Lüfte nur dann, wenn es draußen kühler ist als drinnen.** Tagsüber bleiben die Fenster zu und verschattet. So hältst du deine Wohnung mehrere Grad kühler — ganz ohne Klimaanlage.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Auf einen Blick:** Nur lüften, wenn draußen kühler als drinnen — spät nachts & früh morgens vor Sonnenaufgang · tagsüber Fenster zu und verschatten (Rollläden runter) · kurzes Stoßlüften mit Durchzug schlägt stundenlanges Kippen · Ventilator ins Nachtfenster stellen beschleunigt den Luftaustausch · ein Thermometer innen/außen zeigt den richtigen Moment.
 
 ## Die eine Regel: nur bei kühlerer Außenluft lüften

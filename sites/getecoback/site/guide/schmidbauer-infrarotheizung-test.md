@@ -6,8 +6,6 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/schmidbauer-infraro
 
 Zwei Schmidbauer-Modelle stehen seit dieser Saison in unseren Heizungs-Empfehlungen — die **Hybrid Pro 600 W** für kleine Räume und die **ISP T 700 W** fürs Bad — und die Marke ist zugleich die meistgesuchte Infrarotheizung in unserer täglichen Google-Trends-Abfrage. Grund genug für eine eigene Seite. Wir testen nicht selbst: Diese Seite fasst zusammen, was sich über Schmidbauer öffentlich belegen lässt, und ordnet die Wattklassen für konkrete Räume ein.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurz gesagt:** Die belegbare Faktenlage zu Schmidbauer: Leistungsstufen von rund **300 bis 1.400 W** über die Serien, je nach Serie **5 bis 10 Jahre Garantie** laut Händlerlistungen, Herstellerangabe „Produktion in Europa“. Einen Test einer großen Testorganisation haben wir **nicht** gefunden — die öffentliche Testlage besteht aus Händlerbewertungen und Aggregatoren, dort überwiegend gut. Fürs Sizing gilt die Faustregel **60–100 W pro m²**; im Betrieb kostet das 600-W-Paneel bei 0,30 €/kWh rund **0,18 €/h**, das 700-W-Paneel rund **0,21 €/h**.
 
 ## Die Testlage: was sich über Schmidbauer belegen lässt

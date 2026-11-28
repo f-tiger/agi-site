@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Wie laut kommt der PAC N90 ECO Silent am Bett an? In den technischen Daten stehen zwei verschiedene Geräuschgrößen. Dieser Ratgeber erklärt, was sie für die Kaufentscheidung hergeben. EcoBack hat den Pegel am Bett nicht selbst gemessen.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 ## De’Longhi PAC N90 ECO Silent: Welche EAN passt?
 
 Gleiche die vollständige Modellbezeichnung **De’Longhi PAC N90 ECO Silent** und die **EAN 8004399512351** mit dem Angebot ab.

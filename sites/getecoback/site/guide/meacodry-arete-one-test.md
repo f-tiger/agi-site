@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Hier findest du die deutschen Prüfwerte für MeacoDry Arete One 20L und Two 20L sowie die veröffentlichten Messungen zum One 20L. Prüfe zuerst Raumtemperatur, Feuchteursache und Bedienung. [Direkt zum Vergleich der beiden 20L-Modelle und ihren GTINs](https://getecoback.com/guide/meacodry-arete-one-test.html#one-oder-two).
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurz gesagt:** Der Arete One 20L kommt als Kompressor-Entfeuchter infrage, wenn seine Leistung zu den gemessenen Bedingungen passt. **Die Fläche allein entscheidet weder für 20L noch für 25L.** Vergleiche Temperatur, relative Feuchte, neue Feuchtelasten und Herstellerdaten unter ähnlichen Bedingungen. Zur Lautstärke: laut Hersteller **38–40 dB**, in den unten verlinkten Tests **45,9–52,7 dB** bei unterschiedlichen Messverfahren. Die **216 W laut Datenblatt bei 20 °C und 60 % rF** ergeben bei angenommenen 0,30 €/kWh rund 0,06 €/h. Vor dem Kauf helfen die [Entscheidungshilfe mit Quellentabelle](https://getecoback.com/guide/luftentfeuchter-ratgeber.html) und bei niedrigen Temperaturen der [Vergleich für kalte Keller](https://getecoback.com/guide/luftentfeuchter-keller.html#kalter-keller).
 
 ## Erst die Varianten-Frage: welcher Arete One?

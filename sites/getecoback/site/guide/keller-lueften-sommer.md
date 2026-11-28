@@ -29,8 +29,6 @@ Nach dem Rechnen kannst du die Kurzantwort mit Messwerten und Rechenweg kopieren
 
 Quellen geprüft am 22.11.2026. [Umweltbundesamt zur Kellerlüftung](https://www.umweltbundesamt.de/themen/gesundheit/umwelteinfluesse-auf-den-menschen/schimmel/wie-luefte-ich-richtig-tipps-tricks-zur) · [Verbraucherzentrale zu Luftfeuchte und Luftaustausch](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426).
 
-Der Check vergleicht Innen- und Außentaupunkt und prüft die gemessene Wandtemperatur. Er ersetzt keine Bauwerksdiagnose. Amazon-Links sind Partnerlinks — sie finanzieren diese Seite, ohne dass du mehr zahlst.
-
 ## Warum Sommerluft den Keller feuchter machen kann
 
 Die relative Luftfeuchte hängt von der Temperatur ab. Deshalb kann wärmere Außenluft trotz niedrigerer Prozentzahl mehr Wasserdampf in den Keller bringen. Der Taupunkt macht die Bedingungen bei ähnlichem Luftdruck vergleichbar. An einer kalten Wand können sich Tropfen bilden, wenn die Luft dort bis zu ihrem Taupunkt abkühlt.

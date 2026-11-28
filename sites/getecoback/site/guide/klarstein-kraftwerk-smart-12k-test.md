@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Das Kraftwerk Smart 12K ist das Gerät, das wir auf diesem Portal empfehlen, wenn der Raum über 25–30 m² liegt und ein normaler Monoblock nur noch gegenhält statt kühlt — „mehr Reserve" ist sein einziger Job. Wir testen nicht selbst: Diese Seite fasst zusammen, was öffentliche Tests und die Herstellerangaben zum 12K sagen, und ordnet die Zahlen für konkrete Räume ein.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurz gesagt:** Für Räume von **25–35 m²** ist das Kraftwerk Smart 12K die Klasse mit echter Reserve: **12.000 BTU (ca. 3,5 kW)**, App-Steuerung mit Alexa und Google Assistant, laut Datenblatt **Energieeffizienzklasse A** (EER 2,6) bei **ca. 1,3 kWh pro Stunde** im Kühlbetrieb. Schwächen: laut Datenblatt **bis 65 dB** auf höchster Stufe (12K-Geräte sind lauter als kleinere), ~27 kg Gewicht. Unter 25 m² → De'Longhi Pinguino PAC EX105 oder Comfee MPPH-09CRN7; maximale Ruhe → Midea PortaSplit; über ~13.500 BTU Bedarf → kein Monoblock mehr, Split oder zwei Geräte.
 
 ## Klarstein Kraftwerk Smart 12K: Was ist bei 10034664 dabei?

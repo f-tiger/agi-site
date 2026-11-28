@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Schimmel im Keller ist fast nie ein Reinigungsproblem, sondern ein Feuchteproblem mit sichtbarem Symptom. Deshalb hat diese Anleitung zwei Hälften: erst der Befall weg — mit dem richtigen Mittel für das richtige Material —, dann die Ursache weg, sonst stehst du in ein paar Wochen wieder vor demselben Fleck. Wir sagen ehrlich dazu, wo Eigenleistung endet und Fachhände nötig sind.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurz gesagt:** Kleinflächigen, oberflächlichen Befall auf glatten Flächen kannst du selbst entfernen — **chlorfreier Schimmelentferner** oder hochprozentiger Alkohol, Handschuhe, gut lüften. Poröse Materialien (Tapete, Gipskarton, Holz) und große Flächen gehören in Fachhände. Und entscheidend: **Ohne die Luftfeuchte dauerhaft unter 60 % zu bringen, kommt der Schimmel zurück** — Hygrometer und meist ein Entfeuchter gehören deshalb zur Entfernung dazu.
 
 ## Warum ausgerechnet im Keller?

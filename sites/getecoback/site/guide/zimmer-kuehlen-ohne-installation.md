@@ -10,8 +10,6 @@ Eine fest installierte Klimaanlage kostet in Deutschland oft über 1.000 € plu
 
 **Warum das Thema bleibt:** Die Zahl der heißen Tage (über 30 °C) hat sich in Deutschland laut DWD-Daten mehr als verdoppelt — von durchschnittlich **4,2 Tagen pro Jahr** (1961–1990) auf **8,9 Tage** (1991–2020); der Rekordsommer 2018 kam auf 20,4 heiße Tage (DWD-Daten, via Tagesspiegel). Eine günstige Kühl-Lösung ohne Installation ist damit keine Einmal-Anschaffung für einen Ausnahmesommer, sondern zahlt sich Jahr für Jahr aus.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Die Links unten sind Affiliate-Links — du zahlst denselben Preis.
-
 ## 1. Turm- & Standventilatoren — ab ~30 €
 
 Die günstigste Erleichterung. Ein Ventilator senkt die Raumtemperatur nicht, aber bewegte Luft auf der Haut macht einen großen Unterschied — besonders nachts. Ein leiser Turmventilator ist das beste Preis-Leistungs-Verhältnis bei knappem Budget.

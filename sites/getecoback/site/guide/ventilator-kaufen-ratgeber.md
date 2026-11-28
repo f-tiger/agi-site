@@ -6,8 +6,6 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/ventilator-kaufen-r
 
 Ein Ventilator ist das günstigste und sparsamste Gerät gegen die Hitze — aber „Ventilator" ist nicht gleich Ventilator. Turm, Stand, Tisch, Decke, Akku: Jede Bauform hat ihre Stärke, und der falsche Kauf steht dann laut brummend in der Ecke, während du weiter schwitzt. Dieser Ratgeber ordnet die Typen ein und zeigt, welche Angaben beim Kauf wirklich zählen.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurz gesagt:** Fürs Wohnzimmer und als Allrounder ist ein **Standventilator** (viel Luft, günstig) meist die beste Wahl. Fürs Schlafzimmer zählt vor allem die **Lautstärke in dB** — ein leiser Turm- oder großer Standventilator mit Timer. Auf dem Schreibtisch reicht ein **Tischventilator**, für dauerhafte Zimmer-Umluft ein **Deckenventilator**. Wichtig sind Luftdurchsatz (m³/h), Lautstärke, Oszillation, Timer und Fernbedienung. Strom kostet fast nichts. Aber: Ein Ventilator kühlt die Luft nicht — er lässt dich nur kühler fühlen.
 
 ## Die fünf Bauformen im Überblick

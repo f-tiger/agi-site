@@ -4,9 +4,11 @@
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/heizung-15-qm.html
 
-15 m² ist fast immer ein Arbeitszimmer oder ein kleines Wohnzimmer. Damit ist es der einzige Raum in dieser Reihe, dessen Heizung nicht abends läuft, sondern werktags von morgens bis nachmittags. Das verschiebt die Saisonkosten stärker als jede Dämmfrage, deshalb steht die Rechnung hier mit zwei Annahmen statt einer.
+## Schlafzimmer, Homeoffice oder Kinderzimmer
+Am Schreibtisch braucht eine 100-W-Wärmedecke in vier Stunden 0,4 kWh, ein 2-kW-Heizlüfter bei durchgehend voller Leistung 8 kWh. Nur der Heizlüfter erwärmt den Raum.
+Am Bett und am Schreibtisch zuerst die tatsächlichen Betriebszeiten festlegen. Geräte und Kabel außerhalb der Reichweite kleiner Kinder aufstellen.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
+15 m² ist fast immer ein Arbeitszimmer oder ein kleines Wohnzimmer. Damit ist es der einzige Raum in dieser Reihe, dessen Heizung nicht abends läuft, sondern werktags von morgens bis nachmittags. Das verschiebt die Saisonkosten stärker als jede Dämmfrage, deshalb steht die Rechnung hier mit zwei Annahmen statt einer.
 
 **Kurz gesagt:** Für 15 m² sind **900–1.200 W** die richtige Größenordnung. Ein 1.050-W-Gerät kostet 0,32 € pro Stunde. Bei 5 Heizstunden am Tag sind das rund 94 € pro Saison, bei 8 Stunden Homeoffice rund 151 €.
 

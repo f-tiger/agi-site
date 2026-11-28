@@ -10,8 +10,6 @@ Die Stoffabdichtung aus dem Set ist schnell montiert — aber wer sein Klimager�
 
 **Kurzantwort:** Miss zuerst die Öffnung am Fenster und prüfe den [Ausschnitt laut Anschlusszeichnung](https://getecoback.com/guide/fensterabdichtung-selber-bauen.html#abluft-ausschnitt-pruefen). Plane dann Plattenrand, Flansch und Befestigung. Eine herausnehmbare Platte eignet sich für einen festen Einsatzort. Warte mit dem Zuschnitt, bis Maße und Befestigung geklärt sind.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks sind Affiliate-Links — du zahlst denselben Preis. Materialpreise sind Richtwerte aus öffentlich einsehbaren Angeboten.
-
 ## Die Einkaufsliste (10–40 €)
 
 | Material | Wofür | Richtpreis |

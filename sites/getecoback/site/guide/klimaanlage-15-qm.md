@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Du suchst eine tragbare Klimaanlage für einen Raum mit rund 15 m²? Die wichtigste Frage ist die richtige Kühlleistung (BTU): zu wenig, und das Gerät kommt nie hinterher; zu viel ist rausgeworfenes Geld und unnötig laut. Hier die konkrete Empfehlung für 15 m².
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurz gesagt:** Für 15 m² solltest du eine Klimaanlage mit **7.000–9.000 BTU** wählen. Ein häufig empfohlenes Modell dieser Klasse ist **Comfee MPPH-09CRN7**. Rechne mit rund 0,27 € Stromkosten pro Stunde bzw. ~42 € im Hitzemonat.
 
 ## Wie viel BTU für 15 m²?

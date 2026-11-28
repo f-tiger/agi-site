@@ -6,9 +6,18 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/waesche-trocknen-wo
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
 
-Im Winter oder ohne Balkon bleibt oft nur eines: Die nasse Wäsche kommt auf den Ständer im Wohnzimmer oder Flur. Das Problem daran unterschätzen die meisten — eine Ladung kann je nach Wäschemenge und Schleudern etwa **ein bis zwei Liter Wasser** an die Raumluft abgeben. Wie viel Feuchte im Raum bleibt, hängt unter anderem von Wäschemenge, Schleudern und Lüftung ab. Kalte Oberflächen können problematisch bleiben, auch wenn ein Entfeuchter läuft. Diese Anleitung hilft dir, Bedingungen und Kosten zu prüfen.
+## 3-Sekunden-Entscheidungshilfe
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
+### Wohnung um 20 °C
+**MeacoDry Arete Two 12L**Bei 20 °C und 60 % relativer Feuchte: 5,4 L/Tag bei 136 W. Die Laufzeit für eine Ladung hängt von deiner Wäsche ab.
+
+### Noch keine Messwerte?
+**ThermoPro TP50**Vor jedem Kauf Temperatur und Feuchte protokollieren. Ein vorhandenes Hygrometer reicht.
+
+[Kühler Waschkeller? Werte bei 10 °C vergleichen →](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#schnell-entscheidung)
+Methodik, Datenquellen & HinweiseModellunterlagen und Angebotsvarianten: [MeacoDry Arete Two 12L](https://www.meaco.de/produkt/luftentfeuchter-meaco-arete-two-12-l/) · ThermoPro TP50
+
+Im Winter oder ohne Balkon bleibt oft nur eines: Die nasse Wäsche kommt auf den Ständer im Wohnzimmer oder Flur. Das Problem daran unterschätzen die meisten — eine Ladung kann je nach Wäschemenge und Schleudern etwa **ein bis zwei Liter Wasser** an die Raumluft abgeben. Wie viel Feuchte im Raum bleibt, hängt unter anderem von Wäschemenge, Schleudern und Lüftung ab. Kalte Oberflächen können problematisch bleiben, auch wenn ein Entfeuchter läuft. Diese Anleitung hilft dir, Bedingungen und Kosten zu prüfen.
 
 **Kurz gesagt:** Wäsche gibt beim Trocknen Feuchtigkeit ab. Beobachte **Temperatur und relative Feuchte** sowie kalte Oberflächen. Ein **Luftentfeuchter** kann die Raumluft entfeuchten; er garantiert weder trockene Wände noch eine feste Trockenzeit. Vergleiche Kosten erst für **gleich trockene Wäsche**.
 
@@ -143,8 +152,8 @@ Herstellerangaben zu Wasserentzug und Leistung; geprüft am 06.11.2026
 
 | Bedingung | Comfee MDDF-20DEN7 | MeacoDry Arete One 20L |
 | --- | --- | --- |
-| 20 °C / 60 % RH | Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert. | 8.5 L/Tag · 216 W |
-| 10 °C / 60 % RH | Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert. | 3.4 L/Tag · 180 W |
+| 20 °C / 60 % RH | Für diese Temperatur fehlen vergleichbare Leistungswerte. Nutze für die Auslegung die Meaco-Werte bei gleicher Feuchte. | 8.5 L/Tag · 216 W |
+| 10 °C / 60 % RH | Für diese Temperatur fehlen vergleichbare Leistungswerte. Nutze für die Auslegung die Meaco-Werte bei gleicher Feuchte. | 3.4 L/Tag · 180 W |
 
 Die genannten 20 L/Tag beziehen sich in den Modellunterlagen auf 30 °C / 80 % RH. Das ist keine Zusage für den Keller oder eine Wäscheladung. Für Comfee wurden in den verlinkten Unterlagen keine Werte für die beiden Tabellenbedingungen verifiziert. Anschlusswert oder Nennleistung dürfen diese Datenlücke nicht ersetzen.
 Modellgrenzen: Comfee MDDF-20DEN7 ist hier die Variante ohne WF. MeacoDry Arete One 20L ist weder Arete Two noch One 25L. Die UK-Modellseite bestätigt keine deutsche Händlerausstattung, Stecker, Lieferbarkeit oder Rückgabe. Netzspannung, Typenschild und Anleitung immer mit dem konkreten Angebot abgleichen. Beide Kandidaten ersetzen weder Ursachenklärung noch eine passende Lüftung.

@@ -4,9 +4,11 @@
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/heizung-30-qm.html
 
-Für 30 m² nennt die Faustformel 1.800–2.400 W, und rechnerisch ist das korrekt. Nur steckt hinter 30 m² fast nie ein geschlossenes Zimmer, sondern ein offener Wohnbereich, der in Küche oder Flur übergeht. Die Formel stimmt dann weiterhin, ihre Voraussetzung nicht mehr — und das ist der Grund, warum bei dieser Größe so viele mit der gekauften Leistung unzufrieden sind.
+## Wohnzimmer, offene Wohnküche oder Waschkeller
+Offene Türen vergrößern die beheizte Zone. Am Sofa kann lokale Wärme reichen; beim Heizen der ganzen Wohnküche auch den offenen Nebenraum mitrechnen.
+Beim Wäschetrocknen Feuchte vor und nach dem Lüften messen. Heizen allein transportiert die Feuchtigkeit nicht nach draußen.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
+Für 30 m² nennt die Faustformel 1.800–2.400 W, und rechnerisch ist das korrekt. Nur steckt hinter 30 m² fast nie ein geschlossenes Zimmer, sondern ein offener Wohnbereich, der in Küche oder Flur übergeht. Die Formel stimmt dann weiterhin, ihre Voraussetzung nicht mehr — und das ist der Grund, warum bei dieser Größe so viele mit der gekauften Leistung unzufrieden sind.
 
 **Kurz gesagt:** Für 30 m² plane **1.800–2.400 W** ein, meist auf mehrere Panels verteilt. Das kostet 0,63 € pro Stunde und rund 189 € pro Saison. In einem offenen Grundriss heizt du besser nicht die Fläche, sondern die Zonen, in denen du dich aufhältst.
 

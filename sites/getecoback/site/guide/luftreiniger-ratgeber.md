@@ -6,8 +6,6 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftreiniger-ratgeb
 
 Wähle zuerst die Aufgabe. Bei Schwebpartikeln kannst du eine Filterlösung prüfen. Bei Kondenswasser, einer feuchten Wand oder unbekannter Ursache beginne mit dem [Feuchte- und Partikelcheck](https://getecoback.com/guide/luftentfeuchter-oder-luftreiniger.html#der-unterschied-in-einem-satz). Besitzt du bereits einen Core 300S ohne Pro, kannst du direkt den [deutschen Standardfilter abgleichen](https://getecoback.com/ersatzfilter.html#levoit-core-300s).
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 ## Was ein Luftreiniger bearbeitet
 
 Ein Luftreiniger mit Partikelfilter kann Schwebpartikel in der durchströmenden Luft verringern. Ein Vorfilter sammelt gröbere Partikel. Ein geeignetes Sorptionsmedium wie Aktivkohle kann bestimmte Gase und Gerüche mindern. Prüfe die Angaben zum konkreten Filter und entferne die Belastungsquelle, soweit möglich.

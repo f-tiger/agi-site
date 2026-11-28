@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 „Mobile Klimaanlage Test 2026" tippt halb Deutschland in der Hitzewelle. Das Problem: Die meisten „Test"-Seiten haben nie ein Gerät angefasst — sie ranken Affiliate-Links nach Provision. Wir machen es anders und ehrlich: Statt erfundener Testsiegel bekommst du hier die **vier Kriterien, die über gute und schlechte mobile Klimageräte entscheiden** — damit du selbst das richtige Modell für deine Wohnung findest.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 ## Zuerst: Welcher Gerätetyp passt zu dir?
 
 | Typ | Kühlt richtig? | Lautstärke | Preis | Für wen |

@@ -61,8 +61,6 @@ Deshalb ist das dauerhaft gekippte Fenster im Winter der verlässlichste Weg, si
 
 ## Messen, bevor du kaufst
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Verkäufen. Die Links unten sind Affiliate-Links — für dich derselbe Preis.
-
 Anzeige In der Reihenfolge, in der es tatsächlich etwas bringt:
 
 - **Hygrometer mit Min/Max-Speicher** — es hält den Morgenwert fest, an dem sich entscheidet, ob du ein Feuchte- oder ein Bauproblem hast. Hygrometer mit Min/Max auf Amazon.de →
