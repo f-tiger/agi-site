@@ -7,10 +7,10 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/smarte-heizkoerpert
 ## Schnell-Entscheidung in 30 Sekunden
 
 ### Danfoss RAVL und Bosch-Zentrale
-**Bosch Heizkörper-Thermostat II [+M]**Beim II [+M] liegt der passende RAVL-Adapter bei. Gleiche die Ventilkennzeichnung mit der Bosch-Skizze ab.
+**Bosch Heizkörper-Thermostat II [+M]** Beim II [+M] liegt der passende RAVL-Adapter bei. Gleiche die Ventilkennzeichnung mit der Bosch-Skizze ab.
 
 ### Danfoss RA und passende FRITZ!Box
-**FRITZ!Smart Thermo 302 · Artikel 20003120**Für RA mit Anschlussgewinde liegt der Adapter bei. Prüfe vorab, ob deine FRITZ!Box die DECT-Basis unterstützt.
+**FRITZ!Smart Thermo 302 · Artikel 20003120** Für RA mit Anschlussgewinde liegt der Adapter bei. Prüfe vorab, ob deine FRITZ!Box die DECT-Basis unterstützt.
 
 Ventil noch unbekannt? Erst die Kennzeichnung prüfen. Reicht dein alter Kopf, behalte ihn. [* Werbung · Quellen](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#winter-quellen)
 

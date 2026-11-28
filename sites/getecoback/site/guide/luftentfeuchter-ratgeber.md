@@ -9,10 +9,10 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 ## Schnell-Entscheidung in 30 Sekunden
 
 ### Kalter Keller um 10 °C
-**MeacoDry Arete One 20L**3,4 L/Tag · 180 W. Bei 60 % Luftfeuchte zieht die One mehr Wasser aus der Luft als die Two.
+**MeacoDry Arete One 20L** 3,4 L/Tag · 180 W. Bei 60 % Luftfeuchte zieht die One mehr Wasser aus der Luft als die Two.
 
 ### Wäsche im Wohnraum um 20 °C
-**MeacoDry Arete Two 12L**5,4 L/Tag · 136 W. Wenn dir beim Wäschetrocknen die niedrigere Leistungsaufnahme wichtiger ist, wähle die Two.
+**MeacoDry Arete Two 12L** 5,4 L/Tag · 136 W. Wenn dir beim Wäschetrocknen die niedrigere Leistungsaufnahme wichtiger ist, wähle die Two.
 
 Bei nassen Wänden erst die Ursache klären. Ohne Messwerte zuerst Temperatur und Feuchte messen. [* Werbung · Quellen](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#winter-quellen)
 

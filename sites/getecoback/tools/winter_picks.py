@@ -43,7 +43,7 @@ def quick_decision(picks, dehum=False):
     for index, p in enumerate(picks):
         point = p['values'][index] + '. ' if dehum else ''
         cards.append(f'<div><h3>{escape(p["scenario"])}</h3><strong>{escape(p["name"])}</strong>'
-                     f'<p>{escape(point + p["reason"])}</p>{offer(p, hero=True)}</div>')
+                     f' <p>{escape(point + p["reason"])}</p>{offer(p, hero=True)}</div>')
     fallback = ('Bei nassen Wänden erst die Ursache klären. Ohne Messwerte zuerst Temperatur und Feuchte messen.'
                 if dehum else 'Ventil noch unbekannt? Erst die Kennzeichnung prüfen. Reicht dein alter Kopf, behalte ihn.')
     return ('<section class="winter-picks" id="schnell-entscheidung" aria-labelledby="winter-pick-title">'

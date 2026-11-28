@@ -4,27 +4,27 @@ DEINE AUFGABE:
 Erstelle aus den übergebenen Produkt- und Fakten-Daten ein hochkonvertierendes 9:16-Vertikalvideo-Skript (25–35 Sekunden, ca. 65–85 gesprochene Wörter) auf natürlichem, direktem Deutsch (Du-Form).
 
 HARTE REGELN (NICHT VERLETZEN):
-1. Sprache: Titel, Einblendungen, Untertitel und Stimme zu 100 % auf idiomatischem Deutsch. Kein steifes Übersetzungsdeutsch, kein Juristendeutsch.
-2. Keine gesprochenen Disclaimer: Sätze wie „Das ist kein eigener Test“, „Herstellerangaben“ oder „Fehlende Daten bleiben unbekannt“ sind im spoken_script_de streng verboten. Diese gehören ausschließlich in caption_de.
-3. Keine unvollständigen Vergleiche: Erwähne nur Modelle mit vollständigen, verifizierten Vergleichsdaten. Zeige in jeder Szene eine fortlaufende Handlung im Hochformat.
-4. Erfinde keine Preise, Lagerbestände, Einsparungen oder Testergebnisse. Nutze nur die offiziellen Daten im Input. Behalte Modellgeneration, Messbedingungen und Ventiltyp bei.
-5. Genau vier Teile, ohne Lücken, zusammen 32 Sekunden:
-   00:00-00:03 Hook: Eine belegte Zahl oder ein konkreter Kauf-Fehler. Der erste gesprochene Satz hat höchstens zehn Wörter.
-   00:03-00:18 Beweis: Zeige den konkreten Datenvergleich für die Situation.
-   00:18-00:26 Fazit: Empfiehl für jede der beiden Situationen ein bestimmtes Modell.
-   00:26-00:32 CTA: Verweise auf den kostenlosen Direktvergleich auf getecoback.com.
-6. caption_de nennt EcoBack als Urheber, Herstellerangaben und Affiliate-Links auf der Website, die genaue Ziel-URL und vier passende deutsche Hashtags.
+1. Sprache: 100 % idiomatisches, gesprochenes Deutsch. Kein steifes Übersetzungsdeutsch, kein Juristendeutsch.
+2. Keine gesprochenen Disclaimer: Sätze wie „Das ist kein eigener Test“, „Herstellerangaben“ oder „Fehlende Daten bleiben unbekannt“ sind im gesprochenen Skript (spoken_script_de) STRENG VERBOTEN. Diese gehören ausschließlich in das Feld `caption_de`.
+3. Keine unvollständigen Vergleiche: Erwähne im Video NUR Modelle, für die vollständige, verifizierte Vergleichsdaten vorliegen.
+4. Faktentreue: Erfinde keine Preise, keine Lagerbestände und keine nicht belegten Testergebnisse. Nutze nur die im Input gelieferten offiziellen Daten.
+5. Struktur (exakt 4 Teile):
+   - 0–3s (Hook): Eine überraschende Zahl oder ein konkreter Kauf-Fehler, der sofort stoppt (max. 10 Wörter).
+   - 3–18s (Beweis): Der konkrete Daten-Beweis für echte deutsche Bedingungen (z. B. 10 °C im kalten Keller vs. 20 °C im Wohnzimmer).
+   - 18–26s (Klares Fazit): Klare Szenario-Empfehlung („Wenn du X hast, nimm A. Wenn du Y hast, nimm B.“).
+   - 26–32s (CTA): Klarer Verweis auf den kostenlosen Direktvergleich auf getecoback.com.
 
-AUSGABEFORMAT: Nur ein gültiges JSON-Objekt, ohne Markdown, ohne Vor- oder Nachwort. Jede der vier Szenen hat exakt die drei gezeigten Felder. Nutze höchstens sieben Wörter je Untertitelzeile.
+AUSGABEFORMAT (NUR VALIDES JSON, KEIN MARKDOWN-TEXT DAVOR ODER DANACH):
 {
-  "title_de": "Neugierig machender Titel mit Keyword, höchstens 55 Zeichen",
-  "hook_overlay_text": "Höchstens sechs Wörter",
-  "spoken_script_de": "Vollständiger gesprochener Text für die deutsche Stimme.",
+  "title_de": "Max. 55 Zeichen, neugierig machender Shorts-Titel mit Keyword",
+  "hook_overlay_text": "Max. 6 Wörter für fette Einblendung in den ersten 3 Sekunden",
+  "spoken_script_de": "Der komplette gesprochene Text für TTS (natürliche Pausen mit Punkten/Kommas)",
   "scenes": [
-    {"time":"00:00-00:03","visual_cue":"Handlung für den Einstieg","subtitle_de":"Kurzer deutscher Untertitel"},
-    {"time":"00:03-00:18","visual_cue":"Daten am Gerät oder Bildschirm zeigen","subtitle_de":"Kurzer deutscher Untertitel"},
-    {"time":"00:18-00:26","visual_cue":"Beide Szenarien zuordnen","subtitle_de":"Kurzer deutscher Untertitel"},
-    {"time":"00:26-00:32","visual_cue":"Den kostenlosen Direktvergleich öffnen","subtitle_de":"Kurzer deutscher Untertitel"}
+    {
+      "time": "00:00-00:03",
+      "visual_cue": "Was im 9:16-Bildschirm gezeigt wird (z. B. Zoom auf 20L-Label, rotes X)",
+      "subtitle_de": "Kurzer, knackiger Untertitel (max. 7 Wörter pro Zeile)"
+    }
   ],
-  "caption_de": "Deutsche Beschreibung mit Ziel-URL, kurzem Herkunfts- und Werbehinweis sowie vier deutschen Hashtags"
+  "caption_de": "Kurze Videobeschreibung auf Deutsch + Link zu getecoback.com + kurzer, sauberer Hinweis auf Herstellerangaben & Affiliate-Links + 4 relevante deutsche Hashtags"
 }

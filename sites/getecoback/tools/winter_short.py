@@ -19,6 +19,9 @@ def packet(category):
     if len(picks) != 2 or not all(p['url'] for p in picks):
         raise ValueError('Beide Modelle brauchen aktuelle, geprüfte Daten.')
     return {'ziel': 'https://getecoback.com/guide/' + ROUTES[category] + '.html',
+            'szenenzeiten': TIMES,
+            'produktion': ('Zeige eine durchgehende Handlung. Sprich den Einstieg als einen kurzen Satz. '
+                           'Nenne EcoBack als Urheber in caption_de und verwende die genaue Ziel-URL.'),
             'vergleich': data['winter_comparison']['columns'],
             'modelle': [{k: v for k, v in p.items() if k != 'url'} for p in picks]}
 
