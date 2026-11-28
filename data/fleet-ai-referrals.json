@@ -1,54 +1,156 @@
 {
- "generated": "2026-11-27T17:45:22Z",
+ "generated": "2026-11-28T16:30:57Z",
  "window_days": 28,
- "ok": false,
- "read_via": "endpoints (partial)",
- "errors": [
-  "agiscorecard: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback",
-  "getecoback: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback",
-  "thedollscout: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback",
-  "gridlings: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback",
-  "buysomething: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback",
-  "gamesledger: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback",
-  "after35: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback",
-  "learn: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback",
-  "fanzha: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback",
-  "firstjob: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback",
-  "codeword: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback",
-  "powerbill: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback"
- ],
+ "ok": true,
+ "read_via": "endpoints",
+ "errors": [],
  "baseline_2026_09_12": {
   "fleet_ai_ref": 69,
   "note": "hand-measured; agi 20, bpj 33, eco 16, others 0"
  },
- "fleet_ai_ref": null,
- "fleet_ai_ref_claude_ai": null,
- "fleet_ai_ref_excl_claude_ai": null,
- "partial_ai_ref": 9,
- "partial_ai_ref_claude_ai": 0,
- "fleet_human_pv": null,
- "partial_human_pv": 1078,
- "sites_read": 2,
+ "fleet_ai_ref": 20,
+ "fleet_ai_ref_claude_ai": 2,
+ "fleet_ai_ref_excl_claude_ai": 18,
+ "partial_ai_ref": null,
+ "partial_ai_ref_claude_ai": null,
+ "fleet_human_pv": 81186,
+ "partial_human_pv": null,
+ "sites_read": 14,
  "sites_expected": 14,
- "fleet_human_pv_excl_flagged": null,
+ "fleet_human_pv_excl_flagged": 9515,
  "sites": [
   {
+   "site": "agiscorecard",
+   "human_pv": 66998,
+   "ai_ref": 8,
+   "by_host": {
+    "perplexity.ai": 4,
+    "kagi.com": 2,
+    "claude.ai": 2
+   },
+   "via": "endpoint",
+   "pv_caveat": "server-side pageviews; JS page_view beacon 1,641/28d on 2026-09-23",
+   "ai_ref_claude_ai": 2
+  },
+  {
    "site": "baipiaoji",
-   "human_pv": 588,
-   "ai_ref": 9,
+   "human_pv": 574,
+   "ai_ref": 8,
    "by_host": {
     "kagi.com": 2,
-    "www.perplexity.ai": 7
+    "www.perplexity.ai": 6
    },
    "via": "endpoint",
    "ai_ref_claude_ai": 0
   },
   {
-   "site": "goldrush",
-   "human_pv": 490,
+   "site": "getecoback",
+   "human_pv": 776,
+   "ai_ref": 1,
+   "by_host": {
+    "www.perplexity.ai": 1
+   },
+   "via": "endpoint",
+   "ai_ref_claude_ai": 0
+  },
+  {
+   "site": "thedollscout",
+   "human_pv": 3111,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint",
+   "ai_ref_claude_ai": 0
+  },
+  {
+   "site": "goldrush",
+   "human_pv": 473,
+   "ai_ref": 0,
+   "by_host": {},
+   "via": "endpoint",
+   "ai_ref_claude_ai": 0
+  },
+  {
+   "site": "gridlings",
+   "human_pv": 3296,
+   "ai_ref": 1,
+   "by_host": {
+    "https://kagi.com/": 1
+   },
+   "via": "endpoint",
+   "ai_ref_claude_ai": 0
+  },
+  {
+   "site": "buysomething",
+   "human_pv": 305,
+   "ai_ref": 1,
+   "by_host": {
+    "https://source.agiscorecard.com/?utm_source=chatgpt.com": 1
+   },
+   "via": "endpoint",
+   "ai_ref_claude_ai": 0
+  },
+  {
+   "site": "gamesledger",
+   "human_pv": 980,
+   "ai_ref": 1,
+   "by_host": {
+    "kagi.com": 1
+   },
+   "via": "endpoint",
+   "ai_ref_claude_ai": 0
+  },
+  {
+   "site": "after35",
+   "human_pv": 1113,
+   "ai_ref": 0,
+   "by_host": {},
+   "via": "endpoint",
+   "pv_caveat": "0 outside referrers and 0 events in 28d on 2026-09-23",
+   "ai_ref_claude_ai": 0
+  },
+  {
+   "site": "learn",
+   "human_pv": 555,
+   "ai_ref": 0,
+   "by_host": {},
+   "via": "endpoint",
+   "pv_caveat": "0 outside referrers and 0 events in 28d on 2026-09-23",
+   "ai_ref_claude_ai": 0
+  },
+  {
+   "site": "fanzha",
+   "human_pv": 561,
+   "ai_ref": 0,
+   "by_host": {},
+   "via": "endpoint",
+   "pv_caveat": "0 outside referrers and 0 events in 28d on 2026-09-23",
+   "ai_ref_claude_ai": 0
+  },
+  {
+   "site": "firstjob",
+   "human_pv": 552,
+   "ai_ref": 0,
+   "by_host": {},
+   "via": "endpoint",
+   "pv_caveat": "0 outside referrers and 0 events in 28d on 2026-09-23",
+   "ai_ref_claude_ai": 0
+  },
+  {
+   "site": "codeword",
+   "human_pv": 1008,
+   "ai_ref": 0,
+   "by_host": {},
+   "via": "endpoint",
+   "pv_caveat": "0 outside referrers and 0 events in 28d on 2026-09-23",
+   "ai_ref_claude_ai": 0
+  },
+  {
+   "site": "powerbill",
+   "human_pv": 884,
+   "ai_ref": 0,
+   "by_host": {},
+   "via": "endpoint",
+   "pv_caveat": "0 outside referrers and 0 events in 28d on 2026-09-23",
    "ai_ref_claude_ai": 0
   }
  ]
