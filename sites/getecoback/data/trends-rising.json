@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-27",
+ "fetched": "2026-11-28",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -65,17 +65,17 @@
     "infrarotheizung bild",
     "infrarotheizungen",
     "infrarotheizung test stiftung warentest",
-    "infrarotheizung könighaus"
+    "infrarotheizung mit thermostat"
    ],
    "new_vocabulary": [
-    "infrarotheizung könighaus"
+    "infrarotheizung mit thermostat"
    ],
    "rising": [],
    "source": "autocomplete-vocabulary",
    "signal_limit": "vocabulary_only_not_growth_or_search_volume",
-   "last_attempt_at": "2026-11-27T14:13:57.591637+00:00",
+   "last_attempt_at": "2026-11-28T13:28:28.371673+00:00",
    "last_attempt_status": "failed",
-   "fetched": "2026-11-27"
+   "fetched": "2026-11-28"
   },
   "luftentfeuchter": {
    "rising": [
@@ -176,53 +176,35 @@
    "last_attempt_status": "ok"
   },
   "kaffeevollautomat": {
-   "rising": [
-    {
-     "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
-     "v": 22350
-    },
-    {
-     "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
-     "v": 14200
-    },
-    {
-     "q": "philips kaffeevollautomat 6000 serie",
-     "v": 9650
-    },
-    {
-     "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
-     "v": 7600
-    },
-    {
-     "q": "de'longhi kaffeevollautomat ecam 21.118.b",
-     "v": 6600
-    },
-    {
-     "q": "wmf perfection 840l kaffeevollautomat",
-     "v": 6150
-    },
-    {
-     "q": "black friday kaffeevollautomat",
-     "v": 1250
-    },
-    {
-     "q": "siemens kaffeevollautomat eq6 plus s300",
-     "v": 800
-    },
-    {
-     "q": "philips 5500 lattego ep5546/70 kaffeevollautomat",
-     "v": 350
-    },
-    {
-     "q": "siemens eq.6 plus s700 te657m03de kaffeevollautomat",
-     "v": 250
-    }
+   "auto": [
+    "kaffeevollautomat",
+    "kaffeevollautomat black friday",
+    "kaffeevollautomat test",
+    "kaffeevollautomat delonghi",
+    "kaffeevollautomat philips",
+    "kaffeevollautomat testsieger",
+    "kaffeevollautomat siemens",
+    "kaffeevollautomat angebot",
+    "kaffeevollautomat jura",
+    "kaffeevollautomat günstig"
    ],
-   "source": "related-queries",
-   "fetched": "2026-11-20",
-   "polluted": false,
-   "last_attempt_at": "2026-11-20T13:25:53.260636+00:00",
-   "last_attempt_status": "ok"
+   "new_vocabulary": [
+    "kaffeevollautomat black friday",
+    "kaffeevollautomat test",
+    "kaffeevollautomat delonghi",
+    "kaffeevollautomat philips",
+    "kaffeevollautomat testsieger",
+    "kaffeevollautomat siemens",
+    "kaffeevollautomat angebot",
+    "kaffeevollautomat jura",
+    "kaffeevollautomat günstig"
+   ],
+   "rising": [],
+   "source": "autocomplete-vocabulary",
+   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
+   "last_attempt_at": "2026-11-28T13:31:28.478928+00:00",
+   "last_attempt_status": "failed",
+   "fetched": "2026-11-28"
   },
   "akku staubsauger": {
    "auto": [
