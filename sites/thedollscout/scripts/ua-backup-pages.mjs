@@ -153,7 +153,7 @@ function page(title, description, pathname, mirror, kit) {
     </section>
   </main>
   <footer class="layout bottom"><a href="/legal/privacy" lang="en">Privacy</a> <a href="${mirror}">Текстова версія</a></footer>
-  <script type="module" src../collector-assets/ua-backup/backup-ui.mjs"></script>
+  <script type="module" src="/collector-assets/ua-backup/backup-ui.mjs"></script>
 </body>
 </html>
 `;

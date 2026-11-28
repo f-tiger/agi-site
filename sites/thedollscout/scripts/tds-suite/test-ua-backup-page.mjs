@@ -14,6 +14,7 @@ test('the Ukrainian UPS index and three model pages have canonical, crawlable ev
     assert.match(path, /^\/ua\/(internet-bez-svitla|dbzh\/[a-z0-9-]+)$/);
     const html = files.get(path.slice(1) + '.html');
     assert.ok(html.includes('<html lang="uk-UA">'));
+    assert.match(html, /<script\s+type="module"\s+src="\/collector-assets\/ua-backup\/backup-ui\.mjs"><\/script>/);
     assert.ok(html.includes('rel="canonical" href="' + page.url + '"'));
     assert.ok(html.includes('href="' + mirror + '"'));
     assert.equal((html.match(/<h1>/g) || []).length, 1);
