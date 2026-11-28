@@ -154,7 +154,7 @@ async function checkCellarEntry(browser) {
  const otherHash='#modell-meaco-one-25';
  const markerQuery='?mcp_entry=keller-pruefpunkt';
  const modelSearch='https://www.amazon.de/s?k=MeacoDry+Arete+One+20L&tag=getecoback-21';
- const otherSearch='https://www.amazon.de/s?k=MeacoDry+Arete+One+25L&tag=getecoback-21';
+ const otherSearch='https://www.amazon.de/dp/B09477NMMJ?tag=getecoback-21';
  const cases=[];
  for(const mode of ['tagged','untagged','wrong-fragment','extra-query','opted-out','probe','other-model','no-script']){
   const noScript=mode==='no-script';
