@@ -1,0 +1,49 @@
+name: Check ECO Amazon reporting access
+
+on:
+  workflow_dispatch: {}
+  pull_request:
+    paths:
+      - 'tools/amazon-reporting/**'
+      - '.github/workflows/eco-amazon-reporting.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test reporting protocol and private output boundaries
+        run: python3 -m unittest discover -s tools/amazon-reporting -p 'test_*.py'
+
+  check-access:
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    needs: test
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify DE report access without publishing account data
+        env:
+          AMAZON_CREATORS_CREDENTIAL_ID: ${{ secrets.AMAZON_CREATORS_CREDENTIAL_ID }}
+          AMAZON_CREATORS_CREDENTIAL_SECRET: ${{ secrets.AMAZON_CREATORS_CREDENTIAL_SECRET }}
+          AMAZON_CREATORS_CREDENTIAL_VERSION: ${{ secrets.AMAZON_CREATORS_CREDENTIAL_VERSION }}
+        run: >-
+          python3 tools/amazon-reporting/amazon_reports.py
+          --health-only --output-dir "$RUNNER_TEMP/eco-amazon-private"
+      - name: Remove private temporary files
+        if: always()
+        run: rm -rf -- "$RUNNER_TEMP/eco-amazon-private"
