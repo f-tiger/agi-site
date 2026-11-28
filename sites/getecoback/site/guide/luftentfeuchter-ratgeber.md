@@ -148,7 +148,7 @@ Sechs Luftentfeuchter: Unterschiede vor dem Kauf
 [Ablauf, Lieferumfang und Modellquelle prüfen ↓](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#ablauf-vor-kauf)Du hast die Feuchte gemessen und brauchst ein Gerät? Vergleiche zuerst Bedienung, Ablauf und die genaue Modellvariante. Weitere Modelle nach Ausstattung auswählen.
 **Deutschland:** Händlerlinks führen zu Amazon.de. Für Österreich und die Schweiz Lieferung, Stecker, Garantie und Gesamtkosten separat prüfen.
 Bei ungeklärter Feuchte zuerst [richtig messen](https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html); bei nassen Wänden oder Schimmel [die Ursache klären](https://getecoback.com/guide/luftentfeuchter-gegen-schimmel.html). Für kalte Räume [Betriebsgrenzen prüfen](https://getecoback.com/guide/luftentfeuchter-keller.html#kalter-keller); bei Wäsche [Kosten je Ladung vergleichen](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#laundry-check).
-Hersteller-/Anbieterquellen geprüft: 2026-11-12. Keine Live-Preise oder garantierte Lieferbarkeit. Unterschiedliche Nennkapazitäten, Messbedingungen oder Quellen ergeben keinen Effizienzsieger.
+Quellenstand der weiteren ModelleHersteller-/Anbieterquellen geprüft: 2026-11-12. Keine Live-Preise oder garantierte Lieferbarkeit. Unterschiedliche Nennkapazitäten, Messbedingungen oder Quellen ergeben keinen Effizienzsieger.
 
 ### Schlauchanschluss oder Pumpe: Passt der Ablauf zu deinem Raum?
 **Ein Schlauchanschluss allein bestätigt keine Pumpe.** Liegt dein Abfluss höher als der Geräteauslass, muss die Anleitung genau dieses Modells eine passende Lösung bestätigen. Fehlt eine Pumpenangabe, ist die Eignung für deinen Ablauf ungeklärt.

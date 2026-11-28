@@ -177,6 +177,10 @@ def block(slug, today=None, data=None):
         '<a href="#modell-meaco-one-20">Ablauf liegt höher: Pumpenoption der Arete One 20L prüfen</a>'
         '</nav>'
     ) if cellar else ''
+    source_note = (f'<p>Hersteller-/Anbieterquellen geprüft: {e(data["checked"])}. Keine Live-Preise oder garantierte Lieferbarkeit. '
+                   'Unterschiedliche Nennkapazitäten, Messbedingungen oder Quellen ergeben keinen Effizienzsieger.</p>')
+    if slug == 'luftentfeuchter-ratgeber':
+        source_note = f'<details><summary>Quellenstand der weiteren Modelle</summary>{source_note}</details>'
     context = ('Weitere Modelle nach Ausstattung auswählen.' if slug == 'luftentfeuchter-ratgeber' else
                'Diese Auswahl erweitert die Möglichkeiten; sie ist keine Rangliste und kein eigener Gerätetest.')
     return ('<!--EB_MODELS--><section class="eb-shop eb-models dc-catalog" id="eb-models" aria-labelledby="dc-title">'
@@ -205,8 +209,7 @@ def block(slug, today=None, data=None):
             'bei nassen Wänden oder Schimmel <a href="/guide/luftentfeuchter-gegen-schimmel.html">die Ursache klären</a>. '
             'Für kalte Räume <a href="/guide/luftentfeuchter-keller.html#kalter-keller">Betriebsgrenzen prüfen</a>; '
             'bei Wäsche <a href="/waeschetrockner-oder-luftentfeuchter.html#laundry-check">Kosten je Ladung vergleichen</a>.</p>'
-            f'<p>Hersteller-/Anbieterquellen geprüft: {e(data["checked"])}. Keine Live-Preise oder garantierte Lieferbarkeit. '
-            'Unterschiedliche Nennkapazitäten, Messbedingungen oder Quellen ergeben keinen Effizienzsieger.</p>'
+            f'{source_note}'
             '<section class="dc-drain" id="ablauf-vor-kauf" aria-labelledby="dc-drain-title">'
             '<h3 id="dc-drain-title">Schlauchanschluss oder Pumpe: Passt der Ablauf zu deinem Raum?</h3>'
             '<p><strong>Ein Schlauchanschluss allein bestätigt keine Pumpe.</strong> '

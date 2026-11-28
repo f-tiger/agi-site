@@ -33,7 +33,11 @@ test('six built guides retain disclosures, evidence and existing language bounda
   assert.equal((html.match(/src="\/assets\/moisture-decision.mjs\?v=[a-f0-9]{12}"/g)||[]).length,1);
   assert.ok(html.includes('getecoback-21'));
   assert.ok(html.includes('rel="sponsored nofollow noopener"'));
-  assert.ok(html.includes('8.5 L')&&html.includes('180 W'));
+  if(path==='/guide/luftentfeuchter-ratgeber.html'){
+   const method=html.match(/<details data-choice-method[^>]*>([\s\S]*?)<\/details>/)?.[1];
+   assert.ok(method?.includes('8,5 L/Tag · 216 W')&&method.includes('3,4 L/Tag · 180 W'),path);
+   assert.ok(method.includes('5,4 L/Tag · 136 W')&&method.includes('1,97 L/Tag · 111 W'),path);
+  }else assert.ok(html.includes('8.5 L')&&html.includes('180 W'));
   if(path.startsWith('/en/'))assert.ok(html.includes('value="other" selected'));
  }
 });

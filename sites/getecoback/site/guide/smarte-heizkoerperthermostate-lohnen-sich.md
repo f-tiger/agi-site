@@ -22,7 +22,7 @@ Ventil noch unbekannt? Erst die Kennzeichnung prüfen. Reicht dein alter Kopf, b
 - [Ich möchte die Gesamtkosten prüfen Köpfe, fehlende Zentrale und Adapter zählen; danach mit eigener Sparannahme rechnen.](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-paketkosten)
 - [Mein bisheriger Kopf reicht vielleicht Weiterverwenden oder einen einfachen Zeitplan prüfen, bevor du ein Funk-System kaufst.](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-behalten)
 [Ein Zimmer bleibt trotz warmem Referenzraum kalt](https://getecoback.com/guide/heizkoerper-wird-nicht-warm.html#referenzraum-warm-nebenraum-kalt) · [Bedienung ohne Internet oder Zentrale prüfen](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-ohne-internet)
-Grundlage: [Verbraucherzentrale zur Thermostatregelung](https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizkosten-sparen-thermostat-richtig-einstellen-und-wechseln-7940) (Quellenstand 4. Oktober 2026). Modell- und Paketquellen stehen bei den jeweiligen Geräten. Redaktionelle Entscheidungshilfe, kein eigener Produkttest.
+Grundlage: [Verbraucherzentrale zur Thermostatregelung](https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizkosten-sparen-thermostat-richtig-einstellen-und-wechseln-7940) (Quellenstand 4. Oktober 2026). Modell- und Paketquellen stehen bei den jeweiligen Geräten.
 
 Vor dem Kauf · zwei Auswahlen, keine Texteingabe
 
@@ -119,7 +119,7 @@ Wenn du den Kopf ersetzen möchtest und das Ventil eindeutig bestimmt ist, prüf
 
 [tado°: vollständige Herstellerübersicht öffnen](https://support.tado.com/de/articles/3482335) · Separate Hilfe für tado° X
 
-Stand der Prüfung: 31. Oktober 2026. Die verlinkte Ventilliste trägt Version 2.0, September 2021 und wird weiterhin von der Herstellerhilfe verlinkt. Die Liste ist indikativ und unvollständig. Neuere Modellunterlagen und Herstellerbestätigung gehen vor. Keine eigenen Montage- oder Produkttests; die Herstellerlinks sind keine Affiliate-Links.
+Stand der Prüfung: 31. Oktober 2026. Die verlinkte Ventilliste trägt Version 2.0, September 2021 und wird weiterhin von der Herstellerhilfe verlinkt. Die Liste ist indikativ und unvollständig. Neuere Modellunterlagen und Herstellerbestätigung gehen vor. Prüfe bei unklarer Passung die aktuelle Anleitung.
 
 ### Passt technisch – lohnt sich der Wechsel?
 Kompatibilität belegt noch keine Heizkostenersparnis. Prüfe zuerst deinen Zeitplan. Rechne danach Köpfe, notwendige Adapter, Zentrale, Batterien und verpflichtende Dienste zusammen. Für Deutschland und Österreich EUR, für die Schweiz CHF verwenden; keine Währungsumrechnung und keine bestätigte lokale Lieferbarkeit.
@@ -161,7 +161,6 @@ Herstellerquellen für Deutschland geprüft am 25. November 2026.
 Deine Räume werden passend zur Nutzung warm und du regelst zuverlässig herunter? Dann musst du nicht auf smarte Köpfe wechseln. Für gleichbleibende Zeiten kann ein einfacher programmierbarer Kopf genügen. Vergleiche diese Lösung vor einem neuen Funk-System.
 [Erst mit 0 % zusätzlicher Ersparnis rechnen](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#rechner) · [Ventil und Modellgeneration klären](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#ventilcheck)
 
-Prüfdaten stehen bei den jeweiligen Herstellerquellen. Keine Live-Preise, Bestands- oder Spargarantie. Aktuelle Herstellerunterlagen und das konkrete Händlerpaket gehen vor.
 Auf kleinen Bildschirmen kannst du die Vergleichstabelle seitlich verschieben.
 
 Welcher Danfoss-Adapter gehört zum Kopf?

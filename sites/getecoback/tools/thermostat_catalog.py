@@ -58,8 +58,7 @@ def buyer_start():
             '</ul><p><a href="/guide/heizkoerper-wird-nicht-warm.html#referenzraum-warm-nebenraum-kalt">Ein Zimmer bleibt trotz warmem Referenzraum kalt</a> · <a href="#thermostat-ohne-internet">Bedienung ohne Internet oder Zentrale prüfen</a></p>'
             '<p class="tc-source">Grundlage: <a href="https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizkosten-sparen-thermostat-richtig-einstellen-und-wechseln-7940">'
             'Verbraucherzentrale zur Thermostatregelung</a> (Quellenstand 4. Oktober 2026). '
-            'Modell- und Paketquellen stehen bei den jeweiligen Geräten. '
-            'Redaktionelle Entscheidungshilfe, kein eigener Produkttest.</p></section>')
+            'Modell- und Paketquellen stehen bei den jeweiligen Geräten.</p></section>')
 
 
 def offline_choice():
@@ -138,8 +137,6 @@ def render(today=None, data=None):
             '<p>Deine Räume werden passend zur Nutzung warm und du regelst zuverlässig herunter? Dann musst du nicht auf smarte Köpfe wechseln. '
             'Für gleichbleibende Zeiten kann ein einfacher programmierbarer Kopf genügen. Vergleiche diese Lösung vor einem neuen Funk-System.</p>'
             '<p><a href="#rechner">Erst mit 0 % zusätzlicher Ersparnis rechnen</a> · <a href="#ventilcheck">Ventil und Modellgeneration klären</a></p></div>'
-            '<p class="tc-source">Prüfdaten stehen bei den jeweiligen Herstellerquellen. Keine Live-Preise, Bestands- oder Spargarantie. '
-            'Aktuelle Herstellerunterlagen und das konkrete Händlerpaket gehen vor.</p>'
             '<p class="tc-source">Auf kleinen Bildschirmen kannst du die Vergleichstabelle seitlich verschieben.</p>'
             '<div class="tc-table" role="region" aria-label="Thermostat-Systeme vergleichen, horizontal scrollbar" tabindex="0"><table>'
             '<caption>Welcher Danfoss-Adapter gehört zum Kopf?</caption><thead><tr><th scope="col">Genaues Modell</th>'
