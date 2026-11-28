@@ -1,10 +1,61 @@
 {
-  "generated": "2026-11-27",
+  "generated": "2026-11-28",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
   "fetched_ok": 108,
   "fetched_fail": 19,
-  "pending": 11,
+  "pending": 12,
   "items": [
+    {
+      "slug": "deepl",
+      "url": "https://www.deepl.com/pricing",
+      "confirmed": "2026-11-28",
+      "first_seen": "2026-11-27",
+      "added": [
+        "0gb"
+      ],
+      "removed": [
+        "€24.99",
+        "€49.99",
+        "€7.49"
+      ],
+      "checked_then": "2026-09-21"
+    },
+    {
+      "slug": "bailian",
+      "url": "https://aliyun.com",
+      "confirmed": "2026-11-28",
+      "first_seen": "2026-11-27",
+      "added": [
+        "15万",
+        "2000万",
+        "200美元",
+        "30秒",
+        "3亿",
+        "3美元",
+        "40亿"
+      ],
+      "removed": [
+        "$150",
+        "$200",
+        "$6/mo",
+        "1m",
+        "30%",
+        "30seconds",
+        "60mins"
+      ],
+      "checked_then": "2026-08-03"
+    },
+    {
+      "slug": "replit",
+      "url": "https://docs.replit.com",
+      "confirmed": "2026-11-28",
+      "first_seen": "2026-11-27",
+      "added": [
+        "201293b"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-03"
+    },
     {
       "slug": "deepinfra",
       "url": "https://deepinfra.com",
@@ -257,18 +308,6 @@
       "checked_then": "2026-08-03"
     },
     {
-      "slug": "deepl",
-      "url": "https://www.deepl.com/pricing",
-      "confirmed": "2026-11-22",
-      "first_seen": "2026-11-21",
-      "added": [],
-      "removed": [
-        "2k",
-        "5b"
-      ],
-      "checked_then": "2026-09-21"
-    },
-    {
       "slug": "ollama",
       "url": "https://github.com/ollama/ollama",
       "confirmed": "2026-11-22",
@@ -420,17 +459,6 @@
       "checked_then": "2026-08-13"
     },
     {
-      "slug": "replit",
-      "url": "https://docs.replit.com",
-      "confirmed": "2026-11-18",
-      "first_seen": "2026-11-17",
-      "added": [],
-      "removed": [
-        "385b"
-      ],
-      "checked_then": "2026-08-03"
-    },
-    {
       "slug": "notebooklm",
       "url": "https://support.google.com/gemininotebook",
       "confirmed": "2026-11-18",
@@ -524,21 +552,6 @@
       ],
       "removed": [],
       "checked_then": "2026-09-21"
-    },
-    {
-      "slug": "bailian",
-      "url": "https://aliyun.com",
-      "confirmed": "2026-11-07",
-      "first_seen": "2026-11-06",
-      "added": [
-        "60mins"
-      ],
-      "removed": [
-        "10k",
-        "1mo",
-        "70m"
-      ],
-      "checked_then": "2026-08-03"
     },
     {
       "slug": "kiro",

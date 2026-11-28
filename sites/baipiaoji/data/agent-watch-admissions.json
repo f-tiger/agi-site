@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-27",
+ "checked": "2026-11-28",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -4878,279 +4878,63 @@
    "source_http": 404,
    "repo_http": null,
    "reason": "source HTTP 404"
+  },
+  "historicalsoundscapes-semantic-search": {
+   "attempts": 1,
+   "first_attempt": "2026-11-28",
+   "last_attempt": "2026-11-28",
+   "attemptedAt": "2026-11-28T08:23:04.490Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "homevisto-mcp-server": {
+   "attempts": 1,
+   "first_attempt": "2026-11-28",
+   "last_attempt": "2026-11-28",
+   "attemptedAt": "2026-11-28T08:23:04.490Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "honesthook-social-data": {
+   "attempts": 1,
+   "first_attempt": "2026-11-28",
+   "last_attempt": "2026-11-28",
+   "attemptedAt": "2026-11-28T08:23:04.490Z",
+   "source_http": 402,
+   "repo_http": null,
+   "reason": "source HTTP 402"
+  },
+  "honeycomb-tech-ailis-ailis": {
+   "attempts": 1,
+   "first_attempt": "2026-11-28",
+   "last_attempt": "2026-11-28",
+   "attemptedAt": "2026-11-28T08:23:04.490Z",
+   "source_http": 521,
+   "repo_http": null,
+   "reason": "source HTTP 521"
+  },
+  "hotschmoe-agents-agentworld": {
+   "attempts": 1,
+   "first_attempt": "2026-11-28",
+   "last_attempt": "2026-11-28",
+   "attemptedAt": "2026-11-28T08:23:04.490Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "ibitlabs-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-11-28",
+   "last_attempt": "2026-11-28",
+   "attemptedAt": "2026-11-28T08:23:04.490Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
   }
  },
  "admitted": [
-  {
-   "slug": "loppee-loppee",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "ad-getle-leads",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cnrcode-tillpad",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "artifactshare-artifactshare",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "marketmayhem-mcp",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "click-appdesigns-screenshots",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "radicadouno-mcp",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "svglab-svglab",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "meetclair-clair",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "warmerly-warmerly",
-   "date": "2026-09-27",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "policyforge-mcp",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "asianrecs-asianrecs",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "citestamp-citestamp",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "syncso-syncso",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "uicapsule-components",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "liquidagent-api-liquid-agent",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "twelvetake-gimp-studio-mcp",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cooperemail-cooper-email",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "dinglebear-unraid-mcp",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "myspaice-spaces",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "twelvetake-reaper-mcp",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "tradestarinsider-edgar-insider-signals",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "polyxd-mcp",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "clawfight-mcp",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "aicdapi-records",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "ghostviralai-ghostviral",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "seamark-seamark",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "crossingkeyintelligence-crossingkey-mcp",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "aviansuite-stellar-jay",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "gtm-api-linkedin-mcp",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "ai-rete-rag-mcp",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "furringline-mcp-furringline",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "relvato-relvato",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "boothcheck-boothcheck",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "tlders-domain-prices",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "senzii-scheduling",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "tokonomix-council",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "growingupvideo-growingupvideo",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "rillsoft-project",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "cloud-eresourcescheduler-eresource-scheduler",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "ludo-game-assets",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "voicecapture-voice-capture",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "telesherpa-ontology-platform",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "humanuscrit-happ",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "sketchxflow-mcp",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "random-profiles-mcp",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "hunchsheet-hunch",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "arkrel-arkrel",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "dondego-wikidata-google-knowledge-mcp",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "markifact-meta-ads",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "markifact-mcp",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "markifact-google-ads",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "flaim-mcp",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
-  {
-   "slug": "securessmtp-securessmtp",
-   "date": "2026-09-29",
-   "origin": "mcp-registry"
-  },
   {
    "slug": "claudeforcompliance-mortgage-regs",
    "date": "2026-09-29",
@@ -22760,6 +22544,330 @@
   {
    "slug": "historiapojazduvin-site",
    "date": "2026-11-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hitsteps-analytics-operations",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "hivepublish-hive",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hjarni-hjarni",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "hojincheck-hojincheck",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "holdingsintel-mcp",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "holidayfox-booking",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "homebridgepc-agent-commerce-halo-ai-surfaces",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "homecoverhq-site",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "homeoceutics-catalog",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hometownwire-civic-record",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "honen-honen",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "honestysupport-support",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hookdetector-hookdetector",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hoptodesk-dashboard",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "horizonmedia-brand-authority",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "hortosapp-au",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hortosapp-ca",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hortosapp-nz",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hortosapp-us",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hosco-hospitality-jobs",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hostingbystack-site",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hotels-toulon-mer-booking",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hotelumo-hotelumo",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hotelvalora-mcp",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hourtick-hourtick",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "housenstars-real-estate-discovery",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "housingfax-mcp",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "howtomakemoneyonsnapchat-creator-monetization",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "howtoreadthefuture-podcast",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hproxy-mcp",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "hreflangly-site",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "htagai-htag-docs",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "html2img-html-to-image",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "htmlvault-htmlvault",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hub-equity-mcp",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "huddlekit-huddlekit",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "huddlevo-site",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "humanfn-humanfn",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "humanslikestuff-mcp",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "humaux-memory",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "hungry-esim-esim",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "hushvert-mcp",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "hutlists-hutlists",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hvacsoftwarepicker-site",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hydrafetch-web",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hydrantly-site",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hyperneobroker-mcp-broker",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hyperping-hyperping",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "i-kanban-ikanban",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "i2dev-snap",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "iaselecta-iaselecta",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "iberiapath-dnv-spain",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ibipoint-esim-catalog",
+   "date": "2026-11-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ibkr-interactive-brokers-ibkr",
+   "date": "2026-11-28",
    "source_http": 200,
    "repo_http": null
   }
