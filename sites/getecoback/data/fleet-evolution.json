@@ -3,13 +3,13 @@
   "site": "getecoback",
   "signals": {
     "membership": {
-      "ready": true,
+      "ready": false,
       "has_paid_members": false,
       "has_active_members": false
     },
     "traffic": {
-      "human_pv_band": "100+",
-      "ai_ref_band": "1-9",
+      "human_pv_band": null,
+      "ai_ref_band": null,
       "reach_humans_referred_band": null,
       "measurement": "Legacy field names contain page-view/referrer events, not verified people, qualified buyers or paid demand."
     },
@@ -27,11 +27,11 @@
   },
   "actions": [
     {
-      "kind": "membership_readiness_check",
-      "priority": 70,
-      "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
+      "kind": "membership_health",
+      "priority": 92,
+      "reason": "recent snapshot reported unavailable checkout; check the live API before recovery",
       "evidence": {},
-      "mode": "observe"
+      "mode": "alert"
     },
     {
       "kind": "content_gap",

@@ -3,39 +3,39 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 15,
-    "q": "tool:verdicts"
-   },
-   {
-    "n": 15,
+    "n": 14,
     "q": "tool:portfolio_returns"
    },
    {
-    "n": 11,
-    "q": "tool:search_mcp_catalog"
-   },
-   {
-    "n": 10,
-    "q": "tool:thesis_tracker"
+    "n": 13,
+    "q": "tool:verdicts"
    },
    {
     "n": 9,
-    "q": "tool:claim_ledger https://goldrush.agiscorecard."
+    "q": "tool:search_mcp_catalog"
    },
    {
     "n": 8,
-    "q": "tool:sunwatch_ledger"
+    "q": "tool:thesis_tracker"
+   },
+   {
+    "n": 8,
+    "q": "tool:claim_ledger https://goldrush.agiscorecard."
    },
    {
     "n": 7,
-    "q": "github"
+    "q": "tool:sunwatch_ledger"
    },
    {
     "n": 6,
     "q": "tool:invest_positions"
    },
    {
-    "n": 5,
+    "n": 6,
+    "q": "github"
+   },
+   {
+    "n": 4,
     "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
    },
    {
@@ -44,14 +44,14 @@
    }
   ]
  },
- "fetched": "2026-11-27",
+ "fetched": "2026-11-28",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
   "/agents/": {
-   "n7": 220,
-   "p7": 74
+   "n7": 207,
+   "p7": 102
   }
  },
  "site": "agiscorecard",

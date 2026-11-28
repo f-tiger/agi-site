@@ -3,13 +3,13 @@
   "site": "thedollscout",
   "signals": {
     "membership": {
-      "ready": true,
+      "ready": false,
       "has_paid_members": false,
       "has_active_members": false
     },
     "traffic": {
-      "human_pv_band": "100+",
-      "ai_ref_band": "0",
+      "human_pv_band": null,
+      "ai_ref_band": null,
       "reach_humans_referred_band": null,
       "measurement": "Legacy field names contain page-view/referrer events, not verified people, qualified buyers or paid demand."
     },
@@ -27,11 +27,11 @@
   },
   "actions": [
     {
-      "kind": "membership_readiness_check",
-      "priority": 70,
-      "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
+      "kind": "membership_health",
+      "priority": 92,
+      "reason": "recent snapshot reported unavailable checkout; check the live API before recovery",
       "evidence": {},
-      "mode": "observe"
+      "mode": "alert"
     },
     {
       "kind": "content_gap",
@@ -41,16 +41,6 @@
         "count_band": "10-99",
         "query": "cat mode labubu",
         "value_band": "100+"
-      },
-      "mode": "queue"
-    },
-    {
-      "kind": "ai_attribution_review",
-      "priority": 48,
-      "reason": "check source coverage and useful AI arrivals before expanding discovery work; legacy page views do not establish referred people or citations",
-      "evidence": {
-        "legacy_page_view_events_band": "100+",
-        "ai_referrer_events_band": "0"
       },
       "mode": "queue"
     }

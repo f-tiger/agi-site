@@ -2,27 +2,27 @@
  "extra": {
   "events": {
    "affiliate_click": {
-    "n7": 5,
-    "p7": 10
+    "n7": 6,
+    "p7": 7
    },
    "btu_calc": {
     "n7": 7,
     "p7": 2
    },
    "buyer_result": {
-    "n7": 1,
+    "n7": 2,
     "p7": 0
    },
    "buyer_view": {
-    "n7": 1,
+    "n7": 2,
     "p7": 1
    },
    "cold_now": {
-    "n7": 105,
-    "p7": 61
+    "n7": 109,
+    "p7": 56
    },
    "feuchte_now": {
-    "n7": 66,
+    "n7": 68,
     "p7": 51
    },
    "laundry_view": {
@@ -34,24 +34,24 @@
     "p7": 1
    },
    "page_view": {
-    "n7": 384,
-    "p7": 204
+    "n7": 390,
+    "p7": 197
    },
    "popup_click": {
     "n7": 0,
-    "p7": 3
+    "p7": 2
    },
    "popup_close": {
     "n7": 9,
-    "p7": 6
+    "p7": 5
    },
    "popup_view": {
-    "n7": 18,
-    "p7": 18
+    "n7": 17,
+    "p7": 17
    },
    "strom_now": {
-    "n7": 45,
-    "p7": 13
+    "n7": 42,
+    "p7": 16
    },
    "watt_calc": {
     "n7": 3,
@@ -64,7 +64,7 @@
   },
   "zero_hit_records": 0
  },
- "fetched": "2026-11-27",
+ "fetched": "2026-11-28",
  "kind": "eco-trend",
  "notes": [],
  "ok": true,
@@ -82,7 +82,7 @@
    "p7": 0
   },
   "/guide/fenster-beschlagen-aussen.html": {
-   "n7": 9,
+   "n7": 10,
    "p7": 0
   },
   "/guide/fenster-beschlagen-innen.html": {
@@ -91,7 +91,7 @@
   },
   "/guide/fensterabdichtung-selber-bauen.html": {
    "n7": 9,
-   "p7": 2
+   "p7": 0
   },
   "/guide/heizdecke-stromverbrauch.html": {
    "n7": 7,
@@ -102,8 +102,8 @@
    "p7": 0
   },
   "/guide/infrarotheizung-watt-rechner.html": {
-   "n7": 7,
-   "p7": 0
+   "n7": 6,
+   "p7": 1
   },
   "/guide/klarstein-kraftwerk-smart-12k-test.html": {
    "n7": 8,
@@ -134,7 +134,7 @@
    "p7": 5
   },
   "/guide/luftentfeuchter-ratgeber.html": {
-   "n7": 14,
+   "n7": 15,
    "p7": 6
   },
   "/guide/richtig-lueften-im-winter.html": {
@@ -154,15 +154,15 @@
    "p7": 0
   },
   "/guide/was-bedeutet-btu.html": {
-   "n7": 5,
+   "n7": 7,
    "p7": 1
   },
   "/mcp.html": {
-   "n7": 11,
-   "p7": 1
+   "n7": 10,
+   "p7": 2
   },
   "/produkte.html": {
-   "n7": 15,
+   "n7": 16,
    "p7": 16
   },
   "/waeschetrockner-oder-luftentfeuchter.html": {

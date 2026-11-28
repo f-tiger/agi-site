@@ -1,22 +1,22 @@
 {
   "schema_version": 1,
-  "as_of": "2026-11-27",
+  "as_of": "2026-11-28",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
     "healthy": 31,
-    "membership_ready": 4,
+    "membership_ready": 0,
     "paid_members": 0,
     "active_members": 0,
     "opportunities": 5,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-11-27T11:22:06.213Z",
-    "health": "2026-11-26T17:59:45Z",
-    "ai_referrals": "2026-11-26T18:00:11Z",
-    "opportunities": "2026-11-26",
-    "autopilot_receipt": "2026-11-27"
+    "membership": "2026-11-28T10:50:10.541Z",
+    "health": "2026-11-27T17:44:55Z",
+    "ai_referrals": "2026-11-27T17:45:22Z",
+    "opportunities": "2026-11-27",
+    "autopilot_receipt": "2026-11-28"
   },
   "input_ages_days": {
     "membership": 0,
@@ -28,10 +28,10 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-11-27T11:22:06.213Z",
+    "generated": "2026-11-28T10:50:10.541Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
-    "ok": true,
+    "ok": false,
     "counters_complete": true,
     "sites": [
       {
@@ -39,7 +39,7 @@
         "origin": "https://baipiaoji.com",
         "public": {
           "ok": true,
-          "ready": true,
+          "ready": false,
           "site": "bpj",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -60,7 +60,7 @@
         "origin": "https://agiscorecard.com",
         "public": {
           "ok": true,
-          "ready": true,
+          "ready": false,
           "site": "agi",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -81,7 +81,7 @@
         "origin": "https://getecoback.com",
         "public": {
           "ok": true,
-          "ready": true,
+          "ready": false,
           "site": "eco",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -102,7 +102,7 @@
         "origin": "https://thedollscout.com",
         "public": {
           "ok": true,
-          "ready": true,
+          "ready": false,
           "site": "tds",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -131,7 +131,7 @@
       "theme": "security for the small developer",
       "site": null,
       "state": "scout",
-      "score": 2.27,
+      "score": 2.53,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -146,15 +146,6 @@
       "supply": 0
     },
     {
-      "theme": "how do i give my hermes agents permanent memory institutional knowledge and inte",
-      "site": null,
-      "state": "scout",
-      "score": 2.05,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
       "theme": "how to make three js support real time path tracing",
       "site": null,
       "state": "scout",
@@ -164,13 +155,22 @@
       "supply": 0
     },
     {
-      "theme": "how to transfer photos from icloud photos to google drive",
+      "theme": "converter from 3d movie to normal movie",
       "site": null,
       "state": "scout",
       "score": 2.0,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
+    },
+    {
+      "theme": "how do i give my hermes agents permanent memory institutional knowledge and inte",
+      "site": null,
+      "state": "scout",
+      "score": 1.05,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 1
     }
   ],
   "user_pain_radar": [
@@ -291,6 +291,50 @@
   "actions": [
     {
       "site": "agiscorecard",
+      "kind": "membership_health",
+      "priority": 92,
+      "reason": "recent snapshot reported unavailable checkout; check the live API before recovery",
+      "evidence": {
+        "public_ok": true,
+        "ready": false
+      },
+      "mode": "alert"
+    },
+    {
+      "site": "baipiaoji",
+      "kind": "membership_health",
+      "priority": 92,
+      "reason": "recent snapshot reported unavailable checkout; check the live API before recovery",
+      "evidence": {
+        "public_ok": true,
+        "ready": false
+      },
+      "mode": "alert"
+    },
+    {
+      "site": "getecoback",
+      "kind": "membership_health",
+      "priority": 92,
+      "reason": "recent snapshot reported unavailable checkout; check the live API before recovery",
+      "evidence": {
+        "public_ok": true,
+        "ready": false
+      },
+      "mode": "alert"
+    },
+    {
+      "site": "thedollscout",
+      "kind": "membership_health",
+      "priority": 92,
+      "reason": "recent snapshot reported unavailable checkout; check the live API before recovery",
+      "evidence": {
+        "public_ok": true,
+        "ready": false
+      },
+      "mode": "alert"
+    },
+    {
+      "site": "agiscorecard",
       "kind": "optimize_existing_page",
       "priority": 80,
       "reason": "review the source and fit of topic signals mapped to an existing page; missing page-view events do not establish rejected demand",
@@ -299,57 +343,6 @@
         "query": "when are 13f filings due",
         "page": "ai-stock-exposure.html",
         "value": 420250
-      },
-      "mode": "queue"
-    },
-    {
-      "site": "agiscorecard",
-      "kind": "membership_readiness_check",
-      "priority": 70,
-      "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
-      "evidence": {
-        "snapshot_date": "2026-11-27T11:22:06.213Z"
-      },
-      "mode": "observe"
-    },
-    {
-      "site": "baipiaoji",
-      "kind": "membership_readiness_check",
-      "priority": 70,
-      "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
-      "evidence": {
-        "snapshot_date": "2026-11-27T11:22:06.213Z"
-      },
-      "mode": "observe"
-    },
-    {
-      "site": "getecoback",
-      "kind": "membership_readiness_check",
-      "priority": 70,
-      "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
-      "evidence": {
-        "snapshot_date": "2026-11-27T11:22:06.213Z"
-      },
-      "mode": "observe"
-    },
-    {
-      "site": "thedollscout",
-      "kind": "membership_readiness_check",
-      "priority": 70,
-      "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
-      "evidence": {
-        "snapshot_date": "2026-11-27T11:22:06.213Z"
-      },
-      "mode": "observe"
-    },
-    {
-      "site": "baipiaoji",
-      "kind": "membership_demand_review",
-      "priority": 64,
-      "reason": "review product-matched own tasks, repeat use and the paid increment before membership expansion; referrer events do not establish qualified buyers",
-      "evidence": {
-        "external_referrer_page_view_events": 580,
-        "paid_members": 0
       },
       "mode": "queue"
     },
@@ -396,8 +389,8 @@
       "reason": "review observed page-event activity and source quality; activity is not verified people or buying intent",
       "evidence": {
         "page": "/agents/",
-        "n7": 220,
-        "p7": 74
+        "n7": 207,
+        "p7": 102
       },
       "mode": "queue"
     },
@@ -419,18 +412,7 @@
       "priority": 48,
       "reason": "check source coverage and useful AI arrivals before expanding discovery work; legacy page views do not establish referred people or citations",
       "evidence": {
-        "legacy_page_view_events": 524,
-        "ai_referrer_events": 0
-      },
-      "mode": "queue"
-    },
-    {
-      "site": "thedollscout",
-      "kind": "ai_attribution_review",
-      "priority": 48,
-      "reason": "check source coverage and useful AI arrivals before expanding discovery work; legacy page views do not establish referred people or citations",
-      "evidence": {
-        "legacy_page_view_events": 3001,
+        "legacy_page_view_events": 490,
         "ai_referrer_events": 0
       },
       "mode": "queue"
@@ -443,7 +425,7 @@
     },
     "baipiaoji": {
       "path": "sites/baipiaoji/data/fleet-evolution.json",
-      "action_count": 2
+      "action_count": 1
     },
     "getecoback": {
       "path": "sites/getecoback/data/fleet-evolution.json",
@@ -451,7 +433,7 @@
     },
     "thedollscout": {
       "path": "sites/thedollscout/data/fleet-evolution.json",
-      "action_count": 3
+      "action_count": 2
     },
     "buysomething": {
       "path": "sites/buysomething/data/fleet-evolution.json",
@@ -573,8 +555,8 @@
   "bpj_trade_quote_growth": {
     "source": "https://baipiaoji.com/api/reach?days=28",
     "window": {
-      "start": "2026-10-30",
-      "end_exclusive": "2026-11-27",
+      "start": "2026-10-31",
+      "end_exclusive": "2026-11-28",
       "complete_days": 28,
       "date_basis": "UTC"
     },

@@ -3,7 +3,7 @@
   "site": "baipiaoji",
   "signals": {
     "membership": {
-      "ready": true,
+      "ready": false,
       "has_paid_members": false,
       "has_active_members": false
     },
@@ -27,21 +27,11 @@
   },
   "actions": [
     {
-      "kind": "membership_readiness_check",
-      "priority": 70,
-      "reason": "a recent ready snapshot is not current checkout evidence; check the live API before selling or interpreting missing orders",
+      "kind": "membership_health",
+      "priority": 92,
+      "reason": "recent snapshot reported unavailable checkout; check the live API before recovery",
       "evidence": {},
-      "mode": "observe"
-    },
-    {
-      "kind": "membership_demand_review",
-      "priority": 64,
-      "reason": "review product-matched own tasks, repeat use and the paid increment before membership expansion; referrer events do not establish qualified buyers",
-      "evidence": {
-        "external_referrer_page_view_events_band": "100+",
-        "paid_members_band": "0"
-      },
-      "mode": "queue"
+      "mode": "alert"
     }
   ],
   "autonomous_changes": [
