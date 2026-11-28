@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Die mobile Split-Klimaanlage hat ein Innen- und ein Außengerät. Prüfe für die originale PortaSplit die EAN 4048164116478, den Lieferumfang und den Platz an deinem Fenster oder Balkon. Bei offenem Aufstellort oder Liefertermin kannst du mit der Bestellung warten. [Zum genauen Modell und Angebot](https://getecoback.com/guide/midea-portasplit-kaufen.html#portasplit-original-angebot). [Lieferung oder Abholung zum Wunschtermin prüfen](https://getecoback.com/guide/midea-portasplit-kaufen.html#portasplit-liefertermin-pruefen).
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 ## Wie laut ist das Außengerät der Midea PortaSplit?
 
 Für die originale PortaSplit mit EAN 4048164116478 nennt Midea beim Außengerät in 1 m Abstand 56 dB(A) Schalldruck auf hoher Stufe und 48 dB(A) im Außen-Flüstermodus. Die 39 dB(A) aus der Produktbeschreibung wurden am Innengerät im Silent-Modus gemessen. Das EU-Produktdatenblatt nennt für das Außengerät 62 dB Schallleistung, jeweils beim Kühlen und beim Heizen.

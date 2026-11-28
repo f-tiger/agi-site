@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 BTU (British Thermal Units) misst die Kühlleistung einer Klimaanlage. Zu wenig, und der Raum bleibt warm; zu viel kostet unnötig Geld und macht mehr Lärm. Hier die einfache Version.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 ## BTU nach Raumgröße
 
 **Kurz:** Rechne rund **340 BTU pro m²** und kauf das Gerät der Klasse, die eine Stufe darüber liegt. Für 20 m² sind das 6.800 BTU gerechnet und ein Gerät der 9.000-BTU-Klasse. Das ist dieselbe Regel, mit der unser [BTU-Rechner](https://getecoback.com/guide/btu-rechner.html) und unser [offener Datensatz](https://getecoback.com/daten.html) rechnen.

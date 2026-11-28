@@ -12,8 +12,6 @@ Dreh-Kipp-Fenster sind in Deutschland und Österreich Standard — und der Grund
 
 Warum das zählt: **69 % der deutschen Haushalte mit Klimaanlage nutzen ein mobiles Monoblock-Gerät** (Verivox, 2026) — und jedes davon muss den Abluftschlauch durch ein Fenster führen. In Deutschland und Österreich ist das fast immer ein Dreh-Kipp-Fenster, weshalb das mitgelieferte flache Kit selten richtig abdichtet.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 🧮 **Vor dem Kauf:** Die passende Kühlleistung findest du mit dem [BTU-Rechner](https://getecoback.com/guide/btu-rechner.html) in 30 Sekunden — und wie heiß dein Zimmer wirklich wird, zeigt der [Hitze-Check](https://getecoback.com/guide/hitze-check.html) (Ergebnis teilbar).
 
 **Kurz gesagt:** Ja, eine mobile Klimaanlage lässt sich am Dreh-Kipp-Fenster betreiben — aber **nicht mit dem beiliegenden Standard-Kit**, das für Schiebefenster gebaut ist. Es gibt drei Wege: eine **universelle Stoff-Fensterabdichtung** (für die meisten die richtige Wahl), eine **zugeschnittene Platte** (dichtet am besten, etwas Heimwerken) oder ein **Kipp-Adapter**.

@@ -10,8 +10,6 @@ Ein günstiger Monat ist kein Beleg für ein günstiges Angebot. Hier findest du
 
 **Kurzantwort:** Einen allgemein günstigsten Kaufmonat können wir ohne vergleichbare Preisverläufe nicht belegen. Plane vor deinem benötigten Einsatztermin, prüfe aber das konkrete Angebot: Modellvariante, Gesamtpreis, zugesagte Lieferung und Aufstellung. Weder Oktober–April noch eine Hitzewarnung garantieren einen Rabatt, freie Montagetermine oder verfügbare Geräte.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Wir zeigen bewusst keine „Live-Preise" an — ohne direkte Preisschnittstelle wären das erfundene Zahlen. Stattdessen: Preisspannen, Timing-Wissen und der Blick auf den aktuellen Preis direkt beim Händler.
-
 ## Vor dem Kauf: vier konkrete Prüfungen
 
 Mehr Zeit zum Prüfen ist ein Planungsargument, kein Preisnachweis. Uns liegen hier keine belastbare monatliche Preisreihe und keine bundesweite Erhebung zu Liefer- oder Montageterminen vor. Einen pauschalen Montagerabatt nennen wir deshalb nicht.

@@ -6,9 +6,11 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftentfeuchter-40-
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
 
-Feuchte Luft, beschlagene Fenster oder muffiger Geruch in einem Raum mit rund 40 m²? Ein Luftentfeuchter hilft — aber nur mit der richtigen Kapazität. Zu klein, und er kommt nie hinterher. Hier die konkrete Empfehlung für 40 m².
+## Großer Keller oder hoher Altbau
+40 m² bei 2,80 m Deckenhöhe ergeben 112 m³. Bei höheren Decken das tatsächliche Volumen einsetzen.
+230 V × 16 A ergeben rechnerisch 3.680 W für den ganzen Stromkreis. Weitere Verbraucher mitrechnen. Das ist keine Freigabe für Dauerlast an einer einzelnen Steckdose oder Mehrfachleiste.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
+Feuchte Luft, beschlagene Fenster oder muffiger Geruch in einem Raum mit rund 40 m²? Ein Luftentfeuchter hilft — aber nur mit der richtigen Kapazität. Zu klein, und er kommt nie hinterher. Hier die konkrete Empfehlung für 40 m².
 
 **Kurz gesagt:** Für 40 m² solltest du einen Luftentfeuchter mit **25–30 Liter/Tag** Entfeuchtungsleistung wählen. Betrieb kostet ca. 0,09 € pro Stunde — mit Hygrostat deutlich weniger, weil er bei Zielfeuchte abschaltet.
 

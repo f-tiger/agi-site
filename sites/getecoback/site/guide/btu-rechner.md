@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Rechne zuerst für den Raum, den du gleichzeitig kühlen möchtest. Fläche, Decke, Sonne und Wärmequellen beeinflussen die überschlägige Kühlleistung.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Die Produktlinks im Ergebnis sind Affiliate-Links — du zahlst denselben Preis. Der Rechner liefert eine Orientierung, keine Gewähr.
-
 **Die Grundrechnung nutzt 340 BTU/h je m².** Die Rechnerwerte dienen der Orientierung. Für mehrere Zimmer oder hohe Last [die Räume getrennt prüfen](https://getecoback.com/guide/btu-rechner.html#hohe-kuehllast).
 
 Raumgröße (m²)

@@ -126,7 +126,7 @@ class BuyerGeo(unittest.TestCase):
                                  'Comfee MDDF-20DEN7', 'MeacoDry Arete One 20L', 'Arete Two', 'One 25L', 'WF']:
                         self.assertIn(text, markdown)
                     unknown = ('Extraction and running power at these conditions are not verified here.' if en
-                               else 'Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert.')
+                               else 'Für diese Temperatur fehlen vergleichbare Leistungswerte. Nutze für die Auslegung die Meaco-Werte bei gleicher Feuchte.')
                     self.assertEqual(markdown.count(unknown), 2)
                     self.assertIn('6 November 2026' if en else '06.11.2026', markdown)
                     self.assertIn('2026\n\n| ' + ('Condition' if en else 'Bedingung') +

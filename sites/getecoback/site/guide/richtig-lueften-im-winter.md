@@ -126,8 +126,6 @@ In der anderen Jahreshälfte ist die Kippstellung nicht der Gegner, sondern der 
 
 ## Was tatsächlich hilft — in dieser Reihenfolge
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Verkäufen. Die Links unten sind Affiliate-Links — für dich derselbe Preis.
-
 ### Welches Hygrometer zeigt den Höchstwert der Nacht?
 
 Hat dein vorhandenes Hygrometer oder dein Smart-Home-Sensor einen rückstellbaren Maximalwert oder einen Verlauf, reicht das für diesen Check. Setze den Speicher vor dem Schlafengehen zurück oder wähle morgens in der App den Zeitraum seit dem Vorabend. Lies den Höchstwert vor dem Lüften ab. Für den Vergleich direkt vor und nach dem Lüften genügen zwei aktuelle Werte mit demselben Gerät.

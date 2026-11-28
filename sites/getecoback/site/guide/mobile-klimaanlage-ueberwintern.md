@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Die Kühlsaison ist vorbei: Bevor die mobile Klimaanlage in den Abstellraum kommt, suche die Modellbezeichnung und die zugehörige Bedienungsanleitung. Dort stehen Ablauf, Filterpflege, Trocknung, Lagerbedingungen und Regeln nach einem Transport. Die folgende Checkliste hilft beim Vorbereiten; sie ersetzt diese Vorgaben nicht. Meist lässt sich vorhandenes Zubehör weiterverwenden.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Auf einen Blick:** Modellanleitung prüfen · Kondenswasser nach Vorgabe ablassen · zugängliche Filter korrekt reinigen und trocknen · vorgesehenen Trocknungsmodus nutzen · Zubehör trocken verstauen · geeigneten Innenraum wählen. **Es gibt keine einheitliche Trocknungs- oder Ruhezeit für alle mobilen Klimaanlagen.** Ein neuer Filter, Reinigungsschaum oder eine Haube ist nicht automatisch nötig.
 
 ## Schritt für Schritt: so machst du das Gerät winterfest

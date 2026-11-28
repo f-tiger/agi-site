@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Eine tragbare Klimaanlage, die super kühlt, aber wie ein Düsentriebwerk dröhnt, ist im Schlafzimmer nutzlos. Für guten Schlaf brauchst du drei Dinge im Gleichgewicht: genug Kühlleistung für den Raum, wenig Lärm und einen Nachtmodus. Darauf kommt es an.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 ## 1. Lautstärke — das K.-o.-Kriterium im Schlafzimmer
 
 Prüfe zuerst die Dezibel-Angabe (dB). Fürs Schlafen gilt:

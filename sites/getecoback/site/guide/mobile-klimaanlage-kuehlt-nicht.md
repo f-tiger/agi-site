@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Draußen 34 °C, die mobile Klimaanlage brummt seit Stunden — und trotzdem bleibt der Raum warm. Bevor du an einen Defekt glaubst oder ein neues Gerät kaufst: Bei Monoblock-Geräten gibt es eine Handvoll typischer Ursachen, die sich in einer festen Reihenfolge durchprüfen lassen. Die ersten fünf kannst du selbst beheben, meist in wenigen Minuten und ohne Werkzeug. Dieser Ratgeber geht die sieben Punkte vom Häufigsten zum Seltensten durch.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurzantwort:** Wenn eine mobile Klimaanlage nicht (mehr) richtig kühlt, sind die häufigsten Ursachen ein voller Wassertank, ein verstopfter Luftfilter, ein geknickter oder zu langer Abluftschlauch und eine undichte Fensterabdichtung, durch die warme Luft zurück in den Raum strömt. Erst danach kommen falsche Einstellungen, ein für den Raum zu kleines Gerät und — als seltenster Fall — Kältemittelverlust, der in die Fachwerkstatt gehört.
 
 ## 1. Wassertank voll: Gerät schaltet ab oder drosselt

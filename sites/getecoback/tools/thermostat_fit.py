@@ -76,7 +76,7 @@ def render_fritz(data):
 <p>FRITZ! nennt <strong>34 mm für Danfoss RAV</strong> und <strong>25,5 mm für Danfoss RAVL</strong>. Nutze die Maße als Hinweis und gleiche die Kennzeichnung am vorhandenen Ventil mit der Herstellerübersicht ab.</p>
 <div class="winter-table"><table><caption>Danfoss-Anschlüsse am FRITZ!Smart Thermo 302, geprüft am {reviewed}</caption><thead><tr><th scope="col">Identifiziertes Ventil</th><th scope="col">Nächster Prüfschritt</th><th scope="col">FRITZ!-Quelle</th></tr></thead><tbody>{rows}</tbody></table></div>
 <p>Ist die Kennzeichnung offen, warte mit der Bestellung und kläre den Anschluss mit dem Hersteller oder einem Fachbetrieb. Am wasserführenden Ventilkörper nichts lösen.</p>
-<p>Wenn du den Kopf ersetzen möchtest und das Ventil eindeutig bestimmt ist, prüfe <a href="#thermostat-fritz-302">die FRITZ!Box und den Lieferumfang für Artikel 20003120</a>. Bei RAV oder RAVL zuerst klären, welcher Zusatzadapter passt.</p>
+<p>Der FRITZ!Smart Thermo 302 verbindet sich per DECT ULE mit einer kompatiblen FRITZ!Box ohne zusätzliche Bridge. Wenn du den Kopf ersetzen möchtest und das Ventil eindeutig bestimmt ist, prüfe <a href="#thermostat-fritz-302">die FRITZ!Box und den Lieferumfang für Artikel 20003120</a>. Bei RAV oder RAVL zuerst klären, welcher Zusatzadapter passt.</p>
 <p class="winter-note">{source_links}.</p>
 {share_nav('fritz-302-danfoss-adapter', title)}
 </section>'''

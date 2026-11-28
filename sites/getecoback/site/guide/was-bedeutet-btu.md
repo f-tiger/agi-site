@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 7.000 BTU, 9.000 BTU, 12.000 BTU — jede Klimaanlage trägt diese Zahl, aber kaum ein Datenblatt erklärt sie. Dabei ist BTU das wichtigste Kaufkriterium überhaupt: Es entscheidet, ob das Gerät deinen Raum wirklich kühlt oder nur teuer vor sich hin läuft. Hier die einfache Erklärung.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Auf einen Blick:** BTU = British Thermal Unit, bei Klimaanlagen immer als BTU pro Stunde gemeint · misst die Kühlleistung, nicht den Stromverbrauch · Umrechnung: BTU ÷ 3.412 = kW (9.000 BTU ≈ 2,6 kW) · Faustregel ~300–350 BTU pro m² · 20 m² ≈ 6.000–7.000 BTU, mit Reserve 9.000.
 
 ## BTU einfach erklärt

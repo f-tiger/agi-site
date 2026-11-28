@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Eine echte Klimaanlage muss nicht 600 € kosten. Aber beim Sparen gibt es eine klare Grenze, unter der es keine echte Kühlung mehr gibt — nur Luftbewegung. Hier die ehrliche Orientierung: was du unter 300 € bekommst, welche Modelle sich lohnen und wo du besser nicht sparst.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurz gesagt:** Für echte Kühlung ist eine **Monoblock-Klimaanlage ab ~250 €** (7.000–9.000 BTU) die günstigste sinnvolle Wahl — Preis-Leistungs-Tipp: **Comfee MPPH-09CRN7**. Willst du weniger ausgeben, bekommst du keine echte Kühlung mehr, sondern einen **Luftkühler** (~60 €) oder **Ventilator** (~30 €).
 
 ## Preis-Leistungs-Tipp unter 300 €

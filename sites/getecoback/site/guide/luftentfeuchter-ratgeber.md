@@ -6,13 +6,16 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftentfeuchter-rat
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
 
-## Schnell-Entscheidung in 30 Sekunden
+## 3-Sekunden-Entscheidungshilfe
 
 ### Kalter Keller um 10 °C
 **MeacoDry Arete One 20L** 3,4 L/Tag · 180 W. Bei 60 % Luftfeuchte zieht die One mehr Wasser aus der Luft als die Two.
 
 ### Wäsche im Wohnraum um 20 °C
 **MeacoDry Arete Two 12L** 5,4 L/Tag · 136 W. Wenn dir beim Wäschetrocknen die niedrigere Leistungsaufnahme wichtiger ist, wähle die Two.
+
+### Noch unsicher? Erst messen
+Vor jedem Kauf Temperatur und Feuchte messen. Ein vorhandenes Hygrometer reicht.
 
 Bei nassen Wänden erst die Ursache klären. Ohne Messwerte zuerst Temperatur und Feuchte messen. [* Werbung · Quellen](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#winter-quellen)
 
@@ -128,7 +131,7 @@ Luftentfeuchter auf Amazon.de ansehen →
 [Stromkosten und Laufzeit des Luftentfeuchters prüfen →](https://getecoback.com/guide/luftentfeuchter-dauerbetrieb-stromkosten.html)
 [Klimaanlage & Luftkühler reinigen →](https://getecoback.com/guide/klimaanlage-reinigen.html)
 
-Quellen, Auswahl und Affiliate-LinksWir vergleichen veröffentlichte Herstellerangaben. EcoBack hat die Geräte nicht selbst getestet. Als Amazon-Partner verdienen wir an qualifizierten Verkäufen. Die Modellsuche zeigt mehrere Treffer. Prüfe Generation, Lieferumfang und Gesamtpreis beim Händler.
+Methodik, Datenquellen & HinweiseWir vergleichen veröffentlichte Herstellerangaben. EcoBack hat die Geräte nicht selbst getestet. Als Amazon-Partner verdienen wir an qualifizierten Verkäufen. Die Modellsuche zeigt mehrere Treffer. Prüfe Generation, Lieferumfang und Gesamtpreis beim Händler.
 [MeacoDry Arete One 20L](https://eu.meaco.com/products/meacodry-arete-one-20l-luftentfeuchter-luftreiniger) (2026-11-28) · [MeacoDry Arete Two 12L](https://eu.meaco.com/products/meacodry-arete-two-12l-luftentfeuchter-luftreiniger) (2026-11-28)
 
 ## Herstellerdaten vor dem Kauf prüfen

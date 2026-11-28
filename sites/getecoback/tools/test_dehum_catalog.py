@@ -99,7 +99,8 @@ class CatalogTest(unittest.TestCase):
                 merchant = [link for link in links if urlsplit(link.attrs['href']).hostname == 'www.amazon.de']
                 self.assertEqual([link.attrs['href'] for link in merchant], [expected_url] if eligible else [])
                 if merchant:
-                    self.assertIn('ohne WF', merchant[0].text())
+                    self.assertIn('MDDF-20DEN7', merchant[0].attrs['aria-label'])
+                    self.assertIn('Aktuellen Preis', merchant[0].text())
                 self.assertNotIn(expected_url, mirror)
 
     def test_native_reading_and_comparison_shortcuts_survive_the_full_rebuild_order(self):
@@ -248,7 +249,7 @@ class CatalogTest(unittest.TestCase):
         for p,url in zip(d['products'],urls):
             q=parse_qs(urlsplit(url).query)
             self.assertEqual(q['tag'],['getecoback-21'])
-            if p.get('asin'):self.assertEqual(urlsplit(url).path,'/dp/B07KJX6RDK')
+            if p.get('asin'):self.assertEqual(urlsplit(url).path,'/dp/'+p['asin'])
             else:self.assertEqual(q['k'],[p['query']])
         self.assertIn('Weitere Modelle nach Ausstattung auswählen',html)
         self.assertIn('ander',html)
@@ -261,7 +262,7 @@ class CatalogTest(unittest.TestCase):
         d=copy.deepcopy(C.load());d['products'][0]['status']='conflict'
         s=C.block('luftentfeuchter-ratgeber',dt.date(2026,11,12),d)
         self.assertNotIn('k=Bosch',s)
-        self.assertEqual(s.count('rel="sponsored nofollow noopener"'),5)
+        self.assertEqual(s.count('rel="nofollow sponsored noopener"'),5)
 
     def test_mirror_preserves_all_evidence_without_shopping_and_does_not_invent_sources(self):
         s=C.block('luftentfeuchter-ratgeber',dt.date(2026,11,12))

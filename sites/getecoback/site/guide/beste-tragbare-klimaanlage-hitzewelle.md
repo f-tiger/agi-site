@@ -10,8 +10,6 @@ Die Hitzewelle 2026 hat tragbare Klimaanlagen in Deutschland, Frankreich und Spa
 
 **Zahlen zum Trend:** 2024 nutzten bereits **19 % der deutschen Haushalte** eine Klimaanlage — nach 13 % im Jahr zuvor; weitere **19 % planen die Anschaffung** (Verivox-Umfrage 2024, via Clean Energy Wire). Die Produktion von Klimageräten in Deutschland stieg in fünf Jahren um **75 %**. Kurz gesagt: Die Nachfrage zieht stark an — in der Hitzewelle sind beliebte Geräte schnell vergriffen, ein früher Kauf lohnt sich.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Die Links unten sind Affiliate-Links — du zahlst denselben Preis.
-
 Auf einen Blick — die schnelle Empfehlung
 
 Allrounder **De'Longhi Pinguino PAC EX105** — der bewährte Klassiker für die meisten Schlaf- & Wohnzimmer.  ansehen →

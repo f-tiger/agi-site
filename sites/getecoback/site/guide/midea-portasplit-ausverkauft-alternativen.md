@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 **Kurzantwort:** Wenn dein Händler die PortaSplit nicht liefern kann, sind **Clima Butler Split 2 CB-3500** und **Remko RKL 495 DC** Vergleichskandidaten. Sie sind kein automatisch passender Ersatz: Aufstellung, Leitungsweg und Kühlleistung müssen zu deinem Raum passen. Ohne Platz für ein Außenteil kommt ein Monoblock mit sicherem Abluftweg infrage. **Diese Seite bestätigt keine aktuelle Lieferbarkeit.** Prüfe Modell, Verkäufer und Lieferdatum direkt beim Händler.
 
-Herstellerangaben geprüft am 02.10.2026. Kein eigener Produkttest, kein vollständiger Marktvergleich und keine Live-Bestandsabfrage. Amazon-Links sind Partnerlinks: Als Amazon-Partner verdienen wir an qualifizierten Verkäufen.
-
 Für das mobile Gerät von FM Solar siehe den [Halterungscheck für YFG-12H/FC6-W](https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html#fm-solar-yfg-montage).
 
 ## Passt die Midea PortaSplit an einen 60-mm-Fensterfalz?

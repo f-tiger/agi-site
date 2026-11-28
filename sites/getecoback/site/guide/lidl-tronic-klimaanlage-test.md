@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Die Tronic-Klimaanlage taucht bei Lidl immer dann auf, wenn sie alle suchen — und ist online regelmäßig schnell wieder ausverkauft. Wir testen nicht selbst: Diese Seite ordnet die öffentlich verfügbaren Daten zum Gerät ein und beantwortet die Frage, die nach jedem Aktionsfenster übrig bleibt — was tun, wenn sie (mal wieder) weg ist.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis. Der Link zur Lidl-Produktseite ist ein reiner Quellenverweis ohne Partnerprogramm.
-
 **Kurz gesagt:** **199 €** sind ein solider Kurs für die 9.000-BTU-Klasse — **wenn** das Aktionsfenster gerade offen ist und dein Raum in die ehrlichen **15–20 m²** passt (Lidls eigene Angabe 42–60 m³ ≈ 17–24 m² ist am oberen Ende optimistisch). Der Haken ist nicht das Gerät, sondern die Verfügbarkeit: wiederkehrendes Angebot, online schnell vergriffen, keine unabhängige Testlage. Was stattdessen immer geht: das **Comfee MPPH-09CRN7** (gleiche Klasse, ca. 250–320 €), leiser der **De'Longhi PAC N90 ECO Silent**, Premium der **Pinguino PAC EX105**.
 
 ## Was die Lidl-Klimaanlage bietet

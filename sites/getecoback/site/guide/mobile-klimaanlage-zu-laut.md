@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Du hast dir eine mobile Klimaanlage gekauft, endlich ist es kühl — aber an Schlafen oder konzentriertes Arbeiten ist neben dem Gerät kaum zu denken. Damit bist du nicht allein: Das Lärmproblem ist die häufigste Beschwerde über Monoblock-Klimageräte überhaupt. Hier bekommst du die ehrliche Antwort: was ein paar Dezibel bringt, was verschwendetes Geld ist und wann nur ein anderes Gerätekonzept hilft.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurz gesagt:** Monoblöcke sind laut, weil der **Kompressor mit im Raum steht** — 55–65 dB sind normal, kein Defekt. Wirklich helfen: **Antivibrationsmatte** (10–20 €), fester Untergrund statt Holzdielen, **Nachtmodus**, **Timer zum Vorkühlen**, Abstand + Türspalt-Management, Filter reinigen. **Nicht** helfen: Einhausungen und Schaumstoffboxen (Überhitzungsgefahr!). Wenn Lärm das K.-o.-Kriterium ist, hilft nur eine leisere Geräteklasse.
 
 ## Warum Monoblöcke laut sind — Physik, kein Defekt

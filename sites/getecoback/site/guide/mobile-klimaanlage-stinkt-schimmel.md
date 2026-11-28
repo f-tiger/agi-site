@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Du schaltest deine mobile Klimaanlage ein — und statt kühler Frische kommt ein muffiger, kellerartiger Geruch aus dem Gerät. Das ist eines der häufigsten Probleme bei Monoblock-Klimageräten, wird aber in den meisten Ratgebern nur für Auto-Klimaanlagen oder fest installierte Split-Geräte erklärt. Hier geht es gezielt um **mobile Monoblock-Geräte**: warum sie riechen, wie du die Quelle findest und wie du das Gerät selbst reinigst, ohne es zu beschädigen.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurz gesagt:** Der muffige Geruch entsteht fast immer durch **Kondenswasser + Staub** im Geräteinneren: Auf dem feuchten Verdampfer bildet sich ein Biofilm aus Bakterien und Schimmelpilzen. Weitere Klassiker: **abgestandenes Wasser im Kondensattank** und ein **feucht eingelagertes Gerät** nach dem Winter. Die Lösung: Stecker ziehen, Tank leeren, **Filter alle 2 Wochen absaugen und lauwarm auswaschen**, zugängliche Flächen abwischen, bei Bedarf Reinigungsschaum für den Verdampfer — und künftig das Gerät vor dem Ausschalten **30 Minuten im Nur-Lüfter-Modus trockenlaufen** lassen.
 
 ## Woher kommt der Geruch? Die Quelle eingrenzen

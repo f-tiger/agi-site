@@ -164,7 +164,7 @@ def page(e):
 
   <div class="disclosure">Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.</div>
 
-  <div class="tldr"><strong>Kurz gesagt:</strong> Für {qm} m² solltest du eine Klimaanlage mit <strong>{e['btu']} BTU</strong> wählen. Ein häufig empfohlenes Modell dieser Klasse ist <strong>{e['modell']}</strong>. Rechne mit rund {kosten_h_str} € Stromkosten pro Stunde bzw. ~{kosten_monat} € im Hitzemonat.</p></div>
+  <div class="tldr"><strong>Kurz gesagt:</strong> Für {qm} m² solltest du eine Klimaanlage mit <strong>{e['btu']} BTU</strong> wählen. Ein häufig empfohlenes Modell dieser Klasse ist <strong>{e['modell']}</strong>. Rechne mit rund {kosten_h_str} € Stromkosten pro Stunde bzw. ~{kosten_monat} € im Hitzemonat.</div>
 
   <h2>Wie viel BTU für {qm} m²?</h2>
   <p>{e['hinweis']} Als Orientierung gelten für {qm} m² <strong>{e['btu']} BTU</strong>. Aufschlagen solltest du bei starker Sonneneinstrahlung (Süd-/Westfenster), hohen Decken oder Dachgeschoss-Lage. Die vollständige Tabelle findest du im <a href="/guide/wie-viel-btu-brauche-ich.html">BTU-Ratgeber nach Raumgröße</a>.</p>

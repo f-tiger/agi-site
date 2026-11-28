@@ -97,7 +97,7 @@ async function cards(root,lang,label){
   const sources=await details.locator('a').evaluateAll(links=>links.map(a=>a.href));assert.deepEqual(sources,expected.sources,label+' primary source URLs');checks++;
   if(i===0){
    const unknown=await card.locator('.choice-facts dd').allTextContents();
-   check(unknown.slice(1,3).every(text=>text.includes(lang==='de'?'nicht verifiziert':'not verified')),label+' missing Comfee condition figures are explicit');
+   check(unknown.slice(1,3).every(text=>text.includes(lang==='de'?'fehlen vergleichbare Leistungswerte':'not verified')),label+' missing Comfee condition figures are explicit');
    check(unknown[0].includes('WF'),label+' Comfee model suffix boundary');
   }else{
    const text=await card.innerText();

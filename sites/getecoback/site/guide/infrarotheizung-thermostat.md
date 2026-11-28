@@ -93,6 +93,11 @@ Es kann den Stromverbrauch senken, wenn es die Einschaltzeit verkürzt. Wie viel
 
 **Woher die Aussagen kommen.** Die Kosten sind Watt × Stunden × 0,30 €/kWh, die 60 W/m² die untere Stufe unseres [Watt-Rechners](https://getecoback.com/guide/infrarotheizung-watt-rechner.html). Die Hinweise zum Aufstellort des Fühlers (nicht in starker Sonne, entfernt von Heizplatten, nicht in Nischen, hinter Vorhängen oder Möbeln) stehen bei heizung.de, der Abstand zum Heizgerät, die Fußleistenhöhe der Steckdosen und dass Funk-Thermostate mehrere Panels ansteuern können bei heizungsfinder.de (beide abgerufen am 24.09.2026). Wir haben kein Thermostat getestet. Das ist keine Elektroberatung.
 
+## Eine vorhandene Platte nach Raumtemperatur schalten
+**Trotec BN30**Prüfe zuerst, ob die Platte nach einer Stromunterbrechung wieder heizt und der Hersteller eine externe Schaltung erlaubt. Danach die zulässige Schaltlast des BN30 mit dem Typenschild abgleichen.
+Modellunterlagen prüfen
+Aktuellen Preis bei Amazon prüfen * →
+
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp

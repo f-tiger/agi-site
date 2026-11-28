@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Fast jeder, der das hier sucht, hat den Schimmel schon einmal weggemacht. Mit Spray, mit Alkohol, mit ordentlich Schrubben — und nach ein paar Wochen saß der Fleck wieder da, wo er vorher war. Diese Seite erklärt deshalb nicht zum vierten Mal, wie du ihn abwischst, sondern **warum er genau an dieser Stelle zurückkommt**. Die Heizsaison fängt gerade an, und damit trifft warme Raumluft wieder auf kalte Wandflächen — genau die Konstellation, die den Fleck jedes Jahr zurückholt.
 
-**Anzeige** · Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurzantwort:** Der Fleck kommt wieder, weil diese Fläche kälter ist als der Rest der Wand — Außenwandecke, Fensterlaibung, Wand hinter dem Schrank oder ein kaltes Zimmer, dessen Tür zum warmen offen steht. Das Entfernen beseitigt den Belag, nicht die Kälte, deshalb ist er nach ein paar Wochen zurück. Reihenfolge, die wirklich hilft: an der kalten Stelle messen (ab etwa 70–80 % relativer Luftfeuchtigkeit direkt an der Oberfläche keimen die Sporen), dann Feuchtequellen und kalte Flächen ändern — und erst danach über ein Gerät nachdenken.
 
 ## Warum der Fleck genau dort wiederkommt
@@ -39,8 +37,6 @@ Bevor du irgendetwas kaufst, brauchst du eine Zahl. Ein einfaches digitales Hygr
 - **Wiederholt über 70 %:** Handlungsbedarf. Und ab etwa **70–80 % direkt an der Oberfläche** keimen die Sporen — das ist die Schwelle, um die es geht.
 
 Die zweite nützliche Zahl ist die Wandtemperatur. Ein Infrarot-Thermometer zeigt dir in Sekunden, wie viel kälter die Problemstelle gegenüber der Wand daneben ist — das macht die Kältebrücke sichtbar, über die du sonst nur spekulierst. Beides sind Messgeräte, keine Lösung: Sie sagen dir nur, welches der folgenden Kapitel dein Fall ist.
-
-**Anzeige** · Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks sind Affiliate-Links — du zahlst denselben Preis.
 
 **Womit du misst** — zwei einfache Geräte, keine Marke empfohlen: wir haben diese Geräte **nicht selbst getestet**, die Auswahlkriterien sind aus öffentlichen Angaben zusammengestellt.
 
@@ -90,8 +86,6 @@ Zwei Dinge kann er nicht, und beide sind wichtiger als das, was er kann:
 - **Gegen Wasser aus dem Bauwerk läuft er endlos.** Kommt die Feuchtigkeit aus einem Leck, aus aufsteigender Feuchte oder einer durchnässten Wand, dann trocknet das Gerät ständig einen Raum, der ständig neu befeuchtet wird. Es gewinnt nie — es verbraucht nur Strom.
 
 Welche Bauart zu welchem Raum passt, was Dauerbetrieb an Strom kostet und warum ein Hygrostat der Unterschied zwischen sinnvoll und teuer ist, steht im [Luftentfeuchter-Ratgeber](https://getecoback.com/guide/luftentfeuchter-ratgeber.html); für den häufigsten Sonderfall gibt es den [Keller-Ratgeber](https://getecoback.com/guide/luftentfeuchter-keller.html).
-
-**Anzeige** · Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks sind Affiliate-Links — du zahlst denselben Preis.
 
 **Wenn die Messung sagt: es liegt an der Luft** — dann ist ein Gerät mit Hygrostat das passende Werkzeug, weil es den Zielwert selbst hält und nicht durchläuft.
 

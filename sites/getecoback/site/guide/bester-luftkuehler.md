@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 „Bester Luftkühler" ist eine unehrliche Überschrift, wenn dahinter nur ein erfundener Testsieger steht. Denn der beste Luftkühler hängt komplett von deiner Situation ab — und in manchen Fällen ist der beste Luftkühler gar keiner. Dieser Ratgeber gibt dir stattdessen die echten Kaufkriterien an die Hand, damit du selbst entscheiden kannst, ob und welches Gerät zu dir passt.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurz gesagt:** Ein Luftkühler ist keine Klimaanlage. Er kühlt nur den Luftstrom um wenige Grad und wirkt gut bei trockener Hitze, verbraucht dabei aber kaum Strom (~60–120 W). Bei der schwülen deutschen Hitzewelle enttäuscht er und eine mobile Klimaanlage kühlt spürbar besser. Achte beim Kauf auf Tankgröße/Laufzeit, Lautstärke, Ice-Pack-Funktion, passende Raumgröße und einfache Reinigung.
 
 ## Wie ein Luftkühler wirklich funktioniert

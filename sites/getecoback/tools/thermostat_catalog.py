@@ -6,6 +6,7 @@ from html import escape as e
 from pathlib import Path
 from urllib.parse import quote_plus, urlsplit
 
+from winter_products import BY_QUERY, buttons
 from winter_picks import shortlist, offer
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -111,8 +112,13 @@ def render(today=None, data=None):
                 searches.append((item['alternate_query'], item['alternate_label']))
             links = []
             for query, label in searches:
+                product = BY_QUERY.get(query.casefold())
+                if product:
+                    links.append(f'<p class="tc-commerce"><small>Werbung · {e(label)}</small>' +
+                                 buttons(product, 'data-winter-shop data-winter-compare') + '</p>')
+                    continue
                 href = 'https://www.amazon.de/s?k=' + quote_plus(query) + '&tag=getecoback-21'
-                links.append(f'<p class="tc-commerce"><small>Werbung · Modellsuche</small><a data-winter-shop data-winter-compare href="{e(href, quote=True)}" target="_blank" rel="sponsored nofollow noopener">{e(label)} bei Amazon.de suchen →</a></p>')
+                links.append(f'<p class="tc-commerce"><small>Werbung · {e(label)}</small><a data-winter-shop data-winter-compare href="{e(href, quote=True)}" target="_blank" rel="sponsored nofollow noopener">Aktuellen Preis bei Amazon prüfen * →</a></p>')
             action = ''.join(links)
         adapter_check = adapter_checks.get(item['id'], '')
         cards.append(f'<section class="tc-card" id="{target}" aria-labelledby="{target}-title"><h3 id="{target}-title">{e(item["name"])}</h3>'

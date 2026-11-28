@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Tiere leiden bei Hitze oft mehr als wir — sie können nicht schwitzen wie Menschen, kühlen sich fast nur übers Hecheln ab und tragen ihren Pelz dauerhaft. Wenn die Wohnung sich aufheizt, brauchen Hund und Katze deine Hilfe. Die gute Nachricht: Die wichtigsten Maßnahmen sind einfach und kosten wenig. Hier findest du, was in der Hitzewelle wirklich zählt — von Schatten und Wasser bis zu Kühlmatte, Trinkbrunnen und der richtigen Ventilator-Platzierung.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis. Dieser Artikel ist kein Ersatz für tierärztlichen Rat.
-
 **Kurz gesagt:** Immer Schatten und frisches Wasser bereitstellen, den Raum kühl halten (tagsüber Rollläden zu) und Spaziergänge in die kühlen Morgen- und Abendstunden legen. Eine Kühlmatte, ein Trinkbrunnen und ein leiser Ventilator helfen zusätzlich. Lass dein Tier niemals im Auto — und bei Anzeichen von Überhitzung sofort zur Tierärztin oder zum Tierarzt.
 
 ## Anzeichen von Überhitzung — kurz und ernst

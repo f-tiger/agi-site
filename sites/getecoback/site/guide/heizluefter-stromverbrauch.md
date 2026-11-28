@@ -16,8 +16,6 @@ Die drei Beispielkosten oben funktionieren ohne JavaScript. Formel: W ÷ 1.000 �
 
 Der Heizlüfter ist das klassische „schnell warm"-Gerät: 25 Euro im Baumarkt, einstecken, und nach Sekunden kommt Wärme. Was auf dem Preisschild nicht steht: Er ist eines der stromhungrigsten Geräte im Haushalt. Bevor du ihn im Herbst wieder täglich laufen lässt, lohnt der Blick auf die Zahlen — sie sind einfach zu rechnen und ziemlich eindeutig. Hier bekommst du die Kosten pro Stunde, pro Abend und pro Monat für alle gängigen Wattzahlen, die Formel zum Nachrechnen mit deinem eigenen Tarif und eine ehrliche Antwort auf die Frage, wann sich das Gerät trotzdem lohnt.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurz gesagt:** Ein Heizlüfter auf voller Stufe zieht meist **2000 Watt = 2 kWh pro Stunde**. Bei einem Strompreis von ~40 ct/kWh sind das rund **0,80 € pro Stunde**. Läuft er 4 Stunden am Tag, kostet das etwa **3,20 € pro Tag** — hochgerechnet **~96 € pro Monat**. Als Dauerheizung ist er damit viel zu teuer; als kurzzeitige Zusatzheizung (Bad am Morgen, Übergangszeit) ist er völlig okay.
 
 ## Wie viel Strom verbraucht ein Heizlüfter?

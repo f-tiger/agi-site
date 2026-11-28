@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 „Kann man Klarstein kaufen?“ — die Frage hinter jeder Klarstein-Suche ist eine Vertrauensfrage: Die Marke ist auf Amazon allgegenwärtig, der Katalog reicht vom Klimagerät bis zum Weinkühlschrank, aber es gibt kein Ladengeschäft, in dem man ein Gerät vor dem Kauf anfassen könnte. Wir testen nicht selbst: Diese Seite fasst zusammen, was öffentliche Quellen über die Marke sagen, und ordnet das eine Klarstein-Gerät ein, das auf diesem Portal empfohlen wird.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurz gesagt:** Klarstein ist die **Design- und Preis-orientierte Hauptmarke der Berliner Chal-Tec GmbH** — seit 2005 am Markt, verkauft wird im **Online-Direktvertrieb** über den eigenen Shop und Marktplätze wie Amazon. In öffentlichen Tests werden durchgängig **modernes Design, einfache Bedienung und Preis-Leistung** gelobt. Die wiederkehrenden Abstriche: **hörbare bis laute Klimageräte** (das Kraftwerk Smart 12K steht mit 50–65 dB im Datenblatt), Effizienzklasse A statt A+++ — und auf Beschwerdeportalen dokumentierte Kritik an **Service-Erreichbarkeit und Ersatzteilversorgung** nach der Garantie.
 
 ## Wer ist Klarstein?

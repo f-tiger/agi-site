@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Nach ein paar Wochen Dauerbetrieb in der Hitzewelle 2026 lässt fast jede mobile Klimaanlage und jeder Luftkühler spürbar nach: Die Luft kommt weniger kühl, das Gerät wird lauter, und irgendwann zieht ein muffiger Geruch durchs Zimmer. In den allermeisten Fällen ist nicht das Gerät kaputt — es ist nur verschmutzt. Diese Anleitung zeigt dir Schritt für Schritt, wie du Filter, Verdampfer und Wassertank reinigst, Schimmel vorbeugst und dein Gerät am Saisonende richtig einlagerst.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 ⚡ **Übrigens:** Ein verstopfter Filter treibt den Verbrauch hoch — was deine Klimaanlage pro Stunde kostet, zeigt der [Stromkosten-Rechner](https://getecoback.com/guide/stromkosten-rechner.html); ob dein Gesamtverbrauch normal ist, der [Stromverbrauch-Check](https://getecoback.com/guide/stromvergleich-check.html).
 
 **Kurz gesagt:** Ein verstopfter Filter senkt die Kühlleistung und treibt den Stromverbrauch hoch — reinige ihn im Dauerbetrieb **alle zwei Wochen**. Lass das Gerät nach dem Kühlen 15–30 Minuten im Ventilatormodus trockenlaufen, um Schimmel und muffigen Geruch zu verhindern. Bei Luftkühlern den Wassertank regelmäßig entkalken. Vor der Einlagerung: Wasser komplett ablassen, alles gründlich trocknen.

@@ -57,7 +57,7 @@ def block(en=False, slug=None):
     fields += select('market',t('Wo möchtest du einkaufen?','Where will you shop?'),[
         ('de',t('Deutschland / Amazon.de','Germany / Amazon.de')),
         ('other',t('Anderer Markt / nur informieren','Another market / advice only'))], 'other' if en else 'de')
-    unknown = t('Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert.',
+    unknown = t('Für diese Temperatur fehlen vergleichbare Leistungswerte. Nutze für die Auslegung die Meaco-Werte bei gleicher Feuchte.',
                 'Extraction and running power at these conditions are not verified here.')
 
     def source(url, label):

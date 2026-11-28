@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 **Kurzantwort:** Nasses Glas zunächst trockenwischen. Ob es erneut beschlägt, hängt von der Raumluft und der Temperatur an der Scheibe ab. Die drei Messwerte unten helfen beim Einordnen. Bei wiederholt nassen Wänden, möglichem Wassereintritt oder sichtbarem Schimmel die Ursache vor Ort klären.
 
-Diese Seite erklärt Bauphysik und Messwerte — sie ersetzt bei Bauschäden oder bestehendem Schimmelbefall keine Fachbegutachtung. Amazon-Links sind Partnerlinks; sie finanzieren diese Seite, ohne dass du mehr zahlst.
-
 Ist die Schwelle an der Balkontür nass? [Messwerte und mögliche Feuchtequellen an der Schwelle prüfen](https://getecoback.com/guide/fenster-beschlagen-innen.html#balkontuer-schwelle-kondenswasser).
 
 ## Fenster morgens von innen nass: erst abwischen und messen

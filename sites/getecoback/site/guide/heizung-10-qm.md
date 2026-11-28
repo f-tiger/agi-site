@@ -4,9 +4,11 @@
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/heizung-10-qm.html
 
-10 m² ist die Größe, bei der sich die Kostenfrage fast von selbst beantwortet. 700 W sind ein Fünftel dessen, was ein normaler Stromkreis trägt, und eine Stunde bei voller Leistung kostet 0,21 €. Offen bleibt etwas anderes: wie schnell es warm wird — und was im Bad gleichzeitig mitläuft.
+## Innenbad, Gäste-WC oder Abstellkammer
+Kurze Aufheizzeit und Platz für die vorgeschriebenen Abstände prüfen.
+In Spritzwasserzonen mindestens IPX4 beachten. Schutzart allein erlaubt keine Aufstellung: Schutzbereich, Herstellerfreigabe und Anschluss mit einer Elektrofachkraft klären.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
+10 m² ist die Größe, bei der sich die Kostenfrage fast von selbst beantwortet. 700 W sind ein Fünftel dessen, was ein normaler Stromkreis trägt, und eine Stunde bei voller Leistung kostet 0,21 €. Offen bleibt etwas anderes: wie schnell es warm wird — und was im Bad gleichzeitig mitläuft.
 
 **Kurz gesagt:** Plane für 10 m² rund **600–800 W** ein (60–100 W pro m² je nach Dämmung). Ein 700-W-Gerät kostet 0,21 € pro Stunde und über eine ganze Saison etwa 63 €. Am 16-A-Stromkreis bleiben daneben rund 2.800 W frei.
 

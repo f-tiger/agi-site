@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Wenn das Dachgeschoss trotz Ventilator und Verschattung heiß bleibt, miss zuerst, wann Außenluft tatsächlich kühler ist. Schon dieser Vergleich hilft bei der Entscheidung, ob vorhandene Maßnahmen reichen.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Die verlinkten Kaufberatungen können gekennzeichnete Affiliate-Links enthalten.
-
 ## Dachgeschoss kühlen ohne Durchzug: Innen und außen messen
 
 - **Temperaturen vergleichen:** Miss zur gleichen Zeit im Zielraum und draußen im Schatten. Vergleiche die Raumtemperatur vor und nach dem Lüften, besonders bei nur einem Fenster.

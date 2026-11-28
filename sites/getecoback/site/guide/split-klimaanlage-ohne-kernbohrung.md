@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 **Kaufentscheidung:** Miss zuerst den tatsächlichen Leitungsweg. Prüfe danach, ob das Außengerät nach Anleitung sicher steht und ob du die nötige Zustimmung für diesen Aufbau hast. Sind diese Punkte offen, kläre sie vor der Bestellung.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 ## Mobile Splitgeräte und Quick-Connect-Sets
 
 **Werkseitig verbunden:** Bei der ursprünglichen Midea PortaSplit (EAN 4048164116478) bleiben Innen- und Außengerät durch einen fest verbundenen Schlauch gekoppelt. Er ist laut Midea 2 m lang. Prüfe anhand der Herstelleranleitung, ob er bei deinem Fenster frei verlegt werden kann und das Außengerät sicher steht.

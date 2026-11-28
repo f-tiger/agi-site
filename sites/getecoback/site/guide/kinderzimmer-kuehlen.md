@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Wenn das Thermometer draußen klettert, staut sich die Wärme ausgerechnet dort, wo dein Kind schlafen soll. Babys und Kleinkinder überhitzen schneller als Erwachsene — trotzdem musst du nicht in Panik verfallen. Mit ein paar richtigen Handgriffen bekommst du das Kinderzimmer sicher kühler, ganz ohne kalte Luft direkt aufs Bett. Hier steht, was wirklich hilft und was du besser lässt.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis. Dieser Artikel ist keine medizinische Beratung.
-
 **Kurz gesagt:** Halte tagsüber mit Verdunkelung die Hitze draußen, kühle das Zimmer abends und richte niemals einen kalten Luftstrom direkt auf dein Kind. Ideal zum Schlafen sind etwa 16–20 °C; ein leiser Ventilator (nicht aufs Baby gerichtet) und eine tragbare Klimaanlage vor dem Zubettgehen sind die sichersten Helfer.
 
 ## Warum Babys schneller überhitzen

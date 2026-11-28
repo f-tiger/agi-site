@@ -11,6 +11,7 @@ Honest rules of thumb (ca. 60–100 W/m² Infrarot je nach Dämmung); model link
 keyword search, no fabricated ASINs. Usage: python tools/gen_heizung_qm.py
 """
 import datetime
+from room_constraints import room_advice
 import os, re, json
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -144,6 +145,7 @@ def page(e):
 
 <div class="wrap">
 <article>
+  {room_advice(qm, True)}
   <p>Du willst einen Raum mit rund {qm} m² elektrisch beheizen — mit Infrarotheizung oder Heizlüfter — und fragst dich, wie viel Watt du brauchst? Zu wenig, und es wird nie warm; zu viel kostet unnötig Strom. Hier die konkrete Empfehlung für {qm} m².</p>
 
   <div class="disclosure">Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.</div>

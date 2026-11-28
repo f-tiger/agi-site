@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Ein Auto in der prallen Sommersonne wird zur Sauna: An einem 30-°C-Tag steigt die Innentemperatur in einer halben Stunde auf über 50 °C, Lenkrad und Sitze werden fast unberührbar. Das kostet nicht nur Nerven, sondern belastet auch Kreislauf und Konzentration am Steuer. Hier sind neun Tricks, die deinen Wagen bei Hitze spürbar kühler halten — erst die kostenlosen Maßnahmen, dann die günstigen Helfer mit dem größten Effekt.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurz gesagt:** Parke im Schatten, leg einen Sonnenschutz hinter die Frontscheibe und lass die Fenster einen schmalen Spalt offen. Beim Einsteigen erst alle Türen kurz auf, dann Klima auf Umluft und Vollgas. Ein 12-V-Ventilator, Seitenscheiben-Sonnenschutz und ein Lenkrad-Cover kosten wenig und wirken sofort. Und die wichtigste Regel: Nie Kinder oder Tiere im Auto lassen — keine Minute.
 
 ## 1. Im Schatten parken — der einfachste Gewinn

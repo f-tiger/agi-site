@@ -4,9 +4,11 @@
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/heizung-50-qm.html
 
-50 m² ist die letzte Größe dieser Reihe und die einzige, bei der die Antwort lautet: elektrisch eher nicht. Der Referenzwert von 3.500 W trifft genau die Belastungsgrenze eines 16-A-Stromkreises, es bleibt rechnerisch nichts übrig, und eine Stunde bei voller Leistung kostet 1,05 € — fünfmal so viel wie bei 10 m². Als Zonenheizung bleibt Infrarot trotzdem sinnvoll. Als Dauerlösung nicht.
+## Großer Keller oder hoher Altbau
+50 m² bei 2,80 m Deckenhöhe ergeben 140 m³. Bei höheren Decken das tatsächliche Volumen einsetzen.
+230 V × 16 A ergeben rechnerisch 3.680 W für den ganzen Stromkreis. Weitere Verbraucher mitrechnen. Das ist keine Freigabe für Dauerlast an einer einzelnen Steckdose oder Mehrfachleiste.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
+50 m² ist die letzte Größe dieser Reihe und die einzige, bei der die Antwort lautet: elektrisch eher nicht. Der Referenzwert von 3.500 W trifft genau die Belastungsgrenze eines 16-A-Stromkreises, es bleibt rechnerisch nichts übrig, und eine Stunde bei voller Leistung kostet 1,05 € — fünfmal so viel wie bei 10 m². Als Zonenheizung bleibt Infrarot trotzdem sinnvoll. Als Dauerlösung nicht.
 
 **Kurz gesagt:** 50 m² heizt du elektrisch nur mit mehreren Panels (**3.000–4.000 W** gesamt). Das kostet 1,05 € pro Stunde und rund 315 € pro Saison. 3.500 W sind zugleich die Grenze eines einzelnen 16-A-Stromkreises — als Dauerheizung ist eine Wärmepumpe wirtschaftlicher.
 

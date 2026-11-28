@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Ein Raum ohne Fenster wird an heißen Tagen schnell zur Sauna — und die naheliegende Idee, einfach eine mobile Klimaanlage hinzustellen, geht hier leider nach hinten los. In diesem Ratgeber erklären wir ehrlich, warum das so ist, und zeigen dir, welche Lösungen in einem innenliegenden Zimmer, im Keller, in der Ankleide oder im fensterlosen Büro wirklich Erleichterung bringen.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurz gesagt:** Eine normale mobile Monoblock-Klimaanlage funktioniert im fensterlosen Raum nicht — ohne Öffnung für den Abluftschlauch pustet sie die Wärme zurück hinein. Was hilft: einen Ventilator kühlere Luft aus dem Nachbarraum hereinziehen lassen, tagsüber die Tür zu halten und nachts öffnen, Wärmequellen reduzieren, bei Schwüle einen Luftentfeuchter, bei trockener Hitze zeitweise einen Luftkühler. Wer echte Kühlung braucht, führt einen Split- oder Quick-Connect-Schlauch zum nächstgelegenen Fenster.
 
 ## Warum die mobile Klimaanlage hier scheitert

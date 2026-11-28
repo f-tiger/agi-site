@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 „Midea — ist das eine gute Marke?" — die Frage ist berechtigt, denn die meisten kennen den Namen erst, seit die PortaSplit in jeder Hitzewelle ausverkauft ist. Dabei ist die Marke alles andere als neu. Wir testen nicht selbst: Diese Seite fasst zusammen, was öffentliche Quellen über die Midea Group sagen, und ordnet die beiden Midea-Geräte ein, die auf diesem Portal geführt werden.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurz gesagt:** Midea ist der **größte Hausgerätehersteller der Welt** — ein Fortune-Global-500-Konzern (2026: Platz 231, zum zehnten Mal in Folge gelistet), zu dem auch die Budgetmarke Comfee, das Haushaltsgeräte-Geschäft von Toshiba und der Augsburger Roboterbauer KUKA gehören. In Deutschland ist die Marke vor allem durch **ein einziges Gerät** groß geworden: die **PortaSplit**, die mobile Split-Klimaanlage ohne Bohren (~38 dB innen statt 55–65 dB beim Monoblock) — so gefragt, dass sie in Hitzewellen wiederholt ausverkauft war. Auf diesem Portal führen wir zwei Midea-Geräte: die PortaSplit (bei normalem Preis ca. 900–1.200 €) und den Keramik-Heizlüfter NTH20-17BR (1.200/2.000 W) fürs schnelle Aufheizen.
 
 ## Wer ist Midea?

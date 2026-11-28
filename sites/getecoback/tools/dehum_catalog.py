@@ -6,6 +6,7 @@ from html import escape as e
 from pathlib import Path
 from urllib.parse import quote, quote_plus, urlencode
 from agent_sources import citation_url
+from winter_products import PRODUCTS, buttons
 
 DATA = Path(__file__).resolve().parents[1] / 'data/dehum-catalog.json'
 
@@ -26,8 +27,11 @@ def load():
                 sources.append(retailer)
             if not all(citation_url(row['source']) for row in sources):
                 raise ValueError('Unreviewed model identity source: ' + p['id'])
-        if p.get('asin') and (p['id'] != 'comfee-mddf20' or p['asin'] != 'B07KJX6RDK'):
-            raise ValueError('No newly guessed ASINs')
+        product = PRODUCTS[p['id']]
+        if p['query'] != product['query'] or (p.get('asin') and p['asin'] != product['asin']):
+            raise ValueError('Conflicting German product identity: ' + p['id'])
+        if product['asin']:
+            p['asin'] = product['asin']
     return data
 
 def cellar_drain_route():
@@ -153,17 +157,9 @@ def block(slug, today=None, data=None):
                     f'{identity_note}{cold}{drain}<p>Quelle: {source}</p>{filter_note}')
         # Static facts remain visible; stale/conflicting evidence removes only this catalog's commerce.
         if fresh and p['status'] == 'verified':
-            href = ('https://www.amazon.de/dp/' + p['asin'] + '?tag=getecoback-21' if p.get('asin')
-                    else 'https://www.amazon.de/s?k=' + quote_plus(p['query']) + '&tag=getecoback-21')
-            label = 'Produktseite' if p.get('asin') else 'Modellsuche'
-            cta = f'{label} bei Amazon.de'
-            if cellar:
-                cta = (f'{p["name"]} bei Amazon.de ansehen' if p.get('asin')
-                       else f'{p["name"]} bei Amazon.de suchen')
-            cta = p.get('commerce_label', cta)
-            action = (f'<p data-catalog-commerce><a class="eb-shop-btn" href="{e(href, quote=True)}" '
-                      f'target="_blank" rel="sponsored nofollow noopener">{e(cta)} →</a>'
-                      '<small>Anzeige · Preis, Variante und Lieferbarkeit beim Händler prüfen.</small></p>')
+            product = PRODUCTS[p['id']]
+            action = ('<p data-catalog-commerce>' + buttons(product, 'data-winter-compare') +
+                      '<small>Anzeige · Modell, Variante und Lieferumfang beim Händler prüfen.</small></p>')
         else:
             action = '<p data-catalog-commerce>Quellenprüfung ausstehend. Prüfe die verlinkten Unterlagen vor einer Kaufentscheidung.</p>'
         cards.append(f'<div class="dc-card">{evidence}{action}</div>')

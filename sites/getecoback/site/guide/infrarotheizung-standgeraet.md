@@ -14,8 +14,6 @@ Für Mieter ist das der ganze Punkt. Ein Wandpanel bedeutet Bohrungen in fremde 
 
 Der zweite, leiser Vorteil: Du kannst es umstellen. Heute vor dem Schreibtisch, im Januar neben dem Sessel, im Frühjahr in den Keller. Eine fest montierte Heizung entscheidet sich einmal für einen Platz.
 
-**Anzeige** · Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks in diesem Kasten sind Affiliate-Links — du zahlst denselben Preis. Geräte hier sind nicht selbst getestet; die Auswahl ist aus öffentlichen Angaben zusammengestellt.
-
 **Standgeräte gibt es in zwei Ausführungen:** als Panel, das ab Werk auf Füßen steht, und als normales Panel plus separatem Standfuß-Set desselben Herstellers. Die zweite Variante lohnt sich, wenn du dir offenhalten willst, das Panel später doch an die Wand zu hängen.
 
 Infrarotheizung als Standgerät auf Amazon.de ansehen →
@@ -56,8 +54,6 @@ Deshalb ist die Frage vor dem Kauf nicht „wie viel Watt“, sondern „wie bri
 - **Schutzart in der Produktangabe prüfen:** Für Feuchträume ist nicht jedes Gerät zugelassen. Ob das Modell dafür freigegeben ist, sagt die Herstellerangabe.
 
 - **Steckdose nicht überlasten:** Ein Heizgerät zusammen mit anderen Verbrauchern auf derselben Mehrfachsteckdose ist die typische Fehlerquelle. Im Zweifel gilt die Angabe des Herstellers und, bei Unsicherheit über die Installation, eine Elektrofachkraft. Das ist keine Elektro- oder Rechtsberatung.
-
-**Anzeige** · Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks in diesem Kasten sind Affiliate-Links — du zahlst denselben Preis. Geräte hier sind nicht selbst getestet; die Auswahl ist aus öffentlichen Angaben zusammengestellt.
 
 **Zwei Dinge, die zusammengehören:** ein Panel mit Standfuß und eine Abschaltung, die nicht von deinem Gedächtnis abhängt. Nach der Rechnung oben sind die Stunden der einzige Hebel, den du im Alltag hast.
 

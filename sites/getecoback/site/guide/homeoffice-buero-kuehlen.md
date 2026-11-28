@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Im Homeoffice gibt es keine Klimaanlage vom Arbeitgeber — und im kleinen Büro oft auch nicht. Dabei sinkt die Leistungsfähigkeit ab etwa 26–28 °C spürbar, ab 30 °C wird konzentriertes Arbeiten zur Qual. Die gute Nachricht: Für den Arbeitsplatz brauchst du selten eine teure Vollklimatisierung — es reicht, gezielt **die eine Person am Schreibtisch** kühl zu halten. Hier die Stufen nach Aufwand.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 ## Stufe 1: Der Schreibtisch-Arbeitsplatz gezielt (20–80 €)
 
 Du sitzt den ganzen Tag am selben Fleck — das ist ein Vorteil. Ein leiser Tischventilator oder ein leiser USB-Ventilator direkt auf dich gerichtet senkt die gefühlte Temperatur um mehrere Grad — genug, um den Kopf freizuhalten. Wichtig fürs Arbeiten: auf die Lautstärke achten, damit er in Video-Calls nicht stört (Modelle mit dB-Angabe unter ~45 dB wählen).

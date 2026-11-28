@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Diese Entscheidungshilfe gilt für den PAC EX105 A+++ mit der deutschen Artikelnummer **0151454026**. EcoBack wertet die verlinkten Herstellerunterlagen aus. Wir haben kein Gerät vermessen.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 ## Deutsches Angebot für den PAC EX105 prüfen
 
 Vergleiche die Kennung in den Produktdetails des Händlers. Zum deutschen **PAC EX105 A+++ (PACEX105A+++)** gehören die **Hersteller-Artikelnummer 0151454026** und die **EAN 8004399026445**. Belege: [deutscher De’Longhi-Support für PACEX105A+++](https://www.delonghi.com/de-de/s/PACEX105A%2B%2B%2B) und [De’Longhis deutsche Produktinformation vom 9. Mai 2023 (EAN)](https://delonghigroup-newsroom.de/wp-content/uploads/2023/05/230509_DeLonghi_PM_Pinguino_PAC-EX105-.pdf).

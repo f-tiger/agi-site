@@ -10,8 +10,6 @@ In der Hitzewelle sind tragbare Klimaanlagen und Verdunstungs-Luftkühler die me
 
 **Kurze Antwort:** Im Betrieb ist der **Luftkühler klar günstiger** — er zieht nur **60–120 Watt** (wie ein Ventilator), eine tragbare Klimaanlage dagegen **800–1.400 Watt**. Sie leisten aber Unterschiedliches: Nur die Klimaanlage (ab ~250 €) senkt die Raumtemperatur wirklich; der Luftkühler (ab ~60 €) kühlt bloß den Luftstrom um ein paar Grad und bringt Feuchtigkeit in den Raum. Wer die Temperatur wirklich senken will, zahlt beim Strom mehr; wer nur eine günstige Abkühlung sucht, fährt mit Luftkühler oder Ventilator billiger.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 ## Der Kernunterschied
 
 Eine **tragbare Klimaanlage** ist eine echte Klimaanlage: Sie entzieht dem Raum Wärme und leitet sie über einen Fensterschlauch nach draußen. Sie senkt die Temperatur wirklich. Ein **Luftkühler** (Verdunstungskühler) bläst nur Luft über Wasser und kühlt diesen Luftstrom um ein paar Grad — die Raumtemperatur sinkt nicht, und es kommt Feuchtigkeit dazu.

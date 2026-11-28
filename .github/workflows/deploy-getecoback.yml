@@ -325,6 +325,7 @@ jobs:
 
       - name: Rebuild site-search index (auto-sync new pages before deploy)
         run: |
+          python3 tools/build_german_entry.py
           python3 tools/build_search.py
           python3 tools/check_country_categories.py
           python3 tools/check_winter_locales.py
@@ -496,6 +497,8 @@ jobs:
           python3 tools/link_product_catalog.py
           python3 tools/build_social_previews.py
           python3 tools/build_social_previews.py --check
+          python3 tools/build_german_entry.py
+          python3 tools/build_agent_md.py
           python3 tools/build_feed.py
           python3 tools/test_feed.py
 

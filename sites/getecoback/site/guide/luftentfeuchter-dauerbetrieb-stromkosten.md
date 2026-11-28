@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Der Keller riecht muffig, das Hygrometer zeigt 70 %: Soll der Luftentfeuchter jetzt durchlaufen? Die Antwort hängt von Raumtemperatur, Feuchtequelle, Gerät und Trocknungsziel ab. Diese Seite zeigt eine nachvollziehbare Kostenrechnung und die nächsten Prüfschritte. Sie ersetzt weder eine Schadensdiagnose noch die Bedienungsanleitung; wir haben die Geräte nicht selbst getestet.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurz gesagt:** Stromkosten = Leistung in kW × Laufzeit in Stunden × Strompreis in €/kWh. Bei konstant 500 W und 0,30 €/kWh kosten 24 Stunden **3,60 €**, 30 solche Tage **108 €**. Das ist ein Rechenbeispiel, kein gemessener Geräteverbrauch. Ein Hygrostat kann die Laufzeit begrenzen; Zielfeuchte und Dauerbetrieb müssen zur Situation passen. Bei nassen Bauteilen oder wiederkehrendem Schimmel zuerst die Ursache klären.
 
 ## Die Rechnung: Was kostet ein Luftentfeuchter pro Stunde?

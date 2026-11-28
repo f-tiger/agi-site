@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 TTK 52 E, TTK 72 E, TTK 70 HEPA und TTK 75 ECO sind unterschiedliche Modelle. In diesem Ratgeber prüfen wir beim TTK 75 ECO, welche Aussage die Literangabe für einen kühlen Keller erlaubt. EcoBack hat die Geräte nicht selbst getestet.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 ## Trotec TTK 75 ECO bei 10 °C im Keller: Was sagt das Datenblatt?
 
 **Für 10 °C und 60 % relative Feuchte nennt die Anleitung des Trotec TTK 75 ECO keine Literleistung.** Trotec gibt **20 l/24 h bei 30 °C und 80 % relativer Feuchte** an. Die Tabelle führt separat **maximal 21 l/24 h** ohne Prüfpunkt auf.

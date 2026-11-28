@@ -53,8 +53,6 @@ Infrarotheizung fürs Bad auf Amazon.de ansehen →
 
 Spiegelheizungen fürs Bad auf Amazon.de ansehen →
 
-**Anzeige** · Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks sind Affiliate-Links — du zahlst denselben Preis.
-
 ## Was eine Morgendusche wirklich kostet
 
 Die Formel ist dieselbe wie überall auf dieser Seite: **Leistung (kW) × Stunden × Strompreis**. Wir rechnen mit dem Rechenpreis **0,30 €/kWh**, den auch der Watt-Rechner nutzt; deinen tatsächlichen Preis findest du auf der Stromrechnung. 20 Minuten sind eine Drittelstunde (0,333 h).
@@ -104,8 +102,6 @@ Anzeige · Affiliate-Links — für dich derselbe Preis
 **Wenn es dir um Handtücher geht:** Elektrische Handtuchheizkörper sind eine eigene Geräteklasse mit eigener Suche — und für diesen Wunsch die passendere. Aus öffentlichen Angaben zusammengestellt, nicht selbst getestet; auch hier gilt: Schutzart und Montagevorgaben stehen beim Produkt und beim Hersteller.
 
 Elektrische Handtuchheizkörper auf Amazon.de ansehen →
-
-**Anzeige** · Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks sind Affiliate-Links — du zahlst denselben Preis.
 
 ## Häufige Fragen
 

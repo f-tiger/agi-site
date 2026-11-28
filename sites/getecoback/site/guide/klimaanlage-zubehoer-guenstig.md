@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 **Kurz:** Zubehör wie Fensterabdichtung, Schlauchadapter oder Hygrometer kostet direkt aus China oft **etwa die Hälfte**. Dafür zahlst du mit **ein bis drei Wochen Wartezeit** und einer Reklamation, die über die Plattform statt über einen deutschen Händler läuft. Steht das Gerät schon im Zimmer und es sind 34 °C, ist der schnelle Weg fast immer der richtige. Planst du für nächstes Jahr vor, ist der günstige Weg vernünftig.
 
-Wir verkaufen nichts selbst und importieren nichts. Amazon-Links sind Affiliate-Links; die Links zu AliExpress und Temu sind derzeit **ohne Provisionsbeziehung** — sie stehen hier, weil sie für dich billiger sein können, nicht weil wir daran verdienen.
-
 ## Was der günstige Weg wirklich kostet
 
 |  | Amazon / deutscher Händler | Direktimport (AliExpress, Temu) |

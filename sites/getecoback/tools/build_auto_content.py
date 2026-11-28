@@ -158,6 +158,8 @@ def render_page(product, page_path, published, modified):
     table_rows=''.join(f'<tr><th scope="row">{h} h</th><td>{fmt(power/1000*h,de)} kWh</td><td>{money(power/1000*h*.35,de)}</td><td>{money(power/1000*h*.35*30,de)}</td></tr>' for h in (4,8,12))
     hours=''.join(f'<label><input type="radio" name="hours" value="{h}" required><span>{h} h</span></label>' for h in (4,8,12))
     rates=''.join(f'<label><input type="radio" name="rate" value="{r:.2f}" required><span>{money(r,de)}/kWh</span></label>' for r in (.30,.35,.40))
+    if de:
+        rates = '<label>Strompreis (€/kWh)<input type="number" name="rate" min="0" max="10" step="any" required inputmode="decimal"></label>'
     faq_html=''.join(f'<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q,a in faq)
     graph=[{'@type':'Article','@id':canonical+'#article','headline':title,'description':description,'inLanguage':'de-DE' if de else 'en-GB','datePublished':published,'dateModified':modified,'mainEntityOfPage':{'@type':'WebPage','@id':canonical},'author':{'@type':'Organization','name':'EcoBack','url':'https://getecoback.com/'},'publisher':{'@type':'Organization','name':'EcoBack','url':'https://getecoback.com/'},'citation':sources},{'@type':'FAQPage','@id':canonical+'#faq','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in faq]}]
     structured=json.dumps({'@context':'https://schema.org','@graph':graph},ensure_ascii=False,separators=(',',':')).replace('<','\\u003c').replace('>','\\u003e').replace('&','\\u0026')

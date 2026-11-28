@@ -6,8 +6,6 @@ Canonical (HTML, zitierfähig): https://getecoback.com/guide/infrarotheizung-wat
 
 Möchtest du den ganzen Raum heizen oder nur kurz am Schreibtisch oder im Bad Wärme spüren? Für den ganzen Raum kannst du mit Quadratmetern und Dämmung einen ersten Richtwert berechnen. Für örtliche Zusatzwärme zählen der Platz, an dem du Wärme brauchst, und die vorhandene Heizung.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Auf einen Blick:** Die Faustregel für einen ganzen Raum reicht von 60 bis 100 W/m². Bei unbekannter Dämmung zeigt die Spanne, wie stark die Annahme das Ergebnis verändert. Jede Stunde unter Volllast kostet bei 1.000 W und 0,30 €/kWh genau 0,30 €.
 
 ## Watt-Rechner: Raumgröße und Dämmung eingeben
@@ -31,6 +29,8 @@ Dämmung
 Gut — 60 W/m²
 Mittel — 80 W/m²
 Schlecht — 100 W/m²
+
+Strompreis (€/kWh)
 
 Der Rechner setzt je nach gewählter Dämmung **60, 80 oder 100 W/m²** an. Hohe Decken, große Fenster, Außenwände und die gewünschte Raumtemperatur können den tatsächlichen Bedarf verändern.
 

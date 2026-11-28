@@ -10,8 +10,6 @@ Die Fensterabdichtung ist das meistgekaufte Zubehörteil rund um mobile Klimaanl
 
 **Kurzantwort:** Fürs **Kippfenster** nimmst du den universellen **Klett-Stoff** (ab ~15–25 €, z. B. HOOMEE-Bauart) — oder eine **starre Platte / ein Auslass-Panel**, wenn das Gerät den ganzen Sommer am selben Fenster läuft. Fürs **Dachfenster** braucht es die eigene Dachfenster-Version. Länge = **2 × (Flügelbreite + Flügelhöhe)**, im Zweifel größer. Und: Rahmen vorher entfetten — es versagt fast immer das Klebeband, nicht der Stoff.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks sind Affiliate-Links — du zahlst denselben Preis. Wir haben die Produkte nicht selbst getestet, sondern fassen öffentliche Tests und Käufererfahrungen zusammen.
-
 ## Warum ohne Abdichtung (fast) nichts kühlt
 
 Ein Monoblock bläst pro Stunde mehrere hundert Kubikmeter warme Raumluft durch den Schlauch nach draußen. Diese Luft fehlt im Raum — es entsteht **Unterdruck**, und der zieht durch jede Öffnung Außenluft nach. Ist das Fenster einfach gekippt, kommt die 35-Grad-Luft auf direktem Weg zurück: Das Gerät kühlt gegen sich selbst, läuft im Dauerbetrieb und schafft trotzdem nur zwei, drei Grad. Genau deshalb ist die Abdichtung kein „Zubehör", sondern die halbe Kühlleistung — der wirksamste Einzelkauf am ganzen System.

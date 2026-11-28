@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Es ist September, die Heizsaison fängt an — und damit die Zeit, in der Bäder zwischen zwei Duschen nicht mehr richtig abtrocknen. Genau dann tauchen die schwarzen Punkte auf: erst in der Silikonfuge an der Wanne, dann in den Fliesenfugen darüber. Das Bad ist dabei nicht feucht, weil die Luft schlecht ist. Es ist feucht, weil du gerade mehrere Liter warmes Wasser in einen kleinen Raum gekippt hast und jede kalte Fläche darin dieses Wasser einsammelt.
 
-**Anzeige** · Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurzantwort:** Fugenmörtel ist mineralisch und porös — dort lässt sich der Belag oft wegbekommen. Silikon ist eine Kunststoffdichtung: Sitzt der Schimmel unter der Oberfläche, erreicht ihn kein Mittel mehr, dann wird die Fuge erneuert statt gereinigt. Ob er wiederkommt, entscheidet aber weder das eine noch das andere, sondern die halbe Stunde nach dem Duschen — Wasser von den Flächen holen, Fenster ganz auf statt gekippt, Tür zu.
 
 ## Fuge ist nicht gleich Fuge: Mörtel oder Silikon
@@ -57,7 +55,6 @@ Ob der Schimmel wiederkommt, entscheidet nicht das Putzmittel, sondern das, was 
 Das ist das billigste und wirksamste Teil in dieser ganzen Liste. Wir haben nichts davon selbst getestet; die Auswahl ist aus öffentlichen Angaben zusammengestellt.
 
 Duschabzieher auf Amazon.de ansehen →
-**Anzeige** · Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks sind Affiliate-Links — du zahlst denselben Preis.
 
 ## Wann die Silikonfuge erneuert werden muss statt gereinigt
 
@@ -74,7 +71,6 @@ Zu Silikon mit fungiziden Zusätzen („schimmelresistent“) gehört eine Einsc
 Achte auf die Farbe (weiß, grau, transparent) und darauf, dass es als Sanitär- und nicht als Bausilikon ausgewiesen ist. Nicht selbst getestet — aus öffentlichen Angaben zusammengestellt.
 
 Sanitärsilikon auf Amazon.de ansehen →
-**Anzeige** · Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks sind Affiliate-Links — du zahlst denselben Preis.
 
 ## Fensterloses Bad: der Fall, in dem Technik wirklich hilft
 
@@ -103,7 +99,6 @@ Diese Messung ist billiger als jeder Fehlkauf. Sie sagt dir vor allem, ob dein P
 Rund 10 €, mehr braucht es nicht. Modelle mit Min-/Max-Speicher zeigen zusätzlich den Spitzenwert nach dem Duschen. Nicht selbst getestet — aus öffentlichen Angaben zusammengestellt.
 
 Hygrometer auf Amazon.de ansehen →
-**Anzeige** · Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks sind Affiliate-Links — du zahlst denselben Preis.
 
 ## Wann es nicht mehr die Fuge ist
 

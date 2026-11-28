@@ -45,8 +45,6 @@ Als Zielbereich nennen Campingfachmedien und Zubehörhändler übereinstimmend e
 
 - **Stellplatz prüfen** — trocken, möglichst überdacht, keine Staunässe unter dem Fahrzeug.
 
-Wir haben kein Wohnmobil im Labor überwintert. Was hier steht, ist die Physik der Kondensation (nachrechenbar mit unserem Taupunkt-Check) plus die übereinstimmenden Empfehlungen von Campingfachmedien und Zubehörhändlern. Produktempfehlungen fassen öffentliche Tests zusammen — nicht selbst getestet.
-
 ## Häufige Fragen
 
 ### Welcher Luftentfeuchter eignet sich fürs Wohnmobil im Winter?

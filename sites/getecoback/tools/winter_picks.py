@@ -4,6 +4,7 @@ from html import escape
 from urllib.parse import urlencode
 
 from agent_sources import citation_url
+from winter_products import PRODUCTS, buttons
 
 
 def shortlist(data, today=None):
@@ -23,7 +24,7 @@ def shortlist(data, today=None):
         dates = [p.get('checked', data['checked']), fact['checked']]
         eligible = p['status'] == 'verified' and all(
             0 <= (today - date.fromisoformat(day)).days <= data['max_age_days'] for day in dates)
-        url = 'https://www.amazon.de/s?' + urlencode({'k': p['query'], 'tag': 'getecoback-21'})
+        url = PRODUCTS[model]['amazonUrl']
         picks.append({**fact, 'name': p['name'], 'id': model, 'url': url if eligible else None})
     return picks
 
@@ -34,8 +35,7 @@ def offer(p, hero=False, choice=False):
     surface = 'data-eb-tp="1"' if hero else 'data-winter-table'
     if choice:
         surface = 'data-winter-compare data-choice-action="shop"'
-    return (f'<a class="winter-pick-cta" {surface} href="{escape(p["url"])}" target="_blank" '
-            'rel="nofollow sponsored noopener">Preis bei Amazon.de prüfen (Modellsuche)*</a>')
+    return buttons(PRODUCTS[p['id']], surface)
 
 
 def quick_decision(picks, dehum=False):
@@ -46,14 +46,20 @@ def quick_decision(picks, dehum=False):
                      f' <p>{escape(point + p["reason"])}</p>{offer(p, hero=True)}</div>')
     fallback = ('Bei nassen Wänden erst die Ursache klären. Ohne Messwerte zuerst Temperatur und Feuchte messen.'
                 if dehum else 'Ventil noch unbekannt? Erst die Kennzeichnung prüfen. Reicht dein alter Kopf, behalte ihn.')
+    if dehum:
+        cards.append('<div><h3>Noch unsicher? Erst messen</h3><p>Vor jedem Kauf Temperatur und Feuchte messen. '
+                     'Ein vorhandenes Hygrometer reicht.</p>' + buttons(PRODUCTS['tp50'], 'data-eb-tp="1"') + '</div>')
+    else:
+        cards.append('<div><h3>Ventil unbekannt?</h3><p>Aufschrift lesen, Anschluss und Adapter prüfen.</p>'
+                     '<a href="#ventilcheck">Ventil prüfen →</a></div>')
     return ('<section class="winter-picks" id="schnell-entscheidung" aria-labelledby="winter-pick-title">'
-            '<h2 id="winter-pick-title">Schnell-Entscheidung in 30 Sekunden</h2><div class="winter-pick-grid">'
+            '<h2 id="winter-pick-title">3-Sekunden-Entscheidungshilfe</h2><div class="winter-pick-grid">'
             + ''.join(cards) + f'</div><p>{fallback} <a href="#winter-quellen">* Werbung · Quellen</a></p></section>')
 
 
 def disclosure(picks):
     sources = ' · '.join(f'<a href="{escape(p["source"])}">{escape(p["name"])}</a> ({p["checked"]})' for p in picks)
-    return ('<details id="winter-quellen"><summary>Quellen, Auswahl und Affiliate-Links</summary>'
+    return ('<details id="winter-quellen"><summary>Methodik, Datenquellen &amp; Hinweise</summary>'
             '<p>Wir vergleichen veröffentlichte Herstellerangaben. EcoBack hat die Geräte nicht selbst getestet. '
             'Als Amazon-Partner verdienen wir an qualifizierten Verkäufen. Die Modellsuche zeigt mehrere Treffer. '
             'Prüfe Generation, Lieferumfang und Gesamtpreis beim Händler.</p><p>' + sources + '</p></details>')

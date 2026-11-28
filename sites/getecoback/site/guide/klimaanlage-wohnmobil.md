@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Ein Wohnmobil im Hochsommer ist eine Metallbox in der Sonne — innen locker 40 Grad, wenn keiner kühlt. Die Frage ist nur: Was funktioniert im Camper wirklich? Zwischen 3.000-Euro-Dachklimaanlage und 25-Euro-12V-Mini-Kühler liegen Welten. Dieser Ratgeber sortiert die Optionen ehrlich nach Kühlleistung, Stromverbrauch, Gewicht und Lautstärke — damit du nicht Geld für heiße Luft ausgibst.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Kurz gesagt:** Echte Kühlung liefert nur eine Kompressor-Klimaanlage (Dach oder Staukasten) — die braucht aber Landstrom oder eine dicke Batterie plus Solar und wiegt 25–35 kg. Mobile Monoblock-Geräte kühlen auch, brauchen aber 230 V und einen Abluftweg. 12V-Mini-Kühler und Ventilatoren senken die Raumtemperatur nicht, sondern liefern nur einen angenehmen Luftstrom — für Zeltcamping und autarkes Übernachten oft trotzdem die einzige realistische Wahl.
 
 ## Die vier Optionen im Überblick

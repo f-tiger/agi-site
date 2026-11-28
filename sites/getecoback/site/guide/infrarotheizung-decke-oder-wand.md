@@ -36,8 +36,6 @@ Die andere Seite: Gewärmt wird die Zone unter dem Panel. Sitzt du immer am selb
 
 Und der Punkt, an dem Deckenmontage aufhört, ein Einrichtungsthema zu sein: Ein Gerät über deinem Kopf muss oben bleiben. Ob deine Decke dafür taugt und mit welchem Befestigungsmaterial, hängt vom Deckenaufbau ab — Beton, Holz, abgehängte Konstruktion mit Hohlraum verhalten sich völlig unterschiedlich. Wir nennen dir hier keine Zahl dafür, weil sie geräte- und gebäudeabhängig ist. Was gilt: Zulässiger Untergrund und Befestigungsmaterial stehen in der Montageanleitung des Herstellers, und wenn du nicht sicher weißt, was über dir verbaut ist, gehört die Beurteilung an jemanden, der das vor Ort prüfen kann.
 
-**Anzeige.** Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Panels für die Decke sind eine eigene Suche:** Sie werden mit passender Halterung oder Abstandshalter angeboten, und der Hersteller gibt für sie an, ob Deckenmontage überhaupt zugelassen ist. Nicht jedes Wandpanel darf an die Decke.
 
 Infrarotheizungen für Deckenmontage auf Amazon.de ansehen →
@@ -47,8 +45,6 @@ Infrarotheizungen für Deckenmontage auf Amazon.de ansehen →
 Eine Bildheizung ist ein Infrarotpanel mit bedruckter Front. Sonst nichts. Sie heizt nicht besser, weil ein Motiv drauf ist, und sie heizt auch nicht schlechter. Wie viel Wärme sie liefert, steht in Watt auf dem Typenschild — dieselbe Zahl, nach der du auch ein weißes Panel aussuchen würdest.
 
 Der Grund, sie trotzdem zu nehmen, ist ernst gemeint: Ein weißes Rechteck an der Wohnzimmerwand ist für viele der eigentliche Kaufhinderungsgrund, und ein Gerät, das aus Optikgründen nie gekauft oder gleich wieder abgehängt wird, heizt gar nicht. Zwei ehrliche Einwände bleiben: Du legst dich auf ein Motiv fest, das dir in ein paar Jahren noch gefallen muss, und die Auswahl an Größen und Leistungsstufen ist kleiner als bei schlichten Panels — was heikel wird, wenn dein Raum eine Leistung braucht, die es im gewünschten Motiv nicht gibt. Dann geht Watt vor Bild.
-
-**Anzeige.** Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
 
 **Suche nach dem Motiv, entscheide nach der Wattzahl:** Prüf bei jedem Bildmotiv zuerst, ob es die Leistung gibt, die dein Raum nach der Regel unten braucht — die Optik ist der zweite Filter, nicht der erste.
 
@@ -73,8 +69,6 @@ Durchgerechnet an einem Raum mit **20 m²**:
 - schlechte Dämmung oder Altbau: 20 × 100 = **2.000 Watt**
 
 Diese Zahl gilt für die Wand genauso wie für die Decke und genauso für die Bildheizung. Was sich unterscheidet, ist die Aufteilung: Größere Leistungen verteilt man häufig lieber auf zwei Panels als auf ein einzelnes großes — an der Decke schon deshalb, weil dann nicht die gesamte Wärme aus einem einzigen Punkt über dem Raum kommt. Für deine eigene Quadratmeterzahl rechnet das der [Watt-Rechner](https://getecoback.com/guide/infrarotheizung-watt-rechner.html) aus, mit offengelegter Formel.
-
-**Anzeige.** Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
 
 **Wichtiger als die Montageart:** ein Thermostat. Ein Infrarotpanel im Dauerlauf ist der teure Fehler — getaktet nach Raumtemperatur ist es ein kalkulierbares Gerät. Achte darauf, ob das Thermostat mitgeliefert ist oder separat dazugehört.
 

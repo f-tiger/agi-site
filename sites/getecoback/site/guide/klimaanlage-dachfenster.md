@@ -8,8 +8,6 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Ausgerechnet dort, wo es im Sommer am heißesten wird — im Dachgeschoss — ist die Installation der mobilen Klimaanlage am kniffligsten: Schwing- und Klapp-Schwing-Fenster (Velux, Roto & Co.) öffnen um eine Mittelachse, und das flache Standard-Fensterkit aus dem Karton hat daran keine Chance. Die gute Nachricht: Mit der richtigen Abdichtung läuft der Abluftschlauch auch am Dachfenster dicht und zuverlässig.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
-
 **Auf einen Blick:** Stoff-Abdichtung speziell für Dachfenster (ca. 20–35 €) = Standardlösung · Acrylglas-Platte nach Maß (ca. 50–90 €) = beste Dichtwirkung, jeden Sommer wiederverwendbar · zugeschnittene XPS-/Kunststoffplatte (ca. 10–20 €) = Budget-Klemmlösung · Dachgeschoss braucht eine BTU-Stufe mehr als die Fläche vorgibt.
 
 ## Warum das Standard-Kit am Dachfenster scheitert

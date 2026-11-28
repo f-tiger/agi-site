@@ -4,13 +4,17 @@
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html
 
-## Schnell-Entscheidung in 30 Sekunden
+## 3-Sekunden-Entscheidungshilfe
 
 ### Danfoss RAVL und Bosch-Zentrale
 **Bosch Heizkörper-Thermostat II [+M]** Beim II [+M] liegt der passende RAVL-Adapter bei. Gleiche die Ventilkennzeichnung mit der Bosch-Skizze ab.
 
 ### Danfoss RA und passende FRITZ!Box
-**FRITZ!Smart Thermo 302 · Artikel 20003120** Für RA mit Anschlussgewinde liegt der Adapter bei. Prüfe vorab, ob deine FRITZ!Box die DECT-Basis unterstützt.
+**FRITZ!Smart Thermo 302 · Artikel 20003120** Mit kompatibler DECT-FRITZ!Box brauchst du keine zusätzliche Bridge. Der RA-Adapter mit Anschlussgewinde liegt bei.
+
+### Ventil unbekannt?
+Aufschrift lesen, Anschluss und Adapter prüfen.
+[Ventil prüfen →](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#ventilcheck)
 
 Ventil noch unbekannt? Erst die Kennzeichnung prüfen. Reicht dein alter Kopf, behalte ihn. [* Werbung · Quellen](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#winter-quellen)
 
@@ -107,7 +111,7 @@ Danfoss-Anschlüsse am FRITZ!Smart Thermo 302, geprüft am 22.11.2026
 
 Ist die Kennzeichnung offen, warte mit der Bestellung und kläre den Anschluss mit dem Hersteller oder einem Fachbetrieb. Am wasserführenden Ventilkörper nichts lösen.
 
-Wenn du den Kopf ersetzen möchtest und das Ventil eindeutig bestimmt ist, prüfe [die FRITZ!Box und den Lieferumfang für Artikel 20003120](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-fritz-302). Bei RAV oder RAVL zuerst klären, welcher Zusatzadapter passt.
+Der FRITZ!Smart Thermo 302 verbindet sich per DECT ULE mit einer kompatiblen FRITZ!Box ohne zusätzliche Bridge. Wenn du den Kopf ersetzen möchtest und das Ventil eindeutig bestimmt ist, prüfe [die FRITZ!Box und den Lieferumfang für Artikel 20003120](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#thermostat-fritz-302). Bei RAV oder RAVL zuerst klären, welcher Zusatzadapter passt.
 
 [FRITZ!Smart Thermo 302: Lieferumfang für Artikel 20003120](https://fritz.com/products/fritz-smart-thermo-302-20003120) · [FRITZ!DECT 302: Heizungsventile und passende Adapter](https://fritz.com/apps/knowledge-base/fritz-dect-302/3376_An-welchen-Heizungsventilen-kann-der-FRITZ-Heizkorperregler-eingesetzt-werden?market=de-de).
 
@@ -177,7 +181,7 @@ Neues tado° X-System mit enthaltener Bridge
 **Betrieb und Funktionen:** Abnehmbarer, per USB-C ladbarer Akku. Die kostenlose App enthält Zeitpläne; zusätzliche Automatisierungen können das optionale AI-Assist-Abo benötigen. Gewünschte Funktion vor dem Kauf prüfen.
 **Vor der Bestellung:** tado° X und die V3+-Geräte/Internet Bridge sind nicht miteinander kompatibel. Die V3+-Ventiltabelle auf dieser Seite bestätigt keine Passung für X. In diesem Starter Kit ist kein Heizkreis-Regler für die Therme enthalten. Die Bridge X verbindet die Geräte mit dem Netzwerk. Wer Wärme für einen anderen Raum anfordern will, prüft die Anlagenregelung vor Bestellung.
 [tado°: X Starter Kit, Packung und Kompatibilität](https://shop.tado.com/products/smart-radiator-thermostat-x-starter-kit-1) · geprüft am 2026-11-12
-Werbung · Modellsuchetado° Smartes Heizkörper-Thermostat X – Starter Kit bei Amazon.de suchen →
+Werbung · tado° Smartes Heizkörper-Thermostat X – Starter KitAktuellen Preis bei Amazon prüfen * →
 
 ### Bosch Heizkörper-Thermostat II [+M]
 Vorhandenes Bosch-System oder geprüftes Matter-System nutzen
@@ -188,17 +192,17 @@ Vorhandenes Bosch-System oder geprüftes Matter-System nutzen
 [Für Bosch II [+M]: Danfoss RA, RAV und RAVL abgleichen](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#bosch-ii-m-danfoss-adapter)
 [Bosch II [+M] zeigt E03? Kalibrierung prüfen](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#bosch-ii-m-e03)
 [Bosch: Modellvarianten und Systemfunktionen](https://www.bosch-smarthome.com/de/de/produkte/heizung/heizkoerper-thermostat/) · [Bosch: Anleitung II [+M], Matter-/Thread-Anforderungen](https://www.bosch-smarthome.com/res/web/produkt/heizkoerper-thermostat2/pdf/8-750-002-924_BTH-RAD_OM_11L.pdf) · geprüft am 2026-11-12
-Werbung · ModellsucheBosch Heizkörper-Thermostat II [+M] bei Amazon.de suchen →
+Werbung · Bosch Heizkörper-Thermostat II [+M]Aktuellen Preis bei Amazon prüfen * →
 
 ### FRITZ!Smart Thermo 302 · Artikel 20003120
 Passende FRITZ!Box mit DECT bereits vorhanden
-**System:** Laut Produktseite: FRITZ!Box mit DECT-Basis und FRITZ!OS ab 6.83; FRITZ!Box 7312 und 7412 sind ausgenommen. Das genaue Routermodell vor dem Kauf prüfen.
+**System:** Keine zusätzliche Bridge nötig: Eine kompatible FRITZ!Box übernimmt die Zentrale per DECT ULE. Voraussetzung: FRITZ!Box mit DECT-Basis und FRITZ!OS ab 6.83; FRITZ!Box 7312 und 7412 sind ausgenommen. Das genaue Routermodell vor dem Kauf prüfen.
 **Paket und Zusatzkauf:** Der Hersteller nennt einen Thermo 302, drei AA-Batterien und einen Danfoss-RA-Adapter. Keine FRITZ!Box enthalten. Andere Ventiltypen separat in der Montagehilfe prüfen.
 **Betrieb und Funktionen:** Betrieb mit drei AA-Batterien und DECT-ULE. Der Hersteller schließt Nass- und Feuchträume aus. Das Gerät ist kein Ersatz für eine passende Zentrale.
 **Vor der Bestellung:** Artikelnummer 20003120 und Paketinhalt abgleichen. Nicht allein aus dem Namen FRITZ! oder einem M30-Anschluss auf System- oder Ventilkompatibilität schließen.
 [Für FRITZ! 302: Danfoss-Adapter und Lieferumfang prüfen](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#fritz-302-danfoss-adapter)
 [FRITZ!: Thermo 302, Voraussetzungen und Lieferumfang](https://fritz.com/products/fritz-smart-thermo-302-20003120) · geprüft am 2026-11-12
-Werbung · ModellsucheFRITZ!Smart Thermo 302 · Artikel 20003120 bei Amazon.de suchen →
+Werbung · FRITZ!Smart Thermo 302 · Artikel 20003120Aktuellen Preis bei Amazon prüfen * →
 
 ### TP-Link Kasa KE100: Einzelkopf oder KE100 KIT?
 Vorhandenen KH100 erweitern oder erstmals ein Kasa-System einrichten
@@ -207,8 +211,8 @@ Vorhandenen KH100 erweitern oder erstmals ein Kasa-System einrichten
 **Betrieb und Funktionen:** Der KE100 verwendet zwei AA/LR6-Batterien. Für die in der Hersteller-FAQ beschriebene Fenstererkennung wird ein separater Tapo T110 am selben Kasa-Hub benötigt.
 **Vor der Bestellung:** TP-Link nennt M30 × 1,5 als Anschluss und dokumentiert Adapter für weitere Ventile. Gleiche Ventil und Inhalt des konkreten EU-Angebots ab. Erst bei bestätigtem Ventil und passendem Paket bestellen.
 [TP-Link: KE100 KIT mit KH100, Lieferumfang und Matter](https://www.tp-link.com/de/home-networking/smart-thermostat/ke100-kit/) · [TP-Link: Kasa-App, Hub, Funk und Fensterkontakt](https://www.tp-link.com/de/support/faq/3602/) · geprüft am 2026-11-27
-Werbung · ModellsucheKE100 Einzelkopf ohne Hub bei Amazon.de suchen →
-Werbung · ModellsucheKE100 KIT mit KH100 Hub bei Amazon.de suchen →
+Werbung · KE100 Einzelkopf ohne HubAktuellen Preis bei Amazon prüfen * →
+Werbung · KE100 KIT mit KH100 HubAktuellen Preis bei Amazon prüfen * →
 
 ### Deutschland, Österreich oder Schweiz?
 Bei Modellsuchen Generation, Starter Kit und Verkäufer im Ergebnis abgleichen.
@@ -223,7 +227,7 @@ Preise selbst beim Händler eintragen und alle Beträge in derselben Währung ha
 [Gesamtsumme und eigene Sparannahme im Rechner prüfen ↑](https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html#rechner)
 Die Rechnung bestätigt weder die Ventilpassung noch eine Ersparnis. Mit 0 % Annahme zeigt sie auch den Fall ohne finanziellen Rückfluss.
 
-**Quellen, Auswahl und Affiliate-Links**
+**Methodik, Datenquellen & Hinweise**
 Wir vergleichen veröffentlichte Herstellerangaben. EcoBack hat die Geräte nicht selbst getestet. Als Amazon-Partner verdienen wir an qualifizierten Verkäufen. Die Modellsuche zeigt mehrere Treffer. Prüfe Generation, Lieferumfang und Gesamtpreis beim Händler.
 [Bosch Heizkörper-Thermostat II [+M]](https://www.bosch-smarthome.com/res/web/produkt/heizkoerper-thermostat2/pdf/8-750-002-943_V001_Valve_adapter_recommendations_ML_20240808.pdf) (2026-11-26) · [FRITZ!Smart Thermo 302 · Artikel 20003120](https://fritz.com/apps/knowledge-base/fritz-dect-302/3376_An-welchen-Heizungsventilen-kann-der-FRITZ-Heizkorperregler-eingesetzt-werden?market=de-de) (2026-11-28)
 
